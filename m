@@ -1,118 +1,105 @@
-Return-Path: <devicetree+bounces-157488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3357A60C51
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 09:55:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25177A60C5C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 09:58:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CD7C3A62AD
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 08:55:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68AE63B6D48
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 08:57:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 029751DC988;
-	Fri, 14 Mar 2025 08:55:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18BC51E5B8E;
+	Fri, 14 Mar 2025 08:57:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ah133TXp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B94732C85
-	for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 08:55:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1DC01E521B;
+	Fri, 14 Mar 2025 08:57:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741942555; cv=none; b=C+qQ+YIrc9IV01MvotPpnrBgJbZtmDrrtuxiXW4G4z3XHGDQpKh74DOn8MpDtnQL3L6lQFw1kV1FrALlamwKxVKA+B5NT2YaVg6r9jlY9HR5QwXXvM+iLawdEqeIH4AOFy8yaB4RDtlwAgy5U3wnXYy7bQPsfzrQzhPJtzTrjpk=
+	t=1741942647; cv=none; b=fneD15ZjOMBATEvTyHlTxr8zO6JX4HiQLbI/l99TbJxyKWESY2Kmi3G4dE0DQ8/UeXoVR5YjqXBRhRO2HQglhFPA+GGcfJSufdAnKiQ91csNSFMmz2v+FMagme7+BLcFoMrDJH60fNUhEZy5HYXDKtciw3KGesqpmEYZs4Ujjhc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741942555; c=relaxed/simple;
-	bh=QVf6IAM1bd0o2o9CRTs9hW37xXi3Ym7SihZPhvQUXpo=;
+	s=arc-20240116; t=1741942647; c=relaxed/simple;
+	bh=2kWg8ACuhQH/LEWr57RRJJKXqDK/UHcHdofX5RooQ2M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ppAlTcn0TUWgyapjHi4dV6UdP+pIbPI+Jy/stUpmq7HFjEkUwK+u2UPWdwiZFUHRsF1mJMdSCV2q7pUMxcyJPjWAXlSH3GSuM9JQCReZqxBIdsoe1Kk+l3qU9fAeHsKNPA1OVdw6G5hNlVOEM5yG8th5DsZqTQqQpd9Of5A/+aM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tt0pX-0008E9-6S; Fri, 14 Mar 2025 09:55:47 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tt0pW-005fmk-2j;
-	Fri, 14 Mar 2025 09:55:46 +0100
-Received: from pengutronix.de (p5b1645f7.dip0.t-ipconnect.de [91.22.69.247])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 787483DB85A;
-	Fri, 14 Mar 2025 08:55:46 +0000 (UTC)
-Date: Fri, 14 Mar 2025 09:55:46 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, "open list:CAN NETWORK DRIVERS" <linux-can@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH v2 1/1] dt-bindings: can: fsl,flexcan: add i.MX94 support
-Message-ID: <20250314-berserk-wine-turkey-18f714-mkl@pengutronix.de>
-References: <20250307190816.2971810-1-Frank.Li@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=BP85SpP/PC7S0K60op3jVfMkum2H6NPZ4nsOLEgPqfUI2hN42IpxF51y9QOmH7WHrQN4NPrxfCnSyEm0tIV52THtcmQnB/bol88fFn8P0Wco22SADDzoCmiMsJwkyLm66FKOItStRAS6jRHFZRBC/1fyiDgC0Lrop/vnkP0AAWI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ah133TXp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D86E7C4CEE5;
+	Fri, 14 Mar 2025 08:57:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741942646;
+	bh=2kWg8ACuhQH/LEWr57RRJJKXqDK/UHcHdofX5RooQ2M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ah133TXpFMYw05MybzIuUYMGY86fC3EWq2ZmMtHL4Qu8uMloUHv0Df5nGYRlfVoIF
+	 LsKuz8l836qQ1FoSKi6lwz4BWOZLqb2q2ohy+3KN8gQxSYq0OdX7up/ItLOIbcckgE
+	 vCR2EggZyiRbPSW9GXv+gYIYZ1pbm6xrncgwJJzlOkfPe2gO44RaA+237IbjgASk31
+	 F5LB5Vm/feGYIVQq3o3D6Erzo2sJEgSZ4eLNw+RPgc1PqiRxK4hgCZdX+TMVj5qvf0
+	 qo4anUIEV2WFFQKLz8PqNztWsbF3WvjrKSj5fKhJpCFwlOnJqlIv8SHGHCcg6xfI8T
+	 qw7KaYAJmOwDw==
+Date: Fri, 14 Mar 2025 08:57:22 +0000
+From: Lee Jones <lee@kernel.org>
+To: Kaustabh Chakraborty <kauschluss@disroot.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [GIT PULL] Immutable branch between MFD and Regulator due for the
+ v6.15 merge window
+Message-ID: <20250314085722.GK3645863@google.com>
+References: <20250301-exynos7870-pmic-regulators-v3-0-808d0b47a564@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="wqldkzxr5zxyxjkx"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250307190816.2971810-1-Frank.Li@nxp.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250301-exynos7870-pmic-regulators-v3-0-808d0b47a564@disroot.org>
 
+Enjoy!
 
---wqldkzxr5zxyxjkx
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 1/1] dt-bindings: can: fsl,flexcan: add i.MX94 support
-MIME-Version: 1.0
+The following changes since commit 2014c95afecee3e76ca4a56956a936e23283f05b:
 
-On 07.03.2025 14:08:15, Frank Li wrote:
-> Add compatible string "fsl,imx94-flexcan" for the i.MX94 chip, which is
-> backward compatible with i.MX95. Set it to fall back to
-> "fsl,imx95-flexcan".
->=20
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+  Linux 6.14-rc1 (2025-02-02 15:39:26 -0800)
 
-Applied to linux-can-next.
+are available in the Git repository at:
 
-Thanks,
-Marc
+  ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tags/ib-mfd-regulator-v6.15
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+for you to fetch changes up to 169cd52fd9445b30379ea6deafa28a260d489699:
 
---wqldkzxr5zxyxjkx
-Content-Type: application/pgp-signature; name="signature.asc"
+  regulator: s2mps11: Add support for S2MPU05 regulators (2025-03-13 12:38:52 +0000)
 
------BEGIN PGP SIGNATURE-----
+----------------------------------------------------------------
+Immutable branch between MFD and Regulator due for the v6.15 merge window
 
-iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmfT7w8ACgkQDHRl3/mQ
-kZzYnAf/WJzCDW04eHxhTNrkCZk7STUIXOpvxwWNwYPyUcpi/Le/aaYpItBySi7P
-kEdMGBBg3phIGSwbo+9lTrYMDRP02JUJbDJaS/0UrwqFPNvSKo00KYfNWUOrRnY6
-R+9Ojlq5wYFJnsDjXp822iR0kklnyRs4SuALLTdRn6LDkiHAEYSmpzOHcT7m0V/i
-O2Ir35lx8LrcL/6MXiHSmZhod01oUHS3WcvEMkBJa/B7JQX6x5SC9LGdbwnAvp4n
-Du4OcWS31kUvI/EDreABWjx5HMeUun/MiSPRd0RNyajFvoHNOPy3gJ1vWFpfO951
-u5EerZ8QkMFQfB0K2O3VZortPJke2Q==
-=yFfj
------END PGP SIGNATURE-----
+----------------------------------------------------------------
+Kaustabh Chakraborty (3):
+      regulator: dt-bindings: add documentation for s2mpu05-pmic regulators
+      mfd: sec: Add support for S2MPU05 PMIC
+      regulator: s2mps11: Add support for S2MPU05 regulators
 
---wqldkzxr5zxyxjkx--
+ .../bindings/regulator/samsung,s2mpu05.yaml        |  47 ++++++
+ drivers/mfd/sec-core.c                             |  12 ++
+ drivers/mfd/sec-irq.c                              |  34 ++++
+ drivers/regulator/Kconfig                          |   4 +-
+ drivers/regulator/s2mps11.c                        |  92 ++++++++++-
+ include/linux/mfd/samsung/core.h                   |   1 +
+ include/linux/mfd/samsung/irq.h                    |  44 +++++
+ include/linux/mfd/samsung/s2mpu05.h                | 183 +++++++++++++++++++++
+ 8 files changed, 414 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/regulator/samsung,s2mpu05.yaml
+ create mode 100644 include/linux/mfd/samsung/s2mpu05.h
+
+-- 
+Lee Jones [李琼斯]
+
 
