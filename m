@@ -1,98 +1,163 @@
-Return-Path: <devicetree+bounces-157608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0536A61599
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 17:01:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8714A615BF
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 17:07:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE8FE19C085F
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 16:01:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F20D189E895
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 16:07:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 232A71FF1B7;
-	Fri, 14 Mar 2025 16:01:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=acm.org header.i=@acm.org header.b="aEo7PzKD"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDBB01FECAC;
+	Fri, 14 Mar 2025 16:07:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from 003.mia.mailroute.net (003.mia.mailroute.net [199.89.3.6])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 645CBF510;
-	Fri, 14 Mar 2025 16:01:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=199.89.3.6
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AACE91339A4;
+	Fri, 14 Mar 2025 16:07:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741968074; cv=none; b=UJ4s2H0MTaWzLpHZXlzTjrLsny39VHhVguDKtpHl4QWySexQilBwJlC1WysYVmY+pM9am7d4Dryeut9ka7Pf4JpeOUfkQqSm0Wsafsoj/N3DSqTwfAEYoBQYMGd/bgda56NPzbgEhCANL99HETy9rUNEMLqbuiG2jRMWDB8PmVU=
+	t=1741968436; cv=none; b=tuFd30o1eRgCq4o/tWjVvrEW0ZzdzlxPqGT+OAkTOgsiyH47cRPcslAerWBT6TgLOam1/VUoQKpAoJwO3/fkf7RnrTZsJvI457vhdvewtJ+omZL7oR+d7winYVsuBBdbTg6FP91gtdoADvKmQyEv6sOMtcuXT/Bzp+IjjpGJr20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741968074; c=relaxed/simple;
-	bh=rXJyhLZM0wQnuMA6BY86fx7l1XvsG57/1opLs9TF2k0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bNsLtgZX6Kzv89+MXbw72OQ4px54dNfHAACjxGGwujvw451kLh0gSnJNRqpIE4AJH9gTipb9zLj3mvYXL9oDFY4WP077kbBl/1EvuLAP4FS2PbJ28rwAZ1fmeCGnoBBTdzL0LMiwfVFJea5UcPOnOI7q4WblHb164r9/dR98jN8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=acm.org; spf=pass smtp.mailfrom=acm.org; dkim=pass (2048-bit key) header.d=acm.org header.i=@acm.org header.b=aEo7PzKD; arc=none smtp.client-ip=199.89.3.6
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=acm.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=acm.org
-Received: from localhost (localhost [127.0.0.1])
-	by 003.mia.mailroute.net (Postfix) with ESMTP id 4ZDpxw2lf2zlxdd0;
-	Fri, 14 Mar 2025 16:01:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=acm.org; h=
-	content-transfer-encoding:content-type:content-type:in-reply-to
-	:from:from:content-language:references:subject:subject
-	:user-agent:mime-version:date:date:message-id:received:received;
-	 s=mr01; t=1741968065; x=1744560066; bh=rXJyhLZM0wQnuMA6BY86fx7l
-	1XvsG57/1opLs9TF2k0=; b=aEo7PzKDFvqEu1SpnvxvHFFD23HwXN7o7B14pn+T
-	nkwZ6O9nOQH4aWdeR8HCx33d5yIF/mdttl6f8EPzQkHK89SXd4Aho16S0ZythcsP
-	cA55cJMCbIm1djaeOSyu/7qaO7aeA1833OZRGaX9DadZ5HxBo1TI1cr9soH9bfHD
-	wnaUbzJ0XHfIC70bsVsj8EiPqpvZcUoYWhej0mi5Gfl2aT+H6gq9VNVScFj+5d+n
-	lzoAfEyyK0aWgBiIJ0MXXoOJ/s9zttde3/k41PbTePU2bK2JJoKHnHnf5CLeSXOU
-	60V4UHspkVUPt/ftllQT+ZYtSTbT+s52m5FjnGxjdmKcPw==
-X-Virus-Scanned: by MailRoute
-Received: from 003.mia.mailroute.net ([127.0.0.1])
- by localhost (003.mia [127.0.0.1]) (mroute_mailscanner, port 10029) with LMTP
- id DP3PM_usb6m4; Fri, 14 Mar 2025 16:01:05 +0000 (UTC)
-Received: from [100.66.154.22] (unknown [104.135.204.82])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: bvanassche@acm.org)
-	by 003.mia.mailroute.net (Postfix) with ESMTPSA id 4ZDpxW0567zlfdj2;
-	Fri, 14 Mar 2025 16:00:46 +0000 (UTC)
-Message-ID: <0d7a8cad-adfc-4cac-bcc6-65d1f9c86b43@acm.org>
-Date: Fri, 14 Mar 2025 09:00:45 -0700
+	s=arc-20240116; t=1741968436; c=relaxed/simple;
+	bh=ueYcQebqj5dvSuKz/XDVozjbPZ97i4jpeckMhlXamfw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kuqZjB2aBJ8PeN0BBlKXlYFDYPX3E81s4QnvZPRDauFUvl5OgTLv5B99WecumlHTfc/GJFH8M8U4E+0lR3+9qXWLyeeEBmSzpWaZbkl3DpXnfbMudMJCccW8zOShrSa10S4GiFeV9cFm0HFZyAeTdMTRIZ1ph+x3b0Sw7+oXNpQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.160.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f169.google.com with SMTP id d75a77b69052e-476af5479feso22981431cf.2;
+        Fri, 14 Mar 2025 09:07:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741968432; x=1742573232;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=T+kUAFJlKsHeNQB3aXZYLf8uXmj2ju8FKbQeqZ7v9pk=;
+        b=by5zbpgVayCjARBRzKVtA97EUOKsbE+FLqvC1uuJ8x2GaxwqPVzQSAbTPo0SmYzbXC
+         GNmsMEnHrHDK6sh+frmIAEXGTm1vaDTHonxe4Jx+HQX3A8EuKxjHGTw7D4atMzpgT3bS
+         9wn8ArkaojyyQWxgO27XnMUDqZegITRLD833J6u5hd0Y6292JJBQpHArDNhsIpUYccVd
+         m1/ZITvmdPhtgOgnK02mCM9fKgv4wz5IuToe8LSm9royo9fIUZYMQ/OBdEpFyQyE+V5Z
+         pUAHDdXtDkHDMvp8uvDKa/SQYNV7z21lY9bWNeTyD3F1Cc71CTzJTnPlYZ3V5ylB/lqr
+         uhXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX6CDTbY1Cssm3IA7/SWqioeaehRw8dwy3Xe4wJs/DUBxkvW4NmN83W3XQqptZSmYjyjhabcUw0cebA++yGxgy4w1A=@vger.kernel.org, AJvYcCXvY1QobgoZKHZ5E+EtcWvnHKLcou3LUwjZa45oHZwfzARm44ssamFQE/NIAss5r7TwnxPIqXrygW2H@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxvvh7DbHSlU1ae2hEKaIp9gJNa5GIqxCuJEMWncDhzvAoyH6hH
+	CvBRBaZwPOdzmHhKybc0FKWW80m4aB43A6O23uPDBO0jcL5nRuLaDgVXc1Dw
+X-Gm-Gg: ASbGncvytVpIsWjUs5FFYAKnZuwAhsr3ig45Lgb1iz1PVaDmruFSWhKbZyVoUmATK7j
+	ZKB3QMxlQcX5FTlO33bWKVN2wsqLZCT/s8FrpZZrPHlFrNaxSaviIsoXZJJW8hsDRd2vMn7etl7
+	/Goc/vDiO2xhp51B+DEr8z/9EfN7wfO8K5nG62o7H7hb3rJC85LUeUBgPAhQ9fJD496lVRc/89P
+	bWto3lUPHr6yBBiSOqMyCXrFct/vvHCkDfmuAVf12p617ACyQzerWQW+QBdocIfj5yHH6SGyaFk
+	QnlyeVbKjKp62fJc/8pmb+mah1nGsIYHNjztDos6g7Ta5H6Oi6MGEDIJxHu7HC4jCssRl5H3JU5
+	LXEMAHdUaUTi7bWiljg==
+X-Google-Smtp-Source: AGHT+IF1Is4lHCMIZH80b35gENezqi1teKaDb8zBKP5/Jl9saW15jyOTwNXrgaxZeLw7eRkRLYbybg==
+X-Received: by 2002:a05:622a:1654:b0:476:9cf2:d907 with SMTP id d75a77b69052e-476c820ba15mr45222541cf.52.1741968432628;
+        Fri, 14 Mar 2025 09:07:12 -0700 (PDT)
+Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com. [209.85.219.52])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-476bb6735d0sm25202111cf.44.2025.03.14.09.07.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Mar 2025 09:07:12 -0700 (PDT)
+Received: by mail-qv1-f52.google.com with SMTP id 6a1803df08f44-6e8ffa00555so19476956d6.0;
+        Fri, 14 Mar 2025 09:07:12 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVIbxO6d+kjsUnweZdvaSYvVaZ9TqVj8o7NCne4AhGLZbBIR0FCUTQUafA/r3AI7VNs33oPmYv3AutK@vger.kernel.org, AJvYcCVsRaEk/+B7pk3ZcP6Z8jP7ugPz8QthaNU6LTSJHghYID17cz8bNTgd18t9DLvg1NSsX0+Pz2+rAd5Cbge5sxyDiaI=@vger.kernel.org
+X-Received: by 2002:a05:6214:27c9:b0:6e8:9dc9:1c03 with SMTP id
+ 6a1803df08f44-6eaeaa64668mr49630456d6.21.1741968432074; Fri, 14 Mar 2025
+ 09:07:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] Add dma-coherent for gs101 UFS dt node
-To: Peter Griffin <peter.griffin@linaro.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Avri Altman <avri.altman@wdc.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-scsi@vger.kernel.org, kernel-team@android.com,
- willmcvicker@google.com, stable@vger.kernel.org
-References: <20250314-ufs-dma-coherent-v1-0-bdf9f9be2919@linaro.org>
-Content-Language: en-US
-From: Bart Van Assche <bvanassche@acm.org>
-In-Reply-To: <20250314-ufs-dma-coherent-v1-0-bdf9f9be2919@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250218105007.66358-1-biju.das.jz@bp.renesas.com> <20250218105007.66358-11-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20250218105007.66358-11-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 14 Mar 2025 17:07:00 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUi9_GnTbBwSCyfmEFN-eV1okSBLKNgb7OQ3z7WTb4-Zg@mail.gmail.com>
+X-Gm-Features: AQ5f1JrKL8kY96OZT6cWD6BUWt-6w1BEjpHx0C8va_AwHlfW7jfM6oIoUvofDlA
+Message-ID: <CAMuHMdUi9_GnTbBwSCyfmEFN-eV1okSBLKNgb7OQ3z7WTb4-Zg@mail.gmail.com>
+Subject: Re: [PATCH 10/11] arm64: dts: renesas: r9a09g047: Add CANFD node
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On 3/14/25 8:38 AM, Peter Griffin wrote:
-> ufs-exynos driver enables the shareability option for gs101 which
-> means the descriptors need to be allocated as cacheable.
+Hi Biju,
 
-Shouldn't that code be modified such that the shareability option is
-only set if the dma-coherent property is present in the device tree?
+On Tue, 18 Feb 2025 at 11:50, Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Add CANFD node to RZ/G3E ("R9A09G047") SoC DTSI.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Thanks,
+Thanks for your patch!
 
-Bart.
+> --- a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
+> @@ -272,6 +272,68 @@ scif0: serial@11c01400 {
+>                         status = "disabled";
+>                 };
+>
+> +               canfd: can@12440000 {
+> +                       compatible = "renesas,r9a09g047-canfd";
+> +                       reg = <0 0x12440000 0 0x40000>;
+> +                       interrupts = <GIC_SPI 709 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 710 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 697 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 703 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 711 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 698 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 704 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 712 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 699 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 705 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 713 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 700 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 706 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 714 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 701 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 707 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 715 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 702 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 708 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 716 IRQ_TYPE_LEVEL_HIGH>;
+> +                       interrupt-names = "g_err", "g_recc",
+> +                                         "ch0_err", "ch0_rec", "ch0_trx",
+> +                                         "ch1_err", "ch1_rec", "ch1_trx",
+> +                                         "ch2_err", "ch2_rec", "ch2_trx",
+> +                                         "ch3_err", "ch3_rec", "ch3_trx",
+> +                                         "ch4_err", "ch4_rec", "ch4_trx",
+> +                                         "ch5_err", "ch5_rec", "ch5_trx";
+> +                       clocks = <&cpg CPG_MOD 156>,
+> +                                <&cpg CPG_MOD 157>,
+> +                                <&cpg CPG_MOD 158>;
+
+Please use hexadecimal module clock numbers...
+
+> +                       clock-names = "fck", "ram_clk", "can_clk";
+> +                       assigned-clocks = <&cpg CPG_MOD 158>;
+> +                       assigned-clock-rates = <80000000>;
+> +                       resets = <&cpg 161>,
+> +                                <&cpg 162>;
+
+... and resets, like is used for all other modules.
+
+> +                       reset-names = "rstp_n", "rstc_n";
+> +                       power-domains = <&cpg>;
+> +                       status = "disabled";
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
