@@ -1,83 +1,118 @@
-Return-Path: <devicetree+bounces-157487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0184A60C4B
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 09:55:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3357A60C51
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 09:55:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE3F53A6213
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 08:54:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CD7C3A62AD
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 08:55:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22AA21953A9;
-	Fri, 14 Mar 2025 08:55:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ux3Vk4GM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 029751DC988;
+	Fri, 14 Mar 2025 08:55:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E513D1D5149;
-	Fri, 14 Mar 2025 08:54:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B94732C85
+	for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 08:55:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741942500; cv=none; b=Tb1I7dzFz2D+K5xgMES9naimIeT318OT0Q3c+ilQu4OQndi99mC6tzjUUWiCvfJbPk6y8ffj2EJmTsHlPiXWyZk5kRjn/Wox4ew0OtHNUMjVY7hvTL5Tonyf1CUCWwtEIEBPaO6FD/FiXa6Lr1aZGxFJGwFj5Jmk18rGsLdtfUU=
+	t=1741942555; cv=none; b=C+qQ+YIrc9IV01MvotPpnrBgJbZtmDrrtuxiXW4G4z3XHGDQpKh74DOn8MpDtnQL3L6lQFw1kV1FrALlamwKxVKA+B5NT2YaVg6r9jlY9HR5QwXXvM+iLawdEqeIH4AOFy8yaB4RDtlwAgy5U3wnXYy7bQPsfzrQzhPJtzTrjpk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741942500; c=relaxed/simple;
-	bh=+b0IBSstB17NAnGEdzn4x8G+MmwGxpNMIS8gdqrWeaI=;
+	s=arc-20240116; t=1741942555; c=relaxed/simple;
+	bh=QVf6IAM1bd0o2o9CRTs9hW37xXi3Ym7SihZPhvQUXpo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bfZM/Nd8O9eMmZzZl63xKnrY8qhQM1fELYrwDt1YCUWbw97YwfS7AwZd5RKNsAWnMJspv5SO3ad+2aVIHPdUNGAGJkKL16W0CAre2QTECVo0pF//5JilCRPSFs0abwBBj8C8x+VfJlQ5/3lWB+qKubfR6tAeMo83nqkYRRjREoU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ux3Vk4GM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 623A6C4CEE5;
-	Fri, 14 Mar 2025 08:54:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741942499;
-	bh=+b0IBSstB17NAnGEdzn4x8G+MmwGxpNMIS8gdqrWeaI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ux3Vk4GMzieuFnmCUtrPtUQcnXc48e2JV6yNv+MCft26pd6j86pcWKdNEbYhNPTsV
-	 TzRg2oIGPBdoULf0KVa6ijMsv/0Qb7hgb3aAxOZu5KcJve2K+sqXur5JzakTgs9riN
-	 0bw8JU6qM8EaDPM6DZ1qEBmzjs79ljG86P+So/CY/BK7Lw6Pdz4lPZXCqhn06stybM
-	 4R96HPpo/Xo25WQzQhG3oMvlYjgUEaUTfgHrIakB7Dg44dKqGK3EITQ84fjKPlb9ub
-	 ux8AwAhd+L6X78I3PfbD3SxFnzfrpBUAqRisTL8IztgOIB5bmg63f0R27DC1oYc+1L
-	 govwT7cdhkAOQ==
-Date: Fri, 14 Mar 2025 09:54:55 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jens Reidel <adrian@mainlining.org>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	 Content-Type:Content-Disposition:In-Reply-To; b=ppAlTcn0TUWgyapjHi4dV6UdP+pIbPI+Jy/stUpmq7HFjEkUwK+u2UPWdwiZFUHRsF1mJMdSCV2q7pUMxcyJPjWAXlSH3GSuM9JQCReZqxBIdsoe1Kk+l3qU9fAeHsKNPA1OVdw6G5hNlVOEM5yG8th5DsZqTQqQpd9Of5A/+aM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tt0pX-0008E9-6S; Fri, 14 Mar 2025 09:55:47 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tt0pW-005fmk-2j;
+	Fri, 14 Mar 2025 09:55:46 +0100
+Received: from pengutronix.de (p5b1645f7.dip0.t-ipconnect.de [91.22.69.247])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 787483DB85A;
+	Fri, 14 Mar 2025 08:55:46 +0000 (UTC)
+Date: Fri, 14 Mar 2025 09:55:46 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Joel Selvaraj <joelselvaraj.oss@gmail.com>, 
-	Oliver Graute <oliver.graute@kococonnector.com>, Felix Kaechele <felix@kaechele.ca>, 
-	Andreas Kemnade <andreas@kemnade.info>, Fabio Estevam <festevam@denx.de>, 
-	Al Viro <viro@zeniv.linux.org.uk>, Yu Jiaoliang <yujiaoliang@vivo.com>, linux-input@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
-	linux@mainlining.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 1/2] dt-bindings: input: touchscreen: edt-ft5x06:
- Document FT8716 support
-Message-ID: <20250314-futuristic-godlike-quokka-ddad03@krzk-bin>
-References: <20250313202017.19621-1-adrian@mainlining.org>
- <20250313202017.19621-2-adrian@mainlining.org>
+	Conor Dooley <conor+dt@kernel.org>, "open list:CAN NETWORK DRIVERS" <linux-can@vger.kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH v2 1/1] dt-bindings: can: fsl,flexcan: add i.MX94 support
+Message-ID: <20250314-berserk-wine-turkey-18f714-mkl@pengutronix.de>
+References: <20250307190816.2971810-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="wqldkzxr5zxyxjkx"
 Content-Disposition: inline
-In-Reply-To: <20250313202017.19621-2-adrian@mainlining.org>
+In-Reply-To: <20250307190816.2971810-1-Frank.Li@nxp.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Thu, Mar 13, 2025 at 09:20:16PM +0100, Jens Reidel wrote:
-> Document FocalTech FT8716 support by adding the compatible.
-> 
-> Signed-off-by: Jens Reidel <adrian@mainlining.org>
-> ---
->  .../devicetree/bindings/input/touchscreen/edt-ft5x06.yaml        | 1 +
->  1 file changed, 1 insertion(+)
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+--wqldkzxr5zxyxjkx
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 1/1] dt-bindings: can: fsl,flexcan: add i.MX94 support
+MIME-Version: 1.0
 
-Best regards,
-Krzysztof
+On 07.03.2025 14:08:15, Frank Li wrote:
+> Add compatible string "fsl,imx94-flexcan" for the i.MX94 chip, which is
+> backward compatible with i.MX95. Set it to fall back to
+> "fsl,imx95-flexcan".
+>=20
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
+Applied to linux-can-next.
+
+Thanks,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--wqldkzxr5zxyxjkx
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmfT7w8ACgkQDHRl3/mQ
+kZzYnAf/WJzCDW04eHxhTNrkCZk7STUIXOpvxwWNwYPyUcpi/Le/aaYpItBySi7P
+kEdMGBBg3phIGSwbo+9lTrYMDRP02JUJbDJaS/0UrwqFPNvSKo00KYfNWUOrRnY6
+R+9Ojlq5wYFJnsDjXp822iR0kklnyRs4SuALLTdRn6LDkiHAEYSmpzOHcT7m0V/i
+O2Ir35lx8LrcL/6MXiHSmZhod01oUHS3WcvEMkBJa/B7JQX6x5SC9LGdbwnAvp4n
+Du4OcWS31kUvI/EDreABWjx5HMeUun/MiSPRd0RNyajFvoHNOPy3gJ1vWFpfO951
+u5EerZ8QkMFQfB0K2O3VZortPJke2Q==
+=yFfj
+-----END PGP SIGNATURE-----
+
+--wqldkzxr5zxyxjkx--
 
