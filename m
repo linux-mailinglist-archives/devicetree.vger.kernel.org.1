@@ -1,88 +1,149 @@
-Return-Path: <devicetree+bounces-157436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16420A60AAB
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 09:01:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D94EA60AAF
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 09:02:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A79846042D
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 08:01:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD1613ADF14
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 08:02:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C59D1624D5;
-	Fri, 14 Mar 2025 08:01:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GxKlMpaY"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66DD51531C4;
+	Fri, 14 Mar 2025 08:02:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fgw23-7.mail.saunalahti.fi (fgw23-7.mail.saunalahti.fi [62.142.5.84])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05F381531C4;
-	Fri, 14 Mar 2025 08:01:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C4548635C
+	for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 08:02:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.142.5.84
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741939296; cv=none; b=eurB7PBcJrvcYt3wakgtR6aEJJeekjt82Y0tn2X14rew4oKv8UtIa1Qq0xSCZIyZqrWBX6oJbUFq4s0krtvxZgINkKtRq6EU+z5WP72kCSL7ZdNjXXtwiwLPbcfmq8NKo0ZMXIKEDYZT6jb1wE9Wpw6b1BuwBpVw8ST6YCIoR/c=
+	t=1741939367; cv=none; b=AE5zvNH+7kFwF0fcWbzNwe2OQs4Q6xWWd4dMLTdr1Pjjt6weGN128y0oBlkqqj0SwVmPzdpXFPsLowfYQvNBPck5YoejwoTyz3omApz4ss0vAYcjjA0ut/f/QMRFZwx1pRYddd7QAGcMc747GvcWkNcno15OsAR1OYADeZZphU8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741939296; c=relaxed/simple;
-	bh=70wuHHsetHGL0OD/EkgwP5SjrI60aviLDRUiNp6RteI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aGhNWF4umYUJ3KxPhAXyErje92Nh6VvykwTYXZiqQ9X1dUjGlbIMHEmsYxrk8IEehBk7xfsXwLptBkJVHTqLxocmgzYC5kBmhuur6Dlc+8kTFLcLy1TntwSaavR1TyphRp+V2HmEEndnIdnKKP294FBaEzDQl0KWDoyVBsAjpsY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GxKlMpaY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF472C4CEE3;
-	Fri, 14 Mar 2025 08:01:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741939295;
-	bh=70wuHHsetHGL0OD/EkgwP5SjrI60aviLDRUiNp6RteI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GxKlMpaYsSSO8B8lDQwLdpB4UzGrdvlyZaNxFnwda2QCfDMT/4INPK/1RBo3AuILi
-	 zeC5XMIn3MnQPZ9hSulmieLPcg06jW5EG8sjcLJh0j4ffqf/o9bSoTR6mYc5p4GwH9
-	 PVL/8Nmnm1rThXv3QxLDu/DmTbj54dAaVkrSslfex/4P/+q3bkjDgXfte9LQQREz0Q
-	 wHOsUBtRK9ibP5gIzfxDYyd3X6Q/h7cBxPBi72NEn5oQSxYEEaNo8idK6kJu3UrZKH
-	 Ioxw5voPBI0qaCa3gzwq4bVcWHkHkmBCKZhx9xs1l0a2FAcuzONsQ6av0YDlzDMZ+a
-	 m4L3h6YbwIZ3w==
-Date: Fri, 14 Mar 2025 09:01:32 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Kelvin Zhang <kelvin.zhang@amlogic.com>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Zelong Dong <zelong.dong@amlogic.com>
-Subject: Re: [PATCH v4 2/3] arm64: dts: amlogic: Add A4 Reset Controller
-Message-ID: <20250314-tested-husky-of-force-1ccdca@krzk-bin>
-References: <20250313-a4-a5-reset-v4-0-8076f684d6cf@amlogic.com>
- <20250313-a4-a5-reset-v4-2-8076f684d6cf@amlogic.com>
+	s=arc-20240116; t=1741939367; c=relaxed/simple;
+	bh=Rwh+yPOdpzWJ49oGUODmMO2VD+m+JBj1xEVarGZKsWQ=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rfAmKn9C0b3f6ft8KmtEPNtP1faD/8/jt8oSisyDE3GtseRyVNSy9YHOJ8ZV0v/OA2Euvacm0W1xkw5FuYUPnmpEEaoVHVyOiPjrDVN8UvkTmm4Uky0QhEjd5d92xYLgQPUDWtGQp9rwRV7TWye8HSYx+I/E6L9ErOGs69F6CL8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=62.142.5.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
+Received: from localhost (88-113-26-232.elisa-laajakaista.fi [88.113.26.232])
+	by fgw21.mail.saunalahti.fi (Halon) with ESMTP
+	id aaf96d0e-00aa-11f0-95e9-005056bdd08f;
+	Fri, 14 Mar 2025 10:02:26 +0200 (EET)
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Fri, 14 Mar 2025 10:02:26 +0200
+To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+Cc: Andy Shevchenko <andriy.shevchenko@intel.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kamel Bouhara <kamel.bouhara@bootlin.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v4 07/10] gpio: max7360: Add MAX7360 gpio support
+Message-ID: <Z9PikuvAR-XsYhPF@surfacebook.localdomain>
+References: <20250214-mdb-max7360-support-v4-0-8a35c6dbb966@bootlin.com>
+ <20250214-mdb-max7360-support-v4-7-8a35c6dbb966@bootlin.com>
+ <Z69oa8_LKFxUacbj@smile.fi.intel.com>
+ <D7UOIHL2WOZP.LLGRKMILNJFU@bootlin.com>
+ <Z7OXQqyPjtGgTySf@smile.fi.intel.com>
+ <D8FAEPI26C8F.397VN87KK9VIO@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250313-a4-a5-reset-v4-2-8076f684d6cf@amlogic.com>
+In-Reply-To: <D8FAEPI26C8F.397VN87KK9VIO@bootlin.com>
 
-On Thu, Mar 13, 2025 at 05:05:35PM +0800, Kelvin Zhang wrote:
->  &apb {
-> +	reset: reset-controller@2000 {
-> +		compatible = "amlogic,a4-reset",
-> +			     "amlogic,meson-s4-reset";
-> +		reg = <0x0 0x2000 0x0 0x98>;
-> +		#reset-cells = <1>;
-> +	};
-> +
+Thu, Mar 13, 2025 at 05:43:00PM +0100, Mathieu Dubois-Briand kirjoitti:
+> On Mon Feb 17, 2025 at 9:08 PM CET, Andy Shevchenko wrote:
+> > On Mon, Feb 17, 2025 at 12:20:13PM +0100, Mathieu Dubois-Briand wrote:
 
-Why do you have on the bus devices with bus addressing and without it?
-What sort of bus is it?
+...
 
->  	periphs_pinctrl: pinctrl {
->  		compatible = "amlogic,pinctrl-a4";
->  		#address-cells = <2>;
+> > > A datasheet is available on https://www.analog.com/en/products/max7360.html
+> >
+> > Thank you for this good elaboration!
+> > I will check on the datasheet later on, having one week off.
 
-Best regards,
-Krzysztof
+Note, I have only briefly looked at it, not a deep study and TBH I am not sure
+I will have time to invest into that.
+
+> Thanks for your feedback! Sorry I haven't been able to work on this
+> series for the last few weeks, but I finally had the opportunity to
+> integrate your comments.
+
+No rush, this will miss v6.15 anyway, so we still have a couple of months.
+
+> > But what I have read above sounds to me like the following:
+> >
+> > 1) the PORT0-PORT7 should be just a regular pin control with the respective
+> > function being provided (see pinctrl-cy8c95x0.c as an example);
+> 
+> Ok, so I created a pin control driver for the PORT pins. This will
+> effectively help to prevent concurrent use of pins in place of the
+> request()/free() callbacks.
+> 
+> My only concern is: as there is no real pin muxing on the chip, my
+> .set_mux callabck in pinmux_ops structure is not doing anything. It
+> looks like I'm not the only one
+> (drivers/pinctrl/pinctrl-microchip-sgpio.c does the same thing), but I
+> hope this is OK.
+
+Hmm... This is strange. The PWM/GPIO block has 3 functions (GPIO/PWM/rotary),
+How comes you have no switch between them?
+
+As far as I read in the datasheet this is controlled by register 0x40
+(and seems implicitly by other registers when it's in PWM mode).
+
+> > 2) the COL2 COL7 case can be modeled as a simplest GPIO (GPO) driver with
+> > reserved lines property (this will set valid mask and let GPIOLIB to refuse any
+> > use of the keypad connected pins.
+> 
+> I mostly went that way, just a few notes.
+> 
+> I chose to not use the reserved lines property in the device tree, but
+> instead implemented a gpiolib init_valid_mask() callback. In believe
+> this is better, as:
+> - We can automatically generate the valid gpios mask, based on the
+>   number of columns used.
+> - It allows to get rid of the compatibility check between the number of
+>   columns and the number of GPIOs provided by the device tree: DT
+>   provides the number of columns, we deduct the number of GPIOs.
+
+If I understood it correctly it should work as well. But let's discuss that
+when you issue a new version.
+
+> I chose to number GPIOs from 0 to 7.
+> - This might be a bit questionable, as GPIO 0 and 1 will always be
+>   invalid: pins 0 and 1 of the chip cannot be used as GPIOs. I'm
+>   definitely open to discussion on this point.
+> - Yet I believe it simplifies everything for the user: pin numbers and
+>   GPIO numbers are the same instead of having an offset of 2.
+> - It also simplifies a bit the GPIO driver code.
+
+In general you should follow the datasheet and mask the GPIOs that may not be
+uses as a such due to HW limitation / specific configuration.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
