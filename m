@@ -1,178 +1,182 @@
-Return-Path: <devicetree+bounces-157714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A3B4A61F69
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 22:54:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81D31A61FA4
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 23:00:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B94C5420BBC
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 21:54:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82EAE4614BB
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 22:00:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22C341C54AA;
-	Fri, 14 Mar 2025 21:54:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 620EC205E3E;
+	Fri, 14 Mar 2025 21:58:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ArEqmN43"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="k+sGneMA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ED882E339D;
-	Fri, 14 Mar 2025 21:54:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F32ED1C6FE8
+	for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 21:58:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741989251; cv=none; b=Se8OazMi31paHPCDYhkNA6kTU29BdFvweoP82K1p47yxdGC5GBCo9haZXjO+WcoCQFMvJsVAqMMpaUfP4uriPfzaObVifzzrxXHFAu+W7OZNwJByrxB+JdutwXmcAn536tzutHt/a9hRnuueoHSw0P1j87sP8mebEGCmW5kzHO4=
+	t=1741989538; cv=none; b=scTLX/V3U7KkJ1xmUDt+AwIAukOpCuHtO1yE6WsZzQm0jFtFMM8LRJSS/JlTjnPU4gkwGr0MuGgG57e9obHezcev/fXAMXTlg57o7uyLUQZXz1h4SOVmER258GkpeDvmKmNt2wF0dtOc9PZ1ENjeO4MMuXGKqS4NnfmXg6uCnnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741989251; c=relaxed/simple;
-	bh=3ySRYi/Sd40PDjn4ZkfWBFvzSvh7Zl86cTJFo//IHwA=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JQvhemMjuNNV/4HHszs/74GgqY5/hFCP2OZ/DS4cbqwAYsiUIqnV3j7tsj5TWqniTX1n50AxTcgnabgtEViq7x76jfTpXQmxAX4NeA4f721fSODBr1ORsQ/QEROuXxACO+VNeRvyQz8Xa5S3TR8jJwZP/KQFzs/rciY7kBuRJKA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ArEqmN43; arc=none smtp.client-ip=209.85.219.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f47.google.com with SMTP id 6a1803df08f44-6e8fd49b85eso37804316d6.0;
-        Fri, 14 Mar 2025 14:54:09 -0700 (PDT)
+	s=arc-20240116; t=1741989538; c=relaxed/simple;
+	bh=CKhlM71HHWzhYTD7pWKMXzC0UBFFhRub+4ucFciopmk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fzksRUJCwxuubnZdT5MdxVfFt7QRu5/l1Sxg9alfnqgxn2klGryWh6DPGPX1P9Vt6XRq4tINXnTsfTk+LsP+Y7ZuCaf6wa+IlNITcfg3S2PMr0aEBHuNaneFo74lQihkADtNC9gJUuEL3uws5e8j8IZAOrrC1LVAV6E7B1fhwTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=k+sGneMA; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-30761be8fcfso28250911fa.0
+        for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 14:58:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1741989248; x=1742594048; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:feedback-id:message-id:from:to:cc:subject:date
+        d=chromium.org; s=google; t=1741989533; x=1742594333; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=1INgftpU8//6utpwPix0dkvaDMfAovl6O8aDIwybLag=;
-        b=ArEqmN43tGER4Npj+iDRhedwn2LZdZkXy+VB1y2M4mi4uN5eunDDU7HpQp7aJidCES
-         BwYwm0PiaoihwCVWE+y2eeJfHZjAyY4/Sr++H847Otmp1wBbp74vShqeP5xayksvi4c5
-         rZ6bVQP77+QIstpLIhNnXDuLPnYaRdxl1EIRuXtey5XWpY+2/L/jUdDRnQRQM/osBmUM
-         Na4mz7Oau9rIWlv1qBmCfekD7f0IfU2qVVQX4yynl3pfNvrRypkLZVYAl2FHbPGRd3i2
-         u8tiq2PuU2TMpC0eWUXecI0o09zg7Ch7QC4+MptWGqex6Ku2KRwrUu5BwRJY2i5dN6Xw
-         97nA==
+        bh=Q+G1znUUY7rtTf9DzLNl5P+qD4jbuh64Bw3HveeQEA0=;
+        b=k+sGneMAjDfXVM+6MfhMurTkAiqpoeCqkT+6UEDX9GLingylidLihAv/qEt+bxs2ni
+         GS1Hb2SZHKvLjImpm0eZRhWpLmTL50DpI7AkNwqGcKvcbY8TIMxprTMj9BRTjEY2uqTI
+         Lp7ylu5pxh/t6RTuh1+wcQTd4oWMJg7vFfts4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741989248; x=1742594048;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:feedback-id:message-id:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1741989533; x=1742594333;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=1INgftpU8//6utpwPix0dkvaDMfAovl6O8aDIwybLag=;
-        b=e3PE2gcqmGKYoo8GkgXD9O6zoykzKMWEyZhjvZIW5BiXUqsjUiNAjd2aEjhmO2DBie
-         7xtQnVwLL8TsRY13rp5/oiehafQ1/ZZ2kXLRv4z8pLRubdRrIRZ20IBlPNwRhk4FtiJT
-         6wTGgw+YKWRtzM/kkswsuYLZPlyU/+2wFl+/nz80O60H7Tq92HjustmCNqOG0hsi4hJe
-         gjIzNJfpDdykbz8jDVP/4Wyc1evCbqNMASgFQRhnVAozORt3RsrNJgXdHXHVqbkwLfBj
-         iJDWKR90EtolQKB7Yim7czXA1EyvB53Q5QDmFgV5dmkumP6JxnPTdA/P5M7z//ol8JKP
-         fdaw==
-X-Forwarded-Encrypted: i=1; AJvYcCULGs++vtUohPtI7kwH2ErPSUNCZ8ygtIswUdrKZWHFgfdZ8EvSz5o5Z2Rrk+jwzLsanqGnJ3CoYcvx@vger.kernel.org, AJvYcCUrBPRKx8AY5MhB8FhAepMy4m43ix6RARMMQ1CBP3NpTdXktgvOghd6DA4vzC+QirU/cpMe2z0MOlfI+FAGwh5T@vger.kernel.org, AJvYcCW7sir0rMapy+IP+M5onkhLCFP4iV4OYwxdq1bMXYrLManOkPkOyjz7ZJCfrRZXwjgLDenHorPIXIr9soQ=@vger.kernel.org, AJvYcCW8zMXvb5yf4n2dZ66IpozvxQAitvEmh2lHQxw2vs9HNsv38P/jYh6qhEkVivlsYkAeFFBqyFC4O4KJ7WuA@vger.kernel.org, AJvYcCX9s4N4gs4MEBFrkRrNjwIHboHyxHQdNR7VzTHItr0M5ymPwXgi98Ie8ioZQpgOgrqNkt5ST4mitHsf@vger.kernel.org, AJvYcCXIoVJgQ32gKfCRU9eOfQp1e19K6Vuiad9WzR5osbyH4jA4z6oUEegnKP+Y9iPXKizlSeMnbw9k3sZWbKZ0cCE=@vger.kernel.org, AJvYcCXaqDA045IPpAMHhcIqH+MrastMnH3ZqCm7v0s/aFvvzKaZKBNctQR5DO1w84Tf/2AnfBBbkkWfBi09UBws@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGA6soMDIHPO1jOAwEnSJTcapEJLiSdvhGGstZcmv3/737sWG3
-	LcwuNE5PepH82OIuVP/qHjWfVtKHHfCPDL7w/XojkfYPG3avRdZP
-X-Gm-Gg: ASbGncv6EdZhcCElBglpreMx8D6ESkEWTUY3/JJjX4Zcc47A5ptVXWLAgZa+fpov5de
-	sA1aAkgfD9dH9I4leSyWTFzOr2eKFKQkkHBf92M2nrEBJ1igB97UGkY880nwkZkFe9OwvLVmsEz
-	dnoTF0XWvbJTWMFLCSGUsaLECdtnWCXeMlQ1Yxp/uQm/UsEE9vVoUq+DAb9Sk4i4bmT1zat15OK
-	EBNeZxp+aOc87ACkBeLlaFsitmR/kagtyJVvUlSDNXCep9KOr/Y5QHcS2bW9LgxH1Bz6yh6dYF3
-	YueucE9TKmYwhIkboYVlK1moKklurZYnrNnBkuntI56JQT461x8coePjqkkz+uwDi/K45UpDBkS
-	KYc2DqDh6HiBRPVW9exVR9NSzXVPrgOWgaTg=
-X-Google-Smtp-Source: AGHT+IGAwnaAynl9Gr+G/DxD2zI2CDyrYhwDggix83306UsT8eqpNyOhXY+jcoxQkv5jp5vlniAvUA==
-X-Received: by 2002:a05:6214:d49:b0:6ea:d388:dc09 with SMTP id 6a1803df08f44-6eaea9e8ad0mr74053736d6.8.1741989248192;
-        Fri, 14 Mar 2025 14:54:08 -0700 (PDT)
-Received: from fauth-a1-smtp.messagingengine.com (fauth-a1-smtp.messagingengine.com. [103.168.172.200])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-476bb6082bfsm27676711cf.8.2025.03.14.14.54.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Mar 2025 14:54:07 -0700 (PDT)
-Message-ID: <67d4a57f.c80a0220.16ff45.9cf1@mx.google.com>
-X-Google-Original-Message-ID: <Z9Sle_2_JKZyc9bP@winterfell.>
-Received: from phl-compute-07.internal (phl-compute-07.phl.internal [10.202.2.47])
-	by mailfauth.phl.internal (Postfix) with ESMTP id E663D1200043;
-	Fri, 14 Mar 2025 17:54:06 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-07.internal (MEProxy); Fri, 14 Mar 2025 17:54:06 -0400
-X-ME-Sender: <xms:faXUZ1VnJ9QSQgj9k3EGImC4wqa0NucDyDri1GFd0UbzmDXgZQQXgw>
-    <xme:faXUZ1l57_s8u58-vaOZT4ST4OkK_uGkPoKpGdTR4KBV5TsK5goknGk7XdwTkYp4c
-    _-rrhSxYhzuQ3B63Q>
-X-ME-Received: <xmr:faXUZxb5aG_NV8Upn1KOkcVLuigoymCm6pyliIMdF1evFRoyeOL4-liZ4k0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddufeduleeiucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
-    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
-    gvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggujgesthdtredttddt
-    vdenucfhrhhomhepuehoqhhunhcuhfgvnhhguceosghoqhhunhdrfhgvnhhgsehgmhgrih
-    hlrdgtohhmqeenucggtffrrghtthgvrhhnpeejiefhtdeuvdegvddtudffgfegfeehgfdt
-    iedvveevleevhfekhefftdekieehvdenucffohhmrghinheprhhushhtqdhlrghnghdroh
-    hrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegs
-    ohhquhhnodhmvghsmhhtphgruhhthhhpvghrshhonhgrlhhithihqdeiledvgeehtdeige
-    dqudejjeekheehhedvqdgsohhquhhnrdhfvghngheppehgmhgrihhlrdgtohhmsehfihig
-    mhgvrdhnrghmvgdpnhgspghrtghpthhtohepfedvpdhmohguvgepshhmthhpohhuthdprh
-    gtphhtthhopehtrghmihhrugesghhmrghilhdrtghomhdprhgtphhtthhopehmrghsrghh
-    ihhrohihsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehnrghthhgrnheskhgvrhhnvg
-    hlrdhorhhgpdhrtghpthhtohepnhhitgholhgrshesfhhjrghslhgvrdgvuhdprhgtphht
-    thhopehojhgvuggrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrlhgvgidrghgrhi
-    hnohhrsehgmhgrihhlrdgtohhmpdhrtghpthhtohepghgrrhihsehgrghrhihguhhordhn
-    vghtpdhrtghpthhtohepsghjohhrnhefpghghhesphhrohhtohhnmhgrihhlrdgtohhmpd
-    hrtghpthhtohepsggvnhhnohdrlhhoshhsihhnsehprhhothhonhdrmhgv
-X-ME-Proxy: <xmx:faXUZ4U-p7hGc6MxGQeWJJlJAlyJ9aYzcL92BR0G0So3CK_lq1ZcGw>
-    <xmx:faXUZ_ngQBbI-JQZyEYJoDSiWxbQtGVp2tymuIXDQIOaXNE3POgCog>
-    <xmx:faXUZ1ccMpiBHxQHiL254VrUOfbubOI-JaQWIss-J-F-Q2fFABOcNw>
-    <xmx:faXUZ5HMndfmXQb4aSBdVsIv9H4wPU_zVAUWgBSjbLptklCUswXSBA>
-    <xmx:fqXUZ5ksV_AGS7-TQ7iwaQGGJHUVPF0w1hgI4z6JGQ8EiVIffVjLkAf_>
-Feedback-ID: iad51458e:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 14 Mar 2025 17:54:05 -0400 (EDT)
-Date: Fri, 14 Mar 2025 14:54:03 -0700
-From: Boqun Feng <boqun.feng@gmail.com>
-To: Tamir Duberstein <tamird@gmail.com>
-Cc: Masahiro Yamada <masahiroy@kernel.org>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Brendan Higgins <brendan.higgins@linux.dev>,
-	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,	linux-kbuild@vger.kernel.org,
- linux-kernel@vger.kernel.org,	rust-for-linux@vger.kernel.org,
- linux-kselftest@vger.kernel.org,	kunit-dev@googlegroups.com,
- linux-pci@vger.kernel.org,	linux-block@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 6/6] rust: use strict provenance APIs
-References: <20250314-ptr-as-ptr-v3-0-e7ba61048f4a@gmail.com>
- <20250314-ptr-as-ptr-v3-6-e7ba61048f4a@gmail.com>
+        bh=Q+G1znUUY7rtTf9DzLNl5P+qD4jbuh64Bw3HveeQEA0=;
+        b=wv2BM3xDuyazay5H59jj1SjmqC7wyvfsKLhss56lCzyj5SBJ7gd0tDx+wdpfIBvxNH
+         40yioNCdL/AkFTuXzGIXe+2GDm0B7Zt7kCe0XiSRR9WyiMtMPMNlKUAGK9wHhhkXPYsh
+         xe3ZnsfBXUDxyFU9vh+1qRPaL2QFNNugf06j+MoHvtfErPb5A1mXW22amK3MARVbzu5b
+         1fag1JC1efmDc8T7lnditgszj64f5NHQ+jJvzarf+LpzWVyZoQwOBuxGPdCeeFDUu2N6
+         qhjwaw3YikO9RWqZIiZ7K5+uemgaTA4ksA5VUt6LBN4gymbx846wwbAxVwzVNesSqI3L
+         a03Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWU2JYXr5qDlXjxo4r36SbZGlvS07attHDQVNEWYFxhcoy4pq08F+26uAZ/m18+mk8b3vCjILsZUUQy@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx1jIpU0oS/jsAHC0wTd9mlyyTeFruxNp5o3HnEjCVsdYCEgEQz
+	qSR6fIx18VmMoDe4RauI1kJV1C7PFsZelcGBNiqByozaxisty6zGYjwxsvA8jigVUvYQW/mVyyc
+	CqJ4p
+X-Gm-Gg: ASbGnct3X2sNDq8Bx1tJcvAYtz6m15SFVhuJZwj0s6Ik7TgE6rzoLfzDgKeL7RazF39
+	GGRoeDJ3XxCjwyhHUALcnSnaPKIWgNKZhCFLmglpPYmz21QDvoYB71yVPHXUrFMiJIN8G0w8JFl
+	ysLdFUmkE2KEsC/0EVcWZz3sKHUOrFbkxHHN4VEmtqenhnYNdjJkJzy1Fopb0G+iIqM4pmB8gv+
+	ye9uwVn5imip3TIrx8mw9TpQ2mpQkgO9kLaieAA9Sh6Mv2CJbzCt7OL2uWLnHFPs8FNoG12mB6q
+	IPLmoLxW/opBA4p8qP5zST3+Y6gKj2EKrZoKluIdGq/ELdSPCRZnROTm4V/RC/bO1X+1hxIwQNU
+	m3GzYLk0K
+X-Google-Smtp-Source: AGHT+IGkVB1QBGW+eswNjqTWOAeBqLiA2w+hEqs//ifiUH2NNfIBXtPynoQW5jRZ72YH3gluQvTdLQ==
+X-Received: by 2002:a2e:be21:0:b0:30b:d44d:e76d with SMTP id 38308e7fff4ca-30c4a8d8fabmr15943351fa.26.1741989532984;
+        Fri, 14 Mar 2025 14:58:52 -0700 (PDT)
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com. [209.85.167.41])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-549ba8a8bf7sm617598e87.223.2025.03.14.14.58.48
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Mar 2025 14:58:49 -0700 (PDT)
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-548409cd2a8so2932565e87.3
+        for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 14:58:48 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUm8hSlZfngn0Eu8SfR6XdT6lvUSQBrs1OBVqZTUq29f2rmD6U9lCfQZyFnk+oiUSTsPrFXyQc7h8lv@vger.kernel.org
+X-Received: by 2002:a05:6512:3d02:b0:545:c7d:1784 with SMTP id
+ 2adb3069b0e04-549c3988b84mr1398468e87.43.1741989528244; Fri, 14 Mar 2025
+ 14:58:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250314-ptr-as-ptr-v3-6-e7ba61048f4a@gmail.com>
+References: <20250312104344.3084425-1-wenst@chromium.org> <20250312104344.3084425-2-wenst@chromium.org>
+In-Reply-To: <20250312104344.3084425-2-wenst@chromium.org>
+From: Doug Anderson <dianders@chromium.org>
+Date: Fri, 14 Mar 2025 14:58:36 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=X14XEdikE3hP4y53uZec12O_ZPtU+GyJ+Tf8R3DK89AA@mail.gmail.com>
+X-Gm-Features: AQ5f1Jqp4S31G39Rg1NsczcQY3Hb3QPTaquvIuzNNpiFQjs9eAjzZVdMi2mJRe0
+Message-ID: <CAD=FV=X14XEdikE3hP4y53uZec12O_ZPtU+GyJ+Tf8R3DK89AA@mail.gmail.com>
+Subject: Re: [PATCH 1/8] dt-bindings: HID: i2c-hid: elan: Introduce Elan eKTH8D18
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, chrome-platform@lists.linux.dev, 
+	linux-input@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Mar 14, 2025 at 08:28:10AM -0400, Tamir Duberstein wrote:
-[...]
-> --- a/rust/kernel/alloc.rs
-> +++ b/rust/kernel/alloc.rs
-> @@ -217,7 +217,7 @@ unsafe fn free(ptr: NonNull<u8>, layout: Layout) {
->  
->  /// Returns a properly aligned dangling pointer from the given `layout`.
->  pub(crate) fn dangling_from_layout(layout: Layout) -> NonNull<u8> {
-> -    let ptr = layout.align() as *mut u8;
-> +    let ptr = crate::with_exposed_provenance_mut(layout.align());
+Hi,
 
-Dangling pointers don't have provenance, neither has its provenance been
-exposed. I think should use `without_provenance_mut()` here:
 
-	https://doc.rust-lang.org/std/ptr/fn.without_provenance_mut.html
+On Wed, Mar 12, 2025 at 3:43=E2=80=AFAM Chen-Yu Tsai <wenst@chromium.org> w=
+rote:
+>
+> The Elan eKTH8D18 touchscreen controller is an I2C HID device with a
+> longer boot-up time. Power sequence timing wise it is compatible with
+> the eKTH6A12NAY, with a power-on delay of at least 5ms, 20ms
+> out-of-reset for I2C ack response, and 150ms out-of-reset for I2C HID
+> enumeration. Enumeration and subsequent operation follows the I2C HID
+> standard. The eKTH6A12NAY requires longer times for both parts.
 
-see also the source of core::ptr::dangling().
+Somehow the last sentence above confused me. Can it just be dropped?
+All you care about is that the new trackpad matches the timings for
+"eKTH6A12NAY". Not sure what you mean by "eKTH6A12NAY" needing
+"longer" timings.
 
-The rest Rust code changes look good to me. Although I would suggest you
-to split this patch into several patches: you can do the conversion from
-"as" pattern to provenance API one file by one file, and this make it
-easier for people to review. And after the conversions are done, you can
-introduce the Makefile changes.
 
-Regards,
-Boqun
+> Add a compatible string for it with the ekth6a12nay one as a fallback.
+>
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> ---
+>  .../bindings/input/elan,ekth6915.yaml         | 29 ++++++++++++++++---
+>  1 file changed, 25 insertions(+), 4 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/input/elan,ekth6915.yaml b=
+/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
+> index cb3e1801b0d3..81c391952ccc 100644
+> --- a/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
+> +++ b/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
+> @@ -4,14 +4,14 @@
+>  $id: http://devicetree.org/schemas/input/elan,ekth6915.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>
+> -title: Elan eKTH6915 touchscreen controller
+> +title: Elan I2C-HID touchscreen controllers
+>
+>  maintainers:
+>    - Douglas Anderson <dianders@chromium.org>
+>
+>  description:
+> -  Supports the Elan eKTH6915 touchscreen controller.
+> -  This touchscreen controller uses the i2c-hid protocol with a reset GPI=
+O.
+> +  Supports the Elan eKTH6915 and other I2C-HID touchscreen controllers.
+> +  These touchscreen controller use the i2c-hid protocol with a reset GPI=
+O.
+>
+>  allOf:
+>    - $ref: /schemas/input/touchscreen/touchscreen.yaml#
+> @@ -23,12 +23,18 @@ properties:
+>            - enum:
+>                - elan,ekth5015m
+>            - const: elan,ekth6915
+> +      - items:
+> +          - enum:
+> +              - elan,ekth8d18
+> +          - const: elan,ekth6a12nay
 
-[...]
+The "enum" above is weird, but it matches what we did for
+"elan,ekth5015m" so I guess it's fine? I'd leave it up to bindings
+maintainers. I guess the assumption is that we might add additional
+touchscreens to the list...
+
+
+>    reg:
+> -    const: 0x10
+> +    enum:
+> +      - 0x10
+> +      - 0x16
+
+Again happy to leave it to the bindings maintainers, but _maybe_ just
+drop the "reg" parts here and below. It doesn't really have to be part
+of the bindings.
 
