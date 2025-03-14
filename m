@@ -1,73 +1,182 @@
-Return-Path: <devicetree+bounces-157447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157448-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 622BFA60B17
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 09:19:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7083DA60B31
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 09:22:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B03E73A4AC3
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 08:18:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4CBF84613E7
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 08:22:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED15E1A2397;
-	Fri, 14 Mar 2025 08:18:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5363A1E570E;
+	Fri, 14 Mar 2025 08:20:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="a3kqwwQR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s/6CT7dr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCFE3EAD7;
-	Fri, 14 Mar 2025 08:18:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21B931AA1FF;
+	Fri, 14 Mar 2025 08:20:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741940335; cv=none; b=K23ZCsJrBPIOcmIbTvWHWz1AQlhzMQez9v5U+VZXdCb5ouxCo17jt0ZYN0a0KMcn1yjX0/zmDiiHN6+kFMzYSTkm9SiYIAp1GbKlRJ7hpIXLoCqTh/w3pl3WslnM7LkepJJ1hdIKk4bng6iGXz9A/aLvuYO2mEWKJMVLvnp8oxw=
+	t=1741940459; cv=none; b=ZGFSp4Y3fpGNAdMn83iw6OdLbpLN1P3AiqrxusAYC60gOh+PCjxL1Sg8gBnWTIx2I27nj/rNWdVpuAU53rkSb6X0Ckpz+0cO8aD8MunK99sLqT6UrEY/dapDFeIgYz2Y9fH0OuLZxL+GABpiTQjr2Eebk18Fv/oyrd1dXXiOiso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741940335; c=relaxed/simple;
-	bh=tI0vTWKsMll0jdi/NKmbG4tSxmIKPnhKv6J/KH+XOzs=;
+	s=arc-20240116; t=1741940459; c=relaxed/simple;
+	bh=/9Cg9kqhR9YMfKzyRY8A1lAV2O/WdaBXMSuS45Wh5Hk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=inNe7KVghILR7WjvcPVPpNbUTMeWV5ae3QkBN+HUyBXOWq92ffuYfrJsBqjWwWFQKyR0AWcC80D7ildPsCuTBZ1SvKkqDdB5H53cqynawILoz3vebQoj3PKX8MzoBhJQw8rflip2oDB/OisB7OMXCTK7ibrd3LlM07I2RueCJ/Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=a3kqwwQR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BD6EC4CEE3;
-	Fri, 14 Mar 2025 08:18:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1741940334;
-	bh=tI0vTWKsMll0jdi/NKmbG4tSxmIKPnhKv6J/KH+XOzs=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=eri2Y1zdr68P1U7cxiCPbOb8n7QwV3Pb9EQGNV7nLJDiLU6AJXaAMGXc+uE6n8Inc/TuQI/hSBIht6i6ny5asSgly0bOIm6KloUIQxzkpklvlyw+65XhwIOwK/eKwIHyhKRkHP54mNTiZLPTJHJd30eghp8A2oxxqpjqvxd+FCs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s/6CT7dr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE206C4CEE5;
+	Fri, 14 Mar 2025 08:20:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1741940458;
+	bh=/9Cg9kqhR9YMfKzyRY8A1lAV2O/WdaBXMSuS45Wh5Hk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=a3kqwwQRWqf5O3pCiXGfkNxDN4q87FrBgOUhcZE7IwylEdukGJHa/a75LIax911x+
-	 hl40fuEH+9aEgkXYPm5mXMiMabV3Kz2ufN6RtTc7HxA6G4TBCb4OjIPVHEHZAIYOFF
-	 hpAOMz65/tXOqnfS4nqI6PM7VlLpnE6lwQXtCMSI=
-Date: Fri, 14 Mar 2025 09:18:51 +0100
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, peter.chen@kernel.org,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, jun.li@nxp.com
-Subject: Re: [PATCH v5 0/6] add USB2.0 support for i.MX95-19x19 EVK board
-Message-ID: <2025031443-rounding-subject-1f60@gregkh>
-References: <20250312082700.260260-1-xu.yang_2@nxp.com>
+	b=s/6CT7drnf2lyr/FUF5clP+re7piIqacdm0sZqSXxngUmPHKA9slQIPMJwnMP7v9f
+	 nZbwvG+9hwb8fX1Jz9urzyit16vewMSGTKW4rgzYEqVzpb7HUtvVmC/ET/XyTwBVgx
+	 dOEB/VkmXustLdncKq5je8upSBdt/S2eHshFlfB6hpnCd1KTq0j0yNV3rOaWQKuhHi
+	 c61D9XkfItQ4hb7rXWehQQdgQudDfabAIEAEglm7RScuL4XKaUKiuKRktp7kX1QwvI
+	 W19dV6oHGGRMzUfFWtwwqyMF0VMBsmOGiIyP6jB5RDMPTQng+jbn8C8gMUN6HiO+eP
+	 50+ZYXwhkj0kQ==
+Date: Fri, 14 Mar 2025 09:20:54 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: George Moussalem <george.moussalem@outlook.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, linux-phy@lists.infradead.org, andersson@kernel.org, 
+	bhelgaas@google.com, conor+dt@kernel.org, devicetree@vger.kernel.org, 
+	lumag@kernel.org, kishon@kernel.org, konradybcio@kernel.org, krzk+dt@kernel.org, 
+	kw@linux.com, lpieralisi@kernel.org, manivannan.sadhasivam@linaro.org, 
+	p.zabel@pengutronix.de, quic_nsekar@quicinc.com, robh@kernel.org, robimarko@gmail.com, 
+	vkoul@kernel.org, quic_srichara@quicinc.com
+Subject: Re: [PATCH v4 3/6] dt-bindings: PCI: qcom: Add IPQ5018 SoC
+Message-ID: <20250314-greedy-tested-flamingo-59ae28@krzk-bin>
+References: <DS7PR19MB8883F2538AA7D047E13C102B9DD22@DS7PR19MB8883.namprd19.prod.outlook.com>
+ <20250314055644.32705-1-george.moussalem@outlook.com>
+ <DS7PR19MB88834CAC414A0C2B4D71D57C9DD22@DS7PR19MB8883.namprd19.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250312082700.260260-1-xu.yang_2@nxp.com>
+In-Reply-To: <DS7PR19MB88834CAC414A0C2B4D71D57C9DD22@DS7PR19MB8883.namprd19.prod.outlook.com>
 
-On Wed, Mar 12, 2025 at 04:26:54PM +0800, Xu Yang wrote:
-> The i.MX95-19x19 EVK board features a USB 2.0 Type-A port, with this
-> series primarily introducing USB 2.0 support. In the i.MX95 architecture,
-> the USB wake-up handling mechanism is integrated within the HSIO block
-> control module, utilizing a dedicated wake-up interrupt. Therefore, we
-> also implemented corresponding wake-up logic code to properly manage this
-> functionality.
+On Fri, Mar 14, 2025 at 09:56:41AM +0400, George Moussalem wrote:
+> From: Nitheesh Sekar <quic_nsekar@quicinc.com>
 > 
-> For detailed changes can refer to patch commit log.
+> Add support for the PCIe controller on the Qualcomm
+> IPQ5108 SoC to the bindings.
+> 
+> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
+> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+> ---
+>  .../devicetree/bindings/pci/qcom,pcie.yaml    | 59 +++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> index 8f628939209e..d8befaa558e2 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> @@ -21,6 +21,7 @@ properties:
+>            - qcom,pcie-apq8064
+>            - qcom,pcie-apq8084
+>            - qcom,pcie-ipq4019
+> +          - qcom,pcie-ipq5018
+>            - qcom,pcie-ipq6018
+>            - qcom,pcie-ipq8064
+>            - qcom,pcie-ipq8064-v2
+> @@ -322,6 +323,63 @@ allOf:
+>              - const: ahb # AHB reset
+>              - const: phy_ahb # PHY AHB reset
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,pcie-ipq5018
+> +    then:
+> +      properties:
+> +        reg:
+> +          minItems: 5
+> +          maxItems: 5
+> +        reg-names:
+> +          items:
+> +            - const: parf # Qualcomm specific registers
+> +            - const: dbi # DesignWare PCIe registers
+> +            - const: elbi # External local bus interface registers
+> +            - const: atu # ATU address space
+> +            - const: config # PCIe configuration space
 
-Does not apply to my tree :(
+Keep the same order as other IPQ, so dbi+elbi+atu+parf+config. Same for
+everything else, so standard rule applies: devices are supposed to use
+ordering from existing variants.
+
+There is some huge mess with IPQ PCI bindings, including things on the
+list. Apparently it became my job to oversee Qualcomm PCI work... well,
+I do not have time for that, so rather I expect contributors to
+cooperate in this matter.
+
+Don't throw your patches over the wall.
+
+If you need to rework the patch, take the ownership and rework it.
+
+
+
+
+
+> +        clocks:
+> +          minItems: 6
+> +          maxItems: 6
+> +        clock-names:
+> +          items:
+> +            - const: iface # PCIe to SysNOC BIU clock
+> +            - const: axi_m # AXI Master clock
+> +            - const: axi_s # AXI Slave clock
+> +            - const: ahb # AHB clock
+> +            - const: aux # Auxiliary clock
+> +            - const: axi_bridge # AXI bridge clock
+> +        resets:
+> +          minItems: 8
+> +          maxItems: 8
+> +        reset-names:
+> +          items:
+> +            - const: pipe # PIPE reset
+> +            - const: sleep # Sleep reset
+> +            - const: sticky # Core sticky reset
+> +            - const: axi_m # AXI master reset
+> +            - const: axi_s # AXI slave reset
+> +            - const: ahb # AHB reset
+> +            - const: axi_m_sticky # AXI master sticky reset
+> +            - const: axi_s_sticky # AXI slave sticky reset
+> +        interrupts:
+> +          minItems: 8
+> +          maxItems: 8
+
+8 items...
+
+> +        interrupt-names:
+> +          items:
+> +            - const: msi0
+> +            - const: msi1
+> +            - const: msi2
+> +            - const: msi3
+> +            - const: msi4
+> +            - const: msi5
+> +            - const: msi6
+> +            - const: msi7
+> +            - const: global
+
+And here 9 items. You got comment on this. What's more, I doubt that DTS
+was tsted.
+
+Best regards,
+Krzysztof
+
 
