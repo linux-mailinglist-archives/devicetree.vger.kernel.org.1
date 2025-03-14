@@ -1,464 +1,737 @@
-Return-Path: <devicetree+bounces-157452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A436DA60B4E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 09:26:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93FADA60B58
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 09:26:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED1393AA24D
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 08:26:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C8B96176021
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 08:26:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9B731A23A6;
-	Fri, 14 Mar 2025 08:26:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D8F01A5B9A;
+	Fri, 14 Mar 2025 08:26:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="gytbqIqv"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="K+oPHr2F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E17D01953A2
-	for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 08:26:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E90B1A3AB8
+	for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 08:26:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741940772; cv=none; b=kG0CDl4uRMfZIiDd6xrXJGdHtSuYpLxa1TpmPYQDGXVkSKLKVPW6kqem7CO5GqpET8fEvWJbTV/Hhq/3UtwwXVzQWZG+ntDrOizwqe7J4MFqjby8Y64NYcMOPxRfADiNSQZz6F9dHCROEVKxB8KEw4rzvdqBOqZUZ5nvKW1opNc=
+	t=1741940803; cv=none; b=JuKNggllW4RQqMe+zFVZyHI6DcHC1lQJc7LoxptY1J3j/Wnj/1blwyvuyI0OkHcarreQy0fVgSeLXYqqMT7HyEerey6RZrHQJNzj0K6atCEcGnF/71RsiFpIMqX5FRHHyO6cseno4rbjqE8II2913kbzcReC5N8+tJMKqF181r4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741940772; c=relaxed/simple;
-	bh=BImU62aPrPj4pLX2GWuGbB5M1kn+CRgvRsXxyzcuPyk=;
+	s=arc-20240116; t=1741940803; c=relaxed/simple;
+	bh=vQzVtIwK1dCKEMQMMIc1H4RoKQWZk70n7XIZfG9jj90=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fvST6RBXTYG0mpp9hGHOQsmZI8dO2C4H39ySVNk1wJQhscLhFqLp1hBvP26fE+9/Tl3JaN0M12zIgmm7u9qxdNL3GB7twgsUa2dpxSRvadRG4x0vRRrMomrMyl916K6G4wMew8KjUovpnGVg48pwgKZ7W9vsjewzhRwIeaGTPrQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=gytbqIqv; arc=none smtp.client-ip=209.85.166.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-io1-f41.google.com with SMTP id ca18e2360f4ac-85b4277d03fso53878239f.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 01:26:10 -0700 (PDT)
+	 To:Cc:Content-Type; b=OBw2umJYayQI/uw9qlGoEcFv7mtQjD9nOlJY5xDmiwD8zDP7ktIypttvJu+kC3yncxGR1J+dYcRKFE8hjjeltR5WQEVZzx+yRgn3gS57+XLCwW8+ZH7ver+H64kvfxgIXmqM+Vb8w0uXbu/Vo8ZTOtQUqK3Vh2Ew2A885MxRA9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=K+oPHr2F; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-307325f2436so17836341fa.0
+        for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 01:26:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1741940770; x=1742545570; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1741940798; x=1742545598; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=MFBqxcyHmYrKZ5CeeWDkGHLMtgfSG5xm6fdVTs4Uk9M=;
-        b=gytbqIqv3OjA7KnYFAbWg8zNtrmjhhZOadXpYc6Yc0WausxHt+fiOuwa0F/9pzi9rY
-         X+X7OMm2KZlKLbpsr1/1qVj4WZgL6+MH4frrYIqUc3hYp5GFvakkJMRD461Eul+ecvQH
-         Kn2WZ+Bm704z1vMehn+t/VLYAiSTeyI71Cedx/TqEEKJLIwYXsczRJK7xNe1cqDKgJd8
-         45SdApJsjaYQ5KuNdDcBDemUChF7SAY36hy9cBJvYns2V7H5dIte/pgmYH9n7plE0eFj
-         siUq6ZFGdReyLEB3iI30EKfi+TsL/bZQrH+f1w37Nqm5+h5DttfIRP6+a/RjUIHzaqPf
-         HtpQ==
+        bh=OnvxGuWLwbsMGDx+dnr65e/zpVFA0sGZSJfUiswNflE=;
+        b=K+oPHr2FWR1pPPLNZDakhVEfIJSiiitZFVJtK2vPRl1YEecGPp4AIm/x2p1Ye/OQob
+         u4qQ5kXeiXyh4AMbdRDag4wyu0rPPaocjsgGutPtP8soMh75KAKfX3d0k2QYVHgSFwVZ
+         msPFZIFI4l4Shc1nazgQcGjU6tj9aZeg3Aik8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741940770; x=1742545570;
+        d=1e100.net; s=20230601; t=1741940798; x=1742545598;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=MFBqxcyHmYrKZ5CeeWDkGHLMtgfSG5xm6fdVTs4Uk9M=;
-        b=SISfZYnYtO+FUGVlUkir/t99uZNVm198yLficT/6n7yTthHQ0T3xQFNmBHKmq58ELy
-         gAfDVB6M92KI4COMBX2WtaeMd8tOEEIH5/cowau5dBwbRb0bj4tf7q1MezXdXYbGQkq/
-         QOx40mm5fheXHRLeuLNkhOzUn9VID/2IoC2cKu0M0WLvkS5ytKzgxzI2EgQyTqt9XudC
-         tP1+/3spjCQvAsSGB38M1GnBL6NblNwRZ7aw+61hxRV4XrHNST5hgsKyJ04fszravl0S
-         lR/Wg11w5JkZTdduBZ0YfXbuibzLv/qikg4EfyfkS9+pflhZNWh8Jmyo6YG4vv5tx/Sb
-         K32w==
-X-Forwarded-Encrypted: i=1; AJvYcCX0Wwhdpq6sBNU6+KQ0lfcJ5JQ0gYqfzmEIa9InCajd9jdLpTR6h0eVg4h1O4C7oeEQW1nvcoId4jTo@vger.kernel.org
-X-Gm-Message-State: AOJu0YzMOtTxXHJMupOsPjHYNgrUmWangP1IL9Tty3SXvVKAIRh1PrRJ
-	TaRbIRfGEM9F0HJLLjR2wcVVmlyf1bTpi7N/E7XJ2qpTmqS97K7RsqGtpattZCdYoeWys6Z1LM0
-	Vppl8qtzgmbvP54vaMQrP0ev2LHLMCdwxTXyLVQ==
-X-Gm-Gg: ASbGncvpnSUqKPbSTMwydF6oTZCH+vW/ldYvZO7ayEzolh0XKHmIeJZGKvOTtiigLMq
-	wS0/wDet0OmR+he3Dwl4+l8LOBeyDTf4gqlcpfGoSaH5glkJXTChiDpfXT/JGwP7oEDJeVI2VFb
-	GZktmyPAfvW35joGTRuCzk2ZfjHZ90ZnHEHHG2Pw==
-X-Google-Smtp-Source: AGHT+IHmSCGAzZxmTnBk7MXVzTw1qzESoE4LhRvbcrXSorktNy4ZRhz+uxQ6Mf+uq1bo4tboFsnErwawS40GnQpS2RM=
-X-Received: by 2002:a05:6e02:170d:b0:3d3:eeec:8a0b with SMTP id
- e9e14a558f8ab-3d483a25083mr11623635ab.10.1741940769881; Fri, 14 Mar 2025
- 01:26:09 -0700 (PDT)
+        bh=OnvxGuWLwbsMGDx+dnr65e/zpVFA0sGZSJfUiswNflE=;
+        b=YxCvUqCyajN/+Y6+8AtAfjTHY6wLNLrwzsIxh+etKveNdNGfXflY4bsAvcfkiaDnoe
+         hf+Vqukc5uWaUiLm6U/98CFoXc8ZSXcUWRlbDdomvreoTKiR2o5FxiBaD7PmB6xlqEZk
+         7+KsRwkOHQ7QDhlhMfhepJYHCgej9QZRO2RsTHX3BiLtaLyERtOWIe0m3UbQkNfGYc/V
+         1pxWj7Mb8/WlOf9oKe6SaxneEw6y7GM1eoIPrUmgWdB1iHbVVcZcfo/8SFGd3fLY3tjk
+         l3wO71L8ecg/h2iai7FgekitBcGUYuWOy9AOFSVIUxT5IHqqQmGyM86en68EHZWqyD33
+         s2YA==
+X-Forwarded-Encrypted: i=1; AJvYcCX9x1JPXHQf8lzIuWeTq2cIpuLcIvnhSSiX7oK4i+Bu0jdqEQKCUWkIE5r5yjn1Zao8AZ7Sh8AIxFVp@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0TjoLldb53DZbG4gwDZBhdONBOBARNBWYTKvuoZiI60d86VyD
+	asDLpWSNdfIZo5QimtUgv6PVOOvygjwfsTaEsO9zdTzwQ2C4meEivMZwuv1AM/hVXk2QN06Bd1V
+	fV7M7rfnt5nu+GIQy/LsXi8X9/kVWDTwIIYgy
+X-Gm-Gg: ASbGncvbNQmYJnwxHC+rdmkdQIG6+AjLOzrOoQSPZTGyA+NZh4QTH0tniI5mkLtwR6W
+	pYloDcN5Fd3QG2VhkjYIQiQ4ma0pDloRQpZhDErVRcs14ORd+79s+OXCqRofwASlyUXdHlYCg+U
+	9yH46CDs7ThKr20guZh8t/X4hPR+1BpaYEbAu6/ANIKmZQq8jpTP+8
+X-Google-Smtp-Source: AGHT+IGhGekMc4WNzl4bX/a7xx8QwbG9qEqQGafoM6+ZmPbzyfrg7VUUE+RgQdSUqTpLaqiQqjrSmQApdPtRAeOIkr0=
+X-Received: by 2002:a05:6512:2245:b0:549:4d73:641b with SMTP id
+ 2adb3069b0e04-549c398d3bdmr566692e87.52.1741940798475; Fri, 14 Mar 2025
+ 01:26:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250310-v5_user_cfi_series-v11-0-86b36cbfb910@rivosinc.com> <20250310-v5_user_cfi_series-v11-13-86b36cbfb910@rivosinc.com>
-In-Reply-To: <20250310-v5_user_cfi_series-v11-13-86b36cbfb910@rivosinc.com>
-From: Zong Li <zong.li@sifive.com>
-Date: Fri, 14 Mar 2025 16:25:59 +0800
-X-Gm-Features: AQ5f1JrgyyKY0dBFW7yldm9HxW3CrPyd2-B_tuI2-7Cjq10tI4uDUrJdMcVX0K4
-Message-ID: <CANXhq0r1dd2jCtCbinD4iy9rx+oQ+VDMWjATf1GqxEmuvFzyWw@mail.gmail.com>
-Subject: Re: [PATCH v11 13/27] prctl: arch-agnostic prctl for indirect branch tracking
-To: Deepak Gupta <debug@rivosinc.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, 
-	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, 
-	"H. Peter Anvin" <hpa@zytor.com>, Andrew Morton <akpm@linux-foundation.org>, 
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka <vbabka@suse.cz>, 
-	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Christian Brauner <brauner@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
-	Oleg Nesterov <oleg@redhat.com>, Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, Jann Horn <jannh@google.com>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-fsdevel@vger.kernel.org, linux-mm@kvack.org, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-kselftest@vger.kernel.org, alistair.francis@wdc.com, 
-	richard.henderson@linaro.org, jim.shu@sifive.com, andybnac@gmail.com, 
-	kito.cheng@sifive.com, charlie@rivosinc.com, atishp@rivosinc.com, 
-	evan@rivosinc.com, cleger@rivosinc.com, alexghiti@rivosinc.com, 
-	samitolvanen@google.com, broonie@kernel.org, rick.p.edgecombe@intel.com
+References: <20250314073307.25092-1-Lu.Tang@mediatek.com> <20250314073307.25092-3-Lu.Tang@mediatek.com>
+In-Reply-To: <20250314073307.25092-3-Lu.Tang@mediatek.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Fri, 14 Mar 2025 16:26:27 +0800
+X-Gm-Features: AQ5f1JoUxxaW4R1DHW8NvTP3v8QIgiu0MnuEYNVzwemC1viyE2X19Q5KKrrECK4
+Message-ID: <CAGXv+5FKLz2sK5UOwtj33xZEh6kKznSAdeHhc6d0oSxbQqpEmA@mail.gmail.com>
+Subject: Re: [PATCH 2/5] pmic: mediatek: Add pmic regulator driver
+To: "Lu.Tang" <Lu.Tang@mediatek.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Lee Jones <lee@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Sean Wang <sean.wang@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
+	Chen Zhong <chen.zhong@mediatek.com>, Sen Chu <shen.chu@mediatek.com>, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-gpio@vger.kernel.org, Project_Global_Chrome_Upstream_Group@mediatek.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Mar 10, 2025 at 11:42=E2=80=AFPM Deepak Gupta <debug@rivosinc.com> =
-wrote:
+On Fri, Mar 14, 2025 at 3:58=E2=80=AFPM Lu.Tang <Lu.Tang@mediatek.com> wrot=
+e:
 >
-> Three architectures (x86, aarch64, riscv) have support for indirect branc=
-h
-> tracking feature in a very similar fashion. On a very high level, indirec=
-t
-> branch tracking is a CPU feature where CPU tracks branches which uses
-> memory operand to perform control transfer in program. As part of this
-> tracking on indirect branches, CPU goes in a state where it expects a
-> landing pad instr on target and if not found then CPU raises some fault
-> (architecture dependent)
+> From: "Lu.Tang" <lu.tang@mediatek.com>
 >
-> x86 landing pad instr - `ENDBRANCH`
-> aarch64 landing pad instr - `BTI`
-> riscv landing instr - `lpad`
->
-> Given that three major arches have support for indirect branch tracking,
-> This patch makes `prctl` for indirect branch tracking arch agnostic.
->
-> To allow userspace to enable this feature for itself, following prtcls ar=
-e
-> defined:
->  - PR_GET_INDIR_BR_LP_STATUS: Gets current configured status for indirect
->    branch tracking.
->  - PR_SET_INDIR_BR_LP_STATUS: Sets a configuration for indirect branch
->    tracking.
->    Following status options are allowed
->        - PR_INDIR_BR_LP_ENABLE: Enables indirect branch tracking on user
->          thread.
->        - PR_INDIR_BR_LP_DISABLE; Disables indirect branch tracking on use=
-r
->          thread.
->  - PR_LOCK_INDIR_BR_LP_STATUS: Locks configured status for indirect branc=
-h
->    tracking for user thread.
->
-> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
-> Reviewed-by: Mark Brown <broonie@kernel.org>
-> ---
->  arch/riscv/include/asm/usercfi.h | 16 ++++++++-
->  arch/riscv/kernel/entry.S        |  2 +-
->  arch/riscv/kernel/process.c      |  5 +++
->  arch/riscv/kernel/usercfi.c      | 76 ++++++++++++++++++++++++++++++++++=
-++++++
->  include/linux/cpu.h              |  4 +++
->  include/uapi/linux/prctl.h       | 27 ++++++++++++++
->  kernel/sys.c                     | 30 ++++++++++++++++
->  7 files changed, 158 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/riscv/include/asm/usercfi.h b/arch/riscv/include/asm/us=
-ercfi.h
-> index c4dcd256f19a..a8cec7c14d1d 100644
-> --- a/arch/riscv/include/asm/usercfi.h
-> +++ b/arch/riscv/include/asm/usercfi.h
-> @@ -16,7 +16,9 @@ struct kernel_clone_args;
->  struct cfi_status {
->         unsigned long ubcfi_en : 1; /* Enable for backward cfi. */
->         unsigned long ubcfi_locked : 1;
-> -       unsigned long rsvd : ((sizeof(unsigned long) * 8) - 2);
-> +       unsigned long ufcfi_en : 1; /* Enable for forward cfi. Note that =
-ELP goes in sstatus */
-> +       unsigned long ufcfi_locked : 1;
-> +       unsigned long rsvd : ((sizeof(unsigned long) * 8) - 4);
->         unsigned long user_shdw_stk; /* Current user shadow stack pointer=
- */
->         unsigned long shdw_stk_base; /* Base address of shadow stack */
->         unsigned long shdw_stk_size; /* size of shadow stack */
-> @@ -33,6 +35,10 @@ bool is_shstk_locked(struct task_struct *task);
->  bool is_shstk_allocated(struct task_struct *task);
->  void set_shstk_lock(struct task_struct *task);
->  void set_shstk_status(struct task_struct *task, bool enable);
-> +bool is_indir_lp_enabled(struct task_struct *task);
-> +bool is_indir_lp_locked(struct task_struct *task);
-> +void set_indir_lp_status(struct task_struct *task, bool enable);
-> +void set_indir_lp_lock(struct task_struct *task);
->
->  #define PR_SHADOW_STACK_SUPPORTED_STATUS_MASK (PR_SHADOW_STACK_ENABLE)
->
-> @@ -58,6 +64,14 @@ void set_shstk_status(struct task_struct *task, bool e=
-nable);
->
->  #define set_shstk_status(task, enable)
->
-> +#define is_indir_lp_enabled(task) false
-> +
-> +#define is_indir_lp_locked(task) false
-> +
-> +#define set_indir_lp_status(task, enable)
-> +
-> +#define set_indir_lp_lock(task)
-> +
->  #endif /* CONFIG_RISCV_USER_CFI */
->
->  #endif /* __ASSEMBLY__ */
-> diff --git a/arch/riscv/kernel/entry.S b/arch/riscv/kernel/entry.S
-> index 68c99124ea55..00494b54ff4a 100644
-> --- a/arch/riscv/kernel/entry.S
-> +++ b/arch/riscv/kernel/entry.S
-> @@ -143,7 +143,7 @@ SYM_CODE_START(handle_exception)
->          * Disable the FPU/Vector to detect illegal usage of floating poi=
-nt
->          * or vector in kernel space.
->          */
-> -       li t0, SR_SUM | SR_FS_VS
-> +       li t0, SR_SUM | SR_FS_VS | SR_ELP
->
->         REG_L s0, TASK_TI_USER_SP(tp)
->         csrrc s1, CSR_STATUS, t0
-> diff --git a/arch/riscv/kernel/process.c b/arch/riscv/kernel/process.c
-> index cd11667593fe..4587201dd81d 100644
-> --- a/arch/riscv/kernel/process.c
-> +++ b/arch/riscv/kernel/process.c
-> @@ -160,6 +160,11 @@ void start_thread(struct pt_regs *regs, unsigned lon=
-g pc,
->         set_shstk_status(current, false);
->         set_shstk_base(current, 0, 0);
->         set_active_shstk(current, 0);
-> +       /*
-> +        * disable indirect branch tracking on exec.
-> +        * libc will enable it later via prctl.
-> +        */
-> +       set_indir_lp_status(current, false);
+> Add pmic mt6316/mt6373/mt6363 regulator driver
 
-In set_indir_lp_status and set_shstk_status, the $senvcfg.LPE and
-$senvcfg.SSE fields are set. However, if the CPU does not support this
-CSR, writing to it will trigger an illegal instruction exception.
-Should we add sanity checks to handle this situation? Thanks
+Please split this into one patch per PMIC. That will make the patch
+size much more manageable. And the patch subject should just say what
+PMIC is added.
+
+> Signed-off-by: Lu Tang <lu.tang@mediatek.com>
+> ---
+>  drivers/regulator/Kconfig                  |   34 +
+>  drivers/regulator/Makefile                 |    3 +
+>  drivers/regulator/mt6316-regulator.c       |  381 +++++++
+
+How much of the MT6316 driver is the same or similar to MT6315?
+AFAICT they are both 4 buck regulators where some of the outputs
+can be combined into a polyphase output.
+
+>  drivers/regulator/mt6363-regulator.c       | 1106 ++++++++++++++++++++
+>  drivers/regulator/mt6373-regulator.c       |  826 +++++++++++++++
+>  include/linux/regulator/mt6316-regulator.h |   48 +
+>  include/linux/regulator/mt6363-regulator.h |  424 ++++++++
+>  include/linux/regulator/mt6373-regulator.h |  318 ++++++
+>  8 files changed, 3140 insertions(+)
+>  create mode 100644 drivers/regulator/mt6316-regulator.c
+>  create mode 100644 drivers/regulator/mt6363-regulator.c
+>  create mode 100644 drivers/regulator/mt6373-regulator.c
+>  create mode 100644 include/linux/regulator/mt6316-regulator.h
+>  create mode 100644 include/linux/regulator/mt6363-regulator.h
+>  create mode 100644 include/linux/regulator/mt6373-regulator.h
 >
->  #ifdef CONFIG_64BIT
->         regs->status &=3D ~SR_UXL;
-> diff --git a/arch/riscv/kernel/usercfi.c b/arch/riscv/kernel/usercfi.c
-> index 37d6fb8144e7..3a66f149a4ef 100644
-> --- a/arch/riscv/kernel/usercfi.c
-> +++ b/arch/riscv/kernel/usercfi.c
-> @@ -69,6 +69,32 @@ void set_shstk_lock(struct task_struct *task)
->         task->thread_info.user_cfi_state.ubcfi_locked =3D 1;
->  }
+> diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
+> index 39297f7d8177..7b2d47fee535 100644
+> --- a/drivers/regulator/Kconfig
+> +++ b/drivers/regulator/Kconfig
+> @@ -853,6 +853,16 @@ config REGULATOR_MT6315
+>           This driver supports the control of different power rails of de=
+vice
+>           through regulator interface.
 >
-> +bool is_indir_lp_enabled(struct task_struct *task)
-> +{
-> +       return task->thread_info.user_cfi_state.ufcfi_en ? true : false;
+> +config REGULATOR_MT6316
+> +       tristate "MediaTek MT6316 PMIC"
+> +       depends on SPMI
+> +       select REGMAP_SPMI
+> +       help
+> +         Say y here to select this option to enable the power regulator =
+of
+> +         MediaTek MT6316 PMIC.
+> +         This driver supports the control of different power rails of de=
+vice
+> +         through regulator interface.
+> +
+>  config REGULATOR_MT6323
+>         tristate "MediaTek MT6323 PMIC"
+>         depends on MFD_MT6397
+> @@ -916,6 +926,18 @@ config REGULATOR_MT6360
+>           2-channel buck with Thermal Shutdown and Overload Protection
+>           6-channel High PSRR and Low Dropout LDO.
+>
+> +config REGULATOR_MT6363
+> +       tristate "MT6363 SPMI Regulator driver"
+> +       depends on MFD_MTK_SPMI_PMIC
+> +       help
+> +         Say y here to select this option to enable the power regulator =
+of
+> +         MediaTek MT6363 PMIC.
+> +         This driver supports the control of different power rails of de=
+vice
+> +         through regulator interface.
+> +
+> +         The driver can also be build as a module.
+> +         If so, the module will be called mt6363_regulator
+> +
+>  config REGULATOR_MT6370
+>         tristate "MT6370 SubPMIC Regulator"
+>         depends on MFD_MT6370
+> @@ -924,6 +946,18 @@ config REGULATOR_MT6370
+>           This driver supports the control for DisplayBias voltages and o=
+ne
+>           general purpose LDO which is commonly used to drive the vibrato=
+r.
+>
+> +config REGULATOR_MT6373
+> +       tristate "MT6373 SPMI Regulator driver"
+> +       depends on MFD_MTK_SPMI_PMIC
+> +       help
+> +         Say y here to select this option to enable the power regulator =
+of
+> +         MediaTek MT6373 PMIC.
+> +         This driver supports the control of different power rails of de=
+vice
+> +         through regulator interface.
+> +
+> +         The driver can also be build as a module.
+> +         If so, the module will be called mt6373_regulator
+> +
+>  config REGULATOR_MT6380
+>         tristate "MediaTek MT6380 PMIC"
+>         depends on MTK_PMIC_WRAP
+> diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
+> index 3d5a803dce8a..b54a64522499 100644
+> --- a/drivers/regulator/Makefile
+> +++ b/drivers/regulator/Makefile
+> @@ -102,6 +102,7 @@ obj-$(CONFIG_REGULATOR_MP886X) +=3D mp886x.o
+>  obj-$(CONFIG_REGULATOR_MPQ7920) +=3D mpq7920.o
+>  obj-$(CONFIG_REGULATOR_MT6311) +=3D mt6311-regulator.o
+>  obj-$(CONFIG_REGULATOR_MT6315) +=3D mt6315-regulator.o
+> +obj-$(CONFIG_REGULATOR_MT6316) +=3D mt6316-regulator.o
+>  obj-$(CONFIG_REGULATOR_MT6323) +=3D mt6323-regulator.o
+>  obj-$(CONFIG_REGULATOR_MT6331) +=3D mt6331-regulator.o
+>  obj-$(CONFIG_REGULATOR_MT6332) +=3D mt6332-regulator.o
+> @@ -109,7 +110,9 @@ obj-$(CONFIG_REGULATOR_MT6357)      +=3D mt6357-regul=
+ator.o
+>  obj-$(CONFIG_REGULATOR_MT6358) +=3D mt6358-regulator.o
+>  obj-$(CONFIG_REGULATOR_MT6359) +=3D mt6359-regulator.o
+>  obj-$(CONFIG_REGULATOR_MT6360) +=3D mt6360-regulator.o
+> +obj-$(CONFIG_REGULATOR_MT6363) +=3D mt6363-regulator.o
+>  obj-$(CONFIG_REGULATOR_MT6370) +=3D mt6370-regulator.o
+> +obj-$(CONFIG_REGULATOR_MT6373) +=3D mt6373-regulator.o
+>  obj-$(CONFIG_REGULATOR_MT6380) +=3D mt6380-regulator.o
+>  obj-$(CONFIG_REGULATOR_MT6397) +=3D mt6397-regulator.o
+>  obj-$(CONFIG_REGULATOR_MTK_DVFSRC) +=3D mtk-dvfsrc-regulator.o
+> diff --git a/drivers/regulator/mt6316-regulator.c b/drivers/regulator/mt6=
+316-regulator.c
+> new file mode 100644
+> index 000000000000..1c069a0d4cff
+> --- /dev/null
+> +++ b/drivers/regulator/mt6316-regulator.c
+> @@ -0,0 +1,381 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +//
+> +// Copyright (c) 2024 MediaTek Inc.
+> +
+> +#include <linux/interrupt.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/of_irq.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/driver.h>
+> +#include <linux/regulator/machine.h>
+> +#include <linux/regulator/mt6316-regulator.h>
+> +#include <linux/regulator/of_regulator.h>
+> +
+> +#define SET_OFFSET     0x1
+> +#define CLR_OFFSET     0x2
+> +
+> +#define MT6316_REG_WIDTH       8
+> +
+> +#define MT6316_BUCK_MODE_AUTO          0
+> +#define MT6316_BUCK_MODE_FORCE_PWM     1
+> +#define MT6316_BUCK_MODE_NORMAL                0
+> +#define MT6316_BUCK_MODE_LP            2
+> +
+> +#define BUCK_PHASE_3                   3
+> +#define BUCK_PHASE_4                   4
+> +
+> +struct mt6316_regulator_info {
+> +       struct regulator_desc desc;
+> +       u32 da_reg;
+> +       u32 qi;
+> +       u32 modeset_reg;
+> +       u32 modeset_mask;
+> +       u32 lp_mode_reg;
+> +       u32 lp_mode_mask;
+> +       u32 lp_mode_shift;
+> +};
+> +
+> +struct mt6316_init_data {
+> +       u32 id;
+> +       u32 size;
+> +};
+> +
+> +struct mt6316_chip {
+> +       struct device *dev;
+> +       struct regmap *regmap;
+> +       u32 slave_id;
+> +};
+> +
+> +#define MT_BUCK(match, _name, volt_ranges, _bid, _vsel)        \
+> +[MT6316_ID_##_name] =3D {                                        \
+> +       .desc =3D {                                       \
+> +               .name =3D #_name,                         \
+> +               .of_match =3D of_match_ptr(match),        \
+> +               .ops =3D &mt6316_volt_range_ops,          \
+> +               .type =3D REGULATOR_VOLTAGE,              \
+> +               .id =3D MT6316_ID_##_name,                \
+> +               .owner =3D THIS_MODULE,                   \
+> +               .n_voltages =3D 0x1ff,                    \
+> +               .linear_ranges =3D volt_ranges,           \
+> +               .n_linear_ranges =3D ARRAY_SIZE(volt_ranges),\
+> +               .vsel_reg =3D _vsel,                      \
+> +               .vsel_mask =3D 0xff,                      \
+> +               .enable_reg =3D MT6316_BUCK_TOP_CON0,     \
+> +               .enable_mask =3D BIT(_bid - 1),           \
+> +               .of_map_mode =3D mt6316_map_mode,         \
+> +       },                                              \
+> +       .da_reg =3D MT6316_VBUCK##_bid##_DBG8,            \
+> +       .qi =3D BIT(0),                                   \
+> +       .lp_mode_reg =3D MT6316_BUCK_TOP_CON1,            \
+> +       .lp_mode_mask =3D BIT(_bid - 1),                  \
+> +       .lp_mode_shift =3D _bid - 1,                      \
+> +       .modeset_reg =3D MT6316_BUCK_TOP_4PHASE_TOP_ANA_CON0,\
+> +       .modeset_mask =3D BIT(_bid - 1),                  \
 > +}
 > +
-> +bool is_indir_lp_locked(struct task_struct *task)
+> +static const struct linear_range mt_volt_range1[] =3D {
+> +       REGULATOR_LINEAR_RANGE(0, 0, 0x1fe, 2500),
+> +};
+> +
+> +static int mt6316_regulator_enable(struct regulator_dev *rdev)
 > +{
-> +       return task->thread_info.user_cfi_state.ufcfi_locked ? true : fal=
-se;
+> +       return regmap_write(rdev->regmap, rdev->desc->enable_reg + SET_OF=
+FSET,
+> +                           rdev->desc->enable_mask);
 > +}
 > +
-> +void set_indir_lp_status(struct task_struct *task, bool enable)
+> +static int mt6316_regulator_disable(struct regulator_dev *rdev)
 > +{
-> +       task->thread_info.user_cfi_state.ufcfi_en =3D enable ? 1 : 0;
+> +       return regmap_write(rdev->regmap, rdev->desc->enable_reg + CLR_OF=
+FSET,
+> +                           rdev->desc->enable_mask);
+> +}
 > +
-> +       if (enable)
-> +               task->thread.envcfg |=3D ENVCFG_LPE;
+> +static unsigned int mt6316_map_mode(u32 mode)
+> +{
+> +       switch (mode) {
+> +       case MT6316_BUCK_MODE_AUTO:
+> +               return REGULATOR_MODE_NORMAL;
+> +       case MT6316_BUCK_MODE_FORCE_PWM:
+> +               return REGULATOR_MODE_FAST;
+> +       case MT6316_BUCK_MODE_LP:
+> +               return REGULATOR_MODE_IDLE;
+> +       default:
+> +               return REGULATOR_MODE_INVALID;
+> +       }
+> +}
+> +
+> +static int mt6316_regulator_set_voltage_sel(struct regulator_dev *rdev, =
+unsigned int selector)
+> +{
+> +       unsigned short reg_val =3D 0;
+> +       int ret =3D 0;
+> +
+> +       reg_val =3D ((selector & 0x1) << 8) | (selector >> 1);
+> +       ret =3D regmap_bulk_write(rdev->regmap, rdev->desc->vsel_reg, (u8=
+ *) &reg_val, 2);
+> +
+> +       return ret;
+> +}
+> +
+> +static int mt6316_regulator_get_voltage_sel(struct regulator_dev *rdev)
+> +{
+> +       int ret =3D 0;
+> +       unsigned int reg_val =3D 0;
+> +
+> +       ret =3D regmap_bulk_read(rdev->regmap, rdev->desc->vsel_reg, (u8 =
+*) &reg_val, 2);
+> +       if (ret !=3D 0) {
+> +               dev_err(&rdev->dev, "Failed to get mt6316 regulator volta=
+ge: %d\n", ret);
+> +               return ret;
+> +       }
+> +       ret =3D ((reg_val >> 8) & 0x1) + ((reg_val & rdev->desc->vsel_mas=
+k) << 1);
+> +
+> +       return ret;
+> +}
+> +
+> +static unsigned int mt6316_regulator_get_mode(struct regulator_dev *rdev=
+)
+> +{
+> +       struct mt6316_regulator_info *info;
+> +       int ret =3D 0, regval =3D 0;
+> +       u32 modeset_mask;
+> +
+> +       info =3D container_of(rdev->desc, struct mt6316_regulator_info, d=
+esc);
+> +       ret =3D regmap_read(rdev->regmap, info->modeset_reg, &regval);
+> +       if (ret !=3D 0) {
+> +               dev_err(&rdev->dev, "Failed to get mt6316 buck mode: %d\n=
+", ret);
+> +               return ret;
+> +       }
+> +
+> +       modeset_mask =3D info->modeset_mask;
+> +
+> +       if ((regval & modeset_mask) =3D=3D modeset_mask)
+> +               return REGULATOR_MODE_FAST;
+> +
+> +       ret =3D regmap_read(rdev->regmap, info->lp_mode_reg, &regval);
+> +       if (ret !=3D 0) {
+> +               dev_err(&rdev->dev, "Failed to get mt6316 buck lp mode: %=
+d\n", ret);
+> +               return ret;
+> +       }
+> +
+> +       if (regval & info->lp_mode_mask)
+> +               return REGULATOR_MODE_IDLE;
 > +       else
-> +               task->thread.envcfg &=3D ~ENVCFG_LPE;
-> +
-> +       csr_write(CSR_ENVCFG, task->thread.envcfg);
+> +               return REGULATOR_MODE_NORMAL;
 > +}
 > +
-> +void set_indir_lp_lock(struct task_struct *task)
+> +static int mt6316_regulator_set_mode(struct regulator_dev *rdev, u32 mod=
+e)
 > +{
-> +       task->thread_info.user_cfi_state.ufcfi_locked =3D 1;
-> +}
->  /*
->   * If size is 0, then to be compatible with regular stack we want it to =
-be as big as
->   * regular stack. Else PAGE_ALIGN it and return back
-> @@ -369,3 +395,53 @@ int arch_lock_shadow_stack_status(struct task_struct=
- *task,
->
->         return 0;
->  }
+> +       struct mt6316_regulator_info *info;
+> +       int ret =3D 0, val, curr_mode;
+> +       u32 modeset_mask;
 > +
-> +int arch_get_indir_br_lp_status(struct task_struct *t, unsigned long __u=
-ser *status)
-> +{
-> +       unsigned long fcfi_status =3D 0;
+> +       info =3D container_of(rdev->desc, struct mt6316_regulator_info, d=
+esc);
+> +       modeset_mask =3D info->modeset_mask;
 > +
-> +       if (!cpu_supports_indirect_br_lp_instr())
-> +               return -EINVAL;
+> +       curr_mode =3D mt6316_regulator_get_mode(rdev);
+> +       switch (mode) {
+> +       case REGULATOR_MODE_FAST:
+> +               ret =3D regmap_update_bits(rdev->regmap, info->modeset_re=
+g,
+> +                                        modeset_mask, modeset_mask);
+> +               break;
+> +       case REGULATOR_MODE_NORMAL:
+> +               if (curr_mode =3D=3D REGULATOR_MODE_FAST) {
+> +                       ret =3D regmap_update_bits(rdev->regmap, info->mo=
+deset_reg,
+> +                                                modeset_mask, 0);
+> +               } else if (curr_mode =3D=3D REGULATOR_MODE_IDLE) {
+> +                       ret =3D regmap_update_bits(rdev->regmap, info->lp=
+_mode_reg,
+> +                                                info->lp_mode_mask, 0);
+> +                       usleep_range(100, 110);
+> +               }
+> +               break;
+> +       case REGULATOR_MODE_IDLE:
+> +               val =3D MT6316_BUCK_MODE_LP >> 1;
+> +               val <<=3D info->lp_mode_shift;
+> +               ret =3D regmap_update_bits(rdev->regmap, info->lp_mode_re=
+g, info->lp_mode_mask, val);
+> +               break;
+> +       default:
+> +               ret =3D -EINVAL;
+> +               goto err_mode;
+> +       }
 > +
-> +       /* indirect branch tracking is enabled on the task or not */
-> +       fcfi_status |=3D (is_indir_lp_enabled(t) ? PR_INDIR_BR_LP_ENABLE =
-: 0);
-> +
-> +       return copy_to_user(status, &fcfi_status, sizeof(fcfi_status)) ? =
--EFAULT : 0;
-> +}
-> +
-> +int arch_set_indir_br_lp_status(struct task_struct *t, unsigned long sta=
-tus)
-> +{
-> +       bool enable_indir_lp =3D false;
-> +
-> +       if (!cpu_supports_indirect_br_lp_instr())
-> +               return -EINVAL;
-> +
-> +       /* indirect branch tracking is locked and further can't be modifi=
-ed by user */
-> +       if (is_indir_lp_locked(t))
-> +               return -EINVAL;
-> +
-> +       /* Reject unknown flags */
-> +       if (status & ~PR_INDIR_BR_LP_ENABLE)
-> +               return -EINVAL;
-> +
-> +       enable_indir_lp =3D (status & PR_INDIR_BR_LP_ENABLE) ? true : fal=
-se;
-> +       set_indir_lp_status(t, enable_indir_lp);
+> +err_mode:
+> +       if (ret !=3D 0) {
+> +               dev_err(&rdev->dev, "Failed to set mt6316 buck mode: %d\n=
+", ret);
+> +               return ret;
+> +       }
 > +
 > +       return 0;
 > +}
 > +
-> +int arch_lock_indir_br_lp_status(struct task_struct *task,
-> +                                unsigned long arg)
+> +static int mt6316_get_status(struct regulator_dev *rdev)
 > +{
-> +       /*
-> +        * If indirect branch tracking is not supported or not enabled on=
- task,
-> +        * nothing to lock here
-> +        */
-> +       if (!cpu_supports_indirect_br_lp_instr() ||
-> +           !is_indir_lp_enabled(task) || arg !=3D 0)
-> +               return -EINVAL;
+> +       int ret =3D 0;
+> +       u32 regval =3D 0;
+> +       struct mt6316_regulator_info *info;
 > +
-> +       set_indir_lp_lock(task);
+> +       info =3D container_of(rdev->desc, struct mt6316_regulator_info, d=
+esc);
+> +       ret =3D regmap_read(rdev->regmap, info->da_reg, &regval);
+> +       if (ret !=3D 0) {
+> +               dev_notice(&rdev->dev, "Failed to get enable reg: %d\n", =
+ret);
+> +               return ret;
+> +       }
+> +
+> +       return (regval & info->qi) ? REGULATOR_STATUS_ON : REGULATOR_STAT=
+US_OFF;
+> +}
+> +
+> +static void mt6316_buck_phase_init(struct mt6316_chip *chip, unsigned in=
+t *s6_buck_phase)
+> +{
+> +       int ret =3D 0;
+> +       u32 val =3D 0;
+> +
+> +       ret =3D regmap_read(chip->regmap, MT6316_BUCK_TOP_4PHASE_TOP_ELR_=
+0, &val);
+> +       if (ret) {
+> +               dev_err(chip->dev, "Failed to get mt6316 buck phase: %d\n=
+", ret);
+> +               return;
+> +       }
+> +
+> +       dev_info(chip->dev, "S%d RG_4PH_CONFIG:%d\n", chip->slave_id, val=
+);
+> +       if (chip->slave_id =3D=3D MT6316_SLAVE_ID_6)
+> +               *s6_buck_phase =3D val;
+> +}
+> +
+> +static const struct regulator_ops mt6316_volt_range_ops =3D {
+> +       .list_voltage =3D regulator_list_voltage_linear_range,
+> +       .map_voltage =3D regulator_map_voltage_linear_range,
+> +       .set_voltage_sel =3D mt6316_regulator_set_voltage_sel,
+> +       .get_voltage_sel =3D mt6316_regulator_get_voltage_sel,
+> +       .set_voltage_time_sel =3D regulator_set_voltage_time_sel,
+> +       .enable =3D mt6316_regulator_enable,
+> +       .disable =3D mt6316_regulator_disable,
+> +       .is_enabled =3D regulator_is_enabled_regmap,
+> +       .get_status =3D mt6316_get_status,
+> +       .set_mode =3D mt6316_regulator_set_mode,
+> +       .get_mode =3D mt6316_regulator_get_mode,
+> +};
+> +
+> +static struct mt6316_regulator_info mt6316_regulators[] =3D {
+> +       MT_BUCK("vbuck1", VBUCK1, mt_volt_range1, 1, MT6316_BUCK_TOP_ELR0=
+),
+> +       MT_BUCK("vbuck2", VBUCK2, mt_volt_range1, 2, MT6316_BUCK_TOP_ELR2=
+),
+> +       MT_BUCK("vbuck3", VBUCK3, mt_volt_range1, 3, MT6316_BUCK_TOP_ELR4=
+),
+> +       MT_BUCK("vbuck4", VBUCK4, mt_volt_range1, 4, MT6316_BUCK_TOP_ELR6=
+),
+> +};
+> +
+> +static struct mt6316_init_data mt6316_3_init_data =3D {
+> +       .id =3D MT6316_SLAVE_ID_3,
+> +       .size =3D MT6316_ID_3_MAX,
+> +};
+> +
+> +static struct mt6316_init_data mt6316_6_init_data =3D {
+> +       .id =3D MT6316_SLAVE_ID_6,
+> +       .size =3D MT6316_ID_6_MAX,
+> +};
+> +
+> +static struct mt6316_init_data mt6316_7_init_data =3D {
+> +       .id =3D MT6316_SLAVE_ID_7,
+> +       .size =3D MT6316_ID_7_MAX,
+> +};
+> +
+> +static struct mt6316_init_data mt6316_8_init_data =3D {
+> +       .id =3D MT6316_SLAVE_ID_8,
+> +       .size =3D MT6316_ID_8_MAX,
+> +};
+> +
+> +static struct mt6316_init_data mt6316_15_init_data =3D {
+> +       .id =3D MT6316_SLAVE_ID_15,
+> +       .size =3D MT6316_ID_15_MAX,
+> +};
+> +
+> +static const struct of_device_id mt6316_of_match[] =3D {
+> +       {
+> +               .compatible =3D "mediatek,mt6316-3-regulator",
+> +               .data =3D &mt6316_3_init_data,
+> +       }, {
+> +               .compatible =3D "mediatek,mt6316-6-regulator",
+> +               .data =3D &mt6316_6_init_data,
+> +       }, {
+> +               .compatible =3D "mediatek,mt6316-7-regulator",
+> +               .data =3D &mt6316_7_init_data,
+> +       }, {
+> +               .compatible =3D "mediatek,mt6316-8-regulator",
+> +               .data =3D &mt6316_8_init_data,
+> +       }, {
+> +               .compatible =3D "mediatek,mt6316-15-regulator",
+> +               .data =3D &mt6316_15_init_data,
+> +       }, {
+> +               /* sentinel */
+> +       },
+> +};
+> +MODULE_DEVICE_TABLE(of, mt6316_of_match);
+> +
+> +static int mt6316_regulator_probe(struct platform_device *pdev)
+> +{
+> +       const struct of_device_id *of_id;
+> +       struct device *dev =3D &pdev->dev;
+> +       struct regmap *regmap;
+> +       struct mt6316_init_data *pdata;
+> +       struct mt6316_chip *chip;
+> +       struct regulator_config config =3D {};
+> +       struct regulator_dev *rdev;
+> +       struct device_node *node =3D pdev->dev.of_node;
+> +       u32 val =3D 0;
+> +       int i;
+> +       unsigned int s6_buck_phase;
+> +
+> +       regmap =3D dev_get_regmap(dev->parent, NULL);
+> +       if (!regmap)
+> +               return -ENODEV;
+> +
+> +       chip =3D devm_kzalloc(dev, sizeof(struct mt6316_chip), GFP_KERNEL=
+);
+> +       if (!chip)
+> +               return -ENOMEM;
+
+Replace the following block:
+
+> +       of_id =3D of_match_device(mt6316_of_match, dev);
+> +       if (!of_id || !of_id->data)
+> +               return -ENODEV;
+> +
+> +       pdata =3D (struct mt6316_init_data *)of_id->data;
+
+with
+
+    pdata =3D of_device_get_match_data(dev);
+
+pdata should never be NULL since the driver is probed only when an
+OF match happens, and all the entries in mt6316_of_match[] have .data
+set.
+
+> +       chip->slave_id =3D pdata->id;
+
+If the ID is supposed to be the SPMI ID, then there should be no
+reason to tie it to the compatible string. Simply get the ID from
+the device tree.
+
+> +       if (!of_property_read_u32(node, "buck-size", &val))
+> +               pdata->size =3D val;
+
+As mentioned in downstream review, the chip has 4 buck regulators,
+regardless of whether they are being used or not. This is not the
+right way to describe unused regulators.
+
+> +       chip->dev =3D dev;
+> +       chip->regmap =3D regmap;
+> +       dev_set_drvdata(dev, chip);
+> +
+> +       dev->fwnode =3D &(dev->of_node->fwnode);
+> +       if (dev->fwnode && !dev->fwnode->dev)
+> +               dev->fwnode->dev =3D dev;
+> +
+> +       config.dev =3D dev;
+> +       config.driver_data =3D pdata;
+> +       config.regmap =3D regmap;
+> +
+> +       mt6316_buck_phase_init(chip, &s6_buck_phase);
+> +       for (i =3D 0; i < pdata->size; i++) {
+> +               if (pdata->id =3D=3D MT6316_SLAVE_ID_6 &&
+> +                   s6_buck_phase =3D=3D BUCK_PHASE_4 &&
+> +                   (mt6316_regulators + i)->desc.id =3D=3D MT6316_ID_VBU=
+CK3) {
+> +                       dev_info(dev, "skip registering %s.\n", (mt6316_r=
+egulators + i)->desc.name);
+> +                       continue;
+> +               }
+> +
+> +               rdev =3D devm_regulator_register(dev, &(mt6316_regulators=
+ + i)->desc, &config);
+> +               if (IS_ERR(rdev)) {
+> +                       dev_err(dev, "failed to register %s\n", (mt6316_r=
+egulators + i)->desc.name);
+> +                       continue;
+> +               }
+> +       }
 > +
 > +       return 0;
 > +}
-> diff --git a/include/linux/cpu.h b/include/linux/cpu.h
-> index 6a0a8f1c7c90..fb0c394430c6 100644
-> --- a/include/linux/cpu.h
-> +++ b/include/linux/cpu.h
-> @@ -204,4 +204,8 @@ static inline bool cpu_mitigations_auto_nosmt(void)
->  }
->  #endif
->
-> +int arch_get_indir_br_lp_status(struct task_struct *t, unsigned long __u=
-ser *status);
-> +int arch_set_indir_br_lp_status(struct task_struct *t, unsigned long sta=
-tus);
-> +int arch_lock_indir_br_lp_status(struct task_struct *t, unsigned long st=
-atus);
 > +
->  #endif /* _LINUX_CPU_H_ */
-> diff --git a/include/uapi/linux/prctl.h b/include/uapi/linux/prctl.h
-> index 5c6080680cb2..6cd90460cbad 100644
-> --- a/include/uapi/linux/prctl.h
-> +++ b/include/uapi/linux/prctl.h
-> @@ -353,4 +353,31 @@ struct prctl_mm_map {
->   */
->  #define PR_LOCK_SHADOW_STACK_STATUS      76
->
+> +static struct platform_driver mt6316_regulator_driver =3D {
+
+The MT6316 only has regulators. Why does it need to go through another
+layer, instead of this driver being the SPMI driver?
+
+> +       .driver         =3D {
+> +               .name   =3D "mt6316-regulator",
+> +               .of_match_table =3D mt6316_of_match,
+> +       },
+> +       .probe =3D mt6316_regulator_probe,
+> +};
+> +
+> +module_platform_driver(mt6316_regulator_driver);
+> +
+> +MODULE_AUTHOR("Lu Tang <lu.tang@mediatek.com>");
+> +MODULE_DESCRIPTION("Regulator Driver for MediaTek MT6316 PMIC");
+> +MODULE_LICENSE("GPL");
+
+[...]
+
+Skipping the other two PMICs for now.
+
+> diff --git a/include/linux/regulator/mt6316-regulator.h b/include/linux/r=
+egulator/mt6316-regulator.h
+> new file mode 100644
+> index 000000000000..dd11b3d856fd
+> --- /dev/null
+> +++ b/include/linux/regulator/mt6316-regulator.h
+> @@ -0,0 +1,48 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
 > +/*
-> + * Get the current indirect branch tracking configuration for the curren=
-t
-> + * thread, this will be the value configured via PR_SET_INDIR_BR_LP_STAT=
-US.
+> + * Copyright (c) 2024 MediaTek Inc.
 > + */
-> +#define PR_GET_INDIR_BR_LP_STATUS      77
 > +
-> +/*
-> + * Set the indirect branch tracking configuration. PR_INDIR_BR_LP_ENABLE=
- will
-> + * enable cpu feature for user thread, to track all indirect branches an=
-d ensure
-> + * they land on arch defined landing pad instruction.
-> + * x86 - If enabled, an indirect branch must land on `ENDBRANCH` instruc=
-tion.
-> + * arch64 - If enabled, an indirect branch must land on `BTI` instructio=
-n.
-> + * riscv - If enabled, an indirect branch must land on `lpad` instructio=
-n.
-> + * PR_INDIR_BR_LP_DISABLE will disable feature for user thread and indir=
-ect
-> + * branches will no more be tracked by cpu to land on arch defined landi=
-ng pad
-> + * instruction.
-> + */
-> +#define PR_SET_INDIR_BR_LP_STATUS      78
-> +# define PR_INDIR_BR_LP_ENABLE            (1UL << 0)
+> +#ifndef __LINUX_REGULATOR_MT6316_H
+> +#define __LINUX_REGULATOR_MT6316_H
 > +
-> +/*
-> + * Prevent further changes to the specified indirect branch tracking
-> + * configuration.  All bits may be locked via this call, including
-> + * undefined bits.
-> + */
-> +#define PR_LOCK_INDIR_BR_LP_STATUS      79
+> +#define MT6316_SLAVE_ID_3      3
+> +#define MT6316_SLAVE_ID_6      6
+> +#define MT6316_SLAVE_ID_7      7
+> +#define MT6316_SLAVE_ID_8      8
+> +#define MT6316_SLAVE_ID_15     15
 > +
->  #endif /* _LINUX_PRCTL_H */
-> diff --git a/kernel/sys.c b/kernel/sys.c
-> index cb366ff8703a..f347f3518d0b 100644
-> --- a/kernel/sys.c
-> +++ b/kernel/sys.c
-> @@ -2336,6 +2336,21 @@ int __weak arch_lock_shadow_stack_status(struct ta=
-sk_struct *t, unsigned long st
->         return -EINVAL;
->  }
->
-> +int __weak arch_get_indir_br_lp_status(struct task_struct *t, unsigned l=
-ong __user *status)
-> +{
-> +       return -EINVAL;
-> +}
+> +#define MT6316_ID_3_MAX                3
+> +#define MT6316_ID_6_MAX                3
+> +#define MT6316_ID_7_MAX                3
+> +#define MT6316_ID_8_MAX                3
+> +#define MT6316_ID_15_MAX       2
 > +
-> +int __weak arch_set_indir_br_lp_status(struct task_struct *t, unsigned l=
-ong status)
-> +{
-> +       return -EINVAL;
-> +}
+> +enum {
+> +       MT6316_ID_VBUCK1 =3D 0,
+> +       MT6316_ID_VBUCK2,
+> +       MT6316_ID_VBUCK3,
+> +       MT6316_ID_VBUCK4,
+> +       MT6316_ID_MAX,
+> +};
 > +
-> +int __weak arch_lock_indir_br_lp_status(struct task_struct *t, unsigned =
-long status)
-> +{
-> +       return -EINVAL;
-> +}
+> +/* Register */
+> +#define MT6316_TOP_CFG_ELR4                    0x143
+> +#define MT6316_BUCK_TOP_CON0                   0x1440
+> +#define MT6316_BUCK_TOP_CON1                   0x1443
+> +#define MT6316_BUCK_TOP_ELR0                   0x1448
+> +#define MT6316_BUCK_TOP_ELR2                   0x144A
+> +#define MT6316_BUCK_TOP_ELR4                   0x144C
+> +#define MT6316_BUCK_TOP_ELR6                   0x144E
+> +#define MT6316_VBUCK1_DBG4                     0x14A4
+> +#define MT6316_VBUCK1_DBG8                     0x14A8
+> +#define MT6316_VBUCK2_DBG4                     0x1524
+> +#define MT6316_VBUCK2_DBG8                     0x1528
+> +#define MT6316_VBUCK3_DBG4                     0x15A4
+> +#define MT6316_VBUCK3_DBG8                     0x15A8
+> +#define MT6316_VBUCK4_DBG4                     0x1624
+> +#define MT6316_VBUCK4_DBG8                     0x1628
+> +#define MT6316_BUCK_TOP_4PHASE_TOP_ANA_CON0     0x1688
+> +#define MT6316_BUCK_TOP_4PHASE_TOP_ELR_0       0x1690
 > +
->  #define PR_IO_FLUSHER (PF_MEMALLOC_NOIO | PF_LOCAL_THROTTLE)
->
->  #ifdef CONFIG_ANON_VMA_NAME
-> @@ -2811,6 +2826,21 @@ SYSCALL_DEFINE5(prctl, int, option, unsigned long,=
- arg2, unsigned long, arg3,
->                         return -EINVAL;
->                 error =3D arch_lock_shadow_stack_status(me, arg2);
->                 break;
-> +       case PR_GET_INDIR_BR_LP_STATUS:
-> +               if (arg3 || arg4 || arg5)
-> +                       return -EINVAL;
-> +               error =3D arch_get_indir_br_lp_status(me, (unsigned long =
-__user *)arg2);
-> +               break;
-> +       case PR_SET_INDIR_BR_LP_STATUS:
-> +               if (arg3 || arg4 || arg5)
-> +                       return -EINVAL;
-> +               error =3D arch_set_indir_br_lp_status(me, arg2);
-> +               break;
-> +       case PR_LOCK_INDIR_BR_LP_STATUS:
-> +               if (arg3 || arg4 || arg5)
-> +                       return -EINVAL;
-> +               error =3D arch_lock_indir_br_lp_status(me, arg2);
-> +               break;
->         default:
->                 trace_task_prctl_unknown(option, arg2, arg3, arg4, arg5);
->                 error =3D -EINVAL;
->
-> --
-> 2.34.1
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> +#endif /* __LINUX_REGULATOR_MT6316_H */
+
+AFAICT, no part of this file is used by other parts of the kernel. It
+can be moved under drivers/regulator/, or even recombined with the
+.c file.
+
+
+Thanks
+ChenYu
 
