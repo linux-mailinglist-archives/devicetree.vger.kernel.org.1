@@ -1,71 +1,108 @@
-Return-Path: <devicetree+bounces-157683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157684-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63A3EA61D96
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 22:07:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5837EA61DDD
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 22:19:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5913420BE3
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 21:07:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8AB753B84D6
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 21:19:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 823F2204081;
-	Fri, 14 Mar 2025 21:06:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 825071A4B69;
+	Fri, 14 Mar 2025 21:19:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mllpNJ2v"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YpfFTQmw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F89B190676;
-	Fri, 14 Mar 2025 21:06:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEC53BA38;
+	Fri, 14 Mar 2025 21:19:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741986413; cv=none; b=satuQsh3Xw9tOP9nVg/WicQTWCq/cBuuaQ7imJJOviNjQ0UU/kA3y6YEfvVMToehi27VZZpwGNkh9QHZDUpAbMB2lSLU7cy0Fg7TAadESyjsl+FYAY/tdwEr0LQcdxDT7oH/frRimpQKYob31qMgXkBMFtAXKTInF2WSB3ZyLOA=
+	t=1741987176; cv=none; b=j1SwkYhVUPs6ROM5/Sj1XWxG7WraAbfTvim73i+IZtl6FDNBRxij8UeAgBCu94XzSYQtYQZyS46XomOjnbAoBm/lAW4iO3n9sEIZgEmk85axiZm8vVBjeLpnFU6ishEBJHASBgNc/NEr69H+UO0+foC3PrdXT3SlfD6EhUjeBSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741986413; c=relaxed/simple;
-	bh=updmW668AXuEczJRzXxFtdkEvCU4OrjNSAp3qpvjLw4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QAoEprK5pRTt3IXscKDk+jDJQWCw6NEK6G6Mpwn0G6VOVCE4BLCho7HmN36NviYT13u+iSKJ8znilNOqP1c7EUmQM0WI5BDeVZtVljy/rLyZdZrY5HP//0DgQ4SeIW0Y2I4QQypaN4lAnjHjFz+ZzeUdZefR2iYjfHdY7+P6ZAw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mllpNJ2v; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01900C4CEE3;
-	Fri, 14 Mar 2025 21:06:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741986413;
-	bh=updmW668AXuEczJRzXxFtdkEvCU4OrjNSAp3qpvjLw4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mllpNJ2vShm53XePYhANE9KP2D4263ZkCTgGDLtAm7AFn21OBMlK1F/dNkxUhUoAM
-	 mf80c3yVKPa9GP29CvxlKBUKkSHRggb1ciT/HolwQ/a4TktfQQ2aBweYsUCF8mU7ad
-	 jIgbER5NtY8oSUMWQmNbDQlhKZfhjyeYxtz0VbLDHegKY7dlrWDLuAsz9CQ/kmqxPK
-	 lyDdyxynK7HtA/JZPnlUrCAtFmEZ/iojSonoH+9hM+IquUbweStcvNr5oR/POr7te1
-	 0oj5dQidA4o4fwcw0lD6fQ/a9CtRtcH47crB4M+bXH6C6VGlUw9SpRo22zeT78Hwad
-	 Vpbw40GJ/8tVA==
-Date: Fri, 14 Mar 2025 16:06:52 -0500
-From: Rob Herring <robh@kernel.org>
-To: Maud Spierings <maudspierings@gocontroll.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	s=arc-20240116; t=1741987176; c=relaxed/simple;
+	bh=Pp76rHvfoZISNmTS+tHSg0hiQJz4Ly4DKOyB4PGtOks=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bTeT26HMn4ZohWzwkwLXBVNSOlbo5bQ9zyFDK1rKcE5x7YJM5ufRx24iVU+vRil0Ay/BbK2xEu+BXD2xeBB2IoY439vaUrRnzwzBSphkGiYQrK5sMGkr1IYA6WFYJU05N7YqZ+IpVeRFm54JTz5bS2Uvuq82Sm81Jy7JwTVqWWU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YpfFTQmw; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-43cf034d4abso1614505e9.3;
+        Fri, 14 Mar 2025 14:19:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741987173; x=1742591973; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=HZ8er8q+qEVjGb0Lf/HTxRYIMaF4zb+ALRXEoQrhDn4=;
+        b=YpfFTQmwCkanCj+saq2hSPMEakovvHluxebOYmUKAqc+Ecn+STdbj4ifksGrA0fBTh
+         6S0+X2N5fzbQHFNt20agAwQ3jTY5Ye/M7mDT1q5gZ/bybOW8SccU54mhfXtl5BFgigne
+         CfuD+/AWfTrsf4h6cAia3DlzuzzsAPwPbMOg+WgWq+cslMkO5bZPdeCMtVlWX7rfNAOV
+         QvZg+QbDbDHAfC0AvuJOrHMPj8NH7UR6A3dQWNwowSaTBmMIOGEdYz/26A+cN0yIrbuV
+         ir97nI+lL11LUrK2rKfr1lGcC4jiMGGN/tTjxMogYVO7YjtIyKqXTx5Q2494aD2LDfOb
+         8C1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741987173; x=1742591973;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HZ8er8q+qEVjGb0Lf/HTxRYIMaF4zb+ALRXEoQrhDn4=;
+        b=DT08u8ESI+dPgD73X61iBWScX3p3igQks9iOtgjIA2rJ/zNizi70v8EE903+oNMLQ2
+         /TpZW3g6oJUzwPLexrkO6SE7V/YnwNHJvYq5PyykdAcwuWqb2VyQqpx+mzVQRBLfBI7S
+         AAfcL++AfqrXDPq3dULbdjzsYU+92zcrZROLmMIlW7b888t7unEFxIJx2oFU4MiiUcoH
+         NpkUtXYWABOVZJr6qrREx5WsbZejo50yzqc9ngduyMEZti/MHc72rWWHkY1u6fpouzty
+         TtsxwtXZlC899wAwjvECK84rEFUcTeC8Kzd0/15OSOzvARYdYwN0tHeFF4rg/OLdo1+N
+         syLQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV1lHQOukpvSWxP6WjXaDKAM5viEumJghTLehimFykTb13dxqUaGRZxQLPnU5pUhPViKUpnmPOV@vger.kernel.org, AJvYcCWmzobNIy84FTgos0kDWR7E7rWDaW6PQRw9XFufIGf2wSkpWoiaDbsFDLGHsJQsL3/mcXBK9qhmkg6FwsAn@vger.kernel.org, AJvYcCX2sMfHDMmC9ecvh1Jq8vJfVKeGlgBM+xL1qwYitOkYKRaLMdoYTr5zDer7d0Lt2VYpFQ9rOwWOtc/P@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/X6BbF67v7L3/5mhWxP/vxT/y2W9wC3dd+dcnEcOx+yS9UpQH
+	ZUrXJIClFWKQeUnRn8WY97Z9VqalmrNRrwW5D8IlnIpvUIXVf9hU
+X-Gm-Gg: ASbGncuJSvrQxCthJ9ekgekxpHY4CyQM6/9+6PYWPlrzv9/f2o/ZvKaSmdgXZsnWFaj
+	SncajHg4eY3op9cSmXjtjtq0mmkXXCHVE9wZyCK8SBDnoR1xjYGpF8v9ubZPWCTPeErgJxtRihc
+	Ab/nSIf4zYqlywf2nqt8K/rnoPKqkOD8tLH+JOpg7hwH/2c73MQBNp7c5uO11ZVisXLAaL+WHmz
+	9QyIiNFTzcVPw2aWxJS1q80B9FVyZZUjBuAllYHL+gg2E4rxuyUj0ZaG0LBRSqZKEAvypYFIOpD
+	jSZpU2AH4i/qWemrfi0HCr4xGX4N1G7wBKpp2Rc9vQZNCWLBDpV+hktKmP1l2gXGxmemKvYR4WK
+	FBfuii1Mi8Ts=
+X-Google-Smtp-Source: AGHT+IHGEcaq+mQYLJLVzszVdST1b7J2O2oqDQ6zwCkCBz8ussqbnvLf9ZC6tI+1i/QCVFDqFROb8g==
+X-Received: by 2002:a05:600c:4f0c:b0:43c:ed61:2c26 with SMTP id 5b1f17b1804b1-43d1ec8cac8mr53968935e9.17.1741987172437;
+        Fri, 14 Mar 2025 14:19:32 -0700 (PDT)
+Received: from Ansuel-XPS. (93-34-90-129.ip49.fastwebnet.it. [93.34.90.129])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d1fd6b2acsm29215905e9.0.2025.03.14.14.19.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Mar 2025 14:19:32 -0700 (PDT)
+Message-ID: <67d49d64.050a0220.35694d.b7ab@mx.google.com>
+X-Google-Original-Message-ID: <Z9SdYeD-Gb1l77AG@Ansuel-XPS.>
+Date: Fri, 14 Mar 2025 22:19:29 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Andrew Lunn <andrew@lunn.ch>, Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Sam Ravnborg <sam@ravnborg.org>, Liu Ying <victor.liu@nxp.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Mark Brown <broonie@kernel.org>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org
-Subject: Re: [PATCH v2 03/12] dt-bindings: connector: Add the GOcontroll
- Moduline module slot bindings
-Message-ID: <20250314210652.GA2300828-robh@kernel.org>
-References: <20250226-initial_display-v2-0-23fafa130817@gocontroll.com>
- <20250226-initial_display-v2-3-23fafa130817@gocontroll.com>
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	upstream@airoha.com
+Subject: Re: [net-next PATCH v12 07/13] net: mdio: regmap: add support for
+ multiple valid addr
+References: <20250309172717.9067-1-ansuelsmth@gmail.com>
+ <20250309172717.9067-8-ansuelsmth@gmail.com>
+ <Z83RsW1_bzoEWheo@shell.armlinux.org.uk>
+ <67cdd3c9.df0a0220.1c827e.b244@mx.google.com>
+ <0c6cb801-5592-4449-b776-a337161b3326@lunn.ch>
+ <Z9SZRDykbTwvGW6S@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,158 +111,66 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250226-initial_display-v2-3-23fafa130817@gocontroll.com>
+In-Reply-To: <Z9SZRDykbTwvGW6S@shell.armlinux.org.uk>
 
-On Wed, Feb 26, 2025 at 03:19:14PM +0100, Maud Spierings wrote:
-> Add the bindings that describe a GOcontroll Moduline module slot. This
-> slot provides all the interfaces to interface with a Moduline compatible
-> IO module. The actual module is not reasonable to describe as it can be
-> swapped at will, with this connector the driver will be able to probe
-> for a module on boot.
+On Fri, Mar 14, 2025 at 09:01:56PM +0000, Russell King (Oracle) wrote:
+> On Fri, Mar 14, 2025 at 08:41:33PM +0100, Andrew Lunn wrote:
+> > On Sun, Mar 09, 2025 at 06:45:43PM +0100, Christian Marangi wrote:
+> > > On Sun, Mar 09, 2025 at 05:36:49PM +0000, Russell King (Oracle) wrote:
+> > > > On Sun, Mar 09, 2025 at 06:26:52PM +0100, Christian Marangi wrote:
+> > > > > +/* If a non empty valid_addr_mask is passed, PHY address and
+> > > > > + * read/write register are encoded in the regmap register
+> > > > > + * by placing the register in the first 16 bits and the PHY address
+> > > > > + * right after.
+> > > > > + */
+> > > > > +#define MDIO_REGMAP_PHY_ADDR		GENMASK(20, 16)
+> > > > > +#define MDIO_REGMAP_PHY_REG		GENMASK(15, 0)
+> > > > 
+> > > > Clause 45 PHYs have 5 bits of PHY address, then 5 bits of mmd address,
+> > > > and then 16 bits of register address - significant in that order. Can
+> > > > we adjust the mask for the PHY address later to add the MMD between
+> > > > the PHY address and register number?
+> > > >
+> > > 
+> > > Honestly to future proof this, I think a good idea might be to add
+> > > helper to encode these info and use Clause 45 format even for C22.
+> > > Maybe we can use an extra bit to signal if the format is C22 or C45.
+> > > 
+> > > BIT(26) 0: C22 1:C45
+> > > GENMASK(25, 21) PHY ADDR
+> > > GENMASK(20, 16) MMD ADDR
+> > > GENMASK(15, 0) REG
+> > 
+> > If you look back at older kernels, there was some helpers to do
+> > something like this, but the C22/C45 was in bit 31. When i cleaned up
+> > MDIO drivers to have separate C22 and C45 read/write functions, they
+> > become redundant and they were removed. You might want to bring them
+> > back again.
 > 
-> The connector consists of 2 parts, one part for interfacing with the SoC
-> and main board, the other part has 13 IO channels for the module to
-> interact with the outside world. The functions of these IO channels are
-> determined by the type of module in the slot. The IO on the SoC side is
-> as follows:
-> 
->  - a 3v3 supply, this tends to be the logic level of the module and its
->    microcontroller
->  - a 5v0 supply, this can be used to power low power peripherals on the
->    module
->  - a 6v-8v supply, this can be used for high power peripherals on the
->    module
->  - a 6v-30v supply, this tends to be a dirty supply that comes from the
->    controller supply after some circuit protection, or is the same as
->    the 6v-8v supply.
->  - an SPI bus which carries the communication between the SoC and the
->    microcontroller on the module.
->  - an I2C bus shared between the SoC and all module slots which can
->    carry direct module-to-module communication.
->  - a reset line
->  - an interrupt line that indicates a clear to transmit signal
->  - a sync line shared between the SoC and all module slots which could
->    be used to synchronize modules for time sensitive IO spread across
->    modules.
->  - a SMBus alert line that is shared between the modules but is not
->    connected to the SoC so that is ignored.
-> 
-> A slot-number property is used to identify the physical location of a
-> module slot. Without it, it would be impossible to identify which module
-> to control if there are multiple of one type, to address the desired IO.
+> I'd prefer we didn't bring that abomination back. The detail about how
+> things are stored in regmap should be internal within regmap, and I
+> think it would be better to have an API presented that takes sensible
+> parameters, rather than something that's been encoded.
+>
 
-Is that for a person to identify slots or s/w? If just a person, we 
-generally use 'label' as in a sticker on the connector. If s/w, we 
-generally try to avoid made up indexing in DT though there are some 
-exceptions.
+Well problem is that regmap_write and regmap_read will take max 2 value
+at the very end (reg and value) so it's really a matter of making the
+encoding part internal but encoding it can't be skipped.
 
-> 
-> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
-> ---
->  .../connector/gocontroll,moduline-module-slot.yaml | 88 ++++++++++++++++++++++
->  1 file changed, 88 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/connector/gocontroll,moduline-module-slot.yaml b/Documentation/devicetree/bindings/connector/gocontroll,moduline-module-slot.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..a16ae2762d160180d5b163e20f5294235e65053b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/connector/gocontroll,moduline-module-slot.yaml
-> @@ -0,0 +1,88 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/connector/gocontroll,moduline-module-slot.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: GOcontroll Moduline Module slot
-> +
-> +maintainers:
-> +  - Maud Spierings <maudspierings@gocontroll.com>
-> +
-> +description:
-> +  The GOcontroll Moduline module slot represents a connector that fullfills the
-> +  Moduline slot specification, and can thus house any IO module that is also
-> +  built to this spec.
-> +
-> +properties:
-> +  compatible:
-> +    const: gocontroll,moduline-module-slot
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    description: indicates readiness, high means busy.
-> +    maxItems: 1
-> +  reset-gpios:
-> +    description: resets the module, active low.
-> +    maxItems: 1
-> +  sync-gpios:
-> +    description: sync line between all module slots.
-> +    maxItems: 1
-> +
-> +  vdd-supply:
-> +    description: low power 3v3 supply generally for the microcontroller.
-> +  vddp-supply:
-> +    description: medium power 5v0 supply for on module low power peripherals.
-> +  vddhpp-supply:
-> +    description: high power 6v-8v supply for on module high power peripherals.
-> +  power-supply:
-> +    description: high power 6v-30v supply for high power module circuits.
-> +
-> +  i2c-bus:
-> +    description: i2c bus shared between module slots and the SoC
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +
-> +  slot-number:
-> +    description:
-> +      The number of the module slot representing the location of on the pcb.
-> +      This enables access to the modules based on slot location.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  spi-max-frequency: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reset-gpios
-> +  - interrupts
-> +  - sync-gpios
-> +  - i2c-bus
-> +  - slot-number
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        connector@0 {
+You are suggesting to introduce additional API like
 
-I find this being a SPI device a bit strange. Is there a defined SPI 
-device that every slot is going to have? Or the connector has SPI 
-interface and *anything* could be attached on it?
+mdio_regmap_write(regmap, phy, addr, val);
+mdio_mmd_regmap_write(regmap, phy, mmd, addr, val);
 
-> +            reg = <0>;
-> +            compatible = "gocontroll,moduline-module-slot";
-> +            reset-gpios = <&gpio5 10 GPIO_ACTIVE_LOW>;
-> +            sync-gpios = <&gpio4 16 GPIO_ACTIVE_HIGH>;
-> +            interrupt-parent = <&gpio4>;
-> +            interrupts = <5 IRQ_TYPE_EDGE_FALLING>;
-> +            vdd-supply = <&reg_3v3_per>;
-> +            vddp-supply = <&reg_5v0>;
-> +            vddhpp-supply = <&reg_6v4>;
-> +            i2c-bus = <&i2c2>;
-> +            slot-number = <1>;
-> +        };
-> +    };
-> 
-> -- 
-> 2.48.1
-> 
+And the encoding is done internally?
+
+My concern is the decoding part from the .write/read_bits regmap OPs.
+I guess for that also some helper should be exposed (to keep the
+decoding/encoding internal to the driver and not expose the
+_abomination_)
+
+What do you think?
+
+-- 
+	Ansuel
 
