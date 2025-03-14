@@ -1,200 +1,152 @@
-Return-Path: <devicetree+bounces-157419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9008A609FC
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 08:22:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E2A8A60A74
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 08:55:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A14A165B51
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 07:22:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C70B7189760B
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 07:55:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5F8D1624CF;
-	Fri, 14 Mar 2025 07:22:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B7301624D5;
+	Fri, 14 Mar 2025 07:55:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FGMJFNom"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="hy20dZ12"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8D9214F9FB
-	for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 07:22:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 668B98632B;
+	Fri, 14 Mar 2025 07:55:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741936945; cv=none; b=SYSAaZgs0yCavfDzXH52vmDdWjHKue2uycz4GU1PJOXYy3LHlBof4M2tXmoWsfukRAEMG55R0ahu6bKwkn38nnpihVf+eGP9xA+YpnGtR7N3aUCCwpR0T97h9ANyzjsokiNDp6Zf7WwbRO+eRCgGcUODCPOtAeGXJBvdliglxVA=
+	t=1741938914; cv=none; b=rwMJ5CMjPqvLOJ4ZAtYdBBgEtJhFK3cexXhJT8Cl6aQVUvoI83vnpoPf1K6zH2l/9DddTk1Bv3GQj1Ha4Yo2oycMxRm8CcdQ2NUdUsQFObS7OtmegbK37rW/x9LZrUElMXR4yERuGkkTj/aS8qkViGBHtGzc1Rl7ojjki+oqOuM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741936945; c=relaxed/simple;
-	bh=b1J5tmKFP2elSXFUa6Q8dnEcz99VVBKKN0SRPPG50W8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uG0CQNk0TCelgycTRRagYPK07uDmkwmyhXnXi51HTgA/t6Lu2ez9/IPYveSPP1ER98L4yQ/nbcaVZ9M5/PhH6L5QC3/rG2ghVvgEUeoY73HyL9pScOmL3mmWi7Ip29Ax+iDg5vMv/vw89cQdJnM4syZyn79rI4g0I6D+aX0WVc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FGMJFNom; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-38c62ef85daso146827f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 00:22:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1741936941; x=1742541741; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=7HUWZLB6XvkRSYV5keU5hc5SgzMl7bKgaxvzLFxeeb0=;
-        b=FGMJFNomgotjyLwdvv4OyYeUsdtw2datKSSDtc/zhrUvSwCMd1YwBQxeUNWXFczRb8
-         nT8Rj4AcbOLZ/zFOquwsnFnnmk4r7qhwhZcEINcaOnuGWwsvXFYaSC2VRvfBESSqOVj/
-         iXqhxDT5VWktASKqmdIWORVLR48Tc+KQ89iuqTgfrJdux07NAuarDgGiIjTooza1jmA2
-         a0fSrgZeYHpynSd9IoEnYPDLZsROMb0llGdCqLKiqLTw/GqBodej8dBldSVidh5q8blD
-         bYDS3hUUs21MI/uUQxeuS5gDYRc5KtXy5YDO3OGKTQW7a7Uj8gLNiNDVYffVBCOmq94o
-         avjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1741936941; x=1742541741;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7HUWZLB6XvkRSYV5keU5hc5SgzMl7bKgaxvzLFxeeb0=;
-        b=Wd2QylqY6scMBBtygklKDP5u5YbqdBJh7yD9U73wP+89/QDXcjmXunMEcNAjennsou
-         DtCU9BSzdloV3TaZI+HeB/pgzZBjvnIxbExl/KdtB/ZCeaVfvVVup/0snLSmuMkTFpPN
-         3mbRnwyYCEuiNgDOWQlI6K04a5R/5g97RVHvkfcEKBe5k1wFN0coMnlr4qCVyb3Cs+Sw
-         pGFQKQLaggr21Y2SPsnvvg9UhxIIlGqt2Nqrln2yS/fUdJHlplpEYm4n/cf8FujOx2Ck
-         QbJOXgCsabXNYiKm7thic82zTqf6t6LxyuW3DP2B0dVWD7RzwvcjYlQNHq4GXM8haoeL
-         qx6w==
-X-Forwarded-Encrypted: i=1; AJvYcCXNerZUpy6uF0TR2u+MmA7e/rHjgu3oeMp/gHNHvYoPKFv1WmwEgvNSWBuAOo50iYhmkT8+oYrZ+pXn@vger.kernel.org
-X-Gm-Message-State: AOJu0YwYcN1l6aSMldvYrip38x/QKSJwefyKD9uZU3nTt9un23tKsiUb
-	3ni265bi14G5+9N/lXm0JMevUi23+IjQaSkzrwGGSEiWp7BVaiGBCUx2nl3l5p0=
-X-Gm-Gg: ASbGncv6cgKbVG0yQec4p0CssS8tGpWEP1DG4jJ7CmWlUUhDvZieKvodJPFZKe+wchX
-	yVnDo+Ujyrl4zGUOCVndF+9+thImfOLJlRg+vga/svo1W6MhzGifAry5iPnaMjJD5uP9XdSzr66
-	vKEzFKtJvKFVOn4TY8plsQvZlAOixsoq9JzQidryonStTLSVjT3q5ZqRBoKQicCf7nKZtFdJ+z8
-	CJs9eR3FJCVEYqVlH1PUb5oWqUmlf0ufYjptNzFCnCB09hyE2XwOQ5hudOuQdvb/AzoxiXWoNgu
-	9wZ06qE6ecfyQFGAQwkX+TKDRX569zZJGkNuBlLfn3y95lMCHbf6BhliUIk5yXPvxK9FALxniA=
-	=
-X-Google-Smtp-Source: AGHT+IFqpUaO5BAfoMAWgpp/S+O2lpqO7jCO2UugS/12kRgniuV1f4bQhR/s6iZFyVH1bsT9wmCuew==
-X-Received: by 2002:a05:6000:186f:b0:391:2b54:5fb5 with SMTP id ffacd0b85a97d-3971f40fecemr667494f8f.10.1741936941192;
-        Fri, 14 Mar 2025 00:22:21 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.198.86])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-395c8975febsm4713500f8f.59.2025.03.14.00.22.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Mar 2025 00:22:20 -0700 (PDT)
-Message-ID: <6957575c-9957-48b8-b828-0a6b48d4a743@linaro.org>
-Date: Fri, 14 Mar 2025 08:22:17 +0100
+	s=arc-20240116; t=1741938914; c=relaxed/simple;
+	bh=GQ9oEWF3jKsUH3Bk0sYyk/YC7PEh//u90VNBcdbv9xQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=tQlfp6ENkp9l5JxxHpXmcmK/2+CA9ttGHXJdGa00udhnepwaUp8u73vN6yZr2rgM4JlMtLLnUminW1EbhE2BDUdA7tfiJX4o/yM4gU5Z6dbv8kaxWf7kjHEazlWGTPPqdKV3uEYC2JONH7vT5Keux8guqD/MJplc6XnQrH0iyZg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=hy20dZ12; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: a3654fac00a911f08eb9c36241bbb6fb-20250314
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=QB5LQt7bpy+JzNLqAPOMyuAUrCHcw7EYGy1OQwsiSpg=;
+	b=hy20dZ12n6HxyTDC8HNU+Izo+m6Fm3uMa6gjFBmAdBPOgjyXiWR+v/mGLvKcYRrjGMuRKhlzzufy+npPEK/z6ZZ3lGfzjiBPYE6MLBZZOe7rBk6g9yNZ/sw2F8pnHmuTbLMPiHYxpnrmy0qZFQebLukqZcn0Uut0U1f/tQarTiY=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.2.1,REQID:6b762402-57f0-4d3d-8270-952e89173559,IP:0,UR
+	L:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:-5
+X-CID-META: VersionHash:0ef645f,CLOUDID:a8be55c6-16da-468a-87f7-8ca8d6b3b9f7,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:ni
+	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: a3654fac00a911f08eb9c36241bbb6fb-20250314
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
+	(envelope-from <lu.tang@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1887658453; Fri, 14 Mar 2025 15:55:03 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.28; Fri, 14 Mar 2025 15:55:02 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.28 via Frontend Transport; Fri, 14 Mar 2025 15:55:01 +0800
+From: Lu.Tang <Lu.Tang@mediatek.com>
+To: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Dmitry Torokhov
+	<dmitry.torokhov@gmail.com>, Lee Jones <lee@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Sean Wang <sean.wang@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>, Liam Girdwood
+	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Stephen Boyd
+	<sboyd@kernel.org>, Chen Zhong <chen.zhong@mediatek.com>, Sen Chu
+	<shen.chu@mediatek.com>
+CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-input@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<linux-gpio@vger.kernel.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Lu.Tang
+	<Lu.Tang@mediatek.com>
+Subject: [PATCH 0/5] Add PMIC and SPMI driver for mt8196
+Date: Fri, 14 Mar 2025 15:32:26 +0800
+Message-ID: <20250314073307.25092-1-Lu.Tang@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 03/11] dt-bindings: power: qcom,kpss-acc-v2: Add MSM8916
- compatible
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Robert Foss <rfoss@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Wesley Cheng <quic_wcheng@quicinc.com>,
- Christian Marangi <ansuelsmth@gmail.com>,
- Rohit Agarwal <quic_rohiagar@quicinc.com>,
- Kyle Deng <quic_chunkaid@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- linux-usb@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20250306-topic-dt_bindings_fixups-v1-0-0c84aceb0ef9@oss.qualcomm.com>
- <20250306-topic-dt_bindings_fixups-v1-3-0c84aceb0ef9@oss.qualcomm.com>
- <a7d76aff-0dc2-4b0e-9ee8-f433d8e745f6@linaro.org>
- <wccjda6emgvsgn3t5qj7kfsih2stcelnvwu45qok4bbln5kk74@drqp7wrrges4>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <wccjda6emgvsgn3t5qj7kfsih2stcelnvwu45qok4bbln5kk74@drqp7wrrges4>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On 13/03/2025 23:53, Bjorn Andersson wrote:
->>
-> 
-> Where are you carrying these? Are there any other patches on your list
-> that have fallen through the cracks?
+This series is based on linux-next.
 
+Changes in v0:
+- Modify SPMI driver for mt8196
+- Add SPMI PMIC mfd driver
+- Add PMIC regulator driver for mt8196
 
-Since 4-5 years I have a branch on top of next for pending patches for
-Samsung (initially) and Qualcomm (since ~3 years) bindings, where I
-collect all my and other people's work related to 0-dbts-check
-wanrnings. The point is to avoid duplicated work. Around 2022-2023 the
-branch grew to and kept size of around 100-120 patches. I was rebasing
-it daily.
+*** BLURB HERE ***
 
-I don't maintain that branch anymore, so for dtbs-check it has probably
-just 10 patches in total (remaining ~30-40 patches now is some other my
-work). I also rebase it once per month or two months.
+Lu.Tang (5):
+  pmic: mediatek: Add pmic auxadc driver
+  pmic: mediatek: Add pmic regulator driver
+  pmic: mediatek: Add spmi pmic mfd driver
+  spmi: mediatek: modify spmi dirver for mt8196
+  dt-bindings: pmic: mediatek: Add pmic documents
 
-That Rayyan's patch is there since ~July/August last year, just like few
-things for IPQ, qcom,pm8941-pon, DWC3.
-https://github.com/krzk/linux/commits/pending/dt-bindings-qcom-new-and-fixes-for-warnings-linux-next/
+ .../iio/adc/mediatek,spmi-pmic-auxadc.yaml    |   31 +
+ .../bindings/input/mediatek,pmic-keys.yaml    |    1 +
+ .../bindings/mfd/mediatek,mt6685.yaml         |   50 +
+ .../bindings/mfd/mediatek,spmi-pmic.yaml      |  173 +++
+ .../pinctrl/mediatek,mt65xx-pinctrl.yaml      |    1 +
+ drivers/iio/adc/Kconfig                       |   10 +
+ drivers/iio/adc/Makefile                      |    1 +
+ drivers/iio/adc/mtk-spmi-pmic-adc.c           |  576 +++++++++
+ drivers/mfd/Kconfig                           |   26 +
+ drivers/mfd/Makefile                          |    2 +
+ drivers/mfd/mt6685-core.c                     |   83 ++
+ drivers/mfd/mtk-spmi-pmic.c                   |  518 ++++++++
+ drivers/regulator/Kconfig                     |   34 +
+ drivers/regulator/Makefile                    |    3 +
+ drivers/regulator/mt6316-regulator.c          |  381 ++++++
+ drivers/regulator/mt6363-regulator.c          | 1106 +++++++++++++++++
+ drivers/regulator/mt6373-regulator.c          |  826 ++++++++++++
+ drivers/spmi/spmi-mtk-pmif.c                  | 1040 +++++++++++++++-
+ include/linux/mfd/mt6363/core.h               |  134 ++
+ include/linux/mfd/mt6363/registers.h          |  168 +++
+ include/linux/mfd/mt6373/core.h               |   94 ++
+ include/linux/mfd/mt6373/registers.h          |   53 +
+ include/linux/regulator/mt6316-regulator.h    |   48 +
+ include/linux/regulator/mt6363-regulator.h    |  424 +++++++
+ include/linux/regulator/mt6373-regulator.h    |  318 +++++
+ 25 files changed, 6037 insertions(+), 64 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/mediatek,spmi-pmic-auxadc.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,mt6685.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,spmi-pmic.yaml
+ create mode 100644 drivers/iio/adc/mtk-spmi-pmic-adc.c
+ create mode 100644 drivers/mfd/mt6685-core.c
+ create mode 100644 drivers/mfd/mtk-spmi-pmic.c
+ create mode 100644 drivers/regulator/mt6316-regulator.c
+ create mode 100644 drivers/regulator/mt6363-regulator.c
+ create mode 100644 drivers/regulator/mt6373-regulator.c
+ create mode 100644 include/linux/mfd/mt6363/core.h
+ create mode 100644 include/linux/mfd/mt6363/registers.h
+ create mode 100644 include/linux/mfd/mt6373/core.h
+ create mode 100644 include/linux/mfd/mt6373/registers.h
+ create mode 100644 include/linux/regulator/mt6316-regulator.h
+ create mode 100644 include/linux/regulator/mt6363-regulator.h
+ create mode 100644 include/linux/regulator/mt6373-regulator.h
 
-https://github.com/krzk/linux/commit/f6761796e02330b92653b35ba4b1c20ff304dded
-https://github.com/krzk/linux/commit/fdd475359f378760085d3680423b291eca4bf808
-https://github.com/krzk/linux/commit/855535ad2c4346b49f48c3fea6adbeea2262ffd8
-https://github.com/krzk/linux/commit/f648bb95180f131241a5c7a7808c9f0865379c75
+-- 
+2.46.0
 
-> 
->> https://lore.kernel.org/all/20240710155226.130086-1-rayyan.ansari@linaro.org/
->>
-> 
-> I'm picking Ryan's patch through the Qualcomm tree...
-Thanks! That was my intention. Whenever subsystem maintainer skips such
-simple driver binding, please don't hesitate to pick it up.
-
-Best regards,
-Krzysztof
 
