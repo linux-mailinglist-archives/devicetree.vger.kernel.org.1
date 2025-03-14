@@ -1,165 +1,215 @@
-Return-Path: <devicetree+bounces-157576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEF9EA61366
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 15:13:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B358CA61373
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 15:16:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D687C17519D
-	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 14:13:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC41E3B0680
+	for <lists+devicetree@lfdr.de>; Fri, 14 Mar 2025 14:16:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F22BF1FFC4B;
-	Fri, 14 Mar 2025 14:13:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E2251FFC63;
+	Fri, 14 Mar 2025 14:16:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bSVc8Z0R"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="QmJPnLlG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR03-VI1-obe.outbound.protection.outlook.com (mail-vi1eur03on2047.outbound.protection.outlook.com [40.107.103.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C68581EB3E;
-	Fri, 14 Mar 2025 14:13:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1741961586; cv=none; b=Y3z4s5863nE8mdqi72D02q8QYskhG6g6rWACV3motPw7vBt3tqoeoaNVmYtmyq0W9YXWGpLhfV0xnWSn3OS9D9mDMdCpemhv9B3RTq5iJZWdQmKWViQtjMMsQDC9tDQpYqMAq+Z8q16DKaaHMy6Wivgb572fM8J/P1OY7Siwp8Q=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1741961586; c=relaxed/simple;
-	bh=tv2/YZah4h5uni5BO770OWJaT6m0SKAE40mTAbHFDK8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h5QCBMB2eYuwrLGOKjsyoOyl407YEhWzzxpyoyOe8168kDz3c+BEKwLhU8gTGwl8TmffMnDv4rCoQmvoymRSLOrrSAe9Pl9yMiq55qMBu38EGI+bILM6rGuy3gUQw1+22PHI/OMoN4tZYrdaqGiyr95L3UWAACpz225DoHLSdbg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bSVc8Z0R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FF65C4CEEB;
-	Fri, 14 Mar 2025 14:13:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1741961585;
-	bh=tv2/YZah4h5uni5BO770OWJaT6m0SKAE40mTAbHFDK8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bSVc8Z0Rd/kqWGnja6etUX9psQ//jkPbBPi5VFuqeb3fzEcVnv9bYDxkZ/CVIPWjA
-	 CFubRNPB3fR/NoOuo2eJFnnaHZEum+j16m2AtWUC9y7z1bLFs7r7lzRbmSajYPFo5E
-	 YBDc5u3AonaRPHHEedANJBfUPh/yh13vxcmjyezAxsrIb0E/mPrtCROdYxdNNi5ecJ
-	 hbDMsq1imjI4l/ovJArcqKVtoRpYub0w6zTsIcOp5QRn+PDLwnUwNSdoVKey3EGgDG
-	 m1XmteKVCOsgRlLFt8/dCTKFyV/pJBTHf9PgcX4aFOo4ag8VFaSZzqoPRdpD4bcPsq
-	 CK0xQY4GHyPuA==
-Date: Fri, 14 Mar 2025 14:13:00 +0000
-From: Lee Jones <lee@kernel.org>
-To: Matthias Fend <matthias.fend@emfend.at>
-Cc: Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	bsp-development.geo@leica-geosystems.com
-Subject: Re: [PATCH 2/2] leds: tps6131x: add support for Texas Instruments
- TPS6131X flash LED driver
-Message-ID: <20250314141300.GR3890718@google.com>
-References: <20250228-leds-tps6131x-v1-0-d1071d90f9ea@emfend.at>
- <20250228-leds-tps6131x-v1-2-d1071d90f9ea@emfend.at>
- <20250310144946.GH8350@google.com>
- <def0351b-c037-47c8-b395-d64cfca7ae25@emfend.at>
- <20250314105257.GD3890718@google.com>
- <8a16c018-8466-4dea-8f1e-e8a65e3ed950@emfend.at>
- <20250314114551.GL3890718@google.com>
- <7f9b920f-1851-4ebe-9054-d32de79d3678@emfend.at>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09ECE1FF5E6;
+	Fri, 14 Mar 2025 14:16:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.103.47
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1741961777; cv=fail; b=Qh8EDYzcJF29hlcNmw3g6haxmUbzg0G4NVWIGJpdG6vQuy6vpQN9jFRMZdmc2s71MVcvj4YABcV02Is4Aow7S9JMFiae3cPMGem/WrBT/Bu33MjHIFTfq7yCRpmBXZSnYnswTZhR4LgQtq0/xaRqVsRDykBE85V94lINAVSn6Sw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1741961777; c=relaxed/simple;
+	bh=uKGwibNuMNxkKWX3QisnhanPmnXEJyh/xIjcM9SyZuo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=LU/Uget2+S6pIwYcFGzByZ5KPBVjUzFW4WihBFuHo033txuWII25c2bn49ea/8Gc/OXrp9IQcf3I+IDTnqs9/6dDuHbTJ3rxnL3dtCFmZ+QrwsOG8ntafycCBtZ6vCmEFPg5+X3siV880nu2SAVJjKg/t1Kd+fiyy9gs57uvu5k=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=QmJPnLlG; arc=fail smtp.client-ip=40.107.103.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=fwIo6rKvK0XPu0D1/EA3KeGdn4M8fBpamD5bdks/SaUNcaPF4YfB0zwy/d+dmBLeD2Md19Ik2/LdmhZQS38ar33Fs9bCBmDScCQqu2I99M7Tai9pbiTQVokLHPZOLx2WFK0q158/PjRvMJ7Pk/n+qtoWS4oQXHA+MzDTSZ088lwGI9mzqtZ/qTQ8k+lyHpVpp8dqDUX5WBfG5r4ec3HW3j9Os39hbdCiweCFc2LumJkUVBtPJV7JAYVxlROqKkpqDJVSNTOlARKkoLj3Mjoo2KXpt2S7ShA0TAEIJHci9cttNkZ14kxbPw0xPEg+GAeDi/EyfZyNQijnVWcJXTyukg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rTZTooA5Q8N1N6ODfScYKQtnbDb+tYtJjLEGwXMylTY=;
+ b=zB2HAzkx73H7olbuPE/x9iDgfQ41gzrIzzuV+IZapZn6B4H/ivplfcDd1/xPA1/itp5/zxQbEXfaFY9pjJwNaItLlRFifEp0xDJU4e38dbbIYP4LkTaLYaaT+g7fZZ86BsVAdk3B931bp6bqTFD1bS/0ZxBxug4igEPW9a10ZsvDheAuaMfagnz68D3FhMeIH/eiRH3KZwXQXBRkf9GauxWJHSbxr7qvvIs0UP8YR2IqF8bmPz2oeZGJABFur7+7iMyqiLSMPl5MDu2wQdjEMQ2OgKmD7SYM/El/LOV5HFZDHIOiTa5NCN5t9vQGucLFcUu3aE7RsFoPZktBqh+Zww==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rTZTooA5Q8N1N6ODfScYKQtnbDb+tYtJjLEGwXMylTY=;
+ b=QmJPnLlG9Vw7q5GGCqQmhvU0sq2HaD8fopWoPaG2HZ/7yHUiXn2ETtLnekHlYn5CeZ4vrAO7B1PNexAv8KUWbr6KzVV5RKi5TZd1Hvk/Vcz7un/T/QcyJw+ImLOV/mkNdVpfBlfPeWgk5BDFT2FTYrYKWzVtfjh8MU4eB2/4BnzgobJig0SzuEDnBw5eS1AUubWHt9zTD55NtTVh/7j+QF6YTNcPPK0MVaYpC0KdHFLpHx07zb+t4xIVg63al3cPTI2bqQdEyGP56FM/Y7VxeqWegffKtveCStDcKa5UyeinaLsks0OargcBxZKWzcOhdmAeO647HYzxd7CLr2hY7A==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DU7PR04MB11091.eurprd04.prod.outlook.com (2603:10a6:10:5b4::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.28; Fri, 14 Mar
+ 2025 14:16:12 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%3]) with mapi id 15.20.8511.026; Fri, 14 Mar 2025
+ 14:16:10 +0000
+Date: Fri, 14 Mar 2025 10:16:03 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Richard Zhu <hongxing.zhu@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+	kernel@pengutronix.de, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] arm64: dts: imx95: Correct the range of PCIe app-reg
+ region
+Message-ID: <Z9Q6I2roECiCkXG9@lizhi-Precision-Tower-5810>
+References: <20250314060104.390065-1-hongxing.zhu@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250314060104.390065-1-hongxing.zhu@nxp.com>
+X-ClientProxiedBy: BYAPR02CA0009.namprd02.prod.outlook.com
+ (2603:10b6:a02:ee::22) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7f9b920f-1851-4ebe-9054-d32de79d3678@emfend.at>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DU7PR04MB11091:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1cf115d6-a67d-4548-7267-08dd6302c53e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|52116014|376014|7416014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?gFyUaVVPXVSIcjiIvfZo5FUnZXycvrGgLte1otbB7+OteT4RPOEE9mm358XJ?=
+ =?us-ascii?Q?9kUMQ0+mUrAHnuMDvnogfESn+jMQ/lHZG4ksSvN+T2Ai47/QQMrulDBT71Ec?=
+ =?us-ascii?Q?oo7QRRkvLWdV2ypfArWwEzm6qWYZ6iuyjZcCh5lWDqZY45iiHSg/8sB7gJsR?=
+ =?us-ascii?Q?p8c7ssitJ+QETIzLChdsqi9+xC9jEJi7xa8k+unFFRHjrx5keLVSwT0deICH?=
+ =?us-ascii?Q?Ulq8CrQF3BoWEke1OGxO1PTdkzA4g3MUwNYtXNujrb8W5f8TwOdDR4HwbRDa?=
+ =?us-ascii?Q?ZsXGEMInziQQbovvfnJTU3q0rYiOd5TDpInT3DmCAdQgdwFH3aYJAbEHMgew?=
+ =?us-ascii?Q?/wZOCq+1J+wxccezbFPWutYZUH/UE43Zrr4sPavBFACHcDiXkIf2mBLfowc5?=
+ =?us-ascii?Q?40btw4LHB+ZaX1aiqO7W0sOUYA0lzk0GOp29HaZRGPLU4lMk264MHR0QsxNc?=
+ =?us-ascii?Q?GPNgin589ht6u1Vn/6XfceuUhu3RYl2DYz4dBIvG3y5HQnTca/TvnfHGaU06?=
+ =?us-ascii?Q?5ticy3OVBMecjGuNP4y1FbStCdHNU/CGgZxoxokwtDwrVlYAMSXgjj5QL7yO?=
+ =?us-ascii?Q?ZbCRuU2p6LxfYFT9sEOc95sZGG1jGu+iu3bUU3iZRqVVTbS45Xuh0ISzJDgz?=
+ =?us-ascii?Q?B5brQCSTa4ll/y0W/sT907d4465AgTCQ5GkT2U0WFTA7zGbKQbP1Yt9ts+Ga?=
+ =?us-ascii?Q?uzOPO4iK0hvznJ2Xo2Alo5WM/zttowCNDBBe8q/aErTisfm8xwiHGzi5xX0A?=
+ =?us-ascii?Q?68C1IXgTD0liav0qrD4uyv8Yezp6PguhjHZC0tl+yyRbZkDdrvQCZtucyjur?=
+ =?us-ascii?Q?ZpRNcZMKtr9JKFEdfMBYwzT8YbxmAgWOh8YUaV1aK1Jty4zVEFm1OwqGozqj?=
+ =?us-ascii?Q?Z4dzVcdvXZuJh90uSUsOUrfi97xAcMZhM0GKYzQEBGCSEzTlmsO1YBELYpo+?=
+ =?us-ascii?Q?xUH2gkXopxdMTn5X6pWeJUAJFcXtzJ/42yILloXNoQOpe+Yu5qoz/Unc4ZxE?=
+ =?us-ascii?Q?YxH0F4Se8BD/+DWD8cw4EkA7HYZ8HC/w/qSxw1udIXCjhSrRsfoaS4AGRszn?=
+ =?us-ascii?Q?t7G868OQxi7kHdyp+vh/js70Q941sU21H7TPcElzirIAQCMmkSvOihCEyJcY?=
+ =?us-ascii?Q?Eu4FYQR7O4Z75ymHikC6Nzn5Nii9xISYlkXss6UV/nBQVBAq3cVsRHqGGxmt?=
+ =?us-ascii?Q?zKypie6Tx6bs23ffKlT9sY3EnlsacMj/Waa0x2O+0V82P9iOtMSGES85XCmy?=
+ =?us-ascii?Q?wQA1jvQUq8XcIkBwSNvXifBzbqUZPdapUZ8eJa7+8luWxEh/Ik1YmEtwfqN4?=
+ =?us-ascii?Q?2RyRNr+9lt5hMEyzWtQFMME8Y/Z3Rgi144U+ZpV6BWOlHi3Onkjn9PG9hlbR?=
+ =?us-ascii?Q?T2UcurSAtkcWiai15kuRSBiaJHZZHqGB/qxZY+XxAjqPySNooKXpd4PAykQR?=
+ =?us-ascii?Q?wGq+KmnKbYEOTWnXnrqgnzs3yWYHnqOq?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(52116014)(376014)(7416014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?vnrQQx/S8OUh/brf1mVET4DpY4kXDuMz1/i3qB+3rduG2eiZ+j1ZWSq7vvI8?=
+ =?us-ascii?Q?RpCZezd7l1TyI3bjRMW78+DUSqzurvFuuFcp4lS4hAG5hHNZBhOV6ziSXPe5?=
+ =?us-ascii?Q?yCRPHgzWflUFhCGPkYOW+R9YW3z4UZJk9wkfoKF8zpsZIw6hqBah/yTCXF1t?=
+ =?us-ascii?Q?MpYF0SaSwrrSJBYp/q3JHjyEDHVpfArdMJAfBt/OCpnG/wmgwLuc9BnRTzqU?=
+ =?us-ascii?Q?zsokDoQE0s7kz6p57JpvFSdAXz+j4fn6JL4HHDEf35Lt7vvqPMPbe7CF3+aB?=
+ =?us-ascii?Q?ukPa22eQKM39655QtREIQ3e48c3qYpv9mVt11QqLhQw/3a1DFxIhTOgrwFRV?=
+ =?us-ascii?Q?J42AEErn1HC6D6S1FpA6UrbeBsI76f29uevV/5LFZMxaxyMeUQWW0Ie08jR+?=
+ =?us-ascii?Q?e+rfeV8xHZOg2TOlWXgY4jjS9j8YuBnCW+qZPj5mSEDEwRNfB87oEKENd0JO?=
+ =?us-ascii?Q?TihipT3f5GVVHda8AMOibLFA+WTts8bny+InjGVZ8S+iuWbtzvJkwf6Dn1i9?=
+ =?us-ascii?Q?Sy3H2B9eC3U1W0FoT89uSJi0qzvtYgd3bme2lnjRFLNqG/kws4RBI3dwouaQ?=
+ =?us-ascii?Q?7LIEnMSP8plGXTVCtK2W9POTr1fyGsI62VYYwXH5dtxkPBD77mSVp+2XRf/S?=
+ =?us-ascii?Q?kH5QmZufd7Wp6cuogepQhqjvYP0uc9+1yQuHWW8R3Ns/Yk0zINq5lS66+RFd?=
+ =?us-ascii?Q?9ANs2IU4lr/w5MpIXS2+q6zE2UxtlYQy9HrPyv2nXqytLV6W5z0SN8HoIgi6?=
+ =?us-ascii?Q?M4/9987ojmW6BnQwo7Gi0Dlf3bdqluEznXdTA1KaIwEF60TDUAwjjeXaC9FN?=
+ =?us-ascii?Q?qMeUyA9nwBsPHiBwNjJerunRltOit+Ea1Oun3+zj4hzaOo9jQorxUtseT6+j?=
+ =?us-ascii?Q?CKtdaBZKSHJu+QhH+PXWOWkfIdUjNnIZrXtn3QepRbXwZJQIVNUKaNNZCgRn?=
+ =?us-ascii?Q?IWQ5jzIL5Ejhrh4FHZ/cW2NUvXQAAUWODcu2L9E1mOIcVvwXS7prk4LFVPWF?=
+ =?us-ascii?Q?aY9IYySxcosC/7R91basJS563lTqep6phD4ILjK3aSNp6Pfq66HnxQUbwFDi?=
+ =?us-ascii?Q?sN2llBWuxcSYqfpLXH604h/ifl1pTlyq9mG+UM0NrOwyZWdvKza4E6JbNJab?=
+ =?us-ascii?Q?MvFJWZkYlQcK5QejOxkmAvVV+rbZ+RFKHoA8TuzlofrmG7GDR6y3P3hfTlZf?=
+ =?us-ascii?Q?511Xnl45Yr99MSpWZt0BuVa0rLFGMg+cXQC4tjSHbXfedCgxL3le8p4h70b8?=
+ =?us-ascii?Q?uEmUGK2OPbxEWweufeaPuh2rw+PmWhj7YUEfq3EFbW3kUbfhdE349sjzKRBt?=
+ =?us-ascii?Q?ISdUfVbJc9CWRMtEve06qbMQ3zMUyAUtBsMTQeIMfMX8uRcB8mE+JycBnZc9?=
+ =?us-ascii?Q?JgfVufFzpHho3So7Ei4qiLzezVk/zXTOHgvecF8WC9P02K6LZQ1BIYpNjPk3?=
+ =?us-ascii?Q?qRk77xPPEbNFHzd+RDLO8JR/CUjBpF/Hl+VB3yhioAYmGYZj2Ogz+MMO2zhG?=
+ =?us-ascii?Q?EXXkox8D0n16xpXMT0Jf3URT8YLOL++F07L59FzJXQffvkVBRb5K70UZtpdy?=
+ =?us-ascii?Q?wKdJMmuo9BmGja6UaOS1XLjfItNaxHRwFFseagcL?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1cf115d6-a67d-4548-7267-08dd6302c53e
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2025 14:16:10.8337
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: qFfxWN6Lhr5dRjQBz51aWUVjyPi8Fa7hF5OlPRw/An+mgTiBP2qcUXsSnfBGeki4L2BEU/4j2DgB7NxEsUKcyQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU7PR04MB11091
 
-On Fri, 14 Mar 2025, Matthias Fend wrote:
+On Fri, Mar 14, 2025 at 02:01:04PM +0800, Richard Zhu wrote:
+> Correct the range of PCIe app-reg region from 0x2000 to 0x4000 refer to
+> SerDes_SS memory map of i.MX95 Rerference Manual.
+>
+> Fixes: 3b1d5deb29ff ("arm64: dts: imx95: add pcie[0,1] and pcie-ep[0,1] support")
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
 
-> Hi Lee,
-> 
-> Am 14.03.2025 um 12:45 schrieb Lee Jones:
-> > On Fri, 14 Mar 2025, Matthias Fend wrote:
-> > 
-> > > Hi Lee,
-> > > 
-> > > Am 14.03.2025 um 11:52 schrieb Lee Jones:
-> > > > On Fri, 14 Mar 2025, Matthias Fend wrote:
-> > > > 
-> > > > > Hi Lee,
-> > > > > 
-> > > > > thanks a lot for your feedback!
-> > > > > 
-> > > > > Am 10.03.2025 um 15:49 schrieb Lee Jones:
-> > > > > > On Fri, 28 Feb 2025, Matthias Fend wrote:
-> > > > > > 
-> > > > > > > The TPS61310/TPS61311 is a flash LED driver with I2C interface. Its power
-> > > > > > > stage is capable of supplying a maximum total current of roughly 1500mA.
-> > > > > > > The TPS6131x provides three constant-current sinks, capable of sinking up
-> > > > > > > to 2 × 400mA (LED1 and LED3) and 800mA (LED2) in flash mode. In torch mode
-> > > > > > > each sink (LED1, LED2, LED3) supports currents up to 175mA.
-> > > > > > > 
-> > > > > > > Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
-> > > > > > > ---
-> > > > > > >     MAINTAINERS                        |   7 +
-> > > > > > >     drivers/leds/flash/Kconfig         |  11 +
-> > > > > > >     drivers/leds/flash/Makefile        |   1 +
-> > > > > > >     drivers/leds/flash/leds-tps6131x.c | 798 +++++++++++++++++++++++++++++++++++++
-> > > > > > >     4 files changed, 817 insertions(+)
-> > 
-> > [...]
-> > 
-> > > > > > > +static int tps6131x_flash_external_strobe_set(struct v4l2_flash *v4l2_flash, bool enable)
-> > > > > > > +{
-> > > > > > > +	struct led_classdev_flash *fled_cdev = v4l2_flash->fled_cdev;
-> > > > > > > +	struct tps6131x *tps6131x = fled_cdev_to_tps6131x(fled_cdev);
-> > > > > > > +
-> > > > > > > +	guard(mutex)(&tps6131x->lock);
-> > > > > > > +
-> > > > > > /> +	return tps6131x_set_mode(tps6131x, enable ? TPS6131X_MODE_FLASH : TPS6131X_MODE_SHUTDOWN,
-> > > > > > > +				 false);
-> > > > > > > +}
-> > > > > > > +
-> > > > > > > +static const struct v4l2_flash_ops tps6131x_v4l2_flash_ops = {
-> > > > > > > +	.external_strobe_set = tps6131x_flash_external_strobe_set,
-> > > > > > > +};
-> > > > > > > +
-> > > > > > > +static int tps6131x_v4l2_setup(struct tps6131x *tps6131x)
-> > > > > > > +{
-> > > > > > > +	struct v4l2_flash_config v4l2_cfg = { 0 };
-> > > > > > > +	struct led_flash_setting *intensity = &v4l2_cfg.intensity;
-> > > > > > > +
-> > > > > > > +	intensity->min = tps6131x->step_torch_current_ma;
-> > > > > > > +	intensity->max = tps6131x->max_torch_current_ma;
-> > > > > > > +	intensity->step = tps6131x->step_torch_current_ma;
-> > > > > > > +	intensity->val = intensity->min;
-> > > > > > > +
-> > > > > > > +	strscpy(v4l2_cfg.dev_name, tps6131x->fled_cdev.led_cdev.dev->kobj.name,
-> > > > > > 
-> > > > > > tps6131x->client->dev?
-> > > > > 
-> > > > > Do you mean the name should be taken from the I2C device?
-> > > > > The current name, for example, is 'white:flash-0', while the I2C device name
-> > > > > would be '4-0033'. So I think the current version is appropriate, don't you
-> > > > > think?
-> > > > 
-> > > > No, I'm implying that:
-> > > > 
-> > > >     tps6131x->client->dev == tps6131x->fled_cdev.led_cdev.dev
-> > > > 
-> > > > ... and that the former is shorter / neater.
-> > > 
-> > > Hmm. That's interesting. I thought these were two different devices, which
-> > > seems to be actually the case for me. Hence the different names in the kobj.
-> > > Are the devices really supposed to be identical?
-> > 
-> > Interesting.  What are their names?
-> 
-> tps6131x->fled_cdev.led_cdev.dev: 'white:flash-0'
-> tps6131x->client->dev: '4-0033'
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
-Presumably this is an I2C address?  What a helpful device name!
-
-Okay, seeing as they are both clearly different, I think you are
-correct.  Scrap this review comment.
-
--- 
-Lee Jones [李琼斯]
+> ---
+>  arch/arm64/boot/dts/freescale/imx95.dtsi | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
+> index 6b8470cb3461..0e6a9e639d76 100644
+> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
+> @@ -1542,7 +1542,7 @@ pcie0: pcie@4c300000 {
+>  			reg = <0 0x4c300000 0 0x10000>,
+>  			      <0 0x60100000 0 0xfe00000>,
+>  			      <0 0x4c360000 0 0x10000>,
+> -			      <0 0x4c340000 0 0x2000>;
+> +			      <0 0x4c340000 0 0x4000>;
+>  			reg-names = "dbi", "config", "atu", "app";
+>  			ranges = <0x81000000 0x0 0x00000000 0x0 0x6ff00000 0 0x00100000>,
+>  				 <0x82000000 0x0 0x10000000 0x9 0x10000000 0 0x10000000>;
+> @@ -1582,7 +1582,7 @@ pcie0_ep: pcie-ep@4c300000 {
+>  			reg = <0 0x4c300000 0 0x10000>,
+>  			      <0 0x4c360000 0 0x1000>,
+>  			      <0 0x4c320000 0 0x1000>,
+> -			      <0 0x4c340000 0 0x2000>,
+> +			      <0 0x4c340000 0 0x4000>,
+>  			      <0 0x4c370000 0 0x10000>,
+>  			      <0x9 0 1 0>;
+>  			reg-names = "dbi","atu", "dbi2", "app", "dma", "addr_space";
+> @@ -1609,7 +1609,7 @@ pcie1: pcie@4c380000 {
+>  			reg = <0 0x4c380000 0 0x10000>,
+>  			      <8 0x80100000 0 0xfe00000>,
+>  			      <0 0x4c3e0000 0 0x10000>,
+> -			      <0 0x4c3c0000 0 0x2000>;
+> +			      <0 0x4c3c0000 0 0x4000>;
+>  			reg-names = "dbi", "config", "atu", "app";
+>  			ranges = <0x81000000 0 0x00000000 0x8 0x8ff00000 0 0x00100000>,
+>  				 <0x82000000 0 0x10000000 0xa 0x10000000 0 0x10000000>;
+> @@ -1649,7 +1649,7 @@ pcie1_ep: pcie-ep@4c380000 {
+>  			reg = <0 0x4c380000 0 0x10000>,
+>  			      <0 0x4c3e0000 0 0x1000>,
+>  			      <0 0x4c3a0000 0 0x1000>,
+> -			      <0 0x4c3c0000 0 0x2000>,
+> +			      <0 0x4c3c0000 0 0x4000>,
+>  			      <0 0x4c3f0000 0 0x10000>,
+>  			      <0xa 0 1 0>;
+>  			reg-names = "dbi", "atu", "dbi2", "app", "dma", "addr_space";
+> --
+> 2.37.1
+>
 
