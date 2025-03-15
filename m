@@ -1,208 +1,116 @@
-Return-Path: <devicetree+bounces-157769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF0CAA62A3E
-	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 10:35:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DCFAA62A5C
+	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 10:44:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A80D17D3FB
-	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 09:35:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3564A189C0EF
+	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 09:44:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B99711F8BAC;
-	Sat, 15 Mar 2025 09:35:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4F601F4E34;
+	Sat, 15 Mar 2025 09:44:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b="pG/EKzUe"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=proton.me header.i=@proton.me header.b="RjD2trdW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2040.outbound.protection.outlook.com [40.107.220.40])
+Received: from mail-24417.protonmail.ch (mail-24417.protonmail.ch [109.224.244.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CE391F8734;
-	Sat, 15 Mar 2025 09:35:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.220.40
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742031306; cv=fail; b=WHtxqkQT83l6cEyonCDgLWIVozZuNw7pJgREradPtz12fh1NvjmSv8Bs6cDwd1tc2GJHRYTS3zUzc15FkWN/mrWMXptZImhVMtzVcwZnzCslDK2eU7b1gPzwwricTPPtMkynh3KTgSwltJQ8Z5kZ41vzkukLbxvrFSPNyyCh1I4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742031306; c=relaxed/simple;
-	bh=+4NvF9dh3JlTFzKI5JbZZm7OBNKWpLA9Stefkv1jZlU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EEG14sPVZoJmIIYQR8Y0AX5bNDlsMlUTv163tq4Gz7Zvk7+bX3hVOV2yZvRvrYC6stICbIBRgG4eDB3v9jy8ekX2T4BdIhu34yoYpZ8y5kVzNDW8CfJZDZvhqGX9SJpQRn5Wb2l2E+i2IbHvOlxhEqbDcGHX6aINbn+OyB72dqs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com; spf=pass smtp.mailfrom=gehealthcare.com; dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b=pG/EKzUe; arc=fail smtp.client-ip=40.107.220.40
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gehealthcare.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SaxzFrSlZlvDxM2neSC5/CcNL+Ty2/z148z4XG98ZM1Ad+p1frt24DS0Jp2OZa+LDJ0I42dAftFEP+DmwmBecV+q+fuO815tgJOGZyzxE5wGXzp1IloY+kMhnLjd/77pGx9z6tCifHcA85i0DqEySGU7n7ZvETg0MutG4aLqnU+m4Jjl9+xqtl0Ryp0UQOpL2/H5GS3XWuJb4HXf2UDpSCjXeFDg47u8py0c2Oh7B5uoUK4RUukwj6EPMI8oedmcyHmBwzXJXvvSzZ6xmS7nao24U1vn10vuMNMWap0IxBjUDAL5AZq699i+GwouIxghTxdeG/If6AAjfpaZ1dBE7Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vuB9oAKyLs21Tr8Kt704Fur4JGYFdmKTwkfV3RqRV4A=;
- b=rHlWth725V461YDT+g8xXLFQ8kQn4CH262QJH7WJQGE2Cdls4XIfivwQzcgNhKtyockEsTnPcpsF2XUkMVYgpzRMOC7rjN7/NHtTZeKI4XqRWHYh7E5xgBlwAZRRYK6XnqnXVSfY+Rg9ftfhJlW1deQpQSC9Zw8nuZsUy2Tw4WVYMUWguRp1/I+4pA+/X2Iy8z8BSQnx1tynFq4Te6hCuR/00WeFLtJILw/Gmu5Auu88AMFE4JdRDHD8P5BAwvsoFIM8SckglbrZS2zc0FmLWDdjjr4j17xes9XJ8bL9xtVZOaE3hxqDDXotDQMDlz6SqOU96l3heGOR6wNZhOb7gA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 165.85.157.49) smtp.rcpttodomain=vger.kernel.org
- smtp.mailfrom=gehealthcare.com; dmarc=fail (p=quarantine sp=quarantine
- pct=100) action=quarantine header.from=gehealthcare.com; dkim=none (message
- not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gehealthcare.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vuB9oAKyLs21Tr8Kt704Fur4JGYFdmKTwkfV3RqRV4A=;
- b=pG/EKzUe6wBe39WHSCPoEHUSUFOcNdTrSAVQ7ILHAyxL9F2NVky9hQHG7nCtjKOmQTgHsJBhXR/pdZBZVa2u9LZOetikxneelwfodrZaJYdAvUqDzWL4ka7b5o3hRh+phz8LfWWKr1S9UWU5EHoxymi7AxA1k9xAbiQ2UO0QbdTueocoXfLQd8s6XOSZyfN1R1m06lZmrf+sGGazXVtj2QRoN6Qy34GF9gF9Jj8symRW5fEm34zbLhIW/u9i/TaZv4jsMrk4VZ97BhjPz7Y5L+gg91XRe146vAr7J9+/7khHmE+RwZHml+tV0Iyg+8V6fcDA14N56XIELz58OmlbhA==
-Received: from BY5PR17CA0004.namprd17.prod.outlook.com (2603:10b6:a03:1b8::17)
- by BL1PPFAA7FD2635.namprd22.prod.outlook.com (2603:10b6:20f:fc04::f43) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.28; Sat, 15 Mar
- 2025 09:35:01 +0000
-Received: from SJ1PEPF00001CE5.namprd03.prod.outlook.com
- (2603:10b6:a03:1b8:cafe::9e) by BY5PR17CA0004.outlook.office365.com
- (2603:10b6:a03:1b8::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.28 via Frontend Transport; Sat,
- 15 Mar 2025 09:35:01 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 165.85.157.49)
- smtp.mailfrom=gehealthcare.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=gehealthcare.com;
-Received-SPF: Fail (protection.outlook.com: domain of gehealthcare.com does
- not designate 165.85.157.49 as permitted sender)
- receiver=protection.outlook.com; client-ip=165.85.157.49;
- helo=atlrelay1.compute.ge-healthcare.net;
-Received: from atlrelay1.compute.ge-healthcare.net (165.85.157.49) by
- SJ1PEPF00001CE5.mail.protection.outlook.com (10.167.242.21) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8534.20 via Frontend Transport; Sat, 15 Mar 2025 09:35:01 +0000
-Received: from 67fd243a5d78.fihel.lab.ge-healthcare.net (zoo13.fihel.lab.ge-healthcare.net [10.168.174.111])
-	by builder1.fihel.lab.ge-healthcare.net (Postfix) with ESMTP id 1A856CFB75;
-	Sat, 15 Mar 2025 11:34:57 +0200 (EET)
-From: Ian Ray <ian.ray@gehealthcare.com>
-To: dmitry.torokhov@gmail.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: ian.ray@gehealthcare.com,
-	linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/2] Input: snvs_pwrkey - support power-off-time-sec
-Date: Sat, 15 Mar 2025 11:34:55 +0200
-Message-Id: <20250315093455.1100-3-ian.ray@gehealthcare.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250315093455.1100-1-ian.ray@gehealthcare.com>
-References: <20250315093455.1100-1-ian.ray@gehealthcare.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B9C82AD25;
+	Sat, 15 Mar 2025 09:44:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.224.244.17
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1742031881; cv=none; b=TxHGfA/4EE6jimkKMGi2Su5lFCQH3sh/z3clMBEpK6W6CxVdBazT9GM/IIFezkC/DekmN1utgOdOMskH2tQU8yOoDXvbUNrhhv61Obb/cB7e8cdJLRNuTveuzTDo2xYMf5TV/2UPh06PtK4gS7miiPFQ6QIafWGW2N/v5ACuULM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1742031881; c=relaxed/simple;
+	bh=9o+XY6imgq6zaQDxE/bPz6kfIxurI0uiJIyhQ04e950=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=iKbGy9pRWaTJnpTBBGBu9J6nx5m/N7MMEKf1ZY33x4Me+xYemk6KskfaNRPgZsYHeEwbDLD4VKAkjYX6Hi1+4zRq3UxdomIEcLnEG/rXReo4cGUzXXSWgePhDyyUD+e7GArnOhWahCL2nqYrdasf/CfJ1xJlnc2RWIFzuvKsMsk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me; spf=pass smtp.mailfrom=proton.me; dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b=RjD2trdW; arc=none smtp.client-ip=109.224.244.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=proton.me
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
+	s=apypmejo2zdgdad4cw5ld4bjgu.protonmail; t=1742031877; x=1742291077;
+	bh=9o+XY6imgq6zaQDxE/bPz6kfIxurI0uiJIyhQ04e950=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
+	b=RjD2trdWilavDargEPJh31BaRD1d0iE94K1WTsJ/ad1+eb36FAPT3fUI7TMqp4+vp
+	 BRA4qDvo3Xlw2DAHsB34qIikjLUkuGU49IhcV0xUeYfrGe+MIGFT6dyGOlcXorpdI+
+	 13NdK8Gh63jNwYmwhfJges7p1LmFjkOzxniQnd7B3GsO+5ig20muHxlw1o4vm2pSyP
+	 hncsfKqglFrsdmvUhR9/jlpxZlSWpm3w+aRulnnpDSv1gLMX3icQ5oNoRII6ZsZnwY
+	 XOFgkjwdW0YJsEYhHa08PG3v8bxHheqxyMyHsixf+18F5nEKuGXSU12m23q8WB89W4
+	 sTQ7jsUBA5SUA==
+Date: Sat, 15 Mar 2025 09:44:33 +0000
+To: Tamir Duberstein <tamird@gmail.com>, Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+From: Benno Lossin <benno.lossin@proton.me>
+Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, =?utf-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com,
+	linux-pci@vger.kernel.org, linux-block@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 6/6] rust: use strict provenance APIs
+Message-ID: <D8GQRANRVU11.SI7SZ8RAXXF@proton.me>
+In-Reply-To: <CAJ-ks9=Ec0xLg81GUYJ07uDzwtwhFkoEdxaa3kNtV6xSjZ57MQ@mail.gmail.com>
+References: <20250314-ptr-as-ptr-v3-0-e7ba61048f4a@gmail.com> <20250314-ptr-as-ptr-v3-6-e7ba61048f4a@gmail.com> <D8G9LZCS7ETL.9UPPQ73CAUQM@proton.me> <CANiq72=JCgdmd+h4_2VguOO9kxdx3OuTqUmpLix3mTLLHLKbZw@mail.gmail.com> <CAJ-ks9=Ec0xLg81GUYJ07uDzwtwhFkoEdxaa3kNtV6xSjZ57MQ@mail.gmail.com>
+Feedback-ID: 71780778:user:proton
+X-Pm-Message-ID: 3cfde2319760f064666ce8d81b7235df8b240a00
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CE5:EE_|BL1PPFAA7FD2635:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: b57f156a-4e0e-47c8-c416-08dd63a4a8d1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|82310400026|1800799024|36860700013;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?PqcG8zWChWcE2wBbFyGtSdIBP3Kr5p0Whf9HyHHG0WevZtrbmM8EUg71KLBS?=
- =?us-ascii?Q?5lgw/KhJgAngCQJGaYdczQNeVE7wp4RpmuBLSmiDffmbeSLB7ObmdEjh7Z1n?=
- =?us-ascii?Q?y5nnOxFLBmIRU4PKE3jzhATPvuXpUbqBQrCjxuE/ymorxK7bgfiS+WJDfgjM?=
- =?us-ascii?Q?F9TmmZvF3MOWw4gqmALgaer2h9c3QmIZ2fT/z8eHhGoCQSJBWLQF6FHXIeS8?=
- =?us-ascii?Q?tYn8ZDIQq62W2ftBtg4vVFHQHSxy2/WDSA/lhNXP25pvqPS1Dyb5/CADBbz4?=
- =?us-ascii?Q?z6xd+me9/B48jGjiUmlOllgVhmjqnTBi5wXO2eTsEdBpD4U7Kt3GgI/Ml4ER?=
- =?us-ascii?Q?lM/ElmFqk7ptjXwOR2P+unpnA6kSjHG+NcNmRBB6c5n8urGS8XPddNDc45NC?=
- =?us-ascii?Q?1olpvDdFT+T/IeZe4ogyR8D4r5fqbuDx1X2IeOSmUyuo4wuIYJ29wamYnWdo?=
- =?us-ascii?Q?qQQOZ25jUGYqHrJMod5ebogCmGRnEAa2r/D1ky4fCvIGsZZ74FCk48rayZQn?=
- =?us-ascii?Q?6aOUph5YdXEtec9g/A1ErxEiwlZHTAoHM71WnXmKJHhmxn9Lt3g26x11vuva?=
- =?us-ascii?Q?tA487u+9YJQ9XiERCq1epzXQT8V15o0tbdEja9iNII7HuY4SSZ/Tr7L3xZ5M?=
- =?us-ascii?Q?FBaIk5ZxD0N6zSmLTgsI6Xt30Ww3IuCYVHqlsFeR00/FPb5qgHna3of+Yre0?=
- =?us-ascii?Q?r+h/YfAf5zYE4CGo3fiy6eVbuqeF0H4e0UhkYYvOiNwIrUVWp2EXtdDuUkqN?=
- =?us-ascii?Q?NcAQocby9NS9/UvRhrL8NonwuZ+XUFetmf6ijcTuOXbbPCVBX8fl/53EGaRA?=
- =?us-ascii?Q?L1ptg3jPBbCXaLQABy1Ra9q+LGZcGUbU99j2z3dU98D0kYn3FoowzA2Zyhx4?=
- =?us-ascii?Q?LFd3QMYdvynysfDqKM9gov9nyypTsw1feVkH0VOePSXa373HY26ePh29tXKC?=
- =?us-ascii?Q?VezLLv68gov+2tpdceqw2FPqbhELzVeTM0DzfCxgEawQpX7uv+HO24TSTVxU?=
- =?us-ascii?Q?0vI2dhmpCSRj3OtbZI7pPvmih1wYxOTgCxMJGFFIqBJ+5RQSkyss83amXsN+?=
- =?us-ascii?Q?pu7HJYq34N2WiBOjCxgerMYVj7Jbrb2KEGpgPwbN9DDRdY/J4u8FTQUK3iff?=
- =?us-ascii?Q?UiK0nZubt4WAAl/+IMMKyO1tp3Q/bPxX1u/kFOJUnvLoTVm+O1LA3x7BE29Q?=
- =?us-ascii?Q?yCTMDGVHqKXjpSGJHyU5Nquj5au6a7Rbi3fJN/hWvNEyxbBHkUzNLbhWs1dd?=
- =?us-ascii?Q?EUEW4boWi4hWDMjkNdduZrvdaARHfMuFuX0B1bkqH5TLfAEEk/5LV56iVL67?=
- =?us-ascii?Q?wAg8Vk/Oc1qDFd9hrWWuWqoNrjHOIB6PMWXvdlX4EDr5aIkYpQgdHPBsMuuc?=
- =?us-ascii?Q?kmsffs025fJBgg0ESF3QY6V27o2P/YnRzhI6Gk5EBDwYmPXgNgnwDV1qizBu?=
- =?us-ascii?Q?wr4hApo2NRjhpHlpedFwbmGB4YgaprZTFnQ7ZcMloKfnzXE78qy3XzBMILVS?=
- =?us-ascii?Q?+Xv6aoR60tSTkzA=3D?=
-X-Forefront-Antispam-Report:
-	CIP:165.85.157.49;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:atlrelay1.compute.ge-healthcare.net;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013);DIR:OUT;SFP:1101;
-X-OriginatorOrg: gehealthcare.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Mar 2025 09:35:01.0053
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b57f156a-4e0e-47c8-c416-08dd63a4a8d1
-X-MS-Exchange-CrossTenant-Id: 9a309606-d6ec-4188-a28a-298812b4bbbf
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=9a309606-d6ec-4188-a28a-298812b4bbbf;Ip=[165.85.157.49];Helo=[atlrelay1.compute.ge-healthcare.net]
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-SJ1PEPF00001CE5.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PPFAA7FD2635
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-The power-off time is configured in LPCR[17:16] BTN_PRESS_TIME:
+On Fri Mar 14, 2025 at 11:20 PM CET, Tamir Duberstein wrote:
+> On Fri, Mar 14, 2025 at 6:00=E2=80=AFPM Miguel Ojeda
+> <miguel.ojeda.sandonis@gmail.com> wrote:
+>>
+>> On Fri, Mar 14, 2025 at 9:18=E2=80=AFPM Benno Lossin <benno.lossin@proto=
+n.me> wrote:
+>> >
+>> > I don't know when we'll be bumping the minimum version. IIRC 1.85.0 is
+>> > going to be in debian trixie, so eventually we could bump it to that,
+>> > but I'm not sure what the time frame will be for that.
+>> >
+>> > Maybe we can salvage this effort by gating both the lint and the
+>> > unstable features on the versions where it works? @Miguel, what's your
+>> > opinion?
+>> >
+>> > We could even make it simple, requiring 1.84 and not bothering with th=
+e
+>> > older versions.
+>>
+>> Regarding Debian Trixie: unknown, since my understanding is that it
+>> does not have a release date yet, but apparently mid May is the Hard
+>> Freeze and then it may take e.g. a month or two to the release.
+>>
+>> And when it releases, we may want to wait a while before bumping it,
+>> depending on how much time has passed since Rust 1.85.0 and depending
+>> on whether we managed to get e.g. Ubuntu LTSs to provide a versioned
+>> package etc.
 
- * b00:  5 seconds (SoC default)
- * b01: 10 seconds
- * b10: 15 seconds
- * b11: PMIC is not disabled
+Yeah that's what I thought, thanks for confirming.
 
-Signed-off-by: Ian Ray <ian.ray@gehealthcare.com>
+>> If something simple works, then let's just go for that -- we do not
+>> care too much about older versions for linting purposes, since people
+>> should be testing with the latest stable too anyway.
+>
+> It's not going to be simple because `rust_common_flags` is defined
+> before the config is read, which means I'll have to sprinkle
+> conditional logic in even more places to enable the lints.
+>
+> The most minimal version of this patch would drop all the build system
+> changes and just have conditionally compiled polyfills for the strict
+> provenance APIs. Are folks OK with that?
+
+So you'd not enable the lint, but fix all occurrences? I think we should
+still have the lint (if it's too cumbersome, then let's only enable it
+in the kernel crate).
+
 ---
- drivers/input/keyboard/snvs_pwrkey.c | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
-
-diff --git a/drivers/input/keyboard/snvs_pwrkey.c b/drivers/input/keyboard/snvs_pwrkey.c
-index f7b5f1e25c80..d7372ace694a 100644
---- a/drivers/input/keyboard/snvs_pwrkey.c
-+++ b/drivers/input/keyboard/snvs_pwrkey.c
-@@ -27,6 +27,8 @@
- #define SNVS_HPSR_BTN		BIT(6)
- #define SNVS_LPSR_SPO		BIT(18)
- #define SNVS_LPCR_DEP_EN	BIT(5)
-+#define SNVS_LPCR_BPT_SHIFT	16
-+#define SNVS_LPCR_BPT_MASK	(3 << SNVS_LPCR_BPT_SHIFT)
- 
- #define DEBOUNCE_TIME		30
- #define REPEAT_INTERVAL		60
-@@ -114,6 +116,8 @@ static int imx_snvs_pwrkey_probe(struct platform_device *pdev)
- 	struct device_node *np;
- 	struct clk *clk;
- 	int error;
-+	unsigned int val;
-+	unsigned int bpt;
- 	u32 vid;
- 
- 	/* Get SNVS register Page */
-@@ -148,6 +152,24 @@ static int imx_snvs_pwrkey_probe(struct platform_device *pdev)
- 	if (pdata->irq < 0)
- 		return -EINVAL;
- 
-+	if (!of_property_read_u32(np, "power-off-time-sec", &val)) {
-+		switch (val) {
-+			case 0:
-+				bpt = 0x3;
-+				break;
-+			case 5:
-+			case 10:
-+			case 15:
-+				bpt = (val / 5) - 1;
-+				break;
-+			default:
-+				dev_err(&pdev->dev, "power-off-time-sec %d out of range\n", val);
-+				return -EINVAL;
-+		}
-+
-+		regmap_update_bits(pdata->snvs, SNVS_LPCR_REG, SNVS_LPCR_BPT_MASK, bpt << SNVS_LPCR_BPT_SHIFT);
-+	}
-+
- 	regmap_read(pdata->snvs, SNVS_HPVIDR1_REG, &vid);
- 	pdata->minor_rev = vid & 0xff;
- 
--- 
-2.39.5
+Cheers,
+Benno
 
 
