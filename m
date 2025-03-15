@@ -1,145 +1,169 @@
-Return-Path: <devicetree+bounces-157800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA69FA62E6F
-	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 15:53:03 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0FC2A62E9B
+	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 15:58:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D184F1750BF
-	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 14:53:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2D1E07A9835
+	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 14:57:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AAE91F8EEC;
-	Sat, 15 Mar 2025 14:52:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1FE0202F92;
+	Sat, 15 Mar 2025 14:58:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="StvcQOfM"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="fnlhe2CB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CB8D366;
-	Sat, 15 Mar 2025 14:52:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C536B1FFC55;
+	Sat, 15 Mar 2025 14:58:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742050379; cv=none; b=Y6d/nyIhQ4E6BP1ygzv4XJTovo8iWqEhZWfpauxbXxzDqNBqJqxM3Ma06iHA2QLDkBPROxPlCsSQkOJEAUTOEwVRM+3GefG+q+cma8U8GLI6nT3wyFutK/voIQZL2LnXCpBI5zt/rYnLjYCqHr1MW/fxRe2UrtS1lwETamO+T0E=
+	t=1742050697; cv=none; b=i2/5vqPrJSRaXZKpkX+9UrHlng5E9LzVvfD4xNMPGCx0qBfAp7DY5APjwg8Tl5sAF7e1FVNiZtb6p4PW22KbRxI7UACvlTbpWf+wtNvtgCiSSeiKS3g8h3lxDaJ/I/d/8801O2YX4Yek3gOY2MZt2nP74Isu46UZNsITb/TRSVQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742050379; c=relaxed/simple;
-	bh=25toXEF63pIyQ4BAaA3+SY0YWyKwqbXfkZDOS2yXEXk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VnCTsJxWce/saO4H4G1xIF+bruSQpVI7Mt9l6Ha7+AduThmfVvlxe3c5cUmYbdSaBkExWX246BuLLjsIMe3whicBziJHkNGjuNLKBuUv4AkL0zJAEJhDBn9sDtKV6axk5RY04F0LolslkmVrpEt9hCzPag67k1KAlECq3bIubZ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=StvcQOfM; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-30bfe0d2b6dso33088531fa.3;
-        Sat, 15 Mar 2025 07:52:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742050375; x=1742655175; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=25toXEF63pIyQ4BAaA3+SY0YWyKwqbXfkZDOS2yXEXk=;
-        b=StvcQOfMZsabErV8DBV42/ODW+fZVGzMk6ecV7FxwXVw42S841I1tZU8/AliKU21SC
-         onStk8UzRf98iVsvmfof/3NXahDXUpF14uZRvEtCr0fzf5M+V0Zu76kodD2PJUBlJo10
-         ePqc9KTHbH50ePsIXoFfXWsSh2Jxk7mJ/5uQ+nF5+33/kQohzqrymxxkFQAbdPBSpA7H
-         Eb51sPtaVMWtdkhArfwd8d8T3uMZ7qVHHLXgneaqPSQjB/1J53OfyA/HpwMCmlO+a7Zz
-         72ftThHpt4nnO7auws+3bGo/zj13TkR/JnenMJrAdcEZFyGQ+9bhDNtfHuBNjmXwxG7j
-         G9wQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742050375; x=1742655175;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=25toXEF63pIyQ4BAaA3+SY0YWyKwqbXfkZDOS2yXEXk=;
-        b=oDRFvimbc/PV0sf3a8G+JVUXjTp3A/1qSgPkVt4TdqrPSZ0USHknEp9LE8kFEcudfg
-         D9sJiNYM2tEqE/OQ0cNjFerfuO0LyCqUlSnfN2ATh2oXkjwRVcRPigawENnzfnmLUBAb
-         LjXfv4EOiwW3ZLDhor9LE5ACs3uuES64Qgs4o5cIFr2vHsFrdU9eqn0CbNyzS304rC7D
-         cjWCCZhkgTAol6RtONC056etkbcH9wgg+0EKmAS9lHeWrV3e/pfRlKdQuMMUAiC2/0PI
-         /PhiYeUx1uA6fjDHIvBde2q0Cm90sZB7ikLmKd4kYOlV5Dc7rkHY8ESG+j78OpCXPB8C
-         8Nrw==
-X-Forwarded-Encrypted: i=1; AJvYcCU49P0qTcugGp834alFLslbPFzgf1LNLd5fc45Sj5fRhNdasQ/S8rOtvUkVLYkrDXO8tUTmWrwOOKk1wux6sWU=@vger.kernel.org, AJvYcCUqjk3SS8y0FMT/NDIIqn1u78Bih9i2mIg8V9omMEUzS+RTc9leT+neo4EaDrlK4AYnEwTefBJkB4+u@vger.kernel.org, AJvYcCVEVka0Ne7qSzHvGUS7WOuExFbfeq0RXy1VYq8nqSyYkflrxCWHlr05AIsESadjihY83DzURndSv0lOJxVZ@vger.kernel.org, AJvYcCVZfGy9qp5Jd2PwzVYvQ84rT0ATzuXG8qSHKDfcU8a5h1sihVFi2cIwEXe1kBrGWk09hifPkS7G3wucSA2Q@vger.kernel.org, AJvYcCWNNLK++edMZp26SclQxVV+lpaCRihB8T54kZRmuTDe0LdJ3NeKLcD1zYsrRBH8GXpH+kcJsP6fRGKw5dcyOCWC@vger.kernel.org, AJvYcCWPt+KkLOwXZo4c7m4oX26rv8vkBaBhvleRn018WPdT3dQMoxlqIEq+ELWw1xbWGq0CQ9iDtzhPUoWN@vger.kernel.org, AJvYcCXQa7u+65f6iOTPqbH3PrjlVRRMo5xedYmVh5ylEh3hxBsuedmmpVQy2Kxcc+hQFrMGDu7cCzDiqJOgbC8=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yykqka6F8FZIRml26Qb9+uDS0SvJ9ZryrC+tZqx+Iv1ylb6DBjE
-	BMrwdRdAUgTX+YI93kz6SQ8bkSyKaEpRfd37N3AbVe5vzH0ENifjB5iLBEdw0o/0pcfrJ/lTh9R
-	SZopoAN5oT5mg8U6Zuzgkbx5XHfo=
-X-Gm-Gg: ASbGncue3kp7EAAXrths7o1VlElVYuHb5/lIKl4ozpko6HfNIudHmTBsFT2EpXIOvFY
-	tf6Sr+U/GiIiJ+SCQ4om1zDLpBrEQscUXOoj47yMwTIwOKkEFFuG6HnPylKE2h5uFSobCcmodpN
-	Pkhc+muC0ISEypzMeMQaQRnh3g20mG+v5hhILNlBqB0rKKA23rcArotMMO/MW5
-X-Google-Smtp-Source: AGHT+IH8nC0TpYa6om1KJkuvMAniWm5KQw6dxG84o6l4T8qWuLbPOUtyA3zl+ap3w3tC9KO/f//DCnawBJXOvMWsW2o=
-X-Received: by 2002:a2e:2413:0:b0:30c:514c:55d4 with SMTP id
- 38308e7fff4ca-30c514c562cmr12196061fa.16.1742050375070; Sat, 15 Mar 2025
- 07:52:55 -0700 (PDT)
+	s=arc-20240116; t=1742050697; c=relaxed/simple;
+	bh=9nYzGQvmx6WFgfbqPRmrGyA1FvxrIDEuq6WTjGtHIBE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=R8sOiGVZuWPYF6Lnla3dGqYUwmSN/fItJWmORECBFmAMEQxcrYu9gitON3Zug7eqoE8QhBIQVl5MHb2wOQFnatho/pl7853rD3jQxUyWjqkIjK3FbyIHiI01JTEPUzvKtEUVGCxkvJFlWqfZjkp4VRWDZbBJ6DCHWIaPuoWihEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=fnlhe2CB; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+Received: from [192.168.183.162] (254C339A.nat.pool.telekom.hu [37.76.51.154])
+	by mail.mainlining.org (Postfix) with ESMTPSA id 2311EBBAC0;
+	Sat, 15 Mar 2025 14:58:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
+	s=psm; t=1742050687;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=FmVx/4AyGD/aMwlNSJd9Y627FtpqEeVAICF+Holg0IU=;
+	b=fnlhe2CBIIfxzBLBDbt3DeYxtaaa9Y18Du5dMDU1Ihuj65nOiJWEqwNq0Gzkx4GYOFc1Ut
+	IZZBBYpeOqn7C0OQRjuiYFfABij97cmMDWYkND9DFW1MX2pUCuTYnfwmB4icMSQUu9i06d
+	YtZwRLZiFD6zuN1x838hKWg/V1OnqBbs9ieU0wfyxblAo8yMIEx9iiJF4PmrkEKB2BQedX
+	Ym+jdsVwZ+1lQzwiEKj0IpCGGiBTCJRyNOreQFe8Fo8WTynkNUYUaI/KBsVkclqqcKC6LT
+	+qnRo1sYoowii16qub41zcNXhXvNebSoWbNFDB7c86jn76RswifhmEccFxQiBQ==
+From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
+Subject: [PATCH v4 0/6] Initial support of MSM8937 and Xiaomi Redmi 3S
+Date: Sat, 15 Mar 2025 15:57:34 +0100
+Message-Id: <20250315-msm8937-v4-0-1f132e870a49@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250314-ptr-as-ptr-v3-0-e7ba61048f4a@gmail.com>
- <20250314-ptr-as-ptr-v3-6-e7ba61048f4a@gmail.com> <67d4a57f.c80a0220.16ff45.9cf1@mx.google.com>
- <D8GQJQFGKB8C.DZBUZT4IJIM0@proton.me> <Z9V0jSfuhqWi_t52@Mac.home>
- <CAJ-ks9k+5c-MYNaxv412Ri1LDAxvkdSQQfKEgQtTu6aEsS-XFA@mail.gmail.com> <Z9V5srg9h73ufu3G@Mac.home>
-In-Reply-To: <Z9V5srg9h73ufu3G@Mac.home>
-From: Tamir Duberstein <tamird@gmail.com>
-Date: Sat, 15 Mar 2025 10:52:18 -0400
-X-Gm-Features: AQ5f1JqjwDEWbdaR9Dml9SSN-lD5tP8ZfiC2uWZ_VNOu30cX7hVl5zfkNy74Ccw
-Message-ID: <CAJ-ks9=23BLX_eo9QYESHFR6JCWJg6AL2Bmg45GAS=wHqAZw4w@mail.gmail.com>
-Subject: Re: [PATCH v3 6/6] rust: use strict provenance APIs
-To: Boqun Feng <boqun.feng@gmail.com>
-Cc: Benno Lossin <benno.lossin@proton.me>, Masahiro Yamada <masahiroy@kernel.org>, 
-	Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, 
-	Alex Gaynor <alex.gaynor@gmail.com>, Gary Guo <gary@garyguo.net>, 
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
-	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
-	Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, linux-kbuild@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
-	linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
-	linux-pci@vger.kernel.org, linux-block@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAF6V1WcC/23MQQ6CMBCF4auYrq1pp0jBlfcwLqAdYBIppjWNh
+ nB3C4lCoss3me8fWUBPGNhpNzKPkQINLo1sv2Omq1yLnGzaDAQcBUjB+9AXpdIcoMBGWKPQlCx
+ 93z029FxKl2vaHYXH4F9LOMr5+mnIbyNKLri2oNHmutGiOPcVuRs5cu1h8C2bQxE2GNSKIeG6L
+ HU65gqt+ovVFmcrVgnbymojCzDG1D94mqY3ApD/bB0BAAA=
+X-Change-ID: 20250210-msm8937-228ef0dc3ec9
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>, 
+ =?utf-8?q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>, 
+ Linus Walleij <linus.walleij@linaro.org>, Lee Jones <lee@kernel.org>, 
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+ Robin Murphy <robin.murphy@arm.com>, Konrad Dybcio <konradybcio@kernel.org>, 
+ Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Dmitry Baryshkov <lumag@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, iommu@lists.linux.dev, 
+ dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ linux@mainlining.org, 
+ =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>, 
+ Daniil Titov <daniilt971@gmail.com>, Adam Skladowski <a39.skl@gmail.com>, 
+ Dang Huynh <danct12@riseup.net>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1742050684; l=2644;
+ i=barnabas.czeman@mainlining.org; s=20240730; h=from:subject:message-id;
+ bh=9nYzGQvmx6WFgfbqPRmrGyA1FvxrIDEuq6WTjGtHIBE=;
+ b=sM5mQ+PXxva7V8jC6E7KlV8VS02TfuWk836AaRTgvfi10SrkvBAz8iGZBunm6IJ8fCv+BXLjq
+ s8ibCMaPiPyCbCPGrCS6Y6vPrX+ETPOgD6/3eYjJve/2BjjHhkXE0Hw
+X-Developer-Key: i=barnabas.czeman@mainlining.org; a=ed25519;
+ pk=TWUSIGgwW/Sn4xnX25nw+lszj1AT/A3bzkahn7EhOFc=
 
-On Sat, Mar 15, 2025 at 8:59=E2=80=AFAM Boqun Feng <boqun.feng@gmail.com> w=
-rote:
->
-> On Sat, Mar 15, 2025 at 08:41:49AM -0400, Tamir Duberstein wrote:
-> > On Sat, Mar 15, 2025 at 8:37=E2=80=AFAM Boqun Feng <boqun.feng@gmail.co=
-m> wrote:
-> > >
-> > > On Sat, Mar 15, 2025 at 09:34:42AM +0000, Benno Lossin wrote:
-> > > [...]
-> > > > > The rest Rust code changes look good to me. Although I would sugg=
-est you
-> > > > > to split this patch into several patches: you can do the conversi=
-on from
-> > > > > "as" pattern to provenance API one file by one file, and this mak=
-e it
-> > > > > easier for people to review. And after the conversions are done, =
-you can
-> > > > > introduce the Makefile changes.
-> > > >
-> > > > I think it's fine to do several of the `as` conversions in a single
-> > >
-> > > Well, "fine" !=3D "recommended", right? ;-) If the patch was split,
-> > > reviewers would be able to give Reviewed-by to individual patches tha=
-t
-> > > looks fine trivially. Then it's easier to make progress every iterati=
-on,
-> > > and also allows partially applying the changes. Of course it doesn't
-> > > have to be file-by-file.
-> >
-> > I sent v4 a little while ago, hopefully the resulting complexity is
-> > manageable now that the build system is untouched.
-> >
->
-> I have fun plans today (skiing!), so won't be able to take another
-> detailed look. What I was trying to say is that: should you split the
-> patches, I would have already given some Reviewed-bys ;-) But as Benno
-> said, it's fine, so don't worry, I will take another look later. Thanks!
+This patch series add initial support for MSM8937 SoC
+and Xiaomi Redmi 3S (land).
 
-Have fun! =E2=9B=B7=EF=B8=8F
+The series is extending the MSM8917 gcc and pinctrl drivers
+because they are sibling SoCs.
+MSM8937 have 4 more A53 cores and have one more dsi port then
+MSM8917.
+It implements little-big architecture and uses Adreno 505.
+
+Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+---
+Changes in v4:
+- Add missing rpmcc include for qcom,gcc-msm8937 dtbinding exmaple.
+- msm8937: add missing space after s9-p1@230
+- msm8937-xiaomi-land: replace LED_FUNCTION_INDICATOR to LED_FUNCTION_STATUS
+- Remove applied patches
+- Link to v3: https://lore.kernel.org/r/20250224-msm8937-v3-0-dad7c182cccb@mainlining.org
+
+Changes in v3:
+- Fix qcom,gcc-msm8937 dtbinding example 
+- Link to v2: https://lore.kernel.org/r/20250223-msm8937-v2-0-b99722363ed3@mainlining.org
+
+Changes in v2:
+- drop applied patches
+- drop gcc schema commits infavor of a new schema for gcc-msm8937
+- document always on clock for adreno 505/506/510
+- msm8937:
+  - set cache size
+  - rename cpu labels
+  - fix style issues addressed by review
+- msm8937-xiaom-land:
+  - remove unused serial0 alias
+  - remove regulator-always-on from pm8937_l6
+  - add blue indicator led for aw2013
+- Link to v1: https://lore.kernel.org/r/20250211-msm8937-v1-0-7d27ed67f708@mainlining.org
+
+---
+Adam Skladowski (1):
+      dt-bindings: drm/msm/gpu: Document AON clock for A505/A506/A510
+
+Barnabás Czémán (3):
+      dt-bindings: clock: qcom: Add MSM8937 Global Clock Controller
+      dt-bindings: arm: qcom: Add Xiaomi Redmi 3S
+      arm64: dts: qcom: Add Xiaomi Redmi 3S
+
+Dang Huynh (1):
+      arm64: dts: qcom: Add initial support for MSM8937
+
+Daniil Titov (1):
+      clk: qcom: gcc: Add support for Global Clock controller found on MSM8937
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |    7 +
+ .../bindings/clock/qcom,gcc-msm8937.yaml           |   75 +
+ .../devicetree/bindings/display/msm/gpu.yaml       |    6 +-
+ arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+ arch/arm64/boot/dts/qcom/msm8937-xiaomi-land.dts   |  408 ++++
+ arch/arm64/boot/dts/qcom/msm8937.dtsi              | 2149 ++++++++++++++++++++
+ drivers/clk/qcom/Kconfig                           |    6 +-
+ drivers/clk/qcom/gcc-msm8917.c                     |  617 +++++-
+ include/dt-bindings/clock/qcom,gcc-msm8917.h       |   17 +
+ 9 files changed, 3277 insertions(+), 9 deletions(-)
+---
+base-commit: da920b7df701770e006928053672147075587fb2
+change-id: 20250210-msm8937-228ef0dc3ec9
+
+Best regards,
+-- 
+Barnabás Czémán <barnabas.czeman@mainlining.org>
+
 
