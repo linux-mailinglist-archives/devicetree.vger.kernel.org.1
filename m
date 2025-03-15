@@ -1,261 +1,755 @@
-Return-Path: <devicetree+bounces-157771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23E1DA62A82
-	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 10:52:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D7BBA62B4B
+	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 11:53:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0783419C0C25
-	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 09:52:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4707717A548
+	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 10:53:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 482401F4C8C;
-	Sat, 15 Mar 2025 09:52:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B54721F4E2F;
+	Sat, 15 Mar 2025 10:53:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="EEEbAd9h"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Gw6LRjmA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DC3D15098F
-	for <devicetree@vger.kernel.org>; Sat, 15 Mar 2025 09:52:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AC1818B499;
+	Sat, 15 Mar 2025 10:53:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742032362; cv=none; b=Lvu2SGv+z2PXZCa4psTsMC22+JWUTz02tVlIKgyqNG9pRUre8x9awS2+MRb9AhWg0xOoWDhY7yP4sAc08IDhXB31AuWOMfxrp1oAoJDTrnf79YhM2mric6mbcA8r7kNsgTAmESAitWIRMmLXDf1GnAWTWFqVGiti5XnGHhVemoU=
+	t=1742035987; cv=none; b=D5K3Mv9eAW7kqcy9lSDiWDrkn6VOu+aMRtAY3srKJWsRsCqgvlE1iQQ+uIDxA4Hc14/xVO21k7PU5jtb/x2dxQzbgR3lq54uA4Srk/YPKYWkoQiwj8MigDD1Jt5e/u9Lc0hmez4EGSz3ybfDELo90z1gxsAJPn8+01VCJIVAA44=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742032362; c=relaxed/simple;
-	bh=6+2VmikGOQHHsXb+MXyVKWf8h2U3ucrj25SSz+LHCJY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=P0QjytyPOMsElw60NXyt6sSwoAA9xIoyrGvjdpW08MKeMp6sSspCP38x8N+j+xcKDsde0aNDt85m+j1oMTHxXNZivYZx3U96b1GYYY//a4ruKNPEDqaACz/7sGQoSPd7DR0b9orvOMRqdefy5lmzawfx/jSeE7gGq0GHfhNH2g8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=EEEbAd9h; arc=none smtp.client-ip=212.227.15.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1742032357; x=1742637157; i=wahrenst@gmx.net;
-	bh=6+2VmikGOQHHsXb+MXyVKWf8h2U3ucrj25SSz+LHCJY=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=EEEbAd9hgFOgjuPcWYjDIvAXAUEukjmfwwqyWTorel1svTAaJkJFHejllb/0+qbE
-	 vpShgbZ4eZpRYeiL6K0xn/uCgtj8aIIO900zU5W6prMOlGdgoqVoSAwTol6jgk2+E
-	 Trpx+s94M8Og6kmHVdP+pIKdEJtHj684tPIxrQ0Uh7iUgPJIwb4GkIfuEx8oHlmBm
-	 kZXqNNdTt4cvx7sXpB06YIIt4+GBStVbAOpNMhjikv6y1T7NfbA7l+wk9tzaksrp1
-	 jH07S5AVIn5QJGYN7GzWEXIOk+RDA1NnYsp3La7fE5ktow7h5fZNlfxlxC8geqr4S
-	 NgCCRzNlzK5YGUIZTQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.107] ([37.4.251.153]) by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1Mk0JW-1tVLyP0tia-00nUE8; Sat, 15
- Mar 2025 10:52:37 +0100
-Message-ID: <0edcd27d-64a6-494e-bc81-5a9ad89d4d90@gmx.net>
-Date: Sat, 15 Mar 2025 10:52:35 +0100
+	s=arc-20240116; t=1742035987; c=relaxed/simple;
+	bh=BN4zYhXc4gjcqMDbT0T74F4r1a2ajeoKiyCwlCkShTo=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=W8LD1M//BB3sB5u+sfLaEktpGhucJNGCHynxUaeDS3XZ97o3pSip4aPYi1D31qMXXAltRnyd44r7cUJJsL2bDaJi6C1kHC9vuWRAyEWXxpPt8Zb5zIkXp6GFbOiMcUBIeHiJEpAhn5eKF6GZ79ZApP6z0+2m+t2ovYhS1lZRjzk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Gw6LRjmA; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43d0c18e84eso2251595e9.3;
+        Sat, 15 Mar 2025 03:53:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742035983; x=1742640783; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:subject:cc:to:from:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=cA52CDFt55Ctd+9FFuRNv/wOUL3w+SuZ4SAnv4Bn65c=;
+        b=Gw6LRjmAf7F1E0Hf2T9iarVHUdhoSGI/EnsBhbrO9G5+0b+OqPmmg0MUIdp6PHPNq+
+         hI4SpKjRd7bNYK8Y18GER2klkX1VEWZDNLSBU6Nuw+7iZni91rkDuaHzN22Vi6AGhIjJ
+         3nGb7+5EaIN+CkAop1yfll74+JNfwB3spNIBOGSkikJD6UuGWa+8SJiBUzk7PRMbw1mn
+         /R5/5TU1BDKFHgFp4iJmTK+irBw60jHehw6MJ07g2BSXJ7YKcZ3iWOlqgVU8uXZhy3Xy
+         SUYf2Es1VRP6VdMPGOK3DEQYI+eB9I+68Svs8nPnOKP/WZaVJ4aYns8YAluEslWb+ORd
+         tLiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742035983; x=1742640783;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:subject:cc:to:from:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cA52CDFt55Ctd+9FFuRNv/wOUL3w+SuZ4SAnv4Bn65c=;
+        b=QUm6Np+plX0wojKgN2WB0mA6MzONUzUfMMQLYsREnp17PbWMKAaOdJty2tewV6t3Wi
+         6PUW7kznb5GmMfuORmZX195+fvSVmbAovM1soalfmnpozmbTTOr57RnBsumTCv6vrDNJ
+         OE/q6CQUjnLqkjiG0M2GEhlovqStLpDgIUwGVclR0uNEacbdIjgeEzy2MfHfelKaj3+F
+         5FTI2MU3T0wP9wmaSv+lq48k7QJLCBOD8mt9iX0FHGhL9MkJBTubwiBirPHeUqjmtP+l
+         22RpHdYZ0eWrZyogxfL1Eda78lNrg1cRqZbYrwix8ttdD6ryI6XNBNXfU+8uKDAaapNm
+         vJZg==
+X-Forwarded-Encrypted: i=1; AJvYcCWgsDx9N+bhQnR/ABpt28kks8SdE6pNNSxlkQPc0LFrHz0WLU2sb2ACdbjeTdz8yOylcM4P7MKG@vger.kernel.org, AJvYcCXVPQGz/zvZiZ11RC9JT2xnakf/Y2APN6PZw/ojOEL4U6U1V4vNGdBWQ0TPDihPh3fWzoYnDNuhX/7q@vger.kernel.org, AJvYcCXZrd+iH+tvcZ8GGuZMKsWSGqvEVydlq42P5qjOBGncp/enu6gqRDZGmgzmpnFCoCeaD4Yz5Ge6QqZRtUH4@vger.kernel.org
+X-Gm-Message-State: AOJu0YykF4lM43eC3hPnkeXfCe7qPyxDHG01zMGJkHHyscCCuMwMNHb/
+	sAMeS9PsJNGk1hnEYdI0VmUHBkkIXKIt9gvVTxJ9k84qti2zUjXx
+X-Gm-Gg: ASbGncuoAVQfZYSxWj6ogARKSkwCNRp+uy8vDhObk/cVc6hB+++U8bG2AxZRVaW6lPt
+	bSaR3Rfw6irWk9E3GVscnfdcjJal9U594RXAh1oKfKO3u+7pGt/xbfU0QP5ga0eHQi1kBl4iarh
+	LTI8Qc/mnQuZu1GaGTkDDQqAc0TSBHUZf3fzFBkMyw0B61Hiuc4zdY+7o0U3AQEwA2J5HzuUwXK
+	OfSOcRYcjqKJty8K03QDn483E0FFqq+vQJgHUuB9qh2oTZWN/gitPV9zsPgalFkWPdO1T57IRqV
+	kpGvqB3xzyk4nmN1g7X+RNJm6AzxzbkYbYSNbjzWGU9+EGKfTFPAWJTV8zTr3mwraI2MGhhIGST
+	D
+X-Google-Smtp-Source: AGHT+IEr8beS2tlcDElX0jI/ofOzfq+dFurkUbet7hswYuF8zoOyMZ+cBvm5diiDA9LoZdT7hm6RLw==
+X-Received: by 2002:a05:600c:4447:b0:43c:eea9:f45a with SMTP id 5b1f17b1804b1-43d1ec646demr70979815e9.4.1742035983090;
+        Sat, 15 Mar 2025 03:53:03 -0700 (PDT)
+Received: from Ansuel-XPS. (93-34-90-129.ip49.fastwebnet.it. [93.34.90.129])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d2010e2d6sm45611095e9.38.2025.03.15.03.53.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 15 Mar 2025 03:53:02 -0700 (PDT)
+Message-ID: <67d55c0e.7b0a0220.32becc.f4d0@mx.google.com>
+X-Google-Original-Message-ID: <Z9VcC_1_DF7OeWdc@Ansuel-XPS.>
+Date: Sat, 15 Mar 2025 11:52:59 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Lee Jones <lee@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	upstream@airoha.com
+Subject: Re: [net-next PATCH v12 09/13] mfd: an8855: Add support for Airoha
+ AN8855 Switch MFD
+References: <20250309172717.9067-1-ansuelsmth@gmail.com>
+ <20250309172717.9067-10-ansuelsmth@gmail.com>
+ <20250314113551.GK3890718@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/7] dt-bindings: gpu: v3d: Add per-compatible register
- restrictions
-To: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Melissa Wen <mwen@igalia.com>,
- Iago Toral <itoral@igalia.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, kernel-dev@igalia.com,
- Maxime Ripard <mripard@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>
-References: <20250313-v3d-gpu-reset-fixes-v4-0-c1e780d8e096@igalia.com>
- <20250313-v3d-gpu-reset-fixes-v4-4-c1e780d8e096@igalia.com>
- <3fbaa5ed-e70f-4293-99d0-faf22f3c4adf@kernel.org>
- <701c71cb-47a6-4970-bd21-ae61cf971f7c@igalia.com>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-Autocrypt: addr=wahrenst@gmx.net; keydata=
- xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
- IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
- NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
- JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
- TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
- f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
- V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
- aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
-In-Reply-To: <701c71cb-47a6-4970-bd21-ae61cf971f7c@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:SiYL6tyRrImtuikRQZ0y0dIQEOMEeIxdbEaHuYVsEFRB8eEHmih
- XNjaNShCaGkzIc2wPW0fC+laApt4+gMLBKIOBSSLcP0Ntem8btI544/9KH5KDMyd6WIr1yu
- WXoucswc/ikZYt2QNp53ubXnFIk57jTwgwS7AlaKo5Nd00hekudoyOlE4GH/v6kFi0Fe4ZJ
- p60Vqpyg1iF5d/urQdq2Q==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:fDvxEU63uG4=;Fy4dd5t9TzLN3qBCPYvx7uxTCTk
- TM/TqkkW4Pg4nbuzvHD3grP9RFKHv9irTtf3ndAFW31axkINGLbgGkibdk3c3N4asedLzBJhy
- 0WrWI6kUSG/t1R99c1AkTU33e/mw15mKkiqPeItc4zBE8nfpDtfwQOu5nM8ASKZ1IhxdQOtl7
- 4P45HkwsnaUkwWdcUHu31NlB2HiOUpHZIw0tR6rCt/Psmp0iMuZ4hA+337PEx3NqQz7uZ6ODz
- aBUO1iH7UIavHpqji3zWaXhCg6rzXfEL0zuZRCx1vCu2JwbId0DujNDpYko923OhddVqQZfvJ
- QJa/VBxVeQUXggkn/PKcUfQq6traO9jzoGYBw/dg5ouznIeiptuXCC6/sW5kxCdHH4zLuU926
- HqM1po++aDAGFda/YlaPQgBo04/mMpnwEKNM1srDwkKifnnjWYKemcfF+MXn4i38dsfzq9JB7
- WdcxY2NhxN7fgrmnO9hN+qR9es4EAB83AD4kFNptp+zX7Wt2WSBD1yvZ+AvAJOQsYCuMhct1u
- 4M0GP3ZuNuoo2VaITXsZgP/m850iXg/Rn6sKp68PR7F2s2hs2hCGJWcJbGLgslTNQhiiEPmWT
- ihhNLzL3FOTzrhpQ+sdp8iXyXcANM0mXFFcnU1V6AdCXxu1qc4KpmpAtFyIlCp6QOEU3bL1Lc
- SpbDlZusIbRVZwYk5lxUFBkb1nZ9lziFRLVHNuoPwOJriVVrLoTrCyEAzTsejtztEnndPDCWs
- xzS+myWEZgat1CY2EX4xpOnC1uRRMHxxgr2XNafgwzok/Wn1hdHBKe+kbxMpNhE7tf3lf94eB
- 0GVcJ5caIVRp7e7E/rCmLWg+Vdls752p1hCjCguFiPS8Jk1GyAYRzelZcJe1HH57U82vnxNeo
- 0aqSf/ZcFjQobhMH28OuutblG9jgnPW2ScFkV4XyUVjJUI6KjXjeapkLdq5c9Ixv01ueel3cS
- /bIKUh1jEnNzJ+8+jRcNbuyiy3f2l3YA9ZM8F7wE5sFfOIa5uRGotmMbXUKUBV5ie5x+PD0X6
- PaxxSlGJm0j3BGkdSxOQ4LWW+eD2hRoErfHfU+UvHTwcBanfrEW7XgXdIzg4fFkjNtIT0yUzN
- tlvT2PMjcx8CsfchSNpJVVlOdzXQpPpCZ/0Q2W8rNvS+yOHyTVkWPmzoTjtWWQyMxad15N9rR
- KBo/MhiFT0ZIY8n914p7SpjPfwCwlJTeENIxE9YQuNRKSqhcWnBr1+11zAxLSQ5jcokoi+SVg
- sZajTx+ZCoJQDe5o8iLJiRwuCsA2vTXq+T057D3QeFK+OZFVKFS8G+2Pr3rNfrB1pvcTy2Ut+
- 3E+OcXKjXTUleXilnEqCCyw1VVMwlU9mhJukZ64QTf1pxt9eBuuIzOAWsZxWWGxgQv3XyMoDo
- hq0M+SHJ0neyKzPdYv7P4/7En/qKXExs9juG2I5TAlD7e9a5dtq6XW5uIf4G/66WDgvLKtZiO
- 4HoM4sx1UWSMe4Lqnmg5yuN28458=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250314113551.GK3890718@google.com>
 
-Hello,
-
-Am 13.03.25 um 20:04 schrieb Ma=C3=ADra Canal:
-> +Cc Stefan
->
-> Hi Krzysztof,
->
-> On 13/03/25 12:03, Krzysztof Kozlowski wrote:
->> On 13/03/2025 15:43, Ma=C3=ADra Canal wrote:
->>> In order to enforce per-SoC register rules, add per-compatible
->>> restrictions. V3D 3.3 (represented by brcm,7268-v3d) has a cache
->>> controller (GCA), which is not present in other V3D generations.
->>> Declaring these differences helps ensure the DTB accurately reflect
->>> the hardware design.
->>>
->>> While not ideal, this commit keeps the register order flexible for
->>> brcm,7268-v3d with the goal to keep the ABI backwards compatible.
->>>
->>> Signed-off-by: Ma=C3=ADra Canal <mcanal@igalia.com>
->>> ---
->>> =C2=A0 .../devicetree/bindings/gpu/brcm,bcm-v3d.yaml=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 | 73
->>> ++++++++++++++++++----
->>> =C2=A0 1 file changed, 61 insertions(+), 12 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
->>> b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
->>> index
->>> dc078ceeca9ac3447ba54a7c8830821f0b2a7f9f..9867b617c60c6fe34a0f88a3ee2f=
-581a94b69a5c
->>> 100644
->>> --- a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
->>> +++ b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
->>> @@ -22,20 +22,10 @@ properties:
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - brcm,7278-v3d
->>> =C2=A0 =C2=A0=C2=A0=C2=A0 reg:
->>> -=C2=A0=C2=A0=C2=A0 items:
->>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: hub register (required)
->>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: core0 register (require=
-d)
->>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: GCA cache controller re=
-gister (if GCA
->>> controller present)
->>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: bridge register (if no =
-external reset controller)
->>> -=C2=A0=C2=A0=C2=A0 minItems: 2
->>
->> Widest constraints always stay here, so you cannot remove minItems.
->>
->>> +=C2=A0=C2=A0=C2=A0 maxItems: 4
->>
->>> =C2=A0 =C2=A0=C2=A0=C2=A0 reg-names:
->>> -=C2=A0=C2=A0=C2=A0 items:
->>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: hub
->>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: core0
->>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum: [ bridge, gca ]
->>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum: [ bridge, gca ]
->>> -=C2=A0=C2=A0=C2=A0 minItems: 2
->>
->> Same problem.
->>
->>> +=C2=A0=C2=A0=C2=A0 maxItems: 4
->>> =C2=A0 =C2=A0=C2=A0=C2=A0 interrupts:
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 items:
->>> @@ -58,6 +48,65 @@ required:
->>> =C2=A0=C2=A0=C2=A0 - reg-names
->>> =C2=A0=C2=A0=C2=A0 - interrupts
->>
->> ...
->>
->>> +=C2=A0 - if:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 contains:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 co=
-nst: brcm,7268-v3d
->>> +=C2=A0=C2=A0=C2=A0 then:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 items:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - =
-description: hub register
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - =
-description: core0 register
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - =
-description: GCA cache controller register
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - =
-description: bridge register (if no external reset
->>> controller)
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minItems: 3
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg-names:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 items:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - =
-const: hub
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - =
-const: core0
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - =
-enum: [ bridge, gca ]
->>
-> > So GCA is always there? Then this should be just 'gca'. Your list for
->
-> GCA is always there for V3D 3.3, therefore it is always there for
-> brcm,7268-v3d.
->
->> 'reg' already says that third item must be GCA. I understand that you d=
-o
->> not want to affect the ABI, but it already kind of is with enforcing GC=
-A
->> in 'reg'.
->
-> I'm adding Stefan to the loop as he was the one that converted this DT
-> binding to YAML. Stefan, could you share your thoughts about breaking
-> the ABI for BCM7268? We would enforce the following order: hub, core0,
-> bridge, and gca.
-Phew, that was over 4 years ago. To be honest, my only motivation back
-then was to prepare support for the Raspberry Pi 4 (BCM2711). I did it
-all in my spare time and never had access to any Broadcom documents. I
-have no idea about all the other BCM chips, so a possible break of the
-ABI for the BCM7268 was an accident. I don't know if Florian Fainelli or
-Maxime Ripard can help here.
-
-By the way the two schema maintainers have not been active at V3D for a
-long time, so it would be good if someone could take over.
-
-Regards
->
->>
->> I anyway do not understand why 'gca' or 'bridge' are supposed to be
->> optional. Does the given SoC differ between boards? What is the externa=
-l
->> reset controller here? External like outside of SoC?
->
-> TBH I never saw BCM7268 or BCM7278 in the wild, but you are correct,
-> "bridge" shouldn't change for the same SoC. I'll do my diligence and
-> research more about those SoCs.
->
-> Best Regards,
-> - Ma=C3=ADra
->
->>
->> Best regards,
->> Krzysztof
+On Fri, Mar 14, 2025 at 11:35:51AM +0000, Lee Jones wrote:
+> On Sun, 09 Mar 2025, Christian Marangi wrote:
+> 
+> > Add support for Airoha AN8855 Switch MFD that provide support for a DSA
+> 
+> Drop all references to MFD.
+> 
+> It doesn't exist.  It is a figment of your (and my) imagination.
+> 
+> > switch and a NVMEM provider. Also provide support for a virtual MDIO
+> > passthrough as the PHYs address for the switch are shared with the switch
+> > address.
+> > 
+> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > ---
+> >  MAINTAINERS                 |   1 +
+> >  drivers/mfd/Kconfig         |  10 +
+> >  drivers/mfd/Makefile        |   1 +
+> >  drivers/mfd/airoha-an8855.c | 445 ++++++++++++++++++++++++++++++++++++
+> >  4 files changed, 457 insertions(+)
+> >  create mode 100644 drivers/mfd/airoha-an8855.c
+> > 
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index b7075425c94e..5844addbda2b 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -730,6 +730,7 @@ F:	Documentation/devicetree/bindings/net/airoha,an8855-mdio.yaml
+> >  F:	Documentation/devicetree/bindings/net/airoha,an8855-phy.yaml
+> >  F:	Documentation/devicetree/bindings/net/dsa/airoha,an8855-switch.yaml
+> >  F:	Documentation/devicetree/bindings/nvmem/airoha,an8855-efuse.yaml
+> > +F:	drivers/mfd/airoha-an8855.c
+> >  
+> >  AIROHA ETHERNET DRIVER
+> >  M:	Lorenzo Bianconi <lorenzo@kernel.org>
+> > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> > index 6b0682af6e32..1b5abe5e2694 100644
+> > --- a/drivers/mfd/Kconfig
+> > +++ b/drivers/mfd/Kconfig
+> > @@ -53,6 +53,16 @@ config MFD_ALTERA_SYSMGR
+> >  	  using regmap_mmio accesses for ARM32 parts and SMC calls to
+> >  	  EL3 for ARM64 parts.
+> >  
+> > +config MFD_AIROHA_AN8855
+> 
+> Should this be EN?
 >
 
+In official internal documentation this is referenced with AN8855...
+
+EN stands for EcoNet, Airoha then brought it so there currently a mix of
+name with old driver using EN and new one AN. This switch is new enough
+to use AN.
+
+> 
+> > +	tristate "Airoha AN8855 Switch MFD"
+> > +	select MFD_CORE
+> > +	select MDIO_DEVICE
+> > +	depends on NETDEVICES && OF
+> > +	help
+> > +	  Support for the Airoha AN8855 Switch MFD. This is a SoC Switch
+> 
+> Nit: "an SoC".
+> 
+> What kind of switch?
+> 
+> > +	  that provides various peripherals. Currently it provides a
+> 
+> Which other peripherals?
+> 
+> > +	  DSA switch and a NVMEM provider.
+> > +
+> >  config MFD_ACT8945A
+> >  	tristate "Active-semi ACT8945A"
+> >  	select MFD_CORE
+> > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> > index 9220eaf7cf12..37677f65a981 100644
+> > --- a/drivers/mfd/Makefile
+> > +++ b/drivers/mfd/Makefile
+> > @@ -8,6 +8,7 @@ obj-$(CONFIG_MFD_88PM860X)	+= 88pm860x.o
+> >  obj-$(CONFIG_MFD_88PM800)	+= 88pm800.o 88pm80x.o
+> >  obj-$(CONFIG_MFD_88PM805)	+= 88pm805.o 88pm80x.o
+> >  obj-$(CONFIG_MFD_88PM886_PMIC)	+= 88pm886.o
+> > +obj-$(CONFIG_MFD_AIROHA_AN8855)	+= airoha-an8855.o
+> >  obj-$(CONFIG_MFD_ACT8945A)	+= act8945a.o
+> >  obj-$(CONFIG_MFD_SM501)		+= sm501.o
+> >  obj-$(CONFIG_ARCH_BCM2835)	+= bcm2835-pm.o
+> > diff --git a/drivers/mfd/airoha-an8855.c b/drivers/mfd/airoha-an8855.c
+> > new file mode 100644
+> > index 000000000000..0a6440bd4118
+> > --- /dev/null
+> > +++ b/drivers/mfd/airoha-an8855.c
+> > @@ -0,0 +1,445 @@
+> > +// SPDX-License-Identifier: GPL-2.0+
+> > +/*
+> > + * MFD driver for Airoha AN8855 Switch
+> 
+> No such thing as an MFD driver.
+> 
+> Core is sometimes used in place of a better name.
+> 
+> > + */
+> > +
+> > +#include <linux/bitfield.h>
+> > +#include <linux/gpio/consumer.h>
+> > +#include <linux/mfd/core.h>
+> > +#include <linux/mdio.h>
+> > +#include <linux/mdio/mdio-regmap.h>
+> > +#include <linux/module.h>
+> > +#include <linux/phy.h>
+> > +#include <linux/regmap.h>
+> > +
+> > +/* Register for hw trap status */
+> 
+> Ironically, this is probably the most readable name, yet it is the only
+> one graced with a comment.  Also 'hw' is an abbreviation, so it should be
+> HW or H/W or better yet hardware.
+> 
+> > +#define AN8855_HWTRAP			0x1000009c
+> > +
+> > +#define AN8855_CREV			0x10005000
+> 
+> Chip?
+> 
+> > +#define   AN8855_ID			0x8855
+> 
+> What kid of ID?  Chip, revision, model, serial?
+> 
+> > +#define AN8855_RG_GPHY_AFE_PWD		0x1028c840
+> 
+> No idea!
+> 
+
+There magic name are the 1:1 map of the register on the internal
+documentation. Honestly it would put more harm than good to rename these
+register to a more symbolic name since it would make it even harder to
+find them.
+
+> > +/* MII Registers */
+> > +#define AN8855_PHY_SELECT_PAGE		0x1f
+> > +#define   AN8855_PHY_PAGE		GENMASK(2, 0)
+> > +#define   AN8855_PHY_PAGE_STANDARD	FIELD_PREP_CONST(AN8855_PHY_PAGE, 0x0)
+> > +#define   AN8855_PHY_PAGE_EXTENDED_1	FIELD_PREP_CONST(AN8855_PHY_PAGE, 0x1)
+> > +#define   AN8855_PHY_PAGE_EXTENDED_4	FIELD_PREP_CONST(AN8855_PHY_PAGE, 0x4)
+> > +
+> > +/* MII Registers Page 4 */
+> > +#define AN8855_PBUS_MODE		0x10
+> > +#define   AN8855_PBUS_MODE_ADDR_FIXED	0x0
+> > +#define AN8855_PBUS_MODE_ADDR_INCR	BIT(15)
+> > +#define AN8855_PBUS_WR_ADDR_HIGH	0x11
+> > +#define AN8855_PBUS_WR_ADDR_LOW		0x12
+> > +#define AN8855_PBUS_WR_DATA_HIGH	0x13
+> > +#define AN8855_PBUS_WR_DATA_LOW		0x14
+> > +#define AN8855_PBUS_RD_ADDR_HIGH	0x15
+> > +#define AN8855_PBUS_RD_ADDR_LOW		0x16
+> > +#define AN8855_PBUS_RD_DATA_HIGH	0x17
+> > +#define AN8855_PBUS_RD_DATA_LOW		0x18
+> > +
+> > +struct an8855_mfd_priv {
+> 
+> It's not an "mfd".
+> 
+> > +	struct mii_bus *bus;
+> > +
+> > +	unsigned int switch_addr;
+> > +	u16 current_page;
+> > +};
+> > +
+> > +static const struct mfd_cell an8855_mfd_devs[] = {
+> 
+> "_child_" or "_sub_" or drop it entirely.
+> 
+> > +	{
+> > +		.name = "an8855-efuse",
+> > +		.of_compatible = "airoha,an8855-efuse",
+> > +	}, {
+> > +		.name = "an8855-switch",
+> > +		.of_compatible = "airoha,an8855-switch",
+> > +	}, {
+> > +		.name = "an8855-mdio",
+> > +		.of_compatible = "airoha,an8855-mdio",
+> > +	}
+> > +};
+> > +
+> > +static int an8855_mii_set_page(struct an8855_mfd_priv *priv, u8 phy_id,
+> > +			       u8 page) __must_hold(&priv->bus->mdio_lock)
+> > +{
+> > +	struct mii_bus *bus = priv->bus;
+> > +	int ret;
+> > +
+> > +	ret = __mdiobus_write(bus, phy_id, AN8855_PHY_SELECT_PAGE, page);
+> 
+> Calling functions with '__' is a red flag.
+> 
+
+As already explained it's an unlucky name, __ was used at times
+probably to stress that this is an internal variant with no lock and
+should be used ONLY when actually intended (this is the case as the
+function enforce locking with the __must_hold)
+
+> > +	if (ret < 0)
+> > +		dev_err_ratelimited(&bus->dev,
+> > +				    "failed to set an8855 mii page\n");
+> 
+> Use 100-chars if it avoids these kind of line breaks.
+> 
+> > +	/* Cache current page if next mii read/write is for switch */
+> 
+> MII here?
+> 
+> "this switch"?
+> 
+> I don't see any checks here - how do we know if it is for switch or not?
+> 
+
+Check is done in an855_regmap_phy_reset_page.
+
+> > +	priv->current_page = page;
+> > +	return ret < 0 ? ret : 0;
+> 
+> You already check for 'ret < 0' at the call sites, so this little dance
+> is superfluous.
+> 
+> > +}
+> > +
+> > +static int an8855_mii_read32(struct mii_bus *bus, u8 phy_id, u32 reg,
+> > +			     u32 *val) __must_hold(&bus->mdio_lock)
+> > +{
+> > +	int lo, hi, ret;
+> > +
+> > +	ret = __mdiobus_write(bus, phy_id, AN8855_PBUS_MODE,
+> > +			      AN8855_PBUS_MODE_ADDR_FIXED);
+> 
+> 100-chars.
+> 
+> > +	if (ret < 0)
+> > +		goto err;
+> > +
+> > +	ret = __mdiobus_write(bus, phy_id, AN8855_PBUS_RD_ADDR_HIGH,
+> > +			      upper_16_bits(reg));
+> > +	if (ret < 0)
+> > +		goto err;
+> 
+> '\n'
+> 
+
+The idea for these operation without extra line were to pack the upper
+and lower part to form the full 32bit value. But ok will split.
+
+> > +	ret = __mdiobus_write(bus, phy_id, AN8855_PBUS_RD_ADDR_LOW,
+> > +			      lower_16_bits(reg));
+> > +	if (ret < 0)
+> > +		goto err;
+> > +
+> > +	hi = __mdiobus_read(bus, phy_id, AN8855_PBUS_RD_DATA_HIGH);
+> > +	if (hi < 0) {
+> > +		ret = hi;
+> > +		goto err;
+> > +	}
+> 
+> '\n'
+> 
+> > +	lo = __mdiobus_read(bus, phy_id, AN8855_PBUS_RD_DATA_LOW);
+> > +	if (lo < 0) {
+> > +		ret = lo;
+> > +		goto err;
+> > +	}
+> > +
+> > +	*val = ((u16)hi << 16) | ((u16)lo & 0xffff);
+> > +
+> > +	return 0;
+> > +err:
+> > +	dev_err_ratelimited(&bus->dev,
+> > +			    "failed to read an8855 register\n");
+> 
+> dev_err() will already print out the an8855 part.
+> 
+> > +	return ret;
+> > +}
+> > +
+> > +static int an8855_regmap_read(void *ctx, uint32_t reg, uint32_t *val)
+> > +{
+> > +	struct an8855_mfd_priv *priv = ctx;
+> > +	struct mii_bus *bus = priv->bus;
+> > +	u16 addr = priv->switch_addr;
+> > +	int ret;
+> > +
+> > +	mutex_lock_nested(&bus->mdio_lock, MDIO_MUTEX_NESTED);
+> 
+> guard()?
+> 
+
+Problem is that we can't even use scoped_guard as there isn't a variant
+with MUTEX_NESTED. This patch is already bit enough that I didn't want
+to pollute it more for it. If it's not a problem I will send a followup
+later.
+
+> > +	ret = an8855_mii_set_page(priv, addr, AN8855_PHY_PAGE_EXTENDED_4);
+> > +	if (ret < 0)
+> > +		goto exit;
+> > +
+> > +	ret = an8855_mii_read32(bus, addr, reg, val);
+> > +
+> > +exit:
+> > +	mutex_unlock(&bus->mdio_lock);
+> > +
+> > +	return ret < 0 ? ret : 0;
+> > +}
+> > +
+> > +static int an8855_mii_write32(struct mii_bus *bus, u8 phy_id, u32 reg,
+> > +			      u32 val) __must_hold(&bus->mdio_lock)
+> > +{
+> > +	int ret;
+> > +
+> > +	ret = __mdiobus_write(bus, phy_id, AN8855_PBUS_MODE,
+> > +			      AN8855_PBUS_MODE_ADDR_FIXED);
+> > +	if (ret < 0)
+> > +		goto err;
+> > +
+> > +	ret = __mdiobus_write(bus, phy_id, AN8855_PBUS_WR_ADDR_HIGH,
+> > +			      upper_16_bits(reg));
+> > +	if (ret < 0)
+> > +		goto err;
+> > +	ret = __mdiobus_write(bus, phy_id, AN8855_PBUS_WR_ADDR_LOW,
+> > +			      lower_16_bits(reg));
+> > +	if (ret < 0)
+> > +		goto err;
+> > +
+> > +	ret = __mdiobus_write(bus, phy_id, AN8855_PBUS_WR_DATA_HIGH,
+> > +			      upper_16_bits(val));
+> > +	if (ret < 0)
+> > +		goto err;
+> > +	ret = __mdiobus_write(bus, phy_id, AN8855_PBUS_WR_DATA_LOW,
+> > +			      lower_16_bits(val));
+> > +	if (ret < 0)
+> > +		goto err;
+> > +
+> > +	return 0;
+> > +err:
+> > +	dev_err_ratelimited(&bus->dev,
+> > +			    "failed to write an8855 register\n");
+> > +	return ret;
+> > +}
+> > +
+> > +static int an8855_regmap_write(void *ctx, uint32_t reg, uint32_t val)
+> > +{
+> > +	struct an8855_mfd_priv *priv = ctx;
+> > +	struct mii_bus *bus = priv->bus;
+> > +	u16 addr = priv->switch_addr;
+> > +	int ret;
+> > +
+> > +	mutex_lock_nested(&bus->mdio_lock, MDIO_MUTEX_NESTED);
+> > +	ret = an8855_mii_set_page(priv, addr, AN8855_PHY_PAGE_EXTENDED_4);
+> > +	if (ret < 0)
+> > +		goto exit;
+> > +
+> > +	ret = an8855_mii_write32(bus, addr, reg, val);
+> > +
+> > +exit:
+> > +	mutex_unlock(&bus->mdio_lock);
+> > +
+> > +	return ret < 0 ? ret : 0;
+> 
+> Doesn't the caller already expect possible >0 results?
+> 
+> > +}
+> > +
+> > +static int an8855_regmap_update_bits(void *ctx, uint32_t reg, uint32_t mask,
+> > +				     uint32_t write_val)
+> > +{
+> > +	struct an8855_mfd_priv *priv = ctx;
+> > +	struct mii_bus *bus = priv->bus;
+> > +	u16 addr = priv->switch_addr;
+> > +	u32 val;
+> > +	int ret;
+> > +
+> > +	mutex_lock_nested(&bus->mdio_lock, MDIO_MUTEX_NESTED);
+> > +	ret = an8855_mii_set_page(priv, addr, AN8855_PHY_PAGE_EXTENDED_4);
+> > +	if (ret < 0)
+> > +		goto exit;
+> > +
+> > +	ret = an8855_mii_read32(bus, addr, reg, &val);
+> > +	if (ret < 0)
+> > +		goto exit;
+> > +
+> > +	val &= ~mask;
+> > +	val |= write_val;
+> > +	ret = an8855_mii_write32(bus, addr, reg, val);
+> > +
+> > +exit:
+> > +	mutex_unlock(&bus->mdio_lock);
+> > +
+> > +	return ret < 0 ? ret : 0;
+> > +}
+> > +
+> > +static const struct regmap_range an8855_readable_ranges[] = {
+> > +	regmap_reg_range(0x10000000, 0x10000fff), /* SCU */
+> > +	regmap_reg_range(0x10001000, 0x10001fff), /* RBUS */
+> > +	regmap_reg_range(0x10002000, 0x10002fff), /* MCU */
+> > +	regmap_reg_range(0x10005000, 0x10005fff), /* SYS SCU */
+> > +	regmap_reg_range(0x10007000, 0x10007fff), /* I2C Slave */
+> > +	regmap_reg_range(0x10008000, 0x10008fff), /* I2C Master */
+> > +	regmap_reg_range(0x10009000, 0x10009fff), /* PDMA */
+> > +	regmap_reg_range(0x1000a100, 0x1000a2ff), /* General Purpose Timer */
+> > +	regmap_reg_range(0x1000a200, 0x1000a2ff), /* GPU timer */
+> > +	regmap_reg_range(0x1000a300, 0x1000a3ff), /* GPIO */
+> > +	regmap_reg_range(0x1000a400, 0x1000a5ff), /* EFUSE */
+> > +	regmap_reg_range(0x1000c000, 0x1000cfff), /* GDMP CSR */
+> > +	regmap_reg_range(0x10010000, 0x1001ffff), /* GDMP SRAM */
+> > +	regmap_reg_range(0x10200000, 0x10203fff), /* Switch - ARL Global */
+> > +	regmap_reg_range(0x10204000, 0x10207fff), /* Switch - BMU */
+> > +	regmap_reg_range(0x10208000, 0x1020bfff), /* Switch - ARL Port */
+> > +	regmap_reg_range(0x1020c000, 0x1020cfff), /* Switch - SCH */
+> > +	regmap_reg_range(0x10210000, 0x10213fff), /* Switch - MAC */
+> > +	regmap_reg_range(0x10214000, 0x10217fff), /* Switch - MIB */
+> > +	regmap_reg_range(0x10218000, 0x1021bfff), /* Switch - Port Control */
+> > +	regmap_reg_range(0x1021c000, 0x1021ffff), /* Switch - TOP */
+> > +	regmap_reg_range(0x10220000, 0x1022ffff), /* SerDes */
+> > +	regmap_reg_range(0x10286000, 0x10286fff), /* RG Batcher */
+> > +	regmap_reg_range(0x1028c000, 0x1028ffff), /* ETHER_SYS */
+> > +	regmap_reg_range(0x30000000, 0x37ffffff), /* I2C EEPROM */
+> > +	regmap_reg_range(0x38000000, 0x3fffffff), /* BOOT_ROM */
+> > +	regmap_reg_range(0xa0000000, 0xbfffffff), /* GPHY */
+> > +};
+> > +
+> > +static const struct regmap_access_table an8855_readable_table = {
+> > +	.yes_ranges = an8855_readable_ranges,
+> > +	.n_yes_ranges = ARRAY_SIZE(an8855_readable_ranges),
+> > +};
+> > +
+> > +static const struct regmap_config an8855_regmap_config = {
+> > +	.name = "switch",
+> > +	.reg_bits = 32,
+> > +	.val_bits = 32,
+> > +	.reg_stride = 4,
+> > +	.max_register = 0xbfffffff,
+> > +	.reg_read = an8855_regmap_read,
+> > +	.reg_write = an8855_regmap_write,
+> > +	.reg_update_bits = an8855_regmap_update_bits,
+> > +	.disable_locking = true,
+> > +	.rd_table = &an8855_readable_table,
+> > +};
+> > +
+> > +static int an855_regmap_phy_reset_page(struct an8855_mfd_priv *priv,
+> > +				       int phy) __must_hold(&priv->bus->mdio_lock)
+> > +{
+> > +	/* Check PHY page only for addr shared with switch */
+> > +	if (phy != priv->switch_addr)
+> > +		return 0;
+> > +
+> > +	/* Don't restore page if it's not set to switch page */
+> > +	if (priv->current_page != FIELD_GET(AN8855_PHY_PAGE,
+> > +					    AN8855_PHY_PAGE_EXTENDED_4))
+> > +		return 0;
+> > +
+> > +	/* Restore page to 0, PHY might change page right after but that
+> > +	 * will be ignored as it won't be a switch page.
+> > +	 */
+> 
+> Use proper multi-line comments please.
+> 
+> > +	return an8855_mii_set_page(priv, phy, AN8855_PHY_PAGE_STANDARD);
+> > +}
+> > +
+> > +static int an8855_regmap_phy_read(void *ctx, uint32_t reg, uint32_t *val)
+> > +{
+> > +	struct an8855_mfd_priv *priv = ctx;
+> > +	struct mii_bus *bus = priv->bus;
+> > +	u16 phy_id, addr;
+> > +	int ret;
+> > +
+> > +	phy_id = FIELD_GET(MDIO_REGMAP_PHY_ADDR, reg);
+> > +	addr = FIELD_GET(MDIO_REGMAP_PHY_REG, reg);
+> > +
+> > +	mutex_lock_nested(&bus->mdio_lock, MDIO_MUTEX_NESTED);
+> > +	ret = an855_regmap_phy_reset_page(priv, phy_id);
+> > +	if (ret)
+> > +		goto exit;
+> > +
+> > +	ret = __mdiobus_read(priv->bus, phy_id, addr);
+> > +
+> > +exit:
+> > +	mutex_unlock(&bus->mdio_lock);
+> > +
+> > +	if (ret < 0)
+> > +		return ret;
+> > +
+> > +	*val = ret;
+> > +	return 0;
+> > +}
+> > +
+> > +static int an8855_regmap_phy_write(void *ctx, uint32_t reg, uint32_t val)
+> > +{
+> > +	struct an8855_mfd_priv *priv = ctx;
+> > +	struct mii_bus *bus = priv->bus;
+> > +	u16 phy_id, addr;
+> > +	int ret;
+> > +
+> > +	phy_id = FIELD_GET(MDIO_REGMAP_PHY_ADDR, reg);
+> > +	addr = FIELD_GET(MDIO_REGMAP_PHY_REG, reg);
+> > +
+> > +	mutex_lock_nested(&bus->mdio_lock, MDIO_MUTEX_NESTED);
+> > +	ret = an855_regmap_phy_reset_page(priv, phy_id);
+> > +	if (ret)
+> > +		goto exit;
+> > +
+> > +	ret = __mdiobus_write(priv->bus, phy_id, addr, val);
+> > +
+> > +exit:
+> > +	mutex_unlock(&bus->mdio_lock);
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +/* Regmap for MDIO Passtrough
+> > + * PHY Addr and PHY Reg are encoded in the regmap register.
+> > + */
+> > +static const struct regmap_config an8855_regmap_phy_config = {
+> > +	.name = "phy",
+> > +	.reg_bits = 20,
+> > +	.val_bits = 16,
+> > +	.reg_stride = 1,
+> > +	.max_register = MDIO_REGMAP_PHY_ADDR | MDIO_REGMAP_PHY_REG,
+> > +	.reg_read = an8855_regmap_phy_read,
+> > +	.reg_write = an8855_regmap_phy_write,
+> > +	.disable_locking = true,
+> > +};
+> > +
+> > +static int an8855_read_switch_id(struct device *dev, struct regmap *regmap)
+> > +{
+> > +	u32 id;
+> > +	int ret;
+> > +
+> > +	ret = regmap_read(regmap, AN8855_CREV, &id);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	if (id != AN8855_ID) {
+> > +		dev_err(dev, "Switch ID detected %x but expected %x\n",
+> 
+> "Detected Switch ID %x but %x was expected"
+> 
+> Or
+> 
+> "Expected Switch ID %x but %x was detected"
+> 
+> > +			id, AN8855_ID);
+> > +		return -ENODEV;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int an8855_mfd_probe(struct mdio_device *mdiodev)
+> > +{
+> > +	struct regmap *regmap, *regmap_phy;
+> > +	struct device *dev = &mdiodev->dev;
+> > +	struct an8855_mfd_priv *priv;
+> > +	struct gpio_desc *reset_gpio;
+> > +	u32 val;
+> > +	int ret;
+> > +
+> > +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> > +	if (!priv)
+> > +		return -ENOMEM;
+> > +
+> > +	priv->bus = mdiodev->bus;
+> > +	priv->switch_addr = mdiodev->addr;
+> > +	/* no DMA for mdiobus, mute warning for DMA mask not set */
+> 
+> Nit: Please start sentences with uppercase chars.
+> 
+> > +	dev->dma_mask = &dev->coherent_dma_mask;
+> > +
+> > +	regmap = devm_regmap_init(dev, NULL, priv, &an8855_regmap_config);
+> > +	if (IS_ERR(regmap))
+> > +		return dev_err_probe(dev, PTR_ERR(regmap),
+> > +				     "regmap initialization failed\n");
+> > +
+> > +	regmap_phy = devm_regmap_init(dev, NULL, priv, &an8855_regmap_phy_config);
+> > +	if (IS_ERR(regmap_phy))
+> > +		return dev_err_probe(dev, PTR_ERR(regmap_phy),
+> > +				     "regmap phy initialization failed\n");
+> > +
+> > +	reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_LOW);
+> > +	if (IS_ERR(reset_gpio))
+> > +		return PTR_ERR(reset_gpio);
+> > +
+> > +	if (reset_gpio) {
+> > +		usleep_range(100000, 150000);
+> > +		gpiod_set_value_cansleep(reset_gpio, 0);
+> > +		usleep_range(100000, 150000);
+> > +		gpiod_set_value_cansleep(reset_gpio, 1);
+> > +
+> > +		/* Poll HWTRAP reg to wait for Switch to fully Init */
+> > +		ret = regmap_read_poll_timeout(regmap, AN8855_HWTRAP, val,
+> > +					       val, 20, 200000);
+> > +		if (ret)
+> > +			return ret;
+> > +	}
+> > +
+> > +	ret = an8855_read_switch_id(dev, regmap);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	/* Release global PHY power down */
+> > +	ret = regmap_write(regmap, AN8855_RG_GPHY_AFE_PWD, 0x0);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	return devm_mfd_add_devices(dev, PLATFORM_DEVID_AUTO, an8855_mfd_devs,
+> > +				    ARRAY_SIZE(an8855_mfd_devs), NULL, 0,
+> > +				    NULL);
+> > +}
+> > +
+> > +static const struct of_device_id an8855_mfd_of_match[] = {
+> > +	{ .compatible = "airoha,an8855" },
+> > +	{ /* sentinel */ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, an8855_mfd_of_match);
+> > +
+> > +static struct mdio_driver an8855_mfd_driver = {
+> > +	.probe = an8855_mfd_probe,
+> > +	.mdiodrv.driver = {
+> > +		.name = "an8855",
+> > +		.of_match_table = an8855_mfd_of_match,
+> > +	},
+> > +};
+> > +mdio_module_driver(an8855_mfd_driver);
+> > +
+> > +MODULE_AUTHOR("Christian Marangi <ansuelsmth@gmail.com>");
+> > +MODULE_DESCRIPTION("Driver for Airoha AN8855 MFD");
+> > +MODULE_LICENSE("GPL");
+> > -- 
+> > 2.48.1
+> > 
+> 
+> -- 
+> Lee Jones [李琼斯]
+
+-- 
+	Ansuel
 
