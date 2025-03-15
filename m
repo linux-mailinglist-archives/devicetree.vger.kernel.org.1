@@ -1,126 +1,198 @@
-Return-Path: <devicetree+bounces-157777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A1A6A62C53
-	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 13:11:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5C22A62C62
+	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 13:17:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9A0347AC856
-	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 12:10:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 17BAC17BC73
+	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 12:17:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9D071F4282;
-	Sat, 15 Mar 2025 12:11:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27FE81F4E37;
+	Sat, 15 Mar 2025 12:17:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fdhqxG8D"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="qB1pv0a/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BF441F4CBA
-	for <devicetree@vger.kernel.org>; Sat, 15 Mar 2025 12:11:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E97F193402
+	for <devicetree@vger.kernel.org>; Sat, 15 Mar 2025 12:17:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.60.130.6
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742040665; cv=none; b=KmT58/YhsyExVr3eA1c5H6nqTSvewPoqKf6p2M3NIhkVOyTVcok2QvYhavrBPor+4gYYQAqPzU/Y5A+n9FXxOW21GGMN/tbCAi5K7h4M4l1qHJZuPy8BefghpFC0nvmcACqn+sqaO1y+dZKBQIXYCNdCgJU+ZCG/75emzmNBV3A=
+	t=1742041042; cv=none; b=SSvUx2Tn+14RSVPG8iAC+B++lSULGgK48M8FLOeiCZsptNDQLnojOJSPOAo2TF8w+4vbSZDkUblDIogoqbb6GlR3CD9y7h1f6YLRRjjGvo4Uhq6jvHrlVaFIqkwf2PSNqhieC5eJVWk0rpBt6541L1TvJVyM/522ZMWOdD0E6TM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742040665; c=relaxed/simple;
-	bh=xPBmkzfMeMo1wV3Qr/a6jywIqtN3QsbaUd+TIgiO73s=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=qUwZfbo1TKu+zN7V06a+UFacw4cX21pEoupJlYUmwiBuAqSOtITpG7QD3Cuoy/LHqySz4E3wgk7gtPFrViAttFgZmCLqepc/oauoIrnlIwIH9WgqLnIHhKzEuTrbdayEHw/PkFSVJP/5T6x1H4fHDkOSU2e2AgiUoQ4eaxK9pkk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fdhqxG8D; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-22435603572so48096245ad.1
-        for <devicetree@vger.kernel.org>; Sat, 15 Mar 2025 05:11:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742040663; x=1742645463; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=G2IKgkMunXXR7TMdxbK3sY9zvfwwFTJHvRuEsUq2o28=;
-        b=fdhqxG8DrtWMJHn3hv/g8aMxS2/kEHCVnHAlsloc1i/4H8IxYtKyM53kkV7AQe27X+
-         qLiy6I2ZVfusAmQwOj7I4iywA3UNluYHjYWcGG5JdmKgWwdG/mugqBm3YiyxUebNIC1+
-         kPSQ2b4eWXQL54ZfAfjjHDDiWTa1o6rVBSiGzlQEPoqC2kazYcwdxVCs3zTTnjSnBE/F
-         2f2lc9d+n7t9D5WTk4WBt7bVnViLBIpz2k2jDPibgTDFcU2TycZaYBnxhNcGlU+vkKm6
-         vOGVzEEKn5PLToIfNq/mg15jaeF5IOPpSzLt9R2BB/O7I8oqtW92oXxR/kWiXyqpoOrL
-         uMKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742040663; x=1742645463;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=G2IKgkMunXXR7TMdxbK3sY9zvfwwFTJHvRuEsUq2o28=;
-        b=tABJ7GVjjhJdq4ECZQzk1TopuuWBzlEoBDNs/1B+BH5V6ATdDqaKFRpPYAmFTSnefj
-         P0NSCE0NOg6KR1ialmGhFTQ9h4Oo5zV4Cu0It2ss2MYyBIOwN5RoPS8hXxiLetrqiau5
-         0fgNXB3U+R/UcsR8l5eEQN9SlHemfdKmniVfImruYf2WFKIlfypxv2qvehh8wXepTu5e
-         inG4urYk/yOVb/UfnxSXZ393tXK7Ctese4thdVGp7+bsZ5RwBKpNLBJJ4IfNLUQ+lZ1L
-         zk2/GoRicuFqB9wWkGfx/RAUmFkXSMaK2gEno8cqyXe9uFB+ozeNWO7dUWaphAttjQ5P
-         5XUw==
-X-Forwarded-Encrypted: i=1; AJvYcCVtRlVnrA3t8Q1Wbr2IquiZp8uLvPsOwcRT5NmQzU1Z88dqGsZOt6uKM+GxMcgwLKdwQmSOyAszX59m@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx5zZjvHU9/M1DBJU4NkRMIx6Ybas2+XSR48ZUq+ulgFUaD8dst
-	/N/9vNuj9E5j8giBV9q0NkGcaaKPy9NtfYT/KYSAhkLlpgFz/0Bq
-X-Gm-Gg: ASbGnct3ICtUz4yyquLh/IEMb9FoAERabZcVvi4qi8kAYUs6gLWWmd1yCtd22WVavKa
-	HWibwdk/rnn51iosWCVDE3wCk8OEcn0MmbUpIxlhmAY4pNBejx5Z8sEr1R0wC9bEv0AXE85Wcnr
-	Xc7B9oFvq13yKjYm/HqX8weW3H1hRlUcCX3UwFsaWjn8HWBvAWTXs/VeM1zjU9DVrNoZ5JOfeiI
-	n8pfNgsYOvcaseKZRIsZhk8VFPGfXPyWO1C7MEyz6AYiY0HXzlcPvNgSlZyZCFvn+BPwuSOSLuc
-	rxwsk38vNHc6V4chC484FfieDJzMLKzN+DhwDDq+wTrfafGIm9sY3A2RAuE=
-X-Google-Smtp-Source: AGHT+IGE+xVI7k0GD4ELtarb/xQZutRjL9TN/A3q/gGjUNc5bXqV1cAMaJxT4xFpFbcyvwPEIQUQEw==
-X-Received: by 2002:a05:6a21:62c8:b0:1f5:70d8:6a99 with SMTP id adf61e73a8af0-1f5c1132b10mr8367207637.4.1742040663347;
-        Sat, 15 Mar 2025 05:11:03 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:bb6a:1a3e:36e4:cce7])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-af56e9ca494sm3504140a12.5.2025.03.15.05.11.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 15 Mar 2025 05:11:02 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: shawnguo@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v2] ARM: dts: imx51-digi-connectcore-som: Fix MMA7455 compatible
-Date: Sat, 15 Mar 2025 09:10:54 -0300
-Message-Id: <20250315121054.1836483-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1742041042; c=relaxed/simple;
+	bh=L9PCrPoJ3CkYm2pPoXzPCjXLLj9YCG1ElIkfwX60csA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=F6OWVVBC29ISaFCBNoUmg4r0KUgdXV1FlndMy0vcMWJRyMSkQOpvbpk4wklftoJI5v0YFDEci3t6ru5LrxyvgjCM1bfQnmZjADRb57C3YVNmFvuysBOZJWtVyF88cGPey63yS85HJZ2bM8U3PdPYiTvqm41a6JfoKOa02dssHtM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com; spf=pass smtp.mailfrom=igalia.com; dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b=qB1pv0a/; arc=none smtp.client-ip=178.60.130.6
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=igalia.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+	s=20170329; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=BfgqA1HeUzPu2eLpTAzKF9T62ogHoCOoKafmriKcVr8=; b=qB1pv0a/BNivEdRw9PUnPCdrYQ
+	PyBEGtu185P0fnKq8JVM++oQAB4nH4FVlhdfXUeKsfbmJaVoEbWHxKyTsurHBKdiezwHlS+TP2vI8
+	YyG1yatpnm2aYyGvzfVI/uln7WkOMwbXSuhkDbuvnbSZuZ3F9Etid9F5xzpDRvctYqsdrBBnRIXke
+	zqP5L0C/nkA49SQXO2GIYBG4lFLerslGXaIY7QyooOvr3EY/AJG1xP61b2NSCvtvy626JFZ2efMwj
+	ktE67UXRufdSJwRIEmvFsmi3XybAVAXx0a/z2/FJWwyqefK7UCufo0GTWr9FKl9K9CjgzE56eLo4q
+	76tAHpaQ==;
+Received: from [189.7.87.178] (helo=[192.168.0.224])
+	by fanzine2.igalia.com with esmtpsa 
+	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+	id 1ttQRv-000T1T-Jl; Sat, 15 Mar 2025 13:17:07 +0100
+Message-ID: <e3d70d16-8701-4096-ba4b-e21cb1da7905@igalia.com>
+Date: Sat, 15 Mar 2025 09:17:00 -0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 4/7] dt-bindings: gpu: v3d: Add per-compatible register
+ restrictions
+To: Stefan Wahren <wahrenst@gmx.net>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, kernel-dev@igalia.com,
+ Maxime Ripard <mripard@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>
+References: <20250313-v3d-gpu-reset-fixes-v4-0-c1e780d8e096@igalia.com>
+ <20250313-v3d-gpu-reset-fixes-v4-4-c1e780d8e096@igalia.com>
+ <3fbaa5ed-e70f-4293-99d0-faf22f3c4adf@kernel.org>
+ <701c71cb-47a6-4970-bd21-ae61cf971f7c@igalia.com>
+ <0edcd27d-64a6-494e-bc81-5a9ad89d4d90@gmx.net>
+Content-Language: en-US
+From: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
+In-Reply-To: <0edcd27d-64a6-494e-bc81-5a9ad89d4d90@gmx.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-From: Fabio Estevam <festevam@denx.de>
+Hi Stefan,
 
-According to fsl,mma7455.yaml, the correct compatible string is
-"fsl,mma7455".
+On 15/03/25 06:52, Stefan Wahren wrote:
+> Hello,
+> 
+> Am 13.03.25 um 20:04 schrieb Maíra Canal:
+>> +Cc Stefan
+>>
+>> Hi Krzysztof,
+>>
+>> On 13/03/25 12:03, Krzysztof Kozlowski wrote:
+>>> On 13/03/2025 15:43, Maíra Canal wrote:
+>>>> In order to enforce per-SoC register rules, add per-compatible
+>>>> restrictions. V3D 3.3 (represented by brcm,7268-v3d) has a cache
+>>>> controller (GCA), which is not present in other V3D generations.
+>>>> Declaring these differences helps ensure the DTB accurately reflect
+>>>> the hardware design.
+>>>>
+>>>> While not ideal, this commit keeps the register order flexible for
+>>>> brcm,7268-v3d with the goal to keep the ABI backwards compatible.
+>>>>
+>>>> Signed-off-by: Maíra Canal <mcanal@igalia.com>
+>>>> ---
+>>>>   .../devicetree/bindings/gpu/brcm,bcm-v3d.yaml      | 73
+>>>> ++++++++++++++++++----
+>>>>   1 file changed, 61 insertions(+), 12 deletions(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+>>>> b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+>>>> index
+>>>> dc078ceeca9ac3447ba54a7c8830821f0b2a7f9f..9867b617c60c6fe34a0f88a3ee2f581a94b69a5c
+>>>> 100644
+>>>> --- a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+>>>> +++ b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
 
-Change it accordingly to fix the following dt-schema warning:
+[...]
 
-failed to match any schema with compatible: ['fsl,mma7455l']
+>>>> +  - if:
+>>>> +      properties:
+>>>> +        compatible:
+>>>> +          contains:
+>>>> +            const: brcm,7268-v3d
+>>>> +    then:
+>>>> +      properties:
+>>>> +        reg:
+>>>> +          items:
+>>>> +            - description: hub register
+>>>> +            - description: core0 register
+>>>> +            - description: GCA cache controller register
+>>>> +            - description: bridge register (if no external reset
+>>>> controller)
+>>>> +          minItems: 3
+>>>> +        reg-names:
+>>>> +          items:
+>>>> +            - const: hub
+>>>> +            - const: core0
+>>>> +            - enum: [ bridge, gca ]
+>>>
+>> > So GCA is always there? Then this should be just 'gca'. Your list for
+>>
+>> GCA is always there for V3D 3.3, therefore it is always there for
+>> brcm,7268-v3d.
+>>
+>>> 'reg' already says that third item must be GCA. I understand that you do
+>>> not want to affect the ABI, but it already kind of is with enforcing GCA
+>>> in 'reg'.
+>>
+>> I'm adding Stefan to the loop as he was the one that converted this DT
+>> binding to YAML. Stefan, could you share your thoughts about breaking
+>> the ABI for BCM7268? We would enforce the following order: hub, core0,
+>> bridge, and gca.
+> Phew, that was over 4 years ago. To be honest, my only motivation back
+> then was to prepare support for the Raspberry Pi 4 (BCM2711). I did it
+> all in my spare time and never had access to any Broadcom documents. I
+> have no idea about all the other BCM chips, so a possible break of the
+> ABI for the BCM7268 was an accident. I don't know if Florian Fainelli or
+> Maxime Ripard can help here.
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
-Changes since v1:
-- Fix MMA7455 typo in Subject.
+Thanks for providing your feedback! I did my diligence and now I know
+which SoCs have each register bank. For BCM2711, BCM2712, and BCM7278,
+the ABI will be preserved. As for BCM7268, I plan to enforce the order
+specified in the current DT binding example: hub, core0, bridge, and
+gca.
 
- arch/arm/boot/dts/nxp/imx/imx51-digi-connectcore-som.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Florian, it would be great to hear your feedback about BCM7268.
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx51-digi-connectcore-som.dtsi b/arch/arm/boot/dts/nxp/imx/imx51-digi-connectcore-som.dtsi
-index dc72a2d14960..1980f751f161 100644
---- a/arch/arm/boot/dts/nxp/imx/imx51-digi-connectcore-som.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx51-digi-connectcore-som.dtsi
-@@ -165,7 +165,7 @@ &i2c2 {
- 	mma7455l@1d {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pinctrl_mma7455l>;
--		compatible = "fsl,mma7455l";
-+		compatible = "fsl,mma7455";
- 		reg = <0x1d>;
- 		interrupt-parent = <&gpio1>;
- 		interrupts = <7 IRQ_TYPE_LEVEL_HIGH>, <6 IRQ_TYPE_LEVEL_HIGH>;
--- 
-2.34.1
+> 
+> By the way the two schema maintainers have not been active at V3D for a
+> long time, so it would be good if someone could take over.
+
+I sent a patch [1] to step in as maintainer.
+
+[1] 
+https://lore.kernel.org/dri-devel/20250313-v3d-gpu-reset-fixes-v4-0-c1e780d8e096@igalia.com/T/#mf8ffc3dc7a216efc1842d773787394c3506814cd
+
+Best Regards,
+- Maíra
+
+> 
+> Regards
+>>
+>>>
+>>> I anyway do not understand why 'gca' or 'bridge' are supposed to be
+>>> optional. Does the given SoC differ between boards? What is the external
+>>> reset controller here? External like outside of SoC?
+>>
+>> TBH I never saw BCM7268 or BCM7278 in the wild, but you are correct,
+>> "bridge" shouldn't change for the same SoC. I'll do my diligence and
+>> research more about those SoCs.
+>>
+>> Best Regards,
+>> - Maíra
+>>
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>
+> 
 
 
