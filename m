@@ -1,100 +1,98 @@
-Return-Path: <devicetree+bounces-157764-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157765-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6E68A629CB
-	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 10:17:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D56D1A62A06
+	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 10:26:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6A9A19C0860
-	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 09:17:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6D48C7A6121
+	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 09:25:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 597091EA7F8;
-	Sat, 15 Mar 2025 09:17:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b="UTvDL7Wk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4912D1F462D;
+	Sat, 15 Mar 2025 09:26:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from abb.hmeau.com (abb.hmeau.com [144.6.53.87])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42D571917C2;
-	Sat, 15 Mar 2025 09:17:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=144.6.53.87
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 656891F4630
+	for <devicetree@vger.kernel.org>; Sat, 15 Mar 2025 09:26:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742030241; cv=none; b=C5CFZSErMKFDboDb+o4lVIstPxRJTOGKos/gutQxAkJhlcQLxqsyDZLc1jO35zxG/l7ry2R10Qp8Zsb6fuVuGicRH80ncgveOROTThcwsZEZMGH3zKMajpQbnXQkrUHPOKWj2tqhgD+szl9egAZBq0dZ4yZNAijGr2Xt9YfZ5hk=
+	t=1742030766; cv=none; b=ZmwPva3cVq6cYMkJnTaHBfyAGtGUGaZXnc0pN0fe4wkEe9gTA1zQTAJxpoc1AI0j0Dz29Xwj/4RtynraJmi4ShZxt9AnjMygU6n4ze4T8p/gZnKZQw4kskxNe9bB9+1owrlCfV05MnBZcuUccRN7lG0qEinRc+RLq5zct2yzbRM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742030241; c=relaxed/simple;
-	bh=xpxrAJm8/9b9TjpTPLkJIVfi2YBXRGoe5njVOof2qY8=;
+	s=arc-20240116; t=1742030766; c=relaxed/simple;
+	bh=7dP1gemwU1OOl+2ffb6QpZFJ60y5VCO/omQBJL5t6Kg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rvTsJ1Ko3tNaqvEYZTsXvmhO1KY+a9z87e2JaWDNCtOLXeYYNA+nLJmtoxMafY56JIKWtIntUCVoM6Q4ocdGsLfOboHOmf813GVCPWfaD4kFC1qbc4tgDvRXEp/2d8XKMOO7u69kyhH2dwix7qaUKPFZuoMeMeg/pTZfZJUwtOY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; dkim=pass (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b=UTvDL7Wk; arc=none smtp.client-ip=144.6.53.87
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hmeau.com;
-	s=formenos; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=mWS2HM3iT66S6iZKQryif4NS3GIsSrxKH5Pfjk6WkR0=; b=UTvDL7Wk0X/nkaOGoAgI5Eg3AG
-	fWjdixU73vMSlXTE+FvzIDePaJRm5/12K0hgMfoCQC/R1CmPdR8QCqMGlhJ1MuP0hhm3hOj1XCR5J
-	cu4aAIC7267vX1dCrtfEM4IKgnXS9JgbmBsJA86Nyc+B/kl9aZxJtV58KR2E8DgF/ASoOGaEnPM2a
-	EOTrpkWpvMAPHAK9byZBnxusvbXJJmG2ryPNZmmU1KL0OYi+TLUFHPf+8cH2+Dfk0qY3qL7GOOkqr
-	Lk7Ol8/BKU6ICLNoRhed3GG4VoRvfXFcNTAiVUS/8mrgcDRmQaYEo03NZ2qd2celX7zOsCVDK3zfO
-	pEQcLlOQ==;
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-	by formenos.hmeau.com with smtp (Exim 4.96 #2 (Debian))
-	id 1ttNdY-006o8i-0N;
-	Sat, 15 Mar 2025 17:16:57 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Sat, 15 Mar 2025 17:16:56 +0800
-Date: Sat, 15 Mar 2025 17:16:56 +0800
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Daniel Golle <daniel@makrotopia.org>,
-	Aurelien Jarno <aurelien@aurel32.net>,
-	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
-	Olivia Mackall <olivia@selenic.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: rng: rockchip,rk3588-rng: Drop
- unnecessary status from example
-Message-ID: <Z9VFiLMFtzBMIAtQ@gondor.apana.org.au>
-References: <20250307093309.44950-1-krzysztof.kozlowski@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=jzDQsRti/oGmLg4fkWQK29yjbNqSxYu3Ga4L/xKOsMAeW8J5/gUEZohIf/7o3D7z/kRqXln9zrNghccy57jKFr9gWJk/EuQFT+s0HAvcFYbk8PyHuMfwGntV1GZ5d6ShiI3foKlp78k3BikcIBhLmheP9thluZBT8hA7efIMmfU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1ttNm1-00047n-9c; Sat, 15 Mar 2025 10:25:41 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1ttNm0-005qTX-1t;
+	Sat, 15 Mar 2025 10:25:40 +0100
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1ttNm0-00EwMG-1T;
+	Sat, 15 Mar 2025 10:25:40 +0100
+Date: Sat, 15 Mar 2025 10:25:40 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: =?utf-8?Q?S=C3=A9bastien?= Szymanski <sebastien.szymanski@armadeus.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Julien Boibessot <julien.boibessot@armadeus.com>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] ARM: dts: opos6ul: add ksz8081 phy properties
+Message-ID: <Z9VHlE-5lvtoYFYb@pengutronix.de>
+References: <20250314-opos6ul-fix-ethernet-v1-1-1c0172949b40@armadeus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250307093309.44950-1-krzysztof.kozlowski@linaro.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250314-opos6ul-fix-ethernet-v1-1-1c0172949b40@armadeus.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Fri, Mar 07, 2025 at 10:33:09AM +0100, Krzysztof Kozlowski wrote:
-> Device nodes are enabled by default, so no need for 'status = "okay"' in
-> the DTS example.
+On Fri, Mar 14, 2025 at 05:20:38PM +0100, Sébastien Szymanski wrote:
+> Commit c7e73b5051d6 ("ARM: imx: mach-imx6ul: remove 14x14 EVK specific
+> PHY fixup") removed a PHY fixup that setted the clock mode and the LED
+> mode.
+> Make the Ethernet interface work again by doing as advised in the
+> commit's log, set clock mode and the LED mode in the device tree.
 > 
-> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Changes in v2:
-> 1. Drop unnecessary full stop in subject prefix after ':'.
-> 2. Add Rb tag.
-> ---
->  Documentation/devicetree/bindings/rng/rockchip,rk3588-rng.yaml | 1 -
->  1 file changed, 1 deletion(-)
+> Fixes: c7e73b5051d6 ("ARM: imx: mach-imx6ul: remove 14x14 EVK specific PHY fixup")
+> Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
 
-Patch applied.  Thanks.
+Looks good to me. Thank you!
+Reviewed by: Oleksij Rempel <o.rempel@pengutronix.de>
 
-Please disregard the previous reply incorrectly sent for v1.
 -- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
