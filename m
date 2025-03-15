@@ -1,118 +1,171 @@
-Return-Path: <devicetree+bounces-157808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC52BA62F01
-	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 16:20:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFF7CA62F1B
+	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 16:28:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 80D5B7AABC7
-	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 15:19:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23EF43B647A
+	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 15:28:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9C5B17995E;
-	Sat, 15 Mar 2025 15:20:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8032A202972;
+	Sat, 15 Mar 2025 15:28:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eHTiW3Xt"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="p4fMIjsg";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="F1CQqFu6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fhigh-b6-smtp.messagingengine.com (fhigh-b6-smtp.messagingengine.com [202.12.124.157])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6110C1C8621
-	for <devicetree@vger.kernel.org>; Sat, 15 Mar 2025 15:20:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F19EB1C8621;
+	Sat, 15 Mar 2025 15:28:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.157
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742052027; cv=none; b=Om6egB4GPisB2i/1cYZePQOQTxZG4PU2xJIS3RqlQkbYdb6hQkaoOa6pdIvsDrs0bfR3Fvu7MvcS8RmUSfNA75Zxwi8oYs5hNIyyx2kjzpjQK+6WJ8sQAWsJx8uhXR/KmFj+v0x2abyc1iSpxgj+ezptvWpriWdRq0syx+OVoDQ=
+	t=1742052509; cv=none; b=fF1KMTJ2G/eXqYXDZ0lTlWcfSnwgefhE2dNjkbmgmlN8mkJKmqwberOO+eIkRb3Eu4j4dpcDu6qp0D1K0e30eRjkogLpaTRSvfHDZSeOeUsRkMY5rjXGo33v+kl8qd7BVEL5xvTs4TcbgFwJtiW5witcy0gA1kUdP+4LN/FWS8w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742052027; c=relaxed/simple;
-	bh=39por3/JtelL+7YTHoEk5X9NoxBVkBIl6QF/QgMyCOA=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=KdedMjOyjQ4KklClDkztOJe+6d21wPivrZD16fYaxME8LpCta/mDt3gVOZuTFmnpxLbcGDW3956fd12hrzDHpaqKXZWGWvrMTxLxQ+Xvugw7a4Er8W3HiK0cA1HA7D9svN0+NZ8YnCs0vROdBg5ZB/lTNIUpYIzTBWV96x2NJUI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eHTiW3Xt; arc=none smtp.client-ip=209.85.219.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f49.google.com with SMTP id 6a1803df08f44-6e8fc176825so27032426d6.0
-        for <devicetree@vger.kernel.org>; Sat, 15 Mar 2025 08:20:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742052025; x=1742656825; darn=vger.kernel.org;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=39por3/JtelL+7YTHoEk5X9NoxBVkBIl6QF/QgMyCOA=;
-        b=eHTiW3Xtfq/t8pkUL9BwMwr2H1VZrsWQt+UiIuP1a1+PHsEpjaZGsjhWgzVjhVV500
-         CwQ8x0xLQFBumFjrBY2X9Q3cs+aXAFUvmOjkp9g5xLtooI6p9bNfJL4pfwBUZZndehoF
-         dY3OGgcZoC0u06zWYZbOPo70dx0+rddgqaDxInPvmgpEQC2JqLJl+jjFh6U/3Nx2MX+k
-         vL67aKfGZjZrhmR84+NsybEzfUEpaR8RXe/MYMOuwEg5jTqoc8nt7aVRbkxQcxL78Xv/
-         b2wqp+jvpQymVtt6ugKl4/kkg/lpkUcLRZjbz4hYLdCaGTr3XJLIgFp0KNw9nYLF8NZ9
-         eCUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742052025; x=1742656825;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=39por3/JtelL+7YTHoEk5X9NoxBVkBIl6QF/QgMyCOA=;
-        b=Sw9+R9R/66Wz23717YL5hJJVy1a9Ksv/cJclMiU2/grd/19sgksrqgD17l0n0q2sqz
-         fwm4E2AzDQPpJT9to2MeRbCtqtycAM62T7QP3NRWuQ7b6scHRKxM1THwT3C3pGw3XWyL
-         rCKf1yEH5uER8XR8VY3Ne4sHDcYeHsPCoFvG4KCZCCp2d/MCm83fjPOwU/Ol1yBrxU03
-         540cLQi3nQxDbuYZ5Lginb9o2TX6chqBGcGIuO6N2DKXAI0isHruzvAkrlwm7g/PVCbm
-         PRSZ10qSw0ULFjFG4jQuu+GNHJZ3SFBJM6eXXdSvruXfx9aV4dJCkphXR6ZVfmYfTfB2
-         6tKg==
-X-Gm-Message-State: AOJu0YwEpM/mjUsFMEfgFUMMRSF2BIC6LI/N7kj0HqBcx60z8JDYbJ59
-	eTHTscU2qHaXY0zCa8X7iKErd6bF1CvMsznv19XlYGvEJwtGwapYfpFO6A==
-X-Gm-Gg: ASbGncvdZxsdkaYz5WIH4U8el19+CFt7RVRaMRGT6OLNw+6zhlUZfCI2noY8g0ayO48
-	R96HaeMyEGfhP7UHB6+KMu5y2M1sO/DGA5IKN8E7fNdcAQ0jIh5DxodVVBywIHgLdJ1dkwsl/gz
-	W6YIfIjq8NV/g0sH5WilVzUogwNtPeDKoAFZ3PQwmpWIFEWqHaF4ujHmftB7pJHY1z585+q8WZ7
-	3iXub+4YLtI/MCWPeNwzp3F2BsuzYjXPG4Oy5ZtYjk62qlz226RPxs7JYL0/c52IyQl33X+Ocab
-	q9ZxaMcyV28M+jNT/SwKqTGMhgF6bYSsTDHv1OcwY112TzQIhp9U6KawAV1GQDWSDuqAdhmCMAC
-	n9vCGaA==
-X-Google-Smtp-Source: AGHT+IFl2giQDdsX8F/3V1noWjAAWkNARQh+KylAf2Xqqf7BO0qfokc0vvxc9D/+GvsgddTZaf40Cw==
-X-Received: by 2002:a05:6214:20c1:b0:6e4:269f:60fd with SMTP id 6a1803df08f44-6eaeaa8dbcfmr112377876d6.23.1742052024970;
-        Sat, 15 Mar 2025 08:20:24 -0700 (PDT)
-Received: from VM-Arch (ool-1826d901.dyn.optonline.net. [24.38.217.1])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6eae3c57becsm29687336d6.11.2025.03.15.08.20.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 15 Mar 2025 08:20:24 -0700 (PDT)
-Date: Sat, 15 Mar 2025 11:20:22 -0400
-From: Alex Lanzano <lanzano.alex@gmail.com>
-To: devicetree@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Josef =?utf-8?B?THXFoXRpY2vDvQ==?= <josef.lusticky@braiins.cz>
-Subject: Bug in mipi_dbi_hw_reset() causes incorrect DT entries
-Message-ID: <v7krb2k3aybcpbzyx4ysjxpdpljpadk6xugpdsehzc6wp6aejw@53flicuphar4>
+	s=arc-20240116; t=1742052509; c=relaxed/simple;
+	bh=xQpMZTzVjfaxtZK3HFRaSD8FZty8a3G+WNehh/7Hm3Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jPeAzgZiUe3ymJ1toyGfQ1LPp9/BSYBMxzo7fqzUrhB7Gumu4TKvcntSFgViv6kiBkBm3uIoQfSNunSNP9IptNv6t1YR2b1Zd8RluOj7YhLimTFYeGG92krZ1HjZfRU7HmpIdsLMcAW263m53ScteTED8UNatfJCqExwQuPUDKo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=p4fMIjsg; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=F1CQqFu6; arc=none smtp.client-ip=202.12.124.157
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-10.internal (phl-compute-10.phl.internal [10.202.2.50])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id AA71B2540169;
+	Sat, 15 Mar 2025 11:28:25 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-10.internal (MEProxy); Sat, 15 Mar 2025 11:28:26 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm3; t=1742052505; x=1742138905; bh=K1
+	XvBQhkRucCWDCw23u4rf9x/uFMiCykS2+9ghIWZ7I=; b=p4fMIjsgLBPct+ybBH
+	n5hvBxuzshztaP/ZS61I0XWJNHQgAqIFN2KJTStt+Zu1WUph7vQTS1xepq2iUwa1
+	XZ5dSlhs1WuYmyqbGU0AeHLMOTWUD+Zp5Ky9iC2vZDQdAI4SbxDWVeDyQZy++fPM
+	trTbeqDgNx3d4oRVQMFx5k6+t2vlsqbuDaXwsKacaVrxGWE8WGxaO7w1ACFUFpDo
+	tZFIeC7twWst+lEbWrOQKoPSWcS/ICdf/M6Py1ufIhSAHCVOq5Rl6d3I4wSp7zLw
+	dilQHzshbyB5fXG2Y9kWGQKU73W1R6n2doh5u0258f3CbR34ZQjlJOQyd0f6jDar
+	iRPQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm1; t=1742052505; x=1742138905; bh=K1XvBQhkRucCWDCw23u4rf9x/uFM
+	iCykS2+9ghIWZ7I=; b=F1CQqFu657KXbbJFaxGKufP2niSgMlIKdUfiSUgFrIsA
+	pQSg4VapIXX3PDYugkQbX4t9jg8S5cUC3/pJJ1N9s4wUh77hJ32qpziQBMhy+qRf
+	ffnZlZwlIoUVmfqH/NX3UEjlOyputDjYgE4vLBEoymqRsH+gfkgUYGM+ENMNJ0Zt
+	ekzCL/oNzoSG5aaOpDcYV8oJZqROwk0b2vtt77aG7bRVqiWRrdf/zroH/jA73rrk
+	1RHQqinlbfuZl4eGsDg3KU78QG5B2c36yVkOyU6e14LtwSzOx8bqNFsJwRfIujMI
+	tBNwQX4fjvfHMjOpIn0F/WwyKsaC7V0RegplsiLrgg==
+X-ME-Sender: <xms:mJzVZyXmRM9Lbo-yrlDQVPQuTPuZSVvb_l1Qn7xs5ITE66ptybxWCQ>
+    <xme:mJzVZ-lXLa_gZ489GzLnq_R27Vr6RSCX1rjSMk4iJRL2QnGmj39QOCUjtdrn3D4eA
+    C2HjIY0px1pDdu_Akk>
+X-ME-Received: <xmr:mJzVZ2YcdmPyGRX2RFpk_6Rn4GF9KX--lHOYJTVBp5LfX80EfLCqEWh7rOZ0bU3cy3ucw0tzZqDTtPC9DnvATS5ryw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddufeegtdekucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
+    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
+    gvnhhtshculddquddttddmnecujfgurhephffvvefufffkofggtgfgsehtkeertdertdej
+    necuhfhrohhmpefpihhklhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhoug
+    gvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrght
+    thgvrhhnpeehudelteetkefgffefudefuedvjeeivdekhfevieefgeffheeltddvvefhfe
+    etgeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehn
+    ihhklhgrshdrshhouggvrhhluhhnugesrhgrghhnrghtvggthhdrshgvpdhnsggprhgtph
+    htthhopedufedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepmhgthhgvhhgrsges
+    khgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprh
+    gtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhn
+    ohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepghgvvghrthdorhgvnhgvsh
+    grshesghhlihguvghrrdgsvgdprhgtphhtthhopehhvhgvrhhkuhhilhesgihsgegrlhhl
+    rdhnlhdprhgtphhtthhopehsrghkrghrihdrrghilhhusheslhhinhhugidrihhnthgvlh
+    drtghomhdprhgtphhtthhopehlrghurhgvnhhtrdhpihhntghhrghrthesihguvggrshho
+    nhgsohgrrhgurdgtohhmpdhrtghpthhtohepjhgrtghophhordhmohhnughisehiuggvrg
+    hsohhnsghorghrugdrtghomh
+X-ME-Proxy: <xmx:mJzVZ5UnuV0R2E9Lvg_0oufXQrh-bRI3bj8IFel0UIQ1KZ0fssonxg>
+    <xmx:mJzVZ8l8BTFq5jhe8W039ZYbJzakzSJL7t5aVgnWcOYhhe30vPBM9w>
+    <xmx:mJzVZ-dTpaXaBP-nLethBhvQHt1ixcb8c7MazB2MuK86qdGI2il7Hw>
+    <xmx:mJzVZ-HUVy5zeEjLIybfncjqKkX62sfjTBz3QIVa53kK0cQD7DggTA>
+    <xmx:mZzVZ6nuF8QCbZPMkx0k0qhP6WbsWZZ5nGX3Tnt4vFYiZTSX8Xu1_Z2->
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 15 Mar 2025 11:28:24 -0400 (EDT)
+From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Cc: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH 0/7] rcar-isp: Prepare for ISP core support
+Date: Sat, 15 Mar 2025 16:27:01 +0100
+Message-ID: <20250315152708.328036-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi all,
+Hello,
 
-There is a bug in the mipi_dbi_hw_reset() function that handles the
-reset logic of the controller. Currently, it will set the reset gpio
-value to 0, wait a specified time, then set the reset gpio value to 1.
+This series prepares for adding support for the ISP core functionality 
+found on some R-Car ISP instances. No core support is however added in 
+this series, the focus is to get the easy changes out of the way to 
+avoid conflicts of fixes and new features being added in parallel on top 
+of this.
 
-The issue with this implementation is that the MIPI DBI spec states that
-the reset signal is active low. So, in order to correct for this logic,
-the developer needs to incorrectly define the reset gpio as active high
-in the DT.
+Patch 1/7 extends the dt-bindings to allow describing both the CSISP and 
+ISPCORE blocks. Patch 2/7, 3/7 and 4/7 updates the existing bindings to 
+match the new style. While the change breaks the dt-bindings the driver 
+is compatible with both styles.
 
-Fixing the logic in the driver would cause all the displays using this
-driver downstream to stop working. To mitigate this, Josef and I were
-thinking about adding an additional boolean property to the DT that when
-present would use the correct reset logic in the driver. And if it's not
-present use the current reset logic and print out a warning that this
-reset logic is deprecated.
+Patch 5/7 prepares for the addition of the ISP core functions that will 
+span multiple files by moving the driver implementation from a single C 
+file to a directory where it can grow. The intent is to get this out of 
+the way without bikeshedding the real ISP core work so fixes and such 
+can be based on the new file structure as early as possible.
 
-The overall plan would be to have this temporary fix for a few release
-cycles so downstream has time to be aware of the issue and update their
-DT. Eventually, we would remove the incorrect reset logic in the driver
-and this addtional boolean property.
+Patch 6/7 and 7/7 prepares the driver for dealing with two regions for 
+when the ISP core work is integrated.
 
-Let me know what you think of this approach and if there might be
-something better we can do here.
+There is no functional gain in this series apart from correctly 
+describing the hardware in dt.
 
-Best regards,
-Alex
+Niklas Söderlund (7):
+  dt-bindings: media: renesas,isp: Add ISP core function block
+  arm64: dts: renesas: r8a779a0: Add ISP core function block
+  arm64: dts: renesas: r8a779g0: Add ISP core function block
+  arm64: dts: renesas: r8a779h0: Add ISP core function block
+  media: rcar-isp: Move driver to own directory
+  media: rcar-isp: Rename base register variable
+  media: rcar-isp: Parse named cs memory region
+
+ .../bindings/media/renesas,isp.yaml           | 56 +++++++++++++++--
+ MAINTAINERS                                   |  2 +-
+ arch/arm64/boot/dts/renesas/r8a779a0.dtsi     | 60 ++++++++++++++-----
+ arch/arm64/boot/dts/renesas/r8a779g0.dtsi     | 30 +++++++---
+ arch/arm64/boot/dts/renesas/r8a779h0.dtsi     | 21 +++++--
+ drivers/media/platform/renesas/Kconfig        | 18 +-----
+ drivers/media/platform/renesas/Makefile       |  2 +-
+ .../media/platform/renesas/rcar-isp/Kconfig   | 17 ++++++
+ .../media/platform/renesas/rcar-isp/Makefile  |  4 ++
+ .../renesas/{rcar-isp.c => rcar-isp/csisp.c}  | 56 ++++++++++-------
+ 10 files changed, 189 insertions(+), 77 deletions(-)
+ create mode 100644 drivers/media/platform/renesas/rcar-isp/Kconfig
+ create mode 100644 drivers/media/platform/renesas/rcar-isp/Makefile
+ rename drivers/media/platform/renesas/{rcar-isp.c => rcar-isp/csisp.c} (89%)
+
+-- 
+2.48.1
+
 
