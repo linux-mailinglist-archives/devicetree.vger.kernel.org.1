@@ -1,63 +1,59 @@
-Return-Path: <devicetree+bounces-157765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D56D1A62A06
-	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 10:26:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BBA5A62A2D
+	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 10:35:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6D48C7A6121
-	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 09:25:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F68B3B3F75
+	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 09:34:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4912D1F462D;
-	Sat, 15 Mar 2025 09:26:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B39EF1F5851;
+	Sat, 15 Mar 2025 09:34:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=proton.me header.i=@proton.me header.b="lLYkVZ7W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mail-10631.protonmail.ch (mail-10631.protonmail.ch [79.135.106.31])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 656891F4630
-	for <devicetree@vger.kernel.org>; Sat, 15 Mar 2025 09:26:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF8FF1F560B
+	for <devicetree@vger.kernel.org>; Sat, 15 Mar 2025 09:34:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.135.106.31
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742030766; cv=none; b=ZmwPva3cVq6cYMkJnTaHBfyAGtGUGaZXnc0pN0fe4wkEe9gTA1zQTAJxpoc1AI0j0Dz29Xwj/4RtynraJmi4ShZxt9AnjMygU6n4ze4T8p/gZnKZQw4kskxNe9bB9+1owrlCfV05MnBZcuUccRN7lG0qEinRc+RLq5zct2yzbRM=
+	t=1742031297; cv=none; b=WofDpN91Lanqh6xLTbcuPrP/cnvQOBALn61b4ZQVqecjE32iSC5zIR4/O59snlnOr+vTHXU4GJFtwPlCzrq3PlT3MU7HYdWqqb38/2qveot3Q9lmd8yBIsZs/gWy2FKsopcwA0GD/EhGP9P0dyNnH6117Tdfd9CNrUWsuKKdno4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742030766; c=relaxed/simple;
-	bh=7dP1gemwU1OOl+2ffb6QpZFJ60y5VCO/omQBJL5t6Kg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jzDQsRti/oGmLg4fkWQK29yjbNqSxYu3Ga4L/xKOsMAeW8J5/gUEZohIf/7o3D7z/kRqXln9zrNghccy57jKFr9gWJk/EuQFT+s0HAvcFYbk8PyHuMfwGntV1GZ5d6ShiI3foKlp78k3BikcIBhLmheP9thluZBT8hA7efIMmfU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1ttNm1-00047n-9c; Sat, 15 Mar 2025 10:25:41 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1ttNm0-005qTX-1t;
-	Sat, 15 Mar 2025 10:25:40 +0100
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1ttNm0-00EwMG-1T;
-	Sat, 15 Mar 2025 10:25:40 +0100
-Date: Sat, 15 Mar 2025 10:25:40 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: =?utf-8?Q?S=C3=A9bastien?= Szymanski <sebastien.szymanski@armadeus.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-kernel@vger.kernel.org,
-	Julien Boibessot <julien.boibessot@armadeus.com>,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] ARM: dts: opos6ul: add ksz8081 phy properties
-Message-ID: <Z9VHlE-5lvtoYFYb@pengutronix.de>
-References: <20250314-opos6ul-fix-ethernet-v1-1-1c0172949b40@armadeus.com>
+	s=arc-20240116; t=1742031297; c=relaxed/simple;
+	bh=hNzSGeM9w6XNPYNUplk+W0RxLfc6Ek9uwsXvUt0eEuQ=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=p3RT39zBDVRHx3akc4TVFvGD+lxVd+dDYZE+8kt9n1R7glaPPQq9aqAYQuTwpjyuXRR0/X+YZIZfcGQWnWyE0T1LHpHornn8d8UfxkeModJi1/Zefpq7MPZLzpGGV2HsKd7pWspVqN9WM8PlAM++nlg3cW63wbsp/rqf21o/N4o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me; spf=pass smtp.mailfrom=proton.me; dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b=lLYkVZ7W; arc=none smtp.client-ip=79.135.106.31
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=proton.me
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
+	s=protonmail; t=1742031287; x=1742290487;
+	bh=2YpOaSrR4hSpqfGZqahP1NQlMMYBu1x+CopCGLc8TCw=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
+	b=lLYkVZ7WsxbKWWPw215MDyByXyYk2sMT04se/nnfaXXROFTTQ2IrlSeAE0ztiAqqn
+	 OAJMwAJKmCPp7LzaOH3hgyMk2JpZ5qM7ODp9RHPOETqJBtRgGmfxmM6jSPhWW2dBum
+	 QdU/uZrPPrxz19dkDlwNQyB4lOvKT939syCP5SzdMyrqHac41JwAmDEz0W9IsFOj2u
+	 G/OcKTUAbrQ2BBAKsmalD23hOSXZpRBnaHqNPvE2yLBp7VKj9cXBjPwthnAoQecDmX
+	 qSzdOY1s8MdTQOTACXkRtiPRb/ZJv1Viox8Of0hdoBQlaeVTq6grwpXwBwJu9Bl6oM
+	 1Q/HO8GpE0V+A==
+Date: Sat, 15 Mar 2025 09:34:42 +0000
+To: Boqun Feng <boqun.feng@gmail.com>, Tamir Duberstein <tamird@gmail.com>
+From: Benno Lossin <benno.lossin@proton.me>
+Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Gary Guo <gary@garyguo.net>, =?utf-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, linux-pci@vger.kernel.org,
+	linux-block@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 6/6] rust: use strict provenance APIs
+Message-ID: <D8GQJQFGKB8C.DZBUZT4IJIM0@proton.me>
+In-Reply-To: <67d4a57f.c80a0220.16ff45.9cf1@mx.google.com>
+References: <20250314-ptr-as-ptr-v3-0-e7ba61048f4a@gmail.com> <20250314-ptr-as-ptr-v3-6-e7ba61048f4a@gmail.com> <67d4a57f.c80a0220.16ff45.9cf1@mx.google.com>
+Feedback-ID: 71780778:user:proton
+X-Pm-Message-ID: 5e603b89734b66f978da35e7885d24202eac65c5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,34 +61,41 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250314-opos6ul-fix-ethernet-v1-1-1c0172949b40@armadeus.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Mar 14, 2025 at 05:20:38PM +0100, Sébastien Szymanski wrote:
-> Commit c7e73b5051d6 ("ARM: imx: mach-imx6ul: remove 14x14 EVK specific
-> PHY fixup") removed a PHY fixup that setted the clock mode and the LED
-> mode.
-> Make the Ethernet interface work again by doing as advised in the
-> commit's log, set clock mode and the LED mode in the device tree.
-> 
-> Fixes: c7e73b5051d6 ("ARM: imx: mach-imx6ul: remove 14x14 EVK specific PHY fixup")
-> Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
+On Fri Mar 14, 2025 at 10:54 PM CET, Boqun Feng wrote:
+> On Fri, Mar 14, 2025 at 08:28:10AM -0400, Tamir Duberstein wrote:
+> [...]
+>> --- a/rust/kernel/alloc.rs
+>> +++ b/rust/kernel/alloc.rs
+>> @@ -217,7 +217,7 @@ unsafe fn free(ptr: NonNull<u8>, layout: Layout) {
+>> =20
+>>  /// Returns a properly aligned dangling pointer from the given `layout`=
+.
+>>  pub(crate) fn dangling_from_layout(layout: Layout) -> NonNull<u8> {
+>> -    let ptr =3D layout.align() as *mut u8;
+>> +    let ptr =3D crate::with_exposed_provenance_mut(layout.align());
+>
+> Dangling pointers don't have provenance, neither has its provenance been
+> exposed. I think should use `without_provenance_mut()` here:
+>
+> =09https://doc.rust-lang.org/std/ptr/fn.without_provenance_mut.html
+>
+> see also the source of core::ptr::dangling().
 
-Looks good to me. Thank you!
-Reviewed by: Oleksij Rempel <o.rempel@pengutronix.de>
+Good catch.
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> The rest Rust code changes look good to me. Although I would suggest you
+> to split this patch into several patches: you can do the conversion from
+> "as" pattern to provenance API one file by one file, and this make it
+> easier for people to review. And after the conversions are done, you can
+> introduce the Makefile changes.
+
+I think it's fine to do several of the `as` conversions in a single
+patch, but splitting off the makefile changes is a good idea.
+
+---
+Cheers,
+Benno
+
 
