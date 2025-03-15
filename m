@@ -1,199 +1,225 @@
-Return-Path: <devicetree+bounces-157747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00E64A6237F
-	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 01:56:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8774BA623B5
+	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 02:11:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37FDA882983
-	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 00:56:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2317E7A55F5
+	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 01:10:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CE94CA6B;
-	Sat, 15 Mar 2025 00:56:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3C3718EA2;
+	Sat, 15 Mar 2025 01:11:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="00AEhJey"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="KfARCQ37"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from MA0PR01CU012.outbound.protection.outlook.com (mail-southindiaazolkn19011028.outbound.protection.outlook.com [52.103.67.28])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BF52BE4A
-	for <devicetree@vger.kernel.org>; Sat, 15 Mar 2025 00:56:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742000202; cv=none; b=Kv4GPvi6rD9MzRsNPOP9TdLmdtVyVJUrU9hXIp8ES9uKcI3uNLSZTbFQRuQ8C6MHGrJUn/0F3NY1Svoz+Z37vb2jY5ziqRWW2F7kRwvGHWBPfOms5l5ScX7XUTNO5B2nbm/9dFe1/lFYu8kXCeKPiwu75doqlcCHa48PRYa0nqg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742000202; c=relaxed/simple;
-	bh=dFv//A/N53hUD/dKk0EKx9Sd5ho6SwDR5GWOeJGznwg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EaftdHRZ4UptqsG/dmShXKxfF363FbR36f3GW/IeQJS9vfIX2swyfxGJEZ6FnFm5Nfuxt2KZqXiesKTtK5uVCAXHTbohge9Al0XWQkgqJe20twMsJsDhOxpYK03th7MAqXcFPujXHNy65MXcrxK+bf5LSj0KgWqqbjorDkvU0MY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=00AEhJey; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-22548a28d0cso76838005ad.3
-        for <devicetree@vger.kernel.org>; Fri, 14 Mar 2025 17:56:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1742000200; x=1742605000; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jlPzh6p1/5lGDsISw1+G4tFXT2WVaPLY/RSip+CLZfo=;
-        b=00AEhJeyHoC7TUYh0Es8UhYq8q/4iGYgJSXNWRgqPBTcNiAKtibh5POQA35s/4Xqcj
-         NKe703McvRb69PzQbFBJhfsu7LkfGBI7ibXbBtfb1QN4k05wz6SqNMyklkqRD8Wsn/il
-         CGrJdnAVXBE1OvBSzC6GkLSl4KB0RKaTs60+p8eCXpFKkM9+g78pMf73aCxnkaJ4VEAO
-         knpqzaw3NMNcdbAEIQr7wmRPqptGaSn9ZJfpTIOBORK/euDt7SBp+OQpuXLxr6hDTmiz
-         A3oTZT/y5R6WlEgq7krBNkIeGVLMOy9PzQjbfTsQRUxI0X6lmflPO1VqPKzherZpjJpq
-         CY1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742000200; x=1742605000;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jlPzh6p1/5lGDsISw1+G4tFXT2WVaPLY/RSip+CLZfo=;
-        b=NkhZZ6AT3STuCBnUsG6NozHgplFLGoZCx78+hcY8pu2LaCLvMgXYrHrpS8CPwkl+tA
-         Ewb+msFgg0Vj/jUFDjp+bsyI7e0JveUnMjAMLwApQA80pZShm6VnNw/sKH7k8z+NLsQO
-         eHzfTtzP7oNzIJYzVE9HnFIsiohbd4tdmnf2SzHoRgHzhJ+t9Y/Z+hGGBPXTHPFShMIS
-         iRsv+4VFQ69rZ2tLLPuwvLL+UcyENLOI55qYrgiY2b176sxEURyOMX02yE9htUXRXIgp
-         AmQCKmeUmJYq4NrDIKW/REJHKav57MkUl/9rykil9Zd2qRUZmtI/gR1UqTxJ/vxvMrNN
-         RM2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVSo1QeW9xV0qlI7Or+TXW0ApdsEL7vOwYWYqyH1iQlUWykQcmGyMd8d2iNJAsfTCsnlRh944AJ0+lc@vger.kernel.org
-X-Gm-Message-State: AOJu0YxFXu7frTg/YFMMAluArn0M1Z44n6bF3A2Q6ajiXRN6KP5P7oFP
-	fAaJ+1YuejbFutFJle87Y6nFZBjEZWaIgd4N+/SPxGJYqCcC8XZg7XdCzmlJ8Q==
-X-Gm-Gg: ASbGncuD1q2RlXQW0FfsEmzdfdytzkIBmqb3v6cFxMpIYES6ki5KmoU8EbgFBAIkrRJ
-	angfrCsjtZ5KFU/fM97XU0bT1Y7UHSZJy7O882zIbJQgsES/cf70Nuv8AYON+s0wgCM6Pw9ciRR
-	xb61MPP1jx5fB8yTLsnIFoPJ9aAu+tb/ddFK+T2xJfiCafucDuwKC9ETf+T5Na/s0Be5EJ4Bz6p
-	XRe9vCa7OypUuC8774JwrzhBBywEl598QpekSZIa4ZPOXo2aZ8AMDk5JRoINsGfFDkZ3TGGIYdx
-	zsM08DS6eGpkjClrWWeKuYo/DlCTSjOvKRhyVVyACEHf2Sw7E+Y98RtuninGHv5LwajNhG7phhA
-	kT7GZ2iXguQcDMPKEn8wE4ctrvldonnI0SWgFF8+08ic=
-X-Google-Smtp-Source: AGHT+IGLAZyr9y6XFIkao+qhVXq299qSBu0NyjP0SxDe+I/hBmyjWfLdod7q25DFZQQHCPjxfpF0Vg==
-X-Received: by 2002:a17:902:ecc5:b0:223:f7ec:f834 with SMTP id d9443c01a7336-225e0a840camr50486775ad.31.1742000199456;
-        Fri, 14 Mar 2025 17:56:39 -0700 (PDT)
-Received: from ?IPV6:2a00:79e0:2e14:7:1790:6e62:92ba:cb2b? ([2a00:79e0:2e14:7:1790:6e62:92ba:cb2b])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-225c68883d0sm34730585ad.10.2025.03.14.17.56.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Mar 2025 17:56:39 -0700 (PDT)
-Message-ID: <85c6de6a-f8b4-4e4e-8fa2-da53816abc89@google.com>
-Date: Fri, 14 Mar 2025 17:56:37 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3F3C3A27B;
+	Sat, 15 Mar 2025 01:11:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.67.28
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1742001097; cv=fail; b=afJtCo4tZxFXxziAK5g2Taa9eOV275baGO/XnuxW0WTzGQgPnfgLeF5QNrq/xueXsH5D4gKmtft9kXU2bLBCS0DatyR4yrsMLZ7ewk9ecuWg0eafHxmBmqxNW5kbzZUw4ZpKJLrrawe4Queh2D3TEBs+G/rIUhEH4fWi2XcqkHM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1742001097; c=relaxed/simple;
+	bh=MPAWx84xWYukZjblY3XdFuZzSSMJmm+IAunXBOSzVkU=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=NRJnfTb4Tx4pJGLfY8LdAdqUtllHPQhg7iIK2tVeF9ZaECNjhYGi5eTOQMK+yxfHamXRMNQ2Or0dNMzsaF1kmpqZvWvKBoCJhu/oaq39upowb9bs3M84e9LiBmUyjh7/qC8Vdch5Y8QdcxBGI5qvIlf36+ysCdi/VHyvGofgZ8o=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=KfARCQ37; arc=fail smtp.client-ip=52.103.67.28
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=YZFxzAFiRwWjmUq7n7x/i2Z3J0uKe8wpIEf+a7Rl3T8zOhAqaBKTXUEuE0GQlUuk0FQFktl11PCUS8A481cTC5ep1j6HAF3U+CXpErq25ZOdrqyQU4Q+/uXpK0m68Z80caWCqOuG1jyfxBzTbFuBK2f6q9mS147U0Ylmq/J1mz1MnCh4sabrsEP+R+4WFrKvh8hogsGtHKcucF9lyFoa46JsS5ctyN7puwBZFBHpn7V0MDbs/J8WxHbDAX/ZoH5A+r2LWgL3oiSkNdDwNtRDe0Sn8d0w0NUtSN8hLfYji4jvp4gJjR309447JkjC3nC6zloXtPTZZASSq72T6MCepQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hQ4IpC49WLg8XrHyDG1YHYMIGIHlfHWItwT2dAtTvpU=;
+ b=BOOBP8TPQKhKWEFi0Yc+quxEAfZl3MQpISxBQtylZZr+tmI3qe2yMWGk+yMI74xkh8ALroMwawA05oDVLeWdQRptZA7ZPPEGJeao7D7syvEppxPf+PIeArFecD63ESaXK0kbOWbA3g1wWNiw4cWtutP28YCRJSUkCWDBoM2MXRcflJpg4IukkBUwHwBGh2ZFYgffRxDbtfe1N5IWCVlqzqfWImHDYgZrxWTnma8mMeiEtfNnFpHf5XWhkfIjgmbfVekotVUh2bnJ/uiWd1l6OWo1gpwRPrUfikKC2hx+TEEXomp9rwslQk/NagHjm7G3biL0WuZ2zNTtDZ91jV/pxg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hQ4IpC49WLg8XrHyDG1YHYMIGIHlfHWItwT2dAtTvpU=;
+ b=KfARCQ37BxSLJavrfvvpLIkJuTfdBxTmHv16/Z8XF+p/LwEBpPkxN8TexqztnDFnFRh/LMshIMHaiv2Vqh0PdrdChtrIOV5ShxMtV/WQNvvtrGEePLsT6Xqfg2MgHYnba4hLabIl9bgsDhDoL6u2n3zNjxcIMBeaX5uZW5hwpG9InLQEJ2x7+zFNx9P8fya/5vCG+7mHdXLhNmnn2zviLEdisWkuBdZSXMBnGzg0Gfq2xj2XZLNBz+DO+lYFpa/8mRtnJTlzRuEksBuaEc57wAgcmCebV/m7SnJw1UV7LP4dJFq9o0goutUj5n8iIO7rKQiluDN0sgVT14pocbVSAA==
+Received: from PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:1eb::14) by MA0PR01MB6722.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:79::5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.29; Sat, 15 Mar
+ 2025 01:11:29 +0000
+Received: from PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::1b4f:5587:7637:c5a5]) by PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::1b4f:5587:7637:c5a5%3]) with mapi id 15.20.8511.031; Sat, 15 Mar 2025
+ 01:11:29 +0000
+Message-ID:
+ <PN0PR01MB10393BB0FDD18288E5FB18E92FEDD2@PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM>
+Date: Sat, 15 Mar 2025 09:11:25 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v13 2/3] soc: sophgo: cv1800: rtcsys: New driver (handling
+ RTC only)
+To: Inochi Amaoto <inochiama@gmail.com>,
+ Alexander Sverdlin <alexander.sverdlin@gmail.com>, sophgo@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-rtc@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Jingbao Qiu <qiujingbao.dlmu@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
+ Yangyu Chen <cyy@cyyself.name>, linux-kernel@vger.kernel.org
+References: <20250309202629.3516822-1-alexander.sverdlin@gmail.com>
+ <20250309202629.3516822-3-alexander.sverdlin@gmail.com>
+ <fuc5zzq3izowktmafrhy5vkjddydxg5673ggr64ukh7v5knjmi@r6xozjxcw7r2>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <fuc5zzq3izowktmafrhy5vkjddydxg5673ggr64ukh7v5knjmi@r6xozjxcw7r2>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: TYAPR01CA0033.jpnprd01.prod.outlook.com
+ (2603:1096:404:28::21) To PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:1eb::14)
+X-Microsoft-Original-Message-ID:
+ <c4d48ded-78df-4bd1-af62-c08eeff704f7@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: connector: add fixed-batteries property
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Badhri Jagan Sridharan <badhri@google.com>,
- Sebastian Reichel <sre@kernel.org>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <len.brown@intel.com>,
- Pavel Machek <pavel@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-pm@vger.kernel.org, RD Babiera <rdbabiera@google.com>,
- Kyle Tso <kyletso@google.com>
-References: <20250312-batt_ops-v1-0-88e0bb3129fd@google.com>
- <20250312-batt_ops-v1-1-88e0bb3129fd@google.com>
- <20250313-tidy-kakapo-of-abundance-eebf91@krzk-bin>
-Content-Language: en-US
-From: Amit Sunil Dhamne <amitsd@google.com>
-In-Reply-To: <20250313-tidy-kakapo-of-abundance-eebf91@krzk-bin>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PN0PR01MB10393:EE_|MA0PR01MB6722:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2771954e-0fc6-4678-401f-08dd635e50f3
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|6090799003|5072599009|19110799003|461199028|8060799006|15080799006|7092599003|10035399004|440099028|3412199025|4302099013|1602099012;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?TytZYS9JaDM3ZUZ1eFArQ3BCWThnbGZyY0hYbHdPdlJSVURlVDlaY252a2dr?=
+ =?utf-8?B?Qnh4SndrTHdjRVpaZ1ZnL0J4bThycmpGMGM1aWxIRDc5cmhnQ2QyV2FCWlZG?=
+ =?utf-8?B?ZjZickpvWlBOMDlWcGhmQTV2bUFQUUdKbUZndGhpbXVacFd2cTRpTjhrQUtN?=
+ =?utf-8?B?WUpZWERwdjlBeXd2OGJUWndLUmpndzJkdmlad2JBVG01U3lGenpmSHNSWkgv?=
+ =?utf-8?B?dUs2aFI2Yjc3VHhyRy9OWHhxL2U0eDJyVmN3bUdnL21Yck9zb3pUcGNtM0JP?=
+ =?utf-8?B?cndHcjROV1hvSy91OHk3ZnVQNVpKK29FMVkzRXhJMFR3bk1XcFJmc3N0RERH?=
+ =?utf-8?B?YW1SMmpVU2U4UzY4d3Byc01MYlN1Y21WandBRW5aZFhqaW11SUg2RFBPbE5E?=
+ =?utf-8?B?dGw5a3dwRnJnY29DNGx5elJOcDQ0d3AxYVJIU0lieWU2enl5RkVYSUNUL1JB?=
+ =?utf-8?B?eXNQWTZnLzhMMjk5RldoWGJHTklaL3VndUFORXFrR3pYYVpReFhvNUE2dXRD?=
+ =?utf-8?B?bDBjbFhzVHJwWHdYYzMrTjlHZWNIbGNaakU2UzRxbFMvQlBSZWp0ek0zcHo1?=
+ =?utf-8?B?aTFJRHROQVQ3NksvSzQvWS92c2thV25qVmFPS0NkenpaNUdGbmhNUFRBSWVT?=
+ =?utf-8?B?dlVmbTVmUndYeDhoVm91ZnUyZ3ZEdzN4L2IzWUNtUlAvMC9ldkVVRm1SZVJS?=
+ =?utf-8?B?V3JtVlU1d3lrUjFaMXNkOVRPN0hjazNHRzBabERQZ0p2YXJzdDhkbUdsdUZa?=
+ =?utf-8?B?SGNyMHRHZThCRlRKd1RMVUcyRlBXSHdrYk4rNEVQZXNORGNRbkFHVUNKQzAz?=
+ =?utf-8?B?TnJPVHpYVjJyQ2d5RDJRMy9YVlo1Q2RKY2NiZCtCTHhwNVlPTGg4WEZ4YlJ4?=
+ =?utf-8?B?QlIrSXlFMGVmOTFueGNrSjNoZzZ6NVp1S0I3c2tFcG8wUGR3by9mOXFyQzRK?=
+ =?utf-8?B?K1dkQ0ZFWG1qU3FwTUMxRjVpR1llZkQ2ZnozLzFvVm5QQlh5NG83cmpSTWRx?=
+ =?utf-8?B?VGlGU0x1cDZWVDNDM09ZSGxwYjh0MDgxVnZrOGNFZmxFZGZQdDYxZmZxQXA3?=
+ =?utf-8?B?S3JONVRRNFhzMEhkMzZ3K0YweFRTVVZqb0d3aHozVUphaVhwaS8rckRQVXRK?=
+ =?utf-8?B?emliSXVBSXZmMzhKOWhoUzBhaFQwYWkzbTQrb2xLSmtiUWxYMGJMekpMU0hF?=
+ =?utf-8?B?QVk2SnJmS1BPMkZkZjAxYXk0a1JPN0hXZkdpWDBFVkZDZU5HWTlLaHZjeHdW?=
+ =?utf-8?B?NXAxdDZFcHNJNTg1K0VwMHI1WXNMMmI0Y0hkOHYwSDdYQ3c0ai9WVm5uLzJr?=
+ =?utf-8?B?akRSMXlncU5xdGV3Y1lvSGtwU2dxb3N1bnZTRlI1SWwxVDBCajRZcUdYWG1T?=
+ =?utf-8?B?bXNJeitGRE15WUVYaXJ3WFBWZzVBUStEQVpXZEVRQWJMSlNFODI0TWppOStK?=
+ =?utf-8?B?Y0xFdExjWmY3S0FrTk5WRHBpQjZPWXNBVUlSMU9IendMT1M0Wm1qU3BMVHN4?=
+ =?utf-8?B?dGR2NklpYVBla1lwOVVrS25CbnJzQ1ZMai9FTSt2QWVwcmZVUEl6ZXZXcHF3?=
+ =?utf-8?B?WW16Y0VFQzZETURlcG5GVzR3dUNyRHRYdDdrcmc0MXZqU0EvSW0rOStJUjFh?=
+ =?utf-8?B?encxMkwwT25CaXJLUXo3QjZvY3IwRmdPTWYwSEMwenNTRExUV1h0d3NjbFBw?=
+ =?utf-8?B?VTEwOTU5YXArdHk5QVBQVURLZDZiOHRXbVNOK2k0Tzh5M3I1ZjArUzVMVzRi?=
+ =?utf-8?Q?n3qZ2lcUwexedG5dtAtwOZV4guHq/+hqxKkWK39?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?NlROWi93VHZtT2gyczRZb29leEp3OVRzdXBwZmhOcTdTODF2YTRNQ3l5S1ZX?=
+ =?utf-8?B?M2sycjNuaGt1SUEvb1h5WXFESndhUUdidHJSS2lNTjRlbnpJZzJ5WFkvdTQ3?=
+ =?utf-8?B?Z3dZdE9WQXZyWXVhb1E3a3lkc1YyaFFIbWc3NVhGbW1NTDJQVHZ6VVdCWGxj?=
+ =?utf-8?B?S3M1NjgyMCsyMElsT0pPdVRLZTZ6UU9Yeng5VGFpRHVlekFmbURwT3JnalJX?=
+ =?utf-8?B?UUxIVkFtS01KcTF2QmZiMlVtWlEzeVJLTng2b2dCeEFxN0V6c2RCNGlDQ0JU?=
+ =?utf-8?B?bFhHTTBhczI5WHRMdk5qMEFjSEVhUzY3dCsxRlZWNGJ2Uld0Z083djQ1eHho?=
+ =?utf-8?B?ZmRkMnhBL2VFUEE2NzVJU3JDbGY3aTNhTUZHY05ORHF5RW4yUzNXVW9mTjFu?=
+ =?utf-8?B?YzFqeDFIcjlvMFlnT2FSeVJFMmJ3TXdKNmtISzlRU2k0SGZoQmRqamd0UlEz?=
+ =?utf-8?B?OW5jcDBjZlRKaThvMlBvMTBWd2hrWWtVMDhvZTVzNXE3ODNyZG5MMTZndmtL?=
+ =?utf-8?B?T0lubW93V0VSaTJCMjBXZHBTMlg3Ymt2TUUxenJoSmd2RmprYUQvMEdXMnd0?=
+ =?utf-8?B?dmtuN1ZjKzZzM0hObHpaaGZPRm1WeHdGUTRlWUtrTXVUcUI1Q2dqT1NwdEgx?=
+ =?utf-8?B?dWJRanlWL3g5T0dFUlVBY0R2UFVvVzdTVkVudnliWUNuSklpNXBjcnpwS1Va?=
+ =?utf-8?B?dmc5SFBVeFFHZW95UG85c05uWnVTU1NGUG5tc1lvekUvdFZJVTlocVNTWE5o?=
+ =?utf-8?B?MWh5N2E5dVN4TWRScmxuZUt3VXcrbHJQa25PQTFvbUlXaWdwTkdFY2VybjJ4?=
+ =?utf-8?B?VDVEakNyRk5xTUNFbTQrUkZYbVd3cDlwVzUwMVlpM3VEZ3pPNUdMd0Vnbit6?=
+ =?utf-8?B?TlN2ZnFmUVBQekhkemwzUVRNdHVPazdCWnM1V1A3Mmc4U0JVMGhSWnFndHZG?=
+ =?utf-8?B?NllSdURxRFhHeEprWG01b1ZaaVZld2x0bzhnNG9CWUVSMDdFSDlYK1dmN3RJ?=
+ =?utf-8?B?QStkSXFQOVFzNFNZMWRLOUczOUozVXgrQXVxK3BGd0dUMFdFaFFPTXBiVGFY?=
+ =?utf-8?B?MWRNSXgrM2trSmxMZU9hQVBkR1NQLzFYZko5UW5XaHM1b2w0SFJQMFlkZ2tv?=
+ =?utf-8?B?c1JHOWc2T3pXZHQ5SWMzVjA3UE5tR2dFaWNBQXJhVWhXeVNkTkhHcGxoMzFB?=
+ =?utf-8?B?MFZMSnQ1UDF2YXdhWlJDdXkwVklFdnc2MlNKS1BUTXYycFJOTTNaRVZxM1dr?=
+ =?utf-8?B?K3czMnlTVWxtOHZEMUFGZXZGUW1tcTlXYm9XRWNnNkM0ZW16WmZZMkxsT1VH?=
+ =?utf-8?B?U1VOVUxoRkVCSTR3MmVZZFgySmlYd2o4cVNzMVdmRExDbnlxK2llR2txWHZl?=
+ =?utf-8?B?WWJQZFE5S3NYVHgwN3VnK0JrUXR5MW9USitGSEV5UmprNERTYXdKY1VlODQw?=
+ =?utf-8?B?VVd1YjV2Z1ZpakMrbzBhQ0FQaUJNTWwvZ2hIMDliMHRtVUhRNEdldW55eUZO?=
+ =?utf-8?B?WVZudURnUHFVNXdSdm9URWZXM0lFcUEzVWRaUFZzOHVUbHd3TjdxcTZSUUlV?=
+ =?utf-8?B?SjBCNVFEUUNVNWh6djJMUUQ0b3MzUzJ3NVlEaUtIcDBaaXlKYSs2Q0ZOQlNO?=
+ =?utf-8?B?SGFoM0lEbnhTZEdNRmJnekVtVW5YaW9wNktyK0JHNmEwK3FSVjRxc0tZT0tr?=
+ =?utf-8?B?RGpsbForNGJ0SlNtVlM0RkdTZkM3Zzl6YVNoa0pmR09NcnVFcXdrUTM1WU4y?=
+ =?utf-8?Q?4w3IB1aOwZiOksi736+Yz95uhmVlHMcPgSlTX4m?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2771954e-0fc6-4678-401f-08dd635e50f3
+X-MS-Exchange-CrossTenant-AuthSource: PN0PR01MB10393.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Mar 2025 01:11:29.4521
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA0PR01MB6722
 
-Hi Krzysztof,
+Hey, Alexander
 
-On 3/13/25 1:48 AM, Krzysztof Kozlowski wrote:
-> On Wed, Mar 12, 2025 at 04:42:01PM -0700, Amit Sunil Dhamne wrote:
->> Add a new "fixed-batteries" DT property to connector class. This
->> property is populated with nodes associated with battery type power
->> supplies powering the USB PD connector. This is needed by the Type-C
->> Port Manager (TCPM) to query psy properties which are used to feed
-> What is "psy" in terms of bindings?
-In terms of bindings this should be a phandle to a device that 
-owns/manages the battery (whose driver will eventually call 
-devm_power_supply_register to register the battery). This could be a 
-fuel-guage ("sprd,sc2731-fgu", say), charger ("ti,bq24190") or a 
-platform device ("cw2015") containing "monitored-battery" property to 
-manage the simple battery.
->> Battery_Status & Battery_Capacity AMS.
+On 2025/3/14 8:51, Inochi Amaoto wrote:
+> On Sun, Mar 09, 2025 at 09:26:24PM +0100, Alexander Sverdlin wrote:
+>> Add driver for Sophgo CV1800 series SoC RTC subsystem. The RTC module
+>> comprises a 32kHz oscillator, Power-on-Reset (PoR) sub-module, HW state
+>> machine to control chip power-on, power-off and reset. Furthermore, the
+>> 8051 subsystem is located within RTCSYS including associated SRAM block.
 >>
->> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+>> This patch only populates RTC sub-device.
+>>
+>> Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
 >> ---
->>   Documentation/devicetree/bindings/connector/usb-connector.yaml | 8 ++++++++
->>   Documentation/devicetree/bindings/usb/maxim,max33359.yaml      | 1 +
->>   2 files changed, 9 insertions(+)
+>> Changelog:
+>> v13:
+>> - Moved the driver from MFD into SOC subsystem
+>> - Dropped unused "cv1800_rtcsys_rtc_subdev"
+>> v12:
+>> - new patch
 >>
->> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
->> index 11e40d225b9f3a0d0aeea7bf764f1c00a719d615..5e15bc060f5a2cfce842f83de738f1e8bae3ce2d 100644
->> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
->> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
->> @@ -300,6 +300,14 @@ properties:
->>       $ref: /schemas/types.yaml#/definitions/uint8-array
->>       maxItems: 4
->>   
->> +  fixed-batteries:
->> +    description: Contains references to nodes associated with battery type power
->> +      supplies powering the USB PD device. These batteries are fixed type and
-> What is a "battery type power supply"? If you just link here batteries,
-> then we have type for it - monitored-battery - but I doubt connector has
-> direct connection to the battery.
-Regarding "nodes associated with battery type power supplies", I meant 
-something like a fuel guage or a charger OR platform device with 
-"monitored-battery" that will manage the battery lifecycle. If I use 
-monitored-battery for this, I will be restricted to only querying 1 
-simple battery. Also, I don't mean PD connector device to be a fuel 
-guage or charger that manages a specific battery. It should just be able 
-to query any FG/Chg for the battery status to relay that info to the 
-connector's port partner.
+>>   MAINTAINERS                        |  1 +
+>>   drivers/soc/Kconfig                |  1 +
+>>   drivers/soc/Makefile               |  1 +
+>>   drivers/soc/sophgo/Kconfig         | 24 ++++++++++++
+>>   drivers/soc/sophgo/Makefile        |  3 ++
+>>   drivers/soc/sophgo/cv1800-rtcsys.c | 63 ++++++++++++++++++++++++++++++
+>>   6 files changed, 93 insertions(+)
+>>   create mode 100644 drivers/soc/sophgo/Kconfig
+>>   create mode 100644 drivers/soc/sophgo/Makefile
+>>   create mode 100644 drivers/soc/sophgo/cv1800-rtcsys.c
+>>
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 3eee238c2ea2..ac15e448fffb 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -22354,6 +22354,7 @@ L:	sophgo@lists.linux.dev
+>>   W:	https://github.com/sophgo/linux/wiki
+>>   T:	git https://github.com/sophgo/linux.git
+>>   S:	Maintained
+>> +F:	drivers/soc/sophgo/cv1800-rtcsys.c
+> Please change to the drivers/soc/sophgo/.
+> We should maintain all files under this.
 
-The intent of the patchset & this change is for the USB Type C protocol 
-manager module (that consumes these bindings) to be able to get info 
-(such as State of charge, design capacity, etc) from drivers that manage 
-the battery/batteries in the system. In order for such info to propagate 
-I need to hook up the references of these battery manager devices (fuel 
-guages, etc.) to connector.
+In addition to what Inochi mentioned, please add the following line:
 
-I have addressed the connector <-> battery question in the cover letter.
-
-
-> If you mean chargers, the OF graph is already there for this and no need
-> for this patch.
-
-No I don't mean just chargers in this case. Also, I didn't follow you on 
-the OF graph. Please can you explain further?
-
-
->
->> +      not hot swappable.
->> +    minItems: 1
->> +    maxItems: 4
->> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->> +
->>   dependencies:
->>     sink-vdos-v1: [ sink-vdos ]
->>     sink-vdos: [ sink-vdos-v1 ]
->> diff --git a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
->> index 3de4dc40b79192b60443421b557bd2fb18683bf7..66c99f0131f074f1c08e31d7481f555647e3b2f8 100644
->> --- a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
->> +++ b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
->> @@ -75,6 +75,7 @@ examples:
->>                                          PDO_FIXED(9000, 2000, 0)>;
->>                   sink-bc12-completion-time-ms = <500>;
->>                   pd-revision = /bits/ 8 <0x03 0x01 0x01 0x08>;
->> +                fixed-batteries = <&batt1 &batt2>;
-> Two phandles, so two <>.
-
-Ack. Will fix it in the next revision.
+F:    Documentation/devicetree/bindings/soc/sophgo/
 
 Thanks,
 
-Amit
+Chen
 
-> Best regards,
-> Krzysztof
->
+
+[......]
+
+
 
