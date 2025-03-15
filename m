@@ -1,96 +1,142 @@
-Return-Path: <devicetree+bounces-157839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EA9BA63134
-	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 19:01:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95504A63172
+	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 19:24:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E1823B13F0
-	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 18:00:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0932C7AA0D1
+	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 18:23:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27612204F63;
-	Sat, 15 Mar 2025 18:01:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD56920550C;
+	Sat, 15 Mar 2025 18:24:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=proton.me header.i=@proton.me header.b="YQBSNm5r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GgOOtrJ0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-40133.protonmail.ch (mail-40133.protonmail.ch [185.70.40.133])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B0001F790C;
-	Sat, 15 Mar 2025 18:00:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.40.133
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 993F02045A8;
+	Sat, 15 Mar 2025 18:24:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742061661; cv=none; b=rqSf1tVkz4MT7b9XTGbormzBRXbhRCmYsTRNya+QGwRDGW7MPgPCuqCdkc7JnVLUYmF6AmxSm8fgmm1BACDM0r67KqrVeXBNhfASDq5pQw7ouKplCOV8+6XPLh9qpme33f+gNBarB3ZYvzWrE3BfxREv0E134IUUsRLm7eathrs=
+	t=1742063052; cv=none; b=NDLPnheT46q54OsCPnJOLTvwYx1Romg/ybqHoOLDVYkCO8F64Ymb+qNW83QH9ozwRqwjOjYcoIKArnrilH1jr+9T9z1cNYNGpnlad7JrRAtq3SkJmV1Mr0h3vpcZCz5FyIcAzGzAOOAEZsdq6yjdRZ98mGN2ckZQyGVW/4axif8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742061661; c=relaxed/simple;
-	bh=AQGvhnW+89joQbtnIYgMqzkrKefUsN/EBiBpxqMXD3M=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=S6mQoDE+dhchrxROIzDimsAE3dGIidNYTcpJcccNwFmL0ZKBUhps0obYu2EoFTTnHUN+sHdT/xw/YNSIdtoJRMIuHGiWcZcxCGQbPdDSX0KknMkCpxLCM5cQvYKTvLkf7R6P21F7cI2y7fxSydK/wJ3NyCYW6ZuRnzcH3oq99kE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me; spf=pass smtp.mailfrom=proton.me; dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b=YQBSNm5r; arc=none smtp.client-ip=185.70.40.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=proton.me
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
-	s=protonmail; t=1742061656; x=1742320856;
-	bh=AQGvhnW+89joQbtnIYgMqzkrKefUsN/EBiBpxqMXD3M=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
-	b=YQBSNm5rm3zDSkda26bpQz4cz3kOmYU0eTl0lth9UKvCZXGjSGzd6PsjFfUKKMy3J
-	 GrYoFmqDIXnYxh6q/bn2zQJdg3uA9rkmXmBHe5Tdyoc6rpYBojJlYDHrjGyIe2kR4t
-	 +EZ56x1KZ+F86WXa1sZThE/dGYNe/VVb2Ba8ITYCCd32Obp+P9T8bKEoZyUsv9k2M8
-	 ztNaBlLgOiveGrJphf+wqT8fq9AOcc2L/Iee/wIICoez++0FIyC7FUq8Kslmk+I8Lz
-	 PA+VltRu0qSquuI4YM48XtMZvBm6we7E28qwveNZlP5uQZvUZT963yorq5xNXTFwVP
-	 ch5qzW3cxAUmA==
-Date: Sat, 15 Mar 2025 18:00:50 +0000
-To: Boqun Feng <boqun.feng@gmail.com>
-From: Benno Lossin <benno.lossin@proton.me>
-Cc: Tamir Duberstein <tamird@gmail.com>, Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Gary Guo <gary@garyguo.net>, =?utf-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com,
-	linux-pci@vger.kernel.org, linux-block@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 6/6] rust: use strict provenance APIs
-Message-ID: <D8H1B8HT45UJ.OQ8N8YS92UL5@proton.me>
-In-Reply-To: <Z9V0jSfuhqWi_t52@Mac.home>
-References: <20250314-ptr-as-ptr-v3-0-e7ba61048f4a@gmail.com> <20250314-ptr-as-ptr-v3-6-e7ba61048f4a@gmail.com> <67d4a57f.c80a0220.16ff45.9cf1@mx.google.com> <D8GQJQFGKB8C.DZBUZT4IJIM0@proton.me> <Z9V0jSfuhqWi_t52@Mac.home>
-Feedback-ID: 71780778:user:proton
-X-Pm-Message-ID: e83c3409294cafcbb4ff1e1cee286a3ff1c398c1
+	s=arc-20240116; t=1742063052; c=relaxed/simple;
+	bh=1OSMH1Qhc2HVIdN9lUo5EIcgC/VQXR5nLtIJGdwCXyE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=DIljA+domFYOb9RJrQ0UIvPobpVQ8nQYeeRkiDuZ9A9PpAhYv+oFBLiw++mlfSP7jBGDVbVTbij8Gjs+kQl6G77EBNTgugsXueIAkwl3DDV9a3M61fV9XvmAfTKR/C60whME1j0B5chgIeQLWYN97q1yXsoPigc5mZq5u8aud28=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GgOOtrJ0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8BFAC4CEE5;
+	Sat, 15 Mar 2025 18:24:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742063052;
+	bh=1OSMH1Qhc2HVIdN9lUo5EIcgC/VQXR5nLtIJGdwCXyE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=GgOOtrJ04G5i3Wfl+n9/xw1Wu/Brh1HvHBRaiKd9qDbcT1gNslP1tCFL8CRSKn4Ek
+	 pehiJ4/thFy4b6YlCtwdrKwF6cj25sLYkRxXRLK+4cuIIBZr1Rc8Lrrcf1bhafu/wb
+	 V3VThXpOznoB+1eByBZ6Yhc07WRkiEPkCCeeAFULv+QTN95P5+Walvvu0q+mBieMmM
+	 m5yPoLCqT+uSh1ezDG8WhS7eiUODnWPUddqcT68qU86/wRf+hziYzrQH/FQH6N66fs
+	 YgGkrKs5jPBC4noCSX7RqPJvckiqeSL38xcK9omvFH2ZWyY9ExsLHTvGCQAonn9meE
+	 n/uRtIKbDMbXg==
+Date: Sat, 15 Mar 2025 18:24:02 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Jorge Marques <gastmaier@gmail.com>
+Cc: David Lechner <dlechner@baylibre.com>, Jorge Marques
+ <jorge.marques@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH 3/4] docs: iio: new docs for ad4052 driver
+Message-ID: <20250315182402.59f3ccf4@jic23-huawei>
+In-Reply-To: <27kqar3ugxjzwss7hzxil2hz3kxaunnkpaaas3nnzemhssf6mo@65xknov7jh7k>
+References: <20250306-iio-driver-ad4052-v1-0-2badad30116c@analog.com>
+	<20250306-iio-driver-ad4052-v1-3-2badad30116c@analog.com>
+	<CAMknhBFiZZUtCkTjQ=AVSgwqe=wCkMnqAmaTqvW_X6fm1OKuYA@mail.gmail.com>
+	<e3p2r2fet2spkrxv7x76gunlivrp3vng22wktz4fkww5nkckt7@jpgne4uerr3c>
+	<6ca1eafd-276d-421b-8d35-bd3e363803d1@baylibre.com>
+	<20250310195629.47ca023f@jic23-huawei>
+	<27kqar3ugxjzwss7hzxil2hz3kxaunnkpaaas3nnzemhssf6mo@65xknov7jh7k>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Sat Mar 15, 2025 at 1:37 PM CET, Boqun Feng wrote:
-> On Sat, Mar 15, 2025 at 09:34:42AM +0000, Benno Lossin wrote:
-> [...]
->> > The rest Rust code changes look good to me. Although I would suggest y=
-ou
->> > to split this patch into several patches: you can do the conversion fr=
-om
->> > "as" pattern to provenance API one file by one file, and this make it
->> > easier for people to review. And after the conversions are done, you c=
-an
->> > introduce the Makefile changes.
->>=20
->> I think it's fine to do several of the `as` conversions in a single
->
-> Well, "fine" !=3D "recommended", right? ;-) If the patch was split,
-> reviewers would be able to give Reviewed-by to individual patches that
-> looks fine trivially. Then it's easier to make progress every iteration,
-> and also allows partially applying the changes. Of course it doesn't
-> have to be file-by-file.
+On Fri, 14 Mar 2025 18:34:46 +0100
+Jorge Marques <gastmaier@gmail.com> wrote:
 
-While I see your point, in this case splitting file-by-file is too much.
-v4 has: 9 files changed, 82 insertions(+), 27 deletions(-). I've seen
-much bigger changes that do smaller things like this patch.
+> On Mon, Mar 10, 2025 at 07:56:29PM +0000, Jonathan Cameron wrote:
+> > On Mon, 10 Mar 2025 09:31:45 -0500
+> > David Lechner <dlechner@baylibre.com> wrote:
+> >   
+> > > On 3/9/25 3:49 PM, Jorge Marques wrote:  
+> > > >>> +   * - ``sample_rate``
+> > > >>> +     - Device internal sample rate used in the burst averaging mode.
+> > > >>> +   * - ``sample_rate_available``
+> > > >>> +     - List of available sample rates.    
+> > > >>
+> > > >> Why not using the standard sampling_frequency[_available] attributes?    
+> > > > Because sampling_frequency is the sampling frequency for the pwm trigger
+> > > > during buffer readings.
+> > > > sample_rate is the internal device clock used during monitor and burst
+> > > > averaging modes.    
+> > > 
+> > > I haven't done a chips with a monitor mode yet where we aren't reading
+> > > the samples, so hopefully Jonathan will chime in here on the usual way
+> > > to handle that.
+> > > 
+> > > For the burst averaging mode, I understand the need for a separate attribute
+> > > now. I would suggest to call this the conversion_frequency rather than
+> > > sampling_rate since IIO already defines "sampling" to be the data read
+> > > from the chip to Linux even if it is an averaged value, it still counts
+> > > as one sample.  
+> > 
+> > I should have read on.  I'd like this more closely associated with oversampling.
+> > As per other reply we use sampling_frequency in the events directory for
+> > the monitoring frequency case.  One of our very first drivers did this
+> > (max1363) so it's been in the ABI a long time!
+> >   
+> 
+> I get the idea but maybe the datasheet sample rate as conversion_frequency
+> and stored as a channel attribute (iio_chan_spec.ext_info) is clear enough.
 
-At around 150 lines added + deleted I find it more and more difficult.
+It's not standard ABI. So no standard userspace code will be aware of it.
+we can add to standard ABI, but only if we can't support a feature with
+what is already defined. Event then we need to keep it consistent with
+existing ABI.
 
----
-Cheers,
-Benno
+Note that the first step on any ABI is to write documentation for it in 
+Documentation/ABI/testing/sysfs-bus-iio-*
+That can help people understand what is being proposed and allows discussion
+of how to generalize any new ABI to be useful across many drivers.
+> 
+> The datasheet sample rate affects both the burst averaging mode (oversampling) and
+> monitor mode (threshold events).
+
+True, but are both occurring at the same time?  My reading of the situation was
+that they weren't but I could be wrong.  If they aren't then just rewrite the register
+to a cached value when you change mode.
+
+> 
+> The max1363 stores as an event attribute (iio_info.event_attr) and requires iio/sysfs.h include.
+> A last option is to store as a general purpose device attribute (iio_info.attrs).
+> As a channel attribute, the driver logic is slightly simpler by using the macros.
+
+Agreed that non standard event attributes are a bit trickier to deal with.  They
+have never been common enough for us to fix that.  However the ABI exists
+and is documented, so that's almost certainly the way to go.
+
+Jonathan
+> 
+> Jorge
 
 
