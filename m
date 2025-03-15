@@ -1,438 +1,212 @@
-Return-Path: <devicetree+bounces-157830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72E7FA62F8D
-	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 16:49:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EE55A62FA2
+	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 16:51:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D86E23BE628
-	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 15:48:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA1F73A84E7
+	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 15:50:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5948209671;
-	Sat, 15 Mar 2025 15:45:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22F3C1FE44A;
+	Sat, 15 Mar 2025 15:50:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dPQpdSJd"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="BkSEMX9O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D17A204C17;
-	Sat, 15 Mar 2025 15:45:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742053506; cv=none; b=EEtNEMbTWrl9RW+YlNvzukD820hY6KduBFAdA21JEe2lhYCrxxrR1OKsKaGEOvuzzTQTb6qvkH7LDsRnkYBIYaX66mO+memLovVJpkPS4isOpZ3aQH0/YGrRTqsADj1sirunGvgHLxAq9UGx4fIvgqdhckiosqoAFEccKGtHF3c=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742053506; c=relaxed/simple;
-	bh=CZNnFCjJCZYvYDRdxVWMIKXQ05F8FamwtdxjyfoTYWo=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=nEiKzMJ6jdGptHPtXzOLvsJeMYsFRzi+mRKr3XaDIWVygkoCtnLWeN2kuH3or34+XMOk51+cTzwv1sZ1r9SBOpWeI9OZeR573aajRwyPyyV4mc9RmeQpuY6krBJJ7wZropbfxZ6wlwFeR7mhsxl6K0oyPggX3Wu7UzBi7n7mq2c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dPQpdSJd; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-43cfa7e7f54so3682265e9.1;
-        Sat, 15 Mar 2025 08:45:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742053503; x=1742658303; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=26JJCmlDcdbfYCpzjJ343B/Vx1BEYMaxX+SKZPRwncE=;
-        b=dPQpdSJdGEsDzKygKPxgbC4n3NYCEFoJ92Os50A4JXH9LKlwxyvfTIFRxsEPer3ykv
-         EZPf0Dc/ecjsR6PkhC/S7vJAurhJ5wpNe/8h35T9cvZlDd3Ovm+fHGdkO3en8aaUI+pk
-         24QuTVP1BdyoUTGvMJNXZWiTwxyZgZiXnz+Sh6OqSz69Z2Df9rDLPF+Uc3xCwvfLbQmz
-         XI/QAVWDSZS+qOe04pHMRGGvdjuHCxQNutmiC7qnwXqoF/0/as4PIAT5m0gwPBeAdFtI
-         LwSiMI42+6x3A/f0TZJwiUpECeodXZQmjrTk8DBtHBj4UcKIrQG8vDJlb9o8KMYMOsFn
-         iNBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742053503; x=1742658303;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=26JJCmlDcdbfYCpzjJ343B/Vx1BEYMaxX+SKZPRwncE=;
-        b=a/jaC18oMWtPtnfbytdq2YO+SIgKOGGnx6U9EwD9e3S6ihio9VnVoqZv9XhnW0C6SF
-         iMor8mmNN70fdqnZK+pcdnzPnjdXjJmAU+K8vnr31FlDyMRvCSpMqDrl9pJMhO93tMGj
-         XHnDmhgVmWqbBZAIQUgwYCCVFGW20S7k5hebkKIbL2clNQ4Gs2TS8XmGjNAAfEe4psVO
-         AiPCVTXyy8P6oUfxprqUiarJPAQ/p4Qw/DS2zqWiHcPqkzDCnbDhsZ7udEoeKtllJeF0
-         zXyeVels6hz06lYjr/WS2xtYzplDpYYjtj6tzCgeOVCqUWXILMQVNZBoXA3hnwb6gSwx
-         HlrQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWSSt8z2wJFKzk7A9xYak/b/GTgk00qJgWUY88Fek+KgI7bgLW2BOQ1YBHztbhSQ7aQwdh8H5K6@vger.kernel.org, AJvYcCWt5wsveBwBYDZW3aJoKOUSexNANV5WdZIYNxr9j5bH1AWd62v9u97YNY8QX+rqhqGUZU+mL6kedatT@vger.kernel.org, AJvYcCXBT6GhfHnn4ZljlmEdwkSrmT6YHSyrNxLlW1lTADXahoD4bPQBXWshd4S20C+Pq0Ft7P8V77sdC90k3wDX@vger.kernel.org
-X-Gm-Message-State: AOJu0YyjwY5+bPKtEM7Rc4x2//PQv6BPsdW3WoZ2q89FdRSoAU8Zfhzk
-	tEwm8Sk1ML8OTkQtXEhz5mnvxJfol7zVytxBEzShnT6XjxVrpa3o
-X-Gm-Gg: ASbGnctJe5mYM+Ja4LI3I2EAoAhXIz2eWCGT729jwSYwgJ8ni/GdLn8BAMXbELQAa20
-	iOIGH7/pemxYlDnnNOmwNCzpvAvuE7m7HUQqgiiq9vGZJPN8mQKtvRSSBPvr2PKkggiqsDfXlrn
-	bAOh5tIHXxdD4EgwFNJEJDtT4UC+69lx9CHTvYrPqpPr0LGmfeOWF6tjDI1u3iexiHlvnq0Vl2u
-	m50jdqJw3tXZm/EM6LkMZDHQeiNPQVIj9Q6axJb2/p4qCOTgBAqXHs1ojAPCYl/9W2lpqSRJZ1O
-	2cZTMsPUqf6kclVvAJ3+4TAqXWrrUW4caEwoQ3V1Oji13vJDsJCS7RfkJQODnBVK0bOj1mNnBro
-	4AMqtSIJ2ALTWsw==
-X-Google-Smtp-Source: AGHT+IFmXsN8klX4GsDMXZh30znszwsLJ4cYBQtCjrSXHMtPD4sogoTlG8Lw8sNMVKOhx4PuKqFaOA==
-X-Received: by 2002:a05:600c:4ed2:b0:439:4b23:9e8e with SMTP id 5b1f17b1804b1-43d1f1d2bb6mr80487135e9.3.1742053502842;
-        Sat, 15 Mar 2025 08:45:02 -0700 (PDT)
-Received: from localhost.localdomain (93-34-90-129.ip49.fastwebnet.it. [93.34.90.129])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-43d1fe0636dsm53464195e9.11.2025.03.15.08.45.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 15 Mar 2025 08:45:02 -0700 (PDT)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Christian Marangi <ansuelsmth@gmail.com>,
-	Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	upstream@airoha.com
-Subject: [net-next PATCH v13 14/14] net: phy: Add Airoha AN8855 Internal Switch Gigabit PHY
-Date: Sat, 15 Mar 2025 16:43:54 +0100
-Message-ID: <20250315154407.26304-15-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250315154407.26304-1-ansuelsmth@gmail.com>
-References: <20250315154407.26304-1-ansuelsmth@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E7EB18C93C;
+	Sat, 15 Mar 2025 15:50:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1742053815; cv=pass; b=V3wXnTmpSRYF4m5QU7iei4apdse4O8VwQkncLGulCiSzCGIjuafjOg8ZWUjc4sc+205yqayPy2M166YP4f6FRkC7wS7stciP70DS/WA1uHHLJr9pRaa+0kAUTahr9GNFfC8wN2XNggoXCex3u4N8vHZPBVIup2KQ6MlXgzhsSco=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1742053815; c=relaxed/simple;
+	bh=pB3o5+BRGDWm6IPHzZPOcWXOzJO2cZb6dTWn7LYbZAo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cjl6xqvsexiCGGplv1MyBHirDC91HgWn1Wh/34T8bm29FX3y6zxFezjL6Tg1YUzHVAuaQSB6o4V3DxmachtS2zln1ME7XEUCl7hMvk1X0ndjRM82MI783zyJtfFhAGlxPHssbuT4XEfYrCWEJz74kPsgmnTvolCJNnVvRevbI4U=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=BkSEMX9O; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1742053801; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=i+ro1dcF0uLPsvgZAigD9GaSe9Ek08AWP3dw4wN5ka69aQTv8z50hluFYNXK/GKVO6Uhq0xAv3jU8bVkY+JPzRCuYoOkGObjLQHsCtGKUrWvrdZW9bYlsojxjbhKfNFy7S8htJiWRez3Rmhjia0CSsKW2fBZvZ2eZcYyoubUBzA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1742053801; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=N8+vIxETG6iM1XQNH9Vk8x/eH2pOCLTXfTh1U91auIQ=; 
+	b=kq6H0OiMnlN8IW9idpBf5ao6gVAYMcpSWHoTqjoWjPBr36YRI4Vfp7AKb9qJrvTOn+zAt/zrj4Nt3IqqVybd2/PtKCLH8nc9ZsPUgQACTRIw3sWkGsqizetfRRs02fzlPXOBcs2/xr4VFMCM8jQsGwzCcLbAJpxDTloCiDl1FVQ=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1742053801;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=N8+vIxETG6iM1XQNH9Vk8x/eH2pOCLTXfTh1U91auIQ=;
+	b=BkSEMX9OzriOy5Sl/SdoFjnQsJW4Gpj62CrPgCJqRml1VrdO4Jz5lIjOoKmokpVw
+	4r+eLKMMEtlkwJhU9ztSXXLxY6krX9I0tzGzjGCtVL/HZDfNY+s93uNTzJ/wxvGdSHp
+	Gu5cbd6mZPC5VgIVryyblgJwueUr6HbED3pLrYHU=
+Received: by mx.zohomail.com with SMTPS id 1742053799582395.2728081327041;
+	Sat, 15 Mar 2025 08:49:59 -0700 (PDT)
+Received: by venus (Postfix, from userid 1000)
+	id 7EBD818068B; Sat, 15 Mar 2025 16:49:55 +0100 (CET)
+Date: Sat, 15 Mar 2025 16:49:55 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: David Heidelberg <david@ixit.cz>
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Pavel Machek <pavel@kernel.org>, Pavel Machek <pavel@ucw.cz>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] media: dt-bindings: Convert Analog Devices ad5820 to
+ DT schema
+Message-ID: <ih3ykzxrnpbwg4bvkmpoo2tashcxidir4r4zofhlvrs7udkp7o@6qtqh6wtmkwd>
+References: <20250314-b4-ad5820-dt-yaml-v2-1-287958c3c07c@ixit.cz>
+ <Z9SYOCVxt70u_bad@kekkonen.localdomain>
+ <ec820dbf-5a37-4477-a99d-f3fbe338c198@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="azdwkisa6isnhljf"
+Content-Disposition: inline
+In-Reply-To: <ec820dbf-5a37-4477-a99d-f3fbe338c198@ixit.cz>
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.4.2/242.14.74
+X-ZohoMailClient: External
 
-Add support for Airoha AN8855 Internal Switch Gigabit PHY.
 
-This is a simple PHY driver to configure and calibrate the PHY for the
-AN8855 Switch with the use of NVMEM cells.
+--azdwkisa6isnhljf
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2] media: dt-bindings: Convert Analog Devices ad5820 to
+ DT schema
+MIME-Version: 1.0
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- MAINTAINERS                  |   1 +
- drivers/net/phy/Kconfig      |   5 +
- drivers/net/phy/Makefile     |   1 +
- drivers/net/phy/air_an8855.c | 261 +++++++++++++++++++++++++++++++++++
- 4 files changed, 268 insertions(+)
- create mode 100644 drivers/net/phy/air_an8855.c
+Hello,
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e285fa2702f5..41fb4d0d7fdb 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -734,6 +734,7 @@ F:	drivers/mfd/airoha-an8855.c
- F:	drivers/net/dsa/an8855.c
- F:	drivers/net/dsa/an8855.h
- F:	drivers/net/mdio/mdio-an8855.c
-+F:	drivers/net/phy/air_an8855.c
- F:	drivers/nvmem/an8855-efuse.c
- 
- AIROHA ETHERNET DRIVER
-diff --git a/drivers/net/phy/Kconfig b/drivers/net/phy/Kconfig
-index d29f9f7fd2e1..e96f61b8eaba 100644
---- a/drivers/net/phy/Kconfig
-+++ b/drivers/net/phy/Kconfig
-@@ -79,6 +79,11 @@ config SFP
- 
- comment "MII PHY device drivers"
- 
-+config AIR_AN8855_PHY
-+	tristate "Airoha AN8855 Internal Gigabit PHY"
-+	help
-+	  Currently supports the internal Airoha AN8855 Switch PHY.
-+
- config AIR_EN8811H_PHY
- 	tristate "Airoha EN8811H 2.5 Gigabit PHY"
- 	help
-diff --git a/drivers/net/phy/Makefile b/drivers/net/phy/Makefile
-index 8f9ba5e8290d..d4f537ba006c 100644
---- a/drivers/net/phy/Makefile
-+++ b/drivers/net/phy/Makefile
-@@ -36,6 +36,7 @@ obj-y				+= $(sfp-obj-y) $(sfp-obj-m)
- 
- obj-$(CONFIG_ADIN_PHY)		+= adin.o
- obj-$(CONFIG_ADIN1100_PHY)	+= adin1100.o
-+obj-$(CONFIG_AIR_AN8855_PHY)   += air_an8855.o
- obj-$(CONFIG_AIR_EN8811H_PHY)   += air_en8811h.o
- obj-$(CONFIG_AMD_PHY)		+= amd.o
- obj-$(CONFIG_AMCC_QT2025_PHY)	+= qt2025.o
-diff --git a/drivers/net/phy/air_an8855.c b/drivers/net/phy/air_an8855.c
-new file mode 100644
-index 000000000000..a740dbaacf9a
---- /dev/null
-+++ b/drivers/net/phy/air_an8855.c
-@@ -0,0 +1,261 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Copyright (C) 2024 Christian Marangi <ansuelsmth@gmail.com>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/module.h>
-+#include <linux/nvmem-consumer.h>
-+#include <linux/of.h>
-+#include <linux/phy.h>
-+
-+#define AN8855_PHY_SELECT_PAGE			0x1f
-+#define   AN8855_PHY_PAGE			GENMASK(2, 0)
-+#define   AN8855_PHY_PAGE_STANDARD		FIELD_PREP_CONST(AN8855_PHY_PAGE, 0x0)
-+#define   AN8855_PHY_PAGE_EXTENDED_1		FIELD_PREP_CONST(AN8855_PHY_PAGE, 0x1)
-+
-+/* MII Registers Page 1 */
-+#define AN8855_PHY_EXT_REG_14			0x14
-+#define   AN8855_PHY_EN_DOWN_SHIFT		BIT(4)
-+
-+/* R50 Calibration regs in MDIO_MMD_VEND1 */
-+#define AN8855_PHY_R500HM_RSEL_TX_AB		0x174
-+#define AN8855_PHY_R50OHM_RSEL_TX_A_EN		BIT(15)
-+#define AN8855_PHY_R50OHM_RSEL_TX_A		GENMASK(14, 8)
-+#define AN8855_PHY_R50OHM_RSEL_TX_B_EN		BIT(7)
-+#define AN8855_PHY_R50OHM_RSEL_TX_B		GENMASK(6, 0)
-+#define AN8855_PHY_R500HM_RSEL_TX_CD		0x175
-+#define AN8855_PHY_R50OHM_RSEL_TX_C_EN		BIT(15)
-+#define AN8855_PHY_R50OHM_RSEL_TX_C		GENMASK(14, 8)
-+#define AN8855_PHY_R50OHM_RSEL_TX_D_EN		BIT(7)
-+#define AN8855_PHY_R50OHM_RSEL_TX_D		GENMASK(6, 0)
-+
-+#define AN8855_SWITCH_EFUSE_R50O		GENMASK(30, 24)
-+
-+/* PHY TX PAIR DELAY SELECT Register */
-+#define AN8855_PHY_TX_PAIR_DLY_SEL_GBE		0x013
-+#define   AN8855_PHY_CR_DA_TX_PAIR_DELKAY_SEL_A_GBE GENMASK(14, 12)
-+#define   AN8855_PHY_CR_DA_TX_PAIR_DELKAY_SEL_B_GBE GENMASK(10, 8)
-+#define   AN8855_PHY_CR_DA_TX_PAIR_DELKAY_SEL_C_GBE GENMASK(6, 4)
-+#define   AN8855_PHY_CR_DA_TX_PAIR_DELKAY_SEL_D_GBE GENMASK(2, 0)
-+/* PHY ADC Register */
-+#define AN8855_PHY_RXADC_CTRL			0x0d8
-+#define   AN8855_PHY_RG_AD_SAMNPLE_PHSEL_A	BIT(12)
-+#define   AN8855_PHY_RG_AD_SAMNPLE_PHSEL_B	BIT(8)
-+#define   AN8855_PHY_RG_AD_SAMNPLE_PHSEL_C	BIT(4)
-+#define   AN8855_PHY_RG_AD_SAMNPLE_PHSEL_D	BIT(0)
-+#define AN8855_PHY_RXADC_REV_0			0x0d9
-+#define   AN8855_PHY_RG_AD_RESERVE0_A		GENMASK(15, 8)
-+#define   AN8855_PHY_RG_AD_RESERVE0_B		GENMASK(7, 0)
-+#define AN8855_PHY_RXADC_REV_1			0x0da
-+#define   AN8855_PHY_RG_AD_RESERVE0_C		GENMASK(15, 8)
-+#define   AN8855_PHY_RG_AD_RESERVE0_D		GENMASK(7, 0)
-+
-+#define AN8855_PHY_ID				0xc0ff0410
-+
-+struct air_an8855_priv {
-+	bool needs_calibration;
-+};
-+
-+static const u8 dsa_r50ohm_table[] = {
-+	127, 127, 127, 127, 127, 127, 127, 127, 127, 127,
-+	127, 127, 127, 127, 127, 127, 127, 126, 122, 117,
-+	112, 109, 104, 101,  97,  94,  90,  88,  84,  80,
-+	78,  74,  72,  68,  66,  64,  61,  58,  56,  53,
-+	51,  48,  47,  44,  42,  40,  38,  36,  34,  32,
-+	31,  28,  27,  24,  24,  22,  20,  18,  16,  16,
-+	14,  12,  11,   9
-+};
-+
-+static int en8855_get_r50ohm_val(struct device *dev, const char *calib_name,
-+				 u8 *dest)
-+{
-+	u32 shift_sel, val;
-+	int ret;
-+	int i;
-+
-+	ret = nvmem_cell_read_u32(dev, calib_name, &val);
-+	if (ret)
-+		return ret;
-+
-+	shift_sel = FIELD_GET(AN8855_SWITCH_EFUSE_R50O, val);
-+	for (i = 0; i < ARRAY_SIZE(dsa_r50ohm_table); i++)
-+		if (dsa_r50ohm_table[i] == shift_sel)
-+			break;
-+
-+	if (i < 8 || i >= ARRAY_SIZE(dsa_r50ohm_table))
-+		*dest = dsa_r50ohm_table[25];
-+	else
-+		*dest = dsa_r50ohm_table[i - 8];
-+
-+	return 0;
-+}
-+
-+static int an8855_probe(struct phy_device *phydev)
-+{
-+	struct device *dev = &phydev->mdio.dev;
-+	struct air_an8855_priv *priv;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->needs_calibration = of_property_present(dev->of_node,
-+						      "nvmem-cells");
-+
-+	phydev->priv = priv;
-+
-+	return 0;
-+}
-+
-+static int an8855_get_downshift(struct phy_device *phydev, u8 *data)
-+{
-+	int val;
-+
-+	val = phy_read_paged(phydev, AN8855_PHY_PAGE_EXTENDED_1, AN8855_PHY_EXT_REG_14);
-+	if (val < 0)
-+		return val;
-+
-+	*data = val & AN8855_PHY_EN_DOWN_SHIFT ? DOWNSHIFT_DEV_DEFAULT_COUNT :
-+						 DOWNSHIFT_DEV_DISABLE;
-+
-+	return 0;
-+}
-+
-+static int an8855_set_downshift(struct phy_device *phydev, u8 cnt)
-+{
-+	u16 ds = cnt != DOWNSHIFT_DEV_DISABLE ? AN8855_PHY_EN_DOWN_SHIFT : 0;
-+
-+	return phy_modify_paged(phydev, AN8855_PHY_PAGE_EXTENDED_1,
-+				AN8855_PHY_EXT_REG_14, AN8855_PHY_EN_DOWN_SHIFT,
-+				ds);
-+}
-+
-+static int an8855_config_init(struct phy_device *phydev)
-+{
-+	struct air_an8855_priv *priv = phydev->priv;
-+	struct device *dev = &phydev->mdio.dev;
-+	int ret;
-+
-+	/* Enable HW auto downshift */
-+	ret = an8855_set_downshift(phydev, DOWNSHIFT_DEV_DEFAULT_COUNT);
-+	if (ret)
-+		return ret;
-+
-+	if (priv->needs_calibration) {
-+		u8 calibration_data[4];
-+
-+		ret = en8855_get_r50ohm_val(dev, "tx_a", &calibration_data[0]);
-+		if (ret)
-+			return ret;
-+
-+		ret = en8855_get_r50ohm_val(dev, "tx_b", &calibration_data[1]);
-+		if (ret)
-+			return ret;
-+
-+		ret = en8855_get_r50ohm_val(dev, "tx_c", &calibration_data[2]);
-+		if (ret)
-+			return ret;
-+
-+		ret = en8855_get_r50ohm_val(dev, "tx_d", &calibration_data[3]);
-+		if (ret)
-+			return ret;
-+
-+		ret = phy_modify_mmd(phydev, MDIO_MMD_VEND1, AN8855_PHY_R500HM_RSEL_TX_AB,
-+				     AN8855_PHY_R50OHM_RSEL_TX_A | AN8855_PHY_R50OHM_RSEL_TX_B,
-+				     FIELD_PREP(AN8855_PHY_R50OHM_RSEL_TX_A, calibration_data[0]) |
-+				     FIELD_PREP(AN8855_PHY_R50OHM_RSEL_TX_B, calibration_data[1]));
-+		if (ret)
-+			return ret;
-+		ret = phy_modify_mmd(phydev, MDIO_MMD_VEND1, AN8855_PHY_R500HM_RSEL_TX_CD,
-+				     AN8855_PHY_R50OHM_RSEL_TX_C | AN8855_PHY_R50OHM_RSEL_TX_D,
-+				     FIELD_PREP(AN8855_PHY_R50OHM_RSEL_TX_C, calibration_data[2]) |
-+				     FIELD_PREP(AN8855_PHY_R50OHM_RSEL_TX_D, calibration_data[3]));
-+		if (ret)
-+			return ret;
-+	}
-+
-+	/* Apply values to reduce signal noise */
-+	ret = phy_write_mmd(phydev, MDIO_MMD_VEND1, AN8855_PHY_TX_PAIR_DLY_SEL_GBE,
-+			    FIELD_PREP(AN8855_PHY_CR_DA_TX_PAIR_DELKAY_SEL_A_GBE, 0x4) |
-+			    FIELD_PREP(AN8855_PHY_CR_DA_TX_PAIR_DELKAY_SEL_C_GBE, 0x4));
-+	if (ret)
-+		return ret;
-+	ret = phy_write_mmd(phydev, MDIO_MMD_VEND1, AN8855_PHY_RXADC_CTRL,
-+			    AN8855_PHY_RG_AD_SAMNPLE_PHSEL_A |
-+			    AN8855_PHY_RG_AD_SAMNPLE_PHSEL_C);
-+	if (ret)
-+		return ret;
-+	ret = phy_write_mmd(phydev, MDIO_MMD_VEND1, AN8855_PHY_RXADC_REV_0,
-+			    FIELD_PREP(AN8855_PHY_RG_AD_RESERVE0_A, 0x1));
-+	if (ret)
-+		return ret;
-+	ret = phy_write_mmd(phydev, MDIO_MMD_VEND1, AN8855_PHY_RXADC_REV_1,
-+			    FIELD_PREP(AN8855_PHY_RG_AD_RESERVE0_C, 0x1));
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int an8855_get_tunable(struct phy_device *phydev,
-+			      struct ethtool_tunable *tuna, void *data)
-+{
-+	switch (tuna->id) {
-+	case ETHTOOL_PHY_DOWNSHIFT:
-+		return an8855_get_downshift(phydev, data);
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+}
-+
-+static int an8855_set_tunable(struct phy_device *phydev,
-+			      struct ethtool_tunable *tuna, const void *data)
-+{
-+	switch (tuna->id) {
-+	case ETHTOOL_PHY_DOWNSHIFT:
-+		return an8855_set_downshift(phydev, *(const u8 *)data);
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+}
-+
-+static int an8855_read_page(struct phy_device *phydev)
-+{
-+	return __phy_read(phydev, AN8855_PHY_SELECT_PAGE);
-+}
-+
-+static int an8855_write_page(struct phy_device *phydev, int page)
-+{
-+	return __phy_write(phydev, AN8855_PHY_SELECT_PAGE, page);
-+}
-+
-+static struct phy_driver an8855_driver[] = {
-+{
-+	PHY_ID_MATCH_EXACT(AN8855_PHY_ID),
-+	.name			= "Airoha AN8855 internal PHY",
-+	/* PHY_GBIT_FEATURES */
-+	.flags			= PHY_IS_INTERNAL,
-+	.probe			= an8855_probe,
-+	.config_init		= an8855_config_init,
-+	.soft_reset		= genphy_soft_reset,
-+	.get_tunable		= an8855_get_tunable,
-+	.set_tunable		= an8855_set_tunable,
-+	.suspend		= genphy_suspend,
-+	.resume			= genphy_resume,
-+	.read_page		= an8855_read_page,
-+	.write_page		= an8855_write_page,
-+}, };
-+
-+module_phy_driver(an8855_driver);
-+
-+static struct mdio_device_id __maybe_unused an8855_tbl[] = {
-+	{ PHY_ID_MATCH_EXACT(AN8855_PHY_ID) },
-+	{ }
-+};
-+
-+MODULE_DEVICE_TABLE(mdio, an8855_tbl);
-+
-+MODULE_DESCRIPTION("Airoha AN8855 PHY driver");
-+MODULE_AUTHOR("Christian Marangi <ansuelsmth@gmail.com>");
-+MODULE_LICENSE("GPL");
--- 
-2.48.1
+On Sat, Mar 15, 2025 at 02:18:40PM +0100, David Heidelberg wrote:
+> On 14/03/2025 21:57, Sakari Ailus wrote:
+> > Thanks for converting this to YAML.
+> >=20
+> > On Fri, Mar 14, 2025 at 08:58:27PM +0100, David Heidelberg via B4 Relay=
+ wrote:
+> > > From: David Heidelberg <david@ixit.cz>
+> > >=20
+> > > Convert the Analog Devices ad5820 to DT schema format.
+> > >=20
+> > > Add the previously undocumented io-channel-cells property,
+> > > which can be omitted. If present, it must be set to 0,
+> > > as the device provides only one channel.
+> >=20
+> > What's the purpose of this property? The driver doesn't use it nor I th=
+ink
+> > it provides any information on the hardware either. The above descripti=
+on
+> > also appears to be saying it's redundant.
+>=20
+> Hello Sakari,
+>=20
+> from my understanding, you're right.
+>=20
+> I would prefer to drop it, see [1].
+>=20
+> Anyway from reading of documentation I understood it may be right to have
+> the property empty, but also may be omitted. I saw both approaches in the
+> code.
+>=20
+> If you choose not liking this redudancy, I push [1] and drop the property
+> here.
+>=20
+> David
+>=20
+> [1] https://patchwork.kernel.org/project/linux-omap/patch/20250213203208.=
+93316-1-david@ixit.cz/
 
+Like all DT properties starting with #, this is not about hardware,
+but about parsing the device tree itself and used by core DT code:
+
+$ git grep io-channels drivers/of/property.c
+drivers/of/property.c:DEFINE_SIMPLE_PROP(io_channels, "io-channels", "#io-c=
+hannel-cells")
+
+Have a look at the following example DT:
+
+iio_device1: iio-provider1 {
+    #io-channel-cells =3D <2>;
+};
+
+iio_device2: iio-provider2 {
+    #io-channel-cells =3D <1>;
+};
+
+iio_device3: iio-provider3 {
+    #io-channel-cells =3D <0>;
+};
+
+example-iio-user {
+    my-iio-reference =3D <&iio_device1 AREA0 CHANNEL2>, <&iio_device3>, <&i=
+io_device2 CHAN0>;
+};
+
+While you can easily understand that without the io-channel-cells,
+please have a look what it looks like after sending it through the
+DT compiler. You will get something like this:
+
+iio-provider1 {
+    #io-channel-cells =3D <2>;
+    phandle =3D <23>;
+};
+
+iio-provider2 {
+    #io-channel-cells =3D <1>;
+    phandle =3D <10>;
+};
+
+iio-provider3 {
+    #io-channel-cells =3D <0>;
+    phandle =3D <37>;
+};
+
+example-iio-user {
+    my-iio-reference =3D <23 42 13 37 10 0>;
+};
+
+But you can safely drop it, when there are no references to the IIO
+device. So it's obviously not required in all cases.
+
+I hope I could explain the purpose well enough :)
+
+Greetings,
+
+-- Sebastian
+
+--azdwkisa6isnhljf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmfVoZ8ACgkQ2O7X88g7
++ppUzg//c4MMMBd4vDUcG7jPiLliZpOWmWdxf5SUUjEagfIdnvaIZjOOtULE1G+C
+6V35AepHyxfbLXOKE2FPneH2XOnuMAkxE/wQHryuuV/+RmgGfENYwbrClcGOOdO1
+ndR+oF/DDxlLb7C6PeqjDEllu72V6wbZWyo0No0sgsz9i5+X0q3yRFJ33tBlIYJ4
+7xiPAdSp8d9axi4YCRQZFb8bbbPEiiHjpGkipW06q03p8hiivV9z+ER2PjU2z7J1
+JCBYkJ7EsT/HCUSj8stvqParqZUaepuVRdWlAezi9nZIeJhs7P3jumrnYSMS+S67
+MyreJ8b5BrPYC8or09s4sxwI0pPrpPP+GDC5pn6QqqW/EvmXZcT7wXSyZpnDHyM0
+WOc7uldGNNAZO2vu+RJRaIhRNWLxh7owawpoqp0hmlqjPOaFaUWX4a60trVw8Xm9
+kJA9s7Vhidz82udfVy5/r3grekUFax4+YteXANecJEmsFk6Idr9yWsZtWnuUStAr
+5pGbFwVVQP969oK0ChJ8siEvEPM9leZdLGP3k7+ZzmkOvgQhNhKFuesFjgWykZrX
+ligM7AJKE1GGByJOdUL8K2xsExmUs+C8KMzzMsiY2Ea+gohB/cpjPk/Be4KJChd2
+/C3ImMYTwLUZ6tJoo43bQVKNE9qS1uYSGOsTYX59fh8cPtXz0aE=
+=6lxK
+-----END PGP SIGNATURE-----
+
+--azdwkisa6isnhljf--
 
