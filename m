@@ -1,184 +1,146 @@
-Return-Path: <devicetree+bounces-157797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAF1DA62DD3
-	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 15:05:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC470A62E4F
+	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 15:40:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D331F3BA53D
-	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 14:04:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 07ED417A209
+	for <lists+devicetree@lfdr.de>; Sat, 15 Mar 2025 14:40:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28CC7201260;
-	Sat, 15 Mar 2025 14:05:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A36220297D;
+	Sat, 15 Mar 2025 14:40:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Hgx++xQL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tSwny3M0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 783CD1F9413
-	for <devicetree@vger.kernel.org>; Sat, 15 Mar 2025 14:05:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15CBF1F5829;
+	Sat, 15 Mar 2025 14:40:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742047505; cv=none; b=ShHMFFMKXAj4fWeM1zZzacdwrY+S7Hpo+UCEGRFUpBU6Sv6KPrCCqrClSqplMrVdnroOdPA+QJePHtcTm4a73f0A0tom2ItGiHbPxcj4PWNiPt6Kgszoi0OjSxekxvUxRUyb8lOL4LB9XNs6MUO04ZzVGdezMmYBr0RUVP0H2BQ=
+	t=1742049651; cv=none; b=RW5C5JyjRUR/gXLorCXrJ4FNzjUFHhFeWJKVOBaHYx2RVFJDKbSDnnpiHxUFy6u9uL4N2mu3nBPvC3BnphZDaMX2gAv2AC4HVDqyBmRbzj0vU+UdLboRslQii7i5p3QvLQpCO9RCyWbECl4qH3UmMbL1bIQ2ExUlwH+cCnYt4R8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742047505; c=relaxed/simple;
-	bh=YfnsnyLlpurE1a++zCcgvEc6AWvYcBKTlVAoyEBchJk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IKJ66KdPeXC5yCoXevTI61TyZEaAixiYztyxgOKT6qtwBE8GXIm1Y9gFHp0CDpThIQJYk/GE7pvTh95aBqgIZiJcgGYdUzlvrACqiscQpgCGFyzFI/wRzbhmJxmU9FyTZnOYEBR8WRXBOtyewHauj/2hOJR99FvC9MjdNjw2vuo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Hgx++xQL; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52FCx5gY000804
-	for <devicetree@vger.kernel.org>; Sat, 15 Mar 2025 14:05:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	UUAncCVozCVnivHbsq+9DBQDI1K0/A8x8y1E+4sWtHU=; b=Hgx++xQL8Di2wary
-	8uMa2bK6aDp58xjjYHyFnzRsi08SDWn1E26qtnnzdRcrHyzBmPU/NAK2hmgeW2JD
-	6vWmu3oKSQEEH1YJlwWA7Ja0pwHk1laVYs/3SK9LCOA3ziEVSPZWVX1EEMBe/vY7
-	AJDtnCKYIYojLs3w5Pf9Dw86MJ91/kWHaK/yqXGTfIIlWf0RfYC0SAjIu37xlNhZ
-	psR7FartVqZtzV0pxQ8qlyJMVKlEpYeGUtE1g2LkLUE3setUYv9tfDTUqqkI7Xnf
-	F9WJy9lHT30QKX+QssXQL+2G6mv2bS/kMSpRoOCM9LHBWyi2EJSOwIvwkdTCp55f
-	5zVBfQ==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45d1rdgsbp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 15 Mar 2025 14:05:02 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c54734292aso36864485a.2
-        for <devicetree@vger.kernel.org>; Sat, 15 Mar 2025 07:05:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742047501; x=1742652301;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UUAncCVozCVnivHbsq+9DBQDI1K0/A8x8y1E+4sWtHU=;
-        b=sOM0TtRKeB89pYoiCVAX3+sN/w1WzfWi1twz3uQHc1jrXUUh1I0S5dVWgT2SaZ+qq4
-         PV1UOEZaLgayR5HFFESwv2ZDb9vrP7TEFwVBImuMowP6y7KDnxkwyEpSHheotTyH3mjy
-         ZRuns6fod2V/2FnEEYzcQtaUZCWuoSMJo5TIQQsy/jPohgCLpxqjqcO7e/KP0xpKfIC1
-         +IIJs+mBLp/zt5icWNiuczJVdafT0xd0Kt8v1SP6PGF8hGdgRDjcHhC1PTH3wqHhDTHQ
-         HwmBztIPUOxugkFrMD375aO4KAr1AYU2xnnLoQ61+1kirpa4PL8yUYtDPSTg65a3NAP6
-         LHLA==
-X-Forwarded-Encrypted: i=1; AJvYcCXWVPuzZnY/lWgIjgMMTSksX2QlNUjBUqqCH65ZtEnGC0nBCXzd/HvPkMH59Ut48AULo3taI4xiMB+U@vger.kernel.org
-X-Gm-Message-State: AOJu0YzjR0HYabCMzpJBscltywvAxZ/TYppIVhYHgkASPB58TUOgxWyz
-	fGIGz8Y96x+KGEPwwEwdEIoRAa09A6ZDl1qY3oOf2qRP3tNCVJWn1XHwna1E2Hmd1gZij+S1HC2
-	RipY9TAkpockvXV7C0TWiUuKUlJ7vqIsCbCe9nNz7mPOQcXXv7z/p7zMOJj2J
-X-Gm-Gg: ASbGncu7mqSjp+Rz6sEQ+VzFoLT467GcOPhXKOWqFgJd38c6S1mIIDLOqST2qLGjEwb
-	kv0R254LMCQSnYQSok9FAZW32tipg+7O+/bkBinyBI0zwcO676gQQ5roh87QhLT/1Xh2lF2mN5o
-	2CD+ROuduLJrM6oQ32Turp2RKzjqvrmkNJi+CU3h1L97JjISsEzNGYZcellcHwrqfI8DJd6Luhl
-	5JtRk8wfVnEeQyUHHpNKtQV7QM/rODBkOtBBKXB4mKwceHv6WZNAXCLx1BuS+iSEeR5ACyB6baj
-	TBY8pcd01KytlJH3AQbuAcv1cxNhD3oQQwBk81yrm1U0QijZCu60j11MSlZsI+o86lYS5w==
-X-Received: by 2002:a05:620a:2416:b0:7c0:c024:d5 with SMTP id af79cd13be357-7c57c80ef86mr336345385a.8.1742047501241;
-        Sat, 15 Mar 2025 07:05:01 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFTRd1Ia2aDyV8PsrPTlCP6muG2Qdkuvkpuw2KdrP05cGmco0YbeElKaqwrAOB48+digijbtA==
-X-Received: by 2002:a05:620a:2416:b0:7c0:c024:d5 with SMTP id af79cd13be357-7c57c80ef86mr336343185a.8.1742047500879;
-        Sat, 15 Mar 2025 07:05:00 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30c3f0ea756sm9418031fa.35.2025.03.15.07.04.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 15 Mar 2025 07:05:00 -0700 (PDT)
-Message-ID: <6a652ced-1226-4ff3-8b26-9fb78b075ce2@oss.qualcomm.com>
-Date: Sat, 15 Mar 2025 15:04:56 +0100
+	s=arc-20240116; t=1742049651; c=relaxed/simple;
+	bh=jukAIyNl6zV7FQ8eFLX6hEnx9n+cyDrr7s4BAmlCCuY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Zrkr2K2+jwNYyImD4XBQheQHEjwJFHxHgVakbG27+0kxy2NuYQWQv8EuxFnXdLYsn+X31ibq9A0Qc3StasOk/bW0h4vA0PZkwzT6qoiXYeWTl870Ao6Xp3F26QK1/1ip487e7Qo70h0EOcXLZoOOoxguPMMKq4xAjh8NcbccS00=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tSwny3M0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84DCEC4CEF0;
+	Sat, 15 Mar 2025 14:40:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742049650;
+	bh=jukAIyNl6zV7FQ8eFLX6hEnx9n+cyDrr7s4BAmlCCuY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=tSwny3M0Fy9L4SEF9o06O7gWchKf8FInavY7KvaBt0UqMwJcGvDZb/+mg/QlWzdBq
+	 XyniZKc2llefHOlfDThCV7xHjoqk2jD9Y+ctNKYeoC3GAvdFb+TLX/k0PC41bWp5eT
+	 gfAB7T+rmYHlHgEgJPhUQjewpf2uWwbT71XTL3766WChXkDDUFAkEJELTOAbFC6x4k
+	 wuravzjpeMqnWGJqFqEVq1lidAoCnq6sXujNarGxKSb5kkO04F1w04Q3Z/vnk8Ac49
+	 rxVtxt9ZM9ePnqyyVp1GtyzOtHutBpwbOgtH1heHe0olf24Ik4blxRj/6z9Zb4i1hN
+	 o9+jDbsHYByCQ==
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-2bcbd92d5dbso1665633fac.2;
+        Sat, 15 Mar 2025 07:40:50 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUwJjescGEjZ3ZsspRmAbIMgxvRKyDzS78oer2B3QMjIl9dh5Kh19fGyxu1NWbjcVapF8xeaE6lbjAAx+ev@vger.kernel.org, AJvYcCV3YB5hEnVdQq6FSOZ3GwpoHTUfXTXs48En0l/EILgKUhJGFAWSkbrbfkmtYoSC8HZeYkYxjX+/iu0=@vger.kernel.org, AJvYcCVnt0yvkLBFEYr6ZIbpM++K67ahRYauVva62y+qUE7snv5IAEvJEuEz8sJPjaYYnL0pdiLJViBZ5JQ0@vger.kernel.org, AJvYcCWjLaBweURmIuivgjrJC/ebKqDnTXO0a29Aez1RBxZqhOZJ49C3zKTFH6EG4HelnpeMshJgw18nXU1tD6WpPw+da+0=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyKgTeXuNu2dFWXg9+eWtAZmjgPdW7OeM5RKlgrnx4fMcPRo330
+	+3A1syex5bwkdKRwaCtTMynAV3Tunbgjhz2wL2NWk2DdVTO20KtTHgXCZQz8QjPnFlSVPE+UnvS
+	w6crnHnasUBRBv+dulbKdKNWN1AU=
+X-Google-Smtp-Source: AGHT+IHik3WQQoX9zF5tpYBAQvaTiEqRAZgWWvK14P5mWp9ukc+dySow79iOHU/fbGpqaKacY4VYneA6saIrQxgTb/s=
+X-Received: by 2002:a05:6870:80c7:b0:2c2:542b:bcdb with SMTP id
+ 586e51a60fabf-2c690ec423amr3207224fac.1.1742049649762; Sat, 15 Mar 2025
+ 07:40:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: sa8775p: add support for video node
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Vikash Garodia <quic_vgarodia@quicinc.com>,
-        Dikshita Agarwal <quic_dikshita@quicinc.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250311-dtbinding-v1-0-5c807d33f7ae@quicinc.com>
- <20250311-dtbinding-v1-3-5c807d33f7ae@quicinc.com>
- <3ec71075-b1ef-4366-b595-80fe41cd1e13@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <3ec71075-b1ef-4366-b595-80fe41cd1e13@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=Fe83xI+6 c=1 sm=1 tr=0 ts=67d5890e cx=c_pps a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=L28Ds1LcoDUPICagkq0A:9 a=QEXdDO2ut3YA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: S698MEKwbPRTZMvy43rZ8bNy8riW7Xkx
-X-Proofpoint-GUID: S698MEKwbPRTZMvy43rZ8bNy8riW7Xkx
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-15_05,2025-03-14_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- lowpriorityscore=0 bulkscore=0 mlxscore=0 mlxlogscore=999 spamscore=0
- clxscore=1015 suspectscore=0 adultscore=0 phishscore=0 malwarescore=0
- priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503150100
+References: <20250309121324.29633-1-john.madieu.xa@bp.renesas.com>
+In-Reply-To: <20250309121324.29633-1-john.madieu.xa@bp.renesas.com>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Sat, 15 Mar 2025 15:40:38 +0100
+X-Gmail-Original-Message-ID: <CAJZ5v0jBeJqSoSzfKLZ6oSDFEU43u1HZUVd3dH_vrbHjo0Kx9w@mail.gmail.com>
+X-Gm-Features: AQ5f1Jrwc1Zf-QXqmckFCMck3yH4PHI7ibYOMynl9qIg3YCFIP5fQlhd2k7H5PE
+Message-ID: <CAJZ5v0jBeJqSoSzfKLZ6oSDFEU43u1HZUVd3dH_vrbHjo0Kx9w@mail.gmail.com>
+Subject: Re: [RFC PATCH 0/3] thermal: Add CPU hotplug cooling driver
+To: John Madieu <john.madieu.xa@bp.renesas.com>
+Cc: geert+renesas@glider.be, niklas.soderlund+renesas@ragnatech.se, 
+	conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, rafael@kernel.org, 
+	daniel.lezcano@linaro.org, magnus.damm@gmail.com, 
+	claudiu.beznea.uj@bp.renesas.com, devicetree@vger.kernel.org, 
+	john.madieu@gmail.com, rui.zhang@intel.com, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, biju.das.jz@bp.renesas.com, 
+	linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 3/15/25 2:43 PM, Konrad Dybcio wrote:
-> On 3/11/25 1:03 PM, Vikash Garodia wrote:
->> Video node enables video on Qualcomm SA8775P platform.
->>
->> Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
->> ---
->>  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 67 +++++++++++++++++++++++++++++++++++
->>  1 file changed, 67 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> index 3394ae2d13003417a15e64c9e47833725ec779e6..09db8e2eb578f1cada0f4a15e3f844dc097bd46d 100644
->> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> @@ -10,6 +10,7 @@
->>  #include <dt-bindings/clock/qcom,sa8775p-dispcc.h>
->>  #include <dt-bindings/clock/qcom,sa8775p-gcc.h>
->>  #include <dt-bindings/clock/qcom,sa8775p-gpucc.h>
->> +#include <dt-bindings/clock/qcom,sa8775p-videocc.h>
->>  #include <dt-bindings/dma/qcom-gpi.h>
->>  #include <dt-bindings/interconnect/qcom,sa8775p-rpmh.h>
->>  #include <dt-bindings/mailbox/qcom-ipcc.h>
->> @@ -3783,6 +3784,72 @@ llcc: system-cache-controller@9200000 {
->>  			interrupts = <GIC_SPI 580 IRQ_TYPE_LEVEL_HIGH>;
->>  		};
->>  
->> +		iris: video-codec@aa00000 {
->> +			compatible = "qcom,sa8775p-iris";
->> +
->> +			reg = <0 0x0aa00000 0 0xf0000>;
->> +			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
->> +
->> +			power-domains = <&videocc VIDEO_CC_MVS0C_GDSC>,
->> +					<&videocc VIDEO_CC_MVS0_GDSC>,
->> +					<&rpmhpd SA8775P_MXC>,
->> +					<&rpmhpd SA8775P_MMCX>;
->> +			power-domain-names = "venus",
->> +					     "vcodec0",
->> +					     "mx",
->> +					     "mmcx";
->> +			operating-points-v2 = <&iris_opp_table>;
->> +
->> +			clocks = <&gcc GCC_VIDEO_AXI0_CLK>,
->> +				 <&videocc VIDEO_CC_MVS0C_CLK>,
->> +				 <&videocc VIDEO_CC_MVS0_CLK>;
->> +			clock-names = "iface",
->> +				      "core",
->> +				      "vcodec0_core";
->> +
->> +			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
->> +					&config_noc SLAVE_VENUS_CFG QCOM_ICC_TAG_ALWAYS>,
-> 
-> This path should use QCOM_ICC_TAG_ACTIVE_ONLY on both endpoints
+On Sun, Mar 9, 2025 at 1:13=E2=80=AFPM John Madieu
+<john.madieu.xa@bp.renesas.com> wrote:
+>
+> MIME-Version: 1.0
+> Content-Type: text/plain; charset=3DUTF-8
+> Content-Transfer-Encoding: 8bit
+>
+> This patch series introduces a new thermal cooling driver that implements=
+ CPU
+> hotplug-based thermal management. The driver dynamically takes CPUs offli=
+ne
+> during thermal excursions to reduce power consumption and prevent overhea=
+ting,
+> while maintaining system stability by keeping at least one CPU online.
 
-Please also align the &s
+So as far as I am concerned, this is a total no-go.  CPU offline is
+not designed to be triggered from within a driver.
 
-Konrad
+> 1- Problem Statement
+>
+> Modern SoCs require robust thermal management to prevent overheating unde=
+r heavy
+> workloads. Existing cooling mechanisms like frequency scaling may not alw=
+ays
+> provide sufficient thermal relief, especially in multi-core systems where
+> per-core thermal contributions can be significant.
+
+What about idle injection?
+
+> 2- Solution Overview
+>
+> The driver:
+>
+>  - Integrates with the Linux thermal framework as a cooling device
+>  - Registers per-CPU cooling devices that respond to thermal trip points
+>  - Uses CPU hotplug operations to reduce thermal load
+>  - Maintains system stability by preserving the boot CPU from being put o=
+ffline,
+>  regardless the CPUs that are specified in cooling device list.
+>  - Implements proper state tracking and cleanup
+>
+> Key Features:
+>
+>  - Dynamic CPU online/offline management based on thermal thresholds
+>  - Device tree-based configuration via thermal zones and trip points
+
+So DT-only.  Not nice.
+
+>  - Hysteresis support through thermal governor interactions
+
+I'd rather not combine thermal governors with CPU offline.
+
+>  - Safe handling of CPU state transitions during module load/unload
+
+Are you sure that it is really safe?
+
+>  - Compatibility with existing thermal management frameworks
+
+I'm not sure about this.
+
+So one of the things that CPU offline does, which you probably are not
+aware of, is breaking CPU affinity which is a very brutal thing for
+user space if it is not expecting that to happen.  Also it migrates
+interrupts between CPUs that also may confuse things.  So don't do it
+from the kernel, really.
+
+Thanks, Rafael
 
