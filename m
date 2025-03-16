@@ -1,48 +1,56 @@
-Return-Path: <devicetree+bounces-157919-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157920-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E4CDA6367A
-	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 17:50:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41853A6367D
+	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 17:51:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D2FC3AC1E7
-	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 16:49:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7EE7916CE14
+	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 16:51:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA5CB1C6FF5;
-	Sun, 16 Mar 2025 16:49:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F5A31B87E1;
+	Sun, 16 Mar 2025 16:51:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aHGya4GO"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="ajWWmV0Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82FFA8F4A;
-	Sun, 16 Mar 2025 16:49:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 930BD8F4A
+	for <devicetree@vger.kernel.org>; Sun, 16 Mar 2025 16:51:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742143795; cv=none; b=FYXBgasrATqyQBELNhq/Qn8895mV4ICggpjYpEOaFfUgqU+3REYFMRpFaOBl3H5pzTEg3AI2ZGIHRyM/a4W//SDYyukpGKOwoJQf8RbDZo9ZHLRlsgVrVrLm6CyMbb6FtoeAdIE9GOWPC03+9vqGD6gxPbO/H3D7ePe9jQEtyHg=
+	t=1742143912; cv=none; b=reJYwNOh3M3ZDPlFvnzIOJEGlNKDDmU5b18bWt0NbGiI6QywsQyyRlpdYqV6RkBBLYECi4RcpFqYBEyugvpu9Er/fW1Lg3ksI4s+B816F+rDWNNPFY1HpJ4xOakxUyE27bUDVzxEok+NkZYojwhpeVXZ5xZ1RWaTs8XlZFhWFXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742143795; c=relaxed/simple;
-	bh=Qx8JZ5UXbAW4tdRKdlvaGVP1rWhm+NwDyBvCLqdgj6I=;
+	s=arc-20240116; t=1742143912; c=relaxed/simple;
+	bh=++nXnpTxr/y71Vt5gEjxw2dEeza3rhYUXeSLHstA4M4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=e4TngWprT4FtwsPqYMm3TqfnTqa6TcTqVwVEAQCZW3nwMfUtAjpI8+KzBHvAT1xcaOeZYsPDvf+SX9QCaUw0TpOJuNUJZTBwB2ukE1cjAN/Ae/vnaSW3Sfv0cqMoWPF35EHOCTg7iaFhjynyNxWS+/ZO9J+qvUlYBtMHJ00FFOM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aHGya4GO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EE8BC4CEDD;
-	Sun, 16 Mar 2025 16:49:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742143795;
-	bh=Qx8JZ5UXbAW4tdRKdlvaGVP1rWhm+NwDyBvCLqdgj6I=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aHGya4GOKqq/rtzPOQ4KshuGRBOK2Lx+p9a60Z2ktt2X8RMYesvdqTOAB+B2STV4v
-	 2cruDw5G1lT4vl8xBe0UrXzwSaK/Ksy992DIT1/mMG5j9SxjbSLjTB5zAocD3CpPx8
-	 szzstemwXooYn43nGzcrvP7yQXzgQgs7AovcZK6awvjkFhbWmHRrwyL+IjIBe9zJ7j
-	 bSpRZgKQoKWz1EWpIMwhE3DutPAKnMGtHcpAiQxzVfFLOBqnWYj8p7kW/UScf9CmrJ
-	 8Z8d2mctoKxnnhPchMLLE5cylqdHhr8CulFPEeR4iVepxNSQDQNN1v9lrMLEsb3HL6
-	 8Y5CkzMsPM8jQ==
-Message-ID: <3a33dab7-87b2-4b74-b138-e368d4cbc358@kernel.org>
-Date: Sun, 16 Mar 2025 17:49:46 +0100
+	 In-Reply-To:Content-Type; b=rDiO1VRcC+AYeSMugVOtVy+ZsLqYql5UZODYEuarGgMtIvH1sJ7UicOarXBIuwK8KPgvt54sh/bwfBsCamTY3kWzzM24fhfc1ePYftZX4Nu/lmqWsg6Y2MiZVUSW2k0uaJqOTiUR5wI8XGExrcc2x6MAv1wgrh4k4SCy1jBopWE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=ajWWmV0Q; arc=none smtp.client-ip=212.227.15.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1742143886; x=1742748686; i=wahrenst@gmx.net;
+	bh=qAeg33gT5p7GoTwxLQbuHUfPQkHvBqpHq4Nx9UO5nCA=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=ajWWmV0QH2HagDZOgmfaIOg6yjBGCXeuzA7UYASJs7I63gDYM5tChfqUbHIP/f88
+	 gOgW9b611WSeub4p4diQlk0Xp76hjEXR58hzwHmDlGf8IwQa7WSYJuUY8L1p3zapi
+	 NEa8gXa5kZjJ8J74sB3sXoZcBYm9Mz4TILbFuLA/G+TUqTm4knM+/7PnVqJgdzjqT
+	 1kHarYd06RlK88/BetgPt2AZwXCyPvfNSAXIrdw/UedDAuGnwUEOiqE0ixl499wel
+	 JItWRENftXwxKRdksZF7ENa6CfnfqCOCcBDA9046G/X5ps7ZvqiVE5Adtpw/T48Hl
+	 JQ64idm0IBr8OljL8A==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.107] ([37.4.251.153]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1M8ygO-1tnpbE2FC2-003hVg; Sun, 16
+ Mar 2025 17:51:26 +0100
+Message-ID: <5dd6e477-989b-4a4a-b136-a1c863dbe2a4@gmx.net>
+Date: Sun, 16 Mar 2025 17:51:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,132 +58,254 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: connector: add fixed-batteries property
-To: Amit Sunil Dhamne <amitsd@google.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Badhri Jagan Sridharan <badhri@google.com>,
- Sebastian Reichel <sre@kernel.org>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <len.brown@intel.com>,
- Pavel Machek <pavel@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-pm@vger.kernel.org, RD Babiera <rdbabiera@google.com>,
- Kyle Tso <kyletso@google.com>
-References: <20250312-batt_ops-v1-0-88e0bb3129fd@google.com>
- <20250312-batt_ops-v1-1-88e0bb3129fd@google.com>
- <20250313-tidy-kakapo-of-abundance-eebf91@krzk-bin>
- <85c6de6a-f8b4-4e4e-8fa2-da53816abc89@google.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v5 1/6] drm/v3d: Associate a V3D tech revision to all
+ supported devices
+To: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
+ Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nicolas Saenz Julienne <nsaenz@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, kernel-dev@igalia.com
+References: <20250316-v3d-gpu-reset-fixes-v5-0-9779cdb12f06@igalia.com>
+ <20250316-v3d-gpu-reset-fixes-v5-1-9779cdb12f06@igalia.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <85c6de6a-f8b4-4e4e-8fa2-da53816abc89@google.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Stefan Wahren <wahrenst@gmx.net>
+Autocrypt: addr=wahrenst@gmx.net; keydata=
+ xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
+ IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
+ NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
+ JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
+ TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
+ f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
+ V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
+ aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
+In-Reply-To: <20250316-v3d-gpu-reset-fixes-v5-1-9779cdb12f06@igalia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:lCo/uFmDrqUE5/hIwvK4DY+FPmHfXvGAtYuFx1WsN//dAlYPAUS
+ ZdKY29QZroalv9BIIcRQRCOK1khlW0ntyN7AtLn+08+5bFcQ4RZSKvn7ds3tCJe1i4AEGS8
+ mHP/PLWO6/DjRuQTn4wg91dDU7Z1biJ3mV2o9Bjvxw8GsMJeG7j2uaU7/6HqwhLjnCqLFs9
+ 17jgReWYbGRfrBVwU7asQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:TgcWGamewRg=;b1xPZ54hVJHfxtaN1zZyiY1Asn1
+ kIn0c8+H7ZkDP4i8xFqFvhqp0XkcCtBbG5+z2mgIaYzXx2liVlBSmW7McEaPp8wgrUC3QqWGe
+ MekntNV/tWcqVTKLo2UBZNNkqUQ87v/Ouphz8YUyPwXAceajmZ4AJSn1Ug/baqYusIwSj8FPE
+ 2ZjObQZak6TqyJEOPI72WaD5j3P/kAJVCv7luy/8Ew9GVFKxwMrvnESgR0FW25HRyTYiexl4h
+ UOIevLHVpxQyfbGJNMG6OjXRoy1OfPjywlsfKjqs1Q9k7iXjm0xYN3it1yFEDFTKLODzvrc2M
+ 1CcxgezKLz8kugfvwC9b8iDLV0dDPcjf+OCcaNY9773Sec0d5mjIyib5PwZ5sqv+VTqj7trKU
+ ifa7EsJe5aJqA/zMa8ODP/WR8Huqa5Wn7yHnmYCZDqzz4HI81RzOUXo5BBKt5nXWUCY9KHvg+
+ Z34eKlqlcqioQ8uyrDde1ZgIfuAshS+uHjzAlJpzInjaLNbTNm9r/KHJtlKH5MFsG/y/+UZKw
+ VoPYbLi1Hzosc28BXmarU5Wv2ykVOJVNl25OPyaqR0nqE/JugAROA9+Rz7Ac+eeM5jN+FPwEU
+ gEJD7P2JrUUK7+DVMKf0hZdYkEtrmGIMvGfwrfIT7+tIyPrt12sY4GwK9I58VfZBz61R4ajv4
+ BNHqd32NPwSZcFZNUV2flzo8chpLkOJT1531w6rIKgOx2ZRTGcobgyOHewEPRYzailc6wcVxg
+ h9NYTWrYVETkc0LM6JYXwpvc9fpDj+wOV1xCWgQTBZ/+YZXTrzn+BQk5RuH2IXAfRwt6vk+D3
+ iKSdn7pIpQz6AgxM6/ePfc9jPIgFRhbvcm8ea4ukDWF+J09vQa8jguBY10ua32szCZ/v2JAiD
+ LorjEzoeppYG+qjEi+p8IhFoGZqOYNhS/0FWxeIQKw/X51ZGWIUmnao3G+Bl52sy/6bKiwWS/
+ fvy+3+fyyhd6A48EIGsVrt1AXNCcC01L13C54468hWVUX6WWFk2XY0ewBmr890BD5ivLKSTo2
+ VTG4C0NH0lFogazflpF+nj1Gc8W05CVqa7SFuXuIQjcNNGFDHhASxgij6mJ1PkOw14Uh+DUSD
+ UMhfzgECi0VoQlJFvlu9d66OXSf5SDr06Q5mH1IFqn6IVjdyMzkRVOh+70yEf1FS7642VUU/n
+ ezEYffq34wHvYjCjcW8RTUEFIajN2KHykIV3dnPcdKleiTxvwkwkT/CMi3+0NzthJTKFND8uD
+ F9TDdI/As5wMQ7yqtw+Yf9ora/kggz3aWphfhR/jI/BIqvvRZkUvMKUuhC50CDDYn+qY0dCLb
+ OKgFlVcdbM4mk3OPnG8glB39eGPl8qXSC3TRCbRZOehXX/zUqLrWw7HU/5Wp+52ryqTSUcLBR
+ AuSFnoMZwCQgzm2vRUrRfbIbv7eNRlN2S+wfTP7C58EL8OdOSENHoJS+NyRZWS+5ekl4vw0SL
+ VuYmLHDqsbFF/m/lwnB8uHQUi8DE3UXnqtfaKKYDi7RBM5ipg
 
-On 15/03/2025 01:56, Amit Sunil Dhamne wrote:
-> Hi Krzysztof,
-> 
-> On 3/13/25 1:48 AM, Krzysztof Kozlowski wrote:
->> On Wed, Mar 12, 2025 at 04:42:01PM -0700, Amit Sunil Dhamne wrote:
->>> Add a new "fixed-batteries" DT property to connector class. This
->>> property is populated with nodes associated with battery type power
->>> supplies powering the USB PD connector. This is needed by the Type-C
->>> Port Manager (TCPM) to query psy properties which are used to feed
->> What is "psy" in terms of bindings?
-> In terms of bindings this should be a phandle to a device that 
-> owns/manages the battery (whose driver will eventually call 
-> devm_power_supply_register to register the battery). This could be a 
+Hi Ma=C3=ADra,
 
-So a charger? Please rephrain from putting Linux names into the bindings
-description.
+Am 16.03.25 um 15:15 schrieb Ma=C3=ADra Canal:
+> The V3D driver currently determines the GPU tech version (33, 41...)
+> by reading a register. This approach has worked so far since this
+> information wasn=E2=80=99t needed before powering on the GPU.
+>
+> V3D 7.1 introduces new registers that must be written to power on the
+> GPU, requiring us to know the V3D version beforehand. To address this,
+> associate each supported SoC with the corresponding VideoCore GPU versio=
+n
+> as part of the device data.
+>
+> To prevent possible mistakes, add an assertion to verify that the versio=
+n
+> specified in the device data matches the one reported by the hardware.
+> If there is a mismatch, the kernel will trigger a warning.
+>
+> Reviewed-by: Iago Toral Quiroga <itoral@igalia.com>
+> Signed-off-by: Ma=C3=ADra Canal <mcanal@igalia.com>
+> ---
+>   drivers/gpu/drm/v3d/v3d_debugfs.c | 126 +++++++++++++++++++-----------=
+--------
+>   drivers/gpu/drm/v3d/v3d_drv.c     |  22 +++++--
+>   drivers/gpu/drm/v3d/v3d_drv.h     |  11 +++-
+>   drivers/gpu/drm/v3d/v3d_gem.c     |  10 +--
+>   drivers/gpu/drm/v3d/v3d_irq.c     |   6 +-
+>   drivers/gpu/drm/v3d/v3d_perfmon.c |   4 +-
+>   drivers/gpu/drm/v3d/v3d_sched.c   |   6 +-
+>   7 files changed, 101 insertions(+), 84 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/v3d/v3d_debugfs.c b/drivers/gpu/drm/v3d/v3d=
+_debugfs.c
+> index 76816f2551c10026a775e4331ad7eb2f008cfb0a..7e789e181af0ac138044f194=
+a29555c30ab01836 100644
+> --- a/drivers/gpu/drm/v3d/v3d_debugfs.c
+> +++ b/drivers/gpu/drm/v3d/v3d_debugfs.c
+> @@ -21,74 +21,74 @@ struct v3d_reg_def {
+>   };
+>
+>   static const struct v3d_reg_def v3d_hub_reg_defs[] =3D {
+> -	REGDEF(33, 42, V3D_HUB_AXICFG),
+> -	REGDEF(33, 71, V3D_HUB_UIFCFG),
+> -	REGDEF(33, 71, V3D_HUB_IDENT0),
+> -	REGDEF(33, 71, V3D_HUB_IDENT1),
+> -	REGDEF(33, 71, V3D_HUB_IDENT2),
+> -	REGDEF(33, 71, V3D_HUB_IDENT3),
+> -	REGDEF(33, 71, V3D_HUB_INT_STS),
+> -	REGDEF(33, 71, V3D_HUB_INT_MSK_STS),
+> -
+> -	REGDEF(33, 71, V3D_MMU_CTL),
+> -	REGDEF(33, 71, V3D_MMU_VIO_ADDR),
+> -	REGDEF(33, 71, V3D_MMU_VIO_ID),
+> -	REGDEF(33, 71, V3D_MMU_DEBUG_INFO),
+> -
+> -	REGDEF(71, 71, V3D_GMP_STATUS(71)),
+> -	REGDEF(71, 71, V3D_GMP_CFG(71)),
+> -	REGDEF(71, 71, V3D_GMP_VIO_ADDR(71)),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_42, V3D_HUB_AXICFG),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_HUB_UIFCFG),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_HUB_IDENT0),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_HUB_IDENT1),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_HUB_IDENT2),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_HUB_IDENT3),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_HUB_INT_STS),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_HUB_INT_MSK_STS),
+> +
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_MMU_CTL),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_MMU_VIO_ADDR),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_MMU_VIO_ID),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_MMU_DEBUG_INFO),
+> +
+> +	REGDEF(V3D_GEN_71, V3D_GEN_71, V3D_GMP_STATUS(71)),
+> +	REGDEF(V3D_GEN_71, V3D_GEN_71, V3D_GMP_CFG(71)),
+> +	REGDEF(V3D_GEN_71, V3D_GEN_71, V3D_GMP_VIO_ADDR(71)),
+>   };
+>
+>   static const struct v3d_reg_def v3d_gca_reg_defs[] =3D {
+> -	REGDEF(33, 33, V3D_GCA_SAFE_SHUTDOWN),
+> -	REGDEF(33, 33, V3D_GCA_SAFE_SHUTDOWN_ACK),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_33, V3D_GCA_SAFE_SHUTDOWN),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_33, V3D_GCA_SAFE_SHUTDOWN_ACK),
+>   };
+>
+>   static const struct v3d_reg_def v3d_core_reg_defs[] =3D {
+> -	REGDEF(33, 71, V3D_CTL_IDENT0),
+> -	REGDEF(33, 71, V3D_CTL_IDENT1),
+> -	REGDEF(33, 71, V3D_CTL_IDENT2),
+> -	REGDEF(33, 71, V3D_CTL_MISCCFG),
+> -	REGDEF(33, 71, V3D_CTL_INT_STS),
+> -	REGDEF(33, 71, V3D_CTL_INT_MSK_STS),
+> -	REGDEF(33, 71, V3D_CLE_CT0CS),
+> -	REGDEF(33, 71, V3D_CLE_CT0CA),
+> -	REGDEF(33, 71, V3D_CLE_CT0EA),
+> -	REGDEF(33, 71, V3D_CLE_CT1CS),
+> -	REGDEF(33, 71, V3D_CLE_CT1CA),
+> -	REGDEF(33, 71, V3D_CLE_CT1EA),
+> -
+> -	REGDEF(33, 71, V3D_PTB_BPCA),
+> -	REGDEF(33, 71, V3D_PTB_BPCS),
+> -
+> -	REGDEF(33, 42, V3D_GMP_STATUS(33)),
+> -	REGDEF(33, 42, V3D_GMP_CFG(33)),
+> -	REGDEF(33, 42, V3D_GMP_VIO_ADDR(33)),
+> -
+> -	REGDEF(33, 71, V3D_ERR_FDBGO),
+> -	REGDEF(33, 71, V3D_ERR_FDBGB),
+> -	REGDEF(33, 71, V3D_ERR_FDBGS),
+> -	REGDEF(33, 71, V3D_ERR_STAT),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_CTL_IDENT0),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_CTL_IDENT1),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_CTL_IDENT2),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_CTL_MISCCFG),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_CTL_INT_STS),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_CTL_INT_MSK_STS),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_CLE_CT0CS),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_CLE_CT0CA),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_CLE_CT0EA),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_CLE_CT1CS),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_CLE_CT1CA),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_CLE_CT1EA),
+> +
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_PTB_BPCA),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_PTB_BPCS),
+> +
+> +	REGDEF(V3D_GEN_33, V3D_GEN_42, V3D_GMP_STATUS(33)),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_42, V3D_GMP_CFG(33)),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_42, V3D_GMP_VIO_ADDR(33)),
+> +
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_ERR_FDBGO),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_ERR_FDBGB),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_ERR_FDBGS),
+> +	REGDEF(V3D_GEN_33, V3D_GEN_71, V3D_ERR_STAT),
+>   };
+>
+>   static const struct v3d_reg_def v3d_csd_reg_defs[] =3D {
+> -	REGDEF(41, 71, V3D_CSD_STATUS),
+> -	REGDEF(41, 42, V3D_CSD_CURRENT_CFG0(41)),
+> -	REGDEF(41, 42, V3D_CSD_CURRENT_CFG1(41)),
+> -	REGDEF(41, 42, V3D_CSD_CURRENT_CFG2(41)),
+> -	REGDEF(41, 42, V3D_CSD_CURRENT_CFG3(41)),
+> -	REGDEF(41, 42, V3D_CSD_CURRENT_CFG4(41)),
+> -	REGDEF(41, 42, V3D_CSD_CURRENT_CFG5(41)),
+> -	REGDEF(41, 42, V3D_CSD_CURRENT_CFG6(41)),
+> -	REGDEF(71, 71, V3D_CSD_CURRENT_CFG0(71)),
+> -	REGDEF(71, 71, V3D_CSD_CURRENT_CFG1(71)),
+> -	REGDEF(71, 71, V3D_CSD_CURRENT_CFG2(71)),
+> -	REGDEF(71, 71, V3D_CSD_CURRENT_CFG3(71)),
+> -	REGDEF(71, 71, V3D_CSD_CURRENT_CFG4(71)),
+> -	REGDEF(71, 71, V3D_CSD_CURRENT_CFG5(71)),
+> -	REGDEF(71, 71, V3D_CSD_CURRENT_CFG6(71)),
+> -	REGDEF(71, 71, V3D_V7_CSD_CURRENT_CFG7),
+> +	REGDEF(V3D_GEN_41, V3D_GEN_71, V3D_CSD_STATUS),
+> +	REGDEF(V3D_GEN_41, V3D_GEN_42, V3D_CSD_CURRENT_CFG0(41)),
+> +	REGDEF(V3D_GEN_41, V3D_GEN_42, V3D_CSD_CURRENT_CFG1(41)),
+> +	REGDEF(V3D_GEN_41, V3D_GEN_42, V3D_CSD_CURRENT_CFG2(41)),
+> +	REGDEF(V3D_GEN_41, V3D_GEN_42, V3D_CSD_CURRENT_CFG3(41)),
+> +	REGDEF(V3D_GEN_41, V3D_GEN_42, V3D_CSD_CURRENT_CFG4(41)),
+> +	REGDEF(V3D_GEN_41, V3D_GEN_42, V3D_CSD_CURRENT_CFG5(41)),
+> +	REGDEF(V3D_GEN_41, V3D_GEN_42, V3D_CSD_CURRENT_CFG6(41)),
+> +	REGDEF(V3D_GEN_71, V3D_GEN_71, V3D_CSD_CURRENT_CFG0(71)),
+> +	REGDEF(V3D_GEN_71, V3D_GEN_71, V3D_CSD_CURRENT_CFG1(71)),
+> +	REGDEF(V3D_GEN_71, V3D_GEN_71, V3D_CSD_CURRENT_CFG2(71)),
+> +	REGDEF(V3D_GEN_71, V3D_GEN_71, V3D_CSD_CURRENT_CFG3(71)),
+> +	REGDEF(V3D_GEN_71, V3D_GEN_71, V3D_CSD_CURRENT_CFG4(71)),
+> +	REGDEF(V3D_GEN_71, V3D_GEN_71, V3D_CSD_CURRENT_CFG5(71)),
+> +	REGDEF(V3D_GEN_71, V3D_GEN_71, V3D_CSD_CURRENT_CFG6(71)),
+> +	REGDEF(V3D_GEN_71, V3D_GEN_71, V3D_V7_CSD_CURRENT_CFG7),
+>   };
+>
+>   static int v3d_v3d_debugfs_regs(struct seq_file *m, void *unused)
+> @@ -164,7 +164,7 @@ static int v3d_v3d_debugfs_ident(struct seq_file *m,=
+ void *unused)
+>   		   str_yes_no(ident2 & V3D_HUB_IDENT2_WITH_MMU));
+>   	seq_printf(m, "TFU:        %s\n",
+>   		   str_yes_no(ident1 & V3D_HUB_IDENT1_WITH_TFU));
+> -	if (v3d->ver <=3D 42) {
+> +	if (v3d->ver <=3D V3D_GEN_42) {
+>   		seq_printf(m, "TSY:        %s\n",
+>   			   str_yes_no(ident1 & V3D_HUB_IDENT1_WITH_TSY));
+>   	}
+> @@ -196,11 +196,11 @@ static int v3d_v3d_debugfs_ident(struct seq_file *=
+m, void *unused)
+>   		seq_printf(m, "  QPUs:         %d\n", nslc * qups);
+>   		seq_printf(m, "  Semaphores:   %d\n",
+>   			   V3D_GET_FIELD(ident1, V3D_IDENT1_NSEM));
+> -		if (v3d->ver <=3D 42) {
+> +		if (v3d->ver <=3D V3D_GEN_42) {
+>   			seq_printf(m, "  BCG int:      %d\n",
+>   				   (ident2 & V3D_IDENT2_BCG_INT) !=3D 0);
+>   		}
+> -		if (v3d->ver < 40) {
+> +		if (v3d->ver < V3D_GEN_41) {
+I had expected that such a behavior change was at least mentioned in the
+commit log.
 
-> fuel-guage ("sprd,sc2731-fgu", say), charger ("ti,bq24190") or a 
-> platform device ("cw2015") containing "monitored-battery" property to 
-> manage the simple battery.
-
-
->>> Battery_Status & Battery_Capacity AMS.
->>>
->>> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
->>> ---
->>>   Documentation/devicetree/bindings/connector/usb-connector.yaml | 8 ++++++++
->>>   Documentation/devicetree/bindings/usb/maxim,max33359.yaml      | 1 +
->>>   2 files changed, 9 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
->>> index 11e40d225b9f3a0d0aeea7bf764f1c00a719d615..5e15bc060f5a2cfce842f83de738f1e8bae3ce2d 100644
->>> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
->>> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
->>> @@ -300,6 +300,14 @@ properties:
->>>       $ref: /schemas/types.yaml#/definitions/uint8-array
->>>       maxItems: 4
->>>   
->>> +  fixed-batteries:
->>> +    description: Contains references to nodes associated with battery type power
->>> +      supplies powering the USB PD device. These batteries are fixed type and
->> What is a "battery type power supply"? If you just link here batteries,
->> then we have type for it - monitored-battery - but I doubt connector has
->> direct connection to the battery.
-> Regarding "nodes associated with battery type power supplies", I meant 
-> something like a fuel guage or a charger OR platform device with 
-> "monitored-battery" that will manage the battery lifecycle. If I use 
-> monitored-battery for this, I will be restricted to only querying 1 
-> simple battery. Also, I don't mean PD connector device to be a fuel 
-> guage or charger that manages a specific battery. It should just be able 
-> to query any FG/Chg for the battery status to relay that info to the 
-> connector's port partner.
-> 
-> The intent of the patchset & this change is for the USB Type C protocol 
-> manager module (that consumes these bindings) to be able to get info 
-
-The intent should be rather to accurately describe hardware and maybe
-that's the problem - you focus how to bend it for your drivers.
-
-
-Best regards,
-Krzysztof
+Except of this, look good to me.
 
