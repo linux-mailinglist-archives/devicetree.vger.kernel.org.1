@@ -1,220 +1,159 @@
-Return-Path: <devicetree+bounces-157914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EEB3A6362B
-	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 16:13:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FF26A63633
+	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 16:22:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0460F16DE6D
-	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 15:13:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2EEEC1891B0A
+	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 15:22:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 293991AF0A4;
-	Sun, 16 Mar 2025 15:13:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 873D71A9B3E;
+	Sun, 16 Mar 2025 15:22:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aNb8qZOD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="grD4gTCk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D26019F489;
-	Sun, 16 Mar 2025 15:13:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACA9442A8B;
+	Sun, 16 Mar 2025 15:22:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742137990; cv=none; b=mN2RXdw4N5kvsBPmu524RRdAYX8AAVLfyXuTK1nfMpTJzaYT80I0m3VQFmuTljnszkAM9MXOP16QNLF4c1iaTQ1jgmEXctNSEhnQ+3QE1Cko3A77IJE9VCly3R4BxN1NFbmIWacaKS+5y3tkYrZ/5Y+AcbyYO5PtZ5piRQxPIq0=
+	t=1742138550; cv=none; b=ZBPaBKe/Jeybb7AUCY+7yUYAoE82IA/crwX0jlHHJHFaLGlvlY2sOwMK1Lef7JmNocciPVG95ih0l4ulhcgNH1dyJLS5rcQEy2RXxEPCHy4+jFFrkjW1IHAGqeaWZOv9SurKOeTDN1xgRCmm9vqe8lJ9cbmh4Cs3lVVKhkzkV7M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742137990; c=relaxed/simple;
-	bh=8CBBywWLpZizJNj+z9ZtPQd+M4YuSb4aESlsynHJ0jA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qGGBAhV9ozYMWxnhK+Pf70YN/v2wp4+1gIKXTRVcbCbz2H+bKuqyaEt0N6X8E+4Pa+c6M8MyBDhUrO+Ibqz7XUjNEay8usyBc6tpB5pFuEAhyBK+NQae9pXKx70QhiwlefztzWHW1X/2RMcsZgLIt/f+aIkODh321EUNVK0LAoQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aNb8qZOD; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1742138550; c=relaxed/simple;
+	bh=LcB3YEvnmquR7l6nScRuWNog1FjtTZb9F/jk3nOVSfw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kxahTcZ/TCgJaDtAR0ye5GB3uvfpSZGm00I3fJYeG0F/KlfrDAe9csefjuxZ1IcIu88ZGD7+EjGkxsZe6B5a5kXAQ9vIoMbSK6XUwcFyLnQu5iVTa8dmK8Q5P/+moT2CrgFHGZfSRjpF8cSfHB7jxYe2Q3fbDXIcUUpjnf+4Ld8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=grD4gTCk; arc=none smtp.client-ip=209.85.216.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-ac2a9a74d9cso741574666b.1;
-        Sun, 16 Mar 2025 08:13:08 -0700 (PDT)
+Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-2ff69365e1dso1358662a91.3;
+        Sun, 16 Mar 2025 08:22:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742137987; x=1742742787; darn=vger.kernel.org;
-        h=resent-date:resent-to:resent-from:resent-cc
-         :content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=h/E+NEERZ+H3CAvZaK4gBU0W8710bx3dRofufwUO4os=;
-        b=aNb8qZODJxgyElEjV5xSV5c2TOaVsEWAr4OPHnScE3Ab9rdh+cUEk5kfI/9cI9Mop2
-         ZZo0/zP7M8WwImBwKtrppPfpWC+n6af9lqnqy/lmDvULBtQ4ZADf6R4HmCWDZ9pEF76r
-         R7yaD91zaHOarlhIU4UO2obDm2zWNTZzB10SLz7ON8TIZS/dV9iOO5EQIcnRvH60DSRj
-         A1ioRW3KagCSRyAeEBQ2UgnmSScmGGqCXO35MWdDXs9fNhRNQL8CcR20gx8LbVEI3qmk
-         ytqlnZL/7Y0A9sICqrgwSMGrhhZCMv5oPPEQrxWBd8MdEopYhnIPdBeErhpae4EC39RP
-         Q3wQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742137987; x=1742742787;
-        h=resent-date:resent-to:resent-from:resent-cc
-         :content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=gmail.com; s=20230601; t=1742138548; x=1742743348; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=h/E+NEERZ+H3CAvZaK4gBU0W8710bx3dRofufwUO4os=;
-        b=wmZ1AfeE5BrLU+mWRUv4ox0DekOmFLRyHdnqjg58Rc4G+zD3Xc2QyR9Nt6z3X9YIfj
-         cIG8cKCw04vY6mvXlGOPd5e9MlPUHF9Nr1DF3PZ1+Xk7lnEy+YrmY97IObXO5wjqiV0s
-         39RQBpYQslRxfqkqpm2JR9s+GknG3R6yy7NRQcQbnCOQZFUdBgB9iFoUzleqnoXoof+5
-         qwWC6LOJ+NuShvUfP4YAoRLK3LcRuSJQBvw2bvuAFXFsuaLymdCT0JNUVEPdAXn0aELC
-         hEyjtf8JpEfarJenTLyj6RN2S/GRgaDx+zE9hBY4GJ5PaAP78BIHbJI2s7YRsHWnrRlX
-         ww5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUI9e9GvN123sP7KnXJibuCIyQp6POP5YL3Rgtq9dwQYHOvVaUKhSx4zKEYM4NuMwWXJi2/N2hOXLM=@vger.kernel.org, AJvYcCXX2F1P3M72AXaQWVuYe9JWvrMKIbB0BI6ESFBxhk9h9qt4xJXEPHWEyNMRPaIjOR83VyBXLzPTtchU@vger.kernel.org
-X-Gm-Message-State: AOJu0YycErVdlzh7dGWGcS+kONfnYGHIIx9t5G4B5w0si4Qz6g0A2hGW
-	eP4Jzly06r2CtrqsLHWvmsdhzVAzzUm7Pqdxog983iHZOwpHu/qc
-X-Gm-Gg: ASbGnctK6JQjwUlo1QRWVbc0tJO9khrlCRi33PSmrEJCh1osO62JfwhAxdrWM1BNxol
-	bXLJ6iD35bJpHpZn0/Dvy+g2qUzvD+hD9aGT0k7FmweBpKk1sXC/FQMFdBcmOmAaSJDQHthcQrk
-	8851qqn04kZ6M/uGZFe4oBvp+jiWxoy4LOZMpFYWW0I9aI+BUb7gSweY9e+G2IcQW4KTiZtTP45
-	ljA99Pllj/DDkXoctHtNpmPBNOQVr4rABIJsKuy2sDe/5+EG5nxW+ybVjDUSn6T6Zu4El1SeZ9/
-	xqm7KUaKKWHcRQw14ljfWa6+kkH/FdFuHtQU/iTHQiu5+YBeBcTCaxu6px+B9Q==
-X-Google-Smtp-Source: AGHT+IGTS/IH9Jy4ptECuzHnoCjdt80rEBurz7L5YJD42LFJt0kfUTYwqPEosmk3ldjRVrtw0AYLZg==
-X-Received: by 2002:a17:907:6ea9:b0:ac1:e07b:63ca with SMTP id a640c23a62f3a-ac3301e8ee8mr938663666b.22.1742137986263;
-        Sun, 16 Mar 2025 08:13:06 -0700 (PDT)
-Received: from giga-mm.home ([2a02:1210:861b:6f00:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac314a46bb7sm517830566b.145.2025.03.16.08.13.05
+        bh=Rs6Mj7NfVXAbjMAhz8nE+UkRAhB37EqocID8lRhU1pk=;
+        b=grD4gTCkcSa/qF+hs/qRWvv4JcIRkxNjJmH0L0pGbfXc1+6fdVpowncKPm0KOs35HQ
+         o8EVOpA1ZPfFRTA+41eljKqtBkTo7HpOZbWiyjXiNhI0Ar9c+t8HRQwLA7TDaDg4VJzo
+         ClutW9pg7Vsk5zAkUr4zMeJF7OSOKtoa48v9JRky11OPMZOI8zhNkL6xHJF8MDkM/SHf
+         c0WkliSMGEXQSnfD1xgVjAMZqEZYmrJes4vxir5BS1w9zadzgvKVF7k4GLJLo6RXE/0r
+         4HBUqOlTuVSswM6MqGESj1+r2GFflRoMtHbEBFqvld4quFYu18PtUkFvfD/A9Sk0ZySj
+         pwwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742138548; x=1742743348;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Rs6Mj7NfVXAbjMAhz8nE+UkRAhB37EqocID8lRhU1pk=;
+        b=SXT6yNKHTBgqcFMAdRZmxHAnUs2KR5FXmMKandSpM6vsduZL4U+OLflEq9jgk/L/DF
+         WtbcNL0JfQdrjuY8KkO4ea6FZYdGLZgJXn5+s8iw9NV957PQ8NCFVBnMz9CT/hETUSVr
+         jZJCZqwJIscETzsRF3VYwgJMBQvIrnzP/gVVd95uavtInpihdDTMYYlAd/o+SHqKc235
+         vJMPZn3KGcUFt3f+Ha5rBIHNm2XE16KvTc+lvLBbLrk5CrGDRdh0Tce8vn3bkWBBLcLE
+         uv4dcSEbTVd1aaOnjD4Gp1NXdhFGj9VUBuu8vfn0VOh6aTqN2t8Ts91705EVr/Lj+1y8
+         J4Cw==
+X-Forwarded-Encrypted: i=1; AJvYcCUK5nLuoMk1tYKyYlqPnandNCLWGy41dRaO8muQQoql0lV5YYgKA847OjGbNIpoCYJY3gSZM2e6qiLw@vger.kernel.org, AJvYcCWB4+6gxmIAarRjOjr8xhLEG6TODaJBHlhQAo/m+JLNv3uCOHKGhOD7/MM1zeX8ejlS/K4AppSBdbeZ@vger.kernel.org, AJvYcCWkB17oec5SNrRgYGDWGZFy6GGZ6PI+NU8HElx5JDYl2XyjLms4JtONEdzjc2DTyakbBnc4gXUlHONHaAmX@vger.kernel.org
+X-Gm-Message-State: AOJu0YyTSD99qST//44NcRO3/uj4pE5KfDIOjv4SHPoejwBPd+NKDLbI
+	VE9tniq1DtkN+7Ktl+RaLryWUw+ZMQEm3ITDIqawLiUwdIZWXru+YHyiqg==
+X-Gm-Gg: ASbGncvU20XK0qYZHbj1pGI2yrHpynTz55c4J7RHPZKkSK8JM4MAl99iM7SdYhzXuzU
+	2pUb4iwkewsOWWhXS28rW0Q0AyWgrdhHNH543M/cjzwR/vWmRH9u6NspUYPk58vJkn9tn6iCktA
+	qKmu2XGzasHSN4mfvVx8NfBiVeuDaw0ubNegY7fX2fuQK2JMCHph3xZAKehI/3u3WNPeAkjQChY
+	JzCGgmlKbvfqJkAbolUe3zzISlH25OM53ahf6HvCvtxyo/ki9EkGOXQ9MHmoOswR+wK+wh1oFva
+	4BsTE08JtJWQafmAMEqoainYHN33B5k/X6/apyUddO1EnQkHQETKHoB1cw==
+X-Google-Smtp-Source: AGHT+IFLvVeQxiakJUeEJp94hVx51DL+nhXHAvzn5+RsTwsHYZlZ6rkARhi6XFqLqRlS5aibN0kBRg==
+X-Received: by 2002:a17:90b:254d:b0:2f9:cf97:56ac with SMTP id 98e67ed59e1d1-30151afbc79mr13794708a91.0.1742138547819;
+        Sun, 16 Mar 2025 08:22:27 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-301539d3f40sm4308739a91.4.2025.03.16.08.22.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 16 Mar 2025 08:13:05 -0700 (PDT)
-Received: from giga-mm.. ([2a02:1210:861b:6f00:82ee:73ff:feb8:99e3])       
- by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-5dece270a66sm1559230a12.52.2025.02.13.10.22.14       
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);        Thu, 13
- Feb 2025 10:22:14 -0800 (PST)
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To: soc@lists.linux.dev
-Cc: Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Sebastian Reichel <sre@kernel.org>,
-	devicetree@vger.kernel.org,
-	Haylen Chu <heylenay@outlook.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-riscv@lists.infradead.org,
-	linux-pm@vger.kernel.org,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Chao Wei <chao.wei@sophgo.com>
-Subject: [PATCH v4 0/7] arm64 support for Milk-V Duo Module 01 EVB
-Date: Thu, 13 Feb 2025 19:22:01 +0100
-Message-ID: <20250213182210.2098718-1-alexander.sverdlin@gmail.com>
-X-Mailer: git-send-email 2.48.1
+        Sun, 16 Mar 2025 08:22:27 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Sun, 16 Mar 2025 08:22:25 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Tomer Maimon <tmaimon77@gmail.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
+	yuenn@google.com, benjaminfair@google.com, openbmc@lists.ozlabs.org,
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v28 2/3] reset: npcm: register npcm8xx clock auxiliary
+ bus device
+Message-ID: <536f5393-478c-4a50-b25f-180e221ef7a3@roeck-us.net>
+References: <20240912191038.981105-1-tmaimon77@gmail.com>
+ <20240912191038.981105-3-tmaimon77@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Resent-Cc: Alexander Sverdlin <alexander.sverdlin@gmail.com>, Chen Wang	
- <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@outlook.com>, Lee
- Jones	 <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Philipp Zabel	
- <p.zabel@pengutronix.de>, Catalin Marinas <catalin.marinas@arm.com>, Will
- Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Paul Walmsley
- <paul.walmsley@sifive.com>,  Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
- <aou@eecs.berkeley.edu>, Sebastian Reichel <sre@kernel.org>, 
-	devicetree@vger.kernel.org, Haylen Chu <heylenay@outlook.com>, 
-	linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org, 
-	linux-pm@vger.kernel.org, Jisheng Zhang <jszhang@kernel.org>, Chao Wei	
- <chao.wei@sophgo.com>
-Resent-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Resent-To: sophgo@lists.linux.dev
-Resent-Date: Sun, 16 Mar 2025 16:13:04 +0100
-Resent-Message-Id: <20250316151310.293991AF0A4@smtp.subspace.kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240912191038.981105-3-tmaimon77@gmail.com>
 
-This series adds very basic support for Milk-V Duo Module 01 EVB [1] in
-arm64 mode. The SoC (SG2000) is dual-arch, RiscV and ARM64, the latter has
-been chosen because the upstream toolchain can be utilized.
+Hi,
 
-Sophgo SG2000 seems to be a continuation of the Cvitek CV18xx series, same
-peripherals with an addition of ARM64 core. Therefore it would be
-beneficial not to copy-paste the peripherals' device-tree, but rather split
-the most suitable riscv DT into ARCH-specific and peripherals parts and
-just include the latter on the arm64 side.
+On Thu, Sep 12, 2024 at 10:10:37PM +0300, Tomer Maimon wrote:
+> Add NPCM8xx clock controller auxiliary bus device registration.
+> 
+> The NPCM8xx clock controller is registered as an aux device because the
+> reset and the clock controller share the same register region.
+> 
+> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> Tested-by: Benjamin Fair <benjaminfair@google.com>
+> Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 
-This series adds the device-tree for Milk-V Duo Module 01 EVB, which
-in turn contains Milk-V Duo Module 01 (separate .dtsi) on it, which has
-SG2000 SoC inside (separate .dtsi).
+Does this work with real hardware ? I tried with the new qemu emulation,
+but that gets stuck in the serial driver initialization. I found that the clock
+device instantiates but does not register as clock provider because it does
+not have a device node. I needed something like the patch below to get beyond
+that point.
 
-This series has been tested with Sophgo-provided U-Boot binary [2]: it
-boots from SD card; pinctrl, serial, GPIO drivers are functional (same
-as for RiscV-based CV18xx SoCs).
+Thanks,
+Guenter
 
-Partial SoC documentation is available [3].
+---
+From: Guenter Roeck <linux@roeck-us.net>
+Subject: [PATCH] reset: npcm: Provide device node to clock driver
 
-This series lacks the support of:
-- USB
-- Audio
-- Ethernet
-- WiFi
-- Bluetooth
-- eMMC
-- Video
-- "reboot" functionality
+Without device node, the clock driver can not register itself as clock
+provider. With debugging enabled, this manifests itself with
 
-It would probably make sense that the series will go into ARM SOC tree.
+ of_serial f0000000.serial: error -EPROBE_DEFER: failed to get clock
+ of_serial f0000000.serial: Driver of_serial requests probe deferral
+ platform f0000000.serial: Added to deferred list
+...
+ Warning: unable to open an initial console.
 
-Changelog:
-v4:
-- minimized patch 1/7 (cleanups dropped)
-- cv18xx-cpu-intc.dtsi instead of cv18xx-cpu.dtsi+cv18xx-intc.dtsi in
-patch 1/7
-v3:
-- &cpus node has been moved into cv18xx-cpu.dtsi, &plic and &clint nodes
-were moved into cv18xx-intc.dtsi to reduce code duplication;
-v2:
-- dropped all patches related to the new reboot driver and corresponding DT
-and bindings;
-- grouped DT-related and config-related patches together;
-- added patch moving sophgo.yaml from riscv into soc (to share it with
-ARM); added SG2000 SoC and Milk-V Duo Module 01 EVB into it;
-- other changes are documented in the corresponding patches;
+Look up the device node and attach it to the clock device to solve the
+problem.
 
-[1] https://milkv.io/docs/duo/getting-started/duo-module-01
-[2] https://github.com/milkv-duo/duo-buildroot-sdk-v2/releases/
-[3] https://github.com/sophgo/sophgo-doc/releases/download/sg2000-trm-v1.01/sg2000_trm_en.pdf
+Fixes: 22823157d90c ("reset: npcm: register npcm8xx clock auxiliary bus device")
+Signed-off-by: Guenter Roeck <linux@roeck-us.net>
+---
+ drivers/reset/reset-npcm.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Alexander Sverdlin (7):
-  riscv: dts: sophgo: cv18xx: Move RiscV-specific part into SoCs' .dtsi
-    files
-  dt-bindings: soc: sophgo: Move SoCs/boards from riscv into soc, add
-    SG2000
-  arm64: dts: sophgo: Add initial SG2000 SoC device tree
-  arm64: dts: sophgo: Add Duo Module 01
-  arm64: dts: sophgo: Add Duo Module 01 Evaluation Board
-  arm64: Add SOPHGO SOC family Kconfig support
-  arm64: defconfig: Enable rudimentary Sophgo SG2000 support
-
- .../{riscv => soc/sophgo}/sophgo.yaml         |  7 +-
- arch/arm64/Kconfig.platforms                  |  6 ++
- arch/arm64/boot/dts/Makefile                  |  1 +
- arch/arm64/boot/dts/sophgo/Makefile           |  2 +
- .../sophgo/sg2000-milkv-duo-module-01-evb.dts | 31 +++++++
- .../sophgo/sg2000-milkv-duo-module-01.dtsi    | 85 +++++++++++++++++
- arch/arm64/boot/dts/sophgo/sg2000.dtsi        | 75 +++++++++++++++
- arch/arm64/configs/defconfig                  |  4 +
- arch/riscv/boot/dts/sophgo/cv1800b.dtsi       |  5 +
- arch/riscv/boot/dts/sophgo/cv1812h.dtsi       |  5 +
- arch/riscv/boot/dts/sophgo/cv181x.dtsi        |  2 +-
- .../boot/dts/sophgo/cv18xx-cpu-intc.dtsi      | 54 +++++++++++
- arch/riscv/boot/dts/sophgo/cv18xx.dtsi        | 91 +++++--------------
- arch/riscv/boot/dts/sophgo/sg2002.dtsi        |  5 +
- 14 files changed, 303 insertions(+), 70 deletions(-)
- rename Documentation/devicetree/bindings/{riscv => soc/sophgo}/sophgo.yaml (80%)
- create mode 100644 arch/arm64/boot/dts/sophgo/Makefile
- create mode 100644 arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-module-01-evb.dts
- create mode 100644 arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-module-01.dtsi
- create mode 100644 arch/arm64/boot/dts/sophgo/sg2000.dtsi
- create mode 100644 arch/riscv/boot/dts/sophgo/cv18xx-cpu-intc.dtsi
-
+diff --git a/drivers/reset/reset-npcm.c b/drivers/reset/reset-npcm.c
+index e5b6127783a7..43bc46755e82 100644
+--- a/drivers/reset/reset-npcm.c
++++ b/drivers/reset/reset-npcm.c
+@@ -409,6 +409,8 @@ static struct auxiliary_device *npcm_clock_adev_alloc(struct npcm_rc_data *rst_d
+ 	adev->name = clk_name;
+ 	adev->dev.parent = rst_data->dev;
+ 	adev->dev.release = npcm_clock_adev_release;
++	adev->dev.of_node = of_find_compatible_node(rst_data->dev->parent->of_node,
++						    NULL, "nuvoton,npcm845-clk");
+ 	adev->id = 555u;
+ 
+ 	ret = auxiliary_device_init(adev);
 -- 
-2.48.1
+2.45.2
 
 
