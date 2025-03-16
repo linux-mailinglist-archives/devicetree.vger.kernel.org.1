@@ -1,169 +1,147 @@
-Return-Path: <devicetree+bounces-157956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 279E5A63717
-	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 19:58:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70E89A6371F
+	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 20:01:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EAF13188F53C
-	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 18:58:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A9E49169428
+	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 19:01:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C1FC200B9B;
-	Sun, 16 Mar 2025 18:56:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78CE21514E4;
+	Sun, 16 Mar 2025 19:01:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K+7P6+7z"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jPxTuTcc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D43E1F9A8B;
-	Sun, 16 Mar 2025 18:56:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAAEF3FE4;
+	Sun, 16 Mar 2025 19:01:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742151414; cv=none; b=KGYAEOzmJ7HTDKhm4z3hmtOwARF6ecoTx2eHUEqRYAjIaYyOFVkvbz2cAsG8/GPRPuBvl4QZMHX+TzuYMAM+zqsWJbPC9t7N9Ql/PxNEe1dJssOAX9rV51XJHJ3z/wJ0n2p7szCvxzNMdW4GE1SJUQ9WVMZO/CICoV3iH5HtY4I=
+	t=1742151707; cv=none; b=NWApNtHYW4JjIzt01qhsrEXYWbwMwKWYpmK6lWJs0kB4L/sOyKoLW56+/wTI0FDiVAPQbS9uvF0hZKjxjBz9MAClxI9h2n4dYPh/XcUSgBnvzlFYRog9OHC8EcB0sitcfyAZXtLe8tSrAFocBxLnJbXOGBctmZU5UBcXKxcpwDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742151414; c=relaxed/simple;
-	bh=aghljR1wM2BDQQZuPDhqoTtY/vyWZD8fyPWNjyzLVSk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=tQTCSDw8w/+YviaHNXLHR8iDfswHKJa9OhU8ZBCtpnaBf3GzW2WLdmh4lqPSXx88K1tfSPTspK6NK9V/VQ1StCiFw2uSwEahg6BHiSaZcb5rlCNt0Iici34onI/0nMtZ+ytkfKR8hf7KLAFPmFvtA/rh5+eaD9EUM8o8DC7jxGg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=K+7P6+7z; arc=none smtp.client-ip=209.85.128.54
+	s=arc-20240116; t=1742151707; c=relaxed/simple;
+	bh=ekmzAmP8Y8iH5QY/PxjyugTDakULmRUAQEXxogkFKnc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Yk1dvQo0oN+KGeJ7a0j852XZfU2zOzU9IPvatHd4einvR8wtRU83n25UHNph8destUfrGEe9+MOvIHGpiGyf4cw3aTwpmE5xO26nmmLFGizFS90pZNCrwOjtb4bDhZvbNLZnAPtph8T+fTvxQOLkTTE3QUT8NgvigA4J0W1zEvQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jPxTuTcc; arc=none smtp.client-ip=209.85.218.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-43cfecdd8b2so10104885e9.2;
-        Sun, 16 Mar 2025 11:56:52 -0700 (PDT)
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ac25d2b2354so641323766b.1;
+        Sun, 16 Mar 2025 12:01:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742151411; x=1742756211; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YKV+hWN9JpR1oWviShl5FW1hZNTpiT4lwbZMt2wB8jc=;
-        b=K+7P6+7z8CxfZcd/jm/nRhA6xwOcNpuSXIsegWy/0PvBhVYPOaJVRF3Z6x6pgZciwq
-         rlhQU90ZAcpSFX38YS+CBEr4mNDngWexemMw5fzGzB536tXG6sFWmL25lbiR4QnfhRug
-         7f3XTVJ91oJ8RyW2jpwUOMbU3ZSSao5jULQNAIPdL2GRA0l9f4PosroVqj9Hv2R9gjfW
-         SJUVrEV3vJ+VVBCfa+Ot2T282R3ADEhmX/vtyrVUODio18FzYQziuSQJ5hckbyccCBGV
-         ZAgSX+UZa3ipvXGw7LmpwKYeKn3Gm2a2Zy/AzsPO+Br1PpE7aRgWQGFLacrDb4Gvf6hl
-         fuMg==
+        d=gmail.com; s=20230601; t=1742151704; x=1742756504; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VaARcnuSuLuxpai/InAGA0xtSCdbGWktXfe+Ii7D/U4=;
+        b=jPxTuTccNW9ZDqqDtTSDob5npX+ueDz+Dv9r0u19YWHFqp8C5a/O1K5+dW1l/BFiKx
+         ZGzvA4p6AzoWVJSKt+Z1MVoFqAPFNxHxWdaOb1FYHZnSSBKjgdqG5FyLnPCJhxOJZLxG
+         KGykkVm2zhskq9y0bJUt9AHe0VdeahWSpxtcOV+fwLXG8WNnsqLvNmuuhvqOyxU1J/ls
+         j7+qmlO9plPs6F8qbqmX58QT7wUymWnKgLTvj7hB8FkSxuXy9TfL1gbFvngs2TgnjiRK
+         NYX6723JU0JZPtdW8q87xUyTRvc1pNkhYFqcv1Vow5FActQPsupZXIg7MrTja/hs9PnY
+         E7dQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742151411; x=1742756211;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YKV+hWN9JpR1oWviShl5FW1hZNTpiT4lwbZMt2wB8jc=;
-        b=aQeR+MzioemwRw4NUNx9beAtCqpxaV6NCcsSYRtq3x8L5VdW+u9Xng54/FnZn0+QA6
-         GQL4cubYFgRmSL2kikYGMUi4RIG+4D97X81TKYMqetVlyoryWEj5QMzfJJSCUfNiQCNm
-         EEwuSALGdnJcLL6YjF3cNqEZrVzSXyZBBlnEjAj1OHjJ/F4TtScKZlb3Fe2C/vCgRh0p
-         72QtmVTTke+9s4PiY4b3jmwZI4hZrf+zwCFsTR3AdDElTeLA+IttJpQGdhqIwRMEqwZY
-         G5frw2JMCLN2Si1VFfeURT0MNkjmHhhyjzz1Qs19lSN+qaYpZxHr/4SFEDTZbxt3q7B8
-         du4A==
-X-Forwarded-Encrypted: i=1; AJvYcCVnS/GgJwHqLAsG2vKR2dHVSUMtF0e0wLxeswxgpCMq6+M4k9yJg2OOkBXI3WNzYDalI4QJQtanFwqR@vger.kernel.org, AJvYcCXNMlLtZF+xBAba3H1/0wrvuE2+sbc+JiDaFvE1oEcrF46d5Z18bZI/nQnTy+9YoTXG4zRWv94X4Ei+/il5@vger.kernel.org
-X-Gm-Message-State: AOJu0YwU0NsgBTfSHIGNBp3oo76dVhnqbkJDPEWG40Ae3jZaRsCs3W+A
-	Gg1wImEl+I5nV4mHDzHa/gCw0d/FSUMDSJeVjIy/KwNmjyQehn6L
-X-Gm-Gg: ASbGncs7qL7ex6TVQJCd+t6nm9/Lq9rS0JRTjuXXWaMhthCt8BdB2atkFfvh5QXmMTK
-	eHzxtHe7IXhYj8z4gws8vHgF3lZR2Lm89v1ZI8boYdflDZysM21BGhf2tZIRgYSfXS1d3czzQQ1
-	FAxugR9jbKevhre1EmsvFCZMgZMBZ7brZVoxKGzUYX9DA58HxTuOlP3zuU5XxaftWs4Oz/qY03i
-	6Aacjt4L8CrO3fa4siXE4SfIQhUfCnxt/ifzEc7PdL1b/2MHnvVWOJwsbTb+4r3BavGrlcU9H6c
-	xeYQpPwZlGHn/6Aw/MDglKAuzFRHxnL4QykUArPS2W3P6JLUjKnifx1FdVhO0PNCd2uw
-X-Google-Smtp-Source: AGHT+IHLZK3FCf/r7+5MKurX3pr5o4LJldkBwRRoPZ2/8ot7v5lwjboRWlnOjFSLvqToQ7g90WgAwg==
-X-Received: by 2002:a05:600c:3399:b0:43d:2230:300f with SMTP id 5b1f17b1804b1-43d2230311bmr92200575e9.0.1742151410666;
-        Sun, 16 Mar 2025 11:56:50 -0700 (PDT)
-Received: from giga-mm.. ([2a02:1210:861b:6f00:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d1ffb6292sm84692335e9.1.2025.03.16.11.56.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 16 Mar 2025 11:56:50 -0700 (PDT)
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To: sophgo@lists.linux.dev,
-	soc@lists.linux.dev
-Cc: Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Haylen Chu <heylenay@outlook.com>,
-	Chao Wei <chao.wei@sophgo.com>,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v5 7/7] arm64: defconfig: Enable rudimentary Sophgo SG2000 support
-Date: Sun, 16 Mar 2025 19:56:37 +0100
-Message-ID: <20250316185640.3750873-8-alexander.sverdlin@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250316185640.3750873-1-alexander.sverdlin@gmail.com>
-References: <20250316185640.3750873-1-alexander.sverdlin@gmail.com>
+        d=1e100.net; s=20230601; t=1742151704; x=1742756504;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VaARcnuSuLuxpai/InAGA0xtSCdbGWktXfe+Ii7D/U4=;
+        b=ownR68o4Jp3fu2tXSBAa+a+DLUOXGvcYKu13Aa3sjeTdN1CNsEcyxxWDsXruws8YSz
+         Hcy+kkIvWh+hCKDz0ex03fVWY9VDeP/OBreFujiRjhh4hDAxaJTMgr3393CNsXmYE35b
+         +ItZFONTp+c0APaSsWgwSzbI5o4x1FItsvliAnZWt8aoBIrdDSkEQnlPDSN+Vjpkt93x
+         /cMpkNnCjeJkW0T4BtBTbp22OgGbmFzwkD2YLoe5UQsd5b5fW7JzB7EJqa3qx88jyhiC
+         TFfyeHz2dYzfXvdh4qOsPja7COUiAyWURCA6/r7593CoT0yUeN/XAqOthan4NHt3QSsm
+         6V3w==
+X-Forwarded-Encrypted: i=1; AJvYcCV6ORnuR4JWsPHPDaMUr2wRHfLriS8h5hSun8DDr4UBmaMWk0BytHJBgz0+8as15PXDKkqaB8efnmbfoFwy@vger.kernel.org, AJvYcCWl4PlvYJvjIJjPrqBL21y8JsUVB2a3S3SByIWJR5MpgPLIO+ucEe4NxuHQ+EVrgc0FcK9+DXrTCzgh@vger.kernel.org, AJvYcCXXsHnZBusoxtmFA0VEFzUEFgRjngy47hsFG7I+uhvBG+QNRtv4Vqvc2diUjN4AoaFC7NnguSHdAsij@vger.kernel.org
+X-Gm-Message-State: AOJu0YyyiNoFzzPfs1Ij6uU/hiFsVz8SSE8wq4Hz31ghuo3ks7fxs0FW
+	UnNEfcjjKNWTpzrBncD504LCGBTZvITUkGNs9GDRa+o4PitK07h8
+X-Gm-Gg: ASbGnctQ0N18ICPcZ5u+tYzHJLVRuHV1THUs9fwWl8PMowtqi3eZo1gK+2ABazuREdK
+	+J6ieZkkaeuutYgGS/fgDZBoJtNni1TJSlXE3UmVIwPgu9u6QelNv5Yow+h6YcCqK+UnogJQL6o
+	Or6kDzymv0tP+jQ4cVunTyx59vN+BwgkVxrGJ8VKn0FIYBdObZSAWtOTO/oEjwEW3A7gZ2Knf8Y
+	cOQvTtJXdwih/Fw1tsRji2k+AAwfkA5yDjsqnZueilFHDJs2A799SnBlprF408ctK7tGplQdn+r
+	q21gv5u2QUArwN5KBl1XyZJJ7u5s9kXgcjOEAXaXQ8ipPyCTHOl2faFDlSV27liPO9GHBACCIdB
+	4xeyXbD5+xsp+zJs9f8DIDA==
+X-Google-Smtp-Source: AGHT+IHgXXtMhyuLsuMBCutEq5j1h8RgZgLKJgXD8Pc87mm4FhtnDm/alvyi1kWX2iTdBEa+bID4kw==
+X-Received: by 2002:a17:907:7fa6:b0:abc:4b7:e3d3 with SMTP id a640c23a62f3a-ac3302f1068mr1042069866b.27.1742151703874;
+        Sun, 16 Mar 2025 12:01:43 -0700 (PDT)
+Received: from [192.168.50.244] (83.11.178.210.ipv4.supernova.orange.pl. [83.11.178.210])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac314a4094dsm527846366b.126.2025.03.16.12.01.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 16 Mar 2025 12:01:42 -0700 (PDT)
+Message-ID: <fffe0118-6235-446c-a9c5-93f5d1f5ed04@gmail.com>
+Date: Sun, 16 Mar 2025 20:01:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/9] clk: bcm: kona: Move CLOCK_COUNT defines into the
+ driver
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
+ <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alex Elder <elder@kernel.org>,
+ Stanislav Jakubek <stano.jakubek@gmail.com>, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht
+References: <20250308-kona-bus-clock-v3-0-d6fb5bfc3b67@gmail.com>
+ <20250308-kona-bus-clock-v3-1-d6fb5bfc3b67@gmail.com>
+ <20250310-proficient-free-antelope-abb6b7@krzk-bin>
+From: Artur Weber <aweber.kernel@gmail.com>
+Content-Language: en-US
+In-Reply-To: <20250310-proficient-free-antelope-abb6b7@krzk-bin>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Enable ARCH_SOPHGO, pinctrl (built-in, required to boot), ADC as module.
-This defconfig is able to boot from SD card on Milk-V Duo Module 01
-evalboard.
+On 10.03.2025 09:40, Krzysztof Kozlowski wrote:
+> On Sat, Mar 08, 2025 at 08:50:39AM +0100, Artur Weber wrote:
+>> CLOCK_COUNT defines for each CCU are stored in the DT binding header.
+>> This is not correct - they are not used by device trees, only internally
+>> by the driver.
+>>
+>> Move the CLOCK_COUNT defines directly into the driver in preparation
+>> for dropping them from the DT binding include.
+>>
+>> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+>> ---
+>>   drivers/clk/bcm/clk-bcm21664.c |  8 ++++++++
+>>   drivers/clk/bcm/clk-bcm281xx.c | 10 ++++++++++
+>>   2 files changed, 18 insertions(+)
+>>
+>> diff --git a/drivers/clk/bcm/clk-bcm21664.c b/drivers/clk/bcm/clk-bcm21664.c
+>> index 520c3aeb4ea9c4a431512c0909f9545c1761d17a..fa6e1649d6f5f459b63026109caea9e2f72e22dd 100644
+>> --- a/drivers/clk/bcm/clk-bcm21664.c
+>> +++ b/drivers/clk/bcm/clk-bcm21664.c
+>> @@ -17,6 +17,8 @@ static struct peri_clk_data frac_1m_data = {
+>>   	.clocks		= CLOCKS("ref_crystal"),
+>>   };
+>>   
+>> +#define BCM21664_ROOT_CCU_CLOCK_COUNT	(BCM21664_ROOT_CCU_FRAC_1M + 1)
+> 
+> I hit that wall too, no worries. It might surprise you but 0+1 != 1 :),
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
----
-Changelog:
-v5:
-v4:
-v3:
-v2:
-- moved CLK_SOPHGO_CV1800 from Kconfig.platforms here;
+Do you mean that I should specify the clock count directly rather than
+incrementing the last ID? Some other drivers seem to do this the way I
+did here (samsung/clk-exynos*, renesas/r9a06g032-clocks.c).
 
- arch/arm64/configs/defconfig | 4 ++++
- 1 file changed, 4 insertions(+)
+> so you redefine a define. You need to test this patch bisectability.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index bde1287ad9a7..9c01f5333f0f 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -66,6 +66,7 @@ CONFIG_ARCH_RENESAS=y
- CONFIG_ARCH_ROCKCHIP=y
- CONFIG_ARCH_SEATTLE=y
- CONFIG_ARCH_INTEL_SOCFPGA=y
-+CONFIG_ARCH_SOPHGO=y
- CONFIG_ARCH_STM32=y
- CONFIG_ARCH_SYNQUACER=y
- CONFIG_ARCH_TEGRA=y
-@@ -652,6 +653,7 @@ CONFIG_PINCTRL_SM8450_LPASS_LPI=m
- CONFIG_PINCTRL_SC8280XP_LPASS_LPI=m
- CONFIG_PINCTRL_SM8550_LPASS_LPI=m
- CONFIG_PINCTRL_SM8650_LPASS_LPI=m
-+CONFIG_PINCTRL_SOPHGO_SG2000=y
- CONFIG_GPIO_ALTERA=m
- CONFIG_GPIO_DAVINCI=y
- CONFIG_GPIO_DWAPB=y
-@@ -1409,6 +1411,7 @@ CONFIG_QCOM_HFPLL=y
- CONFIG_CLK_GFM_LPASS_SM8250=m
- CONFIG_CLK_RCAR_USB2_CLOCK_SEL=y
- CONFIG_CLK_RENESAS_VBATTB=m
-+CONFIG_CLK_SOPHGO_CV1800=y
- CONFIG_HWSPINLOCK=y
- CONFIG_HWSPINLOCK_QCOM=y
- CONFIG_TEGRA186_TIMER=y
-@@ -1528,6 +1531,7 @@ CONFIG_QCOM_SPMI_VADC=m
- CONFIG_QCOM_SPMI_ADC5=m
- CONFIG_ROCKCHIP_SARADC=m
- CONFIG_RZG2L_ADC=m
-+CONFIG_SOPHGO_CV1800B_ADC=m
- CONFIG_TI_ADS1015=m
- CONFIG_TI_AM335X_ADC=m
- CONFIG_IIO_CROS_EC_SENSORS_CORE=m
--- 
-2.48.1
+I assume renaming the define to not collide with the old name is the way
+to go?
+
+Best regards
+Artur
 
 
