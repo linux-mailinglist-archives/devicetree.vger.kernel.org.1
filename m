@@ -1,157 +1,207 @@
-Return-Path: <devicetree+bounces-157937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B055A636D7
-	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 18:42:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2768A636E7
+	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 19:19:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C73C916DD77
-	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 17:42:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C184616DBBC
+	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 18:19:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AA7C1A5B96;
-	Sun, 16 Mar 2025 17:42:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF30B1A840A;
+	Sun, 16 Mar 2025 18:19:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="NRizFtls"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kU7mJr6h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04B7515C0
-	for <devicetree@vger.kernel.org>; Sun, 16 Mar 2025 17:42:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.60.130.6
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 113D514A4F0;
+	Sun, 16 Mar 2025 18:19:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742146976; cv=none; b=qHYOoyfjDQByhtrFMYBamrdhlDz5hSzK62B3IWQAfctQFYx4bBovjaz9fGzFsVYOjxJSr67nJ9x7MDjimzhNb+sOuHxVjv2dcY/xdQWQGpcYzbe3JvcDoGEgpB3Znj8nVlK3pj7dtDesfrsldeWy7kpEouNeMl0WbhuRaCfVc6I=
+	t=1742149157; cv=none; b=F7zEIcLLE0YkChETWtknIUboxBFQ0ukh4f6R3MC7bmNoqiGNM+BlqUacsfaUuLi4ZoI6E3vMtvWPXhmguXdVE9bJTDhaHjkFepnCwCab2Whe498ERC5Q/3XyOPTrPawN1cn+SFlRl0tEZWFk6Xrwo0KkeUMr40xLCxrvoGDj9HE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742146976; c=relaxed/simple;
-	bh=zQxr4mLTxBKw7JpeD1Rd4R6CSQ3UuA+NlRKVmkr3As4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SMpdMa+G+W6bfEGWQVaze/VuNEpJx5EZmz2FtTG+7v2EHudwJ3Wmft+e8RmjLlM6nGpF36MNeglre90SmuzwNYwfTgTWLlkLqQ1aScs6hHA6yK44P1SoTMZyQ7ms+YskgDPb1H6TYV9ev6vt/uLARXvIqSyX1RpkFd2Q4gydK3Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com; spf=pass smtp.mailfrom=igalia.com; dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b=NRizFtls; arc=none smtp.client-ip=178.60.130.6
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=igalia.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
-	s=20170329; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=5TFa0j5GoBN/ntielEWGjn4MLKP2mpIoBRC/80PT/Ns=; b=NRizFtlsdsPMmjSnei/6s0u1ZC
-	eEXxZtjwaj9HuJp01gPr28qSiVn7eMPz3/nOmoW7dtr+mCtdKCOfPFY6IluQ9gJTKtqgW+xs63wNF
-	i/1Xu/PAxjiuRwjXof9fs9O+ZYSAYcdX/4xVK8yS+8SEsIyEcfo6ShWJRsni4CnQAtA5JJSzyq4Fv
-	GFpG3uJ/pEy3gALMokJFzScEGwlI6VzVfvMz7VPHm2mbMiD1zWejsP/K85oPkY8QTfpUDlKnuysXh
-	ph7y+SFxyIyKw9+sCycxGf7hR8WXzF08ObhMYJ6ks6XKpAIKDdRdc8QlOJALzr6Xfr6UZuHLRzJZv
-	suR+sC3g==;
-Received: from [189.7.87.178] (helo=[192.168.0.224])
-	by fanzine2.igalia.com with esmtpsa 
-	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
-	id 1tts0c-001BBp-50; Sun, 16 Mar 2025 18:42:46 +0100
-Message-ID: <85c9958d-0f69-4048-ab7b-ba40a0d855ca@igalia.com>
-Date: Sun, 16 Mar 2025 14:42:37 -0300
+	s=arc-20240116; t=1742149157; c=relaxed/simple;
+	bh=/2qC3ys8iqY4ZhnW9xWMTHOrRpd3z4gIdVRcOiTewoI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=l+6Yi6w5fo10VtFrENgZOEUj+u6owMNSmRlw5Lg3EigSHCDTqBveFmMGbuPwovGzzERzkf73grfhxOcaV27HXGmt6xb3NMd3ycBADFVbykcq+0jiIMHJIs478YTdsLNYV9SN4Jhv4XgAwB7AR1Py9+h5typHUaW1u1vv03RiOfs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kU7mJr6h; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-ac2aeada833so726495266b.0;
+        Sun, 16 Mar 2025 11:19:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742149154; x=1742753954; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5llhXWaOgn+P9hsoG5ZPqzI/ueY0T33WAdcLaUmMduY=;
+        b=kU7mJr6hKDIFSTywDMhhs0VTslZK/eqhGjhI366HemwK96wUYjqqB8rPk9s0d92Hve
+         tTJ30AfaPYuNc9Wm/AtWhjNBRl3chxu6qBCqOOMvr+7OHx4UqMfaGUxOrZCN7kVWP3Gu
+         eND5/2I4j6D52mHEZ44jDxccCnRWkn3pmA30HHTDe0XpSTclfSNYnYoMnQFB0zqJ6tDl
+         nbwz4XGxwKaiNxetxu0ibWSrg+JJIEwcDA6WEWMfq7y4Tmex3Xguc4shxR14nuSgNxF7
+         9kJNeMqxUvjrANhTa2Qbh0YNYzqjlYrQmT2u5+p/1dWN/98uQspA+mPmD6/c5n7xORy3
+         z4zA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742149154; x=1742753954;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5llhXWaOgn+P9hsoG5ZPqzI/ueY0T33WAdcLaUmMduY=;
+        b=JvIrO34qNkW+kC/+0Xeyt3kaWGEkOaQpAabZOF5WmZMC9S4r2kO28mup2ftVt95kfe
+         TChqqoYJbB8lXrq1SdZOnpgFSPuPfug+Q6ZDMU43anOd4ugXzGaHhbX4I2rNKZJ43kwd
+         EFUq4HNrHoq/hujFyOj4XAYecD0s1NAGAlJRAwfP1y+kHZYCyQ+iYHDHV5jpxou/JTJ0
+         +ShYjRMflCc4SMbjwOPzUQ/eHjYmwEM+Pj6RqWpezW5duJxIUhVBbbi3SAGOUYGhUEtz
+         sRK0fwbZ5IpHoj7ddL1c7SN6a2EUH0TuFmuBq/HSnVdQmEJq9zzRQKOhZ0LvdHJWm82b
+         8Fxw==
+X-Forwarded-Encrypted: i=1; AJvYcCU3UF4s1fy9Nayu7ELn0ehbGUNWc0zi4VL15w8KSvN11s7fJcZEcO0tqhJKtA+2WquBu/qO36bSSzqB@vger.kernel.org, AJvYcCVoPRzJl35lfqyO55OJ7X5ZF7kYwtGqQcfL/8fOwoBwmaGS+bCIM7vWoFUzaCtA00uN1OT6VT/tTQA7Mxla@vger.kernel.org
+X-Gm-Message-State: AOJu0YxBQLBvPhQgubvOYvgb9mkIy5VGvbD5P0gBJqD2RlDWrt3YPvBz
+	pbA/+c+LQZcD8wOJ9syDEBCz5S+tjLgf6/fMsKzyMjc0mNgwmDZi
+X-Gm-Gg: ASbGnctzmzapEiRWmNtUlIig+xTKkCj10vQNJKCd+riU+vA1JOCFrV5EEIRoPBGFayT
+	qxGXnPIKjr943wCOeFowmIQLfwfRRbEcgSAOz1tmnSBqvVLFyYJCUfBkkRwCf/RZGv4/bqjbZqn
+	UJ73rMvmPIeZXgv6xVdFg8GwsC1dHeAB3PSbJxY8GDSY9LtIQ3VOhDAkvejgVNv3CXLUYhOdzUC
+	dW8xaEws1IwrbAubqg7pYvZWOif5M5VTjqQ+1f7WQy6jNTEvOK3mHWhPBvzU+14DbhahCqzv56K
+	5UeHcuNdgnYO9NJULvWswEvTIYHbDtzdI4yizhCt8+yZE6avkAAXVuRT/CACimb1CMJ+kflV96j
+	iw988XX4l/mbroz1ppg==
+X-Google-Smtp-Source: AGHT+IGjBEUa5TpBWQvliNMZG68SgtFyRC14IY8B3fWdscOsontLpBleg5zWcEHDjbOsrk436S97fQ==
+X-Received: by 2002:a17:907:6b88:b0:abf:6a8d:76b8 with SMTP id a640c23a62f3a-ac3122d2166mr1285016666b.11.1742149153915;
+        Sun, 16 Mar 2025 11:19:13 -0700 (PDT)
+Received: from hex.my.domain (83.11.178.210.ipv4.supernova.orange.pl. [83.11.178.210])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac314a48b51sm537951266b.149.2025.03.16.11.19.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 16 Mar 2025 11:19:13 -0700 (PDT)
+From: Artur Weber <aweber.kernel@gmail.com>
+Subject: [PATCH v7 00/10] mfd: bcm590xx: Add support for BCM59054
+Date: Sun, 16 Mar 2025 19:18:48 +0100
+Message-Id: <20250316-bcm59054-v7-0-4281126be1b8@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/6] dt-bindings: gpu: v3d: Add additional examples to
- improve binding checks
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Nicolas Saenz Julienne <nsaenz@kernel.org>,
- Stefan Wahren <wahrenst@gmx.net>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, kernel-dev@igalia.com
-References: <20250316-v3d-gpu-reset-fixes-v5-0-9779cdb12f06@igalia.com>
- <20250316-v3d-gpu-reset-fixes-v5-4-9779cdb12f06@igalia.com>
- <20250316-abiding-badger-of-joy-0acd4c@krzk-bin>
-Content-Language: en-US
-From: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
-In-Reply-To: <20250316-abiding-badger-of-joy-0acd4c@krzk-bin>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAgW12cC/3XQwWrDMAwG4FcpPs9DsiXH2WnvMXaQHac1LE1JR
+ tgoefc5hREvsOMv/P3Cuqs5TTnN6uV0V1Na8pzHawnN00nFi1zPSeeuZGXAEHh0OsSBW2DS4j2
+ 4lhNh8qo8v02pz1+Pqrf3ki95/hyn70fzgtt0K7EIFvaSBTVoy9j0rYeIyb6eB8kfz3Ec1Faym
+ P+gKZB7IUAU4SBHaH8hA1qsoC0wBIlsxFPjmyOkHRrkClKBXeiD6RonnvkIuYKm3sgFguOe0Uk
+ LZI7Q7dACVdAVKMnb8nv2RH+Os67rD7sxzI29AQAA
+X-Change-ID: 20240816-bcm59054-a880695e41e8
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: Stanislav Jakubek <stano.jakubek@gmail.com>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ ~postmarketos/upstreaming@lists.sr.ht, 
+ Artur Weber <aweber.kernel@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1742149152; l=4285;
+ i=aweber.kernel@gmail.com; s=20231030; h=from:subject:message-id;
+ bh=/2qC3ys8iqY4ZhnW9xWMTHOrRpd3z4gIdVRcOiTewoI=;
+ b=ZNfRtDgIBuMyG/Lbw1yMmSFngKHMU8KfJSYgTTvTpciFnYSzh4e8+9i6kYQPBw/CWqt1bMY2L
+ Bz8HP0QT+0jDMhnal4cAJNilgxZQ9QL64bhGGsuv06TA9H3785fCCYy
+X-Developer-Key: i=aweber.kernel@gmail.com; a=ed25519;
+ pk=RhDBfWbJEHqDibXbhNEBAnc9FMkyznGxX/hwfhL8bv8=
 
-Hi Krzysztof,
+Add support for the BCM59054 MFD to the bcm590xx driver and fix a
+couple of small bugs in it that also affected the already supported
+BCM59056.
 
-On 16/03/25 13:43, Krzysztof Kozlowski wrote:
-> On Sun, Mar 16, 2025 at 11:15:11AM -0300, Maíra Canal wrote:
->> To prevent future changes that might inadvertently break the ABI, add
->> more examples to the binding. These examples improve coverage and help
-> 
-> Examples are not related to ABI at all.
-> 
->> ensure `make dt_binding_check` produces more robust validation results.
-> 
-> No, don't add more examples differing by one property. Keep one/two
-> examples.
+While we're at it - convert the devicetree bindings to YAML format
+and drop the bcm59056 DTS in favor of describing the PMU in users'
+DTS files, as is done for most other MFDs.
 
-I had the intention to add examples to avoid people from changing the
-reg order in the future. For example, we changed the register order when
-we converted the binding from txt to YAML. My goal was to avoid such
-thing to happen again.
+The BCM59054 is fairly similar to the BCM59056, with the primary
+difference being the different number and layout of regulators.
+It is primarily used in devices using the BCM21664 and BCM23550
+chipsets.
 
- From the feedback, I'll drop this patch. Thanks!
+This patchset has been tested on a Samsung Galaxy Grand Neo
+(baffinlite rev02; DTS not in mainline yet) with a BCM59054 PMIC.
+Testing on a BCM59056 would be appreciated.
 
-Best Regards,
-- Maíra
+Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+---
+Changes in v7:
+- Return -ENODEV on PMU ID mismatch
+- Drop "Check your DT compatible" from ID mismatch error message
+- Pick up Reviewed-by trailers from Rob on DT bindings
+- Link to v6: https://lore.kernel.org/r/20250304-bcm59054-v6-0-ae8302358443@gmail.com
 
-> 
->>
->> Signed-off-by: Maíra Canal <mcanal@igalia.com>
->> ---
->>   .../devicetree/bindings/gpu/brcm,bcm-v3d.yaml      | 34 ++++++++++++++++++++--
->>   1 file changed, 32 insertions(+), 2 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
->> index 766a310ab653855d7cc9a80f18c2083218fe307e..39b8f0ee1f727628307d758844008ae1189902b2 100644
->> --- a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
->> +++ b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
->> @@ -123,6 +123,38 @@ allOf:
->>   additionalProperties: false
->>   
->>   examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    #include <dt-bindings/soc/bcm2835-pm.h>
->> +
->> +    gpu@7ec00000 {
->> +      compatible= "brcm,2711-v3d";
->> +      reg = <0x7ec00000 0x4000>,
->> +            <0x7ec04000 0x4000>;
->> +      reg-names = "hub", "core0";
->> +
->> +      power-domains = <&pm BCM2835_POWER_DOMAIN_GRAFX_V3D>;
-> 
-> That's the only notable difference - one new property.
-> 
->> +      resets = <&pm BCM2835_RESET_V3D>;
->> +      interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
->> +    };
->> +
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    #include <dt-bindings/soc/bcm2835-pm.h>
->> +
->> +    gpu@2000000 {
->> +      compatible = "brcm,2712-v3d";
->> +      reg = <0x02000000 0x4000>,
->> +            <0x02008000 0x6000>,
->> +            <0x02030800 0x0700>;
->> +      reg-names = "hub", "core0", "sms";
->> +
->> +      power-domains = <&pm BCM2835_POWER_DOMAIN_GRAFX_V3D>;
->> +      resets = <&pm BCM2835_RESET_V3D>;
->> +      interrupts = <GIC_SPI 250 IRQ_TYPE_LEVEL_HIGH>,
->> +                   <GIC_SPI 249 IRQ_TYPE_LEVEL_HIGH>;
-> 
-> No differences here at all.
-> 
-> Best regards,
-> Krzysztof
-> 
+Changes in v6:
+- Rename mfd/brcm,bcm590xx.yaml to mfd/brcm,bcm59056.yaml again
+- Use PMU ID value as device type
+- Rename rev_dig and rev_ana to rev_digital and rev_analog
+- Link to v5: https://lore.kernel.org/r/20250221-bcm59054-v5-0-065f516a9042@gmail.com
+
+Changes in v5:
+- Make regulator binding descriptions reference mfd/brcm,bcm590xx.yaml
+  instead of mfd/brcm,bcm59056.yaml
+- Move regmap type enum to common MFD header
+- Link to v4: https://lore.kernel.org/r/20250215-bcm59054-v4-0-dbfb2d76a855@gmail.com
+
+Changes in v4:
+- Fix yamllint warnings in DT bindings
+- Address miscelaneous review comments related to DT bindings
+  - Note that I did not end up moving the regulator refs from
+    allOf compatible matches; I explained my reasoning in [1].
+    [1] https://lore.kernel.org/lkml/ab853605-859d-44c6-8cbd-44391cd677e6@gmail.com/
+- Add PMU ID/revision parsing to MFD driver
+- Fix instances of regulator data not matching vendor kernel for
+  BCM59054
+- Use different voltage table for BCM59054 VSR reg based on PMU
+  revision
+- Link to v3: https://lore.kernel.org/r/20250131-bcm59054-v3-0-bbac52a84787@gmail.com
+
+Changes in v3:
+- Split out regulator DT bindings into separate YAML
+- Use tables of regulator info instead of get_XXX_register, reg_is_XXX
+  functions
+- Drop "regulator: bcm590xx: Add proper handling for PMMODE registers";
+  it adds unnecessary noise to the series and will be submitted separately
+- Link to v2: https://lore.kernel.org/r/20231030-bcm59054-v2-0-5fa4011aa5ba@gmail.com
+
+Changes in v2:
+- Fixed BCM59054 ID being passed to BCM59056 function in the
+  regulator driver
+- Dropped linux-rpi-kernel from the CC list
+- Link to v1: https://lore.kernel.org/r/20231030-bcm59054-v1-0-3517f980c1e3@gmail.com
+
+---
+Artur Weber (10):
+      dt-bindings: mfd: brcm,bcm59056: Convert to YAML
+      dt-bindings: mfd: brcm,bcm59056: Add compatible for BCM59054
+      ARM: dts: Drop DTS for BCM59056 PMU
+      mfd: bcm590xx: Drop unused "id" member of bcm590xx MFD struct
+      mfd: bcm590xx: Add support for multiple device types + BCM59054 compatible
+      mfd: bcm590xx: Add PMU ID/revision parsing function
+      regulator: bcm590xx: Use dev_err_probe for regulator register error
+      regulator: bcm590xx: Store regulator descriptions in table
+      regulator: bcm590xx: Rename BCM59056-specific data as such
+      regulator: bcm590xx: Add support for BCM59054 regulators
+
+ .../devicetree/bindings/mfd/brcm,bcm59056.txt      |   39 -
+ .../devicetree/bindings/mfd/brcm,bcm59056.yaml     |   76 ++
+ .../bindings/regulator/brcm,bcm59054.yaml          |   56 +
+ .../bindings/regulator/brcm,bcm59056.yaml          |   51 +
+ arch/arm/boot/dts/broadcom/bcm28155-ap.dts         |   68 +-
+ arch/arm/boot/dts/broadcom/bcm59056.dtsi           |   91 --
+ drivers/mfd/bcm590xx.c                             |   75 +-
+ drivers/regulator/bcm590xx-regulator.c             | 1289 ++++++++++++++++----
+ include/linux/mfd/bcm590xx.h                       |   28 +-
+ 9 files changed, 1366 insertions(+), 407 deletions(-)
+---
+base-commit: ffd294d346d185b70e28b1a28abe367bbfe53c04
+change-id: 20240816-bcm59054-a880695e41e8
+
+Best regards,
+-- 
+Artur Weber <aweber.kernel@gmail.com>
 
 
