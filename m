@@ -1,271 +1,173 @@
-Return-Path: <devicetree+bounces-157879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A035A633C6
-	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 05:13:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 656A9A63416
+	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 06:01:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19FBF3ADF7C
-	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 04:13:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BBB117A7918
+	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 05:00:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64AFD18C93C;
-	Sun, 16 Mar 2025 04:09:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21E2914387B;
+	Sun, 16 Mar 2025 05:01:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DikBVyZW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SsGC+OFf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7B9918C03A
-	for <devicetree@vger.kernel.org>; Sun, 16 Mar 2025 04:09:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A9F728E8;
+	Sun, 16 Mar 2025 05:01:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742098179; cv=none; b=r5fGh6AJmaum1p+MKdNAvsY1y+JnDf3BQ1DnslJmZun1TfeaIUigQkI0gSYHq4UoPL5bLOYndyfdyG+V4iqtYlTTAXbaBhUTbUQLlXKN+wmWwEmeXijIvrrEAuwUaB6Ko0wubs+eI8wGRG6drZjLJ98945dcODIh5CIIuiELlmg=
+	t=1742101308; cv=none; b=V8Fhh7PVqF4GPwK/NAFF7TyrIME0B/Vj1nbho5IJFpjzaUiEFbe/jjDvJ82hNHj0nTjPhSFZCLgQ6XU7lTAAHHJu1EsGs2EZMqwj6iBgs/Wk2kYeogFEmDeDyymrxFSNYo2e1yAE6stEcjBI+RwnXWa7fua1jjGs6PubeXFGxuU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742098179; c=relaxed/simple;
-	bh=Vf5WXRKSe8bkKwPkNi3tieP8dH4brW2HCDlfCESBKTw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=EH+ah9Z6fdctmMKRr4w02cNluNLsWEDHhBM1vo7Clcn+wjJ6ZwTQ8DHfCNXo9E+8eS+Xs0xb/bOfUfqF5FctCmfzbJuYmWpBRDrIcZU/kdhfHDfSc0CrWf5uyW1sEgBpruvHHxPuGI0BUUzbJIXS53VTyMlY0jVhKfTGFO5fDjQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DikBVyZW; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52G0V95a003324
-	for <devicetree@vger.kernel.org>; Sun, 16 Mar 2025 04:09:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	BjiWZ8phXn5GvIMbIVKOQIoK9S28Kpb6nyVGje6AKfo=; b=DikBVyZWMW1JTmPW
-	Y3LG42KKoHRTZFNLdvOtDeTYtcnFL+CzNWFmTHe85yqOSpfczIy1bAwC+C5pjl21
-	tRay65ANrP17pEGiOHA0UP7RjEx1eHlEkd3LupeCDlOJpCq0cIhG58wYSzlbJp/5
-	i8tOdgF+cGnQFcFPPw0OCfBu3wChVsZexT5TccQIhRQfHsumO9lihiJ6GIDKjyH9
-	F6LurLxCbUKa/eL6Rqy0Ar9gwspZn6Mi+dug38jIwhhgnFzqrJGC0hC4OmF6Pmhe
-	SMuPsbD1rgNNsiP6LvfJimRjVGbG4A7EmaYE95Zqq3XBxPOLnXNFyvBbhbNPepNd
-	IWezTQ==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45d1rdhp3g-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sun, 16 Mar 2025 04:09:36 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-2ff8a2c7912so1320414a91.1
-        for <devicetree@vger.kernel.org>; Sat, 15 Mar 2025 21:09:36 -0700 (PDT)
+	s=arc-20240116; t=1742101308; c=relaxed/simple;
+	bh=+OMWntMpCD/WX30cA0JDfWIUfcmN5hDg+0udFVft9IM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RNDTKdefAjgtX1ORuroon0A+s2W49JE78jvs74rWkQcFk9uGGQ+PqfeMQVIPbv1wcUUJ+TEgeN1gjv/SiOsR6/sIDV7cnSraz8MK8OHw1Idki6yiDKcV7TU1ilS4v3sCWqRHly9KrGljblu9Z0Bh4Qsiat6ag9i9dvnT7Iy+PNA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SsGC+OFf; arc=none smtp.client-ip=209.85.222.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f174.google.com with SMTP id af79cd13be357-7c081915cf3so440185885a.1;
+        Sat, 15 Mar 2025 22:01:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742101305; x=1742706105; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:feedback-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HRN1l7bFTxbNZCjx7qqsa9V8PASVLov06V9cKZ7rsUs=;
+        b=SsGC+OFfgVD+vvj2t88GhzDaAmKifMJLGS2rtIJWCGAADY/gg+1MwlirRevhQ8wp8o
+         farcOugGhKDlEX+xjJJlzT51wa9rGGnkganelhiiKdudQebfavqpbJqeSXt5E7W9E9kE
+         dZI6pheDYmXSE0XLMQKQwnlM2FeMXGNnuujy8Cz6RQbPS/bMFC8U+FOdpxy7cbPu53BX
+         55SDc74dUxFcMUzkXM1hchjKTRRYuMChwhtPGe8AWYy7bAJhIDbP+8G5GhcpYGM9s/Se
+         PfBlse48+vkFoRv/xR7bMM9618HClGM3yQ91KcPTzavJWAOV/en6Exsms3cDVppDHYG6
+         QzpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742098176; x=1742702976;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1742101305; x=1742706105;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:feedback-id:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=BjiWZ8phXn5GvIMbIVKOQIoK9S28Kpb6nyVGje6AKfo=;
-        b=kaPmlhPPviHHMIWH85ChtTxK0PHJX8ZfAC6IZpjOgp5l+BUjR1AehVXPPmVZdGnn6J
-         AkifTrWCEGer0x3sIucUqSpU+Z/0UMswijGhbh9+a2v1spgDaISedG9g5TTrU9F+EX6x
-         5uB9w5NVIdMPhYyUpW5mtzOGXBEmZAx9AOwvqHtVinH3ldFRwyhDvnLzPcPAipIBsBN/
-         XGg08RzPwnxtnjM1Ieh40Y5k0C79Dco3ajT3lvTyPRodrHZPO+de3fda3SFL/3NbEbUC
-         jV+18YwibkSS7yUEWFNXWuCCYISMJAIbmPO6zXqPq/CCVvJ+nnIURWVWGpm+BXM1tBRv
-         ja9A==
-X-Forwarded-Encrypted: i=1; AJvYcCUEqa+q+aXjIBmUxYLfGgSgloM2RfESV6PCMFREF6zdNeEqn6+lmCr05nquJdQ3xAW0I9dox/E7hSNq@vger.kernel.org
-X-Gm-Message-State: AOJu0YwkIS5bGu5mCibKZJ51CPMQQJX97GaEiwRwv1gs5lEMJLr/ZxKJ
-	6ykG4D+DlUhdRQZzAuGTG8jjZOdytQKOFZcXajRmVfZncbHt1k4ZwenLBh4meFoM4aSTD8qP4oR
-	sYMKL5yPijuURfKjkfqLxn4OGo7dV4BuR29m9E+W74AIylTbKu/dZpYvVJrI6
-X-Gm-Gg: ASbGncsOKW06RLrIck0XfBAeVt09TAitHEGDUM3Nm5tR7vMInr4BsTbzf/zHQnyweG8
-	4cbhpPrWWtv17VBEJmHU4gmeZ55G7fHAf7UV8vv4xxBg9sWObW0ksWf8JgfTdQ07/tHadnrIIPV
-	SsHJz4puz7Ago2AMnQ/w1KltFU3X33N6LCC+KDBQHRRcw8kwopaKlPxGJ7KKcNuTod4MHxkr/DQ
-	yZDqGSFpiaRz5+IdhitGvg9PZwRUjRRASE6l/YlW9+mSqASk0fuXZr9XNj6IR0KHRE0681io7x9
-	siqsPCJZANyedr3l/qmwFiYvyjGdfK+KwT2SBe9KTVINvpN19wo=
-X-Received: by 2002:a17:90b:568c:b0:2ff:556f:bf9 with SMTP id 98e67ed59e1d1-3015211e77emr9378153a91.4.1742098175775;
-        Sat, 15 Mar 2025 21:09:35 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFpxdwyme8KoKtPhwKD++kCMtUzmx2P4sIFKMDkag5tMvi/6pF1x3XIwxkD7MXlNc1WKVwxFA==
-X-Received: by 2002:a17:90b:568c:b0:2ff:556f:bf9 with SMTP id 98e67ed59e1d1-3015211e77emr9378132a91.4.1742098175401;
-        Sat, 15 Mar 2025 21:09:35 -0700 (PDT)
-Received: from hu-krichai-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30153bc301esm3490438a91.49.2025.03.15.21.09.30
+        bh=HRN1l7bFTxbNZCjx7qqsa9V8PASVLov06V9cKZ7rsUs=;
+        b=knKcyDYvvr2jGSQq6zRo4p67hqP8CeJe24ZBMofuCUuWoR9+mjJMrgYhWiX4f2WHN5
+         a2ziFarMpfhZ+7H+XUD8HQfTwgGlk2GzK1gf73vUZGOR1ClhOrqJ5XQ6VhJCWzFMsxJ1
+         1mlQQDR2F7CREnB1LMgqSN9EGhscSF+4g4E6Hk3Km3hrzubrc8GcZSaIlhzz0iK4oBqk
+         1uiJ4msQNM9+7LfBATiMqJ4miLtkbIb3T0f/GAreehSqI9mlDfxW59hy70rZfWoV45iV
+         Qoj6OLeotlVdI9s0cVwsk2/wzT4L2g6oeDQBXmkXsYQCIHpj9Z0BGHCfLdHzHtSEfXb8
+         2yLQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV76t1RMVNEBK7rMyOyFzEg4+cFxJhyyn7JMm4Qqul71uKvCXu0HvDBlDnOaZhw3VH3NJJDkpoJL37BNhPzGYM=@vger.kernel.org, AJvYcCWT/aSbmAym4N0JzswwPZkK/ha0lZFlJusaIcTEpzyg0SqmEvIsl/sMPi/lNk2UJRIvcR2vCKnT5JuPBlo=@vger.kernel.org, AJvYcCWxYe2WKooGmu5spQ/wtt8XPI2J4dSxIsFXQvnlj9iybRGktvzv9I0FgXngZSEyA56qtsRrOQgL54CXULSU@vger.kernel.org, AJvYcCX5irkpivtRehg3qPE5cKH435cXBmFmvG0AS0sHwsWiSYPFqJmwZ8ffxAcssXzMvcR5M2pOmjaB8no9@vger.kernel.org, AJvYcCXMA1HYlNYXZNmByb3iodljVKwhHRQIXoiw72/PMCY/OoOuVn3bR4I/KFEbNMoqBhvcVnylt+31M0Yw9Bix@vger.kernel.org, AJvYcCXbf93QD9obnnyJQZAwLjgVmB/TVb0lD0gT5kWJ1TdUXpcF7rskBsraBQg8U1W5IAg5cpfaiUd5zuaZmWrjlCGY@vger.kernel.org, AJvYcCXeEoYSBs7up+F8WEdSnKtB8IlBxlltCIT/6RAHAyeJ063iEyX7fquCAG+FL5eWbjKcZsFQ544SfRa5@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGYu6F8lVS3vLYlXglCdBHYKihn1s+0rB7pH0YE8mT6sItEFS7
+	MKyQ7AGWH9IJUlvec3WBvkvQIQ+PeyJfobjFhZm76ZROKpMzbq17
+X-Gm-Gg: ASbGncsxpxcy2aYX/qbPoyWSJOeimOjUhF43r9oCWLamtMQehTD5Mk0+zOcRRQf3SYs
+	beBZ1DcBbpcqlt1AIR4BDuCwQJg4aADnnLzfqtFI/+gVjaQGCrCzvO4EGnaevuhmNL3noN98QUs
+	FiOvPSiAIDW8+uCqCVxQ/InE9+dUNCXYQFr5WPLd+2DjEclk/xkg8L0N4YQp6TeLgMttvWnGnul
+	AeBEDaBSmKZ9tMdBiOKYcvr7gIqLFJLTc+StvY3ABz58Tq4eZV6BtegSe9rO5cguZXqrVHREs30
+	ua0AdPATGxzZ5qmDyTeopfS9e3FRWeK9gQVzED3dCEpnmiP943rmJgPASJxx3Ps9V45m4K9alzn
+	POJWenDOQiUVTEdKz6mlT4DbVWU6Ojvno7X4=
+X-Google-Smtp-Source: AGHT+IFHwjAwXc5ecCOT4zktz/2Ee2JBQsplxjcbO2uUgpx2D3hnYjMZgDmGYY4KWHDG3PBAwASWEQ==
+X-Received: by 2002:a05:620a:450c:b0:7c5:562d:ccfa with SMTP id af79cd13be357-7c57c8fc954mr1158323485a.36.1742101304992;
+        Sat, 15 Mar 2025 22:01:44 -0700 (PDT)
+Received: from fauth-a1-smtp.messagingengine.com (fauth-a1-smtp.messagingengine.com. [103.168.172.200])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7c573c6fafcsm446035585a.25.2025.03.15.22.01.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 15 Mar 2025 21:09:35 -0700 (PDT)
-From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Date: Sun, 16 Mar 2025 09:39:04 +0530
-Subject: [PATCH v8 4/4] PCI: dwc: Add support for configuring lane
- equalization presets
+        Sat, 15 Mar 2025 22:01:44 -0700 (PDT)
+Received: from phl-compute-11.internal (phl-compute-11.phl.internal [10.202.2.51])
+	by mailfauth.phl.internal (Postfix) with ESMTP id A8DF41200043;
+	Sun, 16 Mar 2025 01:01:43 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-11.internal (MEProxy); Sun, 16 Mar 2025 01:01:43 -0400
+X-ME-Sender: <xms:N1vWZ8_9TRjCl_errGCCNAZe2iKH1MYNvzQhtBAySLp9kafjcUjbqw>
+    <xme:N1vWZ0snBzC60kufeTIDNADW9ulpI0un8rVFw2nsyNYPIx6D9UXRtrMwSjKN8hiN1
+    5APefBecC--e2zyTw>
+X-ME-Received: <xmr:N1vWZyB13RpGsY6XLhZVjzIUCMYGSu6TsTF4amyXy3nek4EzDzk4ccdQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddufeehjedtucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
+    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
+    gvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggujgesthdtredttddt
+    vdenucfhrhhomhepuehoqhhunhcuhfgvnhhguceosghoqhhunhdrfhgvnhhgsehgmhgrih
+    hlrdgtohhmqeenucggtffrrghtthgvrhhnpeehudfgudffffetuedtvdehueevledvhfel
+    leeivedtgeeuhfegueevieduffeivdenucevlhhushhtvghrufhiiigvpedtnecurfgrrh
+    grmhepmhgrihhlfhhrohhmpegsohhquhhnodhmvghsmhhtphgruhhthhhpvghrshhonhgr
+    lhhithihqdeiledvgeehtdeigedqudejjeekheehhedvqdgsohhquhhnrdhfvghngheppe
+    hgmhgrihhlrdgtohhmsehfihigmhgvrdhnrghmvgdpnhgspghrtghpthhtohepfedvpdhm
+    ohguvgepshhmthhpohhuthdprhgtphhtthhopehtrghmihhrugesghhmrghilhdrtghomh
+    dprhgtphhtthhopehmrghsrghhihhrohihsehkvghrnhgvlhdrohhrghdprhgtphhtthho
+    pehnrghthhgrnheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepnhhitgholhgrshesfh
+    hjrghslhgvrdgvuhdprhgtphhtthhopehojhgvuggrsehkvghrnhgvlhdrohhrghdprhgt
+    phhtthhopegrlhgvgidrghgrhihnohhrsehgmhgrihhlrdgtohhmpdhrtghpthhtohepgh
+    grrhihsehgrghrhihguhhordhnvghtpdhrtghpthhtohepsghjohhrnhefpghghhesphhr
+    ohhtohhnmhgrihhlrdgtohhmpdhrtghpthhtohepsggvnhhnohdrlhhoshhsihhnsehprh
+    hothhonhdrmhgv
+X-ME-Proxy: <xmx:N1vWZ8cK6WXUKuqzUUJfycM7hb5sozHGSlFYIqjs0yLmJ4UBSpYIMQ>
+    <xmx:N1vWZxMloIGTET7Ixr7_6rBz3KWKwC6__tyl8ircrEnQR4Mq_1a3Lg>
+    <xmx:N1vWZ2l36TrwFyCoEfCHjTMC_3cQqBfq9QMLrAHTtU0d1R2MVnN7iA>
+    <xmx:N1vWZzu_GWynKmxcGM5Cwm3RBsdfR1_Jg-EiV9KEH149rG6env9XSA>
+    <xmx:N1vWZ_s62qUn-tEovp0fn-dyMSG8cY8PPJKbInsrx-It4iwuCC5aYFu8>
+Feedback-ID: iad51458e:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
+ 16 Mar 2025 01:01:42 -0400 (EDT)
+Date: Sat, 15 Mar 2025 22:01:41 -0700
+From: Boqun Feng <boqun.feng@gmail.com>
+To: Tamir Duberstein <tamird@gmail.com>
+Cc: Masahiro Yamada <masahiroy@kernel.org>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Brendan Higgins <brendan.higgins@linux.dev>,
+	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,	linux-kbuild@vger.kernel.org,
+ linux-kernel@vger.kernel.org,	rust-for-linux@vger.kernel.org,
+ linux-kselftest@vger.kernel.org,	kunit-dev@googlegroups.com,
+ linux-pci@vger.kernel.org,	linux-block@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 6/6] rust: use strict provenance APIs
+Message-ID: <Z9ZbNY2XR10vt3Ro@Mac.home>
+References: <20250315-ptr-as-ptr-v4-0-b2d72c14dc26@gmail.com>
+ <20250315-ptr-as-ptr-v4-6-b2d72c14dc26@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250316-preset_v6-v8-4-0703a78cb355@oss.qualcomm.com>
-References: <20250316-preset_v6-v8-0-0703a78cb355@oss.qualcomm.com>
-In-Reply-To: <20250316-preset_v6-v8-0-0703a78cb355@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        quic_mrana@quicinc.com, quic_vbadigan@quicinc.com,
-        Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1742098148; l=4863;
- i=krishna.chundru@oss.qualcomm.com; s=20230907; h=from:subject:message-id;
- bh=Vf5WXRKSe8bkKwPkNi3tieP8dH4brW2HCDlfCESBKTw=;
- b=Pz7WkgxvMuX5UL9txYDwfTz6oJAxGk2zoimjpd2MBBSoIR/EyDHRJq7SRU3gBK0AOm8q0VU0J
- bNk4lP60Lz7AXg4zUwe5KESCPDyDzfhY4i3aJFx8iBYHQ7rKVoq9O1r
-X-Developer-Key: i=krishna.chundru@oss.qualcomm.com; a=ed25519;
- pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
-X-Authority-Analysis: v=2.4 cv=Fe83xI+6 c=1 sm=1 tr=0 ts=67d64f00 cx=c_pps a=RP+M6JBNLl+fLTcSJhASfg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=EUspDBNiAAAA:8 a=S-wDCh2AgS0RhsWIeBgA:9 a=QEXdDO2ut3YA:10
- a=yWgB78FVKKW44gG2z5Yz:22 a=iS9zxrgQBfv6-_F4QbHw:22
-X-Proofpoint-ORIG-GUID: KF3K89aEAJ4GkLi_BRV8t67X2xZkay-f
-X-Proofpoint-GUID: KF3K89aEAJ4GkLi_BRV8t67X2xZkay-f
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-16_01,2025-03-14_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- lowpriorityscore=0 bulkscore=0 mlxscore=0 mlxlogscore=999 spamscore=0
- clxscore=1015 suspectscore=0 adultscore=0 phishscore=0 malwarescore=0
- priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503160029
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250315-ptr-as-ptr-v4-6-b2d72c14dc26@gmail.com>
 
-PCIe equalization presets are predefined settings used to optimize
-signal integrity by compensating for signal loss and distortion in
-high-speed data transmission.
+On Sat, Mar 15, 2025 at 08:17:30AM -0400, Tamir Duberstein wrote:
+[...]
+> diff --git a/rust/kernel/of.rs b/rust/kernel/of.rs
+> index 40d1bd13682c..f9459694cbdc 100644
+> --- a/rust/kernel/of.rs
+> +++ b/rust/kernel/of.rs
+> @@ -22,7 +22,7 @@ unsafe impl RawDeviceId for DeviceId {
+>      const DRIVER_DATA_OFFSET: usize = core::mem::offset_of!(bindings::of_device_id, data);
+>  
+>      fn index(&self) -> usize {
+> -        self.0.data as usize
+> +        crate::expose_provenance(self.0.data)
 
-Based upon the number of lanes and the data rate supported, write
-the preset data read from the device tree in to the lane equalization
-control registers.
+Even though of_device_id::data was defined as `void *`, but in Rust we
+use it to store index, see kernel::device_id::{IdTable::info(),
+IdArray::new()}. Hence we should use self.0.data.addr() here.
 
-Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
----
- drivers/pci/controller/dwc/pcie-designware-host.c | 60 +++++++++++++++++++++++
- drivers/pci/controller/dwc/pcie-designware.h      |  3 ++
- include/uapi/linux/pci_regs.h                     |  3 ++
- 3 files changed, 66 insertions(+)
+Regards,
+Boqun
 
-diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-index dd56cc02f4ef..7c6e6a74383b 100644
---- a/drivers/pci/controller/dwc/pcie-designware-host.c
-+++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-@@ -507,6 +507,10 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
- 	if (pci->num_lanes < 1)
- 		pci->num_lanes = dw_pcie_link_get_max_link_width(pci);
- 
-+	ret = of_pci_get_equalization_presets(dev, &pp->presets, pci->num_lanes);
-+	if (ret)
-+		goto err_free_msi;
-+
- 	/*
- 	 * Allocate the resource for MSG TLP before programming the iATU
- 	 * outbound window in dw_pcie_setup_rc(). Since the allocation depends
-@@ -808,6 +812,61 @@ static int dw_pcie_iatu_setup(struct dw_pcie_rp *pp)
- 	return 0;
- }
- 
-+static void dw_pcie_program_presets(struct dw_pcie_rp *pp, enum pci_bus_speed speed)
-+{
-+	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-+	u8 lane_eq_offset, lane_reg_size, cap_id;
-+	u8 *presets;
-+	u32 cap;
-+	int i;
-+
-+	if (speed == PCIE_SPEED_8_0GT) {
-+		presets = (u8 *)pp->presets.eq_presets_8gts;
-+		lane_eq_offset =  PCI_SECPCI_LE_CTRL;
-+		cap_id = PCI_EXT_CAP_ID_SECPCI;
-+		/* For data rate of 8 GT/S each lane equalization control is 16bits wide*/
-+		lane_reg_size = 0x2;
-+	} else if (speed == PCIE_SPEED_16_0GT) {
-+		presets = pp->presets.eq_presets_Ngts[EQ_PRESET_TYPE_16GTS - 1];
-+		lane_eq_offset = PCI_PL_16GT_LE_CTRL;
-+		cap_id = PCI_EXT_CAP_ID_PL_16GT;
-+		lane_reg_size = 0x1;
-+	} else {
-+		return;
-+	}
-+
-+	if (presets[0] == PCI_EQ_RESV)
-+		return;
-+
-+	cap = dw_pcie_find_ext_capability(pci, cap_id);
-+	if (!cap)
-+		return;
-+
-+	/*
-+	 * Write preset values to the registers byte-by-byte for the given
-+	 * number of lanes and register size.
-+	 */
-+	for (i = 0; i < pci->num_lanes * lane_reg_size; i++)
-+		dw_pcie_writeb_dbi(pci, cap + lane_eq_offset + i, presets[i]);
-+}
-+
-+static void dw_pcie_config_presets(struct dw_pcie_rp *pp)
-+{
-+	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-+	enum pci_bus_speed speed = pcie_link_speed[pci->max_link_speed];
-+
-+	/*
-+	 * Lane equalization needs to be perfomed for all data rates
-+	 * the controller supports and for all supported lanes.
-+	 */
-+
-+	if (speed >= PCIE_SPEED_8_0GT)
-+		dw_pcie_program_presets(pp, PCIE_SPEED_8_0GT);
-+
-+	if (speed >= PCIE_SPEED_16_0GT)
-+		dw_pcie_program_presets(pp, PCIE_SPEED_16_0GT);
-+}
-+
- int dw_pcie_setup_rc(struct dw_pcie_rp *pp)
- {
- 	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-@@ -861,6 +920,7 @@ int dw_pcie_setup_rc(struct dw_pcie_rp *pp)
- 		PCI_COMMAND_MASTER | PCI_COMMAND_SERR;
- 	dw_pcie_writel_dbi(pci, PCI_COMMAND, val);
- 
-+	dw_pcie_config_presets(pp);
- 	/*
- 	 * If the platform provides its own child bus config accesses, it means
- 	 * the platform uses its own address translation component rather than
-diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-index 61d1fb6b437b..30ae8d3f4282 100644
---- a/drivers/pci/controller/dwc/pcie-designware.h
-+++ b/drivers/pci/controller/dwc/pcie-designware.h
-@@ -25,6 +25,8 @@
- #include <linux/pci-epc.h>
- #include <linux/pci-epf.h>
- 
-+#include "../../pci.h"
-+
- /* DWC PCIe IP-core versions (native support since v4.70a) */
- #define DW_PCIE_VER_365A		0x3336352a
- #define DW_PCIE_VER_460A		0x3436302a
-@@ -381,6 +383,7 @@ struct dw_pcie_rp {
- 	int			msg_atu_index;
- 	struct resource		*msg_res;
- 	bool			use_linkup_irq;
-+	struct pci_eq_presets	presets;
- };
- 
- struct dw_pcie_ep_ops {
-diff --git a/include/uapi/linux/pci_regs.h b/include/uapi/linux/pci_regs.h
-index 3445c4970e4d..2cd20170adb4 100644
---- a/include/uapi/linux/pci_regs.h
-+++ b/include/uapi/linux/pci_regs.h
-@@ -1140,6 +1140,9 @@
- #define PCI_DLF_CAP		0x04	/* Capabilities Register */
- #define  PCI_DLF_EXCHANGE_ENABLE	0x80000000  /* Data Link Feature Exchange Enable */
- 
-+/* Secondary PCIe Capability 8.0 GT/s */
-+#define PCI_SECPCI_LE_CTRL	0x0c /* Lane Equalization Control Register */
-+
- /* Physical Layer 16.0 GT/s */
- #define PCI_PL_16GT_LE_CTRL	0x20	/* Lane Equalization Control Register */
- #define  PCI_PL_16GT_LE_CTRL_DSP_TX_PRESET_MASK		0x0000000F
-
--- 
-2.34.1
-
+>      }
+>  }
+>  
+[...]
 
