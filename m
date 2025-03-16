@@ -1,147 +1,185 @@
-Return-Path: <devicetree+bounces-157957-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157958-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70E89A6371F
-	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 20:01:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2414AA6378C
+	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 22:44:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A9E49169428
-	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 19:01:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2922F3ADE2B
+	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 21:44:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78CE21514E4;
-	Sun, 16 Mar 2025 19:01:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7592E1C8637;
+	Sun, 16 Mar 2025 21:44:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jPxTuTcc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Av5BSeRe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAAEF3FE4;
-	Sun, 16 Mar 2025 19:01:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E22DAC2E0;
+	Sun, 16 Mar 2025 21:44:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742151707; cv=none; b=NWApNtHYW4JjIzt01qhsrEXYWbwMwKWYpmK6lWJs0kB4L/sOyKoLW56+/wTI0FDiVAPQbS9uvF0hZKjxjBz9MAClxI9h2n4dYPh/XcUSgBnvzlFYRog9OHC8EcB0sitcfyAZXtLe8tSrAFocBxLnJbXOGBctmZU5UBcXKxcpwDQ=
+	t=1742161450; cv=none; b=PeDJMBNXNyDViv3c24l8+TRAISi0GoGY5AqmiuKisQA3yzAETfal2hsjJBn2mVWXoEOYutZv4/KH966/jaQKyjfj//7dboGj0ZCraYQtBqzOQYA7lft8mZS9nqUPYOLhMc0TO6cp9HEPcvPBF0Zy9kIvyDvp9Btr03+BG0Uws8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742151707; c=relaxed/simple;
-	bh=ekmzAmP8Y8iH5QY/PxjyugTDakULmRUAQEXxogkFKnc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Yk1dvQo0oN+KGeJ7a0j852XZfU2zOzU9IPvatHd4einvR8wtRU83n25UHNph8destUfrGEe9+MOvIHGpiGyf4cw3aTwpmE5xO26nmmLFGizFS90pZNCrwOjtb4bDhZvbNLZnAPtph8T+fTvxQOLkTTE3QUT8NgvigA4J0W1zEvQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jPxTuTcc; arc=none smtp.client-ip=209.85.218.53
+	s=arc-20240116; t=1742161450; c=relaxed/simple;
+	bh=v4P/KcddWLuDTatda/HBTqKygV+7kfJ09+a2eRbRlKw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Tn25GvPr55MUD3/f+AMvfaaW/1R6cxNLfEiEPxEVoIw1Wb+QNF/qpHEndf0pOnnZCZiQcQJ3ECLMtNau/P0YWcRa4aV21to+Ewv0GpBu2hFPkQH4oUw2nOHqZnD3bfm+xYpNYbowKOJGRrVAsDq+96+5n8ktIGJQz64yp0KRSvg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Av5BSeRe; arc=none smtp.client-ip=209.85.214.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ac25d2b2354so641323766b.1;
-        Sun, 16 Mar 2025 12:01:45 -0700 (PDT)
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-22401f4d35aso66748345ad.2;
+        Sun, 16 Mar 2025 14:44:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742151704; x=1742756504; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=VaARcnuSuLuxpai/InAGA0xtSCdbGWktXfe+Ii7D/U4=;
-        b=jPxTuTccNW9ZDqqDtTSDob5npX+ueDz+Dv9r0u19YWHFqp8C5a/O1K5+dW1l/BFiKx
-         ZGzvA4p6AzoWVJSKt+Z1MVoFqAPFNxHxWdaOb1FYHZnSSBKjgdqG5FyLnPCJhxOJZLxG
-         KGykkVm2zhskq9y0bJUt9AHe0VdeahWSpxtcOV+fwLXG8WNnsqLvNmuuhvqOyxU1J/ls
-         j7+qmlO9plPs6F8qbqmX58QT7wUymWnKgLTvj7hB8FkSxuXy9TfL1gbFvngs2TgnjiRK
-         NYX6723JU0JZPtdW8q87xUyTRvc1pNkhYFqcv1Vow5FActQPsupZXIg7MrTja/hs9PnY
-         E7dQ==
+        d=gmail.com; s=20230601; t=1742161448; x=1742766248; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=4mKilVKnBM4oRzcS1cLG80AavsaCOJuEZgc8LXHq/UQ=;
+        b=Av5BSeReNpTZbMpAoy6k2um4wrkL6vvvqb+NPR88d39OASCl6b3tM1DLLen/A3He73
+         0s0cpWxUwSMJThtIH6YlZ/0TbzvUvEGHuGDhIH1qu0UuYYtlRy/byia/WgOlTs5E2/jB
+         fVfFUq2f74rHFKkcOVx+OrOIxYfVfWgFxeJ6QExnaMpO+Rx9sz8wAB+mIElTGZaHpyOk
+         U0bTtwFa65BfnyzSKKZ4Beul70s1SF0mgwBugsx6fr08WBihuJUmXvHySaMBqcmto6S5
+         OxNtqJeFeGcmOAbxtMW/V3LN/0YIIjqr6nbkKZFCaCLOQDcA20e4ehd18ygRJsYUbuIC
+         j9gw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742151704; x=1742756504;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VaARcnuSuLuxpai/InAGA0xtSCdbGWktXfe+Ii7D/U4=;
-        b=ownR68o4Jp3fu2tXSBAa+a+DLUOXGvcYKu13Aa3sjeTdN1CNsEcyxxWDsXruws8YSz
-         Hcy+kkIvWh+hCKDz0ex03fVWY9VDeP/OBreFujiRjhh4hDAxaJTMgr3393CNsXmYE35b
-         +ItZFONTp+c0APaSsWgwSzbI5o4x1FItsvliAnZWt8aoBIrdDSkEQnlPDSN+Vjpkt93x
-         /cMpkNnCjeJkW0T4BtBTbp22OgGbmFzwkD2YLoe5UQsd5b5fW7JzB7EJqa3qx88jyhiC
-         TFfyeHz2dYzfXvdh4qOsPja7COUiAyWURCA6/r7593CoT0yUeN/XAqOthan4NHt3QSsm
-         6V3w==
-X-Forwarded-Encrypted: i=1; AJvYcCV6ORnuR4JWsPHPDaMUr2wRHfLriS8h5hSun8DDr4UBmaMWk0BytHJBgz0+8as15PXDKkqaB8efnmbfoFwy@vger.kernel.org, AJvYcCWl4PlvYJvjIJjPrqBL21y8JsUVB2a3S3SByIWJR5MpgPLIO+ucEe4NxuHQ+EVrgc0FcK9+DXrTCzgh@vger.kernel.org, AJvYcCXXsHnZBusoxtmFA0VEFzUEFgRjngy47hsFG7I+uhvBG+QNRtv4Vqvc2diUjN4AoaFC7NnguSHdAsij@vger.kernel.org
-X-Gm-Message-State: AOJu0YyyiNoFzzPfs1Ij6uU/hiFsVz8SSE8wq4Hz31ghuo3ks7fxs0FW
-	UnNEfcjjKNWTpzrBncD504LCGBTZvITUkGNs9GDRa+o4PitK07h8
-X-Gm-Gg: ASbGnctQ0N18ICPcZ5u+tYzHJLVRuHV1THUs9fwWl8PMowtqi3eZo1gK+2ABazuREdK
-	+J6ieZkkaeuutYgGS/fgDZBoJtNni1TJSlXE3UmVIwPgu9u6QelNv5Yow+h6YcCqK+UnogJQL6o
-	Or6kDzymv0tP+jQ4cVunTyx59vN+BwgkVxrGJ8VKn0FIYBdObZSAWtOTO/oEjwEW3A7gZ2Knf8Y
-	cOQvTtJXdwih/Fw1tsRji2k+AAwfkA5yDjsqnZueilFHDJs2A799SnBlprF408ctK7tGplQdn+r
-	q21gv5u2QUArwN5KBl1XyZJJ7u5s9kXgcjOEAXaXQ8ipPyCTHOl2faFDlSV27liPO9GHBACCIdB
-	4xeyXbD5+xsp+zJs9f8DIDA==
-X-Google-Smtp-Source: AGHT+IHgXXtMhyuLsuMBCutEq5j1h8RgZgLKJgXD8Pc87mm4FhtnDm/alvyi1kWX2iTdBEa+bID4kw==
-X-Received: by 2002:a17:907:7fa6:b0:abc:4b7:e3d3 with SMTP id a640c23a62f3a-ac3302f1068mr1042069866b.27.1742151703874;
-        Sun, 16 Mar 2025 12:01:43 -0700 (PDT)
-Received: from [192.168.50.244] (83.11.178.210.ipv4.supernova.orange.pl. [83.11.178.210])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac314a4094dsm527846366b.126.2025.03.16.12.01.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 16 Mar 2025 12:01:42 -0700 (PDT)
-Message-ID: <fffe0118-6235-446c-a9c5-93f5d1f5ed04@gmail.com>
-Date: Sun, 16 Mar 2025 20:01:41 +0100
+        d=1e100.net; s=20230601; t=1742161448; x=1742766248;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4mKilVKnBM4oRzcS1cLG80AavsaCOJuEZgc8LXHq/UQ=;
+        b=fWiUwyV1CLhbPkZWplhltVHAvM1/YTYS6GQf5bdA/1TuaLlWrihIMwrkH02cztK3Ds
+         Jfnbrrau9UrTkPrGaeKRgHC9AgIg8ci1RbHGpu8G9cpkreoom31IEtZ07bNCmducvJYH
+         woev2wIWoMqieWbcDiW38qJ748xVsfUxqYw4xbKo0b+aFme1j/RqPUVJFuVDuj8xeMj9
+         DhqDvTZWi5W0dkToanmD14bXfsJ84/HtHcqdGiG6O/eofN3XVQXUZypz5QC57s+2OdaM
+         t5hio40/SqAcoUUq2b6MuL2WzZVAFAyyKAf8nnDSK4IEfLEqTXR7wiYg+tU/YgUJt0oW
+         BJyA==
+X-Forwarded-Encrypted: i=1; AJvYcCVvyH+6BA7OBbcY2K3AfR4nc02eWj+8RcuyO6Q6WfdwZa58jUFNuZRhXZfO+sYIJp+slxwQw7fdp3VN@vger.kernel.org, AJvYcCWJJ9jJZiOwNwL1NZPTOJQraPf6+1cWKMHKHPBv5yIo6BF0EWVFSJz/96QuXt+MTARlApDOMS4av5urYg==@vger.kernel.org, AJvYcCXUh9WcZTijg5tFsWzUmJgVLd80YfJwaq7b0B9GSFQmiYquljAbyDVgdRm/4Fq6BA4lGYUAA990@vger.kernel.org, AJvYcCXUrksHAFWGgjRznA60golSCLgeNdmTAZjjxATHNTG+p77m4zT60YtK5nyzBg7Ovf3uFgjb+6rdQDEqYoVW@vger.kernel.org, AJvYcCXV4oqnrC35ub3xEQ+Ld9NMaRJvszJu9RbmowvCo/RoT1GL8Y/qigaNa+YqUtL5yFZ9OYFUXf8gGlHF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz0w7sS0GLYq2IxOa17gWb+4repDhbALPpS646WsUQnQq797A3p
+	tgmo+U0LCMb39MV2GqkYnqItwGtBtMajDMKlRZ64uB78rcGKhx9F
+X-Gm-Gg: ASbGncuydSPA1/Dht+Iz0uYUXGvolnFpKiy9GSSLJnpEW6KVlhVfNcvvTGi//nwVgc5
+	Mz929IzbceOYuzfeXoIuDQ2MCBnU7nocPqg9DBDX5t8XOzBg/YDX22J6aQXmZseS8gTnIMJIV7N
+	WkaMqTYMNcZT3lXd8Xl6N2NO6cbgAPvXpLfmIS1Rw/A0K46s2sRRpU+phxi/jR1cDqzXBFdv4cZ
+	j/5GGm0h+cQcjlehgA4hvG7Tuaj3i/sfIO5T1d1/0H+G/UwsgwkWgTsSk4eR4vFIW/TDTkxMJHN
+	zyAe9Lh6ydY+rOHCIQ9y+Yk7fjKg/PU7ri2IcATOlmfB7//Lr/a3JQ==
+X-Google-Smtp-Source: AGHT+IHk3fWjPG0Lq3bYmcMnBWXcJVnNnmjKprgtboThBoy1lvBE5vc2ZBXIYdbzt5jjuHpjlPKXvA==
+X-Received: by 2002:a17:902:e74c:b0:223:3bf6:7e6a with SMTP id d9443c01a7336-225e0a40bb3mr144393215ad.12.1742161448027;
+        Sun, 16 Mar 2025 14:44:08 -0700 (PDT)
+Received: from localhost ([2804:30c:b31:2d00:277c:5cbe:7f44:752b])
+        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-225c688858asm61634375ad.46.2025.03.16.14.44.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 16 Mar 2025 14:44:06 -0700 (PDT)
+Date: Sun, 16 Mar 2025 18:45:03 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Daniel Scally <djrscally@gmail.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Claudiu Manoil <claudiu.manoil@nxp.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: Re: [PATCH v7 02/10] property: Add functions to iterate named child
+Message-ID: <Z9dGX_ckIRUg6fZh@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1741849323.git.mazziesaccount@gmail.com>
+ <f613b5f120a4dde63d28b0a2e0186dcb8dbf57ae.1741849323.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/9] clk: bcm: kona: Move CLOCK_COUNT defines into the
- driver
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
- <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alex Elder <elder@kernel.org>,
- Stanislav Jakubek <stano.jakubek@gmail.com>, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht
-References: <20250308-kona-bus-clock-v3-0-d6fb5bfc3b67@gmail.com>
- <20250308-kona-bus-clock-v3-1-d6fb5bfc3b67@gmail.com>
- <20250310-proficient-free-antelope-abb6b7@krzk-bin>
-From: Artur Weber <aweber.kernel@gmail.com>
-Content-Language: en-US
-In-Reply-To: <20250310-proficient-free-antelope-abb6b7@krzk-bin>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f613b5f120a4dde63d28b0a2e0186dcb8dbf57ae.1741849323.git.mazziesaccount@gmail.com>
 
-On 10.03.2025 09:40, Krzysztof Kozlowski wrote:
-> On Sat, Mar 08, 2025 at 08:50:39AM +0100, Artur Weber wrote:
->> CLOCK_COUNT defines for each CCU are stored in the DT binding header.
->> This is not correct - they are not used by device trees, only internally
->> by the driver.
->>
->> Move the CLOCK_COUNT defines directly into the driver in preparation
->> for dropping them from the DT binding include.
->>
->> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
->> ---
->>   drivers/clk/bcm/clk-bcm21664.c |  8 ++++++++
->>   drivers/clk/bcm/clk-bcm281xx.c | 10 ++++++++++
->>   2 files changed, 18 insertions(+)
->>
->> diff --git a/drivers/clk/bcm/clk-bcm21664.c b/drivers/clk/bcm/clk-bcm21664.c
->> index 520c3aeb4ea9c4a431512c0909f9545c1761d17a..fa6e1649d6f5f459b63026109caea9e2f72e22dd 100644
->> --- a/drivers/clk/bcm/clk-bcm21664.c
->> +++ b/drivers/clk/bcm/clk-bcm21664.c
->> @@ -17,6 +17,8 @@ static struct peri_clk_data frac_1m_data = {
->>   	.clocks		= CLOCKS("ref_crystal"),
->>   };
->>   
->> +#define BCM21664_ROOT_CCU_CLOCK_COUNT	(BCM21664_ROOT_CCU_FRAC_1M + 1)
+Hello,
+
+LGTM, few minor comments inline.
+With those sorted
+Reviewed-by: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+
+On 03/13, Matti Vaittinen wrote:
+> There are a few use-cases where child nodes with a specific name need to
+> be parsed. Code like:
 > 
-> I hit that wall too, no worries. It might surprise you but 0+1 != 1 :),
+> fwnode_for_each_child_node()
+> 	if (fwnode_name_eq())
+> 		...
+> 
+> can be found from a various drivers/subsystems. Adding a macro for this
+> can simplify things a bit.
+> 
+> In a few cases the data from the found nodes is later added to an array,
+> which is allocated based on the number of found nodes. One example of
+> such use is the IIO subsystem's ADC channel nodes, where the relevant
+> nodes are named as channel[@N].
+> 
+> Add helpers for iterating and counting device's sub-nodes with certain
+> name instead of open-coding this in every user.
+> 
+> Suggested-by: Jonathan Cameron <jic23@kernel.org>
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> ---
+...
+> +/**
+> + * fwnode_get_named_child_node_count - number of child nodes with given name
+> + * @fwnode: Node which child nodes are counted.
+> + * @name: String to match child node name against.
+> + *
+> + * Scan child nodes and count all the nodes with a specific name. Potential
+> + * 'number' -ending after the 'at sign' for scanned names is ignored.
+> + * E.g.::
+> + *   device_get_named_child_node_count(dev, "channel");
 
-Do you mean that I should specify the clock count directly rather than
-incrementing the last ID? Some other drivers seem to do this the way I
-did here (samsung/clk-exynos*, renesas/r9a06g032-clocks.c).
+The function being documented is fwnode_get_named_child_node_count().
+Shouldn't the example be
+   fwnode_get_named_child_node_count(fwnode, "channel");
+?
 
-> so you redefine a define. You need to test this patch bisectability.
+> + * would match all the nodes::
+> + *   channel { }, channel@0 {}, channel@0xabba {}...
+> + *
+> + * Return: the number of child nodes with a matching name for a given device.
+> + */
+...
+> +#define device_for_each_named_child_node(dev, child, name)		\
+> +		device_for_each_child_node(dev, child)			\
+> +			if (!fwnode_name_eq(child, name)) { } else
 
-I assume renaming the define to not collide with the old name is the way
-to go?
+nitpicking: add only one tab for each indentation level.
+	device_for_each_child_node(dev, child)			\
+		if (!fwnode_name_eq(child, name)) { } else
 
-Best regards
-Artur
+> +
+>  #define device_for_each_child_node_scoped(dev, child)			\
+>  	for (struct fwnode_handle *child __free(fwnode_handle) =	\
+>  		device_get_next_child_node(dev, NULL);			\
+>  	     child; child = device_get_next_child_node(dev, child))
+>  
+> +#define device_for_each_named_child_node_scoped(dev, child, name)	\
+> +		device_for_each_child_node_scoped(dev, child)		\
+> +			if (!fwnode_name_eq(child, name)) { } else
+> +
 
+nitpicking: instead of two tabs, only one tab before device_for_..._scoped().
+	device_for_each_child_node_scoped(dev, child)		\
+		if (!fwnode_name_eq(child, name)) { } else
+
+Regards,
+Marcelo
 
