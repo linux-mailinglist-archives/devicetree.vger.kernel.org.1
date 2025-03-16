@@ -1,92 +1,109 @@
-Return-Path: <devicetree+bounces-157895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157896-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA07DA63582
-	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 12:56:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22A1EA63596
+	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 13:19:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22CC316DD7D
-	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 11:56:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 44ABE1890EB3
+	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 12:19:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6107A1A316C;
-	Sun, 16 Mar 2025 11:56:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3A841A072C;
+	Sun, 16 Mar 2025 12:19:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lNVZaGZc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7769628E3F;
-	Sun, 16 Mar 2025 11:56:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7401718B47C;
+	Sun, 16 Mar 2025 12:19:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742126203; cv=none; b=hmQr2rUiR14GwClt/+FeoNz60gq/kxV3v6XxAmUhY9XqjyLpWTbYE89qBvX728KOpoIKVd7LRfbxGaV4bX9LuMN2oqYq9hZSPfhuKpPScrGSQoDMNCThjQiy+SaAoZXTtEY40Cnk1BWVNbDEi/g0spPIPX9OfLYy5mOpRCXzdXQ=
+	t=1742127550; cv=none; b=onesSbxZ5NlFXQDPdHmafLqe5VEUonVyI4ts0hAD6xUVZm708VLs0VOEdDbvH7alnrJiD/RnXCopy1hywX72MPMNhfHqPha3vYsPHJba3On939wZ84LIluPO8uf/unE1ZZf09G8KSj1n6DBGBgIzf8MTPtq70RFLY0N4+0Epw10=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742126203; c=relaxed/simple;
-	bh=LPzEn883RcsLOXAzEXVDhgtHrnDVbGsCusS9JX9lHFo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jSIMcPGOVW+CYNH1WG9W1kPzKotxD0AtoW6YjUcsOqCod9l2BFGGqwtjH4MdL0nE4dw2eyfnlwlmE21vMVAoFp9nw4tpes09Brzgi0evNbMeHyLDmL+SCLYbma8lYM9IbLxRLJI2iQtEriRHnmG7vxQsAGyCkELHY4G3rlA1+fc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 6F112442C3;
-	Sun, 16 Mar 2025 11:56:30 +0000 (UTC)
-Message-ID: <8dea1327-747c-4fb5-b6f1-926c6811365d@ghiti.fr>
-Date: Sun, 16 Mar 2025 12:56:29 +0100
+	s=arc-20240116; t=1742127550; c=relaxed/simple;
+	bh=WDOxL/RE2tl9pVb3nTkLv25ewYOD88rCDJFDv51Rt60=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=arIKmrpB6oAte5LL1kBg2rnUTExTRvPrSaqqlnul33ncIn4cJnDDsbKbIefjpwJnL2K+JYlE2/FeF0VCDiLdMyJHG3er+PedTVMM1wolQPpGCny6wYU0TGbzikCkMzBkJqh4CjdzBo8mkrWfy3OgWErvC5E9pBE7gsO0n4UCUcQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lNVZaGZc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADDF0C4CEDD;
+	Sun, 16 Mar 2025 12:19:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742127549;
+	bh=WDOxL/RE2tl9pVb3nTkLv25ewYOD88rCDJFDv51Rt60=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=lNVZaGZcnDmKWO0/IM62w4eJ9ac/Bx23UxURPi0RwrfgtlIbCL6/iDUqHTbnSKAYa
+	 4oCXzcIqnXy6HCYJV6CQC9jVemEys/C9HDMCXewSTFwFJUYKAzhpGhE+eaGYX3QvPg
+	 OF3JH4JZhnu1DgvevbtrrbAObUjKSRTC8dAXcmkDhZtY0c7Ik5hsujsUWZp9YKlxxk
+	 PEPRNbjARhbpKGeEuAPmR1ZSWzT+EDOCw041838kZmUxHgy2FbES8tQxrKbQM901Xi
+	 HQHnvabhDfd4Iho/oRE5G3sKo+1lIidJl+MLXYPdkoO5xru9pS/fExQbxJ+Uwt0MSf
+	 qG8ZpNqXzL2yA==
+Date: Sun, 16 Mar 2025 07:19:08 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] riscv: migrate to the generic rule for built-in DTB
-Content-Language: en-US
-To: Masahiro Yamada <masahiroy@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- linux-riscv@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org
-References: <20241222000836.2578171-1-masahiroy@kernel.org>
- <CAK7LNAQMo0R09OcVw77=dyVnUbMv7gxxejHbr=dy4S-SgPT4-g@mail.gmail.com>
-From: Alexandre Ghiti <alex@ghiti.fr>
-In-Reply-To: <CAK7LNAQMo0R09OcVw77=dyVnUbMv7gxxejHbr=dy4S-SgPT4-g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddufeeiheegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfesthekredttddvjeenucfhrhhomheptehlvgigrghnughrvgcuifhhihhtihcuoegrlhgvgiesghhhihhtihdrfhhrqeenucggtffrrghtthgvrhhnpedtgeeuhffhveeujeetveevieekleekvdffudefleevgefgieekkefggefhtddtveenucfkphepvddttddumeekiedumeeffeekvdemvghfledtmeektdgsfhemhegvleefmeehfegvudemkeekjedtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvddttddumeekiedumeeffeekvdemvghfledtmeektdgsfhemhegvleefmeehfegvudemkeekjedtpdhhvghloheplgfkrfggieemvddttddumeekiedumeeffeekvdemvghfledtmeektdgsfhemhegvleefmeehfegvudemkeekjedtngdpmhgrihhlfhhrohhmpegrlhgvgiesghhhihhtihdrfhhrpdhnsggprhgtphhtthhopeduuddprhgtphhtthhopehmrghsrghhihhrohihsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehprghulhdrfigrlhhmshhlvgihsehsihhfihhvvgdrtghomhdprhgtphhtthhopehprghlmhgvrhesuggrsggsvghlthdrtghom
- hdprhgtphhtthhopegrohhusegvvggtshdrsggvrhhkvghlvgihrdgvughupdhrtghpthhtoheplhhinhhugidqrhhishgtvheslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrrdguohholhgvhiesmhhitghrohgthhhiphdrtghomhdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhg
-X-GND-Sasl: alex@ghiti.fr
-
-Hi Masahiro,
-
-On 16/03/2025 11:39, Masahiro Yamada wrote:
-> On Sun, Dec 22, 2024 at 9:08 AM Masahiro Yamada <masahiroy@kernel.org> wrote:
->> Commit 654102df2ac2 ("kbuild: add generic support for built-in boot
->> DTBs") introduced generic support for built-in DTBs.
->>
->> Select GENERIC_BUILTIN_DTB when built-in DTB support is enabled.
->>
->> To keep consistency across architectures, this commit also renames
->> CONFIG_BUILTIN_DTB_SOURCE to CONFIG_BUILTIN_DTB_NAME.
->>
->> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
->> Acked-by: Conor Dooley <conor.dooley@microchip.com>
->> ---
-> Ping?
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: mazziesaccount@gmail.com, arthur.becker@sentec.com, 
+ subhajit.ghosh@tweaklogic.com, linux-iio@vger.kernel.org, 
+ conor+dt@kernel.org, linux-kernel@vger.kernel.org, 
+ javier.carrasco.cruz@gmail.com, muditsharma.info@gmail.com, 
+ devicetree@vger.kernel.org, ivan.orlov0322@gmail.com, lars@metafoo.de, 
+ jic23@kernel.org, krzk+dt@kernel.org
+To: Andreas Klinger <ak@it-klinger.de>
+In-Reply-To: <20250316113131.62884-2-ak@it-klinger.de>
+References: <20250316113131.62884-1-ak@it-klinger.de>
+ <20250316113131.62884-2-ak@it-klinger.de>
+Message-Id: <174212754864.1517319.13796050097130379689.robh@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: iio: light: veml6046x00: add color
+ sensor
 
 
-It is on my list for 6.15 and *should* be merged.
+On Sun, 16 Mar 2025 12:31:29 +0100, Andreas Klinger wrote:
+> Add a new compatible for Vishay high accuracy RGBIR color sensor
+> veml6046x00.
+> 
+> Signed-off-by: Andreas Klinger <ak@it-klinger.de>
+> ---
+>  .../iio/light/vishay,veml6046x00.yaml         | 49 +++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/light/vishay,veml6046x00.yaml
+> 
 
-Thanks,
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Alex
+yamllint warnings/errors:
 
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/iio/light/vishay,veml6046x00.example.dts:33.33-34 syntax error
+FATAL ERROR: Unable to parse input tree
+make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/iio/light/vishay,veml6046x00.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1518: dt_binding_check] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
->
->
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250316113131.62884-2-ak@it-klinger.de
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
