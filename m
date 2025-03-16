@@ -1,185 +1,170 @@
-Return-Path: <devicetree+bounces-157958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157959-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2414AA6378C
-	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 22:44:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81BCFA6379E
+	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 22:55:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2922F3ADE2B
-	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 21:44:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82D9E1887A12
+	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 21:55:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7592E1C8637;
-	Sun, 16 Mar 2025 21:44:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3465C1922FD;
+	Sun, 16 Mar 2025 21:55:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Av5BSeRe"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="YR4+LKPb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-173.mta0.migadu.com (out-173.mta0.migadu.com [91.218.175.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E22DAC2E0;
-	Sun, 16 Mar 2025 21:44:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FEEE174EF0
+	for <devicetree@vger.kernel.org>; Sun, 16 Mar 2025 21:55:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742161450; cv=none; b=PeDJMBNXNyDViv3c24l8+TRAISi0GoGY5AqmiuKisQA3yzAETfal2hsjJBn2mVWXoEOYutZv4/KH966/jaQKyjfj//7dboGj0ZCraYQtBqzOQYA7lft8mZS9nqUPYOLhMc0TO6cp9HEPcvPBF0Zy9kIvyDvp9Btr03+BG0Uws8A=
+	t=1742162115; cv=none; b=iSYAbXFLtHbYeb2dlohVKNYSSUnfWocBnQAqWuVvlIU7wLupPKN7AiFR6znKZMaLnosbdHtTIKNjiwXwjr/PiGYQpmvD44jgMVdONPRqMIhuVQceO3nWJQeYlAM29KPI6twNMOjyLfVERmQdXW+5Xmuf9ihlYgb+Sk1YA1r46SM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742161450; c=relaxed/simple;
-	bh=v4P/KcddWLuDTatda/HBTqKygV+7kfJ09+a2eRbRlKw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Tn25GvPr55MUD3/f+AMvfaaW/1R6cxNLfEiEPxEVoIw1Wb+QNF/qpHEndf0pOnnZCZiQcQJ3ECLMtNau/P0YWcRa4aV21to+Ewv0GpBu2hFPkQH4oUw2nOHqZnD3bfm+xYpNYbowKOJGRrVAsDq+96+5n8ktIGJQz64yp0KRSvg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Av5BSeRe; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-22401f4d35aso66748345ad.2;
-        Sun, 16 Mar 2025 14:44:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742161448; x=1742766248; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=4mKilVKnBM4oRzcS1cLG80AavsaCOJuEZgc8LXHq/UQ=;
-        b=Av5BSeReNpTZbMpAoy6k2um4wrkL6vvvqb+NPR88d39OASCl6b3tM1DLLen/A3He73
-         0s0cpWxUwSMJThtIH6YlZ/0TbzvUvEGHuGDhIH1qu0UuYYtlRy/byia/WgOlTs5E2/jB
-         fVfFUq2f74rHFKkcOVx+OrOIxYfVfWgFxeJ6QExnaMpO+Rx9sz8wAB+mIElTGZaHpyOk
-         U0bTtwFa65BfnyzSKKZ4Beul70s1SF0mgwBugsx6fr08WBihuJUmXvHySaMBqcmto6S5
-         OxNtqJeFeGcmOAbxtMW/V3LN/0YIIjqr6nbkKZFCaCLOQDcA20e4ehd18ygRJsYUbuIC
-         j9gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742161448; x=1742766248;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4mKilVKnBM4oRzcS1cLG80AavsaCOJuEZgc8LXHq/UQ=;
-        b=fWiUwyV1CLhbPkZWplhltVHAvM1/YTYS6GQf5bdA/1TuaLlWrihIMwrkH02cztK3Ds
-         Jfnbrrau9UrTkPrGaeKRgHC9AgIg8ci1RbHGpu8G9cpkreoom31IEtZ07bNCmducvJYH
-         woev2wIWoMqieWbcDiW38qJ748xVsfUxqYw4xbKo0b+aFme1j/RqPUVJFuVDuj8xeMj9
-         DhqDvTZWi5W0dkToanmD14bXfsJ84/HtHcqdGiG6O/eofN3XVQXUZypz5QC57s+2OdaM
-         t5hio40/SqAcoUUq2b6MuL2WzZVAFAyyKAf8nnDSK4IEfLEqTXR7wiYg+tU/YgUJt0oW
-         BJyA==
-X-Forwarded-Encrypted: i=1; AJvYcCVvyH+6BA7OBbcY2K3AfR4nc02eWj+8RcuyO6Q6WfdwZa58jUFNuZRhXZfO+sYIJp+slxwQw7fdp3VN@vger.kernel.org, AJvYcCWJJ9jJZiOwNwL1NZPTOJQraPf6+1cWKMHKHPBv5yIo6BF0EWVFSJz/96QuXt+MTARlApDOMS4av5urYg==@vger.kernel.org, AJvYcCXUh9WcZTijg5tFsWzUmJgVLd80YfJwaq7b0B9GSFQmiYquljAbyDVgdRm/4Fq6BA4lGYUAA990@vger.kernel.org, AJvYcCXUrksHAFWGgjRznA60golSCLgeNdmTAZjjxATHNTG+p77m4zT60YtK5nyzBg7Ovf3uFgjb+6rdQDEqYoVW@vger.kernel.org, AJvYcCXV4oqnrC35ub3xEQ+Ld9NMaRJvszJu9RbmowvCo/RoT1GL8Y/qigaNa+YqUtL5yFZ9OYFUXf8gGlHF@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz0w7sS0GLYq2IxOa17gWb+4repDhbALPpS646WsUQnQq797A3p
-	tgmo+U0LCMb39MV2GqkYnqItwGtBtMajDMKlRZ64uB78rcGKhx9F
-X-Gm-Gg: ASbGncuydSPA1/Dht+Iz0uYUXGvolnFpKiy9GSSLJnpEW6KVlhVfNcvvTGi//nwVgc5
-	Mz929IzbceOYuzfeXoIuDQ2MCBnU7nocPqg9DBDX5t8XOzBg/YDX22J6aQXmZseS8gTnIMJIV7N
-	WkaMqTYMNcZT3lXd8Xl6N2NO6cbgAPvXpLfmIS1Rw/A0K46s2sRRpU+phxi/jR1cDqzXBFdv4cZ
-	j/5GGm0h+cQcjlehgA4hvG7Tuaj3i/sfIO5T1d1/0H+G/UwsgwkWgTsSk4eR4vFIW/TDTkxMJHN
-	zyAe9Lh6ydY+rOHCIQ9y+Yk7fjKg/PU7ri2IcATOlmfB7//Lr/a3JQ==
-X-Google-Smtp-Source: AGHT+IHk3fWjPG0Lq3bYmcMnBWXcJVnNnmjKprgtboThBoy1lvBE5vc2ZBXIYdbzt5jjuHpjlPKXvA==
-X-Received: by 2002:a17:902:e74c:b0:223:3bf6:7e6a with SMTP id d9443c01a7336-225e0a40bb3mr144393215ad.12.1742161448027;
-        Sun, 16 Mar 2025 14:44:08 -0700 (PDT)
-Received: from localhost ([2804:30c:b31:2d00:277c:5cbe:7f44:752b])
-        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-225c688858asm61634375ad.46.2025.03.16.14.44.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 16 Mar 2025 14:44:06 -0700 (PDT)
-Date: Sun, 16 Mar 2025 18:45:03 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Daniel Scally <djrscally@gmail.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Claudiu Manoil <claudiu.manoil@nxp.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
-	netdev@vger.kernel.org
-Subject: Re: [PATCH v7 02/10] property: Add functions to iterate named child
-Message-ID: <Z9dGX_ckIRUg6fZh@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1741849323.git.mazziesaccount@gmail.com>
- <f613b5f120a4dde63d28b0a2e0186dcb8dbf57ae.1741849323.git.mazziesaccount@gmail.com>
+	s=arc-20240116; t=1742162115; c=relaxed/simple;
+	bh=KvITfVWFiAHlc/UDGmRKZ8po7s5LIRx/q479ewV21tw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WXo4JVdGeocKYGbTdE5IqQEg97sfbrCURUzO7BGRKez/Yo/OLnw0rcKDYVolma96ciPueVyfLEE/NHAUvZBFDbv2I7WvtLphgul0/BMZnmoYxvpyBMVLbH7AWK9JsiibIH8lPKCQrLN9F7ziG2bv2TcfEDlPJXsHXR4M0ehyZ/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=YR4+LKPb; arc=none smtp.client-ip=91.218.175.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <51c5a9e8-6bb5-4094-a1f2-711b139f83e7@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1742162109;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=qbG3mEfDTeka59b50aeHpcTAVOm/WyqfOPBtEdRR8JA=;
+	b=YR4+LKPbJDGDbECq5vJtgN8O+t3UuFm6xv0H9LszS+bK6kukjVj7un+z30fhqOIIB/H7G8
+	WTTPpBfNuQtOWW0wtD4c4iv+TmrwyxdC4X2RZm9oAdDafcg1TANseIWP3Jgag+CRFkJZ1t
+	+tiKYY0zsilB1GYon7baOZ6jJ7Hbi6k=
+Date: Sun, 16 Mar 2025 22:55:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f613b5f120a4dde63d28b0a2e0186dcb8dbf57ae.1741849323.git.mazziesaccount@gmail.com>
+Subject: Re: [RFC v2 1/1] fpga-region: Add generic IOCTL interface for runtime
+ FPGA programming
+To: Xu Yilun <yilun.xu@linux.intel.com>
+Cc: Nava kishore Manne <nava.kishore.manne@amd.com>, git@amd.com,
+ mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com, trix@redhat.com,
+ robh@kernel.org, saravanak@google.com, linux-kernel@vger.kernel.org,
+ linux-fpga@vger.kernel.org, devicetree@vger.kernel.org
+References: <20241029091734.3288005-1-nava.kishore.manne@amd.com>
+ <20241029091734.3288005-2-nava.kishore.manne@amd.com>
+ <ZzwQrYeWVF6cRtgA@yilunxu-OptiPlex-7050>
+ <9bfaf1cf-3313-4cb3-9963-2b4bad2d3165@redhat.com>
+ <Z0fIiQPCS69O2d/n@yilunxu-OptiPlex-7050>
+ <00e5c1c1-a98e-4360-b7e5-ffaa384e1036@linux.dev>
+ <Z6RRAXocxWHsZZLF@yilunxu-OptiPlex-7050>
+ <a51c0c24-fd21-42b3-9c4a-39ebc0751f03@linux.dev>
+ <Z8LS93jh4KBvNlCd@yilunxu-OptiPlex-7050>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Marco Pagani <marco.pagani@linux.dev>
+In-Reply-To: <Z8LS93jh4KBvNlCd@yilunxu-OptiPlex-7050>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
-Hello,
 
-LGTM, few minor comments inline.
-With those sorted
-Reviewed-by: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-
-On 03/13, Matti Vaittinen wrote:
-> There are a few use-cases where child nodes with a specific name need to
-> be parsed. Code like:
+On 2025-03-01 10:27, Xu Yilun wrote:
+> On Mon, Feb 17, 2025 at 04:18:36PM +0100, Marco Pagani wrote:
+>>
+>>
+>> On 06/02/25 07:04, Xu Yilun wrote:
+>>>>>> I'm currently working on an RFC to propose a rework of the fpga
+>>>>>> subsystem in order to make it more aligned with the device model. One of
+>>>>>> the ideas I'm experimenting with is having a bus (struct bus_type) for
+>>>>>> fpga regions (devices) so that we can have region drivers that could
+>>>>>> handle internal device enumeration/management whenever a new region is
+>>>>>> configured on the fabric. Does this make sense in your opinions?
+>>>>>
+>>>>> mm.. I didn't fully understand the need to have a region driver, what's
+>>>>> the issue to solve?
+>>>>>
+>>>>
+>>>> Sorry for the late reply. The general idea is to handle regions in a way
+>>>> that is more aligned with the device model without having to resort to
+>>>> extra ops and additional devices.
+>>>>
+>>>> Having an fpga bus would allow us to handle enumeration using proper
+>>>> region drivers (in the device model sense of the term, i.e., struct
+>>>> device_driver) instead of derived region devices.
+>>>>
+>>>> On second thought, I think having a reconfiguration interface at the
+>>>> fpga manager level is sounder than having it at the region level (one
+>>>> for each region).
+>>>
+>>> I don't think so. A firmware image may contain enumeration info, e.g.
+>>> of-fpga-region. And I think the fpga-region should parse these
+>>> enumeration info rather than fpga manager. fpga manager should only deal
+>>> with content writing stuff and not be exposed to user.
+>>
+>> I agree with that. In my proposal, the fpga manager should be
+>> responsible only for writing the image into the configuration memory
+>> and allocating region devices. In-region enumeration should be handled by
+>> the region drivers.
+>>
+>> My worry with having one reconfiguration interface for each region is
+>> that it does not reflect how the hardware works. To my knowledge, all
+>> major FPGA implementations use a DMA engine (controlled by the fpga
+>> manager) that performs the reconfiguration through a single port. So,
+>> having one interface per region might be conceptually confusing and give
+>> the impression that it is possible to configure regions independently in
+>> parallel.
 > 
-> fwnode_for_each_child_node()
-> 	if (fwnode_name_eq())
-> 		...
+> One interface per region means the regions could be independently
+> reprogrammed, i.e. reprogramming of one region won't affect the working
+> of another region. But they don't have to be reprogrammed in parallel.
+> If it cannot be reprogrammed now, the interface call could fail.
+
+Good point. However, I still have some other practical concerns. To the
+best of my knowledge, reconfigurable images/bitstreams are statically
+built for a specific reconfigurable region in current FPGA
+implementations. So, what should happen if the user feeds the wrong
+image (e.g., an image targeting another region) into a reconfigurable
+region programming interface? I don't think the fpga manager could and
+should detect these mistakes since the kernel has no visibility of the
+FPGA configuration memory.
+
+>>>> With that in place, the fpga manager could request a firmware image,
+>>>> parse it, write the content into the fpga configuration memory, and then
+>>>> instantiate the region devices and add them to its fpga bus. Then, if
+>>>
+>>> I think an fpga-region is always there no matter it is cleared, being
+>>> reprogrammed, or working. So I don't think an fpga-region needs to be
+>>> re-instantated. The sub devices inside fpga-region needs
+>>> re-instantating. That's also why I'm hesitating to fpga bus.
+>>
+>> I think one of the issues with the current subsystem architecture is
+>> that it coalesces two cases: full and partial images. With partial
+>> images, it makes sense to keep the region devices and rerun the internal
+>> enumeration. With full images, I believe it makes sense to clear and
+>> reallocate new devices to set a new region tree.
 > 
-> can be found from a various drivers/subsystems. Adding a macro for this
-> can simplify things a bit.
-> 
-> In a few cases the data from the found nodes is later added to an array,
-> which is allocated based on the number of found nodes. One example of
-> such use is the IIO subsystem's ADC channel nodes, where the relevant
-> nodes are named as channel[@N].
-> 
-> Add helpers for iterating and counting device's sub-nodes with certain
-> name instead of open-coding this in every user.
-> 
-> Suggested-by: Jonathan Cameron <jic23@kernel.org>
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> ---
-...
-> +/**
-> + * fwnode_get_named_child_node_count - number of child nodes with given name
-> + * @fwnode: Node which child nodes are counted.
-> + * @name: String to match child node name against.
-> + *
-> + * Scan child nodes and count all the nodes with a specific name. Potential
-> + * 'number' -ending after the 'at sign' for scanned names is ignored.
-> + * E.g.::
-> + *   device_get_named_child_node_count(dev, "channel");
+> MM.. I don't actually understand what's the fundamental differences
+> between full & partial. If a full region supports full & partial
+> reconfiguration, the full region contains partial regions as
+> sub-devices. The partial reconfiguration reallocates it sub-devices and
+> won't change partial region itself. The full reconfiguration also
+> reallocates it sub-devices including partial regions, and won't change
+> full region itself.
 
-The function being documented is fwnode_get_named_child_node_count().
-Shouldn't the example be
-   fwnode_get_named_child_node_count(fwnode, "channel");
-?
+What I had in mind was re-instating a new region device in case of
+partial reconfiguration to re-trigger the enumeration by a region driver
+of the devices hosted in the region.
 
-> + * would match all the nodes::
-> + *   channel { }, channel@0 {}, channel@0xabba {}...
-> + *
-> + * Return: the number of child nodes with a matching name for a given device.
-> + */
-...
-> +#define device_for_each_named_child_node(dev, child, name)		\
-> +		device_for_each_child_node(dev, child)			\
-> +			if (!fwnode_name_eq(child, name)) { } else
+At this point, I believe I should send an RFC to have something concrete
+to discuss. Unfortunately, it may take me some time due to a job change.
 
-nitpicking: add only one tab for each indentation level.
-	device_for_each_child_node(dev, child)			\
-		if (!fwnode_name_eq(child, name)) { } else
+Thanks,
+Marco
 
-> +
->  #define device_for_each_child_node_scoped(dev, child)			\
->  	for (struct fwnode_handle *child __free(fwnode_handle) =	\
->  		device_get_next_child_node(dev, NULL);			\
->  	     child; child = device_get_next_child_node(dev, child))
->  
-> +#define device_for_each_named_child_node_scoped(dev, child, name)	\
-> +		device_for_each_child_node_scoped(dev, child)		\
-> +			if (!fwnode_name_eq(child, name)) { } else
-> +
-
-nitpicking: instead of two tabs, only one tab before device_for_..._scoped().
-	device_for_each_child_node_scoped(dev, child)		\
-		if (!fwnode_name_eq(child, name)) { } else
-
-Regards,
-Marcelo
 
