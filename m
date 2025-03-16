@@ -1,56 +1,48 @@
-Return-Path: <devicetree+bounces-157923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDC4BA63693
-	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 18:00:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA740A63696
+	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 18:01:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 69FE5188F1A8
-	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 17:01:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A070A188F621
+	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 17:01:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3D0A13B58A;
-	Sun, 16 Mar 2025 17:00:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 788591A2547;
+	Sun, 16 Mar 2025 17:01:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="uPa3TrZW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qQFd3hPe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63AE61891A9
-	for <devicetree@vger.kernel.org>; Sun, 16 Mar 2025 17:00:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FB7239ACC;
+	Sun, 16 Mar 2025 17:01:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742144446; cv=none; b=ijC2Q+6hhSJ9bG2KIN79YeBJH9pT5XguqwgDjnO/PMiQG1OF8bdP82FEUMc35o+dkKaJ/00czICnr09TKNLlvp64coQkttz9j+IgsUzyyN2CGk1kTNlaiKArW9ajYPUIYE2tEZuL2m39SzABEQcQ7bGtwL+OMQXZcDt7r0Fhwx0=
+	t=1742144475; cv=none; b=CgZTA8e5scDm5ne66ccJvlH8RVGQWI5LLOsLOsHvP7inK5B+F33Cc3yBtjtULudg3D/Pv09rYCjgp94I6Z79nXg3aaF3AJeVeHepccUigV2GzcsdzErSGk1j0le9i3s3oY6d43OQa1rTh3vLkF5sAgtt2dPNqpOR4W9gTWLUKBw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742144446; c=relaxed/simple;
-	bh=5LSXYiZ1EWCfm6z0l3ujY/R76DToyGgEomOHbB073zs=;
+	s=arc-20240116; t=1742144475; c=relaxed/simple;
+	bh=6PfcJBRNV/52O2N067Qc1dkAL6g6RK6AiGmwAbAH68c=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gMz5DKL+QPFe6GkxsfYD93fn7b5ML64HUE9JfLNmvYCOOdo+uW1TL+qxXfc2LDVvtAotyCZqIxJgvkaBVqHUTHoLFUard0CLN3T/mbedH5LjmNEJCbE5NWowO+uNFDDODLeyFL6xf5EWEZZIw1VroBZ0vdH4jVHCzFxl/Dx6/tE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=uPa3TrZW; arc=none smtp.client-ip=212.227.15.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1742144415; x=1742749215; i=wahrenst@gmx.net;
-	bh=Yhk3pke8SopWAqXAXxTbiyqZ9AZFCJbch6mayWxHbQE=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=uPa3TrZWKzNWKY7ui/b1pSw8pXUYaXo+bYDNZ9EIeVbmRrD01vD5IlOiyByTmoiO
-	 HmQnxGuoiuURq887GNSGOPZiXlq+2t5jKbkCuA8mf/15FBgYWjjgVRQWMLzRLlWva
-	 yA1Usj2jltjypRd0lrxLeia3E/q5Gkik/9s/Fikln7KRoVa9WPGsvtaBhF4CrUmD2
-	 VlzDDeotNqxjFNpssVLuCs086XxsQqD+RZPbNMQhX8luAX4flYmcV4W10tPwCA59a
-	 PHeIz4p3UDvqc+dbH+iFGfmD4L8Ll7b061Bb80Df5wiuW888OqSW5iyz21UIs/aYv
-	 kwuOYoFtQXbb+iDwNw==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.107] ([37.4.251.153]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1Mzhj9-1sybt80tnN-00uJL0; Sun, 16
- Mar 2025 18:00:15 +0100
-Message-ID: <493490e8-1ea0-4e10-8fd7-e8f6b10607da@gmx.net>
-Date: Sun, 16 Mar 2025 18:00:14 +0100
+	 In-Reply-To:Content-Type; b=cYEm1e1VjiVTiy/9UUz6jtbn9oOtbj7DKKzjx+wnufM6E+vdwTaPLe9qrDtj65FPCWH3kBsAxRJDAxqsFcg4L/SpmYKLNRkqUETtkupu8wZWJPEPRXRYipQeSnUerTZuxg9Rv/xRTI3UrDQLiCzBFKuSdT4VhzROz5IZIjQUBcE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qQFd3hPe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B71B8C4CEDD;
+	Sun, 16 Mar 2025 17:01:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742144474;
+	bh=6PfcJBRNV/52O2N067Qc1dkAL6g6RK6AiGmwAbAH68c=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=qQFd3hPeTpDx+jH+Bro2QsnUm9+dxfhPOHdVTYI1JJjYKY7Ha7ozZMMDrb8dnSYPM
+	 x15Pd3uLBOq4kPEm4GgF+NGN5ylbMFJmzVn8D3MGCQk1Ss+bpARjrZqwL34qLeK9oD
+	 t5CJOZ6eVDnHVvORXRN+jSBf0kCQEtr0eAa6O77xU+XDKSEXv5w9+X724ivizupDHy
+	 ZGP7iSzAr5ZomED03ma0S8Vcb+g2BPT+wrXH5meJn+YIkoC97P0zfLRXwXOOrtMWQz
+	 iQnLSrbiQHqJMmf6Cat7TZl5no1MNNPqtlRaC5ogSsLgCt9vPA7YMOyUincL9m584U
+	 +JmBXWV6kJjDA==
+Message-ID: <4a9ac302-dfbe-4d76-a634-a445957c313c@kernel.org>
+Date: Sun, 16 Mar 2025 18:01:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,97 +50,116 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/6] dt-bindings: gpu: v3d: Add SMS register to BCM2712
- compatible
-To: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
- Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>,
+Subject: Re: [PATCH 09/13] dt-bindings: phy: Add documentation for Airoha
+ AN7581 USB PHY
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Nicolas Saenz Julienne <nsaenz@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, kernel-dev@igalia.com,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250316-v3d-gpu-reset-fixes-v5-0-9779cdb12f06@igalia.com>
- <20250316-v3d-gpu-reset-fixes-v5-3-9779cdb12f06@igalia.com>
+ <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Lorenzo Bianconi <lorenzo@kernel.org>, Daniel Danzberger <dd@embedd.com>,
+ Arnd Bergmann <arnd@arndb.de>, Linus Walleij <linus.walleij@linaro.org>,
+ Nikita Shubin <nikita.shubin@maquefel.me>, Guo Ren <guoren@kernel.org>,
+ Yangyu Chen <cyy@cyyself.name>, Ben Hutchings <ben@decadent.org.uk>,
+ Felix Fietkau <nbd@nbd.name>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-usb@vger.kernel.org,
+ upstream@airoha.com
+References: <20250309132959.19045-1-ansuelsmth@gmail.com>
+ <20250309132959.19045-10-ansuelsmth@gmail.com>
+ <4f16d239-f540-45d5-b67a-767b09f1c70c@kernel.org>
+ <67d0862f.df0a0220.375bd.6b15@mx.google.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-Autocrypt: addr=wahrenst@gmx.net; keydata=
- xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
- IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
- NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
- JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
- TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
- f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
- V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
- aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
-In-Reply-To: <20250316-v3d-gpu-reset-fixes-v5-3-9779cdb12f06@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:lFOB0ncZFagvFOKWhTD6YhlfvUaIIs/VcOPeqRK0MjSD7fWyTzw
- CIsXcOkmHeWGMVvne00z48ZGTA3WIh3AxIAF4bvvqK7hSLsL2qR82mQO+F5wfSQP3sdU5jE
- uwZqmYPbM6VofNoJz8nBJDKWDlj2EEgyjP0eXTE6ioN+u6u58dYUzo4zxnabi24hfUDYiQp
- PNH3ouN8hZlCJjWfAJI0A==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:TyJgRGz42kE=;rJwc3rIHTgKAp46FZcApxyuzHGK
- I40hnSFUXEKGYsOg1mgvsAWJ6U5cMMW9VzrUFHbr3qC124fuyfg2g/+bHJUmj9o8tG3mNCkg6
- HqZZDfJqCsqHu0u4JC9hpB2q6AtBlMbNCzHUzDXyu0Yrw5UuTnWj/u/reDl9UP+czmYqhxWVz
- DO6jzioDPjG9t+3eMWZETzwpIJ6ixaJmNtT19gDoecAg3T/tPdaxNsPL8hg4h6DnU70vimLCt
- 9JzGcuDmSOcrhrdvQ0P4p2y4FWSkF9p2f2Vdj5hkUsmOjGDPW9kz1vyrU2GMqNaNKubud1/5s
- CTf3X83FkC6+qClCWEifhNVKA/47IwaW567Wz2qPg+oPrxAQYq38Lr5BKm/ZtZPtbHk6MLhWQ
- dHOlX/5OBaNrO9vqNG/fmvqrhmS8tn8OfQ0EFLT4vxQm6WWAgEt/Y6g8km7u0EPUavPRYh7Bz
- MvKoQJjGrJ3h8VZzhl7w50aEwaqpTK77hiiFm7twg4/ipNzpGbwt6oDXLxTuI82BDPjeOC6kE
- ECaJ/cfSNgTKJh5wvP6JgO7H9aKJYPb++BMYlZ2E3CBnZ+WjO94UHui08a/AZ+Z+FbBHufn4C
- YVobMRg/LMzgZShlY69Z5Vs91QbWcYTY+XMP0yJmm99xdae37XUX5ASNx2tkg1+WU7OREVDp/
- vLnKKp62XrXE1OlTmvcPl9vwHuACoBvl1+k8q7rlbgnUceHQ2oBGBOjEJPaMk6czN476ljesq
- Zea+CnzWYtEvnF/NzpCiCJI73d/fR2aP3QfQNdZi15Iq28HZDguZb1ERNlhYlA4Jt+Mjvj5ib
- jh1d1aKAVjL3JziRiBqxNxN7fMYbcsvOX7bbE26UIp2i34AHqZD+qaPD8oubLhoYvlei9c0B9
- se0gk/PrsgaunMymkTDimoej+1aw/nRcNwZVTxQmaESF5GnW1fD9mSSWEgilh+2WhQLjqUdUO
- MLFyGSE9VFz4u5+Sv0XARWQ4bsi8N6aSI9Ow3ilKuoY/vp4EFFuXLwI7Q685EJEzOukJ7t5V4
- q8jX6yajZjmegF8OTdrmpPJnD9tJ+q1FHO0k3qQk3OfsLjPkh7ZPwJBJ067276H4eexQsBWJR
- TMRD6Cpv9U/mFOLD2QrAazOCqfi+dlSUsJEZuaN3KwVKaCZCAPgxHWXQ6Nab9pIvQZrk2SFx6
- qy6NYtuqq6EC3O7olvxkxdQSjPDA1apucZsBpCUJpMQK8mYcqig8v4xwayrpv4nHEb2mGyoJs
- LKOzR8oophdJ/nUR0JwpGeke86gdTXpoCuhFnS4v86qaUUQEPDKSLUKyL8Gt4ax9hNX0Oxzdo
- zgsn7o1FebuHKgdNVpgp/3d2icD2W4+NMWYv4bIB1vA52P3wcQqRyHgF2ayLqAP6GWthjnPxR
- P82ed1VUw1KwpMsQbTKsGqM3UAURSQ0QBZtB6w7UnBgR7bEqGrTLjG+Hi4Cbd3tdtGCo/Sof+
- n8Fvpu1IKicbr4ClO6EySGRIvQSE=
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <67d0862f.df0a0220.375bd.6b15@mx.google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Ma=C3=ADra,
+On 11/03/2025 19:51, Christian Marangi wrote:
+>>
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    enum: [0, 1]
+>>
+>> I don't understand why do you need index property here (which are
+>> usually not allowed).
+>>
+> 
+> Eh... As said in the description this is really to differentiate the 2
+> different physical port...
+> 
+> Each port have a dedicated oscillator for calibration and these
+> calibration are identified by an offset (all placed one after another in
+> a separate register space).
 
-Am 16.03.25 um 15:15 schrieb Ma=C3=ADra Canal:
-> V3D 7.1 exposes a new register block, called V3D_SMS. As BCM2712 has a
-> V3D 7.1 core, add a new register item to its compatible. Similar to the
-> GCA, which is specific for V3D 3.3, SMS should only be added for V3D 7.1
-> variants (such as brcm,2712-v3d).
->
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Ma=C3=ADra Canal <mcanal@igalia.com>
-> ---
->   Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml | 2 ++
->   1 file changed, 2 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml b/D=
-ocumentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
-> index c736b3b00ed2c259c263615bdc2bc1899c8961f8..766a310ab653855d7cc9a80f=
-18c2083218fe307e 100644
-> --- a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
-> +++ b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
-> @@ -77,10 +77,12 @@ allOf:
->             items:
->               - description: hub register
->               - description: core0 register
-> +            - description: SMS register
-maybe we can use this opportunity to explain what the acronym SMS means
-in this context?
+So different oscillators? Then describe the oscillator and its differences.
 
-Thanks
->           reg-names:
->             items:
->               - const: hub
->               - const: core0
-> +            - const: sms
->     - if:
->         properties:
->           compatible:
->
+Different programing model? Different compatible.
 
+Other difference? Depending what is the difference.
+
+But there is no such thing as "different port ID" based on your
+description above. You just claimed that they are different, but you do
+not put that difference to hardware description. Instead you encode that
+difference in the drivers and it should be opposite. The DTS, so the
+hardware description, should tell you the difference. And I am sorry,
+but in 99% of cases "I am the first phy" and "I am the second" is not
+the actual difference we are interested in.
+
+> 
+> Oscillator 0 for physical port 0
+> Oscillator 1 for physcial port 1
+> 
+> And model this is a bit problematic without an additional property, any
+> hint for this?
+> 
+Best regards,
+Krzysztof
 
