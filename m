@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-157911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157912-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F66BA63608
-	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 15:17:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2240A6360B
+	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 15:17:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 58D8B3B0690
-	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 14:16:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B23C3B0B4F
+	for <lists+devicetree@lfdr.de>; Sun, 16 Mar 2025 14:16:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E3421A23B8;
-	Sun, 16 Mar 2025 14:16:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EE951A8F68;
+	Sun, 16 Mar 2025 14:16:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="DfMjcH89"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="mZVtdb52"
 X-Original-To: devicetree@vger.kernel.org
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 569A01A5BB5
-	for <devicetree@vger.kernel.org>; Sun, 16 Mar 2025 14:16:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CAF71A5BB5
+	for <devicetree@vger.kernel.org>; Sun, 16 Mar 2025 14:16:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.60.130.6
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742134616; cv=none; b=eKxxvnaKRreFTlwi8+z88L3p3UfAxFuQ89/DOXCv7GgCGJV7ZcEJn0nFrLGgd6bPRwqba+0Z/1cziDxuPoVWzoJbRD4uNJJgRcGSZh8BuYvbpINQhheTms3DlkhA7NA46d4L6jb2oI0VuYlw1hOn3lRfxWD/cR7ZEyMQajlK6No=
+	t=1742134619; cv=none; b=hETRxUYnNJc3IWybvGHGElTYR8yI5NTxy3NDjEvmKyB7oPloS1Rq4qdC1vl52cJU3tYiAFNeOeZJl28BVROfjzJhaE36O4zUoAX1zrscctTVV+/Fx9J3IiBqKFBmk9AVO2n/ik3+gquRsY2mBGz/1kT9FAC/eyJGNuQTx5zSmJY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742134616; c=relaxed/simple;
-	bh=Euv/3NWvgCPDDYHuljbzm7CGJWe1ImTFFhtKIdR3PTQ=;
+	s=arc-20240116; t=1742134619; c=relaxed/simple;
+	bh=g57RTjAHqcLmtmKjxuWc7XiSHGgWLzj6GPyFU2FAEaM=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=iXD56/rAxJbZYxk8yGCnm/z+4dC5MFZURl6CbFM7l1ap8Oy7YIBguT6ybIaadhD1go2BMmTGOzKD8j/UihCdLiGJ9Mnqw7H7Y+jSsdQueoHy5Qu/Nu999nptl72tVX5t/V2eGjDiOORLvuRKv7Y3bwUesk5kxSAWsW4ZCAejpn4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com; spf=pass smtp.mailfrom=igalia.com; dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b=DfMjcH89; arc=none smtp.client-ip=178.60.130.6
+	 In-Reply-To:To:Cc; b=lzVCE4zXWI5zFy2HK2Wc8QXClR493svHRv1cr3DI/8LKv04V2FFhYA4vEaZk3E9Rl5dWAei7zTjHPEAKFb5x79hfXIVyRDNZsnCu5/nH8VD2KfPcN9K8Dpx2tTwBBkZRy/KyI9iBeIlcVABrbVCEJm+7qxaOKnIoXunKIWzq3TE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com; spf=pass smtp.mailfrom=igalia.com; dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b=mZVtdb52; arc=none smtp.client-ip=178.60.130.6
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=igalia.com
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
@@ -37,20 +37,20 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
 	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
 	:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=yW80kGhERxvdgKvHJPIF2b1jQ8rLTpfgbI977TlYb7Q=; b=DfMjcH89HozFVWC+a7ydCLzZ+y
-	o/nFtPYOBwPQmNd+4ChqSSpTYurw4C96jfZZ57Amd6cLC4IKO+SJ/+31Y/umLa2ky3LLmHYePxW/y
-	yx/KqYY2msU4WxKLjPW4kNENJsgvutR9SOssztgM/Cm6+bGunNAuJKSAWAgGII85UtX36FxO4uRAf
-	yGmTVXKEsTKF2MA8FXLWUpneCA9nMLKFrCqNQ6h/OL6uki3VTbenk55r6ArrKRImPyVCiJxmZO/TM
-	NHB8pZ77Yp41jTCS27jgu05q+aQW99mYPyidcA32b2ARdRfyzL/cX0mlXPlaGXgtVn+7PQ7MlqESj
-	vYV6C7hQ==;
+	bh=dMAHjyrQRw/qQ6f/gvOeBlalmR7zv7Z86weqDbNizCg=; b=mZVtdb52Nl3lEVYkPXO2085hjn
+	i3+7wtLKXzZwHx2p0NXID3/ZdQWyjNZqVL0aOLNucK6pg78aEITJMi5Rx/jVSs6pXo0+iXB3bY16k
+	cNdR8P7MmTOimIZCtg9wQ/9teoMaygdBXhBL9ViCZULMoao+M3eAg/oelz1zHOvmB2Ocq0GP0OOCs
+	0hr4zopfG2YRITxEzQphpjuFmupxRJRufxcTCP3iUlXEWQVtK9gFWn4nuGoFwIzm+lOx/GGkIvIMp
+	7oDaqMC0b+tw+qnnPU0/Cn6JXqiU5tPjPiKoo/Vhwxk3LcGmW5y9Slf+qi0mQKk4AKioUSe41JlZX
+	qIZaT3Fg==;
 Received: from [189.7.87.178] (helo=janis.local)
 	by fanzine2.igalia.com with esmtpsa 
 	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
-	id 1ttonH-0016D3-Lr; Sun, 16 Mar 2025 15:16:48 +0100
+	id 1ttonL-0016D3-MM; Sun, 16 Mar 2025 15:16:51 +0100
 From: =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
-Date: Sun, 16 Mar 2025 11:15:12 -0300
-Subject: [PATCH v5 5/6] dt-bindings: gpu: v3d: Add V3D driver maintainer as
- DT maintainer
+Date: Sun, 16 Mar 2025 11:15:13 -0300
+Subject: [PATCH v5 6/6] drm/v3d: Use V3D_SMS registers for power on/off and
+ reset on V3D 7.x
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,7 +59,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250316-v3d-gpu-reset-fixes-v5-5-9779cdb12f06@igalia.com>
+Message-Id: <20250316-v3d-gpu-reset-fixes-v5-6-9779cdb12f06@igalia.com>
 References: <20250316-v3d-gpu-reset-fixes-v5-0-9779cdb12f06@igalia.com>
 In-Reply-To: <20250316-v3d-gpu-reset-fixes-v5-0-9779cdb12f06@igalia.com>
 To: Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>, 
@@ -70,59 +70,218 @@ To: Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>,
  Florian Fainelli <florian.fainelli@broadcom.com>
 Cc: Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org, 
  devicetree@vger.kernel.org, kernel-dev@igalia.com, 
- Emma Anholt <emma@anholt.net>, "Rob Herring (Arm)" <robh@kernel.org>, 
  =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1369; i=mcanal@igalia.com;
- h=from:subject:message-id; bh=Euv/3NWvgCPDDYHuljbzm7CGJWe1ImTFFhtKIdR3PTQ=;
- b=owEBbQGS/pANAwAIAT/zDop2iPqqAcsmYgBn1t0z05M4NTQ82w54IjShUBiGzfqOUNuMLizoo
- z69mdeYmFWJATMEAAEIAB0WIQT45F19ARZ3Bymmd9E/8w6Kdoj6qgUCZ9bdMwAKCRA/8w6Kdoj6
- qnO8B/4/R9S/NytXS7zzXfzMCeReVbJGRuVWPkMsj1CPuAaYDSrgucnXdZ+JbHSoWPRO947wX0a
- joCN1up7CdF4DPWZM35ZPkCE22JlHlnseXW9W4DucXJjgzrqK5XyU2FLfALI3ggHslEfbMMeaRF
- TMvHeiEUT/JtDa0GxAJrZ99xewwGttXN74oPpydJLoqMeRGXTJTWqOhnN5u2KPSb9m3QnKzqqPx
- ijpuKQodow9/aoYfNPlVYOPFabC6wW+WsDwX5/dKOp7NiQ04ifiyADhxGEIyTG60Cl/jH7lsGr5
- HfPyAyWLMe8bXheLZbMP0gmhsPniTvQek6cTKa3+fGUN84+D
+X-Developer-Signature: v=1; a=openpgp-sha256; l=7723; i=mcanal@igalia.com;
+ h=from:subject:message-id; bh=g57RTjAHqcLmtmKjxuWc7XiSHGgWLzj6GPyFU2FAEaM=;
+ b=owGbwMvMwMFo/5mvq6zj1yrG02pJDOnX7hrXPP9hcF2DxyKh5MyxQhWPHKvc/Tkpf2emml+PK
+ 8h2DDboZDRmYWDkYJAVU2T58SS2llGsnF1zWflFmEGsTCBTGLg4BWAiPaHs/0vreyT5Ddq4Nq7S
+ 1U0XqDGQT32bas2kXq/QtWnZ3NAMLt2Grr03mjT0+8vuyteu//uSw33mp+fVBe/MbFcqHX5yva3
+ z8P7tQl57JHsVK15G9R36b6yRxFrItzBny8qa5a7Ly/btED1hYrhlSm+lC+vn/Kunalz2Z175qT
+ Cn17ylKdJxoyQz85f3iwIuVEe/WiAYtUnK5sTL83+Ni+K/mL6u3xt5fNPZ9VkZCq5Xz8Yavhau9
+ +Jxe3L42/y5SgZPrgRfyhDJqr6R4bL1REP5taUHYg8YTD8WfqGMle2VstuHuvMCqp3ZqqyiN2dc
+ f7bjlfKfL5aZZ+ZMzFWevpElqW/KV6N67xPNsa+LEvQjAA==
 X-Developer-Key: i=mcanal@igalia.com; a=openpgp;
  fpr=F8E45D7D0116770729A677D13FF30E8A7688FAAA
 
-As established in commit 89d04995f76c ("MAINTAINERS: Drop Emma Anholt
-from all M lines."), Emma is no longer active in the Linux kernel and
-dropped the V3D maintainership. Therefore, remove Emma as one of the DT
-maintainers and add the current V3D driver maintainer.
+In addition to the standard reset controller, V3D 7.x requires configuring
+the V3D_SMS registers for proper power on/off and reset. Add the new
+registers to `v3d_regs.h` and ensure they are properly configured during
+device probing, removal, and reset.
 
-Acked-by: Emma Anholt <emma@anholt.net>
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+This change fixes GPU reset issues on the Raspberry Pi 5 (BCM2712).
+Without exposing these registers, a GPU reset causes the GPU to hang,
+stopping any further job execution and freezing the desktop GUI. The same
+issue occurs when unloading and loading the v3d driver.
+
+Link: https://github.com/raspberrypi/linux/issues/6660
+Reviewed-by: Iago Toral Quiroga <itoral@igalia.com>
 Signed-off-by: Maíra Canal <mcanal@igalia.com>
-
 ---
+ drivers/gpu/drm/v3d/v3d_drv.c  | 40 ++++++++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/v3d/v3d_drv.h  | 11 +++++++++++
+ drivers/gpu/drm/v3d/v3d_gem.c  | 17 +++++++++++++++++
+ drivers/gpu/drm/v3d/v3d_regs.h | 26 ++++++++++++++++++++++++++
+ 4 files changed, 94 insertions(+)
 
-Hi,
-
-I'd like to ask two questions:
-
-1. Nicolas, are you still interested in maintaining this DTB?
-
-2. Florian, would you like to step in as a co-maintainer with me?
-
-Best Regards,
-- Maíra
----
- Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
-index 39b8f0ee1f727628307d758844008ae1189902b2..219e1403516fa0c2f2944d50ca829ddbf14a8b79 100644
---- a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
-+++ b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Broadcom V3D GPU
+diff --git a/drivers/gpu/drm/v3d/v3d_drv.c b/drivers/gpu/drm/v3d/v3d_drv.c
+index c63f0ed1bd8a3d5511085e76ed2fbd6ee7df6f80..122848cdccc4a02039d9ea2e77aa2f377886b5d6 100644
+--- a/drivers/gpu/drm/v3d/v3d_drv.c
++++ b/drivers/gpu/drm/v3d/v3d_drv.c
+@@ -263,6 +263,36 @@ static const struct of_device_id v3d_of_match[] = {
+ };
+ MODULE_DEVICE_TABLE(of, v3d_of_match);
  
- maintainers:
--  - Eric Anholt <eric@anholt.net>
-+  - Maíra Canal <mcanal@igalia.com>
-   - Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
++static void
++v3d_idle_sms(struct v3d_dev *v3d)
++{
++	if (v3d->ver < V3D_GEN_71)
++		return;
++
++	V3D_SMS_WRITE(V3D_SMS_TEE_CS, V3D_SMS_CLEAR_POWER_OFF);
++
++	if (wait_for((V3D_GET_FIELD(V3D_SMS_READ(V3D_SMS_TEE_CS),
++				    V3D_SMS_STATE) == V3D_SMS_IDLE), 100)) {
++		DRM_ERROR("Failed to power up SMS\n");
++	}
++
++	v3d_reset_sms(v3d);
++}
++
++static void
++v3d_power_off_sms(struct v3d_dev *v3d)
++{
++	if (v3d->ver < V3D_GEN_71)
++		return;
++
++	V3D_SMS_WRITE(V3D_SMS_TEE_CS, V3D_SMS_POWER_OFF);
++
++	if (wait_for((V3D_GET_FIELD(V3D_SMS_READ(V3D_SMS_TEE_CS),
++				    V3D_SMS_STATE) == V3D_SMS_POWER_OFF_STATE), 100)) {
++		DRM_ERROR("Failed to power off SMS\n");
++	}
++}
++
+ static int
+ map_regs(struct v3d_dev *v3d, void __iomem **regs, const char *name)
+ {
+@@ -300,6 +330,12 @@ static int v3d_platform_drm_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		return ret;
  
- properties:
++	if (v3d->ver >= V3D_GEN_71) {
++		ret = map_regs(v3d, &v3d->sms_regs, "sms");
++		if (ret)
++			return ret;
++	}
++
+ 	v3d->clk = devm_clk_get_optional(dev, NULL);
+ 	if (IS_ERR(v3d->clk))
+ 		return dev_err_probe(dev, PTR_ERR(v3d->clk), "Failed to get V3D clock\n");
+@@ -310,6 +346,8 @@ static int v3d_platform_drm_probe(struct platform_device *pdev)
+ 		return ret;
+ 	}
+ 
++	v3d_idle_sms(v3d);
++
+ 	mmu_debug = V3D_READ(V3D_MMU_DEBUG_INFO);
+ 	mask = DMA_BIT_MASK(30 + V3D_GET_FIELD(mmu_debug, V3D_MMU_PA_WIDTH));
+ 	ret = dma_set_mask_and_coherent(dev, mask);
+@@ -410,6 +448,8 @@ static void v3d_platform_drm_remove(struct platform_device *pdev)
+ 	dma_free_wc(v3d->drm.dev, 4096, v3d->mmu_scratch,
+ 		    v3d->mmu_scratch_paddr);
+ 
++	v3d_power_off_sms(v3d);
++
+ 	clk_disable_unprepare(v3d->clk);
+ }
+ 
+diff --git a/drivers/gpu/drm/v3d/v3d_drv.h b/drivers/gpu/drm/v3d/v3d_drv.h
+index de4a9e18f6a9039edf57f406ab1cee9dad4c0a49..b51f0b648a08011f737317ec1841d5ab316355b2 100644
+--- a/drivers/gpu/drm/v3d/v3d_drv.h
++++ b/drivers/gpu/drm/v3d/v3d_drv.h
+@@ -118,6 +118,7 @@ struct v3d_dev {
+ 	void __iomem *core_regs[3];
+ 	void __iomem *bridge_regs;
+ 	void __iomem *gca_regs;
++	void __iomem *sms_regs;
+ 	struct clk *clk;
+ 	struct reset_control *reset;
+ 
+@@ -268,6 +269,15 @@ to_v3d_fence(struct dma_fence *fence)
+ #define V3D_GCA_READ(offset) readl(v3d->gca_regs + offset)
+ #define V3D_GCA_WRITE(offset, val) writel(val, v3d->gca_regs + offset)
+ 
++#define V3D_SMS_IDLE				0x0
++#define V3D_SMS_ISOLATING_FOR_RESET		0xa
++#define V3D_SMS_RESETTING			0xb
++#define V3D_SMS_ISOLATING_FOR_POWER_OFF	0xc
++#define V3D_SMS_POWER_OFF_STATE		0xd
++
++#define V3D_SMS_READ(offset) readl(v3d->sms_regs + (offset))
++#define V3D_SMS_WRITE(offset, val) writel(val, v3d->sms_regs + (offset))
++
+ #define V3D_CORE_READ(core, offset) readl(v3d->core_regs[core] + offset)
+ #define V3D_CORE_WRITE(core, offset, val) writel(val, v3d->core_regs[core] + offset)
+ 
+@@ -546,6 +556,7 @@ struct dma_fence *v3d_fence_create(struct v3d_dev *v3d, enum v3d_queue queue);
+ /* v3d_gem.c */
+ int v3d_gem_init(struct drm_device *dev);
+ void v3d_gem_destroy(struct drm_device *dev);
++void v3d_reset_sms(struct v3d_dev *v3d);
+ void v3d_reset(struct v3d_dev *v3d);
+ void v3d_invalidate_caches(struct v3d_dev *v3d);
+ void v3d_clean_caches(struct v3d_dev *v3d);
+diff --git a/drivers/gpu/drm/v3d/v3d_gem.c b/drivers/gpu/drm/v3d/v3d_gem.c
+index 1ea6d3832c2212d9cbbd90236478d18491f0ff14..d7d16da78db328f004d1d702731d1a1b5437a394 100644
+--- a/drivers/gpu/drm/v3d/v3d_gem.c
++++ b/drivers/gpu/drm/v3d/v3d_gem.c
+@@ -104,6 +104,22 @@ v3d_reset_v3d(struct v3d_dev *v3d)
+ 	v3d_init_hw_state(v3d);
+ }
+ 
++void
++v3d_reset_sms(struct v3d_dev *v3d)
++{
++	if (v3d->ver < V3D_GEN_71)
++		return;
++
++	V3D_SMS_WRITE(V3D_SMS_REE_CS, V3D_SET_FIELD(0x4, V3D_SMS_STATE));
++
++	if (wait_for(!(V3D_GET_FIELD(V3D_SMS_READ(V3D_SMS_REE_CS),
++				     V3D_SMS_STATE) == V3D_SMS_ISOLATING_FOR_RESET) &&
++		     !(V3D_GET_FIELD(V3D_SMS_READ(V3D_SMS_REE_CS),
++				     V3D_SMS_STATE) == V3D_SMS_RESETTING), 100)) {
++		DRM_ERROR("Failed to wait for SMS reset\n");
++	}
++}
++
+ void
+ v3d_reset(struct v3d_dev *v3d)
+ {
+@@ -119,6 +135,7 @@ v3d_reset(struct v3d_dev *v3d)
+ 		v3d_idle_axi(v3d, 0);
+ 
+ 	v3d_idle_gca(v3d);
++	v3d_reset_sms(v3d);
+ 	v3d_reset_v3d(v3d);
+ 
+ 	v3d_mmu_set_page_table(v3d);
+diff --git a/drivers/gpu/drm/v3d/v3d_regs.h b/drivers/gpu/drm/v3d/v3d_regs.h
+index 6da3c69082bd6d5954bf88bd9ff2543a5e4e04c4..c1870265eaeecc188afc4f09cf13a5201d3aa1c6 100644
+--- a/drivers/gpu/drm/v3d/v3d_regs.h
++++ b/drivers/gpu/drm/v3d/v3d_regs.h
+@@ -515,4 +515,30 @@
+ # define V3D_ERR_VPAERGS                               BIT(1)
+ # define V3D_ERR_VPAEABB                               BIT(0)
+ 
++#define V3D_SMS_REE_CS                                 0x00000
++#define V3D_SMS_TEE_CS                                 0x00400
++# define V3D_SMS_INTERRUPT                             BIT(31)
++# define V3D_SMS_POWER_OFF                             BIT(30)
++# define V3D_SMS_CLEAR_POWER_OFF                       BIT(29)
++# define V3D_SMS_LOCK                                  BIT(28)
++# define V3D_SMS_CLEAR_LOCK                            BIT(27)
++# define V3D_SMS_SVP_MODE_EXIT                         BIT(26)
++# define V3D_SMS_CLEAR_SVP_MODE_EXIT                   BIT(25)
++# define V3D_SMS_SVP_MODE_ENTER                        BIT(24)
++# define V3D_SMS_CLEAR_SVP_MODE_ENTER                  BIT(23)
++# define V3D_SMS_THEIR_MODE_EXIT                       BIT(22)
++# define V3D_SMS_THEIR_MODE_ENTER                      BIT(21)
++# define V3D_SMS_OUR_MODE_EXIT                         BIT(20)
++# define V3D_SMS_CLEAR_OUR_MODE_EXIT                   BIT(19)
++# define V3D_SMS_SEQ_PC_MASK                           V3D_MASK(16, 10)
++# define V3D_SMS_SEQ_PC_SHIFT                          10
++# define V3D_SMS_HUBCORE_STATUS_MASK                   V3D_MASK(9, 8)
++# define V3D_SMS_HUBCORE_STATUS_SHIFT                  8
++# define V3D_SMS_NEW_MODE_MASK                         V3D_MASK(7, 6)
++# define V3D_SMS_NEW_MODE_SHIFT                        6
++# define V3D_SMS_OLD_MODE_MASK                         V3D_MASK(5, 4)
++# define V3D_SMS_OLD_MODE_SHIFT                        4
++# define V3D_SMS_STATE_MASK                            V3D_MASK(3, 0)
++# define V3D_SMS_STATE_SHIFT                           0
++
+ #endif /* V3D_REGS_H */
 
 -- 
 Git-154)
