@@ -1,287 +1,295 @@
-Return-Path: <devicetree+bounces-158271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4623CA65657
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 16:48:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 99087A656BF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 16:57:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E5A93BD0A7
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 15:46:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 51B55880B3A
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 15:51:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54D4824FC1F;
-	Mon, 17 Mar 2025 15:43:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA9CE19AD5C;
+	Mon, 17 Mar 2025 15:50:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BMYg+jCL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aJlUpD1f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72AD42500C5;
-	Mon, 17 Mar 2025 15:43:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF5D42940D;
+	Mon, 17 Mar 2025 15:50:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742226238; cv=none; b=THtMjhBN0jSxqZK/doatMsuqY4d7Q1g4iQG8VmuQFdI3QKD0O0H/a47X8lJE8rMULwjPMj8zjrPH5c/9tn1GhRfaUNZOzBzst+saMwEovxsdr1v32WFpMDykLwXu/8fHPLA25/BqFh8Hzfr2ubyhGzqZYXhJu2jk760vUGgcHoA=
+	t=1742226621; cv=none; b=UzR3BN3KDaanwXVtzqzWOxX1jskptbSgEPjQSl1IW5le7sp24VFDaIPE5nBYI7TSzf11QUqI64hEyE+fHhxqo9imk+UFr4jl5RERKFdMMZX5HKu6JwIzcnAVws6i9ujKtsfiqH/7pLUD72ZWvAS0nPzfWE2UFXri3nTZsE+aBV0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742226238; c=relaxed/simple;
-	bh=NfDKp8biByx7NDdvHG6oNWOqusu6SUHKvFgy4Iooxpo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uEPD4F6D20l3TCsY+HSEp/V1OzTpppPsUPhZI2B02c/cg4izSd/CnCv4ay4REU9JsXRUrmSb/4T3zMZlyCeaxplP9dgcyKG3GKIsrbKjtsUjXKpBVVw4cDI3FINhlY35C/QPlGNJDPRUPTHB0/o1/SWrwu+ACdozwUKZegR802s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BMYg+jCL; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52H9uCcQ017034;
-	Mon, 17 Mar 2025 15:43:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	IJ4YcgtSW7V1KjnzX+xp2hJqgLVP9ecSqTePoWh05So=; b=BMYg+jCLMvkYNuIV
-	1ailY4A2DxtVKHxDrnFyndg7nnl0/59W/n3y56wpoHDtSRdN9GfZb/XOoxi3Wbq2
-	Dg3kEgrzaJFQj8RuM2ESWnisTyafcaVTebmxyTmpmYqWKiNgF1gT3NgYSGJ0klpO
-	4DJSCwT9Z/a8VOeUS/SnG2jbt5S0WS9L1zgIiNc6jHdHIe4hc7uAZ8ca/SgKrVJ6
-	cgSe7D1oAKjD8UEsEqDBOI544r5UXmkcvgdgTWPEow0j4BfKwkrDB4BAbSMGFUnx
-	t/DemOyv4T1LL839mhqm8zKrelfffK6cR6kGCul6ZwIRDB/g+KMJOJuomUEv3gIB
-	MU1Mtg==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45d1r157w1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 17 Mar 2025 15:43:35 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52HFhYH6012349
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 17 Mar 2025 15:43:34 GMT
-Received: from hu-rajkbhag-blr.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 17 Mar 2025 08:43:30 -0700
-From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-To: <ath12k@lists.infradead.org>
-CC: Johannes Berg <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
-        <linux-wireless@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Balamurugan S
-	<quic_bselvara@quicinc.com>,
-        P Praneesh <quic_ppranees@quicinc.com>,
-        "Raj
- Kumar Bhagat" <quic_rajkbhag@quicinc.com>
-Subject: [PATCH ath-next v10 13/13] wifi: ath12k: enable ath12k AHB support
-Date: Mon, 17 Mar 2025 21:11:50 +0530
-Message-ID: <20250317154150.1361364-14-quic_rajkbhag@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250317154150.1361364-1-quic_rajkbhag@quicinc.com>
-References: <20250317154150.1361364-1-quic_rajkbhag@quicinc.com>
+	s=arc-20240116; t=1742226621; c=relaxed/simple;
+	bh=zHMEyzh6bH7Z8CD2gG9sgjQrUTIsPbK+k7YB8FvOlFQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=LQqWXaqA5eAsIa3X6fg9yZsUPHrcU+Mdzpsa2uLYMssSNY9OCgiGpTw8+6g+xVMcK0/4fYdDUUxmNi9LPn9VCExcDvEXb+pJR8Ka93u2yRmKmANewCbCVhV2WSj5Xi4mB5/65f7PvX6PI4iYE6qOmQqurGdaonrVU9V0aD6bEm4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aJlUpD1f; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5497590ffbbso5117682e87.1;
+        Mon, 17 Mar 2025 08:50:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742226618; x=1742831418; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VNOayVZzruF25qo+UUG/I+wNtI3C4q8PUctq82MxRNY=;
+        b=aJlUpD1frpTN4IEdfINVA2VUamB+NN9TnLMMmoKAPbgeX7nuPRQayhqFnpS/9+mWmZ
+         vnlirBupoqWIYdZAVkWmqUPsSqBOECdDMfNtDfMD62sK4u0cucW5B77pSp7X8QoA1F1K
+         tIRMhOs8u0Hgv7zZCGMH6Ok5uHh87bZeMqtQTMLVzbMAzR1yVEfi9qHzUmOwY43eDL/j
+         gPNX193aQd2XcFxyL8/Gngb6GU/V78Nu+Q3TVEp3VJCXy/kJqLb/ayEILSJGyjYZNou7
+         83Olgo6incAu5t2FYN4DfxRs3hfykJ5IsBiIgdJoFEXPeHEF1XI7kL8ZNQ+azlcjAxC7
+         7dcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742226618; x=1742831418;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VNOayVZzruF25qo+UUG/I+wNtI3C4q8PUctq82MxRNY=;
+        b=j8c8+S5xtnXkpk96ripzGRVPlvK+Ne1dY7OfTY7Ej4o6FR4unox0iKLuFjb+6Bf5WF
+         21WflnI3/smZKJKMJqP2GoLKtPKIh3rnlFNSNZewvifWmeS+aXtugbsD4We1n1dE1v6Z
+         052vFuQsy1HPHo1kIuYvBfa3Xy2sEFwSSGM//Plab+ytNpaUWGz8Dz5ZzplSaHkhFvYw
+         Emx40BL2YD70ejZkYt20W3a3phgFNxTi9Bd/LM/ylKt0+676FHQleqaaqMsgySqFjAWe
+         aLJAzb3Jki5HP9LttRAjEJOfZS0TBAHqxoBjRe0feQStutWtyNdW92ntR/Gh9EuZpyti
+         3c+w==
+X-Forwarded-Encrypted: i=1; AJvYcCUHHtPBPM3ei7WbGEqnQDZ8RFDGeG1GLLmhfEHFoUiDuh9g/+a4pjCduozHsM/0V/ocm3Fltlg2YgCXRRE=@vger.kernel.org, AJvYcCUISboo1Ca69PpuCMymAOXDKtTGcacfP3wUR4u3L+Rk7gcp6htd9J6sNcnXq6sqslZ5t8F+7hhxZz7E@vger.kernel.org, AJvYcCULncf+czL+REBOyAa9ALmz1+Uo7ehHITnIAi0jr3ASGrfHVeJFizMnnmUCIe/8QHTHDCOcoRWvf/dJ7A==@vger.kernel.org, AJvYcCVR1fZWC9VYCGrdFxloeJ8a51Uqoc0zdCjpES/X5WnSxnJKvZUEaJ61S7/EYkTdjfaAy8i56/V+VEyOpsts@vger.kernel.org, AJvYcCVlKZabuFaruNV+MkvwXlDMG3Z+xSRXckDAHVIiyPHPyxP1MjtWKy/Yzr3xHVKG3PUD4FsUxLHbGj3z@vger.kernel.org, AJvYcCXAMzjl4S03Iz0KsAMFJBT3PfDVkRT1LMQCsTSSIfRb5pAbXLtL/T2Wp1qXeW8YlDCdcS0eB8dW6Cv0qXH+6ak8rSM=@vger.kernel.org, AJvYcCXLiD6SWU88Q02Ag+UQB49UzgH8bZFlTAeZaEVpsMbN9egZPF35Fqysg3GNllCf38MT7ZiWg2Mf@vger.kernel.org
+X-Gm-Message-State: AOJu0YxeLwmwIOqgq44vILdaVTVG1f0sYDWS9dYeD5Tyc8O08QiSyCnl
+	yAjQsatc4n4ICjJljuoU+iMSULC89Td1FGfTN6mvSliMdJTcpBD0
+X-Gm-Gg: ASbGncva3lTQLUTw3TGpIN3CdfPJ3pdzX3u6qT5RkYt8/0c+QdhzDVrNLZF512qMXqB
+	n24JR9Xss/uxDsFWThITKfwk544MaR6XZXGD+ttmFjtvu+EUw6WQPZ1mk3XoeytxEqK6ZgyV5gt
+	KVT0dNQHGTAmURU/tWgc4/J8ioJJ+lhL/fJVRPFSC7HVJyffI2e22ImzCp2Hd+xIlgBWTaTrafC
+	avnK1NAmw2qUIjmXJGtIYxYmZDkO9LKaXpgjAy0UdBnCygYTNuiJ8uZi0HgL98ILmvYIIwuwApb
+	vMQ9dPjp2gVMt8DJLvnFRnEEMIjUrqE2iSmIEIWStJBztDZFeJ4=
+X-Google-Smtp-Source: AGHT+IH2J2dM6NscTQp0mvC9nLmPZNZM8W2TCQNJugI/Z/QfFfc9r6cbqFGCWfHK+HIO1hHmjRXrxw==
+X-Received: by 2002:a05:6512:10c5:b0:545:d70:1d0e with SMTP id 2adb3069b0e04-549c38ef457mr7787694e87.3.1742226617402;
+        Mon, 17 Mar 2025 08:50:17 -0700 (PDT)
+Received: from mva-rohm ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-549ba8a9525sm1357222e87.238.2025.03.17.08.50.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Mar 2025 08:50:16 -0700 (PDT)
+Date: Mon, 17 Mar 2025 17:49:43 +0200
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Samuel Holland <samuel@sholland.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>, netdev@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Nuno Sa <nuno.sa@analog.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-media@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+	Claudiu Manoil <claudiu.manoil@nxp.com>, devicetree@vger.kernel.org,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Lars-Peter Clausen <lars@metafoo.de>, linux-acpi@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org, linux-iio@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
+	Eric Dumazet <edumazet@google.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Olivier Moysan <olivier.moysan@foss.st.com>,
+	Trevor Gamblin <tgamblin@baylibre.com>,
+	Ramona Alexandra Nechita <ramona.nechita@analog.com>,
+	Paul Elder <paul.elder@ideasonboard.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Matteo Martelli <matteomartelli3@gmail.com>,
+	Guillaume Stols <gstols@baylibre.com>,
+	Alisa-Dariana Roman <alisadariana@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Dumitru Ceclan <mitrutzceclan@gmail.com>,
+	Paolo Abeni <pabeni@redhat.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	David Lechner <dlechner@baylibre.com>, Chen-Yu Tsai <wens@csie.org>,
+	Daniel Scally <djrscally@gmail.com>
+Subject: [PATCH v8 00/10] Support ROHM BD79124 ADC
+Message-ID: <cover.1742225817.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=LuaSymdc c=1 sm=1 tr=0 ts=67d84327 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=vXVk93xmC7zsTb_1jtAA:9 a=RVmHIydaz68A:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: xMDYLXXL4VMYzvNRYzIN0l2upy2875wt
-X-Proofpoint-ORIG-GUID: xMDYLXXL4VMYzvNRYzIN0l2upy2875wt
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-17_06,2025-03-17_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
- mlxscore=0 suspectscore=0 priorityscore=1501 phishscore=0 adultscore=0
- clxscore=1015 lowpriorityscore=0 spamscore=0 mlxlogscore=999
- malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503170113
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="BWiCDWUCN81RqMlJ"
+Content-Disposition: inline
 
-From: Balamurugan S <quic_bselvara@quicinc.com>
 
-Currently only PCI devices are supported in Ath12k driver. Refactor
-Ath12k module_init and module_exit to include Ath12k AHB support.
+--BWiCDWUCN81RqMlJ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Add Ath12k AHB support in Kconfig with dependency on Remoteproc
-driver. Ath12k AHB support relies on remoteproc driver for firmware
-download, power up/down etc.
+Support ROHM BD79124 ADC.
 
-Tested-on: IPQ5332 hw1.0 AHB WLAN.WBE.1.3.1-00130-QCAHKSWPL_SILICONZ-1
-Tested-on: QCN9274 hw2.0 PCI WLAN.WBE.1.1.1-00210-QCAHKSWPL_SILICONZ-1
+This series adds also couple of IIO ADC helper functions for parsing the
+channel information from the device tree. There are also new helpers
+included for iterating and counting firmware child nodes with a specific
+name.
 
-Signed-off-by: Balamurugan S <quic_bselvara@quicinc.com>
-Co-developed-by: P Praneesh <quic_ppranees@quicinc.com>
-Signed-off-by: P Praneesh <quic_ppranees@quicinc.com>
-Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+Series does also convert couple of drivers to use these helpers. The
+rzg2l_adc and the sun20i-gpadc are converted to use the new ADC helper.
+
+The gianfar driver under net and the thp7312 under media/i2c are added as
+first users of the newly added "named child node" -helpers.
+
+There has been some discussion about how useful these ADC helpers are,
+and whether they should support also differential and single ended channel
+configurations. This version does not include support for those - with the
+benefit of reduced complexity and easier to use API.
+
+NOTE: Patches 4,5,9 and 10 are untested as I lack of relevant HW.
+They have been compile tested only.
+
+The ROHM BD79124 ADC itself is quite usual stuff. 12-bit, 8-channel ADC
+with threshold monitoring.
+
+Except that:
+ - each ADC input pin can be configured as a general purpose output.
+ - manually starting an ADC conversion and reading the result would
+   require the I2C _master_ to do clock stretching(!) for the duration
+   of the conversion... Let's just say this is not well supported.
+ - IC supports 'autonomous measurement mode' and storing latest results
+   to the result registers. This mode is used by the driver due to the
+   "peculiar" I2C when doing manual reads.
+
+Furthermore, the ADC uses this continuous autonomous measuring,
+and the IC keeps producing new 'out of window' IRQs if measurements are
+out of window - the driver disables the event for 1 seconds when sending
+it to user. This prevents generating storm of events
+
+Revision history:
+
+v7 =3D> v8:
+  property helpers:
+    - Fix the example in fwnode_get_named_child_node_count() documentation
+      to use the fwnode_get_named_child_node_count() and not the
+      device_get_named_child_node_count()
+    - Fix the rest of the new macro's indentiations
+  adc helpers:
+    - Treat 0 ADC channels as an error in
+      devm_iio_adc_device_alloc_chaninfo_se().
+  rzg2l_adc / sun20i-gpadc:
+    - Drop zero channels check from the ADC drivers using
+      devm_iio_adc_device_alloc_chaninfo_se()
+  BD79124:
+    - Use unsigned for regmap values
+    - Commit message fine tuning
+    - Check devm_mutex_init() return value
+    - Handle 'ALL pins as ADC or GPO' cleanly in BD79124 driver
+    - BD79124 styling / typofixes
+
+v6 =3D> v7:
+ - Inline device_get_named_child_node_count()
+ - Fix kernel-doc for fwnode_get_named_child_node_count()
+ - Minor styling fixes
+ More accurate changelog in individual patches.
+
+v5 =3D> v6:
+ - Drop applied patch
+ - Add *_for_each_named_child_* iterators
+ - Add a patch converting the thp7312 driver to use the new helper
+ - Styling and minor things pointed by reviewers
+
+v4 =3D> v5: Fixes as per various review comments. Most notably:
+ - Drop the patch making the TI's ADC driver to respect device tree.
+ - Add (RFC) patch converting gianfar driver to use new name child-node
+   counting API as suggested by Andy.
+ - Add fwnode_get_child_node_count_named() as suggested by Rob.
+ - rebase to v6.14-rc5
+ More accurate changelog in individual patches.
+
+v3 =3D> v4:
+ - Drop the ADC helper support for differential channels
+ - Drop the ADC helper for getting only channel IDs by fwnode.
+ - "Promote" the function counting the number of child nodes with a
+   specific name to the property.h (As suggested by Jonathan).
+ - Add ADC helpers to a namespace.
+ - Rebase on v6.14-rc3
+ - More minor changes described in individual patches.
+
+v2 =3D> v3:
+ - Restrict BD79124 channel numbers as suggested by Conor and add
+   Conor's Reviewed-by tag.
+ - Support differential and single-ended inputs
+ - Convert couple of existing drivers to use the added ADC helpers
+ - Minor fixes based on reviews
+Link to v2:
+https://lore.kernel.org/all/cover.1738761899.git.mazziesaccount@gmail.com/
+
+RFC v1 =3D> v2:
+ - Drop MFD and pinmux.
+ - Automatically re-enable events after 1 second.
+ - Export fwnode parsing helpers for finding the ADC channels.
+
 ---
- drivers/net/wireless/ath/ath12k/Kconfig  |  6 ++++
- drivers/net/wireless/ath/ath12k/Makefile |  1 +
- drivers/net/wireless/ath/ath12k/ahb.h    | 11 ++++++++
- drivers/net/wireless/ath/ath12k/core.c   | 35 ++++++++++++++++++++++--
- drivers/net/wireless/ath/ath12k/pci.c    | 10 ++-----
- drivers/net/wireless/ath/ath12k/pci.h    |  4 ++-
- 6 files changed, 55 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath12k/Kconfig b/drivers/net/wireless/ath/ath12k/Kconfig
-index 52a1bb19e3da..7782dd131c62 100644
---- a/drivers/net/wireless/ath/ath12k/Kconfig
-+++ b/drivers/net/wireless/ath/ath12k/Kconfig
-@@ -15,6 +15,12 @@ config ATH12K
- 
- 	  If you choose to build a module, it'll be called ath12k.
- 
-+config ATH12K_AHB
-+	bool "QTI ath12k AHB support"
-+	depends on ATH12K && REMOTEPROC
-+	help
-+	  Enable support for Ath12k AHB bus chipsets, example IPQ5332.
-+
- config ATH12K_DEBUG
- 	bool "ath12k debugging"
- 	depends on ATH12K
-diff --git a/drivers/net/wireless/ath/ath12k/Makefile b/drivers/net/wireless/ath/ath12k/Makefile
-index 60644cb42c76..d95ee525a6cd 100644
---- a/drivers/net/wireless/ath/ath12k/Makefile
-+++ b/drivers/net/wireless/ath/ath12k/Makefile
-@@ -23,6 +23,7 @@ ath12k-y += core.o \
- 	    fw.o \
- 	    p2p.o
- 
-+ath12k-$(CONFIG_ATH12K_AHB) += ahb.o
- ath12k-$(CONFIG_ATH12K_DEBUGFS) += debugfs.o debugfs_htt_stats.o debugfs_sta.o
- ath12k-$(CONFIG_ACPI) += acpi.o
- ath12k-$(CONFIG_ATH12K_TRACING) += trace.o
-diff --git a/drivers/net/wireless/ath/ath12k/ahb.h b/drivers/net/wireless/ath/ath12k/ahb.h
-index f8a5c43075c1..d56244b20a6a 100644
---- a/drivers/net/wireless/ath/ath12k/ahb.h
-+++ b/drivers/net/wireless/ath/ath12k/ahb.h
-@@ -66,4 +66,15 @@ static inline struct ath12k_ahb *ath12k_ab_to_ahb(struct ath12k_base *ab)
- 	return (struct ath12k_ahb *)ab->drv_priv;
- }
- 
-+#ifdef CONFIG_ATH12K_AHB
-+int ath12k_ahb_init(void);
-+void ath12k_ahb_exit(void);
-+#else
-+static inline int ath12k_ahb_init(void)
-+{
-+	return 0;
-+}
-+
-+static inline void ath12k_ahb_exit(void) {};
-+#endif
- #endif
-diff --git a/drivers/net/wireless/ath/ath12k/core.c b/drivers/net/wireless/ath/ath12k/core.c
-index 5bd852f9572b..4117ccd1af20 100644
---- a/drivers/net/wireless/ath/ath12k/core.c
-+++ b/drivers/net/wireless/ath/ath12k/core.c
-@@ -10,15 +10,18 @@
- #include <linux/firmware.h>
- #include <linux/of.h>
- #include <linux/of_graph.h>
-+#include "ahb.h"
- #include "core.h"
- #include "dp_tx.h"
- #include "dp_rx.h"
- #include "debug.h"
--#include "hif.h"
--#include "fw.h"
- #include "debugfs.h"
-+#include "fw.h"
-+#include "hif.h"
-+#include "pci.h"
- #include "wow.h"
- 
-+static int ahb_err, pci_err;
- unsigned int ath12k_debug_mask;
- module_param_named(debug_mask, ath12k_debug_mask, uint, 0644);
- MODULE_PARM_DESC(debug_mask, "Debugging mask");
-@@ -2020,5 +2023,31 @@ struct ath12k_base *ath12k_core_alloc(struct device *dev, size_t priv_size,
- 	return NULL;
- }
- 
--MODULE_DESCRIPTION("Core module for Qualcomm Atheros 802.11be wireless LAN cards.");
-+static int ath12k_init(void)
-+{
-+	ahb_err = ath12k_ahb_init();
-+	if (ahb_err)
-+		pr_warn("Failed to initialize ath12k AHB device: %d\n", ahb_err);
-+
-+	pci_err = ath12k_pci_init();
-+	if (pci_err)
-+		pr_warn("Failed to initialize ath12k PCI device: %d\n", pci_err);
-+
-+	/* If both failed, return one of the failures (arbitrary) */
-+	return ahb_err && pci_err ? ahb_err : 0;
-+}
-+
-+static void ath12k_exit(void)
-+{
-+	if (!pci_err)
-+		ath12k_pci_exit();
-+
-+	if (!ahb_err)
-+		ath12k_ahb_exit();
-+}
-+
-+module_init(ath12k_init);
-+module_exit(ath12k_exit);
-+
-+MODULE_DESCRIPTION("Driver support for Qualcomm Technologies 802.11be WLAN devices");
- MODULE_LICENSE("Dual BSD/GPL");
-diff --git a/drivers/net/wireless/ath/ath12k/pci.c b/drivers/net/wireless/ath/ath12k/pci.c
-index b474696ac6d8..e62b172c7f9f 100644
---- a/drivers/net/wireless/ath/ath12k/pci.c
-+++ b/drivers/net/wireless/ath/ath12k/pci.c
-@@ -1831,7 +1831,7 @@ static struct pci_driver ath12k_pci_driver = {
- 	.driver.pm = &ath12k_pci_pm_ops,
- };
- 
--static int ath12k_pci_init(void)
-+int ath12k_pci_init(void)
- {
- 	int ret;
- 
-@@ -1844,14 +1844,8 @@ static int ath12k_pci_init(void)
- 
- 	return 0;
- }
--module_init(ath12k_pci_init);
- 
--static void ath12k_pci_exit(void)
-+void ath12k_pci_exit(void)
- {
- 	pci_unregister_driver(&ath12k_pci_driver);
- }
--
--module_exit(ath12k_pci_exit);
--
--MODULE_DESCRIPTION("Driver support for Qualcomm Technologies PCIe 802.11be WLAN devices");
--MODULE_LICENSE("Dual BSD/GPL");
-diff --git a/drivers/net/wireless/ath/ath12k/pci.h b/drivers/net/wireless/ath/ath12k/pci.h
-index 31584a7ad80e..521fa72333bb 100644
---- a/drivers/net/wireless/ath/ath12k/pci.h
-+++ b/drivers/net/wireless/ath/ath12k/pci.h
-@@ -1,7 +1,7 @@
- /* SPDX-License-Identifier: BSD-3-Clause-Clear */
- /*
-  * Copyright (c) 2019-2021 The Linux Foundation. All rights reserved.
-- * Copyright (c) 2021-2024 Qualcomm Innovation Center, Inc. All rights reserved.
-+ * Copyright (c) 2021-2025 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- #ifndef ATH12K_PCI_H
- #define ATH12K_PCI_H
-@@ -145,4 +145,6 @@ void ath12k_pci_stop(struct ath12k_base *ab);
- int ath12k_pci_start(struct ath12k_base *ab);
- int ath12k_pci_power_up(struct ath12k_base *ab);
- void ath12k_pci_power_down(struct ath12k_base *ab, bool is_suspend);
-+int ath12k_pci_init(void);
-+void ath12k_pci_exit(void);
- #endif /* ATH12K_PCI_H */
--- 
-2.34.1
+Matti Vaittinen (10):
+  dt-bindings: ROHM BD79124 ADC/GPO
+  property: Add functions to iterate named child
+  iio: adc: add helpers for parsing ADC nodes
+  iio: adc: rzg2l_adc: Use adc-helpers
+  iio: adc: sun20i-gpadc: Use adc-helpers
+  iio: adc: Support ROHM BD79124 ADC
+  MAINTAINERS: Add IIO ADC helpers
+  MAINTAINERS: Add ROHM BD79124 ADC/GPO
+  net: gianfar: Use device_get_child_node_count_named()
+  media: thp7312: Use helper for iterating named child nodes
 
+ .../bindings/iio/adc/rohm,bd79124.yaml        |  114 ++
+ MAINTAINERS                                   |   12 +
+ drivers/base/property.c                       |   27 +
+ drivers/iio/adc/Kconfig                       |   17 +
+ drivers/iio/adc/Makefile                      |    3 +
+ drivers/iio/adc/industrialio-adc.c            |   82 ++
+ drivers/iio/adc/rohm-bd79124.c                | 1138 +++++++++++++++++
+ drivers/iio/adc/rzg2l_adc.c                   |   39 +-
+ drivers/iio/adc/sun20i-gpadc-iio.c            |   39 +-
+ drivers/media/i2c/thp7312.c                   |    8 +-
+ drivers/net/ethernet/freescale/gianfar.c      |   17 +-
+ include/linux/iio/adc-helpers.h               |   27 +
+ include/linux/property.h                      |   24 +
+ 13 files changed, 1481 insertions(+), 66 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/rohm,bd79124.=
+yaml
+ create mode 100644 drivers/iio/adc/industrialio-adc.c
+ create mode 100644 drivers/iio/adc/rohm-bd79124.c
+ create mode 100644 include/linux/iio/adc-helpers.h
+
+
+base-commit: 7eb172143d5508b4da468ed59ee857c6e5e01da6
+--=20
+2.48.1
+
+
+--BWiCDWUCN81RqMlJ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmfYRI0ACgkQeFA3/03a
+ocXCCQgAzu7d2zrfNNk6cQrDTPa0/2+0UBgC7HZTPhGxEJvxMi4HFI1fuzWLCfaF
+J3FGed5QHehj+ZsdI52fVxJJTYWzecm57BSDhFPSR9sok/maMmQNvAmRYccP6oe5
+zZvTmMshLHwR2FJW1LLWABosZN8FsLyi6WzHVPm6OIk4zbOGshorhaOw0oS5hwgq
+Is1HmpeCufLxSBJKI6PQRzdLkw/hpvUjr7s27EJ//mIqOTBkm4IKi0gFT++9WPVq
++glx3kzTQif6rUmcDw5fwmbmBwSsJINvNfQP9hekKPKP4DAvS+HyPB6RJFFVc7/i
+cz2sVMsoLJQZrcZh96jPzENM2ynhUg==
+=HMoK
+-----END PGP SIGNATURE-----
+
+--BWiCDWUCN81RqMlJ--
 
