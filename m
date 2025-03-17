@@ -1,250 +1,265 @@
-Return-Path: <devicetree+bounces-158148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D869A64D2B
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:48:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4682A64D2F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:49:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F3571894FC5
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 11:48:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB2AB3B500C
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 11:49:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30671225A3C;
-	Mon, 17 Mar 2025 11:48:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80C5A238157;
+	Mon, 17 Mar 2025 11:49:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="AGIi57Xh"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="dtiiGWTG";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="EacIow/u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fout-b2-smtp.messagingengine.com (fout-b2-smtp.messagingengine.com [202.12.124.145])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A82D21A42C
-	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 11:48:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E55BF221562;
+	Mon, 17 Mar 2025 11:49:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.145
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742212090; cv=none; b=b+gJ10lQCcs0AuhfQUj8Intt9uUXzY+niXCE/aGgWxI9m01YatnY4bcJnwQb+dAbp+D/XwatLJsnDsE28t+Ek0LKrSkGfGSBUYIswNl22VgBMXE2NfJyl7f5lQUKLuTM0gFnszk41XQFyQLDdfU81naShtjAB/Tb3VN2ubHE/aY=
+	t=1742212153; cv=none; b=P79lNsDkaa2cwSxyDQGBMCTAXlmsLbQkS9uJ//wTGGv12qRxbZQ7A0tnI8kBz97Db/71rjJ3OnVDgTHT9MjudQYJHNRB37cejEOli66SWNHfXS/gPGw0bQlFxyxqVKnQyijY8zkerJmQVTFWd+1sZaDGiVOrFkL8X3kr2rtFS0Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742212090; c=relaxed/simple;
-	bh=0V8Kpv3GRconCqA+yTaYkzmha0LljPTt+ZO2xmG2Ppg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=X8QWICXSveQVLxIg8LqkLJ4z/UG94+7KJJ7mA9XUrDoE5uhv+E+R+n1v+2uBcpcR7883iUiKB3Bthe6J8U73NYkKnieCRJ8AxN5h/Ip+UW9kOIYBmk5d2KXEUw+LUpqIDTHNVzsC0MLeJ6yPNAOmG1NX39gRPq4omqMBG/FVW4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=AGIi57Xh; arc=none smtp.client-ip=121.127.44.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1742212086;
- bh=HEOVbh7gUdGpeV0lk7aQTpECpLg2DtqXrUEnTsWW+ag=;
- b=AGIi57XhqUt82sgAO/mujiEEpLf9y90F8elPfJlzCQrNRWxScwfl4zQoeDX1xUuZhb9RiKnMX
- 7Uz0UEtw8cjWeJTVrTjtLcbY3E0LWe19Fyd4cKH8e/Ki1kjsp0N70864xMsbY+o/qAFcq6w5pGU
- cccezGVwcRxEpnCCCd+/8yyF6Ha/caKDclhKLFzLPvAB74wNZU8QQel9IszAnGaPGXQQrXUTU7X
- cqGFDz4GpMGop4afVZJ7f5KQukfuusmAON/AAcUUFM8L0zPZJlzXQr/MBvikRShMnqZD6OttoRA
- YTJzy23Zj2kclMfFm97CPUAHFNunGvTgXkaRJrB2Z6zw==
-X-Forward-Email-ID: 67d80befc3abe04af72034b8
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.73
-X-Forward-Email-Version: 0.4.40
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <ba057235-85d4-4635-87ad-741e369904f3@kwiboo.se>
-Date: Mon, 17 Mar 2025 12:47:52 +0100
+	s=arc-20240116; t=1742212153; c=relaxed/simple;
+	bh=daOgWK8wDRwH3lBL3pTF/r3MaVw5aDXzS5YA3UJ2KRc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=M9X4V6V4nH9DUNNYcs2NNQPgcaBqay4ve3vCeMHZbeg0Hex3a4MpHwHw+vaopZRdZpKFBjhGgkU01vI4HoIMRd5RKAeHNOHbU2vIVSUviJ/7V3NkrOm+eGJeqjoVTYoXmsKD0vlC4Ci605Hwqjwdb/nKszse0ql0BHG7rF8UAss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=dtiiGWTG; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=EacIow/u; arc=none smtp.client-ip=202.12.124.145
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-10.internal (phl-compute-10.phl.internal [10.202.2.50])
+	by mailfout.stl.internal (Postfix) with ESMTP id 8B211114016C;
+	Mon, 17 Mar 2025 07:49:09 -0400 (EDT)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+  by phl-compute-10.internal (MEProxy); Mon, 17 Mar 2025 07:49:09 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1742212149;
+	 x=1742298549; bh=HkZ/fBxvV+CGWA4EN4OGXn35SYeFMmJN8n/czDP5ypk=; b=
+	dtiiGWTGKX22tZIGYxL7fanv+u7BEJUNDxP/TQt530IiRU4N81ENkbLdStU89eN3
+	XxMVpvy7a8XeAPP9Ixn6eVhGOADT6Z9F2TKLIbkrFjhYpfZetQ4idVBuUk+/VAoL
+	VEDofOo4wcyUHh58lZHb6Q8PuRilDeVO8dVhrF4c/kc+GwVc3azg3XQMeBq7h+UQ
+	g6xkv3icyCbjHE1VufiGahYhHxsE5Z1V1scDlbPxv+fT29WhIIRzIT5spMa99Y2F
+	8RvO5FdPS8qpEqfcodOMUs1P9XAWll308feXPUGZF7jUTt3mreLwFGWR7KM72iul
+	yM+rfAwo0G4fagxJIeVhdg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1742212149; x=
+	1742298549; bh=HkZ/fBxvV+CGWA4EN4OGXn35SYeFMmJN8n/czDP5ypk=; b=E
+	acIow/u0WlObnU6qhss03xMvth8PnB/dAgBQunFOVRp+CXeyt898G+Z5hU2lcxy+
+	g20fkz6U+emMWIo19FEjRFpnoCxVheGvXOK2oTBe46xalrSzRmvUNNxVTO7SUo//
+	Dun2ZWOwAL9GR/rUPNWZRsMMCUUa6ge51fLQTexQm+4buQwHfyAPwEeI+vcN+Ej7
+	QoAbwNiTOYSNVkxKnRPpuLxFvCUlAEqiwczIpVtfBL+3e2hEyPCI3lhk5M0IUtfy
+	rnS6aujTk7/KlRx9ld7iE9KY931/MpAw7VMzbKKUy8Dw/fncMiIRRNuhFIHTQu98
+	ULwdIJL5TFoCtTS7SKKwQ==
+X-ME-Sender: <xms:NAzYZ7UqTzWcHyaSNQNuS2bRsFgoYymven7Mswi4K33SyOn609ax0w>
+    <xme:NAzYZznp5W8EFiU7yjrEhq7SaQqhhX95UPZqLGcu9JEooAReBoP6ZFRL-5VPbEKNm
+    iczwoUFLviFQd2tyKU>
+X-ME-Received: <xmr:NAzYZ3bbWZoY82npEIELXMfhhzP2VgCtW1rq8pIVe8pGR3DVjAWkmUwOo2iAlZqPoUs-Z1wu_vZcmBFgwqzBqTZBGBKt5XV_qw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddufeelgeefucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
+    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
+    gvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggugfgjsehtkeertddt
+    tdejnecuhfhrohhmpefpihhklhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrsh
+    houggvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffr
+    rghtthgvrhhnpeefhfellefhffejgfefudfggeejlefhveehieekhfeulefgtdefueehff
+    dtvdelieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhm
+    pehnihhklhgrshdrshhouggvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthh
+    drshgvpdhnsggprhgtphhtthhopedufedpmhhouggvpehsmhhtphhouhhtpdhrtghpthht
+    ohepkhhriihksehkvghrnhgvlhdrohhrghdprhgtphhtthhopehmtghhvghhrggssehkvg
+    hrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghp
+    thhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorh
+    doughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehgvggvrhhtodhrvghnvghsrghs
+    sehglhhiuggvrhdrsggvpdhrtghpthhtohephhhvvghrkhhuihhlseigshegrghllhdrnh
+    hlpdhrtghpthhtohepshgrkhgrrhhirdgrihhluhhssehlihhnuhigrdhinhhtvghlrdgt
+    ohhmpdhrtghpthhtoheplhgruhhrvghnthdrphhinhgthhgrrhhtsehiuggvrghsohhnsg
+    horghrugdrtghomh
+X-ME-Proxy: <xmx:NAzYZ2XhGV22PegUNmQOzhWClFph7ybaY-TgiAK6Pt9cNK3bhBeHBA>
+    <xmx:NAzYZ1l65X-Q5cwwL8wlhX7cyGR2e7O_YxR4lCIqa9zh7YnNBxVyGA>
+    <xmx:NAzYZzeqkxn8pxqSMWJ0ZotJCY6wY1PmsfaGoFbLCvJuEyAiikVYLQ>
+    <xmx:NAzYZ_F0Hp5ubg0xlhxWt1DuUQUkXK-KDpN9ymr5gKQndkDX0mjlsA>
+    <xmx:NQzYZ3nJpx2Tfkgz8NngpIClyLSUvCbch0uv-ZWBPPmksvH5xEiU69YT>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 17 Mar 2025 07:49:07 -0400 (EDT)
+Date: Mon, 17 Mar 2025 12:49:04 +0100
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 1/7] dt-bindings: media: renesas,isp: Add ISP core
+ function block
+Message-ID: <20250317114904.GA868399@ragnatech.se>
+References: <20250315152708.328036-1-niklas.soderlund+renesas@ragnatech.se>
+ <20250315152708.328036-2-niklas.soderlund+renesas@ragnatech.se>
+ <20250317-merry-ringtail-of-competition-7d46fb@krzk-bin>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/6] thermal: rockchip: Support RK3576 SoC in the
- thermal driver
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Ye Zhang <ye.zhang@rock-chips.com>, devicetree@vger.kernel.org,
- linux-pm@vger.kernel.org, Sebastian Reichel
- <sebastian.reichel@collabora.com>, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, kernel@collabora.com,
- linux-arm-kernel@lists.infradead.org
-References: <20250228-rk3576-tsadc-upstream-v3-0-4bfbb3b699b9@collabora.com>
- <20250228-rk3576-tsadc-upstream-v3-3-4bfbb3b699b9@collabora.com>
- <6c355664-50dd-4efd-94b7-9d93c02d3e80@kwiboo.se>
- <4994384.31r3eYUQgx@workhorse>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <4994384.31r3eYUQgx@workhorse>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250317-merry-ringtail-of-competition-7d46fb@krzk-bin>
 
-Hi Nicolas,
+Hi Krzysztof,
 
-On 2025-03-17 09:28, Nicolas Frattaroli wrote:
-> On Saturday, 15 March 2025 09:20:07 Central European Standard Time Jonas 
-> Karlman wrote:
->> Hi Nicolas,
-> 
-> Hi Jonas,
-> 
->>
->> On 2025-02-28 21:06, Nicolas Frattaroli wrote:
->>> From: Ye Zhang <ye.zhang@rock-chips.com>
->>>
->>> The RK3576 SoC has six TS-ADC channels: TOP, BIG_CORE, LITTLE_CORE,
->>> DDR, NPU and GPU.
->>>
->>> Signed-off-by: Ye Zhang <ye.zhang@rock-chips.com>
->>> [ported to mainline, reworded commit message]
->>> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
->>> ---
->>>
->>>  drivers/thermal/rockchip_thermal.c | 42
->>>  ++++++++++++++++++++++++++++++++++++++ 1 file changed, 42 insertions(+)
->>>
->>> diff --git a/drivers/thermal/rockchip_thermal.c
->>> b/drivers/thermal/rockchip_thermal.c index
->>> a8ad85feb68fbb7ec8d79602b16c47838ecb3c00..bec1930bebd87859a7e519cfc9f05e1
->>> 0b1c31e87 100644 --- a/drivers/thermal/rockchip_thermal.c
->>> +++ b/drivers/thermal/rockchip_thermal.c
->>> @@ -1061,6 +1061,22 @@ static void rk_tsadcv3_tshut_mode(int chn, void
->>> __iomem *regs,> 
->>>  	writel_relaxed(val_cru, regs + TSADCV3_HSHUT_CRU_INT_EN);
->>>  
->>>  }
->>>
->>> +static void rk_tsadcv4_tshut_mode(int chn, void __iomem *regs,
->>> +				  enum tshut_mode mode)
->>> +{
->>> +	u32 val_gpio, val_cru;
->>> +
->>> +	if (mode == TSHUT_MODE_GPIO) {
->>> +		val_gpio = TSADCV2_INT_SRC_EN(chn) | 
-> TSADCV2_INT_SRC_EN_MASK(chn);
->>> +		val_cru = TSADCV2_INT_SRC_EN_MASK(chn);
->>> +	} else {
->>> +		val_cru = TSADCV2_INT_SRC_EN(chn) | 
-> TSADCV2_INT_SRC_EN_MASK(chn);
->>> +		val_gpio = TSADCV2_INT_SRC_EN_MASK(chn);
->>> +	}
->>> +	writel_relaxed(val_gpio, regs + TSADCV3_HSHUT_GPIO_INT_EN);
->>> +	writel_relaxed(val_cru, regs + TSADCV3_HSHUT_CRU_INT_EN);
->>> +}
->>
->> This function is identical to rk_tsadcv3_tshut_mode() in mainline.
->>
->> Should the v3 function be renamed to v4 in mainline to match vendor
->> kernel to avoid confusion?
-> 
-> Good catch. Yes, I'll add a patch to rename the function before introducing 
-> new changes in v4, and get rid of the duplicate function.
+Thanks for your feedback.
 
-Great.
+On 2025-03-17 12:31:51 +0100, Krzysztof Kozlowski wrote:
+> On Sat, Mar 15, 2025 at 04:27:02PM +0100, Niklas Söderlund wrote:
+> > diff --git a/Documentation/devicetree/bindings/media/renesas,isp.yaml b/Documentation/devicetree/bindings/media/renesas,isp.yaml
+> > index c4de4555b753..de9bc739e084 100644
+> > --- a/Documentation/devicetree/bindings/media/renesas,isp.yaml
+> > +++ b/Documentation/devicetree/bindings/media/renesas,isp.yaml
+> > @@ -25,19 +25,54 @@ properties:
+> >            - renesas,r8a779h0-isp # V4M
+> >        - const: renesas,rcar-gen4-isp # Generic R-Car Gen4
+> >    reg:
+> > -    maxItems: 1
+> > +    minItems: 1
+> > +    maxItems: 2
+> > +
+> > +  reg-names:
+> > +    minItems: 1
+> > +    items:
+> > +      - const: cs
+> > +      - const: core
+> 
+> All of this and further must be restricted per compatible. Otherwise
+> commit msg should explain why one SoC can have it different on different
+> boards.
+
+I will expand the commit message. In short this can't be restricted per 
+compatible, different instances of the IP on the same board can and can 
+not have a core part.
 
 > 
->>
->>> +
->>>
->>>  static const struct rockchip_tsadc_chip px30_tsadc_data = {
->>>  
->>>  	/* cpu, gpu */
->>>  	.chn_offset = 0,
->>>
->>> @@ -1284,6 +1300,28 @@ static const struct rockchip_tsadc_chip
->>> rk3568_tsadc_data = {> 
->>>  	},
->>>  
->>>  };
->>>
->>> +static const struct rockchip_tsadc_chip rk3576_tsadc_data = {
->>> +	/* top, big_core, little_core, ddr, npu, gpu */
->>> +	.chn_offset = 0,
->>> +	.chn_num = 6, /* six channels for tsadc */
->>> +	.tshut_mode = TSHUT_MODE_GPIO, /* default TSHUT via GPIO give PMIC 
-> */
->>> +	.tshut_polarity = TSHUT_LOW_ACTIVE, /* default TSHUT LOW ACTIVE */
->>> +	.tshut_temp = 95000,
->>
->> Here the default is GPIO and 95 deg, in DT node the default is override
->> to CRU and 120 deg.
->>
->> Any reason that is not the default here?
+> >  
+> >    interrupts:
+> > -    maxItems: 1
+> > +    minItems: 1
+> > +    maxItems: 2
+> > +
+> > +  interrupt-names:
+> > +    minItems: 1
+> > +    items:
+> > +      - const: cs
+> > +      - const: core
+> >  
+> >    clocks:
+> > -    maxItems: 1
+> > +    minItems: 1
+> > +    maxItems: 2
+> > +
+> > +  clock-names:
+> > +    minItems: 1
+> > +    items:
+> > +      - const: cs
+> > +      - const: core
+> >  
+> >    power-domains:
+> >      maxItems: 1
+> >  
+> >    resets:
+> > -    maxItems: 1
+> > +    minItems: 1
+> > +    maxItems: 2
+> > +
+> > +  reset-names:
+> > +    minItems: 1
+> > +    items:
+> > +      - const: cs
+> > +      - const: core
+> > +
+> > +  renesas,vspx:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description:
+> > +      A phandle to the companion VSPX responsible for the Streaming Bridge
 > 
-> No reason, other than that this is what most Rockchip SoCs seem to do. RK3588 
-> does the same thing. The hardware power-on-reset state is to not have any 
-> tshut, so whatever the "default" should be is entirely made up by the driver 
-> in either case.
-> 
-> For the sake of being consistent, I'll keep it the same in v4, as RK3588 does. 
-> Otherwise, we'll have RK3576 and RK3588 do different things. If someone wants 
-> to change the default, then ideally this would be done in a follow-up series 
-> to make it consistent for all SoCs.
-> 
-> If that's alright with you, then I'll send out a v4.
+> But what does this device needs it for?
 
-Sounds good, I was mostly wondering because I am preparing patches for
-RK3528 and it felt strange to define one default in driver and directly
-override that default in DT to something different.
-
-Also noticed that this driver log a warning when the DT props are
-missing, something that probably should be downgraded as the props are
-optional in DT schema. Something for another series.
-
-Regards,
-Jonas
+It's the external IP that controls the DMA of data to the ISP. I will 
+expand this description.
 
 > 
->>
->> Regards,
->> Jonas
->>
+> > +      functionality. This property is not mandatory and not all ISP devices
+> > +      have one attached.
 > 
-> Regards,
-> Nicolas Frattaroli
+> Drop last sentence, redundant. Instead disallow it (renesas,vspx: false)
+> for all the variants not having VSPX.
+
+I can't do that as all variants can possibly have one attached to it.  
+All instances of the ISP that have a core part have a VSPX. And on the 
+same SoC different instances of the IP can have and can not have a core 
+part.
+
 > 
->>> +	.initialize = rk_tsadcv8_initialize,
->>> +	.irq_ack = rk_tsadcv4_irq_ack,
->>> +	.control = rk_tsadcv4_control,
->>> +	.get_temp = rk_tsadcv4_get_temp,
->>> +	.set_alarm_temp = rk_tsadcv3_alarm_temp,
->>> +	.set_tshut_temp = rk_tsadcv3_tshut_temp,
->>> +	.set_tshut_mode = rk_tsadcv4_tshut_mode,
->>> +	.table = {
->>> +		.id = rk3588_code_table,
->>> +		.length = ARRAY_SIZE(rk3588_code_table),
->>> +		.data_mask = TSADCV4_DATA_MASK,
->>> +		.mode = ADC_INCREMENT,
->>> +	},
->>> +};
->>> +
->>>
->>>  static const struct rockchip_tsadc_chip rk3588_tsadc_data = {
->>>  
->>>  	/* top, big_core0, big_core1, little_core, center, gpu, npu */
->>>  	.chn_offset = 0,
->>>
->>> @@ -1342,6 +1380,10 @@ static const struct of_device_id
->>> of_rockchip_thermal_match[] = {> 
->>>  		.compatible = "rockchip,rk3568-tsadc",
->>>  		.data = (void *)&rk3568_tsadc_data,
->>>  	
->>>  	},
->>>
->>> +	{
->>> +		.compatible = "rockchip,rk3576-tsadc",
->>> +		.data = (void *)&rk3576_tsadc_data,
->>> +	},
->>>
->>>  	{
->>>  	
->>>  		.compatible = "rockchip,rk3588-tsadc",
->>>  		.data = (void *)&rk3588_tsadc_data,
+> >  
+> >    ports:
+> >      $ref: /schemas/graph.yaml#/properties/ports
+> > @@ -103,10 +138,14 @@ properties:
+> >  required:
+> >    - compatible
+> >    - reg
+> > +  - reg-names
+> >    - interrupts
+> > +  - interrupt-names
+> >    - clocks
+> > +  - clock-names
+> >    - power-domains
+> >    - resets
+> > +  - reset-names
+> >    - ports
+> >  
+> >  additionalProperties: false
+> > @@ -119,11 +158,16 @@ examples:
+> >  
+> >      isp1: isp@fed20000 {
+> >              compatible = "renesas,r8a779a0-isp", "renesas,rcar-gen4-isp";
+> > -            reg = <0xfed20000 0x10000>;
+> > -            interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
+> > +            reg = <0xfed20000 0x10000>, <0xfee00000 0x10000>;
+> > +            reg-names = "cs", "core";
+> > +            interrupts = <GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>,
+> > +                         <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
+> > +            interrupt-names = "cs", "core";
+> >              clocks = <&cpg CPG_MOD 613>;
+> > +            clock-names = "cs";
 > 
+> Why no core? The names feel inconsistent. If your block has "core" reg
+> for the "ISP core" sublock, why there is no "ISP core" clock for that
+> subblock?
+
+Indeed this is wrong, there should be a core clock added here too, 
+thanks for catching this.
+
 > 
-> 
+> Best regards,
+> Krzysztof
 > 
 
+-- 
+Kind Regards,
+Niklas Söderlund
 
