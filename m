@@ -1,166 +1,164 @@
-Return-Path: <devicetree+bounces-158015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FB44A640ED
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 07:11:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F557A640D2
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 07:09:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EC551890FAF
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 06:11:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A55D3AA422
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 06:09:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C447D21505B;
-	Mon, 17 Mar 2025 06:11:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE44C21506B;
+	Mon, 17 Mar 2025 06:09:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ip5x1pup"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NPCIXPAE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDA742E3373;
-	Mon, 17 Mar 2025 06:11:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FAEA41C71;
+	Mon, 17 Mar 2025 06:09:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742191874; cv=none; b=W0Cnv10NJB4W957ZY69QeBkpU68+/Kpk3ryUk5hHoA62wRA7vLgm+Yx62J1tBvG/Bm2GhbQ4sKUZM4eCGihpfV4G/h6acU6Kbt4tZZyDRIlFea8QYQNg5IVKY5xMIjaBbyI6D9IITZmHYE7F9BTXY3ACdBjzoUIe46wIk5WYumA=
+	t=1742191772; cv=none; b=i4h1lUjgFglZ1D+rYKeNTaDZP7LQHk2vmLeGXITodjNk2/vxqaF/utCzuPG0Nh4h8e9jHARhNHoo/J0I28uNq8xLUxCtvBGbT3pXxeMEtnnOA9sN6VAXyUI03uGVtOiaWYWBhXqZhpgwY/lHCS0XmdaGAXZMbUufO8rWiODfRtY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742191874; c=relaxed/simple;
-	bh=+tBBYItJdAy1jBxiRg9TNMg0rDp98e+DU7O+7VJg1Ck=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RfnY6KAJN7ftEyANo9gpNNvELAU2IM4PyJ7bHe2JUC3NW2oEC4wQjAI1rL9g9sCaLu4m0BwiJlzi34d2GeXdrn8XGX/tPBHa3nlNCY59j12eXubJkonPE9/uPS2lYiRyYknWmAso/2EfwYbXqVVMLs+4yiXPXcU/AbJkJDECej4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ip5x1pup; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1742191873; x=1773727873;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=+tBBYItJdAy1jBxiRg9TNMg0rDp98e+DU7O+7VJg1Ck=;
-  b=Ip5x1pupjOMGxerl4wxK2Xq3ePUiyS6tCHLcoSq5xWW+Q25dHawdyLQ4
-   KhWNB/8YMxfFrz5pQblsDriq+Ixh+t9cYDTS5SLjRU7ZbpywH5Cw0T0po
-   GCPKnyfeptLvl/ScMNMqQ0Xe8QtqLAphEsW4brZUo3+2NZP3yty83q4NQ
-   ZMYDho/ePDHWJ17eGX3N4ikJaeKwVSkgisImzJ+8q3uW1MMiXl7het1Fd
-   PA6m/lYXhs6N7cq1Wrq0sjvDiPU1HKQ+FJ8moX+HnS/4JJAi2Va7kzmk+
-   vdoqVRd1CAa26JlnMTgxwPcpr6pSTtBFJnDSlc6hyGWJPLLlWU+IvcYlc
-   A==;
-X-CSE-ConnectionGUID: 53yZrakpRy216z6qV63vAQ==
-X-CSE-MsgGUID: bveIZCsgQaSx+Bco9HXEcw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11375"; a="43182062"
-X-IronPort-AV: E=Sophos;i="6.14,253,1736841600"; 
-   d="scan'208";a="43182062"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Mar 2025 23:11:12 -0700
-X-CSE-ConnectionGUID: qT6d/rf3To2/AovUIRc90A==
-X-CSE-MsgGUID: HFNjRowAR6GyquiPtRAVsQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,253,1736841600"; 
-   d="scan'208";a="158991406"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by orviesa001.jf.intel.com with ESMTP; 16 Mar 2025 23:11:09 -0700
-Date: Mon, 17 Mar 2025 14:08:24 +0800
-From: Xu Yilun <yilun.xu@linux.intel.com>
-To: Marco Pagani <marco.pagani@linux.dev>
-Cc: Nava kishore Manne <nava.kishore.manne@amd.com>, git@amd.com,
-	mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
-	trix@redhat.com, robh@kernel.org, saravanak@google.com,
-	linux-kernel@vger.kernel.org, linux-fpga@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [RFC v2 1/1] fpga-region: Add generic IOCTL interface for
- runtime FPGA programming
-Message-ID: <Z9e8WGzwcDOrx00l@yilunxu-OptiPlex-7050>
-References: <20241029091734.3288005-1-nava.kishore.manne@amd.com>
- <20241029091734.3288005-2-nava.kishore.manne@amd.com>
- <ZzwQrYeWVF6cRtgA@yilunxu-OptiPlex-7050>
- <9bfaf1cf-3313-4cb3-9963-2b4bad2d3165@redhat.com>
- <Z0fIiQPCS69O2d/n@yilunxu-OptiPlex-7050>
- <00e5c1c1-a98e-4360-b7e5-ffaa384e1036@linux.dev>
- <Z6RRAXocxWHsZZLF@yilunxu-OptiPlex-7050>
- <a51c0c24-fd21-42b3-9c4a-39ebc0751f03@linux.dev>
- <Z8LS93jh4KBvNlCd@yilunxu-OptiPlex-7050>
- <51c5a9e8-6bb5-4094-a1f2-711b139f83e7@linux.dev>
+	s=arc-20240116; t=1742191772; c=relaxed/simple;
+	bh=Rozd0ay08zhUYHX0hU8dZz+gTk/HJACtr3S44HG8+cg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=LDmx1XFVA84dWyL/c91tnM+ytbrFzXsnG+wRR/UM3g+4gmWPTW4CggAKVs645RxTIkhVs8gYEJWp0bC1Zug1IOkYUNk2slZSzq1sgQn1O3WLyaPVmvf4nvWh5RIpoH5zoXtDQyy/UTKui+JFA+jlzggC1g83u1k9DQGmdQdmI9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NPCIXPAE; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52GMbtIR026060;
+	Mon, 17 Mar 2025 06:09:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	cs252hSKQ8r3PqXg/ZWLSpu++8tfs3RG1zspmH9vM4c=; b=NPCIXPAESuAWi4Rz
+	eteoXut6ZvguedzyQE/Bpj+OMq80SdLVsauzHMInbbtICDDvOdDLgQozXl4KrQ9d
+	0BxWnuph0C6gcgHyWdDLRrtpiXzzuH8ynsj0ndR2dNm6qmswepH8mrcoIC9TM0aq
+	WLAtDcq5nVrnr9yJDW9RwkxJp3yIojXVG/lzy6EhGxozMqC5FLF+Qr3LpVdrEYbL
+	3DrcoQveITCFCGFRQNUqwU837ZhD8GH8+YZS8zJhKFi6VdnY5DK/bia2CkuGTiFn
+	zY3XleKTgGMBxM2J/1toL0RMYg6FZUCqvC5vQJdRwH9SAGu5N5/yye31xs2NSdhV
+	LyDNsA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45d1sxuj5f-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 17 Mar 2025 06:09:13 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52H69BVW011181
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 17 Mar 2025 06:09:11 GMT
+Received: from [10.216.43.207] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 16 Mar
+ 2025 23:09:05 -0700
+Message-ID: <e2168ae0-2eef-4f48-91ee-daec5bfc0fc8@quicinc.com>
+Date: Mon, 17 Mar 2025 11:39:02 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <51c5a9e8-6bb5-4094-a1f2-711b139f83e7@linux.dev>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/6] Support for Adreno 623 GPU
+To: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        "Konrad
+ Dybcio" <konradybcio@kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Marijn Suijten
+	<marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, "Simona
+ Vetter" <simona@ffwll.ch>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Jie Zhang <quic_jiezh@quicinc.com>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski@linaro.org>
+References: <20250228-a623-gpu-support-v2-0-aea654ecc1d3@quicinc.com>
+From: Akhil P Oommen <quic_akhilpo@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <20250228-a623-gpu-support-v2-0-aea654ecc1d3@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: SM1T1GtEYDSow5VpaqeRCWGPHv7Q-4SH
+X-Proofpoint-ORIG-GUID: SM1T1GtEYDSow5VpaqeRCWGPHv7Q-4SH
+X-Authority-Analysis: v=2.4 cv=XKcwSRhE c=1 sm=1 tr=0 ts=67d7bc89 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=CB1IMkvWpqPTZiQhnbEA:9
+ a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-17_02,2025-03-17_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ mlxlogscore=999 priorityscore=1501 clxscore=1015 phishscore=0
+ impostorscore=0 adultscore=0 mlxscore=0 malwarescore=0 suspectscore=0
+ spamscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503170043
 
-On Sun, Mar 16, 2025 at 10:55:07PM +0100, Marco Pagani wrote:
+On 2/28/2025 1:37 AM, Akhil P Oommen wrote:
+> This series adds support for A623 GPU found in QCS8300 chipsets. This
+> GPU IP is very similar to A621 GPU, except for the UBWC configuration
+> and the GMU firmware.
 > 
-> On 2025-03-01 10:27, Xu Yilun wrote:
-> > On Mon, Feb 17, 2025 at 04:18:36PM +0100, Marco Pagani wrote:
-> >>
-> >>
-> >> On 06/02/25 07:04, Xu Yilun wrote:
-> >>>>>> I'm currently working on an RFC to propose a rework of the fpga
-> >>>>>> subsystem in order to make it more aligned with the device model. One of
-> >>>>>> the ideas I'm experimenting with is having a bus (struct bus_type) for
-> >>>>>> fpga regions (devices) so that we can have region drivers that could
-> >>>>>> handle internal device enumeration/management whenever a new region is
-> >>>>>> configured on the fabric. Does this make sense in your opinions?
-> >>>>>
-> >>>>> mm.. I didn't fully understand the need to have a region driver, what's
-> >>>>> the issue to solve?
-> >>>>>
-> >>>>
-> >>>> Sorry for the late reply. The general idea is to handle regions in a way
-> >>>> that is more aligned with the device model without having to resort to
-> >>>> extra ops and additional devices.
-> >>>>
-> >>>> Having an fpga bus would allow us to handle enumeration using proper
-> >>>> region drivers (in the device model sense of the term, i.e., struct
-> >>>> device_driver) instead of derived region devices.
-> >>>>
-> >>>> On second thought, I think having a reconfiguration interface at the
-> >>>> fpga manager level is sounder than having it at the region level (one
-> >>>> for each region).
-> >>>
-> >>> I don't think so. A firmware image may contain enumeration info, e.g.
-> >>> of-fpga-region. And I think the fpga-region should parse these
-> >>> enumeration info rather than fpga manager. fpga manager should only deal
-> >>> with content writing stuff and not be exposed to user.
-> >>
-> >> I agree with that. In my proposal, the fpga manager should be
-> >> responsible only for writing the image into the configuration memory
-> >> and allocating region devices. In-region enumeration should be handled by
-> >> the region drivers.
-> >>
-> >> My worry with having one reconfiguration interface for each region is
-> >> that it does not reflect how the hardware works. To my knowledge, all
-> >> major FPGA implementations use a DMA engine (controlled by the fpga
-> >> manager) that performs the reconfiguration through a single port. So,
-> >> having one interface per region might be conceptually confusing and give
-> >> the impression that it is possible to configure regions independently in
-> >> parallel.
-> > 
-> > One interface per region means the regions could be independently
-> > reprogrammed, i.e. reprogramming of one region won't affect the working
-> > of another region. But they don't have to be reprogrammed in parallel.
-> > If it cannot be reprogrammed now, the interface call could fail.
+> Both DT patches are for Bjorn and rest of the patches for Rob Clark to
+> pick up.
 > 
-> Good point. However, I still have some other practical concerns. To the
-> best of my knowledge, reconfigurable images/bitstreams are statically
-> built for a specific reconfigurable region in current FPGA
-> implementations. So, what should happen if the user feeds the wrong
-> image (e.g., an image targeting another region) into a reconfigurable
-> region programming interface? I don't think the fpga manager could and
-> should detect these mistakes since the kernel has no visibility of the
+> ---
+> Changes in v2:
+> - Fix hwcg config (Konrad)
+> - Split gpucc reg list patch (Rob)
+> - Rebase on msm-next tip
+> - Link to v1: https://lore.kernel.org/r/20250213-a623-gpu-support-v1-0-993c65c39fd2@quicinc.com
+> 
+> ---
+> Jie Zhang (6):
+>       drm/msm/a6xx: Split out gpucc register block
+>       drm/msm/a6xx: Fix gpucc register block for A621
+>       drm/msm/a6xx: Add support for Adreno 623
+>       dt-bindings: display/msm/gmu: Add Adreno 623 GMU
+>       arm64: dts: qcom: qcs8300: Add gpu and gmu nodes
+>       arm64: dts: qcom: qcs8300-ride: Enable Adreno 623 GPU
+> 
+>  .../devicetree/bindings/display/msm/gmu.yaml       |  1 +
+>  arch/arm64/boot/dts/qcom/qcs8300-ride.dts          |  8 ++
+>  arch/arm64/boot/dts/qcom/qcs8300.dtsi              | 93 ++++++++++++++++++++++
+>  drivers/gpu/drm/msm/adreno/a6xx_catalog.c          | 29 +++++++
+>  drivers/gpu/drm/msm/adreno/a6xx_gpu.c              |  8 ++
+>  drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c        | 13 ++-
+>  drivers/gpu/drm/msm/adreno/a6xx_gpu_state.h        | 17 ++++
+>  drivers/gpu/drm/msm/adreno/adreno_gpu.h            |  5 ++
+>  8 files changed, 171 insertions(+), 3 deletions(-)
+> ---
+> base-commit: 89839e69f6154feecd79bd01171375225b0296e9
+> change-id: 20250213-a623-gpu-support-f6698603fb85
+> prerequisite-change-id: 20250131-b4-branch-gfx-smmu-b03261963064:v5
+> prerequisite-patch-id: f8fd1a2020c940e595e58a8bd3c55d00d3d87271
+> prerequisite-patch-id: 08a0540f75b0f95fd2018b38c9ed5c6f96433b4d
+> 
+> Best regards,
 
-I think fpga manager could do something with the helper of HW and image
-builder. If the region identifier could be read out from some HW
-registers on fpga_region enumeration, and it is also built into the
-image header, the fpga manager could check the validity.
+Bjorn,
 
-Some reprograming engine even enforce the validation by requiring SW
-input region identifier along with the image data.
+Now that the adreno smmu changes have merged, can we pick up the GPU DT
+patches into your tree?
 
-Without the help of HW, I cannot see any SW solution could help, one
-interface per region or one interface per engine.
+https://lore.kernel.org/linux-arm-kernel/174198247897.1604753.3634981110002933426.b4-ty@kernel.org/
 
-Thanks,
-Yilun
+-Akhil.
 
