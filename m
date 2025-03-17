@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-158135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16D3FA64C5D
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:24:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C41B1A64C74
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:26:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71BEC3A761E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 11:23:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFE863A7A57
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 11:26:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EA62235BF5;
-	Mon, 17 Mar 2025 11:23:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E670238145;
+	Mon, 17 Mar 2025 11:26:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kHLoWAlZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OEpbDXX1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E25D22CBCB;
-	Mon, 17 Mar 2025 11:23:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11FC223536A;
+	Mon, 17 Mar 2025 11:26:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742210598; cv=none; b=datzq15rB1lQV0TwdZFTz7PpIVs5JHFTUIfTuaL9WJFxb9+RYlueXmAyPVcl9mSmgFmWDhvGnOqgBonrrIg858t8nQsD62w5CzWV8I6/qmK6aax72tnvDxRdyE5162BuhTDi7Wo6wQ1GWetN2NTnwt2k+vJdSI0cNuljqsqK4K8=
+	t=1742210772; cv=none; b=kMcknAwaJBKR4OtEG/eQZ/Wxf1/kvgg6INwwgNh3Yok7aKAGhIO1HlHnAGzwiwSloE7InL/GDJBhvgrvMF6rnEyTu3wpoozfOcpBiAJ7QUMzkiT52Lg1GRC5O50Xi69h8ycIkuPNjQNx8/HZ9z7bjPp6vd4JQKcg566P3XK7vSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742210598; c=relaxed/simple;
-	bh=c2UFH3jGhzNtOf/2FaiDVr1S6TDplZcWAKpfpWcajsk=;
+	s=arc-20240116; t=1742210772; c=relaxed/simple;
+	bh=Y8P6Co3FDA+wN9GVO37WIBOvihBS3R6SCpDjnFfwxyY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nWONY/W97TPRrNpFz3el1KT9zh1soYBU5NjKXJjiaHFCQclUF2eoJTh+XHtOc8XbkY9x+/qMcttXs6Xut76eTl3NTyMwaocjAk9yoHeFfLSavbqWyAMALEnr7GSJo7a/uIEsWa9f3Uo15OzKj/+Zjmn0zQCYaLsuk5V+JRQzpFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kHLoWAlZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3966EC4CEE3;
-	Mon, 17 Mar 2025 11:23:11 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=RP+1oP2kQ0gUug+EM3bPFSAcZNoSr3yWdNwngcI81vY6fV1Sb2Q7zwNeX8FXhMGuRiR4e+tt3IcDM6Yv3EB/4yn3H47nb4DoIr2SSVetufHb0Sq7E+hEQkf9zWj7sT6nIS2ZGFg6DF62HWNtN0l3rDh8BkH0kiSDjuBCCsd+EY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OEpbDXX1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CA54C4CEE3;
+	Mon, 17 Mar 2025 11:26:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742210597;
-	bh=c2UFH3jGhzNtOf/2FaiDVr1S6TDplZcWAKpfpWcajsk=;
+	s=k20201202; t=1742210771;
+	bh=Y8P6Co3FDA+wN9GVO37WIBOvihBS3R6SCpDjnFfwxyY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kHLoWAlZt7qKp84RdpDsC+iBSz9wkEagdZ/FuKljO45a5MgXbOjkoS2GfhRMO1qXl
-	 DvVT+coL7yWHEW12u9vGBtzhRdao9CcGjGZtZSghsmeGwm92xEQenDDOSFJPHnMBK6
-	 5YkgJJdBtstVL2kCAhwmoTRyEllUqT5/W2mVvm3M6eys0ud9eaESiLIbjCChNtAYDv
-	 4uJJlOaYN8QObSiBJ9eAPIP5o94TDsRPHqsDM4TR/3nka46cr2O63sVt5tnLFaD9XT
-	 YYhs8OEbqYdssSgkE5hX+amTPP52LtxOmyJQI4Io6b2JCRLs89+IDGcNGblLK/NJ49
-	 WRCVTYJBecvxw==
-Message-ID: <00667202-73e4-48ee-aa90-dee8c0dd5d43@kernel.org>
-Date: Mon, 17 Mar 2025 12:23:09 +0100
+	b=OEpbDXX1Q8ehfg9M98IVpUB06YWgpxy/9whAD3ozuzPcP4dOy3foWJtNFcBmY77PS
+	 0tjFWhf/1BoIEK1ArUQy/FwVFbX61gahD4/aUec3mZHNzUtkgWOnMhjgeXIjoZUQCs
+	 BnkvRoM++uEaf+fd7tSyKx3U+BmSpht6KU0WaWpZrl20t6R5qKUSeb7Yc/Dh7Kb62S
+	 YH6CNtxXyvnLlNw9j4lENsrXWt+ouV077MYDJGM7R5M+M1v4EsWTJmAvdedzWrPtDx
+	 LQllVyGlIdtgtT1a7W4YCWuqvSyrgTGmrqn0mmI/1BWwDj+0EcA0AjCplXOcnzFR/g
+	 RHB3PLU0YLjuA==
+Message-ID: <42685f01-d864-4e68-913a-49bdb6337581@kernel.org>
+Date: Mon, 17 Mar 2025 12:26:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] ARM: dts: apalis/colibri-imx6: Add support for
- v1.2
-To: ernestvanhoecke@gmail.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Francesco Dolcini <francesco.dolcini@toradex.com>
-References: <20250307101758.27943-1-ernest.vanhoecke@toradex.com>
- <20250307101758.27943-3-ernest.vanhoecke@toradex.com>
+Subject: Re: [PATCH 1/3] dt-bindings: iio: light: veml6046x00: add color
+ sensor
+To: Andreas Klinger <ak@it-klinger.de>, Jonathan Cameron <jic23@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ lars@metafoo.de, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, javier.carrasco.cruz@gmail.com,
+ mazziesaccount@gmail.com, subhajit.ghosh@tweaklogic.com,
+ muditsharma.info@gmail.com, arthur.becker@sentec.com,
+ ivan.orlov0322@gmail.com
+References: <20250316113131.62884-1-ak@it-klinger.de>
+ <20250316113131.62884-2-ak@it-klinger.de>
+ <20250317110012.2ad89cb9@jic23-huawei> <Z9gEveqC91o8Ojks@mail.your-server.de>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,32 +107,31 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250307101758.27943-3-ernest.vanhoecke@toradex.com>
+In-Reply-To: <Z9gEveqC91o8Ojks@mail.your-server.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/03/2025 11:17, ernestvanhoecke@gmail.com wrote:
-> diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-colibri-v1.2-eval-v3.dts b/arch/arm/boot/dts/nxp/imx/imx6dl-colibri-v1.2-eval-v3.dts
-> new file mode 100644
-> index 000000000000..93fd0af53a3c
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/nxp/imx/imx6dl-colibri-v1.2-eval-v3.dts
-> @@ -0,0 +1,11 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-> +/* Copyright (c) 2025 Toradex */
-> +
-> +/dts-v1/;
-> +
-> +#include "imx6dl-colibri-eval-v3.dts"
-> +#include "imx6qdl-colibri-v1.2.dtsi"
-> +
-> +/ {
-> +	model = "Toradex Colibri iMX6DL/S V1.2+ on Colibri Evaluation Board V3";
-> +};
+On 17/03/2025 12:17, Andreas Klinger wrote:
+>>> +  - |
+>>> +    i2c {
+>>> +        #address-cells = <1>;
+>>> +        #size-cells = <0>;
+>>> +
+>>> +        color-sensor@29 {
+>>> +            compatible = "vishay,veml6046x00";
+>>> +            reg = <0x29>;
+>>> +            vdd-supply = <&vdd_reg>;
+>>> +            interrupt-parent = <&gpio2>;
+>>> +            interrupts = <3 IRQ_TYPE_EDGE_FALLING>;
+>> Need an include for this I think.  Make sure to test build your
+>> bindings following the instructions in the bot message.
+> 
+> I already sent out an version 2 yesterday which is with the include, tested and
+> already reviewed by Krzysztof.
 
-
-If devices are the same, you do not need new DTS. There is no benefit in
-creating DTS per every revision.
+The point is that you should test it, not rely on us and our tools (e.g.
+my or Rob's machine). If our tools report such issues, it is already too
+late because it means you did not follow the process.
 
 Best regards,
 Krzysztof
