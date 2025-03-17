@@ -1,250 +1,270 @@
-Return-Path: <devicetree+bounces-158115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63955A64B0E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 11:54:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B65D8A64B6F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:01:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A92BB16F530
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 10:54:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D56773AB6FB
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 10:56:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAE3123534D;
-	Mon, 17 Mar 2025 10:54:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D91E230BC7;
+	Mon, 17 Mar 2025 10:56:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MQJtQuoY"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="bBfpCFzm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TYVP286CU001.outbound.protection.outlook.com (mail-japaneastazon11011028.outbound.protection.outlook.com [52.101.125.28])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C04AF233141;
-	Mon, 17 Mar 2025 10:53:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742208840; cv=none; b=XbBXkUuxUTDSYcULXowK1ilLaZ5MFtCnk2NXm1nVyCxQBngEbRQhbMgCCa9Xqd9qE/IMpp38UhnOr0OP4y+isW8dQagHz3q6AP82EuIUAW3KzrKZw6fDzx6TeAA/K2DT8SyLMGStDP0RhoMmwjvrHuoLMaCAsmqq06pDfVhdaHY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742208840; c=relaxed/simple;
-	bh=xQCIvtZ7gkiHiOAfI0sMD7QZtE9jk12bnsX/6xPz/l4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LjC6Xh0WS1Mju5WdOccTMDLbMCpL3mt41lC9QMQqmatV4+7ecfS5iIVxufHQdLYT0IXXek0AbsufHDd1zoV79zqD+DtTutoRF+ve7L04oKBrbxo6+YtJJuskAVo8qCmkSPOfR5Sw6UIaY16L+uZBiY1pfrs29DNKEenJsIAf2pE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MQJtQuoY; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-30bfb6ab47cso42296281fa.3;
-        Mon, 17 Mar 2025 03:53:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742208836; x=1742813636; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=W2GJ9qJ8OjX1yfsEXuO0p0ppxNDngQ6k8zpz585ECzc=;
-        b=MQJtQuoYOIp0Cog5Vgqd1mpwZt0F1578JzBjV2B5ba7wrchb4cO17BwCSoPWY7fwWa
-         TLZyy6ISpvB1P2jTRN/twILS0SYAh5SeQX7ZGN1o7RthRMP8NxuZOrS8OAxWkIXyGqhH
-         r9VhDPvq2TYiHuGBzto7qmtrefwy2EeyJn4Z2msWoHDsMukinH4rBUkivFrIVJYVm2Ru
-         Z/D9xy1fiD4vz3mOkGhKe14uWI0qJwGBSf77huAUQ9Vdznqbzv4t4i/fytd3RS3J+j53
-         38J/Gs4VqByHm4QEn60Yqp/JRilMfugeMpTLM/kGPIfucBkoKZtquWf3XKaJmm0MUI93
-         o0Tg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742208836; x=1742813636;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=W2GJ9qJ8OjX1yfsEXuO0p0ppxNDngQ6k8zpz585ECzc=;
-        b=WkS4W2MGFxYPUIVey6GJDTFUIDb2+GYJ3BHN/BcUyOiEiE7OAk46m5Rtatz1ylN1qF
-         yjVTkUlYvby/3z3u7dIOX9JR9k7tJqSdAHpRBfgmRtvoBXWyuixERw7OLnnfusJbq1Px
-         hXxqNKQsivjrwgdLzPDj8jqy/lC4/lA8ZgemEr2z8mse8l9qQR4B7gr4kUOk1zNgQ3uB
-         3jWMySW8TDaesrWhXXuXfDAKq9cXe3fiw02XeKQ7mF9w4/pFhBzTg39oh8SN9MgAkDrA
-         +zXLodt92ITzUrvKFCATmRxDNL04UBDWDFlpbSQPiiBCcNgLmrj09+hChrGCsAUkfuLE
-         vBcw==
-X-Forwarded-Encrypted: i=1; AJvYcCUq8f14I1k1UIlQVV1+yeJUQsDpXx6ALD8AGeQ9drlJWE181BLc1SIce+fxwlKkMwd21msQfmNAOjqga9dNBZPb@vger.kernel.org, AJvYcCV0UjchdIGv8VA5Z9thu+TOIzG5Ti+H0mjuvn7QkgqQBpFqClciSYPTerFxw09/CxALxF+9b7X6UNNEE9Pj@vger.kernel.org, AJvYcCVRoHnxpPF8eLNqNZoSDXRu8VcYG/V0RbAQv+mzmQHlSlbjziqMg/k6kWclINlpSUXoWLeDL31TfZtwvig=@vger.kernel.org, AJvYcCVq8cOqd+kvTHwNGSksNPnNJ1cosQTdUaPsyfKqmxppEvbaNh/4/WD9G9A17/oarN1D7ALleV6k7pVH@vger.kernel.org, AJvYcCW10kAxPm8Ns5U3ziW3gxImNT8U+Q+qCO5VIv4PxHr5wegDQVNDl5YErzsFN0E5ui6euSMDoTKFJaMR@vger.kernel.org, AJvYcCWxLRnnLgPFuwmqdci4ebZtxrCD0FpQXo/PH743ZImOJx3sr3OtXgS5Xff9+k7siFls2pyriGv7KdtuUbjY@vger.kernel.org, AJvYcCXXpPdM3/fEcnTTjmMrbM9W/xotclTo+SkYS6N6RjaJJWIbJZO030muX2zT5GyICWSFQT/LUY0MMD6M1vVeXmI=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxEbzo4uHWyQnxmok/icIu1jl/35H3XtFYnkXfzQ/k66IQ3oIVs
-	TEOCzP0EfzwvuuLyeZV4H/hq+26TSIpifEKvS48m2G2G9PYA+YGHwGpmqFRtE65ge8V7W/+sY37
-	YrL1geAENWgN4bjcvJ6GHOTZ7bYU=
-X-Gm-Gg: ASbGncsrzBvPKznCiQXic9uSMd/dEsDHTpiUhFeKzAZauN5ycxuAoXa27zycZqzlRKb
-	t1b7YiSuhHhsghtUtR6XqlEMgcMGHrUioK449oqXgiIhJoSEzFoa1Av1fgbTqhkO+RJjZs3MENC
-	WitJPZXlsWkWNNjG2zzP2C7OOA3pg2nQlB60rPLbppO1blaCfX3LbKpWAcHsrO
-X-Google-Smtp-Source: AGHT+IEeubawRlSkpRnGzmVWw22++0Ktqk/MMMgtA5rXFVJr9UoRX1gyCSDhiL2Xi0GL2rblLWjf9DmjfBaJCJzQ7wE=
-X-Received: by 2002:a05:651c:221b:b0:30b:d63c:ad20 with SMTP id
- 38308e7fff4ca-30c4a8ce9dbmr64521931fa.24.1742208835540; Mon, 17 Mar 2025
- 03:53:55 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1532038B;
+	Mon, 17 Mar 2025 10:56:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.125.28
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1742209011; cv=fail; b=YIu9Qx82B9t6LPIG+82yst2YmPPSZQfG+u0jL972Fmop8TfCrKPVs4NPTCUqaObo9aYWSguWvaELXebXa+XIKeued1RSe3XGeG2Iglbr4w1Pj3cUwmv4I/F7qCuveFvNRuyefJorAmmvsz4RheCyy1ZjaDCu0WcIVNHXMqX2yrU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1742209011; c=relaxed/simple;
+	bh=zShEmghGM3pAPnhi2u1WuhuyNRfrBTYokYycaz20S24=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=r+y+IK0A4KPlfr/6sN4SI9IAieRmZHY//6ikCERTWRX8cRul9ySc2nkhwqu1J2Iq1eq9B+ls7b6JIDqKYc3x8WOrl3SCP/c3NR58pCDV8yEALXRM8ffoobGCzsj6z2INzBva4QZXsBInr0yhBudOVcSpHeQjDoIrT80+2EZuLNk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=bBfpCFzm; arc=fail smtp.client-ip=52.101.125.28
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ZbISxfgFUCZwW9HBsr2F6e5Dpp6hDsYmOMWOjQ3KHuA4i5QOBGxmSuTmZehrqYTBcIHuWBzTQccEOGUWi/qfB/J540Gh7WXa516V8jucmN7GKk8uLQVmo2xfxXu4DXoFG+Z1lT1yBVWvN1oGpm1Iqw5hCnZwG02ZRhazQdSKMSm6ekkpH6RbI5vvji1Hylv0glNfsgUSjhpKZ4YwWsArl5SB9R6ohPaBFAG7NNEDcS+x0mti4ZRRLBexAZ72/r+FN1a64LKWFez3HQobD2we5pfwtNx40DYEGOZcOB1cHCMqWbgUgIKApqZ2Q9t4qrpwI+x2l3wwbqif41cS5C80hw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=YmixZEvpW/h9g+iHvgZIotsjV4RIh5/wa1wByxW7ado=;
+ b=cMU3QsEbzOz35mBZTtC0GRbR5SqfNOs8OIcYKi4FRaVXdk5cZiJNg7kUQWoh+OlDXzBJnt7IQBNJZYIlWac/5RFhqTMIYZYpeidZmkV+uswvZUatDwWNHq/JHP2g8F2C8nQ2Tm65hr6h3t22rZEOGrNMK/8ncsoA59ghEYerMN7W8oRG/KXtorxga2CMRJ/2alA6i7k5fsKlMmpmmHedwfzgZXumkcpPhfCVeMIE5PO3s4U1n2ba2NB92EYUThksBkxwDAjebmc9oYytZ3X68I1EMi/gMcgBAnHGbcfQxfXXlXZK+wa1Bk5THzsakYN0A+r8GbQDOLXBRAqVeXIAzQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YmixZEvpW/h9g+iHvgZIotsjV4RIh5/wa1wByxW7ado=;
+ b=bBfpCFzm4xHSibnruvsbhACXRENrhBSbDd9OuOryhBFgRpj3vt2rrWOVTv3UR3ypUtFgSG3JcObxQRasjfAd938tTWcc5J+1CzWNOB01yvK1wkTTWooo4WxaHLg/MkXXj7HhjquObBJu+oCkJ0t5sezaT1u27DgNoDZ/6F9/PYI=
+Received: from OSBPR01MB2775.jpnprd01.prod.outlook.com (2603:1096:604:13::17)
+ by OS3PR01MB7778.jpnprd01.prod.outlook.com (2603:1096:604:17b::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.33; Mon, 17 Mar
+ 2025 10:56:44 +0000
+Received: from OSBPR01MB2775.jpnprd01.prod.outlook.com
+ ([fe80::54f7:9a51:ae47:185b]) by OSBPR01MB2775.jpnprd01.prod.outlook.com
+ ([fe80::54f7:9a51:ae47:185b%2]) with mapi id 15.20.8534.031; Mon, 17 Mar 2025
+ 10:56:35 +0000
+From: John Madieu <john.madieu.xa@bp.renesas.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: "geert+renesas@glider.be" <geert+renesas@glider.be>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>, "rafael@kernel.org" <rafael@kernel.org>,
+	"daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+	"magnus.damm@gmail.com" <magnus.damm@gmail.com>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "john.madieu@gmail.com"
+	<john.madieu@gmail.com>, "rui.zhang@intel.com" <rui.zhang@intel.com>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	"sboyd@kernel.org" <sboyd@kernel.org>, Biju Das <biju.das.jz@bp.renesas.com>,
+	"linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>, "lukasz.luba@arm.com"
+	<lukasz.luba@arm.com>
+Subject: RE: [PATCH v3 2/6] dt-bindings: thermal: r9a09g047-tsu: Document the
+ TSU unit
+Thread-Topic: [PATCH v3 2/6] dt-bindings: thermal: r9a09g047-tsu: Document the
+ TSU unit
+Thread-Index: AQHblYIJrz4TClfN/kyydJCUqHZzHrN3EusAgAAVU+A=
+Date: Mon, 17 Mar 2025 10:56:34 +0000
+Message-ID:
+ <OSBPR01MB2775B1B2FB8EE446E15B38CEFFDF2@OSBPR01MB2775.jpnprd01.prod.outlook.com>
+References: <20250315081225.92118-1-john.madieu.xa@bp.renesas.com>
+ <20250315081225.92118-3-john.madieu.xa@bp.renesas.com>
+ <20250317-ubiquitous-acrid-gorilla-71d726@krzk-bin>
+In-Reply-To: <20250317-ubiquitous-acrid-gorilla-71d726@krzk-bin>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: OSBPR01MB2775:EE_|OS3PR01MB7778:EE_
+x-ms-office365-filtering-correlation-id: bf0bd74a-7a93-4ed3-993e-08dd6542626d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|7416014|1800799024|366016|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?tS6u4sEztquV++Hq+HwytihrZ0ij3BioeRHucle/1M6Wv08H6FBXDTzZCjKV?=
+ =?us-ascii?Q?i8aJTurV9lUBxBY42aGaFImKKAOZxd+dlE0/ssr15PtPFlW6jt8FjkhzE5/0?=
+ =?us-ascii?Q?ua9L+kIl+mFze56kllMT2MO0136mQW3IOEq0XNkpK8DcubalSN+gOka44D/a?=
+ =?us-ascii?Q?dqhl1Fxlrf0swPqhXn4uqscQWLGzwuEC1wV09uJdEGBQ6lEDHL1jfVbdJWto?=
+ =?us-ascii?Q?GPhErEZYzuw3FG+tRQFBinFjGW3iJCTNfNWet3IZbu9lF+8FdLmnucwt61QO?=
+ =?us-ascii?Q?WROxcU9Lav1jdPlCHeguTRDtqueNmSST9EIAvkh/tRYXOx+a/B45sod+moPg?=
+ =?us-ascii?Q?Ujq9a5xAwsPPJyQ+axZw1BBdt29lDSslsAp8cKtX4qPIHeTIRWUjDjA2Nvc3?=
+ =?us-ascii?Q?u/jEonJ/5A44iqfB3ial9Pm+Lh7/ISpSNR+Qp1z216WLDu2yN3uc9+6A9JLJ?=
+ =?us-ascii?Q?8eKMdxYxBNOb9c8AwWUqI0LaznJcxTEQ+0yVwXhKicC1+RH6iZ6q3g7C4p6R?=
+ =?us-ascii?Q?hlrhsxZ37UDIlRXFAA3jHBFphdgMJiqH944QwhVwLYGanRAE8jMyd/YMiJzz?=
+ =?us-ascii?Q?CRJo0TvKPqIlgD0sT9RrZqdHt6M5fevuw0PGy5e7c9dZ0giLelxM7lhk06xq?=
+ =?us-ascii?Q?SR/H359XtJ9CbZvHH/w81MI619w5bNOzVvwlxzCbhhbUdkzY2zwUSdA678QR?=
+ =?us-ascii?Q?ZOYliDeN1p06WIo25LuWe6Gr3QyKG4w0hhrsOtb2OJj+EO19ll2cEQ8VftjD?=
+ =?us-ascii?Q?/GCMfuCTOLLbCYkRBrZfkfuTvpxBAxqTlHlA5QBVgd5oehMK2EN8aPxsNOLK?=
+ =?us-ascii?Q?Eifl75L3Q3TNnOrj3ednhFmYHIeIIguYk0Hv9pHLMBZ9elf5FrB2ljQsEVpw?=
+ =?us-ascii?Q?4Cg0J0jzicE6OL0/WeXmU11UYXauGkVSw5Mf6m54YbhNSJcbdY9CYMF4Ud9s?=
+ =?us-ascii?Q?N62IenVuPkg2CbhQnZIqSx20E4F4PeAWbr6TZfNIlQXzOOyuBF/jnw1bnQ+2?=
+ =?us-ascii?Q?9BEryxOtsJbslSrD5tBJWodUNJ208H/6pLVtK6EgAW/pZoMMXgvuYqJeoLcA?=
+ =?us-ascii?Q?UfO2o++Jfy/Cjg5sdFoqPTC13DGdCArQNep7LXq6lZAisbAr3hZ4sWDeVnb+?=
+ =?us-ascii?Q?xdRN0+t+2k+vcWnl5HoDA7fK4Lm0VrA7njR2sIuxenc8FVvQ4LQHuxyOF0Cy?=
+ =?us-ascii?Q?m1vmSyizzeXjMucwPEFQuUyLJu2/6FfdoNVtedoWKaWa1NBaonLLpfAm2qtx?=
+ =?us-ascii?Q?oU9C7bVn+mSsSACb+O/38zxMlCEAP996h5vIssM62F7Du3iB0DueDIhOQpa1?=
+ =?us-ascii?Q?mSx5Ck8mtfCtQmxX8eH2ODd4DHS1KFglDsfSAN1cxLvGMgJGK5b4yiEmJNE1?=
+ =?us-ascii?Q?jXKGH+5DTp5tHQdyCF3N9lkTWOd0Tci5mgTilHXsz89zMObaXzjaT9Lt6RgJ?=
+ =?us-ascii?Q?r+B+OP4dgcJo/dHEVdNj37ueJKV/Ge+Q?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSBPR01MB2775.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?6sTcDuPBm6CuXfDqLF6SRJX/n41Vdfqt1VkXKOl+wFtLWO8Y0wvdhrfxXtgf?=
+ =?us-ascii?Q?Ot1XToB5/uIxRZ/2sWCecMUZkeHRzpy43Q2Me84nQvATMzKmQK+chSSFvIVP?=
+ =?us-ascii?Q?IaXq9XrxUytm1DMv46DkihRZ4xgd86H1iarQ6A0jnQTPPeuUQ2DzzOLRjVUd?=
+ =?us-ascii?Q?7FtDIIlTHsmq48VTDVZbWVBK/djounBMooktZzDqWATBVWEVMcQFJ9up3vmE?=
+ =?us-ascii?Q?6HcLUby401ORuusWW5yf7v/x1LX+CvplBfTw9N7k7GSW0nHDqD1YgWMPBsQM?=
+ =?us-ascii?Q?18/GyD/iOm+xMG5P4rqOxhFa28vGhw6HCueIdgR7c/dBH+gF7zaspxZYpR2e?=
+ =?us-ascii?Q?UC3TpFecCW4ExN84rngQXm8epcjSlN3MfO64gW8i0VQ3lVeMXGpHv3W+Msi5?=
+ =?us-ascii?Q?9Uzp5EwfAtXPsrLfAbCbJW29IokN4t7d5EWtH5TrfLQCODQ7PD4inUTo9AVG?=
+ =?us-ascii?Q?vY1YyTdHhZdupRWJzJNt6smZ2FWlkC9bkGQbVhgriEmr/EvkHVf36ZbUo39c?=
+ =?us-ascii?Q?GDlOGsgIZ1/v9vWW3raUyL6Jk2CVEbYePXcA6pYcUbDTQWTjdN1PNxtXF0sc?=
+ =?us-ascii?Q?owAu28kUjWRlHO3Ou2Rfw0o53ybIeN8aKuAhGe4Tpw7Q1mjx4uxVdo2Vdfj9?=
+ =?us-ascii?Q?fOERc6GQDqgyeG5hrMrp3Oa/gSPGJGqR9fivLWHxV8vM4RrjUpN8YcWVwe4I?=
+ =?us-ascii?Q?Cwdg580fErgooPKKtM3ltTBCD11jIrni2TrPHOlMcfGyq7I/tIybaFB5CMm9?=
+ =?us-ascii?Q?XDfPUDwONOcHO2mnefqfiCFq5MfIL/tt2Wpf1J1T5VGUkW2xmuRr/T59jQr9?=
+ =?us-ascii?Q?1PRWK9vY72RgbXP6J8wbaWi5SwREq9C0E0te1H7nfF27JCO+ftzAm5Vkaz37?=
+ =?us-ascii?Q?zVwrrdPzf/OraM75tDiuYI1m8viPuBkfdMc7Kf09BFxL/4K2RTCDno2rCgtq?=
+ =?us-ascii?Q?VQxJfY6o4hBWPdDT9/DJzXeYzLDh0oNw6y1YbPAWcWIXDaaetvW2/02LRQII?=
+ =?us-ascii?Q?ILcgblgbJ4QXlHISJou+FKfkUzOEeNZF3DTXpBaMLXdTP5VbCQMkt848G2QJ?=
+ =?us-ascii?Q?lTgn1V4f+zfegBp5m6GvlkZz5Qq3RaH9IgZSUqpTkIFaflDQM1hENIbNiD98?=
+ =?us-ascii?Q?KkF/d13ocCKSX5lihx26sW0R4Cuzh6NVXyckrVZvqPKl+zxuoNRXuawpA6As?=
+ =?us-ascii?Q?Tv3HzaTLETuxoD8mAMC1j91+zkDLMpqhEBJt3zUMQM1NnsP4kYeChTllyvnB?=
+ =?us-ascii?Q?7inpOONe7joh+q4JxXa09evfiihZySVI/8mBuXrxR7EOlTbT+113gTLW8ISK?=
+ =?us-ascii?Q?H9KNwwfRdUXOABB8M+/5Z5D9+r9fxKXi0e8r8sJwGqVliVMgs1QXpRiMYqq2?=
+ =?us-ascii?Q?672Y8kC4x/V2XdkB/unOqX8n5TYqxR1pu5qn4VYkQSODy5D8lwFpXW+iL6EU?=
+ =?us-ascii?Q?Ax/47xIYjtMGkLZNmEhdLLV35MG3dcuYpTDi7hjTo2UbmUDUVVox14tfv+QD?=
+ =?us-ascii?Q?4iTbin9T+qb9qdhYnb4u2MsOw29uYNtjzv/0OzTU3IdrXCVyw7Uw7ixJL+6a?=
+ =?us-ascii?Q?9va5V5poNw/W4wNOZWzv2Z2GcoZwJpkppewWGBwQKrgOYGv9XDYtF/zXdrty?=
+ =?us-ascii?Q?jg=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250315-ptr-as-ptr-v4-0-b2d72c14dc26@gmail.com>
- <20250315-ptr-as-ptr-v4-6-b2d72c14dc26@gmail.com> <D8IFS7175NNQ.3VAP8WA2QC8WF@proton.me>
-In-Reply-To: <D8IFS7175NNQ.3VAP8WA2QC8WF@proton.me>
-From: Tamir Duberstein <tamird@gmail.com>
-Date: Mon, 17 Mar 2025 06:53:19 -0400
-X-Gm-Features: AQ5f1JqqKWQmJQtQxcuGwEC9JarpMRPLE1rROZqjJX4KytwdbIBYSIApzB74Pbo
-Message-ID: <CAJ-ks9mXzM6D++vq0QCugaFOS9ES0j7GpeWZqckY0dA3JwpnJw@mail.gmail.com>
-Subject: Re: [PATCH v4 6/6] rust: use strict provenance APIs
-To: Benno Lossin <benno.lossin@proton.me>
-Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
-	Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, 
-	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
-	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
-	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
-	Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, linux-kbuild@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
-	linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
-	linux-pci@vger.kernel.org, linux-block@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OSBPR01MB2775.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bf0bd74a-7a93-4ed3-993e-08dd6542626d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Mar 2025 10:56:34.9557
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: gZ15TO/FDMD/TefdNHfktx1YQA3Z42JH91Jns3/rHYTf0v8hPOePhm3Y+ut0iJfESNTv9QGzv4lzkSWHLJ/IE75XrWthywUYNYxQvv4oqfk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB7778
 
-On Mon, Mar 17, 2025 at 5:34=E2=80=AFAM Benno Lossin <benno.lossin@proton.m=
-e> wrote:
->
-> On Sat Mar 15, 2025 at 1:17 PM CET, Tamir Duberstein wrote:
-> > Throughout the tree, use the strict provenance APIs stabilized in Rust
-> > 1.84.0[1]. Retain backwards-compatibility by introducing forwarding
-> > functions at the `kernel` crate root along with polyfills for rustc <
-> > 1.84.0.
+Hi Krzysztof,
+
+Thanks for the review!
+
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk@kernel.org>
+> Sent: Monday, March 17, 2025 10:29 AM
+> To: John Madieu <john.madieu.xa@bp.renesas.com>
+> Subject: Re: [PATCH v3 2/6] dt-bindings: thermal: r9a09g047-tsu: Document
+> the TSU unit
+>=20
+> On Sat, Mar 15, 2025 at 09:12:12AM +0100, John Madieu wrote:
+> > The Renesas RZ/G3E SoC includes a Thermal Sensor Unit (TSU) block
+> > designed to measure the junction temperature. The device provides
+> > real-time temperature measurements for thermal management, utilizing a
+> > single dedicated channel (channel 1) for temperature sensing.
+>=20
+> Please wrap commit message according to Linux coding style / submission
+> process (neither too early nor over the limit):
+
+Will be fixed in v4.
+
+>=20
+> Please run scripts/checkpatch.pl and fix reported warnings. After that,
+> run also 'scripts/checkpatch.pl --strict' and (probably) fix more
+> warnings. Some warnings can be ignored, especially from --strict run, but
+> the code here looks like it needs a fix. Feel free to get in touch if the
+> warning is not clear.
+
+Noted. Thanks!
+
+>=20
 > >
-> > Use `#[allow(clippy::incompatible_msrv)]` to avoid warnings on rustc <
-> > 1.84.0 as our MSRV is 1.78.0.
->
-> This isn't necessary, right?
-
-It is necessary. MSRV is encoded in .clippy.toml, it doesn't matter
-what the *current* rustc version is.
-
-> > In the `kernel` crate, enable the strict provenance lints on rustc >=3D
-> > 1.84.0; do this in `lib.rs` rather than `Makefile` to avoid introducing
-> > compiler flags that are dependent on the rustc version in use.
->
-> So it won't be enabled in the doctests, right?
-
-Yes, that is correct.
-
-> > Link: https://blog.rust-lang.org/2025/01/09/Rust-1.84.0.html#strict-pro=
-venance-apis [1]
-> > Suggested-by: Benno Lossin <benno.lossin@proton.me>
-> > Link: https://lore.kernel.org/all/D8EIXDMRXMJP.36TFCGWZBRS3Y@proton.me/
-> > Signed-off-by: Tamir Duberstein <tamird@gmail.com>
+> > Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
 > > ---
-> >  init/Kconfig           |  3 +++
-> >  rust/kernel/alloc.rs   |  2 +-
-> >  rust/kernel/devres.rs  |  4 ++--
-> >  rust/kernel/io.rs      | 14 +++++++-------
-> >  rust/kernel/lib.rs     | 52 ++++++++++++++++++++++++++++++++++++++++++=
-++++++++
-> >  rust/kernel/of.rs      |  2 +-
-> >  rust/kernel/pci.rs     |  4 ++--
-> >  rust/kernel/str.rs     | 16 ++++++----------
-> >  rust/kernel/uaccess.rs | 12 ++++++++----
-> >  9 files changed, 82 insertions(+), 27 deletions(-)
->
->
-> > diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
-> > index 486715528587..84eb2602e79e 100644
-> > --- a/rust/kernel/lib.rs
-> > +++ b/rust/kernel/lib.rs
-> > @@ -17,6 +17,9 @@
-> >  #![cfg_attr(not(CONFIG_RUSTC_HAS_COERCE_POINTEE), feature(coerce_unsiz=
-ed))]
-> >  #![cfg_attr(not(CONFIG_RUSTC_HAS_COERCE_POINTEE), feature(dispatch_fro=
-m_dyn))]
-> >  #![cfg_attr(not(CONFIG_RUSTC_HAS_COERCE_POINTEE), feature(unsize))]
-> > +#![cfg_attr(CONFIG_RUSTC_HAS_STABLE_STRICT_PROVENANCE, feature(strict_=
-provenance_lints))]
-> > +#![cfg_attr(CONFIG_RUSTC_HAS_STABLE_STRICT_PROVENANCE, deny(fuzzy_prov=
-enance_casts))]
-> > +#![cfg_attr(CONFIG_RUSTC_HAS_STABLE_STRICT_PROVENANCE, deny(lossy_prov=
-enance_casts))]
-> >  #![feature(inline_const)]
-> >  #![feature(lint_reasons)]
-> >  // Stable in Rust 1.83
-> > @@ -25,6 +28,55 @@
-> >  #![feature(const_ptr_write)]
-> >  #![feature(const_refs_to_cell)]
-> >
-> > +#[cfg(CONFIG_RUSTC_HAS_STABLE_STRICT_PROVENANCE)]
-> > +#[allow(clippy::incompatible_msrv)]
->
-> Do we still need this allow?
+> > v1 -> v2:
+> >  * Fix reg property specifier to get rid of yamlint warnings
+> >  * Fix IRQ name to reflect TSU expectations
+>=20
+> ...
+>=20
+> > +  interrupts:
+> > +    description: |
+> > +      Interrupt specifiers for the TSU:
+> > +      - S12TSUADI1: Conversion complete interrupt signal (pulse)
+> > +      - S12TSUADCMPI1: Comparison result interrupt signal (level)
+>=20
+> Same problems as before - you need to list and describe items to have
+> constraints. Otherwise why 5 interrupts are allowed but only two
+> interrupt-names (test this)?
+>=20
+> There is no syntax like above in any other bindings. If you found such,
+> please share the filename so we can fix it.
 
-Yes, explained above.
+Will fix it in v4.
 
-> > +mod strict_provenance {
-> > +    #[doc(hidden)]
->
-> Why make them hidden in docs?
-
-I've added documentation that defers to the standard library.
-
->
-> > +    pub fn expose_provenance<T>(addr: *const T) -> usize {
-> > +        addr.expose_provenance()
->
-> Instead of having these stubs here, you can probably just do
->
->     pub use core::ptr::expose_provenance;
-
-This doesn't work for the methods on primitives, but it works for the
-free functions. Done.
-
-
-> > +    }
+>=20
 > > +
-> > +    #[doc(hidden)]
-> > +    pub fn without_provenance_mut<T>(addr: usize) -> *mut T {
-> > +        core::ptr::without_provenance_mut(addr)
-> > +    }
+> > +  interrupt-names:
+> > +    items:
+> > +      - const: adi
+> > +      - const: adcmpi
 > > +
-> > +    #[doc(hidden)]
-> > +    pub fn with_exposed_provenance<T>(addr: usize) -> *const T {
-> > +        core::ptr::with_exposed_provenance(addr)
-> > +    }
+> > +  "#thermal-sensor-cells":
+> > +    const: 0
 > > +
-> > +    #[doc(hidden)]
-> > +    pub fn with_exposed_provenance_mut<T>(addr: usize) -> *mut T {
-> > +        core::ptr::with_exposed_provenance_mut(addr)
-> > +    }
-> > +}
+> > +  renesas,tsu-calibration-sys:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description: |
+> > +      Phandle to the system controller (sys) that contains the TSU
+> > +      calibration values used for temperature calculations.
 > > +
-> > +#[cfg(not(CONFIG_RUSTC_HAS_STABLE_STRICT_PROVENANCE))]
-> > +mod strict_provenance {
-> > +    #[doc(hidden)]
->
-> I think we should document these.
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - resets
+> > +  - power-domains
+> > +  - interrupts
+> > +  - interrupt-names
+> > +  - "#thermal-sensor-cells"
+> > +  - renesas,tsu-calibration-sys
+> > +
+> > +    thermal-zones {
+>=20
+> Drop the node, no need to show how to use provider binding.
 
-Done.
+Noted. Thanks!
 
->
-> ---
-> Cheers,
-> Benno
->
-> > +    pub fn expose_provenance<T>(addr: *const T) -> usize {
-> > +        addr.cast::<()>() as usize
-> > +    }
-> > +
-> > +    #[doc(hidden)]
-> > +    pub fn without_provenance_mut<T>(addr: usize) -> *mut T {
-> > +        addr as *mut T
-> > +    }
-> > +
-> > +    #[doc(hidden)]
-> > +    pub fn with_exposed_provenance<T>(addr: usize) -> *const T {
-> > +        addr as *const T
-> > +    }
-> > +
-> > +    #[doc(hidden)]
-> > +    pub fn with_exposed_provenance_mut<T>(addr: usize) -> *mut T {
-> > +        addr as *mut T
-> > +    }
-> > +}
-> > +
-> > +pub use strict_provenance::*;
->
+>=20
+> Best regards,
+> Krzysztof
+
+Regards,
+John
 
