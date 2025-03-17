@@ -1,98 +1,103 @@
-Return-Path: <devicetree+bounces-158156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17711A64DD6
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 13:04:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A11A6A64DDC
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 13:06:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A89C162C65
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:04:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 00920162CAE
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:06:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C39D230BEB;
-	Mon, 17 Mar 2025 12:04:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="HN2PDw0J"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AB9C21D3DF;
+	Mon, 17 Mar 2025 12:06:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3435C19CD19
-	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 12:04:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5378B2E3373;
+	Mon, 17 Mar 2025 12:06:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742213089; cv=none; b=EzEmGxALMSaC0q2H/XFnz3NpmJU1HpTyXpOBA/jdAQFV1pqqcg8rMwDDDAxhv5CjebyZt+oZhWTuWFnHOtqHWUwSjjVPgrL0UvxgnPeJ96iCl0L+V3OWOaSA0xLLwLm9glOCES0o6K9tSAySaR0iSXEFSFtF+fcDvBvh5gRMFtg=
+	t=1742213177; cv=none; b=pbVAvpoGyYBbp3qVqGPk05WaozBlq3GY7jDlvEXjvtDwhS8+HOjLrhOnfSKu4k8KGEoGiRnBwkSdSVkx17O2TDb+AfheyuOE0hB2ecS6cpIQ1h+9aDiuAjsqHvw7CxwM1m+jbIWIQm0AVTipDtOFD9SoWew58bzGst+wTKGomxY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742213089; c=relaxed/simple;
-	bh=1UoTWFts0bGtzzjOQFFJBt56Df+MynMz3+ye0XxEul0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=t+KKKNShH4dVuFlxjc7grn302rycd2uAMZKaU2nhHsF+7D1ObjN+5Isf5Q5eeWvJjSfA51zkAxFJ3ZjcGZmm0zXCtzp03rzizDz8ysKDrZG+8mJRkeb+VVgqb7+vRr2axIOr2JQU9VQkfE5WEuZyHspsdNEkmztFziuV5D/cXv4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=HN2PDw0J; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:mime-version:content-transfer-encoding; s=k1; bh=dX49vKBE+MSNuQ
-	E/lhGd+fyN6Zu2+fc64xPUSy2tMC4=; b=HN2PDw0JpFmW44L6kbSQHcStTr+bLX
-	z1Doc1/24yGN9QAEzToLmPbeG9HH00mFx1SD9j/p36NDu810wmtgNkh6UQqE5vR9
-	ad15J7nExePJkJ0dC/ybW9IubhCTP5yCphW9k30QXjo5zBwmOHAxkcKn+htLVlEz
-	12HhV/QfSomV0WfFDo39o6jdvfFhsMZcLqcxxs7mxd+eiaE0qIywIH3oN/iPBgm2
-	iW8Hx5uq3fqZwy2e55xsvb6DhSq0x/pgLwFi9wQN3zlHUa73FibMOUEKvumAkqus
-	WpAKafe1sEDinTksvhCb7RllotWV9EtYDabCOBeUqMng6/wBM/+5Ivyw==
-Received: (qmail 3133718 invoked from network); 17 Mar 2025 13:04:43 +0100
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 17 Mar 2025 13:04:43 +0100
-X-UD-Smtp-Session: l3s3148p1@P+33l4gwiLAgAwDPXyTHAJp038nK7dx+
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-renesas-soc@vger.kernel.org
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
+	s=arc-20240116; t=1742213177; c=relaxed/simple;
+	bh=3isjYC6z21qtIysFBqMQ/1DQBe0JOMXTX/9T1M/PL54=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=u7S7s0LvAv+PrRpDgAISkXpzwu1bVdKuRDZLqVTHIKrtubS1cIDt5VEcEFxxzZEQmf8DMiwDwC0AkkPb90ifEBPc0f4wnV1fcXYaEl50wKX1G8QLUkuxs49cC7FH6jcrSzDe/8WXstoFO6F2fhlzohAPGufhHJ/YWiF0hlaus+E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
+X-CSE-ConnectionGUID: msY5yHa2T7iGsERFEjtnCg==
+X-CSE-MsgGUID: IN1WL6myRnyurxc+fuX+EA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11375"; a="46070439"
+X-IronPort-AV: E=Sophos;i="6.14,254,1736841600"; 
+   d="scan'208";a="46070439"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2025 05:06:14 -0700
+X-CSE-ConnectionGUID: ORlBzQfaR02LBabS5x8ZCA==
+X-CSE-MsgGUID: AjTMDPT9RGu39HVM1pOi1g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,254,1736841600"; 
+   d="scan'208";a="145091378"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2025 05:06:12 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andy@kernel.org>)
+	id 1tu9EO-00000003Id9-1gT8;
+	Mon, 17 Mar 2025 14:06:08 +0200
+Date: Mon, 17 Mar 2025 14:06:08 +0200
+From: Andy Shevchenko <andy@kernel.org>
+To: Hans de Goede <hdegoede@redhat.com>
+Cc: Francesco Dolcini <francesco@dolcini.it>,
+	Emanuele Ghidoli <ghidoliemanuele@gmail.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: serial: snps-dw-apb-uart: document RZ/N1 binding without DMA
-Date: Mon, 17 Mar 2025 13:04:37 +0100
-Message-ID: <20250317120437.67683-2-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.47.2
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-i2c@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+	soc@kernel.org,
+	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Subject: Re: [RFC PATCH v1 0/2] platform: toradex: Add toradex embedded
+ controller
+Message-ID: <Z9gQMPjjCt9Rn4lH@smile.fi.intel.com>
+References: <20250313144331.70591-1-francesco@dolcini.it>
+ <4596db59-51fc-4497-9e94-670e9533e7aa@redhat.com>
+ <20250317100856.GC17428@francesco-nb>
+ <bc3144b7-23c8-4b47-bdd8-c482b1a6d81d@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <bc3144b7-23c8-4b47-bdd8-c482b1a6d81d@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Renesas RZ/N1D has this UART with and without DMA support. Currently,
-only the binding with DMA support is described. Add the missing one
-without DMA support which can fallback even more.
+On Mon, Mar 17, 2025 at 11:39:14AM +0100, Hans de Goede wrote:
+> On 17-Mar-25 11:08, Francesco Dolcini wrote:
 
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
- .../devicetree/bindings/serial/snps-dw-apb-uart.yaml        | 6 ++++++
- 1 file changed, 6 insertions(+)
+...
 
-diff --git a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-index 1c163cb5dff1..5b5799c21243 100644
---- a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-+++ b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-@@ -30,6 +30,12 @@ allOf:
- properties:
-   compatible:
-     oneOf:
-+      - items:
-+          - enum:
-+              - renesas,r9a06g032-uart
-+              - renesas,r9a06g033-uart
-+          - const: renesas,rzn1-uart
-+          - const: snps,dw-apb-uart
-       - items:
-           - enum:
-               - renesas,r9a06g032-uart
+> But if Andy and Ilpo are happy to take this as a more monolithic
+> driver under drivers/platform/aarch64 I'm not going to nack that
+> approach.
+
+I'm okay with the choice as long as it's suffice the purpose.
+I agree that aarch64 maybe not a good choice after all, but
+we should start from somewhere. Later on we can move to agnostic
+folder if needed. The question here is more about MFD/not-MFD.
+If the former becomes the case, it would need to be under drivers/mfd
+as Lee asked for that (or even required).
+
 -- 
-2.47.2
+With Best Regards,
+Andy Shevchenko
+
 
 
