@@ -1,144 +1,143 @@
-Return-Path: <devicetree+bounces-158117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158118-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72D9AA64B9C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:04:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89A4EA64BA4
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:05:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F3C31892B1E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 11:03:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5C5E170A44
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 11:04:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0025C23314E;
-	Mon, 17 Mar 2025 11:00:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C924421B18C;
+	Mon, 17 Mar 2025 11:03:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BZtT7gJk"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="FqMInOu/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C77D4221D90;
-	Mon, 17 Mar 2025 11:00:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F10AA38B;
+	Mon, 17 Mar 2025 11:03:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742209235; cv=none; b=jvCGjyIprUgk0vneRx0oUAsFO2ljVjNcuqn78C0gm/QBbrGB6H/4zhGmOxam+3bHA9xgVWqk9NnoSuCsvuhHK/DjqDs9picTrJE+nBG57xGdQMnXdHJIznpJFpeqiWc8YmrTuoB6sdKh9hXF5/EDREIp/zZRsDUH2bUOGDXZTAU=
+	t=1742209421; cv=none; b=AjApOtJT65CL3LujyQYwEK9DSBV3wvouUX/b5zfqOMCUWjlNx1bKgcLLr7XQuzqvc8d1J1B3pA5SEuOol4xOokYWEirRFWvvGv9AVgOYVH/KOwGqJi6LwbPVgxpNG1b1yyPxHaBrmx0DYNhgRbcwUgzHPbPamZTncwKonZmVh6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742209235; c=relaxed/simple;
-	bh=cIaIJPwYqOlCSjrnyIzd9vFpecO2RJ2/gkUxMvk8lC8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jV8+WNsil4OrL5xcCRdD2yIrUUggthD/mWuTmQRysHDHyMvD/vRex2XF6w8HY7J8E/n+q9SJCoGSQOMmZBc3P0PTihettvzPd57bwZz2IrGK3DG6vokqMvJG2xYI2l6DgQDo/R4l9N7Z4vkEQxVFyFFqClWHmEz0jz9dl5yJN0U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BZtT7gJk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E363C4CEE3;
-	Mon, 17 Mar 2025 11:00:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742209234;
-	bh=cIaIJPwYqOlCSjrnyIzd9vFpecO2RJ2/gkUxMvk8lC8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=BZtT7gJkXFBW3k13ZwFE6PnSSSuaNGfQ7UyVPsMJrv2zWOqEJDtxCOvQ25Ubq6RXd
-	 wrQhN0GziufdmwGSzPxrK2YWxwVDI6ZxmhSmRg/KG6zty2rrLtgdpbWq+J3KFLovrG
-	 djAa5zU5SIR/6YF0SPqcTZIzJGBhBwuW+tCC8l+qcaP26blNu1DKSccpYHLKj7lpvd
-	 qsSZfqaIJR2kYor99/8nKLGxJH0UGxYESFTmfYTJ2EggQ02owV24gAyaztQ/lZyzCR
-	 bsnl2hYzHhSOoV7WJ9wL92luMmj4ZaXcJH4Vf1ImyM848ruOkxBwePZ8JzTWuTBaLr
-	 hUgItkkUJk5ww==
-Date: Mon, 17 Mar 2025 11:00:12 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Andreas Klinger <ak@it-klinger.de>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- lars@metafoo.de, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, javier.carrasco.cruz@gmail.com,
- mazziesaccount@gmail.com, subhajit.ghosh@tweaklogic.com,
- muditsharma.info@gmail.com, arthur.becker@sentec.com,
- ivan.orlov0322@gmail.com
-Subject: Re: [PATCH 1/3] dt-bindings: iio: light: veml6046x00: add color
- sensor
-Message-ID: <20250317110012.2ad89cb9@jic23-huawei>
-In-Reply-To: <20250316113131.62884-2-ak@it-klinger.de>
-References: <20250316113131.62884-1-ak@it-klinger.de>
-	<20250316113131.62884-2-ak@it-klinger.de>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1742209421; c=relaxed/simple;
+	bh=CI2O3QoR8fwKrsxCtcAgNWI4XnD0T0da3jTU3OBOfiw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=QOpbciE3cEBgU/EWGPL0VTILfc8i8pek25iX1yK4Yt40ZhozZCBDngPcB3izCRfyoW9uuO39Cx4ZNSKUCLNGCPrjIRbgW6b4ZYWk4WlRBXHD3uFnp8+LDl3mV1KjNWbLDM8PcLQ/0KAWTOlItBTA3Bb8fxp0/40bC2h4FKE/ogk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=FqMInOu/; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 785457ae031f11f08eb9c36241bbb6fb-20250317
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=657JLeMn4zGfcS0ZqmrhuDCOiVafOjPS5gLha6fBHnQ=;
+	b=FqMInOu/3cUuHByDD6uJmAIQZ3TTGMSPmDdJkN7j7uMDBWeZ560uT/Ro+k7/boYVpN1LNjGaHRQhWqu1pwIuXK8gR6lSMyqMIH1KN/uzKIT3yERg7ZOH89ieN+7RlUGTziKmMOyOSGkW02OTNV436Lm34KUxNPghQLBkjlZ581I=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.2.1,REQID:99a37237-b729-4f65-9388-2a6403c134ef,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:0ef645f,CLOUDID:498c798c-f5b8-47d5-8cf3-b68fe7530c9a,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:ni
+	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 785457ae031f11f08eb9c36241bbb6fb-20250317
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw02.mediatek.com
+	(envelope-from <jjian.zhou@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1670026747; Mon, 17 Mar 2025 19:03:34 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ MTKMBS09N2.mediatek.inc (172.21.101.94) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.39; Mon, 17 Mar 2025 19:03:33 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.39 via Frontend Transport; Mon, 17 Mar 2025 19:03:32 +0800
+From: Jjian Zhou <jjian.zhou@mediatek.com>
+To: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai
+	<wenst@chromium.org>, Jjian Zhou <jjian.zhou@mediatek.com>
+Subject: [PATCH RFC v3 0/3] add VCP mailbox and IPC driver
+Date: Mon, 17 Mar 2025 19:03:22 +0800
+Message-ID: <20250317110331.2776-1-jjian.zhou@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-On Sun, 16 Mar 2025 12:31:29 +0100
-Andreas Klinger <ak@it-klinger.de> wrote:
+The VCP mailbox has 5 groups. Each group has corresponding interrupts,
+registers, and 64 slots (each slot is 4 bytes). Since different features
+share one of the mailbox groups, the VCP mailbox needs to establish a
+send table and a receive table. The send table is used to record the
+feature ID, mailbox ID, and the number of slots occupied. The receive table
+is used to record the feature ID, mailbox ID, the number of slots occupied,
+and the receive options. The API setup_mbox_table in mtk-vcp-ipc.c calculates
+the slot offset and pin index for each feature ID based on the mailbox ID and
+slot number in the send and receive tables (several slots form a pin, and
+each pin can trigger an interrupt). These descriptions are written in the
+mtk-vcp-ipc.c file -- we call it the IPC layer.
 
-> Add a new compatible for Vishay high accuracy RGBIR color sensor
-> veml6046x00.
-> 
-> Signed-off-by: Andreas Klinger <ak@it-klinger.de>
-> ---
->  .../iio/light/vishay,veml6046x00.yaml         | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/light/vishay,veml6046x00.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/light/vishay,veml6046x00.yaml b/Documentation/devicetree/bindings/iio/light/vishay,veml6046x00.yaml
-> new file mode 100644
-> index 000000000000..3207800fc539
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/light/vishay,veml6046x00.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/light/vishay,veml6046x00.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Vishay VEML6046X00 High accuracy RGBIR color sensor
-> +
-> +maintainers:
-> +  - Andreas Klinger <ak@it-klinger.de>
-> +
-> +description:
-> +  VEML6046X00 datasheet at https://www.vishay.com/docs/80173/veml6046x00.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - vishay,veml6046x00
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  vdd-supply: true
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vdd-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        color-sensor@29 {
-> +            compatible = "vishay,veml6046x00";
-> +            reg = <0x29>;
-> +            vdd-supply = <&vdd_reg>;
-> +            interrupt-parent = <&gpio2>;
-> +            interrupts = <3 IRQ_TYPE_EDGE_FALLING>;
-Need an include for this I think.  Make sure to test build your
-bindings following the instructions in the bot message.
+We have two questions:
+How should we describe the mailbox and IPI?
+Can the intermediate IPC layer be rewritten as a virtual mailbox layer?
 
-Thanks,
+Example of send and recve table:
+Operation | mbox_id | ipi_id | msg_size | align_size | slot_ofs | pin_index |  notes
+send          0          0       18          18           0          0
+recv          0          1       18          18          18          9
+send          1         15        8           8           0          0
+send          1         16       18          18           8          4
+send          1          9        2           2          26         13
+recv          1         15        8           8          28         14       ack of send ipi_id=15
+recv          1         17       18          18          36         18
+recv          1         10        2           2          54         27       ack of send ipi_id=2
+send          2         11       18          18           0          0
+send          2          2        2           2          18          9
+send          2          3        3           4          20         10
+send          2         32        2           2          24         12
+recv          2         12       18          18          26         13
+recv          2          5        1           2          44         22
+recv          2          2        1           2          46         23
 
-Jonathan
+Recv ipi_id=2 is the ack of send ipi_id=2(The ipi_id=15 is the same.)
 
-> +        };
-> +    };
-> +...
+Jjian Zhou (3):
+  mailbox: mediatek: Add mtk-vcp-mailbox driver
+  firmware: mediatek: Add vcp ipc protocol interface
+  dt-bindings: mailbox: mtk,mt8196-vcp-mbox: add mtk vcp-mbox document
+
+ .../bindings/mailbox/mtk,mt8196-vcp-mbox.yaml |  49 ++
+ drivers/firmware/Kconfig                      |   9 +
+ drivers/firmware/Makefile                     |   1 +
+ drivers/firmware/mtk-vcp-ipc.c                | 481 ++++++++++++++++++
+ drivers/mailbox/Kconfig                       |   9 +
+ drivers/mailbox/Makefile                      |   2 +
+ drivers/mailbox/mtk-vcp-mailbox.c             | 179 +++++++
+ include/linux/firmware/mediatek/mtk-vcp-ipc.h | 151 ++++++
+ include/linux/mailbox/mtk-vcp-mailbox.h       |  34 ++
+ 9 files changed, 915 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/mtk,mt8196-vcp-mbox.yaml
+ create mode 100644 drivers/firmware/mtk-vcp-ipc.c
+ create mode 100644 drivers/mailbox/mtk-vcp-mailbox.c
+ create mode 100644 include/linux/firmware/mediatek/mtk-vcp-ipc.h
+ create mode 100644 include/linux/mailbox/mtk-vcp-mailbox.h
+
+-- 
+2.45.2
 
 
