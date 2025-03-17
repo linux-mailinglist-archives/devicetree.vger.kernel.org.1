@@ -1,61 +1,56 @@
-Return-Path: <devicetree+bounces-158120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D39BEA64B9B
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:04:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A5E2A64BB5
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:06:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F1A77A818F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 11:03:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3B5647A22D3
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 11:05:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE576235BF8;
-	Mon, 17 Mar 2025 11:03:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99FB61990B7;
+	Mon, 17 Mar 2025 11:06:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lqCaHkx0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="st+vdckJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A26392356DD;
-	Mon, 17 Mar 2025 11:03:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7238D221710;
+	Mon, 17 Mar 2025 11:06:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742209423; cv=none; b=T2e5MXrn7pXlRD1P8W0ddVLRRe/NO68FtS6ngs5hwRUKd/REeJj5nvJ6J+KlgFsU8Nbg2HUbGW3u9RnX+mM7SnkhE+0KABE7sb+SikG8izKgd7HjslvsBb364UtYVFChR6fmEJQxTtPaBJNQKJfkhB84MpmVCo7HJsTkdwSifSc=
+	t=1742209600; cv=none; b=Fctlj4iCx+/EY5awN9gHrwPk4rjXCKBHiXxJn/Za7k1mfoO13HM5SE3fqWl748EuANFPWjnaX9lGFUWEcfZeAtL42CYX74mxC297A+j8Am/S5xE5+jjFfOdEPqrwsTO571aUrXWibGrgnoLGFRF2IChB2NbTZaXT7VRghe/ylaE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742209423; c=relaxed/simple;
-	bh=V41ZUwASBtDSG8LFz5a7NDTbRLOAcqGA3ehJtXNjFmU=;
+	s=arc-20240116; t=1742209600; c=relaxed/simple;
+	bh=VRLTGOlYJ+mrs8AsFJHXjRBlLTwMvjty6q/+EJrWmMY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a/nq4pkQHCvl1ztt2172X4YHlwuG6yugKFOOtJvG3IPq1d62UMH8aibzwL1FALx33hl+AzZRVWnpdyB5U7okfwRpGHfhu1ouThknYEzn2YLEgZgV2FjC6RXJi+dyyq6GVZsePYcwtxpH3uSXZJy0vJGqM5QTtD3w+XlwXqVLPEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lqCaHkx0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42A19C4CEE9;
-	Mon, 17 Mar 2025 11:03:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=A3vlKCveypzLOR2keSkYlH/1vLtjSoNBMv/nX31Pt8mGUdDq9WNSqxGihwV0CIilcunWD+oWZTaR+hqujKXgbrqBZuh7YXNKrEXXyPtXjhILeOTgnJ4eLU95SxMNvwXqXr2T+n0HpLRqzE+VO0/7jH/0k0+XRxsTvFgccTvYnpE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=st+vdckJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A5C5C4CEE3;
+	Mon, 17 Mar 2025 11:06:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742209422;
-	bh=V41ZUwASBtDSG8LFz5a7NDTbRLOAcqGA3ehJtXNjFmU=;
+	s=k20201202; t=1742209599;
+	bh=VRLTGOlYJ+mrs8AsFJHXjRBlLTwMvjty6q/+EJrWmMY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lqCaHkx0JZWGpgHcQSb1BKAI4k58qmGuygwFri4LiTuNiYzWWwIYIn4e09WvXVsf3
-	 q+RH+KCjQehnBEOXua/aV3P5chfdb8iu4SZinMm/vUaTDeSd53isBC71hrRL2uStU+
-	 7gFSbcWO/+QXIXFm4dwDWKd0FtPQjzk+IFGObqUKhWPQZx1bcLwBrKKKO+Qkwvs183
-	 LkMsxEYJVc9skrbIeFhkj1gs09jhzFw0WX94qS12O6WUTBzGMrHknxZvSemcEw5onv
-	 6EjDH5hWQ6MY9IcGilMDds54oX9I4+xtF2w6oCiTYysb2R/ANTi0zAIeu3l5Rk6hND
-	 zPDrifKDf8Mnw==
-Date: Mon, 17 Mar 2025 12:03:37 +0100
+	b=st+vdckJoADxJYeVVSwSpokDG6uWFTONcJiutGe+InYYk10smO0z/Cx0l8znIFx+C
+	 S4O3JDc43rTB5Pi7w5YK+n0Jf4YUZJK9swCrbFzVbnMEu6FtoRFEOf0p8oCbc+8aTo
+	 SCP8/a+A+LiVDjJov3CFFucU4YQJceO60lwM2EQacVb74E1xUFwPw0UEVNmra65P/t
+	 kKw601voONy8pGzXhkw3kcjBq9bkjpUPoRFQfvG9Z2DOu05HBofOjGe23xlAAEOnkT
+	 f3+B7hRtxpnccUy8Bhs7OKdT3sPinC871NFfWSl4B9kh8zWl1s5xInmo7rXqsMJfIc
+	 3LV4EIh/DVk0w==
+Date: Mon, 17 Mar 2025 12:06:36 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, Thierry Reding <treding@nvidia.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Maxim Schwalm <maxim.schwalm@gmail.com>, 
-	Brad Griffis <bgriffis@nvidia.com>, Dara Stotland <dstotland@nvidia.com>, 
-	David Heidelberg <david@ixit.cz>, Ion Agorria <ion@agorria.com>, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: arm: tegra: Add Asus Transformer Pad
- TF300TL
-Message-ID: <20250317-stirring-elegant-sunfish-b2d44b@krzk-bin>
-References: <20250315074416.8067-1-clamor95@gmail.com>
- <20250315074416.8067-2-clamor95@gmail.com>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
+	Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH] dt-bindings: rtc: pcf2127: Reference
+ spi-peripheral-props.yaml
+Message-ID: <20250317-robust-authentic-cassowary-0eb80b@krzk-bin>
+References: <20250315124150.1853699-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,29 +59,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250315074416.8067-2-clamor95@gmail.com>
+In-Reply-To: <20250315124150.1853699-1-festevam@gmail.com>
 
-On Sat, Mar 15, 2025 at 09:44:15AM +0200, Svyatoslav Ryhel wrote:
-> Add a compatible for the Asus Transformer Pad TF300TL.
+On Sat, Mar 15, 2025 at 09:41:50AM -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> ---
->  Documentation/devicetree/bindings/arm/tegra.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+> Currently, when the 'spi-max-frequency' property is passed, the following
+> dt-schema warning is seen:
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/tegra.yaml b/Documentation/devicetree/bindings/arm/tegra.yaml
-> index 65e0ff1fdf1e..3e106ff2a8be 100644
-> --- a/Documentation/devicetree/bindings/arm/tegra.yaml
-> +++ b/Documentation/devicetree/bindings/arm/tegra.yaml
-> @@ -61,6 +61,9 @@ properties:
->        - items:
->            - const: asus,tf300tg
->            - const: nvidia,tegra30
-> +      - items:
-> +          - const: asus,tf300tl
+> 'spi-max-frequency' does not match any of the regexes: 'pinctrl-[0-9]+'
 
-That's just enum of previous entry. This pattern of one list per board
-is not making it readable, but opposite.
+Is this real or imaginary error? If imaginary, then do not include it
+because it just confuses.
+
+Otherwise: which Makefile target in upstream has this error?
+
+> 
+> Fix it by adding a reference to spi-peripheral-props.yaml and change
+> it to use 'unevaluatedProperties: false'.
+
+You wrote 7 lines for something as simple as saying this is a SPI
+device thus its binding should reference SPI device properties. Please
+write concise and accurate commit msgs.
 
 Best regards,
 Krzysztof
