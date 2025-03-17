@@ -1,212 +1,134 @@
-Return-Path: <devicetree+bounces-158062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC5B8A64695
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 10:08:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3111AA6469F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 10:08:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC1A318933C0
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 09:08:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 244733AE451
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 09:08:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 602F4221545;
-	Mon, 17 Mar 2025 09:07:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42C1922171B;
+	Mon, 17 Mar 2025 09:08:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YAPbskh2"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="dX4kwwI8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2D171459F7
-	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 09:07:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9055D21B1A3;
+	Mon, 17 Mar 2025 09:08:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742202477; cv=none; b=iWYgvpnQgxYUdlX2M4/Jzgm4EHhFK5+7X8GW2/40b1KWDxBnWHhP8AJOt48luAWWDi6tVD2JkFczDGgKf1lCpQb+C0s4WVaC2beVhak4BvFXrpLkVByqjoobUrspGqG5NxP++L1oN6i5+MV4URB0Vg3i9tX8MAKIyNCPTkuOtfg=
+	t=1742202528; cv=none; b=k1csX21BSkKp7r73ujvN4d5ceqBkSL7ItjxgDq7arDVKvy7/xMBhKkH/UZUnF/saldUm0vz8qRoEQEbyXkF7NYjN3sYraQaWXZOGzrlHkwKjMfVnd6uNpcAPMNnGPPnbZ9eyz//JKjw9fgOHroUJJ7/rH9xKZF720xnNJXciOvk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742202477; c=relaxed/simple;
-	bh=+AiPVzF7b1V/vgA2zpvuQUa7wN7Ef6NyFUe8lYcs+os=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rlw5U4JqMirgHF/wkeluIC6UDbrA5To0B+1qUjho2ANsl3qItJgKJjss9aQQjzfV4yNcw0oSI1P1pZUcpBPC2y1IGi0HW1c3rH5ztrKC/c+i9qMTprFjWYB3oBfqaOyfVrXPS6/E+cR4cFwscNS5eG+T79MU5yNp5K9muPVPtLY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YAPbskh2; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52GKSRql019140
-	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 09:07:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	YvB5W9+kgBjKeK0p1OnHFcTClNx4sp6hZOaOwkPfr5g=; b=YAPbskh2+wkbluk3
-	5cBVUNQ9k3avEdIeJktk6MZokj4tc+9OjvQUdH+lPkEo2t9Fmje3dhAEDBHfC4Gg
-	r5k3Tn49obaqtFF6wrerRo40/7sxmyDU6bfnDN/i6H6ja1M9NgV4KHb/TyJuGJqo
-	euyfof4BXRLF70ZjGN47P5PuiZoYRNHVEMrd0atI3O7/bZyvojmECKKqGlMHqzjv
-	6+EW7hFtX2axwgy5ZffqGB+LrR4jH1ACBQJkjhp2oAg32rK44yldgj51I7H+m9KY
-	nqh34nrzsLIbgrHAEylUEqxDkIDX01R9N21HBUOobTt5BmPIT1RXnf7RnqI8O5vd
-	jdjI/w==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45d2u9v16y-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 09:07:54 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2254e500a73so54387635ad.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 02:07:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742202474; x=1742807274;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YvB5W9+kgBjKeK0p1OnHFcTClNx4sp6hZOaOwkPfr5g=;
-        b=tWSrT/lVJCM+AgTID7Uu+riGd0G0Mml5XAmAZyLTwhdeRmpCnnVGjrZWqYlWbz7Svv
-         daYRAnyN+zL+zN+mkC1B5AlReJUPjx3UNw5gkdN1chvuIQPnF4I9xrzZQC/ZlFECAQH3
-         rmIpsEhBWoHqKldBlvqfGL4n0i3uu/vRYcRDWRcF+8QPzuoEQch1jpZkk5MiiLFyPSp9
-         eTSjWVLFnD3e0u74c+0vjT3rJA3kCU7UYzs9r2fBfMTZdD9emaa8LuoO8lZ3rkCnbzdk
-         I9xnXW6OCnwn+RtgMjtgQv1AcNARQTCkbi8cQdF6kRdb06JvO6SbGJMpwiAi/CGHk5/A
-         WNNg==
-X-Forwarded-Encrypted: i=1; AJvYcCWqGDaM7h24kAAOCRQzJTSbhUwRiVegfjdTCCpAa4bRKa96luSVG6wjyiFWvlNkTK8m2v0+gxoknM7D@vger.kernel.org
-X-Gm-Message-State: AOJu0YxsI2Xfj3QiP8DYCCfu6z4by7k+Mi5VOLdArNGF24TAqiXCvpV9
-	GZ7aiSMnor5Zl+0wNKP3UIXWxIvDnpPB4kFJnsnUaNGm9Huqup7B1NGvZhQeITQ7j65L7CcKQaV
-	UMgpX8wC1TCGO7wdCLrp3oRd0vdN3McPO48G2awVZb8l82rqlwrm3HLh4tD1w
-X-Gm-Gg: ASbGncvkFmR+iG2FvtCIy4Oned5bYhzZtS+D97tjO+Ioe7WNN7UTW7v5gX+lQ/crujj
-	P1QF9Iee0Ogiatdqd7FL5xN37VeOOJv1hUXL+BtrBjyFtCzTVVUaO9LEDLUAm4pQQLIm+CTmynH
-	OiWjdQojtwNv1aPFvTq85dNtDxO0wdUk5cEadiVfirP6wpivBYCbgfI6AO/u4VdrIJnT9kHXCHS
-	yvjieJFa/idFIFZtRJTF7ES0HookaEuahI94mP1beaxUWxzXYqPYP7MXgtdXf5r4DsEIMbnE0K2
-	v7mPMmCI0KgtMA/58o4VlG3P61X5ZG55fl38kbMclkEzvw==
-X-Received: by 2002:a05:6a00:2e15:b0:736:5753:12f7 with SMTP id d2e1a72fcca58-7372236c48amr15633870b3a.3.1742202473729;
-        Mon, 17 Mar 2025 02:07:53 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFb2/5Yz0QBAf85V3J3MJIKQQYTZZtL2r4Zp4gVmTlQYnG653reK868zYsRjio4CbC3TLgJeQ==
-X-Received: by 2002:a05:6a00:2e15:b0:736:5753:12f7 with SMTP id d2e1a72fcca58-7372236c48amr15633816b3a.3.1742202473230;
-        Mon, 17 Mar 2025 02:07:53 -0700 (PDT)
-Received: from [10.92.192.202] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73711557ee8sm7351197b3a.52.2025.03.17.02.07.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Mar 2025 02:07:52 -0700 (PDT)
-Message-ID: <74ff7b72-94d6-cd19-06c4-09cddc885cb0@oss.qualcomm.com>
-Date: Mon, 17 Mar 2025 14:37:45 +0530
+	s=arc-20240116; t=1742202528; c=relaxed/simple;
+	bh=JTPXIlCvhGNW08kSL9ZQe12t3Ga0p3gZHTOp47t1/Sk=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=tZPhnSZILMnJFtth1okOvXaHueLtLkYuOjvQxv8l0TOXuivey8WsTIu3d50b/789w117D+mJTp7eNQ4aBmc4tomV7jK0L/LuvrPnBFgQCYzx45mKGgYKvJWO4B/8GC+cnxY27dVa8+tZ5WQr5YHOoxmMLQrBK5BqJVx2L5n5HVQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=dX4kwwI8; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1742202526; x=1773738526;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=JTPXIlCvhGNW08kSL9ZQe12t3Ga0p3gZHTOp47t1/Sk=;
+  b=dX4kwwI8dw8Zhn8yhRngLwo+orRPkHGr/qJllBpAFyEXPfx8IWCdpXKO
+   2hjQ+Y5Gixk8b7lNmmCWgVYq9XZrphfCDxKRAQJZIRzkSmiBZZ31CawiU
+   ZyS25IHTk/oGwRpxl+eKHcCFznj9+RdnzXLGQv4it/Jla9m4eZ/GEikEY
+   fKhvBwXJX+V2EcVKBeysnLE41IwiJRwZHt2rL8k6e7qXPP8VSRYJ7L6Av
+   Gl7Z+oSpIlE5gCLWPsKRw68zxH+cu94APsNoNbZc/WscR82ASluw/kbRi
+   hEUyIlX1uuiu+mBHKq4S1g8oOv0WFYdiHnMdwM2hBOl4EiuWDcTgrCECp
+   Q==;
+X-CSE-ConnectionGUID: cdV/yO62T2+o2ggmCIuq7A==
+X-CSE-MsgGUID: TKPR0AqgSTCkH9O884aMCw==
+X-IronPort-AV: E=Sophos;i="6.14,253,1736838000"; 
+   d="scan'208";a="43507978"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 17 Mar 2025 02:08:40 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Mon, 17 Mar 2025 02:08:10 -0700
+Received: from marius-VM.mshome.net (10.10.85.11) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.44 via Frontend
+ Transport; Mon, 17 Mar 2025 02:08:08 -0700
+From: <marius.cristea@microchip.com>
+To: <jic23@kernel.org>, <lars@metafoo.de>, <robh@kernel.org>
+CC: <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <oskar.andero@gmail.com>,
+	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <marius.cristea@microchip.com>
+Subject: [PATCH v2 0/2] adding support for Microchip PAC194X Power Monitor
+Date: Mon, 17 Mar 2025 11:08:01 +0200
+Message-ID: <20250317090803.30003-1-marius.cristea@microchip.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v4 08/10] PCI: pwrctrl: Add power control driver for
- tc956x
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        chaitanya chundru <quic_krichai@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, Jingoo Han <jingoohan1@gmail.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: quic_vbadigan@quicnic.com, amitk@kernel.org, dmitry.baryshkov@linaro.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        jorge.ramirez@oss.qualcomm.com,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20250225-qps615_v4_1-v4-0-e08633a7bdf8@oss.qualcomm.com>
- <20250225-qps615_v4_1-v4-8-e08633a7bdf8@oss.qualcomm.com>
- <d8ef7b67-a31f-4a49-8810-90dfebd2d8e1@oss.qualcomm.com>
-Content-Language: en-US
-From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-In-Reply-To: <d8ef7b67-a31f-4a49-8810-90dfebd2d8e1@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=JsfxrN4C c=1 sm=1 tr=0 ts=67d7e66a cx=c_pps a=cmESyDAEBpBGqyK7t0alAg==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=LmMbr2wudRAhekVMzXwA:9
- a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: oGwxflIHPzoH8OOaNXYbVuR8MgikYFrA
-X-Proofpoint-ORIG-GUID: oGwxflIHPzoH8OOaNXYbVuR8MgikYFrA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-17_03,2025-03-17_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
- mlxlogscore=999 impostorscore=0 suspectscore=0 phishscore=0
- priorityscore=1501 bulkscore=0 malwarescore=0 spamscore=0
- lowpriorityscore=0 clxscore=1015 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502280000 definitions=main-2503170066
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+
+From: Marius Cristea <marius.cristea@microchip.com>
+
+Adding support for Microchip PAC194X and PAC195X series of Power Monitor with
+Accumulator chip family. This driver covers the following part numbers:
+ - PAC1941, PAC1941_2, PAC1942, PAC1942_2, PAC1943, PAC1944
+ - PAC1951, PAC1951_2, PAC1952, PAC1952_2, PAC1953, PAC1954
+
+The PAC194X family supports 9V Full-Scale Range and the PAC195X supports 32V
+Full-Scale Range.
+There are two versions of the PAC194X/5X: the PAC194X/5X-1 devices are for
+high-side current sensing and the PAC194X/5X-2 devices are for low-side current
+sensing or floating VBUS applications.
+The PAC194X/5X-1 is named shortly PAC194X/5X.
+
+Differences related to previous patch:
+v2:
+- fix review comments device tree binding:
+    remove underscore from names
+    add names to the interrupts and list them
+    add a better description for new properties
+- fix review comments driver:
+    fix coding style issues
+    use bitmap for checking the active channels
+    keep the "pac1944_get_unaligned_be56" here because the change wasn't acceted
+      into the asm-generic.
+    document new added attributes
+    remove the "scan" part till we support buffered capture
+    remove "unlikely" marking
+    add masks up in some array of const structures to avoid some case statements
+    remove pac1944_mutex_destroy function
+    replace some functions with a macro (just for testing)
+    replace dev_err with dev_err_probe in functions used in pac1944_probe
+    
+v1:
+- first version committed to review
+
+Marius Cristea (2):
+  dt-bindings: iio: adc: adding support for PAC194X
+  iio: adc: adding support for PAC194X
+
+ .../ABI/testing/sysfs-bus-iio-adc-pac1944     |  118 +
+ .../bindings/iio/adc/microchip,pac1944.yaml   |  195 +
+ MAINTAINERS                                   |    7 +
+ drivers/iio/adc/Kconfig                       |   12 +
+ drivers/iio/adc/Makefile                      |    1 +
+ drivers/iio/adc/pac1944.c                     | 3314 +++++++++++++++++
+ 6 files changed, 3647 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-pac1944
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/microchip,pac1944.yaml
+ create mode 100644 drivers/iio/adc/pac1944.c
 
 
+base-commit: 577a66e2e634f712384c57a98f504c44ea4b47da
+-- 
+2.45.2
 
-On 2/25/2025 5:39 PM, Konrad Dybcio wrote:
-> On 25.02.2025 10:34 AM, Krishna Chaitanya Chundru wrote:
->> TC956x is a PCIe switch which has one upstream and three downstream
->> ports. To one of the downstream ports ethernet MAC is connected as endpoint
->> device. Other two downstream ports are supposed to connect to external
->> device. One Host can connect to TC956x by upstream port. TC956x switch
->> needs to be configured after powering on and before PCIe link was up.
->>
->> The PCIe controller driver already enables link training at the host side
->> even before this driver probe happens, due to this when driver enables
->> power to the switch it participates in the link training and PCIe link
->> may come up before configuring the switch through i2c. Once the link is
->> up the configuration done through i2c will not have any affect.To prevent
->> the host from participating in link training, disable link training on the
->> host side to ensure the link does not come up before the switch is
->> configured via I2C.
->>
->> Based up on dt property and type of the port, tc956x is configured
->> through i2c.
->>
->> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
->> Reviewed-by: Bjorn Andersson <andersson@kernel.org>
->> Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->> ---
-> 
-> 
->> +struct tc956x_pwrctrl_cfg {
->> +	u32 l0s_delay;
->> +	u32 l1_delay;
->> +	u32 tx_amp;
->> +	u8 nfts[2]; /* GEN1 & GEN2*/
-> 
-> GEN2 */
-> 
-> [...]
-> 
->> +static int tc956x_pwrctrl_set_l0s_l1_entry_delay(struct tc956x_pwrctrl_ctx *ctx,
->> +						 enum tc956x_pwrctrl_ports port, bool is_l1, u32 ns)
->> +{
->> +	u32 rd_val, units;
->> +	int ret;
->> +
->> +	if (!ns)
->> +		return 0;
->> +
->> +	/* convert to units of 256ns */
->> +	units = ns / 256;
-> 
-> Should we round up here, so that values in 1 <= x < 256 give a delay
-> value of 1 unit? Or maybe such values are never expected?
-> 
-I will add a check above to return if ns < 256 as 0 is not expected
-value.
-> [...]
-> 
->> +static int tc956x_pwrctrl_set_tx_amplitude(struct tc956x_pwrctrl_ctx *ctx,
->> +					   enum tc956x_pwrctrl_ports port, u32 amp)
->> +{
->> +	int port_access;
->> +
->> +	if (amp < TC956X_TX_MARGIN_MIN_VAL)
->> +		return 0;
->> +
->> +	/*  txmargin = (Amp(uV) - 400000) / 3125 */
-> 
-> double space
-> 
->> +	amp = (amp - TC956X_TX_MARGIN_MIN_VAL) / 3125;
-> 
-> similarly here, is 0 an expected value for 1 <= x < 3125?
-> 
-Here 0 is expected value in this case.
-
-- Krishna Chaitanya.
-> Konrad
 
