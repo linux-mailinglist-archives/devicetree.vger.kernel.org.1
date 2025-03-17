@@ -1,99 +1,89 @@
-Return-Path: <devicetree+bounces-158012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9234EA64098
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 07:04:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE5FDA640A0
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 07:05:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B52661890DCB
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 06:04:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00A5B188E574
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 06:06:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B95D218ABC;
-	Mon, 17 Mar 2025 06:04:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40BB0215047;
+	Mon, 17 Mar 2025 06:05:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Tw1G2f7+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EFsN35dg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFE1E21504F
-	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 06:04:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B79CC2E3373
+	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 06:05:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742191463; cv=none; b=u2Uh4vsnJdpJTdpENHu+E2+jjwyBIFdapToqpkDVAorBGhr9vyZvxyrl4TsqyZgNhj2kKmF7+b6q0i5+IystUpLJ3oKT0Xo+qcXw5aV5cwlbCJOkKveKQmjWIkVMaB1K6OPN0lllwR0eSXhWdUBGKYUjuQwRKVKIOd1BxrSuYgU=
+	t=1742191548; cv=none; b=Jixfbbiu3Y7e3oXgLrWwexYeejDU9+uwCFaJBSad5wXsDVazeXJ6fvflQTwPAvexLLhPBEyE+pStBv+Kh40gOAFA6rNoLcN7mPALdpvV4qnmNUw3JrO7ATpKeExZbNgQh8W0RdyfKdZZ7J8m9E+YcVDiwcFRDycT4OLw4dwKtHY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742191463; c=relaxed/simple;
-	bh=ml2pvES1bcDjWG1BADG1sOaAPR0s/wjw2CaSm11wlIg=;
+	s=arc-20240116; t=1742191548; c=relaxed/simple;
+	bh=G2vibGduTBb4ht3i3PKQRMy9Dmd98eR9I1FTyOeaPLU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QArdbw8cklUnX5sWd11oOvCOKwhYcPpcljScxq/phq5zq1YsbE1M+MGneHFEsfj2b4XIKEm3g3aCmlMKQPaDlAIVIKpl21Vr3FBIjaOkn7LErfa/5nRp80gl+F6UCThD8fptPC3B+gELNyP+DSIaSt9nuNg9mnvnfQolkLt+yCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Tw1G2f7+; arc=none smtp.client-ip=209.85.214.172
+	 Content-Type:Content-Disposition:In-Reply-To; b=Mtd33SvKwmKyceVu22KRsdPIynOo3M4cpu80O00qy9/cSSHlow4cD5AxdZnsvx91SARsEhVuEQreK2hRByDSzuNGF1UeL+F5l1y72CY6S4/ahPe6bAWWpVyjaklel/3uPetUuzc4x1emA86K7e0cIvQrIuf/NqkerKfio8n4gDs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EFsN35dg; arc=none smtp.client-ip=209.85.216.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-225fbdfc17dso16562485ad.3
-        for <devicetree@vger.kernel.org>; Sun, 16 Mar 2025 23:04:21 -0700 (PDT)
+Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-2ff65d88103so2626864a91.2
+        for <devicetree@vger.kernel.org>; Sun, 16 Mar 2025 23:05:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742191461; x=1742796261; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1742191546; x=1742796346; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=v20yzStT9VGAjU5GNTzWqe+zrXLJCLLqnxAXXWJhWaw=;
-        b=Tw1G2f7+LfQv7ktGT03S9FxFTebGzxflYagBecy+MgOBt3Ptmy9JwUCGl/Rt1yWNcj
-         PEjVEo/cUwks097Aqz8dFcz0LenhLe9AMZEAGIDgDnT47JzLQAphYsUtJENLLsGkQvNE
-         cEHXUvQruudAaq6yLO4DhmP4oIVeck6QolhrIFa4uRdhcCFHJZ0b18zitdNXDCEQkfrf
-         uRTKi+zSLsOUwPjwT/dY0vAfJORRbBXxMHpTAvOurSl6jFeIUnOqI47U+EfbdS/CHYXM
-         Zn0iZkAe1MyIr24VTh4qjYwgMgVcrny5Vu380G1S1MvDOsfcY6LFcZUc6cj/yxziER4Y
-         qs8w==
+        bh=upw8uAtsaSrMPnUE86VOFztOWYUwfbafLAIdnBxyqLs=;
+        b=EFsN35dgnr2o6vUSJkigYRiHu36/zDmuPUW6p9L//TW+DNHwwmZiBtIrPLdRwl8lZH
+         v/wHjpxKOrJFCXJK71CYifHA1biWDfrxqLwC3od8LBX/3F6BbBtmd38eGzETqwT16vp+
+         imoRg11Z9M1EETvCQWyvYJE2puBUtMPhNAeMzn+1p+KWXKcI5lvX6GZreSJNOIkb/rrY
+         XbUhyUfrWamlF3EpF0iuVx9zxcHQA+p9+P2P2D4RbkNAaB17Di3nd01QAgwnYMpOREpw
+         mJQCo2qUVHxUZGD07XqCPX0cTo8nXcN593uQluW+rfHj0r7Qw0lgHuVSuylVVZ/BzYgx
+         VV/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742191461; x=1742796261;
+        d=1e100.net; s=20230601; t=1742191546; x=1742796346;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=v20yzStT9VGAjU5GNTzWqe+zrXLJCLLqnxAXXWJhWaw=;
-        b=Iy6Ck9ka7phAEOeDWLB+5ThWGpmcJ5Zg8gOOuULmI4L0A05nTmGPJtzT5ZvOOHujqq
-         O+2k93FNDL1+cVSa1Tg8g07PT7Bil6gDX2Buv74O1SzJO89TpILph1Y9V0BWdTSmE4NT
-         TpBFzB6kEW2Vg/xosF3BVEkVAV39+uEWhv7UkZ0TQ+T/4uoFLuPFHZ5FJtx1f04rBWDS
-         TwyRLJmOkdEyWTolTybzyFhMa/oI/rVEsd26OmzCegVUKB2OIdpKjXei+OAXjosUvnn5
-         8ZOzfMw8EXC6jtcYAGr7Jmkp6mAk7yX7ijfRRp8Yo5piYRZnnGBG+swo80K0Rf+GB19h
-         imrQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVjOBV2YaKBgv/Nf3TzZTXmtH25Ud5b6WKW5fmjg/a1cJeUaFG+E/RmtpI/XLx2zazBYR7ansZkelVA@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/1j+ruawb17+oN60jR2REPIJ6hB92gR87Lfj03BwjnIBqeu6i
-	XDW1k+pZY27IpaArPwjhReLok0bqpZZsrkrCIKlwD0or5REyKdBcLc29Z7m8dI0=
-X-Gm-Gg: ASbGncvs5gjls1untgCeNEnnBipCTYdemq99yPHMonh8BchbXlmSkxj2PTvskvM5rEe
-	8udBjSJSv9oBCdmbknp6ZQlQUVmgqr2LsJEV2fnbc4k5T9xH5PIOkIzsQj4+16NGbjlZkMIo1GT
-	lAAMd4d/mXTgeqgMKk50sPvdN3vPaXogHDjC82ud58DjyhvhwnRiJ+n3PYulgVRT+RKW1vFzGLX
-	HmwK3cICAFpGBCbtbUiWfoJw3ZE/AGwXn38uBOua8V0j+PxIiF5SWx3wR2ATZlisMS1uttrzt7R
-	htq6KlN5FPUI2MLoytgfmEazUJeYmqsoXChDkCr0E3eY/w==
-X-Google-Smtp-Source: AGHT+IFe6jS1xlWkF22sbp8P4KRa+3Fa3e1mF+gfQI2nbyw2sog0uD5R60+Qr90Q84NCNk2zO7PuVg==
-X-Received: by 2002:a17:902:e785:b0:220:fce7:d3a6 with SMTP id d9443c01a7336-225e0a75becmr156086615ad.23.1742191461318;
-        Sun, 16 Mar 2025 23:04:21 -0700 (PDT)
+        bh=upw8uAtsaSrMPnUE86VOFztOWYUwfbafLAIdnBxyqLs=;
+        b=co5MWIN46KTODVNqlzG/SYSC51VT+A2Wki1Zsfy9Heuo44k9K1EGRBrQFjzA3NtJiv
+         Me8nMMnIasduDVWOzmThJ+FPklNh339EKnG8J0MTvok24evq5pSCo7OxOvZ1x41385AM
+         GrAAvveeM2scVLm6BP0PmjIeSCqO2IUj/Zm2EA993aW+eCrlyLM7sUf3/EAlk16Y87gU
+         45DUY6Leyo3U8PHWy/d+Vz+Vj3O7msRZf4D8775CISja+5XiteWBnjxzOSN9wwc4N/Jl
+         ETRjo2TCaJjGm/+saqJ6murShdK99UNkleGau/VYM5yohavoqnw+Ktm+CG+pFK6PKByk
+         fBjw==
+X-Forwarded-Encrypted: i=1; AJvYcCXyimJ1iDvzd4ESJ+1E79IVcNnMT2V7EtM4ukDzgfmbeWs7JxPjb5AokzwnIVbeXSWZFoNL4Scvznyd@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzq2HFNv53MkMMJztV8yUqgINIsWZ+1TkKVpC6CxIZHHuzyKxUh
+	My884Hx9IFMo8D5UIskj1NuwSx9rsdulVYF/dEP37lvJpNDSUbJOCZXJWyBjYi0=
+X-Gm-Gg: ASbGncuIymIRwX84+uYg8FLR+iHHztHE2wdzIxGNDFDTM490awBocOm+HFtJrU0FAvK
+	3pUiaJcchqLF8qw6tjnXXJy4Twz4pxUwpZ+w006cjwKyQhsRw97SyXdUV0TSzjtQH3vXPp6IUzZ
+	cUbiLUBOlORQOxeJNpVN6D+uzI4SrHI8W42TQpYyXyvD6cOXMSWAeRB4BghGAhg9ThHmKpDFynZ
+	50LSc+zZVVSUn1uLDZ2Zh5KsEhIS+WrJ7/JpUT1/Eoku1+EXFZxv/I9HWJ+GomDgBYPYYxufhfR
+	kA1nKsmqDOhg/uz81UUdWvcZWpL+S1FC5jFu1+WUYrVr5Q==
+X-Google-Smtp-Source: AGHT+IFtexjCDcyLpMQ7w8Tna8IXMKgR/Z0hgY4wOijyqJA7aak89tOVwk16u6S1c8FJcbWL2KbxKQ==
+X-Received: by 2002:a05:6a21:6191:b0:1f5:7862:7f3a with SMTP id adf61e73a8af0-1f5c121e71cmr16343310637.14.1742191546167;
+        Sun, 16 Mar 2025 23:05:46 -0700 (PDT)
 Received: from localhost ([122.172.84.15])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7371152951bsm6998422b3a.15.2025.03.16.23.04.20
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7371152948fsm6985187b3a.16.2025.03.16.23.05.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 16 Mar 2025 23:04:20 -0700 (PDT)
-Date: Mon, 17 Mar 2025 11:34:18 +0530
+        Sun, 16 Mar 2025 23:05:45 -0700 (PDT)
+Date: Mon, 17 Mar 2025 11:35:43 +0530
 From: Viresh Kumar <viresh.kumar@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Imran Shaik <quic_imrashai@quicinc.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Ajit Pandey <quic_ajipan@quicinc.com>,
-	Taniya Das <quic_tdas@quicinc.com>,
-	Jagadeesh Kona <quic_jkona@quicinc.com>,
-	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: cpufreq: cpufreq-qcom-hw: Add QCS8300
- compatible
-Message-ID: <20250317060418.7vmdznbz2igeppw6@vireshk-i7>
-References: <20250313-qcs8300-cpufreq-scaling-v1-0-d4cd3bd9c018@quicinc.com>
- <20250313-qcs8300-cpufreq-scaling-v1-1-d4cd3bd9c018@quicinc.com>
- <20250313-valiant-fine-giraffe-c6acdd@krzk-bin>
+	Konrad Dybcio <konradybcio@kernel.org>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/3] dt-bindings: cpufreq: cpufreq-qcom-hw: Few
+ improvements
+Message-ID: <20250317060543.ebqshqxngd4mhrcf@vireshk-i7>
+References: <20250313-dt-bindings-cpufreq-qcom-epss-v1-0-62b0f96ba888@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,20 +92,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250313-valiant-fine-giraffe-c6acdd@krzk-bin>
+In-Reply-To: <20250313-dt-bindings-cpufreq-qcom-epss-v1-0-62b0f96ba888@linaro.org>
 
-On 13-03-25, 09:52, Krzysztof Kozlowski wrote:
-> On Thu, Mar 13, 2025 at 11:33:39AM +0530, Imran Shaik wrote:
-> > Document compatible for cpufreq hardware on Qualcomm QCS8300 platform.
-> > 
-> > Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
-> > ---
-> >  Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
+On 13-03-25, 10:08, Krzysztof Kozlowski wrote:
+> Make the cpufreq-epss/hw schema a bit stricter for each variant.
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Best regards,
+> Krzysztof
+> 
+> ---
+> Krzysztof Kozlowski (3):
+>       dt-bindings: cpufreq: cpufreq-qcom-hw: Add missing constraint for interrupt-names
+>       dt-bindings: cpufreq: cpufreq-qcom-hw: Drop redundant minItems:1
+>       dt-bindings: cpufreq: cpufreq-qcom-hw: Narrow properties on SDX75, SA8775p and SM8650
+> 
+>  .../bindings/cpufreq/cpufreq-qcom-hw.yaml          | 33 +++++++++++++++++++---
+>  1 file changed, 29 insertions(+), 4 deletions(-)
 
-Applied [1/2]. Thanks.
+Applied. Thanks.
 
 -- 
 viresh
