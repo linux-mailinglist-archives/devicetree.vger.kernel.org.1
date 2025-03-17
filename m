@@ -1,143 +1,126 @@
-Return-Path: <devicetree+bounces-158279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61795A65758
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 17:07:11 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BAC0A656FC
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 17:00:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 831F53BC696
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 15:59:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 681C47ABEFE
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 15:59:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 254E5199FAF;
-	Mon, 17 Mar 2025 15:56:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 580AE1A705C;
+	Mon, 17 Mar 2025 15:58:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SMTFTTf7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73B50176FB0;
-	Mon, 17 Mar 2025 15:56:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5A9517A30F;
+	Mon, 17 Mar 2025 15:58:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742226994; cv=none; b=eBkqdeNzdYKcxVKoPaxkXrFAB3xq7mPVhMuP4IKjBn4XZMRK+3JRXp+DFSKvY7AL2vvzUjwkipnBrj240/B1YPp4T2WDA/ZCQ73XS9CqC6hO6Jhtdf5aS7v562JSR82FZ7L/MtMv3X+cU4NNXyFOMUm9g31/Lu6+NEMOKc7hZ0c=
+	t=1742227085; cv=none; b=LAtVdVFj3CDCReVE45Wy2InKo+IiDlsXK/Sl8YDGE4YZ4FCdAq/sLK9bejuElT4meNpo5KSmR5j+QNactNIwZthvtjb7y4ngngnwwE78MEloO8glHV5LqRUik/f9ISiVRy5qv5bs4T+fHIys7/LwiJbcH19fWmw7PNt9xJXTc3M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742226994; c=relaxed/simple;
-	bh=JTYbqx6bfQKuupaoVPJmTVygzfWnX4u/I/x3TxxTXO4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DkcpZJzqOLuyDOX+QOAYNkKu0/9QnTZoRpIyX2g1TqZ++PHMfjnGKqR6tCl2T65il8KDJrRFgN+sKtJg5BZkK/z+NHxETJT2c6PLyXxjHsCgnhesrIWxhXTXBS5eOhmheLdC4KhA5FbG0HJCMENFaPKEJcAsf7FT4yOCoDDh2Sk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
-X-CSE-ConnectionGUID: CzZovjXbRCaiOiPHFuTf1w==
-X-CSE-MsgGUID: xrWuP8IQTP2PF4Bar1Ld2g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11376"; a="47102973"
-X-IronPort-AV: E=Sophos;i="6.14,254,1736841600"; 
-   d="scan'208";a="47102973"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2025 08:56:32 -0700
-X-CSE-ConnectionGUID: EA25EyGGQmuYBW7eHEHuYg==
-X-CSE-MsgGUID: FN4NgrbwT2KvtC80qpTwdQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,254,1736841600"; 
-   d="scan'208";a="122157561"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2025 08:56:27 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andy.shevchenko@gmail.com>)
-	id 1tuCpE-00000003LsH-1IHs;
-	Mon, 17 Mar 2025 17:56:24 +0200
-Date: Mon, 17 Mar 2025 17:56:24 +0200
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 07/10] gpio: max7360: Add MAX7360 gpio support
-Message-ID: <Z9hGKCdR7NHqfRmC@smile.fi.intel.com>
-References: <20250214-mdb-max7360-support-v4-0-8a35c6dbb966@bootlin.com>
- <20250214-mdb-max7360-support-v4-7-8a35c6dbb966@bootlin.com>
- <Z69oa8_LKFxUacbj@smile.fi.intel.com>
- <D8FAX4E29LZK.3VUK90WB04MV2@bootlin.com>
- <Z9PlYSZDviGOCV7X@surfacebook.localdomain>
- <D8ILQ4NT6977.50SD8DM8FIBF@bootlin.com>
+	s=arc-20240116; t=1742227085; c=relaxed/simple;
+	bh=yMKzmgdAa1GrfN1P1367oG58K7sJ1GR+/2GwB7WGKUc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KYsPbjofdtxpjzh1kjY1fqXayKBBvHh2b2dwbLZo3SLxxVEwmttFqES8RI5ZD71kiKDdyPi9c9tt4JCOJSX50WbyFyYl3O0TkMC4+hQHrWsqdZ6AZ2OKi77H7c7ifTkXMaKg3X0dvT5eaqhSu183uASAVn+9MFgcrnT/swG9Vts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SMTFTTf7; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-224019ad9edso35539345ad.1;
+        Mon, 17 Mar 2025 08:58:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742227083; x=1742831883; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=06QGEsbiDHTPlITpRCkSEygiFBtZganqjlJySZAtEPM=;
+        b=SMTFTTf723AxXy4OSnMzTmpSgvMaXDGzYPg/1GVw/WNHcyjPGc373IXAAnmnqmM2FI
+         XwRBMM1VT+/mF3NJJAJgwpFj9iaUPJZ9tMqzV4SDZG9OPd4F6EatvKBEJpMi1YY1+sNf
+         M9Fykb0eveZdjggZ9IyGvTxRUO/YyVKpJVx8pQzN1ZBpfQzIDZVdlifEXiMlVPjoCMVG
+         tXcj+iSnXfPCfjAmrNMrcOQ4iSzrQk6s+9lSJ3bH0xIGeK8zN3bnP+AD7MUdEdzu9eLX
+         25fCr4wbZPBmgwUZozhaSF1xK2vBADLMSm4khNKAq9vaqrkDaU36x/VoCd6uR5bichte
+         fArQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742227083; x=1742831883;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=06QGEsbiDHTPlITpRCkSEygiFBtZganqjlJySZAtEPM=;
+        b=hSgzOS4Ob5Qsh5HLrKtrLplmztmXzXaS94w1GZQ/e2Nv0Lhy06rUKsl/BCjYDxh8Jf
+         tQmiMZCoKUVuZFU8AUMwFryb8lZXVgt7fqxWibf8aBchOR3z6CeXD4q+Yi6H9gn+w58z
+         pcx0H3b4vKFYMXsr4MaLdFz4v/dyRFF9KSPBScSFgy8L+fGtTZFTx8g4Vz7y22CUO1o5
+         zsSlqots35qtDqnZEMBP54CUKDMu9UAS2LIitfQFDCUWzOZkwbvi/hf/+UGtFt3pYQ6/
+         bUHNQeEAzHzyfTTbZOplPzJ2/VNX0Kxj2idHb04WWzbpoTb6AQLndCJSTOCjHrK215qi
+         vAFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWJ6yolh3/ky9VItXc8ggMgQTEKOXsIPQECdGUOR2dbQ/pLR9dvJ4qF40U/eeH6ldwnF4swHAI0aAuB@vger.kernel.org, AJvYcCWWMLJtMXm8gI9M/XaopvGQX5akCCPBcPi8hxq/q19smihIDWedTL6W3aYwNCO2aMbPMbGvEJQNoK3+6NK/@vger.kernel.org, AJvYcCXRpVjg4tWC1CdhmV9iGBUDl1DhLVife+XEHDT4yIBCDgxfQnlNJLP+DIH0ygrqfLM/lOhpopQzEFIXP5Op4muPlg==@vger.kernel.org
+X-Gm-Message-State: AOJu0YyLG0cSuCdCMH9sylCwGFk5HGTsjE7jvm48zpUKGzz1tdrf1j/w
+	hMrRiR1KvJXTBITCyXv3UhJArycQYUztOcxyySTImDVIjIpyvXvl2ZtiN+zpu4JFRULA6/IsZhv
+	eXHf3RZovybzOEepGY8bbW3Pip2A=
+X-Gm-Gg: ASbGnctDIuEd6zeN1s/BCTc4X6REfLebFGb4DIBmHS++9U+1jfKenZScAM0Az9LyG5b
+	HwQD2XJpNGAxV8NEtnaGTDGCCJ8m+cXwZitX8gI7NO7Cqr6vRjx1OPrBifPwNWGD0guEI87Mqi3
+	nWU3dC5IGxMrXcA/TQK5G1jWkT5vU=
+X-Google-Smtp-Source: AGHT+IG3Ayo9k0yRtjHNBCfqhmNJz3asFcvcSqQ3hdNGSq7kkzqBge1sZkHTYixEYa/8f6gTrblik9jUofUotL/jY/U=
+X-Received: by 2002:a17:90b:17c5:b0:2fe:b735:87da with SMTP id
+ 98e67ed59e1d1-3019e7a3ce7mr409937a91.0.1742227082981; Mon, 17 Mar 2025
+ 08:58:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <D8ILQ4NT6977.50SD8DM8FIBF@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250317133306.2003909-1-daniel.baluta@nxp.com>
+ <20250317133306.2003909-3-daniel.baluta@nxp.com> <5873285.DvuYhMxLoT@steina-w>
+In-Reply-To: <5873285.DvuYhMxLoT@steina-w>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Mon, 17 Mar 2025 17:58:07 +0200
+X-Gm-Features: AQ5f1JrRqDM8p6JEGxBqM22DUaeaV1igcAM-i6by99ARfroWOHqb4YOLD6MREdU
+Message-ID: <CAEnQRZCsCYbQU8uxpFeyLmji65VRoO0rckRcoyc3frd2_B_KqQ@mail.gmail.com>
+Subject: Re: [PATCH v5 2/5] arm64: dts: imx8mp: Add mu2 root clock
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: shawnguo@kernel.org, robh@kernel.org, linux-arm-kernel@lists.infradead.org, 
+	s.hauer@pengutronix.de, kernel@pengutronix.de, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, festevam@gmail.com, devicetree@vger.kernel.org, 
+	imx@lists.linux.dev, linux-kernel@vger.kernel.org, frank.li@nxp.com, 
+	aisheng.dong@nxp.com, laurentiu.mihalcea@nxp.com, shengjiu.wang@nxp.com, 
+	iuliana.prodan@nxp.com, a.fatoum@pengutronix.de, mathieu.poirier@linaro.org, 
+	linux-remoteproc@vger.kernel.org, Daniel Baluta <daniel.baluta@nxp.com>, 
+	Peng Fan <peng.fan@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Mar 17, 2025 at 03:13:07PM +0100, Mathieu Dubois-Briand wrote:
-> On Fri Mar 14, 2025 at 9:14 AM CET, Andy Shevchenko wrote:
-> > Thu, Mar 13, 2025 at 06:07:03PM +0100, Mathieu Dubois-Briand kirjoitti:
-> > > On Fri Feb 14, 2025 at 4:59 PM CET, Andy Shevchenko wrote:
-> > > > On Fri, Feb 14, 2025 at 12:49:57PM +0100, Mathieu Dubois-Briand wrote:
-
-...
-
-> > > > > +	/*
-> > > > > +	 * MAX7360_REG_DEBOUNCE contains configuration both for keypad debounce
-> > > > > +	 * timings and gpos/keypad columns repartition. Only the later is
-> > > > > +	 * modified here.
-> > > > > +	 */
-> > > > > +	val = FIELD_PREP(MAX7360_PORTS, ngpios);
-> > > > > +	ret = regmap_write_bits(regmap, MAX7360_REG_DEBOUNCE, MAX7360_PORTS, val);
-> > > > > +	if (ret) {
-> > > > > +		dev_err(dev, "Failed to write max7360 columns/gpos configuration");
-> > > > > +		return ret;
-> > > > > +	}
-> > > >
-> > > > Shouldn't this be configured via ->set_config() callback?
-> > > 
-> > > I believe this comment has been a bit outdated by our discussion on
-> > > using GPIO valid mask, but I believe we could not use the ->set_config()
-> > > callback here: this callback is made to configure a single pin while the
-> > > gpos/keypad columns repartition is global.
+On Mon, Mar 17, 2025 at 5:30=E2=80=AFPM Alexander Stein
+<alexander.stein@ew.tq-group.com> wrote:
+>
+> Am Montag, 17. M=C3=A4rz 2025, 14:33:03 CET schrieb Daniel Baluta:
+> > Enable MU2 node and add mu2 root clock.
+> > MU2 is used to communicate with DSP core.
 > >
-> > Yeah, we have similar desing in Intel Bay Trail (see pinctrl-baytrail.c) and it
-> > requires some software driven heuristics on how individual setting may affect
-> > the global one. But the Q here is is the debounce affects only keypad? Then it
-> > should be configured via keypad matrix driver. Btw, have you checked
-> > drivers/input/keyboard/matrix_keypad.c? Is there anything that can be useful
-> > here?
+> > Reviewed-by: Iuliana Prodan <iuliana.prodan@nxp.com>
+> > Reviewed-by: Peng Fan <peng.fan@nxp.com>
+> > Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+> > ---
+> >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
 > >
-> 
-> Hum, maybe the comment is not clear enough? Not sure, but please tell
-> me.
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boo=
+t/dts/freescale/imx8mp.dtsi
+> > index 3b725fe442d0..5b443fbeded8 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > @@ -1253,7 +1253,7 @@ mu2: mailbox@30e60000 {
+> >                               reg =3D <0x30e60000 0x10000>;
+> >                               interrupts =3D <GIC_SPI 136 IRQ_TYPE_LEVE=
+L_HIGH>;
+> >                               #mbox-cells =3D <2>;
+> > -                             status =3D "disabled";
+>
+> There is no need to enable MU2 if the DSP is disabled by default, no?
 
-I see it now, yes, the comment seems point too much attention on the register
-(and hence its name) then content.
-
-I would start this comment with something like:
-"Configure which GPIOs will be used for keypad."
-
-> So yes, this register is named "debounce" but controls two different
-> things:
-> - The keypad debounce: we do not touch it here.
-> - The partition between keypad columns and gpos. This is the value we do
->   modify here.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+True, I can enable it only when needed. Will fix in next version.
 
