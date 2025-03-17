@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-158031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CAA1A643B2
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 08:30:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A0A1A643C2
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 08:32:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0CB1C3A7C8E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 07:30:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E3C216AB9A
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 07:32:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46A1621A421;
-	Mon, 17 Mar 2025 07:30:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1372F21A428;
+	Mon, 17 Mar 2025 07:32:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fz/tcbp3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kBHOzH5f"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20FD11684AE
-	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 07:30:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBF3D218591;
+	Mon, 17 Mar 2025 07:32:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742196638; cv=none; b=HjOyli2ZiFa+KPev7IiQ0Tlzc4yxDOXWwfd/CF8oPWpAwn6nxvXBZe0yOf71P0sZjGbYpCSRQWbmJnswmiFwXDH++LZPYahPS290lWOagIHaj3Mzew0UUOBu8Fbv4WAOWAgBq0FQnTzV4Zx0hVXR1Y8+J76G7zVdGwhxKhQp5Z4=
+	t=1742196749; cv=none; b=OeGHSn7bXrRaOxMGu20PTTcdHGor2jlCIRWDfwizBjcITyHzq2KQP1OVgZFI6icgeZtBYkTE21VoD7qX73gtXRSvBD7O6zjhcX7aOaiBlgwjDZRil4tqIw9STjveSV7woM90QHYmoX3rgr9Es14GKnPrtAl1CXPkE9dBe6O7UwE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742196638; c=relaxed/simple;
-	bh=Jfnf3CBcp5lAHgpNcr2fjd0/1YGTXiJHIxYO4/a4WQw=;
+	s=arc-20240116; t=1742196749; c=relaxed/simple;
+	bh=uWRBhGYc6EgYaSJe5jVFgCPxsSX9BUuM9hicfeD/bRw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qRd8KCPIVHY241BTX1qMgtviJYQoWZNrvkp5yUpb4+W1MRgrpwMpi65sZ+tOlC8G8wNdC3vwM0bYBuPUQroyR4woLeFMM0rY2Boris08BR1JkVAl+OBAocJBY7xV1TjP6Td4Atpzl4EsMdl302kYLAEV07GoSlDPfmGDj0PmK/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fz/tcbp3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22BCAC4CEE3;
-	Mon, 17 Mar 2025 07:30:31 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=djzpVfHO0G/DFD7Xd9Hbuda/svbE5iVVVO2gwFK4e6MmdIBVb3f5qUOXseZBs+lSmmoc33az6fZSPlPfr4Lytc05tkq5KZnuWQBUGlCpsXyke3asVjc3b+XhAuBKcpZeFald1ED+nS1t5MISAlxihD1fjL5eci4b1VE0bCbjgkc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kBHOzH5f; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6EB4C4CEE3;
+	Mon, 17 Mar 2025 07:32:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742196637;
-	bh=Jfnf3CBcp5lAHgpNcr2fjd0/1YGTXiJHIxYO4/a4WQw=;
+	s=k20201202; t=1742196748;
+	bh=uWRBhGYc6EgYaSJe5jVFgCPxsSX9BUuM9hicfeD/bRw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Fz/tcbp3cLA0UV/4pl6i1vWXI6YCd72B8mzKJHqwOI313PKMyMCM0MIqT4VICZas9
-	 WxsBzF5/ri/wpupvjKGjOYC5bAK/4NBBH7UZTsUVLDYmTo+0q5AEXyITRKwtqORrdH
-	 AUIhPvOrfC0aJgU6fypMx4P4ESdPnwr2gGRRwq1e0W5DmoVp+K64P7rv1krum+U18H
-	 xLpsSBlgZCIc774yOEMER/WeMak9Rvlk3BbXs64QW+9VhV+bP35l4gCqqoO1TYI/e6
-	 Y/WFYV6nR+gm5QV2I29t6duoWkouBkwIiUvFKjMC7J+hYm6duprsRe5HE+52YUiCeQ
-	 fKGxIICXh7OhQ==
-Message-ID: <c629563c-9440-441d-a24f-be0e6e168bd8@kernel.org>
-Date: Mon, 17 Mar 2025 08:30:29 +0100
+	b=kBHOzH5fF+FfLYhEHVBR7D4eXqv/Men3p9DUz9R1U39yYHuI2TA/VXebBkV87PUJ8
+	 HtzED47ZYq57M1gh0kWZAuwETCS2AJmM7xivtR0MOoS3gwvFFoXpUaWjBToRWp/xdq
+	 wWIOfgX5XbFWuBKeM17g8e03YHAHtvfOlRZralXzyfGSxt9lPuEgxKv2Tuw6ayAmS3
+	 rmHBvY14P8QO4wqo42vcgyT1SytTDk2xcEiFA4jWNDMxmcs9P5Mj9txi/uuFstEhdu
+	 4phyjzlzX41xWSYO3ccXmxIOqWNgszUJBU6+RiMt/revRMpL1J8sRpHr0r9yE1dfx8
+	 hTfbCGLGJr34w==
+Message-ID: <0d5cf176-f084-467b-b4a1-9a1f862d0781@kernel.org>
+Date: Mon, 17 Mar 2025 08:32:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/6] dt-bindings: gpu: v3d: Add additional examples to
- improve binding checks
-To: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
-Cc: Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Nicolas Saenz Julienne <nsaenz@kernel.org>,
- Stefan Wahren <wahrenst@gmx.net>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, kernel-dev@igalia.com
-References: <20250316-v3d-gpu-reset-fixes-v5-0-9779cdb12f06@igalia.com>
- <20250316-v3d-gpu-reset-fixes-v5-4-9779cdb12f06@igalia.com>
- <20250316-abiding-badger-of-joy-0acd4c@krzk-bin>
- <85c9958d-0f69-4048-ab7b-ba40a0d855ca@igalia.com>
+Subject: Re: [net-next 3/4] dt-bindings: net: ftgmac100: add rgmii delay
+ properties
+To: Jacky Chou <jacky_chou@aspeedtech.com>, andrew+netdev@lunn.ch,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ joel@jms.id.au, andrew@codeconstruct.com.au, ratbert@faraday-tech.com,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org
+Cc: BMC-SW@aspeedtech.com
+References: <20250317025922.1526937-1-jacky_chou@aspeedtech.com>
+ <20250317025922.1526937-4-jacky_chou@aspeedtech.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,29 +107,43 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <85c9958d-0f69-4048-ab7b-ba40a0d855ca@igalia.com>
+In-Reply-To: <20250317025922.1526937-4-jacky_chou@aspeedtech.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 16/03/2025 18:42, Maíra Canal wrote:
-> Hi Krzysztof,
-> 
-> On 16/03/25 13:43, Krzysztof Kozlowski wrote:
->> On Sun, Mar 16, 2025 at 11:15:11AM -0300, Maíra Canal wrote:
->>> To prevent future changes that might inadvertently break the ABI, add
->>> more examples to the binding. These examples improve coverage and help
->>
->> Examples are not related to ABI at all.
->>
->>> ensure `make dt_binding_check` produces more robust validation results.
->>
->> No, don't add more examples differing by one property. Keep one/two
->> examples.
-> 
-> I had the intention to add examples to avoid people from changing the
-> reg order in the future. For example, we changed the register order when
+On 17/03/2025 03:59, Jacky Chou wrote:
+> Add tx-internal-delay-ps and rx-internal-delay-ps to
 
-Example does not stop that at all. Changes nothing here.
+Please wrap code according to the preferred limit expressed in Kernel
+coding style (checkpatch is not a coding style description, but only a
+tool).  However don't wrap blindly (see Kernel coding style).
+
+> configure the RGMII delay for MAC. According to
+> ethernet-controller.yaml, they use for RGMII TX and RX delay.
+> 
+> In Aspeed desgin, the RGMII delay is a number of ps as unit to
+> set delay, do not use one ps as unit. The values are different
+> from each MAC. So, here describes the property values
+> as index to configure corresponding scu register.
+> 
+> Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
+> ---
+
+...
+
+>    mdio:
+>      $ref: /schemas/net/mdio.yaml#
+>  
+> @@ -102,4 +116,4 @@ examples:
+>                  reg = <1>;
+>              };
+>          };
+> -    };
+> +    };
+> \ No newline at end of file
+
+
+This was neither tested nor reviewed by you before sending.
 
 
 Best regards,
