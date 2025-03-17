@@ -1,222 +1,209 @@
-Return-Path: <devicetree+bounces-158087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158088-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60643A64864
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 10:58:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECD10A64870
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 10:59:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61C1B3AC35A
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 09:57:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C4EA818915DE
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 09:59:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6414122D4F6;
-	Mon, 17 Mar 2025 09:57:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="nkfwHgNI"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9303B230272;
+	Mon, 17 Mar 2025 09:59:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EAD222C355;
-	Mon, 17 Mar 2025 09:57:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFA7E22F397
+	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 09:59:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742205472; cv=none; b=FrZWCa8Cwch7FvcDfJfD91j+Bso3TiMpzzO2DfaeIIU9yMLACNcHpBcOy20dj9QJ6goVTVeYDvrIwa99jfWOu9oqbEuP8DLMZz0BpJLIo95AGYQhL+ND8L9hQyv62L7kkamSHrgptkYXNzm7gy+xQdW+aSEgbm2+XIqeGA0hkUA=
+	t=1742205569; cv=none; b=r79wi1cuTjaj3isf6L/BqKv8m6X6bsrYOo4ibLHLGxHNrtX/b1BJe9t6GQ4InNQ13vEEfD4+PfKsM8pBB1SX50CtTSyH2gRjAZJkKLr1E/4ycBO/FN26KHdBxwCbk953Y+oT0FiDPEknlWq7LpRjCmMfxV4ugD0oeztOdE11pj8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742205472; c=relaxed/simple;
-	bh=u4gGQHQyXKmcD/n4B9Coibe/2rVi6aB/7qBpOdGg5FU=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=p+ZW75W3IcAYoJRGo5xf9XtG3h9Osvhg0cWTNh3BxbquXXvmnJWhdgaR1kiFx95sDgUC3jyv7k8NC8/9YOaKPjckRn7n/nJuPPqjeKHAViWzC5cV5px8lzQVTIbKZPlvYOObXlEpzwIXsv7/PLqVbqwiTzWOOjwALu3KFVuRaEE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=nkfwHgNI; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-Received: from [127.0.0.1] (254C1C5A.nat.pool.telekom.hu [37.76.28.90])
-	by mail.mainlining.org (Postfix) with ESMTPSA id B53F0BBAC4;
-	Mon, 17 Mar 2025 09:57:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
-	s=psm; t=1742205468;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=FhlrRtgQ29uAkg57Izvory2SkjADGQMOEcn3oIaEafg=;
-	b=nkfwHgNIkMw6drNJf+qwgVofGWU+RQr5cydxMVJUZvLcx3uT/yiIjF68d2I6B9d2H1DydP
-	AmymPLAI6g2lw7kEDLY+0D3uDkoP9QAUPFh6TEeG/dpXpr6lEisnrxIYknRRnEID3jHCtQ
-	N7MZ+vsQz5FHOYKqC1J89V2skPUC++82H33O3InzwoQO5ZmDaFg0uwmVqxqTsBqmeJG1AS
-	lcvUWqbfk29XZM0NjItqztSvwYQH6wtwYVBMjOYLAuZB8fFOHSsD/BKYZpMHFwGxb8SSof
-	8QBPprrFFrZjZ6wirsgCU+OShkqiFfLOD11BURS2ICwXmBXo27u7e81uiLmRvw==
-Date: Mon, 17 Mar 2025 10:57:45 +0100
-From: =?ISO-8859-1?Q?Barnab=E1s_Cz=E9m=E1n?= <barnabas.czeman@mainlining.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>,
- =?ISO-8859-1?Q?Otto_Pfl=FCger?= <otto.pflueger@abscue.de>,
- Linus Walleij <linus.walleij@linaro.org>, Lee Jones <lee@kernel.org>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>, Konrad Dybcio <konradybcio@kernel.org>,
- Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Dmitry Baryshkov <lumag@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
- iommu@lists.linux.dev, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, phone-devel@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht, linux@mainlining.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v4_1/6=5D_dt-bindings=3A_clock=3A_q?=
- =?US-ASCII?Q?com=3A_Add_MSM8937_Global_Clock_Controller?=
-User-Agent: Thunderbird for Android
-In-Reply-To: <20250317-hot-obedient-sturgeon-394cb8@krzk-bin>
-References: <20250315-msm8937-v4-0-1f132e870a49@mainlining.org> <20250315-msm8937-v4-1-1f132e870a49@mainlining.org> <20250317-hot-obedient-sturgeon-394cb8@krzk-bin>
-Message-ID: <11695D76-7CBE-41CE-A8DD-D6845D01670C@mainlining.org>
+	s=arc-20240116; t=1742205569; c=relaxed/simple;
+	bh=eLTZeaMW6RqboQrRfMoLdJ3QLbgZhIQQ6M3lPH/kUsg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Zd7r1hDmonq1c2HrlaRXbiu6KGutDHq0EpKsX+8qFaCUAqGybjjecuG1hJiD5BC7462GYk89ZuLESyBuuO4puJa1V41hBHAC88wdbdX9ejHnkIepn6+zIZc49SPvgTl3FWctsVaw/DbPLiDk5FuRz6CIeI43SGh3Rl2Fox44gP4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1tu7FP-0006dd-GS; Mon, 17 Mar 2025 10:59:03 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1tu7FO-000Dti-1d;
+	Mon, 17 Mar 2025 10:59:02 +0100
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1tu7FO-0018Rw-2T;
+	Mon, 17 Mar 2025 10:59:02 +0100
+Date: Mon, 17 Mar 2025 10:59:02 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Donald Hunter <donald.hunter@gmail.com>,
+	Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	Simon Horman <horms@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-doc@vger.kernel.org,
+	Kyle Swenson <kyle.swenson@est.tech>,
+	Dent Project <dentproject@linuxfoundation.org>,
+	kernel@pengutronix.de,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v6 04/12] net: pse-pd: Add support for PSE power
+ domains
+Message-ID: <Z9fyZkAOB602cFJY@pengutronix.de>
+References: <20250304-feature_poe_port_prio-v6-0-3dc0c5ebaf32@bootlin.com>
+ <20250304-feature_poe_port_prio-v6-4-3dc0c5ebaf32@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250304-feature_poe_port_prio-v6-4-3dc0c5ebaf32@bootlin.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+On Tue, Mar 04, 2025 at 11:18:53AM +0100, Kory Maincent wrote:
+> +/**
+> + * pse_flush_pw_ds - flush all PSE power domains of a PSE
+> + * @pcdev: a pointer to the initialized PSE controller device
+> + */
+> +static void pse_flush_pw_ds(struct pse_controller_dev *pcdev)
+> +{
+> +	struct pse_power_domain *pw_d;
+> +	int i;
+> +
+> +	for (i = 0; i < pcdev->nr_lines; i++) {
+> +		if (!pcdev->pi[i].pw_d)
+> +			continue;
+> +
+> +		pw_d = xa_load(&pse_pw_d_map, pcdev->pi[i].pw_d->id);
+> +		if (pw_d) {
+> +			regulator_put(pw_d->supply);
+> +			xa_erase(&pse_pw_d_map, pw_d->id);
+> +		}
+> +	}
+> +}
+> +
+> +/**
+> + * devm_pse_alloc_pw_d - allocate a new PSE power domain for a device
+> + * @dev: device that is registering this PSE power domain
+> + *
+> + * Return: Pointer to the newly allocated PSE power domain or error pointers
+> + */
+> +static struct pse_power_domain *devm_pse_alloc_pw_d(struct device *dev)
+> +{
+> +	struct pse_power_domain *pw_d;
+> +	int index, ret;
+> +
+> +	pw_d = devm_kzalloc(dev, sizeof(*pw_d), GFP_KERNEL);
+> +	if (!pw_d)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	ret = xa_alloc(&pse_pw_d_map, &index, pw_d, XA_LIMIT(1, INT_MAX), GFP_KERNEL);
 
+#define PSE_PW_D_LIMIT INT_MAX
 
-On March 17, 2025 10:17:46 AM GMT+01:00, Krzysztof Kozlowski <krzk@kernel=
-=2Eorg> wrote:
->On Sat, Mar 15, 2025 at 03:57:35PM +0100, Barnab=C3=A1s Cz=C3=A9m=C3=A1n =
-wrote:
->> Add device tree bindings for the global clock controller on Qualcomm
->> MSM8937 platform=2E
->>=20
->> Signed-off-by: Barnab=C3=A1s Cz=C3=A9m=C3=A1n <barnabas=2Eczeman@mainli=
-ning=2Eorg>
->> ---
->>  =2E=2E=2E/bindings/clock/qcom,gcc-msm8937=2Eyaml           | 75 ++++++=
-++++++++++++++++
->>  include/dt-bindings/clock/qcom,gcc-msm8917=2Eh       | 17 +++++
->>  2 files changed, 92 insertions(+)
->>=20
->> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-msm8937=
-=2Eyaml b/Documentation/devicetree/bindings/clock/qcom,gcc-msm8937=2Eyaml
->> new file mode 100644
->> index 0000000000000000000000000000000000000000=2E=2E3c3f6756048e195671f=
-542b3a6cd09057558eafa
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-msm8937=2Eyaml
->> @@ -0,0 +1,75 @@
->> +# SPDX-License-Identifier: (GPL-2=2E0-only OR BSD-2-Clause)
->> +%YAML 1=2E2
->> +---
->> +$id: http://devicetree=2Eorg/schemas/clock/qcom,gcc-msm8937=2Eyaml#
->> +$schema: http://devicetree=2Eorg/meta-schemas/core=2Eyaml#
->> +
->> +title: Qualcomm Global Clock & Reset Controller on MSM8937
->> +
->> +maintainers:
->> +  - Barnabas Czeman <barnabas=2Eczeman@mainlining=2Eorg>
->> +
->> +description: |
->> +  Qualcomm global clock control module provides the clocks, resets and=
- power
->> +  domains on MSM8937=2E
->
->This is exactly like msm8953, so why it cannot be there?
->
-Not exactly clock names are different, msm8953 have sleep msm8937 have sle=
-ep_clk=2E
->> +
->> +  See also::
->> +    include/dt-bindings/clock/qcom,gcc-msm8917=2Eh
->
->typo, 8937
->
-No
->> +
->> +properties:
->> +  compatible:
->> +    const: qcom,gcc-msm8937
->> +
->> +  clocks:
->> +    items:
->> +      - description: XO source
->> +      - description: Sleep clock source
->> +      - description: DSI phy instance 0 dsi clock
->> +      - description: DSI phy instance 0 byte clock
->> +      - description: DSI phy instance 1 dsi clock
->> +      - description: DSI phy instance 1 byte clock
->> +
->> +  clock-names:
->> +    items:
->> +      - const: xo
->> +      - const: sleep_clk
->> +      - const: dsi0pll
->> +      - const: dsi0pllbyte
->> +      - const: dsi1pll
->> +      - const: dsi1pllbyte
->> +
->> +required:
->> +  - compatible
->> +  - clocks
->> +  - clock-names
->> +  - '#power-domain-cells'
->> +
->> +allOf:
->> +  - $ref: qcom,gcc=2Eyaml#
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/qcom,rpmcc=2Eh>
->> +
->> +    clock-controller@1800000 {
->> +      compatible =3D "qcom,gcc-msm8937";
->> +      reg =3D <0x01800000 0x80000>;
->> +      #clock-cells =3D <1>;
->> +      #reset-cells =3D <1>;
->> +      #power-domain-cells =3D <1>;
->> +      clocks =3D <&rpmcc RPM_SMD_XO_CLK_SRC>,
->> +               <&sleep_clk>,
->> +               <&dsi0_phy 1>,
->> +               <&dsi0_phy 0>,
->> +               <&dsi1_phy 1>,
->> +               <&dsi1_phy 0>;
->> +      clock-names =3D "xo",
->> +                    "sleep_clk",
->> +                    "dsi0pll",
->> +                    "dsi0pllbyte",
->> +                    "dsi1pll",
->> +                    "dsi1pllbyte";
->> +    };
->> +=2E=2E=2E
->> diff --git a/include/dt-bindings/clock/qcom,gcc-msm8917=2Eh b/include/d=
-t-bindings/clock/qcom,gcc-msm8917=2Eh
->> index 4b421e7414b50bef2e2400f868ae5b7212a427bb=2E=2Eec1f0b261dd5ccfe489=
-6a00ffa9cf86de98b9cb3 100644
->> --- a/include/dt-bindings/clock/qcom,gcc-msm8917=2Eh
->> +++ b/include/dt-bindings/clock/qcom,gcc-msm8917=2Eh
->> @@ -170,6 +170,22 @@
->>  #define VFE1_CLK_SRC				163
->>  #define VSYNC_CLK_SRC				164
->>  #define GPLL0_SLEEP_CLK_SRC			165
->> +#define BLSP1_QUP1_I2C_APPS_CLK_SRC		166
->> +#define BLSP1_QUP1_SPI_APPS_CLK_SRC		167
->> +#define BLSP2_QUP4_I2C_APPS_CLK_SRC		168
->> +#define BLSP2_QUP4_SPI_APPS_CLK_SRC		169
->
->Why are you adding bindings to 8917? Nothing in commit msg explains
->that=2E
-Because msm8917 driver was expanded with 8937 bits, i will expand the comm=
-it message=2E
->
->Best regards,
->Krzysztof
->
+XA_LIMIT(1, PSE_PW_D_LIMIT)
+
+> +	if (ret)
+> +		return ERR_PTR(ret);
+> +
+> +	pw_d->id = index;
+> +	return pw_d;
+> +}
+> +
+> +/**
+> + * pse_register_pw_ds - register the PSE power domains for a PSE
+> + * @pcdev: a pointer to the PSE controller device
+> + *
+> + * Return: 0 on success and failure value on error
+> + */
+> +static int pse_register_pw_ds(struct pse_controller_dev *pcdev)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < pcdev->nr_lines; i++) {
+> +		struct regulator_dev *rdev = pcdev->pi[i].rdev;
+> +		struct pse_power_domain *pw_d;
+> +		struct regulator *supply;
+> +		bool present = false;
+> +		unsigned long index;
+> +
+> +		/* No regulator or regulator parent supply registered.
+> +		 * We need a regulator parent to register a PSE power domain
+> +		 */
+> +		if (!rdev || !rdev->supply)
+> +			continue;
+> +
+
+Should we use xa_lock() before iteration over the map?
+
+> +		xa_for_each(&pse_pw_d_map, index, pw_d) {
+> +			/* Power supply already registered as a PSE power
+> +			 * domain.
+> +			 */
+> +			if (regulator_is_equal(pw_d->supply, rdev->supply)) {
+> +				present = true;
+> +				pcdev->pi[i].pw_d = pw_d;
+> +				break;
+> +			}
+> +		}
+> +		if (present)
+> +			continue;
+> +
+> +		pw_d = devm_pse_alloc_pw_d(pcdev->dev);
+> +		if (IS_ERR_OR_NULL(pw_d))
+> +			return PTR_ERR(pw_d);
+
+It is better to break the loop and roll back previous allocations.
+
+> +
+> +		supply = regulator_get(&rdev->dev, rdev->supply_name);
+> +		if (IS_ERR(supply)) {
+> +			xa_erase(&pse_pw_d_map, pw_d->id);
+> +			return PTR_ERR(supply);
+
+same here.
+
+> +		}
+> +
+> +		pw_d->supply = supply;
+> +		pcdev->pi[i].pw_d = pw_d;
+> +	}
+> +
+> +	return 0;
+> +}
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
