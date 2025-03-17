@@ -1,511 +1,308 @@
-Return-Path: <devicetree+bounces-158221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16E0EA6535D
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 15:28:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 358F8A6538B
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 15:30:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F3D11899DB4
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 14:26:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96F523A7C2A
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 14:28:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AC9C24C076;
-	Mon, 17 Mar 2025 14:24:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C9C424166F;
+	Mon, 17 Mar 2025 14:28:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XgQboESw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M67Ms5tR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 713D924BBFA;
-	Mon, 17 Mar 2025 14:24:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3184241129;
+	Mon, 17 Mar 2025 14:28:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742221447; cv=none; b=dSIFs0OJVHAb84ee1KCUxScYxjawdsUvDqw1nVO2APVZt5j+K1AAG0wO2GAhkrgfhRIRORq4oTQEQinD5btdv7vdLRfewZxLvl05VQhlvfXFJ7gCLs2ROi8G0GmrOeRR60GrIMQcuC40Vj3MNG1guVo0eGwmpH8bIphmEseezPM=
+	t=1742221714; cv=none; b=uPE/SSBffDu/lHjrwbTJCxClt/MLDf1k4W42t0CdQva7BBiHVJ3WgR8BMYSET21be9E3RdIW1O8Gc8Y7K210NFDH4z8bl5S6RRq+Wem0LqNN/hoUtsXYRZ8PKTS7Epw/jCNbzpY4aG5F53olafIatcKGwuodoJo7SQyaWryklq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742221447; c=relaxed/simple;
-	bh=987TtpkPPaoRHA6crXpHFcJAOt/VWj29CNmz2SRJV7s=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=WlvKhwtdAXAoCddnZxhIaSn+Bh/J2jSXDNCKJKL0c7ZCPSSDECJA9GSHinDn1Dh6HmoU/pJlDiJ60nmOisCyIvKfBbEHFToAL6NR6PxLTW1qZkxEmvHt/wlcWNoYI7H7mYWLdDM2VhhVBOuRz0ZrqqsYK5uoKFQr0HhMPC/iu08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XgQboESw; arc=none smtp.client-ip=209.85.160.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-47688ae873fso43244551cf.0;
-        Mon, 17 Mar 2025 07:24:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742221444; x=1742826244; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3AoPgamZTGw+bLyE66VJT+0+YBBvA1ZVLa2NjT4B3rE=;
-        b=XgQboESwWpO3/ZTLwe90iaKpkrKBiBoQXI7624HdgL89ivAZNL3TJnq1gML7fygt7L
-         cDnZiIz58iTmkzPW6Qr3d3yVH6ZX042DBys3lFiQpmmVurmhRRN1xcc9PAFJotRzBqQ0
-         iXIBd7RgDRcnSGPFZqqexv+FyBLQXrsG0dZ7oUxuLprE80Am71XRUvG6Hbfo7xkzf5+Q
-         gn1IRMc1vj7O7+JIp1VoU3V0K/q0gEJtn+TRdIIq2M0fpESmH2msbu6p8ybiTQJNQj/c
-         Pm+FaHP1qfvAvQZ6iMfmRaZ9WXgi+YD4WXfetloRdz4O3rEo4YcZxkBABmmInXkLFBTz
-         cviA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742221444; x=1742826244;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3AoPgamZTGw+bLyE66VJT+0+YBBvA1ZVLa2NjT4B3rE=;
-        b=xFTlVSUUjaIld1WoqicJAHwFuCHatnwcL1gbVl6mwa62ubaOYBxtTVyZbGl31i8jSG
-         Vgdiwq/FPjBAViBX+HLBAa0ooKGNJdafMXix0B/5nwUFMEJOQDc2srJpf1ABC0Ta2a2K
-         WiJyt1ehTGOJqSpR4QM5NoFYShdOVgHhTD76FJq019+Axfy5AZwd8tsACDzu2lQW8HMz
-         k/WXm82EmZJ+Iyz8+U7Ba6j2vgC2ZEUAekI9fu0ore94Km55ROWn4+GOdcP68P6kX2rQ
-         LWuvtOhNOB9UChYY4MKDU5dASiRg6yE2rfdI5/0a/1YD1v62ilQyk75AvJv9BKS/0qev
-         HtPA==
-X-Forwarded-Encrypted: i=1; AJvYcCV2NSUAOEAsWaHaTUUfaNqiPEhouXwsj8RCZZmCbQszSLWS+/L9mgXrJyT73/Il2eQzspGosOfZFwbj@vger.kernel.org, AJvYcCV3+qg89VknENCySsn8NGZ0HW4EBlK74tH22+cnSrXx2ycaAoICdQWcRgxY3drS+4ePNwSw+fvl8Ar+@vger.kernel.org, AJvYcCVWApQkjJFTs92nM0aaUodYmOskwlRnJOSvDlQolfhSGl4XViGhIo3qhRVN5roft2cFliGf3cQtj3w0pFg=@vger.kernel.org, AJvYcCVZMhmMUS5m3LT/lItkKYqIAeug0QWjrsZg0Uuzj/dLL10tic86bK4oaEObfJg5PVjvxx3BbNBhwp0TaAEP@vger.kernel.org, AJvYcCXYh9Qkj/xWmzuaDwywMamrxQLuWZE2f5DidK6H/7hu/bXjVckFRdX56bZwcfVmPtLRmp+N5kIrzWrhiePrhA/H@vger.kernel.org, AJvYcCXol4F/xsOlgdYfszHcfnpeu+iXZMvUgwZ2dC4Epm3AUa2OXTcmHlLhVe9+13F/IApJipO9cf486dxjwzlNx5o=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxSHjDacf59h6CUfQssCm44zUTmZnjAleDWa7ZlIodM2+xn1a3g
-	c0XY9dIlCHw4yA+1ENPkWWKORYJH+2Y0zlHvUN1HdialOIzSyXWK
-X-Gm-Gg: ASbGncsC0Z90ZpdcabG7v5J8us6Bqx+Ln+nCx/hkbRvpTP8CklBl/zXroUDtHn47fC0
-	dhtZ7xuYsBjjUxgB62phZrqVlvj6J4+Z2aE94mtwp/RtwtQXlkkbGWuQiTs75eg/3qcE+oZvP0D
-	1MZ04YrmIw50yhlerKlBybc2TOFNh9CuKbJpV4HVhsXkjlCmI6Zl+wdXkMfGvbAc6Hqi6m4J43Q
-	DxHcBygW9I126PURve02ieNlf75hx8tWGzRY3DFkUbCd3RhnmsRSOB0kky6p5058l6Z9cAmTLW6
-	xMWmKrnWAsk/nqzv6FW7hVLJGSt5JcZ/vj+4KLwEbRG+AcBGTOnFGFJH8RP1l0WF2zCLaAaa5g=
-	=
-X-Google-Smtp-Source: AGHT+IEOcZaAErVkrTUiISs/oSWF4CNXcbc1QPv9pQ6mWesRhgejS3Ggisnz7nL3giOYmSt+NZV5+Q==
-X-Received: by 2002:ac8:5d13:0:b0:476:884e:52f4 with SMTP id d75a77b69052e-476c812c79cmr189000251cf.12.1742221444046;
-        Mon, 17 Mar 2025 07:24:04 -0700 (PDT)
-Received: from tamird-mac.local ([2600:4041:5be7:7c00:6895:24c6:e898:e320])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-476bb60b13esm54601011cf.6.2025.03.17.07.24.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Mar 2025 07:24:03 -0700 (PDT)
-From: Tamir Duberstein <tamird@gmail.com>
-Date: Mon, 17 Mar 2025 10:23:56 -0400
-Subject: [PATCH v5 6/6] rust: use strict provenance APIs
+	s=arc-20240116; t=1742221714; c=relaxed/simple;
+	bh=icj7nB3bxRTzLn+Ln71aWFZgRw7kuWe4zA5Mo+qp1Wg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lwRw6+BeAWRBCC/zO1rXTP/hFXKyowdj7v5zNASGCTyh2Er73PvB/iZCjEQimUwGYb7bip+aApTc9OK8sq5SRXZv9BDnUOZbZbbqj1PgcrmDcZAIRIbDoff7YgJbH28egBmUAJtYC/PzyM3Es3jcfCvRmcTflTbvRKGBxw7tAMM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M67Ms5tR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13C08C4CEE3;
+	Mon, 17 Mar 2025 14:28:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742221714;
+	bh=icj7nB3bxRTzLn+Ln71aWFZgRw7kuWe4zA5Mo+qp1Wg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=M67Ms5tRtJqZNjr4HpbUvBavc5Q4oDs6jmFypIre7oRXBHxSlAr+Ij/96AkfPIy/k
+	 x3XKqTWIt5StT89G2yFALXMp5n0Dc2R9d1XGVmIYjb8obSfGtSL9i5zA8rIbfwo86j
+	 Hn3twjfJj7Lw4RRZyu7iC4/sPmt8VFW26lvCec+S3Qqy+DafKkfinjfO+E6iAXte1H
+	 w+06FBgdTb+o42RcpsUV2/jVRV3RE0mvvBIqVls1VFsRXhpIzNwBW/qbSuE4pyUyf1
+	 OEd6vE30XljVHM23pWPS1rZpl/UJpX8OyVtdeiP0tZHCPLt0oC6A1AMkT5ogO+2g/D
+	 kFhsg8FMePZbA==
+Date: Mon, 17 Mar 2025 09:28:32 -0500
+From: Rob Herring <robh@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	upstream@airoha.com
+Subject: Re: [net-next PATCH v13 05/14] dt-bindings: mfd: Document support
+ for Airoha AN8855 Switch SoC
+Message-ID: <20250317142832.GA4116523-robh@kernel.org>
+References: <20250315154407.26304-1-ansuelsmth@gmail.com>
+ <20250315154407.26304-6-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250317-ptr-as-ptr-v5-6-5b5f21fa230a@gmail.com>
-References: <20250317-ptr-as-ptr-v5-0-5b5f21fa230a@gmail.com>
-In-Reply-To: <20250317-ptr-as-ptr-v5-0-5b5f21fa230a@gmail.com>
-To: Masahiro Yamada <masahiroy@kernel.org>, 
- Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, 
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <benno.lossin@proton.me>, 
- Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
- Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Brendan Higgins <brendan.higgins@linux.dev>, 
- David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
- Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, 
- Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
- Saravana Kannan <saravanak@google.com>
-Cc: linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, 
- kunit-dev@googlegroups.com, linux-pci@vger.kernel.org, 
- linux-block@vger.kernel.org, devicetree@vger.kernel.org, 
- Tamir Duberstein <tamird@gmail.com>
-X-Mailer: b4 0.15-dev
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250315154407.26304-6-ansuelsmth@gmail.com>
 
-Throughout the tree, use the strict provenance APIs stabilized in Rust
-1.84.0[1]. Retain backwards-compatibility by introducing forwarding
-functions at the `kernel` crate root along with polyfills for rustc <
-1.84.0.
+On Sat, Mar 15, 2025 at 04:43:45PM +0100, Christian Marangi wrote:
+> Document support for Airoha AN8855 Switch SoC. This SoC expose various
+> peripherals like an Ethernet Switch, a NVMEM provider and Ethernet PHYs.
+> 
+> It does also support i2c and timers but those are not currently
+> supported/used.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>  .../bindings/mfd/airoha,an8855.yaml           | 182 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 183 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/airoha,an8855.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/airoha,an8855.yaml b/Documentation/devicetree/bindings/mfd/airoha,an8855.yaml
+> new file mode 100644
+> index 000000000000..a59a23056b3a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/airoha,an8855.yaml
+> @@ -0,0 +1,182 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/airoha,an8855.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Airoha AN8855 Switch SoC
+> +
+> +maintainers:
+> +  - Christian Marangi <ansuelsmth@gmail.com>
+> +
+> +description: >
+> +  Airoha AN8855 Switch is a SoC that expose various peripherals like an
+> +  Ethernet Switch, a NVMEM provider and Ethernet PHYs.
+> +
+> +  It does also support i2c and timers but those are not currently
+> +  supported/used.
+> +
+> +properties:
+> +  compatible:
+> +    const: airoha,an8855
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  reset-gpios: true
+> +
+> +  efuse:
+> +    type: object
+> +    $ref: /schemas/nvmem/airoha,an8855-efuse.yaml
+> +    description:
+> +      EFUSE exposed by the Airoha AN8855 Switch. This child node definition
+> +      should follow the bindings specified in
+> +      Documentation/devicetree/bindings/nvmem/airoha,an8855-efuse.yaml
 
-Use `#[allow(clippy::incompatible_msrv)]` to avoid warnings on rustc <
-1.84.0 as our MSRV is 1.78.0.
+No need to list the schema twice. Drop the 2nd sentence.
 
-In the `kernel` crate, enable the strict provenance lints on rustc >=
-1.84.0; do this in `lib.rs` rather than `Makefile` to avoid introducing
-compiler flags that are dependent on the rustc version in use.
+> +
+> +  ethernet-switch:
+> +    type: object
+> +    $ref: /schemas/net/dsa/airoha,an8855-switch.yaml
+> +    description:
+> +      Switch exposed by the Airoha AN8855 Switch. This child node definition
+> +      should follow the bindings specified in
+> +      Documentation/devicetree/bindings/net/dsa/airoha,an8855-switch.yaml
 
-Link: https://blog.rust-lang.org/2025/01/09/Rust-1.84.0.html#strict-provenance-apis [1]
-Suggested-by: Benno Lossin <benno.lossin@proton.me>
-Link: https://lore.kernel.org/all/D8EIXDMRXMJP.36TFCGWZBRS3Y@proton.me/
-Signed-off-by: Tamir Duberstein <tamird@gmail.com>
----
- init/Kconfig           |   3 ++
- rust/kernel/alloc.rs   |   2 +-
- rust/kernel/devres.rs  |   4 +-
- rust/kernel/io.rs      |  14 +++----
- rust/kernel/lib.rs     | 108 +++++++++++++++++++++++++++++++++++++++++++++++++
- rust/kernel/of.rs      |   2 +-
- rust/kernel/pci.rs     |   4 +-
- rust/kernel/str.rs     |  16 +++-----
- rust/kernel/uaccess.rs |  12 ++++--
- 9 files changed, 138 insertions(+), 27 deletions(-)
+ditto
 
-diff --git a/init/Kconfig b/init/Kconfig
-index d0d021b3fa3b..82e28d6f7c3f 100644
---- a/init/Kconfig
-+++ b/init/Kconfig
-@@ -132,6 +132,9 @@ config CC_HAS_COUNTED_BY
- config RUSTC_HAS_COERCE_POINTEE
- 	def_bool RUSTC_VERSION >= 108400
- 
-+config RUSTC_HAS_STABLE_STRICT_PROVENANCE
-+	def_bool RUSTC_VERSION >= 108400
-+
- config PAHOLE_VERSION
- 	int
- 	default $(shell,$(srctree)/scripts/pahole-version.sh $(PAHOLE))
-diff --git a/rust/kernel/alloc.rs b/rust/kernel/alloc.rs
-index fc9c9c41cd79..a1d282e48249 100644
---- a/rust/kernel/alloc.rs
-+++ b/rust/kernel/alloc.rs
-@@ -217,7 +217,7 @@ unsafe fn free(ptr: NonNull<u8>, layout: Layout) {
- 
- /// Returns a properly aligned dangling pointer from the given `layout`.
- pub(crate) fn dangling_from_layout(layout: Layout) -> NonNull<u8> {
--    let ptr = layout.align() as *mut u8;
-+    let ptr = crate::without_provenance_mut(layout.align());
- 
-     // SAFETY: `layout.align()` (and hence `ptr`) is guaranteed to be non-zero.
-     unsafe { NonNull::new_unchecked(ptr) }
-diff --git a/rust/kernel/devres.rs b/rust/kernel/devres.rs
-index 34571f992f0d..e8232bb771b2 100644
---- a/rust/kernel/devres.rs
-+++ b/rust/kernel/devres.rs
-@@ -64,14 +64,14 @@ struct DevresInner<T> {
- ///             return Err(ENOMEM);
- ///         }
- ///
--///         Ok(IoMem(IoRaw::new(addr as usize, SIZE)?))
-+///         Ok(IoMem(IoRaw::new(kernel::expose_provenance(addr), SIZE)?))
- ///     }
- /// }
- ///
- /// impl<const SIZE: usize> Drop for IoMem<SIZE> {
- ///     fn drop(&mut self) {
- ///         // SAFETY: `self.0.addr()` is guaranteed to be properly mapped by `Self::new`.
--///         unsafe { bindings::iounmap(self.0.addr() as *mut c_void); };
-+///         unsafe { bindings::iounmap(kernel::with_exposed_provenance_mut(self.0.addr())); };
- ///     }
- /// }
- ///
-diff --git a/rust/kernel/io.rs b/rust/kernel/io.rs
-index 9d2aadf40edf..0a018ad7478a 100644
---- a/rust/kernel/io.rs
-+++ b/rust/kernel/io.rs
-@@ -5,7 +5,7 @@
- //! C header: [`include/asm-generic/io.h`](srctree/include/asm-generic/io.h)
- 
- use crate::error::{code::EINVAL, Result};
--use crate::{bindings, build_assert, ffi::c_void};
-+use crate::{bindings, build_assert};
- 
- /// Raw representation of an MMIO region.
- ///
-@@ -75,14 +75,14 @@ pub fn maxsize(&self) -> usize {
- ///             return Err(ENOMEM);
- ///         }
- ///
--///         Ok(IoMem(IoRaw::new(addr as usize, SIZE)?))
-+///         Ok(IoMem(IoRaw::new(kernel::expose_provenance(addr), SIZE)?))
- ///     }
- /// }
- ///
- /// impl<const SIZE: usize> Drop for IoMem<SIZE> {
- ///     fn drop(&mut self) {
- ///         // SAFETY: `self.0.addr()` is guaranteed to be properly mapped by `Self::new`.
--///         unsafe { bindings::iounmap(self.0.addr() as *mut c_void); };
-+///         unsafe { bindings::iounmap(kernel::with_exposed_provenance_mut(self.0.addr())); };
- ///     }
- /// }
- ///
-@@ -119,7 +119,7 @@ pub fn $name(&self, offset: usize) -> $type_name {
-             let addr = self.io_addr_assert::<$type_name>(offset);
- 
-             // SAFETY: By the type invariant `addr` is a valid address for MMIO operations.
--            unsafe { bindings::$name(addr as *const c_void) }
-+            unsafe { bindings::$name(crate::with_exposed_provenance(addr)) }
-         }
- 
-         /// Read IO data from a given offset.
-@@ -131,7 +131,7 @@ pub fn $try_name(&self, offset: usize) -> Result<$type_name> {
-             let addr = self.io_addr::<$type_name>(offset)?;
- 
-             // SAFETY: By the type invariant `addr` is a valid address for MMIO operations.
--            Ok(unsafe { bindings::$name(addr as *const c_void) })
-+            Ok(unsafe { bindings::$name(crate::with_exposed_provenance(addr)) })
-         }
-     };
- }
-@@ -148,7 +148,7 @@ pub fn $name(&self, value: $type_name, offset: usize) {
-             let addr = self.io_addr_assert::<$type_name>(offset);
- 
-             // SAFETY: By the type invariant `addr` is a valid address for MMIO operations.
--            unsafe { bindings::$name(value, addr as *mut c_void) }
-+            unsafe { bindings::$name(value, crate::with_exposed_provenance_mut(addr)) }
-         }
- 
-         /// Write IO data from a given offset.
-@@ -160,7 +160,7 @@ pub fn $try_name(&self, value: $type_name, offset: usize) -> Result {
-             let addr = self.io_addr::<$type_name>(offset)?;
- 
-             // SAFETY: By the type invariant `addr` is a valid address for MMIO operations.
--            unsafe { bindings::$name(value, addr as *mut c_void) }
-+            unsafe { bindings::$name(value, crate::with_exposed_provenance_mut(addr)) }
-             Ok(())
-         }
-     };
-diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
-index fc6835cc36a3..c1b274c04a0f 100644
---- a/rust/kernel/lib.rs
-+++ b/rust/kernel/lib.rs
-@@ -17,6 +17,11 @@
- #![cfg_attr(not(CONFIG_RUSTC_HAS_COERCE_POINTEE), feature(coerce_unsized))]
- #![cfg_attr(not(CONFIG_RUSTC_HAS_COERCE_POINTEE), feature(dispatch_from_dyn))]
- #![cfg_attr(not(CONFIG_RUSTC_HAS_COERCE_POINTEE), feature(unsize))]
-+#![cfg_attr(
-+    CONFIG_RUSTC_HAS_STABLE_STRICT_PROVENANCE,
-+    feature(strict_provenance_lints),
-+    deny(fuzzy_provenance_casts, lossy_provenance_casts)
-+)]
- #![feature(inline_const)]
- #![feature(lint_reasons)]
- // Stable in Rust 1.83
-@@ -25,6 +30,109 @@
- #![feature(const_ptr_write)]
- #![feature(const_refs_to_cell)]
- 
-+#[cfg(CONFIG_RUSTC_HAS_STABLE_STRICT_PROVENANCE)]
-+#[allow(clippy::incompatible_msrv)]
-+mod strict_provenance {
-+    /// Gets the "address" portion of the pointer.
-+    ///
-+    /// See https://doc.rust-lang.org/stable/core/primitive.pointer.html#method.addr.
-+    #[inline]
-+    pub fn addr<T>(ptr: *const T) -> usize {
-+        ptr.addr()
-+    }
-+
-+    /// Exposes the "provenance" part of the pointer for future use in
-+    /// [`with_exposed_provenance`] and returns the "address" portion.
-+    ///
-+    /// See https://doc.rust-lang.org/stable/core/primitive.pointer.html#method.expose_provenance.
-+    #[inline]
-+    pub fn expose_provenance<T>(ptr: *const T) -> usize {
-+        ptr.expose_provenance()
-+    }
-+
-+    /// Converts an address back to a pointer, picking up some previously 'exposed'
-+    /// provenance.
-+    ///
-+    /// See https://doc.rust-lang.org/stable/core/ptr/fn.with_exposed_provenance.html.
-+    #[inline]
-+    pub fn with_exposed_provenance<T>(addr: usize) -> *const T {
-+        core::ptr::with_exposed_provenance(addr)
-+    }
-+
-+    /// Converts an address back to a mutable pointer, picking up some previously 'exposed'
-+    /// provenance.
-+    ///
-+    /// See https://doc.rust-lang.org/stable/core/ptr/fn.with_exposed_provenance_mut.html
-+    #[inline]
-+    pub fn with_exposed_provenance_mut<T>(addr: usize) -> *mut T {
-+        core::ptr::with_exposed_provenance_mut(addr)
-+    }
-+
-+    /// Creates a pointer with the given address and no [provenance][crate::ptr#provenance].
-+    ///
-+    /// See https://doc.rust-lang.org/stable/core/ptr/fn.without_provenance_mut.html.
-+    #[inline]
-+    pub fn without_provenance_mut<T>(addr: usize) -> *mut T {
-+        core::ptr::without_provenance_mut(addr)
-+    }
-+}
-+
-+#[cfg(not(CONFIG_RUSTC_HAS_STABLE_STRICT_PROVENANCE))]
-+mod strict_provenance {
-+    /// Gets the "address" portion of the pointer.
-+    ///
-+    /// See https://doc.rust-lang.org/stable/core/primitive.pointer.html#method.addr.
-+    #[inline]
-+    pub fn addr<T>(ptr: *const T) -> usize {
-+        // This is core's implementation from
-+        // https://github.com/rust-lang/rust/commit/4291332175d12e79e6061cdc3f5dccac2e28b969 through
-+        // https://github.com/rust-lang/rust/blob/1.84.0/library/core/src/ptr/const_ptr.rs#L172
-+        // which is the first version that satisfies `CONFIG_RUSTC_HAS_STABLE_STRICT_PROVENANCE`.
-+        #[allow(clippy::undocumented_unsafe_blocks)]
-+        unsafe {
-+            #[allow(clippy::transmutes_expressible_as_ptr_casts)]
-+            core::mem::transmute(ptr.cast::<()>())
-+        }
-+    }
-+
-+    /// Exposes the "provenance" part of the pointer for future use in
-+    /// [`with_exposed_provenance`] and returns the "address" portion.
-+    ///
-+    /// See https://doc.rust-lang.org/stable/core/primitive.pointer.html#method.expose_provenance.
-+    #[inline]
-+    pub fn expose_provenance<T>(ptr: *const T) -> usize {
-+        ptr.cast::<()>() as usize
-+    }
-+
-+    /// Converts an address back to a pointer, picking up some previously 'exposed'
-+    /// provenance.
-+    ///
-+    /// See https://doc.rust-lang.org/stable/core/ptr/fn.with_exposed_provenance.html.
-+    #[inline]
-+    pub fn with_exposed_provenance<T>(addr: usize) -> *const T {
-+        addr as *const T
-+    }
-+
-+    /// Converts an address back to a mutable pointer, picking up some previously 'exposed'
-+    /// provenance.
-+    ///
-+    /// See https://doc.rust-lang.org/stable/core/ptr/fn.with_exposed_provenance_mut.html
-+    #[inline]
-+    pub fn with_exposed_provenance_mut<T>(addr: usize) -> *mut T {
-+        addr as *mut T
-+    }
-+
-+    /// Creates a pointer with the given address and no [provenance][crate::ptr#provenance].
-+    ///
-+    /// See https://doc.rust-lang.org/stable/core/ptr/fn.without_provenance_mut.html.
-+    #[inline]
-+    pub fn without_provenance_mut<T>(addr: usize) -> *mut T {
-+        addr as *mut T
-+    }
-+}
-+
-+pub use strict_provenance::*;
-+
- // Ensure conditional compilation based on the kernel configuration works;
- // otherwise we may silently break things like initcall handling.
- #[cfg(not(CONFIG_RUST))]
-diff --git a/rust/kernel/of.rs b/rust/kernel/of.rs
-index 40d1bd13682c..b70076d16008 100644
---- a/rust/kernel/of.rs
-+++ b/rust/kernel/of.rs
-@@ -22,7 +22,7 @@ unsafe impl RawDeviceId for DeviceId {
-     const DRIVER_DATA_OFFSET: usize = core::mem::offset_of!(bindings::of_device_id, data);
- 
-     fn index(&self) -> usize {
--        self.0.data as usize
-+        crate::addr(self.0.data)
-     }
- }
- 
-diff --git a/rust/kernel/pci.rs b/rust/kernel/pci.rs
-index a26f154ae1b9..87c9f67b3f0f 100644
---- a/rust/kernel/pci.rs
-+++ b/rust/kernel/pci.rs
-@@ -287,7 +287,7 @@ fn new(pdev: Device, num: u32, name: &CStr) -> Result<Self> {
-         // `pdev` is valid by the invariants of `Device`.
-         // `num` is checked for validity by a previous call to `Device::resource_len`.
-         // `name` is always valid.
--        let ioptr: usize = unsafe { bindings::pci_iomap(pdev.as_raw(), num, 0) } as usize;
-+        let ioptr = crate::expose_provenance(unsafe { bindings::pci_iomap(pdev.as_raw(), num, 0) });
-         if ioptr == 0 {
-             // SAFETY:
-             // `pdev` valid by the invariants of `Device`.
-@@ -320,7 +320,7 @@ unsafe fn do_release(pdev: &Device, ioptr: usize, num: i32) {
-         // `ioptr` is valid by the safety requirements.
-         // `num` is valid by the safety requirements.
-         unsafe {
--            bindings::pci_iounmap(pdev.as_raw(), ioptr as *mut kernel::ffi::c_void);
-+            bindings::pci_iounmap(pdev.as_raw(), crate::with_exposed_provenance_mut(ioptr));
-             bindings::pci_release_region(pdev.as_raw(), num);
-         }
-     }
-diff --git a/rust/kernel/str.rs b/rust/kernel/str.rs
-index 0b80a119d5f0..6bc6357293e4 100644
---- a/rust/kernel/str.rs
-+++ b/rust/kernel/str.rs
-@@ -692,9 +692,9 @@ fn new() -> Self {
-     pub(crate) unsafe fn from_ptrs(pos: *mut u8, end: *mut u8) -> Self {
-         // INVARIANT: The safety requirements guarantee the type invariants.
-         Self {
--            beg: pos as usize,
--            pos: pos as usize,
--            end: end as usize,
-+            beg: crate::expose_provenance(pos),
-+            pos: crate::expose_provenance(pos),
-+            end: crate::expose_provenance(end),
-         }
-     }
- 
-@@ -705,7 +705,7 @@ pub(crate) unsafe fn from_ptrs(pos: *mut u8, end: *mut u8) -> Self {
-     /// The memory region starting at `buf` and extending for `len` bytes must be valid for writes
-     /// for the lifetime of the returned [`RawFormatter`].
-     pub(crate) unsafe fn from_buffer(buf: *mut u8, len: usize) -> Self {
--        let pos = buf as usize;
-+        let pos = crate::expose_provenance(buf);
-         // INVARIANT: We ensure that `end` is never less then `buf`, and the safety requirements
-         // guarantees that the memory region is valid for writes.
-         Self {
-@@ -719,7 +719,7 @@ pub(crate) unsafe fn from_buffer(buf: *mut u8, len: usize) -> Self {
-     ///
-     /// N.B. It may point to invalid memory.
-     pub(crate) fn pos(&self) -> *mut u8 {
--        self.pos as *mut u8
-+        crate::with_exposed_provenance_mut(self.pos)
-     }
- 
-     /// Returns the number of bytes written to the formatter.
-@@ -741,11 +741,7 @@ fn write_str(&mut self, s: &str) -> fmt::Result {
-             // SAFETY: If `len_to_copy` is non-zero, then we know `pos` has not gone past `end`
-             // yet, so it is valid for write per the type invariants.
-             unsafe {
--                core::ptr::copy_nonoverlapping(
--                    s.as_bytes().as_ptr(),
--                    self.pos as *mut u8,
--                    len_to_copy,
--                )
-+                core::ptr::copy_nonoverlapping(s.as_bytes().as_ptr(), self.pos(), len_to_copy)
-             };
-         }
- 
-diff --git a/rust/kernel/uaccess.rs b/rust/kernel/uaccess.rs
-index 719b0a48ff55..96393bcf6bd7 100644
---- a/rust/kernel/uaccess.rs
-+++ b/rust/kernel/uaccess.rs
-@@ -226,7 +226,9 @@ pub fn read_raw(&mut self, out: &mut [MaybeUninit<u8>]) -> Result {
-         }
-         // SAFETY: `out_ptr` points into a mutable slice of length `len`, so we may write
-         // that many bytes to it.
--        let res = unsafe { bindings::copy_from_user(out_ptr, self.ptr as *const c_void, len) };
-+        let res = unsafe {
-+            bindings::copy_from_user(out_ptr, crate::with_exposed_provenance(self.ptr), len)
-+        };
-         if res != 0 {
-             return Err(EFAULT);
-         }
-@@ -264,7 +266,7 @@ pub fn read<T: FromBytes>(&mut self) -> Result<T> {
-         let res = unsafe {
-             bindings::_copy_from_user(
-                 out.as_mut_ptr().cast::<c_void>(),
--                self.ptr as *const c_void,
-+                crate::with_exposed_provenance(self.ptr),
-                 len,
-             )
-         };
-@@ -330,7 +332,9 @@ pub fn write_slice(&mut self, data: &[u8]) -> Result {
-         }
-         // SAFETY: `data_ptr` points into an immutable slice of length `len`, so we may read
-         // that many bytes from it.
--        let res = unsafe { bindings::copy_to_user(self.ptr as *mut c_void, data_ptr, len) };
-+        let res = unsafe {
-+            bindings::copy_to_user(crate::with_exposed_provenance_mut(self.ptr), data_ptr, len)
-+        };
-         if res != 0 {
-             return Err(EFAULT);
-         }
-@@ -357,7 +361,7 @@ pub fn write<T: AsBytes>(&mut self, value: &T) -> Result {
-         // is a compile-time constant.
-         let res = unsafe {
-             bindings::_copy_to_user(
--                self.ptr as *mut c_void,
-+                crate::with_exposed_provenance_mut(self.ptr),
-                 (value as *const T).cast::<c_void>(),
-                 len,
-             )
+> +
+> +  mdio:
+> +    type: object
+> +    $ref: /schemas/net/airoha,an8855-mdio.yaml
+> +    description:
+> +      MDIO exposed by the Airoha AN8855 Switch. This child node definition
+> +      should follow the bindings specified in
+> +      Documentation/devicetree/bindings/net/airoha,an8855-mdio.yaml
 
--- 
-2.48.1
+ditto
 
+> +
+> +required:
+> +  - compatible
+> +  - reg
+
+The child nodes are optional?
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    mdio {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        soc@1 {
+> +            compatible = "airoha,an8855";
+> +            reg = <1>;
+> +
+> +            reset-gpios = <&pio 39 0>;
+> +
+> +            efuse {
+> +                compatible = "airoha,an8855-efuse";
+> +
+> +                #nvmem-cell-cells = <0>;
+> +
+> +                nvmem-layout {
+> +                    compatible = "fixed-layout";
+> +                    #address-cells = <1>;
+> +                    #size-cells = <1>;
+> +
+> +                    shift_sel_port0_tx_a: shift-sel-port0-tx-a@c {
+> +                       reg = <0xc 0x4>;
+> +                    };
+> +
+> +                    shift_sel_port0_tx_b: shift-sel-port0-tx-b@10 {
+> +                        reg = <0x10 0x4>;
+> +                    };
+> +
+> +                    shift_sel_port0_tx_c: shift-sel-port0-tx-c@14 {
+> +                        reg = <0x14 0x4>;
+> +                    };
+> +
+> +                    shift_sel_port0_tx_d: shift-sel-port0-tx-d@18 {
+> +                       reg = <0x18 0x4>;
+> +                    };
+> +
+> +                    shift_sel_port1_tx_a: shift-sel-port1-tx-a@1c {
+> +                        reg = <0x1c 0x4>;
+> +                    };
+> +
+> +                    shift_sel_port1_tx_b: shift-sel-port1-tx-b@20 {
+> +                        reg = <0x20 0x4>;
+> +                    };
+> +
+> +                    shift_sel_port1_tx_c: shift-sel-port1-tx-c@24 {
+> +                       reg = <0x24 0x4>;
+> +                    };
+> +
+> +                    shift_sel_port1_tx_d: shift-sel-port1-tx-d@28 {
+> +                        reg = <0x28 0x4>;
+> +                    };
+> +                };
+> +            };
+> +
+> +            ethernet-switch {
+> +                compatible = "airoha,an8855-switch";
+> +
+> +                ports {
+> +                    #address-cells = <1>;
+> +                    #size-cells = <0>;
+> +
+> +                    port@0 {
+> +                        reg = <0>;
+> +                        label = "lan1";
+> +                        phy-mode = "internal";
+> +                        phy-handle = <&internal_phy1>;
+> +                    };
+> +
+> +                    port@1 {
+> +                        reg = <1>;
+> +                        label = "lan2";
+> +                        phy-mode = "internal";
+> +                        phy-handle = <&internal_phy2>;
+> +                    };
+> +
+> +                    port@5 {
+> +                        reg = <5>;
+> +                        label = "cpu";
+> +                        ethernet = <&gmac0>;
+> +                        phy-mode = "2500base-x";
+> +
+> +                        fixed-link {
+> +                            speed = <2500>;
+> +                            full-duplex;
+> +                            pause;
+> +                        };
+> +                    };
+> +                };
+> +            };
+> +
+> +            mdio {
+> +                compatible = "airoha,an8855-mdio";
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                internal_phy1: phy@1 {
+> +                  compatible = "ethernet-phy-idc0ff.0410",
+> +                               "ethernet-phy-ieee802.3-c45";
+> +                  reg = <1>;
+> +
+> +                  nvmem-cells = <&shift_sel_port0_tx_a>,
+> +                      <&shift_sel_port0_tx_b>,
+> +                      <&shift_sel_port0_tx_c>,
+> +                      <&shift_sel_port0_tx_d>;
+> +                  nvmem-cell-names = "tx_a", "tx_b", "tx_c", "tx_d";
+> +                };
+> +
+> +                internal_phy2: phy@2 {
+> +                  compatible = "ethernet-phy-idc0ff.0410",
+> +                               "ethernet-phy-ieee802.3-c45";
+> +                  reg = <2>;
+> +
+> +                  nvmem-cells = <&shift_sel_port1_tx_a>,
+> +                      <&shift_sel_port1_tx_b>,
+> +                      <&shift_sel_port1_tx_c>,
+> +                      <&shift_sel_port1_tx_d>;
+> +                  nvmem-cell-names = "tx_a", "tx_b", "tx_c", "tx_d";
+> +                };
+> +            };
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 45f4bb8deb0d..65709e47adc7 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -725,6 +725,7 @@ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+>  L:	linux-mediatek@lists.infradead.org (moderated for non-subscribers)
+>  L:	netdev@vger.kernel.org
+>  S:	Maintained
+> +F:	Documentation/devicetree/bindings/mfd/airoha,an8855.yaml
+>  F:	Documentation/devicetree/bindings/net/airoha,an8855-mdio.yaml
+>  F:	Documentation/devicetree/bindings/net/airoha,an8855-phy.yaml
+>  F:	Documentation/devicetree/bindings/net/dsa/airoha,an8855-switch.yaml
+> -- 
+> 2.48.1
+> 
 
