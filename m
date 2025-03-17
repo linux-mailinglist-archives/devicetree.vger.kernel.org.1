@@ -1,60 +1,77 @@
-Return-Path: <devicetree+bounces-158074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158075-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FAC1A64769
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 10:31:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D7C2A64773
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 10:31:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8398B3AC1D4
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 09:29:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A9903B223F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 09:29:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B35D221F1A;
-	Mon, 17 Mar 2025 09:28:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xb7LNp3m"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E7F22288EE;
+	Mon, 17 Mar 2025 09:29:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC601221D8B;
-	Mon, 17 Mar 2025 09:28:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9525D222570
+	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 09:29:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742203725; cv=none; b=BR/xzixOSQ5FJemrUNC2uGdVKtgVZFO4CNzjGkKVIbllDHie9w2OGbPgcP3L+ibZ4GDi0bIYkX/YC0+e2/xlQK62z6nzKhBPfQ+oBvDBxZ3RhRnZ/tZMD5Hxec1M2oGCpmNH4hRcyTO9hQEUVh8e4A6/o3wq1drOyNzrx6Ip4D8=
+	t=1742203765; cv=none; b=u5gJWtS9Waqh4PeLytqGSar8n5NooAaTTtqgprTZTNpeHqhFdXo93rXpUTEdtOZHJFch3VmS/Ko2zFS5t6oOxNDJs5ooehpSweAkDwM7HOJ0F0CRwFfwF3GA52M9MYWnQ/mL6fpJkIMgR57jNVffZczz+mbnRAHPkQVe/MIrDHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742203725; c=relaxed/simple;
-	bh=VrQP9zv6me9y/ttzDtGZKAyPHxugPahSMAz9MlLhgD0=;
+	s=arc-20240116; t=1742203765; c=relaxed/simple;
+	bh=v6b1hOqA8LaA+3NZNe9pj0/6BawfIs755ND7o1Yr1G4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n1hI8N86q0k1H+F00wNp1z7vgd2TTEr6JJAqxjiTndd/0WOEk/noakiW7J027N+/w81VZI4iHl1jNPhyYaux4AqwT37unvxRXyDIy8qWetCVhZoillSjWCx+JVxVHVRvzkVdI57x7XwRS/xID+DRoQk+jyCfCx5ZYKD8Or3YeQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xb7LNp3m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76896C4CEE3;
-	Mon, 17 Mar 2025 09:28:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742203724;
-	bh=VrQP9zv6me9y/ttzDtGZKAyPHxugPahSMAz9MlLhgD0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Xb7LNp3mg2qW45yC1vAuxlQBRlu8+pLU4uozZMk7dGKtioy+V0XdwhnMKTcRYUkpx
-	 NZMdIN208ZPFLSebQbCHAeDgdeJVERGOQtezEBT4/SK5Go5najpMV8408VH+KamDXD
-	 FoAs+47VOcJ+Axskkv35IgBxN4aoxGTm/mytrLS82cQ7r8fVSg8J8Y/xH3K2BxF0Xw
-	 URzYQCSGteh7QT7P+gdKNlcpGH6X+mvmx4QNdQPa5oKH7t9t3eHlZIjXtGjW3J2XwN
-	 hpUJoR5MqepIHT7Q2ns0mC3hToXqinCTJASatIWYsq+T9VWKm93C+pxmTJ9WLrslJt
-	 3D4EiSY2hyv0A==
-Date: Mon, 17 Mar 2025 10:28:40 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: geert+renesas@glider.be, conor+dt@kernel.org, krzk+dt@kernel.org, 
-	robh@kernel.org, rafael@kernel.org, daniel.lezcano@linaro.org, 
-	magnus.damm@gmail.com, devicetree@vger.kernel.org, john.madieu@gmail.com, 
-	rui.zhang@intel.com, linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	sboyd@kernel.org, biju.das.jz@bp.renesas.com, linux-pm@vger.kernel.org, 
-	lukasz.luba@arm.com
-Subject: Re: [PATCH v3 2/6] dt-bindings: thermal: r9a09g047-tsu: Document the
- TSU unit
-Message-ID: <20250317-ubiquitous-acrid-gorilla-71d726@krzk-bin>
-References: <20250315081225.92118-1-john.madieu.xa@bp.renesas.com>
- <20250315081225.92118-3-john.madieu.xa@bp.renesas.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=RgGKC0dA6EEIe6cLdePYEDdCoB00kK+4bR9YL99T9l0sJXXv8wmnuu78lG6K+YMRj7HlmW3Erui04jZlswCvsqqaLhLaNbr8icWlJ4byJEzX8wXksWFnjTp8lL1Vu9Q/pvcxPkH1MYbeDNrI2wM2WiTxNgaaoDREBqYYiz+e3M8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1tu6mJ-00007m-3d; Mon, 17 Mar 2025 10:28:59 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1tu6mH-000Dk8-2m;
+	Mon, 17 Mar 2025 10:28:58 +0100
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1tu6mI-001857-0S;
+	Mon, 17 Mar 2025 10:28:58 +0100
+Date: Mon, 17 Mar 2025 10:28:58 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Donald Hunter <donald.hunter@gmail.com>,
+	Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	Simon Horman <horms@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-doc@vger.kernel.org,
+	Kyle Swenson <kyle.swenson@est.tech>,
+	Dent Project <dentproject@linuxfoundation.org>,
+	kernel@pengutronix.de,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v6 02/12] net: pse-pd: Add support for reporting
+ events
+Message-ID: <Z9frWsKESEaB9GcZ@pengutronix.de>
+References: <20250304-feature_poe_port_prio-v6-0-3dc0c5ebaf32@bootlin.com>
+ <20250304-feature_poe_port_prio-v6-2-3dc0c5ebaf32@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,97 +80,157 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250315081225.92118-3-john.madieu.xa@bp.renesas.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250304-feature_poe_port_prio-v6-2-3dc0c5ebaf32@bootlin.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Sat, Mar 15, 2025 at 09:12:12AM +0100, John Madieu wrote:
-> The Renesas RZ/G3E SoC includes a Thermal Sensor Unit (TSU) block designed
-> to measure the junction temperature. The device provides real-time temperature
-> measurements for thermal management, utilizing a single dedicated channel
-> (channel 1) for temperature sensing.
+Hi Köry,
 
-Please wrap commit message according to Linux coding style / submission
-process (neither too early nor over the limit):
-https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+sorry for late review.
 
-Please run scripts/checkpatch.pl and fix reported warnings. After that,
-run also 'scripts/checkpatch.pl --strict' and (probably) fix more
-warnings. Some warnings can be ignored, especially from --strict run,
-but the code here looks like it needs a fix. Feel free to get in touch
-if the warning is not clear.
+On Tue, Mar 04, 2025 at 11:18:51AM +0100, Kory Maincent wrote:
+> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+...
+> diff --git a/drivers/net/mdio/fwnode_mdio.c b/drivers/net/mdio/fwnode_mdio.c
+> index aea0f03575689..9b41d4697a405 100644
+> --- a/drivers/net/mdio/fwnode_mdio.c
+> +++ b/drivers/net/mdio/fwnode_mdio.c
+> @@ -18,7 +18,8 @@ MODULE_LICENSE("GPL");
+>  MODULE_DESCRIPTION("FWNODE MDIO bus (Ethernet PHY) accessors");
+>  
+>  static struct pse_control *
+> -fwnode_find_pse_control(struct fwnode_handle *fwnode)
+> +fwnode_find_pse_control(struct fwnode_handle *fwnode,
+> +			struct phy_device *phydev)
+>  {
+>  	struct pse_control *psec;
+>  	struct device_node *np;
+> @@ -30,7 +31,7 @@ fwnode_find_pse_control(struct fwnode_handle *fwnode)
+>  	if (!np)
+>  		return NULL;
+>  
+> -	psec = of_pse_control_get(np);
+> +	psec = of_pse_control_get(np, phydev);
+>  	if (PTR_ERR(psec) == -ENOENT)
+>  		return NULL;
+>  
+> @@ -128,15 +129,9 @@ int fwnode_mdiobus_register_phy(struct mii_bus *bus,
+>  	u32 phy_id;
+>  	int rc;
+>  
+> -	psec = fwnode_find_pse_control(child);
+> -	if (IS_ERR(psec))
+> -		return PTR_ERR(psec);
+> -
+>  	mii_ts = fwnode_find_mii_timestamper(child);
+> -	if (IS_ERR(mii_ts)) {
+> -		rc = PTR_ERR(mii_ts);
+> -		goto clean_pse;
+> -	}
+> +	if (IS_ERR(mii_ts))
+> +		return PTR_ERR(mii_ts);
+>  
+>  	is_c45 = fwnode_device_is_compatible(child, "ethernet-phy-ieee802.3-c45");
+>  	if (is_c45 || fwnode_get_phy_id(child, &phy_id))
+> @@ -169,6 +164,12 @@ int fwnode_mdiobus_register_phy(struct mii_bus *bus,
+>  			goto clean_phy;
+>  	}
+>  
+> +	psec = fwnode_find_pse_control(child, phy);
+> +	if (IS_ERR(psec)) {
+> +		rc = PTR_ERR(psec);
+> +		goto unregister_phy;
+> +	}
 
-> 
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> ---
-> v1 -> v2:
->  * Fix reg property specifier to get rid of yamlint warnings
->  * Fix IRQ name to reflect TSU expectations
+Hm... we are starting to dereference the phydev pointer to a different
+framework without managing the ref-counting.
 
-... 
+We will need to have some form of get_device(&phydev->mdio.dev).
+Normally it is done by phy_attach_direct().
 
-> +  interrupts:
-> +    description: |
-> +      Interrupt specifiers for the TSU:
-> +      - S12TSUADI1: Conversion complete interrupt signal (pulse)
-> +      - S12TSUADCMPI1: Comparison result interrupt signal (level)
+And the counterpart: put_device() or phy_device_free()
 
-Same problems as before - you need to list and describe items to have
-constraints. Otherwise why 5 interrupts are allowed but only two
-interrupt-names (test this)?
-
-There is no syntax like above in any other bindings. If you found such,
-please share the filename so we can fix it.
-
+ 
+>  static int of_load_single_pse_pi_pairset(struct device_node *node,
+> @@ -557,6 +560,151 @@ int devm_pse_controller_register(struct device *dev,
+>  }
+>  EXPORT_SYMBOL_GPL(devm_pse_controller_register);
+>  
+> +struct pse_irq {
+> +	struct pse_controller_dev *pcdev;
+> +	struct pse_irq_desc desc;
+> +	unsigned long *notifs;
+> +};
 > +
-> +  interrupt-names:
-> +    items:
-> +      - const: adi
-> +      - const: adcmpi
+> +/**
+> + * pse_to_regulator_notifs - Convert PSE notifications to Regulator
+> + *			     notifications
+> + * @notifs: PSE notifications
+> + *
+> + * Return: Regulator notifications
+> + */
+> +static unsigned long pse_to_regulator_notifs(unsigned long notifs)
+> +{
+> +	unsigned long rnotifs = 0;
 > +
-> +  "#thermal-sensor-cells":
-> +    const: 0
+> +	if (notifs & ETHTOOL_PSE_EVENT_OVER_CURRENT)
+> +		rnotifs |= REGULATOR_EVENT_OVER_CURRENT;
+> +	if (notifs & ETHTOOL_PSE_EVENT_OVER_TEMP)
+> +		rnotifs |= REGULATOR_EVENT_OVER_TEMP;
 > +
-> +  renesas,tsu-calibration-sys:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: |
-> +      Phandle to the system controller (sys) that contains the TSU
-> +      calibration values used for temperature calculations.
+> +	return rnotifs;
+> +}
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - resets
-> +  - power-domains
-> +  - interrupts
-> +  - interrupt-names
-> +  - "#thermal-sensor-cells"
-> +  - renesas,tsu-calibration-sys
+> +/**
+> + * pse_control_find_phy_by_id - Find PHY attached to the pse control id
+> + * @pcdev: a pointer to the PSE
+> + * @id: index of the PSE control
+> + *
+> + * Return: PHY device pointer or NULL
+> + */
+> +static struct phy_device *
+> +pse_control_find_phy_by_id(struct pse_controller_dev *pcdev, int id)
+> +{
+> +	struct pse_control *psec;
 > +
-> +additionalProperties: false
+> +	mutex_lock(&pse_list_mutex);
+> +	list_for_each_entry(psec, &pcdev->pse_control_head, list) {
+> +		if (psec->id == id) {
+> +			mutex_unlock(&pse_list_mutex);
+> +			return psec->attached_phydev;
+> +		}
+> +	}
+> +	mutex_unlock(&pse_list_mutex);
 > +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/renesas,r9a09g047-cpg.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    tsu: thermal@14002000 {
-> +        compatible = "renesas,r9a09g047-tsu";
-> +        reg = <0x14002000 0x1000>;
-> +        clocks = <&cpg CPG_MOD 0x10a>;
-> +        resets = <&cpg 0xf8>;
-> +        power-domains = <&cpg>;
-> +        interrupts = <GIC_SPI 250 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 251 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-names = "adi", "adcmpi";
-> +        #thermal-sensor-cells = <0>;
-> +        renesas,tsu-calibration-sys = <&sys>;
-> +    };
-> +
-> +    thermal-zones {
 
-Drop the node, no need to show how to use provider binding.
 
-Best regards,
-Krzysztof
+Here we should increase ref-counting withing the mutex protection:
 
+    mutex_lock(&pse_list_mutex);
+    list_for_each_entry(psec, &pcdev->pse_control_head, list) {
+        if (psec->id == id) {
+            phydev = psec->attached_phydev;
+            if (phydev)
+                get_device(&phydev->mdio.dev);  // Increase reference count
+            break;
+        }
+    }
+    mutex_unlock(&pse_list_mutex);
+
+
+May be we will need a generic function for the PHYlib: phy_device_get() ?
+ 
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
