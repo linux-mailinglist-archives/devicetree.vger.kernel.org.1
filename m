@@ -1,144 +1,212 @@
-Return-Path: <devicetree+bounces-158061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158062-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43EC8A6466F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 10:00:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC5B8A64695
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 10:08:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 64F331893A12
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 09:00:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC1A318933C0
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 09:08:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 666CC3AC17;
-	Mon, 17 Mar 2025 09:00:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 602F4221545;
+	Mon, 17 Mar 2025 09:07:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tkaO8/yj"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YAPbskh2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D7882E3373;
-	Mon, 17 Mar 2025 09:00:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2D171459F7
+	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 09:07:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742202027; cv=none; b=uEAPMr/rYqg7GhHjJsdEFKA6eUFon71uib6vrHmirtYqUVBhP1lL6AP5boImp0H3xP9+yrFIYsXQ1WyYBTUKE89EziGXVbts1VPi3ncp3v9ZEmE6+ZcfXrv39ja65dbK4HN/d+8isWPwdEvBX4mM6A/RRL8I3RBreymglu1Ka34=
+	t=1742202477; cv=none; b=iWYgvpnQgxYUdlX2M4/Jzgm4EHhFK5+7X8GW2/40b1KWDxBnWHhP8AJOt48luAWWDi6tVD2JkFczDGgKf1lCpQb+C0s4WVaC2beVhak4BvFXrpLkVByqjoobUrspGqG5NxP++L1oN6i5+MV4URB0Vg3i9tX8MAKIyNCPTkuOtfg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742202027; c=relaxed/simple;
-	bh=W3D20CMMDeTVehzFoOsspP1Xy3fZIs1JN+w4F2wuzL0=;
+	s=arc-20240116; t=1742202477; c=relaxed/simple;
+	bh=+AiPVzF7b1V/vgA2zpvuQUa7wN7Ef6NyFUe8lYcs+os=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=p2pcMea89y3g+63L7ittiCvYFIRVr4ndBc3VYh7cEPWGjEjedK+1RDp5GfAPI/TaF3fv2cF26+4/xHgUWKyzoL1E4KfWLcP5YTPstZPMFIel2cVpJTg0eqc1QX8s8KKi4lQUeceflCpoJna28mpqZTJ83N15LGyE05BUQMQWGaM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tkaO8/yj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB69CC4CEE3;
-	Mon, 17 Mar 2025 09:00:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742202026;
-	bh=W3D20CMMDeTVehzFoOsspP1Xy3fZIs1JN+w4F2wuzL0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tkaO8/yjry0qQlrMCfP3KBKh3c6fbLV44Qk/aD37apAwhxmCpmwnSzy4TGcBaNMUM
-	 2Pk90jQtZnxhS02R2faTN31pPgsEWZEqpoewaQq3BUzsKn3fHHaeYJekvp52Rhlszl
-	 g7Xt4IC8Kxa5Je2Tp/7MWanJ45Ga7H1kAatP3v3d92lCvjMIbJMIFRBflVu/RVk2MX
-	 bXF5/QbcjFjzRGnnqsCY67R7CSYNtE2zw/sX6pWudxHgvfks5dSKCyUAM3k4BHhiwj
-	 ms4oxsUSeiXVJfvBTfUQaiVzF1i/uwPBCNrWJlSN01RB8i0R+5WxEeKopP8vr4RwGF
-	 CHUL19Fi+3ZiQ==
-Message-ID: <df592920-cdf3-40fe-8357-2fbdfc0afd78@kernel.org>
-Date: Mon, 17 Mar 2025 10:00:19 +0100
+	 In-Reply-To:Content-Type; b=rlw5U4JqMirgHF/wkeluIC6UDbrA5To0B+1qUjho2ANsl3qItJgKJjss9aQQjzfV4yNcw0oSI1P1pZUcpBPC2y1IGi0HW1c3rH5ztrKC/c+i9qMTprFjWYB3oBfqaOyfVrXPS6/E+cR4cFwscNS5eG+T79MU5yNp5K9muPVPtLY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YAPbskh2; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52GKSRql019140
+	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 09:07:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	YvB5W9+kgBjKeK0p1OnHFcTClNx4sp6hZOaOwkPfr5g=; b=YAPbskh2+wkbluk3
+	5cBVUNQ9k3avEdIeJktk6MZokj4tc+9OjvQUdH+lPkEo2t9Fmje3dhAEDBHfC4Gg
+	r5k3Tn49obaqtFF6wrerRo40/7sxmyDU6bfnDN/i6H6ja1M9NgV4KHb/TyJuGJqo
+	euyfof4BXRLF70ZjGN47P5PuiZoYRNHVEMrd0atI3O7/bZyvojmECKKqGlMHqzjv
+	6+EW7hFtX2axwgy5ZffqGB+LrR4jH1ACBQJkjhp2oAg32rK44yldgj51I7H+m9KY
+	nqh34nrzsLIbgrHAEylUEqxDkIDX01R9N21HBUOobTt5BmPIT1RXnf7RnqI8O5vd
+	jdjI/w==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45d2u9v16y-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 09:07:54 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2254e500a73so54387635ad.0
+        for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 02:07:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742202474; x=1742807274;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YvB5W9+kgBjKeK0p1OnHFcTClNx4sp6hZOaOwkPfr5g=;
+        b=tWSrT/lVJCM+AgTID7Uu+riGd0G0Mml5XAmAZyLTwhdeRmpCnnVGjrZWqYlWbz7Svv
+         daYRAnyN+zL+zN+mkC1B5AlReJUPjx3UNw5gkdN1chvuIQPnF4I9xrzZQC/ZlFECAQH3
+         rmIpsEhBWoHqKldBlvqfGL4n0i3uu/vRYcRDWRcF+8QPzuoEQch1jpZkk5MiiLFyPSp9
+         eTSjWVLFnD3e0u74c+0vjT3rJA3kCU7UYzs9r2fBfMTZdD9emaa8LuoO8lZ3rkCnbzdk
+         I9xnXW6OCnwn+RtgMjtgQv1AcNARQTCkbi8cQdF6kRdb06JvO6SbGJMpwiAi/CGHk5/A
+         WNNg==
+X-Forwarded-Encrypted: i=1; AJvYcCWqGDaM7h24kAAOCRQzJTSbhUwRiVegfjdTCCpAa4bRKa96luSVG6wjyiFWvlNkTK8m2v0+gxoknM7D@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsI2Xfj3QiP8DYCCfu6z4by7k+Mi5VOLdArNGF24TAqiXCvpV9
+	GZ7aiSMnor5Zl+0wNKP3UIXWxIvDnpPB4kFJnsnUaNGm9Huqup7B1NGvZhQeITQ7j65L7CcKQaV
+	UMgpX8wC1TCGO7wdCLrp3oRd0vdN3McPO48G2awVZb8l82rqlwrm3HLh4tD1w
+X-Gm-Gg: ASbGncvkFmR+iG2FvtCIy4Oned5bYhzZtS+D97tjO+Ioe7WNN7UTW7v5gX+lQ/crujj
+	P1QF9Iee0Ogiatdqd7FL5xN37VeOOJv1hUXL+BtrBjyFtCzTVVUaO9LEDLUAm4pQQLIm+CTmynH
+	OiWjdQojtwNv1aPFvTq85dNtDxO0wdUk5cEadiVfirP6wpivBYCbgfI6AO/u4VdrIJnT9kHXCHS
+	yvjieJFa/idFIFZtRJTF7ES0HookaEuahI94mP1beaxUWxzXYqPYP7MXgtdXf5r4DsEIMbnE0K2
+	v7mPMmCI0KgtMA/58o4VlG3P61X5ZG55fl38kbMclkEzvw==
+X-Received: by 2002:a05:6a00:2e15:b0:736:5753:12f7 with SMTP id d2e1a72fcca58-7372236c48amr15633870b3a.3.1742202473729;
+        Mon, 17 Mar 2025 02:07:53 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFb2/5Yz0QBAf85V3J3MJIKQQYTZZtL2r4Zp4gVmTlQYnG653reK868zYsRjio4CbC3TLgJeQ==
+X-Received: by 2002:a05:6a00:2e15:b0:736:5753:12f7 with SMTP id d2e1a72fcca58-7372236c48amr15633816b3a.3.1742202473230;
+        Mon, 17 Mar 2025 02:07:53 -0700 (PDT)
+Received: from [10.92.192.202] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73711557ee8sm7351197b3a.52.2025.03.17.02.07.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Mar 2025 02:07:52 -0700 (PDT)
+Message-ID: <74ff7b72-94d6-cd19-06c4-09cddc885cb0@oss.qualcomm.com>
+Date: Mon, 17 Mar 2025 14:37:45 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v2 3/3] dt-bindings: mailbox: mtk,vcp-mbox: add mtk
- vcp-mbox document
-To: Jjian Zhou <jjian.zhou@mediatek.com>,
- Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com,
- Chen-Yu Tsai <wenst@chromium.org>
-References: <20250317083822.891-1-jjian.zhou@mediatek.com>
- <20250317083822.891-4-jjian.zhou@mediatek.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v4 08/10] PCI: pwrctrl: Add power control driver for
+ tc956x
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        chaitanya chundru <quic_krichai@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org, Jingoo Han <jingoohan1@gmail.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: quic_vbadigan@quicnic.com, amitk@kernel.org, dmitry.baryshkov@linaro.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        jorge.ramirez@oss.qualcomm.com,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20250225-qps615_v4_1-v4-0-e08633a7bdf8@oss.qualcomm.com>
+ <20250225-qps615_v4_1-v4-8-e08633a7bdf8@oss.qualcomm.com>
+ <d8ef7b67-a31f-4a49-8810-90dfebd2d8e1@oss.qualcomm.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250317083822.891-4-jjian.zhou@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
+From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+In-Reply-To: <d8ef7b67-a31f-4a49-8810-90dfebd2d8e1@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=JsfxrN4C c=1 sm=1 tr=0 ts=67d7e66a cx=c_pps a=cmESyDAEBpBGqyK7t0alAg==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=LmMbr2wudRAhekVMzXwA:9
+ a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: oGwxflIHPzoH8OOaNXYbVuR8MgikYFrA
+X-Proofpoint-ORIG-GUID: oGwxflIHPzoH8OOaNXYbVuR8MgikYFrA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-17_03,2025-03-17_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
+ mlxlogscore=999 impostorscore=0 suspectscore=0 phishscore=0
+ priorityscore=1501 bulkscore=0 malwarescore=0 spamscore=0
+ lowpriorityscore=0 clxscore=1015 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502280000 definitions=main-2503170066
 
-On 17/03/2025 09:38, Jjian Zhou wrote:
-> This patch adds document for mediatek vcp mbox.
+
+
+On 2/25/2025 5:39 PM, Konrad Dybcio wrote:
+> On 25.02.2025 10:34 AM, Krishna Chaitanya Chundru wrote:
+>> TC956x is a PCIe switch which has one upstream and three downstream
+>> ports. To one of the downstream ports ethernet MAC is connected as endpoint
+>> device. Other two downstream ports are supposed to connect to external
+>> device. One Host can connect to TC956x by upstream port. TC956x switch
+>> needs to be configured after powering on and before PCIe link was up.
+>>
+>> The PCIe controller driver already enables link training at the host side
+>> even before this driver probe happens, due to this when driver enables
+>> power to the switch it participates in the link training and PCIe link
+>> may come up before configuring the switch through i2c. Once the link is
+>> up the configuration done through i2c will not have any affect.To prevent
+>> the host from participating in link training, disable link training on the
+>> host side to ensure the link does not come up before the switch is
+>> configured via I2C.
+>>
+>> Based up on dt property and type of the port, tc956x is configured
+>> through i2c.
+>>
+>> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+>> Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+>> Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>> ---
 > 
-> Signed-off-by: Jjian Zhou <jjian.zhou@mediatek.com>
-> ---
->  .../bindings/mailbox/mtk,mt8196-vcp-mbox.yaml | 49 +++++++++++++++++++
+> 
+>> +struct tc956x_pwrctrl_cfg {
+>> +	u32 l0s_delay;
+>> +	u32 l1_delay;
+>> +	u32 tx_amp;
+>> +	u8 nfts[2]; /* GEN1 & GEN2*/
+> 
+> GEN2 */
+> 
+> [...]
+> 
+>> +static int tc956x_pwrctrl_set_l0s_l1_entry_delay(struct tc956x_pwrctrl_ctx *ctx,
+>> +						 enum tc956x_pwrctrl_ports port, bool is_l1, u32 ns)
+>> +{
+>> +	u32 rd_val, units;
+>> +	int ret;
+>> +
+>> +	if (!ns)
+>> +		return 0;
+>> +
+>> +	/* convert to units of 256ns */
+>> +	units = ns / 256;
+> 
+> Should we round up here, so that values in 1 <= x < 256 give a delay
+> value of 1 unit? Or maybe such values are never expected?
+> 
+I will add a check above to return if ns < 256 as 0 is not expected
+value.
+> [...]
+> 
+>> +static int tc956x_pwrctrl_set_tx_amplitude(struct tc956x_pwrctrl_ctx *ctx,
+>> +					   enum tc956x_pwrctrl_ports port, u32 amp)
+>> +{
+>> +	int port_access;
+>> +
+>> +	if (amp < TC956X_TX_MARGIN_MIN_VAL)
+>> +		return 0;
+>> +
+>> +	/*  txmargin = (Amp(uV) - 400000) / 3125 */
+> 
+> double space
+> 
+>> +	amp = (amp - TC956X_TX_MARGIN_MIN_VAL) / 3125;
+> 
+> similarly here, is 0 an expected value for 1 <= x < 3125?
+> 
+Here 0 is expected value in this case.
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
-
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/mtk,mt8196-vcp-mbox.yaml
-
-Filename based on compatible. You already got this comment. Copy paste
-your filename here:
-
-<here goes filename>
-
-and here your compatible:
-
-<here goes compatible>
-
-Are the the same?
-
-Best regards,
-Krzysztof
+- Krishna Chaitanya.
+> Konrad
 
