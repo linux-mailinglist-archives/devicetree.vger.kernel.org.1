@@ -1,263 +1,173 @@
-Return-Path: <devicetree+bounces-158173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 710F9A64F9A
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 13:46:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07B40A64F75
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 13:42:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B80081650E6
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:46:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F01663AF4C8
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:41:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33E6420DF4;
-	Mon, 17 Mar 2025 12:46:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AC8023BCEF;
+	Mon, 17 Mar 2025 12:41:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="e+a00mID"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2065.outbound.protection.outlook.com [40.107.237.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A290634EC
-	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 12:46:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742215593; cv=none; b=kVks8HRNsE+ZL3Rf4VpN13iZqJDtyihD18RTtVSKxGybxVQRLVFRwxnmU2aWAKzDExG+SqRgoQfsX7m9sy1hss7zCa1GBnGys2Q6dPzADSXdl60pSQr2p1HfPyYP0ilVuvHRVYkED5biTZEH2GRMaRrHK36REBFkH+clIEPORJI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742215593; c=relaxed/simple;
-	bh=gu5tdQie3PXjE9UKnouXcaXft1uLAYhn2LNXTlZeflU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cQtpzx3wFcl3/zluBLAiosQhosAJA9EMCNNdCzEO129m6vunj0Q28QnXoc9iJo+1YFiyExHcfE+bcDZ1CBAJIFhS7D20HQh2zsxp9HBX7ogBFrF6+YAm/YzEO2+5jRP6o8cQ3ovvRSUTu6p+Vg0CdNGhBcwmRZ309kZsqCsHsMw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1tu9ma-0002fR-81; Mon, 17 Mar 2025 13:41:34 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1tu9ls-000Fod-2e;
-	Mon, 17 Mar 2025 13:40:45 +0100
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1tu9lt-001Blb-0C;
-	Mon, 17 Mar 2025 13:40:45 +0100
-Date: Mon, 17 Mar 2025 13:40:45 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Donald Hunter <donald.hunter@gmail.com>,
-	Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	Simon Horman <horms@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-doc@vger.kernel.org,
-	Kyle Swenson <kyle.swenson@est.tech>,
-	Dent Project <dentproject@linuxfoundation.org>,
-	kernel@pengutronix.de,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v6 06/12] net: pse-pd: Add support for budget
- evaluation strategies
-Message-ID: <Z9gYTRgH-b1fXJRQ@pengutronix.de>
-References: <20250304-feature_poe_port_prio-v6-0-3dc0c5ebaf32@bootlin.com>
- <20250304-feature_poe_port_prio-v6-6-3dc0c5ebaf32@bootlin.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA2D8239082;
+	Mon, 17 Mar 2025 12:41:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.237.65
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1742215318; cv=fail; b=aZXfdOOmVnD3CHWwXwBRDNwztlx4PCxhAjZozKDuWyQpXhi7CuO+4bpO929AL+2NkPQdIsYVDq+e0Fm0sfVPUDtnCTYxj8XngZ7ZRL2kUENWuVuUMsAkAPa7S7fh0z2jcAww9zWoyUBFto8m5mx2DC2o6emOThYy/FywF6IG+dA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1742215318; c=relaxed/simple;
+	bh=3jcDi+CHhRWx8/m1D8RcptT1HprG4uh/FjBz2rV0Gq8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=b7lXamz1jbnK1aMkzJsO9/P+482o65kk4qO331Fqb9iim4mRbxQ1HX4yJdZl3nscKyT9v4EWuus+QdobxMr0+0ADiTtrbjAAhHAI7G098SJx6SJLaqRR5aCVigj6vypaN1kEs8Q0tbtpKm6r5x04tuDCvaUDQ+6TM/k/ewRWWCU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=e+a00mID; arc=fail smtp.client-ip=40.107.237.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QfaLq6mRLtcy4ybMPD1gnbUSYZXfLaB6cfsIGD/SpGk2X14+o85dT5atjfoI8Beqasl/LL6kDxuThJoiUc8gjbBPNrOAJQsWLAEhKr5N3oYmA3Adjy/OW8eVE5Qld7JhU1WmkbpmAHrGVklB3ZF9shLdRQDHHYhUgAjOdDXEfIKBw0CWnaX3IHx11p2jSzBRWLTobQbYLrAFjMtMHXyVEIxokYTbXpPgDDCabcrKgr/U8NKqRn+TsrnxfFmSPfJLVi2XyfD2QCAfJOse9cCRfJXZGqs7uDQeGvFF4wxJ4Xy4cMnRjQeRvRfpNj2XQ0fEZv7+RdHwIzny351ABOk9OQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=pFVq8gntCpphz6ij/ZXCeQkZ1mfOee0tavIGedNvxJ0=;
+ b=uNMT89lJSFGBcZevf/5w94MteWLXvzkXkohbqsHKkpimFxixcrD7QYCBRpGD2K2Qg6lN9LPIWQtIhitJKh9apbPCas85KidLmM47Bcc9K9+6Yk78yCSwJcJFYCRt5XldgPUzl76sEzXpoBHtLVndUIwZSTRj3Bj3xsOgSzdnO30XdRIScF877JhEZ1Y4wsawdP9ymcxKjZSirbDjsAy3zwizW2idW5MG0I5hZdfE4h4hRjxBJPYKSOWJYXyjR59oKZ2UDGWS+6qA7DmyemK6sh0LPHJK2WOqKab6tjOWiWjfZwPjw2fhZf0yYb7mthQFv+Zmjx0E7vrEaNVBR7/3UA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=google.com smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pFVq8gntCpphz6ij/ZXCeQkZ1mfOee0tavIGedNvxJ0=;
+ b=e+a00mID6IxuM/DBmIIleqqN9VGXUJpB8Z3kB/yMB+wZUXFlQ1flUoGThPXgRG6Pb9bK/ez7OgTG8je/KikOXpQ+Mb8fsFYR/2LB0nPY85ZmfpsTeaVv7O1OckoACERZPhU68KlpSufiwEWMQyUFPRxgCL/5AsS6ND/595a5dz8=
+Received: from BN0PR04CA0175.namprd04.prod.outlook.com (2603:10b6:408:eb::30)
+ by SA1PR12MB6945.namprd12.prod.outlook.com (2603:10b6:806:24c::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.33; Mon, 17 Mar
+ 2025 12:41:53 +0000
+Received: from MN1PEPF0000F0E4.namprd04.prod.outlook.com
+ (2603:10b6:408:eb:cafe::20) by BN0PR04CA0175.outlook.office365.com
+ (2603:10b6:408:eb::30) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.33 via Frontend Transport; Mon,
+ 17 Mar 2025 12:41:53 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ MN1PEPF0000F0E4.mail.protection.outlook.com (10.167.242.42) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8534.20 via Frontend Transport; Mon, 17 Mar 2025 12:41:53 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 17 Mar
+ 2025 07:41:52 -0500
+Received: from xhdthippesw40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
+ Transport; Mon, 17 Mar 2025 07:41:49 -0500
+From: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+To: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
+	<manivannan.sadhasivam@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>
+CC: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <michal.simek@amd.com>,
+	<bharat.kumar.gogada@amd.com>, Thippeswamy Havalige
+	<thippeswamy.havalige@amd.com>
+Subject: [PATCH] PCI: xilinx-cpm: Add cpm5_csr register mapping for CPM5_HOST1 variant
+Date: Mon, 17 Mar 2025 18:11:36 +0530
+Message-ID: <20250317124136.1317723-1-thippeswamy.havalige@amd.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250304-feature_poe_port_prio-v6-6-3dc0c5ebaf32@bootlin.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB04.amd.com: thippeswamy.havalige@amd.com does not
+ designate permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0E4:EE_|SA1PR12MB6945:EE_
+X-MS-Office365-Filtering-Correlation-Id: 350c3b69-5488-4f8d-5fb1-08dd6551186a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|36860700013|82310400026|7416014|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?NBFxi4VXtjgZXDlC6tpaLXdv6/ErsUtbhCDeNx+SyTLaQKHcLWILBQ9Hfggr?=
+ =?us-ascii?Q?SvFskzPs1NRDxydh4rDRWS52ZkZVohILPYZ/G0CnIlO/K56yVdolwdBunUcb?=
+ =?us-ascii?Q?nP6zTVzzUXKjvHPNqEz6+VITKi0tiiVZklIkb0BiBr6EPk4b6sW0VubeE2Dh?=
+ =?us-ascii?Q?dnC5zfL60WYzCyBmbUL69RDNdfhmxyozLUtGMrfHtKFpFpKLKt6WBtCyLYBO?=
+ =?us-ascii?Q?GdgKq8+XuKXtm9TWT1RiXF3fDt0eXPO+7TGw7I2cM1ONrAOTGBj1QpCOV3Hw?=
+ =?us-ascii?Q?9Oksp5GTKEX5eKvUUhR+/91wnRSQ+D0kJWAdPBxQLBJNL5MXNnZMg2AAKD52?=
+ =?us-ascii?Q?0lhNai87nmFLhjht/96L8bi1U0G3hxHG6CSHdvIywI759V2eT8ExGoUoWzzJ?=
+ =?us-ascii?Q?VJ70enrbLTqneWSh1NFUE8b7jS21OwUkKcW+ihEycND0VCWTmDcD0k+cloyc?=
+ =?us-ascii?Q?ooGLePQkrrQ487BQx2zI+vdR5iNdgDHZ9hoIiwphU+1vpYao5CK+S2iZ9GrL?=
+ =?us-ascii?Q?b97X6LkZrEYe2/QLR++qQT0r3f31Os9NNf5RkyYgWXK+OL5THySqtWVS/+5I?=
+ =?us-ascii?Q?tEf6aalO/U0U5rEzHHGaHVvQHhHa5n4T9GYwRGlqneTI/aCrMCl+Hv6YZMCm?=
+ =?us-ascii?Q?8GPzSppNn4JlzDg9qKFErIh58s82GTXFoaZHf4ggtHo2+vKxJZmpAhxud4F4?=
+ =?us-ascii?Q?dq0rS1lQbpepvLeRORVBbvalM5Py41QyY/x7J4bGHgoUqqIAW4Jc0vFD2ngC?=
+ =?us-ascii?Q?Jcxxi20VYg4bPj+1TWCHfOv7191v7GeZNmSZ86vGdicSLzyKvNXO1qhB3xhr?=
+ =?us-ascii?Q?hfSwD9E7qvaDzD+5IadcZ0w+1j+u53c8bf8gYGojXI3vvVouTy92l3so6mNK?=
+ =?us-ascii?Q?JblKdDOgQ+J8mGfUnN0WyE7aLBe7JcvqOrvMdXSG3yS0gkviNuWIqT3ZOGGQ?=
+ =?us-ascii?Q?lxZZ2wOcQxmlyHrh3u7g7oOCuDtY3oe2WDHnfUfByA2meo4KqGxw7AjlzXfh?=
+ =?us-ascii?Q?4Z7B+b+H8/7iu9mhbw1BWubOXT0pJ2lNgjtIYIxdf6/NsdQTN883PTZtbB4p?=
+ =?us-ascii?Q?qq6JJRQzZwCngScQTn2h6TCeVcpGKOZWaEuERPPYsCCRiYDbOfqtl+gJ9kwr?=
+ =?us-ascii?Q?QYP8uWFfkkFwwNfJ0GZ7jRD7ouxv9f/PlWvVO0ghiW6tpuwG7431OcVetg4m?=
+ =?us-ascii?Q?zKlx+wwoz0sW5Vi1jPOT6ywCvkinnYHCBN5TPxwXFn2fhiBECUAiHhEtshon?=
+ =?us-ascii?Q?9LAa1Wb57X0nfoTrldxTJKQ02Ve/5TNPVlA2dExQ2lh4TVh69RX0Kd4Tjl5Z?=
+ =?us-ascii?Q?4eUOyd+rn2QnUOVWPMcvNK0ZEOKiH5pEa/P3E+lvNp6KqFbKS41ANzJsGGUn?=
+ =?us-ascii?Q?OW180d0kpXozQy682a5VQ0Qcxc4UvTjQcdcX+Km2N29ModO5PR5+GK5jtBOW?=
+ =?us-ascii?Q?CO3nc0EwtiwOdq49yd/XIvNezItV++floSS+DFUwLfGkjiqaE4jMLA=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(82310400026)(7416014)(376014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2025 12:41:53.2546
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 350c3b69-5488-4f8d-5fb1-08dd6551186a
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	MN1PEPF0000F0E4.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6945
 
-On Tue, Mar 04, 2025 at 11:18:55AM +0100, Kory Maincent wrote:
-> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
-> +/**
-> + * pse_disable_pi_prio - Disable all PIs of a given priority inside a PSE
-> + *			 power domain
-> + * @pcdev: a pointer to the PSE
-> + * @pw_d: a pointer to the PSE power domain
-> + * @prio: priority
-> + *
-> + * Return: 0 on success and failure value on error
-> + */
-> +static int pse_disable_pi_prio(struct pse_controller_dev *pcdev,
-> +			       struct pse_power_domain *pw_d,
-> +			       int prio)
-> +{
-> +	int i;
-> +
+This commit updates the CPM5 variant check to include CPM5_HOST1.
+Previously, only CPM5 was considered when mapping the "cpm_csr" register.
 
-Should we lock the pi[] array at some level?
+With this change, CPM5_HOST1 is also supported, ensuring proper resource
+mapping for this variant.
 
-> +	for (i = 0; i < pcdev->nr_lines; i++) {
-> +		int ret;
-> +
-> +		if (pcdev->pi[i].prio != prio ||
-> +		    pcdev->pi[i].pw_d != pw_d ||
-> +		    !pcdev->pi[i].admin_state_enabled)
-> +			continue;
-> +
-> +		ret = pse_disable_pi_pol(pcdev, i);
+Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+---
+ drivers/pci/controller/pcie-xilinx-cpm.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-If the PSE has many lower-priority ports, the same set of ports could be
-repeatedly shut down while higher-priority ports keep power
-indefinitely.
-
-This could result in a starvation issue, where lower-priority group of
-ports may never get a chance to stay enabled, even if power briefly
-becomes available.
-
-To fix this, we could:
-- Disallow identical priorities in static mode to ensure a clear
-shutdown order.
-- Modify pse_disable_pi_prio() to track freed power and stop
-disabling once enough power is recovered.
-
-static int pse_disable_pi_prio(struct pse_controller_dev *pcdev,
-                               struct pse_power_domain *pw_d,
-                               int prio, int required_power)
-{
-    int i, ret;
-    int freed_power = 0;
-
-    mutex_lock(&pcdev->lock);
-
-    for (i = 0; i < pcdev->nr_lines; i++) {
-        if (pcdev->pi[i].prio != prio ||
-            pcdev->pi[i].pw_d != pw_d ||
-            !pcdev->pi[i].admin_state_enabled)
-            continue;
-
-        ret = pse_disable_pi_pol(pcdev, i);
-        if (ret == 0)
-            freed_power += pcdev->pi[i].pw_allocated_mW;
-
-        /* Stop once we have freed enough power */
-        if (freed_power >= required_power)
-            break;
-    }
-
-    mutex_unlock(&pcdev->lock);
-    return ret;
-}
-
-The current approach still introduces an implicit priority based on loop
-execution order, but since it's predictable, it can serve as a reasonable
-default.
-
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-
-....
-
-> +/**
-> + * pse_ethtool_set_prio - Set PSE PI priority according to the budget
-> + *			  evaluation strategy
-> + * @psec: PSE control pointer
-> + * @extack: extack for reporting useful error messages
-> + * @prio: priovity value
-> + *
-> + * Return: 0 on success and failure value on error
-> + */
-> +int pse_ethtool_set_prio(struct pse_control *psec,
-> +			 struct netlink_ext_ack *extack,
-> +			 unsigned int prio)
-> +{
-> +	struct pse_controller_dev *pcdev = psec->pcdev;
-> +	const struct pse_controller_ops *ops;
-> +	int ret = 0;
-> +
-> +	if (!pcdev->pi[psec->id].pw_d) {
-> +		NL_SET_ERR_MSG(extack, "no power domain attached");
-> +		return -EOPNOTSUPP;
-> +	}
-> +
-> +	/* We don't want priority change in the middle of an
-> +	 * enable/disable call or a priority mode change
-> +	 */
-> +	mutex_lock(&pcdev->lock);
-> +	switch (pcdev->pi[psec->id].pw_d->budget_eval_strategy) {
-> +	case ETHTOOL_PSE_BUDGET_EVAL_STRAT_STATIC:
-> +		if (prio > pcdev->nr_lines) {
-> +			NL_SET_ERR_MSG_FMT(extack,
-> +					   "priority %d exceed priority max %d",
-> +					   prio, pcdev->nr_lines);
-> +			ret = -ERANGE;
-> +			goto out;
-> +		}
-> +
-> +		pcdev->pi[psec->id].prio = prio;
-
-In case we already out of the budget, we will need to re-evaluate the
-prios. New configuration may affect state of ports.
-
-Potentially we may need a bulk interface to assign prios, to speed-up
-reconfiguration. But it is not needed right now.
-
-> +		break;
-> +
-> +	case ETHTOOL_PSE_BUDGET_EVAL_STRAT_DYNAMIC:
-> +		ops = psec->pcdev->ops;
-> +		if (!ops->pi_set_prio) {
-> +			NL_SET_ERR_MSG(extack,
-> +				       "pse driver does not support setting port priority");
-> +			ret = -EOPNOTSUPP;
-> +			goto out;
-> +		}
-> +
-> +		if (prio > pcdev->pis_prio_max) {
-> +			NL_SET_ERR_MSG_FMT(extack,
-> +					   "priority %d exceed priority max %d",
-> +					   prio, pcdev->pis_prio_max);
-> +			ret = -ERANGE;
-> +			goto out;
-> +		}
-> +
-> +		ret = ops->pi_set_prio(pcdev, psec->id, prio);
-
-Here too, but in case of microchip PSE it will happen in the firmware.
-May be add here a comment that currently it is done in firmware and to
-be extended for the kernel based implementation.
-
-> +		break;
-> +
-> +	default:
-> +		ret = -EOPNOTSUPP;
-> +	}
-> +
-> +out:
-> +	mutex_unlock(&pcdev->lock);
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(pse_ethtool_set_prio);
+diff --git a/drivers/pci/controller/pcie-xilinx-cpm.c b/drivers/pci/controller/pcie-xilinx-cpm.c
+index d0ab187..13ca493 100644
+--- a/drivers/pci/controller/pcie-xilinx-cpm.c
++++ b/drivers/pci/controller/pcie-xilinx-cpm.c
+@@ -542,7 +542,8 @@ static int xilinx_cpm_pcie_parse_dt(struct xilinx_cpm_pcie *port,
+ 	if (IS_ERR(port->cfg))
+ 		return PTR_ERR(port->cfg);
+ 
+-	if (port->variant->version == CPM5) {
++	if (port->variant->version == CPM5 ||
++	    port->variant->version == CPM5_HOST1) {
+ 		port->reg_base = devm_platform_ioremap_resource_byname(pdev,
+ 								    "cpm_csr");
+ 		if (IS_ERR(port->reg_base))
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+1.8.3.1
+
 
