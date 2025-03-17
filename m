@@ -1,56 +1,48 @@
-Return-Path: <devicetree+bounces-158357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EE69A65E7A
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 20:51:01 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E3BBA65EDF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 21:15:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D5257AB0A2
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 19:49:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 952C5189BC86
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 20:15:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D1691DD88E;
-	Mon, 17 Mar 2025 19:50:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E37561E8349;
+	Mon, 17 Mar 2025 20:15:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="EaSpjzNW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="osifnA1c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 774ED13C8F3
-	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 19:50:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFC5D42C0B;
+	Mon, 17 Mar 2025 20:15:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742241055; cv=none; b=F8z1qRE+QMkOFhpl+qrUPpMPiItotsqk1iB4omP7nhjRCJUsmRX5v4G639bDvnGWrYrAqBXSHLsd2sgWBNtMJmdLNHbSgX5JG8oHkwRxTaXAQAXpnp7tcXRcB/RLi5RWHKf0ugljAOQpbeLSU7oxMsxwCvgfTKr6zi9CXMGmggM=
+	t=1742242516; cv=none; b=RH8nZaoYnGmxAN42tgOVkuHzH7WrnU/HhWGd2y7uLtT+S9u5dykkNFDaDS02wq3x4Pq9iKa1OanIxM5Vk8T+4oVM5jHF1m7liZmlM51nW8Jtbw6SKjQWxulhtuU5rKxlZow01nEJu+DiQhWLmEVY4bMIyyOD13Hf00jzk9aV0RI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742241055; c=relaxed/simple;
-	bh=qCir4xzMNkVXj/doH6Th1r5KYhkWWXbu0XRczN3GzYc=;
+	s=arc-20240116; t=1742242516; c=relaxed/simple;
+	bh=ZGpyLj1jkls0SoosLhcIHbWXKCVXYJixZIMjVgkLkBw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BNPIE82dPe7V6aRXiTuuepWxn4DwB5eqk5YifHGo5jMQ69npvpMku9dU5Nc+hVg0yo0htYnvItMLaQsXLewxaHyXO2tr4IAiiIsHOEfnj5QG4wft881d6Huhe14vgb81oFegodgQrLmjbMr7RxlYN+YRiYUv3Hh4LOPS5wsnqPU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=EaSpjzNW; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1742241053;
- bh=x7uD5anQxB6XbAyXnokdg7fGkN/BWmwgVtIghm68D1E=;
- b=EaSpjzNWRirHx5fWeYllTPPDAMzMk2G90XRM5PT+JCk6iGbK4ipk2BqRXMdYjP/4G2jhRWM3b
- 7+k87nX3I9lRSIm7wiE21+FhmTn4L9GlC9SJbcBVCZE295DyKE7HjL9Sl04UVMvf/G/DvRvNdIx
- LsW3hKZaX77T8yixPrJGxMtcYrwjFyv9K2tUbIsMRxv7OL+Bi1/tJ4FH2enws89gA0XPo29WM/6
- wwxnRyW0yAS61svJ+aCFMeTMJI6jSx7aR6GMZiMQHrAIw9CJDjTJBEQJJqgpH2WRDnSTLPW0X8s
- 5tuB8PEbna+DxY6kjT1WqSChyCi91dTWjNFqKvebwI0g==
-X-Forward-Email-ID: 67d87d10eee8cc91c8429fed
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 0.4.40
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <db3bf1cb-3385-4676-8ba4-41fea0212bf2@kwiboo.se>
-Date: Mon, 17 Mar 2025 20:50:34 +0100
+	 In-Reply-To:Content-Type; b=khljW+Qr1q7ZuwAdrZhTpEFGScFDQlfZ5jqxvcfW4aeuCNBX1lZtS+CYIkFFvXUKqTb0FziuJJ0ro51pZwkpzKXKJ6TZHxcDwkb4+7Cyaiyi93HnlsstsnkrAeUvjdc7A41aDlwJegsIQngUiP2rqmDOyiAHpRSe2tCyomt3yvg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=osifnA1c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F0F3C4CEE3;
+	Mon, 17 Mar 2025 20:15:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742242516;
+	bh=ZGpyLj1jkls0SoosLhcIHbWXKCVXYJixZIMjVgkLkBw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=osifnA1cZCD8MBp58aKXElJ59DzyIv0F/VAZ+IRg2ouAffV2hGYFx9IsmYYc8qPPm
+	 clqlr4YwrGQrT+9F8+rRnrCyXU2ia0tCgtZ0wI/Ow10hdVXqg9XJg4XbccDQuQriJ9
+	 dpaRp//FvZtMDmB5P5da73pa/Hk88FxrURCy3sJlVXN8S1mpUe2/fd9eXcqnBJb76/
+	 2dvwxlpJNZHaLdDGEvjddJIoPYL6SXk5rJmf2xeuwNIhm1Fbzya516Y343zknfwv79
+	 p17tBaNUXgjoorg2eOP4SN35hoqXuAKZVhhn3FskevYh6sBP+RzmocC2eaahuvKs8E
+	 fpUobcpFrMs0Q==
+Message-ID: <ed314a01-75c3-4d87-a7a1-034e5dff02a5@kernel.org>
+Date: Mon, 17 Mar 2025 21:15:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,76 +50,94 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/5] net: stmmac: dwmac-rk: Add GMAC support for RK3528
-To: Simon Horman <horms@kernel.org>
-Cc: Heiko Stuebner <heiko@sntech.de>, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, David Wu <david.wu@rock-chips.com>,
- Yao Zi <ziyao@disroot.org>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250309232622.1498084-1-jonas@kwiboo.se>
- <20250317194309.GL688833@kernel.org>
+Subject: Re: [PATCH RESEND v2] dt-bindings: serial: samsung: add
+ exynos7870-uart compatible
+To: Kaustabh Chakraborty <kauschluss@disroot.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250318-exynos7870-uart-v2-1-b9dcf145ae87@disroot.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20250317194309.GL688833@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250318-exynos7870-uart-v2-1-b9dcf145ae87@disroot.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Hi Simon,
+On 17/03/2025 20:21, Kaustabh Chakraborty wrote:
+> Document the compatible string for Exynos7870's UART driver. The
+> devicetree property samsung,uart-fifosize must be mandatory, as the
+> driver enquires about the FIFO sizes. This feature makes it compatible
+> with Exynos8895's UART.
+> 
+> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+> ---
+So you just ignored the tags and ask us to do the work twice? So all
+reviews are wasted and we need to duplicate the effort?
 
-On 2025-03-17 20:43, Simon Horman wrote:
-> On Sun, Mar 09, 2025 at 11:26:10PM +0000, Jonas Karlman wrote:
->> The Rockchip RK3528 has two Ethernet controllers, one 100/10 MAC to be
->> used with the integrated PHY and a second 1000/100/10 MAC to be used
->> with an external Ethernet PHY.
->>
->> This series add initial support for the Ethernet controllers found in
->> RK3528 and initial support to power up/down the integrated PHY.
->>
->> This series depends on v2 of the "net: stmmac: dwmac-rk: Validate GRF
->> and peripheral GRF during probe" [1] cleanup series.
->>
->>
->> Changes in v2:
->> - Restrict the minItems: 4 change to rockchip,rk3528-gmac
->> - Add initial support to power up/down the integrated PHY in RK3528
->> - Split device tree changes into a separate series
->>
->> [1] https://lore.kernel.org/r/20250308213720.2517944-1-jonas@kwiboo.se/
-> 
-> Hi Jonas,
-> 
-> This patchset looks reasonable to me. However it will need
-> to be reposted once it's dependencies ([1]) are present in net-next.
+My time on upstream is very limited, thus I find it very disrespectful.
 
-The dependent series ([1]) has already been merged into net-next [2].
+<form letter>
+It looks like you received a tag and forgot to add it.
 
-Do I still need to repost this series?
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
+of patchset, under or above your Signed-off-by tag, unless patch changed
+significantly (e.g. new properties added to the DT bindings). Tag is
+"received", when provided in a message replied to you on the mailing
+list. Tools like b4 can help here. However, there's no need to repost
+patches *only* to add the tags. The upstream maintainer will do that for
+tags received on the version they apply.
 
-[2] https://lore.kernel.org/r/174186063226.1446759.12026198009173732573.git-patchwork-notify@kernel.org/
+Please read:
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
 
-> 
-> And on the topic of process:
-> 
-> * As this is a patch-set for net-next it would be best to
->   target it accordingly:
-> 
->   Subject: [PATCH net-next] ...
-> 
-> * Please post patches for net/net-next which have dependencies as RFCs.
-> 
-> For more information on Netdev processes please take a look at
-> https://docs.kernel.org/process/maintainer-netdev.html
-> 
+If a tag was not added on purpose, please state why and what changed.
+</form letter>
 
-Thanks, I see, netdev seem to use a slight different process than what
-I am familiar with compared to other Linux subsystems and U-Boot :-)
-
-Regards,
-Jonas
 
 
