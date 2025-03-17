@@ -1,91 +1,91 @@
-Return-Path: <devicetree+bounces-158331-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158332-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0947EA65C44
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 19:19:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9298FA65C65
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 19:21:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E17BF7AC654
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 18:18:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0BB8E882E74
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 18:21:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 821401C8627;
-	Mon, 17 Mar 2025 18:19:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBFE81E520C;
+	Mon, 17 Mar 2025 18:21:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P7l9KZMB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mh/YXCU+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E790C14C5AA;
-	Mon, 17 Mar 2025 18:19:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF2CC1E833E;
+	Mon, 17 Mar 2025 18:21:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742235565; cv=none; b=seS6QCnjMLFJHo+azHEMksoiUUaBV1QH3LULtLJkQe1ECDTQu9xmwtCqseXVr5y/QWW6i8htU70+ZZj80110zwIGEx33a9xZxhFY8PFAZaQTrIACCGuJ2VYMVYS34d/uCt8D6zJ9JdbunrtzbMuOwuH7bSrACCjpzJFMxgEtI/Q=
+	t=1742235673; cv=none; b=VHqFMD/0sI2UTU7gTgEOOYc70DqTDCFJYoDw7j0GODrceWfYtVSGHnZzaV6VNSNT1Me2apjknJAiDV/YSVs3qkI8ygltOWag5b2qDDkFdnCImGYuj1DCfakf+AREYw82DQix3f4Mn85aqjMmpnisT2s7shEE2fZzrTnEuzuFw3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742235565; c=relaxed/simple;
-	bh=Mtvl/jyJUdtL4QFBo7D0YAZhHSay/PjR0/QIolqsMWU=;
+	s=arc-20240116; t=1742235673; c=relaxed/simple;
+	bh=8F8LChKiyVYE1Z3bO3W71TWsfrI7c0cZayodIbi6dyM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ld8kXdxBalqCCUV8WafJtcDphMjBjAPZdBpgseoSWekpBVpMLHfRGNQAPSbt9HpM/TyRyRk2Uv7/rdXq5BO9eOLZUjR7ehlyGRjTN9VbUnuqhqSpV2/etE45oXLdSKqTFWI0oxWcNZYFFbgnid6hlEr+Y2KoeiRBowy2+ldnu3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P7l9KZMB; arc=none smtp.client-ip=209.85.216.54
+	 Content-Type:Content-Disposition:In-Reply-To; b=aD0O7C5zAVShHSTar/KqUOaE8JKemxrg17LdrAehNA0yoqWsMQvjvawp2KmjbZ+9bQBJDP2pqJ7NUV9YVRcQhyUTOb4kHEke8ib90fPYYDFr4CeLYuAqNIdRmvTsIIeckuBOQ0I/+WpN7QAaIPL6w8oH5mnyvYS7EIHg0vFQ/Ps=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mh/YXCU+; arc=none smtp.client-ip=209.85.214.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-2ff615a114bso3260547a91.0;
-        Mon, 17 Mar 2025 11:19:23 -0700 (PDT)
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-225b5448519so88342195ad.0;
+        Mon, 17 Mar 2025 11:21:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742235563; x=1742840363; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1742235671; x=1742840471; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=1p/vJyLOF8KyVZFp2qeYUDBByhHRPvWe2lPITuY8vOw=;
-        b=P7l9KZMB2Ylt0Sz/QjYBy0SKGTasenhVLI5N8s280TjcJfe4WPivnAizyHfR8aVL3D
-         kyyV1NszRlvOBrSXdX2MiA2BqWNuAfn7M/GtQR3HOSO1+Lq/AL5Hdzw7oJXJ7NNOvn4/
-         ceFw2982ybtN8OuTa+LJi25V4hyiZsrHLPJ4xCPG+X/5eW+BR5tpiKVLcTCiSUrj/7yO
-         3Z7NRrtrIHnAWuOgBS0d5mIZI8Fpv2jjblMYXAKtTRcJnCTCZJ0YLgZFaVnsD7kqhB+g
-         3XCqEuK67j+WYHjzPs7ApG+GSEvZ2u/VHa/5mjZdFNPSw/rJDSZiVQajEl6uMJvv8itV
-         ezRQ==
+        bh=R9ZnVsx9YkOYJfj41WMgAcUudWjPt2oH4jU+k7Wr6Zg=;
+        b=mh/YXCU+Zxa0kcvStAF+DafnJ/XaRrA0PuEwLJPjMju7Wd/8lT+zvOtG7iyH5cfPaD
+         4jd6Mk2vcwe3PpPs87XhpnFIAluPVdb+04SIGIKturGjeVJ23UgyUgOwMasSPXj+SU25
+         aV4e3G7D+9eawd9JpD1Vl3FsHAhSz09gKNyojUcIHMWU2RXsl769wgS0XXKtRJlnzKh3
+         o2i3UwN44dtIyShf70+PYmFPBBhtw8IKdLATZ2N4llX0YGWtwJL4pJBzdB/TZEZhLBvA
+         P48CS90t50n8qspvFY9VRqIeBcftvUwojSOX9YB1gFzE0BwE1zPxIPDOfOwvH+ZnBBjJ
+         nr7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742235563; x=1742840363;
+        d=1e100.net; s=20230601; t=1742235671; x=1742840471;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=1p/vJyLOF8KyVZFp2qeYUDBByhHRPvWe2lPITuY8vOw=;
-        b=dBmrTOP6MgNUmRI5yC5oID7q1KKozOGCZ7cHbc5aSI17/6SWtM2foNmQGWUjlAhqIw
-         MRrWMVLRdt0TRWXhO87Ck+6aZXU91RslUXtK1tHOcjKPM0auEiEgOgH15S6rZAnhAbAf
-         c79eP5Rph9cBuCirTxwG8QdCAf+PnvZyZUEvKNF3HpeOx/0jnxwrCyKCIrA+iDmE5rYD
-         T3cew9cAwdcjr7RfXST5xHkb9SzfiaFQtYMGfhnK6ezCvWNw3/hUf5SfglW206Tv9sOK
-         mitxS4Cy9kl1ydb6O76LWTXuQzp0ButS3XpsyUGVCuIonx5/O4+PzgkRPtLsPSTkAIdR
-         lDQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUULUKl/n4vgWsw/gol2eOUFwYOt1pJ5yszb61VglVojbG3BHoyZ/8N0qrnRgP3p9VTjdN02AhHWNmKNZAM@vger.kernel.org, AJvYcCUtIucSHBIJftbsEhsQjBaidfPXGHGweKQSbe7pNooefKXmf3Gd0Lx5yrSRtx3+7z1d5Fc/bIwp7qmY@vger.kernel.org, AJvYcCWWmzkhpGHH70xBGOqP4HefsOhVtYbRoa+4YBIZzpEfh44E4/oiDKOvVLtUYcvYfHffycCb7aVZYEFv@vger.kernel.org, AJvYcCWhZXQUaf5E7h4oY6PQkeMAUfqwjao2vaakSoco37yA4a7AZoghMm+CDEUAZcIZTjeGMUwMYwbUGghoSBo=@vger.kernel.org
-X-Gm-Message-State: AOJu0YztMy/L7kPVgj7s3CzvBD1vfZ/y6BjCXvvO/52Mv2yRzhunt6RZ
-	aDOWJL7aME+GbLv/VtdM3YHdgVtQ6LRF6wEwVb6n4ZmYdyEQgBKa
-X-Gm-Gg: ASbGncuoTQ3M11z2Yc3Ts5ubELQXaBrzISyTxHUFd+abc85Y4vf8GjiXUJuJaCYNqBU
-	HdBbO7DPIPtq+VSl1shG3k70djtBJ+Ot5GP6v4G9JA7HD/zOaCWNOfbX+uHo8D1ErWmm8q42yEM
-	MnYAqc2le+8n20wp4XKL3IzZuxsxCC1tKYih3VQltYzRwyXBJ6b+WF1qH870tB5dezFHU0pmQT1
-	tKRbC87u8Vp7hfvutC90i5xLZ2qpVhOPzthncGLPlLmABg9izOJcfdt0fVt7wnYa4fOGD+0QNMR
-	pHnr3k4NA+GpIJYFOe6cEOQg4doApZ5i/PmaGs1TzuoZzaUGErOp7BM9Pw==
-X-Google-Smtp-Source: AGHT+IFGsTOd8uYKRb77bxFuXoZw2j0kYHafi/HpYTv7uH6M/4v9MlJQ5+zFAOZhK4Y8uixkSvjS+A==
-X-Received: by 2002:a17:90b:4c12:b0:2fa:562c:c1cf with SMTP id 98e67ed59e1d1-3019f1f1203mr607059a91.1.1742235563180;
-        Mon, 17 Mar 2025 11:19:23 -0700 (PDT)
+        bh=R9ZnVsx9YkOYJfj41WMgAcUudWjPt2oH4jU+k7Wr6Zg=;
+        b=FfDJhuFeA6Tec2mTQxRSsGFnbn2LEyy3e6V1XwIkURnDprszYdrIWm9d1DlYZDmZvT
+         kalTyEWX0EECzY6jmTQQtXLmQnH3dWZRTmakXMI4P4gagRmCTTTtazyQT4hvPW/nSmQr
+         bmO+NR5HnNxoF69htF5zDZ5kflKweHWciNwu8lb/E9eGlaiRx5WECju2chx81XZvWgas
+         r4lAmcB9/bPPQdfgFNqoJZObueRevocKmDmsIvUYuMxAVfVa1A7i4cKfgSNIi44Gqp3d
+         vPA8JnH9JTKlYa8NyTRLGJljcmEjFTWXY75w0cOU8W2nZ0ODtZuAzAOeJ9XUXOarkpDn
+         FhtA==
+X-Forwarded-Encrypted: i=1; AJvYcCV/XrGp9V6RM/64HrB1xQWHCsCjPvt13p+rCClw6T5wKMd8mQ4gEqXEerj1xbsAxzhdmHYP6TIwqVAaG+Xe@vger.kernel.org, AJvYcCX6uDNUv1NoQHJrNWwzbm20vB6rx8s94rlAdOS83ePbVwWxstIR0zScvJEd/uGW4cORTIA5vSyYIlLN@vger.kernel.org, AJvYcCXpNxX8+fM6jMuhTsfI1w4nMIrQYmiaIkRNWXVZPCGcrT0XYGHQDitO/uUz3vqSt0+KbhV83tN5guf2qJU=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxwI663t+D2n5iws8DsmE9Oj+zf/QJDOf9Y8XgH22CHGOo9iAus
+	eYqo5itaegKwL31fWSbNTacNOXS1wjKC42FCHq8UudXT7v7/DRBY
+X-Gm-Gg: ASbGncvTB/HN4UKwNx0w6ZxAfxo8WHxcYWFKyxfRWLEszUFC5xOCPzgXZKG04hj3wsQ
+	jYkF9MnRq/5zUkzmZX73FwwzPy6eCdyv5qWlfIDOJakGyF0wkje0oAsJofKo5ZLdp5nwlV+Stqz
+	2vv5lAq3puwQFRKGdMOyhMdbbVfLCgUtNQMs8WBEH5rnrRvZu2GaL+1Ks3e2X7M3bV+/9ehAn6V
+	BEBQJPC9GOMTU/AwQJ92BGXxbI6Q5Jlo/9iWqqF2X5x7UF1+yqPRAy974anuVYUYCHViqhejZq6
+	ljAqtRzyIlXC4bb2gGNV7ORcoPAJ4179P7sgqsggUAhW3G1IkxvrEdeKTgM0gCTn+a0C
+X-Google-Smtp-Source: AGHT+IEoaHPO+uONugmjhf404W+32JKPjhhfNhtHtp9p/RUnn3f25J75pLNgT6US4mFkLKVkI89Fuw==
+X-Received: by 2002:a17:902:d4ce:b0:223:64bb:f657 with SMTP id d9443c01a7336-225e0b14f03mr154379155ad.46.1742235671226;
+        Mon, 17 Mar 2025 11:21:11 -0700 (PDT)
 Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3015364d849sm6415219a91.41.2025.03.17.11.19.22
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-225c68886a8sm78719735ad.44.2025.03.17.11.21.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Mar 2025 11:19:22 -0700 (PDT)
+        Mon, 17 Mar 2025 11:21:10 -0700 (PDT)
 Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Mon, 17 Mar 2025 11:19:22 -0700
+Date: Mon, 17 Mar 2025 11:21:09 -0700
 From: Guenter Roeck <linux@roeck-us.net>
-To: Leo Yang <leo.yang.sy0@gmail.com>
-Cc: jdelvare@suse.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, Leo-Yang@quantatw.com, corbet@lwn.net,
-	Delphine_CC_Chiu@wiwynn.com, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] hwmon: Add driver for TI INA233 Current and Power
- Monitor
-Message-ID: <acd1c18f-780c-40d6-bd00-fcdfce85789e@roeck-us.net>
-References: <20250116085939.1235598-1-leo.yang.sy0@gmail.com>
- <20250116085939.1235598-3-leo.yang.sy0@gmail.com>
+To: Andrei Lalaev <andrey.lalaev@gmail.com>
+Cc: krzk@kernel.org, robh@kernel.org, christophe.jaillet@wanadoo.fr,
+	jdelvare@suse.com, linux-hwmon@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	conor+dt@kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH RESEND v3 2/2] dt-bindings: hwmon: Add description for
+ sensor HTU31
+Message-ID: <d34d8b80-1ba0-4594-94f8-5afb7a2c22be@roeck-us.net>
+References: <20250217051110.46827-1-andrey.lalaev@gmail.com>
+ <20250217051110.46827-3-andrey.lalaev@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,13 +94,13 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250116085939.1235598-3-leo.yang.sy0@gmail.com>
+In-Reply-To: <20250217051110.46827-3-andrey.lalaev@gmail.com>
 
-On Thu, Jan 16, 2025 at 04:59:42PM +0800, Leo Yang wrote:
-> Driver for Texas Instruments INA233 Current and Power Monitor
-> With I2C-, SMBus-, and PMBus-Compatible Interface
+On Mon, Feb 17, 2025 at 06:10:56AM +0100, Andrei Lalaev wrote:
+> Add trivial binding for HTU31 Temperature and Humidity sensor.
 > 
-> Signed-off-by: Leo Yang <leo.yang.sy0@gmail.com>
+> Signed-off-by: Andrei Lalaev <andrey.lalaev@gmail.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Applied.
 
