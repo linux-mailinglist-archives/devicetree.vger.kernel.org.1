@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-158030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FACAA64399
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 08:29:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CAA1A643B2
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 08:30:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 081663A870B
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 07:29:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0CB1C3A7C8E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 07:30:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBE4721ABB7;
-	Mon, 17 Mar 2025 07:29:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46A1621A421;
+	Mon, 17 Mar 2025 07:30:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o0WfeKB8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fz/tcbp3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DD6121A931;
-	Mon, 17 Mar 2025 07:29:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20FD11684AE
+	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 07:30:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742196575; cv=none; b=b98wRdytFN+Rwt6toTmjcwFtPcTYr/aeszfiyIkZXwnt18jNHeCCheAE/DAQx84YL4Wkdi22+k8zWO2s1DHyAtASIiHL2X/vTOhHLerkncA/uTdpqwbnGDH8NCfRp0nIfggnFeQTF3C/3i89Tvxl0guJGrK2XnNCaTO7xAehUS8=
+	t=1742196638; cv=none; b=HjOyli2ZiFa+KPev7IiQ0Tlzc4yxDOXWwfd/CF8oPWpAwn6nxvXBZe0yOf71P0sZjGbYpCSRQWbmJnswmiFwXDH++LZPYahPS290lWOagIHaj3Mzew0UUOBu8Fbv4WAOWAgBq0FQnTzV4Zx0hVXR1Y8+J76G7zVdGwhxKhQp5Z4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742196575; c=relaxed/simple;
-	bh=J+kuOv2uD9z+2pUSjAjZdJct3mszF6bPV8DehOnBEa8=;
+	s=arc-20240116; t=1742196638; c=relaxed/simple;
+	bh=Jfnf3CBcp5lAHgpNcr2fjd0/1YGTXiJHIxYO4/a4WQw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sBqLpSxiGUrRujwah9a0cuURWjFIUASGHxsRPXmQ4YNfrZ3iQxUYW33EWSLrwq7jKV6PBE81Act8S4gotj6NzvxGwNL7/uYGo/XWveBR6Kj96k0Jd+irwVdxWNvY4BjWKVMqNUUT8RvaeBDt8vbLAPMiYakvzvBIwQAKpOGFm7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o0WfeKB8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24A4DC4CEE3;
-	Mon, 17 Mar 2025 07:29:28 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=qRd8KCPIVHY241BTX1qMgtviJYQoWZNrvkp5yUpb4+W1MRgrpwMpi65sZ+tOlC8G8wNdC3vwM0bYBuPUQroyR4woLeFMM0rY2Boris08BR1JkVAl+OBAocJBY7xV1TjP6Td4Atpzl4EsMdl302kYLAEV07GoSlDPfmGDj0PmK/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fz/tcbp3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22BCAC4CEE3;
+	Mon, 17 Mar 2025 07:30:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742196575;
-	bh=J+kuOv2uD9z+2pUSjAjZdJct3mszF6bPV8DehOnBEa8=;
+	s=k20201202; t=1742196637;
+	bh=Jfnf3CBcp5lAHgpNcr2fjd0/1YGTXiJHIxYO4/a4WQw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=o0WfeKB8+1ErfjAST3zYKnjN+ZOzwp4IYMvVy98MzTVPXq36zknRqRPpKHmMug9Pj
-	 HD+fCDyxjaZYIcKlB2rslAFm+V7MhHs+unvrh1YUBZ9z9ylycENxwDsgABS1eOPlZ4
-	 Zp3iM4g1vFgxO/9jIOQQW7Rpqb2hh6wNrAZM/ICzlGSriYceJj1yFGkzLCGYF9I3RE
-	 VJWINpaJSIRSSKW8tCK0zr0UVcGg7r/AzC/KWWepFm2ibX+56I3AfsH2GxHH1zvp/1
-	 JW5Ks9ShPZOpVjQQOtQo1q+ArwNhz3L9Lgw9C4zI9yDS4xMun+ga1BaPFYB4Aw3/S1
-	 p+gAe84GqGQuQ==
-Message-ID: <07ce157f-98ec-4606-bfa7-5d8f7ca43135@kernel.org>
-Date: Mon, 17 Mar 2025 08:29:26 +0100
+	b=Fz/tcbp3cLA0UV/4pl6i1vWXI6YCd72B8mzKJHqwOI313PKMyMCM0MIqT4VICZas9
+	 WxsBzF5/ri/wpupvjKGjOYC5bAK/4NBBH7UZTsUVLDYmTo+0q5AEXyITRKwtqORrdH
+	 AUIhPvOrfC0aJgU6fypMx4P4ESdPnwr2gGRRwq1e0W5DmoVp+K64P7rv1krum+U18H
+	 xLpsSBlgZCIc774yOEMER/WeMak9Rvlk3BbXs64QW+9VhV+bP35l4gCqqoO1TYI/e6
+	 Y/WFYV6nR+gm5QV2I29t6duoWkouBkwIiUvFKjMC7J+hYm6duprsRe5HE+52YUiCeQ
+	 fKGxIICXh7OhQ==
+Message-ID: <c629563c-9440-441d-a24f-be0e6e168bd8@kernel.org>
+Date: Mon, 17 Mar 2025 08:30:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/9] clk: bcm: kona: Move CLOCK_COUNT defines into the
- driver
-To: Artur Weber <aweber.kernel@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
- <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v5 4/6] dt-bindings: gpu: v3d: Add additional examples to
+ improve binding checks
+To: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
+Cc: Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alex Elder <elder@kernel.org>,
- Stanislav Jakubek <stano.jakubek@gmail.com>, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht
-References: <20250308-kona-bus-clock-v3-0-d6fb5bfc3b67@gmail.com>
- <20250308-kona-bus-clock-v3-1-d6fb5bfc3b67@gmail.com>
- <20250310-proficient-free-antelope-abb6b7@krzk-bin>
- <fffe0118-6235-446c-a9c5-93f5d1f5ed04@gmail.com>
+ <conor+dt@kernel.org>, Nicolas Saenz Julienne <nsaenz@kernel.org>,
+ Stefan Wahren <wahrenst@gmx.net>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, kernel-dev@igalia.com
+References: <20250316-v3d-gpu-reset-fixes-v5-0-9779cdb12f06@igalia.com>
+ <20250316-v3d-gpu-reset-fixes-v5-4-9779cdb12f06@igalia.com>
+ <20250316-abiding-badger-of-joy-0acd4c@krzk-bin>
+ <85c9958d-0f69-4048-ab7b-ba40a0d855ca@igalia.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,43 +109,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <fffe0118-6235-446c-a9c5-93f5d1f5ed04@gmail.com>
+In-Reply-To: <85c9958d-0f69-4048-ab7b-ba40a0d855ca@igalia.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 16/03/2025 20:01, Artur Weber wrote:
-> On 10.03.2025 09:40, Krzysztof Kozlowski wrote:
->> On Sat, Mar 08, 2025 at 08:50:39AM +0100, Artur Weber wrote:
->>> CLOCK_COUNT defines for each CCU are stored in the DT binding header.
->>> This is not correct - they are not used by device trees, only internally
->>> by the driver.
->>>
->>> Move the CLOCK_COUNT defines directly into the driver in preparation
->>> for dropping them from the DT binding include.
->>>
->>> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
->>> ---
->>>   drivers/clk/bcm/clk-bcm21664.c |  8 ++++++++
->>>   drivers/clk/bcm/clk-bcm281xx.c | 10 ++++++++++
->>>   2 files changed, 18 insertions(+)
->>>
->>> diff --git a/drivers/clk/bcm/clk-bcm21664.c b/drivers/clk/bcm/clk-bcm21664.c
->>> index 520c3aeb4ea9c4a431512c0909f9545c1761d17a..fa6e1649d6f5f459b63026109caea9e2f72e22dd 100644
->>> --- a/drivers/clk/bcm/clk-bcm21664.c
->>> +++ b/drivers/clk/bcm/clk-bcm21664.c
->>> @@ -17,6 +17,8 @@ static struct peri_clk_data frac_1m_data = {
->>>   	.clocks		= CLOCKS("ref_crystal"),
->>>   };
->>>   
->>> +#define BCM21664_ROOT_CCU_CLOCK_COUNT	(BCM21664_ROOT_CCU_FRAC_1M + 1)
->>
->> I hit that wall too, no worries. It might surprise you but 0+1 != 1 :),
+On 16/03/2025 18:42, Maíra Canal wrote:
+> Hi Krzysztof,
 > 
-> Do you mean that I should specify the clock count directly rather than
-> incrementing the last ID? Some other drivers seem to do this the way I
-> did here (samsung/clk-exynos*, renesas/r9a06g032-clocks.c).
+> On 16/03/25 13:43, Krzysztof Kozlowski wrote:
+>> On Sun, Mar 16, 2025 at 11:15:11AM -0300, Maíra Canal wrote:
+>>> To prevent future changes that might inadvertently break the ABI, add
+>>> more examples to the binding. These examples improve coverage and help
+>>
+>> Examples are not related to ABI at all.
+>>
+>>> ensure `make dt_binding_check` produces more robust validation results.
+>>
+>> No, don't add more examples differing by one property. Keep one/two
+>> examples.
+> 
+> I had the intention to add examples to avoid people from changing the
+> reg order in the future. For example, we changed the register order when
 
-Just build and test your patches...
+Example does not stop that at all. Changes nothing here.
+
 
 Best regards,
 Krzysztof
