@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-158028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86D16A64391
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 08:28:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C855FA64397
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 08:29:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C2AF77A460C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 07:27:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48D113B115A
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 07:28:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B848C219A76;
-	Mon, 17 Mar 2025 07:28:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DE7A214A8F;
+	Mon, 17 Mar 2025 07:28:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ivrj0Jh1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dYhCFNXh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86E5C18C337;
-	Mon, 17 Mar 2025 07:28:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35D2726ADD;
+	Mon, 17 Mar 2025 07:28:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742196492; cv=none; b=SqTGKymTGTkekQIm9RmUjaB3qFCWBhkze33RYZVEZfFPwSSm3qqf9PnAzoLvsqFrYKZNEhRchGTort2SxSs7VnsfaJzgswh+JB9mOw8kw0sD7TdqtogVYiVQM9WoOKGUaQ8MWr/uVpyz8I5na4md2kOqdGMhZt61F9Im7X83mJ4=
+	t=1742196535; cv=none; b=eFdWb6c/aDnln1ZMaNgszxyH+a2pAb/2uLunsYFBEtmd+SLq81B6xiPIOJ3cBXvl7W+WwUXw8R01FebmSiDibPG9542i0g8R40DcMGDSyYBeZGh0g4rG+HK3eYWNiNJO0M2LhzbeKmjvQb23AjejEdJLUPBkzlWfMo7COLZpfh0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742196492; c=relaxed/simple;
-	bh=AssJDYi439WyyCNzg7U74qB8Kl+svawCNsA4VGSwk2c=;
+	s=arc-20240116; t=1742196535; c=relaxed/simple;
+	bh=KX8lPefXh51osUSwCR8m3OipolqZ4ExuJ1TF8HKpVZQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C0GjWqKk6cWW+8SKYLGO0a51ymy+sx0cA3e/MWqtELKQAzSJpY6XXSmWE3VsCf7JHaieOnyH35d6sTnv4Q4/hQ8khYadMg+ygUF5mvtpGvmijOK9YZ/szLR/hUVnNZ6VHkE6XNji2kFd2QXLDYQ793RqCxTEI+LUb9w8aqgk3sw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ivrj0Jh1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7F5CC4CEE3;
-	Mon, 17 Mar 2025 07:28:03 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=mabA6ZZmziES/VRWG5Qx7Uccrv1rR89Hme34ElX9qJuo/tH2yOwliBdT2c6/IsRpvPlL1x2wuw0klp/i7i7EcHBluEiCB9TnWLhwrkCc4wLbzFpHK/471SS67c5V1hW6wSMhrcMX4Ke7vyT68Kl+ypiiTCa2OApYXWYh5xrcOSk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dYhCFNXh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E38DBC4CEEC;
+	Mon, 17 Mar 2025 07:28:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742196491;
-	bh=AssJDYi439WyyCNzg7U74qB8Kl+svawCNsA4VGSwk2c=;
+	s=k20201202; t=1742196533;
+	bh=KX8lPefXh51osUSwCR8m3OipolqZ4ExuJ1TF8HKpVZQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ivrj0Jh17GfdawxjUu/NQ3d8ovR86f5TzMftg4mDfoD4JktO0xgjPnHKcGnxr6ECr
-	 SBUL7dPJfcdokveLEfIaD4p+UTXKsd0dTsJ72sJH8pQ+YQVdLaSKO4hc1VGLOsyyqz
-	 vQvaqh+f2TKNzVRFChHM0XM2HZ5tyLDms+jUUIsILl8fCiAQBtpunzw8alqO/FN/A9
-	 vIefOz2UkS6E9j01ZJPiBs2OAI1yXviNB+/+gituRNCkkFGmdsmVBGCS33zEwH9tMa
-	 +fPOhbFb8Z+UGtv1ScnvqoMf7q92ZU9AIlWh6VzLEpymsW0PLbAH/w8QmXmO8Io6Sq
-	 AaaSVZXEUFQlA==
-Message-ID: <fa434d7f-b34e-43d9-987a-d3948305166a@kernel.org>
-Date: Mon, 17 Mar 2025 08:28:01 +0100
+	b=dYhCFNXhhkYaL60Kpf9UYUo4iRFxjKZqjwD9o5Pn33aXjjuLrzXGLz9szuGusVXWe
+	 VVSYy2jUAvk+UsxxXiCcrTtfHGyqZRDKOP3wnDQLQQaKxKTdT4UgrxFchW46huHO05
+	 fk5h9JW/bXjzJ9P5rnc/frChG3LFgNtwmog5UWaDzMBTpcY6iMeuV3Ub/LleAE+3Ho
+	 yE1Wk72qaDcTm9ebPLmvYuHClloyHylp3HZtnvGdTuOaVmwEoC4Z9XolA8V2rt+Gq6
+	 LXEsXcrmCW4rXPmI+cBYx8B8XsJHll7QwQeJV/weeo2ofjLE17iyRJ5QpMf9PqI3on
+	 MTSXjlm1p2Qcw==
+Message-ID: <4cec908c-1412-4e18-959d-b71c9ec21eb4@kernel.org>
+Date: Mon, 17 Mar 2025 08:28:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/6] dt-bindings: PCI: qcom: Add IPQ5018 SoC
-To: George Moussalem <george.moussalem@outlook.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
- andersson@kernel.org, bhelgaas@google.com, conor+dt@kernel.org,
- devicetree@vger.kernel.org, lumag@kernel.org, kishon@kernel.org,
- konradybcio@kernel.org, krzk+dt@kernel.org, kw@linux.com,
- lpieralisi@kernel.org, manivannan.sadhasivam@linaro.org,
- p.zabel@pengutronix.de, quic_nsekar@quicinc.com, robh@kernel.org,
- robimarko@gmail.com, vkoul@kernel.org, quic_srichara@quicinc.com
-References: <DS7PR19MB8883F2538AA7D047E13C102B9DD22@DS7PR19MB8883.namprd19.prod.outlook.com>
- <20250314055644.32705-1-george.moussalem@outlook.com>
- <DS7PR19MB88834CAC414A0C2B4D71D57C9DD22@DS7PR19MB8883.namprd19.prod.outlook.com>
- <20250314-greedy-tested-flamingo-59ae28@krzk-bin>
- <DS7PR19MB88839F5961CB1C0AAC1902959DD22@DS7PR19MB8883.namprd19.prod.outlook.com>
- <6843e66c-d85c-4af0-8b49-773803825381@kernel.org>
- <DS7PR19MB8883AB849DC21D7C43DDA78A9DDF2@DS7PR19MB8883.namprd19.prod.outlook.com>
+Subject: Re: [PATCH v4 2/3] arm64: dts: amlogic: Add A4 Reset Controller
+To: Kelvin Zhang <kelvin.zhang@amlogic.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Zelong Dong <zelong.dong@amlogic.com>
+References: <20250313-a4-a5-reset-v4-0-8076f684d6cf@amlogic.com>
+ <20250313-a4-a5-reset-v4-2-8076f684d6cf@amlogic.com>
+ <20250314-tested-husky-of-force-1ccdca@krzk-bin>
+ <3dceafbf-49d4-4084-bfae-74384e187941@amlogic.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,26 +109,38 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <DS7PR19MB8883AB849DC21D7C43DDA78A9DDF2@DS7PR19MB8883.namprd19.prod.outlook.com>
+In-Reply-To: <3dceafbf-49d4-4084-bfae-74384e187941@amlogic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/03/2025 06:49, George Moussalem wrote:
->>>>
->>>
->>> Thanks Krzysztof. I did reorder them deliberately based on unit
->>> addresses as discussed also in other threads about IPQ9574 and IPQ5332
->>> as I thought it would be neater that way. I'll change it back, reuse
+On 17/03/2025 03:49, Kelvin Zhang wrote:
 >>
->> Which discusses were that? What were the reasons to start with parf?
+>> Why do you have on the bus devices with bus addressing and without it?
+>> What sort of bus is it?
+> 
+> Are you referring to the 'apb'?
+> If so, the 'apb' bus is defined in 
+> arch/arm64/boot/dts/amlogic/amlogic-a4-common.dtsi.
+> 
+> apb: bus@fe000000 {
+>          compatible = "simple-bus";
+>          reg = <0x0 0xfe000000 0x0 0x480000>;
+>          #address-cells = <2>;
+>          #size-cells = <2>;
+>          ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
+> 
+>>
+>>>        periphs_pinctrl: pinctrl {
+
+Then what the heck is this?
+
+>>>                compatible = "amlogic,pinctrl-a4";
+>>>                #address-cells = <2>;
+>>
+>> Best regards,
+>> Krzysztof
 >>
 > 
-> I based the reordering on this patch so assumed that was the direction 
-> (at that time):
-> https://patchwork.kernel.org/project/linux-pci/patch/20250128062708.573662-5-quic_varada@quicinc.com/
-
-That's a patch, not a discussion. I don't think anyone suggested
-changing order or starting with 'parf' entry.
 
 
 Best regards,
