@@ -1,230 +1,98 @@
-Return-Path: <devicetree+bounces-158167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158164-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63818A64F0B
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 13:36:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41CFFA64F01
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 13:36:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 585D33AB7CC
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:36:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C3EB188E5A6
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:36:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DEDD23BCEF;
-	Mon, 17 Mar 2025 12:36:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 114C023A566;
+	Mon, 17 Mar 2025 12:36:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qpSGRI4k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECA4C238D32;
-	Mon, 17 Mar 2025 12:36:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBB90239096;
+	Mon, 17 Mar 2025 12:36:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742215002; cv=none; b=jJkXAI++bVF0wQf4LYKcbuoZnzKAwJB8Wn23zIJhK04WYYAboB7zHGckX6HvzuHd/Vg/9t65vDFT+in1mTMKl8ES7waPY7Jx247YqKiGxTIuuEifdLICW5h+sFKiYnJk5WCqx+J8gbZuYHADYra/iWXJQCBN1HPBO02EsJS6OIs=
+	t=1742214975; cv=none; b=p6lT5mvMCLln+YVteUA/rycEX8A/jVBSDC89g82K5hQKjGWP/Ac57TGR++2NMoTgQxIwsEfmsxuhSlgD5SgTPK5A5IEKFMdhmtcmaCO4nn8rdOb4g3Y1aNmdqLFyI100DSNgtWgVUT5+mnQio3BqMRWJerI4XJUVpRkxtvnVuqg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742215002; c=relaxed/simple;
-	bh=jUFiHNXDM/b34ZULieJZogjiDwdJoSt7MQSylWeXW+8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=GFGwzIgjcguNeNE3vLVxjh/KghMf7WWl4eAt1aMd4wV6DY3aH2F8dgeRL1F7Z6EO4K92bhszxBjMcjeTW19bVpJwVBQ3PKte8Zhv8pV1g45Vj5CRt4UYXB5ZpQ56GYZ7Pnn3IqystaTMgEfge9b1KMUEO6u8sxk04vpw/LN640A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: 17AKMr0ZTbuY7WFs7/loPw==
-X-CSE-MsgGUID: oTS49blfT+WATTDGW9FLJQ==
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 17 Mar 2025 21:36:38 +0900
-Received: from localhost.localdomain (unknown [10.226.92.84])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 35307400262C;
-	Mon, 17 Mar 2025 21:36:33 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1742214975; c=relaxed/simple;
+	bh=GGeUu/qHq7ctkvz7APKdufbJEDMrfDRBBej2b3v+epw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PMo4yl8pm+wjxCkotusM7B6hv+eeOFj2uL4eDD/n922mBa3QLob5qcr28tX/ZgAaKIaL6Jtcotx7gwmkyGBgsWM2IorKDS8Qw/KLry/s5ngcEI1XIeL2FIaJerTx7PEJ4rDAh7Dj8xYDMwnwpltLrn1+l2FRsXrNvtHwarwzJJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qpSGRI4k; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA190C4CEE3;
+	Mon, 17 Mar 2025 12:36:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742214974;
+	bh=GGeUu/qHq7ctkvz7APKdufbJEDMrfDRBBej2b3v+epw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qpSGRI4kJhUEnsCcy/8CpzXnlMWUIBo1cSH4DF2IEzWQdqcOZ95jO4rGZMjFPqlxm
+	 eS2XbjNbuQARU8BhL/3S/YHuo7jha0/NlPfVQ5KyV8i7ItlRS8s5KBzsgaDgLkLyE9
+	 o64qP0A6dPMI7gvsMaOviI2VsE8nuNgtr3hKQw41LphkRdt+wIx6p1D3YkmlZhBs+q
+	 bg+vRODyWgooFpZjscrCnqABFcJGVQv3/lPXPgGeZSSX3AbHjtwSpXJvDdZ8eeKIBm
+	 iNoflGUtkaBG+pmgCic+OXPizvDBTyqiLjLA3LQf0UNEAxOzZpa0Ooyq/a/57ctmKe
+	 K8tmC/ZgSS3nQ==
+Date: Mon, 17 Mar 2025 12:36:08 +0000
+From: Mark Brown <broonie@kernel.org>
+To: cy_huang@richtek.com
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Simon Horman <horms@kernel.org>,
-	Duy Nguyen <duy.nguyen.rh@renesas.com>,
-	linux-can@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v5 02/16] dt-bindings: can: renesas,rcar-canfd: Document RZ/G3E support
-Date: Mon, 17 Mar 2025 12:35:56 +0000
-Message-ID: <20250317123619.70988-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250317123619.70988-1-biju.das.jz@bp.renesas.com>
-References: <20250317123619.70988-1-biju.das.jz@bp.renesas.com>
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/3] regulator: dt-bindings: rtq2208: Remove unnecessary
+ property of fixed LDO VOUT
+Message-ID: <857ca1fd-f7d2-41ec-963d-2b6250ac2cca@sirena.org.uk>
+References: <cover.1742204502.git.cy_huang@richtek.com>
+ <d90e57c14869415e6322e8b0bbff14da480a0adb.1742204502.git.cy_huang@richtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="rPU7mO5AV4U9+wRZ"
+Content-Disposition: inline
+In-Reply-To: <d90e57c14869415e6322e8b0bbff14da480a0adb.1742204502.git.cy_huang@richtek.com>
+X-Cookie: I know how to do SPECIAL EFFECTS!!
 
-Document support for the CAN-FD Interface on the RZ/G3E (R9A09G047) SoC,
-which supports up to six channels.
 
-The CAN-FD module on RZ/G3E is very similar to the one on both R-Car V4H
-and RZ/G2L, but differs in some hardware parameters:
- * No external clock, but instead has ram clock.
- * Support up to 6 channels.
- * 20 interrupts.
+--rPU7mO5AV4U9+wRZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v4->v5:
- * Keeping interrupts and resets together allows to keep a clear
-   separation between RZ/G2L and RZ/G3E, at the expense of only
-   a single line.
- * Retained the tags as it is trivial change.
-v3->v4:
- * Added Rb tag from Rob.
-v2->v3:
- * Replaced maxItems->minItems: 20 for RZ/G3E interrupt,s as the list has 20
-   elements and for existing platforms dropped minItems and keep maxItems: 8.
-v1->v2:
- * No change.
----
- .../bindings/net/can/renesas,rcar-canfd.yaml  | 76 +++++++++++++++++--
- 1 file changed, 70 insertions(+), 6 deletions(-)
+On Mon, Mar 17, 2025 at 06:06:23PM +0800, cy_huang@richtek.com wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
+>=20
+> The 'richtek,fixed-microvolt' is unnecessary. Remove it on the document.
 
-diff --git a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-index 4a83498b2a8b..f4ac21c68427 100644
---- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-+++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-@@ -42,6 +42,8 @@ properties:
-               - renesas,r9a07g054-canfd    # RZ/V2L
-           - const: renesas,rzg2l-canfd     # RZ/G2L family
- 
-+      - const: renesas,r9a09g047-canfd     # RZ/G3E
-+
-   reg:
-     maxItems: 1
- 
-@@ -59,6 +61,19 @@ properties:
-           - description: CAN1 error interrupt
-           - description: CAN1 transmit interrupt
-           - description: CAN1 transmit/receive FIFO receive completion interrupt
-+          - description: CAN2 error interrupt
-+          - description: CAN2 transmit interrupt
-+          - description: CAN2 transmit/receive FIFO receive completion interrupt
-+          - description: CAN3 error interrupt
-+          - description: CAN3 transmit interrupt
-+          - description: CAN3 transmit/receive FIFO receive completion interrupt
-+          - description: CAN4 error interrupt
-+          - description: CAN4 transmit interrupt
-+          - description: CAN4 transmit/receive FIFO receive completion interrupt
-+          - description: CAN5 error interrupt
-+          - description: CAN5 transmit interrupt
-+          - description: CAN5 transmit/receive FIFO receive completion interrupt
-+        minItems: 8
- 
-   interrupt-names:
-     oneOf:
-@@ -74,15 +89,33 @@ properties:
-           - const: ch1_err
-           - const: ch1_rec
-           - const: ch1_trx
-+          - const: ch2_err
-+          - const: ch2_rec
-+          - const: ch2_trx
-+          - const: ch3_err
-+          - const: ch3_rec
-+          - const: ch3_trx
-+          - const: ch4_err
-+          - const: ch4_rec
-+          - const: ch4_trx
-+          - const: ch5_err
-+          - const: ch5_rec
-+          - const: ch5_trx
-+        minItems: 8
- 
-   clocks:
-     maxItems: 3
- 
-   clock-names:
--    items:
--      - const: fck
--      - const: canfd
--      - const: can_clk
-+    oneOf:
-+      - items:
-+          - const: fck
-+          - const: canfd
-+          - const: can_clk
-+      - items:
-+          - const: fck
-+          - const: ram_clk
-+          - const: can_clk
- 
-   power-domains:
-     maxItems: 1
-@@ -145,11 +178,9 @@ allOf:
-     then:
-       properties:
-         interrupts:
--          minItems: 8
-           maxItems: 8
- 
-         interrupt-names:
--          minItems: 8
-           maxItems: 8
- 
-         resets:
-@@ -183,6 +214,30 @@ allOf:
-         resets:
-           maxItems: 1
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r9a09g047-canfd
-+    then:
-+      properties:
-+        interrupts:
-+          minItems: 20
-+
-+        interrupt-names:
-+          minItems: 20
-+
-+        resets:
-+          minItems: 2
-+          maxItems: 2
-+
-+        reset-names:
-+          minItems: 2
-+          maxItems: 2
-+
-+      required:
-+        - reset-names
-+
-   - if:
-       properties:
-         compatible:
-@@ -203,6 +258,15 @@ allOf:
-       patternProperties:
-         "^channel[4-7]$": false
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r9a09g047-canfd
-+    then:
-+      patternProperties:
-+        "^channel[6-7]$": false
-+
- unevaluatedProperties: false
- 
- examples:
--- 
-2.43.0
+This will make any existing DTs buggy, we should mark the property as
+deprecated but valid.
 
+--rPU7mO5AV4U9+wRZ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmfYFzcACgkQJNaLcl1U
+h9CVHwf/QfAnMJEcABurm/VTBBbfT0kWSqivM37rkxYl6/Xj7mRjaxU6E+TkSZgc
+EaiTpH/hXdvHNeN4az2wO8zm+cT9OInl1PzGDmXeXMyUjadiaAy/TPH3L95BumjE
+CRAXXs+ikVvff/99h42y1b/eHXHZLobVzOhygaf1C3u7rE76qqas3XBLNMae1DQi
+OllhPCGuIfrB9ajeLUAFJJXirQ+Rz1LYk34WRgXs1whlhHn6k3+GzcXGXHExyu5o
+tdNWdpXl89jRw5xcrWx+Kf1/Xu46VCge/VayLstuSj2NIZN9Ct1mhx6xfHhS13+s
+fng3/x+YDGPEK21z3BoWgbMhdLvVAQ==
+=lgtk
+-----END PGP SIGNATURE-----
+
+--rPU7mO5AV4U9+wRZ--
 
