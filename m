@@ -1,87 +1,83 @@
-Return-Path: <devicetree+bounces-157986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBA38A63C92
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 04:00:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87F67A63C9C
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 04:01:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 135DA7A740F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 02:58:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A63C47A753D
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 02:59:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4445A1C07DA;
-	Mon, 17 Mar 2025 02:56:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hjYTRhpY"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5571017A2FD;
+	Mon, 17 Mar 2025 02:59:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F41EB1B983F;
-	Mon, 17 Mar 2025 02:56:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA4751632CA;
+	Mon, 17 Mar 2025 02:59:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742180183; cv=none; b=Bh7zIT6l4z9ZfIKrkoJPpwbNYapD2ne/i/8Qzypwcs5uxUMABj34cNUbO3AkJi7q0EpVshPEkukkiuw52yhrGEHNcWca3SZ+jUwZaERuqJLlpzXTTW2YnSBYK8lfKuFOQRaIXSZmMS4M0HpEIF6ZWJQAMq+frBvuWm1dTvBV5ps=
+	t=1742180374; cv=none; b=JxYwxpLA1Wbm1+tCxgTyq/J9DHP/MWFuf9CfA1uw0ULdidxSIWejyZ1JOfJUjnC30B5VHRp1BA1NKHaxmKYkllzhhY1QrkDvC2Z73fe5uMiJ0bwuXMBKeGZDJakdC+2VcNMe76jMOkDUnLvDtufVUVZhgj0rl10D6qV+o+kfvRo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742180183; c=relaxed/simple;
-	bh=Nvu8e/7BVeQgaTWguP+hHQ9KMgjFTA19FNA3cyENUhU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dYh2FpVsu6t/7MTaXAUu5hwuxqNS4Agv98qtQvWsDiXBEW6xnv0W9aAVE1V4F9PTSuQgYgt4yBRZHxW21P6LAXPMtis2P+CbG3qyeTmIIX4rVIHDcHYxAwnnTtPP7yC2QQPD6HdcPSWfnGjnRw1Anj9af9jt7/MSFL01vTUBTrk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hjYTRhpY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3C15C4CEF1;
-	Mon, 17 Mar 2025 02:56:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742180182;
-	bh=Nvu8e/7BVeQgaTWguP+hHQ9KMgjFTA19FNA3cyENUhU=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=hjYTRhpYj2GJOk6Mx1mRcJS5PwwPDSQPFFBhFe5IKnO+kA860slU67i7nNF7/ETFo
-	 e/4sCoFNu39wiIZjIISgIY3A9VqSJJAxI9x1otXwl9WzLr6VtHsU+fTowKqi7lQw0y
-	 WJRI2ccn/verycTKvolhF8+Dx0m5/pGf9lKdyD1aDZHc7rq/5B2H6nM6N17IGut0yC
-	 dKvS/lqQ//EeilPMnLh8aPqbVQmWalvCjSQdruX/ukvJPbRdEcFNvA/6mMzoC0s7mW
-	 HAeBK3UTBWnTYek2sJ5vhelRFbG2Un01FizKMRwJnx3XUqt4lYF6QkIi4UJMBf8C5k
-	 muDvcr5+rgu/A==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	linux-arm-msm@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: clock: qcom,x1e80100-camcc: Fix the list of required-opps
-Date: Sun, 16 Mar 2025 21:56:01 -0500
-Message-ID: <174218015901.1913428.7605554612020111297.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250304143152.1799966-1-vladimir.zapolskiy@linaro.org>
-References: <20250304143152.1799966-1-vladimir.zapolskiy@linaro.org>
+	s=arc-20240116; t=1742180374; c=relaxed/simple;
+	bh=OlrK8n9wN6ZlgmgM3Qo0Mny89Cy8D8lpKSgp7NI962I=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=FUjtMB9yo9ivxfLPudNI0QFOEz+hFhXC0vGPvannE3TYMcirLpAiJbYp7EnrhZu36diERFvERzagx9QCFOcXUtoEwCEFXnCeNGViI7zyojdgeIndP6B1rsxhJO0LFYjLJ3KaNKQgaPWlAgIHjNc7cksAg0i8sEwvL+0sX2b1Iks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.12; Mon, 17 Mar
+ 2025 10:59:22 +0800
+Received: from mail.aspeedtech.com (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1258.12 via Frontend
+ Transport; Mon, 17 Mar 2025 10:59:22 +0800
+From: Jacky Chou <jacky_chou@aspeedtech.com>
+To: <andrew+netdev@lunn.ch>, <davem@davemloft.net>, <edumazet@google.com>,
+	<kuba@kernel.org>, <pabeni@redhat.com>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <joel@jms.id.au>,
+	<andrew@codeconstruct.com.au>, <ratbert@faraday-tech.com>,
+	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-aspeed@lists.ozlabs.org>
+CC: <BMC-SW@aspeedtech.com>
+Subject: [net-next 0/4] Add AST2600 RGMII delay into ftgmac100
+Date: Mon, 17 Mar 2025 10:59:18 +0800
+Message-ID: <20250317025922.1526937-1-jacky_chou@aspeedtech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
+In AST2600, the RGMII delay is configured in SCU.
+Add the properties according ethernet-controller.yaml into AST2600 dts
+and dtsi, and add these in the ftgmac100 driver and yaml to configure and
+describe how to use.
+Now, just support for AST2600 and the other platforms will be ignored
+the RGMII delay setting according to compatible.
 
-On Tue, 04 Mar 2025 16:31:52 +0200, Vladimir Zapolskiy wrote:
-> The switch to multiple power domains implies that the required-opps
-> property shall be updated accordingly, a record in one property
-> corresponds to a record in another one.
-> 
-> 
+Jacky Chou (4):
+  ARM: dts: aspeed-g6:add scu to mac for RGMII delay
+  ARM: dts: ast2600-evb: add default RGMII delay
+  dt-bindings: net: ftgmac100: add rgmii delay properties
+  net: ftgmac100: add RGMII delay for AST2600
 
-Applied, thanks!
+ .../bindings/net/faraday,ftgmac100.yaml       | 16 +++-
+ .../boot/dts/aspeed/aspeed-ast2600-evb.dts    | 12 +++
+ arch/arm/boot/dts/aspeed/aspeed-g6.dtsi       |  4 +
+ drivers/net/ethernet/faraday/ftgmac100.c      | 88 +++++++++++++++++++
+ drivers/net/ethernet/faraday/ftgmac100.h      | 12 +++
+ 5 files changed, 131 insertions(+), 1 deletion(-)
 
-[1/1] dt-bindings: clock: qcom,x1e80100-camcc: Fix the list of required-opps
-      commit: d547913e87a6a40b8690c069492cddc0cef6c573
-
-Best regards,
 -- 
-Bjorn Andersson <andersson@kernel.org>
+2.34.1
+
 
