@@ -1,70 +1,62 @@
-Return-Path: <devicetree+bounces-158289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EEBFA657DB
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 17:22:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CEB5A65801
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 17:28:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F25FF3B2FC4
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 16:22:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 52DDB1894554
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 16:28:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E72F819DF4A;
-	Mon, 17 Mar 2025 16:22:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 658AD1A0BF3;
+	Mon, 17 Mar 2025 16:28:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PjrsNFvu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="epaRQui2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAB6E19D09C;
-	Mon, 17 Mar 2025 16:22:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3601219EEBD;
+	Mon, 17 Mar 2025 16:28:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742228534; cv=none; b=F5rTTdNVtglSYP5CTB2OXPXHIUpvLFhAJjIPimKObvXeueuiAbtisGGZkOdS9EMFzlKL/cSBtonSs+8y68sD0NUiaP5MmliztRS7Kfzq/9BEoUq2YXMV6+Pk9ov8dOl+jzBSE7SzIjklsOGyCYlugEVLaeu/idmR9qxx5k64poQ=
+	t=1742228887; cv=none; b=cVpe3grGOSVAe6Vke4aFc0VZO7J6aB8mX0p1FzeRehmjvRJ1aB7P+GFYJqnwHjgbLu7rXY6NEC/0QWQiGWO1+h+FeAJmp8HcKSmKnVV6U4qhsHn1IAmQoQk+qWcTGRNrnGvfTI8wPMoBXvqBXZRpmTNgeVoq/iuBHe77LBNgL9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742228534; c=relaxed/simple;
-	bh=0svckh3B/Ur9jjk3KUvtAqq/TolLLfjt21X84e1pv9s=;
+	s=arc-20240116; t=1742228887; c=relaxed/simple;
+	bh=ZVZb4jCcDrvXrs/O5aeyNMWmVf2cKnbebKhQIZUZXQc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pKCYRF2f7jegKeETTzDu0Rn/HGjul0fd21YLmg6eQHm0mg7I7uxuBkXhiL2C6epk6RY6V8y+hsbb3f2ECZUj5MbDW4mInfsfPswT5nN9Ub/7CA9dCEHEe5SOYU+RwSImWvmFSOvNjUa5GBd3WO9elq8XE/FfKqMFkxeN6HpkZfI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PjrsNFvu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FAEAC4CEE3;
-	Mon, 17 Mar 2025 16:22:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GCc02bxtiA2EWDKe3bVpsO8d5odztNdB2RajcMweki1aIIDPvCMMvAUMaobXdFtorFCkW5TW+PSrrGL8e1N7+GQq512K/n27MjkWh7OyRKVdb+wMh7NMZd2m9K7pZELYwlR5GcAeFyG98IYbXyk70Z5kZCvqHRjL0XZGTb6Xf3U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=epaRQui2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F584C4CEEC;
+	Mon, 17 Mar 2025 16:28:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742228534;
-	bh=0svckh3B/Ur9jjk3KUvtAqq/TolLLfjt21X84e1pv9s=;
+	s=k20201202; t=1742228886;
+	bh=ZVZb4jCcDrvXrs/O5aeyNMWmVf2cKnbebKhQIZUZXQc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PjrsNFvunrz0r+S3+meOeT86EC7RKhSfjAKDmdu2f3n00L9SeMslYa8gr1Xz2fwPS
-	 yJ86j18koS0mdtT4wb2nBG9ZBVgztxzJjED4/pph3JNhM6MKgDIvfe3arTzo8tH2QO
-	 huuQ+2TQxmo0GSEbaCYTekhX1LehfX54LuwUIYY2UXn3rTNbjVz1m8Ue4ihk8nVYaI
-	 yn+R3egkK+0Yaj/TkKaKuAwjyOizlwbBJfdScICKg2q4IlyrjJwcsQsN03fzKGyl8M
-	 WpylqTSuGDOFHd35Yx8Z3gtQ6PlALpuAEC6HmhUA8h8oR0DjJpeR01+p/WC5V/kqZN
-	 BMSZTKxyZZYgw==
-Date: Mon, 17 Mar 2025 11:22:13 -0500
+	b=epaRQui2CqqpUPQ4zQJyNTEAPsH0wAdW1pYN0GnfYnKZGms/3cwuiLtsc1E7H1fgo
+	 XUBGTi6HbHJsokqR0MzUjhN3ScQ2xtgIkR1Q8Haq7nt1HRr0CLUf2ogpLjR90Xiwqw
+	 hXQ/sgf1kg5WvgXAEXdBEjEqWoduwZNT/0j6G9/RYUT5k4ib/bWaYex6lCsEoNijq6
+	 HzpEp5xwShv99Df2AQKQi/PZ07a/bjkOYtfI8PcAFQv3SJVijxqyToxiByIVv800WT
+	 uPHaAKKdND/E0AZaczrE5QV5QKuWShx7ac3P2NqdJmje18UfwF7FCE4iOJLN6MlKUV
+	 1OqeDE6qyCEAg==
+Date: Mon, 17 Mar 2025 11:28:05 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Eric Dumazet <edumazet@google.com>, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-mediatek@lists.infradead.org,
-	"David S. Miller" <davem@davemloft.net>,
-	Andrew Lunn <andrew+netdev@lunn.ch>, upstream@airoha.com,
-	Russell King <linux@armlinux.org.uk>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Vladimir Oltean <olteanv@gmail.com>, Lee Jones <lee@kernel.org>,
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: Jiri Slaby <jirislaby@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	netdev@vger.kernel.org
-Subject: Re: [net-next PATCH v13 04/14] dt-bindings: net: Document support
- for AN8855 Switch Internal PHY
-Message-ID: <174222853284.168151.15677522554772356388.robh@kernel.org>
-References: <20250315154407.26304-1-ansuelsmth@gmail.com>
- <20250315154407.26304-5-ansuelsmth@gmail.com>
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-serial@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH 1/7] dt-bindings: arm: amlogic: add S6 support
+Message-ID: <174222888470.174842.6381740588460152313.robh@kernel.org>
+References: <20250317-s6-s7-basic-v1-0-d653384e41f3@amlogic.com>
+ <20250317-s6-s7-basic-v1-1-d653384e41f3@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,27 +65,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250315154407.26304-5-ansuelsmth@gmail.com>
+In-Reply-To: <20250317-s6-s7-basic-v1-1-d653384e41f3@amlogic.com>
 
 
-On Sat, 15 Mar 2025 16:43:44 +0100, Christian Marangi wrote:
-> Document support for AN8855 Switch Internal PHY.
+On Mon, 17 Mar 2025 15:16:52 +0800, Xianwei Zhao wrote:
+> Document the new S6 SoC/board device tree bindings.
 > 
-> Airoha AN8855 is a 5-port Gigabit Switch that expose the Internal
-> PHYs on the MDIO bus.
+> Amlogic S6 is an advanced application processor designed for
+> hybrid OTT/IP Set Top Box and high-end media box applications.
 > 
-> Each PHY might need to be calibrated to correctly work with the
-> use of the eFUSE provided by the Switch SoC. This can be enabled by
-> defining in the PHY node the NVMEM cell properties.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > ---
->  .../bindings/net/airoha,an8855-phy.yaml       | 83 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 84 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/airoha,an8855-phy.yaml
+>  Documentation/devicetree/bindings/arm/amlogic.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
