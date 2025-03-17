@@ -1,123 +1,119 @@
-Return-Path: <devicetree+bounces-158343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B634A65D86
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 20:06:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B0DDA65DCF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 20:21:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D1C1189D1FD
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 19:06:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 814DB19A0182
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 19:22:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D4D454670;
-	Mon, 17 Mar 2025 19:06:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F7EA1E1E1E;
+	Mon, 17 Mar 2025 19:21:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Gaeo3FSo"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="l+YImy4a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 913764A06;
-	Mon, 17 Mar 2025 19:06:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F04E15573A;
+	Mon, 17 Mar 2025 19:21:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742238386; cv=none; b=qa/YqbWLEmZ029WhrM2nShUziH4o8p1b8/c0OkAqXC3V1EK3lazy+KDX20UDN1ol5pWncU+lnu4johzMBlMDrb8zZQI4VGIF0MP2zGNSyZ6WGRvgWK96zX/sXO4ZCL6EuNd+SqGUaTvNrzzyrPp13wGY6ZS4j3fT2iNYdOFT3D8=
+	t=1742239310; cv=none; b=M/0TCSA/fhcyLvOp+7gnpKc57cPIivTn2tT2R/DTNncfjwhKZxiQgfr9RjpvCE2c3vcmW37fQH8fnHimfR6tobwWlgMor65UsCc61tqDUt+6oDRLBaFF4oZDcSpQRHYXmq22sUn2K65aS8Z658PF1b2LXTAMdbgYmnVhoH0g7pI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742238386; c=relaxed/simple;
-	bh=+adJ2RDSCVAt8tW3jb2Z3h6jaxLjs2I93CEPuEM8pyI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WvXOf49MXE9+CI7qQ3Tx0MVDOiZAWq/fCtrLkGfSTZutO3FDNgoBf4JEpRohJjYuqbtOe8hHYoWCIbxwtVji0483i8H1rlfXOaSEDxhEHbeRkgD1gw1XSX1TfsKjHlpmu9JSgC1qpwLCzJAjBO4jaQOEhvxxnF7aRlswdwrVIVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Gaeo3FSo; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-30bd21f887aso41500421fa.1;
-        Mon, 17 Mar 2025 12:06:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742238383; x=1742843183; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+adJ2RDSCVAt8tW3jb2Z3h6jaxLjs2I93CEPuEM8pyI=;
-        b=Gaeo3FSothIh9RMz3aJU2IK/sGUFX1pGbHZaVLxy3e6QX7fwfsgPr6YTzegMIh+11a
-         ZU9MqCBG+zd0xMKrv5uCuewTJq2RdwMnAzLf+KPcANtrteXmcfxoy4R04OEJ+tdrkCCD
-         AWox8E5Gz0X5QhWr9Fz8sFONbiNTGWhnyiUpY+ucJdK8QV3IRECKD6hyZ0ajyzrXCGry
-         fx9B1p1z2P/gW83G0ElunCRwWbqGkuRArYbIVBPmFgMRIgk6KqSuA9ILEuR6+lxI5mQV
-         H8o7X7ZS3SwcuKsYBQqASuiNl4nK20M7NNAcsR8ZZAwU2ONn67MxXvfwebVPE6GUXAKW
-         y3LQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742238383; x=1742843183;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+adJ2RDSCVAt8tW3jb2Z3h6jaxLjs2I93CEPuEM8pyI=;
-        b=UfyFyqwSfCWGTXykkYNfUdvsY0YTw9cD+Yo0Vy+TrICviXGunmi7KT18wScxpie6Lw
-         ngB/6F70XXq2+ENZt3zfEPWPbhmr92V5OQFkEEIkOyCXnIrKmyaOVXKUj3pz8MlKiVkm
-         J1aFW3rz8huK1HyRa4ua63q5J9StYQiktkJ3mDCwKsyFH84+5jmCh24kAmBXTcC1uYIC
-         slZBkF5vR/Hk9Sg8KH9BMapkGGktzZMzatN4oViyuToaqmuAB9NP3j7knjPsexJwifzb
-         uyNAAggDwRCLeZVLYLMo2m5pynHvjrIXIIWruFzlcE9czrOG7BOeprEXLxH76VLYye9L
-         A21A==
-X-Forwarded-Encrypted: i=1; AJvYcCU5yO2r1NboC4NsZPlD6G0iyz2LLAyLNQ01qQI/wUx/Iyepqr7vAdCiJll8VsLaW6ZIOMb6vg4Mfx5Bcnh7lUAN@vger.kernel.org, AJvYcCV+3z3clB1rUJsF/chHvXcxivH1UnaJFJpriKkSetIuaUcnV0nijThHTQbY5mAj6QV5opZmt8JqYYy3ygE=@vger.kernel.org, AJvYcCVH64TigHZutf2uD66rMhIX3F1Ycg7syezo3oDeufWzb3Jv6lXWsQWz3+qYz+QWMyK0EEFnbNk1spuQfokH+ig=@vger.kernel.org, AJvYcCVn+bDAkBkg4+tSrqTbb/tb5fRodgaM8tfI/sgaqk6BmlAF8RXFreW8O9HhCVx5+N80APxLnGFD4/Id@vger.kernel.org, AJvYcCWUuAuVTlAqxs+6Bg4qbYKLDURFsBiDGgI2cbdMp+3C9DtMuodC7dpvdYRYagv7SvBH9XqM7lvwKuld@vger.kernel.org, AJvYcCWYZUmdQT83O8lyE3CYRqLTBZFNQXCjAtWo8yLeuZHasBmyWh75lxOJLS6qdCb9JSXklxlnLimwIlau0FbG@vger.kernel.org, AJvYcCXNrToOJ7JCcKkHTKW3oBShbPGhNUHME6lKt9elj8rjDVCfLOZmlzC1cDxLr6G5XGKlLGUnGQcedjSxmmgr@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy25zypjZkR7mNzbNu/FhaiQ5KzRxufRHO9H3E6r9KvbnbwJsir
-	/ordjS1ZyuuhCsntmwYlSjWk/oOJdACoJbmIRuoyItSPsn1+DDnXwCjxrL3qxAPfm2n/RICO/nK
-	ERu6+j6JvqttZUvBuM+vI2SPPSmn5iyMUig3nAA==
-X-Gm-Gg: ASbGnctwhUhW7mOR2lAqTWJNIOcIJ8jRCaLX6y53p4dR9FwRjIX7KBenPeWPv42dHmh
-	wHolUen6oqIehn+VMXSXA0vWV6WIbm797XNxVcWIL6LAThXf+Di5gRwCqvj1n6n2swOY+j/VWCV
-	lP5A4fuhUS8++YaWZ95wuQP4HHIMd8OF+nrCOooCIzr9Kck67gJkCWb88+AMaCZBYLD69J2A==
-X-Google-Smtp-Source: AGHT+IGn5Dd+UV7N7H2pfuIx7bJmRMxrm9tkNYTKUfpfQ/tyXsSm7Z0z2BOQtzX5luQ7Hh9kBuMZ/7OV/z/yCKW++R0=
-X-Received: by 2002:a2e:a454:0:b0:308:fbd5:9d2d with SMTP id
- 38308e7fff4ca-30c4a8f5001mr78224611fa.37.1742238382431; Mon, 17 Mar 2025
- 12:06:22 -0700 (PDT)
+	s=arc-20240116; t=1742239310; c=relaxed/simple;
+	bh=NgHB5DloDHIam4+aHZexc6F7ttmxCu/XVF8xokkwquA=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=n38/uCmGKkWr2SiDXbteIgOStT+QS1Dba8tGWzZpPlSiMoDQy3ZbvMscyus4qYeDC5Rt4HoQAEzeVv78ZiwKA7+p8pRfpsF1wjEpOnWImaMTZhxFLXtYDpM66fKTewtRE3Q8gJCVQJI2GKYniB3AT4AcR+nV4i+L4RpoPd+oJDQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=l+YImy4a; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 49DA4219D8;
+	Mon, 17 Mar 2025 20:21:40 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id Kxohck1h9amb; Mon, 17 Mar 2025 20:21:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1742239297; bh=NgHB5DloDHIam4+aHZexc6F7ttmxCu/XVF8xokkwquA=;
+	h=From:Date:Subject:To:Cc;
+	b=l+YImy4aQlQv0I0Anwet+lGQrE6VSpB9qlQteehdh6qiyDn79CnMF5Ds5e72K7mPw
+	 UGtyf8fu0tGm6VprKTvPEkFOS9f+qePsu7X9QnkHqgIaFsmPhZOkgyF3rHbJvAYU6X
+	 +psKT7kDIubpNdRF73kJWfeUgB0SYTmissoO+CAINUguxqWCf3ysv5SOzs3fjjVHPC
+	 DQRmyHpwWaGdHLQAk5MC2UEzu1ZXfmwinornAmh+fncD9C/OUn5VMpHK4FNli+WGIT
+	 XZ8vGfcU7kdQ1JOfqDTsUlOPtaTWtQ5H2JYb3YqZxr+3fCVQnHdLu2qtm10XIuMyl+
+	 7yIxWUnHc89Mw==
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+Date: Tue, 18 Mar 2025 00:50:51 +0530
+Subject: [PATCH RESEND] dt-bindings: gpu: arm,mali-midgard: add
+ exynos7870-mali compatible
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250317-ptr-as-ptr-v5-0-5b5f21fa230a@gmail.com>
- <20250317-ptr-as-ptr-v5-6-5b5f21fa230a@gmail.com> <67d85e51.050a0220.2a36b.58b3@mx.google.com>
- <CAJ-ks9kBp8zPfaQuZRb0Unms1b13hDb5cRypceO8TWFR0Ty5Ww@mail.gmail.com>
- <67d864b2.0c0a0220.39fb6f.4df4@mx.google.com> <CAJ-ks9n8mwt5q9unqfkfSHj9=ELJHtqsXM-xQ8jsbXeJX6Uyfg@mail.gmail.com>
- <67d8671d.050a0220.3305ab.6372@mx.google.com> <CAJ-ks9=uHjJrzM0ruvm4v4wr8LygRMP-1orWBy_9OiNNeQr0ow@mail.gmail.com>
-In-Reply-To: <CAJ-ks9=uHjJrzM0ruvm4v4wr8LygRMP-1orWBy_9OiNNeQr0ow@mail.gmail.com>
-From: Tamir Duberstein <tamird@gmail.com>
-Date: Mon, 17 Mar 2025 15:05:45 -0400
-X-Gm-Features: AQ5f1JpyV0nQ-kkW4seOxWZTQc72pJ-QFCu1PCOmxq2F2HqkOl8_kTN98OF3Mjg
-Message-ID: <CAJ-ks9=Qcmvbm=YGJ=jrX_+YdMsftk=FAimszYZB1OUuV4diZw@mail.gmail.com>
-Subject: Re: [PATCH v5 6/6] rust: use strict provenance APIs
-To: Boqun Feng <boqun.feng@gmail.com>
-Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
-	Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, 
-	Alex Gaynor <alex.gaynor@gmail.com>, Gary Guo <gary@garyguo.net>, 
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
-	Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Brendan Higgins <brendan.higgins@linux.dev>, 
-	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, 
-	Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, linux-kbuild@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
-	linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
-	linux-pci@vger.kernel.org, linux-block@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250318-exynos7870-gpu-v1-1-084863f28b5c@disroot.org>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Sergey Lisov <sleirsgoevy@gmail.com>, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Kaustabh Chakraborty <kauschluss@disroot.org>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1742239290; l=1463;
+ i=kauschluss@disroot.org; s=20250202; h=from:subject:message-id;
+ bh=NgHB5DloDHIam4+aHZexc6F7ttmxCu/XVF8xokkwquA=;
+ b=5AWkfH6JBT7GtIr30t5ZeuidQwBQJjvOsSNHSN1mjAhWajpxjQo3OHQF3a7zfzfDPKi5Yb/CM
+ NsBOKLPJ/OjBRklcXN8mQaUszht7FKeYS3IovG+S9fSNA6UYIhWyfFQ
+X-Developer-Key: i=kauschluss@disroot.org; a=ed25519;
+ pk=h2xeR+V2I1+GrfDPAhZa3M+NWA0Cnbdkkq1bH3ct1hE=
 
-On Mon, Mar 17, 2025 at 2:50=E2=80=AFPM Tamir Duberstein <tamird@gmail.com>=
- wrote:
->
-> On Mon, Mar 17, 2025 at 2:17=E2=80=AFPM Boqun Feng <boqun.feng@gmail.com>=
- wrote:
-> >
-> > Then we should fix clippy or how we set msrv rather adding the stub.
-> > @Miguel?
->
-> I filed https://github.com/rust-lang/rust-clippy/issues/14425.
+Exynos7870 SoC uses the ARM Mali T830 GPU, document its compatible
+string with the appropriate fallback. The T830 compatible is already
+defined in the panfrost driver, but was commented out as it was unused.
 
-I don't think we can wait for that to be fixed, though. Usually clippy
-is distributed with rustc via rustup, so even if this is eventually
-fixed, all versions between 1.84.0 and the fix will need this
-workaround until MSRV is >=3D 1.84.0.
+Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+---
+This patch series is a part of Exynos7870 upstreaming.
+---
+ Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml
+index 0801da33a385b42fa3a7ff367fafee54b1aae458..48daba21a890d24c02383672518bbd5cd7885d16 100644
+--- a/Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml
++++ b/Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml
+@@ -45,12 +45,15 @@ properties:
+               - samsung,exynos7-mali
+           - const: samsung,exynos5433-mali
+           - const: arm,mali-t760
++      - items:
++          - enum:
++              - samsung,exynos7870-mali
++          - const: arm,mali-t830
+       - items:
+           - enum:
+               - rockchip,rk3399-mali
+           - const: arm,mali-t860
+ 
+-          # "arm,mali-t830"
+           # "arm,mali-t880"
+ 
+   reg:
+
+---
+base-commit: df4b2bbff898227db0c14264ac7edd634e79f755
+change-id: 20250203-exynos7870-gpu-ccb918e23b2e
+
+Best regards,
+-- 
+Kaustabh Chakraborty <kauschluss@disroot.org>
+
 
