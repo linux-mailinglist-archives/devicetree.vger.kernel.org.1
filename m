@@ -1,122 +1,138 @@
-Return-Path: <devicetree+bounces-158042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158043-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8E4DA6446B
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 08:57:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D42EA64487
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 09:00:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E3B0D3A666F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 07:57:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 558971886A36
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 08:00:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C25921B9C3;
-	Mon, 17 Mar 2025 07:57:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8905121A452;
+	Mon, 17 Mar 2025 08:00:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Lq7GFlPE"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UoNuZaB6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8796321B19E
-	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 07:57:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E428F21B9C5;
+	Mon, 17 Mar 2025 08:00:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742198263; cv=none; b=M8xJ28HiCX0dXwxZ2zrGsyV4PwRzLLo5UBwPDASR8UP7fEwbL2/WniBepQjlrO/+nizBMxs0QX+hCeQadwhVRoFy0/vPReQaAPxvjfQFBwb8MPkPQn8lgWZ1aG+GOw7uOPpgIoUrcwiLkX4qNh5eKaSAEaFJN1pgCerz9sOdDGM=
+	t=1742198413; cv=none; b=BPIwmYXla+mx1C5bpKlrrqg8vAJBObMS1hrHbsE68A66PUM6fgYmhwG0wZG+WIAGXbHl3xp204BX2fY9ndhtxwBHA+8NfVG8HHZezrs8bEIZWVNEThpH4KtaKZiEB5/dHnWgM+rfYwYLyLsSkXb12Zwcnf6ip8bloC9UrL0HrP8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742198263; c=relaxed/simple;
-	bh=PP5ZjBbMb4rni+tuZHNcnT/n1v2QA3RZnXHRssAeFG0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=f8AzuLxnWzzDtI2BvOGWSJQp6c5sdZGItd885tVcmEEDkk/5pUR05CCEgeAe1uvMjhkqkeEl5QW5DSKVtyKqBDfaZRdp/ad0b+CIKdQijSlAZY6dN3Gk5sHC7B0zAPh+nf8h8XtpK/B8iiPk0jc/vyzlAGbarQcefj5zp3/FSoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Lq7GFlPE; arc=none smtp.client-ip=209.85.210.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-72a145521d6so2968576a34.3
-        for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 00:57:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742198260; x=1742803060; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=PP5ZjBbMb4rni+tuZHNcnT/n1v2QA3RZnXHRssAeFG0=;
-        b=Lq7GFlPE4OX23sxWifNP1Qiol6895OF7ONRrAE1CAJpzuXwG/HPlPoSScQQb3B8L6F
-         Gt7PGsZXbJ/oUYRzNfBCx+6GvszxlxDad7gNBRVvoH0+XJ4RD6rkJJ/Nx/VF9RkSmKfQ
-         c/PWIqsk/e1Sh7iqT93Z4Edfr2RV506rMPtu8Q990iuqdQFuE0t2PnJZEp8eBw2umcof
-         nlODuquZOCbnWd2LIm0JrnEK1cXIyGml0oDPeTqO5ZN6OMCpizksot7lvAclrE9XORVf
-         2bWB4qPr0DyrZHczVcmhYKrFXCzJIl6KSKYzq8PgWOBGWW9MicfPvlERaLtXxSVfB/dr
-         Jt0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742198260; x=1742803060;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PP5ZjBbMb4rni+tuZHNcnT/n1v2QA3RZnXHRssAeFG0=;
-        b=HTtRI8PZ8Dz66W0/3yCWMwork4mF8C3U9ulJlvvwxPl+van0Rn+zntm0Lb4yFRpob7
-         hbUxgCrT7DCU7xMcohRqJS69P7UOFU9on4Vs9v6ZrKbhHw2D+aDv9Qr+vcqSPJEBGvTF
-         UEu4OisCUgBO4jcfAzuB6OfgSPY9HHV+WnAuOkvWd03lADfiG2bPhjBL+cthbbwTKU/6
-         /6jvilaUSFdiM9lpCg+BULVzNLmse8yhdBTWVmiiFUnPVgkxAe51FwS3CZrOGnoCVcmz
-         7z6ncUv5P26wFgeWZDe6D1dCrzv8aI+C7AGEvdSWrm2B5h5OxC9V3R6/zD+8XcVrs4M7
-         lmEg==
-X-Forwarded-Encrypted: i=1; AJvYcCVlbOs8KeQQ4PmS6j4I9nPlH6nY9V3lMoxCy/apZR3zPLhixMJmMuWiGRF9AMihxDkTJiLuntvhxhrx@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx4bKglJE3vH5I1o4asqW/PGs4pZkV+/sUMlVBIIsM9zDKCothx
-	zi0PPR4/mhAfzt/8Iew6Cl16er9y0d8+36MGgiQebM8oDH+ZLaS6WlOms4l2UVcm8sYVwMRZE52
-	9lt6wF3mWlm6BesYHy/fyk8WB+wp4HtLvWnrytQ==
-X-Gm-Gg: ASbGncvTxplK2I2169NUScpeIArWmlAUCHvDux3PevRyu5qEvhJAtSWVvlqLWiRpegy
-	C5xv/MVAhPfgTFkHQJgNwIVAxlwQ6k4AjLM3M7IC6ggykpXGJvgQreC78puzdYBC2wyRKcOo43N
-	Q66fcZAh2xMLPhyhaneuhYvPVlx8YH
-X-Google-Smtp-Source: AGHT+IFXhiV5/jjRM3lIL1BjJLxFk/oc1h/PBdMxRCXg6fQlEslHNKm2pE2ASn+LBLRiqcHrD7Lf49zKnfDqLjjJWKY=
-X-Received: by 2002:a05:6830:441f:b0:72b:782a:56d7 with SMTP id
- 46e09a7af769-72bbc5222a2mr5673623a34.23.1742198260554; Mon, 17 Mar 2025
- 00:57:40 -0700 (PDT)
+	s=arc-20240116; t=1742198413; c=relaxed/simple;
+	bh=WcJorY7PCd1uLYcrL2Xac0peBqgqcHLr4/yCJRQ9DGw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=a9xtJCAvBysoyn7akm61Su9Nlhen1n+btkSTJ/GEaaf5OM4dtrMer7X3+LVeR7bz8pR/N2EHXJh5yJUbxyioc7fPSz+NoNdb0jwC1kBWKxl/JrVA6jvxQ6XXPGqUEuEaFujtHV8/6gP/WDrrLSKRHHD2q+J5tPFwJmnHVwz7YGc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UoNuZaB6; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1742198412; x=1773734412;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=WcJorY7PCd1uLYcrL2Xac0peBqgqcHLr4/yCJRQ9DGw=;
+  b=UoNuZaB6iW8IYBgwdpzCHwtS+Bqj0wEwx+v6xUzdNIKONSixxAMniOsT
+   xJsYwQ5CLf3bFH85zQacBdtAsUnk/upjELg5loOkGe9U8DX5ljDTuS1jb
+   iLSI9q5ImoDOvt43Bzx+Z/LSREEsDMSP4531u17CouP8xxGey4grHA4ID
+   omVYfj0ers0xRQ9FI35Lzcx/GHIPC2zvGnvF0Tg3pCMny5jjfwiy27Iem
+   MksYvvc7SPn9GT86pi0qR0ncU31GNRN0CTD2w3u8OWhSAzkMiXuHbZWYD
+   CrQnuhkfma2LuFG5tqW4/UxMzzT2xpn7BTjeebJBljU8RB2RIhvf4T9sC
+   g==;
+X-CSE-ConnectionGUID: 3/tAbM+tSWqTYQNfqni4VA==
+X-CSE-MsgGUID: YBQ8tqM1Rtu1eQFdU/FgiQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11375"; a="43383613"
+X-IronPort-AV: E=Sophos;i="6.14,253,1736841600"; 
+   d="scan'208";a="43383613"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2025 01:00:12 -0700
+X-CSE-ConnectionGUID: aE6cL5gsQ3avEEOtd25fgg==
+X-CSE-MsgGUID: U1U/tNhnTbWmIps9Wc5uMQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,253,1736841600"; 
+   d="scan'208";a="121674712"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2025 01:00:07 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1tu5OG-00000003FIn-2NTM;
+	Mon, 17 Mar 2025 10:00:04 +0200
+Date: Mon, 17 Mar 2025 10:00:04 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: kernel test robot <lkp@intel.com>, Ryan Chen <ryan_chen@aspeedtech.com>,
+	benh@kernel.crashing.org, joel@jms.id.au, andi.shyti@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	andrew@codeconstruct.com.au, p.zabel@pengutronix.de,
+	linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v16 2/3] i2c: aspeed: support AST2600 i2c new register
+ mode driver
+Message-ID: <Z9fWhGDrUbAmGRl0@smile.fi.intel.com>
+References: <20250224055936.1804279-3-ryan_chen@aspeedtech.com>
+ <202502280902.U0gLDhve-lkp@intel.com>
+ <Z8GuOT5bJL7CdXX6@smile.fi.intel.com>
+ <fec0a1c8-251b-491e-893d-11a8186a2128@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250314-ufs-dma-coherent-v1-0-bdf9f9be2919@linaro.org> <0d7a8cad-adfc-4cac-bcc6-65d1f9c86b43@acm.org>
-In-Reply-To: <0d7a8cad-adfc-4cac-bcc6-65d1f9c86b43@acm.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Mon, 17 Mar 2025 07:57:30 +0000
-X-Gm-Features: AQ5f1JrHrLaWNOaDw_CRYMU3X3v2oxo4LzPuW31oNjLmnPoqXZ9Expwo9ns7s28
-Message-ID: <CADrjBPrU1Prw9NmWrVQff+X6VTY4PXEr_BH2Z0DuAr=uiaOsGQ@mail.gmail.com>
-Subject: Re: [PATCH 0/2] Add dma-coherent for gs101 UFS dt node
-To: Bart Van Assche <bvanassche@acm.org>
-Cc: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>, 
-	"Martin K. Petersen" <martin.petersen@oracle.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org, 
-	kernel-team@android.com, willmcvicker@google.com, stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <fec0a1c8-251b-491e-893d-11a8186a2128@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Hi Bart,
+On Mon, Mar 17, 2025 at 08:48:03AM +0100, Krzysztof Kozlowski wrote:
+> On 28/02/2025 13:38, Andy Shevchenko wrote:
+> > On Fri, Feb 28, 2025 at 09:28:59AM +0800, kernel test robot wrote:
+> >> Hi Ryan,
+> >>
+> >> kernel test robot noticed the following build warnings:
+> >>
+> >> [auto build test WARNING on andi-shyti/i2c/i2c-host]
+> >> [also build test WARNING on linus/master v6.14-rc4 next-20250227]
+> >> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> >> And when submitting patch, we suggest to use '--base' as documented in
+> >> https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> >>
+> >> url:    https://github.com/intel-lab-lkp/linux/commits/Ryan-Chen/dt-bindings-i2c-aspeed-support-for-AST2600-i2cv2/20250224-140221
+> >> base:   https://git.kernel.org/pub/scm/linux/kernel/git/andi.shyti/linux.git i2c/i2c-host
+> >> patch link:    https://lore.kernel.org/r/20250224055936.1804279-3-ryan_chen%40aspeedtech.com
+> >> patch subject: [PATCH v16 2/3] i2c: aspeed: support AST2600 i2c new register mode driver
+> >> config: mips-allyesconfig (https://download.01.org/0day-ci/archive/20250228/202502280902.U0gLDhve-lkp@intel.com/config)
+> >> compiler: mips-linux-gcc (GCC) 14.2.0
+> >> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250228/202502280902.U0gLDhve-lkp@intel.com/reproduce)
+> >>
+> >> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+> >> the same patch/commit), kindly add following tags
+> >> | Reported-by: kernel test robot <lkp@intel.com>
+> >> | Closes: https://lore.kernel.org/oe-kbuild-all/202502280902.U0gLDhve-lkp@intel.com/
+> >>
+> >> All warnings (new ones prefixed by >>):
+> > 
+> > My gosh, this is valid report. But it looks like a preexisted issue.
+> > Can somebody fix this, please?
+> 
+> 
+> That was three weeks ago and still no responses from Aspeed or
+> contributors from here.
+> 
+> I think this tells a lot about aspeedtech.com patchsets on the list.
 
-Thanks for the review.
+Yeah...
 
-On Fri, 14 Mar 2025 at 16:01, Bart Van Assche <bvanassche@acm.org> wrote:
->
-> On 3/14/25 8:38 AM, Peter Griffin wrote:
-> > ufs-exynos driver enables the shareability option for gs101 which
-> > means the descriptors need to be allocated as cacheable.
->
-> Shouldn't that code be modified such that the shareability option is
-> only set if the dma-coherent property is present in the device tree?
+-- 
+With Best Regards,
+Andy Shevchenko
 
-Yes, I plan to add an extra patch that does what you describe into the
-v2 of the UFS fixes series [1] likely later today.
 
-I sent this out separately for Krzysztof's Exynos DT tree in the hope
-he will pick it up in the next -rc as this patch fixes how the driver
-is configured today, and is also still the configuration we want once
-the driver changes land. I should have made that a bit clearer in the
-cover letter :)
-
-Thanks,
-
-Peter
-
-[1] https://lore.kernel.org/linux-scsi/20250226220414.343659-1-peter.griffin@linaro.org/
 
