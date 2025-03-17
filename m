@@ -1,102 +1,167 @@
-Return-Path: <devicetree+bounces-158236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 667B7A654DA
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 16:01:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BED2CA654DF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 16:03:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 667647A68A6
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 15:00:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99BBD1896AC4
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 15:02:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A178524500E;
-	Mon, 17 Mar 2025 15:01:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14D5A23FC7A;
+	Mon, 17 Mar 2025 15:02:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=proton.me header.i=@proton.me header.b="JYJ73U8a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cmnJJUlx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-24416.protonmail.ch (mail-24416.protonmail.ch [109.224.244.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3C7223FC55;
-	Mon, 17 Mar 2025 15:01:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.224.244.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8FF82356D5;
+	Mon, 17 Mar 2025 15:02:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742223671; cv=none; b=e4gg5/NalFyenocPyMHsI7USQibmNu1oZn5heBCza+pfntF1s05R4wCXrQdxGLLGBIm0ec9gyqkuwEYcwqAgRnc+7xTfoOTDSKuuf/yUmoWBBKQeoTV8APytp+AzvHtgY8xirpfBZ8xgh/XlnzbuEFZcozaFZRCsNBVrMunmM1Y=
+	t=1742223762; cv=none; b=BksJv9ljzqjNvyuFKc3yEXN/u2BCl0G0iSEFPHVPfVpZM/7YpJKFDYXRrRztp7TI1ELNKFMZ/L9gaB3EynBNHYi0KZvjwA9WSyd/jfvYv4qUH5aoMppb2kP/YEsCn7FH8/qDNoElvU3AIZqLtjpmGmyU4pPeRm0wTMW2OnTJ9S0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742223671; c=relaxed/simple;
-	bh=WptTcSSlmCktUdKPW+1KUBV/N+lclVq0IHaAKtcbT3w=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jBWVq4AMnar089UiSBHiAD3H2X3vyEvUZYqeMibSkb/fTcLSNS5B0jGXsqOJDYsJqI2+Th0JYy9pmpnl6ah0hxFf7kRVpYPx5EhUWH6pmKhWj+4XqpjmAGmxdLfTrxnk+BEOpaNovYLfie1P8ld0A+3MMbBDzz1ifM96gsub5XQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me; spf=pass smtp.mailfrom=proton.me; dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b=JYJ73U8a; arc=none smtp.client-ip=109.224.244.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=proton.me
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
-	s=ak62mbupfzdybavrnbwyabpmwy.protonmail; t=1742223667; x=1742482867;
-	bh=WptTcSSlmCktUdKPW+1KUBV/N+lclVq0IHaAKtcbT3w=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
-	b=JYJ73U8a6VlJ/zNgB3D99RzvvNfuJZ1/nNFfdUY4Y0BjHqDHbgyeg+mcimfkqyvJs
-	 GVRAvLGTAhVZ6RFeaF2jPRzuMk7bdmPhKBUB9tV5gpGhWdebYZioZ7e2zZAv0tT+z9
-	 FEU3jm96yyfSU52RiTpOeEVjUe4SN3SmOVCzTL200/gnbRGlmZyVvpRxd0/UNr9KCZ
-	 2SVNMWviwvOvEtlOsPWGPSkCLZ0Gs/4NKThYBaJPPYUHIn0E+XCGxe75NDH5goimOz
-	 6JcEUBtY8L7lbi6/9uNvUlkAPj05dyXfytwYxUlOOe4XfnMZrIfEkltTObHiuBD41R
-	 Miyp/UEz6zI1A==
-Date: Mon, 17 Mar 2025 15:01:01 +0000
-To: Tamir Duberstein <tamird@gmail.com>
-From: Benno Lossin <benno.lossin@proton.me>
-Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, =?utf-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com,
-	linux-pci@vger.kernel.org, linux-block@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 6/6] rust: use strict provenance APIs
-Message-ID: <D8IMQP0N3WOI.3INW9SXYK8SM@proton.me>
-In-Reply-To: <CAJ-ks9mXzM6D++vq0QCugaFOS9ES0j7GpeWZqckY0dA3JwpnJw@mail.gmail.com>
-References: <20250315-ptr-as-ptr-v4-0-b2d72c14dc26@gmail.com> <20250315-ptr-as-ptr-v4-6-b2d72c14dc26@gmail.com> <D8IFS7175NNQ.3VAP8WA2QC8WF@proton.me> <CAJ-ks9mXzM6D++vq0QCugaFOS9ES0j7GpeWZqckY0dA3JwpnJw@mail.gmail.com>
-Feedback-ID: 71780778:user:proton
-X-Pm-Message-ID: f09460e69c19b19c4743a9876a71f182183ddd19
+	s=arc-20240116; t=1742223762; c=relaxed/simple;
+	bh=5+WA2jvK1Y92HiccBOISC6s0excdcJ1mZkNYAv6bnPU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZEb9mDUdlG3D/XvoKxxHCvDUC6dl0SAHgj1CsxvRNcIwgCFJ86EkOFj2wPNShTnbgLv1Wx0yC2JNjdcqWWUAxcdkBSrldVRtfAYYYuorAEY/P9WC51xvYo9mHzKRo0m84JCRJFVW/R7O0DK9Oexy67/B5P9ABjPrs4NWJYngOc8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cmnJJUlx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8CF4C4CEE9;
+	Mon, 17 Mar 2025 15:02:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742223761;
+	bh=5+WA2jvK1Y92HiccBOISC6s0excdcJ1mZkNYAv6bnPU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=cmnJJUlxOfRaM+u2c5mUY1xncRUnF7a8IP+WunZDZ/S/6nGNjU+Ul9IEx2NEbYoX/
+	 qVzgv3ZYjIE0CqugzdiBEsF+ei0einUXB9IlwlskFU0PfpT1D6KnrmKh8JLDGKM7JX
+	 P9GagA62K+cHjTZqLh28cwasjAvLQzM8NbW0PuuLJXUywOFHxqIg46DVDe1iKSu+Gk
+	 JwkMG7O2jmWhXl+COg0PoqigxOQ1yLQJMzP5HkEd/DGZqV3BUDWD9JCM47tkc9cIZp
+	 yNDcSXcoYzKbh074sPqE+iI/sO/wNWcaVNaq9YqBzPKa+mAwI74Rq8i/OxYbZj+VW7
+	 2qstanPfFYV1g==
+Message-ID: <573bb90b-bada-4dde-b88a-f92db1d1a3d1@kernel.org>
+Date: Mon, 17 Mar 2025 16:02:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/7] dt-bindings: media: renesas,isp: Add ISP core
+ function block
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Hans Verkuil <hverkuil@xs4all.nl>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Jacopo Mondi <jacopo.mondi@ideasonboard.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <20250315152708.328036-1-niklas.soderlund+renesas@ragnatech.se>
+ <20250315152708.328036-2-niklas.soderlund+renesas@ragnatech.se>
+ <20250317-merry-ringtail-of-competition-7d46fb@krzk-bin>
+ <20250317114904.GA868399@ragnatech.se>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250317114904.GA868399@ragnatech.se>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mon Mar 17, 2025 at 11:53 AM CET, Tamir Duberstein wrote:
-> On Mon, Mar 17, 2025 at 5:34=E2=80=AFAM Benno Lossin <benno.lossin@proton=
-.me> wrote:
+On 17/03/2025 12:49, Niklas Söderlund wrote:
+> Hi Krzysztof,
+> 
+> Thanks for your feedback.
+> 
+> On 2025-03-17 12:31:51 +0100, Krzysztof Kozlowski wrote:
+>> On Sat, Mar 15, 2025 at 04:27:02PM +0100, Niklas Söderlund wrote:
+>>> diff --git a/Documentation/devicetree/bindings/media/renesas,isp.yaml b/Documentation/devicetree/bindings/media/renesas,isp.yaml
+>>> index c4de4555b753..de9bc739e084 100644
+>>> --- a/Documentation/devicetree/bindings/media/renesas,isp.yaml
+>>> +++ b/Documentation/devicetree/bindings/media/renesas,isp.yaml
+>>> @@ -25,19 +25,54 @@ properties:
+>>>            - renesas,r8a779h0-isp # V4M
+>>>        - const: renesas,rcar-gen4-isp # Generic R-Car Gen4
+>>>    reg:
+>>> -    maxItems: 1
+>>> +    minItems: 1
+>>> +    maxItems: 2
+>>> +
+>>> +  reg-names:
+>>> +    minItems: 1
+>>> +    items:
+>>> +      - const: cs
+>>> +      - const: core
 >>
->> On Sat Mar 15, 2025 at 1:17 PM CET, Tamir Duberstein wrote:
->> > Throughout the tree, use the strict provenance APIs stabilized in Rust
->> > 1.84.0[1]. Retain backwards-compatibility by introducing forwarding
->> > functions at the `kernel` crate root along with polyfills for rustc <
->> > 1.84.0.
->> >
->> > Use `#[allow(clippy::incompatible_msrv)]` to avoid warnings on rustc <
->> > 1.84.0 as our MSRV is 1.78.0.
->>
->> This isn't necessary, right?
->
-> It is necessary. MSRV is encoded in .clippy.toml, it doesn't matter
-> what the *current* rustc version is.
+>> All of this and further must be restricted per compatible. Otherwise
+>> commit msg should explain why one SoC can have it different on different
+>> boards.
+> 
+> I will expand the commit message. In short this can't be restricted per 
+> compatible, different instances of the IP on the same board can and can 
+> not have a core part.
 
-Oh of course.
+s/Same board/same SoC/? Or you really meant that same SoC on different
+boards will have or have not that ISP core?
 
->> > In the `kernel` crate, enable the strict provenance lints on rustc >=
-=3D
->> > 1.84.0; do this in `lib.rs` rather than `Makefile` to avoid introducin=
-g
->> > compiler flags that are dependent on the rustc version in use.
->>
->> So it won't be enabled in the doctests, right?
->
-> Yes, that is correct.
+Both are odd, first even weirder.
 
-I would mention this in the commit message. Thanks!
+I wonder if some other difference is not the documented. E.g. same IP
+blocks are not exactly the same, but have different programming model.
 
----
-Cheers,
-Benno
+What is this ISP core responsible for inside Renesas ISP? How many ISPs
+are inside of SoC?
 
+And how would it work? You have two exactly the same IP blocks in the
+SoC, but one you program differently than other. How do you know which one?
+
+Best regards,
+Krzysztof
 
