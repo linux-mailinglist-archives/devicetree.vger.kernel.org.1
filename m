@@ -1,103 +1,85 @@
-Return-Path: <devicetree+bounces-158157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A11A6A64DDC
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 13:06:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1351A64EB2
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 13:25:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 00920162CAE
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:06:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2213F16F2E0
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:25:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AB9C21D3DF;
-	Mon, 17 Mar 2025 12:06:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D2EC238D5B;
+	Mon, 17 Mar 2025 12:25:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+Received: from smtp-190b.mail.infomaniak.ch (smtp-190b.mail.infomaniak.ch [185.125.25.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5378B2E3373;
-	Mon, 17 Mar 2025 12:06:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 523DC214A8F
+	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 12:25:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.25.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742213177; cv=none; b=pbVAvpoGyYBbp3qVqGPk05WaozBlq3GY7jDlvEXjvtDwhS8+HOjLrhOnfSKu4k8KGEoGiRnBwkSdSVkx17O2TDb+AfheyuOE0hB2ecS6cpIQ1h+9aDiuAjsqHvw7CxwM1m+jbIWIQm0AVTipDtOFD9SoWew58bzGst+wTKGomxY=
+	t=1742214315; cv=none; b=pR6akWfYnMH8C/Hsmf//bTGhS+WV0NEl56+kUs0u9JEQBLlAv/OzWZrAAQ9qR+a+EtQWqmX5XDh3hS1CnOEVr+JnNnRxyh4aXxsDUfRygyTm5SoIStPWFFULul8BokmWNfT2JU4gXVsA9CBMlVeoXquzX7IAyxI2QKXMLrypseU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742213177; c=relaxed/simple;
-	bh=3isjYC6z21qtIysFBqMQ/1DQBe0JOMXTX/9T1M/PL54=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=u7S7s0LvAv+PrRpDgAISkXpzwu1bVdKuRDZLqVTHIKrtubS1cIDt5VEcEFxxzZEQmf8DMiwDwC0AkkPb90ifEBPc0f4wnV1fcXYaEl50wKX1G8QLUkuxs49cC7FH6jcrSzDe/8WXstoFO6F2fhlzohAPGufhHJ/YWiF0hlaus+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
-X-CSE-ConnectionGUID: msY5yHa2T7iGsERFEjtnCg==
-X-CSE-MsgGUID: IN1WL6myRnyurxc+fuX+EA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11375"; a="46070439"
-X-IronPort-AV: E=Sophos;i="6.14,254,1736841600"; 
-   d="scan'208";a="46070439"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2025 05:06:14 -0700
-X-CSE-ConnectionGUID: ORlBzQfaR02LBabS5x8ZCA==
-X-CSE-MsgGUID: AjTMDPT9RGu39HVM1pOi1g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,254,1736841600"; 
-   d="scan'208";a="145091378"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2025 05:06:12 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andy@kernel.org>)
-	id 1tu9EO-00000003Id9-1gT8;
-	Mon, 17 Mar 2025 14:06:08 +0200
-Date: Mon, 17 Mar 2025 14:06:08 +0200
-From: Andy Shevchenko <andy@kernel.org>
-To: Hans de Goede <hdegoede@redhat.com>
-Cc: Francesco Dolcini <francesco@dolcini.it>,
-	Emanuele Ghidoli <ghidoliemanuele@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-i2c@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
-	soc@kernel.org,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Subject: Re: [RFC PATCH v1 0/2] platform: toradex: Add toradex embedded
- controller
-Message-ID: <Z9gQMPjjCt9Rn4lH@smile.fi.intel.com>
-References: <20250313144331.70591-1-francesco@dolcini.it>
- <4596db59-51fc-4497-9e94-670e9533e7aa@redhat.com>
- <20250317100856.GC17428@francesco-nb>
- <bc3144b7-23c8-4b47-bdd8-c482b1a6d81d@redhat.com>
+	s=arc-20240116; t=1742214315; c=relaxed/simple;
+	bh=73vrbXVGsCmOtAsR8R2dh8FZRfQxfkbOvNreIJaNnoU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=lAUNymPM/Ackz8XZXbHzDu0kXfzD5FDuGvRrErCX39yM+7lOfHwqWHCGdDKaIv49tpD0y4wDwc9BMh6IOaMePtAzqojePzoegYq/E0PtqNP4b9hm2mklsYVtXdL3BHsnlDSttsX4Xbmj0h7CstNWWPHgLZWFKD9whykVikNr2uo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=185.125.25.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
+Received: from smtp-4-0000.mail.infomaniak.ch (smtp-4-0000.mail.infomaniak.ch [10.7.10.107])
+	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4ZGYd82wt6zJ20;
+	Mon, 17 Mar 2025 13:07:40 +0100 (CET)
+Received: from unknown by smtp-4-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4ZGYd75JMlzJG0;
+	Mon, 17 Mar 2025 13:07:39 +0100 (CET)
+From: Quentin Schulz <foss+kernel@0leil.net>
+Subject: [PATCH 0/2] arm64: dts: rockchip: enable HDMI audio on RK3588
+ Jaguar and RK3588 Tiger Haikou
+Date: Mon, 17 Mar 2025 13:07:25 +0100
+Message-Id: <20250317-tsd-rk3588-hdmi-audio-v1-0-0b8ceb9597a6@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bc3144b7-23c8-4b47-bdd8-c482b1a6d81d@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAH4Q2GcC/x3MTQqAIBBA4avErBvQpLKuEi0sxxqiH7QikO6et
+ PwW70UI5JkCtFkETzcH3rcEmWcwzmabCNkmQyGKUihZ4xks+kWVWuNsV0ZzWd5xFGSEk2aodAO
+ pPTw5fv5v17/vB93IqlNnAAAA
+X-Change-ID: 20250317-tsd-rk3588-hdmi-audio-c0ea0f1ab689
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Quentin Schulz <quentin.schulz@cherry.de>
+X-Mailer: b4 0.14.2
+X-Infomaniak-Routing: alpha
 
-On Mon, Mar 17, 2025 at 11:39:14AM +0100, Hans de Goede wrote:
-> On 17-Mar-25 11:08, Francesco Dolcini wrote:
+Both have an HDMI TX port and can carry audio, therefore let's simply
+enable the nodes required to get HDMI audio on that port.
 
-...
+This is based on next-20250314 and the following series needs to be
+applied in order to reach userspace:
+https://lore.kernel.org/linux-rockchip/cover.1741886382.git.robin.murphy@arm.com/
 
-> But if Andy and Ilpo are happy to take this as a more monolithic
-> driver under drivers/platform/aarch64 I'm not going to nack that
-> approach.
+Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+---
+Quentin Schulz (2):
+      arm64: dts: rockchip: Enable HDMI audio output for RK3588 Jaguar
+      arm64: dts: rockchip: Enable HDMI audio output for RK3588 Tiger Haikou
 
-I'm okay with the choice as long as it's suffice the purpose.
-I agree that aarch64 maybe not a good choice after all, but
-we should start from somewhere. Later on we can move to agnostic
-folder if needed. The question here is more about MFD/not-MFD.
-If the former becomes the case, it would need to be under drivers/mfd
-as Lee asked for that (or even required).
+ arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts       | 8 ++++++++
+ arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou.dts | 8 ++++++++
+ 2 files changed, 16 insertions(+)
+---
+base-commit: da920b7df701770e006928053672147075587fb2
+change-id: 20250317-tsd-rk3588-hdmi-audio-c0ea0f1ab689
 
+Best regards,
 -- 
-With Best Regards,
-Andy Shevchenko
-
+Quentin Schulz <quentin.schulz@cherry.de>
 
 
