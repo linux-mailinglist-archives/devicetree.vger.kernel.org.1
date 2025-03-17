@@ -1,221 +1,373 @@
-Return-Path: <devicetree+bounces-157963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2C92A63858
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 01:01:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DFA30A63A31
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 02:29:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4D013AD4A7
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 00:00:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFC6B3A58B5
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 01:29:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85AF48462;
-	Mon, 17 Mar 2025 00:01:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A947213AA2A;
+	Mon, 17 Mar 2025 01:29:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="IitJPctN"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="L04rTBIq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+Received: from mail-il1-f170.google.com (mail-il1-f170.google.com [209.85.166.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC56379D2
-	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 00:01:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 932D484D34
+	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 01:29:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742169667; cv=none; b=d8XLsVnBNq26zBXRfBIEcYu79Vf0L/RPCPMaxX4SxXXLi7Y8kp8y7X+woYmU7Tug8LcKGnp8DhSNyCGDkbxBKr/tci+YyVRQuOYSOHhNjb7U24SzScFOm/xgg5//5PAAQmq/Wn4tsMwVQ83zC2yiqvbX8tPWgfQTgmFzAlGbCSM=
+	t=1742174954; cv=none; b=pcBaF8WyBZ7WgR9U24wxk8rqfbA8AxIFjyjwmLKGt0msSaxAEXLKpRehM4L7MqXwNs+4xKvt4KkAXz6+ODcN4Sh8qqrnk5lNfVLC9jprfs0nEXFab7D6HoKEwIQDiXzv2RoX0QgEqRnSOqCsucJ2B11Agth0+dR/x/t2LHLeccY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742169667; c=relaxed/simple;
-	bh=cnFJNhH84Gb8/znmfxKllhZ0GdAFxKJgOkSATHH1bh4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IDX0FNUNG1o0MBy3N2ryepUUdxfr6AfojEpvJ3Duq0nwUg9LIZDTaMDxSy9A2vPl67VtezBgsLmkEuzPQJUqxtB2WGhi/1exCH7BwI0gXu6fSmdaCVnokVEXYrblfjg0vtDa3V0OfnmTsj3Knv2Mke6VGYrH1E3FxPKCHacCzkk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=IitJPctN; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1742169656;
- bh=fAGt0LGgvh2CTmO4opasnT3lsd36sdAL3KaucUM6oTQ=;
- b=IitJPctNBpwzQ/eSB4M2kaRZRYPX1DoBCwazOZG5d1D9no75OyacmbxI40OeoCZLm+ws2QcL0
- htEie1YZ7wawmQ4QXPXXlezTDkLR98rM7pAvExljM397pretfemcdQgVOXUUPWrDaicJ3W+gNEs
- mKXKCXKHIRBDRIo/aWv8WIXIfydQsW9MwcCVUe7oONt9xNkTX/QvY25rAL4yS5o31wU3ZaxpjCc
- zX/09cMGNMb7uYN0QfDMNhu/1Ly8QkOnbOXEbGhwwpm3iiXqrjCQ4Mc3Uq5Tu/uNzjAXYzlAxYM
- RX0ACULVOstB1nNfzas1RYKWzkafsufwJKgIemZcEGdw==
-X-Forward-Email-ID: 67d76630255865abb78c04f1
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 0.4.40
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <05ddd536-cf14-4ae0-b092-51a0c536f16e@kwiboo.se>
-Date: Mon, 17 Mar 2025 01:00:42 +0100
+	s=arc-20240116; t=1742174954; c=relaxed/simple;
+	bh=OOU+y75plyLuveX4R6mlZHByJagiF/jVTDsFtenIXmA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=o1zy56xzgiMYsUtZHTF3FM8vkcY1SjoqMyksb+bX/HfiUIMD+trQMvg41uWGS5OTJ4bW9lxUkB8BaSM0RAZyUTdSiRRZudSZA4sHiV9Cr19+31/MW4EgYANpjZTGn1n57b0MsPHgAgYDbGmPhS33CS/LvBgeDlr/2xuGOi4RnbM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=L04rTBIq; arc=none smtp.client-ip=209.85.166.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-il1-f170.google.com with SMTP id e9e14a558f8ab-3d46ef71b6cso31114585ab.3
+        for <devicetree@vger.kernel.org>; Sun, 16 Mar 2025 18:29:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1742174951; x=1742779751; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hHE3Xzw/cN8v249darLwU5ncF/r/SV4XjU/TRkif508=;
+        b=L04rTBIqxynN/jbYTXd55f8iWCClZEdOHLB0dZkbzK08vY3Ui1USzCzb2uGmxrv81O
+         mcgOdSdIdTfZkCSBaJVNMys6ZM+tMy7JAmWAJTFYCy2DOAtZE7q06ZPkh7fEHkuZfW9D
+         Sm1r2AVYcajZu+KK+csuCUY3/CF9NjOE/OTeL0JxISows6dWgNJhzVVvmtKsdYdTBSts
+         AE1UHFlo3f/ozdh5MfFBlmrtpYJdJFpGVW+Zb0JpuI7Ed6ojs1c4dlH4vyThTKMVdX4t
+         OnxjbVTRUrLvd34TwvoxWSnUEjN0P+CUXE5ov34atDmw9fZahUe8hY8LDZ5bsEZRkJTN
+         e0FQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742174951; x=1742779751;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=hHE3Xzw/cN8v249darLwU5ncF/r/SV4XjU/TRkif508=;
+        b=KJfPbhcfYR9waWzojNbQuqur2bC0nUZfzjUL7FyQPcrhcPYHy0Ud0TE1RvzoswRXGW
+         yRmGcl2q7cAhDPjNproR4LQWbwMcSyXqmsFEMlCJpSSpzRqzwT21kzDwyQ3H0ph3CC5F
+         dQeNnJHC57BkO3L3OryEdbqo/u3mgtUrhBQEqg6aR8k6x39O6/DZK0cRR4evOQ990QH0
+         OMXuLbhnTXO+V+gcZ+fgajxp661vvgIqTqbM3QuGS/saQXIsS+70vUq2C2WhERyoett6
+         RH2EWWA2wZNlGrl4SMAMIoS4rJioFn71zHGdYoXW/klKpRo51PBJmeNFi8KfySC1tr6o
+         kvTA==
+X-Forwarded-Encrypted: i=1; AJvYcCVhvvr61KavgJK7ZDbrmlH4qLyGgGLq1ifAESAs4+z7aCsLV+tm8Y9nD2iCLMf5fyrCAK5DqV4jdq+3@vger.kernel.org
+X-Gm-Message-State: AOJu0YwcUb/jJzUegJhzS1WdH2mFXHe4xBAjLNr3w3EzRMtmIeRwJiei
+	vNgsxBiVCgyqm3yP+jtrfM5ennZJVzCt+qyeQU75+R8G+IHmlpZYPqd8GrNN3CSiyNAieXPdoH2
+	LUwctiwZbnOsAI2G8qg1hMLM7kmVW+c5IVAs+Nw==
+X-Gm-Gg: ASbGnctVFzx1t8qcy72/C/qlIOzIGNpIiGDyI/YN9ih8KcwlWPAWfCwfNRtBGbWdBqU
+	kPjECESyegdTqDMHKmMbRje6pSUj20fxyhiIj7vCZ5Aey9FUiDXZm5yOJluIgmnXMXhZW3vTvhC
+	wbewfux/9TnyN1X065jqwhNYAC9k6p
+X-Google-Smtp-Source: AGHT+IFwMX5RIXP869hniuySeM4y0TL6MKtDgVXH439PW8w24/lM0YZJkQEjsvENb9uge5eD+gRnDQypjWH1VcK2Qic=
+X-Received: by 2002:a92:c263:0:b0:3d3:d28e:eae9 with SMTP id
+ e9e14a558f8ab-3d483a09d10mr122402375ab.7.1742174951563; Sun, 16 Mar 2025
+ 18:29:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: nvmem: rockchip,otp: Add support for
- rk3562 and rk3568
-To: Kever Yang <kever.yang@rock-chips.com>
-Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- linux-arm-kernel@lists.infradead.org
-References: <20250227110804.2342976-1-kever.yang@rock-chips.com>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20250227110804.2342976-1-kever.yang@rock-chips.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250314-v5_user_cfi_series-v12-0-e51202b53138@rivosinc.com> <20250314-v5_user_cfi_series-v12-12-e51202b53138@rivosinc.com>
+In-Reply-To: <20250314-v5_user_cfi_series-v12-12-e51202b53138@rivosinc.com>
+From: Zong Li <zong.li@sifive.com>
+Date: Mon, 17 Mar 2025 09:29:00 +0800
+X-Gm-Features: AQ5f1JpqGc27CbzPvkDJGrdFCuQMvB1yiEI6FP2zzi4dH2aTyuuebgyN_m4AbWI
+Message-ID: <CANXhq0oNc2=dXbNmBN29JUQu1FYn3fVSJ8NWYU7jiGQ5qDRPsw@mail.gmail.com>
+Subject: Re: [PATCH v12 12/28] riscv: Implements arch agnostic shadow stack prctls
+To: Deepak Gupta <debug@rivosinc.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, 
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, 
+	"H. Peter Anvin" <hpa@zytor.com>, Andrew Morton <akpm@linux-foundation.org>, 
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka <vbabka@suse.cz>, 
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Christian Brauner <brauner@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
+	Oleg Nesterov <oleg@redhat.com>, Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, Jann Horn <jannh@google.com>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-fsdevel@vger.kernel.org, linux-mm@kvack.org, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org, alistair.francis@wdc.com, 
+	richard.henderson@linaro.org, jim.shu@sifive.com, andybnac@gmail.com, 
+	kito.cheng@sifive.com, charlie@rivosinc.com, atishp@rivosinc.com, 
+	evan@rivosinc.com, cleger@rivosinc.com, alexghiti@rivosinc.com, 
+	samitolvanen@google.com, broonie@kernel.org, rick.p.edgecombe@intel.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Kever,
-
-On 2025-02-27 12:08, Kever Yang wrote:
-> Add compatible entry for the otp controller in rk3562 and rk3568, add schema
-> for different clock names for new entry.
-> 
-> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+On Sat, Mar 15, 2025 at 6:51=E2=80=AFAM Deepak Gupta <debug@rivosinc.com> w=
+rote:
+>
+> Implement architecture agnostic prctls() interface for setting and gettin=
+g
+> shadow stack status.
+>
+> prctls implemented are PR_GET_SHADOW_STACK_STATUS,
+> PR_SET_SHADOW_STACK_STATUS and PR_LOCK_SHADOW_STACK_STATUS.
+>
+> As part of PR_SET_SHADOW_STACK_STATUS/PR_GET_SHADOW_STACK_STATUS, only
+> PR_SHADOW_STACK_ENABLE is implemented because RISCV allows each mode to
+> write to their own shadow stack using `sspush` or `ssamoswap`.
+>
+> PR_LOCK_SHADOW_STACK_STATUS locks current configuration of shadow stack
+> enabling.
+>
+> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
 > ---
-> 
-> Changes in v2:
-> - Update the commit message and add maxItems in schema.
-> 
->  .../bindings/nvmem/rockchip,otp.yaml          | 53 ++++++++++++++++---
->  1 file changed, 46 insertions(+), 7 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/nvmem/rockchip,otp.yaml b/Documentation/devicetree/bindings/nvmem/rockchip,otp.yaml
-> index a44d44b32809..7572f4a1d73b 100644
-> --- a/Documentation/devicetree/bindings/nvmem/rockchip,otp.yaml
-> +++ b/Documentation/devicetree/bindings/nvmem/rockchip,otp.yaml
-> @@ -14,6 +14,8 @@ properties:
->      enum:
->        - rockchip,px30-otp
->        - rockchip,rk3308-otp
-> +      - rockchip,rk3562-otp
-> +      - rockchip,rk3568-otp
->        - rockchip,rk3588-otp
->  
->    reg:
-> @@ -25,19 +27,15 @@ properties:
->  
->    clock-names:
->      minItems: 3
-> -    items:
-> -      - const: otp
-> -      - const: apb_pclk
-> -      - const: phy
-> -      - const: arb
-> +    maxItems: 4
->  
->    resets:
->      minItems: 1
-> -    maxItems: 3
-> +    maxItems: 4
->  
->    reset-names:
->      minItems: 1
-> -    maxItems: 3
-> +    maxItems: 4
-
-For clock-names above and reset-names we could possible skip the
-min/max-items, e.g. something like:
-
-  clock-names: true
-  reset-names: true
-
-and then only keep the items prop in the different conditions below.
-
->  
->  required:
->    - compatible
-> @@ -62,12 +60,45 @@ allOf:
->        properties:
->          clocks:
->            maxItems: 3
-> +        clock-names:
-> +          items:
-> +            - const: otp
-> +            - const: apb_pclk
-> +            - const: phy
->          resets:
->            maxItems: 1
->          reset-names:
->            items:
->              - const: phy
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - rockchip,rk3562-otp
-> +              - rockchip,rk3568-otp
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 4
-> +          maxItems: 4
-> +        clock-names:
-> +          items:
-> +            - const: usr
-
-Why do we not use the name "otp" here ? For px30 and rk3308 the clock is
-named clk_otp_usr and we still use the "otp" name.
-
-> +            - const: sbpi
-> +            - const: apb_pclk
-> +            - const: phy
-> +        resets:
-> +          minItems: 4
-> +          maxItems: 4
-> +        reset-names:
-> +          items:
-> +            - const: usr
-
-Same here.
-
-This needs to be rebased to also include rk3576 clock-names.
-
-I prepared a FIXUP commit at [1] with the suggested changes, feel free
-to squash any changes you agree with in a v3.
-
-I am planing to send out a OTP series for RK3528, and that will depend
-on next revision of this series :-)
-
-[1] https://github.com/Kwiboo/linux-rockchip/commits/next-20250314-rk3528/
-
-Regards,
-Jonas
-
-> +            - const: sbpi
-> +            - const: apb
-> +            - const: phy
+>  arch/riscv/include/asm/usercfi.h |  18 ++++++-
+>  arch/riscv/kernel/process.c      |   8 +++
+>  arch/riscv/kernel/usercfi.c      | 110 +++++++++++++++++++++++++++++++++=
+++++++
+>  3 files changed, 135 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/riscv/include/asm/usercfi.h b/arch/riscv/include/asm/us=
+ercfi.h
+> index 82d28ac98d76..c4dcd256f19a 100644
+> --- a/arch/riscv/include/asm/usercfi.h
+> +++ b/arch/riscv/include/asm/usercfi.h
+> @@ -7,6 +7,7 @@
+>
+>  #ifndef __ASSEMBLY__
+>  #include <linux/types.h>
+> +#include <linux/prctl.h>
+>
+>  struct task_struct;
+>  struct kernel_clone_args;
+> @@ -14,7 +15,8 @@ struct kernel_clone_args;
+>  #ifdef CONFIG_RISCV_USER_CFI
+>  struct cfi_status {
+>         unsigned long ubcfi_en : 1; /* Enable for backward cfi. */
+> -       unsigned long rsvd : ((sizeof(unsigned long) * 8) - 1);
+> +       unsigned long ubcfi_locked : 1;
+> +       unsigned long rsvd : ((sizeof(unsigned long) * 8) - 2);
+>         unsigned long user_shdw_stk; /* Current user shadow stack pointer=
+ */
+>         unsigned long shdw_stk_base; /* Base address of shadow stack */
+>         unsigned long shdw_stk_size; /* size of shadow stack */
+> @@ -27,6 +29,12 @@ void set_shstk_base(struct task_struct *task, unsigned=
+ long shstk_addr, unsigned
+>  unsigned long get_shstk_base(struct task_struct *task, unsigned long *si=
+ze);
+>  void set_active_shstk(struct task_struct *task, unsigned long shstk_addr=
+);
+>  bool is_shstk_enabled(struct task_struct *task);
+> +bool is_shstk_locked(struct task_struct *task);
+> +bool is_shstk_allocated(struct task_struct *task);
+> +void set_shstk_lock(struct task_struct *task);
+> +void set_shstk_status(struct task_struct *task, bool enable);
 > +
->    - if:
->        properties:
->          compatible:
-> @@ -78,8 +109,16 @@ allOf:
->        properties:
->          clocks:
->            minItems: 4
-> +          maxItems: 4
-> +        clock-names:
-> +          items:
-> +            - const: otp
-> +            - const: apb_pclk
-> +            - const: phy
-> +            - const: arb
->          resets:
->            minItems: 3
-> +          maxItems: 3
->          reset-names:
->            items:
->              - const: otp
+> +#define PR_SHADOW_STACK_SUPPORTED_STATUS_MASK (PR_SHADOW_STACK_ENABLE)
+>
+>  #else
+>
+> @@ -42,6 +50,14 @@ bool is_shstk_enabled(struct task_struct *task);
+>
+>  #define is_shstk_enabled(task) false
+>
+> +#define is_shstk_locked(task) false
+> +
+> +#define is_shstk_allocated(task) false
+> +
+> +#define set_shstk_lock(task)
+> +
+> +#define set_shstk_status(task, enable)
+> +
+>  #endif /* CONFIG_RISCV_USER_CFI */
+>
+>  #endif /* __ASSEMBLY__ */
+> diff --git a/arch/riscv/kernel/process.c b/arch/riscv/kernel/process.c
+> index 99acb6342a37..cd11667593fe 100644
+> --- a/arch/riscv/kernel/process.c
+> +++ b/arch/riscv/kernel/process.c
+> @@ -153,6 +153,14 @@ void start_thread(struct pt_regs *regs, unsigned lon=
+g pc,
+>         regs->epc =3D pc;
+>         regs->sp =3D sp;
+>
+> +       /*
+> +        * clear shadow stack state on exec.
+> +        * libc will set it later via prctl.
+> +        */
+> +       set_shstk_status(current, false);
+> +       set_shstk_base(current, 0, 0);
+> +       set_active_shstk(current, 0);
+> +
+>  #ifdef CONFIG_64BIT
+>         regs->status &=3D ~SR_UXL;
+>
+> diff --git a/arch/riscv/kernel/usercfi.c b/arch/riscv/kernel/usercfi.c
+> index 73cf87dab186..b93b324eed26 100644
+> --- a/arch/riscv/kernel/usercfi.c
+> +++ b/arch/riscv/kernel/usercfi.c
+> @@ -24,6 +24,16 @@ bool is_shstk_enabled(struct task_struct *task)
+>         return task->thread_info.user_cfi_state.ubcfi_en ? true : false;
+>  }
+>
+> +bool is_shstk_allocated(struct task_struct *task)
+> +{
+> +       return task->thread_info.user_cfi_state.shdw_stk_base ? true : fa=
+lse;
+> +}
+> +
+> +bool is_shstk_locked(struct task_struct *task)
+> +{
+> +       return task->thread_info.user_cfi_state.ubcfi_locked ? true : fal=
+se;
+> +}
+> +
+>  void set_shstk_base(struct task_struct *task, unsigned long shstk_addr, =
+unsigned long size)
+>  {
+>         task->thread_info.user_cfi_state.shdw_stk_base =3D shstk_addr;
+> @@ -42,6 +52,26 @@ void set_active_shstk(struct task_struct *task, unsign=
+ed long shstk_addr)
+>         task->thread_info.user_cfi_state.user_shdw_stk =3D shstk_addr;
+>  }
+>
+> +void set_shstk_status(struct task_struct *task, bool enable)
+> +{
+> +       if (!cpu_supports_shadow_stack())
+> +               return;
+> +
+> +       task->thread_info.user_cfi_state.ubcfi_en =3D enable ? 1 : 0;
+> +
+> +       if (enable)
+> +               task->thread.envcfg |=3D ENVCFG_SSE;
+> +       else
+> +               task->thread.envcfg &=3D ~ENVCFG_SSE;
+> +
+> +       csr_write(CSR_ENVCFG, task->thread.envcfg);
+> +}
+> +
+> +void set_shstk_lock(struct task_struct *task)
+> +{
+> +       task->thread_info.user_cfi_state.ubcfi_locked =3D 1;
+> +}
+> +
+>  /*
+>   * If size is 0, then to be compatible with regular stack we want it to =
+be as big as
+>   * regular stack. Else PAGE_ALIGN it and return back
+> @@ -262,3 +292,83 @@ void shstk_release(struct task_struct *tsk)
+>         vm_munmap(base, size);
+>         set_shstk_base(tsk, 0, 0);
+>  }
+> +
+> +int arch_get_shadow_stack_status(struct task_struct *t, unsigned long __=
+user *status)
+> +{
+> +       unsigned long bcfi_status =3D 0;
+> +
+> +       if (!cpu_supports_shadow_stack())
+> +               return -EINVAL;
+> +
+> +       /* this means shadow stack is enabled on the task */
+> +       bcfi_status |=3D (is_shstk_enabled(t) ? PR_SHADOW_STACK_ENABLE : =
+0);
+> +
+> +       return copy_to_user(status, &bcfi_status, sizeof(bcfi_status)) ? =
+-EFAULT : 0;
+> +}
+> +
+> +int arch_set_shadow_stack_status(struct task_struct *t, unsigned long st=
+atus)
+> +{
+> +       unsigned long size =3D 0, addr =3D 0;
+> +       bool enable_shstk =3D false;
+> +
+> +       if (!cpu_supports_shadow_stack())
+> +               return -EINVAL;
+> +
+> +       /* Reject unknown flags */
+> +       if (status & ~PR_SHADOW_STACK_SUPPORTED_STATUS_MASK)
+> +               return -EINVAL;
+> +
+> +       /* bcfi status is locked and further can't be modified by user */
+> +       if (is_shstk_locked(t))
+> +               return -EINVAL;
+> +
+> +       enable_shstk =3D status & PR_SHADOW_STACK_ENABLE;
+> +       /* Request is to enable shadow stack and shadow stack is not enab=
+led already */
+> +       if (enable_shstk && !is_shstk_enabled(t)) {
+> +               /* shadow stack was allocated and enable request again
+> +                * no need to support such usecase and return EINVAL.
+> +                */
+> +               if (is_shstk_allocated(t))
+> +                       return -EINVAL;
+> +
+> +               size =3D calc_shstk_size(0);
+> +               addr =3D allocate_shadow_stack(0, size, 0, false);
+> +               if (IS_ERR_VALUE(addr))
+> +                       return -ENOMEM;
+> +               set_shstk_base(t, addr, size);
+> +               set_active_shstk(t, addr + size);
+> +       }
+> +
+> +       /*
+> +        * If a request to disable shadow stack happens, let's go ahead a=
+nd release it
+> +        * Although, if CLONE_VFORKed child did this, then in that case w=
+e will end up
+> +        * not releasing the shadow stack (because it might be needed in =
+parent). Although
+> +        * we will disable it for VFORKed child. And if VFORKed child tri=
+es to enable again
+> +        * then in that case, it'll get entirely new shadow stack because=
+ following condition
+> +        * are true
+> +        *  - shadow stack was not enabled for vforked child
+> +        *  - shadow stack base was anyways pointing to 0
+> +        * This shouldn't be a big issue because we want parent to have a=
+vailability of shadow
+> +        * stack whenever VFORKed child releases resources via exit or ex=
+ec but at the same
+> +        * time we want VFORKed child to break away and establish new sha=
+dow stack if it desires
+> +        *
+> +        */
+> +       if (!enable_shstk)
+> +               shstk_release(t);
+> +
+> +       set_shstk_status(t, enable_shstk);
+> +       return 0;
+> +}
+> +
+> +int arch_lock_shadow_stack_status(struct task_struct *task,
+> +                                 unsigned long arg)
+> +{
+> +       /* If shtstk not supported or not enabled on task, nothing to loc=
+k here */
+> +       if (!cpu_supports_shadow_stack() ||
+> +           !is_shstk_enabled(task) || arg !=3D 0)
+> +               return -EINVAL;
+> +
+> +       set_shstk_lock(task);
+> +
+> +       return 0;
+> +}
+>
 
+LGTM
+
+Reviewed-by: Zong Li <zong.li@sifive.com>
+
+> --
+> 2.34.1
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
