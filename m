@@ -1,149 +1,92 @@
-Return-Path: <devicetree+bounces-158234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 580BFA654A4
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 15:58:43 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5C6BA654D4
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 16:01:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8571418965DB
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 14:58:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DADF77A510D
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 14:59:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E80B92451F1;
-	Mon, 17 Mar 2025 14:57:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 872382459DD;
+	Mon, 17 Mar 2025 15:00:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V260F5MX"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=proton.me header.i=@proton.me header.b="XNbAaFS7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-24418.protonmail.ch (mail-24418.protonmail.ch [109.224.244.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A896B23FC55;
-	Mon, 17 Mar 2025 14:57:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8971C23FC7A;
+	Mon, 17 Mar 2025 15:00:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.224.244.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742223458; cv=none; b=CS0fA76H2FfoQA+WvOouO/nEuJMHory+JKUf40JOdcFHpTUGcprh7XiNygLyVA5YC4YObQa8Q94qcrD3B668ReWestPbekuGx8eNCbwCOlpv/jrAgn2HqErVilSFwhHgpLNyDnh2RlnqoNZIMge7ello5xIKReXeX9FuqlPR09s=
+	t=1742223637; cv=none; b=BuebLL/DUDrDG8HEDz1Xx0o5okow9cVEXNIa9pyylWTHu5CV+/H/KAiykzPpzuEoju9F/kGGvb3FjQbpGt62i4pshvPneNkevNex5Tv8XOXtifnL1mCqQPMkZ/ZItdqScYVDXjtS4pfEO0vHh8SprvWGL9BIdvlxrbW8EUR7Loc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742223458; c=relaxed/simple;
-	bh=GA3nbkILXNlbtQRdQ4pAHXJgCJBvmFjuvs1trzNI0yQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qwpMIzhcgd9TBlVRX6R/ILJP07fAQEwuukT/I8OneX7+U8Yvr0iLIZ62sgtzim6V4NZID9UCJCa9kXvXoWKw1xAkyGh8DXdCNz+eIlF5QCW5dRCCx7s6/Q2kZ4hLnMhw2R6P8KK7eSBG2qXQ2Fl04lESX9fgC9HBUSdLQyNQgCg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V260F5MX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF212C4CEE3;
-	Mon, 17 Mar 2025 14:57:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742223458;
-	bh=GA3nbkILXNlbtQRdQ4pAHXJgCJBvmFjuvs1trzNI0yQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=V260F5MXOHIOcbubiWU4JWgAZEPMn8spdQS3bdKmaZDRIpwBL0AGekA3G+LI41V/y
-	 8Pkb6MtGY8aygSFjjW55le1GJhHkgNo+8mZ9fDEuU3WjnHxhzGetifeql3Sg5LfPCo
-	 7j0aYXt1u2ubJDEILmZNuIJuh/OrmoJV6F+tkrDyWG8IelXP0r6+gVMtqxuRjiGqkd
-	 rSL0sRuaSu3iXCLVrhmswPUEh8hcHo3c1anSDSzoMx+D+dJZteoT8Dry08iLFqPgR9
-	 1MPCj9zcqdg3kIP7rO0MnvsJgpX5IuHico1nf5Rpr/bwy8iHwBH/KiY076A1Xo7azY
-	 78+cLpzFWszqw==
-Message-ID: <5876368b-1549-4ce0-af43-80f712f457c8@kernel.org>
-Date: Mon, 17 Mar 2025 15:57:31 +0100
+	s=arc-20240116; t=1742223637; c=relaxed/simple;
+	bh=cWkQsoSV/IZUx6NDHHMXi0u9x4VMUdLI8PhyNjOqZn8=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=JV5y3UA80cx1M63MG+m2FT272c3tBq3Yek0ZAQPiKQclzfP6/hk3Ow6fOW5HuV1LllKqbeoajTv1pQjqUkj8KOZ3Tequ+h/uILmwmAGqJuGxeMjnTDyVJ7ZaY4Zxv5A1BJTfC+iStxZK14M68eDO71IomQgtWTbJaLwLekDLglE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me; spf=pass smtp.mailfrom=proton.me; dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b=XNbAaFS7; arc=none smtp.client-ip=109.224.244.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=proton.me
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
+	s=protonmail; t=1742223633; x=1742482833;
+	bh=2jV32eFqRje1RzHN9WgvrVAw0d//cFd065kmoy6q4vw=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
+	b=XNbAaFS7YmwSZSS6lTWs9g7U1K2XAtOZg0C3sK6ueUvAmr5BtDZj6IQw9+J5RQFQq
+	 FHsYc/2HGxesqxq1sChqL1n9z39vsXSbe9A1oli5+l+98nhgSKu1hB+JWtrwtN0MYI
+	 6onS600ofo+EkmZ4cAx7SuZAAYDxmTUFBmU+5eai6rRlrjX6EGgXArKDRcpVws3HDt
+	 yPvoV+A8wpCBfL3rDCa/mHpwj+FhDF7Ss3FEphgevmybLuJICw+ln3azmKqu89SeZ0
+	 /38zZWgOwlOLNn+7cdlWir3HndGMSX7/hNc8SRYODtPSlIr9HJFCvJL/hLGEmti3BG
+	 qUEqifVlTV5ww==
+Date: Mon, 17 Mar 2025 15:00:26 +0000
+To: Tamir Duberstein <tamird@gmail.com>
+From: Benno Lossin <benno.lossin@proton.me>
+Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, =?utf-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com,
+	linux-pci@vger.kernel.org, linux-block@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 6/6] rust: use strict provenance APIs
+Message-ID: <D8IMQ8OEOMAG.1AFKGZJ1C4DGQ@proton.me>
+In-Reply-To: <CAJ-ks9kH3SE91XSadBx1qFaG5dem93o_ctR0t2FwW-0ZfkRNwQ@mail.gmail.com>
+References: <20250315-ptr-as-ptr-v4-0-b2d72c14dc26@gmail.com> <20250315-ptr-as-ptr-v4-6-b2d72c14dc26@gmail.com> <D8IFS7175NNQ.3VAP8WA2QC8WF@proton.me> <CAJ-ks9mXzM6D++vq0QCugaFOS9ES0j7GpeWZqckY0dA3JwpnJw@mail.gmail.com> <CAJ-ks9kH3SE91XSadBx1qFaG5dem93o_ctR0t2FwW-0ZfkRNwQ@mail.gmail.com>
+Feedback-ID: 71780778:user:proton
+X-Pm-Message-ID: 6436172b8e08da928624aeaa38482e05181d7d0f
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/7] dt-bindings: media: renesas,isp: Add ISP core
- function block
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Hans Verkuil <hverkuil@xs4all.nl>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Jacopo Mondi <jacopo.mondi@ideasonboard.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-References: <20250315152708.328036-1-niklas.soderlund+renesas@ragnatech.se>
- <20250315152708.328036-2-niklas.soderlund+renesas@ragnatech.se>
- <20250317-furry-independent-clam-33db01@krzk-bin>
- <20250317115006.GB868399@ragnatech.se>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250317115006.GB868399@ragnatech.se>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On 17/03/2025 12:50, Niklas Söderlund wrote:
-> On 2025-03-17 12:33:07 +0100, Krzysztof Kozlowski wrote:
->> On Sat, Mar 15, 2025 at 04:27:02PM +0100, Niklas Söderlund wrote:
->>>    ports:
->>>      $ref: /schemas/graph.yaml#/properties/ports
->>> @@ -103,10 +138,14 @@ properties:
->>>  required:
->>>    - compatible
->>>    - reg
->>> +  - reg-names
->>>    - interrupts
->>> +  - interrupt-names
->>>    - clocks
->>> +  - clock-names
->>>    - power-domains
->>>    - resets
->>> +  - reset-names
+On Mon Mar 17, 2025 at 3:13 PM CET, Tamir Duberstein wrote:
+> On Mon, Mar 17, 2025 at 6:53=E2=80=AFAM Tamir Duberstein <tamird@gmail.co=
+m> wrote:
 >>
->> Another point, this will spawn bunch of warnings for no real reason.
->> Just drop all the xxx-names from properties and from here.
-> 
-> I'm sorry maybe I'm missing something, but if I drop them from 
-> properties how can I add checks to makesure the names are either "cs" or 
+>> On Mon, Mar 17, 2025 at 5:34=E2=80=AFAM Benno Lossin <benno.lossin@proto=
+n.me> wrote:
+>> >
+>> > > +    pub fn expose_provenance<T>(addr: *const T) -> usize {
+>> > > +        addr.expose_provenance()
+>> >
+>> > Instead of having these stubs here, you can probably just do
+>> >
+>> >     pub use core::ptr::expose_provenance;
+>>
+>> This doesn't work for the methods on primitives, but it works for the
+>> free functions. Done.
+>
+> Have to revert this, writing `pub use ...` directly causes the MSRV
+> clippy lint to fire at the caller.
 
-Why do you need to check for the names? There will be no names, so
-nothing to check for.
+Ah that is unfortunate.
 
-> "core"?
+---
+Cheers,
+Benno
 
-Best regards,
-Krzysztof
 
