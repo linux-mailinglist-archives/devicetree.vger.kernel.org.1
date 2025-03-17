@@ -1,154 +1,125 @@
-Return-Path: <devicetree+bounces-158160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158162-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5AB8A64E56
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 13:15:25 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D251A64EE2
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 13:31:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 749613B7DFF
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:14:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 80DEC7A48B7
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:30:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46A5923BD1C;
-	Mon, 17 Mar 2025 12:12:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 028C5238169;
+	Mon, 17 Mar 2025 12:31:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="2RPg9GFa"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IL/o/5qb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 596F023BCF3
-	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 12:12:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 873D1238160
+	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 12:31:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742213558; cv=none; b=g5+ZBYaHhKPDA8LurQ5iWUOiEc8BvzZ/MpOqH+9TpbDKb7tUpUTKe1mnCfXBeeUwW22NAeKauuTDoWr4m4eBz3hdEC9GL3HBYy31NQv2AZD+T/V7O3XMTMhmLr8/VTbubWHfWYaIwsuhBWa5+94F0Pie1k+C8H56OskJXy67zJk=
+	t=1742214677; cv=none; b=FDU4532wrVD7hEcUchCxDM65BsS1GcXZRe5G+OcY5p1GBJ0t9lJmCC2wWRmavr3YtucbOtCJLZuav0KgT6krAHc1YSUyh75Q0GSC4H4a2tJAYwl+CEqqdIRC/ZkhnjsfAaKKTsMUzJR6+ASDNepocf3hxLPLImVWp32IaBsq+Fw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742213558; c=relaxed/simple;
-	bh=UgTOwub6IM8lyO1PUttTb8emd3or5wxqwiyiuHKamRY=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
-	 References:In-Reply-To; b=K5MCfnI8KGgvuOoQ/q/FfMKwWsHIj4RbiOeVTOKMErbPJM82gefxolENdqqRTf7qZs94JI9+PQ8W7yyLVFGzItlxFdKlZe7lg5Dlx/CYCEFJowgYt6tO9df5GpxXU2eHzloR9kHix8XMX/svVr0KsDk+/EuvzximknEma65E5eA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=2RPg9GFa; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5e6f4b3ebe5so7472544a12.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 05:12:36 -0700 (PDT)
+	s=arc-20240116; t=1742214677; c=relaxed/simple;
+	bh=3Mfmn+l4UNJ0NtH/erzpTm8WD2666B6deEA6LGn7nyY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=uKs5275XQYcPVR2SaowUn+TxuNOH9iL4mwv/b/u6kPdmwJlszm42Ca0uwXUMjmMMNG1HeyfLieMpNL1Wali1u87lhPttDpIB7zPPeJDs+H+mBE3n/b/1pG8KVXnbY9QsyLsi6KNl23xgOxppzqUqi/Z1ppUClkmpu8XDBjM3MjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IL/o/5qb; arc=none smtp.client-ip=209.85.214.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-224341bbc1dso76668235ad.3
+        for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 05:31:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1742213554; x=1742818354; darn=vger.kernel.org;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XgQI7i+glIQS/JWP7XVCA4jeAmkUf5EqjBge8pBC6Ps=;
-        b=2RPg9GFaS0FW/R6a/Oa+Eu4gYRoxkw4NnGeQWu4MxAfDe2PavyxfNMnduMLbEtAjDk
-         SPB88KK6PZLywylXVcIzT50aKwDoaXulbBD8ELLebkQW/t3ItciM9/PAB1//OYrFMv53
-         8br3+iGWwuKPZLhCaSex2hv3vFXniTuubIcjRV5lDJcsP+LgHiDDepOwZK4fEa+8KYlH
-         9CqECDXEGlmD3/AweW6PqtBYnOEhTpju/DXSXZpnPftijBvhvfyqajhVxBxe1wZ4QnV1
-         uwftG7/wuUftUqtD5ilTvBnGL9jTdlJkCM3b/S5EtegIZ4/+TinRyd2+T91eKgbD5p05
-         /G8w==
+        d=gmail.com; s=20230601; t=1742214676; x=1742819476; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ayfAvjYeqJrgYUP6e8kHW/UxkKYEhMvbiKhityi9Os8=;
+        b=IL/o/5qb1Sg1nHV1NJMtECm4ToE2js1kuqom4AKjLrIHaBMEFxSuwIIqVjf/8MOkSp
+         /LwW17TBMnhCCfGCwf18h+bwjewXABfnQDf6q/8EEP/YMWaSBc0sAq1W+1BSji1J2Sah
+         7BQQN1qpMQv6rFBINj2C6r3oz5UEuH1Txv9ZW0gzfNJsOKZKOtBiru0benAxbrYuFJJ7
+         BORoGpnDMQkuxOT1hruPUgkwZTO0lo/uyV0/WYH/TzF8GgG3D1rMStvz6+jLlMs+je71
+         B1aANHgkhZLpUK5rZZNeagMEdvvGA9Sbe0EU5z4rHeYNmtfOhOEUumWVLVSmbt5s6Qmo
+         TjXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742213554; x=1742818354;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=XgQI7i+glIQS/JWP7XVCA4jeAmkUf5EqjBge8pBC6Ps=;
-        b=Dj/k4nv5G3aH76m02PqHpgP+ZiRU/ZkKVKsEM+UJ2fs6uuRLMBVATyInEsPZdrnFYS
-         6fRiWGViCcfx8RQQh87tXKmPl+MbXsWWK+nnwpSqP9jyWbtQ9iK42taMTgB9r5hxMMLc
-         Q3pnqpVFqmc3Qp+7i6MaQLyCGg7KuhiiI/HN6JrZr3ur02hx8CCXc20/rs3mTmHbnNEL
-         U5udWV2xMtLueCFzq6rCD6qH3bmdRonqB8fshqi4zGg8XZ1/plDOdh8n2MY6XzFnrRTa
-         smov6O/wUIfPscvphwLxopVxImKLJDDub/asRXyg44ePsMAQI352INyOaTH/sThmm+c4
-         Rwxw==
-X-Forwarded-Encrypted: i=1; AJvYcCXHOCFJQDlCn7ssYGqY4+eiICJ1q+OlZiWRZiYq36lHMKHDP/tIElGqBJPQGFLpnwVFAjVrl0aCepj5@vger.kernel.org
-X-Gm-Message-State: AOJu0YyB+8F0rqKr+++RfPQVodLsmTA1P5Ub+jmllvMYd5hDm3nGWYsK
-	eiZF8EGO5gmIPQi5Mealbk5M4jGUcaZJiy9T9ODv+uITDQRoNz7ZPfyS2xmvMSA=
-X-Gm-Gg: ASbGncsApABeo6vrKB5y2s/5cHelMFBZZRp8mJ0cdDIr/b+d2wuyzDc1K29iMJDcvlk
-	c78e4uC229IdcqihalNoSVuz+99nXLpyroL0EQrSZ/ldHTzgZ4ud0sYrbr8RuwBCCAYD0TCdJ8c
-	tvc9NXHdwcnqzzECyg7xsOjel9060c3Si+Cdol27pejFunfUwscMh7cU8y8Y6M20pc8aIEXjcK9
-	HkOra2WVEedGxftdalRtvptHGh3INoZBGehDZq87ZG6j/Jf4/DEhfsfiWopPNdLU5rbbCMX+rpu
-	RjlVKLUFQWhzEA6Ev7Lpt4X1sSaM/EY2kIHDwBJYezD3sHe6NqgNtYUN7SYdKYQEiP9VQEyFcik
-	y8hMP6miTcPnCoA==
-X-Google-Smtp-Source: AGHT+IGkBMivzQV4mRjAFxSl5hkbzmyy3jCErKcn7Cl5GDE/j11zVkAXm1oq3i12rfExH1BTJTH/vg==
-X-Received: by 2002:a05:6402:518a:b0:5e5:3643:c8b5 with SMTP id 4fb4d7f45d1cf-5e8a080aa09mr12579753a12.30.1742213554535;
-        Mon, 17 Mar 2025 05:12:34 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e8169b0232sm6033780a12.38.2025.03.17.05.12.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Mar 2025 05:12:34 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1742214676; x=1742819476;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ayfAvjYeqJrgYUP6e8kHW/UxkKYEhMvbiKhityi9Os8=;
+        b=XTiieP1i8umXkqg846gF53T+u54XuWngCWdh6nr7F/Aj/1j4dIJiNt0Wv3IKeFDFgr
+         NRPXZTc6glJnCU1CyNBW/ER1kBwBIRwSML5w8Kb4tFwPCU5rIyVFqGVE7j+nkMhvcq9H
+         DJB0U4Vq1CjmAs2ou8taQLdfMwyL/MTwrG6gPnlx53QfE++sHs0OVGV9xp5bKXuBSAsT
+         ysXqMXfDO6AZmS7lGFhrrvCRCF9zRtg/y6d6dzMWxkBBYIg9uvWvKlzUprd6swV22QxQ
+         KK0MxG37OuRuXhXCQxH3B/FVZNX1StHONctFSztpzznOoEv8jXw/QGc5VXdtQw61C86F
+         si2A==
+X-Forwarded-Encrypted: i=1; AJvYcCUzCpiYyjBhEYGAODLfC+i2ECqDz2MOz12Zw9+D9oMmqNOVeLT4NX0hJgU6p5luaXCClSjyl2wRV08M@vger.kernel.org
+X-Gm-Message-State: AOJu0YwItuShjicDXl5Ubl3+v6I+hpyFpj/5Qe3URKW+jBYRSmrIbaJn
+	Hf9I5AXkjCO2lU72MiJC4OVrOweS76W5PmnrhW6YABmpcUuIZLcz
+X-Gm-Gg: ASbGncvVtCW6wVUK8wENlIOuNrhK/2FC8pGPuqs365cvcDLZ2wDZcYcnjs3AD3XkDyt
+	2gCEvYVdxd9JfZF6l+tF3opGWbZpbVGAH1VDRQ4n//lFHLSwcV0bt5fWyPUrW+KG3KtdhLOJflq
+	nQq/YRG+FQhWym4VnlN+A/ukbOFg6ILH10jUZ3FM6MZDYnYM3Ftugt2K7dDUh0xUZ1uilqvUlMj
+	7MrDkuI0LXZFnY4iZFvqNOT0tpxdhomoAguOnzzz+LDsPlWorML8720rBpouH27zkH/QInOqpik
+	bKAWvIDeln1718ngeSOCrOUmiyWfI1mTiznzD+sJq+Wyzlbwiz0jlF3/eKiFfPEBwKRSiQ==
+X-Google-Smtp-Source: AGHT+IFBtkqKjbPIxs74ySsOilsqF1P2xvhpvPrvuUqdkVbilTl2fTrYL0Yhw+mVbxLGQg7+wV+loA==
+X-Received: by 2002:a05:6a21:6002:b0:1ee:e785:a082 with SMTP id adf61e73a8af0-1f5c11275d7mr14213711637.1.1742214675611;
+        Mon, 17 Mar 2025 05:31:15 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:93b8:613c:dd7d:1b25])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-af56e9e0f3esm5871892a12.22.2025.03.17.05.31.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Mar 2025 05:31:14 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: shawnguo@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	hector.palacios@digi.com,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH v3] ARM: dts: imx51-digi-connectcore-som: Fix MMA7455 compatible
+Date: Mon, 17 Mar 2025 09:31:09 -0300
+Message-Id: <20250317123109.2216509-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 17 Mar 2025 13:12:33 +0100
-Message-Id: <D8IJ5TEHREW1.2FK88ACT1JPYQ@fairphone.com>
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Bjorn Andersson"
- <andersson@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>
-Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- "Krzysztof Kozlowski" <krzk@kernel.org>, <linux-arm-msm@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sm6350: Add OPP table support to
- UFSHC
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a
-References: <20250314-sm6350-ufs-things-v1-0-3600362cc52c@fairphone.com>
- <20250314-sm6350-ufs-things-v1-2-3600362cc52c@fairphone.com>
- <cddcd851-5e8c-4202-baad-e56a09d5775a@oss.qualcomm.com>
-In-Reply-To: <cddcd851-5e8c-4202-baad-e56a09d5775a@oss.qualcomm.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-Hi Konrad,
+From: Fabio Estevam <festevam@denx.de>
 
-On Fri Mar 14, 2025 at 11:08 PM CET, Konrad Dybcio wrote:
-> On 3/14/25 10:17 AM, Luca Weiss wrote:
->> UFS host controller, when scaling gears, should choose appropriate
->> performance state of RPMh power domain controller along with clock
->> frequency. So let's add the OPP table support to specify both clock
->> frequency and RPMh performance states replacing the old "freq-table-hz"
->> property.
->>=20
->> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->> ---
->
-> [...]
->
->> +
->> +			ufs_opp_table: opp-table {
->> +				compatible =3D "operating-points-v2";
->> +
->> +				opp-50000000 {
->> +					opp-hz =3D /bits/ 64 <50000000>,
->> +						 /bits/ 64 <0>,
->> +						 /bits/ 64 <0>,
->> +						 /bits/ 64 <37500000>,
->
-> This rate on this clk requires opp_svs (not low_svs)
+The "fsl,mma7455l" compatible string is not documented anywhere.
 
-Not sure where you're seeing this?
+MMA7455L is the exact same device as the MMA7455, with the exception that
+it is lead-free. Use the documented compatible string.
 
-This is from my msm-4.19 tree:
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+Changes since v2:
+- Explain why it is safe to change the compatible string.
 
-gcc_ufs_phy_axi_clk_src:
-    .rate_max =3D (unsigned long[VDD_NUM]) { [VDD_LOWER] =3D 50000000,
-gcc_ufs_phy_unipro_core_clk_src:
-    .rate_max =3D (unsigned long[VDD_NUM]) { [VDD_LOWER] =3D 37500000,
-gcc_ufs_phy_ice_core_clk_src:
-    .rate_max =3D (unsigned long[VDD_NUM]) { [VDD_LOWER] =3D 75000000,
+ arch/arm/boot/dts/nxp/imx/imx51-digi-connectcore-som.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-[VDD_LOWER] =3D RPMH_REGULATOR_LEVEL_LOW_SVS,
-
-My intepretation for this is we need low_svs?
-
-Regards
-Luca
-
->
-> with that:
->
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->
-> Konrad
+diff --git a/arch/arm/boot/dts/nxp/imx/imx51-digi-connectcore-som.dtsi b/arch/arm/boot/dts/nxp/imx/imx51-digi-connectcore-som.dtsi
+index dc72a2d14960..1980f751f161 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx51-digi-connectcore-som.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx51-digi-connectcore-som.dtsi
+@@ -165,7 +165,7 @@ &i2c2 {
+ 	mma7455l@1d {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_mma7455l>;
+-		compatible = "fsl,mma7455l";
++		compatible = "fsl,mma7455";
+ 		reg = <0x1d>;
+ 		interrupt-parent = <&gpio1>;
+ 		interrupts = <7 IRQ_TYPE_LEVEL_HIGH>, <6 IRQ_TYPE_LEVEL_HIGH>;
+-- 
+2.34.1
 
 
