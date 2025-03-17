@@ -1,100 +1,101 @@
-Return-Path: <devicetree+bounces-158152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CF96A64D5B
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:52:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13E29A64DC8
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 13:03:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4615118962D1
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 11:52:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA1CB1898262
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:02:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AABBC2356C0;
-	Mon, 17 Mar 2025 11:52:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CD1923A9AA;
+	Mon, 17 Mar 2025 12:01:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BRzjXNDQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d+kyM1j+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 786FB17D346;
-	Mon, 17 Mar 2025 11:52:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D465D23A983;
+	Mon, 17 Mar 2025 12:01:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742212355; cv=none; b=L21AEndYrmHAHmw8J4+gGVLPrVQjrVA3HcsHrp3p0WQ1rnoPYPQJcar4Tf7J4YOAfJ9slXp6XldRu8Y2a5p5pGWBtlDKB35QLcMR3GD4WQYkonahPmS9k9tPWBJ4pkeEmXPxpiJpnLO05Oo0HpyUm6bUHWRWDH7K2OtGDWwdWeI=
+	t=1742212865; cv=none; b=jwKGWF0KwVTGM3kK9DwkbvPgJhRJvVWtVF2zkj1LPh9GIhGkX0pOR+Yds4ml0UplQAGABTPXvanu5NQ3WEqrFnpkejdqnPGm5kBO9OXD2efbChU4665jt0mujGrMQqAbUS63HSuftp1c33lM1G6vIjsf8EJJlOZZSiruOUDvdt8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742212355; c=relaxed/simple;
-	bh=+BZN9v8CEMKfRleFN5iHfGa7ErAwh4EqF1+Y/dCuAFk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uNCvE3x9PE8HBpYvTnGvIGrEeVMowO2dmnzkJhZlQcuVYXhU2vMDvqHTTEStJ5/HJwq9+huilQh4bCu58EtSx2oll3hanxsafVk4tvyjl2Sh1TJEXVAtG4p+IEJeDbJ12np8Hgjf+onNl/1wpgXJOP4BSj/zdR7gPUd/aaDbhpg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BRzjXNDQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3796C4CEE3;
-	Mon, 17 Mar 2025 11:52:34 +0000 (UTC)
+	s=arc-20240116; t=1742212865; c=relaxed/simple;
+	bh=LlCDNKDvo5kEJa8v9yaiQCRUYA/WFkcBUmy5viW6Syk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=NRr4MF1F8XXxuKF43BkdCp7b3/ZrkWNG+yubB9cshmwSpgyRoIKr/eEWnzICEcGotHrKoptyZmvdq+jTYf7kVdedPuqt9bJ4lZYgnxxvhXbj0McNpizMAyN795BDZIglqoDtvhxuswRKTYR4PDEwVuHx8VsDa3jZaUqu6Kyi3EA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d+kyM1j+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28A65C4CEE3;
+	Mon, 17 Mar 2025 12:00:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742212355;
-	bh=+BZN9v8CEMKfRleFN5iHfGa7ErAwh4EqF1+Y/dCuAFk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BRzjXNDQxdpnohsMejU9dPD1eMbwHr3nHrIkyArvVg9CjVuh7lCQbs03Q0l4wScr+
-	 fbztTE9Cr2arU0fvSks9ImlRbYta7WKAX0LxhMu5eyDjoS1G+TW1mfQ3zdfMhmO/XH
-	 V0HmjRdtTRZQd/158wAxMM2ENYdsbzsVclKPaDToSbB3eNg5gUDKVd3bpLPxiaAD9H
-	 9DtXRLVzXgRM7AUMWpqB698fkctGV6iawdmJtDBa1hHRWKMLkKivMpFDClKb9KnUK6
-	 DDFugeGt4vD/7oW8ll8Xer5iPB6eopFuGH89DVFYEPsShquK08+ssVDSctVwvesyQt
-	 7ecgPl4QMT1pw==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1tu91F-000000006ia-0aYD;
-	Mon, 17 Mar 2025 12:52:33 +0100
-Date: Mon, 17 Mar 2025 12:52:33 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Jonathan Marek <jonathan@marek.ca>,
-	Ard Biesheuvel <ardb@kernel.org>,
-	Maximilian Luz <luzmaximilian@gmail.com>,
-	Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
-	Joel Stanley <joel@jms.id.au>, Sebastian Reichel <sre@kernel.org>,
-	Steev Klimaszewski <steev@kali.org>, linux-arm-msm@vger.kernel.org,
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/6] arm64: dts: qcom: x1e80100: enable rtc
-Message-ID: <Z9gNAQ0VlWVMqS8N@hovoldconsulting.com>
-References: <20250219134118.31017-1-johan+linaro@kernel.org>
- <Z87avd83XTYQYIP8@hovoldconsulting.com>
- <2025031711065662ac4072@mail.local>
+	s=k20201202; t=1742212865;
+	bh=LlCDNKDvo5kEJa8v9yaiQCRUYA/WFkcBUmy5viW6Syk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=d+kyM1j+4UhEWVrdDzz1pQqLcE6MCtFOW5lCdm4SxdCObTbZlSf/vDPAHuoYf4hB7
+	 bgFytKAtKGbnY4c9CsJCdY9ln+kmcs46dWZjKW0iCESCq5+1TKoOA869VCPi7IIKdO
+	 kyd7FYPZ66EOes28NB97UoaoyX9U42CSy8D918cMFb47ngr4CoADR1Yu268is724z8
+	 gloAy0smeHU5R/Wxls5KBHh/581peZCdcFWdFPvSJ28ttn5q+iDOI4svsGOWhQ7PMj
+	 Vc45NVlQLo+t/EjenHJ+jr4wtBOHvrfeR/s4waUipuUAjAGwXns9F8DwJ+XRVDmh3F
+	 uXmWFq3B9ksRQ==
+Date: Mon, 17 Mar 2025 12:00:50 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Andreas Klinger <ak@it-klinger.de>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ lars@metafoo.de, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, javier.carrasco.cruz@gmail.com,
+ mazziesaccount@gmail.com, subhajit.ghosh@tweaklogic.com,
+ muditsharma.info@gmail.com, arthur.becker@sentec.com,
+ ivan.orlov0322@gmail.com
+Subject: Re: [PATCH v2 0/3] iio:light: add driver for veml6046x00 RGBIR
+ color sensor
+Message-ID: <20250317120050.425ef6cc@jic23-huawei>
+In-Reply-To: <20250316164813.30291-1-ak@it-klinger.de>
+References: <20250316164813.30291-1-ak@it-klinger.de>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2025031711065662ac4072@mail.local>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Mon, Mar 17, 2025 at 12:06:56PM +0100, Alexandre Belloni wrote:
-> On 10/03/2025 13:27:41+0100, Johan Hovold wrote:
-> > Hi Alexandre,
-> > 
-> > On Wed, Feb 19, 2025 at 02:41:12PM +0100, Johan Hovold wrote:
-> > > This series adds support for utilising the UEFI firmware RTC offset to
-> > > the Qualcomm PMIC RTC driver and uses that to enable the RTC on all X
-> > > Elite machines.
-> > 
-> > Do you think you could pick up the driver and binding changes here so
-> > that Bjorn can take the DT patches for 6.15?
+On Sun, 16 Mar 2025 17:48:10 +0100
+Andreas Klinger <ak@it-klinger.de> wrote:
+
+> This patchset adds an IIO driver for Vishay veml6046x00 RGBIR color sensor
 > 
-> This is taken now but I had to rebase on top of patches I already took,
-> please verify.
+Ah.  As a general rule don't send a v2 out that fast - leave
+it at least a few days even if there is an 'obvious fix'.
+A rush can make sense if we are trying to sneak it in very late
+in a kernel cycle, but right now we are right at the start of the next
+one so lots of time.
 
-Looks good except for the device_init_wakeup() call which you had
-converted to devm_device_init_wakeup(). I'll comment on your follow-up
-fix directly.
+Anyhow, comments on v1 probably still apply ;)
 
-Thanks!
+Jonathan
 
-Johan
+> Changes in v2:
+> - fix missing include for example in vishay,veml6046x00.yaml
+> 
+> Andreas Klinger (3):
+>   dt-bindings: iio: light: veml6046x00: add color sensor
+>   iio: light: add support for veml6046x00 RGBIR color sensor
+>   MAINTAINER: add maintainer for veml6046x00
+> 
+>  .../iio/light/vishay,veml6046x00.yaml         |  51 +
+>  MAINTAINERS                                   |   6 +
+>  drivers/iio/light/Kconfig                     |  13 +
+>  drivers/iio/light/Makefile                    |   1 +
+>  drivers/iio/light/veml6046x00.c               | 890 ++++++++++++++++++
+>  5 files changed, 961 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/light/vishay,veml6046x00.yaml
+>  create mode 100644 drivers/iio/light/veml6046x00.c
+> 
+
 
