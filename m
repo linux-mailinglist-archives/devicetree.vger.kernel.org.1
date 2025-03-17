@@ -1,87 +1,63 @@
-Return-Path: <devicetree+bounces-158009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03F65A64051
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 06:53:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F059A6407A
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 07:00:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 017EF3A96E0
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 05:53:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 766777A4B4B
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 05:59:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2591B21884A;
-	Mon, 17 Mar 2025 05:53:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5B8B21504A;
+	Mon, 17 Mar 2025 06:00:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="ZuQjbch/"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NhevmzVs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6435479D2
-	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 05:53:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55E7D3BBF0;
+	Mon, 17 Mar 2025 06:00:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742190828; cv=none; b=P/ocT4kznWMaR1g4jBbuiCaSqhZYUq8k79VewSwkB3g2RYOWaEeThSuq8AViOxMcTNYQSNDGLopvdmEzhDQBD/OB7ykteZH/a5GDsgsa3B81mnKSSA+wvOJAWz1zoSEHH4w0/nNigxtnuUUuEmmGc1C3aeD2v1eN6T4EAxPoN9E=
+	t=1742191226; cv=none; b=ATyQ/VaH4mbsI8l8rRRQ5H79HkE+EpU6/qO5l9VcgxqVeJdibtc4vM+BQ6h9mxGSTB1x//LnFwynhNgFVfClcx15elXMcbCmzi+gGfYEdoZkSWWSvE4WIl+AU5eAo6xSw+vWXAjnJstMIp2S9abIqUHDSqK7x9keIeSGD+CzQuw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742190828; c=relaxed/simple;
-	bh=ZC/6+JYvonNNHIzSSYj6thbc5jJ7k+4Id/R5EozysVQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Oo6Y7s8R1Nb64Vl1+YVt2XXoZAHlH9V+9FMUx2QizwVUiYkMkbXLzPX7kktLzx6u8jWc9VJ0M+eOW77Wo0++ncBmP/1SRmk6YyGyuN+p+uSzuRSZFYh/Z+nOKiXkHwYxR8R0iYm21mDfYiN8fPIUXul9hjRxOx5ZKOp3X+swARA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=ZuQjbch/; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1742190825;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=yJSwFIlGY7BDW0pv2lJcIUhQ6GnEUIX+K984DHSx7ao=;
-	b=ZuQjbch/IkM+QJJ8TdHCnS3m3S5xK2y8dIp9+vRrLWZo5Ij2b22O98aoX0spp4IQhCGtjR
-	4gNiBtPBt6pOyli0Kfg5gfwy2LF1MRyVJip/+EIpDEFEhFrWNU87gFPqVnnni4ZOnvGEtg
-	2gfqiOha7reY2qZPh0Jb/Xuzqh8heds=
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
- [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-546--j_XrEwFNgCalEqsfJVDwQ-1; Mon, 17 Mar 2025 01:53:43 -0400
-X-MC-Unique: -j_XrEwFNgCalEqsfJVDwQ-1
-X-Mimecast-MFC-AGG-ID: -j_XrEwFNgCalEqsfJVDwQ_1742190823
-Received: by mail-wr1-f69.google.com with SMTP id ffacd0b85a97d-39134c762ebso1566735f8f.0
-        for <devicetree@vger.kernel.org>; Sun, 16 Mar 2025 22:53:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742190823; x=1742795623;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yJSwFIlGY7BDW0pv2lJcIUhQ6GnEUIX+K984DHSx7ao=;
-        b=bN/w18Rog70Y94y7rZse2x0G/uvn5lsfDW145YBsKKYVfwt6D9hV5HPb78rUZw9mAD
-         LphjuBhZCTIurRdx+/bvL2+ZZ+ZPLnb+n/NbSDZInvtsABWDvo6VF8/ztY3YmNPmD6Pp
-         DejCVn4YW5IRhu5BPWiv7Yq6i7l/3Z7JwTaN/K5ByNaGjU2oQlORLmJVwwzZiLlir1pn
-         ADPzke3hNOK3FFp//nSf0hP0ysB1JMc/ZtxWa8Eg6rY3D4me/Z9MZO4EeGYpT94bHHZb
-         wrAL2r+BwPdNggpFmb+GF4UE8GM4Hh7kP84N9AFMXJDW+jgCxn0I7+UA3+TDgi0aR5EM
-         iU+g==
-X-Forwarded-Encrypted: i=1; AJvYcCVGtw1/vInjgpk0tOFtYUWcwSR3hPU9G5PEP7jWPy3Z9ANORgqt0HDmgbbPeNkV/6enGM6SPOK3PcCt@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/WFbQJYnYFEkiD1fMNJKds8OZapHZ4Nw9nSOaWaJGpK7nTqLD
-	iCrp9GF0OI+PhcrGNbqi+eZXFc27iwgn4lzr66fHnhMYwMI4WDj7AftEG3AnrZ2f4x93pnkI/Sf
-	sNKtoTQKBd0+VjgOyr/NVEciqOtfWA1Nz6O3M4tUb2EkikoT6soMtJmK0Kfc=
-X-Gm-Gg: ASbGncshzxTOsHvV6dPoQKm4rl77mnu4FH7Ry7dzk3exumfTPhcnzhMHbs8ir7iWq8k
-	zpU2iX4TQGAANGaQCJhR/UurKkT1fx0hO8xPhxmIv3rVcJ4nZGA5jgAc3BRnbmlRpNAEoKTR90v
-	5E4Szh2PUlkldC6p2VEAvtzlTI0kfwPyOOufi8umNbp413gAziidZjn/jCJAug7xerkmlydnzQ2
-	k5nhajGr+qBfsjbykQbqWyL6xDbWb3FWNsY+5nDFVCVattriWaMu3TZIDfXBCbB5V11MXT6EmJG
-	xgI7Vf1i4q+2IlrcaXrHqqPHmxBcQnumGZag1vcpXTkN4Ho=
-X-Received: by 2002:a05:6000:1564:b0:38f:28a1:501e with SMTP id ffacd0b85a97d-3971d03df3dmr11234514f8f.8.1742190822677;
-        Sun, 16 Mar 2025 22:53:42 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHtjOENIyCfOT6tNpPeHPmJrmieg7Pzl4jhXNmifxKuaNYBpJi1mV6co6CHPM/RjVt5PivTlw==
-X-Received: by 2002:a05:6000:1564:b0:38f:28a1:501e with SMTP id ffacd0b85a97d-3971d03df3dmr11234504f8f.8.1742190822258;
-        Sun, 16 Mar 2025 22:53:42 -0700 (PDT)
-Received: from [192.168.0.7] (ip-109-42-51-207.web.vodafone.de. [109.42.51.207])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d2010e2d6sm94247155e9.38.2025.03.16.22.53.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 16 Mar 2025 22:53:41 -0700 (PDT)
-Message-ID: <330db6bc-1525-4091-b433-19d0db3655f4@redhat.com>
-Date: Mon, 17 Mar 2025 06:53:40 +0100
+	s=arc-20240116; t=1742191226; c=relaxed/simple;
+	bh=pFyvA1g9yJ5AjwyTyGA5uZRy7WTXS6f/HeTNMzNmVhc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Id93u9hF0EYViCBLUs42JBOBN9+9AJwEGByndOGFLnNBWjRS1smpB19Pw+7N8NY4qVuZGVBDSjGAzTFDAWx+71Ug7MB66MCX5m9wF8pHVPlZadEyYjNgngx17VR3rxfOF6mjzdJuLslzr94TYWh2wIqFxr2EHZu/eXVTGu46tO4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NhevmzVs; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52GNwCXe006112;
+	Mon, 17 Mar 2025 06:00:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	OfE8meacvzRTvPM5lBKcPRVOnWgBM4Ww9gj04EDAGwI=; b=NhevmzVsvYU9ITot
+	r6iygw5XBGkeYMkzLIVTB5yacFz9VQTDYDIFVsAI2PTLnkwRV2W3Q4rCxQUL2TuN
+	S4GUwN2PssLHTz9IaMlu3WkboWeLkg/9Sitwq4fW/LUtRdIurkxN/UBSpeH2r7dS
+	yT84OF8nzSb77S1fbXegVFe9Q7w/PGWb46g5cYZDvVdh+hKNSat11qJAMeiyGNZH
+	+4vr/AAZWpaPNGgfW+3gUr28J001Vv/6kjobv5xrgIS5/Nt+wSAEOFRrS29paqID
+	Hspf5Ru8WMEsPJeVgIl1pM+0eJJJq4gMJZ9Axr1RnZ7OqA5I6B8vPUTXQgIc1wx/
+	vkPhBg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45d2qm3g10-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 17 Mar 2025 06:00:22 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52H60L0X028517
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 17 Mar 2025 06:00:21 GMT
+Received: from [10.217.216.47] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 16 Mar
+ 2025 23:00:17 -0700
+Message-ID: <e6862fb0-c015-4019-8803-fa7b7676521f@quicinc.com>
+Date: Mon, 17 Mar 2025 11:30:13 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,83 +65,85 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 40/41] scripts/dtc: Update fdt.h to the latest version
-To: Rob Herring <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
- linux-arch@vger.kernel.org, Saravana Kannan <saravanak@google.com>,
- devicetree@vger.kernel.org
-References: <20250314071013.1575167-1-thuth@redhat.com>
- <20250314071013.1575167-41-thuth@redhat.com>
- <20250314204701.GA2210106-robh@kernel.org>
+Subject: Re: [PATCH v2 0/2] Add support to scale DDR and L3 on SA8775P
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: Ajit Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        "Satya Priya
+ Kakitapalli" <quic_skakitap@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        "Shivnandan
+ Kumar" <quic_kshivnan@quicinc.com>,
+        Raviteja Laggyshetty
+	<quic_rlaggysh@quicinc.com>
+References: <20241112-sa8775p-cpufreq-l3-ddr-scaling-v2-0-53d256b3f2a7@quicinc.com>
+ <174218015887.1913428.16257360641397675945.b4-ty@kernel.org>
 Content-Language: en-US
-From: Thomas Huth <thuth@redhat.com>
-Autocrypt: addr=thuth@redhat.com; keydata=
- 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
-In-Reply-To: <20250314204701.GA2210106-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Jagadeesh Kona <quic_jkona@quicinc.com>
+In-Reply-To: <174218015887.1913428.16257360641397675945.b4-ty@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: GN53mKGciUxp6PUOktWLs7gPzJyDizmx
+X-Proofpoint-GUID: GN53mKGciUxp6PUOktWLs7gPzJyDizmx
+X-Authority-Analysis: v=2.4 cv=DLWP4zNb c=1 sm=1 tr=0 ts=67d7ba76 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=b04cCG1JKnFS8Fa22XEA:9
+ a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-17_01,2025-03-17_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
+ impostorscore=0 adultscore=0 malwarescore=0 suspectscore=0 spamscore=0
+ lowpriorityscore=0 clxscore=1015 mlxlogscore=815 phishscore=0 bulkscore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503170041
 
-On 14/03/2025 21.47, Rob Herring wrote:
-> On Fri, Mar 14, 2025 at 08:10:11AM +0100, Thomas Huth wrote:
->> Update the header to this upstream version to change the
->> __ASSEMBLY__ macro into __ASSEMBLER__ :
->>
->> https://web.git.kernel.org/pub/scm/utils/dtc/dtc.git/commit/?id=f4c53f4ebf78
->>
->> Cc: Rob Herring <robh@kernel.org>
->> Cc: Saravana Kannan <saravanak@google.com>
->> Cc: devicetree@vger.kernel.org
->> Signed-off-by: Thomas Huth <thuth@redhat.com>
->> ---
->>   scripts/dtc/libfdt/fdt.h | 4 ++--
->>   1 file changed, 2 insertions(+), 2 deletions(-)
+
+
+On 3/17/2025 8:25 AM, Bjorn Andersson wrote:
 > 
-> Are you wanting me to apply this or ack it? Normally we only change dtc
-> with the sync with upstream script.
+> On Tue, 12 Nov 2024 18:14:10 +0530, Jagadeesh Kona wrote:
+>> Add support to scale DDR and L3 frequencies
+>> based on CPU frequencies on Qualcomm SA8775P
+>> platform. Also add LMH interrupts in cpufreq_hw
+>> node to indicate if there is any thermal throttle.
+>>
+>> The changes in this series are dependent on below series changes:
+>> https://lore.kernel.org/all/20241112075826.28296-1-quic_rlaggysh@quicinc.com/
+>>
+>> [...]
+> 
+> Applied, thanks!
+> 
+> [1/2] arm64: dts: qcom: sa8775p: Add CPU OPP tables to scale DDR/L3
+>       (no commit info)
 
-As long as this series is still under discussion, I think an ack is sufficient.
+Hi Bjorn, I am not sure if above DDR/L3 scaling commit is picked here, but as per
+our earlier discussion[1], I have included the above patch in the dependent
+interconnect series[2].
 
-  Thanks,
-   Thomas
+Above DDR/L3 scaling patch cannot be picked alone without interconnect changes, as it
+will lead to compilation errors.
 
+[1]: https://lore.kernel.org/all/d649eac7-c9bb-48f9-a5d7-758688b85107@quicinc.com/
+[2]: https://lore.kernel.org/all/20250227155213.404-1-quic_rlaggysh@quicinc.com/
+
+Thanks,
+Jagadeesh
+
+> [2/2] arm64: dts: qcom: sa8775p: Add LMH interrupts for cpufreq_hw node
+>       commit: cc13a858a79d8c5798a99e8cde677ea36272a5a0
+> 
+> Best regards,
 
