@@ -1,102 +1,188 @@
-Return-Path: <devicetree+bounces-158196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 573BAA65169
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 14:40:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DC00A65156
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 14:37:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 95FB11888E12
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 13:39:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A556B16589F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 13:37:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE0B223E33B;
-	Mon, 17 Mar 2025 13:38:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E22E23ED62;
+	Mon, 17 Mar 2025 13:36:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="VTyYtTNs"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="yQzBbGQ+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.207])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20B1C23A9BA;
-	Mon, 17 Mar 2025 13:38:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.207
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A5E523E25A;
+	Mon, 17 Mar 2025 13:36:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742218738; cv=none; b=A2cqbK736KljNlSD5SOpUh+5EYUFrFa05Q+gRmBw4cEo99J0Cfc0RZMpUBdox0K0Sz7TFiHVRIyGok9q243JZFxRQfTWyk8r/0BDDYl+fo8aMzjRZS05b6w8Zx9XU1AAOUlv/9pSM7AxSPgXsDLU0cort8kyWM5dzsZuaDsb6wQ=
+	t=1742218615; cv=none; b=dUtri2ZOqiEzRD3EjO9Rges5/Cu6wUYWxaFvGEZ6ux9RlTWyyr+NAdybdliKe7uiYdXX/rgauwsN4ptQZA5WfHw5CJ5rLYLxODhuMRDbLhTPFGMgee+2/bmc3FsMBAhTauA29lyK8GYITzDpj5y4eT3S9JpaFHdzjJ10bZXgu/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742218738; c=relaxed/simple;
-	bh=bAPzg4jZ6yCIFwOyTlpOE28lXMU29xomma+LuF2yFQc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=UpgJ/MeTHwu1wBxO4iAy9o0AOb0UMOJZTAupI5bM3beL4K0eHoZeuDYFVNj/YMp3SMMfkJu7xKmf6SCiaZtRZFFSQIfD2J7iAuO5AXx3jpHjvvmIiORutmEy6I4EGsJsi+a81grGw43H42dY/NvDpyOvs2t5iXLqPNDX7KByxfI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=VTyYtTNs; arc=none smtp.client-ip=192.19.144.207
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: from mail-lvn-it-01.broadcom.com (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
-	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 9C5A1C00151B;
-	Mon, 17 Mar 2025 06:29:53 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 9C5A1C00151B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-	s=dkimrelay; t=1742218193;
-	bh=bAPzg4jZ6yCIFwOyTlpOE28lXMU29xomma+LuF2yFQc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=VTyYtTNsAbfn0v4FGtsHck+XBGa+bf7Vj4qt7NI64d9BWW9TkdmTYzb1UpHrArO5Z
-	 ADSXXSp1nYHIk3sxWXjgKPdI2HT+g0lzFxw1s6N2exu+DD86u6jhszw2PHoIYLjfFU
-	 MUKN/xNQLu7sAc0vVLmCOYFivnXcmumDEsCcclfw=
-Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail-lvn-it-01.broadcom.com (Postfix) with ESMTPSA id 0F8E818000520;
-	Mon, 17 Mar 2025 06:29:23 -0700 (PDT)
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-To: bcm-kernel-feedback-list@broadcom.com,
-	Artur Weber <aweber.kernel@gmail.com>,
-	Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>
-Cc: Florian Fainelli <f.fainelli@gmail.com>,
-	Stanislav Jakubek <stano.jakubek@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v6 03/10] ARM: dts: Drop DTS for BCM59056 PMU
-Date: Mon, 17 Mar 2025 06:29:22 -0700
-Message-ID: <20250317132922.2698513-1-florian.fainelli@broadcom.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250304-bcm59054-v6-3-ae8302358443@gmail.com>
-References: <20250304-bcm59054-v6-0-ae8302358443@gmail.com> <20250304-bcm59054-v6-3-ae8302358443@gmail.com>
+	s=arc-20240116; t=1742218615; c=relaxed/simple;
+	bh=uUzD2tKx/yOkzia97EwCKxdMZuH21Iwtc+D4U9gO9Ys=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=IzhST1xjxLF/U1i9WVyeSsYhz6Q8/Goj0dE9hMnVXI/J4qD66wtnSa8ZJYp0m7svEbUq9MmpBmgClnKU/KyX5blX0jKsFkBjFIXVlz++5bwbW6uSWgeOhDtRk2yYEbe/LXBSwku871CNBmT2wYOHT9IrGwVI24iYbq12qKdEXsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=yQzBbGQ+; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1742218613; x=1773754613;
+  h=from:date:subject:mime-version:content-transfer-encoding:
+   message-id:to:cc;
+  bh=uUzD2tKx/yOkzia97EwCKxdMZuH21Iwtc+D4U9gO9Ys=;
+  b=yQzBbGQ+SiuAYs30SoNM1FkrhSkBKigJHTD5cKKta3mas+9KUQrrkiIx
+   UxRMgz6qn/Kn5FxD9lG6WYwo5AB1PTGvO4CM47/Bcw7cfh8ISPsfy3Xnm
+   sp5djWfHo8y2vXCUdrjjz8LI02MMGqQANgrF4/mmC3KiSuebaufOa6avh
+   LGzbDESEblBf9FVgcL2eLhMNEAClrTryLr3BB4CbW6Qk+2b/uQDG7kagt
+   cemoIC/oQkYVS7RDqv7weLoHA+A3cEIXHU7EZ4PFEy5InWRx9Qu2vCg9y
+   CDnQEyr5BCQFV2zZ4uSthhdWwd2S78P3uyFtxdNYXZsCMhYw591jqFCRX
+   A==;
+X-CSE-ConnectionGUID: wbEqb9OZQ2CrxMjUvyeqZg==
+X-CSE-MsgGUID: vfBAesImS76EIy4wVtfOmw==
+X-IronPort-AV: E=Sophos;i="6.14,254,1736838000"; 
+   d="scan'208";a="39256375"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 17 Mar 2025 06:36:45 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Mon, 17 Mar 2025 06:36:24 -0700
+Received: from [10.40.56.22] (10.10.85.11) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.44 via Frontend
+ Transport; Mon, 17 Mar 2025 06:36:19 -0700
+From: Nayab Sayed <nayabbasha.sayed@microchip.com>
+Date: Mon, 17 Mar 2025 19:01:08 +0530
+Subject: [PATCH RESEND] dt-bindings: mtd: atmel,dataflash: convert txt to
+ yaml
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20250317-atmel-dataflash-v1-1-1a3247f40299@microchip.com>
+X-B4-Tracking: v=1; b=H4sIABsk2GcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDY0Nz3cSS3NQc3ZTEksS0nMTiDF1LE8Pk1KRkSxOjxFQloK6CotS0zAq
+ widFKQa7Brn4uSrG1tQByJOstaQAAAA==
+To: Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger
+	<richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>,
+	"Alexandre Belloni" <alexandre.belloni@bootlin.com>, Claudiu Beznea
+	<claudiu.beznea@tuxon.dev>
+CC: <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	"Nayab Sayed" <nayabbasha.sayed@microchip.com>
+X-Mailer: b4 0.14.1
 
-From: Florian Fainelli <f.fainelli@gmail.com>
+Convert atmel-dataflash.txt into atmel,dataflash.yaml
 
-On Tue, 04 Mar 2025 07:20:34 +0100, Artur Weber <aweber.kernel@gmail.com> wrote:
-> The BCM59056 PMU has its own separate DTSI, meant to be included
-> in a DTS file after defining the pmu node on some I2C bus.
-> 
-> This seems rather unintuitive; drop the DTS in favor of adding the
-> BCM59056 PMU node directly into the device DTS files.
-> 
-> If the amount of subdevices supported by the BCM590xx grows, and
-> a common device tree turns out to be beneficial, it can be reintroduced
-> in the future.
-> 
-> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
-> ---
+Signed-off-by: Nayab Sayed <nayabbasha.sayed@microchip.com>
+---
+ .../devicetree/bindings/mtd/atmel,dataflash.yaml   | 55 ++++++++++++++++++++++
+ .../devicetree/bindings/mtd/atmel-dataflash.txt    | 17 -------
+ 2 files changed, 55 insertions(+), 17 deletions(-)
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
---
-Florian
+diff --git a/Documentation/devicetree/bindings/mtd/atmel,dataflash.yaml b/Documentation/devicetree/bindings/mtd/atmel,dataflash.yaml
+new file mode 100644
+index 000000000000..8c72fa346e36
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mtd/atmel,dataflash.yaml
+@@ -0,0 +1,55 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mtd/atmel,dataflash.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Atmel DataFlash
++
++maintainers:
++  - Nayab Sayed <nayabbasha.sayed@microchip.com>
++
++description:
++  The Atmel DataFlash is a low pin-count serial interface sequential access
++  Flash memory, compatible with SPI standard. The device tree may optionally
++  contain sub-nodes describing partitions of the address space.
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - atmel,at45db321d
++              - atmel,at45db041e
++              - atmel,at45db642d
++              - atmel,at45db021d
++          - const: atmel,at45
++          - const: atmel,dataflash
++      - items:
++          - const: atmel,at45
++          - const: atmel,dataflash
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++allOf:
++  - $ref: mtd.yaml#
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        flash@1 {
++            compatible = "atmel,at45db321d", "atmel,at45", "atmel,dataflash";
++            reg = <1>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/mtd/atmel-dataflash.txt b/Documentation/devicetree/bindings/mtd/atmel-dataflash.txt
+deleted file mode 100644
+index 1889a4db5b7c..000000000000
+--- a/Documentation/devicetree/bindings/mtd/atmel-dataflash.txt
++++ /dev/null
+@@ -1,17 +0,0 @@
+-* Atmel Data Flash
+-
+-Required properties:
+-- compatible : "atmel,<model>", "atmel,<series>", "atmel,dataflash".
+-
+-The device tree may optionally contain sub-nodes describing partitions of the
+-address space. See partition.txt for more detail.
+-
+-Example:
+-
+-flash@1 {
+-	#address-cells = <1>;
+-	#size-cells = <1>;
+-	compatible = "atmel,at45db321d", "atmel,at45", "atmel,dataflash";
+-	spi-max-frequency = <25000000>;
+-	reg = <1>;
+-};
+
+---
+base-commit: 4701f33a10702d5fc577c32434eb62adde0a1ae1
+change-id: 20250317-atmel-dataflash-941cebc942ae
+
+Best regards,
+-- 
+Nayab Sayed <nayabbasha.sayed@microchip.com>
+
 
