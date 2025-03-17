@@ -1,282 +1,233 @@
-Return-Path: <devicetree+bounces-157966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BDBEA63A4E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 02:30:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38E0DA63A76
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 02:38:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 637C07A25C9
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 01:29:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 39CEC3A8B54
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 01:38:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5125145B0B;
-	Mon, 17 Mar 2025 01:30:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="nsIWc+O/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 925D620322;
+	Mon, 17 Mar 2025 01:38:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from HK2PR02CU002.outbound.protection.outlook.com (mail-eastasiaazon11020081.outbound.protection.outlook.com [52.101.128.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16D5249620
-	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 01:30:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.42
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742175012; cv=none; b=YYM/oP6ZnDlmUlaM/E1EDnQ68Pc9laXtMoPMe5lhxQgPsXN/JXFVyl0MuwLNGRww1nvG+31N5WcCQGeUfTmWzwZA1/7+f4AMw14SF4QHsvHZgBW58FEF/E8I/Po7v+blwv+6h54QrrKZ+RFCkjcRfhVXLPpRVJo8CO0vRhX5uUI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742175012; c=relaxed/simple;
-	bh=NpMOVBOS8yDuSZNKzTrt0KxgDiVsUGvJ2JbhENakTNE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=J1ahggwEkTxWIBqGT8D9ee27s3PPtM7q8mC0e/xX1lYBh4ZtiKMKE7NR8lofovY7KXQVRgZE1VCO6sF5Nnl0aABXV28Pnsqe3GO+n+cCdah2+z6f5qn46hbU8r2EGOaBb4V3V6Zo4SNk858MRf/ZGSa8Y5SVFnaLvetqZK2z0r8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=nsIWc+O/; arc=none smtp.client-ip=209.85.166.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-io1-f42.google.com with SMTP id ca18e2360f4ac-85b58d26336so337643139f.2
-        for <devicetree@vger.kernel.org>; Sun, 16 Mar 2025 18:30:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1742175009; x=1742779809; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0BgPqh2lb+Uwmfrt3ADGADV+FsUyp9TAnyh5DCYwF0A=;
-        b=nsIWc+O/ppJ7J/pbLyPRpD1W8bBeIBxD+xARdZE9HgJoHY64QdMpzrp6rqO9TWODOR
-         0DQbp5KVOI29hBfzxbAQ31dcrfg9YcPczk3CJxA1ijt6XNpUm4uvKleEwsZovXCQSN8V
-         p5pi5lBt2gByZkLoL61XUb9hQuZjxFxpaNCvTSuwEdTLEzkRgLGgIsMnZICDnvwiauyL
-         3jnu1LIHVRM19MtZu6TXbU2cMmOiQ4fo3QpD7PDFU3ttVfhVCox614lVyVB2pLrV8m+6
-         XtDcPPBnDOKTOR5mJ+tat0bwpb55/ka6z0MmAWFcxpaMsFA12DZ5BNCwZXimF2SAlcQe
-         bVLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742175009; x=1742779809;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0BgPqh2lb+Uwmfrt3ADGADV+FsUyp9TAnyh5DCYwF0A=;
-        b=TZ0B0TkPucStcDmVB4JFLXsxg9aTBC74M8aomQqUN8SCs8kEFi03HR+gaJdMLWXrA8
-         6it+D6npkLC+34GtNm9dr61Y2ZpUYpeJL+baRWCP0yKgHW3PFGibBbwKB4pSOS93uKZa
-         hHFrsjatwGtl/csyyUOuTUsxl1Y+9a2XQ52FO06ZKUEYj0Lm3H0/A6WQPay5UPbmSFSa
-         IlmRULvG5DnyTz53NtniFplAGvivjhh65ixXZ+cFppd74wqvw8Ikupg7L84xBmgUyhke
-         5oJEpK+81sMs1bk7u218Q+KimsGdQaYlFrCAfH2EJ10VnNa972dBVeKqFER5T6o1N+D7
-         jaaA==
-X-Forwarded-Encrypted: i=1; AJvYcCV+4XayflUp+Rnbbi8GPNVu3HdOGr1KAlvwpANYEf6/ui0kEOuYs53PIquiwxwgXc1ctAfQGV9R++17@vger.kernel.org
-X-Gm-Message-State: AOJu0YzFJC7FFFcUP98HSODpbViTAIdwauPvjohvd9xdGsLs367C1VOI
-	szQsf3pI6ZMNuAdX0x/QfghWiWf8hRPCHtYHlta6EHPv6Nd7FYKsCqC6XFhz6AZimeGa1a59Vus
-	L3vzWRWNtgi6kLAVKadxgLum42Eb0sPQae+csxw==
-X-Gm-Gg: ASbGncv/kqSaQ00I5wmINIXgMVRVltOtME+W8wZl7Eo1Yv/lrQQttTdokqGjYJv1fqo
-	h0WGskD2TDqhTHtfpvBuvMQckNuEsbNyAEm8N7ytl2QZ4u2AYiirhsym4wCxRKhRplxqt3Zmisr
-	7/9OWTloz16lO8HapTz9opMJlg4yck
-X-Google-Smtp-Source: AGHT+IFIq9kkasXmtYBi1bOlasABayp5RTyarU6d4HJ+lY/VA6wq4Lo3I/SyszKkcRTrfrE4ClECajli89b3tva72eM=
-X-Received: by 2002:a05:6602:3f09:b0:85d:a1c4:ee03 with SMTP id
- ca18e2360f4ac-85dc47d36b5mr1483188839f.7.1742175009124; Sun, 16 Mar 2025
- 18:30:09 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2E5AE571;
+	Mon, 17 Mar 2025 01:38:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.128.81
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1742175517; cv=fail; b=Hhm1vh2xThIfu42e5Sumuz5onYhSzlwmAqS0zsdLThxj/qeN21OEb8giGqDaPdGuFsQoe+FcQhMC+N/Ztfc3wj5bQ08MbPcsrrH5uMcJNBNQYIl32hn4ay5P2omrFowJAMXhrRoZ9Lpr/dORqO1Pw+mAWkFjYiY/dbheMQEV5LA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1742175517; c=relaxed/simple;
+	bh=o31w9oU/JcWbo5pw/in2Pte7yzbqHY94VsPfjnDZ2D8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pdr9X8B7Imvsd2FyNbbFfZjDJ6UiC4JDAXNr+Qjxir6hNyOd0LFXSEF7kXAVqtvepanAGBWDPWFZRmLEPnb/GQoBGvxRYUnSy/XCw08UWHTmuOTAO5zjfvrMWeuKfDPqxRv7ByqOxYK/9aUXxBCI3oSYW2n7XBiAEP+RHHcq8XA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.128.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=CToIjro7MZRLmutK1uzndxj8I6Vy/GLimLyl/tdeUMflxWYUDZ6/nRdbwhAdr8F30cG5P/oVb+Cv6DTzMu/zjsug0Oj54n7vZTE4wZlNC12UJMZ/g+Ek9/Ghx4rIsUYe8SHPR4kNDjWZnLl3BGyU0ia2bfVu7FBqPc+KQoZNllEtgxEXysGUmffPnm5lLWKIjcec8KxI5oSSLQ546CoRdlbkVtGNvLGDQVDxdLcOnZRhhSQrfeOcTMw+CriXzXr+nUIf4XftkoKmi/EQpXI5buVF3dALUCTAZ8QIOYw8eRrSPuF7YlZXwpoI7zq3SElR6zf5juF8bprUiIZYaT8syg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=F70eKIVFAZbMHUo7AnV/k24onkogp5CmZmMfPzkmjvE=;
+ b=OdScvwt2pZcNeN5LksMt1UzJbZkUuixGLeCxEpOFVIlelSXNxDl1Guri5lHRJxOWqJiMBi86sIUIl+di8955E+F4GehKKYITg517Na1zqxp1HyQV4T+ptuyVsucyfu4i6glNstn5v1jIVSq8viHBf085YBJlJElOhH+cphpTbFXthORZTMnAF5p1Q6DF3qbQVkvzEq/kKmYwtn58SOCMcnbvCTqZOlknao5ZvmzLd+CJTee+8OYza1b4dqku3+klKEGlCkk7h6IB6AdJAN9fc3zRqbSn4OuLkEN703F6IdAn3zCGbYEJoRhQLlfavJHQL/bMh72SzQi0QLEvHQDkxg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SG2PR06CA0234.apcprd06.prod.outlook.com (2603:1096:4:ac::18) by
+ JH0PR06MB6438.apcprd06.prod.outlook.com (2603:1096:990:2c::8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8534.33; Mon, 17 Mar 2025 01:38:31 +0000
+Received: from SG2PEPF000B66D0.apcprd03.prod.outlook.com
+ (2603:1096:4:ac:cafe::b7) by SG2PR06CA0234.outlook.office365.com
+ (2603:1096:4:ac::18) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.30 via Frontend Transport; Mon,
+ 17 Mar 2025 01:38:31 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ SG2PEPF000B66D0.mail.protection.outlook.com (10.167.240.26) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8534.20 via Frontend Transport; Mon, 17 Mar 2025 01:38:30 +0000
+Received: from nchen-desktop (unknown [172.16.64.25])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id A66AE4160CA0;
+	Mon, 17 Mar 2025 09:38:29 +0800 (CST)
+Date: Mon, 17 Mar 2025 09:38:23 +0800
+From: Peter Chen <peter.chen@cixtech.com>
+To: <arnd@arndb.de>
+Cc: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <cix-kernel-upstream@cixtech.com>,
+	<marcin@juszkiewicz.com.pl>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<catalin.marinas@arm.com>, <will@kernel.org>
+Subject: Re: [PATCH v4 0/6] arm64: Introduce CIX P1 (SKY1) SoC
+Message-ID: <Z9d9D2X8V5A8Na3e@nchen-desktop>
+References: <20250305053823.2048217-1-peter.chen@cixtech.com>
+ <Z8-LpRCQfsVfDYtm@nchen-desktop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250314-v5_user_cfi_series-v12-0-e51202b53138@rivosinc.com> <20250314-v5_user_cfi_series-v12-13-e51202b53138@rivosinc.com>
-In-Reply-To: <20250314-v5_user_cfi_series-v12-13-e51202b53138@rivosinc.com>
-From: Zong Li <zong.li@sifive.com>
-Date: Mon, 17 Mar 2025 09:29:57 +0800
-X-Gm-Features: AQ5f1JrP5j_jWeX4yoQDmxgHc7C_BW3_CH6nIyiVQO54RVQmiKVGFtDika6nCYk
-Message-ID: <CANXhq0o2gxV462GY6h=_4GmBDcDf3oeh-L=WXzz=AsMCV=x2Kw@mail.gmail.com>
-Subject: Re: [PATCH v12 13/28] prctl: arch-agnostic prctl for indirect branch tracking
-To: Deepak Gupta <debug@rivosinc.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, 
-	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, 
-	"H. Peter Anvin" <hpa@zytor.com>, Andrew Morton <akpm@linux-foundation.org>, 
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka <vbabka@suse.cz>, 
-	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Christian Brauner <brauner@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
-	Oleg Nesterov <oleg@redhat.com>, Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, Jann Horn <jannh@google.com>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-fsdevel@vger.kernel.org, linux-mm@kvack.org, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-kselftest@vger.kernel.org, alistair.francis@wdc.com, 
-	richard.henderson@linaro.org, jim.shu@sifive.com, andybnac@gmail.com, 
-	kito.cheng@sifive.com, charlie@rivosinc.com, atishp@rivosinc.com, 
-	evan@rivosinc.com, cleger@rivosinc.com, alexghiti@rivosinc.com, 
-	samitolvanen@google.com, broonie@kernel.org, rick.p.edgecombe@intel.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z8-LpRCQfsVfDYtm@nchen-desktop>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG2PEPF000B66D0:EE_|JH0PR06MB6438:EE_
+X-MS-Office365-Filtering-Correlation-Id: e839b8b6-15b5-4bdd-9f61-08dd64f46c23
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|1800799024|36860700013|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?l9Wsr0f0DwsmjIKfM4fO59FFhcNOWle+O9smsOzrfQjoPbgnV5Wx54pCKrCy?=
+ =?us-ascii?Q?PU+nwnwRHmEh9S2VZhdNegvIqc27gBAolnD2V2R72y1317rQnEpucUH0QIEN?=
+ =?us-ascii?Q?UPLqoPMp/qgyPENiAPIojdoMDlmovf7M9NOclU4P6afu+SAw6fpbUFrpj9g9?=
+ =?us-ascii?Q?gHID7+b5lteyMaFciuzCIhn/CrNoan6kJkPyUXk4wD508ljHVNThmnt0E73E?=
+ =?us-ascii?Q?jZFtIWvScTNQWi6YYM+Sql+Vp9CMjx5Fzf0ZDeSfo9BBCuNU80ESpId3cG0e?=
+ =?us-ascii?Q?Y7myHbo3YVIqt8bBqWyZEmrvp84n8CPf7L5v0crIE9V30E9OOc73KwCVXBva?=
+ =?us-ascii?Q?E9DXyjGEanwrAXQ3tW/C7ZwYuIgtvVOSEhACuUer6seiYJXpuW9UiXE/Wb+q?=
+ =?us-ascii?Q?YH15O96ZKEN7k+CLlwJfX/ykbD3l57tWiM59yg10GRN9lkVQnQ2s3yTHpuxN?=
+ =?us-ascii?Q?XdkiL0IfWeZSthvibndztFYXMT5cI+3dfdj3AOM2/qlKbHqrn/5IXPHUxEkp?=
+ =?us-ascii?Q?I8RsjPjueZUtDDRmny2DxdY3VLJOQFS/HYYLmI3sH6tFgT1eai49AbgACyf+?=
+ =?us-ascii?Q?4Py9uFTG2V3JJg4Y1HJtR65ArC7PeZYj5hsSMItCpnaopEBgDHgpg7c4Ip+W?=
+ =?us-ascii?Q?CMHCr7EmWmJPVRHeByAc8vpuLGBxGvKn26eS9xJr8wZqmNjV/eh0R435DwFS?=
+ =?us-ascii?Q?5tBIvcqmdOQSHE/4O0lr3Hyn/SoKJK/wfPZ3TbcDJ3X0Xk876xz8jt8AKx9d?=
+ =?us-ascii?Q?ctSUeU8lAGscc+68Uoj8QFVZpSWIEO8gwISpXUmdzdgIKaijhNHrimR/l0dq?=
+ =?us-ascii?Q?JETGOoBDI/Vgury/BlTlJGrsv5bjhjpLSYURRtRlNSlB+TJA+dkVk0cZBwwF?=
+ =?us-ascii?Q?x0JkkGH0/7Zgwmb2aGun8da2yfOSB/fKYDaeBzpQfUIHitpS0FtDZCxDM/xG?=
+ =?us-ascii?Q?9QqbzKnuQtcZYgpo9Rjjm4SgxtMnBAROfShjtHKhgMdAUtSIKsVL75yslipK?=
+ =?us-ascii?Q?VUVE1Dk1NJLQyvYkcpVVl+nyetqvntZtEGn7/rQOi7IGsB6T5/9GhAGeT4AV?=
+ =?us-ascii?Q?o21DYBIl41CKnuxn2o9J99ONlrOLq5magUp9/OU2xdzQKY8dDvMxVgl3oF5r?=
+ =?us-ascii?Q?ueNSxEH8g4ytNrUTO+0qHVSdj9LzSTezj+LGC6VliGJpoCwdSuMuvEGfMW3s?=
+ =?us-ascii?Q?hqSdWgfI0EEgtZvmsh2BgFh2yLuDeyMt8QLH+eXMWMOwyWv8liykNq8q1Rhs?=
+ =?us-ascii?Q?sAsIojx7eyWWru/1jvszMTCgkC1rHBaUuLBwmyqsm0vXkWiT2iYvhEKzaUr0?=
+ =?us-ascii?Q?ayrS3IJODASDY0bvc6JeoWKjb7OlNFClg2+EW6n63vyI53+UDHm74AZJ21ef?=
+ =?us-ascii?Q?LTgn+NAemNMNUCCEARlWaskPdMn9UzhYbGu6W1VF5VgaeNxSYLCf6AOz9OaO?=
+ =?us-ascii?Q?b8BlAMHCA54rGw1Is2QgQ0Y1D7CYp4/v?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026);DIR:OUT;SFP:1102;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2025 01:38:30.3675
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e839b8b6-15b5-4bdd-9f61-08dd64f46c23
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource: SG2PEPF000B66D0.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR06MB6438
 
-On Sat, Mar 15, 2025 at 6:51=E2=80=AFAM Deepak Gupta <debug@rivosinc.com> w=
-rote:
->
-> Three architectures (x86, aarch64, riscv) have support for indirect branc=
-h
-> tracking feature in a very similar fashion. On a very high level, indirec=
-t
-> branch tracking is a CPU feature where CPU tracks branches which uses
-> memory operand to perform control transfer in program. As part of this
-> tracking on indirect branches, CPU goes in a state where it expects a
-> landing pad instr on target and if not found then CPU raises some fault
-> (architecture dependent)
->
-> x86 landing pad instr - `ENDBRANCH`
-> arch64 landing pad instr - `BTI`
-> riscv landing instr - `lpad`
->
-> Given that three major arches have support for indirect branch tracking,
-> This patch makes `prctl` for indirect branch tracking arch agnostic.
->
-> To allow userspace to enable this feature for itself, following prtcls ar=
-e
-> defined:
->  - PR_GET_INDIR_BR_LP_STATUS: Gets current configured status for indirect
->    branch tracking.
->  - PR_SET_INDIR_BR_LP_STATUS: Sets a configuration for indirect branch
->    tracking.
->    Following status options are allowed
->        - PR_INDIR_BR_LP_ENABLE: Enables indirect branch tracking on user
->          thread.
->        - PR_INDIR_BR_LP_DISABLE; Disables indirect branch tracking on use=
-r
->          thread.
->  - PR_LOCK_INDIR_BR_LP_STATUS: Locks configured status for indirect branc=
-h
->    tracking for user thread.
->
-> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
-> Reviewed-by: Mark Brown <broonie@kernel.org>
-> ---
->  include/linux/cpu.h        |  4 ++++
->  include/uapi/linux/prctl.h | 27 +++++++++++++++++++++++++++
->  kernel/sys.c               | 30 ++++++++++++++++++++++++++++++
->  3 files changed, 61 insertions(+)
->
-> diff --git a/include/linux/cpu.h b/include/linux/cpu.h
-> index 6a0a8f1c7c90..fb0c394430c6 100644
-> --- a/include/linux/cpu.h
-> +++ b/include/linux/cpu.h
-> @@ -204,4 +204,8 @@ static inline bool cpu_mitigations_auto_nosmt(void)
->  }
->  #endif
->
-> +int arch_get_indir_br_lp_status(struct task_struct *t, unsigned long __u=
-ser *status);
-> +int arch_set_indir_br_lp_status(struct task_struct *t, unsigned long sta=
-tus);
-> +int arch_lock_indir_br_lp_status(struct task_struct *t, unsigned long st=
-atus);
-> +
->  #endif /* _LINUX_CPU_H_ */
-> diff --git a/include/uapi/linux/prctl.h b/include/uapi/linux/prctl.h
-> index 5c6080680cb2..6cd90460cbad 100644
-> --- a/include/uapi/linux/prctl.h
-> +++ b/include/uapi/linux/prctl.h
-> @@ -353,4 +353,31 @@ struct prctl_mm_map {
->   */
->  #define PR_LOCK_SHADOW_STACK_STATUS      76
->
-> +/*
-> + * Get the current indirect branch tracking configuration for the curren=
-t
-> + * thread, this will be the value configured via PR_SET_INDIR_BR_LP_STAT=
-US.
-> + */
-> +#define PR_GET_INDIR_BR_LP_STATUS      77
-> +
-> +/*
-> + * Set the indirect branch tracking configuration. PR_INDIR_BR_LP_ENABLE=
- will
-> + * enable cpu feature for user thread, to track all indirect branches an=
-d ensure
-> + * they land on arch defined landing pad instruction.
-> + * x86 - If enabled, an indirect branch must land on `ENDBRANCH` instruc=
-tion.
-> + * arch64 - If enabled, an indirect branch must land on `BTI` instructio=
-n.
-> + * riscv - If enabled, an indirect branch must land on `lpad` instructio=
-n.
-> + * PR_INDIR_BR_LP_DISABLE will disable feature for user thread and indir=
-ect
-> + * branches will no more be tracked by cpu to land on arch defined landi=
-ng pad
-> + * instruction.
-> + */
-> +#define PR_SET_INDIR_BR_LP_STATUS      78
-> +# define PR_INDIR_BR_LP_ENABLE            (1UL << 0)
-> +
-> +/*
-> + * Prevent further changes to the specified indirect branch tracking
-> + * configuration.  All bits may be locked via this call, including
-> + * undefined bits.
-> + */
-> +#define PR_LOCK_INDIR_BR_LP_STATUS      79
-> +
->  #endif /* _LINUX_PRCTL_H */
-> diff --git a/kernel/sys.c b/kernel/sys.c
-> index cb366ff8703a..f347f3518d0b 100644
-> --- a/kernel/sys.c
-> +++ b/kernel/sys.c
-> @@ -2336,6 +2336,21 @@ int __weak arch_lock_shadow_stack_status(struct ta=
-sk_struct *t, unsigned long st
->         return -EINVAL;
->  }
->
-> +int __weak arch_get_indir_br_lp_status(struct task_struct *t, unsigned l=
-ong __user *status)
-> +{
-> +       return -EINVAL;
-> +}
-> +
-> +int __weak arch_set_indir_br_lp_status(struct task_struct *t, unsigned l=
-ong status)
-> +{
-> +       return -EINVAL;
-> +}
-> +
-> +int __weak arch_lock_indir_br_lp_status(struct task_struct *t, unsigned =
-long status)
-> +{
-> +       return -EINVAL;
-> +}
-> +
->  #define PR_IO_FLUSHER (PF_MEMALLOC_NOIO | PF_LOCAL_THROTTLE)
->
->  #ifdef CONFIG_ANON_VMA_NAME
-> @@ -2811,6 +2826,21 @@ SYSCALL_DEFINE5(prctl, int, option, unsigned long,=
- arg2, unsigned long, arg3,
->                         return -EINVAL;
->                 error =3D arch_lock_shadow_stack_status(me, arg2);
->                 break;
-> +       case PR_GET_INDIR_BR_LP_STATUS:
-> +               if (arg3 || arg4 || arg5)
-> +                       return -EINVAL;
-> +               error =3D arch_get_indir_br_lp_status(me, (unsigned long =
-__user *)arg2);
-> +               break;
-> +       case PR_SET_INDIR_BR_LP_STATUS:
-> +               if (arg3 || arg4 || arg5)
-> +                       return -EINVAL;
-> +               error =3D arch_set_indir_br_lp_status(me, arg2);
-> +               break;
-> +       case PR_LOCK_INDIR_BR_LP_STATUS:
-> +               if (arg3 || arg4 || arg5)
-> +                       return -EINVAL;
-> +               error =3D arch_lock_indir_br_lp_status(me, arg2);
-> +               break;
->         default:
->                 trace_task_prctl_unknown(option, arg2, arg3, arg4, arg5);
->                 error =3D -EINVAL;
->
+On 25-03-11 09:02:29, Peter Chen wrote:
+> On 25-03-05 13:38:17, Peter Chen wrote:
+> > Cixtech P1 (internal name sky1) is high performance generic Armv9 SoC.
+> > Orion O6 is the world's first open source Arm V9 Motherboard built by
+> > Radxa. You could find brief introduction for SoC and related boards at:
+> > https://radxa.com/products/orion/o6#overview
+> > 
+> > In this series, we add initial SoC and board support for Kernel building.
+> > Patch 1-2: Add dt-binding doc for CIX and its sky1 SoC
+> > Patch 3: add related maintainers entry
+> > Patch 4-5: add Arm64 build support
+> > Patch 6: add initial dts support for SoC and Orion O6 board
+> > 
+> > To run upstream kernel at Orion O6 board, you need to use BIOS
+> > released by Radxa:
+> > https://docs.radxa.com/en/orion/o6/bios/install-bios
+> > 
+> > Changes for v4:
+> > - Move add MAINTAINERS entry patch to the last, and add two dts files entry in it. 
+> > - Add three Krzysztof Kozlowski's Reviewed-by Tags
+> > - For sky1.dtsi, makes below changes:
+> > 	- Add ppi-partition entry for gic-v3 node, and let pmu-a520 and pmu-a720's interrupt entry
+> > 	get its handle
+> > 	- Remove gic-v3's #redistributor-regions and redistributor-stride properties
+> > 	- Change gic-v3's #interrupt-cells as 4, and change all interrupt specifiers accordingly
+> > 	- Remove "arm,no-tick-in-suspend" for timer due to global counter is at always-on power domain
+> > 	- Remove timer's clock frequency due to firmware has already set it
+> 
+> Hi Arnd,
+> 
+> I assume this series (all patches) will go your tree, right?
+> 
 
-LGTM
+A gentle ping, thanks.
 
-Reviewed-by: Zong Li <zong.li@sifive.com>
+Peter
 
-> --
-> 2.34.1
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> Peter
+> 
+> > 
+> > Changes for v3:
+> > - Patch 1: Add Krzysztof Kozlowski's Acked-by Tag
+> > - Patch 2: Add Krzysztof Kozlowski's Reviewed-by Tag
+> > - Patch 6: Fix two dts coding sytle issues
+> > 
+> > Changes for v2:
+> > - Pass dts build check with below commands:
+> > make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=vendor-prefixes.yaml
+> > make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=arm/cix.yaml
+> > make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+> > - Re-order the patch set, and move vendor-perfixes to the 1st patch.
+> > - Patch 4: Ordered Kconfig config entry by alpha-numerically
+> > - Patch 5: Corrects the Ack tag's name
+> > - Patch 6: see below.
+> > 1) Corrects the SoF tag's name
+> > 2) Fix several coding sytle issues
+> > 3) move linux,cma node to dts file
+> > 4) delete memory node, memory size is passed by firmware
+> > 5) delete uart2 node which will be added in future patches
+> > 6) Improve for pmu and cpu node to stands for more specific cpu model
+> > 7) Improve the timer node and add hypervisor virtual timer irq
+> > 
+> > Fugang Duan (1):
+> >   arm64: Kconfig: add ARCH_CIX for cix silicons
+> > 
+> > Peter Chen (5):
+> >   dt-bindings: vendor-prefixes: Add CIX Technology Group Co., Ltd.
+> >   dt-bindings: arm: add CIX P1 (SKY1) SoC
+> >   arm64: defconfig: Enable CIX SoC
+> >   arm64: dts: cix: add initial CIX P1(SKY1) dts support
+> >   MAINTAINERS: Add CIX SoC maintainer entry
+> > 
+> >  .../devicetree/bindings/arm/cix.yaml          |  26 ++
+> >  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+> >  MAINTAINERS                                   |  10 +
+> >  arch/arm64/Kconfig.platforms                  |   6 +
+> >  arch/arm64/boot/dts/Makefile                  |   1 +
+> >  arch/arm64/boot/dts/cix/Makefile              |   2 +
+> >  arch/arm64/boot/dts/cix/sky1-orion-o6.dts     |  26 ++
+> >  arch/arm64/boot/dts/cix/sky1.dtsi             | 222 ++++++++++++++++++
+> >  arch/arm64/configs/defconfig                  |   1 +
+> >  9 files changed, 296 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/arm/cix.yaml
+> >  create mode 100644 arch/arm64/boot/dts/cix/Makefile
+> >  create mode 100644 arch/arm64/boot/dts/cix/sky1-orion-o6.dts
+> >  create mode 100644 arch/arm64/boot/dts/cix/sky1.dtsi
+> > 
+> > -- 
+> > 2.25.1
+> > 
+> 
+> -- 
+> 
+> Best regards,
+> Peter
+
+-- 
+
+Best regards,
+Peter
 
