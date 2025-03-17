@@ -1,101 +1,139 @@
-Return-Path: <devicetree+bounces-158153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158155-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13E29A64DC8
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 13:03:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6788FA64DD4
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 13:04:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA1CB1898262
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:02:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7BD641755F5
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:04:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CD1923A9AA;
-	Mon, 17 Mar 2025 12:01:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C59D7230BEB;
+	Mon, 17 Mar 2025 12:04:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d+kyM1j+"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="hVvC6I28"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D465D23A983;
-	Mon, 17 Mar 2025 12:01:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 542D5219A7D
+	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 12:04:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742212865; cv=none; b=jwKGWF0KwVTGM3kK9DwkbvPgJhRJvVWtVF2zkj1LPh9GIhGkX0pOR+Yds4ml0UplQAGABTPXvanu5NQ3WEqrFnpkejdqnPGm5kBO9OXD2efbChU4665jt0mujGrMQqAbUS63HSuftp1c33lM1G6vIjsf8EJJlOZZSiruOUDvdt8=
+	t=1742213061; cv=none; b=RkONjCH/j5Rd6VQC503ZlYhbTM1YQS6H1Aj6ot6QAkQ4jK0h+PMtj5PfT2zfA/WavI+vNrs2ZgRnmRY1f5cNJ30A0S8b6kOqmDRENy1qeu7e2uUnprTXUlb6BD+S28l25aeMvVNT0v3dNSnXyqPCK08gg9BO9EEUvo+XslmuvCU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742212865; c=relaxed/simple;
-	bh=LlCDNKDvo5kEJa8v9yaiQCRUYA/WFkcBUmy5viW6Syk=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=NRr4MF1F8XXxuKF43BkdCp7b3/ZrkWNG+yubB9cshmwSpgyRoIKr/eEWnzICEcGotHrKoptyZmvdq+jTYf7kVdedPuqt9bJ4lZYgnxxvhXbj0McNpizMAyN795BDZIglqoDtvhxuswRKTYR4PDEwVuHx8VsDa3jZaUqu6Kyi3EA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d+kyM1j+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28A65C4CEE3;
-	Mon, 17 Mar 2025 12:00:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742212865;
-	bh=LlCDNKDvo5kEJa8v9yaiQCRUYA/WFkcBUmy5viW6Syk=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=d+kyM1j+4UhEWVrdDzz1pQqLcE6MCtFOW5lCdm4SxdCObTbZlSf/vDPAHuoYf4hB7
-	 bgFytKAtKGbnY4c9CsJCdY9ln+kmcs46dWZjKW0iCESCq5+1TKoOA869VCPi7IIKdO
-	 kyd7FYPZ66EOes28NB97UoaoyX9U42CSy8D918cMFb47ngr4CoADR1Yu268is724z8
-	 gloAy0smeHU5R/Wxls5KBHh/581peZCdcFWdFPvSJ28ttn5q+iDOI4svsGOWhQ7PMj
-	 Vc45NVlQLo+t/EjenHJ+jr4wtBOHvrfeR/s4waUipuUAjAGwXns9F8DwJ+XRVDmh3F
-	 uXmWFq3B9ksRQ==
-Date: Mon, 17 Mar 2025 12:00:50 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Andreas Klinger <ak@it-klinger.de>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- lars@metafoo.de, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, javier.carrasco.cruz@gmail.com,
- mazziesaccount@gmail.com, subhajit.ghosh@tweaklogic.com,
- muditsharma.info@gmail.com, arthur.becker@sentec.com,
- ivan.orlov0322@gmail.com
-Subject: Re: [PATCH v2 0/3] iio:light: add driver for veml6046x00 RGBIR
- color sensor
-Message-ID: <20250317120050.425ef6cc@jic23-huawei>
-In-Reply-To: <20250316164813.30291-1-ak@it-klinger.de>
-References: <20250316164813.30291-1-ak@it-klinger.de>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1742213061; c=relaxed/simple;
+	bh=xD7c/TtPeI+1/i/izO1jiOyNgb8gXTF8nn2R3yoQ7Tw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Xrmr2E3g4EPyDGCO/hG2smNwxrogk+sZTR5HWUlIrESFyXPJK0n+jEKovdtdfnI7OcrkRz2S2uDtCxoOsVpoXqVMZiqL7nj8DzkC5Q6AO3xBjIrnoXElsrsLd4d7WBxFgPJUF+ohv2kTix7h6jDnA3JTxKyBF2G/kAad0RBKq2k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=hVvC6I28; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=5RA4whu2QwalP3
+	Cp7VKBx+SEgwqNfU0qSSnD0YK90k8=; b=hVvC6I28mvO5UUmqrZab6RZBVSy9b2
+	ZXTAlxO8egTvpsQLzwTKCqQn/Hnt7KyklQq7fdteBTiwK8/zw/WLjnYde2ACkLbJ
+	TiaLTe5EZ6PA+LeK2NAKcG60cuLJeoHM8p1E/Y6P0aNkUeRIYSWuRnm6s/HoQ3AO
+	7TNuOvmc4i+GZHGe5sNyHRJOcKe9MiFsXWGfjsd9C0Z92w/AVwnVXkkIJ4kwEvVn
+	kV9SXZjbDvxvOUpy885bgtKIWgUMgk44SxJ6X1ahMZYDNhkQShZF66PMezh8NLSy
+	35RMGyVJT34SbDN6mXHulF/LYRluRgTSn/2CDqqSAlmVYDaox3HbULtA==
+Received: (qmail 3133469 invoked from network); 17 Mar 2025 13:04:08 +0100
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 17 Mar 2025 13:04:08 +0100
+X-UD-Smtp-Session: l3s3148p1@xfHglYgwnMUgAwDPXyTHAJp038nK7dx+
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH] ARM: dts: renesas: r9a06g032: use proper ordering for UART DMA channels
+Date: Mon, 17 Mar 2025 13:03:55 +0100
+Message-ID: <20250317120356.67609-2-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Sun, 16 Mar 2025 17:48:10 +0100
-Andreas Klinger <ak@it-klinger.de> wrote:
+Commit ec956e2c6f4e ("dt-bindings: serial: snps-dw-apb-uart: Switch
+dma-names order") enforces "tx", "rx" ordering of DMA channels. Adhere
+to it to let the dtbs_check pass it. There is no ABI breakage because
+the Linux driver never expected a certain ordering and no other usage is
+known.
 
-> This patchset adds an IIO driver for Vishay veml6046x00 RGBIR color sensor
-> 
-Ah.  As a general rule don't send a v2 out that fast - leave
-it at least a few days even if there is an 'obvious fix'.
-A rush can make sense if we are trying to sneak it in very late
-in a kernel cycle, but right now we are right at the start of the next
-one so lots of time.
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+---
+ arch/arm/boot/dts/renesas/r9a06g032.dtsi | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 
-Anyhow, comments on v1 probably still apply ;)
-
-Jonathan
-
-> Changes in v2:
-> - fix missing include for example in vishay,veml6046x00.yaml
-> 
-> Andreas Klinger (3):
->   dt-bindings: iio: light: veml6046x00: add color sensor
->   iio: light: add support for veml6046x00 RGBIR color sensor
->   MAINTAINER: add maintainer for veml6046x00
-> 
->  .../iio/light/vishay,veml6046x00.yaml         |  51 +
->  MAINTAINERS                                   |   6 +
->  drivers/iio/light/Kconfig                     |  13 +
->  drivers/iio/light/Makefile                    |   1 +
->  drivers/iio/light/veml6046x00.c               | 890 ++++++++++++++++++
->  5 files changed, 961 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/light/vishay,veml6046x00.yaml
->  create mode 100644 drivers/iio/light/veml6046x00.c
-> 
+diff --git a/arch/arm/boot/dts/renesas/r9a06g032.dtsi b/arch/arm/boot/dts/renesas/r9a06g032.dtsi
+index 7548291c8d7e..87e03446fb4d 100644
+--- a/arch/arm/boot/dts/renesas/r9a06g032.dtsi
++++ b/arch/arm/boot/dts/renesas/r9a06g032.dtsi
+@@ -211,8 +211,8 @@ uart3: serial@50000000 {
+ 			reg-io-width = <4>;
+ 			clocks = <&sysctrl R9A06G032_CLK_UART3>, <&sysctrl R9A06G032_HCLK_UART3>;
+ 			clock-names = "baudclk", "apb_pclk";
+-			dmas = <&dmamux 0 0 0 0 0 1>, <&dmamux 1 0 0 0 1 1>;
+-			dma-names = "rx", "tx";
++			dmas = <&dmamux 1 0 0 0 1 1>, <&dmamux 0 0 0 0 0 1>;
++			dma-names = "tx", "rx";
+ 			status = "disabled";
+ 		};
+ 
+@@ -224,8 +224,8 @@ uart4: serial@50001000 {
+ 			reg-io-width = <4>;
+ 			clocks = <&sysctrl R9A06G032_CLK_UART4>, <&sysctrl R9A06G032_HCLK_UART4>;
+ 			clock-names = "baudclk", "apb_pclk";
+-			dmas = <&dmamux 2 0 0 0 2 1>, <&dmamux 3 0 0 0 3 1>;
+-			dma-names = "rx", "tx";
++			dmas = <&dmamux 3 0 0 0 3 1>, <&dmamux 2 0 0 0 2 1>;
++			dma-names = "tx", "rx";
+ 			status = "disabled";
+ 		};
+ 
+@@ -237,8 +237,8 @@ uart5: serial@50002000 {
+ 			reg-io-width = <4>;
+ 			clocks = <&sysctrl R9A06G032_CLK_UART5>, <&sysctrl R9A06G032_HCLK_UART5>;
+ 			clock-names = "baudclk", "apb_pclk";
+-			dmas = <&dmamux 4 0 0 0 4 1>, <&dmamux 5 0 0 0 5 1>;
+-			dma-names = "rx", "tx";
++			dmas = <&dmamux 5 0 0 0 5 1>, <&dmamux 4 0 0 0 4 1>;
++			dma-names = "tx", "rx";
+ 			status = "disabled";
+ 		};
+ 
+@@ -250,8 +250,8 @@ uart6: serial@50003000 {
+ 			reg-io-width = <4>;
+ 			clocks = <&sysctrl R9A06G032_CLK_UART6>, <&sysctrl R9A06G032_HCLK_UART6>;
+ 			clock-names = "baudclk", "apb_pclk";
+-			dmas = <&dmamux 6 0 0 0 6 1>, <&dmamux 7 0 0 0 7 1>;
+-			dma-names = "rx", "tx";
++			dmas = <&dmamux 7 0 0 0 7 1>, <&dmamux 6 0 0 0 6 1>;
++			dma-names = "tx", "rx";
+ 			status = "disabled";
+ 		};
+ 
+@@ -263,8 +263,8 @@ uart7: serial@50004000 {
+ 			reg-io-width = <4>;
+ 			clocks = <&sysctrl R9A06G032_CLK_UART7>, <&sysctrl R9A06G032_HCLK_UART7>;
+ 			clock-names = "baudclk", "apb_pclk";
+-			dmas = <&dmamux 4 0 0 0 20 1>, <&dmamux 5 0 0 0 21 1>;
+-			dma-names = "rx", "tx";
++			dmas = <&dmamux 5 0 0 0 21 1>, <&dmamux 4 0 0 0 20 1>;
++			dma-names = "tx", "rx";
+ 			status = "disabled";
+ 		};
+ 
+-- 
+2.47.2
 
 
