@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-158358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E3BBA65EDF
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 21:15:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFF1DA65EE6
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 21:17:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 952C5189BC86
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 20:15:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24739189BE8F
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 20:18:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E37561E8349;
-	Mon, 17 Mar 2025 20:15:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EFA11D934D;
+	Mon, 17 Mar 2025 20:17:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="osifnA1c"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JgZ37YYv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFC5D42C0B;
-	Mon, 17 Mar 2025 20:15:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0610B17A311;
+	Mon, 17 Mar 2025 20:17:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742242516; cv=none; b=RH8nZaoYnGmxAN42tgOVkuHzH7WrnU/HhWGd2y7uLtT+S9u5dykkNFDaDS02wq3x4Pq9iKa1OanIxM5Vk8T+4oVM5jHF1m7liZmlM51nW8Jtbw6SKjQWxulhtuU5rKxlZow01nEJu+DiQhWLmEVY4bMIyyOD13Hf00jzk9aV0RI=
+	t=1742242672; cv=none; b=pfVj+pmLuiRbj7DbGGvNulBZ266cpqTzBGw6GfOd6VWeI6Xc8vsOvBAwadKIn/NlwYiA6PN5+bifWYbInjW/fszDMNNa60ygOm3Ud/TH9lDXW31BBrHhUGBEXdVDf2VVi4pcZZ3BC7fPjTLPX0AQpI3MFrvoc92hAzVjTXBVVow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742242516; c=relaxed/simple;
-	bh=ZGpyLj1jkls0SoosLhcIHbWXKCVXYJixZIMjVgkLkBw=;
+	s=arc-20240116; t=1742242672; c=relaxed/simple;
+	bh=TnNYcqHv6QX4BquqpBSfitkMvVtoM1gMjxac+41vjmQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=khljW+Qr1q7ZuwAdrZhTpEFGScFDQlfZ5jqxvcfW4aeuCNBX1lZtS+CYIkFFvXUKqTb0FziuJJ0ro51pZwkpzKXKJ6TZHxcDwkb4+7Cyaiyi93HnlsstsnkrAeUvjdc7A41aDlwJegsIQngUiP2rqmDOyiAHpRSe2tCyomt3yvg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=osifnA1c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F0F3C4CEE3;
-	Mon, 17 Mar 2025 20:15:12 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Uw7aEsfwcLbnjsK+cP4WiVSGYAMWIuGJd4tI6YkxLhG8WEN2pwwSTr22szBB1KoSsFn0Zhs2FPnYFbOTuSF4BZITxZnd8Dweg9BYeRKJHt0v1c57leInMrPVPiZD2CMBgO+b4JAt6FNGWv/TTjU/kBF5CCHIVDFVP+jRKXEydqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JgZ37YYv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8824DC4CEE3;
+	Mon, 17 Mar 2025 20:17:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742242516;
-	bh=ZGpyLj1jkls0SoosLhcIHbWXKCVXYJixZIMjVgkLkBw=;
+	s=k20201202; t=1742242671;
+	bh=TnNYcqHv6QX4BquqpBSfitkMvVtoM1gMjxac+41vjmQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=osifnA1cZCD8MBp58aKXElJ59DzyIv0F/VAZ+IRg2ouAffV2hGYFx9IsmYYc8qPPm
-	 clqlr4YwrGQrT+9F8+rRnrCyXU2ia0tCgtZ0wI/Ow10hdVXqg9XJg4XbccDQuQriJ9
-	 dpaRp//FvZtMDmB5P5da73pa/Hk88FxrURCy3sJlVXN8S1mpUe2/fd9eXcqnBJb76/
-	 2dvwxlpJNZHaLdDGEvjddJIoPYL6SXk5rJmf2xeuwNIhm1Fbzya516Y343zknfwv79
-	 p17tBaNUXgjoorg2eOP4SN35hoqXuAKZVhhn3FskevYh6sBP+RzmocC2eaahuvKs8E
-	 fpUobcpFrMs0Q==
-Message-ID: <ed314a01-75c3-4d87-a7a1-034e5dff02a5@kernel.org>
-Date: Mon, 17 Mar 2025 21:15:10 +0100
+	b=JgZ37YYvlsDKr6CTdzVCLczAhn7gDnynNWzsvyUo1rJYrDhCrl1fcauI0PmtEW3Fo
+	 DI1OTPvKKT/CksHCPhUEutZGWO4bO3r310HQGr+i4LYzECeY2AwGOWNd/naV6U1qXc
+	 4IlLEi94W7oLnLoLqUdlS5j0gnB/+sBY44xAufb7NZhUCBN/8xy3qsvisvfRCg11CC
+	 RKjsOuIPhVtbynqTnoL/YxL+StuL+XecqLfkNv8jVwRjr1T+9zZPin/uNP/xHVsIoB
+	 5kZAQeRnTfL7qvb0ffosn9xPOWhoOgg+Bo/ugxM0Ar7fqGp5kEIOpVIpBRQaCHbrIz
+	 zY+8nZ0r00lSA==
+Message-ID: <565d6379-06b8-402f-b567-38515a521658@kernel.org>
+Date: Mon, 17 Mar 2025 21:17:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v2] dt-bindings: serial: samsung: add
- exynos7870-uart compatible
+Subject: Re: [PATCH RESEND] dt-bindings: gpu: arm,mali-midgard: add
+ exynos7870-mali compatible
 To: Kaustabh Chakraborty <kauschluss@disroot.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250318-exynos7870-uart-v2-1-b9dcf145ae87@disroot.org>
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Sergey Lisov <sleirsgoevy@gmail.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250318-exynos7870-gpu-v1-1-084863f28b5c@disroot.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,24 +106,25 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250318-exynos7870-uart-v2-1-b9dcf145ae87@disroot.org>
+In-Reply-To: <20250318-exynos7870-gpu-v1-1-084863f28b5c@disroot.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/03/2025 20:21, Kaustabh Chakraborty wrote:
-> Document the compatible string for Exynos7870's UART driver. The
-> devicetree property samsung,uart-fifosize must be mandatory, as the
-> driver enquires about the FIFO sizes. This feature makes it compatible
-> with Exynos8895's UART.
+On 17/03/2025 20:20, Kaustabh Chakraborty wrote:
+> Exynos7870 SoC uses the ARM Mali T830 GPU, document its compatible
+> string with the appropriate fallback. The T830 compatible is already
+> defined in the panfrost driver, but was commented out as it was unused.
 > 
 > Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
 > ---
-So you just ignored the tags and ask us to do the work twice? So all
-reviews are wasted and we need to duplicate the effort?
+> This patch series is a part of Exynos7870 upstreaming.
+> ---
 
-My time on upstream is very limited, thus I find it very disrespectful.
+
 
 <form letter>
+This is a friendly reminder during the review process.
+
 It looks like you received a tag and forgot to add it.
 
 If you do not know the process, here is a short explanation:
@@ -139,5 +142,6 @@ https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitti
 If a tag was not added on purpose, please state why and what changed.
 </form letter>
 
-
+Best regards,
+Krzysztof
 
