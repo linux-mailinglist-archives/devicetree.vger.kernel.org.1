@@ -1,109 +1,133 @@
-Return-Path: <devicetree+bounces-158019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158024-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6127DA64261
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 08:00:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5254FA64322
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 08:17:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6144D3AAE7C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 07:00:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C9FC1889691
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 07:17:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E0B81991AE;
-	Mon, 17 Mar 2025 07:00:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 311A921ABB7;
+	Mon, 17 Mar 2025 07:16:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ef+oFqeg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9D7C215046;
-	Mon, 17 Mar 2025 07:00:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9F0E1422AB;
+	Mon, 17 Mar 2025 07:16:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742194831; cv=none; b=MXfgpbphnWcWXx81V+PWf9i8wfn6I3IijH7YKAEpKYI2pbcQtRMmzWLmAWexO1tpkM8M+q4ZMqrB46JvyiWdDQPKFbAa2m5oVHGcpzf3exK6SVq/Nx05UinxvpO5IlKQ9cslSBmMfBLMcF95WRHgn6hg/+i6p+3XUDtyXVTVSRg=
+	t=1742195815; cv=none; b=pLYBbBD5uV7yEl5hlA5a+Og7l5F63UaSdV4A42eMy8VhSCcYUbFuCnrdu5rbptRdTuHrzgz96CcnsV1GSSPyiTXydoQhw7n+aqwIf8993aTp6reffLBTF6Exbzz/rb9c62mzEGccOp5higNjJL+UdLlAFlDFTem8xNs7ozrQWWQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742194831; c=relaxed/simple;
-	bh=Zpaf/pJV1J99D1wD14Wnn0N60Xlfht3DiiblH2GvNK4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=iwg62O72SOVi3n9+boCM/GJhnulUbB8s5JpRm9Qrhuhe2kZQSEGO4hs3tijD/kwF6h5+0hUPjyHmp0rZ+YgTRNezTR/mrdmhiJNzIlQ/xaaGzIm/L/I77+8m/x2ZhP6d8lnrOq59WdpJoZBG0ChS8pWgyBjz6y5Q/QvPIWludhY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from localhost.localdomain (unknown [116.25.94.202])
-	by smtp.qiye.163.com (Hmail) with ESMTP id e81d55a5;
-	Mon, 17 Mar 2025 15:00:16 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: jonas@kwiboo.se
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	krzk+dt@kernel.org,
-	ziyao@disroot.org,
-	linus.walleij@linaro.org,
-	linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	Chukun Pan <amadeus@jmu.edu.cn>
-Subject: Re: [PATCH 3/7] pinctrl: rockchip: Add support for RK3528
-Date: Mon, 17 Mar 2025 15:00:02 +0800
-Message-Id: <20250317070002.707674-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250228064024.3200000-4-jonas@kwiboo.se>
-References: <20250228064024.3200000-4-jonas@kwiboo.se>
+	s=arc-20240116; t=1742195815; c=relaxed/simple;
+	bh=wL9gUnrlsPQNAWa/Td3yrEb1Mzg5Mf+QmQXD9OzX72w=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=TEFSB659nEXKb/lbVwMQlGvx9BKVvcunlkLSKxpL/9h2P9/OUpC6OcTE6nXrsACvX/ORyUrNuQSjL7TWalfT6DpWdP3FNcB+9ds3f53IzKevpAWzNIlhiL9LH3PRYnjWklYhKW4Na0JbvpNb/E3YW6UvHtYAWHiOy2ATdv6zZso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ef+oFqeg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4DBD8C4CEEC;
+	Mon, 17 Mar 2025 07:16:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742195814;
+	bh=wL9gUnrlsPQNAWa/Td3yrEb1Mzg5Mf+QmQXD9OzX72w=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=ef+oFqegpteYd+UM3MsMEVF+QkF5iBAu9RBV02JpdRABpsFtdrILxzUzFMNt58Skz
+	 WHp3pq1KvvDwsnON6hggASuw6wYydh0iM9IlnaKrEMVolKCMLW7D+mlJI6QlTYA2bq
+	 B4pODHMApmXaxIwZULvAXSHw+p7s0iAp+UvHaB7c2/PKoSLZNVxC/qCpK7t1E0kecp
+	 l6zn0638rk9szP0o/lIL631lUGgVgG55pP6jsiHFFX/LXrrwOsExa5wIKwIpb4MSV+
+	 CyBqy/xHnQmg5CLyLqE0xYanFJbe9kH4zY2LI8HKDTjKRoYW8arJQ5yK4eNBhUytyQ
+	 EPERWtIQ3nxlQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 327E4C282EC;
+	Mon, 17 Mar 2025 07:16:54 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH 0/7] Baisc devicetree support for Amlogic S6 S7 and S7D
+Date: Mon, 17 Mar 2025 15:16:51 +0800
+Message-Id: <20250317-s6-s7-basic-v1-0-d653384e41f3@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDS0IfVkpMGBkaSEweTB5KHlYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSk1VSU5VQk9VSUtJWVdZFhoPEhUdFFlBWU9LSFVKS0hKTkxOVUpLS1VKQk
-	tLWQY+
-X-HM-Tid: 0a95a2e7360503a2kunme81d55a5
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PC46TTo*LzJPLgwKMDMCKhRK
-	OC9PCxlVSlVKTE9JSkJPQ0pMTEpMVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
-	TVVJTlVCT1VJS0lZV1kIAVlBSkpITzcG
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGPM12cC/x3MMQqAMAxA0atIZgNpi1a8ijjUGjVLlQZEKN7d4
+ viG/wsoZ2GFsSmQ+RaVM1WYtoF4hLQzyloNlmxH1hrUHtXjElQibo4oOhq85x5qcWXe5Plv0/y
+ +Hxwrow1dAAAA
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1742195812; l=2174;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=wL9gUnrlsPQNAWa/Td3yrEb1Mzg5Mf+QmQXD9OzX72w=;
+ b=DudI+EZbNWKj/cExJWHpLtrhBZq5G0gH1aBEaWY7T5W6Q5fTXxZpYlb0lsmNgLYJ4ScXYKMYM
+ 63/vxuVARWeAv3IcZip6ckG3PmaVmkDFz9zOOBC3vVCunosibV9eRy9
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 
-Hi,
+Amlogic S6 S7 and S7D are application processors designed for
+hybrid OTT/IP Set Top Box and high-end media box applications.
 
-> Add gpio and pinctrl support for the 5 GPIO banks on RK3528.
+Add the new S6 SoC/board device tree bindings.
+Add the new S7 SoC/board device tree bindings.
+Add the new S7D SoC/board device tree bindings.
 
-https://source.denx.de/u-boot/contributors/kwiboo/u-boot/-/blob/rk3528/drivers/pinctrl/rockchip/pinctrl-rk3528.c#L204-L207
+Add basic support for the S6 based Amlogic BL209 board, which describes
+the following components: CPU, GIC, IRQ, Timer and UART. These are capable of
+booting up into the serial console.
 
-I noticed that there is a little difference between u-boot and kernel
-pinctrl driver. Does kernel need to sync this changes from u-boot?
+Add basic support for the S7 based Amlogic BP201 board, which describes
+the following components: CPU, GIC, IRQ, Timer and UART. These are capable of
+booting up into the serial console.
 
-```
-diff --git a/drivers/pinctrl/pinctrl-rockchip.c b/drivers/pinctrl/pinctrl-rockchip.c
-index 930c454e0cec..c77d9a6cd535 100644
---- a/drivers/pinctrl/pinctrl-rockchip.c
-+++ b/drivers/pinctrl/pinctrl-rockchip.c
-@@ -3070,6 +3070,7 @@ static int rockchip_get_schmitt(struct rockchip_pin_bank *bank, int pin_num)
- 
- 	data >>= bit;
- 	switch (ctrl->type) {
-+	case RK3528:
- 	case RK3562:
- 	case RK3568:
- 		return data & ((1 << RK3568_SCHMITT_BITS_PER_PIN) - 1);
-@@ -3100,6 +3101,7 @@ static int rockchip_set_schmitt(struct rockchip_pin_bank *bank,
- 
- 	/* enable the write to the equivalent lower bits */
- 	switch (ctrl->type) {
-+	case RK3528:
- 	case RK3562:
- 	case RK3568:
- 		data = ((1 << RK3568_SCHMITT_BITS_PER_PIN) - 1) << (bit + 16);
-```
+Add basic support for the S7D based Amlogic BM202 board, which describes
+the following components: CPU, GIC, IRQ, Timer and UART. These are capable of
+booting up into the serial console.
 
-Thanks,
-Chukun
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Xianwei Zhao (7):
+      dt-bindings: arm: amlogic: add S6 support
+      dt-bindings: arm: amlogic: add S7 support
+      dt-bindings: arm: amlogic: add S7D support
+      dt-bindings: serial: amlogic,meson-uart: Add compatible string for S6/S7/S7D
+      arm64: dts: add support for S6 based Amlogic BL209
+      arm64: dts: add support for S7 based Amlogic BP201
+      arm64: dts: add support for S7D based Amlogic BM202
 
---
-2.25.1
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 18 ++++
+ .../bindings/serial/amlogic,meson-uart.yaml        |  3 +
+ arch/arm64/boot/dts/amlogic/Makefile               |  3 +
+ .../boot/dts/amlogic/amlogic-s6-s905x5-bl209.dts   | 42 +++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi        | 97 +++++++++++++++++++++
+ .../boot/dts/amlogic/amlogic-s7-s805x3-bp201.dts   | 41 +++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi        | 99 ++++++++++++++++++++++
+ .../boot/dts/amlogic/amlogic-s7d-s905x5m-bm202.dts | 41 +++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi       | 99 ++++++++++++++++++++++
+ 9 files changed, 443 insertions(+)
+---
+base-commit: 73e4ffb27bb8a093d557bb2dac1a271474cca99c
+change-id: 20250221-s6-s7-basic-f300c30877e6
+
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
 
 
