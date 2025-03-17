@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-158185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158186-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47DD2A6509E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 14:21:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E691FA650C2
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 14:23:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 446677A816E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 13:20:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BCFAE174C8A
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 13:23:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 870E523C8CC;
-	Mon, 17 Mar 2025 13:21:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B74223E344;
+	Mon, 17 Mar 2025 13:23:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xvfgdopu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OOtwng8s"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 575571A5BB8;
-	Mon, 17 Mar 2025 13:21:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C03D23C8CE;
+	Mon, 17 Mar 2025 13:23:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742217707; cv=none; b=b0r2w6VBFtBDz7FAqKwXPG4nXWYlDOflatmqx6T8g9vlR5vzPWbkHAlHGqsuY7XTofEdcpAUMQWVpmEzbbVKqVc2adceNRQgtNkjiO1CPua1YcPB70Z084BsaxtG6zyV61CDuLNxRmTTY+ApzN6A3tBgT2LlVpwg9uXtCFoDUxg=
+	t=1742217803; cv=none; b=rz//FNLv1Y3pJ9D5CwetNCZeF/oZjzDa9knYgU/j5uGY541MjzVKlktj1TnQ1dpKFwVCzaS9YVZpw95MLiWyX1sk9xqRo8NqXriLNCdmVH7ySHGNt2mz8/ZBhXsOEznKely7b5rkZbw0GHttWolcYC52IZmdDqG8uwkPeR1uKr4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742217707; c=relaxed/simple;
-	bh=Oc3lfjx/ijz4G/yinN5yn+L6EmluuqYn6RIuRZvGRks=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Jcoui/nMDEzg7hPJ1BQrPQnNsPtMPc37LK2sqaedwM0I1Pou0tgTxUzooeHMIiKy3Rdomj2CTC7gCBz+ckErpOswbczN4i2IMtceqHBNmKq7FaqyXy4yDO/aNQUWlpddNN2b7zbOqbvtTj+SynvgmSjwVZyKaoVJVMLbuEbxOQE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xvfgdopu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAC67C4CEE3;
-	Mon, 17 Mar 2025 13:21:38 +0000 (UTC)
+	s=arc-20240116; t=1742217803; c=relaxed/simple;
+	bh=BpyEdD917DTKrssNtjyvHazyp1gxLX2BMxDRS4uuMT8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=nuiXbkQqIUY9NnYWiZaIqwQupPRyiIxAL8o8J4kA2I2yDtOWMeU53qAtuUPzyOUBB+9aFgHsaOf3wuEZySgXATlcr09ncAPbesF7foUWiZ5l8FZnHZVTrsj5IzZ+nO9Btd2rjuWNbX5x+X3L9xhVNt5QUf+gptkDQ73Zbpi7Kg4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OOtwng8s; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59904C4CEE9;
+	Mon, 17 Mar 2025 13:23:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742217706;
-	bh=Oc3lfjx/ijz4G/yinN5yn+L6EmluuqYn6RIuRZvGRks=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XvfgdopuYdzytg17sbLWTaxx5pFyB6faD5/OFIR+iBQyFacZuurIZSLnV6HT4i7uT
-	 gMtcudwzEY7Re1Igx03cdKgZrfDqhQXo1CQtQsgWqAEU3NgzSrQR+CE1oyD2NY0XFK
-	 usw8qoxEQeZBE0jj3/Q4+P7zlSwXnBq2eSH/otAxqLf8HEP3aLlGWRbGCzc0a1Agbs
-	 LacZxaX03E7TtF4AvMfgtNiq89KAsTbtO03l8a8fxpoZ0KbuS7ZO+aIHH0WVKDXuNU
-	 2GEvetkARzXUYQFzVpfqpZz5EwGpoE9K8zYPgWqTFdXQp/GC3HY1A18cO/C5H/+mFa
-	 S+4XoTjtQ04HQ==
-Message-ID: <6f862344-b6c1-4c9b-a6d6-bb0e6655d16e@kernel.org>
-Date: Mon, 17 Mar 2025 14:21:35 +0100
+	s=k20201202; t=1742217803;
+	bh=BpyEdD917DTKrssNtjyvHazyp1gxLX2BMxDRS4uuMT8=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=OOtwng8s80n8AiNj2LAhGke8+KaiNxKdafKlsHRhPYzXc+QVQc5TVmKrElCFg/zWa
+	 H9DyMFazp2LZtcLlXjiztpdMKQV4u+JAWOtiNT8aRMOrhLihU7HaBwYbcVRW5NxrOw
+	 GPjkAqFHZzePBAMTXtfDNBe/doWXtsAUYEViaLjvVludR0Po1Rv5NvUYVWt2xnUXUd
+	 fSW4lHdACvaNx/twmdZH8cMs8LSxqGeeckSi/RpB90/NBy11BxL/hQzPKPhd587ajt
+	 WCYJTENFFL/TJKFkYjfRlGz+phfYrG7qcrh0Thpc9IH0D60LGwRH5IYy5HJSMhKdag
+	 1FxV+9hsgUswA==
+Message-ID: <78e580bd-420c-4e5e-9383-7919c422ab58@kernel.org>
+Date: Mon, 17 Mar 2025 14:23:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [net-next 3/4] dt-bindings: net: ftgmac100: add rgmii delay
- properties
-To: Andrew Lunn <andrew@lunn.ch>, Jacky Chou <jacky_chou@aspeedtech.com>,
- Kevin Chen <kevin_chen@aspeedtech.com>, Ryan Chen <ryan_chen@aspeedtech.com>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
- ratbert@faraday-tech.com, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- BMC-SW@aspeedtech.com
-References: <20250317025922.1526937-1-jacky_chou@aspeedtech.com>
- <20250317025922.1526937-4-jacky_chou@aspeedtech.com>
- <27927166-d73b-4837-90a9-ed15661b0a6e@lunn.ch>
+Subject: Re: [PATCH v14 1/4] dt-bindings: PCI: qcom: Add MHI registers for
+ IPQ9574
+To: Varadarajan Narayanan <quic_varada@quicinc.com>, bhelgaas@google.com,
+ lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andersson@kernel.org, konradybcio@kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250317100029.881286-1-quic_varada@quicinc.com>
+ <20250317100029.881286-2-quic_varada@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,38 +105,19 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <27927166-d73b-4837-90a9-ed15661b0a6e@lunn.ch>
+In-Reply-To: <20250317100029.881286-2-quic_varada@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/03/2025 13:44, Andrew Lunn wrote:
->> diff --git a/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml b/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml
->> index 55d6a8379025..c5904aa84e05 100644
->> --- a/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml
->> +++ b/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml
->> @@ -66,6 +66,20 @@ properties:
->>      type: boolean
->>      deprecated: true
->>  
->> +  rx-internal-delay-ps:
->> +    description:
->> +       Setting this property to a non-zero number sets the RX internal delay
->> +       for the MAC. Use this property value as a index not a ps unit to
->> +       configure the corresponding delay register field. And the index range is
->> +       0 to 63.
+On 17/03/2025 11:00, Varadarajan Narayanan wrote:
+> The MHI range is present in ipq5332, ipq6018, ipq8074 and ipq9574.
+> Append the MHI register range and complete the hardware description
+> for the above SoCs.
 > 
-> You have to use picoseconds here. As with all DT binding, you use SI
-> units, and the driver then converts them to whatever value you need to
-> poke into the register.
-Ykes, I did notice that when skimming through the patch. Such a sneaky
-way to pretend you conform to the bindings but eh, not really, I will do
-it my way.
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
 
-I think reviewing Aspeed code takes a lot, a lot of our time. It's not
-only about this patchset but several others.
 
-Maybe it is time for Aspeed to perform intensive internal review, before
-they post to the mailing lists? Several other companies do it, more or less.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
