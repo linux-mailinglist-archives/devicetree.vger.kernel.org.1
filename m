@@ -1,96 +1,134 @@
-Return-Path: <devicetree+bounces-158228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158229-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38B2AA653F5
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 15:41:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5833EA6541C
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 15:46:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F1F81650E9
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 14:40:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AEDA617248D
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 14:46:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20D5E24A05F;
-	Mon, 17 Mar 2025 14:39:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77E6A246348;
+	Mon, 17 Mar 2025 14:44:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="W6M9urUR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03194243364;
-	Mon, 17 Mar 2025 14:39:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 485092459FE;
+	Mon, 17 Mar 2025 14:44:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742222363; cv=none; b=FET0TIQWwtNswXzMmkugn0VUKd/7nT00zNvXHUKS+210Q2ETXs9IEA2mwIMnxDH+FgqbyIQ2vlaGRDl5mrolEAwB4cvK477Kh94lKjuT/cpG2mIp6gtx6ALITcneUyUdKpLwfo/N4mHHziEvW+j25RXy4JI+oX/2hJZoxQ7IvEg=
+	t=1742222688; cv=none; b=Hmbd14FFQGC1wJz1OPpgWrLEMZZTQ/6CzrUR77BYhN/OafWrToyOXPheU2mWwoz0du2rv/0sSPK/Td8/Wabpdp/HLel+8SeiAJOkB3GPN5EpMQqnLeWHmm86Qb7+mGiVv7gaPkrhj37gjOtIcN962umOu6dUcPqyaS6Ojx35BU8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742222363; c=relaxed/simple;
-	bh=h4t8HdhbrF5Cpe1e2wtehxAfQUoqVDl5cs2TPn7pbL4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=s2a+WiKMDzrUCsxhOXf2jSVLHEs5yGded1yim0MI7uCuSyeiu8wpP0Dp3W1YzYYsTYxwFhOIcZafmfRQ+fALj2WpJoutAjb2bk8qFX5i6pKJU7hQIQRBrBW/tWF7Yxsqd0ZDGMx9TLiggvd8C23PEMOaottfV8hXOfjbd2TaLcU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: KjQO1TRuTNO6P+DZB225HQ==
-X-CSE-MsgGUID: BP0xsG2HR/a8Y3AFUPIKpQ==
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 17 Mar 2025 23:39:20 +0900
-Received: from ubuntu.adwin.renesas.com (unknown [10.226.93.200])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 9E642401A637;
-	Mon, 17 Mar 2025 23:39:14 +0900 (JST)
-From: John Madieu <john.madieu.xa@bp.renesas.com>
-To: geert+renesas@glider.be,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	rafael@kernel.org,
-	daniel.lezcano@linaro.org
-Cc: magnus.damm@gmail.com,
-	devicetree@vger.kernel.org,
-	john.madieu@gmail.com,
-	rui.zhang@intel.com,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	sboyd@kernel.org,
-	biju.das.jz@bp.renesas.com,
-	linux-pm@vger.kernel.org,
-	lukasz.luba@arm.com,
-	John Madieu <john.madieu.xa@bp.renesas.com>
-Subject: [PATCH v4 5/5] arm64: defconfig: Enable the Renesas RZ/G3E thermal driver
-Date: Mon, 17 Mar 2025 15:34:32 +0100
-Message-ID: <20250317143442.100590-6-john.madieu.xa@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250317143442.100590-1-john.madieu.xa@bp.renesas.com>
-References: <20250317143442.100590-1-john.madieu.xa@bp.renesas.com>
+	s=arc-20240116; t=1742222688; c=relaxed/simple;
+	bh=VkpWTCYEICFBtQwKpzObrfzZpr0tvkzC5CozTqVThw8=;
+	h=Content-Type:Date:Message-Id:Subject:Cc:From:To:Mime-Version:
+	 References:In-Reply-To; b=RXW7sfWbt6wSz/8rIPS+EKDigNGESzh44Otn7QqsvKY0FRNtYQ7ZzH0Dr1JMIYf3COnz9rq1xTVSHkx7/tiS6bRARHF0fX/1O4sq7d4Ulwt5tYSoOcCKrSZCTMeBYO7OJb5su3Q8x3R4VTiQj7/F1iJRziq6H+IzQnvaC4+Sdm8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=W6M9urUR; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 77F2520580;
+	Mon, 17 Mar 2025 14:44:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1742222683;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=VkpWTCYEICFBtQwKpzObrfzZpr0tvkzC5CozTqVThw8=;
+	b=W6M9urUROw0JcmJwg0uLFTceqVb2aMnrVlkiX3lY1gjOhP/3UxUQJez9m4DyvL06W/4cQV
+	JzvtW9fqe9DBvq5NlabZ/0F3qCE9JhsiE8YLFltJ/gp5r5na7PIK7zP132ukz6DZFkcB7K
+	3nYMgphUPTvJglJGgaK/DAdgMItyxD1MPqvO+AhV8RVOvdLJbcZ2j44gHe0iUkhxZP921h
+	Za/yDv/ouvlzVVchP1dOeTIygGI5KvrJTKo3YvAV/WY/L6alTmzFKEne0GN78BmfHjlj7b
+	iVIZy/ppP8C2qV2xivMwmVFkUha0fAxLWcGqiIfSrwKmwC4BQMXvdryCRszylA==
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 17 Mar 2025 15:44:42 +0100
+Message-Id: <D8IMEB2UP6KS.2GOJ4M6INKKN8@bootlin.com>
+Subject: Re: [PATCH v4 07/10] gpio: max7360: Add MAX7360 gpio support
+Cc: "Andy Shevchenko" <andriy.shevchenko@intel.com>, "Lee Jones"
+ <lee@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Kamel Bouhara"
+ <kamel.bouhara@bootlin.com>, "Linus Walleij" <linus.walleij@linaro.org>,
+ "Bartosz Golaszewski" <brgl@bgdev.pl>, "Dmitry Torokhov"
+ <dmitry.torokhov@gmail.com>, =?utf-8?q?Uwe_Kleine-K=C3=B6nig?=
+ <ukleinek@kernel.org>, "Michael Walle" <mwalle@kernel.org>, "Mark Brown"
+ <broonie@kernel.org>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, "Danilo Krummrich"
+ <dakr@kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+ <linux-input@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Thomas
+ Petazzoni" <thomas.petazzoni@bootlin.com>
+From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
+To: "Andy Shevchenko" <andy.shevchenko@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: aerc 0.18.2-0-ge037c095a049
+References: <20250214-mdb-max7360-support-v4-0-8a35c6dbb966@bootlin.com>
+ <20250214-mdb-max7360-support-v4-7-8a35c6dbb966@bootlin.com>
+ <Z69oa8_LKFxUacbj@smile.fi.intel.com>
+ <D7UOIHL2WOZP.LLGRKMILNJFU@bootlin.com>
+ <Z7OXQqyPjtGgTySf@smile.fi.intel.com>
+ <D8FAEPI26C8F.397VN87KK9VIO@bootlin.com>
+ <Z9PikuvAR-XsYhPF@surfacebook.localdomain>
+In-Reply-To: <Z9PikuvAR-XsYhPF@surfacebook.localdomain>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddufeeljeekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegtfffkufevhffvggfgofhfjgesthhqredtredtjeenucfhrhhomhepfdforghthhhivghuucffuhgsohhishdquehrihgrnhgufdcuoehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpefhtdeuhfehtdekueeltdejffdtuefgueffhfeiueegleffueevvefgtedtkeegjeenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeipdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvfedprhgtphhtthhopegrnhguhidrshhhvghvtghhvghnkhhosehgmhgrihhlrdgtohhmpdhrtghpthhtoheprghnughrihihrdhshhgvvhgth
+ hgvnhhkohesihhnthgvlhdrtghomhdprhgtphhtthhopehlvggvsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrghmvghlrdgsohhuhhgrrhgrsegsohhothhlihhnrdgtohhmpdhrtghpthhtoheplhhinhhushdrfigrlhhlvghijheslhhinhgrrhhordhorhhg
+X-GND-Sasl: mathieu.dubois-briand@bootlin.com
 
-Enable the Renesas RZ/G3E thermal driver, as used on the Renesas
-RZ/G3E SMARC EVK board.
+On Fri Mar 14, 2025 at 9:02 AM CET, Andy Shevchenko wrote:
+> Thu, Mar 13, 2025 at 05:43:00PM +0100, Mathieu Dubois-Briand kirjoitti:
+> > On Mon Feb 17, 2025 at 9:08 PM CET, Andy Shevchenko wrote:
+> > > On Mon, Feb 17, 2025 at 12:20:13PM +0100, Mathieu Dubois-Briand wrote=
+:
+>
+> ...
+>
+> > > But what I have read above sounds to me like the following:
+> > >
+> > > 1) the PORT0-PORT7 should be just a regular pin control with the resp=
+ective
+> > > function being provided (see pinctrl-cy8c95x0.c as an example);
+> >=20
+> > Ok, so I created a pin control driver for the PORT pins. This will
+> > effectively help to prevent concurrent use of pins in place of the
+> > request()/free() callbacks.
+> >=20
+> > My only concern is: as there is no real pin muxing on the chip, my
+> > .set_mux callabck in pinmux_ops structure is not doing anything. It
+> > looks like I'm not the only one
+> > (drivers/pinctrl/pinctrl-microchip-sgpio.c does the same thing), but I
+> > hope this is OK.
+>
+> Hmm... This is strange. The PWM/GPIO block has 3 functions (GPIO/PWM/rota=
+ry),
+> How comes you have no switch between them?
+>
+> As far as I read in the datasheet this is controlled by register 0x40
+> (and seems implicitly by other registers when it's in PWM mode).
+>
 
-Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
----
-v1 -> v2: no changes
-v2 -> v3: no changes
-v3 -> v4: update commit message
+Yes, on pins 6 and 7, we do switch between rotary encoder and other
+modes by writing in the register at 0x40, but that's all. My point was
+more about all other modes. There is no difference between PWM and GPIO,
+at least in output mode: GPIO level is just a PWM with duty cycle either
+to 0% or 100%.
 
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index a1cc3814b09b..91136c0196b5 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -714,6 +714,7 @@ CONFIG_ROCKCHIP_THERMAL=m
- CONFIG_RCAR_THERMAL=y
- CONFIG_RCAR_GEN3_THERMAL=y
- CONFIG_RZG2L_THERMAL=y
-+CONFIG_RZG3E_THERMAL=y
- CONFIG_ARMADA_THERMAL=y
- CONFIG_MTK_THERMAL=m
- CONFIG_MTK_LVTS_THERMAL=m
--- 
-2.25.1
+--=20
+Mathieu Dubois-Briand, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
