@@ -1,124 +1,102 @@
-Return-Path: <devicetree+bounces-158186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E691FA650C2
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 14:23:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 573BAA65169
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 14:40:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BCFAE174C8A
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 13:23:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 95FB11888E12
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 13:39:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B74223E344;
-	Mon, 17 Mar 2025 13:23:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE0B223E33B;
+	Mon, 17 Mar 2025 13:38:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OOtwng8s"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="VTyYtTNs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.207])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C03D23C8CE;
-	Mon, 17 Mar 2025 13:23:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20B1C23A9BA;
+	Mon, 17 Mar 2025 13:38:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.207
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742217803; cv=none; b=rz//FNLv1Y3pJ9D5CwetNCZeF/oZjzDa9knYgU/j5uGY541MjzVKlktj1TnQ1dpKFwVCzaS9YVZpw95MLiWyX1sk9xqRo8NqXriLNCdmVH7ySHGNt2mz8/ZBhXsOEznKely7b5rkZbw0GHttWolcYC52IZmdDqG8uwkPeR1uKr4=
+	t=1742218738; cv=none; b=A2cqbK736KljNlSD5SOpUh+5EYUFrFa05Q+gRmBw4cEo99J0Cfc0RZMpUBdox0K0Sz7TFiHVRIyGok9q243JZFxRQfTWyk8r/0BDDYl+fo8aMzjRZS05b6w8Zx9XU1AAOUlv/9pSM7AxSPgXsDLU0cort8kyWM5dzsZuaDsb6wQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742217803; c=relaxed/simple;
-	bh=BpyEdD917DTKrssNtjyvHazyp1gxLX2BMxDRS4uuMT8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=nuiXbkQqIUY9NnYWiZaIqwQupPRyiIxAL8o8J4kA2I2yDtOWMeU53qAtuUPzyOUBB+9aFgHsaOf3wuEZySgXATlcr09ncAPbesF7foUWiZ5l8FZnHZVTrsj5IzZ+nO9Btd2rjuWNbX5x+X3L9xhVNt5QUf+gptkDQ73Zbpi7Kg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OOtwng8s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59904C4CEE9;
-	Mon, 17 Mar 2025 13:23:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742217803;
-	bh=BpyEdD917DTKrssNtjyvHazyp1gxLX2BMxDRS4uuMT8=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=OOtwng8s80n8AiNj2LAhGke8+KaiNxKdafKlsHRhPYzXc+QVQc5TVmKrElCFg/zWa
-	 H9DyMFazp2LZtcLlXjiztpdMKQV4u+JAWOtiNT8aRMOrhLihU7HaBwYbcVRW5NxrOw
-	 GPjkAqFHZzePBAMTXtfDNBe/doWXtsAUYEViaLjvVludR0Po1Rv5NvUYVWt2xnUXUd
-	 fSW4lHdACvaNx/twmdZH8cMs8LSxqGeeckSi/RpB90/NBy11BxL/hQzPKPhd587ajt
-	 WCYJTENFFL/TJKFkYjfRlGz+phfYrG7qcrh0Thpc9IH0D60LGwRH5IYy5HJSMhKdag
-	 1FxV+9hsgUswA==
-Message-ID: <78e580bd-420c-4e5e-9383-7919c422ab58@kernel.org>
-Date: Mon, 17 Mar 2025 14:23:15 +0100
+	s=arc-20240116; t=1742218738; c=relaxed/simple;
+	bh=bAPzg4jZ6yCIFwOyTlpOE28lXMU29xomma+LuF2yFQc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=UpgJ/MeTHwu1wBxO4iAy9o0AOb0UMOJZTAupI5bM3beL4K0eHoZeuDYFVNj/YMp3SMMfkJu7xKmf6SCiaZtRZFFSQIfD2J7iAuO5AXx3jpHjvvmIiORutmEy6I4EGsJsi+a81grGw43H42dY/NvDpyOvs2t5iXLqPNDX7KByxfI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=VTyYtTNs; arc=none smtp.client-ip=192.19.144.207
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: from mail-lvn-it-01.broadcom.com (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
+	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 9C5A1C00151B;
+	Mon, 17 Mar 2025 06:29:53 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 9C5A1C00151B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
+	s=dkimrelay; t=1742218193;
+	bh=bAPzg4jZ6yCIFwOyTlpOE28lXMU29xomma+LuF2yFQc=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=VTyYtTNsAbfn0v4FGtsHck+XBGa+bf7Vj4qt7NI64d9BWW9TkdmTYzb1UpHrArO5Z
+	 ADSXXSp1nYHIk3sxWXjgKPdI2HT+g0lzFxw1s6N2exu+DD86u6jhszw2PHoIYLjfFU
+	 MUKN/xNQLu7sAc0vVLmCOYFivnXcmumDEsCcclfw=
+Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail-lvn-it-01.broadcom.com (Postfix) with ESMTPSA id 0F8E818000520;
+	Mon, 17 Mar 2025 06:29:23 -0700 (PDT)
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+To: bcm-kernel-feedback-list@broadcom.com,
+	Artur Weber <aweber.kernel@gmail.com>,
+	Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>
+Cc: Florian Fainelli <f.fainelli@gmail.com>,
+	Stanislav Jakubek <stano.jakubek@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v6 03/10] ARM: dts: Drop DTS for BCM59056 PMU
+Date: Mon, 17 Mar 2025 06:29:22 -0700
+Message-ID: <20250317132922.2698513-1-florian.fainelli@broadcom.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250304-bcm59054-v6-3-ae8302358443@gmail.com>
+References: <20250304-bcm59054-v6-0-ae8302358443@gmail.com> <20250304-bcm59054-v6-3-ae8302358443@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v14 1/4] dt-bindings: PCI: qcom: Add MHI registers for
- IPQ9574
-To: Varadarajan Narayanan <quic_varada@quicinc.com>, bhelgaas@google.com,
- lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andersson@kernel.org, konradybcio@kernel.org, linux-arm-msm@vger.kernel.org,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250317100029.881286-1-quic_varada@quicinc.com>
- <20250317100029.881286-2-quic_varada@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250317100029.881286-2-quic_varada@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 17/03/2025 11:00, Varadarajan Narayanan wrote:
-> The MHI range is present in ipq5332, ipq6018, ipq8074 and ipq9574.
-> Append the MHI register range and complete the hardware description
-> for the above SoCs.
+From: Florian Fainelli <f.fainelli@gmail.com>
+
+On Tue, 04 Mar 2025 07:20:34 +0100, Artur Weber <aweber.kernel@gmail.com> wrote:
+> The BCM59056 PMU has its own separate DTSI, meant to be included
+> in a DTS file after defining the pmu node on some I2C bus.
 > 
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> This seems rather unintuitive; drop the DTS in favor of adding the
+> BCM59056 PMU node directly into the device DTS files.
+> 
+> If the amount of subdevices supported by the BCM590xx grows, and
+> a common device tree turns out to be beneficial, it can be reintroduced
+> in the future.
+> 
+> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+> ---
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
+--
+Florian
 
