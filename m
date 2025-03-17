@@ -1,251 +1,183 @@
-Return-Path: <devicetree+bounces-158322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158323-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 285CCA65B5B
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 18:47:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CABA8A65B80
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 18:50:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 538191899287
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 17:47:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BB7E7188F82B
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 17:51:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84FBA1B0420;
-	Mon, 17 Mar 2025 17:45:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5799E1B042C;
+	Mon, 17 Mar 2025 17:50:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZgMYlpOR"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=proton.me header.i=@proton.me header.b="P9J9ecPq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail-10631.protonmail.ch (mail-10631.protonmail.ch [79.135.106.31])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC3F11AAA2C
-	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 17:45:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 866AA1A83E5;
+	Mon, 17 Mar 2025 17:50:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.135.106.31
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742233518; cv=none; b=Oh2xaoMGlrN4WMvs2YiadHbbjuNwNjp2Q28COZo4efmieqjXfrvXSjEJIjwANz+6C3B7Q6RVwi9aUgARtHf+DR/gakOQga0rKMu/LKZlCSRqwpLJSCHZUY5iomaCkbF0wfkV9YNkX+lyaz8/92v7u6xabM9YYgFWFSeqzuBEamM=
+	t=1742233853; cv=none; b=GVeXOBgOku4+8ef3qNiUWOiA90ZAiMwBG8vHABfqCLwNWtVo7avQZvvoN89vHqo+aOgoEsCW3EfZPEyvNReCLxTeBw2tGckKpT3/HMrYb4nYAsmgVDkowgno5hKaRtwja+kY2ERiPdZn8iTXXhEBoa+irpU24jvMjGFmDwJ/Osw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742233518; c=relaxed/simple;
-	bh=cXGjXqVy8K2SBVw5sm4rAWVu9NhYJGWmhFXtjX3HVog=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=GGXRRK1UXBeSaKLlkcgz5BxWcI/Egzdw/Un5qY7mTW3O6GpC2JgI69tLN+Pp0f8C/db2RTY8BShgZ7FS0iXO991LwTwDXP/FwZJghaCVamXLsP0/4Sr+OZHhsWlNhB0Qfhe/41xepat4AQkYwbnte2gz0O/f0Egc9427JeOmqS0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZgMYlpOR; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52HAlvHq023826
-	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 17:45:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	BIfQsL2iT8Vojwl752N46gCkIs1NOpwnmBShRu8QyCE=; b=ZgMYlpOR55GnVOj7
-	fBBw1lk7w+B7mvp39telgV+7q2pQ2PgqVjVzXtvUHuFv2X+p/o4RZTEAKRXocECB
-	ouNQo9rS21GzhPkEMNKwjVqfOfkap4OXbFtlcbHuuGwXpbff0bL8RoGIqYUWYffl
-	VesEkk3UAmA6qS1hkg7D/KP3uLro1YHlVnRcBzjTUlGr36Od4/oyTrqPUTo7ybeu
-	5C8BjLXr4FAE6MEDreSJFznvHEvyZXbf2qPt3sNM01kf23hTZUJAuYhGeQyoilbq
-	nptJ7e7gd05Gwk1U9dCvMPpc2+4MVfShexwxSygP58byvgNeiVs6oybcssCU50jA
-	PnxU3Q==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45d1x7wgbj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 17:45:14 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6e8f4367446so58613536d6.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 10:45:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742233513; x=1742838313;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BIfQsL2iT8Vojwl752N46gCkIs1NOpwnmBShRu8QyCE=;
-        b=MEdt3JxbWWOvkbLjXVlQ0TxeDjCJ7yWx7WFfffwLa3OfmbYOmf1gfur+JW3odu2CVz
-         j5pTSQW824ky7gHNCkqSf8thpH2dsnOxtA1i+Z5S07NFpDUCOQnsE3BKHvSfOGm35Eku
-         IbA8O8UagrsV+9khasoFZaIZov0R5O/F9y0cfMPnpXtxkhf2zS22c7tz+rz416EpNJB2
-         P1DAGgTuWCPiwiLbPytMJiJRZfzDlR+uFHrw+J+YileM9Y11nJBkK4JB97Jj5NRa/cbc
-         DOhEYU7Rl8JmzgveI2B2olDGtOO0OVzeZXrDFZLAQJffa5vvzRnLudNIJ6Y1et1g2X0l
-         fUGA==
-X-Forwarded-Encrypted: i=1; AJvYcCVjF2x9L143WwatVYdpWHYdCD4VcSnVasK9kBaRdbbKTG2pRzhX+/rPfrUlP0LVEMxbydTeROcyN0aD@vger.kernel.org
-X-Gm-Message-State: AOJu0YzP6mJFC5rw83+lSxfBlNBfl9LA6Wud8meFomY+HSB72VhSZhEM
-	6Prad5TI9uBLM/TrbBw8zfVI3iU22bTBdIMEKM0d7br72clLCx4hY3hun1laPzcnfnWgQH0Q45r
-	0pBM0Cqo/DXpQviY0+KMiqMSOKVvB/i4WytCZTEuSUVVGHvsFZyNhhKxKpCEh
-X-Gm-Gg: ASbGnctH/U+ghna+zhcBtl/l+ewSPYMFMzXRWo80rkyjvYt9VMoQkAAxOpHJ/1Retn5
-	dJpcdHxAcM1aP1xv6+ZCkVC/NcBCNJQAdRzfT4oTZmJyYusbgkRX3qoZ7gHAxa1jmS9PxO2FLmK
-	FyldCizm2nsgHLPtR+KX6mgSnq78veidAT1qym0RmRIZRbkOveaVA2ajW6ylPyflHncofanS1FS
-	8LVLIRA2h30NKHeUlgVl5jW8mjAasUrszPeTD+g7jFidKU4ADxpsJZoR8B+rbad5P519NixgJXF
-	QWqH/LxHdqODybTk3O36EX8sxIe0tGIqr6NCyXRLej48Qatw5F2Fg9G8HKRKp3rgUMvxdU8Yw5d
-	LAqK3GqaOm03f0Nc2ZUIBBrgxxvWa
-X-Received: by 2002:a05:6214:20ee:b0:6e8:f5db:d78d with SMTP id 6a1803df08f44-6eaeaa5a6b7mr224159366d6.23.1742233513512;
-        Mon, 17 Mar 2025 10:45:13 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGYgxdPJBjLMewB5Os7FteoqkvzgM2ai7zlUrwns9EoES+m5mpM+FpX3PxuwQRQFq5RiVor7g==
-X-Received: by 2002:a05:6214:20ee:b0:6e8:f5db:d78d with SMTP id 6a1803df08f44-6eaeaa5a6b7mr224158606d6.23.1742233513034;
-        Mon, 17 Mar 2025 10:45:13 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30c3f0e9985sm16687121fa.29.2025.03.17.10.45.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Mar 2025 10:45:11 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Mon, 17 Mar 2025 19:44:44 +0200
-Subject: [PATCH 9/9] ARM: dts: qcom: apq8064: move replicator out of soc
- node
+	s=arc-20240116; t=1742233853; c=relaxed/simple;
+	bh=m1J+GlCnSs1V3eKSpEzP0HLIPlFQKU5vK8yQL04FOY0=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CbBvi/eukUvINq1xT8f/zPuMSgpkNhoAocsgbhvHf7FNyKnvhNHOJ2VEfiqs1PSIz4OTE3kIn7c9hYI8lq68GDwS+IAUp+uNUuE+ZSWa3KCfCLjNtvuLtnN1VwgbCEjYG8BCvkmltm6zOJ1W7hM9M/IGa854u5BNLUDVFrFiA3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me; spf=pass smtp.mailfrom=proton.me; dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b=P9J9ecPq; arc=none smtp.client-ip=79.135.106.31
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=proton.me
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
+	s=protonmail; t=1742233847; x=1742493047;
+	bh=jhrRLqEl3iEr57VAvfSUeb0SK6yGoWOiTfnMPFKUv4M=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
+	b=P9J9ecPq5xxFQsW1R4INE7psjA2bcyMbqj/Vz1X1e+SxrtZrogqpde0pZMyioL05c
+	 5uV3Dx/3VajelTPuX0Yih3bFDflG+ok/jwCmrbJu+lYqOyw7PcemdvbEfWRjn+A4Ft
+	 rpcrqhQCMTF6MOZ7RT1EDlIM2Sqcflnkx/wboYcWytff2kWy/DDshWhhmCEVBFjDmC
+	 YQvAAduNkOl7fkOaksQ+b0DnTdhmBCXvbvCHTYrGTPUb+zEimn2Ewn94+w/w/XDpjj
+	 iZa64zb2mIEiXbxMupFt7SvvgTrruUhWhSKU2h31Y8vEBqlZHTyKVFCm58f9wOBGsI
+	 K2/9apW/Z/vJw==
+Date: Mon, 17 Mar 2025 17:50:38 +0000
+To: Tamir Duberstein <tamird@gmail.com>, Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, =?utf-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>
+From: Benno Lossin <benno.lossin@proton.me>
+Cc: linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, linux-pci@vger.kernel.org, linux-block@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 6/6] rust: use strict provenance APIs
+Message-ID: <D8IQCJHJWPNJ.1J2UO4OK0D0B3@proton.me>
+In-Reply-To: <20250317-ptr-as-ptr-v5-6-5b5f21fa230a@gmail.com>
+References: <20250317-ptr-as-ptr-v5-0-5b5f21fa230a@gmail.com> <20250317-ptr-as-ptr-v5-6-5b5f21fa230a@gmail.com>
+Feedback-ID: 71780778:user:proton
+X-Pm-Message-ID: bfb891ae1b62b7c3c15f976a4883734178cbd860
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250317-fix-nexus-4-v1-9-655c52e2ad97@oss.qualcomm.com>
-References: <20250317-fix-nexus-4-v1-0-655c52e2ad97@oss.qualcomm.com>
-In-Reply-To: <20250317-fix-nexus-4-v1-0-655c52e2ad97@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        James Clark <james.clark@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Leo Yan <leo.yan@linux.dev>, Kumar Gala <galak@codeaurora.org>,
-        Andy Gross <agross@codeaurora.org>,
-        "Ivan T. Ivanov" <ivan.ivanov@linaro.org>,
-        Andy Gross <andy.gross@linaro.org>, Georgi Djakov <djakov@kernel.org>,
-        David Heidelberg <david@ixit.cz>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, coresight@lists.linaro.org,
-        linux-arm-kernel@lists.infradead.org
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2293;
- i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
- bh=cXGjXqVy8K2SBVw5sm4rAWVu9NhYJGWmhFXtjX3HVog=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBn2F+Hk+AmZlISZmVl7Lpy8dz0TRbk8xjIClt1/
- 8vj+7Cr/ZSJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZ9hfhwAKCRCLPIo+Aiko
- 1QEOB/9oIWXP9+8fWr3P541oQaJjWj4TBJmLvCUTleczJ/+JGOLGxqemoc3v7V0oXDhOpswBqDi
- WEt/pceqTFyCcwIhooUPzKq4CCjbj2bA710wPPkkSzjyZkxMltoHOB+Z1SDWBd9Tk0hjZX4WZC0
- YYPrAUbnKPrcDFPEKpM2Z8Xlxh4xLbwPKvRBzcrWeqCzqgszf/LSY6/OBCWBYJo++JPbPUSDDTj
- wJMCFMNLkg+MWXK0ssjlsEKwEcJ6rlAb6REz/gRwhXTv/XWHUS3F/NwyAykfJ6BPtCR6Lq42bvK
- BndmfW5J9cf4mJoWj1QPk8q9wYriamZbAm+lwV6u1T3zYgbR
-X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
-X-Proofpoint-GUID: IpxMPBu7RM-YoSHZYeuO4Edn7BHjWucc
-X-Proofpoint-ORIG-GUID: IpxMPBu7RM-YoSHZYeuO4Edn7BHjWucc
-X-Authority-Analysis: v=2.4 cv=Jem8rVKV c=1 sm=1 tr=0 ts=67d85faa cx=c_pps a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=EUspDBNiAAAA:8 a=VZa1NNXYgzzwgHkDN88A:9 a=QEXdDO2ut3YA:10 a=usmIGj8zAoogrc2OpcRK:22
- a=1HOtulTD9v-eNWfpl4qZ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-17_07,2025-03-17_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=828 spamscore=0 mlxscore=0 malwarescore=0 adultscore=0
- phishscore=0 impostorscore=0 priorityscore=1501 lowpriorityscore=0
- bulkscore=0 clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503170128
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-The CoreSight replicator device isn't a part of the system MMIO bus, as
-such it should not be a part of the soc node. Follow the example of
-other platforms and move it out of the soc bus to the top-level.
+On Mon Mar 17, 2025 at 3:23 PM CET, Tamir Duberstein wrote:
+> Throughout the tree, use the strict provenance APIs stabilized in Rust
+> 1.84.0[1]. Retain backwards-compatibility by introducing forwarding
+> functions at the `kernel` crate root along with polyfills for rustc <
+> 1.84.0.
+>
+> Use `#[allow(clippy::incompatible_msrv)]` to avoid warnings on rustc <
+> 1.84.0 as our MSRV is 1.78.0.
+>
+> In the `kernel` crate, enable the strict provenance lints on rustc >=3D
+> 1.84.0; do this in `lib.rs` rather than `Makefile` to avoid introducing
+> compiler flags that are dependent on the rustc version in use.
+>
+> Link: https://blog.rust-lang.org/2025/01/09/Rust-1.84.0.html#strict-prove=
+nance-apis [1]
+> Suggested-by: Benno Lossin <benno.lossin@proton.me>
+> Link: https://lore.kernel.org/all/D8EIXDMRXMJP.36TFCGWZBRS3Y@proton.me/
+> Signed-off-by: Tamir Duberstein <tamird@gmail.com>
 
-Fixes: 7a5c275fd821 ("ARM: dts: qcom: Add apq8064 CoreSight components")
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+One comment below, with that fixed:
+
+Reviewed-by: Benno Lossin <benno.lossin@proton.me>
+
+> ---
+>  init/Kconfig           |   3 ++
+>  rust/kernel/alloc.rs   |   2 +-
+>  rust/kernel/devres.rs  |   4 +-
+>  rust/kernel/io.rs      |  14 +++----
+>  rust/kernel/lib.rs     | 108 +++++++++++++++++++++++++++++++++++++++++++=
+++++++
+>  rust/kernel/of.rs      |   2 +-
+>  rust/kernel/pci.rs     |   4 +-
+>  rust/kernel/str.rs     |  16 +++-----
+>  rust/kernel/uaccess.rs |  12 ++++--
+>  9 files changed, 138 insertions(+), 27 deletions(-)
+
+
+> +#[cfg(not(CONFIG_RUSTC_HAS_STABLE_STRICT_PROVENANCE))]
+> +mod strict_provenance {
+> +    /// Gets the "address" portion of the pointer.
+> +    ///
+> +    /// See https://doc.rust-lang.org/stable/core/primitive.pointer.html=
+#method.addr.
+> +    #[inline]
+> +    pub fn addr<T>(ptr: *const T) -> usize {
+> +        // This is core's implementation from
+> +        // https://github.com/rust-lang/rust/commit/4291332175d12e79e606=
+1cdc3f5dccac2e28b969 through
+> +        // https://github.com/rust-lang/rust/blob/1.84.0/library/core/sr=
+c/ptr/const_ptr.rs#L172
+> +        // which is the first version that satisfies `CONFIG_RUSTC_HAS_S=
+TABLE_STRICT_PROVENANCE`.
+> +        #[allow(clippy::undocumented_unsafe_blocks)]
+> +        unsafe {
+> +            #[allow(clippy::transmutes_expressible_as_ptr_casts)]
+> +            core::mem::transmute(ptr.cast::<()>())
+> +        }
+
+I think we should just use `ptr as usize` here instead. It's going away
+at some point and it will only affect optimizations (I don't even know
+if they exist at the moment) of old versions.
+
 ---
- arch/arm/boot/dts/qcom/qcom-apq8064.dtsi | 66 ++++++++++++++++----------------
- 1 file changed, 33 insertions(+), 33 deletions(-)
+Cheers,
+Benno
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
-index a106f9f984fcb51dea1fff1515e6f290b36ccf99..acd94f3ba0350c5dcdd8f80885ee643d8cbddac7 100644
---- a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
-@@ -278,6 +278,39 @@ scm {
- 		};
- 	};
- 
-+	replicator {
-+		compatible = "arm,coresight-static-replicator";
-+
-+		clocks = <&rpmcc RPM_QDSS_CLK>;
-+		clock-names = "apb_pclk";
-+
-+		out-ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				replicator_out0: endpoint {
-+					remote-endpoint = <&etb_in>;
-+				};
-+			};
-+			port@1 {
-+				reg = <1>;
-+				replicator_out1: endpoint {
-+					remote-endpoint = <&tpiu_in>;
-+				};
-+			};
-+		};
-+
-+		in-ports {
-+			port {
-+				replicator_in: endpoint {
-+					remote-endpoint = <&funnel_out>;
-+				};
-+			};
-+		};
-+	};
-+
- 	soc: soc {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
-@@ -1529,39 +1562,6 @@ tpiu_in: endpoint {
- 			};
- 		};
- 
--		replicator {
--			compatible = "arm,coresight-static-replicator";
--
--			clocks = <&rpmcc RPM_QDSS_CLK>;
--			clock-names = "apb_pclk";
--
--			out-ports {
--				#address-cells = <1>;
--				#size-cells = <0>;
--
--				port@0 {
--					reg = <0>;
--					replicator_out0: endpoint {
--						remote-endpoint = <&etb_in>;
--					};
--				};
--				port@1 {
--					reg = <1>;
--					replicator_out1: endpoint {
--						remote-endpoint = <&tpiu_in>;
--					};
--				};
--			};
--
--			in-ports {
--				port {
--					replicator_in: endpoint {
--						remote-endpoint = <&funnel_out>;
--					};
--				};
--			};
--		};
--
- 		funnel@1a04000 {
- 			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
- 			reg = <0x1a04000 0x1000>;
-
--- 
-2.39.5
+> +    }
+> +
+> +    /// Exposes the "provenance" part of the pointer for future use in
+> +    /// [`with_exposed_provenance`] and returns the "address" portion.
+> +    ///
+> +    /// See https://doc.rust-lang.org/stable/core/primitive.pointer.html=
+#method.expose_provenance.
+> +    #[inline]
+> +    pub fn expose_provenance<T>(ptr: *const T) -> usize {
+> +        ptr.cast::<()>() as usize
+> +    }
+> +
+> +    /// Converts an address back to a pointer, picking up some previousl=
+y 'exposed'
+> +    /// provenance.
+> +    ///
+> +    /// See https://doc.rust-lang.org/stable/core/ptr/fn.with_exposed_pr=
+ovenance.html.
+> +    #[inline]
+> +    pub fn with_exposed_provenance<T>(addr: usize) -> *const T {
+> +        addr as *const T
+> +    }
+> +
+> +    /// Converts an address back to a mutable pointer, picking up some p=
+reviously 'exposed'
+> +    /// provenance.
+> +    ///
+> +    /// See https://doc.rust-lang.org/stable/core/ptr/fn.with_exposed_pr=
+ovenance_mut.html
+> +    #[inline]
+> +    pub fn with_exposed_provenance_mut<T>(addr: usize) -> *mut T {
+> +        addr as *mut T
+> +    }
+> +
+> +    /// Creates a pointer with the given address and no [provenance][cra=
+te::ptr#provenance].
+> +    ///
+> +    /// See https://doc.rust-lang.org/stable/core/ptr/fn.without_provena=
+nce_mut.html.
+> +    #[inline]
+> +    pub fn without_provenance_mut<T>(addr: usize) -> *mut T {
+> +        addr as *mut T
+> +    }
+> +}
+> +
+> +pub use strict_provenance::*;
+> +
+>  // Ensure conditional compilation based on the kernel configuration work=
+s;
+>  // otherwise we may silently break things like initcall handling.
+>  #[cfg(not(CONFIG_RUST))]
 
 
