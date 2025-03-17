@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-158067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73940A646BB
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 10:12:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A319A646C1
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 10:13:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9AF881883675
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 09:12:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73AFD3A57C1
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 09:13:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CD4821B1A3;
-	Mon, 17 Mar 2025 09:12:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4B2121E096;
+	Mon, 17 Mar 2025 09:13:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N9zA+Xp0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KjKN/zG7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 028CC26ADD;
-	Mon, 17 Mar 2025 09:12:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A5EC3AC17;
+	Mon, 17 Mar 2025 09:13:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742202735; cv=none; b=LfP2tKpYGCb6uatbkUBC38PAB24WZQAF7Gt+Tl8x5y1hiwA/GbeuUeT8hyOY0qm7nlDKsbtDf9Bil1E2aDAmsYQx2Uhyh87dHG6Z3GtXaYxrT5QMxbU7mNEtkgc2kGAmwZ3TyYFa/mtOFnd1nLuwrELVk8+2CYQY9JPUHwo5f+Y=
+	t=1742202788; cv=none; b=cGKKLJ9g8NFcrnAxlz2udhsuGeJDMYaSUU8W8gKiDPOZu4oUc2GnxaM6B2gwlcq3lfp5TUQQ7BGyap88qf7gpN4UCdq6XRSXvuP36/ECOpMdJ+6SZhct7oNB5E0fUvrETFj+/g3vfFyXwf3r45XWlrNMNDzxaM7B49yksw0ewrU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742202735; c=relaxed/simple;
-	bh=qIi66nAJAkuAxof/+NyK+41N8iuL4BfxKI4FIhK+u1M=;
+	s=arc-20240116; t=1742202788; c=relaxed/simple;
+	bh=egUbHhdw/VIJUm8LAkutH+qWohBTh+J4+/zQg3hloi0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F1L5EDHVu0Vd/krmegt/Qbc5y7pPz/kciVHjTZQCqqW86bT2mEAZQx+jDV373iRvWIBnmafPdyylet6z58+gstfQ6eBz0YiI6N6tnP3oYw8bNno7l4PmEz1cdY347W1MMwne2dPDmm4cSbIRkHelw6q7l9P5X2YrC5hbi4esUk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N9zA+Xp0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A342CC4CEE3;
-	Mon, 17 Mar 2025 09:12:12 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=sm7MqJAAZQ8UP6Z4Nts2jlTpSuOUgFlCoDMRMdY9GtgLCVvXqtIh9tUqlvObc6VpVNfzyUO/CAdbwUGKx+eAuewakBmw/s+zErlVFsiD9J2MtpaQBmgLciODPyHVZA9YUQ85JX63+o/cmBOLSiD2g6BJXFcDX9Z1B0vKKo5YA3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KjKN/zG7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1ED64C4CEE3;
+	Mon, 17 Mar 2025 09:13:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742202733;
-	bh=qIi66nAJAkuAxof/+NyK+41N8iuL4BfxKI4FIhK+u1M=;
+	s=k20201202; t=1742202788;
+	bh=egUbHhdw/VIJUm8LAkutH+qWohBTh+J4+/zQg3hloi0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=N9zA+Xp0IhuHdLpAzNn5wQcFEUuALfNeeC+ADEXYSrdG2dr0CzGltKDfSNv7TGriK
-	 xa+DMhe6aYwswcdDVsrTGyLmLVN1roHXa6MHTRukYWM1wm3xFh8h2nOEpRrMAubbgF
-	 cj/GffCiF+LqdNvZRKfnHuacqjaEnIEPDcFtPERSf3TfF5kOq+1EcNR4juOWOspkuV
-	 yOQTBCl/wwE6q/KPCSEDR7cw/FfuKLU9xdrNrf/jf5TvEpFVu8VNYt5u9wyH9FLFp7
-	 qOzrZco6DMF9VCUnLV8zusU7wMpqzvgAIIZGJrQSACOiD5LZKUBS7qak6USSxPDrr8
-	 z53XPztZlUb5w==
-Date: Mon, 17 Mar 2025 10:12:09 +0100
+	b=KjKN/zG7AcRdgZCTvQmGNJS/2vUNCY0+Vj973da/zf3skngITlJdC8hKBNeJ2k+TX
+	 zzhTEyI04kRxaWNf9LjC0c37o6ZztkmkjIQR+xXdmsTbx99+HC8OdE2vHc5lQODm0g
+	 zZs3js/JJAVI6s4zJairySxrmVYks36twqWF9hCzjyviyXzFpJ9Ql4bjlMYM1lp1NS
+	 cmvAh5KTGD8vTn/lCAhbgw/0lX+6OkG+MKHJzK7EsvK8DfR8d3UDuyDLwgp64Zd2Hp
+	 tNwzcvIjhmguyrmtYXZSBKebeW44t0TMzlu0yLSAb4WXImdFY+tSUXf8VX1ofmtNrH
+	 9ER51BCV754Tg==
+Date: Mon, 17 Mar 2025 10:13:04 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Kevin Chen <kevin_chen@aspeedtech.com>
 Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
@@ -49,10 +49,10 @@ Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
 	derek.kiernan@amd.com, dragan.cvetic@amd.com, arnd@arndb.de, gregkh@linuxfoundation.org, 
 	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
 	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/3] dt-binding: aspeed: Add LPC PCC controller
-Message-ID: <20250317-hypnotic-boobook-of-discussion-fdfe94@krzk-bin>
+Subject: Re: [PATCH v4 2/3] ARM: dts: aspeed-g6: Add AST2600 LPC PCC support
+Message-ID: <20250317-chital-of-unusual-force-a4b7b7@krzk-bin>
 References: <20250314112113.953238-1-kevin_chen@aspeedtech.com>
- <20250314112113.953238-2-kevin_chen@aspeedtech.com>
+ <20250314112113.953238-3-kevin_chen@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,24 +61,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250314112113.953238-2-kevin_chen@aspeedtech.com>
+In-Reply-To: <20250314112113.953238-3-kevin_chen@aspeedtech.com>
 
-On Fri, Mar 14, 2025 at 07:21:11PM +0800, Kevin Chen wrote:
-> Add dt-bindings for Aspeed for Aspeed LPC POST code capture controller.
+On Fri, Mar 14, 2025 at 07:21:12PM +0800, Kevin Chen wrote:
+> The AST2600 has PCC controller in LPC, placed in LPC node.
 > 
 > Signed-off-by: Kevin Chen <kevin_chen@aspeedtech.com>
 > ---
->  .../devicetree/bindings/mfd/aspeed-lpc.yaml   | 38 +++++++++++++++++++
->  1 file changed, 38 insertions(+)
+>  arch/arm/boot/dts/aspeed/aspeed-g6.dtsi | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
+> index 8ed715bd53aa..f238337e02da 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
+> @@ -626,6 +626,14 @@ lpc_snoop: lpc-snoop@80 {
+>  					status = "disabled";
+>  				};
+>  
+> +				lpc_pcc: lpc-pcc@0 {
+> +					compatible = "aspeed,ast2600-lpc-pcc";
+> +					reg = <0x0 0x140>;
+> +					interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>;
+> +					pcc-ports = <0x80>;
 
-Nothing improved. You already got comment that nothing improved and
-you... send the same.
+So this is 0x80 for entire SoC, then it is implied by compatible, no?
 
-NAK
+> +					status = "disabled";
 
-Instead of selectively ignoring comments, go back to review and
-implement each of them.
+Where is any DTS user of this device?
 
 Best regards,
 Krzysztof
