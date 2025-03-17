@@ -1,140 +1,169 @@
-Return-Path: <devicetree+bounces-158231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65F7EA6547F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 15:56:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 208A5A6548E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 15:57:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3542B1896493
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 14:56:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 353013B79AA
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 14:56:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 389B524A06B;
-	Mon, 17 Mar 2025 14:55:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2C0F246333;
+	Mon, 17 Mar 2025 14:55:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kKvuc1Dr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y1zIjvTX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51BC2248893
-	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 14:55:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D03B2451F1;
+	Mon, 17 Mar 2025 14:55:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742223330; cv=none; b=dzggmaRVGTR9FIDEh+MCLMU71nhDmcISSrGTsgONX9ajxP6NJyftR7gh1d2wbAfCYufO75PsMxEDtIuZx/q9zimrAK2dIiPoN208QM46gLmU4bE/hrMi4L/Ln2Wo4u3Zslcejwlj/x+910pQ9X6EAv5k1nYujJAWQdP+8vP7N8c=
+	t=1742223359; cv=none; b=NKoqAL6aT5twZKmSenExFRPTW86AYqI6aeHL7jlZ2wCbHGx+hWFcFBfMDOSqqGFDllrx4Q+GCd7k/H9K33iwKj3I6WguKsKnit1AAO87x1nPSMZ3AEiT3XlCtLnJGnR63k/faKeV3tdLgk0OPMUtkK1CCiyQixCosW0cetwOjHY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742223330; c=relaxed/simple;
-	bh=17UdANjAVTcelMOQ4DNlejZ2Ce9FcJpH2K+ozwWVPTk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tIyRCZvh0sO/01oyUMrjHU7+b/qGxjwo8ioDyIDrhjMRUKbHSwvlOOta/3uT0uCynnTsTImL0ykaS6oWLoSQwMzCY60GbNCN/pbM0MmXwkM+TsgWVym0nYEjxdgDpEimDTnLALrbDg/ybaNO5YZ3ODOMHDXymhvPdWTjQp0Q4JM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kKvuc1Dr; arc=none smtp.client-ip=209.85.167.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-3f682a2c3c8so2585723b6e.1
-        for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 07:55:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742223327; x=1742828127; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8jNzh4wPsc/2+sERlQmcDT54HRK5zRLKBArFjwQQ8DQ=;
-        b=kKvuc1DryQCbSVaBGLaDhiimzifPA1/+vWy5Oidkrz6z37iZQfnZhJR5IksOTb6bL7
-         toTwPj10SzvDwgmRUHhOlYXCJkfenGjgr61NjdUH4Fft6zEhNIRV4U0NmYNzmA6eptYP
-         ZkbtLa+0hyJEqzZqMM6dhXqfO3CH7gtQqx0lzVhIugTZc7jW+5z/r73CXfNwnmrmOitH
-         dykwAqTiUn6wv1eBlpWafYpH+qeiSlfouu+rQpdIFP4DFC5sXI+k0BhJ+RS3O2LjlhxK
-         oUZGPAL900MWZiRBKBGSFKDeHp1lfq1aHNNvtU7hhj9pSyXVhgHNlj5VMQRUe7UHY0Do
-         0ENg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742223327; x=1742828127;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8jNzh4wPsc/2+sERlQmcDT54HRK5zRLKBArFjwQQ8DQ=;
-        b=nVO6scujna1DBTMDDqxKJlLngp1qXjPvx8DRMdBw4vjg0vUp+WMP5p5eqvxWj08/v8
-         i/sYVf4LFnnNoiGOE1UJjG7sD0QOxQyRqpp2+WBlZQSnqml1erFrUiG+0/2itkxmn5k1
-         8dQU1+J/5AK4GLm3T7eNR2ltACAOG7dalNBzhNHNBSy2GDXfPFypNDqH3GRMOT0fXxtA
-         U/MFbdN780hj7BiGI5OenpwsA7HbuYYVo3SAPY6GxexFHtIDIATXcNlmaZ5nanRDEOuG
-         BjLVGr+ufSu+/WeqNnmr4AtWMTRGhENb272JfU6Om7UpN+38klKAgn7OMnFAYdJR+dsB
-         gG/A==
-X-Forwarded-Encrypted: i=1; AJvYcCWqbNerygST9XPNI6n+nGUwO15roGuIV0YY5sUhtSDrBdpwSjs5lXO+zY4dVfjssJGGmJKc849JYF8d@vger.kernel.org
-X-Gm-Message-State: AOJu0YyYM2AxcqWhNq/SGAWUNesqluAj6PzHg36kkPrV6S7Ypxhb4MQY
-	YwX5tUgx1Zn1drNRP9IPz8aGw7tei9/EfsuWWz/2y9yxKj1POuDqjG1bfSM6+Yr23vRE7FoLyuD
-	gPEd/6Rfl7y4MONkHsbXyFHhHIUSFSW4exypzRQ==
-X-Gm-Gg: ASbGncux+cUPB+zFmsNdDsbAev640Ws760zzH8Ray9kQzh8igbnt6B84KL2BiclOkwR
-	01EL+VndYhsM0yCnl1DB9ZO2qoNVvmvXHuqXsb4I3sQtazUfqbcbDf7v7TSfJmEPH/hMU8R4bUE
-	bk1xBS+jtPryVvQDbeqC2DHP0at8Ptsb2Pr56TXWk=
-X-Google-Smtp-Source: AGHT+IG7IjY16t5eI+Uq4mhx6crav2fOJBQfWeSG630jb10M49QIM1vSar09EM0x1tUf2BaE+e0vaoly2VXwdW756V0=
-X-Received: by 2002:a05:6808:999:b0:3fa:c549:cfee with SMTP id
- 5614622812f47-3fdee27903emr4770583b6e.6.1742223327241; Mon, 17 Mar 2025
- 07:55:27 -0700 (PDT)
+	s=arc-20240116; t=1742223359; c=relaxed/simple;
+	bh=dufHt2ZbCtfSlksK/9SNCkEaezP+05PBRfmk1Spyi9M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JzRtQKv3NfTJFcUC4nxtDmqSZV+Sjs/iNBOTfFKU78zFO4a0EvBOcQxn77yfwtJOWNN2/nEJ3EvZodNgkMooVypNCsjrAWs1LzIZJ8zhEsqYd34Aj+5S8jG5xmmiAszxCD5hih1xpcCmhe5O4sPaNITwuHokfXYYwi0a7ie0i3s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y1zIjvTX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43128C4CEE9;
+	Mon, 17 Mar 2025 14:55:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742223359;
+	bh=dufHt2ZbCtfSlksK/9SNCkEaezP+05PBRfmk1Spyi9M=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Y1zIjvTX3LkHV0Wqdi72WtXFqj+qg1TRka/DivNu4W6YzyFR6lnNeaq/sn9yOE9Hf
+	 OS5D2z/ivOJI4ER45vbsyqnAPNBnv/kmLXYxyZ0ZKDu3XO3ERgYMmGB4cDCOvOJySL
+	 bJ9Aa7A3bXWN32No/nk7r7sTuow36H3PUj8zZrr1LA19JBeAaoCeFXnF7Wgw77MMvV
+	 /pt8GEsrCkgRxw9QkBq7C1t/EqrchMSrayHnsXb6s8UmShbBEy4MGIrJwbT5MVerBJ
+	 RYJDVLdrHYNPi3qrBwedKETKtjGV1psa+6E8CwOKcruE4Fi0tV42SxaVdSzNS96VQt
+	 Vy2NgDdTkVFJQ==
+Message-ID: <21de806b-1d25-4feb-bc30-1b5c3adf1bb0@kernel.org>
+Date: Mon, 17 Mar 2025 15:55:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250314-ufs-dma-coherent-v1-0-bdf9f9be2919@linaro.org>
- <20250314-ufs-dma-coherent-v1-2-bdf9f9be2919@linaro.org> <931e5e0b07d598912712b091d99a636b796fe19f.camel@linaro.org>
-In-Reply-To: <931e5e0b07d598912712b091d99a636b796fe19f.camel@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Mon, 17 Mar 2025 14:55:15 +0000
-X-Gm-Features: AQ5f1Jq4uxqhD4QuKFFVh-mTPnz4ZIKWFOQ5G2m93FuUYrfiK5B9xukpdzF4pCI
-Message-ID: <CADrjBPoESd7D4H80prCtFXTGaWOg-HV_ovNdwZ4G7Y8n-hFdsQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] scsi: ufs: dt-bindings: exynos: add dma-coherent
- property for gs101
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>, 
-	Bart Van Assche <bvanassche@acm.org>, "Martin K. Petersen" <martin.petersen@oracle.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org, 
-	kernel-team@android.com, willmcvicker@google.com, stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 6/6] arm64: defconfig: Enable RZ/G3E thermal
+To: John Madieu <john.madieu.xa@bp.renesas.com>
+Cc: "geert+renesas@glider.be" <geert+renesas@glider.be>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "robh@kernel.org"
+ <robh@kernel.org>, "rafael@kernel.org" <rafael@kernel.org>,
+ "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+ "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "john.madieu@gmail.com" <john.madieu@gmail.com>,
+ "rui.zhang@intel.com" <rui.zhang@intel.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+ "sboyd@kernel.org" <sboyd@kernel.org>, Biju Das
+ <biju.das.jz@bp.renesas.com>,
+ "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+ "lukasz.luba@arm.com" <lukasz.luba@arm.com>
+References: <20250315081225.92118-1-john.madieu.xa@bp.renesas.com>
+ <20250315081225.92118-7-john.madieu.xa@bp.renesas.com>
+ <20250317-bipedal-inchworm-of-poetry-b60fc9@krzk-bin>
+ <OSBPR01MB2775B7252468BCE234BFF7D5FFDF2@OSBPR01MB2775.jpnprd01.prod.outlook.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <OSBPR01MB2775B7252468BCE234BFF7D5FFDF2@OSBPR01MB2775.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Andr=C3=A9
+On 17/03/2025 12:14, John Madieu wrote:
+> Hi Krzysztof,
+> 
+> Thanks for the review!
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>> Sent: Monday, March 17, 2025 10:29 AM
+>> To: John Madieu <john.madieu.xa@bp.renesas.com>
+>> Subject: Re: [PATCH v3 6/6] arm64: defconfig: Enable RZ/G3E thermal
+>>
+>> On Sat, Mar 15, 2025 at 09:12:16AM +0100, John Madieu wrote:
+>>> Enable the CONFIG_RZG3E_THERMAL flag for the RZ/G3E SoC.
+>>
+>> s/RZ/Renesas RZ/ and which *upstream* board uses it? This is not your
+>> platform defconfig, but all platforms and all users defconfig.
+>>
+> 
+> Noted for the fix.
+> 
+> However, most thermal drivers use SOC-specific config options,
+> as we can see in arm64 defconfig:
+> 
+> [...]
+> CONFIG_IMX8MM_THERMAL=m
+> CONFIG_K3_THERMAL=m
+> CONFIG_QORIQ_THERMAL=m
+> CONFIG_SUN8I_THERMAL=y
+> CONFIG_ROCKCHIP_THERMAL=m
+> CONFIG_RCAR_THERMAL=y
+> CONFIG_RCAR_GEN3_THERMAL=y
+> CONFIG_RZG2L_THERMAL=y
+> CONFIG_ARMADA_THERMAL=y
+> CONFIG_MTK_THERMAL=m
+> CONFIG_MTK_LVTS_THERMAL=m
+> CONFIG_BCM2711_THERMAL=m
+> CONFIG_BCM2835_THERMAL=m
+> CONFIG_BRCMSTB_THERMAL=m
+> [...]
+> 
+> Hence my choice for RZG3E_THERMAL, or did I miss something in your comment?
+Your commit msg must explain why do we want it. I gave you idea, if you
+don't want to use it, sure, come with other.
 
-On Fri, 14 Mar 2025 at 15:59, Andr=C3=A9 Draszik <andre.draszik@linaro.org>=
- wrote:
->
-> Hi Pete,
->
-> On Fri, 2025-03-14 at 15:38 +0000, Peter Griffin wrote:
-> > dma-coherent property is required for gs101 as ufs-exynos enables
-> > sharability.
-> >
-> > Fixes: 438e23b61cd4 ("scsi: ufs: dt-bindings: exynos: Add gs101 compati=
-ble")
-> > Cc: stable@vger.kernel.org
-> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> > ---
-> >  Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.y=
-aml b/Documentation/devicetree/bindings/ufs/samsung,exynos-
-> > ufs.yaml
-> > index 720879820f6616a30cae2db3d4d2d22e847666c4..5dbb7f6a8c354b82685c521=
-e70655e106f702a8d 100644
-> > --- a/Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml
-> > +++ b/Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml
-> > @@ -96,6 +96,8 @@ allOf:
-> >          clock-names:
-> >            minItems: 6
-> >
-> > +        dma-coherent: true
-> > +
->
-> This is allowed globally already in this file. Did you meant to make it '=
-required'?
-
-I hadn't noticed it was already handled further up in the yaml. In
-which case this patch can be dropped entirely.
-
-Thanks,
-
-Peter
+Best regards,
+Krzysztof
 
