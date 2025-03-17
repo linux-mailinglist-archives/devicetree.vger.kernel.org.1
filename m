@@ -1,110 +1,112 @@
-Return-Path: <devicetree+bounces-158348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C26A0A65DEA
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 20:29:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D84B1A65E0B
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 20:32:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 25E381770C8
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 19:29:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 520843B3F93
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 19:32:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB8911EA7C5;
-	Mon, 17 Mar 2025 19:29:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB3E21EDA10;
+	Mon, 17 Mar 2025 19:32:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WQ4nNAtX"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="R9OWoe6F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2DC71E8355;
-	Mon, 17 Mar 2025 19:29:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FA741EB5CD;
+	Mon, 17 Mar 2025 19:32:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742239775; cv=none; b=cvDz5fqFMbQZ4Jo1PwBqj0b2n6LDFyKFMTBKTWJ6lVkGccCdwN3xnaLPnjymfMxjkLAZaq9cW059n0rYpqOnqmqMeJIPWJvesS1HR8Toh2RvIFkVyg2NPowWcyj9qbqFQdqbvVcUCmYRm1UJA0sHMzh/vt7mUwx8YTcRu7Mw4eQ=
+	t=1742239951; cv=none; b=ZaMt16EayVHgDANn/RdM92wmLpOMxkNb2CW+hMyUW/up7aklSo++IJsaqKWAl+450erDYPms0B3QEtb3lDhW0gXpAe8Od4OPa+1ScWjvbqLrm70LaXbUW6wYgiuSGNPac9skNg8at7U1y/wLKyt53bsOPTB/cfWCWvSnlHzy7VM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742239775; c=relaxed/simple;
-	bh=+0esf4PKuDbD6pVNFtzoxcojgN/+ZfEr2+qB5q3FpXk=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=cOFYTqiC7yRIiwkWeN/JayS4S1aTxJmuJtE51Sf7g54yN5z3F5r+VnioCmGYWQ4gbi6vHZLaVzf3koEJMoW+PFm2yXOLfYDd9tVTNqbgtuhDlr2TgSIaf+GsPGc3RRedwgHeIB3mylScXidLx7XW2Ml4x+WnyDoO7EXOK5nCyQ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WQ4nNAtX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFFBDC4CEE3;
-	Mon, 17 Mar 2025 19:29:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742239775;
-	bh=+0esf4PKuDbD6pVNFtzoxcojgN/+ZfEr2+qB5q3FpXk=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=WQ4nNAtXRKVbC9ZZ2PjUIak6rmDBqyWa9p2gUMNhqfJ+A5BCgSipAtYz5LcMtvEMo
-	 nC9ZF9vYzSqJ1kYy6EYDOvvn+/RrEMR5hWCcP2tFAUxQXgadU07KqAlIliV23Hm0dO
-	 B1XYJ9ZhLDgG5qzRAnLjfgnCvJd47fXDTGMx5moBIBSmiW48tyZLiRi+Eyya6nxzPx
-	 hzg8ldrCcbODT6DIT5q+Hc9f2a9vq8QAyethP0xuL8bSy7Nk+GWCip0m5FEEwqALQf
-	 uL0jsJbC2+RkQQxu359Wf66BV/Grqx7FQBaVPJ7wyi12czxBKdvi2bklgD1bU8ZDRA
-	 /E5xymSnT17xw==
-Date: Mon, 17 Mar 2025 14:29:33 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1742239951; c=relaxed/simple;
+	bh=lGmY4p1VRzYFACIa5FUQnatEVrtfwJ9hMuMP3qnvkpg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=jO4uUmJDnMmRY44moqj5/Rj/Kc2mEYkEsNILZg8ezf6oGks5O0b9SAN5Lc9B1bXmlKopnhxNGaNjvpaeCOE+l9zyjGycUOc/j34YfZ0R0VqO+k6BdgUcnyx+XaPffgh75qd56/rH9Ee4odsYe1O3RO+eaHrBD126eTzkRb7mRMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=R9OWoe6F; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 8C0F425989;
+	Mon, 17 Mar 2025 20:32:28 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id 482UUYVCRaQc; Mon, 17 Mar 2025 20:32:27 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1742239933; bh=lGmY4p1VRzYFACIa5FUQnatEVrtfwJ9hMuMP3qnvkpg=;
+	h=From:Subject:Date:To:Cc;
+	b=R9OWoe6FSuBqgImq7TpfMos4ZiBRprbQSPoH9ytSiEWfUGwwNu33LDwACZitBNYdj
+	 QNSV+DqD/PP0rtmhNGMuP+3w9WoWZbL2dwrIzSFh9Twk2HJKPEl9OcP4RJew8Dqfem
+	 1aMUv/zrBnxSCQmi5/Af6mQgkVKXNhFDrDBxa7OLkCAa2jD8cXFPAHJphsyF6YITA3
+	 UkyXrBB0lL3Nq6ZMqFtN+ooLOuGaIiJRugo2zbbcZIdlF8hr1F/sNJS1EggD4D3t7X
+	 qg1BTpuLhQQnEK/qBDueU/Tjpna3qencXeqmhK4Kw6LZR1c1WX20SlYnHzI38MYsDf
+	 gxtLwIEu/nT9g==
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+Subject: [PATCH RESEND v2 0/3] Introduce USBDRD-PHY support for Exynos7870
+ SoC
+Date: Tue, 18 Mar 2025 01:01:40 +0530
+Message-Id: <20250318-exynos7870-usbphy-v2-0-551433b1b27c@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: jic23@kernel.org, tduszyns@gmail.com, linux-iio@vger.kernel.org, 
- devicetree@vger.kernel.org
-To: Sergio Perez <sergio@pereznus.es>
-In-Reply-To: <20250317175621.593-1-sergio@pereznus.es>
-References: <20250317175621.593-1-sergio@pereznus.es>
-Message-Id: <174223977381.441039.14907108652302034941.robh@kernel.org>
-Subject: Re: [PATCH] [v2] iio: light: bh1750: Add hardware reset support
- via GPIO
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Marek Szyprowski <m.szyprowski@samsung.com>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc: linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Kaustabh Chakraborty <kauschluss@disroot.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1742239924; l=1208;
+ i=kauschluss@disroot.org; s=20250202; h=from:subject:message-id;
+ bh=lGmY4p1VRzYFACIa5FUQnatEVrtfwJ9hMuMP3qnvkpg=;
+ b=Ioi0x7v/fqX26/WW74A2LJdQiVqOJ1v8TZ6YsZJgFaFkZPIGr6fDansoFn24pLSjnf1SkeZ38
+ ck6U6cOTkWkBolOYnuWHVca94vJiFhhJgdE8cjBdR4wJQkqNF1a+RCW
+X-Developer-Key: i=kauschluss@disroot.org; a=ed25519;
+ pk=h2xeR+V2I1+GrfDPAhZa3M+NWA0Cnbdkkq1bH3ct1hE=
 
+Apart from introducing driver support and documentation, this patch series
+also introduces a masking fix and non-functional changes.
 
-On Mon, 17 Mar 2025 18:56:21 +0100, Sergio Perez wrote:
-> Some BH1750 sensors require a hardware reset before they can be
-> detected on the I2C bus. This patch adds support for an optional
-> reset GPIO that can be specified in the device tree.
-> 
-> The reset sequence pulls the GPIO low and then high before
-> initializing the sensor, which enables proper detection with
-> tools like i2cdetect.
-> 
-> Signed-off-by: Sergio Perez <sergio@pereznus.es>
-> ---
->  .../devicetree/bindings/iio/light/bh1750.yaml |  7 +++++-
->  drivers/iio/light/bh1750.c                    | 24 ++++++++++++++++++-
->  2 files changed, 29 insertions(+), 2 deletions(-)
-> 
+This patch series is a part of Exynos7870 upstreaming.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+---
+Changes in v2:
+- Do away with [PATCH 1/4] from v1 as it was sent separately.
+- Take over ownership of patches by the co-author, upon their request.
+- Link to v1: https://lore.kernel.org/r/20250204-exynos7870-usbphy-v1-0-f30a9857efeb@disroot.org
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/iio/light/bh1750.yaml:50:4: [error] no new line character at the end of file (new-line-at-end-of-file)
+---
+Kaustabh Chakraborty (3):
+      phy: exynos5-usbdrd: use GENMASK and FIELD_PREP for Exynos5 PHY registers
+      dt-bindings: phy: samsung,usb3-drd-phy: add exynos7870-usbdrd-phy compatible
+      phy: exynos5-usbdrd: add exynos7870 USBDRD support
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/iio/light/bh1750.example.dts:25.38-39 syntax error
-FATAL ERROR: Unable to parse input tree
-make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/iio/light/bh1750.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1522: dt_binding_check] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
+ .../bindings/phy/samsung,usb3-drd-phy.yaml         |   2 +
+ drivers/phy/samsung/phy-exynos5-usbdrd.c           | 407 +++++++++++++++++----
+ include/linux/soc/samsung/exynos-regs-pmu.h        |   2 +
+ 3 files changed, 339 insertions(+), 72 deletions(-)
+---
+base-commit: e5d3fd687aac5eceb1721fa92b9f49afcf4c3717
+change-id: 20250203-exynos7870-usbphy-6b98936f441d
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250317175621.593-1-sergio@pereznus.es
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+-- 
+Kaustabh Chakraborty <kauschluss@disroot.org>
 
 
