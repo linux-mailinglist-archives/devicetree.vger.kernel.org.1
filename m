@@ -1,60 +1,87 @@
-Return-Path: <devicetree+bounces-158155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158154-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6788FA64DD4
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 13:04:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B70E3A64DDE
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 13:06:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7BD641755F5
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:04:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21A3B188677B
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:04:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C59D7230BEB;
-	Mon, 17 Mar 2025 12:04:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8A86226D16;
+	Mon, 17 Mar 2025 12:04:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="hVvC6I28"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Gu4pFRjU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 542D5219A7D
-	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 12:04:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 381F819F133;
+	Mon, 17 Mar 2025 12:04:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742213061; cv=none; b=RkONjCH/j5Rd6VQC503ZlYhbTM1YQS6H1Aj6ot6QAkQ4jK0h+PMtj5PfT2zfA/WavI+vNrs2ZgRnmRY1f5cNJ30A0S8b6kOqmDRENy1qeu7e2uUnprTXUlb6BD+S28l25aeMvVNT0v3dNSnXyqPCK08gg9BO9EEUvo+XslmuvCU=
+	t=1742213048; cv=none; b=E0u3lZfZGzsWsSJW/ypxcoQ+WQyOFV8fjEiKEnjM+0iE70ClKfwmA/8pRqdSTJ96Ok4bB6CVipC7r4Mhp5NjgYOl44k6fNNXx1P7/FWS6wYGmgMSMchi8Y0htQoofT2ifG/nixl3SLycUBIA22kjH+ukjHi9VVOZdD2IhtGdsZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742213061; c=relaxed/simple;
-	bh=xD7c/TtPeI+1/i/izO1jiOyNgb8gXTF8nn2R3yoQ7Tw=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Xrmr2E3g4EPyDGCO/hG2smNwxrogk+sZTR5HWUlIrESFyXPJK0n+jEKovdtdfnI7OcrkRz2S2uDtCxoOsVpoXqVMZiqL7nj8DzkC5Q6AO3xBjIrnoXElsrsLd4d7WBxFgPJUF+ohv2kTix7h6jDnA3JTxKyBF2G/kAad0RBKq2k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=hVvC6I28; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:mime-version:content-transfer-encoding; s=k1; bh=5RA4whu2QwalP3
-	Cp7VKBx+SEgwqNfU0qSSnD0YK90k8=; b=hVvC6I28mvO5UUmqrZab6RZBVSy9b2
-	ZXTAlxO8egTvpsQLzwTKCqQn/Hnt7KyklQq7fdteBTiwK8/zw/WLjnYde2ACkLbJ
-	TiaLTe5EZ6PA+LeK2NAKcG60cuLJeoHM8p1E/Y6P0aNkUeRIYSWuRnm6s/HoQ3AO
-	7TNuOvmc4i+GZHGe5sNyHRJOcKe9MiFsXWGfjsd9C0Z92w/AVwnVXkkIJ4kwEvVn
-	kV9SXZjbDvxvOUpy885bgtKIWgUMgk44SxJ6X1ahMZYDNhkQShZF66PMezh8NLSy
-	35RMGyVJT34SbDN6mXHulF/LYRluRgTSn/2CDqqSAlmVYDaox3HbULtA==
-Received: (qmail 3133469 invoked from network); 17 Mar 2025 13:04:08 +0100
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 17 Mar 2025 13:04:08 +0100
-X-UD-Smtp-Session: l3s3148p1@xfHglYgwnMUgAwDPXyTHAJp038nK7dx+
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-renesas-soc@vger.kernel.org
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH] ARM: dts: renesas: r9a06g032: use proper ordering for UART DMA channels
-Date: Mon, 17 Mar 2025 13:03:55 +0100
-Message-ID: <20250317120356.67609-2-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.47.2
+	s=arc-20240116; t=1742213048; c=relaxed/simple;
+	bh=TczCRjc6Uj1fEIzA9Lzwz33dfKc+k7PWQRZSluuHEbY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=d5TcZNqy++26PQ7aV24xa4JCf5ZvafAqGvgU/Nr/jSuhTlHsqvOhCNWGGEGy2W6PbnB7zpM06fcNlhZB4bPDsYyUi+hmUiwdaHu1NcF0m+zT6cmKJIodDnwY9Bh7DGDt5JeR+vLavgq+YXtX25OJOQwie7gCvKQr0K4zc0w0/kg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Gu4pFRjU; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-223a7065ff8so34745085ad.0;
+        Mon, 17 Mar 2025 05:04:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742213046; x=1742817846; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Z9GmxhiqxKY3sOaDVbVY6MR+fSgsfX8u6hP/uX2i46Q=;
+        b=Gu4pFRjUV2F5fkIQznq/SCed+wABtgN0gyf8IlN+hxc7kmeJEjRKpKjFRVBAtMtv/c
+         YlDymRaQLW0RSI43GU1XTQpOEI1w/IS4tSwkuj6SOb5QIXrXdzHvuhbNlhlwNDk+K8Cv
+         Ea9fbCFccLcoTdy+E3MtV4XlhB4faeJRiqkFhaGGBKFi/EedEIBFo1Fux6/WSf10uEuw
+         Fk6STdjxv092h8MFcJJfycXc/ZErzqFpto4X/XZE5Tw5IQHhC0qi+gZzcgRxdvqX6SmB
+         LKlep8BYF+fPX3icRlFybdrRdAsC+Y3IP2zLms9LSqxG8OzzoQ2tNTKquzHBbKiDnPEO
+         hx8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742213046; x=1742817846;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Z9GmxhiqxKY3sOaDVbVY6MR+fSgsfX8u6hP/uX2i46Q=;
+        b=gNdPXMC9cqiVveDlCPxBoWUixGOKGAhhzwRgBdGvYigXWpGPUI5abqXe99z5z4NkSK
+         TAJ4o96fyVjW6bvbgHr6Ra5n6mB06ja++uJfOt6ufUPAs1kQ/eZd2jihOHz/f/lScA+p
+         gApcwOZu/UPc2B0KjZJWBYOiXmknKhCH713X8/fl0Wol3BBkuT6T8K6FynvAGJxOv4lY
+         /S6GK3u/cn1UaogNyMlkOKgQrz1Gbs+s8YZCjs9GmER6URI5lnMO8uice2mjrpXQfoCQ
+         9ttMCggEs3rfBL9YabM7C2Ac1syFRvS3tcZocaq13513S0nHgCEwXxRo2z37zWDnlKKM
+         KWiw==
+X-Forwarded-Encrypted: i=1; AJvYcCWbYwmd+hIOZOZHvPQ2vPBjoHS7eKQs0V7oIl9Fo2lm4BnNp9yrGEmxxC9HgzxmKNq637eaHli0uVAK@vger.kernel.org, AJvYcCXFArzV0+KfXJtFHngUWi5Q/d0pLD+VFOjIXyojOK0qKwLV0ToRxyZzVNniS+r21BHkC1cH8WZL+mqu@vger.kernel.org
+X-Gm-Message-State: AOJu0YwDF1a3/tRmvjcFOypBPxJ67dxT7eT0sEd2Pdxy8UBqIPwBlTqH
+	VoNg2dOuBKU0XgGwuw6ih6b+ObfG4GL8gDT6qB6BPtoWiDGPbVpjhWTbEQ==
+X-Gm-Gg: ASbGncuJPy1pU7lImtI56WIaKtfLIlFHWab/b5gjLwRr/kfgtSLTiDDnzm95ZTepcKz
+	OnL/oikSbEps0VPPYiNlFVZWWNA3FFdkMzbkJAr1cnKKFj5inKFXn0pddoM1411/TMFqflr0vwc
+	+Xfjgpzxj12xZgI8da4C8xm4iPQAiCBscN9i/5KwM8yu4QbUCuitM1buzketIZzAvLw0n+YkvuO
+	6yBZeGDVbywQiaUzyyzkzBnpaJ3W7q3jYnUoj+6lOZMIKVpqls0SniX/Ji6jzhKL9nXZe/jymYY
+	hDnlQiCPfhmw1s6FgRMbcz0T8FhiQ14C+EreZQmo3SNHjR2d3P2Cp7jhpXM=
+X-Google-Smtp-Source: AGHT+IHuV8yhToMYcmgerfmBiSVZJgN8pw64y82WSSMxLHL9nPNqcWOz6YNuNc2lqk+LSuPKbgxZVA==
+X-Received: by 2002:a05:6a21:328e:b0:1f5:769a:a4c3 with SMTP id adf61e73a8af0-1f5c12c78f7mr14509366637.27.1742213046220;
+        Mon, 17 Mar 2025 05:04:06 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:93b8:613c:dd7d:1b25])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7371152931bsm7377389b3a.3.2025.03.17.05.04.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Mar 2025 05:04:05 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: alexandre.belloni@bootlin.com
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH v2] dt-bindings: rtc: pcf2127: Reference spi-peripheral-props.yaml
+Date: Mon, 17 Mar 2025 09:03:56 -0300
+Message-Id: <20250317120356.2195670-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,77 +90,47 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Commit ec956e2c6f4e ("dt-bindings: serial: snps-dw-apb-uart: Switch
-dma-names order") enforces "tx", "rx" ordering of DMA channels. Adhere
-to it to let the dtbs_check pass it. There is no ABI breakage because
-the Linux driver never expected a certain ordering and no other usage is
-known.
+From: Fabio Estevam <festevam@denx.de>
 
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+PCF2127 is an SPI device, thus its binding should reference
+spi-peripheral-props.yaml.
+
+Add a reference to spi-peripheral-props.yaml to fix the following
+dt-schema warning:
+
+imx7d-flex-concentrator.dtb: rtc@0: 'spi-max-frequency' does not match any of the regexes: 'pinctrl-[0-9]+'
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
- arch/arm/boot/dts/renesas/r9a06g032.dtsi | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+Changes since v2:
+- Specify that the dt-schema error comes from imx7d-flex-concentrator.dtb.
+- Write a more concise commit log.
 
-diff --git a/arch/arm/boot/dts/renesas/r9a06g032.dtsi b/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-index 7548291c8d7e..87e03446fb4d 100644
---- a/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-+++ b/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-@@ -211,8 +211,8 @@ uart3: serial@50000000 {
- 			reg-io-width = <4>;
- 			clocks = <&sysctrl R9A06G032_CLK_UART3>, <&sysctrl R9A06G032_HCLK_UART3>;
- 			clock-names = "baudclk", "apb_pclk";
--			dmas = <&dmamux 0 0 0 0 0 1>, <&dmamux 1 0 0 0 1 1>;
--			dma-names = "rx", "tx";
-+			dmas = <&dmamux 1 0 0 0 1 1>, <&dmamux 0 0 0 0 0 1>;
-+			dma-names = "tx", "rx";
- 			status = "disabled";
- 		};
+ Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+index 2d9fe5a75b06..11fcf0ca1ae0 100644
+--- a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
++++ b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+@@ -8,6 +8,7 @@ title: NXP PCF2127 Real Time Clock
  
-@@ -224,8 +224,8 @@ uart4: serial@50001000 {
- 			reg-io-width = <4>;
- 			clocks = <&sysctrl R9A06G032_CLK_UART4>, <&sysctrl R9A06G032_HCLK_UART4>;
- 			clock-names = "baudclk", "apb_pclk";
--			dmas = <&dmamux 2 0 0 0 2 1>, <&dmamux 3 0 0 0 3 1>;
--			dma-names = "rx", "tx";
-+			dmas = <&dmamux 3 0 0 0 3 1>, <&dmamux 2 0 0 0 2 1>;
-+			dma-names = "tx", "rx";
- 			status = "disabled";
- 		};
+ allOf:
+   - $ref: rtc.yaml#
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
  
-@@ -237,8 +237,8 @@ uart5: serial@50002000 {
- 			reg-io-width = <4>;
- 			clocks = <&sysctrl R9A06G032_CLK_UART5>, <&sysctrl R9A06G032_HCLK_UART5>;
- 			clock-names = "baudclk", "apb_pclk";
--			dmas = <&dmamux 4 0 0 0 4 1>, <&dmamux 5 0 0 0 5 1>;
--			dma-names = "rx", "tx";
-+			dmas = <&dmamux 5 0 0 0 5 1>, <&dmamux 4 0 0 0 4 1>;
-+			dma-names = "tx", "rx";
- 			status = "disabled";
- 		};
+ maintainers:
+   - Alexandre Belloni <alexandre.belloni@bootlin.com>
+@@ -34,7 +35,7 @@ required:
+   - compatible
+   - reg
  
-@@ -250,8 +250,8 @@ uart6: serial@50003000 {
- 			reg-io-width = <4>;
- 			clocks = <&sysctrl R9A06G032_CLK_UART6>, <&sysctrl R9A06G032_HCLK_UART6>;
- 			clock-names = "baudclk", "apb_pclk";
--			dmas = <&dmamux 6 0 0 0 6 1>, <&dmamux 7 0 0 0 7 1>;
--			dma-names = "rx", "tx";
-+			dmas = <&dmamux 7 0 0 0 7 1>, <&dmamux 6 0 0 0 6 1>;
-+			dma-names = "tx", "rx";
- 			status = "disabled";
- 		};
+-additionalProperties: false
++unevaluatedProperties: false
  
-@@ -263,8 +263,8 @@ uart7: serial@50004000 {
- 			reg-io-width = <4>;
- 			clocks = <&sysctrl R9A06G032_CLK_UART7>, <&sysctrl R9A06G032_HCLK_UART7>;
- 			clock-names = "baudclk", "apb_pclk";
--			dmas = <&dmamux 4 0 0 0 20 1>, <&dmamux 5 0 0 0 21 1>;
--			dma-names = "rx", "tx";
-+			dmas = <&dmamux 5 0 0 0 21 1>, <&dmamux 4 0 0 0 20 1>;
-+			dma-names = "tx", "rx";
- 			status = "disabled";
- 		};
- 
+ examples:
+   - |
 -- 
-2.47.2
+2.34.1
 
 
