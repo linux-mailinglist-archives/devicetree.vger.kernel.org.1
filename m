@@ -1,113 +1,111 @@
-Return-Path: <devicetree+bounces-157993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-157994-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 453ADA63E2A
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 05:27:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC47BA63E55
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 05:31:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A4E73A9D0E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 04:27:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2D103AD040
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 04:31:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80DD01B0F11;
-	Mon, 17 Mar 2025 04:27:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02AD016F288;
+	Mon, 17 Mar 2025 04:31:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BDdF4YCA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J2Duf+l9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14C4379D2;
-	Mon, 17 Mar 2025 04:27:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C729D10E4;
+	Mon, 17 Mar 2025 04:31:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742185628; cv=none; b=lTLit0xDfvLN88iCBccHzSRtrLM9E4pcyFsroYcCuxcLvv1wIWPhzclzMx+HnpDZYP9anmE3K5k11bojFUOtykcweXhkNER3itfMRq6nug7IYRRu5LHOKD0BZXmANWywyEl8vVp/rqLMcjA485cEunNlc8hUKHyCzYGI7RePS5U=
+	t=1742185904; cv=none; b=DXF8zn87D1hrBhrtE0BbGkRfSjTfBb3UIhaME7jWM5CQmVD5x8qL4Nz3mc/xWkppFnDPaLkznRPW4l0AVZdCgCaonAKMGCmvWMV9a8LgiS3/CiJtjxwMphc9+VnumYlUpI9fl9cahaAJiHSt1k/2LzlgBeUBWGNiE3d1v6Vbhz8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742185628; c=relaxed/simple;
-	bh=AgtBxj/n5u7Itf1qBybXgrDtPW1FAxI6g48lwbFGmgo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AdqME/nqHRsFyQLU30WOsz75dVMZ/t7xxBYuLDiNfUZPpjDKdODMFuStgGZ05yPWbPyjskIYjCxVKnaDAe9KxAgjSfAo5w3OPovpzFYfu8r9uYtD+XTdzqrafV8ZDsk9QjAQThaR2Bed6B4trgp0thMOTxCXGXjoa0jJsY4T0qs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BDdF4YCA; arc=none smtp.client-ip=209.85.216.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-2ff4a4f901fso2290740a91.2;
-        Sun, 16 Mar 2025 21:27:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742185625; x=1742790425; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AgtBxj/n5u7Itf1qBybXgrDtPW1FAxI6g48lwbFGmgo=;
-        b=BDdF4YCAx//adktHwe3nbBC9tn3GZQFIJSRgKWDnQClWifvuTcOYEKEa+azS9oWs+G
-         9+S2iGJ1l5uoUmbrn2cYINj2MuPqVpcvHsvDG2aKshhtv1WonbPa1JxfWNUNrAeT399R
-         aZXOsFyKGLiPIHI2HIXy6PAJLlFbSnt2ayBmH/nI1ZXcj7ehAKgRPPPnq5y/ZNcWsxIF
-         J9VbAJTcl4LAnJcvXlR1jl19HtwV5lmsj74Etd9PdGdcelMXpFsIhvUnCuXy8R+3t0aT
-         17Bf73sxpmAdiwUgpHiEnnh2hRqK+wCZoPwqx5UkbHBwr//IyFcWu7weert8gPTkWWg0
-         jREw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742185625; x=1742790425;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AgtBxj/n5u7Itf1qBybXgrDtPW1FAxI6g48lwbFGmgo=;
-        b=XAJoELvc4nLDhiH1JVGwy/JI50AICuUbRCRVjvN5w3D0WYyyBOS1PRcDns5IKRnI+a
-         C/kC8EMup2syuG6fDNVa0l+luz7MGjXlrDmTnvYRWDc9QvpTlDnJ6kFlMQ16IcTsNWD8
-         XgzLcqRkuG3u3SdS8wYy+fHrzdy8xoMHX4EhYdTKZ76eUf3qJCbKdJk7kjevX4nM7Ium
-         RGdUeIlQnOFD+VPkk6UmLfhvyKSO1d92xhgKudAP+y8YztruDc/ust0xWPqqvELDw1zL
-         Fz3dAYAVMrhczB4IDyY61za0qBINrhBoQ0KNK9IBG95C49vPy3PQknbM2XNnwzKpPto/
-         ma5A==
-X-Forwarded-Encrypted: i=1; AJvYcCUThfoRUoFECLclP38gn0jWKR/mKIHGUxk+mf6Z3iTezPOelsMCeEXnsWcL5Y7cgAa6DkT00wbir1Zc@vger.kernel.org, AJvYcCX04Dz4oqtWtvqViZu4vE6b1dJ5srpCEb0aBUsOqXGF0p2cAM58kO7iXvoBeZdF12siXQVHXrm2Qdsg0dH3@vger.kernel.org
-X-Gm-Message-State: AOJu0YxuJrOieHjsD5zZG8hmP0y3/2cKQQY07zaXCk1/hjkidjkSuoR4
-	2fMdckF6mtgSBW+TGmjzwe+ZxBIbndcuFFfv5O1Q6I2ej8CXxsS/v6Qjqclhmom5NptRW+JGpbt
-	ZDJmRKSdAp7vWG0ZyOfJzMxd3whM=
-X-Gm-Gg: ASbGnctYpUMOzi9NorI6QxNg2lepNbBZVBRYv2GOsuHowTk17nEGc9ZG96kQ2xJR65s
-	ma1VM5zngVRqENdl9m3OaRVVGV1I9WwtJIzGhM4Gawry7pgtFGFd+r1O7UVX6/32op9oJJNSp54
-	nhFy46J95Jzcysv4pZlLjaPJtoPss=
-X-Google-Smtp-Source: AGHT+IFyNG/dsUI+ZNZxH6N7qbP/lk6L75Yj4d83Rj08EmzIRycu9pH4DGPprCpXrJrf7PTggG7vaz1r82zS7GQ7rVk=
-X-Received: by 2002:a17:90b:1642:b0:2fe:994d:613b with SMTP id
- 98e67ed59e1d1-30151db9cd5mr13101676a91.35.1742185625064; Sun, 16 Mar 2025
- 21:27:05 -0700 (PDT)
+	s=arc-20240116; t=1742185904; c=relaxed/simple;
+	bh=Z0a2dhsGygTnIpjglItX4bKcLEMQVArwLyKFp0XhQ7I=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=RjLhBNAT/qMvAqJP/3VXIO+5tn8jeKue5vo1DPX1cIUSm8B0t3A6OXp4n267OKgoYDCesIypBkwjebtHt/okuvHomaZyivGECg6H7C2Ix/CYicW1rNHXL/SKBT60mqNvlAKJC8IkV5SSGrDjRirvMXobzjj6xXz6WkUPbf/K6gE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J2Duf+l9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B52AC4CEEC;
+	Mon, 17 Mar 2025 04:31:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742185904;
+	bh=Z0a2dhsGygTnIpjglItX4bKcLEMQVArwLyKFp0XhQ7I=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=J2Duf+l9JOfm66hAwT4GUElZZFPEiS5aUgZHtsKTCQxxJIYBZ8mmbA4euOKDQZm7d
+	 RujhJlwwh5UKJF1upR1yRrDlQ2eH7gzcXkoaNPO9gXQ4pq3NCNaxoeSppCdpm03CBK
+	 ksiJhW+a0Pw596ntBQRdv+xffFhcRmyYgdI8k9r016hyjuSEF9MkZyX3wQvDAwZe5Y
+	 t0Sg7NyZgFqgJTcg5NI/P+FSI9L7F+PoNxe8gQExzpaELQ/ZfPzrik7viwNv/nH/p0
+	 zOwYW3i3m52g+AEs2+GkBu5qo9fE8ttUPJ8rwXF2/lzz0Mq010mYiOT/purkAGt/2A
+	 UjsNYgBY5tG1A==
+Date: Sun, 16 Mar 2025 23:31:42 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241222002957.2582212-1-masahiroy@kernel.org> <CAK7LNATVrJLPQSCVTxKARm_4wk=Piem1ZHMA-8c8CfaZPs0H7Q@mail.gmail.com>
-In-Reply-To: <CAK7LNATVrJLPQSCVTxKARm_4wk=Piem1ZHMA-8c8CfaZPs0H7Q@mail.gmail.com>
-From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Mon, 17 Mar 2025 07:26:53 +0300
-X-Gm-Features: AQ5f1JruVnqdoDpIbkTEVdgv2q-Jd1nrTbkp8_d_-yN6ALX9eZvRWcJtS-P9b_s
-Message-ID: <CAMo8BfKgLgWiTVre_zSy3SMm-tJySgmJpVDphtE7C1kFZsuwZw@mail.gmail.com>
-Subject: Re: [PATCH] xtensa: migrate to the generic rule for built-in DTB
-To: Masahiro Yamada <masahiroy@kernel.org>
-Cc: Chris Zankel <chris@zankel.net>, linux-kernel@vger.kernel.org, 
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: kuba@kernel.org, krzk+dt@kernel.org, linux-kernel@vger.kernel.org, 
+ BMC-SW@aspeedtech.com, conor+dt@kernel.org, ratbert@faraday-tech.com, 
+ joel@jms.id.au, andrew@codeconstruct.com.au, devicetree@vger.kernel.org, 
+ pabeni@redhat.com, edumazet@google.com, netdev@vger.kernel.org, 
+ andrew+netdev@lunn.ch, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, davem@davemloft.net
+To: Jacky Chou <jacky_chou@aspeedtech.com>
+In-Reply-To: <20250317025922.1526937-4-jacky_chou@aspeedtech.com>
+References: <20250317025922.1526937-1-jacky_chou@aspeedtech.com>
+ <20250317025922.1526937-4-jacky_chou@aspeedtech.com>
+Message-Id: <174218590293.2844402.7312672269180234107.robh@kernel.org>
+Subject: Re: [net-next 3/4] dt-bindings: net: ftgmac100: add rgmii delay
+ properties
 
-On Sun, Mar 16, 2025 at 1:37=E2=80=AFPM Masahiro Yamada <masahiroy@kernel.o=
-rg> wrote:
->
-> On Sun, Dec 22, 2024 at 9:30=E2=80=AFAM Masahiro Yamada <masahiroy@kernel=
-.org> wrote:
-> >
-> > Commit 654102df2ac2 ("kbuild: add generic support for built-in boot
-> > DTBs") introduced generic support for built-in DTBs.
-> >
-> > Select GENERIC_BUILTIN_DTB to use the generic rule.
-> >
-> > To keep consistency across architectures, this commit also renames
-> > CONFIG_BUILTIN_DTB_SOURCE to CONFIG_BUILTIN_DTB_NAME.
-> >
-> > Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
->
-> Ping?
 
-Thanks, applied to my xtensa tree.
-Sorry for the delay.
+On Mon, 17 Mar 2025 10:59:21 +0800, Jacky Chou wrote:
+> Add tx-internal-delay-ps and rx-internal-delay-ps to
+> configure the RGMII delay for MAC. According to
+> ethernet-controller.yaml, they use for RGMII TX and RX delay.
+> 
+> In Aspeed desgin, the RGMII delay is a number of ps as unit to
+> set delay, do not use one ps as unit. The values are different
+> from each MAC. So, here describes the property values
+> as index to configure corresponding scu register.
+> 
+> Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
+> ---
+>  .../bindings/net/faraday,ftgmac100.yaml          | 16 +++++++++++++++-
+>  1 file changed, 15 insertions(+), 1 deletion(-)
+> 
 
--- Max
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml:71:8: [warning] wrong indentation: expected 6 but found 7 (indentation)
+./Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml:78:8: [warning] wrong indentation: expected 6 but found 7 (indentation)
+./Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml:119:7: [error] no new line character at the end of file (new-line-at-end-of-file)
+
+dtschema/dtc warnings/errors:
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250317025922.1526937-4-jacky_chou@aspeedtech.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
