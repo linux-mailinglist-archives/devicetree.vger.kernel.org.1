@@ -1,176 +1,136 @@
-Return-Path: <devicetree+bounces-158094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158095-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D99DBA648C7
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 11:08:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87294A648D2
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 11:09:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B8AA16C83F
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 10:08:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 332691883D55
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 10:09:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08FC2233127;
-	Mon, 17 Mar 2025 10:07:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="DEPD6TQb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E7DF233708;
+	Mon, 17 Mar 2025 10:08:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com [209.85.221.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC2B62222D5;
-	Mon, 17 Mar 2025 10:07:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FFA1231CAE;
+	Mon, 17 Mar 2025 10:08:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742206072; cv=none; b=ni4FNgQaCUCwDKLwaUJiQhO4AfZqruI6bVqg7Iym+5Pk2jholgvHc8Bz42am1Udvlhj5lD/iTNhM9sj73LInuTDfvBrtQi0bYMXRcMsVtMfTYOAmIhyTp96Y3rowXrcMWMkL8g3UtTiX/8/O1KDRVH39kn2LAzWGG4u1zF9etJs=
+	t=1742206117; cv=none; b=KOykb2Kr9dCU+HefuI9bllXEhO+L8CvTYOLipHHXC/1sUa1+8MjegfHzR7MWyxG/9mC9tkbHpL2F8gDIkBaZp6ch7/FD8E3e8oUmEV1Ew/pyNT7VPsE+Ve46fDibYrfctqi0FDK5n2X0/f+cOYZgvpdcylAygNZh0x8D+b4/QRU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742206072; c=relaxed/simple;
-	bh=8lS5hmgPL3TYuQclYZ9vfPxIWeswa/Pdrh0fXPBcwWA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Tsdy+YtYoysl3ZZo872lIwLWE+2VfoNELEocuYMS/FljPE0Sri7VrleogB+1h5eTwEzxNRiuJlZjG37okK2PW1gs0ir4h4WDvMSPBJ/PCWmbgdp4lHiNp1aZLvWsVsbqTtAOphAYzcCjMzcdvDrlcsDGdh3SroZZxE93Cv5IIq4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=DEPD6TQb; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1742206068;
-	bh=8lS5hmgPL3TYuQclYZ9vfPxIWeswa/Pdrh0fXPBcwWA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DEPD6TQb2muBQx4U2eHrGHZLYQx3/7kW6Fli7xueDlalRM/j9T8zhrj/vuRfyUy3B
-	 EW2VLZvytpoeGtcJkbhKJrPDlZ870TCWsvtom80M6Ai3BOkLBDUgnpnFnbpTYgP+s9
-	 x9vEqQWUyO+AwmMjAGX7hszhkKEI/ecu3gUrNtzZNWMrPXJEVz31GshUMquLPrQZYg
-	 3KSL9ajKzChu9PJGectraGgPEM9apNi6JuKASwlWkwBamNEVXRBvGwI2PEtBifXf0C
-	 EvKs962aMsWgUHm+2a7BQLFSImlkAjQG3x+YUtPKidztC2TUQVXHXMiJLcw1dAJSda
-	 1SfI6F9mH3nRg==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2619217E0385;
-	Mon, 17 Mar 2025 11:07:48 +0100 (CET)
-Message-ID: <375d5281-41f5-49e8-ac20-d58931c0c1f9@collabora.com>
-Date: Mon, 17 Mar 2025 11:07:47 +0100
+	s=arc-20240116; t=1742206117; c=relaxed/simple;
+	bh=LYQnVVghqHNBeBZC9M3qcSQzc999kxd9dUjJydn7Zzs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kn7zHJywVDPW8R/n+zcN7GioVgzu22IWME1bMWnlSXJHoCfCsxpDXPF9xvD/52rJ3LrjT5DbGSuCjkQB8f8pwId5bKAQOU+jNxS1Zhoagt00R9ZrsO5oiLdXSjfBvHeW46RT0kSaGgxWkKZFVlNGJicGvYkNCEFf4m4EQ6Q4BJY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-523f1b31cf8so1680433e0c.0;
+        Mon, 17 Mar 2025 03:08:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742206113; x=1742810913;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nV0APjSl3A+QsJgQqRhAxvwjeltjb78Ah9QdJdDOGkI=;
+        b=vYIL5iXMs59uI4v1sk9gCg3tRg2VXx1el+RO3A+SauUD/dJMdr+lU268aRGNuXDbQt
+         Y8UZk0ONjmCjt/p/ZkKLYIDPI/jB1MHX0ElW5U9lCaslfWZKXki8wWm7sTRWCoCfo5kP
+         rhxO/n1/81dL0IATbhrhRyP1vw3BThBPtnKdQFanNKat7pnlDe/aLFQlpJmIxx8WiQf7
+         48h7A4d22JVVpVjtEtH2vBdqqRDzkhUnFCoX9sDIpKm/zgap7qDUgCqMzX8QoSMrBM7J
+         T1ftPzLWBebUuOv/ELVAjszk3dQDJHxG0w/4ewjQvz+YKuJ77c7wsI9tRzWSGuJCObWZ
+         1KqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUFOsaGquIdxZTDkwavDFhc9BKuo+ER/u4vL7gczo+I6bTS+feGqhPbbm/54+DbDbxS9/TPOp2otEkl@vger.kernel.org, AJvYcCUv/4p3M7YXNbcP1BE4cbu+9GZ8OhBe7HcZC+u8Q9wd5OeAB9YZBuMxbckZfe8Ot0x3p9LsCU2mdnDeNsSu@vger.kernel.org, AJvYcCXXX9UoDbP7UcBk9lrrtvDPAIYO3bPQ8fzrkxdDVI813yLNuAxhTK7uZ/M82CK+nCbeG0ZBHBtA76yzPFdJGr4qPHg=@vger.kernel.org, AJvYcCXjdMlkm3wBLoItMsPl/w0LNHTJXz+Wg0DXvEaycP1t3zDBnOeSbZ4xhJjFvtZflg4KKUQ/lfy7OKjr@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy3ZmE10ODAD9WlyKNyf7jSGy6kKqYUnZgMOlfOKJ4Sb28am+9+
+	hctv91VJ/rnFpOXhdRcL8PP6InjLzTNSBEkOCZswH9ArncWL3iM3fM7uf6FT
+X-Gm-Gg: ASbGnctlRz4P3J+BgggOQJgxQYL8+XifuK57+dG/+AwH5NbeCDpzlmZl2fRmTFsKjWM
+	Z9QTu98hYqq2wD52ODV8HlXkE+aTzD6QiVMr8sNKr+aZKAzjyYTNxtmBdXqqYgcPN0WIUnmAvao
+	lC+6Hf/0S/8/CST2WZnV3rv58BVuiu0dGDs2wCnaE8W55CB7U//4q0vEkvZHGJbk6BhLigZH9g5
+	zXh4x+qTe3KBS0etDLKc/5DUvoBBZMRp9MqfvqDkXHvl0YymTnE6NH9V2vgpHo2zSvfsBkxHIjN
+	ZrVFr1ktLA/RCRZMEAWlMIC8Hrf1XvMKmoMi1FGbGSBnC6MRjliMVpzW427yQa+G4XnaxnBEQM7
+	wZvFIo80=
+X-Google-Smtp-Source: AGHT+IFN+LqCGUuC3TWRqYuo4aCnCNZO3sAsS8uQsurlmemoSaLoPVKu1He9xV9RB8djRMfvcrG5fA==
+X-Received: by 2002:a05:6122:3d13:b0:520:42d3:91c1 with SMTP id 71dfb90a1353d-52449a48ccdmr5687552e0c.10.1742206112800;
+        Mon, 17 Mar 2025 03:08:32 -0700 (PDT)
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5243a581473sm1548661e0c.3.2025.03.17.03.08.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Mar 2025 03:08:32 -0700 (PDT)
+Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-86b68e51af4so1603642241.1;
+        Mon, 17 Mar 2025 03:08:32 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUgCQpKjgdkaV8d1Tl5XwnUwN7p5u979l59bB/HZHDu307NdJGDhA8caLajA79PQiO+U5lx3WQjPEbVEZJ6NVJ/80o=@vger.kernel.org, AJvYcCWSKu3hRUsUi6ygWJEPNjONENakq0aj+P0lnxWNz6g+rylP14J7mEE0dPd+SPUVMeB+oSLYM4HbdpqB7nN4@vger.kernel.org, AJvYcCWT6mVDlOrgURUag2WDpjfrcxeYVFYULTIh3se0sxowgCAvXxM/jFfcZUsW+q8Hq8IkUBMwzS14etvE@vger.kernel.org, AJvYcCX7lGqVcPxfZJ3tXy7S+CtPNE/aKIaGWiMmxv0Fbs35YyqQOMva9C39Fh6u8gNDUbE9qFSA/diE25ad@vger.kernel.org
+X-Received: by 2002:a05:6102:3c96:b0:4b1:1eb5:8ee3 with SMTP id
+ ada2fe7eead31-4c38322a633mr7665016137.22.1742206112108; Mon, 17 Mar 2025
+ 03:08:32 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v2 0/3] add VCP mailbox and IPC driver
-To: Jjian Zhou <jjian.zhou@mediatek.com>,
- Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com,
- Chen-Yu Tsai <wenst@chromium.org>
-References: <20250317083822.891-1-jjian.zhou@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250317083822.891-1-jjian.zhou@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250317083213.371614-1-tommaso.merciai.xr@bp.renesas.com> <20250317083213.371614-2-tommaso.merciai.xr@bp.renesas.com>
+In-Reply-To: <20250317083213.371614-2-tommaso.merciai.xr@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 17 Mar 2025 11:08:19 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdV4SyviVU0+WhgFD_vCO43BQ31tx8az-JihWDAB9EJS+g@mail.gmail.com>
+X-Gm-Features: AQ5f1JpGenG55qVJIf1KTw9AQgufZanrRWkQNAtQMcFuCWyLnmEnMBpT-qpGwzw
+Message-ID: <CAMuHMdV4SyviVU0+WhgFD_vCO43BQ31tx8az-JihWDAB9EJS+g@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: clock: renesas: Fix description section
+To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org, 
+	biju.das.jz@bp.renesas.com, Pavel Machek <pavel@denx.de>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Il 17/03/25 09:38, Jjian Zhou ha scritto:
-> The VCP mailbox has 5 groups. Each group has corresponding interrupts,
-> registers, and 64 slots (each slot is 4 bytes). Since different features
-> share one of the mailbox groups, the VCP mailbox needs to establish a
-> send table and a receive table. The send table is used to record the
-> feature ID, mailbox ID, and the number of slots occupied. The receive table
-> is used to record the feature ID, mailbox ID, the number of slots occupied,
-> and the receive options. The API setup_mbox_table in mtk-vcp-ipc.c calculates
-> the slot offset and pin index for each feature ID based on the mailbox ID and
-> slot number in the send and receive tables (several slots form a pin, and
-> each pin can trigger an interrupt). These descriptions are written in the
-> mtk-vcp-ipc.c file -- we call it the IPC layer.
-> 
-> We have two questions:
-> How should we describe the mailbox and IPI?
-> Can the intermediate IPC layer be rewritten as a virtual mailbox layer?
-> 
+Hi Tommaso,
 
-So, for this remote processor messaging system you have:
-  - Dynamic channel allocation
-    - Each channel has its own endpoint
-    - Each channel has its own interrupt
-  - Data send operation
-    - Both with and without ACK indication from the remote processor
-    - To channel -> endpoint
-  - Data receive operation
-    - From channel <- endpoint
-    - When interrupt fires
-    - Could use polling to avoid blocking in a few cases
-  - A custom message structure not adhering to any standard
+On Mon, 17 Mar 2025 at 09:32, Tommaso Merciai
+<tommaso.merciai.xr@bp.renesas.com> wrote:
+> Remove not needed "and" into description section.
+>
+> Reported-by: Pavel Machek <pavel@denx.de>
+> Closes: https://lore.kernel.org/cip-dev/Z9P%2F51qOlq2B46FK@duo.ucw.cz/
+> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
 
-Check drivers/rpmsg/ :-)
+Thanks for your patch!
 
-On MediaTek platforms, there are many IPI to handle in many subsystems for
-all of the remote processors that are integrated in the SoC and, at this
-point, you might as well just aggregate all of the inter processor communication
-stuff in one place, having an API that is made just exactly for that, instead
-of keeping to duplicate the IPI stuff over and over (and yes I know that for each
-remote processor the TX/RX is slightly different).
+> --- a/Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.yaml
+> +++ b/Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.yaml
+> @@ -12,7 +12,7 @@ maintainers:
+>  description:
+>    On Renesas RZ/{G3E,V2H(P)} SoCs, the CPG (Clock Pulse Generator) handles
+>    generation and control of clock signals for the IP modules, generation and
+> -  control of resets, and control over booting, low power consumption and power
+> +  control of resets, control over booting, low power consumption and power
+>    supply domains.
+>
+>  properties:
 
-If you aggregate the IPI messaging in one place, maintenance is going to be easier,
-and we stop getting duplication... more or less like it was done with the mtk_scp
-IPI and mtk-vcodec .. and that's also something that is partially handled as RPMSG
-because, well, it is a remote processor messaging driver.
+I think the original is fine.  When emphasizing the structure:
 
-Just to make people understand *how heavily* MediaTek SoCs rely on IPI, there's
-a *partial* list of SoC IPs that use IPI communcation:
+    The CPG handles:
+      A. generation and control of clock signals for the IP modules,
+      B. generation and control of resets, and
+      C. control over booting, low power consumption and power supply domains.
 
-thermal, ccu, ccd, tinysys, vcp, atsp, sspm, slbc, mcupm, npu, mvpu, aps, mdla,
-qos, audio, cm_mgr.... and... again, it's a partial list!
+i.e. the "and" is part of the typical "A, B, and C" construct?
 
-That said... any other opinion from anyone else?
+Gr{oetje,eeting}s,
 
-Cheers,
-Angelo
+                        Geert
 
-> Example of send and recve table:
-> Operation | mbox_id | ipi_id | msg_size | align_size | slot_ofs | pin_index |  notes
-> send          0          0       18          18           0          0
-> recv          0          1       18          18          18          9
-> send          1         15        8           8           0          0
-> send          1         16       18          18           8          4
-> send          1          9        2           2          26         13
-> recv          1         15        8           8          28         14       ack of send ipi_id=15
-> recv          1         17       18          18          36         18
-> recv          1         10        2           2          54         27       ack of send ipi_id=2
-> send          2         11       18          18           0          0
-> send          2          2        2           2          18          9
-> send          2          3        3           4          20         10
-> send          2         32        2           2          24         12
-> recv          2         12       18          18          26         13
-> recv          2          5        1           2          44         22
-> recv          2          2        1           2          46         23
-> 
-> Recv ipi_id=2 is the ack of send ipi_id=2(The ipi_id=15 is the same.)
-> 
-> Jjian Zhou (3):
->    mailbox: mediatek: Add mtk-vcp-mailbox driver
->    firmware: mediatek: Add vcp ipc protocol interface
->    dt-bindings: mailbox: mtk,vcp-mbox: add mtk vcp-mbox document
-> 
->   .../bindings/mailbox/mtk,mt8196-vcp-mbox.yaml |  49 ++
->   drivers/firmware/Kconfig                      |   9 +
->   drivers/firmware/Makefile                     |   1 +
->   drivers/firmware/mtk-vcp-ipc.c                | 481 ++++++++++++++++++
->   drivers/mailbox/Kconfig                       |   9 +
->   drivers/mailbox/Makefile                      |   2 +
->   drivers/mailbox/mtk-vcp-mailbox.c             | 179 +++++++
->   include/linux/firmware/mediatek/mtk-vcp-ipc.h | 151 ++++++
->   include/linux/mailbox/mtk-vcp-mailbox.h       |  34 ++
->   9 files changed, 915 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/mailbox/mtk,mt8196-vcp-mbox.yaml
->   create mode 100644 drivers/firmware/mtk-vcp-ipc.c
->   create mode 100644 drivers/mailbox/mtk-vcp-mailbox.c
->   create mode 100644 include/linux/firmware/mediatek/mtk-vcp-ipc.h
->   create mode 100644 include/linux/mailbox/mtk-vcp-mailbox.h
-> 
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
