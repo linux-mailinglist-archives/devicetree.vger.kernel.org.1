@@ -1,100 +1,63 @@
-Return-Path: <devicetree+bounces-158146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9BB9A64CDC
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:36:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D214DA64CE7
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:38:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27BB91892087
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 11:36:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CBEF43B24F8
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 11:38:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D96F923643E;
-	Mon, 17 Mar 2025 11:35:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Z92P8Xu/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23FAC2356C1;
+	Mon, 17 Mar 2025 11:38:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D2A02356AF
-	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 11:35:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98EB4199E8D;
+	Mon, 17 Mar 2025 11:38:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742211355; cv=none; b=A0JfqwCHIzmZFe6SYmjeb7RiKpETRx1t2P+gnPJhEqWPUPLjE+1kTueq3SNLSAkqbMc+LqmFxgSktYBZPxWKF2tXOg4Lbl+i7lQ5jz/TRHYMWt63VIfQrnzBHNpl7V8llI4XUaq9ZHYvP+uuaVStfllCKC1y524qxbzriw5UpNg=
+	t=1742211491; cv=none; b=sMAPg6Ng4yx/Kb8jj6OZMkdnPCvvLTgF4MbAplLq2iN1mdlZOEBzRlxXXp7pWrTWHEgK7F3m3bPbuYS9gBSoTkwcfoM+tLW5KVuAXXEJHJ9hx8CfVUr1VymAnSGKt45OMNxLd+csk53BlCVUquG9lOiVGP1hvtrdpmscXPCgmI0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742211355; c=relaxed/simple;
-	bh=RM2aWheGFTEiP5CencPK+KRuBgC9sTlR8heuyxHCrx8=;
+	s=arc-20240116; t=1742211491; c=relaxed/simple;
+	bh=EqvvYmOyfgYejPEXBf8UIa6m1QV3pZwmCtppfI9ul+c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dlfADm19DSuTqi/tj+tcPTt3tF214HENUPT/+Fe3YKzuEXwo3ifw7bDMrke6N8DpCF6gEkkIomRB7jdKcMKb9lMs/DGm+QL61Tw+ipv3F5YVKjCLuLIcmaIp3ExIiFP6Yt7KTEB5Bn8H0W4axj01Nks+K9KMulUQT6IyhWFmerc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Z92P8Xu/; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52HAmvwj006562
-	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 11:35:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=ZKjBKi4N44vAWb7GaOsiz8am
-	NoXoDaSs3Gdz1ZC6mk0=; b=Z92P8Xu/uUWgz1M8Mm+EKfY25Dk8/dqDgJdYUIU/
-	a78MfeEK2LcdozmC8YJX3KAlAzl6P5KK8R3umbTkfT8tUHIpm7P7NRPtgvUMOLSx
-	C36dnBRX9ZjVrHr39gCCHc6N4Nh4Hnx+2lbZati741Bp+L5zWbpcifERb/YGpP4M
-	ym04+KlV2FmNdjsFrERZL3cGMtUWhpkDUFJWj0Za9N6G6Cy9RnJFn30DFT68zqd6
-	a3C86V/CJ/6Ci5CwaISDiq4CVOc8jPB01spRvs1g9qfoFlNSQrsV6wpzRCrZG1Bs
-	JG/icjxdr6zmWo1LB0Hh274MQ+NB/Bw8bKR7bEUGLoquVw==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45d1sxvgw9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 11:35:52 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6e8ec18a29aso55439046d6.2
-        for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 04:35:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742211352; x=1742816152;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZKjBKi4N44vAWb7GaOsiz8amNoXoDaSs3Gdz1ZC6mk0=;
-        b=SiF+MvoldePnuWUoziiIQq8h7wvmtt4TgZjZg6oHmYeVBWEuMElrCSJic+lgEe3JZn
-         xB/XYw6Bx4zCyKcJh5VHKXM/x3xQb/WTT0YQFpYeLOSUfz8l7EZ9XH3yh+uSottFCpxJ
-         Sp+Y24nykTJBUje8mmz/mTn4weYB8l8QG2WtQ0k3E5nELaPGVenFLTu6uZKIkgksXvbi
-         yAsoJqhECuhlVpsUExS7J65G8lG2o/H9habdDu12ReSEFT984Lkp4sbIXhry7iRcQ/TR
-         ap4W7uAOkvyPjW6D0Ozp9ZLV1jpVnUU/XqaYZa+VnOKDet6X4wu3a7DrM16/QYSLqhbX
-         tfkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWORUzFIcqCCjKmgxtd7pV1NdybDEJUpLNMVEMWfVvWAWQYdRAQ/HucHVN7L3Htk9vKW8DC+3lWO1BW@vger.kernel.org
-X-Gm-Message-State: AOJu0YxkhVa9MjhgmO5e8iyu4LD2k4R8xFmmaOUujiCtHS3RuOxLBQ7V
-	R+AtdiwRDgRhjDrOW2xm5VQeJQpAp5/bUQii/g6mXcMapwU0UgHqKvl2Cl6ZbLZx7RnxoZM/dL1
-	PBR+nEMhfr5Bnpri7VdaQI9owW/7xK0BOBFVREBePVxIlrMET1cSNI4XWxn1gEcZLZX0L
-X-Gm-Gg: ASbGnctXf14Tl6yHWmRWPtNO3gmUrpXK3pONx6hMqeOCNKByYj3cKtox+dOEdtsyS/P
-	Jj1H4bmquAYVbA9xzr1CRfOOQGLVjuqIkfcc2ufhFR13Wpxx73EUezOXbI2OC0wel5qQtpqjQIP
-	Y+wmEk5pG+gTyzeDN05d+Ib8lYZII1EzTw09CjZoDXW8e20fRH7isNVMYqFce6Rj7TXrUq/4S5Y
-	fvsFv883E2NImOrMX3UGsxMnZf35zL8OxOmQ8FCpIznBv4prySJxmLaKs0Osi8P5hko+NJVTMzK
-	XRCLGsresEkB7OJQ4mO9Q9od+aPTFH1UIEjH3r4ECqtk48P6oqX2VP01HMo2Aer+xUIw4r6oRVa
-	ZI1E=
-X-Received: by 2002:a05:6214:ca3:b0:6ea:d604:9e49 with SMTP id 6a1803df08f44-6eaeaaaa3d0mr166856746d6.34.1742211351672;
-        Mon, 17 Mar 2025 04:35:51 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGi7u1+6oOF6kRLSdXuOdhvUJZuTnvRZ0dzc49rlKpl+4woAu16VtEh7LEFMuGygqkOmGokNA==
-X-Received: by 2002:a05:6214:ca3:b0:6ea:d604:9e49 with SMTP id 6a1803df08f44-6eaeaaaa3d0mr166856416d6.34.1742211351325;
-        Mon, 17 Mar 2025 04:35:51 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-549ba7a85c7sm1324137e87.6.2025.03.17.04.35.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Mar 2025 04:35:49 -0700 (PDT)
-Date: Mon, 17 Mar 2025 13:35:46 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Taniya Das <quic_tdas@quicinc.com>,
-        Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: qcm6490-idp: Update protected clocks
- list
-Message-ID: <wfk3eskuh5is7vo25iovr3fi3s7txw7td26gjgddvcyvrvc3gc@jkxrqgeun27f>
-References: <20250206-protected_clock_qcm6490-v1-1-5923e8c47ab5@quicinc.com>
- <174218015889.1913428.6253597207467825890.b4-ty@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=HkipM+JPb4dnbep4o0FHJOALbRPH4YCY2TAx8pk0bah+XOQxMZn5Qwqn8UhI/Nktf9D4OYchDbCs+tZZeH8Jvz/ytevutzKVXJgT50B/ki4htYoWVqXpAhOOdqEfNTpg/4ZyOss6/pT8AXK2YruEbXcbXMz5uCJ8q7Z+0BUyhcU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8DB3413D5;
+	Mon, 17 Mar 2025 04:38:16 -0700 (PDT)
+Received: from J2N7QTR9R3.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4BECB3F694;
+	Mon, 17 Mar 2025 04:38:00 -0700 (PDT)
+Date: Mon, 17 Mar 2025 11:37:57 +0000
+From: Mark Rutland <mark.rutland@arm.com>
+To: Roman Kisel <romank@linux.microsoft.com>
+Cc: arnd@arndb.de, bhelgaas@google.com, bp@alien8.de,
+	catalin.marinas@arm.com, conor+dt@kernel.org,
+	dan.carpenter@linaro.org, dave.hansen@linux.intel.com,
+	decui@microsoft.com, haiyangz@microsoft.com, hpa@zytor.com,
+	joey.gouly@arm.com, krzk+dt@kernel.org, kw@linux.com,
+	kys@microsoft.com, lenb@kernel.org, lpieralisi@kernel.org,
+	manivannan.sadhasivam@linaro.org, maz@kernel.org, mingo@redhat.com,
+	oliver.upton@linux.dev, rafael@kernel.org, robh@kernel.org,
+	ssengar@linux.microsoft.com, sudeep.holla@arm.com,
+	suzuki.poulose@arm.com, tglx@linutronix.de, wei.liu@kernel.org,
+	will@kernel.org, yuzenghui@huawei.com, devicetree@vger.kernel.org,
+	kvmarm@lists.linux.dev, linux-acpi@vger.kernel.org,
+	linux-arch@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-hyperv@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, x86@kernel.org, apais@microsoft.com,
+	benhill@microsoft.com, bperkins@microsoft.com,
+	sunilmut@microsoft.com
+Subject: Re: [PATCH hyperv-next v6 02/11] arm64: hyperv: Use SMCCC to detect
+ hypervisor presence
+Message-ID: <Z9gJlQgV3hm1kxY0@J2N7QTR9R3.cambridge.arm.com>
+References: <20250315001931.631210-1-romank@linux.microsoft.com>
+ <20250315001931.631210-3-romank@linux.microsoft.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,41 +66,111 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <174218015889.1913428.6253597207467825890.b4-ty@kernel.org>
-X-Proofpoint-GUID: ACCOXBbZNPtqWoMq_sAJGyOOpbrGu5lV
-X-Proofpoint-ORIG-GUID: ACCOXBbZNPtqWoMq_sAJGyOOpbrGu5lV
-X-Authority-Analysis: v=2.4 cv=XKcwSRhE c=1 sm=1 tr=0 ts=67d80919 cx=c_pps a=wEM5vcRIz55oU/E2lInRtA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=OCxXj6oIJvzydDHKYDcA:9 a=CjuIK1q_8ugA:10 a=OIgjcC2v60KrkQgK7BGD:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-17_04,2025-03-17_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- mlxlogscore=771 priorityscore=1501 clxscore=1015 phishscore=0
- impostorscore=0 adultscore=0 mlxscore=0 malwarescore=0 suspectscore=0
- spamscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503170085
+In-Reply-To: <20250315001931.631210-3-romank@linux.microsoft.com>
 
-On Sun, Mar 16, 2025 at 09:55:57PM -0500, Bjorn Andersson wrote:
+On Fri, Mar 14, 2025 at 05:19:22PM -0700, Roman Kisel wrote:
+> The arm64 Hyper-V startup path relies on ACPI to detect
+> running under a Hyper-V compatible hypervisor. That
+> doesn't work on non-ACPI systems.
 > 
-> On Thu, 06 Feb 2025 15:43:21 +0530, Taniya Das wrote:
-> > Certain clocks are not accessible on QCM6490-IDP board,
-> > thus mark them as protected.
-> > 
-> > 
+> Hoist the ACPI detection logic into a separate function. Then
+> use the vendor-specific hypervisor service call (implemented
+> recently in Hyper-V) via SMCCC in the non-ACPI case.
 > 
-> Applied, thanks!
+> Signed-off-by: Roman Kisel <romank@linux.microsoft.com>
+> Reviewed-by: Michael Kelley <mhklinux@outlook.com>
+> ---
+>  arch/arm64/hyperv/mshyperv.c | 43 +++++++++++++++++++++++++++++++-----
+>  1 file changed, 38 insertions(+), 5 deletions(-)
 > 
-> [1/1] arm64: dts: qcom: qcm6490-idp: Update protected clocks list
->       commit: d40da533a701ef9e22f89e5ceee1ab48150daa30
+> diff --git a/arch/arm64/hyperv/mshyperv.c b/arch/arm64/hyperv/mshyperv.c
+> index 2265ea5ce5ad..c5b03d3af7c5 100644
+> --- a/arch/arm64/hyperv/mshyperv.c
+> +++ b/arch/arm64/hyperv/mshyperv.c
+> @@ -27,6 +27,41 @@ int hv_get_hypervisor_version(union hv_hypervisor_version_info *info)
+>  	return 0;
+>  }
+>  
+> +static bool __init hyperv_detect_via_acpi(void)
+> +{
+> +	if (acpi_disabled)
+> +		return false;
+> +#if IS_ENABLED(CONFIG_ACPI)
+> +	/*
+> +	 * Hypervisor ID is only available in ACPI v6+, and the
+> +	 * structure layout was extended in v6 to accommodate that
+> +	 * new field.
+> +	 *
+> +	 * At the very minimum, this check makes sure not to read
+> +	 * past the FADT structure.
+> +	 *
+> +	 * It is also needed to catch running in some unknown
+> +	 * non-Hyper-V environment that has ACPI 5.x or less.
+> +	 * In such a case, it can't be Hyper-V.
+> +	 */
+> +	if (acpi_gbl_FADT.header.revision < 6)
+> +		return false;
+> +	return strncmp((char *)&acpi_gbl_FADT.hypervisor_id, "MsHyperV", 8) == 0;
+> +#else
+> +	return false;
+> +#endif
+> +}
+> +
 
-I thought that you wrote that the list of clocks is incorrect...
+The 'acpi_disabled' variable doesn't exist for !CONFIG_ACPI, so its use
+prior to the ifdeffery looks misplaced.
 
-> 
-> Best regards,
+Usual codestyle is to avoid ifdeffery if possible, using IS_ENABLED().
+Otherwise, use a stub, e.g.
+
+| #ifdef CONFIG_ACPI
+| static bool __init hyperv_detect_via_acpi(void)
+| {
+| 	if (acpi_disabled)
+| 		return false;
+| 	
+| 	if (acpi_gbl_FADT.header.revision < 6)
+| 		return false;
+| 	
+| 	return strncmp((char *)&acpi_gbl_FADT.hypervisor_id, "MsHyperV", 8) == 0;
+| }
+| #else
+| static inline bool hyperv_detect_via_acpi(void) { return false; }
+| #endif
+
+Mark.
+
+> +static bool __init hyperv_detect_via_smccc(void)
+> +{
+> +	uuid_t hyperv_uuid = UUID_INIT(
+> +		0x4d32ba58, 0x4764, 0xcd24,
+> +		0x75, 0x6c, 0xef, 0x8e,
+> +		0x24, 0x70, 0x59, 0x16);
+> +
+> +	return arm_smccc_hyp_present(&hyperv_uuid);
+> +}
+> +
+>  static int __init hyperv_init(void)
+>  {
+>  	struct hv_get_vp_registers_output	result;
+> @@ -35,13 +70,11 @@ static int __init hyperv_init(void)
+>  
+>  	/*
+>  	 * Allow for a kernel built with CONFIG_HYPERV to be running in
+> -	 * a non-Hyper-V environment, including on DT instead of ACPI.
+> +	 * a non-Hyper-V environment.
+> +	 *
+>  	 * In such cases, do nothing and return success.
+>  	 */
+> -	if (acpi_disabled)
+> -		return 0;
+> -
+> -	if (strncmp((char *)&acpi_gbl_FADT.hypervisor_id, "MsHyperV", 8))
+> +	if (!hyperv_detect_via_acpi() && !hyperv_detect_via_smccc())
+>  		return 0;
+>  
+>  	/* Setup the guest ID */
 > -- 
-> Bjorn Andersson <andersson@kernel.org>
-
--- 
-With best wishes
-Dmitry
+> 2.43.0
+> 
 
