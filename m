@@ -1,214 +1,103 @@
-Return-Path: <devicetree+bounces-158193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E4BEA65142
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 14:35:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAE56A6515D
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 14:38:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A16C16296A
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 13:35:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 269383A9277
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 13:35:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82AD123F43C;
-	Mon, 17 Mar 2025 13:33:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B31C23F41E;
+	Mon, 17 Mar 2025 13:34:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZmZkDjPk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3A9A23E23D
-	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 13:33:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF96A23F38C;
+	Mon, 17 Mar 2025 13:34:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742218413; cv=none; b=JT4FRUlp8cTlDP7ciDTLIxM7ZR6AeBG9I4NP/fbU/IQB7cVKcTWtms1YUu+Pk4wcZmQyIc3wA82+YYx1uo7W9aMdMuoMRvYvj8rD0D/Zvzcgs5l9K37EzP5U1QjypVoYtsrZPulufmU9KECB4gF8wUV8n5ECg1uIKHVFfJR6Bgk=
+	t=1742218486; cv=none; b=BJ0WcXXr7HwhTgjUFUejLWBl31+CklUCfC13igpifhRaHE9pG7avHhRWsIs9XyEFyRg+P+Z2TB832C1HkBvLpTfNjPGSwp8lw9JOUoszmoTAsH/m+bvptdl7CHJF+tW74aVLIlrk3wI+yn8eUKaSwU8FW7GR28DJtgrgUe8R+68=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742218413; c=relaxed/simple;
-	bh=Nhvl1hkVuUNCJNWAlMRfusF3yQwYAOCztI6veKGFT08=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oW1uXqIJ9DmwNDITzMhiK+3fF9LDJeeHJUmttwJ/9yHLYv2GVQKdLZIenCHPECvzTCwu1/4BUmJpC++dtwMBNOz8f9T+dAIxzewkEtmuPNiBCf9Obj7KQ4zbBUgmYfzCchTZeRdOTrrQHfR6PIaa5yzF9n0+YRswTKlWCCmAdek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1tuAac-0005B1-71; Mon, 17 Mar 2025 14:33:10 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1tuAab-000GCH-04;
-	Mon, 17 Mar 2025 14:33:09 +0100
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1tuAab-001CaR-0t;
-	Mon, 17 Mar 2025 14:33:09 +0100
-Date: Mon, 17 Mar 2025 14:33:09 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Donald Hunter <donald.hunter@gmail.com>,
-	Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	Simon Horman <horms@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-doc@vger.kernel.org,
-	Kyle Swenson <kyle.swenson@est.tech>,
-	Dent Project <dentproject@linuxfoundation.org>,
-	kernel@pengutronix.de,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v6 11/12] net: pse-pd: tps23881: Add support for
- static port priority feature
-Message-ID: <Z9gklcNz6wHU9cPC@pengutronix.de>
-References: <20250304-feature_poe_port_prio-v6-0-3dc0c5ebaf32@bootlin.com>
- <20250304-feature_poe_port_prio-v6-11-3dc0c5ebaf32@bootlin.com>
+	s=arc-20240116; t=1742218486; c=relaxed/simple;
+	bh=VJ+Z1kfUBwbn40YbG9rlTaU9zO9y3+iqV9Uwb36hGeo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lFd0/TMGcDqzLXoINaxUNgnnT92vex2uIbtrzJe5vUZ27l9rwXpEfyCXE5B2CVKjvM6omcObhuqS0ANGY7XfdSyNh5D5u4pWFlP/7zbJPSzrqBQwJYij5IoqIRdf+dU9alSaZeiBpQWA4PWcr7MZtEhK0MnyvU9q0aeI1DlCeTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZmZkDjPk; arc=none smtp.client-ip=209.85.216.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-2ff6e91cff5so2789928a91.2;
+        Mon, 17 Mar 2025 06:34:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742218484; x=1742823284; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VJ+Z1kfUBwbn40YbG9rlTaU9zO9y3+iqV9Uwb36hGeo=;
+        b=ZmZkDjPkopKv0M4o0wCt7DCGYFW+3YO/9CAlXiKXrJTkgP0R2hUyfqxOPPcul3AaTz
+         8z9oM6qgJ9GWodVo4EzFATvHKXqB+7nX/JhKWcmaPl2u5tK/laahyxJi4TrzwqztVnBx
+         /XeaoncjG/ovgwWAwpNFYqxYEcg/HPnE+zGiyLm8TXjw5y+TMSWzqNaOaIXXNQnhkwxv
+         UvPJAgu9MtZcjiutEZbf/LzM5GET8tlW6D//qPpJEY5DlL2JLW2f11uVmAsXunho0kHf
+         BZd8+h4sUl3FLtxRd5CSEQved8dKPxwVDsXSX1E3IHB+Iuz+CBqAgz6v1XGt6sXXIxzk
+         Ethg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742218484; x=1742823284;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VJ+Z1kfUBwbn40YbG9rlTaU9zO9y3+iqV9Uwb36hGeo=;
+        b=cQg0HkY6m8dRSIsToTBm3kuh0VhOdk3q19G2FQ7ni3McqWDw8gxJFo/KrqCG/sZ3qf
+         WfUniNiHdFt1rRfyfvmbDyoaVhndfEenlG/tc4duclzJVrc8gP/TBMNfhD6aUOFA/SsF
+         7U0xUkEPUX7xpRdcuae1KpSy2xTSo9zsN9mWBLIxBPPrQC6dmcj7SoKv00en0DLRIWzX
+         PpElq7SLR6CCBGOyzOGyArAvPw7v396X0flOcn0z5bTCBO+2DYhppYgKXKPplhw9W5Ap
+         /KKjVV8aR4rplkC0R93+uJzxvezLR/XSp1/6j/VwYiP65f893cX6nomcCa91J3fJchCG
+         XCNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVYv/+/1Qos/0HBDv2hn7iYse8eA7iii0AbXDGf/f9YN9rIDdy2m10s3/ynetVqMqbWRquRGxZNpnM6@vger.kernel.org, AJvYcCW6/Og13+nOSTH9/S5xFDW4xEwn44F8HJpPZxN5Ixj+aCs6qwcNL8Oy1PDmwxELaGZHtuZ9iKh/1Oh9DITj@vger.kernel.org
+X-Gm-Message-State: AOJu0YxBl4Uq1rnOAv9gpEsPPsHHD/cHd7lv6o+nVwIEzuMtOg2W/wPq
+	vYsBxPNXwI6NhYg4NSEeW0JmmWcov7oqkoRECSwL0zRUvdMhJuUHMmlNCtyyDIGcj1qXEzHpCSP
+	i6IrEJzRPcEX3o0pkSZt6RK5zDQE=
+X-Gm-Gg: ASbGnctUb8mTbN344O8eVA9Y5296tZfajt7Km4aJwdrZQDOIK4wXjTcMbGAbYNSK8Hw
+	K/X0GmljA9rxyCE7kbovIDw8VXJ3/aqfmcmN24J8PNH6gBxjkR6TzxLteUvzlRQjx+iYZzhzkt6
+	eBQtHjDPWaTYw6YbYbqwJQjzk=
+X-Google-Smtp-Source: AGHT+IEeqZ0cJAHn3Brc0MOsXlDdCz7IeLznbTYmwKzft6JI2zwV4TEg69VCl0Ay05c5C9QobxSkS+DMqCY1QxY4NlY=
+X-Received: by 2002:a17:90b:3b46:b0:2ea:3f34:f18f with SMTP id
+ 98e67ed59e1d1-30151ca0bf3mr14263755a91.19.1742218484066; Mon, 17 Mar 2025
+ 06:34:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250304-feature_poe_port_prio-v6-11-3dc0c5ebaf32@bootlin.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20250317111853.43708-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250317111853.43708-1-krzysztof.kozlowski@linaro.org>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Mon, 17 Mar 2025 15:36:17 +0200
+X-Gm-Features: AQ5f1JoJB5F4azgy82hI2MMZ6wYjl0ACVtNOlaZnQbewllSkYy5wctWQcui4Ius
+Message-ID: <CAEnQRZBorgPS+P8Yt8irKm=CTpbY3hUdkSpOK5if5xaTpzikuQ@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: nxp: Align NAND controller node name with bindings
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Mar 04, 2025 at 11:19:00AM +0100, Kory Maincent wrote:
-> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
-> 
-> This patch enhances PSE callbacks by introducing support for the static
-> port priority feature. It extends interrupt management to handle and report
-> detection, classification, and disconnection events. Additionally, it
-> introduces the pi_get_pw_req() callback, which provides information about
-> the power requested by the Powered Devices.
-> 
-> Interrupt support is essential for the proper functioning of the TPS23881
-> controller. Without it, after a power-on (PWON), the controller will
-> no longer perform detection and classification. This could lead to
-> potential hazards, such as connecting a non-PoE device after a PoE device,
-> which might result in magic smoke.
-> 
-> Signed-off-by: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
-> ---
-> 
-> We may need a fix for the interrupt support in old version of Linux.
-> 
-> Change in v4:
-> - Fix variable type nit.
-> 
-> Change in v3:
-> - New patch
-> ---
->  drivers/net/pse-pd/tps23881.c | 204 +++++++++++++++++++++++++++++++++++++++---
->  1 file changed, 194 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/net/pse-pd/tps23881.c b/drivers/net/pse-pd/tps23881.c
-> index 1226667192977..6012c58b47e8a 100644
-> --- a/drivers/net/pse-pd/tps23881.c
-> +++ b/drivers/net/pse-pd/tps23881.c
-> @@ -19,20 +19,30 @@
->  
->  #define TPS23881_REG_IT		0x0
->  #define TPS23881_REG_IT_MASK	0x1
-> +#define TPS23881_REG_IT_DISF	BIT(2)
-> +#define TPS23881_REG_IT_DETC	BIT(3)
-> +#define TPS23881_REG_IT_CLASC	BIT(4)
->  #define TPS23881_REG_IT_IFAULT	BIT(5)
->  #define TPS23881_REG_IT_SUPF	BIT(7)
-> +#define TPS23881_REG_DET_EVENT	0x5
->  #define TPS23881_REG_FAULT	0x7
->  #define TPS23881_REG_SUPF_EVENT	0xb
->  #define TPS23881_REG_TSD	BIT(7)
-> +#define TPS23881_REG_DISC	0xc
->  #define TPS23881_REG_PW_STATUS	0x10
->  #define TPS23881_REG_OP_MODE	0x12
-> +#define TPS23881_REG_DISC_EN	0x13
->  #define TPS23881_OP_MODE_SEMIAUTO	0xaaaa
->  #define TPS23881_REG_DIS_EN	0x13
->  #define TPS23881_REG_DET_CLA_EN	0x14
->  #define TPS23881_REG_GEN_MASK	0x17
-> +#define TPS23881_REG_CLCHE	BIT(2)
-> +#define TPS23881_REG_DECHE	BIT(3)
->  #define TPS23881_REG_NBITACC	BIT(5)
->  #define TPS23881_REG_INTEN	BIT(7)
->  #define TPS23881_REG_PW_EN	0x19
-> +#define TPS23881_REG_RESET	0x1a
-> +#define TPS23881_REG_CLRAIN	BIT(7)
->  #define TPS23881_REG_2PAIR_POL1	0x1e
->  #define TPS23881_REG_PORT_MAP	0x26
->  #define TPS23881_REG_PORT_POWER	0x29
-> @@ -177,6 +187,7 @@ static int tps23881_pi_enable(struct pse_controller_dev *pcdev, int id)
->  	struct i2c_client *client = priv->client;
->  	u8 chan;
->  	u16 val;
-> +	int ret;
->  
->  	if (id >= TPS23881_MAX_CHANS)
->  		return -ERANGE;
-> @@ -190,7 +201,22 @@ static int tps23881_pi_enable(struct pse_controller_dev *pcdev, int id)
->  				       BIT(chan % 4));
->  	}
->  
-> -	return i2c_smbus_write_word_data(client, TPS23881_REG_PW_EN, val);
-> +	ret = i2c_smbus_write_word_data(client, TPS23881_REG_PW_EN, val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Enable DC disconnect*/
-> +	chan = priv->port[id].chan[0];
-> +	ret = i2c_smbus_read_word_data(client, TPS23881_REG_DISC_EN);
-> +	if (ret < 0)
-> +		return ret;
+On Mon, Mar 17, 2025 at 1:19=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> Bindings expect NAND controller device nodes to be named
+> "nand-controller".
+>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Here we have RMW operation without lock on two paths: pi_enable and
-pi_disable.
-
-> +	val = tps23881_set_val(ret, chan, 0, BIT(chan % 4), BIT(chan % 4));
-> +	ret = i2c_smbus_write_word_data(client, TPS23881_REG_DISC_EN, val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
->  }
->  
->  static int tps23881_pi_disable(struct pse_controller_dev *pcdev, int id)
-> @@ -223,6 +249,17 @@ static int tps23881_pi_disable(struct pse_controller_dev *pcdev, int id)
->  	 */
->  	mdelay(5);
->  
-> +	/* Disable DC disconnect*/
-> +	chan = priv->port[id].chan[0];
-> +	ret = i2c_smbus_read_word_data(client, TPS23881_REG_DISC_EN);
-> +	if (ret < 0)
-> +		return ret;
-
-dito
-
-> +	val = tps23881_set_val(ret, chan, 0, 0, BIT(chan % 4));
-> +	ret = i2c_smbus_write_word_data(client, TPS23881_REG_DISC_EN, val);
-> +	if (ret)
-> +		return ret;
-> +
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
 
