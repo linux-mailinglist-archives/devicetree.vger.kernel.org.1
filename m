@@ -1,198 +1,149 @@
-Return-Path: <devicetree+bounces-158380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB748A65FC2
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 21:54:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3F09A66045
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 22:13:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B26883A8B5C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 20:53:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC47F3B25C9
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 21:13:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B1241F6664;
-	Mon, 17 Mar 2025 20:53:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D673D1F6664;
+	Mon, 17 Mar 2025 21:13:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ufn9d1OB"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="YvBgPm8a";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="VC3oWJl8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fhigh-a2-smtp.messagingengine.com (fhigh-a2-smtp.messagingengine.com [103.168.172.153])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7267B1FAA;
-	Mon, 17 Mar 2025 20:53:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F02A223AD;
+	Mon, 17 Mar 2025 21:13:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.153
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742244839; cv=none; b=slVTJJGiyRembXW4ukZFdiZPee94i8BfeAzS+J4zLwws02rtLCiTW0F1I/PmtQHFxVgZpGdCQQj1i68N8s4JYUWKyDV8xU8iD86y+V88DKaBCW2qFLmiWh3lYD70OxXSXCKa0chY0xF71ZxCyHju57bt3/AFq0CLX/agFDjKHYc=
+	t=1742246012; cv=none; b=KAw+9CvpV/h0z+d0RsGgf9QtsBKW91kBPjmAxtts1SJ07BuqA5m0Tz9jtvVS3P+2p5dg3fluosx7m+8wR7GIC/hBZEMNkIuIg1urKmqf7QPUb3p9BIdXB+sv0kXzaPzy3utrwXofq45kSf4McH6pArHYEy5r0kTAYTlK+SZIUt4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742244839; c=relaxed/simple;
-	bh=KlI3weZmMb7UBcc+vTrqmuuAvlDYDnoUkXYCOoZl4aM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bmSQCQng7uJRO72Rfxo1trpO8Q2BeZsKMWn0+mi+OdCNRzXDzQtIRRERigxYvVpustP8JpbJfGcNL33ToeOxQHV/sqXfhIljEN6/unIi1BcgY40GQVbfAdDly1+9RI3ZSY4ZiQkJsjljRRCLBK4FDOcwKLm4Hk3iYDqC0jD6nf8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ufn9d1OB; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-30c416cdcc0so48430781fa.2;
-        Mon, 17 Mar 2025 13:53:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742244835; x=1742849635; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KlI3weZmMb7UBcc+vTrqmuuAvlDYDnoUkXYCOoZl4aM=;
-        b=Ufn9d1OByJqsR1K4V+L+nFS08Q1v2SIqNfMtPOoAcI3ZOb0AbWiLcjbBC4JFGpD7dS
-         hrc+Vn/6LVVottLFX5tTz3ihU00mVcFu7uMBvtXvDrRvmiAEe3D7mEPbRAtD0JsFJDly
-         aJDFlYWaboGmB5kNOOKggeWjpJ8UXgfauWuFGIuRokT1FZzmKjNGnoWk/sVnT98RkcpV
-         HcLFI3T1ezS8sNAiN5IhFcN2HYU8JbIdUTZhvKlKgHtlUBPZY2krSlBVOnDoe5eMbogz
-         n2uWL8UuULDkA10HLMCsrv5pUCwrYijLERGi6IJYPD7aac8xoa7ZakkFvKgAkRqq9Pt6
-         EqxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742244835; x=1742849635;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KlI3weZmMb7UBcc+vTrqmuuAvlDYDnoUkXYCOoZl4aM=;
-        b=Hiv8U+UqNppmYP5Q9cyqab2KoySmhgtf5FRFMKu9UbA978QrOzqKhtsh/veHjhMAOD
-         UWquH5ZrFJO45zr/LjVMH6BIwzvfIBPGfP8IWKdS2oK8AFDIXjQMhqBBT9GTH3sZqlxW
-         KS53OgLHBhoKSthVyVuQs0ELDunl4UCZ4CepoFdNRS4GGintv3EgxWbQs54naxeMNoo4
-         f/itD58BysHPFoDlERrkYe6ZDvdAkPSmAC3Aj9t8wor48m85KGEiUjkBJCxaxImdTgb5
-         uebLvR7XB6Y2xmOhsVfn02/3M5p5xIRVy2rPKV9nt8+xEdQ34GuXhI7oZmDLMp5CWd9i
-         6V5A==
-X-Forwarded-Encrypted: i=1; AJvYcCU4/kUZct4UaCXp+L/M2sNbrjYXZhQtP2VlbKX3KLXr4ZzIUR2zvGVAf6T7wPV6WUNsDZdY1eigtmTw8cfnL9BA@vger.kernel.org, AJvYcCV6yNb9hOD/ZhWr5Xdzkl7UHlvcqFY4Za20AmHPIBEg3zNsEm5XnW34TWULq/lZVQzloM25Z0oTPwW4Eb8=@vger.kernel.org, AJvYcCVF4iSEFS8KIM7q+tMmcqDLlO4SoQHEN8RnkW0dMvkX7mzdZu3YduUMuaq9hulKzEzj7K6F+/w09qQT@vger.kernel.org, AJvYcCW63aASKSF1kXpv6xU+9XtgPkZabsM7OuMWeb1qy7sQC1tGwgqf7EFuRv7VhTvSQpwE/kXx0wIG7r9/NUKW@vger.kernel.org, AJvYcCW69W5CJxlSTG20ZD1b8Ss7+1I8IwCaAMDksCzsdC2edlnkOUS+XWOR21nZFocRmUvv+BhT8mtnFtObpvwq8mY=@vger.kernel.org, AJvYcCXOo95WiPci5LNjLC804n7TBh575HDWYLBfFuM3J75+2CnYbEUfzIpPd9C/coRZ67jRkLUoa7i+Ub8Mdcdu@vger.kernel.org, AJvYcCXP4J+X4ihHgYbDW71wYKeqTNeekbsfagyM3AkyP+I0ooqojCwWemsVqqAHNLSthpVEgCd4owDstWCK@vger.kernel.org
-X-Gm-Message-State: AOJu0YyBoMQSmsvqBW2Z4ri/8K43rkTVA2wVvhSmZwEx20JhaBgCxIz5
-	JSu+wYbVXH1f+nbfbYsN5MLWysIdUGy0MlGOvdITn9AVRMAtNVXKu8m6zgzBor6W983DQW4dnAs
-	n7YXKA7gzgv2Ahm4klQFrkvknx5A=
-X-Gm-Gg: ASbGncs+Zl4MPDbGyC2cghmsd/DSoVQBg54cNiH6lxSo3sGd1hqvP3gEFJtBbSxC60g
-	Nt6WK+GEUaZ89aPmwLgCoUE/wXNIQql/X3BqXGyNhkmkxu9pFjqTZl4D2C6zomZKbDx8PesEBCX
-	Mu7xLDStIIreCtrmKpZNS5oqn5TZOffoVXLTkwS7a6tifMejov6pyGTOc6rz/17H2c31Ve+w==
-X-Google-Smtp-Source: AGHT+IFPg2CilyC/yRn0FqNWWjlhR/i+eybYliH+QEy5P4t2b2uIP11qVzrcsdZpGtSt6sSQUzlmAvaXay9DTPUjtbQ=
-X-Received: by 2002:a2e:a542:0:b0:30b:9813:b00e with SMTP id
- 38308e7fff4ca-30c4a8d8bbfmr98452891fa.24.1742244835176; Mon, 17 Mar 2025
- 13:53:55 -0700 (PDT)
+	s=arc-20240116; t=1742246012; c=relaxed/simple;
+	bh=yYOd3jMreLhh96SHlZjP/An9FJpVwIyNal1m2L4/Dsw=;
+	h=MIME-Version:Date:From:To:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=XAgRgasuUW9Iq7D4LknIuUgWVDW3fuIGUqk5cEfdnHgjuRedlA34zCi6cPBDBAASxOGIicMsY5a1g+iY5ZCW3d4jFiR5xMqI6TAb1cFgEJrCu565AjvcvSBoBtwkPnX2vMBNqViB/Wj93Tuh5IHPiY5SK7KSIp8pwK4pzwcOLk8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=YvBgPm8a; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=VC3oWJl8; arc=none smtp.client-ip=103.168.172.153
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-07.internal (phl-compute-07.phl.internal [10.202.2.47])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id D6139114013B;
+	Mon, 17 Mar 2025 17:13:28 -0400 (EDT)
+Received: from phl-imap-11 ([10.202.2.101])
+  by phl-compute-07.internal (MEProxy); Mon, 17 Mar 2025 17:13:28 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:content-transfer-encoding:content-type:content-type:date:date
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1742246008;
+	 x=1742332408; bh=csQL3jgaHqAa0cerUaY+ms6uzsjDBQaO5zpY9KxUV1k=; b=
+	YvBgPm8atMAF2SFjAC8MaOiBXyOl99RxIhsRfKDs+4A9unKivIAttUeS5ZBpxVB3
+	2rphVMQL0ahKdbnYXA0MpUuG9jpdyYBo73hSgbbZw4hc7VBgz0UZl7F/ML0PlMuy
+	bOCptRX/GlkCMradLGPhDicQPnfVO2dJh2GGvbv9kmddMStkO8TYr2mPe5nygFfk
+	FECA/vTiJTJ7MshvSisaBixph3F2kc9N1DDZDM/YAVh0NRywSCgO3F3sZ8HySIEJ
+	sQCUOXnc+y6iqOTE7I5XhKwIjeWaDIJl9/EVD+zAIr1p2pjeV+AiFKi+hKH4fq6C
+	5xpc5xVQskwoCayI6DtCaQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:content-transfer-encoding:content-type
+	:content-type:date:date:feedback-id:feedback-id:from:from
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
+	:x-me-sender:x-sasl-enc; s=fm1; t=1742246008; x=1742332408; bh=c
+	sQL3jgaHqAa0cerUaY+ms6uzsjDBQaO5zpY9KxUV1k=; b=VC3oWJl84/YL/xcgF
+	D89ia5ggLY5bbm/WCxrQlQntKtEwPHlFuwowku/i9OqDVT0T9Nnv4yRh6sQbZlO8
+	IvV4obaXfYlz18kNr1PLRwS/8rCWThbdYX6FVIgvBPd9v4abQSLhqYRCB8iMPY6W
+	ZOzV9O3A3wKUJG17dh53rF383QxVeRXozrlAv1EUxVePlrda+6CS4XL5MoteGSvy
+	oVHkWdfwDq0sm2mK2G0RYT3QgodULFWeZMIRsXFU9ZvVMrj1wTcmkyLNcFqCztOW
+	/F7M1riwcgTyRHh+TrHuVEKKjB4m+dH5wkctNOA7B3m7QGEcJ2l6VKrh0YH0+37M
+	oBzCg==
+X-ME-Sender: <xms:eJDYZ1QVqaNepJ1B77Br42ie11iYONF-jRA6FeTy9qIPDikZXlKwYA>
+    <xme:eJDYZ-yojWEPZTUzqMFG-DZNOGuO1IweLSP-mqnXv4qVf1yW382-bx2x2yuDhz_4S
+    y34QzFRLFHPwbDTqc8>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddugedtheekucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
+    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
+    gvnhhtshculddquddttddmnecujfgurhepofggfffhvffkjghfufgtgfesthejredtredt
+    tdenucfhrhhomhepfdetrhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusg
+    druggvqeenucggtffrrghtthgvrhhnpefhkeeltdfffefhgffhteetheeuhffgteeghfdt
+    ueefudeuleetgfehtdejieffhfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmh
+    epmhgrihhlfhhrohhmpegrrhhnugesrghrnhgusgdruggvpdhnsggprhgtphhtthhopedu
+    uddpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepghhithesrghmugdrtghomhdprh
+    gtphhtthhopehnrghvrgdrkhhishhhohhrvgdrmhgrnhhnvgesrghmugdrtghomhdprhgt
+    phhtthhopehsrghrrghvrghnrghksehgohhoghhlvgdrtghomhdprhgtphhtthhopehhrg
+    hordifuhesihhnthgvlhdrtghomhdprhgtphhtthhopeihihhluhhnrdiguhesihhnthgv
+    lhdrtghomhdprhgtphhtthhopehmughfsehkvghrnhgvlhdrohhrghdprhgtphhtthhope
+    hrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthhrihigsehrvgguhhgrthdr
+    tghomhdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdroh
+    hrgh
+X-ME-Proxy: <xmx:eJDYZ61MBShKX2Iv-ezs1q8gd8IxzWSTK7jwk40j5meGeoPlffuUbA>
+    <xmx:eJDYZ9B_hMc-2x3cktxAsp8T0C8bXo1-7u2SGOSzJ9wQFu9dk8ccqw>
+    <xmx:eJDYZ-gPQ26HVxKbIZ5y0xBS-p0EhNvegAxg3frAhzQmBBlvYLjAvw>
+    <xmx:eJDYZxrSno14T-SlBEklpuubFC4n5QdWx86pOPmN1GE914Jq4IcHpA>
+    <xmx:eJDYZzZsrUolXAqhUDIqZE4gAToEKkk5e_Cnyp2H0vsc6FmGsCDH49WV>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 557B72220072; Mon, 17 Mar 2025 17:13:28 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250317-ptr-as-ptr-v5-6-5b5f21fa230a@gmail.com>
- <67d85e51.050a0220.2a36b.58b3@mx.google.com> <CAJ-ks9kBp8zPfaQuZRb0Unms1b13hDb5cRypceO8TWFR0Ty5Ww@mail.gmail.com>
- <67d864b2.0c0a0220.39fb6f.4df4@mx.google.com> <CAJ-ks9n8mwt5q9unqfkfSHj9=ELJHtqsXM-xQ8jsbXeJX6Uyfg@mail.gmail.com>
- <67d8671d.050a0220.3305ab.6372@mx.google.com> <CAJ-ks9=uHjJrzM0ruvm4v4wr8LygRMP-1orWBy_9OiNNeQr0ow@mail.gmail.com>
- <CAJ-ks9=Qcmvbm=YGJ=jrX_+YdMsftk=FAimszYZB1OUuV4diZw@mail.gmail.com>
- <67d885ff.0c0a0220.111215.5644@mx.google.com> <CAJ-ks9kYB1b4XsQcFb=NScPq+R+13U+Sv-6opi-yp6=ZjuLD_g@mail.gmail.com>
- <67d88a1d.050a0220.2cdacf.4adf@mx.google.com>
-In-Reply-To: <67d88a1d.050a0220.2cdacf.4adf@mx.google.com>
-From: Tamir Duberstein <tamird@gmail.com>
-Date: Mon, 17 Mar 2025 16:53:18 -0400
-X-Gm-Features: AQ5f1JrMBr2j1yxvBGKk80_vMPrae0IAXWwy2F6-hv3iWV_T28Ww6wllNGvSvf8
-Message-ID: <CAJ-ks9kg4Br=56HT7T5sWpoMKhRqT_2x+cpQAWoyrEG3qyqQ6Q@mail.gmail.com>
-Subject: Re: [PATCH v5 6/6] rust: use strict provenance APIs
-To: Boqun Feng <boqun.feng@gmail.com>
-Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
-	Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, 
-	Alex Gaynor <alex.gaynor@gmail.com>, Gary Guo <gary@garyguo.net>, 
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
-	Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Brendan Higgins <brendan.higgins@linux.dev>, 
-	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, 
-	Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, linux-kbuild@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
-	linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
-	linux-pci@vger.kernel.org, linux-block@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Date: Mon, 17 Mar 2025 22:12:46 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Nava kishore Manne" <nava.kishore.manne@amd.com>, git@amd.com,
+ mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
+ "Tom Rix" <trix@redhat.com>, "Rob Herring" <robh@kernel.org>,
+ "Saravana Kannan" <saravanak@google.com>, linux-kernel@vger.kernel.org,
+ linux-fpga@vger.kernel.org, devicetree@vger.kernel.org
+Message-Id: <7f818704-d40c-42da-b2c5-942d31e1d9dc@app.fastmail.com>
+In-Reply-To: <20241029091734.3288005-2-nava.kishore.manne@amd.com>
+References: <20241029091734.3288005-1-nava.kishore.manne@amd.com>
+ <20241029091734.3288005-2-nava.kishore.manne@amd.com>
+Subject: Re: [RFC v2 1/1] fpga-region: Add generic IOCTL interface for runtime FPGA
+ programming
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 
-On Mon, Mar 17, 2025 at 4:46=E2=80=AFPM Boqun Feng <boqun.feng@gmail.com> w=
-rote:
->
-> On Mon, Mar 17, 2025 at 04:35:42PM -0400, Tamir Duberstein wrote:
-> > On Mon, Mar 17, 2025 at 4:28=E2=80=AFPM Boqun Feng <boqun.feng@gmail.co=
-m> wrote:
-> > >
-> > > On Mon, Mar 17, 2025 at 03:05:45PM -0400, Tamir Duberstein wrote:
-> > > > On Mon, Mar 17, 2025 at 2:50=E2=80=AFPM Tamir Duberstein <tamird@gm=
-ail.com> wrote:
-> > > > >
-> > > > > On Mon, Mar 17, 2025 at 2:17=E2=80=AFPM Boqun Feng <boqun.feng@gm=
-ail.com> wrote:
-> > > > > >
-> > > > > > Then we should fix clippy or how we set msrv rather adding the =
-stub.
-> > > > > > @Miguel?
-> > > > >
-> > > > > I filed https://github.com/rust-lang/rust-clippy/issues/14425.
-> > > >
-> > > > I don't think we can wait for that to be fixed, though. Usually cli=
-ppy
-> > > > is distributed with rustc via rustup, so even if this is eventually
-> > > > fixed, all versions between 1.84.0 and the fix will need this
-> > > > workaround until MSRV is >=3D 1.84.0.
-> > >
-> > > We need to take one step back to evalute this "workaround".
-> > >
-> > > First, expose_provenance() and with_exposed_provenance{,_mut}() API a=
-re
-> > > clearly defined as equavilent to `as` operation [1]. Therefore, the
-> > > changes in this patch doing the conversion with expose_provenance() a=
-nd
-> > > with_exposed_provenance{,_mut}() don't change anything related to
-> > > provenance in practice.
-> > >
-> > > I do agree we want to use the explicit provenance API, but I don't th=
-ink
-> > > we want to introduce some API that we know we will change them latter
-> > > when we bump the rustc minimal version. So the question is: are these
-> > > stubs what we want even though in the future our minimal rustc versio=
-n
-> > > stablizes provenance API? If not, then the cost of this patch cannot
-> > > justify its benefits IMO.
-> > >
-> > > Now let's also look into why we choose a msrv for clippy, I would gue=
-ss
-> > > it's because we need to support all the versions of rustc starting at
-> > > 1.78 and we want clippy to report a problem based on 1.78 even though
-> > > we're using a higher version of rustc. But for this particular case, =
-we
-> > > use a feature that has already been stablized in a higher version of
-> > > rustc, which means the problem reported by clippy doesn't help us, no=
-r
-> > > does it provide better code. Frankly speaking, I think we have other
-> > > ways to ensure the support of all rustc versions without a msrv for
-> > > clippy. If I was to choose, I would simply drop the msrv. But maybe I=
-'m
-> > > missing something.
-> > >
-> > > The point is tools should help us to write good and maintainable code=
-,
-> > > we shouldn't introduce complicated structure of code just because som=
-e
-> > > tools fail to do its job.
-> > >
-> > > [1]: https://doc.rust-lang.org/std/ptr/fn.with_exposed_provenance_mut=
-.html
-> >
-> > Even if we globally disable this clippy lint, we still need stubs
-> > because exposed_provenance was added in 1.79.0. Did your suggestion
-> > address this? Perhaps I missed it.
->
-> No, I didn't.
->
-> That's a separate topic though, because I can see the argument that:
-> because with_exposed_provenance() is a function rather than a method, it
-> won't be very benefical to use ptr::with_exposed_provenance() instead of
-> kernel::with_exposed_provenance(), therefor these stubs of
-> exposed_provenance make sense to exist. But I don't think the same
-> argument works for ptr::{with_,map_,}addr().
+> + * FPGA Region Control IOCTLs.
+> + */
+> +#define FPGA_REGION_MAGIC	'f'
+> +#define FPGA_IOW(num, dtype)	_IOW(FPGA_REGION_MAGIC, num, dtype)
+> +#define FPGA_IOR(num, dtype)	_IOR(FPGA_REGION_MAGIC, num, dtype)
+> +
+> +#define FPGA_REGION_IOCTL_LOAD		FPGA_IOW(0, __u32)
+> +#define FPGA_REGION_IOCTL_REMOVE        FPGA_IOW(1, __u32)
+> +#define FPGA_REGION_IOCTL_STATUS        FPGA_IOR(2, __u32)
 
-What about `pointer::expose_provenance`? It's a method that was added in 1.=
-79.0.
+The definition does not appear to match the usage in the driver,
+since you don't pass a __u32 structure but instead a 
+fpga_region_config_info.
 
-We can certainly disable the clippy lint rather than add stubs for
-`pointer::{with_,map_,}addr`, but it doesn't bring us to a solution
-where only free functions require stubs.
+Please also remove the extra FPGA_IOW/FPGA_IOR macros and just use
+_IOW/IOR directly so it is possible to process the headers when
+identifying ioctl command codes.
+
+The 'f' range seems to be rather overloaded already with filesystem
+ioctls:
+
+'f'   00-1F  linux/ext2_fs.h                                         conflict!
+'f'   00-1F  linux/ext3_fs.h                                         conflict!
+'f'   00-0F  fs/jfs/jfs_dinode.h                                     conflict!
+'f'   00-0F  fs/ext4/ext4.h                                          conflict!
+'f'   00-0F  linux/fs.h                                              conflict!
+'f'   00-0F  fs/ocfs2/ocfs2_fs.h                                     conflict!
+
+In particular, the numbers you have defined are very similar to these:
+some of these:
+
+#define FS_IOC_GETFLAGS                 _IOR('f', 1, long)
+#define FS_IOC_SETFLAGS                 _IOW('f', 2, long)
+
+      Arnd
 
