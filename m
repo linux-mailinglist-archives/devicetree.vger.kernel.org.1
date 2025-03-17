@@ -1,89 +1,84 @@
-Return-Path: <devicetree+bounces-158013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE5FDA640A0
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 07:05:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FB44A640ED
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 07:11:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00A5B188E574
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 06:06:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EC551890FAF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 06:11:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40BB0215047;
-	Mon, 17 Mar 2025 06:05:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C447D21505B;
+	Mon, 17 Mar 2025 06:11:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EFsN35dg"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ip5x1pup"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B79CC2E3373
-	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 06:05:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDA742E3373;
+	Mon, 17 Mar 2025 06:11:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742191548; cv=none; b=Jixfbbiu3Y7e3oXgLrWwexYeejDU9+uwCFaJBSad5wXsDVazeXJ6fvflQTwPAvexLLhPBEyE+pStBv+Kh40gOAFA6rNoLcN7mPALdpvV4qnmNUw3JrO7ATpKeExZbNgQh8W0RdyfKdZZ7J8m9E+YcVDiwcFRDycT4OLw4dwKtHY=
+	t=1742191874; cv=none; b=W0Cnv10NJB4W957ZY69QeBkpU68+/Kpk3ryUk5hHoA62wRA7vLgm+Yx62J1tBvG/Bm2GhbQ4sKUZM4eCGihpfV4G/h6acU6Kbt4tZZyDRIlFea8QYQNg5IVKY5xMIjaBbyI6D9IITZmHYE7F9BTXY3ACdBjzoUIe46wIk5WYumA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742191548; c=relaxed/simple;
-	bh=G2vibGduTBb4ht3i3PKQRMy9Dmd98eR9I1FTyOeaPLU=;
+	s=arc-20240116; t=1742191874; c=relaxed/simple;
+	bh=+tBBYItJdAy1jBxiRg9TNMg0rDp98e+DU7O+7VJg1Ck=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Mtd33SvKwmKyceVu22KRsdPIynOo3M4cpu80O00qy9/cSSHlow4cD5AxdZnsvx91SARsEhVuEQreK2hRByDSzuNGF1UeL+F5l1y72CY6S4/ahPe6bAWWpVyjaklel/3uPetUuzc4x1emA86K7e0cIvQrIuf/NqkerKfio8n4gDs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EFsN35dg; arc=none smtp.client-ip=209.85.216.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-2ff65d88103so2626864a91.2
-        for <devicetree@vger.kernel.org>; Sun, 16 Mar 2025 23:05:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742191546; x=1742796346; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=upw8uAtsaSrMPnUE86VOFztOWYUwfbafLAIdnBxyqLs=;
-        b=EFsN35dgnr2o6vUSJkigYRiHu36/zDmuPUW6p9L//TW+DNHwwmZiBtIrPLdRwl8lZH
-         v/wHjpxKOrJFCXJK71CYifHA1biWDfrxqLwC3od8LBX/3F6BbBtmd38eGzETqwT16vp+
-         imoRg11Z9M1EETvCQWyvYJE2puBUtMPhNAeMzn+1p+KWXKcI5lvX6GZreSJNOIkb/rrY
-         XbUhyUfrWamlF3EpF0iuVx9zxcHQA+p9+P2P2D4RbkNAaB17Di3nd01QAgwnYMpOREpw
-         mJQCo2qUVHxUZGD07XqCPX0cTo8nXcN593uQluW+rfHj0r7Qw0lgHuVSuylVVZ/BzYgx
-         VV/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742191546; x=1742796346;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=upw8uAtsaSrMPnUE86VOFztOWYUwfbafLAIdnBxyqLs=;
-        b=co5MWIN46KTODVNqlzG/SYSC51VT+A2Wki1Zsfy9Heuo44k9K1EGRBrQFjzA3NtJiv
-         Me8nMMnIasduDVWOzmThJ+FPklNh339EKnG8J0MTvok24evq5pSCo7OxOvZ1x41385AM
-         GrAAvveeM2scVLm6BP0PmjIeSCqO2IUj/Zm2EA993aW+eCrlyLM7sUf3/EAlk16Y87gU
-         45DUY6Leyo3U8PHWy/d+Vz+Vj3O7msRZf4D8775CISja+5XiteWBnjxzOSN9wwc4N/Jl
-         ETRjo2TCaJjGm/+saqJ6murShdK99UNkleGau/VYM5yohavoqnw+Ktm+CG+pFK6PKByk
-         fBjw==
-X-Forwarded-Encrypted: i=1; AJvYcCXyimJ1iDvzd4ESJ+1E79IVcNnMT2V7EtM4ukDzgfmbeWs7JxPjb5AokzwnIVbeXSWZFoNL4Scvznyd@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzq2HFNv53MkMMJztV8yUqgINIsWZ+1TkKVpC6CxIZHHuzyKxUh
-	My884Hx9IFMo8D5UIskj1NuwSx9rsdulVYF/dEP37lvJpNDSUbJOCZXJWyBjYi0=
-X-Gm-Gg: ASbGncuIymIRwX84+uYg8FLR+iHHztHE2wdzIxGNDFDTM490awBocOm+HFtJrU0FAvK
-	3pUiaJcchqLF8qw6tjnXXJy4Twz4pxUwpZ+w006cjwKyQhsRw97SyXdUV0TSzjtQH3vXPp6IUzZ
-	cUbiLUBOlORQOxeJNpVN6D+uzI4SrHI8W42TQpYyXyvD6cOXMSWAeRB4BghGAhg9ThHmKpDFynZ
-	50LSc+zZVVSUn1uLDZ2Zh5KsEhIS+WrJ7/JpUT1/Eoku1+EXFZxv/I9HWJ+GomDgBYPYYxufhfR
-	kA1nKsmqDOhg/uz81UUdWvcZWpL+S1FC5jFu1+WUYrVr5Q==
-X-Google-Smtp-Source: AGHT+IFtexjCDcyLpMQ7w8Tna8IXMKgR/Z0hgY4wOijyqJA7aak89tOVwk16u6S1c8FJcbWL2KbxKQ==
-X-Received: by 2002:a05:6a21:6191:b0:1f5:7862:7f3a with SMTP id adf61e73a8af0-1f5c121e71cmr16343310637.14.1742191546167;
-        Sun, 16 Mar 2025 23:05:46 -0700 (PDT)
-Received: from localhost ([122.172.84.15])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7371152948fsm6985187b3a.16.2025.03.16.23.05.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 16 Mar 2025 23:05:45 -0700 (PDT)
-Date: Mon, 17 Mar 2025 11:35:43 +0530
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Konrad Dybcio <konradybcio@kernel.org>, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] dt-bindings: cpufreq: cpufreq-qcom-hw: Few
- improvements
-Message-ID: <20250317060543.ebqshqxngd4mhrcf@vireshk-i7>
-References: <20250313-dt-bindings-cpufreq-qcom-epss-v1-0-62b0f96ba888@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=RfnY6KAJN7ftEyANo9gpNNvELAU2IM4PyJ7bHe2JUC3NW2oEC4wQjAI1rL9g9sCaLu4m0BwiJlzi34d2GeXdrn8XGX/tPBHa3nlNCY59j12eXubJkonPE9/uPS2lYiRyYknWmAso/2EfwYbXqVVMLs+4yiXPXcU/AbJkJDECej4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ip5x1pup; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1742191873; x=1773727873;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=+tBBYItJdAy1jBxiRg9TNMg0rDp98e+DU7O+7VJg1Ck=;
+  b=Ip5x1pupjOMGxerl4wxK2Xq3ePUiyS6tCHLcoSq5xWW+Q25dHawdyLQ4
+   KhWNB/8YMxfFrz5pQblsDriq+Ixh+t9cYDTS5SLjRU7ZbpywH5Cw0T0po
+   GCPKnyfeptLvl/ScMNMqQ0Xe8QtqLAphEsW4brZUo3+2NZP3yty83q4NQ
+   ZMYDho/ePDHWJ17eGX3N4ikJaeKwVSkgisImzJ+8q3uW1MMiXl7het1Fd
+   PA6m/lYXhs6N7cq1Wrq0sjvDiPU1HKQ+FJ8moX+HnS/4JJAi2Va7kzmk+
+   vdoqVRd1CAa26JlnMTgxwPcpr6pSTtBFJnDSlc6hyGWJPLLlWU+IvcYlc
+   A==;
+X-CSE-ConnectionGUID: 53yZrakpRy216z6qV63vAQ==
+X-CSE-MsgGUID: bveIZCsgQaSx+Bco9HXEcw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11375"; a="43182062"
+X-IronPort-AV: E=Sophos;i="6.14,253,1736841600"; 
+   d="scan'208";a="43182062"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Mar 2025 23:11:12 -0700
+X-CSE-ConnectionGUID: qT6d/rf3To2/AovUIRc90A==
+X-CSE-MsgGUID: HFNjRowAR6GyquiPtRAVsQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,253,1736841600"; 
+   d="scan'208";a="158991406"
+Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
+  by orviesa001.jf.intel.com with ESMTP; 16 Mar 2025 23:11:09 -0700
+Date: Mon, 17 Mar 2025 14:08:24 +0800
+From: Xu Yilun <yilun.xu@linux.intel.com>
+To: Marco Pagani <marco.pagani@linux.dev>
+Cc: Nava kishore Manne <nava.kishore.manne@amd.com>, git@amd.com,
+	mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
+	trix@redhat.com, robh@kernel.org, saravanak@google.com,
+	linux-kernel@vger.kernel.org, linux-fpga@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [RFC v2 1/1] fpga-region: Add generic IOCTL interface for
+ runtime FPGA programming
+Message-ID: <Z9e8WGzwcDOrx00l@yilunxu-OptiPlex-7050>
+References: <20241029091734.3288005-1-nava.kishore.manne@amd.com>
+ <20241029091734.3288005-2-nava.kishore.manne@amd.com>
+ <ZzwQrYeWVF6cRtgA@yilunxu-OptiPlex-7050>
+ <9bfaf1cf-3313-4cb3-9963-2b4bad2d3165@redhat.com>
+ <Z0fIiQPCS69O2d/n@yilunxu-OptiPlex-7050>
+ <00e5c1c1-a98e-4360-b7e5-ffaa384e1036@linux.dev>
+ <Z6RRAXocxWHsZZLF@yilunxu-OptiPlex-7050>
+ <a51c0c24-fd21-42b3-9c4a-39ebc0751f03@linux.dev>
+ <Z8LS93jh4KBvNlCd@yilunxu-OptiPlex-7050>
+ <51c5a9e8-6bb5-4094-a1f2-711b139f83e7@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,25 +87,80 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250313-dt-bindings-cpufreq-qcom-epss-v1-0-62b0f96ba888@linaro.org>
+In-Reply-To: <51c5a9e8-6bb5-4094-a1f2-711b139f83e7@linux.dev>
 
-On 13-03-25, 10:08, Krzysztof Kozlowski wrote:
-> Make the cpufreq-epss/hw schema a bit stricter for each variant.
+On Sun, Mar 16, 2025 at 10:55:07PM +0100, Marco Pagani wrote:
 > 
-> Best regards,
-> Krzysztof
+> On 2025-03-01 10:27, Xu Yilun wrote:
+> > On Mon, Feb 17, 2025 at 04:18:36PM +0100, Marco Pagani wrote:
+> >>
+> >>
+> >> On 06/02/25 07:04, Xu Yilun wrote:
+> >>>>>> I'm currently working on an RFC to propose a rework of the fpga
+> >>>>>> subsystem in order to make it more aligned with the device model. One of
+> >>>>>> the ideas I'm experimenting with is having a bus (struct bus_type) for
+> >>>>>> fpga regions (devices) so that we can have region drivers that could
+> >>>>>> handle internal device enumeration/management whenever a new region is
+> >>>>>> configured on the fabric. Does this make sense in your opinions?
+> >>>>>
+> >>>>> mm.. I didn't fully understand the need to have a region driver, what's
+> >>>>> the issue to solve?
+> >>>>>
+> >>>>
+> >>>> Sorry for the late reply. The general idea is to handle regions in a way
+> >>>> that is more aligned with the device model without having to resort to
+> >>>> extra ops and additional devices.
+> >>>>
+> >>>> Having an fpga bus would allow us to handle enumeration using proper
+> >>>> region drivers (in the device model sense of the term, i.e., struct
+> >>>> device_driver) instead of derived region devices.
+> >>>>
+> >>>> On second thought, I think having a reconfiguration interface at the
+> >>>> fpga manager level is sounder than having it at the region level (one
+> >>>> for each region).
+> >>>
+> >>> I don't think so. A firmware image may contain enumeration info, e.g.
+> >>> of-fpga-region. And I think the fpga-region should parse these
+> >>> enumeration info rather than fpga manager. fpga manager should only deal
+> >>> with content writing stuff and not be exposed to user.
+> >>
+> >> I agree with that. In my proposal, the fpga manager should be
+> >> responsible only for writing the image into the configuration memory
+> >> and allocating region devices. In-region enumeration should be handled by
+> >> the region drivers.
+> >>
+> >> My worry with having one reconfiguration interface for each region is
+> >> that it does not reflect how the hardware works. To my knowledge, all
+> >> major FPGA implementations use a DMA engine (controlled by the fpga
+> >> manager) that performs the reconfiguration through a single port. So,
+> >> having one interface per region might be conceptually confusing and give
+> >> the impression that it is possible to configure regions independently in
+> >> parallel.
+> > 
+> > One interface per region means the regions could be independently
+> > reprogrammed, i.e. reprogramming of one region won't affect the working
+> > of another region. But they don't have to be reprogrammed in parallel.
+> > If it cannot be reprogrammed now, the interface call could fail.
 > 
-> ---
-> Krzysztof Kozlowski (3):
->       dt-bindings: cpufreq: cpufreq-qcom-hw: Add missing constraint for interrupt-names
->       dt-bindings: cpufreq: cpufreq-qcom-hw: Drop redundant minItems:1
->       dt-bindings: cpufreq: cpufreq-qcom-hw: Narrow properties on SDX75, SA8775p and SM8650
-> 
->  .../bindings/cpufreq/cpufreq-qcom-hw.yaml          | 33 +++++++++++++++++++---
->  1 file changed, 29 insertions(+), 4 deletions(-)
+> Good point. However, I still have some other practical concerns. To the
+> best of my knowledge, reconfigurable images/bitstreams are statically
+> built for a specific reconfigurable region in current FPGA
+> implementations. So, what should happen if the user feeds the wrong
+> image (e.g., an image targeting another region) into a reconfigurable
+> region programming interface? I don't think the fpga manager could and
+> should detect these mistakes since the kernel has no visibility of the
 
-Applied. Thanks.
+I think fpga manager could do something with the helper of HW and image
+builder. If the region identifier could be read out from some HW
+registers on fpga_region enumeration, and it is also built into the
+image header, the fpga manager could check the validity.
 
--- 
-viresh
+Some reprograming engine even enforce the validation by requiring SW
+input region identifier along with the image data.
+
+Without the help of HW, I cannot see any SW solution could help, one
+interface per region or one interface per engine.
+
+Thanks,
+Yilun
 
