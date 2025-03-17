@@ -1,159 +1,263 @@
-Return-Path: <devicetree+bounces-158168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BC44A64F42
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 13:39:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 710F9A64F9A
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 13:46:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A72EB3AF900
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:38:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B80081650E6
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 12:46:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6A8A23A9AA;
-	Mon, 17 Mar 2025 12:39:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iLDBHDrg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33E6420DF4;
+	Mon, 17 Mar 2025 12:46:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C58123A9BE
-	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 12:38:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A290634EC
+	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 12:46:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742215141; cv=none; b=ft+DFmmZqveM+nI3/o6tQknyVJuqjbscRuI5u0vIx0mg2ZKnudIEif6E8InNAS7jnjgjTAJF+8b+D1JgoTUb+oHXxJS8LN2aOioAWDWSnH/vK5i84XnvmMPx+TXdrYQ2muH+GGH/HXwoHMjVfZOI4Ss/cUpo/SqI87u0cqvtsQ0=
+	t=1742215593; cv=none; b=kVks8HRNsE+ZL3Rf4VpN13iZqJDtyihD18RTtVSKxGybxVQRLVFRwxnmU2aWAKzDExG+SqRgoQfsX7m9sy1hss7zCa1GBnGys2Q6dPzADSXdl60pSQr2p1HfPyYP0ilVuvHRVYkED5biTZEH2GRMaRrHK36REBFkH+clIEPORJI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742215141; c=relaxed/simple;
-	bh=/hxF+PEemszqvjTSxb9E/nvqVqQPHkD9b6GWzowCc2M=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=RjW3rxgTAB5wZssOheYqGL2X/Kvq6CoDqR4b/y5M+eZ8+ONmd8hLfhR6GMlprJHMs/KVTLhVtH3kNnSbOZFjQPghuHSOU38lqV93X6dPRTPzV6w2zJD2GuzwPhwP8vQ3LwS0Cwq+G/ahKXxueYXbU22Bzxej6imkmKdv9Fs+gqU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iLDBHDrg; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52HAjQiB003154
-	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 12:38:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=5O/HC5QkEwB/sgub+YeiIq
-	IBm/Db37yAGEHWZ6B6amE=; b=iLDBHDrgkkVOdcd03giavkO3H/mCXLhP1dkGu0
-	ZbBUSsTae7CIzuYnLL3j4LhaNkW8+VdG59Tt/Dre3MiLFc56sdEQtWTdfUFCaODR
-	sJOgGExdANEXmw44IpxTfruCLPXuGHhKRQJeOI8qIy6uVIP5H9u8lsDizGUyEHWv
-	XDq2xqaAi1LzHGyDWszHkpQAtULqzT3hai6/JoQin3KR8O6fa/ZB2uObr14rxHyV
-	6zJIPnygZ4qsF7dDRGzfCfBL+KeeKEthKn/NOepyQkgfaL9Nj+RXHHPnI+pyre+m
-	+Sx4PSCLajWu8okAFQJzg9Dg2KCUFyINGsnu2Ysaoz1lWChA==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45d2qm4m33-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 12:38:58 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2235a1f8aadso67655975ad.2
-        for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 05:38:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742215138; x=1742819938;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5O/HC5QkEwB/sgub+YeiIqIBm/Db37yAGEHWZ6B6amE=;
-        b=BWaZq4/XBN4cQwm/pDklouuXjG4O6eCGrIlxrPhX5o1Bl+utsj1OAG6kHJTJKcOEOu
-         sdWl5dYWxjtucA+/kZZx1unDpfV6XCbVUK6ChjC7BXWgdfzs6jkO5NJE0tulxJ7csubp
-         cEDck9WTS4MHsIbwn6zOKeANfsqzDEMf6qD3xzVyAz+5qgEPmJH5KM42mOLl4sMidc4d
-         +vxIGwKTVEHJxM/B9wD6Zwj+r/UaUUCusBkptkE/YXifRW4Br0hGUiGEIybLiXTzfAAB
-         xNZNdc1EuCxk5mozU7qVn8+rb/RJRmyQA7fE+jlSiDoA63fkfTYMYUFhhfAWec6sGlwM
-         BZhg==
-X-Forwarded-Encrypted: i=1; AJvYcCXt6Vy8hxnImRw6xBQUPcgk8WIP9lgZlLhocXu8CJIFyuNjO+0jzH+wZ43ccfsWCfRG9M8lHz/MqvBK@vger.kernel.org
-X-Gm-Message-State: AOJu0YzPUDA05wCW6RCC8dUPRrfPmuQ1OO6erX9T5hjcLm8iL85jKqTz
-	M2m+9XZ2bytQatf5drsgg4Aka1vyYoJZ8NQx4yLNgeU6rdn+mC1NgrAijcYo797XN2ILOmAWEbV
-	JyBqlgbM6mZ2uweuB+XKTbuUJ1zK8QxOBuTB2GwIHsTdSeGlNCnFg93Swof88
-X-Gm-Gg: ASbGncuqhaIgJIYdz4eOzooFhj08uq7FYaFTI28BUMqYAGWu9K8XLGOLfvfTirReJj0
-	UzM9vRlecN5FCi3HIR5QZEoZm3rf4K5J6e7Luy8ypojoUaBqAaOKEFkTBbOn7SNbJHfFvSToJyO
-	oVmJ+OMUoceUvM4ogUmzk+coLOVwqiWPlPllh+7hFRTy88AeRINx63GUX+gUEBTCeY25QpWM2Rm
-	YmA8US9hiF2+Wwgmj+5KSGpKQxAfhAfpsnmnEnxTYewKQPryTkm2E19ffmQL8T/ChAtgSVHPLuj
-	/GLbiySqt5sEnIN6hvz7u11ECz7+ww==
-X-Received: by 2002:a17:903:2a86:b0:220:e924:99dd with SMTP id d9443c01a7336-225e0afb7c8mr177068025ad.34.1742215137838;
-        Mon, 17 Mar 2025 05:38:57 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH4/yCRYwOwoAwMt7RTrFKhfYHdnSIaSN5evYwfdr8Bx5AnBOwhQ+5deFWmfGIJynOjD7eqrA==
-X-Received: by 2002:a17:903:2a86:b0:220:e924:99dd with SMTP id d9443c01a7336-225e0afb7c8mr177067775ad.34.1742215137496;
-        Mon, 17 Mar 2025 05:38:57 -0700 (PDT)
-Received: from [10.213.103.17] ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-225c6bd4da0sm73665165ad.222.2025.03.17.05.38.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Mar 2025 05:38:57 -0700 (PDT)
-From: Maulik Shah <maulik.shah@oss.qualcomm.com>
-Date: Mon, 17 Mar 2025 18:08:41 +0530
-Subject: [PATCH] arm64: dts: qcom: qcs8300: Add RPMh sleep stats
+	s=arc-20240116; t=1742215593; c=relaxed/simple;
+	bh=gu5tdQie3PXjE9UKnouXcaXft1uLAYhn2LNXTlZeflU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cQtpzx3wFcl3/zluBLAiosQhosAJA9EMCNNdCzEO129m6vunj0Q28QnXoc9iJo+1YFiyExHcfE+bcDZ1CBAJIFhS7D20HQh2zsxp9HBX7ogBFrF6+YAm/YzEO2+5jRP6o8cQ3ovvRSUTu6p+Vg0CdNGhBcwmRZ309kZsqCsHsMw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1tu9ma-0002fR-81; Mon, 17 Mar 2025 13:41:34 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1tu9ls-000Fod-2e;
+	Mon, 17 Mar 2025 13:40:45 +0100
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1tu9lt-001Blb-0C;
+	Mon, 17 Mar 2025 13:40:45 +0100
+Date: Mon, 17 Mar 2025 13:40:45 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Donald Hunter <donald.hunter@gmail.com>,
+	Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	Simon Horman <horms@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-doc@vger.kernel.org,
+	Kyle Swenson <kyle.swenson@est.tech>,
+	Dent Project <dentproject@linuxfoundation.org>,
+	kernel@pengutronix.de,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v6 06/12] net: pse-pd: Add support for budget
+ evaluation strategies
+Message-ID: <Z9gYTRgH-b1fXJRQ@pengutronix.de>
+References: <20250304-feature_poe_port_prio-v6-0-3dc0c5ebaf32@bootlin.com>
+ <20250304-feature_poe_port_prio-v6-6-3dc0c5ebaf32@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250317-add_qcom_stats-v1-1-016ae05ac4b0@oss.qualcomm.com>
-X-B4-Tracking: v=1; b=H4sIANEX2GcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1MDY0Nz3cSUlPjC5Pzc+OKSxJJi3WSjRANTM5Mky8TERCWgpoKi1LTMCrC
- B0bG1tQDQj/p+YAAAAA==
-X-Change-ID: 20250317-add_qcom_stats-c2a0564b9aaa
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Maulik Shah <maulik.shah@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1742215134; l=998;
- i=maulik.shah@oss.qualcomm.com; s=20240109; h=from:subject:message-id;
- bh=/hxF+PEemszqvjTSxb9E/nvqVqQPHkD9b6GWzowCc2M=;
- b=ApMoYnW2DQV1NW+U+vWoQ5oTv6C65GgCV7GpBXOInpSuvH1UYme9IF0ESNY7tMH6xCZTGsdbt
- VB+xtAkISSxBg1E8phnEycIJ4ilasWGDWOpcW1GLHx5zG2O5Pz3A1pL
-X-Developer-Key: i=maulik.shah@oss.qualcomm.com; a=ed25519;
- pk=bd9h5FIIliUddIk8p3BlQWBlzKEQ/YW5V+fe759hTWQ=
-X-Proofpoint-ORIG-GUID: n3mcFG33oXUaP-XOna3xwhKeGM_bvoN9
-X-Proofpoint-GUID: n3mcFG33oXUaP-XOna3xwhKeGM_bvoN9
-X-Authority-Analysis: v=2.4 cv=DLWP4zNb c=1 sm=1 tr=0 ts=67d817e2 cx=c_pps a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=EUspDBNiAAAA:8 a=ILUfUccxcQ_60TC8cKoA:9 a=QEXdDO2ut3YA:10
- a=MJ4Y7Fliwi6_CFRlaTST:22 a=GvdueXVYPmCkWapjIL-Q:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-17_05,2025-03-17_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- impostorscore=0 adultscore=0 malwarescore=0 suspectscore=0 spamscore=0
- lowpriorityscore=0 clxscore=1015 mlxlogscore=827 phishscore=0 bulkscore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503170093
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250304-feature_poe_port_prio-v6-6-3dc0c5ebaf32@bootlin.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Add RPMh stats to read low power statistics for various subsystem
-and SoC sleep modes.
+On Tue, Mar 04, 2025 at 11:18:55AM +0100, Kory Maincent wrote:
+> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+> +/**
+> + * pse_disable_pi_prio - Disable all PIs of a given priority inside a PSE
+> + *			 power domain
+> + * @pcdev: a pointer to the PSE
+> + * @pw_d: a pointer to the PSE power domain
+> + * @prio: priority
+> + *
+> + * Return: 0 on success and failure value on error
+> + */
+> +static int pse_disable_pi_prio(struct pse_controller_dev *pcdev,
+> +			       struct pse_power_domain *pw_d,
+> +			       int prio)
+> +{
+> +	int i;
+> +
 
-Signed-off-by: Maulik Shah <maulik.shah@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/qcs8300.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+Should we lock the pi[] array at some level?
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-index cdd412706b5b7bd2a953d20bfa9562043b20a18d..35b202a6b323de525aa8c4cad7595a8eee43326b 100644
---- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-@@ -4262,6 +4262,11 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
- 			#clock-cells = <0>;
- 		};
- 
-+		sram@c3f0000 {
-+			compatible = "qcom,rpmh-stats";
-+			reg = <0x0 0x0c3f0000 0x0 0x400>;
-+		};
-+
- 		spmi_bus: spmi@c440000 {
- 			compatible = "qcom,spmi-pmic-arb";
- 			reg = <0x0 0x0c440000 0x0 0x1100>,
+> +	for (i = 0; i < pcdev->nr_lines; i++) {
+> +		int ret;
+> +
+> +		if (pcdev->pi[i].prio != prio ||
+> +		    pcdev->pi[i].pw_d != pw_d ||
+> +		    !pcdev->pi[i].admin_state_enabled)
+> +			continue;
+> +
+> +		ret = pse_disable_pi_pol(pcdev, i);
 
----
-base-commit: da920b7df701770e006928053672147075587fb2
-change-id: 20250317-add_qcom_stats-c2a0564b9aaa
+If the PSE has many lower-priority ports, the same set of ports could be
+repeatedly shut down while higher-priority ports keep power
+indefinitely.
 
-Best regards,
+This could result in a starvation issue, where lower-priority group of
+ports may never get a chance to stay enabled, even if power briefly
+becomes available.
+
+To fix this, we could:
+- Disallow identical priorities in static mode to ensure a clear
+shutdown order.
+- Modify pse_disable_pi_prio() to track freed power and stop
+disabling once enough power is recovered.
+
+static int pse_disable_pi_prio(struct pse_controller_dev *pcdev,
+                               struct pse_power_domain *pw_d,
+                               int prio, int required_power)
+{
+    int i, ret;
+    int freed_power = 0;
+
+    mutex_lock(&pcdev->lock);
+
+    for (i = 0; i < pcdev->nr_lines; i++) {
+        if (pcdev->pi[i].prio != prio ||
+            pcdev->pi[i].pw_d != pw_d ||
+            !pcdev->pi[i].admin_state_enabled)
+            continue;
+
+        ret = pse_disable_pi_pol(pcdev, i);
+        if (ret == 0)
+            freed_power += pcdev->pi[i].pw_allocated_mW;
+
+        /* Stop once we have freed enough power */
+        if (freed_power >= required_power)
+            break;
+    }
+
+    mutex_unlock(&pcdev->lock);
+    return ret;
+}
+
+The current approach still introduces an implicit priority based on loop
+execution order, but since it's predictable, it can serve as a reasonable
+default.
+
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+
+....
+
+> +/**
+> + * pse_ethtool_set_prio - Set PSE PI priority according to the budget
+> + *			  evaluation strategy
+> + * @psec: PSE control pointer
+> + * @extack: extack for reporting useful error messages
+> + * @prio: priovity value
+> + *
+> + * Return: 0 on success and failure value on error
+> + */
+> +int pse_ethtool_set_prio(struct pse_control *psec,
+> +			 struct netlink_ext_ack *extack,
+> +			 unsigned int prio)
+> +{
+> +	struct pse_controller_dev *pcdev = psec->pcdev;
+> +	const struct pse_controller_ops *ops;
+> +	int ret = 0;
+> +
+> +	if (!pcdev->pi[psec->id].pw_d) {
+> +		NL_SET_ERR_MSG(extack, "no power domain attached");
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+> +	/* We don't want priority change in the middle of an
+> +	 * enable/disable call or a priority mode change
+> +	 */
+> +	mutex_lock(&pcdev->lock);
+> +	switch (pcdev->pi[psec->id].pw_d->budget_eval_strategy) {
+> +	case ETHTOOL_PSE_BUDGET_EVAL_STRAT_STATIC:
+> +		if (prio > pcdev->nr_lines) {
+> +			NL_SET_ERR_MSG_FMT(extack,
+> +					   "priority %d exceed priority max %d",
+> +					   prio, pcdev->nr_lines);
+> +			ret = -ERANGE;
+> +			goto out;
+> +		}
+> +
+> +		pcdev->pi[psec->id].prio = prio;
+
+In case we already out of the budget, we will need to re-evaluate the
+prios. New configuration may affect state of ports.
+
+Potentially we may need a bulk interface to assign prios, to speed-up
+reconfiguration. But it is not needed right now.
+
+> +		break;
+> +
+> +	case ETHTOOL_PSE_BUDGET_EVAL_STRAT_DYNAMIC:
+> +		ops = psec->pcdev->ops;
+> +		if (!ops->pi_set_prio) {
+> +			NL_SET_ERR_MSG(extack,
+> +				       "pse driver does not support setting port priority");
+> +			ret = -EOPNOTSUPP;
+> +			goto out;
+> +		}
+> +
+> +		if (prio > pcdev->pis_prio_max) {
+> +			NL_SET_ERR_MSG_FMT(extack,
+> +					   "priority %d exceed priority max %d",
+> +					   prio, pcdev->pis_prio_max);
+> +			ret = -ERANGE;
+> +			goto out;
+> +		}
+> +
+> +		ret = ops->pi_set_prio(pcdev, psec->id, prio);
+
+Here too, but in case of microchip PSE it will happen in the firmware.
+May be add here a comment that currently it is done in firmware and to
+be extended for the kernel based implementation.
+
+> +		break;
+> +
+> +	default:
+> +		ret = -EOPNOTSUPP;
+> +	}
+> +
+> +out:
+> +	mutex_unlock(&pcdev->lock);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(pse_ethtool_set_prio);
 -- 
-Maulik Shah <maulik.shah@oss.qualcomm.com>
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
