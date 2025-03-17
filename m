@@ -1,191 +1,175 @@
-Return-Path: <devicetree+bounces-158324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0E5EA65B95
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 18:54:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E956A65BAC
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 18:57:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CC6A87AD6EC
-	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 17:53:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9820817C2DF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Mar 2025 17:57:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1CBF1AF0CE;
-	Mon, 17 Mar 2025 17:54:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17C801B3952;
+	Mon, 17 Mar 2025 17:57:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ukDa8iYB"
+	dkim=pass (2048-bit key) header.d=pereznus.es header.i=@pereznus.es header.b="lCa5PPWN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from p00-icloudmta-asmtp-us-central-1k-60-percent-5.p00-icloudmta-asmtp-vip.icloud-mail-production.svc.kube.us-central-1k.k8s.cloud.apple.com (p-east1-cluster1-host1-snip4-10.eps.apple.com [57.103.91.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 812FD1A3A8A;
-	Mon, 17 Mar 2025 17:54:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 136011B21AA
+	for <devicetree@vger.kernel.org>; Mon, 17 Mar 2025 17:57:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=57.103.91.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742234061; cv=none; b=BzShN5JRWZXnL05dpkKHcV1jXAvKEo+/EgjoeD7oWM3PXxzKJZnGOd8RVa5qPS2gFS19y/EBvqN+R9duCFSxzqqRpG4M2O02pyCNj7e0xm+FNLoP82zAiANEpqtSOLbKd9XHxCQqTHNNPWWMWYfdiomVC04XhMWWJPqnb+rU9rg=
+	t=1742234268; cv=none; b=nFUTn8AhHK7T6+s83CFd7AUxGNmihCB3s/4m5FT0LqPeOp/cRd5l5mWVThCeD6UC8sE+vqcGUwCc1FFzMPJBCKvLdh37lV6wu+Uqjd6y2VZbzJk9tJlCISx6PHwMdbPs8iHyDzVRnbkqxQvS/ryKUOJ6fOgozgFNtpHfNO4e1EE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742234061; c=relaxed/simple;
-	bh=kX4VuRRRWx+u1lJbW0uI3jrw3LlGVRsJGxWxvXqbY9s=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=SO8+CCY/Lo7MDA6Yhnb4m/qUXR3XQb2KWeiGZPi89SGlmMR6B+ncNzhFSdsuPd/+l8uzYx8Y6ROZG1Wobw9kC+aNtvlyMrZe9uRGuRsOp8iP1EG1aosT9+195Xw8lKN9PuKoXHhO3Swlp57Ycg9SI/0dCgsJzjK/Q43fLCr9FIc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ukDa8iYB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7CB6C4CEE3;
-	Mon, 17 Mar 2025 17:54:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742234061;
-	bh=kX4VuRRRWx+u1lJbW0uI3jrw3LlGVRsJGxWxvXqbY9s=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=ukDa8iYBIhP30GZ42RJLzH8fnhhlTZzUm1vruh0qbIY+q3O5i9O8Nqqd1nfbnaUgx
-	 pPejfkBo1EqKO9T05Wr+aKG+QMnFRlSUF0NwUTcefjUx/JeUES3LLoNFH7c9Hgzz4N
-	 Wod5yDqNs+vDpkesPoPkwar4Qzv5lOOLmNP0lcH7JnXyGV0WtaDqy8VdZJUtY4+kUN
-	 WAGvECKL4Z2zJx0r9tzKK7WSYPjPiuqrpa2wRIfdYnsbUPqk6WtnEBcXGG859jFrdX
-	 JhdRe6rQnZKw8tLFujTRLlvf/ZlldBPO8r/WKGKKCI3fy3W+9w45jxmqizOg13r6v1
-	 H54jqE/FuffrA==
-Date: Mon, 17 Mar 2025 12:54:19 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Jesper Nilsson <jesper.nilsson@axis.com>
-Cc: Frank Li <Frank.Li@nxp.com>, Lars Persson <lars.persson@axis.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-arm-kernel@axis.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org
-Subject: Re: [PATCH RFC NOT TESTED 0/2] PCI: artpec6: Try to clean up
- artpec6_pcie_cpu_addr_fixup()
-Message-ID: <20250317175419.GA933527@bhelgaas>
+	s=arc-20240116; t=1742234268; c=relaxed/simple;
+	bh=jUnv1e8c/oOHeoXEzJKomzP88F/Hmt1ihQ6n54MBayA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=a+JGudKYfZTVv0yLdoaIy0FkvCk5dJJH81xfQBBsRyrk0VTo3DqmewcZBxWwqxbNnhPGrwcP/CfZjwIonsbHSrECfOdR4w7Imqh5R12sj2kw9cUDFt/JfkEhckjeIE1t1+z56tiE0PAFpDbdy7gm3Fzi6p6FfG6OKxLTTV99zZ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pereznus.es; spf=pass smtp.mailfrom=pereznus.es; dkim=pass (2048-bit key) header.d=pereznus.es header.i=@pereznus.es header.b=lCa5PPWN; arc=none smtp.client-ip=57.103.91.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pereznus.es
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pereznus.es
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pereznus.es; s=sig1;
+	bh=3lEw29JtEWPd9gCfFHLxFln8ckxLwNaX3mp20WGfxb0=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:x-icloud-hme;
+	b=lCa5PPWN2i4XL+p9I9CeA7nwA4qCYjnk0Eyxba64zERnLSJmp7mled1RTeAL81zM2
+	 r2M4U6N/7VcEUvsqbAKre1JXOY1EBZEWg88vxMfzcn1bOw5e1FZEBWVDJam+QVq422
+	 quM1bSxu7qCBkZ86vCdNZk0FApk7rBFqzoOX1PKPc6GQo3MFUZJoctOA7tR17HyAFV
+	 kG62rEfA5blHVYo1SsSejgUtb3a4XvyBD7jApSZrsuJmKSOV/gs2b4Z1AtrfxmsD4s
+	 q1TpwfA1HZxIAbBmtHdrabn5lL6cxfezEHV031pRxpXIlATrFzbphF0ROEKolhXfJ1
+	 aRSYJaQ1SX/zA==
+Received: from localhost.localdomain (ci-asmtp-me-k8s.p00.prod.me.com [17.57.156.36])
+	by p00-icloudmta-asmtp-us-central-1k-60-percent-5.p00-icloudmta-asmtp-vip.icloud-mail-production.svc.kube.us-central-1k.k8s.cloud.apple.com (Postfix) with ESMTPSA id 9D36718000BC;
+	Mon, 17 Mar 2025 17:57:41 +0000 (UTC)
+From: Sergio Perez <sergio@pereznus.es>
+To: linux-iio@vger.kernel.org
+Cc: devicetree@vger.kernel.org,
+	tduszyns@gmail.com,
+	jic23@kernel.org,
+	Sergio Perez <sergio@pereznus.es>
+Subject: [PATCH] [v2] iio: light: bh1750: Add hardware reset support via GPIO
+Date: Mon, 17 Mar 2025 18:56:21 +0100
+Message-ID: <20250317175621.593-1-sergio@pereznus.es>
+X-Mailer: git-send-email 2.47.1.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z88Xh75G6Wabwl2O@axis.com>
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: UHQ7w6T5tZ2JSVB2Y2nxBK9QJDiZP3JI
+X-Proofpoint-ORIG-GUID: UHQ7w6T5tZ2JSVB2Y2nxBK9QJDiZP3JI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-17_07,2025-03-17_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0 mlxscore=0 mlxlogscore=999
+ malwarescore=0 clxscore=1030 phishscore=0 adultscore=0 spamscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2308100000 definitions=main-2503170129
 
-On Mon, Mar 10, 2025 at 05:47:03PM +0100, Jesper Nilsson wrote:
-> Hi again Frank!
-> 
-> I've now tested this patch-set together with your v9 on-top of the
-> next-branch of the pci tree, and seems to be working good on my
-> ARTPEC-6 set as RC:
-> 
-> # lspci
-> 00:00.0 PCI bridge: Renesas Technology Corp. Device 0024
-> 01:00.0 PCI bridge: Pericom Semiconductor PI7C9X2G304 EL/SL PCIe2 3-Port/4-Lane Packet Switch (rev 05)
-> 02:01.0 PCI bridge: Pericom Semiconductor PI7C9X2G304 EL/SL PCIe2 3-Port/4-Lane Packet Switch (rev 05)
-> 02:02.0 PCI bridge: Pericom Semiconductor PI7C9X2G304 EL/SL PCIe2 3-Port/4-Lane Packet Switch (rev 05)
-> 03:00.0 Non-Volatile memory controller: Phison Electronics Corporation E18 PCIe4 NVMe Controller (rev 01)
-> 
-> However, when running as EP, I found that the DT setup for pcie_ep
-> wasn't correct:
-> 
-> diff --git a/arch/arm/boot/dts/axis/artpec6.dtsi b/arch/arm/boot/dts/axis/artpec6.dtsi
-> index 399e87f72865..6d52f60d402d 100644
-> --- a/arch/arm/boot/dts/axis/artpec6.dtsi
-> +++ b/arch/arm/boot/dts/axis/artpec6.dtsi
-> @@ -195,8 +195,8 @@ pcie: pcie@f8050000 {
->  
->                 pcie_ep: pcie_ep@f8050000 {
->                         compatible = "axis,artpec6-pcie-ep", "snps,dw-pcie";
-> -                       reg = <0xf8050000 0x2000
-> -                              0xf8051000 0x2000
-> +                       reg = <0xf8050000 0x1000
-> +                              0xf8051000 0x1000
->                                0xf8040000 0x1000
->                                0x00000000 0x20000000>;
->                         reg-names = "dbi", "dbi2", "phy", "addr_space";
-> 
-> Even with this fix, I get a panic in dw_pcie_read_dbi() in EP-setup,
-> both with and without:
-> 
-> "PCI: artpec6: Use use_parent_dt_ranges and clean up artpec6_pcie_cpu_addr_fixup()"
-> 
-> so it looks like the ARTPEC-6 EP functionality wasn't completely tested
-> with this config.
-> 
-> The ARTPEC-7 variant does work as EP with our local config, I'll try
-> to see what I can do to correct ARTPEC-6 using the setup for ARTPEC-7,
-> and test your patchset on the ARTPEC-7.
+Some BH1750 sensors require a hardware reset before they can be
+detected on the I2C bus. This patch adds support for an optional
+reset GPIO that can be specified in the device tree.
 
-Where are we at with this?
+The reset sequence pulls the GPIO low and then high before
+initializing the sensor, which enables proper detection with
+tools like i2cdetect.
 
-First priority: I plan to merge v12 of Frank's series [1] for v6.15.
-I hope this works with existing DTs on artpec6, both for RC and EP.
-If not, we need to figure it out ASAP.
+Signed-off-by: Sergio Perez <sergio@pereznus.es>
+---
+ .../devicetree/bindings/iio/light/bh1750.yaml |  7 +++++-
+ drivers/iio/light/bh1750.c                    | 24 ++++++++++++++++++-
+ 2 files changed, 29 insertions(+), 2 deletions(-)
 
-Second priority: For this series of:
+diff --git a/Documentation/devicetree/bindings/iio/light/bh1750.yaml b/Documentation/devicetree/bindings/iio/light/bh1750.yaml
+index 1a88b3c253d5..12c97d761aa4 100644
+--- a/Documentation/devicetree/bindings/iio/light/bh1750.yaml
++++ b/Documentation/devicetree/bindings/iio/light/bh1750.yaml
+@@ -24,6 +24,10 @@ properties:
+   reg:
+     maxItems: 1
+ 
++  reset-gpios:
++    description: GPIO connected to the sensor's reset line (active low)
++    maxItems: 1
++
+ required:
+   - compatible
+   - reg
+@@ -39,7 +43,8 @@ examples:
+       light-sensor@23 {
+         compatible = "rohm,bh1750";
+         reg = <0x23>;
++        reset-gpios = <&gpio2 17 GPIO_ACTIVE_HIGH>;
+       };
+     };
+ 
+-...
++...
+\ No newline at end of file
+diff --git a/drivers/iio/light/bh1750.c b/drivers/iio/light/bh1750.c
+index 4b869fa9e5b1..55e2be0323ef 100644
+--- a/drivers/iio/light/bh1750.c
++++ b/drivers/iio/light/bh1750.c
+@@ -22,12 +22,16 @@
+ #include <linux/iio/iio.h>
+ #include <linux/iio/sysfs.h>
+ #include <linux/module.h>
++#include <linux/gpio/consumer.h>
+ 
+ #define BH1750_POWER_DOWN		0x00
+ #define BH1750_ONE_TIME_H_RES_MODE	0x20 /* auto-mode for BH1721 */
+ #define BH1750_CHANGE_INT_TIME_H_BIT	0x40
+ #define BH1750_CHANGE_INT_TIME_L_BIT	0x60
+ 
++/* Define the reset delay time in microseconds */
++#define BH1750_RESET_DELAY_US 10000 /* 10ms */
++
+ enum {
+ 	BH1710,
+ 	BH1721,
+@@ -40,6 +44,7 @@ struct bh1750_data {
+ 	struct mutex lock;
+ 	const struct bh1750_chip_info *chip_info;
+ 	u16 mtreg;
++	struct gpio_desc *reset_gpio;
+ };
+ 
+ struct bh1750_chip_info {
+@@ -248,6 +253,23 @@ static int bh1750_probe(struct i2c_client *client)
+ 	data->client = client;
+ 	data->chip_info = &bh1750_chip_info_tbl[id->driver_data];
+ 
++	/* Get reset GPIO from device tree */
++	data->reset_gpio = devm_gpiod_get_optional(&client->dev, "reset", GPIOD_OUT_HIGH);
++	if (IS_ERR(data->reset_gpio))
++		return dev_err_probe(&client->dev, PTR_ERR(data->reset_gpio),
++							"Failed to get reset GPIO\n");
++
++	/* Perform hardware reset if GPIO is provided */
++	if (data->reset_gpio) {
++		/* Perform reset sequence: low-high */
++		gpiod_set_value_cansleep(data->reset_gpio, 0);
++		fsleep(BH1750_RESET_DELAY_US);
++		gpiod_set_value_cansleep(data->reset_gpio, 1);
++		fsleep(BH1750_RESET_DELAY_US);
++
++		dev_dbg(&client->dev, "BH1750 reset completed via GPIO\n");
++	}
++
+ 	usec = data->chip_info->mtreg_to_usec * data->chip_info->mtreg_default;
+ 	ret = bh1750_change_int_time(data, usec);
+ 	if (ret < 0)
+@@ -329,4 +351,4 @@ module_i2c_driver(bh1750_driver);
+ 
+ MODULE_AUTHOR("Tomasz Duszynski <tduszyns@gmail.com>");
+ MODULE_DESCRIPTION("ROHM BH1710/BH1715/BH1721/BH1750/BH1751 als driver");
+-MODULE_LICENSE("GPL v2");
++MODULE_LICENSE("GPL v2");
+\ No newline at end of file
+-- 
+2.47.1
 
-  ARM: dts: artpec6: Move PCIe nodes under bus@c0000000
-  PCI: artpec6: Use use_parent_dt_ranges and clean up artpec6_pcie_cpu_addr_fixup()
-
-it looks like there's an open issue with the dts patch that Rob
-noticed [2].  It would be great if we could fix that issue and get it
-queued up if it's safe to merge independently of Frank's v12 series.
-
-It looks like the artpec6_pcie_cpu_addr_fixup() removal probably needs
-to be delayed until we know all DTs in the field are fixed?  This
-might mean that we can *never* remove artpec6_pcie_cpu_addr_fixup()
-unless we can identify and work around the broken DTs in the kernel.
-
-[1] https://lore.kernel.org/r/20250315201548.858189-1-helgaas@kernel.org
-[2] https://lore.kernel.org/r/174170613961.3566466.13045709851799071104.robh@kernel.org
-
-> On Wed, Mar 05, 2025 at 04:33:18PM +0100, Jesper Nilsson wrote:
-> > Hi Frank,
-> > 
-> > I'm the current maintainer of this driver. As Niklas Cassel wrote in
-> > another email, artpec-7 was supposed to be upstreamed, as it is in most
-> > parts identical to the artpec-6, but reality got in the way. I don't
-> > think there is very much left to support it at the same level as artpec-6,
-> > but give me some time to see if the best thing is to drop the artpec-7
-> > support as Niklas suggested.
-> > 
-> > Unfortunately, I'm travelling right now and don't have access to any
-> > of my boards. I'll perform some testing next week when I'm back and
-> > help to clean this up.
-> > 
-> > Best regards,
-> > 
-> > /Jesper
-> > 
-> > 
-> > On Tue, Mar 04, 2025 at 12:49:34PM -0500, Frank Li wrote:
-> > > This patches basic on
-> > > https://lore.kernel.org/imx/20250128-pci_fixup_addr-v9-0-3c4bb506f665@nxp.com/
-> > > 
-> > > I have not hardware to test and there are not axis,artpec7-pcie in kernel
-> > > tree.
-> > > 
-> > > Look for driver owner, who help test this and start move forward to remove
-> > > cpu_addr_fixup() work.
-> > > 
-> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > ---
-> > > Frank Li (2):
-> > >       ARM: dts: artpec6: Move PCIe nodes under bus@c0000000
-> > >       PCI: artpec6: Use use_parent_dt_ranges and clean up artpec6_pcie_cpu_addr_fixup()
-> > > 
-> > >  arch/arm/boot/dts/axis/artpec6.dtsi       | 92 +++++++++++++++++--------------
-> > >  drivers/pci/controller/dwc/pcie-artpec6.c | 20 +------
-> > >  2 files changed, 52 insertions(+), 60 deletions(-)
-> > > ---
-> > > base-commit: 1552be4855dacca5ea39b15b1ef0b96c91dbea0d
-> > > change-id: 20250304-axis-6d12970976b4
-> > > 
-> > > Best regards,
-> > > ---
-> > > Frank Li <Frank.Li@nxp.com>
-> > 
-> > /^JN - Jesper Nilsson
-> > -- 
-> >                Jesper Nilsson -- jesper.nilsson@axis.com
-> 
-> /^JN - Jesper Nilsson
-> -- 
->                Jesper Nilsson -- jesper.nilsson@axis.com
 
