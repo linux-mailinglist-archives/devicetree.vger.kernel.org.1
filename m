@@ -1,123 +1,120 @@
-Return-Path: <devicetree+bounces-158528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25788A67181
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 11:38:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53726A671A6
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 11:43:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 30BB77A8118
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 10:37:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7CF801631B6
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 10:43:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C03F020897E;
-	Tue, 18 Mar 2025 10:38:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 569DE2080EC;
+	Tue, 18 Mar 2025 10:41:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="k099dM24"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69B3D2080F8;
-	Tue, 18 Mar 2025 10:38:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4882F206F3F;
+	Tue, 18 Mar 2025 10:41:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742294305; cv=none; b=Z63mSxeIhNor0K6EhicfCOXe0ybZ9+ThHosgrB14Cb4e3t5odwbjfB7lFr8IDhun+urzfuKmm7TFkdB9+cbxVepPPbLaRBl7R4sdVW+EKesDyv66WZYyO/jUlD+NZbXThoaM6FEgk/D6wtbkCmo1ZAGxnPYkbiQ2p5EFkBcAI6M=
+	t=1742294492; cv=none; b=UZOK0WlCUSvmWB/3410qzNS3UElk9aT6rgWApxy9URgEjSz0A1IgoTAABkodNCSZCx7Jx1oweQUYnJBT9HqpKYf1BFGaJwchDEpXHTW2p31ZsbIsVklEKwhMiB91la0tJVie/EyC+pwUvAn1W6bf2Z937CUHYYBMBGdHtA661tQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742294305; c=relaxed/simple;
-	bh=seZXlWVkuhpHmwPcyIIffu+ng/4WYRdQq9h4J+uifhA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=I/Bu4JkH4Ik5Tdzb31fwCdA9vOUQPvw5tGqLnd8tu/fKvpfPWEMQn4yz7Ivik9SeAuTpX9ukq2t6Ao+W2Ip0DlZVaa+xfZoiMwjfeY7vgcu2qQu37xrKf58CbtnsLPsR8zcXmWLsLSCg/aZZ8ry6LR7SgHIgDF+fZJt8eELFE+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 190C813D5;
-	Tue, 18 Mar 2025 03:38:31 -0700 (PDT)
-Received: from [10.1.197.1] (ewhatever.cambridge.arm.com [10.1.197.1])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A597F3F63F;
-	Tue, 18 Mar 2025 03:38:18 -0700 (PDT)
-Message-ID: <7b0af57c-a38c-4c30-9bb7-efe511d6bd1d@arm.com>
-Date: Tue, 18 Mar 2025 10:38:17 +0000
+	s=arc-20240116; t=1742294492; c=relaxed/simple;
+	bh=aOjgQK7Ude80JfmikgpQVtFWBZtq85DlKjHiQLOg0YA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BbE5Ypsu2woMrXMo271K9nDzUFhWCML6I1q9u9dc4GxLVMGfxgZkneEWz2zYcomfC2pJcsc4TmULeFeBk0PBc3NyZHXFLLj7wgESKQQqYaS4ru9NIwdGmRaFhavjbSQievi3xzOe0bIQfyTmjcWytri9l97yf40F305USBH2br8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=k099dM24; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1742294490; x=1773830490;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=aOjgQK7Ude80JfmikgpQVtFWBZtq85DlKjHiQLOg0YA=;
+  b=k099dM24GWpYxTc9h2pE1Qgco0pMlLqbf0gmkEgmJ4jzv3/8UH8aziXQ
+   CTpHxIYrRINxodEMPVhxhlcFqJBsvHkzinWksFV0gZi1XJj/OgZPFQm5v
+   ExOGmgUNb98diniXo+zbtl61wv7RjzC/HwkwuxUp8eUkq67WyyNqcG3iz
+   ifzaioiAUWqpHW2/8gERY5RqQk9pWXI2Rc6QQjCZsrb/CkoYbOTAz73OX
+   awluvxCn8sruaVaGr0+eaCwVC8oYlPXJvfAC+SjBKLD+of7rfiDRPTUKW
+   ef7KSDDT8ncawlyv4N7m0w0ADjBDyX/ses8LDXkqsVO5+yH4Ws3HfWadU
+   w==;
+X-CSE-ConnectionGUID: JDYfnDXqQACrZ6Ikg0M6BQ==
+X-CSE-MsgGUID: +MynRS48QI+onKlTuoNQAw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11376"; a="47315403"
+X-IronPort-AV: E=Sophos;i="6.14,256,1736841600"; 
+   d="scan'208";a="47315403"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2025 03:41:30 -0700
+X-CSE-ConnectionGUID: euXp82s9S3yMC/+STDo4lA==
+X-CSE-MsgGUID: 3iwXdJFWQq+PDsarHJGZDA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,256,1736841600"; 
+   d="scan'208";a="159390807"
+Received: from lkp-server02.sh.intel.com (HELO a4747d147074) ([10.239.97.151])
+  by orviesa001.jf.intel.com with ESMTP; 18 Mar 2025 03:41:27 -0700
+Received: from kbuild by a4747d147074 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tuUNw-000Dfn-1q;
+	Tue, 18 Mar 2025 10:41:24 +0000
+Date: Tue, 18 Mar 2025 18:41:19 +0800
+From: kernel test robot <lkp@intel.com>
+To: Matthias Fend <matthias.fend@emfend.at>, Pavel Machek <pavel@ucw.cz>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Matthias Fend <matthias.fend@emfend.at>,
+	bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH v2 2/2] leds: tps6131x: add support for Texas Instruments
+ TPS6131X flash LED driver
+Message-ID: <202503181835.693ZAgp6-lkp@intel.com>
+References: <20250318-leds-tps6131x-v2-2-bc09c7a50b2e@emfend.at>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/9] dt-bindings: arm: qcom,coresight-static-replicator:
- add optional clocks
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Leo Yan <leo.yan@linux.dev>,
- Kumar Gala <galak@codeaurora.org>, Andy Gross <agross@codeaurora.org>,
- "Ivan T. Ivanov" <ivan.ivanov@linaro.org>, Andy Gross
- <andy.gross@linaro.org>, Georgi Djakov <djakov@kernel.org>,
- David Heidelberg <david@ixit.cz>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, coresight@lists.linaro.org,
- linux-arm-kernel@lists.infradead.org
-References: <20250317-fix-nexus-4-v1-0-655c52e2ad97@oss.qualcomm.com>
- <20250317-fix-nexus-4-v1-4-655c52e2ad97@oss.qualcomm.com>
-Content-Language: en-US
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20250317-fix-nexus-4-v1-4-655c52e2ad97@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250318-leds-tps6131x-v2-2-bc09c7a50b2e@emfend.at>
 
-On 17/03/2025 17:44, Dmitry Baryshkov wrote:
+Hi Matthias,
 
-nit: Subject:
+kernel test robot noticed the following build warnings:
 
-s/qcom,coresight-static-replicator/arm,coresight-static-replicator
+[auto build test WARNING on ffd294d346d185b70e28b1a28abe367bbfe53c04]
 
-> As most other CoreSight devices the replicator can use either of the
-> optional clocks (or both). Document those optional clocks in the schema.
-> 
-> Fixes: 3c15fddf3121 ("dt-bindings: arm: Convert CoreSight bindings to DT schema")
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> ---
->   .../bindings/arm/arm,coresight-static-replicator.yaml          | 10 ++++++++++
->   1 file changed, 10 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-static-replicator.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-static-replicator.yaml
-> index a6f793ea03b6c193fc0ff72a45e0249a63a2ba3c..56e64067ed3d63c5e293a0840858f13428bacb45 100644
-> --- a/Documentation/devicetree/bindings/arm/arm,coresight-static-replicator.yaml
-> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-static-replicator.yaml
-> @@ -30,6 +30,16 @@ properties:
->     power-domains:
->       maxItems: 1
->   
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 2
-> +
+url:    https://github.com/intel-lab-lkp/linux/commits/Matthias-Fend/dt-bindings-leds-add-Texas-Instruments-TPS6131x-flash-LED-driver/20250318-154318
+base:   ffd294d346d185b70e28b1a28abe367bbfe53c04
+patch link:    https://lore.kernel.org/r/20250318-leds-tps6131x-v2-2-bc09c7a50b2e%40emfend.at
+patch subject: [PATCH v2 2/2] leds: tps6131x: add support for Texas Instruments TPS6131X flash LED driver
+reproduce: (https://download.01.org/0day-ci/archive/20250318/202503181835.693ZAgp6-lkp@intel.com/reproduce)
 
-For the static replicator, you don't have an APB clock, as they can't be 
-programmed. It may have an ATB clock. So minItems 0, maxItems: 1
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503181835.693ZAgp6-lkp@intel.com/
 
-Suzuki
+All warnings (new ones prefixed by >>):
 
+   Warning: Documentation/hwmon/isl28022.rst references a file that doesn't exist: Documentation/devicetree/bindings/hwmon/isl,isl28022.yaml
+   Warning: Documentation/translations/ja_JP/SubmittingPatches references a file that doesn't exist: linux-2.6.12-vanilla/Documentation/dontdiff
+   Warning: Documentation/userspace-api/netlink/index.rst references a file that doesn't exist: Documentation/networking/netlink_spec/index.rst
+   Warning: Documentation/userspace-api/netlink/specs.rst references a file that doesn't exist: Documentation/networking/netlink_spec/index.rst
+   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt
+>> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/leds/ti,tps6131x.yaml
+   Warning: lib/Kconfig.debug references a file that doesn't exist: Documentation/dev-tools/fault-injection/fault-injection.rst
+   Using alabaster theme
 
-
-> +  clock-names:
-> +    minItems: 1
-> +    enum:
-> +      - apb_pclk
-> +      - atclk
-> +
->     in-ports:
->       $ref: /schemas/graph.yaml#/properties/ports
->       additionalProperties: false
-> 
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
