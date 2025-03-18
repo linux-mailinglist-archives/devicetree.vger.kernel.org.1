@@ -1,91 +1,64 @@
-Return-Path: <devicetree+bounces-158671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158672-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D2DAA67A1B
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 17:54:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F697A67A22
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 17:56:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 43D743B0E7E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 16:53:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0ACA2422E54
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 16:54:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 306A3211486;
-	Tue, 18 Mar 2025 16:53:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75C12211486;
+	Tue, 18 Mar 2025 16:54:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="g7xr3ENp"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="yCNbrA8X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 633C322094;
-	Tue, 18 Mar 2025 16:53:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 030CC22094;
+	Tue, 18 Mar 2025 16:54:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742316796; cv=none; b=OElsgXijTf9OZjeP8BSEJQ+18G5L3e6zy8ErOOqlW8VJRPnU0Xx7zBeYNmm9uw8t+ztJH4YYGL+1UCgNBx9JDIT0EuaPdd360ea3BSHGYhfsJWVvG4vuOfn01JUL66W8VyTwaFh4G8RgmAqtbnNlThZ9joifMu40JAO46EO1+ew=
+	t=1742316866; cv=none; b=ouip9XMIXzXMPQAygxzm51QyeZRw0paCnLOpcpXRrcyBeNksDxZuxjjfe7ehE/N/ThUDuhlmcALGgaVobheEZIhq//fFj2j5zSVXwt/3oaEiSovRGcPZ37MzIp5qv1BLkxY4nem2BqI4ukGbsq3FzQB1uIfyCzsy0WICxSbHg6I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742316796; c=relaxed/simple;
-	bh=UAdvdiXRk7aJ4MCdqjJcwzQqrDsjBUYPsdfY4A5mgDk=;
+	s=arc-20240116; t=1742316866; c=relaxed/simple;
+	bh=8ipEegjfuDkIN6p5149xZDkbJ+ck6Z7Iz3oV0sOhCPY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bbP1bCbu6jwEOTOo10pos4QUa5kgvrQpIr838Ks7vvHFatTnw2hYsxjwPcxZM6I7Ns0piWCJVowDCmJoPN8mNBezE9fePuOTLVkUtlBZtL7TkQrN9uaruiWLKmhUl1sAbLF8wbKQ2D6fSEGp9cLKA0dCvsnNMpSeDhj3AX17Qbk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=g7xr3ENp; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1742316795; x=1773852795;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=UAdvdiXRk7aJ4MCdqjJcwzQqrDsjBUYPsdfY4A5mgDk=;
-  b=g7xr3ENpSDxhwMHBNYCbvtM/bXikbcFcsfzN5jDWMwByFv2Gsmwgm1bv
-   0YI7Ep51zTgAv6WFHiEWfhLhh3bkbNSHCyk9VLS4T0fTKImelHL7MkOiR
-   d7xY4q007P2lWLDvZeRa384ILWPb9RYLhZS5ChEQ3ZidMsiVza//sax8E
-   SqAdHwjEqW2dDpjTLpjMOJSu/9ef5mQJzB5TtkXDEcyZuZ3lf4VJTh2fO
-   m79WopFwZGZG4PbwEmaGO3Vnt0gftvHQtn10EdBiB9ZH+AJH4kRJcLHra
-   Ea4MYaY3izX51Cl/q9Wl8tabFZ+DsmNah+4sv9YrrtyX1gD9/irTDDAcn
-   A==;
-X-CSE-ConnectionGUID: mcJSwuToRtieiXVR084UNA==
-X-CSE-MsgGUID: XgkDT94tRf+2F9+MxZ97gA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11377"; a="43661065"
-X-IronPort-AV: E=Sophos;i="6.14,257,1736841600"; 
-   d="scan'208";a="43661065"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2025 09:53:14 -0700
-X-CSE-ConnectionGUID: vxUpWW+XRv+vsEJNofToFg==
-X-CSE-MsgGUID: /XUiNi0ySAS2HUoDuLwDYA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,257,1736841600"; 
-   d="scan'208";a="123254321"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2025 09:53:08 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1tuaBd-00000003gV5-3qpB;
-	Tue, 18 Mar 2025 18:53:05 +0200
-Date: Tue, 18 Mar 2025 18:53:05 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v5 07/11] gpio: regmap: Allow to provide init_valid_mask
- callback
-Message-ID: <Z9mk8ZE1Z5_Zdyer@smile.fi.intel.com>
-References: <20250318-mdb-max7360-support-v5-0-fb20baf97da0@bootlin.com>
- <20250318-mdb-max7360-support-v5-7-fb20baf97da0@bootlin.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=q4RNnzWzNeBzF+9ouIf+YQEh8+bxvnbWtudOTDf9sDOCp2U+BHickscI3kFMr+g6Qdy5sAZ1rMlYYXqK7NMhWWN0howPpU/4QHr05k4OPAiJeXDr1Nh/tGC1VEJTUX8ybnblIXpkxiTf7VYPEF9L2MAMUjhMGbmR8u4HD8fz1W4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=yCNbrA8X; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=Cu8WjOKvjc7xER6FBh5x1tsTM5cnZ9iM06KfKZsppec=; b=yCNbrA8XKXcgrihH6JvsnO+10G
+	Uvq5lfXLMOkRw64d+Wm+k7JhW55u2hRBpbkA/9kOBslNZtOqKVWXKSsgdj6R5Be1G9Y2VGCJ9SSrN
+	ckwVAmG6G0JYvfrc9QF4tFzrsb9EvamSZ8gxh/wUAPdnsyh3eNY0bQEacQd+K1VK7lyc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tuaCc-006Hsy-Mr; Tue, 18 Mar 2025 17:54:06 +0100
+Date: Tue, 18 Mar 2025 17:54:06 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Rajaganesh Rathinasabapathi <rrathina@amd.com>
+Cc: Rajaganesh Rathinasabapathi <Rajaganesh.Rathinasabapathi@amd.com>,
+	devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
+	joel@jms.id.au, andrew@codeconstruct.com.au, robh+dt@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org,
+	Supreeth Venkatesh <supreeth.venkatesh@amd.com>, jothayot@amd.com
+Subject: Re: [PATCH v3 2/2] ARM:dts:aspeed: Initial device tree for AMD Onyx
+ Platform
+Message-ID: <6ca63f35-05c4-472d-a412-74e5c7ffeefb@lunn.ch>
+References: <20250318041224.1693323-1-Rajaganesh.Rathinasabapathi@amd.com>
+ <20250318041224.1693323-2-Rajaganesh.Rathinasabapathi@amd.com>
+ <fdd969cb-aa2d-4d55-949e-e2631757221e@lunn.ch>
+ <ab74593d-a3be-4283-ad83-3525cb6d7dd1@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,23 +67,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250318-mdb-max7360-support-v5-7-fb20baf97da0@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <ab74593d-a3be-4283-ad83-3525cb6d7dd1@amd.com>
 
-On Tue, Mar 18, 2025 at 05:26:23PM +0100, Mathieu Dubois-Briand wrote:
-> Allows to populate the gpio_regmap_config structure with
-> init_valid_mask() callback to set on the final gpio_chip structure.
+On Tue, Mar 18, 2025 at 10:18:46PM +0530, Rajaganesh Rathinasabapathi wrote:
+> On 3/18/25 19:38, Andrew Lunn wrote:
+> > Caution: This message originated from an External Source. Use proper caution when opening attachments, clicking links, or responding.
+> > 
+> > 
+> >> +&mac3 {
+> >> +     status = "okay";
+> >> +     phy-mode = "rgmii";
+> > 
+> > Does the PCB have extra long clock lines to insert the 2ns RGMII
+> > delay? Or are you another victim of aspeeds broken MAC/SCU driver?
+> > 
+> >        Andrew
+> We're following Aspeed SDK and referred other dts based on ast2600.
 
-...
+Which are all broken.
 
-> -	chip->request = gpiochip_generic_request;
-> -	chip->free = gpiochip_generic_free;
+At the moment, you are joining NVIDIA and IBM waiting for Aspeed to
+sort out this mess. Maybe you can apply some pressure...
 
-Stray change.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+     Andrew
 
