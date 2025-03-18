@@ -1,168 +1,130 @@
-Return-Path: <devicetree+bounces-158396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158397-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 178AFA66438
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 01:51:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 749FAA6644A
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 01:56:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03CDC3B39B1
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 00:51:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5BD061771AA
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 00:56:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59E6080BEC;
-	Tue, 18 Mar 2025 00:51:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34249149C7B;
+	Tue, 18 Mar 2025 00:55:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pereznus.es header.i=@pereznus.es header.b="BokOC1dJ"
+	dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b="e29I0CKx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ci74p00im-qukt09082101.me.com (ci74p00im-qukt09082101.me.com [17.57.156.10])
+Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com [205.220.177.32])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 903E322EE5
-	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 00:51:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.57.156.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F2E414375D;
+	Tue, 18 Mar 2025 00:55:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.177.32
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742259109; cv=none; b=sVvQqOhNrvddSgeMMgbADyxgDHGEbfxElnOIL4dp9Rkpt0ns3eEK2SqpErcv4kQ/avUB7MoDAB/vc7DapQFDSMfsAsiNOD78Yj9SdTURjjE+tKIx1wfLq61zx4WllIHP5cIEM++D/BYp9H8duOMqiiVVkwiabyPuHyGIQjV39Z4=
+	t=1742259340; cv=none; b=b3/g8vPCwu1cYxIrUJm8H7xJenwCpkrbpFx+KC3X99c4d6cD3GaQPjgJf7oYoJMB8+BWKHsrN5B7l0/TMnhJXezy4MslYPiGksSFiz7QxnOGAbfR2VYXDKY/S2W63mY1kcxmTZPnMaZsI2+PqWCM6ND+OJP/P/t7+/VhptxArT4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742259109; c=relaxed/simple;
-	bh=YF4nZrg9CbtoJ7k+jwHCsWpTpZ91uX3M+RwxLSG1GT8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=o2GmZY4sNUY7fvWa++0KwZ1ghlKMO6/ANZuCL9GyGAcq1miAWwaS5Pib+xwYtXR4pTREWTdjVr8PQ23ztzSuXna/L7B7+Uo780WVg4XfU4Bp9HKJtA8UFNwszT8ULZEOkuPye2I2O/HrhrmmgbpVQKH1s2XF9fEws0o3HL+Qnco=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pereznus.es; spf=pass smtp.mailfrom=pereznus.es; dkim=pass (2048-bit key) header.d=pereznus.es header.i=@pereznus.es header.b=BokOC1dJ; arc=none smtp.client-ip=17.57.156.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pereznus.es
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pereznus.es
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pereznus.es; s=sig1;
-	bh=ytIUtbebF1x4c9jt8NmxsoGzUBeZZ8D2Vbj4ZHkH7m0=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:x-icloud-hme;
-	b=BokOC1dJ8+a78mIk7mGhLvdLvvAAG6yKIRLo7Vs2MwF6B61rAI4nO0rft13joRE+m
-	 AnrpearLbx+VBkUzF8QobVYZtwQrJKol40cSXw/qoLqZD++L61rAD78eWYNXvywT6+
-	 q+2R4f4ODGztfy/hOxWoeSDDTpOK/3Al+iQXunsq0duaEOJgZEM3VH6DSADrbJXs63
-	 RkgWp0a2w6jrE+iHfjV9IXzPRjmeJIsOqNWykyWaJ4busW/cjwoukpYhl0Tlej+Viw
-	 F+075qMBrDkUtnXmdp2qbEfOunk8GhMjDCLDd3QO3s7vUT0pBDVffmCz312oM+8/eU
-	 JrpAoJhJ0QZAg==
-Received: from localhost.localdomain (ci77p00im-dlb-asmtp-mailmevip.me.com [17.57.156.26])
-	by ci74p00im-qukt09082101.me.com (Postfix) with ESMTPSA id 2524256001FC;
-	Tue, 18 Mar 2025 00:51:43 +0000 (UTC)
-From: Sergio Perez <sergio@pereznus.es>
-To: linux-iio@vger.kernel.org
-Cc: devicetree@vger.kernel.org,
-	tduszyns@gmail.com,
-	jic23@kernel.org,
-	Sergio Perez <sergio@pereznus.es>
-Subject: [PATCH v3] iio: light: bh1750: Add hardware reset support via GPIO
-Date: Tue, 18 Mar 2025 01:50:45 +0100
-Message-ID: <20250318005045.3189-1-sergio@pereznus.es>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1742259340; c=relaxed/simple;
+	bh=V83iZDIzsqubCagtV6y3O6xgaFF5i/2zrT8P9jcn+CE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=DG7+FiNP+UxaPdiUaQ7+sPXDBEVpe8AceQEVt6GAUgxg/A6JQKWew0aFCCzkLl+gDINZQhTlhXOHervEZyiPvite2OB9gse9cs9e/qWZ9cvnGio9YgFz6uMx6nuZOEJ5Os3eLSkbOlgQMUHmOUuMhC+yI2z0gJkUfiUDEVdpwbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com; spf=pass smtp.mailfrom=oracle.com; dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b=e29I0CKx; arc=none smtp.client-ip=205.220.177.32
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oracle.com
+Received: from pps.filterd (m0246631.ppops.net [127.0.0.1])
+	by mx0b-00069f02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52HLtsJE020632;
+	Tue, 18 Mar 2025 00:55:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=
+	corp-2023-11-20; bh=WfAO3xCEFpfG4p5Ko0edoiWz9nqD5rTUlpnvgn0beU8=; b=
+	e29I0CKxFtBkJpBhz0m50Gm8SMUDVfN8b/ODg3dW41CgsNDZ3Tdr4efk36VVO83N
+	ZRmNbIHlmsRyfLJT7jX/bG79znsBdo4HGdr+TIzihDwSHf897zYoubalcAY+F0/c
+	FfkST5K5e026pKLy1fvjEzyf5C4j5H41jfKFMnvM9a3+EWKGNjc6y43rLtz0/VCB
+	+lF1yxBHtWmdHioHg+0RdmlZ/XQ2a1+Htz0T4MZ8iInFcWRQ/JK2pvopLHc28cq1
+	OewoqgzD1NsKKpmGNX12rE8WixPKSQiU0gUYyG7c76k2X91zjupHmE4IJT3+cLfJ
+	33klnkK7y371UR81LmJ8Hg==
+Received: from phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (phxpaimrmta02.appoci.oracle.com [147.154.114.232])
+	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 45d1hfv62u-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 18 Mar 2025 00:55:14 +0000 (GMT)
+Received: from pps.filterd (phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
+	by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (8.18.1.2/8.18.1.2) with ESMTP id 52HMXhOC022501;
+	Tue, 18 Mar 2025 00:55:13 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTPS id 45dxeen359-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 18 Mar 2025 00:55:13 +0000
+Received: from phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 52I0tCZ8013983;
+	Tue, 18 Mar 2025 00:55:12 GMT
+Received: from ca-mkp2.ca.oracle.com.com (mpeterse-ol9.allregionaliads.osdevelopmeniad.oraclevcn.com [100.100.251.135])
+	by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTP id 45dxeen34c-1;
+	Tue, 18 Mar 2025 00:55:12 +0000
+From: "Martin K. Petersen" <martin.petersen@oracle.com>
+To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        "James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: "Martin K . Petersen" <martin.petersen@oracle.com>,
+        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v3 0/7] scsi: ufs: renesas: Add support for R-Car S4-8 ES1.2
+Date: Mon, 17 Mar 2025 20:54:41 -0400
+Message-ID: <174225924972.1094535.7000607727357086618.b4-ty@oracle.com>
+X-Mailer: git-send-email 2.48.1
+In-Reply-To: <cover.1741179611.git.geert+renesas@glider.be>
+References: <cover.1741179611.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: VAbrR5szIIzILIG5JgSPIGKzsSF_Mckg
-X-Proofpoint-ORIG-GUID: VAbrR5szIIzILIG5JgSPIGKzsSF_Mckg
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-03-17_10,2025-03-17_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 suspectscore=0
- mlxlogscore=999 mlxscore=0 bulkscore=0 clxscore=1030 malwarescore=0
- phishscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2503180004
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0 phishscore=0 mlxscore=0
+ adultscore=0 mlxlogscore=956 spamscore=0 malwarescore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2502280000
+ definitions=main-2503180004
+X-Proofpoint-GUID: s1D90x9vPUBSDquLpMyiNGooysyXDEsT
+X-Proofpoint-ORIG-GUID: s1D90x9vPUBSDquLpMyiNGooysyXDEsT
 
-Some BH1750 sensors require a hardware reset before they can be
-detected on the I2C bus. This patch adds support for an optional
-reset GPIO that can be specified in the device tree.
+On Wed, 05 Mar 2025 14:34:08 +0100, Geert Uytterhoeven wrote:
 
-The reset sequence pulls the GPIO low and then high before
-initializing the sensor, which enables proper detection with
-tools like i2cdetect.
+> 	Hi all,
+> 
+> Initialization of the UFS controller on R-Car S4-8 ES1.0 requires only
+> static values.  However, other UFS controller variants (R-Car S4-8 ES 1.2)
+> require dynamic values, like those obtained from E-FUSE, and downloading
+> firmware.
+> 
+> [...]
 
-Update the devicetree binding documentation to include the new
-reset-gpios property with examples.
+Applied to 6.15/scsi-queue, thanks!
 
-Signed-off-by: Sergio Perez <sergio@pereznus.es>
----
- .../devicetree/bindings/iio/light/bh1750.yaml |  5 +++++
- drivers/iio/light/bh1750.c                    | 22 +++++++++++++++++++
- 2 files changed, 27 insertions(+)
+[1/7] dt-bindings: ufs: renesas,ufs: Add calibration data
+      https://git.kernel.org/mkp/scsi/c/67407b84e0ed
+[2/7] scsi: ufs: renesas: Replace init data by init code
+      https://git.kernel.org/mkp/scsi/c/c4e83573c3d0
+[3/7] scsi: ufs: renesas: Add register read to remove save/set/restore
+      https://git.kernel.org/mkp/scsi/c/5129aa627599
+[4/7] scsi: ufs: renesas: Remove register control helper function
+      https://git.kernel.org/mkp/scsi/c/855bde8ce5bc
+[5/7] scsi: ufs: renesas: Refactor 0x10ad/0x10af PHY settings
+      https://git.kernel.org/mkp/scsi/c/cca2b807c227
+[6/7] scsi: ufs: renesas: Add reusable functions
+      https://git.kernel.org/mkp/scsi/c/44ca16f4970e
+[7/7] scsi: ufs: renesas: Add initialization code for R-Car S4-8 ES1.2
+      https://git.kernel.org/mkp/scsi/c/b3bb1762451a
 
-diff --git a/Documentation/devicetree/bindings/iio/light/bh1750.yaml b/Documentation/devicetree/bindings/iio/light/bh1750.yaml
-index 1a88b3c253d5..f7a8dcd7d2a1 100644
---- a/Documentation/devicetree/bindings/iio/light/bh1750.yaml
-+++ b/Documentation/devicetree/bindings/iio/light/bh1750.yaml
-@@ -24,6 +24,10 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  reset-gpios:
-+    description: GPIO connected to the sensor's reset line (active low)
-+    maxItems: 1
-+
- required:
-   - compatible
-   - reg
-@@ -39,6 +43,7 @@ examples:
-       light-sensor@23 {
-         compatible = "rohm,bh1750";
-         reg = <0x23>;
-+        reset-gpios = <&gpio2 17 0>;
-       };
-     };
- 
-diff --git a/drivers/iio/light/bh1750.c b/drivers/iio/light/bh1750.c
-index 4b869fa9e5b1..b88ce92acbc6 100644
---- a/drivers/iio/light/bh1750.c
-+++ b/drivers/iio/light/bh1750.c
-@@ -22,12 +22,16 @@
- #include <linux/iio/iio.h>
- #include <linux/iio/sysfs.h>
- #include <linux/module.h>
-+#include <linux/gpio/consumer.h>
- 
- #define BH1750_POWER_DOWN		0x00
- #define BH1750_ONE_TIME_H_RES_MODE	0x20 /* auto-mode for BH1721 */
- #define BH1750_CHANGE_INT_TIME_H_BIT	0x40
- #define BH1750_CHANGE_INT_TIME_L_BIT	0x60
- 
-+/* Define the reset delay time in microseconds */
-+#define BH1750_RESET_DELAY_US 10000 /* 10ms */
-+
- enum {
- 	BH1710,
- 	BH1721,
-@@ -40,6 +44,7 @@ struct bh1750_data {
- 	struct mutex lock;
- 	const struct bh1750_chip_info *chip_info;
- 	u16 mtreg;
-+	struct gpio_desc *reset_gpio;
- };
- 
- struct bh1750_chip_info {
-@@ -248,6 +253,23 @@ static int bh1750_probe(struct i2c_client *client)
- 	data->client = client;
- 	data->chip_info = &bh1750_chip_info_tbl[id->driver_data];
- 
-+	/* Get reset GPIO from device tree */
-+	data->reset_gpio = devm_gpiod_get_optional(&client->dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(data->reset_gpio))
-+		return dev_err_probe(&client->dev, PTR_ERR(data->reset_gpio),
-+							"Failed to get reset GPIO\n");
-+
-+	/* Perform hardware reset if GPIO is provided */
-+	if (data->reset_gpio) {
-+		/* Perform reset sequence: low-high */
-+		gpiod_set_value_cansleep(data->reset_gpio, 0);
-+		fsleep(BH1750_RESET_DELAY_US);
-+		gpiod_set_value_cansleep(data->reset_gpio, 1);
-+		fsleep(BH1750_RESET_DELAY_US);
-+
-+		dev_dbg(&client->dev, "BH1750 reset completed via GPIO\n");
-+	}
-+
- 	usec = data->chip_info->mtreg_to_usec * data->chip_info->mtreg_default;
- 	ret = bh1750_change_int_time(data, usec);
- 	if (ret < 0)
 -- 
-2.43.0
-
+Martin K. Petersen	Oracle Linux Engineering
 
