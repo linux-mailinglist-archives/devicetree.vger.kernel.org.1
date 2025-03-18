@@ -1,161 +1,179 @@
-Return-Path: <devicetree+bounces-158489-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D52EBA66F30
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 10:00:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DC2AA66F38
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 10:01:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2C4319A2B88
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 09:00:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 28B70178D1A
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 09:01:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F75C1F4179;
-	Tue, 18 Mar 2025 09:00:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0ECE1DE8AD;
+	Tue, 18 Mar 2025 09:01:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nUC1aYqx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gxQhgSWE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25764189915;
-	Tue, 18 Mar 2025 09:00:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B254042AB4;
+	Tue, 18 Mar 2025 09:01:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742288414; cv=none; b=JMs5NxYw/sNCCDg+rYUnuNZbnP2IjSyr+pIW7qd6eqkCFcEnvFpqnmmWMc6sCPZXMwlz4UnWrzb8rZrf3WzkrhCjQ8fGiXMvbLfoa2CJNessHyHNJiD3qcV3FA/Yd5FGMZWs7ZVwYl3o0Fn8PddVILlVaMB8hdJMmtRS/g++q0U=
+	t=1742288513; cv=none; b=NWBAFJtyBJHqnamPZFwEnHaye+lMt2VHYt5fV7yyyfLmOkBoxgGfnNzoflMI4919141UUh2m7CEW8SXfQj1o5/ZBL0scY58yn1yLKhtgb32MeNgwCHqKiqqbPhIG53luFMuxFOr+BrI2/+x70htew6D91f4YZShpuL1bqbJZhPg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742288414; c=relaxed/simple;
-	bh=o20ut9XPOkaNXkg3oPkImXLLeuOtRdZe6gxpLMXe7nA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HQgT1tAOj3JkNBWmjeTHA+y21y1ySARaLEwQTNJ/yrs0Rc/jUmDCkKCTbNXXLC2UzsoPkonSHnuVEYdwEk7RSLtX1k6sgM7MZX0g9paV8/bwoxUT9SpI4Gxeh9BrlCOwNoF23GV22ReRDLDp6TmmZVL7kZUYJL9mAeRnxnWAGgQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nUC1aYqx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39682C4CEDD;
-	Tue, 18 Mar 2025 09:00:08 +0000 (UTC)
+	s=arc-20240116; t=1742288513; c=relaxed/simple;
+	bh=m7HEapZAycbQjtvmrxMb/Siih8OzNWBK9rT29ShBgc0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NWTZyUmcOJw5PTY/Ny35gatpDDIvmj4NgZLQagPcsq8SROhBxitEHue0wjQwhjCkOCEMQKG0I8ZeOFJsNvSHJXtvjM0TFZGhTEb4TWSXsf+TOpgxQFgxvZamviMkcvce8Tn7GlKg6NszXZ02jg6mMgNmz7EntiuT10/0HBuZDLI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gxQhgSWE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89565C4CEDD;
+	Tue, 18 Mar 2025 09:01:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742288413;
-	bh=o20ut9XPOkaNXkg3oPkImXLLeuOtRdZe6gxpLMXe7nA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nUC1aYqxE32yuLQiBOfJVqeep+n0p9I13eIjpcTPMX1841y0vGtwbi0lT5VIOO43a
-	 M6ESSv8Hdod1/nLKxga/OQwSyC7kpF3TIBwme+H4x/f6RzX3b/ogVo1ZUxacYEINRL
-	 dCVqJ0QfEDjsMaC2Vh6w8zdrg7f1d0Y1z2cxAxxrzyws1QUNV1G/f1RvuN+Hc4wc5Q
-	 BxxaCQ9N6tAEO31vyglnKwnV8+KrveFohxYByeAJ4qsbvMV+CTBTe7Y3WCh56nlfdN
-	 YEwUPDDPjfMU/XTjMsnrIENfRA9FaH4+a3b6sfIkXvcGvLAlv1cGoz6pnRTAq4IY8+
-	 mgVOjISfgYozQ==
-Message-ID: <12f5049d-02e1-4c80-9289-b2dfb1e136a8@kernel.org>
-Date: Tue, 18 Mar 2025 10:00:07 +0100
+	s=k20201202; t=1742288513;
+	bh=m7HEapZAycbQjtvmrxMb/Siih8OzNWBK9rT29ShBgc0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gxQhgSWEp4OaFDIiFosNNc8DKTsjsRuVdNt+Y0DPos09ML9jBmq6yxk0WsB00HHk9
+	 o6shLp+2SLD2NI6/88bynEHpZ99prjUcHjnKDfLzA73ErPZuN40aF7zwTLcBqBxhi9
+	 zRsiP0G1rxSrFF62RmMlfNmK8IaJMjZRdMArrFFHTQOOsrlZ12AYb3NIyDXdOljK3T
+	 7llK1ufzWqzmSuGb/x1X9aSQKFqDl8Jk0Dr25obfKOQH85WsNO07FX7WWwl5wMDG92
+	 n1eRxhmhDi6YcPsmHlvPqn9qfZ5XnIEAfOVERHj0sntiHWRTNm88xC8peZ/abX5iw7
+	 7g9Rw5hRsLOJQ==
+Date: Tue, 18 Mar 2025 10:01:48 +0100
+From: Niklas Cassel <cassel@kernel.org>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Jesper Nilsson <jesper.nilsson@axis.com>, Frank Li <Frank.Li@nxp.com>,
+	Lars Persson <lars.persson@axis.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-arm-kernel@axis.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org
+Subject: Re: [PATCH RFC NOT TESTED 0/2] PCI: artpec6: Try to clean up
+ artpec6_pcie_cpu_addr_fixup()
+Message-ID: <Z9k2fLFU3UCubK97@ryzen>
+References: <Z88Xh75G6Wabwl2O@axis.com>
+ <20250317175419.GA933527@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v3 2/3] firmware: mediatek: Add vcp ipc protocol
- interface
-To: =?UTF-8?B?SmppYW4gWmhvdSAo5ZGo5bu6KQ==?= <Jjian.Zhou@mediatek.com>,
- "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "wenst@chromium.org" <wenst@chromium.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>
-References: <20250317110331.2776-1-jjian.zhou@mediatek.com>
- <20250317110331.2776-3-jjian.zhou@mediatek.com>
- <d3f8fbe3-c061-4d34-a5a3-09cbf676bc4c@kernel.org>
- <f3b6a690f73e8f5a5370a587d0b1671e96e8b5b2.camel@mediatek.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <f3b6a690f73e8f5a5370a587d0b1671e96e8b5b2.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250317175419.GA933527@bhelgaas>
 
-On 18/03/2025 09:32, Jjian Zhou (周建) wrote:
->>> +
->>> +     return IPI_ACTION_DONE;
->>> +}
->>> +EXPORT_SYMBOL(mtk_vcp_ipc_send);
->>
->> Drop export - no users
->>
->> Anyway, every export must be GPL.
+Hello Bjorn, Jesper,
+
+On Mon, Mar 17, 2025 at 12:54:19PM -0500, Bjorn Helgaas wrote:
+> On Mon, Mar 10, 2025 at 05:47:03PM +0100, Jesper Nilsson wrote:
+> > I've now tested this patch-set together with your v9 on-top of the
+> > next-branch of the pci tree, and seems to be working good on my
+> > ARTPEC-6 set as RC:
+> > 
+> > # lspci
+> > 00:00.0 PCI bridge: Renesas Technology Corp. Device 0024
+> > 01:00.0 PCI bridge: Pericom Semiconductor PI7C9X2G304 EL/SL PCIe2 3-Port/4-Lane Packet Switch (rev 05)
+> > 02:01.0 PCI bridge: Pericom Semiconductor PI7C9X2G304 EL/SL PCIe2 3-Port/4-Lane Packet Switch (rev 05)
+> > 02:02.0 PCI bridge: Pericom Semiconductor PI7C9X2G304 EL/SL PCIe2 3-Port/4-Lane Packet Switch (rev 05)
+> > 03:00.0 Non-Volatile memory controller: Phison Electronics Corporation E18 PCIe4 NVMe Controller (rev 01)
+> > 
+> > However, when running as EP, I found that the DT setup for pcie_ep
+> > wasn't correct:
+> > 
+> > diff --git a/arch/arm/boot/dts/axis/artpec6.dtsi b/arch/arm/boot/dts/axis/artpec6.dtsi
+> > index 399e87f72865..6d52f60d402d 100644
+> > --- a/arch/arm/boot/dts/axis/artpec6.dtsi
+> > +++ b/arch/arm/boot/dts/axis/artpec6.dtsi
+> > @@ -195,8 +195,8 @@ pcie: pcie@f8050000 {
+> >  
+> >                 pcie_ep: pcie_ep@f8050000 {
+> >                         compatible = "axis,artpec6-pcie-ep", "snps,dw-pcie";
+> > -                       reg = <0xf8050000 0x2000
+> > -                              0xf8051000 0x2000
+> > +                       reg = <0xf8050000 0x1000
+> > +                              0xf8051000 0x1000
+> >                                0xf8040000 0x1000
+> >                                0x00000000 0x20000000>;
+> >                         reg-names = "dbi", "dbi2", "phy", "addr_space";
+> > 
+> > Even with this fix, I get a panic in dw_pcie_read_dbi() in EP-setup,
+> > both with and without:
+
+Your fix looks correct to me.
+
+You should even be able keep dbi as 0x2000, and simply remove the dbi2
+from "reg" and "reg-names", as the driver should be able to infer dbi2
+automatically:
+https://github.com/torvalds/linux/blob/v6.14-rc7/drivers/pci/controller/dwc/pcie-designware.c#L119-L128
+
+But your fix seems more correct.
+You should probably also change the size of "dbi" to 0x1000 in the RC node.
+
+
+For the panic, could you please share the stack trace?
+(Perhaps we can help)
+
+
+> > 
+> > "PCI: artpec6: Use use_parent_dt_ranges and clean up artpec6_pcie_cpu_addr_fixup()"
+> > 
+> > so it looks like the ARTPEC-6 EP functionality wasn't completely tested
+> > with this config.
+> > 
+> > The ARTPEC-7 variant does work as EP with our local config, I'll try
+> > to see what I can do to correct ARTPEC-6 using the setup for ARTPEC-7,
+> > and test your patchset on the ARTPEC-7.
 > 
-> The Video Companion Processor (VCP) driver (currently being prepared
-> for submission to the community) will call it.
+> Where are we at with this?
+
+My recommendation would be to:
+1) Get artpec6 EP mode working with v6.14-rc7
+2) Try v6.14-rc7 + v12 of Frank's series
+3) Try v6.14-rc7 + v12 of Frank's series + this series
+
+
 > 
-
-It does not work like that. You must post the users NOW.
-
-NAK
-
-
-...
-
->> Check goes immediately after declaration. I doubt it is useful in the
->> first place as this cannot even happen...
->>
->>
->>> +             dev_err(dev, "No platform data available\n");
->>
->> No, drop. Cannot happen or fix your drivers. Who provides the
->> platdata here?
+> First priority: I plan to merge v12 of Frank's series [1] for v6.15.
+> I hope this works with existing DTs on artpec6, both for RC and EP.
+> If not, we need to figure it out ASAP.
 > 
-> The VCP driver will call platform_device_register_data to register the
-> structure data. mtk_vcp_ipc_probe will be triggered by vcp_probe. This
-> structure data is the structure we described in the cover letter.
+> Second priority: For this series of:
+> 
+>   ARM: dts: artpec6: Move PCIe nodes under bus@c0000000
+>   PCI: artpec6: Use use_parent_dt_ranges and clean up artpec6_pcie_cpu_addr_fixup()
+> 
+> it looks like there's an open issue with the dts patch that Rob
+> noticed [2].  It would be great if we could fix that issue and get it
+> queued up if it's safe to merge independently of Frank's v12 series.
+
+Rob's bot is simply complaining that there is no DT schema.
+
+This is because the DT schema for axis,artpec6-pcie has not been
+converted to YAML.
+
+It would be nice to convert it, but I don't think it should stop
+other improvements for this driver.
 
 
-Comment is still valid.
+> It looks like the artpec6_pcie_cpu_addr_fixup() removal probably needs
+> to be delayed until we know all DTs in the field are fixed?  This
+> might mean that we can *never* remove artpec6_pcie_cpu_addr_fixup()
+> unless we can identify and work around the broken DTs in the kernel.
 
-Best regards,
-Krzysztof
+Jesper should be able to answer this, but as far as I know, artpec6 is only
+used in-house, so they have full control of the DTBs.
+
+(i.e. artpec6_pcie_cpu_addr_fixup() can probably be killed quite quickly,
+once "v6.14-rc7 + v12 of Frank's series + this series" gets working.)
+
+
+Kind regards,
+Niklas
 
