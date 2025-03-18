@@ -1,142 +1,105 @@
-Return-Path: <devicetree+bounces-158564-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5C3DA67451
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 13:51:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB4B6A674AB
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 14:15:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A8ED189CA65
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 12:51:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 65786422625
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 13:14:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26F36207A23;
-	Tue, 18 Mar 2025 12:51:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EC0020CCDE;
+	Tue, 18 Mar 2025 13:14:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="esLyZ/j5"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="Bcf4iqYd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECC3D290F;
-	Tue, 18 Mar 2025 12:51:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6E8220C46A;
+	Tue, 18 Mar 2025 13:14:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742302288; cv=none; b=sgU7CvkAkqA/vBzUFdAVcwrhaZAE3NKiV1+8wWIAjWvgJc//1LswXPUqdDQKjUX8OjRFK5Fa+L/PL+Ta85IG8AzvjANQeHk0/ZOs8VGCHZ41xRV5n3AToBxU5MRtNPXXf+RAxs0L+VaCfIzxCSpuaHfFdILT7iWHLbiB7GMXppw=
+	t=1742303645; cv=none; b=QgCIkCr+55qoRLCZ9nxnE7HIlkHWL3bUqg1CLzHRpBXNdwMjM4cdAj4G7twQlYQDoeSdyf82K3AzE7Ryw+/6WofttaGcLUE2B6EGZ+fh3H4kbyMkgEKjep6i9LU13t+Po3UGg21LizlSajPHxADSyytvdwHKdmB7V5nQkApHLJo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742302288; c=relaxed/simple;
-	bh=lXPHguphpS7R16tkHqKSnZ+MhJWUh9DyfVKToAF8ioM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=JQx7r1RCQGHz1Uo/OqF+sXLZeEPuxlHA2eQHz508DA7zl8ogjwfOH3av5UcRIJXJJfVtRHF1xRAvVX+jfyfimeBJlRz3KR8/e9RCJUt6mom051oIKaPb5zVDA+s9K9Ty33+//BMhbXu9SunS2gItUDM7dU8PZzWql2BviB5QZYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=esLyZ/j5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C201CC4CEE3;
-	Tue, 18 Mar 2025 12:51:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742302287;
-	bh=lXPHguphpS7R16tkHqKSnZ+MhJWUh9DyfVKToAF8ioM=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=esLyZ/j5XyJYh2fL21OQZNj2KbTzFHnSsi9rllu7U5qnhKw7lJPL9Mwg467I0Lb8I
-	 sqWa7GxjGDU0z5BlwyFdqj3KwePPkDmhEdyTaGJ7G9mUXfzuVmR3abf/HtW0PYBv9B
-	 jvN/pxAz6W1cBK82B9zioM7wZlH/iMI25Wd40JWQPUIpgA5t2d83/D0VpHl8GmDT2A
-	 wKySILeWCv2iGHelQHwRAj7WznoCR7EEKrNfaZHwFXsOQ7kAvNBXSc5efNZap69ri2
-	 oOo07zc/FY2tlZo9KD/no7fzJrcTO9XyjV9HqyloVATivb1vt61cnGxFENc7U+bCgU
-	 b8k2CHw7GwVmQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B47BFC282EC;
-	Tue, 18 Mar 2025 12:51:27 +0000 (UTC)
-From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
-Date: Tue, 18 Mar 2025 13:51:21 +0100
-Subject: [PATCH] ARM: dts: qcom: apq8064-lg-nexus4-mako: Enable WiFi
+	s=arc-20240116; t=1742303645; c=relaxed/simple;
+	bh=WzM66xIHTbmz3TlxtlPdmB+DWTWd2fsKUEx8GAB4jFc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IFg+u5N5Hlnnt3R6cNJmYU8V5RSxNOkZyJqu58jUjg5qa/uXWEJEVioKdyzVFo5HYWysH0eDFsOZ/S0VV8emW3EfxX95bkqmHoR17fViftrkncHUEnC9sgPgtccWkyo67jlAeLPjNg1MvwnK44oYXyzyFQyqmWXcCF1Jg45VChE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=Bcf4iqYd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53CD7C4CEDD;
+	Tue, 18 Mar 2025 13:14:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1742303644;
+	bh=WzM66xIHTbmz3TlxtlPdmB+DWTWd2fsKUEx8GAB4jFc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Bcf4iqYd9/VZQZDY7zmHH1nIEz45x2vf+DHLPF3fOG3zYMnTSRZbJ1Pg69PNmEdEg
+	 kbN8o6ccr5Tg5241Wfi7wJ51JGIqC5cN4pR3mRupwl0fDXaGEzb0hVsnbFMu75YM1z
+	 YtCU2CFv3ccAoIQ9ztjQ2+Pitp2rMP+uPwA6gQxg=
+Date: Tue, 18 Mar 2025 14:12:46 +0100
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, peter.chen@kernel.org,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, jun.li@nxp.com
+Subject: Re: [PATCH v5 0/6] add USB2.0 support for i.MX95-19x19 EVK board
+Message-ID: <2025031823-certainty-crewman-b90c@gregkh>
+References: <20250312082700.260260-1-xu.yang_2@nxp.com>
+ <2025031443-rounding-subject-1f60@gregkh>
+ <20250314092137.6m3gmj4irxqwpy22@hippo>
+ <2025031404-elite-critter-05b7@gregkh>
+ <20250318072414.x5y4kbe2ahl24uzg@hippo>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250318-lg-nexus4-mako-enable-wifi-v1-1-e3b4a09d9f68@ixit.cz>
-X-B4-Tracking: v=1; b=H4sIAEhs2WcC/x3MQQqDMBAF0KvIrDtgbCLaqxQXaf3RQY0lQRsQ7
- 25w+TbvoIggiPQqDgrYJcrqM9SjoO9o/QCWPpuqsjLlUzU8D+yRtqh5sdPK8PYzg//ihF2ttOp
- hnDYt5eAX4CTd+bs7zwvgKhRMbAAAAA==
-X-Change-ID: 20250318-lg-nexus4-mako-enable-wifi-f6141de5f459
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, David Heidelberg <david@ixit.cz>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1456; i=david@ixit.cz;
- h=from:subject:message-id;
- bh=oABHqPk0qYz8RHZ1DC5dvgMY1GAwB6itVi5XXv+ltKE=;
- b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBn2WxNl/rCFHhm/Y68tSJ93r3SbPWxEGpVqZXRR
- VidrDnbnHuJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCZ9lsTQAKCRBgAj/E00kg
- cpydD/kB9AOtHCkPb46KSrycSfDhrrEVqRYmu8HiNksmTk8E2eiz1vddb3eTx4YlwDlsxG1VlsM
- tK8s1tSAPcJvHS5bmpf9XNyXyUypW9CpX0r0Anqe08gAtN6tqc7yfArpDoIpD/QbNC6cEnb93wH
- 6RutXonQxADYkZ/qhsUQfksMKJ6fSsJlKdrStbnLorr4g1T9hgH3kjn6AWBkvL30nQC/MT4bdsG
- /Ed/JT036EfrjgNFQSDiWPz9rwIkoB0k0bi4Lad9CZ0lBZTH0I67RgE+kPpNPblPzwP+sFs6oJM
- geEssK7HXyerGA3H/ztyPFFacgjh+zm2Hz7ZxtpKYEJ6dxksMjuz9NtnZb8/WEZDS+6PsfpBtr4
- XmTYJ385uTZQ3h2sh4RTQz1GxDuqPVu1PHo0Elt3953Jiq/676z5oVmvYWrHEmcKhedprglbjtZ
- jI2qF9AeIyFxfnGpBMD/Nph+cyT9zMGIL8i4giMiWw2iDW6G7Ui+gM7Je8XEVCh18fhtyuKsirJ
- PUtZCzW12geS25rvorGisoG2yqDTPI9qm228SwWiaBn7p8BGxRXwEncEmDO6GIlSn6OezuHbpf1
- sKQFdRbj08flbkdVHr7b7mIW8CaxdaxEJB1ZR3NYAJHoc3IR9RPlz3H8CneAEKZPm70L1tje1Z8
- xyeM7n0xjPQKWKg==
-X-Developer-Key: i=david@ixit.cz; a=openpgp;
- fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
-X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
-X-Original-From: David Heidelberg <david@ixit.cz>
-Reply-To: david@ixit.cz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250318072414.x5y4kbe2ahl24uzg@hippo>
 
-From: David Heidelberg <david@ixit.cz>
+On Tue, Mar 18, 2025 at 03:24:14PM +0800, Xu Yang wrote:
+> Hi Greg,
+> 
+> On Fri, Mar 14, 2025 at 01:37:19PM +0100, Greg KH wrote:
+> > On Fri, Mar 14, 2025 at 05:21:37PM +0800, Xu Yang wrote:
+> > > Hi Greg,
+> > > 
+> > > On Fri, Mar 14, 2025 at 09:18:51AM +0100, Greg KH wrote:
+> > > > On Wed, Mar 12, 2025 at 04:26:54PM +0800, Xu Yang wrote:
+> > > > > The i.MX95-19x19 EVK board features a USB 2.0 Type-A port, with this
+> > > > > series primarily introducing USB 2.0 support. In the i.MX95 architecture,
+> > > > > the USB wake-up handling mechanism is integrated within the HSIO block
+> > > > > control module, utilizing a dedicated wake-up interrupt. Therefore, we
+> > > > > also implemented corresponding wake-up logic code to properly manage this
+> > > > > functionality.
+> > > > > 
+> > > > > For detailed changes can refer to patch commit log.
+> > > > 
+> > > > Does not apply to my tree :(
+> > > 
+> > > It'd due to below dts patch #2,3 not in usb tree. However, linux-next already
+> > > have them. I see Shawn just send pull request for 6.15. To make it easy,
+> > > let me ping you when usb tree have them, is it ok?
+> > > 
+> > > https://lore.kernel.org/linux-usb/20241204050907.1081781-1-xu.yang_2@nxp.com/#t
+> > 
+> > That will not be until after 6.15-rc1 is out.
+> 
+> In this series, patch #1-4 should go to usb tree and path #5,6 should go to Shawn
+> tree. You can't apply patch #5,6, right? However, you can ignore patch #5,6 and
+> pick up patch #1-4, am my understanding right? Shawn will pick patch #5,6 to his
+> tree.
 
-The Wi-Fi setup is identical to that of the Sony Xperia Z (Yuga).
+Ok, can you resend just what you want me to take so I can suck in the
+whole patch series at once and don't have to do it "by hand"?
 
-Verified against the legacy kernel configuration inside
- arch/arm/mach-msm/board-8064-regulator.c
-using LineageOS 14.1 kernel sources.
+thanks,
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- arch/arm/boot/dts/qcom/qcom-apq8064-lg-nexus4-mako.dts | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
-
-diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064-lg-nexus4-mako.dts b/arch/arm/boot/dts/qcom/qcom-apq8064-lg-nexus4-mako.dts
-index 5710450faabf34fa5991d8803a2369cfbb09e4ea..c187c6875bc69d6ad711b52d519fe6a2660f09be 100644
---- a/arch/arm/boot/dts/qcom/qcom-apq8064-lg-nexus4-mako.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-apq8064-lg-nexus4-mako.dts
-@@ -86,6 +86,24 @@ MATRIX_KEY(0, 1, KEY_VOLUMEUP)
- 	status = "okay";
- };
- 
-+&riva {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&riva_wlan_pin_a>, <&riva_bt_pin_a>, <&riva_fm_pin_a>;
-+
-+	vddcx-supply = <&pm8921_s3>;
-+	vddmx-supply = <&pm8921_l24>;
-+	vddpx-supply = <&pm8921_s4>;
-+
-+	status = "okay";
-+
-+	iris {
-+		vddxo-supply = <&pm8921_l4>;
-+		vddrfa-supply = <&pm8921_s2>;
-+		vddpa-supply = <&pm8921_l10>;
-+		vdddig-supply = <&pm8921_lvs2>;
-+	};
-+};
-+
- &rpm {
- 	regulators {
- 		compatible = "qcom,rpm-pm8921-regulators";
-
----
-base-commit: c4d4884b67802c41fd67399747165d65c770621a
-change-id: 20250318-lg-nexus4-mako-enable-wifi-f6141de5f459
-
-Best regards,
--- 
-David Heidelberg <david@ixit.cz>
-
-
+greg k-h
 
