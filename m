@@ -1,112 +1,154 @@
-Return-Path: <devicetree+bounces-158772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB6D2A67FFD
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 23:51:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FC0BA6804E
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 00:01:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B3C14226D6
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 22:50:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F77619C482C
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 23:01:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 487A32135B2;
-	Tue, 18 Mar 2025 22:50:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E44E212B09;
+	Tue, 18 Mar 2025 23:00:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TxRsJ2Nw"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="tXJB/EAw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 142D72080CD;
-	Tue, 18 Mar 2025 22:50:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B92F620E6ED
+	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 23:00:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742338234; cv=none; b=WCgFR0J6UG9ZlLalBXBqwfSFNBiDm0MEPzDVz5DuDmqhzciLnIDG0ls/kmo/nZWyvQqZsOj2us5GsCPyS0+i5DDE6IMUtaqgQ4zSW1QhvA+PMZtqg7Nd4wwNE2QgehOgQHsFDHDdFQ52CHwp0N51q9fXO/eEM318qQDJPUR19XM=
+	t=1742338851; cv=none; b=gr3liy8m3BgD6W+eqjjIWquuw8mudkFdAeQ2I2DnxNqzhoXchZZO5ooo1xGE45KNS1mbQanFTEg1rXeeKQGTqLKI57lNvGhCBrHT+HFI0ngt7UAu9ZUsd5rnT99bK5UPxzLdF26qC0K0oNVZURHzci2/IQM1WG9KHmswqoPtQ7o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742338234; c=relaxed/simple;
-	bh=c4bsVe+5uL9D6uBKzHJO71coGq992rq3ehHjhbm4ZO4=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=ocIrDb8aF8ZCGdO+t/8tqiyf1+mSDx5MU5upmhZuew+EEiCDxMQFEfLsimLcdSPlWRayS6QPonFNoA6lyizCArfB09egPIwBjfrLGmAFMZoyiea9ks+FL/cPnv7MQnSUYysKjLiLqpFmNH4WOV5+QviuUyQ6G0FlGdpw8zJo3jg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TxRsJ2Nw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 601FBC4CEE9;
-	Tue, 18 Mar 2025 22:50:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742338233;
-	bh=c4bsVe+5uL9D6uBKzHJO71coGq992rq3ehHjhbm4ZO4=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=TxRsJ2Nwag6309asbOZC3fzbTIIkz6FiBRP5612KDJkVMfcmjUHRFhiHSoGe63NzB
-	 QnSrAHR5WTT6/rOSny96TnP0KVrS7HKtcABULGkvLuzBdwT9uzPxJFZ1kgI3SIFY+l
-	 B/pfSUjPIHl+ZKU6IdwM+Ly/o0bZoAJKtwH5l21igPdgXR2NLP1B1+G633bGdCas3a
-	 +I4DYgOhHcSFrKWf7TZYKXZ39Woimk6n9VsO46V2APqdm37McEA8Mv1tM/FX5Qz90d
-	 lzsquBJaVkX5O5WB/gBHf/qFK5Y4Z3imxIXMpmIJq3fIHDjm8AXkAEoIlPE1cb5nIp
-	 MeB2r2YbGnUsw==
-Message-ID: <ef86ccad056bc03af7f01d5696787766.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1742338851; c=relaxed/simple;
+	bh=Ya379Ijr2ofj10+RRG61gqv1ZJJPtyVebxeOMcaN51U=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=aaJamqrdqiCCaYlSwU17uMimVDMJO3SW+bIuNoxEwuzCXRRRU/6BWV8n1VwMVapueScOlBzXzIDwg9CiFoN7qvfhncOaOT72Ev13whFgI3ZAvXPBLwEdWRLIj3oWN4Taa7axTNMsf+BmQzCq0lFn9F/hAavRDrkVNoHGlmKlBJA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=tXJB/EAw; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2260c915749so41221035ad.3
+        for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 16:00:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1742338848; x=1742943648; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FYFuZAXLZfyhQ6Ofp04NHjTY3u72Upe1i27dNGQ4bgY=;
+        b=tXJB/EAwlLWnvEMZ0+wcOO3OQ0yjxiGe1FiILgTu0OlX3ceTueTlTVfOifrYI7wASA
+         K6tLlsOjZRn/Hx7/r13U7a1Ibm5gQbJQ0mvL54sG5X8U62CYpYS0eAX+/AwTPqBywKpr
+         bKS6YixmG9xxObsnhQzNEU2zwesBpNbPnOm0GLge0uRleYGl5dRTBFJkvim7UvE5CVLC
+         6EG63NvRnZ6eKBVtDgdf6Sa+uiHtN9ix4lZqOWxl3iP3jYjheNoQ3WvQDNLaTpp9gJq+
+         WTik6WkiFvnvRRGTc+ikLeCK3Pbduv25FJ/81NgghjZlvD1NalrcY/OgFAkDNEE7/EcZ
+         frJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742338848; x=1742943648;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FYFuZAXLZfyhQ6Ofp04NHjTY3u72Upe1i27dNGQ4bgY=;
+        b=dFfxo86idjpf9gi0bGUGQVOQRfDAl5iLfXcCE9bbfuzKD8TMfmZGBJQeLbvbRg5mNx
+         VnI8xGXriWWY/Ifyqj15hr9rdCI5RcuJo0BB4MAas2EI+YUM962t+oPXJqHoEECl+MRX
+         kpUT8bE2a0b5JfRcNhvSsrSNlKQyuQedRtO8jmRfPm++xNZAjGxKl6EF4dnQhTBLqLrT
+         +KAwXK/7Ig+RUTLtExfvM7w36WBmXLzMfonz6njMte6pdlf3Nh6hhUthrspNTUodezrm
+         XlWGCdqE3nkEulCkU5pCG5NMNBdHyE3hC0b3njHnAOFCQW0rn+0t8X7/edSJTcWnS9aB
+         Jcbg==
+X-Forwarded-Encrypted: i=1; AJvYcCVq5XTcsBqoHN/nwswLvCxt8Xf4eqfmZ3mbK8k/ejsmqhSQqM8Fabbz7X3orILka88UsvGH53aXTtCV@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyanm8jd0lOzqLlTpyvmEfM5f2fuA6J2F5lkzHZuhdD8eQ0G0HD
+	bDiHCAFHjdIa61qIJ+YcK3cwOKWFl7W2hPWLTWN0nz8dgUQcuFRE8zEbrAgtaN4=
+X-Gm-Gg: ASbGncvHxbgCaWKsqvc13gXblvZzCuqRomwofRaG6BiGkl1Cusf9NwhOMXDU9QM50uY
+	dBbqfGW/gdDW7oqTE+/Os7ZqnBiIRtdIb6DhUL6FAHtlfMK/sk9P47fUKKjvPwwDWoLjj2xF7xK
+	oNPsryDO49w/T1R8sSfEVzGkUAReTwJCfFXoh15zhMMBPXIslbgjNqE7Ph+ju9L5D0lVcA0QIyQ
+	kt++zn31AXjuVPA94+YZ7OfzcV3MtNjhoRqe24lfMwGvH+oQgSOq6NWBmgufp9KtOaEK64HNCB+
+	pNHUrJRHgGYFN3ve8YqVzjV4inTuTbqjlWhnTnOHDL+uCnhgPYKaZM287MN+N0B/1gVp6dPIpEs
+	Yah2oc6c=
+X-Google-Smtp-Source: AGHT+IFTfJJcr07mnjzLqCop80WxhC5Pssj38zY+A8XR2rKWIc2cYcEXx8f4iEqqmQsjWdqm+Dpo5Q==
+X-Received: by 2002:a17:902:d2c6:b0:215:acb3:3786 with SMTP id d9443c01a7336-2264993661fmr6691435ad.19.1742338847956;
+        Tue, 18 Mar 2025 16:00:47 -0700 (PDT)
+Received: from dev-linux.. (syn-076-088-115-008.res.spectrum.com. [76.88.115.8])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-225c6ba6f14sm100739465ad.111.2025.03.18.16.00.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Mar 2025 16:00:47 -0700 (PDT)
+From: Sukrut Bellary <sbellary@baylibre.com>
+To: Kevin Hilman <khilman@baylibre.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Rob Herring <robh@kernel.org>,
+	Tony Lindgren <tony@atomide.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Nishanth Menon <nm@ti.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Sukrut Bellary <sbellary@baylibre.com>,
+	Aaro Koskinen <aaro.koskinen@iki.fi>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Roger Quadros <rogerq@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Santosh Shilimkar <ssantosh@kernel.org>,
+	Bajjuri Praneeth <praneeth@ti.com>,
+	Raghavendra Vignesh <vigneshr@ti.com>,
+	Bin Liu <b-liu@ti.com>,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-omap@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-pm@vger.kernel.org
+Subject: [PATCH 0/4] PM: TI: AM335x: PM STANDBY fixes
+Date: Tue, 18 Mar 2025 16:00:38 -0700
+Message-Id: <20250318230042.3138542-1-sbellary@baylibre.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <65gl7d6qd55xrdm3as3pnqevpmakin3k4jzyocehq7wq7565jj@x35t2inlykop>
-References: <20250313110359.242491-1-quic_mmanikan@quicinc.com> <20250313110359.242491-5-quic_mmanikan@quicinc.com> <65gl7d6qd55xrdm3as3pnqevpmakin3k4jzyocehq7wq7565jj@x35t2inlykop>
-Subject: Re: [PATCH v12 4/6] clk: qcom: Add NSS clock Controller driver for IPQ9574
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: andersson@kernel.org, mturquette@baylibre.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org, catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de, richardcochran@gmail.com, geert+renesas@glider.be, lumag@kernel.org, heiko@sntech.de, biju.das.jz@bp.renesas.com, quic_tdas@quicinc.com, nfraprado@collabora.com, elinor.montmasson@savoirfairelinux.com, ross.burton@arm.com, javier.carrasco@wolfvision.net, ebiggers@google.com, quic_anusha@quicinc.com, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org, quic_varada@quicinc.com, quic_srichara@quicinc.com
-To: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>, Marek =?utf-8?q?Beh=C3=BAn?= <kabel@kernel.org>
-Date: Tue, 18 Mar 2025 15:50:31 -0700
-User-Agent: alot/0.12.dev8+g17a99a841c4b
+Content-Transfer-Encoding: 8bit
 
-Quoting Marek Beh=C3=BAn (2025-03-17 07:08:16)
-> On Thu, Mar 13, 2025 at 04:33:57PM +0530, Manikanta Mylavarapu wrote:
->=20
-> > +static struct clk_rcg2 nss_cc_clc_clk_src =3D {
-> > +     .cmd_rcgr =3D 0x28604,
-> > +     .mnd_width =3D 0,
-> > +     .hid_width =3D 5,
-> > +     .parent_map =3D nss_cc_parent_map_6,
-> > +     .freq_tbl =3D ftbl_nss_cc_clc_clk_src,
-> > +     .clkr.hw.init =3D &(const struct clk_init_data) {
-> > +             .name =3D "nss_cc_clc_clk_src",
-> > +             .parent_data =3D nss_cc_parent_data_6,
-> > +             .num_parents =3D ARRAY_SIZE(nss_cc_parent_data_6),
-> > +             .ops =3D &clk_rcg2_ops,
-> > +     },
-> > +};
->=20
-> This structure definition gets repeated many times in this driver,
-> with only slight changes. (This also happens in other qualcomm clock
-> drivers.)
->=20
-> Would it be possible to refactor it into a macro, to avoid the
-> insane code repetition?
->=20
+This patch series fixes the Power management issues on TI's am335x soc.
 
-We have this discussion every couple years or so. The short answer is
-no. The long answer is that it makes it harder to read because we don't
-know what argument to the macro corresponds to the struct members.
+on AM335x, the wakeup doesn't work in the case of STANDBY.
 
-It could probably use the CLK_HW_INIT_PARENTS_DATA macro though.
+1. Since CM3 PM FW [1](ti-v4.1.y) doesn't enable l4ls clockdomain upon
+wakeup, it fails to wakeup the MPU.
+To fix this, don't turn off the l4ls clk domain in the STANDBY transition
+in MPU.
 
-static struct clk_rcg2 nss_cc_clc_clk_src =3D {
-     .cmd_rcgr =3D 0x28604,
-     .mnd_width =3D 0,
-     .hid_width =3D 5,
-     .parent_map =3D nss_cc_parent_map_6,
-     .freq_tbl =3D ftbl_nss_cc_clc_clk_src,
-     .clkr.hw.init =3D CLK_HW_INIT_PARENTS_DATA("nss_cc_clc_clk_src",
-                                              nss_cc_parent_data_6,
-					      &clk_rcg2_ops, 0),
-     },
-};
+2. Also Per AM335x TRM [2](section 8.1.4.3 Power mode), in case of STANDBY,
+PER domain should be ON. So fix PER power domain handling for 
+standby. l4ls is a part of the PER domain.
 
-but then we lose the const. Oh well.
+Since we are not turning off the l4ls clockdomain on STANDBY in MPU,
+PER power domain would remain ON. But still, explicitly handle this
+to be in sync with the STANDBY requirement.
 
-The whole qcom clk driver probably needs an overhaul to just have
-descriptors that populate a bunch of clks that are allocated at probe
-time so that the memory footprint is smaller if you have multiple clk
-drivers loaded and so that we can probe the driver again without
-unloading the whole kernel module.
+3. On am335x evm[1], UART0 - (UART1-HW) has a wakeup capability.
+Set the wakeup-source property in DT for AM335x.
+
+4. Enable PM configs for AM335x.
+
+[1] https://git.ti.com/cgit/processor-firmware/ti-amx3-cm3-pm-firmware/
+[2] https://www.ti.com/lit/ug/spruh73q/spruh73q.pdf
+[3] https://www.ti.com/tool/TMDXEVM3358
+
+Test log:
+https://gist.github.com/sukrutb/bdbfd1220fe8578a9decf87d0bac6796
+
+Sukrut Bellary (4):
+  ARM: OMAP2+: Fix l4ls clk domain handling in STANDBY
+  pmdomain: ti: Fix STANDBY handling of PER power domain
+  ARM: dts: am335x: Set wakeup-source for UART0
+  ARM: multi_v7_defconfig: Enable am335x PM configs
+
+ arch/arm/boot/dts/ti/omap/am335x-evm.dts    |  2 +-
+ arch/arm/configs/multi_v7_defconfig         |  5 +++++
+ arch/arm/mach-omap2/clockdomain.h           |  1 +
+ arch/arm/mach-omap2/clockdomains33xx_data.c |  2 +-
+ arch/arm/mach-omap2/cm33xx.c                | 14 +++++++++++++-
+ drivers/pmdomain/ti/omap_prm.c              |  8 ++++++--
+ 6 files changed, 27 insertions(+), 5 deletions(-)
+
+-- 
+2.34.1
+
 
