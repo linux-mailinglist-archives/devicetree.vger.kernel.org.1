@@ -1,289 +1,165 @@
-Return-Path: <devicetree+bounces-158405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2A7BA66487
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 02:03:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DB20A66479
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 02:01:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E63C1898748
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 01:04:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C4B43B8C61
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 01:01:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BABE5336D;
-	Tue, 18 Mar 2025 01:03:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B7382260C;
+	Tue, 18 Mar 2025 01:01:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="otGbGjfs"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="BobPYzLS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C5F835959
-	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 01:03:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.60.130.6
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82A568F58
+	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 01:01:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742259832; cv=none; b=i5wFS9+ThIZQ4LH66DlWuSuuJ3vFNsl9+v1mDnQQQOB/ZskGA1oxSnCmuQneHwLtRvn5WBzeCW2RVT6yXTA6tm2YO3ibLfTeEYfYzVs32D362wgmMhUqA6H3euoSYbERjo9i06w2EPDftg8qJpzelWn376gz75nwvOVUVM10rE8=
+	t=1742259694; cv=none; b=H+3Y9+tO/du1sim+bzjIiPqUP/xCuIKtOmCPUK2vBUGNGdcsoNYnP3I/R0YoPXViFam6qX4lq1X0N+M8KIamtQ6iA5xw3/c74leK+oOyko0E9btR0rMMeTpSaQmikzwfS1Q50Tm/5ZpqQaPW6rhw7zKTvcM8hOlteljRpt2iNZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742259832; c=relaxed/simple;
-	bh=2t7ZnqSDK8vV9zqiaXNZbEh+hE7r4f9jW0353bVwGYE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=dgTDfehFCzFHJsbqdrLA5yPnRXCIE6z6DbG/GyEuKZjfsdCF4C4poPcPftBslaVnx8E47qxxIM4IUIFhbKSHU4xY2og4lRZix51d6iCzXUB2iqWiG/cHjDJDMgRPijekBmgwl4srwZWEGJJTZbz+g52+8YvJHNH1aFjmPfLW9TU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com; spf=pass smtp.mailfrom=igalia.com; dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b=otGbGjfs; arc=none smtp.client-ip=178.60.130.6
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=igalia.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
-	s=20170329; h=Cc:To:In-Reply-To:References:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=DYR9CwhR1Wn8pX+zVemRbM359wsKs1LR5JXoTIamaZA=; b=otGbGjfsZAqJZQg6QGwGSdqJAD
-	/SaZEc5jQSnkUqPPy7JXjzXfD1/QCBwaYpbVtAJKASdR4DpB3mVSh3ArdbP/NDzxt+V88O5rV6O0Q
-	X2iO31d90iRklWqj6GgZD3QMulq0mD46Hm9SuLb541TwlY5u1on3rqOTM1R37v9rEn3iUDDXG0NvI
-	Bv23vAe2AE2OUfPQGuBOqps7wW6W6AV9XBPeaeA5mbta3PRosJQM4Oq2p8Wld68r1zgyX8hrSJRLv
-	+Rgsjh4F7F6y7uozepekAN7oPUf3aVVmEao8WOGkq9wztsBlFDZGmi7MrcMufXHeL0TaT7KxV5O8S
-	m4Xx8dCw==;
-Received: from [189.7.87.178] (helo=janis.local)
-	by fanzine2.igalia.com with esmtpsa 
-	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
-	id 1tuLMs-002UCS-7X; Tue, 18 Mar 2025 02:03:42 +0100
-From: =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
-Date: Mon, 17 Mar 2025 22:01:13 -0300
-Subject: [PATCH v6 5/5] drm/v3d: Use V3D_SMS registers for power on/off and
- reset on V3D 7.x
+	s=arc-20240116; t=1742259694; c=relaxed/simple;
+	bh=1hZje+jxZfrx+KaPWN6vekAQrfxr7l4TiRtGTI/exVs=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Li2FvXpdMiW2+ohX1N5CyW6bZ7ZhxcsD4Hdd7RctsCVOSuk3LnLEnHEQoZtJ68JbF7I8FH5fmcxdMr9q+koeNC1CfzsA0MAIZTOZFMVOCMd/Syumkq4RHmMuHi/sbKb1q3/PkRSIbngjk+EwEciZ60TcBtWSfnDGtXy2A1Z3yH0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=BobPYzLS; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1742259690;
+	bh=1hZje+jxZfrx+KaPWN6vekAQrfxr7l4TiRtGTI/exVs=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=BobPYzLST/TRw9QRnyQAHrTxdAt47Ng486vGBIZtSI37jjtt+zjXQLIiiR9+qDbT3
+	 yb7LyYLZleDJjQDM3AFHWiB8rfTLb7d2B+z+nLVm/VR133Y3f91V94PaT96ZAkMKLU
+	 XOqsr+tdthkUxE7/VSHBnny0YvtgOxLc9Dh4XUMpJsJGFEsrnNwLN/6w0xnCx6XvOh
+	 4WSEK1FolypjvygHRVX4z4dZQSxMxFu8mQRpXDIR8DighdyqwGjCZQyKos51Mijg7X
+	 9/oE1ZfNwyK59MpEydPQJGfcT98SIaE2AH+A2JYp09Cf4qCsZt9DuFh4VhfMKCX3t9
+	 LhwzvEwZl9exA==
+Received: from [192.168.68.112] (unknown [180.150.112.225])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 1ABF177BB4;
+	Tue, 18 Mar 2025 09:01:30 +0800 (AWST)
+Message-ID: <5fd732f2cffefd65bfcba983ecf5e11fedb5bc2d.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v2 0/3] ARM: dts: aspeed: Add Balcones system
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Rob Herring <robh@kernel.org>, Eddie James <eajames@linux.ibm.com>
+Cc: krzk+dt@kernel.org, devicetree@vger.kernel.org, 
+	linux-aspeed@lists.ozlabs.org, conor+dt@kernel.org
+Date: Tue, 18 Mar 2025 11:31:29 +1030
+In-Reply-To: <CAL_Jsq+QF6m1YD_MKi0mxJWtn0n+f+iL2x-jYv3NWytv0X4Jjg@mail.gmail.com>
+References: <20250220205948.1777200-1-eajames@linux.ibm.com>
+	 <174015998324.3469672.1009055817022487781.robh@kernel.org>
+	 <52f6f6fc93144b6bd93870e9ef054da19d809b05.camel@codeconstruct.com.au>
+	 <0801c8fc-97c8-4331-b31a-b60a90d683e5@linux.ibm.com>
+	 <CAL_Jsq+QF6m1YD_MKi0mxJWtn0n+f+iL2x-jYv3NWytv0X4Jjg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250317-v3d-gpu-reset-fixes-v6-5-f3ee7717ed17@igalia.com>
-References: <20250317-v3d-gpu-reset-fixes-v6-0-f3ee7717ed17@igalia.com>
-In-Reply-To: <20250317-v3d-gpu-reset-fixes-v6-0-f3ee7717ed17@igalia.com>
-To: Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Nicolas Saenz Julienne <nsaenz@kernel.org>, 
- Stefan Wahren <wahrenst@gmx.net>, 
- Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org, 
- devicetree@vger.kernel.org, kernel-dev@igalia.com, 
- =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7721; i=mcanal@igalia.com;
- h=from:subject:message-id; bh=2t7ZnqSDK8vV9zqiaXNZbEh+hE7r4f9jW0353bVwGYE=;
- b=kA0DAAgBP/MOinaI+qoByyZiAGfYxkihXt/PEQeY9kL2ZtlzGRdSE/zEyfxiEDhndh5itCixe
- 4kBMwQAAQgAHRYhBPjkXX0BFncHKaZ30T/zDop2iPqqBQJn2MZIAAoJED/zDop2iPqq1CcH/3ce
- 8QLdcXTJTH7u9FJ02sUSXu5BL1V8oNaPnFbYShumdn1TR63cPFeVLypkz14YZyeX/zlJC2AR0+8
- pzWmmbXTsmGU1GlEsVWV7iezDEUJTTGYWgNyUVkHBL04b3IWfvPWFr687FJFqxzl5r0AWd0d+iq
- OGGK38c9PLF2nOhGbBEcQrCuj887oNnWPNErMr713fn3NTkxOU4xvHDXfYY4+92/wMzvW1DzRon
- 9aaqkhdO+pZC7UDt5jZdZxsRjiF2dKs8zhLqXJPsl9tOgXo0Z7UtS433aIe53Gvk3g/79VbLFD5
- 4+JCmlcHYF7Su7JhBrbdSlIoXzZQlSOPrpEV/EQ=
-X-Developer-Key: i=mcanal@igalia.com; a=openpgp;
- fpr=F8E45D7D0116770729A677D13FF30E8A7688FAAA
 
-In addition to the standard reset controller, V3D 7.x requires configuring
-the V3D_SMS registers for proper power on/off and reset. Add the new
-registers to `v3d_regs.h` and ensure they are properly configured during
-device probing, removal, and reset.
+On Fri, 2025-02-28 at 11:23 -0600, Rob Herring wrote:
+> On Fri, Feb 28, 2025 at 10:46=E2=80=AFAM Eddie James <eajames@linux.ibm.c=
+om>
+> wrote:
+> >=20
+> >=20
+> > On 2/24/25 22:34, Andrew Jeffery wrote:
+> > > On Fri, 2025-02-21 at 12:11 -0600, Rob Herring (Arm) wrote:
+> > > > On Thu, 20 Feb 2025 14:59:45 -0600, Eddie James wrote:
+> > > > > The Balcones system is similar to Bonnell but with a POWER11
+> > > > > processor.
+> > > > >=20
+> > > > > Changes since v1:
+> > > > > =C2=A0 - Add all the ucd9000 driver supported compatible strings
+> > > > > =C2=A0 - Fix node ordering in Balcones device tree
+> > > > > =C2=A0 - Improve commit message to explain addition of ibm-
+> > > > > power11-dual.dtsi
+> > > > >=20
+> > > > > Eddie James (3):
+> > > > > =C2=A0=C2=A0 dt-bindings: arm: aspeed: add IBM Balcones board
+> > > > > =C2=A0=C2=A0 dt-bindings: hwmon: ucd90320: Add additional compati=
+ble
+> > > > > strings
+> > > > > =C2=A0=C2=A0 ARM: dts: aspeed: Add Balcones system
+> > > > >=20
+> > > > > =C2=A0 .../bindings/arm/aspeed/aspeed.yaml=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
+> > > > > =C2=A0 .../bindings/hwmon/pmbus/ti,ucd90320.yaml=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 6 +
+> > > > > =C2=A0 arch/arm/boot/dts/aspeed/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
+> > > > > =C2=A0 .../dts/aspeed/aspeed-bmc-ibm-balcones.dts=C2=A0=C2=A0=C2=
+=A0 | 594
+> > > > > +++++++++++++
+> > > > > =C2=A0 .../arm/boot/dts/aspeed/ibm-power11-dual.dtsi | 779
+> > > > > ++++++++++++++++++
+> > > > > =C2=A0 .../arm/boot/dts/aspeed/ibm-power11-quad.dtsi | 769 +-----=
+-
+> > > > > ----------
+> > > > > =C2=A0 6 files changed, 1383 insertions(+), 767 deletions(-)
+> > > > > =C2=A0 create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ibm=
+-
+> > > > > balcones.dts
+> > > > > =C2=A0 create mode 100644 arch/arm/boot/dts/aspeed/ibm-power11-
+> > > > > dual.dtsi
+> > > > >=20
+> > > > > --
+> > > > > 2.43.5
+> > > > >=20
+> > > > >=20
+> > > > >=20
+> > > >=20
+> > > > My bot found new DTB warnings on the .dts files added or
+> > > > changed in this
+> > > > series.
+> > > >=20
+> > > ...
+> > >=20
+> > > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb:
+> > > > gpio@1e780000: 'usb-power-hog' does not match any of the
+> > > > regexes: 'pinctrl-[0-9]+'
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from schema $id:
+> > > > http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
+> > > Ah, can you address this one?
+> > >=20
+> > > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb:
+> > > > /ahb/apb/bus@1e78a000/i2c@400/pwm@53: failed to match any
+> > > > schema with compatible: ['maxim,max31785a']
+> > > > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb:
+> > > > pressure-sensor@76: '#io-channel-cells' does not match any of
+> > > > the regexes: 'pinctrl-[0-9]+'
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from schema $id:
+> > > > http://devicetree.org/schemas/trivial-devices.yaml#
+> > > And these also?
+> > >=20
+> > > The rest looked like the usual noise.
+> >=20
+> >=20
+> > Well, all of these errors are also present in Blueridge. I would
+> > need to
+> > write a new binding for dps310, move max31785 to yaml format, and
+> > I'm
+> > not sure how to fix the gpio hog one. I don't see that error when I
+> > run
+> > CHECK_DTBS myself... any suggestions?
+>=20
+> I think the hog one got fixed recently. The tests run on top of
+> whatever b4 picks for the base or linux-next if it can't figure out
+> the base. So that might be the difference.
 
-This change fixes GPU reset issues on the Raspberry Pi 5 (BCM2712).
-Without exposing these registers, a GPU reset causes the GPU to hang,
-stopping any further job execution and freezing the desktop GUI. The same
-issue occurs when unloading and loading the v3d driver.
+Eddie: Yeah, disregard the hog one. An alternative to
+writing/converting the bindings is dropping the relevant nodes for now,
+and adding them back once the bindings have been dealt with. Up to you.
 
-Link: https://github.com/raspberrypi/linux/issues/6660
-Reviewed-by: Iago Toral Quiroga <itoral@igalia.com>
-Signed-off-by: Maíra Canal <mcanal@igalia.com>
----
- drivers/gpu/drm/v3d/v3d_drv.c  | 40 ++++++++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/v3d/v3d_drv.h  | 11 +++++++++++
- drivers/gpu/drm/v3d/v3d_gem.c  | 17 +++++++++++++++++
- drivers/gpu/drm/v3d/v3d_regs.h | 26 ++++++++++++++++++++++++++
- 4 files changed, 94 insertions(+)
-
-diff --git a/drivers/gpu/drm/v3d/v3d_drv.c b/drivers/gpu/drm/v3d/v3d_drv.c
-index c63f0ed1bd8a3d5511085e76ed2fbd6ee7df6f80..122848cdccc4a02039d9ea2e77aa2f377886b5d6 100644
---- a/drivers/gpu/drm/v3d/v3d_drv.c
-+++ b/drivers/gpu/drm/v3d/v3d_drv.c
-@@ -263,6 +263,36 @@ static const struct of_device_id v3d_of_match[] = {
- };
- MODULE_DEVICE_TABLE(of, v3d_of_match);
- 
-+static void
-+v3d_idle_sms(struct v3d_dev *v3d)
-+{
-+	if (v3d->ver < V3D_GEN_71)
-+		return;
-+
-+	V3D_SMS_WRITE(V3D_SMS_TEE_CS, V3D_SMS_CLEAR_POWER_OFF);
-+
-+	if (wait_for((V3D_GET_FIELD(V3D_SMS_READ(V3D_SMS_TEE_CS),
-+				    V3D_SMS_STATE) == V3D_SMS_IDLE), 100)) {
-+		DRM_ERROR("Failed to power up SMS\n");
-+	}
-+
-+	v3d_reset_sms(v3d);
-+}
-+
-+static void
-+v3d_power_off_sms(struct v3d_dev *v3d)
-+{
-+	if (v3d->ver < V3D_GEN_71)
-+		return;
-+
-+	V3D_SMS_WRITE(V3D_SMS_TEE_CS, V3D_SMS_POWER_OFF);
-+
-+	if (wait_for((V3D_GET_FIELD(V3D_SMS_READ(V3D_SMS_TEE_CS),
-+				    V3D_SMS_STATE) == V3D_SMS_POWER_OFF_STATE), 100)) {
-+		DRM_ERROR("Failed to power off SMS\n");
-+	}
-+}
-+
- static int
- map_regs(struct v3d_dev *v3d, void __iomem **regs, const char *name)
- {
-@@ -300,6 +330,12 @@ static int v3d_platform_drm_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
-+	if (v3d->ver >= V3D_GEN_71) {
-+		ret = map_regs(v3d, &v3d->sms_regs, "sms");
-+		if (ret)
-+			return ret;
-+	}
-+
- 	v3d->clk = devm_clk_get_optional(dev, NULL);
- 	if (IS_ERR(v3d->clk))
- 		return dev_err_probe(dev, PTR_ERR(v3d->clk), "Failed to get V3D clock\n");
-@@ -310,6 +346,8 @@ static int v3d_platform_drm_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
-+	v3d_idle_sms(v3d);
-+
- 	mmu_debug = V3D_READ(V3D_MMU_DEBUG_INFO);
- 	mask = DMA_BIT_MASK(30 + V3D_GET_FIELD(mmu_debug, V3D_MMU_PA_WIDTH));
- 	ret = dma_set_mask_and_coherent(dev, mask);
-@@ -410,6 +448,8 @@ static void v3d_platform_drm_remove(struct platform_device *pdev)
- 	dma_free_wc(v3d->drm.dev, 4096, v3d->mmu_scratch,
- 		    v3d->mmu_scratch_paddr);
- 
-+	v3d_power_off_sms(v3d);
-+
- 	clk_disable_unprepare(v3d->clk);
- }
- 
-diff --git a/drivers/gpu/drm/v3d/v3d_drv.h b/drivers/gpu/drm/v3d/v3d_drv.h
-index de4a9e18f6a9039edf57f406ab1cee9dad4c0a49..b51f0b648a08011f737317ec1841d5ab316355b2 100644
---- a/drivers/gpu/drm/v3d/v3d_drv.h
-+++ b/drivers/gpu/drm/v3d/v3d_drv.h
-@@ -118,6 +118,7 @@ struct v3d_dev {
- 	void __iomem *core_regs[3];
- 	void __iomem *bridge_regs;
- 	void __iomem *gca_regs;
-+	void __iomem *sms_regs;
- 	struct clk *clk;
- 	struct reset_control *reset;
- 
-@@ -268,6 +269,15 @@ to_v3d_fence(struct dma_fence *fence)
- #define V3D_GCA_READ(offset) readl(v3d->gca_regs + offset)
- #define V3D_GCA_WRITE(offset, val) writel(val, v3d->gca_regs + offset)
- 
-+#define V3D_SMS_IDLE				0x0
-+#define V3D_SMS_ISOLATING_FOR_RESET		0xa
-+#define V3D_SMS_RESETTING			0xb
-+#define V3D_SMS_ISOLATING_FOR_POWER_OFF	0xc
-+#define V3D_SMS_POWER_OFF_STATE		0xd
-+
-+#define V3D_SMS_READ(offset) readl(v3d->sms_regs + (offset))
-+#define V3D_SMS_WRITE(offset, val) writel(val, v3d->sms_regs + (offset))
-+
- #define V3D_CORE_READ(core, offset) readl(v3d->core_regs[core] + offset)
- #define V3D_CORE_WRITE(core, offset, val) writel(val, v3d->core_regs[core] + offset)
- 
-@@ -546,6 +556,7 @@ struct dma_fence *v3d_fence_create(struct v3d_dev *v3d, enum v3d_queue queue);
- /* v3d_gem.c */
- int v3d_gem_init(struct drm_device *dev);
- void v3d_gem_destroy(struct drm_device *dev);
-+void v3d_reset_sms(struct v3d_dev *v3d);
- void v3d_reset(struct v3d_dev *v3d);
- void v3d_invalidate_caches(struct v3d_dev *v3d);
- void v3d_clean_caches(struct v3d_dev *v3d);
-diff --git a/drivers/gpu/drm/v3d/v3d_gem.c b/drivers/gpu/drm/v3d/v3d_gem.c
-index 1ea6d3832c2212d9cbbd90236478d18491f0ff14..d7d16da78db328f004d1d702731d1a1b5437a394 100644
---- a/drivers/gpu/drm/v3d/v3d_gem.c
-+++ b/drivers/gpu/drm/v3d/v3d_gem.c
-@@ -104,6 +104,22 @@ v3d_reset_v3d(struct v3d_dev *v3d)
- 	v3d_init_hw_state(v3d);
- }
- 
-+void
-+v3d_reset_sms(struct v3d_dev *v3d)
-+{
-+	if (v3d->ver < V3D_GEN_71)
-+		return;
-+
-+	V3D_SMS_WRITE(V3D_SMS_REE_CS, V3D_SET_FIELD(0x4, V3D_SMS_STATE));
-+
-+	if (wait_for(!(V3D_GET_FIELD(V3D_SMS_READ(V3D_SMS_REE_CS),
-+				     V3D_SMS_STATE) == V3D_SMS_ISOLATING_FOR_RESET) &&
-+		     !(V3D_GET_FIELD(V3D_SMS_READ(V3D_SMS_REE_CS),
-+				     V3D_SMS_STATE) == V3D_SMS_RESETTING), 100)) {
-+		DRM_ERROR("Failed to wait for SMS reset\n");
-+	}
-+}
-+
- void
- v3d_reset(struct v3d_dev *v3d)
- {
-@@ -119,6 +135,7 @@ v3d_reset(struct v3d_dev *v3d)
- 		v3d_idle_axi(v3d, 0);
- 
- 	v3d_idle_gca(v3d);
-+	v3d_reset_sms(v3d);
- 	v3d_reset_v3d(v3d);
- 
- 	v3d_mmu_set_page_table(v3d);
-diff --git a/drivers/gpu/drm/v3d/v3d_regs.h b/drivers/gpu/drm/v3d/v3d_regs.h
-index 6da3c69082bd6d5954bf88bd9ff2543a5e4e04c4..c1870265eaeecc188afc4f09cf13a5201d3aa1c6 100644
---- a/drivers/gpu/drm/v3d/v3d_regs.h
-+++ b/drivers/gpu/drm/v3d/v3d_regs.h
-@@ -515,4 +515,30 @@
- # define V3D_ERR_VPAERGS                               BIT(1)
- # define V3D_ERR_VPAEABB                               BIT(0)
- 
-+#define V3D_SMS_REE_CS                                 0x00000
-+#define V3D_SMS_TEE_CS                                 0x00400
-+# define V3D_SMS_INTERRUPT                             BIT(31)
-+# define V3D_SMS_POWER_OFF                             BIT(30)
-+# define V3D_SMS_CLEAR_POWER_OFF                       BIT(29)
-+# define V3D_SMS_LOCK                                  BIT(28)
-+# define V3D_SMS_CLEAR_LOCK                            BIT(27)
-+# define V3D_SMS_SVP_MODE_EXIT                         BIT(26)
-+# define V3D_SMS_CLEAR_SVP_MODE_EXIT                   BIT(25)
-+# define V3D_SMS_SVP_MODE_ENTER                        BIT(24)
-+# define V3D_SMS_CLEAR_SVP_MODE_ENTER                  BIT(23)
-+# define V3D_SMS_THEIR_MODE_EXIT                       BIT(22)
-+# define V3D_SMS_THEIR_MODE_ENTER                      BIT(21)
-+# define V3D_SMS_OUR_MODE_EXIT                         BIT(20)
-+# define V3D_SMS_CLEAR_OUR_MODE_EXIT                   BIT(19)
-+# define V3D_SMS_SEQ_PC_MASK                           V3D_MASK(16, 10)
-+# define V3D_SMS_SEQ_PC_SHIFT                          10
-+# define V3D_SMS_HUBCORE_STATUS_MASK                   V3D_MASK(9, 8)
-+# define V3D_SMS_HUBCORE_STATUS_SHIFT                  8
-+# define V3D_SMS_NEW_MODE_MASK                         V3D_MASK(7, 6)
-+# define V3D_SMS_NEW_MODE_SHIFT                        6
-+# define V3D_SMS_OLD_MODE_MASK                         V3D_MASK(5, 4)
-+# define V3D_SMS_OLD_MODE_SHIFT                        4
-+# define V3D_SMS_STATE_MASK                            V3D_MASK(3, 0)
-+# define V3D_SMS_STATE_SHIFT                           0
-+
- #endif /* V3D_REGS_H */
-
--- 
-2.49.0
-
+Andrew
 
