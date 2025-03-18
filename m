@@ -1,118 +1,118 @@
-Return-Path: <devicetree+bounces-158546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158547-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DD0FA6736E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 13:04:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 768B6A67379
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 13:06:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D8713B719F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 12:04:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4CA71171E03
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 12:06:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FA0D20B81F;
-	Tue, 18 Mar 2025 12:04:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D59AC20AF7E;
+	Tue, 18 Mar 2025 12:06:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="xAfzF9yx"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="QvwZTRgb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10AB920ADEE
-	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 12:04:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D86CC207A2A;
+	Tue, 18 Mar 2025 12:06:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742299467; cv=none; b=tVXM08/lIU6qPSWZFGgbW/uCY5NLigUBLyHS6idCrBGF7qMH5fIbFeagjJX5KoU+Tfea72E/Nff6P/HI42oFw7NSjzt/wyjZFI5W3TUEC7Daf8MJJcO3B8wnCD/hBis1XRwf2yA2oWPPUXfilkjypbWq6HBLtSHQ7U75quARspI=
+	t=1742299584; cv=none; b=E5WYawyRr6I4WLlWXZwYpVL6qXsbNQi48cbPAqerc45PMadCuKrkns/1b9InVIa12ZAJ2tCQCGDaTYL7BHit9MCL6/lCyOhW6g64R3loKxdfP9IAkw0/tfnGxXd4Q2h0Ddmrd368hLkfsFiqbbwwBfY8IU7D/atA0Ny1uFk8CGQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742299467; c=relaxed/simple;
-	bh=Q4mZtFR/Tt7/i4AsUspqof7CvawdukYJTvPRyJptRhg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=t4eCbtafOoHuWpSHgAwI/yHwc9RWzuaY7t0/hrdzV3e8Qa4bC1Wuyfv4Z2ZZjTzsmIACIcMyS8I5akcLoAAcMf0mR76jiFUUmz155tN/qP+cHG7s7Pi1o0pGxdNxESdBlRjI3XDITmj2JQ9hHHilSiC8fyjfqhs/S62YIJY/0xo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=xAfzF9yx; arc=none smtp.client-ip=209.85.166.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-il1-f177.google.com with SMTP id e9e14a558f8ab-3cda56e1dffso29267275ab.1
-        for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 05:04:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1742299461; x=1742904261; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8CJnOafkcvrR/l5VXbCtNpeHL6EGqqxqILSUHXldXfI=;
-        b=xAfzF9yxDV/Yjhk23XMpBGHkYWyY2FZsfUjrpefD3isTK3ZQeMNscwqXLohnTg243w
-         QKQ+I3hSNVrz6rnmM5xivHBHVCCxEyOgdJ3ETw0sF2EgYbrP0tZMX9ya0VMdEvbxS8gz
-         B9dv0jbRcsaU4qIUtX3SN8/T9RXnpwWBBaGEj93EyU0HINi7fDlU8I766KfDMIuf/l9R
-         DdVcrgaPZkmcxCBFHaE9d0JBiII7jd+X9pXATyxf9qN28byGFLqOJ7AuxBGH1p6hFmiq
-         bXTjOUM+pNtb6uUsRJ4oBu0Dw9NpCqLUjF2z3eXANwl/8idOKRjn9cMYKsKcBssvPCIu
-         HOxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742299461; x=1742904261;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8CJnOafkcvrR/l5VXbCtNpeHL6EGqqxqILSUHXldXfI=;
-        b=TEZAQ5qJR2oTcMtDUgLdDMMM2dF+GPF0xZwXa9s/CjyZYcu/lzD0UQKQ3wkrEZb5hR
-         k1X3i0jqfR42LS1rkSDEs+nsgrM4UTmonXZ5QdgCPfbRe2B7QC78wkr7dVMpx8XZC0gf
-         mrmt46+4QC3hk8L0quODL4eEfTugp78y6RRDEGs8Mmho7JLKUq508NzXyRGY+cmdaom/
-         0MSypxxVIVRwNEbp+VJm+ixVUOrm0oO2E1bW54OzA8AjAzmQbfaY4ykSTu7rMVcA72Bn
-         wstIIWWukzJX7gOlwevaE8+i/CjMiU5BltPd7ZRDsN9u1lbM4L67250OmL1tX1rmXXeS
-         GHTA==
-X-Forwarded-Encrypted: i=1; AJvYcCUlV9CwadtKnzD6cbiZ//ZlnBW/eB0jsPcq1eUwqSF+TBZYG8jkYZAJ+21hhhHvSy+HXKrSjtu7sNFY@vger.kernel.org
-X-Gm-Message-State: AOJu0YzL8oaZA7Ipm6n8u6NbPcWNtsvc/BAS1Q6by3zoludhQhXlTbwC
-	Z86p4Sdq2m+D9CygwZ4Gpmik4o8JjnPow9lb7p2bmCJTVyWD0PJpMtK6llFXfG4=
-X-Gm-Gg: ASbGncvnwB44S/WFG1c0YqrnBxsIp2b+Jb0sj7ZCaMw3wA1vhpuftmRMkOMpROgLYIj
-	1UIoY8UgZlcGOthLf4jHK32aMhGt3owps95ffHDFGlCdkrLwIC2GdDZz9BkjXcO444nehj/ZG86
-	DJHTBIcfcb5/Zg5yiXrXtfMCjDF9ZnDnK5kfwnVxRtWU1qpybdO4rfYBXR1X6wBzbAkgkD0NUc7
-	Kq7TAovswgSlw34U9+0r4fPcQgwdiuHZFeUT9hToDDusLdkLEmP73qO4TL9HjhhWFCcCGdVRbsM
-	aiQLMeyfsJrPFgPPf7KRmYARG8X2OOYwar4Cr2mWtG/O/51BaToUIWaJtMSX5a/BvMU9MWfE2pr
-	Z2sWzRAtR
-X-Google-Smtp-Source: AGHT+IFS/pxfjNPDqJhNcLq/lECG72AhDNrlffrBV2L3kxYV1244Sdx32ia+HQiIA8St61CQNBlH4A==
-X-Received: by 2002:a05:6e02:b46:b0:3d3:dfc2:912c with SMTP id e9e14a558f8ab-3d483a75837mr164324675ab.17.1742299460874;
-        Tue, 18 Mar 2025 05:04:20 -0700 (PDT)
-Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-3d47a6683e1sm31287795ab.19.2025.03.18.05.04.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Mar 2025 05:04:20 -0700 (PDT)
-Message-ID: <a7862a8b-4d81-4b1b-90d9-3cedde0699a5@riscstar.com>
-Date: Tue, 18 Mar 2025 07:04:19 -0500
+	s=arc-20240116; t=1742299584; c=relaxed/simple;
+	bh=0JaZCOTH8Jjx0qjJdoGPbmQF61FvhC22nq5egy1XMg8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DKNfMu2bmULFNdEMtsUpMCNuhBe6f0gmJ9CdjRDJtj0cPSL5kfJyuGw48NShFcjKmP0xXetu6t0RBZI2h46c1dtTZ2H7VbwOhjDCtwd7k3uKerQ3DYLdacKrCOSH+5cV/Xh7jkfF4P8IVRN/Js70YD/kTinMkSGF/FZyTgZxNI4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=QvwZTRgb; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=dv+wiBLWCTtLgXAmyneq/DtP+nJJ2dua6jFkgXIEs88=; b=QvwZTRgbp3wb0I32oRxLzYmTa0
+	jQL6x4EwT6s29QfnPfg4ZXTeWAzigt1bxuvDQhlZZv+AGmed7exIFUUFIS3PQ7vfgK94uHAGzF8S1
+	qBBsd5mV1mxfgvm0sY/cR+Qc2icD1HKNPDUeQT6XPRLCwg4J+fasyEnuSlOyx/k12yuM0a8H+x8Qg
+	3SRpdYcTpf47Tc7bVhuCVwSsYmh9+93Le/ITP7kQ75gV86jYBq6WQBznCaeahvPhWHWbhvpWr9wRT
+	GR077XlC9leNwW7+rvka0w8jma5AlAuI3qE2iaARgkNcapi4Xgxc8xpaznR1iNLiZux5Lbco9R5KG
+	+/bOWXrA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:43826)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1tuVhq-0004zy-2s;
+	Tue, 18 Mar 2025 12:06:03 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1tuVhk-0004Zm-1O;
+	Tue, 18 Mar 2025 12:05:56 +0000
+Date: Tue, 18 Mar 2025 12:05:56 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Paolo Abeni <pabeni@redhat.com>
+Cc: Prabhakar <prabhakar.csengg@gmail.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH net-next v3 3/3] net: stmmac: Add DWMAC glue layer for
+ Renesas GBETH
+Message-ID: <Z9lhpCp3Nc2vgk52@shell.armlinux.org.uk>
+References: <20250311221730.40720-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250311221730.40720-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <8e804715-3123-4ab5-94ce-625060df4835@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/2] i2c: spacemit: add support for SpacemiT K1 SoC
-To: Troy Mitchell <troymitchell988@gmail.com>, Alex Elder <elder@ieee.org>,
- Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>
-Cc: linux-riscv@lists.infradead.org, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- spacemit@lists.linux.dev
-References: <20250316-k1-i2c-master-v7-0-f2d5c43e2f40@gmail.com>
- <20250316-k1-i2c-master-v7-2-f2d5c43e2f40@gmail.com>
- <401059d0-6b2c-4c40-8c4d-51749dca27f3@ieee.org>
- <c7dc26a0-7cbc-4909-b2ac-582d108fc5e7@gmail.com>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <c7dc26a0-7cbc-4909-b2ac-582d108fc5e7@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8e804715-3123-4ab5-94ce-625060df4835@redhat.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On 3/18/25 12:44 AM, Troy Mitchell wrote:
->> I'll leave it up to the maintainer to decide whether these
->> comments can just be ignored--my Reviewed-by is fine, even
->> if you don't change these.
->>
->>                      -Alex
-> I know it's right what you said.
-> But I don't know if it's worth to send v8?
-> Maybe I can fix it when I add FIFO function?
-> If I'm wrong, let me know.
+On Tue, Mar 18, 2025 at 12:49:00PM +0100, Paolo Abeni wrote:
+> On 3/11/25 11:17 PM, Prabhakar wrote:
+> > +	gbeth->dev = dev;
+> > +	gbeth->regs = stmmac_res.addr;
+> > +	gbeth->plat_dat = plat_dat;
+> > +	plat_dat->bsp_priv = gbeth;
+> > +	plat_dat->set_clk_tx_rate = stmmac_set_clk_tx_rate;
+> > +	plat_dat->clks_config = renesas_gbeth_clks_config;
+> > +	plat_dat->flags |= STMMAC_FLAG_HWTSTAMP_CORRECT_LATENCY |
+> > +			   STMMAC_FLAG_EN_TX_LPI_CLK_PHY_CAP |
+> 
+> The above does not compile:
+> 
+> ../drivers/net/ethernet/stmicro/stmmac/dwmac-renesas-gbeth.c:124:7:
+> error: use of undeclared identifier 'STMMAC_FLAG_EN_TX_LPI_CLK_PHY_CAP'
 
-Unless the maintainer wants you do do v8, please just
-address these suggestions later.  Thank you.
+This is because this patch depends on patches that I previously
+submitted on the 10th March, but because of a cockup with the
+Cc header, were re-submitted on 12th March:
 
-					-Alex
+https://patchwork.kernel.org/project/netdevbpf/patch/E1tsITp-005vG9-Px@rmk-PC.armlinux.org.uk/
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
