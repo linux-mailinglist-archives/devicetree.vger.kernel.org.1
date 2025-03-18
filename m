@@ -1,189 +1,252 @@
-Return-Path: <devicetree+bounces-158732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2396FA67DA1
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 21:03:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D091AA67DA6
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 21:04:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3848218985CD
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 20:03:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E1B8016F1C7
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 20:04:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C04D81DDC30;
-	Tue, 18 Mar 2025 20:03:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 326351DC9BA;
+	Tue, 18 Mar 2025 20:04:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BBmVxCLU"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eC3WK8Gu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D5181C6FEF
-	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 20:03:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F8171DED70
+	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 20:04:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742328213; cv=none; b=F3w2ceKnAGA4nLo+XbObmg34k47fHNfjGqRrepIcRe1kxB6odnKaXPZBX4oPG0BjvoupLcfpeTLVi45pxuhqgHjH9J7mKA1oamRG92nTyFxyJAQqWjYuJpjSPlou/bGLaVxmUvdRuTNu2ixgf5AuzWyD5tVS68hmkul7tTRUyWo=
+	t=1742328265; cv=none; b=P/i+2Nr5jlYDvg54rS6lbNpINhO1Z6M3xggxyt8YMKde4MjzYIgb7ylrTZvowYILRGE7S3787F+mleVwiViIzLHkC8b5SBZ77EqlY9exq9jF/RRqu0JU4NuE6/zGP2kAKnQ9SMXVwtBzyMRmL2Iit0c784WoEwX+k7cDvpDYwlI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742328213; c=relaxed/simple;
-	bh=yitJU5HZqof/pX8NIh5/zha/AdJ3yoGk3GqqpscLWXU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bnwgmXVPVSpeE33qtpXSzLwzUou5hGsuIFzQGIzsy5xmGJPqpObvGrM7BrqkEikQ0LUj4jBw0A2TJ/NECOMVUDnU0sLg8xK29Y7L+562Euggp6GPFRm/NE5BKhtdfP4f6Nw3vjOh7xiKU1l+z2cy0FeviQNLQbMbNr4gxPAcawI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BBmVxCLU; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52IH9ACj004742
-	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 20:03:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	dIviajEdCOBgiCD88+lBOgrVsyUY4qffh1cnELJmUSI=; b=BBmVxCLUKsP+ATsH
-	jDgpU3DQM3izD+t3/G4Jsu+CTmR3raL/5NWe4yEdQswam7PtQ2VhOAoU35LFSjYf
-	cq/s4FUtbuDXhSNedgAdKH8+IrquN2lueHuZ28ewYbzB8esAbP5Gt/hJVTG2Qq8B
-	iD+ecNz4vvmNdDmIqUc7/SvNeLPmuuwZrnaNXDrEfHkgmfzUSyCzDE0nv9Bqs3+n
-	KUmgcpbuFnimzty4c9uNmtlOkw1FtTgJQyCMbhQz26ZMhAsd/zlX7LDh3ddMQ5YT
-	8qp8RvVsCMdS87e5ChgSPxhAz/ZNF3sAb567OAtNeVoU/jQuiUaNSuR+Tet7iLtg
-	6Tx5Qg==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45etmbup4j-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 20:03:30 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2242ca2a4a5so82641695ad.2
-        for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 13:03:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742328209; x=1742933009;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dIviajEdCOBgiCD88+lBOgrVsyUY4qffh1cnELJmUSI=;
-        b=piuWyHpSosiP5oPuOgslOGyovh1Ua11BTxCvlNQRAKWGCw8JLsMt7z1KYgvpkOP1CU
-         b4bPU2uOce00tJ59q5tajJ7eRxRtqkTMKYwQ9S7vsXe+PpGSj5LsUoxcYD2LJaPyjTRR
-         Niy1hVGokQwINuUBmx6ENvpGmw/w9VraOfBNv1XqoOGYvQqRmPg7r4LM8ZHOPsjJ3Vs1
-         TfHdNfjmoDsnMrRIRdcjvKAIUxHygikJAJURi5x61WwgDfxE9J3RvHNq2/fP8AnffxQ+
-         +8z8rw2q8GznCD053R9m9Z8tV2zcehrobUhPVAvyT7gI23XRkCa6Fl5REJdljPkvoV1K
-         Hy5g==
-X-Forwarded-Encrypted: i=1; AJvYcCXxVjQ7aqM1xXmM67dYWsypC+zHVEDirdAU28Uklwo08azoYpNActv+A7hc5PAXIhmJRBZs2Uq8LvV1@vger.kernel.org
-X-Gm-Message-State: AOJu0YxXq5czf0FvzG7hikU6ZWSVgQkHuhRuAGMNrEqPATgANDd+dw+v
-	mdMjAsAslgAyjr7QIKqs+1Gs8nIGTlbNkcnPLPU1tEzY+zG1BuxdK/jQfd/x0N1Mg+G43NrAmbX
-	aTtu4lQRXKTajvpNQU3WMfoa3I9nGVita/gfQlhKPRn/lmnIuoPuPXc3Tae5S
-X-Gm-Gg: ASbGnctFyrRw7Ch7GsW+Lw8rQa3oE9MHOzbIl97q2otUp1YtjGrqPbj6mZetwpRepf2
-	9Ygiu512YtsbUhd3vjY9p9GF8GzjN2UqF+p6UzQN14iHprGTLhhrsDF/+AhZc8p/R+tR8WQImzG
-	NO4h6Xil4jzw0BKBYCDeBkSMWur5F+1F+E/IfEEQUwk+1wH8AzVMxBBwdP2KKKwYrzbo6Ltr7MF
-	zt4qnyq1psKm08xn6kNXr3owjnOtAOZ+6msnD+WXSDS7Nc1D8x4AxESMrEHVe7TaDHU0lYUgnUD
-	Pmpl69WlLk3X7XEkM9U6UP20mxL4T7yCdXEtEU5HO2bfdQEV93OHqN/WyGnCnWWVvcM7Re4=
-X-Received: by 2002:a17:902:cec4:b0:215:b9a6:5cb9 with SMTP id d9443c01a7336-225e0a5212amr238093535ad.5.1742328209341;
-        Tue, 18 Mar 2025 13:03:29 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGwWbfqKKFOuVPqA3GS/o1rSBUsBnCbC6YlfZXuqGv4kJNVWRit7JjQXIrfwspkZnXcFQrRlg==
-X-Received: by 2002:a17:902:cec4:b0:215:b9a6:5cb9 with SMTP id d9443c01a7336-225e0a5212amr238093175ad.5.1742328208921;
-        Tue, 18 Mar 2025 13:03:28 -0700 (PDT)
-Received: from [10.227.110.203] (i-global254.qualcomm.com. [199.106.103.254])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-225c6bd4de5sm99117575ad.230.2025.03.18.13.03.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Mar 2025 13:03:28 -0700 (PDT)
-Message-ID: <26eeef33-ccae-4483-a0db-78b120ffb960@oss.qualcomm.com>
-Date: Tue, 18 Mar 2025 13:03:26 -0700
+	s=arc-20240116; t=1742328265; c=relaxed/simple;
+	bh=37soqdNIwo61ih+i0FCX+4BP4DmoFdz2n1WQ2XOTnNQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OHFnlXxhbN2WVlr9l1KRYYQeeawx+mEvGH6v5qP/22IKqmKQvCnFD+gkuBlZnZwYICJhXJtaD/SSIGz68sqjuGRhvrv7Nnd6vvKAz1+LqMSI6MYpmPGPakR7ogAW8T+U1YRfgpL7MFV5O+xlgsdAcK8HYFIBAyAO83O/YDVrf98=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=eC3WK8Gu; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1742328263; x=1773864263;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=37soqdNIwo61ih+i0FCX+4BP4DmoFdz2n1WQ2XOTnNQ=;
+  b=eC3WK8Gu07T2CokYXq2s4C257arXaQ/PlaeyThn+AVCMNGSXh4hQfMH3
+   fEH/479CYCfHyryZtPM/FOF/Byp+Nz8Qhvd9gpw85ITyrlcXmvTAnIVbE
+   4maBa5gi20PCA2x4NpOgnhjFfKw+LM7ZW+byhO7BF2TRi9O70hMPbdUm5
+   dvJVRHrKKABrioV2gdNJAuM+8Bm+iFfj5mHqxU0eJu+wSQMjtWmd0Ljah
+   1kRbyc2wJxOKPIZFHwEteX5U8ai4Kbz+uX2xixUG8W8nWnGLWoMIilabC
+   kGbnGlJGo/6cwcV4tjt1yJoTH6A+dlpHMGKDyY0vWJ7FW+u8yyHSRPNBJ
+   A==;
+X-CSE-ConnectionGUID: GnTZ0hTXSPGNQzMeiwN9pA==
+X-CSE-MsgGUID: N3pPI2yjRrqhx2FgHfbOLQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11377"; a="43225946"
+X-IronPort-AV: E=Sophos;i="6.14,257,1736841600"; 
+   d="scan'208";a="43225946"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2025 13:04:23 -0700
+X-CSE-ConnectionGUID: /+u1TsTWTwGVjxaZv23Nug==
+X-CSE-MsgGUID: wwOAZmyRSvGZrU3rWs3f+Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,257,1736841600"; 
+   d="scan'208";a="159517822"
+Received: from lkp-server02.sh.intel.com (HELO a4747d147074) ([10.239.97.151])
+  by orviesa001.jf.intel.com with ESMTP; 18 Mar 2025 13:04:20 -0700
+Received: from kbuild by a4747d147074 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tudAf-000E90-0Q;
+	Tue, 18 Mar 2025 20:04:17 +0000
+Date: Wed, 19 Mar 2025 04:03:53 +0800
+From: kernel test robot <lkp@intel.com>
+To: =?iso-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>,
+	Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Saenz Julienne <nsaenz@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, kernel-dev@igalia.com,
+	=?iso-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>
+Subject: Re: [PATCH v6 1/5] drm/v3d: Associate a V3D tech revision to all
+ supported devices
+Message-ID: <202503190317.nnVNkMGI-lkp@intel.com>
+References: <20250317-v3d-gpu-reset-fixes-v6-1-f3ee7717ed17@igalia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH ath-next v11 08/13] wifi: ath12k: add AHB driver support
- for IPQ5332
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>,
-        ath12k@lists.infradead.org
-Cc: Johannes Berg <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Jeff Johnson <jjohnson@kernel.org>, linux-wireless@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Balamurugan S <quic_bselvara@quicinc.com>,
-        P Praneesh <quic_ppranees@quicinc.com>,
-        Vasanthakumar Thiagarajan <vasanthakumar.thiagarajan@oss.qualcomm.com>
-References: <20250317204639.1864742-1-quic_rajkbhag@quicinc.com>
- <20250317204639.1864742-9-quic_rajkbhag@quicinc.com>
- <683b16dd-a3e9-4cc3-836a-95f3747d3c0a@oss.qualcomm.com>
- <0da16aae-2fa3-49a4-bdd3-f08a7655365f@kernel.org>
- <f35a6080-8dbd-45ca-8fb4-d6b01a5bb007@oss.qualcomm.com>
- <332db13c-81db-42ad-afcf-3a4262344bf2@kernel.org>
- <31b4ca9c-892a-4ba5-b006-95deed6deceb@kernel.org>
- <8e5b0ae1-ea1b-4dfa-84dc-c53edd2afc42@oss.qualcomm.com>
- <551018bc-26e2-47f4-8fcc-9478834b9199@kernel.org>
-From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Content-Language: en-US
-In-Reply-To: <551018bc-26e2-47f4-8fcc-9478834b9199@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: VaOe6xeJm03K-Da35WQge9WKn_ZCohNG
-X-Proofpoint-GUID: VaOe6xeJm03K-Da35WQge9WKn_ZCohNG
-X-Authority-Analysis: v=2.4 cv=aMLwqa9m c=1 sm=1 tr=0 ts=67d9d192 cx=c_pps a=IZJwPbhc+fLeJZngyXXI0A==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=DgR1PzNg5l75-NxZnrAA:9 a=QEXdDO2ut3YA:10
- a=uG9DUKGECoFWVXl0Dc02:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-18_09,2025-03-17_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- priorityscore=1501 spamscore=0 clxscore=1015 phishscore=0 mlxscore=0
- suspectscore=0 malwarescore=0 mlxlogscore=999 bulkscore=0 adultscore=0
- lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503180145
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250317-v3d-gpu-reset-fixes-v6-1-f3ee7717ed17@igalia.com>
 
-On 3/18/2025 12:06 PM, Krzysztof Kozlowski wrote:
-> On 18/03/2025 19:53, Jeff Johnson wrote:
->> On 3/18/2025 11:19 AM, Krzysztof Kozlowski wrote:
->>> On 18/03/2025 19:16, Krzysztof Kozlowski wrote:
->>>> On 18/03/2025 18:55, Jeff Johnson wrote:
->>>>> On 3/18/2025 8:50 AM, Krzysztof Kozlowski wrote:
->>>>>> On 18/03/2025 16:44, Jeff Johnson wrote:
->>>>>>> On 3/17/2025 1:46 PM, Raj Kumar Bhagat wrote:
->>>>>>>> +	hw_rev = (enum ath12k_hw_rev)of_device_get_match_data(&pdev->dev);
->>>>>>>
->>>>>>> kernel test robot warns:
->>>>>>> cast to smaller integer type 'enum ath12k_hw_rev' from 'const void *'
->>>>>>>
->>>>>>> looks like others have fixed this by first casting to (uintptr_t)
->>>>>>> a few examples:
->>>>>>>
->>>>>> Cast via (kernel_ulong_t)
->>>>>>
->>>>>> But another point is that this patch at stage v11 should not have
->>>>>> compiler warnings and it's not our tools who should point it out. Except
->>>>>> W=1, all standard static analyzers (sparse, smatch and coccinelle) are
->>>>>> expected to be run.
->>>>>
->>>>> I ran what I thought was a reasonable cross-section of builds and did not see
->>>>> this issue. Seems this issue is only flagged with config: um-allmodconfig ??
->>>>>
->>>>> Guess I need to add that configuration to my builds...
->>>>
->>>> This should be visible on every build on 32 bit archs.
->>
->> Yes, I'm seeing it now on my i386 builds
->>
->>> Patchset does not apply neither on next nor on on mainline, so cannot
->>> verify... Probably another problem to solve here - some sort of dependency?
->>
->> T:      git git://git.kernel.org/pub/scm/linux/kernel/git/ath/ath.git
->>
->> The series should apply cleanly on ath.git ath-next branch
-> 
-> 
-> Yeah, but next is fed with for-next branch, not ath-next.... and
-> for-next is 10 days behind ath-next. I assume for-next is what you send
-> to the next merge window and ath-next is rather next-next-merge window,
-> just like DRM people are doing?
+Hi Maíra,
 
-we have for-next which feeds linux-next.
-normally for-next is a symbolic ref to ath-next.
-but when we issue our last PR to wireless-next before the merge window, after
-we are pulled we fast-forward and hard branch for-next.
-so from that point our contributions to linux-next stop while we continue to
-contribute to ath-next.
-when the merge window closes we remove the hard branch and reestablish the
-symbolic ref.
+kernel test robot noticed the following build warnings:
 
-/jeff
+[auto build test WARNING on 83a0237859bc5a9e0a716e1db8e7fd3cafd63259]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Ma-ra-Canal/drm-v3d-Associate-a-V3D-tech-revision-to-all-supported-devices/20250318-090556
+base:   83a0237859bc5a9e0a716e1db8e7fd3cafd63259
+patch link:    https://lore.kernel.org/r/20250317-v3d-gpu-reset-fixes-v6-1-f3ee7717ed17%40igalia.com
+patch subject: [PATCH v6 1/5] drm/v3d: Associate a V3D tech revision to all supported devices
+config: x86_64-buildonly-randconfig-002-20250318 (https://download.01.org/0day-ci/archive/20250319/202503190317.nnVNkMGI-lkp@intel.com/config)
+compiler: clang version 20.1.0 (https://github.com/llvm/llvm-project 24a30daaa559829ad079f2ff7f73eb4e18095f88)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250319/202503190317.nnVNkMGI-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503190317.nnVNkMGI-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/gpu/drm/v3d/v3d_drv.c:292:8: warning: cast to smaller integer type 'enum v3d_gen' from 'const void *' [-Wvoid-pointer-to-enum-cast]
+     292 |         gen = (enum v3d_gen)of_device_get_match_data(dev);
+         |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   1 warning generated.
+
+
+vim +292 drivers/gpu/drm/v3d/v3d_drv.c
+
+   272	
+   273	static int v3d_platform_drm_probe(struct platform_device *pdev)
+   274	{
+   275		struct device *dev = &pdev->dev;
+   276		struct drm_device *drm;
+   277		struct v3d_dev *v3d;
+   278		enum v3d_gen gen;
+   279		int ret;
+   280		u32 mmu_debug;
+   281		u32 ident1, ident3;
+   282		u64 mask;
+   283	
+   284		v3d = devm_drm_dev_alloc(dev, &v3d_drm_driver, struct v3d_dev, drm);
+   285		if (IS_ERR(v3d))
+   286			return PTR_ERR(v3d);
+   287	
+   288		drm = &v3d->drm;
+   289	
+   290		platform_set_drvdata(pdev, drm);
+   291	
+ > 292		gen = (enum v3d_gen)of_device_get_match_data(dev);
+   293		v3d->ver = gen;
+   294	
+   295		ret = map_regs(v3d, &v3d->hub_regs, "hub");
+   296		if (ret)
+   297			return ret;
+   298	
+   299		ret = map_regs(v3d, &v3d->core_regs[0], "core0");
+   300		if (ret)
+   301			return ret;
+   302	
+   303		v3d->clk = devm_clk_get_optional(dev, NULL);
+   304		if (IS_ERR(v3d->clk))
+   305			return dev_err_probe(dev, PTR_ERR(v3d->clk), "Failed to get V3D clock\n");
+   306	
+   307		ret = clk_prepare_enable(v3d->clk);
+   308		if (ret) {
+   309			dev_err(&pdev->dev, "Couldn't enable the V3D clock\n");
+   310			return ret;
+   311		}
+   312	
+   313		mmu_debug = V3D_READ(V3D_MMU_DEBUG_INFO);
+   314		mask = DMA_BIT_MASK(30 + V3D_GET_FIELD(mmu_debug, V3D_MMU_PA_WIDTH));
+   315		ret = dma_set_mask_and_coherent(dev, mask);
+   316		if (ret)
+   317			goto clk_disable;
+   318	
+   319		v3d->va_width = 30 + V3D_GET_FIELD(mmu_debug, V3D_MMU_VA_WIDTH);
+   320	
+   321		ident1 = V3D_READ(V3D_HUB_IDENT1);
+   322		v3d->ver = (V3D_GET_FIELD(ident1, V3D_HUB_IDENT1_TVER) * 10 +
+   323			    V3D_GET_FIELD(ident1, V3D_HUB_IDENT1_REV));
+   324		/* Make sure that the V3D tech version retrieved from the HW is equal
+   325		 * to the one advertised by the device tree.
+   326		 */
+   327		WARN_ON(v3d->ver != gen);
+   328	
+   329		v3d->cores = V3D_GET_FIELD(ident1, V3D_HUB_IDENT1_NCORES);
+   330		WARN_ON(v3d->cores > 1); /* multicore not yet implemented */
+   331	
+   332		ident3 = V3D_READ(V3D_HUB_IDENT3);
+   333		v3d->rev = V3D_GET_FIELD(ident3, V3D_HUB_IDENT3_IPREV);
+   334	
+   335		v3d_perfmon_init(v3d);
+   336	
+   337		v3d->reset = devm_reset_control_get_exclusive(dev, NULL);
+   338		if (IS_ERR(v3d->reset)) {
+   339			ret = PTR_ERR(v3d->reset);
+   340	
+   341			if (ret == -EPROBE_DEFER)
+   342				goto clk_disable;
+   343	
+   344			v3d->reset = NULL;
+   345			ret = map_regs(v3d, &v3d->bridge_regs, "bridge");
+   346			if (ret) {
+   347				dev_err(dev,
+   348					"Failed to get reset control or bridge regs\n");
+   349				goto clk_disable;
+   350			}
+   351		}
+   352	
+   353		if (v3d->ver < V3D_GEN_41) {
+   354			ret = map_regs(v3d, &v3d->gca_regs, "gca");
+   355			if (ret)
+   356				goto clk_disable;
+   357		}
+   358	
+   359		v3d->mmu_scratch = dma_alloc_wc(dev, 4096, &v3d->mmu_scratch_paddr,
+   360						GFP_KERNEL | __GFP_NOWARN | __GFP_ZERO);
+   361		if (!v3d->mmu_scratch) {
+   362			dev_err(dev, "Failed to allocate MMU scratch page\n");
+   363			ret = -ENOMEM;
+   364			goto clk_disable;
+   365		}
+   366	
+   367		ret = v3d_gem_init(drm);
+   368		if (ret)
+   369			goto dma_free;
+   370	
+   371		ret = v3d_irq_init(v3d);
+   372		if (ret)
+   373			goto gem_destroy;
+   374	
+   375		ret = drm_dev_register(drm, 0);
+   376		if (ret)
+   377			goto irq_disable;
+   378	
+   379		ret = v3d_sysfs_init(dev);
+   380		if (ret)
+   381			goto drm_unregister;
+   382	
+   383		return 0;
+   384	
+   385	drm_unregister:
+   386		drm_dev_unregister(drm);
+   387	irq_disable:
+   388		v3d_irq_disable(v3d);
+   389	gem_destroy:
+   390		v3d_gem_destroy(drm);
+   391	dma_free:
+   392		dma_free_wc(dev, 4096, v3d->mmu_scratch, v3d->mmu_scratch_paddr);
+   393	clk_disable:
+   394		clk_disable_unprepare(v3d->clk);
+   395		return ret;
+   396	}
+   397	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
