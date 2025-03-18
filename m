@@ -1,56 +1,58 @@
-Return-Path: <devicetree+bounces-158475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2944A66EBA
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 09:45:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5162EA66EC3
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 09:46:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C41C31776BA
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 08:45:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 70091162CB3
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 08:46:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86D5C202984;
-	Tue, 18 Mar 2025 08:44:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4275720296B;
+	Tue, 18 Mar 2025 08:45:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dcjy9VLp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mc0mPIzZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53BD120296B;
-	Tue, 18 Mar 2025 08:44:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B3AD1E5210;
+	Tue, 18 Mar 2025 08:45:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742287478; cv=none; b=LGgNokt9oPdojW7Dgbh5Y1s0hcg1VTQtDx3G7+slDLJo2sy/x8enSCJni9DL4UnpEkusewTPhJCaAcWrjNhZ6Ole3XSfLDdS4NFhNDbe1Dzl3VJc2cuKXEtAT1QFZFviVrTiBFFlkkNdCy1AoAyvHyqeNFX5Uzd1ifCmWWLOR5w=
+	t=1742287527; cv=none; b=ZVy+PwGaskIN2G2zOjRuKU/nJD7XjaIFaUFqNcOHydjW18cmOA2K8wXwViwejytChl84zAZ+R9hKOjcu13ELN1g7LAVNVCszF2j5a4TJL45nngx6eIac47TwmpB/2jqHkp26mk9z9dBef1ucJxhg5AxRcUlLNWcN+6js/sZOD50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742287478; c=relaxed/simple;
-	bh=NJJzNTRDknJXLfROOfBbxIWmcgwRhNCep316udiZ8FM=;
+	s=arc-20240116; t=1742287527; c=relaxed/simple;
+	bh=xvR4q+kDcK2eJhnkZQxu0f9mq7keqwXDtJByURfUMBg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Rce9rFukq1+pPYztWQ+8D4B8NZ3QayPUQr1Vubi2pJDGa6cyMy0Te+RTqQq0ea7+EZkTeldvAFaQYS0r91BgeC7O07T+qmrStXGkmixMRCZgpUkzZJoXdLnbRJJFfSJ87JPf0/rOtlUPEfE63M/PWo39+lVMJmgOb0ybmfOZL5Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dcjy9VLp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31F26C4CEEE;
-	Tue, 18 Mar 2025 08:44:36 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=XT+vzjEb82qXOEdldz+fD6w2kWRxxmtFvrq3BYEC+gXykNZjhuyuZSSfpeXhJax+QcBDNy+Ak54poriPAuCwj4g2s143zxznRfv+rU4zoEzfea3vUIfEGXVg7eYjkyhVqiRlc9nq3T4EXLkca3WhOoaBhDv5R32eEb31Q2I07YI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mc0mPIzZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF98EC4CEDD;
+	Tue, 18 Mar 2025 08:45:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742287478;
-	bh=NJJzNTRDknJXLfROOfBbxIWmcgwRhNCep316udiZ8FM=;
+	s=k20201202; t=1742287526;
+	bh=xvR4q+kDcK2eJhnkZQxu0f9mq7keqwXDtJByURfUMBg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dcjy9VLpm33mUCfRhkjxGfHVKu2TRRnc0L7RRFbXPRNp3r7sRwU+SGolTYvRgxad/
-	 FwrYDkGR7UWaS6UxVNa7uaERBHjXdjuxmQRbP8c+eviscDzV3YuXIPRz8lPS6HTKG5
-	 j6uKWvegpcFbDrSRVS5iivttq4ClLUl1OeUkF4jHtJ8wYcXkudUmHyg8tyCc+M+2ak
-	 I7SCoHCE6aM6LTyiT6cMwfIybdESxIl5J1Q+8et1sTn+FcQm6+4tJAD163vJ6/STnD
-	 qs/mAVThJo6P11hvsFWOnyermYuC+S+XHG/WeBWA+DZogl5w6QMgR3i9K6Kt2tDO+W
-	 vm8+i7qKpm1kg==
-Date: Tue, 18 Mar 2025 09:44:34 +0100
+	b=mc0mPIzZcbkoWsgw/Yh+D4VVUkWFdSfIvMFA5e41vglhGpICtIJrlOa7pKfMamn82
+	 XhoREwnpMhbcRL1xtHnbrRA632XsL3fcsP8NH8p96idE1tpO0vNe71nx9Wd8Dr4RF/
+	 e5FfFG/FimCyHiVF5WIv66uJmd10dlYXedjbxgYSiWLDsmP9kllvAixBNW/kaEPybl
+	 N4kbNi0bxwazA1YbOLiyddk2PQQFDssYSSEeHBd2fkIkRvmUbrLzjPjzF6XhTAh0U5
+	 jlBP5uEawrXWuILN1fsoDS11F00d8zlB26UoKszf5zwXx40Pj+h7YPX4/KZiGEQI4c
+	 6Pi1Pnz7UV9Rw==
+Date: Tue, 18 Mar 2025 09:45:22 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Rajaganesh Rathinasabapathi <Rajaganesh.Rathinasabapathi@amd.com>
 Cc: devicetree@vger.kernel.org, openbmc@lists.ozlabs.org, joel@jms.id.au, 
 	andrew@codeconstruct.com.au, robh+dt@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: aspeed: Add AMD Onyx BMC
- compatible
-Message-ID: <20250318-rapid-coot-of-tact-d779ad@krzk-bin>
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+	Supreeth Venkatesh <supreeth.venkatesh@amd.com>
+Subject: Re: [PATCH v3 2/2] ARM:dts:aspeed: Initial device tree for AMD Onyx
+ Platform
+Message-ID: <20250318-imaginary-peccary-of-argument-ab6b39@krzk-bin>
 References: <20250318041224.1693323-1-Rajaganesh.Rathinasabapathi@amd.com>
+ <20250318041224.1693323-2-Rajaganesh.Rathinasabapathi@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,15 +61,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250318041224.1693323-1-Rajaganesh.Rathinasabapathi@amd.com>
+In-Reply-To: <20250318041224.1693323-2-Rajaganesh.Rathinasabapathi@amd.com>
 
-On Mon, Mar 17, 2025 at 11:12:23PM -0500, Rajaganesh Rathinasabapathi wrote:
-> Document new AMD Onyx BMC board compatibles
-> 
-> Signed-off-by: Rajaganesh Rathinasabapathi <Rajaganesh.Rathinasabapathi@amd.com>
-> ---
+On Mon, Mar 17, 2025 at 11:12:24PM -0500, Rajaganesh Rathinasabapathi wrote:
+> +/ {
+> +	model = "AMD Onyx BMC";
+> +	compatible = "amd,onyx-bmc", "aspeed,ast2600";
+> +
+> +	aliases {
+> +		serial0 = &uart1;
+> +		serial4 = &uart5;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = serial4:115200n8;
+> +	};
+> +
+> +	memory@80000000 {
+> +		device_type = "memory";
+> +		reg = <0x80000000 0x80000000>;
+> +	};
+> +
+> +};
 
-Where is the changelog? What happened with this patch between v1 and v3?
+<form letter>
+This is a friendly reminder during the review process.
+
+It seems my or other reviewer's previous comments were not fully
+addressed. Maybe the feedback got lost between the quotes, maybe you
+just forgot to apply it. Please go back to the previous discussion and
+either implement all requested changes or keep discussing them.
+
+Thank you.
+</form letter>
 
 Best regards,
 Krzysztof
