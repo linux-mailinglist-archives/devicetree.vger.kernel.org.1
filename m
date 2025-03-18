@@ -1,165 +1,238 @@
-Return-Path: <devicetree+bounces-158631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D688EA67862
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 16:52:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B75EA67868
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 16:54:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7DC2B19C0551
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 15:51:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B1AF1893C6A
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 15:53:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66430211469;
-	Tue, 18 Mar 2025 15:50:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1B8020F078;
+	Tue, 18 Mar 2025 15:53:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LL20/uxJ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="bWEYhkwg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB24520E71C
-	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 15:50:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 323277464;
+	Tue, 18 Mar 2025 15:53:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742313057; cv=none; b=ldrETgnbwmTDyZpJP/bwHqK7wKd5zsg+aetrRbkLGMnIYMgyDELRnjGwwD4mLcJDmQHTFpTy6+2Ws5tovaSvE8ynVnVWwFGsAawYwhqrFoG4Hk/grVHzrx5dLA8xbhkU+9+TYq1fS35q4RnJ/DU8LtCxDa7sEqbHOyOxWBWGrEo=
+	t=1742313203; cv=none; b=nOHFPVUNFscOfzLGdLexHtRlKsrUMFSKxUwVsBFcTC9y+CO1Abnyh2q9iDfbH6eISOtlj1tDj0Akh4CJtZlsLR3EMSiTPKhFZq+sEt1keqy16k4QsHMipSY9aaSdEF5ycTYvgjdduWmQ+KuQNyf8TNvUaet5Mio7Smxb+faMDBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742313057; c=relaxed/simple;
-	bh=rCVeganpgKkSmMUxzbkZl/t2tM+TN3Tix8wM6E4Lfms=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=RFqdyRpL95JWQu3LZJ2ZABe6aQc/fHMUf2Nh1nMlolIcT/5Z+u/aNl7JYzHBrYaLDJdylrZNbbQaWLUrswbKIseig4EbEruppS/bS3B2FyaqBk4L463v0t1OBiI2XIfHLm9RgBf/uqufcX1OIXhhA7X8ngT0ecWQ+IocGUHdr4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LL20/uxJ; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-ac34257295dso223082766b.2
-        for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 08:50:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742313050; x=1742917850; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/SxRdYZ96n2ayDL/V6fz5vJX00R/j7bp+EUMURrHrM4=;
-        b=LL20/uxJfnyu3Tp571roFQEX24Km+CtoTVtW5a1g8qgDkjlLgXGjI2cIUCgcwSSTLZ
-         dRgj0o7/4J8ZDn9NSjsrREVYfzZ4gXszPGyef5p5efwNX+RBALhazjt3iehOfDbGBi6v
-         k7Jzck7V6FzT79qgj+ZbPWjkqBPuCc147GMQN5mEsgrqC0lEBySP/DeD6MBdbqYwPuOD
-         6QRRuCBPIgv3Lhq7nQobzlLVPWaTworo/Z7gfNkc4vcBH9yCDBhaf+VKQ5y+y1fQsL9b
-         ysDgaH+rrE+zrOwTWaUUo29IUjoYf9h60Ng1LxX36hVtAY4QY3vGh/1GnKbiaM4qWyJo
-         NEHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742313050; x=1742917850;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/SxRdYZ96n2ayDL/V6fz5vJX00R/j7bp+EUMURrHrM4=;
-        b=G2Pk4bTharKp2MDoot13mYso9sh4wtUC5qtWeUKsy+rGTMytDzunFjByXVaXyCmtEZ
-         xi/rB3DVSE18PZk2ekjlDJ4kmy63jndTPsKbx/UXfrr1QzecsUWBVN+XK3QW4PzNOHKX
-         dQWycyUeLEXkO5bkhVQIScjgDP2Qlu1OM6rlm3lKVEePV3sxVwl79ek26iY9QfPa0kYl
-         47Ps9i1c+ovXXxW60UoN1x+JXPYEGTRt1ssFxtbetKerq5o/F8zPF5o7LZBDxxXr5u/g
-         wQccvnldKhHjj+zWXx+1O0/RPP1127xxvUxCGK7rAoXUClvuGe0yMoxw82Zgdq+A6WdC
-         In5A==
-X-Forwarded-Encrypted: i=1; AJvYcCVN8tZ360o8vTNqRYgPjFBrygfn8EUtDIjfVlhJ7bmud3GvDAnN8LEQcNky27TB0Kj/EyVKyTdr3xek@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6gbHnug4P5AN7QD7Fp3LtGSMdGeTJmlvjPH7x9+/9eoUriBJc
-	r4fragKAKP+UpcKI1R4ZWoWPQTuc7RUlA8ajexFb8cl/xb4MoVNasXUuKY1xQns=
-X-Gm-Gg: ASbGnct4dfrDkvyJJgzx41lHN2Ea0Qg8A976Bnd0sHdcOxDVy7g1MBDua4eH32gflcL
-	HrWovTKCsUryOvLyW9gnGh4c1Jzu45xs+48sN6kuqwzGy+0l4erL7plvfoqo+Jool0tuXbNL2PF
-	HhEUHSCCPWehGQvWqD6xbdW4Q2k0XaWZhEa1Lfi++YrHLFSyaqbmQVG65r+BRiF4q63irAP1o2f
-	FSS9dtdNNU31dS9T8j+RJcMhUI/iL5QkSdZ6rJIY6DuKFthH8eZ62YQhVDuwvBs5VOhPC1BYV37
-	+a+qHKxgI/WocjETpn9lK4QjczK6e5KU4VFgZsa3X2g=
-X-Google-Smtp-Source: AGHT+IEKCPuQQev+o0+YEdDKl7tdgUxc3l0FvMatFpeLvpp4wnyLNN8JknDhVHmNYu1IQdq9pe6y9A==
-X-Received: by 2002:a17:907:7241:b0:abf:78ff:e271 with SMTP id a640c23a62f3a-ac3304dffa0mr1984316566b.49.1742313050085;
-        Tue, 18 Mar 2025 08:50:50 -0700 (PDT)
-Received: from [127.0.1.1] ([62.231.96.41])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac3149d0077sm875615566b.93.2025.03.18.08.50.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Mar 2025 08:50:49 -0700 (PDT)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Tue, 18 Mar 2025 17:50:35 +0200
-Subject: [PATCH 2/2] arm64: dts: qcom: x1e001de-devkit: Fix pin config for
- USB0 retimer vregs
+	s=arc-20240116; t=1742313203; c=relaxed/simple;
+	bh=/L/vb59tMICXkWyQfLdayIVVHIj+CbXfwoPWYrJWspg=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=hRXtpSrIFSyEgmHydegZOZHPFS8shSveJRun3EUGeiTiT4QgvncX6h/UI3puKAPuaiaXKn5aQEnbYQRqlk3Us5OnXYa7fpq+adrtdUyvmDMhtfSl5C/KYgkEfk8vJ7xxWtSLfDdjBhfKJCiHE39ttrug68W/i4V0QyalOqcQimI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=bWEYhkwg; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 779D7443FC;
+	Tue, 18 Mar 2025 15:53:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1742313195;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=iAWNBG+PNBdOBSynjb6NA8R0b0TjTIkaOpMrZv7LLCU=;
+	b=bWEYhkwgJbIncuTobP8+YhQR2CafKyxtki7qRzVUWrDvZ5JAQBMsAmoIvg21Watx/9DXk3
+	T1ubG2RlF2Pr9srzxvUB2oH484qP/OsB0ijj2JACGS0lPnoV1+sGXuwP0f5DfyzPn6Uxob
+	Biz8Q9Kd/6VPKSIz8WnzzrouA9d+KUHmZGllzzmTOEN3axjeV+9KAM3qgNoAvZ8gm2Nde5
+	49ge5xqZkkn8JkaWCpa2gKnP/nUvQrihs91E9F3qx/K994G8WcUDTopho/SyvrPXNhWYPz
+	y+wleBNzR/JC6VuyFunE1fVOUiPzkH45O0fcA5H28pG/xDLh8BuZj1OIXZiG3Q==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+Cc: <richard@nod.at>,  <vigneshr@ti.com>,  <robh@kernel.org>,
+  <krzk+dt@kernel.org>,  <conor+dt@kernel.org>,
+  <linux-mtd@lists.infradead.org>,  <devicetree@vger.kernel.org>,
+  <linux-kernel@vger.kernel.org>,  <git@amd.com>,
+  <amitrkcian2002@gmail.com>,  Bernhard Frauendienst
+ <kernel@nospam.obeliks.de>
+Subject: Re: [PATCH v12 3/3] mtd: Add driver for concatenating devices
+In-Reply-To: <20250205133730.273985-4-amit.kumar-mahapatra@amd.com> (Amit
+	Kumar Mahapatra's message of "Wed, 5 Feb 2025 19:07:30 +0530")
+References: <20250205133730.273985-1-amit.kumar-mahapatra@amd.com>
+	<20250205133730.273985-4-amit.kumar-mahapatra@amd.com>
+User-Agent: mu4e 1.12.7; emacs 29.4
+Date: Tue, 18 Mar 2025 16:53:14 +0100
+Message-ID: <8734fa8hed.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250318-x1e001de-devkit-dts-fix-retimer-gpios-v1-2-1c092f630b0c@linaro.org>
-References: <20250318-x1e001de-devkit-dts-fix-retimer-gpios-v1-0-1c092f630b0c@linaro.org>
-In-Reply-To: <20250318-x1e001de-devkit-dts-fix-retimer-gpios-v1-0-1c092f630b0c@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>
-Cc: Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Abel Vesa <abel.vesa@linaro.org>
-X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1454; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=rCVeganpgKkSmMUxzbkZl/t2tM+TN3Tix8wM6E4Lfms=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBn2ZZUjDHi0vqhIg3drSU+F3dHvkYwMoFaYrTN+
- cD4T6qtT/6JAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZ9mWVAAKCRAbX0TJAJUV
- VmyVEACkYoRW8iPBffxz1TxKfC9gNMTU669MB4BwTaURu+VzQfqXIzPBnQcMQiP076Qyc8o21Rw
- tLkoG9jYZd2hIoha8GdMYDynMLH9PeOclE0xrCvBvpWPMr16mzLcVq9BgdxKTRcGVZ5DMTSW5q/
- iSjnsL6Tek39HQ0ua/D8I6CKRsVdSKhIJgM1fkA/AMUbxnhnT7RgYGbauD8Ir+5zP6AoX1jGbq8
- Jm/DyCh3NUhgqvbImeQCAp2wjRHPWs5EDykAgDYKD1ksTYaQhQLCTTd0X/QaLcsmcDAZM/xTVjp
- eaOM51cX7d9wman5r5xPjFk6YnV/AIME36OOlTXYvh2Xw/YzFF9Xrn/MzAiTh4ySoOGSK3dPM2N
- FjFi3CtSHvLjoqjeUdlkd89d+5+l1q3ssr4YOSx2IsOfxn7emSDBmk9jdNKOtGDBJ4OYYbExnt7
- Qn+jwsEVgURKPnO6N+RvYVXE/nkhSw8QvCop4qNvUcxp+aLv8pRZPNTo+ZCGlm2rW6knetVHFez
- VRhnA/LJPjkInpxrSciAxJDJXZQ1lEM9skfEz0fSs4UBcf2obnqR80KQaQLei70sL0/oJ8CE22i
- kiCjeRjlojyFWNYc3vX0/M4EuBZ3DK8Gf1YqoD0rAuDunhDzYbif+QXuuxNmndP4R48UPii79ye
- 0svPkl+sWVykX5g==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddugedvkeegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufgjfhgffffkgggtgfesthhqredttderjeenucfhrhhomhepofhiqhhuvghlucftrgihnhgrlhcuoehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeffgefhjedtfeeigeduudekudejkedtiefhleelueeiueevheekvdeludehiedvfeenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeduvddprhgtphhtthhopegrmhhithdrkhhumhgrrhdqmhgrhhgrphgrthhrrgesrghmugdrtghomhdprhgtphhtthhopehrihgthhgrrhgusehnohgurdgrthdprhgtphhtthhopehvihhgnhgvshhhrhesthhirdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvr
+ hhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqmhhtugeslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-Describe the missing power source, bias and direction for each of the USB0
-retimer gpio-controlled voltage regulators related pin configuration.
+On 05/02/2025 at 19:07:30 +0530, Amit Kumar Mahapatra <amit.kumar-mahapatra=
+@amd.com> wrote:
 
-Fixes: 019e1ee32fec ("arm64: dts: qcom: x1e001de-devkit: Enable external DP support")
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- arch/arm64/boot/dts/qcom/x1e001de-devkit.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+> Introducing CONFIG_VIRT_CONCAT to separate the legacy flow from the
+> new
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts b/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
-index 902335396c586a991c4a2de19906b039d887780f..8e88e00c335a05d0d36b4b08b85df82f38ef4355 100644
---- a/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
-@@ -1039,6 +1039,10 @@ rtmr0_default: rtmr0-reset-n-active-state {
- 	usb0_3p3_reg_en: usb0-3p3-reg-en-state {
- 		pins = "gpio11";
- 		function = "normal";
-+		power-source = <1>; /* 1.8V */
-+		bias-disable;
-+		input-disable;
-+		output-enable;
- 	};
- };
- 
-@@ -1046,6 +1050,10 @@ &pmc8380_5_gpios {
- 	usb0_pwr_1p15_en: usb0-pwr-1p15-en-state {
- 		pins = "gpio8";
- 		function = "normal";
-+		power-source = <1>; /* 1.8V */
-+		bias-disable;
-+		input-disable;
-+		output-enable;
- 	};
- };
- 
-@@ -1053,6 +1061,10 @@ &pm8550ve_9_gpios {
- 	usb0_1p8_reg_en: usb0-1p8-reg-en-state {
- 		pins = "gpio8";
- 		function = "normal";
-+		power-source = <1>; /* 1.8V */
-+		bias-disable;
-+		input-disable;
-+		output-enable;
- 	};
- };
- 
+CONFIG_MTD_VIRT_CONCAT
 
--- 
-2.34.1
+> approach, where individual partitions within a concatenated partition are
+> not registered, as they are likely not needed by the user.
 
+I am not a big fan of this choice. We had issues with hiding things to
+the user in the first place. Could we find a way to expose both the
+original mtd devices as well as the virtually concatenated partitions?
+
+> Solution is focusing on fixed-partitions description only because it
+> depends on device boundaries.
+>
+> Suggested-by: Bernhard Frauendienst <kernel@nospam.obeliks.de>
+> Suggested-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+> ---
+>  drivers/mtd/Kconfig           |   8 ++
+>  drivers/mtd/Makefile          |   1 +
+>  drivers/mtd/mtd_virt_concat.c | 254 ++++++++++++++++++++++++++++++++++
+>  drivers/mtd/mtdcore.c         |   7 +
+>  drivers/mtd/mtdpart.c         |   6 +
+>  include/linux/mtd/concat.h    |  24 ++++
+>  6 files changed, 300 insertions(+)
+>  create mode 100644 drivers/mtd/mtd_virt_concat.c
+>
+> diff --git a/drivers/mtd/Kconfig b/drivers/mtd/Kconfig
+> index 796a2eccbef0..3dade7c469df 100644
+> --- a/drivers/mtd/Kconfig
+> +++ b/drivers/mtd/Kconfig
+> @@ -206,6 +206,14 @@ config MTD_PARTITIONED_MASTER
+>  	  the parent of the partition device be the master device, rather than
+>  	  what lies behind the master.
+>=20=20
+> +config MTD_VIRT_CONCAT
+> +	tristate "Virtual concatenated MTD devices"
+> +	help
+> +	  The driver enables the creation of a virtual MTD device
+
+                                          of virtual MTD devices
+
+> +	  by concatenating multiple physical MTD devices into a single
+> +	  entity. This allows for the creation of partitions larger than
+> +	  the individual physical chips, extending across chip boundaries.
+> +
+
+...
+
+> +static int __init mtd_virt_concat_create_join(void)
+> +{
+> +	struct mtd_virt_concat_node *item;
+> +	struct mtd_concat *concat;
+> +	struct mtd_info *mtd;
+> +	ssize_t name_sz;
+> +	char *name;
+> +	int ret;
+> +
+> +	list_for_each_entry(item, &concat_node_list, head) {
+> +		concat =3D item->concat;
+> +		mtd =3D &concat->mtd;
+> +		/* Create the virtual device */
+> +		name_sz =3D snprintf(NULL, 0, "%s-%s%s-concat",
+> +				   concat->subdev[0]->name,
+> +				   concat->subdev[1]->name,
+> +				   concat->num_subdev > MIN_DEV_PER_CONCAT ?
+> +				   "-+" : "");
+> +		name =3D kmalloc(name_sz + 1, GFP_KERNEL);
+> +		if (!name) {
+> +			mtd_virt_concat_put_mtd_devices(concat);
+> +			return -ENOMEM;
+> +		}
+> +
+> +		sprintf(name, "%s-%s%s-concat",
+> +			concat->subdev[0]->name,
+> +			concat->subdev[1]->name,
+> +			concat->num_subdev > MIN_DEV_PER_CONCAT ?
+> +			"-+" : "");
+> +
+> +		mtd =3D mtd_concat_create(concat->subdev, concat->num_subdev, name);
+> +		if (!mtd) {
+> +			kfree(name);
+> +			return -ENXIO;
+> +		}
+> +
+> +		/* Arbitrary set the first device as parent */
+
+Here we may face runtime PM issues. At some point the device model
+expects a single parent per struct device, but here we have two. I do
+not have any hints at the moment on how we could solve that.
+
+> +		mtd->dev.parent =3D concat->subdev[0]->dev.parent;
+> +		mtd->dev =3D concat->subdev[0]->dev;
+> +
+> +		/* Register the platform device */
+> +		ret =3D mtd_device_register(mtd, NULL, 0);
+> +		if (ret)
+> +			goto destroy_concat;
+> +	}
+> +
+> +	return 0;
+> +
+> +destroy_concat:
+> +	mtd_concat_destroy(mtd);
+> +
+> +	return ret;
+> +}
+> +
+> +late_initcall(mtd_virt_concat_create_join);
+
+The current implementation does not support probe deferrals, I believe
+it should be handled.
+
+> +static void __exit mtd_virt_concat_exit(void)
+> +{
+> +	mtd_virt_concat_destroy_joins();
+> +	mtd_virt_concat_destroy_items();
+> +}
+> +module_exit(mtd_virt_concat_exit);
+> +
+> +MODULE_LICENSE("GPL");
+> +MODULE_AUTHOR("Bernhard Frauendienst <kernel@nospam.obeliks.de>");
+> +MODULE_AUTHOR("Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>");
+> +MODULE_DESCRIPTION("Virtual concat MTD device driver");
+> diff --git a/drivers/mtd/mtdcore.c b/drivers/mtd/mtdcore.c
+> index 724f917f91ba..2264fe81810f 100644
+> --- a/drivers/mtd/mtdcore.c
+> +++ b/drivers/mtd/mtdcore.c
+> @@ -34,6 +34,7 @@
+>=20=20
+>  #include <linux/mtd/mtd.h>
+>  #include <linux/mtd/partitions.h>
+> +#include <linux/mtd/concat.h>
+>=20=20
+>  #include "mtdcore.h"
+>=20=20
+> @@ -1067,6 +1068,12 @@ int mtd_device_parse_register(struct mtd_info *mtd=
+, const char * const *types,
+>  			goto out;
+>  	}
+>=20=20
+> +	if (IS_ENABLED(CONFIG_MTD_VIRT_CONCAT)) {
+
+Maybe IS_REACHABLE() is more relevant?
+
+> +		ret =3D mtd_virt_concat_node_create();
+> +		if (ret < 0)
+> +			goto out;
+> +	}
+> +
+>  	/* Prefer parsed partitions over driver-provided fallback */
+>  	ret =3D parse_mtd_partitions(mtd, types, parser_data);
+>  	if (ret =3D=3D -EPROBE_DEFER)
+
+Thanks,
+Miqu=C3=A8l
 
