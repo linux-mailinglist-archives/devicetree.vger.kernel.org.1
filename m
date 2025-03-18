@@ -1,252 +1,226 @@
-Return-Path: <devicetree+bounces-158733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D091AA67DA6
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 21:04:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F1C5A67DF1
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 21:17:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E1B8016F1C7
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 20:04:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 922841896A4C
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 20:18:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 326351DC9BA;
-	Tue, 18 Mar 2025 20:04:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EF2620D4E3;
+	Tue, 18 Mar 2025 20:17:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eC3WK8Gu"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Avxvrd83"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F8171DED70
-	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 20:04:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62D9D1E1E01
+	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 20:17:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742328265; cv=none; b=P/i+2Nr5jlYDvg54rS6lbNpINhO1Z6M3xggxyt8YMKde4MjzYIgb7ylrTZvowYILRGE7S3787F+mleVwiViIzLHkC8b5SBZ77EqlY9exq9jF/RRqu0JU4NuE6/zGP2kAKnQ9SMXVwtBzyMRmL2Iit0c784WoEwX+k7cDvpDYwlI=
+	t=1742329060; cv=none; b=Z9IgBCpoIf6OG70NARYoLkDoYeAtyZjs2WOXQb090jnwhh0gdKWIu8otghIwtlMQ43yLSoxozxnXWyvqOI5SD+fU3pZB9HJ4PklMXavwLTB5vqj10WEFhp7sE+M7P9LCyqLMXleJst1pXmCL92tl1HgtPDCQVVE00xGU+Ublnds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742328265; c=relaxed/simple;
-	bh=37soqdNIwo61ih+i0FCX+4BP4DmoFdz2n1WQ2XOTnNQ=;
+	s=arc-20240116; t=1742329060; c=relaxed/simple;
+	bh=AzXyB5EkAUNruTmZIeiCYJQfJP3zRYcf+iButSPyDQM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OHFnlXxhbN2WVlr9l1KRYYQeeawx+mEvGH6v5qP/22IKqmKQvCnFD+gkuBlZnZwYICJhXJtaD/SSIGz68sqjuGRhvrv7Nnd6vvKAz1+LqMSI6MYpmPGPakR7ogAW8T+U1YRfgpL7MFV5O+xlgsdAcK8HYFIBAyAO83O/YDVrf98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=eC3WK8Gu; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1742328263; x=1773864263;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=37soqdNIwo61ih+i0FCX+4BP4DmoFdz2n1WQ2XOTnNQ=;
-  b=eC3WK8Gu07T2CokYXq2s4C257arXaQ/PlaeyThn+AVCMNGSXh4hQfMH3
-   fEH/479CYCfHyryZtPM/FOF/Byp+Nz8Qhvd9gpw85ITyrlcXmvTAnIVbE
-   4maBa5gi20PCA2x4NpOgnhjFfKw+LM7ZW+byhO7BF2TRi9O70hMPbdUm5
-   dvJVRHrKKABrioV2gdNJAuM+8Bm+iFfj5mHqxU0eJu+wSQMjtWmd0Ljah
-   1kRbyc2wJxOKPIZFHwEteX5U8ai4Kbz+uX2xixUG8W8nWnGLWoMIilabC
-   kGbnGlJGo/6cwcV4tjt1yJoTH6A+dlpHMGKDyY0vWJ7FW+u8yyHSRPNBJ
-   A==;
-X-CSE-ConnectionGUID: GnTZ0hTXSPGNQzMeiwN9pA==
-X-CSE-MsgGUID: N3pPI2yjRrqhx2FgHfbOLQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11377"; a="43225946"
-X-IronPort-AV: E=Sophos;i="6.14,257,1736841600"; 
-   d="scan'208";a="43225946"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2025 13:04:23 -0700
-X-CSE-ConnectionGUID: /+u1TsTWTwGVjxaZv23Nug==
-X-CSE-MsgGUID: wwOAZmyRSvGZrU3rWs3f+Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,257,1736841600"; 
-   d="scan'208";a="159517822"
-Received: from lkp-server02.sh.intel.com (HELO a4747d147074) ([10.239.97.151])
-  by orviesa001.jf.intel.com with ESMTP; 18 Mar 2025 13:04:20 -0700
-Received: from kbuild by a4747d147074 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tudAf-000E90-0Q;
-	Tue, 18 Mar 2025 20:04:17 +0000
-Date: Wed, 19 Mar 2025 04:03:53 +0800
-From: kernel test robot <lkp@intel.com>
-To: =?iso-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>,
-	Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Saenz Julienne <nsaenz@kernel.org>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, kernel-dev@igalia.com,
-	=?iso-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>
-Subject: Re: [PATCH v6 1/5] drm/v3d: Associate a V3D tech revision to all
- supported devices
-Message-ID: <202503190317.nnVNkMGI-lkp@intel.com>
-References: <20250317-v3d-gpu-reset-fixes-v6-1-f3ee7717ed17@igalia.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y1wyOB30vDfmv1o6gftPJ3zClqaKxUC7GfB5la3RqkxHqiH9PnYROclPXGOdjQY3n6c4Y6IRWSyxZb/pvVa7dRZDwzXHI7G2/Saxqq4DMdh2TdDbkVSjuJiOCbiC2IMQSROSENWarOufcRzI4pEZkcTLc/0QB+eN0yKx827NhNs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Avxvrd83; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52IIBL5r004551
+	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 20:17:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=cdXNdl9Su+hv7nD+r8LRc5/p
+	SIzgMjV1CTk+j9RmE18=; b=Avxvrd83SV9pw/zx4cjtu4CAnOFCEPsZU3hEc1k0
+	9T4ngkOn3ehk7MArmnKepclT49uAIp0i4dW97tupImkaf7PTG1VPxk0ZOGm1GSrT
+	oucO8IrA3hvL1m8I7d5V0l8OisndSVlox2CP7fpIPNESSE6mFZ1bFEED/MOePL8Q
+	Leu6g+6PPLNEj98TlBFQw4L6+QvQSMMuHnv1mA8693dU1HEkyRyKZbRGvWj8ZYJD
+	4ZhDoh7hPoGEfxXx5rAr/vBqn7JKft+hQSpNtXvaw1yeYyec2CeK3qONcBRp465l
+	hjBK3E6grltsqyJ68UNQify1PmIJQnS3wX8nY92ut7LV6w==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45fdvxg8wj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 20:17:37 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7c548e16909so596605585a.2
+        for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 13:17:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742329055; x=1742933855;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cdXNdl9Su+hv7nD+r8LRc5/pSIzgMjV1CTk+j9RmE18=;
+        b=t2jFumu6T5zEVc0UYfak3rxLaUIEGXhi5y859Hb+RlkS6w3qQ5sbSWZXRwbidUyT3o
+         3OQJfQya5dsh5V7r1wpHfmt5uncUlNV3SwQgLs+O0ZVJWcICUzhQRoveVs6pd0Xa+RMS
+         ZKFt6+ccFIWdGKq4pf4/6fV38j9ayLDo43DoOWgc8xIpH/PTvrDZgt1VJ0UOxWbtzh6w
+         XBH46e8ccm70esvJVP1/cOuCWZje56dsYCSOOgjjWGc6R4BUi+vG6eAJYRtQdprkj3m4
+         JvRye8D91Br2yViSB3wMIIAo74NC3FBKWytQP0A6J+wM5AchD4KIr6lMT0Hia0ek5r4R
+         9IIg==
+X-Forwarded-Encrypted: i=1; AJvYcCUIb7kbwjMZmqtk28JnFt1Rb3mQIVv6nlTKPQL0AJUOLoqBBRzGq9HoQxho5igL/jeOn7xjnzZYApZi@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy4uNf9TZMfDMoDbfB9iqczysA8CyP00c7qKIhKvqMOeXlpo1yH
+	RZeCCW6Okj0bNwU1SeQMx6VDZGGNRByM+c5xsipgfCThZnqs+tZaDTF9Yi1kLDU5pJb03V1pCX6
+	O9o8YYz9E2bP7rfHuEo9/CpLkqRKn4i5bkmqGByZuMSioCCyjIMNzgVAeJw5/
+X-Gm-Gg: ASbGnctgw4yz2bP7tjUNhveForfCZWdzHvBfKbEHoqM+lEgCjjxv4F7OzjJK03Cu7/L
+	kPtbu+PshXiKPs9Hf8ggD+nXDdquL4yYZz3s/82hUyaZb4ZZUfxQTv2Pac8tmS5gOxAMuS0/DXl
+	s+WLulBcg0i6zBz+0F4gs3ECKGp9r4uXfDO8RmNlByAdR4wXu1jHbCPxH0RSR30efzbGDXK0Oxs
+	TnRNspEh7Of4CzThaI1OhPRCRFBX2ugbQu3TCdtBqtWdrznljmh+lf//QSumhtbpraepG4x+ZEc
+	59CD1OZ7oxeHuzzndIz3BPhXRAupXGP0JFeWxR6tBRaW0jy4ZJlWxguH3FVw8BNAhMHeJ6TeyAl
+	AwWg=
+X-Received: by 2002:a05:620a:2993:b0:7c5:4c49:7697 with SMTP id af79cd13be357-7c5a8398d4amr915485a.6.1742329054535;
+        Tue, 18 Mar 2025 13:17:34 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFlpAT9MDyX/AOO1fzlAD/dqcC58v9HVJREAU1j0mJpT0fm127HCLDdRwmo/02jgbrejl/TrQ==
+X-Received: by 2002:a05:620a:2993:b0:7c5:4c49:7697 with SMTP id af79cd13be357-7c5a8398d4amr909785a.6.1742329054105;
+        Tue, 18 Mar 2025 13:17:34 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30c3f1dc0dfsm20650791fa.105.2025.03.18.13.17.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Mar 2025 13:17:32 -0700 (PDT)
+Date: Tue, 18 Mar 2025 22:17:28 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Dmitry Baryshkov <lumag@kernel.org>, Harikrishna Shenoy <a0512644@ti.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Harikrishna Shenoy <h-shenoy@ti.com>, andrzej.hajda@intel.com,
+        neil.armstrong@linaro.org, rfoss@kernel.org,
+        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+        jernej.skrabec@gmail.com, simona@ffwll.ch,
+        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, jani.nikula@intel.com, j-choudhary@ti.com,
+        sui.jingfeng@linux.dev, viro@zeniv.linux.org.uk, r-ravikumar@ti.com,
+        sjakhade@cadence.com, yamonkar@cadence.com,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: drm/bridge: Add no-hpd property
+Message-ID: <aaeklc34t36kokghbvmtmhabyxildajbefhhvtevb2xcs36bcp@lnhjyyiqh6pq>
+References: <20250205115025.3133487-1-h-shenoy@ti.com>
+ <20250205115025.3133487-2-h-shenoy@ti.com>
+ <efd89cf8-2f83-44fd-8bdf-aa348d4d9659@kernel.org>
+ <h24gpx6cxm4s6gzcunjnswubtvqask5dewi3udulmntsuieklm@w3pw4ig3t7gm>
+ <de0cb22d-d251-4b0b-8fc7-e8b5a891a527@ti.com>
+ <vfg6hlkzmqahbswgyctzuuzcdm2aend6wmo3uci4qs74jasjtc@3hlox276hazj>
+ <673e79bc-53c9-4772-ad18-8c00e4036905@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250317-v3d-gpu-reset-fixes-v6-1-f3ee7717ed17@igalia.com>
+In-Reply-To: <673e79bc-53c9-4772-ad18-8c00e4036905@ideasonboard.com>
+X-Authority-Analysis: v=2.4 cv=SKhCVPvH c=1 sm=1 tr=0 ts=67d9d4e1 cx=c_pps a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=sozttTNsAAAA:8 a=u89mOchh5nwXCBD-QrQA:9 a=CjuIK1q_8ugA:10 a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-ORIG-GUID: LK77q-Qy84OUHLqYjPfUaeeY-X0EG-3G
+X-Proofpoint-GUID: LK77q-Qy84OUHLqYjPfUaeeY-X0EG-3G
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-18_09,2025-03-17_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ mlxlogscore=999 spamscore=0 lowpriorityscore=0 priorityscore=1501
+ clxscore=1015 bulkscore=0 mlxscore=0 suspectscore=0 phishscore=0
+ impostorscore=0 adultscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502280000 definitions=main-2503180147
 
-Hi Maíra,
+On Tue, Mar 18, 2025 at 05:49:54PM +0200, Tomi Valkeinen wrote:
+> Hi,
+> 
+> On 12/03/2025 14:52, Dmitry Baryshkov wrote:
+> > On Wed, Mar 12, 2025 at 11:56:41AM +0530, Harikrishna Shenoy wrote:
+> > > 
+> > > 
+> > > On 05/02/25 19:03, Dmitry Baryshkov wrote:
+> > > > On Wed, Feb 05, 2025 at 12:52:52PM +0100, Krzysztof Kozlowski wrote:
+> > > > > On 05/02/2025 12:50, Harikrishna Shenoy wrote:
+> > > > > > From: Rahul T R <r-ravikumar@ti.com>
+> > > > > > 
+> > > > > > The mhdp bridge can work without its HPD pin hooked up to the connector,
+> > > > > > but the current bridge driver throws an error when hpd line is not
+> > > > > > connected to the connector. For such cases, we need an indication for
+> > > > > > no-hpd, using which we can bypass the hpd detection and instead use the
+> > > > > > auxiliary channels connected to the DP connector to confirm the
+> > > > > > connection.
+> > > > > > So add no-hpd property to the bindings, to disable hpd when not
+> > > > > > connected or unusable due to DP0-HPD not connected to correct HPD
+> > > > > > pin on SOC like in case of J721S2.
+> > > > > > 
+> > > > > > Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+> > > > > 
+> > > > > Why are you sending over and over the same? You already got feedback.
+> > > > > Then you send v2. You got the same feedback.
+> > > > > 
+> > > > > Now you send v3?
+> > > > > 
+> > > > > So the same feedback, but this time: NAK
+> > > > 
+> > > > Krzysztof's email forced me to take a look at the actual boards that you
+> > > > are trying to enable. I couldn't stop by notice that the HPD signal
+> > > > _is_ connected to a GPIO pin. Please stop hacking the bridge driver and
+> > > > use the tools that are already provided to you: add the HPD pin to the
+> > > > dp-controller device node. And then fix any possible issues coming from
+> > > > the bridge driver not being able to handle HPD signals being delivered
+> > > > by the DRM framework via the .hpd_notify() callback.
+> > > > 
+> > > > TL;DR: also a NAK from my side, add HPD gpio to dp-controller.
+> > > > 
+> > > We tried implementing a interrupt based HPD functionality as HPD signal is
+> > > connected to GPIO0_18 pin, we were able to get interrupt based HPD working
+> > > however to route this signal to SoC we are loosing audio capability due to
+> > > MUX conflict. Due to board level limitations to
+> > > route the signal to SoC, we will not be able to support interrupt
+> > > based HPD and polling seems a possible way without loosing on audio
+> > > capability.
+> > 
+> > Still NAK for the no-hpd property. HPD pin is a requirement for
+> > DisplayPort to work, as it is used e.g. for the 'attention' IRQs being
+> > sent by the DP sink. I'm not sure what kind of idea you HW engineers had
+> > in mind.
+> 
+> It's true that for normal DP functionality the HPD is required, but afaik DP
+> works "fine" without HPD too. This is not the first board that has DP
+> connector, but doesn't have HPD, that I have seen or worked on. Polling can
+> be used for the IRQs too.
 
-kernel test robot noticed the following build warnings:
+Just out of curiosity, is there a DP host / bridge that provide polling
+for short HPD pulses (aka attention)?
 
-[auto build test WARNING on 83a0237859bc5a9e0a716e1db8e7fd3cafd63259]
+> For eDP HPD is optional, and some of the cases I've worked with involved a
+> chip intended for eDP, but used with a full DP connector, and no HPD.
+> However, in this particular case the DP chip supports full DP, so it's just
+> a board design error.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ma-ra-Canal/drm-v3d-Associate-a-V3D-tech-revision-to-all-supported-devices/20250318-090556
-base:   83a0237859bc5a9e0a716e1db8e7fd3cafd63259
-patch link:    https://lore.kernel.org/r/20250317-v3d-gpu-reset-fixes-v6-1-f3ee7717ed17%40igalia.com
-patch subject: [PATCH v6 1/5] drm/v3d: Associate a V3D tech revision to all supported devices
-config: x86_64-buildonly-randconfig-002-20250318 (https://download.01.org/0day-ci/archive/20250319/202503190317.nnVNkMGI-lkp@intel.com/config)
-compiler: clang version 20.1.0 (https://github.com/llvm/llvm-project 24a30daaa559829ad079f2ff7f73eb4e18095f88)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250319/202503190317.nnVNkMGI-lkp@intel.com/reproduce)
+In such a case, if I'm not mistaken, the no-hpd is a part of the panel
+interface rather than the eDP source. I see that SN65DSI86 has the
+no-hpd property, but if I understood Doug correctly it is used to change
+bridge's configuration rather than just skip the HPD processing.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202503190317.nnVNkMGI-lkp@intel.com/
+> My question is, is J721s2 EVM something that's used widely? Or is it a rare
+> board? If it's a rare one, maybe there's no point in solving this in
+> upstream? But if it's widely used, I don't see why we wouldn't support it in
+> upstream. The HW is broken, but we need to live with it.
+> 
+> Another question is, if eDP support is added to the cdns-mhdp driver, and
+> used with a panel that doesn't have an HPD, how would that code look like?
+> If that would be solved with a "no-hpd" property, identical to the one
+> proposed in this series, then... There's even less reason to not support
+> this.
+> 
+> Disclaimer: I didn't study the schematics, and I haven't thought or looked
+> at how eDP is implemented in other drm drivers.
 
-All warnings (new ones prefixed by >>):
+I hope that Doug can comment on eDP side. On the schematics side, there
+a multi-pin mux, which switches several GPIO pins. One of the positions
+of the mux is useful for audio connection. Unfortunately, DP HPD pin
+gets connected in a different mux positition.
 
->> drivers/gpu/drm/v3d/v3d_drv.c:292:8: warning: cast to smaller integer type 'enum v3d_gen' from 'const void *' [-Wvoid-pointer-to-enum-cast]
-     292 |         gen = (enum v3d_gen)of_device_get_match_data(dev);
-         |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   1 warning generated.
-
-
-vim +292 drivers/gpu/drm/v3d/v3d_drv.c
-
-   272	
-   273	static int v3d_platform_drm_probe(struct platform_device *pdev)
-   274	{
-   275		struct device *dev = &pdev->dev;
-   276		struct drm_device *drm;
-   277		struct v3d_dev *v3d;
-   278		enum v3d_gen gen;
-   279		int ret;
-   280		u32 mmu_debug;
-   281		u32 ident1, ident3;
-   282		u64 mask;
-   283	
-   284		v3d = devm_drm_dev_alloc(dev, &v3d_drm_driver, struct v3d_dev, drm);
-   285		if (IS_ERR(v3d))
-   286			return PTR_ERR(v3d);
-   287	
-   288		drm = &v3d->drm;
-   289	
-   290		platform_set_drvdata(pdev, drm);
-   291	
- > 292		gen = (enum v3d_gen)of_device_get_match_data(dev);
-   293		v3d->ver = gen;
-   294	
-   295		ret = map_regs(v3d, &v3d->hub_regs, "hub");
-   296		if (ret)
-   297			return ret;
-   298	
-   299		ret = map_regs(v3d, &v3d->core_regs[0], "core0");
-   300		if (ret)
-   301			return ret;
-   302	
-   303		v3d->clk = devm_clk_get_optional(dev, NULL);
-   304		if (IS_ERR(v3d->clk))
-   305			return dev_err_probe(dev, PTR_ERR(v3d->clk), "Failed to get V3D clock\n");
-   306	
-   307		ret = clk_prepare_enable(v3d->clk);
-   308		if (ret) {
-   309			dev_err(&pdev->dev, "Couldn't enable the V3D clock\n");
-   310			return ret;
-   311		}
-   312	
-   313		mmu_debug = V3D_READ(V3D_MMU_DEBUG_INFO);
-   314		mask = DMA_BIT_MASK(30 + V3D_GET_FIELD(mmu_debug, V3D_MMU_PA_WIDTH));
-   315		ret = dma_set_mask_and_coherent(dev, mask);
-   316		if (ret)
-   317			goto clk_disable;
-   318	
-   319		v3d->va_width = 30 + V3D_GET_FIELD(mmu_debug, V3D_MMU_VA_WIDTH);
-   320	
-   321		ident1 = V3D_READ(V3D_HUB_IDENT1);
-   322		v3d->ver = (V3D_GET_FIELD(ident1, V3D_HUB_IDENT1_TVER) * 10 +
-   323			    V3D_GET_FIELD(ident1, V3D_HUB_IDENT1_REV));
-   324		/* Make sure that the V3D tech version retrieved from the HW is equal
-   325		 * to the one advertised by the device tree.
-   326		 */
-   327		WARN_ON(v3d->ver != gen);
-   328	
-   329		v3d->cores = V3D_GET_FIELD(ident1, V3D_HUB_IDENT1_NCORES);
-   330		WARN_ON(v3d->cores > 1); /* multicore not yet implemented */
-   331	
-   332		ident3 = V3D_READ(V3D_HUB_IDENT3);
-   333		v3d->rev = V3D_GET_FIELD(ident3, V3D_HUB_IDENT3_IPREV);
-   334	
-   335		v3d_perfmon_init(v3d);
-   336	
-   337		v3d->reset = devm_reset_control_get_exclusive(dev, NULL);
-   338		if (IS_ERR(v3d->reset)) {
-   339			ret = PTR_ERR(v3d->reset);
-   340	
-   341			if (ret == -EPROBE_DEFER)
-   342				goto clk_disable;
-   343	
-   344			v3d->reset = NULL;
-   345			ret = map_regs(v3d, &v3d->bridge_regs, "bridge");
-   346			if (ret) {
-   347				dev_err(dev,
-   348					"Failed to get reset control or bridge regs\n");
-   349				goto clk_disable;
-   350			}
-   351		}
-   352	
-   353		if (v3d->ver < V3D_GEN_41) {
-   354			ret = map_regs(v3d, &v3d->gca_regs, "gca");
-   355			if (ret)
-   356				goto clk_disable;
-   357		}
-   358	
-   359		v3d->mmu_scratch = dma_alloc_wc(dev, 4096, &v3d->mmu_scratch_paddr,
-   360						GFP_KERNEL | __GFP_NOWARN | __GFP_ZERO);
-   361		if (!v3d->mmu_scratch) {
-   362			dev_err(dev, "Failed to allocate MMU scratch page\n");
-   363			ret = -ENOMEM;
-   364			goto clk_disable;
-   365		}
-   366	
-   367		ret = v3d_gem_init(drm);
-   368		if (ret)
-   369			goto dma_free;
-   370	
-   371		ret = v3d_irq_init(v3d);
-   372		if (ret)
-   373			goto gem_destroy;
-   374	
-   375		ret = drm_dev_register(drm, 0);
-   376		if (ret)
-   377			goto irq_disable;
-   378	
-   379		ret = v3d_sysfs_init(dev);
-   380		if (ret)
-   381			goto drm_unregister;
-   382	
-   383		return 0;
-   384	
-   385	drm_unregister:
-   386		drm_dev_unregister(drm);
-   387	irq_disable:
-   388		v3d_irq_disable(v3d);
-   389	gem_destroy:
-   390		v3d_gem_destroy(drm);
-   391	dma_free:
-   392		dma_free_wc(dev, 4096, v3d->mmu_scratch, v3d->mmu_scratch_paddr);
-   393	clk_disable:
-   394		clk_disable_unprepare(v3d->clk);
-   395		return ret;
-   396	}
-   397	
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With best wishes
+Dmitry
 
