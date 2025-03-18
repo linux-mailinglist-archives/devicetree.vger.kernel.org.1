@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-158692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31F34A67BBC
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 19:14:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 718ACA67BC5
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 19:16:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10CA316B494
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 18:14:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 497773ABA6F
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 18:16:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D77E212F8A;
-	Tue, 18 Mar 2025 18:14:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21B291DC05F;
+	Tue, 18 Mar 2025 18:16:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i2A6HzB2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RIgsQz91"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8595128816;
-	Tue, 18 Mar 2025 18:14:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E98C98C0B;
+	Tue, 18 Mar 2025 18:16:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742321685; cv=none; b=BIZhKbZLQiLK7u2SZPx5KVez/UEvQa3Whz7vp8nmqjecwtyHXYdw934xgTKR8UADnSEV/LCbLb8BxTsfDXBDFGo8VDVDdnFZ0eB0MXUxirv3+B+5sXaKQ3KAHE4IUzZ81rfbFtbpGvoumckutf7urc6S/B9Iwt9cnb0UjOcxY6I=
+	t=1742321791; cv=none; b=TrwISM1tyx3WHvbzzL7nx2DY6uVUmarhcwqStuGUwMuiYA61DyOdc0KN+Lxg00L67q//hBmYMXylfL7D5o8WRQJQUnqxdPeRUbKDc3L3+tIIAHuGEJS0S40CYVaGDITLRCBmIu3Mzx2txFpgs6wOJkxZTZ/ypC290jlqN9bREuw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742321685; c=relaxed/simple;
-	bh=j4D6yqwOvM+stQg+EqjghdyWoe81KJ/Poshes12g7FM=;
+	s=arc-20240116; t=1742321791; c=relaxed/simple;
+	bh=ZoASjg/RAxn7fqnyO5anIcGwKjC2Bri3Cvs6f9Q9Nk0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=p3OXQJo+o7wiL/RCZSGeFzCW9NKxMdmJ3LUjHmJmP1Snr4NoJ/BTNWgMfVU97keds/dIaIA2lQGvs9ge/Tng8yFv6Kv5P6jGPregceeYKgbQUui+EUg8m7IwigvrRaqpOR5j7sQr38Q01hPeCxyo2zWQlLgPq48jqehEVUfWOIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i2A6HzB2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 173B1C4CEDD;
-	Tue, 18 Mar 2025 18:14:38 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=HMSQ/JAMWXhLCuYzFmuBxmlcA0vMtj9E7WQpRyOH11fX+NFOQfXu+CwoU2nIuuQJayR1NyZ5z3OEZqMWJ22vGLnwYLE9JNypmIEOxWoYhvxnMQCEOuPU0zV+w0Hrq9im7vnXbklm1CfTJElZ1PQVWGvWfSgtMR0hLlQIAeyNytU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RIgsQz91; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5C36C4CEDD;
+	Tue, 18 Mar 2025 18:16:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742321684;
-	bh=j4D6yqwOvM+stQg+EqjghdyWoe81KJ/Poshes12g7FM=;
+	s=k20201202; t=1742321790;
+	bh=ZoASjg/RAxn7fqnyO5anIcGwKjC2Bri3Cvs6f9Q9Nk0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=i2A6HzB2idOwrAhmmRv/qstaaT8x0rE3ysWNpjr+P8iXgcxuyYOIp4/duN9xntrba
-	 RTMZRwa1pU1vPOKqZ1UZleUQ6+90F67dv4MqFkMDWGlP1Csws0wCnoU356Ua7VvR8O
-	 ptEzJXSpeMyoZWmnCm/+zIvWRtqTZwKzxTmZyz+Kvj9ClX3m3s42CvdRcqi0E/tQj4
-	 cFq61w0Ne+0KLJYb8BM2SHZ/fytvXjXNsy8wzH+b0it/phM4Pesz6TBSWa8aAM6ru3
-	 lgoMHy8Q2PJWwVIBYJi3opAtJp1kHdcnXCZBi+Q0wMldYb5UQWwU2978gLQnhJd1oC
-	 S6lklk1Djmhvg==
-Message-ID: <af75c352-0010-4c58-b8bc-ac0d02337d1a@kernel.org>
-Date: Tue, 18 Mar 2025 19:14:35 +0100
+	b=RIgsQz91Cp7xJ9cOtd930AENvPCVf6kquKCGo5iLwIJZgu689WcOYjIQPKTxWxD3U
+	 aGtUvRnEl/jeGPd4y9F1BFjlCuHlBouXu4q1Yi35A2PsLBYlXodkILnneqqcs3SgLz
+	 +/6ye2V9O9eZVhO9Xf0dnrDeS3kZkZ5Dt513qVUhGWOym+FcQpqYcZXi2uur2BD1W1
+	 kWTxTziCZni1Eo/2NqZJUr9c4QULK7PbnMmS1BV7vcm2ZrPrG57DLISh9OJoeAgOBy
+	 ntrfwIVX4/zPrzJKDQZ0rhfbEho+4d0ZDxAk124XirYkKUgPtyiqxVMYmGAotJlwuQ
+	 OVqh1Hk4K09EA==
+Message-ID: <332db13c-81db-42ad-afcf-3a4262344bf2@kernel.org>
+Date: Tue, 18 Mar 2025 19:16:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] ARM: dts: aspeed: Add Initial device tree for AMD
- Onyx Platform
-To: Rajaganesh Rathinasabapathi <Rajaganesh.Rathinasabapathi@amd.com>,
- devicetree@vger.kernel.org, openbmc@lists.ozlabs.org, joel@jms.id.au,
- andrew@codeconstruct.com.au
-Cc: robh+dt@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, jothayot@amd.com,
- Supreeth Venkatesh <supreeth.venkatesh@amd.com>
-References: <20250318174730.1921983-1-Rajaganesh.Rathinasabapathi@amd.com>
- <20250318174730.1921983-2-Rajaganesh.Rathinasabapathi@amd.com>
+Subject: Re: [PATCH ath-next v11 08/13] wifi: ath12k: add AHB driver support
+ for IPQ5332
+To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
+ Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>, ath12k@lists.infradead.org
+Cc: Johannes Berg <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
+ linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Balamurugan S <quic_bselvara@quicinc.com>,
+ P Praneesh <quic_ppranees@quicinc.com>,
+ Vasanthakumar Thiagarajan <vasanthakumar.thiagarajan@oss.qualcomm.com>
+References: <20250317204639.1864742-1-quic_rajkbhag@quicinc.com>
+ <20250317204639.1864742-9-quic_rajkbhag@quicinc.com>
+ <683b16dd-a3e9-4cc3-836a-95f3747d3c0a@oss.qualcomm.com>
+ <0da16aae-2fa3-49a4-bdd3-f08a7655365f@kernel.org>
+ <f35a6080-8dbd-45ca-8fb4-d6b01a5bb007@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,97 +111,35 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250318174730.1921983-2-Rajaganesh.Rathinasabapathi@amd.com>
+In-Reply-To: <f35a6080-8dbd-45ca-8fb4-d6b01a5bb007@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/03/2025 18:47, Rajaganesh Rathinasabapathi wrote:
-> Add initial device tree and makefile updates for
-> AMD Onyx platform.
+On 18/03/2025 18:55, Jeff Johnson wrote:
+> On 3/18/2025 8:50 AM, Krzysztof Kozlowski wrote:
+>> On 18/03/2025 16:44, Jeff Johnson wrote:
+>>> On 3/17/2025 1:46 PM, Raj Kumar Bhagat wrote:
+>>>> +	hw_rev = (enum ath12k_hw_rev)of_device_get_match_data(&pdev->dev);
+>>>
+>>> kernel test robot warns:
+>>> cast to smaller integer type 'enum ath12k_hw_rev' from 'const void *'
+>>>
+>>> looks like others have fixed this by first casting to (uintptr_t)
+>>> a few examples:
+>>>
+>> Cast via (kernel_ulong_t)
+>>
+>> But another point is that this patch at stage v11 should not have
+>> compiler warnings and it's not our tools who should point it out. Except
+>> W=1, all standard static analyzers (sparse, smatch and coccinelle) are
+>> expected to be run.
 > 
-> AMD Onyx platform is an AMD customer reference board with an Aspeed
-> ast2600 BMC manufactured by AMD.
-> It describes I2C devices, UARTs, MAC, FMC, etc.
-> present on AMD Onyx platform.
+> I ran what I thought was a reasonable cross-section of builds and did not see
+> this issue. Seems this issue is only flagged with config: um-allmodconfig ??
 > 
-> Signed-off-by: Supreeth Venkatesh <supreeth.venkatesh@amd.com>
-> Signed-off-by: Rajaganesh Rathinasabapathi <Rajaganesh.Rathinasabapathi@amd.com>
-> ---
-> Changes since v1:
-> * Incorporate review comments
+> Guess I need to add that configuration to my builds...
 
-Which ones? I do not see my comments addressed and if you do not list
-them, I treat it as a clear sign you do not care.
-
-> * Update commit message
-> * Remove vmalloc and earlyprintk
-> 
-> Changes since v2:
-> * Address review comments
-
-Which ones? This has to be specific
-
-> * Fix checkpatch warnings
-> * Remove bootargs
-> 
-> Changes since v3:
-> * Fix stdout-path
-> * Change commit summary
-> ---
->  arch/arm/boot/dts/aspeed/Makefile             |   1 +
->  .../boot/dts/aspeed/aspeed-bmc-amd-onyx.dts   | 102 ++++++++++++++++++
->  2 files changed, 103 insertions(+)
->  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
-> 
-> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
-> index 2e5f4833a073..1e6a130377b8 100644
-> --- a/arch/arm/boot/dts/aspeed/Makefile
-> +++ b/arch/arm/boot/dts/aspeed/Makefile
-> @@ -5,6 +5,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
->  	aspeed-ast2600-evb.dtb \
->  	aspeed-bmc-amd-daytonax.dtb \
->  	aspeed-bmc-amd-ethanolx.dtb \
-> +	aspeed-bmc-amd-onyx.dtb \
->  	aspeed-bmc-ampere-mtjade.dtb \
->  	aspeed-bmc-ampere-mtjefferson.dtb \
->  	aspeed-bmc-ampere-mtmitchell.dtb \
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
-> new file mode 100644
-> index 000000000000..32509a651183
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
-> @@ -0,0 +1,102 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +// Copyright (c) 2021 - 2024 AMD Inc.
-> +// Author: Supreeth Venkatesh <supreeth.venkatesh@amd.com>
-> +
-> +/dts-v1/;
-> +
-> +#include "aspeed-g6.dtsi"
-> +#include <dt-bindings/gpio/aspeed-gpio.h>
-> +
-> +/ {
-> +	model = "AMD Onyx BMC";
-> +	compatible = "amd,onyx-bmc", "aspeed,ast2600";
-> +
-> +	aliases {
-> +		serial0 = &uart1;
-> +		serial4 = &uart5;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial4:115200n8";
-> +	};
-> +
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		reg = <0x80000000 0x80000000>;
-> +	};
-> +
-> +};
-How did you address comment here from v1 which was responded with "ACK"?
-
-What else what exactly fixed and what not?
+This should be visible on every build on 32 bit archs.
 
 Best regards,
 Krzysztof
