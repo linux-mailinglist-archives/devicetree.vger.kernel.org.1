@@ -1,190 +1,121 @@
-Return-Path: <devicetree+bounces-158433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D2FFA66B90
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 08:27:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00C32A66C29
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 08:41:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 646D41776F9
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 07:27:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76EA63BE70F
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 07:40:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E0F91E8358;
-	Tue, 18 Mar 2025 07:27:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA0491F4C80;
+	Tue, 18 Mar 2025 07:39:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WDFyaPVG"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b="EOvGCx9q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lx20.hoststar.hosting (lx20.hoststar.hosting [168.119.41.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FA511A08A8;
-	Tue, 18 Mar 2025 07:27:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A49991EF387;
+	Tue, 18 Mar 2025 07:39:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.41.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742282864; cv=none; b=PPkjQMXLI6KlcvhajJ8RygIKnTRlVDHB8Z4Uw/PxkGEX337fATTL3mw1GN9KiRnpXFTUZDxVS2InI53Ps3Qk7NcvhhV/ii4bvSGvYXdQGA+z0oV+021AM/dJVhQ3YQxWN+8Z052dRKu8fU+B6OlN3OHo+NhQoeldNm/YT5pvznc=
+	t=1742283549; cv=none; b=PHVJglWucEOABSYLr/BWnNWLgTcbf+2BX5I5sYpIwiazzInYT4AuIGIwur+hu38+LJv127dPN1Xgvp5QoChUQ8K/N/o+uoZp+M1cK5JE+x/b06U8Ie+MCpcq7K5faiUBg4Hq8wxsGAm4fOKTEeFuhhEj9Pzp3++0gLoTmO2Atz0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742282864; c=relaxed/simple;
-	bh=LD6D/fUK6vuH/GD8DCKxkLu8RTp2JZwsSqgWYZh7hpc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=D/fWub3R7S+C5FTUF1hwTGTJ+CUKHT4JD1me5n1gtxwu4CenEcfp+viB80jh6Dp5MYEnk6z4hyhB/rc/L2QwGvrq+KepMgHCVt+MqLMJp7TY/LMCzsiecWnUmE62omJuuUo6CulgyWtI0XH5+GCfhiDZqow6wtc5/TBQFzkVejQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WDFyaPVG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A493C4CEDD;
-	Tue, 18 Mar 2025 07:27:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742282862;
-	bh=LD6D/fUK6vuH/GD8DCKxkLu8RTp2JZwsSqgWYZh7hpc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WDFyaPVGzvHMilLAt47cjoHTyC9Wm0uxr4aeVi/mbQhW6j0M/ohPt7dMPqt1NNMl/
-	 4jVWKcDmuo/gHn9KStefm8faq/YmcG2uJgP6vkQNNgcuTIqoNdTXUFleLekiodpOJR
-	 OPD2I97tqWcVcGUAm+5D80Fv5nENj97Yn1wmGSYZkPTup1hNOKM6Po7CKp3C+Oy/oH
-	 rZGLckGaVAoGgkvmUMrZYY34vtfvYfa0htfdhEVOFa7xluiznciDj5IjT9z9A2RsWN
-	 ih4PUkqDgFTFsiAebpglSXEBx9giOf+DnB1HCY9vabRFss4vUBWBvmN0ri2WKks+VJ
-	 Fyy3cIJ76Xs7Q==
-Message-ID: <4134b49c-f3f2-4b46-bf2c-52986fca265f@kernel.org>
-Date: Tue, 18 Mar 2025 08:27:36 +0100
+	s=arc-20240116; t=1742283549; c=relaxed/simple;
+	bh=5QltsC1ZDmcAOYxh86uQ88RbYXyPlqRYMAHjdVPABNg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=XWUCxUNJ6WXMkihbi2lRhe+0VXzmSuagcBB+SZZF6KiW/qCFtFVoIuCQA492Bmd6j6R+ZuV+DNbVWHSrhV1Y/VeEyMoL3g8MURhZWmSFJZLLimapAnvFThdadEdaPIpfhx9tovzeFDCdoRH8J+uIPVm808owh+ZlgaEjbcPiElU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at; spf=pass smtp.mailfrom=emfend.at; dkim=pass (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b=EOvGCx9q; arc=none smtp.client-ip=168.119.41.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=emfend.at
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=emfend.at;
+	 s=mail; h=Cc:To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+	Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=tB1yNqX3wOPa02tnPX59V1Rik1YIlbUhoZ6i2vf5Dl8=; b=EOvGCx9q4r8XQP071IuK2d90Yz
+	jTc10J8skTP2v6yOWyAXDJ79z1ddw8Y7sB+0vghbZCdJFWbz4dxV6OBtgV8eoFQJr28lSI+3dad9b
+	utwUTSemSfzqmVvFB/HTuErerSo1z08NciG6oMuJjuJ9zDRrr6BBxUezt4JUnghWFzrQ=;
+Received: from 194-208-208-245.tele.net ([194.208.208.245]:50831 helo=[127.0.1.1])
+	by lx20.hoststar.hosting with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.93)
+	(envelope-from <matthias.fend@emfend.at>)
+	id 1tuRXL-00G1NU-JR; Tue, 18 Mar 2025 08:38:55 +0100
+From: Matthias Fend <matthias.fend@emfend.at>
+Subject: [PATCH v2 0/2] Support for Texas Instruments TPS6131X flash LED
+ driver
+Date: Tue, 18 Mar 2025 08:28:56 +0100
+Message-Id: <20250318-leds-tps6131x-v2-0-bc09c7a50b2e@emfend.at>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/7] dt-bindings: media: renesas,isp: Add ISP core
- function block
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Hans Verkuil <hverkuil@xs4all.nl>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Jacopo Mondi <jacopo.mondi@ideasonboard.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-References: <20250315152708.328036-1-niklas.soderlund+renesas@ragnatech.se>
- <20250315152708.328036-2-niklas.soderlund+renesas@ragnatech.se>
- <20250317-merry-ringtail-of-competition-7d46fb@krzk-bin>
- <20250317114904.GA868399@ragnatech.se>
- <573bb90b-bada-4dde-b88a-f92db1d1a3d1@kernel.org>
- <20250317153406.GB919085@ragnatech.se>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250317153406.GB919085@ragnatech.se>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIALgg2WcC/13MQQ7CIBCF4as0sxYzQBXqynuYLogMlkRpA4TUN
+ NxdbOLG5f+S922QKHpKcOk2iFR88nNoIQ4d3CcTHsS8bQ0CxQmFUOxJNrG8pDOXfGVG9VJpLal
+ HhPZZIjm/7t5tbD35lOf43vnCv+tP0n9S4QyZ5ai4HdANZK70chTs0WQYa60fKgTaUaoAAAA=
+X-Change-ID: 20250227-leds-tps6131x-a7437883e400
+To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Matthias Fend <matthias.fend@emfend.at>, 
+ bsp-development.geo@leica-geosystems.com
+X-Mailer: b4 0.14.2
+X-Spam-Score: 
+X-Spam-Bar: 
+X-Spam-Report: 
 
-On 17/03/2025 16:34, Niklas Söderlund wrote:
-> SoCs. I know it's confusing and not logical but that's how they are 
-> made.
-> 
-> - One part is the ISP Channel Selector, this is a function that sits on 
->   the CIS-2 receiver data bus. It is responsible for selecting which 
->   CSI-2 Virtual Channel is routed to which DMA capture engine.
-> 
->   This part is what the rcar-isp.ko driver have always supported and 
->   every instance of the ISP that is described in tree deals with just 
->   this one function as this is the one we always had documentation for.
-> 
->   This block is the one the reg-names and clock-names labels "cs".
-> 
-> - One part that we now wish to add is the ISP Core. This is a 
->   traditional ISP that act on image data in different ways. This is what 
->   I try to model with the reg-name and clock-name labeled "core".
-> 
->   This is new and we have not had documentation for this until recently.  
->   Unfortunately the "core" and "cs" functions is implemented in the same 
->   IP block. And to operate the "core" one needs to also deal with "cs".  
-> 
-> To make it more interesting all ISP Channel Selectors (cs) do not have a 
-> companion ISP Core, but most do. The lack of a ISP core is OK, it just 
-> means that video capture path can't manipulate the image as much as 
-> paths that do.
-> 
-> It's not ideal but to support the ISP Core and ISP Channel Selecotr the 
-> rcar-isp.ko module needs both "core" and "cs" clocks and regs. And to 
-> support just the Channel Selector it only needs the "cs" resources.
-> 
-> 
-> Sorry if I have been confusing. A good example of this is patch 4/7 in 
-> this series. It shows the V4M board that have 2 ISP instances, one that 
-> have both cs and core functions, and one that only have cs function.
+The TPS61310/TPS61311 is a flash LED driver with I2C interface. Its power
+stage is capable of supplying a maximum total current of roughly 1500mA.
+The TPS6131x provides three constant-current sinks, capable of sinking up
+to 2 × 400mA (LED1 and LED3) and 800mA (LED2) in flash mode. In torch mode
+each sink (LED1, LED2, LED3) supports currents up to 175m
 
-Based on this I think the instances with ISP core are not the same
-hardware as instances without. You have there different (new)
-programming model for entirely new part of hardware not present in "old"
-instances.
+Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
+---
+Changes in v2:
+- Bindings: Extend device description
+- Bindings: Drop unused address/size cells
+- Bindings: Use fallback compatible 
+- Bindings: Corrected minimum current for 50mA steps
+- Bindings: Drop node label
+- Fix name of REGISTER4 INDC shift define
+- Save device instead i2c_client in private data
+- Add comment for mutex
+- Use macro to convert from uA to mA
+- Use defines to describe initial register values
+- Add safety delay during reset sequence
+- Use fixed value enum to set the mode
+- Renamed some local variables
+- Re-sorted local variables
+- Replaced ifdefs for V4L2_FLASH_LED_CLASS
+- Improved some error messages
+- Link to v1: https://lore.kernel.org/r/20250228-leds-tps6131x-v1-0-d1071d90f9ea@emfend.at
 
-Different device means different compatible.
+---
+Matthias Fend (2):
+      dt-bindings: leds: add Texas Instruments TPS6131x flash LED driver
+      leds: tps6131x: add support for Texas Instruments TPS6131X flash LED driver
 
-And judging by the address:
-reg = <0 0xfed00000 0 0x10000>, <0 0xfec00000 0 0x100000>;
-1. 0xfec0 < 0xfed0
-2. Huge address range
-
-that's not "renesas,r8a779h0-isp" at all, but your old "ISP" device is
-actually a part of that 0xfec0_0000.
-
-Probably the channel selector should have never been called "ISP"
-because it does not process images. :/
-
-> 
->>
->> What is this ISP core responsible for inside Renesas ISP? How many ISPs
->> are inside of SoC?
-> 
-> The ISP core is responsible for image manipulation. ISP Channel Selector 
-> for CSI-2 channel routing. The number of ISP varies between SoCs:
-> 
-> 
-> V3U: Have 4 ISP instances, all 4 have cs and core.
-> V4H: Have 2 ISP instances, both have cs and core.
-> V4M: Have 2 ISP instances, one have cs and core, one have only cs.
-
+ .../devicetree/bindings/leds/ti,tps61310.yaml      | 120 ++++
+ MAINTAINERS                                        |   7 +
+ drivers/leds/flash/Kconfig                         |  11 +
+ drivers/leds/flash/Makefile                        |   1 +
+ drivers/leds/flash/leds-tps6131x.c                 | 794 +++++++++++++++++++++
+ 5 files changed, 933 insertions(+)
+---
+base-commit: ffd294d346d185b70e28b1a28abe367bbfe53c04
+change-id: 20250227-leds-tps6131x-a7437883e400
 
 Best regards,
-Krzysztof
+-- 
+Matthias Fend <matthias.fend@emfend.at>
+
 
