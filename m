@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-158691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86256A67BB4
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 19:12:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31F34A67BBC
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 19:14:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 933D7169C70
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 18:11:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10CA316B494
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 18:14:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41F65212B31;
-	Tue, 18 Mar 2025 18:11:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D77E212F8A;
+	Tue, 18 Mar 2025 18:14:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sApcvRWx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i2A6HzB2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 192344C79;
-	Tue, 18 Mar 2025 18:11:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8595128816;
+	Tue, 18 Mar 2025 18:14:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742321467; cv=none; b=ONB8BM9bEzHlbS3+xX57vpV265EAqnSXJ9iWAWUci3fQ43CBy1rG1s8QznkLHOf+x9uDUIA1u6QWSD2HL4Pig+7lyT5K7LNjw2OIafS787qFy4+wy/dEAYL4EmXrMxmOboJvjipF7SRMifo4jGlpYppaEO3l+6TY56kMqC9FwOA=
+	t=1742321685; cv=none; b=BIZhKbZLQiLK7u2SZPx5KVez/UEvQa3Whz7vp8nmqjecwtyHXYdw934xgTKR8UADnSEV/LCbLb8BxTsfDXBDFGo8VDVDdnFZ0eB0MXUxirv3+B+5sXaKQ3KAHE4IUzZ81rfbFtbpGvoumckutf7urc6S/B9Iwt9cnb0UjOcxY6I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742321467; c=relaxed/simple;
-	bh=//wJdgEDdjcLFwZklfG7xg1CloFRvngCE0o9Vb24u90=;
+	s=arc-20240116; t=1742321685; c=relaxed/simple;
+	bh=j4D6yqwOvM+stQg+EqjghdyWoe81KJ/Poshes12g7FM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XuYdMnvz67FUrbHc5v5U4ni7e/gJgrk+zDFwUGpLVocrCWyaj6t6I8LzHY0kiEXQ7yqBsGsxNhqSs/gq15OyQPgttaWl9nV78iFdwbGMEwy1hJEupuMYE7mhMzPScdpxVVZPZoDfA5f+ox3SVSNB8nB38GoHoQzFGaOP4rOVn+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sApcvRWx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1261FC4CEDD;
-	Tue, 18 Mar 2025 18:11:00 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=p3OXQJo+o7wiL/RCZSGeFzCW9NKxMdmJ3LUjHmJmP1Snr4NoJ/BTNWgMfVU97keds/dIaIA2lQGvs9ge/Tng8yFv6Kv5P6jGPregceeYKgbQUui+EUg8m7IwigvrRaqpOR5j7sQr38Q01hPeCxyo2zWQlLgPq48jqehEVUfWOIk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i2A6HzB2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 173B1C4CEDD;
+	Tue, 18 Mar 2025 18:14:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742321465;
-	bh=//wJdgEDdjcLFwZklfG7xg1CloFRvngCE0o9Vb24u90=;
+	s=k20201202; t=1742321684;
+	bh=j4D6yqwOvM+stQg+EqjghdyWoe81KJ/Poshes12g7FM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=sApcvRWxUxlRiyWnp75tt1fxhz+mQB5GWO6jGtdawrZSYXytqcn3ppHzU4y3SO1uk
-	 Tu0qIWWqqN90SNA/9iWUV1NQsknezWKegXG9AMnJYp0us+YhDdxVZqfr831o9xswvF
-	 7RtkB45z0c6CeBwZAYv+N3dtYxr95mSgMnqOZTwRiUw47+3LVTG7titIrI0aQv6HMw
-	 1P7ujLVBppBEqvFHUT/IafCW75+T0UxCxl3sYSYK7qm2njZXj5jXfG5MISuyK+FElh
-	 wFcep8ubVnOF6Ph5KbQ2t5Zl6S9+bRbRfK6irmZjdgO042bAJH6H9F9NDfsiyUEau3
-	 /WlVlF+MhWk8g==
-Message-ID: <cebf6611-4a9f-48fa-9226-e4a559e75ab9@kernel.org>
-Date: Tue, 18 Mar 2025 19:10:58 +0100
+	b=i2A6HzB2idOwrAhmmRv/qstaaT8x0rE3ysWNpjr+P8iXgcxuyYOIp4/duN9xntrba
+	 RTMZRwa1pU1vPOKqZ1UZleUQ6+90F67dv4MqFkMDWGlP1Csws0wCnoU356Ua7VvR8O
+	 ptEzJXSpeMyoZWmnCm/+zIvWRtqTZwKzxTmZyz+Kvj9ClX3m3s42CvdRcqi0E/tQj4
+	 cFq61w0Ne+0KLJYb8BM2SHZ/fytvXjXNsy8wzH+b0it/phM4Pesz6TBSWa8aAM6ru3
+	 lgoMHy8Q2PJWwVIBYJi3opAtJp1kHdcnXCZBi+Q0wMldYb5UQWwU2978gLQnhJd1oC
+	 S6lklk1Djmhvg==
+Message-ID: <af75c352-0010-4c58-b8bc-ac0d02337d1a@kernel.org>
+Date: Tue, 18 Mar 2025 19:14:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: arm: aspeed: Add AMD Onyx BMC
- compatible
+Subject: Re: [PATCH v4 2/2] ARM: dts: aspeed: Add Initial device tree for AMD
+ Onyx Platform
 To: Rajaganesh Rathinasabapathi <Rajaganesh.Rathinasabapathi@amd.com>,
  devicetree@vger.kernel.org, openbmc@lists.ozlabs.org, joel@jms.id.au,
  andrew@codeconstruct.com.au
 Cc: robh+dt@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, jothayot@amd.com
+ linux-kernel@vger.kernel.org, jothayot@amd.com,
+ Supreeth Venkatesh <supreeth.venkatesh@amd.com>
 References: <20250318174730.1921983-1-Rajaganesh.Rathinasabapathi@amd.com>
+ <20250318174730.1921983-2-Rajaganesh.Rathinasabapathi@amd.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,40 +106,97 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250318174730.1921983-1-Rajaganesh.Rathinasabapathi@amd.com>
+In-Reply-To: <20250318174730.1921983-2-Rajaganesh.Rathinasabapathi@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 18/03/2025 18:47, Rajaganesh Rathinasabapathi wrote:
-> Document new AMD Onyx BMC board compatibles
+> Add initial device tree and makefile updates for
+> AMD Onyx platform.
 > 
+> AMD Onyx platform is an AMD customer reference board with an Aspeed
+> ast2600 BMC manufactured by AMD.
+> It describes I2C devices, UARTs, MAC, FMC, etc.
+> present on AMD Onyx platform.
+> 
+> Signed-off-by: Supreeth Venkatesh <supreeth.venkatesh@amd.com>
 > Signed-off-by: Rajaganesh Rathinasabapathi <Rajaganesh.Rathinasabapathi@amd.com>
 > ---
->  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> Changes since v1:
+> * Incorporate review comments
 
-Can you slow down and read submitting patches before posting or at least
-get someone experienced in AMD to help you?
+Which ones? I do not see my comments addressed and if you do not list
+them, I treat it as a clear sign you do not care.
 
-<form letter>
-This is a friendly reminder during the review process.
+> * Update commit message
+> * Remove vmalloc and earlyprintk
+> 
+> Changes since v2:
+> * Address review comments
 
-It looks like you received a tag and forgot to add it.
+Which ones? This has to be specific
 
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
-of patchset, under or above your Signed-off-by tag, unless patch changed
-significantly (e.g. new properties added to the DT bindings). Tag is
-"received", when provided in a message replied to you on the mailing
-list. Tools like b4 can help here. However, there's no need to repost
-patches *only* to add the tags. The upstream maintainer will do that for
-tags received on the version they apply.
+> * Fix checkpatch warnings
+> * Remove bootargs
+> 
+> Changes since v3:
+> * Fix stdout-path
+> * Change commit summary
+> ---
+>  arch/arm/boot/dts/aspeed/Makefile             |   1 +
+>  .../boot/dts/aspeed/aspeed-bmc-amd-onyx.dts   | 102 ++++++++++++++++++
+>  2 files changed, 103 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
+> 
+> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
+> index 2e5f4833a073..1e6a130377b8 100644
+> --- a/arch/arm/boot/dts/aspeed/Makefile
+> +++ b/arch/arm/boot/dts/aspeed/Makefile
+> @@ -5,6 +5,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+>  	aspeed-ast2600-evb.dtb \
+>  	aspeed-bmc-amd-daytonax.dtb \
+>  	aspeed-bmc-amd-ethanolx.dtb \
+> +	aspeed-bmc-amd-onyx.dtb \
+>  	aspeed-bmc-ampere-mtjade.dtb \
+>  	aspeed-bmc-ampere-mtjefferson.dtb \
+>  	aspeed-bmc-ampere-mtmitchell.dtb \
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
+> new file mode 100644
+> index 000000000000..32509a651183
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
+> @@ -0,0 +1,102 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +// Copyright (c) 2021 - 2024 AMD Inc.
+> +// Author: Supreeth Venkatesh <supreeth.venkatesh@amd.com>
+> +
+> +/dts-v1/;
+> +
+> +#include "aspeed-g6.dtsi"
+> +#include <dt-bindings/gpio/aspeed-gpio.h>
+> +
+> +/ {
+> +	model = "AMD Onyx BMC";
+> +	compatible = "amd,onyx-bmc", "aspeed,ast2600";
+> +
+> +	aliases {
+> +		serial0 = &uart1;
+> +		serial4 = &uart5;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial4:115200n8";
+> +	};
+> +
+> +	memory@80000000 {
+> +		device_type = "memory";
+> +		reg = <0x80000000 0x80000000>;
+> +	};
+> +
+> +};
+How did you address comment here from v1 which was responded with "ACK"?
 
-Please read:
-https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-
-If a tag was not added on purpose, please state why and what changed.
-</form letter>
+What else what exactly fixed and what not?
 
 Best regards,
 Krzysztof
