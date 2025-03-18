@@ -1,132 +1,197 @@
-Return-Path: <devicetree+bounces-158619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E21EA677DA
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 16:31:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77939A677FA
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 16:35:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A6493B9860
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 15:31:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 54C6D1891912
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 15:33:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77A7F2101AE;
-	Tue, 18 Mar 2025 15:30:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 070BE210F56;
+	Tue, 18 Mar 2025 15:31:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XUoW4tge"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l9NHJEZW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B87320FABC;
-	Tue, 18 Mar 2025 15:30:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9038920FA91;
+	Tue, 18 Mar 2025 15:31:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742311848; cv=none; b=dKX2nyr8ttPrMyeW7WaMiFG7FJ3PRiBg6ubibQ5bLR0Q7UOUiouqxU5kSnto9gg2M1Pn9y5MVAakRDsHz9W8sYl2tcmp+kfXymWh6HK4bDd9g71BIMBop/AP15z7d6wwTSl2+Qi0EfB/3QFBw6MUWBAhPUSH4NK5S3Dh+nFCU1o=
+	t=1742311905; cv=none; b=fE29ocDitBrVHuTOe0Zfl4GY0M8UNMeHfagBgaZ2vmTkXcONTuYn/H3Z0FHCXafRihMzFWKARW0noKHqZKD2JmAek0dQ18pHuo6YbGbXTOJCvPRPwdL97Mja7XxmVgsdiyecb6uY5yIcs5FTf1cin5B849VD8d7pelHkkAHhizw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742311848; c=relaxed/simple;
-	bh=HVBz2aT+/RHcd9VZQ6XrEog43pPGxZQceGs8IeJP6oc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n2lyeSIOmBFI8YJmkufdqXNF2r27xJXut8GcvErvsLfjnSCQQBqEflFHjyzR9cdOO/i8F5K1JpXvO4SjH746Uv0aI6UPs59lHoO2g4FrVa2ZFdwxs4JOMFZJBF7AfgVkRzzlAHV/+wOWZIYga88fbX/LfdHH+gqmvIPGCCdXq34=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XUoW4tge; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0244DC4CEDD;
-	Tue, 18 Mar 2025 15:30:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742311848;
-	bh=HVBz2aT+/RHcd9VZQ6XrEog43pPGxZQceGs8IeJP6oc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XUoW4tgeJI1qkqHA8wzUVgYQSoY+aOz8Q2mvlmnDsT5jlUIWvVvsDrwcAh+mvdJcm
-	 FchVJjLo9kTuxGacsk79c7OAUx7NJO7BGusb58YMjDYBAaFqR3a5jariprgb4DkfTH
-	 Y4Abf0av5IvwjG3TkwPUayTU/4+zYb3JUSs5x20FqUwAe5P9ifDprpWqiqeJZING8T
-	 NT1bfAo3ZBnaTXUfdUFYE/P3Q4koEGvV4PrKANZ4bk+PMB93RQTfbHOAf5evdgKIqy
-	 t/cBbkemhscPWWaViv47JUZikUvLqPE6HgfRL4/G5oymAbGbo3Hlvc93ImhCmfDcKF
-	 iWkA4ztEDM2fA==
-Date: Tue, 18 Mar 2025 15:30:43 +0000
-From: Simon Horman <horms@kernel.org>
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: Heiko Stuebner <heiko@sntech.de>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Wu <david.wu@rock-chips.com>, Yao Zi <ziyao@disroot.org>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/5] net: stmmac: dwmac-rk: Add GMAC support for RK3528
-Message-ID: <20250318153043.GE688833@kernel.org>
-References: <20250309232622.1498084-1-jonas@kwiboo.se>
- <20250317194309.GL688833@kernel.org>
- <db3bf1cb-3385-4676-8ba4-41fea0212bf2@kwiboo.se>
+	s=arc-20240116; t=1742311905; c=relaxed/simple;
+	bh=XoyQyut0B0I09grFpiG22mcD2dPJKh7wdni3ku4Ykks=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ws46JEVlgitw/ZGJaZ8GkCJCSgkaaxad/8nejCpiQXeEvc9a4Lz30MMsG32i9doWFn9CwW9nGLtfvu/ZIAhI31tS1Gx2FWZloaSr73CdKaoSqVezH/C5ht+vAjh2TJ0O+Kwf8QJhVILBPyj4Cx9mV4+OojA5RZAoylGzEkotEaA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l9NHJEZW; arc=none smtp.client-ip=209.85.216.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-2ff6a98c638so6473967a91.0;
+        Tue, 18 Mar 2025 08:31:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742311900; x=1742916700; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GTo+P4IDj/egBTC39do6b+maTrxFfajRm+lC64dJAgc=;
+        b=l9NHJEZWfL+lu2uGwppIHjdociNfYxjtlF6WPBmjQi/hVyry9O1jIbLxml5OdHTaEV
+         09G98V9uOO04Lfh24xYx77DGBeFhgkhVhjRLpv4UNhEgvvSpWZq9tTTnxiPLqIcZZ1MY
+         IDAgrLdRih2H/aY+pVJze/H5LQi3/D+BWPfMngCrkNU02wK50GmpXO9dX446srEWSc01
+         NlLin3j9oX1WZcOJCWPAX99CsmWNqu48YOs+kgJyM5tKG7jpGzXPqbcRq/0Eziy5Clro
+         yWEM8/grZZQJPFrnfPORGFjwAE7sqE+EzcEojXqjjzKJa5Ld5rc6FznkrdA7g7fPTCr8
+         EEVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742311900; x=1742916700;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GTo+P4IDj/egBTC39do6b+maTrxFfajRm+lC64dJAgc=;
+        b=C4PWvhGGvzGsHUQW+MHn/npCUo/FkBswI0Ab3tHso/pWJ4vgSP+I7aKWhIxomhd3RD
+         9P6dXnh5L6uPPBXNqCn3K98fTV+YfKIFGeWsWxy3c41yKLkyDQwXwOIgFqbvguGZvSJ2
+         e3L45vJHQQo3vlWC6CcG/Gs0Co0/RWWV2V9Xxe+HYYIFpOa8R+1Y1yny/ayJZAA5rcPS
+         xIXB5guHJjqZLvI3AZR8C3P/qwBWBp68xe6fJBPGx1d+cwaX+keAZWqNO0ArkH5soJ+/
+         rwCZrMCBw6IPoQEWbscq+NzdkrpDI7xyRmPxSrWVJX5E9SxlL1l8XP8uAUbEOxaZgsw+
+         epWg==
+X-Forwarded-Encrypted: i=1; AJvYcCW2igniwEURY8Ic8TcI0mppBRMeczwxiKhn4+iqzgY5p2hIFcaiSJfP9Vz+JDlnx0RP5dQdK/PHa0LOfoTr@vger.kernel.org, AJvYcCWRjtbyOsdCU+h0APnSARf4FbxqjInKtljKt6AvtEmg9euiJtHwTZmoy2BxotRHByNZ5ji5uKAiByYj3w0=@vger.kernel.org, AJvYcCXgZpDJvAudKULDPaaRyKN1IEfoQAmDEsxXCGmUuNGYpxk0MGkHLT7QAUT62aObuFEklZhqU+FV1tuv@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPIccBnZd51er6P72hqcL2FDsuK+kKLAoiqZ9CKIAEDIuKgbzH
+	z2Qm6s6l1gEc0oxwAPWRvlkPF5y87JYuxqCo3uJL7rdenFCwYdJR4MvJZqbpm7crzp2HZYy2vLv
+	buBo0O2V4/VVBlfNV4wNasQKBowY=
+X-Gm-Gg: ASbGnctRrZvTUJHE2qdUHMyitDGYy1DvIpD8kuRcOr+RqizDqU0eIAxr8Ug8yRZOpN9
+	LOc2WsEn96NnOK0dEfRlQQ6j7AqA689MxW/KFdURNJHwqgAftDrAMbB5mb7eAp86zPCC3+JlnFX
+	ge82ttamXPbLwR08KghzhVWmM=
+X-Google-Smtp-Source: AGHT+IGev3FhJjE3AIdupTysEnxLQqIhHB0aNv4HFA4FSPqyJjajPwHMn95jdK7N+OLjNP3hIRsGSfPOM63dkEDBTf0=
+X-Received: by 2002:a17:90b:3d86:b0:2ff:5ed8:83d1 with SMTP id
+ 98e67ed59e1d1-301a5b22c44mr3891136a91.19.1742311899758; Tue, 18 Mar 2025
+ 08:31:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <db3bf1cb-3385-4676-8ba4-41fea0212bf2@kwiboo.se>
+References: <20250318085444.3459380-1-florin.leotescu@oss.nxp.com>
+ <20250318085444.3459380-2-florin.leotescu@oss.nxp.com> <7afcd224-1154-4e2f-b383-10f6a89fdae0@roeck-us.net>
+In-Reply-To: <7afcd224-1154-4e2f-b383-10f6a89fdae0@roeck-us.net>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Tue, 18 Mar 2025 17:33:12 +0200
+X-Gm-Features: AQ5f1JrGT6OkXhZLmAGbs6dhzXtsxvJYdhcQucC_VGy8G_11v7e7DfbTPZDv1rM
+Message-ID: <CAEnQRZBmYdLh29ha1FKz8=CbxjFBFFTgDkjrEmwTxW2WcxodfA@mail.gmail.com>
+Subject: Re: [PATCH v5 1/3] dt-bindings: hwmon: Add Microchip emc2305 support
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: florin.leotescu@oss.nxp.com, Jean Delvare <jdelvare@suse.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Shych <michaelsh@nvidia.com>, linux-hwmon@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	viorel.suman@nxp.com, carlos.song@nxp.com, 
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, festevam@gmail.com, 
+	Florin Leotescu <florin.leotescu@nxp.com>, Frank Li <Frank.Li@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Mar 17, 2025 at 08:50:34PM +0100, Jonas Karlman wrote:
-> Hi Simon,
-> 
-> On 2025-03-17 20:43, Simon Horman wrote:
-> > On Sun, Mar 09, 2025 at 11:26:10PM +0000, Jonas Karlman wrote:
-> >> The Rockchip RK3528 has two Ethernet controllers, one 100/10 MAC to be
-> >> used with the integrated PHY and a second 1000/100/10 MAC to be used
-> >> with an external Ethernet PHY.
-> >>
-> >> This series add initial support for the Ethernet controllers found in
-> >> RK3528 and initial support to power up/down the integrated PHY.
-> >>
-> >> This series depends on v2 of the "net: stmmac: dwmac-rk: Validate GRF
-> >> and peripheral GRF during probe" [1] cleanup series.
-> >>
-> >>
-> >> Changes in v2:
-> >> - Restrict the minItems: 4 change to rockchip,rk3528-gmac
-> >> - Add initial support to power up/down the integrated PHY in RK3528
-> >> - Split device tree changes into a separate series
-> >>
-> >> [1] https://lore.kernel.org/r/20250308213720.2517944-1-jonas@kwiboo.se/
-> > 
-> > Hi Jonas,
-> > 
-> > This patchset looks reasonable to me. However it will need
-> > to be reposted once it's dependencies ([1]) are present in net-next.
-> 
-> The dependent series ([1]) has already been merged into net-next [2].
+On Tue, Mar 18, 2025 at 5:22=E2=80=AFPM Guenter Roeck <linux@roeck-us.net> =
+wrote:
+>
+> On 3/18/25 01:54, florin.leotescu@oss.nxp.com wrote:
+> > From: Florin Leotescu <florin.leotescu@nxp.com>
+> >
+> > Introduce yaml schema for Microchip emc2305 pwm fan controller.
+> >
+> > Signed-off-by: Florin Leotescu <florin.leotescu@nxp.com>
+> > Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> > ---
+> >   .../bindings/hwmon/microchip,emc2305.yaml     | 113 +++++++++++++++++=
++
+> >   1 file changed, 113 insertions(+)
+> >   create mode 100644 Documentation/devicetree/bindings/hwmon/microchip,=
+emc2305.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/hwmon/microchip,emc2305.=
+yaml b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
+> > new file mode 100644
+> > index 000000000000..e61ef97e63af
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
+> > @@ -0,0 +1,113 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +
+> > +$id: http://devicetree.org/schemas/hwmon/microchip,emc2305.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Microchip EMC2305 SMBus compliant PWM fan controller
+> > +
+> > +maintainers:
+> > +  - Michael Shych <michaelsh@nvidia.com>
+> > +
+> > +description:
+> > +  Microchip EMC2301/2/3/5 pwm controller which supports
+> > +  up to five programmable fan control circuits.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - enum:
+> > +          - microchip,emc2305
+> > +      - items:
+> > +          - enum:
+> > +              - microchip,emc2303
+> > +              - microchip,emc2302
+> > +              - microchip,emc2301
+> > +          - const: microchip,emc2305
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  '#address-cells':
+> > +    const: 1
+> > +
+> > +  '#size-cells':
+> > +    const: 0
+> > +
+> > +  '#pwm-cells':
+> > +    const: 3
+> > +    description: |
+> > +      Number of cells in a PWM specifier.
+> > +      - cell 0: The PWM frequency
+> > +      - cell 1: The PWM polarity: 0 or PWM_POLARITY_INVERTED
+> > +      - cell 2: The PWM output config:
+> > +           - 0 (Open-Drain)
+> > +           - 1 (Push-Pull)
+> > +
+> > +
+> > +patternProperties:
+> > +  '^fan@[0-4]$':
+> > +    $ref: fan-common.yaml#
+> > +    unevaluatedProperties: false
+> > +    properties:
+> > +      reg:
+> > +        description:
+> > +          The fan number used to determine the associated PWM channel.
+> > +
+> > +    required:
+> > +      - reg
+> > +      - pwms
+>
+> Is it necessary to make 'pwms' mandatory ? The current code works
+> just fine with defaults.
 
-Thanks, and sorry for not noticing that.
+The code adding OF support is added just in the next patch, so the
+current code isn't event
+probed when trying to use dts.
 
-> Do I still need to repost this series?
+Or am I missing something?
 
-Yes, I think that would be best so there is a CI run over the series
-(the CI doesn't understand dependencies).
++static const struct of_device_id of_emc2305_match_table[] =3D {
++       { .compatible =3D "microchip,emc2305", },
++       {},
++};
++MODULE_DEVICE_TABLE(of, of_emc2305_match_table);
 
-> [2] https://lore.kernel.org/r/174186063226.1446759.12026198009173732573.git-patchwork-notify@kernel.org/
-> 
-> > 
-> > And on the topic of process:
-> > 
-> > * As this is a patch-set for net-next it would be best to
-> >   target it accordingly:
-> > 
-> >   Subject: [PATCH net-next] ...
-> > 
-> > * Please post patches for net/net-next which have dependencies as RFCs.
-> > 
-> > For more information on Netdev processes please take a look at
-> > https://docs.kernel.org/process/maintainer-netdev.html
-> > 
-> 
-> Thanks, I see, netdev seem to use a slight different process than what
-> I am familiar with compared to other Linux subsystems and U-Boot :-)
-> 
-> Regards,
-> Jonas
-> 
+I have no strong opinion on this we could make pwms optional.
 
