@@ -1,186 +1,180 @@
-Return-Path: <devicetree+bounces-158674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60017A67A32
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 18:01:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C6B7A67A58
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 18:07:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1807D3B3906
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 17:01:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4FACE1890049
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 17:08:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D39FC211A16;
-	Tue, 18 Mar 2025 17:01:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E4B320FAB6;
+	Tue, 18 Mar 2025 17:07:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IgrPoCcP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m8DO/VWd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DBF920F069
-	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 17:01:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 168661E5B8C;
+	Tue, 18 Mar 2025 17:07:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742317272; cv=none; b=vAqdofSEyFdWIeYkOZ1gB0gF0pkmgijCxx/wDN1Z2IwOuTMcIj6OkRsAQhjpGkFirZcVlX2fqIFuydI6Gsu5ph3MKGo8EWj1hgcAkWU3vYpezv36AhMzfSRFnQG2lb88gsILk0v/KUtwZH0tq5PsCi0gzoT4vzPLX8yGH2HuJyU=
+	t=1742317673; cv=none; b=bnOB3eqHrzo7wX+Z3Admh2HBA38KjdrQeFo8ZxeLRH+BXC5QFcFMMMKi+ao5SI7LyndX46hdL+hdH0tHh3R5zmhiW5snjO9mItQpRvUVaBUZ094ZeAZ46LrIRjGuCZlpiglziPaSJfQkPNzQRsiHXWzKXF2X+QSe8/dla+CwL8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742317272; c=relaxed/simple;
-	bh=5YRH59i3/B7xwBfGl0fAC2tOhBLqq9TfHRpTHq8NO1c=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jE+rMmi0Chcmt5cj9rD7z/TnJQvi+XJn3z2vfdYyow56gPTCeZn5n2WyJtrwx5ldK+BVjFFz1PjZCxzDTHZYOiCM/2NnUa6wBxp6krOOredoeBkzMFRK2PMWEwXbLG91xq5nJf+QvPiqRgzbQL1LUw0jJz8CgZNR2KjTA/1CBs0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IgrPoCcP; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52I9MOG4027250
-	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 17:01:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=StafdzDurWimpaN7Jmu0PfeK
-	ZDx8G4OwDsbuc8PNM9E=; b=IgrPoCcPYnheQSaGKkKIGiLW/xDjOFUsu2fmXJV6
-	Eeg5lfM7fwxSJnPvlRthkilps+xbGSX8V66vhRQfXeQE6+eoOIrHe8IWnyRpzg9w
-	/00ZFNZtxF3jtF79/l0N7xQzjfAqZWpIV/8KCMHPU1OU/0n05jpNfJPBJfOaT4G+
-	qWL/CirAMECuZjnzcA7GI2zt0S3QPfI+s4Bdlh2YeW7KOEOUj722wag3/+My6UK5
-	GqObDARGRTm0D7aQf8qa6FSNV6Z7VzN2+2hD6vzk1jBhHwoVZSTIEaYqEULXRLeP
-	uqEzKY7qvd9MN2dgiSTzJ2jel5q91z+naqvbVz225h8JWw==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45d1sy0y5t-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 17:01:05 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-2ff8a2c7912so5584391a91.1
-        for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 10:01:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742317265; x=1742922065;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=StafdzDurWimpaN7Jmu0PfeKZDx8G4OwDsbuc8PNM9E=;
-        b=lvJLqt0yJLRG8ogmcpzFUkqwKcKEtqVrHxyrPfYz3RsGwqGQYMnhEzIMYrcRwQodfK
-         N8UMha9cMSFrYgRD0S+tXx3cEKiaFmBT8EHJMPj8cTXM+PqPCvKhqAABYU9MMeSoRmlP
-         il+Is/YbyyM4Ftkz5wclxmQIr40r5wAZcS0liP9z3LK7pq3Wstrb1G0gpUfpLtv2JD9l
-         jNJtgEzkg13UIApCEnI3Cc4ljpPFMz8n7qVtB5XhN6aGJ7PyMgXpe1OAEvStyNepdvj8
-         PPWMVQhU2lNM3z5NLb9UyuXNjeGUgS6rrqjjl3Exj4hYBTJibPVxD5XPSeYrgRCNRShR
-         NhBw==
-X-Forwarded-Encrypted: i=1; AJvYcCUuR8P3HIOfN65bpuMdsOYvkeG2Vtd+1hAo9xZ60Zp/Lb4c3zi4YftlmQnu+ewWfST61+Ytgxj/2VN9@vger.kernel.org
-X-Gm-Message-State: AOJu0YyAKmr46REd2eGfqRHdaeefK5WkUx4+Lu7NLQbQQTkmfRFRDy8t
-	nN5agd9GkRFDhD1Emh68SC/wyWiSU2OcwlWEmRvWOz2e59tUMLlOQJBagrzsIV5bgRLEwRs2flB
-	fQRLoO1X8JPgcsx4jGnea8WzusaFiAAJx9ZbzHxwNcuzc+aVyNEV3f5dCsSk0QIwThnZSOYQWyM
-	88+dCzkq0S5yNA7tlFfqJPjILgAFubw+71G8Y=
-X-Gm-Gg: ASbGncuChTVc/S5ZxRPr7dmLlVipDsYgycL7NNxSP9iOr6KNz40njUVpslZo3RUGQV5
-	+fvfJRupXIlAwoZhMnTjHsrhOQvo/u7P5Z/a+LaFi61w+zzZphvTj+xn2Y5UXDGNKXPqdYIJ9Ko
-	5xN+GbtzAcVdpJ+GYzJequdrFgPnM=
-X-Received: by 2002:a17:90a:e7c4:b0:2ff:53d6:2b82 with SMTP id 98e67ed59e1d1-301a5bde7f8mr4505541a91.11.1742317263906;
-        Tue, 18 Mar 2025 10:01:03 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG2mM99w8Yif66L5megEI3tCN8I1is5NdBdBjhAmcSxNUnHnOXDld02TDvQk6YE8NcQBxnvweP7i88nDW0PPE8=
-X-Received: by 2002:a17:90a:e7c4:b0:2ff:53d6:2b82 with SMTP id
- 98e67ed59e1d1-301a5bde7f8mr4505503a91.11.1742317263432; Tue, 18 Mar 2025
- 10:01:03 -0700 (PDT)
+	s=arc-20240116; t=1742317673; c=relaxed/simple;
+	bh=ClveRfCHzxpsa3h6WnfKVB/u2POf/KIKNL1rIjfPHD8=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=S8ZLYBG3KIXijwSgLbG9miYfM63wiv4tvm+iOXJV1sgPE35aHGZGdhfabqqqpTdhQs1rETaEu6euUGO1WSAgecXI88mtuhwlWSSYnK6999vEnp2ozazsi3KqajIpdTHCTfxem2JarGRzvWDottcx+HbV1K+S1NNsAW4BXImdbDQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m8DO/VWd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 501DEC4CEDD;
+	Tue, 18 Mar 2025 17:07:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742317672;
+	bh=ClveRfCHzxpsa3h6WnfKVB/u2POf/KIKNL1rIjfPHD8=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=m8DO/VWdfaesHQ5jT69BoVvNtsn228iyk8FyWouLmx6BqE6Dpf/ZmT1F1QIOMLXMd
+	 5wHGTGrwLlL62BrnRxM3tyc1SMiNPxET5U7HXjKMXeUxeiwCwbHDvGv0Ain3bm99az
+	 ETpLdjwARCwR+E5xDYcZmNIlaruV5mCCQxPh8UJWKs/ZuYS2jDMP7UZ4HOeR5X/j+P
+	 DhMKJhomyUxcf06pTekpfMFAkQ1oT+zwKJbyJG1Sy1oLJH7vBg/hlhau2HnZQumt4X
+	 mSULDDO4k6SBxHXpjSLzbtWvejh8jDR5DQ7xoR30zsKURxg3nIwOGx6tA7w2r5rXkG
+	 /vB3aDvmpWhpw==
+Date: Tue, 18 Mar 2025 12:07:51 -0500
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250225-qps615_v4_1-v4-0-e08633a7bdf8@oss.qualcomm.com>
- <20250225-qps615_v4_1-v4-2-e08633a7bdf8@oss.qualcomm.com> <kao2wccsiflgrvq7vj22cffbxeessfz5lc2o2hml54kfuv2mpn@2bf2qkdozzjq>
- <8a2bce29-95dc-53b0-0516-25a380d94532@oss.qualcomm.com>
-In-Reply-To: <8a2bce29-95dc-53b0-0516-25a380d94532@oss.qualcomm.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Tue, 18 Mar 2025 19:00:51 +0200
-X-Gm-Features: AQ5f1JqVmcNBPDgEyh5aAISGonCmVLn-AMt1AX9j-2qGS6_UgHA5JMDqMgl1I_k
-Message-ID: <CAO9ioeW6-KgRmFO93Ouhyx9uQcdaPoX3=mjpz_2SPHKiHh3RkQ@mail.gmail.com>
-Subject: Re: [PATCH v4 02/10] arm64: dts: qcom: qcs6490-rb3gen2: Add TC956x
- PCIe switch node
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        chaitanya chundru <quic_krichai@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, Jingoo Han <jingoohan1@gmail.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>, quic_vbadigan@quicnic.com,
-        amitk@kernel.org, dmitry.baryshkov@linaro.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        jorge.ramirez@oss.qualcomm.com
-Content-Type: text/plain; charset="UTF-8"
-X-Proofpoint-GUID: SxnbweOzmm8874Eh65T2vi3bPX3bC_X5
-X-Proofpoint-ORIG-GUID: SxnbweOzmm8874Eh65T2vi3bPX3bC_X5
-X-Authority-Analysis: v=2.4 cv=XKcwSRhE c=1 sm=1 tr=0 ts=67d9a6d1 cx=c_pps a=RP+M6JBNLl+fLTcSJhASfg==:117 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=ccs1Irad_oSE8X62F2EA:9 a=QEXdDO2ut3YA:10
- a=iS9zxrgQBfv6-_F4QbHw:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-18_08,2025-03-17_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- mlxlogscore=999 priorityscore=1501 clxscore=1015 phishscore=0
- impostorscore=0 adultscore=0 mlxscore=0 malwarescore=0 suspectscore=0
- spamscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503180125
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-aspeed@lists.ozlabs.org, andrew@codeconstruct.com.au, 
+ linux-arm-kernel@lists.infradead.org, krzk+dt@kernel.org, 
+ linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org, 
+ devicetree@vger.kernel.org, joel@jms.id.au, conor+dt@kernel.org, 
+ robh+dt@kernel.org
+To: Rajaganesh Rathinasabapathi <Rajaganesh.Rathinasabapathi@amd.com>
+In-Reply-To: <20250318041224.1693323-1-Rajaganesh.Rathinasabapathi@amd.com>
+References: <20250318041224.1693323-1-Rajaganesh.Rathinasabapathi@amd.com>
+Message-Id: <174231753965.3228114.9624277631612711787.robh@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: aspeed: Add AMD Onyx BMC
+ compatible
 
-On Tue, 18 Mar 2025 at 18:11, Krishna Chaitanya Chundru
-<krishna.chundru@oss.qualcomm.com> wrote:
->
->
->
-> On 3/17/2025 4:57 PM, Dmitry Baryshkov wrote:
-> > On Tue, Feb 25, 2025 at 03:03:59PM +0530, Krishna Chaitanya Chundru wrote:
-> >> Add a node for the TC956x PCIe switch, which has three downstream ports.
-> >> Two embedded Ethernet devices are present on one of the downstream ports.
-> >>
-> >> Power to the TC956x is supplied through two LDO regulators, controlled by
-> >> two GPIOs, which are added as fixed regulators. Configure the TC956x
-> >> through I2C.
-> >>
-> >> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> >> Reviewed-by: Bjorn Andersson <andersson@kernel.org>
-> >> Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> >> ---
-> >>   arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 116 +++++++++++++++++++++++++++
-> >>   arch/arm64/boot/dts/qcom/sc7280.dtsi         |   2 +-
-> >>   2 files changed, 117 insertions(+), 1 deletion(-)
-> >>
-> >> @@ -735,6 +760,75 @@ &pcie1_phy {
-> >>      status = "okay";
-> >>   };
-> >>
-> >> +&pcie1_port {
-> >> +    pcie@0,0 {
-> >> +            compatible = "pci1179,0623", "pciclass,0604";
-> >> +            reg = <0x10000 0x0 0x0 0x0 0x0>;
-> >> +            #address-cells = <3>;
-> >> +            #size-cells = <2>;
-> >> +
-> >> +            device_type = "pci";
-> >> +            ranges;
-> >> +            bus-range = <0x2 0xff>;
-> >> +
-> >> +            vddc-supply = <&vdd_ntn_0p9>;
-> >> +            vdd18-supply = <&vdd_ntn_1p8>;
-> >> +            vdd09-supply = <&vdd_ntn_0p9>;
-> >> +            vddio1-supply = <&vdd_ntn_1p8>;
-> >> +            vddio2-supply = <&vdd_ntn_1p8>;
-> >> +            vddio18-supply = <&vdd_ntn_1p8>;
-> >> +
-> >> +            i2c-parent = <&i2c0 0x77>;
-> >> +
-> >> +            reset-gpios = <&pm8350c_gpios 1 GPIO_ACTIVE_LOW>;
-> >> +
-> >
-> > I think I've responded here, but I'm not sure where the message went:
-> > please add pinctrl entry for this pin.
-> >
-> Do we need to also add pinctrl property for this node and refer the
-> pinctrl entry for this pin?
 
-I think that is what I've asked for, was that not?
+On Mon, 17 Mar 2025 23:12:23 -0500, Rajaganesh Rathinasabapathi wrote:
+> Document new AMD Onyx BMC board compatibles
+> 
+> Signed-off-by: Rajaganesh Rathinasabapathi <Rajaganesh.Rathinasabapathi@amd.com>
+> ---
+>  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
--- 
-With best wishes
-Dmitry
+
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/aspeed/' for 20250318041224.1693323-1-Rajaganesh.Rathinasabapathi@amd.com:
+
+Error: arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts:20.25-31 syntax error
+FATAL ERROR: Unable to parse input tree
+make[3]: *** [scripts/Makefile.dtbs:131: arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dtb] Error 1
+make[2]: *** [scripts/Makefile.build:461: arch/arm/boot/dts/aspeed] Error 2
+make[2]: Target 'arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dtb' not remade because of errors.
+make[1]: *** [/home/rob/proj/linux-dt-testing/Makefile:1475: aspeed/aspeed-bmc-amd-onyx.dtb] Error 2
+arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-spc621d8hm3.dtb: /ahb/apb@1e780000/pwm-tacho-controller@1e786000: failed to match any schema with compatible: ['aspeed,ast2500-pwm-tacho']
+make: *** [Makefile:248: __sub-make] Error 2
+make: Target 'aspeed/aspeed-bmc-microsoft-olympus.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-delta-ahe50dc.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-opp-palmetto.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-ast2500-evb.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-quanta-s6q.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-opp-romulus.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-ibm-sbp1.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-inspur-fp5280g2.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-facebook-minipack.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-opp-mowgli.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-opp-witherspoon.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-vegman-sx20.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-opp-tacoma.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-opp-lanyang.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-vegman-rx20.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-ibm-fuji.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-ibm-everest.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-bytedance-g220a.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-facebook-cmm.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-ibm-blueridge-4u.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-asrock-e3c246d4i.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-ast2600-evb-a1.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-amd-onyx.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-supermicro-x11spi.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-vegman-n110.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-opp-vesnin.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-facebook-bletchley.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-ast2600-evb.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-inventec-transformers.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-ibm-rainier.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-tyan-s8036.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-ampere-mtjade.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-asrock-x570d4u.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-facebook-yosemite4.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-ibm-blueridge.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-asrock-spc621d8hm3.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-inventec-starscream.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-facebook-yamp.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-ibm-rainier-4u.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-facebook-catalina.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-amd-ethanolx.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-ibm-bonnell.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-inspur-on5263m5.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-ampere-mtjefferson.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-asus-x4tf.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-opp-nicole.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-intel-s2600wf.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-facebook-wedge40.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-lenovo-hr855xg2.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-asrock-e3c256d4i.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-lenovo-hr630.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-asrock-romed8hm3.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-quanta-q71l.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-tyan-s7106.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-facebook-yosemitev2.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-facebook-wedge100.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-facebook-elbert.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-amd-daytonax.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-qcom-dc-scm-v1.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-ufispace-ncplite.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-opp-zaius.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-portwell-neptune.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-ampere-mtmitchell.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-facebook-fuji.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-facebook-minerva.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-facebook-galaxy100.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-facebook-harma.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-inspur-nf5280m6.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-facebook-wedge400.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-arm-stardragon4800-rep2.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-ibm-system1.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-facebook-greatlakes.dtb' not remade because of errors.
+make: Target 'aspeed/aspeed-bmc-facebook-tiogapass.dtb' not remade because of errors.
+
+
+
+
+
 
