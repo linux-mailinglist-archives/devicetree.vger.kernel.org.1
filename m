@@ -1,200 +1,234 @@
-Return-Path: <devicetree+bounces-158468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EF71A66DD7
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 09:17:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 110FDA66DC8
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 09:16:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 917213BF927
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 08:14:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35BB1176316
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 08:15:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9FA12066F7;
-	Tue, 18 Mar 2025 08:13:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FA881F866A;
+	Tue, 18 Mar 2025 08:14:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Di12JRSN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tBHr/43r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF16C2063E3;
-	Tue, 18 Mar 2025 08:13:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15D261E8356
+	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 08:14:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742285620; cv=none; b=Mad/3hL9Y+H0/wVPpLptQ6ApHKShsaGOv38RMpxKQXAGyNwIN8Y6+mh59HH9GBQqn/awcVvEOrm1AqmYehTDfnPrahqIdh7JTuV3VkhegLDGv6i4XEpNb7KYWY5eZYCOG8OEXykXcIYCCuF8ZzEqNDAJeAzhWU20LN/4nUOnV5I=
+	t=1742285675; cv=none; b=rvcokOEY1k6xP6wtS9qTJbQtHlUHhRiP8GDjroaXhKKIvjO7pyyr74dLyxQ6zZdwTF6fGuhu/CyPKALm72YrM3Bde9PJmayk5cnfkLL8dqtv/EXsTxVND7EpayaNkWgiK44z1QwpUU6lLakaN+UISS8mBvLt1eGZI6D8kvDbGpI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742285620; c=relaxed/simple;
-	bh=6WL3+gww7pwy7HeSxhHT435XK+Ky7XngeaLYGMY0ueU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=b3H4Sj3hjjy1z1s2MSfbIBd4nnC4VVoKmyXzLmzs6oYEmaZVx4vk9NZJ79DEGw1SPKFZSfTJG1qBCBmrG6jb7/RsXCNnMIn3ibzE/AW1kp5Gt6FEXa/hUG9thyWvn+VRcGhkNMv9aOXgxU8VwwR8FwgJt+cHN9VDYbwSkUlPNbo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Di12JRSN; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5dca468c5e4so9200068a12.1;
-        Tue, 18 Mar 2025 01:13:38 -0700 (PDT)
+	s=arc-20240116; t=1742285675; c=relaxed/simple;
+	bh=kpYhAE7uR/Tyni7qReOQZa3rzECUbNHArsrNdvdXEvE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=R0L5It8+kxPwWR+VF6hqooQC+hXbddxZ71lvUMRfg8BjBoKP2p1xN/AQhGhhpsRGdsp7Iq5SOllHzGkAJZy1s2W3zvvHPIiqF8dC4TttfedCm0XSnmTEMAuxaVJqXxD7JHB/fjrGOhTBBHB0g4RzTAt1xsspmDca1esNj9xk/BU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tBHr/43r; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-43938828d02so5269125e9.1
+        for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 01:14:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742285617; x=1742890417; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5mUS3JAucq16wAF6W5pFtM5mAxXgdUK4IDJ6WzSb7Xo=;
-        b=Di12JRSN0AT4SIrNX0AKeB9yzSSB2/Guo6FykYLIAsKwrYC1qGOaTZ8TYWF4N6bisS
-         B10/ijhkGO6eQVT4yzv056Cr+rnNcDUS0F37zoDdwltPddC54GeqWziAMi6rR4vKkr98
-         DdzOs9rt7Awer9UsoDZ3fCXeMlcrzfCFkoGZY3ErYDr+DfIF7DO5mxpUjgzYoFY1g56i
-         TtJH4fH4m9Irmlcr4xVDJNPggVBZlrgpow4frWFdxTMQ7VGszM3UrJEdfUCTbtxLufUh
-         LMdaM0DLxpqSYwBJLLiJqa/aG3DqFB756pBOn7HxQR+dbFyFEuiYRxQcONngFCJXsoQd
-         HW2g==
+        d=linaro.org; s=google; t=1742285671; x=1742890471; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dLuwN61Q3GRayy8EmdEcIAVdX4Eqmf/jQIyEt+DDRRU=;
+        b=tBHr/43rq361eEK/066HrGU1W0onwlp2aIHTueRHTA8ThOUbrn//GfEC7bbSArVSnG
+         WSapzCni28jbnLtc2h2q0ACpmV09sLxnE0udnHDadEyPiTdmWPuhFz5VNU9kl2SG1UpF
+         mGWhbs4YADTdEKwLTDP8yspn+uEMOAFB3h2rvIodtUd9phfmvAd4yUBoIwFxoiyXDV/4
+         eK6VrBLh3Vn/esd2J2HGN7t90FfK1YnTgQcUoN4EvXtLY34UAVYEjDMQVJkxaO6HR2NJ
+         1VJiAPTykBpeIwp1wMZgX0SIVG4EOzI4EZNCiMXIyniQjfPrGRpJAYGvp5jP7i8Z6xOu
+         DkpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742285617; x=1742890417;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5mUS3JAucq16wAF6W5pFtM5mAxXgdUK4IDJ6WzSb7Xo=;
-        b=RUqE0JFiitufSDui78YcWW+jFpjiPPR432ydygOi4s5aAf5yDcSYOQl6PGUi1JLUYG
-         l5jOlBRqelYdDwib/f6pM1+jp6GZYrHDuXWxlWGkIOkHtOQlZ+l7+A2rvB6u0N8whqUJ
-         EZcix1OM8ydacs9oOaPlVe0c3CyBC1mKa00AbwmK0V70qrd3vboTelJngmJzVZssBTgx
-         yfEvGdklTjfaZerFS7XS1HGrdmlo3iHYHzebx890gQsbJACLYG6kAPNP26DV/sVBBmJa
-         cD18vWpBz7lBlcVU+A231s8v8mnuZhMJ+4pGBINwYuBcsqHAEXKZpMS5muEJ0RdOQiju
-         Qs2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWNngeteyUtg4wK8Huc6ujgMjX5v3uB/0qVUmll28oiJMfqKFWwAHXiuLnhqsHA2DJJl4AWSEmXM7ma@vger.kernel.org, AJvYcCXEXC2qNh1PwgVk6gGhbJtQb5q8nWT/IVxTdx0OOSKzv0S43ezlIsCGw352HDE9WvGSuZc1OqDUI7ci07ZD@vger.kernel.org, AJvYcCXSx09joYWvscOFRoMedRHE8yglIR4e0i2gaF3WCXYGz5gD9btewh6dNMkKS/l7RpMRfKz7CmFTsree@vger.kernel.org
-X-Gm-Message-State: AOJu0YwPCREYcsjJhBitQr9sTJJnvramiaGaJVoL9mLNm1MYxHL/FZeL
-	pyYiMhZlOTCFAeSBIy4RYdOn+8MqCcnSnXOrQR00mD/stoYm2Fpv
-X-Gm-Gg: ASbGncvvGzUdr8Cq5t3gStKEPih7by+R3Q5rUhRwXcS6THtQEhRAV8owmdojpVMKWzL
-	d5Tnammi3DXYPlCZug1uTJ8+TiEZoAmqZoQR4bvZBtRJ04Rkp4Kf4hp6e5xpDJo31BwmFcl8MtT
-	OGZ6zcAXB7x4IecULXqkhRXOxWYS5q45JjN33OKABtEJDFZ4npPnbVfZB5k4B8I935uIBzlnmmh
-	lrhTf18XMK/1Uvj4e3xeISnsF+lRRFGu/qcvs+8PySAdrQp3IF8uY98hs1TpOep+0H8nBoe6mRq
-	JzwicDKd35+Bxi4q+rHpHiWBDNiOllLPbu3gz79wCNZSXq+LWHPsw9LMfL1f0+x3OP+vDV0EHKu
-	GWOAmqrNpW0WhIR2eoQ==
-X-Google-Smtp-Source: AGHT+IHguCtlnxkHiNo/LyNZv4MThAa+WXO4laFW2uDrRo5fbMll8lYZlNYvGqgv1r34Zeq2kgws3A==
-X-Received: by 2002:a05:6402:5210:b0:5e5:bde4:7575 with SMTP id 4fb4d7f45d1cf-5e89f24e3b1mr14905806a12.1.1742285616556;
-        Tue, 18 Mar 2025 01:13:36 -0700 (PDT)
-Received: from hex.my.domain (83.11.178.210.ipv4.supernova.orange.pl. [83.11.178.210])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e816ad392csm7176097a12.53.2025.03.18.01.13.35
+        d=1e100.net; s=20230601; t=1742285671; x=1742890471;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dLuwN61Q3GRayy8EmdEcIAVdX4Eqmf/jQIyEt+DDRRU=;
+        b=f7thC0jo8FIEWKDU3qsBYYCwaEoO1ft8XB+3qfFaxUiZI6UuB3M7ATf3Xlw6CtSt+t
+         0EmDC291cvlSsF1K3zYkerT+5zOC3BkYPjvjnO2Gp2xuAiZdHqCPYc2qyS2PUpiyu4Iw
+         ofu61WCYxWKKcosWvpqge3XCHKVem2XZeSHO+NjDnBeKpq8qJ5jhbRwhkQUgGXF8rXFl
+         rBL9TWnc8SXPKMOwSZ3CLGWpwt3QaA8JrJQU6OXySgbe4E4G2DQUVKq8RZx9BfAAk1Mr
+         rMUAUX26D/uZi+m6NwzVXBzuCQ6w+BulsvFGVkmER3NGVEd4s+4EJY8HpHlMtBKiSEop
+         l2Vg==
+X-Forwarded-Encrypted: i=1; AJvYcCXQpAGDdII1dZawGZPGOPEoWUOHhEmOfW7nwbhZlFVEopVhqfvzUhzDiX2g/eVSPfSmPSVNmpmEQFWd@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz8IQFvIRkqnTGGnH0BX1B6qYYzFyAUpY8a0/QSjD9daSZN7pLT
+	bDK7lV8A4qL2yQGs+roFrqsaxZsadM82y7EX7OyRNnN/sf5L6I21H+G8A9NxIXs=
+X-Gm-Gg: ASbGncuTv4d+OVzwVt72anCroezvXq6YDw6a1HKHO2jwX0rHbMGY5zHunj0P3zh7UQN
+	ejcE3fMhwqkYwXk/ndtpvJPP/kWCFIGgfE2IPOF5BsTHvpPfy5VFPF53Q2B900F9khEK4w7hSsd
+	OOZzdpKPXh35MM2YiYtM/QL6/xbJsVX8WksoICwmEwhRJm8fpNeiX5O5lbFLEGNaiTA7sZ09Cjl
+	KCx9ZZzTYbA9zFJIYY7y5RmNPlSUcOdAkOVFlWINx83F0mj9gbacCKu9nOErTruSNwkZv1eDmeW
+	nSi7mtEEG1gvdmd1QMcyoTlgdBz2hQyJGZqdnw/XW98PtINB85tedQ5CGg==
+X-Google-Smtp-Source: AGHT+IEMC3Xz3WPRUA5+5v3BxRr1IH5qa5tHNG3UyQ7wgUGN37CfqIolgBcAw3SYNFtQ5ny2KkGLCQ==
+X-Received: by 2002:a05:6000:18a4:b0:391:2f03:4cb9 with SMTP id ffacd0b85a97d-3971cd57d8emr5941018f8f.1.1742285671341;
+        Tue, 18 Mar 2025 01:14:31 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.198.86])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-395c888117csm17114678f8f.44.2025.03.18.01.14.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Mar 2025 01:13:36 -0700 (PDT)
-From: Artur Weber <aweber.kernel@gmail.com>
-Date: Tue, 18 Mar 2025 09:13:30 +0100
-Subject: [PATCH v4 8/8] ARM: dts: bcm11351: Add corresponding bus clocks
- for peripheral clocks
+        Tue, 18 Mar 2025 01:14:30 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Sebastian Reichel <sre@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Davis <afd@ti.com>,
+	Artur Rojek <contact@artur-rojek.eu>,
+	Mike Looijmans <mike.looijmans@topic.nl>,
+	Dzmitry Sankouski <dsankouski@gmail.com>,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: power: supply: Correct indentation and style in DTS example
+Date: Tue, 18 Mar 2025 09:14:28 +0100
+Message-ID: <20250318081428.33979-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250318-kona-bus-clock-v4-8-f54416e8328f@gmail.com>
-References: <20250318-kona-bus-clock-v4-0-f54416e8328f@gmail.com>
-In-Reply-To: <20250318-kona-bus-clock-v4-0-f54416e8328f@gmail.com>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Alex Elder <elder@kernel.org>, 
- Stanislav Jakubek <stano.jakubek@gmail.com>, linux-clk@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- ~postmarketos/upstreaming@lists.sr.ht, 
- Artur Weber <aweber.kernel@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1742285605; l=2485;
- i=aweber.kernel@gmail.com; s=20231030; h=from:subject:message-id;
- bh=6WL3+gww7pwy7HeSxhHT435XK+Ky7XngeaLYGMY0ueU=;
- b=W/JceGIDNDhwEVuscrhu90/ZiCaH04Ss2onsKkxqu4vh7HfxA4xXCBUf4O8PqzrjSHwmLHBHv
- eR6GoOLgyrrDhKiZ3cfHW5AdyynwBMthDt8jI2Dgqig2pNjDlELbUZJ
-X-Developer-Key: i=aweber.kernel@gmail.com; a=ed25519;
- pk=RhDBfWbJEHqDibXbhNEBAnc9FMkyznGxX/hwfhL8bv8=
+Content-Transfer-Encoding: 8bit
 
-Following changes in the clock driver, add matching bus clocks for
-existing peripheral clocks. Replace the usb_otg_ahb fixed clock with
-the real bus clock.
+DTS example in the bindings should be indented with 2- or 4-spaces and
+aligned with opening '- |'. Correct mixtures of the style or any other
+indentations to use preferred 4-spaces.
 
-Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+No functional changes here, but saves some comments during reviews
+of new patches built on the existing code.
+
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
-Changes in v2:
-- Add this patch (BCM281xx bus clocks)
----
- arch/arm/boot/dts/broadcom/bcm11351.dtsi | 33 ++++++++++++++++++++++----------
- 1 file changed, 23 insertions(+), 10 deletions(-)
+ .../bindings/power/supply/bq25980.yaml        | 34 +++++++++----------
+ .../power/supply/ingenic,battery.yaml         | 14 ++++----
+ .../bindings/power/supply/ltc4162-l.yaml      | 18 +++++-----
+ .../bindings/power/supply/maxim,max77705.yaml |  4 +--
+ 4 files changed, 35 insertions(+), 35 deletions(-)
 
-diff --git a/arch/arm/boot/dts/broadcom/bcm11351.dtsi b/arch/arm/boot/dts/broadcom/bcm11351.dtsi
-index 53857e572080d752732c512ed27f942756d59c46..fac5cf5a46bd9a4b7e09a2e65c3e807d1b4ef960 100644
---- a/arch/arm/boot/dts/broadcom/bcm11351.dtsi
-+++ b/arch/arm/boot/dts/broadcom/bcm11351.dtsi
-@@ -233,7 +233,9 @@ aon_ccu: aon_ccu@35002000 {
- 			#clock-cells = <1>;
- 			clock-output-names = "hub_timer",
- 					     "pmu_bsc",
--					     "pmu_bsc_var";
-+					     "pmu_bsc_var",
-+					     "hub_timer_apb",
-+					     "pmu_bsc_apb";
- 		};
+diff --git a/Documentation/devicetree/bindings/power/supply/bq25980.yaml b/Documentation/devicetree/bindings/power/supply/bq25980.yaml
+index b70ce8d7f86c..256adbef55eb 100644
+--- a/Documentation/devicetree/bindings/power/supply/bq25980.yaml
++++ b/Documentation/devicetree/bindings/power/supply/bq25980.yaml
+@@ -87,28 +87,28 @@ unevaluatedProperties: false
+ examples:
+   - |
+     bat: battery {
+-      compatible = "simple-battery";
+-      constant-charge-current-max-microamp = <4000000>;
+-      constant-charge-voltage-max-microvolt = <8400000>;
+-      precharge-current-microamp = <160000>;
+-      charge-term-current-microamp = <160000>;
++        compatible = "simple-battery";
++        constant-charge-current-max-microamp = <4000000>;
++        constant-charge-voltage-max-microvolt = <8400000>;
++        precharge-current-microamp = <160000>;
++        charge-term-current-microamp = <160000>;
+     };
+     #include <dt-bindings/gpio/gpio.h>
+     #include <dt-bindings/interrupt-controller/irq.h>
+     i2c {
+-      #address-cells = <1>;
+-      #size-cells = <0>;
++        #address-cells = <1>;
++        #size-cells = <0>;
  
- 		master_ccu: master_ccu@3f001000 {
-@@ -246,7 +248,14 @@ master_ccu: master_ccu@3f001000 {
- 					     "sdio4",
- 					     "usb_ic",
- 					     "hsic2_48m",
--					     "hsic2_12m";
-+					     "hsic2_12m",
-+					     "sdio1_ahb",
-+					     "sdio2_ahb",
-+					     "sdio3_ahb",
-+					     "sdio4_ahb",
-+					     "usb_ic_ahb",
-+					     "hsic2_ahb",
-+					     "usb_otg_ahb";
- 		};
+-      bq25980: charger@65 {
+-          compatible = "ti,bq25980";
+-          reg = <0x65>;
+-          interrupt-parent = <&gpio1>;
+-          interrupts = <16 IRQ_TYPE_EDGE_FALLING>;
+-          ti,watchdog-timeout-ms = <0>;
+-          ti,sc-ocp-limit-microamp = <2000000>;
+-          ti,sc-ovp-limit-microvolt = <17800000>;
+-          monitored-battery = <&bat>;
+-      };
++        bq25980: charger@65 {
++            compatible = "ti,bq25980";
++            reg = <0x65>;
++            interrupt-parent = <&gpio1>;
++            interrupts = <16 IRQ_TYPE_EDGE_FALLING>;
++            ti,watchdog-timeout-ms = <0>;
++            ti,sc-ocp-limit-microamp = <2000000>;
++            ti,sc-ovp-limit-microvolt = <17800000>;
++            monitored-battery = <&bat>;
++        };
+     };
  
- 		slave_ccu: slave_ccu@3e011000 {
-@@ -262,7 +271,17 @@ slave_ccu: slave_ccu@3e011000 {
- 					     "bsc1",
- 					     "bsc2",
- 					     "bsc3",
--					     "pwm";
-+					     "pwm",
-+					     "uartb_apb",
-+					     "uartb2_apb",
-+					     "uartb3_apb",
-+					     "uartb4_apb",
-+					     "ssp0_apb",
-+					     "ssp2_apb",
-+					     "bsc1_apb",
-+					     "bsc2_apb",
-+					     "bsc3_apb",
-+					     "pwm_apb";
- 		};
+ ...
+diff --git a/Documentation/devicetree/bindings/power/supply/ingenic,battery.yaml b/Documentation/devicetree/bindings/power/supply/ingenic,battery.yaml
+index 741022b4449d..cb04fb25d8ac 100644
+--- a/Documentation/devicetree/bindings/power/supply/ingenic,battery.yaml
++++ b/Documentation/devicetree/bindings/power/supply/ingenic,battery.yaml
+@@ -48,14 +48,14 @@ examples:
+     #include <dt-bindings/iio/adc/ingenic,adc.h>
  
- 		ref_1m_clk: ref_1m {
-@@ -325,12 +344,6 @@ var_52m_clk: var_52m {
- 			clock-frequency = <52000000>;
- 		};
+     simple_battery: battery {
+-            compatible = "simple-battery";
+-            voltage-min-design-microvolt = <3600000>;
+-            voltage-max-design-microvolt = <4200000>;
++        compatible = "simple-battery";
++        voltage-min-design-microvolt = <3600000>;
++        voltage-max-design-microvolt = <4200000>;
+     };
  
--		usb_otg_ahb_clk: usb_otg_ahb {
--			compatible = "fixed-clock";
--			clock-frequency = <52000000>;
--			#clock-cells = <0>;
--		};
--
- 		ref_96m_clk: ref_96m {
- 			#clock-cells = <0>;
- 			compatible = "fixed-clock";
-@@ -396,7 +409,7 @@ usbotg: usb@3f120000 {
- 		compatible = "snps,dwc2";
- 		reg = <0x3f120000 0x10000>;
- 		interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
--		clocks = <&usb_otg_ahb_clk>;
-+		clocks = <&master_ccu BCM281XX_MASTER_CCU_USB_OTG_AHB>;
- 		clock-names = "otg";
- 		phys = <&usbphy>;
- 		phy-names = "usb2-phy";
-
+     ingenic-battery {
+-            compatible = "ingenic,jz4740-battery";
+-            io-channels = <&adc INGENIC_ADC_BATTERY>;
+-            io-channel-names = "battery";
+-            monitored-battery = <&simple_battery>;
++        compatible = "ingenic,jz4740-battery";
++        io-channels = <&adc INGENIC_ADC_BATTERY>;
++        io-channel-names = "battery";
++        monitored-battery = <&simple_battery>;
+     };
+diff --git a/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml b/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml
+index 06595a953659..bc7ed7b22085 100644
+--- a/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml
++++ b/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml
+@@ -61,13 +61,13 @@ additionalProperties: false
+ examples:
+   - |
+     i2c {
+-      #address-cells = <1>;
+-      #size-cells = <0>;
+-      charger: battery-charger@68 {
+-              compatible = "lltc,ltc4162-l";
+-              reg = <0x68>;
+-              lltc,rsnsb-micro-ohms = <10000>;
+-              lltc,rsnsi-micro-ohms = <16000>;
+-              lltc,cell-count = <2>;
+-      };
++        #address-cells = <1>;
++        #size-cells = <0>;
++        charger: battery-charger@68 {
++            compatible = "lltc,ltc4162-l";
++            reg = <0x68>;
++            lltc,rsnsb-micro-ohms = <10000>;
++            lltc,rsnsi-micro-ohms = <16000>;
++            lltc,cell-count = <2>;
++        };
+     };
+diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max77705.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max77705.yaml
+index bce7fabbd9d3..e3b84068993b 100644
+--- a/Documentation/devicetree/bindings/power/supply/maxim,max77705.yaml
++++ b/Documentation/devicetree/bindings/power/supply/maxim,max77705.yaml
+@@ -37,8 +37,8 @@ examples:
+     #include <dt-bindings/interrupt-controller/irq.h>
+ 
+     i2c {
+-      #address-cells = <1>;
+-      #size-cells = <0>;
++        #address-cells = <1>;
++        #size-cells = <0>;
+ 
+         charger@69 {
+             compatible = "maxim,max77705-charger";
 -- 
-2.48.1
+2.43.0
 
 
