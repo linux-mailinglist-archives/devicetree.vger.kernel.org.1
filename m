@@ -1,148 +1,171 @@
-Return-Path: <devicetree+bounces-158606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4594AA67709
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 15:58:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63A51A6772C
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 16:02:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C9AB170A57
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 14:57:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B5E03ADCBE
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 15:00:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A89F220E01E;
-	Tue, 18 Mar 2025 14:57:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB31820E6F9;
+	Tue, 18 Mar 2025 15:00:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wbxAswXQ"
+	dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b="Z8fAa0BZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+Received: from out-09.pe-a.jellyfish.systems (out-09.pe-a.jellyfish.systems [198.54.127.69])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9DBB20D4E7
-	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 14:57:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A33DB191F92;
+	Tue, 18 Mar 2025 15:00:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.54.127.69
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742309827; cv=none; b=CPsaCAK+RvVJ4I58NBnnVOjYMMuzpATKMyOBc54X3TPAo/wGn2MXNbUl9TlfCiGkyfbLC3WTkUa69r44yRObfKK5b+lPPqYXdTkcqxrvz1RY+0hJ8ScXgAhnINuHpMpwhx9q+QBXj2cl/oDER0+Aj64hqlSG5aw0XbZ1YhNslz0=
+	t=1742310046; cv=none; b=d5+XiU3BjuRXB67LW0pR3aL/WgMg4lOxf1BVg05UhRpFH64A9NXmHQueAvmXQl0F3voI6Kl4fYSs0MbnanrvqJf7DUkZzntQqidYf54utavBSJE/7uFUV96SS0A5UPJCldhRms09Gu3uBmPX5qB36hKg9PmnIH10GDB/NBBlsnM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742309827; c=relaxed/simple;
-	bh=N+sFJXUfBMA0CoJhUPLBMoIsImXXvb0Qq+jGqBryElU=;
+	s=arc-20240116; t=1742310046; c=relaxed/simple;
+	bh=27Pc74ha1MeynY0b4VpFjOnyMErp9nGgnqQ6z090Eto=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FDw1UP/37T5G6X2ksH0UvTe/K66zsTcem+AXQwSQ18N6CJiIVxTEGPQgVeMm98GIxPiZqIoO/o3oxQ9qE4tP9UrNjA6TsQzMCSRgMoPd2pClQ7dpQLSMKsvUi3D2CdJXKI2POa0euCREVWDD+PCa2sOgKQL5Yk/RhhTVtyPH8xU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wbxAswXQ; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-abbb12bea54so1184337666b.0
-        for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 07:57:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742309824; x=1742914624; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1VVVI1GriwyXPsCwD+FNmlh5SAMatdc1NEjAoi7sx58=;
-        b=wbxAswXQ6h9hvVyqLzZGZhMpub+q7TrY5QLHz2CEyeAxIkiuC6eAN6HIKqth4g/gpZ
-         Xfh9Z1WDhZd0PDV2knkgsYN9LPIyZ06/dRBtUmG9YjRbjXS7NI+1IITkdTJH65/gKNr6
-         Tk5SzVktBHM3hlIuCEfSjkweQlEzWzAQYSR/SBfuVKT/bn4jsRKJ+xfIRExrdqGu6RBv
-         PbEKJ3ClFTQcCn+xUi5PrGPRleRy1VsxZ3CbtEsivxd9r3PhZes1+N/no0JztgR94sfc
-         Yh7vBRB908pmXIdte3gyeK4OsLu7FcBvsexIJhOcuKDxKyB1B9LTqjPKSdyMFpgDzfe4
-         FsGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742309824; x=1742914624;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1VVVI1GriwyXPsCwD+FNmlh5SAMatdc1NEjAoi7sx58=;
-        b=s1pz0eG9erO1LzcBQAzxv6Zu3oucz6RarjJ05U9B/g8b4M1meyqdnIq7wvPuYVWn7Z
-         2PSKmPChWvh5KeAdqu+WxmRQwVws09uS6n0y+gCkIGv4gcTjc3Wg1494tEIFGpqYeCSG
-         ZMe8bKtjCDtzlV+sGxHXDoUcmgQpm3+ZHYBOPWrGpKad9wYceEk2XTAZhOPNz80rXWDe
-         bEoACECigEvWR9AFpfG/ZPUx/D6U3q4DTBLpwT2ZshMefpdB0YJSHsLQb/Iaa/pLA71o
-         DlPKwmiIaFyTI54kAGUhKh5vgCPr7B9IBW3kfpgMmTam4+4+oTik1n1KXYU5qTsgVWhM
-         EvOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUBYZUsyv6Q37fKAznYD1MDXvS9dWULpesbADa7Grdh3jwO5t/spwDpBqbrBY3yon6/wsOKQXtgir0n@vger.kernel.org
-X-Gm-Message-State: AOJu0YxaPyTKbPYkCbzKaEQW/3V0qPkEp0MIa5r4+jUFhisE77zZLlZl
-	NKh50aANgxBVx7Yd91qywhWNDiWKrAlE6ai14taW39hEWHG8T91WUK55LdiIkoI=
-X-Gm-Gg: ASbGncuyDvaw8/0Xxd8reeeF+Skl5ruHf9L9OduwEfz6NFWR9btW9NH8nFLciHMy6bv
-	vgg/+yR49/uQ9SOKxZOKahOvEqOc/H2uh7sZsPPXrLJChaWFx4aRMvCvfgcF/6Kz5LGOquAHkiK
-	iGibhPFUqfhtykfMGzZCRJw8K8YVQMvT9HNxGSYMvnLP9qYtkrnR4lL2XA5ZqUdYNIQrwGO8zdN
-	0CpFrSRUiT8ExepnT6jK8s0PkTftHL1u5U5xk7+OkCQQX7HyAyqSmGwNO+B2heSQKu5VtS2ETA+
-	4QIXsaftuugBHJCTmI8wOwuooK6Yswd5oq2Fo48EpF9nifvBmjlZ
-X-Google-Smtp-Source: AGHT+IFPBNRVXxeGQms9vMv75e9tPnzez+MLNXkizMdoSmRWOjlnAFWQdlrvFmC3VIruWWq7ehbuMQ==
-X-Received: by 2002:a17:907:3d8d:b0:abf:614a:3e48 with SMTP id a640c23a62f3a-ac3304042e6mr2319157866b.50.1742309823976;
-        Tue, 18 Mar 2025 07:57:03 -0700 (PDT)
-Received: from linaro.org ([62.231.96.41])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac3149cfbfasm867829366b.104.2025.03.18.07.57.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Mar 2025 07:57:03 -0700 (PDT)
-Date: Tue, 18 Mar 2025 16:57:02 +0200
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Johan Hovold <johan+linaro@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sibi Sankar <quic_sibis@quicinc.com>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: x1e001de-devkit: fix USB retimer reset
- polarity
-Message-ID: <Z9mJvh2KGwhOJ6I9@linaro.org>
-References: <20250318074907.13903-1-johan+linaro@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=cdtopwrPSwdpMSHwIE1P0CU/HFFe/2BiNhyOaJ6LwJtky6iTK37ScfPw5fGTfcrExPj6I34pSWuZ+qeA041vKxE2fYS8wo0VHrB9qqHWgBUP6aetHDP8cvXTO3/wkJNOwjM6nngOtB7QrJTB3t545g3IRBb6XAxAfMxDb48IWEo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=framepointer.org; spf=pass smtp.mailfrom=framepointer.org; dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b=Z8fAa0BZ; arc=none smtp.client-ip=198.54.127.69
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=framepointer.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=framepointer.org
+Received: from prod-lbout-phx.jellyfish.systems (new-01-3.privateemail.com [66.29.159.56])
+	by pe-a.jellyfish.systems (Postfix) with ESMTPA id 4ZHFQ86vvPz9sWw;
+	Tue, 18 Mar 2025 15:00:32 +0000 (UTC)
+Received: from MTA-08.privateemail.com (unknown [10.50.14.18])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by NEW-01-3.privateemail.com (Postfix) with ESMTPS id 4ZHFQ85ycJz2Sd0W;
+	Tue, 18 Mar 2025 11:00:32 -0400 (EDT)
+Received: from mta-08.privateemail.com (localhost [127.0.0.1])
+	by mta-08.privateemail.com (Postfix) with ESMTP id 4ZHFQ849Ncz3hhVb;
+	Tue, 18 Mar 2025 11:00:32 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=framepointer.org;
+	s=default; t=1742310032;
+	bh=27Pc74ha1MeynY0b4VpFjOnyMErp9nGgnqQ6z090Eto=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Z8fAa0BZYPdG5FK5LYPp00BmnUwoEOFdxyC1NnulMuGjyHEhz5XlJ5F2tPFm+G8fV
+	 5FN1GzBPy8X61zdkf+BkE9BtCeimzn0Gti2dEdKGR75d1w2sMm6EqnmLzyZwKkwngm
+	 sulaLfXP6vYKSmlUrgyDz53ZMs+Ri2OmKQDC5qk619m6P1/xGn3R0SuZvA9koCEp+P
+	 2XSELC/qEKe/t7azSFkJYHQal3l7OER1wHZfp8c596t2TzmLM3eeix4sa8DiK6sVGb
+	 z4EzZAsn5Ph96L0hNIaTXkkJw1ExDC4ZllgDH69BB7mzvAOljkq4F2qOdAGXz/KvK6
+	 sm5rBABRh8esg==
+Received: from 65YTFL3.secure.tethers.com (unknown [152.44.190.141])
+	by mta-08.privateemail.com (Postfix) with ESMTPA;
+	Tue, 18 Mar 2025 11:00:17 -0400 (EDT)
+Date: Tue, 18 Mar 2025 11:00:18 -0400
+From: Sam Winchenbach <sam.winchenbach@framepointer.org>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-kernel@vger.kernel.org,
+	lars@metafoo.de, Michael.Hennerich@analog.com,
+	antoniu.miclaus@analog.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, bpellegrino@arka.org,
+	Sam Winchenbach <swinchenbach@arka.org>
+Subject: Re: [PATCH v7 1/6] dt-bindings: iio: filter: Add lpf/hpf freq margins
+Message-ID: <Z9mKghgKk9vuHUyF@65YTFL3.secure.tethers.com>
+References: <20250316135008.155304-1-sam.winchenbach@framepointer.org>
+ <20250316-sexy-tested-cheetah-c4a2f8@krzk-bin>
+ <Z9g6tPqhAoTckFBh@65YTFL3.secure.tethers.com>
+ <20250317185535.7d00444d@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250318074907.13903-1-johan+linaro@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250317185535.7d00444d@jic23-huawei>
+X-Virus-Scanned: ClamAV using ClamSMTP
 
-On 25-03-18 08:49:07, Johan Hovold wrote:
-> The ps8830 retimer reset is active low.
+On Mon, Mar 17, 2025 at 06:55:35PM +0000, Jonathan Cameron wrote:
+> On Mon, 17 Mar 2025 11:07:32 -0400
+> Sam Winchenbach <sam.winchenbach@framepointer.org> wrote:
 > 
-> Fix up the retimer nodes which were based on an early version of the
-> driver which inverted the polarity.
+> > On Sun, Mar 16, 2025 at 05:38:42PM +0100, Krzysztof Kozlowski wrote:
+> > > On Sun, Mar 16, 2025 at 09:50:03AM -0400, Sam Winchenbach wrote:  
+> > > > From: Sam Winchenbach <swinchenbach@arka.org>
+> > > > 
+> > > > Adds two properties to add a margin when automatically finding the
+> > > > corner frequencies.
+> > > > 
+> > > > Signed-off-by: Sam Winchenbach <swinchenbach@arka.org>
+> > > > ---
+> > > >  .../bindings/iio/filter/adi,admv8818.yaml     | 20 +++++++++++++++++++
+> > > >  1 file changed, 20 insertions(+)  
+> > > 
+> > > I don't understand. You got my tag. No changelog here, no cover letter,
+> > > nothing explains what happened here and why the tag is being removed.
+> > >   
+> > 
+> > Apologies,
+> > 
+> > I am still quite new to this workflow, and it deviates significantly
+> > from my day-to-day work. I mentioned in the previous patch set that I
+> > would like to update my email address and change:
+> > "driver core: -> iio: core:"
+> > I wasn't aware more than that was needed. Sorry for any confusion
+> > this may have caused.
+> > 
+> > In the future what is the preferred way to handle a
+> > situation like this? I wasn't aware of the cover letter feature but
+> > that looks like a promising option.
 > 
-> Fixes: 019e1ee32fec ("arm64: dts: qcom: x1e001de-devkit: Enable external DP support")
-> Cc: Sibi Sankar <quic_sibis@quicinc.com>
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> Either add stuff below the --- above as that doesn't end up in the
+> eventual git log, or --cover-letter on your git-format-patch and
+> put useful things like that in there.
+> 
+> > 
+> > It looks like another option is to add commentary to each patch.
+> > 
+> > I am less certain about your tag being removed - I don't fully
+> > understand that. Is there a way to preserve that if changes are made
+> > after you sign-off?
+> 
+> Once a tag is given it is up to the patch author to add it to the
+> patches for future versions.  That should only be dropped if the
+> author thinks there are significant enough changes to warrant a fresh
+> review.  If you do drop a tag like that, then the change log
+> under --- on the particular patch should clearly state why.
+> > 
 
-Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
+Thanks for the guidance - I see the part I missed:
 
-> ---
->  arch/arm64/boot/dts/qcom/x1e001de-devkit.dts | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+
+"Both Tested-by and Reviewed-by tags, once received on mailing list
+from tester or reviewer, should be added by author to the applicable
+patches when sending next versions. However if the patch has changed
+substantially in following version, these tags might not be
+applicable anymore and thus should be removed. Usually removal of
+someone’s Tested-by or Reviewed-by tags should be mentioned in the
+patch changelog (after the ‘---’ separator)."
+
+In my situation I made a mistake by not including his "Reviewed-by"
+in the changes I pushed up. How does this work if no further changes
+are required? Does it call onto the maintainer to apply the tag when
+merging in the change set?
+
+Is there anything I should do at this point to correct my error?
+
+Thanks,
+-Sam
+
+> > Sorry again about the confusion this caused,
+> No problem, takes a while for everyone to get used to a different
+> process. There are extensive docs, but it is still easy to miss
+> things!
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts b/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
-> index f92bda2d34f2..dc1a8f5d485a 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
-> +++ b/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
-> @@ -788,7 +788,7 @@ typec-mux@8 {
->  		vddat-supply = <&vreg_rtmr2_1p15>;
->  		vddio-supply = <&vreg_rtmr2_1p8>;
->  
-> -		reset-gpios = <&tlmm 185 GPIO_ACTIVE_HIGH>;
-> +		reset-gpios = <&tlmm 185 GPIO_ACTIVE_LOW>;
->  
->  		orientation-switch;
->  		retimer-switch;
-> @@ -843,7 +843,7 @@ typec-mux@8 {
->  		vddat-supply = <&vreg_rtmr0_1p15>;
->  		vddio-supply = <&vreg_rtmr0_1p8>;
->  
-> -		reset-gpios = <&pm8550_gpios 10 GPIO_ACTIVE_HIGH>;
-> +		reset-gpios = <&pm8550_gpios 10 GPIO_ACTIVE_LOW>;
->  
->  		retimer-switch;
->  		orientation-switch;
-> @@ -898,7 +898,7 @@ typec-mux@8 {
->  		vddat-supply = <&vreg_rtmr1_1p15>;
->  		vddio-supply = <&vreg_rtmr1_1p8>;
->  
-> -		reset-gpios = <&tlmm 176 GPIO_ACTIVE_HIGH>;
-> +		reset-gpios = <&tlmm 176 GPIO_ACTIVE_LOW>;
->  
->  		retimer-switch;
->  		orientation-switch;
-> -- 
-> 2.48.1
+> Jonathan
+> 
+> > -Sam
+> > 
+> > > Best regards,
+> > > Krzysztof
+> > >   
 > 
 
