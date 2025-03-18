@@ -1,129 +1,217 @@
-Return-Path: <devicetree+bounces-158681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158682-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35602A67B08
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 18:35:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60F80A67B12
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 18:37:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0EC3B19C2EEC
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 17:34:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 309483B1466
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 17:37:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44FD91AB6D8;
-	Tue, 18 Mar 2025 17:34:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4670520D51D;
+	Tue, 18 Mar 2025 17:37:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="DtZPSZAW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="crlMW7EN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7062D9460;
-	Tue, 18 Mar 2025 17:34:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16F8A191F92;
+	Tue, 18 Mar 2025 17:37:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742319267; cv=none; b=XiDbk0tfhByquzGQtmnj135S4fpt8aXrk7uvDYmldP2NOubH0a0d0PIE5H+yy3O/6G13CDPctdEr1ZIWd5/YWO8UTmIBkmBUO6mOjs1PvOt7Oe8Akb3Atl2k1jL0RBInqQy/RCHnoycJ7h5yYqQHYgaXmrcwd9q2/f6SwaSZ/bQ=
+	t=1742319433; cv=none; b=oDwGRppWLZNJrnNexAQByavzamKHoudPW4UFjkzPmwWBxO/inFzttZh2P4OSj1+6QOuObGrJEUt5oFJdm1nhqL/YVqMBcTfNkjkzqNYCiBzNb7V/N1d5x0OKxXGVAUbMTAwSdE+6hzmC2Ie3IOzIrYVsIYgqctv6F1kgRmEKhVU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742319267; c=relaxed/simple;
-	bh=ilUgQnak1v063AZqkH6Wyx1Uy0H7R4gCn8BjLppOiZQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=fF7n5aFfHizv0zhC6Wme2Sym0c2AFqNH1H2pUxxBkraYE96xP2Ycmf4ixp2BuuImmG0+MYcZRcSADBNML0mgonzNvLY82Y87wjT1hiy6nV0rlOfmQ+bCwyGWeWIrbjhQh7gxToDcldPB2ZD38ZYVK7IRMpmmwgByAoTFMKgur+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=DtZPSZAW; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id C526C203B0;
-	Tue, 18 Mar 2025 18:34:23 +0100 (CET)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id yQp2UJ9KnmWP; Tue, 18 Mar 2025 18:34:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1742319262; bh=ilUgQnak1v063AZqkH6Wyx1Uy0H7R4gCn8BjLppOiZQ=;
-	h=From:Date:Subject:To:Cc;
-	b=DtZPSZAWS8vDWTUblWtBsF1OAzaV7TskI1Kdd5WSMcGhNk9Wcz5dXpEi1EMqNBQdK
-	 u8TnlHq+cFvj7bNQYjIZFlfcFBAjny6bYQpDuMzTahtWuXLRSQrxd/a+FIVpsD0K6z
-	 I6qkf7H11vI3sfJm4eHaAPAOhLlGJ86ZIjIbIpIX30PUn+M6QjaQzosj4NzRvtVdoK
-	 90IxbnushPx9osoEkBBW5oqy9Aq8YNq18abU5jPN/uc+g2H43s0mK9wdG/bX79Nb+n
-	 /ZbucleRq66NzyvsyO0S+da9tY6SZIcvSnjmETJOXEww5qhpvaMoKyjibkb7CkkvDy
-	 5z7i9c4Fpq/jw==
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
-Date: Tue, 18 Mar 2025 23:04:05 +0530
-Subject: [PATCH v3] dt-bindings: serial: samsung: add exynos7870-uart
- compatible
+	s=arc-20240116; t=1742319433; c=relaxed/simple;
+	bh=gXlZ04TNi6BdAORunw0TRVBZrqAfCSgdDt4ZyQnX1q4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Y4wX/nuwZwD6lYY/bB6XAHGqBJnZv2Q0NZHXhdMxjeGi8aQN0Z2ryj32/RY8a4z7YGTOTBMQLdOlIavb6JPAi1zfaU8kg0r7RvmLoZZiXtn0ehBzJRP+VDk41fOHr/ibGcIoJuJ2ESs/8uBPNGyuJ7Xi8fiJoRpyM5FfH/0V9zk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=crlMW7EN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11453C4CEDD;
+	Tue, 18 Mar 2025 17:37:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742319432;
+	bh=gXlZ04TNi6BdAORunw0TRVBZrqAfCSgdDt4ZyQnX1q4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=crlMW7ENkmfw0zyiiFapwi+F95vb+3xLrvOW4RYDL7JiP/f3ZslD0IW909i0gsPgv
+	 3k/SqYBJlmKRy6qWWZKwW76mSwKmQfRh2HbLg8YX/2Spg+9KCIwgvlb2LU6m3qGjWg
+	 H63jAvquT1VF7ekMVF8tnGluKezEXONBKI3AHHo3Y1upORCKFRmUOp1dOc1xt/sfEW
+	 RzijJkhWhzh2L7qxehX9XG8Hm9ndHtGbFmC7e5XrOnX1wh5OPN2V49zwKOt6bLzNev
+	 eSugsVoKr0x5YXJC2GMOXjrTPEyDWQXTQI4m3L5A3vU64p927vO3HvSiGv4UdeDYAU
+	 NBWy2t61bmnPg==
+Message-ID: <ac008fb8-7c82-4b9c-9d24-52ea38b920e5@kernel.org>
+Date: Tue, 18 Mar 2025 18:37:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250318-exynos7870-uart-v3-1-f691b6679bb7@disroot.org>
-X-B4-Tracking: v=1; b=H4sIAIyu2WcC/2XNQQ6DIBCF4asY1qWBgSJ01Xs0XVAclY00YInGe
- PeiSZM2Lv+XzDcLSRg9JnKtFhIx++TDUEKcKuJ6O3RIfVOaAIMLAyYoTvMQUq1rRt82jlRBq6R
- DC1IbUq5eEVs/7eL9Ubr3aQxx3h9kvq1fSx6szCmjTD1RWWsUaHlrfIohjOcQO7JpGX4Ebo4CU
- E6ddqpuhTVCuX9hXdcPityem/IAAAA=
-X-Change-ID: 20250203-exynos7870-uart-62f64cea2489
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-kernel@vger.kernel.org, 
- linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Kaustabh Chakraborty <kauschluss@disroot.org>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1742319258; l=1761;
- i=kauschluss@disroot.org; s=20250202; h=from:subject:message-id;
- bh=ilUgQnak1v063AZqkH6Wyx1Uy0H7R4gCn8BjLppOiZQ=;
- b=vxmcQIh5pCDpHnNld7iiZ1iLzkQy+/BntZdv23XpsOO8+Lz7vbOAAWKDZz3skOp8t9lEIjnuB
- 17MSBGq2FKBCKFtTysX8rwUONbcuntqIuskgxVZ42LqGffjQiYFKue+
-X-Developer-Key: i=kauschluss@disroot.org; a=ed25519;
- pk=h2xeR+V2I1+GrfDPAhZa3M+NWA0Cnbdkkq1bH3ct1hE=
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] iio: light: bh1750: Add hardware reset support via GPIO
+To: =?UTF-8?Q?Sergio_P=C3=A9rez?= <sergio@pereznus.es>,
+ linux-iio@vger.kernel.org
+Cc: tduszyns@gmail.com, jic23@kernel.org, lars@metafoo.de, robh@kernel.org,
+ conor+dt@kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250316145514.627-1-sergio@pereznus.es>
+ <01f48f6d-55a4-4dbe-b1ae-ef8c54dcc1ff@kernel.org>
+ <f0536d74-5433-4086-9dfc-1ce6aeeebe00@pereznus.es>
+ <8992a79d-0859-4d7f-9b47-52e20b11260a@kernel.org>
+ <144b5c43-f8c6-44d1-bcff-83158ac29781@pereznus.es>
+ <202b4446-0ce4-4288-8588-6edfc32125d1@kernel.org>
+ <bde38364-5c20-4030-ad7d-9ae38971b260@kernel.org>
+ <bf16371c-189c-4e51-91e5-129f1dcad317@pereznus.es>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <bf16371c-189c-4e51-91e5-129f1dcad317@pereznus.es>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Document the compatible string for Exynos7870's UART driver. The
-devicetree property samsung,uart-fifosize must be mandatory, as the
-driver enquires about the FIFO sizes. This feature makes it compatible
-with Exynos8895's UART.
+On 18/03/2025 18:26, Sergio Pérez wrote:
+> 
+> El 18/03/2025 a las 17:23, Krzysztof Kozlowski escribió:
+>> On 18/03/2025 17:21, Krzysztof Kozlowski wrote:
+>>> On 18/03/2025 17:06, Sergio Pérez wrote:
+>>>> El 18/03/2025 a las 16:16, Krzysztof Kozlowski escribió:
+>>>>> On 18/03/2025 15:16, Sergio Pérez wrote:
+>>>>>> Hello,
+>>>>>>
+>>>>>> El 17/03/2025 a las 8:24, Krzysztof Kozlowski escribió:
+>>>>>>> On 16/03/2025 15:55, Sergio Perez wrote:
+>>>>>>>> Some BH1750 sensors require a hardware reset before they can be
+>>>>>>>> detected on the I2C bus. This patch adds support for an optional
+>>>>>>>> reset GPIO that can be specified in the device tree.
+>>>>>>>>
+>>>>>>>> The reset sequence pulls the GPIO low and then high before
+>>>>>>>> initializing the sensor, which enables proper detection with
+>>>>>>>> tools like i2cdetect.
+>>>>>>>>
+>>>>>>>> Update the devicetree binding documentation to include the new
+>>>>>>>> reset-gpios property with examples.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Sergio Perez <sergio@pereznus.es>
+>>>>>>> Please run scripts/checkpatch.pl and fix reported warnings. After that,
+>>>>>>> run also `scripts/checkpatch.pl --strict` and (probably) fix more
+>>>>>>> warnings. Some warnings can be ignored, especially from --strict run,
+>>>>>>> but the code here looks like it needs a fix. Feel free to get in touch
+>>>>>>> if the warning is not clear.
+>>>>> You keep ignoring paragraphs. Did you read this?
+>>>> I pass this check several times and every time I do any step to make
+>>>> sure I am well.
+>>>>
+>>>> scripts/checkpatch.pl -f drivers/iio/light/bh1750.c
+>>>> total: 0 errors, 0 warnings, 354 lines checked
+>>>
+>>> That's not how you run checkpatch. Read the submitting patches. Just
+>>> like the name tells you, check the patch, you run it on the patch.
+>> BTW, I wonder which guideline told you to run it on the file? Because
+>> checkpatch description and submitting patches tell about running it on
+>> the patches, so I wonder where did you get suggestion to run it like that?
+> You're absolutely right. I misunderstood how to use checkpatch.pl and 
+> was incorrectly running it on the source files instead of the patch 
+> file. Thank you for pointing this out.
+> 
+> $ scripts/checkpatch.pl --strict -f 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
----
-This patch series is a part of Exynos7870 upstreaming.
----
-Changes in v3:
-- Reviewed-by krzk.
-- Link to v2: https://lore.kernel.org/r/20250219-exynos7870-uart-v2-1-c8c67f3a936c@disroot.org
+No '-f'. Don't use such argument. Almost never. Read the help:
 
-Changes in v2:
-- Modify UART compatible to now fallback Exynos8895 UART.
-- Remove the UART driver patch, no longer needed.
-- Link to v1: https://lore.kernel.org/r/20250204-exynos7870-uart-v1-0-06be6aa96284@disroot.org
----
- Documentation/devicetree/bindings/serial/samsung_uart.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+" -f
+Treat FILE as a regular source file. This option must be used when
+running checkpatch on source files in the kernel."
 
-diff --git a/Documentation/devicetree/bindings/serial/samsung_uart.yaml b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
-index 070eba9f19d3e039090c58a82f93d02eed58ab84..83d9986d8e98a2a55615d15383c9c7fc89f5b52f 100644
---- a/Documentation/devicetree/bindings/serial/samsung_uart.yaml
-+++ b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
-@@ -42,6 +42,10 @@ properties:
-               - samsung,exynosautov9-uart
-               - samsung,exynosautov920-uart
-           - const: samsung,exynos850-uart
-+      - items:
-+          - enum:
-+              - samsung,exynos7870-uart
-+          - const: samsung,exynos8895-uart
- 
-   reg:
-     maxItems: 1
+so why do you want a patch file to be a regular source file? How would
+it ever work?
 
----
-base-commit: e94bd4ec45ac156616da285a0bf03056cd7430fc
-change-id: 20250203-exynos7870-uart-62f64cea2489
+> 0001-iio-light-bh1750-Add-hardware-reset-support-via-GPIO.patch
+> total: 0 errors, 0 warnings, 0 checks, 102 lines checked
+> 
+> 0001-iio-light-bh1750-Add-hardware-reset-support-via-GPIO.patch has no 
+> obvious style problems and is ready for submission.
+
+You have clear examples how to run it inside:
+
+https://docs.kernel.org/dev-tools/checkpatch.html
+
+"./scripts/checkpatch.pl mypatch.patch --types EMAIL_SUBJECT,BRACES"
+
+So:
+checkpatch.pl mypatch
+
+> 
+> I've now run the tool correctly on my patch file and have fixed the 
+> identified issues:
+> - Removed trailing whitespace
+> - Fixed lines exceeding 79 characters
+> - Fixed the inconsistency between the description and example for 
+> reset-gpios
+> - Modified the existing example instead of adding a new one
+> - Ensured proper line endings and formatting
+> - Used proper get_maintainers.pl to include all recipients
+> 
+
+Please read the guides carefully. The process is extremely simple as:
+
+git add ...
+git commit --signed-off
+git format-patch -v3 -2
+scripts/chekpatch.pl v3*
+scripts/get_maintainers.pl --no-git-fallback v3*
+git send-email *
+(or just use my git_send_email for last two)
+(or just use b4 for last four)
+
+The burden of reading the contributing guides is on you. We documented
+all this on purpose, so we will not have to repeat this on every email.
+
+
+[1]
+https://github.com/search?q=repo%3Akrzk%2Ftools%20git_send_email&type=code
 
 Best regards,
--- 
-Kaustabh Chakraborty <kauschluss@disroot.org>
-
+Krzysztof
 
