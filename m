@@ -1,58 +1,57 @@
-Return-Path: <devicetree+bounces-158476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5162EA66EC3
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 09:46:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35464A66ED3
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 09:48:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 70091162CB3
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 08:46:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F6DE7A82B7
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 08:46:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4275720296B;
-	Tue, 18 Mar 2025 08:45:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49A3B2045A1;
+	Tue, 18 Mar 2025 08:47:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mc0mPIzZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gifhvEIT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B3AD1E5210;
-	Tue, 18 Mar 2025 08:45:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 218C11F8741;
+	Tue, 18 Mar 2025 08:47:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742287527; cv=none; b=ZVy+PwGaskIN2G2zOjRuKU/nJD7XjaIFaUFqNcOHydjW18cmOA2K8wXwViwejytChl84zAZ+R9hKOjcu13ELN1g7LAVNVCszF2j5a4TJL45nngx6eIac47TwmpB/2jqHkp26mk9z9dBef1ucJxhg5AxRcUlLNWcN+6js/sZOD50=
+	t=1742287632; cv=none; b=KNtkibWUbkS1p+fxNqAqfT8QAUqQ4WHe/S311jU1Bwq97jRSPE5UunPAu1B5bXa0F5wfa5TQes1ETsdYn5+w5BqZ1LuWYpq25dVRPvnpKoz96lFEFvWAbuqcc9G6nEAaCjv4eIXd++m/IuDyJe7f0nEBS1yilAevr/+uuv2tNaE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742287527; c=relaxed/simple;
-	bh=xvR4q+kDcK2eJhnkZQxu0f9mq7keqwXDtJByURfUMBg=;
+	s=arc-20240116; t=1742287632; c=relaxed/simple;
+	bh=HQ18tF+vLFwjCAPLVoMbPytiGkV0mVtbv5FTGc6N9d0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XT+vzjEb82qXOEdldz+fD6w2kWRxxmtFvrq3BYEC+gXykNZjhuyuZSSfpeXhJax+QcBDNy+Ak54poriPAuCwj4g2s143zxznRfv+rU4zoEzfea3vUIfEGXVg7eYjkyhVqiRlc9nq3T4EXLkca3WhOoaBhDv5R32eEb31Q2I07YI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mc0mPIzZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF98EC4CEDD;
-	Tue, 18 Mar 2025 08:45:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Re9YfFDLArh7g5EtM+Bo3ELilFLwv8v7L29MGzPuwEvU1D09Sqk2Yx19l1RiXANOPj9P0T/6YX3/zOuHKz1cnWy98SX96QGtA2wk2V+G7LNiYh94hbYKriJ2htbk9nHXukwKgpRGBjE/5tE3DcqMZH6GDrDgTUdqEnQPlRHO0Ns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gifhvEIT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33534C4CEDD;
+	Tue, 18 Mar 2025 08:47:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742287526;
-	bh=xvR4q+kDcK2eJhnkZQxu0f9mq7keqwXDtJByURfUMBg=;
+	s=k20201202; t=1742287632;
+	bh=HQ18tF+vLFwjCAPLVoMbPytiGkV0mVtbv5FTGc6N9d0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mc0mPIzZcbkoWsgw/Yh+D4VVUkWFdSfIvMFA5e41vglhGpICtIJrlOa7pKfMamn82
-	 XhoREwnpMhbcRL1xtHnbrRA632XsL3fcsP8NH8p96idE1tpO0vNe71nx9Wd8Dr4RF/
-	 e5FfFG/FimCyHiVF5WIv66uJmd10dlYXedjbxgYSiWLDsmP9kllvAixBNW/kaEPybl
-	 N4kbNi0bxwazA1YbOLiyddk2PQQFDssYSSEeHBd2fkIkRvmUbrLzjPjzF6XhTAh0U5
-	 jlBP5uEawrXWuILN1fsoDS11F00d8zlB26UoKszf5zwXx40Pj+h7YPX4/KZiGEQI4c
-	 6Pi1Pnz7UV9Rw==
-Date: Tue, 18 Mar 2025 09:45:22 +0100
+	b=gifhvEIT4T1QbmI0T9/M0h5PNt6rcZjxObOvkuPiUxK5Ffluz+YfsxoouO5wmVTBd
+	 iLV1Bd0dLg0Xwx7Gi4n1HS+AxpXefq1LEkWh7mP4mD03gKPL/la/eCmwp3gi0AkCw6
+	 8wyP5srUbdlPlcNK9lVgn07Su5cZJ09GXrQ+ufmbmVAhbN9fBudGu+RhjmwUGqaU3k
+	 y8Hm9Ay8n2IknaQfFr5CMstcML2welXS9iEehlPUqnaiJx7ot8CiCcAxSL/hsvgWR6
+	 WnNhpi9ZjMRXJ8sICENnSY2uXg0n5lJMZAGkMGBOablnonq1iOLzrOqNWnJbonFNyg
+	 /bKSmrO2FYKYA==
+Date: Tue, 18 Mar 2025 09:47:08 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Rajaganesh Rathinasabapathi <Rajaganesh.Rathinasabapathi@amd.com>
-Cc: devicetree@vger.kernel.org, openbmc@lists.ozlabs.org, joel@jms.id.au, 
-	andrew@codeconstruct.com.au, robh+dt@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
-	Supreeth Venkatesh <supreeth.venkatesh@amd.com>
-Subject: Re: [PATCH v3 2/2] ARM:dts:aspeed: Initial device tree for AMD Onyx
- Platform
-Message-ID: <20250318-imaginary-peccary-of-argument-ab6b39@krzk-bin>
-References: <20250318041224.1693323-1-Rajaganesh.Rathinasabapathi@amd.com>
- <20250318041224.1693323-2-Rajaganesh.Rathinasabapathi@amd.com>
+To: cy_huang@richtek.com
+Cc: Mark Brown <broonie@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/1] regulator: dt-bindings: rtq2208: Mark fixed LDO
+ VOUT property as deprecated
+Message-ID: <20250318-thick-knowing-petrel-ad89db@krzk-bin>
+References: <cover.1742269337.git.cy_huang@richtek.com>
+ <8400088f3b68842ee63b6fa768fe2c545c473acf.1742269337.git.cy_huang@richtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,39 +60,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250318041224.1693323-2-Rajaganesh.Rathinasabapathi@amd.com>
+In-Reply-To: <8400088f3b68842ee63b6fa768fe2c545c473acf.1742269337.git.cy_huang@richtek.com>
 
-On Mon, Mar 17, 2025 at 11:12:24PM -0500, Rajaganesh Rathinasabapathi wrote:
-> +/ {
-> +	model = "AMD Onyx BMC";
-> +	compatible = "amd,onyx-bmc", "aspeed,ast2600";
-> +
-> +	aliases {
-> +		serial0 = &uart1;
-> +		serial4 = &uart5;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = serial4:115200n8;
-> +	};
-> +
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		reg = <0x80000000 0x80000000>;
-> +	};
-> +
-> +};
+On Tue, Mar 18, 2025 at 11:53:54AM +0800, cy_huang@richtek.com wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
+> 
+> Since the check for fixed LDO VOUT can be identified by the HW register,
+> mark the unnecessary property as deprecated.
 
-<form letter>
-This is a friendly reminder during the review process.
+Also cleanup white-space.
 
-It seems my or other reviewer's previous comments were not fully
-addressed. Maybe the feedback got lost between the quotes, maybe you
-just forgot to apply it. Please go back to the previous discussion and
-either implement all requested changes or keep discussing them.
+or separate commit...
 
-Thank you.
-</form letter>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
