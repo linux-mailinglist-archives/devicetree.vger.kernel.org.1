@@ -1,152 +1,116 @@
-Return-Path: <devicetree+bounces-158538-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158539-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52A09A6729B
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 12:26:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F16F2A672A4
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 12:27:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9665417CD53
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 11:24:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 38CBE17FF9D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 11:25:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A30020ADC0;
-	Tue, 18 Mar 2025 11:24:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1973120A5C5;
+	Tue, 18 Mar 2025 11:25:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=nxsw.ie header.i=@nxsw.ie header.b="Qnza4qwd"
+	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="MahbrOJS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-0201.mail-europe.com (mail-0201.mail-europe.com [51.77.79.158])
+Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 949D520A5C5;
-	Tue, 18 Mar 2025 11:24:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=51.77.79.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F1B97E1;
+	Tue, 18 Mar 2025 11:25:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.130.44.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742297074; cv=none; b=i0tGCWMCYHxF9P4EnnWnTD9h3+i0/nfneZP6yojKzNZcF7rhtW6BY5y9uecxr7AL9CzVYV7lPb4BDUrfsQm1dZlcNlMhxrLSc9Eff2a3Zz/ly0xsD4Uc7fsU31bN4k2xjiq8YN5L64XfvZN2MamEzq/Ocwekn6VMbP8OgWoPZ70=
+	t=1742297127; cv=none; b=FTfu0SlNO01YR7rxQJGNnKq0D3LhBixXt7LnSNUL23rG/4TPbbq+9rIGRElg274RO0TMRsq8olb7t6/6+3JzrBS+eXrWjW0lTWBNtU8U6ZfsVkt63WrY1xqoBMHEvJKhG5tFVRibUO6f0TsbtR5td/+nZcgg+eFY6DqF18D/Z90=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742297074; c=relaxed/simple;
-	bh=B9SRqAGD1gU5MjXx0m0UTNlqsLd07dk52FUOhBgs9Eg=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=C8TTpPZ8lCGK93p3PLEeufN0MU6SfLDNNx4fW4TgbFJ1cZyIBwllHLKDZBzYgjBbY+EKtotgSHlKf3HxwtbpSkTCn47QHI7NcR0W3FP/MoJlw3GI41+M0G6+TdOOJfJOXDD0Csq2pCKJXnHv7+YF9p3d0T3CtC+LRdJlwKqwjQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nxsw.ie; spf=pass smtp.mailfrom=nxsw.ie; dkim=pass (2048-bit key) header.d=nxsw.ie header.i=@nxsw.ie header.b=Qnza4qwd; arc=none smtp.client-ip=51.77.79.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nxsw.ie
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxsw.ie
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxsw.ie;
-	s=protonmail; t=1742297054; x=1742556254;
-	bh=v5rPRJiW687aKRy8e1bfIACc1bjcbnonQaHu8lKKsLQ=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
-	b=Qnza4qwdMEPq075heNjs8LhaWMqGM5d/KAvxVzt4l+4rcFmgUEPeM86xazmncQ4Q2
-	 ECnSABRdy7ruHXW6UVXJpO6DjCGeS1BWQwPpeWD6gq7t9LJVHPUDPbVOFbKXIXj5cr
-	 tW32tbAWuivabd8Op2Q+hhx4bxVkK81f7jzQmo132rJoqKqwFHpIZ+nYkJHts0JL4r
-	 ohgN9sX6iMGOAxNx52tlAGfnxAQ5dGFF29aczJE+UsIVC5Zd5mr4M7t7+QYuAGSYNi
-	 AsoUt8BZDkG2uXa+PBUoArDPvN2fGPq5OzO1aHkxtCE4ZUlZ6hkdl5CEHIAxnWq8wb
-	 jyBdKEt58KkMA==
-Date: Tue, 18 Mar 2025 11:24:07 +0000
-To: Neil Armstrong <neil.armstrong@linaro.org>, Vikash Garodia <quic_vgarodia@quicinc.com>, Dikshita Agarwal <quic_dikshita@quicinc.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-From: Bryan O'Donoghue <bod.linux@nxsw.ie>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/7] dt-bindings: media: qcom,sm8550-iris: document SM8650 IRIS accelerator
-Message-ID: <d654d95a-dbf2-41eb-8ec4-32ca1d2f16a3@nxsw.ie>
-In-Reply-To: <20250305-topic-sm8x50-iris-v10-v2-1-bd65a3fc099e@linaro.org>
-References: <20250305-topic-sm8x50-iris-v10-v2-0-bd65a3fc099e@linaro.org> <20250305-topic-sm8x50-iris-v10-v2-1-bd65a3fc099e@linaro.org>
-Feedback-ID: 136405006:user:proton
-X-Pm-Message-ID: d80906b3a30e16cf1a64d47e125f81e5fceddd73
+	s=arc-20240116; t=1742297127; c=relaxed/simple;
+	bh=1hko+ppXt0dRMWhQzOOAmDEchVvdK62uXhM3cIvTaGo=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hB15xra1QPNXlroWklwbf81ZrCTVIWXkgLZlXZCZ5UrOuscO/LYUahVAa7QcpC5dVc+C6xC3dceP7ClUpyhniAIhr+SKQkX+fzwS1KfcPGXS5GYXBlXQc9wepN0mHg6VHkXkYvarwGgtOogr8CmMTvk8RmWbFYYKJHuhaRRZCzM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=MahbrOJS; arc=none smtp.client-ip=220.130.44.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
+X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
+	s=richtek; t=1742297113;
+	bh=AXWKcikh7y0dX2+PuBRgIKM1or7UWpe1fD4PbsIUNRU=; l=1405;
+	h=Date:From:To:Subject:Message-ID:MIME-Version;
+	b=MahbrOJStl7BpOg9Dkc6U9LXcy/8LYGgK4j56hzo400w7J/lC6M8Wj7eeGlhU/d5H
+	 TN00um3UPJoVAdwz9uyHIMY/78Vyymb8r5YY7K2YRePxL9huXBl1HRIsFCzyqdgVdZ
+	 MaAz+bi9Q3kKAyFdnIJ1VwbFesApD9tCJu3tcTV5yaHndHZT5Mva0NoXqC3+IWJLYT
+	 GUxgjNEYMCujpIRnCMonsqWehGOz17mtlPrv4YiYz2pC+ReMXz8aGK7uf30EhDCvwu
+	 ui+8wuZp4YFzLmShrI5sAKyx/fxvyI21Li1TX6ZvG+kLvjQKjB2UiElHid3vCH4KfL
+	 3/bhXN7v7hpKA==
+Received: from 192.168.10.47
+	by mg.richtek.com with MailGates ESMTPS Server V6.0(3810276:0:AUTH_RELAY)
+	(envelope-from <cy_huang@richtek.com>)
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Tue, 18 Mar 2025 19:25:04 +0800 (CST)
+Received: from ex4.rt.l (192.168.10.47) by ex4.rt.l (192.168.10.47) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Tue, 18 Mar
+ 2025 19:25:04 +0800
+Received: from git-send.richtek.com (192.168.10.154) by ex4.rt.l
+ (192.168.10.45) with Microsoft SMTP Server id 15.2.1544.11 via Frontend
+ Transport; Tue, 18 Mar 2025 19:25:04 +0800
+Date: Tue, 18 Mar 2025 19:26:14 +0800
+From: ChiYuan Huang <cy_huang@richtek.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Tzung-Bi Shih <tzungbi@kernel.org>, Liam
+ Girdwood <lgirdwood@gmail.com>, Otto Lin <otto_lin@richtek.com>, Allen Lin
+	<allen_lin@richtek.com>, <linux-sound@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: maxim,max98357a: Add compatible with
+ richtek,rt9123
+Message-ID: <Z9lYVram80dbWWl0@git-send.richtek.com>
+References: <1884c3ce2d901ead5d742958889f5a742e168376.1742259040.git.cy_huang@richtek.com>
+ <20250318-mature-dogfish-of-ecstasy-3dcea5@krzk-bin>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20250318-mature-dogfish-of-ecstasy-3dcea5@krzk-bin>
 
-On 05/03/2025 19:05, Neil Armstrong wrote:
-> Document the IRIS video decoder and encoder accelerator found in the
-> SM8650 platform, it requires 2 more reset lines in addition to the
-> properties required for the SM8550 platform.
->=20
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->   .../bindings/media/qcom,sm8550-iris.yaml           | 33 +++++++++++++++=
-+++----
->   1 file changed, 28 insertions(+), 5 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yam=
-l b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
-> index e424ea84c211f473a799481fd5463a16580187ed..536cf458dcb08141e5a1ec8c3=
-df964196e599a57 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sm8550-iris.yaml
-> @@ -14,12 +14,11 @@ description:
->     The iris video processing unit is a video encode and decode accelerat=
-or
->     present on Qualcomm platforms.
->=20
-> -allOf:
-> -  - $ref: qcom,venus-common.yaml#
-> -
->   properties:
->     compatible:
-> -    const: qcom,sm8550-iris
-> +    enum:
-> +      - qcom,sm8550-iris
-> +      - qcom,sm8650-iris
->=20
->     power-domains:
->       maxItems: 4
-> @@ -49,11 +48,15 @@ properties:
->         - const: video-mem
->=20
->     resets:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 3
->=20
->     reset-names:
-> +    minItems: 1
->       items:
->         - const: bus
-> +      - const: xo
-> +      - const: core
->=20
->     iommus:
->       maxItems: 2
-> @@ -75,6 +78,26 @@ required:
->     - iommus
->     - dma-coherent
->=20
-> +allOf:
-> +  - $ref: qcom,venus-common.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - qcom,sm8650-iris
-> +    then:
-> +      properties:
-> +        resets:
-> +          minItems: 3
-> +        reset-names:
-> +          minItems: 3
-> +    else:
-> +      properties:
-> +        resets:
-> +          maxItems: 1
-> +        reset-names:
-> +          maxItems: 1
-> +
->   unevaluatedProperties: false
->=20
->   examples:
->=20
-> --
-> 2.34.1
->=20
->=20
+On Tue, Mar 18, 2025 at 09:55:48AM +0100, Krzysztof Kozlowski wrote:
+> On Tue, Mar 18, 2025 at 08:57:51AM +0800, cy_huang@richtek.com wrote:
+> > From: ChiYuan Huang <cy_huang@richtek.com>
+> > 
+> > The hardware control and specification of 'richtek,rt9123' are similar
+> > with max98357 or max98360. It's no need to add the new source code. So
+> 
+> Are you sure? I looked at datasheet and do not see anything about
+> SD_MODE in RT9123. Also you have two supplies, while max98360a has only
+> one. You have I2C but max98360a has no.
+> 
+Sure, consider the I2C mode. Then it seems different. For the power
+supply, yes, we have one more supply and it's used for digital input
+output reference. It will always tiled to SoC digital power domain.
+It's no need to control, so I think DVDD can be ignored.
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+If not considering the I2C, and the DVDD power supply, for HW control
+mode, then it looks the same including sample rate. One pin to turn on
+the amplifier.
 
+This IC is designed for 'easy to use'. For the normal condition, HW mode
+will always be suggested to the customer.
+
+May I have your suggestion? If it can not be compatible, should I write
+two drivers, one platform driver for HW control mode, and another I2C driver
+for I2C SW control mode?
+
+Hope to get your feedback.
+
+Sincerely,
+ChiYuan Huang.
+
+> These devices do not look compatible.
+> 
+> Best regards,
+> Krzysztof
+> 
 
