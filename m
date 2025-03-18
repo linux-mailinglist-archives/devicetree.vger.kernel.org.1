@@ -1,117 +1,161 @@
-Return-Path: <devicetree+bounces-158486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03282A66F1B
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 09:55:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D52EBA66F30
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 10:00:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA1E93AAAC3
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 08:55:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2C4319A2B88
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 09:00:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E730201000;
-	Tue, 18 Mar 2025 08:55:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F75C1F4179;
+	Tue, 18 Mar 2025 09:00:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NiTfdkSh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nUC1aYqx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B629F1A3029;
-	Tue, 18 Mar 2025 08:55:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25764189915;
+	Tue, 18 Mar 2025 09:00:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742288141; cv=none; b=sy0HFKUg3gQ3alImJIBYB8qHXxfbVPTBXH934nMWy6txPrXt8AAJCnexKTaCI7g8oXV80hui+MO7zgpsmWxq2lbGnJT08cf/rR0xPgiLypHdM0T1FsetNVarc19TSvZRQaCf2quI5v0Ar9JrpNq5pVIsBOlKeAJidf6jQkd3c3s=
+	t=1742288414; cv=none; b=JMs5NxYw/sNCCDg+rYUnuNZbnP2IjSyr+pIW7qd6eqkCFcEnvFpqnmmWMc6sCPZXMwlz4UnWrzb8rZrf3WzkrhCjQ8fGiXMvbLfoa2CJNessHyHNJiD3qcV3FA/Yd5FGMZWs7ZVwYl3o0Fn8PddVILlVaMB8hdJMmtRS/g++q0U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742288141; c=relaxed/simple;
-	bh=bcaaxFP1F23l0PdiW65JYiPYj/NqcM8962Z2DTxPBxc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=beA2fl31SEMOCiqAZngZ7g3SaUnvCiTsFj0HOB5irY8KVvIzalli98Nbyhx/2E5Fxxj0d+zGtYhNTpjpkPNsEtAN+Dt9zu4wMKAv7HGTYPNbkMkJP72xFTyYQCp10DpuXJD4dKO7HbXyN5Y5TS6ZAK7/fFCcWV87KYJfIbGiMtI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NiTfdkSh; arc=none smtp.client-ip=209.85.216.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-2ff85fec403so5123007a91.1;
-        Tue, 18 Mar 2025 01:55:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742288139; x=1742892939; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bcaaxFP1F23l0PdiW65JYiPYj/NqcM8962Z2DTxPBxc=;
-        b=NiTfdkSh6NPf3f4gTGR/xEUwydhRHLSNuLqOGXOoR8wpeBi9QQc4ZgN/RzaRsO0d3T
-         WpvbJXm1T+GYM8RZoDJPpotPPOEBE2lTjz0Mk53WTEq1nzWpikxp2SPSdqUnFbsMPE35
-         CN0Iob3Z5wH1wZfFNhr9j9LbBSPEeIL0IYHpb+oc+fXY6vQR4jf57hsq5UIvfDSfFBNE
-         4BFjqqrxGwiT/zEkJz1E+gFZg5cDM/Co3nr7qLoq7ufAeQVjlJ26SJAoQlApGVpHrRYx
-         WrcIoSii5CaXwgqhniyMFkYiLTcHZnaxk3q9ig2+fDVl5kS4PBlLf/bglpxSofMfxwbU
-         QQiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742288139; x=1742892939;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bcaaxFP1F23l0PdiW65JYiPYj/NqcM8962Z2DTxPBxc=;
-        b=ftddwvY2b9sxaklMX1Fp3bcGxeh4WDfxx61mr1IoRGxXp5AbVprcBC6NOI94uUw9Q7
-         4EjfmihGe8UP4ZjtX5+n/imjiFZ/QQMJorisOY20h+/4c+ZZW7CU/IpINbZBx9EzKZzW
-         RDcDorxEY4sSZ3syDSpKSawsbEq+B7YRtCFPTGYqHk4SW/jApJ9VLGWhgbNIPaPPlDki
-         ik0t9kiQoHKehwsJGeOsDA8gLETnGC72p5cRB/u+mIbfa8iajlnh2IvC5XfV4OIAyvzY
-         Exq7phYih8eHb+0cpwgYW7LC1K3akgOUYo88THUwGa6nUHSKQEEfz4A5fzmzK6NRsXXu
-         GDMw==
-X-Forwarded-Encrypted: i=1; AJvYcCUlBElKyH4szZofpL2mX0iz6cD4eqJMKy1Ox8rxg4zq+8H1rT3xKtLSV2tdn4nnHLhfFB3R2x4/4FOscamo@vger.kernel.org, AJvYcCVZcc3DJ5Za6a1I/6FkKGq9dvE6jKjxS+0zlzIsFjFYS314iUhRX9qdW9BQJvS4A6RhX1nWHj6ZQvYz@vger.kernel.org, AJvYcCVa8IVNygWhkqT9HcwIKmMqJnA/uqKv5TT6b6EWTZGRjjGz0RVLOAhovFrG6yzph9mdb7RBmDHJSfAJgzvTCCHqNw==@vger.kernel.org, AJvYcCWijZnWXqo4m8O02fNuceyXGn98Jv9tPJOpIswit0yM80GBqWDHvM/zFqQje4BSswJNChbbMhordvzXlvHIUA==@vger.kernel.org
-X-Gm-Message-State: AOJu0YyqfbRZPsS0pwmwd9X+W1k8vSSE3oXOnFFm6eJ2IDPmhygrEAy8
-	0mVHemgXTOAip0tzQQkfILNSp0t0CR1/4e36oUUVqE89Z1KsPTOeJ7qyTliXpXQOAmCLQd/iFsQ
-	rFY/dUoda9Z9HgpSicnbXu4Q8JPg=
-X-Gm-Gg: ASbGnctq99Kf6dAh2khFOWzCN4JkWCgD1Qt+GBZnglcp0uq9ZNXpabZDeOcptykihFL
-	aA4NFro8xUwD+yOeUKHmi9x4pV1ulgO+rZ4FanciL/01k2e3dY6fyqZ1ktBywX5F+g1bWTaxP9z
-	vf5Tl0lVCHdfWDX4mxCiycx90=
-X-Google-Smtp-Source: AGHT+IGzUXTMu6+0f6gQ8j7WPO24H14DLLXfhIDYppHhvCBnMdLnrdfvlyQcetDDzARbEXc2mLoN0e/rL5Gkqv0Y5W8=
-X-Received: by 2002:a17:90b:2250:b0:2fa:603e:905c with SMTP id
- 98e67ed59e1d1-301a5b0441dmr2305847a91.2.1742288138990; Tue, 18 Mar 2025
- 01:55:38 -0700 (PDT)
+	s=arc-20240116; t=1742288414; c=relaxed/simple;
+	bh=o20ut9XPOkaNXkg3oPkImXLLeuOtRdZe6gxpLMXe7nA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HQgT1tAOj3JkNBWmjeTHA+y21y1ySARaLEwQTNJ/yrs0Rc/jUmDCkKCTbNXXLC2UzsoPkonSHnuVEYdwEk7RSLtX1k6sgM7MZX0g9paV8/bwoxUT9SpI4Gxeh9BrlCOwNoF23GV22ReRDLDp6TmmZVL7kZUYJL9mAeRnxnWAGgQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nUC1aYqx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39682C4CEDD;
+	Tue, 18 Mar 2025 09:00:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742288413;
+	bh=o20ut9XPOkaNXkg3oPkImXLLeuOtRdZe6gxpLMXe7nA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=nUC1aYqxE32yuLQiBOfJVqeep+n0p9I13eIjpcTPMX1841y0vGtwbi0lT5VIOO43a
+	 M6ESSv8Hdod1/nLKxga/OQwSyC7kpF3TIBwme+H4x/f6RzX3b/ogVo1ZUxacYEINRL
+	 dCVqJ0QfEDjsMaC2Vh6w8zdrg7f1d0Y1z2cxAxxrzyws1QUNV1G/f1RvuN+Hc4wc5Q
+	 BxxaCQ9N6tAEO31vyglnKwnV8+KrveFohxYByeAJ4qsbvMV+CTBTe7Y3WCh56nlfdN
+	 YEwUPDDPjfMU/XTjMsnrIENfRA9FaH4+a3b6sfIkXvcGvLAlv1cGoz6pnRTAq4IY8+
+	 mgVOjISfgYozQ==
+Message-ID: <12f5049d-02e1-4c80-9289-b2dfb1e136a8@kernel.org>
+Date: Tue, 18 Mar 2025 10:00:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250317232426.952188-1-robh@kernel.org> <20250317232426.952188-4-robh@kernel.org>
-In-Reply-To: <20250317232426.952188-4-robh@kernel.org>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Tue, 18 Mar 2025 10:57:11 +0200
-X-Gm-Features: AQ5f1JoW0JUop4WUBf11_vConfYpr4BhM02aAcWePKMPfEFMJ9UWB8ZNiBwcNWg
-Message-ID: <CAEnQRZA7jEA0V4T1JSam-vV-GcBAbynP0PCfQsyejScwdgd3pg@mail.gmail.com>
-Subject: Re: [PATCH 3/3] remoteproc: Use of_reserved_mem_region_* functions
- for "memory-region"
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Saravana Kannan <saravanak@google.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Mathieu Poirier <mathieu.poirier@linaro.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Patrice Chotard <patrice.chotard@foss.st.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-remoteproc@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC v3 2/3] firmware: mediatek: Add vcp ipc protocol
+ interface
+To: =?UTF-8?B?SmppYW4gWmhvdSAo5ZGo5bu6KQ==?= <Jjian.Zhou@mediatek.com>,
+ "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
+Cc: "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "wenst@chromium.org" <wenst@chromium.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ Project_Global_Chrome_Upstream_Group
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>
+References: <20250317110331.2776-1-jjian.zhou@mediatek.com>
+ <20250317110331.2776-3-jjian.zhou@mediatek.com>
+ <d3f8fbe3-c061-4d34-a5a3-09cbf676bc4c@kernel.org>
+ <f3b6a690f73e8f5a5370a587d0b1671e96e8b5b2.camel@mediatek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <f3b6a690f73e8f5a5370a587d0b1671e96e8b5b2.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Tue, Mar 18, 2025 at 1:25=E2=80=AFAM Rob Herring (Arm) <robh@kernel.org>=
- wrote:
->
-> Use the newly added of_reserved_mem_region_to_resource() and
-> of_reserved_mem_region_count() functions to handle "memory-region"
-> properties.
->
-> The error handling is a bit different in some cases. Often
-> "memory-region" is optional, so failed lookup is not an error. But then
-> an error in of_reserved_mem_lookup() is treated as an error. However,
-> that distinction is not really important. Either the region is available
-> and usable or it is not. So now, it is just
-> of_reserved_mem_region_to_resource() which is checked for an error.
->
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+On 18/03/2025 09:32, Jjian Zhou (周建) wrote:
+>>> +
+>>> +     return IPI_ACTION_DONE;
+>>> +}
+>>> +EXPORT_SYMBOL(mtk_vcp_ipc_send);
+>>
+>> Drop export - no users
+>>
+>> Anyway, every export must be GPL.
+> 
+> The Video Companion Processor (VCP) driver (currently being prepared
+> for submission to the community) will call it.
+> 
 
-For IMX part:
+It does not work like that. You must post the users NOW.
 
-Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+NAK
+
+
+...
+
+>> Check goes immediately after declaration. I doubt it is useful in the
+>> first place as this cannot even happen...
+>>
+>>
+>>> +             dev_err(dev, "No platform data available\n");
+>>
+>> No, drop. Cannot happen or fix your drivers. Who provides the
+>> platdata here?
+> 
+> The VCP driver will call platform_device_register_data to register the
+> structure data. mtk_vcp_ipc_probe will be triggered by vcp_probe. This
+> structure data is the structure we described in the cover letter.
+
+
+Comment is still valid.
+
+Best regards,
+Krzysztof
 
