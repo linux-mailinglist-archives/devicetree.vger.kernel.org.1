@@ -1,48 +1,56 @@
-Return-Path: <devicetree+bounces-158666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F033EA67A04
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 17:46:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B0CFA679F7
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 17:44:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E6873B5D76
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 16:43:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D823717A02A
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 16:44:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6232721146F;
-	Tue, 18 Mar 2025 16:44:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D61CE20E018;
+	Tue, 18 Mar 2025 16:44:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h6nbmN1B"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="IEwOpapn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3922220897E;
-	Tue, 18 Mar 2025 16:44:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8077721146F
+	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 16:44:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742316248; cv=none; b=pUjZ4TEH6UOXD+YPDah+jnKBdbxjtPY853Ji6UT/8FyS4vN6wJKaKcNNw5mBWiXuYH3DgWVNLl0MQ9W7UTWWbaQHgaJYyoLg5nzVD2x9RrMc3vbcIIK5ExC54wXtT0i2Sqeqp1j82E4a0qCS2Rs3h2Pb4hrqh0Z18ByeJ17djLY=
+	t=1742316281; cv=none; b=WmLM6GEMQ4oNyyMqapENfAbXGol5Tc6jZtM4xvEq+i1aZnms4sOsNvzMzIxkVcSf7KUOGY31uwIpoxQ5+sFq9BgJtlCMbqke+4c9OPvgr8+aGzLl2f6pab9cR53vzIgLBiiXMQoz1E2a+97fluEnF/kv78vy88DTnrvH5zxfsZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742316248; c=relaxed/simple;
-	bh=ePmC0+KIjRqSg+M3AaOEM+CCVKkqUwdmpIff+KWRdLU=;
+	s=arc-20240116; t=1742316281; c=relaxed/simple;
+	bh=GEFJR0mEztQD/2wn8hD/FGYZSNaNTFVn1wzkOHSQ5h8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=a8mY16Ga8y8UX0SdLNy2Y+LXNuOiamqNIfyzgjVC+s3GVtwjmEUtI0h0rXKf/szLNCNay7UGl9DilPlik88Ur9lKUM/lj53CBZKOvibftfgRm5G1k/+7wakk2N76uONIKIpo+hZ0lgNBf+CMzpkJZmh825vqRrIjRqRlxjMJYZw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h6nbmN1B; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C36CFC4CEE3;
-	Tue, 18 Mar 2025 16:44:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742316247;
-	bh=ePmC0+KIjRqSg+M3AaOEM+CCVKkqUwdmpIff+KWRdLU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=h6nbmN1BvYW04XeKvKGU8ofmetokOrVB782eC1McXlADeEv6UencZ4+AvTzVpJl2s
-	 OE4f9X4Xe05u6BIcD37nxsuINBhxm0svPuZtmXqPNXKYxB3QMAf1y/79/6hadMSqRf
-	 l2hpGoKAxTJf8kuafflKV+JNN56ZZbb5gaHu1iQXY+8csTJcwwQP+04Q+egBVdaBPS
-	 n16JwuCd6oZX3VkkOD7oHgT11sTl0AiC5fkKzvZkQMAX8o5hY/57DDXXcw7xEmVBl+
-	 znuIVkiu1K61Fgk8qmhsQ7Fbe4vRREFluSfOWzZ8vlwfiDe7iBtvhGVUG6QmJlyTI8
-	 ufa1edIo9xUeg==
-Message-ID: <5b32c913-7ae5-44b9-b9c3-84713d2f055c@kernel.org>
-Date: Tue, 18 Mar 2025 17:43:58 +0100
+	 In-Reply-To:Content-Type; b=sltR9PE5hJtzl6AVH1DHIWKGo4mQdmT7EmI1mOYUlJYvxVZVWVeG9QB1p4JPvkDBmjcXGzSXrg5gXSUtgczkxPjxRiqNX8C0erd6xBiWgF/VKuSP37llDJl6gpburaB/y7lwf1AeHymAk3oIUoJ9DydI3UnpYEmzXNCNkj/OrqQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=IEwOpapn; arc=none smtp.client-ip=212.227.15.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1742316241; x=1742921041; i=wahrenst@gmx.net;
+	bh=GEFJR0mEztQD/2wn8hD/FGYZSNaNTFVn1wzkOHSQ5h8=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=IEwOpapnB1t0sFAoldz3B2A1Wrni52A1tgeNsV/FFivme0f5TL6a9qNFjKrxXc7P
+	 JgTRYtihzNbX1ULy78qe6vsvYeAPGNPEYUMb70wvaYVOm1XggwOg4yQbp0xoBLY/J
+	 UTE0yMpXjO3m3966hyO+f9g1nW3h1Ltfvo8oD5P5llcdTeh7GvI029wz65YfsosNm
+	 C/fv6kN282R79y0yAfdz5CYiuHwPQPa31u+IMm95JuxN14aTX8glUXlr96x0k7eZX
+	 T6kpNsNGzUfrXQ9HL5wJash+fRRP1rA+lgrZmqGVRf78gvY7+r8YfCelio5WZAc3R
+	 YBmmN5Mqm/7GWBa+XQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.107] ([37.4.251.153]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MPGW7-1tXJ4024UP-00JFbK; Tue, 18
+ Mar 2025 17:44:01 +0100
+Message-ID: <00c4d88a-c116-44d5-b6ae-2de3b3299189@gmx.net>
+Date: Tue, 18 Mar 2025 17:44:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,79 +58,84 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: aspeed: Add AMD Onyx BMC
- compatible
-To: Rajaganesh Rathinasabapathi <rrathina@amd.com>,
- Rajaganesh Rathinasabapathi <Rajaganesh.Rathinasabapathi@amd.com>
-Cc: devicetree@vger.kernel.org, openbmc@lists.ozlabs.org, joel@jms.id.au,
- andrew@codeconstruct.com.au, robh+dt@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, jothayot@amd.com
-References: <20250318041224.1693323-1-Rajaganesh.Rathinasabapathi@amd.com>
- <20250318-rapid-coot-of-tact-d779ad@krzk-bin>
- <bc27b658-5c62-4187-acdc-df8dc22161a8@amd.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v6 1/5] drm/v3d: Associate a V3D tech revision to all
+ supported devices
+To: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
+ Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nicolas Saenz Julienne <nsaenz@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, kernel-dev@igalia.com
+References: <20250317-v3d-gpu-reset-fixes-v6-0-f3ee7717ed17@igalia.com>
+ <20250317-v3d-gpu-reset-fixes-v6-1-f3ee7717ed17@igalia.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <bc27b658-5c62-4187-acdc-df8dc22161a8@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-On 18/03/2025 17:42, Rajaganesh Rathinasabapathi wrote:
->>
->> Where is the changelog? What happened with this patch between v1 and v3?
->>
->> Best regards,
->> Krzysztof
->>
-> Earlier patches did not add dt-binding patch. Added compatibles now in v3.
-> It was a review comment on earlier dts submission.
+From: Stefan Wahren <wahrenst@gmx.net>
+Autocrypt: addr=wahrenst@gmx.net; keydata=
+ xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
+ IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
+ NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
+ JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
+ TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
+ f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
+ V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
+ aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
+In-Reply-To: <20250317-v3d-gpu-reset-fixes-v6-1-f3ee7717ed17@igalia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:v93hKqdggLdSoXP1bcWRmY45TlcvScd4MNE8uD4Y4vV1W45br0j
+ NB/zJwqrjVvC/xpQvCkWTnEMk3OuNcBPBzdJedTCf66J+hunhJ6sgWEqKupDQ4KzVxHXzx5
+ W/UbBDNBaD8Lb8YsZuAjdDWQHmLuBcaAliwqe06DnB0KUBoq6NwprKdwBR9ksqL0Z25Hmyh
+ bk442Vc47qegrLlNwz37w==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:Qkj0JrynCAM=;Xb+nTwOVOLQ8lLQkvHaQ+qPbv5R
+ G04nBNJIJxN7f5UQTUQNjA9nO4VVrF/bGx0zh/6OYau5cjFyex9N645cp0NI20OikXDPvceZ/
+ jgch2Igrc2spkTDMlBmn67GpGkpR/cc2QR2vOo2tgCZ5VitIrdfT/LmCp7IQzvmeTPskPchq/
+ YlDMXXxgfWj5Z85R9JFjT6qwV9sFhRRDygFXTrbqURVBYXzpu9JjyBJXFrA1b7bCpYfCfZQ3u
+ Y+GYOnWi+vNc3/tLcuVS4D0UKuShzyqE+NYRqkqnf2oWBPU8DYBq56Q1Oce93Zu42Gp2Sq1KY
+ UzKQVzDpZGbrmEcouILP82BzJj8SgBbnpYdz5hRwqc7jI7Mmys1UHF0q1YkOTgzJo5wl9/UfI
+ bKdXNkfdzZwSoHLFm2cp9/hq2yAUblFweJSuWCJ+FAYGkdxD8cHttOgeoffirJOQQABPnKF98
+ Oonl/xnHVUEbmdNevLPxKuPF5S0Nq0H48hs75Kw+qgqgtRfowH7+nzafScQWG1H785LrvK9hu
+ UE/foI5BHDKmSuDG2rLSOQKCDjsdnqN+NI7sStAHF8WHxu4XPQS3kuBrHojuflBeQd6oGnAH6
+ ZCj7qsc4mJmmss3F1bn/q7iplIIeZEhdmaCCNeJv/X0jWuty9INdjMCUf6M1q4BuPFU/RYQww
+ 3JB1DoMXbZZ75gS5MEsnb1IUpQuhirBHVPSshGK4v4zOGpWC2wW8rMKVXTJ7Gr9LEkKydkd6q
+ YDrm9d5WYR3O7+G2K3Fy21PqSsWlz8yCfHU73CdNpZwsJlqK6hxnOHEJ2CCJ6dhOQt5WpnU96
+ 01yG0alzEsgz+2jAOOlU0kB9+RNawbsxno50NCJ8id/bhPU+EI2l2fHSy1KyoGjNdAU07NFYq
+ I858m99Q2jnCMcQ6/Yi3GTS4pXREpW9+bMp4CLX274uZVYEaX7GNJqs/R4MXwJfwQ/tzcMEpo
+ 1pCLYvKPZx47PtQBnggx9RiPHIggv7Yb2D7LfC7pHXdu7yPdpXTjSIusGR0+Ohq/sGF64+8FW
+ NH2tH3ucPCAj1MuH1V3CcyT+lkP7enPR4dprMDfhNsn4dcuEdvXjZ/0UBqJzEKo+jTWIRHTZL
+ jCykLE/Z2hipVhdFbTcI9IJyWT67no8wc/nkrYVBk6jyXGTZXFDfDjSZe8yVU/R8qDQUW3o88
+ 59zQtABgYvyVF5yIcsYount908kBRC2AUw7Ll+ozGEc7/vIWCijczEA1+0KX2HhlSgrxHtk6p
+ hEljweovyovMp7gVvLaQDUjRpPBMhRKW6ToX5q7lFYRKsdNrdVN2ImiPicC/iPFnyRRVsX1yM
+ +LpKQjfRYImNE57Th4hTQcY706WUex5f0WSrdSKG7p3/+/PfDMp49JcFpLiBhO9yQZy6d4uIz
+ 1iH9vo9Zpex/fQojdjwIM0C/+Qs8yC/it0ZdjWZE4Y358qTsLS3bDNBmufQRHzN8nGyxxZL/l
+ TUgLPP4fQQPI8tApvdZ2v0rs++xI=
 
 
-Then your changelog says this is a new patch in the series.
-
-Best regards,
-Krzysztof
+Am 18.03.25 um 02:01 schrieb Ma=C3=ADra Canal:
+> The V3D driver currently determines the GPU tech version (33, 41...)
+> by reading a register. This approach has worked so far since this
+> information wasn=E2=80=99t needed before powering on the GPU.
+>
+> V3D 7.1 introduces new registers that must be written to power on the
+> GPU, requiring us to know the V3D version beforehand. To address this,
+> associate each supported SoC with the corresponding VideoCore GPU versio=
+n
+> as part of the device data.
+>
+> To prevent possible mistakes, add an assertion to verify that the versio=
+n
+> specified in the device data matches the one reported by the hardware.
+> If there is a mismatch, the kernel will trigger a warning.
+>
+> With the goal of maintaining consistency around the driver, use `enum
+> v3d_gen` to assign values to `v3d->ver` and for comparisons with other
+> V3D generations. Note that all mentions of unsupported or non-existing V=
+3D
+> generations (such as V3D 4.0) were removed by this commit and replaced
+> with supported generations without functional changes.
+>
+> Reviewed-by: Iago Toral Quiroga <itoral@igalia.com>
+> Signed-off-by: Ma=C3=ADra Canal <mcanal@igalia.com>
+Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
 
