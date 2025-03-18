@@ -1,168 +1,191 @@
-Return-Path: <devicetree+bounces-158591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158592-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 036C7A675FE
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 15:10:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 308E2A67619
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 15:16:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48D673B500F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 14:09:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8081E17500B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 14:16:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62AD620E032;
-	Tue, 18 Mar 2025 14:09:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF01F20E306;
+	Tue, 18 Mar 2025 14:16:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NsXGJRTZ"
+	dkim=pass (2048-bit key) header.d=pereznus.es header.i=@pereznus.es header.b="GnhUtpgh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from qs51p00im-qukt01072501.me.com (qs51p00im-qukt01072501.me.com [17.57.155.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2C1920DD5C;
-	Tue, 18 Mar 2025 14:09:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6457520D515
+	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 14:16:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.57.155.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742306958; cv=none; b=QIaLGfggaD/iwpJOB5I0/hwtyi6/08d5ewoSxMCNbkInOYZIVB3+A3AQsbvSleas1B3Ga8/JfkWh5J/mreW/nflxOFtN779klEI5UYk5KSWKXN5toAtwlMa9RXp3zycrOk2QvGmgdr9GbVRz2vv4vI1B8fYbX0xFOeYkIn5B2wQ=
+	t=1742307383; cv=none; b=LZGLiqDlALcoOvvoURAhW4SOh9UEf31sveBhE4wyWrOhKBjLrPQlWNFOdnDYBCzHSDSUQw3dY1+RcoL9K1w6BaILfxSxg/vA+AlEQEIj4D10i2vT6iMO5D0HQLGTAouKA4mTQJm3cJVYU/zsEKHt1BHGrxPea0RUgulj3fmY2jI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742306958; c=relaxed/simple;
-	bh=FPLOeGmswPNA6gj/GxUZMLB4rXeT/EXYqMBZlMgddeM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SabyosLE6mcybPemIlFbzzW8sT3rFILodadHfqlOnktcTVawSlcR7Zg6Wvm5o5DiEWIiSrZAt+dTtAUgUzVVj+kp7SNzMPVCX1k82v277DsWFhi/4uTs0m13u0Rw8FhF377wsS2djYhxzphvY0kmtwMl/0fMLZjhEymXsZn/4/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NsXGJRTZ; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-30beedb99c9so51477071fa.3;
-        Tue, 18 Mar 2025 07:09:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742306954; x=1742911754; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XR3QmdTlX82CLNbiCjBnydKIXsFQoeJ3c+u1awJ7NeY=;
-        b=NsXGJRTZGEg2AC/EzaTj9CA8WlTV1eDmbGE4dObHLPTKxcLmR7NAcy8pzuW2KE2xjv
-         GPdyEvHMKHFVrqYgFT2wMbjQyIeMC3+jeImh37NY16KDEUdYslnCEv3EYPHcBBrUZ5G8
-         X9L2OQCIjK6Blyov+YnutOuOjUjoZGGe1FVg2U6QcLEVe8peDBidLNq0lO9CVQ75iU6x
-         zjz4iYokGP6MrPxeSIUvo4YYNVlDqV1BXkwHz+6Fq+8NF+2t4J5tCczFUEV8V/2GgRQT
-         25q86K9ad6zhumVpZOaKZe5ePxyHgANHPHvyEDnbbHO76pxjq9CmmQvV3fkQAtCPnX7e
-         NQ0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742306954; x=1742911754;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XR3QmdTlX82CLNbiCjBnydKIXsFQoeJ3c+u1awJ7NeY=;
-        b=hLScdTO7YEuJ0TjEdd84CQpOVuPJvObG9g1IDhrMVml2PElwcBClEeHB/31rGZaB9l
-         czh5WuSxTk5yVYbRH5LJtqNMf7TgDMa9zReIMVa8R/zHXcY79lFvDvcqW/d/gjp5lwni
-         JoRs5w8vDrM9tTC+fJg64T4LoIreC9ZN7bAztjtBF0KXKtZCxy1QU8erPGqdFu2yfJtO
-         8ofKXn7OBobWtBxG2HAb81N8dhrOje3yjenfKfgz+KVN+P1Gz/dQtPQoI7qW7RRD2UQS
-         z1S+11r0uHnTLUw8sdHZQ856r7tRFImADAkfjINOBsy91WF+VeGJxsyfHQptOpqC5dYr
-         AGGA==
-X-Forwarded-Encrypted: i=1; AJvYcCUB9LvThrVVfn4mPoVmvnOLeIPqDxKGPB/2pZesJwnckost+PGovH8CxJZaHRNWrN8G3d1bpBXM7Xh/QWJD@vger.kernel.org, AJvYcCUKQ+VMiNOltvB0v58jU8x0ZD+Bk7VR4lBQkgG6wRGmxtzuRD7moPyyAKsjiYbnkSOJiP7NtI/t/PuvbW8MJ1en@vger.kernel.org, AJvYcCUPpVKEjIIcl8+791LucEBdnVSPScZnGCd6y+H9rstFwUFrpvu7QzHhBHqhiZXBPpPqgnOeLeq3Ax6Y@vger.kernel.org, AJvYcCUXzSEaGpE7dsBHRlmDLvBMtIdNGOv5GuYyV21oOtju/tA49ppqGSlgUgUXdSFy1snZqiOcJ81EXdTP8oo=@vger.kernel.org, AJvYcCWz4g0l/YRc9QogetayS3RMaAB1xW3gfhG2FgxgYpXjlhD+i/K85pI5pYkHHOhy5nY/TbSox8zN7wxZoyIP@vger.kernel.org, AJvYcCX07O0yWFsq//bgpA1DezHsZLIWrq02qYIsH+gMCiWdGuQiEuRLD34lvzNa5Mh35BI+eUW8RelGkobL@vger.kernel.org, AJvYcCX6kD+rK23Gl4WOLRUsmvp5eyuO1Dh0SDOyHf1HcnkbmDfdNZbxa6yAzod4weKF1dXjDD/4GQkLo12Xye2Hfsk=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxC9ldYRsW83v3Y7OQAJyjPCqjeJL/yi0iiTxLkn3rJhOikWo2l
-	3BdaBpiOkcWUl15y3XWxCpARL5FQ2gMyk3CInlbFWE2afiNVrMprd07KkC+LLOyYUpNQRmVIlwg
-	8mGwWD3nuXe1Ql01ueTsYKlmZwW8=
-X-Gm-Gg: ASbGnctFV/jwijM7RM158Lit/ZX4wEn+1R5oN65cc0uzmXHm1PqKaYPRpjQR5cssEhe
-	SJg0Y24LMqgSTmrOCE0cwRiYI+5Aiw47464Z81XEMCr3BeH2WE2Ef6J0XoJlVw720VBeBCQbvt0
-	fgL5IttFxQdEaCw79F07+12vaU3oNQ01P1Acgm3u8EhA==
-X-Google-Smtp-Source: AGHT+IFxpjLk/MoadRODdmp6sMkrXqEk5zu/R6whmoxUeanggxj1j1wQ9JCQLIxNBupqBoSdrmyU8Q9aU/YaFrU7328=
-X-Received: by 2002:a2e:bd09:0:b0:30c:160b:c76c with SMTP id
- 38308e7fff4ca-30c9755de18mr33340731fa.17.1742306953725; Tue, 18 Mar 2025
- 07:09:13 -0700 (PDT)
+	s=arc-20240116; t=1742307383; c=relaxed/simple;
+	bh=F3zEloayFB59tG2uFVl0zt9z5egeQR6/DV0bXFcOQLw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EV3SO3KZl2laduNgBgjI1GPENZydqWj+H+WPJzE13CZIRIGCP7fCFYYInmY5vT1vRfPhDrRBvJvISw5qUxnmIrM2ePD2iSfF4AZwk5XsVC+LmxyfBfic0AYUZQ3DNWB4KUayvj9z9CC0okIHfw5tyyWB6W+kfa6GfZtvce3rOv0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pereznus.es; spf=pass smtp.mailfrom=pereznus.es; dkim=pass (2048-bit key) header.d=pereznus.es header.i=@pereznus.es header.b=GnhUtpgh; arc=none smtp.client-ip=17.57.155.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pereznus.es
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pereznus.es
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pereznus.es; s=sig1;
+	bh=+lYMfzE0EBEBAFrPAVdWndmMr4naYIrNNaZlMxmulcI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:x-icloud-hme;
+	b=GnhUtpghvvJflEdu/RYrZ/RTl3tlTEUXwFypQ9mUKi31Ycr/w9o7XmCM2SNFiHFey
+	 5NsHtVYq5ll+adWSLPB9Obb2W0XwKnUJtrPTzeE+T8AyOK1soaS/+zLDuiN2ScQfIu
+	 FZ1VdWJmFF+ouixxQr6BQ9MZotP9rKDxDnDRztNoOGgrxxJNjlUgV4wPCN9HhYkUb4
+	 irCW4AiMizoOQfjxDAZ1MzJ7ktmJCAr87PyATLDipO3XE0Ue98UdUCzni42ZiCXVM5
+	 JHVbwciOLZTX5L7HqLJaAi9llrvUKswf3LmpTQb2fvqShC8cLfMen9x3rSnLn8TsAA
+	 SbJ2Sh95RLWNA==
+Received: from [192.168.1.28] (qs51p00im-dlb-asmtp-mailmevip.me.com [17.57.155.28])
+	by qs51p00im-qukt01072501.me.com (Postfix) with ESMTPSA id 9BD99440167;
+	Tue, 18 Mar 2025 14:16:14 +0000 (UTC)
+Message-ID: <f0536d74-5433-4086-9dfc-1ce6aeeebe00@pereznus.es>
+Date: Tue, 18 Mar 2025 15:16:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250317-ptr-as-ptr-v5-0-5b5f21fa230a@gmail.com>
- <20250317-ptr-as-ptr-v5-6-5b5f21fa230a@gmail.com> <Z9lnIJCcVSza6UVo@google.com>
-In-Reply-To: <Z9lnIJCcVSza6UVo@google.com>
-From: Tamir Duberstein <tamird@gmail.com>
-Date: Tue, 18 Mar 2025 10:08:37 -0400
-X-Gm-Features: AQ5f1JqOYVk7nD9z0cLpiPEdxTeWINnN4TjRzqE0nN_LBkIs9bu7CUDTA0sD4FE
-Message-ID: <CAJ-ks9k5XZUN_vuH648rr6-e+v0my_dR2zo+986rzx+A5ZLxng@mail.gmail.com>
-Subject: Re: [PATCH v5 6/6] rust: use strict provenance APIs
-To: Alice Ryhl <aliceryhl@google.com>
-Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
-	Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, 
-	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
-	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
-	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
-	Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, linux-kbuild@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
-	linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
-	linux-pci@vger.kernel.org, linux-block@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] iio: light: bh1750: Add hardware reset support via GPIO
+To: Krzysztof Kozlowski <krzk@kernel.org>, linux-iio@vger.kernel.org
+Cc: tduszyns@gmail.com, jic23@kernel.org, lars@metafoo.de, robh@kernel.org,
+ conor+dt@kernel.org, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250316145514.627-1-sergio@pereznus.es>
+ <01f48f6d-55a4-4dbe-b1ae-ef8c54dcc1ff@kernel.org>
+Content-Language: es-ES, en-US, ca
+From: =?UTF-8?Q?Sergio_P=C3=A9rez?= <sergio@pereznus.es>
+In-Reply-To: <01f48f6d-55a4-4dbe-b1ae-ef8c54dcc1ff@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: mnMBvqOoHvusoZdA_rhYCAZzB9-6Rs4a
+X-Proofpoint-ORIG-GUID: mnMBvqOoHvusoZdA_rhYCAZzB9-6Rs4a
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-18_07,2025-03-17_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 mlxscore=0 malwarescore=0
+ suspectscore=0 spamscore=0 bulkscore=0 phishscore=0 clxscore=1030
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2503180105
 
-On Tue, Mar 18, 2025 at 8:29=E2=80=AFAM Alice Ryhl <aliceryhl@google.com> w=
-rote:
->
-> On Mon, Mar 17, 2025 at 10:23:56AM -0400, Tamir Duberstein wrote:
-> > Throughout the tree, use the strict provenance APIs stabilized in Rust
-> > 1.84.0[1]. Retain backwards-compatibility by introducing forwarding
-> > functions at the `kernel` crate root along with polyfills for rustc <
-> > 1.84.0.
-> >
-> > Use `#[allow(clippy::incompatible_msrv)]` to avoid warnings on rustc <
-> > 1.84.0 as our MSRV is 1.78.0.
-> >
-> > In the `kernel` crate, enable the strict provenance lints on rustc >=3D
-> > 1.84.0; do this in `lib.rs` rather than `Makefile` to avoid introducing
-> > compiler flags that are dependent on the rustc version in use.
-> >
-> > Link: https://blog.rust-lang.org/2025/01/09/Rust-1.84.0.html#strict-pro=
-venance-apis [1]
-> > Suggested-by: Benno Lossin <benno.lossin@proton.me>
-> > Link: https://lore.kernel.org/all/D8EIXDMRXMJP.36TFCGWZBRS3Y@proton.me/
-> > Signed-off-by: Tamir Duberstein <tamird@gmail.com>
->
-> I'm not convinced that the pros of this change outweigh the cons. I
-> think this is going to be too confusing for the C developers who look at
-> this code.
->
-> > diff --git a/rust/kernel/uaccess.rs b/rust/kernel/uaccess.rs
-> > index 719b0a48ff55..96393bcf6bd7 100644
-> > --- a/rust/kernel/uaccess.rs
-> > +++ b/rust/kernel/uaccess.rs
-> > @@ -226,7 +226,9 @@ pub fn read_raw(&mut self, out: &mut [MaybeUninit<u=
-8>]) -> Result {
-> >          }
-> >          // SAFETY: `out_ptr` points into a mutable slice of length `le=
-n`, so we may write
-> >          // that many bytes to it.
-> > -        let res =3D unsafe { bindings::copy_from_user(out_ptr, self.pt=
-r as *const c_void, len) };
-> > +        let res =3D unsafe {
-> > +            bindings::copy_from_user(out_ptr, crate::with_exposed_prov=
-enance(self.ptr), len)
-> > +        };
-> >          if res !=3D 0 {
-> >              return Err(EFAULT);
-> >          }
-> > @@ -264,7 +266,7 @@ pub fn read<T: FromBytes>(&mut self) -> Result<T> {
-> >          let res =3D unsafe {
-> >              bindings::_copy_from_user(
-> >                  out.as_mut_ptr().cast::<c_void>(),
-> > -                self.ptr as *const c_void,
-> > +                crate::with_exposed_provenance(self.ptr),
-> >                  len,
-> >              )
-> >          };
->
-> That's especially true for cases like this. These are userspace pointers
-> that are never dereferenced. It's not useful to care about provenance
-> here.
->
-> Alice
+Hello,
 
-Let's just drop this last patch. It can be revisited later or not at
-all. Perhaps in the future I need to be more willing to say no to
-scope creep.
+El 17/03/2025 a las 8:24, Krzysztof Kozlowski escribió:
+> On 16/03/2025 15:55, Sergio Perez wrote:
+>> Some BH1750 sensors require a hardware reset before they can be
+>> detected on the I2C bus. This patch adds support for an optional
+>> reset GPIO that can be specified in the device tree.
+>>
+>> The reset sequence pulls the GPIO low and then high before
+>> initializing the sensor, which enables proper detection with
+>> tools like i2cdetect.
+>>
+>> Update the devicetree binding documentation to include the new
+>> reset-gpios property with examples.
+>>
+>> Signed-off-by: Sergio Perez <sergio@pereznus.es>
+> Please run scripts/checkpatch.pl and fix reported warnings. After that,
+> run also `scripts/checkpatch.pl --strict` and (probably) fix more
+> warnings. Some warnings can be ignored, especially from --strict run,
+> but the code here looks like it needs a fix. Feel free to get in touch
+> if the warning is not clear.
+>
+> <form letter>
+> Please use scripts/get_maintainers.pl to get a list of necessary people
+> and lists to CC. It might happen, that command when run on an older
+> kernel, gives you outdated entries. Therefore please be sure you base
+> your patches on recent Linux kernel.
+>
+> Tools like b4 or scripts/get_maintainer.pl provide you proper list of
+> people, so fix your workflow. Tools might also fail if you work on some
+> ancient tree (don't, instead use mainline) or work on fork of kernel
+> (don't, instead use mainline). Just use b4 and everything should be
+> fine, although remember about `b4 prep --auto-to-cc` if you added new
+> patches to the patchset.
+>
+> You missed at least devicetree list (maybe more), so this won't be
+> tested by automated tooling. Performing review on untested code might be
+> a waste of time.
+>
+> Please kindly resend and include all necessary To/Cc entries.
+> </form letter>
+>
+
+Sorry, I had run the scripts/get_maintainer.pl tool and got fewer 
+recipients than necessary.  I have redone everything in a clean 
+installation and now I have obtained more recipients.
+
+Any fixes I make in the patch I send to this same thread or should I 
+send it with git send-mail? I say this because perhaps I have done it 
+incorrectly and possibly created 3 versions, I apologize. My latest 
+version (v3) includes all the suggestions mentioned but due to my 
+ignorance of the procedure I thought they should be sent to the list 
+again as before. Can I delete v2 and v3 and keep only the first version?
+
+>> ---
+>>   .../devicetree/bindings/iio/light/bh1750.yaml |  20 +++-
+>>   drivers/iio/light/bh1750.c                    | 113 ++++++++++++------
+>
+> ... and please go through your patch and see what happened there.
+>>   2 files changed, 95 insertions(+), 38 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/iio/light/bh1750.yaml b/Documentation/devicetree/bindings/iio/light/bh1750.yaml
+>> index 1a88b3c253d5..d53b221eb84b 100644
+>> --- a/Documentation/devicetree/bindings/iio/light/bh1750.yaml
+>> +++ b/Documentation/devicetree/bindings/iio/light/bh1750.yaml
+>> @@ -11,6 +11,9 @@ maintainers:
+>>   
+>>   description: |
+>>     Ambient light sensor with an i2c interface.
+>> +
+>> +  Some BH1750 sensors require a hardware reset before being properly detected
+>> +  on the I2C bus. This can be done using the optional reset-gpios property.
+>>   
+>>   properties:
+>>     compatible:
+>> @@ -23,6 +26,10 @@ properties:
+>>   
+>>     reg:
+>>       maxItems: 1
+>> +
+>> +  reset-gpios:
+>> +    description: GPIO connected to the sensor's reset line (active low)
+>> +    maxItems: 1
+>>   
+>>   required:
+>>     - compatible
+>> @@ -41,5 +48,16 @@ examples:
+>>           reg = <0x23>;
+>>         };
+>>       };
+>> +  - |
+>> +    i2c {
+>> +      #address-cells = <1>;
+>> +      #size-cells = <0>;
+>> +
+>> +      light-sensor@23 {
+>> +        compatible = "rohm,bh1750";
+>> +        reg = <0x23>;
+>> +        reset-gpios = <&gpio2 17 GPIO_ACTIVE_HIGH>;
+>> +      };
+>> +    };
+>>   
+>> -...
+>> +...
+>> \ No newline at end of file
+> You have unrelated changed all over the place.
+>
+>
+> Best regards,
+> Krzysztof
+
+Yes, in the patch I have prepared I have solved this problem, it only 
+adds the exact lines and does not modify anything else.
+
 
