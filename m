@@ -1,87 +1,200 @@
-Return-Path: <devicetree+bounces-158594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F03FA67651
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 15:26:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43E1DA6765C
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 15:29:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA2C119C3FFF
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 14:22:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EECF218857E1
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 14:25:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9854B20E337;
-	Tue, 18 Mar 2025 14:21:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60FF920DD7D;
+	Tue, 18 Mar 2025 14:24:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="KhDI9DBX"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Yv/E3eUw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED52320468F;
-	Tue, 18 Mar 2025 14:21:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACBDE20AF7C;
+	Tue, 18 Mar 2025 14:24:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742307690; cv=none; b=gXUjbiKnsS1SQMDzbsNAxdkc6+wKjvoNJ8aubi91lLTVSWcC9MmfeUuumzfxlFjBjXzJwx903OoVJTkCn9M0Kwr4knx6eguiOD97HFaVJgCdprQjrfo8LVLAjrqG1awO8OOAR0vJYYb2Qje7cBBxEJU0iOr59A8C5xFfo61Rrf4=
+	t=1742307899; cv=none; b=WDZyo60lIZ/iQPi1AWDexmbxvNTi39TLerR/S/rzwTYpitmUYe8o4jMMBnjyYsjf2lGXlk8sET6pArO3F2y+yt6eNg82zoo0K+lgiCtziptS1gNmyVuf5fZkc2mxzMOxWmBFyoXJPh8xLEDP0i6mG+Q25gY0CRZYhJttADzkcQE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742307690; c=relaxed/simple;
-	bh=DlTALxhnX1WzQznDtq8NeSAib+9haWmUV8E0yQEGDc4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QndksKNt1+oF+5ddop2lJLbSxg9I7AwuFZ8aeQZUzIwSHE7YI7IaFpDh0lOeNKVGeg1P1989++1F57kVoezYl8UPxtkL/ekDYYgfRKz8zq0v7ToXaemY9wlvoJznVapwCnvW3AO+xqOC8/9CFpedMW7XVCB8TwzSdeeLlkx4hXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=KhDI9DBX; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1742307683;
-	bh=DlTALxhnX1WzQznDtq8NeSAib+9haWmUV8E0yQEGDc4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KhDI9DBXFlIC2GO3+W6xzD9tsjvysmhhYIc+vB+keu4md9fXlwTSNN4CksQ8fRMTl
-	 zXwvLnNHqzHqdGDsuZ9fjcgD/0qrG7V+40I63YqSxeZpVkroSWG4j2tDva1KtU3mcN
-	 E5toQgEr5RwPfvPfuFv/hteWGM0Hc2p4WpGsUVQIIDBoxs3sBCHbERCNtwecdrsLm0
-	 ZSeo6csHIPCbHDRGzJW3ZXLejGyvelgQ9Eb+yz0K92U8T8Z3hu5ldPzf8enVT+dbRD
-	 sgzuE/Vbz/iVoNUYTF1L1zXDbUz/eccgz3ikGnghE06aZAnh+iPV9Gfs1yXPXRPokt
-	 7JXxZGlh3AMAQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 906DA17E0B25;
-	Tue, 18 Mar 2025 15:21:22 +0100 (CET)
-Message-ID: <2b666683-47f9-44b5-bae9-109764e60690@collabora.com>
-Date: Tue, 18 Mar 2025 15:21:21 +0100
+	s=arc-20240116; t=1742307899; c=relaxed/simple;
+	bh=0vWEOSgAWC2OK9GLXIOx42CXDAs4ETuJxHSdMv03wa0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=uirUA007m2ygeaZb1mffWn0hphjAvT39S68UZZfw5aN7DhawXiwsdj3DiuEO64OQUIUHz3MjPds+x0PdFaQ1Rl8vpF3hTz/Tc+w1pu4erdG/W4nYYIncf6F77q9B9pUpEhFDym999/zC6bUTU4SFBAscI2mGr0lmeQkO8VL8LOM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Yv/E3eUw; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52I9kYPB021228;
+	Tue, 18 Mar 2025 14:24:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ThU9IQRy4eqH0cT3srdF8lldlckVmWSkhvbZ1vu/0IA=; b=Yv/E3eUwmvVtIPHw
+	atvGPnIPM+bG9DFcJ7Q9dfkw6zwZkpJMsEMkySD0VIkqbCLosx8E+AWsGJzEoXRu
+	QUB2m/J149v4dESEREBn7tGABKWJVoxjs8txLAPsyImDKOQw87CpEyj7yIdwQ1Cx
+	NjrKXYRnaawSsKcwg0MEisOL0C14sGPYQMnpxdNtpeV8S2aQxFHJCKx9AV+bYrJ8
+	XqSEURYXesh9aEwrz1wLNz5+0Ggws1mmqvB2URILj6zgxWq/XuHY9Z3Nd0PecdEV
+	tpJSEWb1BGFXumCwasdhgoi4iC7qIYCGloZdCz5ZrgueSbrjtgLLt52N/fmYjNR/
+	nukTHA==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45d1x80ksj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 18 Mar 2025 14:24:53 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52IEOquH011684
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 18 Mar 2025 14:24:52 GMT
+Received: from [10.216.0.149] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 18 Mar
+ 2025 07:24:47 -0700
+Message-ID: <8f7c1c08-6776-968c-530e-b640ded940b3@quicinc.com>
+Date: Tue, 18 Mar 2025 19:54:44 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] platform/chrome: Add support for Google Spherion in
- HW prober
-To: Laura Nao <laura.nao@collabora.com>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, matthias.bgg@gmail.com, bleung@chromium.org,
- tzungbi@kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- chrome-platform@lists.linux.dev, nfraprado@collabora.com,
- kernel@collabora.com
-References: <20250318102259.189289-1-laura.nao@collabora.com>
- <20250318102259.189289-2-laura.nao@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: sa8775p: add support for video node
 Content-Language: en-US
-In-Reply-To: <20250318102259.189289-2-laura.nao@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Dikshita Agarwal
+	<quic_dikshita@quicinc.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20250311-dtbinding-v1-0-5c807d33f7ae@quicinc.com>
+ <20250311-dtbinding-v1-3-5c807d33f7ae@quicinc.com>
+ <3ec71075-b1ef-4366-b595-80fe41cd1e13@oss.qualcomm.com>
+From: Vikash Garodia <quic_vgarodia@quicinc.com>
+In-Reply-To: <3ec71075-b1ef-4366-b595-80fe41cd1e13@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 3cYOyg668_HaSOs1P1XioAW1WQ-brk_y
+X-Proofpoint-ORIG-GUID: 3cYOyg668_HaSOs1P1XioAW1WQ-brk_y
+X-Authority-Analysis: v=2.4 cv=Jem8rVKV c=1 sm=1 tr=0 ts=67d98235 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=HdOZ2FAD_XOJwypVLEMA:9 a=oBbwvKzCPJ49F153:21
+ a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-18_07,2025-03-17_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ mlxlogscore=999 spamscore=0 mlxscore=0 malwarescore=0 adultscore=0
+ phishscore=0 impostorscore=0 priorityscore=1501 lowpriorityscore=0
+ bulkscore=0 clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503180106
 
-Il 18/03/25 11:22, Laura Nao ha scritto:
-> Add a new compatible entry for "google,spherion" to the hardware prober
-> platform list, using the same I2C component prober and trackpad data as
-> "google,hana".
+
+On 3/15/2025 7:13 PM, Konrad Dybcio wrote:
+> On 3/11/25 1:03 PM, Vikash Garodia wrote:
+>> Video node enables video on Qualcomm SA8775P platform.
+>>
+>> Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
+>> ---
+>>  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 67 +++++++++++++++++++++++++++++++++++
+>>  1 file changed, 67 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+>> index 3394ae2d13003417a15e64c9e47833725ec779e6..09db8e2eb578f1cada0f4a15e3f844dc097bd46d 100644
+>> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+>> @@ -10,6 +10,7 @@
+>>  #include <dt-bindings/clock/qcom,sa8775p-dispcc.h>
+>>  #include <dt-bindings/clock/qcom,sa8775p-gcc.h>
+>>  #include <dt-bindings/clock/qcom,sa8775p-gpucc.h>
+>> +#include <dt-bindings/clock/qcom,sa8775p-videocc.h>
+>>  #include <dt-bindings/dma/qcom-gpi.h>
+>>  #include <dt-bindings/interconnect/qcom,sa8775p-rpmh.h>
+>>  #include <dt-bindings/mailbox/qcom-ipcc.h>
+>> @@ -3783,6 +3784,72 @@ llcc: system-cache-controller@9200000 {
+>>  			interrupts = <GIC_SPI 580 IRQ_TYPE_LEVEL_HIGH>;
+>>  		};
+>>  
+>> +		iris: video-codec@aa00000 {
+>> +			compatible = "qcom,sa8775p-iris";
+>> +
+>> +			reg = <0 0x0aa00000 0 0xf0000>;
+>> +			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
+>> +
+>> +			power-domains = <&videocc VIDEO_CC_MVS0C_GDSC>,
+>> +					<&videocc VIDEO_CC_MVS0_GDSC>,
+>> +					<&rpmhpd SA8775P_MXC>,
+>> +					<&rpmhpd SA8775P_MMCX>;
+>> +			power-domain-names = "venus",
+>> +					     "vcodec0",
+>> +					     "mx",
+>> +					     "mmcx";
+>> +			operating-points-v2 = <&iris_opp_table>;
+>> +
+>> +			clocks = <&gcc GCC_VIDEO_AXI0_CLK>,
+>> +				 <&videocc VIDEO_CC_MVS0C_CLK>,
+>> +				 <&videocc VIDEO_CC_MVS0_CLK>;
+>> +			clock-names = "iface",
+>> +				      "core",
+>> +				      "vcodec0_core";
+>> +
+>> +			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+>> +					&config_noc SLAVE_VENUS_CFG QCOM_ICC_TAG_ALWAYS>,
 > 
-> Signed-off-by: Laura Nao <laura.nao@collabora.com>
+> This path should use QCOM_ICC_TAG_ACTIVE_ONLY on both endpoints
+What is the advantage of "ALWAYS" vs "ACTIVE_ONLY". Thinking of a possibility of
+APSS power collapsed, while video hardware is processing a frame ?
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-
+Regards,
+Vikash
+> 
+>> +					<&mmss_noc MASTER_VIDEO_P0 QCOM_ICC_TAG_ALWAYS
+>> +					&mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
+>> +			interconnect-names = "cpu-cfg",
+>> +					     "video-mem";
+>> +
+>> +			firmware-name = "qcom/vpu/vpu30_p4_s6.mbn";
+> 
+> If it needs different firmware, I have my doubts over why 8550's data
+> would be fully reused. Are you sure everything in iris_platform_sm8550.c
+> applies?
+> 
+>> +			memory-region = <&pil_video_mem>;
+>> +
+>> +			resets = <&gcc GCC_VIDEO_AXI0_CLK_ARES>;
+>> +			reset-names = "bus";
+>> +
+>> +			iommus = <&apps_smmu 0x0880 0x0400>,
+>> +				 <&apps_smmu 0x0887 0x0400>;
+>> +			dma-coherent;
+>> +
+>> +			iris_opp_table: opp-table {
+>> +				compatible = "operating-points-v2";
+>> +
+>> +				opp-366000000 {
+>> +					opp-hz = /bits/ 64 <366000000>;
+>> +					required-opps = <&rpmhpd_opp_svs_l1>,
+>> +							<&rpmhpd_opp_svs_l1>;
+>> +				};
+> 
+> Please add a newline between subsequent subnodes
+> 
+> Konrad
 
