@@ -1,128 +1,119 @@
-Return-Path: <devicetree+bounces-158493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 309B7A66F5E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 10:11:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68B1CA66F7C
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 10:15:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A86D919A33A2
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 09:11:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A486C1660DA
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 09:15:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C20B5205AD9;
-	Tue, 18 Mar 2025 09:11:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FD851DE4CA;
+	Tue, 18 Mar 2025 09:15:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="hxOlWZgL"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="KAen0TNk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEE2B2045A1
-	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 09:11:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E14C31E5B60;
+	Tue, 18 Mar 2025 09:15:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742289074; cv=none; b=XEK/9YrYjgV/s/dugcsvvKVHHyo/MknnF3EZNLptJ4LoblC+QhlbYua0i0zy/H7o7iI4dPPoqkPDM+83Ykzo9X14g/Uzp+2RIJfRtN5pEnpV3gzcukr6QkxpLE561s0rcnaG8xY2DwEYwd6BGGSwqM/Y7RKZC+x4JrTlVdXTaVc=
+	t=1742289331; cv=none; b=Db55S4n3b2VSCK0QssUtP21l5SF0XMdXR0tnZkRpUxbsM4EuaIQhZsoWNi8FyoqQSyiQRHX6/IiRbs1YE0fIkRJ0fJ5c0jFNeYdVUC8fLBdbBP60uQHMBR+EE1tEoCQnN+RSG1QJu4Iso+ZIVpQbrabi5e37lZ1e6VActOsj0K4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742289074; c=relaxed/simple;
-	bh=VpS5HxcQdtuSiPOO23jqoui+K6HeVqyZdROJMlSwZ4c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lu6BYPoCnS5W1TxNZ53/+/GretOxpBEn1LriI8hd59GSvxA0eWn0kqd9PEoN0bN9t3Hsa0DmYQojy882R4F+giwJM70YZpELPFkS5lXs4MYkKo6S5TmwUFSsq0un6lncX5xFw5S8YgTqeMX7fzx4/AMPUiH7sHCNo5RtQ2e8dkY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=hxOlWZgL; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=/aXg
-	Nd5UqKHD15CM96xVlyMy+rAE8wtbTb393XNceSg=; b=hxOlWZgLcZiGRCcHZ9hr
-	c4Br7AiUqFyEIZqvALnQDgS3pNJPsH84RkhL/eG2BE44pvNqDwJ4bh8W8u0mIQ0H
-	W7r66myWfFQEq/sItiDAcuBOYnSRisuZmjEhK17jQ3Zc4iXVeNR7ty90akZDo0r/
-	NOCjfvhH0c9kLYH7YLDtOEjuP0kOnSiFpC4fE3l5U1JI5OHfRh7dyShJ/TvKiZ7t
-	C4PWId6kXeUSnM2MdLS1FyTTqTvaDxc9h/099lJJd5R8DZjxg00gS92EoLXMdSjB
-	6BbgbX0bUCuqb+NZADi6Fjn2Lq4eerms9fNaisx+YLCMLMeyIU6jGFp1fzzChbPx
-	qw==
-Received: (qmail 3659959 invoked from network); 18 Mar 2025 10:11:06 +0100
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 18 Mar 2025 10:11:06 +0100
-X-UD-Smtp-Session: l3s3148p1@rd3mSJow2MUgAwDPXyTHAJp038nK7dx+
-Date: Tue, 18 Mar 2025 10:11:06 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: linux-renesas-soc@vger.kernel.org,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: serial: snps-dw-apb-uart: document RZ/N1
- binding without DMA
-Message-ID: <Z9k4qrFXCRf23MDo@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	linux-renesas-soc@vger.kernel.org,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org
-References: <20250318085353.18990-2-wsa+renesas@sang-engineering.com>
- <CAMuHMdWP8a5eR_1sk2oUe02KdiDaibHnqAHbn2mSyBHzP1FNJA@mail.gmail.com>
+	s=arc-20240116; t=1742289331; c=relaxed/simple;
+	bh=wj9vhvcZ7Q6rRxe8IKV57WE45iTK8IXT/ogUqM9IbaA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=EA8L6DzyJX4f0dTXDtR5yBkIyLPgjv/zRjtDX8Yb7pulp5E3Sa02HxDaRKCpokWz2JJW39uE6gRtPyRBdsY6G7UuBfo0UGEmlfhR3hSywHxKFKzPce+nU4mDTbvjeJVruzRrgcAVyvW9TrAH9Em/RNkyxIdzzJ4ix6XEA8Ruaxo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=KAen0TNk; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=kCpda69+4YOXyPlxXr4rhlyiXJ6ySWZXtY4yz6bQvNk=; b=KAen0TNk1/Ch9gRLVmwOAqN7ww
+	i8CBoeBw5RGn57F5AZuWcWu4MPWtC4wrXn/F4nN08gu77G9JPuXmghozKSX5eA8iUxvCI2kqsw/WX
+	s/nsdo/5GeQmU8wlXqQ5la71KnKow0xmY49Kwtwl1eHisQm+g8fQBciWbRbeUK0CIZ+Wi9Nf0x6kA
+	qS/TpBmnwOF0UGe+ysJBYblLf1YHh+jcACbf/M8S+NuD6H28+bC9kzYB7Rbv5D6m9Fpqx0xzYCmlv
+	l7ojCYq4k5hXsxJDEO5LyP4RA0MsjazWJCuIL3WeL9/CQlbrHwX4+++XMpL62qGg+klNt/1nRHKNR
+	lbHZMGtA==;
+Received: from i53875bc6.versanet.de ([83.135.91.198] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tuT2g-00054Z-JC; Tue, 18 Mar 2025 10:15:22 +0100
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org, detlev.casanova@collabora.com,
+ sebastian.reichel@collabora.com
+Subject: Re: (subset) [PATCH RESEND v2 0/6] RK3576 OTP support
+Date: Tue, 18 Mar 2025 10:15:21 +0100
+Message-ID: <2364081.ElGaqSPkdT@diego>
+In-Reply-To: <173978599692.25901.15315285566342669137.b4-ty@linaro.org>
+References:
+ <20250210224510.1194963-1-heiko@sntech.de>
+ <173978599692.25901.15315285566342669137.b4-ty@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="BIXx9JssLH5VvoiI"
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdWP8a5eR_1sk2oUe02KdiDaibHnqAHbn2mSyBHzP1FNJA@mail.gmail.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
+
+Hi,
+
+Am Montag, 17. Februar 2025, 10:53:16 MEZ schrieb Srinivas Kandagatla:
+> 
+> On Mon, 10 Feb 2025 23:45:04 +0100, Heiko Stuebner wrote:
+> > This enables OTP support in the nvmem driver for rk3576.
+> > 
+> > I expect to pick the clock patch (patch1) and the arm64-dts patch (patch6)
+> > myself, after the nvmem-driver and -binding patches have been applied
+> > (patches 2-5).
+> > 
+> > But kept them together for people wanting to try this series.
+> > 
+> > [...]
+> 
+> Applied, thanks!
+> 
+> [1/6] clk: rockchip: rk3576: define clk_otp_phy_g
+>       commit: 3e081aa132bbefe31ac95dd6dfc8d787ffa83d0b
+
+the applied message says you picked the clock patch, but it's not in your
+tree - probably because you realized that it's a clock patch? :-)
+
+So just to make sure it doesn't land in two trees, I should probably pick
+up the patch for the Rockchip clock driver, right?
 
 
---BIXx9JssLH5VvoiI
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks a lot
+Heiko
 
 
-> > +            - enum:
-> > +                - renesas,r9a06g032-uart
-> > +                - renesas,r9a06g033-uart
->=20
-> I think you can simplify by replacing the enum by
->=20
->     - pattern: "^renesas,.*$"
+> [2/6] nvmem: rockchip-otp: Move read-offset into variant-data
+>       commit: 024e21343f3cbcde0343473fcaf094d2c19cc7bf
+> [3/6] dt-bindings: nvmem: rockchip,otp: add missing limits for clock-names
+>       commit: a1bf00100d06ad69286154a63e548ae6f6ce8539
+> [4/6] dt-bindings: nvmem: rockchip,otp: Add compatible for RK3576
+>       commit: 8c94337ebbfb840944574f82df0cbe35930d8df8
+> [5/6] nvmem: rockchip-otp: add rk3576 variant data
+>       commit: c5ebefe4e20d9fd99ae49cbfd1c18632cf338fa5
+> 
+> Best regards,
+> 
 
-I still plan to remove r9a06g033 bindings from the kernel because that
-SoC cannot run Linux with only 4MB of internal SRAM. So, all this will
-become "const: renesas,r9a06g032-uart" in the future anyhow. But one
-step after the other...
 
 
---BIXx9JssLH5VvoiI
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmfZOKYACgkQFA3kzBSg
-Kbb9UBAArc9LM3SQlvOhkaeRjrru1zzB1QDY6ohrfuU/C1NgIp9BjFuY81S6l/0l
-evnPvIWAqd9/R1XSm8GzMPoxjDjNAUvatq6NGL5YKGVinNunM47lyyRqbqYnqqMX
-QklkXesPbd41KHgFg58GOINju0KKhnNsxvwpWBxJ2UG/FCEvaYw6u2eIZFI3B9aT
-iROl4e+8kUiYcLaiMRwcPjDTUbCKNHMwURNC+ypZIeydQvKFNTHXmwpsjcBkVjob
-3M48j5jkJRyQXNk/vSpJx3y89GZwcuEb07ru4LGEd4FIMFzL4zHZ9MwGrhzriFSw
-R74cuFlsyd93wMLFuPv8Ab/LHtPiFAbsgzgWvOjBni+X5lGOBGii31Hn61SGHHza
-w57/Y3+nzTQHCFvrHGp6XapNfs0mwg5N7/LT7dwRCN1PGqUEerHfkkytYifPxdc2
-gLgvWqgXzP1oFXp8Gq0CK6fXrUHf3c2OPqX+I97Gzi/PXMT4FlTlb34AjmDxg07S
-TkY4D/R0V1vqNIe51oBvFvt0ZMxfC0AU5C14IV7MXHdO4QeuP2mqhrEOvmqOB+a2
-zCKl8WZQrgDka+7KlB6OMJLisUO4gT9lPUXohLID3ItX0hANgWS26wJpHBaTGc8/
-C3s+jV79gYfcV8RIIILsqKasCBKZrp5CyfdDZICRFht04YXnH0o=
-=FOio
------END PGP SIGNATURE-----
-
---BIXx9JssLH5VvoiI--
 
