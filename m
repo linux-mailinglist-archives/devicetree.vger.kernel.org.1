@@ -1,97 +1,118 @@
-Return-Path: <devicetree+bounces-158450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D64BFA66D10
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 08:59:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E43A6A66D16
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 09:00:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D2E419A3F2F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 07:57:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A68333B7A7C
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 07:59:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFCE11F8729;
-	Tue, 18 Mar 2025 07:56:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F15711FFC5D;
+	Tue, 18 Mar 2025 07:58:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eyTu0yHp"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OcOTzBWj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A05BF1F180C;
-	Tue, 18 Mar 2025 07:56:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38C051F9A8B;
+	Tue, 18 Mar 2025 07:58:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742284609; cv=none; b=s+ckkdFLjD3iH+WPSzOGpDq0R0vfsbiZvqDi0SpZB2qdL0pl+NhacGTf8oPxpUopa4PN9I0ZQOVio44JXn8sAoB0BHu8o9+w82q3Ly4Sez2QrcMKYaKdjLbbz6AAZbnLxzux8nV/1FlTpNqNC61MifvbdfAGByFeyNthJN2FA5w=
+	t=1742284735; cv=none; b=PgXNkYgFj9ctxIbAHSnuO9ZoIjuNky2sFcWiYrVyR2v2csb2ITOFj7lbkt/b9kkV9Tavu3w1yG3Pf9/ZBq5qHCoIlQxgc17UQfiS5UdMEJFOVY5c30w6qDZUdidEhzpdoiioD+r1i/lGf4+aEnStPFu07EXTsfFKFMdfDTShFf4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742284609; c=relaxed/simple;
-	bh=PYexzvxuekgqLHatZlFwTRRdX07yMrz0UyQigczwDJc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JtTw5USrLPJQwQOxexGrN1/udgimLICQ93JzFEPA6n4UeBsFBbQIs59fjxlJFlVWZnAmMF8i9b2PDyR+h2dEbKgycUdB8dpXwHDHS6j33nlrtsVSDRbneFY8xCw7ZeT1PWFgC0cbVAOT7swfVJkoIAMHt3vIarbs3ZMyVJULEjA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eyTu0yHp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67D20C4CEDD;
-	Tue, 18 Mar 2025 07:56:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742284609;
-	bh=PYexzvxuekgqLHatZlFwTRRdX07yMrz0UyQigczwDJc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eyTu0yHpjLaLbKHHy1oBYw211KKL360J3Zo8yI7ETyJaJBKbn+Vs1enJVqm2EYwMh
-	 NbRu3/jX1Neqtgl+/2MSX/yl/jcqAPI6bXks684f9G2NCQJKW3gyQYi02deDaLuNcE
-	 N6dzclk1qoT0eo0efN1Qeo+MqlmCGGPQZpQpHI/ujmfBwF3IKWGLKZf/n70JiCAXzd
-	 DmgEiR22g6ai2EC4hjqxudQR+SrcMyzQhxdZXJO4CGLuqkhyRpZJH0IxanUVe3P1rA
-	 NSmerndGOAvd2/KJVD+SDW2e0VGHcVLn9nFPSf4NuOm5WyDncQKkaPCT90toW4pjQ7
-	 06FIxy+InJqVw==
-Date: Tue, 18 Mar 2025 08:56:46 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Clark <robdclark@gmail.com>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
-	Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>, 
-	Mathieu Poirier <mathieu.poirier@linaro.org>, Leo Yan <leo.yan@linux.dev>, Kumar Gala <galak@codeaurora.org>, 
-	Andy Gross <agross@codeaurora.org>, "Ivan T. Ivanov" <ivan.ivanov@linaro.org>, 
-	Andy Gross <andy.gross@linaro.org>, Georgi Djakov <djakov@kernel.org>, 
-	David Heidelberg <david@ixit.cz>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 3/9] dt-bindings: soc: qcom: add Smart Peripheral System
- Interrupt Controller
-Message-ID: <20250318-dandelion-aardwolf-of-radiance-695fd9@krzk-bin>
-References: <20250317-fix-nexus-4-v1-0-655c52e2ad97@oss.qualcomm.com>
- <20250317-fix-nexus-4-v1-3-655c52e2ad97@oss.qualcomm.com>
+	s=arc-20240116; t=1742284735; c=relaxed/simple;
+	bh=/YTs9cU8ULer4Fb+jefyvYbbD+cxlf0i/GS6i1fBfX0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ORkgY3XUi+VofkGYm3eHtAdu77rqI+GRfJK2zmKlRxMFosv7Y1pfvU0fl9OGZFXuYUdsgkzkH0XyqE0mRchVbnvjgERhTdDOaoS7JgbljnaaSUZNMX17OKEcUJKwDgMWi5FXsw7c16X2A08cMWvwJDBFtElYclIK4eaiw/nsny8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OcOTzBWj; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id D0FB844546;
+	Tue, 18 Mar 2025 07:58:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1742284731;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=E578/GSWCsWnqwEkiPnLlBcESnf5QKksDe4RlGkn5Sg=;
+	b=OcOTzBWjUOPC212xhPokYRhO/F5KrzIHi9z8hJle8RW6172GWhcFA5WoLVHrDMWPuetYul
+	8Rlltu+q/47QnavmtssxH/03p+P9auOdgaRXb1zvOrBCzlw4ZRtwPfYFWegswAMhuZr8lQ
+	B+VlxUsj/K5wwmH+G6rU+sbF1q/Wa2hoAb+vUrvOYwec/YV6fpDcJyGYELXnceSEkRhvK3
+	IpwWKVJcsanNA/vMiMgmUnAcGmfisx7dMhQNVseDPazQZpkv/WNSb0nbJQEb0dCnYmh+RY
+	QK4EkdothAHNrRK1DWBLD120h1+ZAmkxU8oZOLIK1KVcgRzOObebfxnJdBimYA==
+From: Antonin Godard <antonin.godard@bootlin.com>
+Subject: [PATCH 0/2] Add NLT NL13676BC25-03F panel support
+Date: Tue, 18 Mar 2025 08:58:27 +0100
+Message-Id: <20250318-b4-add-nlt-nl13676bc25-03f-v1-0-67e0f8cf2e6f@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250317-fix-nexus-4-v1-3-655c52e2ad97@oss.qualcomm.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKMn2WcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDY0Nj3SQT3cSUFN28nBIgNjQ2MzdLSjYy1TUwTtM1S7SwSEtKMjW2NEt
+ WAhpQUJSallkBNjw6trYWAL9yEMxsAAAA
+X-Change-ID: 20250313-b4-add-nlt-nl13676bc25-03f-6a88fbb5396c
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Antonin Godard <antonin.godard@bootlin.com>
+X-Mailer: b4 0.15-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=764;
+ i=antonin.godard@bootlin.com; h=from:subject:message-id;
+ bh=/YTs9cU8ULer4Fb+jefyvYbbD+cxlf0i/GS6i1fBfX0=;
+ b=owEBbQKS/ZANAwAIAdGAQUApo6g2AcsmYgBn2Se5TCFCSVl+n4jCzn3XlEwyp4i8r2uCkbqY1
+ 3RegzkGV3iJAjMEAAEIAB0WIQSGSHJRiN1AG7mg0//RgEFAKaOoNgUCZ9knuQAKCRDRgEFAKaOo
+ Nic4EACAIccHu05AUx/bJlZ7iQ1AAqOKDZGI64Nw3FEQz4qVLFDXvLOdW+E4aAtuv56g99zU4wM
+ syqQKPWmAVi8EONINcMggmeA9qva8O814ggTr1Nxw+LECDDUVw/zGQaAUdtol+g1kfwbKiFi4kQ
+ 0OAaYxXKVPRXOmEZJyitgMpaSKok5J3kjyM/jPGq5Q0HhBw+GKtHRgpmoLy4N+teqwB+Ynsmzne
+ rPoEcdUgTorR2T79mhTyW3OInUSyBM40hSeK584tY3xU5QsbEDgUrJIDer1UtX8ITES2t8wFJkZ
+ EkvEWbF2tNPhzCCzQOHUwIUYaSP5QkI8WiVIUVYhwUEeEbA+UEaX/u4GcUu6UPPCDhhFhQphLMv
+ 5rx+DB9zPG+1ivckuHLdZIT6Zimm1zhwskQrwkMLLETo5LbtDS3BFXlIkbLOkLPkEeS5Bnkyqbz
+ NOyOc3MjUSRV/AnyJRHs4DsbuB1JlbsF8HeXst5407+5AYT/HB7Cj1oJPg2jQ+MqrgNfJ/VHH4B
+ yc/9Oalr80yZOKegsoLkIidF/PlJEdlPxPdmuE6vOaXSkJ02U4rl3TPp0UUU8+JDcWxz6aA9rRZ
+ AE2DaGdCq8VoU2a383jon1sVSe44lpkl2Q3Cbpx9QzwFMR8bDyBj7GuqlQ1reuDJYsmbJjCjkxJ
+ XeWCTquV4x8ai9A==
+X-Developer-Key: i=antonin.godard@bootlin.com; a=openpgp;
+ fpr=8648725188DD401BB9A0D3FFD180414029A3A836
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddugedukeelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhufffkfggtgfgvfevofesthejredtredtjeenucfhrhhomheptehnthhonhhinhcuifhouggrrhguuceorghnthhonhhinhdrghhouggrrhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeduvdefkeffteeluedvgffhjeegffduveegfffghfejteejkedvgfeuvedtudejkeenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeejtgehtgemiegruggvmeejleegkeemgedtheelnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeejtgehtgemiegruggvmeejleegkeemgedtheelpdhhvghloheplgduvdejrddtrddurddungdpmhgrihhlfhhrohhmpegrnhhtohhnihhnrdhgohgurghrugessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudejpdhrtghpthhtohepqhhuihgtpghjvghsshiihhgrnhesqhhuihgtihhntgdrtghomhdprhgtphhtthhopehmrggrrhhtvghnrdhlrghnkhhhohhrshhtsehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtoheprghnthhonhhinhdrghhouggrrhgus
+ egsohhothhlihhnrdgtohhmpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghirhhlihgvugesghhmrghilhdrtghomhdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthiiihhmmhgvrhhmrghnnhesshhushgvrdguvgdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhg
+X-GND-Sasl: antonin.godard@bootlin.com
 
-On Mon, Mar 17, 2025 at 07:44:38PM +0200, Dmitry Baryshkov wrote:
-> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,sps-sic.yaml
-> @@ -0,0 +1,38 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/qcom/qcom,sps-sic.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Smart Peripheral System Interrupt Controller
+The NLT NL13676BC25-03F panel is a 15.6" LCD-TFT LVDS panel. It is a
+single port display unlike the NLT NL192108AC18-02D. Add a binding and a
+panel entry under panel-simple.c.
 
-Interrupt controller should have interrupt-cells. Or this is not
-interrupt controller...
+Signed-off-by: Antonin Godard <antonin.godard@bootlin.com>
+---
+Antonin Godard (2):
+      dt-bindings: display: simple: Add NLT NL13676BC25-03F panel
+      drm/panel: simple: Add NLT NL13676BC25-03F panel entry
 
-Anyway same comments as for previous patch.
+ .../bindings/display/panel/panel-simple.yaml       |  2 ++
+ drivers/gpu/drm/panel/panel-simple.c               | 27 ++++++++++++++++++++++
+ 2 files changed, 29 insertions(+)
+---
+base-commit: 0fed89a961ea851945d23cc35beb59d6e56c0964
+change-id: 20250313-b4-add-nlt-nl13676bc25-03f-6a88fbb5396c
 
 Best regards,
-Krzysztof
+-- 
+Antonin Godard <antonin.godard@bootlin.com>
 
 
