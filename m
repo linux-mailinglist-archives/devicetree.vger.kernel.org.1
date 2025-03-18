@@ -1,256 +1,159 @@
-Return-Path: <devicetree+bounces-158735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2BB3A67E28
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 21:46:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5BF7A67E59
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 21:57:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0029F4217D4
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 20:46:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D7D24225D1
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 20:57:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82B0A1DC19F;
-	Tue, 18 Mar 2025 20:45:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 282B3204F99;
+	Tue, 18 Mar 2025 20:57:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Ys/qtZN+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YhIXgqnh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D19E5DDC5;
-	Tue, 18 Mar 2025 20:45:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52B5A1CC8B0;
+	Tue, 18 Mar 2025 20:57:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742330759; cv=none; b=sVPlJ1fngkYuMO1iFIv3XCd5by/yLCav/ahw1fTtPHGRxDTf9kcO8vYl59lFRNktuZ/OGDlKgyzN3VeraxJqVRq8sSpLhNOLkJE6NRf2mLGgNvN0vGLPo16OYN34rGL7nouG4p0Q0/dDNi2FyqPkI+my4e91Qs7xajOty2OsZ4Y=
+	t=1742331474; cv=none; b=JRAIbes8nLHLs8Fk7LOBcsoXz1jyw8SWFrQjvzXHAPPeEP/EJYoNA0nmAubEEB8evz1Z44iWRn8K7D1wB7ruj5L4UORD9ZW6+N0mzO1L0BBMQC6TRPZqy0HvUqftZq4IO6A1iDdHmKcUPpyAztge3HizjyD+KoD65T88CkloYd8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742330759; c=relaxed/simple;
-	bh=Ww/CmrPaLUPl0pU8wVGr/0Vf5lblXEcIb1B/7SlZ0CY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Eyyk3Jj5I7fEY1b7DhPOki+8zyy/5XUwDmH6VTENopnbRLESuJ7yLZg/V0hDZ13UamACwceXH0Pq9+fHJPwQA3YS9jqIcsyUG8TFVjpaLWpXr4YyCmJdIKuERUOD7r+UGNjtJzvEj9d1qWlmLoQTUvKpzo5zLJfHT4Dkrm9VcXU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Ys/qtZN+; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52ICeCUP029922;
-	Tue, 18 Mar 2025 20:45:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	+JCvgkzNThz1hf8hNzsnQUDSkHaYz3SwncuZ+rmg82o=; b=Ys/qtZN+5Rbs0ohA
-	OU5D2VvcZpc3Lwe+fuA+Ur2sECpS19A/lHipmtAWzWahYwKeal+T0RPWvaUAbqeb
-	ruoJxGE2E+Ht6tNU/+KWLGPD/EAG4roN7KqsITowKZpJryeDLnCnsFgojMylLNTe
-	5rMls8VGJC2VxBKajOacKaTsx/in11+b5JVN01fU2M7f/hfulIEaKmxOPbDyRBiv
-	nNRs0zVtu4gCGEv0hg9z6BehwHeiuW8yy2UimnOXNusoqnXa1KwXOBWrURe+GNbD
-	48mMQ8MXHbyPZEFu9gsoNS3VhxJJuMcahBFE2ZI4pw19zwrw62jHwnlRXk8WKPC3
-	vLlsPw==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45f91t1a3r-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 18 Mar 2025 20:45:36 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52IKjZt1027943
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 18 Mar 2025 20:45:35 GMT
-Received: from [10.110.120.126] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 18 Mar
- 2025 13:45:35 -0700
-Message-ID: <2448dd34-25e6-4d4f-8c13-d98debc0753e@quicinc.com>
-Date: Tue, 18 Mar 2025 13:45:34 -0700
+	s=arc-20240116; t=1742331474; c=relaxed/simple;
+	bh=+QF/4Y17DE/+jHGS5sYMSyHmkRCgI8UFAzLvZbgN/ww=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=WKF0suGEdqhjhZbj7c7yphRV8C2pZ1PA7UxgZscLkbbDl+9Uw2Ky9O6MbjhX3SpxxIoW1EedDNn4Mo3cygfuP8SIgUD8RnXdG3ru8qJNh3H6yuQALR362o/+XHVwtJi+yms4gAwdB0iyLgrSgDQJPXNA7bEFXvQ5Ztw90JZ4mVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YhIXgqnh; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-391342fc148so3948974f8f.2;
+        Tue, 18 Mar 2025 13:57:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742331470; x=1742936270; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qK6WDmO+Tjf1RVbHis9ZC57Gu1PIwiwGXpHUB+ON45M=;
+        b=YhIXgqnhSYNFq/K4mR4d0rp3XpDwrEbHf5aU/JUt2OPalQp+UAuDJewyGEA+lUM+hc
+         E9avZ6p6WSHyW49oX/dk1aQN0Qxr3pRJOrIkmBpfDGL52cB94O3l3ssYawKndEp3gslJ
+         muYZJj84dOOM9WZ6IDLLLlf3Iz/U2bJl4gY0beSLTtA3NVhB875+QAFPZM0hfDufRn0S
+         YMk8yrNQ9o0cXIpdvvy/sockmfRCHrX342VvZ+i/6YwBnv+z3r4/oGEgpGq2uYm/1hAM
+         7Ntc5XefwRHbIMnjCdvjc7jr9SK5RNcn2Shd87m6sAaz/pG7k1bV2tn26h8YVvhfvpcE
+         aeMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742331470; x=1742936270;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qK6WDmO+Tjf1RVbHis9ZC57Gu1PIwiwGXpHUB+ON45M=;
+        b=JCN0llS/JQSNYsWabR2ijsTRVnqnTR+Uo3IzxPzLK9Rp4zWzGa98FDY97yh0ek57L3
+         BQ+RDnOF20MIia48Ne8SoLWRP2/O2yJ3eW4Kw3R/BNTUJ/VTPQikkg1jEBlWj106UP+5
+         Emd/sL75SdAbIsXMgEjbVvmRrGC//wKF/YyqZQFo6NYCbFq213l0xwAOmkH1QK47nxdn
+         zeuXgV0/yZvSEZyEM90jKWp3gfZycouFgbNnIg6Z9hfs2ioH2BVXtWWMwExmwVsziPm2
+         ZY7J0f9hq4wi7tsQOsQ856C2IsoQm+/ScRTo7mawaf0vymHW//5g68bdHFqnEu9dZDH2
+         /+uw==
+X-Forwarded-Encrypted: i=1; AJvYcCVMtlo/2tT+jUxhOnvsp0CFgOHEIyl9eEPBXNF/gbH5btqJ+ZNDBcR13WsJ31XEfsBsiIV2Ogt7@vger.kernel.org, AJvYcCWR7MxvmbAHWxVHpyFjdljVo0lZqcn7btpVpFE6xweqf9WVHfCpUCFFgJ73Q8ejwaw/u8H+CxOllvVBgibApLQ0lec=@vger.kernel.org, AJvYcCWx0QtAxq8VRgO87BJZ8d6W5aS7g06dTK+MrdIuUFGNARbWSBTbfVqKr9AL/eIk4yXKrP8qh6l6gC/gxsQ=@vger.kernel.org
+X-Gm-Message-State: AOJu0YySJl9HF7pwo6ES24tA1iuBjEtOvjtRpi81WoXOx9dimVJIrCm/
+	jPVO4RH95flb4X/DWC38B4+DCNiYd+6NnJnuEIh9JSAoTNlpYF8C
+X-Gm-Gg: ASbGnctOUfeSJET1Wfi8Nwml9mFfdhaTMRwG84CvOCO79yxyExtp767XqTKZ8Vlf+IM
+	tSeQrpWFdPcQJ7/Xr0LbhR2zAUea0vRyCQWTWh0GgpO8pWYQayhFXlmG+Bjgl7vWErZ3pzQxEuI
+	2Pwzin4+iChwf0gKnKAoooMSaM/mBM+j3QzF+RexCJfBcr2jMzev27uHk2J05Tvszi6ESumIBr/
+	6u3Cg9JA3VVVHJWtACUrw0h32hdxMBvtS/4ALJSQ2yAm38nlHeZ2cwWt/TuUaBP1UZIyL7UOaUd
+	clSi6nz6stPNYNDqc7njEZVGQElLGCVFVbkwk+VJkGLXLHaHE501tL5qveH0Nk4c+nx9ug==
+X-Google-Smtp-Source: AGHT+IF1MO8CJGLDOJKdce4PEDIO8LKdl11+YaVQAXuzhO1IA9G0bNro4xRgm7hSoMpdpH7wnalr4A==
+X-Received: by 2002:a05:6000:1564:b0:390:e535:8770 with SMTP id ffacd0b85a97d-399739bca2emr240275f8f.14.1742331470532;
+        Tue, 18 Mar 2025 13:57:50 -0700 (PDT)
+Received: from iku.Home ([2a06:5906:61b:2d00:9ebf:9797:69d8:2d33])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-395c7df3537sm19212864f8f.8.2025.03.18.13.57.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Mar 2025 13:57:50 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	netdev@vger.kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH net-next v4 0/3] Add GBETH glue layer driver for Renesas RZ/V2H(P) SoC
+Date: Tue, 18 Mar 2025 20:57:31 +0000
+Message-ID: <20250318205735.122590-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/6] arm64: dts: qcom: sm8750: Add UFS nodes for SM8750
- SoC
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-CC: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Satya Durga Srinivasu Prabhala
-	<quic_satyap@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
-        Nitin Rawat <quic_nitirawa@quicinc.com>,
-        "Manish Pandey" <quic_mapa@quicinc.com>
-References: <20250310-sm8750_ufs_master-v2-0-0dfdd6823161@quicinc.com>
- <20250310-sm8750_ufs_master-v2-4-0dfdd6823161@quicinc.com>
- <20250318052841.bdiqbzxrpzwqf7h7@thinkpad>
-Content-Language: en-US
-From: Melody Olvera <quic_molvera@quicinc.com>
-In-Reply-To: <20250318052841.bdiqbzxrpzwqf7h7@thinkpad>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: J5jzGRzhnljgSotgqMER08QiY3fZwYfh
-X-Authority-Analysis: v=2.4 cv=Xrz6OUF9 c=1 sm=1 tr=0 ts=67d9db70 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=4sn12QoEtl80kFXXyQYA:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: J5jzGRzhnljgSotgqMER08QiY3fZwYfh
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-18_09,2025-03-17_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- bulkscore=0 impostorscore=0 mlxlogscore=999 clxscore=1015 mlxscore=0
- priorityscore=1501 phishscore=0 suspectscore=0 adultscore=0 spamscore=0
- malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503180150
+Content-Transfer-Encoding: 8bit
 
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
+Hi All,
 
-On 3/17/2025 10:28 PM, Manivannan Sadhasivam wrote:
-> On Mon, Mar 10, 2025 at 02:12:32PM -0700, Melody Olvera wrote:
->> From: Nitin Rawat <quic_nitirawa@quicinc.com>
->>
->> Add UFS host controller and PHY nodes for SM8750 SoC.
->>
->> Co-developed-by: Manish Pandey <quic_mapa@quicinc.com>
->> Signed-off-by: Manish Pandey <quic_mapa@quicinc.com>
->> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/sm8750.dtsi | 106 +++++++++++++++++++++++++++++++++++
->>   1 file changed, 106 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/qcom/sm8750.dtsi
->> index 529e4e4e1d0ea9e99e89c12d072e27c45091f29e..72f69e717ce049bb0c524aa389d837ecd1459535 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
->> @@ -13,6 +13,7 @@
->>   #include <dt-bindings/power/qcom,rpmhpd.h>
->>   #include <dt-bindings/power/qcom-rpmpd.h>
->>   #include <dt-bindings/soc/qcom,rpmh-rsc.h>
->> +#include <dt-bindings/gpio/gpio.h>
-> Sort includes alphabetically.
+This patch series adds support for the GBETH (Gigabit Ethernet) interface
+on the Renesas RZ/V2H(P) SoC. The changes include updating the device tree
+bindings, documenting the GBETH bindings, and adding the DWMAC glue layer
+for the Renesas GBETH.
 
-Ack.
+Note, this patch series depends on [0].
 
->
->>   
->>   / {
->>   	interrupt-parent = <&intc>;
->> @@ -2675,6 +2676,111 @@ gic_its: msi-controller@16040000 {
->>   			};
->>   		};
->>   
->> +		ufs_mem_phy: phy@1d80000 {
->> +			compatible = "qcom,sm8750-qmp-ufs-phy";
->> +			reg = <0 0x01d80000 0 0x2000>;
-> Use 0x0 for consistency.
+[0] https://lore.kernel.org/all/Z82tWYZulV12Pjir@shell.armlinux.org.uk/
 
-Ack.
+v3->v4
+- Fixed maxItems for interrupt-names property
+- Maintained reverse christmas tree order in renesas_gbeth_clks_config
+- Returned err in case of success in renesas_gbeth_probe()
 
->
->> +
->> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
->> +				<&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
->> +				 <&tcsrcc TCSR_UFS_CLKREF_EN>;
-> Please align the clocks.
+v2->v3
+- Fixed review comments from Rob and Russell
 
-Ack.
+v1->v2
+- Updated commit description for patch 2/3
+- Updated tx/rx queue completion interrupt names
+- Added clks_config callback
 
->
->> +
->> +			clock-names = "ref",
->> +				      "ref_aux",
->> +				      "qref";
->> +
->> +			resets = <&ufs_mem_hc 0>;
->> +			reset-names = "ufsphy";
->> +
->> +			power-domains = <&gcc GCC_UFS_MEM_PHY_GDSC>;
->> +
->> +			#clock-cells = <1>;
->> +			#phy-cells = <0>;
->> +
->> +			status = "disabled";
->> +			};
-> Here too.
+v1:
+https://lore.kernel.org/all/20250302181808.728734-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
 
-I'm assuming you mean the curly brace; ack.
+Cheers,
+Prabhakar
 
->
->> +
->> +		ufs_mem_hc: ufs@1d84000 {
->> +			compatible = "qcom,sm8750-ufshc",
->> +				     "qcom,ufshc",
->> +				     "jedec,ufs-2.0";
-> Compatibles can be ordered in the same line.
+Lad Prabhakar (3):
+  dt-bindings: net: dwmac: Increase 'maxItems' for 'interrupts' and
+    'interrupt-names'
+  dt-bindings: net: Document support for Renesas RZ/V2H(P) GBETH
+  net: stmmac: Add DWMAC glue layer for Renesas GBETH
 
-Ack.
+ .../bindings/net/renesas,r9a09g057-gbeth.yaml | 201 ++++++++++++++++++
+ .../devicetree/bindings/net/snps,dwmac.yaml   |  25 ++-
+ drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 +
+ drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+ .../stmicro/stmmac/dwmac-renesas-gbeth.c      | 165 ++++++++++++++
+ 5 files changed, 394 insertions(+), 9 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/renesas,r9a09g057-gbeth.yaml
+ create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-renesas-gbeth.c
 
->
->> +			reg = <0 0x01d84000 0 0x3000>;
-> 0x0
-
-Ack.
-
->
->> +
->> +			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
->> +
->> +			clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
->> +				 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
->> +				 <&gcc GCC_UFS_PHY_AHB_CLK>,
->> +				 <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
->> +				 <&rpmhcc RPMH_LN_BB_CLK3>,
->> +				 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
->> +				 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
->> +				 <&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
->> +			clock-names = "core_clk",
->> +				      "bus_aggr_clk",
->> +				      "iface_clk",
->> +				      "core_clk_unipro",
->> +				      "ref_clk",
->> +				      "tx_lane0_sync_clk",
->> +				      "rx_lane0_sync_clk",
->> +				      "rx_lane1_sync_clk";
->> +
->> +			operating-points-v2 = <&ufs_opp_table>;
->> +
->> +			resets = <&gcc GCC_UFS_PHY_BCR>;
->> +			reset-names = "rst";
->> +
->> +			interconnects = <&aggre1_noc MASTER_UFS_MEM QCOM_ICC_TAG_ALWAYS
->> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
->> +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
->> +					 &config_noc SLAVE_UFS_MEM_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
->> +			interconnect-names = "ufs-ddr",
->> +					     "cpu-ufs";
->> +
->> +			power-domains = <&gcc GCC_UFS_PHY_GDSC>;
->> +			required-opps = <&rpmhpd_opp_nom>;
->> +
->> +			iommus = <&apps_smmu 0x60 0>;
->> +			dma-coherent;
->> +
->> +			lanes-per-direction = <2>;
->> +
->> +			phys = <&ufs_mem_phy>;
->> +			phy-names = "ufsphy";
->> +
->> +			#reset-cells = <1>;
->> +
->> +			status = "disabled";
->> +
-> Extra newline
-
-Will remove.
-
-Thanks,
-Melody
+-- 
+2.43.0
 
 
