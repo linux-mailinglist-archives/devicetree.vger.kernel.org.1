@@ -1,153 +1,113 @@
-Return-Path: <devicetree+bounces-158454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4F2BA66D3F
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 09:03:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77993A66D40
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 09:03:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4AAF41896473
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 07:59:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 93A4C423665
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 08:01:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DADC02046AF;
-	Tue, 18 Mar 2025 07:58:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 430761DD886;
+	Tue, 18 Mar 2025 08:00:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="YP5STpDo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZbL8ixVC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85DA81FE460;
-	Tue, 18 Mar 2025 07:58:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 165E738FA6;
+	Tue, 18 Mar 2025 08:00:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742284736; cv=none; b=VyujcS6FyX1QUaohHAEwxuKD7XFFz9NbHZkihB9qJFRWwBbZGIFKeWq1/6UBMchbqeqgtB/zTrWL3P/0MFfgxya07ke2qnWAgs5fwxm/BSpy5LW8fP+EE4JhId/W+9f1qSYpRwGBK4Z5PORVnaoAxBXQtWUmnPpKKTsQYk2rfWY=
+	t=1742284825; cv=none; b=u5EW0TJpBVRmwUUuIVQMVuE6xMkgnsFByA2Z935RJQfajHAYGI6SFDv1mU7S3g4UERWo2iLI+Scrl9iE7ShCKnGgO9wd+buuySDkK0j+6OCYCbZmDZanUuYfKxAHe6vh8pUAo93rOQx7pjzBoLl54X2kPAQcK7/n2dJNgH03HHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742284736; c=relaxed/simple;
-	bh=O13+H7IKC69Mnli79GP5hJn7xftMhmmXRfJoVpOIonA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=GKc0f/OQUEbidkIv8tXjyJDAyzL3TpIbusYZuUU2L5K+DnbQELC9deJikJT3mNghlGQgSL8a7a8IVou4I/CHju8JH+W3GmMjJcQq3Her0aqDX/5X7y7PZVZrjY1o0Aqe8uJQYCoSprOFkG7j7OM2lCrw8ar3/cLa1yWDrMjvkC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=YP5STpDo; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 05BC744533;
-	Tue, 18 Mar 2025 07:58:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1742284732;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=7R0mqNUzqAg2QCm5bBtYnkjd6OV6reCUBCbRyU3eWic=;
-	b=YP5STpDoMZREkp9gcCPZZCu9ZEsd5x8CKrViKkcuskkD+We7frWjtRTDto1VN01D0akUuw
-	q6/9HtBKeZB0/cRWMVmLNvquu5QEmjEqDIdEgypU600OUb0Qmp9S1eD7Qy6rQY/C2xcAkj
-	PoygrGyDrXRQJcNhKLP4lQtB0R/bJBC/jgVeuS5qRd0UI3mQrklaoVYhKolUTh+bbM/SL5
-	cbnSRP7PXlIaMgGSEX213PgZTWM2X1aVcJkqOHeXHXuJguFSHDu6auqVMQV4zf08mswSQ5
-	F4okykfuF8/VJRjMa//0raygycgPlfjYk3sRFek9hI3XWVJwOahrmFy2bfgICA==
-From: Antonin Godard <antonin.godard@bootlin.com>
-Date: Tue, 18 Mar 2025 08:58:29 +0100
-Subject: [PATCH 2/2] drm/panel: simple: Add NLT NL13676BC25-03F panel entry
+	s=arc-20240116; t=1742284825; c=relaxed/simple;
+	bh=q0iAie+/ac8TF5bdE35fwcBMcem45zb0jJnV1wd8xi8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ddDPp9TVgK+iR0upQ1d2I2A5GSzk9+RZwzzozQJaWVMlaCzuu8+hoDehW0eAUGgG1PMDO9lh65TShb6XopZC+u7oCRdIP9ZIHY56BteffOB+/x8eXkUU62v0LIQ2amlvEG5Q2zXH+lmsdBkdNEJSk9ascuIKVcQYPP7Wxc2CLzM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZbL8ixVC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD686C4CEE9;
+	Tue, 18 Mar 2025 08:00:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742284824;
+	bh=q0iAie+/ac8TF5bdE35fwcBMcem45zb0jJnV1wd8xi8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZbL8ixVCaLmi0JhXDNy7BmPTWxoFvHxUXC2b4VUE0DbnT0l/ZgkzsNGozV+WdM3FN
+	 Vj0Kt1acewQ71BM9re0gsKaqQiRUbGoShdF3B7i8qznckuOOF6af0CZfo9nOXZ39TO
+	 rLovjZvjmDwFpjV53d6zqobyS3S8kWvzMwRsLlV8c9oKoEAMQlbXtSQpSMk37yYsNW
+	 5i/l6RycOh+66MuaYqNnH0WcKgva6oQTPud7fWijAXjMGPBuAQCuOgexfkk5jlFOSI
+	 B5TNhAVhy4EMiOQiO2exhSBYBokUehhBMGFLCjPA4/fxofyuSENb5orO3MysFaItvi
+	 yub9cagFWkRYg==
+Date: Tue, 18 Mar 2025 09:00:20 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+Cc: ath12k@lists.infradead.org, Johannes Berg <johannes@sipsolutions.net>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>, 
+	linux-wireless@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH ath-next v11 00/13] wifi: ath12k: add Ath12k AHB driver
+ support for IPQ5332
+Message-ID: <20250318-splendid-sceptical-gazelle-8abbef@krzk-bin>
+References: <20250317204639.1864742-1-quic_rajkbhag@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250318-b4-add-nlt-nl13676bc25-03f-v1-2-67e0f8cf2e6f@bootlin.com>
-References: <20250318-b4-add-nlt-nl13676bc25-03f-v1-0-67e0f8cf2e6f@bootlin.com>
-In-Reply-To: <20250318-b4-add-nlt-nl13676bc25-03f-v1-0-67e0f8cf2e6f@bootlin.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Antonin Godard <antonin.godard@bootlin.com>
-X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1736;
- i=antonin.godard@bootlin.com; h=from:subject:message-id;
- bh=O13+H7IKC69Mnli79GP5hJn7xftMhmmXRfJoVpOIonA=;
- b=owEBbQKS/ZANAwAIAdGAQUApo6g2AcsmYgBn2Se5u0z7p3sTgUJn+YNpLaU7q09mv9Go6GNUK
- 39Grqcj0NWJAjMEAAEIAB0WIQSGSHJRiN1AG7mg0//RgEFAKaOoNgUCZ9knuQAKCRDRgEFAKaOo
- NibeD/9gZx27UCPrSJi9n+UogplclRbozKvhNSWtpzbSLijNdtrlr3Z+J9rm/9Yy45nh2F8MU2F
- rTK5RrcigGXYDCad9uBHc9hxAXubSIrCoGWojIivldPwT3Tvm2R1SiR6MT4eq7hxhjr/VM8LOb3
- WhcoGB4SLSlBDFdpmcVsxUN/AsbuNk4uA8RocgjFtzWWL3z1QDqWgu4D3iZtKWUOAUgVNcFXHea
- xyT9OZKydi+j2PjO4QufDNrEX6+9c1kQkSrnrlJhDai3qGo+tqYin/dPHZ9ZfkzU9ktOQsQg2JS
- AQXassArm0JFdHEZhxVJCKx/0UWCW+xMfowPre9qxkthRlyigpJkIBuLHLS4QkFW+0miktXMdun
- NSrJivBmR5NaksF+C5mAmf9/n1+gFefVKvkb1DQ3Aunwnd2NjhS34zgvMuGZgUV5gku6njiQy8Z
- UcGVUe629eFaD0T1RcBcTRaHLpebyYvYsbeO6TUwRW0YuIf0fCJtVH5v71xkERcNsdyUnfKwGxZ
- /Flm/8tNxyr7XDqaf+NwSwX8S6PrSEybMrof1Yl5NkdrxGTO0tiXkSQTn9Xmvz1VPzf6xuL9nqL
- yo9OUGoKWiG7SikIsGdkeM8wg7pcpfrCkvvDLyFp1Toh23WMUP+IS3/Vx3d3q/DKpsMF07CFMRP
- 3o5F7G3VoCPrkIw==
-X-Developer-Key: i=antonin.godard@bootlin.com; a=openpgp;
- fpr=8648725188DD401BB9A0D3FFD180414029A3A836
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddugedukeelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhfffugggtgffkfhgjvfevofesthejredtredtjeenucfhrhhomheptehnthhonhhinhcuifhouggrrhguuceorghnthhonhhinhdrghhouggrrhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeehveevhfefvdekveejvddtgeekvefghefhfeehvedtvdevfeekteegteefveelvdenucffohhmrghinhepfedqgeektddvjedvvghfqdgrthiglhdruggrthgrnecukfhppedvrgdtudemtggsudegmeehheeimeejrgdttdemjegthegtmeeirgguvgemjeelgeekmeegtdehleenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudegmeehheeimeejrgdttdemjegthegtmeeirgguvgemjeelgeekmeegtdehledphhgvlhhopegluddvjedrtddruddrudgnpdhmrghilhhfrhhomheprghnthhonhhinhdrghhouggrrhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedujedprhgtphhtthhopehquhhitggpjhgvshhsiihhrghnsehquhhitghinhgtrdgtohhmpdhrtghpthhtohepmhgrrghrthgvnhdrlhgrnhhkhhhorhhstheslhhinhhugidri
- hhnthgvlhdrtghomhdprhgtphhtthhopegrnhhtohhnihhnrdhgohgurghrugessghoohhtlhhinhdrtghomhdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrihhrlhhivggusehgmhgrihhlrdgtohhmpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehtiihimhhmvghrmhgrnhhnsehsuhhsvgdruggvpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrgh
-X-GND-Sasl: antonin.godard@bootlin.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250317204639.1864742-1-quic_rajkbhag@quicinc.com>
 
-Add support for the NLT NL13676BC25-03F 15.6" LCD-TFT LVDS panel.
+On Tue, Mar 18, 2025 at 02:16:26AM +0530, Raj Kumar Bhagat wrote:
+> Currently, Ath12k driver only supports WiFi devices that are based on
+> PCI bus. New Ath12k device IPQ5332 is based on AHB bus. Hence, add
+> Ath12k AHB support for IPQ5332.
+> 
+> IPQ5332 is IEEE802.11be 2 GHz 2x2 Wifi device. To bring-up IPQ5332
+> device:
+> - Add hardware parameters for IPQ5332.
+> - CE register address space in IPQ5332 is separate from WCSS register
+>   space. Hence, add logic to remap CE register address.
+> - Add support for fixed QMI firmware memory for IPQ5332.
+> - Support userPD handling for WCSS secure PIL driver to enable ath12k
+>   AHB support.
+> 
+> NOTE:
+> The working upstream DTS changes for this series have been posted as a
+> separate series.
+> [PATCH v2] arm64: dts: qcom: add wifi node for IPQ5332 based RDP441
+> 
+> v11:
+> - Updated Kconfig for ATH12k AHB.
+> - Replaced the API devm_ioremap_wc() with devm_memremap to fix ath12k-check
+>   warning: "warning: cast removes address space '__iomem' of expression"
+> - Rebased on latest ToT.
+> - Removed tag "Reviewed-by: Vasanthakumar Thiagarajan", in the updated
+>   patch [11/13] wifi: ath12k: Power up userPD
 
-Signed-off-by: Antonin Godard <antonin.godard@bootlin.com>
----
- drivers/gpu/drm/panel/panel-simple.c | 27 +++++++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 9b2f128fd309..96e8569d97ca 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -3469,6 +3469,30 @@ static const struct panel_desc newhaven_nhd_43_480272ef_atxl = {
- 	.connector_type = DRM_MODE_CONNECTOR_DPI,
- };
- 
-+static const struct drm_display_mode nlt_nl13676bc25_03f_mode = {
-+	.clock = 75400,
-+	.hdisplay = 1366,
-+	.hsync_start = 1366 + 14,
-+	.hsync_end = 1366 + 14 + 56,
-+	.htotal = 1366 + 14 + 56 + 64,
-+	.vdisplay = 768,
-+	.vsync_start = 768 + 1,
-+	.vsync_end = 768 + 1 + 3,
-+	.vtotal = 768 + 1 + 3 + 22,
-+};
-+
-+static const struct panel_desc nlt_nl13676bc25_03f = {
-+	.modes = &nlt_nl13676bc25_03f_mode,
-+	.num_modes = 1,
-+	.bpc = 8,
-+	.size = {
-+		.width = 363,
-+		.height = 215,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,
-+	.connector_type = DRM_MODE_CONNECTOR_LVDS,
-+};
-+
- static const struct display_timing nlt_nl192108ac18_02d_timing = {
- 	.pixelclock = { 130000000, 148350000, 163000000 },
- 	.hactive = { 1920, 1920, 1920 },
-@@ -5056,6 +5080,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "newhaven,nhd-4.3-480272ef-atxl",
- 		.data = &newhaven_nhd_43_480272ef_atxl,
-+	}, {
-+		.compatible = "nlt,nl13676bc25-03f",
-+		.data = &nlt_nl13676bc25_03f,
- 	}, {
- 		.compatible = "nlt,nl192108ac18-02d",
- 		.data = &nlt_nl192108ac18_02d,
+This is v11 and still sent in a way it messes with toolset:
 
--- 
-2.47.0
+  b4 diff -C 20250317204639.1864742-2-quic_rajkbhag@quicinc.com
+  Grabbing thread from lore.kernel.org/all/20250317204639.1864742-2-quic_rajkbhag@quicinc.com/t.mbox.gz
+  Checking for older revisions
+    Added from v10: 14 patches
+  ---
+  Analyzing 135 messages in the thread
+  Preparing fake-am for v11: dt-bindings: net: wireless: describe the ath12k AHB module for IPQ5332
+  ERROR: Could not fake-am version v11
+  ---
+  Could not create fake-am range for upper series v11
+
+Can you fix your process so the tools will be happy? Please read
+carefully your internal guideline go/upstream before posting next
+version.
+
+Best regards,
+Krzysztof
 
 
