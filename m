@@ -1,53 +1,61 @@
-Return-Path: <devicetree+bounces-158656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158657-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8359BA679A4
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 17:34:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ABA7A679AC
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 17:36:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 076001B61CF5
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 16:29:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8387F189E30D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 16:31:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06E5A213E91;
-	Tue, 18 Mar 2025 16:27:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30D30212B1E;
+	Tue, 18 Mar 2025 16:29:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="l6bpPstU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JvEZAX+C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DC1F213243;
-	Tue, 18 Mar 2025 16:26:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00E42212B00;
+	Tue, 18 Mar 2025 16:28:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742315221; cv=none; b=Cp4eFZl50x/uzQD2H8P86KGwBncnH1AxjNaq/2VLVTSxk2Lm4ZpvrEgo7FAIOe4xTPLoioWEzlbJ70mZjiTix9sd7USUfVzsjGGIwCROIR7lJhtxl4doM8FkP9/yZ0FRfe1i+mffZmvDxPp0YdoUaELZ+aUUTFed4dYln1PJ1cA=
+	t=1742315340; cv=none; b=EKtdBOp0Je6i1a8j8efnTKkA79T1NCPUFeAfJVvSz0Fwyl0k4jttak5IPPNdSICVIC5r+n0OUcXTpYEVw5HGdRpUF2GAdwGaH5dukYsgDdF2ov6sNIOnL1K1wZrhBgD6vIzx7lAgbwNnRKYRstB2XK8B7TzIh/4xqycx1H3/BI4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742315221; c=relaxed/simple;
-	bh=3uTFm8tcHWLTDwiTDB9fZluzTB95nh7pyB7LQuDbmvM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=QBKi+MCUmydC4TRKPpm7oBCeUWNfj7FiFr+kQTHC0lxpfUaraM8GAuzm/yf/jMJTTgYnp9i12n90NWe7dPrJBc9kAS/k3g1RUiT94T9f+ML1nqZpm2JuggD6COabBaq6p+MOn0rkhRsdln9Drd/cFNfGBKXCfuaXcLDZPDGVOrA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=l6bpPstU; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id B1B52442B9;
-	Tue, 18 Mar 2025 16:26:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1742315217;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=rXJmWgDlCeNEVbpIPgqlgt5yHUU1xSa+bdYMou/uKVI=;
-	b=l6bpPstUiDjxYtNhxiJDVhKyoonKd04EFF3u9RXY557ZEtsfu7eYjQDlhyXsP2AAp8Ky9h
-	x/73kghvPS2uMjgR6RoXQBLGv4biA0BauIt0ohPc/BowFCt6jgrBmStllysTChSn9v71bC
-	/pkyOoReyw23SyOBm4DQlmP43JVdHcoa2xZJgeohkpDTPPKLiArLiZLeMXQC04lqk3pZaE
-	qpjpwtpHl2zY8I61CV/Pol7AdKSVdZIkKYWkhZFYbCP/DSY49jg/C5Xw+QCzv7fYFvZt0P
-	vWtcNp8t2nralCd9OusnXXARgayLwF53bCTKT3sVhll7lpj0D2vmPaNT4Arb3A==
-From: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Date: Tue, 18 Mar 2025 17:26:27 +0100
-Subject: [PATCH v5 11/11] MAINTAINERS: Add entry on MAX7360 driver
+	s=arc-20240116; t=1742315340; c=relaxed/simple;
+	bh=wnl2NwzFRfWI9B+0pXiBWEfiup8Fd+EnVJVjNERrLPw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=I8zO+vFP/J7rVda1RsvYGVvPvwR2yakQlcm7MMhfVSlIkaj1Q7QGcaukUGK/9fYx99SktIDH+nZVpVFNMvaKqoeYt4uBTv6KGKmtXS81EYaFghedcbs9mBvXXmFrmu3ZyPKtuPofTICONlLNNt2lBJz/PUXFEcDbdSY+1oTtJag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JvEZAX+C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A678FC4CEDD;
+	Tue, 18 Mar 2025 16:28:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742315339;
+	bh=wnl2NwzFRfWI9B+0pXiBWEfiup8Fd+EnVJVjNERrLPw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=JvEZAX+CzNQVXbb5F/D/HSjHtJFxHToev4pQQqzooHr/+bRi5Q7KsmwbB7+xkEbkC
+	 HG8dwijBT3EZAiYujC/+JMTeNaslHIV4hO4eD/xgvGgZBIXmTrqcQYyOboBaqnHIWu
+	 zi17KYqbPTBtla9KofDmVmY5COnZjVKLQ3cbAvLRTxaMvCIH5dmPFs39DhlPP1WXrf
+	 2GABIoiXzHqAQIK3GL63tUKgTqGFlEsn/9GXTyNoii7SSB1uUrIyMd6CCiMt9nMRzb
+	 IncEiyopLTHRUmApo/O42wxOOOtCA455nEFEJO5/dY7miOqPSb3CPRCDpFDu9GjIvm
+	 +sKTRiTjDzNMg==
+From: Mark Brown <broonie@kernel.org>
+To: lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com, jack.yu@realtek.com, 
+ rf@opensource.cirrus.com, neil.armstrong@linaro.org, 
+ ivprusov@salutedevices.com, luca.ceresoli@bootlin.com, 
+ zhoubinbin@loongson.cn, quic_pkumpatl@quicinc.com, herve.codina@bootlin.com, 
+ masahiroy@kernel.org, nuno.sa@analog.com, yesanishhere@gmail.com, 
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, wangweidong.a@awinic.com
+Cc: yijiangtao@awinic.com
+In-Reply-To: <20250312120100.9730-1-wangweidong.a@awinic.com>
+References: <20250312120100.9730-1-wangweidong.a@awinic.com>
+Subject: Re: [PATCH V3 0/2] ASoC: codecs: Add aw88166 amplifier driver
+Message-Id: <174231533542.179247.14373898557017165095.b4-ty@kernel.org>
+Date: Tue, 18 Mar 2025 16:28:55 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,73 +64,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250318-mdb-max7360-support-v5-11-fb20baf97da0@bootlin.com>
-References: <20250318-mdb-max7360-support-v5-0-fb20baf97da0@bootlin.com>
-In-Reply-To: <20250318-mdb-max7360-support-v5-0-fb20baf97da0@bootlin.com>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Kamel Bouhara <kamel.bouhara@bootlin.com>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-gpio@vger.kernel.org, linux-input@vger.kernel.org, 
- linux-pwm@vger.kernel.org, andriy.shevchenko@intel.com, 
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1742315204; l=1082;
- i=mathieu.dubois-briand@bootlin.com; s=20241219; h=from:subject:message-id;
- bh=3uTFm8tcHWLTDwiTDB9fZluzTB95nh7pyB7LQuDbmvM=;
- b=1FwmGXIQ5wmevxdWKsSwjCAdDZmtCOyew36WZg3YCBQjJNd6M+wPB68K2XX3+DMBGpYRI8ATm
- vY3dkwCQ9TlBmKsrjxAXQVNsvcWiqp0HY29lnH3/wVE0xfFZ/6j/Cyp
-X-Developer-Key: i=mathieu.dubois-briand@bootlin.com; a=ed25519;
- pk=1PVTmzPXfKvDwcPUzG0aqdGoKZJA3b9s+3DqRlm0Lww=
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddugedvledvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhfffugggtgffkfhgjvfevofesthejredtredtjeenucfhrhhomhepofgrthhhihgvuhcuffhusghoihhsqdeurhhirghnugcuoehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpedthfegtedvvdehjeeiheehheeuteejleektdefheehgfefgeelhfetgedttdfhteenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeinecuvehluhhsthgvrhfuihiivgepjeenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeipdhhvghloheplgduvdejrddtrddurddungdpmhgrihhlfhhrohhmpehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvfedprhgtphhtthhopehlihhnuhigqdhinhhpuhhtsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggrkhhrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrrghfrggvlhesk
- hgvrhhnvghlrdhorhhgpdhrtghpthhtohepmhgrthhhihgvuhdrughusghoihhsqdgsrhhirghnugessghoohhtlhhinhdrtghomhdprhgtphhtthhopehukhhlvghinhgvkheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhgrmhgvlhdrsghouhhhrghrrgessghoohhtlhhinhdrtghomhdprhgtphhtthhopehgrhgvghhkhheslhhinhhugihfohhunhgurghtihhonhdrohhrghdprhgtphhtthhopehmfigrlhhlvgeskhgvrhhnvghlrdhorhhg
-X-GND-Sasl: mathieu.dubois-briand@bootlin.com
+X-Mailer: b4 0.15-dev-1b0d6
 
-Add myself as maintainer of Maxim MAX7360 driver and device-tree bindings.
+On Wed, 12 Mar 2025 20:00:58 +0800, wangweidong.a@awinic.com wrote:
+> Add the awinic,aw88166 property to support the aw88166 chip.
+> 
+> The driver is for amplifiers aw88166 of Awinic Technology
+> Corporation. The AW88166 is a high efficiency digital
+> Smart K audio amplifier
+> 
+> v2 -> v3: Modified warnings compiled with clang19.1.7,
+>            removes printing of uninitialized values
+> 
+> [...]
 
-Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
----
- MAINTAINERS | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+Applied to
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 25c86f47353d..2b67d356a4a7 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14259,6 +14259,19 @@ L:	linux-iio@vger.kernel.org
- S:	Maintained
- F:	drivers/iio/temperature/max30208.c
- 
-+MAXIM MAX7360 KEYPAD LED MFD DRIVER
-+M:	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/gpio/maxim,max7360-gpio.yaml
-+F:	Documentation/devicetree/bindings/mfd/maxim,max7360.yaml
-+F:	drivers/gpio/gpio-max7360.c
-+F:	drivers/input/keyboard/max7360-keypad.c
-+F:	drivers/input/misc/max7360-rotary.c
-+F:	drivers/mfd/max7360.c
-+F:	drivers/pinctrl/pinctrl-max7360.c
-+F:	drivers/pwm/pwm-max7360.c
-+F:	include/linux/mfd/max7360.h
-+
- MAXIM MAX77650 PMIC MFD DRIVER
- M:	Bartosz Golaszewski <brgl@bgdev.pl>
- L:	linux-kernel@vger.kernel.org
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
--- 
-2.39.5
+Thanks!
+
+[1/2] ASoC: dt-bindings: Add schema for "awinic,aw88166"
+      commit: 399f9bd01644c827be8bfca1236ec9b4c211ccbe
+[2/2] ASoC: codecs: Add aw88166 amplifier driver
+      commit: 88f200955977c211be053afebe3264debb9680f8
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
