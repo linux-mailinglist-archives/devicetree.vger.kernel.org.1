@@ -1,67 +1,56 @@
-Return-Path: <devicetree+bounces-158474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 366EEA66E7E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 09:39:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2944A66EBA
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 09:45:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 679207A923B
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 08:37:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C41C31776BA
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 08:45:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FEB21FCF47;
-	Tue, 18 Mar 2025 08:38:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86D5C202984;
+	Tue, 18 Mar 2025 08:44:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ljti+raa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dcjy9VLp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BC0A1993B2;
-	Tue, 18 Mar 2025 08:38:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53BD120296B;
+	Tue, 18 Mar 2025 08:44:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742287094; cv=none; b=YshanWM+6mJwbcd9ADaZXZmJGAugetQcydBE69MHPeE3UohLrbj1oOjEc3FcWiBnlr0Fg7Kk7xHlfIwmwsG05z9TZCdY/+ebGMHo9XedaIQ8SJLKYo9s8CO18UvF30h3eRvEH/OyCFpklzZt0B4or5je5qN5nJdWTUZ4Q55HKGg=
+	t=1742287478; cv=none; b=LGgNokt9oPdojW7Dgbh5Y1s0hcg1VTQtDx3G7+slDLJo2sy/x8enSCJni9DL4UnpEkusewTPhJCaAcWrjNhZ6Ole3XSfLDdS4NFhNDbe1Dzl3VJc2cuKXEtAT1QFZFviVrTiBFFlkkNdCy1AoAyvHyqeNFX5Uzd1ifCmWWLOR5w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742287094; c=relaxed/simple;
-	bh=GtWNyQsWaempNqttFpp8AzPaBMJoSwKhswBcUlRoctc=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=Kuw30mCf7JckiVZOyeJb36bg8CXT/SKyb6HORAo3/AQkJ+3NkLXrjxoOcHYrF35ItWsx9SQN/huhUXkRdrY80auUnt5jTHr+YO3HkF8qgVgdHbrb0Ios99FyyTXMEnjJs9nSvztm3NZgCY6eRo+CNS0ZwWjsHAzFHuid7yZsSMk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ljti+raa; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id A52444455F;
-	Tue, 18 Mar 2025 08:38:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1742287090;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=GtWNyQsWaempNqttFpp8AzPaBMJoSwKhswBcUlRoctc=;
-	b=ljti+raaFnHDAV+96UbL/7JkfOfiFzWILfajEVmKUc6BCpy8ikUc15a299iazQDS5/tVET
-	PA/DvnHUARU5Cqfo3d/fNJSc3JDpnjqQsTWbHWkQ45GHfDHbMt7Uq41vCnjPInVEIWiv61
-	Ec/wMAkDqjtNVA5HLO8rEm2VbGh1aYyz5ZsNi4Lf65dAF5yWIsLKjmXkEOooXE9mfjDVz5
-	4Lkh81VpTth5fRzTGzyXjJWGd+L8xM5YB6zgSBS5op9rL10XE8+pFRdcxG1/gEHsQ2FI2x
-	Xo2dJYnLXXeFX1U11Hc8eoXMkCLITcRjUBMKfdMyqXbGozCTwpvFPvgvOne32Q==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,  Magnus Damm
- <magnus.damm@gmail.com>,  Rob Herring <robh@kernel.org>,  Krzysztof
- Kozlowski <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
-  Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-  linux-renesas-soc@vger.kernel.org,  devicetree@vger.kernel.org,
-  linux-kernel@vger.kernel.org,  =?utf-8?Q?Cl=C3=A9ment_L=C3=A9ger?=
- <clement.leger@bootlin.com>
-Subject: Re: [PATCH v3] ARM: dts: r9a06g032: add r9a06g032-rzn1d400-eb board
- device-tree
-In-Reply-To: <20250314-rzn1d400-eb-v3-1-45c4fd3f6e01@bootlin.com> (Thomas
-	Bonnefille's message of "Fri, 14 Mar 2025 19:56:29 +0100")
-References: <20250314-rzn1d400-eb-v3-1-45c4fd3f6e01@bootlin.com>
-User-Agent: mu4e 1.12.7; emacs 29.4
-Date: Tue, 18 Mar 2025 09:38:08 +0100
-Message-ID: <87r02ud98v.fsf@bootlin.com>
+	s=arc-20240116; t=1742287478; c=relaxed/simple;
+	bh=NJJzNTRDknJXLfROOfBbxIWmcgwRhNCep316udiZ8FM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Rce9rFukq1+pPYztWQ+8D4B8NZ3QayPUQr1Vubi2pJDGa6cyMy0Te+RTqQq0ea7+EZkTeldvAFaQYS0r91BgeC7O07T+qmrStXGkmixMRCZgpUkzZJoXdLnbRJJFfSJ87JPf0/rOtlUPEfE63M/PWo39+lVMJmgOb0ybmfOZL5Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dcjy9VLp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31F26C4CEEE;
+	Tue, 18 Mar 2025 08:44:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742287478;
+	bh=NJJzNTRDknJXLfROOfBbxIWmcgwRhNCep316udiZ8FM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dcjy9VLpm33mUCfRhkjxGfHVKu2TRRnc0L7RRFbXPRNp3r7sRwU+SGolTYvRgxad/
+	 FwrYDkGR7UWaS6UxVNa7uaERBHjXdjuxmQRbP8c+eviscDzV3YuXIPRz8lPS6HTKG5
+	 j6uKWvegpcFbDrSRVS5iivttq4ClLUl1OeUkF4jHtJ8wYcXkudUmHyg8tyCc+M+2ak
+	 I7SCoHCE6aM6LTyiT6cMwfIybdESxIl5J1Q+8et1sTn+FcQm6+4tJAD163vJ6/STnD
+	 qs/mAVThJo6P11hvsFWOnyermYuC+S+XHG/WeBWA+DZogl5w6QMgR3i9K6Kt2tDO+W
+	 vm8+i7qKpm1kg==
+Date: Tue, 18 Mar 2025 09:44:34 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Rajaganesh Rathinasabapathi <Rajaganesh.Rathinasabapathi@amd.com>
+Cc: devicetree@vger.kernel.org, openbmc@lists.ozlabs.org, joel@jms.id.au, 
+	andrew@codeconstruct.com.au, robh+dt@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: aspeed: Add AMD Onyx BMC
+ compatible
+Message-ID: <20250318-rapid-coot-of-tact-d779ad@krzk-bin>
+References: <20250318041224.1693323-1-Rajaganesh.Rathinasabapathi@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,34 +58,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddugeduleejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufgjfhgffffkgggtgfesthhqredttderjeenucfhrhhomhepofhiqhhuvghlucftrgihnhgrlhcuoehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeffgefhjedtfeeigeduudekudejkedtiefhleelueeiueevheekvdeludehiedvfeenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeduuddprhgtphhtthhopehthhhomhgrshdrsghonhhnvghfihhllhgvsegsohhothhlihhnrdgtohhmpdhrtghpthhtohepghgvvghrthdorhgvnhgvshgrshesghhlihguvghrrdgsvgdprhgtphhtthhopehmrghgnhhushdruggrmhhmsehgmhgrihhlrdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtp
- hhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtoheplhhinhhugidqrhgvnhgvshgrshdqshhotgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Disposition: inline
+In-Reply-To: <20250318041224.1693323-1-Rajaganesh.Rathinasabapathi@amd.com>
 
-On 14/03/2025 at 19:56:29 +01, Thomas Bonnefille <thomas.bonnefille@bootlin=
-.com> wrote:
+On Mon, Mar 17, 2025 at 11:12:23PM -0500, Rajaganesh Rathinasabapathi wrote:
+> Document new AMD Onyx BMC board compatibles
+> 
+> Signed-off-by: Rajaganesh Rathinasabapathi <Rajaganesh.Rathinasabapathi@amd.com>
+> ---
 
-> From: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
->
-> The EB board (Expansion board) supports both RZ/N1D and RZ-N1S. Since this
-> configuration targets only the RZ/N1D, it is named r9a06g032-rzn1d400-eb.
-> It adds support for the 2 additional switch ports (port C and D) that are
-> available on that board.
->
-> Signed-off-by: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
->
-> [Thomas moved the dts to the renesas directory and declared the leds in
-> each phy]
+Where is the changelog? What happened with this patch between v1 and v3?
 
-While you do a new iteration, I'd suggest rewording this to:
+Best regards,
+Krzysztof
 
-Signed-off-by: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
-[Thomas: move the DTS to the Renesas directory, declare the PHY LEDs]
-Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-
-Cheers,
-Miqu=C3=A8l
 
