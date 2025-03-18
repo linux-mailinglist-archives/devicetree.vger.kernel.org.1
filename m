@@ -1,87 +1,51 @@
-Return-Path: <devicetree+bounces-158597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158598-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBCBBA67677
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 15:33:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B0E8A6767E
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 15:35:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 37AEF175795
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 14:33:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8E9137A48B7
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 14:34:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01A2520D4F6;
-	Tue, 18 Mar 2025 14:33:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 665C220E001;
+	Tue, 18 Mar 2025 14:35:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Wv0v35Ub"
+	dkim=pass (2048-bit key) header.d=pereznus.es header.i=@pereznus.es header.b="WfbsVO0Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from qs51p00im-qukt01072302.me.com (qs51p00im-qukt01072302.me.com [17.57.155.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 459AF20371E
-	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 14:33:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A51BC20B807
+	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 14:35:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.57.155.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742308408; cv=none; b=PkgsNpSAYyz0e/fqsJRcCeg+6m572bOzBQTlr2dcbL1Am9W5MNCibw+AUUf+gOUtaRpIgPtd487Er0qeHX4f0JtVjkFhNYWVYvRJsyxDxgM6e7mHvEsVgzQwSbxmygcJRTsa/hVi4OmSCJx84Vun+QjuAxTvLEbnlSs3UjJai60=
+	t=1742308539; cv=none; b=Vp5ViT5sV8bnpJAqXO4vTh+yEsEpPtxZuXv6cxxwdZDNBXKy/km4XiAyqKaolAbJQf9WafI0eSo3G0mqTalPhRy3SIQ7WSA2mLxGsuLM0RLncahg21v0Way2tcpSqRFN5jTu76Xj5EiL39bsaYkbKZdgKd1Kh0Q0jZGlBaH96R4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742308408; c=relaxed/simple;
-	bh=eas+vQ1ReggmI3VLIUXfF3opvpqo6XgOUi6ufjd5atQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nu37VU6J49P6dEsCLH+o9IdUZwARBSvyQd9I974A/I8pvGfBLY5bsXR3TX3bt/cplDs2HX/uFxkc7NLGmYwj1LH132EbxC9fSJ34ameUxChP9M45ytm8+8AxdLfOMf9gM+D7801UzFMf+eiDxnsZjwtREkL7EzaMy0OvJrhFPb8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Wv0v35Ub; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52IAq2K4010333
-	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 14:33:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	1gSHyxlizzu6L+Z9HZ3/usswbAq6JRVp+YGuaZi/mPc=; b=Wv0v35UbW/m6fi/1
-	pyNrOYQ3+YBprgYemg0KkFBPGYCo0+N+uwrypKcQO3S4F2Y5Ef+xvwx6eBxrSPnj
-	kcb55JOjnff6xIwQdXMWiyCj8HPY3THX62nhKbJ8YbJIOOrrIjEJgU4uyGhpmznj
-	cBnPE2aqaD+zehBaFEXbBv3sBKsqdM/fgZT0TarPXhtGVOO2XIB96bzU1ePpNWtU
-	ogWfLqa1muOcAAGbu16j7i2XX/51iz8XagTpGG3vvdSY9CwEAiuNwfJXljovzMuz
-	t59qW+e7W1OGA9jVukhX76SmNtLneZdBk7i1eDeGh+W0e6ay+02Xj4YJ5/v+ge9T
-	gukyog==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45exx326cm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 14:33:26 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6eb1e092ae2so364026d6.2
-        for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 07:33:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742308405; x=1742913205;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1gSHyxlizzu6L+Z9HZ3/usswbAq6JRVp+YGuaZi/mPc=;
-        b=DGxepL4osqWb/Gbg9fNi8qYqlJWAaj5d2xkOpFTM1i6rQa5sSWXSNJhsOLEqHPoTtc
-         /B3r+P5M9nzWKKN7i/8ZWWWACrouG5jAXJIJzTQn/qYxOPfwNlJ1JFpzX502Teo+I5Ec
-         wKdK0tvnNgydExy2lNsE6HULrzbPzH3H/HzzKmzIqiGibL0bh69dItYI/F2XcyWo9OIm
-         zNkbyPwosPNn2BeI5j4tCtuiKp6kKYSuw0ufWEcc69T8dt4qJ9FBO0EsDn0kMaXUMxDy
-         fUVQ4wSbP6DaPNWmGXDeOGt/D41O5biSZy1pqZHDEqCGxbmz7s/KuMTrDqv/tmOCdEzP
-         z0YA==
-X-Forwarded-Encrypted: i=1; AJvYcCUi0RiCUSYoqEhlpXXEdSlRXp3taKMNuf6tbNx5+lug6C2F2lFhrckzuStkkEITXzO52aaNOAk1MHBf@vger.kernel.org
-X-Gm-Message-State: AOJu0YxEGk6nHkRQryfKbc91Dazx0wdTAKHOURv3a9xbVZvlSTloeUWV
-	LnET6WtzjvfGA9+6htANtdAYN51Kg/4fOGq+Ij2uoNJ43EaoHzNFPGu44dDSI/uEPL9cgobn/q9
-	IUMU3Eo2xVdB88MogbHwFNi6BAAba4P2Fcum5hJFsuhyu8RhNyk0FBn9I+tKH
-X-Gm-Gg: ASbGncsq3xxWgwUYCLZFj9LqXtP87zQnKiQ24JEawuxcxbGAbZIQls/jGSDLoFWXv0Z
-	NnO7FKm0fePFx1ffD+73qrY2YCWlU4L0KMz6+8mWkv+Iz7wN0+sLgUPODl2+LqI5657s5Xlw0TH
-	iQReQ/xPpLTVfK25ZlGbj71sdGui4dJn5m8eTncRSjaL3n2cokJ8ET3OdtXD6GrogkLC49r1X7j
-	WJp1dJeQNJLPLR4WcX5Ndf4JugIWEiqkT/Gjq9Tds+3FI+gCx4hBNx/1HoP5Tv+bt3bdnaVAGU5
-	rD08pWvGaWmFhL5fHR1I6kbs333x6IQ4ilLNMfyC4NSmd2KRPl+VjckrLAY+sbwU3hQr4w==
-X-Received: by 2002:a05:622a:180e:b0:472:2122:5a37 with SMTP id d75a77b69052e-476c81410fcmr97651701cf.4.1742308404978;
-        Tue, 18 Mar 2025 07:33:24 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGijmIEbCtzUiyK4kMVgUNiQ4VrmlRjM2YTS3V022dmP4rU4NWQYFESVJkXCh24tWs7ZzGqWQ==
-X-Received: by 2002:a05:622a:180e:b0:472:2122:5a37 with SMTP id d75a77b69052e-476c81410fcmr97651381cf.4.1742308404588;
-        Tue, 18 Mar 2025 07:33:24 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac314a40f61sm853965466b.134.2025.03.18.07.33.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Mar 2025 07:33:24 -0700 (PDT)
-Message-ID: <9940290b-6b97-4339-848d-ea95a365f74c@oss.qualcomm.com>
-Date: Tue, 18 Mar 2025 15:33:21 +0100
+	s=arc-20240116; t=1742308539; c=relaxed/simple;
+	bh=ORmbWsnXdcFFbg0ZJfy6uldd0BNfUSX/y9lFdDQgEsw=;
+	h=Content-Type:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To; b=QbMMj+XM+kjBt6rhmZBcrVG2AGOo62Xh22gBu+reeb3XLQIqCq3+nUAfu9CL3LH+VjXo1qlmfg4wbSWE9Wtl/ZOSC8eHb//eE7IFopcUiG+q8YZzWG5V8x3MOlmU7+zn4lNklb2xnmHWK48T7rOyLqWdJRQdDzFGC8FqwR4Uwgg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pereznus.es; spf=pass smtp.mailfrom=pereznus.es; dkim=pass (2048-bit key) header.d=pereznus.es header.i=@pereznus.es header.b=WfbsVO0Q; arc=none smtp.client-ip=17.57.155.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pereznus.es
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pereznus.es
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pereznus.es; s=sig1;
+	bh=ZmcwMguPH4y+IVnuEBHU0TSD3b+I1p4u7OE1JZlrnN0=;
+	h=Content-Type:Message-ID:Date:MIME-Version:Subject:To:From:x-icloud-hme;
+	b=WfbsVO0QZ1BYmCAQbU8cfwFIMWah3YZq3saJy43MQl4OEgTtNBBY87EMng8StFkK9
+	 TSZFh8WvjrUE05GejVShzsPLyXN193hgOzaTe6OXjyK83ITk1wjzyN7/uZuVXG0UE7
+	 pDld0zgSi/ldZAyEI/jjHo/MlezHp1IzDuM4N58eko1KT4J29uEDi4uSlWMypSPzV6
+	 +faOtDb0POLEVNFXX1PGDPu375dBsxo9HYamwVyL4cwqhnrHVQ6U0jSq3Sl8LgYRj4
+	 CqXxkwDHa7lBcAsCldc5cAlP79aiOcb5afCfm/RpJuTq2LDnNaFpLp6CytXakhPwU9
+	 FlWAYXUsftIWw==
+Received: from [192.168.1.28] (qs51p00im-dlb-asmtp-mailmevip.me.com [17.57.155.28])
+	by qs51p00im-qukt01072302.me.com (Postfix) with ESMTPSA id F18D6630018D;
+	Tue, 18 Mar 2025 14:35:31 +0000 (UTC)
+Content-Type: multipart/mixed; boundary="------------9091b8IxBPgvEeVGZo8prD8m"
+Message-ID: <a1ee42f8-56c8-4a77-ab94-e0bb88476cbf@pereznus.es>
+Date: Tue, 18 Mar 2025 15:35:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,102 +53,264 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: sa8775p: add support for video node
-To: Vikash Garodia <quic_vgarodia@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Dikshita Agarwal <quic_dikshita@quicinc.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250311-dtbinding-v1-0-5c807d33f7ae@quicinc.com>
- <20250311-dtbinding-v1-3-5c807d33f7ae@quicinc.com>
- <3ec71075-b1ef-4366-b595-80fe41cd1e13@oss.qualcomm.com>
- <8f7c1c08-6776-968c-530e-b640ded940b3@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <8f7c1c08-6776-968c-530e-b640ded940b3@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=b+uy4sGx c=1 sm=1 tr=0 ts=67d98436 cx=c_pps a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=TSMI0u4FDo7tO7E2M5oA:9 a=QEXdDO2ut3YA:10
- a=OIgjcC2v60KrkQgK7BGD:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: AtITNm4Ft4q0PfE2fk-bkTcxwNGnN5aY
-X-Proofpoint-GUID: AtITNm4Ft4q0PfE2fk-bkTcxwNGnN5aY
+Subject: Re: [PATCH] iio: light: bh1750: Add hardware reset support via GPIO
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: tduszyns@gmail.com, lars@metafoo.de, robh@kernel.org,
+ conor+dt@kernel.org, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org
+References: <20250316145514.627-1-sergio@pereznus.es>
+ <20250317115815.2416c741@jic23-huawei>
+Content-Language: es-ES, en-US, ca
+From: =?UTF-8?Q?Sergio_P=C3=A9rez?= <sergio@pereznus.es>
+In-Reply-To: <20250317115815.2416c741@jic23-huawei>
+X-Proofpoint-ORIG-GUID: btg1TpWSOUaj4Hkl_tclZGQ-mR38R8Wq
+X-Proofpoint-GUID: btg1TpWSOUaj4Hkl_tclZGQ-mR38R8Wq
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-03-18_07,2025-03-17_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 phishscore=0
- bulkscore=0 clxscore=1015 mlxlogscore=999 priorityscore=1501 mlxscore=0
- lowpriorityscore=0 malwarescore=0 impostorscore=0 adultscore=0
- suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503180107
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 mlxscore=0 mlxlogscore=999
+ suspectscore=0 clxscore=1030 spamscore=0 bulkscore=0 malwarescore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2308100000 definitions=main-2503180107
 
-On 3/18/25 3:24 PM, Vikash Garodia wrote:
-> 
-> On 3/15/2025 7:13 PM, Konrad Dybcio wrote:
->> On 3/11/25 1:03 PM, Vikash Garodia wrote:
->>> Video node enables video on Qualcomm SA8775P platform.
->>>
->>> Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
->>> ---
->>>  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 67 +++++++++++++++++++++++++++++++++++
->>>  1 file changed, 67 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->>> index 3394ae2d13003417a15e64c9e47833725ec779e6..09db8e2eb578f1cada0f4a15e3f844dc097bd46d 100644
->>> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->>> @@ -10,6 +10,7 @@
->>>  #include <dt-bindings/clock/qcom,sa8775p-dispcc.h>
->>>  #include <dt-bindings/clock/qcom,sa8775p-gcc.h>
->>>  #include <dt-bindings/clock/qcom,sa8775p-gpucc.h>
->>> +#include <dt-bindings/clock/qcom,sa8775p-videocc.h>
->>>  #include <dt-bindings/dma/qcom-gpi.h>
->>>  #include <dt-bindings/interconnect/qcom,sa8775p-rpmh.h>
->>>  #include <dt-bindings/mailbox/qcom-ipcc.h>
->>> @@ -3783,6 +3784,72 @@ llcc: system-cache-controller@9200000 {
->>>  			interrupts = <GIC_SPI 580 IRQ_TYPE_LEVEL_HIGH>;
->>>  		};
->>>  
->>> +		iris: video-codec@aa00000 {
->>> +			compatible = "qcom,sa8775p-iris";
->>> +
->>> +			reg = <0 0x0aa00000 0 0xf0000>;
->>> +			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
->>> +
->>> +			power-domains = <&videocc VIDEO_CC_MVS0C_GDSC>,
->>> +					<&videocc VIDEO_CC_MVS0_GDSC>,
->>> +					<&rpmhpd SA8775P_MXC>,
->>> +					<&rpmhpd SA8775P_MMCX>;
->>> +			power-domain-names = "venus",
->>> +					     "vcodec0",
->>> +					     "mx",
->>> +					     "mmcx";
->>> +			operating-points-v2 = <&iris_opp_table>;
->>> +
->>> +			clocks = <&gcc GCC_VIDEO_AXI0_CLK>,
->>> +				 <&videocc VIDEO_CC_MVS0C_CLK>,
->>> +				 <&videocc VIDEO_CC_MVS0_CLK>;
->>> +			clock-names = "iface",
->>> +				      "core",
->>> +				      "vcodec0_core";
->>> +
->>> +			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
->>> +					&config_noc SLAVE_VENUS_CFG QCOM_ICC_TAG_ALWAYS>,
+This is a multi-part message in MIME format.
+--------------9091b8IxBPgvEeVGZo8prD8m
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+
+El 17/03/2025 a las 12:58, Jonathan Cameron escribió:
+> On Sun, 16 Mar 2025 15:55:13 +0100
+> Sergio Perez <sergio@pereznus.es> wrote:
+>
+>> Some BH1750 sensors require a hardware reset before they can be
+>> detected on the I2C bus. This patch adds support for an optional
+>> reset GPIO that can be specified in the device tree.
 >>
->> This path should use QCOM_ICC_TAG_ACTIVE_ONLY on both endpoints
-> What is the advantage of "ALWAYS" vs "ACTIVE_ONLY". Thinking of a possibility of
-> APSS power collapsed, while video hardware is processing a frame ?
+>> The reset sequence pulls the GPIO low and then high before
+>> initializing the sensor, which enables proper detection with
+>> tools like i2cdetect.
+>>
+>> Update the devicetree binding documentation to include the new
+>> reset-gpios property with examples.
+>>
+>> Signed-off-by: Sergio Perez <sergio@pereznus.es>
+>> ---
+>>   .../devicetree/bindings/iio/light/bh1750.yaml |  20 +++-
+>>   drivers/iio/light/bh1750.c                    | 113 ++++++++++++------
+>>   2 files changed, 95 insertions(+), 38 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/iio/light/bh1750.yaml b/Documentation/devicetree/bindings/iio/light/bh1750.yaml
+>> index 1a88b3c253d5..d53b221eb84b 100644
+>> --- a/Documentation/devicetree/bindings/iio/light/bh1750.yaml
+>> +++ b/Documentation/devicetree/bindings/iio/light/bh1750.yaml
+>> @@ -11,6 +11,9 @@ maintainers:
+>>   
+>>   description: |
+>>     Ambient light sensor with an i2c interface.
+>> +
+>> +  Some BH1750 sensors require a hardware reset before being properly detected
+>> +  on the I2C bus. This can be done using the optional reset-gpios property.
+> I don't think this detail belongs here. In general we are going to reset
+> them all if we have the GPIO.
+>
+>>   
+>>   properties:
+>>     compatible:
+>> @@ -23,6 +26,10 @@ properties:
+>>   
+>>     reg:
+>>       maxItems: 1
+>> +
+>> +  reset-gpios:
+>> +    description: GPIO connected to the sensor's reset line (active low)
+>> +    maxItems: 1
+>>   
+>>   required:
+>>     - compatible
+>> @@ -41,5 +48,16 @@ examples:
+>>           reg = <0x23>;
+>>         };
+>>       };
+>> +  - |
+>> +    i2c {
+>> +      #address-cells = <1>;
+>> +      #size-cells = <0>;
+>> +
+>> +      light-sensor@23 {
+>> +        compatible = "rohm,bh1750";
+>> +        reg = <0x23>;
+>> +        reset-gpios = <&gpio2 17 GPIO_ACTIVE_HIGH>;
+> Add the GPIO to the existing example rather than having a new one.
 
-That's totally okay, I'm requesting ACTIVE_ONLY just on the cpu-cfg path,
-which must not be used if APSS if offline anyway
+Yes, I am going to change it.
 
-Konrad
+>> +      };
+>> +    };
+>>   
+>> -...
+>> +...
+>> \ No newline at end of file
+>> diff --git a/drivers/iio/light/bh1750.c b/drivers/iio/light/bh1750.c
+>> index 4b869fa9e5b1..53d64b70c03f 100644
+>> --- a/drivers/iio/light/bh1750.c
+>> +++ b/drivers/iio/light/bh1750.c
+>> @@ -22,11 +22,16 @@
+>>   #include <linux/iio/iio.h>
+>>   #include <linux/iio/sysfs.h>
+>>   #include <linux/module.h>
+>> +#include <linux/gpio/consumer.h>
+>> +#include <linux/of.h>
+> As already pointed out, there is a lot of accidental stuff in here.
+>
+> I'll review again once that is sorted out. For now I'll ignore it.
+> If I weren't on a train and bored, I'd probably just have waited for v2.
+>
+>
+>>   
+>> -#define BH1750_POWER_DOWN		0x00
+>> -#define BH1750_ONE_TIME_H_RES_MODE	0x20 /* auto-mode for BH1721 */
+>> -#define BH1750_CHANGE_INT_TIME_H_BIT	0x40
+>> -#define BH1750_CHANGE_INT_TIME_L_BIT	0x60
+>> +#define BH1750_POWER_DOWN 0x00
+>> +#define BH1750_ONE_TIME_H_RES_MODE 0x20 /* auto-mode for BH1721 */
+>> +#define BH1750_CHANGE_INT_TIME_H_BIT 0x40
+>> +#define BH1750_CHANGE_INT_TIME_L_BIT 0x60
+>> +
+>> +/* Define the reset delay time in microseconds */
+>> +#define BH1750_RESET_DELAY_US 10000  /* 10ms */
+>>   
+>>   enum {
+>>   	BH1710,
+>> @@ -40,6 +45,7 @@ struct bh1750_data {
+>>   	struct mutex lock;
+>>   	const struct bh1750_chip_info *chip_info;
+>>   	u16 mtreg;
+>> +	struct gpio_desc *reset_gpio;
+>>   };
+>>   
+>>   struct bh1750_chip_info {
+>> @@ -62,11 +68,26 @@ struct bh1750_chip_info {
+>>   
+>> +static int bh1750_reset(struct bh1750_data *data)
+>> +{
+>> +	if (!data->reset_gpio)
+> No need to check outside and in here.
+>
+>> +		return 0;  /* No GPIO configured for reset, continue */
+>> +
+>> +	/* Perform reset sequence: low-high */
+>> +	gpiod_set_value_cansleep(data->reset_gpio, 0);
+>> +	usleep_range(BH1750_RESET_DELAY_US, BH1750_RESET_DELAY_US + 1000);
+> fsleep for cases like this where is approximately but greater than X usecs.
+>
+>> +	gpiod_set_value_cansleep(data->reset_gpio, 1);
+>> +	usleep_range(BH1750_RESET_DELAY_US, BH1750_RESET_DELAY_US + 1000);
+> fsleep
+>> +
+>> +	dev_info(&data->client->dev, "BH1750 reset completed via GPIO\n");
+> Too noisy. dev_dbg at most for something like this.
+>
+>> +	return 0;
+>> +}
+>
+>> @@ -248,6 +266,19 @@ static int bh1750_probe(struct i2c_client *client)
+>>   	data->client = client;
+>>   	data->chip_info = &bh1750_chip_info_tbl[id->driver_data];
+>>   
+>> +	data->reset_gpio = devm_gpiod_get_optional(&client->dev, "reset", GPIOD_OUT_HIGH);
+>> +	if (IS_ERR(data->reset_gpio)) {
+>> +		ret = PTR_ERR(data->reset_gpio);
+>> +		dev_err(&client->dev, "Failed to get reset GPIO: %d\n", ret);
+>> +		return ret;
+> Use return dev_err_probe().  In general good to have because of pretty printing
+> errors messages etc, but in this case you might get a deferral request and
+> that call adds a bunch of debug info for probe deferal.
+>
+>> +	}
+>> +
+>> +	if (data->reset_gpio) {
+>> +		ret = bh1750_reset(data);
+> There isn't a lot going on in that function, so I'd pull all the code down
+> here and not bother with a function at all.
+>> +		if (ret < 0)
+>> +			return ret;
+>> +	}
+>> +
+
+Thanks for the suggestions, I rewrote the code with all these points, I 
+passed the tests again and everything seems correct.
+
+
+--------------9091b8IxBPgvEeVGZo8prD8m
+Content-Type: text/plain; charset=UTF-8;
+ name="0001-iio-light-bh1750-Add-hardware-reset-support-via-GPIO.patch"
+Content-Disposition: attachment;
+ filename*0="0001-iio-light-bh1750-Add-hardware-reset-support-via-GPIO.pa";
+ filename*1="tch"
+Content-Transfer-Encoding: base64
+
+RnJvbSAyNDkzYjYwYjkyNGZhZDc4NzA5OGFiMmUzZjFiOWJhOWE5YTY0OWMxIE1vbiBTZXAg
+MTcgMDA6MDA6MDAgMjAwMQpGcm9tOiBTZXJnaW8gUGVyZXogPHNlcmdpb0BwZXJlem51cy5l
+cz4KRGF0ZTogVHVlLCAxOCBNYXIgMjAyNSAwMToxMjowNSArMDEwMApTdWJqZWN0OiBbUEFU
+Q0hdIGlpbzogbGlnaHQ6IGJoMTc1MDogQWRkIGhhcmR3YXJlIHJlc2V0IHN1cHBvcnQgdmlh
+IEdQSU8KClNvbWUgQkgxNzUwIHNlbnNvcnMgcmVxdWlyZSBhIGhhcmR3YXJlIHJlc2V0IGJl
+Zm9yZSB0aGV5IGNhbiBiZQpkZXRlY3RlZCBvbiB0aGUgSTJDIGJ1cy4gVGhpcyBwYXRjaCBh
+ZGRzIHN1cHBvcnQgZm9yIGFuIG9wdGlvbmFsCnJlc2V0IEdQSU8gdGhhdCBjYW4gYmUgc3Bl
+Y2lmaWVkIGluIHRoZSBkZXZpY2UgdHJlZS4KClRoZSByZXNldCBzZXF1ZW5jZSBwdWxscyB0
+aGUgR1BJTyBsb3cgYW5kIHRoZW4gaGlnaCBiZWZvcmUKaW5pdGlhbGl6aW5nIHRoZSBzZW5z
+b3IsIHdoaWNoIGVuYWJsZXMgcHJvcGVyIGRldGVjdGlvbiB3aXRoCnRvb2xzIGxpa2UgaTJj
+ZGV0ZWN0LgoKVXBkYXRlIHRoZSBkZXZpY2V0cmVlIGJpbmRpbmcgZG9jdW1lbnRhdGlvbiB0
+byBpbmNsdWRlIHRoZSBuZXcKcmVzZXQtZ3Bpb3MgcHJvcGVydHkgd2l0aCBleGFtcGxlcy4K
+ClNpZ25lZC1vZmYtYnk6IFNlcmdpbyBQZXJleiA8c2VyZ2lvQHBlcmV6bnVzLmVzPgotLS0K
+IC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL2lpby9saWdodC9iaDE3NTAueWFtbCB8ICA1ICsr
+KysrCiBkcml2ZXJzL2lpby9saWdodC9iaDE3NTAuYyAgICAgICAgICAgICAgICAgICAgfCAy
+MiArKysrKysrKysrKysrKysrKysrCiAyIGZpbGVzIGNoYW5nZWQsIDI3IGluc2VydGlvbnMo
+KykKCmRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaWlv
+L2xpZ2h0L2JoMTc1MC55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
+L2lpby9saWdodC9iaDE3NTAueWFtbAppbmRleCAxYTg4YjNjMjUzZDUuLmY3YThkY2Q3ZDJh
+MSAxMDA2NDQKLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2lpby9s
+aWdodC9iaDE3NTAueWFtbAorKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGlu
+Z3MvaWlvL2xpZ2h0L2JoMTc1MC55YW1sCkBAIC0yNCw2ICsyNCwxMCBAQCBwcm9wZXJ0aWVz
+OgogICByZWc6CiAgICAgbWF4SXRlbXM6IDEKIAorICByZXNldC1ncGlvczoKKyAgICBkZXNj
+cmlwdGlvbjogR1BJTyBjb25uZWN0ZWQgdG8gdGhlIHNlbnNvcidzIHJlc2V0IGxpbmUgKGFj
+dGl2ZSBsb3cpCisgICAgbWF4SXRlbXM6IDEKKwogcmVxdWlyZWQ6CiAgIC0gY29tcGF0aWJs
+ZQogICAtIHJlZwpAQCAtMzksNiArNDMsNyBAQCBleGFtcGxlczoKICAgICAgIGxpZ2h0LXNl
+bnNvckAyMyB7CiAgICAgICAgIGNvbXBhdGlibGUgPSAicm9obSxiaDE3NTAiOwogICAgICAg
+ICByZWcgPSA8MHgyMz47CisgICAgICAgIHJlc2V0LWdwaW9zID0gPCZncGlvMiAxNyAwPjsK
+ICAgICAgIH07CiAgICAgfTsKIApkaWZmIC0tZ2l0IGEvZHJpdmVycy9paW8vbGlnaHQvYmgx
+NzUwLmMgYi9kcml2ZXJzL2lpby9saWdodC9iaDE3NTAuYwppbmRleCA0Yjg2OWZhOWU1YjEu
+LmI4OGNlOTJhY2JjNiAxMDA2NDQKLS0tIGEvZHJpdmVycy9paW8vbGlnaHQvYmgxNzUwLmMK
+KysrIGIvZHJpdmVycy9paW8vbGlnaHQvYmgxNzUwLmMKQEAgLTIyLDEyICsyMiwxNiBAQAog
+I2luY2x1ZGUgPGxpbnV4L2lpby9paW8uaD4KICNpbmNsdWRlIDxsaW51eC9paW8vc3lzZnMu
+aD4KICNpbmNsdWRlIDxsaW51eC9tb2R1bGUuaD4KKyNpbmNsdWRlIDxsaW51eC9ncGlvL2Nv
+bnN1bWVyLmg+CiAKICNkZWZpbmUgQkgxNzUwX1BPV0VSX0RPV04JCTB4MDAKICNkZWZpbmUg
+QkgxNzUwX09ORV9USU1FX0hfUkVTX01PREUJMHgyMCAvKiBhdXRvLW1vZGUgZm9yIEJIMTcy
+MSAqLwogI2RlZmluZSBCSDE3NTBfQ0hBTkdFX0lOVF9USU1FX0hfQklUCTB4NDAKICNkZWZp
+bmUgQkgxNzUwX0NIQU5HRV9JTlRfVElNRV9MX0JJVAkweDYwCiAKKy8qIERlZmluZSB0aGUg
+cmVzZXQgZGVsYXkgdGltZSBpbiBtaWNyb3NlY29uZHMgKi8KKyNkZWZpbmUgQkgxNzUwX1JF
+U0VUX0RFTEFZX1VTIDEwMDAwIC8qIDEwbXMgKi8KKwogZW51bSB7CiAJQkgxNzEwLAogCUJI
+MTcyMSwKQEAgLTQwLDYgKzQ0LDcgQEAgc3RydWN0IGJoMTc1MF9kYXRhIHsKIAlzdHJ1Y3Qg
+bXV0ZXggbG9jazsKIAljb25zdCBzdHJ1Y3QgYmgxNzUwX2NoaXBfaW5mbyAqY2hpcF9pbmZv
+OwogCXUxNiBtdHJlZzsKKwlzdHJ1Y3QgZ3Bpb19kZXNjICpyZXNldF9ncGlvOwogfTsKIAog
+c3RydWN0IGJoMTc1MF9jaGlwX2luZm8gewpAQCAtMjQ4LDYgKzI1MywyMyBAQCBzdGF0aWMg
+aW50IGJoMTc1MF9wcm9iZShzdHJ1Y3QgaTJjX2NsaWVudCAqY2xpZW50KQogCWRhdGEtPmNs
+aWVudCA9IGNsaWVudDsKIAlkYXRhLT5jaGlwX2luZm8gPSAmYmgxNzUwX2NoaXBfaW5mb190
+YmxbaWQtPmRyaXZlcl9kYXRhXTsKIAorCS8qIEdldCByZXNldCBHUElPIGZyb20gZGV2aWNl
+IHRyZWUgKi8KKwlkYXRhLT5yZXNldF9ncGlvID0gZGV2bV9ncGlvZF9nZXRfb3B0aW9uYWwo
+JmNsaWVudC0+ZGV2LCAicmVzZXQiLCBHUElPRF9PVVRfSElHSCk7CisJaWYgKElTX0VSUihk
+YXRhLT5yZXNldF9ncGlvKSkKKwkJcmV0dXJuIGRldl9lcnJfcHJvYmUoJmNsaWVudC0+ZGV2
+LCBQVFJfRVJSKGRhdGEtPnJlc2V0X2dwaW8pLAorCQkJCQkJCSJGYWlsZWQgdG8gZ2V0IHJl
+c2V0IEdQSU9cbiIpOworCisJLyogUGVyZm9ybSBoYXJkd2FyZSByZXNldCBpZiBHUElPIGlz
+IHByb3ZpZGVkICovCisJaWYgKGRhdGEtPnJlc2V0X2dwaW8pIHsKKwkJLyogUGVyZm9ybSBy
+ZXNldCBzZXF1ZW5jZTogbG93LWhpZ2ggKi8KKwkJZ3Bpb2Rfc2V0X3ZhbHVlX2NhbnNsZWVw
+KGRhdGEtPnJlc2V0X2dwaW8sIDApOworCQlmc2xlZXAoQkgxNzUwX1JFU0VUX0RFTEFZX1VT
+KTsKKwkJZ3Bpb2Rfc2V0X3ZhbHVlX2NhbnNsZWVwKGRhdGEtPnJlc2V0X2dwaW8sIDEpOwor
+CQlmc2xlZXAoQkgxNzUwX1JFU0VUX0RFTEFZX1VTKTsKKworCQlkZXZfZGJnKCZjbGllbnQt
+PmRldiwgIkJIMTc1MCByZXNldCBjb21wbGV0ZWQgdmlhIEdQSU9cbiIpOworCX0KKwogCXVz
+ZWMgPSBkYXRhLT5jaGlwX2luZm8tPm10cmVnX3RvX3VzZWMgKiBkYXRhLT5jaGlwX2luZm8t
+Pm10cmVnX2RlZmF1bHQ7CiAJcmV0ID0gYmgxNzUwX2NoYW5nZV9pbnRfdGltZShkYXRhLCB1
+c2VjKTsKIAlpZiAocmV0IDwgMCkKLS0gCjIuNDMuMAoK
+
+--------------9091b8IxBPgvEeVGZo8prD8m--
 
