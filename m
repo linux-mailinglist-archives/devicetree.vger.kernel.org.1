@@ -1,81 +1,87 @@
-Return-Path: <devicetree+bounces-158522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 507D1A6712B
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 11:25:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F48AA67133
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 11:26:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1653719A2C18
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 10:24:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F03A719A2B36
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 10:25:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CA7C207E0D;
-	Tue, 18 Mar 2025 10:24:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2378208984;
+	Tue, 18 Mar 2025 10:25:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FJs22iJZ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IASshelC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 133EE207DF5
-	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 10:24:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 993DB206F3F
+	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 10:25:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742293448; cv=none; b=gkWCx5q9pfy7WyagertRkRs31Y5ViLt3B826L5itSruG9FFXKlGJUMlrqM6qNKJTzUVo4fI2Ki0xpEBFiQzOqp2UITHth8HYZUe7p3ascrt23zaxT5w1b9Obq4/5MOTY/yCqePXBuaR4yMhIxQOFU7XVhQQg7SPvSQ9Gp7JsdzE=
+	t=1742293511; cv=none; b=qBRgBe7NCgNWK7v1bW97K/Vis5tsO7Ks8WpJs3NtqcMGoEnL+38ao7ZUGfTMLA/mm3f+E49l7E8UIiBsDY8sbhAKnYHToC9L/q0Pef5ObEGlwp6SQerQ+94FKLO+OJdPU4R5EbQiS0ckot2NjAq/9SX0lPSmbBwKBHlqGjC9i+4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742293448; c=relaxed/simple;
-	bh=jh4jaEcZDcCJpbI95rS/PqufL9tYhj0AYmCryTIfOSE=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=EERemQZBsOWjxVnwFjWn/vrhpEZVfGqoxkm0oeZHJWAXkDmyqBG6PC2GA24Imdk5c/Hzt55d07mkdkLzT9E6OvfGupxvcv9OTsgxYFhRV+KN3rIu2tw2xmsU9qg/YZ1yYXEhPPMNgZWyvrB98r6tZoT4c1tYRtLSKeHXPdtQDpI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FJs22iJZ; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3996af42857so719661f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 03:24:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742293444; x=1742898244; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9s1MLqZ99Jjf0BTVsynVNUuDrFuTR6hcyH+PJ/kt3J0=;
-        b=FJs22iJZTq2UMAv5Oeiw7I9/TTriwQc6t+qCr93to+38cUmrNAjSLk+6S6rM5jw+zZ
-         CcPOEWG046kGMtXZq75DMDQEVl15+QDrmCNFvf9pvdxPrY3JhljJoBh60lCx0fUBDIAt
-         E8vXSUTyWbegU2nV3ruulOu3ycto5ZY9x4nlC4gdrJcNkhwq3FOYyg8xSqguscHV0pWq
-         52SHE0XKFZJKjah19fyOk5BDWamItgjY/HIEX+Dp0byUKfq+SA3pDWDppML5JQLaV3Sh
-         T5HFrb9U00SKVW1ma4N1vFQA+4nR9pmkPv0vFDCQ8k9rnS8eArkTHrNKH9H0SyvcPmD9
-         NOuA==
+	s=arc-20240116; t=1742293511; c=relaxed/simple;
+	bh=viI7y/zKVyvSQat5yicr/ZP4aQMPwYcfsOE3HA4N1zM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tqnCfRNv3reLj+/VnZx2SVXjxY/QCS6VoHOvs/ZLWRiWg+q3eEdtr1ejA+e5Vxu1Y96i1mYpYT9QCEjrZ+93AKlYzcsq9hkmcX1KEMHoepc6A3hD7IC2j/YuHt3SEHQLzk+sawj29/ZqaoE4bl6Zyzypfj66OluGwCr+VRETiA4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IASshelC; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52I9HlD3012987
+	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 10:25:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	9tGWEqzwTs/fY6RPkduOMFdSME0M9poWROeZ179aC8E=; b=IASshelCF92cIw4f
+	A1dPhjICdvIqb6ufrw2KWwm9tA871vKxWyLLy+V69JZFMSQIyzibEEd6RSEqxV/g
+	HVJje31jJw5qEq2eLZshtfd/m8/eqZ7juPPbU9Ypaw8hyWX54PKSCm81CWy0Lim9
+	aFqB5Gv9APizKnl0hPt09l/RjD9gLSYTHEEEhUm04pMg3XQvVOOpQGeK/CnvcFee
+	ljSrAtFPz8oIWVcI4/acLvDrPkfvQ3Y3uhIMoQJvO7qWIxnFrjtmGICsqA3JSG3/
+	W6v5STl/Ib/kyzfCCX3ahR3rPpxv/xDxHoLoPSpjDmDwXhQWWCql8tk6X22y7uCs
+	13aKpA==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45d1utys0h-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 10:25:02 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-476783cbdb8so10098861cf.1
+        for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 03:25:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742293444; x=1742898244;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=9s1MLqZ99Jjf0BTVsynVNUuDrFuTR6hcyH+PJ/kt3J0=;
-        b=tNzTt5A4IfmI3pZlkDH6/3U4R7INIQI183ww5hkReJRmTQxqFod+LWr0H7h285Nc1s
-         krQD2JXHoSU2EeijU0yMabOGr0BIw8l2UEy9ylNFrOpacTKRaJDKrELjvrq1hBXLRUaF
-         Bi7ZRutWatBTBO965wWu8ogVRnfyUShsxlh9Ib4bX9RKHLtPneX8hjZM1rMeWUOpq6zN
-         ghCh/r8KIGJiP6rFP2r5I926ihYUIYEMQetnVUPVAEP0dmy/flvjes3eoJvmmEHCmvxD
-         rOD3k3DDIpJfkf+ocKBBvYJ29pf8CdahUniWj+52anl7Vo1cl29hlaVUDznOmcgsBnnE
-         G7Fg==
-X-Gm-Message-State: AOJu0YxKNHOXEtkncUcpZbMZrUpJGP4pSvu5zhCPFANim0xIrstEkttm
-	so8V4bPjzH12wKRiHJArnvlXPn5hAGUEwIvwrMHxFQbiYTkGCH/pmVNneFqDJ58=
-X-Gm-Gg: ASbGncticKS5Pu4XU1ujV2aLPbF6177+Q7O9ER4FQyYdAL4dksklajmNTFnwtF7jfI2
-	0Gbq0PhHCIa5FNGZcI4HACtUdNMXKNMIJzN6Zu9LYYWfU/E+HHz9gC3ZN2vStaaun+BVdmb5GwE
-	9O+5k7jtThMOKyOZA28L+9vH4T1vCQ1HTMLDM9ikQlBfNIWT9l4tVsSqBleS0vK9dzD6SO4APsj
-	sQX5PQgFWHWSIauWkDg5SlQzERf9rsOlDM/d9MtbNEmqtFYY3tibfIdpMcTq3JBdLV3Ehbu7sE4
-	PANBzZLAHtHKqPxSyIZ5Gnrf2VkK/9vKunAsps3xePnIoaSRXVTii2JFuQiRFD8qnBhx0wfYrPZ
-	IgH20U8kt4Il2IM0OtmQC8A==
-X-Google-Smtp-Source: AGHT+IHtzyqVRAga6Hl6uXNlyniza06JK+93mCeNwBJWGNRf6bcJIa0OCbOvW1yls2I+teoXyKiouQ==
-X-Received: by 2002:a05:6000:1566:b0:38d:ae1e:2f3c with SMTP id ffacd0b85a97d-3996bb560d6mr2356028f8f.25.1742293444284;
-        Tue, 18 Mar 2025 03:24:04 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:eac1:f2d4:84a8:c5ff? ([2a01:e0a:3d9:2080:eac1:f2d4:84a8:c5ff])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-395c83b6a10sm17870384f8f.36.2025.03.18.03.24.03
+        d=1e100.net; s=20230601; t=1742293501; x=1742898301;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9tGWEqzwTs/fY6RPkduOMFdSME0M9poWROeZ179aC8E=;
+        b=ZeAnomDYZGOcLlIZj2a2Liue23NIv1iT6f6hUJj5SpOgPIqxVg442mT2XWX1dSo668
+         R3z2Sg9Jo8XZIn1dYP14V33Ahmq1lIjgqC+gn+ik9j/q6yUaxTuLESJ2i0TkFMGPJM+v
+         S/FeJfIiDkk3wH9ZrzA+gORR2fGZWzRzPp05hJ8WAPzVcd60iBev2xqc4xiB0LHRSGTE
+         c/plQ1FbCSAu9aKbOiZ/cnWr/ZGMJ34+R4hwezMTHLfnOS+EwaooLNxzda1j8P23wi8M
+         Sb/DpM+ITeNoRqB4V9SRLODCjLDnJs7JFsf4Thqffr/pAedd7lz366a7tHAR81vXE51m
+         lr/g==
+X-Forwarded-Encrypted: i=1; AJvYcCVhhrBz8wgC81ow45sGPnJOL7gu4R0SoShJ4IYiC0iHlgErraXDK7Dvrx5Fp6SnurC8joywMRAY4Dnc@vger.kernel.org
+X-Gm-Message-State: AOJu0YzdDzBvkJX6dvkLwLLodx/A2FgADSLAIw+AXFnVsaW6DUwid0sp
+	sp8jKCC+0TzDF6fWUud1gxAALTVqymMSh12uNECOX+C0wUxbE304dKAJxwOwrEb/6MSkzV4sqhd
+	v9j4zNCQAkUn7HGmF4JlD9Dg6JArz5EM3wtx21Nj8E+IJzOCbPvYGyTu5AXmS
+X-Gm-Gg: ASbGncvve9a+dcb1wkSvt+7M/kYrEW/GSlg1Q6jG/YOsXKfRMYnb/wH7GFHYscr36L5
+	2Hre3a/QPIqOuRWLsHic0P97QsZfm82B2SYg7/i1CZpwcFkHtobGVv5UtIkKuiqFqxDp4V2doDY
+	DIfHh+39ciqPhWEpwqKyo95IMcMpUNCVuiJkHwLWmqG6KgIUU8hN6c8dBdlDPLLde1ZB/d2PMLS
+	l0z4R1Sb1Vl5bA5r97lj+/Z7cB3F9nIda0BMwV34RcVneqaNzexTyXLr5GtVT9kNkDFL/or+6DG
+	3ZaIOGVR0ITfQ05xYY6QcvDFrC+xLizB9Vgz/NAdwHPPlggdZZ8gqFONP+qeIGu/7c0qqw==
+X-Received: by 2002:ac8:58c1:0:b0:471:fe93:4b5f with SMTP id d75a77b69052e-476c81b622emr86278471cf.13.1742293501465;
+        Tue, 18 Mar 2025 03:25:01 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGDsMQDOS+0HDILyNXHIvpznOD0Y7l4AYvNrP+8R89ZspJwFSR2+cZXNbEUsjSQJ6tnA8Zr6g==
+X-Received: by 2002:ac8:58c1:0:b0:471:fe93:4b5f with SMTP id d75a77b69052e-476c81b622emr86278321cf.13.1742293501043;
+        Tue, 18 Mar 2025 03:25:01 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e816968bfbsm7331474a12.17.2025.03.18.03.24.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Mar 2025 03:24:03 -0700 (PDT)
-Message-ID: <61a0eb6c-aa15-4316-9e4b-929c3cad13c9@linaro.org>
-Date: Tue, 18 Mar 2025 11:24:03 +0100
+        Tue, 18 Mar 2025 03:25:00 -0700 (PDT)
+Message-ID: <8e830d99-61d1-43c0-bcd3-a8b669fcc2bb@oss.qualcomm.com>
+Date: Tue, 18 Mar 2025 11:24:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,207 +89,86 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 2/2] arm64: dts: amlogic: Add Ugoos AM3
-To: j.ne@posteo.net, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-References: <20250314-ugoos-am3-v2-0-422104b0cec5@posteo.net>
- <20250314-ugoos-am3-v2-2-422104b0cec5@posteo.net>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250314-ugoos-am3-v2-2-422104b0cec5@posteo.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: sm6350: Add OPP table support to
+ UFSHC
+To: Luca Weiss <luca.weiss@fairphone.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250314-sm6350-ufs-things-v1-0-3600362cc52c@fairphone.com>
+ <20250314-sm6350-ufs-things-v1-2-3600362cc52c@fairphone.com>
+ <cddcd851-5e8c-4202-baad-e56a09d5775a@oss.qualcomm.com>
+ <D8IJ5TEHREW1.2FK88ACT1JPYQ@fairphone.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <D8IJ5TEHREW1.2FK88ACT1JPYQ@fairphone.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=H8Pbw/Yi c=1 sm=1 tr=0 ts=67d949fe cx=c_pps a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=6H0WHjuAAAAA:8 a=EUspDBNiAAAA:8 a=4oVbTNSGWYtvGuB_2MIA:9 a=QEXdDO2ut3YA:10
+ a=dawVfQjAaf238kedN5IG:22 a=Soq9LBFxuPC4vsCAQt-j:22
+X-Proofpoint-GUID: YxJt7u6TSZhX7hT97V6dobk-TBLZ0hEQ
+X-Proofpoint-ORIG-GUID: YxJt7u6TSZhX7hT97V6dobk-TBLZ0hEQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-18_05,2025-03-17_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ lowpriorityscore=0 bulkscore=0 adultscore=0 spamscore=0 priorityscore=1501
+ mlxscore=0 suspectscore=0 malwarescore=0 clxscore=1015 impostorscore=0
+ phishscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503180076
 
-On 14/03/2025 00:11, J. Neuschäfer via B4 Relay wrote:
-> From: "J. Neuschäfer" <j.ne@posteo.net>
+On 3/17/25 1:12 PM, Luca Weiss wrote:
+> Hi Konrad,
 > 
-> The Ugoos AM3 is a small set-top box based on the Amlogic S912 SoC,
-> with a board design that is very close to the Q20x development boards.
-> The MMC max-frequency properties are copied from the downstream device
-> tree.
+> On Fri Mar 14, 2025 at 11:08 PM CET, Konrad Dybcio wrote:
+>> On 3/14/25 10:17 AM, Luca Weiss wrote:
+>>> UFS host controller, when scaling gears, should choose appropriate
+>>> performance state of RPMh power domain controller along with clock
+>>> frequency. So let's add the OPP table support to specify both clock
+>>> frequency and RPMh performance states replacing the old "freq-table-hz"
+>>> property.
+>>>
+>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>> ---
+>>
+>> [...]
+>>
+>>> +
+>>> +			ufs_opp_table: opp-table {
+>>> +				compatible = "operating-points-v2";
+>>> +
+>>> +				opp-50000000 {
+>>> +					opp-hz = /bits/ 64 <50000000>,
+>>> +						 /bits/ 64 <0>,
+>>> +						 /bits/ 64 <0>,
+>>> +						 /bits/ 64 <37500000>,
+>>
+>> This rate on this clk requires opp_svs (not low_svs)
 > 
->    https://ugoos.com/ugoos-am3-16g
+> Not sure where you're seeing this?
 > 
-> The following functionality has been tested and is known to work:
->   - debug serial port
->   - "update" button inside the case
->   - USB host mode, on all three ports
->   - HDMI video/audio output
->   - eMMC, MicroSD, and SDIO WLAN
->   - S/PDIF audio output
->   - Ethernet
->   - Infrared remote control input
+> This is from my msm-4.19 tree:
 > 
-> The following functionality doesn't seem to work:
->   - USB role switching and device mode on the "OTG" port
->   - case LED
+> gcc_ufs_phy_axi_clk_src:
+>     .rate_max = (unsigned long[VDD_NUM]) { [VDD_LOWER] = 50000000,
+> gcc_ufs_phy_unipro_core_clk_src:
+>     .rate_max = (unsigned long[VDD_NUM]) { [VDD_LOWER] = 37500000,
+> gcc_ufs_phy_ice_core_clk_src:
+>     .rate_max = (unsigned long[VDD_NUM]) { [VDD_LOWER] = 75000000,
 > 
-> Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
-> ---
+> [VDD_LOWER] = RPMH_REGULATOR_LEVEL_LOW_SVS,
 > 
-> V2:
-> - Fix vendor name in patch subject
-> - Remove incorrect override of SDIO pwrseq reset line
-> ---
->   arch/arm64/boot/dts/amlogic/Makefile               |  1 +
->   .../arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi |  2 +-
->   .../arm64/boot/dts/amlogic/meson-gxm-ugoos-am3.dts | 91 ++++++++++++++++++++++
->   3 files changed, 93 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> index 2fbda8419c65a3056410ac45ca3ddaceb69ea4f5..bf2bc14528bfa27e8d6ae2730085fc356d6c6dd8 100644
-> --- a/arch/arm64/boot/dts/amlogic/Makefile
-> +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> @@ -76,6 +76,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-q200.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-gxm-q201.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-gxm-rbox-pro.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-gxm-s912-libretech-pc.dtb
-> +dtb-$(CONFIG_ARCH_MESON) += meson-gxm-ugoos-am3.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-gxm-vega-s96.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-gxm-wetek-core2.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-s4-s805x2-aq222.dtb
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
-> index 45ccddd1aaf0546632c81a52c8917a923beae883..4223b26f7d0f3aa47e42e9434d24f73b20441981 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
-> @@ -97,7 +97,7 @@ sdio_pwrseq: sdio-pwrseq {
->   		clock-names = "ext_clock";
->   	};
->   
-> -	cvbs-connector {
-> +	cvbs_connector: cvbs-connector {
->   		compatible = "composite-video-connector";
->   
->   		port {
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-ugoos-am3.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-ugoos-am3.dts
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..ba871f3f53bb99b47b325bae228b59b722c5123b
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-ugoos-am3.dts
-> @@ -0,0 +1,91 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2025 J. Neuschäfer <j.ne@posteo.net>
-> + *
-> + * Debug UART (3.3V, 115200 baud) at the corner of the board:
-> + *   (4) (3) (2) [1]
-> + *   Vcc RXD TXD GND
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/interrupt-controller/amlogic,meson-g12a-gpio-intc.h>
-> +
-> +#include "meson-gxm.dtsi"
-> +#include "meson-gx-p23x-q20x.dtsi"
-> +
-> +/ {
-> +	compatible = "ugoos,am3", "amlogic,s912", "amlogic,meson-gxm";
-> +	model = "Ugoos AM3";
-> +
-> +	adc-keys {
-> +		compatible = "adc-keys";
-> +		io-channels = <&saradc 0>;
-> +		io-channel-names = "buttons";
-> +		keyup-threshold-microvolt = <1710000>;
-> +
-> +		button-function {
-> +			label = "Update";
-> +			linux,code = <KEY_VENDOR>;
-> +			press-threshold-microvolt = <10000>;
-> +		};
-> +	};
-> +};
-> +
-> +&cvbs_connector {
-> +	/* Not used on this board */
-> +	status = "disabled";
-> +};
-> +
-> +&ethmac {
-> +	pinctrl-0 = <&eth_pins>;
-> +	pinctrl-names = "default";
-> +
-> +	/* Select external PHY by default */
-> +	phy-handle = <&external_phy>;
-> +
-> +	amlogic,tx-delay-ns = <2>;
-> +
-> +	/* External PHY is in RGMII */
-> +	phy-mode = "rgmii";
-> +
-> +	status = "okay";
-> +};
-> +
-> +&external_mdio {
-> +	external_phy: ethernet-phy@0 {
-> +		/* Realtek RTL8211F (0x001cc916) */
-> +		reg = <0>;
-> +
-> +		reset-assert-us = <10000>;
-> +		reset-deassert-us = <80000>;
-> +		reset-gpios = <&gpio GPIOZ_14 GPIO_ACTIVE_LOW>;
-> +
-> +		interrupt-parent = <&gpio_intc>;
-> +		/* MAC_INTR on GPIOZ_15 */
-> +		interrupts = <25 IRQ_TYPE_LEVEL_LOW>;
-> +	};
-> +};
-> +
-> +&i2c_B {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c_b_pins>;
-> +
-> +	rtc: rtc@51 {
-> +		compatible = "haoyu,hym8563";
-> +		reg = <0x51>;
-> +		#clock-cells = <0>;
-> +	};
-> +};
-> +
-> +/* WLAN: Atheros 10k (QCA9377) */
-> +&sd_emmc_a {
-> +	max-frequency = <200000000>;
-> +};
-> +
-> +/* eMMC */
-> +&sd_emmc_c {
-> +	max-frequency = <100000000>;
-> +};
-> 
+> My intepretation for this is we need low_svs?
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Hm, I took another look and it seems you're right, I must have misread
+
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+
+Konrad
 
