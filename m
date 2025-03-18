@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-158435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158436-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79850A66B99
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 08:30:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 725F4A66BB0
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 08:31:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1942018925F3
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 07:29:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 516E33A71C7
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 07:30:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0CF538FA6;
-	Tue, 18 Mar 2025 07:29:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 181191A0BD6;
+	Tue, 18 Mar 2025 07:31:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JDU++U5v"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rdtG1sbd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A352B819;
-	Tue, 18 Mar 2025 07:29:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1B0028F3;
+	Tue, 18 Mar 2025 07:31:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742282965; cv=none; b=Ify4j3VjB5S8eJPX4k96arFw5dCFdWRko5gpnsbzxTMjuOJOxgb/ApFOewJZQHhSRyd82RHuvTa03mwlVXcXogXjDuSqUPUwi9TVgrgiSPtLqIP+v6sf++fm58Dp2x4iPyv4qriCAh7oF1BgRfeD9TrbXX1LXWXh5l859KyRfck=
+	t=1742283067; cv=none; b=I/EHObWn4TVaq1P3enmx4/IAWmDrLWNnPF9CsBGJm1TXxq3vcEgoq+lj4cB5Agrxlv5f+83/t2e+mr4VNICtenO8XFDY069wp9n0d09tmWKVGmqy48c8vdCOmOKys/q9uSVo7GojYDxkV6fgF74MsY1w5twZVQ0gl/srVG0DxtU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742282965; c=relaxed/simple;
-	bh=6R8k/lMYQNMDSoxwud9kFwFU/pF+UBLnibd1dsC3FFY=;
+	s=arc-20240116; t=1742283067; c=relaxed/simple;
+	bh=5BDSuBGb/Bir2e1pVaC8YoOq6pbM/y64LJ6KAbZizNA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VAHEFy2pzzad3xTgmUSJ8NeW+5f8d6kmIBAVePxwvu2B8YW0g6n0bL6tyCCoR5Dgn8kHwlGvMk3zTXHrTQ7d9raIvccATUOufwSYV8qcNpKdG8PYoe2V8lFiXzg6R4ZLMBKoyOGgTHdGAJC58n4APXc/6VSw+RfBJdNMML+shOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JDU++U5v; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEC50C4CEDD;
-	Tue, 18 Mar 2025 07:29:19 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=n0O38qwowzghfHbXZqveo1e+BmS/mctS2jhQ6t4W5a9L44pxeBDOJinGWD8YONv7umwwdeXgMsFBuc7qjiOjrR9eM8ew+/LCIogqZxK2cWzmbVT6vVr0llsK7p5TdyeHSvfDm/HUvXGqWLWY0LZsnqAxzUc83nHxtXMnXVpbRx0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rdtG1sbd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1706C4CEDD;
+	Tue, 18 Mar 2025 07:31:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742282965;
-	bh=6R8k/lMYQNMDSoxwud9kFwFU/pF+UBLnibd1dsC3FFY=;
+	s=k20201202; t=1742283066;
+	bh=5BDSuBGb/Bir2e1pVaC8YoOq6pbM/y64LJ6KAbZizNA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JDU++U5vTEJPqc2LLH4xUjatGayvjG7ltSLB4v4CQbISMpabIz+wU/x5PyNIwD4re
-	 uFvx5AQjN0+2RUXlmYah6uBB8tPoD+6o/wMuY3LBJLxNpXW0ZAWty/TbfFbZnRZula
-	 bGv8qdg96zYWyAd2vKHvSxSWBn31LBvOXWqC9nETdsLYRaCUPRComYInpoKzHWW8Aq
-	 am7B6/BPWmsQZ6eQMTO2ftExATqj8w1O+VozjPDSajVSuH3wgMHGTXLowhZazr+e22
-	 5Ge7U+Pq///VYgwGTtR3F1iw/pf2M9q8Sss33U+Ls/pwKyzHnimYQETH2gB99YgfQk
-	 BnC3etiSxW1Dw==
-Message-ID: <200a47e6-3898-428d-88fd-aa4f87db656e@kernel.org>
-Date: Tue, 18 Mar 2025 08:29:17 +0100
+	b=rdtG1sbdOAKYFqB4wp70CqnsvcOYVo46tMxECwx/HGHEj2wU1cQn79+EGdcjhGj6p
+	 TIeRaOCXiZlYbMu5KzCo25PFHlK3fOu4bTTUk61VxvrzCvHNf0a79kh/0tSZXgp/Y6
+	 ERSCddNw74MfpO42l9XuOzrkbShgP6n67vVfec9C+65myNwr1wyTcBrRNJZG8ok6i6
+	 +j358u4o1VPYxfErf8EsMP0PcHAprDoj8x+D0V44EYoOxsAWwuOUEvQ2FC++7MepCP
+	 dTdJ0IOIdlSKC0OZwBeAkY442ImNwUFmq2e7+DdNMs4Ox0sTfSWucm9F0Z6+3zVVhV
+	 3MgwYk4zVrilg==
+Message-ID: <eeb66fc0-27f6-49c7-a539-2964c6a4662a@kernel.org>
+Date: Tue, 18 Mar 2025 08:31:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,28 +50,11 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/7] dt-bindings: media: renesas,isp: Add ISP core
- function block
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?=
- <niklas.soderlund+renesas@ragnatech.se>,
- Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Hans Verkuil <hverkuil@xs4all.nl>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Jacopo Mondi <jacopo.mondi@ideasonboard.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-References: <20250315152708.328036-1-niklas.soderlund+renesas@ragnatech.se>
- <20250315152708.328036-2-niklas.soderlund+renesas@ragnatech.se>
- <20250317-furry-independent-clam-33db01@krzk-bin>
- <20250317115006.GB868399@ragnatech.se>
- <5876368b-1549-4ce0-af43-80f712f457c8@kernel.org>
- <20250317153726.GC919085@ragnatech.se>
- <CAMuHMdXU4JxDe-L+UcUwzndariz=mfed7UyVXW2Mv0yggXZw4w@mail.gmail.com>
- <20250317194419.GB949127@ragnatech.se>
+Subject: Re: [PATCH v3] iio: light: bh1750: Add hardware reset support via
+ GPIO
+To: Sergio Perez <sergio@pereznus.es>, linux-iio@vger.kernel.org
+Cc: devicetree@vger.kernel.org, tduszyns@gmail.com, jic23@kernel.org
+References: <20250318005045.3189-1-sergio@pereznus.es>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -117,37 +100,58 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250317194419.GB949127@ragnatech.se>
+In-Reply-To: <20250318005045.3189-1-sergio@pereznus.es>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 17/03/2025 20:44, Niklas Söderlund wrote:
->>> Ahh I see. But I would like to have names if possible.
->>>
->>> The driver is backward compatible with the old bindings, and going
->>> forward we have better bindings with names. All users are updated in the
->>> next commits in this series so the warnings will go way rather quickly.
->>
->> Note that the driver does not _have_ to obtain the "cs" clock by name,
->> as it will always be the first clock anyway ("make dtbs_check" will
->> sort-of enforce that).  So you can simplify the code by obtaining
->> the first clock without specifying a name, and the second (optional)
->> clock with a name.
+On 18/03/2025 01:50, Sergio Perez wrote:
+> Some BH1750 sensors require a hardware reset before they can be
+> detected on the I2C bus. This patch adds support for an optional
+> reset GPIO that can be specified in the device tree.
 > 
-> I understand that, and for this fix this would be acceptable. I'm just 
-> trying to think a head, something I should have done when first writing 
-> these bindings...
+> The reset sequence pulls the GPIO low and then high before
+> initializing the sensor, which enables proper detection with
+> tools like i2cdetect.
 > 
-> I'm fearing a scenario where we will need to add a 3rd reg region or 
-> clock. I don't think we will need that for the compatible values we have 
+> Update the devicetree binding documentation to include the new
+> reset-gpios property with examples.
+> 
+> Signed-off-by: Sergio Perez <sergio@pereznus.es>
+> ---
+>  .../devicetree/bindings/iio/light/bh1750.yaml |  5 +++++
+>  drivers/iio/light/bh1750.c                    | 22 +++++++++++++++++++
 
-Bindings should be complete, so add 3rd clock now.
+Nothing improved.
 
-If you need to add it later, what's the problem? The position or order
-is strictly fixed, so at 3rd place you will always have new foo-clock.
+If you keep ignoring our responses, you will get a NAK. Respond inline
+to previous emails and confirm that you understand the feedback and you
+implemented it.
 
-> here, but then I never though we get the documentation that now allows 
-> us to describe the second region...
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC. It might happen, that command when run on an older
+kernel, gives you outdated entries. Therefore please be sure you base
+your patches on recent Linux kernel.
+
+Tools like b4 or scripts/get_maintainer.pl provide you proper list of
+people, so fix your workflow. Tools might also fail if you work on some
+ancient tree (don't, instead use mainline) or work on fork of kernel
+(don't, instead use mainline). Just use b4 and everything should be
+fine, although remember about `b4 prep --auto-to-cc` if you added new
+patches to the patchset.
+
+You missed at least devicetree list (maybe more), so this won't be
+tested by automated tooling. Performing review on untested code might be
+a waste of time.
+
+Please kindly resend and include all necessary To/Cc entries.
+
+It seems my or other reviewer's previous comments were not fully
+addressed. Maybe the feedback got lost between the quotes, maybe you
+just forgot to apply it. Please go back to the previous discussion and
+either implement all requested changes or keep discussing them.
+
+
+
 Best regards,
 Krzysztof
 
