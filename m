@@ -1,179 +1,145 @@
-Return-Path: <devicetree+bounces-158490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DC2AA66F38
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 10:01:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E5F0A66F42
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 10:06:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 28B70178D1A
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 09:01:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84F8C421F22
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 09:06:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0ECE1DE8AD;
-	Tue, 18 Mar 2025 09:01:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gxQhgSWE"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68009204F85;
+	Tue, 18 Mar 2025 09:06:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com [209.85.222.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B254042AB4;
-	Tue, 18 Mar 2025 09:01:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A3321F5842;
+	Tue, 18 Mar 2025 09:06:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742288513; cv=none; b=NWBAFJtyBJHqnamPZFwEnHaye+lMt2VHYt5fV7yyyfLmOkBoxgGfnNzoflMI4919141UUh2m7CEW8SXfQj1o5/ZBL0scY58yn1yLKhtgb32MeNgwCHqKiqqbPhIG53luFMuxFOr+BrI2/+x70htew6D91f4YZShpuL1bqbJZhPg=
+	t=1742288768; cv=none; b=HsSKbueUcQOwDSITSO02TvLehFk2IPiG2QLTzloK+9dDaQJzDDNW8ai2g7l9RBguXX8y3xajgfLdvEw0VdCHD+DSg+UeQwgbghVAeMYCubhsy8NkyrzwbirYR5jBu6hvw8/eJclahAt84o+rely03skwD33lyKkdo2YV4g6Ug9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742288513; c=relaxed/simple;
-	bh=m7HEapZAycbQjtvmrxMb/Siih8OzNWBK9rT29ShBgc0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NWTZyUmcOJw5PTY/Ny35gatpDDIvmj4NgZLQagPcsq8SROhBxitEHue0wjQwhjCkOCEMQKG0I8ZeOFJsNvSHJXtvjM0TFZGhTEb4TWSXsf+TOpgxQFgxvZamviMkcvce8Tn7GlKg6NszXZ02jg6mMgNmz7EntiuT10/0HBuZDLI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gxQhgSWE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89565C4CEDD;
-	Tue, 18 Mar 2025 09:01:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742288513;
-	bh=m7HEapZAycbQjtvmrxMb/Siih8OzNWBK9rT29ShBgc0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gxQhgSWEp4OaFDIiFosNNc8DKTsjsRuVdNt+Y0DPos09ML9jBmq6yxk0WsB00HHk9
-	 o6shLp+2SLD2NI6/88bynEHpZ99prjUcHjnKDfLzA73ErPZuN40aF7zwTLcBqBxhi9
-	 zRsiP0G1rxSrFF62RmMlfNmK8IaJMjZRdMArrFFHTQOOsrlZ12AYb3NIyDXdOljK3T
-	 7llK1ufzWqzmSuGb/x1X9aSQKFqDl8Jk0Dr25obfKOQH85WsNO07FX7WWwl5wMDG92
-	 n1eRxhmhDi6YcPsmHlvPqn9qfZ5XnIEAfOVERHj0sntiHWRTNm88xC8peZ/abX5iw7
-	 7g9Rw5hRsLOJQ==
-Date: Tue, 18 Mar 2025 10:01:48 +0100
-From: Niklas Cassel <cassel@kernel.org>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Jesper Nilsson <jesper.nilsson@axis.com>, Frank Li <Frank.Li@nxp.com>,
-	Lars Persson <lars.persson@axis.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-arm-kernel@axis.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org
-Subject: Re: [PATCH RFC NOT TESTED 0/2] PCI: artpec6: Try to clean up
- artpec6_pcie_cpu_addr_fixup()
-Message-ID: <Z9k2fLFU3UCubK97@ryzen>
-References: <Z88Xh75G6Wabwl2O@axis.com>
- <20250317175419.GA933527@bhelgaas>
+	s=arc-20240116; t=1742288768; c=relaxed/simple;
+	bh=PTagmbpU3XF5H/sYqjJomzzmYuqGWjWIZvOG/uueeIQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dq1c6fc7K8Hnvb1eHqfx9Ezordksb20saUOFbfj5ZLvb1TUf4TVYOhNAyEoFsRBf3MCW7K12ytYAk8ZjYNtLshfY3vCe0ju1mP5H4tNT5anTqkfKaN8yYGfe7tQUWv8GIkbF6JfBQYTK0vEJjhnnEPo0/bBLe2/XVa7bKtpGXMA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f48.google.com with SMTP id a1e0cc1a2514c-86dde90e7a3so221211241.1;
+        Tue, 18 Mar 2025 02:06:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742288763; x=1742893563;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9lblAmMwxT4LQJ7oZOS5x8MeQfBd3ciA47yMs9M9n8E=;
+        b=Y27a2+T/jleNUHPKRXRC3hc90IRXVsOuhc+RvHyCQKze4i1tcfVbIflR/VVH8/KfgQ
+         ehtCcriKA+uq/uCwGsM9GD5XnU9czRYY6pOWVIx82go79AIIVDlFiYqNZfDnGhNkXVrA
+         ic7vUFb7PuYhNyxSKiJKOcJ/obATE0U40fdBPpOBkM2vjjZ+GXzTvl+hrKeWwANnTKIU
+         gITt7kS9viH9nZiv75jrPT8yQcCIQNXL00RR7mFzW7u/SZQt7lz79EfHTxU236l4HjlF
+         +ho8KevD6rzv/Fu9DcHUEHRhXGOOJ/a1S8jz0TkIdQo7JZ0G2w1QuL0JPWEX9P2HdSS5
+         Bo1Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVFZg83BgsPfy5zSgC4q80QLUrQmsM3DpcfpWoY1C4VDoE8X6GZEUOy/hs+g7VQJ66ilswfYot5uIpkfj8F@vger.kernel.org, AJvYcCXWKCucCMRwdUpNXIdFU0TN2OvOOKa6djeOMQc7c3mowORRpseMn60liX0Lwe7V9h/jSM5oUQDA42wJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5QeA74z3lEntr2H0lfxz46Mett5MWk0PjeJmvVRmIdgbDsozI
+	gUctHJHlODEhuo/ytg8ZFIqT/g2rpetFwJgnt31PBfGq6GcYpsaOr2b2DeQ3
+X-Gm-Gg: ASbGncsSEJFwMz1HnUl+poFqFDSWn0hKgXbgINaZQ5OUkNvJU4IFMfOsUntYHcOEP2u
+	6o9oEi+hbvygKiRzZsnNp9nJ/l4RcyhqDgw/ISUlN8Ul0JMor4TTf71bkTdFU+9yaMeuz5RNLy6
+	PKLK8fG/2gw4XfxSKi+njJFtIyCp7/o1ofYlKQWslMIaGrwYohm+rCZsPSTatVtWqhLNT22iIkD
+	QEQwipuOyJIFiKQwhvQHSF45cTv0qx6rtDBB9l0uabgKQkoTxwgR4AEvyEKNtC25ElqpW0/gqs0
+	tFjdNY2gmlvPGH93t9vbVJe2wwkflavRgGHS7cbI2ZKW+B7VNiZPrcHfXwCk/cBzFNDUAzfNRRY
+	E2GhoWq7QccI=
+X-Google-Smtp-Source: AGHT+IGlhLH6aKfdEVTCF1JqUHlH5ZDsggfkMDFJfahuYVcGI+ed3icY0UP02FNHiciSybMvAO1RDg==
+X-Received: by 2002:a05:6102:3908:b0:4bb:e2a1:183e with SMTP id ada2fe7eead31-4c4d915ecc3mr2639910137.18.1742288763488;
+        Tue, 18 Mar 2025 02:06:03 -0700 (PDT)
+Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com. [209.85.221.182])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4c37513df2dsm1811746137.23.2025.03.18.02.06.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Mar 2025 02:06:03 -0700 (PDT)
+Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-523dc366e42so2067106e0c.2;
+        Tue, 18 Mar 2025 02:06:03 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV6FL2mb4V6smD7lMzqtlzKFv9DfZN1gyIio4u+jsraOtS8wWZyB+ERatSBdpTsmdA97ECUt8/0K/aF@vger.kernel.org, AJvYcCXZ99ZznbTfdcMnoBzhIByMMNBegx6GF1zcb7j0jVvICuOlBjCfo9LdqK4X1L69vM/UonksRzzDR5QsJzKv@vger.kernel.org
+X-Received: by 2002:a05:6102:5492:b0:4bb:dba6:99cd with SMTP id
+ ada2fe7eead31-4c4d9032809mr2176944137.8.1742288762977; Tue, 18 Mar 2025
+ 02:06:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250317175419.GA933527@bhelgaas>
+References: <20250318085353.18990-2-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20250318085353.18990-2-wsa+renesas@sang-engineering.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 18 Mar 2025 10:05:51 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWP8a5eR_1sk2oUe02KdiDaibHnqAHbn2mSyBHzP1FNJA@mail.gmail.com>
+X-Gm-Features: AQ5f1JpyJMk16UbgbB5Lcp9JQK_N1tLC5wrggwzoADVVJsQawPIxoC1UstSz0Nk
+Message-ID: <CAMuHMdWP8a5eR_1sk2oUe02KdiDaibHnqAHbn2mSyBHzP1FNJA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: serial: snps-dw-apb-uart: document RZ/N1
+ binding without DMA
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hello Bjorn, Jesper,
+Hi Wolfram,
 
-On Mon, Mar 17, 2025 at 12:54:19PM -0500, Bjorn Helgaas wrote:
-> On Mon, Mar 10, 2025 at 05:47:03PM +0100, Jesper Nilsson wrote:
-> > I've now tested this patch-set together with your v9 on-top of the
-> > next-branch of the pci tree, and seems to be working good on my
-> > ARTPEC-6 set as RC:
-> > 
-> > # lspci
-> > 00:00.0 PCI bridge: Renesas Technology Corp. Device 0024
-> > 01:00.0 PCI bridge: Pericom Semiconductor PI7C9X2G304 EL/SL PCIe2 3-Port/4-Lane Packet Switch (rev 05)
-> > 02:01.0 PCI bridge: Pericom Semiconductor PI7C9X2G304 EL/SL PCIe2 3-Port/4-Lane Packet Switch (rev 05)
-> > 02:02.0 PCI bridge: Pericom Semiconductor PI7C9X2G304 EL/SL PCIe2 3-Port/4-Lane Packet Switch (rev 05)
-> > 03:00.0 Non-Volatile memory controller: Phison Electronics Corporation E18 PCIe4 NVMe Controller (rev 01)
-> > 
-> > However, when running as EP, I found that the DT setup for pcie_ep
-> > wasn't correct:
-> > 
-> > diff --git a/arch/arm/boot/dts/axis/artpec6.dtsi b/arch/arm/boot/dts/axis/artpec6.dtsi
-> > index 399e87f72865..6d52f60d402d 100644
-> > --- a/arch/arm/boot/dts/axis/artpec6.dtsi
-> > +++ b/arch/arm/boot/dts/axis/artpec6.dtsi
-> > @@ -195,8 +195,8 @@ pcie: pcie@f8050000 {
-> >  
-> >                 pcie_ep: pcie_ep@f8050000 {
-> >                         compatible = "axis,artpec6-pcie-ep", "snps,dw-pcie";
-> > -                       reg = <0xf8050000 0x2000
-> > -                              0xf8051000 0x2000
-> > +                       reg = <0xf8050000 0x1000
-> > +                              0xf8051000 0x1000
-> >                                0xf8040000 0x1000
-> >                                0x00000000 0x20000000>;
-> >                         reg-names = "dbi", "dbi2", "phy", "addr_space";
-> > 
-> > Even with this fix, I get a panic in dw_pcie_read_dbi() in EP-setup,
-> > both with and without:
+On Tue, 18 Mar 2025 at 09:54, Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> Renesas RZ/N1D has this UART with and without DMA support. Currently,
+> only the binding with DMA support is described. Add the missing one
+> without DMA support which can fallback even more.
+>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-Your fix looks correct to me.
+Thanks for your patch!
 
-You should even be able keep dbi as 0x2000, and simply remove the dbi2
-from "reg" and "reg-names", as the driver should be able to infer dbi2
-automatically:
-https://github.com/torvalds/linux/blob/v6.14-rc7/drivers/pci/controller/dwc/pcie-designware.c#L119-L128
+> --- a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
+> +++ b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
+> @@ -13,6 +13,20 @@ allOf:
+>    - $ref: serial.yaml#
+>    - $ref: rs485.yaml#
+>
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          items:
+> +            - enum:
+> +                - renesas,r9a06g032-uart
+> +                - renesas,r9a06g033-uart
 
-But your fix seems more correct.
-You should probably also change the size of "dbi" to 0x1000 in the RC node.
+I think you can simplify by replacing the enum by
 
+    - pattern: "^renesas,.*$"
 
-For the panic, could you please share the stack trace?
-(Perhaps we can help)
+> +            - const: renesas,rzn1-uart
+> +            - const: snps,dw-apb-uart
+> +    then:
+> +      properties:
+> +        dmas: false
+> +        dma-names: false
+> +
+>    - if:
+>        properties:
+>          compatible:
 
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-> > 
-> > "PCI: artpec6: Use use_parent_dt_ranges and clean up artpec6_pcie_cpu_addr_fixup()"
-> > 
-> > so it looks like the ARTPEC-6 EP functionality wasn't completely tested
-> > with this config.
-> > 
-> > The ARTPEC-7 variant does work as EP with our local config, I'll try
-> > to see what I can do to correct ARTPEC-6 using the setup for ARTPEC-7,
-> > and test your patchset on the ARTPEC-7.
-> 
-> Where are we at with this?
+Gr{oetje,eeting}s,
 
-My recommendation would be to:
-1) Get artpec6 EP mode working with v6.14-rc7
-2) Try v6.14-rc7 + v12 of Frank's series
-3) Try v6.14-rc7 + v12 of Frank's series + this series
+                        Geert
 
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-> 
-> First priority: I plan to merge v12 of Frank's series [1] for v6.15.
-> I hope this works with existing DTs on artpec6, both for RC and EP.
-> If not, we need to figure it out ASAP.
-> 
-> Second priority: For this series of:
-> 
->   ARM: dts: artpec6: Move PCIe nodes under bus@c0000000
->   PCI: artpec6: Use use_parent_dt_ranges and clean up artpec6_pcie_cpu_addr_fixup()
-> 
-> it looks like there's an open issue with the dts patch that Rob
-> noticed [2].  It would be great if we could fix that issue and get it
-> queued up if it's safe to merge independently of Frank's v12 series.
-
-Rob's bot is simply complaining that there is no DT schema.
-
-This is because the DT schema for axis,artpec6-pcie has not been
-converted to YAML.
-
-It would be nice to convert it, but I don't think it should stop
-other improvements for this driver.
-
-
-> It looks like the artpec6_pcie_cpu_addr_fixup() removal probably needs
-> to be delayed until we know all DTs in the field are fixed?  This
-> might mean that we can *never* remove artpec6_pcie_cpu_addr_fixup()
-> unless we can identify and work around the broken DTs in the kernel.
-
-Jesper should be able to answer this, but as far as I know, artpec6 is only
-used in-house, so they have full control of the DTBs.
-
-(i.e. artpec6_pcie_cpu_addr_fixup() can probably be killed quite quickly,
-once "v6.14-rc7 + v12 of Frank's series + this series" gets working.)
-
-
-Kind regards,
-Niklas
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
