@@ -1,158 +1,262 @@
-Return-Path: <devicetree+bounces-158617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADF71A677AB
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 16:24:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0859A677CB
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 16:30:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E3CE3A9AF6
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 15:24:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C37CF19A7960
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 15:25:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 323D220E711;
-	Tue, 18 Mar 2025 15:24:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5474920FABA;
+	Tue, 18 Mar 2025 15:24:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="IfjN6P8n"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cHmBZ1RF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com [157.90.84.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FB3F42AA1;
-	Tue, 18 Mar 2025 15:24:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=157.90.84.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CB2042AA1;
+	Tue, 18 Mar 2025 15:24:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742311478; cv=none; b=MXPzjYo5qrSzESV8jhSBMh6hjJ2ldAluVmDPkn/jPvEFZPZXQ2U3N9KLLR6MtfM9eLtf5h4XkFWPyS6lYbyIJw8ikxV/iGtsVk3tblNgR0Ay5D7BZvfdGbAsc0fB3Pw9WKBgNUowysulFxTHVK+2iYJlzoEIWBrljC1x+cp2CE0=
+	t=1742311499; cv=none; b=mWCXR/TcZsu8dOB6xLUENmYitvspsR0ZJ2vZFWgVQ92WvPV8RqJ/7PJvdxSINvBoThZIoe4IKfzWdQaCH3GDdH5E3aHSitG4ifotfb9cnYFOoV8eIXnWtzlCg3d2W1zz5TDTb7IGjBOXjrtYAOKzs4mJwYGo8WQl6x9Ukl/IOjk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742311478; c=relaxed/simple;
-	bh=IGxZDkJVEFGN27ZCCJQQO/TocqfLAnobnmaWTSSKWcU=;
-	h=Content-Type:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To; b=J1wbdI4JrcdvkuN3eerXz/8IHIKsJ8mdJ4fgBGeg+ymZZsnJEkdWmPj7rpjiEvy8qD6flmalZyaBiz0IPqflWQ94fs7SnxqZ0ppDMomLJji/L3L+BKSvflbNX5kSDE9Y65PnF87BEPgo8T32s29XBK9C9vQlg8H80pRSL8m1yXk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tuxedocomputers.com; spf=pass smtp.mailfrom=tuxedocomputers.com; dkim=pass (1024-bit key) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b=IfjN6P8n; arc=none smtp.client-ip=157.90.84.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tuxedocomputers.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxedocomputers.com
-Received: from [192.168.178.76] (business-24-134-207-61.pool2.vodafone-ip.de [24.134.207.61])
-	(Authenticated sender: g.gottleuber@tuxedocomputers.com)
-	by mail.tuxedocomputers.com (Postfix) with ESMTPSA id 1CF2B2FC0191;
-	Tue, 18 Mar 2025 16:24:28 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
-	s=default; t=1742311468;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=KPWGE/rZHIEKEK/h/2ogN6Fs8enuzcyDS0RqOiIT7Hw=;
-	b=IfjN6P8nRlwvGssUtvFg7kBXfNnN1CcaSFsGYnKYm3FAmesq6Iko0+rOqtS6C2CKOwW4+w
-	zrqIPZDk+/ANffn/VUKIY5427VphN5zCOPKW8XPXDSUtOaHnMCMJGoJwlVtb7lj5S2uMd5
-	aAKVxae2iAsLLi+2tCd51AND2DLMcJY=
-Authentication-Results: mail.tuxedocomputers.com;
-	auth=pass smtp.auth=g.gottleuber@tuxedocomputers.com smtp.mailfrom=g.gottleuber@tuxedocomputers.com
-Content-Type: multipart/mixed; boundary="------------Etn3kshWBFJU2f2GsmLfP7v9"
-Message-ID: <129bf442-2505-41c8-9254-ad7cacefab89@tuxedocomputers.com>
-Date: Tue, 18 Mar 2025 16:24:27 +0100
+	s=arc-20240116; t=1742311499; c=relaxed/simple;
+	bh=/Vxtk/M/zsYmwadz5SgxJ5mP+fz1qKWq85EWjMZiyDo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=H/U8Cak+/BKD0HvHAyeouGd4MJt3LlLRjx6f+PaBLom5Bj5paXyoLge7Uph/36woz+eziAcVPRO7s12ZIMoQ97XsHqG4+IdKCk/21HUgK7Sqs1u4az8dEDkD6/BkdR+nfkJVrs1SrI88Bne1aaHGa4CI0dS3ScgCU95V9Q7Engs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cHmBZ1RF; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1742311493; x=1773847493;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=/Vxtk/M/zsYmwadz5SgxJ5mP+fz1qKWq85EWjMZiyDo=;
+  b=cHmBZ1RFSRqe4FUE5X+nAlMFWrBarJHKUUCo1ZnXcv5rKPZwXYxFcIDc
+   OyeMFEMjPOQNtt5gXueGH47KywBKLYIHn/VcsyghrNCdJWp/ZLhIJ7X6j
+   9SA6GAcSQVCnK7hssZZqzAq4aTt8FBEuJ5Zs2fMPJdQbNi/w20Ule638h
+   WUG6LkBphcdeHv7myEgcUehy0Wi1B9Bi4RpwJcMhdXywfZE5593xeYhc1
+   wPH1fEjnBFzRXANhMsGuOfQu2Z3pQyWiZWZ72JDEXF7mdZ65fpsfKeCD/
+   QXnJwQcTWTUQ2cWb4KoSyleC49n0kF7KiAOGCwCGECbv1HqJqGGzBjHhO
+   A==;
+X-CSE-ConnectionGUID: 9w61opJDRF+XTadj9AwZGQ==
+X-CSE-MsgGUID: +64MRf30QU6k6pS7L84zkg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11377"; a="54135685"
+X-IronPort-AV: E=Sophos;i="6.14,257,1736841600"; 
+   d="scan'208";a="54135685"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2025 08:24:52 -0700
+X-CSE-ConnectionGUID: kMdL4c7YRZKiJ3gE8xKbMw==
+X-CSE-MsgGUID: fO2F/3zYQOS+T4NonmXKdw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,257,1736841600"; 
+   d="scan'208";a="122233599"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Mar 2025 08:24:48 -0700
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 95F1711F9BD;
+	Tue, 18 Mar 2025 17:24:44 +0200 (EET)
+Date: Tue, 18 Mar 2025 15:24:44 +0000
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Daniel Scally <djrscally@gmail.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Claudiu Manoil <claudiu.manoil@nxp.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: Re: [PATCH v8 02/10] property: Add functions to iterate named child
+Message-ID: <Z9mQPJwnKAkPHriT@kekkonen.localdomain>
+References: <cover.1742225817.git.mazziesaccount@gmail.com>
+ <9c3880f74476436f39d796b5c10c540ae50b722c.1742225817.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: Add device tree for TUXEDO Elite 14
- Gen1
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Georg Gottleuber <ggo@tuxedocomputers.com>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- wse@tuxedocomputers.com, cs@tuxedocomputers.com
-References: <57589859-fec1-4875-9127-d1f99e40a827@tuxedocomputers.com>
- <5e72992c-170c-48b9-8df4-2caf31c4ae44@oss.qualcomm.com>
- <5hvghahezqms6x4pi3acgaujyhiql6mzl2xhzph5phhki2yiyq@oi3xjatj7r64>
-Content-Language: en-US
-From: Georg Gottleuber <g.gottleuber@tuxedocomputers.com>
-In-Reply-To: <5hvghahezqms6x4pi3acgaujyhiql6mzl2xhzph5phhki2yiyq@oi3xjatj7r64>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9c3880f74476436f39d796b5c10c540ae50b722c.1742225817.git.mazziesaccount@gmail.com>
 
-This is a multi-part message in MIME format.
---------------Etn3kshWBFJU2f2GsmLfP7v9
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Moi,
 
-Am 07.03.25 um 07:45 schrieb Dmitry Baryshkov:
-[...]
->>> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-tuxedo-elite-14-gen1.dts b/arch/arm64/boot/dts/qcom/x1e80100-tuxedo-elite-14-gen1.dts
->>> new file mode 100644
->>> index 000000000000..86bdec4a2dd8
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/qcom/x1e80100-tuxedo-elite-14-gen1.dts
->>
->>> +&gpu {
->>> +       status = "okay";
->>> +
->>> +       zap-shader {
->>> +               firmware-name = "qcom/a740_zap.mbn";
->>
->> Are the laptop's OEM key/security fuses not blown?
+On Mon, Mar 17, 2025 at 05:50:38PM +0200, Matti Vaittinen wrote:
+> There are a few use-cases where child nodes with a specific name need to
+> be parsed. Code like:
 > 
-> Can this laptop use "qcom/x1e80100/gen70500_zap.mbn" which is already a
-> part of linux-firmware?
+> fwnode_for_each_child_node()
+> 	if (fwnode_name_eq())
+> 		...
+> 
+> can be found from a various drivers/subsystems. Adding a macro for this
+> can simplify things a bit.
+> 
+> In a few cases the data from the found nodes is later added to an array,
+> which is allocated based on the number of found nodes. One example of
+> such use is the IIO subsystem's ADC channel nodes, where the relevant
+> nodes are named as channel[@N].
+> 
+> Add helpers for iterating and counting device's sub-nodes with certain
+> name instead of open-coding this in every user.
+> 
+> Suggested-by: Jonathan Cameron <jic23@kernel.org>
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Reviewed-by: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+> ---
+> Revision history:
+> v7 => v8:
+>  - Fix the example in fwnode_get_named_child_node_count() documentation
+>    to use the fwnode_get_named_child_node_count() and not the
+>    device_get_named_child_node_count()
+>  - Fix the rest of the new macro's indentiations
+> v6 => v7:
+>  - Improve kerneldoc
+>  - Inline device_get_named_child_node_count() and change it to call
+>    fwnode_get_named_child_node_count() inside
+>  - Fix indentiation of the new macros
+> v5 => v6:
+>  - Add helpers to also iterate through the nodes.
+> v4 => v5:
+>  - Use given name instead of string 'channel' when counting the nodes
+>  - Add also fwnode_get_child_node_count_named() as suggested by Rob.
+> v3 => v4:
+>  - New patch as suggested by Jonathan, see discussion in:
+> https://lore.kernel.org/lkml/20250223161338.5c896280@jic23-huawei/
+> ---
+>  drivers/base/property.c  | 27 +++++++++++++++++++++++++++
+>  include/linux/property.h | 24 ++++++++++++++++++++++++
+>  2 files changed, 51 insertions(+)
+> 
+> diff --git a/drivers/base/property.c b/drivers/base/property.c
+> index c1392743df9c..f42f32ff45fc 100644
+> --- a/drivers/base/property.c
+> +++ b/drivers/base/property.c
+> @@ -945,6 +945,33 @@ unsigned int device_get_child_node_count(const struct device *dev)
+>  }
+>  EXPORT_SYMBOL_GPL(device_get_child_node_count);
+>  
+> +/**
+> + * fwnode_get_named_child_node_count - number of child nodes with given name
+> + * @fwnode: Node which child nodes are counted.
+> + * @name: String to match child node name against.
+> + *
+> + * Scan child nodes and count all the nodes with a specific name. Potential
+> + * 'number' -ending after the 'at sign' for scanned names is ignored.
+> + * E.g.::
+> + *   fwnode_get_named_child_node_count(fwnode, "channel");
+> + * would match all the nodes::
+> + *   channel { }, channel@0 {}, channel@0xabba {}...
+> + *
+> + * Return: the number of child nodes with a matching name for a given device.
+> + */
+> +unsigned int fwnode_get_named_child_node_count(const struct fwnode_handle *fwnode,
+> +					       const char *name)
+> +{
+> +	struct fwnode_handle *child;
+> +	unsigned int count = 0;
+> +
+> +	fwnode_for_each_named_child_node(fwnode, child, name)
+> +		count++;
+> +
+> +	return count;
+> +}
+> +EXPORT_SYMBOL_GPL(fwnode_get_named_child_node_count);
+> +
+>  bool device_dma_supported(const struct device *dev)
+>  {
+>  	return fwnode_call_bool_op(dev_fwnode(dev), device_dma_supported);
+> diff --git a/include/linux/property.h b/include/linux/property.h
+> index e214ecd241eb..a1856e6b714c 100644
+> --- a/include/linux/property.h
+> +++ b/include/linux/property.h
+> @@ -167,10 +167,18 @@ struct fwnode_handle *fwnode_get_next_available_child_node(
+>  	for (child = fwnode_get_next_child_node(fwnode, NULL); child;	\
+>  	     child = fwnode_get_next_child_node(fwnode, child))
+>  
+> +#define fwnode_for_each_named_child_node(fwnode, child, name)		\
+> +	fwnode_for_each_child_node(fwnode, child)			\
+> +		if (!fwnode_name_eq(child, name)) { } else
+> +
+>  #define fwnode_for_each_available_child_node(fwnode, child)		       \
+>  	for (child = fwnode_get_next_available_child_node(fwnode, NULL); child;\
+>  	     child = fwnode_get_next_available_child_node(fwnode, child))
+>  
+> +#define fwnode_for_each_available_named_child_node(fwnode, child, name)	\
+> +	fwnode_for_each_available_child_node(fwnode, child)		\
+> +		if (!fwnode_name_eq(child, name)) { } else
+> +
 
-It seems so.
+OF only enumerates available nodes via the fwnode API, software nodes don't
+have the concept but on ACPI I guess you could have a difference in nodes
+where you have device sub-nodes that aren't available. Still, these ACPI
+device nodes don't have meaningful names in this context (they're
+4-character object names) so you wouldn't use them like this anyway.
 
-Because there were no logs about loading zap.mbn, I activated dyndbg
-(dyndbg="file drivers/base/firmware_loader/main.c +fmp"). See attachment
-for dmesg output. But GUI freezes after sddm login.
+So my question is: is it useful to provide this besides
+fwnode_for_each_named_child_node(), given that both are effectively the
+same?
 
-Best regards,
-Georg
---------------Etn3kshWBFJU2f2GsmLfP7v9
-Content-Type: text/x-log; charset=UTF-8; name="dmesg_loading_zap.log"
-Content-Disposition: attachment; filename="dmesg_loading_zap.log"
-Content-Transfer-Encoding: base64
+>  struct fwnode_handle *device_get_next_child_node(const struct device *dev,
+>  						 struct fwnode_handle *child);
+>  
+> @@ -178,11 +186,19 @@ struct fwnode_handle *device_get_next_child_node(const struct device *dev,
+>  	for (child = device_get_next_child_node(dev, NULL); child;	\
+>  	     child = device_get_next_child_node(dev, child))
+>  
+> +#define device_for_each_named_child_node(dev, child, name)		\
+> +	device_for_each_child_node(dev, child)				\
+> +		if (!fwnode_name_eq(child, name)) { } else
+> +
+>  #define device_for_each_child_node_scoped(dev, child)			\
+>  	for (struct fwnode_handle *child __free(fwnode_handle) =	\
+>  		device_get_next_child_node(dev, NULL);			\
+>  	     child; child = device_get_next_child_node(dev, child))
+>  
+> +#define device_for_each_named_child_node_scoped(dev, child, name)	\
+> +	device_for_each_child_node_scoped(dev, child)			\
+> +		if (!fwnode_name_eq(child, name)) { } else
+> +
+>  struct fwnode_handle *fwnode_get_named_child_node(const struct fwnode_handle *fwnode,
+>  						  const char *childname);
+>  struct fwnode_handle *device_get_named_child_node(const struct device *dev,
+> @@ -210,6 +226,14 @@ int fwnode_irq_get_byname(const struct fwnode_handle *fwnode, const char *name);
+>  
+>  unsigned int device_get_child_node_count(const struct device *dev);
+>  
+> +unsigned int fwnode_get_named_child_node_count(const struct fwnode_handle *fwnode,
+> +					       const char *name);
+> +static inline unsigned int device_get_named_child_node_count(const struct device *dev,
+> +							     const char *name)
+> +{
+> +	return fwnode_get_named_child_node_count(dev_fwnode(dev), name);
+> +}
+> +
+>  static inline int device_property_read_u8(const struct device *dev,
+>  					  const char *propname, u8 *val)
+>  {
 
-WyAgIDM4LjU4NTY5MV0gZmlybXdhcmVfY2xhc3M6ZndfbG9nX2Zpcm13YXJlX2luZm86IG1z
-bV9kcHUgYWUwMTAwMC5kaXNwbGF5LWNvbnRyb2xsZXI6IExvYWRlZCBGVzogcWNvbS9nZW43
-MDUwMF9zcWUuZncsIHNoYTI1NjogMDVhZTg5ZTZkZWE2MjI2OGNlYzNmNGFiYjVkN2Q2ZGIy
-Yzk1MjcwZmYxMDVmZDA1NmY3NzI2MmUzOWQyZTUyNwpbICAgMzguNTg1NjkzXSBtc21fZHB1
-IGFlMDEwMDAuZGlzcGxheS1jb250cm9sbGVyOiBbZHJtOmFkcmVub19yZXF1ZXN0X2Z3IFtt
-c21dXSBsb2FkZWQgcWNvbS9nZW43MDUwMF9zcWUuZncgZnJvbSBuZXcgbG9jYXRpb24KWyAg
-IDM4LjU4NTcwOF0gZmlybXdhcmVfY2xhc3M6X19hbGxvY2F0ZV9md19wcml2OiBmaXJtd2Fy
-ZV9jbGFzczogX19hbGxvY2F0ZV9md19wcml2OiBmdy1xY29tL2dlbjcwNTAwX2dtdS5iaW4g
-ZndfcHJpdj0wMDAwMDAwMDI1MTY3Y2FiClsgICAzOC41ODU4MTZdIGZpcm13YXJlX2NsYXNz
-OmZ3X2dldF9maWxlc3lzdGVtX2Zpcm13YXJlOiBtc21fZHB1IGFlMDEwMDAuZGlzcGxheS1j
-b250cm9sbGVyOiBMb2FkaW5nIGZpcm13YXJlIGZyb20gL2xpYi9maXJtd2FyZS9xY29tL2dl
-bjcwNTAwX2dtdS5iaW4KWyAgIDM4LjU4NTgxOF0gZmlybXdhcmVfY2xhc3M6ZndfZ2V0X2Zp
-bGVzeXN0ZW1fZmlybXdhcmU6IG1zbV9kcHUgYWUwMTAwMC5kaXNwbGF5LWNvbnRyb2xsZXI6
-IGRpcmVjdC1sb2FkaW5nIHFjb20vZ2VuNzA1MDBfZ211LmJpbgpbICAgMzguNTg1ODE5XSBm
-aXJtd2FyZV9jbGFzczpmd19zZXRfcGFnZV9kYXRhOiBmaXJtd2FyZV9jbGFzczogZndfc2V0
-X3BhZ2VfZGF0YTogZnctcWNvbS9nZW43MDUwMF9nbXUuYmluIGZ3X3ByaXY9MDAwMDAwMDAy
-NTE2N2NhYiBkYXRhPTAwMDAwMDAwZTkxNzg1YTkgc2l6ZT04MTMxMgpbICAgMzguNTg1ODU2
-XSBmaXJtd2FyZV9jbGFzczpmd19sb2dfZmlybXdhcmVfaW5mbzogbXNtX2RwdSBhZTAxMDAw
-LmRpc3BsYXktY29udHJvbGxlcjogTG9hZGVkIEZXOiBxY29tL2dlbjcwNTAwX2dtdS5iaW4s
-IHNoYTI1NjogNWRmYmEyNDdkNTQ4Y2FiY2I4OTJmZmE3MTZlOGRjODJhMzQ1ZmQ1NGI1ZGJh
-ZTQ2YmE1MjMyMzBlN2FlMzdkZApbICAgMzguNTg1ODU4XSBtc21fZHB1IGFlMDEwMDAuZGlz
-cGxheS1jb250cm9sbGVyOiBbZHJtOmFkcmVub19yZXF1ZXN0X2Z3IFttc21dXSBsb2FkZWQg
-cWNvbS9nZW43MDUwMF9nbXUuYmluIGZyb20gbmV3IGxvY2F0aW9uClsgICAzOC41ODg2NzFd
-IFtkcm1dIExvYWRlZCBHTVUgZmlybXdhcmUgdjQuMy4xNwpbICAgMzguNjUzMTU0XSBmaXJt
-d2FyZV9jbGFzczpfX2FsbG9jYXRlX2Z3X3ByaXY6IGZpcm13YXJlX2NsYXNzOiBfX2FsbG9j
-YXRlX2Z3X3ByaXY6IGZ3LXFjb20veDFlODAxMDAvZ2VuNzA1MDBfemFwLm1ibiBmd19wcml2
-PTAwMDAwMDAwMjNkNGJkYmEKWyAgIDM4LjY1MzMyOV0gZmlybXdhcmVfY2xhc3M6ZndfZ2V0
-X2ZpbGVzeXN0ZW1fZmlybXdhcmU6IG1zbV9kcHUgYWUwMTAwMC5kaXNwbGF5LWNvbnRyb2xs
-ZXI6IExvYWRpbmcgZmlybXdhcmUgZnJvbSAvbGliL2Zpcm13YXJlL3Fjb20veDFlODAxMDAv
-Z2VuNzA1MDBfemFwLm1ibgpbICAgMzguNjUzMzMxXSBmaXJtd2FyZV9jbGFzczpmd19nZXRf
-ZmlsZXN5c3RlbV9maXJtd2FyZTogbXNtX2RwdSBhZTAxMDAwLmRpc3BsYXktY29udHJvbGxl
-cjogZGlyZWN0LWxvYWRpbmcgcWNvbS94MWU4MDEwMC9nZW43MDUwMF96YXAubWJuClsgICAz
-OC42NTMzMzNdIGZpcm13YXJlX2NsYXNzOmZ3X3NldF9wYWdlX2RhdGE6IGZpcm13YXJlX2Ns
-YXNzOiBmd19zZXRfcGFnZV9kYXRhOiBmdy1xY29tL3gxZTgwMTAwL2dlbjcwNTAwX3phcC5t
-Ym4gZndfcHJpdj0wMDAwMDAwMDIzZDRiZGJhIGRhdGE9MDAwMDAwMDAyNzY4YjVmOSBzaXpl
-PTEyMDg4ClsgICAzOC42NTMzNDRdIGZpcm13YXJlX2NsYXNzOmZ3X2xvZ19maXJtd2FyZV9p
-bmZvOiBtc21fZHB1IGFlMDEwMDAuZGlzcGxheS1jb250cm9sbGVyOiBMb2FkZWQgRlc6IHFj
-b20veDFlODAxMDAvZ2VuNzA1MDBfemFwLm1ibiwgc2hhMjU2OiBhYmFlZjUyMjI4NTZjZTk3
-NjAxNDUxMmQ0MGY4N2Q2M2IzODBhNjA0ZGJiMDk1YzQ2OWYwMmZlYjkyNGUwYjI2ClsgICAz
-OC42NTc3ODldIGZpcm13YXJlX2NsYXNzOl9fZnJlZV9md19wcml2OiBmaXJtd2FyZV9jbGFz
-czogX19mcmVlX2Z3X3ByaXY6IGZ3LXFjb20veDFlODAxMDAvZ2VuNzA1MDBfemFwLm1ibiBm
-d19wcml2PTAwMDAwMDAwMjNkNGJkYmEgZGF0YT0wMDAwMDAwMDI3NjhiNWY5IHNpemU9MTIw
-ODgK
+-- 
+Terveisin,
 
---------------Etn3kshWBFJU2f2GsmLfP7v9--
+Sakari Ailus
 
