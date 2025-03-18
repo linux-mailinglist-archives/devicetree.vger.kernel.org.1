@@ -1,50 +1,55 @@
-Return-Path: <devicetree+bounces-158592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 308E2A67619
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 15:16:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABCF5A67635
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 15:21:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8081E17500B
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 14:16:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F9D03A96EA
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 14:21:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF01F20E306;
-	Tue, 18 Mar 2025 14:16:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 383BC20E003;
+	Tue, 18 Mar 2025 14:21:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pereznus.es header.i=@pereznus.es header.b="GnhUtpgh"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="MPx7Op0G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from qs51p00im-qukt01072501.me.com (qs51p00im-qukt01072501.me.com [17.57.155.14])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6457520D515
-	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 14:16:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.57.155.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46B1C20DD43;
+	Tue, 18 Mar 2025 14:21:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742307383; cv=none; b=LZGLiqDlALcoOvvoURAhW4SOh9UEf31sveBhE4wyWrOhKBjLrPQlWNFOdnDYBCzHSDSUQw3dY1+RcoL9K1w6BaILfxSxg/vA+AlEQEIj4D10i2vT6iMO5D0HQLGTAouKA4mTQJm3cJVYU/zsEKHt1BHGrxPea0RUgulj3fmY2jI=
+	t=1742307686; cv=none; b=bqu1AC9dw/CPJAW+nny3Y6462lH2vQfLxb/rItLX91VKj1YDUJM1oCwxe/EzSz1yNSzWoxor1juV/kHYSm5dwXaBidgWJFPqp1qr/tvqN4pgRw6PGKbpSxwM3rvILBldlEzLJxPFFo8qyJR6O80Mq25xQQJEbVPJ1xSCAwcFneI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742307383; c=relaxed/simple;
-	bh=F3zEloayFB59tG2uFVl0zt9z5egeQR6/DV0bXFcOQLw=;
+	s=arc-20240116; t=1742307686; c=relaxed/simple;
+	bh=R1uBNBSVuYoXGI+w/jGLsCwuPYjh6hh6pbgZVbgBndk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EV3SO3KZl2laduNgBgjI1GPENZydqWj+H+WPJzE13CZIRIGCP7fCFYYInmY5vT1vRfPhDrRBvJvISw5qUxnmIrM2ePD2iSfF4AZwk5XsVC+LmxyfBfic0AYUZQ3DNWB4KUayvj9z9CC0okIHfw5tyyWB6W+kfa6GfZtvce3rOv0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pereznus.es; spf=pass smtp.mailfrom=pereznus.es; dkim=pass (2048-bit key) header.d=pereznus.es header.i=@pereznus.es header.b=GnhUtpgh; arc=none smtp.client-ip=17.57.155.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pereznus.es
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pereznus.es
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pereznus.es; s=sig1;
-	bh=+lYMfzE0EBEBAFrPAVdWndmMr4naYIrNNaZlMxmulcI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:x-icloud-hme;
-	b=GnhUtpghvvJflEdu/RYrZ/RTl3tlTEUXwFypQ9mUKi31Ycr/w9o7XmCM2SNFiHFey
-	 5NsHtVYq5ll+adWSLPB9Obb2W0XwKnUJtrPTzeE+T8AyOK1soaS/+zLDuiN2ScQfIu
-	 FZ1VdWJmFF+ouixxQr6BQ9MZotP9rKDxDnDRztNoOGgrxxJNjlUgV4wPCN9HhYkUb4
-	 irCW4AiMizoOQfjxDAZ1MzJ7ktmJCAr87PyATLDipO3XE0Ue98UdUCzni42ZiCXVM5
-	 JHVbwciOLZTX5L7HqLJaAi9llrvUKswf3LmpTQb2fvqShC8cLfMen9x3rSnLn8TsAA
-	 SbJ2Sh95RLWNA==
-Received: from [192.168.1.28] (qs51p00im-dlb-asmtp-mailmevip.me.com [17.57.155.28])
-	by qs51p00im-qukt01072501.me.com (Postfix) with ESMTPSA id 9BD99440167;
-	Tue, 18 Mar 2025 14:16:14 +0000 (UTC)
-Message-ID: <f0536d74-5433-4086-9dfc-1ce6aeeebe00@pereznus.es>
-Date: Tue, 18 Mar 2025 15:16:12 +0100
+	 In-Reply-To:Content-Type; b=M6z3Lhk9eY/DiEnT0UtrzWmWa2zMvZf1+F+GJbCw1ZDcmJbZFS75ID/XGEHEQp2PB7R8dxL5+OyNRCGzh5laW4VpUQsverOuxZvCGJwnnBXa88E78LOt7TgQhla5TEimbgWW/yPzMvGxlO5tnocqUkXXXC3ZudFvA6iajzn5LtQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=MPx7Op0G; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1742307682;
+	bh=R1uBNBSVuYoXGI+w/jGLsCwuPYjh6hh6pbgZVbgBndk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=MPx7Op0GztK8XDA43dN7d9m9g8obqpG4VPaQyhXd3Wl3l63svvb8erQsNCqAkJ1u2
+	 MvooMn7k6FmeqtVm5AELGh767VevQUwQq8sY/nsrzLz0FCZVJuUJMDpODZuedGLjG4
+	 s/P3ilp+tqDk8w7DinMJPePdGw252accAnez0PnFr+L7ViRN8Di/Jj2W7Y//8ZGQZ0
+	 NocnTStQZGqAJFsJ8sFTDSNDdcUwGC5hebX9diyn17HFnmmlupDbOOw6f1NiWFQrLB
+	 BI+Od0udujNoSt5YXyIhaLaoHJahUpWeEHHF/LfFDUbcuauHFn6x4ztckbPdyY8mFo
+	 3+HzCvYiCWO9Q==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8AC4817E0848;
+	Tue, 18 Mar 2025 15:21:21 +0100 (CET)
+Message-ID: <79fc072f-9fea-4810-bd9d-3539ebb70ca3@collabora.com>
+Date: Tue, 18 Mar 2025 15:21:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,140 +57,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] iio: light: bh1750: Add hardware reset support via GPIO
-To: Krzysztof Kozlowski <krzk@kernel.org>, linux-iio@vger.kernel.org
-Cc: tduszyns@gmail.com, jic23@kernel.org, lars@metafoo.de, robh@kernel.org,
- conor+dt@kernel.org, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250316145514.627-1-sergio@pereznus.es>
- <01f48f6d-55a4-4dbe-b1ae-ef8c54dcc1ff@kernel.org>
-Content-Language: es-ES, en-US, ca
-From: =?UTF-8?Q?Sergio_P=C3=A9rez?= <sergio@pereznus.es>
-In-Reply-To: <01f48f6d-55a4-4dbe-b1ae-ef8c54dcc1ff@kernel.org>
+Subject: Re: [PATCH 2/2] arm64: dts: mediatek: mt8192-asurada-spherion: Mark
+ trackpads as fail-needs-probe
+To: Laura Nao <laura.nao@collabora.com>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, matthias.bgg@gmail.com, bleung@chromium.org,
+ tzungbi@kernel.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ chrome-platform@lists.linux.dev, nfraprado@collabora.com,
+ kernel@collabora.com
+References: <20250318102259.189289-1-laura.nao@collabora.com>
+ <20250318102259.189289-3-laura.nao@collabora.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20250318102259.189289-3-laura.nao@collabora.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: mnMBvqOoHvusoZdA_rhYCAZzB9-6Rs4a
-X-Proofpoint-ORIG-GUID: mnMBvqOoHvusoZdA_rhYCAZzB9-6Rs4a
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-18_07,2025-03-17_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 mlxscore=0 malwarescore=0
- suspectscore=0 spamscore=0 bulkscore=0 phishscore=0 clxscore=1030
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2503180105
+Content-Transfer-Encoding: 7bit
 
-Hello,
+Il 18/03/25 11:22, Laura Nao ha scritto:
+> Different Spherion variants use different trackpads on the same I2C2
+> bus. Instead of enabling all of them by default, mark them as
+> "fail-needs-probe" and let the implementation determine which one is
+> actually present.
+> 
+> Additionally, move the trackpad pinctrl entry back to the individual
+> trackpad nodes.
+> 
+> Signed-off-by: Laura Nao <laura.nao@collabora.com>
 
-El 17/03/2025 a las 8:24, Krzysztof Kozlowski escribió:
-> On 16/03/2025 15:55, Sergio Perez wrote:
->> Some BH1750 sensors require a hardware reset before they can be
->> detected on the I2C bus. This patch adds support for an optional
->> reset GPIO that can be specified in the device tree.
->>
->> The reset sequence pulls the GPIO low and then high before
->> initializing the sensor, which enables proper detection with
->> tools like i2cdetect.
->>
->> Update the devicetree binding documentation to include the new
->> reset-gpios property with examples.
->>
->> Signed-off-by: Sergio Perez <sergio@pereznus.es>
-> Please run scripts/checkpatch.pl and fix reported warnings. After that,
-> run also `scripts/checkpatch.pl --strict` and (probably) fix more
-> warnings. Some warnings can be ignored, especially from --strict run,
-> but the code here looks like it needs a fix. Feel free to get in touch
-> if the warning is not clear.
->
-> <form letter>
-> Please use scripts/get_maintainers.pl to get a list of necessary people
-> and lists to CC. It might happen, that command when run on an older
-> kernel, gives you outdated entries. Therefore please be sure you base
-> your patches on recent Linux kernel.
->
-> Tools like b4 or scripts/get_maintainer.pl provide you proper list of
-> people, so fix your workflow. Tools might also fail if you work on some
-> ancient tree (don't, instead use mainline) or work on fork of kernel
-> (don't, instead use mainline). Just use b4 and everything should be
-> fine, although remember about `b4 prep --auto-to-cc` if you added new
-> patches to the patchset.
->
-> You missed at least devicetree list (maybe more), so this won't be
-> tested by automated tooling. Performing review on untested code might be
-> a waste of time.
->
-> Please kindly resend and include all necessary To/Cc entries.
-> </form letter>
->
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Sorry, I had run the scripts/get_maintainer.pl tool and got fewer 
-recipients than necessary.  I have redone everything in a clean 
-installation and now I have obtained more recipients.
-
-Any fixes I make in the patch I send to this same thread or should I 
-send it with git send-mail? I say this because perhaps I have done it 
-incorrectly and possibly created 3 versions, I apologize. My latest 
-version (v3) includes all the suggestions mentioned but due to my 
-ignorance of the procedure I thought they should be sent to the list 
-again as before. Can I delete v2 and v3 and keep only the first version?
-
->> ---
->>   .../devicetree/bindings/iio/light/bh1750.yaml |  20 +++-
->>   drivers/iio/light/bh1750.c                    | 113 ++++++++++++------
->
-> ... and please go through your patch and see what happened there.
->>   2 files changed, 95 insertions(+), 38 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/iio/light/bh1750.yaml b/Documentation/devicetree/bindings/iio/light/bh1750.yaml
->> index 1a88b3c253d5..d53b221eb84b 100644
->> --- a/Documentation/devicetree/bindings/iio/light/bh1750.yaml
->> +++ b/Documentation/devicetree/bindings/iio/light/bh1750.yaml
->> @@ -11,6 +11,9 @@ maintainers:
->>   
->>   description: |
->>     Ambient light sensor with an i2c interface.
->> +
->> +  Some BH1750 sensors require a hardware reset before being properly detected
->> +  on the I2C bus. This can be done using the optional reset-gpios property.
->>   
->>   properties:
->>     compatible:
->> @@ -23,6 +26,10 @@ properties:
->>   
->>     reg:
->>       maxItems: 1
->> +
->> +  reset-gpios:
->> +    description: GPIO connected to the sensor's reset line (active low)
->> +    maxItems: 1
->>   
->>   required:
->>     - compatible
->> @@ -41,5 +48,16 @@ examples:
->>           reg = <0x23>;
->>         };
->>       };
->> +  - |
->> +    i2c {
->> +      #address-cells = <1>;
->> +      #size-cells = <0>;
->> +
->> +      light-sensor@23 {
->> +        compatible = "rohm,bh1750";
->> +        reg = <0x23>;
->> +        reset-gpios = <&gpio2 17 GPIO_ACTIVE_HIGH>;
->> +      };
->> +    };
->>   
->> -...
->> +...
->> \ No newline at end of file
-> You have unrelated changed all over the place.
->
->
-> Best regards,
-> Krzysztof
-
-Yes, in the patch I have prepared I have solved this problem, it only 
-adds the exact lines and does not modify anything else.
 
 
