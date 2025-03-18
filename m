@@ -1,152 +1,265 @@
-Return-Path: <devicetree+bounces-158509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87D26A67014
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 10:44:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F7CCA6701F
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 10:45:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D7973ACB06
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 09:44:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D302172EEF
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 09:45:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2E53207DF8;
-	Tue, 18 Mar 2025 09:44:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC78A207A35;
+	Tue, 18 Mar 2025 09:45:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="okBGhs4m"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="ZMO59ay9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4468E207DFA;
-	Tue, 18 Mar 2025 09:44:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABA8B207A23
+	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 09:44:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742291052; cv=none; b=YTzcRx1ZQYp8dlnq82KkI7IJ8MySVpJ8x0PEhbeAj35XBGTThcJ2JXWmYDG5kdBH/KjgCOBnIJT5DUuUInwpTZF75MWZmXKjd7UWTsTySyomwnYS9pIYs+OfmW/Ypf+LTErIpSERS/2WmOtkaErvoVemmvNXw2X+StITS3T9aYc=
+	t=1742291102; cv=none; b=Bq3lU18wSEM+2qLKVHdBg5JIaGpbEVfuGVhtVdSxNzp9F9bcoDTxQ7X2u/9KThm2RTcsaKtYLEa5EhR3/3EVJ9KlEvqd3ceUYrfl7OooIrPnYojgMbR8TeAuKiCKZ8uafpp6mfCkLdii4IifznndscGFik2su7bf4eVGvw1h3ZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742291052; c=relaxed/simple;
-	bh=+sIGm7SiHYfk56urSAvw5hE5y62jrH6xv9wH7xwrn4s=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=YAX02QF4DiqEyp37ztOTZAhF1k4p5rnEM5ZScYbv84dsWv4ScR9bkCXMhvP6BRwzOSJNZ0sN6o1hMrwAA1nlzRjj7QmNrrMETdIWkdil6bo9c5eOAfgcmG5RuYeOJ+9+LXzu1dgS4k+ErNVwpjmtfbFbGbw09VNe7S/uUiZome4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=okBGhs4m; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52I19MWP027513;
-	Tue, 18 Mar 2025 09:44:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Ec7mSUzuCpU2xSIyFsw66IeCPuvXHL53OlAzuGrHofc=; b=okBGhs4my4naPQmF
-	uH+0/WSCaUH29ZRDjNfp49opKOkOSR+q7boXefF/uFMZ9YBm+FusJPiwuU+OQRcL
-	/tfXaQgwPg8T74Y9r+/uEA1fnj4jv0j/C63NZp+adO6PNnfe6C/EKz+fVU5yVMZy
-	rrjm80L2IbFNPI1fEpUbpiL0Ibv0sUx9XFXPYXFAcw7g56Jw9e1P5VcpnaLLuBVO
-	Ffh68wZTyidP/h4HHpkVxn8Gd4ggpJvfyY2eOZc0M7lcCfM023Vfv2AAokX7GZge
-	a/DAQO+bNUvUyjrNQekmKvkhTBkPf1qf4DCQ8Eh4ZUYnQm7uWijqtQQ1LgqM4Dcp
-	qZ+FLw==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45exwth9j0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 18 Mar 2025 09:44:01 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52I9i1ot021941
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 18 Mar 2025 09:44:01 GMT
-Received: from hu-arakshit-hyd.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 18 Mar 2025 02:43:57 -0700
-From: Abhinaba Rakshit <quic_arakshit@quicinc.com>
-Date: Tue, 18 Mar 2025 15:13:24 +0530
-Subject: [PATCH v2 2/2] arm64: dts: qcom: qcs615: add QCrypto nodes
+	s=arc-20240116; t=1742291102; c=relaxed/simple;
+	bh=raGUllWJomob8pRySrj7Qf7XmWKdYOqMKi7Hn0TQG+c=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Bx3ecuQSXcjCQTtatNtiPNcrwu0ssLeaf9cOBS0FBDD5PgKf/l5iLx7POu4nExA436Zj3WrNfU38xrH36xhjhWnG4akrbf8i1KTeFBaLT3VrvX9MeIEfntgUTwMgLn55dTQq1wXEMeihsYj28PVMtN4boqQ7fa1IJzlf78cSqCw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=ZMO59ay9; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5e56b229d60so11865714a12.0
+        for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 02:44:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1742291095; x=1742895895; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4eInU4xGBu0Mt8Lm17X6zPVhTvmNik5PGbnkQOxA+YU=;
+        b=ZMO59ay9fHfT96rInwKCEFW4JQm/ORR0iYosd/bJf9B50nRRSVn2nAWtctgPxWH44J
+         06TJT4+3Bd0BZ8vRURy5KhTkv5nCTBYgdDakZI9ZaDOJ+vYhpIpIcdnSh82cryEbpFaG
+         MCe0Pj2ZZxOK6GGxk5MZWfKmIKYFNz7ui8fVynMOB0z4zZVMQlQMRvAGEGOYaEkxjKbl
+         2iWp4r0grH4J7gVzIPAhZa6gfy+cSsK7cURSC5mivNmgOas8EWvF4qYog2vAx35EF3aF
+         Z/hUxzPO3AuBb224graHCQNSxcypA0Db+ALdEsqHf6FzVfus9071ar58oks8O4pGS2pE
+         9VWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742291095; x=1742895895;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4eInU4xGBu0Mt8Lm17X6zPVhTvmNik5PGbnkQOxA+YU=;
+        b=kT0pcEFtI0Nbguwl98obwn+tezQHglYwkOgQcDgh2yT/F7c/WeI88URfAcxO02dchI
+         pOed2hsCNtda+NQwBMBcgU7PqHS3JfaWFEBG8DTE9I2n1il2VG6vBi9mER71URGXuP7V
+         0cYPj5AF8m63ar/kBOQC0FCuL9SIzBNPe404rtqMwLZnfeX+qXEBnlsAotaycI5Ya5hz
+         Nhsnm2pGyPLfLs2t7hRMiBJMgjL/lDa+O2SIid1gN7EmlxJm8eyezCDpH6w80i0/K1qE
+         0N4JRZXIMvpbPyA9xcrOx9Ptdj5agx8y5IHxKAYdjvgP2SSNEOVQayftdM2CuDyOyJ3d
+         pxZQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVF1vy5pdh+2GzzDGc8qgXNImPjKk+aN+0w3tusvufoeAZnv0y5G6f+tRVmqjcfad94kYvXXznsR8io@vger.kernel.org
+X-Gm-Message-State: AOJu0YwoT7m1tmd64uXIVvzMn51iHlob1BfzGKa6KWJMicXxEBUGPkjE
+	apT8B8SFhLgHRdG0jhEUPIywAxzPd6eOfiGlVV7AtiXhU1V7NVrUOFICX198DaI=
+X-Gm-Gg: ASbGncs3deku1zuvcS6KRmTTROI9Zn4It0WZweQMNBL31V8w7IGzJd/Ozt3UrMGxWBx
+	Hn5Q5BDPKtX4iASKQ1LgB5Kxe0ez+0tb6LRkqgCXLGYlYYcNL16bMkcADqgxzp9epzl/eXMm8mg
+	2eAMh3HP+S2oKm2PCInRqPVkPq4dV4WuKcOOtOSYiHP2rzeHZ0FVGp/Nlg/qcmshGymPANlS/7f
+	AfzHfIh5ewbl4Wj1ClVbPoBjWLyemnuHAi20OYnGxPlvBeZvYyMPT4oyYOFM5VXPVWBAwYny6dp
+	pqVcBoWFzAAJrxSklORnELkQyBCKuFmwR/TECEh7u0ntAMEQ++0ACQvSrEsCm7pr+GRKvhIzlzy
+	6w7bZO5dFB+TBCqI=
+X-Google-Smtp-Source: AGHT+IF5nVWbdkGdXhT8Rbx0xwnOfVzY2zNtg2VYzomJ4pLfS9zkgHWMH1EzA7usUUR4N2OG/B9QfA==
+X-Received: by 2002:a05:6402:3491:b0:5e6:102a:c30 with SMTP id 4fb4d7f45d1cf-5eb1efcbee0mr3044112a12.2.1742291094785;
+        Tue, 18 Mar 2025 02:44:54 -0700 (PDT)
+Received: from localhost (host-80-117-53-131.retail.telecomitalia.it. [80.117.53.131])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e8169bca53sm7562109a12.46.2025.03.18.02.44.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Mar 2025 02:44:54 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Tue, 18 Mar 2025 10:46:07 +0100
+To: Krzysztof Wilczynski <kw@linux.com>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v7 08/11] misc: rp1: RaspberryPi RP1 misc driver
+Message-ID: <Z9lA31gBjpIRHm6y@apocalypse>
+References: <cover.1738963156.git.andrea.porta@suse.com>
+ <d1362766e3e966f78591129de918046a4b892c18.1738963156.git.andrea.porta@suse.com>
+ <20250314083730.GC234496@rocinante>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250318-enable-qce-for-qcs615-v2-2-c5e05fe22572@quicinc.com>
-References: <20250318-enable-qce-for-qcs615-v2-0-c5e05fe22572@quicinc.com>
-In-Reply-To: <20250318-enable-qce-for-qcs615-v2-0-c5e05fe22572@quicinc.com>
-To: Thara Gopinath <thara.gopinath@gmail.com>,
-        Herbert Xu
-	<herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad Dybcio" <konradybcio@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        "Abhinaba
- Rakshit" <quic_arakshit@quicinc.com>
-X-Mailer: b4 0.14.2
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: buhvS6__BJgVwwhMvSUEI6qXxy76nM1C
-X-Proofpoint-ORIG-GUID: buhvS6__BJgVwwhMvSUEI6qXxy76nM1C
-X-Authority-Analysis: v=2.4 cv=UoJjN/wB c=1 sm=1 tr=0 ts=67d94061 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=vPGRc2FByOJ6E0OUo5QA:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-18_04,2025-03-17_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
- impostorscore=0 bulkscore=0 priorityscore=1501 mlxlogscore=702
- phishscore=0 adultscore=0 clxscore=1015 spamscore=0 suspectscore=0
- lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503180070
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250314083730.GC234496@rocinante>
 
-Add the QCE and Crypto BAM DMA nodes.
+Hi Krzysztof,
 
-Signed-off-by: Abhinaba Rakshit <quic_arakshit@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs615.dtsi | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+On 17:37 Fri 14 Mar     , Krzysztof Wilczynski wrote:
+> Hello,
+> 
+> Even though this is not for the PCI sub-system directly, I had a very brief
+> look over the code.  I hope you don't mind.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-index f4abfad474ea62dea13d05eb874530947e1e8d3e..156084182318dc251c6ef06bac7128808609d3ec 100644
---- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-@@ -1114,6 +1114,29 @@ ufs_mem_phy: phy@1d87000 {
- 			status = "disabled";
- 		};
- 
-+		cryptobam: dma-controller@1dc4000 {
-+			compatible = "qcom,bam-v1.7.4", "qcom,bam-v1.7.0";
-+			reg = <0x0 0x01dc4000 0x0 0x24000>;
-+			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
-+			#dma-cells = <1>;
-+			qcom,ee = <0>;
-+			qcom,controlled-remotely;
-+			num-channels = <16>;
-+			qcom,num-ees = <4>;
-+			iommus = <&apps_smmu 0x0104 0x0011>;
-+		};
-+
-+		crypto: crypto@1dfa000 {
-+			compatible = "qcom,qcs615-qce", "qcom,sm8150-qce", "qcom,qce";
-+			reg = <0x0 0x01dfa000 0x0 0x6000>;
-+			dmas = <&cryptobam 4>, <&cryptobam 5>;
-+			dma-names = "rx", "tx";
-+			iommus = <&apps_smmu 0x0104 0x0011>;
-+			interconnects = <&aggre1_noc MASTER_CRYPTO QCOM_ICC_TAG_ALWAYS
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-+			interconnect-names = "memory";
-+		};
-+
- 		tcsr_mutex: hwlock@1f40000 {
- 			compatible = "qcom,tcsr-mutex";
- 			reg = <0x0 0x01f40000 0x0 0x20000>;
+Highly appreciated, thanks!
 
--- 
-2.34.1
+> 
+> As such, a few nit picks, nothing blocking.
+> 
+> > +# RaspberryPi RP1 misc device
+> 
+> Would this be better if it matched the "tristate" description below?
 
+Ack.
+
+> 
+> > +config MISC_RP1
+> > +	tristate "RaspberryPi RP1 PCIe support"
+> > +	depends on OF_IRQ && OF_OVERLAY && PCI_MSI && PCI_QUIRKS
+> > +	select PCI_DYNAMIC_OF_NODES
+> > +	help
+> > +	  Support the RP1 peripheral chip found on Raspberry Pi 5 board.
+> > +
+> > +	  This device supports several sub-devices including e.g. Ethernet
+> > +	  controller, USB controller, I2C, SPI and UART.
+> > +
+> > +	  The driver is responsible for enabling the DT node once the PCIe
+> > +	  endpoint has been configured, and handling interrupts.
+> > +
+> > +	  This driver uses an overlay to load other drivers to support for
+> > +	  RP1 internal sub-devices.
+> 
+> > +/* the dts overlay is included from the dts directory so
+> 
+>   /*
+>    * The dts overlay is included from the dts directory so
+> 
+> To make the code comment match rest of the style.
+
+Ack.
+
+> 
+> > +/*
+> > + * Copyright (c) 2018-24 Raspberry Pi Ltd.
+> > + * All rights reserved.
+> 
+>   Copyright (c) 2018-2025 Raspberry Pi Ltd.
+> 
+> To spell the current year fully, plus update it to 2025 already.
+> 
+> I would also add an extra newline here to split the two apart a bit.
+
+Ack.
+
+> 
+> > +	if (pci_resource_len(pdev, 1) <= 0x10000) {
+> > +		dev_err(&pdev->dev,
+> > +			"Not initialised - is the firmware running?\n");
+> > +		return -EINVAL;
+> > +	}
+> 
+> The American spelling in the above might be better.  But I don't have
+> strong opinions here.  It seems more popular in error messages.
+
+I agree.
+
+> 
+> > +	err = pci_alloc_irq_vectors(pdev, RP1_INT_END, RP1_INT_END,
+> > +				    PCI_IRQ_MSIX);
+> > +	if (err < 0) {
+> > +		return dev_err_probe(&pdev->dev, err,
+> > +				     "pci_alloc_irq_vectors failed");
+> 
+> Missing a new line at the end, but also...
+> 
+>   return dev_err_probe(&pdev->dev, err,
+> 		       "Failed to allocate MSI-X vectors\n");
+
+Ack.
+
+> 
+> Or, something like this over this the function name.  Perhaps exposing
+> error code could be useful to the end user? If so then something like this:
+> 
+>   return dev_err_probe(&pdev->dev, err,
+> 		       "Failed to allocate MSI-X vectors, err=%d\n", err);
+
+dev_err_probe() should already print the err code, no need to add it.
+
+> 
+> Here and other errors where appropriate.
+
+I've changed dev_err() to dev_err_probe() in cases where the error code
+is not evident (i.e. hardcoded) from the source.
+
+> 
+> > +	for (i = 0; i < RP1_INT_END; i++) {
+> > +		unsigned int irq = irq_create_mapping(rp1->domain, i);
+> > +
+> > +		if (!irq) {
+> > +			dev_err(&pdev->dev, "failed to create irq mapping\n");
+> 
+>   dev_err(&pdev->dev, "Failed to create IRQ mapping\n");
+> 
+> To make the error message capitalisation consistent.
+
+Ack.
+
+> 
+> > +static const struct pci_device_id dev_id_table[] = {
+> > +	{ PCI_DEVICE(PCI_VENDOR_ID_RPI, PCI_DEVICE_ID_RPI_RP1_C0), },
+> > +	{ 0, }
+> 
+>   { }
+> 
+> Would probably be sufficient.
+
+Ack.
+
+> 
+> > +MODULE_AUTHOR("Phil Elwell <phil@raspberrypi.com>");
+> > +MODULE_AUTHOR("Andrea della Porta <andrea.porta@suse.com>");
+> > +MODULE_DESCRIPTION("RP1 wrapper");
+> 
+>   RaspberryPi RP1 misc device
+> 
+> To match the Kconfig comment in the above description or the one from the
+> "tristate" also in Kconfig.
+
+Ack.
+
+> 
+> Thank you for all the work here!
+
+Thank you so much for your review!
+
+Andrea
+
+> 
+> 	Krzysztof
 
