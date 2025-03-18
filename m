@@ -1,94 +1,109 @@
-Return-Path: <devicetree+bounces-158695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158696-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CB43A67BF6
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 19:33:34 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B241DA67C00
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 19:35:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 352823BD81B
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 18:33:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A2727AAD9B
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 18:34:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32FA51AC892;
-	Tue, 18 Mar 2025 18:33:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F2691DE2C8;
+	Tue, 18 Mar 2025 18:35:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="RMxWdN2A"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tMed8eiT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DD61151990;
-	Tue, 18 Mar 2025 18:33:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51E2D151990;
+	Tue, 18 Mar 2025 18:35:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742322809; cv=none; b=EHuy/WP9RreEF1/EgXboopprFTVxIhYwtydtctRFjG6nv4SbvUTI6c/17DneKDd3GyQcdwvNIKqUlqWiMd9myXOXAgwhusgoj2wQ+xoOu5e61lZoeMQz3H/yB97e+eLHYWZdHl7/X6VPafkzrLXkh3FrLE3uDpaclZXAKssOaLg=
+	t=1742322930; cv=none; b=l7vJemeTvcdCCUQVuekKCaei9h3FrggOsCjHyE7aM7HDERoxs+6An58YP73v5z/q11O4K9Al+RUoKQDvn4BwptMFPn2k5TY2dQfHhLzGgvMLcRnAFPjMhmrSi7ljnEKhMXV6gh8O1+xiRmdfM+eUNAq/O4Z4v3rzh0jl1pwp1vU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742322809; c=relaxed/simple;
-	bh=e3q2XYjoCADYcJeRJzXc1Ma0b9G6EXb15Q3XUeNMPiI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kcN5JHWXZd0LcJSTiAUU7UU6+ZduTLL1Kd+qiX6eDziEHUlxnRkxdoL/LSK5BPcW56CsCt+sg8bxP1xLsOJa4Ia3gXkWWIcTt0LsR5xoSghKPIx2/6c+HWvX2l+4p3qvnP01zmiQoYBlxtojbsiolLaWeDLdXlN8LfiK+NelRt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=RMxWdN2A; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=iguVmCV3+e0iktCJiQX2Pt4HvULaD7BI01tc98Ba7EQ=; b=RMxWdN2A+yps4F+Jz/2Bu2jjSe
-	RnJciZfoyRh9njrYyXR+wAngSHAUdkwjGUYjMb8VDdkOK1sTv1ICcsje0dJ4iLwyUuSsARc7HdRZz
-	vLDyrvv6iYeLoo+VI1G/ZCA8OinwMWRoLt3Db7UhfZtUmmPco8jDdOjHYvOXB5oTT7PQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tubkT-006IOL-Rn; Tue, 18 Mar 2025 19:33:09 +0100
-Date: Tue, 18 Mar 2025 19:33:09 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Rajaganesh Rathinasabapathi <Rajaganesh.Rathinasabapathi@amd.com>
-Cc: devicetree@vger.kernel.org, openbmc@lists.ozlabs.org, joel@jms.id.au,
-	andrew@codeconstruct.com.au, robh+dt@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	jothayot@amd.com, Supreeth Venkatesh <supreeth.venkatesh@amd.com>
-Subject: Re: [PATCH v4 2/2] ARM: dts: aspeed: Add Initial device tree for AMD
- Onyx Platform
-Message-ID: <472a4f78-24f4-4bfd-bf99-8b1194bfe8f0@lunn.ch>
-References: <20250318174730.1921983-1-Rajaganesh.Rathinasabapathi@amd.com>
- <20250318174730.1921983-2-Rajaganesh.Rathinasabapathi@amd.com>
+	s=arc-20240116; t=1742322930; c=relaxed/simple;
+	bh=eXtDFdtsvd3ys0IxX4fueVDJob9FRzlLwnSqpAlUv94=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=kjtyR15aMLeSGVFs6Mssr6/8clL8kqB5KpPjr0rIZq3yW8GhhbrqrNm94nEIkHkr30hBIe4k7TX3fjL9MftNSE69iVFp9l9aEFaBDTBoQemeXuSlRJlM39jH3u2lG/VsuNm7QJZr0FG2hQb4pygNtn2yf56jx4vdYI7kjfaLSLI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tMed8eiT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 661E7C4CEDD;
+	Tue, 18 Mar 2025 18:35:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742322929;
+	bh=eXtDFdtsvd3ys0IxX4fueVDJob9FRzlLwnSqpAlUv94=;
+	h=From:Subject:Date:To:Cc:From;
+	b=tMed8eiTGUTprLrgaGB9nK74sObuZ5CKlfRaA9ZOm5OJBl3KmakJBbw0fHblnbt6N
+	 YsIVdH3gCyMxe4L7fLTS/h5QtYvNO5HAWUZifaGhyrrWqENhtjZFnKmFejLoBNcY2g
+	 D2PI3JFaN+wqS/dRdPy4VHPlBO9D+/STirnsroLUsJdOZvXtfgVtXAe8sAars+UuzA
+	 zNbdYC4wNPAI6iyits39tpRG9L7UmIKIpVEjVcL6gitFAOudfWh0IKQcpUwmbH4t/R
+	 3jXWEyie+j95IgFM40UlKrIefk4A8fybO9RutlW3qiMYXMVUnsgmfvkaoPi9n8LNt7
+	 QMkCBwCCHYaTw==
+From: Konrad Dybcio <konradybcio@kernel.org>
+Subject: [PATCH 0/8] More more dt-bindings fixes for arm64/qcom
+Date: Tue, 18 Mar 2025 19:35:13 +0100
+Message-Id: <20250318-topic-more_dt_bindings_fixes-v1-0-cb36882ea9cc@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250318174730.1921983-2-Rajaganesh.Rathinasabapathi@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOG82WcC/x3MQQqDMBBG4avIrBswEVF7lVKCOn/iLJpIRkpBv
+ HuDy48H7yRFESg9m5MKvqKSU4V9NLRuc4owwtXkWte3nR3NkXdZzScXeD78IoklRfVBflBjuwF
+ sATcFprrYC+5QD6/3df0BbXOhM24AAAA=
+X-Change-ID: 20250318-topic-more_dt_bindings_fixes-137ed1ee29fd
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
+ Marc Gonzalez <mgonzalez@freebox.fr>, Dmitry Baryshkov <lumag@kernel.org>, 
+ Arnaud Vrac <avrac@freebox.fr>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1742322925; l=1421;
+ i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
+ bh=eXtDFdtsvd3ys0IxX4fueVDJob9FRzlLwnSqpAlUv94=;
+ b=w+WsvPOSfIxhjf5POB85wf9CWtiQtw4DJZw9zjJmYDm44EBV4wSCsMpxqXi2A7EtN0yGJuxRj
+ pR5eZcpxebZAQMcor+5nxPxtOkuTRRcXh7ycH1J0LyazN0GIJiD5lK4
+X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-> +&mac3 {
-> +	status = "okay";
-> +	phy-mode = "rgmii";
+Just some routine stuff, really
 
-Still broken. And it appears you are just ignoring my comments.
+Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+---
+Konrad Dybcio (8):
+      dt-bindings: soc: qcom,rpmh-rsc: Limit power-domains requirement
+      arm64: dts: qcom: sc7180: Add specific APPS RSC compatible
+      arm64: dts: qcom: sdm845: Add specific APPS RSC compatible
+      arm64: dts: qcom: msm8998: Remove mdss_hdmi_phy phandle argument
+      arm64: dts: qcom: qcs615: Remove disallowed property from AOSS_QMP node
+      arm64: dts: qcom: msm8998-fxtec: Add QUSB2PHY VDD supply
+      arm64: dts: qcom: msm8998-mtp: Add QUSB2PHY VDD supply
+      arm64: dts: qcom: msm8998-yoshino: Add QUSB2PHY VDD supply
 
-Sorry, but:
+ .../bindings/soc/qcom/qcom,rpmh-rsc.yaml           | 24 ++++++++++++++++++++--
+ arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts    |  1 +
+ arch/arm64/boot/dts/qcom/msm8998-mtp.dts           |  1 +
+ .../boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi |  1 +
+ arch/arm64/boot/dts/qcom/msm8998.dtsi              |  2 +-
+ arch/arm64/boot/dts/qcom/qcs615.dtsi               |  1 -
+ arch/arm64/boot/dts/qcom/sc7180.dtsi               |  2 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi               |  2 +-
+ 8 files changed, 28 insertions(+), 6 deletions(-)
+---
+base-commit: c4d4884b67802c41fd67399747165d65c770621a
+change-id: 20250318-topic-more_dt_bindings_fixes-137ed1ee29fd
 
-NACK
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-There is a discussion here:
-
-https://lore.kernel.org/lkml/20250317025922.1526937-1-jacky_chou@aspeedtech.com/
-
-There is also IBM in a similar situation to you:
-
-https://lore.kernel.org/linux-arm-kernel/20250108163640.1374680-6-ninad@linux.ibm.com/
-
-and NVIDIA
-
-https://lore.kernel.org/lkml/20250312045802.4115029-1-wthai@nvidia.com/
-
-Could i suggest you, IBM and NVIDIA work together to get Aspeed to fix
-this.
-
-	Andrew
 
