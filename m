@@ -1,130 +1,111 @@
-Return-Path: <devicetree+bounces-158397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 749FAA6644A
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 01:56:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A281DA66451
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 01:57:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5BD061771AA
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 00:56:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3B3E1897B83
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 00:57:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34249149C7B;
-	Tue, 18 Mar 2025 00:55:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E170913C908;
+	Tue, 18 Mar 2025 00:57:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b="e29I0CKx"
+	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="uQZWWx1p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com [205.220.177.32])
+Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F2E414375D;
-	Tue, 18 Mar 2025 00:55:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.177.32
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0010E17E0;
+	Tue, 18 Mar 2025 00:56:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.130.44.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742259340; cv=none; b=b3/g8vPCwu1cYxIrUJm8H7xJenwCpkrbpFx+KC3X99c4d6cD3GaQPjgJf7oYoJMB8+BWKHsrN5B7l0/TMnhJXezy4MslYPiGksSFiz7QxnOGAbfR2VYXDKY/S2W63mY1kcxmTZPnMaZsI2+PqWCM6ND+OJP/P/t7+/VhptxArT4=
+	t=1742259423; cv=none; b=ZIwKCEbNNYJKSnq45rgsPPXQLQz9Uy6h9htouhCOQlUDljsO07qAJ0bmfW/OyGjX92Cw/1+v4V3uAHn0zUFFC5v2b2gt5aa+HONTX9r4GgHW1wjYAiFlo/oM8m6bqDhpxO8o43N+Be5RClFifB9IiS1Cr/P78XHk1ojdHtE5IME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742259340; c=relaxed/simple;
-	bh=V83iZDIzsqubCagtV6y3O6xgaFF5i/2zrT8P9jcn+CE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DG7+FiNP+UxaPdiUaQ7+sPXDBEVpe8AceQEVt6GAUgxg/A6JQKWew0aFCCzkLl+gDINZQhTlhXOHervEZyiPvite2OB9gse9cs9e/qWZ9cvnGio9YgFz6uMx6nuZOEJ5Os3eLSkbOlgQMUHmOUuMhC+yI2z0gJkUfiUDEVdpwbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com; spf=pass smtp.mailfrom=oracle.com; dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b=e29I0CKx; arc=none smtp.client-ip=205.220.177.32
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oracle.com
-Received: from pps.filterd (m0246631.ppops.net [127.0.0.1])
-	by mx0b-00069f02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52HLtsJE020632;
-	Tue, 18 Mar 2025 00:55:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=
-	corp-2023-11-20; bh=WfAO3xCEFpfG4p5Ko0edoiWz9nqD5rTUlpnvgn0beU8=; b=
-	e29I0CKxFtBkJpBhz0m50Gm8SMUDVfN8b/ODg3dW41CgsNDZ3Tdr4efk36VVO83N
-	ZRmNbIHlmsRyfLJT7jX/bG79znsBdo4HGdr+TIzihDwSHf897zYoubalcAY+F0/c
-	FfkST5K5e026pKLy1fvjEzyf5C4j5H41jfKFMnvM9a3+EWKGNjc6y43rLtz0/VCB
-	+lF1yxBHtWmdHioHg+0RdmlZ/XQ2a1+Htz0T4MZ8iInFcWRQ/JK2pvopLHc28cq1
-	OewoqgzD1NsKKpmGNX12rE8WixPKSQiU0gUYyG7c76k2X91zjupHmE4IJT3+cLfJ
-	33klnkK7y371UR81LmJ8Hg==
-Received: from phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (phxpaimrmta02.appoci.oracle.com [147.154.114.232])
-	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 45d1hfv62u-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 18 Mar 2025 00:55:14 +0000 (GMT)
-Received: from pps.filterd (phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
-	by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (8.18.1.2/8.18.1.2) with ESMTP id 52HMXhOC022501;
-	Tue, 18 Mar 2025 00:55:13 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTPS id 45dxeen359-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 18 Mar 2025 00:55:13 +0000
-Received: from phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 52I0tCZ8013983;
-	Tue, 18 Mar 2025 00:55:12 GMT
-Received: from ca-mkp2.ca.oracle.com.com (mpeterse-ol9.allregionaliads.osdevelopmeniad.oraclevcn.com [100.100.251.135])
-	by phxpaimrmta02.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTP id 45dxeen34c-1;
-	Tue, 18 Mar 2025 00:55:12 +0000
-From: "Martin K. Petersen" <martin.petersen@oracle.com>
-To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        "James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: "Martin K . Petersen" <martin.petersen@oracle.com>,
-        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v3 0/7] scsi: ufs: renesas: Add support for R-Car S4-8 ES1.2
-Date: Mon, 17 Mar 2025 20:54:41 -0400
-Message-ID: <174225924972.1094535.7000607727357086618.b4-ty@oracle.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <cover.1741179611.git.geert+renesas@glider.be>
-References: <cover.1741179611.git.geert+renesas@glider.be>
+	s=arc-20240116; t=1742259423; c=relaxed/simple;
+	bh=i0irJbDBaSvOqTfybaeN06ycrOgXP+5Y/61IZOn+DsU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=YgEgVfbBjWOneDpOJDjjLN7A5s/DPN1eF0oHvIWUyVUFeIjR/a4Zk9wPzXMAy7i+NzcaiQA4WiJ9Apd1LbEMo3qoYVxsxc85IZHuE6luduaGg35gSccOhXGCNABYpgzbUaJ18YG2d0Gyyj98+0JKqVZ6jI6XKRaTjp+eswrOn5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=uQZWWx1p; arc=none smtp.client-ip=220.130.44.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
+X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
+	s=richtek; t=1742259416;
+	bh=JaGRpm1aLDFi5cSsPwC/6+r43Mz4MyQHGYZWjy2AUww=; l=1014;
+	h=From:To:Subject:Date:Message-ID:MIME-Version;
+	b=uQZWWx1pVWT6oQ7x6arWLTncqZeO+IcJEXaZ8eZUhIGz/KFw2TK5KVCPUm+aMxmDG
+	 nFFIlfLyiNZwIaK7Ey4/rkSU07siDUTwv5nvHQQgMikckqafncWVMCs6VWehDkGiXk
+	 NqxAHyOjFfzvq+oXk38UTFnDkzTbROX8kKXOW776Jz9FfkSp1xxAYiiBQ8gbejqLO7
+	 ENVPDGpduGtvRrKMrqZIofYcV/nBT+6o8v7q4EK8hZpSWExbDhjkQNgKmfrbdiwJ5V
+	 Yr43aAh+YFbmIBlLuAI/AYb7kbw0FUdD3zleEnP+sBe/F+WKm19pPQoZqwJ3MRxaFq
+	 pcY2Pop49LqsQ==
+Received: from 192.168.10.46
+	by mg.richtek.com with MailGates ESMTPS Server V6.0(3810272:0:AUTH_RELAY)
+	(envelope-from <cy_huang@richtek.com>)
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Tue, 18 Mar 2025 08:56:47 +0800 (CST)
+Received: from ex3.rt.l (192.168.10.46) by ex3.rt.l (192.168.10.46) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Tue, 18 Mar
+ 2025 08:56:47 +0800
+Received: from git-send.richtek.com (192.168.10.154) by ex3.rt.l
+ (192.168.10.45) with Microsoft SMTP Server id 15.2.1544.11 via Frontend
+ Transport; Tue, 18 Mar 2025 08:56:47 +0800
+From: <cy_huang@richtek.com>
+To: Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Tzung-Bi Shih <tzungbi@kernel.org>
+CC: Liam Girdwood <lgirdwood@gmail.com>, ChiYuan Huang <cy_huang@richtek.com>,
+	Otto Lin <otto_lin@richtek.com>, Allen Lin <allen_lin@richtek.com>,
+	<linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: [PATCH] ASoC: dt-bindings: maxim,max98357a: Add compatible with richtek,rt9123
+Date: Tue, 18 Mar 2025 08:57:51 +0800
+Message-ID: <1884c3ce2d901ead5d742958889f5a742e168376.1742259040.git.cy_huang@richtek.com>
+X-Mailer: git-send-email 2.43.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-17_10,2025-03-17_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0 phishscore=0 mlxscore=0
- adultscore=0 mlxlogscore=956 spamscore=0 malwarescore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2502280000
- definitions=main-2503180004
-X-Proofpoint-GUID: s1D90x9vPUBSDquLpMyiNGooysyXDEsT
-X-Proofpoint-ORIG-GUID: s1D90x9vPUBSDquLpMyiNGooysyXDEsT
+Content-Type: text/plain
 
-On Wed, 05 Mar 2025 14:34:08 +0100, Geert Uytterhoeven wrote:
+From: ChiYuan Huang <cy_huang@richtek.com>
 
-> 	Hi all,
-> 
-> Initialization of the UFS controller on R-Car S4-8 ES1.0 requires only
-> static values.  However, other UFS controller variants (R-Car S4-8 ES 1.2)
-> require dynamic values, like those obtained from E-FUSE, and downloading
-> firmware.
-> 
-> [...]
+The hardware control and specification of 'richtek,rt9123' are similar
+with max98357 or max98360. It's no need to add the new source code. So
+make it compatible with one of them.
 
-Applied to 6.15/scsi-queue, thanks!
+Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+---
+ .../devicetree/bindings/sound/maxim,max98357a.yaml    | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
 
-[1/7] dt-bindings: ufs: renesas,ufs: Add calibration data
-      https://git.kernel.org/mkp/scsi/c/67407b84e0ed
-[2/7] scsi: ufs: renesas: Replace init data by init code
-      https://git.kernel.org/mkp/scsi/c/c4e83573c3d0
-[3/7] scsi: ufs: renesas: Add register read to remove save/set/restore
-      https://git.kernel.org/mkp/scsi/c/5129aa627599
-[4/7] scsi: ufs: renesas: Remove register control helper function
-      https://git.kernel.org/mkp/scsi/c/855bde8ce5bc
-[5/7] scsi: ufs: renesas: Refactor 0x10ad/0x10af PHY settings
-      https://git.kernel.org/mkp/scsi/c/cca2b807c227
-[6/7] scsi: ufs: renesas: Add reusable functions
-      https://git.kernel.org/mkp/scsi/c/44ca16f4970e
-[7/7] scsi: ufs: renesas: Add initialization code for R-Car S4-8 ES1.2
-      https://git.kernel.org/mkp/scsi/c/b3bb1762451a
-
+diff --git a/Documentation/devicetree/bindings/sound/maxim,max98357a.yaml b/Documentation/devicetree/bindings/sound/maxim,max98357a.yaml
+index 83ba8666fbb4..5dc7e60b67d6 100644
+--- a/Documentation/devicetree/bindings/sound/maxim,max98357a.yaml
++++ b/Documentation/devicetree/bindings/sound/maxim,max98357a.yaml
+@@ -18,9 +18,14 @@ allOf:
+ 
+ properties:
+   compatible:
+-    enum:
+-      - maxim,max98357a
+-      - maxim,max98360a
++    oneOf:
++      - enum:
++          - maxim,max98357a
++          - maxim,max98360a
++      - items:
++          - enum:
++              - richtek,rt9123
++          - const: maxim,max98360a
+ 
+   '#sound-dai-cells':
+     const: 0
 -- 
-Martin K. Petersen	Oracle Linux Engineering
+2.34.1
+
 
