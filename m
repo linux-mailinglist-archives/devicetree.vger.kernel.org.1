@@ -1,161 +1,107 @@
-Return-Path: <devicetree+bounces-158777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 758E5A6805D
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 00:02:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31708A680AC
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 00:25:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 390573BCAA7
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 23:01:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D816F423C65
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 23:25:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88B032147E6;
-	Tue, 18 Mar 2025 23:01:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46378208970;
+	Tue, 18 Mar 2025 23:25:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Z1AgQk3M"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="wLAnBgKq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 000912144BF
-	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 23:01:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE887207A0F;
+	Tue, 18 Mar 2025 23:25:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742338864; cv=none; b=qTFOFp0uvsvCzP0xrw8o1skc0ZlDiAJvWo5dKh+YvvraKfkVAcqQ4+xVYzKjiQVBNcxPVb6aSqbDcjNInY2Ea/81pJ52AVxi0rPvOOm0plY56VBvoZXhTuMp2mEr+TNM8TgWPWpUdKhIf3u2WuI14QQ+bNLbUiAzCQJjnWcslmw=
+	t=1742340305; cv=none; b=rMndIxm3OXrKShyjUSu75zLDliW0mgzPttgJCgeN7ujOAEyU5t5rGtRhObgF/YiEB1YDeRpvoxm2R8qC4HajivHVQiJ1maemKeTSWWx09iOmWnVU/3YxY9FZkPFjdNGbVEcd583wscFUGcX2fqRkgp2PFiKU6+TKUYfwnutbN0Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742338864; c=relaxed/simple;
-	bh=/uzA/KJrTOFFakH+TO1IPmQV5uCsNGlZTZ/BRQx9ipo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=i2TwaPmmsO6C9ohDWkGJQK0QQao6sa3LJ5OAONENXnKlptVkD+wHkzwxy2AJ5SUxxmWxNt2fGhhoJqA452zaxrlj9t/oGTvDG1l+Wn/LOcUcblAapbTEgKMD0Sc0j+EhGW5ZFCNCurudYdxd3RUBr2oyF61D35NR2P1wll5cD9Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Z1AgQk3M; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-22438c356c8so108266095ad.1
-        for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 16:01:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1742338862; x=1742943662; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jMDUDwI/ykvsmvKBODi6azon2DC/c4gZowN4BruVYoU=;
-        b=Z1AgQk3MvsOV1TC4Zfxl/FpKRG3Gm29LQDXUPhgYLz9TjFQIwqBDpUokYXqkFyvPT2
-         q7iHRPRIFZvTqPLfl2evfJ+tV6kcMMgxQF5dRTibjDg0AdpNfJSGtCzE45+bao00y4pT
-         XMU1vL5NHoBKcCDpYARCDubQJYEr+F2bgYB+wBvr+VU7bIhT1Q/An5LihGf5uVOWTblU
-         b5fOdwRmhxuCHRfzcHN1ZNOxpfXzei+dounf33Is+ZcqLMFrZsTSRmRIGMvwD1xJVUMq
-         zomibMFLhhmSXGSXWdcegwXzXnR+NoTUHHDKeoTVHR+7ZbOLPDsguAfToZYkfMiPH06M
-         nbEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742338862; x=1742943662;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jMDUDwI/ykvsmvKBODi6azon2DC/c4gZowN4BruVYoU=;
-        b=AIzOFwnV+WlLUPMEmP26u9zly0pSp6PT1wOZh03Wv6FM6/uqx2cg/0Q/dOEwubNJ4s
-         yw+xet01q9VCFdcQXqOOvHMvuoieL4eNIh1/HEsvrHsTQfY+8fdCzzDh7ezlF/5S3fA6
-         z8Rqmd5dE1iSW+pk4AA56Awn7NJrdCagiPkdsfQNiYF+xrPULyE6PpXOwHX5PUoPx8FF
-         KNc2HglSqePmmTtvqrGkmblhh1AQKt4UcUH3DDZw+8Vy3Z36KbMctY0EaBaXy/IridMt
-         NtPGyTLujcmssTI/LA339uQ/ptt3x++WKgv/GxWP1fhZB6PYT7YvE5Wp5X+tT7dbnLmr
-         xJtg==
-X-Forwarded-Encrypted: i=1; AJvYcCVmocJjDk0bGFhDdkw9kiI4hCsE8BfrLGpHaox/HwFzUAxn5nncK/5FNOa8UG/t8/6Z+nywIzKtGQci@vger.kernel.org
-X-Gm-Message-State: AOJu0YwEEWa0XG9KnTfsDOaJPvI0iMpFlml5ro8CGTrZnzi4mJNYIqvX
-	iHC7oL8Qt1WxpOo0f4C6Uae13NbaCCL5zQSffM94QdOoZS+kinwYzUyYkoQN2Mo=
-X-Gm-Gg: ASbGncvA713EHkDWw8/xoUdgreA0+2azS41NgT1aEGLgXqZwoLSyw7VHM0JmVecbb0l
-	QNfqKMRq6tqXjwSUuTYpkTFebTrCt8O1Vi2lrAHMaS1nF51slkd/yrKgnS10/odN4YjgxN/VhIj
-	ZhAH29IayVLCtoSFVP0D2JfxMqv1p8k+vd14s1kN5jrJWbZroJNhsbjs+LRXKgFCrppoiumOd0j
-	02lhUhuAPB0cXq0FPNr7Fal7HmqBay/MU35lmdS9TZa5DTD8mIn/X/djJ0I3eNcaWlBZGz9ZSCk
-	hNUaQyNdC6zNhp3LQhrPlsqxum36bMdSRM5CsC1rXDekxLis0pKKXVUBU49XP7tgKsAw8C/Epgq
-	YygwxTFI=
-X-Google-Smtp-Source: AGHT+IET8hPlzYxJjNAKwUxaX04oJy+bl8g7nOQMt8+vAfkRPrb30J30Y6geQFPYgmWuAJsrOk+VLA==
-X-Received: by 2002:a17:902:d2c6:b0:215:acb3:3786 with SMTP id d9443c01a7336-2264993661fmr6704785ad.19.1742338862423;
-        Tue, 18 Mar 2025 16:01:02 -0700 (PDT)
-Received: from dev-linux.. (syn-076-088-115-008.res.spectrum.com. [76.88.115.8])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-225c6ba6f14sm100739465ad.111.2025.03.18.16.01.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Mar 2025 16:01:01 -0700 (PDT)
-From: Sukrut Bellary <sbellary@baylibre.com>
-To: Kevin Hilman <khilman@baylibre.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Rob Herring <robh@kernel.org>,
-	Tony Lindgren <tony@atomide.com>,
+	s=arc-20240116; t=1742340305; c=relaxed/simple;
+	bh=RILpFtxYN6MlwdpMfT4T0Vzg7jFopae2SqKvYWLRV9g=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CkTsjJi4mdI+IhEeCL5CC3XmD5jC9TpRTIwLocKFze3yby/l09esD08j1ObKqDNmIg6et3qYJK21mzCw9YMqOxuUIQMeWBB9lXiNvbDmeI4cgmOMfxgShP6of5SaLk4KUGWVfwgq9xeP9Y7ew5cerBsQTHlxD0YA221rvQdbnzY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=wLAnBgKq; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=1hJklCrqpGSVlV2NvA/25kazNO3qOwA+/saPAYFTsoE=; b=wLAnBgKqHED21WT6XjMrhnXKBX
+	uCL/df03qRP30+8Sh81jR2I6nyiuwAJmAKsOxer+twO52bMh+x4a/HJmG7AlziZjTSHRjEztiy6Wp
+	mHhAgE8rtWwuIjAA5fds296cbyArHgQLRRhVAv9CWqOs23gQACutQb64nEhXIXNbFdvZVibHBvryP
+	MSx8qIFSnSaM+Vh8W/1z7njom4+m4o8lIU/cgdVm/xRqi9kBSx3rt2+Z+95nNKXMGTeBmSLfxbQly
+	e2K+tBtStJObxHuDaaN49peT4hiKTuhLI0mLUlW8sLNYV1FT8auRM/6V0lDf9uI/Af8Cb1igzFYq2
+	685H4FKw==;
+Received: from i53875bc6.versanet.de ([83.135.91.198] helo=phil.fritz.box)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tugIg-0004Fw-3Q; Wed, 19 Mar 2025 00:24:46 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Nishanth Menon <nm@ti.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Sukrut Bellary <sbellary@baylibre.com>,
-	Aaro Koskinen <aaro.koskinen@iki.fi>,
-	Andreas Kemnade <andreas@kemnade.info>,
-	Roger Quadros <rogerq@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Santosh Shilimkar <ssantosh@kernel.org>,
-	Bajjuri Praneeth <praneeth@ti.com>,
-	Raghavendra Vignesh <vigneshr@ti.com>,
-	Bin Liu <b-liu@ti.com>,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-omap@vger.kernel.org,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	kernel@collabora.com,
 	devicetree@vger.kernel.org,
-	linux-pm@vger.kernel.org
-Subject: [PATCH 4/4] ARM: multi_v7_defconfig: Enable am335x PM configs
-Date: Tue, 18 Mar 2025 16:00:42 -0700
-Message-Id: <20250318230042.3138542-5-sbellary@baylibre.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250318230042.3138542-1-sbellary@baylibre.com>
-References: <20250318230042.3138542-1-sbellary@baylibre.com>
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: remove ethm0_clk0_25m_out from Sige5 gmac0
+Date: Wed, 19 Mar 2025 00:24:42 +0100
+Message-ID: <174234022086.1144821.10038416716073358190.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250314-rk3576-sige5-eth-clk-begone-v1-1-2858338fc555@collabora.com>
+References: <20250314-rk3576-sige5-eth-clk-begone-v1-1-2858338fc555@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-Enable Power management related defconfigs for TI AM335x[1].
 
-[1] AM335x TRM - https://www.ti.com/lit/ug/spruh73q/spruh73q.pdf
+On Fri, 14 Mar 2025 16:35:50 +0100, Nicolas Frattaroli wrote:
+> The GPIO3 A4 pin on the ArmSoM Sige5 is routed to the 40-pin GPIO
+> header. This pin can serve a variety of functions, including ones of
+> questionable use to us on a GPIO header such as the 25MHz clock of the
+> ethernet controller.
+> 
+> Unfortunately, this is the precise function that it is being claimed for
+> by the gmac0 node in the Sige5 board dts, meaning it can't be used for
+> anything else despite serving no useful function in this role. Since it
+> goes through a RS0108 bidirectional voltage level translator with a
+> maximum data rate of 24Mbit/s in push-pull mode and 2Mbit/s data rate in
+> open-drain mode, it's doubtful as to whether the 25MHz clock signal
+> would even survive to the actual user-accessible pin it terminates in.
+> 
+> [...]
 
-Signed-off-by: Sukrut Bellary <sbellary@baylibre.com>
----
- arch/arm/configs/multi_v7_defconfig | 5 +++++
- 1 file changed, 5 insertions(+)
+Applied, thanks!
 
-diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-index 37e3baa33b67..1d2600b5f975 100644
---- a/arch/arm/configs/multi_v7_defconfig
-+++ b/arch/arm/configs/multi_v7_defconfig
-@@ -985,6 +985,7 @@ CONFIG_EDAC=y
- CONFIG_EDAC_LAYERSCAPE=y
- CONFIG_EDAC_HIGHBANK_MC=y
- CONFIG_EDAC_HIGHBANK_L2=y
-+CONFIG_RTC_DRV_OMAP=y
- CONFIG_RTC_CLASS=y
- CONFIG_RTC_DRV_AC100=y
- CONFIG_RTC_DRV_AS3722=y
-@@ -1095,6 +1096,7 @@ CONFIG_TEGRA_IOMMU_SMMU=y
- CONFIG_EXYNOS_IOMMU=y
- CONFIG_QCOM_IOMMU=y
- CONFIG_REMOTEPROC=y
-+CONFIG_WKUP_M3_RPROC=m
- CONFIG_OMAP_REMOTEPROC=m
- CONFIG_OMAP_REMOTEPROC_WATCHDOG=y
- CONFIG_KEYSTONE_REMOTEPROC=m
-@@ -1146,6 +1148,8 @@ CONFIG_ARCH_TEGRA_3x_SOC=y
- CONFIG_ARCH_TEGRA_114_SOC=y
- CONFIG_ARCH_TEGRA_124_SOC=y
- CONFIG_SOC_TI=y
-+CONFIG_AMX3_PM=m
-+CONFIG_WKUP_M3_IPC=m
- CONFIG_KEYSTONE_NAVIGATOR_QMSS=y
- CONFIG_KEYSTONE_NAVIGATOR_DMA=y
- CONFIG_RASPBERRYPI_POWER=y
-@@ -1162,6 +1166,7 @@ CONFIG_EXTCON_MAX77693=m
- CONFIG_EXTCON_MAX8997=m
- CONFIG_EXTCON_USB_GPIO=y
- CONFIG_TI_AEMIF=y
-+CONFIG_TI_EMIF_SRAM=m
- CONFIG_STM32_FMC2_EBI=y
- CONFIG_EXYNOS5422_DMC=m
- CONFIG_IIO=y
+[1/1] arm64: dts: rockchip: remove ethm0_clk0_25m_out from Sige5 gmac0
+      commit: 73d246b4402c3356f6b3d13665de3a51eea7b555
+
+Actually applied this some days ago, but b4 is of the opinion,
+I didn't sent out an applied-message yet, so doing that now :-) .
+
+
+Best regards,
 -- 
-2.34.1
-
+Heiko Stuebner <heiko@sntech.de>
 
