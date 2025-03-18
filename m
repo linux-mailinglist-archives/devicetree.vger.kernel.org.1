@@ -1,89 +1,112 @@
-Return-Path: <devicetree+bounces-158764-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158765-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFB0DA67F9E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 23:20:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8551A67FAC
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 23:24:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC6683B0B95
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 22:19:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ACD953AE830
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 22:24:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 422F71E832D;
-	Tue, 18 Mar 2025 22:19:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97C6A1F4164;
+	Tue, 18 Mar 2025 22:24:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dygKBtNA"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="IJP6drnC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13F9F155753;
-	Tue, 18 Mar 2025 22:19:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79FB1F9DA;
+	Tue, 18 Mar 2025 22:24:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742336374; cv=none; b=ijCOIN84drmhI3JbDDRZPgt7YbAyw99C+4F/iE56nuKjfCnIiuzKkfoKHPwE+v13YUcwz9xuLuN/K2STTQ9kThIFoD2th7PZNbkNnm5GNtg2kZxrcNn6DWrfwhME2I9cOpBnCUJRTR+Vn3aJZQJmn0te5bsRGj4PMPuexLDNqSg=
+	t=1742336678; cv=none; b=J5syIvMujBt406Mg54UtJuZB4mb+0ecPLvf7yJvb5luE9IH0YS9dxcbyVlr01zW93RNRONmbO7IPuQSsx4Hz+znw08Q151r5UspfZU9u8Du6rfA2JfkmVDDRL+ven1ztDsMn6lksjA8SWEPaGK7tE1Wvce/Zb4p7Xfm9e5jfHbU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742336374; c=relaxed/simple;
-	bh=u7b0EopUBIIvvpkNpfDzrd4hzh3ed8l6dHIQADUl/9k=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cpj/J1uydqWMomdqMvrlbTp5bN/PHpD3WN/MChIN9Z9R5aR8oQCdYy9Ve+EoERVwiCpy6haR7dO0l/G7QKxlTGrFIyRnd0XWrxzE2mD1dVlVtihcMLQ1NM97EZw24QzDqImwrNHOLwEZw6dDyE2Ae/wEbJvKtcJbqsV5J5RjZZM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dygKBtNA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FC25C4CEEE;
-	Tue, 18 Mar 2025 22:19:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742336373;
-	bh=u7b0EopUBIIvvpkNpfDzrd4hzh3ed8l6dHIQADUl/9k=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=dygKBtNARW6ykDxVZ3qdWvoc10u9IKvdjo2DF1N3cCz0j9hL8QkReosLG3bCbYMa+
-	 e00/lop0BDmwpeGZq7P92T9JMFCb6VSww2TpVH/Pcc/S250sN9IgKklqWtu5rCmhZk
-	 FP5OsYM9gPn3vXAlQSpOmFu1ZCAr7HzOUEpA+ysHoTAFFrxi06l3NynjaukSuPaE24
-	 eM15tBXHwwjYTPnRNQjfcTF6Jm9RKpjpdLI45vccyW4zgxQGOMc/k66I/y19+aLK6M
-	 6OZ6Qp1lFNrWVeU1M0rG7oYVX5V/aoM5pTwBBU+VJfrucN3h9sVekBeWQOhhz+v/Ta
-	 REiblcTLHX5ag==
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5e61d91a087so9440457a12.0;
-        Tue, 18 Mar 2025 15:19:33 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWEvSY7USb8YKGrCEQDM5dPUfKdR5uuEjv1NjsZK0+53ShbdE3YVMMAyYcrIqUDbqUqGXZNhxccWjMjTFA8@vger.kernel.org, AJvYcCWrhOnPjxuhgXvraYfVbveVmiasUGvWRQ6ZMHOCrPGc1E1P3oBgJecsdRuYtWar81p87gkK1xdzL8aE@vger.kernel.org, AJvYcCWsDSgxLWMtWk4wMDLrnDzQ5Gz2/+dcUoTkvuM0l6CedB60Sii20y7+nFQLDkdJXMgKNM7SziZKLT9U5A==@vger.kernel.org, AJvYcCXPCEOOIOO3rpfIwU/jZYtnj55ABNmdRpN85rfhwQn6h5jNN77mOV4nJ394nJyV5cPkeyWCsZUguGmx@vger.kernel.org
-X-Gm-Message-State: AOJu0YysXn6WLkOzwKeNCebU5iy6LLZyR8c5xia/v2DhCF9J7utjjXTp
-	d+ttbys7BtLSp1dzH5SUG+gN0Kz8tuOEpnZ76wCpgmO2eaeUI75d21utPKPdx1PIQRccaJ8cmLS
-	dTx2OX4d5Mu4XmWg6SrqqytECjA==
-X-Google-Smtp-Source: AGHT+IGcMwYyO/POFMpTDFuIa2YqQWZAf278mdK5WfrUj18LXPSX+gWXwda7EIroobdoIYm7mMlPyGivS3yrEr8u7Rs=
-X-Received: by 2002:a05:6402:50c7:b0:5e5:b53:fd49 with SMTP id
- 4fb4d7f45d1cf-5eb80cc9af4mr343848a12.3.1742336372205; Tue, 18 Mar 2025
- 15:19:32 -0700 (PDT)
+	s=arc-20240116; t=1742336678; c=relaxed/simple;
+	bh=1kIVihgqc8aluSZgJJicYxOEEtfe4zDvBWptMZBFkrw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=RLo2VzKJbd7FTRvEVf9epdJ7NuhSMb80D0I/Fw2nfsdreWFv7Sd05fqB0571E4xIQ00gDXOT5kuSV/exmwAHADthMditppYTwni4O1Mo4Q2t2FCUKL6Kjh4WL+NM3muYJQWKhgSEl1ZoQatF7DABZjcDRqZY43iTA3Y0T9+ztZk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=IJP6drnC; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1742336674;
+	bh=1kIVihgqc8aluSZgJJicYxOEEtfe4zDvBWptMZBFkrw=;
+	h=From:Subject:Date:To:Cc:From;
+	b=IJP6drnCoopWboiMcMsU0/pSrwjl5jDWiMPDTwCCSAztV1dm9AZwIUdn+wp3OOC22
+	 kynMnvERfpExm96Z+lsQW8xW2ZuNyhs0Lv1qaEE5oPPaMavV+yrIxJn5iQAx8Qcub4
+	 uvkXIa4mfWTtzaYtUB6wJnhZrLGjDgaEsOHT60gt6DXl5/yxFnQdCI04SEpeVYf38Z
+	 AeKgfQFVDVAgVH4cGTEmmMLBgpMstzUgh1OKiDHx0yQ+ql3jq74ujqDUFLuKsi9UCi
+	 S7ozqFtqHZ305Z+kIBRkRnrPzuO9nrF23hJYSCfpheoNKE+h7AV0H2vSLQznZq7Xj4
+	 o/upThrAyY3kg==
+Received: from [192.168.1.63] (unknown [70.107.117.78])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nfraprado)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5CEA517E0B25;
+	Tue, 18 Mar 2025 23:24:31 +0100 (CET)
+From: =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+Subject: [PATCH 0/4] Describe MT8188's SCP as dual-core
+Date: Tue, 18 Mar 2025 18:22:14 -0400
+Message-Id: <20250318-scp-dual-core-mt8390-v1-0-8733e192cc73@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250318103622.29979-1-j-choudhary@ti.com> <20250318103622.29979-2-j-choudhary@ti.com>
-In-Reply-To: <20250318103622.29979-2-j-choudhary@ti.com>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 18 Mar 2025 17:19:20 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+L3Swkw5-8CcAC6++22k1irv2igoQBv8dTt+0pfonX-A@mail.gmail.com>
-X-Gm-Features: AQ5f1Jq0_JS7Y_H8njv49p8y_dpSwaJETWwZSkOw0KDF3rMauYXRpelek25NB9w
-Message-ID: <CAL_Jsq+L3Swkw5-8CcAC6++22k1irv2igoQBv8dTt+0pfonX-A@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: i2c: omap: Add mux-states property
-To: Jayesh Choudhary <j-choudhary@ti.com>
-Cc: vigneshr@ti.com, andi.shyti@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux-kernel@vger.kernel.org, aaro.koskinen@iki.fi, 
-	andreas@kemnade.info, khilman@baylibre.com, rogerq@kernel.org, 
-	tony@atomide.com, jmkrzyszt@gmail.com, linux-omap@vger.kernel.org, 
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIABby2WcC/x3MTQqAIBBA4avErBvQkcC6SrQoHWugP7QiiO6et
+ PwW7z2QOAonaIoHIl+SZFszdFmAm/p1ZBSfDaSoUkZbTG5Hf/Yzui0yLoc1tULLQQ+KAvmaIKd
+ 75CD3v2279/0AsBdsE2YAAAA=
+X-Change-ID: 20250318-scp-dual-core-mt8390-8ef1b02f2d92
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Tinghan Shen <tinghan.shen@mediatek.com>, 
+ Olivia Wen <olivia.wen@mediatek.com>
+Cc: kernel@collabora.com, linux-remoteproc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>, 
+ Jason Chen <jason-ch.chen@mediatek.corp-partner.google.com>
+X-Mailer: b4 0.14.2
 
-On Tue, Mar 18, 2025 at 5:36=E2=80=AFAM Jayesh Choudhary <j-choudhary@ti.co=
-m> wrote:
->
-> Add mux controller support for when the I2C lines are muxed after
-> signals come out of SoC and before they go to any client.
->
-> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-> ---
->  Documentation/devicetree/bindings/i2c/ti,omap4-i2c.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+This series updates the MT8188 SCP description to dual-core and prepares
+its usage. Patch 3 updates the MT8188 DT to describe the SCP as a dual
+core cluster and patch 4 adds the firmware-name property so the firmware
+can be loaded. Patches 1 and 2 are dt-binding fixes for the SCP.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Depends on the "MediaTek MT8188 MDP3 Enablement" series [1].
+
+[1] https://lore.kernel.org/all/20241218105320.38980-1-angelogioacchino.delregno@collabora.com
+
+Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+---
+Nícolas F. R. A. Prado (4):
+      dt-bindings: remoteproc: mediatek: Add missing minItems for 8192/8195
+      dt-bindings: remoteproc: mediatek: Remove l1tcm for dual-core MT8188 SCP
+      arm64: dts: mediatek: mt8188: Describe SCP as a cluster with two cores
+      arm64: dts: mediatek: mt8390-genio-common: Add firmware-name for scp0
+
+ .../devicetree/bindings/remoteproc/mtk,scp.yaml    | 20 ++++++++++--
+ arch/arm64/boot/dts/mediatek/mt8188-evb.dts        |  6 +++-
+ arch/arm64/boot/dts/mediatek/mt8188.dtsi           | 36 ++++++++++++++++------
+ .../boot/dts/mediatek/mt8390-genio-common.dtsi     |  7 ++++-
+ 4 files changed, 55 insertions(+), 14 deletions(-)
+---
+base-commit: 04b0d54949f9660384ceefc6f707e40daba6bf3e
+change-id: 20250318-scp-dual-core-mt8390-8ef1b02f2d92
+
+Best regards,
+-- 
+Nícolas F. R. A. Prado <nfraprado@collabora.com>
+
 
