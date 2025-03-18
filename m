@@ -1,190 +1,184 @@
-Return-Path: <devicetree+bounces-158459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5A8BA66D99
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 09:12:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AB3FA66DA2
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 09:13:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F6103A89C1
-	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 08:12:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B0E64188D701
+	for <lists+devicetree@lfdr.de>; Tue, 18 Mar 2025 08:13:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D27F31EF373;
-	Tue, 18 Mar 2025 08:12:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4AF31EF387;
+	Tue, 18 Mar 2025 08:13:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="b80RcFWL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j3htr9j5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDF271EF365
-	for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 08:12:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1BB87346F;
+	Tue, 18 Mar 2025 08:13:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742285555; cv=none; b=rk+1NaYfvpSI8IIvQhAB8MYHToYeh/OFDaDBxD94wk9/IJZyu8WHGfEUcCyeX2JYrYy/hRR50vIF5vmWkagFZ37ZOLivCrEmbxQRmz5P8fwjiqNcdP/61Mj0BdRCFjhHSyUqPeA6GWxrhF8mSn3q0JBFRZyvOeN9t/s9yyrOzEU=
+	t=1742285610; cv=none; b=sM8+l1gzL7yLPpYGcUCtbyR7NErk4Cn/9Ern14ifj28MnF9GL/f3dOHV6fZDvyUVJgx3VokisO29dJ15qr0ULRfrvmggqxfwmuRTvVPxHXrjzJNDJCbwtESWeRlouQNrhG4ooAyPZwjJ+YcAGjfDLI7Zite2PXMeAfdTN0Ahv5o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742285555; c=relaxed/simple;
-	bh=0toriMwAl0CDBgiEM/DdeLsHbi9lHVArG6qmpGUnNnM=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=fnaBUG0/yQnTeQRl78l2bmxfshsc8IxSRKRmRYqGaQPpbfufAhXCn2cSh3po8QcXC99raDB4VoWrlxy/BFqVJwHSMG3rPTAM3U7v6yMyU7It1jW4LnRv/KYZEq4bDlosX/eaRuU8FSKPncehhlWy3O27Q0d4ujQxxMwBL5BQ6Ug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=b80RcFWL; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-390fdaf2897so4921259f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 01:12:33 -0700 (PDT)
+	s=arc-20240116; t=1742285610; c=relaxed/simple;
+	bh=aajoegoit8PL4vVvM3SGOqwnfEpfNH1he8t+kymMm8A=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=fGnaEyEujx/QIRCDW/Wq+ZxbimgHUEGqbiTrAvzRMhMbx3faB3RGApbGoGkc/Us5rPhLtsyG5x8dxsy/RR3FcEmSmdMtNQk0+eWUh+SAX2Y4Kc5KC2a9MNe7qbLUv9xwdJstXMfLa9hgnABrLoFO5nOPCmCivD02UdXaIRdCyJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j3htr9j5; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5e4d50ed90aso6606256a12.0;
+        Tue, 18 Mar 2025 01:13:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742285552; x=1742890352; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ekU0V/TxaNd7IwpxOyskUtDxhInPM+KcMXnEVWAgd0g=;
-        b=b80RcFWL4/Csu7/EFKwyr6JtuBmhme2/XELTgB0sUNz7fqmJgyergYR/BBXKsRNqRd
-         Ow/8IkbROV7jXUQQsjoQnThS5taOR1Wop5OZGWX6tZBIsTWSsFShnlawVKlyMozZeMb1
-         kTbTbGJ6i6Azlnnb/Jt/XUkfQW9AqLtoQHasHP1FWAIlaYsGXL7X0G5lIGRGP6YGvSPd
-         Xe3EsqqFxmKFBTjYkxtKQFdweMJAO1iEisHihDpXKSTvvKVWNJ+G/EXDfLU/9cwUbMnG
-         JW6RB9fq/pyD0L7gFAOzYHExd6R0MYPhvQfD0bWxkq3jAg/P1NXg6BpFX3CnrGixCM4C
-         G0wA==
+        d=gmail.com; s=20230601; t=1742285607; x=1742890407; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gayR76VJdCCYdfu9Kfs488CPWw+nzLOWNMyxlt1pA/M=;
+        b=j3htr9j5mkLKeaJy94LGLU4vfQBsjf9B/LARf4BKL7OzUcVS85aQFKCpRQsHTl7uO+
+         52W3rj3UpEamJNa9NUZyNOhKeAXvXvWwA0XCsPhNfLmQkArqubCuqAttnaeiR/BfsDlK
+         QNGU0ZTuL8KWVbXxrGjEyZecTEUmZQUFxGYg/uO0zUBoGxFtynD9x38f97JtQXCF3XCc
+         O5RUcfEUYo5mjmWa0Ba1ZZIk2Am3jJjP1SxZEeZDBQypad8kLoBDtPgxRtdYVkSR9f0F
+         8vZp3eClorGCVYs9cxghbxxbK2AmoQvIgHkS+yHYPwD5onHWZ+ov6PhjWPDGMhC1EXmt
+         q7pQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742285552; x=1742890352;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=ekU0V/TxaNd7IwpxOyskUtDxhInPM+KcMXnEVWAgd0g=;
-        b=fn8tjUyTzyyXRaxYQ29SFWLoGDYZXoPkzJt5ie4g2oAlRXCmgvRGq7r1zss1wOEema
-         a+ifs+BM9w7K5QgY9ibag41fq1vS/LUf6eFUOrz1rJPlLOWOOZxco86Mkd9VHQXw7wtr
-         QeS/hPB6eeQ6tZ4yQcfSB7+BGElg+rcn0c6Soe4y1r+ItUKP17txgX2U4ZbEnH1mQGD/
-         u+DgErKTiS5dc1C+Cy+l5sXc63NB6tsAoXI1XNcwAwnhvToSv99hkmswEQ1EuuAvlev+
-         05ms9RywvvGwyP+ETHEzqWvANs63nw8SpaUcyQySl/R4q2yOOSafYx62J3v/NnO/onlh
-         4tQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVVamGiaNK8V6f77WW6oKlKholQurquJsS5ygUKwMm+NM/KajDP9maPZpQLDkFICHlB5Lko50tbmX6V@vger.kernel.org
-X-Gm-Message-State: AOJu0YzFeybFmjNLijeAdkYsC/MUaZq0KNWx/TCpA750KNXC5d5cg57Y
-	Iv7WeWNkzzAA/ZS0iJWV6mbfJ1JLCb+VYrIHJOBE1A5ErwgFjFK7YPQfD55vnC4=
-X-Gm-Gg: ASbGncsiUImbP3BJVzu9EvVAxEYV3W5+KLZoA6mVKHoo6Bpvqo/ErGjNy15QV8ShK+I
-	+7ijyyhuHcURKIDCR4ITXvwlMQkW5I/CiDD8XTC15y7jtqcQPYyhSdisJIfL7T2CL0zaDn9Xoz5
-	Jck0eqihmkzpzvVCt2+Aa7iQP/acLLyEbNbBYBQsViJp0DjGTt9BS+Ojx1hTVA+puVUgQE41VCY
-	GJbwRzWtpWyBqSdNkfUOuSJbQUrhaJv8hkGEU/j7aftad/AB0zkQ33Nv4OzVc8bQhYRUeey3m5i
-	DX6/55ytR4i/KUezFZqB96VClMy5sBNkrb6G84zQImC98jVMsEBx7ltd48G8Doh6THNNgTZ+31k
-	DFoCa9tPdMCXU6R0VcX03zw==
-X-Google-Smtp-Source: AGHT+IHKV1aaXGeWrW0acEVO2zpsKeS9iOAKguINbKbDjBpEJdqSE+HZOWe+tVFPCJYy6aSPNPr9Zg==
-X-Received: by 2002:a05:6000:156b:b0:397:3900:ef83 with SMTP id ffacd0b85a97d-3973900f0a4mr15899999f8f.32.1742285552144;
-        Tue, 18 Mar 2025 01:12:32 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:eac1:f2d4:84a8:c5ff? ([2a01:e0a:3d9:2080:eac1:f2d4:84a8:c5ff])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-395cb318af0sm17456499f8f.73.2025.03.18.01.12.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Mar 2025 01:12:31 -0700 (PDT)
-Message-ID: <74bf5ef4-3d55-417e-b365-94e234c5505f@linaro.org>
-Date: Tue, 18 Mar 2025 09:12:30 +0100
+        d=1e100.net; s=20230601; t=1742285607; x=1742890407;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gayR76VJdCCYdfu9Kfs488CPWw+nzLOWNMyxlt1pA/M=;
+        b=LbgXvEN2gU5h99Y/17Yc9w++HhM3nmu8kPi3NvwRnvpSEtG8m3umnAXuf6KE8wusOL
+         EPTrL94M0dF1BKcBF2PWDeFg83dfvFAzH5Ab5yb9x5RjEV+b2NqSFYrCN67o8gTHM4W4
+         qAoQlfEkK3RT9qRexT90QD+0qXvCO7PcOlWSZ1rqFUneKDDKo2PYUBRMwBXkhdsctd6y
+         FRsVQw1SxuChcjg59XYq4M9Leow1Zo90vBDPQzhJrjVSOHDzEtqmR7iQsMQ7piUN+QTN
+         VQv1GJJEOdBOHcsO88eF8CnfAbayv+2oV1sr4Qh3uZjFdkxs91vuiWhnzglY2WWAQeEo
+         JbfQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUMXHBfg1ueVFuuAGaNcvAbgiUC8P8BdneYG/lJz3pf3JbN5cfbRaWNGEIEvuVGvhLHMiQ5VItFYupv@vger.kernel.org, AJvYcCUtbgud0ny3YqAE/88hocdgredmZahPgZKIQK0JSSqREK6/GROcmCv7WtnkPWv8Fzjabvmv0iRUty7mFeK6@vger.kernel.org, AJvYcCWqO904mjRCI+tKd3ZhLI1BxHgXh0w8sdb0WEU0iKIfN8NL27WZsbp+dIq0LjEwmM6QXF6Ad1ahKzI9@vger.kernel.org
+X-Gm-Message-State: AOJu0YxtVfVN35P4oR8CByhbgqTT0exxNdfenGNe0RSC+S7yk/kEB8Gk
+	cOfNMbz1hCMzfATAVHHyeOY+ZLGOOy1Z+iiuQ8gEgK14TwSA5AkD
+X-Gm-Gg: ASbGncuYmUcmlpEm47nmco7Jguee8KX9GkkTrjg8vk98fBzGhLMRTh5/0AzyOqgUQBf
+	uCUZYzr0VERC1IOzK+fn1ZWhlzhfyS61i5QHoYzLhfqvIfIgbfI7wcWgApR+NWq2ulcKdlTg3Oo
+	9QLbs5S2/8MOKIrJhNzuEj6nVaawYcMxqEBkXTEyV/xH/YSCMzDZK58XJMhvxNhKpNF2Un3gJp4
+	DDFTntlvGY2RnauEhb97P3vSlNrMaEC23dzlqM/dXt021nrH7VlvyC/VAgjQOEj4FLx8J5S11ZS
+	8w9gnpmtoCViAb8PHGL1/y8HHi35lc3GMLrc++AHnfFDPoprJGojYK769WXdVpqqEU++dOAhrwO
+	4k2F3wag5cXoTv8vWLw==
+X-Google-Smtp-Source: AGHT+IGZNghdIvvfNPad1dUTIavAgEQMmUsZrXC1R2Y6151Bxj6MjHyzUkSaTvSZ/hjN6czF+5cnEQ==
+X-Received: by 2002:a05:6402:2793:b0:5e6:1996:7902 with SMTP id 4fb4d7f45d1cf-5e8a0c0d26fmr15798502a12.32.1742285606660;
+        Tue, 18 Mar 2025 01:13:26 -0700 (PDT)
+Received: from hex.my.domain (83.11.178.210.ipv4.supernova.orange.pl. [83.11.178.210])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e816ad392csm7176097a12.53.2025.03.18.01.13.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Mar 2025 01:13:26 -0700 (PDT)
+From: Artur Weber <aweber.kernel@gmail.com>
+Subject: [PATCH v4 0/8] clk: bcm: kona: Add bus clock support, bus clocks
+ for BCM21664/BCM281xx
+Date: Tue, 18 Mar 2025 09:13:22 +0100
+Message-Id: <20250318-kona-bus-clock-v4-0-f54416e8328f@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/2] drm/panel: simple: Add NLT NL13676BC25-03F panel
- entry
-To: Antonin Godard <antonin.godard@bootlin.com>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250318-b4-add-nlt-nl13676bc25-03f-v1-0-67e0f8cf2e6f@bootlin.com>
- <20250318-b4-add-nlt-nl13676bc25-03f-v1-2-67e0f8cf2e6f@bootlin.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250318-b4-add-nlt-nl13676bc25-03f-v1-2-67e0f8cf2e6f@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACMr2WcC/2XM3w6CIByG4VtxHEdDUNCOuo/WAeAPZf6hQbma8
+ 95Dt5bTw+/bnndCAbyFgC7JhDyMNlg3xJGdEqQbOdSAbRU3ooTmhKYUt26QWL0C1p3TLc5oKQC
+ MhDIjKKKHB2Pfa/B2j7ux4en8Z+2P6fL+UnyfGlNMMBRClJUQkht6rXtpu7N2PVpSI/1zRtiB0
+ 8gl40xzyZUoiz1nW14cOIu84kblymimuNjyeZ6/JU1YsyoBAAA=
+X-Change-ID: 20250212-kona-bus-clock-4297eefae940
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Alex Elder <elder@kernel.org>, 
+ Stanislav Jakubek <stano.jakubek@gmail.com>, linux-clk@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ ~postmarketos/upstreaming@lists.sr.ht, 
+ Artur Weber <aweber.kernel@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Alex Elder <elder@riscstar.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1742285605; l=3249;
+ i=aweber.kernel@gmail.com; s=20231030; h=from:subject:message-id;
+ bh=aajoegoit8PL4vVvM3SGOqwnfEpfNH1he8t+kymMm8A=;
+ b=upZRPO1r+L6LqBEs74Pm7IrNBBTJBYge/Z7AyE0kSR80o4KN7ZIggNjhlpbgRwRhjTMDtVinV
+ nS30AAJ2vtVA3oQ6MYnvO983FlZhq4ZTMZUigTyWu7sr7tkXjBNxs2S
+X-Developer-Key: i=aweber.kernel@gmail.com; a=ed25519;
+ pk=RhDBfWbJEHqDibXbhNEBAnc9FMkyznGxX/hwfhL8bv8=
 
-On 18/03/2025 08:58, Antonin Godard wrote:
-> Add support for the NLT NL13676BC25-03F 15.6" LCD-TFT LVDS panel.
-> 
-> Signed-off-by: Antonin Godard <antonin.godard@bootlin.com>
-> ---
->   drivers/gpu/drm/panel/panel-simple.c | 27 +++++++++++++++++++++++++++
->   1 file changed, 27 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-> index 9b2f128fd309..96e8569d97ca 100644
-> --- a/drivers/gpu/drm/panel/panel-simple.c
-> +++ b/drivers/gpu/drm/panel/panel-simple.c
-> @@ -3469,6 +3469,30 @@ static const struct panel_desc newhaven_nhd_43_480272ef_atxl = {
->   	.connector_type = DRM_MODE_CONNECTOR_DPI,
->   };
->   
-> +static const struct drm_display_mode nlt_nl13676bc25_03f_mode = {
-> +	.clock = 75400,
-> +	.hdisplay = 1366,
-> +	.hsync_start = 1366 + 14,
-> +	.hsync_end = 1366 + 14 + 56,
-> +	.htotal = 1366 + 14 + 56 + 64,
-> +	.vdisplay = 768,
-> +	.vsync_start = 768 + 1,
-> +	.vsync_end = 768 + 1 + 3,
-> +	.vtotal = 768 + 1 + 3 + 22,
-> +};
-> +
-> +static const struct panel_desc nlt_nl13676bc25_03f = {
-> +	.modes = &nlt_nl13676bc25_03f_mode,
-> +	.num_modes = 1,
-> +	.bpc = 8,
-> +	.size = {
-> +		.width = 363,
-> +		.height = 215,
-> +	},
-> +	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,
-> +	.connector_type = DRM_MODE_CONNECTOR_LVDS,
-> +};
-> +
->   static const struct display_timing nlt_nl192108ac18_02d_timing = {
->   	.pixelclock = { 130000000, 148350000, 163000000 },
->   	.hactive = { 1920, 1920, 1920 },
-> @@ -5056,6 +5080,9 @@ static const struct of_device_id platform_of_match[] = {
->   	}, {
->   		.compatible = "newhaven,nhd-4.3-480272ef-atxl",
->   		.data = &newhaven_nhd_43_480272ef_atxl,
-> +	}, {
-> +		.compatible = "nlt,nl13676bc25-03f",
-> +		.data = &nlt_nl13676bc25_03f,
->   	}, {
->   		.compatible = "nlt,nl192108ac18-02d",
->   		.data = &nlt_nl192108ac18_02d,
-> 
+This patchset does the following:
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+- Introduce support for bus clocks. These are fairly similar to
+  peripheral clocks, but only implement policy, gate and hyst.
+
+- Add matching bus clocks for BCM21664 and BCM281xx peripheral clocks
+  and update device tree bindings to match.
+
+The previous (RFC) version of this patchset also introduced a
+prerequisite clock mechanism to enable bus clocks before their
+corresponding peripheral clocks. It seems that this is unnecessary - 
+the way these clocks are initialized leaves them enabled by default.
+Thus, the prerequisite mechanism has been dropped from this version.
+
+This is fine for now, and more accurate to hardware (bus clocks are
+a prerequisite for the bus, not the peripheral clock). I had an idea
+to connect bus clocks to buses using "simple-pm-bus" in DT, but
+this is a task for another patchset.
+
+Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+---
+Changes in v4:
+- Rename moved CLOCK_COUNT defines to CLK_COUNT to avoid redefinition
+- Squash BCM21664/BCM281xx bus clock DT bindings commits together
+- Link to v3: https://lore.kernel.org/r/20250308-kona-bus-clock-v3-0-d6fb5bfc3b67@gmail.com
+
+Changes in v3:
+- Fix DT schema example in BCM281xx bus clock bindings
+- Move CLOCK_COUNT defines from dt-bindings header to the driver
+- Fix BCM21664 UARTBx_APB IDs being out of order compared to clock
+  driver
+- Link to v2: https://lore.kernel.org/r/20250303-kona-bus-clock-v2-0-a363c6a6b798@gmail.com
+
+Changes in v2:
+- Drop prerequisite clock patch
+- Move clock/bcm21664.h dt-bindings header change to dt-bindings patch
+- Add BCM281xx bus clocks
+- Link to v1: https://lore.kernel.org/r/20250216-kona-bus-clock-v1-0-e8779d77a6f2@gmail.com
+
+---
+Artur Weber (8):
+      clk: bcm: kona: Move CLOCK_COUNT defines into the driver
+      dt-bindings: clock: brcm,kona-ccu: Drop CLOCK_COUNT defines from DT headers
+      dt-bindings: clock: brcm,kona-ccu: Add BCM21664 and BCM281xx bus clocks
+      clk: bcm: kona: Add support for bus clocks
+      clk: bcm21664: Add corresponding bus clocks for peripheral clocks
+      clk: bcm281xx: Add corresponding bus clocks for peripheral clocks
+      ARM: dts: bcm2166x-common: Add matching bus clocks for peripheral clocks
+      ARM: dts: bcm11351: Add corresponding bus clocks for peripheral clocks
+
+ .../devicetree/bindings/clock/brcm,kona-ccu.yaml   |  49 ++++++-
+ arch/arm/boot/dts/broadcom/bcm11351.dtsi           |  33 +++--
+ arch/arm/boot/dts/broadcom/bcm2166x-common.dtsi    |  28 ++--
+ drivers/clk/bcm/clk-bcm21664.c                     |  99 ++++++++++++++-
+ drivers/clk/bcm/clk-bcm281xx.c                     | 141 ++++++++++++++++++++-
+ drivers/clk/bcm/clk-kona-setup.c                   | 116 +++++++++++++++++
+ drivers/clk/bcm/clk-kona.c                         |  62 ++++++++-
+ drivers/clk/bcm/clk-kona.h                         |  12 +-
+ include/dt-bindings/clock/bcm21664.h               |  17 ++-
+ include/dt-bindings/clock/bcm281xx.h               |  24 +++-
+ 10 files changed, 538 insertions(+), 43 deletions(-)
+---
+base-commit: ffd294d346d185b70e28b1a28abe367bbfe53c04
+change-id: 20250212-kona-bus-clock-4297eefae940
+
+Best regards,
+-- 
+Artur Weber <aweber.kernel@gmail.com>
+
 
