@@ -1,170 +1,179 @@
-Return-Path: <devicetree+bounces-159114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159115-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47DCCA69B7C
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 22:54:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20EC9A69BC9
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 23:08:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 064E94842D0
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 21:54:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B063B3B5023
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 22:08:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFDE0221F30;
-	Wed, 19 Mar 2025 21:51:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B4D421A434;
+	Wed, 19 Mar 2025 22:08:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="P5V1HG+u"
+	dkim=pass (1024-bit key) header.d=inadvantage.onmicrosoft.com header.i=@inadvantage.onmicrosoft.com header.b="TXplb73+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2119.outbound.protection.outlook.com [40.107.244.119])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A10C920C47C
-	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 21:51:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742421106; cv=none; b=Z0had3ypM1VljUEcHPkaJ997g7lTVC4Npfx6YQX8+67XbW/la9HMEAQu3Lby1E2CuO01/H2dPdN2+DHz0JqDHDgePgBdXqJDqQ7poZ4Qo3nm2+MgEmURF47abYaHxVOFDUArqW0yS6E4yoJyXXwBekg52jNH8LO4nh1kQBodX0Y=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742421106; c=relaxed/simple;
-	bh=ZHGs6I7q3Tsyi9kzoh4U5cxC19XY6HnWZ9uwmmvUT2Q=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=p5Gl8uVP6tv/7F0IJXSh7R+k7R9IUqlPB66m/3Bunsr04aG0OEULs5WiFihLJyu86EGjcgL4zQ+RnhoxAneBClhA+Zu13Ek8Bb0YsvBKYPd+Kc+JoaqwLjsnhEpDfUcyqmtfK81iJWJ8P5LpzvtVD8dLdl5mcu8IZlWXWl3fxb4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=P5V1HG+u; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ac345bd8e13so32035466b.0
-        for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 14:51:42 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5CD82147E3;
+	Wed, 19 Mar 2025 22:08:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.244.119
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1742422097; cv=fail; b=MzdARlVQjoZmyUu/IMw0kwBtFnGkYwtOsH2Pam0O3aWj38meMclmRIEP4A/Mc3wZC3WwqCqiaDP8kFrTOge63PQsm381dqBEjQhcsvNQooUr7GPVAYlLI5ArdU5lBSgEbLPf2DQP0Y1wiu19QunqamQYdcD7PfRpmAOeDxaulyc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1742422097; c=relaxed/simple;
+	bh=3Wio1H6h7ruh7LxgAQb52b3GDgECyV0FybfyM0EO2Y0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=ghQCxY5hrpXr5GjggBZj98feDULqK9CSB+mURW9bpbqbNZ8kzpwDlkRvVAacsvjAdqHkpRHwIkinb2wus3e8UAeWJLIVyWWHP4mZXIWEzDm3i6x2Ryof7tpceM5XvML40Vm/KRwLmlRy58v0rBhANpMBz+Q2GSgMhHH0FsDBtRw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=in-advantage.com; spf=pass smtp.mailfrom=in-advantage.com; dkim=pass (1024-bit key) header.d=inadvantage.onmicrosoft.com header.i=@inadvantage.onmicrosoft.com header.b=TXplb73+; arc=fail smtp.client-ip=40.107.244.119
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=in-advantage.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=in-advantage.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=hrvkedPVav42F+w9R57oQozKfAdsgPBnVxo6m/RyLjvGqabaypCHm1ikMIT+qzZYgiIcdaBd4DicDsIpfgN4fYqnI7AMBaEXnSGuY5I7gzTnsWcnicYdPmrKecFsjTpfNTCvuMqNcGAIkmq2gGv7f7bICFImt/0Ylc7DmQ3zLt7pbT5zF3Zi9KMU4qPVH7hRT4a+y7zHm6w7qPA4pMf82ehSFx2OHUphrV6I1RqI+VjkYSSaLE0hUU/kNJp7UBcF0zWxlRY8u9OLFyLnUQSy5Su/NDZnPZbRNwWYfVzARrvWj6ZbHt/Vd7YAVqLZuO1IAOi9BYyDNylQSircz9/xvg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3Efcwhf6A8vb8ZvHofhHotGW+vo9OHRU+qOdRe7F6Ag=;
+ b=x0xQweX3Cq1kM9M14/tc1iO1D+CnovBXr5XPMIiK8/dDrjiboGv43fo/ameVXp7FDcXGZh7pKdE/b8DuXgex9zn6SeQ3cVKeTJ9H+53Xp5Ddt4DhD5I5Hhc8mdDRkJ43Fxnc5R3FC3iJN/RL2BSFOgkdirINEUA2OZnB+rbw4VallnD8f6Fezs7NIn8hr4Gb0SiQdkAjyF7My5NAr5gWsURB3lv3uBGVIMVxM8OJIP7MW3iLmwQ15DGT0RM5jLfTYYgNsuFl2x9Tj7W8l9OgPdLmUZb8FU9jvL9cNqzq43axx7VnZT6zldHXTqgOU0Vv6kV0WoZTtKGgT4i8BPLk6w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=in-advantage.com; dmarc=pass action=none
+ header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1742421100; x=1743025900; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Hon0A+RaNlvqPfqyKNkIXyr+XGvXZKWonIIqQqeswT0=;
-        b=P5V1HG+ulPDbgraGKjpTHEUqniY1hrRZcEWRfY5LXZCbLbV1qm1sJs9Z+YUkaW7OLW
-         Wo4HnKDwoRzDrNNL7XHWZnjSJ4726aJfMsGKc9rQDK89HH6rW+oAGqycuujxOAeMJoNB
-         clSXIA5VC1S0ZcR+quBpJef8B4mTb3PQuUouXFfB1X/raCnWP7esAUa1GkPL2xB3sSTs
-         DD4waHVdpUreOlQfYAaEPDSUWi87WnmmywL8R+lT1cV19iBx1sSx8BtTjQQ61xm/mWoA
-         LvS+f65F9K+ghEt2BA1HaLbLKhXAbVdZbyTIiuz7HuDwscIJm2NuesiE4A9DUoIXgSJ/
-         acag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742421100; x=1743025900;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Hon0A+RaNlvqPfqyKNkIXyr+XGvXZKWonIIqQqeswT0=;
-        b=tTOxmzVc3S+GJfyzD7T1J+6k+3NoBMesFhuIxRctnd7KXLZ1iBgiG5ajreP2rKvkKf
-         VJBF2iUPxMP4zXVF1/gbdF4MAP4Ao1/9QjPsrbFYIOYLRtuhLzx0ydoghS0BJiImit3L
-         4uw8nb8DjxUsLARO/scBffIL6J896zQy00r06km0Z8F+tyD65LLbJ3PrMFRRlU6aTPst
-         SiW9Of0fMlPsiILZFoCWY9W4XrbcGRIAxPMGzPFw1HLFQ4jgMsXycVZ1S1LAcVLNKRBW
-         7FYPKQa+ij4KDRVS+0JLWfBjGc5kJX1vniTmJRxp9nQyzMLEEgoxauKmfgOTeJcppbMi
-         CSmw==
-X-Forwarded-Encrypted: i=1; AJvYcCUoMNj0YSne7+5AU6q8GKGLh9SybQwWxoCE0hxxJOWjmLeBG2tejRB26Kc/+B7s+Wg21/UyPqL7Ssno@vger.kernel.org
-X-Gm-Message-State: AOJu0YwCg0Z2HP8lek1zkhsMKJ5bVLUGtqEUrOiAR3SbcXJKrdgfdGog
-	VSUYswyHcJuLV2ig/KkT3D/YM1fkZjlTyOsB7yXvwSu1p7xIbb6+qUF9H71J5Qk=
-X-Gm-Gg: ASbGncuK+PEaZICqzRGim6VOFg87Dyv0lNy2IUrawB8Dav0JcnIfrhzNZsJIvLIo/Pn
-	9ORsTlB9e1bXOPRCDN6BXuIuNW05QqOu7STYz3eRKC4bDmMOPbkAB9EuQLO2OH+ihnqu9gcIDdP
-	ju12pGdzdE+wPny5N3cCa8zkAYb18EYD+qG2LLPeegw5SycHR+ueGqMx9ALkJdW1MCphbirF8SB
-	kcetsPNUr9KWHudvzxt6m+xk10HZ6dRLWoQASzoG/xSvEzW9XGoDmtc+BvDf1cT26XWGniQw9xO
-	ULeCE7bIBsJN8Q5D6iTEc4Fg7f+z4j6ctu/qpSm5DYXcSkHRmXN361gPrNYvNJp7MgUDyFgzFxj
-	bwutSf7ZuiA==
-X-Google-Smtp-Source: AGHT+IEubZjv6HNcMkLRF8KIKKnDt5E7yfE5umLCedVB6lCh54dmHwyuBtrf8bjfetPJOMQZhmUQZw==
-X-Received: by 2002:a17:907:96a8:b0:ac1:e1da:8744 with SMTP id a640c23a62f3a-ac3b7ed0692mr400259166b.38.1742421099920;
-        Wed, 19 Mar 2025 14:51:39 -0700 (PDT)
-Received: from localhost (host-87-4-238-14.retail.telecomitalia.it. [87.4.238.14])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac3149ced82sm1045348366b.123.2025.03.19.14.51.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Mar 2025 14:51:39 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-To: Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof Wilczynski <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Saravana Kannan <saravanak@google.com>,
-	linux-clk@vger.kernel.org,
+ d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3Efcwhf6A8vb8ZvHofhHotGW+vo9OHRU+qOdRe7F6Ag=;
+ b=TXplb73+z6RDUFitCeT5gdSeEhsRSpPFFDEq3YXQWmFQujixv0FjKxiJg8pzMYfzz/LTQkrFwtG0PooxETZxyUIMTWkM2nDBfWJ9kcoA+rnnRRZMI/0a/6zybVGiZ5JKLLQNKezzeXkM2q5mrdnq5BCFAATVx6WaQDQPxN8dG1k=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=in-advantage.com;
+Received: from DS0PR10MB6974.namprd10.prod.outlook.com (2603:10b6:8:148::12)
+ by PH8PR10MB6599.namprd10.prod.outlook.com (2603:10b6:510:224::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.34; Wed, 19 Mar
+ 2025 22:08:11 +0000
+Received: from DS0PR10MB6974.namprd10.prod.outlook.com
+ ([fe80::7603:d234:e4ab:3fea]) by DS0PR10MB6974.namprd10.prod.outlook.com
+ ([fe80::7603:d234:e4ab:3fea%6]) with mapi id 15.20.8534.034; Wed, 19 Mar 2025
+ 22:08:11 +0000
+Date: Wed, 19 Mar 2025 17:08:08 -0500
+From: Colin Foster <colin.foster@in-advantage.com>
+To: Rasmus Villemoes <ravi@prevas.dk>
+Cc: Lee Jones <lee@kernel.org>, linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Phil Elwell <phil@raspberrypi.com>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	kernel-list@raspberrypi.com
-Subject: [PATCH v8 13/13] arm64: defconfig: Enable OF_OVERLAY option
-Date: Wed, 19 Mar 2025 22:52:34 +0100
-Message-ID: <9d5b41bf6d1565f0de96c7c1680bd404cba40189.1742418429.git.andrea.porta@suse.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <cover.1742418429.git.andrea.porta@suse.com>
-References: <cover.1742418429.git.andrea.porta@suse.com>
+	Felix Blix Everberg <felix.blix@prevas.dk>
+Subject: Re: [PATCH 3/8] mfd: ocelot: rework SPI (re-)initialization after
+ chip reset
+Message-ID: <Z9tASE2-adiEUT-3@colin-ia-desktop>
+References: <20250319123058.452202-1-ravi@prevas.dk>
+ <20250319123058.452202-4-ravi@prevas.dk>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250319123058.452202-4-ravi@prevas.dk>
+X-ClientProxiedBy: CH0PR04CA0091.namprd04.prod.outlook.com
+ (2603:10b6:610:75::6) To DS0PR10MB6974.namprd10.prod.outlook.com
+ (2603:10b6:8:148::12)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR10MB6974:EE_|PH8PR10MB6599:EE_
+X-MS-Office365-Filtering-Correlation-Id: 749c284d-4b79-4478-faea-08dd673289c6
+X-MS-Exchange-AtpMessageProperties: SA
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?57z2MMxgTe4sEupk9fDucBaQ4YhqmeoDcI5FiIRMvxXBp3oCO6Zwhsi1yLHU?=
+ =?us-ascii?Q?VDa0CmjiNMzwoDAg+vY7YpWtlMcj9qkyuCaF2SlOngfvcJ6UuiM0v4vWzdFH?=
+ =?us-ascii?Q?X4l3OwmeIy1R99hbd51mo2j0+LQgOZLjTo2MGRFfNA5NrQCpY+U14amGyUxd?=
+ =?us-ascii?Q?1e/NS0YJ40FUFFy/TJE58XeH/HiNAqaRxzNhAtr4Hzmulv0EShy3btk8B5iq?=
+ =?us-ascii?Q?3wUUzxTOte1gXBG0NV7igCh1jy9ddaPgrGhXt+q9rp5Yo754nQX0Dg9oc8Tf?=
+ =?us-ascii?Q?2Dh3fQL0PrExXlN+frTSC+e/tD0mIHBB7LBJd3vFbx3PCJZQMTnPo+RwQDPv?=
+ =?us-ascii?Q?oa1L4H1HZWxJBRBRTcoCye+PQTHSNjWKNvj9qQmyoih31qT10DpnivZOoJbB?=
+ =?us-ascii?Q?ZtFaXIkk9piRzxIAuTaiuHFbRqGnjLOI2qQ8tr0idSvDTMBnvDeFfc6Sk/Uq?=
+ =?us-ascii?Q?k+Lm1MtA4bU5X2tDzVYo0oH6bEdcEwZGgMdIteUP8o6C66yMJATuRHdOz3s9?=
+ =?us-ascii?Q?ITvPLycUdaZzqNrLwJpHjjUUCuDg5jNr/mGHkT9SnzUn0puvgwtsKCeBLOf2?=
+ =?us-ascii?Q?l3vLxwbZBOejbDFIasWrGny5JXV7Hvk7gz+RnVCYa6i3OWfy0o5zsSnsOCI5?=
+ =?us-ascii?Q?DvAoVBFmf4IBWEflFM0s+Io6T3BrbvhQT53HqI36LNdfxDyidGwMxvQeUGbJ?=
+ =?us-ascii?Q?QhAtLyjSD14vdm8XFxUa+5mgY7QgWzNJZSOA6ok5snVmCCufEbOno3/kTOZE?=
+ =?us-ascii?Q?p+ZgZHCYyPY8ciUYxjz+obrfyfsxst0jDbqF6LKZrmF03893JErMzMjjawqE?=
+ =?us-ascii?Q?9mf67WcbpGKbWLEabiFzh/CasqCBhnO7+gpKCxZMiaStxSaBLsqZk0GYE/nz?=
+ =?us-ascii?Q?SVVweNo2VhdAOifpzs0BlgDYa0KwZoMTcwk39MLo2TTtEzCLN5YDdGSVcovu?=
+ =?us-ascii?Q?FcGpdnWJC8T6zJJKRdNmWBSjBavnpa/Js7kpmbJoe1B2oKlTSZ8wJw07yPkf?=
+ =?us-ascii?Q?D5+84k82mX7FKz9aL2qrZ/KaNM7ANtGRLQpulkHZPD6rWIYEsBuumAaFLYdq?=
+ =?us-ascii?Q?rmRdCk9unl1oh13kmZKrUzSf8VYRXk3uvC+bBUghQsh3FibJlI71iYeNvpzM?=
+ =?us-ascii?Q?RiD5+DdvW8d+4BeGUnaeh4DoBiGHgE5DlXw0vvqP4p7x8rz9IJBcMPUp5qjs?=
+ =?us-ascii?Q?OoU9PGqh6wzKCNfiycI1BPCqIIfRUQ/3nEPFYvqoVmo8vrMwfjmFK88PxfmT?=
+ =?us-ascii?Q?Iig94eWqiv24Hsu6WAAbIrqMo9iBcsyo6TxcmvqFm/7Ymr+//cjgK/XgrNoK?=
+ =?us-ascii?Q?JkAQeuj8/pd7UEuCucfs7jA3SHb4OIzq0o4xxqMfjScMwepRGxXTt8rBDGnH?=
+ =?us-ascii?Q?sJvZUoW67qjcpPtOlcLgYeAU0UPt?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR10MB6974.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?EDtOwhib/Zp2BI+b804gMXAv2TNdW2rdoTLUfyizgX5sL/VkLkIRQwpbcowH?=
+ =?us-ascii?Q?uA++zi1sPOaRj5dP7iA2fAhsn5bYn94R2zIDuuP+Mvem0kqvqOTrDgiLWk6y?=
+ =?us-ascii?Q?OCFA4aKFSZF32FqmTVUyty/IpHb9BVDA3rRRinkPhC4D9qCoRE+OYhDZAswp?=
+ =?us-ascii?Q?DyWxl3W0kWpsSEgyOlUK/zeM9OSqCkn1A59Ojjvqp3c0Uqg9EFAwNlcWlVZM?=
+ =?us-ascii?Q?/JaQ68HbLAiLW54JFo7gjYNGS0hMyWLp4BjOSEnkHMPUcL0kZxd5YD+EWjCP?=
+ =?us-ascii?Q?/ahUNynztQ6CJFzaefmd+hoGNl3SoEgjgbz8Cb0I1vjUixC64unHYlq7/eZX?=
+ =?us-ascii?Q?qK6+S61EJL6m0A70vuBb4B3GGuf7ZO9VWk89oOf+msKp3E6shf0dN5XjVsfW?=
+ =?us-ascii?Q?FogfEmulMFf2sdN5wirW2PMTBTf8P2RY8vXy7F2B9IQ3xCMSgmey+04kkcGl?=
+ =?us-ascii?Q?ITGBjl5VTqZGoR0jcJACxfRje5yKlSycrmhwQlZIa9gKdPryMJ/+FQPa1xU4?=
+ =?us-ascii?Q?myV19R4ZMuxxyZ/nDrYdHN6TFPQO3gSpjkoZguGILR/zovW0Ei4ZoL1REWAE?=
+ =?us-ascii?Q?eKyYLyKH5RbcDAMDd7HXvUkjy49CphnDEwOVTKvtudPRd/YglT/T6KQ4phi9?=
+ =?us-ascii?Q?5Paxhih1xfjyWn0F7EJZQTBb+hWkys2Z6/Ro2MIvf950MEc/bwshffX+RFqJ?=
+ =?us-ascii?Q?sN9/8asMfsRtT56C6RScvNzFYOM4nNuu2zsZbl0dkFyRCbCa9E02+0LoA0Yt?=
+ =?us-ascii?Q?bSnNUf0tDV8Ig+0WRidWO0ZgCqVgQ/ju8nNGyb2F/ftRV3VShLuptmOrC0us?=
+ =?us-ascii?Q?1qn1cgLxIebEBLi9FY1W82j+f8u00qQJB0ZFXN75Wsvt10p8Szsk7C2GdHiy?=
+ =?us-ascii?Q?JkF6ZMNiWo4S2Z6auNSyWOpu4CYbiXJX2VMS7Ttdx24AOjlT1NUPgHu1X9N8?=
+ =?us-ascii?Q?5HVO1kff0E3DoHfP3cEfPjGl8UbSqjWqtAD0b8HMg9FESryp9/6Aaky7nnWN?=
+ =?us-ascii?Q?84itv9E2GYvsnUiSIf2fM67aEqCVYke12Tv9KXUCPFHxGNwgAqqnAF3ktL1U?=
+ =?us-ascii?Q?asLDmlhOGVw2c7aD2xHxCkfzR5PAf9PEuM2PYiCOWn3SqHpWfDOE63fcDoGB?=
+ =?us-ascii?Q?Yze+wcnVA5qdsd2T3cLftE2bBjGMiTWCj4jhook/CcqxiNcB6m6dU0wXxCm+?=
+ =?us-ascii?Q?WQyzjdwlAxYQ2bQ3c73K6MZYmetNFfNZFTC9e+bnUJN4eq9nb+pavuD3i739?=
+ =?us-ascii?Q?9OXSaOQL5pzp4HnWTqum+VzvtKw0ER9lPs5vRZkreNADvMoJWM7ASd2zM1sD?=
+ =?us-ascii?Q?DR83wKfTdEufrdXKW3oCm4rqf4reFv5UZ5hQxYhTS/Ws+ktZLXM2JAmGY3BZ?=
+ =?us-ascii?Q?bWsBk1MwWDfw+uChUc/8XOPa4icHBKDXVukeBH6EPA9QNZVLxmO3VgPS8CKQ?=
+ =?us-ascii?Q?ZBS+40srlt2zbdiP0xu0oS0XPZJvZdTt9ACiUyiwyaR9Nil590pCF5TStn1Z?=
+ =?us-ascii?Q?X6rSMeMfDW2oG9J90YR24Laz6qyOZLOr6dWR3pEZOR4kcWgSHfFyCiuTsBsb?=
+ =?us-ascii?Q?LwKf6vK+RmyBhJ3aCW8R7cssm9mtAPbWfqbsFsLj2QzH7KmldpiOA1cOrG72?=
+ =?us-ascii?Q?2j1NN37//yibTC5QjiyBo9g=3D?=
+X-OriginatorOrg: in-advantage.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 749c284d-4b79-4478-faea-08dd673289c6
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR10MB6974.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2025 22:08:11.5681
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: rcr73yDp34KGxLUKvm3QxIIyBIrUiS+EKsQG0oIL0H4YL1zuQnoGiUy8qkaUwUWnUiMr22uarVRd//qjTOeCUVYUZbiUrAVVzS6qjj9xH7c=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR10MB6599
 
-The RP1 driver uses the infrastructure enabled by OF_OVERLAY config
-option. Enable that option in defconfig in order to produce a kernel
-usable on RaspberryPi5 avoiding to enable it separately.
+Hi Rasmus,
 
-Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
----
-The following metrics should help to decide whether this patch is
-acceptable or not. The defconfig kernel with CONFIG_OF_OVERLAY=y
-added (wrt to the defconfig one without that set) has:
+On Wed, Mar 19, 2025 at 01:30:53PM +0100, Rasmus Villemoes wrote:
+> As the comments in ocelot-spi.c explain, after a chip reset, the
+> CFGSTAT register must be written again setting the appropriate number
+> of padding bytes; otherwise reads are not reliable.
+> 
+> However, the way the code is currently structured violates that: After
+> the BIT_SOFT_CHIP_RST is written, ocelot_chip_reset() immediately
+> enters a readx_poll_timeout().
 
-- same uncompressed kernel image size (due to ELF section alignment I guess)
+I ran this new version and everything worked - and I've not seen an
+issue in previous versions. I'm looking for guidance as to whether this
+should include a Fixes tag and be backported.
 
-- ~7Kb bigger Image.gz
+Great find, by the way! Is there any information you would like from my
+setup? I'm happy to add a reviewed tag, and my "tested" would be that I
+ran it.
 
-- 3 new modules (all related to RP1, i.e.: clk-rp1, pinctrl-rp1 and rp1-pci)
-
-- 27 added symbols, of which 5 exported
- 
-hoping this is enough to gather a rough idea of the impact.
-Please note that OF_OVERLAY has to be defined in a way or another,
-otherwise the RP1 driver won't work correctly in case the dtb overlay
-embedded into the driver is used.
-Another way would be to add a phony target to the arm64 makefile which
-just add that config option to the target.
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index cc70793e97ef..ca492fbd2773 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1643,6 +1643,7 @@ CONFIG_FPGA_BRIDGE=m
- CONFIG_ALTERA_FREEZE_BRIDGE=m
- CONFIG_FPGA_REGION=m
- CONFIG_OF_FPGA_REGION=m
-+CONFIG_OF_OVERLAY=y
- CONFIG_TEE=y
- CONFIG_OPTEE=y
- CONFIG_MUX_GPIO=m
--- 
-2.35.3
-
+Colin Foster
 
