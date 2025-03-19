@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-159078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E82C7A6991A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 20:23:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EE5CA6994C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 20:29:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6489E7ACE3E
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 19:22:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E4923AD118
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 19:28:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6738213E78;
-	Wed, 19 Mar 2025 19:23:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5CE7211A21;
+	Wed, 19 Mar 2025 19:28:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DJcjSaFg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b4nl5dZV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D6AC2135DE;
-	Wed, 19 Mar 2025 19:23:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 980AB1AF0D7;
+	Wed, 19 Mar 2025 19:28:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742412199; cv=none; b=KGdcJpa3t1jPdjk4QhStqW02whISzf8Iab4nYq1ayohljF373NYn9t3i7G7KO11Fb3b5dNeXozuYg1A+nQ8Km40TQTNyUlLQl21oj6PLOo6yWV3CtoXAFYXreLLvCVDwXnbpwIIYKeRhPAKxlCHOgO4kij/4nkf3igOpA4YfoPI=
+	t=1742412492; cv=none; b=dZYniQ7MeEx6Sf5eECkwLaUc+mbJE/sjNyzBpWGdtAzaH+FTUl1+9zTi8fEWPixl9GNc4C0ls0lbYQzxA5lL3lSF/8Oy/18RG0uyR97cUB1cotRYmruPulrgVtfxD8hAuhutjOCg9pJBxlgw4eSTdWj6YP0KeqVjuJM+lRL0VuY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742412199; c=relaxed/simple;
-	bh=r/XHbPpCDJg8LK6akBmJpvgVHJpTE1lx9iFi1+FW9MU=;
+	s=arc-20240116; t=1742412492; c=relaxed/simple;
+	bh=xVpheGEMSdvufAyA000NnxguGemRFVyG24RA4OWDHBo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FG2cG4LhNkODpK6SzTWxhSwz7/snbAe8OONPEuRg2vynHC2+sR/0Zq4g0T/DL+sV9lzjJ6BHHt5lya1ZSa4lpcWf/r1mAgHb99zqtWv0zyQsy+b+vU/prvRjKthQjKIl2hVr8e96J3M1h/RYs6jOie3Fs2wLrOnzYP4HcJiXAwg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DJcjSaFg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FD5FC4CEE9;
-	Wed, 19 Mar 2025 19:23:12 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=QNu9GdV9hApZlRwAOa9b7blhILDgznV55PhArXenxBJby1LAEo5LbaMwDkCGu8ByqvnWCp6lxK+YsMDqEUyNHr2rBVRoJrjzSP5Rm9sPqyWtj1BTeNC+dr1kd2WQA38vT8mq1B8dSUlf8eB2oYHnbJoP7f+EMgQR0Jr1ii69zzM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b4nl5dZV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 919ABC4CEE4;
+	Wed, 19 Mar 2025 19:28:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742412199;
-	bh=r/XHbPpCDJg8LK6akBmJpvgVHJpTE1lx9iFi1+FW9MU=;
+	s=k20201202; t=1742412492;
+	bh=xVpheGEMSdvufAyA000NnxguGemRFVyG24RA4OWDHBo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DJcjSaFg1WzjsfwN3S18h/TNsv+xT7Mfh/G3Ev/9JixtH5vs/cqkDaL5bIq0bSPp8
-	 CVGw9HXbJNMdxd0hCCo41zii/BvmkX9CbQ8tKJ1revkGZxxa/VlFf4P25TYt+xiJob
-	 4mI9hyx1WBLYCFfuv276gPhY3WqUZz5twwHydHId59OIiv1SLO6v1b6s207i2iKVvL
-	 roAKJa9XUgMVWf3hMsavNsfosOoQDpwdFOfw5kWZV1yWG2gnhyc6Fzvhvya0yEzahb
-	 nXziJePKSbeQQAjtDLL/yMzmb1OsTUzF1+VJtBTfa8ygzxaZ7455C7bccnu4BoCp4Z
-	 n2Zf1cERFJOlA==
-Message-ID: <b75a5c14-f399-45e2-80f3-923e7afe78ab@kernel.org>
-Date: Wed, 19 Mar 2025 20:23:11 +0100
+	b=b4nl5dZV887CaDJswTbT6ngspDFBwC65oJ8cHOO5Bc1ehoUoyaPBY/Y+m6OeMLaMa
+	 9oqITyqpZs6oRMEZXT9ouL2YLzHyBt5h+EVAI+VKH9b1wIJhBSsg2+Vh7D34pJjRCM
+	 95WcHcA2Esprmkb6UX2CdgCzR6kSnqgTaxg2cAjQEnh0uoB5ek50QOJfKLv/393TpE
+	 llqixryAVzFNrXF/B8OTSAUzVirPLjBN6SVQCGbbDO739igp7abfmbWZKjGHwfDmq/
+	 wAbVNs7Ds8IyhMYr1C7pzoNzRrl4FpxpPzlU8GN/iSLN34DQzM8VIXGMFnbUkMYQ86
+	 omZfYBLPVwo0Q==
+Message-ID: <92d8d240-5156-414f-b58b-a957e27eb30c@kernel.org>
+Date: Wed, 19 Mar 2025 20:28:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] ARM: dts: aspeed: Add Initial device tree for AMD
- Onyx Platform
-To: Rajaganesh Rathinasabapathi <rrathina@amd.com>,
- Rajaganesh Rathinasabapathi <Rajaganesh.Rathinasabapathi@amd.com>,
- devicetree@vger.kernel.org, openbmc@lists.ozlabs.org, joel@jms.id.au,
- andrew@codeconstruct.com.au
-Cc: robh+dt@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, jothayot@amd.com,
- Supreeth Venkatesh <supreeth.venkatesh@amd.com>
-References: <20250318174730.1921983-1-Rajaganesh.Rathinasabapathi@amd.com>
- <20250318174730.1921983-2-Rajaganesh.Rathinasabapathi@amd.com>
- <af75c352-0010-4c58-b8bc-ac0d02337d1a@kernel.org>
- <8c7be61d-d5e4-4f7f-a995-06cf856a84ae@amd.com>
+Subject: Re: [PATCH v2 2/2] leds: tps6131x: add support for Texas Instruments
+ TPS6131X flash LED driver
+To: Matthias Fend <matthias.fend@emfend.at>
+Cc: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-leds@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ bsp-development.geo@leica-geosystems.com
+References: <20250318-leds-tps6131x-v2-0-bc09c7a50b2e@emfend.at>
+ <20250318-leds-tps6131x-v2-2-bc09c7a50b2e@emfend.at>
+ <20250319-tall-ruddy-flamingo-a12fcc@krzk-bin>
+ <9a470dfd-8d7b-4529-b54b-289754b9eed6@emfend.at>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,119 +107,99 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <8c7be61d-d5e4-4f7f-a995-06cf856a84ae@amd.com>
+In-Reply-To: <9a470dfd-8d7b-4529-b54b-289754b9eed6@emfend.at>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/03/2025 17:41, Rajaganesh Rathinasabapathi wrote:
-> On 3/18/25 23:44, Krzysztof Kozlowski wrote:
->> Caution: This message originated from an External Source. Use proper caution when opening attachments, clicking links, or responding.
+On 19/03/2025 17:25, Matthias Fend wrote:
+>>> +
+>>> +	if (reg3 & TPS6131X_REG_3_HPFL)
+>>> +		*fault |= LED_FAULT_SHORT_CIRCUIT;
+>>> +
+>>> +	if (reg3 & TPS6131X_REG_3_SELSTIM_TO)
+>>> +		*fault |= LED_FAULT_TIMEOUT;
+>>> +
+>>> +	if (reg4 & TPS6131X_REG_4_HOTDIE_HI)
+>>> +		*fault |= LED_FAULT_OVER_TEMPERATURE;
+>>> +
+>>> +	if (reg6 & (TPS6131X_REG_6_LEDHOT | TPS6131X_REG_6_LEDWARN))
+>>> +		*fault |= LED_FAULT_LED_OVER_TEMPERATURE;
+>>> +
+>>> +	if (!(reg6 & TPS6131X_REG_6_LEDHDR))
+>>> +		*fault |= LED_FAULT_UNDER_VOLTAGE;
+>>> +
+>>> +	if (reg6 & TPS6131X_REG_6_LEDHOT) {
+>>> +		ret = regmap_update_bits_base(tps6131x->regmap, TPS6131X_REG_6,
+>>> +					      TPS6131X_REG_6_LEDHOT, 0, NULL, false, true);
 >>
->>
->> On 18/03/2025 18:47, Rajaganesh Rathinasabapathi wrote:
->>> Add initial device tree and makefile updates for
->>> AMD Onyx platform.
->>>
->>> AMD Onyx platform is an AMD customer reference board with an Aspeed
->>> ast2600 BMC manufactured by AMD.
->>> It describes I2C devices, UARTs, MAC, FMC, etc.
->>> present on AMD Onyx platform.
->>>
->>> Signed-off-by: Supreeth Venkatesh <supreeth.venkatesh@amd.com>
->>> Signed-off-by: Rajaganesh Rathinasabapathi <Rajaganesh.Rathinasabapathi@amd.com>
->>> ---
->>> Changes since v1:
->>> * Incorporate review comments
->>
->> Which ones? I do not see my comments addressed and if you do not list
->> them, I treat it as a clear sign you do not care.
->>
+>> And this is not locked?
 > 
-> Understood, will list them in next patch submission.
->>> * Update commit message
->>> * Remove vmalloc and earlyprintk
->>>
->>> Changes since v2:
->>> * Address review comments
->>
->> Which ones? This has to be specific
->>
-> Got it, will add details and fix in next patch.
+> The read modify write operation is protected by regmap. Since this 
+> operation does not interact with any other functions, no lock is needed 
+> here.
+
+
+Following that logic no lock is needed in the first place. Define what
+is the purpose of this lock, not just "hardware access". I assumed you
+want to keep consistent hardware state between multiple updates. If
+that's correct, how did you prevent returning value from reads happening
+in the middle of concurrent update? Or how this update_bits_base is
+prevented from happening while you are in the middle of earlier calls
+which are protected by your lock?
+
+That's confusing lock, considering also too short comment explaining its
+purpose.
+
 > 
->>> * Fix checkpatch warnings
->>> * Remove bootargs
->>>
->>> Changes since v3:
->>> * Fix stdout-path
->>> * Change commit summary
->>> ---
->>>  arch/arm/boot/dts/aspeed/Makefile             |   1 +
->>>  .../boot/dts/aspeed/aspeed-bmc-amd-onyx.dts   | 102 ++++++++++++++++++
->>>  2 files changed, 103 insertions(+)
->>>  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
->>>
->>> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
->>> index 2e5f4833a073..1e6a130377b8 100644
->>> --- a/arch/arm/boot/dts/aspeed/Makefile
->>> +++ b/arch/arm/boot/dts/aspeed/Makefile
->>> @@ -5,6 +5,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
->>>       aspeed-ast2600-evb.dtb \
->>>       aspeed-bmc-amd-daytonax.dtb \
->>>       aspeed-bmc-amd-ethanolx.dtb \
->>> +     aspeed-bmc-amd-onyx.dtb \
->>>       aspeed-bmc-ampere-mtjade.dtb \
->>>       aspeed-bmc-ampere-mtjefferson.dtb \
->>>       aspeed-bmc-ampere-mtmitchell.dtb \
->>> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
->>> new file mode 100644
->>> index 000000000000..32509a651183
->>> --- /dev/null
->>> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
->>> @@ -0,0 +1,102 @@
->>> +// SPDX-License-Identifier: GPL-2.0+
->>> +// Copyright (c) 2021 - 2024 AMD Inc.
->>> +// Author: Supreeth Venkatesh <supreeth.venkatesh@amd.com>
+>>
+>>> +		if (ret < 0)
+>>> +			return ret;
+>>> +	}
 >>> +
->>> +/dts-v1/;
+>>
+>> ...
+>>
 >>> +
->>> +#include "aspeed-g6.dtsi"
->>> +#include <dt-bindings/gpio/aspeed-gpio.h>
+>>> +static int tps6131x_flash_external_strobe_set(struct v4l2_flash *v4l2_flash, bool enable)
+>>> +{
+>>> +	struct led_classdev_flash *fled_cdev = v4l2_flash->fled_cdev;
+>>> +	struct tps6131x *tps6131x = fled_cdev_to_tps6131x(fled_cdev);
 >>> +
->>> +/ {
->>> +     model = "AMD Onyx BMC";
->>> +     compatible = "amd,onyx-bmc", "aspeed,ast2600";
+>>> +	guard(mutex)(&tps6131x->lock);
 >>> +
->>> +     aliases {
->>> +             serial0 = &uart1;
->>> +             serial4 = &uart5;
->>> +     };
+>>> +	return tps6131x_set_mode(tps6131x, enable ? TPS6131X_MODE_FLASH : TPS6131X_MODE_SHUTDOWN,
+>>> +				 false);
+>>> +}
 >>> +
->>> +     chosen {
->>> +             stdout-path = "serial4:115200n8";
->>> +     };
->>> +
->>> +     memory@80000000 {
->>> +             device_type = "memory";
->>> +             reg = <0x80000000 0x80000000>;
->>> +     };
->>> +
+>>> +static const struct v4l2_flash_ops tps6131x_v4l2_flash_ops = {
+>>> +	.external_strobe_set = tps6131x_flash_external_strobe_set,
 >>> +};
->> How did you address comment here from v1 which was responded with "ACK"?
+>>> +
+>>> +static int tps6131x_v4l2_setup(struct tps6131x *tps6131x)
+>>> +{
+>>> +	struct v4l2_flash_config v4l2_cfg = { 0 };
+>>> +	struct led_flash_setting *intensity = &v4l2_cfg.intensity;
+>>> +
+>>> +	if (!IS_BUILTIN(CONFIG_V4L2_FLASH_LED_CLASS))
 >>
->> What else what exactly fixed and what not?
->>
->> Best regards,
->> Krzysztof
+>> Why builtin? That's a tristate, so I don't get why driver and v4l flash
+>> cannot be modules. You wanted REACHABLE probably... but then it is
+>> anyway discouraged practice leading to runtime debugging. So actually
+>> you want CONFIG_V4L2_FLASH_LED_CLASS || !CONFIG_V4L2_FLASH_LED_CLASS
+>> dependency.
 > 
-> Thanks for the comments.
-> I will add 'Acked-by' and in next patch submission. 
+> Okay, I'll add 'depends on V4L2_FLASH_LED_CLASS || 
+> !V4L2_FLASH_LED_CLASS' to the Kconfig entry and do the check in the 
+> driver like this:
+
+Only this
+
+>    if (!IS_ENABLED(CONFIG_V4L2_FLASH_LED_CLASS))
+>      return 0;
 > 
+> Is this solution okay for you?
 
-
-What? Where did you get it from? Are you sure you understand submitting
-patches document regarding this section?
-
-Read the comment given on v1 instead of some random actions.
+This should should not be needed, because there are v4l2 stubs.
 
 Best regards,
 Krzysztof
