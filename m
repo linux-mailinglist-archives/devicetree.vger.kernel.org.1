@@ -1,275 +1,167 @@
-Return-Path: <devicetree+bounces-158982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1373FA68E9A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 15:13:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E90ABA68ECF
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 15:19:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8925B168DAF
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 14:09:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CD6F178CC9
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 14:14:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D50601C5F25;
-	Wed, 19 Mar 2025 14:07:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 767561BD01D;
+	Wed, 19 Mar 2025 14:13:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="SZMdqj8U"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FHg51ZV0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 627A21C460A;
-	Wed, 19 Mar 2025 14:07:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A67B51B85EE;
+	Wed, 19 Mar 2025 14:13:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742393239; cv=none; b=HyUvjZxSJggLNNhQQpscaXLui4rY9AbS9GMonyVS1Gj8FRrXemnZbF/fXTrHCEFIR5X+4XH2Qox7YfJl9+n3clrfLHOxx95sVjxUc7lPhWoKaxtXJ59OKXphALi2golnOW112BxqvR2WHlhywF01BXOcSoTwlXBRkbYhL3IG13c=
+	t=1742393638; cv=none; b=jbWO/amKGEYBg2EPQLG4leHVx3LfX99ivhB2530ahzGDBpB3vT95yAiP2+dkMAtIdmESZvsvy7YXhwgeVsBGFuxZ3+C/LincIbYQFp2rHdIBRA8yScO7WOmbkGCy+AeCefwRyjkocRW4SOZXypMVCnv3PzTyl8EjF2ENZQDPhW0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742393239; c=relaxed/simple;
-	bh=vpGjYI6Vrz1T1LESF45jAadrF+3ulmGVN9/2NRUNuGY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K8yehRkCwng8HJaSlifh1xCgJbeNuOrLNAoqjSXCdHD4tM+s3JV+35klWeO34qmlWNmK+Dl0IdLff3849MuGQc2VaoVj1jRni1mRtJnDqbv3WVlJxSHDJ5U+MStn/2EhzEXpv8RdBChl8YBCWWczkCoPhqJdpcYs6/FrgxrwR+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=SZMdqj8U; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1742393235;
-	bh=vpGjYI6Vrz1T1LESF45jAadrF+3ulmGVN9/2NRUNuGY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SZMdqj8US2vOliEoZQe9zqs9dmvk8BMMXT+I9LVY2ZLyGvCt80NrdWzi/bqRLk5BL
-	 L0g/P6jQHrtJaLqsjlDv/YJsSzgGVCWv1gZoGtVAdMxNEgXZvqEZTG075OCcl5viAN
-	 cOTC+wqAj0Jh9ChssaAYXgrD6ROvZIdd8Tf2FZN36mahwCz9qtuTY8Az5cP/f7vdDd
-	 Imj9G7dloskYXP6CBtW8kIIUSVFoghsAqDzxvI49Vv4LNjYQTY5CHinfwJUZPlj4rY
-	 uhYTUwJFSRGT8MS0C7sHYGC+4InfFz0nqsBZG29KofKrNJaZoc13VKzPmhbKXq1mqL
-	 JzcNajUleXZog==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3087F17E05D9;
-	Wed, 19 Mar 2025 15:07:14 +0100 (CET)
-Message-ID: <a79697fa-9ac0-4829-a36f-4e9915ad6bff@collabora.com>
-Date: Wed, 19 Mar 2025 15:07:13 +0100
+	s=arc-20240116; t=1742393638; c=relaxed/simple;
+	bh=BZNSVpFNwNZdH7Y5Wmut6AGNIs+zP+EaMJw3jvThsx0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pQimYNnQytQXxbeO8RUVcke6UupH4iSJY2BAQhAGHJtt4odY4aSz8JSEE8OiV3q8C7v21VGDzoG/Y0w5ibn5tnrDutxbupn6m78/kEK6PetGIP2GglGwzjpmgbLz7R/NJ9+UQq3F9vaLKDBZongs33xFcYv3RqTcnvjxbGlwmnc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FHg51ZV0; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1742393637; x=1773929637;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=BZNSVpFNwNZdH7Y5Wmut6AGNIs+zP+EaMJw3jvThsx0=;
+  b=FHg51ZV0Ftr9firHG6DROC7RiaQUF6AOzLRGy6O0xSmgoRTbZ8pQO4/T
+   L0GewjdwAf4YIYwvd3/Wv2IlBQNfVn4Jx7US7qog6umxM5apv1rz90knq
+   ZbTWeWnldOPCghjgCtOBoiJNAyga5ec3Sm9gPkAp1bIiRRrWuMz++YO2Z
+   R9HsqCnT508ULqkV8F9GNKsEMO6CLUIGgPF947zAZ7pB7Rpdt8y3bqSiE
+   U8vmSF9vKRvG3jpyiOX1tl7RdL7HTJ31P1/uzfvQrCXic4ox3QfJsygc6
+   wjYNUUauONTe7LMtx19Nz3GH82XHzHayeUaqD0dfZ7c5WMyYT5q8A8Tyu
+   g==;
+X-CSE-ConnectionGUID: qb6X577+SjO+7a9zJI+pXg==
+X-CSE-MsgGUID: piZ34x1BTUinv9CtwGaU/A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11378"; a="43601164"
+X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; 
+   d="scan'208";a="43601164"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2025 07:13:56 -0700
+X-CSE-ConnectionGUID: qET96VOmRlKskkekdQKbZA==
+X-CSE-MsgGUID: u8jj9rvZSjeuk9bbK6ER9A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; 
+   d="scan'208";a="123126357"
+Received: from lkp-server02.sh.intel.com (HELO a4747d147074) ([10.239.97.151])
+  by fmviesa010.fm.intel.com with ESMTP; 19 Mar 2025 07:13:50 -0700
+Received: from kbuild by a4747d147074 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tuuAs-000Eiu-1v;
+	Wed, 19 Mar 2025 14:13:41 +0000
+Date: Wed, 19 Mar 2025 22:12:33 +0800
+From: kernel test robot <lkp@intel.com>
+To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kamel Bouhara <kamel.bouhara@bootlin.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
+	andriy.shevchenko@intel.com,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+Subject: Re: [PATCH v5 08/11] gpio: max7360: Add MAX7360 gpio support
+Message-ID: <202503192257.KfRkL589-lkp@intel.com>
+References: <20250318-mdb-max7360-support-v5-8-fb20baf97da0@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/3] dt-bindings: media: mediatek: mdp3: Add
- compatibles for MT8188 MDP3
-To: Nicolas Dufresne <nicolas@ndufresne.ca>, chunkuang.hu@kernel.org,
- Yunfei Dong <yunfei.dong@mediatek.com>,
- Jason-JH Lin <jason-jh.lin@mediatek.com>
-Cc: p.zabel@pengutronix.de, airlied@gmail.com, simona@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- mchehab@kernel.org, matthias.bgg@gmail.com, moudy.ho@mediatek.com,
- dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- kernel@collabora.com, sebastian.fricke@collabora.com,
- macpaul.lin@mediatek.com
-References: <20241218105320.38980-1-angelogioacchino.delregno@collabora.com>
- <20241218105320.38980-3-angelogioacchino.delregno@collabora.com>
- <5682afd1785f37d9a995bee1643174b669c48535.camel@ndufresne.ca>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <5682afd1785f37d9a995bee1643174b669c48535.camel@ndufresne.ca>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250318-mdb-max7360-support-v5-8-fb20baf97da0@bootlin.com>
 
-Il 19/02/25 16:38, Nicolas Dufresne ha scritto:
-> Hi Angelo,
-> 
-> Le mercredi 18 décembre 2024 à 11:53 +0100, AngeloGioacchino Del Regno
-> a écrit :
->> Add compatible strings for the FG, HDR, RSZ, STITCH, TCC, TDSHP
->> and WROT hardware components found in MediaTek's MT8188 SoC.
-> 
-> The firmware for this is missing in linux-firmware. I will not ack or
-> pickMTK-VCODEC/MDP3 patches until this issue has been resolved.
-> 
+Hi Mathieu,
 
-Nicolas et al linux-media maintainers:
+kernel test robot noticed the following build errors:
 
-https://lore.kernel.org/all/CA+5PVA6a+g1rZOM+ZRsNr-e4C9DPagQrffRO36yO3Bt3UXJNfQ@mail.gmail.com/
+[auto build test ERROR on a64dcfb451e254085a7daee5fe51bf22959d52d3]
 
-We ran tests on the firmware that was pushed, and sent the results in
-reply to the patch that adds the firmware:
+url:    https://github.com/intel-lab-lkp/linux/commits/Mathieu-Dubois-Briand/dt-bindings-mfd-gpio-Add-MAX7360/20250319-003750
+base:   a64dcfb451e254085a7daee5fe51bf22959d52d3
+patch link:    https://lore.kernel.org/r/20250318-mdb-max7360-support-v5-8-fb20baf97da0%40bootlin.com
+patch subject: [PATCH v5 08/11] gpio: max7360: Add MAX7360 gpio support
+config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20250319/202503192257.KfRkL589-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 8.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250319/202503192257.KfRkL589-lkp@intel.com/reproduce)
 
-https://lore.kernel.org/all/8049a2ec-b5fe-440d-9704-c3b0e2d610c7@notapiano
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503192257.KfRkL589-lkp@intel.com/
 
-The SCP firmware for VCODEC and MDP3 on the MT8188/MT8370/MT8390 SoCs has
-been merged in linux-firmware.
+All errors (new ones prefixed by >>):
 
-Can you please ack this patch now? :-)
-
-Cheers,
-Angelo
-
-> regards,
-> Nicolas
-> 
->>
->> This hardware is compatible with MT8195.
->>
->> Signed-off-by: AngeloGioacchino Del Regno
->> <angelogioacchino.delregno@collabora.com>
->> ---
->>   .../devicetree/bindings/media/mediatek,mdp3-fg.yaml       | 8
->> ++++++--
->>   .../devicetree/bindings/media/mediatek,mdp3-hdr.yaml      | 8
->> ++++++--
->>   .../devicetree/bindings/media/mediatek,mdp3-rsz.yaml      | 1 +
->>   .../devicetree/bindings/media/mediatek,mdp3-stitch.yaml   | 8
->> ++++++--
->>   .../devicetree/bindings/media/mediatek,mdp3-tcc.yaml      | 8
->> ++++++--
->>   .../devicetree/bindings/media/mediatek,mdp3-tdshp.yaml    | 8
->> ++++++--
->>   .../devicetree/bindings/media/mediatek,mdp3-wrot.yaml     | 1 +
->>   7 files changed, 32 insertions(+), 10 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-
->> fg.yaml b/Documentation/devicetree/bindings/media/mediatek,mdp3-
->> fg.yaml
->> index 03f31b009085..40fda59fa8a8 100644
->> --- a/Documentation/devicetree/bindings/media/mediatek,mdp3-fg.yaml
->> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-fg.yaml
->> @@ -16,8 +16,12 @@ description:
->>   
->>   properties:
->>     compatible:
->> -    enum:
->> -      - mediatek,mt8195-mdp3-fg
->> +    oneOf:
->> +      - enum:
->> +          - mediatek,mt8195-mdp3-fg
->> +      - items:
->> +          - const: mediatek,mt8188-mdp3-fg
->> +          - const: mediatek,mt8195-mdp3-fg
->>   
->>     reg:
->>       maxItems: 1
->> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-
->> hdr.yaml b/Documentation/devicetree/bindings/media/mediatek,mdp3-
->> hdr.yaml
->> index d4609bba6578..d9f926c20220 100644
->> --- a/Documentation/devicetree/bindings/media/mediatek,mdp3-hdr.yaml
->> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-hdr.yaml
->> @@ -16,8 +16,12 @@ description:
->>   
->>   properties:
->>     compatible:
->> -    enum:
->> -      - mediatek,mt8195-mdp3-hdr
->> +    oneOf:
->> +      - enum:
->> +          - mediatek,mt8195-mdp3-hdr
->> +      - items:
->> +          - const: mediatek,mt8188-mdp3-hdr
->> +          - const: mediatek,mt8195-mdp3-hdr
->>   
->>     reg:
->>       maxItems: 1
->> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-
->> rsz.yaml b/Documentation/devicetree/bindings/media/mediatek,mdp3-
->> rsz.yaml
->> index f5676bec4326..8124c39d73e9 100644
->> --- a/Documentation/devicetree/bindings/media/mediatek,mdp3-rsz.yaml
->> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-rsz.yaml
->> @@ -20,6 +20,7 @@ properties:
->>             - mediatek,mt8183-mdp3-rsz
->>         - items:
->>             - enum:
->> +              - mediatek,mt8188-mdp3-rsz
->>                 - mediatek,mt8195-mdp3-rsz
->>             - const: mediatek,mt8183-mdp3-rsz
->>   
->> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-
->> stitch.yaml b/Documentation/devicetree/bindings/media/mediatek,mdp3-
->> stitch.yaml
->> index d815bea29154..1d8e7e202c42 100644
->> --- a/Documentation/devicetree/bindings/media/mediatek,mdp3-
->> stitch.yaml
->> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-
->> stitch.yaml
->> @@ -16,8 +16,12 @@ description:
->>   
->>   properties:
->>     compatible:
->> -    enum:
->> -      - mediatek,mt8195-mdp3-stitch
->> +    oneOf:
->> +      - enum:
->> +          - mediatek,mt8195-mdp3-stitch
->> +      - items:
->> +          - const: mediatek,mt8188-mdp3-stitch
->> +          - const: mediatek,mt8195-mdp3-stitch
->>   
->>     reg:
->>       maxItems: 1
->> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-
->> tcc.yaml b/Documentation/devicetree/bindings/media/mediatek,mdp3-
->> tcc.yaml
->> index 14ea556d4f82..6cff7c073ce4 100644
->> --- a/Documentation/devicetree/bindings/media/mediatek,mdp3-tcc.yaml
->> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-tcc.yaml
->> @@ -17,8 +17,12 @@ description:
->>   
->>   properties:
->>     compatible:
->> -    enum:
->> -      - mediatek,mt8195-mdp3-tcc
->> +    oneOf:
->> +      - enum:
->> +          - mediatek,mt8195-mdp3-tcc
->> +      - items:
->> +          - const: mediatek,mt8188-mdp3-tcc
->> +          - const: mediatek,mt8195-mdp3-tcc
->>   
->>     reg:
->>       maxItems: 1
->> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-
->> tdshp.yaml b/Documentation/devicetree/bindings/media/mediatek,mdp3-
->> tdshp.yaml
->> index 8ab7f2d8e148..cdfa27324738 100644
->> --- a/Documentation/devicetree/bindings/media/mediatek,mdp3-
->> tdshp.yaml
->> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-
->> tdshp.yaml
->> @@ -16,8 +16,12 @@ description:
->>   
->>   properties:
->>     compatible:
->> -    enum:
->> -      - mediatek,mt8195-mdp3-tdshp
->> +    oneOf:
->> +      - enum:
->> +          - mediatek,mt8195-mdp3-tdshp
->> +      - items:
->> +          - const: mediatek,mt8188-mdp3-tdshp
->> +          - const: mediatek,mt8195-mdp3-tdshp
->>   
->>     reg:
->>       maxItems: 1
->> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-
->> wrot.yaml b/Documentation/devicetree/bindings/media/mediatek,mdp3-
->> wrot.yaml
->> index 53a679338402..b6269f4f9fd6 100644
->> --- a/Documentation/devicetree/bindings/media/mediatek,mdp3-wrot.yaml
->> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-wrot.yaml
->> @@ -20,6 +20,7 @@ properties:
->>             - mediatek,mt8183-mdp3-wrot
->>         - items:
->>             - enum:
->> +              - mediatek,mt8188-mdp3-wrot
->>                 - mediatek,mt8195-mdp3-wrot
->>             - const: mediatek,mt8183-mdp3-wrot
->>   
-> 
+   drivers/gpio/gpio-max7360.c: In function 'max7360_set_gpos_count':
+>> drivers/gpio/gpio-max7360.c:78:8: error: implicit declaration of function 'FIELD_PREP' [-Werror=implicit-function-declaration]
+     val = FIELD_PREP(MAX7360_PORTS, available_gpios);
+           ^~~~~~~~~~
+   cc1: some warnings being treated as errors
 
 
+vim +/FIELD_PREP +78 drivers/gpio/gpio-max7360.c
+
+    55	
+    56	static int max7360_set_gpos_count(struct device *dev, struct regmap *regmap)
+    57	{
+    58		/*
+    59		 * MAX7360 COL0 to COL7 pins can be used either as keypad columns,
+    60		 * general purpose output or a mix of both.
+    61		 * By default, all pins are used as keypad, here we update this
+    62		 * configuration to allow to use some of them as GPIOs.
+    63		 */
+    64		unsigned int available_gpios;
+    65		unsigned int val;
+    66		int ret;
+    67	
+    68		ret = max7360_get_available_gpos(dev, &available_gpios);
+    69		if (ret)
+    70			return ret;
+    71	
+    72		/*
+    73		 * Configure which GPIOs will be used for keypad.
+    74		 * MAX7360_REG_DEBOUNCE contains configuration both for keypad debounce
+    75		 * timings and gpos/keypad columns repartition. Only the later is
+    76		 * modified here.
+    77		 */
+  > 78		val = FIELD_PREP(MAX7360_PORTS, available_gpios);
+    79		ret = regmap_write_bits(regmap, MAX7360_REG_DEBOUNCE, MAX7360_PORTS, val);
+    80		if (ret) {
+    81			dev_err(dev, "Failed to write max7360 columns/gpos configuration");
+    82			return ret;
+    83		}
+    84	
+    85		return 0;
+    86	}
+    87	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
