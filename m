@@ -1,81 +1,116 @@
-Return-Path: <devicetree+bounces-159099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159101-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69EDCA69B28
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 22:46:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CF32A69B41
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 22:51:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BF4719C2A64
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 21:46:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0799046813A
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 21:51:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AF8121ABB7;
-	Wed, 19 Mar 2025 21:45:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60EF921A451;
+	Wed, 19 Mar 2025 21:51:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="M/e/7LyH"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="Q1wZ3J4T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+Received: from mail-ed1-f66.google.com (mail-ed1-f66.google.com [209.85.208.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A91671AAA1E
-	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 21:44:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24058215171
+	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 21:51:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742420700; cv=none; b=JD31OwI31GXXUxgZATrz/azOoxzZYf7ukWlQIeJbmlFS3Wlrh/hMHq4RJF2A2f4KNZTEnwW4BpDlHk6TWGaQu/p6i6YeiAQAG9z8l/zI/WuyRUoC3rc6b0sN31RGcLiwQZLeeUam7LFm5nbw98EKeWA6y8XDgLUYRkNBCChIe+8=
+	t=1742421090; cv=none; b=AiJKSLdnUE+HZZBtUnY8ob8zdSDoi/qg6qn+2EnXYAWlK4dwMQ0bvwn9Q9/vlPpBN01cBPK557UQBi6U3r1N6qRDJpBWE6/gVtDBepTmyolTm3KbKC+38+uWHstyFl25zelGF1xkwau7p2+ZPC9o0FH6Sw9B1FDGjC70iaR1unc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742420700; c=relaxed/simple;
-	bh=dN+pwhVdQxGnPZ4Ij+k3V0Q3kuFSFJryhHg84F0atnk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=C8Ve1HpviOKcZJmrU6GkJqJJPQu+tYCkcF8upjk1TvfP9c/LfOs3gsPpEOW2vC2ns3J6EsVr1QcK96Yrv6w+ZRr967MJt03bbiRLRa3D8YDDXBAFsDHOBVk5UsstTuaVLdOtNebn8VlyawpjoZtkMyAU/ujq3LB0FjrKALrPcSI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=M/e/7LyH; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
- Message-ID: Date: Subject: Cc: To: From; q=dns/txt; s=fe-e1b5cab7be;
- t=1742420698; bh=L6J1WZQlQ4jkkHrsEJmiDwnkEgm0ftZ58Eh+fnNyjbU=;
- b=M/e/7LyH+VqNgn9NtYvcciIu9mCbsZeWBoreXeoyPElYmCXOYpzl+z2ZB7agD/nCi5vwtAsCt
- kBUiUlzK3v4HXITZ31l0hWw181zaw+7EPUWWQtCNcz1xME3zgD9DGXs4Kx9uD+U7CKuolnbBntI
- 19sg2YkREPiC+3KX1wQ5+qh6Xfo5uSIShN9DfAdZDtVLT6ygOHO6bjWSQgFmIu7VlWlYztqwxS8
- Oxc9Aj7FMTMgcAaII7vgjDDgTrH3Kot83k+yG49SdkhBN76nibTHkzKHEu3Cbm0NTRzAQFYCLt7
- 9VyoR8MWWkdoTgQYGsjw3YMhah/x9KKwnoQNey1sCpSg==
-X-Forward-Email-ID: 67db3acecf4d592372b99442
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 0.4.40
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-From: Jonas Karlman <jonas@kwiboo.se>
-To: Heiko Stuebner <heiko@sntech.de>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1742421090; c=relaxed/simple;
+	bh=yydZ/tpS7Qcb3qVPnLRmqCanuEwEDrJdaqOs1o5cZBU=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=LxJ3UKEkr/Wj5vpVfEO6Z2hE31ltY9HNLsBVcUeisnMJPMMrBwCzJXkHU1XbKq02RHZ0OGYPB4W30E7cgfEGbGGBrOb57lGFlYmz9nDEOT88iRI7716A7z6R9oVUwTyXLjVT6knWwH6oO2E+aUeX6CV0/8sL2i3VofnyMJPye04=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=Q1wZ3J4T; arc=none smtp.client-ip=209.85.208.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ed1-f66.google.com with SMTP id 4fb4d7f45d1cf-5e61da95244so236218a12.2
+        for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 14:51:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1742421084; x=1743025884; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=iMJ02+UsxLp070EimN7oIllTlV+i2h1UPF3pGfX/mQ0=;
+        b=Q1wZ3J4Tw6LR+4Zle8UH7uYFU4rGqm/arDzy8GEoA2vgXCE08R728azjX9KwF30MWQ
+         QCAkh16YzK/2Du19tHdMcAWC3okcKEXxmHC3qC3wxq2ovKWsX9Y3S9myT6R0JDU6dOpN
+         s4BiQc7e88TvlW73gRR3eVHxAR9hhp7dpKHOnhgYfSsb/4jbb6rMaukov6gRMdtD/vkR
+         758aM6u2/azP3qt3Iec8ZiGg7OvQyMIPwLv4nI4fiRhi1+WkSj88n1cwlO00Wirv8Ffi
+         okm4FGynZ9WRSkMXA/fYPiBBsG/rnSd3cMqDLhBZJwo//adYPRLccff4LxjLyE5rSSEh
+         Pd7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742421084; x=1743025884;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iMJ02+UsxLp070EimN7oIllTlV+i2h1UPF3pGfX/mQ0=;
+        b=qLXNVUbhJVkkIZV6NNUqyEPc6GiQcqxmWjNtwmj/BNbDscRx4KBgvG4CUQFPy1gk4q
+         Hsd6OvozjCh2nUbH+VrrY9ZP+wxxpqVEEavYjDuJccoTf4siEbp69MZVnXMaXshGs+bA
+         h6TP5nVd4CMLa5ggoNpQgQK0K+KJOvrHKMEA8iXlUA7CPq+hU4itQBM5FNXNm5xn51C/
+         5Rvx8q7NTNV66puGd9bRKxwJq+6iBsNbJqZyuOZzGSlSvLT3m15G98fbybNuQYSrL1Xk
+         xNdX1kia3f2radz0SG/LbQA7IlWnCr7E1v3f17sfBOmY//xvUR0yGQZ1k2mFtNotur4X
+         Masw==
+X-Forwarded-Encrypted: i=1; AJvYcCVYentL5GYji8SWu8LzITDL94zKYC4sK4wrwmOZ2WTcb2r1Vnds6RTyKpSwBkpD9WmlsSLmeW4aDcNW@vger.kernel.org
+X-Gm-Message-State: AOJu0YwpN34AuXB30xZAKyCH8tjyDp5YicPIjOtOdOYSa3i0PhHuyje6
+	Fjq3KmHY8aqnk/XeOWZjiCl+gzpfF29nUUPsvXXd4Ckr6tb+HNTw+Dan6GopNZM=
+X-Gm-Gg: ASbGncus2XJtZsZMNif6Osu//4wsl41lfUrHr4Z4rvB2nEBIFFb9l7syAPpSgdd8VOu
+	qvpJZwmGcPt0tJ3pKuEhcLYLxI53nQzdXHFMNfesuwtjDSugA1Xlzzs0REjL+RMOnc4JsOzIOuk
+	1hSUcAN1pan+acEwoCyF3CKv5EQ4HE4lRGk/96BwpkrqmakqY/VmCbwrdAtEpB//CnaBUITlDZ+
+	f0DI1hSw0eiwGF0wKR2LVz1ijREK37TeT9dZ2doqUe6kFf1BWMOMR9S6yBRpFOFsuZECVaYRYzj
+	i5O8DxqWqeczlw9PZB4gGT5eMnOXMiHd0jlDRedALQw/twg3RlrwxQ8k2UmKP2pHAarG5ZDFl5i
+	Qmd522nc3qA==
+X-Google-Smtp-Source: AGHT+IELQwTG7pKyuHeRhxG7pGOXWY26uVy/osvBSjthNH9mar6V6kDx43rUj4jn8vxdiITXO1EMeg==
+X-Received: by 2002:a05:6402:5114:b0:5e0:9390:f0d2 with SMTP id 4fb4d7f45d1cf-5eb80fa5e14mr3965022a12.20.1742421084089;
+        Wed, 19 Mar 2025 14:51:24 -0700 (PDT)
+Received: from localhost (host-87-4-238-14.retail.telecomitalia.it. [87.4.238.14])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e81692e670sm9498000a12.14.2025.03.19.14.51.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Mar 2025 14:51:23 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+To: Andrea della Porta <andrea.porta@suse.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	David Wu <david.wu@rock-chips.com>,
-	Yao Zi <ziyao@disroot.org>,
-	netdev@vger.kernel.org,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof Wilczynski <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Saravana Kannan <saravanak@google.com>,
+	linux-clk@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	Jonas Karlman <jonas@kwiboo.se>,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH net-next v3 5/5] net: stmmac: dwmac-rk: Add initial support for RK3528 integrated PHY
-Date: Wed, 19 Mar 2025 21:44:09 +0000
-Message-ID: <20250319214415.3086027-6-jonas@kwiboo.se>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250319214415.3086027-1-jonas@kwiboo.se>
-References: <20250319214415.3086027-1-jonas@kwiboo.se>
+	linux-pci@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Phil Elwell <phil@raspberrypi.com>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	kernel-list@raspberrypi.com
+Subject: [PATCH v8 00/13] Add support for RaspberryPi RP1 PCI device using a DT overlay
+Date: Wed, 19 Mar 2025 22:52:21 +0100
+Message-ID: <cover.1742418429.git.andrea.porta@suse.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,94 +119,240 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Rockchip RK3528 (and RV1106) has a different integrated PHY compared to
-the integrated PHY on RK3228/RK3328. Current powerup/down operation is
-not compatible with the integrated PHY found in these newer SoCs.
+RP1 is an MFD chipset that acts as a south-bridge PCIe endpoint sporting
+a pletora of subdevices (i.e.  Ethernet, USB host controller, I2C, PWM,
+etc.) whose registers are all reachable starting from an offset from the
+BAR address.  The main point here is that while the RP1 as an endpoint
+itself is discoverable via usual PCI enumeraiton, the devices it contains
+are not discoverable and must be declared e.g. via the devicetree.
 
-Add operations to powerup/down the integrated PHY found in RK3528.
-Use helpers that can be used by other GMAC variants in the future.
-
-Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
----
-Changes in v3:
-- No change
-Changes in v2:
-- New patch
-
-This is enough to power up the integrated PHY on RK3528 for MDIO/MII.
-However, a PHY driver is still missing and I do not have any RK3528
-board that make use of this MAC and PHY, so something that can be
-improved upon in the future.
----
- .../net/ethernet/stmicro/stmmac/dwmac-rk.c    | 41 +++++++++++++++++++
- 1 file changed, 41 insertions(+)
-
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
-index 3673abd65302..700858ff6f7c 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
-@@ -134,6 +134,35 @@ static void rk_gmac_integrated_ephy_powerdown(struct rk_priv_data *priv)
- 		reset_control_assert(priv->phy_reset);
- }
+This patchset is an attempt to provide a minimum infrastructure to allow
+the RP1 chipset to be discovered and perpherals it contains to be added
+from a devictree overlay loaded during RP1 PCI endpoint enumeration. To
+ensure compatibility with downstream, a devicetree already comprising the
+RP1 node is also provided, so it's not strictly necessary to use the
+dynamically loaded overlay if the devicetree is already fully defined at
+the origin.
+To achieve this modularity, the RP1 node DT definitions are arranged by
+file inclusion as per following schema (the arrow points to the includer,
+see also [9]):
  
-+#define RK_FEPHY_SHUTDOWN		GRF_BIT(1)
-+#define RK_FEPHY_POWERUP		GRF_CLR_BIT(1)
-+#define RK_FEPHY_INTERNAL_RMII_SEL	GRF_BIT(6)
-+#define RK_FEPHY_24M_CLK_SEL		(GRF_BIT(8) | GRF_BIT(9))
-+#define RK_FEPHY_PHY_ID			GRF_BIT(11)
-+
-+static void rk_gmac_integrated_fephy_powerup(struct rk_priv_data *priv,
-+					     unsigned int reg)
-+{
-+	reset_control_assert(priv->phy_reset);
-+	usleep_range(20, 30);
-+
-+	regmap_write(priv->grf, reg,
-+		     RK_FEPHY_POWERUP |
-+		     RK_FEPHY_INTERNAL_RMII_SEL |
-+		     RK_FEPHY_24M_CLK_SEL |
-+		     RK_FEPHY_PHY_ID);
-+	usleep_range(10000, 12000);
-+
-+	reset_control_deassert(priv->phy_reset);
-+	usleep_range(50000, 60000);
-+}
-+
-+static void rk_gmac_integrated_fephy_powerdown(struct rk_priv_data *priv,
-+					       unsigned int reg)
-+{
-+	regmap_write(priv->grf, reg, RK_FEPHY_SHUTDOWN);
-+}
-+
- #define PX30_GRF_GMAC_CON1		0x0904
+ rp1-pci.dtso         rp1.dtso
+     ^                    ^
+     |                    |
+rp1-common.dtsi ----> rp1-nexus.dtsi ----> bcm2712-rpi-5-b-monolithic.dts
+                                               ^
+                                               |
+                                           bcm2712-rpi-5-b.dts
+
+Followup patches should add support for the several peripherals contained
+in RP1.
+
+This work is based upon dowstream drivers code and the proposal from RH
+et al. (see [1] and [2]). A similar approach is also pursued in [3].
+
+The patches are ordered as follows:
+
+-PATCHES 1 to 4: add binding schemas for clock, gpio and RP1 peripherals.
+ They are needed to support the other peripherals, e.g. the ethernet mac
+ depends on a clock generated by RP1 and the phy is reset through the
+ on-board gpio controller.
+
+-PATCH 5 and 6: add clock and gpio device drivers.
+
+-PATCH 7: the devicetree node describing the RP1 chipset. Please
+ note that this patch should be taken by the same maintainer that will
+ also take patch 8, since the definition it contains is possibly used
+ by the dtso compiled in as binary blob and is closely coupled to the
+ driver.
+
+-PATCH 8: this is the main patch to support RP1 chipset. It can work
+ either with a fully defined devicetree (i.e. one that already included
+ the rp1 node since boot time) or with a runtime loaded dtb overlay
+ which is linked as binary blob in the driver obj. This duality is
+ useful to comply with both downstream and upstream needs (see [9]).
+ The real dtso is in devicetree folder while the dtso in driver folder is
+ just a placeholder to include the real dtso.
+ In this way it is possible to check the dtso against dt-bindings.
+ The reason why drivers/misc has been selected as containing folder
+ for this driver can be seen in [6], [7] and [8].
+
+-PATCH 9: the fully fledged devictree containing also the rp1 node.
+ This devicetree is similar to the one downstream is using.
+
+-PATCH 10 (OPTIONAL): this patch introduces a new scenario about how
+ the rp1 node is specified and loaded in DT. On top of the base DT
+ (without rp1 node), the fw loads this overlay and the end result is
+ the same devicetree as in patch 9, which is then passed to the next
+ stage (either the kernel or u-boot/bootloader).
+ While this patch is not strictly necessary and can therefore be dropped
+ (see [10]), it's not introducing much extra work and maybe can come
+ in handy while debugging.
  
- /* PX30_GRF_GMAC_CON1 */
-@@ -993,12 +1022,24 @@ static void rk3528_set_clock_selection(struct rk_priv_data *bsp_priv,
- 	}
- }
- 
-+static void rk3528_integrated_phy_powerup(struct rk_priv_data *bsp_priv)
-+{
-+	rk_gmac_integrated_fephy_powerup(bsp_priv, RK3528_VO_GRF_MACPHY_CON0);
-+}
-+
-+static void rk3528_integrated_phy_powerdown(struct rk_priv_data *bsp_priv)
-+{
-+	rk_gmac_integrated_fephy_powerdown(bsp_priv, RK3528_VO_GRF_MACPHY_CON0);
-+}
-+
- static const struct rk_gmac_ops rk3528_ops = {
- 	.set_to_rgmii = rk3528_set_to_rgmii,
- 	.set_to_rmii = rk3528_set_to_rmii,
- 	.set_rgmii_speed = rk3528_set_rgmii_speed,
- 	.set_rmii_speed = rk3528_set_rmii_speed,
- 	.set_clock_selection = rk3528_set_clock_selection,
-+	.integrated_phy_powerup = rk3528_integrated_phy_powerup,
-+	.integrated_phy_powerdown = rk3528_integrated_phy_powerdown,
- 	.regs_valid = true,
- 	.regs = {
- 		0xffbd0000, /* gmac0 */
+-PATCH 11: add the external clock node (used by RP1) to the main dts.
+
+-PATCH 12: add the relevant kernel CONFIG_ options to defconfig.
+
+-PATCH 13: enable CONFIG_OF_OVERLAY in order for 'make defconfig'
+ to produce a configuration valid for the RP1 driver. Without this
+ patch, the user has to explicitly enable it since the misc driver
+ depends on OF_OVERLAY.
+
+This patchset is also a first attempt to be more agnostic wrt hardware
+description standards such as OF devicetree and ACPI, where 'agnostic'
+means "using DT in coexistence with ACPI", as been already promoted
+by e.g. AL (see [4]). Although there's currently no evidence it will also
+run out of the box on purely ACPI system, it is a first step towards
+that direction.
+
+Many thanks,
+Andrea della Porta
+
+Links:
+- [1]: https://lpc.events/event/17/contributions/1421/attachments/1337/2680/LPC2023%20Non-discoverable%20devices%20in%20PCI.pdf
+- [2]: https://lore.kernel.org/lkml/20230419231155.GA899497-robh@kernel.org/t/
+- [3]: https://lore.kernel.org/all/20240808154658.247873-1-herve.codina@bootlin.com/#t
+- [4]: https://lore.kernel.org/all/73e05c77-6d53-4aae-95ac-415456ff0ae4@lunn.ch/
+- [5]: https://lore.kernel.org/all/20240626104544.14233-1-svarbanov@suse.de/
+- [6]: https://lore.kernel.org/all/20240612140208.GC1504919@google.com/
+- [7]: https://lore.kernel.org/all/83f7fa09-d0e6-4f36-a27d-cee08979be2a@app.fastmail.com/
+- [8]: https://lore.kernel.org/all/2024081356-mutable-everyday-6f9d@gregkh/
+- [9]: https://lore.kernel.org/all/Z87wTfChRC5Ruwc0@apocalypse/
+- [10]: https://lore.kernel.org/all/CAMEGJJ0f4YUgdWBhxvQ_dquZHztve9KO7pvQjoDWJ3=zd3cgcg@mail.gmail.com/#t
+
+CHANGES IN V8
+
+
+PATCH RELATED -------------------------------------------------
+
+- This cover letter and patch 8 commit messages now have
+  more details explaining the new DT include files organization.
+
+- Added two new patches numbered 9 and 10 respectively dealing
+  with the new DT inclusion schema.
+
+
+BINDINGS ------------------------------------------------------
+
+- Modified maintainer first name for get_maintainer.pl to be able
+  to retrieve the entire name correctly from the .yaml files. As
+  a consequence, MAINTAINERS file does not need an entry for
+  schemas anymore.
+
+- pci1de4,1.yaml: Added a statement about the ints activation
+  type for rp1 peripherals: only level high or rising edge
+  are supported since they all are active high only.
+
+RP1 PINCTRL DRIVER ---------------------------------
+
+- Added GPIOCHIP_IRQ_RESOURCE_HELPERS.
+
+
+RP1 CLOCK DRIVER ------------------------------------
+
+- Added PLL_DIV_INVALID to denote invalid values in pll_sec_div_table[].
+
+- Dropped some empty lines.
+
+- Changed TODO comment to better reflect the intent
+
+- Changed a WARN() into WARN_ONCE() to prevent flooding
+
+- Fixed the hard limit condition "rate > 4000000000ll" in
+  rp1_clock_set_rate_and_parent() to "rate > data->max_freq", in order
+  to check against the limit specific for that clock.
+
+- Style change: dropped an empty line
+
+
+RP1 MISC DRIVER -----------------------------------
+
+- rp1_pci.c: Added a suitable dev_err() warning in case
+  of_platform_default_populate() fails.
+
+- rp1_pci.c: Fixed the mismatching %d vs %u in dev_dbg().
+
+- rp1_pci.c: Changed the error string printed on pci_alloc_irq_vectors()
+  failure, plus minor cosmetic changes such as capitalization of error
+  strings. 
+
+- rp1_pci.c: Changed dev_err() to dev_err_probe() where appropriate.
+
+- rp1_pci.c: Updated the year in the top header copyright notice,
+  also added a newline between lines. Also, changed the error string
+  'Not initialised' to 'Not initialized'.
+
+- rp1_pci.c: Changed MODULE_DESCRIPTION() string to match the one
+  in Kconfig.
+
+- rp1-pci.dtso: Minor change to the top header comment to unify
+  the multi-line comment style.
+
+- Kconfig: Changed description in the header comment to match the
+  description in the tristate option.
+
+
+Andrea della Porta (13):
+  dt-bindings: clock: Add RaspberryPi RP1 clock bindings
+  dt-bindings: pinctrl: Add RaspberryPi RP1 gpio/pinctrl/pinmux bindings
+  dt-bindings: pci: Add common schema for devices accessible through PCI
+    BARs
+  dt-bindings: misc: Add device specific bindings for RaspberryPi RP1
+  clk: rp1: Add support for clocks provided by RP1
+  pinctrl: rp1: Implement RaspberryPi RP1 gpio support
+  arm64: dts: rp1: Add support for RaspberryPi's RP1 device
+  misc: rp1: RaspberryPi RP1 misc driver
+  arm64: dts: Add board DTS for Rpi5 which includes RP1 node
+  arm64: dts: Add overlay for RP1 device
+  arm64: dts: bcm2712: Add external clock for RP1 chipset on Rpi5
+  arm64: defconfig: Enable RP1 misc/clock/gpio drivers
+  arm64: defconfig: Enable OF_OVERLAY option
+
+ .../clock/raspberrypi,rp1-clocks.yaml         |   58 +
+ .../devicetree/bindings/misc/pci1de4,1.yaml   |  137 ++
+ .../devicetree/bindings/pci/pci-ep-bus.yaml   |   58 +
+ .../pinctrl/raspberrypi,rp1-gpio.yaml         |  198 +++
+ MAINTAINERS                                   |    8 +
+ arch/arm64/boot/dts/broadcom/Makefile         |    4 +-
+ .../broadcom/bcm2712-rpi-5-b-monolithic.dts   |    8 +
+ .../boot/dts/broadcom/bcm2712-rpi-5-b.dts     |    7 +
+ arch/arm64/boot/dts/broadcom/rp1-common.dtsi  |   42 +
+ arch/arm64/boot/dts/broadcom/rp1-nexus.dtsi   |   14 +
+ arch/arm64/boot/dts/broadcom/rp1.dtso         |   11 +
+ arch/arm64/configs/defconfig                  |    4 +
+ drivers/clk/Kconfig                           |    9 +
+ drivers/clk/Makefile                          |    1 +
+ drivers/clk/clk-rp1.c                         | 1512 +++++++++++++++++
+ drivers/misc/Kconfig                          |    1 +
+ drivers/misc/Makefile                         |    1 +
+ drivers/misc/rp1/Kconfig                      |   20 +
+ drivers/misc/rp1/Makefile                     |    3 +
+ drivers/misc/rp1/rp1-pci.dtso                 |   25 +
+ drivers/misc/rp1/rp1_pci.c                    |  333 ++++
+ drivers/pci/quirks.c                          |    1 +
+ drivers/pinctrl/Kconfig                       |   11 +
+ drivers/pinctrl/Makefile                      |    1 +
+ drivers/pinctrl/pinctrl-rp1.c                 |  790 +++++++++
+ .../clock/raspberrypi,rp1-clocks.h            |   61 +
+ include/linux/pci_ids.h                       |    3 +
+ 27 files changed, 3320 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/raspberrypi,rp1-clocks.yaml
+ create mode 100644 Documentation/devicetree/bindings/misc/pci1de4,1.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/pci-ep-bus.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/raspberrypi,rp1-gpio.yaml
+ create mode 100644 arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-monolithic.dts
+ create mode 100644 arch/arm64/boot/dts/broadcom/rp1-common.dtsi
+ create mode 100644 arch/arm64/boot/dts/broadcom/rp1-nexus.dtsi
+ create mode 100644 arch/arm64/boot/dts/broadcom/rp1.dtso
+ create mode 100644 drivers/clk/clk-rp1.c
+ create mode 100644 drivers/misc/rp1/Kconfig
+ create mode 100644 drivers/misc/rp1/Makefile
+ create mode 100644 drivers/misc/rp1/rp1-pci.dtso
+ create mode 100644 drivers/misc/rp1/rp1_pci.c
+ create mode 100644 drivers/pinctrl/pinctrl-rp1.c
+ create mode 100644 include/dt-bindings/clock/raspberrypi,rp1-clocks.h
+
 -- 
-2.49.0
+2.35.3
 
 
