@@ -1,272 +1,144 @@
-Return-Path: <devicetree+bounces-158952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0B65A68BDA
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 12:38:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27944A68BE3
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 12:39:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9851418846D7
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 11:35:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0F9157A4724
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 11:38:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0A4825486F;
-	Wed, 19 Mar 2025 11:35:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F03BC255238;
+	Wed, 19 Mar 2025 11:39:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UJ48NFhf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lkm8xoUT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8B0D17A311;
-	Wed, 19 Mar 2025 11:35:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 330B4253F21;
+	Wed, 19 Mar 2025 11:39:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742384137; cv=none; b=t7zePYAybvDZ9J3qIIzQKSmaVK7m6PVk6KQstajZXk4Ix/WfBqTYjQE5av4hjY8tTHHytoqSM5hCCo8Z9Dlli7zLjw3z+cuvaZ7nSxyC4Hust2iV4FdkzZXPpDCttMxaPBGRSqO9HcjmHG0etn1Z0Ayt3PgN+HFJbq8nAT4L774=
+	t=1742384347; cv=none; b=OsTafWZoRnZjVDoI955dJQ5SH2Uvy8PXPgocK1Sn12JeGdQuaWNc52K6zagCas6tKBCLQrPUOtXhGAKppmGzJGDYWqArBE8HsiiLv3Jtl3+loOEE9m09hB8fpaPfwKw+csbCnYm7ysAwhbA8X4lFa5YH9EIgURkH4wF/SzavNTg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742384137; c=relaxed/simple;
-	bh=t9WbloeqpX2M7p+2+znpSFKG3d7NaMQ0lIBQX4TJ7WQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fp7hCtry3d9W3o9+PkS/3u4WNsB1Gq8S505bwVePq6u5o5jm9bfuivqOfmK2bELazCUTGL0jWPGy/cR8B1cxjHb0qjfc3EEe8iR0EnTWUoHgDmaX2Od+XhuLgomITaMg5UdQDbfjFcJRS9QqNy+FSZAKtpbPngtMjxAKbB1RyZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UJ48NFhf; arc=none smtp.client-ip=198.175.65.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1742384136; x=1773920136;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=t9WbloeqpX2M7p+2+znpSFKG3d7NaMQ0lIBQX4TJ7WQ=;
-  b=UJ48NFhfl7kMAQrlVh7rmOP3J1+3XcP6BnjtmQ1yTUAPjj8yZiy/XkvK
-   q7NsWZUN5YWH4RrVrB/4bR7GOJsQPxGCOiNmInjV8VwmgT2V9fasINEZd
-   kyV23Fvc8qqZA0J0bXvgkeAqty7gTHcYBJbpJLexkvD4pqSXm4cEH+DZg
-   aYSiIOzq5CjLllwCw0n9SM5bpPgU55a3Pp8BENEAe7oS2XarMygiNjUB6
-   OfNEjYpQq25lbTJVgmNDo8EMbhpR/0lXAr1cNUkOeA3s42OcuQrJNZ8G3
-   bGMuiNWspH4YdYCE29dN5RnoOvq+9xRESRDAJbuB+CdihdANZ6HRtSXk2
-   Q==;
-X-CSE-ConnectionGUID: vG42kR4QT/KL0CSNLFC+4w==
-X-CSE-MsgGUID: t0sGjSY8Tketn53oD3YG8A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11377"; a="53782909"
-X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; 
-   d="scan'208";a="53782909"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2025 04:35:28 -0700
-X-CSE-ConnectionGUID: 4hM+CznuQbWgLF+sorQSZA==
-X-CSE-MsgGUID: ezVEggxZQRqc4onjQbUEgA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; 
-   d="scan'208";a="127656585"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2025 04:35:22 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1turhf-00000003u7j-2ByO;
-	Wed, 19 Mar 2025 13:35:19 +0200
-Date: Wed, 19 Mar 2025 13:35:19 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v5 03/11] pinctrl: Add MAX7360 pinctrl driver
-Message-ID: <Z9qr92KyjFyYwMq5@smile.fi.intel.com>
-References: <20250318-mdb-max7360-support-v5-0-fb20baf97da0@bootlin.com>
- <20250318-mdb-max7360-support-v5-3-fb20baf97da0@bootlin.com>
+	s=arc-20240116; t=1742384347; c=relaxed/simple;
+	bh=YgB8hf2iolWIUfIlPZLhZxKEx2ip6jdR/HD25QOJOYw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Q1if+N5452vIC1l4xzFKzQJtuxigi+9RIDXtEFoh6qygSqq2/kaelHAhhBGKlv6YbLAn+aU1L679+uPqc87caNfpi5UfaZ6b7FnPQQUqu+Nh/gIr+qW4rlgxV2+JL03md7AIJs5omAgCVDPqwawD4JO5V5pYd4/NHdrAoh+V4SM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lkm8xoUT; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-43cf0d787eeso45738045e9.3;
+        Wed, 19 Mar 2025 04:39:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742384343; x=1742989143; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=23Zzwx8dQ7ApD2OL+JFkf/rOuLI+b6JbK1FtVimJKeY=;
+        b=lkm8xoUTCbcBk9YdbWCMNsRFqAsfAisBUhAjleFTET+HsXkqPopCDUzeQYi7Jfnosp
+         VcxoWLGW5rljsYceH7DNaWpfh/QVl8MIEAy+08B1RIIUBGHe5gQmXbp8s6itW29cTyjA
+         fa9b5B219HWvdH1chNkDlCpw41pySYOMpnJlY/ypcrcDyD7Wvw3zeEe/+1JtdVUW6kV3
+         N7W1z0loHvlIT/irC3wmHVsHvmBZhVKAcOQgoZFNpbyfBMbNMf1zHl0VY8uUscDgoA9N
+         te+0ZOdbgceI7X0kXig6yEf53Oa4dBVlWL7dsGXmifkb6bjU+U6cqIbPj5CIQdnefZh6
+         e8Mw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742384343; x=1742989143;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=23Zzwx8dQ7ApD2OL+JFkf/rOuLI+b6JbK1FtVimJKeY=;
+        b=kC/cCrgNycHKLby4Mh0poorVTLPVeD74lKy8ULvIn84vTEgzY7QV1xIXIf/fhlthLI
+         GzG6kB4fLKnEzyvg7cTIDZ1TshMVUhB72T5ik2f/Nf+WEdKw8VpPIjDuqjK4mPULqdLY
+         n2K5/gAwAWr8ZoYOBv2D42HejKyQhhbZlSMUUuuLL+79iCIavauszFSfIafEbu8H28eZ
+         zBEtWv8xR201RKO1YipLR1hOF2pqW+5tyx11CeqlmOXO4Vu1wkT7Y+Jr1GXH/hWwWsVw
+         rMu+UPWaXuPYACIubZBA6SaNLgYMrPfk+qEH+lr5QYbTU+f7i7aMoujVc5Zn90sTffRI
+         kZrg==
+X-Forwarded-Encrypted: i=1; AJvYcCUlf7Nn5wSQD7H4FbT4rpy0V0mQt+AInSn3Qh+9D/sCJHgbjXxh9D4flSSkRas1wNx9POyx50hESECwFE7THw==@vger.kernel.org, AJvYcCUrLXleo00692tSmNfFL6w5TI2hA+9ptF2Z67O+gWPkFQGxcaSEYQe1YEbazIRBWi59UOR5wPc/OFccF524@vger.kernel.org, AJvYcCX5y/6BBaNuKg2+l+ywcHkQkYEU1J9DA/bppo/oxpkM0u03J9tL1RXSQeUquIdxJZ7U/s0LYjJfSoiE@vger.kernel.org, AJvYcCXUDCD0jqoEkyQxUJhOKMV/tZHS1WSOp7KqChoBRPviVP0fnxMi+GuzWHGitk4NrWK6/A7wB5TN/A4e4v27UuTxdQk=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4LIEWH8OWLT2bkSnDWgZhYpWmmkjtdKZH5AYfqJLJMrCXlEZv
+	cbIK5Jpt3OQEqfWc04xH56Zv/WVXXcXSzly1p14trwwUgIXj/vvy
+X-Gm-Gg: ASbGncumDz8norpbGubEBBJa57/SpXRnGv8ELFoIWAjVm5IEb/eTZyc1tFwj0SmbAXy
+	xiZtV7GHBz2G8/hqefy//AMKkQH1tQBKOour4I3a9dUu5T/mSaND+3BEf7+mNyNjwElbRtdpVFA
+	/Cg+WcrfRpj9PjCfob8OYA7vymd6Stcu6dOJlko/AIGRO4b+ePM5MyAQxiWtmAv6Q9kZLXiWB3o
+	ggCDaZJ/eXwU3YpMEeaZ0TQXKAgUDOy6jWeJpMXRYmjCSfzGkuGQLjyewrdwYLa1MPuv7ZWubVZ
+	FtYvNSQeOxreyRpaUFf8Q+rMzVHZPfG4CZBZUUcRgGQhzU4w4sQTPLnxHOj/S/5lVwt8XW/hBeL
+	70Jr++qS2fQovCoexIsnLW/w=
+X-Google-Smtp-Source: AGHT+IG/uReUa1PFDrYRs3h2HIwVSGTu7IcnjWIZm5iEXhoFmvhyCo2Cbk7y/wuCyXozf5+5PQwOzQ==
+X-Received: by 2002:a05:600c:a4c:b0:43c:f63c:babb with SMTP id 5b1f17b1804b1-43d4378163cmr13761135e9.1.1742384343101;
+        Wed, 19 Mar 2025 04:39:03 -0700 (PDT)
+Received: from [192.168.1.105] (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d3ae04a94sm23904475e9.0.2025.03.19.04.39.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Mar 2025 04:39:02 -0700 (PDT)
+Message-ID: <8e8bbcde-8ed4-4239-ad96-6cffd8b9d65c@gmail.com>
+Date: Wed, 19 Mar 2025 13:39:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250318-mdb-max7360-support-v5-3-fb20baf97da0@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/8] phy: phy-snps-eusb2: make repeater optional
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Abel Vesa <abel.vesa@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250223122227.725233-1-ivo.ivanov.ivanov1@gmail.com>
+ <20250223122227.725233-6-ivo.ivanov.ivanov1@gmail.com>
+ <sxrae5pmykx6ul2y7uc24fss2kdeezkkom7ev7mavt3fbc6ckv@tghyp3whuxnu>
+Content-Language: en-US
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+In-Reply-To: <sxrae5pmykx6ul2y7uc24fss2kdeezkkom7ev7mavt3fbc6ckv@tghyp3whuxnu>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Mar 18, 2025 at 05:26:19PM +0100, Mathieu Dubois-Briand wrote:
-> Add driver for Maxim Integrated MAX7360 pinctrl on the PORT pins. Pins
-> can be used either for GPIO, PWM or rotary encoder functionalities.
+On 3/19/25 13:08, Dmitry Baryshkov wrote:
+> On Sun, Feb 23, 2025 at 02:22:24PM +0200, Ivaylo Ivanov wrote:
+>> Some platforms initialize their eUSB2 to USB repeater in the previous
+>> stage bootloader and leave it in a working state for linux. Make the
+>> repeater optional in order to allow for reusing that state until
+>> proper repeater drivers are introduced.
+> Generally "works as it is setup by the bootloader" is a very invalid
+> justification. Please don't do that. We should not be depending on the
+> way the bootlader sets up the devices, unless that _really_ makes sense.
 
-...
+It does, doesn't it? We still don't even have i2c up on Exynos2200, so bringing up
+the repeater before this patchset gets merged is a no-go. Either way, we should
+follow what bindings say. I will change the commit description a bit.
 
-> +	help
-> +	  Say Y here to enable Pin control support for Maxim MAX7360 keypad
+Best regards,
+Ivaylo
 
-s/Pin/pin/
-
-> +	  controller.
-> +	  This keypad controller has 8 GPIO pins that work as GPIO as well as
-
-"...that may work as GPIO, or PWM, or..."
-
-> +	  PWM or rotary encoder alternate modes.
-
-...
-
-+ array_size.h
-+ dev_printk.h
-+ device/devres.h // currently only in Linux Next
-+ err.h
-
-> +#include <linux/init.h>
-> +#include <linux/mfd/max7360.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-
-> +#include <linux/pinctrl/pinctrl.h>
-> +#include <linux/pinctrl/pinconf-generic.h>
-> +#include <linux/pinctrl/pinmux.h>
-
-We usually move this group of inclusions...
-
-> +#include <linux/regmap.h>
-> +#include <linux/slab.h>
-
-...to somewhere here.
-
-> +#include "core.h"
-> +#include "pinmux.h"
-
-...
-
-> +static const struct pingroup max7360_groups[] = {
-> +	PINCTRL_PINGROUP("PORT0", port0_pins, ARRAY_SIZE(port0_pins)),
-> +	PINCTRL_PINGROUP("PORT1", port1_pins, ARRAY_SIZE(port1_pins)),
-> +	PINCTRL_PINGROUP("PORT2", port2_pins, ARRAY_SIZE(port2_pins)),
-> +	PINCTRL_PINGROUP("PORT3", port3_pins, ARRAY_SIZE(port3_pins)),
-> +	PINCTRL_PINGROUP("PORT4", port4_pins, ARRAY_SIZE(port4_pins)),
-> +	PINCTRL_PINGROUP("PORT5", port5_pins, ARRAY_SIZE(port5_pins)),
-> +	PINCTRL_PINGROUP("PORT6", port6_pins, ARRAY_SIZE(port6_pins)),
-> +	PINCTRL_PINGROUP("PORT7", port7_pins, ARRAY_SIZE(port7_pins)),
-> +	PINCTRL_PINGROUP("ROTARY", rotary_pins, ARRAY_SIZE(rotary_pins))
-
-Leave trailing comma. Helps in the future in case of expansion.
-
-> +};
-
-...
-
-> +static const char * const simple_groups[] = {"PORT0", "PORT1", "PORT2", "PORT3",
-> +					     "PORT4", "PORT5", "PORT6", "PORT7"};
-
-It's better to read when split as
-
-static const char * const simple_groups[] = {
-	"PORT0", "PORT1", "PORT2", "PORT3",
-	"PORT4", "PORT5", "PORT6", "PORT7",
-};
-
-(also note the trailing comma).
-
-…
-
-> +static const char * const rotary_groups[] = {"ROTARY"};
-
-Add spaces inside {}.
-
-...
-
-> +#define MAX7360_PINCTRL_FN_ROTARY	2
-> +static const struct pinfunction max7360_functions[] = {
-> +	PINCTRL_PINFUNCTION("gpio", simple_groups, ARRAY_SIZE(simple_groups)),
-> +	PINCTRL_PINFUNCTION("pwm", simple_groups, ARRAY_SIZE(simple_groups)),
-> +	[MAX7360_PINCTRL_FN_ROTARY] = PINCTRL_PINFUNCTION("rotary", rotary_groups,
-> +							  ARRAY_SIZE(rotary_groups)),
-
-Please make them all look the same, if indexed, than add indices to all.
-
-> +};
-
-...
-
-> +static int max7360_set_mux(struct pinctrl_dev *pctldev, unsigned int selector,
-> +			   unsigned int group)
-> +{
-> +	struct regmap *regmap;
-
-> +	int ret = 0;
-
-Variable is not needed, just return directly.
-
-> +	int val;
-> +
-> +	/*
-> +	 * GPIO and PWM functions are the same: we only need to handle the
-> +	 * rotary encoder function, on pins 6 and 7.
-> +	 */
-> +	if (max7360_groups[group].pins[0] >= 6) {
-> +		if (selector == MAX7360_PINCTRL_FN_ROTARY)
-> +			val = MAX7360_GPIO_CFG_RTR_EN;
-> +		else
-> +			val = 0;
-> +
-> +		regmap = dev_get_regmap(pctldev->dev, NULL);
-> +		ret = regmap_write_bits(regmap, MAX7360_REG_GPIOCFG, MAX7360_GPIO_CFG_RTR_EN, val);
-> +	}
-> +
-> +	return ret;
-> +}
-
-...
-
-> +static int max7360_pinctrl_probe(struct platform_device *pdev)
-> +{
-
-With
-
-	struct device *dev = &pdev->dev;
-
-the below will look better.
-
-> +	struct regmap *regmap;
-> +	struct pinctrl_desc *pd;
-> +	struct max7360_pinctrl *chip;
-> +
-> +	chip = devm_kzalloc(&pdev->dev, sizeof(*chip), GFP_KERNEL);
-> +	if (!chip)
-> +		return -ENOMEM;
-> +
-> +	regmap = dev_get_regmap(pdev->dev.parent, NULL);
-> +	if (!regmap)
-> +		dev_err_probe(&pdev->dev, -ENODEV, "Could not get parent regmap\n");
-
-Make it first check, in such a case you don't even need to allocate memory for
-peanuts.
-
-> +	pd = &chip->pinctrl_desc;
-> +
-> +	pd->pctlops = &max7360_pinctrl_ops;
-> +	pd->pmxops = &max7360_pmxops;
-> +	pd->name = dev_name(&pdev->dev);
-> +	pd->pins = max7360_pins;
-> +	pd->npins = MAX7360_MAX_GPIO;
-> +	pd->owner = THIS_MODULE;
-> +
-> +	chip->pctldev = devm_pinctrl_register(pdev->dev.parent, pd, chip);
-> +	if (IS_ERR(chip->pctldev))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(chip->pctldev),
-> +			"can't register controller\n");
-> +
-> +	return 0;
-> +}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+>
+>> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+>> ---
+>>  drivers/phy/phy-snps-eusb2.c | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/phy/phy-snps-eusb2.c b/drivers/phy/phy-snps-eusb2.c
+>> index 4e5914a76..dcc69c00a 100644
+>> --- a/drivers/phy/phy-snps-eusb2.c
+>> +++ b/drivers/phy/phy-snps-eusb2.c
+>> @@ -461,7 +461,7 @@ static int snps_eusb2_hsphy_probe(struct platform_device *pdev)
+>>  		return dev_err_probe(dev, ret,
+>>  				     "failed to get regulator supplies\n");
+>>  
+>> -	phy->repeater = devm_of_phy_get_by_index(dev, np, 0);
+>> +	phy->repeater = devm_of_phy_optional_get(dev, np, 0);
+>>  	if (IS_ERR(phy->repeater))
+>>  		return dev_err_probe(dev, PTR_ERR(phy->repeater),
+>>  				     "failed to get repeater\n");
+>> -- 
+>> 2.43.0
+>>
 
 
