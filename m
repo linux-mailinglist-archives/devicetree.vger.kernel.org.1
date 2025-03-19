@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-159073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159074-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C0C3A698AD
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 20:08:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0119A698B1
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 20:08:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58997463D84
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 19:06:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 038F317093A
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 19:08:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ECD9211A24;
-	Wed, 19 Mar 2025 19:06:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEE7C20AF71;
+	Wed, 19 Mar 2025 19:08:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="r1g/wOmq"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="H9jZ2K35"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-186.mta0.migadu.com (out-186.mta0.migadu.com [91.218.175.186])
+Received: from out-174.mta1.migadu.com (out-174.mta1.migadu.com [95.215.58.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69F8920C48E
-	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 19:06:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.186
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 056DE1DF271
+	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 19:08:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742411180; cv=none; b=nUk4foGTrNQQb9oBpJ0y7W+zc9MDdukMWewc0g4Un3qKaXAtMNGe1aDu+d6XW036WRGN5kaQ4eQuikxskVgfyKoGh/0K3C0CMfnAMzZSVarX9Hx0/LP4X8aDtS0U6x3KCuLAqH72BXOPxyJZ9zdhaQ+7eZ0LX1fURwMMUrAviGc=
+	t=1742411328; cv=none; b=DoRT33juZAkziERzdzlgUXt34KnvbGumj5WjS3xPDwX7ZsOVmSpQ9Jn/3R4tjNLLojz1Elw3vbfG2bCpA/Sl/IYFQAZNGZ4IYZYapcwLYtfcL7Kxu+Il+b6jzam8YcANtdRjTzxxpz/Gm8KhAtOU3VfcSibHqYC/KZaTLdAyiFY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742411180; c=relaxed/simple;
-	bh=tGDrPL99iQCZY/u2/xPnK/pCgW93vFWfNo6h2UP703M=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:Subject:From:
-	 References:In-Reply-To; b=L5BsBRI5WQ6+G3abEEzby5DUEo8PCWIvHkbeUvx3GO6BGsPW8NK4biiKxl6iyrILR/r9/5VfokNI2ELjYwFFVQ/hAPIXuk8WD6b4S4MMphx4mvjqKmDJhhfqSbenPYkGhn7bqSxk3EYKtcBH0LYbILO0zMAuBQxEy+SBDtfSlHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=r1g/wOmq; arc=none smtp.client-ip=91.218.175.186
+	s=arc-20240116; t=1742411328; c=relaxed/simple;
+	bh=0cOK72YPcxWKVeGOnpXw6RBXM4cFEe8takUzoN19ryU=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:Cc:To:Subject:
+	 References:In-Reply-To; b=g/RCa/WQl5sXmQYx33gsfLOzecB4MfU6a2LWuVKfGFNndulMDt4zWkbrQMPNhf99Dp3nyP8fBa8FZDvRjG5f7ykMBnNBEp5bZmQFTOj+HLbSJqKxiWPx6m2Dns8SpxnLO2mtJkwZT10FTBxKL8WKMww1VyyY3+liVJEw7V7Aj9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=H9jZ2K35; arc=none smtp.client-ip=95.215.58.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=postmarketos.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
 Precedence: bulk
@@ -38,21 +38,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 Mime-Version: 1.0
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1742411176;
+	s=key1; t=1742411324;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=jHQ3Ngz9cNLQIGQBw16DZBzL1L0whpDC6ssfPJFBJJM=;
-	b=r1g/wOmqJPq1TMuu/XCjqxm9Zku1seTSsX6OX+DmtuZzslvAmn8XspEXWuAWAnV8pZUH2b
-	8FpgGcss8pWSihofzHpqjjwfaxTyGbWOx9SRDo4EF7NAeCto+FkKzNlQbbn0kU7tclV5hC
-	HeiSHhvJwdc8dCNe8d1CnhwodWoodcY8B943c9p3133YtvVPO4DytPy6p2Yhy2HmDXubJN
-	4IrGwM6I6tFXhpo3nGHQGQVVmd8AA9hdYPtJeXPjeKhBGQzCETL0ojpWor9CNcLTvFZ4wm
-	ZpEKg0O+aoi4pjxU33Wy5dr5kuVw5furP+u32rKisVFNDCAwA4/MBsvSfWmkKQ==
+	bh=0cOK72YPcxWKVeGOnpXw6RBXM4cFEe8takUzoN19ryU=;
+	b=H9jZ2K359uzwubWOxZhqIFjkympFHVgXw5gcPFu9B68z4JZ5NU/UPq93ekLtarpywymBUO
+	8Rdj4Esfp7xlRsID+5eX6VzXtUCEVES0wXeKgg9FrlFhyv6RUDjTAw+2mDKY6Z+VWe39RU
+	8H1eD5LhrVkEgF0iMpx16orixM6K1AgljRayCn/DlFPdjwa0y6Ht59EhEAYtAMJdo4CacU
+	GFAdR4pm/PG8NSwWnKjc+Lx98VS1ik8xTuWL6KgZ3YQEc0EK9hnNaX3mbVMpYHAnEIg5kE
+	nMbSTrv/OXZ6qQ9D/LNmrsroh8A8eO28KaHujgtscjt3QEmnKsKDPvHhceXXfw==
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Wed, 19 Mar 2025 19:05:50 +0000
-Message-Id: <D8KH7CDPMWDS.396O6X214BX59@postmarketos.org>
+Date: Wed, 19 Mar 2025 19:08:17 +0000
+Message-Id: <D8KH97UKHPJW.300OTP897K3KO@postmarketos.org>
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Ferass El Hafidi" <funderscore@postmarketos.org>
 Cc: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
  <linux-kernel@vger.kernel.org>, <~postmarketos/upstreaming@lists.sr.ht>,
  "Artur Weber" <aweber.kernel@gmail.com>, "Karl Chan"
@@ -63,49 +65,16 @@ To: "Ferass El Hafidi" <funderscore@postmarketos.org>, "Neil Armstrong"
  <martin.blumenstingl@googlemail.com>, "Rob Herring" <robh@kernel.org>,
  "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
  <conor+dt@kernel.org>, <linux-amlogic@lists.infradead.org>
-Subject: Re: [PATCH v5 0/2] Add support for Xiaomi Mi TV Stick
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Ferass El Hafidi" <funderscore@postmarketos.org>
-References: <20250319190150.31529-2-funderscore@postmarketos.org>
-In-Reply-To: <20250319190150.31529-2-funderscore@postmarketos.org>
+Subject: Re: [PATCH v4 0/2] Add support for Xiaomi Mi TV Stick
+References: <20250203174346.13737-1-funderscore@postmarketos.org>
+In-Reply-To: <20250203174346.13737-1-funderscore@postmarketos.org>
 X-Migadu-Flow: FLOW_OUT
 
-On Wed Mar 19, 2025 at 7:01 PM UTC, Ferass El Hafidi wrote:
-<snip>
->
-> More information is available on the postmarketOS wiki page [6].
->
+Hello,
 
-Which would be https://wiki.postmarketos.org/wiki/Xiaomi_Mi_TV_Stick_(xiaom=
-i-aquaman)
+Superseded by v5:
+https://lore.kernel.org/all/20250319190150.31529-2-funderscore@postmarketos=
+.org/
 
-Sorry, forgot to put the link.
-
-Regards.
-
-> [1]: https://lore.kernel.org/all/20250203174346.13737-1-funderscore@postm=
-arketos.org/
-> [2]: https://lore.kernel.org/all/20250203091453.15751-1-funderscore@postm=
-arketos.org/
-> [3]: https://lore.kernel.org/all/20250201193044.28856-1-funderscore@postm=
-arketos.org/
-> [4]: https://lore.kernel.org/all/20250131200319.19996-1-funderscore@postm=
-arketos.org/
-> [5]: https://lore.kernel.org/linux-amlogic/20241227212514.1376682-1-marti=
-n.blumenstingl@googlemail.com/
->
->
-> Ferass El Hafidi (2):
->   dt-bindings: arm: amlogic: add S805Y and Mi TV Stick
->   arm64: dts: amlogic: add support for xiaomi-aquaman/Mi TV Stick
->
->  .../devicetree/bindings/arm/amlogic.yaml      |   7 +
->  arch/arm64/boot/dts/amlogic/Makefile          |   1 +
->  .../meson-gxl-s805y-xiaomi-aquaman.dts        | 292 ++++++++++++++++++
->  .../boot/dts/amlogic/meson-gxl-s805y.dtsi     |  10 +
->  4 files changed, 310 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s805y-xiaomi-aq=
-uaman.dts
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s805y.dtsi
-
+Thanks.
 
