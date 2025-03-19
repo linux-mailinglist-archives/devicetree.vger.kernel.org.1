@@ -1,353 +1,144 @@
-Return-Path: <devicetree+bounces-159004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCF35A68FE2
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 15:42:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ACA9A6907D
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 15:48:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 514C416BDD7
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 14:39:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3022C881789
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 14:43:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 440F21C8618;
-	Wed, 19 Mar 2025 14:36:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70886214814;
+	Wed, 19 Mar 2025 14:37:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="j8OHzMxh"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="r6kqrDly"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A33C1DED44
-	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 14:36:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2A042147E0;
+	Wed, 19 Mar 2025 14:37:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742394986; cv=none; b=IrCxE6fn+UTXXPdezsHPLciZOsJ4hnCi16fIZ5uQRJcoSnDpzCZ/XE0ZtQBN6Wxh02cDUqGk2xiF60b2ofxJeT7rQzq/xBgc8RYQW/NbIWB+CrikEopw4qzpkKkhCF8O85pkP6xtTEVrsjlZkMNRmQkZQgQeAgXLprQRKrtZbdI=
+	t=1742395048; cv=none; b=mPch7Wf9hTpGogxbWSCIO0MmrlhaLeQ9TWsxxAXMpN1fNYz63jwSRJ/b34M6DHjh+RmlxD2wMzwGQNFHdY1e8ySd2t37txSOURE49WlPF4xe45xZ2biF0MNInnjCTjBGoAdWzdX/Lt0vFuyICTqCOD/wT1S1tyMfS0xKIQNpU4E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742394986; c=relaxed/simple;
-	bh=4rsTf3BvXwD90ec9+gH33rXrg6dfzVuPYlYo3v5hMos=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Q5En9ppQlJE/8GeUeM9HnroF2QgIpKO0hVh/bLJL4swUqbMCsZYKU15Kp4l0t9hfVsr9VStYDbv19Vu+2+mmV/ZJTRAFvrUL4teytkXlU0fhkL1jcHGXG3mghQWtQ5O4Zo2mYchaZ4XkIlVrN8Gx5G3rp2My8PfwtgcWkGXAktA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=j8OHzMxh; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4394a0c65fcso41953055e9.1
-        for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 07:36:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742394982; x=1742999782; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=mHell48Kd7E4scgc1k3qnnupQqZvsaoDen0sn2BgyaY=;
-        b=j8OHzMxhJAR+0GkpPEDnQMq3ziXal2pib9iwlxUU6v/qojGVG9ymuB4Yy0RP95/txv
-         tJdKQsxii0dW9Gf2DQ340NjOtfe4SoevYEg/TvByS/5ZZ0xSSNZxfJWX0PyFyDTlS0e3
-         IOccLqC9gpY2XhwQF/VfP3knwZuaq94LV1QrbV/3hNapTd+oHACxEkMkYyMZcKzp383I
-         joImM1iZ6yhNaEtRH/dY19aS7qYtkt1PPhibHC9mi4HAkhbWcq6FE+HcCvyFxzudOQQV
-         QcsDIaf/WpUnjPkOjZPyrNBhedqAWs1rAptoYXZPCTDFWA3rueVnZq+GnOM09SuYuzTX
-         i7ow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742394982; x=1742999782;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mHell48Kd7E4scgc1k3qnnupQqZvsaoDen0sn2BgyaY=;
-        b=YCuFqU/mkQy8v0iModtwrtxuIHDQbA4AVFsZH7V9P8+TyllangcQutYtxwL70Z32Ow
-         6oloXfA0ZgI5dWAfE4YejuzcT7pRwqZ8N5zzuoXr7Go1WWWuxmbvJqn2VG0sDrn1SH2E
-         PVKnIaUEjo+nSqjP3nUNXtG0u614u74cMp3Po2rzBvi7tlWgR9zBbTsG8usqk9gRDXfp
-         SxLhW3xOdKLxGnY0sg66cMzqCzWqgevPybh3e2DZkHZD/vW/HWHe+WhPyNSjs83zFu8h
-         PrVBsh9kis0DTVAktKdUtpuMnU9rt4I/aye/M0CcrS8DiXIZOa/3rhvqSr4buRSU9Dso
-         fJIA==
-X-Forwarded-Encrypted: i=1; AJvYcCUhRhj1+BzQvu0py6778fxmnc1hTxiLUo5g63u0ZkZslq085SEM887sI6cW3yCwoaZ7xJdREUVTWdEL@vger.kernel.org
-X-Gm-Message-State: AOJu0YyI4JEqwpC+XHfcvPbkkB2x5Mr5QFF9ssqELfISnEKxBkqP0W5r
-	x4qLgxDgVLC9GkKWNBi5yBk8z3Gr3WBB3l3my2k3sjq+7ks2YibJDMS6+LwbStY=
-X-Gm-Gg: ASbGnctz0xcWB3QiQh//xyETNS5xugj++i7mQAlQbAOUJJ3uU4Li896PTGAXXK2ilA7
-	J6sDIAOHjPmBHpYKE5PlalhgtL+5BALr739SysIx7hNhx9uIN2v2l2Zss9fOhJ7CwH+DWD6fhDY
-	K8W9Fj6gS0W0CakDdPjZebPHTOubORArZOQPZLj4y4ufxtmJg9BirkegRnEi+CHlybozy9ibvKa
-	IAEiXfkwd8bYWREM7ktFWt2cdYO8MEHQrCBX1exqlTGljNEM/NNL8OjUOfH3LppMLAcpqIZ/hKd
-	A7GllMv8nX1NFcXi1Ws1xbQBmEZV2nojkkGt5fCytPdTsMlA4YgSSW05UQR+xpNs3oS+Dw==
-X-Google-Smtp-Source: AGHT+IEHxJWdyUAwFdqQMllBWP3fWJDJ8hzp5jsaaQhbCu6LdocHLQb5V4StWO1RuGPiDrtJiYq+CA==
-X-Received: by 2002:a05:600c:a54:b0:43c:fa52:7d2d with SMTP id 5b1f17b1804b1-43d43855435mr26504815e9.20.1742394982035;
-        Wed, 19 Mar 2025 07:36:22 -0700 (PDT)
-Received: from localhost.localdomain ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d43f32fcdsm21105845e9.7.2025.03.19.07.36.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Mar 2025 07:36:21 -0700 (PDT)
-From: srinivas.kandagatla@linaro.org
-To: andersson@kernel.org,
-	konradybcio@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	ggo@tuxedocomputers.com,
-	ettore.chimenti@linaro.org,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH] arm64: dts: qcom: x1e80100-tuxedo-14: add sound support
-Date: Wed, 19 Mar 2025 14:36:13 +0000
-Message-Id: <20250319143613.11177-1-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.39.5
+	s=arc-20240116; t=1742395048; c=relaxed/simple;
+	bh=ha1jQUymfUJf6HbK+MWkz1bZSWOObq2cVcVVWvwyOZQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ly9SzWWoq2Dnl2EowUAaAG3llUmtHymbPvQ0oaaChMAEiEIa2KFN76nP13IVten895yhAqGn0FtHm21H6KCDXLegWhMOWL+qnh0/f9nn40RVty/KtN88wUtrLbhZAz30KPfDOYDBHxoNrV79DzOijcflyodZs8IV/DwYFBSu/TM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=r6kqrDly; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A4B0455A;
+	Wed, 19 Mar 2025 15:35:41 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1742394941;
+	bh=ha1jQUymfUJf6HbK+MWkz1bZSWOObq2cVcVVWvwyOZQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=r6kqrDlyp1/MGttJ0hjZanl67nOXu8jIyuP4kRiRUgfHoToRYODffsKNTdBSMTo52
+	 Emy5dDtCafvSkuszDbYLHmI+Q7qfs4jcILyExFGoNoo4DMla9QQwsGZmE0cOvg/HtL
+	 1kAE4QQh/S7hmKnJgWN3Ae01ixTVb50JhCGSem+g=
+Date: Wed, 19 Mar 2025 15:37:20 +0100
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Hans Verkuil <hverkuil@xs4all.nl>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 3/7] arm64: dts: renesas: r8a779g0: Add ISP core function
+ block
+Message-ID: <yowtihzhludntnqveo4k3ceglna7cew4bufwytp33rb45vopjx@uafjxdiwxetd>
+References: <20250315152708.328036-1-niklas.soderlund+renesas@ragnatech.se>
+ <20250315152708.328036-4-niklas.soderlund+renesas@ragnatech.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250315152708.328036-4-niklas.soderlund+renesas@ragnatech.se>
 
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Hi Niklas
 
-This patch adds sound support for this platform,
-support includes
-	- 2x Speakers.
-	- 2x dmic
-	- Headset
+On Sat, Mar 15, 2025 at 04:27:04PM +0100, Niklas Söderlund wrote:
+> All ISP instances on V4H have both a channel select and core function
+> block, describe the core region in addition to the existing cs region.
+>
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
+Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 
-This patch depends on
-"arm64: dts: qcom: Add device tree for TUXEDO Elite 14 Gen1" patch
- https://lkml.org/lkml/2025/3/6/867
+Thanks
+  j
 
-ucm changes:
-https://github.com/Srinivas-Kandagatla/alsa-ucm-conf/tree/x1e80100-tuxedo
-
-tplg changes:
-https://github.com/Srinivas-Kandagatla/audioreach-topology/tree/tuxedo-elite-14
-
- .../qcom/x1e80100-tuxedo-elite-14-gen1.dts    | 190 ++++++++++++++++++
- 1 file changed, 190 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-tuxedo-elite-14-gen1.dts b/arch/arm64/boot/dts/qcom/x1e80100-tuxedo-elite-14-gen1.dts
-index 86bdec4a2dd8..465221b8a3fa 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-tuxedo-elite-14-gen1.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-tuxedo-elite-14-gen1.dts
-@@ -20,6 +20,34 @@ aliases {
- 		serial0 = &uart21;
- 	};
- 
-+
-+	wcd938x: audio-codec {
-+		compatible = "qcom,wcd9385-codec";
-+
-+		pinctrl-0 = <&wcd_default>;
-+		pinctrl-names = "default";
-+
-+		qcom,micbias1-microvolt = <1800000>;
-+		qcom,micbias2-microvolt = <1800000>;
-+		qcom,micbias3-microvolt = <1800000>;
-+		qcom,micbias4-microvolt = <1800000>;
-+		qcom,mbhc-buttons-vthreshold-microvolt = <75000 150000 237000 500000 500000 500000 500000 500000>;
-+		qcom,mbhc-headset-vthreshold-microvolt = <1700000>;
-+		qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
-+		qcom,rx-device = <&wcd_rx>;
-+		qcom,tx-device = <&wcd_tx>;
-+
-+		reset-gpios = <&tlmm 191 GPIO_ACTIVE_LOW>;
-+
-+		vdd-buck-supply = <&vreg_l15b_1p8>;
-+		vdd-rxtx-supply = <&vreg_l15b_1p8>;
-+		vdd-io-supply = <&vreg_l15b_1p8>;
-+		vdd-mic-bias-supply = <&vreg_bob1>;
-+
-+
-+		#sound-dai-cells = <1>;
-+	};
-+
- 	chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
-@@ -129,6 +157,85 @@ vph_pwr: regulator-vph-pwr {
- 		regulator-always-on;
- 		regulator-boot-on;
- 	};
-+
-+	sound {
-+		compatible = "qcom,x1e80100-sndcard";
-+		model = "X1E80100-TUXEDO-Elite-14";
-+		audio-routing = "SpkrLeft IN", "WSA WSA_SPK1 OUT",
-+				"SpkrRight IN", "WSA WSA_SPK2 OUT",
-+				"IN1_HPHL", "HPHL_OUT",
-+				"IN2_HPHR", "HPHR_OUT",
-+				"AMIC2", "MIC BIAS2",
-+				"VA DMIC0", "MIC BIAS1",
-+				"VA DMIC1", "MIC BIAS1",
-+				"VA DMIC0", "VA MIC BIAS1",
-+				"VA DMIC1", "VA MIC BIAS1",
-+				"TX SWR_INPUT1", "ADC2_OUTPUT";
-+
-+		wcd-playback-dai-link {
-+			link-name = "WCD Playback";
-+
-+			cpu {
-+				sound-dai = <&q6apmbedai RX_CODEC_DMA_RX_0>;
-+			};
-+
-+			codec {
-+				sound-dai = <&wcd938x 0>, <&swr1 0>, <&lpass_rxmacro 0>;
-+			};
-+
-+			platform {
-+				sound-dai = <&q6apm>;
-+			};
-+		};
-+
-+		wcd-capture-dai-link {
-+			link-name = "WCD Capture";
-+
-+			cpu {
-+				sound-dai = <&q6apmbedai TX_CODEC_DMA_TX_3>;
-+			};
-+
-+			codec {
-+				sound-dai = <&wcd938x 1>, <&swr2 1>, <&lpass_txmacro 0>;
-+			};
-+
-+			platform {
-+				sound-dai = <&q6apm>;
-+			};
-+		};
-+
-+		wsa-dai-link {
-+			link-name = "WSA Playback";
-+
-+			cpu {
-+				sound-dai = <&q6apmbedai WSA_CODEC_DMA_RX_0>;
-+			};
-+
-+			codec {
-+				sound-dai = <&left_spkr>, <&right_spkr>, <&swr0 0>, <&lpass_wsamacro 0>;
-+			};
-+
-+			platform {
-+				sound-dai = <&q6apm>;
-+			};
-+		};
-+
-+		va-dai-link {
-+			link-name = "VA Capture";
-+
-+			cpu {
-+				sound-dai = <&q6apmbedai VA_CODEC_DMA_TX_0>;
-+			};
-+
-+			codec {
-+				sound-dai = <&lpass_vamacro 0>;
-+			};
-+
-+			platform {
-+				sound-dai = <&q6apm>;
-+			};
-+		};
-+	};
- };
- 
- &apps_rsc {
-@@ -160,6 +267,13 @@ vreg_bob2: bob2 {
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 		};
- 
-+		vreg_l1b_1p8: ldo1 {
-+			regulator-name = "vreg_l1b_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
- 		vreg_l2b_3p0: ldo2 {
- 			regulator-name = "vreg_l2b_3p0";
- 			regulator-min-microvolt = <3072000>;
-@@ -534,6 +648,24 @@ eusb6_repeater: redriver@4f {
- 
- };
- 
-+&lpass_tlmm {
-+	spkr_01_sd_n_active: spkr-01-sd-n-active-state {
-+		pins = "gpio12";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+		output-low;
-+	};
-+};
-+
-+&lpass_vamacro {
-+	pinctrl-0 = <&dmic01_default>;
-+	pinctrl-names = "default";
-+
-+	vdd-micb-supply = <&vreg_l1b_1p8>;
-+	qcom,dmic-sample-rate = <4800000>;
-+};
-+
- &mdss {
- 	status = "okay";
- };
-@@ -648,6 +780,64 @@ &smb2360_1 {
- 	status = "okay";
- };
- 
-+&smb2360_1_eusb2_repeater {
-+	vdd18-supply = <&vreg_l3d_1p8>;
-+	vdd3-supply = <&vreg_l14b_3p0>;
-+};
-+
-+&swr0 {
-+	status = "okay";
-+
-+	pinctrl-0 = <&wsa_swr_active>, <&spkr_01_sd_n_active>;
-+	pinctrl-names = "default";
-+
-+	/* WSA8845, Left Speaker */
-+	left_spkr: speaker@0,0 {
-+		compatible = "sdw20217020400";
-+		reg = <0 0>;
-+		reset-gpios = <&lpass_tlmm 12 GPIO_ACTIVE_LOW>;
-+		#sound-dai-cells = <0>;
-+		sound-name-prefix = "SpkrLeft";
-+		vdd-1p8-supply = <&vreg_l15b_1p8>;
-+		vdd-io-supply = <&vreg_l12b_1p2>;
-+		qcom,port-mapping = <1 2 3 7 10 13>;
-+	};
-+
-+	/* WSA8845, Right Speaker */
-+	right_spkr: speaker@0,1 {
-+		compatible = "sdw20217020400";
-+		reg = <0 1>;
-+		reset-gpios = <&lpass_tlmm 12 GPIO_ACTIVE_LOW>;
-+		#sound-dai-cells = <0>;
-+		sound-name-prefix = "SpkrRight";
-+		vdd-1p8-supply = <&vreg_l15b_1p8>;
-+		vdd-io-supply = <&vreg_l12b_1p2>;
-+		qcom,port-mapping = <4 5 6 7 11 13>;
-+	};
-+};
-+
-+&swr1 {
-+	status = "okay";
-+
-+	/* WCD9385 RX */
-+	wcd_rx: codec@0,4 {
-+		compatible = "sdw20217010d00";
-+		reg = <0 4>;
-+		qcom,rx-port-mapping = <1 2 3 4 5>;
-+	};
-+};
-+
-+&swr2 {
-+	status = "okay";
-+
-+	/* WCD9385 TX */
-+	wcd_tx: codec@0,3 {
-+		compatible = "sdw20217010d00";
-+		reg = <0 3>;
-+		qcom,tx-port-mapping = <2 2 3 4>;
-+	};
-+};
-+
- &tlmm {
- 	gpio-reserved-ranges = <28 4>, /* Unused */
- 			       <44 4>, /* SPI (TPM) */
--- 
-2.39.5
-
+> ---
+>  arch/arm64/boot/dts/renesas/r8a779g0.dtsi | 30 +++++++++++++++++------
+>  1 file changed, 22 insertions(+), 8 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/renesas/r8a779g0.dtsi b/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
+> index 1760720b7128..6dbf05a55935 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
+> @@ -2277,13 +2277,20 @@ du_out_dsi1: endpoint {
+>  		isp0: isp@fed00000 {
+>  			compatible = "renesas,r8a779g0-isp",
+>  				     "renesas,rcar-gen4-isp";
+> -			reg = <0 0xfed00000 0 0x10000>;
+> -			interrupts = <GIC_SPI 473 IRQ_TYPE_LEVEL_LOW>;
+> -			clocks = <&cpg CPG_MOD 612>;
+> +			reg = <0 0xfed00000 0 0x10000>, <0 0xfec00000 0 0x100000>;
+> +			reg-names = "cs", "core";
+> +			interrupts = <GIC_SPI 473 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 475 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "cs", "core";
+> +			clocks = <&cpg CPG_MOD 612>, <&cpg CPG_MOD 16>;
+> +			clock-names = "cs", "core";
+>  			power-domains = <&sysc R8A779G0_PD_A3ISP0>;
+> -			resets = <&cpg 612>;
+> +			resets = <&cpg 612>, <&cpg 16>;
+> +			reset-names = "cs", "core";
+>  			status = "disabled";
+>
+> +			renesas,vspx = <&vspx0>;
+> +
+>  			ports {
+>  				#address-cells = <1>;
+>  				#size-cells = <0>;
+> @@ -2361,13 +2368,20 @@ isp0vin07: endpoint {
+>  		isp1: isp@fed20000 {
+>  			compatible = "renesas,r8a779g0-isp",
+>  				     "renesas,rcar-gen4-isp";
+> -			reg = <0 0xfed20000 0 0x10000>;
+> -			interrupts = <GIC_SPI 474 IRQ_TYPE_LEVEL_LOW>;
+> -			clocks = <&cpg CPG_MOD 613>;
+> +			reg = <0 0xfed20000 0 0x10000>, <0 0xfee00000 0 0x100000>;
+> +			reg-names = "cs", "core";
+> +			interrupts = <GIC_SPI 474 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 476 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "cs", "core";
+> +			clocks = <&cpg CPG_MOD 613>, <&cpg CPG_MOD 17>;
+> +			clock-names = "cs", "core";
+>  			power-domains = <&sysc R8A779G0_PD_A3ISP1>;
+> -			resets = <&cpg 613>;
+> +			resets = <&cpg 613>, <&cpg 17>;
+> +			reset-names = "cs", "core";
+>  			status = "disabled";
+>
+> +			renesas,vspx = <&vspx1>;
+> +
+>  			ports {
+>  				#address-cells = <1>;
+>  				#size-cells = <0>;
+> --
+> 2.48.1
+>
+>
 
