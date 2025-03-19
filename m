@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-159076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7F4EA69905
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 20:18:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96F82A69912
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 20:22:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB346483986
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 19:17:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 555039813C1
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 19:19:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14243215792;
-	Wed, 19 Mar 2025 19:16:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC3AD20E704;
+	Wed, 19 Mar 2025 19:19:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L96GnD6e"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cOq65X+K"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD0A32135A5;
-	Wed, 19 Mar 2025 19:16:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89AD21B4156;
+	Wed, 19 Mar 2025 19:19:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742411765; cv=none; b=oErsD/6z1ltU/zF+lWiZSWBJZy4aPbzZmwZ18r+fPNbGL7+5sIFQER5Ame7TCt2np2l1VTmywcR+n5r4xtIuwTyzd5uJpbH8jUu63wqZxrn2ArDG1b+E/BSlI5R82JH+s06RTAYAy9OUOtXuvg8HhBEIz5XqDDsq03K779KN1mU=
+	t=1742411975; cv=none; b=PqVP69obzWvRwrxalCSVNVJY9n12qjq5hYJaHHZ8XWGphVz3RR/2A07pTZ5ZHRuzfbAFpOi0RF8+Dfew2VouFfuOP7Vr4GNX2/0DXuviwZgPDZwWQO61bJr8v8FLxJp3jvX8O9WehX+VW2OkTM0mJ8xa9WplMWgonvXcolgFbJw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742411765; c=relaxed/simple;
-	bh=wBL/zEGJsN2Rlo10E5XiRwidGJbrtwC2yzRNemRG2BA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=mTTWfgHBjWR4GCX8f5CQDSyOS2KWZO3swCRwASTIDmYaGMWwL6VmHngwD3nIjecpN1YwyhbJhtD4s1EfoqDQ8oNsKObgnXJwtNLFkKkkRGJ05p33Venc8eCPC2dYGwgvvTpwHK5Bo25wbM9nnKnFK5+gR/G48ngMKH3gwznXU5U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L96GnD6e; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25886C4CEE4;
-	Wed, 19 Mar 2025 19:16:00 +0000 (UTC)
+	s=arc-20240116; t=1742411975; c=relaxed/simple;
+	bh=rBTZsSXJHptqgoAbgRkJSyZwtaoboMo1kjPhVTbE4rA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pPkabi0xewM2l97BISUq8U+zC0Nf1shZsS9NNESsPGyWyp+uOIVp+ZllNlr1jcKRILdWsbjnXBiLUmGfxswt8oiaGlPz+FppbNie+jOh9Hrg1PD2M14Cj7kahbDnwd3ZTdla4EmHvgbJrbnnp7Y0SSrtw75/gigRyiKpUCDpmss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cOq65X+K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2ABF7C4CEE4;
+	Wed, 19 Mar 2025 19:19:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742411764;
-	bh=wBL/zEGJsN2Rlo10E5XiRwidGJbrtwC2yzRNemRG2BA=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=L96GnD6e4LkLWH6fmXkxsJDhpzCH+aclsXGexh/1fTSFxQF+EyZeRDvxE0twyAU05
-	 u82nE3WC/6vSir0ya1B3aqf9xvh35qdZfSgkwqYCTc1WZf/ydjlsIqmc8cLOWRirjO
-	 egrNiknyXO90wdLhnD7N6wUKID9vCCKas2ouiwsvhjb6XC2U80iGyNS5NFBpG+HOBp
-	 Ybl+/DclZx5XCUI43ycSwtTQwYv2UTMxDyz5NAFANvbSZGWpZESw2yDqGa5UWEMMT5
-	 oQ5gDQgpM5uaCARCr5aIy0E3R0X7IBll/1PolxMbNGM6xLa6OKcRGAlBOjckvk8bwA
-	 LjqxVtiPBAWXg==
-Message-ID: <9b8b74d5-ac63-4990-acc9-dbc3bd2f89f6@kernel.org>
-Date: Wed, 19 Mar 2025 20:15:58 +0100
+	s=k20201202; t=1742411975;
+	bh=rBTZsSXJHptqgoAbgRkJSyZwtaoboMo1kjPhVTbE4rA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=cOq65X+KWQ3Yea6I7B5j1IKQ8XdjMytwYPEi4+AXjdDqEpg2fUtSFSBXJBDqCgKUk
+	 GLHuMHfwMi85zm4YRG79SswLCqAHtp5Ps0DqGSJz8m49P8jjHHl8c+yv4R36lLwBAM
+	 kidh4uc3dJFvbOvwHK5h9JauvvwEZeQIAPF84N5cNTDXnW4OnhXq5ztsCB8sePoQms
+	 lmXHNS3lUajYteRx9193rjazfpNaqtbkx53zrQhTHj+eUFCLnHHYsAKByatnbNxl43
+	 a0FDWxeA7nTxwRLbhBqCuItFNhbQKm1pFX2VrhtCmr9V59SGczaZ/ODmr62EcZqTKf
+	 tufoIsKnGJYrQ==
+Message-ID: <bb1c12dc-dc71-4c7f-9969-2fe31f632f6b@kernel.org>
+Date: Wed, 19 Mar 2025 20:19:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] iio: light: bh1750: Add hardware reset support via
- GPIO
-To: Sergio Perez <sergio@pereznus.es>, Tomasz Duszynski <tduszyns@gmail.com>,
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+Subject: Re: [PATCH 2/2] dt-bindings: hwmon: Add TI TPS389008
+To: Flaviu Nistor <flaviu.nistor@googlemail.com>
+Cc: Flaviu Nistor <flaviu.nistor@gmail.com>, Jean Delvare
+ <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250319161117.1780-1-sergio@pereznus.es>
- <20250319161117.1780-2-sergio@pereznus.es>
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20250319170234.63723-1-flaviu.nistor@gmail.com>
+ <20250319170234.63723-3-flaviu.nistor@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,39 +105,129 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250319161117.1780-2-sergio@pereznus.es>
+In-Reply-To: <20250319170234.63723-3-flaviu.nistor@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/03/2025 17:11, Sergio Perez wrote:
->  struct bh1750_chip_info {
-> @@ -248,6 +253,24 @@ static int bh1750_probe(struct i2c_client *client)
->  	data->client = client;
->  	data->chip_info = &bh1750_chip_info_tbl[id->driver_data];
->  
-> +	/* Get reset GPIO from device tree */
-> +	data->reset_gpio = devm_gpiod_get_optional(&client->dev,
-> +									"reset", GPIOD_OUT_HIGH);
+On 19/03/2025 18:02, Flaviu Nistor wrote:
+> Add device tree bindings and an example for the
+> TI TPS389008 voltage monitor.
+> 
+> Signed-off-by: Flaviu Nistor <flaviu.nistor@gmail.com>
+> ---
 
+This wasn't ever tested, so limited review.
 
-Mess indentation.
+BTW, bindings are before the user.
 
-> +	if (IS_ERR(data->reset_gpio))
-> +		return dev_err_probe(&client->dev, PTR_ERR(data->reset_gpio),
-> +							"Failed to get reset GPIO\n");
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: ti,tps38908
+> +      - items:
+> +          - enum:
+> +              - ti,tps38908
+> +              - ti,tps38906
+> +              - ti,tps38904
+> +          - const: ti,tps38908
 > +
-> +	/* Perform hardware reset if GPIO is provided */
-> +	if (data->reset_gpio) {
-> +		/* Perform reset sequence: low-high */
-> +		gpiod_set_value_cansleep(data->reset_gpio, 0);
-> +		fsleep(BH1750_RESET_DELAY_US);
-> +		gpiod_set_value_cansleep(data->reset_gpio, 1);
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    description: Required only if a child node is present.
+
+Drop description
+
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    description: Required only if a child node is present.
+
+Drop description
 
 
-So you keep device at reset state. This wasn't tested or your DTS is wrong.
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^vmon@[1-8]$":
 
-I expect to acknowledge/respond to each of this comments above. Next
-version, which is supposed to be v5, should fix them.
+s/vmon/channel/
+
+> +    description: |
+> +      The node contains optional child nodes for up to x channels.
+> +      There are 8 channels for TPS389008, 6 channels for TPS389006,
+> +      and 4 channels for TPS389004. Each child node describes the information
+
+Then you need allOf:if:then: disallowing these for specific variants.
+
+> +      of the input source. Input channels default to disabled in the chip.
+> +      Unless channels are explicitly enabled in device-tree,
+> +      input channels will be disabled.
+> +    type: object
+> +    additionalProperties: false
+> +    properties:
+> +      reg:
+> +        description: |
+> +          Must be 1 to 8,
+
+Don't repeat constraints in free form text.
+
+> corresponding to the VMONx
+> +          ports of the TPS389008, TPS389006, or TPS389004, respectively.
+
+Drop entire description
+
+> +        enum: [ 1, 2, 3, 4, 5, 6, 7, 8 ]
+> +
+> +      label:
+> +        description: Name of the input source.
+> +
+> +      ti,vrange-mult-4x:
+> +        description: |
+> +          Must have values 5 or 20 in order for the analog
+> +          conversion to be done correctly.
+> +          Value 5 indicates multiply by 1 (x1), and value 20 indicates
+> +          multiply by 4 (x4).
+> +        type: boolean
+> +
+> +      ti,vmon-enable:
+
+Drop. Status tells it, no?
+
+> +        description: |
+> +          Sets each channel status. By default, all input channels are disabled.
+> +            - 0 = channel disabled
+> +            - 1 = channel active
+> +        type: boolean
+> +
+> +    required:
+> +      - reg
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        vmon@37 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+> +            compatible = "ti,tps389008", "ti,tps389006", "ti,tps389004";
+
+Test your code before sending, not after.
+
+
 
 Best regards,
 Krzysztof
