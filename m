@@ -1,240 +1,275 @@
-Return-Path: <devicetree+bounces-159016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F156A6933B
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 16:25:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7F6DA693AC
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 16:38:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C0743A3C73
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 15:19:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8209919C3533
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 15:24:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A76621C1F1F;
-	Wed, 19 Mar 2025 15:19:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0A7C1C8602;
+	Wed, 19 Mar 2025 15:23:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="reZMeO2s"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eAsOR6BA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3F201957FF;
-	Wed, 19 Mar 2025 15:19:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92D711AF0BC;
+	Wed, 19 Mar 2025 15:23:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742397570; cv=none; b=epL31AX810anhh2ShcrbhSLAdXcL2rGmJrwyoY+Gp369iR1unGjmw2L4WG/ikCoaIKtYaw6l4g/gScIgE0duq5FXwucq60Yv1rclB34ooHrBpHzVsaI2fh98DpUOYCmRW6tjr7pfGGKO0T05S5uSdEgREGurYx52uIjqDWUaTvE=
+	t=1742397833; cv=none; b=iVtcfBR/h3vOG5ZhpfE4PG7G8AdxXIcZd6XgADzZv8btEy/wJEcqIYgRHeFiQOpEiL5F+QWprVrPAePLbe+tlSpS5Zvf3tYHHVDZBXZMOm3QS04u9HcRM42mhmzDWXc2I2SnGDdLPIt2wkJvUmFxOi2JSAXCm6zjmyq0H/JXrfc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742397570; c=relaxed/simple;
-	bh=75KZOsEBxSbCczYa0jJTN/upYNwqdtyGsR4PPJi/iXA=;
+	s=arc-20240116; t=1742397833; c=relaxed/simple;
+	bh=+ND2GQ1ucjL2Fbj/gHU8rnxTiLp8tL39vHpjDRl8G5A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FCZtNkH+wVtxTeZ7cwgps0+HHC7BF2XJRtKTE03CLOo0OONbT3bpo3HE9VD3aC+00poxQSQJIYkK0BxsMripevXIJmmbl+YCdPsWCLpIGO+uAf3hdKVHX9ey4UxSYdvTXYt+b/jHTmkF6lV9WHysmJb9n2gcSDqXm0RfoFOhJtQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=reZMeO2s; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 08B661E6;
-	Wed, 19 Mar 2025 16:17:43 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1742397464;
-	bh=75KZOsEBxSbCczYa0jJTN/upYNwqdtyGsR4PPJi/iXA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=reZMeO2sgxiQKkPpJQnJEXfxYJeeBej9uPSDGv2o2iVkPQGAY3q1sg/R9rYPtRR/n
-	 JMHlCu8GGVLBTmhW2PJNrlcFXkFKa6pE+Mngb/+ou+PhzVElFrfLS2djiHoI9pJN0A
-	 tBBYmC2ds0+RkNSCKHKxIleqN55gdWHFivl3UUSA=
-Date: Wed, 19 Mar 2025 16:19:23 +0100
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Hans Verkuil <hverkuil@xs4all.nl>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 2/7] arm64: dts: renesas: r8a779a0: Add ISP core function
- block
-Message-ID: <gwkedvxrab62uyusei55nhaylekr46btmzwh6tc3vuaeomaa6g@xoo4jrofknqz>
-References: <20250315152708.328036-1-niklas.soderlund+renesas@ragnatech.se>
- <20250315152708.328036-3-niklas.soderlund+renesas@ragnatech.se>
- <hwj6d3ll75magopi5oak4zmboy5dol3ztv3isd6wvrxmvbkx4b@ayjumbqmuk3l>
- <20250319150745.GE949127@ragnatech.se>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZLyj+tpYoWp+pv/JeVzRtKcA1HPWa3NgTm8b4+TjaSsfhO3YW+pIxMALKVlfzcocOg8PpFeIhvmHI1D7ToPV6hae6RCDxRmJI7J/k7wflT+6FJyUM38tRW1KoCnyx7ACaiET83PY8S66iAzPRbTCD1vkAx+Wv+zGY9pWcVesnjo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=eAsOR6BA; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1742397832; x=1773933832;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=+ND2GQ1ucjL2Fbj/gHU8rnxTiLp8tL39vHpjDRl8G5A=;
+  b=eAsOR6BAWppqkOMXNXLsbA4C/Jn/nP33uZFU67qC0+VZtmufHdiaNXBc
+   /4ImQGuriHjwy/AAz0az7uk6VUO1wCIHyYmVPrCWpHx528T9aCyyRzBu0
+   lYoiKEx1N4KixKyNjH1aQ7ZF0p+I3wK8S6GhI/zHwNVv1nblmoxX6d49h
+   s2M65DAlv46bWHosW4DZ8kU/d5kt6c18ie2MDiCbrJZVfl1CuZVzZD4wX
+   8dpc0KqI1DrjLchMTKkYg7/3lWEKGqsgv2sI+AgXiOsYjTdNpY1f8x8TQ
+   OZTjCQRqaBrJIAXxW8YETgf5cH5XZRfgl+t4O7uoeQ3mqn5LvbI7H9bGh
+   A==;
+X-CSE-ConnectionGUID: KBFwm3yhRfK8Lt0TtqUqFQ==
+X-CSE-MsgGUID: F8LdNn8fS66zhmF+LDD3tA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11378"; a="31174872"
+X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; 
+   d="scan'208";a="31174872"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2025 08:23:51 -0700
+X-CSE-ConnectionGUID: 1KhLNtoLQ4eE7Zyd8ixR4w==
+X-CSE-MsgGUID: 6RmOKgCuQwGgjoIUotAsvQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; 
+   d="scan'208";a="153527828"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2025 08:23:45 -0700
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 5A9F811F998;
+	Wed, 19 Mar 2025 17:23:40 +0200 (EET)
+Date: Wed, 19 Mar 2025 15:23:40 +0000
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Daniel Scally <djrscally@gmail.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Claudiu Manoil <claudiu.manoil@nxp.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+	netdev@vger.kernel.org,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: Re: [PATCH v8 02/10] property: Add functions to iterate named child
+Message-ID: <Z9rhfJUlCbi7kA2m@kekkonen.localdomain>
+References: <cover.1742225817.git.mazziesaccount@gmail.com>
+ <9c3880f74476436f39d796b5c10c540ae50b722c.1742225817.git.mazziesaccount@gmail.com>
+ <Z9mQPJwnKAkPHriT@kekkonen.localdomain>
+ <b6b62ddd-ab59-4112-8f6e-c72618c45910@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250319150745.GE949127@ragnatech.se>
+In-Reply-To: <b6b62ddd-ab59-4112-8f6e-c72618c45910@gmail.com>
 
-Hi Niklas
+Hei Matti,
 
-On Wed, Mar 19, 2025 at 04:07:45PM +0100, Niklas Söderlund wrote:
-> Hi Jacopo,
->
-> Thanks for your feedback.
->
-> On 2025-03-19 15:50:00 +0100, Jacopo Mondi wrote:
-> > Hi Niklas
-> >
-> > On Sat, Mar 15, 2025 at 04:27:03PM +0100, Niklas Söderlund wrote:
-> > > All ISP instances on V3U have both a channel select and core function
-> > > block, describe the core region in addition to the existing cs region.
-> > >
-> > > The interrupt number already described intended to reflect the cs
-> > > function but did incorrectly describe the core block. This was not
-> >
-> > I can't find the interrupt mapping table for V3U, so this is the only
-> > thing I can't check
->
-> Page number 820, or search for "SPI 152" (fist one).
->
-
-Uh, thanks
-
-> >
-> > > noticed until now as the driver do not make use of the interrupt for the
-> > > cs block.
-> > >
-> > > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> >
-> > The rest looks good
-> >
+On Wed, Mar 19, 2025 at 08:02:24AM +0200, Matti Vaittinen wrote:
+> Moro Sakari,
+> 
+> Thanks for the review.
+> 
+> On 18/03/2025 17:24, Sakari Ailus wrote:
+> > Moi,
+> > 
+> > On Mon, Mar 17, 2025 at 05:50:38PM +0200, Matti Vaittinen wrote:
+> > > There are a few use-cases where child nodes with a specific name need to
+> > > be parsed. Code like:
+> > > 
+> > > fwnode_for_each_child_node()
+> > > 	if (fwnode_name_eq())
+> > > 		...
+> > > 
+> > > can be found from a various drivers/subsystems. Adding a macro for this
+> > > can simplify things a bit.
+> > > 
+> > > In a few cases the data from the found nodes is later added to an array,
+> > > which is allocated based on the number of found nodes. One example of
+> > > such use is the IIO subsystem's ADC channel nodes, where the relevant
+> > > nodes are named as channel[@N].
+> > > 
+> > > Add helpers for iterating and counting device's sub-nodes with certain
+> > > name instead of open-coding this in every user.
+> > > 
+> > > Suggested-by: Jonathan Cameron <jic23@kernel.org>
+> > > Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> > > Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> > > Reviewed-by: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
 > > > ---
-> > >  arch/arm64/boot/dts/renesas/r8a779a0.dtsi | 60 +++++++++++++++++------
-> > >  1 file changed, 44 insertions(+), 16 deletions(-)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-> > > index f1613bfd1632..95ff69339991 100644
-> > > --- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-> > > +++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-> > > @@ -2588,13 +2588,20 @@ du_out_dsi1: endpoint {
-> > >  		isp0: isp@fed00000 {
-> > >  			compatible = "renesas,r8a779a0-isp",
-> > >  				     "renesas,rcar-gen4-isp";
-> > > -			reg = <0 0xfed00000 0 0x10000>;
-> > > -			interrupts = <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>;
-> > > -			clocks = <&cpg CPG_MOD 612>;
-> > > +			reg = <0 0xfed00000 0 0x10000>, <0 0xfec00000 0 0x100000>;
-> > > +			reg-names = "cs", "core";
-> >
-> > However, won't the presence of a "core" part trigger the probing of
-> > the forthcoming RPP core support, which should not support V3U as far
-> > I understood ?
->
->
-> Correct the RPPX1 library will be given the change to probe on V3U, it
-> will detect it's not an RPPX1 gracefully not create an ISPCORE on V3U.
-> This describes the hardware, and there is an ISP core mapped at this
-> address, not just the same as on the others ;-) The driver is prepared
-> for this.
->
-
-Ack, just wanted to validat that
-
-Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-
-Thanks
-  j
-
-> >
-> > > +			interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>,
-> > > +				     <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>;
-> > > +			interrupt-names = "cs", "core";
-> > > +			clocks = <&cpg CPG_MOD 612>, <&cpg CPG_MOD 16>;
-> > > +			clock-names = "cs", "core";
-> > >  			power-domains = <&sysc R8A779A0_PD_A3ISP01>;
-> > > -			resets = <&cpg 612>;
-> > > +			resets = <&cpg 612>, <&cpg 16>;
-> > > +			reset-names = "cs", "core";
-> > >  			status = "disabled";
-> > >
-> > > +			renesas,vspx = <&vspx0>;
+> > > Revision history:
+> > > v7 => v8:
+> > >   - Fix the example in fwnode_get_named_child_node_count() documentation
+> > >     to use the fwnode_get_named_child_node_count() and not the
+> > >     device_get_named_child_node_count()
+> > >   - Fix the rest of the new macro's indentiations
+> > > v6 => v7:
+> > >   - Improve kerneldoc
+> > >   - Inline device_get_named_child_node_count() and change it to call
+> > >     fwnode_get_named_child_node_count() inside
+> > >   - Fix indentiation of the new macros
+> > > v5 => v6:
+> > >   - Add helpers to also iterate through the nodes.
+> > > v4 => v5:
+> > >   - Use given name instead of string 'channel' when counting the nodes
+> > >   - Add also fwnode_get_child_node_count_named() as suggested by Rob.
+> > > v3 => v4:
+> > >   - New patch as suggested by Jonathan, see discussion in:
+> > > https://lore.kernel.org/lkml/20250223161338.5c896280@jic23-huawei/
+> > > ---
+> > >   drivers/base/property.c  | 27 +++++++++++++++++++++++++++
+> > >   include/linux/property.h | 24 ++++++++++++++++++++++++
+> > >   2 files changed, 51 insertions(+)
+> > > 
+> > > diff --git a/drivers/base/property.c b/drivers/base/property.c
+> > > index c1392743df9c..f42f32ff45fc 100644
+> > > --- a/drivers/base/property.c
+> > > +++ b/drivers/base/property.c
+> > > @@ -945,6 +945,33 @@ unsigned int device_get_child_node_count(const struct device *dev)
+> > >   }
+> > >   EXPORT_SYMBOL_GPL(device_get_child_node_count);
+> > > +/**
+> > > + * fwnode_get_named_child_node_count - number of child nodes with given name
+> > > + * @fwnode: Node which child nodes are counted.
+> > > + * @name: String to match child node name against.
+> > > + *
+> > > + * Scan child nodes and count all the nodes with a specific name. Potential
+> > > + * 'number' -ending after the 'at sign' for scanned names is ignored.
+> > > + * E.g.::
+> > > + *   fwnode_get_named_child_node_count(fwnode, "channel");
+> > > + * would match all the nodes::
+> > > + *   channel { }, channel@0 {}, channel@0xabba {}...
+> > > + *
+> > > + * Return: the number of child nodes with a matching name for a given device.
+> > > + */
+> > > +unsigned int fwnode_get_named_child_node_count(const struct fwnode_handle *fwnode,
+> > > +					       const char *name)
+> > > +{
+> > > +	struct fwnode_handle *child;
+> > > +	unsigned int count = 0;
 > > > +
-> > >  			ports {
-> > >  				#address-cells = <1>;
-> > >  				#size-cells = <0>;
-> > > @@ -2672,13 +2679,20 @@ isp0vin07: endpoint {
-> > >  		isp1: isp@fed20000 {
-> > >  			compatible = "renesas,r8a779a0-isp",
-> > >  				     "renesas,rcar-gen4-isp";
-> > > -			reg = <0 0xfed20000 0 0x10000>;
-> > > -			interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
-> > > -			clocks = <&cpg CPG_MOD 613>;
-> > > +			reg = <0 0xfed20000 0 0x10000>, <0 0xfee00000 0 0x100000>;
-> > > +			reg-names = "cs", "core";
-> > > +			interrupts = <GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>,
-> > > +				     <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
-> > > +			interrupt-names = "cs", "core";
-> > > +			clocks = <&cpg CPG_MOD 613>, <&cpg CPG_MOD 17>;
-> > > +			clock-names = "cs", "core";
-> > >  			power-domains = <&sysc R8A779A0_PD_A3ISP01>;
-> > > -			resets = <&cpg 613>;
-> > > +			resets = <&cpg 613>, <&cpg 17>;
-> > > +			reset-names = "cs", "core";
-> > >  			status = "disabled";
-> > >
-> > > +			renesas,vspx = <&vspx1>;
+> > > +	fwnode_for_each_named_child_node(fwnode, child, name)
+> > > +		count++;
 > > > +
-> > >  			ports {
-> > >  				#address-cells = <1>;
-> > >  				#size-cells = <0>;
-> > > @@ -2756,13 +2770,20 @@ isp1vin15: endpoint {
-> > >  		isp2: isp@fed30000 {
-> > >  			compatible = "renesas,r8a779a0-isp",
-> > >  				     "renesas,rcar-gen4-isp";
-> > > -			reg = <0 0xfed30000 0 0x10000>;
-> > > -			interrupts = <GIC_SPI 157 IRQ_TYPE_LEVEL_HIGH>;
-> > > -			clocks = <&cpg CPG_MOD 614>;
-> > > +			reg = <0 0xfed30000 0 0x10000>, <0 0xfef00000 0 0x100000>;
-> > > +			reg-names = "cs", "core";
-> > > +			interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>,
-> > > +				     <GIC_SPI 157 IRQ_TYPE_LEVEL_HIGH>;
-> > > +			interrupt-names = "cs", "core";
-> > > +			clocks = <&cpg CPG_MOD 614>, <&cpg CPG_MOD 18>;
-> > > +			clock-names = "cs", "core";
-> > >  			power-domains = <&sysc R8A779A0_PD_A3ISP23>;
-> > > -			resets = <&cpg 614>;
-> > > +			resets = <&cpg 614>, <&cpg 18>;
-> > > +			reset-names = "cs", "core";
-> > >  			status = "disabled";
-> > >
-> > > +			renesas,vspx = <&vspx2>;
+> > > +	return count;
+> > > +}
+> > > +EXPORT_SYMBOL_GPL(fwnode_get_named_child_node_count);
 > > > +
-> > >  			ports {
-> > >  				#address-cells = <1>;
-> > >  				#size-cells = <0>;
-> > > @@ -2840,13 +2861,20 @@ isp2vin23: endpoint {
-> > >  		isp3: isp@fed40000 {
-> > >  			compatible = "renesas,r8a779a0-isp",
-> > >  				     "renesas,rcar-gen4-isp";
-> > > -			reg = <0 0xfed40000 0 0x10000>;
-> > > -			interrupts = <GIC_SPI 159 IRQ_TYPE_LEVEL_HIGH>;
-> > > -			clocks = <&cpg CPG_MOD 615>;
-> > > +			reg = <0 0xfed40000 0 0x10000>, <0 0xfe400000 0 0x100000>;
-> > > +			reg-names = "cs", "core";
-> > > +			interrupts = <GIC_SPI 158 IRQ_TYPE_LEVEL_HIGH>,
-> > > +				     <GIC_SPI 159 IRQ_TYPE_LEVEL_HIGH>;
-> > > +			interrupt-names = "cs", "core";
-> > > +			clocks = <&cpg CPG_MOD 615>, <&cpg CPG_MOD 19>;
-> > > +			clock-names = "cs", "core";
-> > >  			power-domains = <&sysc R8A779A0_PD_A3ISP23>;
-> > > -			resets = <&cpg 615>;
-> > > +			resets = <&cpg 615>, <&cpg 19>;
-> > > +			reset-names = "cs", "core";
-> > >  			status = "disabled";
-> > >
-> > > +			renesas,vspx = <&vspx3>;
+> > >   bool device_dma_supported(const struct device *dev)
+> > >   {
+> > >   	return fwnode_call_bool_op(dev_fwnode(dev), device_dma_supported);
+> > > diff --git a/include/linux/property.h b/include/linux/property.h
+> > > index e214ecd241eb..a1856e6b714c 100644
+> > > --- a/include/linux/property.h
+> > > +++ b/include/linux/property.h
+> > > @@ -167,10 +167,18 @@ struct fwnode_handle *fwnode_get_next_available_child_node(
+> > >   	for (child = fwnode_get_next_child_node(fwnode, NULL); child;	\
+> > >   	     child = fwnode_get_next_child_node(fwnode, child))
+> > > +#define fwnode_for_each_named_child_node(fwnode, child, name)		\
+> > > +	fwnode_for_each_child_node(fwnode, child)			\
+> > > +		if (!fwnode_name_eq(child, name)) { } else
 > > > +
-> > >  			ports {
-> > >  				#address-cells = <1>;
-> > >  				#size-cells = <0>;
-> > > --
-> > > 2.48.1
-> > >
->
-> --
-> Kind Regards,
-> Niklas Söderlund
+> > >   #define fwnode_for_each_available_child_node(fwnode, child)		       \
+> > >   	for (child = fwnode_get_next_available_child_node(fwnode, NULL); child;\
+> > >   	     child = fwnode_get_next_available_child_node(fwnode, child))
+> > > +#define fwnode_for_each_available_named_child_node(fwnode, child, name)	\
+> > > +	fwnode_for_each_available_child_node(fwnode, child)		\
+> > > +		if (!fwnode_name_eq(child, name)) { } else
+> > > +
+> > 
+> > OF only enumerates available nodes via the fwnode API, software nodes don't
+> > have the concept but on ACPI I guess you could have a difference in nodes
+> > where you have device sub-nodes that aren't available. Still, these ACPI
+> > device nodes don't have meaningful names in this context (they're
+> > 4-character object names) so you wouldn't use them like this anyway.
+> 
+> I believe you have far better understanding on these concepts than I do. The
+> reason behind adding fwnode_for_each_available_child_node() was the patch
+> 10/10:
+> 
+> -	fwnode_for_each_available_child_node(sensors, node) {
+> -		if (fwnode_name_eq(node, "sensor")) {
+> -			if (!thp7312_sensor_parse_dt(thp7312, node))
+> -				num_sensors++;
+> -		}
+> +	fwnode_for_each_available_named_child_node(sensors, node, "sensor") {
+> +		if (!thp7312_sensor_parse_dt(thp7312, node))
+> +			num_sensors++;
+>  	}
+> 
+> 
+> > So my question is: is it useful to provide this besides
+> > fwnode_for_each_named_child_node(), given that both are effectively the
+> > same?
+> 
+> So, I suppose you're saying the existing thp7312 -driver has no real reason
+> to use the 'fwnode_for_each_available_child_node()', but it could be using
+> fwnode_for_each_child_node() instead?
+> 
+> If so, I am Ok with dropping the
+> 'fwnode_for_each_available_named_child_node()' and changing the 10/10 to:
+> 
+> -	fwnode_for_each_available_child_node(sensors, node) {
+> -		if (fwnode_name_eq(node, "sensor")) {
+> -			if (!thp7312_sensor_parse_dt(thp7312, node))
+> -				num_sensors++;
+> -		}
+> +	fwnode_for_each_named_child_node(sensors, node, "sensor") {
+> +		if (!thp7312_sensor_parse_dt(thp7312, node))
+> +			num_sensors++;
+>  	}
+> 
+> Do you think that'd be correct?
+
+I'd say so. Feel free to cc me to the last patch as well.
+
+I guess one way to make this clearer is to switch to
+fwnode_for_each_child_node() in a separate patch before
+fwnode_for_each_named_child_node() conversion.
+
+There are also just a handful of users of
+fwnode_for_each_available_child_node() and I guess these could be
+converted, too, but I think it's outside the scope of the set.
+
+-- 
+Terveisin,
+
+Sakari Ailus
 
