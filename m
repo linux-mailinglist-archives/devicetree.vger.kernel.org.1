@@ -1,110 +1,195 @@
-Return-Path: <devicetree+bounces-159000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7166A68F1D
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 15:31:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D835CA68F1F
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 15:31:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 259E516E457
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 14:28:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CCC92168877
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 14:28:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B68D1DE3A9;
-	Wed, 19 Mar 2025 14:26:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96CDE1C9EAA;
+	Wed, 19 Mar 2025 14:26:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PLElYh9m"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="efz+Tt1g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1100B1C9EAA;
-	Wed, 19 Mar 2025 14:26:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C65241C4A24;
+	Wed, 19 Mar 2025 14:26:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742394377; cv=none; b=Zdlqx8gX7GGztCBxOViFmTeAXmohIj6ctx3obPvoyM76+3/viyU07PqlIkwwQmAg6P+AXM4iWOX//iA+5f6/w1dTzsFovMmI7Qq8RFQWr52eiOEdveOdDQaiRoRS5SoeGDKk00FfSKqIP53hGguUMyZgFWLPMMzcfBeM17ligzg=
+	t=1742394393; cv=none; b=qfKkpE0q+Tpv8s+yCjwtuqSxdCAbQqQcMZEBS1DbowsZYeilUMZNqDFKFGDv4QpXc2GzCrsmyLR010+6u4xAhOfw2zHgx7tNCn9zetx3oHPVXI9uRxPueke3mxd5WoP3UXpZTT1/4j3t1+NpfoPJWbZ1Rnk4mR84cMlhx2KMcTs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742394377; c=relaxed/simple;
-	bh=85SNvPgvlH/GTxa9y+gugKmDHhXkflhLM6OsnTIZgQ8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=eTCDGKL49ugAUmY8SJC9quqGjhQyMDpWt3+8o4JYr3e6VG5jr4MXkkWkBsA2bs6VxrX7gHd/n/L5fyrzx4GqOEOxaBdhgGU8P+90Yot2S39J9n4uHAnoN1RJ0lsnfzIMQOPejdPKSyDEExYnXfW9du+Im6eOhWSKTWD9PQ0iWKI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PLElYh9m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 382EBC4CEEE;
-	Wed, 19 Mar 2025 14:26:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742394376;
-	bh=85SNvPgvlH/GTxa9y+gugKmDHhXkflhLM6OsnTIZgQ8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=PLElYh9mOKV/D6o5H/0LPmmCHC6+ydrcer3092ORziYL74imo3u2+YCr3HTZQqVVh
-	 cLObop0b7zviL15ZZ4qV25xMUGuspY4yfVMGI4pPXG0FmAPGtcdWswhRnLOQqI8MJQ
-	 dXcOOkLwNgCb6fxvYZxXteZa1RWMq9XmG9JSazG9zad4mat+/W0kF9StO6BZ1AqsAd
-	 s7NuAWpctvBRg8ueLSBj8adezLKhX19Xcme6Iwez65XDmZ+IS089BFjTRT74Ke+mnD
-	 WS7t+RNT3O2X9/AIjDxKyq5iRN47EAbLFio1kkNWiA8qMXIkKXlE2Qj6GFZ1EnWSSX
-	 ZeJwbezgLV5ww==
-From: Konrad Dybcio <konradybcio@kernel.org>
-Date: Wed, 19 Mar 2025 15:25:58 +0100
-Subject: [PATCH 2/2] of: address: Allow to specify nonposted-mmio
- per-device
+	s=arc-20240116; t=1742394393; c=relaxed/simple;
+	bh=gqIbmHGTxyn2V9i/Kxgri5B47Lpi74E4k0HqYJz/OeY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FiE0529/IKRBuZ1gu7IaTVCF3WfAqxPvURedq9KbIi12vFaOzB9uAiB3e7XSg5kl8uXyOnueO/TcL76uhgz/j2GJBxqNPUizek5twwO0gNel8PQgq3lzho0sdQNvOaBIwgt/repoFCv5pindptHWxIfJ7MS0nY8N0g0MBz4k61I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=efz+Tt1g; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8106955A;
+	Wed, 19 Mar 2025 15:24:47 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1742394287;
+	bh=gqIbmHGTxyn2V9i/Kxgri5B47Lpi74E4k0HqYJz/OeY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=efz+Tt1grAye5+YY+0smxa/BebtxWADrCEiazIUgjMwwNBUj62zPDXMd2dWJEaH09
+	 qI/FxAovpfJtdpyz+ZkfzeNkfbvssoA3ij6h4KJ+Q1pur82YqugFAC4mnaeDTxEKYU
+	 KmgS0YLRoC5DsJ145KLoPMwvhLUch8RqJwe+NvKM=
+Date: Wed, 19 Mar 2025 15:26:27 +0100
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Hans Verkuil <hverkuil@xs4all.nl>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 6/7] media: rcar-isp: Rename base register variable
+Message-ID: <2zbhcqgvh62yfc6fsogfmmy5gsqy5shhnogusqgzhdttf4wwxb@f5o67ktogeiu>
+References: <20250315152708.328036-1-niklas.soderlund+renesas@ragnatech.se>
+ <20250315152708.328036-7-niklas.soderlund+renesas@ragnatech.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250319-topic-nonposted_mmio-v1-2-dfb886fbd15f@oss.qualcomm.com>
-References: <20250319-topic-nonposted_mmio-v1-0-dfb886fbd15f@oss.qualcomm.com>
-In-Reply-To: <20250319-topic-nonposted_mmio-v1-0-dfb886fbd15f@oss.qualcomm.com>
-To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>
-Cc: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>, 
- Melody Olvera <quic_molvera@quicinc.com>, 
- Marijn Suijten <marijn.suijten@somainline.org>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1742394367; l=1142;
- i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
- bh=y0+qWRNj3lsLNFcFdTqYiv2iqNp+DnBmvGNXCkwjQPs=;
- b=q/IA7Pig2c6uLp+qOjzt6OBMjX2S94U8+3a2kv8zNQMo3xTgbUSF7umlrVJl/Sn1ujeveIsOv
- NZN2ymSUt9UCouX0w+8xgZFCpY4wPeVjj8M3pN3tT2Fpr0bt6RbOFz9
-X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250315152708.328036-7-niklas.soderlund+renesas@ragnatech.se>
 
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Hi Niklas
 
-Certain IP blocks may strictly require/expect a nE mapping to function
-correctly, while others may be fine without it (which is preferred for
-performance reasons).
+On Sat, Mar 15, 2025 at 04:27:07PM +0100, Niklas Söderlund wrote:
+> Prepare for extending the driver to in addition to support the channel
+> selector (CS) also support the core ISP. The two different functions
+> have different base addresses so the driver needs to distinguish between
+> them.
+>
+> Prepare for this by marking existing base address variable and
+> read/write functions to make it clear it operates on the CS portion of
+> the driver. There is no functional change.
+>
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 
-Allow specifying nonposted-mmio on a per-device basis.
+Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
----
- drivers/of/address.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+Thanks
+  j
 
-diff --git a/drivers/of/address.c b/drivers/of/address.c
-index 2041ea112ded70e11d3831b403901c36c8c29a93..f0f8f0dd191cfe05dfc29246da5fe665d5fb9c6e 100644
---- a/drivers/of/address.c
-+++ b/drivers/of/address.c
-@@ -1035,10 +1035,11 @@ EXPORT_SYMBOL_GPL(of_dma_is_coherent);
- static bool of_mmio_is_nonposted(const struct device_node *np)
- {
- 	struct device_node *parent __free(device_node) = of_get_parent(np);
--	if (!parent)
--		return false;
- 
--	return of_property_read_bool(parent, "nonposted-mmio");
-+	if (of_property_read_bool(np, "nonposted-mmio"))
-+		return true;
-+
-+	return parent && of_property_read_bool(parent, "nonposted-mmio");
- }
- 
- static int __of_address_to_resource(struct device_node *dev, int index, int bar_no,
-
--- 
-2.48.1
-
+> ---
+>  .../media/platform/renesas/rcar-isp/csisp.c   | 46 +++++++++----------
+>  1 file changed, 23 insertions(+), 23 deletions(-)
+>
+> diff --git a/drivers/media/platform/renesas/rcar-isp/csisp.c b/drivers/media/platform/renesas/rcar-isp/csisp.c
+> index c515278e3be5..a86d2a9a4915 100644
+> --- a/drivers/media/platform/renesas/rcar-isp/csisp.c
+> +++ b/drivers/media/platform/renesas/rcar-isp/csisp.c
+> @@ -111,7 +111,7 @@ enum rcar_isp_pads {
+>
+>  struct rcar_isp {
+>  	struct device *dev;
+> -	void __iomem *base;
+> +	void __iomem *csbase;
+>  	struct reset_control *rstc;
+>
+>  	enum rcar_isp_input csi_input;
+> @@ -137,14 +137,14 @@ static inline struct rcar_isp *notifier_to_isp(struct v4l2_async_notifier *n)
+>  	return container_of(n, struct rcar_isp, notifier);
+>  }
+>
+> -static void risp_write(struct rcar_isp *isp, u32 offset, u32 value)
+> +static void risp_write_cs(struct rcar_isp *isp, u32 offset, u32 value)
+>  {
+> -	iowrite32(value, isp->base + offset);
+> +	iowrite32(value, isp->csbase + offset);
+>  }
+>
+> -static u32 risp_read(struct rcar_isp *isp, u32 offset)
+> +static u32 risp_read_cs(struct rcar_isp *isp, u32 offset)
+>  {
+> -	return ioread32(isp->base + offset);
+> +	return ioread32(isp->csbase + offset);
+>  }
+>
+>  static int risp_power_on(struct rcar_isp *isp)
+> @@ -193,31 +193,31 @@ static int risp_start(struct rcar_isp *isp)
+>  	if (isp->csi_input == RISP_CSI_INPUT1)
+>  		sel_csi = ISPINPUTSEL0_SEL_CSI0;
+>
+> -	risp_write(isp, ISPINPUTSEL0_REG,
+> -		   risp_read(isp, ISPINPUTSEL0_REG) | sel_csi);
+> +	risp_write_cs(isp, ISPINPUTSEL0_REG,
+> +		      risp_read_cs(isp, ISPINPUTSEL0_REG) | sel_csi);
+>
+>  	/* Configure Channel Selector. */
+>  	for (vc = 0; vc < 4; vc++) {
+>  		u8 ch = vc + 4;
+>  		u8 dt = format->datatype;
+>
+> -		risp_write(isp, ISPCS_FILTER_ID_CH_REG(ch), BIT(vc));
+> -		risp_write(isp, ISPCS_DT_CODE03_CH_REG(ch),
+> -			   ISPCS_DT_CODE03_EN3 | ISPCS_DT_CODE03_DT3(dt) |
+> -			   ISPCS_DT_CODE03_EN2 | ISPCS_DT_CODE03_DT2(dt) |
+> -			   ISPCS_DT_CODE03_EN1 | ISPCS_DT_CODE03_DT1(dt) |
+> -			   ISPCS_DT_CODE03_EN0 | ISPCS_DT_CODE03_DT0(dt));
+> +		risp_write_cs(isp, ISPCS_FILTER_ID_CH_REG(ch), BIT(vc));
+> +		risp_write_cs(isp, ISPCS_DT_CODE03_CH_REG(ch),
+> +			      ISPCS_DT_CODE03_EN3 | ISPCS_DT_CODE03_DT3(dt) |
+> +			      ISPCS_DT_CODE03_EN2 | ISPCS_DT_CODE03_DT2(dt) |
+> +			      ISPCS_DT_CODE03_EN1 | ISPCS_DT_CODE03_DT1(dt) |
+> +			      ISPCS_DT_CODE03_EN0 | ISPCS_DT_CODE03_DT0(dt));
+>  	}
+>
+>  	/* Setup processing method. */
+> -	risp_write(isp, ISPPROCMODE_DT_REG(format->datatype),
+> -		   ISPPROCMODE_DT_PROC_MODE_VC3(format->procmode) |
+> -		   ISPPROCMODE_DT_PROC_MODE_VC2(format->procmode) |
+> -		   ISPPROCMODE_DT_PROC_MODE_VC1(format->procmode) |
+> -		   ISPPROCMODE_DT_PROC_MODE_VC0(format->procmode));
+> +	risp_write_cs(isp, ISPPROCMODE_DT_REG(format->datatype),
+> +		      ISPPROCMODE_DT_PROC_MODE_VC3(format->procmode) |
+> +		      ISPPROCMODE_DT_PROC_MODE_VC2(format->procmode) |
+> +		      ISPPROCMODE_DT_PROC_MODE_VC1(format->procmode) |
+> +		      ISPPROCMODE_DT_PROC_MODE_VC0(format->procmode));
+>
+>  	/* Start ISP. */
+> -	risp_write(isp, ISPSTART_REG, ISPSTART_START);
+> +	risp_write_cs(isp, ISPSTART_REG, ISPSTART_START);
+>
+>  	ret = v4l2_subdev_call(isp->remote, video, s_stream, 1);
+>  	if (ret)
+> @@ -231,7 +231,7 @@ static void risp_stop(struct rcar_isp *isp)
+>  	v4l2_subdev_call(isp->remote, video, s_stream, 0);
+>
+>  	/* Stop ISP. */
+> -	risp_write(isp, ISPSTART_REG, ISPSTART_STOP);
+> +	risp_write_cs(isp, ISPSTART_REG, ISPSTART_STOP);
+>
+>  	risp_power_off(isp);
+>  }
+> @@ -419,9 +419,9 @@ static const struct media_entity_operations risp_entity_ops = {
+>  static int risp_probe_resources(struct rcar_isp *isp,
+>  				struct platform_device *pdev)
+>  {
+> -	isp->base = devm_platform_get_and_ioremap_resource(pdev, 0, NULL);
+> -	if (IS_ERR(isp->base))
+> -		return PTR_ERR(isp->base);
+> +	isp->csbase = devm_platform_get_and_ioremap_resource(pdev, 0, NULL);
+> +	if (IS_ERR(isp->csbase))
+> +		return PTR_ERR(isp->csbase);
+>
+>  	isp->rstc = devm_reset_control_get(&pdev->dev, NULL);
+>
+> --
+> 2.48.1
+>
+>
 
