@@ -1,118 +1,165 @@
-Return-Path: <devicetree+bounces-158977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE4B1A68DD4
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 14:30:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C626A68DED
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 14:38:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F3C4E1893152
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 13:24:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B44E883BA1
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 13:37:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D70FC2561DC;
-	Wed, 19 Mar 2025 13:24:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 761CB2561B2;
+	Wed, 19 Mar 2025 13:38:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p/PLqva+"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="B0mWfGHL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD90A1F4E37;
-	Wed, 19 Mar 2025 13:24:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFD7C20CCE9;
+	Wed, 19 Mar 2025 13:38:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742390682; cv=none; b=CTQYuZxy9ShX/DODb9d6CvkWx2uN+Whs80h10e4SDF53mnaqn7BqNLTAzXXKnt3OqtIVd9wTnT6l17m2Hh1rH5EErV2il1zly9vnmDvIvG/AtXoeD6I2Bhn2tVrEEYCxjhDjzm1xNT3+R4S5IpISapiImDfJUwLrGD6M12eQ1fM=
+	t=1742391483; cv=none; b=bwmbbMC+KCz60lt9bdBuUGrnO8FJ8FO+0xjG60mT0OV79JP9VFWrTkqncHPl6EWpKtyLxOGUBZ4uhyr0vwv5BqRrBEZL/PaQQ1vzS6xmGEiyXojwRF4MZIwwJ8jjQHUMdT0JG7NqZgJJFY8HsNiopqeOX4eBVfbg+5eueHXLoyE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742390682; c=relaxed/simple;
-	bh=m7xjR6a+d4xg+jOdfMkVOMo+gvPvraPCBaz/1w2FBMo=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=i0pKRoCCOqXTC2Pz4sCdrxgCac2riS48mmYsRYQ122w8zg6oweGungBqd9Ldm7Ajc/IoDAjqUyKMHckZ0/I1/e3E6FxeiT5pTWzfg4cWAh34Vnvge2A3V0zk2ok2h3RqV0CEja8bkk8phvhldRRph86ZoeLO+N97Lgb9AGCjmX4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p/PLqva+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E042C4CEEA;
-	Wed, 19 Mar 2025 13:24:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742390680;
-	bh=m7xjR6a+d4xg+jOdfMkVOMo+gvPvraPCBaz/1w2FBMo=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=p/PLqva+tn4/EQ8Axv8lj8F23g7eZ/7KBBMFN9F66Baa9eaRV7dDK+S5xqQ/FJ/ZE
-	 DVmH97L5BRzxg+JT9D0jVZEe6ZOyS8j7iXn4RWD915V6DZ02IbXLdbFSzJfEv5qUor
-	 he3h9c01t6P5v8qcKWpfzYNE2xeDp8Km2gxAAVW9QYMH2OG9eBfvjJClmirPlzBNvd
-	 orLRQMm6MG3wA8IjBNGwYPbNzNpZL3M4B//xDw5jr5i+iLv59vRgaRSwv+ky9lutcs
-	 fh9GzRnIlFQBjuoZ7kWl3yHHWyGshuJi4nOu7RS86msXlzfBTspNHyMnM1sW+CIPAk
-	 zXYOubuOfOq9A==
-Date: Wed, 19 Mar 2025 08:24:39 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1742391483; c=relaxed/simple;
+	bh=KdwvDs/LJhlEGwHAfpsYj5Uf0iDrX2Am/u8k/2yb+2Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JLoIPSnlK116rJob/NoaVS8aVQvN45rcYDYR9WDucEDUFMWg1CoVNWlktw0ZWFdIYundXPWQGjUp3HUcVENQ6VV4KaoPPFEZzzatm0c7DL18V2Riz0rmZeCwCsHVM8IA4CUc4kUCVqx5dF0LJ7kqgYokcNBzJu6k5nSJfrm6UAQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=B0mWfGHL; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=6IFhAEM6QXSnnfEsfKnYA9AhAD6BenyTboqR3ogwdfI=; b=B0mWfGHLsRaufUhImXjS3PmpaS
+	in1Lkaq2WqPXk9zjBA42rkH2Aq9yvTihr8padx5LBRXKYeO9ath/zqi+OYx5bUFNoAduy5fkK8sHF
+	ILcbFybvEveDbj3pM5jqcXTXTDqBgT3nZ9Yuc8lkVrkEDXZH6xGfcU5osKJ7F5qlBzME=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tutcB-006Mtf-Ut; Wed, 19 Mar 2025 14:37:47 +0100
+Date: Wed, 19 Mar 2025 14:37:47 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>,
+	"Guilherme G. Piccoli" <gpiccoli@igalia.com>,
+	Felipe Balbi <balbi@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+	linux-hardening@vger.kernel.org, Devarsh Thakkar <devarsht@ti.com>,
+	Hari Nagalla <hnagalla@ti.com>, linux@ew.tq-group.com
+Subject: Re: [PATCH v2 5/5] arm64: dts: ti: Add TQ-Systems TQMa62xx SoM and
+ MBa62xx carrier board Device Trees
+Message-ID: <262ff436-2334-43bb-a998-ab48f06ea0e3@lunn.ch>
+References: <cover.1733737487.git.matthias.schiffer@ew.tq-group.com>
+ <95ff66ca2c89f69d893c2ce9eed9a0c677633c7b.1733737487.git.matthias.schiffer@ew.tq-group.com>
+ <a9c5cfda-e3e3-436a-8d05-b2f096157cfe@lunn.ch>
+ <c902a56cf34838f60cee67624bb923e91d74e9e0.camel@ew.tq-group.com>
+ <d25b1447-c28b-4998-b238-92672434dc28@lunn.ch>
+ <e16076d16349e929af82fa987a658bff1d9804c4.camel@ew.tq-group.com>
+ <a2a2f201-73a4-4a99-baef-0d593a88c872@lunn.ch>
+ <309052f3f69950fe43390505cc7254aee8c8f5c6.camel@ew.tq-group.com>
+ <2953e10c-0a57-4d49-b831-3864a07eefd5@lunn.ch>
+ <e6ee878f655c31473bca54e4187d9006a19158b1.camel@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Colin Foster <colin.foster@in-advantage.com>, 
- devicetree@vger.kernel.org, Felix Blix Everberg <felix.blix@prevas.dk>, 
- Lee Jones <lee@kernel.org>, linux-kernel@vger.kernel.org
-To: Rasmus Villemoes <ravi@prevas.dk>
-In-Reply-To: <20250319123058.452202-9-ravi@prevas.dk>
-References: <20250319123058.452202-1-ravi@prevas.dk>
- <20250319123058.452202-9-ravi@prevas.dk>
-Message-Id: <174239067901.1581865.12024894776786719202.robh@kernel.org>
-Subject: Re: [PATCH 8/8] dt-bindings: mfd: ocelot: mention MDIO management
- and add example
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e6ee878f655c31473bca54e4187d9006a19158b1.camel@ew.tq-group.com>
 
-
-On Wed, 19 Mar 2025 13:30:58 +0100, Rasmus Villemoes wrote:
-> The ocelot switches can also be strapped so that they can be
-> controlled via an MDIO bus (on either address 0 or 31). Mention that
-> and add an example.
+> Hi Andrew,
 > 
-> Signed-off-by: Rasmus Villemoes <ravi@prevas.dk>
-> ---
->  .../devicetree/bindings/mfd/mscc,ocelot.yaml  | 121 +++++++++++++++++-
->  1 file changed, 119 insertions(+), 2 deletions(-)
+> I've just thought about this issue again. As mentioned, a number of MAC
+> drivers(*) implement what is described here:
 > 
+> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/net/ethernet-controller.yaml?h=v6.13#n77
+> 
+> 
+> That is, the delay is either added by the PHY or the MAC; having a delay on the
+> PCB is simply not supported.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Yes it is, you are reading it wrong. First off, as said a number of
+times in the last couple of months, this description is from the
+perspective of the PHY. It is not the board perspective. So:
 
-yamllint warnings/errors:
+      # RX and TX delays are added by the MAC when required
+      - rgmii
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/mscc,ocelot.example.dtb: soc@0: ethernet-switch@71010000:ethernet-ports:port@a: 'phy-mode' is a required property
-	from schema $id: http://devicetree.org/schemas/mfd/mscc,ocelot.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/mscc,ocelot.example.dtb: soc@0: ethernet-switch@71010000:ethernet-ports:port@a: Unevaluated properties are not allowed ('phys' was unexpected)
-	from schema $id: http://devicetree.org/schemas/mfd/mscc,ocelot.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/mscc,ocelot.example.dtb: soc@0: ethernet-switch@71010000: Unevaluated properties are not allowed ('ethernet-ports' was unexpected)
-	from schema $id: http://devicetree.org/schemas/mfd/mscc,ocelot.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/mscc,ocelot.example.dtb: soc@0: ethernet-switch@71010000: Unevaluated properties are not allowed ('ethernet-ports' was unexpected)
-	from schema $id: http://devicetree.org/schemas/mfd/mscc,ocelot.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/mscc,ocelot.example.dtb: soc@0: 'serdes@710d0000' does not match any of the regexes: '^ethernet-switch@[0-9a-f]+$', '^gpio@[0-9a-f]+$', '^mdio@[0-9a-f]+$', '^pinctrl@[0-9a-f]+$', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/mfd/mscc,ocelot.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/mscc,ocelot.example.dtb: serdes@710d0000: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/phy/mscc,vsc7514-serdes.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/mscc,ocelot.example.dtb: ethernet-switch@71010000: ethernet-ports:port@a: 'phy-mode' is a required property
-	from schema $id: http://devicetree.org/schemas/net/mscc,vsc7514-switch.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/mscc,ocelot.example.dtb: ethernet-switch@71010000: ethernet-ports:port@a: Unevaluated properties are not allowed ('phys' was unexpected)
-	from schema $id: http://devicetree.org/schemas/net/mscc,vsc7514-switch.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/mscc,ocelot.example.dtb: ethernet-switch@71010000: Unevaluated properties are not allowed ('ethernet-ports' was unexpected)
-	from schema $id: http://devicetree.org/schemas/net/mscc,vsc7514-switch.yaml#
+From the perspective of the PHY, "when required" the MAC adds the
+delay. It might not be required, because the PCB adds the delay.
 
-doc reference errors (make refcheckdocs):
+      # RGMII with internal RX and TX delays provided by the PHY,
+      # the MAC should not add the RX or TX delays in this case
+      - rgmii-id
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250319123058.452202-9-ravi@prevas.dk
+The MAC should not add delays because the PHY does. But this implies
+the PCB cannot also be adding delays because you would end up with two
+sets of delays.
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+> Fixing MAC drivers to interpret the values without
+> "id" to mean that there is a delay on the PCB will break existing Device Trees,
+> so that's no good.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+You need to look at it broken driver by broken driver. I _think_ the
+Aspeed case can be fixed. Others we need to look at the details. Maybe
+in some cases we do need to add a warning to the device tree binding
+the driver is FUBAR and has special, broken meaning for 'rgmii'.
 
-pip3 install dtschema --upgrade
+> As a first step, I'd update the docs to describe the intended behavior, but
+> mention that some drivers implement it wrong.
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Feel free to submit patches. However, please think about it. DT is OS
+agnostic. DT describes the hardware, not configuration. Other OSes
+might decide on a different policy about which of the MAC/PHY pair
+implements the delay, since that is configuration, not a hardware
+description.
 
+> The question is how to deal with
+> the wrong behavior going forward. I see the following options, but none spark
+> joy for me...
+> 
+> - Keep current driver behavior forever where fixing it would break existing
+>   Device Trees
+> - Deprecate all existing "rgmii*" values because of their inconsistent
+>   implementation, come up with new ones. Seems like a huge pain to add support
+>   for in all MAC drivers and other code that deals with PHY modes...
+
+Won't help anyway. If developers are getting it wrong now, why should
+they suddenly start getting it right when all you are changing is the
+name.
+
+The real issue is that you can combine two bugs to get a working
+system. It seems like few developers actually understand RGMII
+delays. They don't spend time to understand it, they just try random
+things until it works. As a result, they get systems where the MAC is
+unknowingly adding delays, and 'rgmii' works, so job done. They don't
+know or care it is wrong.
+
+> - Introduce an additional DTS flag next to phy-mode to express that the
+>   phy-mode is supposed to be interpreted correctly
+
+If you are going to do add any sort of property, it should be a bool
+indicating the opposite, 'phy-mode-is-fubar'. Something which
+developers will think about before copying into their DT.
+
+> Do you have any suggestions?
+
+Add a checkpatch.pl check. Any patch which adds a phy-mode !=
+'rgmii-id' needs to have a comment on the previous line containing the
+word PCB. That should at least help stop more broken DT being added.
+
+	Andrew
 
