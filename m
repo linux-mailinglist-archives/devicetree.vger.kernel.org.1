@@ -1,148 +1,117 @@
-Return-Path: <devicetree+bounces-159052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69D77A695D5
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 18:07:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECBF8A69638
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 18:20:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 463237AFB7F
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 17:05:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F58519C2C18
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 17:20:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9890B1E8323;
-	Wed, 19 Mar 2025 17:06:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FD291E47AE;
+	Wed, 19 Mar 2025 17:19:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Kl1G++Nj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gwmk/3sC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE8CF1B4138;
-	Wed, 19 Mar 2025 17:06:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6774A1E0DE6;
+	Wed, 19 Mar 2025 17:19:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742403962; cv=none; b=tNcmigvwJ3XMqGqx0MQpUqO4uQVkLA9JZn7WHM1vEWoRL6GXiOjxNUeQliV4hNwqN7xMpIEL+TPc/uGEVJSYiqk4zkywIfTY5DNZZzntY7vnpXPGBwwP4nHs8Uwh1pqtOwSYQWIj0a7BsHvxslE8I1ppPzm9C0bqgVX40H1GXiE=
+	t=1742404798; cv=none; b=ksT125WKRGyZOl+Da9tUAP618o2E5PN2ld78fIfFP5Pv/zPqLk+dVMAVLN5hXFOV7s30LGHbktsdjaCuf3w6HJW0wu4o2mBBEL/vA9Z0pPbJgUh1ScMi+tmhl4tprUYCQsYZYeWxgXsfx9+scikKo1mgE78nJYEyyD0Dc4WYT9g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742403962; c=relaxed/simple;
-	bh=XNw9v104Cv6J/m0lCrnonH70/fqdUx+x7sY45hivCcY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kKyZ/4fSRCWviP74vJ2s1Rh7gfttz8E9v9UW2kB/RrVJNB4jVBHL7NZb6fv82Vnx2Bnk7AWOakpFwMAknPL0/AIVC81ca8fitwUGEQVYNpe0emqbTBAaoUjI9jakuTLImDslmV8zymIhrnThNLce3MVP3pIzaesICGgbKbUfCps=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Kl1G++Nj; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1742403961; x=1773939961;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=XNw9v104Cv6J/m0lCrnonH70/fqdUx+x7sY45hivCcY=;
-  b=Kl1G++NjXgiz4OWiI9rcC0il1YVz9wyoAF0R5XGTfM5NcSsL0fkCihDv
-   c9WY1qyvyPN04g8fI2Q0MNvgraFPQ49OUAc9Sw6ldDpIVUEUt+IXcEgXN
-   awLEAvTXw4zl1UY++BgiOS/NAwBy3muYmVGe4TQ3TucUWGTewfBXaQKry
-   EeMqemsWUkPqcJjHPtM6ybogTzCXo5LSVJywcz04NrbG1pqsKChBm7JvS
-   F7Q0ki3o8HWfwdRNA5GJsAFETQ539sXbsOfMEOh3FSgPDYaJmNI6wsd+v
-   oL+MfCpVaIIemqjD9jh1YuQg1wvWVlOQquU/3ahx+QZbcxveZjOAfhYpT
-   w==;
-X-CSE-ConnectionGUID: +gElJzHJTxW7Ftb1+f+1BA==
-X-CSE-MsgGUID: JyFaX8lBSpOYr4W8/z8W1Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11378"; a="68960324"
-X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; 
-   d="scan'208";a="68960324"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2025 10:06:00 -0700
-X-CSE-ConnectionGUID: ZPFUq9aRTv2NWoRz2V8MzQ==
-X-CSE-MsgGUID: GDCkSm1PS0++12vK7fhVkA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; 
-   d="scan'208";a="127403489"
-Received: from lkp-server02.sh.intel.com (HELO a4747d147074) ([10.239.97.151])
-  by fmviesa005.fm.intel.com with ESMTP; 19 Mar 2025 10:05:56 -0700
-Received: from kbuild by a4747d147074 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tuwra-000FYM-0E;
-	Wed, 19 Mar 2025 17:05:54 +0000
-Date: Thu, 20 Mar 2025 01:05:33 +0800
-From: kernel test robot <lkp@intel.com>
-To: Christian Marangi <ansuelsmth@gmail.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Daniel Golle <daniel@makrotopia.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, upstream@airoha.com
-Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org
-Subject: Re: [net-next PATCH 2/6] net: pcs: Implement OF support for PCS
- driver
-Message-ID: <202503200045.AFf6buBJ-lkp@intel.com>
-References: <20250318235850.6411-3-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1742404798; c=relaxed/simple;
+	bh=LrltH36LcKzUeNqpvSJ0cSNyUs04mlDZqxOw+sb1OXc=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=aOTqHv2VZrPI67AtOU42DlBSDuqFZAbGiX3ENwT6koJbRrHWhALVd3TJ+FbJBEY2T48IHl+WX2bodtE5g69ueh8uxNqQ+VlFv02WvnedXXoerIv3GVRpRgkFutINaWo7ZbSXGIS/wPCXwODtRPf+WqaehlorfhFWsGGqZlXIa0g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gwmk/3sC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD4E2C4CEE4;
+	Wed, 19 Mar 2025 17:19:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742404797;
+	bh=LrltH36LcKzUeNqpvSJ0cSNyUs04mlDZqxOw+sb1OXc=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=Gwmk/3sCXrryWVFn02KC6xjpk+pafHJkPHLPh/Zq5TEj0QR7BCneUeEc6Jc1jpNTN
+	 KEEHR+DrxNT/D6DS6N38wBO+yj8ywpgpl4I2meuluRDkKjBzrC+0Ls5xAymsYS7pAF
+	 PPdJ0EovZxtO61R9xfmGLHs5BmDaOfDQmn+CY+MQNE+w0enB0FHsICj2dIaf7gMdxC
+	 ujBr2jVJbYOk6d5oUF22g+7kxmDYXqMSwc3vmmFmc8Qi8N8tO5DqM3Y8GdAzY8SBx1
+	 MoI4Gjhad2t5bV1YP4VujVh7LGr+2BlRB4H4N9dnFMPA73Q1rbX/l3ecEiAqnc/quo
+	 j3pL/y6P8ntig==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id AE637380CFFE;
+	Wed, 19 Mar 2025 17:20:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250318235850.6411-3-ansuelsmth@gmail.com>
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v2 0/7] net: stmmac: deprecate
+ "snps,en-tx-lpi-clockgating" property
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <174240483352.1121844.16892728893562053636.git-patchwork-notify@kernel.org>
+Date: Wed, 19 Mar 2025 17:20:33 +0000
+References: <Z9FVHEf3uUqtKzyt@shell.armlinux.org.uk>
+In-Reply-To: <Z9FVHEf3uUqtKzyt@shell.armlinux.org.uk>
+To: Russell King (Oracle) <linux@armlinux.org.uk>
+Cc: andrew@lunn.ch, hkallweit1@gmail.com, aou@eecs.berkeley.edu,
+ alex@ghiti.fr, alexandre.torgue@foss.st.com, andrew+netdev@lunn.ch,
+ christophe.roullier@st.com, conor+dt@kernel.org, conor@kernel.org,
+ davem@davemloft.net, devicetree@vger.kernel.org, kernel@esmil.dk,
+ edumazet@google.com, peppe.cavallaro@st.com, kuba@kernel.org,
+ joabreu@synopsys.com, krzk+dt@kernel.org,
+ prabhakar.mahadev-lad.rj@bp.renesas.com,
+ linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com, mcoquelin.stm32@gmail.com,
+ minda.chen@starfivetech.com, netdev@vger.kernel.org, palmer@dabbelt.com,
+ pabeni@redhat.com, paul.walmsley@sifive.com, robh@kernel.org,
+ samin.guo@starfivetech.com
 
-Hi Christian,
+Hello:
 
-kernel test robot noticed the following build warnings:
+This series was applied to netdev/net-next.git (main)
+by Paolo Abeni <pabeni@redhat.com>:
 
-[auto build test WARNING on net-next/main]
+On Wed, 12 Mar 2025 09:34:20 +0000 you wrote:
+> On Sun, Mar 09, 2025 at 03:01:45PM +0000, Russell King (Oracle) wrote:
+> Hi,
+> 
+> This series deprecates the "snps,en-tx-lpi-clockgating" property for
+> stmmac.
+> 
+> MII Transmit clock gating, where the MAC hardware supports gating this
+> clock, is a function of the connected PHY capabilities, which it
+> reports through its status register.
+> 
+> [...]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Marangi/net-phylink-reset-PCS-Phylink-double-reference-on-phylink_stop/20250319-080303
-base:   net-next/main
-patch link:    https://lore.kernel.org/r/20250318235850.6411-3-ansuelsmth%40gmail.com
-patch subject: [net-next PATCH 2/6] net: pcs: Implement OF support for PCS driver
-config: i386-buildonly-randconfig-002-20250319 (https://download.01.org/0day-ci/archive/20250320/202503200045.AFf6buBJ-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250320/202503200045.AFf6buBJ-lkp@intel.com/reproduce)
+Here is the summary with links:
+  - [net-next,v2,1/7] net: stmmac: allow platforms to use PHY tx clock stop capability
+    https://git.kernel.org/netdev/net-next/c/0c1f1eb65425
+  - [net-next,v2,2/7] net: stmmac: starfive: use PHY capability for TX clock stop
+    https://git.kernel.org/netdev/net-next/c/5f250bd72a01
+  - [net-next,v2,3/7] net: stmmac: stm32: use PHY capability for TX clock stop
+    https://git.kernel.org/netdev/net-next/c/a5bc19e2abeb
+  - [net-next,v2,4/7] riscv: dts: starfive: remove "snps,en-tx-lpi-clockgating" property
+    https://git.kernel.org/netdev/net-next/c/637af286f9fc
+  - [net-next,v2,5/7] ARM: dts: stm32: remove "snps,en-tx-lpi-clockgating" property
+    https://git.kernel.org/netdev/net-next/c/50a84bbc7ec1
+  - [net-next,v2,6/7] dt-bindings: deprecate "snps,en-tx-lpi-clockgating" property
+    https://git.kernel.org/netdev/net-next/c/a62b7901d3a9
+  - [net-next,v2,7/7] net: stmmac: deprecate "snps,en-tx-lpi-clockgating" property
+    https://git.kernel.org/netdev/net-next/c/cf0a96de397e
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202503200045.AFf6buBJ-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/net/phy/phylink.c:989: warning: Function parameter or struct member 'pcs' not described in 'phylink_pcs_release'
->> drivers/net/phy/phylink.c:989: warning: Excess function parameter 'pl' description in 'phylink_pcs_release'
-
-
-vim +989 drivers/net/phy/phylink.c
-
-   978	
-   979	/**
-   980	 * phylink_pcs_release() - release a PCS
-   981	 * @pl: a pointer to &struct phylink_pcs
-   982	 *
-   983	 * PCS provider can use this to release a PCS from a phylink
-   984	 * instance by stopping the attached netdev. This is only done
-   985	 * if the PCS is actually attached to a phylink, otherwise is
-   986	 * ignored.
-   987	 */
-   988	void phylink_pcs_release(struct phylink_pcs *pcs)
- > 989	{
-   990		struct phylink *pl = pcs->phylink;
-   991	
-   992		if (pl) {
-   993			rtnl_lock();
-   994			dev_close(pl->netdev);
-   995			rtnl_unlock();
-   996		}
-   997	}
-   998	EXPORT_SYMBOL_GPL(phylink_pcs_release);
-   999	
-
+You are awesome, thank you!
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
 
