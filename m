@@ -1,131 +1,128 @@
-Return-Path: <devicetree+bounces-158836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158837-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47EA2A6842D
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 05:21:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59D48A68430
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 05:23:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 072B73B377F
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 04:21:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7330419C5CA1
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 04:23:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68B24BA3D;
-	Wed, 19 Mar 2025 04:21:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6FA524EA9A;
+	Wed, 19 Mar 2025 04:23:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QOJjiWmZ"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="mJo82rVj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1F6121171D;
-	Wed, 19 Mar 2025 04:21:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1858B24E4CB
+	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 04:23:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742358096; cv=none; b=AgQ6Py7WnXYuK1Oj/iFro7pApPEQ5tmfa1MCBgGoVFad8Ba3pvL9ldCViXhItY54l18s0vo+aqClIEURo+A9r+trEHx4aG3jcUjx9kUokudvhxH5sldEFkZeaYHBZWSiULv+00Ugp4wTadgRR2b2wQAhqzKkMeOgrczVrve+SOo=
+	t=1742358222; cv=none; b=H+Op7YC2Uf1IVFNcqBfzZobGeoHk8hi/TaYfHQ4YXsRjCa+ew3ugnfSHWaK13ljE/T6U+X4vHX1puYyriaTKKqJJcW96w2CBXeoKWe0JmPpfw9bXew9aStS6FT54XTlmUAy42doYD0OZBgbmGC1Ot8xkg2wUNDPa0krms29qn3A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742358096; c=relaxed/simple;
-	bh=u2x6v/DP21cUah7VXxUMi9AAXBCEvcnqV1Q9CsavI2U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=A3Rh+cPXg0KAtSRdDTqeT6fHDjCo8GfOHVtzP0KdY8qmHTaG60ZKq9X9I0avOMH0lYiOEf4AC5WPDH+PJchKmAZUx/A9VQ8P8C/2tOuPZpCmS2NvgaGHNEiepA1c+Qwbr+5UIf9gYR2xdZdcd8k8kwbVqHgW3rOMIAtREnVUbZ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QOJjiWmZ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52IKHfUg019837;
-	Wed, 19 Mar 2025 04:21:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	h+xx1UQ986lY6Wq5HXulZbAulIHQ1wIw3+F0N5/Vfyw=; b=QOJjiWmZ2onxYOFB
-	4YKycnTfOFg8dtVPY/seEprwGaK/cptxQYJdapSW6bz/Hqj/z2udRY6Pd6qFQfpG
-	fso8yMTD5k7VkMNcEqACOlM94pRP6aba2yvxrF8O+Bi10Vbr6U+usXE28xMLTJLN
-	P1HPkqwu2+AGnbfoGxS1SmdOE8p2bLYMsvRlca31LE/zOln1TrVeIJQvq8PrdT0D
-	GTZa0vKapBpvigy7ncP03urOFBFT6qLhrHpjJr0LzcqyONxDCWnyaZPBsqSg9UtD
-	CAcDwXefM+R8ab8mIu1aG+V25Rh9VEHsi2OYETBPi8IdVt7TXmKvTrhwh9J2GIK1
-	sOhZmg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45exxbkyhy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 19 Mar 2025 04:21:31 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52J4LVmY032151
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 19 Mar 2025 04:21:31 GMT
-Received: from [10.231.216.225] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 18 Mar
- 2025 21:21:27 -0700
-Message-ID: <f01f371e-730b-4845-830c-68eb2acd6809@quicinc.com>
-Date: Wed, 19 Mar 2025 12:21:25 +0800
+	s=arc-20240116; t=1742358222; c=relaxed/simple;
+	bh=ZHdCrIsEL5OVf2w/YxYL8NAe1VQ5Y52O/K8Ihuhxl1k=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EpxKqZ61AwVqDGN6wxC476BArvqwDb2LhGFw4NBh5pD3btkb+zrULdBeGDERCadKsOFwu0e7EIBrCL+j8reCf/PdfBIebTVbMgOYVqQYzxN5zrmVyB4ahZ2sNqEi05YDgD6sl/PV0TL5G9iaq/uR7FmEWLVn8bc0reo8B8Q94Ig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=mJo82rVj; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-30795988ebeso65007911fa.3
+        for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 21:23:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1742358219; x=1742963019; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bZnm8PUwSbbaRIS2I4Y7DkEdXZ5o/1IW7fPXlQxrNvg=;
+        b=mJo82rVjfoEp6Ziay8gZyw1RJ9W0VafSlooDZt7aVNku1C/GyiQw6mTgJgXdv9YYWu
+         65bzesR3PK0bzy3AL+fELTlpRwVYSYZXss2Rcc1qmXxw3o3XguSn3g2JbmiO4GIim+A9
+         tSxFys9to48DhXKNxlncYy54KUsm50wrZFI5Y=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742358219; x=1742963019;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bZnm8PUwSbbaRIS2I4Y7DkEdXZ5o/1IW7fPXlQxrNvg=;
+        b=UGUMgAMSQuDQ7H1og8m8jNASBDgs8KLs+SuJ7MoMB/MySl8XahJ8JOuGenn6Fq8Y/5
+         +tGh8OMG0uXYyxCYfrZGnmBO7o3l90p5x3uXHCF1pLiGEyIOSyhvfZqaqrC+5/pJFpm/
+         CfkscHVTx0CUknRazuOwvElJwUwyiipnuUx4AF8+Ues+oL0K7OI5mWkXCzHWn1n/Qmw8
+         +X5uBYhJSfS+l8TRod7tTjQjZvLoPHM20eGQC5NLOk0ZL5oM/FFsvmBMA/wre9QHx9UO
+         Z/4NQZLqiYYazg27iuJ5OTubE1kLE4JckzlQt0ul0F2yx8IX6ydGAbmRYezrKg2i9wgi
+         XRrg==
+X-Forwarded-Encrypted: i=1; AJvYcCXEkPeon1ROiZX9QMhSz7VXbEmVd8+sCjQP4BMdPjCquvlFAwXLw8ZffO+CtNoz1Yx0521t2MEpWSjJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwCDA0G7BjCJ1n3wvKHhGItsRkYW/3N+HnBo9i52UpxeioRTFQE
+	DpNNSGNzG83E9IuKA8+yd7akojSeHfFpQ2tQHil9L3KCuZQyUkvFCZBn9+3FhU/RPUz58Ek1m2X
+	g/itJVOF9HXLjpp7Q9xrCrXW3Ijdb0QRU0H9H
+X-Gm-Gg: ASbGnctawvTZUJ2bhZIEdLkL588GZ4DtPnxzpqTjq9cyk/kRMYHUOHBBtvoF1p8kNt1
+	4PMJzjSA7VQakup7NqMU/Z2i6IPE/e/GTSLXJ8igOyQ2QY99LaBS27H7FeF8DV7DYd6PhU0nO6S
+	PlrtDM7Qf32XwaQmCJhfs6jg1CLj7FdnQctzezv/ox4ICGcX0f7HqNGA==
+X-Google-Smtp-Source: AGHT+IFHjBg03r/3RVZ9aaB5Mk4M+GMF/ZItUsDYbR7cSHqYL8Hm2MnfjLcQTNBGrm46WGoX9JDBGpNCtwc078vB7uE=
+X-Received: by 2002:a05:6512:2507:b0:549:3b4f:4b39 with SMTP id
+ 2adb3069b0e04-54acb195bd5mr361603e87.10.1742358219093; Tue, 18 Mar 2025
+ 21:23:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: qcs8300-ride: enable WLAN on
- qcs8300-ride
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_miaoqing@quicinc.com>,
-        <quic_zhichen@quicinc.com>, <quic_yuzha@quicinc.com>
-References: <20250318093350.2682132-1-quic_stonez@quicinc.com>
- <20250318093350.2682132-3-quic_stonez@quicinc.com>
- <64ccc09d-7e1e-4c20-90e9-43b36a9cc46b@oss.qualcomm.com>
-Content-Language: en-US
-From: Stone Zhang <quic_stonez@quicinc.com>
-In-Reply-To: <64ccc09d-7e1e-4c20-90e9-43b36a9cc46b@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=QN1oRhLL c=1 sm=1 tr=0 ts=67da464b cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=qC_FGOx9AAAA:8 a=COk6AnOGAAAA:8 a=QgKzW8hEQoSECZXTZl0A:9
- a=QEXdDO2ut3YA:10 a=fsdK_YakeE02zTmptMdW:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: 66vjas2RYRrbngMf_L5rH1KUHyPkZeRQ
-X-Proofpoint-GUID: 66vjas2RYRrbngMf_L5rH1KUHyPkZeRQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-19_01,2025-03-17_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1015
- phishscore=0 spamscore=0 impostorscore=0 suspectscore=0 mlxlogscore=999
- priorityscore=1501 lowpriorityscore=0 malwarescore=0 adultscore=0
- bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503190027
+References: <20250318102259.189289-1-laura.nao@collabora.com> <20250318102259.189289-2-laura.nao@collabora.com>
+In-Reply-To: <20250318102259.189289-2-laura.nao@collabora.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Wed, 19 Mar 2025 12:23:27 +0800
+X-Gm-Features: AQ5f1Jos7SspTJtPnVw7V5hzjUHHfb4ilgg6YTkdTM2SmwYmpJB2tPacgIw_Nsk
+Message-ID: <CAGXv+5HZBS-L=BSPcy+QJAwJE--wB1AvG-xnxu+sf1FttYtV=g@mail.gmail.com>
+Subject: Re: [PATCH 1/2] platform/chrome: Add support for Google Spherion in
+ HW prober
+To: Laura Nao <laura.nao@collabora.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
+	bleung@chromium.org, tzungbi@kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, chrome-platform@lists.linux.dev, 
+	nfraprado@collabora.com, kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Mar 18, 2025 at 6:28=E2=80=AFPM Laura Nao <laura.nao@collabora.com>=
+ wrote:
+>
+> Add a new compatible entry for "google,spherion" to the hardware prober
+> platform list, using the same I2C component prober and trackpad data as
+> "google,hana".
+>
+> Signed-off-by: Laura Nao <laura.nao@collabora.com>
 
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
 
-On 3/18/2025 11:54 PM, Konrad Dybcio wrote:
-> On 3/18/25 10:33 AM, Stone Zhang wrote:
->> Enable WLAN on qcs8300-ride by adding a node for the PMU module
->> of the WCN6855 and assigning its LDO power outputs to the existing
->> WiFi module.
->>
->> Signed-off-by: Stone Zhang <quic_stonez@quicinc.com>
->> ---
-> 
-> This change looks good generally, but please align the various stylistic
-> things, like property order in the nodes you add with x1e80100-crd.dtsi
-> 
-> I also see that board-2.bin doesn't contain the variant string you've
-> suggested ([1] @ commit 646e008ec53a8bb9ae16ebf98a65b29eaefd6da4)
-for qcs8300-ride platform, WLAN uses borad-2.bin from link:
-https://git.codelinaro.org/clo/ath-firmware/ath11k-firmware/-/blob/main/QCA6698AQ/hw2.1/board-2.bin?ref_type=heads
-
-> 
-> Konrad
-> 
-> [1] https://git.codelinaro.org/clo/ath-firmware/ath11k-firmware/-/blob/main/WCN6855/hw2.0/board-2.bin?ref_type=heads
-
+> ---
+>  drivers/platform/chrome/chromeos_of_hw_prober.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+>
+> diff --git a/drivers/platform/chrome/chromeos_of_hw_prober.c b/drivers/pl=
+atform/chrome/chromeos_of_hw_prober.c
+> index c6992f5cdc76..019578bc7ad0 100644
+> --- a/drivers/platform/chrome/chromeos_of_hw_prober.c
+> +++ b/drivers/platform/chrome/chromeos_of_hw_prober.c
+> @@ -84,6 +84,10 @@ static const struct hw_prober_entry hw_prober_platform=
+s[] =3D {
+>                 .compatible =3D "google,hana",
+>                 .prober =3D chromeos_i2c_component_prober,
+>                 .data =3D &chromeos_i2c_probe_hana_trackpad,
+> +       }, {
+> +               .compatible =3D "google,spherion",
+> +               .prober =3D chromeos_i2c_component_prober,
+> +               .data =3D &chromeos_i2c_probe_hana_trackpad,
+>         },
+>  };
+>
+> --
+> 2.39.5
+>
+>
 
