@@ -1,57 +1,67 @@
-Return-Path: <devicetree+bounces-158926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A3C8A68922
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 11:11:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 082ADA6892D
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 11:13:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 434007AA980
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 10:10:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 170E73B482C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 10:12:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 187C52505A8;
-	Wed, 19 Mar 2025 10:11:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C04C252901;
+	Wed, 19 Mar 2025 10:12:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="esiuPKIB"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="mDtW64AW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFEB21F4CBE;
-	Wed, 19 Mar 2025 10:11:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF86625334A;
+	Wed, 19 Mar 2025 10:12:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742379067; cv=none; b=FBJv3TwFdoY4F30B1gCjC2Wqbv+s+YmsVEJm4FnrWcwIxjTCdadFr9wL00n2G95nVI5/Z97F47zCt/pWK2jFMkUPboB2p1OYQkDSDVE4PCcHiwQZ7urdDPRuUBKO5w9jHDuS/HF7DsdGfWC8SsmYtyz2gsjmMXom4y3qIFGeE5c=
+	t=1742379167; cv=none; b=Szct4eyQtLuf2bps7lFbiGr/kAMGH8gqsDP6+6KC7Lo5TDfRVK0EYsOMrcXDlwKCBlk8Nfp5THFIVs3d0kcbKNZtpkn6Dk4c1tfJgvf12eC4flabgSAgVbCdStWN4FMbEP9DdCJp9JO0sSaoWB07AFUKMMgIB+Kg2JuXOEfp33c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742379067; c=relaxed/simple;
-	bh=J7lDusEhyFVBUCt0DbwGwbatIfq4oeD6ugpSusq1F8g=;
+	s=arc-20240116; t=1742379167; c=relaxed/simple;
+	bh=AOQimFM4gJpZ42Ie2Z7N8zos6d6J3ZIO5Gx+iwOxWrw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o7hlJASmiY/6qB4QG7inV7+88jsWbL9av1bcPtTh/FlLfskhdFmqS/qD18sIZBbrXn8bgcgFXS0NkEDq8RxLkVVE55JwSdDn01Z6jYZm7DCMv6QROevlcc+ryGXcXnZFqD82TyWDIuUSMgqpxVQciuvXBqWTqraCmxzwhZzQI1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=esiuPKIB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DAF3C4CEEA;
-	Wed, 19 Mar 2025 10:11:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742379066;
-	bh=J7lDusEhyFVBUCt0DbwGwbatIfq4oeD6ugpSusq1F8g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=esiuPKIBZFnKnARch6KmA/f5BHQpFlcJZO81OkNXMYhskDfeX2gvmEdb50Svuyuqn
-	 foE47+ekxsHmiSK4XO8WAMVDA3INIgjDA3qw9VfqIWorq38vuvCW7mTgXHF/xXt6Jk
-	 62t1/7fDP/13jK8bGD674Pp825JDWTZMDDaroAXLuqw5DVAH6yjuihTFKVSLTUd2oR
-	 CioKCtTEGfpw/o4cTEwkbVJiqXPTYrScGz2Fg302Z3DWMDsRvibdY1lJgSUcRn1iE0
-	 V5dxJS2NX8hmvTbxT6/D4ZEI2JFuQA0QR9GhwvEPBx2mbFqdmlGBgZkDmLqTsX59d7
-	 DAdSMHLmcyVew==
-Date: Wed, 19 Mar 2025 11:11:01 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Jayesh Choudhary <j-choudhary@ti.com>
-Cc: vigneshr@ti.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux-kernel@vger.kernel.org, aaro.koskinen@iki.fi, 
-	andreas@kemnade.info, khilman@baylibre.com, rogerq@kernel.org, tony@atomide.com, 
-	jmkrzyszt@gmail.com, linux-omap@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/2] Add support for setting MUX for I2C lines
-Message-ID: <2tadkkxph5o7wuj5fzd37q4wnv6jgjgvaqgnanpiy3mgt6wasf@vgvpu5fkvpdc>
-References: <20250318103622.29979-1-j-choudhary@ti.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=mQc1i8oG7gMaapH6wiNZB3fy6cldxiuQfgxTZ+h0bnbWhehMPsv98D2vyc8xdv7voFTrf9hloP1ArkITupwEvRfTGYTxOyvl4xqNRpmilWGBAvq/dSMGPU7bO2oVs4tJllwz/VXv7d5ZjGWBEe2nxpo2qBEU5qWoFNY9mGm1kUA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=mDtW64AW; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (31-10-206-125.static.upc.ch [31.10.206.125])
+	by mail11.truemail.it (Postfix) with ESMTPA id 534821FB55;
+	Wed, 19 Mar 2025 11:12:33 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1742379154;
+	bh=je0ja3Jbbdo9i8hgQIkz3VZNqrQjX74LnXvU4ZmFaFk=; h=From:To:Subject;
+	b=mDtW64AWkCAVnx7VshfU8wEZw5hqFFMwzuoGBJz2AXRejf9NEPKlgk1fLAW8IGUtx
+	 evCeknxkmdsG9xjvYjZI+XdVO2RDAb2qrZquZpGZ9iSo8Dnwm66v9l9UrL/YeOCqVc
+	 mrqtvjKfdUDl2RaWQEPfkBJp6mGHyrJw8k/DBxGoUFnd0p4lzx2kt/Wk1OUjugfVii
+	 ijrFNCixFo9ESesvf8HsAQPxFexq4bybU/5wWpe6xxgeHpnDsF20D7Nn9gjqx5gkq9
+	 SVyS9Di6eQzFiIish/OEx0qG94R99jKr20LYvlZcYQUrYNXh1JCGABSF63TkLTKgCH
+	 wltYbqI5D6I8A==
+Date: Wed, 19 Mar 2025 11:12:28 +0100
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Rob Herring <robh@kernel.org>,
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	Guenter Roeck <linux@roeck-us.net>
+Cc: Jean Delvare <jdelvare@suse.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Farouk Bouabid <farouk.bouabid@cherry.de>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Francesco Dolcini <francesco@dolcini.it>
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: amc6821: add PWM polarity
+Message-ID: <20250319101228.GA17979@francesco-nb>
+References: <20250224180801.128685-1-francesco@dolcini.it>
+ <20250224180801.128685-2-francesco@dolcini.it>
+ <20250226134922.GA1944823-robh@kernel.org>
+ <20250226135806.GA47264@francesco-nb>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,16 +70,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250318103622.29979-1-j-choudhary@ti.com>
+In-Reply-To: <20250226135806.GA47264@francesco-nb>
 
-Hi Jayesh,
+Hello Rob and all,
 
-> Jayesh Choudhary (2):
->   dt-bindings: i2c: omap: Add mux-states property
->   i2c: omap: Add support for setting mux
+On Wed, Feb 26, 2025 at 02:58:06PM +0100, Francesco Dolcini wrote:
+> On Wed, Feb 26, 2025 at 07:49:22AM -0600, Rob Herring wrote:
+> > On Mon, Feb 24, 2025 at 07:08:00PM +0100, Francesco Dolcini wrote:
+> > > From: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > > 
+> > > Add property to describe the PWM-Out pin polarity.
+> > 
+> > Why doesn't the invert support in the pwm binding work for you? Yes, I 
+> > read the discussion, but don't remember the conclusion and you need to 
+> > justify it here.
+> 
+> This chip is not a PWM controller, it is a FAN controller.
+> 
+> The HW has a PWM pin output that is used to control the fan, but the
+> device is not modelled as a PWM controller (correctly, given that is not
+> such a device) and the OS does not control the PWM, the chip reads the
+> temperature and decide the PWM duty cycle accordingly in an autonomous
+> way.
 
-merged to i2c/i2c-host.
+Can you advise on how to move this forward? Is my explanation good
+enough or some more clarification is needed? Should I send a v3
+incorporating such a comment into the commit message? Anything else?
 
 Thanks,
-Andi
+Francesco
+
 
