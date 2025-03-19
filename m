@@ -1,83 +1,129 @@
-Return-Path: <devicetree+bounces-158890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19537A6876D
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 10:06:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40E9DA68786
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 10:10:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A2FA421C26
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 09:06:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 95DA917E841
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 09:10:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 177AA2528E7;
-	Wed, 19 Mar 2025 09:05:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A3022512FC;
+	Wed, 19 Mar 2025 09:10:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LMkSEzLK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H+++vtEm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E326C2517AE;
-	Wed, 19 Mar 2025 09:05:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C62552116ED;
+	Wed, 19 Mar 2025 09:10:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742375150; cv=none; b=XQQb4dHAzbntQr6Mp4Z/NsmeH9KKOTfxK6lXxfdtHqJcffOTb+4kp3/ggo8Wwjdi0bQlFUWGF6DlGZWqi7Ac5078JUUUm6z4OGEgo2kTyxQ+oE8DMIuNaZqftY5i2ZjEvuwtWnNtvgXTt7bbS1pC5FukBlhKZsA9OIVuTFB+iCc=
+	t=1742375435; cv=none; b=CnKLUeq8T33m9+HhKeiTKA3O5BSEMinucTwGDrAAWAZtsQEYyJxZs4LI/eM3RcfL3n1eSG6TlunIam/XhtpG4lucJHO9hV7Ffnt5/NPm+f03MNNEhG9WwbxslF/jwLPvFSZSugrvbhM7nEpFbxGS5hnPiaX9YaDfzbvdThcAjGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742375150; c=relaxed/simple;
-	bh=kCICy4CCtytIDn9KKZBypA5lHyaF55VxprlRT8A13I0=;
+	s=arc-20240116; t=1742375435; c=relaxed/simple;
+	bh=5A4dbLDyV/nTRWUH8Ca3qmdXR5GKU+r9taWr3MHSIYY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IvuYiQqkiVHQ8WjX/Fq5Kiw6IrC/hAM7L5zRzxAPZ62KVhKPFmJ27b5a4UE8A4YBCtx2rfwSNxGAHqSOL0wlsk+rvB4hajnWYnpuFdRiWX5N5p/VDszk1aU6s6vanrevbH5lTL4Xmcoy4CYLJp0IdWmD4cKA2IlCYvqHBGuD5+0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LMkSEzLK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E64A2C4CEEA;
-	Wed, 19 Mar 2025 09:05:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZmCFa5hLkJPB4gxjuhgv2WJoAlExNJ/HM/tVpYA+bfQywrrRxIdC7kxBj1aG2UV0fZ3ezbwqR4dIH5sawjpE3pIDNA6i3gKRpeIT6GojqCJnvVyYE1JzN/9XPkCXhzjJbpb94T00S8/7ZeRfHJY9Xs3E7SZD+HEy0hdfmIgEI1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H+++vtEm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7A2FC4CEE9;
+	Wed, 19 Mar 2025 09:10:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742375149;
-	bh=kCICy4CCtytIDn9KKZBypA5lHyaF55VxprlRT8A13I0=;
+	s=k20201202; t=1742375435;
+	bh=5A4dbLDyV/nTRWUH8Ca3qmdXR5GKU+r9taWr3MHSIYY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LMkSEzLK0AE8oSZ1o5yHkxSyMJ57JbG2luY5yXtjiB/W8pxCZwgypEK/M+nMZYaBg
-	 PpVzybMdlIqWiRxUvOsNEI3QryysH6j/yiwQ5n+9MfEZVX2wx53p4w41TFjj68aL5H
-	 4qgG5nKR5hmh+4Xj2ydZHc14ZEYgmyxOxBFQPGFKH+iaR1BLKtgrSQmchEEuv0g6mK
-	 i3ilnLTyDB8s4Vl2xw9tTEC6jI+1JdJn0kleMs7a/oOx0JMeCQ7EhGjtorhOzZzaPl
-	 tK2EEcnN3S47XljsuEZB2mnwPgAQ9Fr+w7PVdkZ0NZzZ2YhdMYx/SDJNUI2aM0GMQx
-	 2shse4TaUepBw==
-Date: Wed, 19 Mar 2025 10:05:46 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Antonin Godard <antonin.godard@bootlin.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	Sam Ravnborg <sam@ravnborg.org>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: display: simple: Add NLT
- NL13676BC25-03F panel
-Message-ID: <20250319-monumental-real-ibex-65d7ed@krzk-bin>
-References: <20250318-b4-add-nlt-nl13676bc25-03f-v1-0-67e0f8cf2e6f@bootlin.com>
- <20250318-b4-add-nlt-nl13676bc25-03f-v1-1-67e0f8cf2e6f@bootlin.com>
+	b=H+++vtEmBuPYGgUbdW1qWKiJKlcvRuuuD/MQozqvIyAvUKwV5jumG/klNi86i/nwH
+	 GJQ8JYEG0P+fIVPC98fYuGmx3tcujYxE6a2FZZLOvP8zvh616R6MSF0ys2Dr2LGgB8
+	 qQDOnu8VX4DtkRfvWNqk1lXCrqIlwI1fxVeh5YGYn93L8lpVEFoGPghSgESrwC26bF
+	 K2LjNkO7WhTSgjB20TF1/bkAhsyCz6mAqSnKwbqHte0tVca/lDG8AJ2tDxWvNfGEFl
+	 7QXIcGKAUWMeJtkQRWO++bqrwcCfe6HrgLCXo4ipxFsic2cCfWXHjOnySOF+isDfNz
+	 UqspsmHjd/U2w==
+Date: Wed, 19 Mar 2025 10:10:26 +0100
+From: Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>, 
+	Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>, andersson@kernel.org, mturquette@baylibre.com, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org, 
+	catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de, 
+	richardcochran@gmail.com, geert+renesas@glider.be, lumag@kernel.org, heiko@sntech.de, 
+	biju.das.jz@bp.renesas.com, quic_tdas@quicinc.com, nfraprado@collabora.com, 
+	elinor.montmasson@savoirfairelinux.com, ross.burton@arm.com, javier.carrasco@wolfvision.net, 
+	ebiggers@google.com, quic_anusha@quicinc.com, linux-arm-msm@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org, quic_varada@quicinc.com, 
+	quic_srichara@quicinc.com
+Subject: Re: [PATCH v12 4/6] clk: qcom: Add NSS clock Controller driver for
+ IPQ9574
+Message-ID: <qf36kofpouii3m5bdihy5fizmsnnd7pzxltuhorynql57ivvey@uxplo7joejsd>
+References: <20250313110359.242491-1-quic_mmanikan@quicinc.com>
+ <20250313110359.242491-5-quic_mmanikan@quicinc.com>
+ <65gl7d6qd55xrdm3as3pnqevpmakin3k4jzyocehq7wq7565jj@x35t2inlykop>
+ <ef86ccad056bc03af7f01d5696787766.sboyd@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20250318-b4-add-nlt-nl13676bc25-03f-v1-1-67e0f8cf2e6f@bootlin.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ef86ccad056bc03af7f01d5696787766.sboyd@kernel.org>
 
-On Tue, Mar 18, 2025 at 08:58:28AM +0100, Antonin Godard wrote:
-> Add NLT NL13676BC25-03F 15.6" LCD-TFT LVDS panel compatible string.
+On Tue, Mar 18, 2025 at 03:50:31PM -0700, Stephen Boyd wrote:
+> Quoting Marek Behún (2025-03-17 07:08:16)
+> > On Thu, Mar 13, 2025 at 04:33:57PM +0530, Manikanta Mylavarapu wrote:
+> > 
+> > > +static struct clk_rcg2 nss_cc_clc_clk_src = {
+> > > +     .cmd_rcgr = 0x28604,
+> > > +     .mnd_width = 0,
+> > > +     .hid_width = 5,
+> > > +     .parent_map = nss_cc_parent_map_6,
+> > > +     .freq_tbl = ftbl_nss_cc_clc_clk_src,
+> > > +     .clkr.hw.init = &(const struct clk_init_data) {
+> > > +             .name = "nss_cc_clc_clk_src",
+> > > +             .parent_data = nss_cc_parent_data_6,
+> > > +             .num_parents = ARRAY_SIZE(nss_cc_parent_data_6),
+> > > +             .ops = &clk_rcg2_ops,
+> > > +     },
+> > > +};
+> > 
+> > This structure definition gets repeated many times in this driver,
+> > with only slight changes. (This also happens in other qualcomm clock
+> > drivers.)
+> > 
+> > Would it be possible to refactor it into a macro, to avoid the
+> > insane code repetition?
+> > 
 > 
-> Signed-off-by: Antonin Godard <antonin.godard@bootlin.com>
-> ---
->  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
->  1 file changed, 2 insertions(+)
+> We have this discussion every couple years or so. The short answer is
+> no. The long answer is that it makes it harder to read because we don't
+> know what argument to the macro corresponds to the struct members.
+> 
+> It could probably use the CLK_HW_INIT_PARENTS_DATA macro though.
+> 
+> static struct clk_rcg2 nss_cc_clc_clk_src = {
+>      .cmd_rcgr = 0x28604,
+>      .mnd_width = 0,
+>      .hid_width = 5,
+>      .parent_map = nss_cc_parent_map_6,
+>      .freq_tbl = ftbl_nss_cc_clc_clk_src,
+>      .clkr.hw.init = CLK_HW_INIT_PARENTS_DATA("nss_cc_clc_clk_src",
+>                                               nss_cc_parent_data_6,
+> 					      &clk_rcg2_ops, 0),
+>      },
+> };
+> 
+> but then we lose the const. Oh well.
+> 
+> The whole qcom clk driver probably needs an overhaul to just have
+> descriptors that populate a bunch of clks that are allocated at probe
+> time so that the memory footprint is smaller if you have multiple clk
+> drivers loaded and so that we can probe the driver again without
+> unloading the whole kernel module.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+Okay then, in that case just ignore me :)
 
