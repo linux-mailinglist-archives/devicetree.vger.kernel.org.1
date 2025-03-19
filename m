@@ -1,204 +1,228 @@
-Return-Path: <devicetree+bounces-158963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4336BA68CEF
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 13:32:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 460D0A68B3C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 12:21:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 950E3887345
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 12:30:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 89026188DB9C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 11:16:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 659E02566D7;
-	Wed, 19 Mar 2025 12:30:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3F97254AE9;
+	Wed, 19 Mar 2025 11:06:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Rl8aOkvn"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="QHEP19yA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41A922561A7
-	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 12:30:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3555625486C
+	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 11:06:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742387426; cv=none; b=KPIDeJ4nCEM0tpAFIoqNVrzV9S3Fi4UQV+uV99gpCdKSQX1LiROUgjVBpxru1D08kC4fqx36LL8DYq8lhoIY9Jbag/28IWHmRPJOgucTvQ9ru72WLLaUidFTNL2wLL3jbNaikiRlbePXE1v64nV53yNU22QSBiasgkHkGFuFKpg=
+	t=1742382404; cv=none; b=pSqb1b7DQFni8Tbjb6EYcIvoW9WuQif+LiZUvOkVJhMejBsHmBp0LxyAYWzmRBPdAALFuse4wAQzkN4NXpsi8MZjGLAiE7T0p3bysONUnNZQObJqN/2iqDZhMDAR22QU15H00MsN0rQFjvcndQWB2X4XEJRPxPxvEvxqhJWaoXo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742387426; c=relaxed/simple;
-	bh=r+yvknpWT7YSh9LWAzi7AELE+HiHlP2N0ABv5fArup0=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=pJIYyyhlFyLHqDkORYfWZK45Wsf0s2NNp8KKu4viHN/kq4m4wVal2qJ9vifUNMTIFL5xtdqFxQW10wmHaqZvcQMnDYmf675wQROOx6egSm+UjFdLFfPJiOyYZAKBZDuyY2bfIO0sLcxaFChd0L/quhj9sWbLGpoNswH0BOnrrIY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Rl8aOkvn; arc=none smtp.client-ip=203.254.224.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250319123022epoutp012863e16f4cb379eed086f9e45f251e1e~uNCEDYulS0408804088epoutp01j
-	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 12:30:22 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250319123022epoutp012863e16f4cb379eed086f9e45f251e1e~uNCEDYulS0408804088epoutp01j
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1742387422;
-	bh=gD9Sr1WH7oBqjVnHxW56qgptKH/950gTsxbz1DfjlQM=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=Rl8aOkvn+agBf3Si2cNbj5uHQltdw+RkuuilkWCOLKgzu0+wiMeYmGT2054frQc3I
-	 RyxJJpO3r242d46ePvwt2XhSxU0wJ15iF3Qa4ql7GdQ7Y4Aem3hdNiH8Zf89vc/JPB
-	 RQ4nvBjRm06gDvTCcir3UkKhr1tSmgIiDjchDA1o=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTP id
-	20250319123021epcas5p25c3c94b54fe3fbc4768f981d3fcfa202~uNCDb804K0839608396epcas5p2i;
-	Wed, 19 Mar 2025 12:30:21 +0000 (GMT)
-Received: from epsmges5p3new.samsung.com (unknown [182.195.38.175]) by
-	epsnrtp3.localdomain (Postfix) with ESMTP id 4ZHp2M4snMz4x9Q0; Wed, 19 Mar
-	2025 12:30:19 +0000 (GMT)
-Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
-	epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	B3.BA.19956.BD8BAD76; Wed, 19 Mar 2025 21:30:19 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
-	20250318105612epcas5p34f450be02cce619b638594c488b31440~t4Gkce5Ye2841228412epcas5p3h;
-	Tue, 18 Mar 2025 10:56:12 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20250318105612epsmtrp2c35a86035ab44ea22c50ce1c1a785518~t4GkbagS_0212302123epsmtrp2h;
-	Tue, 18 Mar 2025 10:56:12 +0000 (GMT)
-X-AuditID: b6c32a4b-fd1f170000004df4-29-67dab8db51ef
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	05.F2.18729.C4159D76; Tue, 18 Mar 2025 19:56:12 +0900 (KST)
-Received: from FDSFTE596 (unknown [107.122.82.131]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250318105610epsmtip2063c82de3e89d1e8ad55f420d5c19370~t4Ghvs-CR2200322003epsmtip21;
-	Tue, 18 Mar 2025 10:56:09 +0000 (GMT)
-From: "Swathi K S" <swathi.ks@samsung.com>
-To: "'Russell King \(Oracle\)'" <linux@armlinux.org.uk>
-Cc: <krzk+dt@kernel.org>, <andrew+netdev@lunn.ch>, <davem@davemloft.net>,
-	<edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
-	<robh@kernel.org>, <conor+dt@kernel.org>, <richardcochran@gmail.com>,
-	<mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
-	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-stm32@st-md-mailman.stormreply.com>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<pankaj.dubey@samsung.com>, <ravi.patel@samsung.com>, <gost.dev@samsung.com>
-In-Reply-To: <Z9HK2de5Ba_Vbeo7@shell.armlinux.org.uk>
-Subject: RE: [PATCH v8 2/2] net: stmmac: dwc-qos: Add FSD EQoS support
-Date: Tue, 18 Mar 2025 16:26:03 +0530
-Message-ID: <000501db97f4$5cf4e7d0$16deb770$@samsung.com>
+	s=arc-20240116; t=1742382404; c=relaxed/simple;
+	bh=+6dINfWYNledSDKrXEMCld5larCRcQ2l9XF8anqBVjc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HdH2uMcsRWVles9rgELDltfcwsIUmt8bc7b0klsSMLHsfL1vKvdUdRvpxNw7IO5WnhRiJ0f/cpGzNQkOeroWlkxQYwReSnPdeCtLdLD7mzA799aRiel1gs4iFnqCddbZ7EuyH0U1c1D6oX0z1tqeyp+oFn3oUY8GUmkxKYkrH2M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=QHEP19yA; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52J4lpc3004546
+	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 11:06:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=zpsXstT/OPpXfwxen2clafNs
+	aafRQUG65nkBT0J8LsY=; b=QHEP19yAAefK9EtYpTBUzF1zrikRg2tIl8LSwLsS
+	743G8O6EXY9jdDTCgqz3mXxf7zJ037zHg+MaRzb+EOav9X2pCuP9+Rdk+Fa2HkRk
+	4UtXGSzfGYAT88ukdMJQ5MK1WbeunhJKF13WIosb6JMVHASK1aVFEUHtBvp1vMQF
+	Wd+ngZvh+XUrwUiY5lL/1lfV0WSLYfhENNKh58Z1d7Iaa1m+5npEUAACQACFLkNx
+	n4QTf9EcARzc4s79RfAqYTNDw2KAJPIqZPDYeJKD9ca1UmTgaPG+fez/EDtR1YcZ
+	Gv7cBK8ZM7nJzc3vBLTzVClNtMAS4e/PEX5hhaHRRplwiA==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45exwx50pm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 11:06:41 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6e9083404b7so135196266d6.1
+        for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 04:06:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742382400; x=1742987200;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zpsXstT/OPpXfwxen2clafNsaafRQUG65nkBT0J8LsY=;
+        b=EqBOUoI0o6+hKXtFSxSQl+4IFCU6K0hPrr2bD1SUM1KYfseizszZ513W1pN4E5oIVf
+         CzbMywM3H5/GWatLHrNWiY6JBnkc61NWqFGbS9y4a8k/JgyNpxSYPoqpkngWIKv4FaJH
+         2VVuJ3gFsq+LvByBY5taZwyUjVoDecvXLopLhCTEhPfP/vTUAywBKQM8ZICBXAnJSTUE
+         5I4QMtl8T4xD9bIrqUPHPMl66Tn13N3tky/DpItaeSNqwxNBqRfYqAwNRB/YUlNYvp1w
+         /8uMH6Zqy9FZX+RjtrrI2tjobPXc5W6qcIFtpY9OjVlJHN5HN2lbWgM5Crsggyn3nnu8
+         vYwQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXVw27Tei3U0bwFAS6bnnqLta6c78MkbnlSKaTA8HrzvKLRi06jNPslWQlnwgy07kl6d1oQ5jF07etK@vger.kernel.org
+X-Gm-Message-State: AOJu0YzsjurtHShzdm8RNv53n1TnGmGdkwD/kl9VpfHI2S/AIc7RSjSE
+	gMNYtB8+uRR4UWuclYEtZ15zu9ltEmZEr9m2oNgPRpwaZXNdMuCliLy8t4HHJwE8mvogbRCIhWw
+	0/hdUSPFogLXK6L/Qr/ugSyzbwyUrwXwGbQ3MzsD1N71DkCvGJH5MAQNJxApc
+X-Gm-Gg: ASbGncudkibaFqkbUZlY4LFzaQHM+jx5e8f3x6BFdP/tB2Uuxpp7VS4piR+2SEhgAO1
+	HXB1/Rs5/7LaxOzUq+q1H8+85BCLLp6M42CSkMiST/aD0RiSE+qWY/nD4BrqYpOOufKF/MlX9xd
+	Gdlwrj+cuqvgKuHeWaP3RDCTnhqZ7wR9sT37/IqUNg3NhkooCRg44bhCk2vBTW5dwUspHS89uHd
+	Ik5YqLn7Ao5UvM/VvP4e021B5IL/95Llup+93SboDD0MnKf7Fm48A3usu7lS9rr3TPmCa6IH6PN
+	YbgQskIHDpYATMQiGzh+OPumb+PB6t71PKMlhYs2RuklA82tta9RpKTobOjDJ+LCxbqS4uYn2wY
+	6jRI=
+X-Received: by 2002:a05:6214:2529:b0:6eb:28e4:8516 with SMTP id 6a1803df08f44-6eb293c733amr37447866d6.33.1742382399877;
+        Wed, 19 Mar 2025 04:06:39 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG2t0QGksJArRSWkBCYZvSyReO8b4mt3eWRfhwdfAQcyv4fEjzOnD9kov0aGqtEzwp57TDlNw==
+X-Received: by 2002:a05:6214:2529:b0:6eb:28e4:8516 with SMTP id 6a1803df08f44-6eb293c733amr37447326d6.33.1742382399503;
+        Wed, 19 Mar 2025 04:06:39 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-549ba88508asm1920760e87.186.2025.03.19.04.06.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Mar 2025 04:06:37 -0700 (PDT)
+Date: Wed, 19 Mar 2025 13:06:34 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
+Cc: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org, Jingoo Han <jingoohan1@gmail.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>, quic_vbadigan@quicnic.com,
+        amitk@kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, jorge.ramirez@oss.qualcomm.com
+Subject: Re: [PATCH v4 02/10] arm64: dts: qcom: qcs6490-rb3gen2: Add TC956x
+ PCIe switch node
+Message-ID: <ip7xacfkpv7gf5w3gdgrweo5z7bqxmkfmvgsjfaurk5j5ac6mp@nqccdhunhwws>
+References: <20250225-qps615_v4_1-v4-0-e08633a7bdf8@oss.qualcomm.com>
+ <20250225-qps615_v4_1-v4-2-e08633a7bdf8@oss.qualcomm.com>
+ <kao2wccsiflgrvq7vj22cffbxeessfz5lc2o2hml54kfuv2mpn@2bf2qkdozzjq>
+ <8a2bce29-95dc-53b0-0516-25a380d94532@oss.qualcomm.com>
+ <CAO9ioeW6-KgRmFO93Ouhyx9uQcdaPoX3=mjpz_2SPHKiHh3RkQ@mail.gmail.com>
+ <16a9ff11-70dc-22e9-bd3c-ed10bf8b4fea@quicinc.com>
+ <hkm76yogjp6fjrldkyatekhg7orcd6wkc43d2e7cwzqfrdxjwh@b4f2rilmf6gh>
+ <303194d4-d342-ea4c-0bb6-5f5d0297ba23@quicinc.com>
+ <xkjozxbchqi6mhstqctejfk7vmwux4kdff2nyrcu5nxqzxv73z@agb7rbapsvx2>
+ <f2e67746-853d-8545-133a-13452548d504@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQHcwqSBZNYxUrKMqce/4F1P5N/GfgHDYTN3Am9yBUoC+lQhMgFBTkwbszLu+LA=
-Content-Language: en-in
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Tf0xTVxTHc99r+x5sZc+C84IZK4/YCBNstS2P8UMXDT7ULETisvHHoIG3
-	QoC2a4tTF4VkjA0myFCcNh02ihLKAC0/Wn4OK6AowpAJOIJzrPywTHBicMhwa32w8d/nnPM9
-	95zvvbk4Klji+eFpKj2jVSkySJ4np/F6UHDIqO0XpdhaTlKLj84AquKhjUv90NaHUMb+XA51
-	vrOPS010j2PU/Y4mhHpkeMCjfmos4lKW34e41GCzkUcVDDm4lL20DVBly9Vcqtv0JrVw+w9A
-	XWh4hlG/PWnFqM7eaZT6p9WG7fShB4cGULq+8j5CT5xswOgmwxhGmyxZtMWcz6PryrPpJts8
-	Qs+13+PRRfVmQF9rl9DzFv+41xPSI1MZRQqjFTKqZHVKmkoZRe6LT9yVKJOLJSGScCqMFKoU
-	mUwUuXt/XEhMWobLJik8pMjIcqXiFDoduTU6UqvO0jPCVLVOH0UympQMjVQTqlNk6rJUylAV
-	o39XIhZvk7mESempk19+hWoG1x3OtzuxHDDhVQA8cEhIYelwLigAnriAaAHwUp8VYYOnADaX
-	PV+pLADYX+fgrrbctBeibKENwLlTTh4bTANYYzEjbhWPCIYXitoxN/sQYbA0v5PrFqFECQee
-	bZh0iXDcg5DBmVGpG72JGJhzQ+aWc4hNMP+8HbiZT4TDvDMzGMvrYM85B8fNKPE2tD42ouxC
-	Qrg4cZnLjnofzk+9BKxmA+xaPPFqUUhUeMDK7hrANuyGxS+qeSx7Q+eNeoxlPzg/27aSp+G5
-	2sIVxylwxtzHYXkH7PjZyHHvjBJBsLZ5K5t+C5beqkHYuV6wcMmBsHk+tJWtciBcnhlaOcYX
-	Nl6aw4oBaVhjzbDGmmGNBcP/00yAYwa+jEaXqWR0Ms12FfPZfw+erM60gFe/IHifDYw/fBJq
-	BwgO7ADiKOnD3+MYVgr4KYojRxmtOlGblcHo7EDmuu9vUb/1yWrXN1LpEyXScLFULpdLw7fL
-	JeQG/hdNuUoBoVTomXSG0TDa1T4E9/DLQY7cDX72NOD7CH+z7bhNJGy5GLvxbLTeVl7vrDXP
-	NKZl41hOVMHzvM6gb0r2+277a/xjkffsDmvt+GtdS95/xm96J6Bjsa5owMea177x6suxN/Z8
-	nuBf4fwaHs5Prcu++XhLZWdC8e2hqRr8pD2xJ1B066DJcefAdNVevtD+4KNfBQM7q5J+/OC6
-	9zAxOFJ/dUt1aezxgMrN3yEfjsUffa9/tDdSc0zeNLDstX6Xcyq5xRR9yDR/z9jVupcYLB8x
-	GIkFVYm5ree05xSWlHA59KLg1Kc11gjQHDYe4REb5+xVk7E+1/7uq3gRE6i8M7v5bpUoSa4T
-	jxz7ZPLKAU1PUpDoRLeI5OhSFZJgVKtT/AteSFcxjgQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrIIsWRmVeSWpSXmKPExsWy7bCSvK5P4M10g4V/9Cx+vpzGaLH8wQ5W
-	izV7zzFZzDnfwmIx/8g5Vounxx6xW9w8sJPJ4uWse2wWF7b1sVpsenyN1eLyrjlsFl3XnrBa
-	HJq6l9Fi3t+1rBbHFohZfDv9htFi0dYv7BYPP+xhtzhy5gWzxf89O9gdRDwuX7vI7LFl5U0m
-	j6f9W9k9ds66y+6xYFOpx6ZVnWwem5fUe+zc8ZnJ4/2+q2wefVtWMXoc3Gfo8XmTXABPFJdN
-	SmpOZllqkb5dAlfGs9Z25oLLghWdh16xNzA+5eti5OSQEDCROHGol7mLkYtDSGA3o8StA9uY
-	IBKSEp+ap7JC2MISK/89Z4coesYocWP5AnaQBJuAlsSivn1gtoiAucTUziOsIEXMAitYJG7s
-	u8MC0dHPJLFg9n8gh4ODU8BU4vVtExBTWMBNouG4KUgvi4CqROf8Q4wgNq+ApUTbtNfsELag
-	xMmZT8A6mQX0JNo2gpUwC8hLbH87hxniNgWJn0+XsUKc4Cfx+fk/qBpxiaM/e5gnMArPQjJp
-	FsKkWUgmzULSsYCRZRWjZGpBcW56brFhgWFearlecWJucWleul5yfu4mRnAq0NLcwbh91Qe9
-	Q4xMHIyHGCU4mJVEeN2fXE8X4k1JrKxKLcqPLyrNSS0+xCjNwaIkziv+ojdFSCA9sSQ1OzW1
-	ILUIJsvEwSnVwFR25dTS28tUUq9dnLtJWy9ukdc75eBjmvc2Tem1l6p+vJR98do57s9u3txj
-	UXiwSOz25dBVHA0f66M/KIVPb9kfcPjQgSlMfXylyz5wMdx/aKy6aK2IsdoUifl1pw8kC93Y
-	8eHv6U93uhZY7jw9XSA7xGNxlMj1t5NYLjyayTCvPvRK2J5TH59PUDzSvcqx88uO6F3nN8yx
-	11x806HlxcTrsXY/0rzYvk+ZupPpjGKWsPXzySvWVyyeov/eqbVPQM/QmGXjqgifI++O2+pW
-	T7ygmbFSdL5nqDLj0Y3ddTc6pDoTPm64HNhmW2NxcK7eDO53J22knNZceOKmmzpLz7VENIr3
-	e4s+04VC0dhmvYj/SizFGYmGWsxFxYkAXY4muHQDAAA=
-X-CMS-MailID: 20250318105612epcas5p34f450be02cce619b638594c488b31440
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250305091856epcas5p4228c09989c7acfe45a99541eef01fbcd
-References: <20250305091246.106626-1-swathi.ks@samsung.com>
-	<CGME20250305091856epcas5p4228c09989c7acfe45a99541eef01fbcd@epcas5p4.samsung.com>
-	<20250305091246.106626-3-swathi.ks@samsung.com>
-	<Z8hjKI1ZqU19nrTP@shell.armlinux.org.uk>
-	<Z9HK2de5Ba_Vbeo7@shell.armlinux.org.uk>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f2e67746-853d-8545-133a-13452548d504@quicinc.com>
+X-Proofpoint-ORIG-GUID: mVuvmnARSX8eD5pmElAtz3jcqddxzANk
+X-Authority-Analysis: v=2.4 cv=INICChvG c=1 sm=1 tr=0 ts=67daa541 cx=c_pps a=oc9J++0uMp73DTRD5QyR2A==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=YhunDdt0IHZmoyGD5E8A:9 a=CjuIK1q_8ugA:10
+ a=iYH6xdkBrDN1Jqds4HTS:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: mVuvmnARSX8eD5pmElAtz3jcqddxzANk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-19_03,2025-03-19_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
+ priorityscore=1501 lowpriorityscore=0 malwarescore=0 clxscore=1015
+ mlxlogscore=999 impostorscore=0 phishscore=0 mlxscore=0 spamscore=0
+ bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503190077
 
-
-
-> -----Original Message-----
-> From: Russell King (Oracle) <linux@armlinux.org.uk>
-> Sent: 12 March 2025 23:27
-> To: Swathi K S <swathi.ks@samsung.com>
-> Cc: krzk+dt@kernel.org; andrew+netdev@lunn.ch; davem@davemloft.net;
-> edumazet@google.com; kuba@kernel.org; pabeni@redhat.com;
-> robh@kernel.org; conor+dt@kernel.org; richardcochran@gmail.com;
-> mcoquelin.stm32@gmail.com; alexandre.torgue@foss.st.com;
-> netdev@vger.kernel.org; devicetree@vger.kernel.org; linux-stm32@st-md-
-> mailman.stormreply.com; linux-arm-kernel@lists.infradead.org; linux-
-> kernel@vger.kernel.org; pankaj.dubey@samsung.com;
-> ravi.patel@samsung.com; gost.dev@samsung.com
-> Subject: Re: [PATCH v8 2/2] net: stmmac: dwc-qos: Add FSD EQoS support
+On Wed, Mar 19, 2025 at 04:16:33PM +0530, Krishna Chaitanya Chundru wrote:
 > 
-> On Wed, Mar 05, 2025 at 02:43:52PM +0000, Russell King (Oracle) wrote:
-> > On Wed, Mar 05, 2025 at 02:42:46PM +0530, Swathi K S wrote:
-> > > The FSD SoC contains two instance of the Synopsys DWC ethernet QOS IP
-> core.
-> > > The binding that it uses is slightly different from existing ones
-> > > because of the integration (clocks, resets).
-> > >
-> > > Signed-off-by: Swathi K S <swathi.ks@samsung.com>
-> >
-> > This looks much better!
-> >
-> > Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-> >
-> > Thanks!
 > 
-> Hi Swathi,
+> On 3/19/2025 3:51 PM, Dmitry Baryshkov wrote:
+> > On Wed, Mar 19, 2025 at 03:46:00PM +0530, Krishna Chaitanya Chundru wrote:
+> > > 
+> > > 
+> > > On 3/19/2025 3:43 PM, Dmitry Baryshkov wrote:
+> > > > On Wed, Mar 19, 2025 at 09:14:22AM +0530, Krishna Chaitanya Chundru wrote:
+> > > > > 
+> > > > > 
+> > > > > On 3/18/2025 10:30 PM, Dmitry Baryshkov wrote:
+> > > > > > On Tue, 18 Mar 2025 at 18:11, Krishna Chaitanya Chundru
+> > > > > > <krishna.chundru@oss.qualcomm.com> wrote:
+> > > > > > > 
+> > > > > > > 
+> > > > > > > 
+> > > > > > > On 3/17/2025 4:57 PM, Dmitry Baryshkov wrote:
+> > > > > > > > On Tue, Feb 25, 2025 at 03:03:59PM +0530, Krishna Chaitanya Chundru wrote:
+> > > > > > > > > Add a node for the TC956x PCIe switch, which has three downstream ports.
+> > > > > > > > > Two embedded Ethernet devices are present on one of the downstream ports.
+> > > > > > > > > 
+> > > > > > > > > Power to the TC956x is supplied through two LDO regulators, controlled by
+> > > > > > > > > two GPIOs, which are added as fixed regulators. Configure the TC956x
+> > > > > > > > > through I2C.
+> > > > > > > > > 
+> > > > > > > > > Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> > > > > > > > > Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+> > > > > > > > > Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > > > > > > > > ---
+> > > > > > > > >      arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 116 +++++++++++++++++++++++++++
+> > > > > > > > >      arch/arm64/boot/dts/qcom/sc7280.dtsi         |   2 +-
+> > > > > > > > >      2 files changed, 117 insertions(+), 1 deletion(-)
+> > > > > > > > > 
+> > > > > > > > > @@ -735,6 +760,75 @@ &pcie1_phy {
+> > > > > > > > >         status = "okay";
+> > > > > > > > >      };
+> > > > > > > > > 
+> > > > > > > > > +&pcie1_port {
+> > > > > > > > > +    pcie@0,0 {
+> > > > > > > > > +            compatible = "pci1179,0623", "pciclass,0604";
+> > > > > > > > > +            reg = <0x10000 0x0 0x0 0x0 0x0>;
+> > > > > > > > > +            #address-cells = <3>;
+> > > > > > > > > +            #size-cells = <2>;
+> > > > > > > > > +
+> > > > > > > > > +            device_type = "pci";
+> > > > > > > > > +            ranges;
+> > > > > > > > > +            bus-range = <0x2 0xff>;
+> > > > > > > > > +
+> > > > > > > > > +            vddc-supply = <&vdd_ntn_0p9>;
+> > > > > > > > > +            vdd18-supply = <&vdd_ntn_1p8>;
+> > > > > > > > > +            vdd09-supply = <&vdd_ntn_0p9>;
+> > > > > > > > > +            vddio1-supply = <&vdd_ntn_1p8>;
+> > > > > > > > > +            vddio2-supply = <&vdd_ntn_1p8>;
+> > > > > > > > > +            vddio18-supply = <&vdd_ntn_1p8>;
+> > > > > > > > > +
+> > > > > > > > > +            i2c-parent = <&i2c0 0x77>;
+> > > > > > > > > +
+> > > > > > > > > +            reset-gpios = <&pm8350c_gpios 1 GPIO_ACTIVE_LOW>;
+> > > > > > > > > +
+> > > > > > > > 
+> > > > > > > > I think I've responded here, but I'm not sure where the message went:
+> > > > > > > > please add pinctrl entry for this pin.
+> > > > > > > > 
+> > > > > > > Do we need to also add pinctrl property for this node and refer the
+> > > > > > > pinctrl entry for this pin?
+> > > > > > 
+> > > > > > I think that is what I've asked for, was that not?
+> > > > > Currently there is no pincntrl property defined for this.
+> > > > 
+> > > > Does it need to be defined separately / specially?
+> > > > 
+> > > yes we need to define this property now.
+> > 
+> > Could you please point out existing schema files defining those
+> > properties?
+> sorry I was not able to get which schema file you are requesting for,
+> if it is tc956x it is in this series only.
 > 
-> Please can you test with my TX clock gating series applied (
-> https://lore.kernel.org/r/Z9FVHEf3uUqtKzyt@shell.armlinux.org.uk ) with
-> STMMAC_FLAG_EN_TX_LPI_CLK_PHY_CAP set as per the attached diff.
-> Please let me know whether this passes your testing, so I know whether
-this
-> platform supports it - please check that this results in a message in the
-kernel
-> log indicating "tx_clk_stop = 1". Thanks.
+> What I understood from these conversation is we need to define pinctrl
+> property and refer the reset gpio pin in next series. If it was wrong
+> please correct me.
 
-Hi Russell, 
-Applied your patches and tested. 
-It did not cause any functional issue, but at the same time, as EEE is not
-enabled in our HW, we cannot really test that particular functionality.
+You claimed that pinctrl properties (there are several of those) are to
+be defined in the schema for TC956x. I asked you to point out other
+schema files which define those properties for the devices that use
+GPIO pins.
 
-Regards, 
-Swathi
-
-> 
-> --
-> RMK's Patch system: https://protect2.fireeye.com/v1/url?k=23e12f6a-
-> 429cc5e9-23e0a425-74fe48600158-954ebfe080aed91e&q=1&e=40e60980-
-> bcfe-49e0-a9c9-
-> d9b87765f87c&u=https%3A%2F%2Fwww.armlinux.org.uk%2Fdeveloper%2F
-> patches%2F
-> FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
-
+-- 
+With best wishes
+Dmitry
 
