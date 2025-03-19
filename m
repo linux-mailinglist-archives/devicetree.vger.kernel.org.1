@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-158868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A56E7A6861E
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 08:47:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 872B7A68629
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 08:52:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3982A1891E01
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 07:46:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D844E4206C8
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 07:52:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6373D1A3155;
-	Wed, 19 Mar 2025 07:46:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F08524EF76;
+	Wed, 19 Mar 2025 07:52:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FlKi5P/I"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZawpNJqW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B36B4A0F;
-	Wed, 19 Mar 2025 07:46:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39626207DEA;
+	Wed, 19 Mar 2025 07:52:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742370405; cv=none; b=T7/DCWbqHGYKnZLOYtUrCj3B+3tb41cede/8t0OUIi+vnaY1FJu5scANU+EkghGoi++9KBd5bhqAQ3Jw7fsyvBts5YeErIDrJw/ObIn8bEncFms5hJFT7dh6d9zgs8sXgfPngQYXtYa/lMfRFfkV0eHmoguU6VGS8n9bIYTugRw=
+	t=1742370769; cv=none; b=jSL9XOal2h7TUAO/2DvZbCTo+6H1wP99M3iwWFbT4/nIGVQEFddzZRL9ZieiPrMKUlp6rO3zWFdudHvUlWKucZ0tV/erd/GRXIoDkJc4oSKcdNC6D3iBTheKOlYbHDdEjrjRdco0xVLWaUAOnj7fQH9B/fM+hUjTfWuZO4cXQjw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742370405; c=relaxed/simple;
-	bh=R/+mKgYJYtnUQdwRx76WkNRfBcHpmYchsod3jVqFMbA=;
+	s=arc-20240116; t=1742370769; c=relaxed/simple;
+	bh=ydElR4BEsnGqBeQsKA4b4OztiPjBOlEfUTp4FQDIRF4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NozGJLxUE7Lwrtdax+wk5byuWCv80rkoy2rRVRg3xCdQT+Qrax2IUR59jwpJFMTq03SuGsLdO67SVsEN6rFrOQmzVcQUdsY7uGTDDOOBOta77OPXlo9sFCdbZtXy5zTC8lK8kgC2V7Kl7J1lWzaoYi8DCs7AkYaA1z+IM/iEXvo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FlKi5P/I; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 614FCC4CEE9;
-	Wed, 19 Mar 2025 07:46:39 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=EfFSKoukvgIh1G1NCjS5zy0sGX0t+huxgoZcMT4UHMsWQR2KLvCqTcGHRVrKZ6/PnPLGp6JmsgZTyfggajLza1k6DjfVTOViSlJx8S9m/2eQXxzkufzHdyq+k7IMPfTkoSky8Lc6Lc1Yy1gO2QiWjpKbg+okOk2lPHVrIhtDQdw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZawpNJqW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9ECE8C4CEE9;
+	Wed, 19 Mar 2025 07:52:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742370403;
-	bh=R/+mKgYJYtnUQdwRx76WkNRfBcHpmYchsod3jVqFMbA=;
+	s=k20201202; t=1742370768;
+	bh=ydElR4BEsnGqBeQsKA4b4OztiPjBOlEfUTp4FQDIRF4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FlKi5P/I/oiAqvN4MxYZtAVlEdyAcFhVuiF4iI1I702vBGhW5zonhSlT4QbrgVxkW
-	 tpGjayw/seegFnXDZzBvWcrmSS93zBjzAahw7t0KSRYEhOvGSj2O1OqjgCMbbTzx7l
-	 Px4QDBspQ5K9K0oME5sJMs26mmVGvPDC6q8wKGYbkzL9fjh27erTym1fjZ3JRvRG3e
-	 0DVcQUIN0/GzctujuJJ3970Zt+1nE1qtB0S2/340rp9VmAOoTfWlbI7qDl01RiV0RE
-	 MLGhaSEOgKHjmF2rJSAESWsaAej932mLYtltX5s8kJ+aDKtLGQCqd93KICNE77JsOE
-	 b0OqTwZP9EpjQ==
-Message-ID: <1da4e402-62f3-4bad-9129-1f5a08148987@kernel.org>
-Date: Wed, 19 Mar 2025 08:46:36 +0100
+	b=ZawpNJqW5F0nJzlIxTHQe8wIH6OvMljjK6B733L1oIEAIzDw3xMf/thgshXafMZfc
+	 lcFSHyUDn+Kr/ygEMw2gs+IXUrGshCSz5jlYhHoGURroJoUgoKS5XJl+hsosBlzr9Z
+	 cHWUBQzgJrg5JRTNW+YwzCmiIzWopgIwxI1IOFYzqO86GtPrYf+fR82vk6S92rJwnf
+	 a+FZGT1CEdbodIsGN1EwdG/2Dpzh+QOvupoU8CjvRllbvPYvHi0wKifyJgIAaexVEM
+	 ZzesVa0L9JtBJCpSecd3tutKPxTnZbsHZcZ3qXbZuRFicVzsIJh0v6tthIJlsulFvN
+	 x6T+bpJXD4gsw==
+Message-ID: <17d37eab-2275-49ff-97b9-6b6706756f04@kernel.org>
+Date: Wed, 19 Mar 2025 08:52:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: misc: bist: Add BIST dt-binding for TI
- K3 devices
-To: Neha Malcom Francis <n-francis@ti.com>
-Cc: nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, u-kumar1@ti.com
-References: <20241128140825.263216-1-n-francis@ti.com>
- <20241128140825.263216-2-n-francis@ti.com>
- <ho7ktcnbtl7mvamfthqho23co2fc4z7bgjha7pu4wivxm6ndhu@tfbpveonhckz>
- <837d329b-bcdd-4c3b-b508-e916b110ce25@ti.com>
- <e57dfc3e-b702-4803-b776-20c6dbd98fef@kernel.org>
- <8e58b093-1c64-45b9-a9d3-9835a3bbc4fd@ti.com>
+Subject: Re: [PATCH v2 2/9] dt-bindings: x86: Add a binding for x86 wakeup
+ mailbox
+To: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+Cc: Yunhong Jiang <yunhong.jiang@linux.intel.com>, tglx@linutronix.de,
+ mingo@redhat.com, bp@alien8.de, dave.hansen@linux.intel.com, x86@kernel.org,
+ hpa@zytor.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ kys@microsoft.com, haiyangz@microsoft.com, wei.liu@kernel.org,
+ decui@microsoft.com, rafael@kernel.org, lenb@kernel.org,
+ kirill.shutemov@linux.intel.com, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-hyperv@vger.kernel.org,
+ linux-acpi@vger.kernel.org, ricardo.neri@intel.com, ravi.v.shankar@intel.com
+References: <20240823232327.2408869-1-yunhong.jiang@linux.intel.com>
+ <20240823232327.2408869-3-yunhong.jiang@linux.intel.com>
+ <ujfqrllrii6iijlhbwx3bltpjogiosw4xx5pqbcddgpxjobrzh@xqqrfxi5lv3i>
+ <20240827204549.GA4545@yjiang5-mobl.amr.corp.intel.com>
+ <20240910061227.GA76@yjiang5-mobl.amr.corp.intel.com>
+ <1d0ba3fc-1504-4af3-a0bc-fba86abe41e8@kernel.org>
+ <20240919191725.GA11928@yjiang5-mobl.amr.corp.intel.com>
+ <874d5908-f1db-412f-96a2-83fcebe8dd98@kernel.org>
+ <20250303222102.GA16733@ranerica-svr.sc.intel.com>
+ <acb5fa11-9dce-44d0-85e3-e67a6a10c48f@kernel.org>
+ <20250312055118.GA29492@ranerica-svr.sc.intel.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,55 +117,132 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <8e58b093-1c64-45b9-a9d3-9835a3bbc4fd@ti.com>
+In-Reply-To: <20250312055118.GA29492@ranerica-svr.sc.intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/03/2025 12:14, Neha Malcom Francis wrote:
-> Hi Krzysztof
-> 
-> On 29/11/24 14:45, Krzysztof Kozlowski wrote:
->> On 29/11/2024 08:43, Neha Malcom Francis wrote:
->>>>> +
->>>>> +  power-domains:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  ti,bist-instance:
->>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>>> +    description:
->>>>> +      the BIST instance in the SoC represented as an integer
->>>>
->>>> No instance indices are allowed. Drop.
->>>>
+On 12/03/2025 06:51, Ricardo Neri wrote:
+> On Tue, Mar 11, 2025 at 11:01:28AM +0100, Krzysztof Kozlowski wrote:
+>> On 03/03/2025 23:21, Ricardo Neri wrote:
+>>> On Fri, Sep 20, 2024 at 01:15:41PM +0200, Krzysztof Kozlowski wrote:
 >>>
->>> Question on this, this is not a property that is driven by software but rather 
->>> indicates which register sequences have to be picked up for triggering this test 
->>> from this instance. So I don't see how I can workaround this without getting 
->>> this number. Or maybe call it ID rather than instance?
->>
->> I don't understand how the device operates, so what is exactly behind
->> some sequences of registers for triggering this test. You described
->> property as index or ID of one instance of the block. That's not what we
->> want in the binding. That's said maybe other, different hardware
->> characteristic is behind, who knows. Or maybe it's about callers... or
->> maybe that's not hardware property at all, but runtime OS, who knows.
+>>> [...]
+>>>  
+>>>> enable-method is part of CPUs, so you probably should match the CPUs...
+>>>> I am not sure, I don't have the big picture here.
+>>>>
+>>>> Maybe if companies want to push more of bindings for purely virtual
+>>>> systems, then they should first get involved more, instead of relying on
+>>>> us. Provide reviews for your virtual stuff, provide guidance. There is
+>>>> resistance in accepting bindings for such cases for a reason - I don't
+>>>> even know what exactly is this and judging/reviewing based on my
+>>>> practices will no be accurate.
+>>>
+>>> Hi Krzysztof,
+>>>
+>>> I am taking over this work from Yunhong.
+>>>
+>>> First of all, I apologize for the late reply. I will make sure
+>>> communications are timely in the future.
+>>>
+>>> Our goal is to describe in the device tree a mechanism or artifact to boot
+>>> secondary CPUs.
+>>>
+>>> In our setup, the firmware puts secondary CPUs to monitor a memory location
+>>> (i.e., the wakeup mailbox) while spinning. From the boot CPU, the OS writes
+>>> in the mailbox the wakeup vector and the ID of the secondary CPU it wants
+>>> to boot. When a secondary CPU sees its own ID it will jump to the wakeup
+>>> vector.
+>>>
+>>> This is similar to the spin-table described in the Device Tree
+>>> specification. The key difference is that with the spin-table CPUs spin
+>>> until a non-zero value is written in `cpu-release-addr`. The wakeup mailbox
+>>> uses CPU IDs.
+>>>
+>>> You raised the issue of the lack of a `compatible` property, and the fact
+>>> that we are not describing an actual device.
+>>>
+>>> I took your suggestion of matching by node and I came up with the binding
+>>> below. I see these advantages in this approach:
+>>>
+>>>   * I define a new node with a `compatible` property.
+>>>   * There is precedent: the psci node. In the `cpus` node, each cpu@n has
 >>
 > 
-> Sorry for such a late reply, but I was hoping to get more details on
-> this "ID" and never got back to the thread...
+> Thanks for your feedback!
 > 
-> The best way I can describe is this device (BIST) runs a safety
-> diagnostic test on a bunch of processors/blocks (let's call them
-> targets). There's a mapping between the instance of this device and the
-> targets it will run the test. This ID was essentially letting the BIST
-> driver know which are these targets.
+>> psci is a standard. If you are documenting here a standard, clearly
+>> express it and provide reference to the specification.
+> 
+> It is not really a standard, but this mailbox behaves indentically to the
+> wakeup mailbox described in the ACPI spec [1]. I am happy reference the
+> spec in the documentation of the binding... or describe in full the
+> mechanism of mailbox without referring to ACPI. You had indicated you don't
+> care about what ACPI does [2].
+
+Behaving like ACPI and implementing a spec are two different things. The
+question is whether you need to implement it like that and I believe
+answer is: no.
+
+> 
+> In a nutshell, the wakeup mailbox is similar to the spin table used in ARM
+> boards: it is reserved memory region that secondary CPUs monitor while
+> spinning.
+> 
+>>
+>>
+>>>     an `enable-method` property that specify `psci`.
+>>>   * The mailbox is a device as it is located in a reserved memory region.
+>>>     This true regardless of the device tree describing bare-metal or
+>>>     virtualized machines.
+>>>
+>>> Thanks in advance for your feedback!
+>>>
+>>> Best,
+>>> Ricardo
+>>>
+>>> (only the relevant sections of the binding are shown for brevity)
+>>>
+>>> properties:
+>>>   $nodename:
+>>>     const: wakeup-mailbox
+>>>
+>>>   compatible:
+>>>     const: x86,wakeup-mailbox
+>>
+>> You need vendor prefix for this particular device. If I pointed out lack
+>> of device and specific compatible, then adding random compatible does
+>> not solve it. I understand it solves for you, but not from the bindings
+>> point of view.
+> 
+> I see. Platform firmware will implement the mailbox. It would not be any
+> specific hardware from Intel. Perhaps `intel,wakeup-mailbox`?
+> 
+>>
+>>>
+>>>   mailbox-addr:
+>>>     $ref: /schemas/types.yaml#/definitions/uint64
+>>
+>> So is this some sort of reserved memory?
+> 
+> Yes, the mailbox is located in reserved memory.
 
 
-So you want to configure some target? Then this is your property. If you
-want to configure 'foo' difference in DT, you do not write 'bar'...
+Then why reserved memory bindings are not working?
 
-Anyway, no clue, original emails are long time not in my inbox. Context
-disappeared also long time ago.
+Anyway this was half a year ago. None of the emails are in my inbox.
+None of the context is in my head.
+
+It's the second or third email this month someone responds to my email
+from 2024.
+
+Frankly, that's a neat trick. I won't remember anything, but it would be
+impolite to say just "no" without arguments. So now you will resend the
+same code leading to the same discussions we had half a year ago. Or
+ignoring that discussions.
+
+I don't understand why this should be reviewers problem, so no, that's
+just unfair.
 
 
 Best regards,
