@@ -1,229 +1,119 @@
-Return-Path: <devicetree+bounces-159133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD19EA69C95
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 00:10:53 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 418DCA69CA9
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 00:22:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66A6E8846FA
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 23:10:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B0B677A4A1C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 23:21:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8466F223326;
-	Wed, 19 Mar 2025 23:10:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F24A7223339;
+	Wed, 19 Mar 2025 23:22:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wrgt/+Cu"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="qCsS93QN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E8EF22331B;
-	Wed, 19 Mar 2025 23:10:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9DB31D514B;
+	Wed, 19 Mar 2025 23:22:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742425846; cv=none; b=i+JS6HT0B7ttmVGPlb2BQHpv/SZZ+kNshnyf+ueZpaFQkODfGNhgBoB4Qsq+nZRXhZJXeOMgnAiwN674l5Xp8eVI5vCyaA8WAnJk+0wK34hJXDTjpSni+4+qqpuEnWd9jMZBhZLG6tbjztfeeJffXUAlPy/bf4je78yPICID/yE=
+	t=1742426570; cv=none; b=u9BTRD1+WRnjHY9feT6PzjAE1FsAhugs8l6Fo1E1yEN+eHUHPJ08OlYWhyVF2davcH/eE+g/aqNlin+ewTw/4HfvSP48slIYz6IoXYpNSkLbZoFVVagaNQuHsgulC6gmc79sTta3aEHMQtusDMmIBOr/P9iE1wFjb9eMctmToq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742425846; c=relaxed/simple;
-	bh=hpem3UEpjL9zg0df1KCgbi91SjPixiAmgIzpZt1KUJg=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=bFROOFisWYqiiKH6bs6SpM+FZjidj4SA1yZgnXUn99NhCgb0NgNHyXqwugzYJn1IL1v4eBYhElVQ/1roJnixNDDf1stMZLp6dfMn6fldzmXvZmLwfyM6K784xT07ZT5DIgX+IZsIC0LSinja2WoqSHtVm7Mvl3QuuA0AuSNl8xI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wrgt/+Cu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89E28C4CEE4;
-	Wed, 19 Mar 2025 23:10:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742425845;
-	bh=hpem3UEpjL9zg0df1KCgbi91SjPixiAmgIzpZt1KUJg=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Wrgt/+Cu7qJjwLfGyMrE5m390d+gbteLAjKaxp7899EkxuXYaUzs3o357/afeEo2I
-	 sNea93qPS9XMTYzjNX16xtSCWnp1IZD9m0e+1f9kSTvJa79v3D8D5EQmpYVnHP6xeg
-	 leFvxd9RuBzF+zGHCXZ07MdrJ4hgrp00T4UPMq49J2AGybnTVxfCfWbMdvcKbUUqBu
-	 OozrPjc5+2ug9gvQRSzzHV0z5Uu9AA/2se8ukJ5/lnkwrZ9AQmO/dAY20iEz4q0ChP
-	 /R5CXDqRTYNXAAbsw/KF0Xcnko/nK1bTni/lrIMM0NVFvEZJc/kxjA10AXYjzUP+v3
-	 V12O2lP/89qUA==
-Date: Wed, 19 Mar 2025 18:10:44 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1742426570; c=relaxed/simple;
+	bh=4RgJAq4hJhHstm/ehzKevP6ZWeReZAqhuDKIoiRLOY4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=l/XU7SPpVRZVsBaN7wHX8wIOBVFmQzC2vwBpcmu5a3Rm0vivAuE/0dUvjG3rp3cdpYR0ZlCLOkXEM05Pdv8VHb94tcD5vVAcAz4wlkSXypIfKV8l8VvYlTcNUkmJgWWimnvTI/LfURwiMq/zeaVveho6bHiOG58MkF5EIop3thM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=qCsS93QN; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=5tW/qXnvYgM00U8Ba3VQcPQjfpnDlU9t847cUdAiY8I=; b=qCsS93QNEKnq1solw/D+LZAi+f
+	G32S6DpBxTTYEroBH3pDG6Os2stVchMaRoa/g9Irhbqkk4cQDjyqRUmPyafRR1LT38Mf1xxC8+uvx
+	PYxkbEC8dwRIIszZ+vW35mQWANSFGRLqQfDI+NddQKRajnZibp8ANjmzYK1faMKYULv8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tv2jz-006QKR-El; Thu, 20 Mar 2025 00:22:27 +0100
+Date: Thu, 20 Mar 2025 00:22:27 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: Heiko Stuebner <heiko@sntech.de>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Wu <david.wu@rock-chips.com>, Yao Zi <ziyao@disroot.org>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH net-next v3 3/5] net: stmmac: dwmac-rk: Move
+ integrated_phy_powerup/down functions
+Message-ID: <f6a6e6e6-c00d-4920-a3a3-8699e9a88b6e@lunn.ch>
+References: <20250319214415.3086027-1-jonas@kwiboo.se>
+ <20250319214415.3086027-4-jonas@kwiboo.se>
+ <d7b3ec5c-2d74-4409-9894-8f2cb3e055f6@lunn.ch>
+ <e766eb6d-618a-43a0-b1e1-954c2c3fbf0e@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, 
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- Mark Brown <broonie@kernel.org>, jian.xu@amlogic.com, zhe.wang@amlogic.com, 
- Michael Turquette <mturquette@baylibre.com>, 
- Kevin Hilman <khilman@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
- devicetree@vger.kernel.org, linux-sound@vger.kernel.org, 
- shuai.li@amlogic.com, linux-arm-kernel@lists.infradead.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, linux-clk@vger.kernel.org, 
- Liam Girdwood <lgirdwood@gmail.com>, linux-amlogic@lists.infradead.org, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: jiebing chen <jiebing.chen@amlogic.com>
-In-Reply-To: <20250319-audio_drvier-v4-0-686867fad719@amlogic.com>
-References: <20250319-audio_drvier-v4-0-686867fad719@amlogic.com>
-Message-Id: <174242564271.2499930.16784872359354582008.robh@kernel.org>
-Subject: Re: [PATCH v4 0/6] Add support for S4 audio
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e766eb6d-618a-43a0-b1e1-954c2c3fbf0e@kwiboo.se>
 
-
-On Wed, 19 Mar 2025 15:04:43 +0800, jiebing chen wrote:
-> Add s4 audio base driver.
+> > Do you know what these MACPHY_ID are? I hope it is not what you get
+> > when you read PHY registers 2 and 3?
 > 
-> Signed-off-by: jiebing chen <jiebing.chen@amlogic.com>
-> ---
-> Changes in v4:
-> - fix dtb check warning
-> - add maxItems of power domain for dt-bindings
-> - fixed audio clock pads regmap base and reg offset
-> - use dapm widget to control tocodec bclk and mclk enable
-> - Link to v3: https://lore.kernel.org/r/20250228-audio_drvier-v3-0-dbfd30507e4c@amlogic.com
+> I think it may be:
 > 
-> Changes in v3:
-> - remove g12a tocodec switch event
-> - Modify the incorrect title for dt-bindings
-> - Link to v2: https://lore.kernel.org/r/20250214-audio_drvier-v2-0-37881fa37c9e@amlogic.com
+>   GRF_MACPHY_CON2
+>   15:0   macphy_id / PHY ID Number, macphy_cfg_phy_id[15:0]
 > 
-> Changes in v2:
-> - remove tdm pad control and change tocodec base on g12a
-> - change hifipll rate to support 24bit
-> - add s4 audio clock
-> - Link to v1: https://lore.kernel.org/r/20250113-audio_drvier-v1-0-8c14770f38a0@amlogic.com
+>   GRF_MACPHY_CON3
+>   15:12  macphy_cfg_rev_nr / Manufacturer's Revision Number
+>   11:6   macphy_model_nr / Manufacturer's Model Number
+>   5:0    macphy_id / PHY ID Number, macphy_cfg_phy_id[21:16]
 > 
-> ---
-> jiebing chen (6):
->       dt-bindings: clock: meson: Add audio power domain for s4 soc
->       dt-bindings: clock: axg-audio: Add mclk and sclk pad clock ids
->       dt-bindings: Asoc: axg-audio: Add s4 audio tocodec
->       ASoC: meson: g12a-toacodec: Add s4 tocodec driver
->       clk: meson: axg-audio: Add the mclk pad div for s4 chip
->       arm64: dts: amlogic: Add Amlogic S4 Audio
+> and
 > 
->  .../bindings/clock/amlogic,axg-audio-clkc.yaml     |  20 +-
->  .../bindings/sound/amlogic,g12a-toacodec.yaml      |   1 +
->  .../boot/dts/amlogic/meson-s4-s805x2-aq222.dts     | 219 ++++++++++
->  arch/arm64/boot/dts/amlogic/meson-s4.dtsi          | 372 ++++++++++++++++-
->  drivers/clk/meson/axg-audio.c                      | 441 ++++++++++++++++++++-
->  drivers/clk/meson/axg-audio.h                      |   6 +
->  include/dt-bindings/clock/axg-audio-clkc.h         |  11 +
->  sound/soc/meson/g12a-toacodec.c                    |  46 +++
->  8 files changed, 1111 insertions(+), 5 deletions(-)
-> ---
-> base-commit: 6ecd20965bdc21b265a0671ccf36d9ad8043f5ab
-> change-id: 20250110-audio_drvier-07a5381c494b
+>   MACPHY_PHY_IDENTIFIER1 - Address: 02
+>   15:0   PHY ID number / default:cfg_phy_id[15:0]
 > 
-> Best regards,
-> --
-> jiebing chen <jiebing.chen@amlogic.com>
+>   MACPHY_PHY_IDENTIFIER2 - Address: 03
+>   15:10  PHY ID number / default:cfg_phy_id[21:16]
+>   9:4    Model number / default:cfg_model_nr[5:0]
+>   3:0    Revision number / default:cfg_rev_nr[3:0]
 > 
-> 
-> 
+> So likely what you get when you read PHY registers 2 and 3.
 
+Ah:
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+drivers/net/phy/rockchip.c
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+#define INTERNAL_EPHY_ID                        0x1234d400
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+However, it is not clear where the d4 come from.
 
-  pip3 install dtschema --upgrade
+The problem here is the upper part should be an OUI from the vendor.
+I doubt rockchip actually own this OUI. They do actually have the MAC
+OUI: 10:DC:B6:90:00:00/28. I don't know if you can use a MAC OUI with
+a PHY ID?
 
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/amlogic/' for 20250319-audio_drvier-v4-0-686867fad719@amlogic.com:
-
-arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: sound: 'anyOf' conditional failed, one must be fixed:
-	'clocks' is a required property
-	'#clock-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
-arch/arm64/boot/dts/amlogic/meson-axg-s400.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-cm4io.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-one.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12b-a311d-bananapi-m2s.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-x96-air.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12b-bananapi-cm4-mnt-reform2.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12b-odroid-go-ultra.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12b-radxa-zero2.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12b-dreambox-two.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12a-u200.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m2-pro.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12b-s922x-bananapi-m2s.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2l.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12b-a311d-libretech-cc.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12b-s922x-khadas-vim3.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-sm1-s905d3-libretech-cc.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-3.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2-plus.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dtb: clock-controller@0: reg: [[0, 0, 0, 180]] is too short
-	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
-
-
-
-
-
+	Andrew
 
