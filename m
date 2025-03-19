@@ -1,213 +1,250 @@
-Return-Path: <devicetree+bounces-159037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1323BA69550
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 17:48:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BE81A695A3
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 17:59:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89482161B0D
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 16:48:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8859884810
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 16:59:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EAEF1E3769;
-	Wed, 19 Mar 2025 16:48:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1015A1E5B63;
+	Wed, 19 Mar 2025 16:59:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="cJBo+s2P"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YoqV266z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2047.outbound.protection.outlook.com [40.107.94.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 779FD1A3A95;
-	Wed, 19 Mar 2025 16:48:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.94.47
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742402891; cv=fail; b=ijX2btC0f8AD9OfZP1PG3RJdK4A7p3zMjnvcaUxsfNTzXYH5Gy4yWPNaZX1poS3DeT03m7oYSqdKb2nM8tb2llnnp/OAIlm99KDj6oCegkRNI+VMbUmUFGBeJ40/0j3EAp5VIfrgTRF511yqXS26OuGme6A2E4wKycpA3jFff6Y=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742402891; c=relaxed/simple;
-	bh=vHpt/djn6XL0kVMVfPwsXJ3Z7mOgjYUDpF2Q7HffXFE=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=atHpCb8C1/94E7mB/tCpF5mka2WISRzy0E2uiGbgAH/C8HfQnwwJi6xlWMafEKtElG65sIaz7ojeMxesbJIzib9z3zpArrnBMLjl/zxcl4WY4cZHuPJM1fZ5VKr9lmQDw8uAOisgcBsh0TfoksVR0Ej2AJkhTDq4p8zjFVgtuR0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=cJBo+s2P; arc=fail smtp.client-ip=40.107.94.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JXggbY+D/Dk+GhrZnOnFbI9dR2bPEc1Z/kqjf9ECDknDZ8OnLtSDR4sJtI+M581laGFO9gS27IFt4y4FUiDpTvCLLIhIVq6zto5q5NDE2peCpa+V0s1HP2hJzIZKaxw1+yrqjPOmb/4jEQauNGy4SppYnv6imMp+qMiH9BLKI4WcRxK6zfFKnEIQKBelTTmbqAVrBAiBCsElbZO0udTvMLRMuF9jCWtXNShEWkB0Yeyx27PP4il+ROSlLZsLiniEDMjGeyAdG5Cl8xiGYApWNQJXirCXN8lYPriMxDjEXIgjF+rLaJDluWnZBEsFTvd1Ew9hpM2x2FEPYczi0bI2dw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=58pG+hq5zpVBeEb4ZN3ROlz/np+UoxiUG94zFqlL+V4=;
- b=qEwH4zvLMOYsT76usLNTA7wSmqwUrKufrJJ0AFpjlEGmNP/gBALyoN81mS2WvoGoHp7tn0WK0DiTpHCYhXQh++svW6N4yEWsWKK5dziYxiCYIDr4rKnFvSd28MahLvnqAosZHLqBeMXjuM20pyc4954xJv5iznYkk6TZqo9DUDCwDM8GIa8eEImLlBuGvlFHPGgjnHIl8Kae/el3SfxpzeS3OJDZDe904VsVLFWrcniyPX7uIpAh9sjLN0zHuPhD1YaaDZght2IyXx5SPyyU4NY6IovTCXFh/XEF4kvrhCzwyMyiaAWWx2Kb5+6xRkWWIFNn0TaoH952VJjNh6mcOw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=58pG+hq5zpVBeEb4ZN3ROlz/np+UoxiUG94zFqlL+V4=;
- b=cJBo+s2PcBYjXAV/UBeBu/jpH63h7uIpy3zo2ZGjEMHvnD7XPQCt3lslO85+IUa25Gd/VQsiuu4XONWdX3KL7ZR7yUtZ46F6OWytDwZ7jROOjBcAUjtpwdf69xaSAuuFEdcvHRcdUbAvrcidrmeg2E+l+V+KNhIJFjzKG00lgeM=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DS7PR12MB6285.namprd12.prod.outlook.com (2603:10b6:8:96::8) by
- MN0PR12MB5714.namprd12.prod.outlook.com (2603:10b6:208:371::7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8534.33; Wed, 19 Mar 2025 16:48:08 +0000
-Received: from DS7PR12MB6285.namprd12.prod.outlook.com
- ([fe80::6acf:b37d:a152:409e]) by DS7PR12MB6285.namprd12.prod.outlook.com
- ([fe80::6acf:b37d:a152:409e%3]) with mapi id 15.20.8534.034; Wed, 19 Mar 2025
- 16:48:07 +0000
-Message-ID: <3780ab88-f6c5-4298-89c2-ae798592c5bd@amd.com>
-Date: Wed, 19 Mar 2025 22:17:58 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] ARM: dts: aspeed: Add Initial device tree for AMD
- Onyx Platform
-To: Andrew Lunn <andrew@lunn.ch>,
- Rajaganesh Rathinasabapathi <Rajaganesh.Rathinasabapathi@amd.com>
-Cc: devicetree@vger.kernel.org, openbmc@lists.ozlabs.org, joel@jms.id.au,
- andrew@codeconstruct.com.au, robh+dt@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
- jothayot@amd.com, Supreeth Venkatesh <supreeth.venkatesh@amd.com>
-References: <20250318174730.1921983-1-Rajaganesh.Rathinasabapathi@amd.com>
- <20250318174730.1921983-2-Rajaganesh.Rathinasabapathi@amd.com>
- <472a4f78-24f4-4bfd-bf99-8b1194bfe8f0@lunn.ch>
-Content-Language: en-US
-From: Rajaganesh Rathinasabapathi <rrathina@amd.com>
-In-Reply-To: <472a4f78-24f4-4bfd-bf99-8b1194bfe8f0@lunn.ch>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN3PR01CA0105.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:9b::9) To DS7PR12MB6285.namprd12.prod.outlook.com
- (2603:10b6:8:96::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F1AB1E5B6E;
+	Wed, 19 Mar 2025 16:59:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1742403567; cv=none; b=MS1tDrBeqG/1zCCPK7MPbwUt2n3EY/BmRPar1UF/neMcYgBqN+yGDFqsmUz3EkIHeo/HYj+R20OCmX1vS05TmfcenMnGxyHkkHfnwUrJhCOUf/DOVTunu4HySuiK8L2WsQzWiIpyit93DB27Eif+1ydkFF3MNQjrMGWhxn7G1DI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1742403567; c=relaxed/simple;
+	bh=QKmIRilHU60ov9N6EEa6cmlu5Xga9Vf12qAWMCmpesE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fZVQpMXl4ONlkUFOyfm31H8O8yqWLRDSHI32+AJPjGpUV3El4bnOtUSz2VMPI4GNaqdJYlCubnDiir0yWDLMzbRWx2IsO+7FjL0L17ncGvv+rpZIA1SJ3hSJFEDK/MQQkxlI0FVvSANEKEprUBq7Fhw2fIQziCsXPDndzADJTYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YoqV266z; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43cf3192f3bso51504775e9.1;
+        Wed, 19 Mar 2025 09:59:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742403563; x=1743008363; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=nC3dL9SkBQeRU2Gx1sHTLVo9d/ZsLBQE4BpxWA3gbaU=;
+        b=YoqV266zyQcCgBT0uNDiKUF1BIhHK2Rm8Q0A+c7LzfjCRZ7E5bmYDtrgW5T+DALkcQ
+         +9ukx9KaMBYEWxjR7AfKqoam1QiFEdBkaVM2A75K0mmfPdjo3cpA2NY9Dj1PRPwIcVyR
+         X/t3YPLca+tAB+zMOi9pQ0hJ75huBLMbLagh2qy7Z5Rm+HQnBsGtpQIoa8FKCoh6RxTi
+         j22ZIR15LhmD2wdLnODOGeW3ND/o0H63Bx+4GLwPljkpUE4rM+48pdbJS8KtFtQP4wll
+         UiD2TaaGLtp0kX51YHQayMX/8qVVOtF1rr6aXh2SuamPa60ZAuy21ylnCePx3uZHqUYi
+         p1pw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742403563; x=1743008363;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nC3dL9SkBQeRU2Gx1sHTLVo9d/ZsLBQE4BpxWA3gbaU=;
+        b=g0p6fJvY+9QRMldeLPWO+GJ+tmP+CTecTJg8OLqtzoTfvszXVXznDIVqIS5EkSIvIU
+         VOAvqfUqB4biJeKN7HQGbJB7dh7DYKBZw57JrAvjQJrnx4Cw6NC9ZGICWn0ZelPoQHk6
+         R8+pb5zbHyWHKTgGfufiLkLsokazOu/lZgq8f5T/iNtS0uYQoXh0BpfLPNCqq2QbLxXE
+         geBudlEoHtPojghEWEcztYQJEt5q5jKKZixSQzMWu0Yqkb0CVOlF2Fd7hU4juYw7t0q7
+         L6SIH4Q0dGBkEvnMI7m5rTaLQLkcjbORCcaWEXCagY+aGHzE0v2c24rbvMbY26Yh0+db
+         I8Eg==
+X-Forwarded-Encrypted: i=1; AJvYcCUt4fA+REQGf84k3/Bwg7+rlEiZPIHVyyeExWtqCyqfWhEXXu+Ns3hPeH9uf/ZfHZiwDFnGMuQ0cMf8@vger.kernel.org, AJvYcCWHmKX4y33WcSl1ZitISvW2e5rKhrUQ0UMzkBq8EzFvPF9s/FBe/U7MdHD9IV7IhSk4a02w/DFwiKoy@vger.kernel.org, AJvYcCXMAX8gAjUCVUckyBwPyYgbQnPzKHUuS2krL5b4qBSj/EU3fZqH9il7P4K1DfhNbyJVbyHTpAUJMtv/@vger.kernel.org, AJvYcCXP0WDo/35z8aZk/u3SyLkmqBynjjZeWEPlP739EJ2KsKRM3dMrbLGoKhybV3DTwn4vPCrQKFPucpjkCklb@vger.kernel.org
+X-Gm-Message-State: AOJu0YweUa0a4B24dvUgwNS4l68pScYZmz6zRhC/ccmdrT/7SRDa1eZ5
+	aG2Sh9eAiE+BpOiftHXdntDUB4kj9ZDdsOIiXEAoP3S+foDYUzzmutxwKjXMKYdOuA==
+X-Gm-Gg: ASbGncv7usBN3i+FoFGJcDRMNmGlot1JVmU2+0sHM+2KxOlTTkps0Opta+LKSq5487A
+	UciHXPP8sJ0zKPdumx7e8s7GV8uDInD9xn53ZlMeIsHmfGdeWTQkB5be/HXNEAoqruHXEk2bp5r
+	wd/P+7klhJctt6FsrYMWWfDXcNS0B4TiI168eA85UFp3qVqGcTJ/kscC7tfxnKrLmvzdMeA74Pf
+	L6fFcELKYR4w+wAaD/Ig0wJfErLJOmV7grzKa7krzrAdLLIYg9TE53OMvrmav7CXJOKRgY+Hrvm
+	46QPuwgTJUPYdsvDVJjcoZokdEyNzZ1fFc+LKYvT9kjKyGTgxhBgPxRigEpu173DHg==
+X-Google-Smtp-Source: AGHT+IEZ/kUcnH1EyGgg8d1Rq3AK+KO65DxA23UU7pL/5xhziSQclVpXH0h/mFIW3GkWn8i289ly4Q==
+X-Received: by 2002:a05:600c:384d:b0:43c:fdbe:439b with SMTP id 5b1f17b1804b1-43d4378158fmr38728865e9.4.1742403562890;
+        Wed, 19 Mar 2025 09:59:22 -0700 (PDT)
+Received: from HYB-DlYm71t3hSl.ad.analog.com ([137.71.226.91])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d43f47ba7sm23612295e9.16.2025.03.19.09.59.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Mar 2025 09:59:22 -0700 (PDT)
+Date: Wed, 19 Mar 2025 17:59:19 +0100
+From: Jorge Marques <gastmaier@gmail.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+	Jorge Marques <jorge.marques@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH 3/4] docs: iio: new docs for ad4052 driver
+Message-ID: <yfw2zhdymhta57xr6x6dphqggtlpgbs35yzudwlxghbdi4hlnj@spicau723uai>
+References: <20250306-iio-driver-ad4052-v1-0-2badad30116c@analog.com>
+ <20250306-iio-driver-ad4052-v1-3-2badad30116c@analog.com>
+ <CAMknhBFiZZUtCkTjQ=AVSgwqe=wCkMnqAmaTqvW_X6fm1OKuYA@mail.gmail.com>
+ <e3p2r2fet2spkrxv7x76gunlivrp3vng22wktz4fkww5nkckt7@jpgne4uerr3c>
+ <20250310195416.6d8c64f2@jic23-huawei>
+ <c62l6jv5vgsxnbipw7jar6tikjavwybdxaurz7hkdowbamc7ic@ak2rva3ujmaa>
+ <05b83988-b7aa-453a-bef7-8e7eda77f53a@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR12MB6285:EE_|MN0PR12MB5714:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7535bb78-86ff-420c-2424-08dd6705d346
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|7416014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?WEJJMGxXNXRrcGxTUWY2ZS81L2xwS0w4b1F3L3NIU0RTb1JPVzRKL0FsazNr?=
- =?utf-8?B?UDFJbDduSGZKQnVOSzRFUGtWUmp3ZXZwY1NUbnovVTdjVHpwdWppdkgxMFNz?=
- =?utf-8?B?Y1ZtbFE2a1UxNjhDRVZmUFBIY0tsVTMrWXdJV0FjSUNtRGtWRkpudHc3eVlT?=
- =?utf-8?B?RS9JZkNkWVlTM1E2L25tNmtqcWtLSGFGZjhCbXZFdVBML25RYmU3eUVmaW13?=
- =?utf-8?B?VEcyYzFlRC8xTUx5UmJieGpYeW1LWmJQVjdWUk5rQW1lNHB6S2tzRk85TjZ6?=
- =?utf-8?B?QWcvVnc5MlVKU0lRczYwTUlUR2RLZDF2VHhqVjVwTlhPL0RqaE01RWhjaFRF?=
- =?utf-8?B?NVpUZDkxWU4zcFZtRTBqVEVwbzg2R0wyL3FYSTNGUTJudERxcGxQL1RNT3du?=
- =?utf-8?B?Y2hqNi9NeUhpM0ExYTlaTTA2dVFzMVRjSUtNUExXWHU3WVRmTzMvMlVzWDVa?=
- =?utf-8?B?VUJNZnhFZ3lQZEJQMEtsaWQ3L1Bwdml2bVBlOTJjZjh0RmpmemFJMmtmRGdH?=
- =?utf-8?B?SkhTbmh0b3d2UFQxRlVabW1MZjY0ZzJmTFRRRkJHblNiUFE5SUhjNVFtcDR3?=
- =?utf-8?B?ODdaVEJUYVRPaU1CYVN1enpROFYvMTh4UGxWNXZGcW5RTm1xV2luMHhMNEQ4?=
- =?utf-8?B?Um5ocmJJaTRFWkRxemdNZVdNbjZ2SXBhTFhCbjBqOUVKQ0s0RjhrTXpQSVpM?=
- =?utf-8?B?WjNjUGFvWlE0L0dWSDNaQ1JFU2I1c3l6TkxPVUxLcmxKSFJScGtPYTNxcC8w?=
- =?utf-8?B?NG4rQTdHZitPUk5SMFUvRVRwRk9Oa29GSnJ0Tk04WnkrMFRSbS9HZWMwVlN6?=
- =?utf-8?B?OExQWmtWVTlRai9XdGVsdUJNL1d6bnFVTUpMemdkLzZGelFseEdhL1puWjRz?=
- =?utf-8?B?VkY4U1lzLy90SHVKclhoTXN6ZTVOdGVPV0s3SUpLT3hBZEpBNU4rajZPTHFn?=
- =?utf-8?B?UkJ1R1doM1V2OEdiaUROdDBDcXhQVEZvV25pcExma1YvZWNpbVN0V0g2K2pI?=
- =?utf-8?B?SExmelk1VHJjNlRnMCtvTG9HdVNQcU5hdnM2KzlQZjR0WDJyTUx0Z0dQcXJw?=
- =?utf-8?B?bGpMdThtODE5Z2NkdkE0cERlWW1rVldhaUZzS3VSbEI4enpIbTAyYXU3VVhS?=
- =?utf-8?B?VFZuT3FYcE93bmZVeGVYRlVjQXlIcUZwU3NTc0lFOGN4Z1NJYVFYS3RVUURa?=
- =?utf-8?B?UVVhZk1iSDZiK3FHWVBITGdsZjVvaWE2MWtoSmhUK1NKNXBRaXBCeDMrUmFH?=
- =?utf-8?B?Y3pWRkVMUktMT2N6bU9RS3Ria0MybE5kWGhkSUpUcE12UXJRWW5WaTVjelV5?=
- =?utf-8?B?V0RrV041TTBEZVd2elBqQWR4eVdlaEhVVnEvWFphaDlIMGd4VkJ0NThNWWc4?=
- =?utf-8?B?M0QyWHBBbHdXdWZHblQySkR2d2JOaUMwQUFLZ3FFdFZJUE1TWVRWZGlsdjlK?=
- =?utf-8?B?WDZpL1JzZWRqWHd0NjhIOUM5UXc3NnRQdmZpYmIxeXRaUktscmJoWVYyNHgy?=
- =?utf-8?B?MWJtbUtVeFJ6ZStPR2NtckVGa0NZLzltRUZOMVZZRlFPb2NKbzRZZmpZOEd2?=
- =?utf-8?B?QTJhNkdYMFFKSVBJU2hlN0xQeFlqTzVsclREME5FWE9FRnhmUFE5dG9rNUdn?=
- =?utf-8?B?R0FKSzVqMUlLRUdzOGRHaCtVZXFhZ2NtUTdhVFpScXNqcUdkZGE2RnpsUjNv?=
- =?utf-8?B?ZGkwenNpQlBHV01aTVdnTWZ5TER0R29aQm1pVkdLZitlN1dqZTdSNlFlUkxs?=
- =?utf-8?B?bG1jT1ArUVBpOE5PTVZNSGFvWFhGMG94RnZQYlZEVkJLK24vZHljdWFiaTZF?=
- =?utf-8?B?UmdoL0kzR1MyTy9ZZkowb2kzMkE1RGl4MVh3cG1zbzVVeXpCUVpKWXR0RzFP?=
- =?utf-8?B?UGNxTWgyTFBtQTRnTGEvTDZ6RjQ4Y0F1dk1CTW5uQXU1emc9PQ==?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS7PR12MB6285.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(7416014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?cmJaYlJkdHBrSytIU2lsTDdWTS94ekc4aFVZUkdkTXUwUWowYXdtcWhYamE2?=
- =?utf-8?B?TlNoc25NVTJFcXpLQnVJeVJNdzl0akNldG9Za1B3aXdWVmNiNGRWb3VhcUF1?=
- =?utf-8?B?R25WM1E3ZmRUeUM2L3Z6TmI2L2E4eWNHL2EwRnJmRFN3UlliRmYzeEIraDlD?=
- =?utf-8?B?RXk1cy9aVHR3ZHFPaUROMWlweXFtdDRNR0VZeTJEdzVRYjlKMU5yTmlzSkpn?=
- =?utf-8?B?Z29wL2FCQncwRGF5cytlVWlQVU5mVEszY0dQU0dKbWUwcHk3Q0ZEOEtLWkNa?=
- =?utf-8?B?b2QxY2dIUXVXNmtoMEZFMU9aUGVaTEc3c1N6OVlEaG1BeFh0cEFFajBVd21K?=
- =?utf-8?B?anU5U3NkNEVZS1FQUEJZeStzRWE2Q1N1UHpaWDdvR0h1UDhXYUtoQ1dyQTBU?=
- =?utf-8?B?aFBIT2hEWVJJaVRJcDAyUldITnkzR1Y0VmpwREdqQmY1azVVMXNxQXNCd0Jz?=
- =?utf-8?B?ZHluU00xQWtaQzNJa2h0bnFyUThBWUpqMC9LbGVoRXN3d25yMzZGSTB0Rjk2?=
- =?utf-8?B?eFJua0p2aEFLNzBXTW0ramNBRS9IOXo2MGNaaTliRVdaQU5vRzJHZnVCZVdu?=
- =?utf-8?B?Y3BEVy9jSjU1YnZkcXlhTWxtMjA4YlFsZE84a1o4MCtUVGZKc1hEOGY5OUtX?=
- =?utf-8?B?OFYyTy9za3NBcUZicVNwSS9wZGQ4bUI3VTlVNkp5MUwxcW9wMzdaYTV3SVhI?=
- =?utf-8?B?Q3VHcEdmb280SEpiRTcyY21QaHNiOUNGd1JWanNUM0Nuc2pvNmJJd1RLUlZL?=
- =?utf-8?B?S1l5U3M3Nml6TmpmUkdleUxmeklIbVNkclR2ZlByVVpkcGlaVTNvS1ZLcUMw?=
- =?utf-8?B?b1F5dmk0YmoyaXBQUmpXMWduTEY2cnR6RmpFUEJtYk00UzhtZ0lja20wN0ti?=
- =?utf-8?B?U08xZXdZcm15dnN3L2NEUENDSU40WU1jN01VYXhoRStIemNlWE9yanZvUFVZ?=
- =?utf-8?B?aUtCa1BKS2FPODJKRWZmZDB5SFlRWUN2YW16MXhMMXJpakpHbmE3d2k3Z3F1?=
- =?utf-8?B?UEdhY3Nsay92Vlo4Tmh5MWtiMjQwOC8rd3BDK1QwM00zV0JHRVVibVA2SkNR?=
- =?utf-8?B?ZXdUbWdWWVRXZEdmRS9MT1hkbnFuWmVOMHI0MG5GSFhQem5EeDl0dVNVUHM0?=
- =?utf-8?B?ZHVsVVVrRW1KZE0vVjVhNDMwY2dwclU4R0VVNmlQYW94SERxdDVnZEVIQkYw?=
- =?utf-8?B?ekxOTUJnN3FYS1k4SHB5Ym9zbUlUMXJPOG5hWFY1Y3lCUzJKaFNqS0RkeW5q?=
- =?utf-8?B?b3hiQnpQMU9ySGM4czNoWVJCMmc0eEhQWm9WVVVjRWtKL0c2NEdrK0daQmR1?=
- =?utf-8?B?eVdKTUNPUTRmcU5yRGMwSnZzZkV6bEQwRnRwcUpGdEpnSjFWa3E3WmowK0g2?=
- =?utf-8?B?NEsxbHlUOENkbWV4UjJQMEhzRXhDQlprOVhpR3VhNldBQjJYZm5EQXJ2V3B0?=
- =?utf-8?B?b1kwTS9QeXkwZHVJRlJ4OHl5MlhmbFl6V0NiYmd2RGtMVnZFVGVMek91S3d1?=
- =?utf-8?B?WlBJNUpueTNNcUQydFlKQ3hCdzNFcEkyd040dFBOS21ZVWRuTnhhWXhnYTF4?=
- =?utf-8?B?ZzZFbHZ1S0M4WVVkTXZ0N2hLZ3VPcS9tU1ZYU0htS0FwUEZaN0c1UzV4OHMz?=
- =?utf-8?B?eDNSZDN3VFJ5VUVVMDdVaFhPOERYbXh3dGl2VGlWOFAvVTE5QzRKMkpZYUZY?=
- =?utf-8?B?QUl1c3BURDhZMUJMR3V3c095OStYdjBiV0FTd2swK29yVmptWUk1eSt0L0ZF?=
- =?utf-8?B?NzA4UGNuNnpxZXhCcmhCNlVhaDFCL09PK3hWb0JBWjhOTU9KOU9SZUY1ZnZx?=
- =?utf-8?B?R1ZkZkZGV1Z4RTJwMC9wT1pQdmJWQ0t3R2cwNmF6OEd0RFJnL29jTytWREFq?=
- =?utf-8?B?b25XbDM5ZCtQN2daRm1rQWhsd0JvMlkxUWRQamcxWERnbVpQNmFac203SWE4?=
- =?utf-8?B?V24zZDM2YXh5bUQwbEpVZzVWRnk5NDdJT0M4V2R3aVJyU1JSL0pUMjVJdlk3?=
- =?utf-8?B?bCtHTXNkbVQvNG56VU8rNjRvQldYMzFrNUJ0V0M5K0VuM0hGMjZtcjdrMXFL?=
- =?utf-8?B?M0lucTN5NnY4ajlMVkE3WXFwNWhCV1NuMlFjQlJYTlBNTEFmVHI2Zkt5TndG?=
- =?utf-8?Q?8SWp0vhMSXslrxRXs4NBmUPnr?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7535bb78-86ff-420c-2424-08dd6705d346
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR12MB6285.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2025 16:48:07.7580
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nhAGsoTG1DBO0EvHSxvQBAtMc3/n/CNJsVYRTsek06YHT9jf1EZBZ3VHfzb+7Shl1jJx8j8wcOIptfb4GIBkDA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB5714
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <05b83988-b7aa-453a-bef7-8e7eda77f53a@baylibre.com>
 
-On 3/19/25 00:03, Andrew Lunn wrote:
-> Caution: This message originated from an External Source. Use proper caution when opening attachments, clicking links, or responding.
+On Fri, Mar 14, 2025 at 01:56:32PM -0500, David Lechner wrote:
+> On 3/14/25 1:13 PM, Jorge Marques wrote:
+> > On Mon, Mar 10, 2025 at 07:54:16PM +0000, Jonathan Cameron wrote:
+> >> On Sun, 9 Mar 2025 21:49:24 +0100
+> >> Jorge Marques <gastmaier@gmail.com> wrote:
+> >>
+> >>>>> +.. list-table:: Driver attributes
+> >>>>> +   :header-rows: 1
+> >>>>> +
+> >>>>> +   * - Attribute
+> >>>>> +     - Description
+> >>>>> +   * - ``in_voltage0_raw``
+> >>>>> +     - Raw ADC voltage value
+> >>>>> +   * - ``in_voltage0_oversampling_ratio``
+> >>>>> +     - Enable the device's burst averaging mode to over sample using
+> >>>>> +       the internal sample rate.
+> >>>>> +   * - ``in_voltage0_oversampling_ratio_available``
+> >>>>> +     - List of available oversampling values. Value 0 disable the burst
+> >>>>> +       averaging mode.
+> >>>>> +   * - ``sample_rate``
+> >>>>> +     - Device internal sample rate used in the burst averaging mode.
+> >>>>> +   * - ``sample_rate_available``
+> >>>>> +     - List of available sample rates.  
+> >>>>
+> >>>> Why not using the standard sampling_frequency[_available] attributes?  
+> >>> Because sampling_frequency is the sampling frequency for the pwm trigger
+> >>> during buffer readings.
+> >>> sample_rate is the internal device clock used during monitor and burst
+> >>> averaging modes.
+> >>
+> >> For an ABI that is very vague and the two use cases seem to be logically
+> >> quite different.
+> >>
+> >> Seems that for each trigger we have an oversampling ratio controlled number
+> >> of samples at this rate. It is unusual to be able to control oversampling
+> >> rate separately from the trigger clock, hence the lack of ABI.  If
+> >> we add something new for this it should something relating to oversampling.
+> >> oversampling_frequency perhaps.
+> >>
+> >> For monitor mode, it is tied to the sampling frequency for most devices.
+> >> But there are exceptions.  E.g. the max1363. Trick is to make it an event
+> >> ABI property and hence under events/ rather than in the root directory.
+> >>
+> >> In this case you'll have to store two values and write the appropriate
+> >> one into the register to suit a given operating mode.
+> >>
+> > 
+> > If doing buffer captures with oversampling enabled, both sampling
+> > frequencies have an impact:
+> > 
+> > e.g.,
+> > oversampling: 4
+> > sample_rate: 2MHz
+> > PWM sampling frequency: 500KHz
+> > 
+> > PWM trigger out (CNV)   |       |       |       |       |
+> > ADC conversion          ++++    ++++    ++++    ++++    ++++
+> > ADC data ready  (GP)       *       *       *       *       *
+> > 
+> > For monitor mode, it will constantly be doing conversion to check for
+> > threshold crossings, at the defined sample_rate.
+> > 
+> > I like the idea of having the device's sample_rate as
+> > conversion_frequency.
 > 
+> In addition to what makes sense for this chip, we should also consider what
+> makes sense other chips with similar features. For example, I am working on
+> ad7606c which has control for the oversampling burst frequency (frequency of
+> "+" in the diagram above). So it would make sense to have a standard attribute
+> that would work for both chips.
 > 
->> +&mac3 {
->> +     status = "okay";
->> +     phy-mode = "rgmii";
+> On ad4052, just because we have a single register that controls two different
+> functions doesn't mean we have to be limited to a single attribute that controls
+> that register.
 > 
-> Still broken. And it appears you are just ignoring my comments.
-> 
-> Sorry, but:
-> 
-> NACK
-> 
-> There is a discussion here:
-> 
-> https://lore.kernel.org/lkml/20250317025922.1526937-1-jacky_chou@aspeedtech.com/
-> 
-> There is also IBM in a similar situation to you:
-> 
-> https://lore.kernel.org/linux-arm-kernel/20250108163640.1374680-6-ninad@linux.ibm.com/
-> 
-> and NVIDIA
-> 
-> https://lore.kernel.org/lkml/20250312045802.4115029-1-wthai@nvidia.com/
-> 
-> Could i suggest you, IBM and NVIDIA work together to get Aspeed to fix
-> this.
-> 
->         Andrew
-Hi Andrew,
 
-Thanks for the comments. Will follow up with Aspeed.
-We will skip this node in next patch.
+I looked into the ad7606c driver and summarized below to organize our
+ideas:
+
+  PADDING OVERSAMPLING
+  --------------------
+  Delay between conversions:
+
+  OS_CLOCK(Hz) = 1 / (1+OS_PAD/16)
+  
+  OS_CLOCK: internal clock, reg
+
+  0x08 OVERSAMPLING
+    OS_PAD[7:4]: Extends the internal oversampling period allowing
+                 evenly spaced sampling between CONVST rising edges,
+                 from 0 to 15
+    OS_RATIO[3:0]: from off(1) to 256
+    
+  Therefore, OS_CLOCK range is therefore 1Hz .. 0.516Hz
+  (1) from previous discussion, iio oversampling 1 equals off.
+
+  EXTERNAL OVERSAMPLING CLOCK
+  ---------------------------
+  Use CONVST as the external trigger for
+  each conversion
+
+On AD4052 family:
+
+  BURST AVERAGING MODE
+  --------------------
+
+  Delay between conversions
+
+  Total latency:
+  (AVG_WIN_LEN-1)/FS_BURST_AUTO + t_CONV
+
+  0x23 AVG_CONFIG
+    AVG_WIN_LEN[3:0]: Averaging ratio/number of samples
+  0x27 TIMER_CONFIG
+    FS_BURST_AUTO[7:4]: from 111Hz to 2 MHz, internal sample rate
+
+  AVERAGING MODE
+  --------------
+  Use CONVST as the external trigger for
+  each conversion
+
+So, we can say that
+PADDING OVERSAMPLING == BURST AVERAGING MODE, and
+EXTERNAL OVERSAMPLING CLOCK == AVERAGING MODE
+
+> So I would create the events/sampling_frequency{,_available} attributes like
+> Jonathan suggested for controlling the sampling frequency in monitor mode and
+> introduce new oversampling_burst_frequency{,_available} attributes for
+> controlling the conversion frequency when oversampling. When an attribute is
+> written, we can cache the requested value in the state struct instead of
+> writing it directly to the register on the ADC if we want the attributes to be
+> independent. Then only write the register when we enable monitor mode or when
+> we start reading samples with oversampling enabled.
+> 
+> Sure, it is more work to implement it in the driver this way, but that shouldn't
+> be an an excuse to do things in a way that isn't compatible with other ADCs.
+> 
+
+I am alright with that and will follow the suggestion of having the
+values independent through cache.
+
+So, two new attributes will be implemented:
+
+* oversampling_[burst_]frequency{,_available} (new ABI required)
+* events/sampling_frequency{,_available}
+
+And I will drop conversion_frequency (early sample_rate) attribute.
 
 
