@@ -1,123 +1,137 @@
-Return-Path: <devicetree+bounces-158913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EF91A688C5
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 10:53:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26250A688E2
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 10:56:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BAC3342040F
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 09:50:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B9BF8A161C
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 09:51:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32B71253F3C;
-	Wed, 19 Mar 2025 09:46:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B82C256C80;
+	Wed, 19 Mar 2025 09:48:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="GPuYt+yx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mEYYUjGH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE81C20C46A;
-	Wed, 19 Mar 2025 09:46:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD3091C8637;
+	Wed, 19 Mar 2025 09:47:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742377618; cv=none; b=B3mRwrRvCK/nnPIHW/Q6PLQyI0YJ+1/ypKYoB8t7qBYDGvbgpCt99tbPULA76fHtAbIJvn294QOHt491ALcdZo79ny/h5ZLD/MgerEN7n2Q1yIDLt4fZs6eHR6g1K6t3nO0C6+W5q1aOGJnuf9alM1ZxDmT+PHYdtCb94+BWJ2c=
+	t=1742377681; cv=none; b=H8df3lLRQDCz7yAQdR5RML/2AVjGCbe9ncRJhcg/mJ6y2AH5A5z6kO88HWk43Z+ccGilzuvYIEaRfyTg8sn7yQxro4cl067qCJnRPOKqVDcDraFjz6PNpa5ey8wbyYPMR7uwcvZg/qgBMENlY6VO9bC9bp5t8OnXL2RzBA6E97Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742377618; c=relaxed/simple;
-	bh=9ebwuk88cbMzqm7Ixyid1aTO3Lh4ISnAsGbjbZFF0Ck=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=At7WYr9ANvB1ISmKynxP7X16YH0QuTzRLWCjElCQjgJCoDswAErfxFzrZOmLmZtMeFImUfPs5Eg5Hk3efX5+fT+azcBiXfThBj+QJOW5Wjgaw3stLOCMbJYo36eYO28AFEL2qWkcLyhqaNPAJ0xPT5CzWhlPc/UE/LOlimxBeKg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=GPuYt+yx; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id B8AC54341E;
-	Wed, 19 Mar 2025 09:46:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1742377614;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=HD/ttrhBkOeCWKNJN7qmCfOGIcFc49e8XnOMUezmGaY=;
-	b=GPuYt+yxN+SuKya+8gYh6O1dQvrpzWSjHiTqhAgAiyA/ezBAOt2Ve+K2eRxGKJ89b1W1Jw
-	mIaWGM8Xjx3kotUG9Fr1nyyV4sJ5u7EhMs7WKLzwwLiQciSgDuwYVBaVPn8Kyvm8YBDRFX
-	J5Nn9U/XbHaubgwzFs7L9V4FZF5Z8r10UL/mJ6EMLNconrmSY7Zv+WBSs2MowynnIMkg6n
-	JQSz8oBvij1/4LqgB1HSKDNcmvmiqT7ikiTRn3rYdh20A+eyKqXOgwhOhJqMMzyJ0+Ovby
-	U1CWC2EM3PRnEDpIC+RwR73Hq40BsiLeFDy5oQXkxwy2NDQ0AsmlMsTf9XbzgA==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Mark Brown <broonie@kernel.org>,
-	<linux-spi@vger.kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Vaishnav Achath <vaishnav.a@ti.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v2 3/3] spi: dt-bindings: cdns,qspi-nor: Require some peripheral properties
-Date: Wed, 19 Mar 2025 10:46:51 +0100
-Message-ID: <20250319094651.1290509-4-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250319094651.1290509-1-miquel.raynal@bootlin.com>
-References: <20250319094651.1290509-1-miquel.raynal@bootlin.com>
+	s=arc-20240116; t=1742377681; c=relaxed/simple;
+	bh=PMk0c7uKIxAn+T63Z5jwhxs6lh/HmsfYncTnpawUELs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=dVJPGvIFTFLm1yPXxi8Qq33G9Glk4iZ8NPCHaXyHnHEWjIuBPWpTmmqMz/LEAfctkzuqCws7VyxMLMWvxIUpD4hFA6GrBOVY2Kt47r25wvIL11YOJoDwBFtr/LH2NFTzjmzYoOQ3nhrnEinviz6C9Hm6HiRa3EI5aEBUfTZR990=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mEYYUjGH; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-2254e0b4b79so28311555ad.2;
+        Wed, 19 Mar 2025 02:47:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742377679; x=1742982479; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sbZ47FHRO8GhpAC9R2csVeiqmhI0azn0pBpxkZV5e70=;
+        b=mEYYUjGHrkrDDKR7SMLZOylulB1wu44sWquLErkmHZn3cb/vomW61F1rtx/3Q2uzoi
+         L3+7AqAF+xMvUAr1ATxQpq0oUj9HQYsSQNr6ri9k3Blk3rwKuGdwLqzREWI24Sxor5BT
+         ARWtwaoMBPMWlOzzPQbx3Jj8YWeysAQyAO9XAbIB9Q2oqvQbr8tocY7p4/cE1C5oIf9P
+         joAH1vqbeTaUj13oKxXvNwhyUAKL7uWiY8dS3c1WeaHNa9ZpTCa3lHRDmcN34fn+Rhh4
+         ZEZ/05Rc3fbcaycbEn/5rwUGkiP7PEnvxtZvfMQ/inbPffE9hiEN3Uj+DBzeIErlOCx3
+         gHNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742377679; x=1742982479;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sbZ47FHRO8GhpAC9R2csVeiqmhI0azn0pBpxkZV5e70=;
+        b=qLP2o4GH9qQx3QxVCsr8qTFs3j7xaVM1+MeRqZFdUQZG/ERbD8mMh+M2yQp0zllfWu
+         veZlKd1Q1unJDMwbitvIcvUv7OYQj2dvv3YA4FWLkGOQ4ziXsXaiKLXIXqoJj4d333H3
+         RO92VGJVWQenV49i9+A8IUlUYktaprsCZZmAiYMk8PoB8ptEBCFysMyVs0Lv4mzjde4w
+         ORnamLLwbu+1RZ5AUm9NS310+BOOeHibtvNeMUUzrReJYxLVbV6xfUgtN7bILdb5Lc5j
+         aqnrT8gJccAXRXCfzEREUJYqhmflXLbEZYBzvt1VZ68d/iWggXA89mVx0vlzEAIg8B1E
+         TMXA==
+X-Forwarded-Encrypted: i=1; AJvYcCV67vRdZfaFQtF4Zksueeg60q5mWgNwktzHmBZDU1X8qbgqbZl8pmmjiSzHKrvXvaSRuM9cSjUoZ4vwqt2D@vger.kernel.org, AJvYcCVkUUzbM8YB056AIw9PC9KAwubvoQNKjmHf5ohJ68d2Qgk/3+6Wqk+3ckUXods1WoXl605wrVDthVCn@vger.kernel.org
+X-Gm-Message-State: AOJu0YytO4WZWv1uxuW6/pgF1QppH04Z96uF3G3t91ibllR+eX2JNo73
+	Rf8WLSOSb1bPS/JeWANtGvDLZVJWvW4khA4rI/HvSmNSiyjyMU0Lz0Iw5g==
+X-Gm-Gg: ASbGncsOvUK94dBOr0hUFeoB6xvlzDxkZMieADZn0Gfk3es/Usq00/Ykf7hsRhSmpdX
+	aHbryjshmzLAajx1B4KIHqlqwo2boDjKJf6C6fcwzs7Jh+bX7TNN1HSdgdb2bYMajsP4QpMybIh
+	GWvlpYiiyFQye2Jg9+Ia7HGtBZWKSpVhT7y9M9veXpAr+9T3/hpcpCnDdizsP8xw7ox7NlB9WbV
+	JAu0qjHMHhYZTlYy9bBZxHp//08397VZEZ3UogBKUev+qM5fivLfYQk1Ow/rvtSgzZNEIp3V7PY
+	pSqyIe6w/IEfQepZS/bxsjoThdVFX8hPeUc9eHX+Wguo+nQz5aDpIdwkcKRizBAlD1bVZ/rU2WG
+	t/JePkvryneQxpEniLtkS9pz1dsz6Y349AK7GPA==
+X-Google-Smtp-Source: AGHT+IHTmxf8tW2M1KZtfHI15upvypUupgDK1VnTqwzKkg65HgVFiFFIiQv7mkavRYVjgTTd8SaQag==
+X-Received: by 2002:a17:90b:3d05:b0:2fe:6942:3710 with SMTP id 98e67ed59e1d1-301bde445a4mr3574609a91.3.1742377679003;
+        Wed, 19 Mar 2025 02:47:59 -0700 (PDT)
+Received: from ISCN5CG2520RPD.infineon.com (KD106168128197.ppp-bb.dion.ne.jp. [106.168.128.197])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-301bf589bccsm1103483a91.11.2025.03.19.02.47.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Mar 2025 02:47:58 -0700 (PDT)
+From: Takahiro Kuwano <tkuw584924@gmail.com>
+X-Google-Original-From: Takahiro Kuwano <Takahiro.Kuwano@infineon.com>
+Subject: [PATCH 0/3] mtd: spi-nor: introduce optional rdid-dummy-ncycles DT
+ property
+Date: Wed, 19 Mar 2025 18:47:42 +0900
+Message-Id: <20250319-snor-rdid-dummy-ncycles-v1-0-fbf64e4c226a@infineon.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddugeehtdduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpefoihhquhgvlhcutfgrhihnrghluceomhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepueffgeevteevkeegkeehleetteffhffffefgleeuleevjedtgeelgeeutdekgeelnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehffidrrddpmhgrihhlfhhrohhmpehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeelpdhrtghpthhtohepsghrohhonhhivgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqshhpihesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvs
- ehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtohepvhgrihhshhhnrghvrdgrsehtihdrtghomh
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAL6S2mcC/x3MQQqDQAxA0atI1gZ02mHEq4iLNknbQB0lwdJBv
+ HuHLt/i/wNcTMVhbA4w+ajrmiv6tgF63fJTULkaQhdiF/orel4NjZWR92UpmKnQWxzTJaYoROk
+ +MNR6M3no93+e5vP8AZ9ra9VpAAAA
+X-Change-ID: 20250214-snor-rdid-dummy-ncycles-73575ecc7b8d
+To: Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, 
+ Miquel Raynal <miquel.raynal@bootlin.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Bacem Daassi <Bacem.Daassi@infineon.com>, 
+ Takahiro Kuwano <Takahiro.Kuwano@infineon.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1742377674; l=1201;
+ i=Takahiro.Kuwano@infineon.com; s=20250227; h=from:subject:message-id;
+ bh=PMk0c7uKIxAn+T63Z5jwhxs6lh/HmsfYncTnpawUELs=;
+ b=Z7wgIOhMU7hQ/wL7cFqCkBQZM5QVjjiylMBcS6ZIm2nx6iFnh+p2AprMpA2RcDa7eRDWaQxQH
+ 3bFr85fDBDODFUIOplpDU8Jo4015PZ8B+7QSQXzdvUgV0leJNVLgVhf
+X-Developer-Key: i=Takahiro.Kuwano@infineon.com; a=ed25519;
+ pk=aS8V9WLuMUkl0vmgD0xJU19ZajdJmuyFBnBfVj0dfDs=
 
-There are 5 mandatory peripheral properties. They are described in a
-separate binding but not explicitly required. Make sure they are
-correctly marked required and update the example to reflect this.
+There are infineon flashes [1] that require 8 dummy cycles for the
+1-1-1 Read ID command. Since the command is not covered by JESD216
+or any other standard, introduce an optional "rdid-dummy-ncycles"
+DT property to allow flashes to be correctly identified.
+Add support for CYRS17B512.
 
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Link: https://www.infineon.com/dgdl/Infineon-CYRS17B512_512_MB_64_MB_SERIAL_NOR_FLASH_SPI_QSPI_3-DataSheet-v07_00-EN.pdf?fileId=8ac78c8c8fc2dd9c01900eee733d45f3 [1]
+
+Signed-off-by: Takahiro Kuwano <Takahiro.Kuwano@infineon.com>
 ---
- .../devicetree/bindings/spi/cdns,qspi-nor.yaml  | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+Takahiro Kuwano (3):
+      dt-bindings: mtd: jedec,spi-nor: add optional rdid-dummy-ncycles
+      mtd: spi-nor: use rdid-dummy-ncycles DT property
+      mtd: spi-nor: spansion: add support for CYRS17B512
 
-diff --git a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
-index c6705ad846dd..53a52fb8b819 100644
---- a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
-+++ b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
-@@ -146,6 +146,18 @@ properties:
-     items:
-       enum: [ qspi, qspi-ocp, rstc_ref ]
- 
-+patternProperties:
-+  "^flash@[0-9a-f]+$":
-+    type: object
-+    $ref: cdns,qspi-nor-peripheral-props.yaml
-+    additionalProperties: true
-+    required:
-+      - cdns,read-delay
-+      - cdns,tshsl-ns
-+      - cdns,tsd2d-ns
-+      - cdns,tchsh-ns
-+      - cdns,tslch-ns
-+
- required:
-   - compatible
-   - reg
-@@ -177,5 +189,10 @@ examples:
-         flash@0 {
-             compatible = "jedec,spi-nor";
-             reg = <0x0>;
-+            cdns,read-delay = <4>;
-+            cdns,tshsl-ns = <60>;
-+            cdns,tsd2d-ns = <60>;
-+            cdns,tchsh-ns = <60>;
-+            cdns,tslch-ns = <60>;
-         };
-     };
+ .../devicetree/bindings/mtd/jedec,spi-nor.yaml          |  6 ++++++
+ drivers/mtd/spi-nor/core.c                              |  9 ++++++++-
+ drivers/mtd/spi-nor/spansion.c                          | 17 +++++++++++++++++
+ 3 files changed, 31 insertions(+), 1 deletion(-)
+---
+base-commit: 2014c95afecee3e76ca4a56956a936e23283f05b
+change-id: 20250214-snor-rdid-dummy-ncycles-73575ecc7b8d
+
+Best regards,
 -- 
-2.48.1
+Takahiro Kuwano <Takahiro.Kuwano@infineon.com>
 
 
