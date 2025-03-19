@@ -1,64 +1,60 @@
-Return-Path: <devicetree+bounces-159137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01421A69CBB
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 00:30:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D070EA69CBE
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 00:32:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A89D1179BB4
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 23:30:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 20295189A6F1
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 23:32:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35BBB20B1E6;
-	Wed, 19 Mar 2025 23:30:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B23C41F8BC5;
+	Wed, 19 Mar 2025 23:32:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d8aMbSk6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bBsabnTj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E028290F;
-	Wed, 19 Mar 2025 23:30:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88220290F;
+	Wed, 19 Mar 2025 23:32:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742427026; cv=none; b=t3XZ/DMmA9KIBC66NT1DbuTO7oR4+CzXd+SvC4MTzj1KCL7/hTNnGS+DrnmpXpF8MNdfevVqo/qtmqN8t6G4KMbErVPrhFs6JqdzXy6aWRsWOKIya72vLjFjRMBbqmHjgnyx7/HKzuBfvZbAuuAa5gTUZtoIluF7lUK7LT9KupA=
+	t=1742427122; cv=none; b=IGzat/Vey6tG4hO/KGWJ2tAnEiV3vaLwNBTXoteol1sDetJM9K9teBbDXUja+IC5/AO19Q5jm9dM5lheVH37KBceIIkie1wdypZDJbHF+/5ZqOmDPWHfYEEKwUwjuAt4nm2Og6Ngl/YFSw59HSiEj9xB6dSrJjdoR9lmvdbFXZk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742427026; c=relaxed/simple;
-	bh=OMKglMOygBYF+GG2fB4Gz4YtFSBhCmTJHwE7Jwd+DPk=;
+	s=arc-20240116; t=1742427122; c=relaxed/simple;
+	bh=BYK7wiJ3IYPwdWQ9eDYlq5k6sKt6lDU1cGmgoZP2yUA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G0OVhMSO7qytUpD+phlsoi0a4MfJ5mx+omkRfnT2eEO7C/ou7n21LDHMuj/p6hjMFQHd63z/OYDwimXRWHl/G1Utgfmb6IKM3YtzCBnnstfumdPhBQ1LySad1NkLBoZkDR52zO+6LEoqQ+ZFtATHTqKXFJAU97iNH7qPmVCZEb4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d8aMbSk6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 231C5C4CEE4;
-	Wed, 19 Mar 2025 23:30:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=MoSASekW5pshfBGkFu/g0tk9f3+bXbuAHaFrXTThIgZT/qBfOAvc7YLKfUSc7DljXQy45hm7XNj0MGqK/+/m2DgMv5inABxTLh9ECTOC5Dun09pyGMraEMpfETWn6S04LfPIKYSv8kxM+Bz2g7jk502KJKi0wo0OxhRv5pTXU9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bBsabnTj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01A10C4CEE4;
+	Wed, 19 Mar 2025 23:32:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742427025;
-	bh=OMKglMOygBYF+GG2fB4Gz4YtFSBhCmTJHwE7Jwd+DPk=;
+	s=k20201202; t=1742427122;
+	bh=BYK7wiJ3IYPwdWQ9eDYlq5k6sKt6lDU1cGmgoZP2yUA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=d8aMbSk6gk0jUPfw0KamMBrUIQAlPfmzC0Wrh9KojGMEy3e+Bb5vLcGRoeHIStYKI
-	 xPSVrZ70gq2E7N8Cg0TrSy8YipjQMmcC3j4R8vBpbDFJIO7xRS/E10ScszoFE0U2L5
-	 WY9nmFrlByE+J1JCk0thE5kI9yILDh7VytYqpCbdXfi1jZ6wDh+jK7OAlBgh4gK0TE
-	 mHZa9CmOd/4wEcapKDv95Ka7Jy7FPTUmNwLmCm1q7Qo9iWb1k9y0G8KRDT+zFiTJRB
-	 dXMocwHJTnSAzSA6+6mamUAt5BJLRj4OXYR+mt0XFejo6srOk0deA8VXo1x5FYFQMi
-	 OmpFuDuFxSrYw==
-Date: Wed, 19 Mar 2025 18:30:24 -0500
-From: Rob Herring <robh@kernel.org>
-To: Takahiro Kuwano <tkuw584924@gmail.com>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Pratyush Yadav <pratyush@kernel.org>,
-	Michael Walle <mwalle@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
+	b=bBsabnTj81gFC7wRg/9WIU4kKuVP7fT1PO9L/OsjlWxxlpqH4d8eLeKOeEwYd5F+q
+	 A8GfplZG8AnZjZykwZppd8kpBmfNrzCbxrVNHFEOOauxbVwTctan2CyjEgdfnYvXWU
+	 51LDtfz3mJqFUuNIX7gDvcC7xQ8bQbStmUPLgM1PnoKVGmYakyG699q/0JVLbGptMj
+	 b6x/HRtDWBrwLfTlGzNVn0xULoPjfclGz2oI8Z+nkGf8LQJBSBbVeAt2Ia5J0yiL8A
+	 7D6uEIDy9IrVPc7YV15Lc21OkJ0DPO6VR5OuKLGaO976X3cbcFf22CSG+TDfOl2/sl
+	 1+/RZ56NzXR5A==
+Date: Wed, 19 Mar 2025 18:32:00 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-mtd@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Bacem Daassi <Bacem.Daassi@infineon.com>,
-	Takahiro Kuwano <Takahiro.Kuwano@infineon.com>
-Subject: Re: [PATCH 2/3] mtd: spi-nor: use rdid-dummy-ncycles DT property
-Message-ID: <20250319233024.GA2625856-robh@kernel.org>
-References: <20250319-snor-rdid-dummy-ncycles-v1-0-fbf64e4c226a@infineon.com>
- <20250319-snor-rdid-dummy-ncycles-v1-2-fbf64e4c226a@infineon.com>
+	Mark Brown <broonie@kernel.org>,
+	Vaishnav Achath <vaishnav.a@ti.com>, linux-spi@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] spi: dt-bindings: cdns,qspi-nor: Deprecate the
+ Cadence compatible alone
+Message-ID: <174242712038.2634185.12472009117874721270.robh@kernel.org>
+References: <20250319094651.1290509-1-miquel.raynal@bootlin.com>
+ <20250319094651.1290509-3-miquel.raynal@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,19 +63,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250319-snor-rdid-dummy-ncycles-v1-2-fbf64e4c226a@infineon.com>
+In-Reply-To: <20250319094651.1290509-3-miquel.raynal@bootlin.com>
 
-On Wed, Mar 19, 2025 at 06:47:44PM +0900, Takahiro Kuwano wrote:
-> There are infineon flashes [1] that require 8 dummy cycles for the
-> 1-1-1 Read ID command. Since the command is not covered by JESD216
-> or any other standard, get the number of dummy cycles from DT and use
-> them to correctly identify the flash.
 
-If Read ID fails, then couldn't you just retry with dummy cycles? Or 
-would unconditionally adding dummy cycles adversely affect other chips?
+On Wed, 19 Mar 2025 10:46:50 +0100, Miquel Raynal wrote:
+> The initial SPI controller IP from Cadence has always been implemented
+> into controllers from various hardware manufacturers and because of
+> that, it has always been (rightfully) doubled with a more specific
+> compatible. There are likely no reasons to keep this compatible
+> legitimate, alone. Make sure people do not get mislead by officially
+> deprecating this compatible.
+> 
+> While at deprecating, let's update the examples to avoid documenting
+> deprecated properties.
+> 
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
+> It happens that there is a single in tree DT node named spi@ff705000,
+> so use the same second compatible to match a real life example.
+> ---
+>  Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
 
-Otherwise, add a specific compatible to imply this requirement. Adding 
-quirk properties doesn't scale.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-Rob
 
