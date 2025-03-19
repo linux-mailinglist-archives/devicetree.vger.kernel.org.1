@@ -1,130 +1,167 @@
-Return-Path: <devicetree+bounces-159060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F797A69757
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 19:02:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EDC2A697F7
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 19:24:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5683F8A51B7
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 18:00:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4604E3BA047
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 18:23:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CEF320966B;
-	Wed, 19 Mar 2025 18:00:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50DDB20C461;
+	Wed, 19 Mar 2025 18:23:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IaVVn3EJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j4HjHWU0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3E98204F65
-	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 18:00:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F5D920B20D;
+	Wed, 19 Mar 2025 18:23:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742407257; cv=none; b=AiG18XE/oGM/iG2Gj6gjQBSgajgLTfHGoQNuJWDp9EX0rOcn9iUGM4c0cJfaXbOttaEY7glhlbghbq9fOKtnAyAR6pIoklqW+U8V0H+Wl5Yw8ETj0B+wCyfQH7LRr3opTN/x1T2deF/fT2lkNzVxk8cSq0mp557o6h+viniAm8I=
+	t=1742408628; cv=none; b=lF0vON7Hs3Nf16wxwEfYmVHYMxtNsvYZC+O6mU3QmuKtlUYWvgastkpf0dcPp6ptTqytxNk1FOtJBeHX0tTgjFZg+70X3ZbE7S/REYnxNkcFUHqGSZRWLjthyckyNT7G0UULlS5M6+iDzYkPr1yWwl7wTHlj4VSm2rqBYFmOFzA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742407257; c=relaxed/simple;
-	bh=MyGuRyQlDt+foSD6CeJddJn3OL0fjbCOG+6NlRxWHHg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=U4E1HDEd2Z8sL6ZRiT6cERF/88L78sTlTOTfjidkLgSKOrTsOkNDPe/JHmNx/BkT478l6gkP5toTTBxiDEYK738hNq24C5pfuGl6qqm8N3uxF0YjG6IT3XZXIZjckiH50c6kONdfu9KfBShtREChPGtars3f2FxwDiRmjDUNHUY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IaVVn3EJ; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43cef035a3bso35174585e9.1
-        for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 11:00:54 -0700 (PDT)
+	s=arc-20240116; t=1742408628; c=relaxed/simple;
+	bh=7GpRSo1f4MpmUps8FOp+0DDkfwMvKF616oD0sC3QzMU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sUttccy8dgHGAqGI6YkjIR+DfaRgKhO71mAINxUlNwRqSzRZ0SEMzIdiaa0lU+3EdRKd4TTqG5zQhlHqjiRmji0sN5xX7HsXEU/NI7nV88Yx0yDZKm+9e8Siko5x5/yXY33r/FEzTG7uU7RsRnC6x/T6rKDs3MfGFBip2/Hp4dg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j4HjHWU0; arc=none smtp.client-ip=209.85.208.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-30bd11bfec6so73521fa.0;
+        Wed, 19 Mar 2025 11:23:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742407253; x=1743012053; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/rEfxvBCDj+OUf6/+Bbrxfwwkqzx6X/wza22OdnfwyY=;
-        b=IaVVn3EJ07saxjGiHiWtvGjXIF/qaa3WjClDBp6ylHibk4GkapEP+mybG6d1sDf6Dx
-         KxPmFfnTzHnbrW8rGvo4LTexhNVDI1MR5FPvcg5Auxike2KywKBf3nuA/kREU7L84fk5
-         6l+sy9jDzedPo/5ghDrqZNNVCwEb04nF3lyZXv1d3M6PqXBwXeS4/9JzU+2aSa9/258e
-         TQhNAFFNs9ClowK7BRpJ7yjcOGh3YhL5OjJQW2BQLK/44maAkkt9zrGXb3bYlOZeRPOg
-         C5GxSCoa2OMpiN70ZY5H5KO4tB+E99z/wO/vi2h7Xwv9+cmCLmYSm3HSqr5YGG8LM5IE
-         m6wQ==
+        d=gmail.com; s=20230601; t=1742408624; x=1743013424; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vM5vjdDKgplT27wll6RHU/DkDnOyBUK3CxhD6DbHY44=;
+        b=j4HjHWU07NGBxMj1a8I06uk+LpqLa2bIvA+H672d3ZjkKvw0iyBYWX50nKfowdS0Na
+         gTWGOomv2tjjvkoGELZUOLrP7RRQ3uSGDZf8u3wZ6yw6oy6JYtp3k0s59LT8o1pt1Smm
+         CMaQxacgezEO7WTg83+67eP8mZ3bt0K4Lm0M8rAyrq8ehgf8tKe1/G975lJ1+01voyQL
+         3Nbv+nUWiIezWhnwS+t+qsh75+0goCKMCGYpeEA++rUZqmaA4Axd6CZ8wbs8C/JxLZfF
+         q2qcSCrKI9SvOXLCuVy/XLAeyJYKs/d4FhjrPF7UX0NimPlG6+1A/OqrcupL7xR/dUKb
+         fsiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742407253; x=1743012053;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/rEfxvBCDj+OUf6/+Bbrxfwwkqzx6X/wza22OdnfwyY=;
-        b=MILGGhkIW8MAV0F5hXXGCHgErDeekTV+nQchjZFviHWjavWOpyBjBbd74x4PgBD0sy
-         K/8rIRI1VwKHzyCI2cByJ8QmLellJXt8FVGI7BQYzUjS8Ix2VG3v9GvkXztGzfdGUMQr
-         VVI2IL3++WcrUUpi5NK3iJ8WSLjNEnWKzgEoSKKxVm0p1vnNnrglW35L9sob5ix89Udp
-         l9avU3el6c7btE6r2Dkvu6c7LNbwgttoBo9mb/Ok3t8fYQIKe2mCgfBixlKD3G1r/2RQ
-         Lx8hRbbJKBzNs4jr/QV8hf8lmJf+mqE8b6wXIfTk+hbf7O/dsLQjTt2Xc5VUi3/zHn6f
-         +ZpQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX0l5XmV7tRzLPBuSqC9wV5EF+EbXNiWQp2BU/DRi206BkMlNVB8REfkZqvkkJYGjQDqYrom/fVWy0O@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz6RqLz1YPr5gNP4OPu4uw32N2CUPL4lATr5wjxqXhi1Mr15rvp
-	Ttu4dwim559AGv6kVDFRnAPjMZ3Bmz6p7XZpJvXCkN0lOjTlsjP/Oi3KWSKRXmE=
-X-Gm-Gg: ASbGnctkUhz4FveJvV8SHKFdvtkL5D2UHfpW7Nmk9sIpvo5n8N97Ls1LCQ+RUWzhIxl
-	bOUTc6Lx+E52XGB6nf3We6tyhV9+NstGAu9XMNN40VKdXWNLZfJvrmQRsYoU/+WhPShe61I9u2a
-	zjCtQwruGlTZyz55YYSFGZJ1kKfJ/2FhOOyheOg9P4YWjITtZGP9LLZMjAKEFyAEz7kxd6f8x16
-	YQVYl3YUPKHxaeBx0P7/7mdx9JOE8Lb75Mt0RVkSwjZ4FOmggwXpw+WkakGphuRrrRt3sXFW+io
-	rvSfzrCvU7lH1nWTUJXiBpA88hbXqMsMGAZ5SsUzBmNgPU6kgQKUc3gvxynV3mI=
-X-Google-Smtp-Source: AGHT+IFbFV/3Qs4DOHIi0NIjAkZVN8cQrhEL50TvwHlsiVaJpE49IvMubk5v6WpuWc3f92V/RIBWeA==
-X-Received: by 2002:a05:600c:4208:b0:43d:46de:b0eb with SMTP id 5b1f17b1804b1-43d46deb26dmr19657885e9.12.1742407252904;
-        Wed, 19 Mar 2025 11:00:52 -0700 (PDT)
-Received: from [192.168.68.117] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-395cb7ebbb7sm22140437f8f.92.2025.03.19.11.00.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Mar 2025 11:00:52 -0700 (PDT)
-Message-ID: <938cb09f-3fb1-4daf-802d-2d95222f30db@linaro.org>
-Date: Wed, 19 Mar 2025 18:00:51 +0000
+        d=1e100.net; s=20230601; t=1742408624; x=1743013424;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vM5vjdDKgplT27wll6RHU/DkDnOyBUK3CxhD6DbHY44=;
+        b=iKu0qP2VJYKe16/yzjki1E2A4JXhrA332PmB3ovL0Fa2+ylJx5MfpQehwjhUVEA7PJ
+         3YaTo7/w/YcVOUVsPV/wizBrkBLfrKV5zCSo5PTAPZvJVfweAFMm/3OaPBYmtJAn5aGJ
+         yCVXna95LObJA6+1txR6x3FH/rmnfu67330j9Pll+rpCK30RPTNu1pfbc271NJmTEPjg
+         OUW64ItTS/xRuyJMdWrKzmlhHsQbX6xCRK+dhtXCHDaMP/NY529dhFgQZl/EaJpq2c80
+         CkZ4CcNhdXgNlUk5fwL++eOTzGS330tCtDvE85kYBkp6pIIycb2xefXkjLDO6yicQvI0
+         nWQw==
+X-Forwarded-Encrypted: i=1; AJvYcCVsDCgFHowtbrq0f6s2UAwq9pPnZqFFggJh9wtEv7em3e9+Rnarlrv0z9yZch9QCI9licEI1qgExNNZ@vger.kernel.org, AJvYcCW30xbqKv+WcxkBH+HZVX/FU4v5yNbWqmnE5shfIDIdyV5MkOIC0J8PFEIn33GWZvcvYTHB+MtD8If+I3CzayU=@vger.kernel.org, AJvYcCWLkh9IMSmSZIKxgII1iR3XuhtzkPWuHcriSomD/CwTrOrmwrM0NMKOp2tcIwp5BCNiFXqpCg2BcYjR7nf4nQ3y@vger.kernel.org, AJvYcCWOz8TMoSvkZ336uXQN4ZSMAQqB+ebXxX3lAjrT9mGXP1mE1FG6TVakrT4H8/Xo5wmS+317yZxDq+H2HvM=@vger.kernel.org, AJvYcCX+Bp9gPkyQu3dIvl2e22CvVw/et1ktYTR8P15Hu7uXiy8zrYR9HeRgxTtIWdXzZdXjDeY2ACoEJOMdO6nL@vger.kernel.org, AJvYcCX/8dh34L+e9Uv0/MB+Tu64Upy2Y+R0jWnCdpXrfqitZfU6bnMfbnBIvtNVroFsfFZmPBN7ZcM3H14N@vger.kernel.org, AJvYcCXWPnpT3diCGZMNKG+G5pncopaZ9VKLRVE1oOgTwt19fwBbfqVvSgfM+cICM9LLKZPD1FscydUhpwpH0csL@vger.kernel.org
+X-Gm-Message-State: AOJu0YwOii58+VsG5yxGS/QMPsOaqWbTJz3+eo5C2S3tTIXx9+f36Ooq
+	3OB2DADHtBLveSqCxWhRLo0rtzpNFAeoY0NQoPkXuWm6q+s2DGTPNxqyPxctCg7YMNju4SKX83v
+	0/4lD9hAutDFw/Eyh6kvJFdz/PM0=
+X-Gm-Gg: ASbGncvEFUgMEZ+ZhSQX6k3QDY9fgMQbFPPZRc/o9QRKSgyhoJrztdE7UTfsqpwtQqZ
+	nHQald3ydURBrRU7NRPevLgJxkOkIljYnz2N8lLdci3t9l79D+jVjNjURnfLfybv5GAbsO7mwtH
+	6trRzP0tGeI3F5Mmo0cesnYtdPvUR02M0loeJ1iNEK6g==
+X-Google-Smtp-Source: AGHT+IGEOK5N8tHIazzaBBFYwKPt7IK0lEyYARQ8Yuk7nnN9JY1twqyBbq57jCCO+3DJSYYYx9K5vKdbuZ/veyaYAWE=
+X-Received: by 2002:a2e:a912:0:b0:30b:9813:afff with SMTP id
+ 38308e7fff4ca-30d6a465c16mr17800591fa.31.1742408624335; Wed, 19 Mar 2025
+ 11:23:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] ASoC: dt-bindings: wcd93xx: add bindings for audio
- switch controlling hp
-To: Mark Brown <broonie@kernel.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- andersson@kernel.org, lgirdwood@gmail.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org,
- perex@perex.cz, tiwai@suse.com, dmitry.baryshkov@linaro.org,
- linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- johan+linaro@kernel.org
-References: <20250319091637.4505-1-srinivas.kandagatla@linaro.org>
- <20250319091637.4505-2-srinivas.kandagatla@linaro.org>
- <4ie22uuz5tpg77jto3c3hec6lhonr44hrjda7jk655axlaxvba@u3atd4gcyghn>
- <660115f1-d1fb-4fd7-a453-e8c177be9eed@linaro.org>
- <51dd7cb2-0c22-4043-b3a1-fa8410903cbd@sirena.org.uk>
-Content-Language: en-US
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <51dd7cb2-0c22-4043-b3a1-fa8410903cbd@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250317-ptr-as-ptr-v5-0-5b5f21fa230a@gmail.com>
+ <20250317-ptr-as-ptr-v5-6-5b5f21fa230a@gmail.com> <Z9lnIJCcVSza6UVo@google.com>
+ <D8JTC30W0NF6.17SR73Y9I99ZT@proton.me> <Z9q2xpwsNMDzZ2Gp@google.com>
+ <CAJ-ks9m8r_ABh4ift3wmM_wpbYLo=ZuhUarfLJKQnS7TcGHRdg@mail.gmail.com> <D8KBL9Z0B68N.2Q3MU9UK9YI6G@proton.me>
+In-Reply-To: <D8KBL9Z0B68N.2Q3MU9UK9YI6G@proton.me>
+From: Tamir Duberstein <tamird@gmail.com>
+Date: Wed, 19 Mar 2025 14:23:07 -0400
+X-Gm-Features: AQ5f1JqqkJVkMtcz0tmGeT7J4y37KKPcDpFZR1eCkSoR2DOM6YfFaGeUBI4_56I
+Message-ID: <CAJ-ks9kD++_T_3my1Etam9PRJHHZvdM=zbkWgbxW3oybwMTw9w@mail.gmail.com>
+Subject: Re: [PATCH v5 6/6] rust: use strict provenance APIs
+To: Benno Lossin <benno.lossin@proton.me>
+Cc: Alice Ryhl <aliceryhl@google.com>, Masahiro Yamada <masahiroy@kernel.org>, 
+	Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, 
+	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Andreas Hindborg <a.hindborg@kernel.org>, Trevor Gross <tmgross@umich.edu>, 
+	Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Brendan Higgins <brendan.higgins@linux.dev>, 
+	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, 
+	Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, linux-kbuild@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+	linux-pci@vger.kernel.org, linux-block@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Mar 19, 2025 at 10:42=E2=80=AFAM Benno Lossin <benno.lossin@proton.=
+me> wrote:
+>
+> On Wed Mar 19, 2025 at 3:14 PM CET, Tamir Duberstein wrote:
+> > On Wed, Mar 19, 2025 at 8:21=E2=80=AFAM Alice Ryhl <aliceryhl@google.co=
+m> wrote:
+> >> On Wed, Mar 19, 2025 at 12:23:44AM +0000, Benno Lossin wrote:
+> >> > On Tue Mar 18, 2025 at 1:29 PM CET, Alice Ryhl wrote:
+> >> > > On Mon, Mar 17, 2025 at 10:23:56AM -0400, Tamir Duberstein wrote:
+> >> > >> @@ -264,7 +266,7 @@ pub fn read<T: FromBytes>(&mut self) -> Resul=
+t<T> {
+> >> > >>          let res =3D unsafe {
+> >> > >>              bindings::_copy_from_user(
+> >> > >>                  out.as_mut_ptr().cast::<c_void>(),
+> >> > >> -                self.ptr as *const c_void,
+> >> > >> +                crate::with_exposed_provenance(self.ptr),
+> >> > >>                  len,
+> >> > >>              )
+> >> > >>          };
+> >> > >
+> >> > > That's especially true for cases like this. These are userspace po=
+inters
+> >> > > that are never dereferenced. It's not useful to care about provena=
+nce
+> >> > > here.
+> >> >
+> >> > I agree for this case, but I think we shouldn't be using raw pointer=
+s
+> >> > for this to begin with. I'd think that a newtype wrapping `usize` is=
+ a
+> >> > much better fit. It can then also back the `IoRaw` type. AFAIU user
+> >> > space pointers don't have provenance, right? (if they do, then we sh=
+ould
+> >> > use this API :)
+> >>
+> >> We're doing that to the fullest extent possible already. We only conve=
+rt
+> >> them to pointers when calling C FFI functions that take user pointers =
+as
+> >> a raw pointer.
+> >>
+> >> Alice
+> >
+> > Personally, I agree with Benno that `as` conversions are a misfeature
+> > in the language.
+> >
+> > I think this patch and the ensuing discussion is making perfect the
+> > enemy of good, so I'd prefer to drop it and revisit when the
+> > ergonomics have improved.
+>
+> I don't think that we need to rush on the rest of the patch series.
+> Boqun's suggestion is very good and I'm not sure which ergonomics need
+> to be improved here.
 
+The improved ergonomics arrive in Rust 1.79. See Boqun's reply that
+explains we need to keep all the stubs until then.
 
-On 19/03/2025 16:03, Mark Brown wrote:
-> On Wed, Mar 19, 2025 at 03:59:23PM +0000, Srinivas Kandagatla wrote:
->> On 19/03/2025 10:01, Dmitry Baryshkov wrote:
-> 
->>> Is this regulator supplying the codec or some external component? In the
->>> latter case it's likely that it should not be a part of WCD bindings.
-> 
->> This is regulator powering a mux that is driven by gpio which is part of
->> codec binding. So I would assume this will fall into the codec.
-> 
->> Where would we fit this if not part of codec?
-> 
->> Unless we mark this regulator as always on.
-> 
-> I would expect that the mux would appear in the DT and consume both the
-> GPIO and the regulator.
-Yes, its doable, so we would endup with a mux driver consuming regulator 
-and gpio and move the gpio handling in codec to move to use mux control.
-
-Let met try that and see how it looks like.
-
---srini
-
+Regarding landing the rest of the series - you said it yourself: "it's
+only going to get more painful in the long run to change this". The
+nature of lints is that the longer you don't enable them, the likelier
+you are to have a higher hill to climb later.
 
