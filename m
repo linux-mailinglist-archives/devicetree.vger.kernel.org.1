@@ -1,105 +1,204 @@
-Return-Path: <devicetree+bounces-159062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7C19A69802
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 19:26:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C70F2A69814
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 19:31:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A15D4810C5
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 18:25:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7942C3B3C19
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 18:31:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F5CC208970;
-	Wed, 19 Mar 2025 18:25:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1257420B1F4;
+	Wed, 19 Mar 2025 18:31:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YKhGZn1e"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cluq2FFP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3085B1FB3;
-	Wed, 19 Mar 2025 18:25:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E1F8207DF1;
+	Wed, 19 Mar 2025 18:31:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742408752; cv=none; b=SSEX66k5A9Cw2+AI24v4c7llXtLUo5QVhpIJzh1qxiVH31wx2Xu8j9AZz/WvPSxVFfI3z8M4xRxDfpoYJbRezYbVG5gNchOZiX/lnS2EI4LWhItSTkoREuDqKs9tXZf9vw+BgT+xaClTqDE1PzIjHwxNeNcndRQ/a63kScQjJ6M=
+	t=1742409108; cv=none; b=k1EiJYY877N4u6MS2JTr1yPA8ZcQusEv0fOfFMNiXOHI66I8AxEnWg2QoOsDR4HYaSdfhIX86nrIGw63/tHNtDYndNEDlq4zKtEBnJjn9WEaKcOlN//O8P2UreXXKu3GhhIgg1Xwizx0CDsDkZagAU5mjU1B452Ebo6xAtFmOo4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742408752; c=relaxed/simple;
-	bh=04CMRe93ja+0dP91KUJ1g3Ym9I3uIUGjEdjdQChI45w=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=Suz1Ia0cFd7AiASoQIDuqfedEoYRGJ2k0B8xWD0Ti7Acu5g4x3d5HiIPpEeh9t+FhTzNQWV4i1pqIfK61EXVwUGcLleJu44z83DICUzJOTnz9m/Sl601Pm7OA1Bmeh41u4/5nBYAbY5hhf6QPzN8gnlPzcGBVl/itb1EQLMOjy0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YKhGZn1e; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E0B2C4CEE4;
-	Wed, 19 Mar 2025 18:25:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742408751;
-	bh=04CMRe93ja+0dP91KUJ1g3Ym9I3uIUGjEdjdQChI45w=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=YKhGZn1eTu8aUzeBZK0hVZjTgVsbH+pITU9AswRjgdFmvNALPZBW6Hsz/YT4snIT1
-	 zPHs9rSu85745og20w3OoufRJcUvEYhbaM0N1Ek6r+Sa+u/IqWVBd7E25MYo+oJ6fh
-	 bm+Kv5PYf/pjPnrZYAzurjs7yWrRsIWQ8MzGm3Axnh6ZG4nnAqOEtpF+H5D3W6XqU9
-	 0RluMZifkFxk6bA+BGUnTUQbF2x/gisXqZ+n8GFhjbS7460wVVGuOG3UXygpD2O5L/
-	 1aCyrGLbrbFm3oNAKast4gtrE5vKViIyA4uTYQNDYVNEhqI0QnD82qGEoxiGoXqSfN
-	 L1mk6lX8+YZTg==
-Date: Wed, 19 Mar 2025 13:25:50 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1742409108; c=relaxed/simple;
+	bh=L5Iwrj7nj39EP2MOSWzeT/LiVK4+eFVjy5gDzPEekZA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZYy2w34o9rxSlcCNK7XuvEIWxfDRc9OBeijLL7LKJkhU4FeKog6OV1SHyf88GSplbFwmENb6ujjGzTZeDvJiC0DW7lBENVA3xw62yAM/xY/7boJuCM7445Vi4hDOeAT0dIobEdBVt0TDCaq3FxQWploCclVgoOD4nfAkf2NJ3bQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cluq2FFP; arc=none smtp.client-ip=198.175.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1742409107; x=1773945107;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=L5Iwrj7nj39EP2MOSWzeT/LiVK4+eFVjy5gDzPEekZA=;
+  b=cluq2FFPVFLTkmXx3CeP/npT0ZQzBUN5BmlPixiWaUqL4RjkTgXicvjM
+   y10vUmcpJklP+U/5swrbiiQHaP4aQvCExEsa/rxwcFgiqLYC46foNzT1z
+   kRRDHdvc0ZiULgo2c7NPvEDjZUE/ihZjMAik+H4kzNwfPNlWKMbpPtCKO
+   6SQA7GNytX2pWi3UZHhTAXlLhJLmVoL6SpJ0OyiYcLotYG54lTQzVWcDy
+   5otUbvoEUsaCzc2W2n0ltLCNWFBYdJs7HdUjaT2zIffmKqVrpF/hn/57L
+   VlFd9Fh/zeV1TGb/elTFcLmctqKyF/tGCKY1R2u97uwlk1R+YfwSBpqwx
+   w==;
+X-CSE-ConnectionGUID: vz+W3ZtnQZugAkNBYCHBqQ==
+X-CSE-MsgGUID: ze4I27ahTt2hYG9ctZaNUg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11378"; a="61010918"
+X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; 
+   d="scan'208";a="61010918"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2025 11:31:46 -0700
+X-CSE-ConnectionGUID: XVHcttv8QLqk6z57OW9imw==
+X-CSE-MsgGUID: AiYHT9Z9SCyG0TQ4vG67kg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; 
+   d="scan'208";a="127824689"
+Received: from lkp-server02.sh.intel.com (HELO a4747d147074) ([10.239.97.151])
+  by fmviesa004.fm.intel.com with ESMTP; 19 Mar 2025 11:31:40 -0700
+Received: from kbuild by a4747d147074 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tuyCY-000FbC-15;
+	Wed, 19 Mar 2025 18:31:38 +0000
+Date: Thu, 20 Mar 2025 02:30:45 +0800
+From: kernel test robot <lkp@intel.com>
+To: Prabhakar <prabhakar.csengg@gmail.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>
+Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH net-next v4 3/3] net: stmmac: Add DWMAC glue layer for
+ Renesas GBETH
+Message-ID: <202503200200.WXMnn3Kq-lkp@intel.com>
+References: <20250318205735.122590-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Guenter Roeck <linux@roeck-us.net>, Jean Delvare <jdelvare@suse.com>, 
- linux-hwmon@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- linux-doc@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Flaviu Nistor <flaviu.nistor@gmail.com>
-To: Flaviu Nistor <flaviu.nistor@googlemail.com>
-In-Reply-To: <20250319170234.63723-3-flaviu.nistor@gmail.com>
-References: <20250319170234.63723-1-flaviu.nistor@gmail.com>
- <20250319170234.63723-3-flaviu.nistor@gmail.com>
-Message-Id: <174240875028.2079791.17732248186123259206.robh@kernel.org>
-Subject: Re: [PATCH 2/2] dt-bindings: hwmon: Add TI TPS389008
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250318205735.122590-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+
+Hi Prabhakar,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on net-next/main]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Prabhakar/dt-bindings-net-dwmac-Increase-maxItems-for-interrupts-and-interrupt-names/20250319-050021
+base:   net-next/main
+patch link:    https://lore.kernel.org/r/20250318205735.122590-4-prabhakar.mahadev-lad.rj%40bp.renesas.com
+patch subject: [PATCH net-next v4 3/3] net: stmmac: Add DWMAC glue layer for Renesas GBETH
+config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20250320/202503200200.WXMnn3Kq-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 8.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250320/202503200200.WXMnn3Kq-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503200200.WXMnn3Kq-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/net/ethernet/stmicro/stmmac/dwmac-renesas-gbeth.c: In function 'renesas_gbeth_probe':
+>> drivers/net/ethernet/stmicro/stmmac/dwmac-renesas-gbeth.c:125:7: error: 'STMMAC_FLAG_EN_TX_LPI_CLK_PHY_CAP' undeclared (first use in this function); did you mean 'STMMAC_FLAG_EN_TX_LPI_CLOCKGATING'?
+          STMMAC_FLAG_EN_TX_LPI_CLK_PHY_CAP |
+          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          STMMAC_FLAG_EN_TX_LPI_CLOCKGATING
+   drivers/net/ethernet/stmicro/stmmac/dwmac-renesas-gbeth.c:125:7: note: each undeclared identifier is reported only once for each function it appears in
 
 
-On Wed, 19 Mar 2025 19:02:29 +0200, Flaviu Nistor wrote:
-> Add device tree bindings and an example for the
-> TI TPS389008 voltage monitor.
-> 
-> Signed-off-by: Flaviu Nistor <flaviu.nistor@gmail.com>
-> ---
->  .../bindings/hwmon/ti,tps389008.yaml          | 140 ++++++++++++++++++
->  1 file changed, 140 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/ti,tps389008.yaml
-> 
+vim +125 drivers/net/ethernet/stmicro/stmmac/dwmac-renesas-gbeth.c
 
-My bot found errors running 'make dt_binding_check' on your patch:
+    72	
+    73	static int renesas_gbeth_probe(struct platform_device *pdev)
+    74	{
+    75		struct plat_stmmacenet_data *plat_dat;
+    76		struct stmmac_resources stmmac_res;
+    77		struct device *dev = &pdev->dev;
+    78		struct renesas_gbeth *gbeth;
+    79		unsigned int i;
+    80		int err;
+    81	
+    82		err = stmmac_get_platform_resources(pdev, &stmmac_res);
+    83		if (err)
+    84			return dev_err_probe(dev, err,
+    85					     "failed to get resources\n");
+    86	
+    87		plat_dat = devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
+    88		if (IS_ERR(plat_dat))
+    89			return dev_err_probe(dev, PTR_ERR(plat_dat),
+    90					     "dt configuration failed\n");
+    91	
+    92		gbeth = devm_kzalloc(dev, sizeof(*gbeth), GFP_KERNEL);
+    93		if (!gbeth)
+    94			return -ENOMEM;
+    95	
+    96		plat_dat->num_clks = ARRAY_SIZE(renesas_gbeth_clks);
+    97		plat_dat->clks = devm_kcalloc(dev, plat_dat->num_clks,
+    98					      sizeof(*plat_dat->clks), GFP_KERNEL);
+    99		if (!plat_dat->clks)
+   100			return -ENOMEM;
+   101	
+   102		for (i = 0; i < plat_dat->num_clks; i++)
+   103			plat_dat->clks[i].id = renesas_gbeth_clks[i];
+   104	
+   105		err = devm_clk_bulk_get(dev, plat_dat->num_clks, plat_dat->clks);
+   106		if (err < 0)
+   107			return err;
+   108	
+   109		plat_dat->clk_tx_i = renesas_gbeth_find_clk(plat_dat, "tx");
+   110		if (!plat_dat->clk_tx_i)
+   111			return dev_err_probe(dev, -EINVAL,
+   112					     "error finding tx clock\n");
+   113	
+   114		gbeth->rstc = devm_reset_control_get_exclusive(dev, NULL);
+   115		if (IS_ERR(gbeth->rstc))
+   116			return PTR_ERR(gbeth->rstc);
+   117	
+   118		gbeth->dev = dev;
+   119		gbeth->regs = stmmac_res.addr;
+   120		gbeth->plat_dat = plat_dat;
+   121		plat_dat->bsp_priv = gbeth;
+   122		plat_dat->set_clk_tx_rate = stmmac_set_clk_tx_rate;
+   123		plat_dat->clks_config = renesas_gbeth_clks_config;
+   124		plat_dat->flags |= STMMAC_FLAG_HWTSTAMP_CORRECT_LATENCY |
+ > 125				   STMMAC_FLAG_EN_TX_LPI_CLK_PHY_CAP |
+   126				   STMMAC_FLAG_SPH_DISABLE;
+   127	
+   128		err = renesas_gbeth_clks_config(gbeth, true);
+   129		if (err)
+   130			return err;
+   131	
+   132		err = stmmac_dvr_probe(dev, plat_dat, &stmmac_res);
+   133		if (err)
+   134			renesas_gbeth_clks_config(gbeth, false);
+   135	
+   136		return err;
+   137	}
+   138	
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/hwmon/ti,tps389008.example.dtb: /example-0/i2c/vmon@37: failed to match any schema with compatible: ['ti,tps389008', 'ti,tps389006', 'ti,tps389004']
-Documentation/devicetree/bindings/hwmon/ti,tps389008.example.dtb: /example-0/i2c/vmon@37: failed to match any schema with compatible: ['ti,tps389008', 'ti,tps389006', 'ti,tps389004']
-Documentation/devicetree/bindings/hwmon/ti,tps389008.example.dtb: /example-0/i2c/vmon@37: failed to match any schema with compatible: ['ti,tps389008', 'ti,tps389006', 'ti,tps389004']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250319170234.63723-3-flaviu.nistor@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
