@@ -1,279 +1,241 @@
-Return-Path: <devicetree+bounces-159013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DF0DA69320
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 16:22:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41336A6939E
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 16:36:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ACF2C465595
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 15:13:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 384281B6471A
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 15:16:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A51911C6FEE;
-	Wed, 19 Mar 2025 15:07:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27F0F1C7013;
+	Wed, 19 Mar 2025 15:16:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="zD6wC2KV";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="62ykFpYV"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Lc8QL+wu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-b1-smtp.messagingengine.com (fhigh-b1-smtp.messagingengine.com [202.12.124.152])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A2681A4F0A;
-	Wed, 19 Mar 2025 15:07:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F52C1C5D53;
+	Wed, 19 Mar 2025 15:16:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742396873; cv=none; b=NPIydzgnGdhxeWA59NoYY2ATHA3QDmU1Fgx8Qv5dS0u5J49mgRh/TobdIVidpvnGuegI/bMNu9Su//ypGVV3jKQ/ElKpRn2kCwstcIC12hQV4xXa+M16nZ16EFEEZvx24MeeY9ilX/MO0iC15RP8UbC1x9PE70uyzcHkWoAiRL0=
+	t=1742397395; cv=none; b=pZoitFQXNvjHaSg3XuCLXkrrw3jf6AU7LtBYw30R0RaxCEvNE9r1lwU7iFMjKe4EDoomlTMLkqgAQdufBSfvLVHvupsC3UMnbqCaxZJXm45HHVznPZkMFII6ZfM/5TKSFL5aYgKsebqL5pcrcKZhFDE44pB3q5i2OLPAT0Z6qxM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742396873; c=relaxed/simple;
-	bh=sejEb1ymOKn3UQElCjIArq21+MBAEBSD579oJKzYKho=;
+	s=arc-20240116; t=1742397395; c=relaxed/simple;
+	bh=WVcWVQJpGeDUiTGY9vo3z1CvL7csVDDzGiAEHoJjlHU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kwaZ3aRDY8DN+fEpqQGuOM53uSI/QrilSzFHXag7pm997Y0tgSX/4obuXsIyd1PR9PLWZSennQImn0tB9p9BSCj5qNtVuO8szf9EKbnycBSZ7VEacvaFrR9k024BCNi1Um+5VMDQ3ZHJ6b0h/IpApLmCBltnAalhGkP4qHZMGlU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=zD6wC2KV; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=62ykFpYV; arc=none smtp.client-ip=202.12.124.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from phl-compute-07.internal (phl-compute-07.phl.internal [10.202.2.47])
-	by mailfhigh.stl.internal (Postfix) with ESMTP id 21D282540223;
-	Wed, 19 Mar 2025 11:07:49 -0400 (EDT)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
-  by phl-compute-07.internal (MEProxy); Wed, 19 Mar 2025 11:07:49 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm3; t=1742396868;
-	 x=1742483268; bh=OFem1S2fafkmevswHgaSAN0Iz2pEzjs7TuHY9LHZw5Q=; b=
-	zD6wC2KV8TSFpqbT44GVB9ElGOLEfTTsJgshQqDZiMNJO4QWTyz2QS/bfvYHvYKS
-	pjNxOi0YEbfruG5wtFD7einhZUEecnCpUmjwD44a+m7Ta/SJugqZg4IWQ6MvjgfZ
-	mOB3bUhx2cV/djddb+mDf4m9UIyCG6qvD6zwYCsOAKxCimY2EeW/yTCgzUMaGm6z
-	ueiLNkq/cf3li/99NRY8eRKtQ52bzqWBGe8OXlLcfWkXasNkzbWurYk6kVTPdDEl
-	5RrO4eByXyf2H2i6S3qqSdkDfPBwNGVRfpoS2LzfkfByYUHJWVaRg3EBIXOrd1QN
-	/kZnRBUlT/xIdKnWVDKfuQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1742396868; x=
-	1742483268; bh=OFem1S2fafkmevswHgaSAN0Iz2pEzjs7TuHY9LHZw5Q=; b=6
-	2ykFpYVcX8ZFqW4oIfGr7ssj/inEV0EhQnXYIxdR0xVn+nV1aktstIMO5O6tlfs8
-	eu2z+l2LFLg/HRz3BO5/+daNTy0sGOUfD2GGqdwQe7JCsyuSzqqRlcXKUoQH5W4+
-	7PkvdEcxXoeimOKC6+vnnIsvEjGxvkxRCZrrVLuti3iNs9ZcYA+UhLQz4dF99X/Q
-	iDhsit1L89YKEhTPeWWDonxZNgZlE7sgW6XDHb79/k6Pi2AT4foVkv3heDgXaC6C
-	YHl/7TpZGZilIfNliZQ4djQWPolIkJe/mmTB9QC+7C7AL3xyUbNVdMxmr1jcR1tw
-	55fCwtWmSgrg7li1v9Fhw==
-X-ME-Sender: <xms:xN3aZ__-a14j6IN40xJ7fVRkv83HnHsPBn9mk2yw_X4O2xqLbL4pMA>
-    <xme:xN3aZ7vIHrhJzNIMip842O6B_BjrpVjA1JMjHhF2Egr67Kh7E6RE0MF4J1KDIuKkY
-    h-fPyYx1dsHbSt31Rg>
-X-ME-Received: <xmr:xN3aZ9DRNzsKwGAan7NFWeuX2fSit_gaWx8lAFW3H18YEowoK0TWCDOgPc3czgj3UIy2AIw0JkEnoo3WJzpxIJ_fm5vptXwehA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddugeehieehucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
-    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
-    gvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggugfgjsehtkeertddt
-    tdejnecuhfhrohhmpefpihhklhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrsh
-    houggvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffr
-    rghtthgvrhhnpeefhfellefhffejgfefudfggeejlefhveehieekhfeulefgtdefueehff
-    dtvdelieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhm
-    pehnihhklhgrshdrshhouggvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthh
-    drshgvpdhnsggprhgtphhtthhopeduvddpmhhouggvpehsmhhtphhouhhtpdhrtghpthht
-    ohepjhgrtghophhordhmohhnughisehiuggvrghsohhnsghorghrugdrtghomhdprhgtph
-    htthhopehmtghhvghhrggssehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshhes
-    khgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorh
-    hgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthho
-    pehgvggvrhhtodhrvghnvghsrghssehglhhiuggvrhdrsggvpdhrtghpthhtohephhhvvg
-    hrkhhuihhlseigshegrghllhdrnhhlpdhrtghpthhtohepshgrkhgrrhhirdgrihhluhhs
-    sehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtoheplhgruhhrvghnthdrphhinh
-    gthhgrrhhtsehiuggvrghsohhnsghorghrugdrtghomh
-X-ME-Proxy: <xmx:xN3aZ7eh6G1yQDeGzNlSiIIhvF9U8MDb1oPQ93FrNnukgM5jJblygw>
-    <xmx:xN3aZ0MJT9BwEoF3qdxM6sSfzZF_CPN4bYDhzA-yIeB-m2JuWqU5Yw>
-    <xmx:xN3aZ9m_o9g8BAEiGGL8iLhUVlR78Mkc5szdQH5aHojb48C9H-GsBQ>
-    <xmx:xN3aZ-s2v9iVSfdtUX4NlNAcMBlU6kigYBiDWZzNzPksqhRYk4zEJg>
-    <xmx:xN3aZwnIIjAR3sUUPKNnvhEzzDamgpf91ZXP-sRK4APztvG386Wm9czg>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 19 Mar 2025 11:07:47 -0400 (EDT)
-Date: Wed, 19 Mar 2025 16:07:45 +0100
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=jhVY1fAXAofSrOsDHmilzy5uDXW0YVXODuIsI58oOcFg+zIdIOQnectyLufkUsQOOIz7HtxXLXO4XYvQuAT/0mmjzMHKfCRB8oZqm9i3aOYrGTsimndwOfcAid0lxutLdu+DoQJhdO4E2UxgTpkri2oCTCp23SWK4n4Oede5Qj4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Lc8QL+wu; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1742397393; x=1773933393;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=WVcWVQJpGeDUiTGY9vo3z1CvL7csVDDzGiAEHoJjlHU=;
+  b=Lc8QL+wu9BeVpDsCzf7tx0pSMAkyWYdl+bqmjHG8UlXBelr2AP7AstPV
+   R2N4+W1du9z9Es942lJb64+kqynlnZdAv8WRz40Ok8Gstu26Jhp3Q4KoU
+   PxCuj11N54IXjNn9EXi3JOqHmlLBbj2VVqpAelj8RpP2A5gRcwaHOpefG
+   Ur4CuOFmYzSgViqoYyPnUNWyFdWnyNv3EZwmhUUL33sCinzKxPQjx9w84
+   itpLygWrIYLP2QlAmoVwcN13iH2vhuiNlEhzVSi3m9Uhmyu+lxJz7DnUW
+   YX4D273qjZlWlrUAQPL8GWUfrBpSZgl684NNRnBnObIEKKn7/ePObgelM
+   g==;
+X-CSE-ConnectionGUID: klbsgNRwQpqWVU5sIPJ+GQ==
+X-CSE-MsgGUID: m9SU5dEVSemSBGeDOeLgEQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11378"; a="43778903"
+X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; 
+   d="scan'208";a="43778903"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2025 08:16:27 -0700
+X-CSE-ConnectionGUID: 6lWnkvOESRuKL6SPREtqIA==
+X-CSE-MsgGUID: 8vqABt5QTl287LzZrRVQTQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; 
+   d="scan'208";a="123150826"
+Received: from lkp-server02.sh.intel.com (HELO a4747d147074) ([10.239.97.151])
+  by fmviesa010.fm.intel.com with ESMTP; 19 Mar 2025 08:16:22 -0700
+Received: from kbuild by a4747d147074 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tuv9Y-000FP0-0W;
+	Wed, 19 Mar 2025 15:16:20 +0000
+Date: Wed, 19 Mar 2025 23:15:22 +0800
+From: kernel test robot <lkp@intel.com>
+To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 2/7] arm64: dts: renesas: r8a779a0: Add ISP core function
- block
-Message-ID: <20250319150745.GE949127@ragnatech.se>
-References: <20250315152708.328036-1-niklas.soderlund+renesas@ragnatech.se>
- <20250315152708.328036-3-niklas.soderlund+renesas@ragnatech.se>
- <hwj6d3ll75magopi5oak4zmboy5dol3ztv3isd6wvrxmvbkx4b@ayjumbqmuk3l>
+	Kamel Bouhara <kamel.bouhara@bootlin.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
+	andriy.shevchenko@intel.com,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+Subject: Re: [PATCH v5 09/11] input: keyboard: Add support for MAX7360 keypad
+Message-ID: <202503192258.ULXxG0T4-lkp@intel.com>
+References: <20250318-mdb-max7360-support-v5-9-fb20baf97da0@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <hwj6d3ll75magopi5oak4zmboy5dol3ztv3isd6wvrxmvbkx4b@ayjumbqmuk3l>
+In-Reply-To: <20250318-mdb-max7360-support-v5-9-fb20baf97da0@bootlin.com>
 
-Hi Jacopo,
+Hi Mathieu,
 
-Thanks for your feedback.
+kernel test robot noticed the following build errors:
 
-On 2025-03-19 15:50:00 +0100, Jacopo Mondi wrote:
-> Hi Niklas
-> 
-> On Sat, Mar 15, 2025 at 04:27:03PM +0100, Niklas Söderlund wrote:
-> > All ISP instances on V3U have both a channel select and core function
-> > block, describe the core region in addition to the existing cs region.
-> >
-> > The interrupt number already described intended to reflect the cs
-> > function but did incorrectly describe the core block. This was not
-> 
-> I can't find the interrupt mapping table for V3U, so this is the only
-> thing I can't check
+[auto build test ERROR on a64dcfb451e254085a7daee5fe51bf22959d52d3]
 
-Page number 820, or search for "SPI 152" (fist one).
+url:    https://github.com/intel-lab-lkp/linux/commits/Mathieu-Dubois-Briand/dt-bindings-mfd-gpio-Add-MAX7360/20250319-003750
+base:   a64dcfb451e254085a7daee5fe51bf22959d52d3
+patch link:    https://lore.kernel.org/r/20250318-mdb-max7360-support-v5-9-fb20baf97da0%40bootlin.com
+patch subject: [PATCH v5 09/11] input: keyboard: Add support for MAX7360 keypad
+config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20250319/202503192258.ULXxG0T4-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 8.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250319/202503192258.ULXxG0T4-lkp@intel.com/reproduce)
 
-> 
-> > noticed until now as the driver do not make use of the interrupt for the
-> > cs block.
-> >
-> > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> 
-> The rest looks good
-> 
-> > ---
-> >  arch/arm64/boot/dts/renesas/r8a779a0.dtsi | 60 +++++++++++++++++------
-> >  1 file changed, 44 insertions(+), 16 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-> > index f1613bfd1632..95ff69339991 100644
-> > --- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-> > +++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-> > @@ -2588,13 +2588,20 @@ du_out_dsi1: endpoint {
-> >  		isp0: isp@fed00000 {
-> >  			compatible = "renesas,r8a779a0-isp",
-> >  				     "renesas,rcar-gen4-isp";
-> > -			reg = <0 0xfed00000 0 0x10000>;
-> > -			interrupts = <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>;
-> > -			clocks = <&cpg CPG_MOD 612>;
-> > +			reg = <0 0xfed00000 0 0x10000>, <0 0xfec00000 0 0x100000>;
-> > +			reg-names = "cs", "core";
-> 
-> However, won't the presence of a "core" part trigger the probing of
-> the forthcoming RPP core support, which should not support V3U as far
-> I understood ?
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503192258.ULXxG0T4-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/input/keyboard/max7360-keypad.c: In function 'max7360_keypad_irq':
+>> drivers/input/keyboard/max7360-keypad.c:57:8: error: implicit declaration of function 'FIELD_GET' [-Werror=implicit-function-declaration]
+     row = FIELD_GET(MAX7360_FIFO_ROW, val);
+           ^~~~~~~~~
+   drivers/input/keyboard/max7360-keypad.c: In function 'max7360_keypad_hw_init':
+>> drivers/input/keyboard/max7360-keypad.c:114:5: error: implicit declaration of function 'FIELD_PREP'; did you mean 'EV_REP'? [-Werror=implicit-function-declaration]
+        FIELD_PREP(MAX7360_DEBOUNCE, val));
+        ^~~~~~~~~~
+        EV_REP
+   cc1: some warnings being treated as errors
 
 
-Correct the RPPX1 library will be given the change to probe on V3U, it 
-will detect it's not an RPPX1 gracefully not create an ISPCORE on V3U.  
-This describes the hardware, and there is an ISP core mapped at this 
-address, not just the same as on the others ;-) The driver is prepared 
-for this.
+vim +/FIELD_GET +57 drivers/input/keyboard/max7360-keypad.c
 
-> 
-> > +			interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupt-names = "cs", "core";
-> > +			clocks = <&cpg CPG_MOD 612>, <&cpg CPG_MOD 16>;
-> > +			clock-names = "cs", "core";
-> >  			power-domains = <&sysc R8A779A0_PD_A3ISP01>;
-> > -			resets = <&cpg 612>;
-> > +			resets = <&cpg 612>, <&cpg 16>;
-> > +			reset-names = "cs", "core";
-> >  			status = "disabled";
-> >
-> > +			renesas,vspx = <&vspx0>;
-> > +
-> >  			ports {
-> >  				#address-cells = <1>;
-> >  				#size-cells = <0>;
-> > @@ -2672,13 +2679,20 @@ isp0vin07: endpoint {
-> >  		isp1: isp@fed20000 {
-> >  			compatible = "renesas,r8a779a0-isp",
-> >  				     "renesas,rcar-gen4-isp";
-> > -			reg = <0 0xfed20000 0 0x10000>;
-> > -			interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
-> > -			clocks = <&cpg CPG_MOD 613>;
-> > +			reg = <0 0xfed20000 0 0x10000>, <0 0xfee00000 0 0x100000>;
-> > +			reg-names = "cs", "core";
-> > +			interrupts = <GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupt-names = "cs", "core";
-> > +			clocks = <&cpg CPG_MOD 613>, <&cpg CPG_MOD 17>;
-> > +			clock-names = "cs", "core";
-> >  			power-domains = <&sysc R8A779A0_PD_A3ISP01>;
-> > -			resets = <&cpg 613>;
-> > +			resets = <&cpg 613>, <&cpg 17>;
-> > +			reset-names = "cs", "core";
-> >  			status = "disabled";
-> >
-> > +			renesas,vspx = <&vspx1>;
-> > +
-> >  			ports {
-> >  				#address-cells = <1>;
-> >  				#size-cells = <0>;
-> > @@ -2756,13 +2770,20 @@ isp1vin15: endpoint {
-> >  		isp2: isp@fed30000 {
-> >  			compatible = "renesas,r8a779a0-isp",
-> >  				     "renesas,rcar-gen4-isp";
-> > -			reg = <0 0xfed30000 0 0x10000>;
-> > -			interrupts = <GIC_SPI 157 IRQ_TYPE_LEVEL_HIGH>;
-> > -			clocks = <&cpg CPG_MOD 614>;
-> > +			reg = <0 0xfed30000 0 0x10000>, <0 0xfef00000 0 0x100000>;
-> > +			reg-names = "cs", "core";
-> > +			interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 157 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupt-names = "cs", "core";
-> > +			clocks = <&cpg CPG_MOD 614>, <&cpg CPG_MOD 18>;
-> > +			clock-names = "cs", "core";
-> >  			power-domains = <&sysc R8A779A0_PD_A3ISP23>;
-> > -			resets = <&cpg 614>;
-> > +			resets = <&cpg 614>, <&cpg 18>;
-> > +			reset-names = "cs", "core";
-> >  			status = "disabled";
-> >
-> > +			renesas,vspx = <&vspx2>;
-> > +
-> >  			ports {
-> >  				#address-cells = <1>;
-> >  				#size-cells = <0>;
-> > @@ -2840,13 +2861,20 @@ isp2vin23: endpoint {
-> >  		isp3: isp@fed40000 {
-> >  			compatible = "renesas,r8a779a0-isp",
-> >  				     "renesas,rcar-gen4-isp";
-> > -			reg = <0 0xfed40000 0 0x10000>;
-> > -			interrupts = <GIC_SPI 159 IRQ_TYPE_LEVEL_HIGH>;
-> > -			clocks = <&cpg CPG_MOD 615>;
-> > +			reg = <0 0xfed40000 0 0x10000>, <0 0xfe400000 0 0x100000>;
-> > +			reg-names = "cs", "core";
-> > +			interrupts = <GIC_SPI 158 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 159 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupt-names = "cs", "core";
-> > +			clocks = <&cpg CPG_MOD 615>, <&cpg CPG_MOD 19>;
-> > +			clock-names = "cs", "core";
-> >  			power-domains = <&sysc R8A779A0_PD_A3ISP23>;
-> > -			resets = <&cpg 615>;
-> > +			resets = <&cpg 615>, <&cpg 19>;
-> > +			reset-names = "cs", "core";
-> >  			status = "disabled";
-> >
-> > +			renesas,vspx = <&vspx3>;
-> > +
-> >  			ports {
-> >  				#address-cells = <1>;
-> >  				#size-cells = <0>;
-> > --
-> > 2.48.1
-> >
+    29	
+    30	static irqreturn_t max7360_keypad_irq(int irq, void *data)
+    31	{
+    32		struct max7360_keypad *max7360_keypad = data;
+    33		unsigned int val;
+    34		unsigned int row, col;
+    35		unsigned int release;
+    36		unsigned int code;
+    37		int ret;
+    38	
+    39		do {
+    40			ret = regmap_read(max7360_keypad->regmap, MAX7360_REG_KEYFIFO, &val);
+    41			if (ret) {
+    42				dev_err(&max7360_keypad->input->dev, "Failed to read max7360 FIFO");
+    43				return IRQ_NONE;
+    44			}
+    45	
+    46			/* FIFO overflow: ignore it and get next event. */
+    47			if (val == MAX7360_FIFO_OVERFLOW)
+    48				dev_warn(&max7360_keypad->input->dev, "max7360 FIFO overflow");
+    49		} while (val == MAX7360_FIFO_OVERFLOW);
+    50	
+    51		if (val == MAX7360_FIFO_EMPTY) {
+    52			dev_dbg(&max7360_keypad->input->dev, "Got a spurious interrupt");
+    53	
+    54			return IRQ_NONE;
+    55		}
+    56	
+  > 57		row = FIELD_GET(MAX7360_FIFO_ROW, val);
+    58		col = FIELD_GET(MAX7360_FIFO_COL, val);
+    59		release = val & MAX7360_FIFO_RELEASE;
+    60	
+    61		code = MATRIX_SCAN_CODE(row, col, MAX7360_ROW_SHIFT);
+    62	
+    63		dev_dbg(&max7360_keypad->input->dev, "key[%d:%d] %s\n", row, col,
+    64			release ? "release" : "press");
+    65	
+    66		input_event(max7360_keypad->input, EV_MSC, MSC_SCAN, code);
+    67		input_report_key(max7360_keypad->input, max7360_keypad->keycodes[code], !release);
+    68		input_sync(max7360_keypad->input);
+    69	
+    70		return IRQ_HANDLED;
+    71	}
+    72	
+    73	static int max7360_keypad_open(struct input_dev *pdev)
+    74	{
+    75		struct max7360_keypad *max7360_keypad = input_get_drvdata(pdev);
+    76		int ret;
+    77	
+    78		/*
+    79		 * Somebody is using the device: get out of sleep.
+    80		 */
+    81		ret = regmap_write_bits(max7360_keypad->regmap, MAX7360_REG_CONFIG,
+    82					MAX7360_CFG_SLEEP, MAX7360_CFG_SLEEP);
+    83		if (ret) {
+    84			dev_err(&max7360_keypad->input->dev,
+    85				"Failed to write max7360 configuration\n");
+    86			return ret;
+    87		}
+    88	
+    89		return 0;
+    90	}
+    91	
+    92	static void max7360_keypad_close(struct input_dev *pdev)
+    93	{
+    94		struct max7360_keypad *max7360_keypad = input_get_drvdata(pdev);
+    95		int ret;
+    96	
+    97		/*
+    98		 * Nobody is using the device anymore: go to sleep.
+    99		 */
+   100		ret = regmap_write_bits(max7360_keypad->regmap, MAX7360_REG_CONFIG, MAX7360_CFG_SLEEP, 0);
+   101		if (ret)
+   102			dev_err(&max7360_keypad->input->dev,
+   103				"Failed to write max7360 configuration\n");
+   104	}
+   105	
+   106	static int max7360_keypad_hw_init(struct max7360_keypad *max7360_keypad)
+   107	{
+   108		unsigned int val;
+   109		int ret;
+   110	
+   111		val = max7360_keypad->debounce_ms - MAX7360_DEBOUNCE_MIN;
+   112		ret = regmap_write_bits(max7360_keypad->regmap, MAX7360_REG_DEBOUNCE,
+   113					MAX7360_DEBOUNCE,
+ > 114					FIELD_PREP(MAX7360_DEBOUNCE, val));
+   115		if (ret) {
+   116			return dev_err_probe(&max7360_keypad->input->dev, ret,
+   117				"Failed to write max7360 debounce configuration\n");
+   118		}
+   119	
+   120		ret = regmap_write_bits(max7360_keypad->regmap, MAX7360_REG_INTERRUPT,
+   121					MAX7360_INTERRUPT_TIME_MASK,
+   122					FIELD_PREP(MAX7360_INTERRUPT_TIME_MASK, 1));
+   123		if (ret) {
+   124			return dev_err_probe(&max7360_keypad->input->dev, ret,
+   125				"Failed to write max7360 keypad interrupt configuration\n");
+   126		}
+   127	
+   128		return 0;
+   129	}
+   130	
 
 -- 
-Kind Regards,
-Niklas Söderlund
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
