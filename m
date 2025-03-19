@@ -1,87 +1,148 @@
-Return-Path: <devicetree+bounces-158988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13386A68EED
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 15:23:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FF67A68EFA
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 15:25:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4EFA883913
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 14:20:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E1B9D168E39
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 14:21:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FDB01D7999;
-	Wed, 19 Mar 2025 14:19:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D9DD1C0DED;
+	Wed, 19 Mar 2025 14:21:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iaBkr5EI"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="LwQC/n9C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 442C71D6DBF;
-	Wed, 19 Mar 2025 14:19:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42D70155753;
+	Wed, 19 Mar 2025 14:21:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742393953; cv=none; b=C1zg4UTHFtT03HCO20OQyyTdJILyQakmFTbPsRme/zfgcSMFzpvU785Uu3llPMuOiRbLWUyfM4wYUlCVWWRS6kSu80IYtrJ/oylkP+Xo0NiL58HvJTN5I/nnSWykS5itkRSGO3xTkQ+vnbfSq5Afnv1mq3PtsgimurXQiSe3z0A=
+	t=1742394070; cv=none; b=Av0/PvNAKGc6XSUUfdz8Avhq9cCuEsTSh+5VyEIF8OQ7+P1ODjizYMSru9OtwhhNUvvYmaFwf5PRJdA28csvGgovEThofKp/LSrYLuCTdPte6n/m9or63XvF4sukolcezjE/DfBA1WlR88ZxYjbWGRxdjscRiGwfFn4wXKVmkcY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742393953; c=relaxed/simple;
-	bh=w4smtBCn6zspBwv+s3zCd/PbteG6YN8a26tl3kbWJz4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OSpzIz+ZIjMThrCkoEDyPfGQFhvA7kT31ZoTxrcsRq5t8vqBy0oa9UAScu0HERtR48iB0BCGrL4LibIc8TPhLClRlEABu7HBlp3G669RWliB2NeFFIvU/nZDHukk5Ber2kH/CvAWtni7VAH75jUz4L6bj3Uw63j0qXu6HjT4a7c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iaBkr5EI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0CB0C4CEEA;
-	Wed, 19 Mar 2025 14:19:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742393952;
-	bh=w4smtBCn6zspBwv+s3zCd/PbteG6YN8a26tl3kbWJz4=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=iaBkr5EIzlLnBjhw2p/Sw1xC1Buv+tYofrN4Hwj2iatwrogpOtSjnucxp5Esc9+G7
-	 +7WvrFQoHEDCP5fSNDrAYjgwdtFMC0qCWCyTYWmNRP3OSneuMbzDyK0UclY7st0tc3
-	 wH/7E4UBhAbh5OdthYFzZRcG+U3MlcafxRDXQAvSSNEn4ZCTtM3DMXvcScIDgYqYPd
-	 O1vHG8jyRSrLT/eyjA6WzmUVNCl71g9NDIkfIecevvk3Ov/ZL6h21iyADH/GRQV7tb
-	 dVsNCPj5D3UuO8I2QPcCwK0GqjfxsNj4GC3eTiXARc8JE0Xsu+Ue0R92Ju1J9eVU3a
-	 ikFw71QCXYOqQ==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
-	Johan Hovold <johan+linaro@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1742394070; c=relaxed/simple;
+	bh=LqYxkHdnu94BkDatbzc2SOdiZroP5pdS8NxG4IzR3lM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=OMaLTjCDYzo+Qj+At+b7WWVBH9IFHDEYMwO93M+YMHinauhukkGu87TO3H1hKAkzssS+EDecfX5bAckiopQJ0+3AFvlfLhNC6PALDQu4f5jFVIU/U5I9jBmEImNZisSCLU7MtlUGZQ4kZPHc170YmAU0wwBYtcQfiXHAxkBPLYg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=LwQC/n9C; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb.corp.toradex.com (31-10-206-125.static.upc.ch [31.10.206.125])
+	by mail11.truemail.it (Postfix) with ESMTPA id 5A5322351B;
+	Wed, 19 Mar 2025 15:21:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1742394064;
+	bh=rRmb6u1+UKFsEYd0+93uDGfvsAhDbHIh6rWpE1YlSF8=; h=From:To:Subject;
+	b=LwQC/n9C/khDqIU6Iv/+gTHolzdleHijWwOVy+k9H1tZW17ixi6mou5LwngQ39mVz
+	 CpAHHrX+6f1tZk20jjSw7AcGy58lhqT+f22kWw1VGnFcOVSUyZqCnLDun0YjwVAoFQ
+	 wK3yvewoUWVBUriBGOUt4ewtRHA2oHu7pX1irMdaDwF03mZSkh4f5ERRskvO+3gK81
+	 qpwrjssux79ZxwD6PDZClzorvCQgugHrIK5cORwBSXb4qANjXRRcdQH4Xap//JMZPd
+	 LIax5oafD3sYPhiPBRkcJRN+GxA9qXeLuIKR/Xq56Pei7LnMbPFrNoHq9shQYRgWvH
+	 fLw3lWIzxo5Vw==
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sibi Sankar <quic_sibis@quicinc.com>,
-	Abel Vesa <abel.vesa@linaro.org>,
-	linux-arm-msm@vger.kernel.org,
+	Saravana Kannan <saravanak@google.com>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	patches@opensource.cirrus.com
+Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
+	linux-sound@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: x1e001de-devkit: fix USB retimer reset polarity
-Date: Wed, 19 Mar 2025 09:19:09 -0500
-Message-ID: <174239394605.2278051.6011069436187548916.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250318074907.13903-1-johan+linaro@kernel.org>
-References: <20250318074907.13903-1-johan+linaro@kernel.org>
+Subject: [PATCH v4 0/5] ASoC: wm8904: Add DMIC and DRC support
+Date: Wed, 19 Mar 2025 15:20:54 +0100
+Message-Id: <20250319142059.46692-1-francesco@dolcini.it>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
+From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-On Tue, 18 Mar 2025 08:49:07 +0100, Johan Hovold wrote:
-> The ps8830 retimer reset is active low.
-> 
-> Fix up the retimer nodes which were based on an early version of the
-> driver which inverted the polarity.
-> 
-> 
+This patch series adds DMIC and DRC support to the WM8904 driver, a new
+of_ helper is added to simplify the driver code.
 
-Applied, thanks!
+DRC functionality is added in the same patch series to provide the
+necessary dynamic range control to make DMIC support useful.
 
-[1/1] arm64: dts: qcom: x1e001de-devkit: fix USB retimer reset polarity
-      commit: 1a7646d784513dcf0e8b16c1d9124ef54b4ec5e0
+The WM8904 supports digital microphones on two of its inputs:
+IN1L/DMICDAT1 and IN1R/DMICDAT2. These two inputs can either be
+connected to an ADC or to the DMIC system. There is an ADC for each
+line, and only one DMIC block. This DMIC block is either connected to
+DMICDAT1 or to DMICDAT2. One DMIC data line supports two digital
+microphones via time multiplexing.
 
-Best regards,
+The pin's functionality is decided during hardware design (IN1L vs
+DMICDAT1 and IN1R vs DMICDAT2). This is reflected in the Device Tree.
+
+If one line is analog and one is DMIC, we need to be able to switch
+between ADC and DMIC at runtime. The DMIC source is known from the
+Device Tree. If both are DMIC inputs, we need to be able to switch the
+DMIC source. There is no need to switch between ADC and DMIC at runtime.
+
+Therefore, kcontrols are dynamically added by the driver depending on
+its Device Tree configuration.
+
+This is a heavy rework of a previous patch series provided by Alifer
+Moraes and Pierluigi Passaro,
+https://lore.kernel.org/lkml/20220307141041.27538-1-alifer.m@variscite.com.
+
+v4:
+ * Renamed "wlf,mic-cfg" to "wlf,micbias-cfg" to be more in line with the
+   wm8994 binding.
+ * Changed type of "wlf,drc-cfg-regs" and "wlf,retune-mobile-cfg-regs" to
+   "uint16-matrix" instead of "uint16-array". Also edited the example to
+   properly itemize the "wlf,retune-mobile-cfg-regs" matrix according to the
+   style guide.
+ * Itemized "wlf,gpio-cfg" and "wlf,retune-mobile-cfg-hz" properly in the
+   example.
+ * Expanded the commit message of "ASoC: dt-bindings: wm8904: Add DMIC, GPIO,
+   MIC and EQ support" to clarify some things.
+
+v3: https://lore.kernel.org/all/20250307135244.100443-1-francesco@dolcini.it/
+ * Fixed DT binding to conform to the DT schema properly.
+ * Renamed "wlf,retune-mobile-cfg-rates" to "wlf,retune-mobile-cfg-hz", it is now a standard unit suffix property.
+
+v2: https://lore.kernel.org/all/20250224155500.52462-1-francesco@dolcini.it/
+ * Fixed a bug in wm8904_parse_retune_cfg_from_of()
+ * Added full usage example of the three ReTune Mobile config properties in the
+   DT binding.
+ * Improved the DAPM routing:
+   * Only add IN1L/IN1R routes to ADCL/ADCR conditionally depending on which
+     DMIC is in use.
+   * Do not connect PGAs to ADC when they are not needed.
+   * Keep the mux between ADC/DMIC even when two DMICs are used, as the IN1
+     pins share a mux with IN2 and IN3 and the ADC could still be used for
+     them.
+
+v1: https://lore.kernel.org/all/20250206163152.423199-1-francesco@dolcini.it/
+
+Ernest Van Hoecke (5):
+  of: Add of_property_read_u16_index
+  ASoC: wm8904: Don't touch GPIO configs set to 0xFFFF
+  ASoC: dt-bindings: wm8904: Add DMIC, GPIO, MIC and EQ support
+  ASoC: wm8904: get platform data from DT
+  ASoC: wm8904: add DMIC support
+
+ .../devicetree/bindings/sound/wlf,wm8904.yaml | 129 +++++++
+ drivers/of/property.c                         |  33 ++
+ include/linux/of.h                            |   9 +
+ include/sound/wm8904.h                        |   3 +
+ sound/soc/codecs/wm8904.c                     | 317 +++++++++++++++++-
+ 5 files changed, 484 insertions(+), 7 deletions(-)
+
 -- 
-Bjorn Andersson <andersson@kernel.org>
+2.39.5
+
 
