@@ -1,60 +1,59 @@
-Return-Path: <devicetree+bounces-159007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159008-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E883A69206
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 16:00:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49522A69116
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 15:54:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 235551B661B7
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 14:50:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 78E4E7A2F11
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 14:51:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0B84221738;
-	Wed, 19 Mar 2025 14:40:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 626D01DF986;
+	Wed, 19 Mar 2025 14:42:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="D1UZ3fyb"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=proton.me header.i=@proton.me header.b="GcDS8OTD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mail-40133.protonmail.ch (mail-40133.protonmail.ch [185.70.40.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4400020551C;
-	Wed, 19 Mar 2025 14:40:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6E2919DF6A;
+	Wed, 19 Mar 2025 14:42:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.40.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742395216; cv=none; b=JscncTgU2NAlzoXKncJoxA8lpYz0DS7r2EDW/bknQhcC3kg0nVctrm5HnWqnjanuggmFoknIAn3MF8j0nxmYOmLAjTKN8xzGfWWKM/HY7kq9F5YBcns6xLl5Q6sXZeLOl4BGGB4y90Yn6v/Xmwm4Me0QvDmZATAuZv7tdK32/w8=
+	t=1742395334; cv=none; b=RNvTdeVbee6m7EQxQOFN/42luw4LSD1YZIkFpQ3HzgXsJaNi/EyqjWfLspuiHsqf1bG682x4sck4JVmTI6vMfiTrgefCD+2TUaarABTG3H5zmEtEw3HNKtqe7jmdMaZp58P9FpgjKlFWlNa6FWvenVpQb7EYv+S9Eyd6jMbK1yg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742395216; c=relaxed/simple;
-	bh=R+ZZbFzbps3/FLcZJK8zCM2mxDs4A9BUtNyXnmqHTEY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G+87fEzq/mTi7WVWTILiDTIT71bVHTsGvSXKjaagW2dEV9BaEn/2Gw6AqHar2UiXur1I0WKuteqZDpYpmpgnEAmNIkCMq3OL0alg+PIzMz0Ii5kw/m1cimWpvcHRLG3w4rB8c4bMX2mvkVzNA3OaS206GSGDXuEohdMv0atreIQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=D1UZ3fyb; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 85D8655A;
-	Wed, 19 Mar 2025 15:38:30 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1742395110;
-	bh=R+ZZbFzbps3/FLcZJK8zCM2mxDs4A9BUtNyXnmqHTEY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=D1UZ3fyboHkbZe/lFgKSw/qluTRhmYgcOevb4w4jQlK+LfFkEQKZ3B/4upN7JgDkW
-	 vLaEL15khO8BPQZwWqN4JkJwA/0XXLJxOzAKFZ6aqEDkWLiZro75g+/mqjjzt6f+xE
-	 u1Kr6vp/FfL6NZ3fTsRNAIn6IdtybcZfj8mjGJIw=
-Date: Wed, 19 Mar 2025 15:40:10 +0100
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Hans Verkuil <hverkuil@xs4all.nl>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 4/7] arm64: dts: renesas: r8a779h0: Add ISP core function
- block
-Message-ID: <r36wqdvfxeuyni2tab7hf5b7cdt2bngahpn45jmfk2fex6iwrp@z5wwi3pehpk5>
-References: <20250315152708.328036-1-niklas.soderlund+renesas@ragnatech.se>
- <20250315152708.328036-5-niklas.soderlund+renesas@ragnatech.se>
+	s=arc-20240116; t=1742395334; c=relaxed/simple;
+	bh=bCOft/JhMU8SEKijSQKbTE4qG+J6v26KZ9Z7njGEcfM=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=gic+PODICldgLWkIcQQS6tPfmg5UMLhkg+jMWjxTVcgYdoKy+TkCPL06GoMr0FHEakKcG1w/whZPkUFXuw3rKCjlb7RRbNfDN1j8q0SRHgkqUcvBKhvYAh2jFZIErmTk7/nkTZdGoxdtn58ttwLFi4/8DH9Ljld5yQgQDpoGlAs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me; spf=pass smtp.mailfrom=proton.me; dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b=GcDS8OTD; arc=none smtp.client-ip=185.70.40.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=proton.me
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
+	s=jnzritqb25f3dpabhq6q3tlb3i.protonmail; t=1742395329; x=1742654529;
+	bh=fKjxqBanJ4UwqwqzsSkDUGmW2J4uGrM8pH9avz1kRVg=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
+	b=GcDS8OTDEF9InoMEGSe19FdGzOCb6kgP3vStM6cGFZGeSxYLN1y0nS+w7HNZQdZdL
+	 pOJLwqjKD0biMVP8nkDMq8ZByEBm07bngocavgm6Hzody1/alY3GmAUra2ZAwoInku
+	 3KqN+d4Lr8pQ/khEsI5SnC1KkDfEs5kcS/c4z+gd+eK9PwbNhnTlDUYz6wjS8Xh6s9
+	 7E1p7+PNMCubDN4f7ExWowPll90FzPq4CtjjlB9kvPfZYMsSGq4pIqXKHmfJ1AjyUQ
+	 hTQsKDrpV5uV4vMR7SqMtiDI4+lvbow4PcXMV6GVg20Tp6pPXetGVtndvAYad3QP64
+	 4h3tu7Tpt93GA==
+Date: Wed, 19 Mar 2025 14:42:03 +0000
+To: Tamir Duberstein <tamird@gmail.com>, Alice Ryhl <aliceryhl@google.com>
+From: Benno Lossin <benno.lossin@proton.me>
+Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, =?utf-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas Hindborg <a.hindborg@kernel.org>, Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, linux-pci@vger.kernel.org,
+	linux-block@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 6/6] rust: use strict provenance APIs
+Message-ID: <D8KBL9Z0B68N.2Q3MU9UK9YI6G@proton.me>
+In-Reply-To: <CAJ-ks9m8r_ABh4ift3wmM_wpbYLo=ZuhUarfLJKQnS7TcGHRdg@mail.gmail.com>
+References: <20250317-ptr-as-ptr-v5-0-5b5f21fa230a@gmail.com> <20250317-ptr-as-ptr-v5-6-5b5f21fa230a@gmail.com> <Z9lnIJCcVSza6UVo@google.com> <D8JTC30W0NF6.17SR73Y9I99ZT@proton.me> <Z9q2xpwsNMDzZ2Gp@google.com> <CAJ-ks9m8r_ABh4ift3wmM_wpbYLo=ZuhUarfLJKQnS7TcGHRdg@mail.gmail.com>
+Feedback-ID: 71780778:user:proton
+X-Pm-Message-ID: dd49ae1b90588e97a7bfa9a9405906359dcc61de
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,79 +61,57 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250315152708.328036-5-niklas.soderlund+renesas@ragnatech.se>
+Content-Transfer-Encoding: quoted-printable
 
-Hi Niklas
-
-On Sat, Mar 15, 2025 at 04:27:05PM +0100, Niklas Söderlund wrote:
-> The first ISP instances on V4M have both a channel select and core
-
-instance -> has
-
-> function block, describe the core region in addition to the existing cs
-> region. While at it update the second ISP to match the new bindings and
-> add the reg-names and interrupt-names property.
+On Wed Mar 19, 2025 at 3:14 PM CET, Tamir Duberstein wrote:
+> On Wed, Mar 19, 2025 at 8:21=E2=80=AFAM Alice Ryhl <aliceryhl@google.com>=
+ wrote:
+>> On Wed, Mar 19, 2025 at 12:23:44AM +0000, Benno Lossin wrote:
+>> > On Tue Mar 18, 2025 at 1:29 PM CET, Alice Ryhl wrote:
+>> > > On Mon, Mar 17, 2025 at 10:23:56AM -0400, Tamir Duberstein wrote:
+>> > >> @@ -264,7 +266,7 @@ pub fn read<T: FromBytes>(&mut self) -> Result<=
+T> {
+>> > >>          let res =3D unsafe {
+>> > >>              bindings::_copy_from_user(
+>> > >>                  out.as_mut_ptr().cast::<c_void>(),
+>> > >> -                self.ptr as *const c_void,
+>> > >> +                crate::with_exposed_provenance(self.ptr),
+>> > >>                  len,
+>> > >>              )
+>> > >>          };
+>> > >
+>> > > That's especially true for cases like this. These are userspace poin=
+ters
+>> > > that are never dereferenced. It's not useful to care about provenanc=
+e
+>> > > here.
+>> >
+>> > I agree for this case, but I think we shouldn't be using raw pointers
+>> > for this to begin with. I'd think that a newtype wrapping `usize` is a
+>> > much better fit. It can then also back the `IoRaw` type. AFAIU user
+>> > space pointers don't have provenance, right? (if they do, then we shou=
+ld
+>> > use this API :)
+>>
+>> We're doing that to the fullest extent possible already. We only convert
+>> them to pointers when calling C FFI functions that take user pointers as
+>> a raw pointer.
+>>
+>> Alice
 >
-> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> Personally, I agree with Benno that `as` conversions are a misfeature
+> in the language.
+>
+> I think this patch and the ensuing discussion is making perfect the
+> enemy of good, so I'd prefer to drop it and revisit when the
+> ergonomics have improved.
 
-Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+I don't think that we need to rush on the rest of the patch series.
+Boqun's suggestion is very good and I'm not sure which ergonomics need
+to be improved here.
 
-Thanks
-  j
+---
+Cheers,
+Benno
 
-> ---
->  arch/arm64/boot/dts/renesas/r8a779h0.dtsi | 21 ++++++++++++++++-----
->  1 file changed, 16 insertions(+), 5 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/renesas/r8a779h0.dtsi b/arch/arm64/boot/dts/renesas/r8a779h0.dtsi
-> index 8524a1e7205e..ed1eefa3515d 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a779h0.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a779h0.dtsi
-> @@ -1968,13 +1968,20 @@ du_out_dsi0: endpoint {
->  		isp0: isp@fed00000 {
->  			compatible = "renesas,r8a779h0-isp",
->  				     "renesas,rcar-gen4-isp";
-> -			reg = <0 0xfed00000 0 0x10000>;
-> -			interrupts = <GIC_SPI 473 IRQ_TYPE_LEVEL_LOW>;
-> -			clocks = <&cpg CPG_MOD 612>;
-> +			reg = <0 0xfed00000 0 0x10000>, <0 0xfec00000 0 0x100000>;
-> +			reg-names = "cs", "core";
-> +			interrupts = <GIC_SPI 473 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 475 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "cs", "core";
-> +			clocks = <&cpg CPG_MOD 612>, <&cpg CPG_MOD 16>;
-> +			clock-names = "cs", "core";
->  			power-domains = <&sysc R8A779H0_PD_A3ISP0>;
-> -			resets = <&cpg 612>;
-> +			resets = <&cpg 612>, <&cpg 16>;
-> +			reset-names = "cs", "core";
->  			status = "disabled";
->
-> +			renesas,vspx = <&vspx0>;
-> +
->  			ports {
->  				#address-cells = <1>;
->  				#size-cells = <0>;
-> @@ -2053,10 +2060,14 @@ isp1: isp@fed20000 {
->  			compatible = "renesas,r8a779h0-isp",
->  				     "renesas,rcar-gen4-isp";
->  			reg = <0 0xfed20000 0 0x10000>;
-> -			interrupts = <GIC_SPI 474 IRQ_TYPE_LEVEL_LOW>;
-> +			reg-names = "cs";
-> +			interrupts = <GIC_SPI 474 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "cs";
->  			clocks = <&cpg CPG_MOD 613>;
-> +			clock-names = "cs";
->  			power-domains = <&sysc R8A779H0_PD_A3ISP0>;
->  			resets = <&cpg 613>;
-> +			reset-names = "cs";
->  			status = "disabled";
->
->  			ports {
-> --
-> 2.48.1
->
->
 
