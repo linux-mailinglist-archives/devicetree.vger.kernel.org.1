@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-159077-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96F82A69912
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 20:22:21 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E82C7A6991A
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 20:23:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 555039813C1
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 19:19:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6489E7ACE3E
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 19:22:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC3AD20E704;
-	Wed, 19 Mar 2025 19:19:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6738213E78;
+	Wed, 19 Mar 2025 19:23:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cOq65X+K"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DJcjSaFg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89AD21B4156;
-	Wed, 19 Mar 2025 19:19:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D6AC2135DE;
+	Wed, 19 Mar 2025 19:23:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742411975; cv=none; b=PqVP69obzWvRwrxalCSVNVJY9n12qjq5hYJaHHZ8XWGphVz3RR/2A07pTZ5ZHRuzfbAFpOi0RF8+Dfew2VouFfuOP7Vr4GNX2/0DXuviwZgPDZwWQO61bJr8v8FLxJp3jvX8O9WehX+VW2OkTM0mJ8xa9WplMWgonvXcolgFbJw=
+	t=1742412199; cv=none; b=KGdcJpa3t1jPdjk4QhStqW02whISzf8Iab4nYq1ayohljF373NYn9t3i7G7KO11Fb3b5dNeXozuYg1A+nQ8Km40TQTNyUlLQl21oj6PLOo6yWV3CtoXAFYXreLLvCVDwXnbpwIIYKeRhPAKxlCHOgO4kij/4nkf3igOpA4YfoPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742411975; c=relaxed/simple;
-	bh=rBTZsSXJHptqgoAbgRkJSyZwtaoboMo1kjPhVTbE4rA=;
+	s=arc-20240116; t=1742412199; c=relaxed/simple;
+	bh=r/XHbPpCDJg8LK6akBmJpvgVHJpTE1lx9iFi1+FW9MU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pPkabi0xewM2l97BISUq8U+zC0Nf1shZsS9NNESsPGyWyp+uOIVp+ZllNlr1jcKRILdWsbjnXBiLUmGfxswt8oiaGlPz+FppbNie+jOh9Hrg1PD2M14Cj7kahbDnwd3ZTdla4EmHvgbJrbnnp7Y0SSrtw75/gigRyiKpUCDpmss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cOq65X+K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2ABF7C4CEE4;
-	Wed, 19 Mar 2025 19:19:29 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=FG2cG4LhNkODpK6SzTWxhSwz7/snbAe8OONPEuRg2vynHC2+sR/0Zq4g0T/DL+sV9lzjJ6BHHt5lya1ZSa4lpcWf/r1mAgHb99zqtWv0zyQsy+b+vU/prvRjKthQjKIl2hVr8e96J3M1h/RYs6jOie3Fs2wLrOnzYP4HcJiXAwg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DJcjSaFg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FD5FC4CEE9;
+	Wed, 19 Mar 2025 19:23:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742411975;
-	bh=rBTZsSXJHptqgoAbgRkJSyZwtaoboMo1kjPhVTbE4rA=;
+	s=k20201202; t=1742412199;
+	bh=r/XHbPpCDJg8LK6akBmJpvgVHJpTE1lx9iFi1+FW9MU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cOq65X+KWQ3Yea6I7B5j1IKQ8XdjMytwYPEi4+AXjdDqEpg2fUtSFSBXJBDqCgKUk
-	 GLHuMHfwMi85zm4YRG79SswLCqAHtp5Ps0DqGSJz8m49P8jjHHl8c+yv4R36lLwBAM
-	 kidh4uc3dJFvbOvwHK5h9JauvvwEZeQIAPF84N5cNTDXnW4OnhXq5ztsCB8sePoQms
-	 lmXHNS3lUajYteRx9193rjazfpNaqtbkx53zrQhTHj+eUFCLnHHYsAKByatnbNxl43
-	 a0FDWxeA7nTxwRLbhBqCuItFNhbQKm1pFX2VrhtCmr9V59SGczaZ/ODmr62EcZqTKf
-	 tufoIsKnGJYrQ==
-Message-ID: <bb1c12dc-dc71-4c7f-9969-2fe31f632f6b@kernel.org>
-Date: Wed, 19 Mar 2025 20:19:27 +0100
+	b=DJcjSaFg1WzjsfwN3S18h/TNsv+xT7Mfh/G3Ev/9JixtH5vs/cqkDaL5bIq0bSPp8
+	 CVGw9HXbJNMdxd0hCCo41zii/BvmkX9CbQ8tKJ1revkGZxxa/VlFf4P25TYt+xiJob
+	 4mI9hyx1WBLYCFfuv276gPhY3WqUZz5twwHydHId59OIiv1SLO6v1b6s207i2iKVvL
+	 roAKJa9XUgMVWf3hMsavNsfosOoQDpwdFOfw5kWZV1yWG2gnhyc6Fzvhvya0yEzahb
+	 nXziJePKSbeQQAjtDLL/yMzmb1OsTUzF1+VJtBTfa8ygzxaZ7455C7bccnu4BoCp4Z
+	 n2Zf1cERFJOlA==
+Message-ID: <b75a5c14-f399-45e2-80f3-923e7afe78ab@kernel.org>
+Date: Wed, 19 Mar 2025 20:23:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: hwmon: Add TI TPS389008
-To: Flaviu Nistor <flaviu.nistor@googlemail.com>
-Cc: Flaviu Nistor <flaviu.nistor@gmail.com>, Jean Delvare
- <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20250319170234.63723-1-flaviu.nistor@gmail.com>
- <20250319170234.63723-3-flaviu.nistor@gmail.com>
+Subject: Re: [PATCH v4 2/2] ARM: dts: aspeed: Add Initial device tree for AMD
+ Onyx Platform
+To: Rajaganesh Rathinasabapathi <rrathina@amd.com>,
+ Rajaganesh Rathinasabapathi <Rajaganesh.Rathinasabapathi@amd.com>,
+ devicetree@vger.kernel.org, openbmc@lists.ozlabs.org, joel@jms.id.au,
+ andrew@codeconstruct.com.au
+Cc: robh+dt@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org, jothayot@amd.com,
+ Supreeth Venkatesh <supreeth.venkatesh@amd.com>
+References: <20250318174730.1921983-1-Rajaganesh.Rathinasabapathi@amd.com>
+ <20250318174730.1921983-2-Rajaganesh.Rathinasabapathi@amd.com>
+ <af75c352-0010-4c58-b8bc-ac0d02337d1a@kernel.org>
+ <8c7be61d-d5e4-4f7f-a995-06cf856a84ae@amd.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,129 +109,119 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250319170234.63723-3-flaviu.nistor@gmail.com>
+In-Reply-To: <8c7be61d-d5e4-4f7f-a995-06cf856a84ae@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/03/2025 18:02, Flaviu Nistor wrote:
-> Add device tree bindings and an example for the
-> TI TPS389008 voltage monitor.
+On 19/03/2025 17:41, Rajaganesh Rathinasabapathi wrote:
+> On 3/18/25 23:44, Krzysztof Kozlowski wrote:
+>> Caution: This message originated from an External Source. Use proper caution when opening attachments, clicking links, or responding.
+>>
+>>
+>> On 18/03/2025 18:47, Rajaganesh Rathinasabapathi wrote:
+>>> Add initial device tree and makefile updates for
+>>> AMD Onyx platform.
+>>>
+>>> AMD Onyx platform is an AMD customer reference board with an Aspeed
+>>> ast2600 BMC manufactured by AMD.
+>>> It describes I2C devices, UARTs, MAC, FMC, etc.
+>>> present on AMD Onyx platform.
+>>>
+>>> Signed-off-by: Supreeth Venkatesh <supreeth.venkatesh@amd.com>
+>>> Signed-off-by: Rajaganesh Rathinasabapathi <Rajaganesh.Rathinasabapathi@amd.com>
+>>> ---
+>>> Changes since v1:
+>>> * Incorporate review comments
+>>
+>> Which ones? I do not see my comments addressed and if you do not list
+>> them, I treat it as a clear sign you do not care.
+>>
 > 
-> Signed-off-by: Flaviu Nistor <flaviu.nistor@gmail.com>
-> ---
-
-This wasn't ever tested, so limited review.
-
-BTW, bindings are before the user.
-
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: ti,tps38908
-> +      - items:
-> +          - enum:
-> +              - ti,tps38908
-> +              - ti,tps38906
-> +              - ti,tps38904
-> +          - const: ti,tps38908
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    description: Required only if a child node is present.
-
-Drop description
-
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    description: Required only if a child node is present.
-
-Drop description
-
-
-> +    const: 0
-> +
-> +patternProperties:
-> +  "^vmon@[1-8]$":
-
-s/vmon/channel/
-
-> +    description: |
-> +      The node contains optional child nodes for up to x channels.
-> +      There are 8 channels for TPS389008, 6 channels for TPS389006,
-> +      and 4 channels for TPS389004. Each child node describes the information
-
-Then you need allOf:if:then: disallowing these for specific variants.
-
-> +      of the input source. Input channels default to disabled in the chip.
-> +      Unless channels are explicitly enabled in device-tree,
-> +      input channels will be disabled.
-> +    type: object
-> +    additionalProperties: false
-> +    properties:
-> +      reg:
-> +        description: |
-> +          Must be 1 to 8,
-
-Don't repeat constraints in free form text.
-
-> corresponding to the VMONx
-> +          ports of the TPS389008, TPS389006, or TPS389004, respectively.
-
-Drop entire description
-
-> +        enum: [ 1, 2, 3, 4, 5, 6, 7, 8 ]
-> +
-> +      label:
-> +        description: Name of the input source.
-> +
-> +      ti,vrange-mult-4x:
-> +        description: |
-> +          Must have values 5 or 20 in order for the analog
-> +          conversion to be done correctly.
-> +          Value 5 indicates multiply by 1 (x1), and value 20 indicates
-> +          multiply by 4 (x4).
-> +        type: boolean
-> +
-> +      ti,vmon-enable:
-
-Drop. Status tells it, no?
-
-> +        description: |
-> +          Sets each channel status. By default, all input channels are disabled.
-> +            - 0 = channel disabled
-> +            - 1 = channel active
-> +        type: boolean
-> +
-> +    required:
-> +      - reg
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        vmon@37 {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> Understood, will list them in next patch submission.
+>>> * Update commit message
+>>> * Remove vmalloc and earlyprintk
+>>>
+>>> Changes since v2:
+>>> * Address review comments
+>>
+>> Which ones? This has to be specific
+>>
+> Got it, will add details and fix in next patch.
+> 
+>>> * Fix checkpatch warnings
+>>> * Remove bootargs
+>>>
+>>> Changes since v3:
+>>> * Fix stdout-path
+>>> * Change commit summary
+>>> ---
+>>>  arch/arm/boot/dts/aspeed/Makefile             |   1 +
+>>>  .../boot/dts/aspeed/aspeed-bmc-amd-onyx.dts   | 102 ++++++++++++++++++
+>>>  2 files changed, 103 insertions(+)
+>>>  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
+>>>
+>>> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
+>>> index 2e5f4833a073..1e6a130377b8 100644
+>>> --- a/arch/arm/boot/dts/aspeed/Makefile
+>>> +++ b/arch/arm/boot/dts/aspeed/Makefile
+>>> @@ -5,6 +5,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+>>>       aspeed-ast2600-evb.dtb \
+>>>       aspeed-bmc-amd-daytonax.dtb \
+>>>       aspeed-bmc-amd-ethanolx.dtb \
+>>> +     aspeed-bmc-amd-onyx.dtb \
+>>>       aspeed-bmc-ampere-mtjade.dtb \
+>>>       aspeed-bmc-ampere-mtjefferson.dtb \
+>>>       aspeed-bmc-ampere-mtmitchell.dtb \
+>>> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
+>>> new file mode 100644
+>>> index 000000000000..32509a651183
+>>> --- /dev/null
+>>> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
+>>> @@ -0,0 +1,102 @@
+>>> +// SPDX-License-Identifier: GPL-2.0+
+>>> +// Copyright (c) 2021 - 2024 AMD Inc.
+>>> +// Author: Supreeth Venkatesh <supreeth.venkatesh@amd.com>
+>>> +
+>>> +/dts-v1/;
+>>> +
+>>> +#include "aspeed-g6.dtsi"
+>>> +#include <dt-bindings/gpio/aspeed-gpio.h>
+>>> +
+>>> +/ {
+>>> +     model = "AMD Onyx BMC";
+>>> +     compatible = "amd,onyx-bmc", "aspeed,ast2600";
+>>> +
+>>> +     aliases {
+>>> +             serial0 = &uart1;
+>>> +             serial4 = &uart5;
+>>> +     };
+>>> +
+>>> +     chosen {
+>>> +             stdout-path = "serial4:115200n8";
+>>> +     };
+>>> +
+>>> +     memory@80000000 {
+>>> +             device_type = "memory";
+>>> +             reg = <0x80000000 0x80000000>;
+>>> +     };
+>>> +
+>>> +};
+>> How did you address comment here from v1 which was responded with "ACK"?
+>>
+>> What else what exactly fixed and what not?
+>>
+>> Best regards,
+>> Krzysztof
+> 
+> Thanks for the comments.
+> I will add 'Acked-by' and in next patch submission. 
+> 
 
 
-> +            compatible = "ti,tps389008", "ti,tps389006", "ti,tps389004";
+What? Where did you get it from? Are you sure you understand submitting
+patches document regarding this section?
 
-Test your code before sending, not after.
-
-
+Read the comment given on v1 instead of some random actions.
 
 Best regards,
 Krzysztof
