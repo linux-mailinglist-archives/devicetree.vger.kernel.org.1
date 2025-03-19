@@ -1,134 +1,206 @@
-Return-Path: <devicetree+bounces-159080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7F53A69953
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 20:30:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A296A6996A
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 20:33:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F3D53A508D
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 19:28:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48A299811AA
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 19:31:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B64120AF6C;
-	Wed, 19 Mar 2025 19:29:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E894C214A84;
+	Wed, 19 Mar 2025 19:31:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pzO/WD9d"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="Jf4gLVoQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BEA91361;
-	Wed, 19 Mar 2025 19:29:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7AE22144BB;
+	Wed, 19 Mar 2025 19:31:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742412546; cv=none; b=sHz0/c909rUUbxc93Nt0K0N8YLA/cblSxZNxBfuUzVH0LGxWmv9FMWcGz/EhGf9CF/ixo5Gzk49Ex8WVRPfmg0OTCwXlPROXKBkPa+utISO+t279uK3uCive8wCLA620u38A3QjPHLuIPj0cynYNTYE6wExnKM1QsV9vw7Qq6Gw=
+	t=1742412686; cv=none; b=cjwOK+r6OdzMYh9D0p/Ggmn+BkCnqmEcSVSZhBFXiQ0lMM70mnA7xLYPnZ1imeRJ+jZoBbKnhUWH/l9VnyNAlM4strUCBzBLkDRFwy5kvVFK+BhTNlCuERRBjTJ14ehXxlVoPhC8uNsVSQWQ+msoBCb2pfTwCadjsvUQ+DLPn3w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742412546; c=relaxed/simple;
-	bh=ZzMX55IjDIprWqceWohngFCM6EBQHJSx4FKfnv2T0Ac=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OKiLFhH/hcVGwCndAXeJYZYZvEOIqyk2MAqoJC14Z4B7i5/y4bj5IdRiE+c9D6iY05CFjPLZj6GRUvzjJ+2hsM4gp0zLBM4F8zZ2e6zli4H8OoIgYJYt9YSelglITtdXFRFhMywQ2GtVtyC6wC0ZnzI6LkTSS2LNB9Kh9yO5iCE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pzO/WD9d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E0A4C4CEE9;
-	Wed, 19 Mar 2025 19:28:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742412545;
-	bh=ZzMX55IjDIprWqceWohngFCM6EBQHJSx4FKfnv2T0Ac=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=pzO/WD9dL5W+fwp7FqW8OjOYtwusOt0EiiKi7IrOJ8q9ngMf6Kq3cwcm/WCzb3xDq
-	 bxseUheWXp5G01aDdO3IfNGmWpaN/Sg7jRw2UBA1ezdzcVPY3kz+1z7iD9IQ2iIWkt
-	 utGAd7YoEcVwmy+kyqB2rC5u3tHkX1MtT3ZpxSay1C2Ut9wFA4A+ZIRcuLUOMdJhpo
-	 cx8xbmJNjvJtufT9nODAFx2t0a4VmeYnSgcg3tAXO9up2Pquh7OadHBtgMk5SL08Il
-	 4g85Qv9OOygkFUK0cu5vUrThgvQI3hPFrdbe0xMOOj90pw7ueY7lK4Tzc0iW4iOpgs
-	 Uryed/e1F8ksg==
-Message-ID: <44f2387b-0a86-46cc-a5d2-950dd688b207@kernel.org>
-Date: Wed, 19 Mar 2025 20:28:56 +0100
+	s=arc-20240116; t=1742412686; c=relaxed/simple;
+	bh=U9Z9nqMs1mNcvZFHIrTtDglCMqXwEuCOH+K/k1hK9Yw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fudGGmf55SL4It7Uu86sx7IX99efv0QGr6mDkxogQ0Q/erAGUsRNy/VLI4wtt9KgjX+bFYaesCh4EvyrugjaMosURTGE1wFpuFhv0zRR51W6ra4KSLWZmG3XZxM3Lnp9/R7vc4CgBgyrALM2ZCLzcCQb5e8k2hYleFxuy8JI+b8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=Jf4gLVoQ; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=gviRwqOkbCCWp6GvORH9MMNKYz38Gpuudg4E4hN2jFE=; b=Jf4gLVoQoEZ/tl1KZVOeMcd9jN
+	TeI0Tsq6QbU1zFfJeYxDH1hjjF0oDHKBc6fDJtPNZSwtztE/qIz659ZB2h6H7ZDrmV9hhkXY0zlhT
+	OyzfXhYt3jhh8sHoUL+XDOROzzEkzAXs2FByxyUdoDZLGNLf7is/HTUYXzqi+Zr6M7nMEIyrATh3F
+	3QByBl/qcEa8iTyAsDOdTCZSPAJCBkIUyOyf4y8ONsZl3JAXYQpPO3JN3OedE1QsEd7jCvZB7V9Rs
+	FVfd8Ct8lcKMFwT5Rtc/323JMy+Lv8ahPurqEEWoQuviRJvpG0bkoML7gsNkhsDL5NPHFpYURKsx1
+	nxg0575w==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:58974)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1tuz89-0006qu-15;
+	Wed, 19 Mar 2025 19:31:09 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1tuz84-0005rx-0t;
+	Wed, 19 Mar 2025 19:31:04 +0000
+Date: Wed, 19 Mar 2025 19:31:04 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Daniel Golle <daniel@makrotopia.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	upstream@airoha.com
+Subject: Re: [net-next PATCH 3/6] net: phylink: Correctly handle PCS probe
+ defer from PCS provider
+Message-ID: <Z9sbeNTNy0dYhCgu@shell.armlinux.org.uk>
+References: <20250318235850.6411-1-ansuelsmth@gmail.com>
+ <20250318235850.6411-4-ansuelsmth@gmail.com>
+ <Z9rplhTelXb-oZdC@shell.armlinux.org.uk>
+ <67daee6c.050a0220.31556f.dd73@mx.google.com>
+ <Z9r4unqsYJkLl4fn@shell.armlinux.org.uk>
+ <67db005c.df0a0220.f7398.ba6b@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] ARM: dts: aspeed: Add device tree for Nvidia's
- GB200NVL BMC
-To: Willie Thai <wthai@nvidia.com>
-Cc: andrew@codeconstruct.com.au, andrew@lunn.ch, conor+dt@kernel.org,
- devicetree@vger.kernel.org, dkodihalli@nvidia.com, gpiccoli@igalia.com,
- joel@jms.id.au, kees@kernel.org, krzk+dt@kernel.org, leohu@nvidia.com,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-hardening@vger.kernel.org, linux-kernel@vger.kernel.org,
- maryang@nvidia.com, openbmc@lists.ozlabs.org, pmenzel@molgen.mpg.de,
- robh@kernel.org, tingkaic@nvidia.com, tony.luck@intel.com
-References: <93bb3092-7f49-4a7f-ac97-3cf1a62ac39d@kernel.org>
- <20250319112451.4171471-1-wthai@nvidia.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250319112451.4171471-1-wthai@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <67db005c.df0a0220.f7398.ba6b@mx.google.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On 19/03/2025 12:24, Willie Thai wrote:
->>> +
->>> +// Enable Primary flash on FMC for bring up activity
->>> +&fmc {
->>> +	status = "okay";
->>> +	flash@0 {
->>> +		status = "okay";
->>
->> Nothing improved.
->>
->> Respond to comment instead of ignoring it.
->>
+On Wed, Mar 19, 2025 at 06:35:21PM +0100, Christian Marangi wrote:
+> On Wed, Mar 19, 2025 at 05:02:50PM +0000, Russell King (Oracle) wrote:
+> > My thoughts are that if a PCS goes away after a MAC driver has "got"
+> > it, then:
+> > 
+> > 1. we need to recognise that those PHY interfaces and/or link modes
+> >    are no longer available.
+> > 2. if the PCS was in-use, then the link needs to be taken down at
+> >    minimum and the .pcs_disable() method needs to be called to
+> >    release any resources that .pcs_enable() enabled (e.g. irq masks,
+> >    power enables, etc.)
+> > 3. the MAC driver needs to be notified that the PCS pointer it
+> >    stashed is no longer valid, so it doesn't return it for
+> >    mac_select_pcs().
 > 
-> The property was disabled here: https://github.com/torvalds/linux/blob/master/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi#L172
+> But why we need all these indirect handling and checks if we can
+> make use of .remove and shutdown the interface. A removal of a PCS
+> should cause the entire link to go down, isn't a dev_close enough to
+> propagate this? If and when the interface will came up checks are done
+> again and it will fail to go UP if PCS can't be found.
+> 
+> I know it's a drastic approach to call dev_close but link is down anyway
+> so lets reinit everything from scratch. It should handle point 2 and 3
+> right?
 
-I see, thanks.
+Let's look at what dev_close() does. This is how it's documented:
 
+ * dev_close() - shutdown an interface
+ * @dev: device to shutdown
+ *
+ * This function moves an active device into down state. A
+ * %NETDEV_GOING_DOWN is sent to the netdev notifier chain. The device
+ * is then deactivated and finally a %NETDEV_DOWN is sent to the notifier
+ * chain.
 
-Best regards,
-Krzysztof
+So, this is equivalent to userspace doing:
+
+# ip li set dev ethX down
+
+and nothing prevents userspace doing:
+
+# ip li set dev ethX up
+
+after that call to dev_close() has returned.
+
+If this happens, then the netdev driver's .ndo_open will be called,
+which will then call phylink_start(), and that will attempt to bring
+the link back up. That will call .mac_select_pcs(), which _if_ the
+PCS is still "published" means it is _still_ accessible.
+
+So your call that results in dev_close() with the PCS still being
+published is ineffectual.
+
+It's *no* different from this crap in the stmmac driver:
+
+        stmmac_stop_all_dma(priv);
+        stmmac_mac_set(priv, priv->ioaddr, false);
+        unregister_netdev(ndev);
+
+because *until* that unregister_netdev() call has completed, _userspace_
+still has control over the netdev, and can do whatever it damn well
+pleases.
+
+Look, this is very very very simple.
+
+If something is published to another part of the code, it is
+discoverable, and it can be used or manipulated by new users.
+
+If we wish to take something away, then first, it must be
+unpublished to prevent new users discovering the resource. Then
+existing users need to be dealt with in a safe way. Only at that
+point can we be certain that there are no users, and thus the
+underlying device begin to be torn down.
+
+It's entirely logical!
+
+> For point 1, additional entry like available_interface? And gets updated
+> once a PCS gets removed??? Or if we don't like the parsing hell we map
+> every interface to a PCS pointer? (not worth the wasted space IMHO)
+
+At the moment, MAC drivers that I've updated will do things like:
+
+                phy_interface_or(priv->phylink_config.supported_interfaces,
+                                 priv->phylink_config.supported_interfaces,
+                                 pcs->supported_interfaces);
+
+phylink_config.supported_interfaces is the set of interface modes that
+the MAC _and_ PCS subsystem supports. It's not just the MAC, it's both
+together.
+
+So, if a PCS is going away, then clearing the interface modes that the
+PCS was providing would make sense - but there's a problem here. What
+if the PCS is a bought-in bit of IP where the driver supports many modes
+but the MAC doesn't use it for all those modes. So... which interface
+modes get cleared is up to the MAC driver to decide.
+
+> > There's probably a bunch more that needs to happen, and maybe need
+> > to consider how to deal with "pcs came back".. but I haven't thought
+> > that through yet.
+> 
+> Current approach supports PCS came back as we check the global provider
+> list and the PCS is reachable again there.
+> (we tasted various scenario with unbind/bind while the interface was
+> up/down)
+
+... because you look up the PCS in the mac_select_pcs() callback which
+leads to a different race to what we have today, this time inside the
+phylink code which thankfully phylink prints an error which is *NEVER*
+supposed to happen.
+
+Just trading one problem for another problem.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
