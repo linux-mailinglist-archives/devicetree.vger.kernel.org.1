@@ -1,97 +1,92 @@
-Return-Path: <devicetree+bounces-158922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158923-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1707FA688FE
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 11:03:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D89DA6890A
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 11:06:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 409C51898BED
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 10:03:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD85E189AE33
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 10:06:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E754D20551C;
-	Wed, 19 Mar 2025 10:03:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0912209F32;
+	Wed, 19 Mar 2025 10:06:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BqBTkA69"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="k52VKG88"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78F8A1DF240
-	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 10:03:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EF241E1DE6
+	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 10:06:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742378594; cv=none; b=WbRjQykjX517rs4Xawit5SO00H/I8pRJUVH3DttMtGtBIAOEnGUGBeSw6V8z7fNC0IQndwb4jwvC/VKhUPv4yTufyULPir7an4/Xc6v+IHYvnxQb70iSdwAidevTDfzndfHBcO2WtGzqxIeMX4aYzwjT+u8R0/sIr2OSfI8dTrg=
+	t=1742378779; cv=none; b=MU2daxmVbL71Tm71lXnDyVri2F3UREc1yQfAprGpw1UX44Ae/ueE3W3pDnKVSxeSohDJI2Ajbx9PT9MuSkD7cVwaduqPfWm6ExXGiYDZIZ5d+kx3r7bPFhEuJEqxi+d7EUMQFRmz42DPPb/157WgadiqhfmFBLn6/zJ777eayOc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742378594; c=relaxed/simple;
-	bh=jtxsEGScLiDZqdRASBnRspe0wt/Vw0O4Lr2pCux0cvU=;
+	s=arc-20240116; t=1742378779; c=relaxed/simple;
+	bh=4vaJuEvzjXdXBSh6/Y5a0hdOgg6StyNQc0yWT2KFVcY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T8imDXB3oumyXKtDtFcqb3U2andLWqSqDVNLCEBAPSFamL4WvrRSWHGVSpDyssno8Ph3JWx8caHE9qIBV3Om2lx8FeZDiFK4onoc9DgqzI6WHms7GiSIkhPbVxn/A4h2jw0zKuAU4dhCNgej4bfnc8KiYvEbs2c6UHPyL3lnd9w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BqBTkA69; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52J4lqaw002134
-	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 10:03:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=pzEcf4HDAvKkc0s10NYP45UQ
-	VQBRG8PAuzto9PKZ5Dg=; b=BqBTkA69eEZI/G1qqN2BtMg+oAQEUMZ0gsd/tALJ
-	j+sBfzlVQjnqzDD72OhH6AfLkoYa6M0wsevjAAqbYv+a4LrkYOIbzC16Tyg7r3b4
-	cjzX2/vXGmLuHryxCmTqPg2Lzok26AyZjYtbFORNtGfbYnjTfHzynE7tLBLFywnS
-	Td96SeiljGTK9JS90W2LPMLFVR07KEGNYEhP46akC6sgrWyqTPNjy1tONJqrx3HB
-	1ayeqx1cLQNQlfu3PGowXP/8sKBl2vmBZmqWoaNiK2ndvteNKU8y7QaqqLHJLG9A
-	+aYbFwUo/fpiicTTsLQFD2EQhposPggt2giZfaw0Nt8WWQ==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45etmbwfty-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 10:03:12 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7c54e7922a1so1536328685a.2
-        for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 03:03:12 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ei5ZW3xpEQC7fSGPFhjYFIOIcPQv24JyWg9s9vO24IfzIQ8I8OGOyRslnqdwmn6k0qDtXz43ort0rLMnj5zQgl2TGiPKdaYCIkJD1ZYf5hnp77LxiKd1jRZgvQ8zKxaWtD8JkdmUtZwwOx7cR+o8mHV504R8UZaCaBrTLoOsGe0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=k52VKG88; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-ac2bfcd2a70so910692366b.0
+        for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 03:06:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1742378776; x=1742983576; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=dkmCrBTQNmjyJ9LfpOQNHoaOW35hiIjttNIV6ARHzg4=;
+        b=k52VKG88FULWXgzPiUQvZPZL9mFkBQkFUUiI8JmRafVV03hfGtDyxdEN7F34lWCp6D
+         AStue904vYYMUxhMkYvFMDrj8i5IlenM60mu7rM3BHqBLmhzcqmdFMU9RkqKWi2i0qk4
+         yUamj2yisqm/1plPGc/R8ZYS7YhDc2FhptyAoDzMuLIQZeAsms/Ruecey0an34c5AM8J
+         gMmFzwcKnzV5jk5e8Gzv+/VYswHU2IEQmTC02EIEpVecn0Z1lc9yUkY3OTW2Nbk9HEn4
+         iAxqKWUH6ha6OQCO85GkER7My7GApyByPKJ66BuZReLm/+18kndVuotf9ari4y6aYdSB
+         ljnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742378591; x=1742983391;
+        d=1e100.net; s=20230601; t=1742378776; x=1742983576;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=pzEcf4HDAvKkc0s10NYP45UQVQBRG8PAuzto9PKZ5Dg=;
-        b=hB7Ith0X49u8STokvnOQ8AvFcm+DKvDvrEH9KUBHRyD3vSGbkWK1WRo8iLT+lSKxhT
-         whxiMNH8WHqSZBVUIUvd9LvQYeG+ev24S+wvIvf4hMR+1E3Wx9M9MD95VRe7GiRg1xPK
-         eUHkIHDJmqzpUDFvDEirw43G9VvpuZIq6YXNaZabukYH6IrHY2iUb1KbVQ3ZxSz8cMRq
-         GID/f3nZSf7mfI1FaIYAQL4epPvi2lHonrK8u4LsQ+0j82MgzMY6kKwhJhNmmt6Asa1x
-         IzZQAt0WtjfKmYTMe3A/RB8sXSt+hWNbS6G3OJHdTfyN2B0TKhVjk5AJWVQ7GEJWYl3d
-         xk+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUh2ss7hKqD5NGInUawutHFpQISvQR43SyUpb8Vxi5jUcN5bCF7GiyAIJzkr3X4jd4AEx4J7Yz+bAEO@vger.kernel.org
-X-Gm-Message-State: AOJu0YyJ1pgFTa4PhIxMKgOq8WhxgHGQUI3rmfhmVeGk29w0CTCb9478
-	+lTYYeCoaam/oFvkhSMNhs30PHzeBLhog7B5/5NKSVKb11NUl2aS2JRRERjz8BXBGmuOR63ue7R
-	RCfAp/XbCJ6/z/6cfvBHIMPk5aMvs0AH4IFUAmYR9Dq3l7VjjN0jCSRkMgJ7C
-X-Gm-Gg: ASbGnctXOX5ygNak4s1WmEPms3lp6/mM1VeEPmx4hjU4di/90D0GH38ap7zXsHzHZqd
-	Zd3jSHu+736Q0De0pzqj3k1Dl841FPqG5OhWQr0cSESl24tpJTBqwrHno4T7ttcvYptnC5bstdq
-	QoS/MDAJknalK3owQfJBcbYfGB425hvHIIXf9ewtcOnx1gqHI45pO0J1gGlPRX+I+4EcKKLrIpO
-	by5S59VG41XX+sMUMI03ttChhYe0AiREDseTDWD3kPzyS6DheQRUdRHeC46O03rSkLrhtbLr/e0
-	5VwT7Idwa+vXMDXqIBj0fAQAGmAoTvjoBKcrwLO72Bpb4H04Tuu1AAFjg2/3/RXQHltN0B5F++6
-	a2M4=
-X-Received: by 2002:a05:620a:191e:b0:7c5:9a2a:aac1 with SMTP id af79cd13be357-7c5a8469da7mr296599885a.46.1742378591362;
-        Wed, 19 Mar 2025 03:03:11 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH36w5UmUaf1mc4I6TLyh2PvcyPbnoFFFtkRaEIewokWpjJyi3q3jXD3wRgymlu31aI1qnIQQ==
-X-Received: by 2002:a05:620a:191e:b0:7c5:9a2a:aac1 with SMTP id af79cd13be357-7c5a8469da7mr296591985a.46.1742378590754;
-        Wed, 19 Mar 2025 03:03:10 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54ac4c02f5fsm431400e87.61.2025.03.19.03.03.07
+        bh=dkmCrBTQNmjyJ9LfpOQNHoaOW35hiIjttNIV6ARHzg4=;
+        b=A+1yyX6VXHJBGZcRi0hlWGSv/BhnW8HIqYzv/YV+HJektwE0fiPXgTAVtuVTJVQTRH
+         cjxZS3gm6OicUi1mxUz5YbPBo4P2JaH9N645Mei3khNKQrGaGBbDWpl4AROQDuPI81HL
+         WNA4OPNvkYca6IigCdZv9T9XPSPw7QA5pa0WdhyDTcdN5fZ5lOIbpWArmlW9dcAgVk9h
+         KjQj5vvRrgfrLkxsLxquZNDlahWhRY/9oxjuStYJF6poS4T4fTc6iLy2T6suQLjeNR7q
+         BvRxoRHyHg3Z+cREDL0rCY20xClXpAySxo6PViniloWEOkHFhxc1xTGmWmDSXhrHfpvE
+         Tftw==
+X-Forwarded-Encrypted: i=1; AJvYcCVoWw4xEM1rZgIlQlqN8ozcof+DfcWUYDbGRfRymycCnsgsIzl9Az4TuPXOBBVeAvCSZUO3/t89OpaH@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIVGPCPH8Smgw9GCJhRGog4prT2Qw8CDrNJz7Mi+lWuFSTU2vM
+	+sBKLLVjfNUvfJm8QBOLzbIqIOF8fTdap8vhh/Kfrw120H3QSLE0Q+hoc3h6M9+EcOX6b0yFaCb
+	I
+X-Gm-Gg: ASbGnctbaxyWDRs/CryESBJbuRGApsTcxDZ7HAECRR4pn4q8oTfrOpRZjIymP9i9Wsy
+	b5G1qJvLa11hPZipwFjf0gmwCiWSw9cRzbfBSggogkKKorVBSryxLWwVMG3rXCJSa8DohvRG8fp
+	d5na4NFXPvZv64yYs8qBiHajETWOZgZchCPhHvtbUexU+OP5oAUSxZ4ySnYTfLSWdzTcEorArP0
+	yyEpvpClQwgZo42PogjSa1jDUEriHw5kSRrEbPA6wiFIIEEw/qsWNttKqI9ArwmBJyFCp7g/Jz8
+	KPZFlxNjKG2UGzPWpcrLnb33A1CLQxxhm3I7vFrvNbpdczz1wxJrmKBI
+X-Google-Smtp-Source: AGHT+IFI9YoiP3I0niuCpSgGRcKt34Gyjun9cAeLDdB4irqA7sbsTU6nGtTRm3pLUmCGA+WVV222Cw==
+X-Received: by 2002:a17:907:d9f:b0:ac2:9841:3085 with SMTP id a640c23a62f3a-ac3b7dc20a7mr204929866b.30.1742378776366;
+        Wed, 19 Mar 2025 03:06:16 -0700 (PDT)
+Received: from linaro.org ([2a02:2454:ff21:ef30:1274:3124:56cf:f607])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac3149d0077sm998578466b.93.2025.03.19.03.06.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Mar 2025 03:03:08 -0700 (PDT)
-Date: Wed, 19 Mar 2025 12:03:05 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Rudraksha Gupta <guptarud@gmail.com>
+        Wed, 19 Mar 2025 03:06:16 -0700 (PDT)
+Date: Wed, 19 Mar 2025 11:06:12 +0100
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: bjorn.andersson@oss.qualcomm.com
 Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: qcom-msm8960: add missing clocks to the timer
- node
-Message-ID: <k5oehu3yt6fn6pabvjze44inzeojavznsv6xzipvb47p473un7@zrslz4kv3oph>
-References: <20250318-expressatt-solve-dts-errors-v1-1-14012a4bc315@gmail.com>
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: x1e80100-dell-xps13-9345: Disable
+ PM8010
+Message-ID: <Z9qXFLmnae86_GT9@linaro.org>
+References: <20250318-xps13-no-pm8010-v1-1-c46236d96428@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,41 +95,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250318-expressatt-solve-dts-errors-v1-1-14012a4bc315@gmail.com>
-X-Proofpoint-ORIG-GUID: v8BMWTMsahGzijmN2FtmqvLGcSJjqVFH
-X-Proofpoint-GUID: v8BMWTMsahGzijmN2FtmqvLGcSJjqVFH
-X-Authority-Analysis: v=2.4 cv=aMLwqa9m c=1 sm=1 tr=0 ts=67da9660 cx=c_pps a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=pGLkceISAAAA:8 a=HvA0BsX6I2lc9pbQE7YA:9 a=CjuIK1q_8ugA:10
- a=IoWCM6iH3mJn3m4BftBB:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-19_03,2025-03-17_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- priorityscore=1501 spamscore=0 clxscore=1015 phishscore=0 mlxscore=0
- suspectscore=0 malwarescore=0 mlxlogscore=719 bulkscore=0 adultscore=0
- lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503190069
+In-Reply-To: <20250318-xps13-no-pm8010-v1-1-c46236d96428@oss.qualcomm.com>
 
-On Tue, Mar 18, 2025 at 10:10:47PM -0700, Rudraksha Gupta wrote:
-> In order to fix DT schema warning and describe hardware properly, add
-> missing sleep clock to the timer node.
+On Tue, Mar 18, 2025 at 10:17:02PM -0500, Bjorn Andersson via B4 Relay wrote:
+> From: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
 > 
-> Solved by Dmitry Baryshkov on the APQ8064 SoC
-> Link: https://lore.kernel.org/all/20250318-fix-nexus-4-v2-6-bcedd1406790@oss.qualcomm.com/
+> The Qualcomm X Elite reference design uses the PM8010 PMIC for camera
+> use cases, but the Dell XPS13 doesn't. Disable this PMIC to avoid the
+> error in the kernel log caused by an attempt to access it during boot.
 > 
-> Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
-> ---
-> Running the following no longer returns any errors:
-> make ARCH=arm CHECK_DTBS=y qcom/qcom-msm8960-cdp.dtb
-> make ARCH=arm CHECK_DTBS=y qcom/qcom-msm8960-samsung-expressatt.dtb
-> ---
->  arch/arm/boot/dts/qcom/qcom-msm8960.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+> Fixes: f5b788d0e8cd ("arm64: dts: qcom: Add support for X1-based Dell XPS 13 9345")
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Usually we do the opposite: disable nodes by default that may or may not
+be there and enable them where needed. E.g. for the 4 SMB2360 instances
+in x1e80100-pmics.dtsi.
 
--- 
-With best wishes
-Dmitry
+I think the same approach would also be preferable here. You shouldn't
+get an error in the log just because you didn't go through all of your
+DT includes and checked if you really have all of the components listed
+there. I think it's okay to enable PMICs that are more or less
+guaranteed to be there, but clearly this is not the case for PM8010.
+
+Thanks,
+Stephan
 
