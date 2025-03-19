@@ -1,569 +1,256 @@
-Return-Path: <devicetree+bounces-158899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A52E8A687D8
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 10:25:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ECAFA68832
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 10:36:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6827A3A86A7
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 09:24:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B91318825EA
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 09:35:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EEFC252910;
-	Wed, 19 Mar 2025 09:25:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05E3F258CDB;
+	Wed, 19 Mar 2025 09:32:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GfwgYd7l"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DI/AriJG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-pl1-f194.google.com (mail-pl1-f194.google.com [209.85.214.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5839730100;
-	Wed, 19 Mar 2025 09:25:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D378F258CC5;
+	Wed, 19 Mar 2025 09:32:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742376308; cv=none; b=Xf/Jg/vEUqStNlX5Tq9h4D6OtllZMIJIGQk3u7S9DelcFeG7hh6lYuqGBgMNCQ8Ow7cuGlBx+F9FOovIliOjGPkgct0Iw19Qt6ug7J3zLtyaLaUbdeopc7EQoRA6ja3ldq4MdxtayesHke1U3OM9rczK1Rhd1I2Jout73zNKp68=
+	t=1742376724; cv=none; b=WmxBbBMMzbbf87MWl9yDmm2Ij6+FoFWjyHjHQpR2VcGVSwRm+QYpf97a+UYvHzKcQ920rD1niGsrklSilqf1qyaP1moUMKMPCZIA+tExe0imHcOYzuqH4HECyJWocKjiVQVbyUATUe4UAaMoWSU/KAs60jcgXLRILcD0BkbVVcE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742376308; c=relaxed/simple;
-	bh=rx1ieQ0qM19daaTSV+IxW0yuthluXQK3oCRlrmklKeo=;
-	h=Message-ID:Date:From:To:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LOyDgkGKt8HpoQdQrOICCUFDNTmMun+YOnqCplpS9HsQTxjMgvcpSYvBWQLcLjU2J4/AP/hZsS3NtdoqyS3y1sFdZz0AcmPIcxabGmtqgVbX3s9Bgqjme2SvgawLUzC4hqFCisQKYmnwxz3sbI8RX6Wu1BziAYlPIkWrZwuabjA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GfwgYd7l; arc=none smtp.client-ip=209.85.128.47
+	s=arc-20240116; t=1742376724; c=relaxed/simple;
+	bh=AkMKflDV4SnttQ4RQACOIUwHeZ3/6SS3x0SYtLJMq30=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=YPJAxJDlUXmEyx0veA2Cpo1JJeop0r3Hd5IpOd6laik3MHASNKmi3mzbSt2eQmhsMpCaJ6lANJCOoAHeO7AwuxcWdb8dHgwrqMelAhVonu6s/3K77gJwzdUru+fO7ORMyewXnAbKnp9xA9vD8rIZbfs8zqUoIhmwOSkLpfddpEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DI/AriJG; arc=none smtp.client-ip=209.85.214.194
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43948f77f1aso30950725e9.0;
-        Wed, 19 Mar 2025 02:25:06 -0700 (PDT)
+Received: by mail-pl1-f194.google.com with SMTP id d9443c01a7336-22622ddcc35so15958275ad.2;
+        Wed, 19 Mar 2025 02:32:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742376305; x=1742981105; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:to
-         :from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=gK5En8938hA0dBzE+wi5xD1hnVJ2lUwNPVsZrJARpB8=;
-        b=GfwgYd7l2ylgtu6/DHF2tOAX7zW7ltH9Q2TyCl+Vyv8iJTUC/LYkum5zbKjEOmZ14B
-         guMMKm2EDv+wQR2J/jmypbwa1qlFm2mpVv9XydT7InZvpNm2Wsf0Id3cEYjuo8c9I81s
-         oqyZhDV2okJpbzTLlwoIsC248T+ZBWCT3RK79fMg/6rgdBFZa3+Nh3QXsdhY+/cijqy+
-         /nJvcD9mj+pkyrNLVcX08+IX/NcfRxIvkw8klPnBM+FTy0Fy83diHfCstfB/cTg5U9bG
-         nCyABGEWf4SQnmDVgDMbBTKHpXbV4/4Pu6Nfp9CUk/aJpxCsfdr13My7z7zxkhZXLzSJ
-         4B2w==
+        d=gmail.com; s=20230601; t=1742376722; x=1742981522; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=h4c5WwdBa8LpxD1/meMFz4s/8X4FVziT5/E3RtA1KL4=;
+        b=DI/AriJGqPOguJCdfvXK0HRjvCZpirEXl4R5GV0GaVQxvGjunKhQa8PuToS0I2XsHF
+         kalDTA5qZkMRupvC1PXSEfYpW9FjAlDB8InTzkFEgPZ3Dk5p88kjobp7uE4NPfCE9aGD
+         fJvsFenNwOIlw2/i1m6qI6guxeX//h+QErQeKDlcWOEdLE1n2BZJHkSe5zTcAkSYHjWR
+         jONhLZssvYjwcupJw/6egwjRFbyPLsyllsx/qRhGQgGn/VS2FVIxKElnnMgCG+OHHN6F
+         L+2BDGS824nnuo2EOnvU8sF+d/+WKCD1wZYQLW3tn4DDNjZwYHiw2GboM1o0C9K2nEJ2
+         9/pg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742376305; x=1742981105;
-        h=in-reply-to:content-disposition:mime-version:references:subject:to
-         :from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gK5En8938hA0dBzE+wi5xD1hnVJ2lUwNPVsZrJARpB8=;
-        b=DWT5LzMwYQznLEkAnMTPaCJYjHbosUxD8JH6v0NxtO14qYKOVlzMNThh9TyQGXJtOg
-         ffI8CiU8tji6TDqdBFgtbKrnjt4MKPzG/0HHM9y3PVnO7X+t4Ut2StT41py13qp64HPo
-         ntObkSFIYWqTMGBifh8dgEWOZmuY8nMvYcoLa2BRBoo1qW0dNxX/8g4oj4MhybXzV/CM
-         SIbMzF5y6pW7pwxauXFOnaRmsbHfvuboXRf+akJOudx8bZje3snN2u8oRGGXT4gEIxTk
-         thA774/R8JVnUr3eTIdhLJsnK90OP7Gj47/oUcY6loOcOqMj91OK/+gqImAeEh9SKphB
-         dBpA==
-X-Forwarded-Encrypted: i=1; AJvYcCVn81W6+kqYbdOUjbIN6zXSZyfQwYw4qQJoq3j6ypjRGnFyYwfVK1+ihgz22UDJTa0VcMoM8jpu6K6ebB0e@vger.kernel.org, AJvYcCWuZv9ri5y0xjk2CSPxK1zYx5tBn3HbXeWiSJahZCdTww09WChvblj1eWVIqOl2M9dhiEbnCIaWcSlG@vger.kernel.org, AJvYcCXfU071wrV743cZ95ALU2N65nih4tANjPqdq+hkEe2J3S9auTZ44qEIK9AVrNbax5chyc39+PYc@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZghhj2lUl1/gzJs66FmLpvIhoCpghTdw68lW3Xw+kbTlEy+eY
-	HLBvwdsmj1sZZFUOiW6fbea/Awnki2zkQKZaZop16kA++PVq5kAq
-X-Gm-Gg: ASbGncu5R2A6RWxrCpk7aCTCVS8FdMsHDIcEActEoGH2xSBDM7O0/P8Wqu/+TlEc286
-	rkk4EdvFwl6HH7xPfvLLwcd1wdYcfqo8v4cGKA5p5bJ4uwzo18TzKrvW6SIXwMXxV4YWze4nnPF
-	LRY4h/KojymPrCYx8pNJvBJHYPIaQrSUE/F8WRh0bnJHKjGK2jm/eL5Gery37Nl/27vwCTv1rwU
-	UIBWB1djPM8YlWu1uhuaY7leeU9WgRbnXkOEkivqAW15bo4RLzIYmoXe0PtBLXgzPSvS5GnoRoR
-	d+/qTsUM3U30WMJ1cy6CHNnzs35PqJNqOuMOM47bifcLjiBhfHkgDMY2CKsLztR/KXSXKJwmzR6
-	V
-X-Google-Smtp-Source: AGHT+IHtgnB6wAaAUB+8UjYGKzNV76KxfOm+nz2OfLpm7XJRlRBMHiB9AH1bn6wqChPMM7tdakYRzQ==
-X-Received: by 2002:a05:600c:1ca1:b0:43c:ea1a:720a with SMTP id 5b1f17b1804b1-43d46b5a82fmr4595085e9.1.1742376304166;
-        Wed, 19 Mar 2025 02:25:04 -0700 (PDT)
-Received: from Ansuel-XPS. (93-34-90-129.ip49.fastwebnet.it. [93.34.90.129])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d43f32fcdsm13398905e9.7.2025.03.19.02.25.02
+        d=1e100.net; s=20230601; t=1742376722; x=1742981522;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=h4c5WwdBa8LpxD1/meMFz4s/8X4FVziT5/E3RtA1KL4=;
+        b=DJrKx94viFMJRo/aoh5xfJpifjuya/dJr3iA6PcpBhcVOFxeBiRPZexYfrmzi6FSRf
+         JmAXKbzEVa6LQ4OED/WIX1c8OD+/e3Uli3zv2x82zd/WDW5HnwOWPLFO17yjAaxje+ci
+         eKDYRM+VobbwoyoFjnhb7SSgAnOlojyGNynvxhN0GAqyh/lkTjGiYo3yo4BzLaUuXH4T
+         Gyiv6mtilEnU1024vCZfpMy2IKx4GCjEDMuUGze/vk1rG8+1iJ95E+uNwWcOggTSQhq9
+         1YwQ81r5KOFDqbA4jfV7dJ3ImV/dS/P4c6oBTZI35PBVgyzmG5siiYluUxlVb77BKPPF
+         +qqw==
+X-Forwarded-Encrypted: i=1; AJvYcCVwyCRrWNjt8zGuQj9yVyimJjVN7x691RNMe9EG+Tuxe0rgytvByeh1HKBvrZ1KlX/p/0f4XEhybQJ3@vger.kernel.org, AJvYcCXbWYhUd7OaZ3I7pVg5whf2Hd9wDosvClio5jS6uju2fS/BC8DZ/M+CGt6kOOsLmvbvn0wK9ygew99ClGze@vger.kernel.org, AJvYcCXblli6+VDcM3Oz4lJg87NK8VSSSn5jZpGOYNGHKbYtqMP6BdhvX9qrzAScDyf8A+txc+7Oe7MJIqEK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1b/5R/c0qE9EvaDJ+iGbksdcfY693hjteOY+6bk7t8GfhtLlD
+	QnRRisw59B1NMVkYdw8rkmEJOU7IZ9Cm88gUyMlFcVzYmLAGYyzq
+X-Gm-Gg: ASbGncsiJ3r1FW9zB0gFQtZh3KzTui8c5dZi94z7w1P3t92Njpre4zGIUnt6YKqW63g
+	qBcrXRIxveP9gcsMdupSK58KgxWjyFpAT6A+bJgxn9BHUTS2fnyQxNHp5vwRmkVjIqhir4k2adZ
+	yh9J1YC8yK0G/l+mYi75JzbfR4ncGZvT54BUzyqyrhrnIBHX37IgTIIWgMW+cYjbqmTIddTD+nN
+	CDjf6w1lHvnchL9YeVQIBg7QL1YgG2wKqJ4YG5BTALMc3L8tpB0IxxjHLxvdAoRd3dqmCl2nlG1
+	iplDETwsq124V7OCSeYUi0m6CivY
+X-Google-Smtp-Source: AGHT+IGCyKya6WzyBN16MEpeZN2uX9SoAuQJY8rHWzzjsI1adcqgzMZBDftNlN8shh0ccTOLI/9j7A==
+X-Received: by 2002:a05:6a00:1888:b0:736:6268:9ec9 with SMTP id d2e1a72fcca58-7376d6ca21amr2967984b3a.16.1742376721829;
+        Wed, 19 Mar 2025 02:32:01 -0700 (PDT)
+Received: from [127.0.1.1] ([2602:f919:106::1b8])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-737115294b3sm11124315b3a.5.2025.03.19.02.31.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Mar 2025 02:25:03 -0700 (PDT)
-Message-ID: <67da8d6f.050a0220.1da33e.3b15@mx.google.com>
-X-Google-Original-Message-ID: <Z9qNbYhzlYj5FLNW@Ansuel-XPS.>
-Date: Wed, 19 Mar 2025 10:25:01 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Daniel Golle <daniel@makrotopia.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	upstream@airoha.com
-Subject: Re: [net-next PATCH 2/6] net: pcs: Implement OF support for PCS
- driver
-References: <20250318235850.6411-1-ansuelsmth@gmail.com>
- <20250318235850.6411-3-ansuelsmth@gmail.com>
+        Wed, 19 Mar 2025 02:32:01 -0700 (PDT)
+From: Troy Mitchell <troymitchell988@gmail.com>
+Subject: [PATCH v8 0/2] riscv: spacemit: add i2c support to K1 SoC
+Date: Wed, 19 Mar 2025 17:28:58 +0800
+Message-Id: <20250319-k1-i2c-master-v8-0-013e2df2b78d@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250318235850.6411-3-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFqO2mcC/5XQu27cMBAF0F9ZqA4X8+BD2so/kC5d4IIih14iK
+ yuhFMGGsf9uSk5gQU2QcjA4F3fmrZmkZJmay+mtKbLkKY/PdWi/nJpw9c9PonKsc0NAGoFR/UC
+ VKajBT7MUlcQl10MM0nFTzc8iKb9sed8f65zKOKj5WsTvUqgFw0RwZm2pZYXqWxlfv+Y5XOV26
+ 9r24Wnw+XYO4/Ans8iv37Xa/BH82exyWhPBkl17AareTzmoOCv0nlFE+hDpspg1p+5E1cwhz/V
+ A6agLvdFWRFPovMVIOnmxYMFIJ4wdsdHNesU1T/NYXrcnLXqrsF2CZA7/WLQCBYmjaVvLbPvdK
+ WvSwjuNdNRctQEwvasvJWiPmj71f31xw7jDaMAZZH1GrTtt2n9r81cbYOBjcVOLE8YUnI9J2B2
+ 13Wt31LZq1gldpOgFw1G7nUZ71K7qRNEEzUJJw17f7/d371OFiOMCAAA=
+X-Change-ID: 20241031-k1-i2c-master-fe7f7b0dce93
+To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+ Troy Mitchell <troymitchell988@gmail.com>
+Cc: linux-riscv@lists.infradead.org, linux-i2c@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ spacemit@lists.linux.dev, Conor Dooley <conor.dooley@microchip.com>, 
+ Alex Elder <elder@riscstar.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1742376553; l=6178;
+ i=troymitchell988@gmail.com; h=from:subject:message-id;
+ bh=AkMKflDV4SnttQ4RQACOIUwHeZ3/6SS3x0SYtLJMq30=;
+ b=o2OSsb/aqFHq4+VWQCR4ZvdMZZdj1/DBzMlTdG7+wGPUzPznl2D7WwHKs+aYRRjyuTMana6ck
+ vrmjSkmVLTfAkub8lWttmqqo8xzGDYy+HwaNPJkb/qamy/eVQW6AwCU
+X-Developer-Key: i=troymitchell988@gmail.com; a=ed25519;
+ pk=2spEMGBd/Wkpd36N1aD9KFWOk0aHrhVxZQt+jxLXVC0=
 
-On Wed, Mar 19, 2025 at 12:58:38AM +0100, Christian Marangi wrote:
-> Implement the foundation of OF support for PCS driver.
-> 
-> To support this, implement a simple Provider API where a PCS driver can
-> expose multiple PCS with an xlate .get function.
-> 
-> PCS driver will have to call of_pcs_add_provider() and pass the device
-> node pointer and a xlate function to return the correct PCS for the
-> requested interface and the passed #pcs-cells.
-> 
-> This will register the PCS in a global list of providers so that
-> consumer can access it.
-> 
-> Consumer will then use of_pcs_get() to get the actual PCS by passing the
-> device_node pointer, the index for #pcs-cells and the requested
-> interface.
-> 
-> For simple implementation where #pcs-cells is 0 and the PCS driver
-> expose a single PCS, the xlate function of_pcs_simple_get() is
-> provided. In such case the passed interface is ignored and is expected
-> that the PCS supports any interface mode supported by the MAC.
-> 
-> For advanced implementation a custom xlate function is required. Such
-> function should return an error if the PCS is not supported for the
-> requested interface type.
-> 
-> This is needed for the correct function of of_phylink_mac_select_pcs()
-> later described.
-> 
-> PCS driver on removal should first call phylink_pcs_release() on every
-> PCS the driver provides and then correctly delete as a provider with
-> the usage of of_pcs_del_provider().
-> 
-> A generic function for .mac_select_pcs is provided for any MAC driver
-> that will declare PCS in DT, of_phylink_mac_select_pcs().
-> This function will parse "pcs-handle" property and will try every PCS
-> declared in DT until one that supports the requested interface type is
-> found. This works by leveraging the return value of the xlate function
-> returned by of_pcs_get() and checking if it's an ERROR or NULL, in such
-> case the next PCS in the phandle array is tested.
-> 
-> Some additional helper are provided for xlate functions,
-> pcs_supports_interface() as a simple function to check if the requested
-> interface is supported by the PCS and phylink_pcs_release() to release a
-> PCS from a phylink instance.
-> 
-> Co-developed-by: Daniel Golle <daniel@makrotopia.org>
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
->  drivers/net/pcs/Kconfig          |   7 ++
->  drivers/net/pcs/Makefile         |   1 +
->  drivers/net/pcs/pcs.c            | 185 +++++++++++++++++++++++++++++++
->  drivers/net/phy/phylink.c        |  21 ++++
->  include/linux/pcs/pcs-provider.h |  46 ++++++++
->  include/linux/pcs/pcs.h          |  62 +++++++++++
->  include/linux/phylink.h          |   2 +
->  7 files changed, 324 insertions(+)
->  create mode 100644 drivers/net/pcs/pcs.c
->  create mode 100644 include/linux/pcs/pcs-provider.h
->  create mode 100644 include/linux/pcs/pcs.h
-> 
-> diff --git a/drivers/net/pcs/Kconfig b/drivers/net/pcs/Kconfig
-> index f6aa437473de..8c3b720de6fd 100644
-> --- a/drivers/net/pcs/Kconfig
-> +++ b/drivers/net/pcs/Kconfig
-> @@ -5,6 +5,13 @@
->  
->  menu "PCS device drivers"
->  
-> +config OF_PCS
-> +	tristate
-> +	depends on OF
-> +	depends on PHYLINK
-> +	help
-> +		OpenFirmware PCS accessors
-> +
->  config PCS_XPCS
->  	tristate "Synopsys DesignWare Ethernet XPCS"
->  	select PHYLINK
-> diff --git a/drivers/net/pcs/Makefile b/drivers/net/pcs/Makefile
-> index 4f7920618b90..29881f0f981f 100644
-> --- a/drivers/net/pcs/Makefile
-> +++ b/drivers/net/pcs/Makefile
-> @@ -1,6 +1,7 @@
->  # SPDX-License-Identifier: GPL-2.0
->  # Makefile for Linux PCS drivers
->  
-> +obj-$(CONFIG_OF_PCS)		+= pcs.o
->  pcs_xpcs-$(CONFIG_PCS_XPCS)	:= pcs-xpcs.o pcs-xpcs-plat.o \
->  				   pcs-xpcs-nxp.o pcs-xpcs-wx.o
->  
-> diff --git a/drivers/net/pcs/pcs.c b/drivers/net/pcs/pcs.c
-> new file mode 100644
-> index 000000000000..af04a76ef825
-> --- /dev/null
-> +++ b/drivers/net/pcs/pcs.c
-> @@ -0,0 +1,185 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +
-> +#include <linux/mutex.h>
-> +#include <linux/of.h>
-> +#include <linux/phylink.h>
-> +#include <linux/pcs/pcs.h>
-> +#include <linux/pcs/pcs-provider.h>
-> +
-> +struct of_pcs_provider {
-> +	struct list_head link;
-> +
-> +	struct device_node *node;
-> +	struct phylink_pcs *(*get)(struct of_phandle_args *pcsspec,
-> +				   void *data,
-> +				   phy_interface_t interface);
-> +
-> +	void *data;
-> +};
-> +
-> +static LIST_HEAD(of_pcs_providers);
-> +static DEFINE_MUTEX(of_pcs_mutex);
-> +
-> +struct phylink_pcs *of_pcs_simple_get(struct of_phandle_args *pcsspec, void *data,
-> +				      phy_interface_t interface)
-> +{
-> +	struct phylink_pcs *pcs = data;
-> +
-> +	if (!pcs_supports_interface(pcs, interface))
-> +		return ERR_PTR(-EOPNOTSUPP);
-> +
-> +	return data;
-> +}
-> +EXPORT_SYMBOL_GPL(of_pcs_simple_get);
-> +
-> +int of_pcs_add_provider(struct device_node *np,
-> +			struct phylink_pcs *(*get)(struct of_phandle_args *pcsspec,
-> +						   void *data,
-> +						   phy_interface_t interface),
-> +			void *data)
-> +{
-> +	struct of_pcs_provider *pp;
-> +
-> +	if (!np)
-> +		return 0;
-> +
-> +	pp = kzalloc(sizeof(*pp), GFP_KERNEL);
-> +	if (!pp)
-> +		return -ENOMEM;
-> +
-> +	pp->node = of_node_get(np);
-> +	pp->data = data;
-> +	pp->get = get;
-> +
-> +	mutex_lock(&of_pcs_mutex);
-> +	list_add(&pp->link, &of_pcs_providers);
-> +	mutex_unlock(&of_pcs_mutex);
-> +	pr_debug("Added pcs provider from %pOF\n", np);
-> +
-> +	fwnode_dev_initialized(&np->fwnode, true);
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(of_pcs_add_provider);
-> +
-> +void of_pcs_del_provider(struct device_node *np)
-> +{
-> +	struct of_pcs_provider *pp;
-> +
-> +	if (!np)
-> +		return;
-> +
-> +	mutex_lock(&of_pcs_mutex);
-> +	list_for_each_entry(pp, &of_pcs_providers, link) {
-> +		if (pp->node == np) {
-> +			list_del(&pp->link);
-> +			fwnode_dev_initialized(&np->fwnode, false);
-> +			of_node_put(pp->node);
-> +			kfree(pp);
-> +			break;
-> +		}
-> +	}
-> +	mutex_unlock(&of_pcs_mutex);
-> +}
-> +EXPORT_SYMBOL_GPL(of_pcs_del_provider);
-> +
-> +static int of_parse_pcsspec(const struct device_node *np, int index,
-> +			    const char *name, struct of_phandle_args *out_args)
-> +{
-> +	int ret = -ENOENT;
-> +
-> +	if (!np)
-> +		return -ENOENT;
-> +
-> +	if (name)
-> +		index = of_property_match_string(np, "pcs-names", name);
-> +
-> +	ret = of_parse_phandle_with_args(np, "pcs-handle", "#pcs-cells",
-> +					 index, out_args);
-> +	if (ret || (name && index < 0))
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static struct phylink_pcs *
-> +of_pcs_get_from_pcsspec(struct of_phandle_args *pcsspec,
-> +			phy_interface_t interface)
-> +{
-> +	struct of_pcs_provider *provider;
-> +	struct phylink_pcs *pcs = ERR_PTR(-EPROBE_DEFER);
-> +
-> +	if (!pcsspec)
-> +		return ERR_PTR(-EINVAL);
-> +
-> +	mutex_lock(&of_pcs_mutex);
-> +	list_for_each_entry(provider, &of_pcs_providers, link) {
-> +		if (provider->node == pcsspec->np) {
-> +			pcs = provider->get(pcsspec, provider->data,
-> +					    interface);
-> +			if (!IS_ERR(pcs))
-> +				break;
-> +		}
-> +	}
-> +	mutex_unlock(&of_pcs_mutex);
-> +
-> +	return pcs;
-> +}
-> +
-> +static struct phylink_pcs *__of_pcs_get(struct device_node *np, int index,
-> +					const char *con_id,
-> +					phy_interface_t interface)
-> +{
-> +	struct of_phandle_args pcsspec;
-> +	struct phylink_pcs *pcs;
-> +	int ret;
-> +
-> +	ret = of_parse_pcsspec(np, index, con_id, &pcsspec);
-> +	if (ret)
-> +		return ERR_PTR(ret);
-> +
-> +	pcs = of_pcs_get_from_pcsspec(&pcsspec, interface);
-> +	of_node_put(pcsspec.np);
-> +
-> +	return pcs;
-> +}
-> +
-> +struct phylink_pcs *of_pcs_get(struct device_node *np, int index,
-> +			       phy_interface_t interface)
-> +{
-> +	return __of_pcs_get(np, index, NULL, interface);
-> +}
-> +EXPORT_SYMBOL_GPL(of_pcs_get);
-> +
-> +struct phylink_pcs *of_phylink_mac_select_pcs(struct phylink_config *config,
-> +					      phy_interface_t interface)
-> +{
-> +	int i, count;
-> +	struct device *dev = config->dev;
-> +	struct device_node *np = dev->of_node;
-> +	struct phylink_pcs *pcs = ERR_PTR(-ENODEV);
-> +
-> +	/* To enable using_mac_select_pcs on phylink_create */
-> +	if (interface == PHY_INTERFACE_MODE_NA)
-> +		return NULL;
-> +
-> +	/* Reject configuring PCS with Internal mode */
-> +	if (interface == PHY_INTERFACE_MODE_INTERNAL)
-> +		return ERR_PTR(-EINVAL);
-> +
-> +	if (!of_property_present(np, "pcs-handle"))
-> +		return pcs;
-> +
-> +	count = of_count_phandle_with_args(np, "pcs-handle", "#pcs-cells");
-> +	if (count < 0)
-> +		return ERR_PTR(count);
-> +
-> +	for (i = 0; i < count; i++) {
-> +		pcs = of_pcs_get(np, i, interface);
-> +		if (!IS_ERR_OR_NULL(pcs))
-> +			return pcs;
-> +	}
-> +
-> +	return pcs;
-> +}
-> +EXPORT_SYMBOL_GPL(of_phylink_mac_select_pcs);
-> diff --git a/drivers/net/phy/phylink.c b/drivers/net/phy/phylink.c
-> index eef1712ec22c..7f71547e89fe 100644
-> --- a/drivers/net/phy/phylink.c
-> +++ b/drivers/net/phy/phylink.c
-> @@ -1130,6 +1130,27 @@ int phylink_pcs_pre_init(struct phylink *pl, struct phylink_pcs *pcs)
->  }
->  EXPORT_SYMBOL_GPL(phylink_pcs_pre_init);
->  
-> +/**
-> + * phylink_pcs_release() - release a PCS
-> + * @pl: a pointer to &struct phylink_pcs
-> + *
-> + * PCS provider can use this to release a PCS from a phylink
-> + * instance by stopping the attached netdev. This is only done
-> + * if the PCS is actually attached to a phylink, otherwise is
-> + * ignored.
-> + */
-> +void phylink_pcs_release(struct phylink_pcs *pcs)
-> +{
-> +	struct phylink *pl = pcs->phylink;
-> +
-> +	if (pl) {
-> +		rtnl_lock();
-> +		dev_close(pl->netdev);
-> +		rtnl_unlock();
-> +	}
-> +}
-> +EXPORT_SYMBOL_GPL(phylink_pcs_release);
-> +
->  static void phylink_mac_config(struct phylink *pl,
->  			       const struct phylink_link_state *state)
->  {
-> diff --git a/include/linux/pcs/pcs-provider.h b/include/linux/pcs/pcs-provider.h
-> new file mode 100644
-> index 000000000000..0172d0286f07
-> --- /dev/null
-> +++ b/include/linux/pcs/pcs-provider.h
-> @@ -0,0 +1,46 @@
-> +/* SPDX-License-Identifier: GPL-2.0-or-later */
-> +#ifndef __LINUX_PCS_PROVIDER_H
-> +#define __LINUX_PCS_PROVIDER_H
-> +
-> +#include <linux/phy.h>
-> +
-> +/**
-> + * of_pcs_simple_get - Simple xlate function to retrieve PCS
-> + * @pcsspec: Phandle arguments
-> + * @data: Context data (assumed assigned to the single PCS)
-> + * @interface: requested PHY interface type for PCS
-> + *
-> + * Returns the PCS (pointed by data) or an -EOPNOTSUPP pointer
-> + * if the PCS doesn't support the requested interface.
-> + */
-> +struct phylink_pcs *of_pcs_simple_get(struct of_phandle_args *pcsspec, void *data,
-> +				      phy_interface_t interface);
-> +
-> +/**
-> + * of_pcs_add_provider - Registers a new PCS provider
-> + * @np: Device node
-> + * @get: xlate function to retrieve the PCS
-> + * @data: Context data
-> + *
-> + * Register and add a new PCS to the global providers list
-> + * for the device node. A function to get the PCS from
-> + * device node with the use of phandle args.
-> + * To the get function is also passed the interface type
-> + * requested for the PHY. PCS driver will use the passed
-> + * interface to understand if the PCS can support it or not.
-> + *
-> + * Returns 0 on success or -ENOMEM on allocation failure.
-> + */
-> +int of_pcs_add_provider(struct device_node *np,
-> +			struct phylink_pcs *(*get)(struct of_phandle_args *pcsspec,
-> +						   void *data,
-> +						   phy_interface_t interface),
-> +			void *data);
-> +
-> +/**
-> + * of_pcs_del_provider - Removes a PCS provider
-> + * @np: Device node
-> + */
-> +void of_pcs_del_provider(struct device_node *np);
-> +
-> +#endif /* __LINUX_PCS_PROVIDER_H */
-> diff --git a/include/linux/pcs/pcs.h b/include/linux/pcs/pcs.h
-> new file mode 100644
-> index 000000000000..b681bf05ac08
-> --- /dev/null
-> +++ b/include/linux/pcs/pcs.h
-> @@ -0,0 +1,62 @@
-> +/* SPDX-License-Identifier: GPL-2.0-or-later */
-> +#ifndef __LINUX_PCS_H
-> +#define __LINUX_PCS_H
-> +
-> +#include <linux/phy.h>
-> +#include <linux/phylink.h>
-> +
-> +static inline bool pcs_supports_interface(struct phylink_pcs *pcs,
-> +					  phy_interface_t interface)
-> +{
-> +	return test_bit(interface, pcs->supported_interfaces);
-> +}
-> +
-> +#ifdef CONFIG_OF_PCS
+Hi all,
 
-Will be changed to IS_ENABLED to account for module config.
+This patch implements I2C driver for the SpacemiT K1 SoC,
+providing basic support for I2C read/write communication which
+compatible with standard I2C bus specifications.
 
-> +/**
-> + * of_pcs_get - Retrieves a PCS from a device node
-> + * @np: Device node
-> + * @index: Index of PCS handle in Device Node
-> + * @interface: requested PHY interface type for PCS
-> + *
-> + * Get a PCS for the requested PHY interface type from the
-> + * device node at index.
-> + *
-> + * Returns a pointer to the phylink_pcs or a negative
-> + * error pointer. Can return -EPROBE_DEFER if the PCS is not
-> + * present in global providers list (either due to driver
-> + * still needs to be probed or it failed to probe/removed)
-> + */
-> +struct phylink_pcs *of_pcs_get(struct device_node *np, int index,
-> +			       phy_interface_t interface);
-> +
-> +/**
-> + * of_phylink_mac_select_pcs - Generic MAC select pcs for OF PCS provider
-> + * @config: phylink config pointer
-> + * @interface: requested PHY interface type for PCS
-> + *
-> + * Generic helper function to get a PCS from a "pcs-handle" OF property
-> + * defined in device tree. Each phandle defined in "pcs-handle" will be
-> + * tested until a PCS that supports the requested PHY interface is found.
-> + *
-> + * Returns a pointer to the selected PCS or an error pointer.
-> + * Return NULL for PHY_INTERFACE_MODE_NA and a -EINVAL error pointer
-> + * for PHY_INTERFACE_MODE_INTERNAL. It can also return -EPROBE_DEFER,
-> + * refer to of_pcs_get for details about it.
-> + */
-> +struct phylink_pcs *of_phylink_mac_select_pcs(struct phylink_config *config,
-> +					      phy_interface_t interface);
-> +#else
-> +static inline struct phylink_pcs *of_pcs_get(struct device_node *np, int index,
-> +					     phy_interface_t interface)
-> +{
-> +	return PTR_ERR(-ENOENT);
+In this version, the driver defaults to use fast-speed-mode and
+interrupts for transmission, and does not support DMA, high-speed mode, or FIFO.
 
-Wrong macro for error, will be fixed in v2.
+The docs of I2C can be found here, in chapter 16.1 I2C [1]
 
-> +}
-> +
-> +static inline struct phylink_pcs *of_phylink_mac_select_pcs(struct phylink_config *config,
-> +							    phy_interface_t interface)
-> +{
-> +	return PTR_ERR(-EOPNOTSUPP);
+Link: https://developer.spacemit.com/documentation?token=Rn9Kw3iFHirAMgkIpTAcV2Arnkf#part5 [1]
+---
+Changes in v8:
+- Patch #2:
+        - Fix code style
+        - Fix comment style
+- Link to v7: https://lore.kernel.org/r/20250316-k1-i2c-master-v7-0-f2d5c43e2f40@gmail.com
 
-Ditto.
+Changes in v7:
+- Patch #2:
+        - Adjust structure member types  
+        - Default to 400,000 Hz if `clock-frequency` is unavailable  
+        - Fix code style
+        - Fix comments  
+        - Kconfig: Rename "Spacemit" to "SpacemiT"  
+        - Use local variables in `spacemit_xfer_msgs`
+        - Rename `spacemit_i2c_wait_bus_busy` to `spacemit_i2c_wait_bus_idle`
+        - Reduce transmission timeout in `spacemit_i2c_calc_timeout`  
+Link to v6:
+https://lore.kernel.org/r/20250307-k1-i2c-master-v6-0-34f17d2dae1c@gmail.com
 
-> +}
-> +#endif
-> +
-> +#endif /* __LINUX_PCS_H */
-> diff --git a/include/linux/phylink.h b/include/linux/phylink.h
-> index c187267a15b6..80367d4fbad9 100644
-> --- a/include/linux/phylink.h
-> +++ b/include/linux/phylink.h
-> @@ -695,6 +695,8 @@ void phylink_pcs_change(struct phylink_pcs *, bool up);
->  
->  int phylink_pcs_pre_init(struct phylink *pl, struct phylink_pcs *pcs);
->  
-> +void phylink_pcs_release(struct phylink_pcs *pcs);
-> +
->  void phylink_start(struct phylink *);
->  void phylink_stop(struct phylink *);
->  
-> -- 
-> 2.48.1
-> 
+Change in v6:
+- Patch #1:
+        - Give a brief clock description and a clear clock name
+        - Changed the clock numbers in the example to match those
+          in the mainline clock driver
+- Patch #2:
+        - Fix incorrect comments in macro definitions
+        - Fix code style
+        - Merge `spacemit_i2c_xfer_core` into `spacemit_i2c_xfer`
+        - Remove `reset` and `enable_irq` before each transfer
+          and place `reset` in the probe function.
+        - SPACEMIT_I2C_GET_ERR -> SPACEMIT_I2C_SR_ERR
+        - spacemit_i2c_recover_bus_busy -> spacemit_i2c_wait_bus_busy
+        - Support standard mode
+Link to v5:
+https://lore.kernel.org/all/20250303-k1-i2c-master-v5-0-21dfc7adfe37@gmail.com/
 
+Change in v5:
+- Patch #1:
+        - Add `clock-names` property
+        - Modify the clock property into two
+- Patch #2:
+        - Enable the APB clock
+        - Fix comment and code styles
+        - Fix typo and drop unnecessary description in Kconfig
+        - Prefix all macro definitions with SPACEMIT_
+        - Rename `spacemit_i2c_bus_reset` to `spacemit_i2c_conditionally_reset_bus`
+        - Remove all `unlikely` and `likely`
+        - Remove unused register and bit macros
+        - Remove the "err" field, as it only contains a subset of the status field
+        - Retrieve `clock-frequency` from the device tree instead of using a macro
+        - Use a local variable to track the current message
+        - Use `i2c->read` to represent read and write statuses instead of `i2c->dir`
+Link to v4:
+https://lore.kernel.org/all/20241125-k1-i2c-master-v4-0-0f3d5886336b@gmail.com/
+
+Change in v4:
+- Patch #1:
+	- Change the default value of clock-frequency from 100000 to
+	  400000. This is to correspond to the driver's default value.
+	- Drop the minimum of clock-frequency
+	- Modify the description of clock-frequency
+- Patch #2:
+	- Drop the `inline` qualifier from the `spacemit_i2c_xfer_core` function
+	- Drop the initialization of `ret` to 0 in `spacemit_i2c_xfer_core` function
+	- Drop useless wrap
+Link to v3:
+https://lore.kernel.org/all/20241112-k1-i2c-master-v3-0-5005b70dc208@gmail.com/
+
+Change in v3:
+- Patch #1:
+	- Change the maxItems of reg from 2 to 1 in properties
+	- Modify reg in dts example
+	- Changed the enum selection for clock-frequency to a range,
+	  setting a minimum value of 1 and a maximum value of 3,300,000.
+- Patch #2:
+	- Drop unused judgement in `spacemit_i2c_xfer_msg`
+	- Fix the dangling else warning in `spacemit_i2c_is_last_msg`
+	- Fix the error check for `i2c->base`
+	- Modify Kconfig dependencies
+Link to v2:
+https://lore.kernel.org/all/20241028053220.346283-1-TroyMitchell988@gmail.com/
+
+Change in v2:
+- Patch #1:
+	- Change the maxItems of reg from 1 to 2 in properties
+	- Change 'i2c' to 'I2C' in the commit message.
+	- Drop fifo-disable property
+	- Drop alias in dts example
+	- Move `unevaluatedProperties` after `required:` block
+- Patch #2:
+	- Alphabetize Makefile and Kconfig
+	- Change `.remove_new` to `.remove` in `struct platform_driver`
+	- Change `dev_alert` to `dev_warn_ratelimited` in `spacemit_i2c_bus_reset`
+	- Change `spacemit_i2c_read/write_reg` to `read/writel`
+	- Change `spacemit_i2c_dt_match` to `spacemit_i2c_of_match`
+	- Clean up code flow
+	- Fix unnecessary line wraps
+	- Move `spacemit_i2c_handle_err` to a suitable location
+	- Modify Kconfig dependencies
+	- Use `PTR_ERR(i2c->base)` directly as the `dev_err_probe` parameter instead of
+	  the intermediate variable
+Link to v1:
+https://lore.kernel.org/all/20241015075134.1449458-1-TroyMitchell988@gmail.com/
+
+---
+Troy Mitchell (2):
+      dt-bindings: i2c: spacemit: add support for K1 SoC
+      i2c: spacemit: add support for SpacemiT K1 SoC
+
+ .../devicetree/bindings/i2c/spacemit,k1-i2c.yaml   |  61 +++
+ drivers/i2c/busses/Kconfig                         |  17 +
+ drivers/i2c/busses/Makefile                        |   1 +
+ drivers/i2c/busses/i2c-k1.c                        | 602 +++++++++++++++++++++
+ 4 files changed, 681 insertions(+)
+---
+base-commit: 8e929cb546ee42c9a61d24fae60605e9e3192354
+change-id: 20241031-k1-i2c-master-fe7f7b0dce93
+prerequisite-change-id: 20240626-k1-01-basic-dt-1aa31eeebcd2:v5
+prerequisite-patch-id: 47dcf6861f7d434d25855b379e6d7ef4ce369c9c
+prerequisite-patch-id: 77787fe82911923aff15ccf565e8fa451538c3a6
+prerequisite-patch-id: b0bdb1742d96c5738f05262c3b0059102761390b
+prerequisite-patch-id: 3927d39d8d77e35d5bfe53d9950da574ff8f2054
+prerequisite-patch-id: a98039136a4796252a6029e474f03906f2541643
+prerequisite-patch-id: c95f6dc0547a2a63a76e3cba0cf5c623b212b4e6
+prerequisite-patch-id: 66e750e438ee959ddc2a6f0650814a2d8c989139
+prerequisite-patch-id: 29a0fd8c36c1a4340f0d0b68a4c34d2b8abfb1ab
+prerequisite-patch-id: 0bdfff661c33c380d1cf00a6c68688e05f88c0b3
+prerequisite-patch-id: 99f15718e0bfbb7ed1a96dfa19f35841b004dae9
+
+Best regards,
 -- 
-	Ansuel
+Troy Mitchell <troymitchell988@gmail.com>
+
 
