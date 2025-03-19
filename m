@@ -1,163 +1,300 @@
-Return-Path: <devicetree+bounces-159032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D16CA694D8
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 17:26:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96E42A694EB
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 17:28:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 98A8816CF78
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 16:26:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4C8919C48FE
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 16:27:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65C8F1DE881;
-	Wed, 19 Mar 2025 16:26:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AC7B1DF747;
+	Wed, 19 Mar 2025 16:27:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="un9zBFfe"
+	dkim=pass (2048-bit key) header.d=pereznus.es header.i=@pereznus.es header.b="PfJvWWpe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from p00-icloudmta-asmtp-us-central-1k-60-percent-6.p00-icloudmta-asmtp-vip.icloud-mail-production.svc.kube.us-central-1k.k8s.cloud.apple.com (p-east1-cluster6-host8-snip4-10.eps.apple.com [57.103.90.211])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66E08F9DA;
-	Wed, 19 Mar 2025 16:26:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49879EEB1
+	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 16:27:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=57.103.90.211
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742401598; cv=none; b=uwvBcaZgXEAT5TZpHP/3fqBpLxKJWCzO51zGvb6q7X/JcZEa4vvv75RNc6n+JG/w1HMS46KrJzbq8t96TGo1wzdy5hEj9vkCRiS92nURC9CuFDRdxnZhmpLbRKlqVNW6n8Xe1Vo9/RatrOg2p6UGSjbcN3/W9F9hVrQhSdWxPzA=
+	t=1742401628; cv=none; b=lUxhHImNOMWTFhY73b/Bfa/LRoXiAknjOdi9BFnJoSFndCILkqbAMvlBDw4/ikDugo7HD8ilF3fO5XvWQFK73h4GSfaJjL7PHNoGd0NMjo1FqzTIPW3Njwp/Mqk55AoKCZUkTKupHTLynFdyjl65RvWpRoQIU9Y7d1kZehUplvM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742401598; c=relaxed/simple;
-	bh=60lYz6yjO7YLU9zDDPbJr7qEQycANq2vlfp5CxfCljc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h63Yf5I1HPK1vsIFke6Ody9rY1BJ71b29cFHqmNiccA/MdXSKtzoWx3iDuNIXW/JNFljU0PSwAU1Rwqp/fhmoJkZQiMbcEoRQZGlp/ykTTMDF+Q6PBBKH9XCkKdXuK1QiTYec8ljF3AqHZR6UFelWYnohECByeMUDtYI9bOJXt0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=un9zBFfe; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=B2YI5dem3RGg1TkB0pW2+3ClFRfM27ppeEKf2F4PHwE=; b=un9zBFfesiq6EY0chgd8Ucso+T
-	hzL7YSHVC83EKoOAibh57hqgqrrftkh8NbyquaNrKerdQG6Wp3/eaqrk1jdj/QOm7Z8BIllUL4pc8
-	o/xW7bu0mJT7+xzRJoqWkpmk/Y/lbiVE038+uCPy4zDUK7HUojPxOvi8512maSjf3n+C1uIH6bpNB
-	EAqtYKnKGY+egNA8AWtFUu3zRM+1z+jAHlxmgoRaqm22SCyBPfmtJQEfKdTyAF/gwjblgjGTPmNqf
-	0sFDx46JBD8SPtx1JRxiZoeD7n5xduNbqZdsiZ5OJOeiiz5wMBY8Dwv//ReIAdnjeJETGnTPJJ1H3
-	IeKSkGrw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:39522)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1tuwFL-0006fO-1h;
-	Wed, 19 Mar 2025 16:26:23 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1tuwFG-0005km-1Z;
-	Wed, 19 Mar 2025 16:26:18 +0000
-Date: Wed, 19 Mar 2025 16:26:18 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Daniel Golle <daniel@makrotopia.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	upstream@airoha.com
-Subject: Re: [net-next PATCH 2/6] net: pcs: Implement OF support for PCS
- driver
-Message-ID: <Z9rwKglOA411lYu5@shell.armlinux.org.uk>
-References: <20250318235850.6411-1-ansuelsmth@gmail.com>
- <20250318235850.6411-3-ansuelsmth@gmail.com>
- <Z9rgB1Ko_xAj44zS@shell.armlinux.org.uk>
- <67daeac5.050a0220.3179c5.ce19@mx.google.com>
+	s=arc-20240116; t=1742401628; c=relaxed/simple;
+	bh=R/AqNGF+n1Pr/1jORJcVIU6MI0bPeDE9FByo14rxmf0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bGBSaRU0P1K12nE56j9Ij0zcfDy0CCf6f+KrJjYL1AFmB8yQshxJuyGWvdtkmgyLQt1mWYguNy2CfY/yjfoHRTIVgqMT7t6FE4lZ3aY8AuxM0Uhjzjea8yh9QMfm+KKJG651rhas8tesxeH4bbkb+c/uz1QtcKlbFjE484FDD3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pereznus.es; spf=pass smtp.mailfrom=pereznus.es; dkim=pass (2048-bit key) header.d=pereznus.es header.i=@pereznus.es header.b=PfJvWWpe; arc=none smtp.client-ip=57.103.90.211
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pereznus.es
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pereznus.es
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pereznus.es; s=sig1;
+	bh=zuaUt4WDVbRPvE3zxuUy5lHsR+yMR2v2V90gWAZfcOQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:x-icloud-hme;
+	b=PfJvWWpeANC4tLpfcas09TbhS0LFGlp/mjT0TwR1vWt7B8peUejOhj6pyB5OMGeSi
+	 hVK/fIlAR60reiD14WfrLA/iTWCfJqqiJN2ygZxxYUMNjjMe0qw3MhKKzKeUB9rI5e
+	 rrezCRiCNu6BQ7jSD7GJ1sPaNqRZD0Ze3qNrqe1R/CG4Uwh0QLxMvNr6UGpGawpFpn
+	 2q+kWt8dn/1wDUJzeH7CgRO1tdcm/RpGU+FUI9KgYjM2n2nLeuf97g5ZrNhcy/TWFw
+	 RyHIwJwBtuc+IlRQqrHnk1fr1L8zNi7U+S9FXZGrhG/bEnjHU74/27hvWW/wsAXxlp
+	 b/KFniFo71O7g==
+Received: from [192.168.1.28] (ci-asmtp-me-k8s.p00.prod.me.com [17.57.156.36])
+	by p00-icloudmta-asmtp-us-central-1k-60-percent-6.p00-icloudmta-asmtp-vip.icloud-mail-production.svc.kube.us-central-1k.k8s.cloud.apple.com (Postfix) with ESMTPSA id BA8C1180085D;
+	Wed, 19 Mar 2025 16:27:01 +0000 (UTC)
+Message-ID: <4474831c-a8f6-496e-8348-a10e3fb7c798@pereznus.es>
+Date: Wed, 19 Mar 2025 17:26:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <67daeac5.050a0220.3179c5.ce19@mx.google.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] iio: light: bh1750: Add hardware reset support via GPIO
+To: Krzysztof Kozlowski <krzk@kernel.org>, linux-iio@vger.kernel.org
+Cc: tduszyns@gmail.com, jic23@kernel.org, lars@metafoo.de, robh@kernel.org,
+ conor+dt@kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250316145514.627-1-sergio@pereznus.es>
+ <01f48f6d-55a4-4dbe-b1ae-ef8c54dcc1ff@kernel.org>
+ <f0536d74-5433-4086-9dfc-1ce6aeeebe00@pereznus.es>
+ <8992a79d-0859-4d7f-9b47-52e20b11260a@kernel.org>
+ <144b5c43-f8c6-44d1-bcff-83158ac29781@pereznus.es>
+ <202b4446-0ce4-4288-8588-6edfc32125d1@kernel.org>
+ <bde38364-5c20-4030-ad7d-9ae38971b260@kernel.org>
+ <bf16371c-189c-4e51-91e5-129f1dcad317@pereznus.es>
+ <ac008fb8-7c82-4b9c-9d24-52ea38b920e5@kernel.org>
+ <0507608a-91fd-4206-b921-942677c5f8d3@kernel.org>
+Content-Language: es-ES, en-US, ca
+From: =?UTF-8?Q?Sergio_P=C3=A9rez?= <sergio@pereznus.es>
+In-Reply-To: <0507608a-91fd-4206-b921-942677c5f8d3@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: qCxJwGjxhIgel5iamZq8_k5btd4RoIaL
+X-Proofpoint-ORIG-GUID: qCxJwGjxhIgel5iamZq8_k5btd4RoIaL
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-19_06,2025-03-19_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0 mlxscore=0 clxscore=1030
+ adultscore=0 phishscore=0 bulkscore=0 spamscore=0 mlxlogscore=999
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2308100000 definitions=main-2503190111
 
-On Wed, Mar 19, 2025 at 05:03:15PM +0100, Christian Marangi wrote:
-> On Wed, Mar 19, 2025 at 03:17:27PM +0000, Russell King (Oracle) wrote:
-> > On Wed, Mar 19, 2025 at 12:58:38AM +0100, Christian Marangi wrote:
-> > > Implement the foundation of OF support for PCS driver.
-> > > 
-> > > To support this, implement a simple Provider API where a PCS driver can
-> > > expose multiple PCS with an xlate .get function.
-> > > 
-> > > PCS driver will have to call of_pcs_add_provider() and pass the device
-> > > node pointer and a xlate function to return the correct PCS for the
-> > > requested interface and the passed #pcs-cells.
-> > > 
-> > > This will register the PCS in a global list of providers so that
-> > > consumer can access it.
-> > > 
-> > > Consumer will then use of_pcs_get() to get the actual PCS by passing the
-> > > device_node pointer, the index for #pcs-cells and the requested
-> > > interface.
-> > > 
-> > > For simple implementation where #pcs-cells is 0 and the PCS driver
-> > > expose a single PCS, the xlate function of_pcs_simple_get() is
-> > > provided. In such case the passed interface is ignored and is expected
-> > > that the PCS supports any interface mode supported by the MAC.
-> > > 
-> > > For advanced implementation a custom xlate function is required. Such
-> > > function should return an error if the PCS is not supported for the
-> > > requested interface type.
-> > > 
-> > > This is needed for the correct function of of_phylink_mac_select_pcs()
-> > > later described.
-> > > 
-> > > PCS driver on removal should first call phylink_pcs_release() on every
-> > > PCS the driver provides and then correctly delete as a provider with
-> > > the usage of of_pcs_del_provider().
-> > > 
-> > > A generic function for .mac_select_pcs is provided for any MAC driver
-> > > that will declare PCS in DT, of_phylink_mac_select_pcs().
-> > > This function will parse "pcs-handle" property and will try every PCS
-> > > declared in DT until one that supports the requested interface type is
-> > > found. This works by leveraging the return value of the xlate function
-> > > returned by of_pcs_get() and checking if it's an ERROR or NULL, in such
-> > > case the next PCS in the phandle array is tested.
-> > > 
-> > > Some additional helper are provided for xlate functions,
-> > > pcs_supports_interface() as a simple function to check if the requested
-> > > interface is supported by the PCS and phylink_pcs_release() to release a
-> > > PCS from a phylink instance.
-> > > 
-> > > Co-developed-by: Daniel Golle <daniel@makrotopia.org>
-> > > Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> > > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > 
-> > As a general comment, should we be developing stuff that is DT-centric
-> > or fwnode-centric. We already have users of phylink using swnodes, and
-> > it seems bad to design something today that is centred around just one
-> > method of describing something.
-> >
-> 
-> Honestly, at least for me testing scenario different than DT is quite
-> difficult, we can make changes to also support swnodes but we won't have
-> anything to test them. Given the bad situation PCS is currently I feel
-> we should first focus on DT or at least model something workable first
-> than put even more complex stuff on the table.
 
-The problem I have is that once we invent DT specific interfaces, we
-seem to endlessly persist with them even when we have corresponding
-fwnode interfaces, even when it's easy to convert.
+El 19/03/2025 a las 9:46, Krzysztof Kozlowski escribió:
+> On 18/03/2025 18:37, Krzysztof Kozlowski wrote:
+>>> I've now run the tool correctly on my patch file and have fixed the
+>>> identified issues:
+>>> - Removed trailing whitespace
+>>> - Fixed lines exceeding 79 characters
+>>> - Fixed the inconsistency between the description and example for
+>>> reset-gpios
+>>> - Modified the existing example instead of adding a new one
+>>> - Ensured proper line endings and formatting
+>>> - Used proper get_maintainers.pl to include all recipients
+>>>
+>> Please read the guides carefully. The process is extremely simple as:
+>>
+>> git add ...
+>> git commit --signed-off
+>> git format-patch -v3 -2
+>> scripts/chekpatch.pl v3*
+>> scripts/get_maintainers.pl --no-git-fallback v3*
+>> git send-email *
+> Please read this again. I gave you detailed instruction which you still
+> decided not to follow. The instructions are quite precise on purpose,
+> because other method leads to wrong patchset - broken that or other way.
+>
+I transcribe exactly the commands I have executed:
 
-So, my opinion today is that we should avoid single-firmware specific
-interfaces.
+$ git add Documentation/devicetree/bindings/iio/light/bh1750.yaml
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+$ git commit --signed-off
+
+$ git add drivers/iio/light/bh1750.c
+
+$ git commit --signed-off
+
+$ git format-patch -v3 -2
+
+$ scripts/checkpatch.pl v3*
+---------------------------------------------------------------
+v3-0001-dt-bindings-iio-light-bh1750-Add-reset-gpios-prop.patch
+---------------------------------------------------------------
+total: 0 errors, 0 warnings, 17 lines checked
+
+v3-0001-dt-bindings-iio-light-bh1750-Add-reset-gpios-prop.patch has no obvious style problems and is ready for submission.
+---------------------------------------------------------------
+v3-0002-iio-light-bh1750-Add-hardware-reset-support-via-G.patch
+---------------------------------------------------------------
+total: 0 errors, 0 warnings, 47 lines checked
+
+v3-0002-iio-light-bh1750-Add-hardware-reset-support-via-G.patch has no obvious style problems and is ready for submission.
+
+$ scripts/get_maintainer.pl --no-git-fallback v3*
+Tomasz Duszynski <tduszyns@gmail.com> (maintainer:ROHM BH1750 AMBIENT 
+LIGHT SENSOR DRIVER,in file)
+Jonathan Cameron <jic23@kernel.org> (maintainer:IIO SUBSYSTEM AND DRIVERS)
+Lars-Peter Clausen <lars@metafoo.de> (reviewer:IIO SUBSYSTEM AND DRIVERS)
+Rob Herring <robh@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED 
+DEVICE TREE BINDINGS)
+Krzysztof Kozlowski <krzk+dt@kernel.org> (maintainer:OPEN FIRMWARE AND 
+FLATTENED DEVICE TREE BINDINGS)
+Conor Dooley <conor+dt@kernel.org> (maintainer:OPEN FIRMWARE AND 
+FLATTENED DEVICE TREE BINDINGS)
+linux-iio@vger.kernel.org (open list:IIO SUBSYSTEM AND DRIVERS)
+devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE 
+TREE BINDINGS)
+linux-kernel@vger.kernel.org (open list)
+
+$ git_send_email v3*
+v3-0001-dt-bindings-iio-light-bh1750-Add-reset-gpios-prop.patch
+v3-0002-iio-light-bh1750-Add-hardware-reset-support-via-G.patch
+(mbox) Adding cc: Sergio Perez <sergio@pereznus.es> from line 'From: 
+Sergio Perez <sergio@pereznus.es>'
+(body) Adding cc: Sergio Perez <sergio@pereznus.es> from line 
+'Signed-off-by: Sergio Perez <sergio@pereznus.es>'
+
+From: Sergio Perez <sergio@pereznus.es>
+To: Tomasz Duszynski <tduszyns@gmail.com>,
+         Jonathan Cameron <jic23@kernel.org>,
+         Lars-Peter Clausen <lars@metafoo.de>,
+         Rob Herring <robh@kernel.org>,
+         Krzysztof Kozlowski <krzk+dt@kernel.org>,
+         Conor Dooley <conor+dt@kernel.org>,
+         linux-iio@vger.kernel.org,
+         devicetree@vger.kernel.org,
+         linux-kernel@vger.kernel.org
+Cc: Sergio Perez <sergio@pereznus.es>
+Subject: [PATCH v3 1/2] dt-bindings: iio: light: bh1750: Add reset-gpios 
+property
+Date: Wed, 19 Mar 2025 17:11:16 +0100
+Message-ID: <20250319161117.1780-1-sergio@pereznus.es>
+X-Mailer: git-send-email 2.43.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+     The Cc list above has been expanded by additional
+     addresses found in the patch commit message. By default
+     send-email prompts before sending whenever this occurs.
+     This behavior is controlled by the sendemail.confirm
+     configuration setting.
+
+     For additional information, run 'git send-email --help'.
+     To retain the current behavior, but squelch this message,
+     run 'git config --global sendemail.confirm auto'.
+
+Send this email? ([y]es|[n]o|[e]dit|[q]uit|[a]ll): y
+OK. Log says:
+Server: smtp.mail.me.com
+MAIL FROM:<sergio@pereznus.es>
+RCPT TO:<tduszyns@gmail.com>
+RCPT TO:<jic23@kernel.org>
+RCPT TO:<lars@metafoo.de>
+RCPT TO:<robh@kernel.org>
+RCPT TO:<krzk+dt@kernel.org>
+RCPT TO:<conor+dt@kernel.org>
+RCPT TO:<linux-iio@vger.kernel.org>
+RCPT TO:<devicetree@vger.kernel.org>
+RCPT TO:<linux-kernel@vger.kernel.org>
+RCPT TO:<sergio@pereznus.es>
+From: Sergio Perez <sergio@pereznus.es>
+To: Tomasz Duszynski <tduszyns@gmail.com>,
+         Jonathan Cameron <jic23@kernel.org>,
+         Lars-Peter Clausen <lars@metafoo.de>,
+         Rob Herring <robh@kernel.org>,
+         Krzysztof Kozlowski <krzk+dt@kernel.org>,
+         Conor Dooley <conor+dt@kernel.org>,
+         linux-iio@vger.kernel.org,
+         devicetree@vger.kernel.org,
+         linux-kernel@vger.kernel.org
+Cc: Sergio Perez <sergio@pereznus.es>
+Subject: [PATCH v3 1/2] dt-bindings: iio: light: bh1750: Add reset-gpios 
+property
+Date: Wed, 19 Mar 2025 17:11:16 +0100
+Message-ID: <20250319161117.1780-1-sergio@pereznus.es>
+X-Mailer: git-send-email 2.43.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+Result: 250
+(mbox) Adding cc: Sergio Perez <sergio@pereznus.es> from line 'From: 
+Sergio Perez <sergio@pereznus.es>'
+(body) Adding cc: Sergio Perez <sergio@pereznus.es> from line 
+'Signed-off-by: Sergio Perez <sergio@pereznus.es>'
+
+From: Sergio Perez <sergio@pereznus.es>
+To: Tomasz Duszynski <tduszyns@gmail.com>,
+         Jonathan Cameron <jic23@kernel.org>,
+         Lars-Peter Clausen <lars@metafoo.de>,
+         Rob Herring <robh@kernel.org>,
+         Krzysztof Kozlowski <krzk+dt@kernel.org>,
+         Conor Dooley <conor+dt@kernel.org>,
+         linux-iio@vger.kernel.org,
+         devicetree@vger.kernel.org,
+         linux-kernel@vger.kernel.org
+Cc: Sergio Perez <sergio@pereznus.es>
+Subject: [PATCH v3 2/2] iio: light: bh1750: Add hardware reset support 
+via GPIO
+Date: Wed, 19 Mar 2025 17:11:17 +0100
+Message-ID: <20250319161117.1780-2-sergio@pereznus.es>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250319161117.1780-1-sergio@pereznus.es>
+References: <20250319161117.1780-1-sergio@pereznus.es>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+Send this email? ([y]es|[n]o|[e]dit|[q]uit|[a]ll): y
+OK. Log says:
+Server: smtp.mail.me.com
+MAIL FROM:<sergio@pereznus.es>
+RCPT TO:<tduszyns@gmail.com>
+RCPT TO:<jic23@kernel.org>
+RCPT TO:<lars@metafoo.de>
+RCPT TO:<robh@kernel.org>
+RCPT TO:<krzk+dt@kernel.org>
+RCPT TO:<conor+dt@kernel.org>
+RCPT TO:<linux-iio@vger.kernel.org>
+RCPT TO:<devicetree@vger.kernel.org>
+RCPT TO:<linux-kernel@vger.kernel.org>
+RCPT TO:<sergio@pereznus.es>
+From: Sergio Perez <sergio@pereznus.es>
+To: Tomasz Duszynski <tduszyns@gmail.com>,
+         Jonathan Cameron <jic23@kernel.org>,
+         Lars-Peter Clausen <lars@metafoo.de>,
+         Rob Herring <robh@kernel.org>,
+         Krzysztof Kozlowski <krzk+dt@kernel.org>,
+         Conor Dooley <conor+dt@kernel.org>,
+         linux-iio@vger.kernel.org,
+         devicetree@vger.kernel.org,
+         linux-kernel@vger.kernel.org
+Cc: Sergio Perez <sergio@pereznus.es>
+Subject: [PATCH v3 2/2] iio: light: bh1750: Add hardware reset support 
+via GPIO
+Date: Wed, 19 Mar 2025 17:11:17 +0100
+Message-ID: <20250319161117.1780-2-sergio@pereznus.es>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250319161117.1780-1-sergio@pereznus.es>
+References: <20250319161117.1780-1-sergio@pereznus.es>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+Result: 250
+
+>> (or just use my git_send_email for last two)
+>> (or just use b4 for last four)
+>>
+>> The burden of reading the contributing guides is on you. We documented
+>> all this on purpose, so we will not have to repeat this on every email.
+>>
+>>
+>> [1]
+>> https://github.com/search?q=repo%3Akrzk%2Ftools%20git_send_email&type=code
+>>
+>> Best regards,
+>> Krzysztof
+>
+> Best regards,
+> Krzysztof
 
