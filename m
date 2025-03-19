@@ -1,145 +1,240 @@
-Return-Path: <devicetree+bounces-159015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29E4FA69336
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 16:24:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F156A6933B
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 16:25:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B820F8A2612
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 15:17:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C0743A3C73
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 15:19:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E08B1C3C11;
-	Wed, 19 Mar 2025 15:17:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A76621C1F1F;
+	Wed, 19 Mar 2025 15:19:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="VZa5Npq6"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="reZMeO2s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A946D194A44;
-	Wed, 19 Mar 2025 15:17:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3F201957FF;
+	Wed, 19 Mar 2025 15:19:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742397470; cv=none; b=nWxMkkwfpy6rXQX3MxL8O18FNWZGo0POsYhzUKATgx2MFdfwSXTW4soLwXpwtUNRFRw+ay4OXp7hqCfnt12B6EEdiwOMXJqnCRgrRmtGi4MY3u9lQiLYtSEjygf7JotKCfgS9s4ymINtVbFRgptA8dkAsV5BDuVzhwv1uRzqNyI=
+	t=1742397570; cv=none; b=epL31AX810anhh2ShcrbhSLAdXcL2rGmJrwyoY+Gp369iR1unGjmw2L4WG/ikCoaIKtYaw6l4g/gScIgE0duq5FXwucq60Yv1rclB34ooHrBpHzVsaI2fh98DpUOYCmRW6tjr7pfGGKO0T05S5uSdEgREGurYx52uIjqDWUaTvE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742397470; c=relaxed/simple;
-	bh=A7YMN3C+lZUIIok5CKL1qnI0bleeWmqst3SnXTg9A2Q=;
+	s=arc-20240116; t=1742397570; c=relaxed/simple;
+	bh=75KZOsEBxSbCczYa0jJTN/upYNwqdtyGsR4PPJi/iXA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Wln+34EiLqbtdRQspCJQ97hTEeyOXcdsHbcB3ydpO9ESEgnGtyeDiO68aM3eqF0NwL+8UK1f4JOLN4vuR9vgx7Xup/qO+8BbrwmlqduDdTy+bVknq0SgvtlCgS8+G+iOsxzEEa0l3vD0fsOD1Lk/gmOEYy9MSNUxUSE8bsoLL3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=VZa5Npq6; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=rcOcd6bo74EaRky7HF1JkNvP8cCX0oJBdVRtfi82gPs=; b=VZa5Npq6rPOsP2HiPNUu+MK1gV
-	2zgEhn1xDOjItZxFrBN1meL54AkdosNYRYbJCtWR14/xizXQmSHsuoYtri6+d2a+qmkQrtwoKYMgZ
-	klML9THf66p/Uy4WB/29ofyt0keObyIlPsL0UKOsDmzH5Q5zAHtPKCcDlp/7bZUklfanKQoA/chTC
-	J4sOSquH+kzr5p42AOhMxgFxc0Lk82K7zA2uFUi44SOl/VaCKmi/iJTMnUUNultd/Y1PIwRcW235+
-	JuWyWrh+22pB8wFr9NMD5scQ8apycG02Or0mdJ4LvowXwyEKnah4+igH4cSGJkWEak/hF1JgwEZT+
-	CbkfcxjQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:59924)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1tuvAh-0006af-2P;
-	Wed, 19 Mar 2025 15:17:31 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1tuvAe-0005iE-03;
-	Wed, 19 Mar 2025 15:17:28 +0000
-Date: Wed, 19 Mar 2025 15:17:27 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Daniel Golle <daniel@makrotopia.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	upstream@airoha.com
-Subject: Re: [net-next PATCH 2/6] net: pcs: Implement OF support for PCS
- driver
-Message-ID: <Z9rgB1Ko_xAj44zS@shell.armlinux.org.uk>
-References: <20250318235850.6411-1-ansuelsmth@gmail.com>
- <20250318235850.6411-3-ansuelsmth@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=FCZtNkH+wVtxTeZ7cwgps0+HHC7BF2XJRtKTE03CLOo0OONbT3bpo3HE9VD3aC+00poxQSQJIYkK0BxsMripevXIJmmbl+YCdPsWCLpIGO+uAf3hdKVHX9ey4UxSYdvTXYt+b/jHTmkF6lV9WHysmJb9n2gcSDqXm0RfoFOhJtQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=reZMeO2s; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 08B661E6;
+	Wed, 19 Mar 2025 16:17:43 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1742397464;
+	bh=75KZOsEBxSbCczYa0jJTN/upYNwqdtyGsR4PPJi/iXA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=reZMeO2sgxiQKkPpJQnJEXfxYJeeBej9uPSDGv2o2iVkPQGAY3q1sg/R9rYPtRR/n
+	 JMHlCu8GGVLBTmhW2PJNrlcFXkFKa6pE+Mngb/+ou+PhzVElFrfLS2djiHoI9pJN0A
+	 tBBYmC2ds0+RkNSCKHKxIleqN55gdWHFivl3UUSA=
+Date: Wed, 19 Mar 2025 16:19:23 +0100
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Hans Verkuil <hverkuil@xs4all.nl>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 2/7] arm64: dts: renesas: r8a779a0: Add ISP core function
+ block
+Message-ID: <gwkedvxrab62uyusei55nhaylekr46btmzwh6tc3vuaeomaa6g@xoo4jrofknqz>
+References: <20250315152708.328036-1-niklas.soderlund+renesas@ragnatech.se>
+ <20250315152708.328036-3-niklas.soderlund+renesas@ragnatech.se>
+ <hwj6d3ll75magopi5oak4zmboy5dol3ztv3isd6wvrxmvbkx4b@ayjumbqmuk3l>
+ <20250319150745.GE949127@ragnatech.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250318235850.6411-3-ansuelsmth@gmail.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250319150745.GE949127@ragnatech.se>
 
-On Wed, Mar 19, 2025 at 12:58:38AM +0100, Christian Marangi wrote:
-> Implement the foundation of OF support for PCS driver.
-> 
-> To support this, implement a simple Provider API where a PCS driver can
-> expose multiple PCS with an xlate .get function.
-> 
-> PCS driver will have to call of_pcs_add_provider() and pass the device
-> node pointer and a xlate function to return the correct PCS for the
-> requested interface and the passed #pcs-cells.
-> 
-> This will register the PCS in a global list of providers so that
-> consumer can access it.
-> 
-> Consumer will then use of_pcs_get() to get the actual PCS by passing the
-> device_node pointer, the index for #pcs-cells and the requested
-> interface.
-> 
-> For simple implementation where #pcs-cells is 0 and the PCS driver
-> expose a single PCS, the xlate function of_pcs_simple_get() is
-> provided. In such case the passed interface is ignored and is expected
-> that the PCS supports any interface mode supported by the MAC.
-> 
-> For advanced implementation a custom xlate function is required. Such
-> function should return an error if the PCS is not supported for the
-> requested interface type.
-> 
-> This is needed for the correct function of of_phylink_mac_select_pcs()
-> later described.
-> 
-> PCS driver on removal should first call phylink_pcs_release() on every
-> PCS the driver provides and then correctly delete as a provider with
-> the usage of of_pcs_del_provider().
-> 
-> A generic function for .mac_select_pcs is provided for any MAC driver
-> that will declare PCS in DT, of_phylink_mac_select_pcs().
-> This function will parse "pcs-handle" property and will try every PCS
-> declared in DT until one that supports the requested interface type is
-> found. This works by leveraging the return value of the xlate function
-> returned by of_pcs_get() and checking if it's an ERROR or NULL, in such
-> case the next PCS in the phandle array is tested.
-> 
-> Some additional helper are provided for xlate functions,
-> pcs_supports_interface() as a simple function to check if the requested
-> interface is supported by the PCS and phylink_pcs_release() to release a
-> PCS from a phylink instance.
-> 
-> Co-developed-by: Daniel Golle <daniel@makrotopia.org>
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+Hi Niklas
 
-As a general comment, should we be developing stuff that is DT-centric
-or fwnode-centric. We already have users of phylink using swnodes, and
-it seems bad to design something today that is centred around just one
-method of describing something.
+On Wed, Mar 19, 2025 at 04:07:45PM +0100, Niklas Söderlund wrote:
+> Hi Jacopo,
+>
+> Thanks for your feedback.
+>
+> On 2025-03-19 15:50:00 +0100, Jacopo Mondi wrote:
+> > Hi Niklas
+> >
+> > On Sat, Mar 15, 2025 at 04:27:03PM +0100, Niklas Söderlund wrote:
+> > > All ISP instances on V3U have both a channel select and core function
+> > > block, describe the core region in addition to the existing cs region.
+> > >
+> > > The interrupt number already described intended to reflect the cs
+> > > function but did incorrectly describe the core block. This was not
+> >
+> > I can't find the interrupt mapping table for V3U, so this is the only
+> > thing I can't check
+>
+> Page number 820, or search for "SPI 152" (fist one).
+>
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+Uh, thanks
+
+> >
+> > > noticed until now as the driver do not make use of the interrupt for the
+> > > cs block.
+> > >
+> > > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> >
+> > The rest looks good
+> >
+> > > ---
+> > >  arch/arm64/boot/dts/renesas/r8a779a0.dtsi | 60 +++++++++++++++++------
+> > >  1 file changed, 44 insertions(+), 16 deletions(-)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+> > > index f1613bfd1632..95ff69339991 100644
+> > > --- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+> > > +++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+> > > @@ -2588,13 +2588,20 @@ du_out_dsi1: endpoint {
+> > >  		isp0: isp@fed00000 {
+> > >  			compatible = "renesas,r8a779a0-isp",
+> > >  				     "renesas,rcar-gen4-isp";
+> > > -			reg = <0 0xfed00000 0 0x10000>;
+> > > -			interrupts = <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>;
+> > > -			clocks = <&cpg CPG_MOD 612>;
+> > > +			reg = <0 0xfed00000 0 0x10000>, <0 0xfec00000 0 0x100000>;
+> > > +			reg-names = "cs", "core";
+> >
+> > However, won't the presence of a "core" part trigger the probing of
+> > the forthcoming RPP core support, which should not support V3U as far
+> > I understood ?
+>
+>
+> Correct the RPPX1 library will be given the change to probe on V3U, it
+> will detect it's not an RPPX1 gracefully not create an ISPCORE on V3U.
+> This describes the hardware, and there is an ISP core mapped at this
+> address, not just the same as on the others ;-) The driver is prepared
+> for this.
+>
+
+Ack, just wanted to validat that
+
+Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+
+Thanks
+  j
+
+> >
+> > > +			interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>,
+> > > +				     <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>;
+> > > +			interrupt-names = "cs", "core";
+> > > +			clocks = <&cpg CPG_MOD 612>, <&cpg CPG_MOD 16>;
+> > > +			clock-names = "cs", "core";
+> > >  			power-domains = <&sysc R8A779A0_PD_A3ISP01>;
+> > > -			resets = <&cpg 612>;
+> > > +			resets = <&cpg 612>, <&cpg 16>;
+> > > +			reset-names = "cs", "core";
+> > >  			status = "disabled";
+> > >
+> > > +			renesas,vspx = <&vspx0>;
+> > > +
+> > >  			ports {
+> > >  				#address-cells = <1>;
+> > >  				#size-cells = <0>;
+> > > @@ -2672,13 +2679,20 @@ isp0vin07: endpoint {
+> > >  		isp1: isp@fed20000 {
+> > >  			compatible = "renesas,r8a779a0-isp",
+> > >  				     "renesas,rcar-gen4-isp";
+> > > -			reg = <0 0xfed20000 0 0x10000>;
+> > > -			interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
+> > > -			clocks = <&cpg CPG_MOD 613>;
+> > > +			reg = <0 0xfed20000 0 0x10000>, <0 0xfee00000 0 0x100000>;
+> > > +			reg-names = "cs", "core";
+> > > +			interrupts = <GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>,
+> > > +				     <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
+> > > +			interrupt-names = "cs", "core";
+> > > +			clocks = <&cpg CPG_MOD 613>, <&cpg CPG_MOD 17>;
+> > > +			clock-names = "cs", "core";
+> > >  			power-domains = <&sysc R8A779A0_PD_A3ISP01>;
+> > > -			resets = <&cpg 613>;
+> > > +			resets = <&cpg 613>, <&cpg 17>;
+> > > +			reset-names = "cs", "core";
+> > >  			status = "disabled";
+> > >
+> > > +			renesas,vspx = <&vspx1>;
+> > > +
+> > >  			ports {
+> > >  				#address-cells = <1>;
+> > >  				#size-cells = <0>;
+> > > @@ -2756,13 +2770,20 @@ isp1vin15: endpoint {
+> > >  		isp2: isp@fed30000 {
+> > >  			compatible = "renesas,r8a779a0-isp",
+> > >  				     "renesas,rcar-gen4-isp";
+> > > -			reg = <0 0xfed30000 0 0x10000>;
+> > > -			interrupts = <GIC_SPI 157 IRQ_TYPE_LEVEL_HIGH>;
+> > > -			clocks = <&cpg CPG_MOD 614>;
+> > > +			reg = <0 0xfed30000 0 0x10000>, <0 0xfef00000 0 0x100000>;
+> > > +			reg-names = "cs", "core";
+> > > +			interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>,
+> > > +				     <GIC_SPI 157 IRQ_TYPE_LEVEL_HIGH>;
+> > > +			interrupt-names = "cs", "core";
+> > > +			clocks = <&cpg CPG_MOD 614>, <&cpg CPG_MOD 18>;
+> > > +			clock-names = "cs", "core";
+> > >  			power-domains = <&sysc R8A779A0_PD_A3ISP23>;
+> > > -			resets = <&cpg 614>;
+> > > +			resets = <&cpg 614>, <&cpg 18>;
+> > > +			reset-names = "cs", "core";
+> > >  			status = "disabled";
+> > >
+> > > +			renesas,vspx = <&vspx2>;
+> > > +
+> > >  			ports {
+> > >  				#address-cells = <1>;
+> > >  				#size-cells = <0>;
+> > > @@ -2840,13 +2861,20 @@ isp2vin23: endpoint {
+> > >  		isp3: isp@fed40000 {
+> > >  			compatible = "renesas,r8a779a0-isp",
+> > >  				     "renesas,rcar-gen4-isp";
+> > > -			reg = <0 0xfed40000 0 0x10000>;
+> > > -			interrupts = <GIC_SPI 159 IRQ_TYPE_LEVEL_HIGH>;
+> > > -			clocks = <&cpg CPG_MOD 615>;
+> > > +			reg = <0 0xfed40000 0 0x10000>, <0 0xfe400000 0 0x100000>;
+> > > +			reg-names = "cs", "core";
+> > > +			interrupts = <GIC_SPI 158 IRQ_TYPE_LEVEL_HIGH>,
+> > > +				     <GIC_SPI 159 IRQ_TYPE_LEVEL_HIGH>;
+> > > +			interrupt-names = "cs", "core";
+> > > +			clocks = <&cpg CPG_MOD 615>, <&cpg CPG_MOD 19>;
+> > > +			clock-names = "cs", "core";
+> > >  			power-domains = <&sysc R8A779A0_PD_A3ISP23>;
+> > > -			resets = <&cpg 615>;
+> > > +			resets = <&cpg 615>, <&cpg 19>;
+> > > +			reset-names = "cs", "core";
+> > >  			status = "disabled";
+> > >
+> > > +			renesas,vspx = <&vspx3>;
+> > > +
+> > >  			ports {
+> > >  				#address-cells = <1>;
+> > >  				#size-cells = <0>;
+> > > --
+> > > 2.48.1
+> > >
+>
+> --
+> Kind Regards,
+> Niklas Söderlund
 
