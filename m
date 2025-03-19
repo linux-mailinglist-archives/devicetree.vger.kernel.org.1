@@ -1,148 +1,176 @@
-Return-Path: <devicetree+bounces-159130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E488A69C60
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 00:00:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32F0EA69C80
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 00:05:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A8B28A2B43
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 23:00:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AD0799815A8
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 23:04:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A98C621E0BA;
-	Wed, 19 Mar 2025 23:00:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F292421B9F6;
+	Wed, 19 Mar 2025 23:04:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="qUxHiVkC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uuGe+aOw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1A58202C5C
-	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 23:00:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDA9F20899C;
+	Wed, 19 Mar 2025 23:04:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742425250; cv=none; b=MwiTXl1zDFtiBnjadXwOLoaal4sLTUu32VECix44UKITXPhDERpiHjzId2bX+eu0dJ8EC4eeZbULXflhZmHT/tdUYNWbFRc6g3ArTz1jq4+Zb8QrAr0/F/P+6Cjxtqjfqd6k8Kup8WCccHqUbkYc2iTfnRsmqmE2Q+n0BPtxsH8=
+	t=1742425482; cv=none; b=Cnmty7IiVAfByvvfvEWZHKG9JZ8ny1Ul3dfKsEBMjE3O/+stuiQ2513ZcKnNpaTlLg0yDfqzXuviRXxmS5z045DVYgMRTFmVs2hkYFTQKJYAasqRo3tkh41mnoANslmX1MmMSrer+4tEa3yECyb3O2y3a5orwHAM7FsPN3m3SBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742425250; c=relaxed/simple;
-	bh=B1gnrT7PJhmnfCnR7+35Gn/dBXC9GQm2IIkkxC5NYNM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YgFdvzxXCqAxKmiuXI1Ye0wlwDTkVV4cPs9FcwKdT1F/jmZW5eiJVKvXPgMsNkpeUSlagHe44b/3IK5bsIzS+r1Zjg3xr11AYwfA4D7U4ROcyPZXvYZIMyydNUpB9pwEy2K/zEFnfVb4HUW1bpyscCcFSGDdN0FS90y2D2icEW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=qUxHiVkC; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1742425248;
- bh=jyTLNPs087w5BxM7OveqzCRi5hUy7RVtutepUjFchbA=;
- b=qUxHiVkCYelzIUZWuCRu2SxmjVyVOmWBhtgnvKRA8pjRdqA1R/UNu/JU2qJLwj1VOncxCanjm
- pLDpq91rrNZIIkCyGcf280wqSMfq2wShUUOMi2oBMuCgBwJEJBEGckjH6ohFwBAlyiARX/T81n3
- XD2EcLW3cq7vqPLkjm5/RuTqoXrS9HmkLnwuia4uoXdftqRIlAS/JgS2oMElFbYgBhm8OBPWwJH
- R1JZFvTS6FuJ8RaxUYjJnZI6tY7SXi95tsQ4Q6XToTwn+/dH9QPg2hn9VbF5w0LnpuxLZ+m/kj7
- IbZtNdiyIGiqc/nRWBggi4PlDHp5pm+h1V/u0GeAGAbw==
-X-Forward-Email-ID: 67db4c9027ee59b783a86bdf
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 0.4.40
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <e766eb6d-618a-43a0-b1e1-954c2c3fbf0e@kwiboo.se>
-Date: Thu, 20 Mar 2025 00:00:26 +0100
+	s=arc-20240116; t=1742425482; c=relaxed/simple;
+	bh=wh2+nbO+uhOl81kfYkAvk91jGgv0SNefhWvjy1MiI9E=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=L1NZhgBVWtfJ5ccHm1H6wn7t3utQAt6J/DDJVG1/utIFhLEdQ3HD6toaMTmcANdgGbzHP28IRzVAj9ZMfXreH3ehexm7GynBK5Sgw+VvG4ewp524Ezl1gGGKDdn78IabtfEq2Peyqrl9HjJGZ6DAzOs+PVUt2AwWejMIyxwci/U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uuGe+aOw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A0A3C4CEEF;
+	Wed, 19 Mar 2025 23:04:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742425482;
+	bh=wh2+nbO+uhOl81kfYkAvk91jGgv0SNefhWvjy1MiI9E=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=uuGe+aOwcgf7kb6tS+eJjVfXHyx1rbvLoZ2NOaP02SzxNs47NRpR2LVVwhgwHQXBH
+	 NltceS4U3rtwfOvmEq6YnwNECmBc2oMMbb9lU/j4Uom1lYzKvdw4wm1Yy6nW930eJu
+	 Qj9XsiBQDeLSstZ6bM2e8hq8mcmFfI/UZ91g+PDxaY6TrX2C3SXVc/S9g9siUzR7Xm
+	 hpdQQZo/klOGL1YJZWIiEqKqUyJrEUGeSc8uY7viKfW1a/4xC4CXnFy1b01yO2/l88
+	 BlSp4hn6bDt5R1zh7kce8Os/lelWqy7DrU4HRFeFfXCx+Wxz9JKCbO/8BHToR3LrOm
+	 gULLlNMRPLUag==
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5e5c9662131so282300a12.3;
+        Wed, 19 Mar 2025 16:04:42 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVnfH0M82Sk2vb4iy5ZBg7RQTrfRaRfwzj8GeES8GAoGWEW0tVyyxaDqzVQB8RUbMJzoXCI0BgX0EIUJ3/K3A==@vger.kernel.org, AJvYcCWIZQux2cbbNmcQgC/v0B04ct+6ILQkH9+IrA28STTJtgIS6485pz6sGBiExH9AtubrUWSv7dMssxYqCheC@vger.kernel.org, AJvYcCWoLncYcpXPqYzHoI6V4kuI0egb7mi0YMzDIV9s2oaUZqwiBnKimkCAFjhseAMiA1BhKaazvnJprDntlmElZ5Kwvg==@vger.kernel.org, AJvYcCX4aN4rUq2oWRD7XJxonh6B5C5AvshRbfInzsSsmOSF21yRXgK1GPt7AGwLDlczRKyT7RlgxnPSGVYn@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywww1eNfw97kdTsdvOuFA6qP2qr5N3TTYwrOtkB3/zcqDd3noKD
+	E/WoORxKU4DwtfCmt47DNqN8azuUuHFCTRr3DIHvTyZHz+Uuyd1MdUpkKEUeMwl6TuCtMBV+t8d
+	I50ud6xIorBfKec8eiJjoaVbt5g==
+X-Google-Smtp-Source: AGHT+IH1Yrc3Y5KhcKuIDvTrQ1KQbSSjJSIP+aKUctEQfy6L4vvWLzhbwAuvXFhDZUh0Wqy+O4jXTvspjUWR7fVZh34=
+X-Received: by 2002:a05:6402:d0d:b0:5dc:7643:4f3d with SMTP id
+ 4fb4d7f45d1cf-5eb9eee0416mr908900a12.1.1742425481081; Wed, 19 Mar 2025
+ 16:04:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v3 3/5] net: stmmac: dwmac-rk: Move
- integrated_phy_powerup/down functions
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Heiko Stuebner <heiko@sntech.de>, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Maxime Coquelin
- <mcoquelin.stm32@gmail.com>, Alexandre Torgue
- <alexandre.torgue@foss.st.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, David Wu <david.wu@rock-chips.com>,
- Yao Zi <ziyao@disroot.org>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com
-References: <20250319214415.3086027-1-jonas@kwiboo.se>
- <20250319214415.3086027-4-jonas@kwiboo.se>
- <d7b3ec5c-2d74-4409-9894-8f2cb3e055f6@lunn.ch>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <d7b3ec5c-2d74-4409-9894-8f2cb3e055f6@lunn.ch>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250317232426.952188-1-robh@kernel.org> <20250317232426.952188-4-robh@kernel.org>
+ <26e72cb2-c355-4c40-bb98-fc0ff267bf4f@foss.st.com>
+In-Reply-To: <26e72cb2-c355-4c40-bb98-fc0ff267bf4f@foss.st.com>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 19 Mar 2025 18:04:30 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+7ZhMWgbFDvPB+3BG7YfiS9PweybOGNY3r=d40RbGHJA@mail.gmail.com>
+X-Gm-Features: AQ5f1JqOv9zU_NIrquP_FiizlsCH0dJCdTrTRAoIvYNPwVPq8s6b1gdkB9PCxY8
+Message-ID: <CAL_Jsq+7ZhMWgbFDvPB+3BG7YfiS9PweybOGNY3r=d40RbGHJA@mail.gmail.com>
+Subject: Re: [Linux-stm32] [PATCH 3/3] remoteproc: Use of_reserved_mem_region_*
+ functions for "memory-region"
+To: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
+Cc: Saravana Kannan <saravanak@google.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Mathieu Poirier <mathieu.poirier@linaro.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Patrice Chotard <patrice.chotard@foss.st.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Andrew,
+On Wed, Mar 19, 2025 at 10:26=E2=80=AFAM Arnaud POULIQUEN
+<arnaud.pouliquen@foss.st.com> wrote:
+>
+> Hello Rob,
+>
+> On 3/18/25 00:24, Rob Herring (Arm) wrote:
+> > Use the newly added of_reserved_mem_region_to_resource() and
+> > of_reserved_mem_region_count() functions to handle "memory-region"
+> > properties.
+> >
+> > The error handling is a bit different in some cases. Often
+> > "memory-region" is optional, so failed lookup is not an error. But then
+> > an error in of_reserved_mem_lookup() is treated as an error. However,
+> > that distinction is not really important. Either the region is availabl=
+e
+> > and usable or it is not. So now, it is just
+> > of_reserved_mem_region_to_resource() which is checked for an error.
+> >
+> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> > ---
+> > For v6.16
+> >
 
-On 2025-03-19 23:39, Andrew Lunn wrote:
-> On Wed, Mar 19, 2025 at 09:44:07PM +0000, Jonas Karlman wrote:
->> Rockchip RK3528 (and RV1106) has a different integrated PHY compared to
->> the integrated PHY on RK3228/RK3328. Current powerup/down operation is
->> not compatible with the integrated PHY found in these SoCs.
->>
->> Move the rk_gmac_integrated_phy_powerup/down functions to top of the
->> file to prepare for them to be called directly by a GMAC variant
->> specific powerup/down operation.
->>
->> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
-> 
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-> 
->> +#define RK_GRF_CON2_MACPHY_ID		HIWORD_UPDATE(0x1234, 0xffff, 0)
->> +#define RK_GRF_CON3_MACPHY_ID		HIWORD_UPDATE(0x35, 0x3f, 0)
->> +
->> +static void rk_gmac_integrated_phy_powerup(struct rk_priv_data *priv)
->> +{
->> +	if (priv->ops->integrated_phy_powerup)
->> +		priv->ops->integrated_phy_powerup(priv);
->> +
->> +	regmap_write(priv->grf, RK_GRF_MACPHY_CON0, RK_MACPHY_CFG_CLK_50M);
->> +	regmap_write(priv->grf, RK_GRF_MACPHY_CON0, RK_GMAC2PHY_RMII_MODE);
->> +
->> +	regmap_write(priv->grf, RK_GRF_MACPHY_CON2, RK_GRF_CON2_MACPHY_ID);
->> +	regmap_write(priv->grf, RK_GRF_MACPHY_CON3, RK_GRF_CON3_MACPHY_ID);
-> 
-> I know you are just moving code around....
-> 
-> Do you know what these MACPHY_ID are? I hope it is not what you get
-> when you read PHY registers 2 and 3?
+[...]
 
-I think it may be:
+> > diff --git a/drivers/remoteproc/stm32_rproc.c b/drivers/remoteproc/stm3=
+2_rproc.c
+> > index b02b36a3f515..9d2bd8904c49 100644
+> > --- a/drivers/remoteproc/stm32_rproc.c
+> > +++ b/drivers/remoteproc/stm32_rproc.c
+> > @@ -213,52 +213,46 @@ static int stm32_rproc_prepare(struct rproc *rpro=
+c)
+> >  {
+> >       struct device *dev =3D rproc->dev.parent;
+> >       struct device_node *np =3D dev->of_node;
+> > -     struct of_phandle_iterator it;
+> >       struct rproc_mem_entry *mem;
+> > -     struct reserved_mem *rmem;
+> >       u64 da;
+> > -     int index =3D 0;
+> > +     int index =3D 0, mr =3D 0;
+> >
+> >       /* Register associated reserved memory regions */
+> > -     of_phandle_iterator_init(&it, np, "memory-region", NULL, 0);
+> > -     while (of_phandle_iterator_next(&it) =3D=3D 0) {
+> > -             rmem =3D of_reserved_mem_lookup(it.node);
+> > -             if (!rmem) {
+> > -                     of_node_put(it.node);
+> > -                     dev_err(dev, "unable to acquire memory-region\n")=
+;
+> > -                     return -EINVAL;
+> > -             }
+> > +     while (1) {
+> > +             struct resource res;
+> > +             int ret;
+> > +
+> > +             ret =3D of_reserved_mem_region_to_resource(np, mr++, &res=
+);
+> > +             if (ret)
+> > +                     return 0;
+> >
+> > -             if (stm32_rproc_pa_to_da(rproc, rmem->base, &da) < 0) {
+> > -                     of_node_put(it.node);
+> > -                     dev_err(dev, "memory region not valid %pa\n",
+> > -                             &rmem->base);
+> > +             if (stm32_rproc_pa_to_da(rproc, res.start, &da) < 0) {
+> > +                     dev_err(dev, "memory region not valid %pR\n", &re=
+s);
+> >                       return -EINVAL;
+> >               }
+> >
+> >               /*  No need to map vdev buffer */
+> > -             if (strcmp(it.node->name, "vdev0buffer")) {
+> > +             if (strcmp(res.name, "vdev0buffer")) {
+>
+> I tested your patches
 
-  GRF_MACPHY_CON2
-  15:0   macphy_id / PHY ID Number, macphy_cfg_phy_id[15:0]
+Thank you.
 
-  GRF_MACPHY_CON3
-  15:12  macphy_cfg_rev_nr / Manufacturer's Revision Number
-  11:6   macphy_model_nr / Manufacturer's Model Number
-  5:0    macphy_id / PHY ID Number, macphy_cfg_phy_id[21:16]
+> The update introduces a regression here. The strcmp function never return=
+s 0.
+> Indeed, it.node->name stores the memory region label "vdev0buffer," while
+> res.name stores the memory region name "vdev0buffer@10042000."
+>
+> Several remoteproc drivers may face the same issue as they embed similar =
+code.
 
-and
+Indeed. I confused myself because node 'name' is without the
+unit-address, but this is using the full name. I've replaced the
+strcmp's with strstarts() to address this. I've updated my branch with
+the changes.
 
-  MACPHY_PHY_IDENTIFIER1 - Address: 02
-  15:0   PHY ID number / default:cfg_phy_id[15:0]
-
-  MACPHY_PHY_IDENTIFIER2 - Address: 03
-  15:10  PHY ID number / default:cfg_phy_id[21:16]
-  9:4    Model number / default:cfg_model_nr[5:0]
-  3:0    Revision number / default:cfg_rev_nr[3:0]
-
-So likely what you get when you read PHY registers 2 and 3.
-
-Regards,
-Jonas
-
-> 
-> 	Andrew
-
+Rob
 
