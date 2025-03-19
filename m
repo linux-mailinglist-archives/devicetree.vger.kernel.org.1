@@ -1,164 +1,214 @@
-Return-Path: <devicetree+bounces-159083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9160A69967
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 20:32:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37827A699AB
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 20:45:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18057482C7E
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 19:32:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B6E747ACBE0
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 19:44:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 418BA2163BD;
-	Wed, 19 Mar 2025 19:31:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B10CD20C48E;
+	Wed, 19 Mar 2025 19:45:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FRcNIWSb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k83A1uaj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 109EA21481E;
-	Wed, 19 Mar 2025 19:31:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85C2A17A2F0;
+	Wed, 19 Mar 2025 19:45:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742412706; cv=none; b=dXfG9v6mAg1tmBCGpe8Vrax0/ZCmkIOq0YxmTRniEaQACv/hmHLpfPxJ+dtT6zKDyUIY8EVUEMiA2fdP7Sd3BcQKDvwGtxUS5maPnKHceq/99/Jgn5EJ52xSC4ucqG1Eg9DQJjPfmhVXYJnD4Ld1g+jejG1FLltOgJKl5uLckio=
+	t=1742413532; cv=none; b=pPgwoQXZ9Lr1GtS3zlduEb5s6q4Si5rqVTrDTgig+Ul2SsOr6E6/83Gw4W6tMG0YdF9Ubj8um+z0LjbN5k2E8QuuuCvNbYasEkTl2N9PBNEBVikufRGPWCY+QE/Ob9H67d1SVznGv0iSqykXIviuxyfDA2uUUTtAW+QlyfUan8w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742412706; c=relaxed/simple;
-	bh=VODwfrt3KkmAokRohu16X/E2z/gn8CoM6Tx6tZBecgQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=S4AW/0sj+JPeZbt/Cb+XVXCbyurpGEwuNZQdLE3grUUyKfMbVkx3nxmlm4hdvnI8OpQjBQe9byEUNivqr6cSYh3evKjjeXQhNfR0Z9O7VuYcq/2LrA9fu4otuewlCzt1COFwPZn3SEWYt3eKNlp1fWVwqt7N4HIbc0cjwZwHqbc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FRcNIWSb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABC9CC4CEE9;
-	Wed, 19 Mar 2025 19:31:36 +0000 (UTC)
+	s=arc-20240116; t=1742413532; c=relaxed/simple;
+	bh=Myrbj9m3hCsLiGJ67e/0Ahc4o+JFpDhFwC5X4tYyaWQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uGSsKS4zOs7/+CbOFr19m03/S3NkqQ81qFNYvKMmWsjBTs4S+I7I5mltlU7Jlk2PYnR/9a4CSMKjo4YKKybzuSTaa7Xrz0sOtv+u7VxdGqypzOR9YlkEekINwv79fQaU7/UYuvytpyZ9wXsbb2MymCf7iDSvh7tsP5XzcM5RrgM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k83A1uaj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 194F1C4CEE4;
+	Wed, 19 Mar 2025 19:45:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742412705;
-	bh=VODwfrt3KkmAokRohu16X/E2z/gn8CoM6Tx6tZBecgQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FRcNIWSbdFL6ogJKYQrak6++QXliKtGGMtBDVpGiltFURLpOVSvomSH3a+ZRn17vL
-	 exSOA9FVCudmB9omE2RjE8n+4/mbB0lrZkX/NpEiYH7awxdfpZZntktdXINEhoSYSO
-	 yuLTmyBrCSdva9QtFhkI8K15tyc1UmXhnNY77RjEFtEifY0HADzfchJQCxwZHWRJee
-	 kiJtwy/6PZP1wNEDPcW2xi9ffpJh2az7ftbPwSZ4ins6nlZ+ydZNAiaUPF2nkIS8Se
-	 6LqJSUCjPqvYdmQqqf7qFsZNl8M7xNB42I7YlKaS5THpGK8T+iT2/LH2ZUEXzKSdnB
-	 Oujpr5hTY7z1g==
-Message-ID: <7084e271-8546-4a49-9eb8-ee3f647c529a@kernel.org>
-Date: Wed, 19 Mar 2025 20:31:34 +0100
+	s=k20201202; t=1742413532;
+	bh=Myrbj9m3hCsLiGJ67e/0Ahc4o+JFpDhFwC5X4tYyaWQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=k83A1uajWbT+HjRfBwWMJPneWcAaqV8JUKcAotRtn3xRccysHf6Se8rOR6tPMmIRx
+	 MRaiXTRZ3l2DSxZNErw8zsSjnDQ14rm0PJ1zS29pTXfGn7vASw0CMSPOiYObcExFLk
+	 sxAr1VvnTVur/2PG9RUpkq77dounwhdqyNcqIjaHoBj74JBsVwM6aP0q2sacTOCqOO
+	 /e/66r7FNUHCQdGe6AHAI+qsfL99iNMlMKcRxWSSxFIDeKjLK8Iroa8SO0WgJxJsDJ
+	 pcygy6FToNzIz85JZ3cqVwsfXV6BL0A2rkytbN+EKRCTPMB0RLv7JFPQsHkiwOLEjk
+	 //6tSSP1ZNk8w==
+Date: Wed, 19 Mar 2025 14:45:29 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Cc: bjorn.andersson@oss.qualcomm.com, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: x1e80100-dell-xps13-9345: Enable
+ fingerprint sensor
+Message-ID: <4kh3zg3ohqzarbhv4r64iapi5x7paz2r7z3wkesgbjmm5fvgsy@dkkbbgmgt6mo>
+References: <20250318-xps13-fingerprint-v1-0-fbb02d5a34a7@oss.qualcomm.com>
+ <20250318-xps13-fingerprint-v1-2-fbb02d5a34a7@oss.qualcomm.com>
+ <CAMcHhXoE+UvoKmy1ULJoAq1nrr+PO6qie3vxLuqQbUpiE=SMBQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/6] dt-bindings: clock: axg-audio: Add mclk and sclk
- pad clock ids
-To: Jiebing Chen <jiebing.chen@amlogic.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- jian.xu@amlogic.com, shuai.li@amlogic.com, zhe.wang@amlogic.com
-References: <20250319-audio_drvier-v4-0-686867fad719@amlogic.com>
- <20250319-audio_drvier-v4-2-686867fad719@amlogic.com>
- <20250319-daffy-classy-kangaroo-023e1f@krzk-bin>
- <9ae73d75-9c59-4255-8924-b456c86cbc01@amlogic.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <9ae73d75-9c59-4255-8924-b456c86cbc01@amlogic.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMcHhXoE+UvoKmy1ULJoAq1nrr+PO6qie3vxLuqQbUpiE=SMBQ@mail.gmail.com>
 
-On 19/03/2025 11:09, Jiebing Chen wrote:
+On Wed, Mar 19, 2025 at 04:05:41PM +0100, Aleksandrs Vinarskis wrote:
+> On Wed, 19 Mar 2025 at 04:22, Bjorn Andersson via B4 Relay
+> <devnull+bjorn.andersson.oss.qualcomm.com@kernel.org> wrote:
+> >
+> > From: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
+> >
+> > The fingerprint sensor, hidden in the power button, is connected to one
+> > of the USB multiport ports; while the other port is unused.
+> >
+> > Describe the USB controller, the four phys and the repeater involved to
+> > make the fingerprint sensor operational.
+> >
+> > Signed-off-by: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
+> > ---
 > 
-> 在 2025/3/19 16:22, Krzysztof Kozlowski 写道:
->> [You don't often get email from krzk@kernel.org. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
->>
->> [ EXTERNAL EMAIL ]
->>
->> On Wed, Mar 19, 2025 at 03:04:45PM +0800, jiebing chen wrote:
->>> Add clock IDs for the mclk pads found on s4 SoCs
->>>
->>> Signed-off-by: jiebing chen <jiebing.chen@amlogic.com>
->>> ---
->>>   include/dt-bindings/clock/axg-audio-clkc.h | 11 +++++++++++
->> This belongs to the binding patch, usually.
->>
->> Anyway - do not ask us to do the work twice.
->>
->> <form letter>
->> This is a friendly reminder during the review process.
->>
->> It looks like you received a tag and forgot to add it.
->>
->> If you do not know the process, here is a short explanation:
->> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
->> versions of patchset, under or above your Signed-off-by tag, unless
->> patch changed significantly (e.g. new properties added to the DT
->> bindings). Tag is "received", when provided in a message replied to you
->> on the mailing list. Tools like b4 can help here. However, there's no
->> need to repost patches *only* to add the tags. The upstream maintainer
->> will do that for tags received on the version they apply.
->>
->> Please read:
->> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
->>
->> If a tag was not added on purpose, please state why and what changed.
->> </form letter>
+> Thanks for getting to the bottom of this, it was certainly a long
+> awaited feature :)
 > 
-> thanks for your remind
 
-Are you going to do anything or you are going to ignore us?
+Didn't think it was something I wanted, but now that it's working I
+proved myself wrong ;)
 
-Best regards,
-Krzysztof
+> >  .../boot/dts/qcom/x1e80100-dell-xps13-9345.dts     | 59 +++++++++++++++++++++-
+> >  1 file changed, 57 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts b/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
+> > index 967f6dba0878b51a985fd7c9570b8c4e71afe57d..a35557c562d771e2ce209fca05b82c1943d70f63 100644
+> > --- a/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
+> > +++ b/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
+> > @@ -744,8 +744,21 @@ touchscreen@10 {
+> >
+> >  &i2c9 {
+> >         clock-frequency = <400000>;
+> > -       status = "disabled";
+> > -       /* USB3 retimer device @0x4f */
+> > +       status = "okay";
+> > +
+> > +       eusb6_repeater: redriver@4f {
+> > +               compatible = "nxp,ptn3222";
+> > +               reg = <0x4f>;
+> > +               #phy-cells = <0>;
+> > +
+> > +               vdd3v3-supply = <&vreg_l13b_3p0>;
+> > +               vdd1v8-supply = <&vreg_l4b_1p8>;
+> > +
+> > +               reset-gpios = <&tlmm 184 GPIO_ACTIVE_LOW>;
+> > +
+> > +               pinctrl-0 = <&eusb6_reset_n>;
+> > +               pinctrl-names = "default";
+> > +       };
+> >  };
+> >
+> >  &i2c17 {
+> > @@ -967,6 +980,14 @@ edp_reg_en: edp-reg-en-state {
+> >                 bias-disable;
+> >         };
+> >
+> > +       eusb6_reset_n: eusb6-reset-n-state {
+> > +               pins = "gpio184";
+> > +               function = "gpio";
+> > +               drive-strength = <2>;
+> > +               bias-disable;
+> > +               output-low;
+> > +       };
+> > +
+> >         hall_int_n_default: hall-int-n-state {
+> >                 pins = "gpio92";
+> >                 function = "gpio";
+> > @@ -1172,3 +1193,37 @@ &usb_1_ss1_dwc3_hs {
+> >  &usb_1_ss1_qmpphy_out {
+> >         remote-endpoint = <&retimer_ss1_ss_in>;
+> >  };
+> > +
+> > +&usb_mp {
+> > +       status = "okay";
+> > +};
+> > +
+> > +&usb_mp_hsphy0 {
+> > +       vdd-supply = <&vreg_l2e_0p8>;
+> > +       vdda12-supply = <&vreg_l3e_1p2>;
+> > +
+> > +       phys = <&eusb6_repeater>;
+> 
+> I was under the impression that the fingerprint reader is on the 2nd
+> port of the root hub, as:
+> * In ACPI, the only USB device of MP is listed under PRT1, PRT0 is empty
+> * On Windows the device is listed as PORT2...HUB1...
+> * `lsusb -t` for the device gives `Port 002: Dev 002,...12M`
+> 
+> Do `usb_mp_hsphy0` and `usb_mp_hsphy1` translate to port 1 and 2
+> respectively? Because if yes, repeater may belong to `usb_mp_hsphy1`
+> instead?
+> 
+
+That would be more logical, I'll dig up some documentation for the
+SoC and see if I can better understand the naming of these instances.
+
+> Current series works. Moving `phys = <&eusb6_repeater>;` to
+> `usb_mp_hsphy1` also works, I'm assuming because we are not actually
+> disabling unused phys.
+> 
+
+While not being used for any communication, the PHY is there and the
+multiport controller seems to need them both to be present. Further
+regardless of something being connected to the PHY, it's still there, so
+it seems correct to represent it in the dtsi. That said, I didn't dig
+deeper into the exact details here.
+
+> Tested-by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+> 
+
+Thanks.
+
+Regards,
+Bjorn
+
+> 
+> > +
+> > +       status = "okay";
+> > +};
+> > +
+> > +&usb_mp_hsphy1 {
+> > +       vdd-supply = <&vreg_l2e_0p8>;
+> > +       vdda12-supply = <&vreg_l3e_1p2>;
+> > +
+> > +       status = "okay";
+> > +};
+> > +
+> > +&usb_mp_qmpphy0 {
+> > +       vdda-phy-supply = <&vreg_l3e_1p2>;
+> > +       vdda-pll-supply = <&vreg_l3c_0p9>;
+> > +
+> > +       status = "okay";
+> > +};
+> > +
+> > +&usb_mp_qmpphy1 {
+> > +       vdda-phy-supply = <&vreg_l3e_1p2>;
+> > +       vdda-pll-supply = <&vreg_l3c_0p9>;
+> > +
+> > +       status = "okay";
+> > +};
+> >
+> > --
+> > 2.48.1
+> >
+> >
 
