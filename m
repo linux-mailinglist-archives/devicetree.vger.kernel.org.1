@@ -1,205 +1,147 @@
-Return-Path: <devicetree+bounces-159036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13E5EA69543
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 17:46:16 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3393A69559
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 17:49:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 134D3168662
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 16:43:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 53E877A4E06
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 16:48:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AFFB1E0E15;
-	Wed, 19 Mar 2025 16:43:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 457E71E1025;
+	Wed, 19 Mar 2025 16:49:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="O0afLCMd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bUc/lwHl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A3DE1DED44;
-	Wed, 19 Mar 2025 16:43:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC37F1DF248;
+	Wed, 19 Mar 2025 16:49:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742402600; cv=none; b=a+9vlgTMgIvcHdfGmpoHrqqzi0cnOsopF4WDUDIIGlNpaXPRlb1F0bgu5R8nLJlYoRqT8FjMiM6q+9mLQiCF0S9BHlA2KlUkA0PSDAJr6eIjnJsyhLKK4/AyjYJEHRAGexIE7rVVj/Z/HqSinT6LcAsG9z+YIf+bqpxjakDC4fw=
+	t=1742402993; cv=none; b=nYxAZkVLn+O6RJWAVfGLOXX0EwdS75S3x2yO5hOBGjT+9LtvcQDgopm0GjnR4z9yre5nxSzJ/Iks9IIui21mnds1q2eML53dSBP47p9KztW9C00FBaL0gO39VONJniVBuqpjnLsBvCP9FkF01tx2TGf7/XIGBnD2Bko60IefrGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742402600; c=relaxed/simple;
-	bh=ZBQvYxGhQSH0Yw5IAUgX+qNDMDI41AR+NNF1w+Ttoik=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:From:To:Subject:
-	 References:In-Reply-To; b=YBDEvjDTxdDf/zw1zu5IbrTYxnJrnDZ3SCStyghZ5te7xYBUw/M3FVrdFUOQDrSP6vZjoAqByDUAFAknuNnojIyRhdnVw4MHm32Jtz7XnejDOEM7md2pcu0NJGimWEiw8tDlsvU2zaodBTLYS4xCEbMlcIe7OBT8nzTw9TgDx1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=O0afLCMd; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 2DFE1443C5;
-	Wed, 19 Mar 2025 16:43:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1742402588;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=aEftfqUViqbyks2Nod6W5VcZut5c+VqF8qcwHjc/Cq4=;
-	b=O0afLCMdM8LsDaWO5uzNKe9f6iLnloSalc3qlYsHWmDpkVdFuDWGtULBDXdJNZ9Ggkh0i/
-	GCxfuTsPnAvx4zjxBYsDnyH8Kw9b0zU1FHdXOe9WRhrKTyRDMDcNUr2rKJGUcBR4FF/cwj
-	1VvLXpmS839TkiJDKnWcveuXNKNSrNrJ/pk82iheN8O+qIigEfQkydf+c7DkrSvGzjegGW
-	hhPEC4C2eDvGas61Z/C8Xq5CjWhGGh/RYQ2UzI8gEKLicN+jR5mSjnnq6V7GUoHfDrbtsU
-	lPTlHFx9NvDeHO8HSI35Qu+t2R0Pe5OdhygOE1tqWjlEWXzKMgVP36HaGAqCcw==
+	s=arc-20240116; t=1742402993; c=relaxed/simple;
+	bh=ltDzPnx9DrYQLZ42Mpq+ze7mXFl9npW/CfLcWJZUc+A=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=LC7u3vCWL6TBMhzEHb8fECgtvqjhUKYrYrx5873gri50PsTdrb7DRw1Epk8ZlMstGUHIk37NwlnydTtfLUUiGwia8ySbiPqXvR9lxPhL4RhpDqdYWUNoPCP6IGRsaml+LFzlqCbfD4jXoJzSJHq5sbrS9Trv64XL8ZrQZZNJDKA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bUc/lwHl; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-223fb0f619dso124442685ad.1;
+        Wed, 19 Mar 2025 09:49:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742402991; x=1743007791; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=otdawq32D6/5bERzoT5Rk23HrOvjEoRzM0gTHt/o2Nk=;
+        b=bUc/lwHluyU/aCqOIfi1d5tp6FjMc7vfUti+YBzL+8Ol2/RokgGpIIeYzr0mpihcWR
+         KjHA26XrV4blVmiDywsdsxEwQyZaExJh2SpSs+k5OIuzv6PpJpsoBZMu4Kpr9TdVMvF/
+         Q4/0Mv9x0L1vO+XvMrcVOEEJOwlelLus85s1RKR4WiC2Pm8L/W5gBeVnaWThVTnFmd4v
+         N4CHhrRXXWcA8DNABtRAbvw0tqS20WvY5sdhiyDrVrB0CffgwazIIEVzDJQsm7e6onCV
+         81ud3NUuYchLS4TbD5xoH7+jDKiwbBNwxfqGx6v5ZUAlZ/V7E0MFv6MlcvlSf08z9nNu
+         OvsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742402991; x=1743007791;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=otdawq32D6/5bERzoT5Rk23HrOvjEoRzM0gTHt/o2Nk=;
+        b=hjsCVlKxUXKuRLzJqHI1oitC2AGinSJT7OthKJ2jNlQjOW8+W74uESmZkRsuJn+pkP
+         X23iUByJNBL7A6ReOvd8WiujUyFe2cki60eEYrCPRN7M9PCkR09S5MqLg2Y5ziPbqTXo
+         fkGKlbpBGpeG9AyvunZzo7IzQOQ6KSi7zv27HkyQRVm9QDJjb3vFLgVtaZoRHhqJQkeO
+         Sj+Bvp14fUGkkmgLDijF8e1ZxWx7qU/nSir/6B3CFnEgobzE6hmDARNqodXXwuoxFBoa
+         ktLxCv2ZXlUlXQJdyokehdwJYrRW+pQcBLdEa0cNds7TpusGpztatl2JwxLuKeOjYkAD
+         uTHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWV8aHsw2NB5Ovp7Ppdt0JswI+A9vqSXzVtRvnuEvUmsQ+ik+u+2tC+uZiMAq5dcU+0m0EUNGNkRE5m9Lk=@vger.kernel.org
+X-Gm-Message-State: AOJu0YykW2im57cgnFxtGhw34BRyPH/jbNoXd0Fd0GmobT93AwcxnXMc
+	UbAFVPXFpunvuxs5rpPayp9RDxBm4MscYYwBLXYNfw9hqweSecqk
+X-Gm-Gg: ASbGncsBcPT5nLuAc+d87xhLhbKs4VK/JBybel0ihdVAWVj+YLF3dw1pICoahP7QXhI
+	zPwHq4zmZR/aTGsvuiDdZqh0867etL4sVhqxE2tZBEvaT5SlkyV1f8urt+NBR4ltVLmdX75C5Di
+	1PSKfn02jAIGT49Crh1EiO0s/v3our+q9J/GiAMTpg43/9gbHgT9E/OCC+y9+e520g70jnNq2kK
+	3oZurCMOXuuzaJ0CtFv3cJ/kEFZqAZwUt8ro9kDKPk3TPXdFonv1NkSJU0mzZw58sAkUHDMAHxo
+	XspJYlY9mMPxZq9C7LeZbLm+U9pmmo3wNS+5yDW0hz5gphfjmWF7mJ3trMAl3GXc1PFBeORF2Df
+	HILBCUqOv1MumSyLr9rEwAA==
+X-Google-Smtp-Source: AGHT+IFWe5EGmpUjldgNs4K1HGGbn7yVxSWR9yHkVqi89+su3KAenSmxurHklNjkpkjyUU7So5s1SA==
+X-Received: by 2002:a17:90b:4a10:b0:2fe:a336:fe65 with SMTP id 98e67ed59e1d1-301bde5816fmr5014331a91.10.1742402990848;
+        Wed, 19 Mar 2025 09:49:50 -0700 (PDT)
+Received: from localhost.localdomain (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-301bf576bc2sm1863641a91.5.2025.03.19.09.49.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Mar 2025 09:49:50 -0700 (PDT)
+From: Potin Lai <potin.lai.pt@gmail.com>
+Subject: [PATCH v4 0/8] ARM: dts: aspeed: catalina: Update DTS to support
+ Catalina PVT hardware
+Date: Thu, 20 Mar 2025 00:47:21 +0800
+Message-Id: <20250320-potin-catalina-dts-update-20250102-v4-0-7c34b8139014@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 19 Mar 2025 17:43:06 +0100
-Message-Id: <D8KE623GMSW0.2FWRYKEDOJ4UH@bootlin.com>
-Cc: "Lee Jones" <lee@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Kamel Bouhara"
- <kamel.bouhara@bootlin.com>, "Linus Walleij" <linus.walleij@linaro.org>,
- "Bartosz Golaszewski" <brgl@bgdev.pl>, "Dmitry Torokhov"
- <dmitry.torokhov@gmail.com>, =?utf-8?q?Uwe_Kleine-K=C3=B6nig?=
- <ukleinek@kernel.org>, "Michael Walle" <mwalle@kernel.org>, "Mark Brown"
- <broonie@kernel.org>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, "Danilo Krummrich"
- <dakr@kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
- <linux-input@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
- <andriy.shevchenko@intel.com>, =?utf-8?q?Gr=C3=A9gory_Clement?=
- <gregory.clement@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>
-From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
-To: "Rob Herring" <robh@kernel.org>
-Subject: Re: [PATCH v5 01/11] dt-bindings: mfd: gpio: Add MAX7360
-X-Mailer: aerc 0.18.2-0-ge037c095a049
-References: <20250318-mdb-max7360-support-v5-0-fb20baf97da0@bootlin.com>
- <20250318-mdb-max7360-support-v5-1-fb20baf97da0@bootlin.com>
- <20250318173902.GA3256960-robh@kernel.org>
-In-Reply-To: <20250318173902.GA3256960-robh@kernel.org>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddugeehkeegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkvefhvffuofhfjgesthhqredtredtjeenucfhrhhomhepfdforghthhhivghuucffuhgsohhishdquehrihgrnhgufdcuoehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeftedvgfegteehjeejtdefgffhteevvddtvdejleeghfefuefgledtteduvdetkeenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeipdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvvddprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhgvvgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepk
- hhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrghmvghlrdgsohhuhhgrrhgrsegsohhothhlihhnrdgtohhmpdhrtghpthhtoheplhhinhhushdrfigrlhhlvghijheslhhinhgrrhhordhorhhgpdhrtghpthhtohepsghrghhlsegsghguvghvrdhplhdprhgtphhtthhopegumhhithhrhidrthhorhhokhhhohhvsehgmhgrihhlrdgtohhm
-X-GND-Sasl: mathieu.dubois-briand@bootlin.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABn12mcC/43NQQqDMBCF4atI1k3JxGi0q96jdDHRqANWxaTSI
+ t69UWiRrlz+w/C9mTk7knXsEs1stBM56rsQ6hSxosGutpzK0EwKmQgQkg+9p44X6LGlDnnpHX8
+ OJXrLfy85KCNSVKY0yAI0jLai1zZyu4duyPl+fG+bE6zXLx8f4SfgwI0wGhMZF3maXesHUnsu+
+ gdb+UnuSDhGykCClgmArqzG/J+M96Q6RMYrqfIMtFJGVnZPLsvyAZAJFuB6AQAA
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>, 
+ Patrick Williams <patrick@stwcx.xyz>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ Cosmo Chou <cosmo.chou@quantatw.com>, Potin Lai <potin.lai@quantatw.com>, 
+ Potin Lai <potin.lai.pt@gmail.com>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1742402988; l=1684;
+ i=potin.lai.pt@gmail.com; s=20240724; h=from:subject:message-id;
+ bh=ltDzPnx9DrYQLZ42Mpq+ze7mXFl9npW/CfLcWJZUc+A=;
+ b=h9W1GzNDRP1ipPJnnPG4uywIzZY/IGU5ILv0VsAds08ZDU+V1HSp+fdDPVblhY2OxMh1OFhxX
+ 7AfuI8FFiVuC3b0Lw9OpX+U3yF11FTPUZn8Hj7nxYAz6fZ9Iin/gMVV
+X-Developer-Key: i=potin.lai.pt@gmail.com; a=ed25519;
+ pk=6Z4H4V4fJwLteH/WzIXSsx6TkuY5FOcBBP+4OflJ5gM=
 
-On Tue Mar 18, 2025 at 6:39 PM CET, Rob Herring wrote:
-> On Tue, Mar 18, 2025 at 05:26:17PM +0100, Mathieu Dubois-Briand wrote:
-> > Add device tree bindings for Maxim Integrated MAX7360 device with
-> > support for keypad, rotary, gpios and pwm functionalities.
-> >=20
-> > Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com=
->
-> > ---
-> >  .../bindings/gpio/maxim,max7360-gpio.yaml          |  83 ++++++++++
-> >  .../devicetree/bindings/mfd/maxim,max7360.yaml     | 170 +++++++++++++=
-++++++++
-> >  2 files changed, 253 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/gpio/maxim,max7360-gpio.=
-yaml b/Documentation/devicetree/bindings/gpio/maxim,max7360-gpio.yaml
-> > new file mode 100644
-> > index 000000000000..21d603d9504c
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/gpio/maxim,max7360-gpio.yaml
-> > @@ -0,0 +1,83 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+Update the DTS file for the Catalina platform based on the PVT hardware
+changes.
 
-...
+Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
+---
+Changes in v4:
+- Split a single commit into multiple smaller commits to reduce complexity.
+- Add `multi-master` into i2c12 & i2c13  
+- Link to v3: https://lore.kernel.org/r/20250114-potin-catalina-dts-update-20250102-v3-1-14981744b2fe@gmail.com
 
-> > +
-> > +  keypad-debounce-delay-ms:
->
-> The existing debounce-delay-ms or poll-interval properties don't work=20
-> for you?
->
+Changes in v3:
+- Remove delta_brick nodes due to compatible string not supported
+- Link to v2: https://lore.kernel.org/r/20250113-potin-catalina-dts-update-20250102-v2-1-1725117fe7a9@gmail.com
 
-The issue is this node also describes the rotary encoder (just below),
-so I feel using only debounce-delay-ms is a bit misleading.
+Changes in v2:
+- Add delta_brick nodes to support PDB brick board
+- Link to v1: https://lore.kernel.org/r/20250103-potin-catalina-dts-update-20250102-v1-1-b0b7a523c968@gmail.com
 
-> > +    description: Keypad debounce delay in ms
-> > +    minimum: 9
-> > +    maximum: 40
-> > +    default: 9
-> > +
-> > +  rotary-debounce-delay-ms:
-> > +    description: Rotary encoder debounce delay in ms
-> > +    minimum: 0
-> > +    maximum: 15
-> > +    default: 0
-> > +
-> > +  linux,axis:
-> > +    description: The input subsystem axis to map to this rotary encode=
-r.
->
-> You should have a $ref to rotary-encoder.yaml too. None of the other=20
-> properties in it are needed?=20
+---
+Potin Lai (8):
+      ARM: dts: aspeed: catalina: Add IO Mezz board thermal sensor nodes
+      ARM: dts: aspeed: catalina: Add Front IO board remote thermal sensor
+      ARM: dts: aspeed: catalina: Add MP5990 power sensor node
+      ARM: dts: aspeed: catalina: Add fan controller support
+      ARM: dts: aspeed: catalina: Add second source fan controller support
+      ARM: dts: aspeed: catalina: Add second source HSC node support
+      ARM: dts: aspeed: catalina: Remove INA238 and INA230 nodes
+      ARM: dts: aspeed: catalina: Enable multi-master on additional I2C buses
 
-Makes sense, thanks!
+ .../dts/aspeed/aspeed-bmc-facebook-catalina.dts    | 172 +++++++++++++++------
+ 1 file changed, 128 insertions(+), 44 deletions(-)
+---
+base-commit: becaccc292bfbd12df81148746043c5221e49da8
+change-id: 20250102-potin-catalina-dts-update-20250102-914b06a4bdba
 
-And no, I believe this is the only property we need.
-
->
-> > +
-> > +  "#pwm-cells":
-> > +    const: 3
-> > +
-> > +  gpio:
-> > +    $ref: /schemas/gpio/maxim,max7360-gpio.yaml#
-> > +    description:
-> > +      PORT0 to PORT7 general purpose input/output pins configuration.
-> > +
-> > +  gpo:
-> > +    $ref: /schemas/gpio/maxim,max7360-gpio.yaml#
-> > +    description: >
-> > +      COL2 to COL7 general purpose output pins configuration.
-> > +      Allows to use unused keypad columns as outputs.
->
-> Are these paragraphs? If so, add a blank line between paragraphs. If=20
-> not, re-wrap the lines.
->
-
-OK
-
-> > +      The MAX7360 has 8 column lines and 6 of them can be used as GPOs=
-. GPIOs
-> > +      numbers used for this gpio-controller node do correspond to the =
-column
-> > +      numbers: values 0 and 1 are never valid, values from 2 to 7 migh=
-t be valid
-> > +      depending on the value of the keypad,num-column property.
-> > +
-> > +patternProperties:
-> > +  '-pins$':
-> > +    type: object
-> > +    description:
-> > +      Pinctrl node's client devices use subnodes for desired pin confi=
-guration.
-> > +      Client device subnodes use below standard properties.
-> > +    $ref: /schemas/pinctrl/pincfg-node.yaml
-> > +
-> > +    properties:
-> > +      pins:
-> > +        description:
-> > +          List of gpio pins affected by the properties specified in th=
-is
-> > +          subnode.
-> > +        items:
-> > +          pattern: '^PORT[0-7]|ROTARY$'
->
-> Don't you need ()?:
->
-> ^(PORT[0-7]|ROTARY)$'
->
-
-Yes!
-
-Thanks for your review.
-Mathieu
-
---=20
-Mathieu Dubois-Briand, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Best regards,
+-- 
+Potin Lai <potin.lai.pt@gmail.com>
 
 
