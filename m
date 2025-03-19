@@ -1,210 +1,163 @@
-Return-Path: <devicetree+bounces-159092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D757EA69A1E
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 21:20:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C362AA69A54
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 21:43:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED68919C4602
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 20:21:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4ACB03B2D8F
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 20:42:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 019412144A4;
-	Wed, 19 Mar 2025 20:20:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7E012144DB;
+	Wed, 19 Mar 2025 20:42:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VOcsB9UH"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="V+G9RBJ8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E7A833985;
-	Wed, 19 Mar 2025 20:20:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF6331DED60;
+	Wed, 19 Mar 2025 20:42:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742415651; cv=none; b=FYxCA5RZDfztpWeK1c+JU6YSNFK0PW5oZzfMXEYJu5uQN6hSpWDec2+iaZQPxLaKzGrNQ8kd7gq4ml8NoHCMbvOle/GoCxW3eH8Skr/af7XfhkmfVIlmQ4I8KVa6ZJvT/TtXSQf2VKEhq9ZRU6pdCVMznwyZYtOI9aw/cEldaiU=
+	t=1742416953; cv=none; b=flRkMvc9k6lUOsx2iaBHAcU0BHiGKVVA9s2oV+7pab29ewx4ntoxMv718luz3NQnaV7CJk2C/S3MNrpb1jo9iU3Lx1gokgV9MtdvKYb6YbVR45cAB75bZB0JwU5i5qphUhAilU5+MeKAKAfHm3GC3MCjugUrb5Zd0myI1IRaK3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742415651; c=relaxed/simple;
-	bh=002f+4uoU2jAzQ8fIJTcrT3A6Won1FJocd/oQjk/WsE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=t8b272J9/7dzGHH6fs+/2ysKn4oZjR3hPk6s018U5zlCH9idiScXIurIQB+9m7MR4F0uvJL88wIwfqLKCmuMZ04D0rOsfmApvZKMmibicCxOQVEI5gU5HkKP3VzqGf8nx8XvEaTEmjZJKWZhftDCMQGYDldq1aeGNCn3rXhH/6A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VOcsB9UH; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-30bfd4d4c63so968281fa.2;
-        Wed, 19 Mar 2025 13:20:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742415648; x=1743020448; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+RMz3OhYmmgIWvTrdMzMOF6kyB3hj4Bx7wWY3SfBibE=;
-        b=VOcsB9UH4s1DVKF5CEzuQkEVAMRn4YDziEThC0pDMULRoP5N9zKdr+VDSdXlMZizRt
-         9SkRw3r2Vb/7fDUoHIPMI1Wmm/kvorzP4Ev/r0lmJr1/Cy6UrlmGa6ZPWpUmb3twW9Xr
-         NU9SnqGFQIAdj2rB5NbHWuxX7ETufk+7xMSU/kU3Tqpr5QqwV4Dwp/9C5l/y5vVEMwuC
-         kBYIyg4XFG8a8MBAh+tMKcOW8gzJDPOBUTkW+tfiEEkqDojvJE1MZXskyfSPe/9dYKMG
-         uIqYJD10DfPAgpiXKd2ADj4iuxKVMT+CzuKRTSUa7jTDrJA/Yblok0iK53LNKUIXAzfF
-         vN5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742415648; x=1743020448;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+RMz3OhYmmgIWvTrdMzMOF6kyB3hj4Bx7wWY3SfBibE=;
-        b=BxGkvxbty6PiZhz2Uu+K+QDyo1zE5ceJxGp50uuovN+F3bhwyPpQNBHEf8XAQI7wm6
-         k1Mjpa6bBeJUG4jSqbtVZLqp3sM/TzjxJHU2qzn2oi7yD7UkvT4v5g5a4qjHICbZHdPk
-         w8cgDIuDnJZYpwT2j81/a8gQg3muSH2b+cuzlWoai6gJTxXsoeixzV/eRT2v9qjIEL1m
-         d75QOArjmTGEmqRnz0P6gQTdzFOgbhUFshlR6nQuDnzYRw6fTryz+AHL0DJHUlwgZX0v
-         9UXXFGKTj+ontiRtx+ybmKQr3skQN4JtpQB2cGL9G8quC0bKqM+LYPgksJbC9OSgbagQ
-         nOsg==
-X-Forwarded-Encrypted: i=1; AJvYcCUaDwL4Yv+9YviYCD/gh6BAPjobilec8F5XcznBswEqIiqTMNRS/1Ej6MZ33K2OlgPLmcW25k7kIe6BGCA=@vger.kernel.org, AJvYcCVoTrIoG3uVyPFtOTEj3ToTwhaLQTb9sywXLap+776mdQHJir+s8T9gk4pJe+9eYmiSVdPczR4/ZK7+kIJq@vger.kernel.org, AJvYcCWkJ/vNXbVB9vlaGLRX7cZs9VRNkCqqFD354rGXm+JeRp4UK17ONWQiKsquzHTzSW20DQHx7AZqXNtgD6opP3Oc@vger.kernel.org, AJvYcCWlbdyNAriE6iHRY6dsnFoslXUsQz2mWLcwDZ2AYRWg0n/CqwvvgPREcBHnwQynYtzzB13/VjxpKYcK@vger.kernel.org, AJvYcCWx3jz5g2q4jhxCrgg9kEmNw2nHyQVnbuMSHYMTDgXf4YHEZY/8GIM8czihzw5IqJWEzQEjZtXfrlMs@vger.kernel.org, AJvYcCX1RW5xpl1uipMSgy+skil+wHlwIdxZiKmq+Yb9V2cpgam7W9AMu46S9BGmRRuZW0BYCHI0LxbMwjjt/Sp2pCc=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyroRru0EzRCoJr24gmY11ulWsdOhmo/NFtir2/19FfRaZY/53i
-	+lY9kT4cjxPE/Zq+tyltx5YYc8o5Ld8plZqkrjK9aKSXiZ30bPv1a0HJDA0GYxhPloEdxL0yIW9
-	MukK99Yg2wQQ0PNegYFLfmoleh1k=
-X-Gm-Gg: ASbGncuMxk7DUci5wi0++5MtMoHQxWa+OVCAbXHHySY8jfhbkDrYTlkKgQ2nVsvs5YR
-	lZMtnQFgsiGMvdX5HZeOF5AS7bHs3yqauQo7hAaf8hl69alHLa1nd6cOLmSY/ni4asmMkjTxJTg
-	WFcc7sfbIIKZEn4Mkjqj4+gqZmWn8oipk76bhHLAJV3w==
-X-Google-Smtp-Source: AGHT+IEYZoUW7VaYl1K0NRdn7Y62H7m9YqK/rjOHA7YhmoJUMMb5hfbs1G8oBx//nhN1IFMrWpdIpnYpNaPfo4x9iwk=
-X-Received: by 2002:a05:6512:b1f:b0:549:7394:2ce5 with SMTP id
- 2adb3069b0e04-54acb205b22mr1741596e87.41.1742415647244; Wed, 19 Mar 2025
- 13:20:47 -0700 (PDT)
+	s=arc-20240116; t=1742416953; c=relaxed/simple;
+	bh=PFr45HKKutwFEw7jn6Bw3slxKl9l7TTdnvJ94iSfra8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=f7GVdBDJbXQBddrhvH7ZWc50Koz5Hh9xZzXfI5pLnjWib6MT5VGbeXcU15wlgolNA1aIcJahmwsTf6yXf/5jFVbcM35n9ULQiXa6hj4oev79fTI2tdMK6DsxmrxEKgdqhZ8fK18bgUwF+Vcnih2f81W2p7kkz6+veX8hRnfhp08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=V+G9RBJ8; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1742416952; x=1773952952;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=PFr45HKKutwFEw7jn6Bw3slxKl9l7TTdnvJ94iSfra8=;
+  b=V+G9RBJ8UOS0Hb7WHJKvVqJQ15flzjGBSLQAy+nikv76XJi0y4eymwDx
+   kKgZXMGhykvGvkDh/IF3V9GYA++LwmVUjQMLKFeMZRBVaoDXg7XgPYIhl
+   61XpYTnimBsXAFdWMOcGbiKjKNe4Zs6bjifMIiTeVgIvZtukch4AI0CfC
+   qgnvxZiU0Hq1UXOPMpk+BwQMV8PfwdK43M05U2wgmxsvVJSeHJybvXjNB
+   sH2LX1kCIl1VYVk8yZ2PuFzhIs8DiON88RzXq3U61EiAyYcpPEIUUva9m
+   PIcQ82tik4k2l1RHizLJKaYuH1tJV7ouO1gTFIR2RA6bTuXOCIcyzjgU1
+   A==;
+X-CSE-ConnectionGUID: ka2OJjpmQ0qWqyuz8innVA==
+X-CSE-MsgGUID: X9aXJT86TeeNRqYQrzvOEw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11378"; a="66085225"
+X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; 
+   d="scan'208";a="66085225"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2025 13:42:29 -0700
+X-CSE-ConnectionGUID: 4b0/JhOJSJuAE5DnHQWF6w==
+X-CSE-MsgGUID: y8moD0ftS/6BPZeGqXvWGw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; 
+   d="scan'208";a="122782440"
+Received: from lkp-server02.sh.intel.com (HELO a4747d147074) ([10.239.97.151])
+  by orviesa006.jf.intel.com with ESMTP; 19 Mar 2025 13:42:24 -0700
+Received: from kbuild by a4747d147074 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tv0F3-000FeQ-2v;
+	Wed, 19 Mar 2025 20:42:21 +0000
+Date: Thu, 20 Mar 2025 04:41:59 +0800
+From: kernel test robot <lkp@intel.com>
+To: Christian Marangi <ansuelsmth@gmail.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Daniel Golle <daniel@makrotopia.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, upstream@airoha.com
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	netdev@vger.kernel.org
+Subject: Re: [net-next PATCH 5/6] net: pcs: airoha: add PCS driver for Airoha
+ SoC
+Message-ID: <202503200442.3vYzyScu-lkp@intel.com>
+References: <20250318235850.6411-6-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250317-ptr-as-ptr-v5-0-5b5f21fa230a@gmail.com>
-In-Reply-To: <20250317-ptr-as-ptr-v5-0-5b5f21fa230a@gmail.com>
-From: Tamir Duberstein <tamird@gmail.com>
-Date: Wed, 19 Mar 2025 16:20:11 -0400
-X-Gm-Features: AQ5f1JovOtFjnXbLSMpzEX0ccmtHqgFpy4_q71Ukj6vLkjRO13C_mRmxVO7yxlA
-Message-ID: <CAJ-ks9ke2_b21WBuOSPAJobRyqhH3eD+vmCMGCCoCLfYapk0Xw@mail.gmail.com>
-Subject: Re: [PATCH v5 0/6] rust: reduce pointer casts, enable related lints
-To: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
-	Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, 
-	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
-	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
-	Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Brendan Higgins <brendan.higgins@linux.dev>, 
-	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, 
-	Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>
-Cc: linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, 
-	kunit-dev@googlegroups.com, linux-pci@vger.kernel.org, 
-	linux-block@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250318235850.6411-6-ansuelsmth@gmail.com>
 
-On Mon, Mar 17, 2025 at 10:23=E2=80=AFAM Tamir Duberstein <tamird@gmail.com=
-> wrote:
->
-> This started with a patch that enabled `clippy::ptr_as_ptr`. Benno
-> Lossin suggested I also look into `clippy::ptr_cast_constness` and I
-> discovered `clippy::as_ptr_cast_mut`. This series now enables all 3
-> lints. It also enables `clippy::as_underscore` which ensures other
-> pointer casts weren't missed. The first commit reduces the need for
-> pointer casts and is shared with another series[1].
->
-> The final patch also enables pointer provenance lints and fixes
-> violations. See that commit message for details. The build system
-> portion of that commit is pretty messy but I couldn't find a better way
-> to convincingly ensure that these lints were applied globally.
-> Suggestions would be very welcome.
->
-> Link: https://lore.kernel.org/all/20250307-no-offset-v1-0-0c728f63b69c@gm=
-ail.com/ [1]
->
-> Signed-off-by: Tamir Duberstein <tamird@gmail.com>
-> ---
-> Changes in v5:
-> - Use `pointer::addr` in OF. (Boqun Feng)
-> - Add documentation on stubs. (Benno Lossin)
-> - Mark stubs `#[inline]`.
-> - Pick up Alice's RB on a shared commit from
->   https://lore.kernel.org/all/Z9f-3Aj3_FWBZRrm@google.com/.
-> - Link to v4: https://lore.kernel.org/r/20250315-ptr-as-ptr-v4-0-b2d72c14=
-dc26@gmail.com
->
-> Changes in v4:
-> - Add missing SoB. (Benno Lossin)
-> - Use `without_provenance_mut` in alloc. (Boqun Feng)
-> - Limit strict provenance lints to the `kernel` crate to avoid complex
->   logic in the build system. This can be revisited on MSRV >=3D 1.84.0.
-> - Rebase on rust-next.
-> - Link to v3: https://lore.kernel.org/r/20250314-ptr-as-ptr-v3-0-e7ba6104=
-8f4a@gmail.com
->
-> Changes in v3:
-> - Fixed clippy warning in rust/kernel/firmware.rs. (kernel test robot)
->   Link: https://lore.kernel.org/all/202503120332.YTCpFEvv-lkp@intel.com/
-> - s/as u64/as bindings::phys_addr_t/g. (Benno Lossin)
-> - Use strict provenance APIs and enable lints. (Benno Lossin)
-> - Link to v2: https://lore.kernel.org/r/20250309-ptr-as-ptr-v2-0-25d60ad9=
-22b7@gmail.com
->
-> Changes in v2:
-> - Fixed typo in first commit message.
-> - Added additional patches, converted to series.
-> - Link to v1: https://lore.kernel.org/r/20250307-ptr-as-ptr-v1-1-582d0651=
-4c98@gmail.com
->
-> ---
-> Tamir Duberstein (6):
->       rust: retain pointer mut-ness in `container_of!`
->       rust: enable `clippy::ptr_as_ptr` lint
->       rust: enable `clippy::ptr_cast_constness` lint
->       rust: enable `clippy::as_ptr_cast_mut` lint
->       rust: enable `clippy::as_underscore` lint
->       rust: use strict provenance APIs
->
->  Makefile                               |   4 ++
->  init/Kconfig                           |   3 +
->  rust/bindings/lib.rs                   |   1 +
->  rust/kernel/alloc.rs                   |   2 +-
->  rust/kernel/alloc/allocator_test.rs    |   2 +-
->  rust/kernel/alloc/kvec.rs              |   4 +-
->  rust/kernel/block/mq/operations.rs     |   2 +-
->  rust/kernel/block/mq/request.rs        |   7 +-
->  rust/kernel/device.rs                  |   5 +-
->  rust/kernel/device_id.rs               |   2 +-
->  rust/kernel/devres.rs                  |  19 +++---
->  rust/kernel/error.rs                   |   2 +-
->  rust/kernel/firmware.rs                |   3 +-
->  rust/kernel/fs/file.rs                 |   2 +-
->  rust/kernel/io.rs                      |  16 ++---
->  rust/kernel/kunit.rs                   |  15 ++---
->  rust/kernel/lib.rs                     | 113 +++++++++++++++++++++++++++=
-+++++-
->  rust/kernel/list/impl_list_item_mod.rs |   2 +-
->  rust/kernel/miscdevice.rs              |   2 +-
->  rust/kernel/of.rs                      |   6 +-
->  rust/kernel/pci.rs                     |  15 +++--
->  rust/kernel/platform.rs                |   6 +-
->  rust/kernel/print.rs                   |  11 ++--
->  rust/kernel/rbtree.rs                  |  23 +++----
->  rust/kernel/seq_file.rs                |   3 +-
->  rust/kernel/str.rs                     |  18 ++----
->  rust/kernel/sync/poll.rs               |   2 +-
->  rust/kernel/uaccess.rs                 |  12 ++--
->  rust/kernel/workqueue.rs               |  12 ++--
->  rust/uapi/lib.rs                       |   1 +
->  30 files changed, 218 insertions(+), 97 deletions(-)
-> ---
-> base-commit: 498f7ee4773f22924f00630136da8575f38954e8
-> change-id: 20250307-ptr-as-ptr-21b1867fc4d4
+Hi Christian,
 
-Per the discussion in today's Rust-for-Linux meeting and Benno's
-reply[0] please take this series without the last patch, whenever you
-see fit to do so. At this time no changes have been requested to the
-first 5 patches, so I am not planning to respin.
+kernel test robot noticed the following build warnings:
 
-Cheers.
-Tamir
+[auto build test WARNING on net-next/main]
 
-[0] https://lore.kernel.org/all/D8KIHNXCPE0P.K4MD7QJ1AC17@proton.me/
+url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Marangi/net-phylink-reset-PCS-Phylink-double-reference-on-phylink_stop/20250319-080303
+base:   net-next/main
+patch link:    https://lore.kernel.org/r/20250318235850.6411-6-ansuelsmth%40gmail.com
+patch subject: [net-next PATCH 5/6] net: pcs: airoha: add PCS driver for Airoha SoC
+config: x86_64-randconfig-001-20250320 (https://download.01.org/0day-ci/archive/20250320/202503200442.3vYzyScu-lkp@intel.com/config)
+compiler: clang version 20.1.0 (https://github.com/llvm/llvm-project 24a30daaa559829ad079f2ff7f73eb4e18095f88)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250320/202503200442.3vYzyScu-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503200442.3vYzyScu-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/net/pcs/pcs-airoha.c:2542:2: warning: unannotated fall-through between switch labels [-Wimplicit-fallthrough]
+    2542 |         default:
+         |         ^
+   drivers/net/pcs/pcs-airoha.c:2542:2: note: insert '__attribute__((fallthrough));' to silence this warning
+    2542 |         default:
+         |         ^
+         |         __attribute__((fallthrough)); 
+   drivers/net/pcs/pcs-airoha.c:2542:2: note: insert 'break;' to avoid fall-through
+    2542 |         default:
+         |         ^
+         |         break; 
+   1 warning generated.
+
+
+vim +2542 drivers/net/pcs/pcs-airoha.c
+
+  2521	
+  2522	static void airoha_pcs_an_restart(struct phylink_pcs *pcs)
+  2523	{
+  2524		struct airoha_pcs_priv *priv = phylink_pcs_to_airoha_pcs_port(pcs);
+  2525	
+  2526		switch (priv->interface) {
+  2527		case PHY_INTERFACE_MODE_SGMII:
+  2528		case PHY_INTERFACE_MODE_1000BASEX:
+  2529		case PHY_INTERFACE_MODE_2500BASEX:
+  2530			regmap_set_bits(priv->hsgmii_an, AIROHA_PCS_HSGMII_AN_SGMII_REG_AN_0,
+  2531					AIROHA_PCS_HSGMII_AN_SGMII_AN_RESTART);
+  2532			udelay(3);
+  2533			regmap_clear_bits(priv->hsgmii_an, AIROHA_PCS_HSGMII_AN_SGMII_REG_AN_0,
+  2534					  AIROHA_PCS_HSGMII_AN_SGMII_AN_RESTART);
+  2535			break;
+  2536		case PHY_INTERFACE_MODE_USXGMII:
+  2537			regmap_set_bits(priv->usxgmii_pcs, AIROHA_PCS_USXGMII_PCS_AN_CONTROL_0,
+  2538					AIROHA_PCS_USXGMII_AN_RESTART);
+  2539			udelay(3);
+  2540			regmap_clear_bits(priv->usxgmii_pcs, AIROHA_PCS_USXGMII_PCS_AN_CONTROL_0,
+  2541					  AIROHA_PCS_USXGMII_AN_RESTART);
+> 2542		default:
+  2543			return;
+  2544		}
+  2545	}
+  2546	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
