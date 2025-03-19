@@ -1,177 +1,200 @@
-Return-Path: <devicetree+bounces-159085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF4AFA699DA
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 20:55:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAFDAA699E8
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 21:02:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 36F81466870
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 19:55:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D91B219C3AD9
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 20:02:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E19F214A90;
-	Wed, 19 Mar 2025 19:55:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3561C2139C7;
+	Wed, 19 Mar 2025 20:02:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=inadvantage.onmicrosoft.com header.i=@inadvantage.onmicrosoft.com header.b="Dfx/Q6pf"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=proton.me header.i=@proton.me header.b="KHKntT7u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2104.outbound.protection.outlook.com [40.107.244.104])
+Received: from mail-10628.protonmail.ch (mail-10628.protonmail.ch [79.135.106.28])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2D752139C8;
-	Wed, 19 Mar 2025 19:55:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.244.104
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742414127; cv=fail; b=D6DoYhHLJw6UnmsUwOJSpoY64OHT+fNVNQmN0NeMbfn+nmVYEEsTj2lc20MFicDs9kiqPwkpyRRkc3FwllT3FTOHUBWHjmJIMcwTkSWOIkdsGsvnc6ZAag4S6zVcFFcg8cQph6w2o/gq/LjJH/KrVtanPEnhmVJsd4Z1g/UOTpI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742414127; c=relaxed/simple;
-	bh=1Ixg6R941o3PR3nzqIhbiC28PvWWog0V/BnMlcs2Aw4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=LcTyp37AtFPBuoIdR1gkLK2kIjQkLWKPVgOiAWkw7wxnNlrM2qNfmJLr+4LNvKKgs3eoxuUgZtlqQT9gQVEAcEbKSyyAAomHf5Gftqi7JQsfkGWoOZVXyaPU8fo+54EMbh3gkGvtQ6EPIv5BGZGqqH9bDKPU3mIVdxHEjWUtEYg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=in-advantage.com; spf=pass smtp.mailfrom=in-advantage.com; dkim=pass (1024-bit key) header.d=inadvantage.onmicrosoft.com header.i=@inadvantage.onmicrosoft.com header.b=Dfx/Q6pf; arc=fail smtp.client-ip=40.107.244.104
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=in-advantage.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=in-advantage.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aGg1aPc0H7ZIlk7rjuL2fK2XyzwQdR9N46PbygbI3iwToAnbmo5P2jl6wr+74fAPIXamKX5TuPxuF+NAqvyJaUssDnhdpVSNRD/cYid/5UtCN8523VsbhLKelYdIGN6qgKvMA4kTTvHP766bpnebkQ0cqOfN6D/cfoUnSokRYPfMrHOxpkPLF1NkqV6GmlPYUbD2FSENHuOk6yXAXqsLwr2XqKugJqpiFKaSClbCQzA2f9s3lHmIpIvFH1ElpAzeRkhwQ3FxL0rzsyXVjOvF3byHYiwnc2dtbtn0/87o84D/GsupnA5Dsy6qazEE5J/kSUnVPyFNNoKwZGkblC8pCg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1Ixg6R941o3PR3nzqIhbiC28PvWWog0V/BnMlcs2Aw4=;
- b=NUvY+3c9lHsl78ckMqzpkrxnSGcyb1sy8gQ5ZVREmcRaVXENtEEln8d/pVx4mSrKkmB9/ggI4tgtvwInHAd+9KHDZy9T8ZPWN4hIyi59shR9lnKYq7G8BwO/YoF2m0ShbBGClc+A79B7lFrd49cvqjhW91kKSuazHosHJZP0FGcAWvQnop2raYE8a8/+EQsGqZMdQ49TOOo8MsWSxr9z4t/KJ26ANkqqOAcR3Mcd0TTIQJcmnLDAsLgERkrCWWKAbrhcdvjto6XbyzK6O58NRu9f2wZ5KADrRss715Mi2ahgKocAcDtK33R5172Nt0ZaBvMxzcSjPhadwQq0RFCQVQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=in-advantage.com; dmarc=pass action=none
- header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1Ixg6R941o3PR3nzqIhbiC28PvWWog0V/BnMlcs2Aw4=;
- b=Dfx/Q6pfLPm8Dp19/VKPjYzbhkHDWM5p9VsyjJJS+eLbqi5eOwv/6g7gSp3W49H0UCk6CT4M+RS/vETCkmvFE3LFbjtvuhkqePil12256V9HRZm0ylrJnXHB6cke/mqx3XTV+yMttARZAPf3BDHCwtXq7dj19LpgvOovbnoZaUE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=in-advantage.com;
-Received: from DS0PR10MB6974.namprd10.prod.outlook.com (2603:10b6:8:148::12)
- by SA1PR10MB7664.namprd10.prod.outlook.com (2603:10b6:806:38e::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.33; Wed, 19 Mar
- 2025 19:55:22 +0000
-Received: from DS0PR10MB6974.namprd10.prod.outlook.com
- ([fe80::7603:d234:e4ab:3fea]) by DS0PR10MB6974.namprd10.prod.outlook.com
- ([fe80::7603:d234:e4ab:3fea%6]) with mapi id 15.20.8534.034; Wed, 19 Mar 2025
- 19:55:22 +0000
-Date: Wed, 19 Mar 2025 14:55:19 -0500
-From: Colin Foster <colin.foster@in-advantage.com>
-To: Rasmus Villemoes <ravi@prevas.dk>
-Cc: Lee Jones <lee@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Felix Blix Everberg <felix.blix@prevas.dk>
-Subject: Re: [PATCH 0/8] mfd: ocelot: add support for MDIO managed switch
-Message-ID: <Z9shJ5_ixKMCGPyy@colin-ia-desktop>
-References: <20250319123058.452202-1-ravi@prevas.dk>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250319123058.452202-1-ravi@prevas.dk>
-X-ClientProxiedBy: CH0PR04CA0060.namprd04.prod.outlook.com
- (2603:10b6:610:77::35) To DS0PR10MB6974.namprd10.prod.outlook.com
- (2603:10b6:8:148::12)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29C391DF240;
+	Wed, 19 Mar 2025 20:02:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.135.106.28
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1742414547; cv=none; b=Egy3gUkjBbusA7MwOW/nwCyBZMl73foLbDpWkV51PQp6mwu3mH2kWvQVnug64FqOkrRvDmoNkKs7P4sIUveFQfbyVBT7UeT9CCJ9OM/RtHofP0VmPyrvctsGOUEgQlYrwl7Lcb/8od0o/bfxbT9sE6O57lpUQeuEh8CybXxpooY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1742414547; c=relaxed/simple;
+	bh=lmBL7zejKvnUDqOWdxUwfNo/k5rPUmaeIm9R+fKvhCw=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=e+ZYkjIvRMg+E6rLQloFsVPKqyZ4z5pVOhqaLFaVI2pc6XpU/N1IZPX0P9JIpqKeC9EhlUUqKknDludn4VOa2TiTyNvVJ0mD4nFokYrKr8Yg8KDPHcBdUDSDnAIyOEngPInWYgRsLhkoCyUHXUbPa6njyuAOb3cUNbePWdOtFwU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me; spf=pass smtp.mailfrom=proton.me; dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b=KHKntT7u; arc=none smtp.client-ip=79.135.106.28
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=proton.me
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
+	s=rzien2anczd5pltdexn7zrjcni.protonmail; t=1742414541; x=1742673741;
+	bh=AZ0CyElZ+X6TSDauNtt6GcIL1oWwt7laTyNsmPTHFuc=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
+	b=KHKntT7uXn0VxwAicITA/daL5jI3pMXg8QnDlyUUeSPXJH03KqsQZJgJya7S4VEgY
+	 6f4EsueCVQzOEIPKWMfkYL1uE9a0qyFxYwySsR/4EfpW9kZhTESmCUWRfDpv8aisqC
+	 IZfml1PJyXoDScAG57T+qlM7orApxfF58G4CE9Na4SnugYU3IbbjvbUH6JDzm1xgU1
+	 FdM4lt/19rykYeA1nXurYlGl9JFPmAPoVsEXq1IVEC+8fbU7adph/JaFYKgMN7/O14
+	 2Wvsna7ZLGpinVuY0yPqJDpoZWghokos2c8BKxY+l3Y57nrPOJBEZ3AEwiqIJsHNlN
+	 d4pbl+AhnAUNA==
+Date: Wed, 19 Mar 2025 20:02:10 +0000
+To: Alice Ryhl <aliceryhl@google.com>
+From: Benno Lossin <benno.lossin@proton.me>
+Cc: Tamir Duberstein <tamird@gmail.com>, Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, =?utf-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas Hindborg <a.hindborg@kernel.org>, Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com,
+	linux-pci@vger.kernel.org, linux-block@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 6/6] rust: use strict provenance APIs
+Message-ID: <D8KIECKPCJN5.3MR59IHCSZMUJ@proton.me>
+In-Reply-To: <Z9q2xpwsNMDzZ2Gp@google.com>
+References: <20250317-ptr-as-ptr-v5-0-5b5f21fa230a@gmail.com> <20250317-ptr-as-ptr-v5-6-5b5f21fa230a@gmail.com> <Z9lnIJCcVSza6UVo@google.com> <D8JTC30W0NF6.17SR73Y9I99ZT@proton.me> <Z9q2xpwsNMDzZ2Gp@google.com>
+Feedback-ID: 71780778:user:proton
+X-Pm-Message-ID: ca7cc9420e0e1361b7fbb21fd83254119179e3ac
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR10MB6974:EE_|SA1PR10MB7664:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2f71c2b6-eb46-48ff-07ed-08dd671ffb6d
-X-MS-Exchange-AtpMessageProperties: SA
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?YLkouwzxuJkYAMDJDYaqX0GvkzDW9AfFPshL6duFXlTHS0wj6hg6bMbepABF?=
- =?us-ascii?Q?hI2PZBy25VHHixSBjk64kTuLas6ZBsWnlCjmUD3lq1d7hQYsndGnTccdA5nO?=
- =?us-ascii?Q?3SFrdjsHI/Lgg9B/iWsGFQrDsoQo0m+k9K0hJYThj/CEcCYbYKlPNKzY4gVQ?=
- =?us-ascii?Q?cvNEfTwqaURZjICwyjcOcAV74qsNMNF7ToyqT4krukj+jUEwuJnUeBdrDxHj?=
- =?us-ascii?Q?C9hehIq9/qzLfy09+19QxX9rfYDNnaKipC1aEY2pnCLdxBq8mHZOctrl0tjk?=
- =?us-ascii?Q?RxfXf+GIfFj22RvHwvRVTxaeb5ep+TH1beWvj/0E11bxVlUrHS6ACTC0Vcx7?=
- =?us-ascii?Q?Z96+3b4wsNA4UyG4r1Mc/LbiR0jEkjavDk/x2K43bXbPFziNZZetP8IgGZkF?=
- =?us-ascii?Q?3eY0IHUFFDVQb5n2O+DEfJAPCAPr78MboSlfHeGJNyKiJMoCmgifW7/o7zrl?=
- =?us-ascii?Q?AcHzhzE9yJoeWTc5/DsksBpCrAPGiFDaTR/tRcsSKlyDtE7LqQsRnmy767+J?=
- =?us-ascii?Q?QABN2YrOm/dMdJK09nEAdiGUPB1a3qmWUvGwiawCRlBclcRZbg2yUjCsXW2X?=
- =?us-ascii?Q?xYSuCkQ8jFBMByXoVs45SXKjGb5fuYxUf1khGkJhZJ4Ljw43pNp1TmpI7rWG?=
- =?us-ascii?Q?uylE6I59iCBZ2dHhfkP+kZbl4OvMz8SiiEolJokA8I/zDlaM8nuRze3b/68O?=
- =?us-ascii?Q?jBYE5v98xlWj88hW8bxLcm7DzZaxoMF+SiQ7gyxenbR/WD2RVmqoO0p08UXQ?=
- =?us-ascii?Q?5A8Kl2b206cLM6X1vOuK32S9NNRaDZ0aRXTX1Mph3epb92tLIzvfHNXjcZlT?=
- =?us-ascii?Q?sqoPvUWUYOOerAmUmEtNY72027H9BEaMVb22xQvkj5xE0t3gkDeWACs1SAix?=
- =?us-ascii?Q?QWrrPQ76EOTfSj+5R5K2IqmmbMZpELLjypTffk/gJAM4uZB6gKm7Q9yMxa2U?=
- =?us-ascii?Q?N4Hr7IWE7BtWgJ5/eHcg05KGeYFa3sIOCBQWOnwd2ASK1RfZ17Zn7agpL8GS?=
- =?us-ascii?Q?7TVvap6fACcHWwPjX2mvJpYFIw+8FNRIwKz050fZp1W0TaJ2mqhz5x/51pyS?=
- =?us-ascii?Q?vgfPYWby2zpaGtAp3gTnytY+AMlfiUfYz+Bl+qHatsGkz8RrCNdczTcK+lSh?=
- =?us-ascii?Q?6y1ji+dE9L2vgGq2/h5a71+LXOhjfX/kHH8gzWVpfV44PPXDEvTbvQv+Vr2a?=
- =?us-ascii?Q?yVLO1a0twq6GrFhTkXhStMYHOOW9k5MJ/DeH+LSiMMXEiDqYSvvtgDggHYV6?=
- =?us-ascii?Q?MwRW87lKBn7idfXTFgUqnHb5wCn0/G6AWfGcerCsvnMqpY6Vpne3oYw0I/jw?=
- =?us-ascii?Q?bjxF3m0JgXML2FBKD3CB4GKeLMYTOX33StfJGHrSBHWN1qyGzfPA0YPcUofU?=
- =?us-ascii?Q?HzEmAyvOx9JzqlsVAp/7HflSNuSY?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR10MB6974.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?OIiHb0WXIotXs2npWwSAK4HFOIhHML1qBX0vyVF+EnwYDf/V/adS4kzHl1RU?=
- =?us-ascii?Q?h5JzQXwJp61954w7GsTL7qmShMgDaq8VeahC4An1jg554zKRgYLPwzwiotcT?=
- =?us-ascii?Q?IZPcQTByAgpT4dMBi7QvMkBLeDAeeKf+v4d5pwIR8CcqcfTMIuqOwN25RKKI?=
- =?us-ascii?Q?VefjfWGTKGaapjWET0KMQfbyZFoUtyG/8voajqTC18FuQ08yR6NFgoRHhT21?=
- =?us-ascii?Q?s0aRkDTavAgll+FMpPmA+qTv9D7SijWVtj46ZyOisIV+ME42zD521fq6Vn4x?=
- =?us-ascii?Q?LpYG/PXbGh4RnE80mtT3DroBOtbXAe+4Y/DSX2vLbigAtzM4seZFoFfVr4WO?=
- =?us-ascii?Q?qvnBhhLvoi1ho3QXwpgORHvF6yfBdtUyywdT/EcsaA0+uFveJOJrIjChFyj8?=
- =?us-ascii?Q?2AjtQbrqKrMK6pxMVUewXz5kI3eikaVUntE0uDA26CgDtt/X7Ncudpww7HMb?=
- =?us-ascii?Q?slcljdOSOFGt/pHohigG5bReSDHW7/+6xpSx3DBIgr7+kDEfu8C2IQmmJGUH?=
- =?us-ascii?Q?+rABxAHDiB421Smokq3hczy3TR+blQvs/wnaGgzVmxzgKWyRBeguwMN4pF3W?=
- =?us-ascii?Q?rPnS96cPXxX0Dc4tbkxdfuaTDMNlH4+nHLtYDCGzmoUZmzaIKKZkS4Y2Mpp6?=
- =?us-ascii?Q?76cItxSNrC01nWrwSnHIoWUDJXDBkzCQKnc2ozbUiD5k7OPotZV7A3YyHff7?=
- =?us-ascii?Q?d5Rjusv3LC5rgSOUjX5JT/Lz94o2V+vjJC4WOejD6XJlwp+x8Hj8A3xL+7vR?=
- =?us-ascii?Q?Ug7jHfEpNxnwGSI2GHez0WPLZJ6f16wz1u0CQUQ0Vf9EdYqyaWfZMk2/APsV?=
- =?us-ascii?Q?1aYBzwUg2BwZVEcjI50v+2ienNXq/p6Fn4z/ixn8bxdIWJEtTjm1t+1Yzp0v?=
- =?us-ascii?Q?UIgFQhSCsUjNXBR84hu6X3/4vq3uekyQHkC7TdQshXSHH6CFv3z7zvCMNBid?=
- =?us-ascii?Q?jf8fdwOBl3xajufOV8n5GfCz/GNoneggKGCmFNGzQOHAFZoxEvoITY2kRK0C?=
- =?us-ascii?Q?kQF+VfxAL/sRXi5hs8WlekMaZGUW6DnKy7nkLDIOb/gW2jUp/I+TuYp0OKvS?=
- =?us-ascii?Q?Ommpir2dARHR++pl34k6VpbLyxA2Kbx8kl1NJ6sG5VqvbVCYxV1CY6aiWEIm?=
- =?us-ascii?Q?OXQBHOqsP61Z2KYxiHovquBSP3CoktEZirlVjvFad/EPRRDuSQ7cIOt9Dlv7?=
- =?us-ascii?Q?HB5FeOnIMvJKYAKdBXhJiYdZSMmPqyyqt0SqinD3Pbg6Erp8fG7fA0CNxOys?=
- =?us-ascii?Q?hluB9ngtsLoL8Sxgx9hQ2Sx9xUvAcXtAh6TlM3qylWqsTAytN+V/KGjlIdVg?=
- =?us-ascii?Q?lASI40k72d/8Cs9rSV5gqQoqxw0N3d5jHh0dJbPMnXJypysvp12ELCvc70Lz?=
- =?us-ascii?Q?zZ/uKjqHOyaCvGkiYhOJRnfrmg32GHTesT4mMN0PDkt00VFitwVtN0jKTiH+?=
- =?us-ascii?Q?kCNWatjFHQl6qr8Bnb8mdQfrHiGqQMDHtGVOZLBPSNI8xB80FlENkqR5k9tG?=
- =?us-ascii?Q?PvRPc0sX189s/FR9KDiteDWh9pbXHM2blY8Ct39eikc9ZB81W7f9LdQVYRsK?=
- =?us-ascii?Q?lxWjKF3kacu/T86UidqnmulWAD6RRPDuW9jB/wzioOBKt6ks5UsxtXLa/I3V?=
- =?us-ascii?Q?jSZCRgXQAD8gSwh+vE60+s8=3D?=
-X-OriginatorOrg: in-advantage.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2f71c2b6-eb46-48ff-07ed-08dd671ffb6d
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR10MB6974.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2025 19:55:21.9878
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: or6pKZoWJuThhZgo/Mz8ej/W2mD7mcBAieuFrpO/OIB9DpxImRt82gxTRHZ7rDOed5RSkZqF8MSaIYMJrSTaslAn0lOyKVrXgXb0QCiL4k4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR10MB7664
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi Rasmus,
-
-On Wed, Mar 19, 2025 at 01:30:50PM +0100, Rasmus Villemoes wrote:
-> While reworking the spi and core files to allow hooking up another
-> underlying bus, I found what I think might be a bug in the SPI
-> implementation, for the case where the SPI bus is set higher than
-> 500kHz. But as I don't have such hardware, I don't know if the bug is
-> real, nor am I able to test my changes.
+On Wed Mar 19, 2025 at 1:21 PM CET, Alice Ryhl wrote:
+> On Wed, Mar 19, 2025 at 12:23:44AM +0000, Benno Lossin wrote:
+>> On Tue Mar 18, 2025 at 1:29 PM CET, Alice Ryhl wrote:
+>> > On Mon, Mar 17, 2025 at 10:23:56AM -0400, Tamir Duberstein wrote:
+>> >> Throughout the tree, use the strict provenance APIs stabilized in Rus=
+t
+>> >> 1.84.0[1]. Retain backwards-compatibility by introducing forwarding
+>> >> functions at the `kernel` crate root along with polyfills for rustc <
+>> >> 1.84.0.
+>> >>=20
+>> >> Use `#[allow(clippy::incompatible_msrv)]` to avoid warnings on rustc =
+<
+>> >> 1.84.0 as our MSRV is 1.78.0.
+>> >>=20
+>> >> In the `kernel` crate, enable the strict provenance lints on rustc >=
+=3D
+>> >> 1.84.0; do this in `lib.rs` rather than `Makefile` to avoid introduci=
+ng
+>> >> compiler flags that are dependent on the rustc version in use.
+>> >>=20
+>> >> Link: https://blog.rust-lang.org/2025/01/09/Rust-1.84.0.html#strict-p=
+rovenance-apis [1]
+>> >> Suggested-by: Benno Lossin <benno.lossin@proton.me>
+>> >> Link: https://lore.kernel.org/all/D8EIXDMRXMJP.36TFCGWZBRS3Y@proton.m=
+e/
+>> >> Signed-off-by: Tamir Duberstein <tamird@gmail.com>
+>> >
+>> > I'm not convinced that the pros of this change outweigh the cons. I
+>> > think this is going to be too confusing for the C developers who look =
+at
+>> > this code.
+>>=20
+>> 1) I think we should eliminate all possible `as` conversions. They are
+>>    non-descriptive (since they can do may *very* different things) and
+>>    ptr2int conversions are part of that.
+>> 2) At some point we will have to move to the provenance API, since
+>>    that's what Rust chose to do. I don't think that doing it at a later
+>>    point is doing anyone a favor.
 >
-> If desired, I can drop those changes
+> We don't *have* to do anything. Sure, most `as` conversions can be
+> removed now that we have fixed the integer type mappings, but I'm still
+> not convinced by this case.
+>
+> Like, sure, use it for that one case in `kernel::str` where it uses
+> integers for pointers for some reason. But most other cases, provenance
+> isn't useful.
+>
+>> 3) I don't understand the argument that this is confusing to C devs.
+>>    They are just normal functions that are well-documented (and if
+>>    that's not the case, we can just improve them upstream). And
+>>    functions are much easier to learn about than `as` casts (those are
+>>    IMO much more difficult to figure out than then strict provenance
+>>    functions).
+>
+> I really don't think that's true, no matter how good the docs are. If
+> you see `addr as *mut c_void` as a C dev, you are going to immediately
+> understand what that means. If you see with_exposed_provenance(addr),
+> you're not going to understand what that means from the name - you have
+> to interrupt your reading and look up the function with the weird name.
+>
+> And those docs probably spend a long time talking about stuff that
+> doesn't matter for your pointer, since it's probably a userspace pointer
+> or similar.
+>
+>> Thus I think we should keep this patch (with Boqun's improvement).
+>>=20
+>> >> diff --git a/rust/kernel/uaccess.rs b/rust/kernel/uaccess.rs
+>> >> index 719b0a48ff55..96393bcf6bd7 100644
+>> >> --- a/rust/kernel/uaccess.rs
+>> >> +++ b/rust/kernel/uaccess.rs
+>> >> @@ -226,7 +226,9 @@ pub fn read_raw(&mut self, out: &mut [MaybeUninit=
+<u8>]) -> Result {
+>> >>          }
+>> >>          // SAFETY: `out_ptr` points into a mutable slice of length `=
+len`, so we may write
+>> >>          // that many bytes to it.
+>> >> -        let res =3D unsafe { bindings::copy_from_user(out_ptr, self.=
+ptr as *const c_void, len) };
+>> >> +        let res =3D unsafe {
+>> >> +            bindings::copy_from_user(out_ptr, crate::with_exposed_pr=
+ovenance(self.ptr), len)
+>> >> +        };
+>> >>          if res !=3D 0 {
+>> >>              return Err(EFAULT);
+>> >>          }
+>> >> @@ -264,7 +266,7 @@ pub fn read<T: FromBytes>(&mut self) -> Result<T>=
+ {
+>> >>          let res =3D unsafe {
+>> >>              bindings::_copy_from_user(
+>> >>                  out.as_mut_ptr().cast::<c_void>(),
+>> >> -                self.ptr as *const c_void,
+>> >> +                crate::with_exposed_provenance(self.ptr),
+>> >>                  len,
+>> >>              )
+>> >>          };
+>> >
+>> > That's especially true for cases like this. These are userspace pointe=
+rs
+>> > that are never dereferenced. It's not useful to care about provenance
+>> > here.
+>>=20
+>> I agree for this case, but I think we shouldn't be using raw pointers
+>> for this to begin with. I'd think that a newtype wrapping `usize` is a
+>> much better fit. It can then also back the `IoRaw` type. AFAIU user
+>> space pointers don't have provenance, right? (if they do, then we should
+>> use this API :)
+>
+> We're doing that to the fullest extent possible already. We only convert
+> them to pointers when calling C FFI functions that take user pointers as
+> a raw pointer.
 
-I ran the patch set on my setup and everything worked. I was hopeful
-that it would solve a power sequencing issue that I came across a while
-back. It didn't, but the logic works and seems sound, so I say keep it!
+In our meeting, we discussed all of this in more detail. I now
+understand Alice's concern better: it's about userspace pointers, they
+don't have provenance and thus shouldn't use the strict provenance API.
 
-I'll review my parts and add the relevant testing tags.
+There are two possible solutions to this:
+* introduce a transparent `UserPtr` type that bindgen uses instead of a
+  raw pointer when it encounters a userspace pointer (annotated on the C
+  side).
+* use a `to_user_pointer` function instead of `without_provenance` to
+  better convey the meaning.
 
-Thanks for the update, and I'm glad it is being used!
+I prefer the first one, but it probably needs special bindgen support,
+so we should go with the second one until we can change it.
 
-Colin Foster
+
+Miguel also said that he wants to have a piece of documentation in the
+patch. I can write that, if he specifies a bit more what exactly it
+should contain :)
+
+---
+Cheers,
+Benno
+
 
