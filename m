@@ -1,349 +1,476 @@
-Return-Path: <devicetree+bounces-159018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159020-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB1D9A693B2
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 16:38:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50981A693BB
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 16:40:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F0261886928
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 15:26:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 41114462CE4
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 15:38:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E20B31C831A;
-	Wed, 19 Mar 2025 15:25:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D14151D5CD7;
+	Wed, 19 Mar 2025 15:37:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A59oNGUP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tw7aGefd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EDA719AD89;
-	Wed, 19 Mar 2025 15:25:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2BD916F8F5;
+	Wed, 19 Mar 2025 15:37:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742397955; cv=none; b=oi+F5qY++aJuss2buRyP7XYDyK3US/ZtqVEeBxBJGecV3SL4QGGdvruzl19H2rmOStqv2pTl8xGMG0ruKsSOQWUrjeNfUC7HPIR65Ml7h0XGXmb4vUn3zy1ZKVLwadO1+SPXhWTWChcABBr3zNDFirQhQp+LTSX2DZpDIA19IOo=
+	t=1742398666; cv=none; b=eM+7Kr4NtiX0ojuqJ+DOorIWdwXB4UCIDreJ3fOCK9szrUFoAyv0ufP6Y6Jg7hkwXObc392e3cdETuGmwTXR93H8O1qOtXMrE0AQkquECpOo+AXWf+5N85L4+lX8mCyfn5zMZ0inwPtXfyTM7oObZDwWqrxD8vXvQOtVXdHVfT8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742397955; c=relaxed/simple;
-	bh=GSdybhW8AtTRDSjGpokKdRNgMQ8ZN5r7sJW750qRBcQ=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Yr4rjOlAv1ON6P9KwM5OfxP+E33xHLl7xuCW6atEuj8tdoMUAhD9+NSNLpZv+O9LUGth1QDhwC1DZ8n3liRvgHDA28lKivj5YmC2OVp975CNlAkBr/4B2P9UIAOMIK6peAKGRWyOcQIMCaXtat9rcVB4Vdze2v8paL8R4Ykl9Vc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A59oNGUP; arc=none smtp.client-ip=209.85.222.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-7c54f67db99so74631985a.1;
-        Wed, 19 Mar 2025 08:25:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742397953; x=1743002753; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:feedback-id:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0dRxLmwmHXHr6GtvCU0orbDWdCCYD/w0yR2cKTu0vRk=;
-        b=A59oNGUPXdo3Q5MpvjSjAZu3D42YDyI2QjMuiTnldhcSLSzsCdqZx9wdliT1TIo3kG
-         1kjbefbBGMkiPjFnrA0WdorQmRvcxKVFOaVP48fE3tmM0u/44qQIkxBq2lcpLr/uq2sE
-         OhVw1b5hhbfkn0iyFrlvZ+pZJtX7jDHWl+WZ4X/HuPPMJaHuwUc94XjqVQUbuUAgHO+k
-         pMkcpOOo1rNoqsLKkwmBt3/OIDvmm0EMn3k3DSaIMCx1xI8hqbe8dfPcKlK4vCmbJJKp
-         JIRUDADrVX0qblgodR33dI1H0XUELIE4z7W/HewoIfrItlKTpjF85KCUeHVBzvWCMLIt
-         NMPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742397953; x=1743002753;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:feedback-id:message-id:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0dRxLmwmHXHr6GtvCU0orbDWdCCYD/w0yR2cKTu0vRk=;
-        b=G6lvqjpCots4DEZDCSoBLbBLtT54WoGaXm6F15OiDrQRQTEjX96DNK/h7EUs8+5h15
-         H1ineqAO6goWimwrNKanS+3G3ZgJoAETQZexAJvpw3cl6QPDjLpZ/pvsJa+3cecLKfnr
-         WiYne0NVVya0ay2SnOwUYtd8QxbpINCj3Gg/vIYSIwT6qTYTaKz76awxqOWy24d5w2AS
-         pOwbfK+rlnpWdjww9L4tWIdJc7ukMT0S0HHk/3PsIaHbWIcGb6pw9MczFhOH0sm+kxQv
-         bJIrzF3RrYRGZAIH7BwpShxWpIeLYVXp+R/Jjw6veIj/KkPUChmZSc2RZZBgkuavy+gw
-         5KHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUHu9r5rMYaoYcgsfKAeuFhnngrXsAaCxfu70g2Sjk3hCiQYcN6aYVqqSX5adX8Pcs04bWTBov//3CE@vger.kernel.org, AJvYcCUIypcML+pJllZEkI3+1vg1g6gmSc1dSUUULfiWcmEGiUnadfEFHFzDfcZEPvrLgtAuFb2HvoFuhUwRxU82k9aF@vger.kernel.org, AJvYcCWJDg8LofOr7mSVBZZzICMf6n/XiU4rqhW4+wA5QCrsLAeWG889i5RSxK+P+AYVHNZpVQj2l/wGJ0qroNdl@vger.kernel.org, AJvYcCWkFJeIgcEuSaHvDEfzWPNgiQkAgisy8MW92GGStLHBag9WRyuzCicKblYSQmMAv/NMSxrm9n5negNB@vger.kernel.org, AJvYcCXcilwBelpRS3NaYIGffS5OVflUOxi68FnTgueySR88h09n9/KpKZ8CuU1IN+7TLGRwe7wsxkw3Z6OOqKUatT0=@vger.kernel.org, AJvYcCXekxOF5rb1Eey4cT7gu8/o9pRBGTIHs6eog7nzZsnApyZTR58EOfFglcPcQwXHkV0g1GCyer2bojy3/XQ=@vger.kernel.org, AJvYcCXusO1TTAekihBbicX6ZU/JZVplfIYSrDhjAyktAAA7EwPDs/w1wm4VImTMkG7q0XTLsPWfYUDo3cuopCxk@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7WvmaLxRvNT/c+UZu0nfw42BfNowbfQ2GLkMjsVj6jnFJJ0cC
-	U6pfxOfBJnIntSmNN4LKQ878LmoeLIRAPElB/pqmr/ichLZLIElR
-X-Gm-Gg: ASbGncsNq/4ImL+En6JkouNSlCGoa96PEZCZlPfYHqbpEQTuAaBKJtg9DXo+V0m8Ei8
-	NbPCfMLB9vOt2pYhy/x7MHhx/ZQQA5i79kgnJXfGlXBiXc0ViCaV/VOPESuU1sbNhnotQW9t2V1
-	hoXA4vJlG4OKIHSPrcImrd6N/e5E0zW+g0BS+c9g9eEkLuo1jY+7e6bSd3B8MEMIPT6GQDoZIB8
-	sJt7qCiIhJFmG0EnOc6XoTST7DiDocNAP/BQh8ibhpKHStLHnlDIjwBs94mHy4sRECW4diWsRAS
-	qQ9gQR5cJocJ/YkqN3uGqf/9ZdnW+TXcfcbjyNcNgwGk3npdafJns70OX+f8uT1iiAUU9qcikRf
-	9GxTbKZ1RgVh/NCosWbfzDFINtTMcDs6UEA0=
-X-Google-Smtp-Source: AGHT+IFVrhTLu5tm/SS2KDvo65mSS3MmCZ2qx4V8rtqgqFC7AjZMtIevXLlXnSHHR2ZDCNYdn7QmAQ==
-X-Received: by 2002:ad4:4ee5:0:b0:6e4:6a67:2d12 with SMTP id 6a1803df08f44-6eb2962687cmr45220946d6.0.1742397952489;
-        Wed, 19 Mar 2025 08:25:52 -0700 (PDT)
-Received: from fauth-a1-smtp.messagingengine.com (fauth-a1-smtp.messagingengine.com. [103.168.172.200])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6eade2097fesm82103376d6.20.2025.03.19.08.25.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Mar 2025 08:25:51 -0700 (PDT)
-Message-ID: <67dae1ff.0c0a0220.1a88e4.f740@mx.google.com>
-X-Google-Original-Message-ID: <Z9rh_OE28CHJbviB@winterfell.>
-Received: from phl-compute-03.internal (phl-compute-03.phl.internal [10.202.2.43])
-	by mailfauth.phl.internal (Postfix) with ESMTP id 134251200078;
-	Wed, 19 Mar 2025 11:25:51 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-03.internal (MEProxy); Wed, 19 Mar 2025 11:25:51 -0400
-X-ME-Sender: <xms:_uHaZ6yZO68x2ZInLmvKXEPYH8wP5kowkKm8KQfXqmthuRTaIacx9A>
-    <xme:_uHaZ2QS90LNqN8IVKuWPQkRO2zhaJSgvz6MyeMd5u6v4gM6xlj4nDZLOguC2UHEH
-    CYtNHvOhwu43U4qIg>
-X-ME-Received: <xmr:_uHaZ8UESSHtTFxcRYwioYT87d88QzY4kGfHMaYoSdm6XLrDc5jVtOlwWhQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddugeehieelucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
-    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
-    gvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggujgesthdtredttddt
-    vdenucfhrhhomhepuehoqhhunhcuhfgvnhhguceosghoqhhunhdrfhgvnhhgsehgmhgrih
-    hlrdgtohhmqeenucggtffrrghtthgvrhhnpeeivedvieefgeelffehfeeuheetuefgueek
-    teduieeugfevhfdtkedvuedvhefghfenucffohhmrghinheprhhushhtqdhlrghnghdroh
-    hrghdpghhithhhuhgsrdgtohhmpdgtohhnshhtpghpthhrrdhrshenucevlhhushhtvghr
-    ufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegsohhquhhnodhmvghsmhhtph
-    gruhhthhhpvghrshhonhgrlhhithihqdeiledvgeehtdeigedqudejjeekheehhedvqdgs
-    ohhquhhnrdhfvghngheppehgmhgrihhlrdgtohhmsehfihigmhgvrdhnrghmvgdpnhgspg
-    hrtghpthhtohepfedvpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopegsvghnnhho
-    rdhlohhsshhinhesphhrohhtohhnrdhmvgdprhgtphhtthhopehtrghmihhrugesghhmrg
-    hilhdrtghomhdprhgtphhtthhopehmrghsrghhihhrohihsehkvghrnhgvlhdrohhrghdp
-    rhgtphhtthhopehnrghthhgrnheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepnhhitg
-    holhgrshesfhhjrghslhgvrdgvuhdprhgtphhtthhopehojhgvuggrsehkvghrnhgvlhdr
-    ohhrghdprhgtphhtthhopegrlhgvgidrghgrhihnohhrsehgmhgrihhlrdgtohhmpdhrtg
-    hpthhtohepghgrrhihsehgrghrhihguhhordhnvghtpdhrtghpthhtohepsghjohhrnhef
-    pghghhesphhrohhtohhnmhgrihhlrdgtohhm
-X-ME-Proxy: <xmx:_-HaZwhy30bky-9mi0EQnk_8rCsr43euu_6QuNnM4qizO8zkvJ68VA>
-    <xmx:_-HaZ8CBOjkURfhnQyLV-zidKQoiuF7RPkEFu6SJA4Ke9hTgh-m50w>
-    <xmx:_-HaZxJbYowySRmz20AKx6ToQpsBsrQiZouaLfooiFXeZhGlR2GquA>
-    <xmx:_-HaZzCE6Ca2uG6DNp3F3L4AAyCS1DtHPAwhS7b8NNwzpN4WfBHKTQ>
-    <xmx:_-HaZ0w1tPwhStbB5U8cjtzIsehslMlHTqNZTSQ0oSLNNhRv1TfAuOqQ>
-Feedback-ID: iad51458e:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 19 Mar 2025 11:25:50 -0400 (EDT)
-Date: Wed, 19 Mar 2025 08:25:48 -0700
-From: Boqun Feng <boqun.feng@gmail.com>
-To: Benno Lossin <benno.lossin@proton.me>
-Cc: Tamir Duberstein <tamird@gmail.com>,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Brendan Higgins <brendan.higgins@linux.dev>,
-	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,	linux-kbuild@vger.kernel.org,
- linux-kernel@vger.kernel.org,	rust-for-linux@vger.kernel.org,
- linux-kselftest@vger.kernel.org,	kunit-dev@googlegroups.com,
- linux-pci@vger.kernel.org,	linux-block@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 6/6] rust: use strict provenance APIs
-References: <67d864b2.0c0a0220.39fb6f.4df4@mx.google.com>
- <CAJ-ks9=uHjJrzM0ruvm4v4wr8LygRMP-1orWBy_9OiNNeQr0ow@mail.gmail.com>
- <CAJ-ks9=Qcmvbm=YGJ=jrX_+YdMsftk=FAimszYZB1OUuV4diZw@mail.gmail.com>
- <67d885ff.0c0a0220.111215.5644@mx.google.com>
- <CAJ-ks9kYB1b4XsQcFb=NScPq+R+13U+Sv-6opi-yp6=ZjuLD_g@mail.gmail.com>
- <67d88a1d.050a0220.2cdacf.4adf@mx.google.com>
- <CAJ-ks9kg4Br=56HT7T5sWpoMKhRqT_2x+cpQAWoyrEG3qyqQ6Q@mail.gmail.com>
- <67d895cc.050a0220.99d33.5adc@mx.google.com>
- <67d8ba3e.050a0220.39b3b5.753c@mx.google.com>
- <D8JA6Z142FKY.4RRGIN0PDDYQ@proton.me>
+	s=arc-20240116; t=1742398666; c=relaxed/simple;
+	bh=iSccAdrbMdSYTVoJGCyl+oR6D67tBx4631b4F9IOrl8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YvGm7m5f0KuQO5DQlhKMMExJdCOt/OzuhqB4vhSJHMbhiSxsNZJGqmdJ9qhJImCdHve0mRKnBMAsdRlNOXuU68NN+c1WzyQyqBksysSz4NaspK8IDWJEEoV8PxDR/2iO/OGeH2TqimPHbC12WzGlQZwpJBJlUmbEXwSY6JMYlVk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tw7aGefd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5992C4CEE4;
+	Wed, 19 Mar 2025 15:37:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742398666;
+	bh=iSccAdrbMdSYTVoJGCyl+oR6D67tBx4631b4F9IOrl8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tw7aGefd99U0Zye6b11gwjcvrU98QnWwsPTb1qdriFt8GaGN6oIlK++TRBAvdmygL
+	 RDPmQZwYkOQsyvTx9pQfk1Kf0EqAQM6/CcN6DJBJVXSFqVxdqkLJeTKLSX8HROEGdG
+	 20H11yXrYbQ7VK/rsNCEzoptvBdBTb0yBXVmozjie0NmunmaDKkFPQ2qp71m8+RDsz
+	 j4PofWlNvyJexTTNzf9Cb/nqEPFMfHDWF101lZ32O0HoXxLP3bbKv+B2U2D2KAY8n+
+	 J9e48F1GXFEvZMvpRMqAL7pn+rOQTpmPceIxSUCLs4dNHf3tnbeik+5i6vMS5aNPdH
+	 dFlEdu6PPp7rA==
+Date: Wed, 19 Mar 2025 16:37:43 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Dimitri Fedrau <dima.fedrau@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 2/2] pwm: add support for NXPs high-side switch
+ MC33XS2410
+Message-ID: <lzmsvwzidng7f6ybbfkusauohjya2rlyqrpprjc63y6pczo774@hklfplsgb3un>
+References: <20250110073755.29541-1-dima.fedrau@gmail.com>
+ <20250110073755.29541-3-dima.fedrau@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="rvlbwstdatw47xlj"
 Content-Disposition: inline
-In-Reply-To: <D8JA6Z142FKY.4RRGIN0PDDYQ@proton.me>
+In-Reply-To: <20250110073755.29541-3-dima.fedrau@gmail.com>
 
-On Tue, Mar 18, 2025 at 09:23:42AM +0000, Benno Lossin wrote:
-[..]
-> > +#![allow(clippy::incompatible_msrv)]
-> >  
-> > -#[cfg(not(CONFIG_RUSTC_HAS_STABLE_STRICT_PROVENANCE))]
-> > +#[cfg(not(CONFIG_RUSTC_HAS_EXPOSED_PROVENANCE))]
-> >  mod strict_provenance {
-> 
-> Since there is only a single trait and impl in here, I think we don't
-> need a module.
-> 
 
-We still need to provide stubs for with_exposed_provenance() and its
-friends for rustc == 1.78, so there are a few more functions in this
-module.
+--rvlbwstdatw47xlj
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v8 2/2] pwm: add support for NXPs high-side switch
+ MC33XS2410
+MIME-Version: 1.0
 
-> > -    /// Gets the "address" portion of the pointer.
-> > -    ///
-> > -    /// See https://doc.rust-lang.org/stable/core/primitive.pointer.html#method.addr.
-> > -    #[inline]
-> > -    pub fn addr<T>(ptr: *const T) -> usize {
-> > -        // This is core's implementation from
-> > -        // https://github.com/rust-lang/rust/commit/4291332175d12e79e6061cdc3f5dccac2e28b969 through
-> > -        // https://github.com/rust-lang/rust/blob/1.84.0/library/core/src/ptr/const_ptr.rs#L172
-> > -        // which is the first version that satisfies `CONFIG_RUSTC_HAS_STABLE_STRICT_PROVENANCE`.
-> > -        #[allow(clippy::undocumented_unsafe_blocks)]
-> > -        unsafe {
-> > -            #[allow(clippy::transmutes_expressible_as_ptr_casts)]
-> > -            core::mem::transmute(ptr.cast::<()>())
-> > -        }
-> > +    #[doc(hidden)]
-> > +    pub trait PtrExt<T> {
-> 
-> The `T` here and in the impl below probably should have a `?Sized`
-> bound, since that's also what the stdlib does.
-> 
+Hello Dimitri,
 
-Right, I was missing this.
-
-> > +        /// Exposes the "provenance" part of the pointer for future use in
-> > +        /// [`with_exposed_provenance`] and returns the "address" portion.
-> > +        ///
-> > +        /// See https://doc.rust-lang.org/stable/core/primitive.pointer.html#method.expose_provenance.
-> > +        fn expose_provenance(self) -> usize;
-> >      }
-> >  
-> > -    /// Exposes the "provenance" part of the pointer for future use in
-> > -    /// [`with_exposed_provenance`] and returns the "address" portion.
-> > -    ///
-> > -    /// See https://doc.rust-lang.org/stable/core/primitive.pointer.html#method.expose_provenance.
-> > -    #[inline]
-> > -    pub fn expose_provenance<T>(ptr: *const T) -> usize {
-> > -        ptr.cast::<()>() as usize
-> > +    impl<T> PtrExt<T> for *const T {
-> > +        #[inline]
-> > +        fn expose_provenance(self) -> usize {
-> > +            self.cast::<()>() as usize
-> > +        }
-> >      }
-> >  
-> >      /// Converts an address back to a pointer, picking up some previously 'exposed'
-> > @@ -131,8 +80,12 @@ pub fn without_provenance_mut<T>(addr: usize) -> *mut T {
-> >      }
-> >  }
-> >  
-> > +#[cfg(not(CONFIG_RUSTC_HAS_EXPOSED_PROVENANCE))]
-> >  pub use strict_provenance::*;
-> >  
-> > +#[cfg(CONFIG_RUSTC_HAS_EXPOSED_PROVENANCE)]
-> > +pub use core::ptr::{with_exposed_provenance, with_exposed_provenance_mut, without_provenance_mut};
-> 
-> We shouldn't need this any longer, right?
-> 
-
-We need re-export these for ructc >=1.79, because for rustc == 1.78 we
-only have kernel::expose_provenance() and its friends, therefore
-user-side can only use them.
-
-Regards,
-Boqun
-
+On Fri, Jan 10, 2025 at 08:37:55AM +0100, Dimitri Fedrau wrote:
+> The MC33XS2410 is a four channel high-side switch. Featuring advanced
+> monitoring and control function, the device is operational from 3.0 V to
+> 60 V. The device is controlled by SPI port for configuration.
+>=20
+> Signed-off-by: Dimitri Fedrau <dima.fedrau@gmail.com>
 > ---
-> Cheers,
-> Benno
-> 
-> > +
-> >  // Ensure conditional compilation based on the kernel configuration works;
-> >  // otherwise we may silently break things like initcall handling.
-> >  #[cfg(not(CONFIG_RUST))]
-> > diff --git a/rust/kernel/of.rs b/rust/kernel/of.rs
-> > index b70076d16008..3670676071ff 100644
-> > --- a/rust/kernel/of.rs
-> > +++ b/rust/kernel/of.rs
-> > @@ -22,7 +22,7 @@ unsafe impl RawDeviceId for DeviceId {
-> >      const DRIVER_DATA_OFFSET: usize = core::mem::offset_of!(bindings::of_device_id, data);
-> >  
-> >      fn index(&self) -> usize {
-> > -        crate::addr(self.0.data)
-> > +        self.0.data.addr()
-> >      }
-> >  }
-> >  
-> > diff --git a/rust/kernel/pci.rs b/rust/kernel/pci.rs
-> > index 87c9f67b3f0f..73958abdc522 100644
-> > --- a/rust/kernel/pci.rs
-> > +++ b/rust/kernel/pci.rs
-> > @@ -287,7 +287,7 @@ fn new(pdev: Device, num: u32, name: &CStr) -> Result<Self> {
-> >          // `pdev` is valid by the invariants of `Device`.
-> >          // `num` is checked for validity by a previous call to `Device::resource_len`.
-> >          // `name` is always valid.
-> > -        let ioptr = crate::expose_provenance(unsafe { bindings::pci_iomap(pdev.as_raw(), num, 0) });
-> > +        let ioptr = unsafe { bindings::pci_iomap(pdev.as_raw(), num, 0) }.expose_provenance();
-> >          if ioptr == 0 {
-> >              // SAFETY:
-> >              // `pdev` valid by the invariants of `Device`.
-> > diff --git a/rust/kernel/prelude.rs b/rust/kernel/prelude.rs
-> > index baa774a351ce..3ea6aa9e40e5 100644
-> > --- a/rust/kernel/prelude.rs
-> > +++ b/rust/kernel/prelude.rs
-> > @@ -41,3 +41,6 @@
-> >  pub use super::init::InPlaceInit;
-> >  
-> >  pub use super::current;
-> > +
-> > +#[cfg(not(CONFIG_RUSTC_HAS_EXPOSED_PROVENANCE))]
-> > +pub use super::PtrExt;
-> > diff --git a/rust/kernel/str.rs b/rust/kernel/str.rs
-> > index 6bc6357293e4..d8e740267f14 100644
-> > --- a/rust/kernel/str.rs
-> > +++ b/rust/kernel/str.rs
-> > @@ -8,6 +8,9 @@
-> >  
-> >  use crate::error::{code::*, Error};
-> >  
-> > +#[cfg(not(CONFIG_RUSTC_HAS_EXPOSED_PROVENANCE))]
-> > +use crate::PtrExt;
-> > +
-> >  /// Byte string without UTF-8 validity guarantee.
-> >  #[repr(transparent)]
-> >  pub struct BStr([u8]);
-> > @@ -692,9 +695,9 @@ fn new() -> Self {
-> >      pub(crate) unsafe fn from_ptrs(pos: *mut u8, end: *mut u8) -> Self {
-> >          // INVARIANT: The safety requirements guarantee the type invariants.
-> >          Self {
-> > -            beg: crate::expose_provenance(pos),
-> > -            pos: crate::expose_provenance(pos),
-> > -            end: crate::expose_provenance(end),
-> > +            beg: pos.expose_provenance(),
-> > +            pos: pos.expose_provenance(),
-> > +            end: end.expose_provenance(),
-> >          }
-> >      }
-> >  
-> > @@ -705,7 +708,7 @@ pub(crate) unsafe fn from_ptrs(pos: *mut u8, end: *mut u8) -> Self {
-> >      /// The memory region starting at `buf` and extending for `len` bytes must be valid for writes
-> >      /// for the lifetime of the returned [`RawFormatter`].
-> >      pub(crate) unsafe fn from_buffer(buf: *mut u8, len: usize) -> Self {
-> > -        let pos = crate::expose_provenance(buf);
-> > +        let pos = buf.expose_provenance();
-> >          // INVARIANT: We ensure that `end` is never less then `buf`, and the safety requirements
-> >          // guarantees that the memory region is valid for writes.
-> >          Self {
-> > diff --git a/scripts/Makefile.build b/scripts/Makefile.build
-> > index 08b6380933f5..b070da0ea972 100644
-> > --- a/scripts/Makefile.build
-> > +++ b/scripts/Makefile.build
-> > @@ -226,7 +226,7 @@ $(obj)/%.lst: $(obj)/%.c FORCE
-> >  # Compile Rust sources (.rs)
-> >  # ---------------------------------------------------------------------------
-> >  
-> > -rust_allowed_features := asm_const,asm_goto,arbitrary_self_types,lint_reasons
-> > +rust_allowed_features := asm_const,asm_goto,arbitrary_self_types,lint_reasons,exposed_provenance
-> >  
-> >  # `--out-dir` is required to avoid temporaries being created by `rustc` in the
-> >  # current working directory, which may be not accessible in the out-of-tree
-> > diff --git a/scripts/rustdoc_test_gen.rs b/scripts/rustdoc_test_gen.rs
-> > index 036635fb1621..331ed32adc35 100644
-> > --- a/scripts/rustdoc_test_gen.rs
-> > +++ b/scripts/rustdoc_test_gen.rs
-> > @@ -224,6 +224,8 @@ macro_rules! assert_eq {{
-> >          BufWriter::new(File::create("rust/doctests_kernel_generated.rs").unwrap()),
-> >          r#"//! `kernel` crate documentation tests.
-> >  
-> > +#![allow(clippy::incompatible_msrv)]
-> > +
-> >  const __LOG_PREFIX: &[u8] = b"rust_doctests_kernel\0";
-> >  
-> >  {rust_tests}
-> 
-> 
+>  drivers/pwm/Kconfig          |  12 ++
+>  drivers/pwm/Makefile         |   1 +
+>  drivers/pwm/pwm-mc33xs2410.c | 378 +++++++++++++++++++++++++++++++++++
+>  3 files changed, 391 insertions(+)
+>  create mode 100644 drivers/pwm/pwm-mc33xs2410.c
+>=20
+> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> index 0915c1e7df16..f513513f9b2f 100644
+> --- a/drivers/pwm/Kconfig
+> +++ b/drivers/pwm/Kconfig
+> @@ -411,6 +411,18 @@ config PWM_LPSS_PLATFORM
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called pwm-lpss-platform.
+> =20
+> +config PWM_MC33XS2410
+> +	tristate "MC33XS2410 PWM support"
+> +	depends on OF
+> +	depends on SPI
+> +	help
+> +	  NXP MC33XS2410 high-side switch driver. The MC33XS2410 is a four
+> +	  channel high-side switch. The device is operational from 3.0 V
+> +	  to 60 V. The device is controlled by SPI port for configuration.
+> +
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called pwm-mc33xs2410.
+> +
+>  config PWM_MESON
+>  	tristate "Amlogic Meson PWM driver"
+>  	depends on ARCH_MESON || COMPILE_TEST
+> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> index 9081e0c0e9e0..c75deeeace40 100644
+> --- a/drivers/pwm/Makefile
+> +++ b/drivers/pwm/Makefile
+> @@ -36,6 +36,7 @@ obj-$(CONFIG_PWM_LPC32XX)	+=3D pwm-lpc32xx.o
+>  obj-$(CONFIG_PWM_LPSS)		+=3D pwm-lpss.o
+>  obj-$(CONFIG_PWM_LPSS_PCI)	+=3D pwm-lpss-pci.o
+>  obj-$(CONFIG_PWM_LPSS_PLATFORM)	+=3D pwm-lpss-platform.o
+> +obj-$(CONFIG_PWM_MC33XS2410)	+=3D pwm-mc33xs2410.o
+>  obj-$(CONFIG_PWM_MESON)		+=3D pwm-meson.o
+>  obj-$(CONFIG_PWM_MEDIATEK)	+=3D pwm-mediatek.o
+>  obj-$(CONFIG_PWM_MICROCHIP_CORE)	+=3D pwm-microchip-core.o
+> diff --git a/drivers/pwm/pwm-mc33xs2410.c b/drivers/pwm/pwm-mc33xs2410.c
+> new file mode 100644
+> index 000000000000..432693b4f8eb
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-mc33xs2410.c
+> @@ -0,0 +1,378 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2024 Liebherr-Electronics and Drives GmbH
+> + *
+> + * Reference Manual : https://www.nxp.com/docs/en/data-sheet/MC33XS2410.=
+pdf
+> + *
+> + * Limitations:
+> + * - Supports frequencies between 0.5Hz and 2048Hz with following steps:
+> + *   - 0.5 Hz steps from 0.5 Hz to 32 Hz
+> + *   - 2 Hz steps from 2 Hz to 128 Hz
+> + *   - 8 Hz steps from 8 Hz to 512 Hz
+> + *   - 32 Hz steps from 32 Hz to 2048 Hz
+> + * - Cannot generate a 0 % duty cycle.
+> + * - Always produces low output if disabled.
+> + * - Configuration isn't atomic. When changing polarity, duty cycle or p=
+eriod
+> + *   the data is taken immediately, counters not being affected, resulti=
+ng in a
+> + *   behavior of the output pin that is neither the old nor the new stat=
+e,
+> + *   rather something in between.
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/delay.h>
+> +#include <linux/err.h>
+> +#include <linux/math64.h>
+> +#include <linux/minmax.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/pwm.h>
+> +
+> +#include <linux/spi/spi.h>
+> +
+> +#define MC33XS2410_GLB_CTRL			0x00
+> +#define MC33XS2410_GLB_CTRL_MODE		GENMASK(7, 6)
+> +#define MC33XS2410_GLB_CTRL_MODE_NORMAL		FIELD_PREP(MC33XS2410_GLB_CTRL_=
+MODE, 1)
+> +
+> +#define MC33XS2410_PWM_CTRL1			0x05
+> +/* x in { 1 ... 4 } */
+
+s/x/chan/
+
+> +#define MC33XS2410_PWM_CTRL1_POL_INV(chan)	BIT((chan) + 1)
+> +
+> +#define MC33XS2410_PWM_CTRL3			0x07
+> +/* x in { 1 ... 4 } */
+> +#define MC33XS2410_PWM_CTRL3_EN(chan)		BIT(4 + (chan) - 1)
+> +
+> +/* x in { 1 ... 4 } */
+> +#define MC33XS2410_PWM_FREQ(chan)		(0x08 + (chan) - 1)
+> +#define MC33XS2410_PWM_FREQ_STEP		GENMASK(7, 6)
+> +#define MC33XS2410_PWM_FREQ_COUNT		GENMASK(5, 0)
+> +
+> +/* x in { 1 ... 4 } */
+> +#define MC33XS2410_PWM_DC(chan)			(0x0c + (chan) - 1)
+> +
+> +#define MC33XS2410_WDT				0x14
+> +
+> +#define MC33XS2410_PWM_MIN_PERIOD		488282
+> +/* x in { 0 ... 3 } */
+
+s/x/step/
+
+> +#define MC33XS2410_PWM_MAX_PERIOD(step)		(2000000000 >> (2 * (step)))
+> +
+> +#define MC33XS2410_FRAME_IN_ADDR		GENMASK(15, 8)
+> +#define MC33XS2410_FRAME_IN_DATA		GENMASK(7, 0)
+> +#define MC33XS2410_FRAME_IN_ADDR_WR		BIT(7)
+> +#define MC33XS2410_FRAME_IN_DATA_RD		BIT(7)
+> +#define MC33XS2410_FRAME_OUT_DATA		GENMASK(13, 0)
+> +
+> +#define MC33XS2410_MAX_TRANSFERS		5
+> +
+> +static int mc33xs2410_write_regs(struct spi_device *spi, u8 *reg, u8 *va=
+l,
+> +				 unsigned int len)
+> +{
+> +	u16 tx[MC33XS2410_MAX_TRANSFERS];
+> +	int i;
+> +
+> +	if (len > MC33XS2410_MAX_TRANSFERS)
+> +		return -EINVAL;
+> +
+> +	for (i =3D 0; i < len; i++)
+> +		tx[i] =3D FIELD_PREP(MC33XS2410_FRAME_IN_DATA, val[i]) |
+> +			FIELD_PREP(MC33XS2410_FRAME_IN_ADDR,
+> +				   MC33XS2410_FRAME_IN_ADDR_WR | reg[i]);
+> +
+> +	return spi_write(spi, tx, len * 2);
+> +}
+> +
+> +static int mc33xs2410_read_regs(struct spi_device *spi, u8 *reg, u8 flag,
+> +				u16 *val, unsigned int len)
+> +{
+> +	u16 tx[MC33XS2410_MAX_TRANSFERS];
+> +	u16 rx[MC33XS2410_MAX_TRANSFERS];
+> +	struct spi_transfer t =3D {
+> +		.tx_buf =3D tx,
+> +		.rx_buf =3D rx,
+> +	};
+> +	int i, ret;
+> +
+> +	len++;
+> +	if (len > MC33XS2410_MAX_TRANSFERS)
+> +		return -EINVAL;
+> +
+> +	t.len =3D len * 2;
+> +	for (i =3D 0; i < len - 1; i++)
+> +		tx[i] =3D FIELD_PREP(MC33XS2410_FRAME_IN_DATA, flag) |
+> +			FIELD_PREP(MC33XS2410_FRAME_IN_ADDR, reg[i]);
+> +
+> +	ret =3D spi_sync_transfer(spi, &t, 1);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	for (i =3D 1; i < len; i++)
+> +		val[i - 1] =3D FIELD_GET(MC33XS2410_FRAME_OUT_DATA, rx[i]);
+> +
+> +	return 0;
+> +}
+> +
+> +static int mc33xs2410_write_reg(struct spi_device *spi, u8 reg, u8 val)
+> +{
+> +	return mc33xs2410_write_regs(spi, &reg, &val, 1);
+> +}
+> +
+> +static int mc33xs2410_read_reg(struct spi_device *spi, u8 reg, u16 *val,=
+ u8 flag)
+> +{
+> +	return mc33xs2410_read_regs(spi, &reg, flag, val, 1);
+> +}
+> +
+> +static int mc33xs2410_read_reg_ctrl(struct spi_device *spi, u8 reg, u16 =
+*val)
+> +{
+> +	return mc33xs2410_read_reg(spi, reg, val, MC33XS2410_FRAME_IN_DATA_RD);
+> +}
+> +
+> +static int mc33xs2410_modify_reg(struct spi_device *spi, u8 reg, u8 mask=
+, u8 val)
+> +{
+> +	u16 tmp;
+> +	int ret;
+> +
+> +	ret =3D mc33xs2410_read_reg_ctrl(spi, reg, &tmp);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	tmp &=3D ~mask;
+> +	tmp |=3D val & mask;
+> +
+> +	return mc33xs2410_write_reg(spi, reg, tmp);
+> +}
+> +
+> +static u8 mc33xs2410_pwm_get_freq(u64 period)
+> +{
+> +	u8 step, count;
+> +
+> +	/*
+> +	 * Check which step is appropriate for the given period, starting with
+> +	 * the highest frequency(lowest period). Higher frequencies are
+> +	 * represented with better resolution by the device. Therefore favor
+> +	 * frequency range with the better resolution to minimize error
+> +	 * introduced by the frequency steps.
+
+This is hard to understand as the argument is presented in several
+steps:
+	algo starts with high step values (that's not in the comment,
+		you have to take that from the switch statement)
+	high step represents high freq =3D low period
+	high freq yield better resolution
+	better resolution is what is favoured.
+
+After investing some time to reunderstand the rational here
+I suggest:
+
+	/*
+	 * Check which step [0 .. 3] is appropriate for the given
+	 * period. The period ranges for the different step values
+	 * overlap. Prefer big step values as these allow more
+	 * finegrained duty cycle selection.
+	 */
+
+> +	 */
+> +
+> +	switch (period) {
+> +	case MC33XS2410_PWM_MIN_PERIOD ... MC33XS2410_PWM_MAX_PERIOD(3):
+> +		step =3D 3;
+> +		break;
+> +	case MC33XS2410_PWM_MAX_PERIOD(3) + 1 ... MC33XS2410_PWM_MAX_PERIOD(2):
+> +		step =3D 2;
+> +		break;
+> +	case MC33XS2410_PWM_MAX_PERIOD(2) + 1 ... MC33XS2410_PWM_MAX_PERIOD(1):
+> +		step =3D 1;
+> +		break;
+> +	case MC33XS2410_PWM_MAX_PERIOD(1) + 1 ... MC33XS2410_PWM_MAX_PERIOD(0):
+> +		step =3D 0;
+> +		break;
+> +	}
+> +
+> +	/*
+> +	 * Round up here because a higher count results in a higher frequency
+> +	 * and so a smaller period.
+> +	 */
+> +	count =3D DIV_ROUND_UP((u32)MC33XS2410_PWM_MAX_PERIOD(step), (u32)perio=
+d);
+> +	return FIELD_PREP(MC33XS2410_PWM_FREQ_STEP, step) |
+> +	       FIELD_PREP(MC33XS2410_PWM_FREQ_COUNT, count - 1);
+> +}
+> +
+> +static u64 mc33xs2410_pwm_get_period(u8 reg)
+> +{
+> +	u32 freq, code, doubled_steps;
+> +
+> +	/*
+> +	 * steps:
+> +	 *   - 0 =3D 0.5Hz
+> +	 *   - 1 =3D 2Hz
+> +	 *   - 2 =3D 8Hz
+> +	 *   - 3 =3D 32Hz
+> +	 * frequency =3D (code + 1) x steps.
+> +	 *
+> +	 * To avoid losing precision in case steps value is zero, scale the
+> +	 * steps value for now by two and keep it in mind when calculating the
+> +	 * period that the frequency had been doubled.
+> +	 */
+> +	doubled_steps =3D 1 << (FIELD_GET(MC33XS2410_PWM_FREQ_STEP, reg) * 2);
+> +	code =3D FIELD_GET(MC33XS2410_PWM_FREQ_COUNT, reg);
+> +	freq =3D (code + 1) * doubled_steps;
+
+doubled_freq?
+
+> +	/* Convert frequency to period, considering the doubled frequency. */
+> +	return DIV_ROUND_UP(2 * NSEC_PER_SEC, freq);
+> +}
+> +
+> +static int mc33xs2410_pwm_apply(struct pwm_chip *chip, struct pwm_device=
+ *pwm,
+> +				const struct pwm_state *state)
+> +{
+> +	struct spi_device *spi =3D pwmchip_get_drvdata(chip);
+> +	u8 reg[4] =3D {
+> +			MC33XS2410_PWM_FREQ(pwm->hwpwm + 1),
+> +			MC33XS2410_PWM_DC(pwm->hwpwm + 1),
+> +			MC33XS2410_PWM_CTRL1,
+> +			MC33XS2410_PWM_CTRL3
+> +		    };
+> +	u64 period, duty_cycle;
+> +	int ret, rel_dc;
+> +	u16 rd_val[2];
+> +	u8 wr_val[4];
+> +	u8 mask;
+> +
+> +	period =3D min(state->period, MC33XS2410_PWM_MAX_PERIOD(0));
+> +	if (period < MC33XS2410_PWM_MIN_PERIOD)
+> +		return -EINVAL;
+> +
+> +	ret =3D mc33xs2410_read_regs(spi, &reg[2], MC33XS2410_FRAME_IN_DATA_RD,=
+ rd_val, 2);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* frequency */
+> +	wr_val[0] =3D mc33xs2410_pwm_get_freq(period);
+> +	/* Continue calculations with the possibly truncated period */
+> +	period =3D mc33xs2410_pwm_get_period(wr_val[0]);
+> +
+> +	/* duty cycle */
+> +	duty_cycle =3D min(period, state->duty_cycle);
+> +	rel_dc =3D div64_u64(duty_cycle * 256, period) - 1;
+> +	if (rel_dc < 0)
+> +		wr_val[1] =3D 0;
+> +	else
+> +		wr_val[1] =3D rel_dc;
+> +
+> +	/* polarity */
+> +	mask =3D MC33XS2410_PWM_CTRL1_POL_INV(pwm->hwpwm + 1);
+> +	wr_val[2] =3D (state->polarity =3D=3D PWM_POLARITY_INVERSED) ?
+> +		    (rd_val[0] | mask) : (rd_val[0] & ~mask);
+> +
+> +	/*
+> +	 * As the hardware cannot generate a 0% relative duty cycle but emits a
+> +	 * constant low signal when disabled, also disable in the duty_cycle =
+=3D 0
+> +	 * case.
+> +	 */
+> +	mask =3D MC33XS2410_PWM_CTRL3_EN(pwm->hwpwm + 1);
+> +	wr_val[3] =3D (state->enabled && rel_dc >=3D 0) ? (rd_val[1] | mask) :
+> +						      (rd_val[1] & ~mask);
+
+This is wrong for inversed polarity I think.
+
+> +	return mc33xs2410_write_regs(spi, reg, wr_val, 4);
+> +}
+> +
+> [..]
+> +static int mc33xs2410_probe(struct spi_device *spi)
+> +{
+> +	struct device *dev =3D &spi->dev;
+> +	struct pwm_chip *chip;
+> +	int ret;
+> +
+> +	chip =3D devm_pwmchip_alloc(dev, 4, 0);
+> +	if (IS_ERR(chip))
+> +		return PTR_ERR(chip);
+> +
+> +	spi->bits_per_word =3D 16;
+> +	spi->mode |=3D SPI_CS_WORD;
+> +	ret =3D spi_setup(spi);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	pwmchip_set_drvdata(chip, spi);
+> +	chip->ops =3D &mc33xs2410_pwm_ops;
+> +	ret =3D mc33xs2410_reset(dev);
+
+What does this reset? Does it change the output signal if the bootloader
+already setup the hardware? The answer to that has to go into a comment.
+(And if it interupts the output, better skip the reset part.)
+
+> +	if (ret)
+> +		return ret;
+
+Best regards
+Uwe
+
+--rvlbwstdatw47xlj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmfa5MUACgkQj4D7WH0S
+/k4kXwgAp6os1qo1UO9Vfw8zQFjDTpw+qxSb5nssObJkzAmlM2jYxcKPQ96ojEx3
+74hYuFP77E5HKJ254QAR4m//0havY8YrkQX21UnSAWTIxTIxNIAnGsK/zq0qjEev
++TZBHpRoFTwcXwoKWBNfm1NhZvxHmudTTiInu06rk5QYNlPT3vcbMI9+1aLcKMn4
+rVTurindRrULMF8qnIorUrblsAfWgWMMD7oukwbubqeM4fBBcAVlJEeAzIw0OC5+
+n4hQ9kwIDLS16wqcJcq+J9RFfC8Z955j4S4hy1owyy26qQEiODxwl0+PRmICcVb7
+QXpyJ8WVyYTf9OjOp5UzMnxZly5d/A==
+=uDxk
+-----END PGP SIGNATURE-----
+
+--rvlbwstdatw47xlj--
 
