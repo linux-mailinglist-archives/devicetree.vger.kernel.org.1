@@ -1,161 +1,160 @@
-Return-Path: <devicetree+bounces-158920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BE52A68901
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 11:03:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68D07A688FA
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 11:01:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 878083ACA03
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 09:59:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B7FEE165B64
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 10:01:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27E8E2505CA;
-	Wed, 19 Mar 2025 09:59:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C739202C5C;
+	Wed, 19 Mar 2025 10:01:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="pp/sMAVL";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="XTsKLwFy"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FvWuU1Da"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A887A20CCD6;
-	Wed, 19 Mar 2025 09:59:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7767D1DD889
+	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 10:01:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742378387; cv=none; b=IteIQGw84JD2Etw3G3MDwCDuVgUqYuI27JU5TznsSgQivaH9/SHohi0zdAVqGwCTLqtL4Z+83fUYeX2xtgoZ2/ASQhqUV6jTGvqFi+sQ8mZay2GDx34D/H3aSAW5EGu5HF30VYJ7Chsf1bGovDgqYrYlHT2qlrEiHY0JfXHavRQ=
+	t=1742378504; cv=none; b=jFypeZbr6a0m8atkbmuvgu/5PK72rC9ylW3WKQ8viZNq4JUy7gaF0xqQhNt8jrIlvR9t0BQZd81Jp09OpS9cyVSw8Qbit18t6dp7KKA47DEXU72oBzybOJMEU2kE5gDrZ3VV3IDX2KP+4eqxsh9w+QObNFex2WqbZtLE5YCGN0E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742378387; c=relaxed/simple;
-	bh=A7/fZiQcIOJ5NJ0ZIQ3qSpzwWLkKdoNXZfhF+uZsw6M=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FJ5T6q01VL2Whb6jB6wU6WsC8cOaYQEWhibAuemPsSm+nFtTefVU4nERHDzldgqGR2VJQ7+pgfe+kf6DVqM42xjnCNkaeMR+NxLdrcoPlAe2HnDpF9iJKkIbjHvWHy+7XiBzT2TH/gJRTgG+t1BeVXfz1FEYmFHKbRDn2NOWsG8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=pp/sMAVL; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=XTsKLwFy reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1742378384; x=1773914384;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=GlT/C20cWGKRSDi1pjWsYB6aiO4zGZT8fzSlsIsRNJs=;
-  b=pp/sMAVLMst7v8AuvmFb1YvyDxc066YMwOKdxOSEa7YREozsVqrTNoGN
-   PmdDEJPPCEqLFfF9NyOfJUIOqKPz1GAjvUG5hlkErtG+C0/slrrglKTwl
-   PsNV7TLM7EDfcqX5iiYue0FV65E9oLOFfvPQACr/1KD3FHC+vhlR2ORtz
-   S78Zsm5fjqoULo/MtLTPZHVmr+Nt4gDM17cK0psn6e4FklTJ9DM90cGnR
-   MC95Pc0P8pw6EUhjt5ZArWQWSeD+PKNuHVoVVEd84dJepCWPg3HVb+nhS
-   q6DgmUWHpKUqfWdTib3rjdcmfgGYyLqvgJNnbfi+4NUZp0XrcDG3TkP40
-   Q==;
-X-CSE-ConnectionGUID: xLtByYCFRwm1Mpj9OTlMyg==
-X-CSE-MsgGUID: xhT83+S8RHS7Vf1VWKmArA==
-X-IronPort-AV: E=Sophos;i="6.14,259,1736809200"; 
-   d="scan'208";a="43041375"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 19 Mar 2025 10:59:35 +0100
-X-CheckPoint: {67DA9587-18-7141A0B0-E6EDEC14}
-X-MAIL-CPID: B0D1A9EB8A7FE01E6C3F0B58B214D668_3
-X-Control-Analysis: str=0001.0A00639D.67DA957C.0053,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 695011609D3;
-	Wed, 19 Mar 2025 10:59:29 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1742378370;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=GlT/C20cWGKRSDi1pjWsYB6aiO4zGZT8fzSlsIsRNJs=;
-	b=XTsKLwFytC12f2y9DCUDnDU+amWCWgwRNDRiqQi5I4Bsc4+JxbzXJfuaHE1in7liXkSSNr
-	57rK2Q+kycs4U5FtJNk0kZO0Z9gl9cWEqa1ePkJX7V8vLrtrlR4CjrrKIME9oS1H6ezQGT
-	PYNwhJb5SKVHoB6uU+t/DZ3BSpogTvdEGezueBbqfnOuVOerS1QmJ/iTLgk0uw8Zd9K/Gr
-	1EbJvqeWMsPNMMKd2cAOwY9DJ8e4CIyBgXpqVFxyPApeyMItEMHfebPRBtSRGViDsSmed7
-	FN4cwFtkkLO7GipfLuEAM4vtFz6YI9gfqJCNdgC2be1h0r7rFAN3T6fT239+Pw==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: shawnguo@kernel.org, robh@kernel.org, linux-arm-kernel@lists.infradead.org
-Cc: s.hauer@pengutronix.de, kernel@pengutronix.de, krzk+dt@kernel.org,
- conor+dt@kernel.org, festevam@gmail.com, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, frank.li@nxp.com, aisheng.dong@nxp.com,
- daniel.baluta@gmail.com, laurentiu.mihalcea@nxp.com, shengjiu.wang@nxp.com,
- iuliana.prodan@nxp.com, a.fatoum@pengutronix.de, mathieu.poirier@linaro.org,
- linux-remoteproc@vger.kernel.org, Daniel Baluta <daniel.baluta@nxp.com>,
- Peng Fan <peng.fan@nxp.com>, Daniel Baluta <daniel.baluta@nxp.com>
-Subject: Re: [PATCH v6 2/5] arm64: dts: imx8mp: Add mu2 root clock
-Date: Wed, 19 Mar 2025 10:59:28 +0100
-Message-ID: <4999695.31r3eYUQgx@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20250319094621.2353442-3-daniel.baluta@nxp.com>
-References:
- <20250319094621.2353442-1-daniel.baluta@nxp.com>
- <20250319094621.2353442-3-daniel.baluta@nxp.com>
+	s=arc-20240116; t=1742378504; c=relaxed/simple;
+	bh=XUe+jsxf6CToNNlzFKXj0FuOYSurMgVx9HLYqUtrkAE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=a2xCVhKo3HPMh5Q15WyPl2I5RYX13NodlgdKs/1zskNRVdEs5HqZtambpou5j97dHX26pihuqSFbFb5zy4kQUVziWlfugslR0eQSTnIy40ZMsq30ENNSJ/jPBC9PWHM+TyZ/6uTgt7+RQz7gTqQXN4+DmXxbu1SZkmVMSjP/uSk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FvWuU1Da; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52J4lhI8020655
+	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 10:01:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=6ar7fCbKOyGZpKMOTQA5T0v9
+	4HfMi68v9XDsZNUCZ7Q=; b=FvWuU1Daaxee/BDGkLvLgqqvZWHnpWs/fPlhMvUp
+	CQ5/POZUPHyvQl4f9sl2XyT9xOAPHlE+EEskQZPL8bNPpVEOeNNdLlk02SUFDCs1
+	coOw1ypM/a1jqILUU88yc4gY47LhEUdVLnTmLrRlKguqtI8z0auolSsl+Cunh3Ld
+	GFCyMEulA4h/35pSI610co/Zvl38EsMXhCeuKN9OuEVO2aK6y4sC7YedaPzgJEh3
+	DHYMboN689VPlZJlrQar9CV5Px/ZOmQmo2mF0Qng/A0kyXwnkLV05p1AdYBkDlnh
+	7lU5RMvnudsC+V1orFMKWProvBhXIiPKYYu4Wj8/pd67yQ==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45exx34wh5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 10:01:41 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-47682f9e7b9so113002211cf.2
+        for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 03:01:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742378500; x=1742983300;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6ar7fCbKOyGZpKMOTQA5T0v94HfMi68v9XDsZNUCZ7Q=;
+        b=WJ3q1lMrfHKPGaiv+vDM8zg2kZ2preP1jIHGkww6ysTAnqpQLPgeRaPrbtZAsoDlHh
+         VmHznvWIg7j+ICvtS1gs2yC1N97CIuv0FjNMCpg3YUK+KjZYPucLqo8ZFF3IIY94GYUQ
+         X6lbDsMmaGIJ1GnG4UDafKBTJFXrzZQ5+mSLU4C5uvK72bqxuH0irLCOvfKpjiThl65c
+         t3d8z2jSuSm3tckKYcb77s7yODB1rhHfpf8v2DpVfena9n96F/7YQQ6qPbM6gaJuMvzo
+         LWvrwpHjk1haWSREmfP/ZM1p8Y8udXr7cTJSnHtxZMZLo1H/td8YJ4Cf9W4m6T5D/2qy
+         9Ymw==
+X-Forwarded-Encrypted: i=1; AJvYcCUiVIRl7Rqug8EPjBbGCZzjIw6a8hVmdx++sQe3E5V7vFleC3rZmI+nDg8ANyDvJxFuvXTuGNfzDecO@vger.kernel.org
+X-Gm-Message-State: AOJu0YwAIL1WOpHGu+xzBcfv7+QcD0uPptHrPq8sOpbbN5LDGWA5ZwwJ
+	oAfp57nZEJBcIt+zwaXQg4Y24rfvDivevzLYXqYcMQSNh69Ugc9aD85ZWLVxzqwkJfvICG9hcrO
+	WU3m74za+bJyidrR0CGXCzd7q/AJhAfLfFWVUN+uRNVwS//IE3d7ItpmPpGQw
+X-Gm-Gg: ASbGncvJNHkerTP+A+C4cmXZyL4fy2AEeIN7H4QXurg1xwB5WuJCcFW3RZdSVJHU8De
+	gOhm9jAVqQetSYe9HXhemmZekBdPoEkn8+BDsTGY+4HREuEmM/hJWG7IgO3sJo3N5SwmsWiaovt
+	4/VB8G7M/GBYFLYf1XvY2JMcn/xbkHw7s/OlIfYXyFQprXA/uMyQUPLgbTExLOaA833aJjAeHOG
+	kme5xDef7fmwb5vQrbVF2UpKCG54u5ghZWgouTSjLyVRXnswpgVKZbgIi6A2c3jxm1a6BI92wSA
+	f1fqWmGJUWlmUiky8QDdsAllUIa6UxldmbPNuNky1ka+koz+Ca8elbbGUotf3TgLfdDWUJ1ljHM
+	utCA=
+X-Received: by 2002:a05:622a:198f:b0:476:9e28:ce49 with SMTP id d75a77b69052e-477083fa83fmr36529551cf.43.1742378500201;
+        Wed, 19 Mar 2025 03:01:40 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGn/8jRnkAWhCa8HlPDdGVL0sr7qdZWUT3wVBvjOrwpblEM6Qa/FT2Y56cp1uYZGIz0DEa7Vg==
+X-Received: by 2002:a05:622a:198f:b0:476:9e28:ce49 with SMTP id d75a77b69052e-477083fa83fmr36528881cf.43.1742378499705;
+        Wed, 19 Mar 2025 03:01:39 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-549ba7a8352sm1962602e87.7.2025.03.19.03.01.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Mar 2025 03:01:38 -0700 (PDT)
+Date: Wed, 19 Mar 2025 12:01:37 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: srinivas.kandagatla@linaro.org
+Cc: broonie@kernel.org, andersson@kernel.org, lgirdwood@gmail.com,
+        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        konradybcio@kernel.org, perex@perex.cz, tiwai@suse.com,
+        dmitry.baryshkov@linaro.org, linux-sound@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, johan+linaro@kernel.org
+Subject: Re: [PATCH 1/3] ASoC: dt-bindings: wcd93xx: add bindings for audio
+ switch controlling hp
+Message-ID: <4ie22uuz5tpg77jto3c3hec6lhonr44hrjda7jk655axlaxvba@u3atd4gcyghn>
+References: <20250319091637.4505-1-srinivas.kandagatla@linaro.org>
+ <20250319091637.4505-2-srinivas.kandagatla@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250319091637.4505-2-srinivas.kandagatla@linaro.org>
+X-Authority-Analysis: v=2.4 cv=b+uy4sGx c=1 sm=1 tr=0 ts=67da9605 cx=c_pps a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=KKAkSRfTAAAA:8 a=BBAQEGfUMlneDKUuzf4A:9 a=CjuIK1q_8ugA:10 a=kacYvNCVWA4VmyqE58fU:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: UHDZ7x0j9qR4HHOUlChVe_1_FqzAaTCn
+X-Proofpoint-GUID: UHDZ7x0j9qR4HHOUlChVe_1_FqzAaTCn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-19_03,2025-03-17_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 phishscore=0
+ bulkscore=0 clxscore=1015 mlxlogscore=700 priorityscore=1501 mlxscore=0
+ lowpriorityscore=0 malwarescore=0 impostorscore=0 adultscore=0
+ suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503190068
 
-Hi,
+On Wed, Mar 19, 2025 at 09:16:35AM +0000, srinivas.kandagatla@linaro.org wrote:
+> From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> 
+> On some platforms to minimise pop and click during switching between
+> CTIA and OMTP headset an additional HiFi Switch is used. Most common
+> case is that this switch is switched on by default, but on some
+> platforms this needs a regulator enable.
 
-Am Mittwoch, 19. M=E4rz 2025, 10:46:18 CET schrieb Daniel Baluta:
-> Enable MU2 node and add mu2 root clock.
-> MU2 is used to communicate with DSP core.
->=20
-> Reviewed-by: Iuliana Prodan <iuliana.prodan@nxp.com>
-> Reviewed-by: Peng Fan <peng.fan@nxp.com>
-> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+Is this regulator supplying the codec or some external component? In the
+latter case it's likely that it should not be a part of WCD bindings.
+
+> This patch adds required bindings to add such regulator.
+> 
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 > ---
->  arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 4 ++++
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi    | 1 +
->  2 files changed, 5 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/bo=
-ot/dts/freescale/imx8mp-evk.dts
-> index c26954e5a605..d2fdb420f2d3 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> @@ -690,6 +690,10 @@ dsi_out: endpoint {
->  	};
->  };
-> =20
-> +&mu2 {
-> +	status =3D "okay";
-> +};
+>  .../devicetree/bindings/sound/qcom,wcd93xx-common.yaml        | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,wcd93xx-common.yaml b/Documentation/devicetree/bindings/sound/qcom,wcd93xx-common.yaml
+> index f78ba148ad25..fa00570caf24 100644
+> --- a/Documentation/devicetree/bindings/sound/qcom,wcd93xx-common.yaml
+> +++ b/Documentation/devicetree/bindings/sound/qcom,wcd93xx-common.yaml
+> @@ -26,6 +26,10 @@ properties:
+>    vdd-mic-bias-supply:
+>      description: A reference to the 3.8V mic bias supply
+>  
+> +  vdd-hp-switch-supply:
+> +    description: A reference to the audio switch supply
+> +      for switching CTIA/OMTP Headset
 > +
+>    qcom,tx-device:
+>      $ref: /schemas/types.yaml#/definitions/phandle-array
+>      description: A reference to Soundwire tx device phandle
+> -- 
+> 2.39.5
+> 
 
-I think this is supposed to be part of patch 5.
-
->  &pcie_phy {
->  	fsl,refclk-pad-mode =3D <IMX8_PCIE_REFCLK_PAD_INPUT>;
->  	clocks =3D <&pcie0_refclk>;
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/=
-dts/freescale/imx8mp.dtsi
-> index 3b725fe442d0..deb98f03180a 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -1254,6 +1254,7 @@ mu2: mailbox@30e60000 {
->  				interrupts =3D <GIC_SPI 136 IRQ_TYPE_LEVEL_HIGH>;
->  				#mbox-cells =3D <2>;
->  				status =3D "disabled";
-> +				clocks =3D <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_MU2_ROOT>;
-
-Please keep status as the last property.
-
-Best regards
-Alexander
-
->  			};
-> =20
->  			i2c5: i2c@30ad0000 {
->=20
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
-
+-- 
+With best wishes
+Dmitry
 
