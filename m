@@ -1,119 +1,214 @@
-Return-Path: <devicetree+bounces-158935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87484A689D5
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 11:42:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 724AFA689E5
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 11:46:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 491563ABAF0
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 10:41:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3616E3BD439
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 10:46:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1BDF2505B2;
-	Wed, 19 Mar 2025 10:42:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E46E253330;
+	Wed, 19 Mar 2025 10:46:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="X4EAX8i2"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="eojFYqSu";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="BZ8UaIc4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ED3A1E1E0C;
-	Wed, 19 Mar 2025 10:41:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DC9820D516;
+	Wed, 19 Mar 2025 10:46:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742380921; cv=none; b=ZaN6MeMqoBD22cXbQp+/oQEMvsDY4jeChxFaEmpqlfZmzP6r05CSqopRtuBSc9a+rqNjJrTavVFmx+igPMG8V+IykJs9+9GrN9kSZ9Urv9n8QZ3q2eQLfqvoBa7e9uSSm//W/qmjUbpTaHkOji6WAQYT7+blBfEnA2HhQJvmATo=
+	t=1742381170; cv=none; b=emozhNIyIw6uiDif979zAHD6fJOuQPyzyJuPEZPkuM+jW8ulxiAO1moES2gRWsANZPxBo4AHRAStq43QYHu7xU5V/4lwaDBmAKnUchjL9KApmHh9hpLa6yWKB27msK45te4azUa7xgBgbdYg+FW4Isq15CuDAYLzAsaRboDaD8M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742380921; c=relaxed/simple;
-	bh=Yr8Y2Du55o9P3Pl0RIuFcErJNK2KF8M6MrjAvGzvtk4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LkVsJe+li1xWHrNXi+wU+uLVSyZzKK+kzRthC4zwYPQju8c2zWE/5Xai30RlqeU4UYX1gg2A2sVqVpMdVHUe0/mr90DRftS77AFeMhQ7C88WJPRO1cDOKpupmYmdbFHD/vIAVJxqs22ULoreOLSGZ/T1CETLoebjmDUK/jEC/Mg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=X4EAX8i2; arc=none smtp.client-ip=65.109.113.108
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id DE88740E0196;
-	Wed, 19 Mar 2025 10:41:56 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
-Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
-	header.d=alien8.de
-Received: from mail.alien8.de ([127.0.0.1])
-	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id TVXHJIq9QTTQ; Wed, 19 Mar 2025 10:41:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
-	t=1742380913; bh=t3X6/NLTS8ezkuarlOZMucgxr0JOZCZcdd9Cy1iwOmM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=X4EAX8i2oTK/tC7WkQgtg/v+IQFu+Hc52lJlXUKmyzo+GtNQxopWI5y4oYp62oid/
-	 SeqKimNh4WDiKkFcrL55jSAXWiYFmi3VxE1rKS/dKkj9p0dd2kw8nj8d5fYxTf4L37
-	 Uz7tBApG0QL7bMk3CwdNLpErtrNtJX1tLOD22z9IuQ8OFTqepU4eDV9tBkJ7+G1459
-	 w1LGjfmPjrKo+qhFm8P3D/m5zJX2DRi3Xx6pknOgvztKtfWxs7ZySx1nCrEy/+FY8h
-	 GN3cotp6WwTNI63l1MsOqJO5niwjABdCR0gnAHiF7ZFz84IdZf0+pnLzNjSBbaeqxi
-	 pFR6NCCySM6tQI/EpelVY7r0Gwoy2ZK9iBedAGRZHVoWN90XBcAkpgu/rwZPeWQxhB
-	 wQEaM6gA1FERj2Z4z9gNHc10zPlCCdvxsd0uHxGvDXWHttJH4LZxVqRw+UEPILgJVv
-	 MG1HT49/gBBM2M+nVO0Tgy0myjE+tKD04l+oBKRAWTRpZGrsFbKiaGz8sc04OawGJW
-	 iwQcdw/NZbIk4r18F/u/S9bHKVSTRl1tgUYhiIkPObq8sX1XXe6UNIhp4z6SlYx8qW
-	 imZxV0n1kk5jRFix1o7FmNbh6EYxkliQpCbZjTlHy9QvnWYZo4apDJstKI8v3qq+Yx
-	 p1ySQqqjTc3R3hk9MSHYaLXk=
-Received: from zn.tnic (pd95303ce.dip0.t-ipconnect.de [217.83.3.206])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
-	(No client certificate requested)
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 0B0AE40E016E;
-	Wed, 19 Mar 2025 10:41:40 +0000 (UTC)
-Date: Wed, 19 Mar 2025 11:41:34 +0100
-From: Borislav Petkov <bp@alien8.de>
-To: "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Tony Luck <tony.luck@intel.com>,
-	James Morse <james.morse@arm.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Robert Richter <rric@kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
-	"git (AMD-Xilinx)" <git@amd.com>
-Subject: Re: [PATCH v5 5/5] EDAC: Versal NET: Add support for error
- notification
-Message-ID: <20250319104134.GKZ9qfXkfKDSqJRzG2@fat_crate.local>
-References: <20250106053358.21664-1-shubhrajyoti.datta@amd.com>
- <20250106053358.21664-6-shubhrajyoti.datta@amd.com>
- <20250211094002.GAZ6sa8l_2BdJQfk0I@fat_crate.local>
- <SA1PR12MB89472E1EF3BDE072EEEF17B181CD2@SA1PR12MB8947.namprd12.prod.outlook.com>
- <20250303175527.GDZ8XtD5pOTtLUe16B@fat_crate.local>
- <SA1PR12MB8947D2A37B834687E6EE000A81CB2@SA1PR12MB8947.namprd12.prod.outlook.com>
+	s=arc-20240116; t=1742381170; c=relaxed/simple;
+	bh=wdzbIG89ILmfdRfnET9Mz/54vv7kkqUfjyTq7a9Bg1k=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=h/KB6d8AkT02Cx1zZkqRGuM/W/3+CCKknsoYmLMFUuLGrmHxPvvmsn+UzpKHB2x6WtWg1mkbAsNoTn41BAgk3y+NrUpbh3nQSUaALb+lYyn9qF2YJnOk1Ps0cO5txrBb/rgPOnXgXzvX35M1+UnMkC9heo6/z+NqE/Bjh5NtghM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=eojFYqSu; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=BZ8UaIc4 reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1742381163; x=1773917163;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:content-transfer-encoding:mime-version;
+  bh=0xp8wZXae5VanysmSaTD4UwbCcT2o03h21ZLo1WcA20=;
+  b=eojFYqSuJD2cWrg1gI88GDk1kJ6BbRmTG//wO0jrU35nO2L1soqwH+Ea
+   keUTSV/Pu4zo3PYfrirSxrWrlu45tJmr/dDA0UNboLzH/SWFlb9/QIxsf
+   W/kHCHzII0z7bHguBJxfhuFzN6KUj4W752bDYtv6o+3eusFWVoh6jzhSU
+   uLnN8LeOeB82FiGBRV3/yclMYm7moY68z5Thz79wC89kHyOBF3MNZz42g
+   580j8G0+2SEe+qqTP+8AbTf1LaF119CWO9D8mgJCqCCK8N8yXig3xH4xd
+   3NHcplfR0iNpDaYHGKOMq+cjE3i47xTv38IDOc8nvEqj0GuAGn726iNwp
+   A==;
+X-CSE-ConnectionGUID: n4PRbILrSsGE8eU7TLjslg==
+X-CSE-MsgGUID: aqLRDqtmTYCviUseDgPqXw==
+X-IronPort-AV: E=Sophos;i="6.14,259,1736809200"; 
+   d="scan'208";a="43043019"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 19 Mar 2025 11:45:59 +0100
+X-CheckPoint: {67DAA067-6-7141A0B0-E6EDEC14}
+X-MAIL-CPID: EC45CA4B4EB15768664355E4B2B4000F_3
+X-Control-Analysis: str=0001.0A006377.67DAA05D.0079,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4DF8C1609D8;
+	Wed, 19 Mar 2025 11:45:52 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1742381154;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=0xp8wZXae5VanysmSaTD4UwbCcT2o03h21ZLo1WcA20=;
+	b=BZ8UaIc4rW62iANkjv4y+02NULdJxO4IRwZ4rbF7c7WmHf+n63Bxqh4uH9ppGL+AfxAXKA
+	wrvl8zaUx37mzY1TNvUN+SghpXZnyqlvbYmlMUbOkjZNfnI9kp2Ro8hflLB1trlKUz+aZd
+	snV9IgsiDXw3jTUR0ZWRM2FozRxN8xBOHOPrWWW0dWuR2IBRfIx3+EDHAsDYtSuMv/IfgI
+	+dpRzcoc02RxmwS2kmDcH7bKqbES6xO9pAOR3+eFC0cw3OMLOnlGRtJayd2tfbGadoqwbx
+	+DDaH9Bjv272T1UVxJvGE+eD8miYo48momsoNaHzXIi4H3KImosrWzLLsEta+Q==
+Message-ID: <e6ee878f655c31473bca54e4187d9006a19158b1.camel@ew.tq-group.com>
+Subject: Re: [PATCH v2 5/5] arm64: dts: ti: Add TQ-Systems TQMa62xx SoM and
+ MBa62xx carrier board Device Trees
+From: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Kees Cook <kees@kernel.org>,
+ Tony Luck <tony.luck@intel.com>, "Guilherme G. Piccoli"
+ <gpiccoli@igalia.com>, Felipe Balbi <balbi@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, Devarsh Thakkar <devarsht@ti.com>, Hari
+ Nagalla <hnagalla@ti.com>, linux@ew.tq-group.com
+Date: Wed, 19 Mar 2025 11:45:51 +0100
+In-Reply-To: <2953e10c-0a57-4d49-b831-3864a07eefd5@lunn.ch>
+References: <cover.1733737487.git.matthias.schiffer@ew.tq-group.com>
+	 <95ff66ca2c89f69d893c2ce9eed9a0c677633c7b.1733737487.git.matthias.schiffer@ew.tq-group.com>
+	 <a9c5cfda-e3e3-436a-8d05-b2f096157cfe@lunn.ch>
+	 <c902a56cf34838f60cee67624bb923e91d74e9e0.camel@ew.tq-group.com>
+	 <d25b1447-c28b-4998-b238-92672434dc28@lunn.ch>
+	 <e16076d16349e929af82fa987a658bff1d9804c4.camel@ew.tq-group.com>
+	 <a2a2f201-73a4-4a99-baef-0d593a88c872@lunn.ch>
+	 <309052f3f69950fe43390505cc7254aee8c8f5c6.camel@ew.tq-group.com>
+	 <2953e10c-0a57-4d49-b831-3864a07eefd5@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.3-0ubuntu1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <SA1PR12MB8947D2A37B834687E6EE000A81CB2@SA1PR12MB8947.namprd12.prod.outlook.com>
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Wed, Mar 05, 2025 at 05:18:19AM +0000, Datta, Shubhrajyoti wrote:
-> The loop iterates through all 8 controllers, checking their configuration
-> registers.  It looks for the first enabled controller by verifying if its
-> device width (dt) is not DEV_UNKNOWN.  Once it finds the first valid
-> controller, it breaks out of the loop and registers that one
+On Tue, 2024-12-10 at 20:54 +0100, Andrew Lunn wrote:
+>=20
+> On Tue, Dec 10, 2024 at 10:56:41AM +0100, Matthias Schiffer wrote:
+> > On Mon, 2024-12-09 at 17:14 +0100, Andrew Lunn wrote:
+> > >=20
+> > > > Not our board, but the AM62 SoC. From the datasheet:
+> > > >=20
+> > > > "TXC is delayed internally before being driven to the RGMII[x]_TXC =
+pin. This
+> > > > internal delay is always enabled." So enabling the TX delay on the =
+PHY side
+> > > > would result in a double delay.
+> > >=20
+> > > phy-mode describes the board. If the board does not have extra long
+> > > clock lines, phy-mode should be rgmii-id.
+> > >=20
+> > > The fact the MAC is doing something which no other MAC does should be
+> > > hidden away in the MAC driver, as much as possible.
+> >=20
+> > Isn't it kind of a philosophical question whether a delay added by the =
+SoC
+> > integration is part of the MAC or not? One could also argue that the MA=
+C IP core
+> > is always the same, with some SoCs adding the delay and others not. (I =
+don't
+> > know if there are actually SoCs with the same IP core that don't add a =
+delay;
+> > I'm just not a big fan of hiding details in the driver that could easil=
+y be
+> > described by the Device Tree, thus making the driver more generic)
+>=20
+> It is more about, what does phy-mode =3D "rgmii"; mean? It means the
+> board provides the delay via extra long clock lines. Except for when
+> some random MAC driver has a completely different meaning, it is not
+> documented it means something else, you have to read the sources and
+> the mailing lists, to find out what this particularly MAC driver is
+> doing for phy-mode =3D "rgmii".
+>=20
+> Do we really want that. Or should we define that phy-mode =3D "rgmii"
+> means the PCB provides the delay. End of story, no exceptions. And
+> that "rgmii-id" means the MAC/PHY pair need to provide the delay? End
+> of story, no exceptions.
 
-So the first enabled controller doesn't have an unknown device width. Ok, put
-a comment above that loop pls.
 
-Also, if no controller is enabled, that driver will continue probing with
-num_chans of the last controller. Which is wrong. You need to handle that too.
+Hi Andrew,
 
-I'd suggest you put that loop first (or as early as possible) in the probe
-function to avoid all kinds of unnecessary unwinding when it doesn't detect
-an enabled controller.
+I've just thought about this issue again. As mentioned, a number of MAC
+drivers(*) implement what is described here:
 
-And so on...
+https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
+/Documentation/devicetree/bindings/net/ethernet-controller.yaml?h=3Dv6.13#n=
+77
 
-Thx.
 
--- 
-Regards/Gruss,
-    Boris.
+That is, the delay is either added by the PHY or the MAC; having a delay on=
+ the
+PCB is simply not supported. Fixing MAC drivers to interpret the values wit=
+hout
+"id" to mean that there is a delay on the PCB will break existing Device Tr=
+ees,
+so that's no good.
 
-https://people.kernel.org/tglx/notes-about-netiquette
+As a first step, I'd update the docs to describe the intended behavior, but
+mention that some drivers implement it wrong. The question is how to deal w=
+ith
+the wrong behavior going forward. I see the following options, but none spa=
+rk
+joy for me...
+
+- Keep current driver behavior forever where fixing it would break existing
+  Device Trees
+- Deprecate all existing "rgmii*" values because of their inconsistent
+  implementation, come up with new ones. Seems like a huge pain to add supp=
+ort
+  for in all MAC drivers and other code that deals with PHY modes...
+- Introduce an additional DTS flag next to phy-mode to express that the
+  phy-mode is supposed to be interpreted correctly
+
+Do you have any suggestions?
+
+Best,
+Matthias
+
+
+
+(*) At a glance, at least the following MAC drivers appear to configure a d=
+elay,
+making it impossible to support delays on the PCB with the current
+implementation:
+- renesas/ravb_main.c
+- stmicro/stmmac/dwmac-* (some variants)
+- ti/cpsw-phy-sel.c (incomplete; does not distinguish between RX and TX del=
+ays)=20
+- Some other MAC drivers check for specific PHY_INTERFACE_MODE_RGMII* value=
+s,
+  which also doesn't seem completely correct
+
+
+
+--=20
+TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
+any
+Amtsgericht M=C3=BCnchen, HRB 105018
+Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
+neider
+https://www.tq-group.com/
 
