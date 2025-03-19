@@ -1,142 +1,114 @@
-Return-Path: <devicetree+bounces-158839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D668CA6847E
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 06:11:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8CBAA6848D
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 06:22:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D939E7AA802
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 05:10:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 442784215E3
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 05:22:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72737212B04;
-	Wed, 19 Mar 2025 05:10:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CBDC20F060;
+	Wed, 19 Mar 2025 05:22:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Uan0LUyJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a4IlS7cP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE6D2A29;
-	Wed, 19 Mar 2025 05:10:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A3D0382;
+	Wed, 19 Mar 2025 05:22:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742361052; cv=none; b=SJytOdlCZKQmU6zHCmqeejLnaYIaLbwuKA/5Iel+7UPlMIjsUAckV/rfhsRu337TFC9BZw5lB79LRTODzbWwW3ts+diODCJEK5nBcBSzdm8tSW8qfTdocxvj+OPOQVV765cEC7H/Xu/VZIbWeozJ25M+mqtWC8R0Wd1oLW6ebQ4=
+	t=1742361764; cv=none; b=OlR2INR7z1NDWxbWnUOnXEPHOyuDIBP4MvoKkkaOnwYuGYYCUbRQ3exGcBUKus39H0T0SO1wq4Cb2nKa1NOdiEc9n7iKmZ2ldt7boSanv6R9e1o48XNPBexf95af9xRO1cUI2vCizqarHv7XBGm3tyjRKtbZL7Qe8MxUuQvXNf4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742361052; c=relaxed/simple;
-	bh=9K6WGiNyXLEWMf+pKTpq+vrMLUXATUFTZFZdLOxv080=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=YpTmF+0TeWVYQues8VCMVIs+JMG6DdnLJIPQTBiXqYir7SI4CXF4cLlRdUK+51D9Zt49A3Ifil7aJlFJfqQw3D5ycQ8jm7dJVy6/2FUiN8h0nJViWRaf7nxvR1gIKjQLbOf1kCdibGfkggtOGFJNBq+XecnXDjKHmiTEBk1gJqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Uan0LUyJ; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-224341bbc1dso122690145ad.3;
-        Tue, 18 Mar 2025 22:10:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742361050; x=1742965850; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=wXTO+0tQ4++St4DdogFMVrtMcS1fXva0YCFwwmEEQwg=;
-        b=Uan0LUyJvp5kUvbmGDhi2Ho71X6s06kRX7tmGjhPtGzSJsGkpK80GgYl6ZX+tkzjBu
-         q56Q9L5WzpasIJAHO/7AfP2WQMHOWcrULpn4l6KAfNfypOhEnRAZ2UCExkOahFOwyVkl
-         5/55Prj7kCRD46BdJZPdh4duHzzqDSSyqw4ooOxvsZoG0TOkGehGEH7kHbDft+LDGvZG
-         AyClNES5SoEyshCbTaLtjc5KfWTPuG4EHWc1itkrpF76s/V6+GtQ2T7jJ15bgP++8e1O
-         tbdJUWRaxiV4gagz5VTAZCDIq+ulVuPFiUFv+eacfaOQ3c8Kp/RbZkShjWs9IwZj1GHb
-         BQPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742361050; x=1742965850;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wXTO+0tQ4++St4DdogFMVrtMcS1fXva0YCFwwmEEQwg=;
-        b=RmPU8YJJvgi3qQBNrIe+xzEYWgB6TAmxWC8tcpVVSFmRyuoPeo3m9kTZ1RpeqpslVs
-         YC+Osla+9X9zk8zWVs/G5Z7CQL4Khc9m2G4eBhsamFPLNtWSsVtafETdH/i1XESzKiNd
-         ro0YXT6Q/rmtdk/DWob6So2z7BF9QFNXQ+I6XVjp7gV49ZllDgQRkl1HX3fNhvYO5Z/O
-         f/1kZ59yMkWChMgN0/xSynfIYAhlzs1FbR/YgRKXjkfageGcdvooBZGF03rUFRSCskXq
-         oKHQtcGm3Ryp7cNHJleGEcYeIftLoW14CYA3DCBiKW6znOw9i3LRnSdxYgj4gxZASWAH
-         N6Jg==
-X-Forwarded-Encrypted: i=1; AJvYcCUIVi9QseBNsJcNAgm1FIevMKV3YFjJ+HBqAKcaO8Ps4xoRH/OR4ORmXjwdvA0e5db1oQyHXIOAGNkO@vger.kernel.org, AJvYcCXRdL09q9kZvHKVsPiY8FJe6zU+mZpbGE7zJa1hFwysxe+KTRZS79sSdxU1tDT9aBlnePBr/YdqRFWp7s5A@vger.kernel.org
-X-Gm-Message-State: AOJu0YyTf+2kYOm72kkuguC3vtPBmVXbMRYkB+YD24trY5NpNc/JJYho
-	KXhDaiHmYGkMSP7sp3UwzSqUICV3tYMzDJ6+dMKkzB3gOdE64SkM
-X-Gm-Gg: ASbGncucpmvMXyjo4uDbdliLaFReM4dbG4BvC68iLcTALalTV/3ae0In/Qof4fWMrnj
-	44xk/MukLk8w0jRSIhmlB8GFPvjyTYL1qiZHZRkQR1BjsEzRvuqje7HTWTCz5lfZW1sCHhda/pV
-	LkRx/9v9ZzW2R1Hw6Q0z5LDTtF+KuWBEBI24D4wU0P7OHp/wkgxkW+2phFD1+qQ8Eaz6vC5cD3V
-	MTry03+Xgqo3l4Riloa67aPDYa8AeUAcbbJdf3VV/SzMGuwFjRns2FiR1gjwSG535w4NIiNSgZq
-	Qec5iU8S7pLEjwIrReIkhtkr/G1/mLI+apOb1slSAidlTS/sBrI0CwSN
-X-Google-Smtp-Source: AGHT+IFTXoznq4fx5P6CPA89QSOAflxCU5yvg1s0ajp9P3YZ7yIgXjNFD8ZSqqeIfJxVBlzub+qshg==
-X-Received: by 2002:a17:902:d542:b0:224:6a7:a5b0 with SMTP id d9443c01a7336-226497ffafdmr21169865ad.2.1742361049976;
-        Tue, 18 Mar 2025 22:10:49 -0700 (PDT)
-Received: from [127.0.1.1] ([2601:644:8501:1640:50a3:6f80:2290:6f18])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-225c6bd4af3sm104875715ad.236.2025.03.18.22.10.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Mar 2025 22:10:49 -0700 (PDT)
-From: Rudraksha Gupta <guptarud@gmail.com>
-Date: Tue, 18 Mar 2025 22:10:47 -0700
-Subject: [PATCH] ARM: dts: qcom-msm8960: add missing clocks to the timer
- node
+	s=arc-20240116; t=1742361764; c=relaxed/simple;
+	bh=d4PbB06NR/lx+xA+bbBpqYwnNNX/TZz6zR/JsUmdDRA=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=muOhEjfmXhsUQL/iD6b+HnZt7Iih8KtHrCScz7GatqmbyNVpZ8JBqk7RmrLENhl00bJif3CgqbZ27PBHCCiW+E1twuAKzeJaA/C6EijjmdaV8PbQom6zL/tkHC1r1n7p8PA8LXMr1eKlQVZEezlla09kHqXju2ziiJh+t5nn90o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a4IlS7cP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65896C4CEEA;
+	Wed, 19 Mar 2025 05:22:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742361763;
+	bh=d4PbB06NR/lx+xA+bbBpqYwnNNX/TZz6zR/JsUmdDRA=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=a4IlS7cPcNplgTwqvNVHgRXuYuVQ5VbI93l15KxSSnRXdYn+oUkMhXBtulwpbkuvx
+	 i2hT5HA/rglD/wzA3uilcN+bw95BpA6Zl+4YmqdVLmqLBpAcjFt+kA331G26Y5Ddzp
+	 YVWbeTMOK/HL21VuUnYecgO0eyoTfZoCYGKeING/nHCZJlL/uHMTfKDc5uPjemmVAC
+	 mlI90AIW8/S+NVuIF91zqABhc/7uI97gWoGEwe1+LKcNFp0uFMk0wcwHG6GVvdrPDE
+	 wuWjSl+dxUB1PIHpWnoHpwCMB5VAw59jMWJ1aSL4sk5u4S9GjLDtI/TcNqHeqaj5Mw
+	 NLAPuABFCoBYg==
+Date: Wed, 19 Mar 2025 00:22:42 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250318-expressatt-solve-dts-errors-v1-1-14012a4bc315@gmail.com>
-X-B4-Tracking: v=1; b=H4sIANZR2mcC/x3MQQqAMAwAwa9IzgasorR+RTxIm2pArCRFBPHvF
- o8Dyz6gJEwKY/WA0MXK6SgwdQV+W46VkEMxtE3bN52xSPcppLrkjJr2izBkRRJJotj1LrrgjLe
- Dh3IoZeT7v0/z+34sNfB2bQAAAA==
-X-Change-ID: 20250318-expressatt-solve-dts-errors-359f9d91c86c
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Rudraksha Gupta <guptarud@gmail.com>
-X-Mailer: b4 0.15-dev-8865a
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1742361048; l=1226;
- i=guptarud@gmail.com; s=20250208; h=from:subject:message-id;
- bh=9K6WGiNyXLEWMf+pKTpq+vrMLUXATUFTZFZdLOxv080=;
- b=p8A5nK0/sXen7GL7s5HAwito2uNahUCx2fiGdVzczqj6Glh75RylsoP03ocoRAugv/441fS0x
- tZ2f1yOTa8nAsJh2/DT/GXT/TajbUBocF62lWcyUKsl6IxpeuDYNMjM
-X-Developer-Key: i=guptarud@gmail.com; a=ed25519;
- pk=5lJNaiR/Bu7edToWFLriO5zXOrVqSQWrBKbAKwuEw04=
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, linux-iio@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Jonathan Cameron <jic23@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>
+To: Kim Seer Paller <kimseer.paller@analog.com>
+In-Reply-To: <20250319-togreg-v1-3-d8244a502f2c@analog.com>
+References: <20250319-togreg-v1-0-d8244a502f2c@analog.com>
+ <20250319-togreg-v1-3-d8244a502f2c@analog.com>
+Message-Id: <174236176222.620075.12480666866175403765.robh@kernel.org>
+Subject: Re: [PATCH 3/4] dt-bindings: iio: dac: Add adi,ad3530r.yaml
 
-In order to fix DT schema warning and describe hardware properly, add
-missing sleep clock to the timer node.
 
-Solved by Dmitry Baryshkov on the APQ8064 SoC
-Link: https://lore.kernel.org/all/20250318-fix-nexus-4-v2-6-bcedd1406790@oss.qualcomm.com/
+On Wed, 19 Mar 2025 11:47:57 +0800, Kim Seer Paller wrote:
+> The AD3530R/AD3530 is an 8-Channel, 16-Bit Voltage Output DAC, while the
+> AD3531R/AD3531 is a 4-Channel, 16-Bit Voltage Output DAC. These devices
+> include software-programmable gain controls that provide full-scale
+> output spans of 2.5V or 5V for reference voltages of 2.5V. They operate
+> from a single supply voltage range of 2.7V to 5.5V and are guaranteed to
+> be monotonic by design. Additionally, these devices features a 2.5V,
+> 5ppm/°C internal reference, which is disabled by default.
+> 
+> This adds the documentation for ad3530r.
+> 
+> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+> ---
+>  .../devicetree/bindings/iio/dac/adi,ad3530r.yaml   | 89 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  1 +
+>  2 files changed, 90 insertions(+)
+> 
 
-Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
----
-Running the following no longer returns any errors:
-make ARCH=arm CHECK_DTBS=y qcom/qcom-msm8960-cdp.dtb
-make ARCH=arm CHECK_DTBS=y qcom/qcom-msm8960-samsung-expressatt.dtb
----
- arch/arm/boot/dts/qcom/qcom-msm8960.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+My bot found errors running 'make dt_binding_check' on your patch:
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-index 865fe7cc3951..06b3fa5e1acf 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-@@ -112,6 +112,8 @@ timer@200a000 {
- 				     <GIC_PPI 3 0x301>;
- 			reg = <0x0200a000 0x100>;
- 			clock-frequency = <27000000>;
-+			clocks = <&sleep_clk>;
-+			clock-names = "sleep";
- 			cpu-offset = <0x80000>;
- 		};
- 
+yamllint warnings/errors:
 
----
-base-commit: ffd294d346d185b70e28b1a28abe367bbfe53c04
-change-id: 20250318-expressatt-solve-dts-errors-359f9d91c86c
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.example.dtb: adc@0: pwm-names: ['convst1'] is too short
+	from schema $id: http://devicetree.org/schemas/iio/adc/adi,ad7606.yaml#
 
-Best regards,
--- 
-Rudraksha Gupta <guptarud@gmail.com>
+doc reference errors (make refcheckdocs):
+Warning: Documentation/arch/powerpc/cxl.rst references a file that doesn't exist: Documentation/ABI/testing/sysfs-class-cxl
+Warning: lib/Kconfig.debug references a file that doesn't exist: Documentation/dev-tools/fault-injection/fault-injection.rst
+Documentation/arch/powerpc/cxl.rst: Documentation/ABI/testing/sysfs-class-cxl
+lib/Kconfig.debug: Documentation/dev-tools/fault-injection/fault-injection.rst
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250319-togreg-v1-3-d8244a502f2c@analog.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
