@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-158996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 111D1A68F15
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 15:29:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB9B8A68F11
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 15:29:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 04E38174B34
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 14:26:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1DF623ABDFD
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 14:26:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE3011C3BF1;
-	Wed, 19 Mar 2025 14:25:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55CE81D63F9;
+	Wed, 19 Mar 2025 14:25:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=proton.me header.i=@proton.me header.b="iJnRTbTc"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="h0bujmvl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-10629.protonmail.ch (mail-10629.protonmail.ch [79.135.106.29])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B45A18BC36;
-	Wed, 19 Mar 2025 14:25:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.135.106.29
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5C401AF0D7;
+	Wed, 19 Mar 2025 14:25:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742394347; cv=none; b=gS7BtHdZSsjo38VEBFaoZW70BNuPkU2gtVkkh8MhXekftKVlcxckCGq31JurIzWcKmZSMasQwyFjTGYZk00i/o3PIVa+fn2/QkcljS1fN8xnIdEbrky+UFN0NYSLzKSYzaAT+zvbFTpcI0mnYgvSSt5ooJMyUcrL6bryLuGsbwQ=
+	t=1742394349; cv=none; b=YkdU8MghQE6IICBw8ZzQ8UFUdv+ePfzQyjQDQx3oS9IM/9eImY+HfeEad4+z27a6jIQ7bcNOw7iAUa19we1m+wQKj+Yc9vlbjViGfT3HdniW/w+xYsOKvDbt+UK2cXop6KeLLFvJHwvm3gAn8JBl1MA80c2t2VL3A/6aJhiUOhs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742394347; c=relaxed/simple;
-	bh=QjvonDKsUZ4V2iHv4/1U+AOqOqV/gfEXuo3Gcj7IC+0=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nh60dKIChPtPRRLdPc47VuFk8VqOjHWNbhvVsDa95hvslreCU2mMSdpEjIUHQLUohCuATF2Bo7pT7JYnbDIvHYML7uYA5lw1LQTzBrvkpElTrMgv6oXZywCKhNaZFoC2FcENWCOQIMQKBRpG2ZO0vr5i4Mlk/Veg/XzaaRssTu8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me; spf=pass smtp.mailfrom=proton.me; dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b=iJnRTbTc; arc=none smtp.client-ip=79.135.106.29
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=proton.me
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
-	s=vrle5chyzvelni2thueqk7aiii.protonmail; t=1742394341; x=1742653541;
-	bh=QzhvFGzMYNRsuB/5rn3tyDmEPC9S1uTQvs7bilK0myo=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
-	b=iJnRTbTck6nxRS/SxHCsvttxYgnywoVmmrKnn/tl56xuKAnWWDFK+fKXFAT3OeShj
-	 TQ5mMAlWWjL0Pq+Dcfme0Apn8FsLJl8yQNl/p49IY7sdoi0nFvNsyjy/lxs28n20ec
-	 v7Xfb+Q6dqA2w7s+iK8fyanWa4aS18OwabFgWrm5SKN4dQd32mC2Oj2x29IViyuh14
-	 Q8QKrnlrkNQB70Q9pXtRifybiraRdeEdlkMuF+liSYg2Ch+s5/AT6ZCFTpqoy1sQxc
-	 Sij/gGAsvpMZ1bSJQfJeJ+NDpsr5tVb+9I+oMrMT5EfcO3dR0QrHV9MV7V65XRkj85
-	 IKO6P4YFCk/ZA==
-Date: Wed, 19 Mar 2025 14:25:35 +0000
-To: Alice Ryhl <aliceryhl@google.com>
-From: Benno Lossin <benno.lossin@proton.me>
-Cc: Tamir Duberstein <tamird@gmail.com>, Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, =?utf-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas Hindborg <a.hindborg@kernel.org>, Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com,
-	linux-pci@vger.kernel.org, linux-block@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 6/6] rust: use strict provenance APIs
-Message-ID: <D8KB8OW0SDQJ.B0BDYQPT3NAH@proton.me>
-In-Reply-To: <Z9q2xpwsNMDzZ2Gp@google.com>
-References: <20250317-ptr-as-ptr-v5-0-5b5f21fa230a@gmail.com> <20250317-ptr-as-ptr-v5-6-5b5f21fa230a@gmail.com> <Z9lnIJCcVSza6UVo@google.com> <D8JTC30W0NF6.17SR73Y9I99ZT@proton.me> <Z9q2xpwsNMDzZ2Gp@google.com>
-Feedback-ID: 71780778:user:proton
-X-Pm-Message-ID: b823c4633caec0aa5f392421097f913030dfea86
+	s=arc-20240116; t=1742394349; c=relaxed/simple;
+	bh=h+cdS3pTwJUVuEV6GWnYBg/ZoOiO0Y9wWE4vjGoAuvw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ju17+/kelVMIaqrlmUkUo0Vy11uQ5rHg0KaqJPamGwkP5c4JlgAQlDRi6Cbc5ILKf8srkA1lhvN13UOvaeyEgJFbgtE2WUkqNk0H4nq6EO23jNy52B/ZRGkc1q61YAREjYqnvl5kKzbpiiJ69QFiW5zmswxV2sLflJEJxSf87bU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=h0bujmvl; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id CB51355A;
+	Wed, 19 Mar 2025 15:24:00 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1742394241;
+	bh=h+cdS3pTwJUVuEV6GWnYBg/ZoOiO0Y9wWE4vjGoAuvw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=h0bujmvl5pn9HbXHhdQ4XKMx1Y5uDd2NqnHkzFfKPPg2qPv+7+CHlhFUsEW1U4NWQ
+	 VDXYll0xmbkCO5BbFySJmeti3o8j3Q7DinRQLS+RgDumGljxWQiyfyI00ZyUrBoK6d
+	 gLc4I7v7+xSWiRpfrybobTPGRyIizM15uRmkQZI4=
+Date: Wed, 19 Mar 2025 15:25:40 +0100
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Hans Verkuil <hverkuil@xs4all.nl>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 5/7] media: rcar-isp: Move driver to own directory
+Message-ID: <2i2jtexgxiar2qwgpp3ujgshezj7fxo52f7n5xlexi7ieajimw@qwdw5e7dypet>
+References: <20250315152708.328036-1-niklas.soderlund+renesas@ragnatech.se>
+ <20250315152708.328036-6-niklas.soderlund+renesas@ragnatech.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,137 +61,144 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250315152708.328036-6-niklas.soderlund+renesas@ragnatech.se>
 
-On Wed Mar 19, 2025 at 1:21 PM CET, Alice Ryhl wrote:
-> On Wed, Mar 19, 2025 at 12:23:44AM +0000, Benno Lossin wrote:
->> On Tue Mar 18, 2025 at 1:29 PM CET, Alice Ryhl wrote:
->> > On Mon, Mar 17, 2025 at 10:23:56AM -0400, Tamir Duberstein wrote:
->> >> Throughout the tree, use the strict provenance APIs stabilized in Rus=
-t
->> >> 1.84.0[1]. Retain backwards-compatibility by introducing forwarding
->> >> functions at the `kernel` crate root along with polyfills for rustc <
->> >> 1.84.0.
->> >>=20
->> >> Use `#[allow(clippy::incompatible_msrv)]` to avoid warnings on rustc =
-<
->> >> 1.84.0 as our MSRV is 1.78.0.
->> >>=20
->> >> In the `kernel` crate, enable the strict provenance lints on rustc >=
-=3D
->> >> 1.84.0; do this in `lib.rs` rather than `Makefile` to avoid introduci=
-ng
->> >> compiler flags that are dependent on the rustc version in use.
->> >>=20
->> >> Link: https://blog.rust-lang.org/2025/01/09/Rust-1.84.0.html#strict-p=
-rovenance-apis [1]
->> >> Suggested-by: Benno Lossin <benno.lossin@proton.me>
->> >> Link: https://lore.kernel.org/all/D8EIXDMRXMJP.36TFCGWZBRS3Y@proton.m=
-e/
->> >> Signed-off-by: Tamir Duberstein <tamird@gmail.com>
->> >
->> > I'm not convinced that the pros of this change outweigh the cons. I
->> > think this is going to be too confusing for the C developers who look =
-at
->> > this code.
->>=20
->> 1) I think we should eliminate all possible `as` conversions. They are
->>    non-descriptive (since they can do may *very* different things) and
->>    ptr2int conversions are part of that.
->> 2) At some point we will have to move to the provenance API, since
->>    that's what Rust chose to do. I don't think that doing it at a later
->>    point is doing anyone a favor.
+Hi Niklas
+
+On Sat, Mar 15, 2025 at 04:27:06PM +0100, Niklas Söderlund wrote:
+> Before extending the driver with functions from the R-Car ISP core that
+> will span multiple files move the existing driver to a separate
+> directory. While at it rename the single source file to allow future
+> files to be grouped by functions.
 >
-> We don't *have* to do anything. Sure, most `as` conversions can be
-> removed now that we have fixed the integer type mappings, but I'm still
-> not convinced by this case.
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+
+Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+
+Thanks
+  j
+
+> ---
+>  MAINTAINERS                                    |  2 +-
+>  drivers/media/platform/renesas/Kconfig         | 18 +-----------------
+>  drivers/media/platform/renesas/Makefile        |  2 +-
+>  .../media/platform/renesas/rcar-isp/Kconfig    | 17 +++++++++++++++++
+>  .../media/platform/renesas/rcar-isp/Makefile   |  4 ++++
+>  .../renesas/{rcar-isp.c => rcar-isp/csisp.c}   |  0
+>  6 files changed, 24 insertions(+), 19 deletions(-)
+>  create mode 100644 drivers/media/platform/renesas/rcar-isp/Kconfig
+>  create mode 100644 drivers/media/platform/renesas/rcar-isp/Makefile
+>  rename drivers/media/platform/renesas/{rcar-isp.c => rcar-isp/csisp.c} (100%)
 >
-> Like, sure, use it for that one case in `kernel::str` where it uses
-> integers for pointers for some reason. But most other cases, provenance
-> isn't useful.
-
-I disagree, it's only going to get more painful in the long run to
-change this.
-
->> 3) I don't understand the argument that this is confusing to C devs.
->>    They are just normal functions that are well-documented (and if
->>    that's not the case, we can just improve them upstream). And
->>    functions are much easier to learn about than `as` casts (those are
->>    IMO much more difficult to figure out than then strict provenance
->>    functions).
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index f3658f16fa24..c2f36486f5f5 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -14679,7 +14679,7 @@ F:	Documentation/devicetree/bindings/media/renesas,csi2.yaml
+>  F:	Documentation/devicetree/bindings/media/renesas,isp.yaml
+>  F:	Documentation/devicetree/bindings/media/renesas,vin.yaml
+>  F:	drivers/media/platform/renesas/rcar-csi2.c
+> -F:	drivers/media/platform/renesas/rcar-isp.c
+> +F:	drivers/media/platform/renesas/rcar-isp/
+>  F:	drivers/media/platform/renesas/rcar-vin/
 >
-> I really don't think that's true, no matter how good the docs are. If
-> you see `addr as *mut c_void` as a C dev, you are going to immediately
-> understand what that means. If you see with_exposed_provenance(addr),
-> you're not going to understand what that means from the name - you have
-> to interrupt your reading and look up the function with the weird name.
-
-I see this as a double edged sword, yes `addr as *mut c_void` might seem
-more easily digestible on the first encounter, but that might also lead
-them to never look up what it exactly does.
-
-And I don't think that we should optimize these functions for C readers.
-They aren't used commonly (or supposed to IMO) and there are several
-other functions that are similarly confusing if not more already in our
-codebase.
-
-> And those docs probably spend a long time talking about stuff that
-> doesn't matter for your pointer, since it's probably a userspace pointer
-> or similar.
-
-For userspace pointers, see below.
-
->> Thus I think we should keep this patch (with Boqun's improvement).
->>=20
->> >> diff --git a/rust/kernel/uaccess.rs b/rust/kernel/uaccess.rs
->> >> index 719b0a48ff55..96393bcf6bd7 100644
->> >> --- a/rust/kernel/uaccess.rs
->> >> +++ b/rust/kernel/uaccess.rs
->> >> @@ -226,7 +226,9 @@ pub fn read_raw(&mut self, out: &mut [MaybeUninit=
-<u8>]) -> Result {
->> >>          }
->> >>          // SAFETY: `out_ptr` points into a mutable slice of length `=
-len`, so we may write
->> >>          // that many bytes to it.
->> >> -        let res =3D unsafe { bindings::copy_from_user(out_ptr, self.=
-ptr as *const c_void, len) };
->> >> +        let res =3D unsafe {
->> >> +            bindings::copy_from_user(out_ptr, crate::with_exposed_pr=
-ovenance(self.ptr), len)
->> >> +        };
->> >>          if res !=3D 0 {
->> >>              return Err(EFAULT);
->> >>          }
->> >> @@ -264,7 +266,7 @@ pub fn read<T: FromBytes>(&mut self) -> Result<T>=
- {
->> >>          let res =3D unsafe {
->> >>              bindings::_copy_from_user(
->> >>                  out.as_mut_ptr().cast::<c_void>(),
->> >> -                self.ptr as *const c_void,
->> >> +                crate::with_exposed_provenance(self.ptr),
->> >>                  len,
->> >>              )
->> >>          };
->> >
->> > That's especially true for cases like this. These are userspace pointe=
-rs
->> > that are never dereferenced. It's not useful to care about provenance
->> > here.
->>=20
->> I agree for this case, but I think we shouldn't be using raw pointers
->> for this to begin with. I'd think that a newtype wrapping `usize` is a
->> much better fit. It can then also back the `IoRaw` type. AFAIU user
->> space pointers don't have provenance, right? (if they do, then we should
->> use this API :)
+>  MEDIA DRIVERS FOR RENESAS - VSP1
+> diff --git a/drivers/media/platform/renesas/Kconfig b/drivers/media/platform/renesas/Kconfig
+> index c7fc718a30a5..27a54fa79083 100644
+> --- a/drivers/media/platform/renesas/Kconfig
+> +++ b/drivers/media/platform/renesas/Kconfig
+> @@ -30,23 +30,6 @@ config VIDEO_RCAR_CSI2
+>  	  To compile this driver as a module, choose M here: the
+>  	  module will be called rcar-csi2.
 >
-> We're doing that to the fullest extent possible already. We only convert
-> them to pointers when calling C FFI functions that take user pointers as
-> a raw pointer.
-
-We should make bindgen use that type in those interfaces already.
-
----
-Cheers,
-Benno
-
+> -config VIDEO_RCAR_ISP
+> -	tristate "R-Car Image Signal Processor (ISP)"
+> -	depends on V4L_PLATFORM_DRIVERS
+> -	depends on VIDEO_DEV && OF
+> -	depends on ARCH_RENESAS || COMPILE_TEST
+> -	select MEDIA_CONTROLLER
+> -	select VIDEO_V4L2_SUBDEV_API
+> -	select RESET_CONTROLLER
+> -	select V4L2_FWNODE
+> -	help
+> -	  Support for Renesas R-Car Image Signal Processor (ISP).
+> -	  Enable this to support the Renesas R-Car Image Signal
+> -	  Processor (ISP).
+> -
+> -	  To compile this driver as a module, choose M here: the
+> -	  module will be called rcar-isp.
+> -
+>  config VIDEO_SH_VOU
+>  	tristate "SuperH VOU video output driver"
+>  	depends on V4L_PLATFORM_DRIVERS
+> @@ -56,6 +39,7 @@ config VIDEO_SH_VOU
+>  	help
+>  	  Support for the Video Output Unit (VOU) on SuperH SoCs.
+>
+> +source "drivers/media/platform/renesas/rcar-isp/Kconfig"
+>  source "drivers/media/platform/renesas/rcar-vin/Kconfig"
+>  source "drivers/media/platform/renesas/rzg2l-cru/Kconfig"
+>
+> diff --git a/drivers/media/platform/renesas/Makefile b/drivers/media/platform/renesas/Makefile
+> index 50774a20330c..1127259c09d6 100644
+> --- a/drivers/media/platform/renesas/Makefile
+> +++ b/drivers/media/platform/renesas/Makefile
+> @@ -3,13 +3,13 @@
+>  # Makefile for the Renesas capture/playback device drivers.
+>  #
+>
+> +obj-y += rcar-isp/
+>  obj-y += rcar-vin/
+>  obj-y += rzg2l-cru/
+>  obj-y += vsp1/
+>
+>  obj-$(CONFIG_VIDEO_RCAR_CSI2) += rcar-csi2.o
+>  obj-$(CONFIG_VIDEO_RCAR_DRIF) += rcar_drif.o
+> -obj-$(CONFIG_VIDEO_RCAR_ISP) += rcar-isp.o
+>  obj-$(CONFIG_VIDEO_RENESAS_CEU) += renesas-ceu.o
+>  obj-$(CONFIG_VIDEO_RENESAS_FCP) += rcar-fcp.o
+>  obj-$(CONFIG_VIDEO_RENESAS_FDP1) += rcar_fdp1.o
+> diff --git a/drivers/media/platform/renesas/rcar-isp/Kconfig b/drivers/media/platform/renesas/rcar-isp/Kconfig
+> new file mode 100644
+> index 000000000000..59e0d91862d1
+> --- /dev/null
+> +++ b/drivers/media/platform/renesas/rcar-isp/Kconfig
+> @@ -0,0 +1,17 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +config VIDEO_RCAR_ISP
+> +	tristate "R-Car Image Signal Processor (ISP)"
+> +	depends on V4L_PLATFORM_DRIVERS
+> +	depends on VIDEO_DEV && OF
+> +	depends on ARCH_RENESAS || COMPILE_TEST
+> +	select MEDIA_CONTROLLER
+> +	select VIDEO_V4L2_SUBDEV_API
+> +	select RESET_CONTROLLER
+> +	select V4L2_FWNODE
+> +	help
+> +	  Support for Renesas R-Car Image Signal Processor (ISP).
+> +	  Enable this to support the Renesas R-Car Image Signal
+> +	  Processor (ISP).
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called rcar-isp.
+> diff --git a/drivers/media/platform/renesas/rcar-isp/Makefile b/drivers/media/platform/renesas/rcar-isp/Makefile
+> new file mode 100644
+> index 000000000000..b542118c831e
+> --- /dev/null
+> +++ b/drivers/media/platform/renesas/rcar-isp/Makefile
+> @@ -0,0 +1,4 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +rcar-isp-objs = csisp.o
+> +
+> +obj-$(CONFIG_VIDEO_RCAR_ISP) += rcar-isp.o
+> diff --git a/drivers/media/platform/renesas/rcar-isp.c b/drivers/media/platform/renesas/rcar-isp/csisp.c
+> similarity index 100%
+> rename from drivers/media/platform/renesas/rcar-isp.c
+> rename to drivers/media/platform/renesas/rcar-isp/csisp.c
+> --
+> 2.48.1
+>
+>
 
