@@ -1,114 +1,84 @@
-Return-Path: <devicetree+bounces-158845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B431A6856D
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 08:05:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5AB6A68595
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 08:12:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94BF917903B
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 07:04:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3A32421A2E
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 07:12:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E576A20FAB1;
-	Wed, 19 Mar 2025 07:04:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RlEmjcmB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B64A724EF99;
+	Wed, 19 Mar 2025 07:12:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 735F3849C;
-	Wed, 19 Mar 2025 07:04:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC75C24EA9C;
+	Wed, 19 Mar 2025 07:12:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.201.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742367886; cv=none; b=ZsGznRnaULEinHhEVbKopQ4dK7iZYPW7NnowYZ6XNFEjVwf3eA84NEJi9Tb567Lc2kg0Li58H9ioov3mSbPMMEikhfN5H7H9mTzJXNmnVTHrTzCA4ZqmcD14RErfcnTM/D6okj5WDgc9QlZvn61TRaR+PNn7Hpk/hXKHNKXQScw=
+	t=1742368338; cv=none; b=sZftNXQRCztmT83aTnFfwuDHWmeiAGn3Dw9vNUsDBe0JI1EX31PvbynhoLXWgPIsyjYcbIZF4ALOEe13rBP0T6tYbzNyvWcapYxWfxaFIYVLn2NTsmMSjkbNSWiaKq3T9119yj1+ppGd67T7igpZgQggpqlkhU4+9i25goeRNhE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742367886; c=relaxed/simple;
-	bh=jiAfj4IElgBqEg5+PLChSU4IpIj1nxRfVkLGRm2D6Bk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kWXtT0NlLwitLQ5aTIahhbgS6acfTC8U94j9D/jRwBPeOefXN/LOp3RHAZQs3wjse6c4xawVTTiNjmqIx4nbwYVbYmc+dJ/yT+/GxNNzkuKVY6YGNtOZTr3312WGvPi+/Mb7BllDrr5xB6IR152L+4RQ5XM5z54Z+P+MrJv85Fw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RlEmjcmB; arc=none smtp.client-ip=209.85.216.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-301918a4e3bso5435486a91.3;
-        Wed, 19 Mar 2025 00:04:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742367885; x=1742972685; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=jiAfj4IElgBqEg5+PLChSU4IpIj1nxRfVkLGRm2D6Bk=;
-        b=RlEmjcmBMO3Yjf7BSxkhA3YIH23Wvne0HmCRlvT4JSJQg09CHKkozt/IaJd854qWsI
-         OCyJ+YEM8EnM/JwfF61HY+VTTrcfPjC3Sz2S4S6wkdiB25+4CYNUKwtvHsoB4EIkr+nn
-         rRHGoXa1Ga3Ene+E/wRtF/eJex/KbgDgA0j+bk817tFW3IupOHE2Uyk2nXohpHvqy2hg
-         NLL1lyzw2UK60qZERRn9bCISUNyOgUtFoCXdGa0yQLEg2+vU+vzmu84TXQTOdcf4kqwK
-         H8fmqKRFnQCUVXf4XvN68OdySoYTR+UfSrkpCwzBzabHgrQKJQkGCaD0ctV+lfVtMEyN
-         0rbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742367885; x=1742972685;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jiAfj4IElgBqEg5+PLChSU4IpIj1nxRfVkLGRm2D6Bk=;
-        b=pHaVltXP0OZNNql0k9ykq9ccFuWYUb6W+bXQqP68YHCZe/7G1QEb1UPuqTWd/guI69
-         JkSPRmY9Y/WE8irWnf62W6/1Y/5tMMqXPaFAsmzQZ2R4zxIJO54NN2VhyvfRFA/GU6rM
-         jIZP1agkXaTvMhffj/roFxlHf+Vpc4iPI4iKQEvDzfUpCxZ26qpygQFZ/YPdK/JLLHSV
-         ninpURcIQTlNAhHzMj0CslydAAlgZ9Mxr/VACDtADtjTe9lfCsZJHWUk7pkKePoQPg1p
-         lxbV0IVNR7tPo5v+OFbukN5tgIVyAIwip8qGz29l5+z45PmJlBeqoXlqTQMidEtXnzIP
-         8opg==
-X-Forwarded-Encrypted: i=1; AJvYcCUMUpW0yluVHfTxd4r5Y3IWCLdd3LgHDy0dsa/t5puDKytD1zSSutW6EHBgmrVAi4QhkAJYnBpUWfQJD962@vger.kernel.org, AJvYcCVjnnoF2oNPhB3MT2N4K5zSAJesG8iQaxeIgAnCOJdxi8n1r4Mw4ITztUAeYiv6viraqCshZ2naPpkM@vger.kernel.org, AJvYcCXXYWtU6rWnS8wJo82heq7FQ/vv3rTFfItwb1GfK/nKGAwNgNG70d16SgeekFp512VX/b1OZ1Eq5hm/JNA=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzAxMWX43dmLP2RL3lnN4fB442EONN6KjXVoNNQg5e45reJhrxi
-	yb65MpsiAHqIbJ1pPpz7kprn3BT704HfB/8rACQLrP9SDLasqcGDJTURHOdgvkVagKaspVqLKDn
-	4bi4IbSm0ewW0fEvyY3F93ZE1pHM=
-X-Gm-Gg: ASbGnctIaurPL/aQQrOECHQoywHrOft0gnhLrDI6//Xh/RLWOMhSnhe7XZfW9hqRoXI
-	E1rVUvIUpS0DwortKEmUHJ878e1jVPwO3OTxpIiMQ8BKhSUe1XuPSxzK+eSiSeQdKJnwReracxs
-	C1yTuYHrTcyp/d+K73b/FFJ3U=
-X-Google-Smtp-Source: AGHT+IF7sF+rEHN+McOd/gdhxtrQC1m+FhYZvpf4dWKwkOdb9hKSjw3U2gTtL2CCTwVJ/KBH2mS5pciMbrLsv3G0xEU=
-X-Received: by 2002:a17:90b:4c4e:b0:2ee:d193:f3d5 with SMTP id
- 98e67ed59e1d1-301bde41b97mr2645278a91.7.1742367884632; Wed, 19 Mar 2025
- 00:04:44 -0700 (PDT)
+	s=arc-20240116; t=1742368338; c=relaxed/simple;
+	bh=bpIeHF8qkNb77rM5cvD4CpOtv5zJVTtFitfGmeIM6X4=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:From:To:Subject:
+	 References:In-Reply-To; b=XXRnDKUIlcDW04JiKMVQuHQ0lkehmcnhadGP84IJB4I+CSpMeCgJzvN/VTJTEQo8ssiCC4Xly0OPuQyE5aVgd8pCcAcgEENihP1nc9sDltOC3v7giEBqHkVoVGdFjDBkJkkht65+EtgZSG0/N28sECqshH+rE1eXFzoYluJFF8o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=walle.cc; arc=none smtp.client-ip=159.69.201.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=walle.cc
+Received: from localhost (unknown [IPv6:2a02:810b:4320:1000:4685:ff:fe12:5967])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.3ffe.de (Postfix) with ESMTPSA id CBF7F3B8;
+	Wed, 19 Mar 2025 08:02:10 +0100 (CET)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20250318085444.3459380-1-florin.leotescu@oss.nxp.com>
- <20250318085444.3459380-2-florin.leotescu@oss.nxp.com> <7afcd224-1154-4e2f-b383-10f6a89fdae0@roeck-us.net>
- <CAEnQRZBmYdLh29ha1FKz8=CbxjFBFFTgDkjrEmwTxW2WcxodfA@mail.gmail.com> <ca734f66-593f-4e7c-bc76-e343a7eb88d7@roeck-us.net>
-In-Reply-To: <ca734f66-593f-4e7c-bc76-e343a7eb88d7@roeck-us.net>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Wed, 19 Mar 2025 09:06:17 +0200
-X-Gm-Features: AQ5f1JqTh1OKvsFHXWbBK7NlMP4RU0DewPez1R29Ybz774cJu_EpcSsA7szRxbU
-Message-ID: <CAEnQRZDf_ko2p50EwR6q=dfkwdqE=c7fZe0jO2JdSmbaDa=j3Q@mail.gmail.com>
-Subject: Re: [PATCH v5 1/3] dt-bindings: hwmon: Add Microchip emc2305 support
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: florin.leotescu@oss.nxp.com, Jean Delvare <jdelvare@suse.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Shych <michaelsh@nvidia.com>, linux-hwmon@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	viorel.suman@nxp.com, carlos.song@nxp.com, 
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, festevam@gmail.com, 
-	Florin Leotescu <florin.leotescu@nxp.com>, Frank Li <Frank.Li@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 19 Mar 2025 08:02:10 +0100
+Message-Id: <D8K1T97L2IB9.1P3W9F7911UGG@kernel.org>
+Cc: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
+ <linux-pwm@vger.kernel.org>, <andriy.shevchenko@intel.com>,
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Thomas
+ Petazzoni" <thomas.petazzoni@bootlin.com>
+From: "Michael Walle" <mwalle@kernel.org>
+To: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>, "Lee Jones"
+ <lee@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Kamel Bouhara"
+ <kamel.bouhara@bootlin.com>, "Linus Walleij" <linus.walleij@linaro.org>,
+ "Bartosz Golaszewski" <brgl@bgdev.pl>, "Dmitry Torokhov"
+ <dmitry.torokhov@gmail.com>, =?utf-8?q?Uwe_Kleine-K=C3=B6nig?=
+ <ukleinek@kernel.org>, "Mark Brown" <broonie@kernel.org>, "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, "Danilo Krummrich" <dakr@kernel.org>
+Subject: Re: [PATCH v5 07/11] gpio: regmap: Allow to provide init_valid_mask
+ callback
+X-Mailer: aerc 0.16.0
+References: <20250318-mdb-max7360-support-v5-0-fb20baf97da0@bootlin.com>
+ <20250318-mdb-max7360-support-v5-7-fb20baf97da0@bootlin.com>
+In-Reply-To: <20250318-mdb-max7360-support-v5-7-fb20baf97da0@bootlin.com>
 
-> >> Is it necessary to make 'pwms' mandatory ? The current code works
-> >> just fine with defaults.
-> >
-> > The code adding OF support is added just in the next patch, so the
-> > current code isn't event
-> > probed when trying to use dts.
-> >
-> > Or am I missing something?
-> >
+Hi,
+
+> Allows to populate the gpio_regmap_config structure with
+> init_valid_mask() callback to set on the final gpio_chip structure.
 >
-> The patch introducing devicetree support to the driver doesn't evaluate
-> the pwm property. That makes it quite obvious that, from driver perspective,
-> it isn't needed. I don't immediately see why it would add value to _force_
-> users to provide pwm frequency, polarity, and the output configuration
-> if the defaults work just fine.
->
+> Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+> ---
 
+> -	chip->request =3D gpiochip_generic_request;
+> -	chip->free =3D gpiochip_generic_free;
 
-Got your point now! Thanks.
+With this removed:
+
+Reviewed-by: Michael Walle <mwalle@kernel.org>
 
