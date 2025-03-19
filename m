@@ -1,110 +1,148 @@
-Return-Path: <devicetree+bounces-159026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 371B0A69456
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 17:07:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06B3BA6944D
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 17:05:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B578189D7B5
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 16:04:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8437B3B9E4E
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 16:05:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14B7C1DE4FF;
-	Wed, 19 Mar 2025 16:03:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E0DC1DE3A3;
+	Wed, 19 Mar 2025 16:05:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="irUK4UUL"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="LDurAbw+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6EC31DDA2F;
-	Wed, 19 Mar 2025 16:03:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 913341DE3C8
+	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 16:05:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742400236; cv=none; b=Tmjg/i/93d7kwHHaQGBhy00i3k1xi3ywCcPmsFkS+r/JZWqYyYou7MhflRmzAF/NKzB1HdqDgATIMPe7nFD8L8dvKtUVYQgMDZe+Tw8DmrhE3ZrQSnzlEF8jYPQfsLcgk6/c8SNEsD+EoosbQ8FujlJGV+Ee/b7EPSsxfWIq0tA=
+	t=1742400322; cv=none; b=BEbuYO8eKB/hgvy2LgLVXNQCQoB2ei7p6/YvR/DznsxTAP1J+JMp6atjIBakg6veqRv5fXY6ICuRn1g9/1qTfFRE5AgzraCxrSz3EFYFtXn2MctqvnpwTZNricrZf94XFllHM/iYcEfk/o7PhNbzjn5GtwN5YfJa6hGEfaRMf5M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742400236; c=relaxed/simple;
-	bh=Vf5UegY6RU2as6jwKvb45nmjBtXolykv1xNJq+F+exg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mHLS4FcwcYL+9X7l6Kih8ry8huitHP1SGk3HzBKYvlqvhCyXXYRblLsZYP5tFqfQQl791euC2wz/EK4cfbuYvQZ2XX/1PpsWDJY3GFBeuPYBAOT226ax1LZOGtYueDjVw2utWG2pNpkiccatzsMUI8L7bNFTgYEop812TO4lETI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=irUK4UUL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64F42C4CEEA;
-	Wed, 19 Mar 2025 16:03:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742400235;
-	bh=Vf5UegY6RU2as6jwKvb45nmjBtXolykv1xNJq+F+exg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=irUK4UULhUYuw26TD/YmdQM94OxtCoe5o9PRu2Qm+NHTn1eEglxZv76u3edQA0LTb
-	 P/vdztgWg9tU8vUAqFr37PPK5MBpAJ98Xyp/s7bi0JZBEt8z0p2JqEHfeIRIDh/E7Z
-	 r51HLt5QEKzYqaDrityHaOxyyR9FIat0xxeqwxHlMu7wVrXUSvRUyoMci6gyx4mbAW
-	 eTHo8nSPB+SItc1BTixDMNXQiPDAOVkhlcLT29GYQaSZv1jpM9FAbNzRDuEuaHtv/u
-	 AIFvtPb18T/9fi3kh1t6HnQ+aefOFp9omjC1UJzyEbWfMRs92tnzyI9u5Xznozvidh
-	 2LqOkho3ee1wQ==
-Date: Wed, 19 Mar 2025 16:03:49 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	andersson@kernel.org, lgirdwood@gmail.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org,
-	perex@perex.cz, tiwai@suse.com, dmitry.baryshkov@linaro.org,
-	linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	johan+linaro@kernel.org
-Subject: Re: [PATCH 1/3] ASoC: dt-bindings: wcd93xx: add bindings for audio
- switch controlling hp
-Message-ID: <51dd7cb2-0c22-4043-b3a1-fa8410903cbd@sirena.org.uk>
-References: <20250319091637.4505-1-srinivas.kandagatla@linaro.org>
- <20250319091637.4505-2-srinivas.kandagatla@linaro.org>
- <4ie22uuz5tpg77jto3c3hec6lhonr44hrjda7jk655axlaxvba@u3atd4gcyghn>
- <660115f1-d1fb-4fd7-a453-e8c177be9eed@linaro.org>
+	s=arc-20240116; t=1742400322; c=relaxed/simple;
+	bh=gqYi2IOkBpGmWP8vcTUbbEUCyzEeB38GzIcirinLzL4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pjdyZhGZ1C4KqjVNPy3x67nb05RKF6TmxmCP+1nKZADQTIj97xbeS3cCluxWdsz7ROZdiU0TgpwJJQ20ojb8xjjR6Fg+ucxeq3mky9tTKqlgjJmgsxfBJMgtku0AjNj24ZhOzWaFiFuYLXtOYxHvXDWdHOkh40Dt8E2lB/Ez9MI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=LDurAbw+; arc=none smtp.client-ip=185.125.188.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com [209.85.221.70])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id CADDE3FCCA
+	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 16:05:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1742400313;
+	bh=GSUU5JLhgZYi/omGhuQLchJlDjwLwW4DkUo/PblUKHA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version;
+	b=LDurAbw+0I8ipllo9ZNs5rvc9MrcJiC2BWtamstRvQghwvjzplnEnCvjWKFHSsRm/
+	 Bi2IsYDZcpOmZ4ieUGtPSZgKXZlez4ZgrMG238b0V/yizWNKw6L0lqDjL6OLkIVTOk
+	 ylwEuNuQJQtZGSwhudV7zPVfVAntoAQMJIgbyiUy3xlmVGBpzg/yYjhmp6Q9GuygrH
+	 rz6q5tnCHvJaC4ZeylsfQyOt2OJWjStzJ+t0oo95CAXxf7lI8YSZznUstKmUv6NNww
+	 78Qk4SRnEVN/z2q6eSgw3atdmOayUU78IeXjVUD/vS4nE6mXtixGkNDgXtxxSaITKK
+	 l4s8FgNsZ8Nwg==
+Received: by mail-wr1-f70.google.com with SMTP id ffacd0b85a97d-3912e4e2033so2822323f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 09:05:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742400312; x=1743005112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GSUU5JLhgZYi/omGhuQLchJlDjwLwW4DkUo/PblUKHA=;
+        b=JaLHDKalr/egC/AoTVYxPbuYjXJMK9RuHSwzeXsIQzYSaKdqGYfSdDYVRqjy0FN6Fg
+         BIwKjGFsLzAU5wOzOCBNT+5Y64lVN+B7m0hdnlBK+ZpjxMb1P9hAE54odo0KTs63hp65
+         rjgPvSPBmktjCrok13bG7z5Gg7X4uelCzDt61zqiSuc5UXYxXSNuzr51Kr9UnZMHXzPJ
+         5H1djMcddSH5+pSfotLwskxKbqOdHxzf0B2sh1iVdgR5qxQIvdYp9S1iLYWN66NehG1X
+         ezt0HCZ76UqjNQWiMeXcZ1JpocDiyfZ/cr+IOSWQ8f8QGiM0l1774JFkfIuCRQ6c1j8X
+         HqTw==
+X-Forwarded-Encrypted: i=1; AJvYcCXLr/AlKZLZFfLhZdosVaPnitVF0N6xbBW4J/plY9eQksI1wux9GDOBRHOeyJLUIPiJ88fQxjrq3nWk@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzxmkpk+bHupgmObA1nMxw8906SwWe6wdY12Jz7UptoQRfahvA8
+	bDL4o7lW2v1QyUj9bKlcdEkmna7yyzL9KCK8iK76hPlwkABPD+mjr84GiRVG3o3orukr5x52Y/3
+	muoFdvLvcSx3tQrDs7ALn/n/cYDC9FPGP62QrSYXbr/TaTuayZwc2pSbxa6cLoHNI2wbbKEFFvV
+	BVKQPTXZ4=
+X-Gm-Gg: ASbGncti7OLxXpjcAWIGXU851D7eAAGd4wOeGzXoekjugfeI/IRltE8dMocmwPgPLnU
+	NNsVJaPimaJ4n7Tw9c4L9iPXXmI0cTpSLzWmo+wHblThVVgL8XhqUa7a5LFviwSQm9bj/pDioOD
+	sN2PUi0dGgkaj0PJ3iXVgNKCPpfU8B3ekbN2aNF+urpjw5TZYgn0a5RVFe0NGmMz8htDQqtF2Tq
+	uAv6p+QC6gLixxJSN+OtsvgUY9ZMpRUcHfmYAEe43dmqbdOQskj3S9sEuidvcYgQhVG3pJHsRLM
+	SYNqvzLueFqge5Z+qh1+7KeAAD5mriVbU45nE0gTzn5498Hjo39otOBXxub0
+X-Received: by 2002:a05:6000:1549:b0:391:31f2:b99e with SMTP id ffacd0b85a97d-399739b4089mr2871025f8f.2.1742400311734;
+        Wed, 19 Mar 2025 09:05:11 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGDlJj9DAT1miKPO3/mPueia8h2gCIoMy4dIZf/f87Mial3oKHiLugdVoWYREIB56Z+wmm+oQ==
+X-Received: by 2002:a05:6000:1549:b0:391:31f2:b99e with SMTP id ffacd0b85a97d-399739b4089mr2870969f8f.2.1742400311171;
+        Wed, 19 Mar 2025 09:05:11 -0700 (PDT)
+Received: from localhost (151-243-191-194.pool.dsl-net.ch. [194.191.243.151])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-395c888117csm21047556f8f.44.2025.03.19.09.05.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Mar 2025 09:05:10 -0700 (PDT)
+From: Juerg Haefliger <juerg.haefliger@canonical.com>
+To: andersson@kernel.org,
+	konradybcio@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org,
+	jens.glathe@oldschoolsolutions.biz
+Subject: [PATCH] arm64: dts: qcom: x1e80100-hp-omnibook-x14: Enable SMB2360 0 and 1
+Date: Wed, 19 Mar 2025 17:05:09 +0100
+Message-ID: <20250319160509.1812805-1-juerg.haefliger@canonical.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="q0oIHXznJOnjkPEP"
-Content-Disposition: inline
-In-Reply-To: <660115f1-d1fb-4fd7-a453-e8c177be9eed@linaro.org>
-X-Cookie: Chairman of the Bored.
+Content-Transfer-Encoding: 8bit
 
+Commit d37e2646c8a5 ("arm64: dts: qcom: x1e80100-pmics: Enable all SMB2360
+separately") disables all SMB2360s and let the board DTS explicitly enable
+them. The HP OmniBook DTS is from before this change and is missing the
+explicit enabling. Add that to get all USB root ports.
 
---q0oIHXznJOnjkPEP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Fixes: 6f18b8d4142c ("arm64: dts: qcom: x1e80100-hp-x14: dt for HP Omnibook X Laptop 14")
+Cc: stable@vger.kernel.org      # 6.14
+Signed-off-by: Juerg Haefliger <juerg.haefliger@canonical.com>
+---
+ arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-On Wed, Mar 19, 2025 at 03:59:23PM +0000, Srinivas Kandagatla wrote:
-> On 19/03/2025 10:01, Dmitry Baryshkov wrote:
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts b/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts
+index cd860a246c45..c4ac0aaa6f65 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts
+@@ -1352,18 +1352,22 @@ &remoteproc_cdsp {
+ 	status = "okay";
+ };
+ 
++&smb2360_0 {
++	status = "okay";
++};
++
+ &smb2360_0_eusb2_repeater {
+ 	vdd18-supply = <&vreg_l3d_1p8>;
+ 	vdd3-supply = <&vreg_l2b_3p0>;
++};
+ 
++&smb2360_1 {
+ 	status = "okay";
+ };
+ 
+ &smb2360_1_eusb2_repeater {
+ 	vdd18-supply = <&vreg_l3d_1p8>;
+ 	vdd3-supply = <&vreg_l14b_3p0>;
+-
+-	status = "okay";
+ };
+ 
+ &swr0 {
+-- 
+2.43.0
 
-> > Is this regulator supplying the codec or some external component? In the
-> > latter case it's likely that it should not be a part of WCD bindings.
-
-> This is regulator powering a mux that is driven by gpio which is part of
-> codec binding. So I would assume this will fall into the codec.
-
-> Where would we fit this if not part of codec?
-
-> Unless we mark this regulator as always on.
-
-I would expect that the mux would appear in the DT and consume both the
-GPIO and the regulator.
-
---q0oIHXznJOnjkPEP
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmfa6uQACgkQJNaLcl1U
-h9Do7gf9FTrhbwuWUqC7of9MeF5NqEmpBeo1duXfoN+W9aE8I3cy/f/fT2QyUQWm
-FJkdZ056lxtJdoZsphOzxAJJpfnXVerUTvmK+ng2PHCBAfaXc8ubj2EuVDmarR25
-JTn1GmkiLEm98tqvt/KCVkSU2WGtXkDpxjytyo8Tj5fM98xMtwSChPcSFBVsVznG
-NSVa8uytrk0NvOGzi8TxSN70dCrD5G560pmbnVXGMWC4ZdEyV5kBsYTqE5j5MYwz
-Hi30Lshw8epe5u9IFD+cddr7pE9kvSBDV1MFjY7B2+eZQBQ+w4DKQX+07mvsItiE
-w6sY9eTqKWDZzTtz4dBxGUg0RIQHoQ==
-=fpT7
------END PGP SIGNATURE-----
-
---q0oIHXznJOnjkPEP--
 
