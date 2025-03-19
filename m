@@ -1,178 +1,129 @@
-Return-Path: <devicetree+bounces-158871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158872-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4689CA6867A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 09:15:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD8C6A6869B
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 09:20:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B33D8178541
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 08:15:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0BAB017DB64
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 08:20:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 613822505CE;
-	Wed, 19 Mar 2025 08:15:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14D0A250C00;
+	Wed, 19 Mar 2025 08:20:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RCzRiOcf"
+	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="nRS3JJ6z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 388BB1DC9BA;
-	Wed, 19 Mar 2025 08:15:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B92C2505C4;
+	Wed, 19 Mar 2025 08:20:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.130.44.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742372126; cv=none; b=hxPaLPnpBlEYYsPwHsFtbUSvf/rGMG5STOIMiQg7Krvy4B79viYeInslY53akWEcH722lNR6SuMMJBd6BIggrs7czJvxm80A/Enxuc6RTePh9Tqk/n9ibG57uaVl4I+xKGC9UfztAiF7deEpiSIdAgjsgvBxSAbcIHfEFlx7AlA=
+	t=1742372416; cv=none; b=aAMszSkeJvCzBu4KxDqH2dYgGCRV94qwQP4+7SDJTaSr6brv0ZIeL7zEGt52naKTdnN/TEO20ewGNivuxxb4ZOteA4RC3IWQph9THV/Ie8+NsBXpU+1eCV9FvLRIapIuAdLvAGl/uusLGuC6gNY/clDVxzh+3wCm6yXr3uWMQEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742372126; c=relaxed/simple;
-	bh=4OM7Y0XKHU7jFTd3joafKOXUjyOC5LlTTPCa5DtvEaE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Cso9exMTfNiiIR+ISbVv2r6LUiut6rNaFXQcHJb0xNCvyXX1O735ZeT5+J+9gQc/5R2bmzGdFqYUHmvYksQdbntoAsjlk5R82iaWIzCEhOPbzwfbyVqcglSbQso8TOI3M0H3n+PE7gn/XUNhsFL4d3o7uXIYh2CWx+70YreIypM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RCzRiOcf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 085C6C4CEEE;
-	Wed, 19 Mar 2025 08:15:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742372125;
-	bh=4OM7Y0XKHU7jFTd3joafKOXUjyOC5LlTTPCa5DtvEaE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RCzRiOcfx3w72TqMf46iCB/9wYcDLCfAu8+kJoXHHYCKd2J9EorZf/pPptWChV2Tf
-	 giSX8QwCEGlmHaRG8dHngW+wbtSxN8pa7OTTxcdDrp/JxNwiT8snec03Rn9WyK71Be
-	 YhuOjjoYnCeyiy4qiKba2MqSbLZY89CXHA/B19CP2SPbfE6lFpvJt2FEkRcOx0mHwd
-	 9sXUe3MdHiatm2bIunqF7QXgLW+RjPSbmBLh4VNKFRKCi/75wi4zJuuo/fo30mNsNJ
-	 g3wO73w57/Z2o4zzp2jZQSYxrPSiOyqoTY+nDefk12Ohpu599GdBkmoh+3bMTqLrkH
-	 Pp4zhFJftmYfQ==
-Date: Wed, 19 Mar 2025 09:15:21 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Kim Seer Paller <kimseer.paller@analog.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/4] dt-bindings: iio: dac: Add adi,ad3530r.yaml
-Message-ID: <20250319-opalescent-just-boa-fecdc0@krzk-bin>
-References: <20250319-togreg-v1-0-d8244a502f2c@analog.com>
- <20250319-togreg-v1-3-d8244a502f2c@analog.com>
+	s=arc-20240116; t=1742372416; c=relaxed/simple;
+	bh=xhi0oQVwruDma9ETGq1OQ0/h+zHO90BLiI9EToiuAH0=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eTviWbTvKwTNfhG85fV32mtAH9IhSKwm/w+cHEeb8Q1Ke9EHkcpxXniW9MxzTApvOYR7JGRq0UuX2kuhuCGIIvfENbTa9ejUR06ROdBUxYl9aH9Xtb2n2nwtWfcYX85KQs8sUdekG9gtYPv7GF7jA5gZzy6qBnUwy/9YOty0ABM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=nRS3JJ6z; arc=none smtp.client-ip=220.130.44.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
+X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
+	s=richtek; t=1742372408;
+	bh=rLp3wvwBjciCI34SBDn2RKlhjxLGxJQVYVjsFoNJNCo=; l=2211;
+	h=Date:From:To:Subject:Message-ID:MIME-Version;
+	b=nRS3JJ6zJTuxcqfbO7qkmLFvIjijuZkGUdJsGpj7h1LiZmJ0Dxvt0DOLP0Blvvank
+	 AZIF2VyPujo3B3k2K/5ZkEIQdeGN/Svm60+x8UlTUAMo0+bdQLhD0pRmwP1XPFrB8s
+	 5/5xITT6hcAfcfOb8YjIIZcLI7u3TMt+PERhlLMj8CLRqKfXk31Z+LLuQgEHYp2zOz
+	 WnAU6LRELvXbRYZhoC12xhLLKH3oupEDOneKFwNEodye6eNSTPUWTDmfL1lgVufc9a
+	 5QpmiqcH0hP0zCBFAj7QYSZpV2fDT6iV4hl6qqDz2Fi3/ioaNWd6Aei+rRB5WoUos4
+	 L/bY+F3JSfzkQ==
+Received: from 192.168.10.47
+	by mg.richtek.com with MailGates ESMTPS Server V6.0(2814888:0:AUTH_RELAY)
+	(envelope-from <cy_huang@richtek.com>)
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Wed, 19 Mar 2025 16:19:58 +0800 (CST)
+Received: from ex3.rt.l (192.168.10.46) by ex4.rt.l (192.168.10.47) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Wed, 19 Mar
+ 2025 16:19:58 +0800
+Received: from git-send.richtek.com (192.168.10.154) by ex3.rt.l
+ (192.168.10.45) with Microsoft SMTP Server id 15.2.1544.11 via Frontend
+ Transport; Wed, 19 Mar 2025 16:19:58 +0800
+Date: Wed, 19 Mar 2025 16:21:09 +0800
+From: ChiYuan Huang <cy_huang@richtek.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Tzung-Bi Shih <tzungbi@kernel.org>, Liam
+ Girdwood <lgirdwood@gmail.com>, Otto Lin <otto_lin@richtek.com>, Allen Lin
+	<allen_lin@richtek.com>, <linux-sound@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: maxim,max98357a: Add compatible with
+ richtek,rt9123
+Message-ID: <Z9p+dQaMh4EKqss2@git-send.richtek.com>
+References: <1884c3ce2d901ead5d742958889f5a742e168376.1742259040.git.cy_huang@richtek.com>
+ <20250318-mature-dogfish-of-ecstasy-3dcea5@krzk-bin>
+ <Z9lYVram80dbWWl0@git-send.richtek.com>
+ <68e4ce8b-68a9-47a4-88c6-a4a401f5196d@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250319-togreg-v1-3-d8244a502f2c@analog.com>
+In-Reply-To: <68e4ce8b-68a9-47a4-88c6-a4a401f5196d@kernel.org>
 
-On Wed, Mar 19, 2025 at 11:47:57AM +0800, Kim Seer Paller wrote:
-> The AD3530R/AD3530 is an 8-Channel, 16-Bit Voltage Output DAC, while the
+On Wed, Mar 19, 2025 at 08:42:11AM +0100, Krzysztof Kozlowski wrote:
+> On 18/03/2025 12:26, ChiYuan Huang wrote:
+> > On Tue, Mar 18, 2025 at 09:55:48AM +0100, Krzysztof Kozlowski wrote:
+> >> On Tue, Mar 18, 2025 at 08:57:51AM +0800, cy_huang@richtek.com wrote:
+> >>> From: ChiYuan Huang <cy_huang@richtek.com>
+> >>>
+> >>> The hardware control and specification of 'richtek,rt9123' are similar
+> >>> with max98357 or max98360. It's no need to add the new source code. So
+> >>
+> >> Are you sure? I looked at datasheet and do not see anything about
+> >> SD_MODE in RT9123. Also you have two supplies, while max98360a has only
+> >> one. You have I2C but max98360a has no.
+> >>
+> > Sure, consider the I2C mode. Then it seems different. For the power
+> > supply, yes, we have one more supply and it's used for digital input
+> > output reference. It will always tiled to SoC digital power domain.
+> > It's no need to control, so I think DVDD can be ignored.
+> > 
+> > If not considering the I2C, and the DVDD power supply, for HW control
+> > mode, then it looks the same including sample rate. One pin to turn on
+> > the amplifier.
+> > 
+> > This IC is designed for 'easy to use'. For the normal condition, HW mode
+> > will always be suggested to the customer.
+> > 
+> > May I have your suggestion? If it can not be compatible, should I write
+> > two drivers, one platform driver for HW control mode, and another I2C driver
+> > for I2C SW control mode?
+> 
+> 
+> We don't talk about drivers here. I only commented that they are not
+> compatible based on datasheets, so compatibility should not be expressed
+> in the DT. Considering I2C, this should be in its own binding with full
+> device description (so for both HW mode and I2C).
+> 
+Actually, These two mode cannot be coexixted. The HW or SW I2C mode is
+detected on POR by different external resistor.
 
-"Document the AD3530R/AD3530, an 8-Channel, 16-bit...."
+Just for the HW mode, all the controls, even sampling rate, supported
+bitrate are all similiar with max98357 driver.
 
-> AD3531R/AD3531 is a 4-Channel, 16-Bit Voltage Output DAC. These devices
-> include software-programmable gain controls that provide full-scale
-> output spans of 2.5V or 5V for reference voltages of 2.5V. They operate
-> from a single supply voltage range of 2.7V to 5.5V and are guaranteed to
-> be monotonic by design. Additionally, these devices features a 2.5V,
-> 5ppm/=C2=B0C internal reference, which is disabled by default.
->=20
-> This adds the documentation for ad3530r.
+That's why I'm trying to treat it to be compatible.
 
-And that sentence us really not needed. See submitting patches.
+For SW I2C, sure, I can write one for the dedicated usage. Under this
+mode, all onoff sequences need to be controlled by RG.
 
->=20
-> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
-> ---
->  .../devicetree/bindings/iio/dac/adi,ad3530r.yaml   | 89 ++++++++++++++++=
-++++++
->  MAINTAINERS                                        |  1 +
->  2 files changed, 90 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad3530r.yaml b=
-/Documentation/devicetree/bindings/iio/dac/adi,ad3530r.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..6b50dce38383c8eb0d2107bf4=
-e44cd320776f481
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad3530r.yaml
-> @@ -0,0 +1,89 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/dac/adi,ad3530r.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AD3530R and Similar DACs
-> +
-> +maintainers:
-> +  - Kim Seer Paller <kimseer.paller@analog.com>
-> +
-> +description: |
-> +  The AD3530R/AD3530 are low power, 8-channel, 16-bit, buffered voltage =
-output,
-> +  DACs that include a 2.5V internal reference (disabled by default), and=
- a gain
-> +  bit field, resulting in a full-scale output span of 2.5V (gain =3D 1) =
-or 5V
-> +  (gain =3D 2) for a reference voltage of 2.5V.
-> +  Datasheet can be found here:
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/26=
-64fa.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,ad3530r
-> +      - adi,ad3531r
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-max-frequency:
-> +    maximum: 50000000
-> +
-> +  vdd-supply:
-> +    description: Power Supply Input.
-> +
-> +  iovdd-supply:
-> +    description: Digital Power Supply Input.
-> +
-> +  ref-supply:
-> +    description:
-> +      Reference Input/Output. The voltage at the REF pin sets the full-s=
-cale
-> +      range of all channels. If not provided the internal reference is u=
-sed and
-> +      also provided on the VREF pin.
-> +
-> +  reset-gpios:
-> +    description:
-> +      Active low signal that is falling edge sensitive. When it is deass=
-erted,
-> +      the digital core initialization is performed and all DAC registers=
- except
-> +      the Interface Configuration A register are reset to their default =
-values.
-> +    maxItems: 1
-> +
-> +  ldac-gpios:
-> +    description:
-> +      LDAC pin to be used as a hardware trigger to update the DAC channe=
-ls. If
-> +      not present, the DAC channels are updated by Software LDAC.
-> +    maxItems: 1
-> +
-> +  adi,double-output-range:
-> +    description:
-> +      Configure the output range for all channels. If the property is pr=
-esent,
-> +      the output will range from 0V to 2Vref. If the property is not
-> +      present, the output will range from 0V to Vref.
-
-You already have adi,range-double. It's not us who should find it, but
-you. You have just ADI bindings to look at. We have all bindings.
-
-Best regards,
-Krzysztof
-
+> Best regards,
+> Krzysztof
 
