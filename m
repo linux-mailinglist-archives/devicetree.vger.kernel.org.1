@@ -1,123 +1,197 @@
-Return-Path: <devicetree+bounces-158961-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158962-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DA71A68C84
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 13:13:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5093CA68CA2
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 13:21:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FFA919C08FF
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 12:13:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7CC9419C3F20
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 12:21:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2569255246;
-	Wed, 19 Mar 2025 12:12:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB568255252;
+	Wed, 19 Mar 2025 12:21:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cxsaXVpc"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="LE9K8PSo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f73.google.com (mail-wr1-f73.google.com [209.85.221.73])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ED06253F3B;
-	Wed, 19 Mar 2025 12:12:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B2E42528E2
+	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 12:21:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742386375; cv=none; b=S4S/o8X+xGgN0erolsXefHAgN3GTdJGO6qRhm5f2DFQlYBgtGcDIbtexopQT2j519SG3kEWdZRyao3F2xtaQ4U4jrGTX2tH7hb3Ov8X00X4T4q0gLOjaROdkwfQ2e5U93FEstUDHzBmc1nfKTIEhDsdUqSmj4iT4UXHZVVKuNpA=
+	t=1742386892; cv=none; b=ULD5vBg4kvYk9KlFhhhhzHYasYyS8jYMG4GbekWFbou7pjsA/gQDRqAc5X4XPD1WpIJK1ArUyFuntsm6iUaluIdxXg0nwWFXhrAlW+hRThu9Cn9KPWNKi5VhaGyshI+bvUNByESjyf14eMZtrR8rb5v6XOZI9Esap6iM3iQZ/kM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742386375; c=relaxed/simple;
-	bh=XyggPwCijDiNFJm7OAqhl+qBwzpvs68k8l8uPxOuhZA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nQ/0l6swl6Syxj5DLv4zv29YrmdcTmkoCFKPdkub3GaGqUrEs8hIKTB1ds07SMrcNnyXLvnUshGR5SJxwPHwHzScUYf16eCLuyNXtMRgEsc5CcwXWjKYe6vGEMTfefGe9AmVAXPhk4tqeLzJAnozhJebBCjDpmDZpTPFisFnBR0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cxsaXVpc; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1742386374; x=1773922374;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=XyggPwCijDiNFJm7OAqhl+qBwzpvs68k8l8uPxOuhZA=;
-  b=cxsaXVpcELxqdw9YoDP1ISsAWdI1JqKch/jkGk8pRuvHZTA6PgMFRdaD
-   FT2TYLyQZOyZNHuNT2aX8Skj1bJ8OUpnAv/rnTP1mFEKgj5vgoENCJGUL
-   nG/V2c7OzyKXAoSmhl7vJZwEC0mN3JM8tHoLmE5xCOpEqOYnYloJIQ3BW
-   99UmjRCHO9Je1i6wi51h35vgV7LKWF9LWf1l3rawS6UQCtsvsHVPJQn9/
-   GN7p7tnjkjUXFdaT3dI1F0L/Ewsn4sYPj6z55PV+4/vbdUSwKy9hI0I6G
-   /L3AETPHcVirQ9mL1VhmAaeSOgjpfcovLSOc6NpDbTCwhZY+XBx6zlgYd
-   Q==;
-X-CSE-ConnectionGUID: bPxeHOKPT52iu/eMEKQ7HQ==
-X-CSE-MsgGUID: 62y5wa8PQ7G94qRNdRl8mA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11377"; a="60962551"
-X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; 
-   d="scan'208";a="60962551"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2025 05:12:53 -0700
-X-CSE-ConnectionGUID: LOvpcHDPTA2CgjjkOFZOxg==
-X-CSE-MsgGUID: FPwA3/CDTQiJbAOLI5hrJg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; 
-   d="scan'208";a="153612625"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2025 05:12:49 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1tusHu-00000003uYX-0HZf;
-	Wed, 19 Mar 2025 14:12:46 +0200
-Date: Wed, 19 Mar 2025 14:12:45 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v5 00/11] Add support for MAX7360
-Message-ID: <Z9q0vZ07X2TfZQMv@smile.fi.intel.com>
-References: <20250318-mdb-max7360-support-v5-0-fb20baf97da0@bootlin.com>
+	s=arc-20240116; t=1742386892; c=relaxed/simple;
+	bh=jQ2XTKuB6AVO07blsmCwb/jirYqaGHLm3w5XZc2R/Mc=;
+	h=Date:In-Reply-To:Mime-Version:References:Message-ID:Subject:From:
+	 To:Cc:Content-Type; b=Xb1bzqKS3otyiAAyY3flY1/1VTemZw+uJqg9P6VojcocGAFL+aZFRHBPmxQOtVUflq1WW/2BdV5Qr0pMUdro2HLgP3ADEF+VjzHCAon001ZVRQS6xdzP3ztb30KZM8EeRljC/N8QzK2YTZlH6Lf8q+j5XelNSkJpjwXj1MZHMdQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--aliceryhl.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=LE9K8PSo; arc=none smtp.client-ip=209.85.221.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--aliceryhl.bounces.google.com
+Received: by mail-wr1-f73.google.com with SMTP id ffacd0b85a97d-3912d9848a7so351110f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 05:21:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1742386889; x=1742991689; darn=vger.kernel.org;
+        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+         :date:from:to:cc:subject:date:message-id:reply-to;
+        bh=EHWBkflhHhA0k6UljFMCWCGqLZ5e7Nxh2HAh+CEJok4=;
+        b=LE9K8PSoOkSuPSj6WweIyZZyk6ErQrtM423LlE5TW4vcWzWdzlFTKGTofmf2jVIqng
+         8K51F3dUZ7Xh2ZUBG4c2Pa32WhNPZ0FBMotO7w4bRIksOXqZrAoWdMCaWYdQIIEKNhmN
+         QrMS9vrSocXMLHrSFrbpaqoU+PsEziuKqc2BVUTOflZ9jeC49GCEeUsO1hmSUy9JLCgx
+         vwZtQFAg4nASWYAvT+a6iY4ab7jT1ZwlnBj36LlQ+3E8k7JnC2tsDzE25mkkBdKAgU0o
+         2Hi7MIV9VsRmskLWasjI0cHpQEhQJnehxB2Rcs4uOw8SF42nMZTABBnDpofIaKlZ6m4B
+         047g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742386889; x=1742991689;
+        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EHWBkflhHhA0k6UljFMCWCGqLZ5e7Nxh2HAh+CEJok4=;
+        b=h4xFk225iiInG72oUCvgU/mKo9lAKunHZEy+J7rv9JPgfAmfRq2XQdXuYokskqojuV
+         v6vJ6hHCs7R46JtzDZvWUDwfCdNhncztz9przJtNp4HY2WeIyghIY96/I8THe3JvNbn0
+         aytcrvWvbSbcgD5CTj27ecOwtIYst2zcIN/UJg3wlS6p7UDEpGZ7UyQHsdkbN4LLK4fn
+         0hjQDHAOAYY78OeeOHAyFiTeTvaNpv77Zh/93mYrL9jhP+67JVEGsLKDWhbVOke2ZJa3
+         npgABd9rQCkb4TefBCu+UXQXyDc5KnBRqOj3A7CAuIVu6oB8RnlRWU1xtpjiF7Or6eWl
+         yrug==
+X-Forwarded-Encrypted: i=1; AJvYcCVIwVssbT0tRaOoquDMjb1QJj/PLNP1QFIUklhngE+MFVMPZTykBUNhI/uIQMyCZGlBbC87KJPYOGeG@vger.kernel.org
+X-Gm-Message-State: AOJu0YxH/gZmv9nqdbZ2Dl7eMQ6EynuPSzZ3zxzwkylGsHDbmN/Mzy1O
+	709JbeZPbAKzkt0WaW/PK0b5xqtflhKMigrx2VHYyT9Rgt+myjSaEgLuD4bXSxInLgzyVKkYhoH
+	5dPv+bR4EBN4EPA==
+X-Google-Smtp-Source: AGHT+IGjUd/O+erjuD5BXOa5wRMainYOBynzUEHQOeJBcSeY0RjUPbJ2jh8iCG1+BdArwJY1AdHvh/jPCke4/i4=
+X-Received: from wmsp17.prod.google.com ([2002:a05:600c:1d91:b0:43c:ef1f:48d3])
+ (user=aliceryhl job=prod-delivery.src-stubby-dispatcher) by
+ 2002:a05:6000:1868:b0:390:e9e0:5cc6 with SMTP id ffacd0b85a97d-3996ba46ce6mr6001691f8f.1.1742386889079;
+ Wed, 19 Mar 2025 05:21:29 -0700 (PDT)
+Date: Wed, 19 Mar 2025 12:21:26 +0000
+In-Reply-To: <D8JTC30W0NF6.17SR73Y9I99ZT@proton.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250318-mdb-max7360-support-v5-0-fb20baf97da0@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Mime-Version: 1.0
+References: <20250317-ptr-as-ptr-v5-0-5b5f21fa230a@gmail.com>
+ <20250317-ptr-as-ptr-v5-6-5b5f21fa230a@gmail.com> <Z9lnIJCcVSza6UVo@google.com>
+ <D8JTC30W0NF6.17SR73Y9I99ZT@proton.me>
+Message-ID: <Z9q2xpwsNMDzZ2Gp@google.com>
+Subject: Re: [PATCH v5 6/6] rust: use strict provenance APIs
+From: Alice Ryhl <aliceryhl@google.com>
+To: Benno Lossin <benno.lossin@proton.me>
+Cc: Tamir Duberstein <tamird@gmail.com>, Masahiro Yamada <masahiroy@kernel.org>, 
+	Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, 
+	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+	Gary Guo <gary@garyguo.net>, 
+	"=?utf-8?B?QmrDtnJu?= Roy Baron" <bjorn3_gh@protonmail.com>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
+	Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, linux-kbuild@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+	linux-pci@vger.kernel.org, linux-block@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
 
-On Tue, Mar 18, 2025 at 05:26:16PM +0100, Mathieu Dubois-Briand wrote:
-> This series implements a set of drivers allowing to support the Maxim
-> Integrated MAX7360 device.
+On Wed, Mar 19, 2025 at 12:23:44AM +0000, Benno Lossin wrote:
+> On Tue Mar 18, 2025 at 1:29 PM CET, Alice Ryhl wrote:
+> > On Mon, Mar 17, 2025 at 10:23:56AM -0400, Tamir Duberstein wrote:
+> >> Throughout the tree, use the strict provenance APIs stabilized in Rust
+> >> 1.84.0[1]. Retain backwards-compatibility by introducing forwarding
+> >> functions at the `kernel` crate root along with polyfills for rustc <
+> >> 1.84.0.
+> >> 
+> >> Use `#[allow(clippy::incompatible_msrv)]` to avoid warnings on rustc <
+> >> 1.84.0 as our MSRV is 1.78.0.
+> >> 
+> >> In the `kernel` crate, enable the strict provenance lints on rustc >=
+> >> 1.84.0; do this in `lib.rs` rather than `Makefile` to avoid introducing
+> >> compiler flags that are dependent on the rustc version in use.
+> >> 
+> >> Link: https://blog.rust-lang.org/2025/01/09/Rust-1.84.0.html#strict-provenance-apis [1]
+> >> Suggested-by: Benno Lossin <benno.lossin@proton.me>
+> >> Link: https://lore.kernel.org/all/D8EIXDMRXMJP.36TFCGWZBRS3Y@proton.me/
+> >> Signed-off-by: Tamir Duberstein <tamird@gmail.com>
+> >
+> > I'm not convinced that the pros of this change outweigh the cons. I
+> > think this is going to be too confusing for the C developers who look at
+> > this code.
 > 
-> The MAX7360 is an I2C key-switch and led controller, with following
-> functionalities:
-> - Keypad controller for a key matrix of up to 8 rows and 8 columns.
-> - Rotary encoder support, for a single rotary encoder.
-> - Up to 8 PWM outputs.
-> - Up to 8 GPIOs with support for interrupts and 6 GPOs.
+> 1) I think we should eliminate all possible `as` conversions. They are
+>    non-descriptive (since they can do may *very* different things) and
+>    ptr2int conversions are part of that.
+> 2) At some point we will have to move to the provenance API, since
+>    that's what Rust chose to do. I don't think that doing it at a later
+>    point is doing anyone a favor.
+
+We don't *have* to do anything. Sure, most `as` conversions can be
+removed now that we have fixed the integer type mappings, but I'm still
+not convinced by this case.
+
+Like, sure, use it for that one case in `kernel::str` where it uses
+integers for pointers for some reason. But most other cases, provenance
+isn't useful.
+
+> 3) I don't understand the argument that this is confusing to C devs.
+>    They are just normal functions that are well-documented (and if
+>    that's not the case, we can just improve them upstream). And
+>    functions are much easier to learn about than `as` casts (those are
+>    IMO much more difficult to figure out than then strict provenance
+>    functions).
+
+I really don't think that's true, no matter how good the docs are. If
+you see `addr as *mut c_void` as a C dev, you are going to immediately
+understand what that means. If you see with_exposed_provenance(addr),
+you're not going to understand what that means from the name - you have
+to interrupt your reading and look up the function with the weird name.
+
+And those docs probably spend a long time talking about stuff that
+doesn't matter for your pointer, since it's probably a userspace pointer
+or similar.
+
+> Thus I think we should keep this patch (with Boqun's improvement).
 > 
-> Chipset pins are shared between all functionalities, so all cannot be
-> used at the same time.
+> >> diff --git a/rust/kernel/uaccess.rs b/rust/kernel/uaccess.rs
+> >> index 719b0a48ff55..96393bcf6bd7 100644
+> >> --- a/rust/kernel/uaccess.rs
+> >> +++ b/rust/kernel/uaccess.rs
+> >> @@ -226,7 +226,9 @@ pub fn read_raw(&mut self, out: &mut [MaybeUninit<u8>]) -> Result {
+> >>          }
+> >>          // SAFETY: `out_ptr` points into a mutable slice of length `len`, so we may write
+> >>          // that many bytes to it.
+> >> -        let res = unsafe { bindings::copy_from_user(out_ptr, self.ptr as *const c_void, len) };
+> >> +        let res = unsafe {
+> >> +            bindings::copy_from_user(out_ptr, crate::with_exposed_provenance(self.ptr), len)
+> >> +        };
+> >>          if res != 0 {
+> >>              return Err(EFAULT);
+> >>          }
+> >> @@ -264,7 +266,7 @@ pub fn read<T: FromBytes>(&mut self) -> Result<T> {
+> >>          let res = unsafe {
+> >>              bindings::_copy_from_user(
+> >>                  out.as_mut_ptr().cast::<c_void>(),
+> >> -                self.ptr as *const c_void,
+> >> +                crate::with_exposed_provenance(self.ptr),
+> >>                  len,
+> >>              )
+> >>          };
+> >
+> > That's especially true for cases like this. These are userspace pointers
+> > that are never dereferenced. It's not useful to care about provenance
+> > here.
+> 
+> I agree for this case, but I think we shouldn't be using raw pointers
+> for this to begin with. I'd think that a newtype wrapping `usize` is a
+> much better fit. It can then also back the `IoRaw` type. AFAIU user
+> space pointers don't have provenance, right? (if they do, then we should
+> use this API :)
 
-Thanks!
+We're doing that to the fullest extent possible already. We only convert
+them to pointers when calling C FFI functions that take user pointers as
+a raw pointer.
 
-Skeleton more or less looks at it's stable phase, there are tons of the style
-and small amendments that may be made. I would expect one or two at most new
-versions of this series.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Alice
 
