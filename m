@@ -1,215 +1,150 @@
-Return-Path: <devicetree+bounces-159022-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159023-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A1E9A6941A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 16:53:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FD2CA69433
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 16:58:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 687BA420D8A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 15:53:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0BAC176474
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 15:58:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13D031B6CE0;
-	Wed, 19 Mar 2025 15:52:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 015411D79B8;
+	Wed, 19 Mar 2025 15:58:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IPgVT0oM"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="KiLpgID4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D9DE1DD526
-	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 15:52:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 450F542048;
+	Wed, 19 Mar 2025 15:58:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742399576; cv=none; b=T90mOZdAdZR7+7RSFb5q0Pi6RNoidIRcqcbe0dM+ODWpUfowHFnthA0+Wdq1RvzWF17+qF/c3NPV5cKFOQCwF7fq5hy90G1qh57uPPPI81ZynLDb2YMNULWzWo6pNlqBp4fBf8vUrl6WYQFe9gk9yrRoMqz0Io1O5rysjY3QjD0=
+	t=1742399910; cv=none; b=AlDv9FE2GGTk418gpcxlQs0EoIRax9w8WYzeTAy5hespVae9rtA7VaWMeRN5E8urKQa5OUkIfF/1gueMzoTBNGzAGSP+GQ5b7ldjr9yVhU3EO164BvVpQOCd0hS7W4vSlH9A/8Pqf3lCqpvRgFBnoUfeEOjnMU99oM9xK6xRWQo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742399576; c=relaxed/simple;
-	bh=O11BgruQbl+UKgDttpGfPSppdluCW3BNuYGdXOixy6k=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=bXM6movWsjbdQWWx0O+4Llf29c9S4qdiummrW6yHR3QMumQEUz18+EgPK7DoU61ZZscEi1v3PqQYd9nqw9S5V7YYjItfZxSXpQJDL9pDDSIhVd9DKOouiERINlMpOui1ezRm05EiPxZkzWtuEv0DcDEmMZUUdXzRZXseqAWckwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IPgVT0oM; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-399676b7c41so2211565f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 08:52:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742399572; x=1743004372; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OtS7yrlPmvbmoIZ5I3j5iqPfhEamBd1a1pbda+O2aq4=;
-        b=IPgVT0oMtKgPbVTsrimDkNKsLb44VRrLiN7gqASDcjIW3PbPPQk3uC4xw6uf1qTPcj
-         CsCDWnGMevAJhuX9ScNh/vvp5WInY0VHroC1plfe6SeZ1qpr9/fWNqAnRvAWNijGBK/O
-         hMI3fV7885I/sXXjwRK3yJNyBQEoN2QjDf/ZLe75KUDHLnRwvrZLzdIdMtge4Ral0Z+f
-         SB9LyAcUdHNHWP/LyPgjFUbocQBKvxbfYUn9crLvk5QWJvvfntbqP7P7f7GxizKuYO63
-         JoCv+ljsAfxHQARBxGTNsos733siiyhC46pSoXwHOE8T0oJMZuXlAh2rpHIb5vWZGvxW
-         Gkcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742399572; x=1743004372;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=OtS7yrlPmvbmoIZ5I3j5iqPfhEamBd1a1pbda+O2aq4=;
-        b=w059xwMJuQ7qd0f7KSnQIGOLsBJ7TPd+r1P0XUubtv3m+e4I0m1b2MjurtGLG3iAgL
-         JHFubH9ImMzfxPGNjYdM2mMW29UIxXHHT+mhiQvVDisfx1ZlpYGLXBxN14vcD8h15+qO
-         gT3FWP3CNi9KvE3Vxjs3UjsjKlf3GbBUcM+SjjzHdZ5a0sET/NsbpJoPyStaQHtd+9eD
-         g6Idr6A4odVnVjj8bqJ7nU8P+xTUiz04Ys0yu4KGUzrIJdDdCUKRaPxozqoVvG/O23Ms
-         WKrDr8VIXMJQkaXXIHWotUaRM2YFTHmRQ0lz6tUH7KoP9iFyvR/O844k3mDVoIdFvJ/T
-         GmLQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXQSZQkFEGvj+pRqWZwYsMWFEjP2cd+2/T2gPrFgPBYT6kQwWJ+P18E1UMIVzBVZwXC0dvilCb6u/iF@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx5Gv6ClkaXa/GYzpvtKQRGZewNoiA7EdGhZcAb6usKrURoKg+4
-	i4E0NRUoyn+8FtM6RPPqYOep2NX0nTqy1MLYJHIROxLgS2ktQJbJEeZe5reO1Yk=
-X-Gm-Gg: ASbGncse3VsyWBi4nqMWY3wecQOKmCxSqK0MpkYbOUIh59UajqVzW2KlYOD2ixSvQQc
-	1voltGybXTKr2TBNzcmn0Y5U2EFvzwkFlWg4odfHVbXHNpbmav145j1XD5Ol1d93Sce+KAJiDbV
-	r+Y/9OmKCv+NPvcy1W2l0AOraO4nkQyOIPrKAHQBT3AjXaXQvretIKVORomBp4bu3jHfHDkq8Rp
-	j+KQlGgVf8Ao/lAW1JkTHyp5Ar5/fdZUcsFVAZSAUhd2Lso9evDORxa7yj0aGO+SqAAfrHQPeJw
-	lbdB5bE5WldgjeFVVbtMDP2tyWG1JDemS8+LTuE3Ty/pWVmi31H97RRzX4LTptTulbae2cqlng4
-	xSUR82iK/hgQnHqPF6Q3AVg==
-X-Google-Smtp-Source: AGHT+IGsoc3lhwMmNWUU7VPFLD8o2mSVAZY4GJxoMl37et8H1SS/K5nKfGy4iqKsLgIPiZmC2lFXVw==
-X-Received: by 2002:a5d:5f90:0:b0:390:df75:ddc4 with SMTP id ffacd0b85a97d-39973b08eeemr3730040f8f.44.1742399572180;
-        Wed, 19 Mar 2025 08:52:52 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:f407:ab81:b45a:93e8? ([2a01:e0a:3d9:2080:f407:ab81:b45a:93e8])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-395c8975b34sm21539248f8f.55.2025.03.19.08.52.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Mar 2025 08:52:51 -0700 (PDT)
-Message-ID: <bfba8edb-b1e9-4b9f-bf96-bcba35e0cd8f@linaro.org>
-Date: Wed, 19 Mar 2025 16:52:50 +0100
+	s=arc-20240116; t=1742399910; c=relaxed/simple;
+	bh=gHPpYtCLpFpzgI6lWlHYyKI4j6MciQKQyMXmkFGAFpY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FBmMPlTfOYYxd758ftXG1fS0cYw9VfgYToIf0uLTZxYEISmzBSL36yHOT3Dtg7mvue8aNZhJDKqYsoaPt5PLR6k6SDfT6KWYNkp/B5Q50oYOSFUjmgmkFPy66FoS6FdnkwPnGTp+TeGnQXX1JGJDLss4/siDuHWI5l5vzbke/Ro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=KiLpgID4; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=Np/nX4RQYl76B3DOF+lcwAiFuD7qauib8soLH9wPPWM=; b=KiLpgID4bAWzCDTTHLQy5DyOFx
+	e9YZhVFbbCNPHk9Y+K7iv5Ba8sALmIR+fnXAyMCo+Z2Y/QwP8w5Zpl7GwHQsikQoreFDMBD0vPg5X
+	WKJhkazKbQD/2Gmc0kZ+tPcCJdtyKPEh1Dp0TpBmBgtpT27xLZApYWOlvB7vBcz7TpI1BGtg3L/4V
+	OEHcGNTtT+rOc98PsJjN/r8qYbSBlKbFaM3iYqX1Bg2zaQkAawe3uyhI5ugBnyeV3cdwZzJhbYNKB
+	xMfm7SES+tpphE/JcM3KEvV7a3fPfnaTK5e+nf5nHGliLSo2JpS10W0yxf2UgAzSCtAbe02eQ8PgK
+	XZxG9nHw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:33446)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1tuvo9-0006dc-20;
+	Wed, 19 Mar 2025 15:58:17 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1tuvo6-0005jc-0l;
+	Wed, 19 Mar 2025 15:58:14 +0000
+Date: Wed, 19 Mar 2025 15:58:14 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Daniel Golle <daniel@makrotopia.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	upstream@airoha.com
+Subject: Re: [net-next PATCH 3/6] net: phylink: Correctly handle PCS probe
+ defer from PCS provider
+Message-ID: <Z9rplhTelXb-oZdC@shell.armlinux.org.uk>
+References: <20250318235850.6411-1-ansuelsmth@gmail.com>
+ <20250318235850.6411-4-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v5 4/7] usb: dwc3: core: Don't touch resets and clocks
-To: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
- Wesley Cheng <quic_wcheng@quicinc.com>,
- Saravana Kannan <saravanak@google.com>,
- Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Frank Li <Frank.li@nxp.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250318-dwc3-refactor-v5-0-90ea6e5b3ba4@oss.qualcomm.com>
- <20250318-dwc3-refactor-v5-4-90ea6e5b3ba4@oss.qualcomm.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250318-dwc3-refactor-v5-4-90ea6e5b3ba4@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250318235850.6411-4-ansuelsmth@gmail.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On 18/03/2025 20:05, Bjorn Andersson wrote:
-> When the core is integrated with glue, it's reasonable to assume that
-> the glue driver will have to touch the IP before/after the core takes
-> the hardware out and into reset. As such the glue must own these
-> resources and be allowed to turn them on/off outside the core's
-> handling.
-> 
-> Allow the platform or glue layer to indicate if the core logic for
-> clocks and resets should be skipped to deal with this.
-> 
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
-> ---
->   drivers/usb/dwc3/core.c | 20 +++++++++++---------
->   drivers/usb/dwc3/glue.h |  3 +++
->   2 files changed, 14 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-> index b428b6fc3d0a55811e2f75d33d79df4b0c67dcac..77a9848a0ac70fbe563988cecbe489130989aadc 100644
-> --- a/drivers/usb/dwc3/core.c
-> +++ b/drivers/usb/dwc3/core.c
-> @@ -2198,15 +2198,17 @@ int dwc3_core_probe(const struct dwc3_probe_data *data)
->   	if (IS_ERR(dwc->usb_psy))
->   		return dev_err_probe(dev, PTR_ERR(dwc->usb_psy), "couldn't get usb power supply\n");
->   
-> -	dwc->reset = devm_reset_control_array_get_optional_shared(dev);
-> -	if (IS_ERR(dwc->reset)) {
-> -		ret = PTR_ERR(dwc->reset);
-> -		goto err_put_psy;
-> -	}
-> +	if (!data->ignore_clocks_and_resets) {
-> +		dwc->reset = devm_reset_control_array_get_optional_shared(dev);
-> +		if (IS_ERR(dwc->reset)) {
-> +			ret = PTR_ERR(dwc->reset);
-> +			goto err_put_psy;
-> +		}
->   
-> -	ret = dwc3_get_clocks(dwc);
-> -	if (ret)
-> -		goto err_put_psy;
-> +		ret = dwc3_get_clocks(dwc);
-> +		if (ret)
-> +			goto err_put_psy;
+On Wed, Mar 19, 2025 at 12:58:39AM +0100, Christian Marangi wrote:
+> diff --git a/drivers/net/phy/phylink.c b/drivers/net/phy/phylink.c
+> index 7f71547e89fe..c6d9e4efed13 100644
+> --- a/drivers/net/phy/phylink.c
+> +++ b/drivers/net/phy/phylink.c
+> @@ -1395,6 +1395,15 @@ static void phylink_major_config(struct phylink *pl, bool restart,
+>  	if (pl->mac_ops->mac_select_pcs) {
+>  		pcs = pl->mac_ops->mac_select_pcs(pl->config, state->interface);
+>  		if (IS_ERR(pcs)) {
+> +			/* PCS can be removed unexpectedly and not available
+> +			 * anymore.
+> +			 * PCS provider will return probe defer as the PCS
+> +			 * can't be found in the global provider list.
+> +			 * In such case, return -ENOENT as a more symbolic name
+> +			 * for the error message.
+> +			 */
+> +			if (PTR_ERR(pcs) == -EPROBE_DEFER)
+> +				pcs = ERR_PTR(-ENOENT);
+
+I don't particularly like the idea of returning -EPROBE_DEFER from
+mac_select_pcs()... there is no way *ever* that such an error code
+could be handled.
+
+>  	linkmode_fill(pl->supported);
+>  	linkmode_copy(pl->link_config.advertising, pl->supported);
+> -	phylink_validate(pl, pl->supported, &pl->link_config);
+> +	ret = phylink_validate(pl, pl->supported, &pl->link_config);
+> +	/* The PCS might not available at the time phylink_create
+> +	 * is called. Check this and communicate to the MAC driver
+> +	 * that probe should be retried later.
+> +	 *
+> +	 * Notice that this can only happen in probe stage and PCS
+> +	 * is expected to be avaialble in phylink_major_config.
+> +	 */
+> +	if (ret == -EPROBE_DEFER) {
+> +		kfree(pl);
+> +		return ERR_PTR(ret);
 > +	}
->   
->   	ret = reset_control_deassert(dwc->reset);
->   	if (ret)
-> @@ -2321,7 +2323,7 @@ EXPORT_SYMBOL_GPL(dwc3_core_probe);
->   
->   static int dwc3_probe(struct platform_device *pdev)
->   {
-> -	struct dwc3_probe_data probe_data;
-> +	struct dwc3_probe_data probe_data = {};
 
-This should go in the previous patch
+This does not solve the problem - what if the interface mode is
+currently not one that requires a PCS that may not yet be probed?
 
-Neil
+I don't like the idea that mac_select_pcs() might be doing a complex
+lookup - that could make scanning the interface modes (as
+phylink_validate_mask() does) quite slow and unreliable, and phylink
+currently assumes that a PCS that is validated as present will remain
+present.
 
->   	struct resource *res;
->   	struct dwc3 *dwc;
->   
-> diff --git a/drivers/usb/dwc3/glue.h b/drivers/usb/dwc3/glue.h
-> index e73cfc466012f07214291abe56454934ab014013..703d40c189565b1e28ae28afb8728b78f4cd2fca 100644
-> --- a/drivers/usb/dwc3/glue.h
-> +++ b/drivers/usb/dwc3/glue.h
-> @@ -13,10 +13,13 @@
->    * dwc3_probe_data: Initialization parameters passed to dwc3_core_probe()
->    * @dwc: Reference to dwc3 context structure
->    * @res: resource for the DWC3 core mmio region
-> + * @ignore_clocks_and_resets: clocks and resets defined for the device should
-> + *		be ignored by the DWC3 core, as they are managed by the glue
->    */
->   struct dwc3_probe_data {
->   	struct dwc3 *dwc;
->   	struct resource *res;
-> +	bool ignore_clocks_and_resets;
->   };
->   
->   int dwc3_core_probe(const struct dwc3_probe_data *data);
-> 
+If it goes away by the time phylink_major_config() is called, then we
+leave the phylink state no longer reflecting how the hardware is
+programmed, but we still continue to call mac_link_up() - which should
+probably be fixed.
 
+Given that netdev is severely backlogged, I'm not inclined to add to
+the netdev maintainers workloads by trying to fix this until after
+the merge window - it looks like they're at least one week behind.
+Consequently, I'm expecting that most patches that have been
+submitted during this week will be dropped from patchwork, which
+means submitting patches this week is likely not useful.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
