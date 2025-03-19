@@ -1,124 +1,194 @@
-Return-Path: <devicetree+bounces-158797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BC65A681EF
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 01:55:20 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 482ECA682E5
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 02:47:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B61EB425A8E
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 00:54:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CD4F47A294A
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 01:46:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEE681C5D7F;
-	Wed, 19 Mar 2025 00:52:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8694621B8F8;
+	Wed, 19 Mar 2025 01:47:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="glVSwiBs"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="YhPfSkC9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9A9914D43D;
-	Wed, 19 Mar 2025 00:52:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD5EBEEA6
+	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 01:47:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742345536; cv=none; b=WyQe6zuDwxYMjwLzl17H4CvR6w16VM6Rgki5HdOSpWugywGh6Bj5n3snmszBI+loNucf1wKYUEHLDxOAs5wxtKiwtJegYINV6QUdxFQQ6sC2uOddT0tn854sUhb3E+xMTL6bKM5UGrjORvcFTSHBihRYZqLwnJnzGQnX3HTssqI=
+	t=1742348868; cv=none; b=jQrkefiE7ymXIYP84AUDDGkCjelHml/enCdKWt+j7bbpApVSKVWB9ttyM428jhP6WVSVBv4rmMPf1yeLqEftFCvINjlldg5YWlmlUoB0Vgya3FrVObrRTvJyYMhUYVifNDDTzgAcwGo2Itz23CEcD3xHQCYGeA254i3DZV/nfi0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742345536; c=relaxed/simple;
-	bh=tHcXDwbmG9clKLv81IEEz9Giw5qRYs1/YjdseAv9Dbg=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LXWQVmz9Cscr+HfeR78Lwf3O9D4/x4q1D+KQVbUVFWYTBA725N/bGPMtPTuGCUpQfFXBNzbbnXQovuNbqwjVliS2Ydkkk739f7WDsmlLBQlDfeUrLZV1dAGozmuixtCMkPTh1gdjYjGZ7+7ZGTOWjhF4p+TP19oCmbk3SETCi6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=glVSwiBs; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52IJienq022737;
-	Wed, 19 Mar 2025 00:52:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Z7WMBFHQhktNaf8pql7zKR7DGPBcFESHbjhgEvWcI5U=; b=glVSwiBs6djJpD0c
-	J40hbl/sivkbLZgY0lnEe0f59K7hzB4Ts44HQ8HkD5zuCl5lLL2Pi/2v/M4sOkHS
-	+squSiEQe9NHmJkHuI1gPBFJOOgNEt7LV3jlYmdSk5u42ox2WGYdQyQuvty0AYVo
-	hI5Ehi8FFvlCFgUp3pNnUrO/cIpUKghlCOTZmsPNtTVGl+w5cHI+cHjPpAp6oVy+
-	0zxFQx2MJOYT6tBu8g+XQhT8hrTPTktSl3bXPS0QhkXtI7fXXOyDvY8WTnAgdtXZ
-	Vi6uvq/rQEodBUJdfCKEwWw8Uyt6jcy+ijs0PaYIiDyQeEGejRz4P3uGrpn90zO9
-	t7zmMQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45exwx3hrn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 19 Mar 2025 00:52:00 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52J0q0Bt006594
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 19 Mar 2025 00:52:00 GMT
-Received: from hu-wcheng-lv.qualcomm.com (10.49.16.6) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 18 Mar 2025 17:51:59 -0700
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-To: <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <conor+dt@kernel.org>, <dmitry.torokhov@gmail.com>,
-        <corbet@lwn.net>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
-        <krzk+dt@kernel.org>, <pierre-louis.bossart@linux.intel.com>,
-        <Thinh.Nguyen@synopsys.com>, <tiwai@suse.com>, <robh@kernel.org>,
-        <gregkh@linuxfoundation.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-input@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>
-Subject: [PATCH v36 31/31] ALSA: usb-audio: qcom: Notify USB audio devices on USB offload probing
-Date: Tue, 18 Mar 2025 17:51:41 -0700
-Message-ID: <20250319005141.312805-32-quic_wcheng@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250319005141.312805-1-quic_wcheng@quicinc.com>
-References: <20250319005141.312805-1-quic_wcheng@quicinc.com>
+	s=arc-20240116; t=1742348868; c=relaxed/simple;
+	bh=ersI7bXrC/Z5lsv10sR1cH/1lfnyD26hMLtR/bACYHA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RB51tLtgvtRWeMCIomq5axgTKLr69SDg0CGdoOEpES+cetDl2DyPg2nbW276wE0OCyIMlzE1UhJgQ4wwmw0mRYUqml1Z7UNfnyoA3r/l7qyA3kA0JdQLWzfhyzf6uposjw6Ssrju1ICBYJ77yzt6Rcvk7TephiCeHJ+HnpWwrgY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=YhPfSkC9; arc=none smtp.client-ip=209.85.128.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6f6ae4846c7so63370147b3.1
+        for <devicetree@vger.kernel.org>; Tue, 18 Mar 2025 18:47:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1742348866; x=1742953666; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xjBYrnzMT6u2Shqp71knl91rwXl6kp9pjl+GG5872ro=;
+        b=YhPfSkC9xi6Khq10IFcLu37g4aZevHyLsNJtB+aQmoUfNqmEyfgdJVW2DqhP5ylPoj
+         fWIWOGOnkL2oKsQnPESfFlS6tIObxOmLdTRcifYh9GeDTPVTcKttfyD4hn8CoYFgP4ot
+         uM8PhiCymvKdfDo6M13U2Gal77o65iORRvc7dSEsYxAne6vvSWOsB9nVVGjlpN0yfpXC
+         Q9Nq9hYUlwyvYq25VkFOOPZng7buIxJagO+4gcRWQDXAbUfoIk9bGTDpnRsyKkvxhY6I
+         M5Zuq1TVMs6bLXyAaBR0oG9cA3Mhx2U54ziDZHYKEb7ME4MKDNGr6rZSciLXCcmcglTb
+         I+Ig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742348866; x=1742953666;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xjBYrnzMT6u2Shqp71knl91rwXl6kp9pjl+GG5872ro=;
+        b=gPsbBZ7mYlbjeJ0/ahByNXHqnsJqdpXtu7Lff41FwOahTTLmE7G07gW6oKrtcb5qcP
+         Ql417ukF60120DziidfKq+JnG6t1lNjlzOBpQyhqQpx4tBxLg6SYYR1YwMce5sN1g6Q9
+         TmyJiFB4JxXdDf6nESTCguo+LdGHnAQqUzoxe7U+EpsywK53mmyCYrMiK/wFMtnSFvZF
+         l3t1KJUubMR5qq3eHZu4OafyjPhIrCrrMVTNLagCUs4G0lNC9T179OpU0FL0FGR5lTp5
+         TYggG/2GYndXthuwKr4+FQFrbqQD+bUg8y/AgDJjA7H7cWW6P3kFvnb/SZ2TgXoJvVLF
+         t/Wg==
+X-Forwarded-Encrypted: i=1; AJvYcCXjsMN/FKmZE9waXXCwFX/Wf1084rexFswR3kjF9gtDtAM+UXge6eDp44QiqQn/GJ8jeSmtuBWf7sM8@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz1Xz+XIZGGMkIr/fhz11MyxdEXQJyYqSMc5s0TCMnfwFRSZ8dK
+	C43hEtUtDFDBRe33XGUZnfDF8M31jvkb5hoc16o2H2DX1HllYEm7loDynYlFgrfn5JYhOaobPWu
+	PSfCJYAISKu481sCM4NC0BEUrcjxhbFBOoVjnPw==
+X-Gm-Gg: ASbGncsInTvoH65DLuxDA3Y5pXe11pHm2kyLNjBLLxvGfJGIsHwrs9CDwp+9v4xbEF/
+	uzYOiBTyz0W1daZ8UmXIN2vcFN9JhgrIe6OwZAlMxvzQJLlK78kmZnB54mRQ+686BBVaC/BLfGl
+	b+vZByP6KVKl/+fqUEpfVZXSGSNrsp
+X-Google-Smtp-Source: AGHT+IGWCF+BsZ/+6UsxgbdDBRqGM9NmNJkWxhIQT78tDFkDEbwMVdUVCLBkMmylRkFJTEYP3KmBqGj7FQKPzC1N3+E=
+X-Received: by 2002:a05:690c:7303:b0:6fe:bf9d:e6d6 with SMTP id
+ 00721157ae682-7009bda7656mr17510587b3.0.1742348865811; Tue, 18 Mar 2025
+ 18:47:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: jkD5seBvxtpwfKY3v3DbjE-nNgIK8KL-
-X-Authority-Analysis: v=2.4 cv=INICChvG c=1 sm=1 tr=0 ts=67da1530 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=3H110R4YSZwA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=0R9NKns1a96QCZ5VGfgA:9 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: jkD5seBvxtpwfKY3v3DbjE-nNgIK8KL-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-18_10,2025-03-17_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
- priorityscore=1501 lowpriorityscore=0 malwarescore=0 clxscore=1015
- mlxlogscore=999 impostorscore=0 phishscore=0 mlxscore=0 spamscore=0
- bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503190003
+References: <20250314081255.3718-1-nick.hu@sifive.com> <20250314232518.GA2513550-robh@kernel.org>
+ <CAKddAkCL1qKG7dRaVDAO0HCdsEiRR3NxOEka8aFONvkXnZ5j5A@mail.gmail.com> <CAL_JsqKQDQKq-WubM5VOBQh8BJ3ts1dNjKPoZofFu5W3zahgaA@mail.gmail.com>
+In-Reply-To: <CAL_JsqKQDQKq-WubM5VOBQh8BJ3ts1dNjKPoZofFu5W3zahgaA@mail.gmail.com>
+From: Nick Hu <nick.hu@sifive.com>
+Date: Wed, 19 Mar 2025 09:47:34 +0800
+X-Gm-Features: AQ5f1JqBVgw8oJHlIFIPO-sjkYoilbm7qLAYb80UUHciFdiVSpR2AH1QSYRf5ak
+Message-ID: <CAKddAkAZwn6KJ24Ge3RmmWCp2xTX0HMQ7TGvMH262aQN9VQy8A@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: timer: Add SiFive CLINT2
+To: Rob Herring <robh@kernel.org>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Samuel Holland <samuel.holland@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Anup Patel <anup@brainfault.org>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-If the vendor USB offload class driver is not ready/initialized before USB
-SND discovers attached devices, utilize snd_usb_rediscover_devices() to
-find all currently attached devices, so that the ASoC entities are notified
-on available USB audio devices.
+Hi Rob
 
-Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
----
- sound/usb/qcom/qc_audio_offload.c | 2 ++
- 1 file changed, 2 insertions(+)
+On Wed, Mar 19, 2025 at 12:07=E2=80=AFAM Rob Herring <robh@kernel.org> wrot=
+e:
+>
+> On Sun, Mar 16, 2025 at 9:36=E2=80=AFPM Nick Hu <nick.hu@sifive.com> wrot=
+e:
+> >
+> > Hi Rob
+>
+> Please don't top post.
+>
+> > Sorry, I thought I had replied to the mailing list, but it looks like
+> > I only sent it to Conor.
+> >
+> > The control of sifive,clint2 differs from that of sifive,clint0,
+> > making them incompatible.
+>
+> The answer belongs in the patch, not just in a reply. Assume we've
+> forgotten everything said in the prior version because we likely have,
+> so you don't want to get the same questions again.
+>
+Sure, I can include a description in the patch. I'll make the update
+in the next version.
 
-diff --git a/sound/usb/qcom/qc_audio_offload.c b/sound/usb/qcom/qc_audio_offload.c
-index 31624753284e..1a3688cc83d6 100644
---- a/sound/usb/qcom/qc_audio_offload.c
-+++ b/sound/usb/qcom/qc_audio_offload.c
-@@ -1966,6 +1966,8 @@ static int __init qc_usb_audio_offload_init(void)
- 	if (ret < 0)
- 		goto release_qmi;
- 
-+	snd_usb_rediscover_devices();
-+
- 	return 0;
- 
- release_qmi:
+> >
+> > On Sat, Mar 15, 2025 at 7:25=E2=80=AFAM Rob Herring <robh@kernel.org> w=
+rote:
+> > >
+> > > On Fri, Mar 14, 2025 at 04:12:54PM +0800, Nick Hu wrote:
+> > > > Add compatible string and property for the SiFive CLINT v2.
+> > >
+> > > Conor asked about being backwards compatible with v1. Please say why =
+it
+> > > isn't here.
+> > >
+> > > >
+> > > > Signed-off-by: Nick Hu <nick.hu@sifive.com>
+> > > > Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
+> > > > ---
+> > > > - v2 changes:
+> > > >   - Don't allow sifive,clint2 by itself. Add '-{}' to the first ent=
+ry
+> > > >   - Mark the sifive,fine-ctr-bits as the required property when
+> > > >     the compatible includes the sifive,clint2
+> > > >
+> > > >  .../bindings/timer/sifive,clint.yaml          | 20 +++++++++++++++=
+++++
+> > > >  1 file changed, 20 insertions(+)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.y=
+aml b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> > > > index 76d83aea4e2b..4b9dad11c1e9 100644
+> > > > --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> > > > +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> > > > @@ -36,6 +36,10 @@ properties:
+> > > >                - starfive,jh7110-clint   # StarFive JH7110
+> > > >                - starfive,jh8100-clint   # StarFive JH8100
+> > > >            - const: sifive,clint0        # SiFive CLINT v0 IP block
+> > > > +      - items:
+> > > > +          - {}
+> > > > +          - const: sifive,clint2        # SiFive CLINT v2 IP block
+> > > > +        description: SiFive CLINT v2 is the HRT that supports the =
+Zicntr
+> > > >        - items:
+> > > >            - enum:
+> > > >                - allwinner,sun20i-d1-clint
+> > > > @@ -62,6 +66,22 @@ properties:
+> > > >      minItems: 1
+> > > >      maxItems: 4095
+> > > >
+> > > > +  sifive,fine-ctr-bits:
+> > > > +    maximum: 15
+> > > > +    description: The width in bits of the fine counter.
+> > > > +
+> > > > +if:
+> > > > +  properties:
+> > > > +    compatible:
+> > > > +      contains:
+> > > > +        const: sifive,clint2
+> > > > +then:
+> > > > +  required:
+> > > > +    - sifive,fine-ctr-bits
+> > > > +else:
+> > > > +  properties:
+> > > > +    sifive,fine-ctr-bits: false
+> > > > +
+> > > >  additionalProperties: false
+> > > >
+> > > >  required:
+> > > > --
+> > > > 2.17.1
+> > > >
+> >
+> > Best Regards,
+> > Nick
+> >
+
+Best Regards,
+Nick
 
