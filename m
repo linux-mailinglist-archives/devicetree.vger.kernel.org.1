@@ -1,204 +1,103 @@
-Return-Path: <devicetree+bounces-158997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-158998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB9B8A68F11
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 15:29:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51A44A68FC5
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 15:41:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1DF623ABDFD
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 14:26:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6E3B1B65528
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 14:27:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55CE81D63F9;
-	Wed, 19 Mar 2025 14:25:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE8331C2DC8;
+	Wed, 19 Mar 2025 14:26:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="h0bujmvl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DVMkRvdc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5C401AF0D7;
-	Wed, 19 Mar 2025 14:25:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 855551C0DED;
+	Wed, 19 Mar 2025 14:26:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742394349; cv=none; b=YkdU8MghQE6IICBw8ZzQ8UFUdv+ePfzQyjQDQx3oS9IM/9eImY+HfeEad4+z27a6jIQ7bcNOw7iAUa19we1m+wQKj+Yc9vlbjViGfT3HdniW/w+xYsOKvDbt+UK2cXop6KeLLFvJHwvm3gAn8JBl1MA80c2t2VL3A/6aJhiUOhs=
+	t=1742394370; cv=none; b=Zca4jjbq/Wu8npBOiQTf9M0h2o4E+5xfWx2IXO21yoOarr+XKH4O3Ep6OJGHDwnP3gYBFoCLMZGgNYYnDsAa2NwBnAXZb7UHXAK3/iJg0GYysNpTHtooQh22n2S2JCpD/2LVWRpDpDp8qisEsq3pDowEr9FvUf7nC8Wn2vIRcbg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742394349; c=relaxed/simple;
-	bh=h+cdS3pTwJUVuEV6GWnYBg/ZoOiO0Y9wWE4vjGoAuvw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ju17+/kelVMIaqrlmUkUo0Vy11uQ5rHg0KaqJPamGwkP5c4JlgAQlDRi6Cbc5ILKf8srkA1lhvN13UOvaeyEgJFbgtE2WUkqNk0H4nq6EO23jNy52B/ZRGkc1q61YAREjYqnvl5kKzbpiiJ69QFiW5zmswxV2sLflJEJxSf87bU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=h0bujmvl; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id CB51355A;
-	Wed, 19 Mar 2025 15:24:00 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1742394241;
-	bh=h+cdS3pTwJUVuEV6GWnYBg/ZoOiO0Y9wWE4vjGoAuvw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=h0bujmvl5pn9HbXHhdQ4XKMx1Y5uDd2NqnHkzFfKPPg2qPv+7+CHlhFUsEW1U4NWQ
-	 VDXYll0xmbkCO5BbFySJmeti3o8j3Q7DinRQLS+RgDumGljxWQiyfyI00ZyUrBoK6d
-	 gLc4I7v7+xSWiRpfrybobTPGRyIizM15uRmkQZI4=
-Date: Wed, 19 Mar 2025 15:25:40 +0100
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Hans Verkuil <hverkuil@xs4all.nl>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 5/7] media: rcar-isp: Move driver to own directory
-Message-ID: <2i2jtexgxiar2qwgpp3ujgshezj7fxo52f7n5xlexi7ieajimw@qwdw5e7dypet>
-References: <20250315152708.328036-1-niklas.soderlund+renesas@ragnatech.se>
- <20250315152708.328036-6-niklas.soderlund+renesas@ragnatech.se>
+	s=arc-20240116; t=1742394370; c=relaxed/simple;
+	bh=u9ne6noAROmIUk8hyjXM3BCGrOUF6I4+E9guqT83c0E=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=PmbCea2gIQLGBkH2md6LYQrAp4pyH+LmatVezCMOHAlBQTLUHHIMQrNHEjWBdNlrA/HSP79BhH+AhbTjokwJ7K6LG5JgPQRTRsQZz82zEmf6yVMCvlddRBT6JsVuQ5IlpxWH4KOY3h4BF/l5SGc7OiHTzUU7JvhDCSfAs7FRZ+c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DVMkRvdc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12D58C4CEE8;
+	Wed, 19 Mar 2025 14:26:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742394370;
+	bh=u9ne6noAROmIUk8hyjXM3BCGrOUF6I4+E9guqT83c0E=;
+	h=From:Subject:Date:To:Cc:From;
+	b=DVMkRvdcIvo0uon19WFzAlpe9JfyUtncBdpV55n1daiB9gIhrYVn3jEj+muKqJqYM
+	 8QyRWuqg/raggyUao3R3uzSC9S/vFSXuZE37ZMecirv0ksJ/zwWNCDvrqvCrZQ/Ll4
+	 TblYXLtlFu5ixuR3JWFqvZodF0YrdbzCI27aHTzZxT8hgPFKlZIBs3LRpE9f2JKdqn
+	 Tdhx3YI46/UkDKJwL0V40sT21u8HncjanTaU9OhJJbXoYV6wchW7p+Y9mO1qNROmVP
+	 CR0tx9gm9f0QypCbSs+HUAu1pvCSEwNibsAQ/6jgDmAfCbpBr8VolrYXGGJGrFsRHa
+	 HC0aa+gjGttvg==
+From: Konrad Dybcio <konradybcio@kernel.org>
+Subject: [PATCH 0/2] Allow 'nonposted-mmio' on single devices
+Date: Wed, 19 Mar 2025 15:25:56 +0100
+Message-Id: <20250319-topic-nonposted_mmio-v1-0-dfb886fbd15f@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250315152708.328036-6-niklas.soderlund+renesas@ragnatech.se>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPTT2mcC/x3MQQqAIBBA0avErBO0wUVdJSJCp5pFjqhEIN09a
+ fkW/1fIlJgyTF2FRDdnltBg+g7cuYWDFPtmGPRgNRqrikR2KkiIkgv59bpYlMURN/SkPVpoaUy
+ 08/Nv5+V9P85vLpxmAAAA
+X-Change-ID: 20250315-topic-nonposted_mmio-5393a3de0d35
+To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>
+Cc: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>, 
+ Melody Olvera <quic_molvera@quicinc.com>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1742394367; l=1084;
+ i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
+ bh=u9ne6noAROmIUk8hyjXM3BCGrOUF6I4+E9guqT83c0E=;
+ b=MFfiScu79U8kKeCNQrQjgsC/rDpanH0ypvf2lLeiZLcP/VQKaj/61zfckwPL7ek90C9AO2Cob
+ cr5xxCcm40UCXgxvdRJJjdlHF6KMk8xTVPxn9Yj5xtY/8fndGrQGtwl
+X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-Hi Niklas
+For a plethora of reasons, usually not very pretty, a single device on
+a given bus/platform may require a different type of memory mapping.
 
-On Sat, Mar 15, 2025 at 04:27:06PM +0100, Niklas Söderlund wrote:
-> Before extending the driver with functions from the R-Car ISP core that
-> will span multiple files move the existing driver to a separate
-> directory. While at it rename the single source file to allow future
-> files to be grouped by functions.
->
-> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+With nonposted-mmio specifically, we want to limit the scope of setting
+it where it's not necessary, so as not to shoot ourselves in the foot
+in the performance department.
 
-Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+This series allows mapping a single device as nE on arm64.
+A user will be sent separately, as a new node for a QC platform.
 
-Thanks
-  j
+The dt-bindings part is handled in the checker itself, see the following:
+https://github.com/devicetree-org/dt-schema/pull/156
 
-> ---
->  MAINTAINERS                                    |  2 +-
->  drivers/media/platform/renesas/Kconfig         | 18 +-----------------
->  drivers/media/platform/renesas/Makefile        |  2 +-
->  .../media/platform/renesas/rcar-isp/Kconfig    | 17 +++++++++++++++++
->  .../media/platform/renesas/rcar-isp/Makefile   |  4 ++++
->  .../renesas/{rcar-isp.c => rcar-isp/csisp.c}   |  0
->  6 files changed, 24 insertions(+), 19 deletions(-)
->  create mode 100644 drivers/media/platform/renesas/rcar-isp/Kconfig
->  create mode 100644 drivers/media/platform/renesas/rcar-isp/Makefile
->  rename drivers/media/platform/renesas/{rcar-isp.c => rcar-isp/csisp.c} (100%)
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index f3658f16fa24..c2f36486f5f5 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -14679,7 +14679,7 @@ F:	Documentation/devicetree/bindings/media/renesas,csi2.yaml
->  F:	Documentation/devicetree/bindings/media/renesas,isp.yaml
->  F:	Documentation/devicetree/bindings/media/renesas,vin.yaml
->  F:	drivers/media/platform/renesas/rcar-csi2.c
-> -F:	drivers/media/platform/renesas/rcar-isp.c
-> +F:	drivers/media/platform/renesas/rcar-isp/
->  F:	drivers/media/platform/renesas/rcar-vin/
->
->  MEDIA DRIVERS FOR RENESAS - VSP1
-> diff --git a/drivers/media/platform/renesas/Kconfig b/drivers/media/platform/renesas/Kconfig
-> index c7fc718a30a5..27a54fa79083 100644
-> --- a/drivers/media/platform/renesas/Kconfig
-> +++ b/drivers/media/platform/renesas/Kconfig
-> @@ -30,23 +30,6 @@ config VIDEO_RCAR_CSI2
->  	  To compile this driver as a module, choose M here: the
->  	  module will be called rcar-csi2.
->
-> -config VIDEO_RCAR_ISP
-> -	tristate "R-Car Image Signal Processor (ISP)"
-> -	depends on V4L_PLATFORM_DRIVERS
-> -	depends on VIDEO_DEV && OF
-> -	depends on ARCH_RENESAS || COMPILE_TEST
-> -	select MEDIA_CONTROLLER
-> -	select VIDEO_V4L2_SUBDEV_API
-> -	select RESET_CONTROLLER
-> -	select V4L2_FWNODE
-> -	help
-> -	  Support for Renesas R-Car Image Signal Processor (ISP).
-> -	  Enable this to support the Renesas R-Car Image Signal
-> -	  Processor (ISP).
-> -
-> -	  To compile this driver as a module, choose M here: the
-> -	  module will be called rcar-isp.
-> -
->  config VIDEO_SH_VOU
->  	tristate "SuperH VOU video output driver"
->  	depends on V4L_PLATFORM_DRIVERS
-> @@ -56,6 +39,7 @@ config VIDEO_SH_VOU
->  	help
->  	  Support for the Video Output Unit (VOU) on SuperH SoCs.
->
-> +source "drivers/media/platform/renesas/rcar-isp/Kconfig"
->  source "drivers/media/platform/renesas/rcar-vin/Kconfig"
->  source "drivers/media/platform/renesas/rzg2l-cru/Kconfig"
->
-> diff --git a/drivers/media/platform/renesas/Makefile b/drivers/media/platform/renesas/Makefile
-> index 50774a20330c..1127259c09d6 100644
-> --- a/drivers/media/platform/renesas/Makefile
-> +++ b/drivers/media/platform/renesas/Makefile
-> @@ -3,13 +3,13 @@
->  # Makefile for the Renesas capture/playback device drivers.
->  #
->
-> +obj-y += rcar-isp/
->  obj-y += rcar-vin/
->  obj-y += rzg2l-cru/
->  obj-y += vsp1/
->
->  obj-$(CONFIG_VIDEO_RCAR_CSI2) += rcar-csi2.o
->  obj-$(CONFIG_VIDEO_RCAR_DRIF) += rcar_drif.o
-> -obj-$(CONFIG_VIDEO_RCAR_ISP) += rcar-isp.o
->  obj-$(CONFIG_VIDEO_RENESAS_CEU) += renesas-ceu.o
->  obj-$(CONFIG_VIDEO_RENESAS_FCP) += rcar-fcp.o
->  obj-$(CONFIG_VIDEO_RENESAS_FDP1) += rcar_fdp1.o
-> diff --git a/drivers/media/platform/renesas/rcar-isp/Kconfig b/drivers/media/platform/renesas/rcar-isp/Kconfig
-> new file mode 100644
-> index 000000000000..59e0d91862d1
-> --- /dev/null
-> +++ b/drivers/media/platform/renesas/rcar-isp/Kconfig
-> @@ -0,0 +1,17 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +config VIDEO_RCAR_ISP
-> +	tristate "R-Car Image Signal Processor (ISP)"
-> +	depends on V4L_PLATFORM_DRIVERS
-> +	depends on VIDEO_DEV && OF
-> +	depends on ARCH_RENESAS || COMPILE_TEST
-> +	select MEDIA_CONTROLLER
-> +	select VIDEO_V4L2_SUBDEV_API
-> +	select RESET_CONTROLLER
-> +	select V4L2_FWNODE
-> +	help
-> +	  Support for Renesas R-Car Image Signal Processor (ISP).
-> +	  Enable this to support the Renesas R-Car Image Signal
-> +	  Processor (ISP).
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called rcar-isp.
-> diff --git a/drivers/media/platform/renesas/rcar-isp/Makefile b/drivers/media/platform/renesas/rcar-isp/Makefile
-> new file mode 100644
-> index 000000000000..b542118c831e
-> --- /dev/null
-> +++ b/drivers/media/platform/renesas/rcar-isp/Makefile
-> @@ -0,0 +1,4 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +rcar-isp-objs = csisp.o
-> +
-> +obj-$(CONFIG_VIDEO_RCAR_ISP) += rcar-isp.o
-> diff --git a/drivers/media/platform/renesas/rcar-isp.c b/drivers/media/platform/renesas/rcar-isp/csisp.c
-> similarity index 100%
-> rename from drivers/media/platform/renesas/rcar-isp.c
-> rename to drivers/media/platform/renesas/rcar-isp/csisp.c
-> --
-> 2.48.1
->
->
+Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+---
+Konrad Dybcio (2):
+      of: address: Expand nonposted-mmio to non-Apple Silicon platforms
+      of: address: Allow to specify nonposted-mmio per-device
+
+ drivers/of/address.c | 13 ++++---------
+ 1 file changed, 4 insertions(+), 9 deletions(-)
+---
+base-commit: c4d4884b67802c41fd67399747165d65c770621a
+change-id: 20250315-topic-nonposted_mmio-5393a3de0d35
+
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+
 
