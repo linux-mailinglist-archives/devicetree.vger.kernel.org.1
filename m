@@ -1,230 +1,123 @@
-Return-Path: <devicetree+bounces-159142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A216A69CDA
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 00:48:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C567A69CE5
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 00:52:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAD14425363
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 23:48:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36AD53AA94F
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 23:52:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74614218AA3;
-	Wed, 19 Mar 2025 23:48:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ABB622423E;
+	Wed, 19 Mar 2025 23:52:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="EGRGJb6H"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="o+ujyX3Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2D68290F;
-	Wed, 19 Mar 2025 23:48:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 459A91DED60
+	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 23:52:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742428095; cv=none; b=eeC5Ozv3Nrc5MpU57eh42TTFcWASM/vn4sj+RbkmNJ1C7HzsFM93/pIR7C5AMkjbF7KtCNcvcreNgxiWmRo7UU2a7bimGt7C+WD2SkL4fQU1cnqQGlaHCH5d3qK3FLgDXEWyvd0qlWNFkn1VEccsFjdhosqyA9+FlkO37+v7MUk=
+	t=1742428369; cv=none; b=KSK+N+jE6DmdKJ+4/nIXNOepKDBI9Vo7Ayt52+mF99S3yEkFx8sni+PuleBNI74Ypn1OzUd4J+Edt+MbInr9R0MINKbgcSwS7vUjupFViX2/TP1k7xCTrfr6gSYlGiy3GXkRug1gjRWM9rfqfTIVnAbdJuaahErZiuvTbtV1Cqs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742428095; c=relaxed/simple;
-	bh=9CdwFq4x9fa4iLQihxM8BJo/RgaGC0hhDEWpG6IwWg8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=p9tpeYLxYBns8lPDkK6M4XXFpZwUsRgtjU1US8Mh4L+Qr5bxq2cuMzLqHlFp7Ia4oPFLo50GI6VlaxjtNMPbOph/0Nqx8J9m3buqdmqZcPD5cICX9lY0J16hr8T+W3itTT3h0Gt3JR0UdSFF8D02ERJwiOGS2f7OkSAN4VptmqA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=EGRGJb6H; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=Rw+f9/0oWfJPL5BafdAk8H8AdIxBBtfNNmHXGxv1VA4=; b=EGRGJb6HMeCSbau9OQWDTncAhJ
-	+O9UgyhkLxHvEy0KVDW/TZ/D/E+dfg5Ob3QYk3Qg/LqL2SWkdKV/VUja+GYPrCn/geobH/wM9kmqS
-	3d0yUMw3dK9rEihAFBKaSni2xJZYvUkC1l+rBNMk/+YcOyyb8Y+DjAtOqSF9ktdgbIOZ1/HujUhX0
-	u3KJmC8dxsNAQIk04ONAsCT87Jh/yfhUJY+QDqez/buP1Z0WF8w5OqD3L9fdt8Y4ymU7pTeR6jKSs
-	cC0mJtq+zeyrHykhlgwpGdsGWMmmrIk94WXWcUNnzxm09jYtPHJAP5XbDEClru/9TH58yIPdlMmpc
-	sodb0RoQ==;
-Received: from i53875bc6.versanet.de ([83.135.91.198] helo=phil.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tv38b-0001z5-GP; Thu, 20 Mar 2025 00:47:53 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: Chukun Pan <amadeus@jmu.edu.cn>, Jonas Karlman <jonas@kwiboo.se>
-Cc: Yao Zi <ziyao@disroot.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] arm64: dts: rockchip: Add pwm nodes for RK3528
-Date: Thu, 20 Mar 2025 00:47:52 +0100
-Message-ID: <2499436.jE0xQCEvom@phil>
-In-Reply-To: <0d638134-0c0d-4918-af47-e23d2ead3bf3@kwiboo.se>
-References:
- <20250318120003.2340652-1-amadeus@jmu.edu.cn>
- <20250318120003.2340652-2-amadeus@jmu.edu.cn>
- <0d638134-0c0d-4918-af47-e23d2ead3bf3@kwiboo.se>
+	s=arc-20240116; t=1742428369; c=relaxed/simple;
+	bh=WUwIjAkiA+omSA3F0/XBGiF/j+1/a3MoCaaxdVmX9WI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TIut0zLKtGM8Al4MfAFQvGE3BvUMz6A24yFt3hAUkIqrEe1Wsg81/teofF/oCw2k7A9WlG2vlNp2AgRsq3y+qulo3qeBxa844o2xCA+J65Agin9lY/SpFv2NAyOcxwPQQZ/0AxLyKsRvo510FobXSN1YBQmL1xXxtYVIPKIyEpE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=o+ujyX3Z; arc=none smtp.client-ip=121.127.44.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1742428366;
+ bh=v2ctdz7uayF07UCPNi//R/x3v+JmE0rED8OH/LNmzM8=;
+ b=o+ujyX3ZkBJjZrwxuK2D3/jnytXNKlSfKPQkKP6535IT4WPtLyKUbFsbiHcRppWlqii2O5k0u
+ XPQDbkaX5gUH4BpCyfJ0Ov9nVYA42cKeXKPL0VYaTWoKdxy26Dv0vK8EIsKMUsXdhf4U7lhS2CZ
+ 2C2yohko+t9ao9Y+iv3L4LCD17mwOdN1q5h+nt/hko6HpTd85iy/+jswZvSV2+uZHRrOErpnS2E
+ M7nCvaSPT5dBUDyJY4BIizv4sDZM7iEgM00N5lWJsSzijjP//jvX1SDYKR436Si68ycVNZvQv1K
+ RoQFgbYfKQ7gBQhcIg7v1UAFzGes6GIy351X3/58jhbg==
+X-Forward-Email-ID: 67db58c827ee59b783a8734c
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.73
+X-Forward-Email-Version: 0.4.40
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <eabc0fb8-10cc-465c-9434-b0804418dcb6@kwiboo.se>
+Date: Thu, 20 Mar 2025 00:52:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v3 5/5] net: stmmac: dwmac-rk: Add initial
+ support for RK3528 integrated PHY
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Heiko Stuebner <heiko@sntech.de>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+ <alexandre.torgue@foss.st.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, David Wu <david.wu@rock-chips.com>,
+ Yao Zi <ziyao@disroot.org>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com
+References: <20250319214415.3086027-1-jonas@kwiboo.se>
+ <20250319214415.3086027-6-jonas@kwiboo.se>
+ <d53a2119-2650-4a87-af94-1b9c2297cf72@lunn.ch>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <d53a2119-2650-4a87-af94-1b9c2297cf72@lunn.ch>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Am Donnerstag, 20. M=C3=A4rz 2025, 00:26:14 MEZ schrieb Jonas Karlman:
-> Hi Chukun,
->=20
-> On 2025-03-18 13:00, Chukun Pan wrote:
-> > Add pwm nodes for RK3528. The PWM core on RK3528 is the same as
-> > RK3328, but the driver does not support interrupts yet.
->=20
-> The device tree should describe the hardware, not what the driver
-> support, so interrupts should probably be included.
->=20
-> However, looking closer at TRM for i.e. RK3328, RK3568 and RK3588 it
-> look like the following description is not a true description of the
-> hardware.
->=20
-> Each PWM controller seem to support 4 channels, here (and for older RK
-> SoCs) we instead describe each channel and not the controller.
+Hi Andrew,
 
-Yep, that is something that did go wrong in the very early days.
-And all other Rockchip socs also have the same issue - even back
-to the rk3066.
+On 2025-03-20 00:27, Andrew Lunn wrote:
+> On Wed, Mar 19, 2025 at 09:44:09PM +0000, Jonas Karlman wrote:
+>> Rockchip RK3528 (and RV1106) has a different integrated PHY compared to
+>> the integrated PHY on RK3228/RK3328.
+> 
+> What ID does this PHY have? Is it just the reset which is different,
+> or is it actually a different PHY, and the rockchip PHY driver needs
+> additions?
 
-So yes, at some point we should overhaul the thing.
+Sorry, look like I missed to include the phy-id reported in this patch
+and only included that detail in the related device tree patch [1].
 
-But I think this is more involved, as right now everything is aimed
-at the current single-channel status quo.
+This PHY seem to be different compared to the PHY used in older SoCs.
 
+The PHY identified on addr 0x2 as 0044.1400 and in vendor kernel this
+relate to the Rockchip RK630 PHY [2].
 
-Heiko
+  #define RK630_PHY_ID				0x00441400
 
+  /*
+   * Fixed address:
+   * Addr: 1 --- RK630@S40
+   *       2 --- RV1106@T22
+   */
+  #define PHY_ADDR_S40				1
+  #define PHY_ADDR_T22				2
 
-> Maybe something like following would better represent the hardware:
->=20
-> 	pwm0: pwm@ffa90000 {
-> 		compatible =3D "rockchip,rk3528-pwm";
-> 		reg =3D <0x0 0xffa90000 0x0 0x10000>;
-> 		clocks =3D <&cru CLK_PWM0>, <&cru PCLK_PWM0>;
-> 		clock-names =3D "pwm", "pclk";
-> 		interrupts =3D <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>,
-> 			     <GIC_SPI 54 IRQ_TYPE_LEVEL_HIGH>;
-> 	};
->=20
-> 	pwm1: pwm@ffa98000 {
-> 		compatible =3D "rockchip,rk3528-pwm";
-> 		reg =3D <0x0 0xffa98000 0x0 0x10000>;
-> 		clocks =3D <&cru CLK_PWM1>, <&cru PCLK_PWM1>;
-> 		clock-names =3D "pwm", "pclk";
-> 		interrupts =3D <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>,
-> 			     <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>;
-> 	};
->=20
-> Regards,
-> Jonas
->=20
-> >=20
-> > Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-> > ---
-> >  arch/arm64/boot/dts/rockchip/rk3528.dtsi | 80 ++++++++++++++++++++++++
-> >  1 file changed, 80 insertions(+)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot=
-/dts/rockchip/rk3528.dtsi
-> > index 1af0d036cf32..621fc19ac0b3 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> > @@ -465,6 +465,86 @@ uart7: serial@ffa28000 {
-> >  			status =3D "disabled";
-> >  		};
-> > =20
-> > +		pwm0: pwm@ffa90000 {
-> > +			compatible =3D "rockchip,rk3528-pwm",
-> > +				     "rockchip,rk3328-pwm";
-> > +			reg =3D <0x0 0xffa90000 0x0 0x10>;
-> > +			clocks =3D <&cru CLK_PWM0>, <&cru PCLK_PWM0>;
-> > +			clock-names =3D "pwm", "pclk";
-> > +			#pwm-cells =3D <3>;
-> > +			status =3D "disabled";
-> > +		};
-> > +
-> > +		pwm1: pwm@ffa90010 {
-> > +			compatible =3D "rockchip,rk3528-pwm",
-> > +				     "rockchip,rk3328-pwm";
-> > +			reg =3D <0x0 0xffa90010 0x0 0x10>;
-> > +			clocks =3D <&cru CLK_PWM0>, <&cru PCLK_PWM0>;
-> > +			clock-names =3D "pwm", "pclk";
-> > +			#pwm-cells =3D <3>;
-> > +			status =3D "disabled";
-> > +		};
-> > +
-> > +		pwm2: pwm@ffa90020 {
-> > +			compatible =3D "rockchip,rk3528-pwm",
-> > +				     "rockchip,rk3328-pwm";
-> > +			reg =3D <0x0 0xffa90020 0x0 0x10>;
-> > +			clocks =3D <&cru CLK_PWM0>, <&cru PCLK_PWM0>;
-> > +			clock-names =3D "pwm", "pclk";
-> > +			#pwm-cells =3D <3>;
-> > +			status =3D "disabled";
-> > +		};
-> > +
-> > +		pwm3: pwm@ffa90030 {
-> > +			compatible =3D "rockchip,rk3528-pwm",
-> > +				     "rockchip,rk3328-pwm";
-> > +			reg =3D <0x0 0xffa90030 0x0 0x10>;
-> > +			clocks =3D <&cru CLK_PWM0>, <&cru PCLK_PWM0>;
-> > +			clock-names =3D "pwm", "pclk";
-> > +			#pwm-cells =3D <3>;
-> > +			status =3D "disabled";
-> > +		};
-> > +
-> > +		pwm4: pwm@ffa98000 {
-> > +			compatible =3D "rockchip,rk3528-pwm",
-> > +				     "rockchip,rk3328-pwm";
-> > +			reg =3D <0x0 0xffa98000 0x0 0x10>;
-> > +			clocks =3D <&cru CLK_PWM1>, <&cru PCLK_PWM1>;
-> > +			clock-names =3D "pwm", "pclk";
-> > +			#pwm-cells =3D <3>;
-> > +			status =3D "disabled";
-> > +		};
-> > +
-> > +		pwm5: pwm@ffa98010 {
-> > +			compatible =3D "rockchip,rk3528-pwm",
-> > +				     "rockchip,rk3328-pwm";
-> > +			reg =3D <0x0 0xffa98010 0x0 0x10>;
-> > +			clocks =3D <&cru CLK_PWM1>, <&cru PCLK_PWM1>;
-> > +			clock-names =3D "pwm", "pclk";
-> > +			#pwm-cells =3D <3>;
-> > +			status =3D "disabled";
-> > +		};
-> > +
-> > +		pwm6: pwm@ffa98020 {
-> > +			compatible =3D "rockchip,rk3528-pwm",
-> > +				     "rockchip,rk3328-pwm";
-> > +			reg =3D <0x0 0xffa98020 0x0 0x10>;
-> > +			clocks =3D <&cru CLK_PWM1>, <&cru PCLK_PWM1>;
-> > +			clock-names =3D "pwm", "pclk";
-> > +			#pwm-cells =3D <3>;
-> > +			status =3D "disabled";
-> > +		};
-> > +
-> > +		pwm7: pwm@ffa98030 {
-> > +			compatible =3D "rockchip,rk3528-pwm",
-> > +				     "rockchip,rk3328-pwm";
-> > +			reg =3D <0x0 0xffa98030 0x0 0x10>;
-> > +			clocks =3D <&cru CLK_PWM1>, <&cru PCLK_PWM1>;
-> > +			clock-names =3D "pwm", "pclk";
-> > +			#pwm-cells =3D <3>;
-> > +			status =3D "disabled";
-> > +		};
-> > +
-> >  		saradc: adc@ffae0000 {
-> >  			compatible =3D "rockchip,rk3528-saradc";
-> >  			reg =3D <0x0 0xffae0000 0x0 0x10000>;
->=20
->=20
+[1] https://lore.kernel.org/all/20250310001254.1516138-2-jonas@kwiboo.se/
+[2] https://github.com/armbian/linux-rockchip/blob/rk-6.1-rkr5/drivers/net/phy/rk630phy.c
 
+Regards,
+Jonas
 
-
+> 
+> 	Andrew
 
 
