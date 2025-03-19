@@ -1,117 +1,147 @@
-Return-Path: <devicetree+bounces-159053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECBF8A69638
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 18:20:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0676A6965D
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 18:26:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F58519C2C18
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 17:20:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B41217AA2E
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 17:26:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FD291E47AE;
-	Wed, 19 Mar 2025 17:19:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61CC21E9912;
+	Wed, 19 Mar 2025 17:26:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gwmk/3sC"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="i4IKUdhV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6774A1E0DE6;
-	Wed, 19 Mar 2025 17:19:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A75DC1537A7
+	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 17:26:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742404798; cv=none; b=ksT125WKRGyZOl+Da9tUAP618o2E5PN2ld78fIfFP5Pv/zPqLk+dVMAVLN5hXFOV7s30LGHbktsdjaCuf3w6HJW0wu4o2mBBEL/vA9Z0pPbJgUh1ScMi+tmhl4tprUYCQsYZYeWxgXsfx9+scikKo1mgE78nJYEyyD0Dc4WYT9g=
+	t=1742405162; cv=none; b=Lip6MvSG4yyWO02WTQvMA9EK06wrXLdpXlN/EDaPO1g5kupquDl7i2DR+6enc/CxWqCehD1RUWlcJ2OJpoQd3Or58RKNt82V669K7ONpJD1WWhQmj5lm4bWfaHJQcxkI8fuSA4Cj/MJb3QrRnISGtnXMdvs680xCzmMZQsNNDBo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742404798; c=relaxed/simple;
-	bh=LrltH36LcKzUeNqpvSJ0cSNyUs04mlDZqxOw+sb1OXc=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=aOTqHv2VZrPI67AtOU42DlBSDuqFZAbGiX3ENwT6koJbRrHWhALVd3TJ+FbJBEY2T48IHl+WX2bodtE5g69ueh8uxNqQ+VlFv02WvnedXXoerIv3GVRpRgkFutINaWo7ZbSXGIS/wPCXwODtRPf+WqaehlorfhFWsGGqZlXIa0g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gwmk/3sC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD4E2C4CEE4;
-	Wed, 19 Mar 2025 17:19:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742404797;
-	bh=LrltH36LcKzUeNqpvSJ0cSNyUs04mlDZqxOw+sb1OXc=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=Gwmk/3sCXrryWVFn02KC6xjpk+pafHJkPHLPh/Zq5TEj0QR7BCneUeEc6Jc1jpNTN
-	 KEEHR+DrxNT/D6DS6N38wBO+yj8ywpgpl4I2meuluRDkKjBzrC+0Ls5xAymsYS7pAF
-	 PPdJ0EovZxtO61R9xfmGLHs5BmDaOfDQmn+CY+MQNE+w0enB0FHsICj2dIaf7gMdxC
-	 ujBr2jVJbYOk6d5oUF22g+7kxmDYXqMSwc3vmmFmc8Qi8N8tO5DqM3Y8GdAzY8SBx1
-	 MoI4Gjhad2t5bV1YP4VujVh7LGr+2BlRB4H4N9dnFMPA73Q1rbX/l3ecEiAqnc/quo
-	 j3pL/y6P8ntig==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id AE637380CFFE;
-	Wed, 19 Mar 2025 17:20:34 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1742405162; c=relaxed/simple;
+	bh=xWlwplV+ekInbFsUxRgTauEuEgk6dMw8nIVG3sysQ9k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YqdTO6FK2pChs5frv6zS4AYIgYb7fHMxvTNr+b0Vbhn+hSRJDcY1KsWTFJmoquersUEkj7bS9wf7fibOa+aNKj2dyVHBU5OSjT/vIX1ctnrxYflKusaoRvWiR9pzA3VKTLh9PPsT3fDOIoo11bycf7MbUrT+aoFt4SdUgGOMwk8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=i4IKUdhV; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52JE73Kg009922
+	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 17:25:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=wxTkGbnrj2G1AAERlXkdXjST
+	vimabqMigiyhzGpcsNs=; b=i4IKUdhVb25iQqlHQyI4tVrN6igUBit9UBocggcP
+	1a7AnHYWIcOPTbuHdMANqFkBy1Por4VMEVmLcrde8N34D3RJobN90CmEN8+gW5qP
+	xBpyCCpDTlVWC8GLejse8Ih33ueswRS7ey2dFimN+w9Un2lF/YpDikChWoaC6iFP
+	exD7cZEBY0RsiabXOldUuB9sw1sF9xxPFvyny0VSDnej4HtkHjSElpkrD3LSTyhs
+	AGARsGvBYXtbVvqkBbrCyVTB67rTjSOMCBNzTo8qNVk+Kj2pV5ZmaHPLFQ56DPwZ
+	hhLrEHVjyE4XSbr1GSMqWEEJaYUzaw7nOGn3vo2BnqDBMA==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45fdvxkckx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 17:25:59 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6e8ed78717eso125069006d6.2
+        for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 10:25:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742405158; x=1743009958;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wxTkGbnrj2G1AAERlXkdXjSTvimabqMigiyhzGpcsNs=;
+        b=e9+ujvANUM3ko8PLf8eTk9zOuFjHXJvnmnUQOkmPIA7ZmZI/RdbQRGqc4uOYliahZr
+         o1Kydv3R5/uMc2DazmEUDQXzeVtgUDHewKJ022ngnCnwUnnjwW0VBWJ2Rv3kTuw/CRN+
+         pgXdgZG6Y7zVr4mMo2J/xNlterMyTvaaGGGuNq8pvMZM3hypmh+1WJumGB8dOk1qK4hU
+         ZhsVs4v9WMOzPTCYdx2693FHZcQ97tzoA2CTfTY04hVWtoBih0jwBQBjDv3D7Rw0AasR
+         q12L4S7X4LJk1bG4xH5m+olEQSBCIwhLRLvje1a5OPsmIvP4G42UVo+SKcc01+mPsm8O
+         MDJg==
+X-Forwarded-Encrypted: i=1; AJvYcCWPW4qVsxKETYF4hTjhhbbxhKArBXVt9uJeaQHzeD2eZccAZn6tiVeWz8GciL/1AFPx9XeVJcc8Od95@vger.kernel.org
+X-Gm-Message-State: AOJu0YyUXjRC/FlBvzfTv9KOQCR9nXurV7iyk0g+3S/7ihTiEZQrLkfR
+	SWBxjjHNaS3d/9gloGqzRrbPeizMeO++9C3k8WL6fqRlW6WQQrO9sB6G1HQMyybhH47NGnEwpkj
+	uFZSpst9dJ+jfJDT97VJnPzejhug80mnOjkL/5HC15lJUtQpKULaqCo36xRjk
+X-Gm-Gg: ASbGncuv+uXPcKiDPXlO3fVQZ9WeI1IvHiM0vwee9K7yvHOcD1hJGf4s66+fPPXFh93
+	4V/IAigYO2P26WwJ8OIPlAXcCjoWyqaaRCXdbFaKQEED6L1laUIG+lnTSNxbdSeRt1tgiu9mOPU
+	tgRJm9hS6FXcJc2iIinVCOeI2kH8gZtJG50ut/3A2tM0oYi45ePgJdzNv66USybnUNiBgNo5EXb
+	gX02nHri6TfGp2m6Io/akh07N9wEYhPhXqb96spiZsMuZiulPqCauOrsr4kjAbvrQ1g8ywsACGw
+	FGtP/HBj8INM591z5RpEDMMryDh+83H907I3F6vlJ5pgZ/rSUnk13r1uq/QwbYQEo66O13hqtFV
+	b6/M=
+X-Received: by 2002:a05:6214:528b:b0:6e8:e8dd:3088 with SMTP id 6a1803df08f44-6eb29446070mr53033466d6.37.1742405158321;
+        Wed, 19 Mar 2025 10:25:58 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGcStmY6qruGD6vBp50x0OySWHCpSi6v3rL7uOiQJh632CHkOyH81K+9C72wFo4Ponx60tgYg==
+X-Received: by 2002:a05:6214:528b:b0:6e8:e8dd:3088 with SMTP id 6a1803df08f44-6eb29446070mr53033006d6.37.1742405157828;
+        Wed, 19 Mar 2025 10:25:57 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-549ba888039sm2002361e87.203.2025.03.19.10.25.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Mar 2025 10:25:57 -0700 (PDT)
+Date: Wed, 19 Mar 2025 19:25:54 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Konrad Dybcio <konradybcio@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org,
+        Marc Gonzalez <mgonzalez@freebox.fr>,
+        Dmitry Baryshkov <lumag@kernel.org>, Arnaud Vrac <avrac@freebox.fr>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/8] arm64: dts: qcom: sc7180: Add specific APPS RSC
+ compatible
+Message-ID: <rg377etwxv3yupth3acak4ycthahi7sennm54sbah55yqj2qdk@vip4xxkbsp7n>
+References: <20250318-topic-more_dt_bindings_fixes-v1-0-cb36882ea9cc@oss.qualcomm.com>
+ <20250318-topic-more_dt_bindings_fixes-v1-2-cb36882ea9cc@oss.qualcomm.com>
+ <l4vd2xmrowmmtefieb4cbirq6ntkvnwbhtpxcyzwdeok2vgtt7@zqgqndumgecv>
+ <881655b5-30c0-42f3-863f-5b6606a3e2cd@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v2 0/7] net: stmmac: deprecate
- "snps,en-tx-lpi-clockgating" property
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <174240483352.1121844.16892728893562053636.git-patchwork-notify@kernel.org>
-Date: Wed, 19 Mar 2025 17:20:33 +0000
-References: <Z9FVHEf3uUqtKzyt@shell.armlinux.org.uk>
-In-Reply-To: <Z9FVHEf3uUqtKzyt@shell.armlinux.org.uk>
-To: Russell King (Oracle) <linux@armlinux.org.uk>
-Cc: andrew@lunn.ch, hkallweit1@gmail.com, aou@eecs.berkeley.edu,
- alex@ghiti.fr, alexandre.torgue@foss.st.com, andrew+netdev@lunn.ch,
- christophe.roullier@st.com, conor+dt@kernel.org, conor@kernel.org,
- davem@davemloft.net, devicetree@vger.kernel.org, kernel@esmil.dk,
- edumazet@google.com, peppe.cavallaro@st.com, kuba@kernel.org,
- joabreu@synopsys.com, krzk+dt@kernel.org,
- prabhakar.mahadev-lad.rj@bp.renesas.com,
- linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com, mcoquelin.stm32@gmail.com,
- minda.chen@starfivetech.com, netdev@vger.kernel.org, palmer@dabbelt.com,
- pabeni@redhat.com, paul.walmsley@sifive.com, robh@kernel.org,
- samin.guo@starfivetech.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <881655b5-30c0-42f3-863f-5b6606a3e2cd@oss.qualcomm.com>
+X-Authority-Analysis: v=2.4 cv=SKhCVPvH c=1 sm=1 tr=0 ts=67dafe27 cx=c_pps a=oc9J++0uMp73DTRD5QyR2A==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=EUspDBNiAAAA:8 a=p9JctohuHJosm6c4YDkA:9 a=CjuIK1q_8ugA:10 a=iYH6xdkBrDN1Jqds4HTS:22
+X-Proofpoint-ORIG-GUID: mDLVMBEzHC-pP9wTAzY_HIrrQ2Kv_usd
+X-Proofpoint-GUID: mDLVMBEzHC-pP9wTAzY_HIrrQ2Kv_usd
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-19_06,2025-03-19_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ mlxlogscore=913 spamscore=0 lowpriorityscore=0 priorityscore=1501
+ clxscore=1015 bulkscore=0 mlxscore=0 suspectscore=0 phishscore=0
+ impostorscore=0 adultscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502280000 definitions=main-2503190117
 
-Hello:
-
-This series was applied to netdev/net-next.git (main)
-by Paolo Abeni <pabeni@redhat.com>:
-
-On Wed, 12 Mar 2025 09:34:20 +0000 you wrote:
-> On Sun, Mar 09, 2025 at 03:01:45PM +0000, Russell King (Oracle) wrote:
-> Hi,
+On Wed, Mar 19, 2025 at 03:14:42PM +0100, Konrad Dybcio wrote:
+> On 3/18/25 10:30 PM, Dmitry Baryshkov wrote:
+> > On Tue, Mar 18, 2025 at 07:35:15PM +0100, Konrad Dybcio wrote:
+> >> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> >>
+> >> SC7180 comes in a couple firmware flavors, some of which don't support
+> >> PSCI in OSI mode. That prevents the power domain exepcted by the RSC
+> >> node from providing useful information on system power collapse.
+> > 
+> > Is this behaviour specific to SC7180 or only to ChromeBooks? For example
+> > TCL Book 14 Go or ECS Liva QC710, would they also use this compat?
 > 
-> This series deprecates the "snps,en-tx-lpi-clockgating" property for
-> stmmac.
-> 
-> MII Transmit clock gating, where the MAC hardware supports gating this
-> clock, is a function of the connected PHY capabilities, which it
-> reports through its status register.
-> 
-> [...]
+> The hardware and firmware representation of the RSC is identical, but
+> I wanted to alter the bindings required properties based on the specific
+> possibly-chrome platforms.
 
-Here is the summary with links:
-  - [net-next,v2,1/7] net: stmmac: allow platforms to use PHY tx clock stop capability
-    https://git.kernel.org/netdev/net-next/c/0c1f1eb65425
-  - [net-next,v2,2/7] net: stmmac: starfive: use PHY capability for TX clock stop
-    https://git.kernel.org/netdev/net-next/c/5f250bd72a01
-  - [net-next,v2,3/7] net: stmmac: stm32: use PHY capability for TX clock stop
-    https://git.kernel.org/netdev/net-next/c/a5bc19e2abeb
-  - [net-next,v2,4/7] riscv: dts: starfive: remove "snps,en-tx-lpi-clockgating" property
-    https://git.kernel.org/netdev/net-next/c/637af286f9fc
-  - [net-next,v2,5/7] ARM: dts: stm32: remove "snps,en-tx-lpi-clockgating" property
-    https://git.kernel.org/netdev/net-next/c/50a84bbc7ec1
-  - [net-next,v2,6/7] dt-bindings: deprecate "snps,en-tx-lpi-clockgating" property
-    https://git.kernel.org/netdev/net-next/c/a62b7901d3a9
-  - [net-next,v2,7/7] net: stmmac: deprecate "snps,en-tx-lpi-clockgating" property
-    https://git.kernel.org/netdev/net-next/c/cf0a96de397e
+Should we instead have a separate compatible (?) for ChromeOS platforms
+only?
 
-You are awesome, thank you!
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+With best wishes
+Dmitry
 
