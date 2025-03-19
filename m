@@ -1,132 +1,111 @@
-Return-Path: <devicetree+bounces-159123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA328A69C2A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 23:38:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0CDDA69C30
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 23:40:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 107D1189C4EB
-	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 22:38:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2521A189CAD2
+	for <lists+devicetree@lfdr.de>; Wed, 19 Mar 2025 22:40:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4414621CA16;
-	Wed, 19 Mar 2025 22:38:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 839EB21C9F5;
+	Wed, 19 Mar 2025 22:40:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pereznus.es header.i=@pereznus.es header.b="eRaHw7mW"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="awaNfGbp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from p00-icloudmta-asmtp-us-central-1k-60-percent-2.p00-icloudmta-asmtp-vip.icloud-mail-production.svc.kube.us-central-1k.k8s.cloud.apple.com (p-east1-cluster3-host1-snip4-9.eps.apple.com [57.103.91.140])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 912C821C183
-	for <devicetree@vger.kernel.org>; Wed, 19 Mar 2025 22:38:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=57.103.91.140
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 433F81D514B;
+	Wed, 19 Mar 2025 22:40:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742423899; cv=none; b=suxhyU6UIg+ZzcuyjplGEsbkUfncdHWKxkSCy3NSr4V+5UvvGc/lhupQivkcoXbnuOzQFU/oDGDyT4QQuXnIADzVFc9ZmgMEW6K2G1vwxpqmPvCp+WD9SgYx9YCTDV3HGyyb8EhT1rQ7DfQQkJKeijcKKAQWjl5E3v9CdVtDsiI=
+	t=1742424008; cv=none; b=mBi6PVyh5wCWDdBmSq3AUWSE2ZNG3llnzqLwYNIm50o4FAubOoTO9WvFC9/ttvByIY+6IpOWyNlWAgMvv5wtEyRuC7MlQk8B3ZfP/jbDFYSboMMdY3l15JLaJtqsk6zkXsSWvl4G0TMHPv4isbeXUz5Renwc//OKRRugd2CoCdg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742423899; c=relaxed/simple;
-	bh=8a2f3FlRvG/pzDdRtKaKlroKGdKCT2odwaou3DMDvmM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=PcSsuafGOEujpZmxy6a7YyeGCNCp6us2XJdleVLwKXXEm12NVmiNVtzQlM0QkdP4EOeSWFuazYfnyos8ZnKSC7mNBFM4+GZN0xIgzZVQqQvd3K5vGaLGd3PoUkj3YPl2ceNpIppZASV5D5GlW00con+yieufFO8NqC5qLK/MWyI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pereznus.es; spf=pass smtp.mailfrom=pereznus.es; dkim=pass (2048-bit key) header.d=pereznus.es header.i=@pereznus.es header.b=eRaHw7mW; arc=none smtp.client-ip=57.103.91.140
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pereznus.es
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pereznus.es
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pereznus.es; s=sig1;
-	bh=D4tLwEtvyuAMs9vaw3UQSpGv6BpebpU0va3SYfZMuQY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:x-icloud-hme;
-	b=eRaHw7mWCl7vStM7eB3wsmJN7N/xHsH1KjuWQkADW6RmbmF+/OdotDGZOeY43wudK
-	 NW5JjX2u1mFTEK2xevW0yNtivYLD8Pi7U43F/hjdGK8yIp9vEX9rqlhArJxEI+rJA4
-	 YgXc8TtqDD7lA14bLRdBZ7j325xIddXW69hJ8ojSlq3dkE3SWjEophLQKEewz9iatS
-	 m4vTekkDZo4/MJFo/mLmKs0946maKZG2hNJbo5KZpIDkpCwPqMi828eliExG+47Yvl
-	 OusKCDGi+Z7FbaELeflxdgcO0unBJc2zdmk9R7n/N45Socqa/C87B+HoKqKqRWMqzE
-	 VtQt+UpbRjtDA==
-Received: from [192.168.1.28] (ci-asmtp-me-k8s.p00.prod.me.com [17.57.156.36])
-	by p00-icloudmta-asmtp-us-central-1k-60-percent-2.p00-icloudmta-asmtp-vip.icloud-mail-production.svc.kube.us-central-1k.k8s.cloud.apple.com (Postfix) with ESMTPSA id D72DF18000B7;
-	Wed, 19 Mar 2025 22:38:12 +0000 (UTC)
-Message-ID: <96c44905-0725-4c68-91a5-1c6cea6a7f4a@pereznus.es>
-Date: Wed, 19 Mar 2025 23:38:09 +0100
+	s=arc-20240116; t=1742424008; c=relaxed/simple;
+	bh=2uXPjstuKd5ETSY4ZLOwCzlCbA+Q99mIAJvMpF7vxsU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=acO0qHOyGYd5Dz5vvToeiRovJl7/KJEjXSiVRYHNYVu2csrl1RA5OL/Phkb40ZI+TRkbK6hwSqIlvlK9ikBnny+FxNliVtA/t80KZs0y4altnljE0E01pgV8bIyTJc4htQSi2/xe44DMB8Mm0NxwrLs9vzLupojvso7nwsjXEYY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=awaNfGbp; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=jTG3WnDFAfRFQDs0cUx1kwKiOP6BmpOLg7RMMJcqr7s=; b=awaNfGbpagVPUyFCmBEgPJBmul
+	e9tPJGuvyQX/cvhie0Gzen6w0UIqucPHwRQq7lqNasTTazFhe+DK60szAbKolzU3XYaHFyzt0or44
+	01eTmdmeu014tYZJcfTanw14k5yoqvo9Fh+IUWcXPUAuQyz34EHR/nWevIkioAIety70=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tv24e-006Q5Z-KP; Wed, 19 Mar 2025 23:39:44 +0100
+Date: Wed, 19 Mar 2025 23:39:44 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: Heiko Stuebner <heiko@sntech.de>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Wu <david.wu@rock-chips.com>, Yao Zi <ziyao@disroot.org>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH net-next v3 3/5] net: stmmac: dwmac-rk: Move
+ integrated_phy_powerup/down functions
+Message-ID: <d7b3ec5c-2d74-4409-9894-8f2cb3e055f6@lunn.ch>
+References: <20250319214415.3086027-1-jonas@kwiboo.se>
+ <20250319214415.3086027-4-jonas@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: light: bh1750: Add reset-gpios
- property
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Tomasz Duszynski <tduszyns@gmail.com>, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250319161117.1780-1-sergio@pereznus.es>
- <61d55149-1955-4d5c-84de-d8644727b87f@kernel.org>
-Content-Language: es-ES, en-US, ca
-From: =?UTF-8?Q?Sergio_P=C3=A9rez?= <sergio@pereznus.es>
-In-Reply-To: <61d55149-1955-4d5c-84de-d8644727b87f@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: SUd8x49W4pG6fMgPf4kgXRWwy085DXog
-X-Proofpoint-ORIG-GUID: SUd8x49W4pG6fMgPf4kgXRWwy085DXog
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-19_08,2025-03-19_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 mlxscore=0 suspectscore=0
- clxscore=1030 mlxlogscore=999 bulkscore=0 malwarescore=0 phishscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2308100000 definitions=main-2503190152
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250319214415.3086027-4-jonas@kwiboo.se>
 
+On Wed, Mar 19, 2025 at 09:44:07PM +0000, Jonas Karlman wrote:
+> Rockchip RK3528 (and RV1106) has a different integrated PHY compared to
+> the integrated PHY on RK3228/RK3328. Current powerup/down operation is
+> not compatible with the integrated PHY found in these SoCs.
+> 
+> Move the rk_gmac_integrated_phy_powerup/down functions to top of the
+> file to prepare for them to be called directly by a GMAC variant
+> specific powerup/down operation.
+> 
+> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 
-El 19/03/2025 a las 20:12, Krzysztof Kozlowski escribió:
-> On 19/03/2025 17:11, Sergio Perez wrote:
->> Some BH1750 sensors require a hardware reset via GPIO before they can
->> be properly detected on the I2C bus. Add a new reset-gpios property
->> to the binding to support this functionality.
->>
->> The reset-gpios property allows specifying a GPIO that will be toggled
->> during driver initialization to reset the sensor.
->>
->> Signed-off-by: Sergio Perez <sergio@pereznus.es>
->> ---
->>   Documentation/devicetree/bindings/iio/light/bh1750.yaml | 5 +++++
->>   1 file changed, 5 insertions(+)
-> You just sent v3, while v4 was already on the lists, without improving
-> and without responding to review.
->
-> NAK.
->
-> You keep repeating the same mistakes: not reading and responding
-> feedback and it is getting tiresome.
-I apologize for the confusion with patch versions. You're right that I 
-sent v3
-after v4 was already on the list. I was trying to follow your exact 
-instructions from:
-"git add ...
-git commit --signed-off
-git format-patch -v3 -2
-scripts/chekpatch.pl v3*
-scripts/get_maintainers.pl --no-git-fallback v3*
-git send-email *"
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-Regarding the binding I've modified for next v5 the YAML description to 
-remove "active low" to avoid confusion and modified the example to:
+> +#define RK_GRF_CON2_MACPHY_ID		HIWORD_UPDATE(0x1234, 0xffff, 0)
+> +#define RK_GRF_CON3_MACPHY_ID		HIWORD_UPDATE(0x35, 0x3f, 0)
+> +
+> +static void rk_gmac_integrated_phy_powerup(struct rk_priv_data *priv)
+> +{
+> +	if (priv->ops->integrated_phy_powerup)
+> +		priv->ops->integrated_phy_powerup(priv);
+> +
+> +	regmap_write(priv->grf, RK_GRF_MACPHY_CON0, RK_MACPHY_CFG_CLK_50M);
+> +	regmap_write(priv->grf, RK_GRF_MACPHY_CON0, RK_GMAC2PHY_RMII_MODE);
+> +
+> +	regmap_write(priv->grf, RK_GRF_MACPHY_CON2, RK_GRF_CON2_MACPHY_ID);
+> +	regmap_write(priv->grf, RK_GRF_MACPHY_CON3, RK_GRF_CON3_MACPHY_ID);
 
-examples:
-   - |
-     i2c {
-       #address-cells = <1>;
-       #size-cells = <0>;
+I know you are just moving code around....
 
-       light-sensor@23 {
-         compatible = "rohm,bh1750";
-         reg = <0x23>;
-         reset-gpios = <&gpio2 17 GPIO_ACTIVE_HIGH>;
-       };
-     };
+Do you know what these MACPHY_ID are? I hope it is not what you get
+when you read PHY registers 2 and 3?
 
-That is the original version and is the configuration running on my machine.
-
-> Best regards,
-> Krzysztof
+	Andrew
 
