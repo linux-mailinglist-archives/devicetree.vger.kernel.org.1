@@ -1,91 +1,175 @@
-Return-Path: <devicetree+bounces-159363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2AE2A6A702
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 14:20:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC4D8A6A72C
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 14:29:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3D0AD7B1DAF
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 13:19:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3CD89189EF0D
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 13:25:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF6FC1DF98B;
-	Thu, 20 Mar 2025 13:20:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E31E2AE99;
+	Thu, 20 Mar 2025 13:24:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="NfN6pSB9"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="upRkIDwp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from out-174.mta1.migadu.com (out-174.mta1.migadu.com [95.215.58.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C5502AE99;
-	Thu, 20 Mar 2025 13:20:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96FDF1E5B6A
+	for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 13:24:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742476839; cv=none; b=PJGsuCYdKsc3amsoswGblkk/FvwIEweesrAG7jiTYlLaGPkESgUlSglE4ZpvrojSRAaaBXgt16RCSnKTCJMuQcH/1VdVBdSHca89sZwlYXGp9GA3rfkvkGsSqxj8D4wRJ0x3z2J3refb4pguORqU9GeI6v2GWbaCXcpo65GJF9Y=
+	t=1742477092; cv=none; b=nBNrkQlhaQJOLQajSixtrAetBDl5QSKqkJ6Jl88lj0vaiiTr4e1tZ14XvRgFxal8bCnyXMFJlWQmCUbS2yimWX1QpeBJDdM6K4gIXUNOjJHx8sus5NaZp6t+quxjiO2+DNaPVt5Bc+bmJOY9faCY1QHPUD1AVG8QcWHCJveaQJs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742476839; c=relaxed/simple;
-	bh=s+5inRnnJWyj20LEfi2ebATkXnpn5nPdD5sUgf/YnF0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=chIGCjS/8stNk3/esoYczvHYS9IrGCePIe2/6Bq9vBMu9wtKDqvMP8tqO7+S92egyYh0crX0JSUga+V5+QQJJfOBioDqnyYye4CO4XNpu9slJyMul1nHT0AxnGXxntjplrB3N++u8/xjGe7h9uRwJXCCU3pzUGWyv30GDvqAqNU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=NfN6pSB9; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=aRlSKlwPjz5OfI49MqhNhAWG0xXIoHSGK59j5+5+Zr4=; b=NfN6pSB9tndSEmbKrcEDWBQ7VE
-	a3rhcdRX6VShAnN3x/dbyLefD+8TJqkLDiXi5d6YzibV36IF2c6QJjdbn+vRxdiDdMqkzE57BAKxH
-	SFkwOeDkzh09nnY8wLo63xOnVyl95cGmwf0YSSaPHNK8nI2jvVhqMZh7j38ODwYQjyBo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tvFot-006TkK-9J; Thu, 20 Mar 2025 14:20:23 +0100
-Date: Thu, 20 Mar 2025 14:20:23 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: Heiko Stuebner <heiko@sntech.de>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Wu <david.wu@rock-chips.com>, Yao Zi <ziyao@disroot.org>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH net-next v3 5/5] net: stmmac: dwmac-rk: Add initial
- support for RK3528 integrated PHY
-Message-ID: <b918b36e-e4d8-48a6-bac8-6aacafe129b6@lunn.ch>
-References: <20250319214415.3086027-1-jonas@kwiboo.se>
- <20250319214415.3086027-6-jonas@kwiboo.se>
+	s=arc-20240116; t=1742477092; c=relaxed/simple;
+	bh=CQJgVxP67q4nLt1VGZxW4sjt4uFjV3uDcWhjP0Nv2Vc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hX60TdpnHQxBBbMB7RQhyjlaBD97k91yKCQ8EbM71iSIjjkDgl46OkDwFTJFecVYDCilbbsdLPMq/6kBQIWiQ7QSPZrerh9O51aGhAQ2N4UXFZYTekxj0KQ4aj1N8T6HysJ057fmDVkmcQM82XzOwkbFy6hEWnV3bxX1he+hUaI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=upRkIDwp; arc=none smtp.client-ip=95.215.58.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <2c0b49a2-7cf3-4432-bab0-1eb110e8e8c2@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1742477087;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=k5XdiQFl3wHL7QNP07tkObb+sgwtdF2xYbguKHVcnVo=;
+	b=upRkIDwpO4rHzaEi+hcMbgEBwiKyQQUVhZmYdXrv2e0R6BCFT8FGTje640+mtfOqQRdlvS
+	iK44EU2bNCkwdtSqPCWXPaULCS3mMHs3DMorrOhoZT4xUOZPpD4Zg+bXbwnIzjPOTu0OhR
+	YEVqZOamntJd13i7nLKonrbFytyAqeA=
+Date: Thu, 20 Mar 2025 18:54:05 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250319214415.3086027-6-jonas@kwiboo.se>
+Subject: Re: [PATCH v4 0/3] drm/tidss: Add OLDI bridge support
+To: "Sverdlin, Alexander" <alexander.sverdlin@siemens.com>
+Cc: "j-choudhary@ti.com" <j-choudhary@ti.com>,
+ "u-kumar1@ti.com" <u-kumar1@ti.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "devarsht@ti.com" <devarsht@ti.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "nm@ti.com" <nm@ti.com>, "vigneshr@ti.com" <vigneshr@ti.com>,
+ "praneeth@ti.com" <praneeth@ti.com>
+References: <20241124143649.686995-1-aradhya.bhatia@linux.dev>
+ <8366a3d736f9937667aab024895a59e5947dd4a5.camel@siemens.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Aradhya Bhatia <aradhya.bhatia@linux.dev>
+In-Reply-To: <8366a3d736f9937667aab024895a59e5947dd4a5.camel@siemens.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
-On Wed, Mar 19, 2025 at 09:44:09PM +0000, Jonas Karlman wrote:
-> Rockchip RK3528 (and RV1106) has a different integrated PHY compared to
-> the integrated PHY on RK3228/RK3328. Current powerup/down operation is
-> not compatible with the integrated PHY found in these newer SoCs.
+Hi Alexander,
+
+Thank you for testing and reviewing the patches!
+
+On 19/03/25 23:30, Sverdlin, Alexander wrote:
+> Thank you for the patches, Aradhya!
 > 
-> Add operations to powerup/down the integrated PHY found in RK3528.
-> Use helpers that can be used by other GMAC variants in the future.
+> On Sun, 2024-11-24 at 20:06 +0530, Aradhya Bhatia wrote:
+>> Regardless, I'd appreciate it if somebody can test it, and report back if they
+>> observe any issues.
 > 
-> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+> I've tried to test the patchset with necessary pre-requisites and DT additions
+> with a single channel LVDS pannel and while I'm not successful yet, I've also noticed
+> the following warning:
+> 
+> tidss 30200000.dss: vp0: Clock rate 24285714 differs over 5% from requested 37000000
+> 
+> even though later the clock seems to be correctly set up:
+> 
+> $ cat /sys/kernel/debug/clk/clk_summary 
+> 
+>                                  enable  prepare  protect                                duty  hardware                            connection
+>    clock                          count    count    count        rate   accuracy phase  cycle    enable   consumer                         id
+> ---------------------------------------------------------------------------------------------------------------------------------------------
+>  clk:186:6                           1       1        0        250000000   0          0     50000      Y   30200000.dss                    fck                      
+>                                                                                                            deviceless                      no_connection_id         
+>  clk:186:4                           0       0        0        0           0          0     50000      Y   deviceless                      no_connection_id         
+>  clk:186:3                           0       0        0        170000000   0          0     50000      Y   deviceless                      no_connection_id         
+>     clk:186:2                        0       0        0        170000000   0          0     50000      Y      30200000.dss                    vp2                      
+>                                                                                                               deviceless                      no_connection_id         
+>  clk:186:0                           1       1        0        259090909   0          0     50000      Y   oldi@0                          serial                   
+>                                                                                                            deviceless                      no_connection_id         
+>     clock-divider-oldi               1       1        0        37012987    0          0     50000      Y      30200000.dss                    vp1                      
+> 
+> Looks like "clock-divider-oldi" doesn't propagate clk_set_rate() to the parent,
+> but the parent is being set later independently?
+> 
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Yes, you are right. The "clock-divider-oldi" does not propagate the
+clk_set_rate() to the parent.
 
-    Andrew
+The actual parent clock is now owned by the oldi bridge driver, and that
+is what sets the clock rate (7 * pixel freq). The equivalent action from
+tidss vp (DRM crtc) is a no op in cases of OLDI display pipeline.
+
+Usually, the DRM crtc is enabled first, before _any_ of the DRM bridges
+get pre_enabled or enabled.
+
+Since, OLDI is a DRM bridge, the OLDI enable (and by extension the
+actual clk_set_rate()) takes place _after_ the DRM crtc has been
+enabled (which is why you see the parent being set later on).
+
+DRM crtc enable is where tidss vp attempts (and fails) to set the clock
+rate, causing the warning you see initially.
+
+
+I have attempted to re-order the bridge pre_enable and crtc enable calls
+in these patches[0], separately.
+
+While you have mentioned that you did add the prerequisites, could you
+confirm that you applied the (now older) dependency patch mentioned in
+the v4 cover-letter[1]?
+Ideally, you should not observe these concerns if [1] were successfully
+applied.
+
+More importantly, if you are already on latest linux-next, I would
+request you to use v6 of this OLDI series[2], along with the latest
+dependency patches[0], as the older dependency patch is simply not
+applicable on latest kernel anymore! =)
+
+I'd appreciate it if you are able to test the latest revisions on your
+single-link setup, and report back any issue you see! Thank you! =)
+
+
+-- 
+Regards
+Aradhya
+
+
+
+[0]: Pre Requisite patches that re-order crtc/encoder/bridge sequences
+(latest revision).
+
+a. ("drm/atomic-helper: Refactor crtc & encoder-bridge op loops into
+separate functions")
+https://lore.kernel.org/all/20250226155737.565931-3-aradhya.bhatia@linux.dev/
+
+b. ("drm/atomic-helper: Separate out bridge pre_enable/post_disable from
+enable/disable")
+https://lore.kernel.org/all/20250226155737.565931-4-aradhya.bhatia@linux.dev/
+
+c. ("drm/atomic-helper: Re-order bridge chain pre-enable and post-disable")
+https://lore.kernel.org/all/20250226155737.565931-5-aradhya.bhatia@linux.dev/
+
+
+[1]: Dependency patch mentioned in v4 OLDI series.
+("drm/atomic-helper: Re-order bridge chain pre-enable and post-disable")
+https://lore.kernel.org/all/20240622110929.3115714-11-a-bhatia1@ti.com/
+
+
+[2]: Latest OLDI series (v6)
+https://lore.kernel.org/all/20250226181300.756610-1-aradhya.bhatia@linux.dev/
+
 
