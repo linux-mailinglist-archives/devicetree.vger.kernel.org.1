@@ -1,95 +1,140 @@
-Return-Path: <devicetree+bounces-159240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F4A6A6A1A2
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 09:43:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73C53A6A1AB
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 09:45:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD80D17D0E4
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 08:43:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E573F171770
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 08:45:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F4C921C189;
-	Thu, 20 Mar 2025 08:43:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43526214A71;
+	Thu, 20 Mar 2025 08:45:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dz5FSb8W"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="L/6eYEZ2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D61C51519BE;
-	Thu, 20 Mar 2025 08:43:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 281E9130A73;
+	Thu, 20 Mar 2025 08:45:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742460210; cv=none; b=YHwZBRvdbuUwUkuTAZ/vh1KHp+PXBJsOBJB3sqa7Ia118d99OQJjzFXwpqrUbnLxv9eywZSBAPGW9qx+derJ5uTPw/jzp0drvTYHYUUbAjP7HgAgEcvA5wdqTi0InXFCKOkwxTfhjd9CgV6a4NcYEwPhpqhz+uoMPfQSAmJOOVk=
+	t=1742460335; cv=none; b=ZzMTlwqiKvri3q6XGHfOoypJkYLHhEMshCucb9mCd239z9D48XlLMgxqD05NlcQL687Iid7HjaRBQhcrC2K+9Bxh4XSEdRzs9L67/9xcxHCb0P0CE2kWF5TjXApZ0Z/FgU+5BRKwtVqMMxhsrzIehDURy3ynnxD9zQe8qOBuqBo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742460210; c=relaxed/simple;
-	bh=++ufMctDs5fNv0l9AGYckpDf5fUM9DVkKKr3peSlS7M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ak/TWECdGWsK/3kr/CiRkxfBqnVDpAJoHO4fITxGkZ0RRRT6yO6uOdsIes5afDtHH3f/y5na+Qg2C7Orlr/DPBuBCw770mAuueyQOofQsaGY0DP/AYeUFXbaTCZ6NaXHM+HVj5uxNSlpHWG1F38ZSB40LtKpvvUdWneA1Jl1ki4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dz5FSb8W; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36CB2C4CEEC;
-	Thu, 20 Mar 2025 08:43:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742460209;
-	bh=++ufMctDs5fNv0l9AGYckpDf5fUM9DVkKKr3peSlS7M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dz5FSb8W7/Bp64JHqa+HpEpsHm/PogrI99GQB1HCh2qK8arY1nNZtjn2O0bdks16w
-	 AuLvlCTtPaRQ2YtNe/x4xaS09BSw3KEribOX5tcFfNJfhJPxvZNwh/GJ/1oiUC8fPz
-	 taXcGsNJSN9eYvsdDvW4dExOJTVrTWbcfQjfuGEjuL6Hr9nUA2jJdujDz83d5uU6Ch
-	 ju43SjIL5QbXNIw76iQ2SuQ396UoZsdlP00lsREGuyx+RJKEq/0E4kSCxKaBhorxRr
-	 3qAiv3bxkBK5At8NOTAHoPcH4pSA0wI6WqIF/20CN+JG4Szl4MBOlpNFpFqyG+o6MN
-	 eL3fG1zUssGdA==
-Date: Thu, 20 Mar 2025 09:43:25 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, patches@opensource.cirrus.com, 
-	Ernest Van Hoecke <ernest.vanhoecke@toradex.com>, linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Francesco Dolcini <francesco.dolcini@toradex.com>, 
-	Charles Keepax <ckeepax@opensource.cirrus.com>
-Subject: Re: [PATCH v4 3/5] ASoC: dt-bindings: wm8904: Add DMIC, GPIO, MIC
- and EQ support
-Message-ID: <20250320-lyrical-jaybird-of-security-f5ffd8@krzk-bin>
-References: <20250319142059.46692-1-francesco@dolcini.it>
- <20250319142059.46692-4-francesco@dolcini.it>
+	s=arc-20240116; t=1742460335; c=relaxed/simple;
+	bh=uRy9sQef2mfIzmTtKIHoT2rO8SzOJ8M3K5MCAVMCx9U=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:Subject:Cc:From:
+	 References:In-Reply-To; b=oz9snywhOk9EqdW9ke0bJMILuKKacztMDUuvfxsHpgFtRO+pmlGdTQeTPBNovNM+1XwbKGwiHpt9Xvv+SU+YYWFn9JVV0/z+UGT25GApMmPJK1cAE9mGkWZ7XDcgYLXUrq2bxPd3GrHNRRzOOH08qmE9Cg6hKXXxd598OscRIuI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=L/6eYEZ2; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 3ED652057A;
+	Thu, 20 Mar 2025 08:45:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1742460330;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3/MOKCaazGQ+7IgrYNdLGkngEevazyJ/NSGVFcYF2io=;
+	b=L/6eYEZ2aYVxXq4zrN7XHtnzbAllroxK4oze2qe3b1OOdHCIHcQx+yGnY+ZUx6lBEM2TOH
+	VY75xAIJfhiOp9aNUgi9p5t0v/zZvQkFtLu66leRIsxq3FN9GnYIsuPrRuGDq6nEk2qcdo
+	SmWQBA6wloJupAELJAWdCigv8+UrApjzP3Cqjr/Oj7RqO+iOIP83JINZodO6m0SHgBTmw2
+	ltnu5DBQxX1c9KML7m4taTloVkL8/Q8CCZazm5/fUrpJVMLLvJMVkxzj/4bf9k/zEuxBHM
+	cgo3F5SGccuPchuTsIap5tgZFzhQTEKEcWmu9s5uJT5dmAT5ItN069P11Z/Uxw==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250319142059.46692-4-francesco@dolcini.it>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 20 Mar 2025 09:45:28 +0100
+Message-Id: <D8KYMWA0B1AD.3J83HQJAXF929@bootlin.com>
+To: "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH v5 05/11] regmap: irq: Add support for chips without
+ separate IRQ status
+Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
+ Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
+ "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, "Michael Walle"
+ <mwalle@kernel.org>, "Mark Brown" <broonie@kernel.org>, "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, "Danilo Krummrich" <dakr@kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
+ <linux-pwm@vger.kernel.org>, =?utf-8?q?Gr=C3=A9gory_Clement?=
+ <gregory.clement@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>
+From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
+X-Mailer: aerc 0.18.2-0-ge037c095a049
+References: <20250318-mdb-max7360-support-v5-0-fb20baf97da0@bootlin.com>
+ <20250318-mdb-max7360-support-v5-5-fb20baf97da0@bootlin.com>
+ <Z9mh0ENc1kDFrJlQ@smile.fi.intel.com>
+In-Reply-To: <Z9mh0ENc1kDFrJlQ@smile.fi.intel.com>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddugeejjeeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkvffuvefhofhfjgesthhqredtredtjeenucfhrhhomhepfdforghthhhivghuucffuhgsohhishdquehrihgrnhgufdcuoehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeethfeiheehheegheekueeigfekffdvheegfeeivefgkeeftdehhfdthfehueejfeenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegvtdgrmegrieeimeefudektdemtgdtsggvmegslegrkeemvgehledvmeeirgeffhenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemvgdtrgemrgeiieemfedukedtmegttdgsvgemsgelrgekmegvheelvdemiegrfehfpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvvddprhgtphhtthhopegrnhgurhhihidrshhhvghvtghhvghnkhhosehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtoheplhgvvgeskhgvr
+ hhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhgrmhgvlhdrsghouhhhrghrrgessghoohhtlhhinhdrtghomhdprhgtphhtthhopehlihhnuhhsrdifrghllhgvihhjsehlihhnrghrohdrohhrghdprhgtphhtthhopegsrhhglhessghguggvvhdrphhl
+X-GND-Sasl: mathieu.dubois-briand@bootlin.com
 
-On Wed, Mar 19, 2025 at 03:20:57PM +0100, Francesco Dolcini wrote:
-> From: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
-> 
-> Add two properties to select the IN1L/DMICDAT1 and IN2R/DMICDAT2
-> functionality:
-> - wlf,in1l-as-dmicdat1
-> - wlf,in1r-as-dmicdat2
-> 
-> Add a property to describe the GPIO configuration registers, that can be
-> used to set the four multifunction pins:
-> - wlf,gpio-cfg
-> 
-> Add a property to describe the mic bias control registers:
-> - wlf,micbias-cfg
-> 
-> Add two properties to describe the Dynamic Range Controller (DRC),
-> allowing multiple named configurations where each config sets the 4 DRC
-> registers (R40-R43):
-> - wlf,drc-cfg-regs
-> - wlf,drc-cfg-names
+On Tue Mar 18, 2025 at 5:39 PM CET, Andy Shevchenko wrote:
+> On Tue, Mar 18, 2025 at 05:26:21PM +0100, Mathieu Dubois-Briand wrote:
+> > Some GPIO chips allow to rise an IRQ on GPIO level changes but do not
+> > provide an IRQ status for each separate line: only the current gpio
+> > level can be retrieved.
+> >=20
+> > Add support for these chips, emulating IRQ status by comparing GPIO
+> > levels with the levels during the previous interrupt.
+>
+>
+> Some nit-picks below, but either way
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+>
+> ...
+>
+> >  			default:
+> >  				BUG();
+> > -				goto exit;
+> > +				return ret;
+>
+> Hmm... BUG() implies unreachable, perhaps just a precursor patch to drop =
+this
+> goto completely?
+>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Ok, I will add a separate patch to remove the goto.
 
-Best regards,
-Krzysztof
+> ...
+>
+> > +	/* Store current levels */
+> > +	if (chip->status_is_level) {
+> > +		ret =3D read_irq_data(d);
+> > +		if (ret < 0)
+> > +			goto err_alloc;
+> > +
+> > +		memcpy(d->prev_status_buf, d->status_buf,
+> > +		       d->chip->num_regs * sizeof(d->prev_status_buf[0]));
+>
+> Perhaps array_size()?
+>
+
+OK
+
+> > +	}
+
+Thanks for your review, and thanks for the tag.
+Mathieu
+
+--=20
+Mathieu Dubois-Briand, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
