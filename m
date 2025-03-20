@@ -1,133 +1,139 @@
-Return-Path: <devicetree+bounces-159467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D0A2A6B030
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 22:54:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F2B3A6B03B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 23:01:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D3343BF119
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 21:53:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88ED2189F2F7
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 22:02:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE648220696;
-	Thu, 20 Mar 2025 21:54:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62661227E9B;
+	Thu, 20 Mar 2025 22:01:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S01bPVLP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LnuqufDd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 921FF190072;
-	Thu, 20 Mar 2025 21:54:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E5B5224B1F
+	for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 22:01:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742507647; cv=none; b=CQNV6SOGwVZLPXSv42uNQvGqQmk+YWiJetqUc2S0sPuS6cbVvLU3L+vrrDn2r+Bnk2eyMOaZ4Yk42k2FKNVb/Bih03cd4BSVNcCKfvyVTw03wxXVV1KnPTW1IVRePHV9ic0YkllkHzoVbOzYOABk5jwoB5NpJy7p9dGGZSu6vIE=
+	t=1742508103; cv=none; b=CSO2+nCwAtCFztRhf1mWt7c8ucF/vxsnanbQfT3lfKN82HV0qa0SyBownZWkpA9YDgPylMWhITFDqlB3i5xjOUZrIsPZhAG29eqlmjPsErMm9MkKMJqE43nBVSTFwm49skPO5dFO8R0TD2EtD4CrN7tIXbYZyerOWEYVEA0t9do=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742507647; c=relaxed/simple;
-	bh=QIQU8A7qyKU5tipcj+6PeFo/yPhRRDNitNGLmfXrKIE=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=eMzMJWbgOYAX4yADW8bfCdugM3lGemyQtg6ThN7ECX6AcwHOtPBxm7BYFSy4e10lRI2jPPEOUPOEn87Ewi0R8NqaHfFpRxM55XKQYRK0eWBifnq9pmi4xc7mnCG9TtpkyGO5iTuyAuq0W+knKJtlxutkZhSWkH52o/cjKruGplY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S01bPVLP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C33A8C4CEDD;
-	Thu, 20 Mar 2025 21:54:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742507647;
-	bh=QIQU8A7qyKU5tipcj+6PeFo/yPhRRDNitNGLmfXrKIE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=S01bPVLP6PgIeDmFCT4+9AJPG1vMP+LZrOMijpHYadL84NXfM7YU9Z/2qjkDIKKrI
-	 s05Nm3RKn6NiyHUSRxDEeRYke9ZShD3zkL7rp03g6ikm/K0VErrJGENcnbJkfBJP+t
-	 7bLMvM/IopjzJuVw5/kCIYqBBCq32p+7gnVmezXtGgYbqgVoPBfgFGYZIuUs1A7hkr
-	 yoYYl+hwmL6atVbtVdr3cgiErG59i3jrQvsxpljAQcdFPvjSmi4KRWs3YhDnOXiA9a
-	 QvfcRyjG3Xjlv1T9JmvB3wplKXf1OXI03GLeK40REIBV+MgELJwxW9XUcZB8aucyML
-	 SVekQZICqFKzA==
-Date: Thu, 20 Mar 2025 16:54:05 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Niklas Cassel <cassel@kernel.org>,
-	Jesper Nilsson <jesper.nilsson@axis.com>
-Cc: Frank Li <Frank.Li@nxp.com>, Lars Persson <lars.persson@axis.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-arm-kernel@axis.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org
-Subject: Re: [PATCH RFC NOT TESTED 0/2] PCI: artpec6: Try to clean up
- artpec6_pcie_cpu_addr_fixup()
-Message-ID: <20250320215405.GA1102700@bhelgaas>
+	s=arc-20240116; t=1742508103; c=relaxed/simple;
+	bh=UBLaD4Nq5xNwf400rlM/sUNn9F560QUZ1XyT2uZZub8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=nTedvI6Eb6I/KMN9TDw/Ft7peDj/ldURNMNdFAm9tRRkSGAYFRYOXxxzTCvIq/LEcQ9l7MCOiqB2ArqzNjh4bWn2dO+Q/uqsHBefTX8zo/dxkpIDa4H99yRVcSEZXMMldk+o8Udt1sgEClF42BTG+jBXRHD1eZZZgKby9wUFAZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LnuqufDd; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-43cfa7e7f54so8328055e9.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 15:01:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1742508100; x=1743112900; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=w8yT7bxx+POTQPmMty55njjk/M6SEwDhRgh0uxWleRk=;
+        b=LnuqufDdNc0xgPOLrTPivBZCBviALYxIZERpaM9Wc3DDGtpUVHQDAh4XsT+IbtW3/e
+         fHzLQJ3CXVL5RAg9OTwLtY0oAh5yCT80jgy4PUlJYlp0mZ4lKqCm2zuVIq7CcCkno3/r
+         rbAO+yVYYQsRFRTumBiOiw/AYR8UVgj6Oz7F53O5I4SvD/EjB9iag3Xvvt3WAF/3wubF
+         BDfA/BjEcAr1fsrknqDXoOoI3cKuMhnu3ipzglTJuxET2WWCgeQk6n6VMLjRG6TB/bYV
+         8Uu+Z1tPleNrFM8Ev/Yrj3Usnr0vKb9qR0OKtx0mXIsht0DpmkRC2LvFchuetfihg8Vq
+         OqBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742508100; x=1743112900;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=w8yT7bxx+POTQPmMty55njjk/M6SEwDhRgh0uxWleRk=;
+        b=VLH9/gSx2aJ/Ibd686qxO02GT1GBvP5cuTGwFdtfWuOg5IWruS/Z7uLlSC1QUTo9XF
+         QuEHE0Rxo3SKzQZmxBaFPeg9RWlhD8EaMfRWtnHAJstBqrrIZjuU5vRThQUaQzAAMlLR
+         fWZjo8pbFXCuYirU/i76QNP/k+znqLIgPadGXgCJU2ikb7rJF1qFo24wmb8GC0PXp1tW
+         GVlO6rGAScIBy0G8ZQC+notE1yZ/pH//9S0bfnIN52hiSkjDyvpHAXn42nIBe2a004t3
+         1NT8C4g/xYR//d4NgrYGlcnzlJg5N7eXV8g8igDvZyVlviDxxEFNIVHCWK1eMnjuxy6c
+         EHuA==
+X-Forwarded-Encrypted: i=1; AJvYcCVJO9rEi7ja/W4Jaa8dTZKPLjEwl2bFYyx56P7kgiF3mq+uj2P1RdOtaBubD7J6AzfArXW+IHC/d0ug@vger.kernel.org
+X-Gm-Message-State: AOJu0YzcCmnf8Q7EqLAIjv2G8x3cICr3p8wPqcZlwkL7tUXUbDem5i6Y
+	nEMK57+MAreOPECWydUvzPClhzbvU5j3CEHoLO2MWzdxjlunFek4X1MU7rTdfFYQifmNWbtP28V
+	1MosP5A==
+X-Gm-Gg: ASbGncta1MAgz9nd+8xuMMmDXCduI4oh2HDIJCeC+wkdQ9DHAVJ9GiC9EViBZCVPG9D
+	6J1QKoVNZJO9BDoKCWkehKYkzhHbd8xDMpSExY/nMzZkBu3g8FRuyDz7UbPR5y3PQcybNK3gXMe
+	XsYT+3YqHbTunYeSoYQas/kX6Ojc61CLmWhbZoSGYG1xfpjaEtTLSbZvUo1PjxmJYR+imf9pCmU
+	p+tACBYZwVfgzK0xZwBn0pLaRfUekNVQOB0RX5LdLXhU33hthDvKW26xmeLehQ7Gf7uc+sCjP8w
+	ASiqkGmcY5cd8DmW4DirND0OYLqPHKsRwi2OOvWlG7g9L32mPuvBsrm9Jg+h93t9toAexbxqrRw
+	l5LrzKKCcyw==
+X-Google-Smtp-Source: AGHT+IGz8sDCfiUcMrh3ZaHqynp/YtvdJQNLTBk+X4KzsimZeV2pCXU70QJKuqlDD/aS804bEebyZA==
+X-Received: by 2002:a05:600c:1e8f:b0:43b:c7f0:6173 with SMTP id 5b1f17b1804b1-43d502e4332mr11888305e9.4.1742508099644;
+        Thu, 20 Mar 2025 15:01:39 -0700 (PDT)
+Received: from [192.168.0.34] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d4fdbd1c7sm8939025e9.40.2025.03.20.15.01.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Mar 2025 15:01:39 -0700 (PDT)
+Message-ID: <fff943a6-4322-43d0-9821-08375bc5376c@linaro.org>
+Date: Thu, 20 Mar 2025 22:01:37 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z9k2fLFU3UCubK97@ryzen>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/3] arm64: defconfig: enable PCI Power Control for
+ PCIe3
+To: Wenbin Yao <quic_wenbyao@quicinc.com>, andersson@kernel.org,
+ konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ catalin.marinas@arm.com, will@kernel.org, quic_qianyu@quicinc.com,
+ sfr@canb.auug.org.au, linux-arm-kernel@lists.infradead.org
+References: <20250320055502.274849-1-quic_wenbyao@quicinc.com>
+ <zqBb_94gbwLzHgbAiLqgbuGg9wmeV1jUxHOsMXDdZToeTtRrtUimm8ra7GB48DXWU-ZOvC5mO8EY0uvxz46ISg==@protonmail.internalid>
+ <20250320055502.274849-2-quic_wenbyao@quicinc.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20250320055502.274849-2-quic_wenbyao@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Mar 18, 2025 at 10:01:48AM +0100, Niklas Cassel wrote:
-> On Mon, Mar 17, 2025 at 12:54:19PM -0500, Bjorn Helgaas wrote:
-> > On Mon, Mar 10, 2025 at 05:47:03PM +0100, Jesper Nilsson wrote:
-> > > I've now tested this patch-set together with your v9 on-top of the
-> > > next-branch of the pci tree, and seems to be working good on my
-> > > ARTPEC-6 set as RC:
-> > > 
-> > > # lspci
-> > > 00:00.0 PCI bridge: Renesas Technology Corp. Device 0024
-> > > 01:00.0 PCI bridge: Pericom Semiconductor PI7C9X2G304 EL/SL PCIe2 3-Port/4-Lane Packet Switch (rev 05)
-> > > 02:01.0 PCI bridge: Pericom Semiconductor PI7C9X2G304 EL/SL PCIe2 3-Port/4-Lane Packet Switch (rev 05)
-> > > 02:02.0 PCI bridge: Pericom Semiconductor PI7C9X2G304 EL/SL PCIe2 3-Port/4-Lane Packet Switch (rev 05)
-> > > 03:00.0 Non-Volatile memory controller: Phison Electronics Corporation E18 PCIe4 NVMe Controller (rev 01)
-> > > 
-> > > However, when running as EP, I found that the DT setup for pcie_ep
-> > > wasn't correct:
-> > > 
-> > > diff --git a/arch/arm/boot/dts/axis/artpec6.dtsi b/arch/arm/boot/dts/axis/artpec6.dtsi
-> > > index 399e87f72865..6d52f60d402d 100644
-> > > --- a/arch/arm/boot/dts/axis/artpec6.dtsi
-> > > +++ b/arch/arm/boot/dts/axis/artpec6.dtsi
-> > > @@ -195,8 +195,8 @@ pcie: pcie@f8050000 {
-> > >  
-> > >                 pcie_ep: pcie_ep@f8050000 {
-> > >                         compatible = "axis,artpec6-pcie-ep", "snps,dw-pcie";
-> > > -                       reg = <0xf8050000 0x2000
-> > > -                              0xf8051000 0x2000
-> > > +                       reg = <0xf8050000 0x1000
-> > > +                              0xf8051000 0x1000
-> > >                                0xf8040000 0x1000
-> > >                                0x00000000 0x20000000>;
-> > >                         reg-names = "dbi", "dbi2", "phy", "addr_space";
-> > > 
-> > > Even with this fix, I get a panic in dw_pcie_read_dbi() in EP-setup,
-> > > both with and without:
+On 20/03/2025 05:55, Wenbin Yao wrote:
+> From: Qiang Yu <quic_qianyu@quicinc.com>
 > 
-> Your fix looks correct to me.
+> Enable the pwrctrl driver, which is utilized to manage the power supplies
+> of the devices connected to the PCI slots. This ensures that the voltage
+> rails of the x8 PCI slots on the X1E80100 - QCP can be correctly turned
+> on/off if they are described under PCIe port device tree node.
 > 
-> You should even be able keep dbi as 0x2000, and simply remove the dbi2
-> from "reg" and "reg-names", as the driver should be able to infer dbi2
-> automatically:
-> https://github.com/torvalds/linux/blob/v6.14-rc7/drivers/pci/controller/dwc/pcie-designware.c#L119-L128
+> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
+> Signed-off-by: Wenbin Yao <quic_wenbyao@quicinc.com>
+> ---
+>   arch/arm64/configs/defconfig | 1 +
+>   1 file changed, 1 insertion(+)
 > 
-> But your fix seems more correct.
-> You should probably also change the size of "dbi" to 0x1000 in the RC node.
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index 85ec2fba1..de86d1121 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
+> @@ -245,6 +245,7 @@ CONFIG_PCIE_LAYERSCAPE_GEN4=y
+>   CONFIG_PCI_ENDPOINT=y
+>   CONFIG_PCI_ENDPOINT_CONFIGFS=y
+>   CONFIG_PCI_EPF_TEST=m
+> +CONFIG_PCI_PWRCTL_SLOT=y
+>   CONFIG_DEVTMPFS=y
+>   CONFIG_DEVTMPFS_MOUNT=y
+>   CONFIG_FW_LOADER_USER_HELPER=y
+> --
+> 2.34.1
+> 
+> 
 
-Just a ping to see if there's any chance of getting this into v6.15?
+PCI_PWRCTL_SLOT is a tristate symbol why be a "y" instead of an "m" i.e. 
+compile this into the kernel instead of having it be a module ?
 
-To do that, I think we'd need to confirm that:
-
-  - the endpoint issue is fixed
-
-  - artpec6 is only used in-house
-
-  - the DTBs are either already OK or OK after [PATCH 1/2]
-
-  - everybody in-house is OK with updating to the new DTB.
-
-I haven't seen anything about the endpoint part, and haven't seen
-confirmation of the others.
-
-Bjorn
+---
+bod
 
