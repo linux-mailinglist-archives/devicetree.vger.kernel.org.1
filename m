@@ -1,97 +1,106 @@
-Return-Path: <devicetree+bounces-159213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 558B2A6A075
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 08:31:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A051A6A082
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 08:37:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5C83422EF4
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 07:31:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 348B48A1A34
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 07:36:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 392051F8BC5;
-	Thu, 20 Mar 2025 07:30:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAA291EE7A9;
+	Thu, 20 Mar 2025 07:36:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="Ra7/F6i7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39EE61F8BB0;
-	Thu, 20 Mar 2025 07:30:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.201.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F173A1E3769;
+	Thu, 20 Mar 2025 07:36:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742455855; cv=none; b=ihegXo5sv02w+1ddNWRhlFzMdcbr8MBql3p6sUA+fa75/h6H4s+f8dXRl0aCLuMCM6+6eqOf+z6t0WeeslpcOQ7MN6EpCt/mLQpZUhtbcMCkHwsCvwGyDbwEOWA46GCVjNOS9pAGSlpVeYZGiA+iHud+ec6yhlYyBmrN4NNNfE4=
+	t=1742456215; cv=none; b=FVrIoQqlvnWFNL5mQBCFaQU8/FMmUnlKVDucmaJNAB8e9OjHGUYTlghdzyb61KJEbCpeuIbibSS4ix+R5JnGq4RDN9/dXsY6+k9iApyqhRMU9rWbUCNAZ3EXqVwcUnDdwKcsgkFnmCoE6/ZdZExPcD+fKd3/iLxduyIO1TvuNFg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742455855; c=relaxed/simple;
-	bh=pHRzPPRF92ifNzxT1chuCpbsLDvpubwleyIpH/7GGTw=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Subject:Cc:
-	 References:In-Reply-To; b=XVGCu1FGhvdqnc/H3bWrJaype3lJrvZPpAKvwCzHUikzv94a2w2b/kDkLubcIvKuKvAAjakV4CGgH0dek1sIIU8G+FyEfianqv7B5bNaUbHML8YK54qMuq4YacdImil1tjVS7wfkQOO8MGb9s/4uPgBCVBOiz9K+PohmWYuuICo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=walle.cc; arc=none smtp.client-ip=159.69.201.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=walle.cc
-Received: from localhost (unknown [IPv6:2a02:810b:4320:1000:4685:ff:fe12:5967])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.3ffe.de (Postfix) with ESMTPSA id 97CDB14B;
-	Thu, 20 Mar 2025 08:30:43 +0100 (CET)
+	s=arc-20240116; t=1742456215; c=relaxed/simple;
+	bh=s3Uf5iVx8FrSZ12ujfKX9sFRSzqRAGb5KOI3GdalfkM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=tuClt5qOTpaLXXcLV9SIPkFex4cbEX/doPzd+3r7jq9sFuUyB7SHLsw/jBcjDMk8p2H4p0Tmzmzs0rqAFLf+rXXpU5axXP1DG8SrYVQk9fkikAENWBJ1ClAWcyN3epNQICkEM7ahGp6xPgXrOALYE0cYNt3A3Fjo7kuu+7glos0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=Ra7/F6i7; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 15a481b0055e11f08eb9c36241bbb6fb-20250320
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=QZXUJ4VH3AfP2WjMQih2vKgtDXB87pmd/jXX3007I+c=;
+	b=Ra7/F6i7QgLfWOnYZ2vFL03qL1+EQL2VQRAzcLBY7UXKoCTnurgd3Qt8cn+GYanholW7fZiGVwazA5P5TwXY0yqYZThhHO05LcxMl1E/ABxMU4KektBOiwDjP0R3GoNNVKOZX0oMscyZNBT32H6zgVK8NC5JPGqlLyRWrP5tziQ=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.2.1,REQID:1b842213-50d7-4ab6-afd6-2829e47ab772,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:0ef645f,CLOUDID:67aa584a-a527-43d8-8af6-bc8b32d9f5e9,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:ni
+	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 15a481b0055e11f08eb9c36241bbb6fb-20250320
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw02.mediatek.com
+	(envelope-from <xueqi.zhang@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1302099120; Thu, 20 Mar 2025 15:36:49 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.39; Thu, 20 Mar 2025 15:36:48 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.39 via Frontend Transport; Thu, 20 Mar 2025 15:36:47 +0800
+From: Xueqi Zhang <xueqi.zhang@mediatek.com>
+To: Yong Wu <yong.wu@mediatek.com>, Krzysztof Kozlowski <krzk@kernel.org>, Rob
+ Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias
+ Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>
+CC: Wendy-st Lin <wendy-st.lin@mediatek.com>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	<linux-mediatek@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<iommu@lists.linux.dev>, Xueqi Zhang <xueqi.zhang@mediatek.com>
+Subject: [PATCH 0/3] Add mt8196 SMI support
+Date: Thu, 20 Mar 2025 15:36:15 +0800
+Message-ID: <20250320073625.25225-1-xueqi.zhang@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 20 Mar 2025 08:30:43 +0100
-Message-Id: <D8KX1NO755U3.2HC0O2OX5MJUL@kernel.org>
-From: "Michael Walle" <mwalle@kernel.org>
-To: "Rob Herring" <robh@kernel.org>, "Takahiro Kuwano"
- <tkuw584924@gmail.com>
-Subject: Re: [PATCH 2/3] mtd: spi-nor: use rdid-dummy-ncycles DT property
-Cc: "Tudor Ambarus" <tudor.ambarus@linaro.org>, "Pratyush Yadav"
- <pratyush@kernel.org>, "Miquel Raynal" <miquel.raynal@bootlin.com>,
- "Richard Weinberger" <richard@nod.at>, "Vignesh Raghavendra"
- <vigneshr@ti.com>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, <linux-mtd@lists.infradead.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Bacem
- Daassi" <Bacem.Daassi@infineon.com>, "Takahiro Kuwano"
- <Takahiro.Kuwano@infineon.com>
-X-Mailer: aerc 0.16.0
-References: <20250319-snor-rdid-dummy-ncycles-v1-0-fbf64e4c226a@infineon.com> <20250319-snor-rdid-dummy-ncycles-v1-2-fbf64e4c226a@infineon.com> <20250319233024.GA2625856-robh@kernel.org>
-In-Reply-To: <20250319233024.GA2625856-robh@kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Thu Mar 20, 2025 at 12:30 AM CET, Rob Herring wrote:
-> On Wed, Mar 19, 2025 at 06:47:44PM +0900, Takahiro Kuwano wrote:
-> > There are infineon flashes [1] that require 8 dummy cycles for the
-> > 1-1-1 Read ID command. Since the command is not covered by JESD216
-> > or any other standard, get the number of dummy cycles from DT and use
-> > them to correctly identify the flash.
->
-> If Read ID fails, then couldn't you just retry with dummy cycles? Or=20
-> would unconditionally adding dummy cycles adversely affect other chips?
+Add mt8196 SMI support
 
-Yes exactly. IIUC, the first byte of the auto discovery (RDID
-command) would return random data, because the output driver of the
-flash is disabled. The second byte would then return the
-manufacturer id and third and fourth the device id. This makes auto
-discovery fundamentally broken with this chip as the first byte
-might randomly match any manufacturer within our database.
+This patchset add mt8196 SMI support. 8196 SMI has several differences
+compared to previous ICs. MT8196 SMI has more than 32 SMI larbs.
+It connects with SMMUv3, rather than MTK_IOMMU.MT8196 SMI commons is
+backed up/restored by RTFF HW.
 
-Takahiro, if you can reach designer of this chip, you might tell
-them, that this was not the greatest idea :o
+Xueqi Zhang (3):
+  dt-bindings: memory: mediatek: Add mt8196 support
+  memory: mtk-smi: Add a flag skip_rpm
+  memory: mtk-smi: mt8196: Add smi support
 
-> Otherwise, add a specific compatible to imply this requirement. Adding=20
-> quirk properties doesn't scale.
+ .../mediatek,smi-common.yaml                  |   4 +-
+ .../memory-controllers/mediatek,smi-larb.yaml |   4 +-
+ drivers/memory/mtk-smi.c                      | 145 +++++-
+ .../dt-bindings/memory/mt8196-memory-port.h   | 460 ++++++++++++++++++
+ include/dt-bindings/memory/mtk-memory-port.h  |   4 +-
+ 5 files changed, 609 insertions(+), 8 deletions(-)
+ create mode 100644 include/dt-bindings/memory/mt8196-memory-port.h
 
-Since auto discovery doesn't work at all, you might just add,
-"infineon,cyrs17b512" *instead of* "jedec,spi-nor" (because it doesn't
-support the usual RDID command").
+-- 
+2.46.0
 
-Alternatively, we could introduce a "generic" compatible which just
-uses the standard RDSFDP command instead of RDID for discovery. Rob?
-Then we'd need some SFDP fingerprinting mechanism to match the SFDP
-to a particular flash type.
-
--michael
 
