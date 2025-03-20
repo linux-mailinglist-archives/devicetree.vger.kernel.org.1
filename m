@@ -1,69 +1,48 @@
-Return-Path: <devicetree+bounces-159260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4810A6A279
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 10:24:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6D07A6A28B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 10:27:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 981A017E846
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 09:24:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 453A442670B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 09:27:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 261AE221F03;
-	Thu, 20 Mar 2025 09:24:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CF7922257D;
+	Thu, 20 Mar 2025 09:26:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="SAdDYbMG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gOL6TaSj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4694821B196;
-	Thu, 20 Mar 2025 09:24:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04F3E2222CA;
+	Thu, 20 Mar 2025 09:26:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742462646; cv=none; b=myRTJU8OPEEhS1Lb+6KNvoAeC7zEMBoVxU4Y1cgpMhyLWAPwP/kQ8dHWUsOaTUqHUXRh6iGR2PpLCgBrctCXqItJB7UWsVxjdbmYVVew9LHvPT70bbk82ryn8QCLqDCp6WzBanEGem5vZAUFv4e5tdrvBSxmGHDot2vFs2WMqic=
+	t=1742462761; cv=none; b=tBFz14nS7e2lWAz3n0FyKPkjAmkGawtFcQ9j94G7j5l+p5+5dP4j/fjZ+gCDmARvOQIrx+djCRWCs3L1VLv8WUx4DOG1SwN29v/uY9tayauxibIT/MHqXAqSlBKTdRc8PEbGznZFIOBLUzweGEuTRZ4i4DYjxUgR/CAOAAT8fTY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742462646; c=relaxed/simple;
-	bh=mdZT7p6btRxqZ/HAzsWsKG7+qFDbrt8BpR+R3LmNz8o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=No/me4dNaQkmSZSRHNpRHZdA83taRRRkn/JtWbZJZYfHO9f5ecVcBMbZoXzvdQlw2FduPHmg82PeBCHxWzkyZVjnIPsfZdXpgVEsb+A62ZtiDO1BMF8xhiiNLJfn57wMT8uArtSKEjq/ecdjiPjTOLxXFdjHE6TFAIvTx35RISw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=SAdDYbMG; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52K9HKHq023149;
-	Thu, 20 Mar 2025 10:23:39 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	crexQWu4l57R3sbdMnceBIPuj5iuismgQR90iwJhOlw=; b=SAdDYbMG9niyLueX
-	EmzCVR2UEw3l/kOQ0MwvxKZXvC+VsrRFslJFtNFw82j4ojfMLQ7c/92hs5wpdQZb
-	4pJLqvivmJP1npces5+rUxcaO0ZP3VD7BMgzU3HKp7ROvOQKo3UhrvVAfger3DYR
-	MG4YNVl28gSKPE6+LEulzoavrtjdTEz9mK/8Xpw48mBVW8GV8FKYTRiUbYxeNa85
-	aS+uag6Ka/MqzZ/37uKVx+RJDvG+1NW9JzBYrDDai9hCSaHR8ixkozxXbtNJmNXv
-	a1O013eA5hu5sFUBAG+IpUImoCNXg5hKNSAnPQLtGsak+EYIMDBetGbOgE+tP5m6
-	uCZcUw==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45d1u84m7s-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 20 Mar 2025 10:23:39 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id BAD0D4005D;
-	Thu, 20 Mar 2025 10:22:13 +0100 (CET)
-Received: from Webmail-eu.st.com (eqndag1node4.st.com [10.75.129.133])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CEE927C1EF4;
-	Thu, 20 Mar 2025 10:21:28 +0100 (CET)
-Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE4.st.com
- (10.75.129.133) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 20 Mar
- 2025 10:21:28 +0100
-Received: from [10.252.18.22] (10.252.18.22) by SAFDAG1NODE1.st.com
- (10.75.90.17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 20 Mar
- 2025 10:21:27 +0100
-Message-ID: <130d61a8-6f03-46dc-94ca-f098bc09babc@foss.st.com>
-Date: Thu, 20 Mar 2025 10:21:26 +0100
+	s=arc-20240116; t=1742462761; c=relaxed/simple;
+	bh=Bwdp99hFePaP2xYgbsyqGGdtNftLunV8lNTIHG7a08U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NsYDdYq5yZ95rzE7BuAuth70aYc/jpZyA2mOhMc5lsc361Fv8/5i0Eo6tixYFKo5lsWMiJHmqiWbjK/Kvco3Yz0kiUg83w+3sS/+SuF6/l+WSRiBi6w9KBOfpPTsHLUPbMGOooGHl9XlO1UAqrVq2X5IqfjIgvEUHkxlfo0zxsQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gOL6TaSj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC7F1C4CEEA;
+	Thu, 20 Mar 2025 09:25:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742462760;
+	bh=Bwdp99hFePaP2xYgbsyqGGdtNftLunV8lNTIHG7a08U=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=gOL6TaSjklG+uOUFY3hUJBEUBIKI9aZemytkh4zdXhAWinmMpW/FqQavzTsCGQloR
+	 G+mITGTCRsj0gb591vhBlp03ZT7BxDKlVy6Ml8RA7U+ecdVYzkf2pq6GmKUsySF7IP
+	 YdcVemPXpCz+Js1GEOAvr2jaeRJ8Dlh3OFPeB9vRCyoXan+6NoqLfMgIwH3IIk8OMv
+	 UHPcrRIqFQj6V4Dh9b3Ql0pNFs8YniEqZUmLRC9Nx+T87/t6q/8x8z0JMaYIQqPaTy
+	 woUvmVestCK85ie0/UJiFg9GwTsWLT6HDAUmRrMz9ECIu3E1HCsXrvt2UxSydiuPbj
+	 A0b/06njKPv3Q==
+Message-ID: <7419360a-abc0-44cf-8d55-8f5fad8e9079@kernel.org>
+Date: Thu, 20 Mar 2025 10:25:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,171 +50,99 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [Linux-stm32] [PATCH 3/3] remoteproc: Use
- of_reserved_mem_region_* functions for "memory-region"
-To: Rob Herring <robh@kernel.org>
-CC: Saravana Kannan <saravanak@google.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        "Shawn
- Guo" <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        "Pengutronix Kernel Team" <kernel@pengutronix.de>,
-        Fabio Estevam
-	<festevam@gmail.com>,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        Maxime
- Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
-        <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20250317232426.952188-1-robh@kernel.org>
- <20250317232426.952188-4-robh@kernel.org>
- <26e72cb2-c355-4c40-bb98-fc0ff267bf4f@foss.st.com>
- <CAL_Jsq+7ZhMWgbFDvPB+3BG7YfiS9PweybOGNY3r=d40RbGHJA@mail.gmail.com>
+Subject: Re: [PATCH v4 6/6] MAINTAINERS: Add CIX SoC maintainer entry
+To: Peter Chen <peter.chen@cixtech.com>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
+ marcin@juszkiewicz.com.pl, Fugang Duan <fugang.duan@cixtech.com>
+References: <20250305053823.2048217-1-peter.chen@cixtech.com>
+ <20250305053823.2048217-7-peter.chen@cixtech.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
-Organization: STMicroelectronics
-In-Reply-To: <CAL_Jsq+7ZhMWgbFDvPB+3BG7YfiS9PweybOGNY3r=d40RbGHJA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SAFDAG1NODE1.st.com
- (10.75.90.17)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-20_03,2025-03-19_01,2024-11-22_01
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250305053823.2048217-7-peter.chen@cixtech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-
-On 3/20/25 00:04, Rob Herring wrote:
-> On Wed, Mar 19, 2025 at 10:26 AM Arnaud POULIQUEN
-> <arnaud.pouliquen@foss.st.com> wrote:
->>
->> Hello Rob,
->>
->> On 3/18/25 00:24, Rob Herring (Arm) wrote:
->>> Use the newly added of_reserved_mem_region_to_resource() and
->>> of_reserved_mem_region_count() functions to handle "memory-region"
->>> properties.
->>>
->>> The error handling is a bit different in some cases. Often
->>> "memory-region" is optional, so failed lookup is not an error. But then
->>> an error in of_reserved_mem_lookup() is treated as an error. However,
->>> that distinction is not really important. Either the region is available
->>> and usable or it is not. So now, it is just
->>> of_reserved_mem_region_to_resource() which is checked for an error.
->>>
->>> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
->>> ---
->>> For v6.16
->>>
+On 05/03/2025 06:38, Peter Chen wrote:
+> Using this entry as the maintainers information for CIX SKY series SoCs.
 > 
-> [...]
+> Acked-by: Fugang Duan <fugang.duan@cixtech.com>
+> Signed-off-by: Peter Chen <peter.chen@cixtech.com>
+> ---
+> Changes for v4
+> - Add two dts files as maintained files
 > 
->>> diff --git a/drivers/remoteproc/stm32_rproc.c b/drivers/remoteproc/stm32_rproc.c
->>> index b02b36a3f515..9d2bd8904c49 100644
->>> --- a/drivers/remoteproc/stm32_rproc.c
->>> +++ b/drivers/remoteproc/stm32_rproc.c
->>> @@ -213,52 +213,46 @@ static int stm32_rproc_prepare(struct rproc *rproc)
->>>  {
->>>       struct device *dev = rproc->dev.parent;
->>>       struct device_node *np = dev->of_node;
->>> -     struct of_phandle_iterator it;
->>>       struct rproc_mem_entry *mem;
->>> -     struct reserved_mem *rmem;
->>>       u64 da;
->>> -     int index = 0;
->>> +     int index = 0, mr = 0;
->>>
->>>       /* Register associated reserved memory regions */
->>> -     of_phandle_iterator_init(&it, np, "memory-region", NULL, 0);
->>> -     while (of_phandle_iterator_next(&it) == 0) {
->>> -             rmem = of_reserved_mem_lookup(it.node);
->>> -             if (!rmem) {
->>> -                     of_node_put(it.node);
->>> -                     dev_err(dev, "unable to acquire memory-region\n");
->>> -                     return -EINVAL;
->>> -             }
->>> +     while (1) {
->>> +             struct resource res;
->>> +             int ret;
->>> +
->>> +             ret = of_reserved_mem_region_to_resource(np, mr++, &res);
->>> +             if (ret)
->>> +                     return 0;
->>>
->>> -             if (stm32_rproc_pa_to_da(rproc, rmem->base, &da) < 0) {
->>> -                     of_node_put(it.node);
->>> -                     dev_err(dev, "memory region not valid %pa\n",
->>> -                             &rmem->base);
->>> +             if (stm32_rproc_pa_to_da(rproc, res.start, &da) < 0) {
->>> +                     dev_err(dev, "memory region not valid %pR\n", &res);
->>>                       return -EINVAL;
->>>               }
->>>
->>>               /*  No need to map vdev buffer */
->>> -             if (strcmp(it.node->name, "vdev0buffer")) {
->>> +             if (strcmp(res.name, "vdev0buffer")) {
->>
->> I tested your patches
+>  MAINTAINERS | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
 > 
-> Thank you.
-> 
->> The update introduces a regression here. The strcmp function never returns 0.
->> Indeed, it.node->name stores the memory region label "vdev0buffer," while
->> res.name stores the memory region name "vdev0buffer@10042000."
->>
->> Several remoteproc drivers may face the same issue as they embed similar code.
-> 
-> Indeed. I confused myself because node 'name' is without the
-> unit-address, but this is using the full name. I've replaced the
-> strcmp's with strstarts() to address this. I've updated my branch with
-> the changes.
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index efee40ea589f..edf26cf11ee2 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2354,6 +2354,16 @@ F:	arch/arm/boot/compressed/misc-ep93xx.h
+>  F:	arch/arm/mach-ep93xx/
+>  F:	drivers/iio/adc/ep93xx_adc.c
+>  
+> +ARM/CIX SKY ARM ARCHITECTURE
+> +M:	Peter Chen <peter.chen@cixtech.com>
+> +M:	Fugang Duan <fugang.duan@cixtech.com>
+> +R:	CIX Linux Kernel Upstream Group <cix-kernel-upstream@cixtech.com>
+> +L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/arm/cix.yaml
+> +F:	arch/arm64/boot/dts/cix/sky1-orion-o6.dts
+> +F:	arch/arm64/boot/dts/cix/sky1.dtsi
 
-This is not enough as the remoteproc core function rproc_find_carveout_by_name()
-also compares the memory names. With the following additional fix, it is working
-on my STM32MP15-DK board.
+Instead:
+arch/arm64/boot/dts/cix/
 
-@@ -309,11 +309,11 @@ rproc_find_carveout_by_name(struct rproc *rproc, const
-char *name, ...)
- 	vsnprintf(_name, sizeof(_name), name, args);
- 	va_end(args);
+or if you think there will be more different architectures coming from
+cix, which you will not maintain, then useful would be a "sky" subdirectory.
 
- 	list_for_each_entry(carveout, &rproc->carveouts, node) {
- 		/* Compare carveout and requested names */
--		if (!strcmp(carveout->name, _name)) {
-+		if (strstarts(carveout->name, _name)) {
- 			mem = carveout;
- 			break;
- 		}
- 	}
-
-I just wonder if would not be more suitable to address this using the
-"memory-region-names" field.
-
-The drawback is that we would break compatibility with legacy boards...
-
-I let Mathieu and Bjorn review and comment
-
-
-Else with the fix in rproc_find_carveout_by_name(),
-
--for the stm32_rproc:
-reviewed-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-tested-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-
-- for the st_remoteproc
-reviewed-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-
-Thanks,
-Arnaud
-
-
-> 
-> Rob
+Best regards,
+Krzysztof
 
