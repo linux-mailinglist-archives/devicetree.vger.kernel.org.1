@@ -1,145 +1,134 @@
-Return-Path: <devicetree+bounces-159222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17E89A6A0C2
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 08:50:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71E6BA6A0CA
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 08:51:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 194853B7865
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 07:50:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F26A178CEF
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 07:51:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8026D207A03;
-	Thu, 20 Mar 2025 07:50:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 124E91FC7D9;
+	Thu, 20 Mar 2025 07:50:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lDmxdIKD"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="k0MLyUZJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CC17204F85;
-	Thu, 20 Mar 2025 07:50:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D0E71EF38D
+	for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 07:50:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742457004; cv=none; b=BfuD3DmkQL9RRMeewP0rSkxYuiddiSkaRKRoTmDUWDG0yvnc9zBWMqJnyV/KlR8SrZVarz9Rv/aDwI1DJstwVJ8fg5jb+IjZnRR3uIFI22Iln2hOpOMOgmBu71MpOO8k6rOWZJ8QsWAP6q2bapI8cW/WiASszDLQuvNq8mGC7+M=
+	t=1742457059; cv=none; b=Tyi2ZIJQRIOMtrLbaL63nr0sR/zaZTqRP6saeeucoWh4W/ObXTKowh1NgRGGraHui1XLFVKk/zU8yVe+pvEPNGq1C10sChAwWIYmyDBPbG5O+JXvMbJ2fdWaWjfyo9RI2al6J3k5jPPCZAeBhq+hFBoNOeVXDsExC/SANzjIvEU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742457004; c=relaxed/simple;
-	bh=5HaHlb3LdE5BLe3N6Wb1gvDWqG3ehdRcH7l+nIy3zx8=;
+	s=arc-20240116; t=1742457059; c=relaxed/simple;
+	bh=BhpxnLkgH5xW6HlR7gOQbb754sAx11yyQrk3U7WpiIM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BjCE2ordkQ+uUVsh0mqtNp0FH8/ox3a0nFfa3GsIk/zk42AYGKIJBbudbEsJF7zk8ECzj1HirtlyXRwLlj6rpneMqtaUe5abz9wZhU+QF3zc77ghpx/wDOdlcRUkO/lVaVn7+LQOWUVSwRBfZ25TPUJkYUqPbldujMEZ6ta1bAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lDmxdIKD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C58CC4CEDD;
-	Thu, 20 Mar 2025 07:50:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742457004;
-	bh=5HaHlb3LdE5BLe3N6Wb1gvDWqG3ehdRcH7l+nIy3zx8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lDmxdIKD6oIAzIPEFVVhiYrsavGtsRLKkRyi7uissXoXY2JMuKPGcQBV6/FIqKJNN
-	 ORMeruO9kQQPPLlmL50LtR1oCTGJiQlFTZhs2ZeFeCuEpFUxdFQXmmRCTSK0cWliSI
-	 MWwEx8ZRr6nVNC5MouJLCq1uwYmu7oUNbPXtkVcwxrwvHsmUk9YCj3pUC8zgWKotm3
-	 Zw4AC0oKWQJob/qGsSpVIOlMY97LK0qQGbg19K7rQKnsWbH+WAfcGkEZDdbjHCRZ2f
-	 DC3QLXuOcb2sHJujPTbyS23JZpTy7yHEPHBmTVCTjQkvZqN6vgOk/n4B1o/4k2INom
-	 eSgl9rViiHPfQ==
-Date: Thu, 20 Mar 2025 08:50:00 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>, 
-	mathieu.dubois-briand@bootlin.com
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kamel Bouhara <kamel.bouhara@bootlin.com>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-input@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	=?utf-8?Q?Gr=C3=A9gory?= Clement <gregory.clement@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v5 04/11] pwm: max7360: Add MAX7360 PWM support
-Message-ID: <hinocg3itjqizbmzgaxv6cfnhtus6wbykouiy6pa27cxnjjuuk@l5ppwh7md6ul>
-References: <20250318-mdb-max7360-support-v5-0-fb20baf97da0@bootlin.com>
- <20250318-mdb-max7360-support-v5-4-fb20baf97da0@bootlin.com>
- <Z9qoGmNKcozbIjeH@smile.fi.intel.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=mx72n1UbrD110sZ63mfadUO1adxK803HqlZBia9ylyydDP+99GZAwci6he7Uo42u8kj1LseM8MrpuI+DdIw7n8/ZzIugKiDxQ5c3GXFaIIltnkwIIePyNZo+Jpr5KfOGI3vCHvuSJV/XsrULKVipzNheqmem0WPzQjpJ7FjHLxU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=k0MLyUZJ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52K6Z1LC014462
+	for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 07:50:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=Gu2816Jt4ReGPaLriIq4oPFm
+	MPGW55e3kLoSVqwZcBs=; b=k0MLyUZJOv822aTPq2xgg2OwhZrRJxCw3+XAyPRr
+	3Kt98IUrQ2FxbiTyCmhllWt/KtY33dRc1fwPQGdvswN3Crth3uQ7LQ6CJGYZspwi
+	/Ha118fR6BJdL1h/uWzEMsO7PXQXdhvYEc7SFr0D9pcB18q27BKwPzCdBwcZp2Xf
+	Yl/wwfb0Jh9RvD+EqIMkqOuY/l/RxypOpLT0VsvwVLjYUwRJE0Wf1S4jI7ddkp/t
+	DCsfTqmQQ7bVbDoF3m4dstKw5GhqRIZmC169U5w8fxmPba6G1SWZvgP0Gq5VCo7x
+	vJXlkC2t40fiohwngP8zs7x/N++ZauDcSuwgpjLC98M/aQ==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45exwtr7b8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 07:50:56 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c54e8ad9b3so253998185a.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 00:50:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742457055; x=1743061855;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Gu2816Jt4ReGPaLriIq4oPFmMPGW55e3kLoSVqwZcBs=;
+        b=eRcRU6vXlEBureSlu62qagOlINLQwGxokmL/JQjJYtHQI1cL3skZc/6WHkPptqWyu/
+         +V0nVAvwb4J1Pe/wseQuUtJ5WQ38SwyZnrC8TFxDRkgtsyNUhRJ1gytkEsrhLkAzYDpi
+         kObhO4GDdq6xlz5bUlMZNeOMZcDsjTfjhs16r2bQeTI0u2hxGunhXLgFvIaIw2s/dF6/
+         Nj2Unv5z1FDlapb4dsLHfdwvrPg86QymTwqdPToWdjscbwkZsmdB9UbSlhAxHoZbjQIU
+         NgQQmbAYwLD8WWj4Lzz3jNbtzEOUW4x+HzLFxlrXgqYYRWxWAxHjy6+rJmnTu2ozOZ/R
+         /Kzw==
+X-Forwarded-Encrypted: i=1; AJvYcCUsOpIWe6K5ad3/73nY3Iql0wcI1RPg8kuS93RqIB8I7cAuCUq5DCqqs6Oz0b63LJeH2RTG3Juc915n@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzur1DxT5pH5KZKFQmnRjVsC0pmSY1XZTHtFpkxfdDOjEveOE6m
+	hjxyn1qBAKiu4RZ532invQjE8dUuUVBFrObqmkbNRJOVThHPmH9A+UTxHVs5yuY1JT7Iqzhos+i
+	98WYVriQQsKnLxmhzgSttewmyHdjme/vc2Lhjq+Q8u4sJCBUB6UUewsv+2WUT
+X-Gm-Gg: ASbGncscdEvVZCmaaxOqHMaUYMPojvf3mRI7gCzWbVHHXnf9Mk+o43SjKSvoXWS5W9z
+	KLzb4K2HU6rylVtF37Hf+5Rigr+FwfJqLlUlx47QMVsCUGQC9xVRsumuudmhE1QJWAAbqBZ83Wl
+	Ku+FIbGqeNaSxPcvKwX4JrGvDYMhyYgvNBPChHPjVXtcAigjx0q4pss4XVwKZBRWcxxeBCwqlEK
+	+6GeHKz/gRgHdMwQbjScOWgVQAD6jO8DVIDV7D0Jopj4mZJfiM2l1Hz0E9OU85yjor/jt5M0tFG
+	TUylDm/y7fjA1n6IVCgUxka8879QZpo0ZgS1Aw7U1yWtemTJGYRan8QB1/i/HkRadYFy/SDqREV
+	PKx8=
+X-Received: by 2002:a05:620a:15b:b0:7c5:afc9:5144 with SMTP id af79cd13be357-7c5b055171cmr269772285a.23.1742457055541;
+        Thu, 20 Mar 2025 00:50:55 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEu1vRPJVn5WHYsHx8Ll03Rl/WJrMi//xMYy3u3Rawd1CXYt0rpjvKqQwuOC6NKpUeYzg1IlQ==
+X-Received: by 2002:a05:620a:15b:b0:7c5:afc9:5144 with SMTP id af79cd13be357-7c5b055171cmr269770485a.23.1742457055241;
+        Thu, 20 Mar 2025 00:50:55 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-549ba8a8d7dsm2128708e87.234.2025.03.20.00.50.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Mar 2025 00:50:53 -0700 (PDT)
+Date: Thu, 20 Mar 2025 09:50:51 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Ling Xu <quic_lxu5@quicinc.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org,
+        srinivas.kandagatla@linaro.org, amahesh@qti.qualcomm.com,
+        arnd@arndb.de, gregkh@linuxfoundation.org, quic_kuiw@quicinc.com,
+        quic_ekangupt@quicinc.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sa8775p: add GPDSP
+ fastrpc-compute-cb nodes
+Message-ID: <uyjmsdhlqiuosmkrdmgltpimj5gfhrlp3an3glzh7gvmphjztn@5et56n4wfrnt>
+References: <20250320051645.2254904-1-quic_lxu5@quicinc.com>
+ <20250320051645.2254904-2-quic_lxu5@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="kfurgyfqcymyt52d"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Z9qoGmNKcozbIjeH@smile.fi.intel.com>
+In-Reply-To: <20250320051645.2254904-2-quic_lxu5@quicinc.com>
+X-Proofpoint-GUID: ODyOYyKkD-vKwoL9q4umIdxRUqpwi-9P
+X-Proofpoint-ORIG-GUID: ODyOYyKkD-vKwoL9q4umIdxRUqpwi-9P
+X-Authority-Analysis: v=2.4 cv=UoJjN/wB c=1 sm=1 tr=0 ts=67dbc8e0 cx=c_pps a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=EE3GnvNe1S1ur2Q-TqUA:9 a=CjuIK1q_8ugA:10 a=PEH46H7Ffwr30OY-TuGO:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-20_02,2025-03-19_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
+ impostorscore=0 bulkscore=0 priorityscore=1501 mlxlogscore=704
+ phishscore=0 adultscore=0 clxscore=1015 spamscore=0 suspectscore=0
+ lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503200045
 
+On Thu, Mar 20, 2025 at 10:46:44AM +0530, Ling Xu wrote:
+> Add GPDSP0 and GPDSP1 fastrpc compute-cb nodes for sa8775p SoC.
+> 
+> Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 58 +++++++++++++++++++++++++++
+>  1 file changed, 58 insertions(+)
 
---kfurgyfqcymyt52d
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v5 04/11] pwm: max7360: Add MAX7360 PWM support
-MIME-Version: 1.0
+It doesn't look like this patch has been tested for DT schema validity.
 
-On Wed, Mar 19, 2025 at 01:18:50PM +0200, Andy Shevchenko wrote:
-> On Tue, Mar 18, 2025 at 05:26:20PM +0100, mathieu.dubois-briand@bootlin.c=
-om wrote:
-> > +static int max7360_pwm_round_waveform_tohw(struct pwm_chip *chip,
-> > +					   struct pwm_device *pwm,
-> > +					   const struct pwm_waveform *wf,
-> > +					   void *_wfhw)
->=20
-> I would expect other way around, i.e. naming with leading underscore(s) t=
-o be
-> private / local. Ditto for all similar cases.
-
-I guess that one of the other waveform drivers is the source of that. I
-chose to name the void pointer with the underscore because I consider
-that the strange one that has the void* type for technical reasons.
-That's obviously subjective, but I'm happy with that choice.
-
-> > +static int max7360_pwm_probe(struct platform_device *pdev)
-> > +{
-> > +	struct device *dev =3D &pdev->dev;
-> > +	struct pwm_chip *chip;
-> > +	struct regmap *regmap;
-> > +	int ret;
-> > +
-> > +	if (!dev->parent)
-> > +		return dev_err_probe(dev, -ENODEV, "no parent device\n");
->=20
-> Why? Code most likely will fail on the regmap retrieval. Just do that fir=
-st.
->=20
-> > +	chip =3D devm_pwmchip_alloc(dev->parent, MAX7360_NUM_PWMS, 0);
->=20
-> This is quite worrying. The devm_ to parent makes a lot of assumptions th=
-at may
-> not be realised. If you really need this, it has to have a very good comm=
-ent
-> explaining why and object lifetimes.
-
-Pretty sure this is broken. This results for example in the device link
-being created on the parent. So if the pwm devices goes away a consumer
-might not notice (at least in the usual way). I guess this was done to
-ensure that #pwm-cells is parsed from the right dt node? If so, that
-needs a different adaption. That will probably involve calling
-device_set_of_node_from_dev().
-
-Best regards
-Uwe
-
---kfurgyfqcymyt52d
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmfbyKYACgkQj4D7WH0S
-/k7SWgf/dyLm21zpgsxSkf/1BAmivq9bOQ2nUPl3FWsik+NtKVmzdlk1AFAoqgyN
-5dbrTDXRFgrSsdvgMXLu9YIROWv7Auf4dqevkB2MplneL4PoUaZlLerqP5DAGtZ/
-1Kh0N/XbcwUG+tLqYVF0Qy31biUuKYqWlLhttZkAjCwBenc6gLGOKp+8HxRzJRQ/
-ZJgVgL09M3ZI9xU0mFtUoMIcuvbHl0ydcEMa95to8R7L923FKgKZdXCF1181yv8O
-kfG/RQFBryfg/PvsTorRfPaCt29yrAa9njCy7sQsGzsZaGEb2YZlaEcs2OFsik2l
-deVtif5NH/HD3szq2pMLvWSyTNf9Bg==
-=mUp7
------END PGP SIGNATURE-----
-
---kfurgyfqcymyt52d--
+-- 
+With best wishes
+Dmitry
 
