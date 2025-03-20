@@ -1,175 +1,128 @@
-Return-Path: <devicetree+bounces-159295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74CB6A6A444
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 11:56:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6ED1A6A440
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 11:56:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0EDF189D4DF
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 10:56:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6F2C47B1DDB
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 10:55:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9E0B225A24;
-	Thu, 20 Mar 2025 10:55:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA4D0224AF2;
+	Thu, 20 Mar 2025 10:55:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=einfochips.com header.i=@einfochips.com header.b="DR7qanOk"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jx7P3NC6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from naesa04.arrow.com (naesa04.arrow.com [216.150.161.24])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE84E225413;
-	Thu, 20 Mar 2025 10:55:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=216.150.161.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A8AC223719;
+	Thu, 20 Mar 2025 10:55:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742468107; cv=none; b=dkAAKmUFzMzGZm9qyKBFoD8xszXX0NmP7nS6AynI+Os2xdKxab3qlvcZ8wp18kSUmN0G2T+/vOjYFkwybJ8MQwPZJFuvicZGajtUNMXucQpnK5+YdX2xH8KNmlPAqPALioNNu7Lfhc+lPNTrcYNUKeVc5fvynwk/NKWq4RTH14Y=
+	t=1742468157; cv=none; b=QGqKDbYRW9NgDb2QyEr335dLY7nzh1O+5CHPoOkgwSC7bmZQYKIVMjcyuh5c+GsCobc28Jl3F/itjgU6IvwM5nJV8z28pdTAgNh0F3JERAZIT9BcV30ikjEHqaB9Xcy8MipBzo9J3MaI0LoqlrWSFlsGQoPGiaEYkHl+A/IDqMA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742468107; c=relaxed/simple;
-	bh=5heB6PuMYbbcCT5z+UhKDkhRC7FHz+vObUOuQmwwSh4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=AumkJin7HEraVvvguj2y9zXyYmEMkR7nSqBWyhEhUH8qYSSa9iXnDtvbSkYn+ygYw3sL0132TVme3mKOYEkhmO5Lvx5l+LquXyeJH8nxSXQg5phzWS7ENj3Mvsuq8qeRWDwMNnNXmc3IBKxum4OLq25gjkFMj93ywfp58K4RyfE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=einfochips.com; spf=pass smtp.mailfrom=einfochips.com; dkim=pass (2048-bit key) header.d=einfochips.com header.i=@einfochips.com header.b=DR7qanOk; arc=none smtp.client-ip=216.150.161.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=einfochips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=einfochips.com
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=einfochips.com; i=@einfochips.com; l=2333; q=dns/txt;
-  s=NAESA-Selector1; t=1742468106; x=1774004106;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=5heB6PuMYbbcCT5z+UhKDkhRC7FHz+vObUOuQmwwSh4=;
-  b=DR7qanOk22qQ3h7w9fJZROXzZsdYoVUcUg/JBN6XNXhCEVoIlwyU84xx
-   9tonTR/CsTftZ5qOV64Wkf7+cT4DkU0iuTEg5gdKqIF3Fxt2E+HhYtAa4
-   OlRfYqIiYCiu5tf5LFBqKt+VBsuKb6HI61ydtSoB+TowxOoIgt2yXT1LS
-   0Q2Le1sVHkY06Vy8ZSAlwTA17lMgAUw//p+mzdtzFGZ7urs6t7F45LU4F
-   nd60jJwjv7N/gsK2ka8Rqh77saxlKj71cf5WdJyB58IDukOMVaqC3Of/M
-   6w5ty0eh9hd9xHRvA8ixThMJ1mi4apHUQ83y7qX7AuNtHJ7+jOLXLlznA
-   w==;
-X-CSE-ConnectionGUID: q4OLy/sWSZiDnUSnbkcOdg==
-X-CSE-MsgGUID: /mvimzKzSxOV0mVRVi1JtQ==
-X-IronPort-AV: E=Sophos;i="6.14,261,1736838000"; 
-   d="scan'208";a="80263130"
-Received: from unknown (HELO eicahmirelay01.einfochips.com) ([10.100.49.50])
-  by naesa04out.arrow.com with ESMTP; 20 Mar 2025 04:55:04 -0600
-Received: from AHMCPU1888.ap.corp.arrow.com ([172.25.5.100]) by eicahmirelay01.einfochips.com with Microsoft SMTPSVC(10.0.14393.4169);
-	 Thu, 20 Mar 2025 16:24:50 +0530
-From: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>
-To: Conor Dooley <conor@kernel.org>,
+	s=arc-20240116; t=1742468157; c=relaxed/simple;
+	bh=ykoVgDYABDMVf/SIURuWh0/t3A52YR9TLAY2jzT42IM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P3BnDOpsILfdSqyxDvV+aWwFi0asETo8rEYHfpMD/CXWb4Ux1UBR8W8PpZ46kXHAbDOTGWPUpGk+yNelwjikfmJ04sz6Xh4xJ7SG9N3pI7HIzSV6OL4igss4cHZCkhh5BNk9yl7s/p7MefiA7Nio7RJg5HSEoP+UgzXCPmjClB4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jx7P3NC6; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1742468156; x=1774004156;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ykoVgDYABDMVf/SIURuWh0/t3A52YR9TLAY2jzT42IM=;
+  b=jx7P3NC6KtxE2Gq2jdn6GtBtY7+Pnf/YAR9iA2HMuFnSYZWSzV9afNkA
+   4n4bAyjgr4gnWxgqFlRKA2NnEnNqWtuRkEIoqY8QLRjg+0tgqQo88Jy3N
+   6jVlRT4awgXEi1aeWpEM/vs1QiG9cpTiRLuxPc0WftF9DVgU4OO4UWQ6N
+   rUTcEPOPtSwJi+m6cXq2cwT4n9ZMwg9LJgX/1l4x62pNWOQmxSpGpWQk+
+   MukFOFeH+jo83ZpfAWCEdDIGzzLwzPi89tuv0fU1wsIq2V0NRE9plHJQ7
+   +yiI8PZg1AwhXit271BQVT0nqbj4ZoSmnsRPfcJCvmVncAf0HiC53xaMs
+   A==;
+X-CSE-ConnectionGUID: 5bxIVbbKQXaIxYgK/kvxBg==
+X-CSE-MsgGUID: V85bPgqzSAKEuKF6MnvJEQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11378"; a="55068172"
+X-IronPort-AV: E=Sophos;i="6.14,261,1736841600"; 
+   d="scan'208";a="55068172"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2025 03:55:54 -0700
+X-CSE-ConnectionGUID: vnYLPlG8Rx2+wpea+c4QCw==
+X-CSE-MsgGUID: mMcbmQb4TJG2lYawul/ePg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,261,1736841600"; 
+   d="scan'208";a="122780192"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2025 03:55:49 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1tvDYw-00000004CRh-2cFn;
+	Thu, 20 Mar 2025 12:55:46 +0200
+Date: Thu, 20 Mar 2025 12:55:46 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+Cc: Michael Walle <mwalle@kernel.org>, Lee Jones <lee@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Thomas Gleixner <tglx@linutronix.de>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Min Lin <linmin@eswincomputing.com>,
-	Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>,
-	Pritesh Patel <pritesh.patel@einfochips.com>,
-	Yangyu Chen <cyy@cyyself.name>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Yu Chien Peter Lin <peterlin@andestech.com>,
-	Charlie Jenkins <charlie@rivosinc.com>,
-	Kanak Shilledar <kanakshilledar@gmail.com>,
-	Darshan Prajapati <darshan.prajapati@einfochips.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Aradhya Bhatia <a-bhatia1@ti.com>,
-	rafal@milecki.pl,
-	Anup Patel <anup@brainfault.org>,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 10/10] riscv: dts: eswin: add HiFive Premier P550 board device tree
-Date: Thu, 20 Mar 2025 16:24:49 +0530
-Message-Id: <20250320105449.2094192-11-pinkesh.vaghela@einfochips.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250320105449.2094192-1-pinkesh.vaghela@einfochips.com>
-References: <20250320105449.2094192-1-pinkesh.vaghela@einfochips.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Kamel Bouhara <kamel.bouhara@bootlin.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Mark Brown <broonie@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 06/11] gpio: regmap: Allow to allocate regmap-irq
+ device
+Message-ID: <Z9v0Mv6hYna3Znq8@smile.fi.intel.com>
+References: <20250318-mdb-max7360-support-v5-0-fb20baf97da0@bootlin.com>
+ <20250318-mdb-max7360-support-v5-6-fb20baf97da0@bootlin.com>
+ <D8K23TCWC5TO.3T1YPKL3G0OY5@kernel.org>
+ <D8KYF2DZOBT4.1337YU51E0ZKH@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-OriginalArrivalTime: 20 Mar 2025 10:54:50.0214 (UTC) FILETIME=[80BDA060:01DB9986]
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <D8KYF2DZOBT4.1337YU51E0ZKH@bootlin.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-From: Min Lin <linmin@eswincomputing.com>
+On Thu, Mar 20, 2025 at 09:35:15AM +0100, Mathieu Dubois-Briand wrote:
+> On Wed Mar 19, 2025 at 8:15 AM CET, Michael Walle wrote:
 
-Add initial board data for HiFive Premier P550 Development board
+...
 
-Currently the data populated in this DT file describes the board
-DRAM configuration, UART and GPIO.
+> > Also, what is the advantage of this? Your caller doesn't have to
+> > call devm_regmap_add_irq_chip_fwnode(), but on the flip side you
+> > have to cram all its parameters in the gpio_regmap config. I'd like
+> > to keep that small and simple (but still extensible!). IMHO just
+> > setting the irq_domain is enough to achieve that.
+> 
+> This was a request from Andy on my previous series.
 
-Signed-off-by: Min Lin <linmin@eswincomputing.com>
-Co-developed-by: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>
-Signed-off-by: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>
-Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
-Tested-by: Samuel Holland <samuel.holland@sifive.com>
----
- arch/riscv/boot/dts/Makefile                  |  1 +
- arch/riscv/boot/dts/eswin/Makefile            |  2 ++
- .../dts/eswin/eic7700-hifive-premier-p550.dts | 29 +++++++++++++++++++
- 3 files changed, 32 insertions(+)
- create mode 100644 arch/riscv/boot/dts/eswin/Makefile
- create mode 100644 arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+The benefit is deduplication of a lot of code. You may consider it the same as
+GPIO library does with IRQ chip. This is just the same on a different level.
 
-diff --git a/arch/riscv/boot/dts/Makefile b/arch/riscv/boot/dts/Makefile
-index bff887d38abe..286a9939a8cb 100644
---- a/arch/riscv/boot/dts/Makefile
-+++ b/arch/riscv/boot/dts/Makefile
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- subdir-y += allwinner
- subdir-y += canaan
-+subdir-y += eswin
- subdir-y += microchip
- subdir-y += renesas
- subdir-y += sifive
-diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-new file mode 100644
-index 000000000000..224101ae471e
---- /dev/null
-+++ b/arch/riscv/boot/dts/eswin/Makefile
-@@ -0,0 +1,2 @@
-+# SPDX-License-Identifier: GPL-2.0
-+dtb-$(CONFIG_ARCH_ESWIN) += eic7700-hifive-premier-p550.dtb
-diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-new file mode 100644
-index 000000000000..131ed1fc6b2e
---- /dev/null
-+++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-@@ -0,0 +1,29 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (c) 2024, Beijing ESWIN Computing Technology Co., Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include "eic7700.dtsi"
-+
-+/ {
-+	compatible = "sifive,hifive-premier-p550", "eswin,eic7700";
-+	model = "SiFive HiFive Premier P550";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
+Besides the driver in this series, I would think of other GPIO drivers that
+are not (yet) converted to regmap (partially because of this is being absent)
+or existing drivers, if any, that may utilise it.
+
 -- 
-2.25.1
+With Best Regards,
+Andy Shevchenko
+
 
 
