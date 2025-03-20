@@ -1,194 +1,235 @@
-Return-Path: <devicetree+bounces-159306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 065CDA6A4B3
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 12:17:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0A2DA6A567
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 12:53:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4379E188AC83
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 11:18:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E4FE8A05F7
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 11:50:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10E4621859F;
-	Thu, 20 Mar 2025 11:17:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13548221F16;
+	Thu, 20 Mar 2025 11:49:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=prevas.dk header.i=@prevas.dk header.b="fHT6j0P/"
+	dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b="kWXhecZu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2043.outbound.protection.outlook.com [40.107.249.43])
+Received: from mx07-00376f01.pphosted.com (mx07-00376f01.pphosted.com [185.132.180.163])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B5BC2066DC;
-	Thu, 20 Mar 2025 11:17:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.249.43
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742469471; cv=fail; b=aWNmZ5ya/fMOJylUVbsGODsgWaX7QEVroSv6vedeDLWYN5z0sBqGBcSb5lC5yKlmY6iVdUungrYfzqe37dAjoLptRu6hA6rvPYoLI9VcSomkCuLL05szpyDk2tfPC9gLEp0+y48Pa23agwCm7CK2XzA7Nlmi/pw4sZE7yzN56So=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742469471; c=relaxed/simple;
-	bh=7YYIYZfci3UQURUqIrMkYzAhQsdXWJCtNu9ZM/HBFvk=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 Content-Type:MIME-Version; b=CvRY5fOv+dgnJ+zGNGyftO1+TUsqMTxky8ia49ChEXUiItQ/J0fhr3koqmU2BBGLmU/Jogs3sFPsmI9g/xQDtSlHBPUU3JBKalShkylVZXRT0Hnfg8V+mwg6ejaI81dPYv5tPGcmdakUQCOWeI1B2/SqXKLFXVSWlBkcPziRX5k=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=prevas.dk; spf=pass smtp.mailfrom=prevas.dk; dkim=pass (1024-bit key) header.d=prevas.dk header.i=@prevas.dk header.b=fHT6j0P/; arc=fail smtp.client-ip=40.107.249.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=prevas.dk
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prevas.dk
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=geZ0DC9+VCXFL4CTMlZ4Ff4yTZcC6ZASVbytalE1iGYEtzutvbDivhD0rxSW7TfuFHGw/nMum7j8CSzov749ihzWVgim7pQNUH4puMj3GV7qZcBUkDOZbSBGaXSGBbIBgPfOfj5t0buDcRxVBypUdxSHlrvACtSUnRtXCL0qQqa/kLH4XPTfEak5UBqzhuMTsH8qheGTWB5XdzEGH7WrlKPsMycqJ7v2kneUoadMyk6O78NoAiIi5r+7IxvkUNhN7M4I27IdkUb6IhwpQQ1vHvI8lK7v8jy3ATJISWWvpkQD9eylCOnn2s2BmTz5c8xm1BxqlwlTLa4M6DuaCpzgMg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rGbh+egDdPCq/c9Sf8/fqrXU/XnjMTUIap8qibP2ztU=;
- b=XqgvUyHjU4s40NN7HeQhdowmeADaUsvRu8p8mwseFNitEa0b7Le0hg6MWdBSFTpuJeXVTH3GqAw2Ax1A9Miw5PHNH16xQSYvx54QAJZd0YkE14eLpDuIWAZf+W0OtL94Gt2iLVvj30x1U4oyjAw0Txij55bxM0XR/msDj0CVKo3lrxolsoKOduPAjNuh9xQA/PlMxhvd+jvTwi3rcUKP9UKgsYPFm8IzRqrpR7ZuMAAnk2OTNBVNLmsa9HvzKeIwx1Lk8Krc13cwO3OU274racRRnGwbOYrFi5CCQ8M0K32Shu9zN31CeBIvSB8jpT3/TVrZz/Qutp2aAlMspzfauw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=prevas.dk; dmarc=pass action=none header.from=prevas.dk;
- dkim=pass header.d=prevas.dk; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prevas.dk;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rGbh+egDdPCq/c9Sf8/fqrXU/XnjMTUIap8qibP2ztU=;
- b=fHT6j0P/2KVO5IGrqd5bP8pCAQ30nSlrvNrjoeUw+VfVl/3DsNAwGKlJDVJWx2GsP1o16qjYSmxwlEX0kWixFMgzkbU2jT1YWC8tqowrovok1w5BPKHr+vyfzlzNPts7xaVORUeFSOUkZofxxigTKGK0fNRx8tecSF4vaYSoB34=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=prevas.dk;
-Received: from DB7PR10MB2475.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:41::17)
- by GVXPR10MB8379.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:150:1e2::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.33; Thu, 20 Mar
- 2025 11:17:39 +0000
-Received: from DB7PR10MB2475.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::7e2c:5309:f792:ded4]) by DB7PR10MB2475.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::7e2c:5309:f792:ded4%5]) with mapi id 15.20.8534.031; Thu, 20 Mar 2025
- 11:17:39 +0000
-From: Rasmus Villemoes <ravi@prevas.dk>
-To: Colin Foster <colin.foster@in-advantage.com>
-Cc: Lee Jones <lee@kernel.org>,  linux-kernel@vger.kernel.org,
-  devicetree@vger.kernel.org,  Felix Blix Everberg <felix.blix@prevas.dk>
-Subject: Re: [PATCH 3/8] mfd: ocelot: rework SPI (re-)initialization after
- chip reset
-In-Reply-To: <Z9tASE2-adiEUT-3@colin-ia-desktop> (Colin Foster's message of
-	"Wed, 19 Mar 2025 17:08:08 -0500")
-References: <20250319123058.452202-1-ravi@prevas.dk>
-	<20250319123058.452202-4-ravi@prevas.dk>
-	<Z9tASE2-adiEUT-3@colin-ia-desktop>
-Date: Thu, 20 Mar 2025 12:17:37 +0100
-Message-ID: <87v7s4rlwu.fsf@prevas.dk>
-User-Agent: Gnus/5.13 (Gnus v5.13)
-Content-Type: text/plain
-X-ClientProxiedBy: MM0P280CA0101.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:190:9::27) To DB7PR10MB2475.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:10:41::17)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA57527701;
+	Thu, 20 Mar 2025 11:49:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.180.163
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1742471392; cv=none; b=bNllbm/fQRJuje6ZY5eQ0k5XoiDdEBZVFc89zPAcea3Wzr5xmM6uONfGimgJ/8hxWF0NRGrwNFsKqViK+FbOGkOg6UxffbrCSY+wFGTdrk68sY3mRVloceZ3x4DNVV+ZuxLcFv/Tr1LrJQyFyRgFvuCxc41MhnaALtFzv63HxBg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1742471392; c=relaxed/simple;
+	bh=/drBQ+EY8V4wxyvc0vjx/Oygt083Vv7P4Uspc/5c/Ec=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=e3ZzCF1Ov41VjWXUQklq4AHsNYwP5G6Q0hV+ZJfJ6Vc+DE8z2UHwhAiwJIGfaDvbhxX6uwJ6wPV57PyGW1pun1zsI1xcQ5tGGiXSH7rVM0t94sbo5UMicYmzMqhhE19nkScPF0HXpl8+7bFdB4TQ/vIy9rrFS/LBU3763oMaYlo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com; spf=pass smtp.mailfrom=imgtec.com; dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b=kWXhecZu; arc=none smtp.client-ip=185.132.180.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=imgtec.com
+Received: from pps.filterd (m0168889.ppops.net [127.0.0.1])
+	by mx07-00376f01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52K7I9lO006831;
+	Thu, 20 Mar 2025 11:32:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=dk201812; bh=gaiSg/UQRCv0UtztXX61BGs
+	qxfLRtDkme/gJHd1mFzw=; b=kWXhecZuImuBNAnH+ojcvthHCGqAx8kECQWWy4y
+	TWzGT6hBFvYBpG8st0Wh83HfJ7RpUQ1uxdjyjdhfWelIrkAPIciCnQu4Ew8XxQEJ
+	P4l4QADgapFolFpBzUaQBsBm+exa7f+8MCvUXgOdA6x6sCiDWQjWcIWRDPhMQrMk
+	2qMYnj4uRdIqBRwT6L1OIHGdytnVz1P78X1DvXPlcxYkGpRFhOSB7WFm2lFAggid
+	BzTM3qUrZFQrBUcDb054i4e31cukzZt5uNWJhvUS7gl9292d4GP5hJ154VFHM907
+	1YAJTqx9IyqEcdEcZDp5+K4a9cwAaS73klEN/W/m1srXEOw==
+Received: from hhmail05.hh.imgtec.org (83-244-153-141.cust-83.exponential-e.net [83.244.153.141])
+	by mx07-00376f01.pphosted.com (PPS) with ESMTPS id 45d2h1kwg1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+	Thu, 20 Mar 2025 11:32:24 +0000 (GMT)
+Received: from
+ 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
+ (172.25.0.133) by HHMAIL05.hh.imgtec.org (10.100.10.120) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Thu, 20 Mar 2025 11:32:22 +0000
+From: Matt Coster <matt.coster@imgtec.com>
+Subject: [PATCH v4 00/18] Imagination BXS-4-64 MC1 GPU support
+Date: Thu, 20 Mar 2025 11:32:10 +0000
+Message-ID: <20250320-sets-bxs-4-64-patch-v1-v4-0-d987cf4ca439@imgtec.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB7PR10MB2475:EE_|GVXPR10MB8379:EE_
-X-MS-Office365-Filtering-Correlation-Id: 13d528de-0028-4cd2-491c-08dd67a0d361
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|366016|376014|1800799024|7053199007|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Xro4GB2I2EEzvGkhOy46JL73fk4TzcH8Tupuff2cVQGpDVcux+QiOjNIvQ9y?=
- =?us-ascii?Q?OiVDUWTVB4jkoFKZp4wnU30ugFyUpFt3mKSKG46TZ/ZbiofXiKphPtcQ+90T?=
- =?us-ascii?Q?s4pBRBZJk8HEE3tQzLczD/8xZMZnLzhUsm0NTwL00vMHhBUmJ8s76MlpcfvS?=
- =?us-ascii?Q?alujHNo84Cy17Z2WCc38dAmxvCpLZ8IfKSJcFLAJhXZLfZlCPn8bB4DqAISN?=
- =?us-ascii?Q?eYvi/dl3+9jJaotYaEH0RuWZiygTRr+hOFHryGx/NimYfes3O4N95lkyZcSP?=
- =?us-ascii?Q?H9bC9B05Td9E3P/GcTyR2FLSV6GRknO75jD8R1zJU/BEVbkPzk4Pj70BmvTr?=
- =?us-ascii?Q?9x5AO73edCtPDrPelzAm3EOoFTA6++5G65P9+N7kjXXjvtFRYhMXpNi1GhX2?=
- =?us-ascii?Q?/Q0AskK0bxiTqOdg5BBM5bxslamN5bmWnighxvcT0ogiDpI5bSl+aPVRqch9?=
- =?us-ascii?Q?gq6pWNaWv+3GEQn8rLzFxsZTmKJE5ROKnq+PsXaPFIpfl4WSfZy8QZM+bj3N?=
- =?us-ascii?Q?idsYLUmMQaaV3M0GdE8GIXCM5wA14zESLtfpILsEz3VT9nvYeMy8JDGX8DV1?=
- =?us-ascii?Q?LEcml6+qJLB4bZSDKMnSzFrpDKOIrKK9drY2II8gyG2yoXsyBI0vdK4n0Yvz?=
- =?us-ascii?Q?dZ5VbxUve2hV8Uf4T5RqephtmPqvp7aj1cj9ymsNJNLQXEIZJEknGyfq5J45?=
- =?us-ascii?Q?xgnO7O3EH5tCsxdTbwnO3UXvLdr5TzkYUwFZxe9rvtiHVuSTDJbG4dVy2HgY?=
- =?us-ascii?Q?CeK1Gk1+o/eIx6/bL8phmLICHdUtEPG3Qhiu4wMHvp9EkZNlQXxIO99XT+Kb?=
- =?us-ascii?Q?phSZ2fz3Z6UbfYANhmi25GV1RsjV4IVLlrgrQGiMveQkrr6IxPoPHaPTbJqP?=
- =?us-ascii?Q?zg8rJP5jQq/cnRaIFN2SHrg2fb87pULTbVaguPYcNYBylZAeCOojLUuFMApN?=
- =?us-ascii?Q?e8eFyoyhDG4PmfCYRYtUH7J16a0PgdHdD/GWfPUSjAUsioFFSawwysdK2eIe?=
- =?us-ascii?Q?eI9Htm/eVuq3aiuElvp/XqKuZbzKW+s6QUEZgX6FXFoOWq/DQWxYrpGd0Igu?=
- =?us-ascii?Q?NuozBCu3ld572/vpP7R5Cl3+l72NvqU0Klol7OaXZEbclelXsV0A/C2q1nQU?=
- =?us-ascii?Q?cttfIMoZN5jEMB0FetG2M1Um33luyraHjxRDrVpUaTiy6pWgOUtpk5B5qaZW?=
- =?us-ascii?Q?xEC8iTDUhXLueNz5xluBx+YIkazs6ZX/FwpackUcsC6M7nIPkiDMkkFN6zJK?=
- =?us-ascii?Q?60UBBnv266RXmfvKhfVKZ7uaMX/ChPsTKjR8OXMR0W61bB4pvHaaiw3qEG8T?=
- =?us-ascii?Q?a8YUJS5dYsHN9K39GQICs7mkvfD8B01Beb7lbIG7zrENAiHLwSzI5UOv6AGZ?=
- =?us-ascii?Q?vCbZMSFOS4sXrljliqt5ee6gPVRhrAzIDJTbu3qIKu6cDfhOST3cFqE40IPm?=
- =?us-ascii?Q?jN1gQ+cVV29RwotxQ59p435+CcUtTjcL?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR10MB2475.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(52116014)(366016)(376014)(1800799024)(7053199007)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?zu0BZaC643oGSbzHFPafBCMy3naFbzhWIpCobpFhvpMQvJLKh06LwOHAx8nj?=
- =?us-ascii?Q?M3JGNJPaPVlXfB90VAaCJQtloYXyJnBK7GIn/Wqp6G8fuBqe8f1P+8vgWWF+?=
- =?us-ascii?Q?XhSsG5cbbzVsg2nXMgXdNqiHuYotFc1elncoAkH3jI5FF5vD+wzPK68UArTK?=
- =?us-ascii?Q?7/8R/uFKAYIejisjVrNcfTRA8OiUXdv8YrpBXuaQ3TuoL+GN+v1hbs0fuCPJ?=
- =?us-ascii?Q?UeiH+79TrhiKrWg32DZVySROMFDoQ/Vyl21DuJM0mwMsZTJkvpEst9fucZeV?=
- =?us-ascii?Q?aux+s/qjf4AmCrF+Exzst6H2xXavBb7WZh7kdjjfYWhR/PKhGvL49KTMZeDc?=
- =?us-ascii?Q?zTELmMjs+WYvYs8+k2W7fVildZmJmR67rto37J8bwrpzc19JvS3ZdkH/07Cx?=
- =?us-ascii?Q?ONrGciZY5tFLB0unAk42I0c8G1Xtnx7ZdprsISIESySlgP4bh3O8/AplnJ01?=
- =?us-ascii?Q?YneLm7L2gACeKCRXdFJ3DyqcGmvgPZnvtjbJj+DcNhSxaSUXrg6AmFphidL2?=
- =?us-ascii?Q?tq5H5NOD/yy6JWI8ha7E+tcz5nZgndq9kY3SmMWgb2i4qW33zmHxT6QBO81L?=
- =?us-ascii?Q?Y7v+Sb8IO+nFW7eWLiExyLCydriD0GtMXzucJzbAmfcpUkLiJ8g1Y4Ijt14A?=
- =?us-ascii?Q?slxxcLm/S5Qrbl7hVJMoPRSgjxk94qBY5A7/XW5TUD05WcBmDNtZA6YliTGK?=
- =?us-ascii?Q?FOKgK/dWoS1INXB/EsONOLaCsZ/6z9QSH6iec6PL706uDlX5GImKAgWBEBZn?=
- =?us-ascii?Q?I/4lqq/9UaWlnAE31T4QCejP5CH1AIJaYPS1nSVIZLfD/YZEomNY8JFSime2?=
- =?us-ascii?Q?tsRe35yCUFNg0C7qV/e23G3BYF6hYEVQ05NnyCLn1P9jw5irATBJl7N2IKLt?=
- =?us-ascii?Q?4oWzisudg6aV5VZXZDPk4PqKlOU1kVDkzaSEK7v3wAR4P8HCsMfsDxYNuWz8?=
- =?us-ascii?Q?/+OvdJdPmc7gWjY063VMERsq+c0rrBfk2xwHoRpAJW23W6lmx2+rA4DgLjVX?=
- =?us-ascii?Q?vRsn3hn+DIfg04Rm2z+tWmRRNqymQLbmudWzJzXBGkbprEuV0g1+PJnTt+RN?=
- =?us-ascii?Q?34O8p2rhvGjNB0df/u/hEzW0I3IBgztx+0UIhSLwXuu/02vuPxd6wSJTb5XZ?=
- =?us-ascii?Q?U4/WsvOjsrGGWTi6rtJGWq966GcF8Sx7itSrVJ8KhvUEiyOYCcVdui0WUvAj?=
- =?us-ascii?Q?rS8H/hFlF8T9Ss1gFasqSGo0+HG2JMQbSm1HgBp2iNovUm85+zqtjauZVUBF?=
- =?us-ascii?Q?1OmdkDXuk2wm8/gKavpt0BwZVvYePau/VsutO/aLmDJK06fkQEGGksJRck7l?=
- =?us-ascii?Q?ndaET7hKmmssEZIz9DaXVlklzsn35NS1vlllAbHfo8jDzi2g4LZGqaqtshrf?=
- =?us-ascii?Q?2IdJGncY8c2tfCBA053bF26OFgMDBvhaIld/WZvSkTfTX6MBo8n/8m/b4NBq?=
- =?us-ascii?Q?MPJCIRO4XL3248LUgwFSHXy7muQoO3Y4iNWctB4lDfCBLLPdPPnnRM6tBCBp?=
- =?us-ascii?Q?tjVZcpLfatVkn4b7ScfWvMXK1O9D1EZEiJp5vTwaFptDRwF0NGzAvJ+gwKSg?=
- =?us-ascii?Q?1T/HzA9IDMMjZboX0eQaGlJ02RR22oZeO9m1nVNp0MlNGjKFzil3dgFvGx0J?=
- =?us-ascii?Q?Cw=3D=3D?=
-X-OriginatorOrg: prevas.dk
-X-MS-Exchange-CrossTenant-Network-Message-Id: 13d528de-0028-4cd2-491c-08dd67a0d361
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR10MB2475.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2025 11:17:39.7399
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: d350cf71-778d-4780-88f5-071a4cb1ed61
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yO5lOlLM1Eez+Nl503Z1RNo5aZI/8rAqvWvikJnhUHGzBvoxzcyq86degBaSociO3QTrYffaZ5p4RvezVfjl2ktushaZT6cXt9UD/tQHnXg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR10MB8379
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALv822cC/3XNzQrCMAzA8VeRno2kbSqbJ99DPLg23XrYB+0Yk
+ 7F3tyqCIoNc/oH8sojEMXASp90iIk8hhb7LQfudsM2tqxmCyy0UKpKoJCQeE1RzAoIjwXAbbQO
+ TBCLrfGmtMcaLfDxE9mF+wZdr7iaksY/3159JPrdvUqLZIvMgEDuNXBxNUapzaOuR7cH2rXiak
+ /pyZLHpqOxo78i40ldo/Z+jP45BLXHT0dmRpCvtKvaofp11XR8AtdtcTQEAAA==
+X-Change-ID: 20241021-sets-bxs-4-64-patch-v1-44cdf9cc555f
+To: Frank Binns <frank.binns@imgtec.com>,
+        Matt Coster
+	<matt.coster@imgtec.com>,
+        David Airlie <airlied@gmail.com>, Simona Vetter
+	<simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        "Vignesh
+ Raghavendra" <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Randolph Sapp <rs@ti.com>, Darren Etheridge <detheridge@ti.com>,
+        "Michal
+ Wilczynski" <m.wilczynski@samsung.com>,
+        Alessio Belle
+	<alessio.belle@imgtec.com>,
+        Alexandru Dadu <alexandru.dadu@imgtec.com>,
+        "Sarah Walker" <sarah.walker@imgtec.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6399;
+ i=matt.coster@imgtec.com; h=from:subject:message-id;
+ bh=/drBQ+EY8V4wxyvc0vjx/Oygt083Vv7P4Uspc/5c/Ec=;
+ b=owGbwMvMwCFWuUfy8817WRsYT6slMaTf/nP43+LT7/elcCt3c8xeJrh9H9MR3sLGydftRCXOM
+ nC/2rL0REcpC4MYB4OsmCLLjhWWK9T+qGlJ3PhVDDOHlQlkCAMXpwBMZP96hn8qTMcEVJeE5v9l
+ 2zN7m2hB2A+jb5783iu8v+Rm8rMdSu9h+KewLD1Zfar2jqvP+IXD1xqq3BBS+i9Sc/pD+czdran
+ XjvABAA==
+X-Developer-Key: i=matt.coster@imgtec.com; a=openpgp;
+ fpr=05A40CFCE7269D61D97100A1747F0A9036F90DFA
+X-EXCLAIMER-MD-CONFIG: 15a78312-3e47-46eb-9010-2e54d84a9631
+X-Proofpoint-GUID: x8GmIMnDaCW7u_DZKY-t--TVfpC6FC8A
+X-Proofpoint-ORIG-GUID: x8GmIMnDaCW7u_DZKY-t--TVfpC6FC8A
+X-Authority-Analysis: v=2.4 cv=V8Z90fni c=1 sm=1 tr=0 ts=67dbfcc8 cx=c_pps a=AKOq//PuzOIrVTIF9yBwbA==:117 a=AKOq//PuzOIrVTIF9yBwbA==:17 a=ETbM1kImDFEA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=e5mUnYsNAAAA:8 a=VwQbUJbxAAAA:8 a=r_1tXGB3AAAA:8
+ a=4ypaFGEvw_zvJEgvs6UA:9 a=QEXdDO2ut3YA:10 a=Vxmtnl_E_bksehYqCbjh:22 a=t8nPyN_e6usw4ciXM-Pk:22
 
-Hi Colin
+This GPU is found in the TI AM68 family of SoCs, with initial support
+added to the k3-j721s2 devicetree and tested on a TI SK-AM68 board.
 
-On Wed, Mar 19 2025, Colin Foster <colin.foster@in-advantage.com> wrote:
+A suitable firmware binary can currently be found in the IMG
+linux-firmware repository[1] as powervr/rogue_36.53.104.796_v1.fw.
 
-> On Wed, Mar 19, 2025 at 01:30:53PM +0100, Rasmus Villemoes wrote:
->> As the comments in ocelot-spi.c explain, after a chip reset, the
->> CFGSTAT register must be written again setting the appropriate number
->> of padding bytes; otherwise reads are not reliable.
->> 
->> However, the way the code is currently structured violates that: After
->> the BIT_SOFT_CHIP_RST is written, ocelot_chip_reset() immediately
->> enters a readx_poll_timeout().
->
-> I ran this new version and everything worked - and I've not seen an
-> issue in previous versions. I'm looking for guidance as to whether this
-> should include a Fixes tag and be backported.
+No new UAPI will be necessary for this platform as it is sufficiently
+similar to the already supported AXE-1-16M.
 
-Thanks a lot for testing and reviewing! As for backporting, IDK, I think
-we'd at least first have to know that it really fixes a bug for somebody.
+UMD support is close to being complete. We're now able to pass >92% of
+Vulkan conformance on our Mesa development branch. The compiler has been
+undergoing a significant rework needed to accomodate the BXS-4-64, as
+well as to make it more flexible to support additional Rogue GPUs going
+forward. The first part of this rework landed in Mesa in [2], and the
+next chunk is currently in review in [3].
 
-> Great find, by the way! Is there any information you would like from my
-> setup?
+There are several dt-bindings changes at the beginning of this series.
+We expect the result to be versatile enough to handle all Imagination
+Rogue GPUs while being a strong foundation to build bindings for the
+newer Volcanic architecture (for which we're currently developing
+support).
 
-Certainly I'd like to know if you do in fact use a SPI clock > 500 kHz?
+The DTS changes at the end of the series are marked [DO NOT MERGE]. Once
+the series is reviewed, we will request these be taken through the
+relevant tree.
 
-And if so, could you try inserting a read and printk of e.g. CHIP_REGS.CHIP_ID
-immediately after the fsleep(), but before the re-initialization, just
-so we can see if my theory that the values are off-by-8-bits plus 8 bits
-of MISO "garbage" is correct? Because that register should have a fairly
-easily recognizable value.
+This version of the series depends on a patch[4] which exists in
+drm-misc-fixes, but has not yet made it back to drm-misc-next (the
+target of this series). That patch adds the function pvr_vm_unmap_obj()
+which is used in patch 14 ("drm/imagination: Add RISC-V firmware
+processor support").
 
-Thanks,
-Rasmus
+[1]: https://gitlab.freedesktop.org/imagination/linux-firmware/-/tree/powervr
+[2]: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/32258
+[3]: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/33998
+[4]: https://lore.kernel.org/r/20250226-hold-drm_gem_gpuva-lock-for-unmap-v2-1-3fdacded227f@imgtec.com
+
+---
+Changes in v4:
+- Update status of UMD support (cover)
+- Fix backwards compatibility of new compatible strings (P1)
+- Fix power-domains property constraints (P1/P2)
+- Fix power-domain-names property constraints (P2)
+- Only invoke pvr_device_safety_irq_clear() if has_safety_events is set
+  (P7)
+- Use pvr_vm_unmap_obj() in pvr_riscv_vm_unmap() (P14)
+- Fix formatting of pvr_riscv_fw_process() signature (P14)
+- Link to v3: https://lore.kernel.org/r/20250310-sets-bxs-4-64-patch-v1-v3-0-143b3dbef02f@imgtec.com
+
+Changes in v3:
+- Reorder some patches to ensure the proper sequencing
+- Update status of UMD support (cover)
+- Don't use more specific compatible strings when not required (P1)
+- Avoid ABI break by limiting new required properties to new compatible
+  strings (P2)
+- Move power domain changes to the patch in which they're used (P2/P5)
+- Update register definitions (P3) [Thanks, Alessio!]
+- Don't use more specific compatible strings when not required (P4)
+- Enhanced commit messages (P4)
+- Remove unnecessary example (P5)
+- Add proper fixes for threaded IRQs (P6) [Thanks, Alessio!]
+- Include fix for a separate IRQ issue (P7) [Thanks, Alessio!]
+- Don't enable firmware debug module (was P13 in v2, also in P14)
+- Change from a workaround to a regular codepath (P15)
+- Drop platform overrides framework (was P18 in v2, also in P16)
+- Mark DTS changes [DO NOT MERGE] (P17/P18)
+- Link to v2: https://lore.kernel.org/r/20241118-sets-bxs-4-64-patch-v1-v2-0-3fd45d9fb0cf@imgtec.com
+
+Changes in v2:
+- Clarified justification for compatible strings (P1)
+- Simplified clocks constraints (P2)
+- Simplified power-domains constraints (P3/P4)
+- Use normal reg syntax for 64-bit values (P8/P21)
+- Link to v1: https://lore.kernel.org/r/20241105-sets-bxs-4-64-patch-v1-v1-0-4ed30e865892@imgtec.com
+
+---
+Alessio Belle (3):
+      drm/imagination: Update register defs for newer GPUs
+      drm/imagination: Mask GPU IRQs in threaded handler
+      drm/imagination: Handle Rogue safety event IRQs
+
+Matt Coster (14):
+      dt-bindings: gpu: img: Future-proofing enhancements
+      dt-bindings: gpu: img: Add BXS-4-64 devicetree bindings
+      drm/imagination: Use new generic compatible string
+      drm/imagination: Add power domain control
+      drm/imagination: Remove firmware enable_reg
+      drm/imagination: Rename event_mask -> status_mask
+      drm/imagination: Make has_fixed_data_addr a value
+      drm/imagination: Use a lookup table for fw defs
+      drm/imagination: Use callbacks for fw irq handling
+      drm/imagination: Move ELF fw utils to common file
+      drm/imagination: Use cached memory with dma_coherent
+      drm/imagination: Add support for TI AM68 GPU
+      [DO NOT MERGE] arm64: dts: ti: k3-am62: New GPU binding details
+      [DO NOT MERGE] arm64: dts: ti: k3-j721s2: Add GPU node
+
+Sarah Walker (1):
+      drm/imagination: Add RISC-V firmware processor support
+
+ .../devicetree/bindings/gpu/img,powervr-rogue.yaml |  81 +++++++++-
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi           |   4 +-
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi         |  12 ++
+ drivers/gpu/drm/imagination/Makefile               |   2 +
+ drivers/gpu/drm/imagination/pvr_device.c           | 126 ++++++++++++++--
+ drivers/gpu/drm/imagination/pvr_device.h           |  31 +++-
+ drivers/gpu/drm/imagination/pvr_drv.c              |  16 ++
+ drivers/gpu/drm/imagination/pvr_fw.c               |  28 +++-
+ drivers/gpu/drm/imagination/pvr_fw.h               |  85 +++++------
+ drivers/gpu/drm/imagination/pvr_fw_meta.c          |  23 +--
+ drivers/gpu/drm/imagination/pvr_fw_mips.c          |  82 ++--------
+ drivers/gpu/drm/imagination/pvr_fw_riscv.c         | 165 +++++++++++++++++++++
+ drivers/gpu/drm/imagination/pvr_fw_startstop.c     |  17 +++
+ drivers/gpu/drm/imagination/pvr_fw_util.c          |  67 +++++++++
+ drivers/gpu/drm/imagination/pvr_gem.c              |  10 +-
+ drivers/gpu/drm/imagination/pvr_gem.h              |   6 +-
+ drivers/gpu/drm/imagination/pvr_mmu.c              |   8 +-
+ drivers/gpu/drm/imagination/pvr_power.c            | 114 ++++++++++++++
+ drivers/gpu/drm/imagination/pvr_power.h            |   3 +
+ drivers/gpu/drm/imagination/pvr_rogue_cr_defs.h    | 153 ++++++++++++++++---
+ drivers/gpu/drm/imagination/pvr_rogue_riscv.h      |  41 +++++
+ 21 files changed, 896 insertions(+), 178 deletions(-)
+---
+base-commit: d034e6f7ea8ddc866d4ac59c104e18675b13975b
+change-id: 20241021-sets-bxs-4-64-patch-v1-44cdf9cc555f
+
 
