@@ -1,116 +1,198 @@
-Return-Path: <devicetree+bounces-159349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D740A6A692
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 13:57:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CEBCA6A6A7
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 14:01:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F13C34848FC
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 12:57:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 76503189EB1A
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 13:01:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C820026AEC;
-	Thu, 20 Mar 2025 12:57:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA7B31C3C18;
+	Thu, 20 Mar 2025 13:01:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="heI/BSbk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O1Vwat0c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.3])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75590179BC;
-	Thu, 20 Mar 2025 12:57:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.3
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1361117BA5;
+	Thu, 20 Mar 2025 13:01:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742475442; cv=none; b=mlYhCvV8zcsKIWA8d5k4DC3kzL98bdbNbJ/9IezHSHkbHRztfDI13w4OLGugsVmzJ3PIZScsl2SCAe8Zzj8ACjEuWFF+w1N08W7o4GgKoSDgcVIJQo45KpukwcfZWw3WM5/N+DaHmgS/Pj2GvzNt7JlJUnQgXufhXH/uRQn7c7k=
+	t=1742475689; cv=none; b=aq/UEy0OgZeYNm53FrnFuxrNV3Pm1S1OgihihAYzyGVfgBGKpotwUIrWrj7z9Vn/ALe4RsJAH9M6XIsQyNYn1s4B10ngUoY42s08brZmFBP6ih31OXztYS/9NQPNwOkiNrcMZf+3VdBaQSk2Ljc7vMgivx7oj3/LYIFYGQt2jtg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742475442; c=relaxed/simple;
-	bh=PzL1hNUP4we1Y+VXPMp5QAgKUT95/IJsjvsaRpU6fWQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=jn2p8jfVD2YE5EaQ6A95twZD8GVubHGlR7KwkSUt6nzH5dntTRFQlbVxdOWV/qc/C6ty72r4S4lmEkexLYndKqJSmL9bBuTFJTxsUf9YilGtqTIfUT4TIcXblrVY1mhHCvgwIc0G2xFY9B23CZ+S1hHyNJwUoilExACJrXtdalI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=fail (1024-bit key) header.d=163.com header.i=@163.com header.b=heI/BSbk reason="signature verification failed"; arc=none smtp.client-ip=117.135.210.3
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
-	Message-ID; bh=PV8J72Kd8Fa075AwZSVmGmHrrt420GzFAmi5jXfZWH8=; b=h
-	eI/BSbkrIuvldqB/lJQ4JMIvoWt78fgs408Zt+CycsmWKKbQs72ZSUGJ7Jrdg9L5
-	WDSEMbMwJyILyF9yVZrTgdlgY2L8Ze3ByK9i1lXduCuKB3MRu9qN4sloc5rFWZuM
-	gc3Tp7gmfwUnITcmJDHw2oCd+7gD7x+AzvzoImVOFA=
-Received: from andyshrk$163.com ( [58.22.7.114] ) by
- ajax-webmail-wmsvr-40-111 (Coremail) ; Thu, 20 Mar 2025 20:56:04 +0800
- (CST)
-Date: Thu, 20 Mar 2025 20:56:04 +0800 (CST)
-From: "Andy Yan" <andyshrk@163.com>
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc: dsimic@manjaro.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, krzk+dt@kernel.org,
-	"Andy Yan" <andy.yan@rock-chips.com>
-Subject: Re:Re:Re: [PATCH] arm64: dts: rockchip: aliase sdhci as mmc0 for
- rk3566 box demo
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20240801(9da12a7b)
- Copyright (c) 2002-2025 www.mailtech.cn 163com
-In-Reply-To: <19b62068.1082.193ed25f901.Coremail.andyshrk@163.com>
-References: <20241221104920.4193034-1-andyshrk@163.com>
- <24438615.ouqheUzb2q@diego>
- <19b62068.1082.193ed25f901.Coremail.andyshrk@163.com>
-X-NTES-SC: AL_Qu2fAPicukst4iSeYukfmkcVgOw9UcO5v/Qk3oZXOJF8jDjp4xEhV2B6MH/20uOCARCyuyGufh9t7txYW6d3eJ0gDSag/xFgLgGfyqB2/Sa6kw==
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1742475689; c=relaxed/simple;
+	bh=WMto3apGvnTVFrZ2Rgo/7crodKVQXZ4U2w2f+ZqEgcs=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=owXTFzCL+W/Tq8S8YWA2Ticjw9dFmCeApjOsThDak6JMCnm3FL5SkPk++auR6EIbVESdxJxdudHdxwvkpirUHintkBPKGaSlg1EDaC32BaOPyJgrvwwHS/2GUZiE0SzPLNJu4tWwngFrDRsrT9rdHUqZfXMzqaLk2YCRJqFleCo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=O1Vwat0c; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-43d04dc73b7so8097985e9.3;
+        Thu, 20 Mar 2025 06:01:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742475686; x=1743080486; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=E4jlgljNt40Vu2CmEv7FaT2u7xedRKcXuIPlI99mDNo=;
+        b=O1Vwat0c/VNDjj9z71/B8wZnJHyk284iFJye+OHL1Hv2aySuJ9jwXSuHPH8OzDXUqR
+         2OTJYg/6uRthH2xDCe3SWZzCoOkGMFfeOctvnLQtEZtBzrpNpDE8XnrsMJ1slotfP9yb
+         bpX1dpvkvTwc2/NTXzRiq0RysBlObKohwJtQhrqX93mw1mozfNMiyPXC0rEBjxrpgUQM
+         6163reAt3htrfaBqs/gRjO71gKxKiHfKukfAJWOLV7BNfN4x6qPbZZKjvHjqeZIDLNTO
+         o3UvjJk0m8oM15SD+gmgdTVc5L3bI2Kkjco62Mw7gtXaJ3eTu0sfFnl7A4peQohgtEyo
+         BwNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742475686; x=1743080486;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=E4jlgljNt40Vu2CmEv7FaT2u7xedRKcXuIPlI99mDNo=;
+        b=pcjipTsQp2t6+24XnMOsjNb+fOo5RaGySn8OHPbGpf3gLCzPhw2InN0DJYcLZBU6nt
+         szeTfii76nLgG8gHYy1QoI0rA4DcsyGs3dUZrVSVaFlhbzPRQN50FbxDDKNyv2UwK98i
+         WMtBr433vNflW7FGF+F2wmMOTjzjMqf9YGLu7fg9vVb5wDEgwxob0Vwx73Cas2JTH0q+
+         Yq4a6kv0yjHGZasmTXUUoQYgKWNKfPOyopPbFNKbYYxcr970USywk6Uszi1WgYbnrYQe
+         hT6IKZMbKmnCX9Mft01UpNftHJSawUSbflLs/u8gXu4dO5sLEPx8uW6UKbzZeJObq20w
+         fssw==
+X-Forwarded-Encrypted: i=1; AJvYcCUDRjUfSAwtCpSYcTri6sSntIpdwZz+7gpJUO4WtAuO8aU7L4Vy//Xv2RBhWu3FpNWJ2SA6mqyYkNyn@vger.kernel.org, AJvYcCVz2nMD9uK1TFun0Jd7CaDonKgCu0zWmF+XzIL6rgRR1Tgx34dhKiogQoX3Ny2bWMdxborQGet6Bcdk@vger.kernel.org, AJvYcCXKHbbrW2I0HkE7uTDr9uU8kLE3ym8dr0dsdYVCWX5wQMq5fqtPFzdoJYx2vEZTR/HJYxftQgtBI8xdhG1d@vger.kernel.org, AJvYcCXqVUEJ0wpnxi7+qjcoEyzH46tlvPPCPi4336Taeh1Hrr9DNZ08573te5HgfAkiCd63JPTMafIhITH+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzixv3BfeICefV5U5NTnlxzViRz/B8D3fsHRN/ODsJebFTjFS1H
+	L9EE8kiI++1Tt1CFG2yfwy3HihX2WDUP1e7eGMiAGCFQ0vKYIg5LvKUPjw==
+X-Gm-Gg: ASbGncvq/AvmJTM7RC5tEqzxOI+jB02dYw7GO8sViLoBKBolTYkv8/OgAdCprQgkHiE
+	iX6Hx11ZrhWS1HcTU8SM6K7xWzmgo9f9jAB6Inuy3/MTYNUQ2qwNZr0MllGNeeIn1kgtkoj54k+
+	0ZOab2V6JiGE1yiouYEvrGTJuQOTFWsZ8Bs0rhsAl/W8oy+rlWsXkcs7ZNo+kech/V3NwSpsJOn
+	hGl/zBrUDcmQu5Fab7ItO8sgyIO6XHVDICwSbPYYZKlOb81zsGTT9xzPCtlpMNT2TYg48UChnvB
+	Oi7u4mYvqogD3b3EhQdqlAm2GRr7nswXPIPefyY5wDmMf/c8vkHRfnz54t3pgqj4mM1qQuG0SSX
+	Sy94b7LMn+tnewg==
+X-Google-Smtp-Source: AGHT+IGqvxRe9sNnKeQqg/T2zeY+NXunY9lY/OA3ABv2ihxgYNSNA4zfa6VlIvxCoHVeEJdasraRWg==
+X-Received: by 2002:a5d:47c9:0:b0:391:13ef:1af5 with SMTP id ffacd0b85a97d-399795e6d96mr3565437f8f.48.1742475685246;
+        Thu, 20 Mar 2025 06:01:25 -0700 (PDT)
+Received: from localhost.localdomain (93-34-90-129.ip49.fastwebnet.it. [93.34.90.129])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-397f2837e61sm18492328f8f.97.2025.03.20.06.01.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Mar 2025 06:01:24 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Daniel Danzberger <dd@embedd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+	Nikita Shubin <nikita.shubin@maquefel.me>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Yangyu Chen <cyy@cyyself.name>,
+	Ben Hutchings <ben@decadent.org.uk>,
+	Felix Fietkau <nbd@nbd.name>,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-phy@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	linux-usb@vger.kernel.org,
+	upstream@airoha.com
+Subject: [PATCH v2 00/11] airoha: en7581: clk cleanup + USB support
+Date: Thu, 20 Mar 2025 14:00:23 +0100
+Message-ID: <20250320130054.4804-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <2ae3fb1a.ad30.195b3a0087e.Coremail.andyshrk@163.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:bygvCgD3vzFkENxnDwKCAA--.42918W
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBkAcWXmfcCF-htQABsm
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+Content-Transfer-Encoding: 8bit
 
-SGkgSGVpa2/vvIwKCkF0IDIwMjQtMTItMjIgMTQ6NTU6MDksICJBbmR5IFlhbiIgPGFuZHlzaHJr
-QDE2My5jb20+IHdyb3RlOgo+Cj5IaSBIZWlrb++8jAo+QXQgMjAyNC0xMi0yMSAyMDo1NTowMiwg
-IkhlaWtvIFN0w7xibmVyIiA8aGVpa29Ac250ZWNoLmRlPiB3cm90ZToKPj5IaSBBbmR5LAo+Pgo+
-PkFtIFNhbXN0YWcsIDIxLiBEZXplbWJlciAyMDI0LCAxMTo0OTowNyBDRVQgc2NocmllYiBBbmR5
-IFlhbjoKPj4+IEZyb206IEFuZHkgWWFuIDxhbmR5LnlhbkByb2NrLWNoaXBzLmNvbT4KPj4+IAo+
-Pj4gRm9sbG93IG1vc3Qgb3RoZXJzIHJrMzU2eCBiYXNlZCBib2FyZHMsIGFuZCB1LWJvb3Qgb25s
-eSB1c2UgbW1jMC8xCj4+PiBhcyBtbWMgYm9vdCB0YXJnZXRzLCBzbyBhbGlhc2Ugc2RoY2kgYXMg
-bW1jMC4KPj4+IAo+Pj4gU2lnbmVkLW9mZi1ieTogQW5keSBZYW4gPGFuZHkueWFuQHJvY2stY2hp
-cHMuY29tPgo+Pj4gLS0tCj4+PiAKPj4+ICBhcmNoL2FybTY0L2Jvb3QvZHRzL3JvY2tjaGlwL3Jr
-MzU2Ni1ib3gtZGVtby5kdHMgfCA2ICsrKy0tLQo+Pj4gIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2Vy
-dGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCj4+PiAKPj4+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0
-L2Jvb3QvZHRzL3JvY2tjaGlwL3JrMzU2Ni1ib3gtZGVtby5kdHMgYi9hcmNoL2FybTY0L2Jvb3Qv
-ZHRzL3JvY2tjaGlwL3JrMzU2Ni1ib3gtZGVtby5kdHMKPj4+IGluZGV4IDQxYjRjZDVhNDIyMC4u
-N2QwZWVkZjFiZDBkIDEwMDY0NAo+Pj4gLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9yb2NrY2hp
-cC9yazM1NjYtYm94LWRlbW8uZHRzCj4+PiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL3JvY2tj
-aGlwL3JrMzU2Ni1ib3gtZGVtby5kdHMKPj4+IEBAIC0xOSw5ICsxOSw5IEBAIC8gewo+Pj4gIAo+
-Pj4gIAlhbGlhc2VzIHsKPj4+ICAJCWV0aGVybmV0MCA9ICZnbWFjMTsKPj4+IC0JCW1tYzAgPSAm
-c2RtbWMwOwo+Pj4gLQkJbW1jMSA9ICZzZG1tYzE7Cj4+PiAtCQltbWMyID0gJnNkaGNpOwo+Pj4g
-KwkJbW1jMCA9ICZzZGhjaTsKPj4+ICsJCW1tYzEgPSAmc2RtbWMwOwo+Pj4gKwkJbW1jMiA9ICZz
-ZG1tYzE7Cj4+Cj4+c29ycnksIGJ1dCB0aGF0IHdvbid0IGJlIHBvc3NpYmxlIDotKCAuCj4+Cj4+
-VGhlIG9yaWdpbmFsIGFsaWFzZXMgZm9yIHRoZSBtbWMgb3JkZXIgd2VyZSBhZGRlZCBvdmVyIDIg
-eWVhcnMgYWdvCj4+KG5vdmVtYmVyIDIwMjIpIGFuZCBiZWNhbWUgcGFydCBvZiB0aGUgQUJJIHRo
-ZW4uCj4KPlllcywgIHRoZSBwYXRjaCBmb3IgdGhpcyBib2FyZCB3YXMgc3VibWl0dGVkIGJ5IG1l
-Lgo+VGhpcyBpcyBhIHR2IGJveCAgZXZhbHVhdGlvbiBkZW1vIGJvYXJkIHRoYXQgd2UgdXNlIGlu
-dGVybmFsbHnvvIxhbmQgaXQgaXMgbm90IHNvbGQgdG8gdGhlIHB1YmxpYy4KPkkgc3VibWl0dGVk
-IGl0IHRvIHRoZSBtYWlubGluZSBiZWNhdXNlIGl0IGlzIHNtYWxsLCBjb21wYWN0IGFuZCBzdHJl
-YW1saW5lZCwgaXQgZWFzeSBmb3IgbWUKPnRvIHVzZSBpdCAgdGVzdCB0aGUgbWFpbmxpbmUgdm9w
-MiBkcml2ZXIuIAo+SSB0aGluayBpIGFtIGN1cnJlbnRseSB0aGUgb25seSB1c2VyIHdobyB3aWxs
-IHVzZSB0aGlzIGJvYXJkIHJ1biB0aGUgbWFpbmxpbmUga2VybmVsLgo+SSdtIG5vdCBzdXJlIGlm
-IHdlIGNhbiBsZXQgaXQgZ28uCgoKU28gZmFyLCBubyBvbmUgaGFzIGNvbWUgZm9yd2FyZCB0byBj
-bGFpbSB0aGF0IHRoZXkgYXJlIHVzaW5nIHRoaXMgYm9hcmQuCkFjdHVhbGx5LCBhcyBJIG1lbnRp
-b25lZCBiZWZvcmUsIGN1cnJlbnRseSwgaXQgaXMgb25seSBtZSB3aG8gaXMgdXNpbmcgdGhpcwpi
-b2FyZCB0byBkbyBzb21lIERSTS1yZWxhdGVkIHRlc3RzLiBDb3VsZCB5b3UgY29uc2lkZXIgbWVy
-Z2luZyBpdD8gCklmIGxhdGVyIG9uIHNvbWVvbmUgcmVhbGx5IGNvbWVzIGZvcndhcmQgYW5kIGNs
-YWltcyB0aGF0IHRoaXMgbW9kaWZpY2F0aW9uCmhhcyBhZmZlY3RlZCBpdCwgd2UgY2FuIHN0aWxs
-IHJldmVydCB0aGlzIHBhdGNoLgoKPgo+Cj4+Cj4+SW1hZ2luZSBzb21lb25lIHVzaW5nIHRoYXQg
-Ym9hcmQgd2l0aCBhIHJvb3Rmcz0vZGV2L21tY2JsazJwMSBwYXJ0Cj4+aW4gdGhlIGNvbW1hbmRs
-aW5lIHRvIG1vdW50IHRoZSBvbGQgc2RoY2ktcGFydDEgYXMgcm9vdGZzLCBidXQgbm93Cj4+eW91
-IHJlb3JkZXIgdGhlIGNvbnRyb2xsZXJzLCBzbyBzbyB0aGF0IGNvbW1hbmRsaW5lIHdvdWxkIHRy
-eSB0byBhY2Nlc3MKPj5zZG1tYzEsIHNvIHRoZWlyIHN5c3RlbSB3b24ndCBib290IGFueW1vcmUg
-YWZ0ZXIganVzdCBhIHNpbXBsZSBrZXJuZWwKPj51cGRhdGUuCj4+Cj4+QnJlYWtpbmcgcGVvcGxl
-J3Mgc2V0dXAgaXMgb25lIG9mIHRob3NlIGJpZyBuby1nby1zIGluIHRoZSBrZXJuZWwsIHNvCj4+
-c2FkbHkgeW91J2xsIG5lZWQgdG8gbGl2ZSB3aXRoIHRoZSBleGlzdGluZyBvcmRlci4KPj4KPj4K
-Pj5IZWlrbwo+Pgo+Pgo=
+This series implement all the changes required to correctly handle
+USB support for the Airoha EN7581 SoC.
+
+The first few patch are cleanup for the clock driver and the
+introduction of the SCU SSR SoC driver.
+
+The SoC always support USB 2.0 but for USB 3.0 it needs additional
+configuration for the Serdes port. Such port can be either configured
+for USB usage or for PCIe lines or HSGMII and these are configured
+in the SCU space.
+
+The xHCI USB is based on the Mediatek implementation but the PHY
+handling although conceptually similar, is indded different compared
+to Mediatek due to SSR checks and different port power up.
+
+The SSR driver expose an API to poll the current status of the Serdes
+port and the USB PHY driver validates it. Refer to the specific commit
+for additional info.
+
+Consider that there is currently an inconsistency as AN7581 and
+EN7581 refer to the same thing. This is due to the fact that
+the SoC born under EcoNet but then was acquired by Airoha.
+
+Changes v2:
+- Drop changes for simple-mfd
+- Rework PHY node structure to single node
+- Drop port-id property in favor of serdes-port and
+  usb2-monitor-clock-sel
+- Make the SSR driver probe from the clock driver
+
+Christian Marangi (11):
+  clk: en7523: convert driver to regmap API
+  clk: en7523: generalize register clocks function
+  dt-bindings: clock: en7523: add Documentation for Airoha AN7581 SCU
+    SSR
+  soc: airoha: add support for configuring SCU SSR Serdes port
+  clk: en7523: define and register SoC SCU SSR driver for EN7581
+  soc: airoha: scu-ssr: expose API to read current Serdes Port mode
+  dt-bindings: phy: Add documentation for Airoha AN7581 USB PHY
+  phy: move Airoha PCIe PHY driver to dedicated directory
+  phy: airoha: Add support for Airoha AN7581 USB PHY
+  usb: host: add ARCH_AIROHA in XHCI MTK dependency
+  arm64: dts: airoha: en7581: add USB nodes
+
+ .../bindings/clock/airoha,en7523-scu.yaml     |  101 +-
+ .../bindings/phy/airoha,an7581-usb-phy.yaml   |   83 ++
+ MAINTAINERS                                   |   21 +-
+ arch/arm64/boot/dts/airoha/en7581.dtsi        |   49 +
+ drivers/clk/clk-en7523.c                      |  340 +++--
+ drivers/phy/Kconfig                           |   11 +-
+ drivers/phy/Makefile                          |    5 +-
+ drivers/phy/airoha/Kconfig                    |   23 +
+ drivers/phy/airoha/Makefile                   |    4 +
+ drivers/phy/airoha/phy-airoha-pcie-regs.h     |  494 +++++++
+ drivers/phy/airoha/phy-airoha-pcie.c          | 1290 +++++++++++++++++
+ drivers/phy/airoha/phy-airoha-usb.c           |  571 ++++++++
+ drivers/soc/Kconfig                           |    1 +
+ drivers/soc/Makefile                          |    1 +
+ drivers/soc/airoha/Kconfig                    |   18 +
+ drivers/soc/airoha/Makefile                   |    3 +
+ drivers/soc/airoha/airoha-scu-ssr.c           |  271 ++++
+ drivers/usb/host/Kconfig                      |    2 +-
+ .../dt-bindings/phy/airoha,an7581-usb-phy.h   |   11 +
+ include/dt-bindings/soc/airoha,scu-ssr.h      |   11 +
+ include/linux/clk/clk-en7523.h                |   10 +
+ include/linux/soc/airoha/airoha-scu-ssr.h     |   34 +
+ 22 files changed, 3202 insertions(+), 152 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/airoha,an7581-usb-phy.yaml
+ create mode 100644 drivers/phy/airoha/Kconfig
+ create mode 100644 drivers/phy/airoha/Makefile
+ create mode 100644 drivers/phy/airoha/phy-airoha-pcie-regs.h
+ create mode 100644 drivers/phy/airoha/phy-airoha-pcie.c
+ create mode 100644 drivers/phy/airoha/phy-airoha-usb.c
+ create mode 100644 drivers/soc/airoha/Kconfig
+ create mode 100644 drivers/soc/airoha/Makefile
+ create mode 100644 drivers/soc/airoha/airoha-scu-ssr.c
+ create mode 100644 include/dt-bindings/phy/airoha,an7581-usb-phy.h
+ create mode 100644 include/dt-bindings/soc/airoha,scu-ssr.h
+ create mode 100644 include/linux/clk/clk-en7523.h
+ create mode 100644 include/linux/soc/airoha/airoha-scu-ssr.h
+
+-- 
+2.48.1
+
 
