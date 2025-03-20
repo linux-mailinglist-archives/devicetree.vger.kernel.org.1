@@ -1,181 +1,298 @@
-Return-Path: <devicetree+bounces-159438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 693D2A6AD4A
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 19:49:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F075A6AD51
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 19:51:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A61E3ABA72
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 18:47:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C0DF8A3C22
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 18:51:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33051226D14;
-	Thu, 20 Mar 2025 18:47:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D31D227B83;
+	Thu, 20 Mar 2025 18:51:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="dGoE1WIY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YUl4L619"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7CD01953A1;
-	Thu, 20 Mar 2025 18:47:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E2581E8339;
+	Thu, 20 Mar 2025 18:51:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742496448; cv=none; b=WibKbz6wfassP8PWgzjV0zLczJYa+xdcgw8J7iuoMwPJs03lluF46hC3T0OGWsh0bi7OSOxOcE6TmLOTGh7kVXPduom3K9cgI1ZpjcFPwple3chq5T0WdlzbypKX1TGhDFgqSb16XgGLbL9VPXDzhK1ItvEQBoazayIG7On5u6o=
+	t=1742496685; cv=none; b=SUOXmGHhtHo8DU4FyM8AkKmqvetZraCnK85C7OR7hsrVMwkQgQiumkcxfPxWrTSdDXehODCJVK8LPSimr/Z6OJQXNt37So5/aw5Cm+DKxs+PXrRXxakqtetOHPqyAVauBDfMRVLNnGdCeilV8/YaXHfpaqhAfWNVtWhaRraSGzg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742496448; c=relaxed/simple;
-	bh=p7MoLMJgztUeM2mOX1O2C/+yxOVVFon1dqzplcanEj0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QzVPYnR0k64XEBGOunxlXuu8HxItst9h8qTWdC+iYb70LIki3wDGu8X25ek9tx1YStPEBhkKOK+cYMKcSpnxJhUbVz47g4AEPeIJfubiVd/DdDp33l/RPGaPblGSJJ0Dofx4P+lWWvdb8vXbkGmpylDMSnxu/7mhPxqQUjjOSWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=dGoE1WIY; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: from [10.137.184.60] (unknown [131.107.160.188])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 6483B2116B4D;
-	Thu, 20 Mar 2025 11:47:19 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 6483B2116B4D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1742496439;
-	bh=2L2Q31XCa0Xdbd9gsYILKzkM4+b+VTYhlEAF67KZJpE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dGoE1WIYcV3miDSU7tnIjSORwMD3YiiuMtgapwqYs3PxoUrikjyglFZJEbSJEaC1I
-	 qppAONaKxLV3qmJYo7gpaRMBNla6xREmO+/WMeSBr/85MzxtUvCAfKqrGUxvaVfV3z
-	 LX02uwyNNHxgqfnDJgcNePxL4YNOD7FoIVq49fLM=
-Message-ID: <42a1a90b-ae3e-47df-ad6c-500055e69218@linux.microsoft.com>
-Date: Thu, 20 Mar 2025 11:47:18 -0700
+	s=arc-20240116; t=1742496685; c=relaxed/simple;
+	bh=LNK5ZuKqewXSGZxY17pDQuTqA2GLdapswMLlbaqtkJo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jz3A2rryqcD2kDSd0R0x0dDyxXZPEtRn8upwg5y2wTRt1YHGqIBL3sGgemnrMnbgvm+ot2eA1Idn+SwTYMy1uQt8NLgJAoOxPyv1zWot4us4FAADKVX+5/mX5L0QTT6ndEtsrGisjXcXGIV3fCExuqDpYHaeDIT120rVh9n4e9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YUl4L619; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43cf58eea0fso6711755e9.0;
+        Thu, 20 Mar 2025 11:51:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742496681; x=1743101481; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=J/y0l6cjlflqIfSRDuuK0o0ZmJyO03ninpd8AjWAei4=;
+        b=YUl4L619elQgcQQZ9laDajjwvDpaGYNzcKtJMOsvZaapBmd+PH/dWyC0Po4lOC3RAq
+         120NX0Hy8+HqzuDUwaPK3A3YuNh9a3VoEaeZlocZUlcPN0A+X/FkGmoEO3eTfvyesmNB
+         SAmDzFgVMJQAa8sBVWVuivGFZGLxEgdtmEdWQDzKNn6u3zyltZBE5+eouMk7SXpMgzQy
+         nrl+S+ipWMUbuG5PnOKWP619GecL/mnJN61AxyPM9iHWBN6sI2x8XeAg17890y52Bjtm
+         yJTxRqYz86GNrHnCJRrq/6HKENTyYp6RIN8D/thjPAXHAKrvN000+0WT5iucmezRV1x4
+         EzTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742496681; x=1743101481;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=J/y0l6cjlflqIfSRDuuK0o0ZmJyO03ninpd8AjWAei4=;
+        b=OT/WI49Qd9/LCi8eLA3wtUVDnDn3ShjnrKC5qUANEwJv+vO6Lzq5YxqaDr0fjrvvUN
+         dvGHD6sn+tt5pc8fn7PBjQQbhAej2yeSGWyulHbE9ihW0prjLEKF+Mz7pHApBzg3l8jZ
+         liQfmcG+tef11bNmdYKImVB4txSIpbhIsactpbcKcW9kcfmrpID+sKjLIlcUOT+Cw919
+         ofH/0DvjB141ITCtPsmCD2t8DK/nlp4GfneSw5ltcMdel2s63yrC0krBpMLsigHHfFJk
+         Gy73l0jUYIbAbvGBUP16K2TT1z3RnFrFd8PBa0y3TjcFBPFsC7rCw/SIMi020hKoqqBu
+         eT0A==
+X-Forwarded-Encrypted: i=1; AJvYcCWvbZEjb5yoWJbRUPTba+zRlxqnYarohu/qsq1SScM6UCuHlH0FO6EWSkIS8pi60H8yD+WIRi70G6wk@vger.kernel.org, AJvYcCXC6Hp2KacZADJ5FwWNjZSiB3wji3+cqaeZUz4BPswP3K+kXx3FwysaE6ftdCqHHFvPg7xdXkmJcoi1@vger.kernel.org, AJvYcCXpRDTyx2oeoa190+Ww8EVpepMgJOMyWheyBtAPYEXV5ZGqG2xHcwuwSyifZ0guTd/kpuWaXK1BduPi6UBw@vger.kernel.org
+X-Gm-Message-State: AOJu0YzqK0/NqlvA3Zv7kVdT9rGesPvFfSHhMebIvbLTlBEoUUPZCh1M
+	CL7uYZTn19aRAKnBpfwbcNsM1vpUK9mFSUHbcV+7sh/XjaqrFRfV
+X-Gm-Gg: ASbGncvK/+j4JI620qz1w+0fAkW/aGlUglUH7T2kMFzvrWHz1O03azVidnLGAMhZbg6
+	NWkLLdWxdU9qSgoY+Z6apsQ2GnsfHl9tYVsuf3nOmkoZUiE8dAIee+cAjrHVRrveJ4tFgVvrNV/
+	AXHgWqeULbd18rx+weAeSW8CIMt38Y4IuPkQM/kci7PpslaYw4Pu1xGTkv0G7khV4wDOXSfvlYJ
+	7QVB/Ssy/THsyuE4l46Tj4oNt3TE0+onZQgMhm12B1h7dlDZiXNJ3N3MO3gWYb5cNo/7wZd7MOS
+	coQl59IEzgtZtJMyQpdfz/zFOXbGdpG4FyKAPc+Qe/tI1Twh8tjgVw==
+X-Google-Smtp-Source: AGHT+IE42Ioi8SWMo3tZzwnZBBbrbBT/f6C562nIPPqdgSGiL95d/A5gYDobQljSNZro9grRD5dG6w==
+X-Received: by 2002:a05:6000:2cf:b0:38d:cf33:31d6 with SMTP id ffacd0b85a97d-3997f8f5a1cmr524106f8f.3.1742496680949;
+        Thu, 20 Mar 2025 11:51:20 -0700 (PDT)
+Received: from legfed1 ([2a00:79c0:624:3d00:1ebe:eb51:3a97:3b47])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3997f9a5b66sm324335f8f.40.2025.03.20.11.51.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Mar 2025 11:51:20 -0700 (PDT)
+Date: Thu, 20 Mar 2025 19:51:18 +0100
+From: Dimitri Fedrau <dima.fedrau@gmail.com>
+To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 2/2] pwm: add support for NXPs high-side switch
+ MC33XS2410
+Message-ID: <20250320185118.GA352940@legfed1>
+References: <20250110073755.29541-1-dima.fedrau@gmail.com>
+ <20250110073755.29541-3-dima.fedrau@gmail.com>
+ <lzmsvwzidng7f6ybbfkusauohjya2rlyqrpprjc63y6pczo774@hklfplsgb3un>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH hyperv-next v6 02/11] arm64: hyperv: Use SMCCC to detect
- hypervisor presence
-To: Michael Kelley <mhklinux@outlook.com>, Mark Rutland <mark.rutland@arm.com>
-Cc: "arnd@arndb.de" <arnd@arndb.de>, "bhelgaas@google.com"
- <bhelgaas@google.com>, "bp@alien8.de" <bp@alien8.de>,
- "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "dan.carpenter@linaro.org" <dan.carpenter@linaro.org>,
- "dave.hansen@linux.intel.com" <dave.hansen@linux.intel.com>,
- "decui@microsoft.com" <decui@microsoft.com>,
- "haiyangz@microsoft.com" <haiyangz@microsoft.com>,
- "hpa@zytor.com" <hpa@zytor.com>, "joey.gouly@arm.com" <joey.gouly@arm.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "kw@linux.com" <kw@linux.com>,
- "kys@microsoft.com" <kys@microsoft.com>, "lenb@kernel.org"
- <lenb@kernel.org>, "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
- "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
- "maz@kernel.org" <maz@kernel.org>, "mingo@redhat.com" <mingo@redhat.com>,
- "oliver.upton@linux.dev" <oliver.upton@linux.dev>,
- "rafael@kernel.org" <rafael@kernel.org>, "robh@kernel.org"
- <robh@kernel.org>, "ssengar@linux.microsoft.com"
- <ssengar@linux.microsoft.com>, "sudeep.holla@arm.com"
- <sudeep.holla@arm.com>, "suzuki.poulose@arm.com" <suzuki.poulose@arm.com>,
- "tglx@linutronix.de" <tglx@linutronix.de>,
- "wei.liu@kernel.org" <wei.liu@kernel.org>, "will@kernel.org"
- <will@kernel.org>, "yuzenghui@huawei.com" <yuzenghui@huawei.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "kvmarm@lists.linux.dev" <kvmarm@lists.linux.dev>,
- "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>,
- "linux-arch@vger.kernel.org" <linux-arch@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
- "x86@kernel.org" <x86@kernel.org>, "apais@microsoft.com"
- <apais@microsoft.com>, "benhill@microsoft.com" <benhill@microsoft.com>,
- "bperkins@microsoft.com" <bperkins@microsoft.com>,
- "sunilmut@microsoft.com" <sunilmut@microsoft.com>
-References: <20250315001931.631210-1-romank@linux.microsoft.com>
- <20250315001931.631210-3-romank@linux.microsoft.com>
- <Z9gJlQgV3hm1kxY0@J2N7QTR9R3.cambridge.arm.com>
- <BN7PR02MB414871F1A3D8EF3809391F2FD4D92@BN7PR02MB4148.namprd02.prod.outlook.com>
-Content-Language: en-US
-From: Roman Kisel <romank@linux.microsoft.com>
-In-Reply-To: <BN7PR02MB414871F1A3D8EF3809391F2FD4D92@BN7PR02MB4148.namprd02.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <lzmsvwzidng7f6ybbfkusauohjya2rlyqrpprjc63y6pczo774@hklfplsgb3un>
 
+Hi Uwe,
 
+Am Wed, Mar 19, 2025 at 04:37:43PM +0100 schrieb Uwe Kleine-König:
 
-On 3/19/2025 3:11 PM, Michael Kelley wrote:
-> From: Mark Rutland <mark.rutland@arm.com> Sent: Monday, March 17, 2025 4:38 AM
+[...]
 
->>
->> The 'acpi_disabled' variable doesn't exist for !CONFIG_ACPI, so its use
->> prior to the ifdeffery looks misplaced.
+> > +#define MC33XS2410_PWM_CTRL1			0x05
+> > +/* x in { 1 ... 4 } */
 > 
-> FWIW, include/linux/acpi.h has
-> 
-> #define acpi_disabled 1
-> 
-> when !CONFIG_ACPI.  But I agree that using a stub is better.
+> s/x/chan/
+>
+Will fix it.
 
-Thanks, Michael! I didn't "fact-checked" what was suggested indeed.
-Agreed that the stub makes the code look better.
+> > +#define MC33XS2410_PWM_CTRL1_POL_INV(chan)	BIT((chan) + 1)
+> > +
+> > +#define MC33XS2410_PWM_CTRL3			0x07
+> > +/* x in { 1 ... 4 } */
+> > +#define MC33XS2410_PWM_CTRL3_EN(chan)		BIT(4 + (chan) - 1)
+> > +
+> > +/* x in { 1 ... 4 } */
+> > +#define MC33XS2410_PWM_FREQ(chan)		(0x08 + (chan) - 1)
+> > +#define MC33XS2410_PWM_FREQ_STEP		GENMASK(7, 6)
+> > +#define MC33XS2410_PWM_FREQ_COUNT		GENMASK(5, 0)
+> > +
+> > +/* x in { 1 ... 4 } */
+> > +#define MC33XS2410_PWM_DC(chan)			(0x0c + (chan) - 1)
+> > +
+> > +#define MC33XS2410_WDT				0x14
+> > +
+> > +#define MC33XS2410_PWM_MIN_PERIOD		488282
+> > +/* x in { 0 ... 3 } */
+> 
+> s/x/step/
+>
+Will fix it.
+
+[...]
+
+> > +static u8 mc33xs2410_pwm_get_freq(u64 period)
+> > +{
+> > +	u8 step, count;
+> > +
+> > +	/*
+> > +	 * Check which step is appropriate for the given period, starting with
+> > +	 * the highest frequency(lowest period). Higher frequencies are
+> > +	 * represented with better resolution by the device. Therefore favor
+> > +	 * frequency range with the better resolution to minimize error
+> > +	 * introduced by the frequency steps.
+> 
+> This is hard to understand as the argument is presented in several
+> steps:
+> 	algo starts with high step values (that's not in the comment,
+> 		you have to take that from the switch statement)
+> 	high step represents high freq = low period
+> 	high freq yield better resolution
+> 	better resolution is what is favoured.
+> 
+> After investing some time to reunderstand the rational here
+> I suggest:
+> 
+> 	/*
+> 	 * Check which step [0 .. 3] is appropriate for the given
+> 	 * period. The period ranges for the different step values
+> 	 * overlap. Prefer big step values as these allow more
+> 	 * finegrained duty cycle selection.
+> 	 */
+> 
+I think this is way better then before. But did you mean:
+Prefer big step values as these allow more finegrained "periods" then
+"duty cylces" ?
+
+[...]
+
+> > +
+> > +	/*
+> > +	 * steps:
+> > +	 *   - 0 = 0.5Hz
+> > +	 *   - 1 = 2Hz
+> > +	 *   - 2 = 8Hz
+> > +	 *   - 3 = 32Hz
+> > +	 * frequency = (code + 1) x steps.
+> > +	 *
+> > +	 * To avoid losing precision in case steps value is zero, scale the
+> > +	 * steps value for now by two and keep it in mind when calculating the
+> > +	 * period that the frequency had been doubled.
+> > +	 */
+> > +	doubled_steps = 1 << (FIELD_GET(MC33XS2410_PWM_FREQ_STEP, reg) * 2);
+> > +	code = FIELD_GET(MC33XS2410_PWM_FREQ_COUNT, reg);
+> > +	freq = (code + 1) * doubled_steps;
+> 
+> doubled_freq?
+> 
+Will change to doubled_freq.
+
+> > +	/* Convert frequency to period, considering the doubled frequency. */
+> > +	return DIV_ROUND_UP(2 * NSEC_PER_SEC, freq);
+> > +}
+> > +
+> > +static int mc33xs2410_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+> > +				const struct pwm_state *state)
+> > +{
+> > +	struct spi_device *spi = pwmchip_get_drvdata(chip);
+> > +	u8 reg[4] = {
+> > +			MC33XS2410_PWM_FREQ(pwm->hwpwm + 1),
+> > +			MC33XS2410_PWM_DC(pwm->hwpwm + 1),
+> > +			MC33XS2410_PWM_CTRL1,
+> > +			MC33XS2410_PWM_CTRL3
+> > +		    };
+> > +	u64 period, duty_cycle;
+> > +	int ret, rel_dc;
+> > +	u16 rd_val[2];
+> > +	u8 wr_val[4];
+> > +	u8 mask;
+> > +
+> > +	period = min(state->period, MC33XS2410_PWM_MAX_PERIOD(0));
+> > +	if (period < MC33XS2410_PWM_MIN_PERIOD)
+> > +		return -EINVAL;
+> > +
+> > +	ret = mc33xs2410_read_regs(spi, &reg[2], MC33XS2410_FRAME_IN_DATA_RD, rd_val, 2);
+> > +	if (ret < 0)
+> > +		return ret;
+> > +
+> > +	/* frequency */
+> > +	wr_val[0] = mc33xs2410_pwm_get_freq(period);
+> > +	/* Continue calculations with the possibly truncated period */
+> > +	period = mc33xs2410_pwm_get_period(wr_val[0]);
+> > +
+> > +	/* duty cycle */
+> > +	duty_cycle = min(period, state->duty_cycle);
+> > +	rel_dc = div64_u64(duty_cycle * 256, period) - 1;
+> > +	if (rel_dc < 0)
+> > +		wr_val[1] = 0;
+> > +	else
+> > +		wr_val[1] = rel_dc;
+> > +
+> > +	/* polarity */
+> > +	mask = MC33XS2410_PWM_CTRL1_POL_INV(pwm->hwpwm + 1);
+> > +	wr_val[2] = (state->polarity == PWM_POLARITY_INVERSED) ?
+> > +		    (rd_val[0] | mask) : (rd_val[0] & ~mask);
+> > +
+> > +	/*
+> > +	 * As the hardware cannot generate a 0% relative duty cycle but emits a
+> > +	 * constant low signal when disabled, also disable in the duty_cycle = 0
+> > +	 * case.
+> > +	 */
+> > +	mask = MC33XS2410_PWM_CTRL3_EN(pwm->hwpwm + 1);
+> > +	wr_val[3] = (state->enabled && rel_dc >= 0) ? (rd_val[1] | mask) :
+> > +						      (rd_val[1] & ~mask);
+> 
+> This is wrong for inversed polarity I think.
+
+Thanks for finding this. Yes, it is for the case when duty_cycle=0 and
+polarity=PWM_POLARITY_INVERSED. The device should then output a constant
+high signal. This could be done by:
+enabled=1
+duty_cycle=100%
+polarity=normal
+
+Just tested it, it works. What do you think ?
 
 > 
-> Michael
+> > +	return mc33xs2410_write_regs(spi, reg, wr_val, 4);
+> > +}
+> > +
+> > [..]
+> > +static int mc33xs2410_probe(struct spi_device *spi)
+> > +{
+> > +	struct device *dev = &spi->dev;
+> > +	struct pwm_chip *chip;
+> > +	int ret;
+> > +
+> > +	chip = devm_pwmchip_alloc(dev, 4, 0);
+> > +	if (IS_ERR(chip))
+> > +		return PTR_ERR(chip);
+> > +
+> > +	spi->bits_per_word = 16;
+> > +	spi->mode |= SPI_CS_WORD;
+> > +	ret = spi_setup(spi);
+> > +	if (ret < 0)
+> > +		return ret;
+> > +
+> > +	pwmchip_set_drvdata(chip, spi);
+> > +	chip->ops = &mc33xs2410_pwm_ops;
+> > +	ret = mc33xs2410_reset(dev);
 > 
->>
->> Usual codestyle is to avoid ifdeffery if possible, using IS_ENABLED().
->> Otherwise, use a stub, e.g.
->>
->> | #ifdef CONFIG_ACPI
->> | static bool __init hyperv_detect_via_acpi(void)
->> | {
->> | 	if (acpi_disabled)
->> | 		return false;
->> |
->> | 	if (acpi_gbl_FADT.header.revision < 6)
->> | 		return false;
->> |
->> | 	return strncmp((char *)&acpi_gbl_FADT.hypervisor_id, "MsHyperV", 8) == 0;
->> | }
->> | #else
->> | static inline bool hyperv_detect_via_acpi(void) { return false; }
->> | #endif
->>
->> Mark.
->>
->>> +static bool __init hyperv_detect_via_smccc(void)
->>> +{
->>> +	uuid_t hyperv_uuid = UUID_INIT(
->>> +		0x4d32ba58, 0x4764, 0xcd24,
->>> +		0x75, 0x6c, 0xef, 0x8e,
->>> +		0x24, 0x70, 0x59, 0x16);
->>> +
->>> +	return arm_smccc_hyp_present(&hyperv_uuid);
->>> +}
->>> +
->>>   static int __init hyperv_init(void)
->>>   {
->>>   	struct hv_get_vp_registers_output	result;
->>> @@ -35,13 +70,11 @@ static int __init hyperv_init(void)
->>>
->>>   	/*
->>>   	 * Allow for a kernel built with CONFIG_HYPERV to be running in
->>> -	 * a non-Hyper-V environment, including on DT instead of ACPI.
->>> +	 * a non-Hyper-V environment.
->>> +	 *
->>>   	 * In such cases, do nothing and return success.
->>>   	 */
->>> -	if (acpi_disabled)
->>> -		return 0;
->>> -
->>> -	if (strncmp((char *)&acpi_gbl_FADT.hypervisor_id, "MsHyperV", 8))
->>> +	if (!hyperv_detect_via_acpi() && !hyperv_detect_via_smccc())
->>>   		return 0;
->>>
->>>   	/* Setup the guest ID */
->>> --
->>> 2.43.0
->>>
+> What does this reset? Does it change the output signal if the bootloader
+> already setup the hardware? The answer to that has to go into a comment.
+> (And if it interupts the output, better skip the reset part.)
 > 
+If reset of the device is asserted on probe it deasserts the reset and
+makes the device available. On the other hand if it is already setup by
+the bootloader the reset will clear all registers to default values which
+means that the output signal will change. The reset gpio is optional, so
+the user can decide wether to use it or not. Both usecases are
+supported. I will add an comment, but will keep the reset handling.
 
--- 
-Thank you,
-Roman
+Best regards,
+Dimitri Fedrau
 
 
