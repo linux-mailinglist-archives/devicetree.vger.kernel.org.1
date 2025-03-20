@@ -1,189 +1,165 @@
-Return-Path: <devicetree+bounces-159480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0E10A6B10E
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 23:40:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECB1CA6B12B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 23:43:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD1409821E3
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 22:39:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFBF69829F3
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 22:43:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5DBD228CB8;
-	Thu, 20 Mar 2025 22:39:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0EE122B590;
+	Thu, 20 Mar 2025 22:43:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="U8axf0W3"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="VoOM3OEI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C4A61E9B1D
-	for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 22:39:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7403D22A7E1
+	for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 22:42:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742510359; cv=none; b=hq8oAw/WBY+IKq7DpSZHb+KbRwGV3gaATOr2Oxq1Anl3yZkArpkPJHlVPlCoWRjLQ/iVBCcZfyqaVDDv57j6I/LyQTrqC0sHYJZtX8Lp6Nq9MdPW1DnFwbNJoabkbUNSmu6W6icIE57NUI2d41BK+k28E9Z4Me5tH48trp1mz0E=
+	t=1742510582; cv=none; b=kt+mWdOX6WD4fTe8VPzQgmTwml0yBSUPTpBSIpwBS/59VsywMtWcEvmb9sMoY4ts558CYLSFYz8GMAYUFPo1WnfK8iocGka5D5F0oIMw8mgEuLV28umC9hag2E1hRLKYiCk/QUwaWYVxaP8xGFrIAbztrlrNrve6lbf+GxOLM88=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742510359; c=relaxed/simple;
-	bh=j8hDLkAQI9+JmAMX0TJqZyvjUEbu1kKiPGbRw7hGyE8=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=PeL8RTyNRAHhoD0x+/zp6E3FqHwf8MA8nIaUKeL/8ZyVNjBo12LTEjcqMGMJSxtLAxxXJu771yyiMRCmhowW5gyUNvPtxkq6taHFOAdUd6cdOrVBGfwZs4YqPoDQ6YfOttiU/dXqk0ID0oLC8cQt26rGtjyFvg3IXBGeLTMxEVA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=U8axf0W3; arc=none smtp.client-ip=209.85.210.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-7272f9d216dso845692a34.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 15:39:16 -0700 (PDT)
+	s=arc-20240116; t=1742510582; c=relaxed/simple;
+	bh=jHUyecYfqBSkuj/RyiebN9WzmLHzCNiNfUukvDXyi9M=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=txTt3ebs+NlOACrRL5Bjatb1XexyRMO6Kv7akg8xXnySWFG889YJpVNKnTAE23UCNEel3slZaws5K1SLMeBTX8GPAe+RBvDGe0DbAedbOoqdHaF+i5fOfqDcxOtSZp8LvqTop61i4xg/NctZpeQ3j5WMWhF1tHgHRysEL9bGUxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=VoOM3OEI; arc=none smtp.client-ip=209.85.128.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-6fece18b3c8so12200867b3.3
+        for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 15:42:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1742510356; x=1743115156; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=0fpBn8OJHb2DipzRLEI+UAj/Fv1bNkdtkXE17lBcc20=;
-        b=U8axf0W3geH9bU0a8/oNck3oKiFq3/mi9h4L6FVu3iX0GulN9b98p2y3p4zai39R4G
-         6aawtdLGCsgHBHBwLVhR7K5AMJ29n5ZXpwCycSy2qKI4Dk2QlFKpJ3ULB6Krlz6yQXfK
-         BeEadLGFvPZ7btl9qgD5RPkBPs005+eF0C1Zh6frnG8dBvEQ84GkW/O0oRQBLPKJp/tw
-         7OkANh/QZ0J3J8FPYO/4rMF/Kcy1zO7iy7QbP6sitooh4t9okKre/PeBTz24kzNgx9om
-         tpnL+xPDCR3a+aR0RvySvXX3K7Sp74z4Xrqbb7B83U6WuNEpXj925/kOos8A7TTM5Oao
-         FUZA==
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1742510578; x=1743115378; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Qn+4G/BZfte1kQZajpdgC3z6H+wA6NVBYYf22eoImB8=;
+        b=VoOM3OEIlvD+S6M3S0KQmAPSCcZez/wVYCZrtShBQa7ZLMuzjPOjNkbvdO7RILoAbc
+         D1FRkGbtJ1Us224W+vCenCJHZJyKifdtRRQBJ2Z9K6Il8SIqiOQWZ/znECJKKNXALsVS
+         TtRrUng1d6ZAj+NkDUav9LhvupLpk8VdX2UjzvTLkcoYav5uHKObhQHiOv2k/AYDQ2Dn
+         4bnX6j+rhk2fDd1QvC1kLtqSUL6vCMmUZhVucILCxSWWMj1g4QjCOT9cMQdn3DjLKELe
+         leYH56s3W8QGPzGxOu4z4jG9kDXCtRpZiJTlb427FuJ5htQGGRX+ZPvRfJqcCGGTPVe8
+         bCfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742510356; x=1743115156;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0fpBn8OJHb2DipzRLEI+UAj/Fv1bNkdtkXE17lBcc20=;
-        b=MIIKqqM4NGmlib9tR0kxA3BAVowCd9XBtphEfqkQi8iZvIjDZQLPzPkOiL4cXI9HvI
-         wrdOopyvgzLVfFPfuyxzjq7al+DhioiuONE3hg66SHvdHMm4Ll/VRkk2Lac8n7pPMDYy
-         HJ2hzqjvJcT0ZeZqofQl1Vtu2O0S4HB76z5Ki5bEfG7AM2rKptIfWK9C/FHH6WnxYExj
-         dwqif20voOsIJuzPHpl72VJEtSJv4ewRPluSMS7wX1ZDynKfedywzcDHzTAOlMQfubhf
-         O8unxpWJDgPMYMc/+OgDXj3gyVGd5OqgpN6hGRVzn3j90+JQOEpruWY+jSi65maxb1mD
-         hyLw==
-X-Forwarded-Encrypted: i=1; AJvYcCXtZtmDBmrHGoutm8mbyufXg+sfP5GZH5FwklMCnoRZKcWnvjErDxMffH/eT6yHtqt7KwHxyjKI9Ny7@vger.kernel.org
-X-Gm-Message-State: AOJu0YzKJ6Z9igaaJlaoM/AxkkWLo6peGcjop2SSzUqM0iGGQ6LUr7BO
-	KVMa/B4lMe31SBagAb14/GEnneSG++GETFWsXkXkF0si3WjAV7j6bhN1dX/TxjU=
-X-Gm-Gg: ASbGncvMymdUzG2adHyUYdtLSSgqAblRojPH1FUDm9YU8aXXhXkhfuoDUZrUBZpVmgh
-	sEa827sZhR9ei5ivQsEV76IH2AG01iQDrSmZW8KD9QhGMKy+/g2QVQ6VndH0nK7kfUathTMoQWo
-	JmaZLq26eTYVlWkSh7ZGLJIUQYtCXjequdXtxAwvhbqBXsf8if/LQbhgMwqx7508WSMkrRXvKDk
-	P6c2NPWRcDq6WkLEerttNrP7XRUqge7h3GLebV4vw3PWWuNlbFyKahMX9sb9bSilmHjw1PeOV+5
-	w0oKKN/iinkE/MpBWVPh34hU/XdfW/4nRLhJVZWDlL1iM9dxfr4LE5B/ZTJXebL7qJG6QsXayYt
-	NOUQHL5OqRYaRp20gjA==
-X-Google-Smtp-Source: AGHT+IGazuW7zMOIIFe93a/pSjwb+ABWXp4kDIdJjL+/LiLiDiWbJ1EYQxh1QRi47IqHdMLVTvHmPg==
-X-Received: by 2002:a05:6830:7302:b0:72a:1626:21e9 with SMTP id 46e09a7af769-72c0ae6a1f9mr908678a34.10.1742510355967;
-        Thu, 20 Mar 2025 15:39:15 -0700 (PDT)
-Received: from [10.211.55.5] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-72c0abac23esm140838a34.7.2025.03.20.15.39.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Mar 2025 15:39:15 -0700 (PDT)
-Message-ID: <84232793-9cba-4148-9875-d996e85b81be@riscstar.com>
-Date: Thu, 20 Mar 2025 17:39:13 -0500
+        d=1e100.net; s=20230601; t=1742510578; x=1743115378;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Qn+4G/BZfte1kQZajpdgC3z6H+wA6NVBYYf22eoImB8=;
+        b=XktS2kW2IpMTOSF0bDaW6Q7QGdnCRaiO0wC0D6cCMp3+aCpNbnm+Wy+f215D+wnSHr
+         fru7cwIWw1jC4ybZPetETq6Jgi5uTzhnvXpEoEu8Oi/PAZ0l88R8mdoPrzfckYO4vRN+
+         Z8bUxu49LwEd1pt/8Wi4sYddhMBkp3jVt0/VGes6y+gr+ZrGPWn/nU2wiU9CQln91nKv
+         uof6oxipzR41cCqCGP7U0iP8CJj4Yz36hN8kxLHVRIOtEUVp/vj4jR1W9DfsVd6JD3cA
+         vOMir4fo+jzDQkTLB1cM7+QZ6LbIuUo8TmrXVgkDIjbI2rCIIadLWdyS0pBZ70bDCWTu
+         fFOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUqkynsqZbj59pdNgUb/uMsQEfxQV/jkmPA4szxzyzuwHJlNGp+tyPs1Ia5XJ/FH03gm9PfIVl3ouuw@vger.kernel.org
+X-Gm-Message-State: AOJu0YyhSFW8N/xh6unygKjWgfJEJLJZcchfcaIq0mFTYl7X77o+Hevc
+	0s/CoOYbIkS8wtWEd2iYgpGIu/xFcoAqXMV+PkVWuPOEvDYP9qlUKvDzpmbhdzjMBBmoIjzJKwR
+	/2O4+cMHFyDwoAiK5NW4O45H82sJMHmYbCRpjhg==
+X-Gm-Gg: ASbGncvTuaCnDAj6RjuNKkYA6h/5WSPD2r8eoFRY3dhwxlhvtFeXJFdbe1DstK4t2GP
+	tLrLY3OhqptAA6sCiDSFgRGtodn8dk/Ct4oA6k4TkRoYH/FXLrx8/zIbGXKUTPF+oF8VYKPVZGd
+	DU7NzhGD9Px8nnZVl26SRHm0SuVR8=
+X-Google-Smtp-Source: AGHT+IGmYWppAb1TiIqTjy/w+R69Tu+tZXikOvPPA4dXCqNye2klzCsCnnoPJTKEOwtSTNPJ9gWuo2HlZH9leRcscHA=
+X-Received: by 2002:a05:690c:64c8:b0:6f4:8207:c68d with SMTP id
+ 00721157ae682-700babfd564mr17209397b3.3.1742510578457; Thu, 20 Mar 2025
+ 15:42:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/5] clk: spacemit: Add clock support for Spacemit K1
- SoC
-From: Alex Elder <elder@riscstar.com>
-To: Haylen Chu <heylenay@4d2.org>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Haylen Chu <heylenay@outlook.com>,
- Yixun Lan <dlan@gentoo.org>
-Cc: linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- spacemit@lists.linux.dev, Inochi Amaoto <inochiama@outlook.com>,
- Chen Wang <unicornxdotw@foxmail.com>, Jisheng Zhang <jszhang@kernel.org>,
- Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
- Guodong Xu <guodong@riscstar.com>
-References: <20250306175750.22480-2-heylenay@4d2.org>
- <20250306175750.22480-5-heylenay@4d2.org>
- <d625c473-789c-42f9-918c-8a649d058513@riscstar.com>
-Content-Language: en-US
-In-Reply-To: <d625c473-789c-42f9-918c-8a649d058513@riscstar.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20250314-v5_user_cfi_series-v12-0-e51202b53138@rivosinc.com>
+ <20250314-v5_user_cfi_series-v12-22-e51202b53138@rivosinc.com> <D8LFQYX4EHF8.2AJ01XL34WK0W@ventanamicro.com>
+In-Reply-To: <D8LFQYX4EHF8.2AJ01XL34WK0W@ventanamicro.com>
+From: Deepak Gupta <debug@rivosinc.com>
+Date: Thu, 20 Mar 2025 15:42:44 -0700
+X-Gm-Features: AQ5f1Jo-nHEMu5qFdaTum9uSomYqo-G7mLCiMbL1c8nby8c7DsEke_Gukp9eNFU
+Message-ID: <CAKC1njTyiaBkmHvAM8VT_MG4Cdch=H9P8r3C-m-=QQEuzyrRNA@mail.gmail.com>
+Subject: Re: [PATCH v12 22/28] riscv: enable kernel access to shadow stack
+ memory via FWFT sbi call
+To: =?UTF-8?B?UmFkaW0gS3LEjW3DocWZ?= <rkrcmar@ventanamicro.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, 
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, 
+	"H. Peter Anvin" <hpa@zytor.com>, Andrew Morton <akpm@linux-foundation.org>, 
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka <vbabka@suse.cz>, 
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Christian Brauner <brauner@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
+	Oleg Nesterov <oleg@redhat.com>, Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, Jann Horn <jannh@google.com>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-fsdevel@vger.kernel.org, linux-mm@kvack.org, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org, alistair.francis@wdc.com, 
+	richard.henderson@linaro.org, jim.shu@sifive.com, andybnac@gmail.com, 
+	kito.cheng@sifive.com, charlie@rivosinc.com, atishp@rivosinc.com, 
+	evan@rivosinc.com, cleger@rivosinc.com, alexghiti@rivosinc.com, 
+	samitolvanen@google.com, broonie@kernel.org, rick.p.edgecombe@intel.com, 
+	Zong Li <zong.li@sifive.com>, linux-riscv <linux-riscv-bounces@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 3/11/25 6:19 PM, Alex Elder wrote:
-> On 3/6/25 11:57 AM, Haylen Chu wrote:
->> The clock tree of K1 SoC contains three main types of clock hardware
->> (PLL/DDN/MIX) and has control registers split into several multifunction
->> devices: APBS (PLLs), MPMU, APBC and APMU.
->>
->> All register operations are done through regmap to ensure atomiciy
->> between concurrent operations of clock driver and reset,
->> power-domain driver that will be introduced in the future.
->>
->> Signed-off-by: Haylen Chu <heylenay@4d2.org>
-> 
-> I'm very glad you have the DT issues resolved now.
-> 
-> I again have lots of comments on the code, and I think I've
-> identified a few bugs.  Most of my comments, however, are
-> suggesting minor changes for consistency and readability.
-> 
-> I'm going to skip over a lot of "ccu-k1.c" because most of what I
-> say applies to the definitions in the header files.
+On Thu, Mar 20, 2025 at 3:10=E2=80=AFPM Radim Kr=C4=8Dm=C3=A1=C5=99 <rkrcma=
+r@ventanamicro.com> wrote:
+>
+> 2025-03-14T14:39:41-07:00, Deepak Gupta <debug@rivosinc.com>:
+> > Kernel will have to perform shadow stack operations on user shadow stac=
+k.
+> > Like during signal delivery and sigreturn, shadow stack token must be
+> > created and validated respectively. Thus shadow stack access for kernel
+> > must be enabled.
+>
+> Why can't kernel access the user shadow stack through an aliased WR
+> mapping?
 
-FYI I encountered a problem I mentioned below.
+It can, although that opens up a can of worms. If this alternating
+mapping is user mode
+then ensuring that another threat in userspace can't write to this
+address in this window
+of signal handling. A kernel alternate mapping can be created, but
+that can lead to all
+sorts of requirements of ensuring the page is pinned down. IIRC, It
+has been debated
+on x86 shadow stack merge time as well on how a flaky alias mapping approac=
+h can
+become and weaken the threat model it is supposed to protect against.
 
-. . .
+Simply using `ssamoswap` is simple and serves the purpose. Enabling shadow =
+stack
+access for the kernel doesn't have any adverse effect on the kernel.
 
->> +/* frequency unit Mhz, return pll vco freq */
->> +static unsigned long ccu_pll_get_vco_freq(struct clk_hw *hw)
->> +{
->> +    const struct ccu_pll_rate_tbl *pll_rate_table;
->> +    struct ccu_pll *p = hw_to_ccu_pll(hw);
->> +    struct ccu_common *common = &p->common;
->> +    u32 swcr1, swcr3, size;
->> +    int i;
->> +
->> +    ccu_read(swcr1, common, &swcr1);
->> +    ccu_read(swcr3, common, &swcr3);
-> 
-> You are masking off the EN bit, but you should really be
-> using a mask defining which bits are valid instead.  As
-> I said earlier:
-> 
-> #define SPACEMIT_PLL_SWCR3_MASK    ~(SPACEMIT_PLL_SWCR3_EN)
-> 
->> +    swcr3 &= ~PLL_SWCR3_EN;
-> 
->      swcr3 &= SPACEMIT_PLL_SWCR3_MASK;
->> +
->> +    pll_rate_table = p->pll.rate_tbl;
->> +    size = p->pll.tbl_size;
->> +
->> +    for (i = 0; i < size; i++) {
->> +        if (pll_rate_table[i].swcr1 == swcr1 &&
->> +            pll_rate_table[i].swcr3 == swcr3)
->> +            return pll_rate_table[i].rate;
->> +    }
->> +
-> 
-> I have a general question here.  Once you set one of these
-> clock rates, it will always use one of the rates defined
-> in the table.
-> 
-> But what about initially?  Could the hardware start in a
-> state that is not defined by this code?  Do you *set* the
-> rate initially?  Should you (at least the first time the
-> clock is prepared/enabled)?
-
-When doing some testing today I found that the WARN_ON_ONCE()
-got called.  I added some information and learned that the
-values in hardware of the swcr1 and swcr3 registers were:
-   swcr1:  0x0050cd61
-   swcr3:  0x3fe00000
-I'm not sure which PLL was being used.
-
-So clearly this can happen.  Somehow you need to find a way
-to ensure that these registers are initialized to a sane
-state (meaning one defined within pll_rate_table[]).
-
-					-Alex
-
->> +    WARN_ON_ONCE(1);
-> 
-> Maybe WARN_ONCE(true, "msg");. . .
+>
+> > In future when kernel shadow stacks are enabled for linux kernel, it mu=
+st
+> > be enabled as early as possible for better coverage and prevent imbalan=
+ce
+> > between regular stack and shadow stack. After `relocate_enable_mmu` has
+> > been done, this is as early as possible it can enabled.
+> >
+> > Reviewed-by: Zong Li <zong.li@sifive.com>
+> > Signed-off-by: Deepak Gupta <debug@rivosinc.com>
+> > ---
+> > diff --git a/arch/riscv/kernel/head.S b/arch/riscv/kernel/head.S
+> > @@ -320,6 +326,12 @@ SYM_CODE_START(_start_kernel)
+> >       la tp, init_task
+> >       la sp, init_thread_union + THREAD_SIZE
+> >       addi sp, sp, -PT_SIZE_ON_STACK
+> > +     li a7, SBI_EXT_FWFT
+> > +     li a6, SBI_EXT_FWFT_SET
+> > +     li a0, SBI_FWFT_SHADOW_STACK
+> > +     li a1, 1 /* enable supervisor to access shadow stack access */
+> > +     li a2, SBI_FWFT_SET_FLAG_LOCK
+> > +     ecall
+>
+> I think the ecall can fail even on machines that have Zicfiss, so it
+> would be good to disable user shadow stack if that happens.
 
