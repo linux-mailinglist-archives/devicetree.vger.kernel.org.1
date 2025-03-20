@@ -1,216 +1,159 @@
-Return-Path: <devicetree+bounces-159198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24CDEA69FEE
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 07:43:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0549A69FFB
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 07:54:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 67296188EA80
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 06:44:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B70B3BBC11
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 06:54:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D289E1DF972;
-	Thu, 20 Mar 2025 06:43:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C97F61EB9E3;
+	Thu, 20 Mar 2025 06:54:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ePy8Qwn+"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="BHDkWBRZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2C9215A8;
-	Thu, 20 Mar 2025 06:43:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CD381E231D;
+	Thu, 20 Mar 2025 06:54:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742453032; cv=none; b=eLK7PgJU3HKshvFUyphnsyJID5GA/2bR29uYKR6hYj2xTBmYgUlh/tXWvaB2BHpx+Xq8oJOqjH7CdmSa/qAT+fAC8Zh+GMRHOncszxEDQicZpCT+tN+ovb4mUg+VckJKJneHy92LpM20f0E8QpCEEIj7DLLhbAcjmLO9p2ITHQE=
+	t=1742453676; cv=none; b=F8Mgkmpq7Iz7aoFg4QLo1tZ+fbweZzDgAy19DUrXn3iQuVQxzJWX9/RizDtq+QGtrjBjOI7l4Yu+80wrkMBlUUbKh6gCuUnoPyPciSHTSIr4rU0hLB73hSvzSzR+6EkkTlrQtWPs6a/KWHvMYve3tUSo1l0qR/HdOBgcQYtjkb8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742453032; c=relaxed/simple;
-	bh=bxV10aeKuKpjW/XnZP7EGhWHdrE3XnNoXKKs+2oEYy0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LqthBT1mvrgFjtT/S5sXzXf7/KPklgPvYa5lYMwVky7ygmOXrHD1loZ5TXzp9PBA51rQhJwqdigZIRkOvFbgAijhZsnve/zxx3jKznD70LAglps83RzlkrfYb3CLbbs2hfVhrDtUKmxnmSPpxNAz3T+6E7pisY6h4c+HWOZMNU4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ePy8Qwn+; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-548409cd2a8so456546e87.3;
-        Wed, 19 Mar 2025 23:43:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742453029; x=1743057829; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=VjA9p+f6Pwh48uDlltqQXJZ0FW06r+cLM9uK0XZnr+Q=;
-        b=ePy8Qwn+n9dn514DCTAD1fVEIIe5MwIngfmJh/jwmf0Ht/2173kBKIbyz+YfPNLYpe
-         LecFiiGYoYUorLB38S+ZXsRvkOQcUD4Yqg++//YO29GXFlIadori7bikqhwwQa/QhwAM
-         bglyby7oJ+M6mUVaCfp7WocQYKpu1661q8DXeOuy6XLnTV+u1f65V44ZLZTKQJmbNuby
-         dRMC4K/tpWL4MrwWKd6QUVVTyLLdumwZQ12EOTntAX2eaa23tPeHrqavad7qqWyoI6wI
-         hTZDAefEPtPgBv+BHXe9XS5bXX3nNR5iCNySMMU/ksqqukplaLywQqlKk0JMgEEVhC4p
-         ZRPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742453029; x=1743057829;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VjA9p+f6Pwh48uDlltqQXJZ0FW06r+cLM9uK0XZnr+Q=;
-        b=civCISnBgZ94HhmZOCn9Pab52Gs67s2eByEOzRFfbycpiDnFDdjW3iW2FObtvUk67X
-         J9VADulhm1qqs1k8mPJDeprplc8fFBy0crovSSsjkhfi6NzD5Ftzlku+0Y8SILzMWR1g
-         pOflirHlW0URBFCxKY9jMJAX4vhKG4mrjhwgCnMy2SYlBBUl0qLjpVtyNmKi4PPj+jTR
-         OYfTJll5KJDl4/fMqT//q0QS0pCXIze3S0DAa1IMX92n6XnyvkB85fufzkd9JhBvHriW
-         odedJcDjk/MK2lMBMFZ8YA3ldzqsJKfOwJMQfcz3D+JMoRRNVzeyWjlI5FYdFJEVwuRi
-         lwqA==
-X-Forwarded-Encrypted: i=1; AJvYcCUAaJlHqPS5TZr84HYLcyiZ8mgEg1pdzwdLGIhhzgvKjjBYausPbKnWHHIYuNwa5Jv+QJvSVr2pt/NA@vger.kernel.org, AJvYcCVOI/rYLlzfGYGrBx8aLwmt2R656xp3ic1OTLhRgjzTPhmSjvAAa+q8NP6jjMoLwYCy2ThnUx0J@vger.kernel.org, AJvYcCXfo1B01aMRNU+kVzn409jWWCKVULUdgepVVAz94wLoA34hlTA73DGOy0v9E35Dm0/a8cE/bYQcPg7/Fg==@vger.kernel.org, AJvYcCXlBnffSM3H8NCPLXAlnszyTBXlyqGHBH8tQNTnNJVjNN7Kg/BW+XZDV2Yj18TTfYhiYYAppZ5F3B/K@vger.kernel.org, AJvYcCXwjNkcJ+JtkEZM/OUqSPsBdhQYP4QArp5YzVcvWEPJ6Bj0yFCJB4L1B3jbk30EBK3GpcMqPuZJnlMKP+7u@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw5g58Tg8n9CFe3Z5xSUw42neTloxJAMVeenaXm4d/mctvGdlTJ
-	qCf5IkpE39oskOJ2WGeaN8k7p/wlujHqosaCiiDw94EA4tW506qw
-X-Gm-Gg: ASbGncsDtlLr39HxTovJR6CybPQ/3ppqxxXq67xfYLR0aaCwh9uMso/URq/CXnaAx2n
-	PG/95QBj/O9KXlGg7Y8bpaqCsEVZBODsvD5OyD35wlyEMwcS5zDT8coa5ioAvEK6d8b7lBMXfy0
-	yVyZuGxbqTz8X8toOM0DOrhjqftD3F1lMNLJbiIf3Fpk7WyDbqmnMn/1mC/qB2O8aMhTzlwmRO3
-	4JFhrqSqDYTzlDQOMYYg60+72eUgqO1oO6J3umfnDjk7D7ZBnZMyVJbv63vkSU8pvLXrUkq6g8Y
-	hekYOz8+atoZkOqhFO4Xyg5lu41im7KoaExso9g1vb1XGJgR/p9DDVP0UGsh4NG67PNy88FibCv
-	qm6andFpJdWtvGzk78u8dpGzpog==
-X-Google-Smtp-Source: AGHT+IHGUK3HewyiQse5hGY++z4CyK4iNp6IEb/XXw2pnNDNO4zh1yb5EXufOlBswwNLqXIWSjkcug==
-X-Received: by 2002:ac2:4e0d:0:b0:549:9009:77c8 with SMTP id 2adb3069b0e04-54acb1a4a45mr1640970e87.9.1742453028540;
-        Wed, 19 Mar 2025 23:43:48 -0700 (PDT)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-549ba7ce9e3sm2137164e87.106.2025.03.19.23.43.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Mar 2025 23:43:46 -0700 (PDT)
-Message-ID: <726281b2-66f5-45e9-94f2-4f79b4ab159d@gmail.com>
-Date: Thu, 20 Mar 2025 08:43:44 +0200
+	s=arc-20240116; t=1742453676; c=relaxed/simple;
+	bh=zDC5ZRV3yHjjcZpr5FNPmLE2KEyDAiWOjTtrUcZ56Bw=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=N7XmD35DXq/b/TMhz45SSYqH4sG+/MY8EQWRHhDZZptYVrYWxaE3tSUzoTnfEXrgPu5PKHivOPAWof7jWqBbOjwPKDjdMGxnejRw6R22nZkjbi2T+MmOHc0km5x5fYYY5pOkbmwZGipQEnMl0PFHVHFyyHHs8OMKpXxQMe16E98=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=BHDkWBRZ; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52K3TYgV003609;
+	Thu, 20 Mar 2025 02:54:25 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=4Qm2J/OaM2Gsz4IL67t6+iu81Wt
+	/t0U8DU3qdhuK8nY=; b=BHDkWBRZGzhGH9zC9+Emb5WLPdIr5auC3gvzklscnn2
+	6MKSDueTWof+I8hGbY+dQK+fp82ltlAC+tuN9gHVvO0qPHBUjPUtSuIPF4oKFdYy
+	GDSXplW2tftVRtCZswEC+g7+1fjCmcwRhJd6PaWPFaOS8drY9GvHtFlLbuDljQy0
+	eg1XdZmcxqwEUJsz+JmmHWHEV8rivLJNSqOTcbyGoImeaSnDqlMj0d0hmu0ot/IQ
+	XqRjBOy9Ne3ST9/UJyJabdvPC7vgoxM2uHwchKSHVRm7rilqWx/vW+YS8fTxzKSY
+	BqI6vHss+RWKh9dXH+rhTfJZjcDiM0BqW22Xgmu7M7Q==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 45ftbrwxr1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 20 Mar 2025 02:54:25 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 52K6sHdE060167
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 20 Mar 2025 02:54:17 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Thu, 20 Mar
+ 2025 02:54:17 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Thu, 20 Mar 2025 02:54:17 -0400
+Received: from ATORRENO-L02.ad.analog.com (ATORRENO-L02.ad.analog.com [10.117.223.3])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 52K6s5en006548;
+	Thu, 20 Mar 2025 02:54:08 -0400
+From: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
+Subject: [PATCH v2 0/2] Add support for ADP5055 triple buck regulator.
+Date: Thu, 20 Mar 2025 14:53:53 +0800
+Message-ID: <20250320-upstream-adp5055-v2-0-aac2d3705802@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 02/10] property: Add functions to iterate named child
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Daniel Scally <djrscally@gmail.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
- Claudiu Manoil <claudiu.manoil@nxp.com>, Andrew Lunn
- <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-acpi@vger.kernel.org, netdev@vger.kernel.org,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-References: <cover.1742225817.git.mazziesaccount@gmail.com>
- <9c3880f74476436f39d796b5c10c540ae50b722c.1742225817.git.mazziesaccount@gmail.com>
- <Z9mQPJwnKAkPHriT@kekkonen.localdomain>
- <b6b62ddd-ab59-4112-8f6e-c72618c45910@gmail.com>
- <Z9rhfJUlCbi7kA2m@kekkonen.localdomain>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <Z9rhfJUlCbi7kA2m@kekkonen.localdomain>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIG722cC/32NQQ6CMBBFr0JmbU2Z0AquvIdhMcIAkwhtWiQa0
+ rtbOYCrn/eT//4OkYNwhGuxQ+BNorglA54K6CZaRlbSZwbUaDSiUS8f18A0K+q90cbkfLBFi0N
+ TV5BnPvAg70N5bzNPElcXPsfDVv7aP7KtVFqRoctQc2Wb2t5ooacbz52boU0pfQGXIafmsQAAA
+ A==
+X-Change-ID: 20250225-upstream-adp5055-adbe6262f984
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Alexis
+ Czezar Torreno <alexisczezar.torreno@analog.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1742453645; l=2382;
+ i=alexisczezar.torreno@analog.com; s=20250213; h=from:subject:message-id;
+ bh=zDC5ZRV3yHjjcZpr5FNPmLE2KEyDAiWOjTtrUcZ56Bw=;
+ b=4uR5gwDechs0QNAMPgBtsVcE5u2iLNX16U8H7CkVullkKGrgxo6qZukxQJ7L4G734P9idKKMo
+ oufK2yoxrhnB7YyUDIM3G7PYuHU8tzLEW+Rd/JvdOao6vxMXH2SBfyq
+X-Developer-Key: i=alexisczezar.torreno@analog.com; a=ed25519;
+ pk=XpXmJnRjnsKdDil6YpOlj9+44S+XYXVFnxvkbmaZ+10=
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: vKNNeXqOCkre6SZ_I9gk3ItWW5Kx5L29
+X-Proofpoint-GUID: vKNNeXqOCkre6SZ_I9gk3ItWW5Kx5L29
+X-Authority-Analysis: v=2.4 cv=Qs5e3Uyd c=1 sm=1 tr=0 ts=67dbbba1 cx=c_pps a=PpDZqlmH/M8setHirZLBMw==:117 a=PpDZqlmH/M8setHirZLBMw==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=gAnH3GRIAAAA:8 a=lAPpY2re-nV465j7mocA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-20_02,2025-03-19_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
+ priorityscore=1501 mlxlogscore=999 clxscore=1015 impostorscore=0
+ lowpriorityscore=0 phishscore=0 suspectscore=0 spamscore=0 mlxscore=0
+ adultscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503200042
 
-On 19/03/2025 17:23, Sakari Ailus wrote:
-> On Wed, Mar 19, 2025 at 08:02:24AM +0200, Matti Vaittinen wrote:
->> On 18/03/2025 17:24, Sakari Ailus wrote:
->>> On Mon, Mar 17, 2025 at 05:50:38PM +0200, Matti Vaittinen wrote:
->>>> There are a few use-cases where child nodes with a specific name need to
->>>> be parsed. Code like:
+Introduce a regulator driver support for ADP5055. The device combines 3
+high performance buck regulators in a 43-termminal land grid array
+package. The device enables direct connection to high input voltages up
+to 18V with no preregulator. Channel 1 and 2 deliver a programmable
+output current of 3.5A or 7.5A or provide a single output with up to 14A
+in parallel operation. Channel 3 has a programmable output current of
+1.5A or 3A.
 
-...
+Signed-off-by: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
+---
+Changes in v2:
+- Kconfig - fixed indention problem, occured due to using spaces rather tabs
+- adp5055-regulator.c
+  - Turned initial comment block into c++ style, using // per line
+  - Merged the similar read/write ranges variable called access_ranges_table
+  - Set max_register value correctly to 0xE0 instead of 0xFF
+  - Fixed issue where ndescs was an error code. replaced with -EINVAL
+  - Enable/disable ops functions, now use helpers like regulator_enable_regmap
+  - Added config.ena_gpiod for the regulator config  
+  - Used of_parse_cb to do per regulator properties, new function added
+  - Migrated some yaml properties to the core regulator function
+-adi,adp5055-regulator.yaml
+  - Moved property power_saving_mode to set/get mode under 'IDLE' mode
+  - Moved property output-discharge-func to core func set_active_discharge
+  - Moved property enable-delay-us to core function set_ramp_delay.
+  - Removed property disable-delay-us, as suggested to not worry about
+  - adjusted sample device tree to match changes due to use of of_parse_cb
+- Link to v1: https://lore.kernel.org/r/20250225-upstream-adp5055-v1-0-a5a7f8e46986@analog.com
 
->>>> --- a/include/linux/property.h
->>>> +++ b/include/linux/property.h
->>>> @@ -167,10 +167,18 @@ struct fwnode_handle *fwnode_get_next_available_child_node(
->>>>    	for (child = fwnode_get_next_child_node(fwnode, NULL); child;	\
->>>>    	     child = fwnode_get_next_child_node(fwnode, child))
->>>> +#define fwnode_for_each_named_child_node(fwnode, child, name)		\
->>>> +	fwnode_for_each_child_node(fwnode, child)			\
->>>> +		if (!fwnode_name_eq(child, name)) { } else
->>>> +
->>>>    #define fwnode_for_each_available_child_node(fwnode, child)		       \
->>>>    	for (child = fwnode_get_next_available_child_node(fwnode, NULL); child;\
->>>>    	     child = fwnode_get_next_available_child_node(fwnode, child))
->>>> +#define fwnode_for_each_available_named_child_node(fwnode, child, name)	\
->>>> +	fwnode_for_each_available_child_node(fwnode, child)		\
->>>> +		if (!fwnode_name_eq(child, name)) { } else
->>>> +
->>>
->>> OF only enumerates available nodes via the fwnode API, software nodes don't
->>> have the concept but on ACPI I guess you could have a difference in nodes
->>> where you have device sub-nodes that aren't available. Still, these ACPI
->>> device nodes don't have meaningful names in this context (they're
->>> 4-character object names) so you wouldn't use them like this anyway.
->>
->> I believe you have far better understanding on these concepts than I do. The
->> reason behind adding fwnode_for_each_available_child_node() was the patch
->> 10/10:
->>
->> -	fwnode_for_each_available_child_node(sensors, node) {
->> -		if (fwnode_name_eq(node, "sensor")) {
->> -			if (!thp7312_sensor_parse_dt(thp7312, node))
->> -				num_sensors++;
->> -		}
->> +	fwnode_for_each_available_named_child_node(sensors, node, "sensor") {
->> +		if (!thp7312_sensor_parse_dt(thp7312, node))
->> +			num_sensors++;
->>   	}
->>
->>
->>> So my question is: is it useful to provide this besides
->>> fwnode_for_each_named_child_node(), given that both are effectively the
->>> same?
->>
->> So, I suppose you're saying the existing thp7312 -driver has no real reason
->> to use the 'fwnode_for_each_available_child_node()', but it could be using
->> fwnode_for_each_child_node() instead?
->>
->> If so, I am Ok with dropping the
->> 'fwnode_for_each_available_named_child_node()' and changing the 10/10 to:
->>
->> -	fwnode_for_each_available_child_node(sensors, node) {
->> -		if (fwnode_name_eq(node, "sensor")) {
->> -			if (!thp7312_sensor_parse_dt(thp7312, node))
->> -				num_sensors++;
->> -		}
->> +	fwnode_for_each_named_child_node(sensors, node, "sensor") {
->> +		if (!thp7312_sensor_parse_dt(thp7312, node))
->> +			num_sensors++;
->>   	}
->>
->> Do you think that'd be correct?
-> 
-> I'd say so. Feel free to cc me to the last patch as well.
+---
+Alexis Czezar Torreno (2):
+      dt-bindings: regulator: add adi,adp5055-regulator
+      regulator: adp5055: Add driver for adp5055
 
-Thanks. I'll drop the fwnode_for_each_available_named_child_node() then.
+ .../bindings/regulator/adi,adp5055-regulator.yaml  | 161 +++++++
+ MAINTAINERS                                        |   7 +
+ drivers/regulator/Kconfig                          |  11 +
+ drivers/regulator/Makefile                         |   1 +
+ drivers/regulator/adp5055-regulator.c              | 480 +++++++++++++++++++++
+ 5 files changed, 660 insertions(+)
+---
+base-commit: 7fef39f0e82ff02282797d9ae2589b39b16ab614
+change-id: 20250225-upstream-adp5055-adbe6262f984
 
-> I guess one way to make this clearer is to switch to
-> fwnode_for_each_child_node() in a separate patch before
-> fwnode_for_each_named_child_node() conversion.
+Best regards,
+-- 
+Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
 
-I suppose this makes sense.
-
-I think this series can't make it to 6.15-rc1. Meaning, these 
-*_named_*() APIs perhaps land in 6.16-rc1. I assume these *_named_*() 
-APIs will go through the IIO. This rather simple IIO driver's review 
-took longer than I predicted, with more versions I intended (as always) 
-- and I kind of dislike respinning the whole series, with this large 
-audience, when changes are not interesting to the most.
-
-Maybe it is simplest to drop the thp7312 (and gianfar) from this series, 
-and respin them only when the 6.16-rc1 is out. It's going to be couple 
-of months though - so there's always a risk that I forget.
-
-The proposed change for the thp7312, from 
-fwnode_for_each_available_child_node() to fwnode_for_each_child_node() 
-can be done earlier though.
-
-> There are also just a handful of users of
-> fwnode_for_each_available_child_node() and I guess these could be
-> converted, too, but I think it's outside the scope of the set.
-
-Definitely not in the scope of the bd79124 support :)
-
-Yours,
-	-- Matti
 
