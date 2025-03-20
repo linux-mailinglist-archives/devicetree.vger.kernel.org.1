@@ -1,158 +1,102 @@
-Return-Path: <devicetree+bounces-159235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95DA8A6A16A
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 09:31:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E847BA6A168
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 09:31:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E9AE188C671
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 08:30:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 122FC8A7955
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 08:30:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FBFD21481B;
-	Thu, 20 Mar 2025 08:30:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 018D0215171;
+	Thu, 20 Mar 2025 08:30:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="j5JDsh8q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LEkJKg+e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 581FE17A30D;
-	Thu, 20 Mar 2025 08:30:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5AC41E32D3;
+	Thu, 20 Mar 2025 08:30:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742459439; cv=none; b=hl+ZkIxVd2z3+ndvaBm6sxwlSeRSTQAXX6RFX4tmIW6R9q8Ev8THZriZ+iSb1YfYg0pCI6rXAFYO3Ylrs/rU0ljX7J/AfSqaaqUiwSUpIqvjQgu3Xc8Ps/Z4QXj+mpf5bh5wZ7n0Gnv3f+FBYEPkLCrap/yMvM/e92/JuvD1hnk=
+	t=1742459450; cv=none; b=nvOq6unqoJpHM5T7CNLfTnqJI0Lrseth8WzDuqA0Nr+Watsdgl7xbj0kZqRuX2dGazB0mZM6n6R+CGVw4+q8YHTAH6P0xp8eW016tb3TWc3U1vrqJ7OpjSjwVx+IVur6yD1mPN1XU+Q+ypFHy+MQBmp8dM/qtRrErEfjz+fBAH8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742459439; c=relaxed/simple;
-	bh=2i1Q07byf32WTdPpCVWmD1WwQ9vrhVP60iBQr1OWOto=;
+	s=arc-20240116; t=1742459450; c=relaxed/simple;
+	bh=v+FOAUR/wqoAqHaoplhVPRBHIikWSf8V1laXOuxnNfk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ASE5Mkdz+gBP4RdIA53lX7uOpRbuIXwFEX9gkvEsHv5IYJnVNuLY7xPoVLgAjzEEz0fAXPfM7K5e25ObjzoQeylwJiJEhDM+OZDRTWotkgGMl5zcOjyXwfr9e99Wwq/QI4F+RFtY7U1A/SKnCC+N0iQZbnbsMfl/ETapXI3A4fs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=j5JDsh8q; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1742459436; x=1773995436;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2i1Q07byf32WTdPpCVWmD1WwQ9vrhVP60iBQr1OWOto=;
-  b=j5JDsh8qYpjPqrYZJi2jTBmofgPePwzxYWwolkQ2OuSNVLNOezZxtzV0
-   YdGdPUQN7b1ym2ah8f0BvkUELYQxDXPMyEhE/UWCTbuKRcfGqY8t9Tn2E
-   VOcyBEZZYRgUAVPSKRKQlmwLsvF32c9SsGsxX3rL9wIYTsZwnqtzvknhx
-   E+frREOfcxbLYPa9se/5Hlrv1wHVD0Fu9qaYLff8xtCSdJ8qcYMtjFJaB
-   0Bg8C7qWP2Hm+i9Bfvxd9bOIZtsuG43K6nPQEal5oVD1qnyyLDoCzUohg
-   5UHwgTRqvWHhkFegPSjH/7KF6Ypojv1GlaveL1hMhV6C4824id2vNWdVI
-   w==;
-X-CSE-ConnectionGUID: O3csakSSRS2v4VKEZlUeng==
-X-CSE-MsgGUID: jKr/sIKaR0+n+q6m7qkVcA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11378"; a="31264195"
-X-IronPort-AV: E=Sophos;i="6.14,261,1736841600"; 
-   d="scan'208";a="31264195"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2025 01:30:35 -0700
-X-CSE-ConnectionGUID: y1wTRDJWSvqu5O+/2S+L3Q==
-X-CSE-MsgGUID: fro6DZG5Qb+wS2jO1ntJwQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,261,1736841600"; 
-   d="scan'208";a="122961957"
-Received: from lkp-server02.sh.intel.com (HELO e98e3655d6d2) ([10.239.97.151])
-  by orviesa010.jf.intel.com with ESMTP; 20 Mar 2025 01:30:30 -0700
-Received: from kbuild by e98e3655d6d2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tvBIJ-0000Is-2T;
-	Thu, 20 Mar 2025 08:30:27 +0000
-Date: Thu, 20 Mar 2025 16:29:52 +0800
-From: kernel test robot <lkp@intel.com>
-To: jiebing chen via B4 Relay <devnull+jiebing.chen.amlogic.com@kernel.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-	jian.xu@amlogic.com, shuai.li@amlogic.com, zhe.wang@amlogic.com,
-	jiebing chen <jiebing.chen@amlogic.com>
-Subject: Re: [PATCH v4 4/6] ASoC: meson: g12a-toacodec: Add s4 tocodec driver
-Message-ID: <202503201641.wf8Oe0aR-lkp@intel.com>
-References: <20250319-audio_drvier-v4-4-686867fad719@amlogic.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=tbkh1NNoyXigaEacVgsZbDhXfXpIoGSMq8NgdVQ8etgKHcEoTpNo14RLxmeIjVCkd4d3dtopH0nymDZ2Ith5rObd7wqLPdJ1kXSAtb0zeQF2/+8N0ES+wPRhDbkYTDSA73wGSl1sYmC46vNdxTJp7kqU4XykgVkNTXsSX480XgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LEkJKg+e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82EF6C4CEDD;
+	Thu, 20 Mar 2025 08:30:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742459450;
+	bh=v+FOAUR/wqoAqHaoplhVPRBHIikWSf8V1laXOuxnNfk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LEkJKg+eJogLP7TusVxf7b7P/d9nFvPAwJ5TKX+AvnXMsyoNB9Uf9tgOI6jR88QCM
+	 JkYvO2jo5I7eAB1u9/xJZpDu+Oopr3mT2NVSZ/EvU3R7jh6dZlhAZ16GVDmlTvpffq
+	 iiSDgZBbF1JkdErKodK9X7EiWFC3Yg13LAnitCwjXwRjzEy8zMTLp1Wq3sscrIIWeM
+	 FgmpDRVRnJ37VPZfmcEgw3YliLJJdIJCmGuvzrskhLpVCAdq6HYTXmRZnTX/wOuHDY
+	 YyGVPP0jB0PQbEJ3m2aeUQfqftuMQ8nfawOMqXiDaJiTxOpnJPFcSB1Wf3yRH0h/Eg
+	 AMVe5byYQWq0Q==
+Date: Thu, 20 Mar 2025 09:30:46 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Changyuan Lyu <changyuanl@google.com>, linux-kernel@vger.kernel.org
+Cc: graf@amazon.com, akpm@linux-foundation.org, luto@kernel.org, 
+	anthony.yznaga@oracle.com, arnd@arndb.de, ashish.kalra@amd.com, benh@kernel.crashing.org, 
+	bp@alien8.de, catalin.marinas@arm.com, dave.hansen@linux.intel.com, 
+	dwmw2@infradead.org, ebiederm@xmission.com, mingo@redhat.com, jgowans@amazon.com, 
+	corbet@lwn.net, rppt@kernel.org, mark.rutland@arm.com, pbonzini@redhat.com, 
+	pasha.tatashin@soleen.com, hpa@zytor.com, peterz@infradead.org, ptyadav@amazon.de, 
+	robh+dt@kernel.org, robh@kernel.org, saravanak@google.com, 
+	skinsburskii@linux.microsoft.com, rostedt@goodmis.org, tglx@linutronix.de, thomas.lendacky@amd.com, 
+	usama.arif@bytedance.com, will@kernel.org, devicetree@vger.kernel.org, 
+	kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org, 
+	linux-mm@kvack.org, x86@kernel.org
+Subject: Re: [PATCH v5 12/16] arm64: add KHO support
+Message-ID: <20250320-muscular-cougar-of-apotheosis-e4c80b@krzk-bin>
+References: <20250320015551.2157511-1-changyuanl@google.com>
+ <20250320015551.2157511-13-changyuanl@google.com>
+ <55a5e3f3-1b3f-469b-bde0-69abfff826e4@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250319-audio_drvier-v4-4-686867fad719@amlogic.com>
+In-Reply-To: <55a5e3f3-1b3f-469b-bde0-69abfff826e4@kernel.org>
 
-Hi jiebing,
+On Thu, Mar 20, 2025 at 08:13:24AM +0100, Krzysztof Kozlowski wrote:
+> On 20/03/2025 02:55, Changyuan Lyu wrote:
+> >  
+> > +/**
+> > + * early_init_dt_check_kho - Decode info required for kexec handover from DT
+> > + */
+> > +static void __init early_init_dt_check_kho(void)
+> > +{
+> > +	unsigned long node = chosen_node_offset;
+> > +	u64 kho_start, scratch_start, scratch_size;
+> > +	const __be32 *p;
+> > +	int l;
+> > +
+> > +	if (!IS_ENABLED(CONFIG_KEXEC_HANDOVER) || (long)node < 0)
+> > +		return;
+> > +
+> > +	p = of_get_flat_dt_prop(node, "linux,kho-fdt", &l);
+> 
+> 
+> You are adding undocumented ABI for OF properties. That's not what was
+> explained last time.
+> 
+> NAK.
 
-kernel test robot noticed the following build warnings:
+Also there are checkpatch warnings :/
 
-[auto build test WARNING on 6ecd20965bdc21b265a0671ccf36d9ad8043f5ab]
+Best regards,
+Krzysztof
 
-url:    https://github.com/intel-lab-lkp/linux/commits/jiebing-chen-via-B4-Relay/dt-bindings-clock-meson-Add-audio-power-domain-for-s4-soc/20250319-151110
-base:   6ecd20965bdc21b265a0671ccf36d9ad8043f5ab
-patch link:    https://lore.kernel.org/r/20250319-audio_drvier-v4-4-686867fad719%40amlogic.com
-patch subject: [PATCH v4 4/6] ASoC: meson: g12a-toacodec: Add s4 tocodec driver
-config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20250320/202503201641.wf8Oe0aR-lkp@intel.com/config)
-compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250320/202503201641.wf8Oe0aR-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202503201641.wf8Oe0aR-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> sound/soc/meson/g12a-toacodec.c:135:38: warning: unused variable 's4_toacodec_clk_enable' [-Wunused-const-variable]
-     135 | static const struct snd_kcontrol_new s4_toacodec_clk_enable =
-         |                                      ^~~~~~~~~~~~~~~~~~~~~~
-   1 warning generated.
-
-
-vim +/s4_toacodec_clk_enable +135 sound/soc/meson/g12a-toacodec.c
-
-   112	
-   113	static SOC_ENUM_SINGLE_DECL(g12a_toacodec_mux_enum, TOACODEC_CTRL0,
-   114				    CTRL0_DAT_SEL_LSB,
-   115				    g12a_toacodec_mux_texts);
-   116	
-   117	static SOC_ENUM_SINGLE_DECL(sm1_toacodec_mux_enum, TOACODEC_CTRL0,
-   118				    CTRL0_DAT_SEL_SM1_LSB,
-   119				    g12a_toacodec_mux_texts);
-   120	
-   121	static const struct snd_kcontrol_new g12a_toacodec_mux =
-   122		SOC_DAPM_ENUM_EXT("Source", g12a_toacodec_mux_enum,
-   123				  snd_soc_dapm_get_enum_double,
-   124				  g12a_toacodec_mux_put_enum);
-   125	
-   126	static const struct snd_kcontrol_new sm1_toacodec_mux =
-   127		SOC_DAPM_ENUM_EXT("Source", sm1_toacodec_mux_enum,
-   128				  snd_soc_dapm_get_enum_double,
-   129				  g12a_toacodec_mux_put_enum);
-   130	
-   131	static const struct snd_kcontrol_new g12a_toacodec_out_enable =
-   132		SOC_DAPM_SINGLE_AUTODISABLE("Switch", TOACODEC_CTRL0,
-   133					    CTRL0_ENABLE_SHIFT, 1, 0);
-   134	
- > 135	static const struct snd_kcontrol_new s4_toacodec_clk_enable =
-   136		SOC_DAPM_DOUBLE("Switch", TOACODEC_CTRL0,
-   137				CTRL0_BCLK_ENABLE_SHIFT, CTRL0_MCLK_ENABLE_SHIFT, 1, 0);
-   138	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
