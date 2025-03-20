@@ -1,132 +1,157 @@
-Return-Path: <devicetree+bounces-159252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159258-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A0A1A6A223
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 10:11:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10480A6A261
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 10:16:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83E864222D6
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 09:10:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85C4C460AF2
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 09:16:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6469D21481E;
-	Thu, 20 Mar 2025 09:10:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a0ElIC1k"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD9A42222CD;
+	Thu, 20 Mar 2025 09:16:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CAAC1A238C;
-	Thu, 20 Mar 2025 09:10:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55189221DAD;
+	Thu, 20 Mar 2025 09:16:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742461804; cv=none; b=qfZu81Vs7PLl6vjP4O2gbOn7qB2Hyv0qO/0KSwOZLYwxYa6uNBx8+Q9lJWs6Ji7VgY9RNcD8AermnjNkfKW4rGm8ZlkCCnaIumPJqFmniqv90olEW9ZYTU5HQMbH1frwLa1ow210RR4HbtdlzbN5HoHFdCIwPiZjdTr8bjDCHNE=
+	t=1742462182; cv=none; b=JbOIeF3Y53c/npHh0yFvBEjbG/bRm8e1e5F5ZG8LfdzUXFok18UZq2f58DenG2mMDikK+ccPB6IJxye3OopEwOXM1aywfa+mXRQ2VaR2VdwZtrhkRPq/9Y4sDrJcfbCwvC5NxNCmZRbfEldeTng+aARRXr0MXkY5GMYeD266Reg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742461804; c=relaxed/simple;
-	bh=N/WCH9wLdNAYNBgfMktBPcK72cJ6FTGefuujzbktXZI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D0jLQXj4Pc1ZfcnnuEd8uV7FTijxklmbS+cLTEbJkRHKuzI4HkG7UemlUWhmHIfsxcpWtyPWk7upLpn3WOSsZfOCqTnVmi6zbVf4Aowylj61lr6te4AJvk4l+ODfvq51KlfKmCQNB4Z9aRtL9POhhkdRLUzbEqQgACYQuSDwj/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a0ElIC1k; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9D39C4CEDD;
-	Thu, 20 Mar 2025 09:10:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742461803;
-	bh=N/WCH9wLdNAYNBgfMktBPcK72cJ6FTGefuujzbktXZI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=a0ElIC1kZ9K0wnZ8vZnVCo9bhMYuZDBUMxD3iFbU9JyNva2IIxiRlE00zLKx82kgS
-	 3MVM8SSK6BD+dMyf/XjFlNoyQeRk4E4E9hubQbEUgw8pW3oVei/3iOpGrBvKA3Uugl
-	 wIP711CM0Qyj1EMVcDr6HYCTwsc6GMqYGSWOWioxUizddvYAZicKHLLBtm8fAAFE+1
-	 EBbp1TWvjELZPldGEyQTCbQpcR2uOCpZ6r3OzQXDGX2ASujUirr6FKS23Fz3jOcqT6
-	 1ERrg1fbITyWRgBYSXMMbihOJiLsOIz0ShJOjx9OeuiZo16CUdT6PnnZ05Un7KVxWD
-	 AYEdXto7IFYjA==
-Date: Thu, 20 Mar 2025 10:09:59 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] regulator: adp5055: Add driver for adp5055
-Message-ID: <20250320-flawless-sambar-of-aptitude-395df0@krzk-bin>
-References: <20250320-upstream-adp5055-v2-0-aac2d3705802@analog.com>
- <20250320-upstream-adp5055-v2-2-aac2d3705802@analog.com>
+	s=arc-20240116; t=1742462182; c=relaxed/simple;
+	bh=ltoA2OPsgapNRSNCQLkjyw8etzpbcf+vdE2Uj9g99ho=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZWqkhTMN94CtMjAUtMLemTMSzQKRtP2FPW4HgLmmi18uj3CHU4mWtTh0Z4YZkLHgp70OgX8brqhZtX7L1u+oifzAF7kPKP4bpiKwU0wNVmit/vbIT+sb7Rf/yn4MbG9oZ3hKz3Ahr20mn+w5GHZsvYKmHuA8o71u2Uy3vW6X9P4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-CSE-ConnectionGUID: GDNfdA5ITUCNzmjr5nIP8w==
+X-CSE-MsgGUID: YfK1egz2T6m6E4idvOFlcg==
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 20 Mar 2025 18:11:10 +0900
+Received: from localhost.localdomain (unknown [10.226.93.24])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 4F3564005B59;
+	Thu, 20 Mar 2025 18:11:05 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	linux-can@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v6 00/18] Add support for RZ/G3E CANFD
+Date: Thu, 20 Mar 2025 09:10:31 +0000
+Message-ID: <20250320091101.33637-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250320-upstream-adp5055-v2-2-aac2d3705802@analog.com>
+Content-Transfer-Encoding: 8bit
 
-On Thu, Mar 20, 2025 at 02:53:55PM +0800, Alexis Czezar Torreno wrote:
-> +#define ADP5055_REG(_name, _id, _ch) \
-> +	ADP5055_REG_(_name, _id, _ch, &adp5055_ops)
-> +
-> +static struct regulator_desc adp5055_regulators[] = {
-> +	ADP5055_REG("DCDC0", 0, 0),
-> +	ADP5055_REG("DCDC1", 1, 1),
-> +	ADP5055_REG("DCDC2", 2, 2),
+The CAN-FD module on RZ/G3E is very similar to the one on both R-Car V4H
+and RZ/G2L, but differs in some hardware parameters:
+ * No external clock, but instead has ram clock.
+ * Support up to 6 channels.
+ * 20 interrupts.
 
-Nodenames are lowercase, always.
+v5->v6:
+ * Replaced RCANFD_RNC_PER_REG macro with rnc_stride variable.
+ * Updated commit description for patch#7 and #8
+ * Dropped mask_table:
+     AFLPN_MASK is replaced by max_aflpn variable.
+     CFTML_MASK is replaced by max_cftml variable.
+     BITTIMING MASK's are replaced by {nom,data}_bittiming variables.
+ * Collected tag from Geert.
+v4->v5:
+ * Collected tag from Geert.
+ * The rules for R-Car Gen3/4 could be kept together, reducing the number
+   of lines. Similar change for rzg2l-canfd aswell.
+ * Keeping interrupts and resets together allows to keep a clear
+   separation between RZ/G2L and RZ/G3E, at the expense of only
+   a single line.
+ * Retained the tags for binding patches as it is trivial changes.
+ * Dropped the unused macro RCANFD_GAFLCFG_GETRNC.
+ * Updated macro RCANFD_GERFL_ERR by using gpriv->channels_mask and
+   dropped unused macro RCANFD_GERFL_EEF0_7.
+ * Replaced RNC mask in RCANFD_GAFLCFG_SETRNC macro by using
+   info->num_supported_rules variable.
+ * Updated the macro RCANFD_GAFLCFG by using info->rnc_field_width
+   variable.
+ * Updated shift value in RCANFD_GAFLCFG_SETRNC macro by using a formula
+   (32 - (n % rnc_per_reg + 1) * field_width).
+ * Replaced the variable name shared_can_reg->shared_can_regs.
+ * Improved commit description for patch{#11,#12}by replacing has->have.
+ * Dropped RCANFD_EEF_MASK and RCANFD_RNC_MASK as it is taken
+   care by gpriv->channels_mask and info->num_supported_rules.
+ * Dropped RCANFD_FIRST_RNC_SH and RCANFD_SECOND_RNC_SH by using a
+   formula (32 - (n % rnc_per_reg + 1) * rnc_field_width.
+ * Improved commit description by "All SoCs supports extenal clock"->
+   "All existing SoCs support an external clock".
+ * Updated error description in probe as "cannot get enabled ram clock"
+ * Updated r9a09g047_hw_info table.
+v3->v4:
+ * Added Rb tag from Rob for patch#2.
+ * Added prefix RCANFD_* to enum rcar_canfd_reg_offset_id.
+ * Added prefix RCANFD_* to enum rcar_canfd_mask_id.
+ * Added prefix RCANFD_* to enum rcar_canfd_shift_id.
+v2->v3:
+ * Collected tags.
+ * Dropped reg_gen4() and is_gen4() by adding mask_table, shift_table,
+   regs, ch_interface_mode and shared_can_reg variables to
+   struct rcar_canfd_hw_info.
+v1->v2:
+ * Split the series with fixes patch separately.
+ * Added patch for Simplify rcar_canfd_probe() using
+   of_get_available_child_by_name() as dependency patch hit on can-next.
+ * Added Rb tag from Vincent Mailhol.
+ * Dropped redundant comment from commit description for patch#3.
 
-> +};
-> +
-> +static const struct of_device_id adp5055_dt_ids[] = {
-> +	{ .compatible = "adi,adp5055"},
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, adp5055_dt_ids);
-> +
-> +static int adp5055_probe(struct i2c_client *client)
-> +{
-> +	struct regulator_init_data *init_data;
-> +	struct device *dev = &client->dev;
-> +	struct adp5055 *adp5055;
-> +	int i, ret;
-> +
-> +	init_data = of_get_regulator_init_data(dev, client->dev.of_node,
-> +					       &adp5055_regulators[0]);
-> +	if (!init_data)
-> +		return -EINVAL;
-> +
-> +	adp5055 = devm_kzalloc(dev, sizeof(struct adp5055), GFP_KERNEL);
-> +	if (!adp5055)
-> +		return -ENOMEM;
-> +
-> +	adp5055->regmap = devm_regmap_init_i2c(client, &adp5055_regmap_config);
-> +	if (IS_ERR(adp5055->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(adp5055->regmap), "Failed to allocate reg map");
-> +
-> +	for (i = 0; i < ADP5055_NUM_CH; i++) {
-> +		const struct regulator_desc *desc;
-> +		struct regulator_config config = { };
-> +		struct regulator_dev *rdev;
-> +
+Biju Das (18):
+  dt-bindings: can: renesas,rcar-canfd: Simplify the conditional schema
+  dt-bindings: can: renesas,rcar-canfd: Document RZ/G3E support
+  can: rcar_canfd: Use of_get_available_child_by_name()
+  can: rcar_canfd: Drop RCANFD_GAFLCFG_GETRNC macro
+  can: rcar_canfd: Drop RCANFD_GERFL_EEF* macros in RCANFD_GERFL_ERR
+  can: rcar_canfd: Add num_supported_rules variable to struct
+    rcar_canfd_hw_info
+  can: rcar_canfd: Add rnc_stride variable to struct rcar_canfd_hw_info
+  can: rcar_canfd: Simplify RCANFD_GAFLCFG_SETRNC macro
+  can: rcar_canfd: Add max_aflpn variable to struct rcar_canfd_hw_info
+  can: rcar_canfd: Add max_cftml variable to struct rcar_canfd_hw_info
+  can: rcar_canfd: Add {nom,data}_bittiming variables to struct
+    rcar_canfd_hw_info
+  can: rcar_canfd: Add ch_interface_mode variable to struct
+    rcar_canfd_hw_info
+  can: rcar_canfd: Add shared_can_regs variable to struct
+    rcar_canfd_hw_info
+  can: rcar_canfd: Add register mapping table to struct
+    rcar_canfd_hw_info
+  can: rcar_canfd: Add shift table to struct rcar_canfd_hw_info
+  can: rcar_canfd: Add only_internal_clks variable to struct
+    rcar_canfd_hw_info
+  can: rcar_canfd: Enhance multi_channel_irqs handling
+  can: rcar_canfd: Add RZ/G3E support
 
-Where do you parse the 'reg' which you said is a channel number in the
-binding?
+ .../bindings/net/can/renesas,rcar-canfd.yaml  | 171 +++++++++---
+ drivers/net/can/rcar/rcar_canfd.c             | 256 ++++++++++++++----
+ 2 files changed, 327 insertions(+), 100 deletions(-)
 
-> +		if (adp5055->tset == 2600)
-> +			adp5055_regulators[i].ramp_delay_table = adp5055_enable_delay_vals_2_6;
-> +		else
-> +			adp5055_regulators[i].ramp_delay_table = adp5055_enable_delay_vals_20_8;
-> +
-> +		desc = &adp5055_regulators[i];
-> +
-> +		config.dev = dev;
-> +		config.driver_data = adp5055;
-> +		config.regmap = adp5055->regmap;
-> +		config.init_data = init_data;
-> +
-> +		if (adp5055->hw_en_array_gpios)
-> +			config.ena_gpiod = adp5055->hw_en_array_gpios->desc[i];
-
-So a GPIO per node thus enable-gpios in each node.
-
-Best regards,
-Krzysztof
+-- 
+2.43.0
 
 
