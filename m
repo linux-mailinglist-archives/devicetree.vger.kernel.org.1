@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-159422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCCC9A6ABC7
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 18:16:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B77BA6ABD7
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 18:18:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5581E3AB766
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 17:15:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 806D43B8A4D
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 17:18:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08EE91953A1;
-	Thu, 20 Mar 2025 17:16:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6239B22424F;
+	Thu, 20 Mar 2025 17:18:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="jifhEwLO"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="YHgsKRfP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f201.google.com (mail-pl1-f201.google.com [209.85.214.201])
+Received: from mail-pj1-f73.google.com (mail-pj1-f73.google.com [209.85.216.73])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 885D236AF5
-	for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 17:15:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 121902A1A4
+	for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 17:18:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742490959; cv=none; b=Y0+MyfiOYBY3sxHU1wqxd7bKnai86VVDMNUqwBVM+kPRMELyG7fc+yJBgDU/Sajz8IZm5MehOj59ypBKK9qdWY6c5P4cfwoFkg+6cbOJgE66/YPA8WvIKZZ9cklkP9RHtRp019lNLlVfdgbj0vcEe+QAHiHWzNI0O/QVmakXZFU=
+	t=1742491099; cv=none; b=CoeBIy90OHng8m4lCDRzUQcVFlJpBTi2fA6uCNz9xgrP5lnS5y6fqWD71el2t5PiRtY2I9uT9/z+mAiNJbjdAEPLkd/7NLbeKBuaUlYYIdqkSpQJobf1T0psGpULLTOcOKYfH6oJmeUWfXSynuzMLe9PWM3ruspmK0OrlNkWtGc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742490959; c=relaxed/simple;
-	bh=5vcA7VYkAbR6dJ4uPGsop0RCD9nTLsdEHjU7/It/kNw=;
+	s=arc-20240116; t=1742491099; c=relaxed/simple;
+	bh=88p1w7uEcFSCHYKOCDuBHPZGg/x3AAPkfIOOrr6qmRE=;
 	h=Date:In-Reply-To:Mime-Version:References:Message-ID:Subject:From:
-	 To:Cc:Content-Type; b=NZDdhrCIR1PeLiJ0ayLrNGKfwHVaEqrvrtYwYfgT6mz/w3T+V2EJbnsOenHpLJHZhibV2Qs8GolNpHTB6UJgAzw7vKE1uMLp769IXNBkZcySzpf3jaLCbUxFlWmFvCQT+BRB02lsL8aPj+GZ135/omPjEZ0N9yeg5EW3FIWtZoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--changyuanl.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=jifhEwLO; arc=none smtp.client-ip=209.85.214.201
+	 To:Cc:Content-Type; b=f4ZJc21TH1rtQHGN4ZzjDawbA2VXlxHZyPlLaLn83Ru/V3To0E++G7YoK0jiE8qkUcEprGSclNxkoAgxP/k8TpRgjNNsDrJEbgJT/8wgnhUMNS7nAq57Elltc4gNRr+WtUAI5zFXX8UyCoUS4uUBLaVAN/GrkUgKCHS4M4BO2Ho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--changyuanl.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=YHgsKRfP; arc=none smtp.client-ip=209.85.216.73
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--changyuanl.bounces.google.com
-Received: by mail-pl1-f201.google.com with SMTP id d9443c01a7336-2265a09dbfcso26126745ad.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 10:15:58 -0700 (PDT)
+Received: by mail-pj1-f73.google.com with SMTP id 98e67ed59e1d1-2ff799be8f5so1727985a91.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 10:18:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1742490958; x=1743095758; darn=vger.kernel.org;
+        d=google.com; s=20230601; t=1742491096; x=1743095896; darn=vger.kernel.org;
         h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
          :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=5vcA7VYkAbR6dJ4uPGsop0RCD9nTLsdEHjU7/It/kNw=;
-        b=jifhEwLOsTmmg5SUxzZWE5IxMAgs2cJJVvZbiOjzWcRSVWZJpiS1cfWoE628redgEY
-         B5IV5a4SaTq3FhFbEzMyl5SOsQaAUXvA9xOgF/L9UodHJqLuVOSnfvraIdmt2kD7BgiC
-         ehZNktjwN/w5rUZAbCMmnmPxIopUz5upyawMHaSp/rxxm47ktCL4FeC7xmaborOPImLY
-         JDdPo+wo6fCoMIpRbMKh1TjbJ3pHrOt0R+t1BZlYK7dCikcidmYetkANKEIhne5Q+mGk
-         Vs6Fbb+5G2sxpsZrox5rSOR+Y4VhAxN4v0yhexTML2kpb3k/C+RB0E/Q4Hbh72J9P2sx
-         /vdg==
+        bh=88p1w7uEcFSCHYKOCDuBHPZGg/x3AAPkfIOOrr6qmRE=;
+        b=YHgsKRfPf2/nBiD260ANuo5qn3IAPdiMNnoxnuLCprv9Owqxk5Kkyo2SoDWa0RKRol
+         iYMIEdX4+eG2ZvmRhzvtBhrl1gmZYGhSpNf/vEAUhBK0Tw7zHng1MqpbWWQ0gFfi6pxi
+         /6OJkbLTti8JDeCXHBxE836tbZjU8J1WurYsSEKnCUV0dGmm1dVrsuvEAQw/0gsT1rHz
+         xrqNSOY/MDRaul1Gi2uPBL8SH+zeyMa1J8KqHa1PZTKTN8WJTaIwUXHk4Wlz++7DyqQD
+         1YSBxXLUNKdZdpp4Vm319W5pi7CadEuoygSUsLKjeq2reBB4BwSGpKokHYshcLLJ2fzE
+         jeXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742490958; x=1743095758;
+        d=1e100.net; s=20230601; t=1742491096; x=1743095896;
         h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
          :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5vcA7VYkAbR6dJ4uPGsop0RCD9nTLsdEHjU7/It/kNw=;
-        b=q9ybWlbmZqcCyLp+2VzXmSmvHoWm0tUhRJD8jkPpfvZZGk0Tv+B6W6DLJ3sTVljCVG
-         Oh06zlFku4tBqI+9SyKlx89oSMYwK3Cp1XQ6Y24xqOYdLTOxu7jTANf1NIL809Iv1XwE
-         haZ5FuIyThjcLlVNa2FN5bYmSOzqku8fTrHtjcmH9eqVS4QdtHfyOoLrtuVcePjgP7Oh
-         /1WucdkqV6ynLlENghpUVky05jThmNuDOdNFIjdBYG6VN9a9xXAy173nTcH4lMMc9nNy
-         ZrqoIunfSt3aI5f9H6RozQSeOIQENQ/enA5iPjNadZtnFcNN1pqCTDSE/rfpiXBBl7Sr
-         aihw==
-X-Forwarded-Encrypted: i=1; AJvYcCUOPk+tOUfbMjDIhE7M1qA5SO3qQ6KkHy1t2+MAwlf7gylz9L0Pmm/7BO3qwPdov7fEwmP0Yl4pGi2b@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxm5H81pliQ0i0QOXouuojlfRCah4hHTqcO9JPRue9wApl+nFF1
-	ed6Uc0IL92QiNSASleybwVOjYpI2HzPa1mYhSxLjLzE8NTstB23A1sQAimrRrkutemiXK4fVtyr
-	KgIJa7wjpRBIcuytApg==
-X-Google-Smtp-Source: AGHT+IFSTOZJPhF0A6p4zYu8XqyFCbfj+1u7L3mgdhQb13y/kwPpTEfBMQ3apw/ZGc9/6LxAV+vBXTVj5vs9bXs4
-X-Received: from pfbkq8.prod.google.com ([2002:a05:6a00:4b08:b0:732:6425:de9a])
+        bh=88p1w7uEcFSCHYKOCDuBHPZGg/x3AAPkfIOOrr6qmRE=;
+        b=Hrq/Ns8MnhbLCE47rC2OknMC6wWgkmlghaeSUc7bpD7ec5amBjzFBwJ8MbZlg3wlqG
+         g+PS/T1gAslme1mVKgizXq55/co1xLRb06HilCjIsyL0fX1JDrgkEd2D3Ak7yiiUp8YB
+         ybJI7+lHBK4gqZq9hqxmiy8FnzPu1ACrlXGAA7pHRwT2ImozHV8kFcYcQWidZWMBc5mv
+         lEmmQlxq+tjbaHvSvnYRr4LQQ7kZNDRubmWctBYtopJcFNTXEg9O/R92PshT/YyLkdNP
+         aHhQbGz0Fawr0FoZ2uzgZMfwj7YErBR+idUOO14thmBl5ccHxFaGRfNHkzZqNi1M4KWc
+         rGyg==
+X-Forwarded-Encrypted: i=1; AJvYcCWbiGLTBUlLcQXaF3DCbSwrGjZ8ryVAkbjSHmXDoBnntUxSVVEP2hqq0gFJhON0E1Rg4KdbWXzGOpTq@vger.kernel.org
+X-Gm-Message-State: AOJu0YxaASdatjwpEK1IuKvh1gxGtexCzYKz2vrGln/OhGS5/WWjrOmz
+	p7w9XkNkBHOtYeRyFr2+ghs725FE1l0UzYpU8EoOunqJ03DPboktGeJ303nUHiMCg41bdt4fuZc
+	HYOVtfEpI1/gJJ1AR5Q==
+X-Google-Smtp-Source: AGHT+IGpaoCewgRhvYW5fa+HpkkDxI6GYIKVShvL+72MGW8IdbGecEsEYFRFVCnEraF7VtF/dPJ/f4MPXZFrOdbn
+X-Received: from pjbpq9.prod.google.com ([2002:a17:90b:3d89:b0:2fa:a101:755])
  (user=changyuanl job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6a00:b55:b0:737:678d:fb66 with SMTP id d2e1a72fcca58-73905955db0mr383661b3a.5.1742490957851;
- Thu, 20 Mar 2025 10:15:57 -0700 (PDT)
-Date: Thu, 20 Mar 2025 10:15:45 -0700
-In-Reply-To: <16b14662-d69b-478a-9e2f-a05c56f2c4ce@kernel.org>
+ 2002:a17:90b:2707:b0:2ff:6488:e01c with SMTP id 98e67ed59e1d1-3030fefe3e4mr5163a91.29.1742491096376;
+ Thu, 20 Mar 2025 10:18:16 -0700 (PDT)
+Date: Thu, 20 Mar 2025 10:18:02 -0700
+In-Reply-To: <d5f7379c-c66b-47f5-bc97-eab90ab34346@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 Mime-Version: 1.0
-References: <16b14662-d69b-478a-9e2f-a05c56f2c4ce@kernel.org>
+References: <d5f7379c-c66b-47f5-bc97-eab90ab34346@kernel.org>
 X-Mailer: git-send-email 2.49.0.395.g12beb8f557-goog
-Message-ID: <20250320171545.2324955-1-changyuanl@google.com>
-Subject: Re: [PATCH v5 02/16] mm/mm_init: rename init_reserved_page to init_deferred_page
+Message-ID: <20250320171802.2325561-1-changyuanl@google.com>
+Subject: Re: [PATCH v5 11/16] kexec: add config option for KHO
 From: Changyuan Lyu <changyuanl@google.com>
 To: krzk@kernel.org
 Cc: akpm@linux-foundation.org, anthony.yznaga@oracle.com, arnd@arndb.de, 
@@ -94,27 +94,29 @@ Content-Type: text/plain; charset="UTF-8"
 
 Hi Krzysztof,
 
-On Thu, Mar 20, 2025 at 08:10:48 +0100, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On Thu, Mar 20, 2025 at 08:10:37 +0100, Krzysztof Kozlowski <krzk@kernel.org> wrote:
 > On 20/03/2025 02:55, Changyuan Lyu wrote:
-> > From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
+> > From: Alexander Graf <graf@amazon.com>
 > >
-> > When CONFIG_DEFERRED_STRUCT_PAGE_INIT is enabled, init_reserved_page()
-> > function performs initialization of a struct page that would have been
-> > deferred normally.
+> > We have all generic code in place now to support Kexec with KHO. This
+> > patch adds a config option that depends on architecture support to
+> > enable KHO support.
 > >
-> > Rename it to init_deferred_page() to better reflect what the function does.
-> >
+> > Signed-off-by: Alexander Graf <graf@amazon.com>
+> > Co-developed-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
 > > Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+> > Co-developed-by: Changyuan Lyu <changyuanl@google.com>
+> > Signed-off-by: Changyuan Lyu <changyuanl@google.com>
+> What did you exactly co-develop here? Few changes does not mean you are
+> a co-developer.
 
-Signed-off-by: Changyuan Lyu <changyuanl@google.com>
+I proposed and implemented the hashtable-based state tree API in the
+previous patch "kexec: add Kexec HandOver (KHO) generation helpers" [1]
+and then added `select XXHASH` here. If one line of change is not
+qualified for "Co-developed-by", I will remove it from the commit message
+in the next version.
 
->
-> Incorrect DCO chain.
->
-
-Thanks for the reminder! I missed "Signed-off-by" in a few patches from
-Mike and Alex where I did not make any changes. I will fix them in the
-next version.
+[1] https://lore.kernel.org/all/20250320015551.2157511-8-changyuanl@google.com/
 
 Best,
 Changyuan
