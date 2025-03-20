@@ -1,131 +1,133 @@
-Return-Path: <devicetree+bounces-159466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159467-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 902FDA6B024
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 22:47:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D0A2A6B030
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 22:54:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A35B1896806
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 21:47:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D3343BF119
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 21:53:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99A19227EA1;
-	Thu, 20 Mar 2025 21:47:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE648220696;
+	Thu, 20 Mar 2025 21:54:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sOIhLCLC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S01bPVLP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C83EC524F
-	for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 21:47:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 921FF190072;
+	Thu, 20 Mar 2025 21:54:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742507257; cv=none; b=dAbESoXjjIlX31C/T+kf2BjSpNrHsTqAdBbJvUZ4crKLWKc/NGx6fnVSvI9AtZOFq54TEmeYmnpTA9dz8YejmBoEePdTMx3f22v6sTqXCVo/mE9KUukn6qSjRq5xGy0wvmsiZagmvODKhKXN0gkzETQ7FeS6rP0Pg97aIJaBuNw=
+	t=1742507647; cv=none; b=CQNV6SOGwVZLPXSv42uNQvGqQmk+YWiJetqUc2S0sPuS6cbVvLU3L+vrrDn2r+Bnk2eyMOaZ4Yk42k2FKNVb/Bih03cd4BSVNcCKfvyVTw03wxXVV1KnPTW1IVRePHV9ic0YkllkHzoVbOzYOABk5jwoB5NpJy7p9dGGZSu6vIE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742507257; c=relaxed/simple;
-	bh=6aFeAcQOrE9iX5bnT0IHoBmr8TSEA7XYOZSeAKpYzh4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QmprzAsP4pJzNnRnW4D7H6ptP41W4ns0DBs7/tFHZJ2jXpBcxp7x0Hp/cmPyEbmpmf+3w9Bx9eMYQlltsCOi3CD9SG4+6rxfO9f1caoBCO2n9CymOYlMfC3MUM5R/bbVs956yAIni4r6UJoN879rsy+jexApO/W7VYCxyUs/NsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sOIhLCLC; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4394a823036so13242245e9.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 14:47:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742507254; x=1743112054; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0pDs0WVPO2a99lut0kg8geJYSA583A+0xvILgC594aY=;
-        b=sOIhLCLC4KdTb/cpTmXDZvW3uho4lVcm69fYU4rW5iyvoV8Y6ux/WSuIjwE1fZCdcD
-         VAUtny72w+EdsGYjuOqFulw/uPPQ+rFsgQkOsQTT7sGyFNvqbze5PnRUkL/mcKr4qfIg
-         sWPfKwqc+y7sE0EC3unb0RR2Qz+Zs+Kidzj0/TWlLU0o1EA6AltMeLNo7vWiOExR9Aiu
-         8syp6JhTW0V5zD/+XZzlfvWfwj8kzIwSZDfV+FDyJYtiWtxd5Ci5oQWZebWSV4QZNzig
-         STgOCJae4/84EEZpeUja9eSHuR5bBepwoMhlgDRkb406e9kCOwfFXbg6+1grryniDstr
-         oZhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742507254; x=1743112054;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0pDs0WVPO2a99lut0kg8geJYSA583A+0xvILgC594aY=;
-        b=IrfFsU84DPaRTGYOy/UJwzleae+QzXCh7nXTBYaJ6wcBkA8isg3AGpaoErBIgmluzn
-         BYqz4rehxw+nCJki1PhYWTKhZeFsa9DnJM89xPoANxY7uzIrvh9Gddn76rykJPvTs3cV
-         XAw6MJxMoL82pDPL8lQeDulfNZ0knjrt3qTrWrM35Pd3x3U+8qIfLB8vwTD1/95nrXDi
-         opQKvb9erzi0JoVygoS5tTTRifX3IeRv4PJtq0BfiTiLPpur2bFls7sdOTvb9AbhEUqm
-         ejYrSmba1J9Hz9+iaPg9NU84y7JWNIIZFXVH1ByqHzYXNrT5Z3sPsJvg5G0NRwTogfeY
-         0lMA==
-X-Forwarded-Encrypted: i=1; AJvYcCVwQuppGe1ipYKWZjf6ie0RoL+7gpac3aiHiKpsTD9s2JBcLu1TGYwtuJObhMmnaRi8WwuC3tsKk9S2@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5Yrug2KhhnUjjhTSUPLe3yDkGoGV6wGotec1w64TZ/8RGjaVp
-	BPOpAb3XeeWikRw6ewt58EKG0dBlKKLiM8V4sSEcdAhWZIPtxZMWEb86gHr+uRM=
-X-Gm-Gg: ASbGncs8p9G3aT+p/ZJyK+0k0crqMCDnOn5HdDGJwuIXGcYjF9yP1AlIqMr+BUNf00+
-	KsHk1xbEy2lbWU56iAyjJ29x+ksQD7IqPJ8kTFnZI6WrBvvKriRni76FS1qL1RypzGYVVbP1vDx
-	P/gTlbVVZ4VI/86E41b+jE1IH9aMR7k7WUwDZw/H0V2bbgEW4SsDcfBrU9k+rnfpw7df7mZsA4+
-	pUpYJnuwlOmuxIpz1tbean3hM9bY7qsEa0Fy9V87F4q6Gn9GKbh1pWoKlFOzZ7ZI2Zamcv5/BvN
-	pe6tsVm35rOXhb19Sd7U02C+frYe+EkH4uZMr2pXz23v0JDArydwzbvlYAJfttAit3HfAZ3zT39
-	xeqWhooD4Lw==
-X-Google-Smtp-Source: AGHT+IH1QR2lA5j20mnRQxFbbvbhsn3PhLymz9T80NY3pVx9+kYUunZaqACuc30VQqERvPO4097GDQ==
-X-Received: by 2002:a05:600c:1e26:b0:43d:300f:fa1d with SMTP id 5b1f17b1804b1-43d50a4e498mr6521745e9.31.1742507253926;
-        Thu, 20 Mar 2025 14:47:33 -0700 (PDT)
-Received: from [192.168.0.34] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d3bb2b2ffsm67871675e9.1.2025.03.20.14.47.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Mar 2025 14:47:33 -0700 (PDT)
-Message-ID: <a4134aed-0b6a-463e-828e-326636fbadc3@linaro.org>
-Date: Thu, 20 Mar 2025 21:47:31 +0000
+	s=arc-20240116; t=1742507647; c=relaxed/simple;
+	bh=QIQU8A7qyKU5tipcj+6PeFo/yPhRRDNitNGLmfXrKIE=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=eMzMJWbgOYAX4yADW8bfCdugM3lGemyQtg6ThN7ECX6AcwHOtPBxm7BYFSy4e10lRI2jPPEOUPOEn87Ewi0R8NqaHfFpRxM55XKQYRK0eWBifnq9pmi4xc7mnCG9TtpkyGO5iTuyAuq0W+knKJtlxutkZhSWkH52o/cjKruGplY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S01bPVLP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C33A8C4CEDD;
+	Thu, 20 Mar 2025 21:54:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742507647;
+	bh=QIQU8A7qyKU5tipcj+6PeFo/yPhRRDNitNGLmfXrKIE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=S01bPVLP6PgIeDmFCT4+9AJPG1vMP+LZrOMijpHYadL84NXfM7YU9Z/2qjkDIKKrI
+	 s05Nm3RKn6NiyHUSRxDEeRYke9ZShD3zkL7rp03g6ikm/K0VErrJGENcnbJkfBJP+t
+	 7bLMvM/IopjzJuVw5/kCIYqBBCq32p+7gnVmezXtGgYbqgVoPBfgFGYZIuUs1A7hkr
+	 yoYYl+hwmL6atVbtVdr3cgiErG59i3jrQvsxpljAQcdFPvjSmi4KRWs3YhDnOXiA9a
+	 QvfcRyjG3Xjlv1T9JmvB3wplKXf1OXI03GLeK40REIBV+MgELJwxW9XUcZB8aucyML
+	 SVekQZICqFKzA==
+Date: Thu, 20 Mar 2025 16:54:05 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Niklas Cassel <cassel@kernel.org>,
+	Jesper Nilsson <jesper.nilsson@axis.com>
+Cc: Frank Li <Frank.Li@nxp.com>, Lars Persson <lars.persson@axis.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-arm-kernel@axis.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org
+Subject: Re: [PATCH RFC NOT TESTED 0/2] PCI: artpec6: Try to clean up
+ artpec6_pcie_cpu_addr_fixup()
+Message-ID: <20250320215405.GA1102700@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: sa8775p-ride: enable video
-To: Vikash Garodia <quic_vgarodia@quicinc.com>,
- Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- sumit.garg@oss.qualcomm.com
-References: <20250320-dtbinding-v3-0-2a16fced51d5@quicinc.com>
- <QmxHHC087sYySMBmJH4INHn5KxydFiCpjxuGSwMWq2izyyd5JQByDX7LBzvgK_SccwtrWn2FzazAyF3252YvDg==@protonmail.internalid>
- <20250320-dtbinding-v3-3-2a16fced51d5@quicinc.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20250320-dtbinding-v3-3-2a16fced51d5@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z9k2fLFU3UCubK97@ryzen>
 
-On 20/03/2025 18:06, Vikash Garodia wrote:
-> +
-> +&iris {
-> +	firmware-name = "qcom/vpu/vpu30_p4_s6.mbn";
-> +
-> +	status = "okay";
-> +};
+On Tue, Mar 18, 2025 at 10:01:48AM +0100, Niklas Cassel wrote:
+> On Mon, Mar 17, 2025 at 12:54:19PM -0500, Bjorn Helgaas wrote:
+> > On Mon, Mar 10, 2025 at 05:47:03PM +0100, Jesper Nilsson wrote:
+> > > I've now tested this patch-set together with your v9 on-top of the
+> > > next-branch of the pci tree, and seems to be working good on my
+> > > ARTPEC-6 set as RC:
+> > > 
+> > > # lspci
+> > > 00:00.0 PCI bridge: Renesas Technology Corp. Device 0024
+> > > 01:00.0 PCI bridge: Pericom Semiconductor PI7C9X2G304 EL/SL PCIe2 3-Port/4-Lane Packet Switch (rev 05)
+> > > 02:01.0 PCI bridge: Pericom Semiconductor PI7C9X2G304 EL/SL PCIe2 3-Port/4-Lane Packet Switch (rev 05)
+> > > 02:02.0 PCI bridge: Pericom Semiconductor PI7C9X2G304 EL/SL PCIe2 3-Port/4-Lane Packet Switch (rev 05)
+> > > 03:00.0 Non-Volatile memory controller: Phison Electronics Corporation E18 PCIe4 NVMe Controller (rev 01)
+> > > 
+> > > However, when running as EP, I found that the DT setup for pcie_ep
+> > > wasn't correct:
+> > > 
+> > > diff --git a/arch/arm/boot/dts/axis/artpec6.dtsi b/arch/arm/boot/dts/axis/artpec6.dtsi
+> > > index 399e87f72865..6d52f60d402d 100644
+> > > --- a/arch/arm/boot/dts/axis/artpec6.dtsi
+> > > +++ b/arch/arm/boot/dts/axis/artpec6.dtsi
+> > > @@ -195,8 +195,8 @@ pcie: pcie@f8050000 {
+> > >  
+> > >                 pcie_ep: pcie_ep@f8050000 {
+> > >                         compatible = "axis,artpec6-pcie-ep", "snps,dw-pcie";
+> > > -                       reg = <0xf8050000 0x2000
+> > > -                              0xf8051000 0x2000
+> > > +                       reg = <0xf8050000 0x1000
+> > > +                              0xf8051000 0x1000
+> > >                                0xf8040000 0x1000
+> > >                                0x00000000 0x20000000>;
+> > >                         reg-names = "dbi", "dbi2", "phy", "addr_space";
+> > > 
+> > > Even with this fix, I get a panic in dw_pcie_read_dbi() in EP-setup,
+> > > both with and without:
+> 
+> Your fix looks correct to me.
+> 
+> You should even be able keep dbi as 0x2000, and simply remove the dbi2
+> from "reg" and "reg-names", as the driver should be able to infer dbi2
+> automatically:
+> https://github.com/torvalds/linux/blob/v6.14-rc7/drivers/pci/controller/dwc/pcie-designware.c#L119-L128
+> 
+> But your fix seems more correct.
+> You should probably also change the size of "dbi" to 0x1000 in the RC node.
 
-You're out of alphanumeric order here.
+Just a ping to see if there's any chance of getting this into v6.15?
 
-Should be:
+To do that, I think we'd need to confirm that:
 
-  };
+  - the endpoint issue is fixed
 
-+
-+&iris {
-+       firmware-name = "qcom/vpu/vpu30_p4_s6.mbn";
-+
-+       status = "okay";
-+};
-+
-  &mdss0 {
+  - artpec6 is only used in-house
 
----
-bod
+  - the DTBs are either already OK or OK after [PATCH 1/2]
+
+  - everybody in-house is OK with updating to the new DTB.
+
+I haven't seen anything about the endpoint part, and haven't seen
+confirmation of the others.
+
+Bjorn
 
