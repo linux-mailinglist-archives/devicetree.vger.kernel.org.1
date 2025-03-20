@@ -1,113 +1,120 @@
-Return-Path: <devicetree+bounces-159245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43FA9A6A1CD
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 09:50:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BB9EA6A1D9
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 09:52:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E28B8A66C0
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 08:49:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DE7216BB6B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 08:52:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CF9F215171;
-	Thu, 20 Mar 2025 08:50:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11DAA219314;
+	Thu, 20 Mar 2025 08:52:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="UAcHFbfQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GhhMnxM/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99F63205E1C;
-	Thu, 20 Mar 2025 08:49:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAAB5215162;
+	Thu, 20 Mar 2025 08:52:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742460601; cv=none; b=TfdGV2F6Hetdib43vUyuEe+k/ZTGhfGCG2j7UjECKaILU/F+y37ZEtdGM9WLvibBmrtUlxBHqTWvPDagzKWxQonobS8TkLumzmO03s0SXI58rZru+2ymLJ07BKiGrz9iiZNghnM9CCQf351D3ro2bDSW8M8ZK7iCh4SBSFYq/WU=
+	t=1742460756; cv=none; b=iFUERi7Ul0MXrk2JNSkFfDEf1T+3AN94vL9VY8Wow80Jp1RbFI3hSvUL1ZsWjwgvkgAA4kVrKgq6V+ONHUWIKTHKJwL34xiU8xa6n5uQb3p4CFziAWTVlltIOVkjZpObf0NYjefvdlGAgxvlxonMUYrhfdGV6Pimo1yqIMtlYq0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742460601; c=relaxed/simple;
-	bh=JUxBnD67OfFAQlZo3b9DrqKcal6FBMJp8mOjZLnNODQ=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:From:To:Subject:
-	 References:In-Reply-To; b=cPwaguSmFjXzv7HHmBWhEyYFhsWny2pHt7Ce9ZXX96S69moi3dUcFUj4BBUopuvffi/FfXQeRVibGufAxq+keWI6FcBaJ4xby45MLHOCA1qmmVnzvFZ5pXCWM5ZcQ6bxVRgkqKCLqdmPpd0e3F8jUtMf5ITxCAuoEDfiCNLkWFY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=UAcHFbfQ; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id C3C2C44380;
-	Thu, 20 Mar 2025 08:49:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1742460596;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=WjKt6Rv2lsaZFVH98+p0Jw/A6bxKfvAzIMJNC+4gm94=;
-	b=UAcHFbfQyihQF8X8YZNCwSTWPGpyuSoRT205v75D5/B6c0myPUcuWZkYbYzwv/Nj3SMcf3
-	ITgWxRLM2npaNT8PYMGkx+0cPBxdHahiulMA0wtmENYHxPolXov+pWegb4tQ6qTLurcm08
-	SPLg1CRknA9t70Iri1S1+z9K87fMFE6yHmnc613aciO2SZAUFJqo6s0jtrUpAKpfya6ROd
-	fWWDDedD72Z5to9eM+Ah4402mSwB5mzM1X4KSWo8MYf9pNnBym/nEpRuMwpz3DXFrwBsOZ
-	tq3q7LAbkuTtaV3VZQO9a3L/1hZWopze5RDgR8TZkVkPdramdqrdVTzzqg1ukw==
+	s=arc-20240116; t=1742460756; c=relaxed/simple;
+	bh=XJynSMMBI9YAA5uARKacDRxQb8hC8mgVbQeT6x+zbTE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Pk3queSGrTJi3jWmmXG3m629IPOck+Tt6YDlPNAArWOVJmk9c0xcnNbHCo2fa0Z1gPIeWePrMGW5TlSwFpuSbuy7fqwIH6XYKgrBx8KYVPMGN7HuoCa2UVJS92/LFl7dqi9N+0tWNq+MPUgPPpeB8fKgBlsqvVBYLdGu4tOndHY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GhhMnxM/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E23E1C4CEDD;
+	Thu, 20 Mar 2025 08:52:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742460754;
+	bh=XJynSMMBI9YAA5uARKacDRxQb8hC8mgVbQeT6x+zbTE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GhhMnxM/IVyUWNf2RcWtIS4iJKWEV8FgxdXCHlhiG8hLdnjJb1BnwUWrAuEWBRmWq
+	 EoXMOKEZhrw7nZXgZ+QT56hkgzrrZP11wusKwSvBD9ThRxvCVImz+JbuwI10ERTSwt
+	 itaNWGz9VXvDbHdxvFFvXsctGxx/EjcvcYpH/Wt4nvbosHK0UA0OFmPq05o++0h6K9
+	 34DxmGI+rTE/NhZNhuIbedrVh4I4eqWhnYlIG9S+E981TKguTzIVcVBQIgzIW9+E61
+	 s/m7nXGkN2Mi4d+jA0rFciqMhmDvMhFFF4dn8xv19tgwb1X9DNginVTyFfuok3EuoV
+	 mbAaP59rINaJw==
+Date: Thu, 20 Mar 2025 09:52:31 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Sergio =?utf-8?B?UMOpcmV6?= <sergio@pereznus.es>
+Cc: Tomasz Duszynski <tduszyns@gmail.com>, 
+	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: light: bh1750: Add reset-gpios
+ property
+Message-ID: <20250320-shaggy-heavy-camel-9d0eed@krzk-bin>
+References: <20250319161117.1780-1-sergio@pereznus.es>
+ <61d55149-1955-4d5c-84de-d8644727b87f@kernel.org>
+ <96c44905-0725-4c68-91a5-1c6cea6a7f4a@pereznus.es>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 20 Mar 2025 09:49:55 +0100
-Message-Id: <D8KYQASUWLCK.1REYHEOKZP5TO@bootlin.com>
-Cc: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
- <linux-pwm@vger.kernel.org>, <andriy.shevchenko@intel.com>,
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>
-From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
-To: "Michael Walle" <mwalle@kernel.org>, "Lee Jones" <lee@kernel.org>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Kamel Bouhara"
- <kamel.bouhara@bootlin.com>, "Linus Walleij" <linus.walleij@linaro.org>,
- "Bartosz Golaszewski" <brgl@bgdev.pl>, "Dmitry Torokhov"
- <dmitry.torokhov@gmail.com>, =?utf-8?q?Uwe_Kleine-K=C3=B6nig?=
- <ukleinek@kernel.org>, "Mark Brown" <broonie@kernel.org>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, "Danilo Krummrich" <dakr@kernel.org>
-Subject: Re: [PATCH v5 07/11] gpio: regmap: Allow to provide init_valid_mask
- callback
-X-Mailer: aerc 0.18.2-0-ge037c095a049
-References: <20250318-mdb-max7360-support-v5-0-fb20baf97da0@bootlin.com>
- <20250318-mdb-max7360-support-v5-7-fb20baf97da0@bootlin.com>
- <D8K1T97L2IB9.1P3W9F7911UGG@kernel.org>
-In-Reply-To: <D8K1T97L2IB9.1P3W9F7911UGG@kernel.org>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddugeejjeekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkvefhvffuofhfjgesthhqredtredtjeenucfhrhhomhepfdforghthhhivghuucffuhgsohhishdquehrihgrnhgufdcuoehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeftedvgfegteehjeejtdefgffhteevvddtvdejleeghfefuefgledtteduvdetkeenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegvtdgrmegrieeimeefudektdemtgdtsggvmegslegrkeemvgehledvmeeirgeffhenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemvgdtrgemrgeiieemfedukedtmegttdgsvgemsgelrgekmegvheelvdemiegrfehfpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvvddprhgtphhtthhopehmfigrlhhlvgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhgvvgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepr
- hhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhgrmhgvlhdrsghouhhhrghrrgessghoohhtlhhinhdrtghomhdprhgtphhtthhopehlihhnuhhsrdifrghllhgvihhjsehlihhnrghrohdrohhrghdprhgtphhtthhopegsrhhglhessghguggvvhdrphhl
-X-GND-Sasl: mathieu.dubois-briand@bootlin.com
+In-Reply-To: <96c44905-0725-4c68-91a5-1c6cea6a7f4a@pereznus.es>
 
-On Wed Mar 19, 2025 at 8:02 AM CET, Michael Walle wrote:
-> Hi,
->
-> > Allows to populate the gpio_regmap_config structure with
-> > init_valid_mask() callback to set on the final gpio_chip structure.
-> >
-> > Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com=
->
-> > ---
->
-> > -	chip->request =3D gpiochip_generic_request;
-> > -	chip->free =3D gpiochip_generic_free;
->
-> With this removed:
->
-> Reviewed-by: Michael Walle <mwalle@kernel.org>
+On Wed, Mar 19, 2025 at 11:38:09PM +0100, Sergio P=C3=A9rez wrote:
+>=20
+> El 19/03/2025 a las 20:12, Krzysztof Kozlowski escribi=C3=B3:
+> > On 19/03/2025 17:11, Sergio Perez wrote:
+> > > Some BH1750 sensors require a hardware reset via GPIO before they can
+> > > be properly detected on the I2C bus. Add a new reset-gpios property
+> > > to the binding to support this functionality.
+> > >=20
+> > > The reset-gpios property allows specifying a GPIO that will be toggled
+> > > during driver initialization to reset the sensor.
+> > >=20
+> > > Signed-off-by: Sergio Perez <sergio@pereznus.es>
+> > > ---
+> > >   Documentation/devicetree/bindings/iio/light/bh1750.yaml | 5 +++++
+> > >   1 file changed, 5 insertions(+)
+> > You just sent v3, while v4 was already on the lists, without improving
+> > and without responding to review.
+> >=20
+> > NAK.
+> >=20
+> > You keep repeating the same mistakes: not reading and responding
+> > feedback and it is getting tiresome.
+> I apologize for the confusion with patch versions. You're right that I se=
+nt
+> v3
+> after v4 was already on the list. I was trying to follow your exact
+> instructions from:
+> "git add ...
+> git commit --signed-off
+> git format-patch -v3 -2
+> scripts/chekpatch.pl v3*
+> scripts/get_maintainers.pl --no-git-fallback v3*
+> git send-email *"
 
-Yes, reminder of a dropped patch.
+v3 stands for version of the patch, so my instruction shuld be here
+adjusted.
 
-Thanks for your review and the tag.
-Mathieu
+>=20
+> Regarding the binding I've modified for next v5 the YAML description to
+> remove "active low" to avoid confusion and modified the example to:
 
---=20
-Mathieu Dubois-Briand, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+So the signal is not active low? Are you really sure?
+
+Looking at BH1750FVI there is no reset signal in the first place...
+unless you mean this is DVI, but the description should then mention it.
+
+If this is DVI, then it is active low.
+
+Best regards,
+Krzysztof
 
 
