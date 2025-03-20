@@ -1,132 +1,172 @@
-Return-Path: <devicetree+bounces-159372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27833A6A7FD
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 15:10:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88F4CA6A866
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 15:24:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 506827AE7CC
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 14:08:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E857E4A0717
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 14:22:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59BE2221579;
-	Thu, 20 Mar 2025 14:09:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45998223321;
+	Thu, 20 Mar 2025 14:21:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="RnjYKOkT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fb2xLXAr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 959B6EEBA;
-	Thu, 20 Mar 2025 14:09:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C7A4222580
+	for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 14:21:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742479792; cv=none; b=uNrBhCDEcwVdRg3FKrjE5P576O5OxTDcazAMNjyzqC0w2y1tU5ABkmRTaIAxQgPjWbR7+s7EXT9OGBSPt0MbBrHWFB196mYRrvOtS4ngN54ZHchL1FIyNgT60SD0bQCPsevgCmb3HKTF+W2xupZamPapptjPKjJSAdAxVwb04Zw=
+	t=1742480495; cv=none; b=icMzb2QI+G7SpQxP4jl5fcTyCNB2Mzkzt9k3F/Y+VQp86THewQ5NQC5uu5Z1ufx4FcZ4X4BLXkiuMlWLAQI2jVR14zDnPbk9BRup4MbGWRmNVQ0G4Pvkh7W1o7Uc92HiSLxp40fIctm4bA1kMTpBXWLbzk2WJj2zNxWn1iRNyI8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742479792; c=relaxed/simple;
-	bh=3gUsqaE7mUufKOG+8Ij0UulGdSKP7dyRB6jukOjry5w=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=j4dK9tmiBtTp6InsfuPnLSryiHUlotFM1WFhkHhRSC1+XK2pRWOntJpWyaWUiS7X1mSxOchuZvfnFjhJbSPHukt4SMLZ3LxWPc0yqnZrGrwcx0S8+z5HHJ+K6smazNI1EfoI0xxdixi5c2v/KZ9jKEQm83Y9WtQnDxiMmAH7ybY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=RnjYKOkT; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 9A3AB444F5;
-	Thu, 20 Mar 2025 14:09:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1742479787;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+k1WKBS8wmBGYzs9sr3LXVqLTZJWa/ILl+XBNscDrbY=;
-	b=RnjYKOkToOruA8gtWMfVJQ2lVzosiERg2s/F0lfOMsW+ruPaTOwSBxJrVEsbEBOUHf/zsi
-	Taf0zisRRm7yXvuh9Y9N/mcLcRLWcp9ghxNIIYxEdy4JgNKmvIzry06R7k4pdux4r+kp3/
-	Jc8HCqJe+bRnGbNoYJ7/HbDSLXy8gId8hxT7K3adtc9V9+q7l8sWWqbpXywAuhYgDoFbLW
-	XxgGGb4+afw6A+479MukdQiPptRg7ekdm1cE33XeQWAMLG2GpfHYuROX5G5njn2M6xixjx
-	uCjG68LJ3GXjQQhXjXUpVGe1Yppmn19/s3b/4tpGVIw1gaJFCZLHvOOs+TeVfw==
-Date: Thu, 20 Mar 2025 15:09:44 +0100
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
- Abeni <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Donald Hunter
- <donald.hunter@gmail.com>, Rob Herring <robh@kernel.org>, Andrew Lunn
- <andrew+netdev@lunn.ch>, Simon Horman <horms@kernel.org>, Heiner Kallweit
- <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Liam
- Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
- linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>, Dent
- Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de, Maxime
- Chevallier <maxime.chevallier@bootlin.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v6 03/12] net: pse-pd: tps23881: Add support
- for PSE events and interrupts
-Message-ID: <20250320150944.6ee054c3@kmaincent-XPS-13-7390>
-In-Reply-To: <Z9fu3u34K3-OeDis@pengutronix.de>
-References: <20250304-feature_poe_port_prio-v6-0-3dc0c5ebaf32@bootlin.com>
-	<20250304-feature_poe_port_prio-v6-3-3dc0c5ebaf32@bootlin.com>
-	<Z9fu3u34K3-OeDis@pengutronix.de>
-Organization: bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1742480495; c=relaxed/simple;
+	bh=KM4ZCMaCLFfkTKaneHhDJ+FlPOOBtprvWKZvUFRSOko=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=besQvpxUMexKimeVhhdUFMCIcm/0UefIrUBe5TC9RhVY8rq0ratnX8KRvKB8MCYqKze4ebOQoj1WDL/flhJVjo42DIncMLmfoK1sypWH9x03n2LK9X4IIA17f2Ug/sA1JtZ1zWFFd7nDtTgVz3uUVvReW+14mox7CCbK7IFWY/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fb2xLXAr; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-43cfebc343dso6433465e9.2
+        for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 07:21:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1742480491; x=1743085291; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NZbg94QK7tAjZ4eqQ8xaJAIEHJ1PEfH8AojbdclcFGM=;
+        b=fb2xLXArsFgmWyCE/nONlc1OHxH2mimygwuFvOqkfuAW6gq7uLAN1Lqi0Tc3vfF4Pm
+         uYak3CDFRnZCLS+eXxZJIqZ2pn8TcX8kIfdbaXheLA+TE5POblR6NkdUYpdD4jX0xvdu
+         g+O7qM3OWN3TqM+c7lWBp9mZ17HhI3QFsjVlXqd3V5P20S2wIH7X3L5GODYEU5Ovf7CY
+         JjDrIHsP6o1I7uBnvbKBE1Ii84xgzodvbwHNybjeAgIPtQVtPBM73uyETVDLfL4Tdh8u
+         AbyBd+s8dMvS+LlM98MXBVXYWmkLE1lUGOfCrVSh4XXkze2k+6L6sQUonSiSLGjLCyXt
+         c36Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742480491; x=1743085291;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=NZbg94QK7tAjZ4eqQ8xaJAIEHJ1PEfH8AojbdclcFGM=;
+        b=R4h9V+AgPcesB8VB0F7Bn6HhwvbHoHbcPoY9CTL9onJGeuqBi0sAiYtFDeO5VY2kN+
+         DUcfPmNBlGzRFYcq4csLzJVsbOB7tcOpVEiGMJMiYhXuIGMbcO3EQK5GuUoElzBNYsWr
+         pyWEU7TN7TsaBDZouCejyMyAY9Bnm4iM20jIp55YeevoAwBnGb319uJZ8bGhO+u3pt54
+         T1+QenvNzSk8l4SDOFt4T5losPNOo0oDygs5ML2d9YsUJiIhhq66IPZE9nCoG+TI1CH5
+         DF1rxjcXwSPrDYuhnYkU8k4DtxsM1QECyu2dDVQ+3GtedeyC3F0KnL8GFd66m3b2KYeB
+         6YKg==
+X-Forwarded-Encrypted: i=1; AJvYcCUqlwj4EXJkzz4ebpCPp+/IAMd4ff1hfihxA7ygGxiGYFNEybv3u5umYMtnniqdUUHWzCeR6VsWyPs/@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJlJlIp2p2NGMQAqEU3/1trVnzBwvhLGdWMYqmiInqAPS7T6hL
+	HVcdQonxH2lZ8TtDLccv3dRt48uHlNHInvXoDZklUx1usSKJLLvG3jiJIBGNPPU=
+X-Gm-Gg: ASbGncswZAZjRkXjkT0KIDUgHtkK+oj8uBIxFiRrWZeNTq1gWaXdeVkDRJEO8mQB18K
+	qtPmm3L77SwlxxLpaQzjBX17UsJenrh/JvAu6mktifYiXEbKj5e96vkBGlleRY9leyEJIDmqo+7
+	QQreHluqR0ObuUDw1WRGXE0m133J9gqPtdOAfMntX7oawIOWE/C17N/LoxZRU3IXM9rsUp9Zj2o
+	BVzJytpZqDqBJUesb6J8uEgj5++JUeeysVk+xH0MAZ5Gvq6aCcSO2/eirx7/LrG1OtWx8Fd/mFH
+	sKlRL1XQRwE4h54xGIwdyZ+kuvax4+J+4ZsasDTeMFMtoBFYh4B4xEKTNuNDVmxoqJR7wdrQ9q0
+	o4MX9QmFJJVau66RU
+X-Google-Smtp-Source: AGHT+IHwKg3G7PLtrFm8wWRV8MxbX7wu9hl+TgEb8GtAYHTVjykg6cpeFV88/xcw1UY02BI2wxLzKw==
+X-Received: by 2002:a7b:c314:0:b0:43b:cc3c:60bc with SMTP id 5b1f17b1804b1-43d43793107mr56231295e9.15.1742480491447;
+        Thu, 20 Mar 2025 07:21:31 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:3bd:568:f697:d1a2? ([2a01:e0a:3d9:2080:3bd:568:f697:d1a2])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-395cb40fab8sm24634233f8f.63.2025.03.20.07.21.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Mar 2025 07:21:31 -0700 (PDT)
+Message-ID: <9cdd8ed8-082f-4b17-94a0-e8ee61b9da9c@linaro.org>
+Date: Thu, 20 Mar 2025 15:21:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddugeekgedvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtqhertdertdejnecuhfhrohhmpefmohhrhicuofgrihhntggvnhhtuceokhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgfdutdefvedtudegvefgvedtgfdvhfdtueeltefffefffffhgfetkedvfeduieeinecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehkmhgrihhntggvnhhtqdgirffuqddufedqjeefledtpdhmrghilhhfrhhomhepkhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvdejpdhrtghpthhtohepohdrrhgvmhhpvghlsehpvghnghhuthhrohhnihigrdguvgdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnvghtpdhrtghpthhtohepvgguuhhmrgiivghtsehgohhoghhlvgdrtghomhdprhgtphhtthhopehku
- hgsrgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepphgrsggvnhhisehrvgguhhgrthdrtghomhdprhgtphhtthhopegtohhrsggvtheslhifnhdrnhgvthdprhgtphhtthhopeguohhnrghlugdrhhhunhhtvghrsehgmhgrihhlrdgtohhm
-X-GND-Sasl: kory.maincent@bootlin.com
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v5 2/7] dt-bindings: usb: Introduce qcom,snps-dwc3
+To: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
+ Wesley Cheng <quic_wcheng@quicinc.com>,
+ Saravana Kannan <saravanak@google.com>,
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Frank Li <Frank.li@nxp.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250318-dwc3-refactor-v5-0-90ea6e5b3ba4@oss.qualcomm.com>
+ <20250318-dwc3-refactor-v5-2-90ea6e5b3ba4@oss.qualcomm.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20250318-dwc3-refactor-v5-2-90ea6e5b3ba4@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, 17 Mar 2025 10:43:58 +0100
-Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+Hi,
 
-> On Tue, Mar 04, 2025 at 11:18:52AM +0100, Kory Maincent wrote:
-> > +static int tps23881_irq_handler(int irq, struct pse_controller_dev *pc=
-dev,
-> > +				unsigned long *notifs,
-> > +				unsigned long *notifs_mask)
-> > +{
-> > +	struct tps23881_priv *priv =3D to_tps23881_priv(pcdev);
-> > +	struct i2c_client *client =3D priv->client;
-> > +	int ret, it_mask;
-> > +
-> > +	/* Get interruption mask */
-> > +	ret =3D i2c_smbus_read_word_data(client, TPS23881_REG_IT_MASK);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +	it_mask =3D ret;
-> > +
-> > +	/* Read interrupt register until it frees the interruption pin. */
-> > +	while (true) { =20
->=20
-> If the hardware has a stuck interrupt, this could result in an infinite
-> loop. max_retries with some sane value would be good.
+On 18/03/2025 20:05, Bjorn Andersson wrote:
+> The Qualcomm USB glue is not separate of the Synopsys DWC3 core and
+> several of the snps,dwc3 properties (such as clocks and reset) conflicts
+> in expectation with the Qualcomm integration.
+> 
+> Using the newly split out Synopsys DWC3 core properties, describe the
+> Qualcomm USB block in a single block. The new binding is a copy of
+> qcom,dwc3 with the needed modifications.
+> 
+> It would have been convenient to retain the two structures with the same
+> compatibles, but as there exist no way to select a binding based on the
+> absence of a subnode/patternProperty, a new generic compatible is
+> introduced to describe this binding.
+> 
+> To avoid redefining all the platform-specific compatibles, "select" is
+> used to tell the DeviceTree validator which binding to use solely on the
+> generic compatible. (Otherwise if the specific compatible matches during
+> validation, the generic one must match as well)
+> 
+> Mark qcom,dwc3 deprecated, to favor expressing future platforms using
+> the new combined binding.
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
+> ---
+>   .../devicetree/bindings/usb/qcom,dwc3.yaml         |  13 +-
+>   .../devicetree/bindings/usb/qcom,snps-dwc3.yaml    | 620 +++++++++++++++++++++
+>   2 files changed, 632 insertions(+), 1 deletion(-)
+> 
 
-Ack I will. Do you have a value in mind as a sane value?
+When converting sm8550 and sm8650, I get:
+usb@a600000: Unevaluated properties are not allowed ('dma-coherent' was unexpected)
+         from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
 
-> > +
-> > +static int tps23881_setup_irq(struct tps23881_priv *priv, int irq)
-> > +{
-> > +	struct i2c_client *client =3D priv->client;
-> > +	struct pse_irq_desc irq_desc =3D {
-> > +		.name =3D "tps23881-irq", =20
->=20
-> here or in devm_pse_irq_helper() it would be good to add intex suffix to
-> the irq handler name.
+So I guess it should be added.
 
-You mean index? Like the PSE index?
-So I will need to add back the support of the PSE index in the series.
-
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+Neil
 
