@@ -1,172 +1,150 @@
-Return-Path: <devicetree+bounces-159272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7B65A6A30B
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 10:57:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7815A6A340
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 11:03:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 549527AFBCE
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 09:56:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B9B6466B5D
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 10:02:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 857FF221DBD;
-	Thu, 20 Mar 2025 09:57:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C9AD224235;
+	Thu, 20 Mar 2025 10:01:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mdXykzDW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sg2apc01on2115.outbound.protection.outlook.com [40.107.215.115])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5D064A1D;
-	Thu, 20 Mar 2025 09:57:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.215.115
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742464646; cv=fail; b=jwW4R0F8wtuXfbOrksJgLGWu2lgq4kgFhZLIrIGej6ABLkYLbxc6p1CxJw0JzCZNzQCb7NQAzUw2aVIHClQEyv1LkU6m7iG76Yzcow3JVBue5Xnv9M1cqvL4rNFVml+tERkCLWxRChJK/OwtcGrRLi3xcGFOi0l4o8eI50Qx8/Y=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742464646; c=relaxed/simple;
-	bh=d7UkPpeLn5Zm/sKj3abFB8LUSCw/4v6JECT+quVxliM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ERxfIl++3B0L7WnYN5U4Td0geSrdVQNpgzi37y9e54mEqzfdI9BVbCVC0o+j0jEUQwYGqCKWX03/yr+xCf1uAw3fkfXLHeZ8ZGxPCkbIlWHND3bTzuOkH+/hVK7Sh6sRw8dxTfu1tQ/lkPqhdgGUWnp28/twXTTMIqr2xJ76U8M=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.215.115
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DbsOApPpn7GHhEClZHIr1V+0SXIyQVVuV+e5ovPxL9fZDdovkmrDiSJYaz+dPP7x3QDPKNKXEPTXTfz+eZFfAXWAdSnFQzgDpOAHNrNZCrRapPH4jeIMeMwY9sOoL0D64ViYJFxgpzpHOwCIZymQTVQGKLvbiJZmESC7DTKpznDuo0xHYg3CMsTQOyUP3tf4PDFWJsdjPm6H0KbW2rxRPS2PtNEnc6TT3/B9wDOKbN9ZGAan73XASCG2l2hjYM9sWhA+NOjHsPsEzc7dseRGOIzUNtBeLP+SJMqvUGfEjiLImQAWOzAPA+ixnPSeQswXRFncHZY6kc4zyyZEVwz/Hg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=S5kr2Tm0tZxd98Gq5KQ3KxEI/Hx3p+OotGqMxIH1g5I=;
- b=vCRpo3nr/nw6K2UwOs4jjvp1c7Sr8jS/2Z4MjsLge7YZjP9WhbaGSrJgTgfb/2rLE8H3EVSyT9TH0Ai7kdY78HzT4TxhigmgDXEWYLm0U6lB2kOffwB0HMkydEuvEqzrkPjebAkh/efL+eORo2Q4/tGXEEgUBBc0pyplrikzZ3/28MRTvWqGjjLaGjDDgxpyJSoVnM0bVl6UyrU2CzP/PTUFER1jluR+7bAkrZSQIaZ3naR7YZgQ4LSB74JGaKxWfTuiTXLwW7Ygpsxlmxz0ilkVVrrAPL3gL8Uf5YRNvOC9LDt5OkqWcaxwnTCMjxOG+aNjgFeRf3dBcLt2MA/CGw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from SGBP274CA0010.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b0::22) by
- KL1PR0601MB5727.apcprd06.prod.outlook.com (2603:1096:820:b0::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.27; Thu, 20 Mar
- 2025 09:57:19 +0000
-Received: from SG2PEPF000B66D0.apcprd03.prod.outlook.com
- (2603:1096:4:b0:cafe::ad) by SGBP274CA0010.outlook.office365.com
- (2603:1096:4:b0::22) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.36 via Frontend Transport; Thu,
- 20 Mar 2025 09:57:19 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- SG2PEPF000B66D0.mail.protection.outlook.com (10.167.240.26) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8534.20 via Frontend Transport; Thu, 20 Mar 2025 09:57:18 +0000
-Received: from nchen-desktop (unknown [172.16.64.25])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 117294160CA0;
-	Thu, 20 Mar 2025 17:57:18 +0800 (CST)
-Date: Thu, 20 Mar 2025 17:57:13 +0800
-From: Peter Chen <peter.chen@cixtech.com>
-To: Marc Zyngier <maz@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
-	marcin@juszkiewicz.com.pl,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Fugang Duan <fugang.duan@cixtech.com>
-Subject: Re: [PATCH v4 5/6] arm64: dts: cix: add initial CIX P1(SKY1) dts
- support
-Message-ID: <Z9vmeTj68LmwinPD@nchen-desktop>
-References: <20250305053823.2048217-1-peter.chen@cixtech.com>
- <20250305053823.2048217-6-peter.chen@cixtech.com>
- <86frj8m4be.wl-maz@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0D2D22259E;
+	Thu, 20 Mar 2025 10:01:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.176
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1742464903; cv=none; b=OIicpOk7zobi+DLAGDT0ryom1dGMXijBk9BSZb6f/bFoCeV/QLsvMErhGN7xCi8BHdQvlOUwyUVgfclxhwVUXNoMp7JOXaApDG6rPqHIYag74gmVEsHi/HoJWEH8ka5XgN0f4cPcvpfXWSIN4JbuJzSQQu6g+B+GpKyeqKtIzHo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1742464903; c=relaxed/simple;
+	bh=3uEhFvWgTZ3qE+HGzh3HTAH18SIHho193NXFHIRXPSU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Kfrj2ufM75izW7VYWKyXHI+Cfao2G9Nua8LniYQ+Y5Notm2ExVDFpBlq1Ftt9g5XhnrDRKT1wYq07Wxi6khVm6uN3AnluQyZ0bMPycjb4n1kgQnGY9Augxv2voeE5/AxZ8ACJo93A6R+yKpWSf7H/QnZ4lBTfSJWm8iUfAz/vis=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mdXykzDW; arc=none smtp.client-ip=209.85.221.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-5242f137a1eso282817e0c.1;
+        Thu, 20 Mar 2025 03:01:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742464900; x=1743069700; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VkOqX1hHmiQ4/Ww30LXv9z0S90BxKz274f5FP6A6x7o=;
+        b=mdXykzDWiepnGY4YOctmeanonRAn+jIl6jhtB/lgIVfPfVoJHYXxVuGc430NxmEhHj
+         urSAu6zONRESSof+EZJ0o7rFK5J9ZUyQvsfHUFBObKzBdqfKMTMCLVxTFfWq6mZ9u3ZV
+         040N0Dmnr7q5GG2gU7X+qjogZh0Z9FWJOKCAz6hWvh0UkTAlBYwmHyRKERSaj/Zn5k3t
+         XfYNId+8k570f1YODSUMcqcJvo2sqq2XNfm2zgh8e5QRlYD5SeZQCZP62wuCOGUoA/A/
+         Q7w2y21ao4SEcvPb1Uch9SJWgDz+aJ5YdWzPABaGBA/zZdrb4+0g+4x77P0cUWYVpCvj
+         flVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742464900; x=1743069700;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VkOqX1hHmiQ4/Ww30LXv9z0S90BxKz274f5FP6A6x7o=;
+        b=qEYOijJ018sWrhJdpFKCDC1kywwjMGZDvJFRBu/FdhYjX+off4YFWGCrQpQ6HqpNtH
+         Iv3LbXEautgQKRuUp0n/sQMBi0UwmFQ8fZ/SfxpfcVUE3KBfSL9s4cAsuvx5shpeARdf
+         V7sC3xZvEO0FMvgYOeUIExGM1MIY4j5cT5Jx8/zXVSazb+BdCyDVdt16BcodVl7K43ty
+         B9rRbUIqGVdIxEpmij668+6gL8M4dLz92shLQycDAyjd8WKL/Sc1T3iNFkh9YFlyWzSJ
+         deYKZ+QfheuohrE9D9CMhCMErXE8P2uHEOQ/McwsH1wugo8TKy8994EPx3DS8qmKYlCY
+         lQnw==
+X-Forwarded-Encrypted: i=1; AJvYcCUE0OnH4bFhWm97z0oESC15b8sasokxxWmVTMQZpZmB3Q43V1pXVcRtd6lSFJ9OMVO8pecqrPY/@vger.kernel.org, AJvYcCVA2rkLaTLGEugpOmOhAAFV4rRK6wXn85J9FzT4pyV2Adxd+jSOEjz+VTEOy0fXjbgJPhlg3T8OEAu6A7lZ7HbQTHs=@vger.kernel.org, AJvYcCXjFjyZLEoSnSmSK1Ala5vs/fSVU2WW4aEjNNJwaWShYuyt75zfP0N4k2jVZdAecbsSrMc2xkUg2FSI@vger.kernel.org, AJvYcCXrDHvkWY/055khguTo1A9dA05twSMEJesSSUxKmo7vAW1mLhq2UXc9DcWAQEqFneBZDTZI3GREB3zVTO0X@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+4/xLlkHBGJD/EBsFbMPg0Cyc0dl5uI9vXppf6VD3v9hXFGvS
+	EBlS6RgH5M+8JC+5Bvjdgu+9jBBNeuItw4rsCZx3hHEVYDQOtFdOvGDsJivCfIK61l3bsEju08X
+	/axnyBY2JOAYAaLoTNRGTq45447E=
+X-Gm-Gg: ASbGncseYFUVOXtHKl324huv+2CPwN9+Nh1ZAHsDhMNJsbVkHGlvqs/vh3QdBHMLf2F
+	B6APp1FDa4Mw9jJkhdn+3D84HMqhK1h8JOsbx3RJqmXFbnwDFcI7DMzc6GYdHXlJbnEJ4Vf2zrG
+	Gfn06TQuFxH608mI0AGl+Z1aFbcA==
+X-Google-Smtp-Source: AGHT+IFYV5TnCzk+c53bzke6nPS2rmsXWIkLBB61jOeJkZU/pepHxMCueeeEqgu0mBt8iULwpOf2mSKf5NdE5ODHOPs=
+X-Received: by 2002:a05:6122:4312:b0:520:6773:e5c5 with SMTP id
+ 71dfb90a1353d-5258926463bmr4862359e0c.7.1742464900176; Thu, 20 Mar 2025
+ 03:01:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <86frj8m4be.wl-maz@kernel.org>
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG2PEPF000B66D0:EE_|KL1PR0601MB5727:EE_
-X-MS-Office365-Filtering-Correlation-Id: c6ee90ac-8b72-4452-06eb-08dd67959a28
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|376014|1800799024|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?b4tz9UPHHxvgnroxR/JoGz6b02mRgyOW3RwD+pTCmXRV2VTxm7HrKPoI5kR2?=
- =?us-ascii?Q?A1JBkfoyzRSAkoAAEBxkOiqAgzRU/Yp6X9pRjDoMK9RrVNoWVm8kSTgR8CrM?=
- =?us-ascii?Q?Yl3PCVn3zQONj8ATlnEP/niMLye6Lbm8vTUGfxryfDKw+wuskvHAF3J50CyS?=
- =?us-ascii?Q?jkQ7T1TTafHDuUiNCDZElWRWQ85Be8vfw+KbvWfQOTrdF/gnCZFdJh8UkSBP?=
- =?us-ascii?Q?oRlG6lkPGHykKxsHkn+1XaziqGfl8dEHVnNp/K9Oq0xjRqrCQu6MeReY2K0q?=
- =?us-ascii?Q?w8O5yCRqkqj/9wWGcOButAAa/Fd0OwGk422reupJORkFjufXdg34OUtbx3nS?=
- =?us-ascii?Q?gBYTTMM6PIT0MzcYHYmY73SbQqElgCgqdQF4isAJxU+zie+G7KQdUlVb2dSM?=
- =?us-ascii?Q?KMGBbZ+kP7tidxRGBG6EWeIn7C/EFmq7H9hkfN9n74ICPQUjGHm60EIWovHk?=
- =?us-ascii?Q?t67LgmJVUkqyZ6aLu+5r7dLcuUG7NfUf+fxrjaAzOM9IR/dT2mZy/LfTPYb9?=
- =?us-ascii?Q?u7GXoT2+vA/WFFwgUCf2cQ5gW6aL+vw1vY641DQejqOzj7nkwoYz9V70ylgt?=
- =?us-ascii?Q?aVFZYBzOCLlhYu0ljXymyjvBaB5uVxW0WHTy6nARem+nZy+zwKxkFWH2nK8k?=
- =?us-ascii?Q?N08Bd1aUMbqL3/Rc8r4zC9xlgg/p3/775agVNjCk8LkWLEq7BYYdc0iPHeIz?=
- =?us-ascii?Q?mPkNnew8uUXqm8mEzQxU96KOnry+cLFvG0oo5pRApCtCYRV+uHTW5F5SO6xn?=
- =?us-ascii?Q?gLILbbDaxfptAza7HR9HBxzm1GE6Kt6KRtr1bCZqgd2/RekWQcKLqSNKblgB?=
- =?us-ascii?Q?C6rsJ5ESKlcqJ5/eLWAShdj8HNx9jIEwOfcKOZ2mTm+J0FAKmn247RPuc4mU?=
- =?us-ascii?Q?7htpEzFpk5hjQg+sDggJ2qxgO4fke49Ffqtgq0XgjgPkmDdXRhUnG1dvAJ7o?=
- =?us-ascii?Q?WAMKDz2yZNcOBO1xOMsl3a5lbgpEFuvWQnm76wKGVG4KXdtfoZBzJpmHW7lW?=
- =?us-ascii?Q?oo6LHgqeDBwYfoUqAk8Zm/5EJ4PUi1ZzwORzshUiQJsflOujv+aMu5cNJpQf?=
- =?us-ascii?Q?5cTmeqGuLcDNweZyTvoKWoxBl1dFynNkQ32CzaSM39+aOis61Bq7fQZgu9Ym?=
- =?us-ascii?Q?Qr0S8n+HoFoBbOor0f4dvEDleGmCeUxJMC8boV1ZHs49Ks8RsFGwC9thwPCg?=
- =?us-ascii?Q?RY+I1oU42on/J7KeOa8jGu6vYQjjte4pAV6Qtp5uhaV5fZdR+1+FdviMPeiK?=
- =?us-ascii?Q?GpEL2p0pXdEzvdg/yK8fmEn7bOngqWZCQBqSoNK4p5QK0aETLY/iqdZKAQ1k?=
- =?us-ascii?Q?T/5SWB9tBFK6r6tt674WYYNcaH9x96JZfB1m9Gea/W+Rradh1DpBJdimFUWM?=
- =?us-ascii?Q?zgBqA0XBT/5ftuIBwrV2KIvhijxSOl4gJfR8kGIKLpdDHAaSMn9qDi5/KmcB?=
- =?us-ascii?Q?BwnAXncz+PaAexKawOP2VkifHf2P5n2UjvWiXuDgwa0OdMuThTkNg9RhG12F?=
- =?us-ascii?Q?n3WbvLbNdkHBbgI=3D?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2025 09:57:18.8862
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c6ee90ac-8b72-4452-06eb-08dd67959a28
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource: SG2PEPF000B66D0.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR0601MB5727
+References: <20250318205735.122590-4-prabhakar.mahadev-lad.rj@bp.renesas.com> <202503200755.DoMipQnf-lkp@intel.com>
+In-Reply-To: <202503200755.DoMipQnf-lkp@intel.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Thu, 20 Mar 2025 10:01:14 +0000
+X-Gm-Features: AQ5f1Jrf1Dd0xKJnFdvTZS6D8krk5Rik-xKFXlxkwAiuooKI5_9kmPU6SYIxyac
+Message-ID: <CA+V-a8us=RbApdSJ7SLchrQLSbch8jkP3uOCC8TVFiVe4yULnw@mail.gmail.com>
+Subject: Re: [PATCH net-next v4 3/3] net: stmmac: Add DWMAC glue layer for
+ Renesas GBETH
+To: kernel test robot <lkp@intel.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, 
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+	Jose Abreu <joabreu@synopsys.com>, llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 25-03-20 09:36:37, Marc Zyngier wrote:
-> Peter Chen <peter.chen@cixtech.com> wrote:
-> >
-> > +     pmu-a520 {
-> > +             compatible = "arm,cortex-a520-pmu";
-> > +             interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW &ppi_partition0>;
-> > +     };
-> > +
-> > +     pmu-a720 {
-> > +             compatible = "arm,cortex-a720-pmu";
-> > +             interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW &ppi_partition1>;
-> > +     };
-> > +
-> > +     pmu-spe {
-> > +             compatible = "arm,statistical-profiling-extension-v1";
-> > +             interrupts = <GIC_PPI 5 IRQ_TYPE_LEVEL_LOW 0>;
-> > +     };
-> 
-> SPE should follow the same model as the PMU, as each CPU has its own
-> SPE implementation, exposing different micro-architectural details.
-> 
+Hi,
 
-Hi Marc,
+On Thu, Mar 20, 2025 at 12:29=E2=80=AFAM kernel test robot <lkp@intel.com> =
+wrote:
+>
+> Hi Prabhakar,
+>
+> kernel test robot noticed the following build errors:
+>
+> [auto build test ERROR on net-next/main]
+>
+> url:    https://github.com/intel-lab-lkp/linux/commits/Prabhakar/dt-bindi=
+ngs-net-dwmac-Increase-maxItems-for-interrupts-and-interrupt-names/20250319=
+-050021
+> base:   net-next/main
+> patch link:    https://lore.kernel.org/r/20250318205735.122590-4-prabhaka=
+r.mahadev-lad.rj%40bp.renesas.com
+> patch subject: [PATCH net-next v4 3/3] net: stmmac: Add DWMAC glue layer =
+for Renesas GBETH
+> config: s390-allmodconfig (https://download.01.org/0day-ci/archive/202503=
+20/202503200755.DoMipQnf-lkp@intel.com/config)
+> compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b=
+5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
+> reproduce (this is a W=3D1 build): (https://download.01.org/0day-ci/archi=
+ve/20250320/202503200755.DoMipQnf-lkp@intel.com/reproduce)
+>
+> If you fix the issue in a separate patch/commit (i.e. not just a new vers=
+ion of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202503200755.DoMipQnf-lkp=
+@intel.com/
+>
+> All errors (new ones prefixed by >>):
+>
+> >> drivers/net/ethernet/stmicro/stmmac/dwmac-renesas-gbeth.c:125:7: error=
+: use of undeclared identifier 'STMMAC_FLAG_EN_TX_LPI_CLK_PHY_CAP'
+>      125 |                            STMMAC_FLAG_EN_TX_LPI_CLK_PHY_CAP |
+>          |                            ^
+>    1 error generated.
+>
+The dependent patch [0] has now merged into net-next, with this we
+shouldn't be able to see this build issue.
 
-Thanks for your reply. But there is only one compatible string
-"statistical-profiling-extension-v1" at drivers/perf/arm_spe_pmu.c,
-how could differentiate pmu-spe-a720 and pmu-spe-a520, do I need
-to change arm_spe_pmu.c as well?
+[0] https://web.git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git=
+/commit/?id=3D0c1f1eb65425
 
--- 
-
-Best regards,
-Peter
+Cheers,
+Prabhakar
 
