@@ -1,166 +1,136 @@
-Return-Path: <devicetree+bounces-159209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8EB7A6A04C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 08:19:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3813A6A06B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 08:30:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 157D246353F
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 07:18:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 08C19422882
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 07:30:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDA8E1EDA2B;
-	Thu, 20 Mar 2025 07:18:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 323191F0991;
+	Thu, 20 Mar 2025 07:30:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fqY8rxlz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kyEww0H3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDE2A1DD889;
-	Thu, 20 Mar 2025 07:18:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 717421EDA3C;
+	Thu, 20 Mar 2025 07:30:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742455134; cv=none; b=fH7cpBkhLphdNgeZ6yqVkgvjxy221oxcBxkOjdjNKBM39GZqnSy+dCbfevwVlYNN7iX+8XxYY5QyEaaYymZFhj0CZh3dcS4LDRlT/3oP2nxHO7HUplczDwxKJ7NfYOd/Ura6JCCxT0aijNJ5VFnkocEKKHkF3dVJ1zbuOb7SAYk=
+	t=1742455824; cv=none; b=mu1GW6UR2kLd8rxqGlxWZXVyWDlLDM/uLE+MLojKSR7g68h0pbTyMzUPdVxTo+1vHuBGT6d4C0mYQeWSP4/In1lNbaUPmxg7ROZx7Mvv95duwJc+rMlqCW7qsc6/pBWqOg8Z5a/1Fpm41oZ+qQBbI/nMoIm2y9gaBZ7K/YgTmQg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742455134; c=relaxed/simple;
-	bh=kxKAgq/NDsPF5TQtNFMo6zJ1/0mznWY2fOwgsNoN6Ps=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=R8qq0VRtFI9NYQ8VM2mWkf1ZvdkZFxLDUaRdfRB1HInmFRJN9EoEUxNZZMa48FPgjQOltll8bKNAGMIbpXyzgaIxEuVkxzs8UP4HmLK1TuI/Sw0PCmurijZoat5BsvIJ9l1tdowWEBeM1XaCe41T8UlWjP3LRFecuHoc6oVcJks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fqY8rxlz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F030C4CEDD;
-	Thu, 20 Mar 2025 07:18:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742455134;
-	bh=kxKAgq/NDsPF5TQtNFMo6zJ1/0mznWY2fOwgsNoN6Ps=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fqY8rxlzJz6oUqi9P/lkEIP5zOvuDoKEmloABF4AuzQnj4lPqPGh0gHU5ABr6WTSI
-	 eKM7OmGTjqkjmWKqFcye6xa/9mm1pykSptLiCNABwD4PDK5eTlbDtg9vRHf60hPokq
-	 2cIy0p3qFnm0+/JzwfU9UvEiVETbZqAjWmqpr0plBPBaR7oSPRL4moEeSrL0GrTYsV
-	 336wcIwKUAQbckJ9g7thJfkXKamJFSSbyvHFbAKbclAgxUp5HYToIbXszoR6BY1RW8
-	 13u+recotEWIiIPwoT/Io/VEcwBYjlnqg3vRdKD3PPMuI5fWsFXYu9sxZwmmIczkLC
-	 Wwtt1w649HRaA==
-Message-ID: <f4556511-3123-4131-af2f-c4044302979e@kernel.org>
-Date: Thu, 20 Mar 2025 08:18:48 +0100
+	s=arc-20240116; t=1742455824; c=relaxed/simple;
+	bh=/+fImEp4W04HXan71vn8rI4+3p5PDYAMaSKv5xbvHLY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=FCqXc/CEeucGKja0wf+It7ep+XcuW9qksgVGmEPjLleiTvxkyy33E7eyFxvQw5nAC/ZttkoYbgDBCm29TPRzEuEgMxgFvPV+JQM3GDJH1tiPcaEROmlYeFJCtQ4rtn89jUsG1lmQHJoXYRlQj5H2Q4AqfL6gJOMK132888hNmEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kyEww0H3; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-ac2ed007aacso114413366b.0;
+        Thu, 20 Mar 2025 00:30:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742455821; x=1743060621; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1Mpjffga6qbUYAqH/bNMoK3D9M2lbn6dBfVWt3T7sRg=;
+        b=kyEww0H34FsAksvRyHI4rwLu/hqJga9C8EUuSEOwyNKm4iaRnEMNyV46alkfsMJgPl
+         PaSEwy/rJtQW+JaR53ED2zeHWQjjM6lyF0x3fxPSnwjuFbhsBVUSoXH3aLq20Sib3fQC
+         BFa5TIjh0Jz5YB7Olh5K847LddOrLFEeGoo5xbT1GUOvUI1pCTLndzE85fS/X/a722aZ
+         5poST2jRBO8ymBmN4mh/EdRDGFXY+AjVHkhHpmGPm00SyytB8wRU4Rq1aQNrhZi/jBs/
+         6jNdzDsg86ilK82qW1ExexxQufnZECFGY+RV4IRCeRP4dVOzRXMwxBdgl5HDp7ksKA8d
+         URiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742455821; x=1743060621;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1Mpjffga6qbUYAqH/bNMoK3D9M2lbn6dBfVWt3T7sRg=;
+        b=LtaWV7HGNZ8mobdDcZjqXSYeD0LUB+YjrYFa/s6ZrCqgFZskezwsEeMUd6hXP2eOJU
+         1iir0ib42XSoQte+ubjPuCwAC0Li0Dr+IAFpjEdgs/701c37U7XkzegQ0U4rkdFXmmWx
+         tz7goJxVZhnhY58RPyzFJSePCDJUwXwpS2QTZCtY1ImBUS0rcM0xzK5NPyA1JU+7Lbii
+         2lHWreDV1MXqPZ9jFfOrg6vfUz7alRR5zi8tB+Lg7eHZY3CJhBlFd3yrQq2Upd0z/M6m
+         YbpNSvKQzGunvGx/chMZARUba4+veuOT1BcDWlHTa8iEFyZzDfaQyvYaMOQuUXTa9y1j
+         4cTA==
+X-Forwarded-Encrypted: i=1; AJvYcCVpCpiHE4fABtPH6mzRCHkMiYQ0xjlbDJq077VFVsZMB8/8M4w5/OnRmS59lH6BFcbfjmW2shGy10rL@vger.kernel.org, AJvYcCWi3E5EjZI6YeWJOR1ZvafEDIJbHNKiHc4nsHufVAreIzOkp8FIPHjgm+Bb3y3eBX5v6rhj7W8PJPVBcq5H@vger.kernel.org
+X-Gm-Message-State: AOJu0YxCxuXYyAoHMpRDrTKW52eeICaM5u54Q1tAAQ0uazxfW8SyeswW
+	/hN2dpXuC201urT1TwiXYZE/z59HLdmvcu0bEobSekWHGqaWkwQlA8Y1sA==
+X-Gm-Gg: ASbGncsx8xE2olE9XAajGxT7q2yyOWH4rJz/XLj1tNacwyAKXHs+2H0kH0X8m/5fdb7
+	QeXNZws0h4OMccDKU3CSvmveF5JHNAKA/C8HlPjHDGV65Ihz+0kmqX3gtPO+63/nlWtQIl1TT/i
+	dBdZ2NpVzf6A4VRvoO//NAc9P/Q6WprC9eXA1v2ZWO4wl5YpXZ4AK9OIqsSfEBLIgXqfU4LL7F/
+	QB+XW+EC5YE1kwRhbRi9V7n38ngag/HRIDGy77Z0dhAK2YziL+p5y93kF362sSHUpcXU+6ER8jZ
+	eukz+I8f/bvBV/8W0dHH5mZKLTDfv3QVX0kr
+X-Google-Smtp-Source: AGHT+IGc+dwu9EUcNrsBwPKQKnvaWdpbi5M7BeDPB1b/hfzq87dN1iZBojDWoe4F4XskixC0I1fVmw==
+X-Received: by 2002:a17:907:97c8:b0:ac2:cdcb:1b39 with SMTP id a640c23a62f3a-ac3b7d946a6mr517067866b.19.1742455820315;
+        Thu, 20 Mar 2025 00:30:20 -0700 (PDT)
+Received: from xeon.. ([188.163.112.51])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac3146aef69sm1115638466b.4.2025.03.20.00.30.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Mar 2025 00:30:19 -0700 (PDT)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Sebastian Reichel <sre@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/2] power: supply: Add support for Maxim MAX8971 charger
+Date: Thu, 20 Mar 2025 09:29:45 +0200
+Message-ID: <20250320072947.8174-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] iio: light: bh1750: Add hardware reset support via GPIO
-To: =?UTF-8?Q?Sergio_P=C3=A9rez?= <sergio@pereznus.es>,
- linux-iio@vger.kernel.org
-Cc: tduszyns@gmail.com, jic23@kernel.org, lars@metafoo.de, robh@kernel.org,
- conor+dt@kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250316145514.627-1-sergio@pereznus.es>
- <01f48f6d-55a4-4dbe-b1ae-ef8c54dcc1ff@kernel.org>
- <f0536d74-5433-4086-9dfc-1ce6aeeebe00@pereznus.es>
- <8992a79d-0859-4d7f-9b47-52e20b11260a@kernel.org>
- <144b5c43-f8c6-44d1-bcff-83158ac29781@pereznus.es>
- <202b4446-0ce4-4288-8588-6edfc32125d1@kernel.org>
- <bde38364-5c20-4030-ad7d-9ae38971b260@kernel.org>
- <bf16371c-189c-4e51-91e5-129f1dcad317@pereznus.es>
- <ac008fb8-7c82-4b9c-9d24-52ea38b920e5@kernel.org>
- <0507608a-91fd-4206-b921-942677c5f8d3@kernel.org>
- <4474831c-a8f6-496e-8348-a10e3fb7c798@pereznus.es>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <4474831c-a8f6-496e-8348-a10e3fb7c798@pereznus.es>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 19/03/2025 17:26, Sergio Pérez wrote:
-> 
-> El 19/03/2025 a las 9:46, Krzysztof Kozlowski escribió:
->> On 18/03/2025 18:37, Krzysztof Kozlowski wrote:
->>>> I've now run the tool correctly on my patch file and have fixed the
->>>> identified issues:
->>>> - Removed trailing whitespace
->>>> - Fixed lines exceeding 79 characters
->>>> - Fixed the inconsistency between the description and example for
->>>> reset-gpios
->>>> - Modified the existing example instead of adding a new one
->>>> - Ensured proper line endings and formatting
->>>> - Used proper get_maintainers.pl to include all recipients
->>>>
->>> Please read the guides carefully. The process is extremely simple as:
->>>
->>> git add ...
->>> git commit --signed-off
->>> git format-patch -v3 -2
->>> scripts/chekpatch.pl v3*
->>> scripts/get_maintainers.pl --no-git-fallback v3*
->>> git send-email *
->> Please read this again. I gave you detailed instruction which you still
->> decided not to follow. The instructions are quite precise on purpose,
->> because other method leads to wrong patchset - broken that or other way.
->>
-> I transcribe exactly the commands I have executed:
-> 
-> $ git add Documentation/devicetree/bindings/iio/light/bh1750.yaml
-> 
-> $ git commit --signed-off
-> 
-> $ git add drivers/iio/light/bh1750.c
-> 
-> $ git commit --signed-off
-> 
-> $ git format-patch -v3 -2
+The MAX8971 is a compact, high-frequency, high-efficiency
+switch-mode charger for a one-cell lithium-ion (Li+) battery.
 
-So v3 or v4 or v5? After this email (dated 18th March), you sent v4, two
-hours later not following mentioned process.
+---
+Changes on switching from v4 to v5:
+- revert schema to v3
+- removed i2c_client from driver data
+- removed max8971_supplied_to
+- swapped power_supply_config filling .of_node with .fwnode
+- attr group liked to power_supply_config
+- added ABI properties description
 
-And then yesterday you sent v3 again, why this is supposed to be v5.
+Changes on switching from v3 to v4:
+- swap graph with connector phandle
 
-Read the help of these commands, instead of copying them blindly without
-thinking. Every version is v3?
+Changes on switching from v2 to v3:
+- fast_charge_timer, top_off_threshold_current and top_off_timer converted to
+  device attributes. Other vendor properties removed.
+- removed max8971_config
+- removed unneded functions and definitions along vendor props removal
+- added __maybe_unused for resume function
 
-Best regards,
-Krzysztof
+Changes on switching from v1 to v2:
+- swap phandle with graph for extcon
+- added power-supply ref
+---
+
+Svyatoslav Ryhel (2):
+  dt-bindings: power: supply: Document Maxim MAX8971 charger
+  power: supply: Add support for Maxim MAX8971 charger
+
+ Documentation/ABI/testing/sysfs-class-power   |  43 +
+ .../bindings/power/supply/maxim,max8971.yaml  |  68 ++
+ drivers/power/supply/Kconfig                  |  14 +
+ drivers/power/supply/Makefile                 |   1 +
+ drivers/power/supply/max8971_charger.c        | 750 ++++++++++++++++++
+ 5 files changed, 876 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/maxim,max8971.yaml
+ create mode 100644 drivers/power/supply/max8971_charger.c
+
+-- 
+2.43.0
+
 
