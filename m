@@ -1,314 +1,200 @@
-Return-Path: <devicetree+bounces-159217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBE1FA6A088
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 08:37:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A2A5A6A0A7
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 08:43:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5BB0A42545C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 07:37:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7026D7A5578
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 07:42:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11CA5207DE2;
-	Thu, 20 Mar 2025 07:37:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23AB61F869E;
+	Thu, 20 Mar 2025 07:43:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="Gei0cDqU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F/1Fu0DN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0866207DEA;
-	Thu, 20 Mar 2025 07:37:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAD961C3BF1;
+	Thu, 20 Mar 2025 07:43:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742456227; cv=none; b=Nb3DIKeKk26YeUF7RX+t4DCpMk1g1Ii/ygPhVHecDXkmlkSzbZRTGdU4sDc1n9HlC/nTibyOTjA0H8IZmvtv+YY867BUjfvbZskx4EVOS5PhfwvwP26/FKEUAbP2vbjOdAoPQlFe3vuJwrAYbx9Dv/7Fdu0I1/AQ+at9ZjF290M=
+	t=1742456602; cv=none; b=h9nj0ziLViqkHEMn/IOb1uH/b4dCIJmuad104FpFl18mEFRnD6Pfa+vOV2qCTEE2sPHwcxVQAn5WXj++f4FSp0Iy7wThsgNqrw0B382EbFEHvsrExcnShsxqi6oA2Uzovhqd0W0RMFp64RpCQGzstTXNg0BvYy/i+aaXDyS4XDw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742456227; c=relaxed/simple;
-	bh=nLsOANJT/aINhdclRfW3Wt3Q2lipBv6ixoIBIFt/J6w=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YXAzc49BoDBALQXJihsJMBhPL+s6gZiy9INvlHQdNu06XpF6FUhmBmbh5m1kRgjA2kxlMLYSpdBIMAXPmYwbkWKeDF8GcK/vEYopV7+dXh4yS41DvVezl02D77duYr39ZYp7G94UiUT5ZNYPnEgBla6lQzRSwUNFiOw6AQ/d2og=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=Gei0cDqU; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 1b6ea9d6055e11f08eb9c36241bbb6fb-20250320
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=RZ2JcBvio+ntIgdmdYECbx7+bIzD61zrEsYhBVvtdO4=;
-	b=Gei0cDqUa+PAORV4DDXIdEHKtOSxHuTbrCk/TtXAzQ8QrPmb82KR/7wZ/8U9XKnfu9PQPX7JvP75a93D/4QDNi4E56xMS7sPVS0CbwN3vAWbiKbQd0laeqs+gcV1gFuR9CahWAnwmfSYo0MGZRer0btahf156ayov+R9j9xVu9c=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.2.1,REQID:c5f7bf32-1eee-41f1-9781-dd1d0799f524,IP:0,UR
-	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-	elease,TS:0
-X-CID-META: VersionHash:0ef645f,CLOUDID:1fae9c8c-f5b8-47d5-8cf3-b68fe7530c9a,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0|50,EDM:-3
-	,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV
-	:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 1b6ea9d6055e11f08eb9c36241bbb6fb-20250320
-Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw02.mediatek.com
-	(envelope-from <xueqi.zhang@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1275332326; Thu, 20 Mar 2025 15:36:59 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Thu, 20 Mar 2025 15:36:57 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Thu, 20 Mar 2025 15:36:57 +0800
-From: Xueqi Zhang <xueqi.zhang@mediatek.com>
-To: Yong Wu <yong.wu@mediatek.com>, Krzysztof Kozlowski <krzk@kernel.org>, Rob
- Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias
- Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>
-CC: Wendy-st Lin <wendy-st.lin@mediatek.com>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	<linux-mediatek@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<iommu@lists.linux.dev>, Xueqi Zhang <xueqi.zhang@mediatek.com>
-Subject: [PATCH 3/3] memory: mtk-smi: mt8196: Add smi support
-Date: Thu, 20 Mar 2025 15:36:18 +0800
-Message-ID: <20250320073625.25225-4-xueqi.zhang@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20250320073625.25225-1-xueqi.zhang@mediatek.com>
-References: <20250320073625.25225-1-xueqi.zhang@mediatek.com>
+	s=arc-20240116; t=1742456602; c=relaxed/simple;
+	bh=3lhO2km3yhcGSETOKtDVVVI/E/SbtDk4dNbH6wGgta8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Pd1pcQ/EKrKoVlkLI59KEZtN83UBu1PpiJ99DVDnKenTXdmzHJbPBNMfTf3SRQHx4NancK8QtJdgYrAJYZCrR0k4/gQB92n0uzRMT7esRqHgdHyMB/R2Yj4Z0eoIBsoOKrBg7i4wJB1HjEbHtcZqHLqqsHmI52lHSBgZHyYu/WY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F/1Fu0DN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9130DC4CEDD;
+	Thu, 20 Mar 2025 07:43:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742456601;
+	bh=3lhO2km3yhcGSETOKtDVVVI/E/SbtDk4dNbH6wGgta8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=F/1Fu0DNTO+aUXRxtvQqDJNt41yR39mSH4xCP+YjAHBACAaH5T6UnI+j8FSs5TdVN
+	 cJauPdKvFY9B1URplLoJ+EnZbtDwTF1MvVgQc6rsIMagDBbjipA9vdZ0hmmRJe39K1
+	 XV0dxV2BtqjjTF0TuStum2rmo1jCmFe2wUlDRkemh4d3I950avsIkuw41JEqGAbK+7
+	 WaWC9xV+EW4asyhno2NKeAGHfP/qOEX4swMrf0ZNeeLN+Kt61GPTSbWRZq6OwdLLr/
+	 KVeaaJP9oxt7lSsmyGDRBfBMbFnriefdhHewcbrOLPePpdrY3Gw75dA717kHuoJ4Zk
+	 rthG+rixVVsVw==
+Message-ID: <8665e99f-8d04-42fe-a81a-dfadf494cf6e@kernel.org>
+Date: Thu, 20 Mar 2025 08:43:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: x1e80100-tuxedo-14: add sound support
+To: srinivas.kandagatla@linaro.org, andersson@kernel.org,
+ konradybcio@kernel.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ggo@tuxedocomputers.com,
+ ettore.chimenti@linaro.org
+References: <20250319143613.11177-1-srinivas.kandagatla@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250319143613.11177-1-srinivas.kandagatla@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add support for MT8196 SMI common and SMI LARB.
-Since the MT8196 SMI connects with SMMU, rather than MTK_IOMMU,
-it doesn't componet_add with mtk_iommu. Add a flag
-MTK_SMI_FLAG_CONNECT_SMMUV3 for this.
+On 19/03/2025 15:36, srinivas.kandagatla@linaro.org wrote:
+> From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> 
+> This patch adds sound support for this platform,
+> support includes
+> 	- 2x Speakers.
+> 	- 2x dmic
+> 	- Headset
+> 
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> ---
+> 
+> This patch depends on
+> "arm64: dts: qcom: Add device tree for TUXEDO Elite 14 Gen1" patch
+>  https://lkml.org/lkml/2025/3/6/867
+> 
+> ucm changes:
+> https://github.com/Srinivas-Kandagatla/alsa-ucm-conf/tree/x1e80100-tuxedo
+> 
+> tplg changes:
+> https://github.com/Srinivas-Kandagatla/audioreach-topology/tree/tuxedo-elite-14
+> 
+>  .../qcom/x1e80100-tuxedo-elite-14-gen1.dts    | 190 ++++++++++++++++++
+>  1 file changed, 190 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-tuxedo-elite-14-gen1.dts b/arch/arm64/boot/dts/qcom/x1e80100-tuxedo-elite-14-gen1.dts
+> index 86bdec4a2dd8..465221b8a3fa 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100-tuxedo-elite-14-gen1.dts
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100-tuxedo-elite-14-gen1.dts
+> @@ -20,6 +20,34 @@ aliases {
+>  		serial0 = &uart21;
+>  	};
+>  
+> +
 
-Signed-off-by: Xueqi Zhang <xueqi.zhang@mediatek.com>
----
- drivers/memory/mtk-smi.c | 134 ++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 133 insertions(+), 1 deletion(-)
+No need for blank line
 
-diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
-index b9affa3c3185..bd68df23e40b 100644
---- a/drivers/memory/mtk-smi.c
-+++ b/drivers/memory/mtk-smi.c
-@@ -92,6 +92,7 @@
- #define MTK_SMI_FLAG_SW_FLAG		BIT(1)
- #define MTK_SMI_FLAG_SLEEP_CTL		BIT(2)
- #define MTK_SMI_FLAG_CFG_PORT_SEC_CTL	BIT(3)
-+#define MTK_SMI_FLAG_CONNECT_SMMUV3	BIT(4)
- #define MTK_SMI_CAPS(flags, _x)		(!!((flags) & (_x)))
- 
- struct mtk_smi_reg_pair {
-@@ -275,6 +276,9 @@ static int mtk_smi_larb_config_port_gen2_general(struct device *dev)
- 		}
- 	}
- 
-+	if (MTK_SMI_CAPS(larb->larb_gen->flags_general, MTK_SMI_FLAG_CONNECT_SMMUV3))
-+		return 0;
-+
- 	for_each_set_bit(i, (unsigned long *)larb->mmu, 32) {
- 		reg = readl_relaxed(larb->base + SMI_LARB_NONSEC_CON(i));
- 		reg |= F_MMU_EN;
-@@ -410,6 +414,101 @@ static const u8 mtk_smi_larb_mt8195_ostd[][SMI_LARB_PORT_NR_MAX] = {
- 	[28] = {0x1a, 0x0e, 0x0a, 0x0a, 0x0c, 0x0e, 0x10,},
- };
- 
-+static const u8 mtk_smi_larb_mt8196_ostd[][SMI_LARB_PORT_NR_MAX] = {
-+	[0] = {0x4, 0x4, 0x40, 0x40, 0x1, 0x1, 0x2, 0x2, 0x4, 0x4,
-+	       0x1, 0x1, 0x1,},
-+	[1] = {0x4, 0x4, 0x40, 0x40, 0x32, 0x1, 0x2, 0x2, 0x2, 0x4,
-+	       0x4, 0x2, 0x1, 0x1, 0x1, 0x1,},
-+	[2] = {0x1, 0x1, 0x1, 0x1, 0x9, 0xb, 0x2a, 0x1, 0x1, 0x1,
-+	       0x1, 0x1, 0x1, 0x1, 0x3, 0x1c, 0x1, 0x1,},
-+	[3] = {0x2, 0x2, 0x2, 0x2, 0x1a, 0x20, 0x2a, 0x2, 0x1, 0x1,
-+	       0x1, 0x1, 0x1, 0x2, 0x8, 0x1c, 0x1, 0x1,},
-+	[4] = {0x40, 0x10, 0x10, 0x1, 0x4, 0x10, 0x8, 0x8,},
-+	[5] = {0x10, 0x8, 0x40, 0x1e, 0x8, 0x8, 0x4, 0x1,},
-+	[6] = {0x40, 0x12, 0x1,},
-+	[7] = {0x20, 0x6, 0x6, 0x1, 0x1, 0x24, 0x2b, 0x7, 0x4, 0x1,
-+	       0x1, 0xf, 0x3, 0x5, 0x8, 0x8, 0x3, 0x8, 0x5, 0x23,
-+	       0x24, 0x4, 0x2, 0xb, 0x10, 0x17, 0x4, 0x8, 0x5, 0x1,
-+	       0x1, 0x6,},
-+	[8] = {0x20, 0x6, 0x6, 0x1, 0x1, 0x24, 0x2b, 0x7, 0x4, 0x1,
-+	       0x1, 0xf, 0x3, 0x5, 0x8, 0x8, 0x3, 0x8, 0x5, 0x23,
-+	       0x24, 0x4, 0x2, 0xb, 0x10, 0x17, 0x4, 0x8, 0x5, 0x1,
-+	       0x1, 0x6,},
-+	[9] = {0x2b, 0x8, 0x9, 0x31, 0x10, 0x26, 0x15, 0x13, 0x7, 0x4,
-+	       0x1, 0x1, 0x7, 0xa, 0xb, 0x6, 0x1, 0x1, 0x1, 0x1,
-+	       0x1, 0x1, 0xf, 0x9, 0x6, 0x3,},
-+	[10] = {0x2b, 0x8, 0x20, 0x1d, 0x19, 0xf, 0x1, 0x3,},
-+	[11] = {0x8, 0x16, 0x16, 0x24, 0x1, 0x1, 0x1, 0x3, 0x32, 0x1,
-+		0x8, 0x10, 0x16, 0x2, 0x38,},
-+	[12] = {0xa, 0xa, 0x1,},
-+	[13] = {0x2, 0x20, 0x14, 0x1, 0x1, 0x2, 0x2,},
-+	[14] = {0x2, 0x20, 0x14, 0x1, 0x2, 0x2,},
-+	[15] = {0x2b, 0x7, 0x31, 0xa, 0x10, 0x10, 0x2b, 0x29, 0x7, 0x1,},
-+	[16] = {0x4, 0x4, 0x12, 0x8, 0x8, 0x16, 0x8, 0x6, 0xe, 0x6,
-+		0x1e, 0x18, 0x16, 0xe, 0x8, 0xe, 0x8, 0x2, 0x2,},
-+	[17] = {0x18, 0x18, 0x8, 0x8, 0xc, 0x4, 0x2,},
-+	[18] = {0xb, 0x1, 0x10, 0x1, 0x2,},
-+	[19] = {0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x4, 0x2, 0x1, 0x1,
-+		0x4, 0x2, 0x1,},
-+	[20] = {0x2, 0x2, 0x2, 0x40, 0x40, 0x40, 0x1, 0x2, 0x2, 0x2,
-+		0x4, 0x4, 0x4, 0x1, 0x1,},
-+	[21] = {0x2, 0x2, 0x2, 0x40, 0x40, 0x40, 0x1, 0x32, 0x32, 0x32,
-+		0x2, 0x2, 0x2, 0x4, 0x4, 0x4, 0x2, 0x1,},
-+	[22] = {0x8, 0x16, 0x16, 0x24, 0x1, 0x1, 0x1, 0x3, 0x32, 0x1,
-+		0x8, 0x10, 0x16, 0x2, 0x38,},
-+	[23] = {0x8, 0x16, 0x16, 0x24, 0x1, 0x1, 0x1, 0x3, 0x32, 0x1,
-+		0x8, 0x10, 0x16, 0x2, 0x38,},
-+	[24] = {0x20, 0x6, 0x6, 0x1, 0x1, 0x24, 0x2b, 0x7, 0x4, 0x1,
-+		0x1, 0xf, 0x3, 0x5, 0x8, 0x8, 0x3, 0x8, 0x5, 0x23,
-+		0x24, 0x4, 0x2, 0xb, 0x10, 0x17, 0x4, 0x8, 0x5, 0x1,
-+		0x1, 0x6,},
-+	[25] = {0x2, 0xc, 0x2, 0xc, 0x6, 0x6, 0x3, 0x3, 0x3, 0x1,
-+		0x1, 0x2, 0x2,},
-+	[26] = {0x2, 0xc, 0x2, 0xc, 0x6, 0x6, 0x3, 0x3, 0x3, 0x1,
-+		0x1, 0x2, 0x2,},
-+	[27] = {0x6, 0x2, 0xe, 0x6, 0x2, 0x14, 0x14, 0x4, 0x6,},
-+	[28] = {0x2b, 0x8, 0x31, 0x10, 0x26, 0x15, 0x1, 0x10,},
-+	[29] = {0x2, 0x2, 0x2, 0x2, 0x10, 0xe, 0x6, 0x6, 0x1, 0x1,
-+		0x2, 0x2, 0x2, 0x2,},
-+	[30] = {0x2, 0x2, 0x2, 0x2,},
-+	[31] = {},
-+	[32] = {0x1, 0x1, 0x1, 0x1, 0x2, 0x2, 0x32, 0x32, 0x1, 0x2,},
-+	[33] = {0xa, 0x1, 0x1, 0x1, 0xa, 0xa, 0xa, 0x1, 0x26, 0x32,
-+		0x32, 0x32, 0x32, 0x32, 0x2, 0x1,},
-+	[34] = {0x4, 0x4, 0x40, 0x40, 0x1, 0x1, 0x2, 0x2, 0x4, 0x4,
-+		0x1, 0x1, 0x1,},
-+	[35] = {0x4, 0x4, 0x40, 0x40, 0x32, 0x1, 0x2, 0x2, 0x2, 0x4,
-+		0x4, 0x2, 0x1, 0x1, 0x1, 0x1,},
-+	[36] = {0x2, 0x2, 0x2, 0x40, 0x40, 0x40, 0x1, 0x2, 0x2, 0x2,
-+		0x4, 0x4, 0x4, 0x1, 0x1,},
-+	[37] = {0x2, 0x2, 0x2, 0x40, 0x40, 0x40, 0x1, 0x32, 0x32, 0x32,
-+		0x2, 0x2, 0x2, 0x4, 0x4, 0x4, 0x2, 0x1,},
-+	[38] = {0x29, 0x40, 0x40, 0x7, 0x4, 0x40, 0x4, 0x18, 0x1, 0x1,
-+		0x1, 0x7, 0x4,},
-+	[39] = {0x16, 0x4, 0x4, 0x8, 0x4, 0x6, 0x6, 0x13, 0x11, 0x20,
-+		0x11, 0x1, 0x1, 0x1, 0x9, 0x8, 0x4, 0x6, 0x6,},
-+	[40] = {0x9, 0x7, 0x7, 0xb, 0xf, 0x1d, 0x13, 0x6, 0x1, 0x1,
-+		0x1, 0x6, 0x9, 0x7, 0xe, 0x3,},
-+	[41] = {0x40, 0x8, 0x1, 0x1, 0x2, 0x1, 0x1, 0x1, 0x1, 0x1,
-+		0x8, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1,
-+		0x1, 0x8, 0x8, 0x8, 0x8, 0x8, 0x1, 0x1, 0x1, 0x1,
-+		0x1, 0x1,},
-+	[42] = {0x1, 0x8, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1,
-+		0x8, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1,
-+		0x1, 0x8, 0x8, 0x8, 0x8, 0x8, 0x1, 0x1, 0x1, 0x1,
-+		0x1, 0x1,},
-+	[43] = {0x4, 0x4, 0x12, 0x8, 0x8, 0x16, 0x8, 0x6, 0xe, 0x6,
-+		0x1e, 0x18, 0x16, 0xe, 0x8, 0xe, 0x8, 0x1, 0x1,},
-+	[44] = {0x4, 0x4, 0x12, 0x8, 0x8, 0x16, 0x8, 0x6, 0xe, 0x6,
-+		0x1e, 0x18, 0x16, 0xe, 0x8, 0xe, 0x8, 0x1, 0x1,},
-+	[45] = {0x18, 0x18, 0x8, 0x8, 0xc, 0x4, 0x1,},
-+	[46] = {0x18, 0x18, 0x8, 0x8, 0xc, 0x4, 0x1,},
-+	[47] = {0x1, 0x8, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1,
-+		0x8, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1,
-+		0x1, 0x8, 0x8, 0x8, 0x8, 0x8, 0x1, 0x1, 0x1, 0x1,
-+		0x1, 0x1,},
-+};
-+
- static const struct mtk_smi_larb_gen mtk_smi_larb_mt2701 = {
- 	.port_in_larb = {
- 		LARB0_PORT_OFFSET, LARB1_PORT_OFFSET,
-@@ -470,6 +569,13 @@ static const struct mtk_smi_larb_gen mtk_smi_larb_mt8195 = {
- 	.ostd		            = mtk_smi_larb_mt8195_ostd,
- };
- 
-+static const struct mtk_smi_larb_gen mtk_smi_larb_mt8196 = {
-+	.config_port                = mtk_smi_larb_config_port_gen2_general,
-+	.flags_general	            = MTK_SMI_FLAG_THRT_UPDATE | MTK_SMI_FLAG_SW_FLAG |
-+				      MTK_SMI_FLAG_SLEEP_CTL | MTK_SMI_FLAG_CONNECT_SMMUV3,
-+	.ostd		            = mtk_smi_larb_mt8196_ostd,
-+};
-+
- static const struct of_device_id mtk_smi_larb_of_ids[] = {
- 	{.compatible = "mediatek,mt2701-smi-larb", .data = &mtk_smi_larb_mt2701},
- 	{.compatible = "mediatek,mt2712-smi-larb", .data = &mtk_smi_larb_mt2712},
-@@ -482,6 +588,7 @@ static const struct of_device_id mtk_smi_larb_of_ids[] = {
- 	{.compatible = "mediatek,mt8188-smi-larb", .data = &mtk_smi_larb_mt8188},
- 	{.compatible = "mediatek,mt8192-smi-larb", .data = &mtk_smi_larb_mt8192},
- 	{.compatible = "mediatek,mt8195-smi-larb", .data = &mtk_smi_larb_mt8195},
-+	{.compatible = "mediatek,mt8196-smi-larb", .data = &mtk_smi_larb_mt8196},
- 	{}
- };
- MODULE_DEVICE_TABLE(of, mtk_smi_larb_of_ids);
-@@ -569,6 +676,7 @@ static int mtk_smi_larb_probe(struct platform_device *pdev)
- {
- 	struct mtk_smi_larb *larb;
- 	struct device *dev = &pdev->dev;
-+	bool connect_with_smmuv3;
- 	int ret;
- 
- 	larb = devm_kzalloc(dev, sizeof(*larb), GFP_KERNEL);
-@@ -580,6 +688,13 @@ static int mtk_smi_larb_probe(struct platform_device *pdev)
- 	if (IS_ERR(larb->base))
- 		return PTR_ERR(larb->base);
- 
-+	connect_with_smmuv3 = MTK_SMI_CAPS(larb->larb_gen->flags_general,
-+					   MTK_SMI_FLAG_CONNECT_SMMUV3);
-+	if (connect_with_smmuv3 && !IS_ENABLED(CONFIG_ARM_SMMU_V3)) {
-+		dev_err(dev, " SMMU property conflict.\n");
-+		return -EINVAL;
-+	}
-+
- 	ret = mtk_smi_dts_clk_init(dev, &larb->smi, mtk_smi_larb_clks,
- 				   MTK_SMI_LARB_REQ_CLK_NR, MTK_SMI_LARB_OPT_CLK_NR);
- 	if (ret)
-@@ -593,6 +708,10 @@ static int mtk_smi_larb_probe(struct platform_device *pdev)
- 
- 	pm_runtime_enable(dev);
- 	platform_set_drvdata(pdev, larb);
-+
-+	if (!connect_with_smmuv3)
-+		return 0;
-+
- 	ret = component_add(dev, &mtk_smi_larb_component_ops);
- 	if (ret)
- 		goto err_pm_disable;
-@@ -610,7 +729,8 @@ static void mtk_smi_larb_remove(struct platform_device *pdev)
- 
- 	device_link_remove(&pdev->dev, larb->smi_common_dev);
- 	pm_runtime_disable(&pdev->dev);
--	component_del(&pdev->dev, &mtk_smi_larb_component_ops);
-+	if (!MTK_SMI_CAPS(larb->larb_gen->flags_general, MTK_SMI_FLAG_CONNECT_SMMUV3))
-+		component_del(&pdev->dev, &mtk_smi_larb_component_ops);
- }
- 
- static int __maybe_unused mtk_smi_larb_resume(struct device *dev)
-@@ -750,6 +870,16 @@ static const struct mtk_smi_common_plat mtk_smi_sub_common_mt8195 = {
- 	.has_gals = true,
- };
- 
-+static const struct mtk_smi_common_plat mtk_smi_common_mt8196 = {
-+	.type     = MTK_SMI_GEN2,
-+	.skip_rpm = true,
-+};
-+
-+static const struct mtk_smi_common_plat mtk_smi_sub_common_mt8196 = {
-+	.type     = MTK_SMI_GEN2_SUB_COMM,
-+	.skip_rpm = true,
-+};
-+
- static const struct mtk_smi_common_plat mtk_smi_common_mt8365 = {
- 	.type     = MTK_SMI_GEN2,
- 	.bus_sel  = F_MMU1_LARB(2) | F_MMU1_LARB(4),
-@@ -770,6 +900,8 @@ static const struct of_device_id mtk_smi_common_of_ids[] = {
- 	{.compatible = "mediatek,mt8195-smi-common-vdo", .data = &mtk_smi_common_mt8195_vdo},
- 	{.compatible = "mediatek,mt8195-smi-common-vpp", .data = &mtk_smi_common_mt8195_vpp},
- 	{.compatible = "mediatek,mt8195-smi-sub-common", .data = &mtk_smi_sub_common_mt8195},
-+	{.compatible = "mediatek,mt8196-smi-common", .data = &mtk_smi_common_gen2},
-+	{.compatible = "mediatek,mt8196-smi-sub-common", .data = &mtk_smi_sub_common_mt8196},
- 	{.compatible = "mediatek,mt8365-smi-common", .data = &mtk_smi_common_mt8365},
- 	{}
- };
--- 
-2.46.0
+> +	wcd938x: audio-codec {
+> +		compatible = "qcom,wcd9385-codec";
+> +
+> +		pinctrl-0 = <&wcd_default>;
+> +		pinctrl-names = "default";
+> +
+> +		qcom,micbias1-microvolt = <1800000>;
+> +		qcom,micbias2-microvolt = <1800000>;
+> +		qcom,micbias3-microvolt = <1800000>;
+> +		qcom,micbias4-microvolt = <1800000>;
+> +		qcom,mbhc-buttons-vthreshold-microvolt = <75000 150000 237000 500000 500000 500000 500000 500000>;
+> +		qcom,mbhc-headset-vthreshold-microvolt = <1700000>;
+> +		qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
+> +		qcom,rx-device = <&wcd_rx>;
+> +		qcom,tx-device = <&wcd_tx>;
+> +
+> +		reset-gpios = <&tlmm 191 GPIO_ACTIVE_LOW>;
+> +
+> +		vdd-buck-supply = <&vreg_l15b_1p8>;
+> +		vdd-rxtx-supply = <&vreg_l15b_1p8>;
+> +		vdd-io-supply = <&vreg_l15b_1p8>;
+> +		vdd-mic-bias-supply = <&vreg_bob1>;
+> +
+> +
 
+Here only one as well
+
+> +		#sound-dai-cells = <1>;
+> +	};
+> +
+
+...
+
+> +&swr0 {
+> +	status = "okay";
+> +
+> +	pinctrl-0 = <&wsa_swr_active>, <&spkr_01_sd_n_active>;
+> +	pinctrl-names = "default";
+> +
+> +	/* WSA8845, Left Speaker */
+> +	left_spkr: speaker@0,0 {
+> +		compatible = "sdw20217020400";
+> +		reg = <0 0>;
+> +		reset-gpios = <&lpass_tlmm 12 GPIO_ACTIVE_LOW>;
+Interesting that on X1E even two-speaker configurations share the reset
+GPIO. Typical two-speaker setups like MTP and QRD use two different GPIOs.
+
+Assuming this is not a copy-paste and with blank line fixes:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
