@@ -1,112 +1,181 @@
-Return-Path: <devicetree+bounces-159437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159438-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11E2EA6AD3D
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 19:46:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 693D2A6AD4A
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 19:49:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D1330463B37
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 18:46:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A61E3ABA72
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 18:47:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBA4C227E99;
-	Thu, 20 Mar 2025 18:46:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33051226D14;
+	Thu, 20 Mar 2025 18:47:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZQtYjLdr"
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="dGoE1WIY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A33C1226D14;
-	Thu, 20 Mar 2025 18:46:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7CD01953A1;
+	Thu, 20 Mar 2025 18:47:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742496364; cv=none; b=jTMakT+LuSIGTYGLSdfuFBb7e4ktnovZJ7iG7zAW5Phhj8kFDm8lPfeMCJsVRMywYTFHtDhPo6357R8Qx/+62+GTPo4eO3UEOG1rH+bfgyEX9gFAJH2IeK8yZovgrbe3uH+QsOlo2WSvUvqClN7Kgd8VHj0Jod1kj9cj/s1B8V4=
+	t=1742496448; cv=none; b=WibKbz6wfassP8PWgzjV0zLczJYa+xdcgw8J7iuoMwPJs03lluF46hC3T0OGWsh0bi7OSOxOcE6TmLOTGh7kVXPduom3K9cgI1ZpjcFPwple3chq5T0WdlzbypKX1TGhDFgqSb16XgGLbL9VPXDzhK1ItvEQBoazayIG7On5u6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742496364; c=relaxed/simple;
-	bh=a8YCP8jcej9A/OFDhRdTo8bPx3igikMkPK0x2FPo3s0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=SK0ph72VXo99MHMisXjcCDCWPTh7A96LMkBNH0CRkqziPptyMed8xykGzmY8mGp7lsWtQ45WsuENB6zkPW+42v5fdI1lYT4jslg/JAQ3aoroOx5ZlYPsy3M/bRGspEOP4FThHLLBlATauh3O1Wq5WFKx0MdQ8ov5k8zM1MGckxI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZQtYjLdr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89FD3C4CEDD;
-	Thu, 20 Mar 2025 18:46:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742496364;
-	bh=a8YCP8jcej9A/OFDhRdTo8bPx3igikMkPK0x2FPo3s0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=ZQtYjLdrX0AVoR1g5SBXptHBT6Vgbz62wh7ktKgQ3CqAFOr2rVZxNUShxZr/VDlXs
-	 WSWt4+UWItkoN6g89NcXCSR7YtLu6Yg6McysSYxmGaSm+FFOv1BAkQz7bRGfIi614Q
-	 4+TnRdQ3dZmVQiwKCzldWNB2UtzavEZ858ch4wZGJNcwBfwrQLMarY3VxG+3P2uWkk
-	 Jt2GDzeEO4TsxKdHqcbDwIsPMMFAWalo/f72W9qrBxTUIYKudnEpk7YBS5iY+amu7H
-	 LYN/MBiOzhokw+ZdE10SPDNInN5nCJ0SoHE46Zu2IwoSbTBOkGlAdEqteSkOTbQBQS
-	 UrDoyND40cqYA==
-From: Mark Brown <broonie@kernel.org>
-To: linux-spi@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Vaishnav Achath <vaishnav.a@ti.com>
-In-Reply-To: <20250319094651.1290509-1-miquel.raynal@bootlin.com>
-References: <20250319094651.1290509-1-miquel.raynal@bootlin.com>
-Subject: Re: [PATCH v2 0/3] spi: dt-bindings: cdns,qspi-nor: Improve
- description
-Message-Id: <174249636229.174561.3014141569675675466.b4-ty@kernel.org>
-Date: Thu, 20 Mar 2025 18:46:02 +0000
+	s=arc-20240116; t=1742496448; c=relaxed/simple;
+	bh=p7MoLMJgztUeM2mOX1O2C/+yxOVVFon1dqzplcanEj0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QzVPYnR0k64XEBGOunxlXuu8HxItst9h8qTWdC+iYb70LIki3wDGu8X25ek9tx1YStPEBhkKOK+cYMKcSpnxJhUbVz47g4AEPeIJfubiVd/DdDp33l/RPGaPblGSJJ0Dofx4P+lWWvdb8vXbkGmpylDMSnxu/7mhPxqQUjjOSWI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=dGoE1WIY; arc=none smtp.client-ip=13.77.154.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
+Received: from [10.137.184.60] (unknown [131.107.160.188])
+	by linux.microsoft.com (Postfix) with ESMTPSA id 6483B2116B4D;
+	Thu, 20 Mar 2025 11:47:19 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 6483B2116B4D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1742496439;
+	bh=2L2Q31XCa0Xdbd9gsYILKzkM4+b+VTYhlEAF67KZJpE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=dGoE1WIYcV3miDSU7tnIjSORwMD3YiiuMtgapwqYs3PxoUrikjyglFZJEbSJEaC1I
+	 qppAONaKxLV3qmJYo7gpaRMBNla6xREmO+/WMeSBr/85MzxtUvCAfKqrGUxvaVfV3z
+	 LX02uwyNNHxgqfnDJgcNePxL4YNOD7FoIVq49fLM=
+Message-ID: <42a1a90b-ae3e-47df-ad6c-500055e69218@linux.microsoft.com>
+Date: Thu, 20 Mar 2025 11:47:18 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH hyperv-next v6 02/11] arm64: hyperv: Use SMCCC to detect
+ hypervisor presence
+To: Michael Kelley <mhklinux@outlook.com>, Mark Rutland <mark.rutland@arm.com>
+Cc: "arnd@arndb.de" <arnd@arndb.de>, "bhelgaas@google.com"
+ <bhelgaas@google.com>, "bp@alien8.de" <bp@alien8.de>,
+ "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "dan.carpenter@linaro.org" <dan.carpenter@linaro.org>,
+ "dave.hansen@linux.intel.com" <dave.hansen@linux.intel.com>,
+ "decui@microsoft.com" <decui@microsoft.com>,
+ "haiyangz@microsoft.com" <haiyangz@microsoft.com>,
+ "hpa@zytor.com" <hpa@zytor.com>, "joey.gouly@arm.com" <joey.gouly@arm.com>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "kw@linux.com" <kw@linux.com>,
+ "kys@microsoft.com" <kys@microsoft.com>, "lenb@kernel.org"
+ <lenb@kernel.org>, "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+ "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
+ "maz@kernel.org" <maz@kernel.org>, "mingo@redhat.com" <mingo@redhat.com>,
+ "oliver.upton@linux.dev" <oliver.upton@linux.dev>,
+ "rafael@kernel.org" <rafael@kernel.org>, "robh@kernel.org"
+ <robh@kernel.org>, "ssengar@linux.microsoft.com"
+ <ssengar@linux.microsoft.com>, "sudeep.holla@arm.com"
+ <sudeep.holla@arm.com>, "suzuki.poulose@arm.com" <suzuki.poulose@arm.com>,
+ "tglx@linutronix.de" <tglx@linutronix.de>,
+ "wei.liu@kernel.org" <wei.liu@kernel.org>, "will@kernel.org"
+ <will@kernel.org>, "yuzenghui@huawei.com" <yuzenghui@huawei.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "kvmarm@lists.linux.dev" <kvmarm@lists.linux.dev>,
+ "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>,
+ "linux-arch@vger.kernel.org" <linux-arch@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+ "x86@kernel.org" <x86@kernel.org>, "apais@microsoft.com"
+ <apais@microsoft.com>, "benhill@microsoft.com" <benhill@microsoft.com>,
+ "bperkins@microsoft.com" <bperkins@microsoft.com>,
+ "sunilmut@microsoft.com" <sunilmut@microsoft.com>
+References: <20250315001931.631210-1-romank@linux.microsoft.com>
+ <20250315001931.631210-3-romank@linux.microsoft.com>
+ <Z9gJlQgV3hm1kxY0@J2N7QTR9R3.cambridge.arm.com>
+ <BN7PR02MB414871F1A3D8EF3809391F2FD4D92@BN7PR02MB4148.namprd02.prod.outlook.com>
+Content-Language: en-US
+From: Roman Kisel <romank@linux.microsoft.com>
+In-Reply-To: <BN7PR02MB414871F1A3D8EF3809391F2FD4D92@BN7PR02MB4148.namprd02.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-1b0d6
 
-On Wed, 19 Mar 2025 10:46:48 +0100, Miquel Raynal wrote:
-> While working with this controller I figured out a couple of small
-> issues which I propose to fix. They are not super impacting, but I
-> believe this goes into the right direction.
+
+
+On 3/19/2025 3:11 PM, Michael Kelley wrote:
+> From: Mark Rutland <mark.rutland@arm.com> Sent: Monday, March 17, 2025 4:38 AM
+
+>>
+>> The 'acpi_disabled' variable doesn't exist for !CONFIG_ACPI, so its use
+>> prior to the ifdeffery looks misplaced.
 > 
-> Changes in v2:
-> - Collect R-by.
-> - Use a non deprecated compatible in the example.
-> - Instead of suggesting that some of the properties are required by
->   improving the example, make them really required.
+> FWIW, include/linux/acpi.h has
 > 
-> [...]
+> #define acpi_disabled 1
+> 
+> when !CONFIG_ACPI.  But I agree that using a stub is better.
 
-Applied to
+Thanks, Michael! I didn't "fact-checked" what was suggested indeed.
+Agreed that the stub makes the code look better.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+> 
+> Michael
+> 
+>>
+>> Usual codestyle is to avoid ifdeffery if possible, using IS_ENABLED().
+>> Otherwise, use a stub, e.g.
+>>
+>> | #ifdef CONFIG_ACPI
+>> | static bool __init hyperv_detect_via_acpi(void)
+>> | {
+>> | 	if (acpi_disabled)
+>> | 		return false;
+>> |
+>> | 	if (acpi_gbl_FADT.header.revision < 6)
+>> | 		return false;
+>> |
+>> | 	return strncmp((char *)&acpi_gbl_FADT.hypervisor_id, "MsHyperV", 8) == 0;
+>> | }
+>> | #else
+>> | static inline bool hyperv_detect_via_acpi(void) { return false; }
+>> | #endif
+>>
+>> Mark.
+>>
+>>> +static bool __init hyperv_detect_via_smccc(void)
+>>> +{
+>>> +	uuid_t hyperv_uuid = UUID_INIT(
+>>> +		0x4d32ba58, 0x4764, 0xcd24,
+>>> +		0x75, 0x6c, 0xef, 0x8e,
+>>> +		0x24, 0x70, 0x59, 0x16);
+>>> +
+>>> +	return arm_smccc_hyp_present(&hyperv_uuid);
+>>> +}
+>>> +
+>>>   static int __init hyperv_init(void)
+>>>   {
+>>>   	struct hv_get_vp_registers_output	result;
+>>> @@ -35,13 +70,11 @@ static int __init hyperv_init(void)
+>>>
+>>>   	/*
+>>>   	 * Allow for a kernel built with CONFIG_HYPERV to be running in
+>>> -	 * a non-Hyper-V environment, including on DT instead of ACPI.
+>>> +	 * a non-Hyper-V environment.
+>>> +	 *
+>>>   	 * In such cases, do nothing and return success.
+>>>   	 */
+>>> -	if (acpi_disabled)
+>>> -		return 0;
+>>> -
+>>> -	if (strncmp((char *)&acpi_gbl_FADT.hypervisor_id, "MsHyperV", 8))
+>>> +	if (!hyperv_detect_via_acpi() && !hyperv_detect_via_smccc())
+>>>   		return 0;
+>>>
+>>>   	/* Setup the guest ID */
+>>> --
+>>> 2.43.0
+>>>
+> 
 
-Thanks!
-
-[1/3] spi: dt-bindings: cdns,qspi-nor: Be more descriptive regarding what this controller is
-      commit: 77289a8a8b33defd8e5d9f4046c27ff0655b024c
-[2/3] spi: dt-bindings: cdns,qspi-nor: Deprecate the Cadence compatible alone
-      commit: 8b35d653878fb98f36df8b4968159499258fddf1
-[3/3] spi: dt-bindings: cdns,qspi-nor: Require some peripheral properties
-      commit: 50605d2eefed51946c010b76464b2d7419af8310
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+-- 
+Thank you,
+Roman
 
 
