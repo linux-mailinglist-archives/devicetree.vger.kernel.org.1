@@ -1,119 +1,129 @@
-Return-Path: <devicetree+bounces-159424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B561A6ABDB
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 18:22:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DDF0A6AC0B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 18:32:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A3E04189C39D
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 17:23:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 61B23165E9E
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 17:32:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B61AE21CC55;
-	Thu, 20 Mar 2025 17:22:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A222223336;
+	Thu, 20 Mar 2025 17:32:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="mGy2gam1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L60tobDY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FA9A2A1A4;
-	Thu, 20 Mar 2025 17:22:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A43529CE6;
+	Thu, 20 Mar 2025 17:32:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742491369; cv=none; b=cTu88/HedbRvGzv9hYFKQLt0jhVMS6Egh+ndZGMwHbrKbRHxDx5k/VFKhhADy12s6EzPHEmvJxMGavoYzsDMYf7v1lJFUjhR1MLhM2CnB9h4C2Gf3c2o6F3sZqeEsFB1wcZzv3VT+cZBBTnjkt7EML0CxeipbriXHIHlyS3m15U=
+	t=1742491921; cv=none; b=UnMyguEI41Hrf2tjYDbAlrXyj4aKoMuul9o5uvuZyRTcz6uBHYO9lhLwl5R2MagODfNiQet/e4ooqmZfrpoC+6zYSTxprNqrfDStyKvzq4TCGChgZmtU8EOF2Q7c02wiqm+eWEjc37dMrcBDWeCkovIZCTtYlxSSWn1AKDLrjpY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742491369; c=relaxed/simple;
-	bh=o2g+aeF0m1ZtGAU6jmcbwumD06kUHya/WZT+ebSfW9I=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Ji6abE3hGhrZNpZnswPhAIpI6II9HF8Q7sBuRV+8SxTemuTr5SLWwlZTyHLY6KiLNLZlFqSAwcCW64lZCU5OeKth0Lach4fUMwBFLqO+a2PpJPwkeBEs/xSFuSVyyVx7+re2JAybYpt9I4KVjXF9KiQ4wCbOHVS6U2jz01nCPGA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=mGy2gam1; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id ACD8644324;
-	Thu, 20 Mar 2025 17:22:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1742491365;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=zr0LN2ywhctrz98g/ztt7BNk1UlMTcPiWZ2+H7lH0II=;
-	b=mGy2gam1GeJJoq6YqMrza7TyScT6M3R5gFR4vqTQxF3aVDSR9yJGzIQgytegJZRpcWJUpk
-	zbeab+OfyD+YZ/P8oletSCOWhTpZo3CK7j3MDU5nwj7Rw0sPaNnnPPhAIxr0XNynl5qpdT
-	+IFkpOfe+a2ri4Z8I6qYL1K709Rrvv++mMIBpuyz4bV0bDLk5+byvLviSZ7km276DNpQzH
-	P5YDvwZtVQgFUiqnGeHWd4UBmEVLrJA0o64p1nTpWCTe5UwJno91TnEcKTjLlzB5kwNB9u
-	8FfZFjjercF+XnWUyE2Kd4kTrNG3MX3bRlN3gN6BPrZ61ouGkgjd4bM6M3CznQ==
-Date: Thu, 20 Mar 2025 18:22:42 +0100
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
- Abeni <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Donald Hunter
- <donald.hunter@gmail.com>, Rob Herring <robh@kernel.org>, Andrew Lunn
- <andrew+netdev@lunn.ch>, Simon Horman <horms@kernel.org>, Heiner Kallweit
- <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Liam
- Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
- linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>, Dent
- Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de, Maxime
- Chevallier <maxime.chevallier@bootlin.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v6 11/12] net: pse-pd: tps23881: Add support
- for static port priority feature
-Message-ID: <20250320182242.401fd6af@kmaincent-XPS-13-7390>
-In-Reply-To: <Z9gklcNz6wHU9cPC@pengutronix.de>
-References: <20250304-feature_poe_port_prio-v6-0-3dc0c5ebaf32@bootlin.com>
-	<20250304-feature_poe_port_prio-v6-11-3dc0c5ebaf32@bootlin.com>
-	<Z9gklcNz6wHU9cPC@pengutronix.de>
-Organization: bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1742491921; c=relaxed/simple;
+	bh=3HOTPhubQPxetyMqoktnFvF63Tzt8GgfFAKqGmDS3xw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AYtmESK9N4IBi6AcaqwXAK15UqmJ23qPnM6YKfmE0zmCx1j+sGL5oaLOjIwcTTUQH+asmiRrk07dWQBIOuDLJkkB+ITRAZmX4kSSbYZPqx6aFQSJIdHuzDjdWkiHw95COUiKVG+eKTt99MR0RId9dTSSvLvj8UGn1GsjrLomoYo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L60tobDY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6CE7C4CEE7;
+	Thu, 20 Mar 2025 17:31:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742491920;
+	bh=3HOTPhubQPxetyMqoktnFvF63Tzt8GgfFAKqGmDS3xw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=L60tobDYIbX0us2wQjzggEFQMCohxpSUt5d48FIZ6+R4ieavMitBq05mXTA4yrtvC
+	 DKO7zbZc+tNrMOAU6seLeunDoYbbJWRW7ThKQMWnvfpFLtnrilpL1VKz290J5GJLOB
+	 WHO6Y/EDPfX0Axxf8x4ljDRo+2Oa2DD6GrLL9JDK/ps4YnFsZcne1EMPpuiQRjSmwl
+	 am/zcQZyNiDoO1EuYKuXNHfmaVVEhyvzm2VjiRAEkD8X5ee2YKN/k3R/nXARfi2sJa
+	 ekEBzjTVTt64hgJEy+pFYujcywwSTHdX1SKfygy7KhAczBGGBdtr98QU6JtANpdBBN
+	 6q9VN2uvlWBEg==
+Date: Thu, 20 Mar 2025 17:31:54 +0000
+From: Simon Horman <horms@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	upstream@airoha.com
+Subject: Re: [net-next PATCH v12 02/13] dt-bindings: net: Document support
+ for Airoha AN8855 Switch Virtual MDIO
+Message-ID: <20250320173154.GE892515@horms.kernel.org>
+References: <20250309172717.9067-1-ansuelsmth@gmail.com>
+ <20250309172717.9067-3-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddugeekkedtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtqhertdertdejnecuhfhrohhmpefmohhrhicuofgrihhntggvnhhtuceokhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgfdutdefvedtudegvefgvedtgfdvhfdtueeltefffefffffhgfetkedvfeduieeinecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehkmhgrihhntggvnhhtqdgirffuqddufedqjeefledtpdhmrghilhhfrhhomhepkhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvdejpdhrtghpthhtohepohdrrhgvmhhpvghlsehpvghnghhuthhrohhnihigrdguvgdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnvghtpdhrtghpthhtohepvgguuhhmrgiivghtsehgohhoghhlvgdrtghomhdprhgtphhtthhopehku
- hgsrgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepphgrsggvnhhisehrvgguhhgrthdrtghomhdprhgtphhtthhopegtohhrsggvtheslhifnhdrnhgvthdprhgtphhtthhopeguohhnrghlugdrhhhunhhtvghrsehgmhgrihhlrdgtohhm
-X-GND-Sasl: kory.maincent@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250309172717.9067-3-ansuelsmth@gmail.com>
 
-On Mon, 17 Mar 2025 14:33:09 +0100
-Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+On Sun, Mar 09, 2025 at 06:26:47PM +0100, Christian Marangi wrote:
+> Document support for Airoha AN8855 Virtual MDIO Passtrough. This is needed
 
-> On Tue, Mar 04, 2025 at 11:19:00AM +0100, Kory Maincent wrote:
-> > From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+nit: passthrough
+
+> as AN8855 require special handling as the same address on the MDIO bus is
+> shared for both Switch and PHY and special handling for the page
+> configuration is needed to switch accessing to Switch address space
+> or PHY.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>  .../bindings/net/airoha,an8855-mdio.yaml      | 56 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/airoha,an8855-mdio.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/airoha,an8855-mdio.yaml b/Documentation/devicetree/bindings/net/airoha,an8855-mdio.yaml
+> new file mode 100644
+> index 000000000000..3078277bf478
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/airoha,an8855-mdio.yaml
+> @@ -0,0 +1,56 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/airoha,an8855-mdio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Airoha AN8855 MDIO Passtrough
+
+Ditto.
+
+> +
+> +maintainers:
+> +  - Christian Marangi <ansuelsmth@gmail.com>
+> +
+> +description:
+> +  Airoha AN8855 Virtual MDIO Passtrough. This is needed as AN8855
+
+Ditto.
+
+> +  require special handling as the same address on the MDIO bus is
+> +  shared for both Switch and PHY and special handling for the page
+> +  configuration is needed to switch accessing to Switch address space
+> +  or PHY.
+
 ...
-> > @@ -190,7 +201,22 @@ static int tps23881_pi_enable(struct
-> > pse_controller_dev *pcdev, int id) BIT(chan % 4));
-> >  	}
-> > =20
-> > -	return i2c_smbus_write_word_data(client, TPS23881_REG_PW_EN, val);
-> > +	ret =3D i2c_smbus_write_word_data(client, TPS23881_REG_PW_EN, val);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	/* Enable DC disconnect*/
-> > +	chan =3D priv->port[id].chan[0];
-> > +	ret =3D i2c_smbus_read_word_data(client, TPS23881_REG_DISC_EN);
-> > +	if (ret < 0)
-> > +		return ret; =20
->=20
-> Here we have RMW operation without lock on two paths: pi_enable and
-> pi_disable.
-
-I don't understand, pi_enable and pi_disable are called with pcdev->lock
-acquired thanks to the pse core.
-
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
 
