@@ -1,143 +1,170 @@
-Return-Path: <devicetree+bounces-159224-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159225-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCD89A6A0CE
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 08:52:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18157A6A0D8
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 08:56:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7EFAD3B26BD
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 07:51:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34F96189832C
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 07:56:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DF061EF39E;
-	Thu, 20 Mar 2025 07:52:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 753101F8739;
+	Thu, 20 Mar 2025 07:56:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A1EsmT+Z"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="A2d7DrN7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 339421E3769;
-	Thu, 20 Mar 2025 07:52:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ED231E3769;
+	Thu, 20 Mar 2025 07:56:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742457124; cv=none; b=CZLanidYPcINg77zZ2cHuKv13oeSTYP6D5xyXNis54wctNqil5CaLh4tc6s88g/4Rnz5bOOPenIXZWYQakDA2kscJN5D8P7JrDre8XdCDyQ5/JBbEG6DSB35nLXkkA2ZvQWo0tA2FwXUYe8ZlG1u7m++6X/jgP2+dDjDTZsynqo=
+	t=1742457370; cv=none; b=AF7QRjiw+EC47/A1FMNw+TJu8KLqbjGEqMbjslp+/8Aooc7KGruv14DDnHh/R+gDBFDJeDgI2qN0a/oBf1KiZmqvEu5tN0VKfTbXtjl22KDXPG4s+EK1WT+23ovHQg99sMPFuJ610YmzVwmRi6A384SrSVbAVV2lXEOWyvzQs5I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742457124; c=relaxed/simple;
-	bh=LpoG0RMzz7fNHCibF4J26zt4F7k2qKpDYABHIjcJWbA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IOcodI2PjuYWZZ0TsEbWH2IFgDCu87ocoEtXyhS/L0ue9HTJNuEs5+vrLc1hwNQoNjQ2RHO9DpZczCCq41vLqn4/CN8/gcwVVrBrmHvR/d4dYgOPg6PBGAz0qGRCMFvAV0ctoAe8JDBHzDulMFEE5J8SLe9D24C2ai96u4khF0E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A1EsmT+Z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00BF1C4CEDD;
-	Thu, 20 Mar 2025 07:52:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742457123;
-	bh=LpoG0RMzz7fNHCibF4J26zt4F7k2qKpDYABHIjcJWbA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=A1EsmT+ZyuwER8PWWk+8VDDwn8MyxNR6/58Yh9KcqoPWHygFa/vTkGMHxde8NiRUb
-	 UEgLZha98wOIWOlHM1c9b0JfY8TjZJxHZdVb/vcOtv4/lqWhFwtPJ4lW+E2C5YNFRz
-	 WwrnZs00mOeqq3tzeFe8b/MbnKPCw2IjHvm75OB+AHk8YyCADbVzMRANLeZC0sTUOF
-	 M7NElBp8F+z6n+H62jVYZ5bWrgl9cajxXzcFkjVEK+rdbM+NaL35GkbP4s8XbEjotz
-	 GyTHa9bfjgoG7m+Oe46opYoDUPX1LuQ14MAxukVc7/urZ5SA+Dr55j/CYVpCjUhE6W
-	 twqrKspucBoUQ==
-Date: Thu, 20 Mar 2025 08:52:00 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: "hailong.fan" <hailong.fan@mediatek.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Peter Ujfalusi <peter.ujfalusi@linux.intel.com>, Bard Liao <yung-chuan.liao@linux.intel.com>, 
-	Ranjani Sridharan <ranjani.sridharan@linux.intel.com>, Daniel Baluta <daniel.baluta@nxp.com>, 
-	Kai Vehmanen <kai.vehmanen@linux.intel.com>, Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>, 
-	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	sound-open-firmware@alsa-project.org, linux-sound@vger.kernel.org, 
-	Project_Global_Chrome_Upstream_Group@mediatek.com, Jjian.Zhou@mediatek.com, Xiangzhi.Tang@mediatek.com
-Subject: Re: [PATCH 1/2] ASoC: SOF: MediaTek: Add mt8196 hardware support
-Message-ID: <20250320-cocky-adventurous-rooster-be2abd@krzk-bin>
-References: <20250320031753.13669-1-hailong.fan@mediatek.com>
- <20250320031753.13669-2-hailong.fan@mediatek.com>
+	s=arc-20240116; t=1742457370; c=relaxed/simple;
+	bh=COjos0khRUH9y6KLguMtzNcd2P1JRnsqbD84w4Yq88A=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Subject:Cc:
+	 References:In-Reply-To; b=cSYPN5RuRK3JY4ATwvheq3nCjnvD+EuQJ6ejAnQRmFfsz/HpKHH0x+DPWzFZoJF8JCsonF/Vv71/mjhR11tdE1iTFE4zPRVS7Juc+Jsx8Tk/VOjlCB8J+cj0TnAccygopnq8n4JRq2cgNrjyXR61F2UqL3SVjTXnN4QdxGJFHTY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=A2d7DrN7; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 6614B42E7E;
+	Thu, 20 Mar 2025 07:55:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1742457358;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=8twcIz9qrGerD1E+A0oaKwo2dI3Ee3wQa3t5hEGonhc=;
+	b=A2d7DrN7hvTOb7mYRP1SiVjjzU8D1VxR1xAMCzM9im2Fv5+IHM0w2NF+vgW0SGill6O0la
+	uJ+Aq+rn6j2LWEl4zMPhYaaJ0HimXIl//j3wMyjQVZRQ2eithV4ijnZC3XTkE88Za5XqDo
+	rNpFAF4U7daZWXhhTGWDBE8YpmIHJniXgwsdcU8FaE6jZm8s36mZEhjQFy0mOyN4rLCnke
+	pv5TIhQk9v/bHrTYfh2vzoIN3kNQJnyydHUg2HnwcwtzXJ55wtluki4YiMxd7MJ/MlPwRG
+	pUqOj8cimOFmE3pzF9/jrL4YVJeoC1lKtgN6DaMHnU1BNcS+/Fzc/nAWkZJyFQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250320031753.13669-2-hailong.fan@mediatek.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 20 Mar 2025 08:55:57 +0100
+Message-Id: <D8KXKZ53OKGH.4LG4L2LRY9XS@bootlin.com>
+From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
+To: "Andy Shevchenko" <andriy.shevchenko@intel.com>
+Subject: Re: [PATCH v5 06/11] gpio: regmap: Allow to allocate regmap-irq
+ device
+Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
+ Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
+ "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, "Michael Walle"
+ <mwalle@kernel.org>, "Mark Brown" <broonie@kernel.org>, "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, "Danilo Krummrich" <dakr@kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
+ <linux-pwm@vger.kernel.org>, =?utf-8?q?Gr=C3=A9gory_Clement?=
+ <gregory.clement@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>
+X-Mailer: aerc 0.18.2-0-ge037c095a049
+References: <20250318-mdb-max7360-support-v5-0-fb20baf97da0@bootlin.com>
+ <20250318-mdb-max7360-support-v5-6-fb20baf97da0@bootlin.com>
+ <Z9mksuMAlNCa447h@smile.fi.intel.com>
+In-Reply-To: <Z9mksuMAlNCa447h@smile.fi.intel.com>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddugeejieeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkhffvufevofhfjgesthhqredtredtjeenucfhrhhomhepfdforghthhhivghuucffuhgsohhishdquehrihgrnhgufdcuoehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeehvedtkeffueelheektddvjefhiefhgedtudevgeehvdevlefgveetkeevleelteenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegvtdgrmegrieeimeefudektdemtgdtsggvmegslegrkeemvgehledvmeeirgeffhenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemvgdtrgemrgeiieemfedukedtmegttdgsvgemsgelrgekmegvheelvdemiegrfehfpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvvddprhgtphhtthhopegrnhgurhhihidrshhhvghvtghhvghnkhhosehinhhtvghlrdgtohhmpdhrtghpthhtoheplhgvvgeskhgvrhhnvghlrdhor
+ hhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhgrmhgvlhdrsghouhhhrghrrgessghoohhtlhhinhdrtghomhdprhgtphhtthhopehlihhnuhhsrdifrghllhgvihhjsehlihhnrghrohdrohhrghdprhgtphhtthhopegsrhhglhessghguggvvhdrphhl
+X-GND-Sasl: mathieu.dubois-briand@bootlin.com
 
-On Thu, Mar 20, 2025 at 11:17:24AM +0800, hailong.fan wrote:
-> +
-> +void mt8196_sof_hifixdsp_shutdown(struct snd_sof_dev *sdev)
-> +{
-> +	/* set RUNSTALL to stop core */
-> +	snd_sof_dsp_update_bits(sdev, DSP_REG_BAR, ADSP_HIFI_RUNSTALL,
-> +				RUNSTALL, RUNSTALL);
-> +
-> +	/* assert core reset */
-> +	snd_sof_dsp_update_bits(sdev, DSP_REG_BAR, ADSP_CFGREG_SW_RSTN,
-> +				SW_RSTN_C0 | SW_DBG_RSTN_C0,
-> +				SW_RSTN_C0 | SW_DBG_RSTN_C0);
-> +}
-> +
+On Tue Mar 18, 2025 at 5:52 PM CET, Andy Shevchenko wrote:
+> On Tue, Mar 18, 2025 at 05:26:22PM +0100, Mathieu Dubois-Briand wrote:
+> > GPIO controller often have support for IRQ: allow to easily allocate
+> > both gpio-regmap and regmap-irq in one operation.
+>
+> ...
+>
+> > -	if (config->irq_domain) {
+> > -		ret =3D gpiochip_irqchip_add_domain(chip, config->irq_domain);
+>
+> > +	irq_domain =3D config->irq_domain;
+>
+> Better to move it into #else, so we avoid double assignment (see below).
+>
 
-Drop stray blank line.
+OK
 
-> diff --git a/sound/soc/sof/mediatek/mt8196/mt8196.c b/sound/soc/sof/mediatek/mt8196/mt8196.c
-> new file mode 100644
-> index 000000000000..364069ce9954
-> --- /dev/null
-> +++ b/sound/soc/sof/mediatek/mt8196/mt8196.c
-> @@ -0,0 +1,650 @@
-> +// SPDX-License-Identifier: GPL-2.0
+> > +#ifdef CONFIG_GPIOLIB_IRQCHIP
+> > +	if (config->regmap_irq_chip) {
+> > +		struct regmap_irq_chip_data *irq_chip_data;
+> > +
+> > +		ret =3D devm_regmap_add_irq_chip_fwnode(config->parent, dev_fwnode(c=
+onfig->parent),
+> > +						      config->regmap, config->regmap_irq_irqno,
+> > +						      config->regmap_irq_flags, 0,
+> > +						      config->regmap_irq_chip, &irq_chip_data);
+> > +		if (ret)
+> > +			goto err_free_gpio;
+> > +
+> > +		irq_domain =3D regmap_irq_get_domain(irq_chip_data);
+> > +		if (config->regmap_irq_chip_data)
+> > +			*config->regmap_irq_chip_data =3D irq_chip_data;
+>
+> Hmm... I was under impression that we don't need this to be returned.
+> Do we have any user of it right now? If not, no need to export until
+> it is needed.
+>
 
-Look here
+Right, I will remove it.
 
-> +/*
-> + * Copyright (c) 2025 MediaTek Inc.
-> + * Author: Hailong Fan <hailong.fan@mediatek.com>
-> + */
+> > +	}
+>
+> 	} else
+>
+> > +#endif
+>
+> 	irq_domain =3D config->irq_domain;
+>
+> > +
+> > +	if (irq_domain) {
+> > +		ret =3D gpiochip_irqchip_add_domain(chip, irq_domain);
+> >  		if (ret)
+> >  			goto err_remove_gpiochip;
+> >  	}
+>
+> ...
+>
+> > +#ifdef CONFIG_GPIOLIB_IRQCHIP
+> > +	struct regmap_irq_chip *regmap_irq_chip;
+> > +	struct regmap_irq_chip_data **regmap_irq_chip_data;
+>
+> But why double pointer?
+>
 
-...
+I believe this has to be a double pointer, as it is going to be assigned
+a pointer value: data buffer is allocated inside of
+devm_regmap_add_irq_chip_fwnode().
 
-> +
-> +static const struct of_device_id sof_of_mt8196_ids[] = {
-> +	{ .compatible = "mediatek,mt8196-dsp", .data = &sof_of_mt8196_desc},
+But as you said, it's better to remove it and add it later if there is
+an use case.
 
-Bindings are before users.
+> > +	int regmap_irq_irqno;
+> > +	unsigned long regmap_irq_flags;
+> > +#endif
 
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, sof_of_mt8196_ids);
-> +
-> +/* DT driver definition */
-> +static struct platform_driver snd_sof_of_mt8196_driver = {
-> +	.probe = sof_of_probe,
-> +	.remove = sof_of_remove,
-> +	.shutdown = sof_of_shutdown,
-> +	.driver = {
-> +	.name = "sof-audio-of-mt8196",
-> +		.pm = &sof_of_pm,
-> +		.of_match_table = sof_of_mt8196_ids,
-> +	},
-> +};
-> +module_platform_driver(snd_sof_of_mt8196_driver);
-> +
-> +MODULE_LICENSE("Dual BSD/GPL");
-
-And here Hm? Don't fake the licensing.
-
-> +MODULE_DESCRIPTION("SOF support for MT8196 platforms");
-> +MODULE_IMPORT_NS("SND_SOC_SOF_XTENSA");
-
-Is this correct?
+Thanks for your review.
 
 
-Best regards,
-Krzysztof
+--=20
+Mathieu Dubois-Briand, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
