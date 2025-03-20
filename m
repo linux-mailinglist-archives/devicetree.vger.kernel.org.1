@@ -1,112 +1,167 @@
-Return-Path: <devicetree+bounces-159377-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B12D0A6A922
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 15:55:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 343A5A6A90E
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 15:51:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22FB518972FC
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 14:45:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A6684464AF3
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 14:49:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A5D678F5B;
-	Thu, 20 Mar 2025 14:45:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D5291C3BE0;
+	Thu, 20 Mar 2025 14:49:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lwn.net header.i=@lwn.net header.b="islBIcnP"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="Bw3lXaOm";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Y0x9aWYb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ms.lwn.net (ms.lwn.net [45.79.88.28])
+Received: from flow-b2-smtp.messagingengine.com (flow-b2-smtp.messagingengine.com [202.12.124.137])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAF8616D32A;
-	Thu, 20 Mar 2025 14:45:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.79.88.28
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 994AF2628C;
+	Thu, 20 Mar 2025 14:49:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.137
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742481908; cv=none; b=O4szitWigpWBpZKdfXO95dPYr/CPFm/+PnQjMEm8S07Q6QaLu20EXNkoxjd80Ywu87spgsO9Q+PkSf3lFXR8NG83o+i2zGjcExgiz7KPHSger0KQso+FzQWI6Tu1XBYgvcjTfOWX+5Gz0zI3IoZrcD+ZE+Wzy8G0grXxaCvnJJo=
+	t=1742482175; cv=none; b=uleGfuZ0E0kp+XvbpTY0CluRjmgm8JdC8t2YHhLesekpZuyrAXNtktsCILKBQQtk7nPlAuEPWd0arWgoLSXm2R/Npbq3CgdpzaT0knqwNPlBhmrFkjhffEYHGGT1B2RCfK5NRAXKueIgxA0mXKEo3uA/jOLVeik5+iBa9+H4ho0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742481908; c=relaxed/simple;
-	bh=kvFDZZfubpKqfDarf88i3jdXBTPwFlTbnMmYGlzeAK0=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=fskSpV+iVsAnypHQiP4tz5umBDfaGQ1dZHRSyI2QGYG6AvCNTovSCKTC3cpqWMW6cWBJBlsoUuP/qBHBbu5+HAAIR+ohECCkxmNizY8jE7D04n54Du8Gz2V5TKorEE4tbTWhBCFcX0swbHJH7OYQMUveHIYHvbcFMLtep+39u1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lwn.net; spf=pass smtp.mailfrom=lwn.net; dkim=pass (2048-bit key) header.d=lwn.net header.i=@lwn.net header.b=islBIcnP; arc=none smtp.client-ip=45.79.88.28
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lwn.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lwn.net
-DKIM-Filter: OpenDKIM Filter v2.11.0 ms.lwn.net 6D2FF41067
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lwn.net; s=20201203;
-	t=1742481904; bh=CoF70uKeI5oxzSiOPNjzHWGikLf7hCVkYp2xH2dZwr8=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=islBIcnPKt8uW5hA3T3PPSmSCAiYqTkWFBEgj6iGu0PWPhW3yjcXFHgamlCxP1MrS
-	 /Lj+fUKxr5XHpTVprLUBgUismDvPS5CB5J1IUUz2odXEXKxobBdvyGKp74eASDg1b7
-	 3NcoQjKXG2u/38NTpV85yQL2oGjhpBevYaOfsEqQNZYT3+llSNJ46De0it7L6QHik5
-	 4OCNYQKMEJTCOOJW9yd4iQ9bGRG/5GewfSs/+M1vFeCmQII3N0M93VIhTR33fzTGT2
-	 XjQTWkJpZniQrdJpagKpy1B+EeTb8h9XOtTFnPpNxPzbj/PPuetJF6/iR/xdwKAoCn
-	 7GVrkwxcSB9Ag==
-Received: from localhost (unknown [IPv6:2601:280:4600:2da9::1fe])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ms.lwn.net (Postfix) with ESMTPSA id 6D2FF41067;
-	Thu, 20 Mar 2025 14:45:04 +0000 (UTC)
-From: Jonathan Corbet <corbet@lwn.net>
-To: Changyuan Lyu <changyuanl@google.com>, linux-kernel@vger.kernel.org
-Cc: graf@amazon.com, akpm@linux-foundation.org, luto@kernel.org,
- anthony.yznaga@oracle.com, arnd@arndb.de, ashish.kalra@amd.com,
- benh@kernel.crashing.org, bp@alien8.de, catalin.marinas@arm.com,
- dave.hansen@linux.intel.com, dwmw2@infradead.org, ebiederm@xmission.com,
- mingo@redhat.com, jgowans@amazon.com, krzk@kernel.org, rppt@kernel.org,
- mark.rutland@arm.com, pbonzini@redhat.com, pasha.tatashin@soleen.com,
- hpa@zytor.com, peterz@infradead.org, ptyadav@amazon.de,
- robh+dt@kernel.org, robh@kernel.org, saravanak@google.com,
- skinsburskii@linux.microsoft.com, rostedt@goodmis.org, tglx@linutronix.de,
- thomas.lendacky@amd.com, usama.arif@bytedance.com, will@kernel.org,
- devicetree@vger.kernel.org, kexec@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
- linux-mm@kvack.org, x86@kernel.org, Changyuan Lyu <changyuanl@google.com>
-Subject: Re: [PATCH v5 16/16] Documentation: add documentation for KHO
-In-Reply-To: <20250320015551.2157511-17-changyuanl@google.com>
-References: <20250320015551.2157511-1-changyuanl@google.com>
- <20250320015551.2157511-17-changyuanl@google.com>
-Date: Thu, 20 Mar 2025 08:45:03 -0600
-Message-ID: <87wmcj69sg.fsf@trenco.lwn.net>
+	s=arc-20240116; t=1742482175; c=relaxed/simple;
+	bh=bIeQ1Wu8a+Mrkgz5vApJf9zp6gXA5Aohfycah7Q3lIA=;
+	h=MIME-Version:Date:From:To:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=DowYgKgmj2Ieaj+Sc+ZM4Dfa3Xa4lTUcZMRez/Pjsd6hAC864evDLgPQg1cjbTvAHxF4yoJJSd+RkCjpmNiL85gDJ8teGkqaP19WFkKBqiIhKXGp3poE99Kb0CNcFzBVEZd88vJtOkZPYxq4TNJ+kNLZl2nmb2v40FY7n4VCof0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=Bw3lXaOm; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Y0x9aWYb; arc=none smtp.client-ip=202.12.124.137
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-07.internal (phl-compute-07.phl.internal [10.202.2.47])
+	by mailflow.stl.internal (Postfix) with ESMTP id AEE401D416BB;
+	Thu, 20 Mar 2025 10:49:30 -0400 (EDT)
+Received: from phl-imap-11 ([10.202.2.101])
+  by phl-compute-07.internal (MEProxy); Thu, 20 Mar 2025 10:49:31 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:content-transfer-encoding:content-type:content-type:date:date
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1742482170;
+	 x=1742489370; bh=9DLyOHmoAVb5Kjp+6FlYdojTGuwaxjtqiw9xkYFjrks=; b=
+	Bw3lXaOmvk9EdHs1fHI4ePb/4my5fKxj/IMehz35ln/GbxTb2yfCvVNDmPag0Iyc
+	6U4DAcH8l8GGqWTL/f+oEJeQwE2vg9NLGJjKJA56zHtY+rLW7mwDSGbyr5+p5XM9
+	JCCrRvfUg8U9Ay9Equz57Dwz1WcN465IOEnw52kZ1BygBzU2OSdFKNAmAlWz1mAa
+	FCAYffC5LmTTVMZFFSQLceuZN0f5ZPmPgd+JE4ytjReoN4stZJTs7zhSBTdzr9V3
+	pPny3DzuG5icuFEqINH8fHGHXQ9PJLpj9cpXsRhS8AcpIVTbUyPQVl3J30MBzF1n
+	X7rb7bbbVqo5z/rdkGcDTg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:content-transfer-encoding:content-type
+	:content-type:date:date:feedback-id:feedback-id:from:from
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
+	:x-me-sender:x-sasl-enc; s=fm1; t=1742482170; x=1742489370; bh=9
+	DLyOHmoAVb5Kjp+6FlYdojTGuwaxjtqiw9xkYFjrks=; b=Y0x9aWYb2wIAQmaSl
+	Pq6kfxvFZ+vMSk4mUZVMwOCYQXFhwo4FJthV1YOsfpEAc5r56MQs00MWNWQ0JNDX
+	BeT2gaYmcUUtXFUpth1PV9wPGsIz06xj9QEOolTvT2f3WnwVVP1ZBCYav2jRKaKv
+	JGphU67eMFJd/qbRt0RbNP2aPRcqsGRMK+PLas0r1J3nRoQ21uqRPpGUL1iI2NVS
+	FebfzaJxE+l3slXKq9Zx6IGVg+a9jxn/YDtEIn7PDb/xAnScxQ2sczmw0mug+qgD
+	84PKh+sqX8mlDjlR5HIzegh2buZJErBnJqLHFtImfWvmvwlvJbFl2pDGiPe7CEeT
+	1YNkQ==
+X-ME-Sender: <xms:-CrcZyd9GW8HoH0R3IH91GtQzQt0CEr8OyRwG1O-nnJkeMuRCvK6Zg>
+    <xme:-CrcZ8NvNa45BKatbeA4B1wgGCMT93ZcGxk0DSOqDPRgKGUn0zpZUmNESobrm7HKP
+    to6wCniosQHayzwSCo>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddugeekgeelucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
+    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
+    gvnhhtshculddquddttddmnecujfgurhepofggfffhvffkjghfufgtgfesthejredtredt
+    tdenucfhrhhomhepfdetrhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusg
+    druggvqeenucggtffrrghtthgvrhhnpefhkeeltdfffefhgffhteetheeuhffgteeghfdt
+    ueefudeuleetgfehtdejieffhfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmh
+    epmhgrihhlfhhrohhmpegrrhhnugesrghrnhgusgdruggvpdhnsggprhgtphhtthhopedv
+    jedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepuhhpshhtrhgvrghmsegrihhroh
+    hhrgdrtghomhdprhgtphhtthhopehmthhurhhquhgvthhtvgessggrhihlihgsrhgvrdgt
+    ohhmpdhrtghpthhtoheprghnghgvlhhoghhiohgrtggthhhinhhordguvghlrhgvghhnoh
+    estgholhhlrggsohhrrgdrtghomhdprhgtphhtthhopegthiihsegthiihshgvlhhfrdhn
+    rghmvgdprhgtphhtthhopegsvghnseguvggtrgguvghnthdrohhrghdruhhkpdhrtghpth
+    htohepuggusegvmhgsvgguugdrtghomhdprhgtphhtthhopegrlhgvgigrnhguvghrrdhs
+    vhgvrhgulhhinhesghhmrghilhdrtghomhdprhgtphhtthhopegrnhhsuhgvlhhsmhhthh
+    esghhmrghilhdrtghomhdprhgtphhtthhopehmrghtthhhihgrshdrsghgghesghhmrghi
+    lhdrtghomh
+X-ME-Proxy: <xmx:-CrcZzggTkjaKKMcIlgevkAvwlYjG5PkKJgdClNOo099WbN16OSVsA>
+    <xmx:-CrcZ_9zuYJuN_HLg3rJNKPuHPA9shltG7CLzwdMTeYtvKj7bZxlGA>
+    <xmx:-CrcZ-tBhZRJUgt6KbRsVeBxevJWA7uQVq4pldXImlnOXd_tXaUkew>
+    <xmx:-CrcZ2HPgAWXYC_-FTq__I9R22-H0xsP9vJ2kl_t3HMh2-otp4xiig>
+    <xmx:-ircZzt99E-ok_aWCfAWKBZl4vRai5AHEGnkM81fK97NzSmAflzBFw3S>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 660AA2220073; Thu, 20 Mar 2025 10:49:28 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-ThreadId: T0b2bddcaf378cae8
+Date: Thu, 20 Mar 2025 15:49:08 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Christian Marangi" <ansuelsmth@gmail.com>,
+ "Michael Turquette" <mturquette@baylibre.com>,
+ "Stephen Boyd" <sboyd@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Vinod Koul" <vkoul@kernel.org>,
+ "Kishon Vijay Abraham I" <kishon@kernel.org>,
+ "Matthias Brugger" <matthias.bgg@gmail.com>,
+ "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>,
+ "Lorenzo Bianconi" <lorenzo@kernel.org>,
+ "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ "Daniel Danzberger" <dd@embedd.com>,
+ "Alexander Sverdlin" <alexander.sverdlin@gmail.com>,
+ "Nikita Shubin" <nikita.shubin@maquefel.me>,
+ "Linus Walleij" <linus.walleij@linaro.org>,
+ "Yangyu Chen" <cyy@cyyself.name>, "Ben Hutchings" <ben@decadent.org.uk>,
+ "Felix Fietkau" <nbd@nbd.name>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-usb@vger.kernel.org,
+ upstream@airoha.com
+Message-Id: <d6e27266-dc5b-4ef8-b708-21cedd06621e@app.fastmail.com>
+In-Reply-To: <20250320130054.4804-5-ansuelsmth@gmail.com>
+References: <20250320130054.4804-1-ansuelsmth@gmail.com>
+ <20250320130054.4804-5-ansuelsmth@gmail.com>
+Subject: Re: [PATCH v2 04/11] soc: airoha: add support for configuring SCU SSR Serdes
+ port
 Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 
-Changyuan Lyu <changyuanl@google.com> writes:
-
-> From: Alexander Graf <graf@amazon.com>
+On Thu, Mar 20, 2025, at 14:00, Christian Marangi wrote:
+> Add support for configuring SCU SSR Serdes port. Airoha AN7581 SoC can
+> configure the different Serdes port by toggling bits in the SCU register
+> space.
 >
-> With KHO in place, let's add documentation that describes what it is and
-> how to use it.
+> Port Serdes mode are mutually exclusive, force example the USB2 Serdes port
+> can either used for USB 3.0 or PCIe 2 port. Enabling USB 3.0 makes the
+> PCIe 2 to not work.
 >
-> Signed-off-by: Alexander Graf <graf@amazon.com>
-> Co-developed-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-> Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-> Co-developed-by: Changyuan Lyu <changyuanl@google.com>
-> Signed-off-by: Changyuan Lyu <changyuanl@google.com>
-> ---
->  .../admin-guide/kernel-parameters.txt         |  25 ++++
->  Documentation/kho/concepts.rst                |  70 +++++++++++
->  Documentation/kho/fdt.rst                     |  62 +++++++++
->  Documentation/kho/index.rst                   |  14 +++
->  Documentation/kho/usage.rst                   | 118 ++++++++++++++++++
->  Documentation/subsystem-apis.rst              |   1 +
->  MAINTAINERS                                   |   1 +
->  7 files changed, 291 insertions(+)
->  create mode 100644 Documentation/kho/concepts.rst
->  create mode 100644 Documentation/kho/fdt.rst
->  create mode 100644 Documentation/kho/index.rst
->  create mode 100644 Documentation/kho/usage.rst
+> The current supported Serdes port are:
+> - WiFi 1 and defaults to PCIe0 1 line mode
+> - Wifi 2 and defaults to PCIe1 1 line mode
+> - USB 1 and defaults to USB 3.0 mode
+> - USB 2 and defaults to USB 3.0 mode
+>
+> WiFi 1, WiFi 2 and USB 1 also support a particular Ethernet mode that
+> can toggle between USXGMII or HSGMII mode (USB 1 only to HSGMII)
+> Such mode doesn't configure bits as specific Ethernet PCS driver will
+> take care of configuring the Serdes mode based on what is required.
+>
+> This driver is to correctly setup these bits.
+> Single driver can't independently set the Serdes port mode as that
+> would cause a conflict if someone declare, for example, in DT
+> (and enable) PCIe 2 port and USB2 3.0 port.
+>
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 
-I will ask again: please let's not create another top-level docs
-directory for this...?  It looks like it belongs in the admin guide to
-me.
+I think serdes drivers are usually implement in the drivers/phy
+layer, and I see there is already a drivers/phy/phy-airoha-pcie.c,
+which may or may not overlap with this one (I have not looked at
+the details).
 
-Thanks,
+Have you tried to use the phy subsystem interface here instead
+of creating a custom in-kernel interface?
 
-jon
+      Arnd
 
