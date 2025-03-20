@@ -1,122 +1,112 @@
-Return-Path: <devicetree+bounces-159190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4527BA69F06
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 05:28:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AE64A69F32
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 06:17:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B27DE3B3848
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 04:28:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC6BD18906BB
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 05:17:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 791311B87F0;
-	Thu, 20 Mar 2025 04:28:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BBB41C3BF1;
+	Thu, 20 Mar 2025 05:17:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oCk9eEcJ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Zm2s+/o8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4663526AF5;
-	Thu, 20 Mar 2025 04:28:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F7A81805A;
+	Thu, 20 Mar 2025 05:17:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742444894; cv=none; b=noC57teeuZKw4Jlrapcm9bJ7zcEyB1llgkfKV4tuk1SgLZnOktZSSqGUsJGwxjdUT+99Yu7D/WctAZ2KgyGiXYJW8hdseKTL3mf9ZoWvHIEa8Cwf0eldIu/tPzP5e/jIBQYezo2SLYwKZ6hEeIoFc+WA7ACd1Zo9RNTyJKRhZv4=
+	t=1742447841; cv=none; b=kmDgNpN93+NJRAvDSwvEQIJpeFqpt8t3erllnkpWccAzgljw7JjCRnXhLcNmw+ZvcaVliVTa0WE/Kr7F6ySopC0KSDmhJVA1vOBUD5yBkJ4hsw4C985UpQr5ujvwIXjh88U6N1xxWi6WP/kqAhLmtyOSQTurEqqXbNbAdO5eCKE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742444894; c=relaxed/simple;
-	bh=aPxXWfMVVlCrz1Tsr1dm7hBdMh7cE/iDLBs/zpr0aQ0=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=keg9aR5CALBLc7yEMlksudXixpwi17f8/Noj1M/gegIQ1yjnBGtfa+LZbvpEvbHC8/KAoCkBkMl3mwtjqGWLLXXCQxaGeMmHbuFA7DoVnZeHS+N1njJXUkzanYX4Rb6TrPZMm0p86XmeJPFhh58RvzK2mcunJpJqgkqyyMBeJhY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oCk9eEcJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51EDCC4CEDD;
-	Thu, 20 Mar 2025 04:28:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742444893;
-	bh=aPxXWfMVVlCrz1Tsr1dm7hBdMh7cE/iDLBs/zpr0aQ0=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=oCk9eEcJgai12daLGbvcg0HJkOWBEYwzhsn1ivhE/1lPXZp3Sdpey/TBGyPoXuvKJ
-	 70CDvY7zr40/gcyyAW1qzHX6fjrPnEKLvSiUlZm9NZgKsieNYtqhyqNFZp03uJl1SO
-	 hgYLYSug8wCz/wjRTzEpBNn3XfE2Keth0XlFdxX5Pccr5gWZpDzDgeOJUkHySlw/rr
-	 0tV0Ey1gSGXkpGjHZLLSeIlLMULyUW4ar08zl5ofYJk6BVWb8ezhtD4oEA7ZAw/97L
-	 +1MsXSkELbwJVYmxsMLu6dyWxNNmJcD9KKXCMOERm3wRSn831JYpJDqN5rH032Fnr2
-	 W4Kc5wBAPsCAQ==
-Date: Wed, 19 Mar 2025 23:28:12 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1742447841; c=relaxed/simple;
+	bh=tz1q2DBFc/OMbS5SGpxiEK7DVk8rk7tkjVbN0E+1JdI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=srHb6C3j0sv5tH1Hx2Ml2xSCEJ9Mz9L26tPBXL3r3dXHsSQ/+gNDXI9Yu9T2u6BgVTCzoQQCURMkeM2Qp5iJp2D1i1rqf+7vM8UPBwIyEs/touDPCf5PWY2MjZaMSwXz2PtoQxcNBivBgyRCBU/MezJPmi8ivkRn1U+YGitzAKc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Zm2s+/o8; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52JJ5nNP023374;
+	Thu, 20 Mar 2025 05:17:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=gErWp/wF1Wj0f+V3oiP/9N
+	AkZLnvUOMTTEDGf3DxA9o=; b=Zm2s+/o8nFtKLRagldLndzuYZn+Hx+K62+H2ZE
+	TDfsOYcgfXIy+rMeN8tXhcts59l17apmZOwcD7Bjbh/5soADofKP9udpb4/q72s9
+	cxGj80vK8D6KrhJhTooTME2OHEyt3bC+YwJx7TnND+aIe8FBI6sJna2aunAT0CZt
+	SdGQMEzyK/43BbcIk9pN8QxLmcICmxGa5cXwAnzKB7zxzRxlUP7z76oCg0zV5E6P
+	b6XK8/ephpNUCzFeSlf6rQWJs6DZFSs9svPonW2dW1j+yFzasiOI5H2AKjJdXAmS
+	oX5Azt3M2wpAPR2ozM851REkDfVIsjo/cd6+63wnms2l4CRw==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45g3sf16gn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 20 Mar 2025 05:17:08 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52K5H78n011934
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 20 Mar 2025 05:17:07 GMT
+Received: from hu-lxu5-sha.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 19 Mar 2025 22:17:03 -0700
+From: Ling Xu <quic_lxu5@quicinc.com>
+To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <srinivas.kandagatla@linaro.org>, <amahesh@qti.qualcomm.com>,
+        <arnd@arndb.de>, <gregkh@linuxfoundation.org>
+CC: <quic_kuiw@quicinc.com>, <quic_ekangupt@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        Ling Xu
+	<quic_lxu5@quicinc.com>
+Subject: [PATCH 0/2] Add support for gpdsp remoteproc on sa8775p
+Date: Thu, 20 Mar 2025 10:46:43 +0530
+Message-ID: <20250320051645.2254904-1-quic_lxu5@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>, 
- Peter Ujfalusi <peter.ujfalusi@linux.intel.com>, 
- Ranjani Sridharan <ranjani.sridharan@linux.intel.com>, 
- Project_Global_Chrome_Upstream_Group@mediatek.com, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- devicetree@vger.kernel.org, Matthias Brugger <matthias.bgg@gmail.com>, 
- Takashi Iwai <tiwai@suse.com>, Conor Dooley <conor+dt@kernel.org>, 
- Xiangzhi.Tang@mediatek.com, Liam Girdwood <lgirdwood@gmail.com>, 
- linux-sound@vger.kernel.org, Jaroslav Kysela <perex@perex.cz>, 
- Jjian.Zhou@mediatek.com, linux-arm-kernel@lists.infradead.org, 
- Bard Liao <yung-chuan.liao@linux.intel.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>, 
- linux-kernel@vger.kernel.org, sound-open-firmware@alsa-project.org, 
- Kai Vehmanen <kai.vehmanen@linux.intel.com>, 
- Mark Brown <broonie@kernel.org>, linux-mediatek@lists.infradead.org
-To: "hailong.fan" <hailong.fan@mediatek.com>
-In-Reply-To: <20250320031753.13669-3-hailong.fan@mediatek.com>
-References: <20250320031753.13669-1-hailong.fan@mediatek.com>
- <20250320031753.13669-3-hailong.fan@mediatek.com>
-Message-Id: <174244489218.3285851.2715414657089059683.robh@kernel.org>
-Subject: Re: [PATCH 2/2] dt-bindings: dsp: mediatek: add mt8196 dsp
- document
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: kYPLtpP1ZG_GsT6jSpwn_KIeNfFwmk_N
+X-Proofpoint-ORIG-GUID: kYPLtpP1ZG_GsT6jSpwn_KIeNfFwmk_N
+X-Authority-Analysis: v=2.4 cv=R9IDGcRX c=1 sm=1 tr=0 ts=67dba4d4 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=Vs1iUdzkB0EA:10 a=mVQdYIaDE-e1hwXU0PQA:9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-20_01,2025-03-19_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ lowpriorityscore=0 bulkscore=0 spamscore=0 phishscore=0 adultscore=0
+ suspectscore=0 clxscore=1015 mlxscore=0 priorityscore=1501 malwarescore=0
+ mlxlogscore=734 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503200030
 
+The fastrpc driver has support for 5 types of remoteprocs. There are
+some products which support GPDSP remoteprocs. GPDSPs are General
+Purpose DSPs where tasks can be offloaded. Add changes to support GPDSP
+remoteprocs and also add GPDSP fastrpc nodes.
 
-On Thu, 20 Mar 2025 11:17:25 +0800, hailong.fan wrote:
-> This patch adds mt8196 dsp document. The dsp is used for Sound Open
-> Firmware driver node. It includes registers,  clocks, memory regions,
-> and mailbox for dsp.
-> 
-> Signed-off-by: hailong.fan <hailong.fan@mediatek.com>
-> ---
->  .../bindings/dsp/mediatek,mt8196-dsp.yaml     | 96 +++++++++++++++++++
->  1 file changed, 96 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dsp/mediatek,mt8196-dsp.yaml
-> 
+Ling Xu (2):
+  arm64: dts: qcom: sa8775p: add GPDSP fastrpc-compute-cb nodes
+  misc: fastrpc: add support for gpdsp remoteproc
 
-My bot found errors running 'make dt_binding_check' on your patch:
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi | 58 +++++++++++++++++++++++++++
+ drivers/misc/fastrpc.c                | 10 ++++-
+ 2 files changed, 66 insertions(+), 2 deletions(-)
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/dsp/mediatek,mt8196-dsp.example.dts:18:18: fatal error: dt-bindings/clock/mt8196-clk.h: No such file or directory
-   18 |         #include <dt-bindings/clock/mt8196-clk.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/dsp/mediatek,mt8196-dsp.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1522: dt_binding_check] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250320031753.13669-3-hailong.fan@mediatek.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-- 
+2.34.1
 
 
