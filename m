@@ -1,184 +1,290 @@
-Return-Path: <devicetree+bounces-159417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8276EA6AB75
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 17:50:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE03CA6AB7D
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 17:53:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1EC909832AA
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 16:48:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 84C1E3AEE66
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 16:52:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88BEF2253A5;
-	Thu, 20 Mar 2025 16:47:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 816AB22155F;
+	Thu, 20 Mar 2025 16:52:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="i2jXe/E6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JgHBqKhv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2048.outbound.protection.outlook.com [40.107.101.48])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF2FA221717;
-	Thu, 20 Mar 2025 16:47:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.101.48
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742489250; cv=fail; b=mDL6FTxdJNElnDlc+p5Z9qifb6kDcJ7r9tnHQqCHGicFKMspe03uIherH6bZGPQ4N21TTdfyfGTBLP8dnR63TCALTjxvegxlpho/NwFhdeyuRwm25Qm5Af/KC5Ume4zg+QtYXeIwFGRQm3d1WgixBz5gORgAOIpUApac6SE4Ugo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742489250; c=relaxed/simple;
-	bh=0ygIGf2m3sVjT8SES9vxOomwdKS0GV6pXgJi2wSQMfA=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WOnBIxJjRlsTMjlS4FjyIROKFJU3/y3qfBLBh6NGHSNIngWJpNGVJte+fEsEJXOV31NCdehqYT1bqMzhgEVzjIA4Fx4pfvXkDy5XVq1dNGNXbf06YwIe4EH8tbZ3Grzx1gvKKfzOWqI7MX+Yp1tDWPZzMpcieGYpOA1VS6rAPfc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=i2jXe/E6; arc=fail smtp.client-ip=40.107.101.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yh5ReJXPoeu3l8gQh0K3o+B+sLeT94jfyri0XOsQ4Rp3YrS//LiFdBpJ9rRY2r1f7u90GAnnNj8wb/fTo8GPZK2qz0O3bW8BbZoITlZX5EtiIHZMz169UcqHuDiQl619qRK6HjPMhvMFXlod94doie5iApz4k3SyyM1QS9TVZg0NRYSALVmO+4RkWL0v20atwV28ddR6/CBtv5ZKfGqDNHRmsXo6n0WeVUkTOnJmTcZyUA5k7c0Iir92SxE+6u2rTsokGBSItIoja0JpjhCH8eNpz+c9E7YJeVQzrJA/0b/nAAdqh5OJ0pXFMoYDZa/ephQ63HW8BuXhhw/oMXqCew==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gGwj1AVsYPOh63OOBdys6u0R2ME5hit3ehrcKRYHRf0=;
- b=IoxuHC7NWaOhKCxnkdkfeBkf7Ty+m6ATsARfpBUfJYuqMJWoOQIUyHJBFsLyYOUxzsa80n6hLTX7neIOH8dwGm6kkT0C2EbU/ZD7FMFm7VM8PiaIuPKXd+0DbF0sFb9SuF22seZWP/IR4tzXEq4a2ZOuouX4FhtCxxnKUQ6bl5YlzQifKAk52tZyW94+WfAVO6spdsdt0iV5KA7p5NsWAJXpnBTwRdy0Hqhpx/dec1eFp9iLU+oBveRZyBNa0vs/A0mJiq49iroGoEOH1iCFUotKuw/aDUTdSLFUhldEh56Ie9EFacP6Wx2K3MuspOnaRlI+ZH/TWTLXi/XixvVTWw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.118.233) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gGwj1AVsYPOh63OOBdys6u0R2ME5hit3ehrcKRYHRf0=;
- b=i2jXe/E61tbhmaGJq/VpSfUIQXSeHc3hGu9zcAogJ8MujLJ3JyyrjvD+JCNly6e3EuajZt5tbczCxaFaDZUXY/vQq+NBlM9RFDon6SVZGFMuxSmazTiXFz8vXS0xHMcxML+Uk3FYEtyP+w1KU9YwKsMqjNYLcHnxMW9r+Zf0CZB6Hrb87s2mwDZ6HB+A2JDwnxYUwjU5OnX/9GGTUQk/JW9xoi8z8FL3ZEDAA55GwPUnXk3y/+BhuNc46zT1wHhtEURbCLJ6Vw6BTQ34E27aTY4SFvVg3+CPDmCbLmRkiEAeyoDD0oWSeEaBqzBLFlLFWMEv2Mn1m+XFrftEFmD4kg==
-Received: from SA9P221CA0012.NAMP221.PROD.OUTLOOK.COM (2603:10b6:806:25::17)
- by MN0PR12MB6248.namprd12.prod.outlook.com (2603:10b6:208:3c0::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.34; Thu, 20 Mar
- 2025 16:47:25 +0000
-Received: from SA2PEPF00003F61.namprd04.prod.outlook.com
- (2603:10b6:806:25:cafe::7a) by SA9P221CA0012.outlook.office365.com
- (2603:10b6:806:25::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.36 via Frontend Transport; Thu,
- 20 Mar 2025 16:47:25 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.233)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.118.233 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.118.233; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.118.233) by
- SA2PEPF00003F61.mail.protection.outlook.com (10.167.248.36) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8534.20 via Frontend Transport; Thu, 20 Mar 2025 16:47:24 +0000
-Received: from drhqmail203.nvidia.com (10.126.190.182) by mail.nvidia.com
- (10.127.129.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Thu, 20 Mar
- 2025 09:47:14 -0700
-Received: from drhqmail203.nvidia.com (10.126.190.182) by
- drhqmail203.nvidia.com (10.126.190.182) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Thu, 20 Mar 2025 09:47:13 -0700
-Received: from willie-obmc-builder.nvidia.com (10.127.8.10) by mail.nvidia.com
- (10.126.190.182) with Microsoft SMTP Server id 15.2.1544.14 via Frontend
- Transport; Thu, 20 Mar 2025 09:47:13 -0700
-From: Willie Thai <wthai@nvidia.com>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<joel@jms.id.au>, <andrew@codeconstruct.com.au>, <kees@kernel.org>,
-	<tony.luck@intel.com>, <gpiccoli@igalia.com>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
-	<linux-kernel@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
-	<openbmc@lists.ozlabs.org>
-CC: <wthai@nvidia.com>, <leohu@nvidia.com>, <tingkaic@nvidia.com>,
-	<dkodihalli@nvidia.com>, Mars Yang <maryang@nvidia.com>
-Subject: [PATCH v3 2/2] dt-bindings: arm: aspeed: add Nvidia's GB200NVL BMC
-Date: Thu, 20 Mar 2025 16:46:33 +0000
-Message-ID: <20250320164633.101331-3-wthai@nvidia.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250320164633.101331-1-wthai@nvidia.com>
-References: <20250320164633.101331-1-wthai@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5981D19DF98;
+	Thu, 20 Mar 2025 16:52:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1742489545; cv=none; b=n7M5ukZ3mq5LeyXd99nK+pxyq/jYgyvDkgAJDlPW/YzLf06nFGxokqDscTchYxT1QpF9Aa8YIWB6hy1lbtSLjzTHt841rH8QNWP2jkSNL+mj7J3IcxQlfyzI83kAeOpNwGzhdCpeFy3z/DWALmFHFPpKKkyMMq3avXoW8q/k6Ek=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1742489545; c=relaxed/simple;
+	bh=HWAppdyLE+tSuREdaAW/Nnb1S8EdoAieaN9iTTI13QY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=X5o9w8GXTq8bI3Lmq7PZXUtioTFIIUswa+SS6KCLQ0KEwxZn4EshBl3/9HRWCkN3YMkdDmnfQuvDms1kTQKExuFqgQfNGUrftsXB99uXm6MH3YAFDxax5JJYRwPRZRX0zGyukZcB0kHROFyrPFZwsQ066B9+h/zRVPtzdzpNa9I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JgHBqKhv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AEB7C4CEDD;
+	Thu, 20 Mar 2025 16:52:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742489545;
+	bh=HWAppdyLE+tSuREdaAW/Nnb1S8EdoAieaN9iTTI13QY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JgHBqKhvAabsJD0TM7MxiuKrSw/oA8pr194vFb7TISCnga8NlW6V8YfsfzjESNIQm
+	 ElsGcIQaOU3OIAOGuckp5KpbhGFRtiXqVLc9fuyzOqlOCVn44xq+Ti3QfBYSBLa/6D
+	 so8GY/5kBntn6qcr72lnWppf7irYlNMZJAeXAAomdGSoAK7wfPaJlBZWwx4yS443fT
+	 4yeAOYspOgg5IGnX2T0CopmOsER+FoHpeU8RkVNA9cOy+Om21Rw8ab03vM9Zg6i19R
+	 q0AX7ifYIExSljCrgy4WFYtTt9qeL5P1crrhGF21vdVCa4YbdhkewtYH2xZeKOavDr
+	 t4/KQt20m7vdg==
+Date: Thu, 20 Mar 2025 16:52:20 +0000
+From: Lee Jones <lee@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 05/14] mfd: rohm-bd96801: Add chip info
+Message-ID: <20250320165220.GB1750245@google.com>
+References: <cover.1741864404.git.mazziesaccount@gmail.com>
+ <fd445f9cbbdaa3fd5d7a9e59093f86e5ff7139b1.1741864404.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NV-OnPremToCloud: AnonymousSubmission
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00003F61:EE_|MN0PR12MB6248:EE_
-X-MS-Office365-Filtering-Correlation-Id: dd25bb09-32df-45b1-8a97-08dd67cee47e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|1800799024|36860700013|376014|7416014|921020|13003099007;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?0T4iF+757M0tYgxLoMGQ5SynBgOj4geMDoRgVd3kJ29k7h/9Ako7amWcAXCy?=
- =?us-ascii?Q?NJhlixJgXdgGiqO1Sy3+3xP6ZNvOmq7C+aHLmoTuvW8O4qSuKXa0YFg7D6hi?=
- =?us-ascii?Q?p6o55C3KlGzjeIq09MCFcWgiceYre36Vm3ScDDBNVPMcQF9GtrO/ffQJTSET?=
- =?us-ascii?Q?ydg3/xgg6HPtHlE9xvHxtlTCAXGAtm2FI8iu5sAPWJfoC3ilxoM2V6cvgc8w?=
- =?us-ascii?Q?47xeVpapQAoSf2F5pKF9wMTB5aENP7Z8L0hL1abHp3xc9Yr+OiObtJOIPDPK?=
- =?us-ascii?Q?CEOxLKDnDoysnGcvx8n9nzcvGOXIyhy/DwwHlQuAyTDXhU91LZbWHaN9JKnU?=
- =?us-ascii?Q?oOCiwzCNU7dCzAgjmvgics/dF27VoEpn5LPOY4iA4tL9C0eXZT5fBz+Bbe9O?=
- =?us-ascii?Q?Vpzl1lusy//oHEiLFvf2+acr8jwvim2FkgmGG8vdklPjyE3N0/9gNzJc7kdA?=
- =?us-ascii?Q?FRYVD+7VfIFjNvXBfLuzGbwvHzDlxy3aOUk9fWATpp7ucrNQExqO/z/rvh4Q?=
- =?us-ascii?Q?kBY8T0Sur3vcK6+WlYcYJFknI5sUBWnEyq1d0rgPLOsEAjlgghuUyPBPnKzx?=
- =?us-ascii?Q?Ze6gHz+dsbN3xXOI6P+TazvD1ommv4yILT0c09cOLvPsDdZdOjaWTdI3aYgg?=
- =?us-ascii?Q?bzy9Y2qdUZhfqcrGYxqhqnXFL8RSUlee7TWtxMPiCDtxUW7lt9/JQuf+SPhI?=
- =?us-ascii?Q?TjkTufuJOfvN4B/L2llz8lHg5R2s6E6JnMQRJVFSj0OpL+enjuW+SSyUA/dH?=
- =?us-ascii?Q?CDUw4HVX9a/BAa5GZBy/jT5IcQ/EB+toW/mxe+K1vYKCrpMDsT58qWFQvFlR?=
- =?us-ascii?Q?jAPdrffRjbSZcPw9tKB9AcfB685sK8gSDBimLDMgSSd29FDk/4RxFZxUboI9?=
- =?us-ascii?Q?kmGv/ff93kjtab2oLC5vp/ZETPMdiF6NUqoEKk332Opv01mWCapiA7KIUDwB?=
- =?us-ascii?Q?JOf5eYEcf0bSh+Nss5e/xt65VhnxpEiHzOXU+lpUYS8x7PxN2U/uKcqmQEHf?=
- =?us-ascii?Q?5o9y1pNxPgmrs8RyCJd3S3eXdw1Q46WQZABfyiQ9uXpy1ggGF/rTCsPbyO2f?=
- =?us-ascii?Q?gcf0f0FTdcA7GZOVSvKdfKw3ZJKohQMqpKWNS2J5LRRK3k7pCKbAaEa1HoRV?=
- =?us-ascii?Q?SnpaT6kfEXkH64DF18AL6JpF3lw9d439GyiGsnYNHAyfqJKUQlmynHnfSKbT?=
- =?us-ascii?Q?2zEbdtGY+rsjTBYS5f6SJxWtPiGuCkvjDo3I6WFGYZou9H6xqVI3ACqE+f1s?=
- =?us-ascii?Q?hHrxAHs1yBGdI7zqonzkWAwEMmnpTP8eVAEcym2direoX9msTTR4wFi4mNmx?=
- =?us-ascii?Q?EkgtReP/eDH8h0Pm289VafejkjasuuPuR5EzVN7cWMh6a8ktQ9oTbLZg6AEl?=
- =?us-ascii?Q?PJDXx9IDE2botrDXsd12WDxbcw6We6CIavj0eHB85m4hOoi/FG9RVBY3CLjW?=
- =?us-ascii?Q?/9TophNT2KYxr66fKpgRL0TJjBcVgcfmk+BAWnfWHM3powQ/XNxyL6HQ3oo2?=
- =?us-ascii?Q?cl8dvtgVWs5j3LM=3D?=
-X-Forefront-Antispam-Report:
-	CIP:216.228.118.233;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge2.nvidia.com;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(36860700013)(376014)(7416014)(921020)(13003099007);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2025 16:47:24.9494
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: dd25bb09-32df-45b1-8a97-08dd67cee47e
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.233];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SA2PEPF00003F61.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6248
+In-Reply-To: <fd445f9cbbdaa3fd5d7a9e59093f86e5ff7139b1.1741864404.git.mazziesaccount@gmail.com>
 
-This patch adds a binding for GB200NVL BMC.
+On Thu, 13 Mar 2025, Matti Vaittinen wrote:
 
-The GB200NVL BMC is an Aspeed Ast2600 based BMC for Nvidia Blackwell GB200NVL platform.
-Reference to Ast2600 SOC [1].
-Reference to Blackwell GB200NVL Platform [2].
+> Prepare for adding support for BD96802 which is very similar to BD96801.
+> Separate chip specific data into own structure which can be picked to be
+> used by the device-tree.
+> 
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> ---
+>  drivers/mfd/rohm-bd96801.c | 83 ++++++++++++++++++++++++++------------
+>  1 file changed, 57 insertions(+), 26 deletions(-)
+> 
+> diff --git a/drivers/mfd/rohm-bd96801.c b/drivers/mfd/rohm-bd96801.c
+> index 60ec8db790a7..1232f571e4b1 100644
+> --- a/drivers/mfd/rohm-bd96801.c
+> +++ b/drivers/mfd/rohm-bd96801.c
+> @@ -40,7 +40,21 @@
+>  #include <linux/mfd/rohm-bd96801.h>
+>  #include <linux/mfd/rohm-generic.h>
+>  
+> -static const struct resource regulator_errb_irqs[] = {
+> +struct bd968xx_chip_data {
+> +	const struct resource *errb_irqs;
+> +	const struct resource *intb_irqs;
+> +	int num_errb_irqs;
+> +	int num_intb_irqs;
+> +	const struct regmap_irq_chip *errb_irq_chip;
+> +	const struct regmap_irq_chip *intb_irq_chip;
+> +	const struct regmap_config *regmap_config;
+> +	struct mfd_cell *cells;
 
-Co-developed-by: Mars Yang <maryang@nvidia.com>
-Signed-off-by: Mars Yang <maryang@nvidia.com>
-Link: https://www.aspeedtech.com/server_ast2600/ [1]
-Link: https://nvdam.widen.net/s/wwnsxrhm2w/blackwell-datasheet-3384703 [2]
-Signed-off-by: Willie Thai <wthai@nvidia.com>
----
- Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
- 1 file changed, 1 insertion(+)
+We're not passing MFD data through OF to be fed back through MFD APIs.
 
-diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-index 01333ac111fb..a3736f134130 100644
---- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-+++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-@@ -98,6 +98,7 @@ properties:
-               - inventec,starscream-bmc
-               - inventec,transformer-bmc
-               - jabil,rbp-bmc
-+              - nvidia,gb200nvl-bmc
-               - qcom,dc-scm-v1-bmc
-               - quanta,s6q-bmc
-               - ufispace,ncplite-bmc
+It's generally considered better to device_get_match_data() on an enum,
+then populate MFD cells using that as a differentiator.
+
+  git grep compatible -- drivers/mfd | grep data
+
+> +	int num_cells;
+> +	int unlock_reg;
+> +	int unlock_val;
+> +};
+> +
+> +static const struct resource bd96801_reg_errb_irqs[] = {
+>  	DEFINE_RES_IRQ_NAMED(BD96801_OTP_ERR_STAT, "bd96801-otp-err"),
+>  	DEFINE_RES_IRQ_NAMED(BD96801_DBIST_ERR_STAT, "bd96801-dbist-err"),
+>  	DEFINE_RES_IRQ_NAMED(BD96801_EEP_ERR_STAT, "bd96801-eep-err"),
+> @@ -98,7 +112,7 @@ static const struct resource regulator_errb_irqs[] = {
+>  	DEFINE_RES_IRQ_NAMED(BD96801_LDO7_SHDN_ERR_STAT, "bd96801-ldo7-shdn-err"),
+>  };
+>  
+> -static const struct resource regulator_intb_irqs[] = {
+> +static const struct resource bd96801_reg_intb_irqs[] = {
+>  	DEFINE_RES_IRQ_NAMED(BD96801_TW_STAT, "bd96801-core-thermal"),
+>  
+>  	DEFINE_RES_IRQ_NAMED(BD96801_BUCK1_OCPH_STAT, "bd96801-buck1-overcurr-h"),
+> @@ -345,18 +359,37 @@ static const struct regmap_config bd96801_regmap_config = {
+>  	.cache_type = REGCACHE_MAPLE,
+>  };
+>  
+> +static const struct bd968xx_chip_data bd96801_chip_data = {
+
+Just call it 'struct bd968xx' then below instead of cd, use ddata.
+
+  git grep "cc =" -- drivers/mfd
+
+VS
+
+  git grep "ddata =" -- drivers/mfd
+
+Conforrrrrrmmm ...    =;-)
+
+> +	.errb_irqs = bd96801_reg_errb_irqs,
+> +	.intb_irqs = bd96801_reg_intb_irqs,
+> +	.num_errb_irqs = ARRAY_SIZE(bd96801_reg_errb_irqs),
+> +	.num_intb_irqs = ARRAY_SIZE(bd96801_reg_intb_irqs),
+> +	.errb_irq_chip = &bd96801_irq_chip_errb,
+> +	.intb_irq_chip = &bd96801_irq_chip_intb,
+> +	.regmap_config = &bd96801_regmap_config,
+> +	.cells = bd96801_cells,
+> +	.num_cells = ARRAY_SIZE(bd96801_cells),
+> +	.unlock_reg = BD96801_LOCK_REG,
+> +	.unlock_val = BD96801_UNLOCK,
+> +};
+> +
+>  static int bd96801_i2c_probe(struct i2c_client *i2c)
+>  {
+>  	struct regmap_irq_chip_data *intb_irq_data, *errb_irq_data;
+>  	struct irq_domain *intb_domain, *errb_domain;
+> +	static const struct bd968xx_chip_data *cd;
+>  	const struct fwnode_handle *fwnode;
+>  	struct resource *regulator_res;
+>  	struct resource wdg_irq;
+>  	struct regmap *regmap;
+> -	int intb_irq, errb_irq, num_intb, num_errb = 0;
+> +	int intb_irq, errb_irq, num_errb = 0;
+>  	int num_regu_irqs, wdg_irq_no;
+>  	int i, ret;
+>  
+> +	cd = device_get_match_data(&i2c->dev);
+> +	if (!cd)
+> +		return -ENODEV;
+> +
+>  	fwnode = dev_fwnode(&i2c->dev);
+>  	if (!fwnode)
+>  		return dev_err_probe(&i2c->dev, -EINVAL, "Failed to find fwnode\n");
+> @@ -365,34 +398,32 @@ static int bd96801_i2c_probe(struct i2c_client *i2c)
+>  	if (intb_irq < 0)
+>  		return dev_err_probe(&i2c->dev, intb_irq, "INTB IRQ not configured\n");
+>  
+> -	num_intb =  ARRAY_SIZE(regulator_intb_irqs);
+> -
+>  	/* ERRB may be omitted if processor is powered by the PMIC */
+>  	errb_irq = fwnode_irq_get_byname(fwnode, "errb");
+> -	if (errb_irq < 0)
+> -		errb_irq = 0;
+> +	if (errb_irq == -EPROBE_DEFER)
+> +		return errb_irq;
+>  
+> -	if (errb_irq)
+> -		num_errb = ARRAY_SIZE(regulator_errb_irqs);
+> +	if (errb_irq > 0)
+> +		num_errb = cd->num_errb_irqs;
+>  
+> -	num_regu_irqs = num_intb + num_errb;
+> +	num_regu_irqs = cd->num_intb_irqs + num_errb;
+>  
+>  	regulator_res = devm_kcalloc(&i2c->dev, num_regu_irqs,
+>  				     sizeof(*regulator_res), GFP_KERNEL);
+>  	if (!regulator_res)
+>  		return -ENOMEM;
+>  
+> -	regmap = devm_regmap_init_i2c(i2c, &bd96801_regmap_config);
+> +	regmap = devm_regmap_init_i2c(i2c, cd->regmap_config);
+>  	if (IS_ERR(regmap))
+>  		return dev_err_probe(&i2c->dev, PTR_ERR(regmap),
+>  				    "Regmap initialization failed\n");
+>  
+> -	ret = regmap_write(regmap, BD96801_LOCK_REG, BD96801_UNLOCK);
+> +	ret = regmap_write(regmap, cd->unlock_reg, cd->unlock_val);
+>  	if (ret)
+>  		return dev_err_probe(&i2c->dev, ret, "Failed to unlock PMIC\n");
+>  
+>  	ret = devm_regmap_add_irq_chip(&i2c->dev, regmap, intb_irq,
+> -				       IRQF_ONESHOT, 0, &bd96801_irq_chip_intb,
+> +				       IRQF_ONESHOT, 0, cd->intb_irq_chip,
+>  				       &intb_irq_data);
+>  	if (ret)
+>  		return dev_err_probe(&i2c->dev, ret, "Failed to add INTB IRQ chip\n");
+> @@ -404,24 +435,25 @@ static int bd96801_i2c_probe(struct i2c_client *i2c)
+>  	 * has two domains so we do IRQ mapping here and provide the
+>  	 * already mapped IRQ numbers to sub-devices.
+>  	 */
+> -	for (i = 0; i < num_intb; i++) {
+> +	for (i = 0; i < cd->num_intb_irqs; i++) {
+>  		struct resource *res = &regulator_res[i];
+>  
+> -		*res = regulator_intb_irqs[i];
+> +		*res = cd->intb_irqs[i];
+>  		res->start = res->end = irq_create_mapping(intb_domain,
+>  							    res->start);
+>  	}
+>  
+>  	wdg_irq_no = irq_create_mapping(intb_domain, BD96801_WDT_ERR_STAT);
+>  	wdg_irq = DEFINE_RES_IRQ_NAMED(wdg_irq_no, "bd96801-wdg");
+> -	bd96801_cells[WDG_CELL].resources = &wdg_irq;
+> -	bd96801_cells[WDG_CELL].num_resources = 1;
+> +
+> +	cd->cells[WDG_CELL].resources = &wdg_irq;
+> +	cd->cells[WDG_CELL].num_resources = 1;
+>  
+>  	if (!num_errb)
+>  		goto skip_errb;
+>  
+>  	ret = devm_regmap_add_irq_chip(&i2c->dev, regmap, errb_irq, IRQF_ONESHOT,
+> -				       0, &bd96801_irq_chip_errb, &errb_irq_data);
+> +				       0, cd->errb_irq_chip, &errb_irq_data);
+>  	if (ret)
+>  		return dev_err_probe(&i2c->dev, ret,
+>  				     "Failed to add ERRB IRQ chip\n");
+> @@ -429,18 +461,17 @@ static int bd96801_i2c_probe(struct i2c_client *i2c)
+>  	errb_domain = regmap_irq_get_domain(errb_irq_data);
+>  
+>  	for (i = 0; i < num_errb; i++) {
+> -		struct resource *res = &regulator_res[num_intb + i];
+> +		struct resource *res = &regulator_res[cd->num_intb_irqs + i];
+>  
+> -		*res = regulator_errb_irqs[i];
+> +		*res = cd->errb_irqs[i];
+>  		res->start = res->end = irq_create_mapping(errb_domain, res->start);
+>  	}
+>  
+>  skip_errb:
+> -	bd96801_cells[REGULATOR_CELL].resources = regulator_res;
+> -	bd96801_cells[REGULATOR_CELL].num_resources = num_regu_irqs;
+> -
+> -	ret = devm_mfd_add_devices(&i2c->dev, PLATFORM_DEVID_AUTO, bd96801_cells,
+> -				   ARRAY_SIZE(bd96801_cells), NULL, 0, NULL);
+> +	cd->cells[REGULATOR_CELL].resources = regulator_res;
+> +	cd->cells[REGULATOR_CELL].num_resources = num_regu_irqs;
+> +	ret = devm_mfd_add_devices(&i2c->dev, PLATFORM_DEVID_AUTO,
+> +				   cd->cells, cd->num_cells, NULL, 0, NULL);
+>  	if (ret)
+>  		dev_err_probe(&i2c->dev, ret, "Failed to create subdevices\n");
+>  
+> @@ -448,7 +479,7 @@ static int bd96801_i2c_probe(struct i2c_client *i2c)
+>  }
+>  
+>  static const struct of_device_id bd96801_of_match[] = {
+> -	{ .compatible = "rohm,bd96801",	},
+> +	{ .compatible = "rohm,bd96801", .data = &bd96801_chip_data, },
+>  	{ }
+>  };
+>  MODULE_DEVICE_TABLE(of, bd96801_of_match);
+> -- 
+> 2.48.1
+> 
+
+
+
 -- 
-2.25.1
-
+Lee Jones [李琼斯]
 
