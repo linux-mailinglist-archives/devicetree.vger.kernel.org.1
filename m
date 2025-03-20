@@ -1,87 +1,80 @@
-Return-Path: <devicetree+bounces-159479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DACBA6B0F2
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 23:33:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0E10A6B10E
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 23:40:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A76251893C2F
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 22:33:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD1409821E3
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 22:39:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80F9822B5A3;
-	Thu, 20 Mar 2025 22:31:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5DBD228CB8;
+	Thu, 20 Mar 2025 22:39:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DOVyL94X"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="U8axf0W3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9848422B59C
-	for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 22:31:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C4A61E9B1D
+	for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 22:39:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742509895; cv=none; b=m0OTNJDhxSCBKuwtumB06EKks1V+qieAKmmIo3jhm4El56RQsKElBZtmk9XFz5GfkGAJGvErCPWC7QXZQr8TuYHatThHbWQzYvJH4qznK6q+8BrwxN66XpbyfsUZJ6lXk5VrefnvrKlU9dju7jHD3mTDr+Xu1GNVXUH7+O74yds=
+	t=1742510359; cv=none; b=hq8oAw/WBY+IKq7DpSZHb+KbRwGV3gaATOr2Oxq1Anl3yZkArpkPJHlVPlCoWRjLQ/iVBCcZfyqaVDDv57j6I/LyQTrqC0sHYJZtX8Lp6Nq9MdPW1DnFwbNJoabkbUNSmu6W6icIE57NUI2d41BK+k28E9Z4Me5tH48trp1mz0E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742509895; c=relaxed/simple;
-	bh=Sri02rWay4yWnrWOUnvaBo7qNS64gKGp0Y21t7cRIxw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XqmF60XVOxHm8ZqHiDe7/gv5xDyVfRGAvjQWZ9xZO4GIjESEbs/19NDoYxRG0H8w97bdjDT+L+ji1/RaWbjM8zlKhhX4YuacvSlOMsvfVA9TtTempHt8d4J9WZjZBG7jkN6DqO93hZy+ygHYSFwRjdoqqwQgqxHobvSOLZDtW/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DOVyL94X; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52KEYtI1022777
-	for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 22:31:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	a25CfM+uY8eLtxCuzHlyZWmCc3tXtmlCI+TwfBFX8U0=; b=DOVyL94XIDO3MmPy
-	2Q+lPsgY0i0fwIL3f6G2JTbYwdq07Gbkl01YFJg71VMow0NZ9vP9Mb3lMNfvBB+P
-	fJUGC0vyhO9IqmPGxIrT26kWDHElP2ltxDLGQIF6CXqiUSRid8epNst/1UYFElER
-	BGb+mhpkxTNdurfrm+zNt84/I6C2G5d0W4Mk/512isZMT0udnkcOi6ygJrGU/Xu2
-	4jPe9fpUM+eopxl5dQ41/PUelyaz7zG2ymWAOMuhhukzp7sy673fY+qYe+iKq034
-	4r6la4gCP9Em777B91RlgrBQNaf02YH5Y75hhUtJXe1OcCYFTC+N2BpnwSgWOHT1
-	TpemHw==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45fdmwywgf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 22:31:32 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7c5ad42d6bcso35028685a.2
-        for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 15:31:32 -0700 (PDT)
+	s=arc-20240116; t=1742510359; c=relaxed/simple;
+	bh=j8hDLkAQI9+JmAMX0TJqZyvjUEbu1kKiPGbRw7hGyE8=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=PeL8RTyNRAHhoD0x+/zp6E3FqHwf8MA8nIaUKeL/8ZyVNjBo12LTEjcqMGMJSxtLAxxXJu771yyiMRCmhowW5gyUNvPtxkq6taHFOAdUd6cdOrVBGfwZs4YqPoDQ6YfOttiU/dXqk0ID0oLC8cQt26rGtjyFvg3IXBGeLTMxEVA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=U8axf0W3; arc=none smtp.client-ip=209.85.210.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-7272f9d216dso845692a34.3
+        for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 15:39:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1742510356; x=1743115156; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=0fpBn8OJHb2DipzRLEI+UAj/Fv1bNkdtkXE17lBcc20=;
+        b=U8axf0W3geH9bU0a8/oNck3oKiFq3/mi9h4L6FVu3iX0GulN9b98p2y3p4zai39R4G
+         6aawtdLGCsgHBHBwLVhR7K5AMJ29n5ZXpwCycSy2qKI4Dk2QlFKpJ3ULB6Krlz6yQXfK
+         BeEadLGFvPZ7btl9qgD5RPkBPs005+eF0C1Zh6frnG8dBvEQ84GkW/O0oRQBLPKJp/tw
+         7OkANh/QZ0J3J8FPYO/4rMF/Kcy1zO7iy7QbP6sitooh4t9okKre/PeBTz24kzNgx9om
+         tpnL+xPDCR3a+aR0RvySvXX3K7Sp74z4Xrqbb7B83U6WuNEpXj925/kOos8A7TTM5Oao
+         FUZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742509891; x=1743114691;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1742510356; x=1743115156;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=a25CfM+uY8eLtxCuzHlyZWmCc3tXtmlCI+TwfBFX8U0=;
-        b=r2xvPCv0aneDl4LiYA2tXJwTTA9tNTKmnR01ecAiiDfJb9V+NRT06W4wdi1dhm3Txh
-         xy0cnvmz8HslNLidedN08AQ5F/TQBI46J8F97/zzrW++kG+XxYv+H7k1ycuCl54tmFay
-         j+Qi+7IKRYBZT3jZ5y1hXfUOXjJTdhsDkOFk9LvmrZbKBmrBJIX9kyHhb10+V6HeNd4r
-         DOdQ+ZE5ZWfEFpcdgyqRz1OxFP1zf3aNccMTKZVSTaV+YEvkpGJxtgpol9W+ZY14ShPU
-         U5ohgJvMPpHAkDLP3NS9toRr4lEueRVIx3PbGFJQxuUMzlonGazNQaTO15oUHOTbN+0A
-         EIPw==
-X-Forwarded-Encrypted: i=1; AJvYcCUBWiIJUB+BDVOYEEaIWNe5zIEeoDwXO6j/k7M7EKDivHKDSvIKr5h2n4P6KJgBav8mXoFLcKKYWS3H@vger.kernel.org
-X-Gm-Message-State: AOJu0YwsysZTpLycE7bOJYIhujXkdpFtoOclf6q1yl/vCO6znssJtqra
-	Jo5k5D0qQ110P6YRCUKQ3BsPBqKUtQwtpkQ7b5NwWUJhQVPCpM6LhC3C3NfXllhQZAVjKflIWo1
-	4Iw5NMAXv7hu9husM/SVewoGicK6uIGuX6sk+We+0YTeYFRpK8fH0NIeO824H
-X-Gm-Gg: ASbGncvTkLSXE3EI47Oe605dCgs3SArpS+9XeLFg54seBmBTuqFw3GzzIg5iO6pVntI
-	0YmAOiULBLrhdiVU3nUNoLiv97mzze0Cp7EWBUSXHkYCvSKYEGN9tW85B3f8hF5Lam1SrtT1h+U
-	G+dLpf7uQnFLUv8I/UsdplbM3knOENH7jf0GSqxtv4bxWPU4xckq8St3JzPCvGKSYZcbjIvmvNw
-	WY0M7yBITHtIpEmxlFlhyWILcx9qVQCwV1gKxvKXkEcUPyNpz6niR0xUrGuJNaFuUpsmIyb61KZ
-	M/vA6yjDFuhAxgL/JQEd6fLunOfSwM3QOaXQyZG85FShiJHh2qZZdJYk8jQDz5Y72aeARw==
-X-Received: by 2002:a05:620a:c50:b0:7c3:c340:70bf with SMTP id af79cd13be357-7c5bb18ef62mr18888985a.14.1742509891475;
-        Thu, 20 Mar 2025 15:31:31 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEjzMvQb9cedBVQrK1BfeEBN6u4FDFVS4wW2Tu8HCGvYiFw2UGkUEDhYmlUC2VQVs6+5CNutw==
-X-Received: by 2002:a05:620a:c50:b0:7c3:c340:70bf with SMTP id af79cd13be357-7c5bb18ef62mr18886985a.14.1742509891026;
-        Thu, 20 Mar 2025 15:31:31 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac3efd24f6esm40486266b.154.2025.03.20.15.31.29
+        bh=0fpBn8OJHb2DipzRLEI+UAj/Fv1bNkdtkXE17lBcc20=;
+        b=MIIKqqM4NGmlib9tR0kxA3BAVowCd9XBtphEfqkQi8iZvIjDZQLPzPkOiL4cXI9HvI
+         wrdOopyvgzLVfFPfuyxzjq7al+DhioiuONE3hg66SHvdHMm4Ll/VRkk2Lac8n7pPMDYy
+         HJ2hzqjvJcT0ZeZqofQl1Vtu2O0S4HB76z5Ki5bEfG7AM2rKptIfWK9C/FHH6WnxYExj
+         dwqif20voOsIJuzPHpl72VJEtSJv4ewRPluSMS7wX1ZDynKfedywzcDHzTAOlMQfubhf
+         O8unxpWJDgPMYMc/+OgDXj3gyVGd5OqgpN6hGRVzn3j90+JQOEpruWY+jSi65maxb1mD
+         hyLw==
+X-Forwarded-Encrypted: i=1; AJvYcCXtZtmDBmrHGoutm8mbyufXg+sfP5GZH5FwklMCnoRZKcWnvjErDxMffH/eT6yHtqt7KwHxyjKI9Ny7@vger.kernel.org
+X-Gm-Message-State: AOJu0YzKJ6Z9igaaJlaoM/AxkkWLo6peGcjop2SSzUqM0iGGQ6LUr7BO
+	KVMa/B4lMe31SBagAb14/GEnneSG++GETFWsXkXkF0si3WjAV7j6bhN1dX/TxjU=
+X-Gm-Gg: ASbGncvMymdUzG2adHyUYdtLSSgqAblRojPH1FUDm9YU8aXXhXkhfuoDUZrUBZpVmgh
+	sEa827sZhR9ei5ivQsEV76IH2AG01iQDrSmZW8KD9QhGMKy+/g2QVQ6VndH0nK7kfUathTMoQWo
+	JmaZLq26eTYVlWkSh7ZGLJIUQYtCXjequdXtxAwvhbqBXsf8if/LQbhgMwqx7508WSMkrRXvKDk
+	P6c2NPWRcDq6WkLEerttNrP7XRUqge7h3GLebV4vw3PWWuNlbFyKahMX9sb9bSilmHjw1PeOV+5
+	w0oKKN/iinkE/MpBWVPh34hU/XdfW/4nRLhJVZWDlL1iM9dxfr4LE5B/ZTJXebL7qJG6QsXayYt
+	NOUQHL5OqRYaRp20gjA==
+X-Google-Smtp-Source: AGHT+IGazuW7zMOIIFe93a/pSjwb+ABWXp4kDIdJjL+/LiLiDiWbJ1EYQxh1QRi47IqHdMLVTvHmPg==
+X-Received: by 2002:a05:6830:7302:b0:72a:1626:21e9 with SMTP id 46e09a7af769-72c0ae6a1f9mr908678a34.10.1742510355967;
+        Thu, 20 Mar 2025 15:39:15 -0700 (PDT)
+Received: from [10.211.55.5] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-72c0abac23esm140838a34.7.2025.03.20.15.39.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Mar 2025 15:31:30 -0700 (PDT)
-Message-ID: <07984029-7d6e-41dc-b0c7-e4843664cd39@oss.qualcomm.com>
-Date: Thu, 20 Mar 2025 23:31:28 +0100
+        Thu, 20 Mar 2025 15:39:15 -0700 (PDT)
+Message-ID: <84232793-9cba-4148-9875-d996e85b81be@riscstar.com>
+Date: Thu, 20 Mar 2025 17:39:13 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,45 +82,108 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: x1e80100-hp-omnibook-x14: Enable
- SMB2360 0 and 1
-To: Juerg Haefliger <juerg.haefliger@canonical.com>, andersson@kernel.org,
-        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org, jens.glathe@oldschoolsolutions.biz
-References: <20250319160509.1812805-1-juerg.haefliger@canonical.com>
+Subject: Re: [PATCH v5 3/5] clk: spacemit: Add clock support for Spacemit K1
+ SoC
+From: Alex Elder <elder@riscstar.com>
+To: Haylen Chu <heylenay@4d2.org>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Haylen Chu <heylenay@outlook.com>,
+ Yixun Lan <dlan@gentoo.org>
+Cc: linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ spacemit@lists.linux.dev, Inochi Amaoto <inochiama@outlook.com>,
+ Chen Wang <unicornxdotw@foxmail.com>, Jisheng Zhang <jszhang@kernel.org>,
+ Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
+ Guodong Xu <guodong@riscstar.com>
+References: <20250306175750.22480-2-heylenay@4d2.org>
+ <20250306175750.22480-5-heylenay@4d2.org>
+ <d625c473-789c-42f9-918c-8a649d058513@riscstar.com>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250319160509.1812805-1-juerg.haefliger@canonical.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: KRjNd_1fMzGekkd51de8zhNbb2GEZjnl
-X-Authority-Analysis: v=2.4 cv=ReKQC0tv c=1 sm=1 tr=0 ts=67dc9744 cx=c_pps a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=DfNHnWVPAAAA:8 a=EUspDBNiAAAA:8 a=RJAiKtZsp2GhsKZY2HMA:9
- a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22 a=rjTVMONInIDnV1a_A2c_:22
-X-Proofpoint-GUID: KRjNd_1fMzGekkd51de8zhNbb2GEZjnl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-20_08,2025-03-20_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
- phishscore=0 suspectscore=0 impostorscore=0 clxscore=1015 mlxscore=0
- malwarescore=0 mlxlogscore=592 priorityscore=1501 adultscore=0
- lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503200146
+In-Reply-To: <d625c473-789c-42f9-918c-8a649d058513@riscstar.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 3/19/25 5:05 PM, Juerg Haefliger wrote:
-> Commit d37e2646c8a5 ("arm64: dts: qcom: x1e80100-pmics: Enable all SMB2360
-> separately") disables all SMB2360s and let the board DTS explicitly enable
-> them. The HP OmniBook DTS is from before this change and is missing the
-> explicit enabling. Add that to get all USB root ports.
+On 3/11/25 6:19 PM, Alex Elder wrote:
+> On 3/6/25 11:57 AM, Haylen Chu wrote:
+>> The clock tree of K1 SoC contains three main types of clock hardware
+>> (PLL/DDN/MIX) and has control registers split into several multifunction
+>> devices: APBS (PLLs), MPMU, APBC and APMU.
+>>
+>> All register operations are done through regmap to ensure atomiciy
+>> between concurrent operations of clock driver and reset,
+>> power-domain driver that will be introduced in the future.
+>>
+>> Signed-off-by: Haylen Chu <heylenay@4d2.org>
 > 
-> Fixes: 6f18b8d4142c ("arm64: dts: qcom: x1e80100-hp-x14: dt for HP Omnibook X Laptop 14")
-> Cc: stable@vger.kernel.org      # 6.14
-> Signed-off-by: Juerg Haefliger <juerg.haefliger@canonical.com>
-> ---
+> I'm very glad you have the DT issues resolved now.
+> 
+> I again have lots of comments on the code, and I think I've
+> identified a few bugs.  Most of my comments, however, are
+> suggesting minor changes for consistency and readability.
+> 
+> I'm going to skip over a lot of "ccu-k1.c" because most of what I
+> say applies to the definitions in the header files.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+FYI I encountered a problem I mentioned below.
 
-Konrad
+. . .
+
+>> +/* frequency unit Mhz, return pll vco freq */
+>> +static unsigned long ccu_pll_get_vco_freq(struct clk_hw *hw)
+>> +{
+>> +    const struct ccu_pll_rate_tbl *pll_rate_table;
+>> +    struct ccu_pll *p = hw_to_ccu_pll(hw);
+>> +    struct ccu_common *common = &p->common;
+>> +    u32 swcr1, swcr3, size;
+>> +    int i;
+>> +
+>> +    ccu_read(swcr1, common, &swcr1);
+>> +    ccu_read(swcr3, common, &swcr3);
+> 
+> You are masking off the EN bit, but you should really be
+> using a mask defining which bits are valid instead.  As
+> I said earlier:
+> 
+> #define SPACEMIT_PLL_SWCR3_MASK    ~(SPACEMIT_PLL_SWCR3_EN)
+> 
+>> +    swcr3 &= ~PLL_SWCR3_EN;
+> 
+>      swcr3 &= SPACEMIT_PLL_SWCR3_MASK;
+>> +
+>> +    pll_rate_table = p->pll.rate_tbl;
+>> +    size = p->pll.tbl_size;
+>> +
+>> +    for (i = 0; i < size; i++) {
+>> +        if (pll_rate_table[i].swcr1 == swcr1 &&
+>> +            pll_rate_table[i].swcr3 == swcr3)
+>> +            return pll_rate_table[i].rate;
+>> +    }
+>> +
+> 
+> I have a general question here.  Once you set one of these
+> clock rates, it will always use one of the rates defined
+> in the table.
+> 
+> But what about initially?  Could the hardware start in a
+> state that is not defined by this code?  Do you *set* the
+> rate initially?  Should you (at least the first time the
+> clock is prepared/enabled)?
+
+When doing some testing today I found that the WARN_ON_ONCE()
+got called.  I added some information and learned that the
+values in hardware of the swcr1 and swcr3 registers were:
+   swcr1:  0x0050cd61
+   swcr3:  0x3fe00000
+I'm not sure which PLL was being used.
+
+So clearly this can happen.  Somehow you need to find a way
+to ensure that these registers are initialized to a sane
+state (meaning one defined within pll_rate_table[]).
+
+					-Alex
+
+>> +    WARN_ON_ONCE(1);
+> 
+> Maybe WARN_ONCE(true, "msg");. . .
 
