@@ -1,229 +1,140 @@
-Return-Path: <devicetree+bounces-159452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BB7DA6AF30
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 21:30:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26B7BA6AF99
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 22:07:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0311018863F6
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 20:29:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B44BF3BABF0
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 21:06:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23B43227EB1;
-	Thu, 20 Mar 2025 20:29:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 695BD229B0D;
+	Thu, 20 Mar 2025 21:06:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gFR5E6BQ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XMT0udc+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 323552A1A4;
-	Thu, 20 Mar 2025 20:29:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C474B2288CB;
+	Thu, 20 Mar 2025 21:06:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742502549; cv=none; b=gEYg6oWr1/kdH9MG0iB8geQSBfKaADl+cELMOmvj4O4MTgTE3j+LTARcm25gStxEAN2JmgrHCKzioYOW9+9R0g8s74h5jR9s1GJ7Rm51fNXpxpG5D7QNTd3XpnQmyimz2gf0w1CjkqGXmjxvCIK0ch6ohT4XLmBjcCUgmWVoZmY=
+	t=1742504814; cv=none; b=fmvWw0ERNhk+u3LNFEksoylxTzZ8ZBA5n3tRn4W0P8QY5bUw1XW26+q83t4u6Avx3eT1ny2OCkFdNqWBW9UjzWNptDSJSSsFLhrPgxMRW4n39v4lD9H5dMbLI0ZDfHUjjhaF56u4dMvQJMIHr2Y7MlqTJVyZxGJ+lmsmNC93F5Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742502549; c=relaxed/simple;
-	bh=/A7i/1Uro6h6eIUjAdKuaXPvRrA3wGaUjO4OFnhofeM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DtWS7TflIo/6uY/ru6x5u8cUoPfj3KZXtvUsESNUSzIswrNO0uSE0hJ/r52Pshcnb3WXPrO5Gs+UjJR4PUH/cXGXdxqT7z9+qjLYIVkJLiklh83DZOViW6hjeCdtqh5aKx/eLXjsgIz8Af2iPTj9Prf7O7GBfT76PJMdVyCxiWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gFR5E6BQ; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1742502547; x=1774038547;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=/A7i/1Uro6h6eIUjAdKuaXPvRrA3wGaUjO4OFnhofeM=;
-  b=gFR5E6BQkeWuoPW9RqJAX0QSTbjHWq7anj9p94nVASl0lA1+/SbQLYQr
-   bNETSC6nxylpk4c8dMiq+78mDZV5j5YbOPUNSqbhPU06BwlsYuchpEfzP
-   2KnyFkt0bWLOyYOSErdLnGJ136uT8FWVBnLBwqDqSaMMmZo7Vj2doGJNd
-   dRKLb5fHHYS8BjKJnGSnHh1Ujvt2F6/KMK+Ekb7iTDN423xl3WBelemSh
-   t9a6ncU5EzoqR+ydJJ2VyjntF7IkhS/cCEqEZ8wET2yf6CYeYyk4VForK
-   gTXALtEiDbJft6ggk2A7Gb5RNznxx7Wk1w1WbTZ9OGLzNLPmEqsb6zmBF
-   A==;
-X-CSE-ConnectionGUID: v/SpxdCBS4mPPxJ1l+UoYw==
-X-CSE-MsgGUID: XyxZxKqmSMy33vGqH3ok5w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11379"; a="43641584"
-X-IronPort-AV: E=Sophos;i="6.14,262,1736841600"; 
-   d="scan'208";a="43641584"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2025 13:29:06 -0700
-X-CSE-ConnectionGUID: zWGEOKDhRA6107exREHPMQ==
-X-CSE-MsgGUID: mqxpcH5pQA2dGiRObZSJvQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,262,1736841600"; 
-   d="scan'208";a="122921213"
-Received: from ranerica-svr.sc.intel.com ([172.25.110.23])
-  by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2025 13:29:06 -0700
-Date: Thu, 20 Mar 2025 13:34:51 -0700
-From: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Yunhong Jiang <yunhong.jiang@linux.intel.com>, tglx@linutronix.de,
-	mingo@redhat.com, bp@alien8.de, dave.hansen@linux.intel.com,
-	x86@kernel.org, hpa@zytor.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, kys@microsoft.com, haiyangz@microsoft.com,
-	wei.liu@kernel.org, decui@microsoft.com, rafael@kernel.org,
-	lenb@kernel.org, kirill.shutemov@linux.intel.com,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-hyperv@vger.kernel.org, linux-acpi@vger.kernel.org,
-	ricardo.neri@intel.com, ravi.v.shankar@intel.com
-Subject: Re: [PATCH v2 2/9] dt-bindings: x86: Add a binding for x86 wakeup
- mailbox
-Message-ID: <20250320203451.GA8338@ranerica-svr.sc.intel.com>
-References: <ujfqrllrii6iijlhbwx3bltpjogiosw4xx5pqbcddgpxjobrzh@xqqrfxi5lv3i>
- <20240827204549.GA4545@yjiang5-mobl.amr.corp.intel.com>
- <20240910061227.GA76@yjiang5-mobl.amr.corp.intel.com>
- <1d0ba3fc-1504-4af3-a0bc-fba86abe41e8@kernel.org>
- <20240919191725.GA11928@yjiang5-mobl.amr.corp.intel.com>
- <874d5908-f1db-412f-96a2-83fcebe8dd98@kernel.org>
- <20250303222102.GA16733@ranerica-svr.sc.intel.com>
- <acb5fa11-9dce-44d0-85e3-e67a6a10c48f@kernel.org>
- <20250312055118.GA29492@ranerica-svr.sc.intel.com>
- <17d37eab-2275-49ff-97b9-6b6706756f04@kernel.org>
+	s=arc-20240116; t=1742504814; c=relaxed/simple;
+	bh=4G6jaGIe+WTEP6vhII0aJ8aoUDhMttJ01WvXI8zyJV0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Tsgb0+b5u5hHZPOIDBAYt3kx1Jg0EJ/QeEOFbCAY8syR6NOuEvCGXOK2Anv1dXo3zfGqj7xXD319XvkTxgyYN+bHKXKnhafPVVHr8fbWPLy3vyJoTJ91du9KrD70aakIT+Igcmv/sgXpA/9zwRl7eO3NNOLADaWszcqTEFwD7Ug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XMT0udc+; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52KEIJpE005901;
+	Thu, 20 Mar 2025 21:06:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	tATHTglTJM9UOHXhCrFGkpEE6lgCWEeNaBCm00pblL0=; b=XMT0udc+TIuEWqJx
+	yewPmloMniiWPcvzNVhkFVDg+EwZHjSoBI13rEbe5Pe8DxwBCMBXmHdEHJYISWrx
+	G+le01FJ6BWWm3IQcz+nKOvCWenvn4eD81pzHTdZzMR3rtgAcMZcjp9Mkyy6Fnvt
+	4SpyCVSHDs15ALaK8eK2CQ7CEZsNMNtwSQoET0BHyPz74HQ2ZHn5FmTe6tcTP7eB
+	3JsXu3XVSbBSzV0sXJSh9Oo8NeN684hfsD3SqnOg1T0UsmEA3swp1YOqYSfmM7nq
+	s7ioLAoU+NWrFe0+1VH20mr/kyGofHZQaIZ4O9SrEtP6ORkDEJwCgHlb2mW99r6C
+	OoD7PQ==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45etmc313e-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 20 Mar 2025 21:06:36 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52KL6Zl6003583
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 20 Mar 2025 21:06:35 GMT
+Received: from [10.216.3.194] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 20 Mar
+ 2025 14:06:25 -0700
+Message-ID: <3abefb09-c1b6-4339-8cd9-cd86652c35d6@quicinc.com>
+Date: Fri, 21 Mar 2025 02:36:21 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <17d37eab-2275-49ff-97b9-6b6706756f04@kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 08/10] drm/bridge: anx7625: enable HPD interrupts
+To: Dmitry Baryshkov <lumag@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <robdclark@gmail.com>,
+        <dmitry.baryshkov@linaro.org>, <sean@poorly.run>,
+        <marijn.suijten@somainline.org>, <andersson@kernel.org>,
+        <robh@kernel.org>, <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
+        <konradybcio@kernel.org>, <conor+dt@kernel.org>,
+        <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
+        <rfoss@kernel.org>, <Laurent.pinchart@ideasonboard.com>,
+        <jonas@kwiboo.se>, <jernej.skrabec@gmail.com>,
+        <quic_abhinavk@quicinc.com>, <quic_rajeevny@quicinc.com>,
+        <quic_vproddut@quicinc.com>, <quic_jesszhan@quicinc.com>
+References: <20250311122445.3597100-1-quic_amakhija@quicinc.com>
+ <20250311122445.3597100-9-quic_amakhija@quicinc.com>
+ <5hvpacx3qeqhjqemhqizws4esdhwg7reli77qey2nin2fggljp@ykgyayj2v3e6>
+Content-Language: en-US
+From: Ayushi Makhija <quic_amakhija@quicinc.com>
+In-Reply-To: <5hvpacx3qeqhjqemhqizws4esdhwg7reli77qey2nin2fggljp@ykgyayj2v3e6>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: tRozAjq0hfhDi8U9-fjhIm8fjK2Givoe
+X-Proofpoint-GUID: tRozAjq0hfhDi8U9-fjhIm8fjK2Givoe
+X-Authority-Analysis: v=2.4 cv=aMLwqa9m c=1 sm=1 tr=0 ts=67dc835c cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=VNkCFBYSnlPScTfBtzoA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-20_07,2025-03-20_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ priorityscore=1501 spamscore=0 clxscore=1015 phishscore=0 mlxscore=0
+ suspectscore=0 malwarescore=0 mlxlogscore=997 bulkscore=0 adultscore=0
+ lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503200136
 
-On Wed, Mar 19, 2025 at 08:52:37AM +0100, Krzysztof Kozlowski wrote:
-> On 12/03/2025 06:51, Ricardo Neri wrote:
-> > On Tue, Mar 11, 2025 at 11:01:28AM +0100, Krzysztof Kozlowski wrote:
-> >> On 03/03/2025 23:21, Ricardo Neri wrote:
-> >>> On Fri, Sep 20, 2024 at 01:15:41PM +0200, Krzysztof Kozlowski wrote:
-> >>>
-> >>> [...]
-> >>>  
-> >>>> enable-method is part of CPUs, so you probably should match the CPUs...
-> >>>> I am not sure, I don't have the big picture here.
-> >>>>
-> >>>> Maybe if companies want to push more of bindings for purely virtual
-> >>>> systems, then they should first get involved more, instead of relying on
-> >>>> us. Provide reviews for your virtual stuff, provide guidance. There is
-> >>>> resistance in accepting bindings for such cases for a reason - I don't
-> >>>> even know what exactly is this and judging/reviewing based on my
-> >>>> practices will no be accurate.
-> >>>
-> >>> Hi Krzysztof,
-> >>>
-> >>> I am taking over this work from Yunhong.
-> >>>
-> >>> First of all, I apologize for the late reply. I will make sure
-> >>> communications are timely in the future.
-> >>>
-> >>> Our goal is to describe in the device tree a mechanism or artifact to boot
-> >>> secondary CPUs.
-> >>>
-> >>> In our setup, the firmware puts secondary CPUs to monitor a memory location
-> >>> (i.e., the wakeup mailbox) while spinning. From the boot CPU, the OS writes
-> >>> in the mailbox the wakeup vector and the ID of the secondary CPU it wants
-> >>> to boot. When a secondary CPU sees its own ID it will jump to the wakeup
-> >>> vector.
-> >>>
-> >>> This is similar to the spin-table described in the Device Tree
-> >>> specification. The key difference is that with the spin-table CPUs spin
-> >>> until a non-zero value is written in `cpu-release-addr`. The wakeup mailbox
-> >>> uses CPU IDs.
-> >>>
-> >>> You raised the issue of the lack of a `compatible` property, and the fact
-> >>> that we are not describing an actual device.
-> >>>
-> >>> I took your suggestion of matching by node and I came up with the binding
-> >>> below. I see these advantages in this approach:
-> >>>
-> >>>   * I define a new node with a `compatible` property.
-> >>>   * There is precedent: the psci node. In the `cpus` node, each cpu@n has
-> >>
-> > 
-> > Thanks for your feedback!
-> > 
-> >> psci is a standard. If you are documenting here a standard, clearly
-> >> express it and provide reference to the specification.
-> > 
-> > It is not really a standard, but this mailbox behaves indentically to the
-> > wakeup mailbox described in the ACPI spec [1]. I am happy reference the
-> > spec in the documentation of the binding... or describe in full the
-> > mechanism of mailbox without referring to ACPI. You had indicated you don't
-> > care about what ACPI does [2].
+On 3/11/2025 9:09 PM, Dmitry Baryshkov wrote:
+> On Tue, Mar 11, 2025 at 05:54:43PM +0530, Ayushi Makhija wrote:
+>> When device enters the suspend state, it prevents
+>> HPD interrupts from occurring. To address this,
+>> add an additional PM runtime vote in hpd_enable().
+>> This vote is removed in hpd_disable().
 > 
-> Behaving like ACPI and implementing a spec are two different things. The
-> question is whether you need to implement it like that and I believe
-> answer is: no.
-> 
-> > 
-> > In a nutshell, the wakeup mailbox is similar to the spin table used in ARM
-> > boards: it is reserved memory region that secondary CPUs monitor while
-> > spinning.
-> > 
-> >>
-> >>
-> >>>     an `enable-method` property that specify `psci`.
-> >>>   * The mailbox is a device as it is located in a reserved memory region.
-> >>>     This true regardless of the device tree describing bare-metal or
-> >>>     virtualized machines.
-> >>>
-> >>> Thanks in advance for your feedback!
-> >>>
-> >>> Best,
-> >>> Ricardo
-> >>>
-> >>> (only the relevant sections of the binding are shown for brevity)
-> >>>
-> >>> properties:
-> >>>   $nodename:
-> >>>     const: wakeup-mailbox
-> >>>
-> >>>   compatible:
-> >>>     const: x86,wakeup-mailbox
-> >>
-> >> You need vendor prefix for this particular device. If I pointed out lack
-> >> of device and specific compatible, then adding random compatible does
-> >> not solve it. I understand it solves for you, but not from the bindings
-> >> point of view.
-> > 
-> > I see. Platform firmware will implement the mailbox. It would not be any
-> > specific hardware from Intel. Perhaps `intel,wakeup-mailbox`?
-> > 
-> >>
-> >>>
-> >>>   mailbox-addr:
-> >>>     $ref: /schemas/types.yaml#/definitions/uint64
-> >>
-> >> So is this some sort of reserved memory?
-> > 
-> > Yes, the mailbox is located in reserved memory.
-> 
-> 
-> Then why reserved memory bindings are not working?
-> 
-> Anyway this was half a year ago. None of the emails are in my inbox.
-> None of the context is in my head.
-> 
-> It's the second or third email this month someone responds to my email
-> from 2024.
-> 
-> Frankly, that's a neat trick. I won't remember anything, but it would be
-> impolite to say just "no" without arguments. So now you will resend the
-> same code leading to the same discussions we had half a year ago. Or
-> ignoring that discussions.
-> 
-> I don't understand why this should be reviewers problem, so no, that's
-> just unfair.
+> Is it really enough to toggle the HPD interrupts? Is there any kind of
+> programming that should be moved to .hpd_enable() too (so that by
+> default the bridge doesn't generate HPD interrupts)?
 > 
 
-Thank you again for your feedback. I will send a third version of the
-patchset. This will give the full context. I will incorporate your feedback
-in such version.
+Hi Dmirty,
 
-Thanks and BR,
-Ricardo
+I couldn't find the ANX7625 bridge driver datasheet, where all the registers information are present.
+
+As per my understanding, we have anx7625_hpd_timer_config(), where debounce timer registers are getting set, which help to manage the detection and stability of the HPD signal.
+
+anx7625_hpd_timer_config() is getting called from anx7625_runtime_pm_resume().
+
+anx7625_runtime_pm_resume
+   anx7625_power_on_init
+       anx7625_ocm_loading_check
+           anx7625_disable_pd_protocol
+              anx7625_hpd_timer_config
+
+So, I think HPD programming is already taken care in anx7625_hpd_timer_config(). anx7625_runtime_pm_resume() is getting called for both eDP and DP configuration. 
+
+If you suggest then, I can move the anx7625_hpd_timer_config() from anx7625_disable_pd_protocol() to anx7625_bridge_hpd_enable().
+
+Thanks,
+Ayushi
 
 
