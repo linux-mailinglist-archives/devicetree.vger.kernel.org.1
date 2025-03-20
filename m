@@ -1,103 +1,158 @@
-Return-Path: <devicetree+bounces-159234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E611A6A161
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 09:30:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95DA8A6A16A
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 09:31:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 69DD8188B623
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 08:29:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E9AE188C671
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 08:30:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EB75215178;
-	Thu, 20 Mar 2025 08:29:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FBFD21481B;
+	Thu, 20 Mar 2025 08:30:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VeMxxPiP"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="j5JDsh8q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4549C1EE02A;
-	Thu, 20 Mar 2025 08:29:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 581FE17A30D;
+	Thu, 20 Mar 2025 08:30:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742459349; cv=none; b=TTRWwXXYZ377l1RoMkgvxB+lmuJBOcD4mSsTioSY2QtSeBRLN9d1jbDzv2EEG/WG7vrp5O2c0pc97W0EePLejImdoW5pgJx7OGKdVp615IUn2LAGMbB0r1/AIost2iWrOjWlpAB5RV/eMV6CjHwLGi87NWNYORIXQJLVXg/Lxmg=
+	t=1742459439; cv=none; b=hl+ZkIxVd2z3+ndvaBm6sxwlSeRSTQAXX6RFX4tmIW6R9q8Ev8THZriZ+iSb1YfYg0pCI6rXAFYO3Ylrs/rU0ljX7J/AfSqaaqUiwSUpIqvjQgu3Xc8Ps/Z4QXj+mpf5bh5wZ7n0Gnv3f+FBYEPkLCrap/yMvM/e92/JuvD1hnk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742459349; c=relaxed/simple;
-	bh=iUMIeGOZu+7EerCs1U1bu4NXPnO61FtmA6GHbfUFCLA=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=p+XzBfF8mB4mYY0ckX04xOPupiC+HCwwU/Eg/oTQu0jHHvVbo0CWtGNXXsDqdoQ4FjTsRp73nGiIJaxoxT2tPYruFr2S0kSr8QIMp2HJm+sAlJoepEKpQMDl0u2u6ESS7RaJq6NWedHYnFE3lG8aJWk28ZdY8Tdu3xBfrM1Xt0s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VeMxxPiP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 846F2C4CEE7;
-	Thu, 20 Mar 2025 08:29:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742459348;
-	bh=iUMIeGOZu+7EerCs1U1bu4NXPnO61FtmA6GHbfUFCLA=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=VeMxxPiPLGnkTQ/qvkP9k6tfkbG6SWe7hd5HuuXFaS8UcdO8hy+OZxrfOgmoy87gv
-	 gLh4TBUeH4rtKZqNEXwsVSCz6UqHRRpCc08YMNyMSfgpHTv9N7tmca/iErpp7pwd06
-	 wlItCW8RlgZVI04+DlFdxcqhhygdZZx4Xf4N9IgMjXD6nOb6ORV8N/IAa29wFALunb
-	 sXNL1XW+GHugsuUkUlwsEQ7M2KCnF0imPIz0ubGlXuwPQeBKRc1wKYgq5jW/Mq37Ae
-	 HTD8wwqN9aU8A9LHBePLWl4VXp2xNL3SErskWwGnk2sbaGnH0ilvSpjQhtR5eop7bp
-	 BNWsRHChuJ1rg==
-Date: Thu, 20 Mar 2025 03:29:07 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1742459439; c=relaxed/simple;
+	bh=2i1Q07byf32WTdPpCVWmD1WwQ9vrhVP60iBQr1OWOto=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ASE5Mkdz+gBP4RdIA53lX7uOpRbuIXwFEX9gkvEsHv5IYJnVNuLY7xPoVLgAjzEEz0fAXPfM7K5e25ObjzoQeylwJiJEhDM+OZDRTWotkgGMl5zcOjyXwfr9e99Wwq/QI4F+RFtY7U1A/SKnCC+N0iQZbnbsMfl/ETapXI3A4fs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=j5JDsh8q; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1742459436; x=1773995436;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=2i1Q07byf32WTdPpCVWmD1WwQ9vrhVP60iBQr1OWOto=;
+  b=j5JDsh8qYpjPqrYZJi2jTBmofgPePwzxYWwolkQ2OuSNVLNOezZxtzV0
+   YdGdPUQN7b1ym2ah8f0BvkUELYQxDXPMyEhE/UWCTbuKRcfGqY8t9Tn2E
+   VOcyBEZZYRgUAVPSKRKQlmwLsvF32c9SsGsxX3rL9wIYTsZwnqtzvknhx
+   E+frREOfcxbLYPa9se/5Hlrv1wHVD0Fu9qaYLff8xtCSdJ8qcYMtjFJaB
+   0Bg8C7qWP2Hm+i9Bfvxd9bOIZtsuG43K6nPQEal5oVD1qnyyLDoCzUohg
+   5UHwgTRqvWHhkFegPSjH/7KF6Ypojv1GlaveL1hMhV6C4824id2vNWdVI
+   w==;
+X-CSE-ConnectionGUID: O3csakSSRS2v4VKEZlUeng==
+X-CSE-MsgGUID: jKr/sIKaR0+n+q6m7qkVcA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11378"; a="31264195"
+X-IronPort-AV: E=Sophos;i="6.14,261,1736841600"; 
+   d="scan'208";a="31264195"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2025 01:30:35 -0700
+X-CSE-ConnectionGUID: y1wTRDJWSvqu5O+/2S+L3Q==
+X-CSE-MsgGUID: fro6DZG5Qb+wS2jO1ntJwQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,261,1736841600"; 
+   d="scan'208";a="122961957"
+Received: from lkp-server02.sh.intel.com (HELO e98e3655d6d2) ([10.239.97.151])
+  by orviesa010.jf.intel.com with ESMTP; 20 Mar 2025 01:30:30 -0700
+Received: from kbuild by e98e3655d6d2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tvBIJ-0000Is-2T;
+	Thu, 20 Mar 2025 08:30:27 +0000
+Date: Thu, 20 Mar 2025 16:29:52 +0800
+From: kernel test robot <lkp@intel.com>
+To: jiebing chen via B4 Relay <devnull+jiebing.chen.amlogic.com@kernel.org>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+	jian.xu@amlogic.com, shuai.li@amlogic.com, zhe.wang@amlogic.com,
+	jiebing chen <jiebing.chen@amlogic.com>
+Subject: Re: [PATCH v4 4/6] ASoC: meson: g12a-toacodec: Add s4 tocodec driver
+Message-ID: <202503201641.wf8Oe0aR-lkp@intel.com>
+References: <20250319-audio_drvier-v4-4-686867fad719@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
-In-Reply-To: <20250320-upstream-adp5055-v2-1-aac2d3705802@analog.com>
-References: <20250320-upstream-adp5055-v2-0-aac2d3705802@analog.com>
- <20250320-upstream-adp5055-v2-1-aac2d3705802@analog.com>
-Message-Id: <174245934743.3732121.176471277866008029.robh@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: regulator: add
- adi,adp5055-regulator
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250319-audio_drvier-v4-4-686867fad719@amlogic.com>
+
+Hi jiebing,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on 6ecd20965bdc21b265a0671ccf36d9ad8043f5ab]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/jiebing-chen-via-B4-Relay/dt-bindings-clock-meson-Add-audio-power-domain-for-s4-soc/20250319-151110
+base:   6ecd20965bdc21b265a0671ccf36d9ad8043f5ab
+patch link:    https://lore.kernel.org/r/20250319-audio_drvier-v4-4-686867fad719%40amlogic.com
+patch subject: [PATCH v4 4/6] ASoC: meson: g12a-toacodec: Add s4 tocodec driver
+config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20250320/202503201641.wf8Oe0aR-lkp@intel.com/config)
+compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250320/202503201641.wf8Oe0aR-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503201641.wf8Oe0aR-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> sound/soc/meson/g12a-toacodec.c:135:38: warning: unused variable 's4_toacodec_clk_enable' [-Wunused-const-variable]
+     135 | static const struct snd_kcontrol_new s4_toacodec_clk_enable =
+         |                                      ^~~~~~~~~~~~~~~~~~~~~~
+   1 warning generated.
 
 
-On Thu, 20 Mar 2025 14:53:54 +0800, Alexis Czezar Torreno wrote:
-> Add documentation for devicetree bindings for ADP5055. The device consists
-> of 3 buck regulators able to connect to high input voltages of up to 18V
-> with no preregulators.
-> 
-> Signed-off-by: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
-> ---
->  .../bindings/regulator/adi,adp5055-regulator.yaml  | 161 +++++++++++++++++++++
->  MAINTAINERS                                        |   6 +
->  2 files changed, 167 insertions(+)
-> 
+vim +/s4_toacodec_clk_enable +135 sound/soc/meson/g12a-toacodec.c
 
-My bot found errors running 'make dt_binding_check' on your patch:
+   112	
+   113	static SOC_ENUM_SINGLE_DECL(g12a_toacodec_mux_enum, TOACODEC_CTRL0,
+   114				    CTRL0_DAT_SEL_LSB,
+   115				    g12a_toacodec_mux_texts);
+   116	
+   117	static SOC_ENUM_SINGLE_DECL(sm1_toacodec_mux_enum, TOACODEC_CTRL0,
+   118				    CTRL0_DAT_SEL_SM1_LSB,
+   119				    g12a_toacodec_mux_texts);
+   120	
+   121	static const struct snd_kcontrol_new g12a_toacodec_mux =
+   122		SOC_DAPM_ENUM_EXT("Source", g12a_toacodec_mux_enum,
+   123				  snd_soc_dapm_get_enum_double,
+   124				  g12a_toacodec_mux_put_enum);
+   125	
+   126	static const struct snd_kcontrol_new sm1_toacodec_mux =
+   127		SOC_DAPM_ENUM_EXT("Source", sm1_toacodec_mux_enum,
+   128				  snd_soc_dapm_get_enum_double,
+   129				  g12a_toacodec_mux_put_enum);
+   130	
+   131	static const struct snd_kcontrol_new g12a_toacodec_out_enable =
+   132		SOC_DAPM_SINGLE_AUTODISABLE("Switch", TOACODEC_CTRL0,
+   133					    CTRL0_ENABLE_SHIFT, 1, 0);
+   134	
+ > 135	static const struct snd_kcontrol_new s4_toacodec_clk_enable =
+   136		SOC_DAPM_DOUBLE("Switch", TOACODEC_CTRL0,
+   137				CTRL0_BCLK_ENABLE_SHIFT, CTRL0_MCLK_ENABLE_SHIFT, 1, 0);
+   138	
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/regulator/adi,adp5055-regulator.example.dtb: regulator@70: Unevaluated properties are not allowed ('DCDC0', 'DCDC1', 'DCDC2' were unexpected)
-	from schema $id: http://devicetree.org/schemas/regulator/adi,adp5055-regulator.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250320-upstream-adp5055-v2-1-aac2d3705802@analog.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
