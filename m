@@ -1,102 +1,173 @@
-Return-Path: <devicetree+bounces-159236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E847BA6A168
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 09:31:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D585BA6A17F
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 09:36:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 122FC8A7955
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 08:30:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 391BB19C1233
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 08:35:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 018D0215171;
-	Thu, 20 Mar 2025 08:30:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B723620ADFE;
+	Thu, 20 Mar 2025 08:35:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LEkJKg+e"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Vs2Zs7IE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5AC41E32D3;
-	Thu, 20 Mar 2025 08:30:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7984D135A53;
+	Thu, 20 Mar 2025 08:35:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742459450; cv=none; b=nvOq6unqoJpHM5T7CNLfTnqJI0Lrseth8WzDuqA0Nr+Watsdgl7xbj0kZqRuX2dGazB0mZM6n6R+CGVw4+q8YHTAH6P0xp8eW016tb3TWc3U1vrqJ7OpjSjwVx+IVur6yD1mPN1XU+Q+ypFHy+MQBmp8dM/qtRrErEfjz+fBAH8=
+	t=1742459722; cv=none; b=EMvvw6yOUhmTFWac0XaOWqBsFyp9/xzWiIwBJC8XjYF7Kt4/+uVHSp36B/1s/4BDCTt9f9NOB9t8zDVcV/Pp/Qs7dIE37YL2VKeJXfphHQA47id/4YEnWF0dCF3M8o85ktYOJlqFF0HgRXyG6ERDTPICg6hxcSW/xzXqoCOuv/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742459450; c=relaxed/simple;
-	bh=v+FOAUR/wqoAqHaoplhVPRBHIikWSf8V1laXOuxnNfk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tbkh1NNoyXigaEacVgsZbDhXfXpIoGSMq8NgdVQ8etgKHcEoTpNo14RLxmeIjVCkd4d3dtopH0nymDZ2Ith5rObd7wqLPdJ1kXSAtb0zeQF2/+8N0ES+wPRhDbkYTDSA73wGSl1sYmC46vNdxTJp7kqU4XykgVkNTXsSX480XgE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LEkJKg+e; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82EF6C4CEDD;
-	Thu, 20 Mar 2025 08:30:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742459450;
-	bh=v+FOAUR/wqoAqHaoplhVPRBHIikWSf8V1laXOuxnNfk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LEkJKg+eJogLP7TusVxf7b7P/d9nFvPAwJ5TKX+AvnXMsyoNB9Uf9tgOI6jR88QCM
-	 JkYvO2jo5I7eAB1u9/xJZpDu+Oopr3mT2NVSZ/EvU3R7jh6dZlhAZ16GVDmlTvpffq
-	 iiSDgZBbF1JkdErKodK9X7EiWFC3Yg13LAnitCwjXwRjzEy8zMTLp1Wq3sscrIIWeM
-	 FgmpDRVRnJ37VPZfmcEgw3YliLJJdIJCmGuvzrskhLpVCAdq6HYTXmRZnTX/wOuHDY
-	 YyGVPP0jB0PQbEJ3m2aeUQfqftuMQ8nfawOMqXiDaJiTxOpnJPFcSB1Wf3yRH0h/Eg
-	 AMVe5byYQWq0Q==
-Date: Thu, 20 Mar 2025 09:30:46 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Changyuan Lyu <changyuanl@google.com>, linux-kernel@vger.kernel.org
-Cc: graf@amazon.com, akpm@linux-foundation.org, luto@kernel.org, 
-	anthony.yznaga@oracle.com, arnd@arndb.de, ashish.kalra@amd.com, benh@kernel.crashing.org, 
-	bp@alien8.de, catalin.marinas@arm.com, dave.hansen@linux.intel.com, 
-	dwmw2@infradead.org, ebiederm@xmission.com, mingo@redhat.com, jgowans@amazon.com, 
-	corbet@lwn.net, rppt@kernel.org, mark.rutland@arm.com, pbonzini@redhat.com, 
-	pasha.tatashin@soleen.com, hpa@zytor.com, peterz@infradead.org, ptyadav@amazon.de, 
-	robh+dt@kernel.org, robh@kernel.org, saravanak@google.com, 
-	skinsburskii@linux.microsoft.com, rostedt@goodmis.org, tglx@linutronix.de, thomas.lendacky@amd.com, 
-	usama.arif@bytedance.com, will@kernel.org, devicetree@vger.kernel.org, 
-	kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org, 
-	linux-mm@kvack.org, x86@kernel.org
-Subject: Re: [PATCH v5 12/16] arm64: add KHO support
-Message-ID: <20250320-muscular-cougar-of-apotheosis-e4c80b@krzk-bin>
-References: <20250320015551.2157511-1-changyuanl@google.com>
- <20250320015551.2157511-13-changyuanl@google.com>
- <55a5e3f3-1b3f-469b-bde0-69abfff826e4@kernel.org>
+	s=arc-20240116; t=1742459722; c=relaxed/simple;
+	bh=sUziqnDx5HipdXEQZzKdU/xJa6kyN7gQKQ+NgAfVeEU=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
+	 References:In-Reply-To; b=Lh1Vkfd7e/M7y6M0ZQ85anHZDQjOsDJa1jPrxB8JzBn+WOzsLpW1oWLY6Nl3g1apyaNDGEjOqqSCuSFU0XP0vQMIW/NZg8N60obpRtTqddMCSNCTdT7Z+OobX7w7urZHuOKGaaRnsGtUX1aeX+4w4lSYtUlse2UEFqBnzJnhSkI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Vs2Zs7IE; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 63F1E44352;
+	Thu, 20 Mar 2025 08:35:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1742459716;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=akGvbcc/DlR2ufwKb6VM3ncFhbuTbmowB2fKkrdI8X0=;
+	b=Vs2Zs7IEPUnrYZWWQRTcAjYTOYWWnkRbgrKvEU4tI1weTDrwLQd4wPE7ZDzmJKE90Ie4gD
+	oiSV5oiBE1AeC6xRrpAmsRJu7nkHKa2ObeAlOfjz0xjz5MtGs9Yth5fSFLyLD/Fgpu87qJ
+	iyfXg464IGz39lN7lIB1npGQBBed6W1dkioQvarDVMN5sTtQOw6rX+LB4k0/pcAuqh2Awc
+	sF4hHRFk6vNNybfj4F9aXJBRagYyhXJvgRybpKtANdkjJGKZl0llddqEQwFq/uNrfJPwnX
+	KjN4DAMMb4+/k2zAtRvsQNIUF2n8KRrvWcZ25vLbBfZWuuy/FfQI+vMEf/FN1A==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <55a5e3f3-1b3f-469b-bde0-69abfff826e4@kernel.org>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 20 Mar 2025 09:35:15 +0100
+Message-Id: <D8KYF2DZOBT4.1337YU51E0ZKH@bootlin.com>
+Subject: Re: [PATCH v5 06/11] gpio: regmap: Allow to allocate regmap-irq
+ device
+Cc: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
+ <linux-pwm@vger.kernel.org>, <andriy.shevchenko@intel.com>,
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Thomas
+ Petazzoni" <thomas.petazzoni@bootlin.com>
+From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
+To: "Michael Walle" <mwalle@kernel.org>, "Lee Jones" <lee@kernel.org>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Kamel Bouhara"
+ <kamel.bouhara@bootlin.com>, "Linus Walleij" <linus.walleij@linaro.org>,
+ "Bartosz Golaszewski" <brgl@bgdev.pl>, "Dmitry Torokhov"
+ <dmitry.torokhov@gmail.com>, =?utf-8?q?Uwe_Kleine-K=C3=B6nig?=
+ <ukleinek@kernel.org>, "Mark Brown" <broonie@kernel.org>, "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, "Danilo Krummrich" <dakr@kernel.org>
+X-Mailer: aerc 0.18.2-0-ge037c095a049
+References: <20250318-mdb-max7360-support-v5-0-fb20baf97da0@bootlin.com>
+ <20250318-mdb-max7360-support-v5-6-fb20baf97da0@bootlin.com>
+ <D8K23TCWC5TO.3T1YPKL3G0OY5@kernel.org>
+In-Reply-To: <D8K23TCWC5TO.3T1YPKL3G0OY5@kernel.org>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddugeejjeegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkufevhffvofhfjgesthhqredtredtjeenucfhrhhomhepfdforghthhhivghuucffuhgsohhishdquehrihgrnhgufdcuoehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeekhfekieeftefhjeetveefudehuddvvdeuvddvudfgfffhveekffethfeuffdtudenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegvtdgrmegrieeimeefudektdemtgdtsggvmegslegrkeemvgehledvmeeirgeffhenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemvgdtrgemrgeiieemfedukedtmegttdgsvgemsgelrgekmegvheelvdemiegrfehfpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvvddprhgtphhtthhopehmfigrlhhlvgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhgvvgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepr
+ hhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhgrmhgvlhdrsghouhhhrghrrgessghoohhtlhhinhdrtghomhdprhgtphhtthhopehlihhnuhhsrdifrghllhgvihhjsehlihhnrghrohdrohhrghdprhgtphhtthhopegsrhhglhessghguggvvhdrphhl
+X-GND-Sasl: mathieu.dubois-briand@bootlin.com
 
-On Thu, Mar 20, 2025 at 08:13:24AM +0100, Krzysztof Kozlowski wrote:
-> On 20/03/2025 02:55, Changyuan Lyu wrote:
-> >  
-> > +/**
-> > + * early_init_dt_check_kho - Decode info required for kexec handover from DT
-> > + */
-> > +static void __init early_init_dt_check_kho(void)
-> > +{
-> > +	unsigned long node = chosen_node_offset;
-> > +	u64 kho_start, scratch_start, scratch_size;
-> > +	const __be32 *p;
-> > +	int l;
+On Wed Mar 19, 2025 at 8:15 AM CET, Michael Walle wrote:
+> Hi,
+>
+> > GPIO controller often have support for IRQ: allow to easily allocate
+> > both gpio-regmap and regmap-irq in one operation.
+> >
+> > Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com=
+>
+> > ---
+> >  drivers/gpio/gpio-regmap.c  | 23 +++++++++++++++++++++--
+> >  include/linux/gpio/regmap.h | 15 +++++++++++++++
+> >  2 files changed, 36 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpio/gpio-regmap.c b/drivers/gpio/gpio-regmap.c
+> > index 05f8781b5204..61d5f48b445d 100644
+> > --- a/drivers/gpio/gpio-regmap.c
+> > +++ b/drivers/gpio/gpio-regmap.c
+> > @@ -203,6 +203,7 @@ EXPORT_SYMBOL_GPL(gpio_regmap_get_drvdata);
+> >   */
+> >  struct gpio_regmap *gpio_regmap_register(const struct gpio_regmap_conf=
+ig *config)
+> >  {
+> > +	struct irq_domain *irq_domain;
+> >  	struct gpio_regmap *gpio;
+> >  	struct gpio_chip *chip;
+> >  	int ret;
+> > @@ -280,8 +281,26 @@ struct gpio_regmap *gpio_regmap_register(const str=
+uct gpio_regmap_config *config
+> >  	if (ret < 0)
+> >  		goto err_free_gpio;
+> > =20
+> > -	if (config->irq_domain) {
+> > -		ret =3D gpiochip_irqchip_add_domain(chip, config->irq_domain);
+> > +	irq_domain =3D config->irq_domain;
+> > +#ifdef CONFIG_GPIOLIB_IRQCHIP
+>
+> Why do we need this ifdef?
+>
+
+Hum yes, on second thought we probably need to depend on
+CONFIG_REGMAP_IRQ here.
+
+> > +	if (config->regmap_irq_chip) {
+> > +		struct regmap_irq_chip_data *irq_chip_data;
 > > +
-> > +	if (!IS_ENABLED(CONFIG_KEXEC_HANDOVER) || (long)node < 0)
-> > +		return;
+> > +		ret =3D devm_regmap_add_irq_chip_fwnode(config->parent, dev_fwnode(c=
+onfig->parent),
+> > +						      config->regmap, config->regmap_irq_irqno,
+> > +						      config->regmap_irq_flags, 0,
+> > +						      config->regmap_irq_chip, &irq_chip_data);
+> > +		if (ret)
+> > +			goto err_free_gpio;
 > > +
-> > +	p = of_get_flat_dt_prop(node, "linux,kho-fdt", &l);
-> 
-> 
-> You are adding undocumented ABI for OF properties. That's not what was
-> explained last time.
-> 
-> NAK.
+> > +		irq_domain =3D regmap_irq_get_domain(irq_chip_data);
+> > +		if (config->regmap_irq_chip_data)
+> > +			*config->regmap_irq_chip_data =3D irq_chip_data;
+>
+> I'm not a fan of misusing the config to return any data. Can we have
+> a normal gpio_regmap_get_...()? Usually, the config is on the stack
+> of the caller, what if you need to get irq_chip_data afterwards?
+> Then your caller has to save it somewhere.
+>
 
-Also there are checkpatch warnings :/
+Yes, makes sense. As suggested by Andy Shevchenko, I will remove this
+parameter as there is no user today: a way to retrieve it can be added
+later if needed.
 
-Best regards,
-Krzysztof
+> Also, what is the advantage of this? Your caller doesn't have to
+> call devm_regmap_add_irq_chip_fwnode(), but on the flip side you
+> have to cram all its parameters in the gpio_regmap config. I'd like
+> to keep that small and simple (but still extensible!). IMHO just
+> setting the irq_domain is enough to achieve that.
+
+This was a request from Andy on my previous series.
+
+>
+> -michael
+>
+
+Thanks for your review.
+Mathieu
+
+--=20
+Mathieu Dubois-Briand, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
