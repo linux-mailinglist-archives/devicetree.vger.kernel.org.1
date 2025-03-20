@@ -1,179 +1,200 @@
-Return-Path: <devicetree+bounces-159393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9764A6A9D5
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 16:27:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89C95A6A9BF
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 16:24:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 311737B2C55
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 15:25:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 946CF982D6B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 15:23:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7AC322686F;
-	Thu, 20 Mar 2025 15:24:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D16D81E5B61;
+	Thu, 20 Mar 2025 15:23:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h2kJLj8W"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="rmicgVpP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BFCD225A5B;
-	Thu, 20 Mar 2025 15:24:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A55851DDC2B;
+	Thu, 20 Mar 2025 15:23:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742484298; cv=none; b=IkCsCONSFEJxzH+Wed7z4ZAdeiAB0CPqc2zF2BQd02bvmPyvI9j0PCtoGYxoaOs8zvBMZ3f2ZcCGvChFR2cXQgnMKl0x886tsosXRbuHqMSptJT9ZvbngaRx7O1fDwi1kz5OauTfC+mivQydS3iU/lbqUstZEEk5GxL2KXKAwyk=
+	t=1742484194; cv=none; b=Nqw1QqjacJWJv4CkZZLyMD0r6z26oWG5xsah+m+pqFLuvdPMF3y6pnVtt5HZNp4ebg3RERUv73G5eUDBqHnKJ8DoxpgtW8NMd8DfQ/StEPCc2gnbE2+bpkEMM/7LTBX2wK+5xdRP2vO3IyDqJ/RpPPqyQ7/Xy02T2sIrhijqZeQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742484298; c=relaxed/simple;
-	bh=mctbch+3SZnEdii4zFZGF0Iv2O1sUwEaKoFRoL6RcjM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=T5on0R4id2X8ZrhNJIkcaNiEB1yhvUHD/WZrYzhCQCgy5k1rojzqFzA773Pv7fvgPcng75/l2NP14kcBY3No1ktO0fYVnyyyu/hf+E21Mib32k+ORiaBUAJdOIr1ekDuTL8KvjmS47dFRC0uMSqG34rXhj+O/WKPHVJokpwxThI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h2kJLj8W; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2235189adaeso18919635ad.0;
-        Thu, 20 Mar 2025 08:24:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742484295; x=1743089095; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=778YCnhGu8OwS5VD6l1aN21sioD9+bOBBeqngUJxkTg=;
-        b=h2kJLj8WBtK+rWlNrvtPRqfMf46aH96vE7FsiSElHc0d+5W5CWJKYJfBhge47LWZ8X
-         6hd7RT2azyCmltaAKUQL4o8Gj6n3LGDNjwJxcDUZ8Zjl/zxfmqgt7ZCkzhAa3kTwRBZG
-         F8N+srk+L3Ya6wOSbEuOtuPHV7LndpNha7Hi0oCp6O9N8opHoijbXQnyhL+JQnyXnUXP
-         K7E1cgRJSBTOTN6keN100TSIX0cVaZtvKmEoXYRHlBSxgBgqueB6fAb6iDJ4TZRzPGAn
-         clf5T/9Iw6ATrQ2XegiyVn+1pcJURkyQP8oWbAwwHGf9Zj42jd6rPyBEzZ10tnAmIYCT
-         xBHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742484295; x=1743089095;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=778YCnhGu8OwS5VD6l1aN21sioD9+bOBBeqngUJxkTg=;
-        b=gmoL1yt4dO2nP4XqnBQbhrSkhc0ydHa8Ghwh9BUhJ0ZfKYroYctqlv0sBVYCmCbEGT
-         YWUCq/+I6JET+iw4ZdgCoc8cTl+uV4D6WmeJRMccWAJqYz3fqiPhRI8pwb2WhzoGsutj
-         ColZfbDuMTIciqOdc7fqpk3XvWla3cVFZ6wT0OPP5X+9slYbpENmwWaXNFYMMggSJYKt
-         Kkd9EwZLjiWPaA5a2r9NnNQ5sxUkhTgby85s2ZMlqA5NRDd6Oao+IDZ0if8pCPAEII/8
-         KWsgZysqf5q+hETE4Vod1zsqDCwcO+VU6sdLBS3BJnRP6Amn7NE7rtKukAsNFI/jeU2C
-         0Rsg==
-X-Forwarded-Encrypted: i=1; AJvYcCVV0N6HeYfmVAIXxUDzzw89Wi0rVbOnQfbgJTKMNpn/5iw639Lnlq3tU1NRFIkQmB8Qq/UcXURQ6guGjYU=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzRKorMdyBfEXELgMplOa1XSWviQA09eVKWQsyrAe28CUsV1dDe
-	t50tB6Wc97fBcacqyP1coaK7mkM2l4F7AauOXZFnPRECzIFFav5NYPpqsQ==
-X-Gm-Gg: ASbGncv44fitfv0fEdq8f1gjNEj1Fow7CJzLduJ5ojmHA+Zg+67Z/Q4miFfRkLYWBAx
-	eGun4RgOCkNDWRsMJuQWo6QcxLi2yh5ShA87ezinIqruR3efNdInHK/BQJ4rzpLYrEpgHHDIN4Y
-	4qEfPWVk0A1hyo51hbQGAqJ8X9berjls35MEBvRbZH5gF9gYHjQ6dNf7fKXOUFuIiSM522Iu/Xh
-	T1ibGJBX2xK/eBhBoFiRPnR8MRGhRNtkNAjw4+jj8Em3E+8oc7PJ0ey6ryk5j3rli/gIQhDviEb
-	U77GTXkOraTea+AY8S/8BlieES1Z200jILIsp6UJrgHHAabPyWH0rO9FeKEDd1Fu7mGkFV+aMa6
-	0sMPPtS20u7CoTmruhCxAhw==
-X-Google-Smtp-Source: AGHT+IEm0o3IjdN4CK7bI1ZR5Cl6pbpHzpKB84eZ6aOsv2wGsYmuyJSpIXKgRxVZphiibOVU45xSMQ==
-X-Received: by 2002:a17:903:228d:b0:220:ff82:1c60 with SMTP id d9443c01a7336-2265e6d467bmr56146505ad.14.1742484295352;
-        Thu, 20 Mar 2025 08:24:55 -0700 (PDT)
-Received: from localhost.localdomain (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-225c6bd4a8fsm136905515ad.234.2025.03.20.08.24.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Mar 2025 08:24:54 -0700 (PDT)
-From: Potin Lai <potin.lai.pt@gmail.com>
-Date: Thu, 20 Mar 2025 23:22:00 +0800
-Subject: [PATCH v5 10/10] ARM: dts: aspeed: catalina: Enable MCTP support
- for NIC management
+	s=arc-20240116; t=1742484194; c=relaxed/simple;
+	bh=oOrd6qUPDwbA6xtfAP+LiWV2/BgQTJ0wqwd0cqsXxO8=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BVDk12gxu2Co0GROfe1NEdkPWyhw6FycNoaYbmx+4yMgq7r32euFG4lyC+jwVs76IzZ0RctlZ+mhqi6n8tJncMpc2Zr0E7Xgh6385kmQc3klxDB+bDQj+RZ5f5WTOBPpiZgtahPMkf9LCluLBUl+/jW4HWHlLDJY2R+Fkh7EUYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=rmicgVpP; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52KFMrVn664173
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 20 Mar 2025 10:22:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1742484173;
+	bh=tdhjUaEpge+sh2/HmxIDfMo+ucgquiWth6F5utS9+iA=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=rmicgVpPt+9HzF5sfuP7w95FjMue2MaSO+ZFAmsZA5JioKrnIsHEYxovOMjlluulm
+	 mUjyxg0nFxQPQ32YPMKYIjeg1ETzTiq53HcuFwlBNWJ25zGHE/O1qn1qcEBPAOrvP4
+	 zfBw+1Crfd7Gtsn+tvsVxQF6UZl5ZmepRUB2KEaI=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 52KFMrUY054048
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 20 Mar 2025 10:22:53 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 20
+ Mar 2025 10:22:53 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 20 Mar 2025 10:22:53 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52KFMrJ6023231;
+	Thu, 20 Mar 2025 10:22:53 -0500
+Date: Thu, 20 Mar 2025 10:22:53 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Parth Pancholi <parth105105@gmail.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Parth Pancholi
+	<parth.pancholi@toradex.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1] arm64: dts: ti: k3-j784s4-main: Enable ACSPCIE
+ outputs for PCIe interfaces
+Message-ID: <20250320152253.rm7zavvnqvzmy6pv@galore>
+References: <20250320122259.525613-1-parth105105@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250320-potin-catalina-dts-update-20250102-v5-10-e161be6583a7@gmail.com>
-References: <20250320-potin-catalina-dts-update-20250102-v5-0-e161be6583a7@gmail.com>
-In-Reply-To: <20250320-potin-catalina-dts-update-20250102-v5-0-e161be6583a7@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>, 
- Patrick Williams <patrick@stwcx.xyz>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
- Cosmo Chou <cosmo.chou@quantatw.com>, Potin Lai <potin.lai@quantatw.com>, 
- Potin Lai <potin.lai.pt@gmail.com>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1742484265; l=1803;
- i=potin.lai.pt@gmail.com; s=20240724; h=from:subject:message-id;
- bh=mctbch+3SZnEdii4zFZGF0Iv2O1sUwEaKoFRoL6RcjM=;
- b=sqz6o+Uq8neZCbmc+XIXb5EqpCCu/Sv7ukNsWuZdglpzn1ESmULH+w516OO76HCLaZ4morgBT
- FpcXpZ2i6XdARxIH0ltRokrlXGjzJ9Dyv/tnxJ3kxTdAhSEYff8vmD+
-X-Developer-Key: i=potin.lai.pt@gmail.com; a=ed25519;
- pk=6Z4H4V4fJwLteH/WzIXSsx6TkuY5FOcBBP+4OflJ5gM=
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20250320122259.525613-1-parth105105@gmail.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Add the `mctp-controller` property and MCTP nodes to enable support for
-backend NIC management via PLDM over MCTP.
+On 13:22-20250320, Parth Pancholi wrote:
+> From: Parth Pancholi <parth.pancholi@toradex.com>
+> 
+> TI J784S4-based devices, such as the AM69 SoC, provide PCIE_REFCLK outputs
+> from the SoC, which can be used to clock external PCIe endpoint devices.
+> Each PCIE_REFCLK output is enabled via the corresponding ACSPCIE clock buffer,
+> with each buffer supporting two PADs to provide reference clocks for two
+> associated PCIe instances. The mappings are as follows:
+>         - PCIe0 -> ACSPCIE1 PAD0
+>         - PCIe1 -> ACSPCIE0 PAD0
+>         - PCIe2 -> ACSPCIE1 PAD1
+>         - PCIe3 -> ACSPCIE0 PAD1
+> 
+> This patch enables each ACSPCIE module and its corresponding PADs to ensure
+> that all PCIE_REFCLK outputs are functional.
+> 
+> This change have been tested on an AM69-based custom hardware platform,
+> where all four PCIe instances (PCIe0, PCIe1, PCIe2, and PCIe3) with the
+> internal PCIE_REFCLK are utilized with various endpoint devices such as
+> a WiFi card, NVMe SSD, and PCIe-to-USB bridge.
+> 
+> Link: https://e2e.ti.com/support/processors-group/processors/f/processors-forum/1484211/am69-pcie-refclk-out-and-acspcie-mappings
+> Signed-off-by: Parth Pancholi <parth.pancholi@toradex.com>
+> ---
+> This change depends on https://lore.kernel.org/all/20241209085157.1203168-1-s-vadapalli@ti.com/
+> ---
+>  .../boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi      | 10 ++++++++--
+>  arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi             | 10 ++++++----
+>  2 files changed, 14 insertions(+), 6 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+> index 591609f3194c..854fdf7b771e 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+> @@ -132,6 +132,11 @@ acspcie0_proxy_ctrl: clock-controller@1a090 {
+>  			compatible = "ti,j784s4-acspcie-proxy-ctrl", "syscon";
+>  			reg = <0x1a090 0x4>;
+>  		};
+> +
+> +		acspcie1_proxy_ctrl: clock-controller@1a094 {
+> +			compatible = "ti,j784s4-acspcie-proxy-ctrl", "syscon";
 
-Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
----
- arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dts | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+We have the same challenge with bindings as well?
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dts
-index 653afacc7af4..6eb6c5889113 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dts
-@@ -186,18 +186,23 @@ flash@1 {
- 
- &i2c0 {
- 	status = "okay";
-+	multi-master;
-+	mctp@10 {
-+		compatible = "mctp-i2c-controller";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+	};
- 
- 	i2c-mux@71 {
- 		compatible = "nxp,pca9546";
- 		reg = <0x71>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
--		i2c-mux-idle-disconnect;
- 
- 		i2c0mux0ch0: i2c@0 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			reg = <0>;
-+			mctp-controller;
- 
- 			// IOB0 NIC0 TEMP
- 			temperature-sensor@1f {
-@@ -214,6 +219,7 @@ i2c0mux0ch2: i2c@2 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			reg = <2>;
-+			mctp-controller;
- 
- 			// IOB0 NIC1 TEMP
- 			temperature-sensor@1f {
-@@ -305,12 +311,12 @@ i2c-mux@75 {
- 		reg = <0x75>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
--		i2c-mux-idle-disconnect;
- 
- 		i2c0mux3ch0: i2c@0 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			reg = <0>;
-+			mctp-controller;
- 
- 			// IOB1 NIC0 TEMP
- 			temperature-sensor@1f {
-@@ -327,6 +333,7 @@ i2c0mux3ch2: i2c@2 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			reg = <2>;
-+			mctp-controller;
- 
- 			// IOB1 NIC1 TEMP
- 			temperature-sensor@1f {
+> +			reg = <0x1a094 0x4>;
+> +		};
+>  	};
+>  
+>  	main_ehrpwm0: pwm@3000000 {
+> @@ -1067,11 +1072,12 @@ pcie0_rc: pcie@2900000 {
+>  		interrupts = <GIC_SPI 318 IRQ_TYPE_EDGE_RISING>;
+>  		device_type = "pci";
+>  		ti,syscon-pcie-ctrl = <&pcie0_ctrl 0x0>;
+> +		ti,syscon-acspcie-proxy-ctrl = <&acspcie1_proxy_ctrl 0x1>;
+>  		max-link-speed = <3>;
+>  		num-lanes = <4>;
+>  		power-domains = <&k3_pds 332 TI_SCI_PD_EXCLUSIVE>;
+> -		clocks = <&k3_clks 332 0>;
+> -		clock-names = "fck";
+> +		clocks = <&k3_clks 332 0>, <&serdes1 CDNS_TORRENT_REFCLK_DRIVER>;
+> +		clock-names = "fck", "pcie_refclk";
+>  		#address-cells = <3>;
+>  		#size-cells = <2>;
+>  		bus-range = <0x0 0xff>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> index 0160fe0da983..ebbc315649d0 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> @@ -34,8 +34,8 @@ pcie2_rc: pcie@2920000 {
+>  		max-link-speed = <3>;
+>  		num-lanes = <2>;
+>  		power-domains = <&k3_pds 334 TI_SCI_PD_EXCLUSIVE>;
+> -		clocks = <&k3_clks 334 0>;
+> -		clock-names = "fck";
+> +		clocks = <&k3_clks 334 0>, <&serdes1 CDNS_TORRENT_REFCLK_DRIVER>;
+> +		clock-names = "fck", "pcie_refclk";
+>  		#address-cells = <3>;
+>  		#size-cells = <2>;
+>  		bus-range = <0x0 0xff>;
+> @@ -45,6 +45,7 @@ pcie2_rc: pcie@2920000 {
+>  		dma-coherent;
+>  		dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
+>  		ti,syscon-pcie-ctrl = <&pcie2_ctrl 0x0>;
+> +		ti,syscon-acspcie-proxy-ctrl = <&acspcie1_proxy_ctrl 0x3>;
+>  		status = "disabled";
+>  	};
+>  
+> @@ -63,8 +64,8 @@ pcie3_rc: pcie@2930000 {
+>  		max-link-speed = <3>;
+>  		num-lanes = <2>;
+>  		power-domains = <&k3_pds 335 TI_SCI_PD_EXCLUSIVE>;
+> -		clocks = <&k3_clks 335 0>;
+> -		clock-names = "fck";
+> +		clocks = <&k3_clks 335 0>, <&serdes0 CDNS_TORRENT_REFCLK_DRIVER>;
+> +		clock-names = "fck", "pcie_refclk";
+>  		#address-cells = <3>;
+>  		#size-cells = <2>;
+>  		bus-range = <0x0 0xff>;
+> @@ -74,6 +75,7 @@ pcie3_rc: pcie@2930000 {
+>  		dma-coherent;
+>  		dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
+>  		ti,syscon-pcie-ctrl = <&pcie3_ctrl 0x0>;
+> +		ti,syscon-acspcie-proxy-ctrl = <&acspcie0_proxy_ctrl 0x3>;
+>  		status = "disabled";
+>  	};
+>  
+> -- 
+> 2.34.1
+> 
 
 -- 
-2.31.1
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
