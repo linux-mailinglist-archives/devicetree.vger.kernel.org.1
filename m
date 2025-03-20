@@ -1,196 +1,155 @@
-Return-Path: <devicetree+bounces-159380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159383-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54AB3A6A964
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 16:07:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB538A6A9C3
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 16:25:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FB5A188C061
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 15:00:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A25488A6E32
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 15:24:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CC5D1E32DB;
-	Thu, 20 Mar 2025 14:59:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27BD01E5B69;
+	Thu, 20 Mar 2025 15:24:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YZon6yTm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DLR7EPh0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 780CE1E32C3
-	for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 14:59:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4501175D53;
+	Thu, 20 Mar 2025 15:24:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742482794; cv=none; b=icL/r9Wre/pvL1k+mYnK4dBjGcZBQA9guMtXi/jaxyj75fAjaJAXT1cixX1PPSdxdZ46AikXcY6hM70ZfBNoLqnTQrxGMGCrQv7It+8EkRHpIACsszo8p1BtjmixED4O77B2lLrn0z1fT0TmRmEPgSKAkuctokqbd4xnpBxJQmg=
+	t=1742484271; cv=none; b=MaZ+td2wy96ESGBBz2Oo/UP2EA2LA8a2ei+HyoxuaQGx8AlDdJhmBOQuYqFSN69f8vXA/R6k4fbhhfGPXxjXwUITnrBMgOD2f19kKyj6XZswiTg4M2BXeIoaWpy3BqLxfL6OYM27ZPMHRTmR2wQKblBsNpxq/o6rVP59KUJ35xY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742482794; c=relaxed/simple;
-	bh=GF0VK7dHmJO63fo0/Pot316tCpl4vo7OCRgrDVzVx/I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rkIFTELNiMpIfSVVPPVPqFfxhBojk8Ce7vzuNzneiB40F5wBoJfX3IbIqsXtv26JaAnwb/uYkzzTLo6wEggB9AuOVngEEvhdcHty8pMqNOEqYm+jlNPR2i+3VZ6JshVQ8Pto5YjGYoh0NkrPiWPkiO0IL20papbulgNqvDuFAq0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YZon6yTm; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-43cf034d4abso9979285e9.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 07:59:52 -0700 (PDT)
+	s=arc-20240116; t=1742484271; c=relaxed/simple;
+	bh=cJ4PKBqJ1ZUnV8+yUZvNXJkgGfWoCnqYjpX/+o7T94w=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=kBVN+kbIYHlKUBSfXXv8gGEIKYDpA65doMmVN+LhR5v/TVVNQ5IQXs4Aqm6VR3hax9p/p6wlEEoexaYotP+3sM4mq9iU7QU7U8edXFw/mmG37b5z0H13SsBHZaznKeT/KdzZ7lboDTK92awgSrO+IZ+z61dP67LlZUdedqFWlD0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DLR7EPh0; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-2254e0b4b79so26533985ad.2;
+        Thu, 20 Mar 2025 08:24:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742482791; x=1743087591; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=1dCpo5qNPPogUTHw1o2z5IsnXomo/xWgvWYpE6X6Nss=;
-        b=YZon6yTmN7L/3X2tFcN58C2zcFmmib2yIYDaIrxfKIPDY3oIFzV9ws8u80hyCWK3zq
-         aj0jLrF98TDtkEkYRpbq0Y0mwFjiRFcCfQV1YNQo7l3o99RoV1c4YF66Oqrjo/t9fV/k
-         646tFOO88yqRSfi/smXqDdrjmyEi6z0/W79C+95P+swuSi+m8U5MRbaqjNNBFn/5edNb
-         FpOlGah6LLkEMQ2ABK5YIm0yqxekl1rH8ZXEZQfMYTZ1JrkWH/jbQwHkLqmFPEhddcAD
-         yiPR7gEdP8zU7YhRcod3qcer5alYOhWtTaD5q2K7sHzqOg7hN9zTyWDVTOwWk7sfMNMb
-         9VIA==
+        d=gmail.com; s=20230601; t=1742484269; x=1743089069; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xgBZ5CUSGzZQMXrNQ7iMZPeg3VKPPTQI8tLphlbuft8=;
+        b=DLR7EPh0l81F1Va9tJn9Mtm+HQv9USOMJnSzZ+TwwTLzGXWJDoPGfy0V+vozTUlBu1
+         CV2kkTkdoDn+OQMIFBe2K0OuVZ5XatyYiKPqnS//pGgje7/5RhXlSpT1lDhGeGnTqJSm
+         y0cfAfHFJxYIHlBp1dizrrABR1ZZws7EOP3lIZTJjqLx8UhiC44AXPZ4kfD0D69pTuVm
+         g/hZmqHB0+QIg3nFnACz5dflwU4fFwMtH5ejbqvCGV+2BiE2iap5SWNr71M4AIEHd7EY
+         DDHuVCE0MosPDZJpVyNwGpurlnZvpPlz2qMZ68pgpmaK4shM7a3f4da0mXIaZ81OWuaS
+         Vx0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742482791; x=1743087591;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1742484269; x=1743089069;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=1dCpo5qNPPogUTHw1o2z5IsnXomo/xWgvWYpE6X6Nss=;
-        b=BFE4bMdbpZfLKkyYNOgPvNtwMvvXXa7ZnsZ1dM4mBsWp2jh5zTeuYqhRzrIlB+I3xD
-         ObjEn4s/T424EA6n3BxIY9bhrHgUYDSWkfFliK12z+spMM2H4xrZhitI/TojZjuUAvj9
-         18nik8lgzmZvARVhk8KPCV0bRiP1JrNw4WaJQPKqSs7y8M9vxRw5A/ob+Sir99nyvsKT
-         ng2xvpJr+WEHoao2ejW1yzh+oODD0lPR0ousfXg2WW8DIXjtshaNKOKaqALtsnSbV30A
-         Clafv/N1GhKmCQ/0FGf68DVRQK4/o8+aV3yMXMPiIAsj+MzjiA13qhMoevQJB2877MQo
-         LImg==
-X-Forwarded-Encrypted: i=1; AJvYcCVRZEOEci8Dm7VjofKBptEBrYagXSkUoJwhV/gn/JmJGUSIbm0hajPhkc60wzgdDInbKGCJ+boZrq89@vger.kernel.org
-X-Gm-Message-State: AOJu0YztIyrtRBe/ge8FErjYwAqFsOYgxGalm+Z+e0f59vw0jjtDiQ62
-	JULBA9aYUgpGzKGKAHbcB2u8pEubr7x17AyiqqS2du+xq/CudHFp9Ongj/2GdOQn03tpA1kaIun
-	zSlSJV9DePsZ/ncV2A9C1uLEMtAawvMZGp84XXw==
-X-Gm-Gg: ASbGncs1KYrTGBKUtEA/0et51657cZvl6kDtLZq8kOAhpT+a7R9bfpaIdaBYRTlZ1IM
-	qLU152jTyQAZaElduxIBTgzW2jldSpj+lMk8fcW5w3Jxx8YiT+O5B/eVaxml83plxZOtgCUzVRU
-	ZPzG3tVLw0V6lpIn2x1DNB1A8eprSUhrR2sGvtq64rOaJazYlN1Ki2GUQ+UIA=
-X-Google-Smtp-Source: AGHT+IEuovMa5wU5MZaFsiegZRX9kpE8KrzlwzUFosPnm3xJM5d92iy014o6qQlzbCC26zceDb2qYp50jMoAELnW4f4=
-X-Received: by 2002:a05:6000:400a:b0:391:3207:2e75 with SMTP id
- ffacd0b85a97d-399739bc965mr8027422f8f.18.1742482790540; Thu, 20 Mar 2025
- 07:59:50 -0700 (PDT)
+        bh=xgBZ5CUSGzZQMXrNQ7iMZPeg3VKPPTQI8tLphlbuft8=;
+        b=Kgn5HnL8pshTiWzveH6SfkjRYE1+eIP8917/WIX1goSub9sA8hkvGpyCikCZr7T5Ri
+         LXuClVg4kUO8imc5h99k2T3/PgxWtbCwGQk0tpcxtc7CXtf7H+7+XobwHrMZj2L44Xoz
+         cFdgElZaQincauCG0k5S09XIsNnw0Tl70CzLfuqXh6TyyNxulCXZpsuUI42iu6Gq6xgr
+         C+mAlslxmGXrdsEn7BwttqzJxffB06QXspl530vG9PaDeFOL1GMoPNO5XYvjm5ucodTj
+         fAikKqpaLlAER0j0MANqNnWgHlOGAKwfA4g2aTHmbT8xDZoXVq1mq3y7xiCBo8Fn0W4W
+         5kNw==
+X-Forwarded-Encrypted: i=1; AJvYcCUjdGzBv+46xzQlTWz/C5vWggnErjZqzAtb3k9XToeN3EEDvxJvCWqriV4XgKIXtlaS+CwX1dxfVxGxncA=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxiC5p036qGDqDwsFZV5okfFPYolFv/2IlmHIMn7GQ6nq5IFp8J
+	zeCqISRu8fJwOFgfZFO7W+HslSAa8yF1q3WlwzpAup4NMIcoClYXBj/dww==
+X-Gm-Gg: ASbGncsP6+oLzXM6WiKdqiBRU6aFDwk3QhngNo+oLxUqtHDl89Iqpp1rDDaeYUjyZVv
+	GsJ09olS9dVSq4C8s6+zW+3Vb2qIYG/CFWd9qVCW2i3ny2DHDTPAZesg0LL3lKe6rvXuUmitsD3
+	BPFYSH8rzLCimWU0XLnbf7PMJXWFdRqBiUUejdUWQs5u/3Rxwzn/NKfdAFiHsUyGZk5W/YvODrS
+	C42S1DE4GqshgZtax/ZioDMk9/IusdzBRdt0R33SdV9pbV3j0WH+ao+6uTCK06VViJ5q1I/ZOFQ
+	Yqy3BRmPRRdA1ExBfMP1HWcKwmItypxFU65hBOBvRH7rrsyVQaHN+dEONyL5NEvFEgGMNen1Wot
+	oHbgX9zpy2llxcb5M9upkYQ==
+X-Google-Smtp-Source: AGHT+IE8wgx82LSpjOoMcp7xMjse6vZ9j5z6ddnJQvCI/Fs2gOi8QJmpGG9UFax94XWc9AkTdIPv9w==
+X-Received: by 2002:a17:903:2346:b0:223:5ace:eccf with SMTP id d9443c01a7336-2265ee0aedbmr64395195ad.25.1742484268680;
+        Thu, 20 Mar 2025 08:24:28 -0700 (PDT)
+Received: from localhost.localdomain (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-225c6bd4a8fsm136905515ad.234.2025.03.20.08.24.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Mar 2025 08:24:28 -0700 (PDT)
+From: Potin Lai <potin.lai.pt@gmail.com>
+Subject: [PATCH v5 00/10] ARM: dts: aspeed: catalina: Update DTS to support
+ Catalina PVT hardware
+Date: Thu, 20 Mar 2025 23:21:50 +0800
+Message-Id: <20250320-potin-catalina-dts-update-20250102-v5-0-e161be6583a7@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250320115633.4248-1-srinivas.kandagatla@linaro.org> <20250320115633.4248-6-srinivas.kandagatla@linaro.org>
-In-Reply-To: <20250320115633.4248-6-srinivas.kandagatla@linaro.org>
-From: Christopher Obbard <christopher.obbard@linaro.org>
-Date: Thu, 20 Mar 2025 14:59:40 +0000
-X-Gm-Features: AQ5f1JqWow6fqmzjop6LRMzUEYKQ_-u1q6WapafopX3_R9ft_ibeNfvcRLu1M1E
-Message-ID: <CACr-zFAvcvBsTE2Y8W2i-o59x-PiUGJYsyb_OtBWJ9VvgipYNQ@mail.gmail.com>
-Subject: Re: [PATCH v2 5/5] arm64: dts: qcom: x1e78100-t14s: Enable audio
- headset support
-To: srinivas.kandagatla@linaro.org
-Cc: peda@axentia.se, broonie@kernel.org, andersson@kernel.org, 
-	krzk+dt@kernel.org, ivprusov@salutedevices.com, luca.ceresoli@bootlin.com, 
-	zhoubinbin@loongson.cn, paulha@opensource.cirrus.com, lgirdwood@gmail.com, 
-	robh@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org, perex@perex.cz, 
-	tiwai@suse.com, dmitry.baryshkov@oss.qualcomm.com, 
-	linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	johan+linaro@kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAI4y3GcC/43NQW7CMBCF4asgrzvIY09wzKr3qFiMHQcsQRLFb
+ lSEcvc6SKURqyz/0eh7D5HCGEMSx91DjGGKKfZdiepjJ/yFu3OA2JQWSqpKolQw9Dl24DnzNXY
+ MTU7wPTScA7xeLJKTBybXOBYFGsbQxp/nyNep9CWm3I/35+aEy/WP11v4CQHBSWe4UtrbQ/15v
+ nG87n1/Ews/qRWJ20hVSDSqQjRtMGzfSb0maROpF5JsjYbIqTa8k/RPaiU3kQQSjNfkatRWIq3
+ JeZ5/AdkRxPXNAQAA
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>, 
+ Patrick Williams <patrick@stwcx.xyz>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ Cosmo Chou <cosmo.chou@quantatw.com>, Potin Lai <potin.lai@quantatw.com>, 
+ Potin Lai <potin.lai.pt@gmail.com>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1742484265; l=2078;
+ i=potin.lai.pt@gmail.com; s=20240724; h=from:subject:message-id;
+ bh=cJ4PKBqJ1ZUnV8+yUZvNXJkgGfWoCnqYjpX/+o7T94w=;
+ b=S29qvnFmgZIP8YDEgxdV9L8SWhKqk1HlSw3tWuB6SnfHRj8puN3OAuw4BqZ/y3CK9surBXICF
+ qdFlkjwYr7QCHpzI9QI0C9x31DQb1Oc5lQS4+R35VLGiGuL+5jJF3Ar
+X-Developer-Key: i=potin.lai.pt@gmail.com; a=ed25519;
+ pk=6Z4H4V4fJwLteH/WzIXSsx6TkuY5FOcBBP+4OflJ5gM=
 
-Hi Srini,
+Update the DTS file for the Catalina platform based on the PVT hardware
+changes.
 
-On Thu, 20 Mar 2025 at 12:02, <srinivas.kandagatla@linaro.org> wrote:
->
-> From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->
-> On Lenovo ThinkPad T14s, the headset is connected via a HiFi mux to
-> support CTIA and OMTP headsets. This switch is used to minimise pop and
-> click during headset type switching.
->
-> Enable the mux controls required to power this switch along with wiring up
-> gpio that control the headset switching.
->
-> Without this, headset audio will be very noisy and might see headset
-> detection errors.
->
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
+---
+Changes in v5:
+- Revise CBC FRU eeprom i2c bus and address
+- Add MCTP support for backend NIC monitoring via PLDM over MCTP
+- Link to v4: https://lore.kernel.org/r/20250320-potin-catalina-dts-update-20250102-v4-0-7c34b8139014@gmail.com
 
-I tested this series (with
-https://github.com/alsa-project/alsa-ucm-conf/pull/522 and latest
-audioreach firmware X1E80100-LENOVO-Thinkpad-T14s-tplg.bin) on top of
-Johan's kernel (https://github.com/jhovold/linux/tree/wip/x1e80100-6.14-rc7/)
-on OLED T14s with Gnome and PipeWire/WirePlumber from Debian unstable
-and everything appears to work OK.
+Changes in v4:
+- Split a single commit into multiple smaller commits to reduce complexity.
+- Add `multi-master` into i2c12 & i2c13  
+- Link to v3: https://lore.kernel.org/r/20250114-potin-catalina-dts-update-20250102-v3-1-14981744b2fe@gmail.com
 
-The following works:
-- internal speakers (no regression)
-- internal mic (no regression)
-- 3-pin headset, the default output auto-switches when plugged/unplugged
-- 4-pin headset with mic, the default output/input auto-switches when
-plugged/unplugged
+Changes in v3:
+- Remove delta_brick nodes due to compatible string not supported
+- Link to v2: https://lore.kernel.org/r/20250113-potin-catalina-dts-update-20250102-v2-1-1725117fe7a9@gmail.com
 
-Please let me know if I can test anything else.
+Changes in v2:
+- Add delta_brick nodes to support PDB brick board
+- Link to v1: https://lore.kernel.org/r/20250103-potin-catalina-dts-update-20250102-v1-1-b0b7a523c968@gmail.com
 
-Tested-by: Christopher Obbard <christopher.obbard@linaro.org>
+---
+Potin Lai (10):
+      ARM: dts: aspeed: catalina: Add IO Mezz board thermal sensor nodes
+      ARM: dts: aspeed: catalina: Add Front IO board remote thermal sensor
+      ARM: dts: aspeed: catalina: Add MP5990 power sensor node
+      ARM: dts: aspeed: catalina: Add fan controller support
+      ARM: dts: aspeed: catalina: Add second source fan controller support
+      ARM: dts: aspeed: catalina: Add second source HSC node support
+      ARM: dts: aspeed: catalina: Remove INA238 and INA230 nodes
+      ARM: dts: aspeed: catalina: Enable multi-master on additional I2C buses
+      ARM: dts: aspeed: catalina: Update CBC FRU EEPROM I2C bus and address
+      ARM: dts: aspeed: catalina: Enable MCTP support for NIC management
 
-> ---
->  .../qcom/x1e78100-lenovo-thinkpad-t14s.dts    | 25 +++++++++++++++++++
->  1 file changed, 25 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
-> index b2c2347f54fa..b40775c20493 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
-> +++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
-> @@ -19,6 +19,16 @@ / {
->         compatible = "lenovo,thinkpad-t14s", "qcom,x1e78100", "qcom,x1e80100";
->         chassis-type = "laptop";
->
-> +       /* two muxes together support CTIA and OMTP switching */
-> +       us_euro_mux_ctrl: mux-controller {
-> +               compatible = "gpio-mux";
-> +               pinctrl-0 = <&us_euro_hs_sel>;
-> +               pinctrl-names = "default";
-> +               mux-supply = <&vreg_l16b_2p5>;
-> +               #mux-control-cells = <0>;
-> +               mux-gpios = <&tlmm 68 GPIO_ACTIVE_HIGH>;
-> +       };
-> +
->         wcd938x: audio-codec {
->                 compatible = "qcom,wcd9385-codec";
->
-> @@ -36,6 +46,7 @@ wcd938x: audio-codec {
->                 qcom,tx-device = <&wcd_tx>;
->
->                 reset-gpios = <&tlmm 191 GPIO_ACTIVE_LOW>;
-> +               mux-controls = <&us_euro_mux_ctrl>;
->
->                 vdd-buck-supply = <&vreg_l15b_1p8>;
->                 vdd-rxtx-supply = <&vreg_l15b_1p8>;
-> @@ -367,6 +378,13 @@ vreg_l15b_1p8: ldo15 {
->                         regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->                 };
->
-> +               vreg_l16b_2p5: ldo16 {
-> +                       regulator-name = "vreg_l16b_2p5";
-> +                       regulator-min-microvolt = <2504000>;
-> +                       regulator-max-microvolt = <2504000>;
-> +                       regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +               };
-> +
->                 vreg_l17b_2p5: ldo17 {
->                         regulator-name = "vreg_l17b_2p5";
->                         regulator-min-microvolt = <2504000>;
-> @@ -942,6 +960,13 @@ int-n-pins {
->                 };
->         };
->
-> +       us_euro_hs_sel: us-euro-hs-sel-state {
-> +               pins = "gpio68";
-> +               function = "gpio";
-> +               bias-pull-down;
-> +               drive-strength = <2>;
-> +       };
-> +
->         kybd_default: kybd-default-state {
->                 pins = "gpio67";
->                 function = "gpio";
-> --
-> 2.39.5
->
->
+ .../dts/aspeed/aspeed-bmc-facebook-catalina.dts    | 197 +++++++++++++++------
+ 1 file changed, 144 insertions(+), 53 deletions(-)
+---
+base-commit: 4701f33a10702d5fc577c32434eb62adde0a1ae1
+change-id: 20250102-potin-catalina-dts-update-20250102-914b06a4bdba
+
+Best regards,
+-- 
+Potin Lai <potin.lai.pt@gmail.com>
+
 
