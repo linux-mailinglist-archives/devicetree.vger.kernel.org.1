@@ -1,156 +1,135 @@
-Return-Path: <devicetree+bounces-159288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA657A6A42A
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 11:52:11 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DE3CA6A432
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 11:54:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D14124634DB
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 10:51:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1B4357A70CC
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 10:53:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1FAF224AE6;
-	Thu, 20 Mar 2025 10:51:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0ECA224258;
+	Thu, 20 Mar 2025 10:54:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CUA56aLu"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="QTndezSm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 214F5224258
-	for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 10:51:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 881AF223719
+	for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 10:54:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742467887; cv=none; b=GhWEmP6q2EU27LLeNuG+X56Bu1perD1G85EbTZIMiuaAzJq0YUV0im2r47MQY4jwDsYCXA/I8lFF/WB01c2Y902AUru13jnvo0G0nUXvLlXY9zGr2hwuCubhpPDL7uB+B4mjRqhyXkV/C8wOGUB1UfOTex6UKsybo4Z0DZmDpQ0=
+	t=1742468086; cv=none; b=D1Ox0i5H06pJtTz0YrOyoFFTNeQFW1uLyo2GLmKCwKZygONymSAPLhikyuA0Trnf3R9Y4BhiUrSBX9f0IcPXvlSIeGP/J4/GtYyPNmDxFFKTw41iFLL6NYiLodsDLEs9iuiqgALQwAFKocOsRc5sDY9diBURosWA9+oF6WCX68Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742467887; c=relaxed/simple;
-	bh=L1U+bcSW7YBmAkqow20Q/7C4mb141BejkLwPN0H1D8w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mprpSNW502df6bKOf/1+7kjcteDxLbfYjCiWX3QVPImhjnNc5mLLTuJ4hMHUOFXk8JGSsMntTdG9BJz3QBmA5tJCF/iBmJi33dcKm6UGhFRPxWXlTicB/ZFM5fKlggh82LE/RtOj9ugUCizjtxkyswhnOAZXKtgLpZr8jSI1RFg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CUA56aLu; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43cef035a3bso4277675e9.1
-        for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 03:51:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742467884; x=1743072684; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kKb0bPBVVY6/KTAskiDvg6ejT22LGD+C1zdwso8I9VI=;
-        b=CUA56aLuBpZFj0k+V9oJWMoj375kPA0vDUBw0Mo/aPm228+mwu74FL/xXIUqk6pZsW
-         BSKZLFKMR4mF07QT/P4B6ctNop0lvj8W7yp3CImsxC298B+t8OMbIoVxcgqk8nd7MeQU
-         3NUGGwsPF4shPPvnxWyIr5IFT+2yx+MGLfSSHOIkBKxc4XzdUwSv0n7QFEHkaAgw6dgF
-         dN2Db2FMJpUez/HF1QPVun6l+s7w0+SFCGKihy3b+vadaYxD8/wRN6NuagHGgHSJAtxT
-         TGwTcXZS7QxOOVzPEOY+b58aehoQtEgK//diul/LGtNNRVDyuNTvTTNLh9ypvDDYT6A+
-         i0mg==
+	s=arc-20240116; t=1742468086; c=relaxed/simple;
+	bh=Gzl2OAOWftrG50OaeVh+6u3yuNfq2LInxjiLaVChIWw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=O2E1aBXRLTo8f2+R0/Z/b82p63KOW404wl4DKMSS5GDFXZwLvXtoTB9cRF1XbGp/nKXfQVO8WVri/wul815QiFJUMujmwJW3aGp2Fx4ovGjEUD0KMVXgVdiMZj5zaw7SWB8d7eq9SLTOBou0OFFGrA7c5uRjKwSPPT068XPMyc8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=QTndezSm; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52K6Z63C017501
+	for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 10:54:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=9MSSpvRG+TcV9gNCepPHrW84
+	i6zOiyJTCdB87QHlGkE=; b=QTndezSmxaQlMikf3B1wozAHStIREKiRVGk2iEnt
+	qyPikNFdl/tDpwOfzEh/nbbo9eRkOMm5yIwYizDD67NSX7J0Hjm66O1bvQDO6NfA
+	yUk1vZGxUZ2PgoY7XWE8cdNEcHIiG9KLOwIJPO7ZcUkZ0QHxqFvFTBZ3AUXbOPht
+	wnLVrkt/FjAtymCeUpJk3Lmlba54awBkpaSpEK2pRj+QWvg8ZARjoGF6xy9OOOXx
+	tg9E1zpV29QqyWeOLgXXU9gsGhr2WIeE6/Nnxdrmot7JnEIj5rMhLhBg5IUX+tVF
+	XU0b+l7AfnkPlbvPkqip0KbIISOdMmb1oPuX7BRgl70bvA==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45exxbrje9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 10:54:44 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c54a6b0c70so69200485a.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 03:54:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742467884; x=1743072684;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kKb0bPBVVY6/KTAskiDvg6ejT22LGD+C1zdwso8I9VI=;
-        b=LTeoph/CxyOJSLyun2qxMOtEc42sXmTiPuEoPyasHrh9HXPzb1GiWKANkeE8nlqQri
-         nsMgiU0+EDhLcP9NMl7z5f8tTzvsetOFqpmtZgi5ldR/+yJmKL/vS2AxXSuq1g3PYpFQ
-         mkRT+waq8PNa98By2HptPdqdcGvYLLjRBja2PvF3/VfGJ99PcEbn4ihpbEV7U8AxsVN4
-         QF4a+ZXkSjnqMjL2cuyq74A3rnpIozQ5Th8j9sMGu0GyB/YRu9mQSq1VEXxkyNtaPwCh
-         pM7P70LMDiES1JG3nXqTZ331wXGyIbqb3ciszaWFkLthp8Xa9s7t1OLvaT5ziGEMN5Um
-         p0cg==
-X-Forwarded-Encrypted: i=1; AJvYcCVkrpK2cmvtm9Fh3qI8sNtB9lLvAizL8iJu1zIgrxvuS3c4DCme68m49A1qrtLB8m0awmu/GnFjkVLw@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx7MQ21pdfJNyd2PGOlbaiG0i14M3yUORuH2FBsG81Z/QLRo0TE
-	dS8F6mgOOSFsWCuKYSwYu7BgJkd8NU10iXno68vnqxevjMho1x9Z/y8F91l6ajg=
-X-Gm-Gg: ASbGncswsCV2bAcm8y+AM3GsFzGzrAzWBesRZC6CsNYjtE3I22o1miDL7spygw7MJLx
-	SM3BnNZqPjW71lzeHuZtWdkzJ+ADpI8jWf4TT0hXnNiYVR7c11u3ujD6jmiGakLM+SfkRFsKBFf
-	MijAncOwmEHuC6Dq+k5sMXX/b96AqBKTc7cP7ZKzQF9PueN/2apm9ISRDsC0EYfu4FBA/u2XBj4
-	apEYfiWMX9a26nafJyNr4zRC254rf2lMfUAFUWtmVx+7S/XSl/CbVplDkim3lm3z+C2XhjfJGaY
-	zsGWz+JnikXatFB84IAK4CYoHgxEwz0x4C/Vr2qGwD66O1cTWYveu43R0WyQDlyVqrpoOLMlwg=
-	=
-X-Google-Smtp-Source: AGHT+IF5aG2ScR9F02Ij63Lszxbdolrxhc9/khSjeWGnACxp6gXIdgu3JK1Wfic3Xr2VhHMhTlyaIg==
-X-Received: by 2002:a05:600c:3556:b0:43c:eea9:f45d with SMTP id 5b1f17b1804b1-43d437c2dc4mr56164285e9.18.1742467884219;
-        Thu, 20 Mar 2025 03:51:24 -0700 (PDT)
-Received: from [192.168.68.117] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-43d440ed793sm44630255e9.39.2025.03.20.03.51.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Mar 2025 03:51:23 -0700 (PDT)
-Message-ID: <e14e31e0-1621-4fc6-a356-261810c2ddcc@linaro.org>
-Date: Thu, 20 Mar 2025 10:51:23 +0000
+        d=1e100.net; s=20230601; t=1742468083; x=1743072883;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9MSSpvRG+TcV9gNCepPHrW84i6zOiyJTCdB87QHlGkE=;
+        b=QUJNQaqlEW20kpJDB9JEL2TmOExVBSkj/LcBxkaKTdUToFTeH6fkWcB4cZqHIdIMl9
+         NdmvgrfstlUroHxAzop1KnSisXmKROI0BbfvPB51L2t6U5KzF75NWasRTVHE5S/gM0FO
+         q4GzmVPErlZ8ItsWAUPH8SWbXVS1yydhASZi2lHuyEEx15wuN5+AF2p8QnKNxt+7Jyon
+         hU/9Z/4SHawLgM/hu2LQcd6jToGMC/vzYzNEcT1zQvRZPZV7E8SfkJWpxBxiY0LUbXD5
+         fw9NCC0EZtA8f+O3NK3JqnHrUSx//AB9Nr/zT0ACGHTm5VoZ3tjtxhA1HhoUbu+Ca34K
+         8Mnw==
+X-Forwarded-Encrypted: i=1; AJvYcCU/CxdHffl5UZIzgYyf3DmUOCZPDxaWOpDnW+TD4OKOxvU+KDkX+ptkRZwTmzjireVqshx3f43JLim8@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxzfrl0/9HBo2sTPBrA6OYn4QR4I3XgI9RRIu7UI8JOVW/yczRT
+	6ZKfsT41hb/3UOFQKCYVjaUnbcl/AjE48XzZc61FHdP6s8issHnmy7DsoWzrDXe04ZGWNF5yido
+	aUawZnKDSPi1so3omsok0KW5HhMgFETXQ6o/V7l55Qjqb5ZFdrdY2vy7MOEHF
+X-Gm-Gg: ASbGncuosx0R3rS1jZjQsgvEEI6xor3KudnEayfTJ4dukfhrH1J4ZWzpp32Sx8pbnbG
+	YMrlCNt7qWvLTN/EvZAv8BKvOfIPzM8D8bLLfQVVd4xI2JhsblkznCksZkVPUp/AVIm7AiEgWjO
+	cVdmhDBw4nLQ96/VfAHppTBKwoJjqBzm+wNaGIf4wUC2wjGvp60NSn+6kpY8zxNKlvSEP2PXJSa
+	eM30Xx8YqKGr2OUZzqOlOWxDw02QOiD6Qna3Bc3XhH0EwUiq846mw0EvRNztUVpA7QMMohG1mB+
+	V/dWDMZ6WoWxDEbE2ahuxgUjc0akQo4tAVdfq4jD6ROoo46qzP0qMWYoZp881lEJQzQ3fhwAvsY
+	UE0o=
+X-Received: by 2002:a05:620a:280d:b0:7c5:4463:29aa with SMTP id af79cd13be357-7c5b0d06405mr416386985a.40.1742468083409;
+        Thu, 20 Mar 2025 03:54:43 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHdFV9xVqcyjUuzTORF88R0q5+1pBPTL/vZj/baesC3onvB7C6vsCaH9ilw1XKWAk1ufOuWcQ==
+X-Received: by 2002:a05:620a:280d:b0:7c5:4463:29aa with SMTP id af79cd13be357-7c5b0d06405mr416383885a.40.1742468083112;
+        Thu, 20 Mar 2025 03:54:43 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-549ba7a8516sm2247703e87.31.2025.03.20.03.54.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Mar 2025 03:54:41 -0700 (PDT)
+Date: Thu, 20 Mar 2025 12:54:38 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Ling Xu <quic_lxu5@quicinc.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org,
+        srinivas.kandagatla@linaro.org, amahesh@qti.qualcomm.com,
+        arnd@arndb.de, gregkh@linuxfoundation.org, quic_kuiw@quicinc.com,
+        quic_ekangupt@quicinc.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sa8775p: add GPDSP
+ fastrpc-compute-cb nodes
+Message-ID: <mgtqgzra5n4tihgyrvb26pyzfcsupliorc4hvrmh6j4l2zw2gv@ozfjoxdolle7>
+References: <20250320091446.3647918-1-quic_lxu5@quicinc.com>
+ <20250320091446.3647918-2-quic_lxu5@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] ASoC: dt-bindings: wcd93xx: add bindings for audio
- switch controlling hp
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, andersson@kernel.org,
- lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, konradybcio@kernel.org, perex@perex.cz, tiwai@suse.com,
- dmitry.baryshkov@linaro.org, linux-sound@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, johan+linaro@kernel.org
-References: <20250319091637.4505-1-srinivas.kandagatla@linaro.org>
- <20250319091637.4505-2-srinivas.kandagatla@linaro.org>
- <4ie22uuz5tpg77jto3c3hec6lhonr44hrjda7jk655axlaxvba@u3atd4gcyghn>
- <660115f1-d1fb-4fd7-a453-e8c177be9eed@linaro.org>
- <51dd7cb2-0c22-4043-b3a1-fa8410903cbd@sirena.org.uk>
- <938cb09f-3fb1-4daf-802d-2d95222f30db@linaro.org>
- <20250320-feathered-super-walrus-8eeef8@krzk-bin>
-Content-Language: en-US
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20250320-feathered-super-walrus-8eeef8@krzk-bin>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250320091446.3647918-2-quic_lxu5@quicinc.com>
+X-Authority-Analysis: v=2.4 cv=QN1oRhLL c=1 sm=1 tr=0 ts=67dbf3f4 cx=c_pps a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=X77NXM8zCmOlsI4LSM8A:9 a=CjuIK1q_8ugA:10
+ a=PEH46H7Ffwr30OY-TuGO:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: H17z1U-QuVtFE6GtrmDXO2n1GIlhEDFW
+X-Proofpoint-GUID: H17z1U-QuVtFE6GtrmDXO2n1GIlhEDFW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-20_03,2025-03-19_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1015
+ phishscore=0 spamscore=0 impostorscore=0 suspectscore=0 mlxlogscore=607
+ priorityscore=1501 lowpriorityscore=0 malwarescore=0 adultscore=0
+ bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503200067
 
-
-
-On 20/03/2025 09:31, Krzysztof Kozlowski wrote:
-> On Wed, Mar 19, 2025 at 06:00:51PM +0000, Srinivas Kandagatla wrote:
->>
->>
->> On 19/03/2025 16:03, Mark Brown wrote:
->>> On Wed, Mar 19, 2025 at 03:59:23PM +0000, Srinivas Kandagatla wrote:
->>>> On 19/03/2025 10:01, Dmitry Baryshkov wrote:
->>>
->>>>> Is this regulator supplying the codec or some external component? In the
->>>>> latter case it's likely that it should not be a part of WCD bindings.
->>>
->>>> This is regulator powering a mux that is driven by gpio which is part of
->>>> codec binding. So I would assume this will fall into the codec.
->>>
->>>> Where would we fit this if not part of codec?
->>>
->>>> Unless we mark this regulator as always on.
->>>
->>> I would expect that the mux would appear in the DT and consume both the
->>> GPIO and the regulator.
->> Yes, its doable, so we would endup with a mux driver consuming regulator and
->> gpio and move the gpio handling in codec to move to use mux control.
->>
->> Let met try that and see how it looks like.
+On Thu, Mar 20, 2025 at 02:44:44PM +0530, Ling Xu wrote:
+> Add GPDSP0 and GPDSP1 fastrpc compute-cb nodes for sa8775p SoC.
 > 
-> Looking at schematics this is clearly not a supply of a codec, but as
-> Dmitry said, separate switch. Actually two switches.
-
-AFAIU, Adding single mux for both seems to be the best option.
-Eventhough physically they are two muxes but they can not be driven 
-independently, and logically/functionally they are doing only one thing 
-of handing us/euro headset.
-
-
-But if we represent these two muxes as two different nodes then the 
-driver is messed up, as all the resources (gpios. pinctrls, regultors) 
-will be shared and we can not control them independently.
-
-
-
-thanks,
-Srini
+> Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 58 +++++++++++++++++++++++++++
+>  1 file changed, 58 insertions(+)
 > 
-> Best regards,
-> Krzysztof
-> 
+
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+
+-- 
+With best wishes
+Dmitry
 
