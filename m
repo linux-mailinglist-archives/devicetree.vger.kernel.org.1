@@ -1,154 +1,142 @@
-Return-Path: <devicetree+bounces-159449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29898A6AEC5
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 20:47:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E81EA6AECC
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 20:47:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DCCBE189AAC1
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 19:46:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 222B4189C174
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 19:47:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13CA922D4E9;
-	Thu, 20 Mar 2025 19:45:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5942A22A7E0;
+	Thu, 20 Mar 2025 19:45:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="etZ7FVHf"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="rOpet2k+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67AE022CBFE
-	for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 19:45:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A00B6229B29
+	for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 19:45:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742499907; cv=none; b=HbP8NYltUmyF3AZ7fasGGSi0iMGHZjNm3Ow5PRjlbvUzOeNzT837nLfqhI+IoE69hWIuxcsVc3xjddGIxsYlVHkHu81F2LOObj3Acv15b71xj8T2ON7v5Y1MnJRE1oRYPnBlpHl7qGe4GxnfaZL7KGFkTK+yGIHb1Go2KROhw9s=
+	t=1742499926; cv=none; b=PyVW5zXcDRINoBO5gq1+I0ko3Mq9oiVqobxe9rymi54ZCVamKlsQY6ppd6K/+Pgs204pXH9knXrVlfH6lX6LAOkr8bX9pFT2y68KeTkSP1bSsxGNPij4tfwd8D/lMryudZCflpxF+8QP9XDn3HGQg1n+tCzuJ2YrjM9+OKQHCK4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742499907; c=relaxed/simple;
-	bh=KwRmEv3W3EtqBDLfbMtwfsqs1joXJAuCfqCxq5Hb990=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ruwJhKMD9sGYN2m4oGchUfRmK0pEp5bbK42WGUzmcfZw9fE1HktjYNmxFHSQKdtXpZa3gOEdll0dvt1tKPDo3N+oQRcTaOZehCpEb0s1IxmU3KCEE1//TaCoCCTlqxwpwrGkWXUpuSgiR/zlgUXHz9d5XPE/bJnJpvYNGA2yvFc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=etZ7FVHf; arc=none smtp.client-ip=209.85.166.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-io1-f46.google.com with SMTP id ca18e2360f4ac-85db7a3da71so84693639f.1
-        for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 12:45:05 -0700 (PDT)
+	s=arc-20240116; t=1742499926; c=relaxed/simple;
+	bh=KThe2nutzd9mqonkSKay3Hl9cUyVPIB7fcY6wCFZQdQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fmRScxoizCHyLVQwNreQ+6FnZ9lOhAn5qWt0rHlkZtTGuve86z+Ya4cpoFjos/zB+sSpYRwFVnEDAZXxLpfdiCO//tItCAu4kSGzLe0y6MQY0wwDyYg9anYhVzXsbwyS0cnBYyO1rc7cOUUtvsPuuYfE2e1xpnoDa6p4f7chRhA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=rOpet2k+; arc=none smtp.client-ip=209.85.214.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2260c915749so16758485ad.3
+        for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 12:45:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1742499904; x=1743104704; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nY3+cr8LwPrnwPUbr8ZQVdT4sW06Crewhjj4AmYBWuU=;
-        b=etZ7FVHf/t4RCwsZTTGfwWYqlZhphkFp4QJIBL3GOOpZxDQ9nbLGQH9PJ2cgyAePPl
-         bYBE024SQRI60ILNL3ugxJxPKrw33j6D6RWL66JWKJ2NeSMqTs1kL4u3sJ3d40NYR4YL
-         5rnSJ9qDaGNIot2I5KBU/nAke7YKPyks0NGYmYP/H2SHzVncbUVMsYVcZUeYZx/yUT90
-         9eQM6gWaGkF1YvfK6cP8s/onN/Y661U8ITUlq1UXBVT/6327J/s5tDoZXbx8OSMG9nv1
-         zpfytJN8xdBueBPlJBrevoNz9+S+eix7ujXtXaH24Rm5lTfMjL6CoqI+KZlqhbl9OAn0
-         kWPQ==
+        d=google.com; s=20230601; t=1742499924; x=1743104724; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FlpgaR0yQjJtGhaDJfcefOfylwG4dpk/sOugUwcoAf0=;
+        b=rOpet2k+g6fhDQ2vHVB90Eh9EDW25tnXWoZM3Hwl7FWRb6vxR2EoDjKSVHJA5SssLe
+         FKSqx4E3i5Vn3OZVlbRUHiv7m77JBSavjKfZQCUGfqNGDG3hMNxUMksQJ4BC1ajSNTJX
+         UtM0laCgik1jbC2SXby8ItK1YH12ga5oRSW2E2DduIQWhgCcv0vl6vhuBtze1w35mHjS
+         DpW8t8sa4dyxyI8ILI9rZdNo3WfAqpzeg2HWOdxkKeP9YrigOpdl1fA9qUEpkvdWIn+a
+         G3vtBvSh4oXOdAi0lyf64l8eQLKCvQcIpRUMVhaXZERomfCo0YO9HtseWiuV6jvF+Q7P
+         Lc+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742499904; x=1743104704;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nY3+cr8LwPrnwPUbr8ZQVdT4sW06Crewhjj4AmYBWuU=;
-        b=OLu5RVOcS4gAkyaHWKz+JB7t0dOnkKb8gz7fI76LT6VG2xXWd1KPXviJELIgXvY0PJ
-         aF9h2AvHur1rxJwvFjevigJSdffWylJ3xQOkhvRqAEqKLQDrLkc/HgZ/DfTgQISsGJqC
-         drZLdRpbZOxZBiA1NELeNFuo7aIwSyNaGE5zd3+G7K7+4An5MgS7VxAM4/0By4GfEeXv
-         bS5c/6bmCife/dJSraQno9sHkjfVlHdfFSWZH7Ni2z0JrjiBmbyNMRAYBpC4jx0Opegf
-         A2nBXTmajetV8N+wSeJOR0JmovWLIW5x+5Dr5ej4YRBPx/HFN51dzo+PvFmla9DV6UgA
-         2qlA==
-X-Forwarded-Encrypted: i=1; AJvYcCXHs34t4zY0+yACIGmHnfYghU+5mgnkrSyndZ5FO1C3wm5FgMND/eZ+nZlunUFZEqNUGXbLedfRkQAp@vger.kernel.org
-X-Gm-Message-State: AOJu0YwHRSPIoT2zVodol4xRxOm+80GoxYmsZJgMP3ctCKmV5vTfMYGx
-	JFcI/1qnDsMpdYM3DtcatXs19O3mlZ33oz4AIlVdeCQnoJTZ3JtZBmSZ9+vsYyw=
-X-Gm-Gg: ASbGncsnXV37QJzr94WcKwjSNV1tfG+m5t0AArQR/SQZ98ZvtD2uj7jM/BnjEB3ZGbs
-	ZNk+hmmYVL6fhPbb5oPvQQkgoLyQ70COfIm1jfrz+tu03Wlq5huq2HNt6AqvCHyKfUF2sSfNXIJ
-	fCgLRa6ysxnEqgA4gzHwa72ZQgBzyiXz8GM2QK13aK35tfvUM1CSd4X2IgE8LtjUyyHdTF9iD86
-	ht553NFU+f6lTZUiA3iiA5kr+xcsoPa8R/1ls435/Y9iJAlVhFYjcQThHryDiHfYKskvo5tYyMZ
-	5U4F327btDdHsfICP319HZEFQouSoUzE8HD//ML9pl8VJ3jTh2GZkUnmt/ak5FUQeoa7sHrZudM
-	Pr7/IP2aSjq2PixFDTx0C0duI
-X-Google-Smtp-Source: AGHT+IHW4ltSCaG93SoWDansawq4DbhKwVMoGQNM/OgukHjVy68CtBuW9QNsRfgK8upO/XwMcw3t4w==
-X-Received: by 2002:a05:6602:36c4:b0:85b:5494:5519 with SMTP id ca18e2360f4ac-85e2ca6fff3mr65533439f.5.1742499904534;
-        Thu, 20 Mar 2025 12:45:04 -0700 (PDT)
-Received: from zoltan.localdomain (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-85e2bd8c40fsm8341439f.32.2025.03.20.12.45.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Mar 2025 12:45:04 -0700 (PDT)
-From: Alex Elder <elder@riscstar.com>
-To: p.zabel@pengutronix.de,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	dlan@gentoo.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	heylenay@4d2.org,
-	guodong@riscstar.com,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 7/7] riscv: dts: spacemit: add reset support for the K1 SoC
-Date: Thu, 20 Mar 2025 14:44:48 -0500
-Message-ID: <20250320194449.510569-8-elder@riscstar.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250320194449.510569-1-elder@riscstar.com>
-References: <20250320194449.510569-1-elder@riscstar.com>
+        d=1e100.net; s=20230601; t=1742499924; x=1743104724;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FlpgaR0yQjJtGhaDJfcefOfylwG4dpk/sOugUwcoAf0=;
+        b=LWsgP4cjVXV8eLH/7kFvaI2yDyo+bnGYixpNlU5tX2zaOc5ozACtzTxYYLexsKBzhe
+         nAiiL2SlQdG2vKKrDimq2NE9Y+yRX38AH+/UDt0vXE23T7uDduwtjmRtYTqfrwJioA2R
+         DGvsHGbnZqnxsTEoVQXs64cmrteO7hTWK/+rEZ6NpN2uqtk1ugmZvmglikFY9hkZ/Fp+
+         Xx1dPo2PFzobBAuEtPX3Rke71bvK92S9hoGgCWQlivCo8UDcJ2E5V5MwzNSPnOLBRdZc
+         e4u7z92wZkUP8l0FJljq2JTYJwBG1JkKxLBq6jK8vg/0BV610VU5urEU5tdJFdH6iTqt
+         Ef2A==
+X-Forwarded-Encrypted: i=1; AJvYcCWzOmjEcS8odgUnkxrAtOwHmErDcR9bWSX0PGTzaL+SZpr+c9jDKIhbcVJr38Aikpr7KNH8mJSvo92J@vger.kernel.org
+X-Gm-Message-State: AOJu0YyLDOT3WogT2OSA//mOBzx1X5PK7Gek1eW89nrHV1F2rP8IbyLJ
+	DpWP8I+yjLS2q5IZkPRWl9J7VGdAFtGUrQQQyN7yQ2fbg+DjqAh344Xbv0ZtoQ==
+X-Gm-Gg: ASbGncuLncRyNUtwIO5q3gWhZvJxIwA/9dfshE5pSKRXWjoI5zTjcVNPXaPhzVGCOax
+	06/dbkxxAMix3QU7851S23T2ieEL1tKgWEDpjoVP+ntzDlalY2Uj1PHlSZIrI9LIvnhKKl/Ky0U
+	STnawWWRlXBtZs5lJoz/rf5Tjx7KmEgvK/Bdfq1DXVZlKfb2mZ8ZiRMVspKvXUYjcr2rPG/WJo4
+	FL/fClEQrwpCtRdiwtXZ/qUAaaSaGK6AFJzNkU+e3BsbNhLpRwRp/9Um2IsSnx9OfM4TgZbXfpM
+	n1BjYkaBnp7MF1ppDj2EwaUs7vJ237zTqvraQ7CJ6LiMmoQFoQ11OgdemXw/eiuIJjhUOHJd4en
+	KA7613rITP7gJtV/G8wxuTFwSFJiMcm3wUyvYHRwrUcQi3rZREb23Kg==
+X-Google-Smtp-Source: AGHT+IENLKihrksiYGmmjoFVdGD3nmnNaE4lKfWVvWkc6djuSQ42SPGpugmxhc5MD8+aQ5CdkfkZjw==
+X-Received: by 2002:a05:6a00:2d0e:b0:736:d297:164 with SMTP id d2e1a72fcca58-739059457d6mr1123691b3a.1.1742499923443;
+        Thu, 20 Mar 2025 12:45:23 -0700 (PDT)
+Received: from ?IPV6:2a00:79e0:2e14:7:c50a:4138:6122:653a? ([2a00:79e0:2e14:7:c50a:4138:6122:653a])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73905fab7c0sm212508b3a.7.2025.03.20.12.45.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Mar 2025 12:45:22 -0700 (PDT)
+Message-ID: <9bfab72b-d851-48c9-9cf4-d760dfb8e618@google.com>
+Date: Thu, 20 Mar 2025 12:45:21 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] dt-bindings: connector: add fixed-batteries property
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Badhri Jagan Sridharan <badhri@google.com>,
+ Sebastian Reichel <sre@kernel.org>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <len.brown@intel.com>,
+ Pavel Machek <pavel@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-pm@vger.kernel.org, RD Babiera <rdbabiera@google.com>,
+ Kyle Tso <kyletso@google.com>
+References: <20250312-batt_ops-v1-0-88e0bb3129fd@google.com>
+ <20250312-batt_ops-v1-1-88e0bb3129fd@google.com>
+ <20250313-tidy-kakapo-of-abundance-eebf91@krzk-bin>
+ <85c6de6a-f8b4-4e4e-8fa2-da53816abc89@google.com>
+ <0e654a26-91de-4218-bd60-64e996d5378a@kernel.org>
+Content-Language: en-US
+From: Amit Sunil Dhamne <amitsd@google.com>
+In-Reply-To: <0e654a26-91de-4218-bd60-64e996d5378a@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Define syscon nodes for the RCPU, RCPU2, and APBC2 SpacemiT CCUS, which
-currently support resets but not clocks in the SpacemiT K1.
 
-Signed-off-by: Alex Elder <elder@riscstar.com>
----
- arch/riscv/boot/dts/spacemit/k1.dtsi | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+On 3/16/25 9:55 AM, Krzysztof Kozlowski wrote:
+> On 15/03/2025 01:56, Amit Sunil Dhamne wrote:
+>> The intent of the patchset & this change is for the USB Type C protocol
+>> manager module (that consumes these bindings) to be able to get info
+>> (such as State of charge, design capacity, etc) from drivers that manage
+>> the battery/batteries in the system. In order for such info to propagate
+>> I need to hook up the references of these battery manager devices (fuel
+>> guages, etc.) to connector.
+>>
+>> I have addressed the connector <-> battery question in the cover letter.
+>>
+>>
+>>> If you mean chargers, the OF graph is already there for this and no need
+>>> for this patch.
+>> No I don't mean just chargers in this case. Also, I didn't follow you on
+>> the OF graph. Please can you explain further?
+>>
+> You are duplicating existing bindings and existing practice of
+> describing the actual connections via OF graph. And the binding already
+> has the OF graph. What to explain more? Please open the binding and look
+> at the ports. Maybe they are incomplete? Look how other USB and USB
+> Type-C connections are represented.
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-index 09a9100986b19..f86d1b58c6d35 100644
---- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-@@ -350,6 +350,18 @@ soc {
- 		dma-noncoherent;
- 		ranges;
- 
-+		syscon_rcpu: system-controller@c0880000 {
-+			compatible = "spacemit,k1-syscon-rcpu";
-+			reg = <0x0 0xc0880000 0x0 0x2048>;
-+			#reset-cells = <1>;
-+		};
-+
-+		syscon_rcpu2: system-controller@c0888000 {
-+			compatible = "spacemit,k1-syscon-rcpu2";
-+			reg = <0x0 0xc0888000 0x0 0x28>;
-+			#reset-cells = <1>;
-+		};
-+
- 		syscon_apbc: system-control@d4015000 {
- 			compatible = "spacemit,k1-syscon-apbc";
- 			reg = <0x0 0xd4015000 0x0 0x1000>;
-@@ -518,6 +530,12 @@ clint: timer@e4000000 {
- 					      <&cpu7_intc 3>, <&cpu7_intc 7>;
- 		};
- 
-+		syscon_apbc2: system-controller@f0610000 {
-+			compatible = "spacemit,k1-syscon-apbc2";
-+			reg = <0x0 0xf0610000 0x0 0x20>;
-+			#reset-cells = <1>;
-+		};
-+
- 		sec_uart1: serial@f0612000 {
- 			compatible = "spacemit,k1-uart", "intel,xscale-uart";
- 			reg = <0x0 0xf0612000 0x0 0x100>;
--- 
-2.43.0
+I will try to use existing bindings. I will update my patchset and drop 
+this property.
 
+Thanks,
+
+Amit
+
+> Best regards,
+> Krzysztof
 
