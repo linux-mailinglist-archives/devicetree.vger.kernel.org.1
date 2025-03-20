@@ -1,129 +1,185 @@
-Return-Path: <devicetree+bounces-159284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159285-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDBE8A6A40F
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 11:48:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44C47A6A41C
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 11:51:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7BBB7887781
-	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 10:48:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1AED19C3714
+	for <lists+devicetree@lfdr.de>; Thu, 20 Mar 2025 10:50:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA8BF224248;
-	Thu, 20 Mar 2025 10:48:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="O7iLOW5O"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4499224AFE;
+	Thu, 20 Mar 2025 10:49:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2118.outbound.protection.outlook.com [40.107.117.118])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8497C2080D9;
-	Thu, 20 Mar 2025 10:48:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742467712; cv=none; b=B8CBwvW54leWMUGgqH5SzY9UNAx1kEE5EDJFFW4lLSf7BGD8VyQVhRZJnu84Z0TTZcq3LuIZ1Yvw9yJA8PMsWPqLwBQCE8tbm6jMJNd7RVOQMeHB7Uj9kxLuYByUTzZhOuS7yHU0C+i1qqi4ZZJHs66wU4iByQ/reyBjhtpCvvI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742467712; c=relaxed/simple;
-	bh=YXf76glTiVLhkyc7lbXE2+pKrx3GYsR3bIlNF0cGzTo=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36E0E215783;
+	Thu, 20 Mar 2025 10:49:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.117.118
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1742467797; cv=fail; b=jmkeCV24EbiILvtiix4ot1AalgB+5RJEYYWWu9vn+1l6ap9XNyRuqxO3Lbw3GUza4jCM6t6fs4xLwx4mYzW4vnP4RRuSuW8sT/x/I9fN/U2XaNLKrIwfe62VWw+jhJVYvBc5O2KV05r7q5YCqOpE/1OVhxTl+pFqake1+So1WIc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1742467797; c=relaxed/simple;
+	bh=JMt/utuLAFOOdx8BI2vnJgKv/fxtSiHlyqmvUJ6vsck=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N4VYU6MZKypxLHA0B4KCYvjTyVPSA6VAKet97azpA5hdGszKZ5iPCKmrydulq8neByUrpEwwbCYOThMem9l212fI7cnLdao1tlbIAYq+4uELQl96f1kf/7qSUhgK3gZshj6GQebDjDAV1Q3+HyTZAs2ijpEjoA3jn7g2eKtYxHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=O7iLOW5O; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1742467711; x=1774003711;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=YXf76glTiVLhkyc7lbXE2+pKrx3GYsR3bIlNF0cGzTo=;
-  b=O7iLOW5OmmxTKKl8e8BrTlqBfLv9X0YUzA4jKDEjWzrLXxlpUlBaPcQQ
-   7c7tTihnIlYYhmL2jqYjmv/pJHNkqi/ZdRF2e5DtpvVkXXy12xjgoC4Eo
-   zNPf6X81jB4Kw/fsT0aDpbeEXwQGIj32mvg5RKMCj5hAh6SLmnjtt9HXW
-   7cGspFC0gsJmJgbBIVHEGuFMr1bILWl8thHBGea3lixjJCmCrvZbW4xv8
-   +hhQhtR1aJUkHNsbKIMs5tWne0bHynRY0o3AR9wD2qNF3ZgWReqeNjqc5
-   6Rd4eH6a7SixRGwfVnSarSwiFLwHmSXFlFgqBWxMbV6shIbGdLrsDeZXX
-   A==;
-X-CSE-ConnectionGUID: WvGSGFJdS/iEeGU9B2QbDw==
-X-CSE-MsgGUID: 7my3w65pSfGe7m3hchTrXA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11378"; a="55067736"
-X-IronPort-AV: E=Sophos;i="6.14,261,1736841600"; 
-   d="scan'208";a="55067736"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2025 03:48:30 -0700
-X-CSE-ConnectionGUID: 8e2ihiKmRAKcZ+OnwvAfXQ==
-X-CSE-MsgGUID: Pl152daVTTKnuQ8fxUuEhg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,261,1736841600"; 
-   d="scan'208";a="122778298"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2025 03:48:24 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1tvDRl-00000004CLa-2QSo;
-	Thu, 20 Mar 2025 12:48:21 +0200
-Date: Thu, 20 Mar 2025 12:48:21 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>
-Cc: mathieu.dubois-briand@bootlin.com, Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v5 04/11] pwm: max7360: Add MAX7360 PWM support
-Message-ID: <Z9vydaUguJiVaHtU@smile.fi.intel.com>
-References: <20250318-mdb-max7360-support-v5-0-fb20baf97da0@bootlin.com>
- <20250318-mdb-max7360-support-v5-4-fb20baf97da0@bootlin.com>
- <Z9qoGmNKcozbIjeH@smile.fi.intel.com>
- <hinocg3itjqizbmzgaxv6cfnhtus6wbykouiy6pa27cxnjjuuk@l5ppwh7md6ul>
+	 Content-Type:Content-Disposition:In-Reply-To; b=TfJwfVzhh49ZFxcEJNY3IjMFGaNKI8r/Qbb+lbA8La1LG/pXHY9b3/wg2rVOvDt9cQN18dkgfEfqyKKg+DCr/bhYytgGEptKIjSLmeJXdIWGxVcQJv4kt5uMp0vJZrEEe5+Tj0lDXbNvxTCeSvAH2oOWiMCDJbvAh8mJuJAeQYU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.117.118
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=BxH272SXMd/n3oNBo6A2m2HiO5LNCg/HLXCqGVScugUbo2dPdzd5YAsP4sUQ23UtZ5QLktfFR5YALF7bm7chPLaRzTvgIjuAsN5lU0qUy75R9HO6P6ZbKP+n5ckoMru295wE1RsO12Gh4SS73RoO7MGxREfG7wht5FgWGQg1jSbzRabaeTA+0mtYy0Jqx0kVFWr4AJMFoVTbcq402nTgCwrEtPwipF7NWqjemPHYWuDlOnOCbfikn6LWydBM96vjW4Z76/ZlpygwXB4S9DBY/0rkAGYthIxYcVsG9WFxByaoWRLv6aqvupPtoqlOJI5lEMn0GJuF7547gxPKfkDDkg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RV5KKqXWU06UPDOQ1FU85a/yQ6AOnXFD9MN9/pFHIt8=;
+ b=TvuXditgYsza1pPmXWDhDArx5vGdr9NEjivCEk++PXMcd4diBy6AC/sbZzvxn1/l9KHGHyZbI8mk8nQKN4ucD2AEp+yWXuCjJ8lKG97fuRMCn/pjaQanA+AU9Dc7XecNE4g79nzWbkEZFSDqH7DVq8dhejD8aLNG3vhPOAv0OSauhlaslk3BixZneIWib89zpDTRt3BmaPAoxTTnbl/CtObgNzajBKO4OU+TrK/rw1YUKjdKwF8IX09c7q39f+hPo9ZARcqS5lhVgqz5RrNrOrGPLZWOmhaXaWE4lV6WTirQC38ZoleNjwvEPFX46HOtaGLGG4rzmjm9dP9fzWy/sg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from TYCP286CA0003.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:26c::10)
+ by SEZPR06MB5854.apcprd06.prod.outlook.com (2603:1096:101:a9::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.34; Thu, 20 Mar
+ 2025 10:49:50 +0000
+Received: from OSA0EPF000000C8.apcprd02.prod.outlook.com
+ (2603:1096:400:26c:cafe::4f) by TYCP286CA0003.outlook.office365.com
+ (2603:1096:400:26c::10) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.35 via Frontend Transport; Thu,
+ 20 Mar 2025 10:49:50 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ OSA0EPF000000C8.mail.protection.outlook.com (10.167.240.54) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8534.20 via Frontend Transport; Thu, 20 Mar 2025 10:49:50 +0000
+Received: from nchen-desktop (unknown [172.16.64.25])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id DF164512A743;
+	Thu, 20 Mar 2025 18:49:48 +0800 (CST)
+Date: Thu, 20 Mar 2025 18:49:47 +0800
+From: Peter Chen <peter.chen@cixtech.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
+	marcin@juszkiewicz.com.pl, Fugang Duan <fugang.duan@cixtech.com>
+Subject: Re: [PATCH v4 6/6] MAINTAINERS: Add CIX SoC maintainer entry
+Message-ID: <Z9vyy7f5NOPyzUES@nchen-desktop>
+References: <20250305053823.2048217-1-peter.chen@cixtech.com>
+ <20250305053823.2048217-7-peter.chen@cixtech.com>
+ <7419360a-abc0-44cf-8d55-8f5fad8e9079@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <hinocg3itjqizbmzgaxv6cfnhtus6wbykouiy6pa27cxnjjuuk@l5ppwh7md6ul>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <7419360a-abc0-44cf-8d55-8f5fad8e9079@kernel.org>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OSA0EPF000000C8:EE_|SEZPR06MB5854:EE_
+X-MS-Office365-Filtering-Correlation-Id: d70ea60a-b719-40ec-9a26-08dd679cf074
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|36860700013|376014|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?beiTqLJzub/tDNNdSPza4v2i8u8YROwbx/4SCQTraQSnu/+svR198s+FNwNC?=
+ =?us-ascii?Q?GTQsLimn6LRiylJejD6Jp0QENYmfdovC+EaWmXlgGKqBzBiEYp1uVtixcW1e?=
+ =?us-ascii?Q?AnSvt/hfpn8dgQhUrM8a0oGgJTwemC54WfzXfsZrtqF2zvVunOCnqbKNTqH5?=
+ =?us-ascii?Q?BGu1mzxkq+bOh4VgWB3tToHRS5xgzRdeboWz4Sa34OFopL8ttpgQ2p1D4E7+?=
+ =?us-ascii?Q?jXEr9JV9iwocw2YuLQtO1ZPN6H4T3dOFiYLNWF0vE9KvxYA4NkoCX170Q6dH?=
+ =?us-ascii?Q?rimrM1Jea4P0TpHTTCEKNEagFBCyd2B8dZiymZ+rUjwy0hQwv/IpQxvsf7jz?=
+ =?us-ascii?Q?2HZAV9dI2kddgMMwiboTXMumyEtDv4GtLwMrHLs1V1votd6IXY7sllUywkCA?=
+ =?us-ascii?Q?xP25NLN98pcJVu3K09v2KEEvWA++1HZ2s6bU5ByF51ECu5bR6ATxl3T2Bwvz?=
+ =?us-ascii?Q?NHNWU8nq/p2+NrTLCmrg1A2aNVUodQzawpZ/0VQTYqQ/yKaoiFeBIn4rzkwR?=
+ =?us-ascii?Q?QGjuRrZydFou6YivgFyQXEtn0L2Q69HpwCfzvRDthm3Eob0JI9uSnjvVewR1?=
+ =?us-ascii?Q?r5THwnAFtJf4V2+hj9hWtWVbtYqhygh+zudLIVCyEQMniK80kKqtXJVvGl+s?=
+ =?us-ascii?Q?narprSnHIUozS/0fcbpAo8vwfZ1gOI/7Z6NiUGmqlYw4Z9qGqxZ14lhXjh4a?=
+ =?us-ascii?Q?4Y/6G7Mr/7MRWth92Vfu53r1JfCAst9lDynzIXX5Syhi3UoKIXvufq6h9HWV?=
+ =?us-ascii?Q?JqjOEibk1LPYfRte6IrVINx6dLhCIBQfvDaHU2N2LqVH/NugVWXbEN4LZWWX?=
+ =?us-ascii?Q?SNV6+59MZx8+/P+4s12HaEccZVlREv2keAIZUq4zrkPhPvxzz5SdVw0uysrK?=
+ =?us-ascii?Q?lbwiDJy66g8pazPvPkCA9tXxTyIp7BdXSqn4zplvPrmQeNxP2/qyYaCsA6Pk?=
+ =?us-ascii?Q?nBlMDcXsicOSrzylxf1QcIvi07MXzOfsA1onwoGDUTcZ2jyl0EGV/1AebURX?=
+ =?us-ascii?Q?rzeDI+nt2Aonj6MjNxT5sGZK99WXZZRkGV4G9wxuUp5t2S3xbiZHsRVt4GPi?=
+ =?us-ascii?Q?phFtxkG4EWMCQ5EYIW9BgDFTkGAoYG9i7/FVI9P2SyqtyRbsHV+LjtSLrOhW?=
+ =?us-ascii?Q?8QycIY46w/QIWX0pa/J/jhKI6RRtYGibd4H0PdCzGz7nTiLur+cCk6nDGRV6?=
+ =?us-ascii?Q?BSTjSVmFNdVh2u1s8DCuaj/P0A1kU4QpvwxY2rF/RF1AjNvhiRWmbnlg5VGI?=
+ =?us-ascii?Q?D9W6YPxI/nAgpJl7qgEASOCWSZD3G72PivEnpR2MEJsRhOPYdUkxhClpHoSG?=
+ =?us-ascii?Q?epV1dFHu1p8nmpCRISr50bJBvNmLxJUgCHKlS0yNCYBgOgGR56rqSmWc/HV2?=
+ =?us-ascii?Q?GOEOioLqiuqND7jV5EN5KEjloBCYBKPKaZdgqHN+FxwS++sHYy9legqgkSVq?=
+ =?us-ascii?Q?YnoF6M7nX0HTfmgd+mD7sSloBEP6Hp2h5EZcof8X1crwv9N9RVjip+AaW2M0?=
+ =?us-ascii?Q?AhJruF4+IJ1dCsk=3D?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026);DIR:OUT;SFP:1102;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2025 10:49:50.0084
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d70ea60a-b719-40ec-9a26-08dd679cf074
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource: OSA0EPF000000C8.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR06MB5854
 
-On Thu, Mar 20, 2025 at 08:50:00AM +0100, Uwe Kleine-König wrote:
-> On Wed, Mar 19, 2025 at 01:18:50PM +0200, Andy Shevchenko wrote:
-> > On Tue, Mar 18, 2025 at 05:26:20PM +0100, mathieu.dubois-briand@bootlin.com wrote:
-
-...
-
-> > > +	chip = devm_pwmchip_alloc(dev->parent, MAX7360_NUM_PWMS, 0);
-> > 
-> > This is quite worrying. The devm_ to parent makes a lot of assumptions that may
-> > not be realised. If you really need this, it has to have a very good comment
-> > explaining why and object lifetimes.
+On 25-03-20 10:25:53, Krzysztof Kozlowski wrote:
+> EXTERNAL EMAIL
 > 
-> Pretty sure this is broken. This results for example in the device link
-> being created on the parent. So if the pwm devices goes away a consumer
-> might not notice (at least in the usual way). I guess this was done to
-> ensure that #pwm-cells is parsed from the right dt node? If so, that
-> needs a different adaption. That will probably involve calling
-> device_set_of_node_from_dev().
+> On 05/03/2025 06:38, Peter Chen wrote:
+> > Using this entry as the maintainers information for CIX SKY series SoCs.
+> >
+> > Acked-by: Fugang Duan <fugang.duan@cixtech.com>
+> > Signed-off-by: Peter Chen <peter.chen@cixtech.com>
+> > ---
+> > Changes for v4
+> > - Add two dts files as maintained files
+> >
+> >  MAINTAINERS | 10 ++++++++++
+> >  1 file changed, 10 insertions(+)
+> >
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index efee40ea589f..edf26cf11ee2 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -2354,6 +2354,16 @@ F:     arch/arm/boot/compressed/misc-ep93xx.h
+> >  F:   arch/arm/mach-ep93xx/
+> >  F:   drivers/iio/adc/ep93xx_adc.c
+> >
+> > +ARM/CIX SKY ARM ARCHITECTURE
+> > +M:   Peter Chen <peter.chen@cixtech.com>
+> > +M:   Fugang Duan <fugang.duan@cixtech.com>
+> > +R:   CIX Linux Kernel Upstream Group <cix-kernel-upstream@cixtech.com>
+> > +L:   linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+> > +S:   Maintained
+> > +F:   Documentation/devicetree/bindings/arm/cix.yaml
+> > +F:   arch/arm64/boot/dts/cix/sky1-orion-o6.dts
+> > +F:   arch/arm64/boot/dts/cix/sky1.dtsi
+> 
+> Instead:
+> arch/arm64/boot/dts/cix/
+> 
+> or if you think there will be more different architectures coming from
+> cix, which you will not maintain, then useful would be a "sky" subdirectory.
+> 
+Hi Krzysztof,
 
-It's an MFD based driver, and MFD core cares about propagating fwnode by
-default. I believe it should just work if we drop that '->parent' part.
+Thanks for your comment, CIX is Arm SoC based silicon design
+company, we may have different SoC style for middle end in future.
+So, for that SoC series, it may not name sky.
 
 -- 
-With Best Regards,
-Andy Shevchenko
 
-
+Best regards,
+Peter
 
