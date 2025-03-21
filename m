@@ -1,188 +1,204 @@
-Return-Path: <devicetree+bounces-159755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159756-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 365C6A6BF34
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 17:10:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 30305A6BF37
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 17:10:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8E2F3B800D
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 16:09:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07A9F3BA212
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 16:09:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB388227E9B;
-	Fri, 21 Mar 2025 16:09:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A198622B8BC;
+	Fri, 21 Mar 2025 16:09:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MBt27kD4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Jijuq1Q7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6389023BE
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 16:09:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C228422AE75;
+	Fri, 21 Mar 2025 16:09:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742573358; cv=none; b=aJyZeb0WcbQ5VDjJMHrUwluU3Hbb3imk9MvKf6lWArjaBV5rq+lrN+z5Zyup2iTkjj4gG0C8Cvnn9A+66VGgkdyenYgT8bpXbwUwVCg9yKMNjyBRqVTNgZIcvBVNFn/qUMtoGAyLfGAxm1zs98/s9xSZhTbWyOtc/I/QMyfzALs=
+	t=1742573381; cv=none; b=Ly8HmMKXu90TBVSTw74fobiKMZOl3Ol0bYKTRvddsbqCLj1GpUnUC4q0QZL3ven2IGGKFvS+7/QufJp+pPets6ioVrhHVcM5lgrzO7yauS/eas8/2Gj6DUyCdW7LxXUhixuAalcZK9r3JTwFbPdZx+oAeMo9i2Tq3tXHVrSGXqg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742573358; c=relaxed/simple;
-	bh=llZWZG8vrikSmiw8ydIW6hs/MJhHomqckp7K5dqW3d0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KaJoelN2kB/WKR03vguJ7dVutRlPPTGX3yJu3nIhh9OhBcgfgPzT9Vt9vvfoU7k5sFeLPxfJHW4whxsUJxGIjIjeqtnaOPY8BwGpqi53GzGLCg39k8kqfpxPkJPK6r738Wsj1I1M1yHrzlLta/bj8g606XebNLtgxgC+T0P0Xi8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MBt27kD4; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52LCSgms010551
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 16:09:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	fdOuElFLpccoJsuXgqKPQO+xF/9Y5vee1gm2/OiO0Gw=; b=MBt27kD4ga1ISE1Y
-	oYW+r5SB7YuIJ+WP2qd2UrnA9bVoMbvLpp5Ag6nBiypSs0xrww2+q4JskgZvPgEh
-	FfXtDFZQSKbkuuGSua1GvghQRGqBh+9M0S6PEv7JSilvs2kl6QO1uM2FN2H7Zjnr
-	LDT7PioLyMjyMH0rl3DqPfPkkWX9cjW4KzssK3WpktwvD0pvXnotcSGd2uKYVkCB
-	JM/Tqlr0ZQUgjKJTcL48w3PJVc/nAGf82cwFwiuHmOegvi9e+AD/uQwQWf5RFnOc
-	sVLDE2CO6twu/klPDlOell0cX7YaIgiWxafKlBrI1ye4lLVmpLJdRKzyD+3HWF3K
-	IrpZ2A==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45h85e0ka1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 16:09:16 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-2ff8c5d185aso6218339a91.1
-        for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 09:09:15 -0700 (PDT)
+	s=arc-20240116; t=1742573381; c=relaxed/simple;
+	bh=1VaOuoOhYijhYTcQw/ZRhfDMSAApKQ3nl4+hvS74df8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=k1umSVo8lLh0rSP6aJqD4lRpelOs85K9UnxDI/LONqgkLQjQfl1wGPslN9jIQRtw8N5PnQo7InC9zuUxGIinDbNYeXYRkaGlO2Ov1CYzfsCIjp3rwtG7I+II8Re1dgyfs/L+8TrDGwYFUHGkdjb+IVnjWhRawg7wAureNu5DYXE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Jijuq1Q7; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-391342fc1f6so1785179f8f.1;
+        Fri, 21 Mar 2025 09:09:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742573378; x=1743178178; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VAtDXuv00FJL6H2z5EyTsQFuP2X8JyjbeBLvJuXRPek=;
+        b=Jijuq1Q7laR5eBP4j28IsKW2J7IBOMw+qVD466/2lzQFmAc50A/Kk6/91aQs2N5owH
+         ZdxPa3bgz6Ru/beNfNgLs9P8piuloixS0Ktw54UZ1KBvZGHJzfHt+Ukqn1jLE0AjA83R
+         CD6ca0OQSF1tDvVi95Wss6+EWIxFQdbJE9KI4JGm6mEdhVWGOpK0D5dHJiXjCWn4eVMU
+         uQDSNak3SPGrSeYKfGxZLWmLl4qvrIMLI9QKEm55lUi21V4v4A7MOu9M8JgvxC3RLIvL
+         mZbSRGNzCjqZY4omsC8n6gY+mIVRp4uQnYY2NmqQye5LsbGsv9xea46mpVxLN6nZirN1
+         2l3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742573355; x=1743178155;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fdOuElFLpccoJsuXgqKPQO+xF/9Y5vee1gm2/OiO0Gw=;
-        b=hQy8FiDvkCtwQibFwiE2PjB+7GKFZNoZSjj8yM8TLciu7AVLhPTDoIDUFM3G4uuCB6
-         D8F+pC1nx/DnEu8EON2jyOm4P14dydS4OUVzIE3VgVI1IrNKHKybZIDAGim5SBQV7idB
-         QHtTj5RihuMaZhAyOuTc7E4KSBjBoIUjIi7Vznevd1CTY1ZERhk7vTLoRLPU6HCkLE6k
-         HK5Iz8FRhyVnyduzL8kwPy/oBKqzgDhqnBIYDtrqLAsDRxr4nDsp92RmrDAgRoFs/Ho0
-         eTIdXIb+eaL5B2uXqeCb9kjytppzpuP/IEFO1WRBGdJxpd2z1LzFcA7pManlo37EqEWg
-         d67w==
-X-Gm-Message-State: AOJu0Yyv/PjNYTyrfU3HBxnZzlOC77UMGQ7gTC2DrKIXqWN96LU6ObFG
-	iiTU2A8hRximcuHKmhtqg5hd9wrHT3pZFHDp88PX5JtwkeAv3OdrPtvga1nSCiZs3mSfnk6YXQD
-	YMjY3i8BkdG5mgArV5IYWHU+Zk7JKzBQYddk80YgeUrgluu3IZLmz4YSHeVQp
-X-Gm-Gg: ASbGncs62es6zO09g3tUlwX6tVsPLXPZqPE5KY95j2OtrghyO1U9ulIStduiRdaiI1h
-	eGWH/v1/pMNCSkeBfeiH5SFDXK8ZLwvV33orjPo+Q4B00DI11jhUt1fU2cv5ixbjkYmzCBypH4e
-	zoqRZJcb9jw6y83nOgsk4hHMqHQVAwx+gYLqe53cIa2HeU2yQE54udyQtvlrzH5dzX126PvDGar
-	90NMw2CaafbMsoYE86R0tyXcpBl8Cun0a4o4hGnStiJfTsu2kC8f6nHmv1FV5horhuz7r5EQubX
-	lAa4xC4pqOJyXVZrsr/782G5kddMmCSLCrWzwJ6nFyLk9h+vVknSy6/inEhy824ing==
-X-Received: by 2002:a05:6a00:4f81:b0:736:5822:74b4 with SMTP id d2e1a72fcca58-73905a530a9mr6797797b3a.21.1742573354422;
-        Fri, 21 Mar 2025 09:09:14 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGL5fYByHbvsD/gRtsSQfXYP8pBS52gj7BStPaMfEBPmc/gB4ybx9sZflEDEhvH+V7H0dixLA==
-X-Received: by 2002:a05:6a00:4f81:b0:736:5822:74b4 with SMTP id d2e1a72fcca58-73905a530a9mr6797719b3a.21.1742573353797;
-        Fri, 21 Mar 2025 09:09:13 -0700 (PDT)
-Received: from [10.226.59.182] (i-global254.qualcomm.com. [199.106.103.254])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-af8a27de717sm1957838a12.12.2025.03.21.09.09.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Mar 2025 09:09:13 -0700 (PDT)
-Message-ID: <4d617199-191c-47d9-a0f1-5bf9c149d09d@oss.qualcomm.com>
-Date: Fri, 21 Mar 2025 10:09:05 -0600
+        d=1e100.net; s=20230601; t=1742573378; x=1743178178;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VAtDXuv00FJL6H2z5EyTsQFuP2X8JyjbeBLvJuXRPek=;
+        b=ainUWalF8MQBgHkTFS5tw/fCxdzxVY5BtxxRxDE6113yzsL35tOLmk6nzcZVdd5Gt6
+         uOBIp6MrHghyc6lPIUxY8HCSHPf6EsZGxLgsGJb7G1uwoRtIS89gulvB312Lb6kfEK9V
+         Q7wpvSzS13s72WXC2yWrKeZbwNJdofmI1AQfMGVExKtcxa2ggKCorhKJ6KDI5HA9hJPH
+         47X+leZ3XiVuEFqQCMH3plPK1oBb2WXYJ3Fic/JOFgFj0SGyFnRhbAUTMelzZnnG+ZPn
+         ypwkIH5nzx4UPJ42gOIen8/9WsEigA4caYHseD/u3bIqxUCBcTi6Nb/xlMon16ZzlJtp
+         IDjg==
+X-Forwarded-Encrypted: i=1; AJvYcCV0UTZ7Aj3of8h9x50ZgGQYcQLqi4O4Rd3nZZP2rNlr9rN970PflRfggOIQdCZNAhFEEnSrGbT7FJEmTuTZ@vger.kernel.org, AJvYcCWUPWIW4cJhW2zx3W7sZQJog2JKnJu25PZkN+l513O5HOIIAnjVX3uvCuHiESGqoVnbR9fdVbl2YypuxcU=@vger.kernel.org, AJvYcCXv8Ua9HcmSyMCZj8B5eywbodd/Skv5QB+bOQN1r8RnS/fHnMIfzuglbbk9YhtH8a/3StbugUcHJPso@vger.kernel.org
+X-Gm-Message-State: AOJu0YxOPH0X+nn/yZD7+7PJdPSEO2CceWSvQEu24efIr/FwAOu2L2zG
+	7L6jQgCR+o6bvLe12CQgxvj1RqUa0RWo7t+iV+q9onyxYuL6ET66wqEAp1v/Od5HuZDHLzLbpcz
+	nHZNfba5JHltGFjAR9tqC7/R1aiE=
+X-Gm-Gg: ASbGncve0On4js0wzK4kgo/qBBoWbrv7rv6gKrj4eU7KTyDroJuQR7L5y/tU5l7qEpK
+	2If6kxw3+0UcyYyQZYeCH6UfXGp7xsVJGSqiOyMX9TbbksCByLegMoIMYnLSssotQ/QcKWsews+
+	f2mnOie1Pp8Kcw/2aoNp5s53C6e9c=
+X-Google-Smtp-Source: AGHT+IE7phRxo/1r1s7So72vTf29tFBGnfITiYorTw1lW7wohPzyuKR1ovdP28tj9e33TKhL7EzBbvxG7kRXaUOitvA=
+X-Received: by 2002:a5d:6c64:0:b0:390:f9f9:3e9c with SMTP id
+ ffacd0b85a97d-3997f910184mr4224499f8f.25.1742573377733; Fri, 21 Mar 2025
+ 09:09:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/7] accel/rocket: Add job submission IOCTL
-To: Tomeu Vizoso <tomeu@tomeuvizoso.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Oded Gabbay <ogabbay@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
-        linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
-References: <20250225-6-10-rocket-v2-0-d4dbcfafc141@tomeuvizoso.net>
- <20250225-6-10-rocket-v2-6-d4dbcfafc141@tomeuvizoso.net>
-Content-Language: en-US
-From: Jeff Hugo <jeff.hugo@oss.qualcomm.com>
-In-Reply-To: <20250225-6-10-rocket-v2-6-d4dbcfafc141@tomeuvizoso.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: 8gSaH58M1YmN9jtPlVzKZj5buOdwU2Vy
-X-Proofpoint-ORIG-GUID: 8gSaH58M1YmN9jtPlVzKZj5buOdwU2Vy
-X-Authority-Analysis: v=2.4 cv=LKpmQIW9 c=1 sm=1 tr=0 ts=67dd8f2c cx=c_pps a=RP+M6JBNLl+fLTcSJhASfg==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=otp63fjl-Mw8CRR8ssMA:9 a=QEXdDO2ut3YA:10 a=iS9zxrgQBfv6-_F4QbHw:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-21_05,2025-03-21_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 impostorscore=0
- phishscore=0 malwarescore=0 suspectscore=0 mlxscore=0 priorityscore=1501
- spamscore=0 mlxlogscore=999 lowpriorityscore=0 clxscore=1015 bulkscore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503210118
+References: <20250314074557.16367-1-clamor95@gmail.com> <20250314074557.16367-2-clamor95@gmail.com>
+ <20250321160234.GA3372208-robh@kernel.org>
+In-Reply-To: <20250321160234.GA3372208-robh@kernel.org>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Fri, 21 Mar 2025 18:09:25 +0200
+X-Gm-Features: AQ5f1JpFIu9BG_I-CucbrXq2ID2HNe5PlDJqGdmun0hBV_tME1fx2r3fb4S-qfk
+Message-ID: <CAPVz0n3tY8sTvWD-QPA+_FJWnwbSeHXLJYTrk1pJzpy1enMexg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: display: tegra: document EPP, ISP,
+ MPE and TSEC for Tegra114 and Tegra124
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <treding@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2/25/2025 12:55 AM, Tomeu Vizoso wrote:
-> +/**
-> + * struct drm_rocket_task - A task to be run on the NPU
-> + *
-> + * A task is the smallest unit of work that can be run on the NPU.
-> + */
-> +struct drm_rocket_task {
-> +	/** DMA address to NPU mapping of register command buffer */
-> +	__u64 regcmd;
-> +
-> +	/** Number of commands in the register command buffer */
-> +	__u32 regcmd_count;
-> +};
-> +
-> +/**
-> + * struct drm_rocket_job - A job to be run on the NPU
-> + *
-> + * The kernel will schedule the execution of this job taking into account its
-> + * dependencies with other jobs. All tasks in the same job will be executed
-> + * sequentially on the same core, to benefit from memory residency in SRAM.
-> + */
-> +struct drm_rocket_job {
-> +	/** Pointer to an array of struct drm_rocket_task. */
-> +	__u64 tasks;
-> +
-> +	/** Pointer to a u32 array of the BOs that are read by the job. */
-> +	__u64 in_bo_handles;
-> +
-> +	/** Pointer to a u32 array of the BOs that are written to by the job. */
-> +	__u64 out_bo_handles;
-> +
-> +	/** Number of tasks passed in. */
-> +	__u32 task_count;
-> +
-> +	/** Number of input BO handles passed in (size is that times 4). */
-> +	__u32 in_bo_handle_count;
-> +
-> +	/** Number of output BO handles passed in (size is that times 4). */
-> +	__u32 out_bo_handle_count;
-> +};
-> +
-> +/**
-> + * struct drm_rocket_submit - ioctl argument for submitting commands to the NPU.
-> + *
-> + * The kernel will schedule the execution of these jobs in dependency order.
-> + */
-> +struct drm_rocket_submit {
-> +	/** Pointer to an array of struct drm_rocket_job. */
-> +	__u64 jobs;
-> +
-> +	/** Number of jobs passed in. */
-> +	__u32 job_count;
-> +};
+=D0=BF=D1=82, 21 =D0=B1=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 18:02 Rob =
+Herring <robh@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> On Fri, Mar 14, 2025 at 09:45:55AM +0200, Svyatoslav Ryhel wrote:
+> > The current EPP, ISP and MPE schemas are largely compatible with Tegra1=
+14
+> > and Tegra124, requiring only minor adjustments. Additionally, the TSEC
+> > schema for the Security engine, which is available from Tegra114 onward=
+s,
+> > is included.
+> >
+> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > ---
+> >  .../display/tegra/nvidia,tegra114-tsec.yaml   | 66 +++++++++++++++++++
+> >  .../display/tegra/nvidia,tegra20-epp.yaml     | 14 ++--
+> >  .../display/tegra/nvidia,tegra20-isp.yaml     | 14 ++--
+> >  .../display/tegra/nvidia,tegra20-mpe.yaml     | 18 +++--
+> >  4 files changed, 99 insertions(+), 13 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/display/tegra/nvi=
+dia,tegra114-tsec.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,teg=
+ra114-tsec.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,te=
+gra114-tsec.yaml
+> > new file mode 100644
+> > index 000000000000..c66ac6a6538e
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra114-t=
+sec.yaml
+> > @@ -0,0 +1,66 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/tegra/nvidia,tegra114-tsec.=
+yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: NVIDIA Tegra Security co-processor
+> > +
+> > +maintainers:
+> > +  - Svyatoslav Ryhel <clamor95@gmail.com>
+> > +  - Thierry Reding <thierry.reding@gmail.com>
+> > +
+> > +description: Tegra Security co-processor, an embedded security process=
+or used
+> > +  mainly to manage the HDCP encryption and keys on the HDMI link.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - enum:
+> > +          - nvidia,tegra114-tsec
+> > +          - nvidia,tegra124-tsec
+> > +
+> > +      - items:
+> > +          - const: nvidia,tegra132-tsec
+> > +          - const: nvidia,tegra124-tsec
+>
+> nvidia,tegra210-tsec appears to be about the same, already in use, and
+> undocumented, so please add it to this binding.
+>
 
-These 3 structs will be different sizes in 32-bit env vs 64-bit env. Yes 
-the driver depends on ARM64, but compat (32-bit userspace with 64-bit 
-kernel) is still possible. They should all be padded out to 64-bit 
-alignment.  When you do that, you should specify that the padding must 
-be zero, and check for that in the driver so that you have the option to 
-use the padding in the future.
+Sure
+
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  resets:
+> > +    maxItems: 1
+> > +
+> > +  reset-names:
+> > +    items:
+> > +      - const: tsec
+> > +
+> > +  iommus:
+> > +    maxItems: 1
+> > +
+> > +  operating-points-v2: true
+> > +
+> > +  power-domains:
+> > +    items:
+> > +      - description: phandle to the core power domain
+> > +
+> > +additionalProperties: false
+>
+> required properties?
+>
+
+I will see what I can do about this.
+
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/tegra114-car.h>
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +
+> > +    tsec@54500000 {
+> > +        compatible =3D "nvidia,tegra114-tsec";
+> > +        reg =3D <0x54500000 0x00040000>;
+> > +        interrupts =3D <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
+> > +        clocks =3D <&tegra_car TEGRA114_CLK_TSEC>;
+> > +        resets =3D <&tegra_car TEGRA114_CLK_TSEC>;
+> > +        reset-names =3D "tsec";
+> > +    };
 
