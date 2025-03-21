@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-159811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C90DFA6C3CD
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 21:02:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B59FFA6C3CC
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 21:02:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B2767A7E24
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 20:01:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 488D6189C981
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 20:02:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 939D322D7A2;
-	Fri, 21 Mar 2025 20:02:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 419B01D5CFD;
+	Fri, 21 Mar 2025 20:02:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="VMotOcUj"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="VDxZ2EQ/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA63970805
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 20:02:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E25122E412
+	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 20:02:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742587344; cv=none; b=oO4BlQegNK09kAHHNR4lYlUF+Hk85Df4Vd6X/N8u3YypJLYACIsNlfh/jR8qoMAJc2g5/626fqu0gE+5SdKGFUMWxxrZk9PdQvRXV7XAKqC+uoDJAe12cTcT8s7nQ957zmYXY/zD2hFuZww/01z4UGpfnjSn1AFi5wHJhlO69Fs=
+	t=1742587347; cv=none; b=BfU9wDiZnfIbw8uxfqxgoxxhG/5CD/UvQ7GkNXNUWhTN3N8WlInjIxbKbEfwB+Dw+UNbCnCTqBcX0Epn/fFlD2DsQxXMlifc80N+r/5A6ZA+KJuLkRlMisrv4A1thL+ESG36rn2DIGxMuQJNRo+I3DYUWHmgJfk2p8ZMBpBdF48=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742587344; c=relaxed/simple;
-	bh=0xvRK68PTf00PJTJUFec9iWQ8iI4xFUDFM8Pu1QP8AM=;
+	s=arc-20240116; t=1742587347; c=relaxed/simple;
+	bh=+a31KHpx4EtDNu2L2FViBzgQF8kY+2Ar5xJCTsB/ot0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EV7do5o9ExGzoueHH44X9zdqvovic/kL8Uw0f2zwoiyed6LirEmWzcus1H9Tgva3In935QobQXvmtyjw6JAno11I38nf5ImlkQiVqmV3404Tbgyncc6Vy3QmGHnLRVxFD2ZjtEQoWm7ajAKbACHFgjfDHczF2jj1Ro3kFkbHZT4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=VMotOcUj; arc=none smtp.client-ip=89.58.32.78
+	 In-Reply-To:Content-Type; b=snUB6nhuapt43o4NOyNg/QJ19w4jqXpKq25dWrHPD0phcvR6aUa0L4IUB0g5C7I9OQmaLgdFtYWGzDJbNPtk73vR1HYp2yU8C3P+22rZ1SuiPE6IdzucPAG00d/biYFpoZCzFRKWtCGui28ExlvHvf0Wlm0ShDNawFPmegEh048=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=VDxZ2EQ/; arc=none smtp.client-ip=89.58.32.78
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0AFC510206773;
-	Fri, 21 Mar 2025 21:02:07 +0100 (CET)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8A42E101E8FE7;
+	Fri, 21 Mar 2025 21:02:14 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1742587333; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1742587336; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=a14P7c9Bp63M0MikNJ0Fvj67ia2oHwxPak9QEd1B7t4=;
-	b=VMotOcUjpl1dTWWEKwIByS8XW1DZznwH/22i39U16DkYz+o0LxVp22AjGOgnvAJdMC4zAi
-	84RK7OrxFPOWowuQ9XaihDLTGw6uIWaxi5E/SRZSo2gVkblvdPtMBNQuf7rciyG00O9iTL
-	/Nzd/6AT+a0w9H4xiyeh8cc1Un12OGqFeSDfKS5YMh/vcq57IYeiCESxTGKa9zPRaX1M6X
-	MCd++V8xRc3pCSogyVZbD+k9i4NJJLhS55AxDnXL6LtVLdQ2WahxppQORHOra1Z7yDjiAE
-	eX/XV5KSQIh/bxBnkezBsFXhq1EaJQMIczhpqN2bZKwh6DF/VZWALBTfeKWFng==
-Message-ID: <6034b024-381c-4fed-9d97-ad7d5d293112@denx.de>
-Date: Fri, 21 Mar 2025 20:37:58 +0100
+	bh=3Ulsbme4hNQzYTq8vlOulaN2Y8LowM5FPAQmz8elBPM=;
+	b=VDxZ2EQ/5tg99PzI7sO7Iev5h1/wFCQ+DuZIPurcNhRu42cjUBDXfEBThUs7hHKYmEHyVb
+	j9OYINwC6QB3Sd1o1XsGYvtnGKqSXJpNCTVm2g7uEiYxd112uSCJ8xvB29ci2Zh3RX/euB
+	YddxYDnEYqWs9UsY0f9AWgBniVPLPyf4a32wbwjAvNiy73gpUA51StDBQRVb7BS5OiYfvg
+	3hXbQJ3zduLUkKjTAbwn9pjp8jobnNBp1cK/kWQYCtY8Vvx46VeoZDzvVv2eXelpVASJI4
+	5UnSh2YmrAM3yZ+T/+LNggwYMMjh+8oBMiFHZ/pUqesF43NhZK3OjJJIW4m7wQ==
+Message-ID: <d19fa0b9-b07b-46cf-aa3f-3c2e65fecd67@denx.de>
+Date: Fri, 21 Mar 2025 20:54:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,60 +51,77 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 9/9] arm64: dts: imx95: Describe Mali G310 GPU
-To: Liviu Dudau <liviu.dudau@arm.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
- linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
- Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+Subject: Re: [PATCH 6/9] drm/panthor: Reset GPU after L2 cache power off
+To: Boris Brezillon <boris.brezillon@collabora.com>,
+ Liviu Dudau <liviu.dudau@arm.com>
+Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
+ David Airlie <airlied@gmail.com>, Fabio Estevam <festevam@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>,
  Pengutronix Kernel Team <kernel@pengutronix.de>,
  Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
  Sascha Hauer <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
  Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>,
  Steven Price <steven.price@arm.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, devicetree@vger.kernel.org, imx@lists.linux.dev
+ <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, imx@lists.linux.dev
 References: <20250227170012.124768-1-marex@denx.de>
- <20250227170012.124768-10-marex@denx.de> <2153305.bB369e8A3T@steina-w>
- <4a27b6bf-aca8-4f29-9561-609a42eb81a0@denx.de>
- <Z8XFCv6ku6mG1_x5@e110455-lin.cambridge.arm.com>
+ <20250227170012.124768-7-marex@denx.de>
+ <Z8GY0nWXOxCKF-XL@e110455-lin.cambridge.arm.com>
+ <fa88c1c1-89ba-4a10-bd57-0819d7740c0a@denx.de>
+ <Z8Wb05rmGW0ORnJB@e110455-lin.cambridge.arm.com>
+ <20250303133523.2c5153ed@collabora.com>
 Content-Language: en-US
 From: Marek Vasut <marex@denx.de>
-In-Reply-To: <Z8XFCv6ku6mG1_x5@e110455-lin.cambridge.arm.com>
+In-Reply-To: <20250303133523.2c5153ed@collabora.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Last-TLS-Session-Version: TLSv1.3
 
-On 3/3/25 4:04 PM, Liviu Dudau wrote:
+On 3/3/25 1:35 PM, Boris Brezillon wrote:
 
-[...]
+Hi,
 
->>>> +			#reset-cells = <1>;
->>>> +			clocks = <&scmi_clk IMX95_CLK_GPUAPB>;
->>>> +			assigned-clocks = <&scmi_clk IMX95_CLK_GPUAPB>;
->>>> +			assigned-clock-parents = <&scmi_clk IMX95_CLK_SYSPLL1_PFD1_DIV2>;
->>>> +			assigned-clock-rates = <133333333>;
->>>> +			power-domains = <&scmi_devpd IMX95_PD_GPU>;
->>>> +			status = "disabled";
->>>> +		};
->>>> +
->>>> +		gpu: gpu@4d900000 {
->>>> +			compatible = "fsl,imx95-mali", "arm,mali-valhall-csf";
->>>> +			reg = <0 0x4d900000 0 0x480000>;
->>>> +			clocks = <&scmi_clk IMX95_CLK_GPU>;
->>>
->>> There is also IMX95_CLK_GPUAPB. Is this only required for the rese control above?
+>> This looks like it has been part of a R50 release of the DDK, which is recent
+>> enough to consider it up-to-date. The issues you're seeing with fast resume are
+>> probably due to some integration issues or other quirks.
 >>
->> I think I have to describe those clock here too, possibly as 'coregroup'
->> clock ?
+>> Boris has the most recent experience with playing with fast resume, maybe
+>> he can share some tips on where to add messages in Panthor to try to debug
+>> your problem.
 > 
-> The 'coregroup' clock does indeed control the MMU and L2$ blocks as well as the AXI interface,
-> so if that is indeed a separate external clock source it should be defined. Could it be why
-> you're seeing issues with L2$ resume on the fast reset path?
-Sorry for the delayed reply.
+> If you end up with fast_reset=true, that means the FW claims it entered
+> a suspend state from which is can resume quickly (fast-reset), and in
+> that case, we're only supposed to power on the L2 block at resume time
+> AFAIK. If there's a component that can tell us more, it's probably the
+> FW, unfortunately, it doesn't tell us much through the FW interface,
+> especially if it's not booting properly. Do you hit this error [1]
+> without this patch, and if you do, what's the status reported there?
+> 
+> [1]https://elixir.bootlin.com/linux/v6.14-rc4/source/drivers/gpu/drm/panthor/panthor_fw.c#L1051
 
-I did define these clock, they are enabled, but the L2 reset problem is 
-still present .
+Sorry for the late reply. I get the following, so I think the status is 
+"fatal" ?
+
+panthor 4d900000.gpu: [drm] clock rate = 1000000000
+panthor 4d900000.gpu: EM: created perf domain
+panthor 4d900000.gpu: [drm] mali-g310 id 0xac74 major 0x0 minor 0x0 
+status 0x1
+panthor 4d900000.gpu: [drm] Features: L2:0x7110306 Tiler:0x809 Mem:0x1 
+MMU:0x2830 AS:0xff
+panthor 4d900000.gpu: [drm] shader_present=0x1 l2_present=0x1 
+tiler_present=0x1
+panthor 4d900000.gpu: [drm] Firmware protected mode entry not be 
+supported, ignoring
+panthor 4d900000.gpu: [drm] Firmware git sha: 
+8e5cfcfec20cc8aff8509d37e72babc935d34a3b
+panthor 4d900000.gpu: [drm] CSF FW using interface v1.1.0, Features 0x0 
+Instrumentation features 0x71
+[drm] Initialized panthor 1.3.0 for 4d900000.gpu on minor 0
+panthor 4d900000.gpu: [drm] *ERROR* Failed to boot MCU (status=fatal)
+panthor 4d900000.gpu: [drm] *ERROR* FW fast reset failed
+panthor 4d900000.gpu: [drm] *ERROR* Fast reset failed, trying a slow reset
+panthor 4d900000.gpu: [drm] *ERROR* Failed to boot MCU (status=fatal)
+panthor 4d900000.gpu: [drm] *ERROR* FW slow reset failed
 
