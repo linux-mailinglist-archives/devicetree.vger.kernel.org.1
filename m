@@ -1,231 +1,195 @@
-Return-Path: <devicetree+bounces-159658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C6C0A6BB3A
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 13:53:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5F57A6BB81
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 14:13:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 48DF6178A2E
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 12:52:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18EFC1896BBB
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 13:13:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4306229B28;
-	Fri, 21 Mar 2025 12:52:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5012F22B5A3;
+	Fri, 21 Mar 2025 13:13:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uY374mxh"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="AVr7YmAw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2303B226D04
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 12:52:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B76C822ACDB
+	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 13:13:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742561530; cv=none; b=txxuZ7gFarWw/yqM3A7S/QPZBf6RBqo2UbxaZ/ikHj/sKuPEnXcELuZGI18A9mqHYKvxZBaSfB28onjSEaHpIbJndyxFWEN4gBmxdwXUKfG965LrVj3yK3Oll6DZMnIpoC68acb3bJ7VE9TH/BmxXNHCHimm3cyeZoi0pXRRWYA=
+	t=1742562796; cv=none; b=kwhm3miisfngf2lYqFc74rCuv1EXztX9sTP1pdRqSEZKrO0ObAlcLlfY2ZMSyBJqUHPsL0UJuU8ozniIJsbVPE/L59Br4WzfYc2CYDdsKy0X6oDNO6QiQw7zHF9Vxz89H9FjBpOSVUTaeaM5PFujVHPa1TEOwrg2QfWLiMoUwts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742561530; c=relaxed/simple;
-	bh=omo7++uwL5aCKwwOkOgkXq3mk5bdOuv6RRCIHDEgpqA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oM7BVLUqfMrZm7u4dFD52XQq4gY8Dx9jIIZU12i5NQkXyzlBWh5z+Xlt162ymjWXBt2agRpNseHUxM25RHh5S3+hGJh91xfvQytbf8XC+QNYZGDi0zgwQiAUETTmU+wdnNVqxzKsu5u/OVIiBuZKOFh8lU45Xli3LbDTPAwvxEY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uY374mxh; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-2240b4de12bso2241285ad.2
-        for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 05:52:08 -0700 (PDT)
+	s=arc-20240116; t=1742562796; c=relaxed/simple;
+	bh=gBMuiDhCemk5cSPTk5dmy01AjipaPQhh1hQfbQoK9+w=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
+	 References:In-Reply-To; b=sZy4CF8i8/C4RxypGBfkErSQFwX2z683Jlv3JEyILqa9tBqv+MtJZPFAQQP0j/OyUsXGuJ4VhyJkhK2TS0DP7jQbkWajUmHRSG8VfCjyxwRVMIG7GOCi6Uc12ajALLnXsZsQVtZc+wWNUyKmHNQOXXAKij9o45zL7TGw25IjH/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=AVr7YmAw; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5e4d50ed90aso2757933a12.0
+        for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 06:13:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742561528; x=1743166328; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=oSMguLk/NY450VoESU9bEhEakSFxqQn+/7jPnZETdtQ=;
-        b=uY374mxhDrUDIgLWQ5UadBLdebV+utlaJSWfKuMydnsBiA+cV1UKAvCDdbznlvJ+Dr
-         XU5uZRIYGBEVifrnW3pLn/fqV9DfUzBpVh/KQQtXuezu3DVE1U96RT11D+7kkNahwJDg
-         dij4jobtUTldX86xjF3dewyZetUGiYU3Gl+v7yH5mEia/eBFVt2gZXeuah/TNLThFX0V
-         vN5eag6sfHdilcMCO8f22bM5u8Ji9V1Acor7DLvTqo7qP6cX9FU8rBRvgA060SyOuTsN
-         Sb90r5JMrPY88shRjp5r90m0qJtLMeNMqmHaO/s3C9kQzb4oj3fBZU8mlxDWhz3vyVyP
-         C1rA==
+        d=fairphone.com; s=fair; t=1742562792; x=1743167592; darn=vger.kernel.org;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=azxH+KYm8tJkLH7rFHwCJLBDMbyPBsLOxN72/qPc1Xk=;
+        b=AVr7YmAw/ej31E45hIjLMKkNTCngcDZ6dcaInOv0CrseUD1VZgNWJVAolqi9newOIH
+         XUC7+F2hIyFEgnYhBDCEJKAjs4RQrq6E6Ah5z1ZsD9c3DZJah/SFTAaooMvz2hfXoqXu
+         buwDyX6Pi3CEZYJLhwDF8K7buus17ZaxoNvyQBsmnhjZb60B3p/epXkH97O31VT1eSp/
+         qr3R+PLDvTp5Sg7aereNlDPltuYKN6Bux0ilzQbS7qmG9ssT7jM0pPP4Ac5S6Kp0NJPd
+         GvsG1ylRS9oaDng2iGg+cWzIxErGtQ2Vb5jKrJ/E3vprpS3psmJQhwKC/JFdtKgsf2p8
+         yBKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742561528; x=1743166328;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oSMguLk/NY450VoESU9bEhEakSFxqQn+/7jPnZETdtQ=;
-        b=UH+st5cza+aUwFL6vaxZnkClmnvnUQy1h0AZmjdgBLAmKo6Cx+gWfKMxS5JWuapaQr
-         ZjiHr3Pf0XyTQE5DENnX3J0A/uh8lxX5HJRBxEDWfn10TPcDnpXvFacHbWRW2GtWEyQz
-         KgORZ5uIjPsiry3JF0Y/WECp3dQazeHRD5XKynZ/hDJROR4KBr7phQ85jOBm3cO3wn0O
-         gK1Dfl8pnNq+TOtS+/lznQFhO+5xtXsBU1qxoh5oUkzQMiLAiCf5bEAjG4q0/xpI8x76
-         gzMKc5b+sM4k/bsL9/L8bYvO/2PpWMZcypZ+DkxV1feE6NcgnkCBVGZZbGAvcRqclyZW
-         UtJw==
-X-Forwarded-Encrypted: i=1; AJvYcCUQtUXzc8jh6dA2IVqjulqqpez6OKRWyRFOeQIZGaH/RTs0xj/5jBVIA6O6+ASapSkardfV32jrOs5O@vger.kernel.org
-X-Gm-Message-State: AOJu0YymbncvkdcEGVccqyxFxSWz0cBen+uU7Q8oMcMkL02936yVhxsh
-	sLZW8mMTtXHK1lm5bp+ymvcMSMGHT/Gp4q0UE5MxfbdpN47fn7E6Dt0uPq8q4A==
-X-Gm-Gg: ASbGncvLXW7PoCl2pFX9XTBQIwHNKngi4f1Jcju21MSIhYy/ayvpZmpi7CR5TbImvlk
-	6J7XBa2d3kDGUxh0WNItBi+KfBQ4/4ARrEb5WGml71NApWYTu6VCsH2hkt3iK9b+URGGQHKGrPZ
-	1BSJdQv8JurULG4DcZZ7M1BLIfUi2KYlRMHeFsW2+dxtKAFb6Hm4nXxex0tHbBTSAIudq52NSox
-	pIzjf+xRbfS654vHCiTwzN4EETbK4x0RyiljzUq9Hbl0D2jXV//BPRcaSQELjyJvkQcHsE3JI/f
-	RhIsoVwjfX61BJtgjc2QFl6Rlkuk+2shp9UnW2oQhjjWXTtEo/t6VtFzcjfsHwuKG4fH
-X-Google-Smtp-Source: AGHT+IF0zPLlYeMl5R+KmmcWKZ5uqrU4n7zgCXtfPnd8npBg8qglifut7iSMwIOZCm1K+7HdX/RMMA==
-X-Received: by 2002:a17:90b:53d0:b0:2ee:df70:1ff3 with SMTP id 98e67ed59e1d1-3030fd36f80mr6475642a91.0.1742561528376;
-        Fri, 21 Mar 2025 05:52:08 -0700 (PDT)
-Received: from thinkpad ([2409:40f4:22:5799:90ea:bfc4:b1d2:dda2])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-301bf6360besm5897432a91.43.2025.03.21.05.52.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Mar 2025 05:52:07 -0700 (PDT)
-Date: Fri, 21 Mar 2025 18:22:01 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Sai Krishna Musham <sai.krishna.musham@amd.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	cassel@kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	michal.simek@amd.com, bharat.kumar.gogada@amd.com,
-	thippeswamy.havalige@amd.com
-Subject: Re: [PATCH v4 2/2] PCI: xilinx-cpm: Add support for PCIe RP PERST#
- signal
-Message-ID: <20250321125201.2r6zcxwkivt7t6s3@thinkpad>
-References: <20250318092648.2298280-1-sai.krishna.musham@amd.com>
- <20250318092648.2298280-3-sai.krishna.musham@amd.com>
+        d=1e100.net; s=20230601; t=1742562792; x=1743167592;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=azxH+KYm8tJkLH7rFHwCJLBDMbyPBsLOxN72/qPc1Xk=;
+        b=oEIKuLsOjMDVXB40KOE8Y5JOPStw5TUca/TcXrmvPzDt3+yoOfSQkDqoCiq2h45ruj
+         81qAn0pgzco6EAqUWDbbm9LYUUkR7WfMxD5VHoGc8FVeUFrvuAjSGJ9ykGmHYtWnate2
+         qwNfh0meiJeXI5XHqGqsC5B6uC3uMZa/nWQFe5PjyXKdKC9+8R5+bnyCtz8JXuOgwRBD
+         ynSlOqsU+Posg4huUAtpXBrbvKMh4jcwg+fv25aso9G6B00Q8utBUJdfS868VjtI+Yrm
+         GtKwkH3iHW5eyAsKQvyC5Y+sJ/SgZCc6MLv0fOlgeqdUs3yXeHEoeLxv++XfrZ30yzgQ
+         WhMA==
+X-Forwarded-Encrypted: i=1; AJvYcCXOwGFg3OzxnY/rp3iA6WMJ4sfbfy15BfDLyS3gVw+Ysho8sO7k09JTg3w6tZ6yNgYy8kWZAEGXXCYA@vger.kernel.org
+X-Gm-Message-State: AOJu0Yybc7Ah7ldAeoPGlBPHy1VLh6Jlk5RCnZIisJf64r9xIXFWoqIP
+	zZUOnUBvdHjSkq54drV84hU+MlARbQEkVHX9yGXRqx7CeBq7Xtc+66/HpVa19eo=
+X-Gm-Gg: ASbGncvtrM+4txFvJUisxKHzZJ6Eihamltox0OXAeAZkjwKEOAQBUapWGCIoOucwpYC
+	lrpnPMK5+/LxMmA7dhEiFi/ZShubniSNkO0++W0o0PtMI1Bp4YWvCHAtma/Mi7ZqQ4fI9G5P5z1
+	QgAa/yp3MHY3+SkbYFCBiDoBBJgKDi08BxrIxpkCJ5y/o9RCkwdZULL9r/lNTGg2jko8WfH0JBV
+	K/b3a4f1PvnoiCqov6hkyTvQE3AEYZMYxCmxcN3JqGAbh2SNsM1+bwhlO+unD6Tfgo6/AALlMXR
+	voKVG/Fdr48F16VVwAQ1rsHE9RYhB0qbXuV1vpwWhft4PsQLFmtNguL++FJBGhjFxoeSlja4DWg
+	JL+v0BQjKhUA3DQ==
+X-Google-Smtp-Source: AGHT+IE8PhCgUGBY/JkCA/TsunqWtiCtyLdiJOJyXQ4SyEMmQjgGArax5BsxRlrz/Py8KVlD3G8r/g==
+X-Received: by 2002:a05:6402:1d4a:b0:5e8:bf8b:4396 with SMTP id 4fb4d7f45d1cf-5ebcd42dd1fmr3003367a12.13.1742562791878;
+        Fri, 21 Mar 2025 06:13:11 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5ebcd0c7157sm1344509a12.60.2025.03.21.06.13.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Mar 2025 06:13:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250318092648.2298280-3-sai.krishna.musham@amd.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 21 Mar 2025 14:13:10 +0100
+Message-Id: <D8LYYEQJ2W4L.1H7FPF4140BVS@fairphone.com>
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Wesley Cheng" <quic_wcheng@quicinc.com>,
+ <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+ <perex@perex.cz>, <conor+dt@kernel.org>, <dmitry.torokhov@gmail.com>,
+ <corbet@lwn.net>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
+ <krzk+dt@kernel.org>, <pierre-louis.bossart@linux.intel.com>,
+ <Thinh.Nguyen@synopsys.com>, <tiwai@suse.com>, <robh@kernel.org>,
+ <gregkh@linuxfoundation.org>
+Cc: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-sound@vger.kernel.org>, <linux-input@vger.kernel.org>,
+ <linux-usb@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+ <linux-doc@vger.kernel.org>
+Subject: Re: [PATCH v36 00/31] Introduce QC USB SND audio offloading support
+X-Mailer: aerc 0.20.1-0-g2ecb8770224a
+References: <20250319005141.312805-1-quic_wcheng@quicinc.com>
+In-Reply-To: <20250319005141.312805-1-quic_wcheng@quicinc.com>
 
-On Tue, Mar 18, 2025 at 02:56:48PM +0530, Sai Krishna Musham wrote:
-> Add PCIe IP reset along with GPIO-based control for the PCIe Root
-> Port PERST# signal. Synchronizing the PCIe IP reset with the PERST#
-> signal's assertion and deassertion avoids Link Training failures.
-> 
-> Add clear firewall after Link reset for CPM5NC.
-> 
-> Adapt to use GPIO framework and make reset optional to maintain
-> backward compatibility with existing DTBs.
-> 
-> Signed-off-by: Sai Krishna Musham <sai.krishna.musham@amd.com>
-> ---
-> Changes for v4:
-> - Add PCIe PERST# support for CPM5NC.
-> - Add PCIe IP reset along with PERST# to avoid Link Training Errors.
-> - Remove PCIE_T_PVPERL_MS define and PCIE_T_RRS_READY_MS after
->   PERST# deassert.
-> - Move PCIe PERST# assert and deassert logic to
->   xilinx_cpm_pcie_init_port() before cpm_pcie_link_up(), since
->   Interrupts enable and PCIe RP bridge enable should be done after
->   Link up.
-> - Update commit message.
-> 
-> Changes for v3:
-> - Use PCIE_T_PVPERL_MS define.
-> 
-> Changes for v2:
-> - Make the request GPIO optional.
-> - Correct the reset sequence as per PERST#
-> - Update commit message
-> ---
->  drivers/pci/controller/pcie-xilinx-cpm.c | 66 +++++++++++++++++++++++-
->  1 file changed, 65 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/controller/pcie-xilinx-cpm.c b/drivers/pci/controller/pcie-xilinx-cpm.c
-> index d0ab187d917f..fd1fee2f614b 100644
-> --- a/drivers/pci/controller/pcie-xilinx-cpm.c
-> +++ b/drivers/pci/controller/pcie-xilinx-cpm.c
-> @@ -6,6 +6,8 @@
->   */
->  
->  #include <linux/bitfield.h>
-> +#include <linux/delay.h>
-> +#include <linux/gpio/consumer.h>
->  #include <linux/interrupt.h>
->  #include <linux/irq.h>
->  #include <linux/irqchip.h>
-> @@ -21,6 +23,13 @@
->  #include "pcie-xilinx-common.h"
->  
->  /* Register definitions */
-> +#define XILINX_CPM_PCIE0_RST		0x00000308
-> +#define XILINX_CPM5_PCIE0_RST		0x00000318
-> +#define XILINX_CPM5_PCIE1_RST		0x0000031C
-> +#define XILINX_CPM5NC_PCIE0_RST		0x00000324
-> +
-> +#define XILINX_CPM5NC_PCIE0_FW		0x00001140
-> +
->  #define XILINX_CPM_PCIE_REG_IDR		0x00000E10
->  #define XILINX_CPM_PCIE_REG_IMR		0x00000E14
->  #define XILINX_CPM_PCIE_REG_PSCR	0x00000E1C
-> @@ -99,6 +108,7 @@ struct xilinx_cpm_variant {
->  	u32 ir_status;
->  	u32 ir_enable;
->  	u32 ir_misc_value;
-> +	u32 cpm_pcie_rst;
->  };
->  
->  /**
-> @@ -106,6 +116,8 @@ struct xilinx_cpm_variant {
->   * @dev: Device pointer
->   * @reg_base: Bridge Register Base
->   * @cpm_base: CPM System Level Control and Status Register(SLCR) Base
-> + * @crx_base: CPM Clock and Reset Control Registers Base
-> + * @cpm5nc_base: CPM5NC Control and Status Registers Base
->   * @intx_domain: Legacy IRQ domain pointer
->   * @cpm_domain: CPM IRQ domain pointer
->   * @cfg: Holds mappings of config space window
-> @@ -118,6 +130,8 @@ struct xilinx_cpm_pcie {
->  	struct device			*dev;
->  	void __iomem			*reg_base;
->  	void __iomem			*cpm_base;
-> +	void __iomem			*crx_base;
-> +	void __iomem			*cpm5nc_base;
->  	struct irq_domain		*intx_domain;
->  	struct irq_domain		*cpm_domain;
->  	struct pci_config_window	*cfg;
-> @@ -478,9 +492,42 @@ static int xilinx_cpm_setup_irq(struct xilinx_cpm_pcie *port)
->  static void xilinx_cpm_pcie_init_port(struct xilinx_cpm_pcie *port)
->  {
->  	const struct xilinx_cpm_variant *variant = port->variant;
-> +	struct device *dev = port->dev;
-> +	struct gpio_desc *reset_gpio;
-> +
-> +	/* Request the GPIO for PCIe reset signal */
-> +	reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(reset_gpio)) {
-> +		dev_err(dev, "Failed to request reset GPIO\n");
-> +		return;
-> +	}
-> +
-> +	/* Assert the reset signal */
-> +	gpiod_set_value(reset_gpio, 1);
->  
-> -	if (variant->version == CPM5NC_HOST)
-> +	/* Assert the PCIe IP reset */
-> +	writel_relaxed(0x1, port->crx_base + variant->cpm_pcie_rst);
-> +
-> +	/* Controller specific delay */
-> +	udelay(50);
-> +
-> +	/* Deassert the PCIe IP reset */
-> +	writel_relaxed(0x0, port->crx_base + variant->cpm_pcie_rst);
-> +
-> +	/* Deassert the reset signal */
-> +	gpiod_set_value(reset_gpio, 0);
-> +	mdelay(PCIE_T_RRS_READY_MS);
-> +
-> +	if (variant->version == CPM5NC_HOST) {
-> +		/* Clear Firewall */
+Hi Wesley,
 
-On top of Krzk's review:
+On Wed Mar 19, 2025 at 1:51 AM CET, Wesley Cheng wrote:
+> Requesting to see if we can get some Acked-By tags, and merge on usb-next=
+.
+>
+> Several Qualcomm based chipsets can support USB audio offloading to a
+> dedicated audio DSP, which can take over issuing transfers to the USB
+> host controller.  The intention is to reduce the load on the main
+> processors in the SoC, and allow them to be placed into lower power modes=
+.
+> There are several parts to this design:
+>   1. Adding ASoC binding layer
+>   2. Create a USB backend for Q6DSP
+>   3. Introduce XHCI interrupter support
+>   4. Create vendor ops for the USB SND driver
+>
 
-What does this 'firewall' mean? Clearly, not something defined in the PCIe spec.
-Also, you made it independent of PERST# line. So is it really needed for
-platforms not supporting PERST#?
+I was able to test this series (v35) on SM6350/SM7225 Fairphone 4
+smartphone and it appears to work as expected!
 
-- Mani
+Based on the sm8350 branch you shared[0] I added similar dts bits for my
+device, I've pushed that branch here[1] for reference.
 
--- 
-மணிவண்ணன் சதாசிவம்
+[0] https://git.codelinaro.org/clo/linux-kernel/kernel-qcom/-/commits/usb_a=
+udio_offload/
+[1] https://github.com/sm6350-mainline/linux/commits/sm6350-6.14-wip-usb-sn=
+d-offload/
+
+And I've used these commands to test:
+
+fairphone-4:~$ amixer -c0 cset name=3D'USB Mixer MultiMedia2' On
+
+fairphone-4:~$ aplay -l
+**** List of PLAYBACK Hardware Devices ****
+card 0: F4 [Fairphone 4], device 0: MultiMedia1 (*) []
+Subdevices: 1/1
+Subdevice #0: subdevice #0
+card 0: F4 [Fairphone 4], device 1: MultiMedia2 (*) []
+Subdevices: 1/1
+Subdevice #0: subdevice #0
+card 1: Audio [Hi-Res Audio], device 0: USB Audio [USB Audio]
+Subdevices: 1/1
+Subdevice #0: subdevice #0
+
+fairphone-4:~$ ffmpeg -i test.m4a -acodec pcm_s16le test.wav
+
+fairphone-4:~$ aplay --device=3Dplughw:0,1 Music/test.wav
+Playing WAVE 'Music/test.wav' : Signed 16 bit Little Endian, Rate 44100 Hz,=
+ Stereo
+
+And then music was coming out of these headphones connected via a USB-C
+to 3.5mm dongle.
+
+Every time I'm starting playback this error appears in dmesg, do you
+also see this on your test setup?
+
+[ 1336.081525] q6afe-dai 3000000.remoteproc:glink-edge:apr:service@4:dais: =
+AFE Port already open
+
+
+And if I'm not mistaken it's possible to check that actually the offload
+path is getting used by checking the interrupt counts of the xhci-hcd
+interrupt.
+
+With regular USB audio card playback there's many interrupts per second
+happening:
+
+fairphone-4:~$ aplay --device=3Dplughw:1,0 Music/test.wav # regular USB
+fairphone-4:~$ cat /proc/interrupts | grep -i usb
+188:     137524          0          0          0          0          0     =
+     0          0    GICv3 165 Level     xhci-hcd:usb1
+fairphone-4:~$ cat /proc/interrupts | grep -i usb
+188:     137591          0          0          0          0          0     =
+     0          0    GICv3 165 Level     xhci-hcd:usb1
+
+And with the offload card during playback there's no interrupts
+happening (just a few when initially starting playback):
+
+fairphone-4:~$ aplay --device=3Dplughw:0,1 Music/test.wav # offload
+fairphone-4:~$ cat /proc/interrupts | grep -i usb
+188:     141947          0          0          0          0          0     =
+     0          0    GICv3 165 Level     xhci-hcd:usb1
+fairphone-4:~$ cat /proc/interrupts | grep -i usb
+188:     141947          0          0          0          0          0     =
+     0          0    GICv3 165 Level     xhci-hcd:usb1
+
+
+Let me know what you think about the message in dmesg I mentioned above.
+
+Regards
+Luca
 
