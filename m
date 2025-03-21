@@ -1,119 +1,129 @@
-Return-Path: <devicetree+bounces-159840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9296DA6C4E2
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 22:12:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C4B2A6C4EF
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 22:17:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 16B2B4821BC
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 21:12:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDB963AE5AD
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 21:16:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F87222D4F9;
-	Fri, 21 Mar 2025 21:12:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C26C230BE9;
+	Fri, 21 Mar 2025 21:17:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="d7asg/ku"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="PL4SZiXh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B2E813C695;
-	Fri, 21 Mar 2025 21:12:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 111731E9B34;
+	Fri, 21 Mar 2025 21:17:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742591552; cv=none; b=MDmN6WPFFlN9LS2eseyd264S8FQZYX6fL8vf1aha2T3yK2y8ODSl9CQS0trXbw8ZHwsGKMb33KGLiEv12efworQfz0FjqAav7+ZcNFyfaeuqLpe53qYy2tDizl7Pr4XPbfSU5I284cpGp8DwSWoqk40PKjzpgogsyccIIhDkIho=
+	t=1742591828; cv=none; b=Dm9SZSRvviOXIeQ+dx1ISRAB07ZjYVHmlco6F+d5oOFvLK9Vp8hcaYdAprhtdgC/Qd3JzRloE0lek5Hv7smJa3R9r8FLFYA4uVFZ/5Oy0dWdFe+wpMe87Bz8x4iM0FoXz/VONbE4tUpxdcpZLJ8mEu82fK81hppZglCS1ddMc8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742591552; c=relaxed/simple;
-	bh=58tQpMXCYuz6c9zV2an78/FDzvG8eM9WGj+6XWAIb0o=;
+	s=arc-20240116; t=1742591828; c=relaxed/simple;
+	bh=1FhOQ8K+GLTJrHZH020JuhGD9vw3YFls8XQrZwgxKRY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Alk1GoKnJfEXTWsDSOCHi7ZPTH/OG2zLUPSGmtanP4iZIJths+2jZ0MA8LQRjZnsn5KnlYELzLmVZJZOtiCuRhFvCI4TFoH1obTOS8n2kcy41hk+OMUr0Q0blewt+/TUAdxQwnnTaudZ0GZdZeSIeQcF8ey4BcWCTNV6vhjh5sI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=d7asg/ku; arc=none smtp.client-ip=65.109.113.108
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 475F840E016E;
-	Fri, 21 Mar 2025 21:12:26 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
-Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
-	header.d=alien8.de
-Received: from mail.alien8.de ([127.0.0.1])
-	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id TwGYdiLDkuSp; Fri, 21 Mar 2025 21:12:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
-	t=1742591541; bh=wvLaISEHPLV7rwcp5L2iCdCO3+xyzE13y0worTvwPkY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=d7asg/kua3G5KKNGxR4xyHGjyQ2P0mKj6yBjVIWjI/WtnZekikWC+driz6oWr5G4p
-	 ScAWsqoqGlS0XicH2JPMOGsNbHlQVrQG9h6B4FfADHZoN2yppyVFuwAo5JXlYlRyTw
-	 vVWZDz4Ej0puDKiL4LJy42bZ14OQMwNEoFFfXPgIjiEKpDfALDYbG1fuiRC50eKEE9
-	 RCizBvfbfG3GXitVplc32pT+9Qbpnr737rXiGpD1aLK/28IEMoObv15r1/DsjCRM+H
-	 U5SyiLFf+xqmciFM8Y7DvaNnG0keoRY0kIu86J/josUjwWgJ3nDSYHCi+xkwafk21f
-	 t12j+uOvwCBEf+K1OYSvbGxukQs91eemiy9qDaJVNcpL1AG7kxOyKPUe6tlymBxddw
-	 taaRxqEPk2j8vdAk99Uu8MMkLiySiNEw98k9llUvOSoDphNjqPvI3U/Ye3FNjNW6j/
-	 GR/kTK/FN9tggenoubRiXiX1lsGqKLyy+rpgzqmfVCvHU1hU30UNvhFt5o21v1uVGt
-	 5tTaVUmPt8SiorWhNwaK/0Wpl88cdBilCDeb/9p832lJmuvSE3S0ABIhhP0O1++vvE
-	 MY97gkyTRsVy6Qk3JHJuCPf3nqOKmuc2v0ojwLo2PMB4+xe3VJhIR65M/WpMmly6Kz
-	 vMVr98gjk7wE4bQlgSkESvRs=
-Received: from zn.tnic (pd95303ce.dip0.t-ipconnect.de [217.83.3.206])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
-	(No client certificate requested)
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 5419C40E0215;
-	Fri, 21 Mar 2025 21:12:09 +0000 (UTC)
-Date: Fri, 21 Mar 2025 22:12:03 +0100
-From: Borislav Petkov <bp@alien8.de>
-To: Matthew Gerlach <matthew.gerlach@altera.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	dinguyen@kernel.org, tony.luck@intel.com, james.morse@arm.com,
-	mchehab@kernel.org, rric@kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-edac@vger.kernel.org
-Subject: Re: [PATCH 2/4] EDAC, altera: update driver to reflect hw/yaml
-Message-ID: <20250321211203.GEZ93WI8tLaTJTxHmF@fat_crate.local>
-References: <20250320164622.6971-1-matthew.gerlach@altera.com>
- <20250320164622.6971-3-matthew.gerlach@altera.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=HQhwrf4cXgar/grNt8162/75bINMDfg/kjPYLGona1VgYRNBJN/DhpLWMFWigXgUoo0ZQuijWRrH2S6mldSCfCztltaSPo9UClyJYvNcav2AsLxGxXvPEr2HPxd9273pAWyyDKLvfoh69yqj4X4GBmWyL9XTcVHpBT3H+Xikqpk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=PL4SZiXh; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=9I1UFRdpTQORdgr7JFOGekbkH0vyOzdoO/6a82DByUk=; b=PL
+	4SZiXhSRtaDXCa/X5vPcQA+OKp1MG594XOOAMZye6xybAFFrxnFUBJOSlyGV4ZQ06509oIl6JrUGB
+	kWm8bptJMhaxP64fxjvOFZ0oQkzLr0CAqMrGb0lFt3NSVkkz/xH3/Je14iIPgMncOosy6yuNNGG57
+	4r22yXvEXLxjNvw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tvjja-006em6-2R; Fri, 21 Mar 2025 22:16:54 +0100
+Date: Fri, 21 Mar 2025 22:16:54 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-mips@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+Subject: Re: [PATCH net-next 13/13] MIPS: mobileye: eyeq5-epm: add two
+ Cadence GEM Ethernet PHYs
+Message-ID: <905d367f-ff06-4a3b-b410-1e3c65e31f54@lunn.ch>
+References: <20250321-macb-v1-0-537b7e37971d@bootlin.com>
+ <20250321-macb-v1-13-537b7e37971d@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20250320164622.6971-3-matthew.gerlach@altera.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250321-macb-v1-13-537b7e37971d@bootlin.com>
 
-On Thu, Mar 20, 2025 at 09:46:20AM -0700, Matthew Gerlach wrote:
-> The device tree subnodes, and hardware, for the eccmgr are
-> the same for Arria10, Stratix10, and Agilex. Update driver
-> to allow the subnodes to be allowed for "altr,socfpga-s10-ecc-manager".
+On Fri, Mar 21, 2025 at 08:09:44PM +0100, Théo Lebrun wrote:
+> The Mobileye EyeQ5 eval board (EPM) embeds two MDIO PHYs.
 > 
-> Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
+> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
 > ---
->  drivers/edac/altera_edac.c | 3 +++
->  1 file changed, 3 insertions(+)
+>  arch/mips/boot/dts/mobileye/eyeq5-epm5.dts | 26 ++++++++++++++++++++++++++
+>  1 file changed, 26 insertions(+)
 > 
-> diff --git a/drivers/edac/altera_edac.c b/drivers/edac/altera_edac.c
-> index 3e971f902363..895a5beb700f 100644
-> --- a/drivers/edac/altera_edac.c
-> +++ b/drivers/edac/altera_edac.c
-> @@ -1030,6 +1030,9 @@ static int __init __maybe_unused altr_init_a10_ecc_device_type(char *compat)
->  
->  	np = of_find_compatible_node(NULL, NULL,
->  				     "altr,socfpga-a10-ecc-manager");
-> +	if (!np)
-> +		np = of_find_compatible_node(NULL, NULL,
-> +					     "altr,socfpga-s10-ecc-manager");
+> diff --git a/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts b/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts
+> index 6898b2d8267dfadeea511a84d1df3f70744f17bb..20dfc85681bb03330981ca0f11b2edfff3fa57bc 100644
+> --- a/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts
+> +++ b/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts
+> @@ -21,3 +21,29 @@ memory@0 {
+>  		      <0x8 0x02000000 0x0 0x7E000000>;
+>  	};
+>  };
+> +
+> +&macb0 {
+> +	phy-mode = "sgmii";
+> +	phy-handle = <&macb0_phy>;
+> +
+> +	mdio {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		macb0_phy: ethernet-phy@e {
+> +			reg = <0xE>;
 
-Please slap a comment above this here - one can see the difference between the
-two calls only after staring at them for a couple of minutes and wonder
-where's Waldo.
+The DT coding style might say this should be lower case?
 
-:-P
+> +		};
+> +	};
+> +};
+> +
+> +&macb1 {
+> +	phy-mode = "rgmii-id";
 
-Thx.
+Hurrah.  A correct rgmii phy-mode.
 
--- 
-Regards/Gruss,
-    Boris.
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-https://people.kernel.org/tglx/notes-about-netiquette
+    Andrew
 
