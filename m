@@ -1,82 +1,97 @@
-Return-Path: <devicetree+bounces-159631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E202A6B9F0
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 12:32:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5966CA6BA08
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 12:42:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09E2B17F0A8
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 11:32:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C74A73AB4A2
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 11:41:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBE932236E9;
-	Fri, 21 Mar 2025 11:32:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C60D822371F;
+	Fri, 21 Mar 2025 11:42:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EHKWPx6z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rih5WJyU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC174155753;
-	Fri, 21 Mar 2025 11:32:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BA761EA7D3;
+	Fri, 21 Mar 2025 11:42:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742556773; cv=none; b=g7g0OJ8byt8OuV22+x5VZJh3ORi2P+F/wMJCUTYwtAH7VPJoBGKzw53/dmcT6YfNH0PZVTeVce1i4qy5KAjoIvFOO+i5o1npW1ISHQKDdqsvCCGukld0/+PntJANhgtw1TSOgEbLQnJtiP/Pv5PGTAYVl3NAprL4cTncxnnt230=
+	t=1742557323; cv=none; b=CKYR14MnzLwevYcR8nC0uh7N82w5gu56H86OlgM2c+Ox31z8bje0BTk+tpo/e8nz+WCC2Ukb+489Q4Mv7DocSaDUJK6iHEoWep29M28hKoIEP57VS9Mbjp3htriwMTx8BikDkogrodSl6bTd0lpeAsy0BH39lxiCtqdmHVVblkM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742556773; c=relaxed/simple;
-	bh=thGuF3rwJihqxHfpwT/xQ7dl/3hvnzuOYMlnV7gGVm4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=ZyBVJ/T2AG2Hv1qdmD1zVZbe8nLViMoJXofoW2Wj5wE66T2FvWrH1B8Oyb9GUfwuxJS84BAnmOWnXio9/63T4sehbvGJ9xzgHxj9syjKrsktfmSL/eaugaMtnPUHJwXbhUshFWPAo3UatB8XPAzG8JxdjOPnPmeA2eGcW6bICjs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EHKWPx6z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 692A2C4CEE3;
-	Fri, 21 Mar 2025 11:32:50 +0000 (UTC)
+	s=arc-20240116; t=1742557323; c=relaxed/simple;
+	bh=KVzZGjFPG41jqp69QVYd/mRyk1rD77DMd0M54wVUmyc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TvBFTEbrvHWczXok+pD/D3sf+5tENENoPn0J2ckIGbQ6y+PJnNlanGDRSA6GGWoV1UsF6uZGyepcH4V0gq4S/BEXnVmDr4fMTfJx67nAnG47jzsT9uIUhOD50RQNqIHg2zzew+c02NTMcVFbegA+YVMgyFo+RDO898ddw5/DeEY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rih5WJyU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6CBBC4CEE3;
+	Fri, 21 Mar 2025 11:42:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742556773;
-	bh=thGuF3rwJihqxHfpwT/xQ7dl/3hvnzuOYMlnV7gGVm4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=EHKWPx6zc8CSmKQULK8B1xcUHLeIU3jzwt9B86AqSqGwDSaNGNYuTJwoMBFt8d77y
-	 CEK2dD4XyFGfYsyeQ7eI9atqpYJcguBOt5N3ZuwS+pidqFAf6ETDZQ417AS8aoy+T4
-	 IDsdLzSPybMTmdK7dC5fKtz38H77DfvZL0Pp6KHJAdJ0IYaiTKcvrvRyqSIdorsYIO
-	 x4aFXb0HOsA5g329+WgsmXTqR1+AxIlDfOqWK2lU8b0adcjWJksC51AExTMHWa/tJX
-	 b7C2HeRJv2cFlQC/u8uY2DOVB2pC5dLSccOhP1MOQrxOr9gNCfzwKhZIZffV7kTJf5
-	 j1xNMkBYooUqw==
+	s=k20201202; t=1742557323;
+	bh=KVzZGjFPG41jqp69QVYd/mRyk1rD77DMd0M54wVUmyc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rih5WJyUzFc3bexfx1zkYZ9nv6sKHXH4lFF6pDhaBofyshl6lp4O90d2nFPdQuTjZ
+	 qVBN6CduVcYZ/8BZ10WmoQV5TAfjZrNb8yc418Z+3+jc4CtoRAHnzUNQsaJKidxflN
+	 REMtZr94VG0IoxTOB3nAsTvbXEeH9ublW7cXstjqUdyey9aZeNjK0fepgHMy+zdkk2
+	 k+490lot8ulO+tHFyiIGEHJMaYMwZoIUERkap/GCOZSr45HV8dgqm89ZppoFZ6DSpo
+	 07Hy4eJSpIwDmb4yiFvYum0JXpW8szzl/+BxIy/2ulretu8D/aWBB2yoKu+QOXRYTt
+	 /u5rtfnewbWkA==
+Date: Fri, 21 Mar 2025 11:41:59 +0000
 From: Lee Jones <lee@kernel.org>
-To: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, claudiu.beznea@tuxon.dev, sre@kernel.org, 
- nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, 
- p.zabel@pengutronix.de, Ryan.Wanner@microchip.com
-Cc: linux@armlinux.org.uk, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org
-In-Reply-To: <92543fcff4ab35e770b01d4c15d45cc5d55833f4.1740671156.git.Ryan.Wanner@microchip.com>
-References: <cover.1740671156.git.Ryan.Wanner@microchip.com>
- <92543fcff4ab35e770b01d4c15d45cc5d55833f4.1740671156.git.Ryan.Wanner@microchip.com>
-Subject: Re: (subset) [PATCH v3 02/21] dt-bindings: mfd: syscon: add
- microchip,sama7d65-sfrbu
-Message-Id: <174255677015.2092266.3581610195037077485.b4-ty@kernel.org>
-Date: Fri, 21 Mar 2025 11:32:50 +0000
+To: Colin Foster <colin.foster@in-advantage.com>
+Cc: Rasmus Villemoes <ravi@prevas.dk>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Felix Blix Everberg <felix.blix@prevas.dk>
+Subject: Re: [PATCH 1/8] mfd: ocelot: refactor bus-specific regmap
+ initialization
+Message-ID: <20250321114159.GJ1750245@google.com>
+References: <20250319123058.452202-1-ravi@prevas.dk>
+ <20250319123058.452202-2-ravi@prevas.dk>
+ <Z9skKTf30m9DVaC5@colin-ia-desktop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15-dev-510f9
+In-Reply-To: <Z9skKTf30m9DVaC5@colin-ia-desktop>
 
-On Thu, 27 Feb 2025 08:51:49 -0700, Ryan.Wanner@microchip.com wrote:
-> Add SAMA7D65 SFRBU compatible string to DT bindings documentation
+On Wed, 19 Mar 2025, Colin Foster wrote:
+
+> On Wed, Mar 19, 2025 at 01:30:51PM +0100, Rasmus Villemoes wrote:
+> > diff --git a/drivers/mfd/ocelot-core.c b/drivers/mfd/ocelot-core.c
+> > index 41aff27088548..78b5fe15efdd2 100644
+> > --- a/drivers/mfd/ocelot-core.c
+> > +++ b/drivers/mfd/ocelot-core.c
+> > @@ -200,10 +200,12 @@ static const struct mfd_cell vsc7512_devs[] = {
+> >  static void ocelot_core_try_add_regmap(struct device *dev,
+> >                                        const struct resource *res)
+> >  {
+> > +       struct ocelot_ddata *ddata = dev_get_drvdata(dev);
+> > +
+> >         if (dev_get_regmap(dev, res->name))
+> >                 return;
+> > 
+> > -       ocelot_spi_init_regmap(dev, res);
+> > +       ddata->init_regmap(dev, res);
 > 
-> 
+> I remember changing this from function pointers to the direct function
+> call during initial development, per Lee's suggestion. I like it though,
+> and I'm glad to see multiple users now.
 
-Applied, thanks!
+Yeah, we're still not going to be putting call-backs into device data.
 
-[02/21] dt-bindings: mfd: syscon: add microchip,sama7d65-sfrbu
-        commit: 7e3ff6785039796728a515ea6e07378823e71be1
+Either pass the differentiating config through to the core driver or
+handle the differentiation inside the *-i2c.c / *-spi.c files.
 
---
+-- 
 Lee Jones [李琼斯]
-
 
