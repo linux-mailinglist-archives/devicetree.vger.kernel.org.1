@@ -1,195 +1,277 @@
-Return-Path: <devicetree+bounces-159659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5F57A6BB81
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 14:13:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40497A6BB8C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 14:15:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18EFC1896BBB
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 13:13:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC4C83ADCD1
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 13:14:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5012F22B5A3;
-	Fri, 21 Mar 2025 13:13:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 118C122B590;
+	Fri, 21 Mar 2025 13:14:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="AVr7YmAw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F/KAHkSy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B76C822ACDB
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 13:13:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D059422AE7B;
+	Fri, 21 Mar 2025 13:14:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742562796; cv=none; b=kwhm3miisfngf2lYqFc74rCuv1EXztX9sTP1pdRqSEZKrO0ObAlcLlfY2ZMSyBJqUHPsL0UJuU8ozniIJsbVPE/L59Br4WzfYc2CYDdsKy0X6oDNO6QiQw7zHF9Vxz89H9FjBpOSVUTaeaM5PFujVHPa1TEOwrg2QfWLiMoUwts=
+	t=1742562899; cv=none; b=tkI9B+WKMhIuZdEf7kpcr05kXM/MgfhtbnsdEzomB/IdjwAAwVbJAM/w4hbPbKgbHmAIH5tiPuNnsAeOiJGndePW8/NeWTi1b8tmejZ+nxVq2cv/VtHTEKJRkkDV/lom7IV8oMDRGd5uh6mbCKr25HugZQOOFEHq7cXHCQNNpe8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742562796; c=relaxed/simple;
-	bh=gBMuiDhCemk5cSPTk5dmy01AjipaPQhh1hQfbQoK9+w=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
-	 References:In-Reply-To; b=sZy4CF8i8/C4RxypGBfkErSQFwX2z683Jlv3JEyILqa9tBqv+MtJZPFAQQP0j/OyUsXGuJ4VhyJkhK2TS0DP7jQbkWajUmHRSG8VfCjyxwRVMIG7GOCi6Uc12ajALLnXsZsQVtZc+wWNUyKmHNQOXXAKij9o45zL7TGw25IjH/0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=AVr7YmAw; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5e4d50ed90aso2757933a12.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 06:13:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1742562792; x=1743167592; darn=vger.kernel.org;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=azxH+KYm8tJkLH7rFHwCJLBDMbyPBsLOxN72/qPc1Xk=;
-        b=AVr7YmAw/ej31E45hIjLMKkNTCngcDZ6dcaInOv0CrseUD1VZgNWJVAolqi9newOIH
-         XUC7+F2hIyFEgnYhBDCEJKAjs4RQrq6E6Ah5z1ZsD9c3DZJah/SFTAaooMvz2hfXoqXu
-         buwDyX6Pi3CEZYJLhwDF8K7buus17ZaxoNvyQBsmnhjZb60B3p/epXkH97O31VT1eSp/
-         qr3R+PLDvTp5Sg7aereNlDPltuYKN6Bux0ilzQbS7qmG9ssT7jM0pPP4Ac5S6Kp0NJPd
-         GvsG1ylRS9oaDng2iGg+cWzIxErGtQ2Vb5jKrJ/E3vprpS3psmJQhwKC/JFdtKgsf2p8
-         yBKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742562792; x=1743167592;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=azxH+KYm8tJkLH7rFHwCJLBDMbyPBsLOxN72/qPc1Xk=;
-        b=oEIKuLsOjMDVXB40KOE8Y5JOPStw5TUca/TcXrmvPzDt3+yoOfSQkDqoCiq2h45ruj
-         81qAn0pgzco6EAqUWDbbm9LYUUkR7WfMxD5VHoGc8FVeUFrvuAjSGJ9ykGmHYtWnate2
-         qwNfh0meiJeXI5XHqGqsC5B6uC3uMZa/nWQFe5PjyXKdKC9+8R5+bnyCtz8JXuOgwRBD
-         ynSlOqsU+Posg4huUAtpXBrbvKMh4jcwg+fv25aso9G6B00Q8utBUJdfS868VjtI+Yrm
-         GtKwkH3iHW5eyAsKQvyC5Y+sJ/SgZCc6MLv0fOlgeqdUs3yXeHEoeLxv++XfrZ30yzgQ
-         WhMA==
-X-Forwarded-Encrypted: i=1; AJvYcCXOwGFg3OzxnY/rp3iA6WMJ4sfbfy15BfDLyS3gVw+Ysho8sO7k09JTg3w6tZ6yNgYy8kWZAEGXXCYA@vger.kernel.org
-X-Gm-Message-State: AOJu0Yybc7Ah7ldAeoPGlBPHy1VLh6Jlk5RCnZIisJf64r9xIXFWoqIP
-	zZUOnUBvdHjSkq54drV84hU+MlARbQEkVHX9yGXRqx7CeBq7Xtc+66/HpVa19eo=
-X-Gm-Gg: ASbGncvtrM+4txFvJUisxKHzZJ6Eihamltox0OXAeAZkjwKEOAQBUapWGCIoOucwpYC
-	lrpnPMK5+/LxMmA7dhEiFi/ZShubniSNkO0++W0o0PtMI1Bp4YWvCHAtma/Mi7ZqQ4fI9G5P5z1
-	QgAa/yp3MHY3+SkbYFCBiDoBBJgKDi08BxrIxpkCJ5y/o9RCkwdZULL9r/lNTGg2jko8WfH0JBV
-	K/b3a4f1PvnoiCqov6hkyTvQE3AEYZMYxCmxcN3JqGAbh2SNsM1+bwhlO+unD6Tfgo6/AALlMXR
-	voKVG/Fdr48F16VVwAQ1rsHE9RYhB0qbXuV1vpwWhft4PsQLFmtNguL++FJBGhjFxoeSlja4DWg
-	JL+v0BQjKhUA3DQ==
-X-Google-Smtp-Source: AGHT+IE8PhCgUGBY/JkCA/TsunqWtiCtyLdiJOJyXQ4SyEMmQjgGArax5BsxRlrz/Py8KVlD3G8r/g==
-X-Received: by 2002:a05:6402:1d4a:b0:5e8:bf8b:4396 with SMTP id 4fb4d7f45d1cf-5ebcd42dd1fmr3003367a12.13.1742562791878;
-        Fri, 21 Mar 2025 06:13:11 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5ebcd0c7157sm1344509a12.60.2025.03.21.06.13.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Mar 2025 06:13:11 -0700 (PDT)
+	s=arc-20240116; t=1742562899; c=relaxed/simple;
+	bh=yQTzME/6PP1TPK2T8WEG3txl4TCZUlsCKhod5W9SwfI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lzVwlc7hMl8a+JC1P2IK+qWMd315KVM79djnf0bMSFr5UndDD7Ymzx2X8pZGCSxLtwBa4Q8lyo14aYZfFSG5Tcpuc52Cgopu0eEISl2WtNyRLpV6nW/y5dLKsrNotQmCRcNXIUa4VsAidw2LqzCa9OWK2D9KBUkGvS35xijsU7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F/KAHkSy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DFBDC4CEE7;
+	Fri, 21 Mar 2025 13:14:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742562898;
+	bh=yQTzME/6PP1TPK2T8WEG3txl4TCZUlsCKhod5W9SwfI=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=F/KAHkSyYmfJOv/5FAv2z07LjM0mutjOxjLltd0/jQVYeEVaqUdPAPfK78OKA4Ymr
+	 pLf6gi5C5bxtakc6rutk2Od5FrqPTJEH2Ptbrbcc/qlzcBLHmESzUohhrNhe3RY6a2
+	 xLWK7adhpoEBLDSYMgFqdNPYgWaItn+OMTmFginUrrKOs5KFMaUpEF2El4ciFx+gsH
+	 W6CXmYmNIQVZR3dpJx+5GmlFmpm5GruBqwCBFhhfn5R7A+amiVHIwcDhNHffwZqxmf
+	 mnt67zM9LvEXc/PaTQTiHe3DXmMaMULycJPjbviQlLhRgu832JVpqWpyys8cpNviTM
+	 dUalSjf/sSkxQ==
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5e5c9662131so2981163a12.3;
+        Fri, 21 Mar 2025 06:14:58 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV8rDJkMIbwnKe2cDFe1Zvrrg5EdclP6oWCMfIoY0xU4BmbVnAOlo8SsZutfcXdk10ma2yhy7SxVmdS@vger.kernel.org, AJvYcCWBpPytw0TlJoyY39tmZGpRPmM6HUbZSLSkz6e0DR7Aios4zpoov6uhBk9a1Om7+pYVUtNz/5XCMCje+ZqFQA==@vger.kernel.org, AJvYcCXVMnNU+zcrBk/bGoIS+t8L90JWOFL6AqZnlgQTnXxB0517IeBgFS8Znx2AwGxj8kcJN3pv33iOE/g4Df1O@vger.kernel.org, AJvYcCXcmJczxpjL/BhDneMHVld7qmOxOinT17h2ScPGtdGx1cxpjoYer3z0yE5+vGN6I1320Yz0M+Jr75WSe/BXodoL9A==@vger.kernel.org
+X-Gm-Message-State: AOJu0YyWHLhJWSn3t+JJWTm5Ll080o98Js7kt50vBbajIbLnV/6XP/B1
+	GSuRSDBm93L2d7Z325MGY2aJ16kjKWbooEBsi2EdswT7FYkJvCfei9GdDSn+AwlKnDYx0Wk+QE0
+	ouoSuzRB8egR0GxIxjETpHcF92A==
+X-Google-Smtp-Source: AGHT+IFKb3vaGpKb9OXSdeAes78/CEmG5k6oY1UfVro8GO1khGigitTlcZdAN7kLobo/GTF9XcNCydapHxU16QMQNfg=
+X-Received: by 2002:a05:6402:440a:b0:5e5:437c:1daf with SMTP id
+ 4fb4d7f45d1cf-5ebcd468e6fmr2817130a12.16.1742562896829; Fri, 21 Mar 2025
+ 06:14:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <20250317232426.952188-1-robh@kernel.org> <20250317232426.952188-4-robh@kernel.org>
+ <26e72cb2-c355-4c40-bb98-fc0ff267bf4f@foss.st.com> <CAL_Jsq+7ZhMWgbFDvPB+3BG7YfiS9PweybOGNY3r=d40RbGHJA@mail.gmail.com>
+ <130d61a8-6f03-46dc-94ca-f098bc09babc@foss.st.com> <CAL_JsqJZkEpx26=ro_y8hHA2x1Zm6z_SFOQHjQ-WzUa-gy+s0w@mail.gmail.com>
+ <4eddc37b-5164-453a-9b7f-c4331a7d6243@foss.st.com>
+In-Reply-To: <4eddc37b-5164-453a-9b7f-c4331a7d6243@foss.st.com>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 21 Mar 2025 08:14:44 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+pNGObRJs9tFgHQbC8kCVm=myt+syQSLJVaO8D2GWHCQ@mail.gmail.com>
+X-Gm-Features: AQ5f1JoxWG99z-onx2wJCY2-zhJYXWv3cM0qorkPtzMXdYEUScnMR6DharJJMwg
+Message-ID: <CAL_Jsq+pNGObRJs9tFgHQbC8kCVm=myt+syQSLJVaO8D2GWHCQ@mail.gmail.com>
+Subject: Re: [Linux-stm32] [PATCH 3/3] remoteproc: Use of_reserved_mem_region_*
+ functions for "memory-region"
+To: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
+Cc: Saravana Kannan <saravanak@google.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Mathieu Poirier <mathieu.poirier@linaro.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Patrice Chotard <patrice.chotard@foss.st.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 21 Mar 2025 14:13:10 +0100
-Message-Id: <D8LYYEQJ2W4L.1H7FPF4140BVS@fairphone.com>
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Wesley Cheng" <quic_wcheng@quicinc.com>,
- <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
- <perex@perex.cz>, <conor+dt@kernel.org>, <dmitry.torokhov@gmail.com>,
- <corbet@lwn.net>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
- <krzk+dt@kernel.org>, <pierre-louis.bossart@linux.intel.com>,
- <Thinh.Nguyen@synopsys.com>, <tiwai@suse.com>, <robh@kernel.org>,
- <gregkh@linuxfoundation.org>
-Cc: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-sound@vger.kernel.org>, <linux-input@vger.kernel.org>,
- <linux-usb@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
- <linux-doc@vger.kernel.org>
-Subject: Re: [PATCH v36 00/31] Introduce QC USB SND audio offloading support
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a
-References: <20250319005141.312805-1-quic_wcheng@quicinc.com>
-In-Reply-To: <20250319005141.312805-1-quic_wcheng@quicinc.com>
 
-Hi Wesley,
-
-On Wed Mar 19, 2025 at 1:51 AM CET, Wesley Cheng wrote:
-> Requesting to see if we can get some Acked-By tags, and merge on usb-next=
-.
+On Fri, Mar 21, 2025 at 3:25=E2=80=AFAM Arnaud POULIQUEN
+<arnaud.pouliquen@foss.st.com> wrote:
 >
-> Several Qualcomm based chipsets can support USB audio offloading to a
-> dedicated audio DSP, which can take over issuing transfers to the USB
-> host controller.  The intention is to reduce the load on the main
-> processors in the SoC, and allow them to be placed into lower power modes=
-.
-> There are several parts to this design:
->   1. Adding ASoC binding layer
->   2. Create a USB backend for Q6DSP
->   3. Introduce XHCI interrupter support
->   4. Create vendor ops for the USB SND driver
 >
+>
+> On 3/20/25 19:02, Rob Herring wrote:
+> > On Thu, Mar 20, 2025 at 4:23=E2=80=AFAM Arnaud POULIQUEN
+> > <arnaud.pouliquen@foss.st.com> wrote:
+> >>
+> >>
+> >>
+> >> On 3/20/25 00:04, Rob Herring wrote:
+> >>> On Wed, Mar 19, 2025 at 10:26=E2=80=AFAM Arnaud POULIQUEN
+> >>> <arnaud.pouliquen@foss.st.com> wrote:
+> >>>>
+> >>>> Hello Rob,
+> >>>>
+> >>>> On 3/18/25 00:24, Rob Herring (Arm) wrote:
+> >>>>> Use the newly added of_reserved_mem_region_to_resource() and
+> >>>>> of_reserved_mem_region_count() functions to handle "memory-region"
+> >>>>> properties.
+> >>>>>
+> >>>>> The error handling is a bit different in some cases. Often
+> >>>>> "memory-region" is optional, so failed lookup is not an error. But =
+then
+> >>>>> an error in of_reserved_mem_lookup() is treated as an error. Howeve=
+r,
+> >>>>> that distinction is not really important. Either the region is avai=
+lable
+> >>>>> and usable or it is not. So now, it is just
+> >>>>> of_reserved_mem_region_to_resource() which is checked for an error.
+> >>>>>
+> >>>>> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> >>>>> ---
+> >>>>> For v6.16
+> >>>>>
+> >>>
+> >>> [...]
+> >>>
+> >>>>> diff --git a/drivers/remoteproc/stm32_rproc.c b/drivers/remoteproc/=
+stm32_rproc.c
+> >>>>> index b02b36a3f515..9d2bd8904c49 100644
+> >>>>> --- a/drivers/remoteproc/stm32_rproc.c
+> >>>>> +++ b/drivers/remoteproc/stm32_rproc.c
+> >>>>> @@ -213,52 +213,46 @@ static int stm32_rproc_prepare(struct rproc *=
+rproc)
+> >>>>>  {
+> >>>>>       struct device *dev =3D rproc->dev.parent;
+> >>>>>       struct device_node *np =3D dev->of_node;
+> >>>>> -     struct of_phandle_iterator it;
+> >>>>>       struct rproc_mem_entry *mem;
+> >>>>> -     struct reserved_mem *rmem;
+> >>>>>       u64 da;
+> >>>>> -     int index =3D 0;
+> >>>>> +     int index =3D 0, mr =3D 0;
+> >>>>>
+> >>>>>       /* Register associated reserved memory regions */
+> >>>>> -     of_phandle_iterator_init(&it, np, "memory-region", NULL, 0);
+> >>>>> -     while (of_phandle_iterator_next(&it) =3D=3D 0) {
+> >>>>> -             rmem =3D of_reserved_mem_lookup(it.node);
+> >>>>> -             if (!rmem) {
+> >>>>> -                     of_node_put(it.node);
+> >>>>> -                     dev_err(dev, "unable to acquire memory-region=
+\n");
+> >>>>> -                     return -EINVAL;
+> >>>>> -             }
+> >>>>> +     while (1) {
+> >>>>> +             struct resource res;
+> >>>>> +             int ret;
+> >>>>> +
+> >>>>> +             ret =3D of_reserved_mem_region_to_resource(np, mr++, =
+&res);
+> >>>>> +             if (ret)
+> >>>>> +                     return 0;
+> >>>>>
+> >>>>> -             if (stm32_rproc_pa_to_da(rproc, rmem->base, &da) < 0)=
+ {
+> >>>>> -                     of_node_put(it.node);
+> >>>>> -                     dev_err(dev, "memory region not valid %pa\n",
+> >>>>> -                             &rmem->base);
+> >>>>> +             if (stm32_rproc_pa_to_da(rproc, res.start, &da) < 0) =
+{
+> >>>>> +                     dev_err(dev, "memory region not valid %pR\n",=
+ &res);
+> >>>>>                       return -EINVAL;
+> >>>>>               }
+> >>>>>
+> >>>>>               /*  No need to map vdev buffer */
+> >>>>> -             if (strcmp(it.node->name, "vdev0buffer")) {
+> >>>>> +             if (strcmp(res.name, "vdev0buffer")) {
+> >>>>
+> >>>> I tested your patches
+> >>>
+> >>> Thank you.
+> >>>
+> >>>> The update introduces a regression here. The strcmp function never r=
+eturns 0.
+> >>>> Indeed, it.node->name stores the memory region label "vdev0buffer," =
+while
+> >>>> res.name stores the memory region name "vdev0buffer@10042000."
+> >>>>
+> >>>> Several remoteproc drivers may face the same issue as they embed sim=
+ilar code.
+> >>>
+> >>> Indeed. I confused myself because node 'name' is without the
+> >>> unit-address, but this is using the full name. I've replaced the
+> >>> strcmp's with strstarts() to address this. I've updated my branch wit=
+h
+> >>> the changes.
+> >>
+> >> This is not enough as the remoteproc core function rproc_find_carveout=
+_by_name()
+> >> also compares the memory names. With the following additional fix, it =
+is working
+> >> on my STM32MP15-DK board.
+> >>
+> >> @@ -309,11 +309,11 @@ rproc_find_carveout_by_name(struct rproc *rproc,=
+ const
+> >> char *name, ...)
+> >>         vsnprintf(_name, sizeof(_name), name, args);
+> >>         va_end(args);
+> >>
+> >>         list_for_each_entry(carveout, &rproc->carveouts, node) {
+> >>                 /* Compare carveout and requested names */
+> >> -               if (!strcmp(carveout->name, _name)) {
+> >> +               if (strstarts(carveout->name, _name)) {
+> >>                         mem =3D carveout;
+> >>                         break;
+> >>                 }
+> >>         }
+> >>
+> >> I just wonder if would not be more suitable to address this using the
+> >> "memory-region-names" field.
+> >
+> > That would be better as you shouldn't really care what a provider node
+> > name is where-as "memory-region-names" is meaningful to the driver.
+> >
+> >>
+> >> The drawback is that we would break compatibility with legacy boards..=
+.
+> >
+> > So not an option.
+>
+> >
+> > I think I'll have to fix this within the reserved mem code storing the
+> > name or do something like the diff below. I'd like to avoid the
+> > former. Using the original device_node.name is also problematic
+> > because I want to get rid of it. We redundantly store the node name
+> > with and without the unit-address. There's a lot of places like this
+> > one where we hand out the pointer with no lifetime.
+> >
+> > diff --git a/drivers/remoteproc/stm32_rproc.c b/drivers/remoteproc/stm3=
+2_rproc.c
+> > index 1e949694d365..cdee87c6ffe0 100644
+> > --- a/drivers/remoteproc/stm32_rproc.c
+> > +++ b/drivers/remoteproc/stm32_rproc.c
+> > @@ -239,7 +239,7 @@ static int stm32_rproc_prepare(struct rproc *rproc)
+> >                                                    resource_size(&res),=
+ da,
+> >                                                    stm32_rproc_mem_allo=
+c,
+> >                                                    stm32_rproc_mem_rele=
+ase,
+> > -                                                  res.name);
+> > +                                                  "%.*s",
+> > strchrnul(res.name, '@') - res.name, res.name);
+> >
+> >                         if (mem)
+> >                                 rproc_coredump_add_segment(rproc, da,
+> > @@ -249,7 +249,7 @@ static int stm32_rproc_prepare(struct rproc *rproc)
+> >                         mem =3D rproc_of_resm_mem_entry_init(dev, index=
+,
+> >                                                            resource_siz=
+e(&res),
+> >                                                            res.start,
+> > -                                                          res.name);
+> > +                                                          "vdev0buffer=
+");
+> >                 }
+> >
+> >                 if (!mem) {
+>
+>
+> That's work on my side.
+> Could we have an OF helper to retrieve the name from the full name?
 
-I was able to test this series (v35) on SM6350/SM7225 Fairphone 4
-smartphone and it appears to work as expected!
+That would be: sprintf(buf, "%pOFn", node);
 
-Based on the sm8350 branch you shared[0] I added similar dts bits for my
-device, I've pushed that branch here[1] for reference.
+The problem here is we don't have the device_node pointer. The only
+way I see to make the above prettier is perhaps a define.
 
-[0] https://git.codelinaro.org/clo/linux-kernel/kernel-qcom/-/commits/usb_a=
-udio_offload/
-[1] https://github.com/sm6350-mainline/linux/commits/sm6350-6.14-wip-usb-sn=
-d-offload/
-
-And I've used these commands to test:
-
-fairphone-4:~$ amixer -c0 cset name=3D'USB Mixer MultiMedia2' On
-
-fairphone-4:~$ aplay -l
-**** List of PLAYBACK Hardware Devices ****
-card 0: F4 [Fairphone 4], device 0: MultiMedia1 (*) []
-Subdevices: 1/1
-Subdevice #0: subdevice #0
-card 0: F4 [Fairphone 4], device 1: MultiMedia2 (*) []
-Subdevices: 1/1
-Subdevice #0: subdevice #0
-card 1: Audio [Hi-Res Audio], device 0: USB Audio [USB Audio]
-Subdevices: 1/1
-Subdevice #0: subdevice #0
-
-fairphone-4:~$ ffmpeg -i test.m4a -acodec pcm_s16le test.wav
-
-fairphone-4:~$ aplay --device=3Dplughw:0,1 Music/test.wav
-Playing WAVE 'Music/test.wav' : Signed 16 bit Little Endian, Rate 44100 Hz,=
- Stereo
-
-And then music was coming out of these headphones connected via a USB-C
-to 3.5mm dongle.
-
-Every time I'm starting playback this error appears in dmesg, do you
-also see this on your test setup?
-
-[ 1336.081525] q6afe-dai 3000000.remoteproc:glink-edge:apr:service@4:dais: =
-AFE Port already open
-
-
-And if I'm not mistaken it's possible to check that actually the offload
-path is getting used by checking the interrupt counts of the xhci-hcd
-interrupt.
-
-With regular USB audio card playback there's many interrupts per second
-happening:
-
-fairphone-4:~$ aplay --device=3Dplughw:1,0 Music/test.wav # regular USB
-fairphone-4:~$ cat /proc/interrupts | grep -i usb
-188:     137524          0          0          0          0          0     =
-     0          0    GICv3 165 Level     xhci-hcd:usb1
-fairphone-4:~$ cat /proc/interrupts | grep -i usb
-188:     137591          0          0          0          0          0     =
-     0          0    GICv3 165 Level     xhci-hcd:usb1
-
-And with the offload card during playback there's no interrupts
-happening (just a few when initially starting playback):
-
-fairphone-4:~$ aplay --device=3Dplughw:0,1 Music/test.wav # offload
-fairphone-4:~$ cat /proc/interrupts | grep -i usb
-188:     141947          0          0          0          0          0     =
-     0          0    GICv3 165 Level     xhci-hcd:usb1
-fairphone-4:~$ cat /proc/interrupts | grep -i usb
-188:     141947          0          0          0          0          0     =
-     0          0    GICv3 165 Level     xhci-hcd:usb1
-
-
-Let me know what you think about the message in dmesg I mentioned above.
-
-Regards
-Luca
+Rob
 
