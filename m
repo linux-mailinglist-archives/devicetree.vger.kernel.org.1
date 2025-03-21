@@ -1,141 +1,117 @@
-Return-Path: <devicetree+bounces-159594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159596-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81551A6B7E4
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 10:44:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F292A6B7F4
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 10:47:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB0681899064
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 09:43:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 49268189E0E2
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 09:46:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54B081F1527;
-	Fri, 21 Mar 2025 09:43:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD1041F153E;
+	Fri, 21 Mar 2025 09:46:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="AVcq+OYW"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="sieHespP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5660E1F0E34
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 09:43:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B6F71F03D3;
+	Fri, 21 Mar 2025 09:46:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742550212; cv=none; b=QbX/3ZQIb0rv2lI/IFY95rpa11ILxdjdV4vHrRlyYZAJnr5RKpkPO2KcZB2qTWnN7uaYYD1ZUNBzXlOZR5nymaVNxZ9VeGVbFpU8jaCml35daeQhfV9zGVHdh/oP8a0aHtgOvyteHQFvpsEfnQ1yMV1juBxeZ03IN32fFQFrj8E=
+	t=1742550374; cv=none; b=tk810/4aUUVOjKhV+bQ8Y7s4UEKuFlX79RsgL1JbPXx4uJnTDrELynTu+LKr+XAIbMoeqfwz1NwbdXQqM8VNqJ+L1K83vTsQN8WXGKkaazNYfXmM4MlLmZY/oi0bmsiu1uMVxXdRJAHQjJhMcCOQBWFAaVOY8YMUWHEHOElKC88=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742550212; c=relaxed/simple;
-	bh=DRBplq8aKI0ku9BkKb564kLsXB+P8qItF8OLlfaPMoI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OMwQZYlBYd9/OSOX7acfBwjSsWXcd0FWaTnzGLwnkMgU5HqpV0OwVyCo3hSGglyHpUGVq4Dhm+A3aMYlVWL/6X8SKTfcCHjebySsZG/Yuh3GTDRNJYryjcqQhEKBmWNqz2KevNsEBrVDyd/arizsMKMYQwPTawEzLlu3fcwgr08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=AVcq+OYW; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5499c5d9691so1938138e87.2
-        for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 02:43:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1742550207; x=1743155007; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CgGaJaPa/jEPScVXsjWC4390D+TFpvglNfRjMg/X9O0=;
-        b=AVcq+OYWi/89Ti7sWHSrHWkZa3upXFtsa/m5545IZ4yJYvzOiwML6YtJXaQ9EJzdB+
-         LyBxyAlLqMv8bgggp9x3nOyO5bOb/nwMYNO6x0p/z3TIjLIWWXlnCiZE/7ZVwvMiaybg
-         1GSRQamA+vlciqfq+Cr8e8OplikPoSG2nt8WrAZoTA5OOsqlko7aL+UAluwyzKlSiPPo
-         zXQ3XDQklNMqpilNXE51Nw7HISdlPQ6OQXNTaR8Jpr+FZ/O6h0i6G8rkzcOHM/ogLlRm
-         3VvCOfXLq/e+YNv0rfJ9ZbKCETLGzRdQ4GOJwjHM1C6XZUMCpxkg9qmPCcbRr0wHrhpQ
-         OdaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742550207; x=1743155007;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CgGaJaPa/jEPScVXsjWC4390D+TFpvglNfRjMg/X9O0=;
-        b=dNaYFPeYQb4rD4pmMlkUccW4ilojNtVicmGIPCHnubIGab84/K9hB5o6tMCkNuT9G1
-         QR4bamloJncaGU8QoQhb/ixqSbamwnJMYINbWsiM8px2chxYIHb9LFpKL2Qf2pSr+PVq
-         gEO7dBizpei+yplXhUCbTv0WOpJ87qSLgNsM0mX9iDut1wF+ksuWJzZTRDZj9c4zirnU
-         bOlNmgTR5N6lvEZOYTo4Qjeww3j0Kgs1NALzxcT+P+baXXvaYSsXDx0xuelrFTPhDseM
-         qLe5RSQ1HPYWBLLzbx0SK9Q8KCHaUifIvJtX3o02eDhTdfpbC7HkfW0u9a3NyK/gBJa+
-         Ihng==
-X-Forwarded-Encrypted: i=1; AJvYcCVC+gKONoIdOtI4rVcD3+F8W5QK03ervd37BsiJphaTDj54vgdxfgqoZ4NfXpRRXYriv9eCwTdASBRi@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzshpt7S7v0h6fjD2hahlN5kRi34OAomQmf/ZPeC01z25mT4t+L
-	v8ezcg+u/B5rsMmZ/MRCvlS32zryK0X1IaQzEp+pPGZvXUi/PRhVGZDCyg4JmkFhId51J0n52e6
-	U18cCQrrOe2wFpY6xgGeq4UtRx+gCOBcxWL7hew==
-X-Gm-Gg: ASbGncv5YqtVYRX6t1xfW9ysKCs0ym4tvPHdjKbMrCmjnZIBLiAzp4oesGVyfWBtN6V
-	MCvP95gSes2QNPfHDgFWwRGX+0m24evewNPFHF0Ii4YlLGgXy4ciEqRQRw4ndUIfZ+RWh+kXQa8
-	qoE5/JfZWU4dy17ezs2sGQzbtsQ5mKAreFcgwvimbRdUKeS2wP0H7HzPkRDg==
-X-Google-Smtp-Source: AGHT+IEDdJoaJq6teyJiW13G+bIfvvL5/3c4aVZ249NYoi9wkGLc1z6wYCrInzpYKLkQcy/ueE7DfYIIW3z1gg4d79A=
-X-Received: by 2002:a05:6512:1314:b0:54a:cbfb:b62e with SMTP id
- 2adb3069b0e04-54ad64f6791mr932986e87.35.1742550207212; Fri, 21 Mar 2025
- 02:43:27 -0700 (PDT)
+	s=arc-20240116; t=1742550374; c=relaxed/simple;
+	bh=HJiQ2a+yVYKQb53Rbx+LpOGUTCdBuuNIE/u8MjDDamI=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=ZYCsk2ce+nwPFM2pBZwX+Y+bPpN4SvaQBv5hi+bP3VXYKfu0UjKQk23u7myhGMNlcMFQ9OO+fwd9F8FtWc2jzNMU8CFtmdqGAhiQeVMdrLeBYfZP/558EYcypP+7OeupzkhAUlknBYrTxVSwUM2XZfDHAgP4Ja2VbYExtkHCmbw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=sieHespP; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52L7Wugv022748;
+	Fri, 21 Mar 2025 10:46:01 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=7Y7qy82W/MHyCEGXEwG2Lm
+	tsCr2HxaEkUE++ooAr6hc=; b=sieHespPBE871IVXmcCJp+MWOXdP3dKvauL2JH
+	uH2kHRNpgYjjk/PEp2QM+uM9HNDZLOdV8neSNY1zHNfcNpYV5UPPl317EXHk6s1c
+	WwfRXK97/VQ/q9kmPWXO4orkhNhtW3om4yrRtQL23HAIk1BkaCymJ0Ftv3oOTULb
+	lVZauc43F8dN6q+DUCiYVsDThhi/ZyFNpfj7+8Dr3a+NGIo7TWJEKU9rqqLaGXke
+	sdf997s7G3LHsteRcbyjar1CZ8y7k0qWIoowlbnUmlGXfTSplgV+qqC4yLw8VZwv
+	czADI3at8qrExPMvdxFM6DSNuB1Ecw0HT0z8iC/wyvbaVeAg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45h3tqrq41-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 21 Mar 2025 10:46:01 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id CBA5D40051;
+	Fri, 21 Mar 2025 10:44:55 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id EA89F7C17B5;
+	Fri, 21 Mar 2025 10:44:06 +0100 (CET)
+Received: from localhost (10.252.27.50) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 21 Mar
+ 2025 10:44:06 +0100
+From: Patrice Chotard <patrice.chotard@foss.st.com>
+Subject: [PATCH 0/2] spi: spi-stm32-ospi: dt-bindings fixes
+Date: Fri, 21 Mar 2025 10:44:05 +0100
+Message-ID: <20250321-upstream_ospi_required_resets-v1-0-9aa4702e3ae2@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250320055502.274849-1-quic_wenbyao@quicinc.com>
- <20250320055502.274849-2-quic_wenbyao@quicinc.com> <694b6638-92b2-4ac0-a175-bd29aea6cba9@kernel.org>
-In-Reply-To: <694b6638-92b2-4ac0-a175-bd29aea6cba9@kernel.org>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Fri, 21 Mar 2025 10:43:16 +0100
-X-Gm-Features: AQ5f1Jo9naRtRxBQvHi76DCGdYFDD5Qh6BXFBrW4RyaSHcjfJlIGHOXa5xvXdjg
-Message-ID: <CAMRc=MfZrRp=VuEOLuMY_04JdyRrD+joGL56LwRFQ-+D-8Z_6w@mail.gmail.com>
-Subject: Re: [PATCH v1 1/3] arm64: defconfig: enable PCI Power Control for PCIe3
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Wenbin Yao <quic_wenbyao@quicinc.com>, andersson@kernel.org, konradybcio@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, catalin.marinas@arm.com, will@kernel.org, 
-	quic_qianyu@quicinc.com, sfr@canb.auug.org.au, 
-	linux-arm-kernel@lists.infradead.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOU03WcC/x3MQQqDQAxG4atI1h0wo9XSqxSRUf+2WajTREUQ7
+ 97B3fs27yCDCoye2UGKTUzmKYFvGfXfMH3gZEgmn/t7Xnh2a7RFEcZ2tiit4reKYkhhWMwVZXh
+ 0XFfMXUXpERVv2a//qznPP7YLko5vAAAA
+X-Change-ID: 20250321-upstream_ospi_required_resets-34a8b17611b6
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime
+ Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <christophe.kerello@foss.st.com>, <linux-spi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        Patrice Chotard <patrice.chotard@foss.st.com>
+X-Mailer: b4 0.14.2
+X-ClientProxiedBy: SAFCAS1NODE2.st.com (10.75.90.13) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-21_04,2025-03-20_01,2024-11-22_01
 
-On Fri, Mar 21, 2025 at 8:37=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 20/03/2025 06:55, Wenbin Yao wrote:
-> > From: Qiang Yu <quic_qianyu@quicinc.com>
-> >
-> > Enable the pwrctrl driver, which is utilized to manage the power suppli=
-es
-> > of the devices connected to the PCI slots. This ensures that the voltag=
-e
-> > rails of the x8 PCI slots on the X1E80100 - QCP can be correctly turned
-> > on/off if they are described under PCIe port device tree node.
-> >
-> > Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
-> > Signed-off-by: Wenbin Yao <quic_wenbyao@quicinc.com>
-> > ---
-> >  arch/arm64/configs/defconfig | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfi=
-g
-> > index 85ec2fba1..de86d1121 100644
-> > --- a/arch/arm64/configs/defconfig
-> > +++ b/arch/arm64/configs/defconfig
-> > @@ -245,6 +245,7 @@ CONFIG_PCIE_LAYERSCAPE_GEN4=3Dy
-> >  CONFIG_PCI_ENDPOINT=3Dy
-> >  CONFIG_PCI_ENDPOINT_CONFIGFS=3Dy
-> >  CONFIG_PCI_EPF_TEST=3Dm
-> > +CONFIG_PCI_PWRCTL_SLOT=3Dy
-> Bartosz,
->
-> Wasn't the intention to select it the same way as PCI_PWRCTL_PWRSEQ is
-> selected?
->
-> Best regards,
-> Krzysztof
->
+Make "resets" property mandatory.
+Update spi-stm32-ospi driver and dt-bindings accordingly.
 
-For sure. I would expect there to be something like:
+Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+---
+Patrice Chotard (2):
+      spi: dt-bindings: st,stm32mp25-ospi: Make "resets" a required property
+      spi: spi-stm32-ospi: Make "resets" a required property
 
-select PCI_PWRCTL_SLOT if ARCH_QCOM
+ Documentation/devicetree/bindings/spi/st,stm32mp25-ospi.yaml | 1 +
+ drivers/spi/spi-stm32-ospi.c                                 | 2 +-
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+---
+base-commit: e94bd4ec45ac156616da285a0bf03056cd7430fc
+change-id: 20250321-upstream_ospi_required_resets-34a8b17611b6
 
-in Kconfig and nothing in defconfig.
+Best regards,
+-- 
+Patrice Chotard <patrice.chotard@foss.st.com>
 
-Bartosz
 
