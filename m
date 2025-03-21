@@ -1,59 +1,63 @@
-Return-Path: <devicetree+bounces-159844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4793AA6C52E
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 22:31:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F20EA6C544
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 22:35:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D7F1F189EC08
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 21:31:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4EAD3B7665
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 21:35:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E797D1E51FF;
-	Fri, 21 Mar 2025 21:31:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C5581F0E29;
+	Fri, 21 Mar 2025 21:35:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="syEkVpux"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kNUtJeZu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD3E82A1C9;
-	Fri, 21 Mar 2025 21:31:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 280A12A1C9;
+	Fri, 21 Mar 2025 21:35:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742592673; cv=none; b=WBUMs5rlFdot6sLs2QF2wYSbUgCW8eorRG7wawVx1rbTt8pa17jgbj3sL7jYcmf9mps3FO1zJSr2/P+ix/wj8UQpIwQpLtuSxE9N6Gm7FkjWkc2haDhkTF/UeAfNQS47JZ8TJ61TiesyfUe9hh4yXWdBGx0Y1RIGE77a1kCVKuk=
+	t=1742592924; cv=none; b=V1o56pc8xYdNnhhBtoObQcPjCSgjaIoi4M6yFy6z+U0U0j+NlIT2sF8e3aLbKXlo5jR8JYWjTG1+sKvZiSM2qzxIavMbsGpBNtDi3mzvwfX1SeiMKtgMkHC5etmjFPyRcSKsuKbbQMLFV3wxh4JZedbiz+2SCTWsFt6Anu2WYDs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742592673; c=relaxed/simple;
-	bh=+f32SRn/DhI5x9BgYlZ2PYxvre6UQhJsBBuq0rXKjAA=;
+	s=arc-20240116; t=1742592924; c=relaxed/simple;
+	bh=99MMakXTIkezKY2wg7hUxSRWmsbUh/X4l9UQUYmUuS8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mieXixSKo92+gPXD9U/a5QC3Lw70zAlI1GuwQW5taS3SZ1W8Au7BNIZsHWeGZLgJbNa/BbCUMCfxabcnOn0NsYW8xK0MhmZcKD+VC+NymJ0wi7Pe9PHoYj/SWqrdthCJ+xnM2S8RsfkYLEthQTDcoD1rRCya6rEKQTrq5Erv3wI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=syEkVpux; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2B5BC4CEE3;
-	Fri, 21 Mar 2025 21:31:12 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PtWxeek9TnlEYuE3Kws0j9hurXGmXdKZGedrxgGsoNKw9fQW2RpNsFYzbt+jeoHbyHeu0jzEjXM98lhigKa0oSr3mqKUbbgosl9+bW6HEQE81/O2unaXnPsWNN6UdhzmfzaRUZvMkVrezmu9Vw3o16Li39CcSwMaMk8FlBXk20I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kNUtJeZu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76820C4CEE3;
+	Fri, 21 Mar 2025 21:35:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742592673;
-	bh=+f32SRn/DhI5x9BgYlZ2PYxvre6UQhJsBBuq0rXKjAA=;
+	s=k20201202; t=1742592923;
+	bh=99MMakXTIkezKY2wg7hUxSRWmsbUh/X4l9UQUYmUuS8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=syEkVpux+zdu6y0+JrMVHXsj0id+RPBgMSJRyjmL+naIk5mt42IQWs6Dd3nAj+928
-	 KBLOzfA12Nwm5/7lbqEvDsuKjgqQnN7A49uAgr+JDdLUoPjEfvv6CJxQbq6StoUHVW
-	 K/2wSMPZhEffNaZV1hEZAcAXlF4NU8TyD5pMDqJv8qPo+n9UfaFvx5VWijvmQw5+1c
-	 Z4pfn3XllVxigqeLX3+gX1KhKAGLUgWf6cPdH6KKopA+lEiFIZDftk7nizKc1yz3S0
-	 iwcyhZ6RgELBGZw2Oni5ZMUbxyuGNgCtIY+Z4Bqd2e3LJCusxE3U1urKBu+q0DU5nQ
-	 86W4XQIgRjVEA==
-Date: Fri, 21 Mar 2025 16:31:12 -0500
+	b=kNUtJeZuriHtWQ9t2GLqbjr0xJOJG2+mrVK386fmuLXewV19OtcT8OtsctdN8owKu
+	 hIRO7rcym5RA6gYhwegr0cF9s8z+ImYBbd04nApIb5ChUaWBBP1iB6L9GK0g0rxipy
+	 flfS0wnWGHiYxt5nZwBcAVBmMzDaPhUirL2LHGa2l8gVvBzxgQYuY1fYA+GU//Ehuf
+	 jNEWUNAbLKd7dDT9CjTDpoQfeBkuKEatBplFRqwvXAeOr9auS9TNsnNIPSQYs8HP5i
+	 dJAUwERdELEyIZZpTa2h5PCGR5EbFTyfsAFZFEvlfOtqAM71FqbFD5GGGM3OjVjid5
+	 sl73VySMGqbuw==
+Date: Fri, 21 Mar 2025 16:35:22 -0500
 From: Rob Herring <robh@kernel.org>
-To: Jason Hsu <jasonhell19@gmail.com>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
-	andrew@codeconstruct.com.au, patrick@stwcx.xyz,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	yang.chen@quantatw.com, jerry.lin@quantatw.com,
-	Jason Hsu <jason-hsu@quantatw.com>
-Subject: Re: [PATCH v6 1/2] dt-bindings: arm: aspeed: add Meta Ventura board
-Message-ID: <20250321213112.GA4137938-robh@kernel.org>
-References: <20250321123731.1373596-1-jason-hsu@quantatw.com>
- <20250321123731.1373596-2-jason-hsu@quantatw.com>
+To: florin.leotescu@oss.nxp.com
+Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Shych <michaelsh@nvidia.com>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	viorel.suman@nxp.com, carlos.song@nxp.com,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	festevam@gmail.com, Florin Leotescu <florin.leotescu@nxp.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v6 1/3] dt-bindings: hwmon: Add Microchip emc2305 support
+Message-ID: <20250321213522.GA4149883-robh@kernel.org>
+References: <20250321143308.4008623-1-florin.leotescu@oss.nxp.com>
+ <20250321143308.4008623-2-florin.leotescu@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,34 +66,88 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250321123731.1373596-2-jason-hsu@quantatw.com>
+In-Reply-To: <20250321143308.4008623-2-florin.leotescu@oss.nxp.com>
 
-On Fri, Mar 21, 2025 at 08:37:30PM +0800, Jason Hsu wrote:
-> Document the new compatibles used on Meta Ventura.
-> Add subject prefix for the patch.
+On Fri, Mar 21, 2025 at 04:33:06PM +0200, florin.leotescu@oss.nxp.com wrote:
+> From: Florin Leotescu <florin.leotescu@nxp.com>
 > 
-> Signed-off-by: Jason Hsu <jason-hsu@quantatw.com>
-
-The author and Sob don't match. You need to fix your git author to your 
-quantatw.com address.
-
+> Introduce yaml schema for Microchip emc2305 pwm fan controller.
+> 
+> Signed-off-by: Florin Leotescu <florin.leotescu@nxp.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../bindings/hwmon/microchip,emc2305.yaml     | 110 ++++++++++++++++++
+>  1 file changed, 110 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-> index 01333ac111fb..a86b411df9a5 100644
-> --- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-> +++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-> @@ -87,6 +87,7 @@ properties:
->                - facebook,greatlakes-bmc
->                - facebook,harma-bmc
->                - facebook,minerva-cmc
-> +              - facebook,ventura-rmc
->                - facebook,yosemite4-bmc
->                - ibm,blueridge-bmc
->                - ibm,everest-bmc
-> --
-> 2.34.1
-> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
+> new file mode 100644
+> index 000000000000..79081c116274
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
+> @@ -0,0 +1,110 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/microchip,emc2305.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip EMC2305 SMBus compliant PWM fan controller
+> +
+> +maintainers:
+> +  - Michael Shych <michaelsh@nvidia.com>
+> +
+> +description:
+> +  Microchip EMC2301/2/3/5 pwm controller which supports
+> +  up to five programmable fan control circuits.
+
+Fix wrapping to wrap at 80.
+
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - microchip,emc2305
+> +      - items:
+> +          - enum:
+> +              - microchip,emc2303
+> +              - microchip,emc2302
+> +              - microchip,emc2301
+> +          - const: microchip,emc2305
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +  '#pwm-cells':
+> +    const: 3
+> +    description: |
+> +      Number of cells in a PWM specifier.
+> +      - cell 0: The PWM frequency
+> +      - cell 1: The PWM polarity: 0 or PWM_POLARITY_INVERTED
+> +      - cell 2: The PWM output config:
+> +           - 0 (Open-Drain)
+> +           - 1 (Push-Pull)
+> +
+> +patternProperties:
+> +  '^fan@[0-4]$':
+> +    $ref: fan-common.yaml#
+> +    unevaluatedProperties: false
+> +    properties:
+> +      reg:
+> +        description:
+> +          The fan number used to determine the associated PWM channel.
+
+           maxItems: 1
+
+With that,
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
