@@ -1,117 +1,185 @@
-Return-Path: <devicetree+bounces-159728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCB16A6BDD9
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 15:59:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE571A6BDF0
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 16:05:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D895317BF6A
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 14:59:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18EF73AD5AB
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 15:05:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 890581DE4C2;
-	Fri, 21 Mar 2025 14:59:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B83921A238C;
+	Fri, 21 Mar 2025 15:05:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ntHFYyuW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JgBowR4O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B42301D9346;
-	Fri, 21 Mar 2025 14:59:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FA2F42A94;
+	Fri, 21 Mar 2025 15:05:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742569155; cv=none; b=SqUqVCEBpaxBruykyIPToALYD20aPFdfU7u49mSsYH50upDaLp4XIKKQKl63unejeQc1GowdNZ4RDIg7uxmlKQHUfX/tampDlHtbHZAlNCfwNTo97VJmp05WcsOL8QRWxwBYZ6tXUppnZScaZOU8BMDQ/ZuGenC4gyKrOLwp/oQ=
+	t=1742569534; cv=none; b=RkFSVOqhA2iNDovGbTcTM0twBIYubo19/Y/vUa7oKZhRhH7Fi/i3eJFjnAv1MJqJHe84aH1IDsvB+zcL4E+c0DaxREAtMCNlzmsrxqvNc0DumIy52opHjlcmVKA5KtgNWCQ2wFbZEWuMfR9fHlipaL9rjZdy4YPl9tRyhycXHe8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742569155; c=relaxed/simple;
-	bh=gLVO5wxzEEPQuhNuCP1PQvtMhRXWVqTwTEOz/3fjcwc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jXYbGaEF3TGlseR3gWWEOzkWEy9ze9CHYodMuCd4602ej8D4c0Kd0Mya4lSJC2RMIJYFUiH0jQW0vAHxix3we3sFQoSY2LAQWha+CMnRZbGottEGFadJqBYKJmV6w8+52IKAy/hH5z8x5tQyL/ZpcuDiE7/E0y8Rav1mqznJnPQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ntHFYyuW; arc=none smtp.client-ip=209.85.216.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-2ff6e91cff5so3547921a91.2;
-        Fri, 21 Mar 2025 07:59:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742569153; x=1743173953; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oXKwGTUsQbiUYQW5joqs6O63fIJid8EztV7QgGhn/ng=;
-        b=ntHFYyuWYCZc9Ujr6gog86g+lnT9Tq/FchqX+FUVEAenw+WL7Hc+PVLBcSnGD4IYQc
-         0ZNAuf4nydKu7CHUaPIXHH016GeEC6O2XDHoAzbIwwykFabOyr6AIOmNYmhHGX9W00g2
-         AfkWtLrzYcaMTNiENybXQx7CLaQd8OBowxQHrv1/oXzD6SGHEH9uu9tKhfJ8sif+kgwC
-         HZM2TmXyjHCTM0KdTccisXYRaZ/FLPAsys5TsZWbZ3ytS/lsSOw6mt7hFOudukymCa8B
-         K7aAef71bYFBQ7KR20kA0nCsLKvmdk39/vE5k+mIvuW21PIyOk/Q2x1oKN2UQo7WUSD6
-         JVJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742569153; x=1743173953;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oXKwGTUsQbiUYQW5joqs6O63fIJid8EztV7QgGhn/ng=;
-        b=mGJ9AM9gu7maMPa8YfQaUhDspIHtr67QW64q8F9EVEx7D7gvwtmS80FG03kZsWSdk+
-         H03JVNWGd328RAOi4WFIUZDX4ONk/z7QLKPhDPwHARk6blenVQ1I3depRlyYzP7EM4Kc
-         1wgL7uEshATnSdgepciAZVx04yfCOloB857K8J1p4RbrRhLyrGNywt8umSe8gl3wB3bp
-         SMqcZX/JKEF99laax59+XOF5S8CMzREaG3pFB0GMOuoAuE1Q6ACaKQITaudU/QhSAI5x
-         bkWP8Y7Jt1f2Z9dWYByc7Jw9/PO5P5r9imrtUmVcS1cB2XcoCgP6/P/Xzgmlwz051dEE
-         hvCw==
-X-Forwarded-Encrypted: i=1; AJvYcCVdhq7t19HW0bALp61qPIZqza3Qo3TFj2NPb57U4u58wE94lOjBUpChnLMN24Bfr9YxFHBNxyCWo2+7@vger.kernel.org, AJvYcCWhSp/VPAoxgoFOW5K8XOygdrJjrUASDW0Ca1pjF4kyF9Zl9cjt9KjnOlni0whKHEp7EBwWfy1luKDtE165@vger.kernel.org, AJvYcCWtMyNY8KnDfsP0r/urel5pKXhCnNGKnb8Bx1zBiROn6j3+iFW4L2MW4tcyuOiFOGUnCOsUjtBB1yl5A14=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx17EYbi4v/AnQrhEAf17YDDHA0b2/Xe5IDeKs3iHap+iTFFtqa
-	sZm9PmJmyuhhfyYnBX4O1q4F5hAWLVJU2dRviwI9rcRJE/93MpUa
-X-Gm-Gg: ASbGncv6QVBeS+XbaGsPRMJ9m10mc+W4gDh1maTIXdMlRk7m+tEJTeMoAzW4MfuP0vc
-	BPCiUdAaIC7ZGGMkNaTtcs2aW6hdQUt4fevsed8MByEBJQqjXn7WfuWxl08lWVMkjZQntl5Bwme
-	Zc8BPHKVtSr1OUmNJ89FkQZskjmSf8SQBYtEuI+fefu/M11Wp6XPw/B2qi4EQSAkDJqurF3yQlP
-	miR4JcIDMTNZBEhyBotS2dTqHm1ci+JrB32JAdaFdjQvPVQDrq5b0MHD4A/VkdO5mKiLAHUXrFC
-	LriapcVxQgsEGPokFCgaihT5zVV1fh4/QsPgWJ+uiMJNPEzqJpWG42nhgg==
-X-Google-Smtp-Source: AGHT+IF6umVYRS212iBtEP1x40AMIpx9W1bRR0L02OmSGE1cdJ1gfB1CHrlYoh+yhHyO6tWkRhmqfw==
-X-Received: by 2002:a05:6a20:7285:b0:1f5:6f61:a0c2 with SMTP id adf61e73a8af0-1fe4300fe40mr8669919637.34.1742569152847;
-        Fri, 21 Mar 2025 07:59:12 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73905fd517fsm1985221b3a.40.2025.03.21.07.59.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Mar 2025 07:59:12 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Fri, 21 Mar 2025 07:59:11 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Antoniu Miclaus <antoniu.miclaus@analog.com>,
-	Zev Weiss <zev@bewilderbeest.net>, Ban Feng <kcfeng0@nuvoton.com>,
-	Robert Marko <robert.marko@sartura.hr>,
-	Luka Perkov <luka.perkov@sartura.hr>,
-	Naresh Solanki <naresh.solanki@9elements.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Eric Tremblay <etremblay@distech-controls.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Florin Leotescu <florin.leotescu@oss.nxp.com>
-Subject: Re: [PATCH] dt-bindings: hwmon: Drop stray blank line in the header
-Message-ID: <a85c2222-c2fd-41b4-bd29-79a43b4a451a@roeck-us.net>
-References: <20250321080212.18013-1-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1742569534; c=relaxed/simple;
+	bh=PfOQ0FP+8YX/koHyI8Fcu+/q5N8sChby5arINuhCyWg=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=rJHZ0ZqzhOYZa7AqqKcfKCt1mHFVAHEb85BuJjiHS1gxz8dMj21qHneoiBrSFdsiLcrD4A1M9J3N2jSrUPvPNi3ADsmudFwIa7/kDitCW04/RWrpg5g4IUOtjOM7dTOP7b71y2MeR0nk6TSLOOIDbdoPKHsC8BFl8bsFkY5LMko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JgBowR4O; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACC1BC4CEE3;
+	Fri, 21 Mar 2025 15:05:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742569534;
+	bh=PfOQ0FP+8YX/koHyI8Fcu+/q5N8sChby5arINuhCyWg=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=JgBowR4OhM3a0EdNODoa+6b93RS5XJtcSRdUZsDIuf98P1S4gTZ2AzwV/JV6PuaMB
+	 BCU15njrWpKDVRGlkEPDaN+4IaovNoalpKI8l8npc64YUW3VrjSRSS8rcMZmo7RQ8n
+	 Dawu3V/UjI3SQuFhbkhKxTgsVwNTrM8g6m+RoIYQmaPt/+ag/TdokexHoYY/6l9JNL
+	 eukYKlLpWe/AqahYYIPMxhN4DF/uXkBNTjDemyowHEFLVroPq2VIxfrDBcRSZ96+3Z
+	 03lJQRVurqiqz0orKBk/NMTsHz7SVqlRusu7AKo1dtP4Kf83VvKvWkIWpfP9gPyGIC
+	 jDaSi2t4LGSfA==
+Date: Fri, 21 Mar 2025 10:05:32 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250321080212.18013-1-krzysztof.kozlowski@linaro.org>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+ patrick@stwcx.xyz, krzk+dt@kernel.org, joel@jms.id.au, 
+ Jason Hsu <jason-hsu@quantatw.com>, devicetree@vger.kernel.org, 
+ andrew@codeconstruct.com.au, yang.chen@quantatw.com, jerry.lin@quantatw.com, 
+ linux-kernel@vger.kernel.org, conor+dt@kernel.org
+To: Jason Hsu <jasonhell19@gmail.com>
+In-Reply-To: <20250321123731.1373596-1-jason-hsu@quantatw.com>
+References: <20250321123731.1373596-1-jason-hsu@quantatw.com>
+Message-Id: <174256796315.3336760.12396122805182974784.robh@kernel.org>
+Subject: Re: [PATCH v5 0/2] Add Meta(Facebook) Ventura BMC(AST2600)
 
-On Fri, Mar 21, 2025 at 09:02:12AM +0100, Krzysztof Kozlowski wrote:
-> There should be no blank line between the YAML opening header and the
-> schema '$id'.
+
+On Fri, 21 Mar 2025 20:37:29 +0800, Jason Hsu wrote:
+> Add Linux device tree entry related to Meta(Facebook) Ventura specific
+> devices connected to BMC(AST2600) SoC.
 > 
-> Reported-by: Florin Leotescu (OSS) <florin.leotescu@oss.nxp.com>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+> v1:
+>     1. Create ventura dts file.
+>     2. Add commit msg.
+>     3. Use format-patch to generate patch.
+>     4. Add subject prefixes matching the subsystem.
+> ---
+> v2:
+>     1. Modify email content.
+> ---
+> v3:
+>     1. Add mail list.
+> ---
+> v4:
+>     1. Apply git send-email --thread option.
+>     2. Sort nodes in the dts alphanumerically.
+> ---
+> v5:
+>     1. Run scripts/checkpatch.pl and fix reported warnings.
+>     2. Remove unnecessary 88E6393X CONFIG FRU.
+> ---
+> v6:
+>     1. Add a new stage for the DTS change.
+>     2. Run scripts/checkpatch.pl and fix reported error.
+>     3. Fix the issue in a separate patch.
+> ---
+> Signed-off-by: Jason-Hsu <jasonhell19@gmail.com>
+> 
+> Jason Hsu (2):
+>   dt-bindings: arm: aspeed: add Meta Ventura board
+>   ARM: dts: aspeed: ventura: add Meta Ventura BMC
+> 
+>  .../bindings/arm/aspeed/aspeed.yaml           |    1 +
+>  arch/arm/boot/dts/aspeed/Makefile             |    1 +
+>  .../aspeed/aspeed-bmc-facebook-ventura.dts    | 1399 +++++++++++++++++
+>  3 files changed, 1401 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dts
+> 
+> 
+> base-commit: b3ee1e4609512dfff642a96b34d7e5dfcdc92d05
+> --
+> 2.34.1
+> 
+> 
+> 
 
-Applied.
 
-Thanks,
-Guenter
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/aspeed/' for 20250321123731.1373596-1-jason-hsu@quantatw.com:
+
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: timer: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/timer/arm,arch_timer.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: /sdram@1e6e0000: failed to match any schema with compatible: ['aspeed,ast2600-sdram-edac', 'syscon']
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: bus@1e600000: compatible: ['aspeed,ast2600-ahbc', 'syscon'] is too long
+	from schema $id: http://devicetree.org/schemas/bus/aspeed,ast2600-ahbc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: syscon@1e6e2000: 'smp-memram@180' does not match any of the regexes: '^interrupt-controller@[0-9a-f]+$', '^p2a-control@[0-9a-f]+$', '^pinctrl(@[0-9a-f]+)?$', '^silicon-id@[0-9a-f]+$', 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/mfd/aspeed,ast2x00-scu.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: /ahb/apb/syscon@1e6e2000/smp-memram@180: failed to match any schema with compatible: ['aspeed,ast2600-smpmem']
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: /ahb/apb/syscon@1e6e2000/interrupt-controller@560: failed to match any schema with compatible: ['aspeed,ast2600-scu-ic0']
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: /ahb/apb/syscon@1e6e2000/interrupt-controller@570: failed to match any schema with compatible: ['aspeed,ast2600-scu-ic1']
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: /ahb/apb/display@1e6e6000: failed to match any schema with compatible: ['aspeed,ast2600-gfx', 'syscon']
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: adc@1e6e9000: 'interrupts' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: adc@1e6e9100: 'interrupts' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: crypto@1e6fa000: 'aspeed,ahbc' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/crypto/aspeed,ast2600-acry.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: /ahb/apb/video@1e700000: failed to match any schema with compatible: ['aspeed,ast2600-video-engine']
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: /ahb/apb/timer@1e782000: failed to match any schema with compatible: ['aspeed,ast2600-timer']
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: lpc@1e789000: lpc-snoop@80: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: lpc@1e789000: reg-io-width: 4 is not of type 'object'
+	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: kcs@24: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: kcs@28: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: kcs@2c: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: kcs@114: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: /ahb/apb/lpc@1e789000/lhc@a0: failed to match any schema with compatible: ['aspeed,ast2600-lhc']
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: /ahb/apb/lpc@1e789000/ibt@140: failed to match any schema with compatible: ['aspeed,ast2600-ibt-bmc']
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: sdc@1e740000: sdhci@1e740100:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too long
+	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: sdc@1e740000: sdhci@1e740200:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too long
+	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: /ahb/apb/sdc@1e740000/sdhci@1e740100: failed to match any schema with compatible: ['aspeed,ast2600-sdhci', 'sdhci']
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: /ahb/apb/sdc@1e740000/sdhci@1e740200: failed to match any schema with compatible: ['aspeed,ast2600-sdhci', 'sdhci']
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: fsi@1e79b000: compatible: ['aspeed,ast2600-fsi-master', 'fsi-master'] is too long
+	from schema $id: http://devicetree.org/schemas/fsi/aspeed,ast2600-fsi-master.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: /ahb/apb/fsi@1e79b000: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: fsi@1e79b100: compatible: ['aspeed,ast2600-fsi-master', 'fsi-master'] is too long
+	from schema $id: http://devicetree.org/schemas/fsi/aspeed,ast2600-fsi-master.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: /ahb/apb/fsi@1e79b100: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dtb: /ahb/apb/dma-controller@1e79e000: failed to match any schema with compatible: ['aspeed,ast2600-udma']
+arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c256d4i.dtb: /ahb/apb/pwm-tacho-controller@1e786000: failed to match any schema with compatible: ['aspeed,ast2500-pwm-tacho']
+
+
+
+
+
 
