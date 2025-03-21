@@ -1,114 +1,206 @@
-Return-Path: <devicetree+bounces-159861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159862-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0691CA6C608
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 23:38:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66FE8A6C666
+	for <lists+devicetree@lfdr.de>; Sat, 22 Mar 2025 00:21:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 786724817CD
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 22:38:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CFDBF3A3F4A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 23:21:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5FC822FF5E;
-	Fri, 21 Mar 2025 22:38:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E1631F1516;
+	Fri, 21 Mar 2025 23:21:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kvPDQUmQ"
+	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="KWrCeNVY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E8861F03D9;
-	Fri, 21 Mar 2025 22:38:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32B3C1D54D8;
+	Fri, 21 Mar 2025 23:21:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742596686; cv=none; b=a7Io25vqkdumK2N/sOUOuDj5yPxKXMozLWgen7NRCeTnQMwdub6bS7Ksvy2zuHNucGOrJxuaoDdN8Ysi3Qkd5bUkDJQrjpbi57BMLtJcf0NyjhJ2eHaOiFb5PfIC4EU7pEXFQpO+SOqBY3tUteoczZuciBcshqu7fl71Ti7eNVI=
+	t=1742599275; cv=none; b=otgLSr+qK7I+oft8XybX1QdbKJFH4HZFgua0vQ+THCdF6krdNTy8U6miaNHDDWtlWy9fQGJxsoVNr87OWTAUpEUB0tNtxSqumFuWb4QUnGfUKa8q9jEBemmZ3uQDLZuiJkRzrqpFWBlIJUnQM1mQdfzbDKbJdfL0YwFDLCngElU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742596686; c=relaxed/simple;
-	bh=nrhlOP9d7PiSuMh7n2hu2MfcESZMoqXB6qfA5Gop3ag=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ryGyiO+yOPlHqnkzl32BjQrVcWvY9myvkmJlHONnAZ2OY+1awvC9+vJIYIusZgR4RBjbrHGZ3x/1bJN+xY9+Po9exIXfAFEX/0OknI4RkkC0Pk9UcrBbCnk8zdhT0XpDo2uJWYbJeyJFHEwzP/h0SP2vSlRs0iOS+Pimr1vT8E8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kvPDQUmQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0678C4CEE3;
-	Fri, 21 Mar 2025 22:38:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742596686;
-	bh=nrhlOP9d7PiSuMh7n2hu2MfcESZMoqXB6qfA5Gop3ag=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kvPDQUmQaW0p9015fBnH8HZXdTLUkmdLADBqQKLbS7FlDRPFGH+4JfV0HVGw6KQAC
-	 wmwcwbEGwtCnCydbMEzrSt2Gz+tX8sOLIZwUEKHXNcV+D0Uj31YCyrPOutld6t5/jZ
-	 BSA8ezCJJTY0rIszLxTweXNzX2i4EqhVhsBAN4l2bQscz4zELe3XZY0yRvMzlMndYJ
-	 noWdHFhX/Dxt1YnYfGLd7iVzo6Px9LZ8Vw/CNrpAdASoSz9RSZia0ewtKKGq/vxbz2
-	 FnD9b/0Ugx4zOF9FNU6amX5e6449rfRPQyuhDkerWMASxsNOAaYde4I08qOFAhYbIa
-	 mO2VWaz+83vHA==
-Date: Fri, 21 Mar 2025 22:38:00 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Eric Lin <eric.lin@sifive.com>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com,
-	will@kernel.org, mark.rutland@arm.com, tglx@linutronix.de,
-	peterz@infradead.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	zong.li@sifive.com, greentime.hu@sifive.com,
-	vincent.chen@sifive.com, Nick Hu <nick.hu@sifive.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: riscv: sifive: Add SiFive Private L2
- cache controller
-Message-ID: <20250321-spinal-endocrine-aabd38734c32@spud>
-References: <20230720135125.21240-1-eric.lin@sifive.com>
- <20230720135125.21240-2-eric.lin@sifive.com>
- <20230720-slept-guru-216e2803061e@spud>
+	s=arc-20240116; t=1742599275; c=relaxed/simple;
+	bh=En7UCMOZ/Us8TjDqlFU22i6jKe9CIGnV39ahNfBbLc0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XhxUiKMtvBXGR0qDggdcXwr7CXT5vwLTxkc9J6xiCxEQgPMd/7IJp14mlJGvfJet2/NGcUWwhY7FEkzSF6mM/vmFWXAefIa5WRFnHs7aWrkCsO+Hzw2KFFpDrWli+H8J3of49wHLdoMKMclhiLsJZ1QzteQ23u2KW3uys9UQBoA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=KWrCeNVY; arc=none smtp.client-ip=5.135.140.105
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4CC16297BD3;
+	Sat, 22 Mar 2025 00:21:06 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
+	t=1742599268; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=T7qf5nCrt4nQBcV2jofoiUmHFXdin3E7pHJVSgDL2NA=;
+	b=KWrCeNVYFLT1VAUwHgj5Tm7pEKIUbYrrIuNl46wUDy1IxYQfL7cDJBSyTMBlw0mFijms+e
+	d0jq4ilMNYEMYjhnQJLDtl/plb07xLmVT4qFOctMMa6PcNKUy7VTNAQHHJZtd5U5VtZpLQ
+	wZy7DWlMNRA+JG11knIrBjXysU+q8vuJymox+swaYYRCJtDaUGTf4U0gb5axowEs9aaYHs
+	AjioF4khd8tQKS/IRXr/1VpRtHBgCiFN41bQCcZlxpUTH7EP7GKhCGv6rqUYY3d8d6BBFh
+	la7dJzfzc5D94h/AeebMmveABSE6vdlU07TnVOc2hXljLa1dSTJ6LE4XiUcaRA==
+Message-ID: <8f095a56-a188-45e9-945a-1d77ef175dc8@cjdns.fr>
+Date: Sat, 22 Mar 2025 00:21:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="7UoAQXoEu0XzRgDv"
-Content-Disposition: inline
-In-Reply-To: <20230720-slept-guru-216e2803061e@spud>
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH v1 4/8] dt-bindings: timer: Add EcoNet HPT CPU Timer
+To: Krzysztof Kozlowski <krzk@kernel.org>, linux-mips@vger.kernel.org
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, benjamin.larsson@genexis.eu
+References: <20250321134633.2155141-1-cjd@cjdns.fr>
+ <20250321134633.2155141-5-cjd@cjdns.fr>
+ <c1791b2e-bdf6-448c-88d3-c97511af3357@kernel.org>
+Content-Language: en-US
+From: Caleb James DeLisle <cjd@cjdns.fr>
+In-Reply-To: <c1791b2e-bdf6-448c-88d3-c97511af3357@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 
+Thank you for the review.
 
---7UoAQXoEu0XzRgDv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 21/03/2025 21:56, Krzysztof Kozlowski wrote:
+> On 21/03/2025 14:46, Caleb James DeLisle wrote:
+>> Add device tree binding documentation for the high-precision timer (HPT)
+>> in the EcoNet EN751221 SoC.
+>>
+>> Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
+> Previous patch was not tested, so was this one tested?
 
-On Thu, Jul 20, 2023 at 06:10:51PM +0100, Conor Dooley wrote:
-> On Thu, Jul 20, 2023 at 09:51:19PM +0800, Eric Lin wrote:
+Yes, all of this has been tested on multiple devices, I believe I was
+unclear in the question I added in patch 3.
 
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - const: sifive,pl2cache1
-> > +      - const: cache
->=20
-> You omitted the pl2cache0 from here, that needs to come back! You'll end
-> up with 2 items entries.
-> Either way, I can't take this binding without a soc-specific compatible,
-> per sifive-blocks-ip-versioning.txt..
+>
+>> ---
+>>   .../bindings/timer/econet,timer-hpt.yaml      | 58 +++++++++++++++++++
+>>   1 file changed, 58 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/timer/econet,timer-hpt.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/timer/econet,timer-hpt.yaml b/Documentation/devicetree/bindings/timer/econet,timer-hpt.yaml
+>> new file mode 100644
+>> index 000000000000..8b7ff9bce947
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/timer/econet,timer-hpt.yaml
+>> @@ -0,0 +1,58 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/timer/econet,timer-hpt.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: EcoNet High Precision Timer (HPT)
+>> +
+>> +maintainers:
+>> +  - Calev James DeLisle <cjd@cjdns.fr>
+>> +
+>> +description: |
+> Do not need '|' unless you need to preserve formatting.
+Ok
+>
+>> +  The EcoNet High Precision Timer (HPT) is a timer peripheral found in various
+>> +  EcoNet SoCs, including the EN751221 and EN751627 families. It provides per-VPE
+>> +  count/compare registers and a per-CPU control register, with a single interrupt
+>> +  line using a percpu-devid interrupt mechanism.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: econet,timer-hpt
+> Soc components must have soc-based compatible and then filename matching
+> whatever you use as fallback.
 
-On this last point, what Nick Hu has done for the clint2 would be
-acceptable, adding a {} entry to disallow the compatible in isolation
-without requiring a soc-specific compatible for hardware that does not
-yet exist:
-https://lore.kernel.org/all/20250321083507.25298-1-nick.hu@sifive.com/
+I have so far been unable to find good documentation on writing DT bindings
+specifically for SoC devices. If you have anything to point me to, I will read it.
+If not, even a good example of someone else doing it right is helpful.
 
-Maybe that'll allow you to submit a v3 of this work?
+Currently, I see qcom,pdc.yaml appears to do what you say, so I in absence
+of any other advice, I can try to do what they do.
 
-Cheers,
-Conor
+>
+>> +
+>> +  reg:
+>> +    minItems: 1
+>> +    maxItems: 2
+> No, list items instead.
+I see qcom,pdc.yaml using items: with per-item description so can follow that.
+>
+>> +    description: |
+>> +      Physical base address and size of the timer's register space. On 34Kc
+>> +      processors, a single region is used. On 1004Kc processors, two regions are
+>> +      used, one for each core.
+> So different hardware, different compatible. That's why you need
+> soc-based compatibles. Follow standard SoC upstreaming rules and examples.
+I presume this should ideally be with If: statements to further validate the DT (?)
+>
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +    description: |
+> Do not need '|' unless you need to preserve formatting.
+Ok
+>
+>> +      The interrupt number for the timer.
+> Drop, redundant.
+Ok
+>
+>
+>> This is a percpu-devid interrupt shared
+>> +      across CPUs.
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +    description: |
+>> +      A clock to get the frequency of the timer.
+> Drop description, redundant
+Ok
+>
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +  - clocks
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    timer_hpt@1fbf0400 {
+> No underscores
+I knew that, my mistake.
+>
+> Node names should be generic. See also an explanation and list of
+> examples (not exhaustive) in DT specification:
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+Thank you, this is useful.
+>
+> Look how other SoCs are calling this.
+As said, any documentation link or example of someone who does this right
+is much appreciated. In any case, thank you very much for your time and I
+will address these points in v2.
 
---7UoAQXoEu0XzRgDv
-Content-Type: application/pgp-signature; name="signature.asc"
+Thanks,
+Caleb
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ93qSAAKCRB4tDGHoIJi
-0oUaAP9uzIey7liZb+Bjy1/CuZWjq+8Noa6ZaN/cM35WlmDg/AEA2z0nS1vm0ayX
-GW2I1IyVpUNSK01K1FIhOgrUeQuXTA4=
-=VwYy
------END PGP SIGNATURE-----
-
---7UoAQXoEu0XzRgDv--
+>
+>> +        compatible = "econet,timer-hpt";
+>> +        reg = <0x1fbf0400 0x100>;
+>> +        interrupt-parent = <&intc>;
+>> +        interrupts = <30>;
+>> +        clocks = <&hpt_clock>;
+>> +    };
+>> +...
+>
+> Best regards,
+> Krzysztof
 
