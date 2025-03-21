@@ -1,138 +1,125 @@
-Return-Path: <devicetree+bounces-159713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79807A6BD86
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 15:49:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0D20A6BD79
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 15:48:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A61903B0408
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 14:46:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47DB9188A47E
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 14:48:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 517A91E22FA;
-	Fri, 21 Mar 2025 14:45:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BDE01A256B;
+	Fri, 21 Mar 2025 14:48:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="WDvwZhNp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YbnFS9Dy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65A271D5177
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 14:45:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3D4578F44;
+	Fri, 21 Mar 2025 14:48:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742568355; cv=none; b=FUlDN4RYtUhy0e/j7GZay4pw3sgnlX+DxfnEyb5cyYerIiDccT3oEuKvmjJl34amztAmzvU+XlgE/BiaXy6b2d1h9SkwRJcSY4seykiI/2VOgvnGTIP9yFlQTXdh7yMovWJ3iD5U/cdswHYTHwrvPpJW6VgUj6LZknywKJHprP8=
+	t=1742568490; cv=none; b=MEgM6oMa5k8MI4/9aA3St59YvCarGrb3lINEY8dpJ8bu7SQwyZTH7aBbsKKxKmNNOjLTL7021uFGJR+iS7E8r+ResZBTKh/4GlkFmXj1BszU3g5bFwUspFqeYDtUjHM05Gvj7pxazDNxf/BH9DaqY+0E81b1e7/GArc3W4x5JG4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742568355; c=relaxed/simple;
-	bh=fBxL88tfFgu4vPWkBQ8cd2kEnZv6myN9L9eGEfufx8o=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=n9dwAdIud8iDwdqXi6S14TY/q1iAOOlnYnZIyojUjHlltKs/5It7iSRTAe1j7Kzmxr+Fn4rpEHEkSOv7QdQIZA1/8o37gFuh4xrvYhQEOi4c3ClEQeuSh/jC5VyZH3gntEQJ074YfeOUo/aQGajFHqcL93YB3xaenVPdpbwE7i8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=WDvwZhNp; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-ac2aeada833so384740666b.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 07:45:52 -0700 (PDT)
+	s=arc-20240116; t=1742568490; c=relaxed/simple;
+	bh=t3fDjgF3ceIQsaADOh2IiEkthEMpZFM/HyWawVv7I6I=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dsbn2zWEyVIelwTAJHSdQBYUgb69+Ol4Zp2/mLtT5Ia/igMV9Slk/Ou/DvlFOMUZ6jMlEdcOE7uCxWyUpk1aL1fOTKS4yF1nfztZ70my7dV16pBBIkLQ6HlSxZUyI00FEPbBurKGTCcb+VvemF2vVe+xRqs2hGf88gwqTyP0qbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YbnFS9Dy; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-390cf7458f5so1546114f8f.2;
+        Fri, 21 Mar 2025 07:48:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1742568350; x=1743173150; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vhNOdkQVVIt/vsEdwwj+oY1HmQH9nhKvG0mvmibQd4s=;
-        b=WDvwZhNpsJb6BbvFCAM8o5mO/cHO1kPWkTMYi6YWlhOrReYiI106WddcOwvB32k+p7
-         cRoSsHCHgpXbrIElznEMSHUNzn9skdzxuSvSYlpqZFYZmIi+lL26OZXYCK008sRiFaaI
-         dcigaJFLuRHbGVGHXKXRd2gP4x4xFDP0o27qo15SFRMsBEi/Ey43J6R+ezzN3dd23xrW
-         6gu1OT7MUx5CeRcN8UWuuUKax7UmNpa4TmFac+NemSAi+Oi8oupIoqxI0uRF93rb15fq
-         tVNekQHdkEjNV0VfEnpHCFJRRc8tE7eoQD0m3Q1OeiPzNaK+DULdIWstjBf4FqLxylib
-         nTsA==
+        d=gmail.com; s=20230601; t=1742568487; x=1743173287; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wwi3wAIpyCTSApBj4aSaPLa/2MoFwC9M++68JcsFwCQ=;
+        b=YbnFS9DyqL3UVcg0L+4c98binUIsm4IpmlVXo21o9M6Er9rF/TdM3lQ/S3LhLzR5mz
+         qwB7yyVOcbSBFc+8hA9R0AUW4czQHxSR2U+mq9eGCgYuWne2r3RjfSe8ffSbu55F7TOu
+         BLO5EcDTs+TNbGEzNcdU2KhzvZoVe5q2XrkOnV8PpvmS4RyJBOHWj+WSgLkLeA8NZBrE
+         vHUsXKxcBZe81CS13j0ExSy2ZP+0DkU1TtbTlYMP4z7t1ynzm6xW1uGAGv0M6YAc9fX3
+         id4PsM0mzzVIzn0XhutfkYohSfC0R77AHHTEsxqSEtcAgt25FlF7Cm8IidqqwDNpbrvm
+         KHaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742568350; x=1743173150;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vhNOdkQVVIt/vsEdwwj+oY1HmQH9nhKvG0mvmibQd4s=;
-        b=rmUupUEjVjpnaURSEH8hpuvFTOpWlF5jSlFFxUcsmhgh/LYlqs6K4BdAUm8Jqo7H55
-         D0K0+gIdipwwRoot078AvsQReyrKN+c0xIJLaIeaL+rTSvkfoDewdUTxDln4z8QEWI0J
-         W4aQT/wdfu9PqyaUE9fD4ff5eZqFjCXspZ7ryj9efL+nzYai9lMF2iii3c739JWYc6aJ
-         IDzbq1oDKVJXohigOoKZzBBgQEUw8NHx15trhdb7UfctGaIiGpjV36dwh7aJVRIQZwM0
-         xPl/11i6VSbmJpt/+ojT8r3yctwtRrPxyq9D2cSh5110G+6hrL/Ky0CqZYgBm4JVrcvX
-         vXCA==
-X-Forwarded-Encrypted: i=1; AJvYcCVyQKnhkZV2xieX86DXeo4pJQmzLsSDMUlXcPcEeexbf5OHsOsUFhRlERJiDvCFfi7Z1EOHDSTctb3J@vger.kernel.org
-X-Gm-Message-State: AOJu0YzJfepLGT3J3ebWrNB3LNrw9hXQ5rT+qAGKPtVgdZ1lkrWV5Uib
-	7rllU4KKsr2ZcNgu8JLS8NMCeCrxXtUhNndSd1jzuqCSktF0bGSulMUp9VYzRsQ=
-X-Gm-Gg: ASbGnctZiUoqH1fqRmYooAGd2UmJVdcFJS9s376vAk9eArS5g58oqmduvKLM2I/9FYX
-	3YikUcbcLJ3R9Z4sk9O4SlWMg0q8eeMCwR55INwzjx1lonZ41h0JVOJK6WFBqnGI/nKucGqVuiZ
-	KSCMdDmZRiLp+TkYCDzUXxmFYxbtqDVWapJxXEiaqovXpX7pWyvIGhds1sjoFt3UVLKQUYXWIFp
-	g9z+2fUOGDcpGeO3+4Q0yvnB16u3k4ztjjzjshByPGWW8pTCz2k9pJ7Nm3trIU5JxjxHURYkooP
-	eLLurNAEbTWsvpgIoB3q+dIu23hIt1vNGYCxGlopfi7E0+CJau77FSw5Rp8RtB9Dotdda8QtU0M
-	HmMfZ4+h5i/dfQ21+4Q==
-X-Google-Smtp-Source: AGHT+IFrUo+XVApUPF24P18d3jsX7lNPxWfJoO0tS8bgXcfA90A6ILqy0CEkprg7D7hHpF5FLLZltg==
-X-Received: by 2002:a17:907:d84d:b0:ac3:4228:6e00 with SMTP id a640c23a62f3a-ac3f00b2ef4mr438441866b.6.1742568350254;
-        Fri, 21 Mar 2025 07:45:50 -0700 (PDT)
-Received: from [100.64.0.4] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac3efb648acsm168092466b.98.2025.03.21.07.45.49
+        d=1e100.net; s=20230601; t=1742568487; x=1743173287;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wwi3wAIpyCTSApBj4aSaPLa/2MoFwC9M++68JcsFwCQ=;
+        b=jckYM+Gf/Rqv4pwJZdWP8S+fTvThgTGPBvUCiUa2xG10GHEyRpLIkOWYTYilXxeu7L
+         VwPMT22bcnV2xc2pwJp92eImVr8EnNVzFLc3OsM/WFnJgG5BnjHDgV2P7c1vsAvDqprB
+         8OSC6hbGg2XjQS0tBjczXf1rhlxkayTTcQ5Re3QpbCD8JoTP0afdXdidem8jPTTmJEvc
+         zqs5fhBSHTDWC86JkdzzaXQEkBa+h7GMjNEfc0zzPoLGh9RGngxShCdA6ObBfd6ToyAr
+         gdh0eScKNn4iEEHFHiPBXtQZpF7qUr+XjSPWSrdgJvRStegSvKv0RbcQeRoqWhh8WqN1
+         Ab/A==
+X-Forwarded-Encrypted: i=1; AJvYcCUbfaYcsibndJuVfAHC/gnOhwvEMhZbToBIrsz8CR6TEpqWB+vqtyaHz/qZrk3zzbEOiygZ8lKVMAVOtGE=@vger.kernel.org, AJvYcCVSZVEiQIqeALG6NDoM38YFo3Hvp4fT1+S/qrZ3HY33wHugcJbCmIRzzuOeb00dAx5Jm49mnSZcwFtn@vger.kernel.org, AJvYcCWV8NSkdNCTgyyDPeKH1MOE2tijvLYV4g6me19AkaIAdMz2uATx6NWLjTPFoCdaYmrktWkXkCOc9juzbFy1vJGdJ0o=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz3PZd4GkR/zKgoR4HX0QDoCLvdykwbAp4nxigmuP1Jtm6KMHHu
+	HgXjToelnZZVdBOoCYhHawdCDdeZVawHtMTLvo1IV7BM7ZJ6AeT6Ar0QsQ==
+X-Gm-Gg: ASbGnct7/yhzsANGiynNVXMw2GQXV5FUaSYgy8Q0pIPTOR1JvkPaeMIA+oVAbQ9P+be
+	iiUV7ba+Y3s/CQeHuMZ4oNjR8y1UysQgGDFCaqhEYp6aZZAdpYpu8p+CP+OCjzRb18Ql1Z3LToQ
+	xw47b0f7PQEoYGKY1K83Z6nXct46V3lB5LZ8DlWoolfcnoG/nh1ufAtDUT+F9lhHcGp9I7f5v7/
+	o5uKIAXLLd1fazDc0sJEhNO6jLpSQj19Wl8D/aaTP38YY7NFu98JPE/YCrLwzqhOQFqVEIDiCX/
+	l7ZCDmEShIQiOTkeTVzJ90WQAIF1sKKvgRnSoJypawGlAihNN00tpyiTWRMEGSvNm3SOx0rjR4Z
+	U5aiE6MKexTUc16HI5dcumHkbjdd5Zvg=
+X-Google-Smtp-Source: AGHT+IG9ozHnjVC76ueR/+PL/g8GBD50uBvVPNeNxV965xi/LKWBDRHMHz2jEIzfTLpWAF7nbTflmg==
+X-Received: by 2002:a05:6000:1f8d:b0:390:ee34:228b with SMTP id ffacd0b85a97d-3997f910522mr2973972f8f.24.1742568487046;
+        Fri, 21 Mar 2025 07:48:07 -0700 (PDT)
+Received: from ivaylo-T580.. (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3997f9b3dd5sm2533851f8f.45.2025.03.21.07.48.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Mar 2025 07:45:49 -0700 (PDT)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Fri, 21 Mar 2025 15:45:01 +0100
-Subject: [PATCH 3/3] arm64: dts: qcom: sm6350: Add video clock controller
+        Fri, 21 Mar 2025 07:48:06 -0700 (PDT)
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc: devicetree@vger.kernel.org,
+	linux-usb@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org
+Subject: [PATCH v3 0/2] usb: dwc3: exynos: add support for Exynos2200 variant
+Date: Fri, 21 Mar 2025 16:48:01 +0200
+Message-ID: <20250321144804.1435502-1-ivo.ivanov.ivanov1@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250321-sm6350-videocc-v1-3-c5ce1f1483ee@fairphone.com>
-References: <20250321-sm6350-videocc-v1-0-c5ce1f1483ee@fairphone.com>
-In-Reply-To: <20250321-sm6350-videocc-v1-0-c5ce1f1483ee@fairphone.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Taniya Das <quic_tdas@quicinc.com>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Luca Weiss <luca.weiss@fairphone.com>
-X-Mailer: b4 0.14.2
+Content-Transfer-Encoding: 8bit
 
-Add a node for the videocc found on the SM6350 SoC.
+Hey folks,
 
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
- arch/arm64/boot/dts/qcom/sm6350.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+This patchset adds support for the Exynos 2200 to the exynos-dwc3 glue
+code. It takes one clock - the link_aclk, and the dwc3 refclk is passed
+to the dwc3 subnode, as with gs101.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-index 00ad1d09a19558d9e2bc61f1a81a36d466adc88e..ab7118b4f8f8cea56a3957e9df67ee1cd74820a6 100644
---- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-@@ -1952,6 +1952,20 @@ usb_1_dwc3_ss_out: endpoint {
- 			};
- 		};
- 
-+		videocc: clock-controller@aaf0000 {
-+			compatible = "qcom,sm6350-videocc";
-+			reg = <0 0x0aaf0000 0 0x10000>;
-+			clocks = <&gcc GCC_VIDEO_AHB_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK>,
-+				 <&sleep_clk>;
-+			clock-names = "iface",
-+				      "bi_tcxo",
-+				      "sleep_clk";
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
- 		cci0: cci@ac4a000 {
- 			compatible = "qcom,sm6350-cci", "qcom,msm8996-cci";
- 			reg = <0 0x0ac4a000 0 0x1000>;
+Best regards,
+Ivaylo
+
+Changes in v3:
+- fix partial r-b tag from the dt bindings commit message
+
+Changes in v2:
+- add sob and r-b tags
+- drop minitems from binding patch
+
+Ivaylo Ivanov (2):
+  dt-bindings: usb: samsung,exynos-dwc3: add exynos2200 compatible
+  usb: dwc3: exynos: add support for Exynos2200 variant
+
+ .../bindings/usb/samsung,exynos-dwc3.yaml          | 14 ++++++++++++++
+ drivers/usb/dwc3/dwc3-exynos.c                     |  9 +++++++++
+ 2 files changed, 23 insertions(+)
 
 -- 
-2.49.0
+2.43.0
 
 
