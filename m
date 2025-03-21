@@ -1,87 +1,115 @@
-Return-Path: <devicetree+bounces-159488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE5B7A6B219
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 01:17:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7A0EA6B25F
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 01:39:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 710313A5CDA
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 00:16:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 41ADF188F767
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 00:39:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D7DA4C81;
-	Fri, 21 Mar 2025 00:16:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CF3A1E48A;
+	Fri, 21 Mar 2025 00:39:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="hNvtqjzo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B438200CB;
-	Fri, 21 Mar 2025 00:16:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D52E23BE;
+	Fri, 21 Mar 2025 00:39:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742516171; cv=none; b=qS4/eK3DaDywAf2noIMdeaa+8bfmlptCJNgyQ8BxvEQIZbc/JCgmZUoyraG6rTZft+dr4O6VeY6O1A7WGeSDP8zuz+Etu0C59ZhgIYPI+U1Btx+HelF+17+3GrSzMU3fg7BXdhfsAWM0JzIFGBv92UM+lCQCxCIeuT5IESM1p14=
+	t=1742517584; cv=none; b=MGRXFfJIJLs7McOFQ2tx1ph75hAdgvznZ0JrYvxZBbEjsn5yITjW0LN8BA4yc4Tyyh5npUPa9tGIAKHh748GuezZ+Lbfay9wffjg1/i8ayid4xEl6xkcsJIVEH0H0kP4DbNP73cHiKNriWZytDJPKbO3Qo2aJYF22OI0nJJY930=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742516171; c=relaxed/simple;
-	bh=PXjSv9YqNQ/73RABrmcz46z10w18/4V0fxlzYlBOcgM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ST+PAM3kN6kpGc/DWcjgb4I5o3tTjXp2qER20etpBwhGVECFBc3oC4jftws9Z/a3wy9t9J+MI24DWE6GCeYA6G31KGq2w8mRvYfVSbECqAFPzP0HmGWI9Z7eO9VAl8fHepAFL9nUrVVFqVsM2oEn/paxygEXCqamjkrm/TxLCCw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.18.40])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 6ED493431C2;
-	Fri, 21 Mar 2025 00:16:09 +0000 (UTC)
-Date: Fri, 21 Mar 2025 00:16:05 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Alex Elder <elder@riscstar.com>
-Cc: p.zabel@pengutronix.de, mturquette@baylibre.com, sboyd@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	heylenay@4d2.org, guodong@riscstar.com, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/7] clk: spacemit: add K1 reset support
-Message-ID: <20250321001605-GYA10514@gentoo>
-References: <20250320194449.510569-1-elder@riscstar.com>
- <20250320232128-GYA10498@gentoo>
- <fe26de4f-5593-4f34-a752-5fb051972c31@riscstar.com>
+	s=arc-20240116; t=1742517584; c=relaxed/simple;
+	bh=81e5U12yQNl/T/++JQb1aWg02Oq1JzXIwoKQeuPOf/Y=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=IVCrMY+WgWLYIQXCuEwGCY3oi9spEe3r9r5skscvlM4lJZDPWtHaRdmNV0WUQu79G7+Qdwaz11RQvLTNALxrJ0FrWIyZ93AS4ly036FlFnY/A8OJXFVTzWZjPgHkBHQJTeorxJ65b6JddfCvYRWq4U+aHrOiiH0Eofy8Su0e9yI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=hNvtqjzo; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1742517572;
+	bh=81e5U12yQNl/T/++JQb1aWg02Oq1JzXIwoKQeuPOf/Y=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=hNvtqjzoDLk8nMsNRAwLiBQBq+A/jaZLOBJz+AKXu7nVybKAhi3bpWyAN3UwvUAb8
+	 X7W18/K0L0z19l88HAz/Q+IzcU8f5p+yOmbFKNjjC/Vr6SM/ECKFUy1ENppiVPOAp/
+	 ls5fZFHmu4slQdo12PDCxxBwT5rPrsOrlZ17+Ww48dGtZIE59RQ/1bEcHzhclY2HU8
+	 524k15wq+Y3mMZNo+dFMqrzObb2BHGo0BTtsJ1wRv4OL3ScntyzPkIbI6NMg+wO5DT
+	 PuIlnqy0QducLALaoV3cHepsDSaDVxG96w28MCkSn5/NUiqE6ORZLXIuI0PM9Lhd3U
+	 Y+ASm+H464Yfg==
+Received: from [192.168.68.112] (unknown [180.150.112.225])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id B61B17A4E7;
+	Fri, 21 Mar 2025 08:39:30 +0800 (AWST)
+Message-ID: <158f6e8e6c41250d6b88c5f2b5dc6df5d728222b.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v4 1/2] dt-bindings: arm: aspeed: Add AMD Onyx BMC
+ compatible
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Rajaganesh Rathinasabapathi <Rajaganesh.Rathinasabapathi@amd.com>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>, joel@jms.id.au,
+ robh+dt@kernel.org,  openbmc@lists.ozlabs.org,
+ linux-arm-kernel@lists.infradead.org,  linux-kernel@vger.kernel.org,
+ jothayot@amd.com, linux-aspeed@lists.ozlabs.org,  krzk+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org
+Date: Fri, 21 Mar 2025 11:09:29 +1030
+In-Reply-To: <174233663954.4094319.18412685456723022993.robh@kernel.org>
+References: <20250318174730.1921983-1-Rajaganesh.Rathinasabapathi@amd.com>
+	 <174233663954.4094319.18412685456723022993.robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <fe26de4f-5593-4f34-a752-5fb051972c31@riscstar.com>
 
-Hi Alex:
+On Tue, 2025-03-18 at 17:26 -0500, Rob Herring (Arm) wrote:
+>=20
+> On Tue, 18 Mar 2025 12:47:29 -0500, Rajaganesh Rathinasabapathi wrote:
+> > Document new AMD Onyx BMC board compatibles
+> >=20
+> > Signed-off-by: Rajaganesh Rathinasabapathi <Rajaganesh.Rathinasabapathi=
+@amd.com>
+> > ---
+> > =C2=A0Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+> > =C2=A01 file changed, 1 insertion(+)
+> >=20
+>=20
+>=20
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
+>=20
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
+>=20
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+>=20
+> =C2=A0 pip3 install dtschema --upgrade
+>=20
+>=20
+> New warnings running 'make CHECK_DTBS=3Dy for arch/arm/boot/dts/aspeed/' =
+for 20250318174730.1921983-1-Rajaganesh.Rathinasabapathi@amd.com:
+>=20
+...
+>=20
+> arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dtb: mbeeprom@50: $nodename:=
+0: 'mbeeprom@50' does not match '^eeprom@[0-9a-f]{1,2}$'
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0from schema $id: http://d=
+evicetree.org/schemas/eeprom/at24.yaml#
+> arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dtb: mbeeprom@50: Unevaluate=
+d properties are not allowed ('$nodename' was unexpected)
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0from schema $id: http://d=
+evicetree.org/schemas/eeprom/at24.yaml#
 
-On 19:05 Thu 20 Mar     , Alex Elder wrote:
-> On 3/20/25 6:21 PM, Yixun Lan wrote:
-> > Hi Alex:
-> > 
-> > Thanks for sending this patch series
-> > 
-> > Can you also CC spacemit mailing list: spacemit@lists.linux.dev
-> > it should be handled automaticlly in next 6.15-rc1 version as the
-> > MAINTAINERS file updated
-> > https://web.git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git/commit/?id=4a0c4e723c94
-> 
-> Sorry about that.  I will copy it on my next version.
-> 
-> Are you asking me to RESEND this series with that addition?
-> 
-A resend would be great, so people subscrited to that list will
-receive the emails.. in this case, I will wait to add more comments.
+Rajaganesh: Please fix these warnings before you send v5.
 
--- 
-Yixun Lan (dlan)
-Gentoo Linux Developer
-GPG Key ID AABEFD55
+Andrew
 
