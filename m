@@ -1,133 +1,165 @@
-Return-Path: <devicetree+bounces-159567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159573-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9EAFA6B783
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 10:35:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CCF8A6B79D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 10:36:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 218E3189B8D9
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 09:35:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 310CA460CF7
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 09:36:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF5271F2377;
-	Fri, 21 Mar 2025 09:34:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70B3121D59F;
+	Fri, 21 Mar 2025 09:35:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="4U0PB6XM"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="pJYSvMk+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E080D1F1906;
-	Fri, 21 Mar 2025 09:34:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD9D41F17E5;
+	Fri, 21 Mar 2025 09:35:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742549686; cv=none; b=qFYj0OLz10IfwiV5w6gAmBmI4mEMLhDIyPNLc5QRYuPYItxJs9xxOczIgZwZHqZ+0g8yz0AOWp+ob/6BYw89egp0Nw6VXKr2i0yjz5MVuGXbMYUGWaKbBwc5Ayp8TvDCsyXIF5TxThLy5rwzh2OocAP98u4oBRZDMJb9p+aVg8o=
+	t=1742549706; cv=none; b=uF3oa2b3vKMDKUNGKw+aj7xS3Bq1CNAgFuAlgWigpeUBZCPijkpc23Yc5bGILGEXK+pRcLud1nNKnL7AhTdT3MqqBZTop2maYapTGVRU+rSKJbkZohburLe2sBJ66o7VT1OyDsFRLRRauiuslCfe75I5zBQG62eQks8P8OAaSLQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742549686; c=relaxed/simple;
-	bh=pNCuaRq20ihRDPIs6gWBbwsMGTzuOJxHjP1yYRN8ZiQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=I5QqWkia3Dd8DWURAwR+Ok/Y6sEYPfrfseJYUM0KVMFFtWWgHRe+loa7p2GM2fNk8CFqxTkBEGPE9Za0rYdfsdKCIdZV90AHQbIoBwUcXTNVJUBxo4Ttj7JwczxRfA1JZZmXxakn+/4LjIbKpdiCc5er+oGXyz8w9kUBl6cMdB4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=4U0PB6XM; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52L58g15007292;
-	Fri, 21 Mar 2025 10:34:34 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	WwkG1pZIiujSvSdNAeNRVIU4m+oKTZ5N+BMPOnssFpU=; b=4U0PB6XM2gh6OPAB
-	VWn4O85SC8oaCqO50cshe0tpqfsQjZZnKS6qvjK/e8HsPiqQON2lC3VTOtAUTOkv
-	2FH6d+C73xhTLrY1b19GXJFHIxeeiKV0MZvI3WNKpKzzz40oSymjII4G7ykg32H5
-	29/m7IaBnSyQlZVZ3WjMAPK5P3s1Jo0PfNi532XwiQSSmIpLgE/+OGxcTLKeX9f4
-	ZEOEUZzrlBx0x+XetBUS2hyhp1Tnui0da8Dmy09xLqstoBlJPXo/QxLhbBigxnxM
-	WBwR760FX/2RH4cJ0ConLI64dGpP8RbbNL1EyFQotfHa2KJuTk17HgXeEz169Eyu
-	T0BrUQ==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45gh76vnq8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 21 Mar 2025 10:34:34 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 1FEF540061;
-	Fri, 21 Mar 2025 10:33:21 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0C4A37BD057;
-	Fri, 21 Mar 2025 10:32:32 +0100 (CET)
-Received: from localhost (10.252.27.50) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 21 Mar
- 2025 10:32:31 +0100
-From: Patrice Chotard <patrice.chotard@foss.st.com>
-Date: Fri, 21 Mar 2025 10:32:27 +0100
-Subject: [PATCH v6 7/7] arm64: defconfig: Enable STM32 Octo Memory Manager
- and OcstoSPI driver
+	s=arc-20240116; t=1742549706; c=relaxed/simple;
+	bh=8Lrt5ED8u/rQAJQ7OVXPJbaftuiKlagAIxz9Y2LQr70=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=TZ11l65selLTIZ/fR6OKhUad9m6epmixJIzaCWtRnCFuk57Vd+IQkD+PVrx5NioS0gV3q34SBc4FKXp9TAAqWhhaMNck9i+3vyeEpoifLDrar2iEEXMdhojFMjcJ9GZjCtipnkYKbw5NUjyWfOZV8DDdq7QlpCGYIuwQHLIvHko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=pJYSvMk+; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: be78862c063711f0aae1fd9735fae912-20250321
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=XyPNRArIQHbZFMHDFDMsDCGvKqnXw9QJroLE3H0ZOeU=;
+	b=pJYSvMk+hFxURwYD6ONfnLVnnneXRI2HNDD1QfSPzKFjSYXiFVZDGmR4GVOX9Uar9REfZNLmMq7uipKPYEKMU3qPCR58JYCC3vEGswtO++cUgBDJI8boy5CTs0PqFg2lrjcUuZAtE3YQfMyg3lwFfSTuE4Xff+UthGLVZNamF+A=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.2.1,REQID:ceffd49d-ce86-438c-a27b-8a82d40deb1c,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:0ef645f,CLOUDID:1879a1c6-16da-468a-87f7-8ca8d6b3b9f7,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:ni
+	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: be78862c063711f0aae1fd9735fae912-20250321
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+	(envelope-from <paul-pl.chen@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1805131538; Fri, 21 Mar 2025 17:34:53 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.39; Fri, 21 Mar 2025 17:34:52 +0800
+Received: from mtksitap99.mediatek.inc (10.233.130.16) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.39 via Frontend Transport; Fri, 21 Mar 2025 17:34:52 +0800
+From: paul-pl.chen <paul-pl.chen@mediatek.com>
+To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<chunkuang.hu@kernel.org>, <angelogioacchino.delregno@collabora.com>
+CC: <matthias.bgg@gmail.com>, <p.zabel@pengutronix.de>,
+	<jason-jh.lin@mediatek.com>, <nancy.lin@mediatek.com>,
+	<singo.chang@mediatek.com>, <xiandong.wang@mediatek.com>,
+	<sirius.wang@mediatek.com>, <paul-pl.chen@mediatek.com>,
+	<sunny.shen@mediatek.com>, <fshao@chromium.org>, <treapking@chromium.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
+	<linux-arm-kernel@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v2 00/15] Add MediaTek SoC DRM support for MT8196
+Date: Fri, 21 Mar 2025 17:33:29 +0800
+Message-ID: <20250321093435.94835-1-paul-pl.chen@mediatek.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250321-upstream_ospi_v6-v6-7-37bbcab43439@foss.st.com>
-References: <20250321-upstream_ospi_v6-v6-0-37bbcab43439@foss.st.com>
-In-Reply-To: <20250321-upstream_ospi_v6-v6-0-37bbcab43439@foss.st.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon
-	<will@kernel.org>
-CC: <christophe.kerello@foss.st.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Patrice Chotard
-	<patrice.chotard@foss.st.com>
-X-Mailer: b4 0.14.2
-X-ClientProxiedBy: SAFCAS1NODE2.st.com (10.75.90.13) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-21_03,2025-03-20_01,2024-11-22_01
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Enable STM32 OctoSPI driver.
-Enable STM32 Octo Memory Manager (OMM) driver which is needed
-for OSPI usage on STM32MP257F-EV1 board.
+From: Paul-pl Chen <paul-pl.chen@mediatek.com>
 
-Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
----
- arch/arm64/configs/defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+This patch series adds support for the MediaTek MT8196 SoC's display
+subsystem in the DRM driver.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index bde1287ad9a7a1341162b817873eb651bb310d52..3674d9138bae6deba19c0d13586aa6e1de6750c5 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -580,6 +580,7 @@ CONFIG_SPI_QUP=y
- CONFIG_SPI_QCOM_GENI=m
- CONFIG_SPI_S3C64XX=y
- CONFIG_SPI_SH_MSIOF=m
-+CONFIG_SPI_STM32_OSPI=m
- CONFIG_SPI_SUN6I=y
- CONFIG_SPI_TEGRA210_QUAD=m
- CONFIG_SPI_TEGRA114=m
-@@ -1518,6 +1519,7 @@ CONFIG_EXTCON_USB_GPIO=y
- CONFIG_EXTCON_USBC_CROS_EC=y
- CONFIG_FSL_IFC=y
- CONFIG_RENESAS_RPCIF=m
-+CONFIG_STM32_OMM=m
- CONFIG_IIO=y
- CONFIG_EXYNOS_ADC=y
- CONFIG_IMX8QXP_ADC=m
+Changes in v2:
+- add support for MT8196's new hardware components (EXDMA, BLENDER, 
+  OUTPROC) following the previous MTK OVL software architecture.
+- reuse mtk_ovl drivers in MediaTek DRM display to support the new 
+  MT8196 SoC.
+- implement support for multiple mmsys instances within a single 
+  mediatek-drm driver, improving flexibility and scalability.
+- refactor existing components (mutex, OVL) to accommodate the new 
+  architecture and improve code reusability.
+- update component matching, binding logic, and data structures to 
+  support the new multi-mmsys design.
+
+Nancy Lin (10):
+  soc: mediatek: add mmsys support for MT8196
+  soc: mediatek: mutex: refactor SOF settings for output components
+  soc: mediatek: mutex: add mutex support for MT8196
+  drm/mediatek: Refine OVL format convert API and export to public
+  drm/mediatek: add EXDMA support for MT8196
+  drm/mediatek: add BLENDER support for MT8196
+  drm/mediatek: add OUTPROC support for MT8196
+  drm/mediatek: add ovlsys_adaptor support for MT8196
+  drm/mediatek: Add support for multiple mmsys in the one mediatek-drm
+    driver
+  drm/mediatek: Add support for MT8196 multiple mmsys
+
+Paul-pl Chen (5):
+  dt-bindings: arm: mediatek: mmsys: add compatible for MT8196
+  dt-bindings: soc: mediatek: add mutex yaml for MT8196
+  dt-bindings: display: mediatek: add EXDMA yaml for MT8196
+  dt-bindings: display: mediatek: add BLENDER yaml for MT8196
+  dt-bindings: display: mediatek: add OUTPROC yaml for MT8196
+
+ .../bindings/arm/mediatek/mediatek,mmsys.yaml |   5 +
+ .../display/mediatek/mediatek,blender.yaml    |  48 ++
+ .../display/mediatek/mediatek,outproc.yaml    |  54 ++
+ .../bindings/dma/mediatek,exdma.yaml          |  70 ++
+ .../bindings/soc/mediatek/mediatek,mutex.yaml |   2 +
+ drivers/gpu/drm/mediatek/Makefile             |   4 +
+ drivers/gpu/drm/mediatek/mtk_crtc.c           | 342 ++++++--
+ drivers/gpu/drm/mediatek/mtk_crtc.h           |   6 +-
+ drivers/gpu/drm/mediatek/mtk_ddp_comp.c       | 133 +--
+ drivers/gpu/drm/mediatek/mtk_ddp_comp.h       |   6 +
+ drivers/gpu/drm/mediatek/mtk_disp_blender.c   | 276 ++++++
+ drivers/gpu/drm/mediatek/mtk_disp_blender.h   |  18 +
+ drivers/gpu/drm/mediatek/mtk_disp_drv.h       |  67 ++
+ drivers/gpu/drm/mediatek/mtk_disp_exdma.c     | 372 ++++++++
+ drivers/gpu/drm/mediatek/mtk_disp_outproc.c   | 242 ++++++
+ drivers/gpu/drm/mediatek/mtk_disp_outproc.h   |  22 +
+ drivers/gpu/drm/mediatek/mtk_disp_ovl.c       | 158 ++--
+ drivers/gpu/drm/mediatek/mtk_disp_ovl.h       |  16 +
+ .../drm/mediatek/mtk_disp_ovlsys_adaptor.c    | 797 ++++++++++++++++++
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c        | 281 +++++-
+ drivers/gpu/drm/mediatek/mtk_drm_drv.h        |  28 +-
+ drivers/soc/mediatek/mt8196-mmsys.h           | 451 ++++++++++
+ drivers/soc/mediatek/mtk-mmsys.c              | 203 ++++-
+ drivers/soc/mediatek/mtk-mmsys.h              |  18 +
+ drivers/soc/mediatek/mtk-mutex.c              | 257 +++++-
+ include/linux/soc/mediatek/mtk-mmsys.h        |  60 ++
+ include/linux/soc/mediatek/mtk-mutex.h        |   4 +
+ 27 files changed, 3675 insertions(+), 265 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,blender.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,outproc.yaml
+ create mode 100644 Documentation/devicetree/bindings/dma/mediatek,exdma.yaml
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_blender.c
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_blender.h
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_exdma.c
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_outproc.c
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_outproc.h
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_ovl.h
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_ovlsys_adaptor.c
+ create mode 100644 drivers/soc/mediatek/mt8196-mmsys.h
 
 -- 
-2.25.1
+2.45.2
 
 
