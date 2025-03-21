@@ -1,63 +1,48 @@
-Return-Path: <devicetree+bounces-159602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FB7CA6B87E
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 11:08:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A32C9A6B88D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 11:13:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B9690189C646
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 10:08:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22E7617E008
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 10:13:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B6851F3B8F;
-	Fri, 21 Mar 2025 10:08:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D3361F3B8F;
+	Fri, 21 Mar 2025 10:13:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LhlkLEae"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="et/KB8+m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0AF51EBFF0;
-	Fri, 21 Mar 2025 10:08:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FDF533F6;
+	Fri, 21 Mar 2025 10:13:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742551687; cv=none; b=pHqZ0b4GsycK0WGP+Y/bqVWF0pTMw8zq0WBmLv2CwfgMSO4rBKwk01TWd/SJwkb35ABYqcxJpe41FGSEEbtrw1ZpGawvvftkep32pyAXh8gUn+hgQ562WXkFdtZ6Xyz0C48BrdDiYZExTX2SsYd/tC0UlWr9FXv0XuSMTqv+7IQ=
+	t=1742552023; cv=none; b=hvD0Y1AsbvB3sJP02gjZ0CzYf57PL6F92YlN1/O7X70DUybu8ovxbUv87i9FpneMbmBGYQkLETluKISeZrqHB9W8Zza/zHXvjatQUdChoruEC353ZS1sgr2jV/siBGejFLN0TtmCLxSb1aM8OPUJM8yTwudz8LlwOOziTqCipd0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742551687; c=relaxed/simple;
-	bh=JUyYZgvHnMkO5Pzm34Kcy4R92KbnKob5xAR4ZC5hkhg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=A7DnwopBs6aUhtyS2YBCpDVmMjZInG+SbiNDUiH5Asw+EtGwWLIlZrCSXV5kGThZxQJ1+QToTzIEQqRHkZC70d23sYGMD6J1+2GCabBqzgW8INoUpmSzSop/Eq+gme9uaXGXuh5c5lJj+LvhUROCoq4+/5lREssRfnvyUVuFMXg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LhlkLEae; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52L8k5KD014152;
-	Fri, 21 Mar 2025 10:07:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Wohi0atRJyGxd3ZMz+5DEGmp/UcLqgSt0+cwzpEAn7Q=; b=LhlkLEaeYTL0lYbX
-	OeJ0IIyA3TpDzoGu6JdBSEp0PgMN44rbc6EFIldxsYRSl4gwyopG7W9+N8uQCyGn
-	htBBfvZZaDnQysgrvXSx36AeTfbdeUrMB/5pbp7ALpTdpyBF/BQNhLNYMOImYruU
-	6gJnqDOgatxboTIRyROnDIoZLvDbKIa5mROtGfzuxNhitWd2bNRb2YqiDRvMNGvW
-	7tTfFMrxM7REW3VzjT2dg+SYQyk3oWQBuCjFYmri6fDs/rP7Ryr1+lOGoNYUXieE
-	cktD0/ROrJeqCdcfhudcH4TA1CoBber6d/3KuAYTupJXKJULnIrajREzN3W+MhFk
-	HP35KA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45h4p1097v-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 21 Mar 2025 10:07:56 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52LA7tV3022850
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 21 Mar 2025 10:07:55 GMT
-Received: from [10.152.207.135] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 21 Mar
- 2025 03:07:52 -0700
-Message-ID: <10fd0006-8428-4bc6-9578-2a05dc1382e0@quicinc.com>
-Date: Fri, 21 Mar 2025 15:37:49 +0530
+	s=arc-20240116; t=1742552023; c=relaxed/simple;
+	bh=EZbtgEk7SZ4G91a9vc2hXnQO8qphCCfomxCtIP1nLmU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TPgr1B4OTy7rW+bKfL7HI8MVwgVJE2wCSUZvWpeZart90S6vVRr9rh5uqeboBfbJcUaeDhRc6DvYtFf4fUlDEsY0m+0JVDZDj2MxAnQb3yg3O/2CLb99LEsfIREGLq2hdLL3Xs0C8rWkCxQy5JtzE9ckUofBE/GZMB1KQxKXtLc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=et/KB8+m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E42FC4CEE3;
+	Fri, 21 Mar 2025 10:13:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742552022;
+	bh=EZbtgEk7SZ4G91a9vc2hXnQO8qphCCfomxCtIP1nLmU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=et/KB8+msgdT4aalzipN1WP21vPP3jMJwBlYdfjieZDC04KudFQqZUbEjoBh0RC5q
+	 a2HM9q/DVJm3f8xzdch5J247VVzzbodEsWJZ8RjEhnXAVswcmbqEXjyRyakcpnLT+W
+	 dZPXY5H/K/DHfPb+1PR/Ce5pwKMH9q3RHeG2/Dv09/gq07RMUVduJgRuz+aSm8oR2i
+	 yJwg7zFlv91fszYH7tqjjsNmN/YyOmM9tWa8xjZdfGUMXooi59rwkAsPPG8L+SAOQ8
+	 o2/d2Ff9erqvBTZxlp46gcF+bDhvZYVc/3xQOuZeo/2iEC9IHIgNQFZUNySN3eJmeQ
+	 5YQRSU1vpnL7A==
+Message-ID: <688c619d-0e20-496a-ae24-d62ab34f93ab@kernel.org>
+Date: Fri, 21 Mar 2025 11:13:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,87 +50,83 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH ath-next v11 00/13] wifi: ath12k: add Ath12k AHB driver
- support for IPQ5332
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <ath12k@lists.infradead.org>, Johannes Berg <johannes@sipsolutions.net>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
-        <linux-wireless@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250317204639.1864742-1-quic_rajkbhag@quicinc.com>
- <20250318-splendid-sceptical-gazelle-8abbef@krzk-bin>
+Subject: Re: [PATCH 1/2] spi: dt-bindings: st,stm32mp25-ospi: Make "resets" a
+ required property
+To: Patrice Chotard <patrice.chotard@foss.st.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ christophe.kerello@foss.st.com, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250321-upstream_ospi_required_resets-v1-0-9aa4702e3ae2@foss.st.com>
+ <20250321-upstream_ospi_required_resets-v1-1-9aa4702e3ae2@foss.st.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-In-Reply-To: <20250318-splendid-sceptical-gazelle-8abbef@krzk-bin>
-Content-Type: text/plain; charset="UTF-8"
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250321-upstream_ospi_required_resets-v1-1-9aa4702e3ae2@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 6M9rfQf7dbn492hdifADri3wc56cF0kc
-X-Proofpoint-ORIG-GUID: 6M9rfQf7dbn492hdifADri3wc56cF0kc
-X-Authority-Analysis: v=2.4 cv=NZjm13D4 c=1 sm=1 tr=0 ts=67dd3a7c cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=VwQbUJbxAAAA:8 a=bsUYDfnVGbR25cQxC6AA:9
- a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-21_04,2025-03-20_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxlogscore=999
- priorityscore=1501 impostorscore=0 bulkscore=0 phishscore=0 spamscore=0
- mlxscore=0 lowpriorityscore=0 suspectscore=0 malwarescore=0 adultscore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503210074
 
-On 3/18/2025 1:30 PM, Krzysztof Kozlowski wrote:
-> On Tue, Mar 18, 2025 at 02:16:26AM +0530, Raj Kumar Bhagat wrote:
->> Currently, Ath12k driver only supports WiFi devices that are based on
->> PCI bus. New Ath12k device IPQ5332 is based on AHB bus. Hence, add
->> Ath12k AHB support for IPQ5332.
->>
->> IPQ5332 is IEEE802.11be 2 GHz 2x2 Wifi device. To bring-up IPQ5332
->> device:
->> - Add hardware parameters for IPQ5332.
->> - CE register address space in IPQ5332 is separate from WCSS register
->>   space. Hence, add logic to remap CE register address.
->> - Add support for fixed QMI firmware memory for IPQ5332.
->> - Support userPD handling for WCSS secure PIL driver to enable ath12k
->>   AHB support.
->>
->> NOTE:
->> The working upstream DTS changes for this series have been posted as a
->> separate series.
->> [PATCH v2] arm64: dts: qcom: add wifi node for IPQ5332 based RDP441
->>
->> v11:
->> - Updated Kconfig for ATH12k AHB.
->> - Replaced the API devm_ioremap_wc() with devm_memremap to fix ath12k-check
->>   warning: "warning: cast removes address space '__iomem' of expression"
->> - Rebased on latest ToT.
->> - Removed tag "Reviewed-by: Vasanthakumar Thiagarajan", in the updated
->>   patch [11/13] wifi: ath12k: Power up userPD
-> 
-> 
-> This is v11 and still sent in a way it messes with toolset:
-> 
->   b4 diff -C 20250317204639.1864742-2-quic_rajkbhag@quicinc.com
->   Grabbing thread from lore.kernel.org/all/20250317204639.1864742-2-quic_rajkbhag@quicinc.com/t.mbox.gz
->   Checking for older revisions
->     Added from v10: 14 patches
->   ---
->   Analyzing 135 messages in the thread
->   Preparing fake-am for v11: dt-bindings: net: wireless: describe the ath12k AHB module for IPQ5332
->   ERROR: Could not fake-am version v11
->   ---
->   Could not create fake-am range for upper series v11
-> 
-> Can you fix your process so the tools will be happy? Please read
-> carefully your internal guideline go/upstream before posting next
-> version.
-> 
+On 21/03/2025 10:44, Patrice Chotard wrote:
+> Make "resets" a required property.
 
-It may be because, I did not use b4 tool for this.
-Will send the next version with b4 tool.
+Please explain why. This is technically an ABI break, so you please
+provide explanation what sort of issue is being fixed.
+
+> 
+> Fixes: bed97e35786a ("dt-bindings: spi: Add STM32 OSPI controller")
+> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+> ---
+>  Documentation/devicetree/bindings/spi/st,stm32mp25-ospi.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+
+
+Best regards,
+Krzysztof
 
