@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-159559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 991E2A6B72B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 10:24:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C99DAA6B735
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 10:25:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E5C53B7DF1
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 09:24:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 333773AE33C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 09:25:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56A241EFFB7;
-	Fri, 21 Mar 2025 09:24:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42DFF1EFFB6;
+	Fri, 21 Mar 2025 09:25:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BzyEt7GT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BkttSCfq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AD981EFFB0;
-	Fri, 21 Mar 2025 09:24:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C1191EEA39;
+	Fri, 21 Mar 2025 09:25:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742549073; cv=none; b=pNYdBmnWTUO7xJ9cCQxJqRHafd/h8jO9NFzTR8Yw/piGHS371lBDlyxSJnS11zfRdCtsDVN7SZvDgZxFX1UbUZC6GAhUD/S0rr4m50wwIGEA20VxMOQg8DUv+QoTdhR2tIDbaoTbSY+D0elEdQvhXZ5hBodgddtHhIJ7SK15LqM=
+	t=1742549141; cv=none; b=oqdeKfHjYmZoG81u7vKEjwY8ZjtozAhfyOIv0/LezgMYarHlpxn41c3eLENOU1s5vO82bICMEOMx+tKAgpJZ/li8BKorLAnLfIxLQUwAxjIx0g4IKURJHp560OpFjrMzMvbSx7CeE/9cbsRT0YCMoiw0UXVFBEqC8jXOveNFRq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742549073; c=relaxed/simple;
-	bh=hcZepsJVZIicztpwdbpb4ekmKnIA5d/Q/tXIMTCkFdo=;
+	s=arc-20240116; t=1742549141; c=relaxed/simple;
+	bh=xagWroqK2KjwExb/4QdLan+HJEEnc1v2heAo/kNeQMg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LjcVrQGToHnXmzHxOSb7TN8hCm3fQtJLbD6DQOdf08zbj2+FKAq5mQ2Lp7LpvEruc88u80ImGQ+4nZicbn3KKyg3/6Ly9U4xDGYpl7fcGInB7+u7dKUWwU7mjA9GidYda5Ydk8Gc1zSnxJqiUX7gpQL3qnnuehxCD13scb2fUAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BzyEt7GT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4A2AC4CEE3;
-	Fri, 21 Mar 2025 09:24:29 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=PsufLKGN5K8AhfYDhCvDh4Ttl4nGnVNiQqidZLuVjuS1F91fwU7s+7cnzcitEiI1+aHalpeYnF6d2Ina7lUxnSnut16L6mEE3JuZVXXgZB29BUOuWsm5vX+XRMR3M7oh9Wp6kA48qDpsISkcUWcx/2Zy4wVUi1iHiouExEd2osA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BkttSCfq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F3B8C4CEE3;
+	Fri, 21 Mar 2025 09:25:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742549072;
-	bh=hcZepsJVZIicztpwdbpb4ekmKnIA5d/Q/tXIMTCkFdo=;
+	s=k20201202; t=1742549140;
+	bh=xagWroqK2KjwExb/4QdLan+HJEEnc1v2heAo/kNeQMg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BzyEt7GTILQJAkhWXHU8IU07sJd+NniOTGiLjoHl0apnZSeAaff053qYCwPdt/t84
-	 i1QwbEf4+kDs5hhZuMG9TuQDLN0FvUMWVmKBnj9xT+G13tBIaLMD7cFZRNqCPB3jff
-	 DG8w48ozZ3EnWfYye5Kd9AMPvKFG5Izwsdy5y1qQjq6H/Nxj7cpwhxYixnxePVZApz
-	 roonnDJCbyD2XtluC1+IXF2RzabqVKele4koP+IDtQC2CcVy2xWFGCI2pLwHXfrhXe
-	 ehsjaO/Mu9Zw/BOWiTJAp2eTQq+MFtWH3lzsI+qo8L1GOEmBmtI5wUiddZRbomgdUl
-	 MoDkiWrW41eHw==
-Message-ID: <eb0a67a7-8253-4f57-87d7-bb74e45aecaa@kernel.org>
-Date: Fri, 21 Mar 2025 10:24:27 +0100
+	b=BkttSCfq/1bl1fNVgyDlJAQugUKukCU1N6GtHzthSFYhlSZyDtdMf0mLZJSvrCBeK
+	 Fu3UUKhXbXKYeepJSBP+57AAHISAOekEZZFyrFVlL8xevY2oVQ/VGFKvjJD2tsUtvK
+	 v1UgI41RlZjuibPCSNX7yS3kPXZ+ScOgNPruhTJ/0IaXSNZMVi5lA3mfJP31nTwiC3
+	 O8m60Aag4/w0PAXoFCNATGS89MDxWSYXoQl4TgmcTOF4HdyFOFH9EfSFCqOwVnniSK
+	 nQQYGTBDe+hZp5U0in6gPO9VKCGDk6CldliWv1icZbXmubvasT025r1bBxek4M+OH5
+	 5q+CAjoxHuQEQ==
+Message-ID: <e21f3e39-573d-4391-885a-2df7c2598d80@kernel.org>
+Date: Fri, 21 Mar 2025 10:25:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,12 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4] docs: dt-bindings: Specify ordering for properties
- within groups
-To: Dragan Simic <dsimic@manjaro.org>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: heiko@sntech.de, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <6468619098f94d8acb00de0431c414c5fcfbbdbf.1742532899.git.dsimic@manjaro.org>
+Subject: Re: [PATCH] arm64: dts: amlogic: a4: fix dtb compilation warning
+ issues
+To: xianwei.zhao@amlogic.com, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250321-fix-a4-pinctrl-node-v1-1-5719f9f09932@amlogic.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -101,44 +105,56 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <6468619098f94d8acb00de0431c414c5fcfbbdbf.1742532899.git.dsimic@manjaro.org>
+In-Reply-To: <20250321-fix-a4-pinctrl-node-v1-1-5719f9f09932@amlogic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/03/2025 05:57, Dragan Simic wrote:
-> Ordering of the individual properties inside each property group benefits
-> from applying natural sort order [1] by the property names, because it
-> results in more logical and more usable property lists, similarly to what's
-> already the case with the alpha-numerical ordering of the nodes without
-> unit addresses.
+On 21/03/2025 03:23, Xianwei Zhao via B4 Relay wrote:
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > 
-> Let's have this clearly specified in the DTS coding style, and let's expand
-> the provided node example a bit, to actually show the results of applying
-> natural sort order.
+> When use command 'make ARCH=arm64 dtbs_check W=1' to compile dtb,
+> a warning message appears.
+> "Warning (simple_bus_reg): /soc/bus@fe000000/pinctrl:
+> missing or empty reg/ranges property"
 > 
-> Applying strict alpha-numerical ordering can result in property lists that
-> are suboptimal from the usability standpoint.  For the provided example,
-> which stems from a real-world DT, [2][3][4] applying strict alpha-numerical
-> ordering produces the following undesirable result:
+> Add the unit address to the pinctrl node to fix it.
 > 
->   vdd-0v9-supply = <&board_vreg1>;
->   vdd-12v-supply = <&board_vreg3>;
->   vdd-1v8-supply = <&board_vreg4>;
->   vdd-3v3-supply = <&board_vreg2>;
-> 
-> Having the properties sorted in natural order by their associated voltages
-> is more logical, more usable, and a bit more consistent.
-> 
-> [1] https://en.wikipedia.org/wiki/Natural_sort_order
-> [2] https://lore.kernel.org/linux-rockchip/b39cfd7490d8194f053bf3971f13a43472d1769e.1740941097.git.dsimic@manjaro.org/
-> [3] https://lore.kernel.org/linux-rockchip/174104113599.8946.16805724674396090918.b4-ty@sntech.de/
-> [4] https://lore.kernel.org/linux-rockchip/757afa87255212dfa5abf4c0e31deb08@manjaro.org/
-> 
-> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+> Fixes: ce78f679e08c ("arm64: dts: amlogic: a4: add pinctrl node")
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > ---
+>  arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi | 102 +++++++++++++++-------------
+>  1 file changed, 55 insertions(+), 47 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+> index fa80fa365f13..582e0043024b 100644
+> --- a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+> @@ -51,87 +51,52 @@ pwrc: power-controller {
+>  };
+>  
+>  &apb {
+> -	gpio_intc: interrupt-controller@4080 {
+> -		compatible = "amlogic,a4-gpio-intc",
+> -			     "amlogic,meson-gpio-intc";
+> -		reg = <0x0 0x4080 0x0 0x20>;
+> -		interrupt-controller;
+> -		#interrupt-cells = <2>;
+> -		amlogic,channel-interrupts =
+> -			<10 11 12 13 14 15 16 17 18 19 20 21>;
+> -	};
+> -
+> -	gpio_ao_intc: interrupt-controller@8e72c {
+> -		compatible = "amlogic,a4-gpio-ao-intc",
+> -			     "amlogic,meson-gpio-intc";
+> -		reg = <0x0 0x8e72c 0x0 0x0c>;
+> -		interrupt-controller;
+> -		#interrupt-cells = <2>;
+> -		amlogic,channel-interrupts = <140 141>;
+> -	};
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Not related to the change you described in commit msg.
+
 
 Best regards,
 Krzysztof
