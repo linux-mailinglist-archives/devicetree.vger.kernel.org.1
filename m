@@ -1,313 +1,137 @@
-Return-Path: <devicetree+bounces-159837-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159838-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8E6BA6C4C5
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 22:05:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0A1AA6C4D2
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 22:06:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93EB73B8162
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 21:04:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F0F846045D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 21:06:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CBEE1EF370;
-	Fri, 21 Mar 2025 21:05:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC22622D781;
+	Fri, 21 Mar 2025 21:06:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RpRv4R6M"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="NG8RHjTH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 346141E991D;
-	Fri, 21 Mar 2025 21:05:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 691312AF1B;
+	Fri, 21 Mar 2025 21:06:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742591104; cv=none; b=eQLHlEalm22gsUm8i4pB08iAxdzSwh6tf9zra83PSbTpoOvbGvjkeRZqpRYRkYpizaZsEhjSLg36bT72ih0bDMXIiaQ7+d5fb/Kvp/FRQ9bm7M2roKQuaeTDt8RVrxR3WUossnNUxHGQ9ZngU5guAo3yNwBW9gKP5H0KlqIqAaM=
+	t=1742591195; cv=none; b=j2gODrExPvUy+O01zO5lHB5hNC9ht9m0Ro9L/5o4SDynrmUcQGIdRCUMLbL7zo04gKAR2dAim6MoH856IAkB7Uj8ivsNZMhy7fd9GO0p7Rt+UM1hPmMEnuhEHDmwi5Ou1K7DfkAigGwh8uI+PeeX5KquE4AAe04QenD37zRcPA4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742591104; c=relaxed/simple;
-	bh=A9FUC3QyUqSWEHdchGeECptIKSK+nMDFJ+yvdlBJ5A8=;
+	s=arc-20240116; t=1742591195; c=relaxed/simple;
+	bh=9riql/oH3fcMg2Z11Amu5t8EaVzKgqVadwWXmHzNEmM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j0cxcNexHo+98qceqnjfSgiB371SOQ7J35JdCcQv5KzqY+wCG743jA5kr60Cth2+h4kdDKm8J1YLeYmvRbijAR6uHoG2SHjGKGhsDGF6yjH/azDZ/pXc/p3XzJ8sqUNAwj0007w5/UbFEsnJOAAxmcepbQVz3JhFjAeprAInMII=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RpRv4R6M; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 796F2C4CEE3;
-	Fri, 21 Mar 2025 21:05:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742591103;
-	bh=A9FUC3QyUqSWEHdchGeECptIKSK+nMDFJ+yvdlBJ5A8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RpRv4R6MzxwOOJZp90MblHHDhWmYvVrc5uA6Jxtn/txEGu6rgLMCloYMPokZC0t4H
-	 TKtYfGk9GFtYUmVocoipcebaKNF2H/E237K66IEIYxnF2fhANQZHraBcVbAHwFJWk5
-	 BUAntDCF679V5mpXR89t3FHDGJEGMEEef4ca/KJiBU5gTdnmTMi22DR7h6FQHPsPoa
-	 efte32JKWoJwDA/JK2I0HrogwYtxcO9l1E1ysh5CF1455NxxOA57sdlnhyWJRTLVlT
-	 ER9iiz8/cLen/CxJeWxIzk8WHkSiHdbZewHHzuPSriF5+JEp0l/UgC2kZTCpfUmkkW
-	 CEjvxB5ebnL0g==
-Date: Fri, 21 Mar 2025 16:05:02 -0500
-From: Rob Herring <robh@kernel.org>
-To: Matthew Gerlach <matthew.gerlach@altera.com>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: edac: altera-s10: Convert to YAML
-Message-ID: <20250321210502.GA3912181-robh@kernel.org>
-References: <20250321153109.8362-1-matthew.gerlach@altera.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=a0Qm0dhxc76cxCpT9/It/2upgfcDNfd8RelzadqMcIUgwnODvlB/iTXKQ6iGeym+5cFWpGIuwriIEq4Pb07Axf+FYxTd7cA00xbS60roVi759dxHSoek2by+jVNs82sJnbaWpj/DcoJasXdZaT5JFd4AvjnECIDIj33IZFzmJmg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=NG8RHjTH; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=buUh30Oz9yzO2/ro6EDCpMmAZW/F4GUFW3had039J1M=; b=NG
+	8RHjTH4PsYo7d4kavqAQLOQu8x9oErOGpm34Sd5TXukty8lLPiNgrEE+3S1bWeqc0SdxWsnzznxA8
+	uq0KJxz55GYICV0LFFn4KCuU71h7ZgLIuC9rC2LyVeloigEBWrzWCsM8S1HzVpG9SNfj+m2ZTmv12
+	xBE77m5deunc41w=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tvjZK-006ehx-5I; Fri, 21 Mar 2025 22:06:18 +0100
+Date: Fri, 21 Mar 2025 22:06:18 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-mips@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+Subject: Re: [PATCH net-next 07/13] net: macb: move HW IP alignment value to
+ macb_config
+Message-ID: <45b3e613-90c6-4499-b50b-383106172184@lunn.ch>
+References: <20250321-macb-v1-0-537b7e37971d@bootlin.com>
+ <20250321-macb-v1-7-537b7e37971d@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20250321153109.8362-1-matthew.gerlach@altera.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250321-macb-v1-7-537b7e37971d@bootlin.com>
 
-On Fri, Mar 21, 2025 at 08:31:09AM -0700, Matthew Gerlach wrote:
-> Convert the device tree bindings for the Altera Stratix10 SoCFPGA ECC
-> Manager from text to yaml.
+On Fri, Mar 21, 2025 at 08:09:38PM +0100, Théo Lebrun wrote:
+> The controller does IP alignment (two bytes).
+
+I'm a bit confused here. Is this hard coded, baked into the silicon?
+It will always do IP alignment? It cannot be turned off?
+
+> 	skb_reserve(skb, NET_IP_ALIGN);
+
+Why not just replace this with
+
+        skb_reserve(skb, 2);
+
+> The NET_IP_ALIGN value is arch-dependent and picked based on unaligned
+> CPU access performance. The hardware alignment value should be
+> compatible-specific rather than arch-specific. Offer a path forward by
+> adding a hw_ip_align field inside macb_config.
 > 
-> Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
-> ---
-> v2:
->  - Fix $id: path.
->  - Remove unneeded '|'.
->  - Move vendor properties last (but before child nodes).
->  - Add appropriate blank lines.
->  - Don't break ABI.
->  - Avoid changing existing DTSI and DTS.
-> ---
->  .../edac/altr,socfpga-s10-ecc-manager.yaml    | 280 ++++++++++++++++++
->  .../bindings/edac/socfpga-eccmgr.txt          | 150 ----------
->  MAINTAINERS                                   |   5 +
->  3 files changed, 285 insertions(+), 150 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/edac/altr,socfpga-s10-ecc-manager.yaml
+> Values for macb_config->hw_ip_align are picked based on upstream
+> devicetrees:
 > 
-> diff --git a/Documentation/devicetree/bindings/edac/altr,socfpga-s10-ecc-manager.yaml b/Documentation/devicetree/bindings/edac/altr,socfpga-s10-ecc-manager.yaml
-> new file mode 100644
-> index 000000000000..a908bb4df60f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/edac/altr,socfpga-s10-ecc-manager.yaml
-> @@ -0,0 +1,280 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright (C) 2025 Altera Corporation
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/edac/altr,socfpga-s10-ecc-manager.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Altera Stratix10 SoCFPGA ECC Manager (ARM64)
-> +
-> +maintainers:
-> +  - Matthew Gerlach <matthew.gerlach@altera.com
-> +
-> +description:
-> +  The Stratix10 implementation of the SoCFPGA ECC Manager counts and corrects
-> +  single bit errors. Double bit errors are treated as SErrors in ARM64. This
-> +  implementation requires access to registers only available to the Secure
-> +  Device Manager (SDM) via Secure Monitor Calls (SMC).
-> +
-> +properties:
-> +
-> +  compatible:
-> +    $ref: /schemas/types.yaml#/definitions/string-array
+>     Compatible             |  DTS folders              |  hw_ip_align
+>    ------------------------|---------------------------|----------------
+>    cdns,at91sam9260-macb   | arch/arm/                 | 2
+>    cdns,macb               | arch/{arm,riscv}/         | NET_IP_ALIGN
+>    cdns,np4-macb           | NULL                      | NET_IP_ALIGN
+>    cdns,pc302-gem          | NULL                      | NET_IP_ALIGN
+>    cdns,gem                | arch/{arm,arm64}/         | NET_IP_ALIGN
+>    cdns,sam9x60-macb       | arch/arm/                 | 2
+>    atmel,sama5d2-gem       | arch/arm/                 | 2
+>    atmel,sama5d29-gem      | arch/arm/                 | 2
+>    atmel,sama5d3-gem       | arch/arm/                 | 2
+>    atmel,sama5d3-macb      | arch/arm/                 | 2
+>    atmel,sama5d4-gem       | arch/arm/                 | 2
+>    cdns,at91rm9200-emac    | arch/arm/                 | 2
+>    cdns,emac               | arch/arm/                 | 2
+>    cdns,zynqmp-gem         | *same as xlnx,zynqmp-gem* | 0
+>    cdns,zynq-gem           | *same as xlnx,zynq-gem*   | 2
+>    sifive,fu540-c000-gem   | arch/riscv/               | 2
+>    microchip,mpfs-macb     | arch/riscv/               | 2
+>    microchip,sama7g5-gem   | arch/arm/                 | 2
+>    microchip,sama7g5-emac  | arch/arm/                 | 2
+>    xlnx,zynqmp-gem         | arch/arm64/               | 0
+>    xlnx,zynq-gem           | arch/arm/                 | 2
+>    xlnx,versal-gem         | NULL                      | NET_IP_ALIGN
 
-compatible already has a type, drop this. Elsewhere too.
+I don't remember seeing any other driver doing anything like
+this. That often means it is wrong....
 
-> +    description: list of compatibles
-
-Don't need generic descriptions. Drop.
-
-> +    items:
-> +      - const: altr,socfpga-s10-ecc-manager
-> +      - const: altr,socfpga-a10-ecc-manager
-
-This doesn't work for socfpga_arria10.dtsi. You need:
-
-oneOf:
-  - items:
-      - const: altr,socfpga-s10-ecc-manager
-      - const: altr,socfpga-a10-ecc-manager
-  - const: altr,socfpga-a10-ecc-manager
-
-Make sure the other compatibles pass validation too.
-
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +
-> +  "#interrupt-cells":
-> +    const: 2
-> +
-> +  ranges: true
-> +
-> +  altr,sysmgr-syscon:
-> +    maxItems: 1
-
-       $ref: /schemas/types.yaml#/definitions/phandle
-
-And a description of what this is for.
-
-> +
-> +  sdramedac:
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      compatible:
-> +        const: altr,sdram-edac-s10
-> +
-> +      interrupts:
-> +        maxItems: 1
-> +
-> +      altr,sdr-syscon:
-> +        $ref: /schemas/types.yaml#/definitions/phandle
-> +        description: phandle to SDRAM parent
-> +
-> +    required:
-> +      - compatible
-> +      - interrupts
-> +      - altr,sdr-syscon
-> +
-> +  ocram-ecc@ff8cc000:
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      compatible:
-> +        $ref: /schemas/types.yaml#/definitions/string-array
-> +        description: list of compatibles
-> +        items:
-> +          - const: altr,socfpga-s10-ocram-ecc
-> +          - const: altr,socfpga-a10-ocram-ecc
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      interrupts:
-> +        maxItems: 1
-> +
-> +      altr,ecc-parent:
-> +        $ref: /schemas/types.yaml#/definitions/phandle
-> +        description: phandle to OCRAM parent
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - interrupts
-> +      - altr,ecc-parent
-> +
-> +  usb0-ecc@ff8c4000:
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      compatible:
-> +        $ref: /schemas/types.yaml#/definitions/string-array
-> +        description: list of compatibles
-> +        items:
-> +          - const: altr,socfpga-s10-usb-ecc
-> +          - const: altr,socfpga-usb-ecc
-> +
-> +      reg:
-> +        maxItems: 1
- > +
-> +      interrupts:
-> +        maxItems: 1
-> +
-> +      altr,ecc-parent:
-> +        $ref: /schemas/types.yaml#/definitions/phandle
-> +        description: phandle to USB parent
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - interrupts
-> +      - altr,ecc-parent
-> +
-> +  emac0-rx-ecc@ff8c0000:
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      compatible:
-> +        $ref: /schemas/types.yaml#/definitions/string-array
-> +        description: list of compatibles
-> +        items:
-> +          - const: altr,socfpga-s10-eth-mac-ecc
-> +          - const: altr,socfpga-eth-mac-ecc
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      interrupts:
-> +        maxItems: 1
-> +
-> +      altr,ecc-parent:
-> +        $ref: /schemas/types.yaml#/definitions/phandle
-> +        description: phandle to ethernet parent
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - interrupts
-> +      - altr,ecc-parent
-> +
-> +  emac0-tx-ecc@ff8c0400:
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      compatible:
-> +        $ref: /schemas/types.yaml#/definitions/string-array
-> +        description: list of compatibles
-> +        items:
-> +          - const: altr,socfpga-s10-eth-mac-ecc
-> +          - const: altr,socfpga-eth-mac-ecc
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      interrupts:
-> +        maxItems: 1
-> +
-> +      altr,ecc-parent:
-> +        $ref: /schemas/types.yaml#/definitions/phandle
-> +        description: phandle to ethernet parent
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - interrupts
-> +      - altr,ecc-parent
-> +
-> +  sdmmca-ecc@ff8c8c00:
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      compatible:
-> +        $ref: /schemas/types.yaml#/definitions/string-array
-> +        description: list of compatibles
-> +        items:
-> +          - const: altr,socfpga-s10-sdmmc-ecc
-> +          - const: altr,socfpga-sdmmc-ecc
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      interrupts:
-> +        maxItems: 2
-> +
-> +      altr,ecc-parent:
-> +        $ref: /schemas/types.yaml#/definitions/phandle
-> +        description: phandle to ethernet parent
-
-SD/MMC parent?
-
-Rob
+      Andrew
 
