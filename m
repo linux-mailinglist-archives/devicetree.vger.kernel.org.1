@@ -1,284 +1,369 @@
-Return-Path: <devicetree+bounces-159643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70957A6BA84
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 13:19:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F9D9A6BA92
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 13:21:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9E493BE32B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 12:16:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B40A3AEAC9
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 12:19:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C45222A1E2;
-	Fri, 21 Mar 2025 12:15:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B9A12253BC;
+	Fri, 21 Mar 2025 12:19:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="uJ66fLs7"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="o2c6zws8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5788C1F17E8
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 12:15:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED8CA1F17E8
+	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 12:19:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742559320; cv=none; b=rX0XGX+XzVTb112Nbn04TH8XHcHg3Vbv2yIkdhOGpoJFQIq2DRkMyZ94J7tSaegHUJTdy2SSCt5LAQ4hxRrHjju1auDDbrG6yIbs6UmEKRZVinjdeV4ssX+rHaXUHJaPkTzBfYu+4qn8JmWJFYr4E944Bv7QHx3T2aT2UvVCRhg=
+	t=1742559580; cv=none; b=na+UZn/wEIsGFAOohRvqTecTifOlFsznyvJgBd1+wCJ3FKurnfIIO7v9jTwwyZeGouLP4+JLu1ifhz74BlXlkERD5+UWOG1R/s2ebKkD/Xep4FcKVupp7gBw7OWsJS58MkiN6EVeovO7T5gagc7pEHdf8FQ6ag/xgBNrJpcrvOc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742559320; c=relaxed/simple;
-	bh=jdxnifYvhpOegrtIsz4x1N9dIvwhi//1Du1rbtxiZ2w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=QXGbrxFxKiPsqzRuGa7VRpGY0r9gkLcXGL1UUugIkvU+VL91xCA/3jN7oTirQJe1n7qVkHDZq5jqtPTDdGZ73czxPYKLmVVSSB9TEGOT4ASmr03rjRvzWJQe/2Ma/qpX5l6IT+70bpmNw+EJgJ1r35V7fiZMDqUnHtEoOz2ZltQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=uJ66fLs7; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250321121514euoutp023b8f58d34fb8522203c1a4cab264a41e~u0HbYK1Ln0269502695euoutp02i
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 12:15:14 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250321121514euoutp023b8f58d34fb8522203c1a4cab264a41e~u0HbYK1Ln0269502695euoutp02i
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1742559314;
-	bh=MHO6SdbNFs1J7nO+41CHx9xqMsSu4tdXH9vnU5Jzzo4=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=uJ66fLs7Obilq9mId7yKjwF50346mYhfbEOPUZxyOKN8Sh5Pn9OhQnju0XagfuJMS
-	 jH6Cm7ik0xZAj9fwzXRS7Iz6nGn4plED88CovnWjXA8BxbPtxi6FbzjDr6IL4+0k2L
-	 +bFl6wNnY1LtrhnzNhe+HGyaJY+PB5PZVwUJY7KM=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-	20250321121514eucas1p1ee13ac2a07d447599b9c7c32b594ecc0~u0Ha9Jj1p0634006340eucas1p1V;
-	Fri, 21 Mar 2025 12:15:14 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-	eusmges1new.samsung.com (EUCPMTA) with SMTP id 31.10.20821.2585DD76; Fri, 21
-	Mar 2025 12:15:14 +0000 (GMT)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250321121513eucas1p2c17d32842a41ad058b914bf3d9ff7512~u0HaTDMvC0313803138eucas1p2b;
-	Fri, 21 Mar 2025 12:15:13 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20250321121513eusmtrp18028559e7e8c3a8d821562fa4b64ad93~u0HaRrSkW3246232462eusmtrp1h;
-	Fri, 21 Mar 2025 12:15:13 +0000 (GMT)
-X-AuditID: cbfec7f2-b09c370000005155-cc-67dd58525c00
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-	eusmgms1.samsung.com (EUCPMTA) with SMTP id 67.C1.19920.1585DD76; Fri, 21
-	Mar 2025 12:15:13 +0000 (GMT)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250321121511eusmtip23c2fe1a430242457999298218d0d3fd7~u0HYaApUO3026630266eusmtip21;
-	Fri, 21 Mar 2025 12:15:11 +0000 (GMT)
-Message-ID: <ace3a01f-4700-4455-ada3-0f88fc8ea4cd@samsung.com>
-Date: Fri, 21 Mar 2025 13:15:09 +0100
+	s=arc-20240116; t=1742559580; c=relaxed/simple;
+	bh=UxkQa0CNVdSrIjkU8CYOWQQQ/TPDCpWXYazJ8hVfrV8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Vq7vd+Y6Y8Ab+PRi1QZ1L7b9reWLYQFev2MU7txGaic0XIH4VnajA4ZzjovZOIaxfIYbZN2jjuK72wCS6xLGQ22eFQXbgakGP/V/2K5i7uOwqY/EBhr2ibWqJtku8jt3WKG3tTl9c43usHKButY3FdN28I78i2h8pDMJbW88w8s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=o2c6zws8; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52LAT9lq003011
+	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 12:19:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	hasDN4p/a1W4nyEvoXqsuiWIpj77cv9FFKDtGgirZh4=; b=o2c6zws8uYfsTeiv
+	46g58J9uMZkjInCyKsmSwx/Yxc61JfRYQMS4rniI5BCCGaaFnSxG1zbTa38llL+M
+	GmjTf5dd3wdodRTkBSp+MAEwS/x61vKhYqfF8Sfze12yXvFQPWDDSitPUCx4NCDQ
+	0zbksxeIMypt1QXn+FBMcLhJvYXXq199diArnNXvpVJ1LucGelJHaBYXRCgjUrQq
+	jrGtzfUxgG5AQA9HzGbeUU+puodpQjHq01njn5ZmiTWKoAeNBU8hnpqV4J3/n2ri
+	lel1U0okoWFLaHmtGLQSFBi1oJt0U3ZSLvQmszq+O4T23ZcEvreW3NoyYlpQKACS
+	y5i4SQ==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45h4p10ngt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 12:19:38 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c54e8ad9b3so462242485a.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 05:19:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742559577; x=1743164377;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hasDN4p/a1W4nyEvoXqsuiWIpj77cv9FFKDtGgirZh4=;
+        b=rIABl8BNGlclXCh4DraROyD9ydC4GBIEEMmgWV3Fsi6rkEsca9V4FteF8p/XgX0n3i
+         M0exDMpUhGAinQix3yb5bKvzt0z41Os+8vzp/YJwYN0jccFj09gXKcvkkmjkpB8iRRhp
+         57ktkSpBUEDxWU/4cO3eOhnCBt+IlMrNY2Z0le1eCeoQGb+eH8WFqyn8PNv45kyW7V91
+         ntUpK2IdAyySEBqbFvvmDXt3vuKjjj2TN9BKbVHg12OWvDjzeK31OXn/9VCT5/KS/l9+
+         SnhWZYRHFc8tpRKEgrjaf8cxNITPSnf8vs/D6MZsv/Cwgqd0UbqqAHRXF61GVjm3VaCA
+         JNTA==
+X-Forwarded-Encrypted: i=1; AJvYcCUjfIZaFyUBXqz4423ml0mtQGScyedHKxo6QTghkbqiZabchAZLUhcdbFdcVvVb6OoEH9OfEzR0mGwk@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKKB3w1y++3LYFCGmX3ExiZmJoWheFKE+WrJ9Wliiv+LuYbXIL
+	8fUoygrPONjCi+x2bUOiKfrdJdpOsJC0bTX5R8Mw8tIxXjNi1TJmnnfhHNsnW2bxiLNxTaCPiT9
+	O56vIZ8jSLWmJQhpWrTEMlWek+IFKRhIM6f/zRm5MzzuCifDGutHDPin/hzs5
+X-Gm-Gg: ASbGncsqYtb/jslCfYsce0t3oxQENQWs6I+RLLY0olS01x2u7N3L3Qe0JpEbkGyTlpY
+	05C/lkYtwZFkUbZVkL2iQbuAg1jddIg/1ykQwoHknIUQHvQacOAfny6zBWg/aHeEYRCX+lSClpO
+	0MKeJm1foHjOUppGmHJRyZFzQ9My/Tt3+/QSB28qzTI+45jYzTRyrEWo7dU7GKJwFQQbRoIZMvw
+	FUFIiK16JpDgTbLalc6otmMg5zw8+RcUDRQj3ZuUfNmAZM8F1PnpTPEZPxV7yn9/tUSlodzuW9u
+	D9Q32MWXkduDYtt+rz9BuEIfNydanSZn2mQVpSMGQgiN6V2VFoq3KFCxt6XIGSnswROkrN/bVKI
+	cKaA=
+X-Received: by 2002:a05:620a:2495:b0:7b1:7508:9f38 with SMTP id af79cd13be357-7c5b0527d35mr1174224885a.16.1742559576347;
+        Fri, 21 Mar 2025 05:19:36 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF3iWh33NZgqwz3Sb4nD2XgofXgNzfqbEkAFXjs0uQ1dNsvWPHe7INWA+p855zxzDr+khJ+8A==
+X-Received: by 2002:a05:620a:2495:b0:7b1:7508:9f38 with SMTP id af79cd13be357-7c5b0527d35mr1174217485a.16.1742559575771;
+        Fri, 21 Mar 2025 05:19:35 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54ad6510635sm168988e87.211.2025.03.21.05.19.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Mar 2025 05:19:34 -0700 (PDT)
+Date: Fri, 21 Mar 2025 14:19:32 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Xiangxu Yin <quic_xiangxuy@quicinc.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>, quic_lliu6@quicinc.com,
+        quic_fangez@quicinc.com, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 3/8] phy: qcom: qmp-usbc: Add DP phy mode support on
+ QCS615
+Message-ID: <vi2lqsbu5yiak2xayq3xkpx5wtrd7fqvicaggzaklxdubclylq@j3nztszng7x7>
+References: <iqcofcntirmlwcpyfr4yabymqfcgyrij57bibf337tmxpa73t6@npkt6wquenf6>
+ <527baded-f348-48a8-81cd-3f84c0ff1077@quicinc.com>
+ <t5vcjlf44fhae4f2h75cfs3f7r6tdstw4ysmkapvvawj6xp23x@xnxqnxvyhshe>
+ <d5151b82-5f05-4826-99b4-e925c20550b4@quicinc.com>
+ <7vdaasc3flhpabnorjty5qjorlbp22honuscgpbteakgagg2tq@frqa6flk2mmv>
+ <df1a4457-129e-452c-8089-ee1e6f9a3e12@quicinc.com>
+ <jdw3xuknq2atcowl5xboimp3fol56t5nilefrxzpbdpwdoo5oc@pggif3lysjhh>
+ <4c06aeec-161d-4e67-9a64-ac74991a0f73@quicinc.com>
+ <m2dz6cw6eq7ztnfdispocvt2dxtumeazbgyts5em55n67cfxlz@fwirkughbj66>
+ <b82afb57-1de3-489f-aa17-91496d0f6a48@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] iommu: Get DT/ACPI parsing into the proper probe
- path
-To: Robin Murphy <robin.murphy@arm.com>, Lorenzo Pieralisi
-	<lpieralisi@kernel.org>, Hanjun Guo <guohanjun@huawei.com>, Sudeep Holla
-	<sudeep.holla@arm.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown
-	<lenb@kernel.org>, Russell King <linux@armlinux.org.uk>, Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>, Danilo Krummrich <dakr@kernel.org>, Stuart
-	Yoder <stuyoder@gmail.com>, Laurentiu Tudor <laurentiu.tudor@nxp.com>, Nipun
-	Gupta <nipun.gupta@amd.com>, Nikhil Agarwal <nikhil.agarwal@amd.com>, Joerg
-	Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, Rob Herring
-	<robh@kernel.org>, Saravana Kannan <saravanak@google.com>, Bjorn Helgaas
-	<bhelgaas@google.com>
-Cc: linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-pci@vger.kernel.org, Charan Teja Kalla
-	<quic_charante@quicinc.com>
-Content-Language: en-US
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-In-Reply-To: <d6cd5e64-e2c0-4c6e-9c89-ce8b3e0a4a5b@arm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Sa0xTZxj26zk9PdS0HgqOD9xG0kQHmxYZunyJzMmi2XGXhOCWEZc56zgp
-	ILe14PAyRlYQ7NgGVlQKpc3A1WgDtDBXGi6jNC13GUUgXMZgMBQGUqnEOdBZDtv49z7P+7y3
-	Jy+JiXREEJmQks7IU6RJYoKP33L8dXtXTOyYbPfqDwSq/CoezV1eJJDO3sNFyopqArXUl/DQ
-	Yw9CF0preMhT2Imj+ol5AhmavgPI/PsAF7msZQTqLncSyFbcCFDOSg6Orlok6OG9yziq1iUj
-	racYQ08bLDzUsjjFRSrb6rO2pmEMGTosOMoZ3XsgkJ5qKefQuX2rBG0sNwLaNfALRtdrxni0
-	3pxB59jnubT5xgWCbtYaeXRt5Zf03doSQJsWLBy6qCGLXjK/GC08yo+MY5ISTjHysP3H+fGD
-	mlZeWm94Zn/REzwb2ENUgCQhtQcuKM+oAJ8UUdcBNDm6OCzwAGhp6SdYsASgNbcZUwGftQqX
-	Xr+eMAD46OvldeAG8HzNAu5VCaj9sLwvj/DGOLUd9toGeCzvC9tLptY0W6lgOD58dY33o47A
-	BdUk8Dbyp8xcOJjbxfUCjJoGsObO0FonjAqAw1M6jjcmqHComlet8T7UPjhw3wxYTTBU/liK
-	eYshpeVDm2mRxy5+EKpHZrhs7AdnnXXr/POwU12AswV5AOr/HuewoBDA7JlhwKr2wdGex4TX
-	NIwKhdXWMJaOgqqlYoz1UgiH5n3ZJYTw4q0r67QA5p8XseodUOOs+m9sS28fVgjEmg3GaDac
-	qdlwjub/uXqA3wABTIYiWcYowlOYzyUKabIiI0Um+TQ12Qye/XDnE+cDC9DOuiU2wCGBDUAS
-	E/sL/PNHZCJBnPT0GUae+ok8I4lR2MA2EhcHCL5vzpWJKJk0nTnJMGmM/N8sh/QJyuZsr+RE
-	3QykWj9WGE+dMG6JeNB29w4d2hE7bzzk2LW32pkeM9k5veSOiyx4/7nJbh/fkvYeUv3bztdc
-	jqbG1ar2CM9bb5/9ItF8752J1ANDh7c2BkWIrMcSihIKLwnmNg+oNte8/ub0TQCVJ8u0Ev/E
-	0baK3aPCn7r28F6KXF4OfSVv08ziwysFrcdL+/saVAfxsu5NcQ71ubA/Plv59aI+OiT/bKDb
-	9YLpgxGy6ZunIVW3pYnqa/bZrK4ThqzwIsN7FRNRf0ZH1V6HTY++Pf2R8NWYmXc70rDgQ207
-	75ubKpZi6yK2uD9sMzReOzcWZLdu+7nuDZ1f5qD46LHxuUJlbNXKZOZhMa6Il4a/jMkV0n8A
-	DUX1DjIEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrEKsWRmVeSWpSXmKPExsVy+t/xe7qBEXfTDVZvl7JY0pRh8XraBzaL
-	+UfOsVo0L17PZnFw50x2i19fLCw6Z29gt/gy4TSLxc6Hb9kslu/rZ7TY9Pgaq8XlXXPYLM7O
-	O85mcWjqXkaLlj8tLBYzduhZfH05jcVi/fxci7lfpjJb/N+zg93i4IcnrBZdh/4Cjd14i9li
-	+akdLBYtd0wdJD2eHJzH5NF66S+bx5p5axg9Ll+7yOyxc9Zddo8Fm0o9Wo68ZfXYtKqTzWP/
-	3DXsHpuX1Hu82DyT0WPjux1MHhP31Hl83iQXwBelZ1OUX1qSqpCRX1xiqxRtaGGkZ2hpoWdk
-	YqlnaGwea2VkqqRvZ5OSmpNZllqkb5egl3F91mH2gguGFVcm/mNpYDyi0cXIySEhYCJxecEC
-	ti5GLg4hgaWMEkt/HWeESMhInJzWwAphC0v8udYFVfSeUWLNsZlgRbwCdhLzLrWzgdgsAqoS
-	Fw5dY4eIC0qcnPmEBcQWFZCXuH9rBlhcWCBY4l3XI0aQQSIC21glrs3byQziMAs8ZZT4cv4Z
-	K8SK/SwSZx8vZwZpYRYQl7j1ZD4TiM0mYCjR9bYLbB2ngLXEtfebGCFqzCS6tnZB2fISzVtn
-	M09gFJqF5JJZSEbNQtIyC0nLAkaWVYwiqaXFuem5xYZ6xYm5xaV56XrJ+bmbGIGJZ9uxn5t3
-	MM579VHvECMTB+MhRgkOZiURXpGO2+lCvCmJlVWpRfnxRaU5qcWHGE2BwTGRWUo0OR+Y+vJK
-	4g3NDEwNTcwsDUwtzYyVxHndLp9PExJITyxJzU5NLUgtgulj4uCUamBKr338iTny7zIjk+aH
-	7FeXbVs918HcnjGPtX7XvGyxe9P2qnxlLoxpt3iSV7maoeC+QeHhtNzYqXYl6kqi17orxa5P
-	4eP9GZ1369HXo6t7VHVPyd94bCGtzruobem8kmp5Mw+XU+s8DHYeO32Cbcoctw0z/8yx0Twh
-	ciO86cqG+R2p3vZbTKJWNtwNLd7u8+1xIUeGfinHsmSG6Qutjj74dr96m1dC2Ibffduv7mUz
-	f1Sp0f3pOVf/wc977xp9X5fG+t1K/auarsHmbpliprusbmwpUglPEm9xMzlIdrOKp1sYWZu9
-	bOi0fTzhwsR7M3KVd2uUvJm5w1/u717N9d/vWGZwvbudHhd/w11CqUCJpTgj0VCLuag4EQBP
-	2Er8xQMAAA==
-X-CMS-MailID: 20250321121513eucas1p2c17d32842a41ad058b914bf3d9ff7512
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250313095633eucas1p29cb55f2504b4bcf67c16b3bd3fa9b8cd
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20250313095633eucas1p29cb55f2504b4bcf67c16b3bd3fa9b8cd
-References: <cover.1740753261.git.robin.murphy@arm.com>
-	<e3b191e6fd6ca9a1e84c5e5e40044faf97abb874.1740753261.git.robin.murphy@arm.com>
-	<CGME20250313095633eucas1p29cb55f2504b4bcf67c16b3bd3fa9b8cd@eucas1p2.samsung.com>
-	<9b358d68-332e-404e-9a75-740297f7b28d@samsung.com>
-	<417d6f59-0d78-4e81-ad0b-e06846f786b0@arm.com>
-	<bf2adf5d-1432-4bb7-846c-e1bcfa84858b@samsung.com>
-	<016bb7ca-f0d3-464e-ac74-46e6f78e90d7@arm.com>
-	<b63ff6b4-9dc3-42ea-8b87-d4fdead8d0eb@arm.com>
-	<cdc333e4-25bb-4171-9f6e-01f1de947db3@samsung.com>
-	<d6cd5e64-e2c0-4c6e-9c89-ce8b3e0a4a5b@arm.com>
+In-Reply-To: <b82afb57-1de3-489f-aa17-91496d0f6a48@quicinc.com>
+X-Proofpoint-GUID: BdFtNjFkwH0lFwmwHbRiV-uaW7aiUQmx
+X-Proofpoint-ORIG-GUID: BdFtNjFkwH0lFwmwHbRiV-uaW7aiUQmx
+X-Authority-Analysis: v=2.4 cv=NZjm13D4 c=1 sm=1 tr=0 ts=67dd595a cx=c_pps a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=PvVr7vRqn70wVf-c534A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=bTQJ7kPSJx9SKPbeHEYW:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-21_05,2025-03-20_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxlogscore=999
+ priorityscore=1501 impostorscore=0 bulkscore=0 phishscore=0 spamscore=0
+ mlxscore=0 lowpriorityscore=0 suspectscore=0 malwarescore=0 adultscore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503210091
 
-On 17.03.2025 19:22, Robin Murphy wrote:
-> On 17/03/2025 7:37 am, Marek Szyprowski wrote:
->> On 13.03.2025 15:12, Robin Murphy wrote:
->>> On 2025-03-13 1:06 pm, Robin Murphy wrote:
->>>> On 2025-03-13 12:23 pm, Marek Szyprowski wrote:
->>>>> On 13.03.2025 12:01, Robin Murphy wrote:
->>>>>> On 2025-03-13 9:56 am, Marek Szyprowski wrote:
->>>>>> [...]
->>>>>>> This patch landed in yesterday's linux-next as commit bcb81ac6ae3c
->>>>>>> ("iommu: Get DT/ACPI parsing into the proper probe path"). In my
->>>>>>> tests I
->>>>>>> found it breaks booting of ARM64 RK3568-based Odroid-M1 board
->>>>>>> (arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts). Here is the
->>>>>>> relevant kernel log:
->>>>>>
->>>>>> ...and the bug-flushing-out begins!
->>>>>>
->>>>>>> Unable to handle kernel NULL pointer dereference at virtual address
->>>>>>> 00000000000003e8
->>>>>>> Mem abort info:
->>>>>>>       ESR = 0x0000000096000004
->>>>>>>       EC = 0x25: DABT (current EL), IL = 32 bits
->>>>>>>       SET = 0, FnV = 0
->>>>>>>       EA = 0, S1PTW = 0
->>>>>>>       FSC = 0x04: level 0 translation fault
->>>>>>> Data abort info:
->>>>>>>       ISV = 0, ISS = 0x00000004, ISS2 = 0x00000000
->>>>>>>       CM = 0, WnR = 0, TnD = 0, TagAccess = 0
->>>>>>>       GCS = 0, Overlay = 0, DirtyBit = 0, Xs = 0
->>>>>>> [00000000000003e8] user address but active_mm is swapper
->>>>>>> Internal error: Oops: 0000000096000004 [#1] PREEMPT SMP
->>>>>>> Modules linked in:
->>>>>>> CPU: 3 UID: 0 PID: 1 Comm: swapper/0 Not tainted 6.14.0-rc3+ #15533
->>>>>>> Hardware name: Hardkernel ODROID-M1 (DT)
->>>>>>> pstate: 00400009 (nzcv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
->>>>>>> pc : devm_kmalloc+0x2c/0x114
->>>>>>> lr : rk_iommu_of_xlate+0x30/0x90
->>>>>>> ...
->>>>>>> Call trace:
->>>>>>>      devm_kmalloc+0x2c/0x114 (P)
->>>>>>>      rk_iommu_of_xlate+0x30/0x90
->>>>>>
->>>>>> Yeah, looks like this is doing something a bit questionable which
->>>>>> can't
->>>>>> work properly. TBH the whole dma_dev thing could probably be
->>>>>> cleaned up
->>>>>> now that we have proper instances, but for now does this work?
->>>>>
->>>>> Yes, this patch fixes the problem I've observed.
->>>>>
->>>>> Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
->>>>> Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
->>>>>
->>>>> BTW, this dma_dev idea has been borrowed from my exynos_iommu driver
->>>>> and
->>>>> I doubt it can be cleaned up.
->>>>
->>>> On the contrary I suspect they both can - it all dates back to when
->>>> we had the single global platform bus iommu_ops and the SoC drivers
->>>> were forced to bodge their own notion of multiple instances, but with
->>>> the modern core code, ops are always called via a valid IOMMU
->>>> instance or domain, so in principle it should always be possible to
->>>> get at an appropriate IOMMU device now. IIRC it was mostly about
->>>> allocating and DMA-mapping the pagetables in domain_alloc, where the
->>>> private notion of instances didn't have enough information, but
->>>> domain_alloc_paging solves that.
->>>
->>> Bah, in fact I think I am going to have to do that now, since although
->>> it doesn't crash, rk_domain_alloc_paging() will also be failing for
->>> the same reason. Time to find a PSU for the RK3399 board, I guess...
->>>
->>> (Or maybe just move the dma_dev assignment earlier to match Exynos?)
->>
->> Well I just found that Exynos IOMMU is also broken on some on my test
->> boards. It looks that the runtime pm links are somehow not correctly
->> established. I will try to analyze this later in the afternoon.
->
-> Hmm, I tried to get an Odroid-XU3 up and running, but it seems unable 
-> to boot my original 6.14-rc3-based branch - even with the IOMMU driver 
-> disabled, it's consistently dying somewhere near (or just after) init 
-> with what looks like some catastrophic memory corruption issue - very 
-> occasionally it's managed to print the first line of various different 
-> panics.
->
-> Before that point though, with the IOMMU driver enabled it does appear 
-> to show signs of working OK:
->
-> [    0.649703] exynos-sysmmu 14650000.sysmmu: hardware version: 3.3
-> [    0.654220] platform 14450000.mixer: Adding to iommu group 1
-> ...
-> [    2.680920] exynos-mixer 14450000.mixer: 
-> exynos_iommu_attach_device: Attached IOMMU with pgtable 0x42924000
-> ...
-> [    5.196674] exynos-mixer 14450000.mixer: 
-> exynos_iommu_identity_attach: Restored IOMMU to IDENTITY from pgtable 
-> 0x42924000
-> [    5.207091] exynos-mixer 14450000.mixer: 
-> exynos_iommu_attach_device: Attached IOMMU with pgtable 0x42884000
->
->
-> The multi-instance stuff in probe/release does look a bit suspect, 
-> however - seems like the second instance probe would overwrite the 
-> first instance's links, and then there would be a double-del() if the 
-> device were ever actually released again? I may have made that much 
-> more likely to happen, but I suspect it was already possible with 
-> async driver probe...
+On Fri, Mar 21, 2025 at 06:17:39PM +0800, Xiangxu Yin wrote:
+> 
+> 
+> On 3/6/2025 5:25 AM, Dmitry Baryshkov wrote:
+> > On Wed, Mar 05, 2025 at 06:20:45PM +0800, Xiangxu Yin wrote:
+> >>
+> >>
+> >> On 12/20/2024 8:01 AM, Dmitry Baryshkov wrote:
+> >>> On Wed, Dec 18, 2024 at 08:55:54PM +0800, Xiangxu Yin wrote:
+> >>>>
+> >>>>
+> >>>> On 12/12/2024 3:15 AM, Dmitry Baryshkov wrote:
+> >>>>> On Wed, Dec 11, 2024 at 08:50:02PM +0800, Xiangxu Yin wrote:
+> >>>>>>
+> >>>>>>
+> >>>>>> On 12/11/2024 5:46 PM, Dmitry Baryshkov wrote:
+> >>>>>>> On Wed, Dec 11, 2024 at 08:46:16AM +0800, Xiangxu Yin wrote:
+> >>>>>>>>
+> >>>>>>>>
+> >>>>>>>> On 12/10/2024 11:09 PM, Dmitry Baryshkov wrote:
+> >>>>>>>>> On Thu, Dec 05, 2024 at 08:31:24PM +0200, Dmitry Baryshkov wrote:
+> >>>>>>>>>> On Thu, Dec 05, 2024 at 09:26:47PM +0800, Xiangxu Yin wrote:
+> >>>>>>>>>>>
+> >>>>>>>>>>>
+> >>>>>>>>>>> On 11/29/2024 10:33 PM, Dmitry Baryshkov wrote:
+> >>>>>>>>>>>> On Fri, 29 Nov 2024 at 09:59, Xiangxu Yin <quic_xiangxuy@quicinc.com> wrote:
+> >>>>>>>>>>>>>
+> >>>>>>>>>>>>> Extended DP support for QCS615 USB or DP phy. Differentiated between
+> >>>>>>>>>>>>> USBC and DP PHY using the match table’s type, dynamically generating
+> >>>>>>>>>>>>> different types of cfg and layout attributes during initialization based
+> >>>>>>>>>>>>> on this type. Static variables are stored in cfg, while parsed values
+> >>>>>>>>>>>>> are organized into the layout structure.
+> >>>>>>>>>>>>
+> >>>>>>>>>>>> We didn't have an understanding / conclusion whether
+> >>>>>>>>>>>> qcom,usb-ssphy-qmp-usb3-or-dp PHYs are actually a single device / PHY
+> >>>>>>>>>>>> or two PHYs being placed next to each other. Could you please start
+> >>>>>>>>>>>> your commit message by explaining it? Or even better, make that a part
+> >>>>>>>>>>>> of the cover letter for a new series touching just the USBC PHY
+> >>>>>>>>>>>> driver. DP changes don't have anything in common with the PHY changes,
+> >>>>>>>>>>>> so you can split the series into two.
+> >>>>>>>>>>>>
+> >>>>>>>>>>> Before implement DP extension, we have discussed with abhinav and krishna about whether use combo, usbc or separate phy.
+> >>>>>>>>>>
+> >>>>>>>>>> What is "DP extension"?
+> >>>>>>>>>>
+> >>>>>>>> I'm sorry confusion casued by my description. It's means extend DP implemnt for USBC phy driver.
+> >>>>>>>>>>>
+> >>>>>>>>>>> We identified that DP and USB share some common controls for phy_mode and orientation.
+> >>>>>>>>>>> Specifically, 'TCSR_USB3_0_DP_PHYMODE' controls who must use the lanes - USB or DP,
+> >>>>>>>>>>> while PERIPH_SS_USB0_USB3PHY_PCS_MISC_TYPEC_CTRL controls the orientation.
+> >>>>>>>>>>> It would be more efficient for a single driver to manage these controls. 
+> >>>>>>>>>>
+> >>>>>>>>>> The question is about the hardware, not about the driver.
+> >>>>>>>>>>
+> >>>>>>>>>>> Additionally, this PHY does not support Alt Mode, and the two control registers are located in separate address spaces. 
+> >>>>>>>>>>> Therefore, even though the orientation for DP on this platform is always normal and connected to the video output board, 
+> >>>>>>>>>>> we still decided to base it on the USBC extension.
+> >>>>>>>>>>
+> >>>>>>>>>> Could you please clarify, do usb3-or-dp PHYs support DP-over-USB-C? I
+> >>>>>>>>>> thought that usbc-or-dp platforms support that, but they don't
+> >>>>>>>>>> support DP+USB pin configuration. Note, the question is broader than
+> >>>>>>>>>> just QCS615, it covers the PHY type itself.
+> >>>>>>>>>>
+> >>>>>>>>>> Also, is TCSR configuration read/write or read-only? Are we supposed to
+> >>>>>>>>>> set the register from OS or are we supposed to read it and thus detemine
+> >>>>>>>>>> the PHY mode?
+> >>>>>>>>>
+> >>>>>>>>> Any updates on these two topics?
+> >>>>>>>>>
+> >>>>>>>> Still confirming detail info with HW & design team.
+> >>>>>>>> I’ll update the information that has been confirmed so far.
+> >>>>>>>> This phy support DP-over-USB-C,but it's not support alt-mode which 2 lane work for DP, other 2 lane work for USB.
+> >>>>>>>> TCSR phy mode is read/write reg and we can read for determine phy mode.
+> >>>>>>>
+> >>>>>>> Ok, thanks for the explanation. From my point of view:
+> >>>>>>>
+> >>>>>>> - Implement the DP PHY to be a part of the same driver. Each device
+> >>>>>>>   supported by the usbc driver should get both PHYs.
+> >>>>>>>
+> >>>>>>> - Make sure not to break the ABI: #phy-cells = <0> should still work and
+> >>>>>>>   return USB PHY, keeping backwards compatibility. Newer devices or
+> >>>>>>>   upgraded DT for old devices should return USB PHY for <... 0> and DP
+> >>>>>>>   PHY for <... 1>.
+> >>>>>>>
+> >>>>>> Yes, currently we have implemented like your description,
+> >>>>>> Each deivce shoud get both PHYs, DP PHY for <... 1> and USB PHY for <... 0>.
+> >>>>>
+> >>>>> Please note the backwards compatibility clause.
+> >>>>>
+> >>>> For the USB node, we kept the same implementation as the original function interface, and the devicetree node definition also remains unchanged.
+> >>>> In subsequent patches, I will follow Krzysztof’s suggestion to use a separate DT-binding to describe the DP PHY configuration, 
+> >>>> without making changes to the USB devicetree and DT-binding implementation.
+> >>>>>>> - I'm not shure how to handle the USB and DP coexistence, especially in
+> >>>>>>>   your case of the USB-or-DP PHY.
+> >>>>>>>
+> >>>>>> For coexistence process:
+> >>>>>>
+> >>>>>> When we start implement DP part, usb driver team said only need config TCSR phy mode and orientation during switch in USB-C port.
+> >>>>>> Based on your previous comments avout SW_PWRDN, I'm confirming with the USB team whether SW_REST/SWPWRDN/START_CTRL registers might affect DP.
+> >>>>>
+> >>>>> Thanks!
+> >>>>>
+> >>>>>> Anyway, even though the original SoC design supports DP or USB over Type-C，
+> >>>>>> but on QCS615 ADP AIR platform, there are only four USB-A port which works with 'qcs615-qmp-usb3-phy' driver, and no USB-C port.
+> >>>>>> DP port is mappped from usb pin to the video out sub-board.
+> >>>>>> so we are unable to verify the switching case between DP and USB devices under USB-C.
+> >>>>>
+> >>>>> That's also fine. We will get to that point once MSM8998 / SDM660
+> >>>>> get USB-C support (the only current blocker is the support for the
+> >>>>> TYPEC block of the PMI8998).
+> >>>>>
+> >>>> I can't access MSM8998 / SDM660 documents now, but I have confirmed detail info about USB & DP phy design for sm6150.
+> >>>>
+> >>>> The 'usb-ssphy-qmp-usb3-or-dp PHY' on the current platform is essentially composed of three sub-PHYs, 
+> >>>> which can even be considered as three separate PHYs: USB3 primary PHY, USB3 secondary PHY, and USB3 DP PHY.
+> >>>
+> >>> I've looked at sm6150-usb.dtsi and now I'm completely puzzled by your
+> >>> answer. The msm-4.14 kernel lists a single USB QMP PHY at 0x88e6000,
+> >>> used for the primary USB3 host. It it defined as
+> >>> qcom,usb-ssphy-qmp-usb3-or-dp. Secondary USB host is listed as USB 2.0
+> >>> only. So what do you mean by the USB3 secondary PHY? Which PHY and which
+> >>> pins are connected to your video-out board?
+> >>>
+> >> Five PHYs are integrated into Talos SoC: two USB2 PHYs, two USB3 PHYs, and one DP PHY.
+> >> PERIPH_SS_QUSB2PHY_PRIM_QUSB2PHY_PRIM_CM_QUSB2_LQ_1EX (0x088E2000)
+> >> PERIPH_SS_QUSB2PHY_SEC_QUSB2PHY_SEC_CM_QUSB2_LQ_1EX (0x088E3000)
+> >> PERIPH_SS_USB0_USB3PHY_USB0_USB3PHY_CM_USB3_SW (0x088E6000)
+> >> PERIPH_SS_USB1_USB3PHY_USB1_USB3PHY_CM_USB3_SW (0x088E8000)
+> >> PERIPH_SS_DP_PHY_DP_PHY_CM_DP_4LN_SW (0x088E9000)
+> >>
+> >> The USB3 secondary PHY(0x088E8000) is the one mutually exclusive with the DP PHY, which controlled by the TCSR switch.
+> >> USB3 secondary PHY is not configed in qcs615 dtsi.
+> > 
+> > Okay, thanks for the explanation. I'm still puzzled by msm-4.14 defining
+> > primary USB3 PHY as 'qcom,usb-ssphy-qmp-usb3-or-dp', but it might be
+> > some kind of a hack or just a difference between QCS615 and SM6150.
+> > 
+> > If QCS615 follows other platforms of the same generation, I'd assume
+> > that the correct way to handle it would be:
+> > 
+> > - Keep the primary USB3 PHY as is (it needs to be reposted though, the
+> >   driver part didn't make it in).
+> > 
+> > - Extend the qmp-usbc driver to support USB+DP 'exclusive combo' PHYs by
+> >   registering two PHYs for a single device. Make sure to continue
+> >   supporting #phy-cells = 0 and region size = 0x1000. Use definitions
+> >   from include/dt-bindings/phy/phy-qcom-qmp.h .
+> > 
+> To avoid any misunderstandings, let me double-confirm these points.
+> 
+> 1.In this patch [PATCH 3/8], 
+> we didn't modify the USB driver logic; we only adjusted the structure and organizational relationships. 
+> Does the first point suggest splitting this patch and isolating the USB structure changes into a separate patch?
+> Or did I misunderstand?
 
-That is really strange. My Odroid XU3 boots fine from commit 
-bcb81ac6ae3c ("iommu: Get DT/ACPI parsing into the proper probe path"), 
-although the IOMMU seems not to be working correctly. I've tested this 
-with 14450000.mixer device (one need to attach HDMI cable to get it 
-activated) and it looks that the video data are not being read from 
-memory at all (the lack of VSYNC is reported, no IOMMU fault). However, 
-from time to time, everything initializes and works properly.
+I don't understand your question. See below.
 
-It looks that this is somehow related to the different IOMMU/DMA-mapping 
-glue code, as the other boards (ARM64 based) with exactly the same 
-Exynos IOMMU driver always work fine. I've tried to figure out what 
-actually happens, but so far I didn't get anything for sure. Disabling 
-the call to dev->bus->dma_configure(dev) from iommu_init_device() seems 
-to be fixing this, but this is almost equal to the revert of the 
-$subject patch. I don't get why calling it in iommu_init_device() causes 
-problems. It also doesn't look that this is anyhow related to the 
-multi-instance stuff, as the same happens if I only leave a single 
-exynos-sysmmu instance and its client (only 14450000.mixer device in the 
-system).
+> 
+> 2. Does "two PHYs for a single device" means should define both usb PHY and DP PHY in dtsi, the USBC PHY driver's probe will run separately for both USB and DP?
+> Then USB PHY node can keep forward compatibility with prop '#clock-cells = <0>' & '#phy-cells = <0>',
+> and DP PHY will define with prop '#clock-cells = <1>' & '#phy-cells = <1>'.
 
-Best regards
+No. It means replacing extending existing entries with bigger reg and
+#phy-cells = <1>. The driver must keep working with old node definitions
+as is to ensure backwards compatibility. New nodes should make it
+register two PHYs (USB3 and DP). On the driver side modify generic code
+paths, all platforms supported by the driver should be able to support
+USB3+DP combination.
+
+> 
+> > - Make sure that the PHY driver doesn't allow both PHYs to be powered
+> >   on. Add TCSR programming to the power_on / power_off callbacks,
+> >   implementing the switch between DP and USB3.
+> > 
+> Ok, I will add TCSR switch logic to DP power_on / power_off callbacks, 
+> During DP power off, default will reset to USB3 PHY.
+
+Not quite. Both USB3 and DP drivers should be calling power_on / _off.
+If USB3 is on, powering on DP PHY should fail. Vice versa, if DP is on,
+powering on USB should fail.
+
+> 
+> > At this point all PHYs in qmp-usbc can be switched to the new USB+DP
+> > configuration, still providing backwards compatibility with the existing
+> > board DTs.
+> > 
+> >> In Ride, DP PHY, DP lane 0~3 and DP aux pins are connected to video-out board.
+> >>>>
+> >>>> On the QCS615, the USB primary PHY is currently used to handle USB 3.0 communication for the previously mentioned four USB Type-A ports, 
+> >>>> while the USB3 secondary PHY and USB3 DP PHY are used for the output of the Type-C port,
+> >>>> but since the Type-C port is forcibly pin-to-pin configured to the video out board, the Type-C port will always configure as DP PHY.
+> >>>>
+> >>>> The internal registers of these three PHYs are independent of each other, Neither their respective SWPWR_DN nor SWRST will affect the other two PHYs.
+> >>>> Additionally, there was a misunderstanding about the orientation previously.
+> >>>> The USB orientation setting only affects the current PHY and does not impact the DP PHY. The DP PHY is configured in the DP_PHY_CFG_1.
+> >>>>
+> >>>> TSCR_PHY_MODE can specify which PHY outputs to the Type-C port, and the global reset will simultaneously reset the two associated PHYs. 
+> >>>> Therefore, the correct switching process is as follows.
+> >>>> When switching the inserted device:
+> >>>> 	1.Identify the PHY type.
+> >>>> 	2.Enable the regulator.
+> >>>> 	3.Trigger a reset.
+> >>>> 	4.Enable the clock.
+> >>>> 	5.Configure PHY type related orientation
+> >>>> 	6.switch the TCSR PHY mode.
+> >>>> 	7.Configure the registers of PHY.
+> >>>> During release:
+> >>>> 	1.Reset.
+> >>>> 	2.Disable the clock.
+> >>>> 	3.Disable the regulator.
+> >>>>
+> >>>> Our current design overall complies with this process, but it lacks the configuration for DP_PHY_CFG_1.
+> >>>>
+> >>>> Shall we continue the discussion to clarify remain comments of the USBC driver?
+> >>>>
+> >>>>>> However, I'm also confirming whether anything other will affect USB and DP each other.
+> >>>>>
+> >>>>
+> >>>
+> >>
+> > 
+> 
+
 -- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
-
+With best wishes
+Dmitry
 
