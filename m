@@ -1,122 +1,143 @@
-Return-Path: <devicetree+bounces-159828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F936A6C459
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 21:37:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 872B3A6C469
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 21:42:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AFA5E467ACC
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 20:37:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 86441189AAAF
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 20:42:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE971230981;
-	Fri, 21 Mar 2025 20:37:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2717A2309AA;
+	Fri, 21 Mar 2025 20:42:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ImfJjb51"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FZ10bVPP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BABA137C37;
-	Fri, 21 Mar 2025 20:37:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6CE822FF5F;
+	Fri, 21 Mar 2025 20:42:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742589469; cv=none; b=qNmRsTPzaOhBUyCdUgLWjjdMYzxcfkCWO2U1+MA1dmB8m7PWbB1HsJALfSC22gT8fmvgnQu94fz8YO0GfUTrZBpwF6ClTvwtX9AszGTOxPhATD53t/5zeH/N8EB1Et+EzU3wweikWYQnYP1gPBOVSwlkpLbOJkhgNhUBtuz/l00=
+	t=1742589753; cv=none; b=QsYqnL1gKYhu9fEq5/Z70SgW1mDYFLlHlWWScRp0cvmVdg3LNaIKzLh+6vCCnogNS4jzjmug6J5tjb9d4uGbL8Ogc14ons6Onxvr5JlU8v2+gNd8iNc7lMrgGQHbqMIkcvz4aC3gR+kQHHU+funm6URCs0xCVomZlFAc3Y3re5A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742589469; c=relaxed/simple;
-	bh=HO7nlKXbMubdBKs5dA8F12zWcr0vHn01ammSIHUzW1E=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=gHgrGJZ3IwGBHZbVNlkGziOeUrFEcAOKejXN2Lr+vxFrZrp6eOJ+fkNq4FfACTkYizUPjuqRYhEcUVRxLJDZbwpmselVuAXwDfChexriSgeLQi321BEuQI3Tr5VITPKsUkpDnNzs0EPqFPh02BBw02eMpTsLxccrulyOoX9NJDI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ImfJjb51; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE6B7C4CEE3;
-	Fri, 21 Mar 2025 20:37:48 +0000 (UTC)
+	s=arc-20240116; t=1742589753; c=relaxed/simple;
+	bh=XsHupZXq9mP47xdssh7YIG1V2VG9jPjIpAnsYfLZZeg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hHzYgw6fK8VlwDhE11jdFM0vivsPdbIVECEgPr0EYsMdJznHU4mbrP5JLLS9K/SJkXTVZTe8MKaUB2+dUU5idqDxzTZmsWhscxVI0qLzMQhwwJnyCo9mvyevFagzd0GCnPZ+AJ8k1/k0bg0DIDkQ4M6Qbta4gV7mkc3c+yql6k4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FZ10bVPP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F691C4CEE3;
+	Fri, 21 Mar 2025 20:42:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742589468;
-	bh=HO7nlKXbMubdBKs5dA8F12zWcr0vHn01ammSIHUzW1E=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=ImfJjb51Y/I05j7ropG1vHwEmVkLdCHI/NDFhBHgDVkZ4Pj14dzRN/qxXjF42bUml
-	 BEFmXzbwqaUdb97JSLUTfP72S1rEy7dSG4d5KLyojowobIln3NrY/gA+ANtdqBttC5
-	 SWY7+IvvjgDva+PkzhY9Q4ulm3xoik68NkZuGi1Q3hrOPX9WoeyU7I1Am2j9LNQEiJ
-	 vDk6sz/JoXErERhcL6NXKA6lcD9NQZj9eRn2W2neaYeEZ0Y7T0fCFaDreTlkCDNNOl
-	 LcjwQ82/8oqpEN7zYt0bm7P72VQ4G+8v/tt/RtqzH77B97DzAwIJ2KzOJXoiH1pOOf
-	 EIBNR+1YXHG7Q==
-Date: Fri, 21 Mar 2025 15:37:47 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1742589751;
+	bh=XsHupZXq9mP47xdssh7YIG1V2VG9jPjIpAnsYfLZZeg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FZ10bVPP4aa+uN6spoypuceQTO8SP4QPWeccXxsIlYlhuZoJ1zdJeO97DazL3pHq8
+	 J/LoW3kqmiWfiAWymzcYpWcOyWFQSwDTe8Me1eYvjjv5XWRF2RLmn1BoZCYHf3QeAV
+	 pnh1JHINei16ioRte+fZdGRzVe+r4sNwPkQeR0l16Lw6ng+PXHGpmtXP0D+ts9smCJ
+	 JIpBRM7izWWBv3mb3ONwX8kKI22pDB+mv0VBX7cmyAj2KurPgMo78wqp/n2NvOl4s0
+	 Zp8AOrnTmQPpYCB3Dqa7hWUTC2picFAyqVgMfJYx7kxhniuJxg5l+dbRqR2WHZIyUk
+	 gLNVmPUkxAbHA==
+Date: Fri, 21 Mar 2025 15:42:30 -0500
+From: Rob Herring <robh@kernel.org>
+To: Alex Elder <elder@riscstar.com>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
+	mturquette@baylibre.com, sboyd@kernel.org, dlan@gentoo.org,
+	heylenay@4d2.org, guodong@riscstar.com, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, spacemit@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RESEND 1/7] dt-bindings: soc: spacemit: define
+ spacemit,k1-ccu resets
+Message-ID: <20250321204230.GA3902727-robh@kernel.org>
+References: <20250321151831.623575-1-elder@riscstar.com>
+ <20250321151831.623575-2-elder@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Richard Cochran <richardcochran@gmail.com>, 
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
- Palmer Dabbelt <palmer@dabbelt.com>, 
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
- Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org, 
- Paolo Abeni <pabeni@redhat.com>, Russell King <linux@armlinux.org.uk>, 
- Samuel Holland <samuel.holland@sifive.com>, linux-riscv@lists.infradead.org, 
- Nicolas Ferre <nicolas.ferre@microchip.com>, 
- "David S. Miller" <davem@davemloft.net>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Andrew Lunn <andrew+netdev@lunn.ch>, Eric Dumazet <edumazet@google.com>, 
- Alexandre Ghiti <alex@ghiti.fr>, 
- Gregory CLEMENT <gregory.clement@bootlin.com>, linux-kernel@vger.kernel.org, 
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-mips@vger.kernel.org, 
- Albert Ou <aou@eecs.berkeley.edu>, Jakub Kicinski <kuba@kernel.org>, 
- devicetree@vger.kernel.org
-To: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-In-Reply-To: <20250321-macb-v1-1-537b7e37971d@bootlin.com>
-References: <20250321-macb-v1-0-537b7e37971d@bootlin.com>
- <20250321-macb-v1-1-537b7e37971d@bootlin.com>
-Message-Id: <174258946794.3905655.14862807255896065162.robh@kernel.org>
-Subject: Re: [PATCH net-next 01/13] dt-bindings: net: cdns,macb: add
- Mobileye EyeQ5 ethernet interface
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250321151831.623575-2-elder@riscstar.com>
 
-
-On Fri, 21 Mar 2025 20:09:32 +0100, Théo Lebrun wrote:
-> Add cdns,eyeq5-gem as compatible for the integrated GEM block inside
-> Mobileye EyeQ5 SoCs. Add a phandle (and two offset arguments) for
-> accessing syscon registers.
+On Fri, Mar 21, 2025 at 10:18:24AM -0500, Alex Elder wrote:
+> There are additional SpacemiT syscon CCUs whose registers control both
+> clocks and resets:  RCPU, RCPU2, and APBC2. Unlike those defined
+> previously, these will initially support only resets.  They do not
+> incorporate power domain functionality.
 > 
-> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+> Define the index values for resets associated with all SpacemiT K1
+> syscon nodes, including those with clocks already defined, as well as
+> the new ones (without clocks).
+> 
+> Signed-off-by: Alex Elder <elder@riscstar.com>
 > ---
->  .../devicetree/bindings/net/cdns,macb.yaml          | 21 +++++++++++++++++++++
->  1 file changed, 21 insertions(+)
+>  .../soc/spacemit/spacemit,k1-syscon.yaml      |  13 +-
+>  include/dt-bindings/clock/spacemit,k1-ccu.h   | 134 ++++++++++++++++++
+>  2 files changed, 143 insertions(+), 4 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml b/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
+> index 07a6728e6f864..333c28e075b6c 100644
+> --- a/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
+> +++ b/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
+> @@ -19,6 +19,9 @@ properties:
+>        - spacemit,k1-syscon-apbc
+>        - spacemit,k1-syscon-apmu
+>        - spacemit,k1-syscon-mpmu
+> +      - spacemit,k1-syscon-rcpu
+> +      - spacemit,k1-syscon-rcpu2
+> +      - spacemit,k1-syscon-apbc2
+>  
+>    reg:
+>      maxItems: 1
+> @@ -57,13 +60,15 @@ allOf:
+>        properties:
+>          compatible:
+>            contains:
+> -            const: spacemit,k1-syscon-apbc
+> +            enum:
+> +              - spacemit,k1-syscon-apmu
+> +              - spacemit,k1-syscon-mpmu
+>      then:
+> -      properties:
+> -        "#power-domain-cells": false
+> -    else:
+>        required:
+>          - "#power-domain-cells"
+> +    else:
+> +      properties:
+> +        "#power-domain-cells": false
+>  
+>  additionalProperties: false
+>  
+> diff --git a/include/dt-bindings/clock/spacemit,k1-ccu.h b/include/dt-bindings/clock/spacemit,k1-ccu.h
+> index 4a0c7163257e3..a1e1b1fe714ce 100644
+> --- a/include/dt-bindings/clock/spacemit,k1-ccu.h
+> +++ b/include/dt-bindings/clock/spacemit,k1-ccu.h
+> @@ -78,6 +78,9 @@
+>  #define CLK_APB			31
+>  #define CLK_WDT_BUS		32
+>  
+> +/*	MPMU resets	*/
+> +#define RST_WDT			0
+> +
+>  /*	APBC clocks	*/
+>  #define CLK_UART0		0
+>  #define CLK_UART2		1
+> @@ -109,6 +112,7 @@
+>  #define CLK_PWM17		27
+>  #define CLK_PWM18		28
+>  #define CLK_PWM19		29
+> +
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Stray change?
 
-yamllint warnings/errors:
+Otherwise,
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/cdns,macb.yaml: properties:mobileye,olb: 'anyOf' conditional failed, one must be fixed:
-	'description' is a dependency of '$ref'
-	'/schemas/types.yaml#/definitions/phandle-array' does not match '^#/(definitions|\\$defs)/'
-		hint: A vendor property can have a $ref to a a $defs schema
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250321-macb-v1-1-537b7e37971d@bootlin.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
