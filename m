@@ -1,125 +1,112 @@
-Return-Path: <devicetree+bounces-159764-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C46AA6BFBC
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 17:22:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0E21A6BFD2
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 17:26:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 904377AC376
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 16:18:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A903B189128A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 16:23:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B25022CBC9;
-	Fri, 21 Mar 2025 16:18:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C59E1226CF7;
+	Fri, 21 Mar 2025 16:23:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IGVwc9Bg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t7gPvO3o"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FEAD22ACFA;
-	Fri, 21 Mar 2025 16:18:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AA891A238C;
+	Fri, 21 Mar 2025 16:23:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742573936; cv=none; b=rr67ehQuX1L3QQyyweZpjaoTEBxXQdyEnAnXsRFsT08bW6AzKdQ6uZrdEvjVSF9XqhKSurDEEXOk2j8MnxvKfcdXJjMy2mauYNIL1Bz8FeXioVkCQiiZsoEei9cNmQGPrdLd7HzuSRiiJPaFO3MZ6HwE7s5sU1eaz3gDhpYcKo8=
+	t=1742574196; cv=none; b=KQ2/XLgKx8mt4Y5im1uJJHwtw+tsHYwN0RoptRq1N6hS26TRaAOh2qltwYZq0hqLI2WkLDnE/01MWY0Nd6DE9uluaf/eC8iAGX9kZM3t35FRRq5OQWTF4OXbVD7WoHA+QfWRF4qWb3u4R8HTOlKqyl9RMH6PL1/IlcHlA1bHkts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742573936; c=relaxed/simple;
-	bh=YWZ/cjyQth34+4wEpvDKa7ez8+2hDJpFf95FAjoIHCQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BSQsf9mrcNJacJtDYOcaoiBieqsaXoA2OBgwT5m7LcScyd0tEHbsKTry2GOK3seQWGe5WFhD+ktRzzHkMvQ2yH1EPsO5EiduELyA1YjW9bU+z4Cx6INnAjOwTlbj45LfNh5UIFYUGtZHqRbdObiH58Jo3dtPPuIeWgevSuiFeAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IGVwc9Bg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 681CCC4CEE3;
-	Fri, 21 Mar 2025 16:18:54 +0000 (UTC)
+	s=arc-20240116; t=1742574196; c=relaxed/simple;
+	bh=uhN6QJh0tP83UgoduWmaigRwPkVaACTLj8V+BUixCws=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ANgGDsV2Cm/3VJh6BVyl9GPF8Jgx8AViEvces2fAHVgX74xv5zRhY/LbHbTzGImttGOHzSDjVr37UxskNzYDHbZuxvLzCo2aW/kuXpzCBlbpwp2HzXe1ZO4AkbxVpTsYpJ/gX2LrIzRxRVEmq/tpukUSCVzZRhHXEfdhlzAy/NA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t7gPvO3o; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B070BC4CEE3;
+	Fri, 21 Mar 2025 16:23:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742573935;
-	bh=YWZ/cjyQth34+4wEpvDKa7ez8+2hDJpFf95FAjoIHCQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IGVwc9Bg+gWRF809tfjsLtFASXqBzVg8CoNj9TAxjcu7yX8yTtiyFLwfGSKIE4crl
-	 MsAdNaZbEeLFRKo1lGAJ/tOWhO1sAW2mJsHftm43ghWxhXrbX7V1j/fWPd91WvT0hr
-	 rELKOr5E09MV3X5p/rxO6r2soStOMBYcI4YQasGFLLb+Jjjn+LzHq402FHPNm/in3P
-	 NlrhWtVMppM5kOC+QqPJa/8Nw5oG1WafCHTXMf6FQLgn/BpeDp1ltNBeWUNZ5MF05u
-	 aCB71yHyeaH2ukugHUM4VUuwyfJCnNADtOAfQ+sPvTRwdfrOfZU/BSFm8UawECGfYN
-	 Vrb+z2YvMfEiA==
-Date: Fri, 21 Mar 2025 16:18:52 +0000
+	s=k20201202; t=1742574195;
+	bh=uhN6QJh0tP83UgoduWmaigRwPkVaACTLj8V+BUixCws=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=t7gPvO3okxvDMLDqE4vtR0NptCjPnaTAqAqUwY3qA/DfySDChcOVpbmG5vpe/8RVJ
+	 TUcu7fYT1pYBNBo4cVtentnH6ATRwjYhV+cdQ5304hCyc7giVcUGIL1peapF9KXO4X
+	 dCZ3Bw/RstpIWLo8sOLQk1F/lH76+JK5lPWlIHmi45fKc6WWBGieuK3VRGwsi3gFVj
+	 meQnBcSupj12gb67FwJHx/QdKAjjM4T84Xr4JPigVlnzD0sckKH9HG1UiHspr9PTi4
+	 Kgq+CNkVvN9OvmaQ9UF67LRzXC56ukdco3SYjd4lsdz2e8IP5aR0rkm//NdtUwJJD4
+	 1iICj7yAU750g==
 From: Conor Dooley <conor@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
+To: Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mmc: Remove redundant sdhci.txt
-Message-ID: <20250321-jersey-upswing-0eb4b055de6f@spud>
-References: <20250320211922.1135669-1-robh@kernel.org>
+	Thomas Gleixner <tglx@linutronix.de>,
+	Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Min Lin <linmin@eswincomputing.com>,
+	Pritesh Patel <pritesh.patel@einfochips.com>,
+	Yangyu Chen <cyy@cyyself.name>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Yu Chien Peter Lin <peterlin@andestech.com>,
+	Charlie Jenkins <charlie@rivosinc.com>,
+	Kanak Shilledar <kanakshilledar@gmail.com>,
+	Darshan Prajapati <darshan.prajapati@einfochips.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Aradhya Bhatia <a-bhatia1@ti.com>,
+	rafal@milecki.pl,
+	Anup Patel <anup@brainfault.org>,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH v2 00/10] Basic device tree support for ESWIN EIC7700 RISC-V SoC
+Date: Fri, 21 Mar 2025 16:21:50 +0000
+Message-ID: <20250321-trimness-unwind-0ffafee4ac8a@spud>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20250320105449.2094192-1-pinkesh.vaghela@einfochips.com>
+References: <20250320105449.2094192-1-pinkesh.vaghela@einfochips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="wnNz0ZGNWG6SJzeG"
-Content-Disposition: inline
-In-Reply-To: <20250320211922.1135669-1-robh@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=646; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=G5nMXPv07/5t5qEEHTEA3VTjgeOZ3saVfKZymta3BuE=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDOl3Jyk6nJ7/OTf/3mtx64Ctwmf+FhRPnFWmpLMvnW2v3 Iz5PoVbO0pZGMQ4GGTFFFkSb/e1SK3/47LDuectzBxWJpAhDFycAjARpxyG/8URCaFT+Q/8UrpX 6lXeUV/3Ty9tTemRRZVB7IevGfmfWcLIcM8o7Hvinq2Jy8V3zirel7PHSO/G6kNHXfkkdrNl/zV dxQAA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
+From: Conor Dooley <conor.dooley@microchip.com>
 
---wnNz0ZGNWG6SJzeG
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, 20 Mar 2025 16:24:39 +0530, Pinkesh Vaghela wrote:
+> Add support for ESWIN EIC7700 SoC consisting of SiFive Quad-Core
+> P550 CPU cluster and the first development board that uses it, the
+> SiFive HiFive Premier P550.
+> 
+> This patch series adds initial device tree and also adds ESWIN
+> architecture support.
+> 
+> [...]
 
-On Thu, Mar 20, 2025 at 04:19:21PM -0500, Rob Herring (Arm) wrote:
-> The properties in sdhci.txt are documented in sdhci-common.yaml, too.
-> Remove the txt binding.
->=20
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+Applied to riscv-cache-for-next, but too late for this merge window.
+They'll be 6.16 material, the commit hashes below will change when I
+rebase on top of 6.15-rc1.
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+[05/10] dt-bindings: cache: sifive,ccache0: Add ESWIN EIC7700 SoC compatibility
+        https://git.kernel.org/conor/c/a506a819af37
+[06/10] cache: sifive_ccache: Add ESWIN EIC7700 support
+        https://git.kernel.org/conor/c/4a9d4db6ba17
 
-> ---
->  Documentation/devicetree/bindings/mmc/sdhci.txt | 13 -------------
->  1 file changed, 13 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mmc/sdhci.txt
->=20
-> diff --git a/Documentation/devicetree/bindings/mmc/sdhci.txt b/Documentat=
-ion/devicetree/bindings/mmc/sdhci.txt
-> deleted file mode 100644
-> index 0e9923a64024..000000000000
-> --- a/Documentation/devicetree/bindings/mmc/sdhci.txt
-> +++ /dev/null
-> @@ -1,13 +0,0 @@
-> -The properties specific for SD host controllers. For properties shared b=
-y MMC
-> -host controllers refer to the mmc[1] bindings.
-> -
-> -  [1] Documentation/devicetree/bindings/mmc/mmc.txt
-> -
-> -Optional properties:
-> -- sdhci-caps-mask: The sdhci capabilities register is incorrect. This 64=
-bit
-> -  property corresponds to the bits in the sdhci capability register. If =
-the bit
-> -  is on in the mask then the bit is incorrect in the register and should=
- be
-> -  turned off, before applying sdhci-caps.
-> -- sdhci-caps: The sdhci capabilities register is incorrect. This 64bit
-> -  property corresponds to the bits in the sdhci capability register. If =
-the
-> -  bit is on in the property then the bit should be turned on.
-> --=20
-> 2.47.2
->=20
-
---wnNz0ZGNWG6SJzeG
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ92RawAKCRB4tDGHoIJi
-0hGHAQCSV0LGwhHXQ8bzmA18hum8IlkZMIZhgvHIP7Vvl246cwEAmuB7cxwUZ8yu
-IdZNoKzkOtsRf1sbLvX/UbjP3Bjjjw0=
-=3KwP
------END PGP SIGNATURE-----
-
---wnNz0ZGNWG6SJzeG--
+Thanks,
+Conor.
 
