@@ -1,252 +1,165 @@
-Return-Path: <devicetree+bounces-159588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159589-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A20BA6B7BB
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 10:40:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2891A6B7CB
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 10:42:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C75A717FF28
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 09:39:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 08BBA189F2CB
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 09:39:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D551D22CBC4;
-	Fri, 21 Mar 2025 09:35:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBBE31F130C;
+	Fri, 21 Mar 2025 09:37:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="iEB9WbCe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CUnhUQO/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B67B22B8AF;
-	Fri, 21 Mar 2025 09:35:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90C111F12F4;
+	Fri, 21 Mar 2025 09:37:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742549753; cv=none; b=FZ8fFicLGGnTVtsxQeTzMNUAziywuWOdSlIfEcNFHRcev6DUFPZbUzHaYE65lnWC8T7Zywh6OFPk2R5/5bwK/voqcXWK4boNv2kpAsrCZTnCxqXNAf9+RDpzL0LjLPQ0INPbxBbC6YG8DiBh4vMEyQmNItLlYEFRtnoc6glIfw4=
+	t=1742549847; cv=none; b=pZFcwgVHe5emuNbk3sY3t6Y9t6+0xxwclBI7BXUfi4HSQp/AzsT7UiiOcR973pVcvBnlKTvSdCByno3Co+FgHhoVR/qHTd9+h1ZP1t0yJoO6FdUkXOSOrTiogLmCNsCdLZcx5BwKvxqtXpSxTN0EP1OVE7oqoLsUhfM6indtTAo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742549753; c=relaxed/simple;
-	bh=JCKFr8BsD9aTpW1pTq8fmxvlko+iaUhJqCwvEM6XuHc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JIlnzSfjDsx/NVRyNrFKq3mFQKn8r6mX0zfdRImbzHE1QEeXO9eTLXujFdFK9g5sXKQq1yyLjALqu9mM6WGxMBxE7u2ywRDSI4cyDysNx0EvztzgbKu7feXjF7gGQnn1PZswwFECVwE7SGu5viZFEV4nJU2yMuQ3QEs+rOFvUzM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=iEB9WbCe; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: dd04c0ec063711f08eb9c36241bbb6fb-20250321
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=nTSF2h1OnKkWH6HxXI+MAWBmqT+Sba+o9eR7NLazAxQ=;
-	b=iEB9WbCeYL6P1EJc5g2hv7I81QWbv7jW5Dkkp3N32cFa9GDMIvUTGFavsru9MydlntnH0bLYyR7lAx6F0B+5uJEPXfTT+EcwXrMfox0eNKpsRnip+BuGytUOPqnm/jF250F0Nl5O+ffl67WeEYGEMZvxbOtz1JfRw8q40HJei7U=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.2.1,REQID:097bb579-5626-4aae-9d76-b7fe0355ff90,IP:0,UR
-	L:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-	:release,TS:-25
-X-CID-META: VersionHash:0ef645f,CLOUDID:9113aa8c-f5b8-47d5-8cf3-b68fe7530c9a,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0|50,EDM:-3
-	,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV
-	:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: dd04c0ec063711f08eb9c36241bbb6fb-20250321
-Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw02.mediatek.com
-	(envelope-from <paul-pl.chen@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 143833965; Fri, 21 Mar 2025 17:35:44 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- MTKMBS09N2.mediatek.inc (172.21.101.94) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Fri, 21 Mar 2025 17:35:43 +0800
-Received: from mtksitap99.mediatek.inc (10.233.130.16) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Fri, 21 Mar 2025 17:35:43 +0800
-From: paul-pl.chen <paul-pl.chen@mediatek.com>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<chunkuang.hu@kernel.org>, <angelogioacchino.delregno@collabora.com>
-CC: <matthias.bgg@gmail.com>, <p.zabel@pengutronix.de>,
-	<jason-jh.lin@mediatek.com>, <nancy.lin@mediatek.com>,
-	<singo.chang@mediatek.com>, <xiandong.wang@mediatek.com>,
-	<sirius.wang@mediatek.com>, <paul-pl.chen@mediatek.com>,
-	<sunny.shen@mediatek.com>, <fshao@chromium.org>, <treapking@chromium.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v2 15/15] drm/mediatek: Add support for MT8196 multiple mmsys
-Date: Fri, 21 Mar 2025 17:33:44 +0800
-Message-ID: <20250321093435.94835-16-paul-pl.chen@mediatek.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250321093435.94835-1-paul-pl.chen@mediatek.com>
-References: <20250321093435.94835-1-paul-pl.chen@mediatek.com>
+	s=arc-20240116; t=1742549847; c=relaxed/simple;
+	bh=poV5m0XgApGdvCxNPJk25+DH7c6vk1mpZNIXwAz1Hlg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PM8BBOzroNLwya8QcpiXovtET6HlJ1T3Q3KHt8iQVC3NjDRkY/RWxSR2Fx0BGx9UAdEBS7UWGY2eLP4vMgk1HOil53OgjSpZpdShJureAaz+fHWGi2nEbLRQwnrXwdRC6AE0tCdfDfz+HPB41K++S449y2621ojXvW3RAlBErrk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CUnhUQO/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48D46C4CEE3;
+	Fri, 21 Mar 2025 09:37:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742549847;
+	bh=poV5m0XgApGdvCxNPJk25+DH7c6vk1mpZNIXwAz1Hlg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=CUnhUQO/ebvzor3VTHKrObpa6P6l0ILcwrfwZZSJSsgtQgNIhZ/aSJbfY4xkqL59g
+	 hMbFR9QxY71wLfIyAM452l78S7ZGTmIrux7IvRzZYi4O0LgZc0eXJ89tGDqX8qJkYY
+	 V0Wijd2uVX5Z/jlcUWVHZ6AbqqEKFsdYjX44oyZ9KxwTtRsHf/MYMegBqc8AFd+xYy
+	 xsOTeYMrCN/cwaLEEm8Ev/Qzwy44sagVJKfKEvbC41C9kv/MOv5jiWq3ZH8GH9vch3
+	 kQ/cO9c5dPYOhJm3Rnb3e1767IBsXAfmfKuUzACX61gzDKens6A7jNYfMLJfLHhgWR
+	 NcX20zkCl7uDw==
+Message-ID: <f0dd950a-02a7-402b-a08e-015db458b273@kernel.org>
+Date: Fri, 21 Mar 2025 10:37:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/10] Basic device tree support for ESWIN EIC7700 RISC-V
+ SoC
+To: Conor Dooley <conor@kernel.org>,
+ Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ Samuel Holland <samuel.holland@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Min Lin <linmin@eswincomputing.com>,
+ Pritesh Patel <pritesh.patel@einfochips.com>, Yangyu Chen
+ <cyy@cyyself.name>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ Yu Chien Peter Lin <peterlin@andestech.com>,
+ Charlie Jenkins <charlie@rivosinc.com>,
+ Kanak Shilledar <kanakshilledar@gmail.com>,
+ Darshan Prajapati <darshan.prajapati@einfochips.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Heiko Stuebner
+ <heiko@sntech.de>, Aradhya Bhatia <a-bhatia1@ti.com>,
+ "rafal@milecki.pl" <rafal@milecki.pl>, Anup Patel <anup@brainfault.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20250311073432.4068512-1-pinkesh.vaghela@einfochips.com>
+ <20250311-backdrop-porthole-440ae005e8fa@spud>
+ <SA3PR04MB893164FCD6C4CB8924FC8DE583D82@SA3PR04MB8931.namprd04.prod.outlook.com>
+ <20250320-uprising-couch-0af012a1fee6@spud>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250320-uprising-couch-0af012a1fee6@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Nancy Lin <nancy.lin@mediatek.com>
+On 20/03/2025 13:00, Conor Dooley wrote:
+> On Thu, Mar 20, 2025 at 10:39:52AM +0000, Pinkesh Vaghela wrote:
+>> Hi Conor,
+>>
+>> On Tue, Mar 11, 2025 at 11:38 PM, Conor Dooley wrote:
+>>> On Tue, Mar 11, 2025 at 01:04:22PM +0530, Pinkesh Vaghela wrote:
+>>>> Add support for ESWIN EIC7700 SoC consisting of SiFive Quad-Core
+>>>> P550 CPU cluster and the first development board that uses it, the
+>>>> SiFive HiFive Premier P550.
+>>>>
+>>>> This patch series adds initial device tree and also adds ESWIN
+>>>> architecture support.
+>>>>
+>>>> Boot-tested using intiramfs with Linux 6.14.0-rc2 on HiFive Premier
+>>>> P550 board using U-Boot 2024.01 and OpenSBI 1.4.
+>>>
+>>> There's no git tree in your MAINTAINERS entry, nor mention here of what the
+>>> story is going to be in terms of sending patches to Arnd. Who is going to be
+>>> doing that?
+>>
+>> We are not currently set up for sending signed pull requests,
+>> so for now we plan to send changes to Arnd as separate patches.
+> 
+> Undesirable, but sure. You didn't answer the first part of my question
 
-Add code to support MT8196 SOC Multi MMSYS Driver
+Just to clarify - separate patches as separate postings to soc@ after
+the review was done on the lists and then you applied them to the tree
+Conor asked below, right?
 
-Signed-off-by: Nancy Lin <nancy.lin@mediatek.com>
-Signed-off-by: Paul-pl Chen <paul-pl.chen@mediatek.com>
----
- drivers/gpu/drm/mediatek/mtk_drm_drv.c | 119 ++++++++++++++++++++++++-
- 1 file changed, 115 insertions(+), 4 deletions(-)
+> though, and there's no git tree listed in your v2 series. That part is
+> not negotiable, you have to have one and get it included in linux-next.
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-index b9c6a2a657ea..70a7e6d06d4f 100644
---- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-@@ -193,6 +193,10 @@ static const struct mtk_drm_route mt8188_mtk_ddp_main_routes[] = {
- 	{0, DDP_COMPONENT_DSI0},
- };
- 
-+static const struct mtk_drm_route mt8196_mtk_ddp_routes[] = {
-+	{2, DDP_COMPONENT_DSI0},
-+};
-+
- static const unsigned int mt8192_mtk_ddp_main[] = {
- 	DDP_COMPONENT_OVL0,
- 	DDP_COMPONENT_OVL_2L0,
-@@ -231,6 +235,50 @@ static const unsigned int mt8195_mtk_ddp_ext[] = {
- 	DDP_COMPONENT_DP_INTF1,
- };
- 
-+static const unsigned int mt8196_mtk_ddp_ovl0_main[] = {
-+	DDP_COMPONENT_DRM_OVLSYS_ADAPTOR0,
-+	DDP_COMPONENT_OVL0_DLO_ASYNC5,
-+};
-+
-+static const unsigned int mt8196_mtk_ddp_disp0_main[] = {
-+	DDP_COMPONENT_DLI_ASYNC0,
-+	DDP_COMPONENT_DLO_ASYNC1,
-+};
-+
-+static const unsigned int mt8196_mtk_ddp_disp1_main[] = {
-+	DDP_COMPONENT_DLI_ASYNC21,
-+	DDP_COMPONENT_DVO0,
-+};
-+
-+static const unsigned int mt8196_mtk_ddp_ovl0_ext[] = {
-+	DDP_COMPONENT_DRM_OVLSYS_ADAPTOR1,
-+	DDP_COMPONENT_OVL0_DLO_ASYNC6,
-+};
-+
-+static const unsigned int mt8196_mtk_ddp_disp0_ext[] = {
-+	DDP_COMPONENT_DLI_ASYNC1,
-+	DDP_COMPONENT_DLO_ASYNC2,
-+};
-+
-+static const unsigned int mt8196_mtk_ddp_disp1_ext[] = {
-+	DDP_COMPONENT_DLI_ASYNC22,
-+	DDP_COMPONENT_DP_INTF0,
-+};
-+
-+static const unsigned int mt8196_mtk_ddp_ovl1_third[] = {
-+	DDP_COMPONENT_DRM_OVLSYS_ADAPTOR2,
-+	DDP_COMPONENT_OVL1_DLO_ASYNC5,
-+};
-+
-+static const unsigned int mt8196_mtk_ddp_disp0_third[] = {
-+	DDP_COMPONENT_DLI_ASYNC8,
-+	DDP_COMPONENT_DLO_ASYNC3,
-+};
-+
-+static const unsigned int mt8196_mtk_ddp_disp1_third[] = {
-+	DDP_COMPONENT_DLI_ASYNC23,
-+};
-+
- static const struct mtk_mmsys_driver_data mt2701_mmsys_driver_data = {
- 	.main_path = mt2701_mtk_ddp_main,
- 	.main_len = ARRAY_SIZE(mt2701_mtk_ddp_main),
-@@ -327,8 +375,65 @@ static const struct mtk_mmsys_driver_data mt8195_vdosys1_driver_data = {
- 	.min_height = 1,
- };
- 
--static const struct mtk_mmsys_driver_data mt8365_mmsys_driver_data = {
--	.mmsys_dev_num = 1,
-+static const struct mtk_mmsys_driver_data mt8196_dispsys0_driver_data = {
-+	.main_path = mt8196_mtk_ddp_disp0_main,
-+	.main_len = ARRAY_SIZE(mt8196_mtk_ddp_disp0_main),
-+	.main_order = 1,
-+	.ext_path = mt8196_mtk_ddp_disp0_ext,
-+	.ext_len = ARRAY_SIZE(mt8196_mtk_ddp_disp0_ext),
-+	.ext_order = 1,
-+	.third_path = mt8196_mtk_ddp_disp0_third,
-+	.third_len = ARRAY_SIZE(mt8196_mtk_ddp_disp0_third),
-+	.third_order = 1,
-+	.mmsys_id = DISPSYS0,
-+	.mmsys_dev_num = 4,
-+	.max_width = 8191,
-+	.min_width = 2, /* 2-pixel align when ethdr is bypassed */
-+	.min_height = 1,
-+};
-+
-+static const struct mtk_mmsys_driver_data mt8196_dispsys1_driver_data = {
-+	.main_path = mt8196_mtk_ddp_disp1_main,
-+	.main_len = ARRAY_SIZE(mt8196_mtk_ddp_disp1_main),
-+	.main_order = 2,
-+	.ext_path = mt8196_mtk_ddp_disp1_ext,
-+	.ext_len = ARRAY_SIZE(mt8196_mtk_ddp_disp1_ext),
-+	.ext_order = 2,
-+	.third_path = mt8196_mtk_ddp_disp1_third,
-+	.third_len = ARRAY_SIZE(mt8196_mtk_ddp_disp1_third),
-+	.conn_routes = mt8196_mtk_ddp_routes,
-+	.num_conn_routes = ARRAY_SIZE(mt8196_mtk_ddp_routes),
-+	.third_order = 2,
-+	.mmsys_id = DISPSYS1,
-+	.mmsys_dev_num = 4,
-+	.max_width = 8191,
-+	.min_width = 2, /* 2-pixel align when ethdr is bypassed */
-+	.min_height = 1,
-+};
-+
-+static const struct mtk_mmsys_driver_data mt8196_ovlsys0_driver_data = {
-+	.main_path = mt8196_mtk_ddp_ovl0_main,
-+	.main_len = ARRAY_SIZE(mt8196_mtk_ddp_ovl0_main),
-+	.main_order = 0,
-+	.ext_path = mt8196_mtk_ddp_ovl0_ext,
-+	.ext_len = ARRAY_SIZE(mt8196_mtk_ddp_ovl0_ext),
-+	.ext_order = 0,
-+	.mmsys_id = OVLSYS0,
-+	.mmsys_dev_num = 4,
-+	.max_width = 8191,
-+	.min_width = 2, /* 2-pixel align when ethdr is bypassed */
-+	.min_height = 1,
-+};
-+
-+static const struct mtk_mmsys_driver_data mt8196_ovlsys1_driver_data = {
-+	.third_path = mt8196_mtk_ddp_ovl1_third,
-+	.third_len = ARRAY_SIZE(mt8196_mtk_ddp_ovl1_third),
-+	.third_order = 0,
-+	.mmsys_id = OVLSYS1,
-+	.mmsys_dev_num = 4,
-+	.max_width = 8191,
-+	.min_width = 2, /* 2-pixel align when ethdr is bypassed */
-+	.min_height = 1,
- };
- 
- static const struct of_device_id mtk_drm_of_ids[] = {
-@@ -358,8 +463,14 @@ static const struct of_device_id mtk_drm_of_ids[] = {
- 	  .data = &mt8195_vdosys0_driver_data},
- 	{ .compatible = "mediatek,mt8195-vdosys1",
- 	  .data = &mt8195_vdosys1_driver_data},
--	{ .compatible = "mediatek,mt8365-mmsys",
--	  .data = &mt8365_mmsys_driver_data},
-+	{ .compatible = "mediatek,mt8196-dispsys0",
-+	  .data = &mt8196_dispsys0_driver_data},
-+	{ .compatible = "mediatek,mt8196-dispsys1",
-+	  .data = &mt8196_dispsys1_driver_data},
-+	{ .compatible = "mediatek,mt8196-ovlsys0",
-+	  .data = &mt8196_ovlsys0_driver_data},
-+	{ .compatible = "mediatek,mt8196-ovlsys1",
-+	  .data = &mt8196_ovlsys1_driver_data},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, mtk_drm_of_ids);
--- 
-2.45.2
 
+
+Best regards,
+Krzysztof
 
