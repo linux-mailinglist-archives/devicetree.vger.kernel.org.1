@@ -1,104 +1,146 @@
-Return-Path: <devicetree+bounces-159757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159767-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AAB3A6BF66
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 17:14:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 507A4A6BFCC
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 17:25:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B98117BD84
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 16:14:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 852DE462DB9
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 16:23:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5095D22836C;
-	Fri, 21 Mar 2025 16:14:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C4DF228C9D;
+	Fri, 21 Mar 2025 16:23:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lHM1CbtZ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="oU7Fs3ea"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 196431E00B4;
-	Fri, 21 Mar 2025 16:14:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D344F1D86F2;
+	Fri, 21 Mar 2025 16:23:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742573653; cv=none; b=jW9n7mt6JH340VQIJ62XOWR5mLVgoaQpLTlH9m2F4JuH9lkfQZcanyGqHcyBqe6Yk5RaOSbV3RSd31ahjLBM2fsdQqzb4tjgBo+jTKBoXOmwBgrrH6g4nTGe5KHUFJ1v3db99DO/Airter59bTQo+UKHSb/jYCyVlk32xATk9Kc=
+	t=1742574228; cv=none; b=E1qqMRtuKGgvTe9Sxb+F9KsA8dFds9h5pqU06GLn8SSXfvXdSyFfjMkqMh6JkypMJFWzM2eObDCXmmxaK0q3LeFjOJJQwlfRHpAQK5CguP+s9qGiDboG41CQuCIG4QYFCzMd9hOZEgamFg/wYCuVTvoQIlmVVAWPuLnLAhyD/x4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742573653; c=relaxed/simple;
-	bh=D4wmE+1sJieP2ZR8N+4BcCjmZMiOCHIqifIqz4WDGnE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V0/qkLPCyO2KQSzufonCVluoYW6KBVq8t4ortXpdvjN4Y+B+1FozLXmmwaGrhCJK3L82wr8dUjTMHXl/BIdsA8SD8/lWfda8JgOtkYecFs2jzaVyv4vKTDa4Vt1x2LiK5nkNMIsjdKMwD4CFufOOsQ/36K1wbONOxS5KD1MZVDg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lHM1CbtZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51373C4CEE3;
-	Fri, 21 Mar 2025 16:14:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742573652;
-	bh=D4wmE+1sJieP2ZR8N+4BcCjmZMiOCHIqifIqz4WDGnE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lHM1CbtZoDg6GisJ10dBrzHmYigP/Xc39YTSaXnWn0akMOEbRA2qWSQWAJo5RNWdH
-	 SzAUmIIQfpe2bToTpNNqZKxGvaUsB/yW/z/9p1ImCY/hSLFLcxWSqUZ6kd+T6Jq+68
-	 tkdZUR/0iNv4+KxjclLCBuLCMokOYwiVH9NP8Yu4swUQNyVXPtLjeyBLB05KFCRCfu
-	 yDyQBNQS3ExE3WqrBJp/GsmQMpSx1pqrp4es7w+DRLUpQj+75iYC5E1umlHYPObbmE
-	 cSAEC8uOQVsKLdha6Ga5b0DIgxaPnbFRwQrDv3ZQK9GIOIfrkhICi3r2BRMEKs8OKB
-	 iLRg7iQRe9VqA==
-Date: Fri, 21 Mar 2025 11:14:11 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
-Cc: linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Frank Li <Frank.li@nxp.com>, devicetree@vger.kernel.org,
-	Wesley Cheng <quic_wcheng@quicinc.com>, linux-usb@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Felipe Balbi <balbi@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v5 2/7] dt-bindings: usb: Introduce qcom,snps-dwc3
-Message-ID: <174257365080.3466536.3652323578969133351.robh@kernel.org>
-References: <20250318-dwc3-refactor-v5-0-90ea6e5b3ba4@oss.qualcomm.com>
- <20250318-dwc3-refactor-v5-2-90ea6e5b3ba4@oss.qualcomm.com>
+	s=arc-20240116; t=1742574228; c=relaxed/simple;
+	bh=/ouq0Vnbu9fdDtvgpsSzY689c7oKwvhmkvXS6uikKis=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Xed1Jh7wnFVt3gB5E6P8KpYVl1CfcKkfgHic5cwMhrlcN/uY0SatHx65F2vr9dPYxnUSTJhqq0bYsWeiUSeUdgf8qW9vbOs8r+HWaJ5Gdv9lLvTLHZ1JX8d/8WSvVzFRztqfKMzCQpHnZnwSbZ6drOY8GbCvrU3aH4L0kqiaT4k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=oU7Fs3ea; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52LATAxR022089;
+	Fri, 21 Mar 2025 16:15:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	MBRdEC2YlUOGNuYmFaUCuGN/I3DKMV8CuIRZm9h64e4=; b=oU7Fs3eaxw4keBvW
+	9o7y/e38Sp5Sn2DxoMVfGfnzWgYEAD8ifRW+BEVes6Gkmka2BXisi4e+XqOSqEnd
+	Y5jb39nKZ5jZXRrrR9WvsH0yHGAZnl6lbjyJugQZRzNUZLBOcQP95kuDbX4Zs9CA
+	YpxXtLdVBMgZmqEpkplwqTH2CGoRqimllEgzeCfLMhVEBxi89Ozrf+21P+XDpvT8
+	BCD6fJWEEh83NpGTgOGy6KO4/cxbMwQ7XNUMeOlmtsuTNlRO2YSWHGU5P4bUoCNL
+	rDUZIL+dMzkDpdCk0rlpKYKST/T9a+dldEDsx6K7hhjTebc7miRm+hBtP/BzB+gR
+	YToBng==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45h4wph8c0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 21 Mar 2025 16:15:28 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52LGFRVj014152
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 21 Mar 2025 16:15:27 GMT
+Received: from [10.226.59.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 21 Mar
+ 2025 09:15:26 -0700
+Message-ID: <6cf7d790-57a8-40b9-b5b0-dedfce78d074@quicinc.com>
+Date: Fri, 21 Mar 2025 10:15:25 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250318-dwc3-refactor-v5-2-90ea6e5b3ba4@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 7/7] accel/rocket: Add IOCTLs for synchronizing memory
+ accesses
+To: Tomeu Vizoso <tomeu@tomeuvizoso.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+        Oded Gabbay <ogabbay@kernel.org>, Jonathan
+ Corbet <corbet@lwn.net>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+        Sebastian
+ Reichel <sebastian.reichel@collabora.com>
+CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <linux-doc@vger.kernel.org>,
+        <linux-media@vger.kernel.org>, <linaro-mm-sig@lists.linaro.org>
+References: <20250225-6-10-rocket-v2-0-d4dbcfafc141@tomeuvizoso.net>
+ <20250225-6-10-rocket-v2-7-d4dbcfafc141@tomeuvizoso.net>
+Content-Language: en-US
+From: Jeffrey Hugo <quic_jhugo@quicinc.com>
+In-Reply-To: <20250225-6-10-rocket-v2-7-d4dbcfafc141@tomeuvizoso.net>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: BOfd9NSv-9Zt74cr0Av2_wp2C2GJ3ORR
+X-Proofpoint-GUID: BOfd9NSv-9Zt74cr0Av2_wp2C2GJ3ORR
+X-Authority-Analysis: v=2.4 cv=ZN3XmW7b c=1 sm=1 tr=0 ts=67dd90a0 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=ZfkCZY2BxkJJNCUMkzUA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-21_05,2025-03-21_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ mlxlogscore=916 clxscore=1015 phishscore=0 adultscore=0 lowpriorityscore=0
+ malwarescore=0 impostorscore=0 spamscore=0 mlxscore=0 priorityscore=1501
+ bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503210119
 
+On 2/25/2025 12:55 AM, Tomeu Vizoso wrote:
+> +int rocket_ioctl_fini_bo(struct drm_device *dev, void *data, struct drm_file *file)
+> +{
+> +	struct drm_rocket_fini_bo *args = data;
+> +	struct drm_gem_object *gem_obj;
+> +	struct rocket_gem_object *rkt_obj;
+> +	struct drm_gem_shmem_object *shmem_obj;
+> +	struct rocket_device *rdev = to_rocket_device(dev);
+> +
+> +	gem_obj = drm_gem_object_lookup(file, args->handle);
+> +	if (!gem_obj)
+> +		return -ENOENT;
+> +
+> +	rkt_obj = to_rocket_bo(gem_obj);
+> +	shmem_obj = &rkt_obj->base;
+> +
+> +	WARN_ON(rkt_obj->last_cpu_prep_op == 0);
+> +
+> +	for (unsigned int core = 1; core < rdev->num_cores; core++) {
+> +		dma_sync_sgtable_for_device(rdev->cores[core].dev, shmem_obj->sgt,
+> +					    rocket_op_to_dma_dir(rkt_obj->last_cpu_prep_op));
+> +	}
+> +
+> +	rkt_obj->last_cpu_prep_op = 0;
+> +
+> +	drm_gem_object_put(gem_obj);
+> +
+> +	return 0;
+> +}
 
-On Tue, 18 Mar 2025 14:05:02 -0500, Bjorn Andersson wrote:
-> The Qualcomm USB glue is not separate of the Synopsys DWC3 core and
-> several of the snps,dwc3 properties (such as clocks and reset) conflicts
-> in expectation with the Qualcomm integration.
-> 
-> Using the newly split out Synopsys DWC3 core properties, describe the
-> Qualcomm USB block in a single block. The new binding is a copy of
-> qcom,dwc3 with the needed modifications.
-> 
-> It would have been convenient to retain the two structures with the same
-> compatibles, but as there exist no way to select a binding based on the
-> absence of a subnode/patternProperty, a new generic compatible is
-> introduced to describe this binding.
-> 
-> To avoid redefining all the platform-specific compatibles, "select" is
-> used to tell the DeviceTree validator which binding to use solely on the
-> generic compatible. (Otherwise if the specific compatible matches during
-> validation, the generic one must match as well)
-> 
-> Mark qcom,dwc3 deprecated, to favor expressing future platforms using
-> the new combined binding.
-> 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
-> ---
->  .../devicetree/bindings/usb/qcom,dwc3.yaml         |  13 +-
->  .../devicetree/bindings/usb/qcom,snps-dwc3.yaml    | 620 +++++++++++++++++++++
->  2 files changed, 632 insertions(+), 1 deletion(-)
-> 
-
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-
+flags must be 0, and you must check that here. You do not appear to be 
+doing that. Otherwise, userspace may put a value in flags, which is 
+ignored now, but later when you define flags for a purpose, existing 
+userspace will be broken - a uapi violation.
 
