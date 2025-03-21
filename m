@@ -1,263 +1,126 @@
-Return-Path: <devicetree+bounces-159502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76161A6B35B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 04:30:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8F48A6B35D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 04:37:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B08E01885C61
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 03:29:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B626189D682
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 03:37:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88CEE1E5B72;
-	Fri, 21 Mar 2025 03:29:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18B221DE8B4;
+	Fri, 21 Mar 2025 03:37:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="efsqqC+I"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="uwFpPbx4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
 	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3AED78F5B;
-	Fri, 21 Mar 2025 03:29:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33FA22AD0C;
+	Fri, 21 Mar 2025 03:37:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742527744; cv=none; b=FvXDyIbzWeClD4lLg1e2jU5x0y5auNncrbIfRpcTUIVB51jwJTK2Ap4sZKEqlWgnIKYc0UlV8X/hydCoPyzydlSEqaa/WljSTOaeDMHl9jJTLWWy+5QnRscpYUGkPffXIqjZ5VKa/RqiC/J6q4zvPUkeW972BPr36P0f0ZS6KRw=
+	t=1742528241; cv=none; b=fNGVCjqgx4UGJNSbvPkwmQvgJ85xqEjOCesAMxyBn6kQcHV6gyBDr+mzjMBbAvkAo9Fdl6uMENWqXpOwVf/ppUfMGt6qJehfndVmT1MeSGDS97DT0V4pE4ELB6tMsvxK8rP0CjAcmXwt5d++W7CTLdqTNbblW9sVunafXJgF8xs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742527744; c=relaxed/simple;
-	bh=VLdzNTb4ENqsioNfG08wfvdE6JVwxPuGTnBZHq6pp5Q=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=NbwqzEZul0icRR34EXHtg+fZL2u+UXtdEsYTQa1y0Yu159BtJfzddHq/zJs9mPrreAL7fkHOHTa6+cRofHB0PJqBKF03ZJakeea7rAqDlOhNxmYakpZmzR77HFApTnHl85kLiQQbMKVGWEcPYbh6wki5QNYeHsDad0iatrz4HJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=efsqqC+I; arc=none smtp.client-ip=116.203.91.91
+	s=arc-20240116; t=1742528241; c=relaxed/simple;
+	bh=7DsFfDmL7gdTc7G/SCSeYR6NfLhG6ZKlecesGG71VOU=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=jnFeIQ3aDjOJu8d3ycVNXHVB4AH48hJMBUYqTm+4QMnoaX8P/VtmHeDZ9ye4urlEx9F8kLYDwDdkbVIZiJc/qDF6m9J4vzJ1/wTfebpuygPWNUPIEeVuI7vNIyFyQA8bZtMqip8C4faj8p0BRMdwpa1wpCUPKYLy+YdFD8HjdRw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=uwFpPbx4; arc=none smtp.client-ip=116.203.91.91
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-From: Dragan Simic <dsimic@manjaro.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1742527737;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=TvimR6SKo0jtW7eTJ4niI635OpzUmByoQ1ePS3vCVMo=;
-	b=efsqqC+In51YqG17swWvtDJmtXPw/VfdVPNwfuCEPtWye0J0e3juf/qxyhpq6e38T9cmjx
-	psIlggfq4gYjKmDY12xsnKMfzBUyPvcDgPbzZboB5JpXzv6VValNa6hnK/5DCCsVU2Boag
-	+h3tq7LhyDyoFJSwTul01XrJ0ObfKkm1Nr4PP2YotgGcwntmOZdfNzN3J6aOX3vW0w0aEI
-	i0ONlST1c908yXV9jfKeBqHf/YKasM6poA8P3cSmzKLFzXB88OY2M6uVKETwFQCdTM6zx8
-	Yf3ZOuWUiCj4TujmlOBAdtgCmBsH4i6Sgojwu2rCOe5EOa239fQvs6/KIaSi9w==
-To: linux-rockchip@lists.infradead.org
-Cc: heiko@sntech.de,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	stable@vger.kernel.org,
-	Alexey Charkov <alchark@gmail.com>,
-	Quentin Schulz <quentin.schulz@cherry.de>
-Subject: [PATCH] arm64: dts: rockchip: Remove overdrive-mode OPPs from RK3588J SoC dtsi
-Date: Fri, 21 Mar 2025 04:28:49 +0100
-Message-Id: <f929da061de35925ea591c969f985430e23c4a7e.1742526811.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1742528236;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=r0RO79xWz5uplYpgJ0aagZslkAQuZeU7KWZBSxdHL84=;
+	b=uwFpPbx4k0pVxvvfDCpYP9Lzo0PEsFw0hCtQgOZaLCL2HzQkhNv8Dl5BtayT85WnavzCDg
+	oYm392g5GozjLeSKyGuv+x+YJ1O2bRm+jffBPguQDC1GNYy/JeHAlS4tqYQIVyoo8xQ473
+	nszaAOusS6l6X+z8GmM/Thqd0f2owCeK3h/zCW0WiM4W1KFeGBMB6LzrhR/NYAXX6AbgpY
+	cFpjpnxUwAdHGQlMBQx1DCwV8Nk6Bd2hwSB6RaKGHNH70zGc5kvdqJsGh/2QfKfJ/wNxu4
+	K+Ult3oMOtD/ysjULEgMXyYAWf3QHRDVrPPQOyEe9DrhbMCzOHnOoUN8h30B+Q==
+Date: Fri, 21 Mar 2025 04:37:16 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Quentin Schulz <quentin.schulz@cherry.de>, Alexey Charkov
+ <alchark@gmail.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Viresh Kumar
+ <viresh.kumar@linaro.org>, Chen-Yu Tsai <wens@kernel.org>, Diederik de Haas
+ <didi.debian@cknow.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Kever Yang <kever.yang@rock-chips.com>
+Subject: Re: [PATCH v5 7/8] arm64: dts: rockchip: Add OPP data for CPU cores
+ on RK3588j
+In-Reply-To: <80c7d9fcdd270df2c61fbd61eec44d70@manjaro.org>
+References: <20240617-rk-dts-additions-v5-0-c1f5f3267f1e@gmail.com>
+ <a56b59a21dc3c21192fe45197eee4865@manjaro.org>
+ <2cf3889741f84584d8f23a4407fed08e@manjaro.org> <3271211.5fSG56mABF@phil>
+ <80c7d9fcdd270df2c61fbd61eec44d70@manjaro.org>
+Message-ID: <4432e7f5dd9cb75584fb36e1f52497aa@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
 Authentication-Results: ORIGINATING;
 	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-The differences in the vendor-approved CPU and GPU OPPs for the standard
-Rockchip RK3588 variant [1] and the industrial Rockchip RK3588J variant [2]
-come from the latter, presumably, supporting an extended temperature range
-that's usually associated with industrial applications, despite the two SoC
-variant datasheets specifying the same upper limit for the allowed ambient
-temperature for both variants.  However, the lower temperature limit is
-specified much lower for the RK3588J variant. [1][2]
+Hello all,
 
-To be on the safe side and to ensure maximum longevity of the RK3588J SoCs,
-only the CPU and GPU OPPs that are declared by the vendor to be always safe
-for this SoC variant may be provided.  As explained by the vendor [3] and
-according to its datasheet, [2] the RK3588J variant can actually run safely
-at higher CPU and GPU OPPs as well, but only when not enjoying the assumed
-extended temperature range that the RK3588J, as an SoC variant targeted
-specifically at industrial applications, is made (or binned) for.
+On 2025-03-13 20:43, Dragan Simic wrote:
+> On 2025-03-13 20:00, Heiko Stuebner wrote:
+>> Am Donnerstag, 13. März 2025, 11:42:17 MEZ schrieb Dragan Simic:
+>>> On 2025-03-12 11:34, Dragan Simic wrote:
+>>> Just as a note, everything above (and even a bit more) is confirmed
+>>> and clearly described in the publicly available RK3588J datasheet,
+>>> which I'll provide as a reference in my upcoming patch.
+>> 
+>> so just to reiterate my stance, in mainline I really only want 
+>> frequencies
+>> that are not possibly influencing the lifetime of the chip.
+>> 
+>> It doesn't even matter about the variant we're talking about being
+>> industrial :-) . When someone is using mainline I want them to be
+>> reasonable assured that we don't have stuff in here that may affect
+>> the lifetime of their board.
+>> 
+>> All gambling on performance for possible lifetime reduction people
+>> can do on their own ... for example with a dt-overlay ;-) .
+>> 
+>> So TL;DR, I agree to both Quentin and Dragan
+> 
+> Thanks!  Indeed, we must provide only the OPPs that are declared
+> by the manufacturer to be always safe for the particular SoC
+> variant.  The RK3588J is actually a good example, because it, in
+> theory, can run safely at higher OPPs as well, but only when not
+> enjoying the extended temperature range that the RK3588J, as an
+> SoC variant targeted at industrial applications, is specifically
+> made (or binned) for.
+> 
+> Thus, we must support only the RK3588J OPPs that are declared to
+> be safe throughout the entire extended temperature range, while
+> anyone who actually can assure that their RK3588J-based board is
+> never going to run within the extended temperature range, probably
+> may safely apply an overlay that adds the higher OPPs.  As we
+> obviously can't know what will be the temperature conditions, we
+> may provide only the lower OPPs that are always safe.
+> 
+> I'll finish the patch and send it over tomorrow or so...  I still
+> need to go through the changes once again, to make 100% sure I've
+> missed nothing, and that I haven't included anything extraneous. :)
 
-Thus, only the CPU and GPU OPPs that are specified by the vendor to be safe
-throughout the entire RK3588J's extended temperature range may be provided,
-while anyone who actually can ensure that their RK3588J-based board is
-never going to run within the extended temperature range, may probably
-safely apply a DT overlay that adds the higher CPU and GPU OPPs.  As we
-obviously can't know what will be the runtime temperature conditions for
-a particular board, we may provide only the always-safe OPPs.
+For future reference and for anyone interested, below is the link
+to the above-mentioned patch.
 
-With all this and the downstream RK3588(J) DT definitions [4][5] in mind,
-let's delete the RK3588J CPU and GPU OPPs that are not considered belonging
-to the normal operation mode for this SoC variant.  To quote the RK3588J
-datasheet [2], "normal mode means the chipset works under safety voltage
-and frequency;  for the industrial environment, highly recommend to keep in
-normal mode, the lifetime is reasonably guaranteed", while "overdrive mode
-brings higher frequency, and the voltage will increase accordingly;  under
-the overdrive mode for a long time, the chipset may shorten the lifetime,
-especially in high temperature condition".
-
-To sum up the RK3588J datasheet [2] and the vendor-provided DTs, [4][5]
-the maximum allowed CPU core and GPU frequencies are as follows:
-
-   IP core    | Normal mode | Overdrive mode
-  ------------+-------------+----------------
-   Cortex-A55 |   1,296 MHz |      1,704 MHz
-   Cortex-A76 |   1,608 MHz |      2,016 MHz
-   GPU        |     700 MHz |        850 MHz
-
-Unfortunately, when it comes to the actual voltages for the RK3588J CPU and
-GPU OPPs, there's a discrepancy between the RK3588J datasheet [2] and the
-downstream kernel code. [4][5]  The RK3588J datasheet states that "the max.
-working voltage of CPU/GPU/NPU is 0.75 V under the normal mode", while the
-downstream kernel code actually allows voltage ranges that go up to 0.95 V,
-which is still within the voltage range allowed by the datasheet.  However,
-the RK3588J datasheet also tells us to "strictly refer to the software
-configuration of SDK and the hardware reference design", so let's embrace
-the voltage ranges provided by the downstream kernel code, which also
-prevents the undesirable theoretical outcome of ending up with no usable
-OPPs on a particular board, as a result of the board's voltage regulator(s)
-being unable to deliver the exact voltages, for whatever reason.
-
-The above-described voltage ranges for the RK3588J CPU OPPs remain taken
-from the downstream kernel code [4][5] by picking the highest, worst-bin
-values, which ensure that all RK3588J bins will work reliably.  Yes, with
-some power inevitably wasted as unnecessarily generated heat, but the
-reliability is paramount, together with the longevity.  This deficiency
-may be revisited separately at some point in the future.
-
-The provided RK3588J CPU OPPs follow the slightly debatable "provide only
-the highest-frequency OPP from the same-voltage group" approach that's been
-established earlier, [6] as a result of the "same-voltage, lower-frequency"
-OPPs being considered inefficient from the IPA governor's standpoint, which
-may also be revisited separately at some point in the future.
-
-[1] https://wiki.friendlyelec.com/wiki/images/e/ee/Rockchip_RK3588_Datasheet_V1.6-20231016.pdf
-[2] https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2403201054_Rockchip-RK3588J_C22364189.pdf
-[3] https://lore.kernel.org/linux-rockchip/e55125ed-64fb-455e-b1e4-cebe2cf006e4@cherry.de/T/#u
-[4] https://raw.githubusercontent.com/rockchip-linux/kernel/604cec4004abe5a96c734f2fab7b74809d2d742f/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-[5] https://raw.githubusercontent.com/rockchip-linux/kernel/604cec4004abe5a96c734f2fab7b74809d2d742f/arch/arm64/boot/dts/rockchip/rk3588j.dtsi
-[6] https://lore.kernel.org/all/20240229-rk-dts-additions-v3-5-6afe8473a631@gmail.com/
-
-Fixes: 667885a68658 ("arm64: dts: rockchip: Add OPP data for CPU cores on RK3588j")
-Fixes: a7b2070505a2 ("arm64: dts: rockchip: Split GPU OPPs of RK3588 and RK3588j")
-Cc: stable@vger.kernel.org
-Cc: Heiko Stuebner <heiko@sntech.de>
-Cc: Alexey Charkov <alchark@gmail.com>
-Helped-by: Quentin Schulz <quentin.schulz@cherry.de>
-Signed-off-by: Dragan Simic <dsimic@manjaro.org>
----
- arch/arm64/boot/dts/rockchip/rk3588j.dtsi | 53 ++++++++---------------
- 1 file changed, 17 insertions(+), 36 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588j.dtsi b/arch/arm64/boot/dts/rockchip/rk3588j.dtsi
-index bce72bac4503..3045cb3bd68c 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588j.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588j.dtsi
-@@ -11,74 +11,59 @@ cluster0_opp_table: opp-table-cluster0 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
--		opp-1416000000 {
--			opp-hz = /bits/ 64 <1416000000>;
-+		opp-1200000000 {
-+			opp-hz = /bits/ 64 <1200000000>;
- 			opp-microvolt = <750000 750000 950000>;
- 			clock-latency-ns = <40000>;
- 			opp-suspend;
- 		};
--		opp-1608000000 {
--			opp-hz = /bits/ 64 <1608000000>;
--			opp-microvolt = <887500 887500 950000>;
--			clock-latency-ns = <40000>;
--		};
--		opp-1704000000 {
--			opp-hz = /bits/ 64 <1704000000>;
--			opp-microvolt = <937500 937500 950000>;
-+		opp-1296000000 {
-+			opp-hz = /bits/ 64 <1296000000>;
-+			opp-microvolt = <775000 775000 950000>;
- 			clock-latency-ns = <40000>;
- 		};
- 	};
- 
- 	cluster1_opp_table: opp-table-cluster1 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-+		opp-1200000000{
-+			opp-hz = /bits/ 64 <1200000000>;
-+			opp-microvolt = <750000 750000 950000>;
-+			clock-latency-ns = <40000>;
-+		};
- 		opp-1416000000 {
- 			opp-hz = /bits/ 64 <1416000000>;
--			opp-microvolt = <750000 750000 950000>;
-+			opp-microvolt = <762500 762500 950000>;
- 			clock-latency-ns = <40000>;
- 		};
- 		opp-1608000000 {
- 			opp-hz = /bits/ 64 <1608000000>;
- 			opp-microvolt = <787500 787500 950000>;
- 			clock-latency-ns = <40000>;
- 		};
--		opp-1800000000 {
--			opp-hz = /bits/ 64 <1800000000>;
--			opp-microvolt = <875000 875000 950000>;
--			clock-latency-ns = <40000>;
--		};
--		opp-2016000000 {
--			opp-hz = /bits/ 64 <2016000000>;
--			opp-microvolt = <950000 950000 950000>;
--			clock-latency-ns = <40000>;
--		};
- 	};
- 
- 	cluster2_opp_table: opp-table-cluster2 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-+		opp-1200000000{
-+			opp-hz = /bits/ 64 <1200000000>;
-+			opp-microvolt = <750000 750000 950000>;
-+			clock-latency-ns = <40000>;
-+		};
- 		opp-1416000000 {
- 			opp-hz = /bits/ 64 <1416000000>;
--			opp-microvolt = <750000 750000 950000>;
-+			opp-microvolt = <762500 762500 950000>;
- 			clock-latency-ns = <40000>;
- 		};
- 		opp-1608000000 {
- 			opp-hz = /bits/ 64 <1608000000>;
- 			opp-microvolt = <787500 787500 950000>;
- 			clock-latency-ns = <40000>;
- 		};
--		opp-1800000000 {
--			opp-hz = /bits/ 64 <1800000000>;
--			opp-microvolt = <875000 875000 950000>;
--			clock-latency-ns = <40000>;
--		};
--		opp-2016000000 {
--			opp-hz = /bits/ 64 <2016000000>;
--			opp-microvolt = <950000 950000 950000>;
--			clock-latency-ns = <40000>;
--		};
- 	};
- 
- 	gpu_opp_table: opp-table {
-@@ -104,10 +89,6 @@ opp-700000000 {
- 			opp-hz = /bits/ 64 <700000000>;
- 			opp-microvolt = <750000 750000 850000>;
- 		};
--		opp-850000000 {
--			opp-hz = /bits/ 64 <800000000>;
--			opp-microvolt = <787500 787500 850000>;
--		};
- 	};
- };
- 
+https://lore.kernel.org/linux-rockchip/f929da061de35925ea591c969f985430e23c4a7e.1742526811.git.dsimic@manjaro.org/T/#u
 
