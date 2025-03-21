@@ -1,260 +1,192 @@
-Return-Path: <devicetree+bounces-159494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CDAAA6B2E2
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 03:24:02 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9F5EA6B318
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 03:58:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B401C3BD939
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 02:23:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EA3587A58C1
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 02:57:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11A2B1DF965;
-	Fri, 21 Mar 2025 02:23:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94A941E32D6;
+	Fri, 21 Mar 2025 02:58:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PzHSf57q"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="dEqML03q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2046.outbound.protection.outlook.com [40.107.21.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB6F71A7264;
-	Fri, 21 Mar 2025 02:23:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742523838; cv=none; b=P75AQe3RHakQj42cGA8Wk1d5PnwUVCafQ1MWWawu2aTICv8+adjXopqkkUZbOiL5v4M62X3WfNPMcCzkGQuFwCAvgWh8yfjGAbSDITXXBn5y/v2Za+H4PIowXmB9i8nP9Du5itSLoCyqOJveq8ew0L2G9Nv6g7tH5fzLaUSG3Wc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742523838; c=relaxed/simple;
-	bh=8+YFngRA+RL4itCdSnDqokhyCF25uPzsqjoBvzUhdHI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ZnCdaCTdpUFzAFT+rUKjvo3JyozLXxa0QRaMTj4DaI0HNo9N9d6RNwApG/Y0wsZb7N1W7pIuTBLFhHFOJXhgTjV+9QSn6tbuoi+S9WxDXoWQAtihZt7fVsa0VU+u3UzmIQEtVdPsvIUdfZxt9Dts8fNCc8E9y6ME4dwZIh4BINM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PzHSf57q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 3BE08C4CEDD;
-	Fri, 21 Mar 2025 02:23:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742523837;
-	bh=8+YFngRA+RL4itCdSnDqokhyCF25uPzsqjoBvzUhdHI=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=PzHSf57qgUf0FB7TATdmiJPPa16kAxxbeQBubmAv6ILpPwJ122YZbqrk1X3sZm0P9
-	 uYTzERiVqmRIg4+ruKUo/315IOkh83+bjOW9WxlSh8ShgcGv86JYxt/sCiGZzffVgB
-	 D86c3m9ZcKJB1PvS91lDdps3G6VYd4TauQqJJs+4w4tF014A79xqGuc57R8YiyFjlW
-	 KY/y0CcrhSUgQDzfcxOXOy0b0nNEh5tyOXMBrAsGfGr0UGsHrC1D57jChsaAvbGssF
-	 kgtxtyGK8941NGmLaxtZ9awMirQ319DxPHgkR9fkgldMd3dfcsPfxVb+VRDzUU8oHR
-	 IZ1ETZ1yHTacg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 24AA7C28B30;
-	Fri, 21 Mar 2025 02:23:57 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Fri, 21 Mar 2025 10:23:55 +0800
-Subject: [PATCH] arm64: dts: amlogic: a4: fix dtb compilation warning
- issues
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 453A71876;
+	Fri, 21 Mar 2025 02:58:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.46
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1742525909; cv=fail; b=uOhRsLMjKgu72AjXM7X3lTmDbp8JtpxxRnmt0FVQhwctgLbnwsxFAm12JYUbo8m0WHJrazZefNfpiaWCmB/uyy3ei0GbUhNmZ8Svb5YYOFiSoDKoWbT1fOXiAd2CsQjRw1hxjsb+azmQzNal52U6/4T6E5XfuMkFK3wBB4O012g=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1742525909; c=relaxed/simple;
+	bh=PAf0yyppvSwmyGZ5SasuLITxQ9R1+KO6FS1EDZcGR4Y=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=oJNxvgOhSBCJGLdH6FYYRSXorRBJALPTgRI96V1AVi+Nypq8wGGBYqmwv926VxnsSEcJWttLb8eDWfPNU4+YAvj7pTi11iAPY1h26B1J1CdWxoOfwKigBTjj94gQcRiPEIK05dULHC4anBe0y2Ef3lqRkB7vT46CgzTG1fTXiuw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=dEqML03q; arc=fail smtp.client-ip=40.107.21.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=XrxNbr7hw5+mZWwTFFVB2xCutsudvs+Bha7OL/+2ds8LFIeMJNQkxKzRL3mOGGC7l9G2lecGwseSJM9yDuahxhXPQYhtii2FbHfGlhY9EtrBRYAp6UkLFRoCHnTfneW8UnBRf2AecWrP4p9FcOcJGZhLY+TxQSwpXujzRkCNhTRb3Cf55Y1jgwM50HUO1EGUd/UTYVv+Zh3Rd+SAOFkQRbz00qdXmaN0D5ukbvDg7Rxg4f4P1UnZzUZkmI1I3aKKUaLR7kynAqT3fVGVKIoB3MPvZeUmhnJXyj7/xxID/CRe3dFehkkhfjegPTSVafQHPFSs9p4Qg+vE2lyUqmc/IA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=T39/czzcQHenCJlRCG/WEyJypp+F7f6XRld1DP2gGX8=;
+ b=vGOuz9Dek2DEmaOra3GLosc/1SbTQd77aH7p/6WRWw0mfKI1G/fnnR/0HfEzyt1zgPfg5/PFrpa2CB/J+7JUmU+mii33igd8jVeziaEwZipqGp2gXKELgh/RZ83CHzQQMzQwzPIRsmN2/hHPkEJ1A8kH2f6D7RBKxJN+TtCeD27yJiU3fureuvtllLUS3MSwa3zTnd/ExuKDZAJ9EdjvOPJEYK0dBsAHOcfY7auY69LZE4frgiAfGd1YEnc18W+jr0FaqdrzdcISe4zCX6YYf7jysLXdmV9ZLZA18c23KRWZTdyutDQn/MVA2/YomdnNFMpGZMWQ2B4of+pOKGoX4A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=T39/czzcQHenCJlRCG/WEyJypp+F7f6XRld1DP2gGX8=;
+ b=dEqML03qJzl8yaSFhceqEdSrajHVbKzUFOgyzH6qi0gMepyorD2n3SrxCZTlCbWn/gGKX0oU9lxJLFNO1jyL/bg4OAL9F07SnL/yydqfLZtAD/d48DsvhqL4AaYzERMl9I8SQ07ps5i4rt8gkXv1t0jU/ku1kB07dqbdDeyJAmmUfVYtnshXwVyHZ+xl6BAIyb+wjD1zJNYeTRlYHeKK1L40vEiFSKOwgBru5WivdU8sRsYXfvyzzZu6Y89qFu53RukAFUvFK0FdQWwrWkWgVjjSWULRB4ao5zam3UIUFHl0m0X70n2hGUcbFg/O65I/aGFYTpRN1ahQIORRQLnr1w==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB8510.eurprd04.prod.outlook.com (2603:10a6:102:211::7)
+ by DB9PR04MB9233.eurprd04.prod.outlook.com (2603:10a6:10:361::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.34; Fri, 21 Mar
+ 2025 02:58:24 +0000
+Received: from PAXPR04MB8510.eurprd04.prod.outlook.com
+ ([fe80::a7c2:e2fa:8e04:40db]) by PAXPR04MB8510.eurprd04.prod.outlook.com
+ ([fe80::a7c2:e2fa:8e04:40db%5]) with mapi id 15.20.8534.034; Fri, 21 Mar 2025
+ 02:58:24 +0000
+From: Wei Fang <wei.fang@nxp.com>
+To: devnull+manivannan.sadhasivam.linaro.org@kernel.org
+Cc: bartosz.golaszewski@linaro.org,
+	bhelgaas@google.com,
+	brgl@bgdev.pl,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	manivannan.sadhasivam@linaro.org,
+	robh@kernel.org,
+	netdev@vger.kernel.org
+Subject: Re: [PATCH v3 3/5] PCI/pwrctrl: Skip scanning for the device further if pwrctrl device is created
+Date: Fri, 21 Mar 2025 10:59:40 +0800
+Message-Id: <20250321025940.2103854-1-wei.fang@nxp.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250116-pci-pwrctrl-slot-v3-3-827473c8fbf4@linaro.org>
+References: <20250116-pci-pwrctrl-slot-v3-3-827473c8fbf4@linaro.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI1PR02CA0038.apcprd02.prod.outlook.com
+ (2603:1096:4:1f6::15) To PAXPR04MB8510.eurprd04.prod.outlook.com
+ (2603:10a6:102:211::7)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250321-fix-a4-pinctrl-node-v1-1-5719f9f09932@amlogic.com>
-X-B4-Tracking: v=1; b=H4sIALrN3GcC/x2MSQqAMAwAvyI5G6hacfmKeOgSNSBRWhGh+HeLx
- 4GZSRApMEUYiwSBbo58SIaqLMBtRlZC9pmhVnWrmqrDhR80Gk8Wd4Ud5fCEgzV28VqT6lvI5Rk
- oa/91mt/3A56PuNllAAAA
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1742523835; l=4994;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=IChqhCiVUHKV/Al5PYyBFG4RW3XtS/W3OF9ZWLm5x5E=;
- b=m1lud64/wUROGiLfKAlu7eDbYTf4Y/RBj9k8nVltMlE3s359FZ3sUFC3hN+43NIu5AYW0uFlA
- lrPSd5xEnI7BMBENznF5Jnx4nBvPjA9G6DiGs92ZaYgeF6zaOd2etNW
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Reply-To: xianwei.zhao@amlogic.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB8510:EE_|DB9PR04MB9233:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5d5afbee-08cd-4711-49a6-08dd68243eed
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|52116014|366016|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?yl2HkmZeLsl3hmtRNdPva9QQ4MT4AgZ25LolEay9EmmvoK7yE/6sjo9pT03f?=
+ =?us-ascii?Q?PFKrLQ86DAZCm85vFtkepM6Pq0y1LwpsM5gkh0RI357CDa9xl1vY5sy8Hhp3?=
+ =?us-ascii?Q?p2bwPrKFiqe2hfMfPhsWvFhOmUVmhMlixt5yz/KtkYdANvhfL9ijjwwoWeWb?=
+ =?us-ascii?Q?TNabZ8VnEUZblrlNFJ5YkgGGF9MMGitmfyMox1orbE+vc7C/Lshjb89TV7qt?=
+ =?us-ascii?Q?SZY4eKTbqBrxX6xuxeB9ZREIqc2GtX23q4cqYHWMySSwHdz/lAFb1888loG2?=
+ =?us-ascii?Q?HbOru/s4dr7LwAcJrxdp/6Nu3j7sZGw78/t/pddXGWag8EGZ55TxMaBOzzWF?=
+ =?us-ascii?Q?NTiyXVZdaYsmpsfZU3l8xPiVwHS0AatCCnjI7FsyRwd+dpYKQyT29uHSrUyD?=
+ =?us-ascii?Q?bsot5cGM4wvK9A11Nt0IS/albOMS9KSSFnYgx1Kwg7qbKGSCMellgy62Bm20?=
+ =?us-ascii?Q?i5TvNLKZvTQL6Y8jN/wfP3eL2pzNcYoI/R5bSOXJdyLd7H5ZpaWx7QbxOdHT?=
+ =?us-ascii?Q?bHQlBYczIM7R0hiK2/XYnO5SrIrYDFGUqNRsEVqT9KesNvoG6QhSs16BlYM6?=
+ =?us-ascii?Q?nj0wg9gY2IGRMN5iKZ8m6I7O4LVOk1PuXUkxAfVze8mL25MH3b1DSOtjkEAj?=
+ =?us-ascii?Q?2udAKjhIgNQ/aotH36/Rz/EiFRvMhx2A3XLyuezFDgFq1EcKx65BwQdGitNm?=
+ =?us-ascii?Q?Pn3hRYLnkSLRNLT+JEe1NgHnuZz4mf3qulnTEfrn1pJHZoD4ycVO4iWAa3I9?=
+ =?us-ascii?Q?tLWUir7/3OUsaOZyak81sAwFWlvkhmgKHQFXyD6B63kkQozSxTvtCkG33cOm?=
+ =?us-ascii?Q?6JiC2vaju8GELhDAHqJkd8y+PcIy+wWofG5j2dclwLzAth3ODcb6y7xZRpvE?=
+ =?us-ascii?Q?yhPt6vgYzlqECAiFHYScE1dzH4EOUUC2CTFc+707Of/UDHnFFvOVxaUF0PIF?=
+ =?us-ascii?Q?XXEuE7/77IkziWjRFK2ED8sWhKspbAQbm97//WY4LvcB5D741W/D/BPa+PW0?=
+ =?us-ascii?Q?dtaBSFNc7aYMWmqCWGsPBckrtJOhh4cMYXwJ9KviZkQn9/XwvBn2zvw3ynr7?=
+ =?us-ascii?Q?h4GE9rJqO9wjwGBsKCr0buFtZwzX7S7rAgOjAq0qZQs+yYZ5DJvVbo3INyUQ?=
+ =?us-ascii?Q?omaxyoXY3DH2kZxpCORmgJBc2Uy6uyvfUWfhsuCXDRCJbRg5BvET55lsY6yD?=
+ =?us-ascii?Q?27dDvsTcOuRw3zKGK4+AGvG0tqRTfin3dcLieBDEfL3ozNsf3YxiPuuXpmph?=
+ =?us-ascii?Q?iFA1L9LCebronvX733sa6P23vhmDEcy3TxDiF4e4r6c9QaZ4oq9H9HaQusWX?=
+ =?us-ascii?Q?L7H0GqyuW/Z8/R7GT/l/jBkMDMJbGh8+1BUyNMUh/koGOVaxS8ernKTK25Cz?=
+ =?us-ascii?Q?d93P/0cg3nV+Taw6mxvZt/nXjCTNPCnQGFAta3b1Dej3kBXXRJThrUzjFf5b?=
+ =?us-ascii?Q?Ng1NQnlN9u0FaRw3XAbo/9PJwuDtpfIJ?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8510.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(52116014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?249Doqp4zydXTHee8v2IhqssB6KvRNYrSecZOH5QL/sujaNJiAy24z4oig89?=
+ =?us-ascii?Q?Pnn4n76WTqHcDyWaeOv3+8VF0dxyM2q3cTb3FXX9GFBwhi1l4CReD/tT3xGr?=
+ =?us-ascii?Q?xwvpj+6mNHKXu0MztBynfEMHa74rSd8AbjSQXV8mkw5SCCWJok54qj1i9XNl?=
+ =?us-ascii?Q?b9IaH6Hsk3vdFMvUNP7T62YE8NvRlteXiryZ7WpCIhwhc3rZ4Y1sbw9Txl6a?=
+ =?us-ascii?Q?Y37EFS9WnizG9OhnTeWec8OuQD2zX0ZjSTYKg9FFT3uHX2V5jDJaWyzx9MnL?=
+ =?us-ascii?Q?ws9a5Ii/oJRvr4n71Hu61NSi4+Yj6Zuns2UDcYRDO9a+EVG3cX/hLXfXWFbp?=
+ =?us-ascii?Q?wnFPSRJe9sHfpzXhdnxA2DuHGtJ97se6LPEHk4kmkMlJFwlltL8YFibFkJqB?=
+ =?us-ascii?Q?ATGmpJYvKnaQA23YWo1WxEGcnwhwmY9+Sv8vRn51T52Gk1VUCCumdk+IQZYj?=
+ =?us-ascii?Q?z/OzbdfaG8cdi6OdTkKooSnr9cnGw1bQQLykKcyMNkAxU8l9zmfB7FV4aB/2?=
+ =?us-ascii?Q?OCGrb/FA/XlTsibR2BL/uk0CZaJuqg5JqzjrVw07y8dozjsKSyK463Wu9IvB?=
+ =?us-ascii?Q?dfGxtv+F4aipxkHhHxgcYFQsyb62hFjOfMLjT7mbdcMcMr6kXLRiwPBGmctA?=
+ =?us-ascii?Q?Cpj9yshGVfTM52m2aAbIU2v/SAbW6cae9Srg8CDLG72H4wxZ7sV65rZj1sZ3?=
+ =?us-ascii?Q?43EkiOfgI5Wndk/QZeD+77BN9vEw80x0BdmM2H+uUt4v43tp0ZPjbo5UQtNe?=
+ =?us-ascii?Q?fIy0WzZbD00DUKx156xnmBMKtTHaQOl4gVbfM8E7jvypqOEyAGMERDmJ0/Cz?=
+ =?us-ascii?Q?e45nJKJYOZqqXGiNf701LYcSJdcAcaHuH19qC2T6w3HmwUxJjcIz4hR/fYcN?=
+ =?us-ascii?Q?brzfU0Tm/JjQVDN249lXfv1vxvsODFMEC6jgW7ieP5/wBDYlDiSCIVF0kPtP?=
+ =?us-ascii?Q?a/jO5USE6vMcdtsgaplfGFFOz6TTI3NodwEisLrzJIlyEckuxjRo2m1HlbyU?=
+ =?us-ascii?Q?lLzPS5zwV5jkD0H3KSpAE19uZbe87sKSPTZKxJzdtkEzXnWcrmxmoV7CzSAg?=
+ =?us-ascii?Q?rnQ/cD0RXuSaoJs+cYCHglUHWqzj+m0PHu5Fziu44Vz+cDepU8j10aIYbQ2w?=
+ =?us-ascii?Q?s/k7VZfUmdQXRS3mlU2yee81ySnss60iBpVh4GpajeGz2DsMw4sEyJlpx6hk?=
+ =?us-ascii?Q?ziEUUWUoAOModkPWRwVJGqTMPtuXzgdPPh+RyEHqVVekGiRq3yGTZNBSl3pA?=
+ =?us-ascii?Q?7djrSHFsDZ8Ma52gFGV+xfMuI0gxB8DARzCKY+b2wnrKbC4zXLDTNLjCy/d0?=
+ =?us-ascii?Q?0fSpnjtsH4Ng7x/dmseud1Fv40Or8j7NzsUGQs0524EzcMUGahb0HV3Az9pD?=
+ =?us-ascii?Q?I9guj46WkhqGcUHnJ0RwlGfFBKmWxO9vQrbXLa5JycxcItb9obYWSGD3Xyxa?=
+ =?us-ascii?Q?7f3ZhDY82v3o2N60ZFi3yNsfl4S48DpaZL53MRCpPyV0OmZmPWY0c0VtLtME?=
+ =?us-ascii?Q?MfEfG9TzHpA3Ewii0XOhyU/GmleqG+7iXpZ8k8G5FX94obRbNqLWafGAwgmI?=
+ =?us-ascii?Q?PT5yvZXm6l9slOfl6LWhXfh9EGNou+NWMtbkH/dv?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5d5afbee-08cd-4711-49a6-08dd68243eed
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8510.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Mar 2025 02:58:24.4561
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hbgasovNqtO2q08FzQJUfO5JfGQ9eI9VagHELo3kijHRAxzvGjCKBpH+rndbsEBwERpbmjiLMFmqle6eL+VTCA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9233
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-
-When use command 'make ARCH=arm64 dtbs_check W=1' to compile dtb,
-a warning message appears.
-"Warning (simple_bus_reg): /soc/bus@fe000000/pinctrl:
-missing or empty reg/ranges property"
-
-Add the unit address to the pinctrl node to fix it.
-
-Fixes: ce78f679e08c ("arm64: dts: amlogic: a4: add pinctrl node")
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi | 102 +++++++++++++++-------------
- 1 file changed, 55 insertions(+), 47 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-index fa80fa365f13..582e0043024b 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-@@ -51,87 +51,52 @@ pwrc: power-controller {
- };
+@@ -2487,7 +2487,14 @@ static struct pci_dev *pci_scan_device(struct pci_bus *bus, int devfn)
+ 	struct pci_dev *dev;
+ 	u32 l;
  
- &apb {
--	gpio_intc: interrupt-controller@4080 {
--		compatible = "amlogic,a4-gpio-intc",
--			     "amlogic,meson-gpio-intc";
--		reg = <0x0 0x4080 0x0 0x20>;
--		interrupt-controller;
--		#interrupt-cells = <2>;
--		amlogic,channel-interrupts =
--			<10 11 12 13 14 15 16 17 18 19 20 21>;
--	};
--
--	gpio_ao_intc: interrupt-controller@8e72c {
--		compatible = "amlogic,a4-gpio-ao-intc",
--			     "amlogic,meson-gpio-intc";
--		reg = <0x0 0x8e72c 0x0 0x0c>;
--		interrupt-controller;
--		#interrupt-cells = <2>;
--		amlogic,channel-interrupts = <140 141>;
--	};
--
--	periphs_pinctrl: pinctrl {
-+	periphs_pinctrl: pinctrl@4000 {
- 		compatible = "amlogic,pinctrl-a4";
- 		#address-cells = <2>;
- 		#size-cells = <2>;
--		ranges;
-+		ranges = <0x0 0x0 0x0 0x4000 0x0 0x280>;
- 
--		gpiox: gpio@4100 {
--			reg = <0 0x4100 0 0x40>, <0 0x400c 0 0xc>;
-+		gpiox: gpio@100 {
-+			reg = <0 0x100 0 0x40>, <0 0xc 0 0xc>;
- 			reg-names = "gpio", "mux";
- 			gpio-controller;
- 			#gpio-cells = <2>;
- 			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_X<<8) 18>;
- 		};
- 
--		gpiot: gpio@4140 {
--			reg = <0 0x4140 0 0x40>, <0 0x402c 0 0xc>;
-+		gpiot: gpio@140 {
-+			reg = <0 0x140 0 0x40>, <0 0x2c 0 0xc>;
- 			reg-names = "gpio", "mux";
- 			gpio-controller;
- 			#gpio-cells = <2>;
- 			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_T<<8) 23>;
- 		};
- 
--		gpiod: gpio@4180 {
--			reg = <0 0x4180 0 0x40>, <0 0x4040 0 0x8>;
-+		gpiod: gpio@180 {
-+			reg = <0 0x180 0 0x40>, <0 0x40 0 0x8>;
- 			reg-names = "gpio", "mux";
- 			gpio-controller;
- 			#gpio-cells = <2>;
- 			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_D<<8) 16>;
- 		};
- 
--		gpioe: gpio@41c0 {
--			reg = <0 0x41c0 0 0x40>, <0 0x4048 0 0x4>;
-+		gpioe: gpio@1c0 {
-+			reg = <0 0x1c0 0 0x40>, <0 0x48 0 0x4>;
- 			reg-names = "gpio", "mux";
- 			gpio-controller;
- 			#gpio-cells = <2>;
- 			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_E<<8) 2>;
- 		};
- 
--		gpiob: gpio@4240 {
--			reg = <0 0x4240 0 0x40>, <0 0x4000 0 0x8>;
-+		gpiob: gpio@240 {
-+			reg = <0 0x240 0 0x40>, <0 0 0 0x8>;
- 			reg-names = "gpio", "mux";
- 			gpio-controller;
- 			#gpio-cells = <2>;
- 			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_B<<8) 14>;
- 		};
- 
--		gpioao: gpio@8e704 {
--			reg = <0 0x8e704 0 0x16>, <0 0x8e700 0 0x4>;
--			reg-names = "gpio", "mux";
--			gpio-controller;
--			#gpio-cells = <2>;
--			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_AO<<8) 7>;
--		};
--
--		test_n: gpio@8e744 {
--			reg = <0 0x8e744 0 0x20>;
--			reg-names = "gpio";
--			gpio-controller;
--			#gpio-cells = <2>;
--			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_TEST_N<<8) 1>;
--		};
--
- 		func-uart-a {
- 			uart_a_default: group-uart-a-pins1 {
- 				pinmux = <AML_PINMUX(AMLOGIC_GPIO_X, 11, 1)>,
-@@ -186,4 +151,47 @@ uart_e_default: group-uart-e-pins {
- 			};
- 		};
- 	};
-+
-+	gpio_intc: interrupt-controller@4080 {
-+		compatible = "amlogic,a4-gpio-intc",
-+			     "amlogic,meson-gpio-intc";
-+		reg = <0x0 0x4080 0x0 0x20>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		amlogic,channel-interrupts =
-+			<10 11 12 13 14 15 16 17 18 19 20 21>;
-+	};
-+
-+	ao_pinctrl: pinctrl@8e700 {
-+		compatible = "amlogic,pinctrl-a4";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges = <0x0 0x0 0x0 0x8e700 0x0 0x80>;
-+
-+		gpioao: gpio@4 {
-+			reg = <0 0x4 0 0x16>, <0 0 0 0x4>;
-+			reg-names = "gpio", "mux";
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_AO<<8) 7>;
-+		};
-+
-+		test_n: gpio@44 {
-+			reg = <0 0x44 0 0x20>;
-+			reg-names = "gpio";
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_TEST_N<<8) 1>;
-+		};
-+	};
-+
-+	gpio_ao_intc: interrupt-controller@8e72c {
-+		compatible = "amlogic,a4-gpio-ao-intc",
-+			     "amlogic,meson-gpio-intc";
-+		reg = <0x0 0x8e72c 0x0 0x0c>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		amlogic,channel-interrupts = <140 141>;
-+	};
-+
- };
+-	pci_pwrctrl_create_device(bus, devfn);
++	/*
++	 * Create pwrctrl device (if required) for the PCI device to handle the
++	 * power state. If the pwrctrl device is created, then skip scanning
++	 * further as the pwrctrl core will rescan the bus after powering on
++	 * the device.
++	 */
++	if (pci_pwrctrl_create_device(bus, devfn))
++		return NULL;
 
----
-base-commit: 73a143e436311183186ab4b365a84c662f2c9651
-change-id: 20250317-fix-a4-pinctrl-node-9babfd44e085
+Hi Manivannan,
 
-Best regards,
--- 
-Xianwei Zhao <xianwei.zhao@amlogic.com>
-
-
+The current patch logic is that if the pcie device node is found to have
+the "xxx-supply" property, the scan will be skipped, and then the pwrctrl
+driver will rescan and enable the regulators. However, after merging this
+patch, there is a problem on our platform. The .probe() of our device
+driver will not be called. The reason is that CONFIG_PCI_PWRCTL_SLOT is
+not enabled at all in our configuration file, and the compatible string
+of the device is also not added to the pwrctrl driver. I think other
+platforms should also have similar problems, which undoubtedly make these
+platforms be unstable. This patch has been applied, and I am not familiar
+with this. Can you fix this problem? I mean that those platforms that do
+not use pwrctrl can avoid skipping the scan.
 
