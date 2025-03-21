@@ -1,424 +1,222 @@
-Return-Path: <devicetree+bounces-159826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159827-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1F43A6C420
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 21:26:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D451A6C456
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 21:37:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3BF0D3B25A2
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 20:26:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7CFE4467CF1
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 20:37:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE14122FF5E;
-	Fri, 21 Mar 2025 20:26:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 145B322DFA6;
+	Fri, 21 Mar 2025 20:37:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="21xndHW3";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="sJMzmLxv"
+	dkim=pass (1024-bit key) header.d=genexis.eu header.i=@genexis.eu header.b="LCTd5KIs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2093.outbound.protection.outlook.com [40.107.105.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1DD528E7;
-	Fri, 21 Mar 2025 20:26:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742588808; cv=none; b=EsZ1Sm4c3w0ReClcMVwBWOY36iE/eDWXZO1eH62UOo3v0VJ0Q//UvCiNhfUCciOby3Vk7YlSlUQOCDAVE4Ermnii3LzjVWHP37cUph4Alw/Bq+xJIgLQEOKAm+Taeo7PI4Zwzkiq53fagdIBVNuPv7qCBeVxGquaTsR8QtXqMTI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742588808; c=relaxed/simple;
-	bh=L8lr8UsPQFnfufQPsezb/8uYUTFH5prsIv+lF77JZh0=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=F6uBk17nogtXeJtYEbFSGFsgWhFSQeIZiFBon6oQ6BZLyS9KqjRhhWgSPxMCEq+9f2oBrhS+DiwVEsQZP1O/V7iNWFir8Wu0X3we/xIFhfvMinBv2/f9FpcY2FJSmxvE/Ng4B2Ltk2nWhQCGwB8s1mbHcvncjzf0ZB5WBD4lNhI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=21xndHW3; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=sJMzmLxv; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1742588804;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=FEIu8yfryHkU97YYl2d9ohjO3n9rDF6WKFZrFM8wbQw=;
-	b=21xndHW3KzbKdjxO3wba9CN+I38jcbAoT5rbFu/vlxpxZgs5VZ4E6f+eRUUcYUdCri+I4P
-	biZeEWB6BwCO7/Weg4FlHK3bm/fHp+iEIgbhEEsJIOFsgEqYgj+E9YOJjq3cd7xpBwuL+q
-	mgps1dhd4njpYHlxBZAch31q+VSBntF97zMI05coI9L0uz7M9vCAIvKJnVLVzT5ozaIUpb
-	7uko816jjaeFrAM6ANQRYl4EXIHejypwCZ+W5yXpLwkXgEE3HekFo0q37DR1qHF8kDXURC
-	L0swJDJ7sgmwiRGianKF3hOCtMiawrEnmuvg5NSS6//Mt95gwee/3+yUxqhv/w==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1742588804;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=FEIu8yfryHkU97YYl2d9ohjO3n9rDF6WKFZrFM8wbQw=;
-	b=sJMzmLxv6SZKV3CXWnMuk205M9QxzVDMRebzxDgxnUThuydZdGCn5rL18XN48b7oMtHwoR
-	GG+FZxLQE98c+7AQ==
-To: Caleb James DeLisle <cjd@cjdns.fr>, linux-mips@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thomas Bogendoerfer
- <tsbogend@alpha.franken.de>, Daniel Lezcano <daniel.lezcano@linaro.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- benjamin.larsson@genexis.eu, Caleb James DeLisle <cjd@cjdns.fr>
-Subject: Re: [PATCH v1 3/8] irqchip: Add EcoNet EN751221 INTC
-In-Reply-To: <20250321134633.2155141-4-cjd@cjdns.fr>
-References: <20250321134633.2155141-1-cjd@cjdns.fr>
- <20250321134633.2155141-4-cjd@cjdns.fr>
-Date: Fri, 21 Mar 2025 21:26:43 +0100
-Message-ID: <87tt7m1664.ffs@tglx>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFA88137C37;
+	Fri, 21 Mar 2025 20:37:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.105.93
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1742589439; cv=fail; b=TCjyu0r+xohBG19wm0EWu+a89J5Tw68umsoxnEAZiW8hgXOu2wWUmoNPZIaxy7xqe2Hd/F5dw+L5Rt8FeANd0OXX/lPlLn/LmEVEIKWp/RA88VxscSASbF/2ZTPkXIW7/lbJV2xpyO6n4bGqzDhWR9k3Ild9XMrH+X+cncdnBZQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1742589439; c=relaxed/simple;
+	bh=bL2BVjIa1Zf6C7zrWsidsKLrH34Q75SFRdWAXLo4EeQ=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=lelxaOusvZPDEJG2JRy/p60gY5vZ+gdnqdvaVbXOPIKbBM7SkvkIRTqbgSow+mo5rva5KKGxhtkddVWTZfzFUd65OA24PYIwJYrtPpJ4ZkzwRKoc1iZwTJXVzoNFj4WOz7ndbHPlMQ3Hfr7LDj1OC9vUkdNJDxEiu0ASCcUqJ0I=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=genexis.eu; spf=pass smtp.mailfrom=genexis.eu; dkim=pass (1024-bit key) header.d=genexis.eu header.i=@genexis.eu header.b=LCTd5KIs; arc=fail smtp.client-ip=40.107.105.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=genexis.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=genexis.eu
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=P1ISzMVqlEMhM70EF3tcKXWrMJlFKpgKDAGRne7QGJc/donUdHI4knauGdZW0/psKOxRBvLK02L62tTbCbzqflJb0/td73T0i5NGDyBiqkIp3rPc80Zeu96ZrGu9inSzEUE7DWttm0aIQSgjosH5DzDqtlzMatjiGgnSmYzc+rXKN3XhSr9ebAKUcmbxHebU4QH1mShk/SIQPzr1DwsDdRmHMemSL6Or80Ospn2xvkh5HD6FSBkAC5RiGQkBtCQhTjqz1dH7evKsvM41fVdZ7BUC8OxuryEhQPxaAw+GDZEUUeUBYynJKP6jmZSN/xxJx1sos2H6DvhhPVqeQdEEjQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=czkSA5+7Sxteem+BYPefrLU0ZnxHwB5fvr+KeChgmHM=;
+ b=R/AZf7jg4XJM7ADKVhwsLdXigty1ocNuwBqFXiVfre3fPFCeiVnXGLwkXHrhINoxDxJcXFIV4ijTkv5UCAfMAEoFuHD+I4b7WlWR4oZ8QQFSAmvsvMkYt6MrKn7E+V6s8gt81QHVD+T6j5nb1V9WLlsetatCo0F5XgCk4Ko1umVXUdhIp9kdkocqBcnOUAtSP9VN6OGU15MQuvw2FWUnFD+4xEOu962RNgbnhuzTXyxlBnXsfmh8tAKp5LXJdpS1uk7ZAEASvr2ujIjKE8nms9tJABGBHInm/ooNa3/zOuxHDfO2lxhJKZWib9h/JNF/jf4kVMWy7dY65ewzN/yVkQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=genexis.eu; dmarc=pass action=none header.from=genexis.eu;
+ dkim=pass header.d=genexis.eu; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=genexis.eu;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=czkSA5+7Sxteem+BYPefrLU0ZnxHwB5fvr+KeChgmHM=;
+ b=LCTd5KIsQiOyXilODNAdSh4vkudtzaQ3DB3axZSRiwRll7Bgf9aF8EqJMKC2Ws30yYkoL97+DBi1Up0bim8Ol3CC98wfcvYNnvYKJDMoofqJ+tJtFXq+p9LTp2gGO2OajmB2k7BIyhypAus4dRuqmjvuek/urHtD2sYrXAvAMQg=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=genexis.eu;
+Received: from AM0PR08MB4209.eurprd08.prod.outlook.com (2603:10a6:208:10c::13)
+ by PAWPR08MB11039.eurprd08.prod.outlook.com (2603:10a6:102:46c::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.33; Fri, 21 Mar
+ 2025 20:37:11 +0000
+Received: from AM0PR08MB4209.eurprd08.prod.outlook.com
+ ([fe80::85e0:261c:f717:5ffe]) by AM0PR08MB4209.eurprd08.prod.outlook.com
+ ([fe80::85e0:261c:f717:5ffe%4]) with mapi id 15.20.8534.034; Fri, 21 Mar 2025
+ 20:37:11 +0000
+Message-ID: <28a3cbc9-53fb-44e3-bc87-d33cbc406c8e@genexis.eu>
+Date: Fri, 21 Mar 2025 21:37:09 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/2] Airoha UART support
+To: Greg KH <gregkh@linuxfoundation.org>
+Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+ ansuelsmth@gmail.com, lorenzo@kernel.org
+References: <20250209210241.2622309-1-benjamin.larsson@genexis.eu>
+ <2025021019-overtake-elk-e644@gregkh>
+Content-Language: en-US
+From: Benjamin Larsson <benjamin.larsson@genexis.eu>
+In-Reply-To: <2025021019-overtake-elk-e644@gregkh>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: GV2PEPF0000385C.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:144:1:0:9:0:c) To AM0PR08MB4209.eurprd08.prod.outlook.com
+ (2603:10a6:208:10c::13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-
-Caleb!
-
-On Fri, Mar 21 2025 at 13:46, Caleb James DeLisle wrote:
-> ---
-> If CPU_MIPSR2_IRQ_EI / CPU_MIPSR2_IRQ_VI are enabled in the build, this
-> device switches to sending all interrupts as vectored - which IRQ_MIPS_CPU
-> is not prepared to handle. If anybody knows how to either disable this
-> behavior, or handle vectored interrupts without ugly code that breaks
-> cascading, please let me know and I will implement that and add
-> MIPS_MT_SMP in a future patchset.
-
-This must be addressed before this driver can be merged, but that's a
-topic for the MIPS wizards and out of my area of expertise, except for
-the obvious:
-
-    For a start you can exclude this platform from being enabled in
-    Kconfig when the EI/VI muck is enabled. That's what 'depends on' is
-    for,
-
-So this patch clearly should have been tagged with 'RFC'.
-
-> +static const struct econet_intc {
-> +	const struct irq_chip chip;
-> +
-> +	const struct irq_domain_ops domain_ops;
-> +} econet_intc;
-
-Please see
-https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#struct-declarations-and-initializers
-
-Aside of the coding style issues, what's the actual value of this
-struct? Is there anything which can't be done with:
-
-static const struct irq_chip econet_chip = {
-	.name	= ....
-};
-
-static const struct irq_domain_ops econet_domain_ops = {
-	.xlate	= ....
-};
-
-Which avoids the above forward struct declaration completely and does
-not need any forward declaration at all, neither for the chip nor for
-the domain.
-
-> +static struct {
-> +	void __iomem *membase;
-> +	u8 shadow_interrupts[INTC_IRQ_COUNT];
-> +} econet_intc_rai __ro_after_init;
-> +
-> +static DEFINE_RAW_SPINLOCK(irq_lock);
-> +
-> +static void econet_wreg(u32 reg, u32 val, u32 mask)
-> +{
-> +	unsigned long flags;
-> +	u32 v;
-> +
-> +	raw_spin_lock_irqsave(&irq_lock, flags);
-
-Please use
-
-       guard(raw_spinlock)(&irq_lock);
-
-You don't need irqsave when invoked from mask/unmask as the caller
-guarantees to have interrupts disabled. Then you only need to disable
-interrupts across the invocation from mask_all().
-
-> +
-> +	v = ioread32(econet_intc_rai.membase + reg);
-> +	v &= ~mask;
-> +	v |= val & mask;
-> +	iowrite32(v, econet_intc_rai.membase + reg);
-> +
-> +	raw_spin_unlock_irqrestore(&irq_lock, flags);
-> +}
-> +
-> +static void econet_chmask(u32 hwirq, bool unmask)
-> +{
-> +	u32 reg;
-> +	u32 mask;
-> +	u32 bit;
-> +	u8 shadow;
-
-Search the same document for local variables.
-
-> +	shadow = econet_intc_rai.shadow_interrupts[hwirq];
-> +	if (WARN_ON_ONCE(shadow == INTC_IS_SHADOW))
-> +		return;
-> +	else if (shadow < INTC_NO_SHADOW && smp_processor_id() > 0)
-> +		hwirq = shadow;
-
-This is completely undocumented voodoo. Please add comments which
-explain this properly.
-
-> +	if (hwirq >= 32) {
-> +		reg = REG_MASK1;
-> +		mask = BIT(hwirq - 32);
-> +	} else {
-> +		reg = REG_MASK0;
-> +		mask = BIT(hwirq);
-> +	}
-> +	bit = (unmask) ? mask : 0;
-> +	econet_wreg(reg, bit, mask);
-
-        econet_wreg(reg, unmask ? mask : 0, mask);
-
-> +}
-> +
-> +static void econet_intc_mask(struct irq_data *d)
-> +{
-> +	econet_chmask(d->hwirq, false);
-> +}
-> +
-> +static void econet_intc_unmask(struct irq_data *d)
-> +{
-> +	econet_chmask(d->hwirq, true);
-> +}
-> +
-> +static void econet_mask_all(void)
-> +{
-
-with a
-
-     guard(irq)();
-
-added here you spare the irqsave in the write function.
-
-> +static void econet_intc_from_parent(struct irq_desc *desc)
-> +{
-> +	struct irq_chip *chip = irq_desc_get_chip(desc);
-> +	struct irq_domain *domain;
-> +	u32 pending0;
-> +	u32 pending1;
-> +
-> +	chained_irq_enter(chip, desc);
-> +
-> +	pending0 = ioread32(econet_intc_rai.membase + REG_PENDING0);
-> +	pending1 = ioread32(econet_intc_rai.membase + REG_PENDING1);
-> +
-> +	if (unlikely(!(pending0 | pending1))) {
-> +		spurious_interrupt();
-> +		goto out;
-> +	}
-> +
-> +	domain = irq_desc_get_handler_data(desc);
-> +
-> +	econet_intc_handle_pending(domain, pending0, 0);
-> +	econet_intc_handle_pending(domain, pending1, 32);
-
-	if (likely(pending0 | pending1) {
-             domain = ...
-             ...
-        } else {
-             spurious_interrupt();
-        }
-
-Makes the goto go away _and_ sets the focus on the likely path and not
-on the visual clutter of the unlikely one.
-
-> +static int econet_intc_map(struct irq_domain *d, u32 irq, irq_hw_number_t hwirq)
-> +{
-> +	int ret;
-> +
-> +	if (hwirq >= INTC_IRQ_COUNT) {
-> +		pr_err("%s: hwirq %lu out of range\n", __func__, hwirq);
-> +		return -EINVAL;
-> +	} else if (econet_intc_rai.shadow_interrupts[hwirq] == INTC_IS_SHADOW) {
-> +		pr_err("%s: can't map hwirq %lu, it is a shadow interrupt\n",
-> +		       __func__, hwirq);
-
-No newline
-
-> +		return -EINVAL;
-> +	}
-
-Please put a newline here for readability instead.
-
-> +	if (econet_intc_rai.shadow_interrupts[hwirq] != INTC_NO_SHADOW) {
-
-This INTC_IS_SHADOW and INTC_NO_SHADOW logic is beyond confusing without
-comments. Three month down the road you will ask yourself what the hell
-this means.
-
-> +		irq_set_chip_and_handler(
-> +			irq, &econet_intc.chip, handle_percpu_devid_irq);
-
-This line break is unreadable. See documentation.
-
-If at all this wants to be:
-
-		irq_set_chip_and_handler(irq, &econet_intc.chip,
-                                         handle_percpu_devid_irq);
-
-But this fits nicely within 100 characters, so get rid of it completely.
-
-> +		ret = irq_set_percpu_devid(irq);
-
-And please add a comment which explains why this magic shadow thing maps
-to percpu devid interrupts.
-
-> +		if (ret) {
-> +			pr_warn("%s: Failed irq_set_percpu_devid for %u: %d\n",
-> +				d->name, irq, ret);
-> +		}
-> +	} else {
-> +		irq_set_chip_and_handler(
-> +			irq, &econet_intc.chip, handle_level_irq);
-
-Same here.
-
-> +	}
-> +	irq_set_chip_data(irq, NULL);
-> +	return 0;
-> +}
-> +
-> +static const struct econet_intc econet_intc = {
-> +	.chip = {
-> +		.name		= "en751221-intc",
-> +		.irq_unmask	= econet_intc_unmask,
-> +		.irq_mask	= econet_intc_mask,
-> +		.irq_mask_ack	= econet_intc_mask,
-> +	},
-> +	.domain_ops = {
-> +		.xlate = irq_domain_xlate_onecell,
-> +		.map = econet_intc_map,
-
-See documention.
-
-> +	},
-> +};
-> +
-> +static int __init get_shadow_interrupts(struct device_node *node)
-> +{
-> +	const char *field = "econet,shadow-interrupts";
-> +	int n_shadow_interrupts;
-> +	u32 *shadow_interrupts;
-> +
-> +	n_shadow_interrupts = of_property_count_u32_elems(node, field);
-> +	memset(econet_intc_rai.shadow_interrupts, INTC_NO_SHADOW,
-> +	       sizeof(econet_intc_rai.shadow_interrupts));
-> +	if (n_shadow_interrupts <= 0) {
-> +		return 0;
-> +	} else if (n_shadow_interrupts % 2) {
-> +		pr_err("%pOF: %s count is odd, ignoring\n", node, field);
-> +		return 0;
-> +	}
-> +	shadow_interrupts = kmalloc_array(n_shadow_interrupts, sizeof(u32),
-> +					  GFP_KERNEL);
-
-	u32 *shadow_interrupts __free(kfree) =
-        	kmalloc_array(n_shadow_interrupts, sizeof(u32), GFP_KERNEL);                                  
-
-Then the return paths don't have to care about this allocation at all.
-
-> +	if (!shadow_interrupts)
-> +		return -ENOMEM;
-> +	if (of_property_read_u32_array(node, field,
-> +				       shadow_interrupts, n_shadow_interrupts)
-> +	) {
-
-Your random choices of coding style and lack of visual seperation by
-empty newlines really make this hard to digest.
-
-> +		pr_err("%pOF: Failed to read %s\n", node, field);
-> +		kfree(shadow_interrupts);
-> +		return -EINVAL;
-> +	}
-
-The __free() above will reduce this to
-
-	if (of_property_read_u32_array(node, field, shadow_interrupts, n_shadow_interrupts)) {
-		pr_err("%pOF: Failed to read %s\n", node, field);
-                return -EINVAL;
-	}
-
-and removes the kfree() at the end of the function.
-
-> +	for (int i = 0; i < n_shadow_interrupts; i += 2) {
-> +		u32 shadow = shadow_interrupts[i + 1];
-> +		u32 target = shadow_interrupts[i];
-> +
-> +		if (shadow > INTC_IRQ_COUNT) {
-> +			pr_err("%pOF: %s[%d] shadow(%d) out of range\n",
-> +			       node, field, i, shadow);
-
-No line break.
-
-> +			continue;
-> +		}
-
-Newline
-
-> +		if (target >= INTC_IRQ_COUNT) {
-> +			pr_err("%pOF: %s[%d] target(%d) out of range\n",
-> +			       node, field, i + 1, target);
-
-No line break.
-
-> +			continue;
-> +		}
-> +		econet_intc_rai.shadow_interrupts[target] = shadow;
-> +		econet_intc_rai.shadow_interrupts[shadow] = INTC_IS_SHADOW;
-
-What the heck does any of this mean? This whole shadow magic is
-hideously incomprehensible. It's amazing that this whole file does not
-contain a single line of comment.
-
-Aside of that how is any of this sanity checked, i.e. so that there are
-no existing entries overwritten? I assume this blindly relies on the
-device tree being correct. Fine, but then please document it.
-
-> +	}
-> +	kfree(shadow_interrupts);
-> +	return 0;
-> +}
-> +
-> +static int __init econet_intc_of_init(struct device_node *node, struct device_node *parent)
-> +{
-> +	int ret;
-> +	int irq;
-> +	struct resource res;
-> +	struct irq_domain *domain;
-
-Sigh.
-
-> +
-> +	domain = irq_domain_add_linear(
-> +		node, INTC_IRQ_COUNT,
-> +		&econet_intc.domain_ops, NULL);
-
-Finally my eyes bleed and my mental code pattern matching engine threw a
-garbage-overload exception.
-
-Seriously. Consistent coding style _and_ comments explaining the
-non-obvious parts of the code are not optional.
-
-You want me and others to review your code, so please have the courtesy
-to provide it in a digestable form.
-
-That spares us to point out the obvious, which can be looked up in
-documentation, and the frustration of staring at incomprehensible
-undocumented logic. And it spares you the frustration of getting your
-submission ripped into bits and pieces.
-
-Thanks,
-
-        tglx
-
-
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM0PR08MB4209:EE_|PAWPR08MB11039:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1d26a551-c7fc-443b-c4de-08dd68b827dd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?RnVMUXpSRlp0T1RQVXZQeTcvblZnOFQwVUxSbnVpRUhDeG03Qy9PYjk1L2NH?=
+ =?utf-8?B?aHdvYm5DWFRkYmxtQzMyZUhuKzcyM1FPNzYzREx2Q2g4WCtPY045RE1yczNS?=
+ =?utf-8?B?VFpubW5ETEJMQlVHTFhWTWJ6WVdkQ2xLQUlZOGVJNERMdktYbWhLTzJXWXpI?=
+ =?utf-8?B?VU90TFYzK2FiaVEzWTcvRXVOWVVOL2NQclIrTEpyc2dQTHRDUmg5aWtVRXNQ?=
+ =?utf-8?B?NmdQT3J5MGZDOEJSZ3d2SmpGT1JWQnNQQ0VaRnVMMlJJcXF5MnN0QVVQd0lM?=
+ =?utf-8?B?cWZIMTNoazUyUTZueUNOK1BWY2JqL1IrSlBweFAwcENnZ1FDWU5BcVNWcmpT?=
+ =?utf-8?B?V0trdXhsQmZ4TDNBM2U5cEFYalI3ME11eVlHbjk4UEpFRzFocnB2dnFqcjhi?=
+ =?utf-8?B?Z0pac3c3ZUVtbGlFOHlOcWUxb3JoWVBYRWFlSUxseStaQ3JOVzZvT2xqRnlj?=
+ =?utf-8?B?NlgvMHFCTFo1ZXpIelUwRjhXQWYzbmc1NWMrR3BPVVRKZ3BodnUwVlR1azNv?=
+ =?utf-8?B?VXFoYnFkVVpMN1VQOU5UUEE5TFA5NkdPZlZsbUoxVTRFOEgxdmFncHczanhU?=
+ =?utf-8?B?ckZ1eTdYc2czbmlrMXd0anFWc3Q0aFJFU2pGRXIrMzdLTnJqT2duTzVhQzNk?=
+ =?utf-8?B?RHJ4OWxvbVVMU3lhVHpEbURSMTUxSUJVL2VhVmhwanhhZ2g4TC95VDlEQ0pV?=
+ =?utf-8?B?cC92Yy9ETEZFMGFEMnpuM3ZMdkNON3RlZkZzZGFlbFpmZTJqSU1kMENGUHlO?=
+ =?utf-8?B?UjdsZFNDVzcySFE5M2ZNUWd2emF3aUJkSXhEUWxoUWxuRTRrS2w3ZEhWZ1hC?=
+ =?utf-8?B?VEh4bTVCM1VBR3VKNWE1a0VNMnNmakg0ZDBwNU1GVmJDbzkyNG05NnBKNnpU?=
+ =?utf-8?B?bCtDVDVHSC95SlptNjlnWHkrQUNQbXJMbTRsRXovRHRHWnhsMTRxcm5iQjZP?=
+ =?utf-8?B?TDdDVCtjeXJWRGxXR2V0Yk54dDhuWEF4bWt1VnhBMERyWFJkWWtmMmg5Ukgv?=
+ =?utf-8?B?TCt1bkN2aGN2QUhha2l6Z29VYURtS2syV2lZZjJRTmVWM2RtUEJkNlg5cmRK?=
+ =?utf-8?B?c0psQlFkcmNXSlB0VWtpNlk2SmlVUEZjaERqZUlrM3B6UkhxeFFEQWdiT3dv?=
+ =?utf-8?B?TExDSTVWU3VKM2Nzays5ZDA2dkVLWXdKdlNGZnl3aGpHQTNkdGJ2YXlGREoy?=
+ =?utf-8?B?OSsxRXdzS3Q1Q1JmTzZKUktxM1Q2VjNzeXZpVXhLZ0ZFU3FrcDFHbHI3dFBr?=
+ =?utf-8?B?NE5xUzNTaDd4a3hwK3FmQnhmWDJMVnpsb1RVYS9qM3lCV0I3M1B2RU9KMUhw?=
+ =?utf-8?B?VFlMY1BHdmE0bkkrcFhtUWZUaG5nVktHck04YkhtRkJ5MlU2MWVZVHZ0Mjk1?=
+ =?utf-8?B?YXBZRTVUNndPbXdtUTlYYlhOSjRLVzBCaEg4bVVBbVhTYXZpbU5YYkxmUVFU?=
+ =?utf-8?B?bnRuMjA3V3YyRXNDRUNRbWw1YjVjSXpSWVVhRitTMGR3dXhiVHhVckRvQXh3?=
+ =?utf-8?B?YzI1QTJBZTFpY28xQm5vY3o0Q29WdDlKOUFyYW5IckpVcG1ib0FkVGRkTVZ3?=
+ =?utf-8?B?dUVJbUNxdXRLUlhKdGdTR3czbHNIODcyNCtQNCtjQSs2WmdwcHlHOXVSSkd3?=
+ =?utf-8?B?T1ZoN0JGQVBRUFQ3UW1ENVZlUmZxRXE4YmMwWnlHalhOMElMaDdteERMOEpi?=
+ =?utf-8?B?akROYUFJNVJsUDYwdXRGaSs4N21lbnZQUHpoUEZKTmRGaHVWVThsc3dZN25O?=
+ =?utf-8?B?VVhPanZSa3FJU0ZwenRlQldLM1MvWitFS2xGZmp1aDlKMXA5cXA3YnduRUdw?=
+ =?utf-8?B?TU5sR0pvcHd0SUxRdEowNlcvN1IrbFBPWnZNb3VhV3JLVXkzdW9KR05oWDA5?=
+ =?utf-8?Q?QsumKgpnnEjo7?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR08MB4209.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?Qk0zcFZDVWZONDJ2QWtFUEdqZEVSdllxS0hXMFFOSzVqaTBNMGdMMnNMVG1Q?=
+ =?utf-8?B?ZGxOZ3JrS0RCTG9tUEN0SzhJUDBPc3gvSUdGK0o3Q2dIWHdCb0lWcFhXZTF6?=
+ =?utf-8?B?bGpQSUhGSmlCemp2WGwyeEkrTjNjdHRwTmF1Rnp1K1JNUFJpNnVPZC92ampw?=
+ =?utf-8?B?cmsrTDFJWUNTWnhxQXVFLzJtMndOd0doMGQyV3Aya2FVbFVDTUdjRmVlSXFw?=
+ =?utf-8?B?SGVQb3pFQmJNVmpyVTVGZXkwZXh4d1R6WExwb2IxdzdFNUlUVUxmRGd2SC9i?=
+ =?utf-8?B?R1NjNU8rNXNMdnQ2ZVhWR0ZaK0lKTWtEZ0lUM1dqOEdGL3RpaVZ2TGZlV24x?=
+ =?utf-8?B?V2h2NW9FNDJPZ1B3YWVDMHF1cG4wRTV5M1lhRTh5akRodkdhaDZHeWd4SFFh?=
+ =?utf-8?B?UmpWWHdPelVTV2xoTit4cGtqMnFVNzh3WUQrVE5hOFVNaG9oT0hxRmx3bWUw?=
+ =?utf-8?B?SnZ4bUpDZGZkN0tBM0c4Y1FraVdINGxtU3dJOE5xRjN1c09RL0lQclhNemRP?=
+ =?utf-8?B?NVNlVzNhcnEvU3lXVVRWYkxiV1hucHl2VlB3aVVDa1orUk9VTmY3Wnc3WEJj?=
+ =?utf-8?B?NHVKeCtQZE0zLy9qMDIzOStsOERBa3RmL0hMMks3bzdlbXAwQ29PSjlaRjNl?=
+ =?utf-8?B?Nzk0OW44aldZUWV0S2J0cWo0T21Nb3YwR0l6TFBkZDREd2w4RjNrN21QK1ov?=
+ =?utf-8?B?aE9VMEFuR0lLNlBWVTBaQ2RrSDJtNVBuc1JQY1dPNUp4TFlUSmp1VG9TNGVo?=
+ =?utf-8?B?ZXFkMWdqdWxpRjBlZjRsV2I2REVBdXdweGJEVWtCejFBbzJvTVlhc0tyYm5z?=
+ =?utf-8?B?Z2xKZDUxQkdhcm5YUzNnemtGUWI0Yk5IMlRyVjRoaVNDM1BGV2FFWTBqVnRv?=
+ =?utf-8?B?Q3hoWVJOSWtpZ1YweHh5dVNJbDZyZmNZSHhGSll4MGNGb05CZUE5eVpEZlRL?=
+ =?utf-8?B?NW0rTTZwekNpYnFUSUorVkRza2tHRnRMNEZ0dUZoRWZBM2VzK1ZRN2ZneWk3?=
+ =?utf-8?B?TWFQeXRZV0VMWTVJaW4xUy9yVVRLOHpUWkxhWWlvRXo1cml6MW9WdDNvYnhU?=
+ =?utf-8?B?SVVDT2c3cVU1MlVUcUtqSDJXNFlhREJKak1zK3pKNXdwMEZvOFRSSG1QUkQz?=
+ =?utf-8?B?a2QvSTNlVTRFRk4yanpvejlmN0V3eFAyMnMvWGdrM1NrQkExTG5HU2xIYnIw?=
+ =?utf-8?B?MS9BQm93SUNXbzBZT2dVZDJyK3g2U044VkZHWFREQ1Foajl2MzB3dU5tNUhZ?=
+ =?utf-8?B?S08vcXBhQnJNdDI0VGgwdzZ6RnhLTElPNHU1elp2aHBOdSt0SW1jZmFENnE1?=
+ =?utf-8?B?SWt5c0xBbmVzSlp6UnlJaklpc0R0eG9KVmZVMitCMytpdHptaG1ySk5ENnRr?=
+ =?utf-8?B?aUszZE9VNE1pTjhjNXVJNno3MlJzUGI4MEVWSDR6OTFYakNWUk5VUjhOd0ky?=
+ =?utf-8?B?Wi9GUFBHdEk1M2hTb0RNOGdnMDhFblNMSWEvN3BaRjZxR2x1cWNiN3FhUlhZ?=
+ =?utf-8?B?L3FWMU5LTVp4ZkpZVXpqQ1I4T3R2dGg4L3c2TWVIcFBoQnoxSG9uNWd4RWVm?=
+ =?utf-8?B?bDJyRWxLeE9mYzY0L2tFQ1ZuUlpjVjdqTUZsNE83aXNsWTJ1TjJaeFJwOW05?=
+ =?utf-8?B?WkxYWXZUcFhMcjJjdkFaRXhIaktKcUh3WUlxTTFvYXhvRCtBSnpORFF1eDlT?=
+ =?utf-8?B?M1h1WGgrRmtlOVZxeGxFUUY2cUFQMW12RVp4WDAvVzIvWXltcWdFT0hzdi9I?=
+ =?utf-8?B?aHd3eU1Bbm4yc2N4RUIwYTRtSUpBUHFncmdoU0xaOTEwVGtjRmd5MGlpREt0?=
+ =?utf-8?B?ZGFrRmFuVWlpTVpBKzBqTE0xTFdrMTB1cUYzRzQ5VWw4cEJwcUFXNHR0Y1Q5?=
+ =?utf-8?B?RlVOSDhJWHBhamRUd0xSSWt6cXh6NDdzeVNobmpuY29pUFRWRkxwU1dUWThN?=
+ =?utf-8?B?ZEJLalJ4bUFiZXZWOVFYY2t6YUtNbkJ0d2xCUDUvdFljc3V4WG9MaFpLT0Z5?=
+ =?utf-8?B?d1hJNUs5OWJ0MDY2VlBWUG1PVlY1KzBhTTZKcXpKVlpxRzhNVjViS3JpQjUz?=
+ =?utf-8?B?NXRPTVpOTzRhanlaOHdjZ2ptZWgxdnpkZHdEczNkY05YeFhXdzAxcEs3bzN1?=
+ =?utf-8?B?NG1ZVmsxM0xEcCtZQkYzVE5DeW5VQW1ibDVVdWQrb0RONFF2alV0YzRpSkgr?=
+ =?utf-8?B?WXc9PQ==?=
+X-OriginatorOrg: genexis.eu
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1d26a551-c7fc-443b-c4de-08dd68b827dd
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR08MB4209.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Mar 2025 20:37:11.0560
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8d891be1-7bce-4216-9a99-bee9de02ba58
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: XgT9Luwyhwjka30p8H21zqKb4u+cZD23ZBBmbKaLgVQ3fP1lJZjT5v4IBARjYTqUEQB0LThoKwg/HMcfSgcTftMM0Pk/LmoKnqCS4q+sQOA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR08MB11039
+
+Hi, I seem to have missed that you commented on the patch.
+
+On 10/02/2025 07:14, Greg KH wrote:
+> On Sun, Feb 09, 2025 at 10:02:39PM +0100, Benjamin Larsson wrote:
+>> The Airoha familty of SoCs have a UART hardware that is 16550-compatible
+>> with the exception of the baud rate settings.
+>>
+>> This patch implements code for calculating the baud rate for the Airoha
+>> UART and HSUART.
+>>
+>> Signed-off-by: Benjamin Larsson <benjamin.larsson@genexis.eu>
+>> ---
+>> Changes in v4:
+>> - Removed COMPILE_TEST from Kconfig
+> 
+> No, please don't do that. >
+>> - Removed Kconfig option to build as module
+> 
+> No do that, you want your code as a module so that it can work in a
+> system that is built as a "generic system image" that does not force
+> your driver to be built into the main kernel image, wasting memory if
+> the hardware is not present.
+> 
+> thanks,
+> 
+> greg k-h
+
+I would argue that I follow the current flow of the code. In 8250.h we have:
+
+CONFIG_SERIAL_8250_PNP
+CONFIG_SERIAL_8250_RSA
+CONFIG_SERIAL_8250_FINTEK
+
+none of those enables COMPILE_TEST or the option to compile as a module.
+
+Neither the Airoha code or the other code is not intended to be its own 
+separate module, it is to be part of the 8250-driver. The 8250-driver 
+can be loaded as a module with or without the Airoha baud rate code.
+
+Implementing COMPILE_TEST when the 8250-driver does not support it seems 
+tricky. All the ways I could think of would result in messy code and 
+logic. I came to the conclusion that a smaller patch that reuses the 
+current logic was preferable. If that argument is not good enough then I 
+need some guidance how to implement something what would be accepted.
+
+MvH
+Benjamin Larsson
 
