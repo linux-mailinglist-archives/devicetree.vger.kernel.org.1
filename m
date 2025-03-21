@@ -1,106 +1,62 @@
-Return-Path: <devicetree+bounces-159793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159794-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97650A6C1B5
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 18:40:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C31BA6C1EB
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 18:54:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 182017A6350
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 17:37:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD57D189F5F6
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 17:54:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3043022FDFF;
-	Fri, 21 Mar 2025 17:37:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA89A22E410;
+	Fri, 21 Mar 2025 17:54:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Vp4vO6c7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SyX+Bp5w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90E8622FACA
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 17:37:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E28C22A4C9;
+	Fri, 21 Mar 2025 17:54:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742578661; cv=none; b=Z6Oyp+C/BoCfq7+c4GewokO6bf8IDmDHzCe87EcOWkdvzYjTouPP/yeNc17rzxgUoX+UmwOmBbUTqT7rDCrYZhwP/QBh5GXh6VUBdwVBFZH8+8SymihMZ4YLeLR5JWHU223Oujf3VDqdxRbIDgn4M++stDBFq7WpZlREK/frEOg=
+	t=1742579657; cv=none; b=CS3X+Q2cdQPxRcRs3Aze+KDlkhlectA42Idg4pIVkXCie8SUOKOcXJerSvAmQ2WtP0FvHOqQx1o2ruRdSOG1+3mDmg2f1dKXiJW/hCSiVNK4Dz5JuE2BhEZWE5swCDQax6HpnUGJToakc6mAO5NjBFDghaY2MpCz+772xv/3h4Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742578661; c=relaxed/simple;
-	bh=b4/ZBTK+EGfy2uuB1pDRH960vIq1os3y3NPLEjwQTaM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rhF7vJTKehGYowFAGLbyvFQ8ofn0/65SKoWp2U0rXp50J7JOP3TZoCI7QZIqDseIFtgCH69iwnUq1X4URn+F1iJoKUM0n1QArWrJ2dJies6maRbFgVL7yYHbRQ5BSCtYyzD7UEIVQXu3nlPv1THObWlIeFN3mVj1WSDZsC8WNrE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Vp4vO6c7; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52LCSql7010784
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 17:37:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=5EPzIyilGqOZI5ta3x+QlI0t
-	ANS6zHW/9qVjSLgS1/A=; b=Vp4vO6c73kU5bmNKyEmP09Krk5Pv61VWGOqeDNFb
-	LmYIks7+mB2u+gNWcH1kBFBVPXA0Fl1JXqsM2ObXX3DLjh0BllYGJMr8TsD+IL8V
-	RWHGJlARaIlCdwP1BicyOWvsLRnbpcFuginyUV1V+GYSr6K9AdpuqHqcu9+IjGsq
-	9ZcNOFiG9L2lbdrojt0CH7ldJtdiIKRPn/98WNA6k3+KZffaQId3OgzEyky5ELnO
-	uSjqdWQfC+IEgUNK1tQZCBLpz5VLzAPw4IOWQLs3+qne7KJH5h/IeDI1G4AxCRJ/
-	M9e2oMooTPTRR0holz5WdSOormxc3Y2PZ35WNrHVLyzwig==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45h85e0trg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 17:37:38 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6e8feffbe08so49998256d6.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 10:37:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742578657; x=1743183457;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5EPzIyilGqOZI5ta3x+QlI0tANS6zHW/9qVjSLgS1/A=;
-        b=ZYCgxHDDkjJEBBjXiMMWSrvRR2PE9ZODfTpawKsbPJFwP8xydoGYUYB62A1/+Ta7Sh
-         3HBRH+MK0/Y5b/0z1VsFdEpc9ZvkCme4345sWlYzyItkC6o1zeOobXV+6b8xYDW0ALIH
-         GWj1xaiEevc05k0KcatlU9MNeyIsLlsV6ulRISGZz7AQvqdqPz8KPY6LXeBXxKMpZiLC
-         xMnqdcvhC4ZMIbQXoIm2njlSkZVMTGb8wW47fvCk5RvJL5ofgPTm6iWCMqZK4nuPGqil
-         tZ/k9wkYGSdfnHahoNzLFiRgt17lRt+cbhd5P6PHaHAOFRpfNOFdAkoiJRSx2lzbJ66t
-         MJrQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVVlhwVqb2d1+6IWAcJEHzdMZL0Jlp4fG8wFVXlbYka1Q/sV22eZWl9oe5uN7gKXjVncX7vjRAc3hND@vger.kernel.org
-X-Gm-Message-State: AOJu0YwefoQuv7BYh3mNXcWtfbugKYX45BzmvLfxQfFkA2EIr0L2ErBF
-	3GPTnB5Ako3+6TZH5B6864ZZFQVRexLpAdzQ71wHmBVkpXIEqLwdu0MGycOLxRn+5IzWQM1dFra
-	kA4RSb6RohbCry5OiVEwb3NWplBTTbzqNeB0saecE6REiWcOwJoAoEXVq0b8EtACTReCy/Bo=
-X-Gm-Gg: ASbGnctr65sOoZ/CUWq+FZBIIOESTFExuzfHj1uZrs48ryRQNXIaS7suQNUmNa1iS9w
-	fWFAZuIapRzQnDiHQl0GmHnrTQ2uYkVFcy/2XwZt/mGM53qWKtauKCXWu3k/IOjH86HjUyNFJ7+
-	ZjLtmEBy0Ja8Se69T5dH/I1pt011WtXDS6g9QlKUgIFpj4VwffcRNecL9/dvHXo+zFKlwgZ+yxw
-	KQMFHMYQeB9P0JSQn2AZG9Xd4Spf/8eEapncGxa56UxSX61bngmecsJvJ2/Gyp4cc8c07xyfLs7
-	5hFpD6BeSg1pBobUS0pOCsmQ2xj0P08wsmoaSqwuOQwNlamIp76CkgYCRJhQMiABoYh/CMbaUPo
-	/vZ8=
-X-Received: by 2002:a05:6214:cc8:b0:6e4:9b59:d9ce with SMTP id 6a1803df08f44-6eb3f2858e2mr61754956d6.5.1742578656891;
-        Fri, 21 Mar 2025 10:37:36 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGADBjRs3rs94/YLnkpOq24pSnDwxMlG2hCY2p4qMNbSXk/dzNtWVVKJ5jRUhsoAdgTEJUHRQ==
-X-Received: by 2002:a05:6214:cc8:b0:6e4:9b59:d9ce with SMTP id 6a1803df08f44-6eb3f2858e2mr61754516d6.5.1742578656395;
-        Fri, 21 Mar 2025 10:37:36 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54ad6469104sm226950e87.20.2025.03.21.10.37.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Mar 2025 10:37:34 -0700 (PDT)
-Date: Fri, 21 Mar 2025 19:37:31 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Ayushi Makhija <quic_amakhija@quicinc.com>
-Cc: Dmitry Baryshkov <lumag@kernel.org>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robdclark@gmail.com, dmitry.baryshkov@linaro.org, sean@poorly.run,
-        marijn.suijten@somainline.org, andersson@kernel.org, robh@kernel.org,
-        robh+dt@kernel.org, krzk+dt@kernel.org, konradybcio@kernel.org,
-        conor+dt@kernel.org, andrzej.hajda@intel.com,
-        neil.armstrong@linaro.org, rfoss@kernel.org,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@gmail.com, quic_abhinavk@quicinc.com,
-        quic_rajeevny@quicinc.com, quic_vproddut@quicinc.com,
-        quic_jesszhan@quicinc.com
-Subject: Re: [PATCH v2 08/10] drm/bridge: anx7625: enable HPD interrupts
-Message-ID: <lkeezxmjs6qn36qzhmvmtngvrxuwng53rgcb75centx6ds5h4d@dx2iz4aqrcho>
-References: <20250311122445.3597100-1-quic_amakhija@quicinc.com>
- <20250311122445.3597100-9-quic_amakhija@quicinc.com>
- <5hvpacx3qeqhjqemhqizws4esdhwg7reli77qey2nin2fggljp@ykgyayj2v3e6>
- <3abefb09-c1b6-4339-8cd9-cd86652c35d6@quicinc.com>
+	s=arc-20240116; t=1742579657; c=relaxed/simple;
+	bh=gKedzw4liLSwVmSnogIR9b155XLkCctysKV/UrrfMtU=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=QVE1YUzqxHDiXEA9CPdW0ZV44b0KfibcczuL+aFPhreohrMTuCnS48PVHcIYK/f7mQCw5zF3eO3fzN7GEJ6s9iGunmLRoU/teJXTzDxxmFxo52u4YSQs78POHVdIYRnJZ7vR9qCo4b16yJi+Ry1pQBpSI3qb0m/kskj9E4ee6RM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SyX+Bp5w; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DAAD7C4CEE3;
+	Fri, 21 Mar 2025 17:54:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742579657;
+	bh=gKedzw4liLSwVmSnogIR9b155XLkCctysKV/UrrfMtU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=SyX+Bp5wqggD+Z8sARhajEpYUpC5IH8nfPIWoAWu6FG+CjkuAnRlnuumwltEC5gpf
+	 k4VEiR+tjVmS+MLXUIXLQ1NZwshuFPzySzV7Qqx7F2jhRbB3DsR4Px5j3/w4Kl0fZy
+	 3IyTTHqgQzV2OhMVS1hDFJB0A/98f8lbTH/XjE426FysDNbuBxRSHxfM+Fwod7Ltjv
+	 OhUQYMM4GPqnFHvJ1UDlpTl6ZQC1uiGBRN8Qtgt06oepc/+l7UNIXTZW3uzymiSEGD
+	 3nvuuD5l3vHQq/w5HJrjgtj2jYHRxgsknRolwdVSXeH9l5ffokfoRKKOOF8+nDZBCT
+	 qGhtkyxzX/qEQ==
+Date: Fri, 21 Mar 2025 12:54:15 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Jesper Nilsson <jesper.nilsson@axis.com>
+Cc: Niklas Cassel <cassel@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+	Lars Persson <lars.persson@axis.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-arm-kernel@axis.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org
+Subject: Re: [PATCH RFC NOT TESTED 0/2] PCI: artpec6: Try to clean up
+ artpec6_pcie_cpu_addr_fixup()
+Message-ID: <20250321175415.GA1133870@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -109,56 +65,134 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <3abefb09-c1b6-4339-8cd9-cd86652c35d6@quicinc.com>
-X-Proofpoint-GUID: EyTlBAxLrIS1L-GzPlAo_nxc2lsTUG9t
-X-Proofpoint-ORIG-GUID: EyTlBAxLrIS1L-GzPlAo_nxc2lsTUG9t
-X-Authority-Analysis: v=2.4 cv=LKpmQIW9 c=1 sm=1 tr=0 ts=67dda3e2 cx=c_pps a=oc9J++0uMp73DTRD5QyR2A==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=R25bk4NhV3WDM544LqcA:9 a=CjuIK1q_8ugA:10 a=iYH6xdkBrDN1Jqds4HTS:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-21_05,2025-03-21_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 impostorscore=0
- phishscore=0 malwarescore=0 suspectscore=0 mlxscore=0 priorityscore=1501
- spamscore=0 mlxlogscore=737 lowpriorityscore=0 clxscore=1015 bulkscore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503210129
+In-Reply-To: <Z92fNs31ybMO2Y1+@axis.com>
 
-On Fri, Mar 21, 2025 at 02:36:21AM +0530, Ayushi Makhija wrote:
-> On 3/11/2025 9:09 PM, Dmitry Baryshkov wrote:
-> > On Tue, Mar 11, 2025 at 05:54:43PM +0530, Ayushi Makhija wrote:
-> >> When device enters the suspend state, it prevents
-> >> HPD interrupts from occurring. To address this,
-> >> add an additional PM runtime vote in hpd_enable().
-> >> This vote is removed in hpd_disable().
+On Fri, Mar 21, 2025 at 06:17:42PM +0100, Jesper Nilsson wrote:
+> On Thu, Mar 20, 2025 at 04:54:05PM -0500, Bjorn Helgaas wrote:
+> > On Tue, Mar 18, 2025 at 10:01:48AM +0100, Niklas Cassel wrote:
+> > > On Mon, Mar 17, 2025 at 12:54:19PM -0500, Bjorn Helgaas wrote:
+> > > > On Mon, Mar 10, 2025 at 05:47:03PM +0100, Jesper Nilsson wrote:
+> > > > > I've now tested this patch-set together with your v9 on-top of the
+> > > > > next-branch of the pci tree, and seems to be working good on my
+> > > > > ARTPEC-6 set as RC:
+> > > > > 
+> > > > > # lspci
+> > > > > 00:00.0 PCI bridge: Renesas Technology Corp. Device 0024
+> > > > > 01:00.0 PCI bridge: Pericom Semiconductor PI7C9X2G304 EL/SL PCIe2 3-Port/4-Lane Packet Switch (rev 05)
+> > > > > 02:01.0 PCI bridge: Pericom Semiconductor PI7C9X2G304 EL/SL PCIe2 3-Port/4-Lane Packet Switch (rev 05)
+> > > > > 02:02.0 PCI bridge: Pericom Semiconductor PI7C9X2G304 EL/SL PCIe2 3-Port/4-Lane Packet Switch (rev 05)
+> > > > > 03:00.0 Non-Volatile memory controller: Phison Electronics Corporation E18 PCIe4 NVMe Controller (rev 01)
+> > > > > 
+> > > > > However, when running as EP, I found that the DT setup for pcie_ep
+> > > > > wasn't correct:
+> > > > > 
+> > > > > diff --git a/arch/arm/boot/dts/axis/artpec6.dtsi b/arch/arm/boot/dts/axis/artpec6.dtsi
+> > > > > index 399e87f72865..6d52f60d402d 100644
+> > > > > --- a/arch/arm/boot/dts/axis/artpec6.dtsi
+> > > > > +++ b/arch/arm/boot/dts/axis/artpec6.dtsi
+> > > > > @@ -195,8 +195,8 @@ pcie: pcie@f8050000 {
+> > > > >  
+> > > > >                 pcie_ep: pcie_ep@f8050000 {
+> > > > >                         compatible = "axis,artpec6-pcie-ep", "snps,dw-pcie";
+> > > > > -                       reg = <0xf8050000 0x2000
+> > > > > -                              0xf8051000 0x2000
+> > > > > +                       reg = <0xf8050000 0x1000
+> > > > > +                              0xf8051000 0x1000
+> > > > >                                0xf8040000 0x1000
+> > > > >                                0x00000000 0x20000000>;
+> > > > >                         reg-names = "dbi", "dbi2", "phy", "addr_space";
+> > > > > 
+> > > > > Even with this fix, I get a panic in dw_pcie_read_dbi() in EP-setup,
+> > > > > both with and without:
+> > > 
+> > > Your fix looks correct to me.
+> > > 
+> > > You should even be able keep dbi as 0x2000, and simply remove the dbi2
+> > > from "reg" and "reg-names", as the driver should be able to infer dbi2
+> > > automatically:
+> > > https://github.com/torvalds/linux/blob/v6.14-rc7/drivers/pci/controller/dwc/pcie-designware.c#L119-L128
+> > > 
+> > > But your fix seems more correct.
+> > > You should probably also change the size of "dbi" to 0x1000 in the RC node.
 > > 
-> > Is it really enough to toggle the HPD interrupts? Is there any kind of
-> > programming that should be moved to .hpd_enable() too (so that by
-> > default the bridge doesn't generate HPD interrupts)?
+> > Just a ping to see if there's any chance of getting this into v6.15?
 > > 
+> > To do that, I think we'd need to confirm that:
+> > 
+> >   - the endpoint issue is fixed
 > 
-> Hi Dmirty,
+> Unfortunately, I've been unable to get any resolution to this problem.
 > 
-> I couldn't find the ANX7625 bridge driver datasheet, where all the registers information are present.
-> 
-> As per my understanding, we have anx7625_hpd_timer_config(), where debounce timer registers are getting set, which help to manage the detection and stability of the HPD signal.
-> 
-> anx7625_hpd_timer_config() is getting called from anx7625_runtime_pm_resume().
-> 
-> anx7625_runtime_pm_resume
->    anx7625_power_on_init
->        anx7625_ocm_loading_check
->            anx7625_disable_pd_protocol
->               anx7625_hpd_timer_config
-> 
-> So, I think HPD programming is already taken care in anx7625_hpd_timer_config(). anx7625_runtime_pm_resume() is getting called for both eDP and DP configuration. 
-> 
-> If you suggest then, I can move the anx7625_hpd_timer_config() from anx7625_disable_pd_protocol() to anx7625_bridge_hpd_enable().
+> - Tested on units without the PCIe switch - still fail
+> - Tested on another units - still fail
+> - Tested with 6.12-rc7 - fail
+> - Tested with 6.6-rc6 - fail
+> - Tested with 6.1 - fail
+> - Older kernels fail with toolchain or boot problems due to my hacky
+>   tools for booting upstream kernels so I can't easily test
+> - Tested with original bringup kernel 4.19 - no crash, but endpoint is
+>   not enumerated from RC. This contains lots of hacked around code
+>   which could also come into play, and there is an untested hardware
+>   adapter in between the two boards.
 
-This might result in HPD signal being generated after invalid or
-improper timings. If we can't get a feedback from Analogix on how to
-control HPD generation, then it's better to leave it as is.
+So it sounds like current kernels are already broken for endpoints,
+regardless of Frank's series?
 
--- 
-With best wishes
-Dmitry
+If that's the case, I'd be open to merging the removal of
+artpec6_pcie_cpu_addr_fixup() because we wouldn't be breaking a
+currently-working configuration
+
+And if we don't have artpec6_pcie_cpu_addr_fixup() in the mix, we'll
+have a better chance of fixing it nicely, by deriving intermediate
+addresses from the devicetree instead of forcing them with
+.cpu_addr_fixup().
+
+> The panic looks like this (with some minor variations due to kernel version)
+
+If you had Frank's series included, it should log some useful debug
+about the intermediate address offset it derives.  But I don't think
+you're getting far enough for this to be the problem.
+
+> =============
+> [   16.601883] 8<--- cut here ---
+> [   16.604937] Unhandled fault: external abort on non-linefetch (0x008) at 0xf0bdd00e
+
+My guess is:
+
+  artpec6_pcie_probe
+    dw_pcie_ep_init
+      dw_pcie_ep_get_resources
+        dw_pcie_get_resources
+          res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "dbi")
+          pci->dbi_base = devm_pci_remap_cfg_resource(pci->dev, res)
+      dw_pcie_ep_init_registers
+        dw_pcie_readb_dbi(PCI_HEADER_TYPE)    # 0x0e
+          dw_pcie_read_dbi
+            dw_pcie_read(addr = pci->dbi_base + PCI_HEADER_TYPE)
+              readb(addr)
+
+It looks like pci->dbi_base *should* be initialized by this time.  I
+assume the hardware does support single-byte, non-aligned reads?
+
+> [   16.612502] [f0bdd00e] *pgd=029d6811, *pte=f8050243, *ppte=f8050013
+> [   16.618775] Internal error: : 8 [#1] SMP ARM
+> [   16.623041] Modules linked in:
+> [   16.626092] CPU: 0 UID: 0 PID: 1 Comm: sh Not tainted 6.14.0-rc4-g98c0bcfef512-dirty #26
+> [   16.634181] Hardware name: Axis ARTPEC-6 Platform
+> [   16.638877] PC is at dw_pcie_read_dbi+0x60/0xa4
+> [   16.643414] LR is at 0x0
+> [   16.645942] pc : [<c05d9e64>]    lr : [<00000000>]    psr: 60000013
+> [   16.652203] sp : f0819bc0  ip : c1e2b840  fp : 00000000
+> [   16.657420] r10: c1d9f000  r9 : c1efdbc0  r8 : c1e2b930
+> [   16.662638] r7 : c0d2f188  r6 : c1e2b840  r5 : c1e2b930  r4 : 00000000
+> [   16.669159] r3 : 00000001  r2 : 00000000  r1 : f0bdd00e  r0 : c1e2b840
+> [   16.675679] Flags: nZCv  IRQs on  FIQs on  Mode SVC_32  ISA ARM  Segment none
+> [   16.682810] Control: 10c5387d  Table: 02bec04a  DAC: 00000051
+> ...
+
+> [   17.073818] Call trace:
+> [   17.073828]  dw_pcie_read_dbi from dw_pcie_ep_init_registers+0x2c/0x3bc
+> [   17.082978]  dw_pcie_ep_init_registers from artpec6_pcie_probe+0x164/0x1dc
+> [   17.089867]  artpec6_pcie_probe from platform_probe+0x5c/0xb0
+> [   17.095621]  platform_probe from really_probe+0xe0/0x3cc
 
