@@ -1,1297 +1,226 @@
-Return-Path: <devicetree+bounces-159627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C982A6B9C7
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 12:21:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3E7AA6B9D3
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 12:26:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BC3107ABD3D
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 11:18:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 581703B6A92
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 11:25:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C428922652D;
-	Fri, 21 Mar 2025 11:18:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B837D222582;
+	Fri, 21 Mar 2025 11:26:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mjiBqb2Y"
+	dkim=pass (1024-bit key) header.d=einfochips.com header.i=@einfochips.com header.b="LgMfr6RA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from BN1PR04CU002.outbound.protection.outlook.com (mail-eastus2azon11010065.outbound.protection.outlook.com [52.101.56.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3565224AED;
-	Fri, 21 Mar 2025 11:18:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742555918; cv=none; b=d9u6J3fnvrNrMKydmYo6aeMPPy40CvfKfAjvgdK70qaU61lQe7iRgnAcQKwOAmhkQ2z2nRONBU354UPn+98LMMHtJY0tSQW+bVHW0UFMsgZPRh5d0Ieq2VsYNqLcxWitGSSZ/I6dZo0mtW70Zhvak6YECj5v5A9ub1PaSZEdKXM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742555918; c=relaxed/simple;
-	bh=owllK2gD+NNiVI+Pgm2D+Z6JczWJc3BO5i0i+m1Qr1g=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tGHqN5IpEQI9SCUkia2X2OfSKoTLHlviQ5PcoXHHS+ZV4gAco0iefYA0t61yOW6sQT4ocSs2/ADtQ58ori5HEObJPMU2AMf51AE/r16Y6tN5c3pE/GW6Yd5EUK9UBA1codDn4Bk9JOJdchwBKlpTlvzclkmBssTeW6KZlUUkChU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mjiBqb2Y; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-aaecf50578eso368483366b.2;
-        Fri, 21 Mar 2025 04:18:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742555914; x=1743160714; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uGxsBKgqMl9xMbRl5tOrqJAmvA31rEvKumJwh3rNaXs=;
-        b=mjiBqb2Yr+5+0xQiN5uiYKadA4oApMZOF7zd1ZOCK1/6Htz6O7rsg0nU85x8wTrwEz
-         kUQses+zfbKfx7g3nsN8DFmxTvy60wRoxV8gAUM1yVZ1FAtAS6vbgwjtVX5OAy3BZFWw
-         eEAxBtBBcOs3rXtaOUVZ1fgV3Nc8Nen3iQI5GFaut6e/CqaQlDVl0sBIH2Zno2kzSjTU
-         m99F9KEtK0naK5lOgBQ0myShsYK6UP4QJA+Z8yAQlZGzVeZtSaV6oE0uP4dzV0LgZbmh
-         SI9fARXBWe6sgq1rbYfCJXo+7H70blgRCC+zshhOu1BV/l1IRSTOd7UOsmqJLlO9hAHa
-         qLdw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742555914; x=1743160714;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uGxsBKgqMl9xMbRl5tOrqJAmvA31rEvKumJwh3rNaXs=;
-        b=tr3B0pgOQT2sx3enOPEMp4fEEptACDsbSRqXM0/IdM0cDc8cLuA77HsSKCMFRsqu0R
-         Mi4Yqz8Yiikg4CA//a5joB7Yhyj5mp1YYZ4vmOIbYQbySct6Ui8/FQ+sCPvQEgPr3kUe
-         77RgIZz7qko0CIBNCOjLxlKDbELm4B06M2gMGBgoalzUOv6oghlPVUy7UKjqnyLy2DWw
-         c5/QBJqbtfqWA+noJhuyOEGbNQTuVXJZ6hQbSSX7AopUmcteJHw+gUbgUMbHJmmZlNbo
-         4MTVnDgZiUhEcI7bWIy5jEQpnfgHXec6qtgyOK+nC+Vk7xbClpvYfwCko4Ff3uk2OA9h
-         VwLg==
-X-Forwarded-Encrypted: i=1; AJvYcCUpbMzLg/2NLNUjY06k8kj+5RCpt0H+1ArH1vl8TB3VenLDKrpk7dFE4UX5JuSdujAOoVWrkbnHW/yW@vger.kernel.org, AJvYcCVbVgmCGlfD39LVIHEhF5y6AQyi1s3rPIrEFxAk6QmN2iRJLLoX/8nK6eXq4j1B3DmksrkW6O2+xzPtQh7i@vger.kernel.org
-X-Gm-Message-State: AOJu0YyBjeGCkhHkhu4m6Ri0ih+ma3PYBXVCd4IeFfvhppF6Txnu4O1R
-	C8qK8sRaHEzD4ivYgDsudUp9tuidgtfDdMXHcSYw6vZgCCkN0cvE
-X-Gm-Gg: ASbGncuHyPoqlpvLcV6Vnv0yu4noml6hwFK7Cxm+wjoHiONxyeiLcUFwvb+veBM2gkE
-	viMYnn7ocgQDVb8G+vbD2xP/leqBRCnF43pBoCEnj8LRY2224XnqqsOnUWaRr1r7iwDgc38ddNg
-	mK5jKjjPl2oc+4pkUng42FTmVWfOY26x+UVXpQQsZlNNzNUrXUjty7DY8Qc5PPClGeEbSvLw6fi
-	Mk3u4AFSCDeWm8YA3xgjfTdB8R1gMhCCt7aSXAjLl7vBsb6EohEbaPqCzCSum2F9TDf1wCUINEY
-	UxNYSXBLkEYrTBKztkARX61itblo9emzQGx8SE8Se43649Qu
-X-Google-Smtp-Source: AGHT+IGA1GXNW/fy22nt4L655eb+Dm6B415Vy+ZA6TW9FlOvu5RLzotWbDSKoeyXSFVO2uAu9F5SzQ==
-X-Received: by 2002:a17:907:3ea7:b0:ac2:1c64:b0a with SMTP id a640c23a62f3a-ac3f212ad50mr256566066b.14.1742555913953;
-        Fri, 21 Mar 2025 04:18:33 -0700 (PDT)
-Received: from wslxew242.. ([188.193.103.108])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac3efd569f3sm134228866b.171.2025.03.21.04.18.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Mar 2025 04:18:33 -0700 (PDT)
-From: =?UTF-8?q?Goran=20Ra=C4=91enovi=C4=87?= <goran.radni@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?UTF-8?q?Goran=20Ra=C4=91enovi=C4=87?= <goran.radni@gmail.com>,
-	=?UTF-8?q?B=C3=B6rge=20Str=C3=BCmpfel?= <boerge.struempfel@gmail.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: =?UTF-8?q?Goran=20Ra=C4=91enovi=C4=87?= <gradenovic@ultratronik.de>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 4/4] ARM: dts: stm32: add initial support for stm32mp157-ultra-fly-sbc board
-Date: Fri, 21 Mar 2025 12:18:19 +0100
-Message-ID: <20250321111821.361419-5-goran.radni@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250321111821.361419-1-goran.radni@gmail.com>
-References: <20250321111821.361419-1-goran.radni@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E87BC1F03F3;
+	Fri, 21 Mar 2025 11:25:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.56.65
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1742556360; cv=fail; b=jVAGhK9hxzwedimwMdEGFbzJxbNa5XkVWTgF3XaYi0TqyQor9YDiK8JqMy8cM2AXOU6WiZ+q2GCQEdU/WkVMqhNLTYpMDNBKHtDm0lobm1Sm5P1tuhJdw2ngAyAXeOQ2yo0syX0KtYN7GrWm9IaWoaqhInV/w8aDjGLgbfZ/yu8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1742556360; c=relaxed/simple;
+	bh=t7z0APYeJy7yURnQeOtoEC0utGJy816d4d4RVY0E6bI=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=p7y85/1QYXN7918Obi53sgJUqn0vlgE0Z0YUdyZZ3OyDhoXrik7OT1LcFb/0rzD9b4XBVDMYL7Rksd1PtSsnldVRjFyTHe0/WbkSiUkkGykQBkSO25B17JwKtHpI8AFOYhk2RP1R6bQndvYKWx+QL4IENhIPy5jmdWD3Cb/3THA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=einfochips.com; spf=pass smtp.mailfrom=einfochips.com; dkim=pass (1024-bit key) header.d=einfochips.com header.i=@einfochips.com header.b=LgMfr6RA; arc=fail smtp.client-ip=52.101.56.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=einfochips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=einfochips.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JwNykYkXcxSRTuXAvQHbw0QkjFVSlWcVb2cPAPraOeaxGcQpruNYDxI0P+cx0VCW1SJc1Kmhx2qonpj3Dp24zOtpU+NHGbu3sgBw7PZ9Xdk/ZQ75SZ91vJoZ/q26JzRbDSeQn1TSXnXSwLMpleLpy1hcsrI49xihhKXeOSr/hJ8s2X2APRcBwOhcC2/KF8Vib+PDNXYu5uQsHxHVtZF6dZoCX/158mxoRaW7okCta5lgh3aNsWBUl/iHyib/urEpEPExceKEdeEhiKGaTJAAfHMXkDwtAEhkM6Drn6Rfj7XGPaoqZmM55TR3Dk9jRK4KTbqA08AcI6i0j9r00zmMAQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=t7z0APYeJy7yURnQeOtoEC0utGJy816d4d4RVY0E6bI=;
+ b=Z4CgRUJDYE+i7WYsGX7r0oyM0WdKoLXtp/AmTlj70O4TPnpO+xG6/mjNcmEaMoY1tkRp5vXfAr0bgehLA89HxoLRbtEM6um2iw4wh317J0tPm7ncsu55tjH3Zc0Wpre4WVD3JLRwsnfYdVD8ptwC03WRZqA/Gq8WvqcSXv26E6UJIqyALBLk3heClpibSrGw70VG4ATmSr8x6cD8ySVcxVghU45jReBQ+iCgJ9gsz+LgH/8Yb4+NwNmbWFiFriWXlZERdDWNelM8kxw//cTO5GNuCBN+wi8AFGF0O8NJ0N7zcQ59fRe1xh+mGC+Td3ZMLPkzJf1yLCBFbfrlC7XKzw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=einfochips.com; dmarc=pass action=none
+ header.from=einfochips.com; dkim=pass header.d=einfochips.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=einfochips.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=t7z0APYeJy7yURnQeOtoEC0utGJy816d4d4RVY0E6bI=;
+ b=LgMfr6RAw6xAutDfLW/+p0QGIwAztaumvQ0JlFY2VCYYB4bixS2y6Z4jK7aNs+xerEmVO/3DwYaoEzxjbf/onD+V7mbhxB/61MDUWglyh4Y59F+lcvPbhbJfUeKBTWb5HxT0jI6hcQBA+yJ9OQBmBPRiB+u2yr1eyAo99VRlSYY=
+Received: from SA3PR04MB8931.namprd04.prod.outlook.com (2603:10b6:806:381::22)
+ by LV3PR04MB9220.namprd04.prod.outlook.com (2603:10b6:408:26e::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.34; Fri, 21 Mar
+ 2025 11:25:56 +0000
+Received: from SA3PR04MB8931.namprd04.prod.outlook.com
+ ([fe80::f323:b482:8b18:af1d]) by SA3PR04MB8931.namprd04.prod.outlook.com
+ ([fe80::f323:b482:8b18:af1d%5]) with mapi id 15.20.8534.034; Fri, 21 Mar 2025
+ 11:25:55 +0000
+From: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>
+To: Conor Dooley <conor@kernel.org>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Samuel Holland <samuel.holland@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Min Lin
+	<linmin@eswincomputing.com>, Pritesh Patel <pritesh.patel@einfochips.com>,
+	Yangyu Chen <cyy@cyyself.name>, Lad Prabhakar
+	<prabhakar.mahadev-lad.rj@bp.renesas.com>, Yu Chien Peter Lin
+	<peterlin@andestech.com>, Charlie Jenkins <charlie@rivosinc.com>, Kanak
+ Shilledar <kanakshilledar@gmail.com>, Darshan Prajapati
+	<darshan.prajapati@einfochips.com>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Heiko Stuebner <heiko@sntech.de>, Aradhya Bhatia
+	<a-bhatia1@ti.com>, "rafal@milecki.pl" <rafal@milecki.pl>, Anup Patel
+	<anup@brainfault.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-riscv@lists.infradead.org"
+	<linux-riscv@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 00/10] Basic device tree support for ESWIN EIC7700 RISC-V
+ SoC
+Thread-Topic: [PATCH 00/10] Basic device tree support for ESWIN EIC7700 RISC-V
+ SoC
+Thread-Index: AQHbmlQDH0NeIyhgX0KZua2i5HA+WQ==
+Date: Fri, 21 Mar 2025 11:25:55 +0000
+Message-ID:
+ <SA3PR04MB8931D68EA57B0A4275FDD6E783DB2@SA3PR04MB8931.namprd04.prod.outlook.com>
+References: <20250311073432.4068512-1-pinkesh.vaghela@einfochips.com>
+ <20250311-backdrop-porthole-440ae005e8fa@spud>
+ <SA3PR04MB893164FCD6C4CB8924FC8DE583D82@SA3PR04MB8931.namprd04.prod.outlook.com>
+ <20250320-uprising-couch-0af012a1fee6@spud>
+In-Reply-To: <20250320-uprising-couch-0af012a1fee6@spud>
+Accept-Language: en-US, en-GB
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+ MSIP_Label_879e395e-e3b5-421f-8616-70a10f9451af_ActionId=e992cc37-5758-4a78-b717-c94def3b5169;MSIP_Label_879e395e-e3b5-421f-8616-70a10f9451af_ContentBits=0;MSIP_Label_879e395e-e3b5-421f-8616-70a10f9451af_Enabled=true;MSIP_Label_879e395e-e3b5-421f-8616-70a10f9451af_Method=Standard;MSIP_Label_879e395e-e3b5-421f-8616-70a10f9451af_Name=879e395e-e3b5-421f-8616-70a10f9451af;MSIP_Label_879e395e-e3b5-421f-8616-70a10f9451af_SetDate=2025-03-21T11:21:58Z;MSIP_Label_879e395e-e3b5-421f-8616-70a10f9451af_SiteId=0beb0c35-9cbb-4feb-99e5-589e415c7944;MSIP_Label_879e395e-e3b5-421f-8616-70a10f9451af_Tag=10,
+ 3, 0, 1;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=einfochips.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SA3PR04MB8931:EE_|LV3PR04MB9220:EE_
+x-ms-office365-filtering-correlation-id: 99f0678c-ae70-4454-29ee-08dd686b25a1
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|7416014|376014|1800799024|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?ylvbBuVizme7sNP9mSAv7esia4G9Y51GaV3XvF9/8zmnzaaivudeNc9MyEZc?=
+ =?us-ascii?Q?HiIdHeGUGfbf3xtL2WT0zgIZSE3xkMciIz2zEVMZVbMPrx83W+GB3y6P6BdS?=
+ =?us-ascii?Q?VW8B4hhqfkAqbQXoWICEZ2UQghZiw7IcC/Y1izADkNHpjFSJ5EFk6jwR0n1w?=
+ =?us-ascii?Q?kd2nHRmqR3szpyZB7HG9Zu33/JDu3UNLii2Qzv3nB88/XCI3wED2R4xsPSfT?=
+ =?us-ascii?Q?WVzmdGGrWxFIHdKBPNCGvu1Y6Rn1ZRXH2Z/meg0tt0OXGq+aYf704AIDM76p?=
+ =?us-ascii?Q?Sw3Kwg4JjIqYuiNCmlIJq66xevJkh88lobtIIHV/p0r/Pi+9n3J8MYDrTUF9?=
+ =?us-ascii?Q?aInralk6KPoFoz0Vl59EBW4Lhc4ISUF0/0PqAizS8ZROKQlJowfFKcKTZO3O?=
+ =?us-ascii?Q?Pgvi6ryN2XOepW08Z0VSUtBFTZ1iNllk+cjCA6TVrhTmi9PsYHCEooR6CsHd?=
+ =?us-ascii?Q?b5Tr5IoSyXMYMBbCd/EnxhkzPfJzjC9Hatd+/hmzJfvShYpIRw0jSCmf3QfC?=
+ =?us-ascii?Q?vtPohgaioPE9lWHVOvsVYSbY5wxyOBzUqNHDef6QfObz+JFa1Vxh7srfOGIl?=
+ =?us-ascii?Q?JxmQe8kbSp9aLa15knBAbUVY6SOAG0CuFEoBPaZCvd5P2z/t9s7W8TMM1zpE?=
+ =?us-ascii?Q?l1YfxhDfO3hGFt1omZeIt8gTtApxyHlZ1lsgjYymP2l3XIaP9lza4rMitzEi?=
+ =?us-ascii?Q?Qoph8J4tph7dGn2vaQtRuNSmyoveFlZXXNcDgpWLIKSCDgnTNGIiBibNBJBd?=
+ =?us-ascii?Q?EnHIf2MTCLDrUZ8PIuvbVzPSZTACev1hTAkqhd7MwkqNyRZ0avUYqAX60oDx?=
+ =?us-ascii?Q?YUOqA8tycx7Qgwu8vR7qki4IInQuhXoc3Q3G/dVWhaONh3jo9WSJJhx3a4qL?=
+ =?us-ascii?Q?EhU1Fr4H1nxBpXnqvwm19wKZn1o2iP1/nvUPLOfxPPrkyaydND3FMI6O/39Z?=
+ =?us-ascii?Q?uxQKh9dkBGmGieBvr2jGhOIBp5yTC43r1TEHyu+QE7gsttftXO2pKuKK9obl?=
+ =?us-ascii?Q?YwB97xZq7R/WedIbK1O2eIVI0kV1TouymLDacaGPNXy6blmw7r4A2hoPi58w?=
+ =?us-ascii?Q?hulX+5Fd9Rsq/hPHedbHPZcPZbCCxnkwkGJcNqTMDMlBFpPwxDtjeJhhW5uU?=
+ =?us-ascii?Q?pC/df6g8S/weqE8O6hg4nlf/gZA/LR7noxcx2gqcU3zT9l98+nLjfxS9aCJo?=
+ =?us-ascii?Q?YYgnxVs/gVvXFbaGK76t28yH8v19mQNe+EnC4NsBuafzYwz1Ft+HE/mAWzJq?=
+ =?us-ascii?Q?EmxWLq2fDueJ2BT4Zs8V4qxTOQ00N3gnSvFyq/zuXM77ZvZeKvu1KCoWT5XN?=
+ =?us-ascii?Q?4n5/i3XMR/FrOJ8kmvLmrjCNhyYkX8OStbca7iobWXml0PqqsvkKhj3ONrx9?=
+ =?us-ascii?Q?Mu9msu6csbEZ7fIpDTOCW+G29HkKVbcRpR/bt5czfIaNctd8gL2LEzuODU2g?=
+ =?us-ascii?Q?NJwP7EzHZrkYxv5Dbl8XONX7sa5ksJQE?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA3PR04MB8931.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?O0fr4hggPqxT2btZ0dyZaE2/HPg4JbKp+Sl3lBEiDTIrnVJ8JiSD9dTG6s7O?=
+ =?us-ascii?Q?zZhfW5HWDJmGSHW0CWFYGErwzYVeZHh9rTheXk8rRcl5TMbK7/7ki9g9D4B1?=
+ =?us-ascii?Q?qUIteYixh7FFvxLFxz9YF8+7ISJ8j6UDIrA4mOqBlOmh22l3Mn6C/h3PI53e?=
+ =?us-ascii?Q?HIENx4/HhIcpAhT+MM+fc7ZjfjpcW3pGWYKNGYcAny7iAkQaSZN6gGkCcnSa?=
+ =?us-ascii?Q?/s9Upa2zX9VzX4MPhacHEdwAYC+Fkbd8FOLklNIwXynE6qMRQ+T2HMD0qBui?=
+ =?us-ascii?Q?T/uMDlyHnxA99PBqk/yk/nmYtiXv+DyG0W2hxqQEx8UVuncrIcx0TJe5JEXA?=
+ =?us-ascii?Q?bF/CzLI+okHLQl5Qdez6KpdTxArVTJLF+c6F3Wl6SOs41aC7tV7S9Jzygy+Y?=
+ =?us-ascii?Q?FoG7ypbNhYz4d1JT/ikpuk/oLI2Vu/7nHp9OwsNaEoJEcRhY1ryz9nudrkYo?=
+ =?us-ascii?Q?/fSRaDHr2ZBX5i50KFfeCp77HxqPiva33HG9fIsA62sAyvok8jTKUqkdK9lx?=
+ =?us-ascii?Q?G1ks8WmyJaTrTD2kHFvpTQ9t6egMs3gHx1PZGrUEsk2n4DGC1dib1oKNW9Xz?=
+ =?us-ascii?Q?grYtAvatrgMY4dZX9mYOXhyH1D0fXbrCmds1fwYKlkb5otQnv8PGRPwxvnx9?=
+ =?us-ascii?Q?5U+qFZr44xWvq4CKr9x9JnXgE8TehI3NeuLtyPWaspCYxEhbhNyeuczZ2MA9?=
+ =?us-ascii?Q?n/MRRInoVhlP66aedjW0ZoP4h4tPY3FsIPtr9xFVtl2TpIGtXWNS1IS0OtH0?=
+ =?us-ascii?Q?ShgD/0oIP47nUd1h1KSLpuGrHbRxCLkaA2fJQMsAMvIfsaIYT+oEY0ddTyYm?=
+ =?us-ascii?Q?FMEwsBdEPM8+yjoorT0iUhAJGEPKb4wJ31hBZuWInUligaTRsmWmKQlA1rss?=
+ =?us-ascii?Q?aRcdFY5cnYnptwpWGjco41hNSTdkfYCHSfyhHrPhnbQeee2QCGhc7qV3DFsv?=
+ =?us-ascii?Q?RwlvUZDttXZwrKI6iK+e2k/3owy+A7VkCZMLCx2+3TSSf+SqDd3YfOtFftla?=
+ =?us-ascii?Q?E74jyXxh/dcj7W2mluIawDvLBzJGA5iXo5DHMVm40mchHu9TQY40vBLixFfv?=
+ =?us-ascii?Q?8qyz5c5Z6jmtil4MJYnt772AMmNv37LVF+NwKrv8AqulAnFBSDam3/5kJgFA?=
+ =?us-ascii?Q?SCQ/Y08tW3qQi0wcaAQ20SOCJCyJjzHmBklvvw2Xb6wnXKGwiy0C4nWxnGkd?=
+ =?us-ascii?Q?N2UnIxyr7FBpCW8hz5D7tVWTTtqiOxYefF/+3Dykfzz+dFD+68Fs1dLAI/ZT?=
+ =?us-ascii?Q?dmjFh01ivvuMQqYicgQSb/KpgzqPOHtaH/1WdlGQp+PqAIik36F1OdPkBxxv?=
+ =?us-ascii?Q?cf/f47EwJ+andgEj4jGEGjHZOn8XIH62aiFmDOQgt8XF95KSK4JrbP4sJpFs?=
+ =?us-ascii?Q?kFoiVHy9CuTBwGT9E59NNxH64RQ12UOEMZ1+BMWoqolUQftO8SdsFzgVDoxR?=
+ =?us-ascii?Q?Vo/JymbqAVEb1ipv4j6ehC+63u07FzDDD9tYMZhzRq76zd32lSd5Zmyahktq?=
+ =?us-ascii?Q?qDG+0mjXAbTlxeWKuP/RBIzvf/0WR62qcf+V8GWfx0JTVsQ4kLiE6r1xNdXz?=
+ =?us-ascii?Q?c7EcmbfQ88xZObMP1yV0IaXSJDDrS5SAmUL59KLtrX9wCLPc2cS1p9yIDCBp?=
+ =?us-ascii?Q?yg=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: einfochips.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SA3PR04MB8931.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 99f0678c-ae70-4454-29ee-08dd686b25a1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Mar 2025 11:25:55.8448
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 0beb0c35-9cbb-4feb-99e5-589e415c7944
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ZCIy5Q5MznGtXu9mwq4Vf55CuHlXbymyS5RKHdvEoh0QGvQbI4LadXmMjfTjj9gm85lfZ+SSBcJGu34C1Uoxhz9VNzGxfL37uf7DEAausKY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR04MB9220
 
-From: Goran Rađenović <gradenovic@ultratronik.de>
+Hi Conor,
 
-Add support for Ultratronik's stm32mp157c fly board. This board embeds
-a STM32MP157c SOC and 1GB of DDR3. Several connections are available on
-this boards: 2*USB2.0, 1*USB2.0 MiniUSB, Debug UART, 1*UART, 1*USART,
-SDcard, RJ45, ...
+On Thu, Mar 20, 2025 at 5:31 PM, Conor Dooley wrote:
+> On Thu, Mar 20, 2025 at 10:39:52AM +0000, Pinkesh Vaghela wrote:
+> > Hi Conor,
+> >
+> > On Tue, Mar 11, 2025 at 11:38 PM, Conor Dooley wrote:
+> > > On Tue, Mar 11, 2025 at 01:04:22PM +0530, Pinkesh Vaghela wrote:
+> > > > Add support for ESWIN EIC7700 SoC consisting of SiFive Quad-Core
+> > > > P550 CPU cluster and the first development board that uses it, the
+> > > > SiFive HiFive Premier P550.
+> > > >
+> > > > This patch series adds initial device tree and also adds ESWIN
+> > > > architecture support.
+> > > >
+> > > > Boot-tested using intiramfs with Linux 6.14.0-rc2 on HiFive
+> > > > Premier
+> > > > P550 board using U-Boot 2024.01 and OpenSBI 1.4.
+> > >
+> > > There's no git tree in your MAINTAINERS entry, nor mention here of
+> > > what the story is going to be in terms of sending patches to Arnd.
+> > > Who is going to be doing that?
+> >
+> > We are not currently set up for sending signed pull requests, so for
+> > now we plan to send changes to Arnd as separate patches.
+>=20
+> Undesirable, but sure. You didn't answer the first part of my question th=
+ough,
+> and there's no git tree listed in your v2 series. That part is not negoti=
+able, you
+> have to have one and get it included in linux-next.
 
-This patch enables basic support for a kernel boot - SD-card or eMMC.
+Thanks for the clarification. I was in impression that if we send patches=20
+to @soc then we do not need to mention git URL.
+I will add this in v3.
 
-Signed-off-by: Goran Rađenović <gradenovic@ultratronik.de>
----
- arch/arm/boot/dts/st/Makefile                 |    3 +-
- .../boot/dts/st/stm32mp157c-ultra-fly-sbc.dts | 1155 +++++++++++++++++
- 2 files changed, 1157 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm/boot/dts/st/stm32mp157c-ultra-fly-sbc.dts
+Regards,
+Pinkesh
 
-diff --git a/arch/arm/boot/dts/st/Makefile b/arch/arm/boot/dts/st/Makefile
-index b7d5d305cbbe..270d1c699e1a 100644
---- a/arch/arm/boot/dts/st/Makefile
-+++ b/arch/arm/boot/dts/st/Makefile
-@@ -66,7 +66,8 @@ dtb-$(CONFIG_ARCH_STM32) += \
- 	stm32mp157c-lxa-tac-gen2.dtb \
- 	stm32mp157c-odyssey.dtb \
- 	stm32mp157c-osd32mp1-red.dtb \
--	stm32mp157c-phycore-stm32mp1-3.dtb
-+	stm32mp157c-phycore-stm32mp1-3.dtb \
-+	stm32mp157c-ultra-fly-sbc.dtb
- dtb-$(CONFIG_ARCH_U8500) += \
- 	ste-snowball.dtb \
- 	ste-hrefprev60-stuib.dtb \
-diff --git a/arch/arm/boot/dts/st/stm32mp157c-ultra-fly-sbc.dts b/arch/arm/boot/dts/st/stm32mp157c-ultra-fly-sbc.dts
-new file mode 100644
-index 000000000000..1778f5a527ba
---- /dev/null
-+++ b/arch/arm/boot/dts/st/stm32mp157c-ultra-fly-sbc.dts
-@@ -0,0 +1,1155 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-+/*
-+ * Copyright (C) Ultratronik GmbH 2024-2025 - All Rights Reserved
-+ */
-+
-+/dts-v1/;
-+#include "stm32mp157.dtsi"
-+#include "stm32mp15xc.dtsi"
-+#include "stm32mp15-pinctrl.dtsi"
-+#include "stm32mp15xxac-pinctrl.dtsi"
-+#include <dt-bindings/pinctrl/stm32-pinfunc.h>
-+#include <dt-bindings/mfd/st,stpmic1.h>
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	model = "STM STM32MP15x Ultratronik MMI_A7 board";
-+	compatible = "ultratronik,stm32mp157c-ultra-fly-sbc", "st,stm32mp157";
-+
-+	aliases {
-+		ethernet0 = &ethernet0;
-+		serial0 = &uart4;
-+		serial1 = &uart5;
-+		serial2 = &uart7;
-+		serial3 = &usart1;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@c0000000 {
-+		device_type = "memory";
-+		reg = <0xC0000000 0x40000000>;
-+	};
-+
-+	usb_otg_vbus: regulator-0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "usb_otg_vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		gpio = <&gpioh 3 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		retram: retram@38000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x38000000 0x10000>;
-+			no-map;
-+		};
-+
-+		mcuram: mcuram@30000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x30000000 0x40000>;
-+			no-map;
-+		};
-+
-+		mcuram2: mcuram2@10000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x10000000 0x40000>;
-+			no-map;
-+		};
-+
-+		vdev0vring0: vdev0vring0@10040000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x10040000 0x2000>;
-+			no-map;
-+		};
-+
-+		vdev0vring1: vdev0vring1@10042000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x10042000 0x2000>;
-+			no-map;
-+		};
-+
-+		vdev0buffer: vdev0buffer@10044000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x10044000 0x4000>;
-+			no-map;
-+		};
-+
-+		gpu_reserved: gpu@f8000000 {
-+			reg = <0xf8000000 0x8000000>;
-+			no-map;
-+		};
-+	};
-+
-+	leds: leds {
-+		compatible = "gpio-leds";
-+
-+		led0{
-+			label = "buzzer";
-+			gpios = <&gpiof 2 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+			linux,default-trigger = "none";
-+		};
-+
-+		led1 {
-+			label = "led1";
-+			gpios = <&gpioa 12 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led2 {
-+			label = "led2";
-+			gpios = <&gpioa 13 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led3 {
-+			label = "led3";
-+			gpios = <&gpioa 14 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+	};
-+
-+	gpio_keys: gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		key-1 {
-+			label = "KEY1";
-+			gpios = <&gpiod 1 GPIO_ACTIVE_HIGH>;
-+			wakeup-source;
-+			linux,code = <2>;
-+		};
-+
-+		key-2 {
-+			label = "KEY2";
-+			gpios = <&gpiod 7 GPIO_ACTIVE_HIGH>;
-+			wakeup-source;
-+			linux,code = <3>;
-+		};
-+	};
-+};
-+
-+&adc {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&adc1_ux_ain_pins_a>;
-+	vdd-supply = <&vdd>;
-+	vdda-supply = <&vdd>;
-+	vref-supply = <&vrefbuf>;
-+	status = "okay";
-+
-+	adc1: adc@0 {
-+		st,min-sample-time-nsecs = <5000>;
-+		st,adc-channels = <0 1 6 13>; /* ANA0 ANA1 PF12 PC3 */
-+		status = "okay";
-+	};
-+
-+	adc2: adc@100 {
-+		st,adc-channels = <0 1 12>; /* ANA0 ANA1 INT_TEMP*/
-+		st,min-sample-time-nsecs = <10000>;
-+		status = "okay";
-+
-+		channel@12 {
-+			reg = <12>;  /* Channel 12 = internal temperature sensor */
-+			label = "internal_temp";
-+		};
-+	};
-+};
-+
-+&dac {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&dac_ux_ch1_pins_a &dac_ux_ch2_pins_a>;
-+	vref-supply = <&vrefbuf>;
-+	status = "okay";
-+
-+	dac1: dac@1 {
-+		status = "okay";
-+	};
-+
-+	dac2: dac@2 {
-+		status = "okay";
-+	};
-+};
-+
-+&dts {
-+	compatible = "st,stm32-thermal";
-+	status = "okay";
-+};
-+
-+&ethernet0 {
-+	status = "okay";
-+	pinctrl-0 = <&ethernet0_ux_rgmii_pins_a>;
-+	pinctrl-1 = <&ethernet0_ux_rgmii_pins_sleep_a>;
-+	pinctrl-names = "default", "sleep";
-+	phy-mode = "rgmii-id";
-+	max-speed = <1000>;
-+	phy-handle = <&phy1>;
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		compatible = "snps,dwmac-mdio";
-+		phy1: ethernet-phy@1 {
-+			reg = <1>;
-+			interrupt-parent = <&gpiod>;
-+			interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
-+		};
-+	};
-+};
-+
-+&gpioa {
-+	gpio-line-names =
-+	"#PMIC_IRQ", "", "", "", "DAC1", "DAC2", "", "",
-+	"", "", "OTG_ID", "TIM1_4", "#LED1", "#LED2", "#LED3", "";
-+};
-+
-+&gpiob {
-+	gpio-line-names =
-+	"", "", "", "", "", "", "", "",
-+	"", "", "", "", "", "", "", "";
-+};
-+
-+&gpioc {
-+	gpio-line-names =
-+	"#AMP_SD", "", "", "ANA5", "", "", "", "",
-+	"", "", "", "", "", "PMIC_WAKEUP", "", "";
-+};
-+
-+&gpiod {
-+	gpio-line-names =
-+	"#G_INT", "#TASTER1", "", "", "GPIO1", "GPIO2", "", "#TASTER2",
-+	"", "", "", "", "", "", "TIM4_3", "TIM4_4";
-+};
-+
-+&gpioe {
-+	gpio-line-names =
-+	"", "", "", "", "", "", "", "",
-+	"", "", "PWM2", "", "", "", "", "";
-+};
-+
-+&gpiof {
-+	gpio-line-names =
-+	"#SD1_CD", "SD1_WP", "BUZZER", "#DISP_POW", "BKL_POW", "#CAM_RES", "", "",
-+	"", "TIM17_1N", "", "CAM_PWDN", "ANA6", "ENA_USB", "", "";
-+};
-+
-+&gpiog {
-+	gpio-line-names =
-+	"#ESP_RES", "#ESP_BOOT", "GPIO3", "GPIO4", "", "", "", "",
-+	"", "#TOUCH_IRQ", "", "", "", "", "", "#PCAP_RES";
-+};
-+
-+&gpioh {
-+	gpio-line-names =
-+	"", "CAM_LED", "", "USB_OTG_PWR", "", "USB_OTG_OC", "", "",
-+	"", "", "", "", "", "", "", "";
-+};
-+
-+&gpioi {
-+	gpio-line-names =
-+	"BKL_PWM", "", "", "", "", "", "", "",
-+	"#SPI_CS0", "", "", "#SPI_CS1", "", "", "", "";
-+};
-+
-+&gpioj {
-+	gpio-line-names =
-+	"", "", "", "", "", "", "", "",
-+	"", "", "", "", "", "", "", "";
-+};
-+
-+&gpiok {
-+	gpio-line-names =
-+	"", "", "", "", "", "", "", "",
-+	"", "", "", "", "", "", "", "";
-+};
-+
-+&gpioz {
-+	gpio-line-names =
-+	"", "", "", "#SPI_CS2", "", "", "", "",
-+	"", "", "", "", "", "", "", "";
-+};
-+
-+&gpu {
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&i2c1_ux_pins_a>;
-+	pinctrl-1 = <&i2c1_ux_pins_sleep_a>;
-+	i2c-scl-rising-time-ns = <100>;
-+	i2c-scl-falling-time-ns = <7>;
-+	status = "okay";
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+
-+	rtc@32 {
-+		compatible = "epson,rx8900";
-+		reg = <0x32>;
-+		epson,vdet-disable;
-+		trickle-diode-disable;
-+	};
-+};
-+
-+&i2c4 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&i2c4_ux_pins_a>;
-+	pinctrl-1 = <&i2c4_ux_pins_sleep_a>;
-+	i2c-scl-rising-time-ns = <185>;
-+	i2c-scl-falling-time-ns = <20>;
-+	status = "okay";
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+
-+	pmic: pmic@33 {
-+		compatible = "st,stpmic1";
-+		reg = <0x33>;
-+		interrupts-extended = <&exti 0 IRQ_TYPE_EDGE_FALLING>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+
-+		regulators {
-+			compatible = "st,stpmic1-regulators";
-+
-+			ldo1-supply = <&v3v3>;
-+			ldo3-supply = <&vdd_ddr>;
-+			ldo6-supply = <&v3v3>;
-+			pwr_sw1-supply = <&bst_out>;
-+			pwr_sw2-supply = <&bst_out>;
-+
-+			vddcore: buck1 {
-+				regulator-name = "vddcore";
-+				regulator-min-microvolt = <1250000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-always-on;
-+				regulator-initial-mode = <0>;
-+				regulator-over-current-protection;
-+			};
-+
-+			vdd_ddr: buck2 {
-+				regulator-name = "vdd_ddr";
-+				regulator-min-microvolt = <1350000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-always-on;
-+				regulator-initial-mode = <0>;
-+				regulator-over-current-protection;
-+			};
-+
-+			vdd: buck3 {
-+				regulator-name = "vdd";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+				st,mask-reset;
-+				regulator-initial-mode = <0>;
-+				regulator-over-current-protection;
-+			};
-+
-+			v3v3: buck4 {
-+				regulator-name = "v3v3";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+				regulator-over-current-protection;
-+				regulator-initial-mode = <0>;
-+			};
-+
-+			vtt_ddr: ldo3 {
-+				regulator-name = "vtt_ddr";
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <750000>;
-+				regulator-always-on;
-+				regulator-over-current-protection;
-+			};
-+
-+			vdd_usb: ldo4 {
-+				regulator-name = "vdd_usb";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+				interrupts = <IT_CURLIM_LDO4 0>;
-+			};
-+
-+			v1v8: ldo6 {
-+				regulator-name = "v1v8";
-+				regulator-min-microvolt = <1600000>;/* offset +200 mv ??? */
-+				regulator-max-microvolt = <1600000>;/* real 1800000 */
-+				regulator-always-on;
-+				interrupts = <IT_CURLIM_LDO6 0>;
-+			};
-+
-+			vref_ddr: vref_ddr {
-+				regulator-name = "vref_ddr";
-+				regulator-always-on;
-+			};
-+
-+			bst_out: boost {
-+				regulator-name = "bst_out";
-+				interrupts = <IT_OCP_BOOST 0>;
-+			};
-+
-+			vbus_otg: pwr_sw1 {
-+				regulator-name = "vbus_otg";
-+				interrupts = <IT_OCP_OTG 0>;
-+				regulator-active-discharge = <1>;
-+			 };
-+
-+			 vbus_sw: pwr_sw2 {
-+				regulator-name = "vbus_sw";
-+				interrupts = <IT_OCP_SWOUT 0>;
-+				regulator-active-discharge = <1>;
-+			 };
-+		};
-+	};
-+};
-+
-+&iwdg2 {
-+	timeout-sec = <32>;
-+	status = "okay";
-+};
-+
-+&m_can2 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&m_can2_ux_pins_a>;
-+	pinctrl-1 = <&m_can2_ux_sleep_pins_a>;
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+
-+	adc1_ux_ain_pins_a: adc1-ux-ain-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('F',12, ANALOG)>, /* ADC1 in6 */
-+				 <STM32_PINMUX('C', 3, ANALOG)>; /* ADC2 in13 */
-+		};
-+	};
-+
-+	dac_ux_ch1_pins_a: dac-ux-ch1-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('A', 4, ANALOG)>;
-+		};
-+	};
-+
-+	dac_ux_ch2_pins_a: dac-ux-ch2-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('A', 5, ANALOG)>;
-+		};
-+	};
-+
-+	ethernet0_ux_rgmii_pins_a: rgmii-ux-0 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('G', 5, AF11)>, /* ETH_RGMII_CLK125 */
-+				 <STM32_PINMUX('G', 4, AF11)>, /* ETH_RGMII_GTX_CLK */
-+				 <STM32_PINMUX('G', 13, AF11)>, /* ETH_RGMII_TXD0 */
-+				 <STM32_PINMUX('G', 14, AF11)>, /* ETH_RGMII_TXD1 */
-+				 <STM32_PINMUX('C', 2, AF11)>, /* ETH_RGMII_TXD2 */
-+				 <STM32_PINMUX('E', 2, AF11)>, /* ETH_RGMII_TXD3 */
-+				 <STM32_PINMUX('B', 11, AF11)>; /* ETH_RGMII_TX_CTL */
-+			bias-disable;
-+			drive-push-pull;
-+			slew-rate = <2>;
-+		};
-+		pins2 {
-+			pinmux = <STM32_PINMUX('C', 4, AF11)>, /* ETH_RGMII_RXD0 */
-+				 <STM32_PINMUX('C', 5, AF11)>, /* ETH_RGMII_RXD1 */
-+				 <STM32_PINMUX('B', 0, AF11)>, /* ETH_RGMII_RXD2 */
-+				 <STM32_PINMUX('H', 7, AF11)>, /* ETH_RGMII_RXD3 */
-+				 <STM32_PINMUX('A', 1, AF11)>, /* ETH_RGMII_RX_CLK */
-+				 <STM32_PINMUX('A', 7, AF11)>; /* ETH_RGMII_RX_CTL */
-+			bias-disable;
-+		};
-+		pins3 {
-+			pinmux = <STM32_PINMUX('C', 1, AF11)>; /* ETH_MDC */
-+			bias-disable;
-+			drive-push-pull;
-+			slew-rate = <0>;
-+		};
-+		pins4 {
-+			pinmux = <STM32_PINMUX('A', 2, AF11)>; /* ETH_MDIO */
-+			bias-disable;
-+			drive-open-drain;
-+			slew-rate = <0>;
-+		};
-+	};
-+
-+	ethernet0_ux_rgmii_pins_sleep_a: rgmii-ux-sleep-0 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('G', 5, ANALOG)>, /* ETH_RGMII_CLK125 */
-+				 <STM32_PINMUX('G', 4, ANALOG)>, /* ETH_RGMII_GTX_CLK */
-+				 <STM32_PINMUX('G', 13, ANALOG)>, /* ETH_RGMII_TXD0 */
-+				 <STM32_PINMUX('G', 14, ANALOG)>, /* ETH_RGMII_TXD1 */
-+				 <STM32_PINMUX('C', 2, ANALOG)>, /* ETH_RGMII_TXD2 */
-+				 <STM32_PINMUX('E', 2, ANALOG)>, /* ETH_RGMII_TXD3 */
-+				 <STM32_PINMUX('B', 11, ANALOG)>, /* ETH_RGMII_TX_CTL */
-+				 <STM32_PINMUX('A', 2, ANALOG)>, /* ETH_MDIO */
-+				 <STM32_PINMUX('C', 1, ANALOG)>, /* ETH_MDC */
-+				 <STM32_PINMUX('C', 4, ANALOG)>, /* ETH_RGMII_RXD0 */
-+				 <STM32_PINMUX('C', 5, ANALOG)>, /* ETH_RGMII_RXD1 */
-+				 <STM32_PINMUX('B', 0, ANALOG)>, /* ETH_RGMII_RXD2 */
-+				 <STM32_PINMUX('B', 1, ANALOG)>, /* ETH_RGMII_RXD3 */
-+				 <STM32_PINMUX('A', 1, ANALOG)>, /* ETH_RGMII_RX_CLK */
-+				 <STM32_PINMUX('A', 7, ANALOG)>; /* ETH_RGMII_RX_CTL */
-+		};
-+	};
-+
-+	i2c1_ux_pins_a: i2c1-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('F', 14, AF5)>, /* I2C1_SCL */
-+				 <STM32_PINMUX('F', 15, AF5)>; /* I2C1_SDA */
-+			bias-disable;
-+			drive-open-drain;
-+			slew-rate = <0>;
-+		};
-+	};
-+
-+	i2c1_ux_pins_sleep_a: i2c1-1 {
-+		pins {
-+			pinmux = <STM32_PINMUX('F', 14, ANALOG)>, /* I2C1_SCL */
-+				 <STM32_PINMUX('F', 15, ANALOG)>; /* I2C1_SDA */
-+		};
-+	};
-+
-+	m_can2_ux_pins_a: m-can2-ux-0 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('B', 6, AF9)>; /* CAN1_TX */
-+			slew-rate = <0>;
-+			drive-push-pull;
-+			bias-disable;
-+		};
-+
-+		pins2 {
-+			pinmux = <STM32_PINMUX('B', 5, AF9)>; /* CAN1_RX */
-+			bias-disable;
-+		};
-+	};
-+
-+	m_can2_ux_sleep_pins_a: m-can2-ux-sleep-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('B', 6, ANALOG)>, /* CAN1_TX */
-+				 <STM32_PINMUX('B', 5, ANALOG)>; /* CAN1_RX */
-+		};
-+	};
-+	pwm1_ux_pins_a: pwm1-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('A',11, AF1)>, /* TIM1_CH4 */
-+				 <STM32_PINMUX('E',10, AF1)>; /* TIM1_CH2N */
-+			bias-pull-down;
-+			drive-push-pull;
-+			slew-rate = <0>;
-+		};
-+	};
-+
-+	pwm1_ux_sleep_pins_a: pwm1-sleep-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('A',11, ANALOG)>, /* TIM1_CH4 */
-+				 <STM32_PINMUX('E',10, ANALOG)>; /* TIM1_CH2N */
-+		};
-+	};
-+
-+	pwm4_ux_pins_a: pwm4-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('D', 14, AF2)>, /* TIM4_CH3 */
-+				 <STM32_PINMUX('D', 15, AF2)>; /* TIM4_CH4 */
-+			bias-disable;
-+		};
-+	};
-+
-+	pwm4_ux_sleep_pins_a: pwm4-sleep-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('D', 14, ANALOG)>, /* TIM4_CH3 */
-+				 <STM32_PINMUX('D', 15, ANALOG)>; /* TIM4_CH4 */
-+		};
-+	};
-+
-+	pwm5_ux_pins_a: pwm5-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('I', 0, AF2)>; /* TIM5_CH4 */
-+			bias-pull-down;
-+			drive-push-pull;
-+			slew-rate = <0>;
-+		};
-+	};
-+
-+	pwm5_ux_sleep_pins_a: pwm5-sleep-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('I', 0, ANALOG)>; /* TIM5_CH4 */
-+		};
-+	};
-+
-+	pwm17_ux_pins_a: pwm17-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('F', 9, AF1)>; /* TIM17_CH1N */
-+			bias-pull-down;
-+			drive-push-pull;
-+			slew-rate = <0>;
-+		};
-+	};
-+
-+	pwm17_ux_sleep_pins_a: pwm17-sleep-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('F', 9, ANALOG)>; /* TIM17_CH1N */
-+		};
-+	};
-+
-+	qspi_bk1_ux_pins_a: qspi-bk1-ux-0 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('F', 8, AF10)>, /* QSPI_BK1_IO0 */
-+				 <STM32_PINMUX('D',12, AF9)>, /* QSPI_BK1_IO1 */
-+				 <STM32_PINMUX('F', 7, AF9)>, /* QSPI_BK1_IO2 */
-+				 <STM32_PINMUX('F', 6, AF9)>; /* QSPI_BK1_IO3 */
-+			bias-disable;
-+			drive-push-pull;
-+			slew-rate = <1>;
-+		};
-+
-+		pins2 {
-+			pinmux = <STM32_PINMUX('B',10, AF9)>; /* QSPI_BK1_NCS */
-+			bias-pull-up;
-+			drive-push-pull;
-+			slew-rate = <1>;
-+		};
-+	};
-+
-+	qspi_bk1_ux_sleep_pins_a: qspi-bk1-ux-sleep-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('F', 8, ANALOG)>, /* QSPI_BK1_IO0 */
-+				 <STM32_PINMUX('D',12, ANALOG)>, /* QSPI_BK1_IO1 */
-+				 <STM32_PINMUX('F', 7, ANALOG)>, /* QSPI_BK1_IO2 */
-+				 <STM32_PINMUX('F', 6, ANALOG)>, /* QSPI_BK1_IO3 */
-+				 <STM32_PINMUX('B',10, ANALOG)>; /* QSPI_BK1_NCS */
-+		};
-+	};
-+
-+	qspi_clk_ux_pins_a: qspi-clk_ux-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('G', 7, AF9)>; /* QSPI_CLK */
-+			bias-disable;
-+			drive-push-pull;
-+			slew-rate = <3>;
-+		};
-+	};
-+
-+	qspi_clk_ux_sleep_pins_a: qspi-clk-ux-sleep-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('G', 7, ANALOG)>; /* QSPI_CLK */
-+		};
-+	};
-+
-+	sai2a_ux_pins_a: sai2a-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('I', 5, AF10)>, /* SAI2_SCK_A */
-+				 <STM32_PINMUX('D',11, AF10)>, /* SAI2_SD_A */
-+				 <STM32_PINMUX('I', 7, AF10)>, /* SAI2_FS_A */
-+				 <STM32_PINMUX('E', 0, AF10)>; /* SAI2_MCLK_A */
-+			slew-rate = <0>;
-+			drive-push-pull;
-+			bias-disable;
-+		};
-+	};
-+
-+	sai2a_ux_sleep_pins_a: sai2a-1 {
-+		pins {
-+			pinmux = <STM32_PINMUX('I', 5, ANALOG)>, /* SAI2_SCK_A */
-+				 <STM32_PINMUX('D',11, ANALOG)>, /* SAI2_SD_A */
-+				 <STM32_PINMUX('I', 7, ANALOG)>, /* SAI2_FS_A */
-+				 <STM32_PINMUX('E', 0, ANALOG)>; /* SAI2_MCLK_A */
-+		};
-+	};
-+
-+	sdmmc1_ux_b4_pins_a: sdmmc1-ux-b4-0 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('C', 8, AF12)>, /* SDMMC1_D0 */
-+				 <STM32_PINMUX('C', 9, AF12)>, /* SDMMC1_D1 */
-+				 <STM32_PINMUX('C',10, AF12)>, /* SDMMC1_D2 */
-+				 <STM32_PINMUX('C',11, AF12)>, /* SDMMC1_D3 */
-+				 <STM32_PINMUX('D', 2, AF12)>; /* SDMMC1_CMD */
-+			slew-rate = <1>;
-+			drive-push-pull;
-+			bias-disable;
-+		};
-+		pins2 {
-+			pinmux = <STM32_PINMUX('C', 12, AF12)>; /* SDMMC1_CK */
-+			slew-rate = <2>;
-+			drive-push-pull;
-+			bias-disable;
-+		};
-+	};
-+
-+	sdmmc1_ux_b4_od_pins_a: sdmmc1-b4-od-0 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('C', 8, AF12)>, /* SDMMC1_D0 */
-+				 <STM32_PINMUX('C', 9, AF12)>, /* SDMMC1_D1 */
-+				 <STM32_PINMUX('C', 10, AF12)>, /* SDMMC1_D2 */
-+				 <STM32_PINMUX('C', 11, AF12)>; /* SDMMC1_D3 */
-+			slew-rate = <1>;
-+			drive-push-pull;
-+			bias-disable;
-+		};
-+		pins2 {
-+			pinmux = <STM32_PINMUX('C', 12, AF12)>; /* SDMMC1_CK */
-+			slew-rate = <2>;
-+			drive-push-pull;
-+			bias-disable;
-+		};
-+		pins3 {
-+			pinmux = <STM32_PINMUX('D', 2, AF12)>; /* SDMMC1_CMD */
-+			slew-rate = <1>;
-+			drive-open-drain;
-+			bias-disable;
-+		};
-+	};
-+
-+	sdmmc1_ux_b4_sleep_pins_a: sdmmc1-b4-sleep-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('C', 8, ANALOG)>, /* SDMMC1_D0 */
-+				 <STM32_PINMUX('C', 9, ANALOG)>, /* SDMMC1_D1 */
-+				 <STM32_PINMUX('C', 10, ANALOG)>, /* SDMMC1_D2 */
-+				 <STM32_PINMUX('C', 11, ANALOG)>, /* SDMMC1_D3 */
-+				 <STM32_PINMUX('C', 12, ANALOG)>, /* SDMMC1_CK */
-+				 <STM32_PINMUX('D', 2, ANALOG)>; /* SDMMC1_CMD */
-+		};
-+	};
-+
-+	sdmmc2_ux_b4_pins_a: sdmmc2-ux-b4-0 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('B', 14, AF9)>, /* SDMMC2_D0 */
-+				<STM32_PINMUX('B', 15, AF9)>, /* SDMMC2_D1 */
-+				<STM32_PINMUX('B', 3, AF9)>, /* SDMMC2_D2 */
-+				<STM32_PINMUX('B', 4, AF9)>, /* SDMMC2_D3 */
-+				<STM32_PINMUX('G', 6, AF10)>; /* SDMMC2_CMD */
-+			slew-rate = <1>;
-+			drive-push-pull;
-+			bias-pull-up;
-+		};
-+		pins2 {
-+			pinmux = <STM32_PINMUX('E', 3, AF9)>; /* SDMMC2_CK */
-+			slew-rate = <2>;
-+			drive-push-pull;
-+			bias-pull-up;
-+		};
-+	};
-+
-+	sdmmc2_ux_b4_od_pins_a: sdmmc2-ux-b4-od-0 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('B', 14, AF9)>, /* SDMMC2_D0 */
-+				<STM32_PINMUX('B', 15, AF9)>, /* SDMMC2_D1 */
-+				<STM32_PINMUX('B', 3, AF9)>, /* SDMMC2_D2 */
-+				<STM32_PINMUX('B', 4, AF9)>; /* SDMMC2_D3 */
-+			slew-rate = <1>;
-+			drive-push-pull;
-+			bias-pull-up;
-+		};
-+		pins2 {
-+			pinmux = <STM32_PINMUX('E', 3, AF9)>; /* SDMMC2_CK */
-+			slew-rate = <2>;
-+			drive-push-pull;
-+			bias-pull-up;
-+		};
-+		pins3 {
-+			pinmux = <STM32_PINMUX('G', 6, AF10)>; /* SDMMC2_CMD */
-+			slew-rate = <1>;
-+			drive-open-drain;
-+			bias-pull-up;
-+		};
-+	};
-+
-+	sdmmc2_ux_b4_sleep_pins_a: sdmmc2-ux-b4-sleep-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('B', 14, ANALOG)>, /* SDMMC2_D0 */
-+				<STM32_PINMUX('B', 15, ANALOG)>, /* SDMMC2_D1 */
-+				<STM32_PINMUX('B', 3, ANALOG)>, /* SDMMC2_D2 */
-+				<STM32_PINMUX('B', 4, ANALOG)>, /* SDMMC2_D3 */
-+				<STM32_PINMUX('E', 3, ANALOG)>, /* SDMMC2_CK */
-+				<STM32_PINMUX('G', 6, ANALOG)>; /* SDMMC2_CMD */
-+		};
-+	};
-+
-+	sdmmc2_ux_d47_pins_a: sdmmc2-ux-d47-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('A', 8, AF9)>, /* SDMMC2_D4 */
-+				<STM32_PINMUX('A', 9, AF10)>, /* SDMMC2_D5 */
-+				<STM32_PINMUX('E', 5, AF9)>, /* SDMMC2_D6 */
-+				<STM32_PINMUX('D', 3, AF9)>; /* SDMMC2_D7 */
-+			slew-rate = <1>;
-+			drive-push-pull;
-+			bias-pull-up;
-+		};
-+	};
-+
-+	sdmmc2_ux_d47_sleep_pins_a: sdmmc2-ux-d47-sleep-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('A', 8, ANALOG)>, /* SDMMC2_D4 */
-+				<STM32_PINMUX('A', 9, ANALOG)>, /* SDMMC2_D5 */
-+				<STM32_PINMUX('E', 5, ANALOG)>, /* SDMMC2_D6 */
-+				<STM32_PINMUX('D', 3, ANALOG)>; /* SDMMC2_D7 */
-+		};
-+	};
-+
-+	uart4_ux_pins_a: uart4-ux-0 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('G', 11, AF6)>; /* UART4_TX */
-+			bias-disable;
-+			drive-push-pull;
-+			slew-rate = <0>;
-+		};
-+		pins2 {
-+			pinmux = <STM32_PINMUX('B', 2, AF8)>; /* UART4_RX */
-+			bias-disable;
-+		};
-+	};
-+
-+	uart4_ux_idle_pins_a: uart4-ux-idle-0 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('G', 11, ANALOG)>; /* UART4_TX */
-+		};
-+		pins2 {
-+			pinmux = <STM32_PINMUX('B', 2, AF8)>; /* UART4_RX */
-+			bias-disable;
-+		};
-+		};
-+
-+	uart4_ux_sleep_pins_a: uart4-ux-sleep-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('G', 11, ANALOG)>, /* UART4_TX */
-+				<STM32_PINMUX('B', 2, ANALOG)>; /* UART4_RX */
-+		};
-+	};
-+
-+	uart5_ux_pins_a: uart5-0 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('B', 13, AF14)>; /* UART5_TX */
-+			bias-disable;
-+			drive-push-pull;
-+			slew-rate = <0>;
-+		};
-+		pins2 {
-+			pinmux = <STM32_PINMUX('B', 12, AF14)>; /* UART5_RX */
-+			bias-disable;
-+		};
-+	};
-+
-+	uart5_ux_idle_pins_a: uart5-idle-0 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('B', 13, ANALOG)>; /* UART5_TX */
-+		};
-+		pins2 {
-+			pinmux = <STM32_PINMUX('B', 12, AF14)>; /* UART5_RX*/
-+			bias-disable;
-+		};
-+	};
-+
-+	uart5_ux_sleep_pins_a: uart5-sleep-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('B', 13, ANALOG)>, /* UART5_TX */
-+				 <STM32_PINMUX('B', 12, ANALOG)>; /* UART5_RX */
-+		};
-+	};
-+
-+	uart7_ux_pins_a: uart7-0 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('E', 8, AF7)>; /* USART7_TX */
-+			bias-pull-up;
-+			drive-push-pull;
-+			slew-rate = <0>;
-+		};
-+
-+		pins2 {
-+			pinmux = <STM32_PINMUX('E', 7, AF7)>; /* USART7_RX */
-+			bias-pull-up;
-+		};
-+		pins3 {
-+			pinmux = <STM32_PINMUX('E', 9, AF7)>; /* USART7_RTS/DE */
-+		};
-+	};
-+
-+	uart7_ux_idle_pins_a: uart7-idle-0 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('E', 8, ANALOG)>, /* USART7_TX */
-+				 <STM32_PINMUX('E', 9, AF7)>; /* USART7_RTS/DE */
-+		};
-+		pins2 {
-+			pinmux = <STM32_PINMUX('E', 7, AF7)>; /* USART7_RX */
-+			bias-disable;
-+		};
-+	};
-+
-+	uart7_ux_sleep_pins_a: uart7-sleep-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('E', 8, ANALOG)>, /* USART7_TX */
-+				 <STM32_PINMUX('E', 9, AF7)>, /* USART7_RTS/DE */
-+				 <STM32_PINMUX('E', 7, ANALOG)>; /* USART7_RX */
-+		};
-+	};
-+};
-+
-+&pinctrl_z {
-+
-+	i2c4_ux_pins_a: i2c4-ux-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('Z', 4, AF6)>, /* I2C4_SCL */
-+				<STM32_PINMUX('Z', 5, AF6)>; /* I2C4_SDA */
-+			bias-disable;
-+			drive-open-drain;
-+			slew-rate = <0>;
-+		};
-+	};
-+
-+	i2c4_ux_pins_sleep_a: i2c4-1 {
-+		pins {
-+			pinmux = <STM32_PINMUX('Z', 4, ANALOG)>, /* I2C4_SCL */
-+				<STM32_PINMUX('Z', 5, ANALOG)>; /* I2C4_SDA */
-+		};
-+	};
-+
-+	spi1_ux_pins_a: spi1-ux-0 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('Z', 0, AF5)>, /* SPI1_SCK */
-+				<STM32_PINMUX('Z', 2, AF5)>; /* SPI1_MOSI */
-+			bias-disable;
-+			drive-push-pull;
-+			slew-rate = <1>;
-+		};
-+
-+		pins2 {
-+			pinmux = <STM32_PINMUX('Z', 1, AF5)>; /* SPI1_MISO */
-+			bias-disable;
-+		};
-+	};
-+
-+	spi1_ux_sleep_pins_a: spi1-ux-sleep-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('Z', 0, ANALOG)>, /* SPI1_SCK */
-+				<STM32_PINMUX('Z', 1, ANALOG)>, /* SPI1_MISO */
-+				<STM32_PINMUX('Z', 2, ANALOG)>; /* SPI1_MOSI */
-+		};
-+	};
-+};
-+
-+&pwr_regulators {
-+	vdd-supply = <&vdd>;
-+	vdd_3v3_usbfs-supply = <&vdd_usb>;
-+};
-+
-+&qspi {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&qspi_clk_ux_pins_a &qspi_bk1_ux_pins_a>;
-+	pinctrl-1 = <&qspi_clk_ux_sleep_pins_a &qspi_bk1_ux_sleep_pins_a>;
-+	reg = <0x58003000 0x1000>, <0x70000000 0x1000000>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	flash0: flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-rx-bus-width = <4>;
-+		spi-max-frequency = <133000000>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+	};
-+};
-+
-+&sdmmc1 {
-+	pinctrl-names = "default", "opendrain", "sleep";
-+	pinctrl-0 = <&sdmmc1_ux_b4_pins_a>;
-+	pinctrl-1 = <&sdmmc1_ux_b4_od_pins_a>;
-+	pinctrl-2 = <&sdmmc1_ux_b4_sleep_pins_a>;
-+	broken-cd;
-+	st,neg-edge;
-+	bus-width = <4>;
-+	vmmc-supply = <&v3v3>;
-+	no-1-8-v;
-+	status = "okay";
-+};
-+
-+&sdmmc2 {
-+	pinctrl-names = "default", "opendrain", "sleep";
-+	pinctrl-0 = <&sdmmc2_ux_b4_pins_a &sdmmc2_ux_d47_pins_a>;
-+	pinctrl-1 = <&sdmmc2_ux_b4_od_pins_a &sdmmc2_ux_d47_pins_a>;
-+	pinctrl-2 = <&sdmmc2_ux_b4_sleep_pins_a &sdmmc2_ux_d47_sleep_pins_a>;
-+	non-removable;
-+	no-sd;
-+	no-sdio;
-+	st,neg-edge;
-+	bus-width = <8>;
-+	vmmc-supply = <&v3v3>;
-+	vqmmc-supply = <&v3v3>;
-+	mmc-ddr-3_3v;
-+	status = "okay";
-+};
-+
-+&spi1 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&spi1_ux_pins_a>;
-+	pinctrl-1 = <&spi1_ux_sleep_pins_a>;
-+	status = "okay";
-+	cs-gpios = <&gpioi 8 0>, <&gpioi 11 0>, <&gpioz 3 0>;
-+
-+	flash: flash@0 {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		compatible = "jedec,spi-nor";
-+		spi-max-frequency = <20000000>;
-+		reg = <0>;
-+	};
-+};
-+
-+&timers1 {
-+	/* spare dmas for other usage */
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+	status = "okay";
-+
-+	pwm {
-+		pinctrl-0 = <&pwm1_ux_pins_a>;
-+		pinctrl-1 = <&pwm1_ux_sleep_pins_a>;
-+		pinctrl-names = "default", "sleep";
-+		status = "okay";
-+	};
-+
-+	timer@0 {
-+		status = "okay";
-+	};
-+};
-+
-+&timers4 {
-+	dmas = <&dmamux1 31 0x400 0x5>;
-+	dma-names = "ch3";
-+	status = "okay";
-+
-+	pwm4_4: pwm {
-+		pinctrl-0 = <&pwm4_ux_pins_a>;
-+		pinctrl-1 = <&pwm4_ux_sleep_pins_a>;
-+		pinctrl-names = "default", "sleep";
-+		status = "okay";
-+	};
-+};
-+
-+&timers5 {
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+	status = "okay";
-+
-+	pwm5_4: pwm {
-+		pinctrl-0 = <&pwm5_ux_pins_a>;
-+		pinctrl-1 = <&pwm5_ux_sleep_pins_a>;
-+		pinctrl-names = "default", "sleep";
-+		status = "okay";
-+	};
-+
-+	timer@4 {
-+		status = "okay";
-+	};
-+};
-+
-+&timers17 {
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+	status = "okay";
-+
-+	pwm17_4: pwm {
-+		pinctrl-0 = <&pwm17_ux_pins_a>;
-+		pinctrl-1 = <&pwm17_ux_sleep_pins_a>;
-+		pinctrl-names = "default", "sleep";
-+		status = "okay";
-+	};
-+
-+	timer@16 {
-+		status = "okay";
-+	};
-+};
-+
-+&uart4 {
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+	pinctrl-names = "default", "sleep", "idle", "no_console_suspend";
-+	pinctrl-0 = <&uart4_ux_pins_a>;
-+	pinctrl-1 = <&uart4_ux_sleep_pins_a>;
-+	pinctrl-2 = <&uart4_ux_idle_pins_a>;
-+	pinctrl-3 = <&uart4_ux_pins_a>;
-+	status = "okay";
-+};
-+
-+&uart5 {
-+	pinctrl-names = "default", "sleep", "idle";
-+	pinctrl-0 = <&uart5_ux_pins_a>;
-+	pinctrl-1 = <&uart5_ux_sleep_pins_a>;
-+	pinctrl-2 = <&uart5_ux_idle_pins_a>;
-+	status = "okay";
-+};
-+
-+&uart7 {
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+	pinctrl-names = "default", "sleep", "idle";
-+	pinctrl-0 = <&uart7_ux_pins_a>;
-+	pinctrl-1 = <&uart7_ux_sleep_pins_a>;
-+	pinctrl-2 = <&uart7_ux_idle_pins_a>;
-+	status = "okay";
-+};
-+
-+&usart1 {
-+	/*Muxing happens in uboot*/
-+	status = "okay";
-+};
-+
-+&usbh_ehci {
-+	phys = <&usbphyc_port0>;
-+	phy-names = "usb";
-+	status = "okay";
-+};
-+
-+&usbh_ohci {
-+	phys = <&usbphyc_port0>;
-+	phy-names = "usb";
-+	status = "okay";
-+};
-+
-+&usbotg_hs {
-+	phys = <&usbphyc_port1 0>;
-+	phy-names = "usb2-phy";
-+	vbus-supply = <&usb_otg_vbus>;
-+	status = "okay";
-+};
-+
-+&usbphyc {
-+	status = "okay";
-+};
-+
-+&usbphyc_port0 {
-+	phy-supply = <&vdd_usb>;
-+	st,tune-hs-dc-level = <2>;
-+	st,enable-fs-rftime-tuning;
-+	st,enable-hs-rftime-reduction;
-+	st,trim-hs-current = <15>;
-+	st,trim-hs-impedance = <1>;
-+	st,tune-squelch-level = <3>;
-+	st,tune-hs-rx-offset = <2>;
-+	st,no-lsfs-sc;
-+};
-+
-+&usbphyc_port1 {
-+	phy-supply = <&vdd_usb>;
-+	st,tune-hs-dc-level = <2>;
-+	st,enable-fs-rftime-tuning;
-+	st,enable-hs-rftime-reduction;
-+	st,trim-hs-current = <15>;
-+	st,trim-hs-impedance = <1>;
-+	st,tune-squelch-level = <3>;
-+	st,tune-hs-rx-offset = <2>;
-+	st,no-lsfs-sc;
-+};
-+
-+&vrefbuf {
-+	regulator-min-microvolt = <2500000>;
-+	regulator-max-microvolt = <2500000>;
-+	vdda-supply = <&vdd>;
-+	status = "okay";
-+};
--- 
-2.43.0
-
+>=20
+> Cheers,
+> Conor.
 
