@@ -1,234 +1,333 @@
-Return-Path: <devicetree+bounces-159741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0103A6BE67
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 16:39:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E96BBA6BEA2
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 16:49:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3FA62175263
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 15:39:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF88B3B598A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 15:48:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3E781DED5C;
-	Fri, 21 Mar 2025 15:38:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F326226D1B;
+	Fri, 21 Mar 2025 15:48:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="GJ+56TiP"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KuVwBnf2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE92F2AE84;
-	Fri, 21 Mar 2025 15:38:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=90.155.92.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 734AA154426
+	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 15:48:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742571525; cv=none; b=rR9jg1Rdyq5Vvvmn7FOKz9KwDw/mv9JSJujQMpBR9Gy0NbMfsAS2vdz4XJSIau35QTcINO32cO0TFjJJ0E3qjyUjDzjhCNHdCU4ckWQcb6YIEq4+Z0XI8HyJUwDAms0swcGldy50q6XBgb2gbqmttn1LajzKDHnSzzMznGtkExI=
+	t=1742572094; cv=none; b=YNpsPD52BoyCFpzJGaIDXXhDXBkMrf5fn6hWIrmEJKtPyjs9WLQXQGfVQuOoDwmYHhZoBkPhRcwCIufIwJAFV1fp/rOw8zNVwXqzEg4pqXKS7y1z+xfG05mcgrgXRVqEoeBypkHSgNUCM/f1WaLCDqMG6v5B+PxOX8HMdW/slaQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742571525; c=relaxed/simple;
-	bh=Hur8klx0pto+bVUCorbe/IOiYL8Zq5fllI2zEDHUVww=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=gUzG2zbqMC9CgfJoiQ3Fj3G5+FFtrbKiILcuceivodvvbU+VynKUAoCxarFwMreuNongjweFPAKdyX5a8egiToMeZePQ5zxj0FEE+t2xcnaW4l597T1ADzxKt/hRZV9gN/k33oJjbStovcJPog4D5oNnm82l2HLuXYyfw6LZnH0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=desiato.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=GJ+56TiP; arc=none smtp.client-ip=90.155.92.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=desiato.srs.infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=MIME-Version:Content-Type:References:
-	In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=Hur8klx0pto+bVUCorbe/IOiYL8Zq5fllI2zEDHUVww=; b=GJ+56TiPzAKgxjiUsu7mauybOy
-	n24fB07NZDlX1YLn/Tm3/N4fCjcNUQ9q0RU0sWYbKxHDHcjS49KGgsk2x5WIo4STNXFjF72GtZZpm
-	SmI61QXnTy2B0XeRn/xEReTWMAQ/b/53pzI5qCM0c8RBpEruAa+8A6+Ix6kvZ6n+TAq3+1cxhSwfM
-	O5/74zfEWktOgo18tPoPahIDx4gSX2d0mNRyW6SYmt5eFF1bCXEpsggXvv6AGz9qdAS7bCY5KNges
-	9SM9ftchBzqBmx35e5D9/mlfno/oC1Xu2k+dxzZDQ8u1EeE8nkQaMzN0i65R/q1YQ0ZVhXIQV2uwm
-	ISYDgY0g==;
-Received: from [172.31.31.145] (helo=u09cd745991455d.ant.amazon.com)
-	by desiato.infradead.org with esmtpsa (Exim 4.98 #2 (Red Hat Linux))
-	id 1tveRn-00000004RSj-0sdp;
-	Fri, 21 Mar 2025 15:38:11 +0000
-Message-ID: <979b6a34ca5724ced1d4871b58bf227065d7da57.camel@infradead.org>
-Subject: Using Restricted DMA for virtio-pci
-From: David Woodhouse <dwmw2@infradead.org>
-To: Claire Chang <tientzu@chromium.org>, Rob Herring <robh+dt@kernel.org>, 
- mpe@ellerman.id.au, Joerg Roedel <joro@8bytes.org>, Will Deacon
- <will@kernel.org>,  Frank Rowand <frowand.list@gmail.com>, Konrad Rzeszutek
- Wilk <konrad.wilk@oracle.com>,  boris.ostrovsky@oracle.com,
- jgross@suse.com, Christoph Hellwig <hch@lst.de>,  Marek Szyprowski
- <m.szyprowski@samsung.com>
-Cc: heikki.krogerus@linux.intel.com, peterz@infradead.org, 
- benh@kernel.crashing.org, grant.likely@arm.com, paulus@samba.org,
- mingo@kernel.org,  sstabellini@kernel.org, Saravana Kannan
- <saravanak@google.com>,  xypron.glpk@gmx.de, "Rafael J . Wysocki"
- <rafael.j.wysocki@intel.com>,  Bartosz Golaszewski
- <bgolaszewski@baylibre.com>, xen-devel@lists.xenproject.org, Thierry Reding
- <treding@nvidia.com>,  linux-devicetree <devicetree@vger.kernel.org>,
- linuxppc-dev@lists.ozlabs.org, Nicolas Boichat <drinkcat@chromium.org>, 
- Dan Williams <dan.j.williams@intel.com>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Greg KH <gregkh@linuxfoundation.org>,
- Randy Dunlap <rdunlap@infradead.org>, lkml <linux-kernel@vger.kernel.org>,
- "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>, Jim
- Quinlan <james.quinlan@broadcom.com>,  Robin Murphy <robin.murphy@arm.com>,
- hch@infradead.org, "Michael S. Tsirkin" <mst@redhat.com>, Jason Wang
- <jasowang@redhat.com>, Xuan Zhuo <xuanzhuo@linux.alibaba.com>, Eugenio
- =?ISO-8859-1?Q?P=E9rez?= <eperezma@redhat.com>,
- virtualization@lists.linux.dev, graf@amazon.de
-Date: Fri, 21 Mar 2025 15:38:10 +0000
-In-Reply-To: <20210209062131.2300005-1-tientzu@chromium.org>
-References: <20210209062131.2300005-1-tientzu@chromium.org>
-Content-Type: multipart/signed; micalg="sha-256"; protocol="application/pkcs7-signature";
-	boundary="=-juy7yf7MhQovyScjrs78"
-User-Agent: Evolution 3.52.3-0ubuntu1 
+	s=arc-20240116; t=1742572094; c=relaxed/simple;
+	bh=kvTFsr7ktgYszQ3wTsviG7c/3AR4BniICQsdxnGuuss=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gLGNrQ80roip6ssWOzqKYFPshanJ94MXaAitrvl1GSd2Dmp5OkECwL/FNwZiSdj8PeTb2cPWdSPYFBGj7G7VdypwmcxE4kPPMiSo8sA/1cZRss/0l/zpAY2Gq1ZlAUEP/7DkwD2zjixEIEO58nrJnvgIdnrqDTbQPzkzZIN5gnQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KuVwBnf2; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52LATBgX016536
+	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 15:48:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Ew2lMrVu7l0SPLG0kCLHLamFRIyU0cvwAG4t3O7Yn4g=; b=KuVwBnf2nE5dgPjG
+	iu0Dt5aTEYsF242ofGUjG/G1tZoUkf5iok4yeVizpJeM03fVEnrkD1BgMm4Qtb6d
+	S3jwK6BuxlDQCxas1P4zGZzLcw8YJpXmqIWPXMSjcyHe0W05XCYVL7lR5TsZna+Y
+	78BcbGqdkT0LTtdDWr0cpuZ9Ubk8oUIutzZVxWdEIPQf+MEb2ZJtOrytLQV4k966
+	8rnadosj7oXO4uKQa4r5Rjxd2qC6lctIPZ5Pl4M/psr9+JNXC1aYxiC6LHCzZq7w
+	PTzSvvfVO4+6CE4LojnPskHDOxVZvStMDqcB76N5HJOcXFD9zeFrs7uA/qN9fMvD
+	FgKxnQ==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45gcd1dba1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 15:48:10 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-224192ff68bso30335095ad.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 08:48:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742572089; x=1743176889;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ew2lMrVu7l0SPLG0kCLHLamFRIyU0cvwAG4t3O7Yn4g=;
+        b=FdNXjlFGoPfUrLZTELgpEul20/EsVrPZFvlDBPrRH6WASxZEZUE/LlM18f1FhuiSi1
+         W6+TPZscclShD009MNeoX4vfm1tHDdczZm9WvPRAweed72+anL5iVoITh0qsM7cFAX48
+         wZZfCJXGrmnZ8NqKN5iRGe1dxIaXANBGyGhUkLB9/hfyhsfZMtcMljak93B9V4++I5TK
+         /SYnQDMfPm8pdSH79BjPPU4gg0pekN//2iWSsftj3byB748szKOk1sYZHpwVihUw2Zj8
+         4HX9CC7eDKELn4R8e0c0emhnJR5tcYEMGH31S+p501QBy/Qmttxij8owVtCn2dkP+F7H
+         1kcw==
+X-Gm-Message-State: AOJu0YwWQ3cbxXRiG5FL8BVRpDYhJqsmHcJR+oBJGo2fLTaTa9cOKm+z
+	XtQ3YmeH8uaCrqrA6/Crk9xSwrbKcHTW1VJIJirDgts2Q/y62MrwNSgeV1sS6Iu6H3UTE0sYUvN
+	IdE+PXdCUdeJW3xRn157gZU/mPQTySy46C9yPatCRh1jYKq9iqs7eSICgb5Zq
+X-Gm-Gg: ASbGnctqJ7xTRBDPjSbBdNsU4hyvjwUkFvo67ZUkJpki/G2QkW6AYsjX+Vx3lEa78vp
+	qs6Y1DS+WPx3cR/DTJvnVEpwQwrcHoRCIFh/GRqO2mx8RaOJ5+dwT+WrnJiJnwX03khjnRDuwb1
+	zc0cQ6Ixjclmq7a1fZMAyvE+4NCKz/ID2zS2RN6cj1SufE7SZo003saxisHqKT40rxxMQoZWoBj
+	Sw37Rsvg7jhF1+nO6zUpiDwHYbn9amNTjfjJ6DNt0RTEvutEigA50SnE1DzjTgQIG8A3YIZHESr
+	LaJkm80BxLlZVfwgFVdI5WPbeidaeM1bnu8gPSo2wxYu187qG2LTsDM1858sj6bj3A==
+X-Received: by 2002:a17:902:e846:b0:225:abd2:5e39 with SMTP id d9443c01a7336-22780da5fc2mr56334525ad.30.1742572088487;
+        Fri, 21 Mar 2025 08:48:08 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGhXXKtU/apQYCTmprByHUMaLSD4Gh5qMihEs8CapzUY4ItUimuE0Rg0Pf+Wmofij6lJ9+HXg==
+X-Received: by 2002:a17:902:e846:b0:225:abd2:5e39 with SMTP id d9443c01a7336-22780da5fc2mr56333985ad.30.1742572087896;
+        Fri, 21 Mar 2025 08:48:07 -0700 (PDT)
+Received: from [10.226.59.182] (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-227811baee4sm18356385ad.135.2025.03.21.08.48.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Mar 2025 08:48:07 -0700 (PDT)
+Message-ID: <f96b313a-fa0d-45d6-b358-8d2da40a9b95@oss.qualcomm.com>
+Date: Fri, 21 Mar 2025 09:48:04 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Bad-Reply: References and In-Reply-To but no 'Re:' in Subject.
-X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by desiato.infradead.org. See http://www.infradead.org/rpr.html
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/7] accel/rocket: Add a new driver for Rockchip's NPU
+To: Tomeu Vizoso <tomeu@tomeuvizoso.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+        Oded Gabbay <ogabbay@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
+        linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
+References: <20250225-6-10-rocket-v2-0-d4dbcfafc141@tomeuvizoso.net>
+ <20250225-6-10-rocket-v2-4-d4dbcfafc141@tomeuvizoso.net>
+Content-Language: en-US
+From: Jeff Hugo <jeff.hugo@oss.qualcomm.com>
+In-Reply-To: <20250225-6-10-rocket-v2-4-d4dbcfafc141@tomeuvizoso.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=bfFrUPPB c=1 sm=1 tr=0 ts=67dd8a3a cx=c_pps a=IZJwPbhc+fLeJZngyXXI0A==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=DISFzqtZAAAA:8 a=4oo6kz2Fa93MN3BI1icA:9 a=QEXdDO2ut3YA:10
+ a=uG9DUKGECoFWVXl0Dc02:22 a=aug85vrO5LANNmmtkfAW:22
+X-Proofpoint-GUID: C-QpjaM1BejdBUJYl7EDCdj2Uhqhcuzg
+X-Proofpoint-ORIG-GUID: C-QpjaM1BejdBUJYl7EDCdj2Uhqhcuzg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-21_05,2025-03-21_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 impostorscore=0
+ clxscore=1011 suspectscore=0 malwarescore=0 bulkscore=0 mlxlogscore=999
+ priorityscore=1501 lowpriorityscore=0 mlxscore=0 adultscore=0 phishscore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503210116
 
+On 2/25/2025 12:55 AM, Tomeu Vizoso wrote:
+>   
+> diff --git a/Documentation/accel/rocket/index.rst b/Documentation/accel/rocket/index.rst
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..ad33194dec0325d0dab362768fd349e8dc286970
+> --- /dev/null
+> +++ b/Documentation/accel/rocket/index.rst
+> @@ -0,0 +1,19 @@
+> +.. SPDX-License-Identifier: GPL-2.0-only
+> +
+> +=====================================
+> + accel/rocket Rockchip NPU driver
+> +=====================================
+> +
+> +The accel/rocket driver supports the Neural Processing Units (NPUs) inside some Rockchip SoCs such as the RK3588. Rockchip calls it RKNN and sometimes RKNPU.
+> +
+> +This NPU is closely based on the NVDLA IP released by NVIDIA as open hardware in 2018, along with open source kernel and userspace drivers.
+> +
+> +The frontend unit in Rockchip's NPU though is completely different from that in the open source IP, so this kernel driver is specific to Rockchip's version.
+> +
+> +The hardware is described in chapter 36 in the RK3588 TRM.
+> +
+> +This driver just powers the hardware on and off, allocates and maps buffers to the device and submits jobs to the frontend unit. Everything else is done in userspace, as a Gallium driver that is part of the Mesa3D project.
 
---=-juy7yf7MhQovyScjrs78
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Nit: name the specific Gallium driver here?
 
-On Tue, 2021-02-09 at 14:21 +0800, Claire Chang wrote:
-> This series implements mitigations for lack of DMA access control on
-> systems without an IOMMU, which could result in the DMA accessing the
-> system memory at unexpected times and/or unexpected addresses, possibly
-> leading to data leakage or corruption.
+> diff --git a/drivers/accel/rocket/Kconfig b/drivers/accel/rocket/Kconfig
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..83a401129ab2dc2847ccc30c6364e8802f43648d
+> --- /dev/null
+> +++ b/drivers/accel/rocket/Kconfig
+> @@ -0,0 +1,25 @@
+> +# SPDX-License-Identifier: GPL-2.0
 
-Replying to an ancient (2021) thread which has already been merged...
+I'm curious, is there a specific reason for "GPL-2.0"?  This tag is 
+depreciated and everywhere else in the accel subsystem "GPL-2.0-only" is 
+used.
 
-I'd like to be able to use this facility for virtio devices.
+Same comment for the Makefile and everything else in this patch.
 
-Virtio already has a complicated relationship with the DMA API, because
-there were a bunch of early VMM bugs where the virtio devices where
-magically exempted from IOMMU protection, but the VMM lied to the guest
-and claimed they weren't.
+> +
+> +config DRM_ACCEL_ROCKET
+> +       tristate "Rocket (support for Rockchip NPUs)"
+> +       depends on DRM
+> +       depends on ARM64 || COMPILE_TEST
+> +       depends on MMU
+> +       select DRM_SCHED
+> +       select IOMMU_SUPPORT
+> +       select IOMMU_IO_PGTABLE_LPAE
+> +       select DRM_GEM_SHMEM_HELPER
+> +       help
+> +	  Choose this option if you have a Rockchip SoC that contains a
+> +	  compatible Neural Processing Unit (NPU), such as the RK3588. Called by
+> +	  Rockchip either RKNN or RKNPU, it accelerates inference of neural
+> +	  networks.
+> +
+> +	  The interface exposed to userspace is described in
+> +	  include/uapi/drm/rocket_accel.h and is used by the userspace driver in
+> +	  Mesa3D.
 
-With the advent of confidential computing, and the VMM (or whatever's
-emulating the virtio device) not being *allowed* to arbitrarily access
-all of the guest's memory, the DMA API becomes necessary again.
+Nit: name the specific Mesa driver here?
 
-Either a virtual IOMMU needs to determine which guest memory the VMM
-may access, or the DMA API is wrappers around operations which
-share/unshare (or unencrypt/encrypt) the memory in question.
+> +
+> +	  If unsure, say N.
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called rocket.
+> diff --git a/drivers/accel/rocket/rocket_core.c b/drivers/accel/rocket/rocket_core.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..09d966c826b5b1090a18cb24b3aa4aba286a12d4
+> --- /dev/null
+> +++ b/drivers/accel/rocket/rocket_core.c
+> @@ -0,0 +1,71 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/* Copyright 2024 Tomeu Vizoso <tomeu@tomeuvizoso.net> */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
 
-All of which is complicated and slow, if we're looking at a minimal
-privileged hypervisor stub like pKVM which enforces the lack of guest
-memory access from VMM.
+This list of includes seems insufficient. You use PTR_ERR but don't have 
+the include for it (linux/err.h). Same for dev_err/dev_info. I'm 
+guessing this comment applies elsewhere.
 
-I'm thinking of defining a new type of virtio-pci device which cannot
-do DMA to arbitrary system memory. Instead it has an additional memory
-BAR which is used as a SWIOTLB for bounce buffering.
+> +#include "rocket_core.h"
+> +#include "rocket_registers.h"
+> +
+> +static int rocket_clk_init(struct rocket_core *core)
+> +{
+> +	struct device *dev = core->dev;
+> +	int err;
+> +
+> +	core->a_clk = devm_clk_get(dev, "aclk");
+> +	if (IS_ERR(core->a_clk)) {
+> +		err = PTR_ERR(core->a_clk);
+> +		dev_err(dev, "devm_clk_get_enabled failed %d for core %d\n", err, core->index);
 
-The driver for it would look much like the existing virtio-pci device
-except that it would register the restricted-dma region first (and thus
-the swiotlb dma_ops), and then just go through the rest of the setup
-like any other virtio device.
+Do you think it would be useful to mention "aclk" in the message? Seems 
+like if this or the hclk get fails, you won't know just from the kernel log.
 
-That seems like it ought to be fairly simple, and seems like a
-reasonable way to allow an untrusted VMM to provide virtio devices with
-restricted DMA access.
+> +		return err;
+> +	}
+> +
+> +	core->h_clk = devm_clk_get(dev, "hclk");
+> +	if (IS_ERR(core->h_clk)) {
+> +		err = PTR_ERR(core->h_clk);
+> +		dev_err(dev, "devm_clk_get_enabled failed %d for core %d\n", err, core->index);
+> +		clk_disable_unprepare(core->a_clk);
+> +		return err;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +int rocket_core_init(struct rocket_core *core)
+> +{
+> +	struct device *dev = core->dev;
+> +	struct platform_device *pdev = to_platform_device(dev);
+> +	uint32_t version;
+> +	int err = 0;
+> +
+> +	err = rocket_clk_init(core);
+> +	if (err) {
+> +		dev_err(dev, "clk init failed %d\n", err);
 
-While I start actually doing the typing... does anyone want to start
-yelling at me now? Christoph? mst? :)
+This feels redundant since rocket_clk_init() already printed an error 
+message with more details.
 
---=-juy7yf7MhQovyScjrs78
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Transfer-Encoding: base64
+> +		return err;
+> +	}
+> +
+> +	core->iomem = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(core->iomem))
+> +		return PTR_ERR(core->iomem);
+> +
+> +	pm_runtime_use_autosuspend(dev);
+> +	pm_runtime_set_autosuspend_delay(dev, 50); /* ~3 frames */
 
-MIAGCSqGSIb3DQEHAqCAMIACAQExDzANBglghkgBZQMEAgEFADCABgkqhkiG9w0BBwEAAKCCD9Aw
-ggSOMIIDdqADAgECAhAOmiw0ECVD4cWj5DqVrT9PMA0GCSqGSIb3DQEBCwUAMGUxCzAJBgNVBAYT
-AlVTMRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxGTAXBgNVBAsTEHd3dy5kaWdpY2VydC5jb20xJDAi
-BgNVBAMTG0RpZ2lDZXJ0IEFzc3VyZWQgSUQgUm9vdCBDQTAeFw0yNDAxMzAwMDAwMDBaFw0zMTEx
-MDkyMzU5NTlaMEExCzAJBgNVBAYTAkFVMRAwDgYDVQQKEwdWZXJva2V5MSAwHgYDVQQDExdWZXJv
-a2V5IFNlY3VyZSBFbWFpbCBHMjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMjvgLKj
-jfhCFqxYyRiW8g3cNFAvltDbK5AzcOaR7yVzVGadr4YcCVxjKrEJOgi7WEOH8rUgCNB5cTD8N/Et
-GfZI+LGqSv0YtNa54T9D1AWJy08ZKkWvfGGIXN9UFAPMJ6OLLH/UUEgFa+7KlrEvMUupDFGnnR06
-aDJAwtycb8yXtILj+TvfhLFhafxroXrflspavejQkEiHjNjtHnwbZ+o43g0/yxjwnarGI3kgcak7
-nnI9/8Lqpq79tLHYwLajotwLiGTB71AGN5xK+tzB+D4eN9lXayrjcszgbOv2ZCgzExQUAIt98mre
-8EggKs9mwtEuKAhYBIP/0K6WsoMnQCcCAwEAAaOCAVwwggFYMBIGA1UdEwEB/wQIMAYBAf8CAQAw
-HQYDVR0OBBYEFIlICOogTndrhuWByNfhjWSEf/xwMB8GA1UdIwQYMBaAFEXroq/0ksuCMS1Ri6en
-IZ3zbcgPMA4GA1UdDwEB/wQEAwIBhjAdBgNVHSUEFjAUBggrBgEFBQcDBAYIKwYBBQUHAwIweQYI
-KwYBBQUHAQEEbTBrMCQGCCsGAQUFBzABhhhodHRwOi8vb2NzcC5kaWdpY2VydC5jb20wQwYIKwYB
-BQUHMAKGN2h0dHA6Ly9jYWNlcnRzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydEFzc3VyZWRJRFJvb3RD
-QS5jcnQwRQYDVR0fBD4wPDA6oDigNoY0aHR0cDovL2NybDMuZGlnaWNlcnQuY29tL0RpZ2lDZXJ0
-QXNzdXJlZElEUm9vdENBLmNybDARBgNVHSAECjAIMAYGBFUdIAAwDQYJKoZIhvcNAQELBQADggEB
-ACiagCqvNVxOfSd0uYfJMiZsOEBXAKIR/kpqRp2YCfrP4Tz7fJogYN4fxNAw7iy/bPZcvpVCfe/H
-/CCcp3alXL0I8M/rnEnRlv8ItY4MEF+2T/MkdXI3u1vHy3ua8SxBM8eT9LBQokHZxGUX51cE0kwa
-uEOZ+PonVIOnMjuLp29kcNOVnzf8DGKiek+cT51FvGRjV6LbaxXOm2P47/aiaXrDD5O0RF5SiPo6
-xD1/ClkCETyyEAE5LRJlXtx288R598koyFcwCSXijeVcRvBB1cNOLEbg7RMSw1AGq14fNe2cH1HG
-W7xyduY/ydQt6gv5r21mDOQ5SaZSWC/ZRfLDuEYwggWbMIIEg6ADAgECAhAH5JEPagNRXYDiRPdl
-c1vgMA0GCSqGSIb3DQEBCwUAMEExCzAJBgNVBAYTAkFVMRAwDgYDVQQKEwdWZXJva2V5MSAwHgYD
-VQQDExdWZXJva2V5IFNlY3VyZSBFbWFpbCBHMjAeFw0yNDEyMzAwMDAwMDBaFw0yODAxMDQyMzU5
-NTlaMB4xHDAaBgNVBAMME2R3bXcyQGluZnJhZGVhZC5vcmcwggIiMA0GCSqGSIb3DQEBAQUAA4IC
-DwAwggIKAoICAQDali7HveR1thexYXx/W7oMk/3Wpyppl62zJ8+RmTQH4yZeYAS/SRV6zmfXlXaZ
-sNOE6emg8WXLRS6BA70liot+u0O0oPnIvnx+CsMH0PD4tCKSCsdp+XphIJ2zkC9S7/yHDYnqegqt
-w4smkqUqf0WX/ggH1Dckh0vHlpoS1OoxqUg+ocU6WCsnuz5q5rzFsHxhD1qGpgFdZEk2/c//ZvUN
-i12vPWipk8TcJwHw9zoZ/ZrVNybpMCC0THsJ/UEVyuyszPtNYeYZAhOJ41vav1RhZJzYan4a1gU0
-kKBPQklcpQEhq48woEu15isvwWh9/+5jjh0L+YNaN0I//nHSp6U9COUG9Z0cvnO8FM6PTqsnSbcc
-0j+GchwOHRC7aP2t5v2stVx3KbptaYEzi4MQHxm/0+HQpMEVLLUiizJqS4PWPU6zfQTOMZ9uLQRR
-ci+c5xhtMEBszlQDOvEQcyEG+hc++fH47K+MmZz21bFNfoBxLP6bjR6xtPXtREF5lLXxp+CJ6KKS
-blPKeVRg/UtyJHeFKAZXO8Zeco7TZUMVHmK0ZZ1EpnZbnAhKE19Z+FJrQPQrlR0gO3lBzuyPPArV
-hvWxjlO7S4DmaEhLzarWi/ze7EGwWSuI2eEa/8zU0INUsGI4ywe7vepQz7IqaAovAX0d+f1YjbmC
-VsAwjhLmveFjNwIDAQABo4IBsDCCAawwHwYDVR0jBBgwFoAUiUgI6iBOd2uG5YHI1+GNZIR//HAw
-HQYDVR0OBBYEFFxiGptwbOfWOtMk5loHw7uqWUOnMDAGA1UdEQQpMCeBE2R3bXcyQGluZnJhZGVh
-ZC5vcmeBEGRhdmlkQHdvb2Rob3Uuc2UwFAYDVR0gBA0wCzAJBgdngQwBBQEBMA4GA1UdDwEB/wQE
-AwIF4DAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwQwewYDVR0fBHQwcjA3oDWgM4YxaHR0
-cDovL2NybDMuZGlnaWNlcnQuY29tL1Zlcm9rZXlTZWN1cmVFbWFpbEcyLmNybDA3oDWgM4YxaHR0
-cDovL2NybDQuZGlnaWNlcnQuY29tL1Zlcm9rZXlTZWN1cmVFbWFpbEcyLmNybDB2BggrBgEFBQcB
-AQRqMGgwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmRpZ2ljZXJ0LmNvbTBABggrBgEFBQcwAoY0
-aHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL1Zlcm9rZXlTZWN1cmVFbWFpbEcyLmNydDANBgkq
-hkiG9w0BAQsFAAOCAQEAQXc4FPiPLRnTDvmOABEzkIumojfZAe5SlnuQoeFUfi+LsWCKiB8Uextv
-iBAvboKhLuN6eG/NC6WOzOCppn4mkQxRkOdLNThwMHW0d19jrZFEKtEG/epZ/hw/DdScTuZ2m7im
-8ppItAT6GXD3aPhXkXnJpC/zTs85uNSQR64cEcBFjjoQDuSsTeJ5DAWf8EMyhMuD8pcbqx5kRvyt
-JPsWBQzv1Dsdv2LDPLNd/JUKhHSgr7nbUr4+aAP2PHTXGcEBh8lTeYea9p4d5k969pe0OHYMV5aL
-xERqTagmSetuIwolkAuBCzA9vulg8Y49Nz2zrpUGfKGOD0FMqenYxdJHgDCCBZswggSDoAMCAQIC
-EAfkkQ9qA1FdgOJE92VzW+AwDQYJKoZIhvcNAQELBQAwQTELMAkGA1UEBhMCQVUxEDAOBgNVBAoT
-B1Zlcm9rZXkxIDAeBgNVBAMTF1Zlcm9rZXkgU2VjdXJlIEVtYWlsIEcyMB4XDTI0MTIzMDAwMDAw
-MFoXDTI4MDEwNDIzNTk1OVowHjEcMBoGA1UEAwwTZHdtdzJAaW5mcmFkZWFkLm9yZzCCAiIwDQYJ
-KoZIhvcNAQEBBQADggIPADCCAgoCggIBANqWLse95HW2F7FhfH9bugyT/danKmmXrbMnz5GZNAfj
-Jl5gBL9JFXrOZ9eVdpmw04Tp6aDxZctFLoEDvSWKi367Q7Sg+ci+fH4KwwfQ8Pi0IpIKx2n5emEg
-nbOQL1Lv/IcNiep6Cq3DiyaSpSp/RZf+CAfUNySHS8eWmhLU6jGpSD6hxTpYKye7PmrmvMWwfGEP
-WoamAV1kSTb9z/9m9Q2LXa89aKmTxNwnAfD3Ohn9mtU3JukwILRMewn9QRXK7KzM+01h5hkCE4nj
-W9q/VGFknNhqfhrWBTSQoE9CSVylASGrjzCgS7XmKy/BaH3/7mOOHQv5g1o3Qj/+cdKnpT0I5Qb1
-nRy+c7wUzo9OqydJtxzSP4ZyHA4dELto/a3m/ay1XHcpum1pgTOLgxAfGb/T4dCkwRUstSKLMmpL
-g9Y9TrN9BM4xn24tBFFyL5znGG0wQGzOVAM68RBzIQb6Fz758fjsr4yZnPbVsU1+gHEs/puNHrG0
-9e1EQXmUtfGn4InoopJuU8p5VGD9S3Ikd4UoBlc7xl5yjtNlQxUeYrRlnUSmdlucCEoTX1n4UmtA
-9CuVHSA7eUHO7I88CtWG9bGOU7tLgOZoSEvNqtaL/N7sQbBZK4jZ4Rr/zNTQg1SwYjjLB7u96lDP
-sipoCi8BfR35/ViNuYJWwDCOEua94WM3AgMBAAGjggGwMIIBrDAfBgNVHSMEGDAWgBSJSAjqIE53
-a4blgcjX4Y1khH/8cDAdBgNVHQ4EFgQUXGIam3Bs59Y60yTmWgfDu6pZQ6cwMAYDVR0RBCkwJ4ET
-ZHdtdzJAaW5mcmFkZWFkLm9yZ4EQZGF2aWRAd29vZGhvdS5zZTAUBgNVHSAEDTALMAkGB2eBDAEF
-AQEwDgYDVR0PAQH/BAQDAgXgMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDBDB7BgNVHR8E
-dDByMDegNaAzhjFodHRwOi8vY3JsMy5kaWdpY2VydC5jb20vVmVyb2tleVNlY3VyZUVtYWlsRzIu
-Y3JsMDegNaAzhjFodHRwOi8vY3JsNC5kaWdpY2VydC5jb20vVmVyb2tleVNlY3VyZUVtYWlsRzIu
-Y3JsMHYGCCsGAQUFBwEBBGowaDAkBggrBgEFBQcwAYYYaHR0cDovL29jc3AuZGlnaWNlcnQuY29t
-MEAGCCsGAQUFBzAChjRodHRwOi8vY2FjZXJ0cy5kaWdpY2VydC5jb20vVmVyb2tleVNlY3VyZUVt
-YWlsRzIuY3J0MA0GCSqGSIb3DQEBCwUAA4IBAQBBdzgU+I8tGdMO+Y4AETOQi6aiN9kB7lKWe5Ch
-4VR+L4uxYIqIHxR7G2+IEC9ugqEu43p4b80LpY7M4KmmfiaRDFGQ50s1OHAwdbR3X2OtkUQq0Qb9
-6ln+HD8N1JxO5nabuKbymki0BPoZcPdo+FeRecmkL/NOzzm41JBHrhwRwEWOOhAO5KxN4nkMBZ/w
-QzKEy4PylxurHmRG/K0k+xYFDO/UOx2/YsM8s138lQqEdKCvudtSvj5oA/Y8dNcZwQGHyVN5h5r2
-nh3mT3r2l7Q4dgxXlovERGpNqCZJ624jCiWQC4ELMD2+6WDxjj03PbOulQZ8oY4PQUyp6djF0keA
-MYIDuzCCA7cCAQEwVTBBMQswCQYDVQQGEwJBVTEQMA4GA1UEChMHVmVyb2tleTEgMB4GA1UEAxMX
-VmVyb2tleSBTZWN1cmUgRW1haWwgRzICEAfkkQ9qA1FdgOJE92VzW+AwDQYJYIZIAWUDBAIBBQCg
-ggE3MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI1MDMyMTE1Mzgx
-MFowLwYJKoZIhvcNAQkEMSIEIMzvwGuFYEJKRSxHmKkMCVguzCHBQvnALBRSFyGrJ+lSMGQGCSsG
-AQQBgjcQBDFXMFUwQTELMAkGA1UEBhMCQVUxEDAOBgNVBAoTB1Zlcm9rZXkxIDAeBgNVBAMTF1Zl
-cm9rZXkgU2VjdXJlIEVtYWlsIEcyAhAH5JEPagNRXYDiRPdlc1vgMGYGCyqGSIb3DQEJEAILMVeg
-VTBBMQswCQYDVQQGEwJBVTEQMA4GA1UEChMHVmVyb2tleTEgMB4GA1UEAxMXVmVyb2tleSBTZWN1
-cmUgRW1haWwgRzICEAfkkQ9qA1FdgOJE92VzW+AwDQYJKoZIhvcNAQEBBQAEggIABPLb9Ua6E+xF
-1PrDaifxo/h6OjqZLGpZw733yaNekHxYptLTBxvHls/2AgI8UHAHHvKQZdd6ynqTN+qpeCIexM9D
-MIH4YePRqfwhrxjhFXYyyih3mjPUAxCaIYYx4jsU8D7AE/Ygt+aBhfeASwf4+rmAkQDEUNkSbhg6
-WVTbtlv86IkRo75QTEVXj4SmDKmcm9ttI466rqronnKP98XviA7id3g4Y1pOJZifQbWHAPCdmfk9
-qXJzqVdTHGkdr2a7ls5FprsYwVNWYFz1UBEJO2Na/8OV6OiCamx8TdkiLmOFPVlJVgQp7q7SgETd
-zjjO0hrnURu0NzmSAY7bsFyyYvCOSNIvm8CokF4Cw/7HGZMrPtc6IMWw4SC/qMdsP2ElOe0HBuud
-VbR5Rwi4Uym01UjlPFKgr3a/lIOHoBqWzVHjc3ofkF42mK3RPJxLH6opdzRsOs5Rf5ES/fsIrRHl
-g4Yosbn8bbqHIcL2ptkQrLz3LITDLgjj2XoZG+8n6rZOIgOTWN8+3q/gVNSRfzdG4xb+Rk17bOZT
-f5HMxL6CBKtzXFfc0q1+4sn7/8CylM6H8d1IyryNX/TJ/uaMR3U2sTi0ip+m6Ml+oeGT++3vBxoP
-YBVLthLg02Sc2fz52dRY9pYdxNHe7xOSRvtiO0q/wGsOzVPbkd8zKt4VW5T9bq8AAAAAAAA=
+Frames? That feels like a rendering term, but this driver is not doing 
+rendering, right? Is there a better way to describe this?
 
+> +	pm_runtime_enable(dev);
+> +
+> +	err = pm_runtime_get_sync(dev);
+> +
+> +	version = rocket_read(core, REG_PC_VERSION);
+> +	version += rocket_read(core, REG_PC_VERSION_NUM) & 0xffff;
+> +
+> +	pm_runtime_mark_last_busy(dev);
+> +	pm_runtime_put_autosuspend(dev);
+> +
+> +	dev_info(dev, "Rockchip NPU core %d version: %d\n", core->index, version);
+> +
+> +	return 0;
+> +}
+> +
+> diff --git a/drivers/accel/rocket/rocket_device.c b/drivers/accel/rocket/rocket_device.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..ce3b533f15c1011d8a7a23dd8132e907cc334c58
+> --- /dev/null
+> +++ b/drivers/accel/rocket/rocket_device.c
+> @@ -0,0 +1,29 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/* Copyright 2024 Tomeu Vizoso <tomeu@tomeuvizoso.net> */
+> +
+> +#include <linux/clk.h>
+> +
+> +#include "rocket_device.h"
+> +
+> +int rocket_device_init(struct rocket_device *rdev)
+> +{
+> +	struct device *dev = rdev->cores[0].dev;
+> +	int err;
+> +
+> +	rdev->clk_npu = devm_clk_get(dev, "npu");
+> +	rdev->pclk = devm_clk_get(dev, "pclk");
 
---=-juy7yf7MhQovyScjrs78--
+Are these optional? It would appear that error handling is missing.
+
+> +
+> +	/* Initialize core 0 (top) */
+> +	err = rocket_core_init(&rdev->cores[0]);
+> +	if (err) {
+> +		rocket_device_fini(rdev);
+> +		return err;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void rocket_drm_unbind(struct device *dev)
+> +{
+> +	struct rocket_device *rdev = dev_get_drvdata(dev);
+> +	struct drm_device *ddev = &rdev->ddev;
+> +
+> +	drm_dev_unregister(ddev);
+
+You allocated this with devm, shouldn't that make this unnecessary?
+
+> +
+> +	component_unbind_all(dev, rdev);
+> +
+> +	rocket_device_fini(rdev);
+> +}
 
