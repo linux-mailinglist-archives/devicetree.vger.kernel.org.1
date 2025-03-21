@@ -1,158 +1,154 @@
-Return-Path: <devicetree+bounces-159504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4D02A6B3C3
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 05:43:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12EDEA6B3DA
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 05:57:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4688E16C281
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 04:43:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8213317ED4D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 04:57:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00C361E8837;
-	Fri, 21 Mar 2025 04:43:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 799631E3793;
+	Fri, 21 Mar 2025 04:57:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IX+BSGAu"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="wdldznpY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 483891C174A
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 04:43:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D111F2AD0C;
+	Fri, 21 Mar 2025 04:57:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742532182; cv=none; b=cD1o6+B9C8mQvGu/gIEs3Izmzb5265YbCCmdBIL715NKisRg21+w1ZlELDtyRNKdT6gbk0Tc9/b55g3oPnl9Q8GF1NZj0etBLSUhQVtBI95OyfVqEU3eyysSlrl0KqJpEKlmk1HdYP1bLk20e7ITNaIvNGdinYfXEFbygpWa7ww=
+	t=1742533039; cv=none; b=u5HRSaxRhVg5+8RFgxfQMARDA/Vh8BFi7IXbEGReZTOJnlYpc0916XgnebEw8h67nY9Ndb+pNKS3VMNHoSopkkPEdrsUwixPdDkkK+VIO32t5W4IVDJ88Lvr9XEv54Uzs5M4/Rf6CrPBMrlJ2IPPcoWcg22AG8k+uLC12HOC+vg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742532182; c=relaxed/simple;
-	bh=/J/l2xndIYzwBh3TqfFRxLFB3IOJWbXnrMRVsBmO9EQ=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=CA2198OnQ7uZc0CXYol86uXz0DzEMelfQ98VSi4fc2wU0A8jXwdgmDG8reqermANUK0qdtHLakA2qKZq0PMgnYVVgQhIWJhRhIjcNOTIPyeh/4bZZaixMRIXMONhpVRLzjk8Bavs129ifwvpSOVYaBaIhKJc/u7vjXxWgf66AW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IX+BSGAu; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-224341bbc1dso30272455ad.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Mar 2025 21:43:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742532180; x=1743136980; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=jaHeJ6qSwJ3u/x/VdsUMlK82s8mbA82yyCP5yyeo3Fc=;
-        b=IX+BSGAuyK0faO/55sbuhOf5a6TMPLuOcU+ylFUZ5MObFrKbh/NGSgkYoGdnyxwJvU
-         LVpSpPw/G4qLGhrSDXcl1sCkjaqGkiasx3V10nryp0ohrgpWKTN2UdwYkbzE6ntLbbfh
-         PU+lRYeIaft0Inp7UFL5Mozo+xuA3LJr9FBvDJpZb63FMi3ac0vb0W7L0g+jqG5ckwyD
-         NMyTnQWaVyXmA2ClNVbqeevl/1TyxKHJKQjLsPBAsvaD9NX1zHK2Qa26Tzw+7g30C0OV
-         0zWH3nrblffaRxQZUP0HKUmFRIc6lJO6GsrmkzayA0p/VUXL7jGniXSeFLNBfJ2+sbhf
-         xyxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742532180; x=1743136980;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jaHeJ6qSwJ3u/x/VdsUMlK82s8mbA82yyCP5yyeo3Fc=;
-        b=OT5PstFvBe1vp8Y3nBqsPbiIz+NRyh7yKvkV4xN9J87qphgsRnYU/n7JR3ccGztSt7
-         cixbCmG45pTzjAvZUoJs49BBRyOvj8Ub0fvV5qapEaZJki0fVDTceYvOPaybr3g/Lhs8
-         iIy9fxPeyqQoK5p3PJGHPKL1XPJkoZU0u2ZX0asoD17bg/FljaLRFpRaWFBniLh3Q6KA
-         PBygZ9pbXyk+vn45U2UEsXs5bpOTnBtoDOrHjpxIbeJriGhUgBKfQkzFcqU3OPLznNZ0
-         vIq9rRT9XjZGfAxTnARSdyYqv4bqMVINGjYksJcDTgJoeZx1RFLjt88f6GDL6PbaRjLq
-         YFww==
-X-Forwarded-Encrypted: i=1; AJvYcCX2vKhrrR9QN06P4OX0uakdJlkhH5ra4JplBZipQolOtHX3RJB4N+zO3xShnrCTzeLok4HnxdOYBSHK@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQYwyHZN/u2ctodqcHmkGNmGXszgfVQyz2WQ24tapcI6BAYvZV
-	diX2tbpnv1MFeELEMkLPLPHw23g4Lb5Lrhn0HMDo0otHnHRX8/tHlCr5wdajjg==
-X-Gm-Gg: ASbGncsoSJtk/XYD65g+fWnzw5s+9I/rRmQHS6tR034E6eU6CGcz7RXM4uWjwE811xI
-	NT5OPY1hKSZxhMFSeGNGsI/S3Sbzr1bkUHgFTbi/D1/fSTTKHs8haLN/WttQJFvOa5iTWG/JvRS
-	voKFlr8tvyDnA//bVXln8WkcCOpJvyuamowxeDPsJ8gNISrurBnxGq0NCSAml4SMuy2JFoUxcHr
-	XK/MsoJLveuR2xzdvdj5bVPt3zMFvdtQ4y8htrHnz+cNeE0OuBZ76/hU6Feh9izYOKi+LgvnNoX
-	QD5fy9fPzrwTsEtmJhHvRphiHSW1powG/BxWnFXolgXn
-X-Google-Smtp-Source: AGHT+IFCZZBsBpT+JgPon/LLEbu72ysiHsPxVJfQnDNrm7RkPGl69Wa7QQ0PvDzg1cJp1vKd8UOSxQ==
-X-Received: by 2002:a17:903:2286:b0:224:249f:9723 with SMTP id d9443c01a7336-22780e38317mr26158175ad.51.1742532180528;
-        Thu, 20 Mar 2025 21:43:00 -0700 (PDT)
-Received: from ?IPv6:::1? ([2409:40f4:3109:f8b2:8000::])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-227811da38asm6929485ad.186.2025.03.20.21.42.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Mar 2025 21:43:00 -0700 (PDT)
-Date: Fri, 21 Mar 2025 10:12:55 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Wei Fang <wei.fang@nxp.com>,
- devnull+manivannan.sadhasivam.linaro.org@kernel.org
-CC: bartosz.golaszewski@linaro.org, bhelgaas@google.com, brgl@bgdev.pl,
- conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
- linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, robh@kernel.org,
- netdev@vger.kernel.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v3_3/5=5D_PCI/pwrctrl=3A_Skip_scanning_fo?=
- =?US-ASCII?Q?r_the_device_further_if_pwrctrl_device_is_created?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20250321025940.2103854-1-wei.fang@nxp.com>
-References: <20250116-pci-pwrctrl-slot-v3-3-827473c8fbf4@linaro.org> <20250321025940.2103854-1-wei.fang@nxp.com>
-Message-ID: <2BFDC577-949F-49EE-A639-A21010FEEE0E@linaro.org>
+	s=arc-20240116; t=1742533039; c=relaxed/simple;
+	bh=ZzLfGaThpVKL/EzA44jAydOvzbqJW6+9uZ7fjskDpdM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=FgsvDGM2pajdAe+2nacTLdMPY2Q+uWtc7VIcgDvzBOWJ6Jq8WGgC6Ko/wpMGOtTkA0IOUiVgckbVfbdh7tXCwNNNDQpOj7HYOJZr+g4Yu9yMNvVL7LdH9cLFBfle17TCIMVqJd867RDLSk3wxJ7gXtHnIIsnVGmA8ay5NL+mys0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=wdldznpY; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+From: Dragan Simic <dsimic@manjaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1742533033;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=34L65aDT1Mxo5imphoDQ1zuSM7y94ZYPS51yNey3ekA=;
+	b=wdldznpYF2iprwYPpPpUcVtq+rR+oGN0324OYAyC4duKfwflwA0R0a2ypUbn/t8RmkVeim
+	dtGoFMOAKsdhAuwEkqO8EGAb6YxdQxm98RSHhnnRpjBigGpTHZr748Hnqwx0TRq34BSiyP
+	thMmuYBLCUM65wwbt9bbyyIruEkpnK7e3FDiQ5zYw8vKPBA5tNhVu1glcUn2kSzo0OagDF
+	mBtC/J3cli2AGKchRoGcFc1DFZwdvU8UAMfDENH/KZxD5FqcX943+7UzyTVSHJjKWOT+Md
+	lN8+3Ot572vHkBlrHcNT+jFsnYSaQTZIDOEzWCdRsAxIPk+PVqAdF0+H7HbISA==
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: heiko@sntech.de,
+	dsimic@manjaro.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4] docs: dt-bindings: Specify ordering for properties within groups
+Date: Fri, 21 Mar 2025 05:57:09 +0100
+Message-Id: <6468619098f94d8acb00de0431c414c5fcfbbdbf.1742532899.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hi,
+Ordering of the individual properties inside each property group benefits
+from applying natural sort order [1] by the property names, because it
+results in more logical and more usable property lists, similarly to what's
+already the case with the alpha-numerical ordering of the nodes without
+unit addresses.
 
-On March 21, 2025 8:29:40 AM GMT+05:30, Wei Fang <wei=2Efang@nxp=2Ecom> wr=
-ote:
->@@ -2487,7 +2487,14 @@ static struct pci_dev *pci_scan_device(struct pci_=
-bus *bus, int devfn)
-> 	struct pci_dev *dev;
-> 	u32 l;
->=20
->-	pci_pwrctrl_create_device(bus, devfn);
->+	/*
->+	 * Create pwrctrl device (if required) for the PCI device to handle the
->+	 * power state=2E If the pwrctrl device is created, then skip scanning
->+	 * further as the pwrctrl core will rescan the bus after powering on
->+	 * the device=2E
->+	 */
->+	if (pci_pwrctrl_create_device(bus, devfn))
->+		return NULL;
->
->Hi Manivannan,
->
->The current patch logic is that if the pcie device node is found to have
->the "xxx-supply" property, the scan will be skipped, and then the pwrctrl
->driver will rescan and enable the regulators=2E However, after merging th=
-is
->patch, there is a problem on our platform=2E The =2Eprobe() of our device
->driver will not be called=2E The reason is that CONFIG_PCI_PWRCTL_SLOT is
->not enabled at all in our configuration file, and the compatible string
->of the device is also not added to the pwrctrl driver=2E
+Let's have this clearly specified in the DTS coding style, and let's expand
+the provided node example a bit, to actually show the results of applying
+natural sort order.
 
-Hmm=2E So I guess the controller driver itself is enabling the supplies I =
-believe (which I failed to spot)=2E May I know what platforms are affected?
+Applying strict alpha-numerical ordering can result in property lists that
+are suboptimal from the usability standpoint.  For the provided example,
+which stems from a real-world DT, [2][3][4] applying strict alpha-numerical
+ordering produces the following undesirable result:
 
-> I think other
->platforms should also have similar problems, which undoubtedly make these
->platforms be unstable=2E This patch has been applied, and I am not famili=
-ar
->with this=2E Can you fix this problem? I mean that those platforms that d=
-o
->not use pwrctrl can avoid skipping the scan=2E
+  vdd-0v9-supply = <&board_vreg1>;
+  vdd-12v-supply = <&board_vreg3>;
+  vdd-1v8-supply = <&board_vreg4>;
+  vdd-3v3-supply = <&board_vreg2>;
 
-Sure=2E It makes sense to add a check to see if the pwrctrl driver is enab=
-led or not=2E If it is not enabled, then the pwrctrl device creation could =
-be skipped=2E I'll send a patch once I'm infront of my computer=2E
+Having the properties sorted in natural order by their associated voltages
+is more logical, more usable, and a bit more consistent.
 
-But in the long run, we would like to move all platforms to use pwrctrl in=
-stead of fiddling the power supplies in the controller driver (well that wa=
-s the motivation to introduce it in the first place)=2E
+[1] https://en.wikipedia.org/wiki/Natural_sort_order
+[2] https://lore.kernel.org/linux-rockchip/b39cfd7490d8194f053bf3971f13a43472d1769e.1740941097.git.dsimic@manjaro.org/
+[3] https://lore.kernel.org/linux-rockchip/174104113599.8946.16805724674396090918.b4-ty@sntech.de/
+[4] https://lore.kernel.org/linux-rockchip/757afa87255212dfa5abf4c0e31deb08@manjaro.org/
 
-Once you share the platform details, I'll try to migrate it to use pwrctrl=
-=2E Also, please note that we are going to enable pwrctrl in ARM64 defconfi=
-g very soon=2E So I'll try to fix the affected platforms before that happen=
-s=2E
+Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+---
 
-- Mani
+Notes:
+    Changes in v4:
+      - Compacted both the introduced additions to the DTS conding style
+        and the patch description, as suggested by Krzysztof [7]
+      - Reformatted the patch description to obey the 75-column-width
+        rule, and adjusted the editor configuration accordingly, to avoid
+        such issues in the future, as suggested by Krzysztof [7]
+    
+    Changes in v3:
+      - Rewrote the part of the changes that describes natural sort order
+        and its relation to "standard" alpha-numerical ordering, to make
+        it more understandable, as suggested by Krzysztof [6]
+      - Slightly expanded the patch description, to clarify the additional
+        goal of explaining the natural sort order briefly
+    
+    Changes in v2:
+      - Changed the additions to the coding style to specify natural sort
+        order, which avoids amibguity, as suggested by Krzysztof [5]
+      - Adjusted and expanded the patch description appropriately, together
+        with including one more reference for the natural sort order
+    
+    Link to v1: https://lore.kernel.org/linux-kernel/09d6f2fc111b3d6e58987336944f93ec36b65118.1741071107.git.dsimic@manjaro.org/T/#u
+    Link to v2: https://lore.kernel.org/linux-kernel/47c51c10098f089e52fb14c5c5527611dc8daf32.1741164239.git.dsimic@manjaro.org/T/#u
+    Link to v3: https://lore.kernel.org/linux-kernel/7276139ea1f4a5f4db48c77f536a3638492e6c2f.1741321984.git.dsimic@manjaro.org/T/#u
+    
+    [5] https://lore.kernel.org/linux-kernel/20250305-defiant-serious-newt-b7c5ea@krzk-bin/
+    [6] https://lore.kernel.org/linux-kernel/20250306-dexterous-goshawk-of-aptitude-e4f1f6@krzk-bin/
+    [7] https://lore.kernel.org/linux-kernel/20250307-logical-nimble-okapi-3ba081@krzk-bin/
 
-=E0=AE=AE=E0=AE=A3=E0=AE=BF=E0=AE=B5=E0=AE=A3=E0=AF=8D=E0=AE=A3=E0=AE=A9=
-=E0=AF=8D =E0=AE=9A=E0=AE=A4=E0=AE=BE=E0=AE=9A=E0=AE=BF=E0=AE=B5=E0=AE=AE=
-=E0=AF=8D
+ Documentation/devicetree/bindings/dts-coding-style.rst | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/dts-coding-style.rst b/Documentation/devicetree/bindings/dts-coding-style.rst
+index 8a68331075a0..d8a2b11cab48 100644
+--- a/Documentation/devicetree/bindings/dts-coding-style.rst
++++ b/Documentation/devicetree/bindings/dts-coding-style.rst
+@@ -133,6 +133,9 @@ The above-described ordering follows this approach:
+ 3. Status is the last information to annotate that device node is or is not
+    finished (board resources are needed).
+ 
++The individual properties inside each group shall use natural sort order by
++the property name.
++
+ Example::
+ 
+ 	/* SoC DTSI */
+@@ -158,7 +161,10 @@ Example::
+ 	/* Board DTS */
+ 
+ 	&device_node {
+-		vdd-supply = <&board_vreg1>;
++		vdd-0v9-supply = <&board_vreg1>;
++		vdd-1v8-supply = <&board_vreg4>;
++		vdd-3v3-supply = <&board_vreg2>;
++		vdd-12v-supply = <&board_vreg3>;
+ 		status = "okay";
+ 	}
+ 
 
