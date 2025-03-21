@@ -1,165 +1,217 @@
-Return-Path: <devicetree+bounces-159662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159663-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18F95A6BBB7
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 14:26:59 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 121D1A6BBC7
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 14:35:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B2F4462F63
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 13:26:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 32E637A4098
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 13:33:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3265922AE7E;
-	Fri, 21 Mar 2025 13:26:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D06122ACCE;
+	Fri, 21 Mar 2025 13:34:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="biNfksZS"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="mmUwS8GS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2069.outbound.protection.outlook.com [40.107.95.69])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1C4522A7FF
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 13:26:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742563611; cv=none; b=ITv/qub0VSh/+U6r2M9NwQynIr5lXwVTjD2HlwokiDElKnnCQtI9R6giAXSy1tYSjHaClrKb7oVtNPqxqNddDC/qvaPUSO6cKlk17iW1piW9ktq+AFgKtta0W3TrzeIJKNOErbO/u1ae7/LCrwLFx9kd0OnKVXcdB4B5fDB83ZY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742563611; c=relaxed/simple;
-	bh=xMeqGv/jZySimNc6vELEg0wI4OT6OHTVxuOS/HRWpzE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hA8USst1Yn35jP8bqigyhI15AfCHJs6H6Eq1ofLrjxqWI8473RkMxZDCrqkaFBXWMxEbxHqgC5MGRWatxRzAhFcmOjVG4NiWPB8c15fTuzY0kR6Xb1wPc0gSDdoqAIqZDYVXpahtdoMAlEL3Po9vDLtxPobQl5y9bIvW+6BEMls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=biNfksZS; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-38f2f391864so1107885f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 06:26:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742563606; x=1743168406; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=x+nfdqXMXDIXPRHZvpsBbeClbsVJF3/i4egLlwdwO+s=;
-        b=biNfksZSvhyJhkN3QGe/C7UTbAt09uwc8cwvp2Y6ZEhKEC8sIJjyhkaZublPCme9cc
-         4VkG+kD3NjeqI1WeYcYx7iK03nFz96JmEe/l0FFtl3WqhUraZ2HhyF5tHJ/PcLEkgNOZ
-         Lrm1SbYlkdeJJHzn1EuU6yx7IlObdv/x7p7XfyJXafSAMbaECbp2R1SPtmdjC6xFwdmF
-         IFzt2uEzaOUFyH2gh+kWeP981x8KvfdVyZ9/NwNLaKEON9J0L0RuLe7Cevka1JmRkBgy
-         TzRHdUEzGByVmtEnwzc3LoYJJaFrS09R3mHWkpZIsKD5ep/T4S1dnn8k8KWTCrsnfUOo
-         mM8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742563606; x=1743168406;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=x+nfdqXMXDIXPRHZvpsBbeClbsVJF3/i4egLlwdwO+s=;
-        b=v3gZKl6wSEAWcwNH9LP+bDB38bcNFrTfHLt32sPSjW7UEUhZ36tYdmvfDxA6KAonj/
-         PH7dIXQ42jT5A/VUNaxAo+V9IuwEus/EVDW2Mz8SfGdj2dT4R+0+aE6L1CUmKKmzmZFn
-         ATx52zHGPLOe+ihLsxw66BfqG8OJS/G5pjpaZX5C+aIwKvQuDpBEC9ruPMsGhDsGkqYw
-         0lS6gJ06d8F4mkMOENp2/nKZMvR7elUBfcPDtXCB6W8jD03dEptv8byOquxnQGR5gF7V
-         U3aryVAUdoSCWxmeFl96eAjE0YWawnMpA3/YAjSDzpqbKZ60FihOv1UnsZRD2FPGLSqy
-         ODnw==
-X-Forwarded-Encrypted: i=1; AJvYcCXtKgRP7cx652B4ATMiWwVaBxNJ8Nsa2YqWrfVBvxAak1yvXpXadF7jdWe9pgygUb3oTO8ddDErPNsl@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxcs0fQJATFTWc4giGtLFKG3ApBDOmQCCnauR70hCNCU3CLk0hy
-	8bH2DakHYy4t4nyvTK6Lm9wN03NaLLrvr+QX6R021gEDelW9dzuIa6ZqPuQ5QGY=
-X-Gm-Gg: ASbGncvGPvdHTlBT/vW7IuDdvBaRdQI1i4G4RiVVuVJQRtWg+dnVwom7UDTdq1/xIp0
-	JbJjJVvb25h2fMIFWyIXPSECOua3na//jMqpxI5kkG54oIqvMCiF7GtAp5C+sC94dxCaVVMJEhp
-	1eWqZ2XuJG0xhubyiCWV5bwKo82qmKWN882ISCboUI4o4eldPbKh/6Xx0qEWQm+cSe5vfYBs0FJ
-	1bxkcziVik5zRs251tNWCiNrMtO7APY2PBQ9D+6353s9BlocMqsyljgdMw+kBym/An3MM9q4HuT
-	RbZ30trXVtGdXOKzXD8w4hMJ74iQ4viGwaTxffZZ8PQdRqzT3bsPunzTm3avhUIS6zDB9ASIUg=
-	=
-X-Google-Smtp-Source: AGHT+IFItBfdiuwTpyaV5kuTi/ldTSC9Nx5SxBw7qLGhnUVc61bpqSJwTkGLSn5VdoJA25gliLrfGQ==
-X-Received: by 2002:a5d:588e:0:b0:391:4674:b136 with SMTP id ffacd0b85a97d-3997f90e00cmr2957330f8f.29.1742563606193;
-        Fri, 21 Mar 2025 06:26:46 -0700 (PDT)
-Received: from [192.168.68.117] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3997f9a3f81sm2419531f8f.35.2025.03.21.06.26.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Mar 2025 06:26:45 -0700 (PDT)
-Message-ID: <1d93f731-66c1-47b2-a249-9bdb25205525@linaro.org>
-Date: Fri, 21 Mar 2025 13:26:44 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E94522A1D5;
+	Fri, 21 Mar 2025 13:34:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.95.69
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1742564094; cv=fail; b=WdSJIQtCSAB8mWJ0+ydIhuPG3ZrKUfWGbqAq4tGTKyfHD1vW9Xw9DWxt21pZeid/YTo2KhV1j6Wum5oAylmHSkSEB6RKQV0CRfGnnmifGpDkGVMorBTXzfRMjqzPsnLCuOsI7wwiGzvytE0jOpp15pJipjSvIjlBHVFGEzF32g4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1742564094; c=relaxed/simple;
+	bh=l4AgjiWffoR4GKZ8Angr/gYWGWibkUZb84mf7Iw73bc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=O+HMuvcsRvyAEbcsftl4pT1KWkEAnjB2hwAPcuRe9erVN4Es9AaHZzg5ebn4vkQj0YHIyAA2zOl0b5Sx3wrRyk9kYRu6H78XFpHVNYU+xMIZWMObwb5OIR3TUgtlYOeVSy2UFIi340WLxwas65D0JXbPgxnNyHpEtuenVTNUJzU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=mmUwS8GS; arc=fail smtp.client-ip=40.107.95.69
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=SvHf3KddWjGaG7JFvOzRSXMj+VF0HVo5ogsnVMc5aI3+/8LNsasWSBFUz4yzg+LrJKXAgzF2FSNtbHv0HShCinZwoCvTLKxtbKllrGWnPTCgivZdR+YEb9RLt3WgtHTe7PeDUZjHclj4J41BfZ0PmSAux5Lr2jfpnA8bAA9Tem0lhvnaAywoRMMCDphdGdEA0/E3SfW0UKHFNT5aVBF6JYkXYiXW/bXY2wloh58GX2hCOkIl7SA+mgmBe77kQ3aOl7y8WII+lZgBesdFLBwFcFsJ8StcuEIv8Te15suyzj31mJliXTrnDMHWMVcggFhtoxoRxHPV6/H6fYQ12AkAqg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=r19dy1h/efUoSCKQjibx6+2/93JkupqYItH8fkWVixY=;
+ b=s7ClVZVQyMj5zOGrZ6OZhxsXkSKE9sicHZUVJ3VZKXCaKOF2Di1E3FKS69FACiq7s4yU0wQQO85+0XOyM6q1kfgKmbaBPrDw14q1/7AvZaPPVN7xH705JLQhv0b253nvQ+Qi4lzKiX/XQQj2jx/jUwXyq2JV0OGinW+B+cw+nzrlnjAIVtn1VOwJsHC9y3u4KAqmAZAEmFFPO74BKAe4D6lGolaD0kTvdY9aur1NGUaSmy8b3fIeg9kJEBd8Qtb902luF9fG7osp/bcnm1DIoQI9p7PG11qtfp7WvjQHc1CvCD3Ymhpwf7p+Cyu5ds/QPw+H/5+vR6xCajhM4lQLEw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=r19dy1h/efUoSCKQjibx6+2/93JkupqYItH8fkWVixY=;
+ b=mmUwS8GS/ixtccZu0UTYiz4Z1lq0GQ2UlGW9EszZ4e8SkoG8R7NrMFdI1Xsyp6KLHwFY3YtJtUL953sg02OGcoeQfEY3E9P5LcfqJcuisxEBpO6DzHF61pzJbhc/NKyT6El7jXYq477a4KOprRbo5Rkk3Fh+y/b7rj0wioeF31umebLdrjGmBpb1KIl4xdoVOAhP8/nec6N9lLUlNPDZUPbtMOsXqyhs0kFvlx3baFcjBWbGGe6bWnUC4VUmUIn08oTW9aX8Yfyzrq+mboxUoiH6KWjQkpXovy0CaE/JYPm0v0XNNAunPHBDfQd69pN1vezmvJxO9AqI/AXBF7ZkEg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CH3PR12MB8659.namprd12.prod.outlook.com (2603:10b6:610:17c::13)
+ by MN0PR12MB5761.namprd12.prod.outlook.com (2603:10b6:208:374::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.34; Fri, 21 Mar
+ 2025 13:34:49 +0000
+Received: from CH3PR12MB8659.namprd12.prod.outlook.com
+ ([fe80::6eb6:7d37:7b4b:1732]) by CH3PR12MB8659.namprd12.prod.outlook.com
+ ([fe80::6eb6:7d37:7b4b:1732%4]) with mapi id 15.20.8534.036; Fri, 21 Mar 2025
+ 13:34:48 +0000
+Date: Fri, 21 Mar 2025 10:34:47 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Changyuan Lyu <changyuanl@google.com>
+Cc: linux-kernel@vger.kernel.org, graf@amazon.com,
+	akpm@linux-foundation.org, luto@kernel.org,
+	anthony.yznaga@oracle.com, arnd@arndb.de, ashish.kalra@amd.com,
+	benh@kernel.crashing.org, bp@alien8.de, catalin.marinas@arm.com,
+	dave.hansen@linux.intel.com, dwmw2@infradead.org,
+	ebiederm@xmission.com, mingo@redhat.com, jgowans@amazon.com,
+	corbet@lwn.net, krzk@kernel.org, rppt@kernel.org,
+	mark.rutland@arm.com, pbonzini@redhat.com,
+	pasha.tatashin@soleen.com, hpa@zytor.com, peterz@infradead.org,
+	ptyadav@amazon.de, robh+dt@kernel.org, robh@kernel.org,
+	saravanak@google.com, skinsburskii@linux.microsoft.com,
+	rostedt@goodmis.org, tglx@linutronix.de, thomas.lendacky@amd.com,
+	usama.arif@bytedance.com, will@kernel.org,
+	devicetree@vger.kernel.org, kexec@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+	linux-mm@kvack.org, x86@kernel.org
+Subject: Re: [PATCH v5 07/16] kexec: add Kexec HandOver (KHO) generation
+ helpers
+Message-ID: <20250321133447.GA251739@nvidia.com>
+References: <20250320015551.2157511-1-changyuanl@google.com>
+ <20250320015551.2157511-8-changyuanl@google.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250320015551.2157511-8-changyuanl@google.com>
+X-ClientProxiedBy: BL1PR13CA0416.namprd13.prod.outlook.com
+ (2603:10b6:208:2c2::31) To CH3PR12MB8659.namprd12.prod.outlook.com
+ (2603:10b6:610:17c::13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/5] ASoC: codecs: wcd938x: add mux control support for
- hp audio mux
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: peda@axentia.se, broonie@kernel.org, andersson@kernel.org,
- krzk+dt@kernel.org, ivprusov@salutedevices.com, luca.ceresoli@bootlin.com,
- zhoubinbin@loongson.cn, paulha@opensource.cirrus.com, lgirdwood@gmail.com,
- robh@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org,
- perex@perex.cz, tiwai@suse.com, linux-sound@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, johan+linaro@kernel.org
-References: <20250320115633.4248-1-srinivas.kandagatla@linaro.org>
- <20250320115633.4248-5-srinivas.kandagatla@linaro.org>
- <rdvsnxuc6by6sci56sh7thzpxo5cqi7q24fnmc7hi5yrfszwrg@kqjpiilko3xo>
- <b1aed195-b2e6-4f48-ba10-3049d74085a9@linaro.org>
- <CAO9ioeWLRfzUOwjnFsi_yztdJo2Q25bhvjddh6D3naV_K5eShA@mail.gmail.com>
-Content-Language: en-US
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <CAO9ioeWLRfzUOwjnFsi_yztdJo2Q25bhvjddh6D3naV_K5eShA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH3PR12MB8659:EE_|MN0PR12MB5761:EE_
+X-MS-Office365-Filtering-Correlation-Id: 94e8a737-876f-48a0-8728-08dd687d267e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|7416014|366016;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?686swMVR76sdl35h7IhFiCO+06XxqMBVtd9wSydxcgG6fgrhc8JS4EbTpEjU?=
+ =?us-ascii?Q?hFVQmDYOesHEiBeYW6N9gavUexIvlkDiFIjDNaYI6WQ+hCqZYp12f3nzI0HW?=
+ =?us-ascii?Q?7DQjCC8iJKQjnENGAcOtIAmlIJGIISYMNL+MtbLX8HuWa5crrIY24j+wkCd+?=
+ =?us-ascii?Q?th0zrnHtjSK+UAZAa8s5T3eV7KDtySYxo48sRh/THxKU9yQETCiiDixByiSq?=
+ =?us-ascii?Q?U43Jg4c2wr/5OjF39AavHJax4ovBLtlX8Y//WYFdlbJ8OP0Cw13labsBuB5y?=
+ =?us-ascii?Q?5zJSCVS7C3XhFCvRPCwsFoYTsuwRyu18WIdw7FerMqZjKaW2RvJt6lT4oyR8?=
+ =?us-ascii?Q?BMW+U3DRVR5Znl/moiCIocgfrdOBmSuiXm5Aryx+SJLu4QNL57pLJBhy59TT?=
+ =?us-ascii?Q?JkR2NqkNJMAXC5uTevmVQvyM6Yv/chGa1ZnAFtGL3+ChZxqBPmGxSyWFjr46?=
+ =?us-ascii?Q?Rif8izTlzVX8tC8RqoDWyNw4WhS0htc2Fi1pHoUs2XEkSEMF/Z7/ARw0qd9b?=
+ =?us-ascii?Q?XMwWNRFcYXfPHRiefl68MnspO/q2wByg/zAatP20d6FZNDSQNXdtBaeN68bo?=
+ =?us-ascii?Q?BAhBMywJBeiQkl7oob1vi4Lr9qmqjLtmjLXi+pSoUdFd/QJw0aEE+DjLrHu/?=
+ =?us-ascii?Q?4HxuBb6xXoAH37p3+lGP4VxVtjze8qx3wMxqzMv5RmQoPwJuLqrvESIpVjAe?=
+ =?us-ascii?Q?39wBBl3Yq6sh/s/O/1Grzm4iipXr2Tm3g6Xy+NWrCgigQziBL1TOFm5OtCIV?=
+ =?us-ascii?Q?7AsMKXi277ZgFyj1CMVrNIb2gT0sq1DGGaEYj28RX4FxsvBsEjdqPnV/nAzZ?=
+ =?us-ascii?Q?jaJw94cc87u9WtlZr+ibcBL8Vp3z8T1GNMDQK0797dCPec2YbgTn+lba1OWA?=
+ =?us-ascii?Q?UhbGcOSoSjfpFgsOjwcNiI5cz5NmxxkBjFZ0j2Svdg2U3aDBJLIICmcRYtYn?=
+ =?us-ascii?Q?XrYdDdu8jkcV5Ng/buNEtqea/UqAdf7FGD+11Z9AYHiIHwYkqMDVt4tiXCV7?=
+ =?us-ascii?Q?AVgjVJP5mlxUPmm0HWG9811uoTmaXZhqkf5FTInJ21/9R0CyI+jQOV0Qbo+6?=
+ =?us-ascii?Q?EwC8YVDjGTDDpikq0PodkovRuwc4BhbcO92Pz/DtXi/Fbtb1xqmn6dyFg529?=
+ =?us-ascii?Q?s/IyJ4u9gtHdRKRy1iRnTzqMNiyzVFJCRdvsWdtEvbNXDK/7v4l2S/9Wzb0+?=
+ =?us-ascii?Q?6aJ+tjObpvzbQHMQQR0AokukCOmq2bJRmmAVQHKXU53McRsaxiQJT8WoD64I?=
+ =?us-ascii?Q?2/nvxylGGksGQtIsZFNJgPvopAMQdJaEf+uIuSngTig7/C+22mgah9UnZUgG?=
+ =?us-ascii?Q?zqjqWut3TQdVTaXuboIWCCSuoSYo47v6EeSycThHBw6AT6Dn7Sefhlzh5aOK?=
+ =?us-ascii?Q?ocmeV0z0IarGesys68ZZyVWejfoS?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH3PR12MB8659.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?mtjm435sHx8Zw7oJLc0CovVcZP4stk6QDQJEa5WMyKEXLFhxLLLbZvhuqsVF?=
+ =?us-ascii?Q?jF0GDHecfZctrKWvDQrjoThdraTR76K9L9TjDD+bLrObqj8cZkvZcbT9AwIK?=
+ =?us-ascii?Q?BtMjSzgQeX5JCn1aVcxKJhsQ/mzW4ZFBo9c4Bwx6L8F0ffVThQgRTJZ0UZbi?=
+ =?us-ascii?Q?m2ngJHEt7lOqsHQ246HTfU1UifitSPwi+sUlIEyizut2N7OtesCavDCD52/o?=
+ =?us-ascii?Q?Hsvs9CN02iVUlENrDSULCYI6ThpQGelQMY1X0zmUzxYSmSihN29iIp2Z8SSa?=
+ =?us-ascii?Q?0yTWMBK4N4PKplJVdsOlZlK6Zn+2PqjaHHteo/GlSnd5PIVfyuhT3HPhXQbd?=
+ =?us-ascii?Q?oQ0vstP4WqeNRITkifPBy3CA0uYxCas5IQmp9LGU/k5RgKsc+NugyZ98Z3Nl?=
+ =?us-ascii?Q?YUhxxmt2rly1CWhK+FTKra9s+dE38FU8qEDrX3wVS/QpU1bGwU/5biNSGiJV?=
+ =?us-ascii?Q?HmQaxEyCRHXplw/nG7jl5+o45C1Ha71IOMOmwyjUp6iRNVfPFKJksmNna9Hg?=
+ =?us-ascii?Q?TpVDe95cWGlc8yTfAUmK9eVQJHZp256OEr611SC0NIpAvLyS4lmkOYreEaY6?=
+ =?us-ascii?Q?KL3y07Ho1JV1jc3xcbnEeEmO6CMqyz1yrPGfh69Vt3M9p6NKLINYrOVwXd1N?=
+ =?us-ascii?Q?XUGLoz0vsK05byC4pE6wiNjxrEBXag6iWBjeTSOEC067a4nV8omu+0YT6erd?=
+ =?us-ascii?Q?MmpPO4TJtUeMBnhijTjCJepXm5talYhkwBPZUckoIScFGSDwAjpAmj56yNga?=
+ =?us-ascii?Q?HcmzGUShKVVwy7uQblizjHWkf/wLabxExKS/LgVrn4Jr/UUiXO/4BRsnGxEr?=
+ =?us-ascii?Q?n2KqvBhPOfs+13SqxnQ67qWrBx8T2MoRzgRYPGB+vUtYP0b+/YUQWOjy9BRW?=
+ =?us-ascii?Q?Sjpp34nA50pZfK7SjBL1Hn89kWhLfSCqyFrSY5TRaHPiPubA1W6ZvInmAQFU?=
+ =?us-ascii?Q?XLg8CWYfh2Y0C3x35+869NsRa2paHHp3mkcCsOQNhoKKk3nXFx/zaf1yV0O+?=
+ =?us-ascii?Q?UVWDsDrc/ZfFXhHWn3ALS1w7GNn0CUCnAjp6j/GIbYTqMsfTg+SapU3x2B8J?=
+ =?us-ascii?Q?RlxC18R4iRgdoNl3kALUVG7k5JiIG7mF5M5TjK0ouh6CwnIavGFbuBTkagwf?=
+ =?us-ascii?Q?NgmHHot+rTYGYIemrAZTN/Ca6enLUvgvgzVm9JW4nlRKJvcxv8eHWOHIkYME?=
+ =?us-ascii?Q?tx4rtzGTzidsXZ45COBi3aPDZfR2LBttKiHmZdZYgFCm1pepZGHu2jWk/rX6?=
+ =?us-ascii?Q?cLvL4FERdM0Sn4tfpY8kBdmsipLvjGU8Asy9L4np22wmSy9XtOF/NANFAmHn?=
+ =?us-ascii?Q?0D9iqJsYvKUnXJcQd8yr26jX+YikUVM/xlbefRJFAvl5PUAcR6USTZeCknHz?=
+ =?us-ascii?Q?D38T2wACEj4rsEMAnE/2glfusyJIicr9aEazyNVpCbYLVUfyvZF3MK0jB3DK?=
+ =?us-ascii?Q?yr+rUoEg6FaXEGwZstgI0W/VebiWgiCxuSuZ0nv9jYwcse35VcVoCWgj+Dgw?=
+ =?us-ascii?Q?qpG6g0fzP/4ADB3yzkErYTSVh/v1SR39RsgJzPAOb0bBary5ns6ZGA/oE7GA?=
+ =?us-ascii?Q?eQS4kHTaiBryVFSJaGY7X/GWPa9VuLAk5E1iuywE?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 94e8a737-876f-48a0-8728-08dd687d267e
+X-MS-Exchange-CrossTenant-AuthSource: CH3PR12MB8659.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Mar 2025 13:34:48.7320
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2IuKN+c69obwKlXgvMZcNaAn7QIs6xSQ3A/LOHPLvALE5hVpcbucYwMIZQZ7Ol0j
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB5761
 
-
-
-On 21/03/2025 13:16, Dmitry Baryshkov wrote:
-> On Fri, 21 Mar 2025 at 14:35, Srinivas Kandagatla
-> <srinivas.kandagatla@linaro.org> wrote:
->>
->>
->>
->> On 20/03/2025 14:03, Dmitry Baryshkov wrote:
->>> On Thu, Mar 20, 2025 at 11:56:32AM +0000, srinivas.kandagatla@linaro.org wrote:
->>>> From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->>>>
->>>> On some platforms to minimise pop and click during switching between
->>>> CTIA and OMTP headset an additional HiFi mux is used. Most common
->>>> case is that this switch is switched on by default, but on some
->>>> platforms this needs a regulator enable.
->>>>
->>>> move to using mux control to enable both regulator and handle gpios,
->>>> deprecate the usage of gpio.
->>>>
->>>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->>>> ---
->>>>    sound/soc/codecs/Kconfig   |  2 ++
->>>>    sound/soc/codecs/wcd938x.c | 38 ++++++++++++++++++++++++++++++--------
->>>>    2 files changed, 32 insertions(+), 8 deletions(-)
->>>>
->>>> diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
->>>> index ee35f3aa5521..b04076282c8b 100644
->>>> --- a/sound/soc/codecs/Kconfig
->>>> +++ b/sound/soc/codecs/Kconfig
->>>> @@ -2226,6 +2226,8 @@ config SND_SOC_WCD938X
->>>>       tristate
->>>>       depends on SOUNDWIRE || !SOUNDWIRE
->>>>       select SND_SOC_WCD_CLASSH
->>>> +    select MULTIPLEXER
->>>> +    imply MUX_GPIO
->>>
->>> Why? This is true for a particular platform, isn't it?
->>
->> We want to move the codec to use gpio mux instead of using gpios directly
->>
->> So this become codec specific, rather than platform.
+On Wed, Mar 19, 2025 at 06:55:42PM -0700, Changyuan Lyu wrote:
+> From: Alexander Graf <graf@amazon.com>
 > 
-> Not quite. "select MULTIPLEXER" is correct and is not questionable.
-> I'm asking about the MUX_GPIO. The codec itself has nothing to do with
-> the board using _GPIO_ to switch 4-pin modes. It is a board-level
-> decision. A board can use an I2C-controlled MUX instead. I'd say, that
-> at least you should describe rationale for this `imply` clause in the
-> commit message.
-
-I agree to you point, but historically in this case us/euro selection is 
-only driven by gpio. But I see no harm in moving the MUX_GPIO dependency 
-to machine driver KConfigs.
-
-Will fix this in v3.
-
-thanks,
-Srini
+> Add the core infrastructure to generate Kexec HandOver metadata. Kexec
+> HandOver is a mechanism that allows Linux to preserve state - arbitrary
+> properties as well as memory locations - across kexec.
 > 
+> It does so using 2 concepts:
+> 
+>   1) State Tree - Every KHO kexec carries a state tree that describes the
+>      state of the system. The state tree is represented as hash-tables.
+>      Device drivers can add/remove their data into/from the state tree at
+>      system runtime. On kexec, the tree is converted to FDT (flattened
+>      device tree).
+
+Why are we changing this? I much prefered the idea of having recursive
+FDTs than this notion copying eveything into tables then out into FDT?
+Now that we have the preserved pages mechanism there is a pretty
+direct path to doing recursive FDT.
+
+I feel like this patch is premature, it should come later in the
+project along with a stronger justification for this approach.
+
+IHMO keep things simple for this series, just the very basics.
+
+> +int register_kho_notifier(struct notifier_block *nb)
+> +{
+> +	return blocking_notifier_chain_register(&kho_out.chain_head, nb);
+> +}
+> +EXPORT_SYMBOL_GPL(register_kho_notifier);
+
+And another different set of notifiers? :(
+
+> +static int kho_finalize(void)
+> +{
+> +	int err = 0;
+> +	void *fdt;
+> +
+> +	fdt = kvmalloc(kho_out.fdt_max, GFP_KERNEL);
+> +	if (!fdt)
+> +		return -ENOMEM;
+
+We go to all the trouble of keeping track of stuff in dynamic hashes
+but still can't automatically size the fdt and keep the dumb uapi to
+have the user say? :( :(
+
+Jason
 
