@@ -1,201 +1,203 @@
-Return-Path: <devicetree+bounces-159824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B406DA6C3EE
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 21:07:44 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B794A6C3E7
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 21:07:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1BB88468B43
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 20:07:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1790F7A7B85
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 20:06:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEE4B22FF2B;
-	Fri, 21 Mar 2025 20:07:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDF6D22FE18;
+	Fri, 21 Mar 2025 20:07:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="X7jesX2i"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lzwYbugI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9ACB2309B6
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 20:07:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E880622DFA6;
+	Fri, 21 Mar 2025 20:07:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742587644; cv=none; b=eLBBZVD60PpToFuB25QBM2gAR3GYBamvyXbmqNzS0EN8EUxuMpS5421Ue39AAg7HcvRSl/FSgrOfgWAap0Ps82IxmqHqlKjMTxH9j4RYZuzE766p0BPPzEnCiLI3ehHpxZvPKEIMiEDAMyFjdmRL1nGDVMAb3UGNDwJlt1hy6P4=
+	t=1742587639; cv=none; b=ew9FzrS1M/NMp0fKAmXA97Aw9YLF7KH2CL5ElIv/lM7ChagPWm3DWZMWm4mclN5dB8eNMaQaR+l6ZHDJqjdhjRgQgCxSMnHZadP5BM/9XKRN8aOSA3B14qc14QVPZB3TT0je9xcOUmUD0UsWgctAgpDf0N3q6KcDzmIY/c4df2M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742587644; c=relaxed/simple;
-	bh=GODJzvPep7JsM8otgz+5JkNHJzpd6QgPC2zwEWAXwqQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=RXZQZmuVAowbE++NJr9MqEhRGm5awXvz89RtKGX5daExrNoWhbjUNG+StIGJVbF/7woq5rPKFp3RFLXRsLXJfAJiA9oC0k/PZanjXuZy/rrAenTvTkhdxX+OFZvt3PY446zAYSJMRW0T+BhQ0Pw9yoBd7NBxQwvAx3mYkQWyeGU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=X7jesX2i; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 98AF9101E90A8;
-	Fri, 21 Mar 2025 21:07:19 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1742587640; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=5+jyyD01tuaQ9cu3oI1xcyMiNqOwJFt8kuWaEBU5/6M=;
-	b=X7jesX2iMhyumPrNedJv8B7XDjh9wic5AVfGyGcHHjXEGGlmQlyN5IX89SX6MgHKiAQMBR
-	Ct/179I90ZNIfnBvCXwnYO8JjWcvFXj6suKf1XPJsKG2iDb406uTu4IfNxw5kObrfNK38u
-	0IGcUf3aloiWa3ePtAQ09nGRbH9v8W13NlVg0YSTDLtPUKofPPgbrT7xk6R+1aIfrD7Xpz
-	ZPkmm0ovCje/ouFs6fjxQTxXdwZwYbZMJs9fgY7FBXuelthnbmkdZA8iBNqJqhRIipB/bO
-	UDfOEmH1jI2Ldj1BdeNVv8wIfYtqnA1sY0/4HdEr6EekGeuLolSMHTLNyW3YFA==
-From: Marek Vasut <marex@denx.de>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marex@denx.de>,
-	Boris Brezillon <boris.brezillon@collabora.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Liviu Dudau <liviu.dudau@arm.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Sebastian Reichel <sre@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Steven Price <steven.price@arm.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	imx@lists.linux.dev
-Subject: [PATCH v2 9/9] arm64: dts: imx95: Describe Mali G310 GPU
-Date: Fri, 21 Mar 2025 21:05:59 +0100
-Message-ID: <20250321200625.132494-10-marex@denx.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250321200625.132494-1-marex@denx.de>
-References: <20250321200625.132494-1-marex@denx.de>
+	s=arc-20240116; t=1742587639; c=relaxed/simple;
+	bh=19oUotyDOCLDkmDdkLpuedsgL2cIAvuGUJEHwHnOgLQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Cvi5Fgg/bodmrxfmk+C85EL4y0gPd+J1XKZicKr2i47rDQlgWEG/s8vPBGLePcpXbcbdLdv5Fsa5LjJxsRT+Vg2Udxix6rElIBViHsB3bo0l1oJmHzXj7J4KVEpJk1DLIkMtoxozonyB2940cFcY9fhGdssdqp8SsOcSj9RaGYQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=lzwYbugI; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52LAT9tR022053;
+	Fri, 21 Mar 2025 20:06:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	BAZWiy3q1WUqRoaiLvI9dIJslrFXt+ABgbRRNuix8fQ=; b=lzwYbugIwJgPebOs
+	BZR/l5K91Y2wuiUb0UD3Gi7Gp32OKbT04rL0j0kY2MF0WH8SVRX2CbYm6IcqVEjr
+	UID4lkN8eXiMXF/SQFE2TQX0ARLW71+kODkzxdwYzQguDZ1sl9M3Tbnuku2fclWR
+	XwKEWoejSh+d/reKnd9s6JZaVnBQy9G2DALzyxBFZafiZqYuhNxWMalDgW+aVIAT
+	siR2Wu0TpyOlc8YgHvTYzJq3cdlECYH1/Pk6wolEN0E/98dxw3JzPf27VlCdu8Ka
+	a3ftzIEA5yAs9xy8FjeOS//ZCL0XT3viLGRdbVAb935rNz8sCjkGrWvlbLTe/3ev
+	EQ9ZYA==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45h4wphrb5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 21 Mar 2025 20:06:50 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52LK6nCH020958
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 21 Mar 2025 20:06:49 GMT
+Received: from [10.71.113.245] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 21 Mar
+ 2025 13:06:49 -0700
+Message-ID: <5ba0912a-4d8c-4321-9fa4-0bac89af8224@quicinc.com>
+Date: Fri, 21 Mar 2025 13:06:43 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v36 00/31] Introduce QC USB SND audio offloading support
+To: Luca Weiss <luca.weiss@fairphone.com>, <srinivas.kandagatla@linaro.org>,
+        <mathias.nyman@intel.com>, <perex@perex.cz>, <conor+dt@kernel.org>,
+        <dmitry.torokhov@gmail.com>, <corbet@lwn.net>, <broonie@kernel.org>,
+        <lgirdwood@gmail.com>, <krzk+dt@kernel.org>,
+        <pierre-louis.bossart@linux.intel.com>, <Thinh.Nguyen@synopsys.com>,
+        <tiwai@suse.com>, <robh@kernel.org>, <gregkh@linuxfoundation.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-sound@vger.kernel.org>, <linux-input@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>
+References: <20250319005141.312805-1-quic_wcheng@quicinc.com>
+ <D8LYYEQJ2W4L.1H7FPF4140BVS@fairphone.com>
+Content-Language: en-US
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <D8LYYEQJ2W4L.1H7FPF4140BVS@fairphone.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 8zEwo_wZhHpbeBVNYzwvKCMZbXs1_InH
+X-Proofpoint-GUID: 8zEwo_wZhHpbeBVNYzwvKCMZbXs1_InH
+X-Authority-Analysis: v=2.4 cv=ZN3XmW7b c=1 sm=1 tr=0 ts=67ddc6db cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=qC_FGOx9AAAA:8 a=NEAV23lmAAAA:8 a=XwCJkI7jc2rzYGe07aMA:9
+ a=QEXdDO2ut3YA:10 a=fsdK_YakeE02zTmptMdW:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-21_06,2025-03-21_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ mlxlogscore=999 clxscore=1011 phishscore=0 adultscore=0 lowpriorityscore=0
+ malwarescore=0 impostorscore=0 spamscore=0 mlxscore=0 priorityscore=1501
+ bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503210149
 
-The instance of the GPU populated in i.MX95 is the G310,
-describe this GPU in the DT. Include description of the
-GPUMIX block controller, which can be operated as a simple
-reset. Include dummy GPU voltage regulator and OPP tables.
+Hi Luca,
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Boris Brezillon <boris.brezillon@collabora.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Liviu Dudau <liviu.dudau@arm.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Sebastian Reichel <sre@kernel.org>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: Steven Price <steven.price@arm.com>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: devicetree@vger.kernel.org
-Cc: dri-devel@lists.freedesktop.org
-Cc: imx@lists.linux.dev
-Cc: linux-arm-kernel@lists.infradead.org
----
-V2: - Drop regulator-{always,boot}-on from fixed-gpu-reg regulator
-    - Keep the GPU and GPUMIX always enabled
-    - Switch from fsl, to nxp, vendor prefix
-    - Fix opp_table to opp-table
-    - Describe IMX95_CLK_GPUAPB as coregroup clock
-    - Sort interrupts by their names to match bindings
----
- arch/arm64/boot/dts/freescale/imx95.dtsi | 58 ++++++++++++++++++++++++
- 1 file changed, 58 insertions(+)
+On 3/21/2025 6:13 AM, Luca Weiss wrote:
+> Hi Wesley,
+> 
+> On Wed Mar 19, 2025 at 1:51 AM CET, Wesley Cheng wrote:
+>> Requesting to see if we can get some Acked-By tags, and merge on usb-next.
+>>
+>> Several Qualcomm based chipsets can support USB audio offloading to a
+>> dedicated audio DSP, which can take over issuing transfers to the USB
+>> host controller.  The intention is to reduce the load on the main
+>> processors in the SoC, and allow them to be placed into lower power modes.
+>> There are several parts to this design:
+>>   1. Adding ASoC binding layer
+>>   2. Create a USB backend for Q6DSP
+>>   3. Introduce XHCI interrupter support
+>>   4. Create vendor ops for the USB SND driver
+>>
+> 
+> I was able to test this series (v35) on SM6350/SM7225 Fairphone 4
+> smartphone and it appears to work as expected!
 
-diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
-index 9bb26b466a061..3acdbd7fd4eee 100644
---- a/arch/arm64/boot/dts/freescale/imx95.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
-@@ -249,6 +249,35 @@ dummy: clock-dummy {
- 		clock-output-names = "dummy";
- 	};
- 
-+	gpu_fixed_reg: fixed-gpu-reg {
-+		compatible = "regulator-fixed";
-+		regulator-min-microvolt = <920000>;
-+		regulator-max-microvolt = <920000>;
-+		regulator-name = "vdd_gpu";
-+	};
-+
-+	gpu_opp_table: opp-table {
-+		compatible = "operating-points-v2";
-+
-+		opp-500000000 {
-+			opp-hz = /bits/ 64 <500000000>;
-+			opp-hz-real = /bits/ 64 <500000000>;
-+			opp-microvolt = <920000>;
-+		};
-+
-+		opp-800000000 {
-+			opp-hz = /bits/ 64 <800000000>;
-+			opp-hz-real = /bits/ 64 <800000000>;
-+			opp-microvolt = <920000>;
-+		};
-+
-+		opp-1000000000 {
-+			opp-hz = /bits/ 64 <1000000000>;
-+			opp-hz-real = /bits/ 64 <1000000000>;
-+			opp-microvolt = <920000>;
-+		};
-+	};
-+
- 	clk_ext1: clock-ext1 {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
-@@ -1890,6 +1919,35 @@ netc_emdio: mdio@0,0 {
- 			};
- 		};
- 
-+		gpu_blk_ctrl: reset-controller@4d810000 {
-+			compatible = "nxp,imx95-gpu-blk-ctrl";
-+			reg = <0x0 0x4d810000 0x0 0xc>;
-+			#reset-cells = <1>;
-+			clocks = <&scmi_clk IMX95_CLK_GPUAPB>;
-+			assigned-clocks = <&scmi_clk IMX95_CLK_GPUAPB>;
-+			assigned-clock-parents = <&scmi_clk IMX95_CLK_SYSPLL1_PFD1_DIV2>;
-+			assigned-clock-rates = <133333333>;
-+			power-domains = <&scmi_devpd IMX95_PD_GPU>;
-+		};
-+
-+		gpu: gpu@4d900000 {
-+			compatible = "nxp,imx95-mali", "arm,mali-valhall-csf";
-+			reg = <0 0x4d900000 0 0x480000>;
-+			clocks = <&scmi_clk IMX95_CLK_GPU>, <&scmi_clk IMX95_CLK_GPUAPB>;
-+			clock-names = "core", "coregroup";
-+			interrupts = <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 290 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 288 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "job", "mmu", "gpu";
-+			mali-supply = <&gpu_fixed_reg>;
-+			operating-points-v2 = <&gpu_opp_table>;
-+			power-domains = <&scmi_devpd IMX95_PD_GPU>, <&scmi_perf IMX95_PERF_GPU>;
-+			power-domain-names = "mix", "perf";
-+			resets = <&gpu_blk_ctrl 0>;
-+			#cooling-cells = <2>;
-+			dynamic-power-coefficient = <1013>;
-+		};
-+
- 		ddr-pmu@4e090dc0 {
- 			compatible = "fsl,imx95-ddr-pmu", "fsl,imx93-ddr-pmu";
- 			reg = <0x0 0x4e090dc0 0x0 0x200>;
--- 
-2.47.2
+Thank you for taking the time to testing this :), much appreciated.
 
+> 
+> Based on the sm8350 branch you shared[0] I added similar dts bits for my
+> device, I've pushed that branch here[1] for reference.
+> 
+> [0] https://git.codelinaro.org/clo/linux-kernel/kernel-qcom/-/commits/usb_audio_offload/
+> [1] https://github.com/sm6350-mainline/linux/commits/sm6350-6.14-wip-usb-snd-offload/
+> 
+> And I've used these commands to test:
+> 
+> fairphone-4:~$ amixer -c0 cset name='USB Mixer MultiMedia2' On
+> 
+> fairphone-4:~$ aplay -l
+> **** List of PLAYBACK Hardware Devices ****
+> card 0: F4 [Fairphone 4], device 0: MultiMedia1 (*) []
+> Subdevices: 1/1
+> Subdevice #0: subdevice #0
+> card 0: F4 [Fairphone 4], device 1: MultiMedia2 (*) []
+> Subdevices: 1/1
+> Subdevice #0: subdevice #0
+> card 1: Audio [Hi-Res Audio], device 0: USB Audio [USB Audio]
+> Subdevices: 1/1
+> Subdevice #0: subdevice #0
+> 
+> fairphone-4:~$ ffmpeg -i test.m4a -acodec pcm_s16le test.wav
+> 
+> fairphone-4:~$ aplay --device=plughw:0,1 Music/test.wav
+> Playing WAVE 'Music/test.wav' : Signed 16 bit Little Endian, Rate 44100 Hz, Stereo
+> 
+> And then music was coming out of these headphones connected via a USB-C
+> to 3.5mm dongle.
+> 
+> Every time I'm starting playback this error appears in dmesg, do you
+> also see this on your test setup?
+> 
+> [ 1336.081525] q6afe-dai 3000000.remoteproc:glink-edge:apr:service@4:dais: AFE Port already open
+> 
+
+The print is coming because the Q6 USB backend DAI link is utilizing the
+q6afe_port_get_from_id() API to fetch the proper AFE port to issue commands
+to.  IMO, that log level should be decreased to at least dev_info() instead
+of an error, but we can probably take that discussion into a different series.
+
+To add, I also see this on my set up.
+
+> 
+> And if I'm not mistaken it's possible to check that actually the offload
+> path is getting used by checking the interrupt counts of the xhci-hcd
+> interrupt.
+> 
+> With regular USB audio card playback there's many interrupts per second
+> happening:
+> 
+> fairphone-4:~$ aplay --device=plughw:1,0 Music/test.wav # regular USB
+> fairphone-4:~$ cat /proc/interrupts | grep -i usb
+> 188:     137524          0          0          0          0          0          0          0    GICv3 165 Level     xhci-hcd:usb1
+> fairphone-4:~$ cat /proc/interrupts | grep -i usb
+> 188:     137591          0          0          0          0          0          0          0    GICv3 165 Level     xhci-hcd:usb1
+> 
+> And with the offload card during playback there's no interrupts
+> happening (just a few when initially starting playback):
+> 
+> fairphone-4:~$ aplay --device=plughw:0,1 Music/test.wav # offload
+> fairphone-4:~$ cat /proc/interrupts | grep -i usb
+> 188:     141947          0          0          0          0          0          0          0    GICv3 165 Level     xhci-hcd:usb1
+> fairphone-4:~$ cat /proc/interrupts | grep -i usb
+> 188:     141947          0          0          0          0          0          0          0    GICv3 165 Level     xhci-hcd:usb1
+> 
+
+This is correct.  With offload enabled, you should probably only see a few
+interrupts from xHCI from the initial USB headset enumeration and control
+transfers, but the data packets itself should result in no increase of the
+xHCI IRQ.
+
+Thanks
+Wesley Cheng
 
