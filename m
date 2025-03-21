@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-159533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D912A6B547
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 08:45:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CF9CA6B54C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 08:46:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8D79466275
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 07:44:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E348480491
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 07:46:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D65C61EE7B6;
-	Fri, 21 Mar 2025 07:44:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8D161EA7FD;
+	Fri, 21 Mar 2025 07:46:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uxtOttO2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OrnH0a4X"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A754D1EB9F7;
-	Fri, 21 Mar 2025 07:44:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACD971D5CD7;
+	Fri, 21 Mar 2025 07:46:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742543072; cv=none; b=hYzIAslPk58VQhIa9tp05H+zjtMDcKTVvvfsQM1leohhiCH7tH9M7tcnt3GbGgHMDmyqb698J1zaLkbgp+6JRpISp8jjRx7fzPG842VH7VhzW6TcaJ095S4v/plNeegicKZh2hzYKFveE9Z9q1rMCY7xLLffj/kCoxO+7Shyzjo=
+	t=1742543211; cv=none; b=JaV5ty8rkUBIPtqn4X7QshRXoWQgC8LL3On32KtPteW2m3MSyxlccVxSKIWlDiKncMGtHdEQska3UMyWi5Bg230z/wNkePd0cX95DeywlY6Q2rqJg8haNDnH3uad9/55AF5ROI3GL2sZGzE/DdGhXxPAKU171nzOhhVM/HNnay0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742543072; c=relaxed/simple;
-	bh=/YmjxGbakqtnak0HA4K/vKGsWFbKueiINUncr9XTSzw=;
+	s=arc-20240116; t=1742543211; c=relaxed/simple;
+	bh=tN3/eqdA02Ff51ubUm4+9RIpIIhvM6qTr2+owkH5aE8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oBmYvLDytX3zsPntGOUXY/ZHD6Xlx90qbjJ5x73vAJX0QFSGqdN1zTiOlPKHvR8ajI4nz6KuV7P+pfYZBC1N+h+sqcH0DssGW/iKtTsz9IHbbo6qdNYXiF+NXzpAsXaqvDJuzH6zhMX074rAib7VqqvT150K8BKcwEeVbpqHdeY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uxtOttO2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9DE8C4CEE3;
-	Fri, 21 Mar 2025 07:44:24 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=hdpLvAF8oWeixb3xZ95gt7eYm/gG6VAXc+QzXRnynezsO0un4nUh7RjQIL+fzloLIUF21sqxJb5HWhoCH+LtYcNX6pV/1fgH2Ce0g4OsSEHg02BSCmUhqnsCvJFClkm4e4UXopnk0mBMP/fViZ4zRXhqvUszCQVQJOIGyx5oYlI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OrnH0a4X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3D7BC4CEE3;
+	Fri, 21 Mar 2025 07:46:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742543072;
-	bh=/YmjxGbakqtnak0HA4K/vKGsWFbKueiINUncr9XTSzw=;
+	s=k20201202; t=1742543211;
+	bh=tN3/eqdA02Ff51ubUm4+9RIpIIhvM6qTr2+owkH5aE8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uxtOttO2F7v89LlJgh70CQiu5tLI6RaIemI9Z0u8HLRIqerUioGSSYZrDpkcA3sPv
-	 /3KXrgvNsfcYBjgOdatbfruVTVSwl1+thHkX/4svLdGjdAGPxr1R56cev/osRg9N+E
-	 XQOySpa5W7nDLmt3gtA6T85KBMttBU4UT2JX4NAwoUC2ZjQH/NEstb50hKeD5MTUe+
-	 o2/4Y4f8v+vaGHApik+dNWVxLFpmvynZOa2PbQRTfGBGihAx3Hj69aLPViPfRYMQh+
-	 ZzfXaT758lgC2uoV+MGwjGcfQoysEVl+q9Cn33/sVgS8DSNBPQrpI+MCfoi87U9CqV
-	 busQicYEiHfTA==
-Message-ID: <5127f2e7-cb38-4103-8799-551fdedd8152@kernel.org>
-Date: Fri, 21 Mar 2025 08:44:21 +0100
+	b=OrnH0a4XjsHrOw4YwVdkAdscm+XQEMp1vsUqwrHCn/6+VfeqEIEnTo1zt0Sl8DG9e
+	 aME54juUDUOR1Nth/ZdOEe4BnTg5jJ2SAp9ftdmqrZZYrEyC+o6OB6ei5q4ePZ7fVL
+	 YXo9+Z0i3FMZR6JBICyxV0qZQrSBDiDWrEVeKMRGU0ZKGhrFY43TUKwlSJHS9vhtKM
+	 d5H32pyXErRnyPij+hWRFWCSKBQ/lNTZfL2ANMdk75Ig0g42HN2HOu5mu8DQxZHnnQ
+	 bGbm0I7uGQY2ZxNfbcC/y+4yfqzOsEWfVDXuGjW7sBhcLVhOoKjdPvEwQLXY+SyEby
+	 H3P8cwbAsNGlA==
+Message-ID: <d37eb60d-fd84-4274-85ac-6ddfd32de3a5@kernel.org>
+Date: Fri, 21 Mar 2025 08:46:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] ARM: dts: aspeed: Add device tree for Nvidia's
- GB200NVL BMC
-To: Willie Thai <wthai@nvidia.com>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
- kees@kernel.org, tony.luck@intel.com, gpiccoli@igalia.com,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org, openbmc@lists.ozlabs.org
-Cc: leohu@nvidia.com, tingkaic@nvidia.com, dkodihalli@nvidia.com,
- Mars Yang <maryang@nvidia.com>, Andrew Lunn <andrew@lunn.ch>,
- Paul Menzel <pmenzel@molgen.mpg.de>
-References: <20250320164633.101331-1-wthai@nvidia.com>
- <20250320164633.101331-2-wthai@nvidia.com>
+Subject: Re: [PATCH 3/4] arm64: dts: agilex: Update eccmgr in DTSI to reflect
+ hw/yaml
+To: "Gerlach, Matthew" <matthew.gerlach@altera.com>,
+ Rob Herring <robh@kernel.org>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, dinguyen@kernel.org,
+ bp@alien8.de, tony.luck@intel.com, james.morse@arm.com, mchehab@kernel.org,
+ rric@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-edac@vger.kernel.org
+References: <20250320164622.6971-1-matthew.gerlach@altera.com>
+ <20250320164622.6971-4-matthew.gerlach@altera.com>
+ <20250320193413.GB750632-robh@kernel.org>
+ <3b325b3b-df64-4f16-9284-cddfaaa40a21@altera.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,124 +107,41 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250320164633.101331-2-wthai@nvidia.com>
+In-Reply-To: <3b325b3b-df64-4f16-9284-cddfaaa40a21@altera.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/03/2025 17:46, Willie Thai wrote:
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +		led-0 {
-> +			label = "uid_led";
-> +			gpios = <&sgpiom0 27 GPIO_ACTIVE_LOW>;
-> +		};
-> +		led-1 {
-> +			label = "fault_led";
-> +			gpios = <&sgpiom0 29 GPIO_ACTIVE_LOW>;
-> +		};
-> +		led-2 {
-> +			label = "power_led";
-> +			gpios = <&sgpiom0 31 GPIO_ACTIVE_LOW>;
-> +		};
-> +
+On 21/03/2025 00:24, Gerlach, Matthew wrote:
+> 
+> On 3/20/2025 12:34 PM, Rob Herring wrote:
+>> On Thu, Mar 20, 2025 at 09:46:21AM -0700, Matthew Gerlach wrote:
+>>> Update socfpga_agilex.dtsi to track the actual hardware description
+>>> provided in altr,socfpga-s10-ecc-manager.yaml.
+>>>
+>>> Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
+>>> ---
+>>>  arch/arm64/boot/dts/intel/socfpga_agilex.dtsi | 18 ++++++------------
+>>>  1 file changed, 6 insertions(+), 12 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+>>> index 1235ba5a9865..708cb8e762b6 100644
+>>> --- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+>>> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+>>> @@ -602,8 +602,7 @@ sdr: sdr@f8011100 {
+>>>  		};
+>>>  
+>>>  		eccmgr {
+>>> -			compatible = "altr,socfpga-s10-ecc-manager",
+>>> -				     "altr,socfpga-a10-ecc-manager";
+>>> +			compatible = "altr,socfpga-s10-ecc-manager";
+>>
+>> You are breaking the ABI here. Before this series, the driver required
+>> altr,socfpga-a10-ecc-manager.
+> Yes, breaking the ABI required the change in PATCH 2/4, which is 
+> suboptimal.
 
-You still have stray blank lines in few places.
 
-> +	};
-> +
-> +	buttons {
-> +		button-power {
-> +			label = "power-btn";
-> +			gpio = <&sgpiom0 156 GPIO_ACTIVE_LOW>;
-> +		};
-> +		button-uid {
-> +			label = "uid-btn";
-> +			gpio = <&sgpiom0 154 GPIO_ACTIVE_LOW>;
-> +		};
-> +	};
-> +
-> +};
-> +
-
-...
-
-> +/*
-> + * Enable USB port A as device (via the virtual hub) to host
-> + */
-> +&vhub {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	/*
-> +	 * Uncomment below line to enable internal EHCI controller
-> +	 * Current config uses xHCI Port1
-> +	 */
-
-Comment makes no sense.
-
-> +};
-> +
-> +&video {
-> +	status = "okay";
-> +	memory-region = <&video_engine_memory>;
-> +};
-> +
-
-...
-
-> +&gpio0 {
-> +	gpio-line-names =
-> +		/*A0-A7*/ "", "", "", "", "", "", "", "",
-> +		/*B0-B7*/ "", "", "", "", "", "", "", "",
-> +		/*C0-C7*/ "SGPIO_I2C_MUX_SEL-O", "", "", "", "", "", "", "",
-> +		/*D0-D7*/ "", "", "", "UART1_MUX_SEL-O", "", "FPGA_PEX_RST_L-O", "", "",
-> +		/*E0-E7*/ "RTL8221_PHY_RST_L-O", "RTL8211_PHY_INT_L-I",	"", "UART3_MUX_SEL-O",
-> +					"", "", "", "SGPIO_BMC_EN-O",
-> +		/*F0-F7*/ "", "", "", "", "", "", "", "",
-> +		/*G0-G7*/ "", "", "", "", "", "", "", "",
-> +		/*H0-H7*/ "", "", "", "", "", "", "", "",
-> +		/*I0-I7*/ "", "", "", "", "", "QSPI2_RST_L-O", "GLOBAL_WP_BMC-O", "BMC_DDR4_TEN-O",
-> +		/*J0-J7*/ "", "", "", "", "", "", "", "",
-> +		/*K0-K7*/ "", "", "", "", "", "", "", "",
-> +		/*L0-L7*/ "", "", "", "", "", "", "", "",
-> +		/*M0-M7*/ "PCIE_EP_RST_EN-O", "BMC_FRU_WP-O", "HMC_RESET_L-O", "STBY_POWER_EN-O",
-> +					"STBY_POWER_PG-I", "PCIE_EP_RST_L-O", "", "",
-> +		/*N0-N7*/ "", "", "", "", "", "", "", "",
-> +		/*O0-O7*/ "", "", "", "", "", "", "", "",
-> +		/*P0-P7*/ "", "", "", "", "", "", "", "",
-> +		/*Q0-Q7*/ "", "", "", "", "", "", "", "",
-> +		/*R0-R7*/ "", "", "", "", "", "", "", "",
-> +		/*S0-S7*/ "", "", "", "", "", "", "", "",
-> +		/*T0-T7*/ "", "", "", "", "", "", "", "",
-> +		/*U0-U7*/ "", "", "", "", "", "", "", "",
-> +		/*V0-V7*/ "AP_EROT_REQ-O", "EROT_AP_GNT-I", "", "","PCB_TEMP_ALERT-I", "","", "",
-> +		/*W0-W7*/ "", "", "", "", "", "", "", "",
-> +		/*X0-X7*/ "", "", "TPM_MUX_SEL-O", "", "", "", "", "",
-> +		/*Y0-Y7*/ "", "", "", "EMMC_RST-O", "","", "", "",
-> +		/*Z0-Z7*/ "BMC_READY-O","", "", "", "", "", "", "";
-> +};
-> +
-> +&gpio1 {
-> +	/* 36 1.8V GPIOs */
-> +	gpio-line-names =
-> +		/*A0-A7*/ "", "", "", "", "", "", "", "",
-> +		/*B0-B7*/ "", "", "", "", "", "", "IO_EXPANDER_INT_L-I","",
-> +		/*C0-C7*/ "", "", "", "", "", "", "", "",
-> +		/*D0-D7*/ "", "", "", "", "", "", "SPI_HOST_TPM_RST_L-O", "SPI_BMC_FPGA_INT_L-I",
-> +		/*E0-E7*/ "", "", "", "", "", "", "", "";
-> +};
-> +
-> +// EMMC group that excludes WP pin
-> +&pinctrl {
-> +	pinctrl_emmcg5_default: emmcg5_default {
-
-No underscores in node names.
-
-> +		function = "EMMC";
-> +		groups = "EMMCG5";
-> +	};
-> +};
-
+It's still ABI break for no good reason.
 
 Best regards,
 Krzysztof
