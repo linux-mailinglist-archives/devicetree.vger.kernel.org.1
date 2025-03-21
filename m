@@ -1,187 +1,237 @@
-Return-Path: <devicetree+bounces-159771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6017FA6C003
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 17:36:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C7BCA6C088
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 17:50:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B879463BA5
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 16:34:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 075623A343E
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 16:48:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EB5522A7FF;
-	Fri, 21 Mar 2025 16:34:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KAD96aLz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8153422AE75;
+	Fri, 21 Mar 2025 16:48:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7513A13635C
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 16:34:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5681D155A25;
+	Fri, 21 Mar 2025 16:48:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742574883; cv=none; b=iy46SVdlDqiidN93NP8MkdXFp1jn1PGeIvNhD25/dHMhyNlpkh529/zyL87JmywCrDmxM11bwXTXpcydHQ8YSLVCRo/UuRRuXITrjQ1g38PqxsLFQ8UMdQnSAkL1Bb+pE8xE3XtHjshO6xp2Qt+t6KLFUf5o+fUe2buKUmeXoBg=
+	t=1742575737; cv=none; b=NFnmlNMkNd0Z6yU9UCuEhpTdsx/sq+6MK+PqytoXA0g34piRG0BUmUPY+AsBWj3Phk06kWjOSbRt9n08t+JgL3ywGHiuHOm0U2kPRv2unnKzyR9WgQnAhd5d7UzVh6Q0RaggQ6u5LbQm2rldv/vJCln7asKJXo/esk5/d9psqiM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742574883; c=relaxed/simple;
-	bh=0b6hF60Knc+sMkvma7g1QOjoquUgb3ux8++hhbe4Ya8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ftuXcgFQd+cPq9xphRdtrfZakjlNd/Zf3pezoC6sexcUI2GbCG2xzode4Fy/4RKUcFVd4EqKOKuxuSxUN11rtaoqK9lyatjzd3TmFgI7GiwN841JwbXN5/4mwlTqimbUgDO918lBBFiuDcRjob3s7sh8wgkwnDXlr8RUmawhUtQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KAD96aLz; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52LATCi2011486
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 16:34:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=EE388VEZSesC5LctaxpfptMO
-	MU2c2Rmck6qRzYYeCuQ=; b=KAD96aLzA3xxCx0Dc3im/mGKqulsZ/H8sgX5+UGi
-	bH/xD/KwehkvyRdrj3pczZe1pTmkxradOjczTz5hyN+j6fUsQ1aawG8VbvyaHrIm
-	em7kb0QPWDE6MS8ZeezUwSlhL6zArGNL4mMli0n30J4ayxcGMrY87y48BInPgxkD
-	1yQ+bgzoMPZxbYLdBwU1xGtW7HNRctaoujqIj6ryLC0mkomTABXwiZuWlfAFThMg
-	qEfhGHs1+dXaxURZ//HsFmVOY2B1Z8lGWg+1J5JzdM+mL5mx7Q5TG6zoGTG+zBQy
-	Z7dIZFm/6TGKyfFV8g3hCiaBIEgN9v4bZsHheGI6Th6qQQ==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45g15y72fv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 16:34:40 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6eada773c0eso63427236d6.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 09:34:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742574879; x=1743179679;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EE388VEZSesC5LctaxpfptMOMU2c2Rmck6qRzYYeCuQ=;
-        b=qVafUa8VcksdKS9WHiEvuRj8+cqeVNZ8QnRF9xE9g2/hoRBQTQn0JMasP1XrpAfPcg
-         iosnarUIPxW3gBDOzc6l5BdlhaQ8aKd+QegjBCyC1zbWLk4d6vaUkWVxP13l225G1O60
-         AlLCgZup7JGTGg26ynU4ebSy0qy1Qqk25wEUF3P5IHD+tUtJF9zOzwJfBQ2tGY6Odcl/
-         IrQoKn9v6XMJcAse4I7UsptqzaurXo6+CBmYBHltjOaJ1a87S/c+vEMqq48QxHPG1kVM
-         hyeu5ZqhXllHM04bnBgZcfi4H+IHgDGR9gMP3hHJzkpNbQj+lCYX+1lltLzcLyLtSUJM
-         GgqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXLbueNJTbIT4PxUl1eLnbWbVd3LUSWy3XII3pwbHUME17uGu5ux38Dww/YHYtytGmNPVTVWrFn7K3+@vger.kernel.org
-X-Gm-Message-State: AOJu0YxPNohp9BkDEw47TeJnZAdddQ6d8AEd4kP+jhhp3h4FL+K5zhJs
-	elu4shz1U0sa4R2WEzLVBj5eXlT6UhJLJMZurinDvys6HlONI4UNknVwdrZU3WBTc2bwqpw/pLb
-	WclBWtZ7n+Mci04Lvpm+sOql6kxDS2uOa1WEmwHW8VmJWDpeFty2ge8qVw1W8
-X-Gm-Gg: ASbGncvQGezllXvQICDIhDXh51L8L2m8DBQde7wEhqkgwnG5Zj0idNgcGb3G1ROr19O
-	vLJ4fWm+AGOqSUYx5VMfqsc30biW3uELvZIN4Z8HdMyUEZQp4mtvXUj00pYFKXWqEv9dgWPaE5A
-	pyUoznw/sU91vXWyoTJF22yYnwXlFwgA2Oaoa4zyAf/ayqpgt4+HPN7Aj3I2ITrGCar0FgEZiBJ
-	M9MX+Km60Z/fm8x1hlmQhT65E3Pbyh/KMdBIB92nd0Cw9XubKcR5yaoX9w/iaHtPEr2e/pLAqde
-	kwTCyr0XMqK1kmxlI9oj3MTj3XyikhlEFkwpJ7lptX+hiC7iX2bj8dVElDKi23c2SFfI/D6B0Yw
-	XVaE=
-X-Received: by 2002:a05:6214:19cd:b0:6d8:9062:6616 with SMTP id 6a1803df08f44-6eb3f2ba60fmr59080316d6.7.1742574879274;
-        Fri, 21 Mar 2025 09:34:39 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHp3DOhzM+XReSZ3mycd+S6hNB8v4/e/R/YvL8uoVVb2w9+7h2Gtkt/guRDgFNGXHv5VmsTXA==
-X-Received: by 2002:a05:6214:19cd:b0:6d8:9062:6616 with SMTP id 6a1803df08f44-6eb3f2ba60fmr59079896d6.7.1742574878954;
-        Fri, 21 Mar 2025 09:34:38 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54ad647cb44sm216887e87.86.2025.03.21.09.34.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Mar 2025 09:34:36 -0700 (PDT)
-Date: Fri, 21 Mar 2025 18:34:35 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: peda@axentia.se, broonie@kernel.org, andersson@kernel.org,
-        krzk+dt@kernel.org, ivprusov@salutedevices.com,
-        luca.ceresoli@bootlin.com, zhoubinbin@loongson.cn,
-        paulha@opensource.cirrus.com, lgirdwood@gmail.com, robh@kernel.org,
-        conor+dt@kernel.org, konradybcio@kernel.org, perex@perex.cz,
-        tiwai@suse.com, linux-sound@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, johan+linaro@kernel.org
-Subject: Re: [PATCH v2 4/5] ASoC: codecs: wcd938x: add mux control support
- for hp audio mux
-Message-ID: <cxnmq66gww5mopwwbnw34gx4ynoocf63c76lwwn6h7eklzxhap@whjsxav7nggf>
-References: <20250320115633.4248-1-srinivas.kandagatla@linaro.org>
- <20250320115633.4248-5-srinivas.kandagatla@linaro.org>
- <rdvsnxuc6by6sci56sh7thzpxo5cqi7q24fnmc7hi5yrfszwrg@kqjpiilko3xo>
- <b1aed195-b2e6-4f48-ba10-3049d74085a9@linaro.org>
- <CAO9ioeWLRfzUOwjnFsi_yztdJo2Q25bhvjddh6D3naV_K5eShA@mail.gmail.com>
- <1d93f731-66c1-47b2-a249-9bdb25205525@linaro.org>
+	s=arc-20240116; t=1742575737; c=relaxed/simple;
+	bh=JBdg7xMBLd5iIqOC0TaR5k4K2Igly/gZ0cV4AKosEWo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=faBHcupuM+NTzWoSBngJksg4r107iWuLqMWum7fKufEsxANAYLMN/wLIvzHWlLTQAOCtCBmNRC4c9qfjRiTYsQngOttF96f/aK7CAayoM2Y45dO/ci4dEKeIYAshOG81iSD2Ut+YfwNz/rtKpqiZdO7sEFCJDOsWMxvwExd5f0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 12A25106F;
+	Fri, 21 Mar 2025 09:49:01 -0700 (PDT)
+Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 791DD3F63F;
+	Fri, 21 Mar 2025 09:48:50 -0700 (PDT)
+Message-ID: <135390b1-c0c5-4595-a3f3-1fb376473872@arm.com>
+Date: Fri, 21 Mar 2025 16:48:46 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1d93f731-66c1-47b2-a249-9bdb25205525@linaro.org>
-X-Proofpoint-GUID: NB88R3806urOSk51-N3m_3kVaMQz65W9
-X-Proofpoint-ORIG-GUID: NB88R3806urOSk51-N3m_3kVaMQz65W9
-X-Authority-Analysis: v=2.4 cv=VaD3PEp9 c=1 sm=1 tr=0 ts=67dd9520 cx=c_pps a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=KKAkSRfTAAAA:8 a=cFvnhfngp7Wf6xZ2y_AA:9 a=CjuIK1q_8ugA:10 a=1HOtulTD9v-eNWfpl4qZ:22
- a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-21_05,2025-03-21_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
- bulkscore=0 lowpriorityscore=0 adultscore=0 mlxlogscore=737 phishscore=0
- spamscore=0 priorityscore=1501 suspectscore=0 mlxscore=0 malwarescore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503210121
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/4] iommu: Get DT/ACPI parsing into the proper probe
+ path
+To: Marek Szyprowski <m.szyprowski@samsung.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
+ <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
+ Russell King <linux@armlinux.org.uk>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Danilo Krummrich <dakr@kernel.org>, Stuart Yoder <stuyoder@gmail.com>,
+ Nipun Gupta <nipun.gupta@amd.com>, Nikhil Agarwal <nikhil.agarwal@amd.com>,
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+ Bjorn Helgaas <bhelgaas@google.com>
+Cc: linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+ Charan Teja Kalla <quic_charante@quicinc.com>
+References: <cover.1740753261.git.robin.murphy@arm.com>
+ <e3b191e6fd6ca9a1e84c5e5e40044faf97abb874.1740753261.git.robin.murphy@arm.com>
+ <CGME20250313095633eucas1p29cb55f2504b4bcf67c16b3bd3fa9b8cd@eucas1p2.samsung.com>
+ <9b358d68-332e-404e-9a75-740297f7b28d@samsung.com>
+ <417d6f59-0d78-4e81-ad0b-e06846f786b0@arm.com>
+ <bf2adf5d-1432-4bb7-846c-e1bcfa84858b@samsung.com>
+ <016bb7ca-f0d3-464e-ac74-46e6f78e90d7@arm.com>
+ <b63ff6b4-9dc3-42ea-8b87-d4fdead8d0eb@arm.com>
+ <cdc333e4-25bb-4171-9f6e-01f1de947db3@samsung.com>
+ <d6cd5e64-e2c0-4c6e-9c89-ce8b3e0a4a5b@arm.com>
+ <ace3a01f-4700-4455-ada3-0f88fc8ea4cd@samsung.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <ace3a01f-4700-4455-ada3-0f88fc8ea4cd@samsung.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Fri, Mar 21, 2025 at 01:26:44PM +0000, Srinivas Kandagatla wrote:
+On 21/03/2025 12:15 pm, Marek Szyprowski wrote:
+> On 17.03.2025 19:22, Robin Murphy wrote:
+>> On 17/03/2025 7:37 am, Marek Szyprowski wrote:
+>>> On 13.03.2025 15:12, Robin Murphy wrote:
+>>>> On 2025-03-13 1:06 pm, Robin Murphy wrote:
+>>>>> On 2025-03-13 12:23 pm, Marek Szyprowski wrote:
+>>>>>> On 13.03.2025 12:01, Robin Murphy wrote:
+>>>>>>> On 2025-03-13 9:56 am, Marek Szyprowski wrote:
+>>>>>>> [...]
+>>>>>>>> This patch landed in yesterday's linux-next as commit bcb81ac6ae3c
+>>>>>>>> ("iommu: Get DT/ACPI parsing into the proper probe path"). In my
+>>>>>>>> tests I
+>>>>>>>> found it breaks booting of ARM64 RK3568-based Odroid-M1 board
+>>>>>>>> (arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts). Here is the
+>>>>>>>> relevant kernel log:
+>>>>>>>
+>>>>>>> ...and the bug-flushing-out begins!
+>>>>>>>
+>>>>>>>> Unable to handle kernel NULL pointer dereference at virtual address
+>>>>>>>> 00000000000003e8
+>>>>>>>> Mem abort info:
+>>>>>>>>        ESR = 0x0000000096000004
+>>>>>>>>        EC = 0x25: DABT (current EL), IL = 32 bits
+>>>>>>>>        SET = 0, FnV = 0
+>>>>>>>>        EA = 0, S1PTW = 0
+>>>>>>>>        FSC = 0x04: level 0 translation fault
+>>>>>>>> Data abort info:
+>>>>>>>>        ISV = 0, ISS = 0x00000004, ISS2 = 0x00000000
+>>>>>>>>        CM = 0, WnR = 0, TnD = 0, TagAccess = 0
+>>>>>>>>        GCS = 0, Overlay = 0, DirtyBit = 0, Xs = 0
+>>>>>>>> [00000000000003e8] user address but active_mm is swapper
+>>>>>>>> Internal error: Oops: 0000000096000004 [#1] PREEMPT SMP
+>>>>>>>> Modules linked in:
+>>>>>>>> CPU: 3 UID: 0 PID: 1 Comm: swapper/0 Not tainted 6.14.0-rc3+ #15533
+>>>>>>>> Hardware name: Hardkernel ODROID-M1 (DT)
+>>>>>>>> pstate: 00400009 (nzcv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+>>>>>>>> pc : devm_kmalloc+0x2c/0x114
+>>>>>>>> lr : rk_iommu_of_xlate+0x30/0x90
+>>>>>>>> ...
+>>>>>>>> Call trace:
+>>>>>>>>       devm_kmalloc+0x2c/0x114 (P)
+>>>>>>>>       rk_iommu_of_xlate+0x30/0x90
+>>>>>>>
+>>>>>>> Yeah, looks like this is doing something a bit questionable which
+>>>>>>> can't
+>>>>>>> work properly. TBH the whole dma_dev thing could probably be
+>>>>>>> cleaned up
+>>>>>>> now that we have proper instances, but for now does this work?
+>>>>>>
+>>>>>> Yes, this patch fixes the problem I've observed.
+>>>>>>
+>>>>>> Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
+>>>>>> Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
+>>>>>>
+>>>>>> BTW, this dma_dev idea has been borrowed from my exynos_iommu driver
+>>>>>> and
+>>>>>> I doubt it can be cleaned up.
+>>>>>
+>>>>> On the contrary I suspect they both can - it all dates back to when
+>>>>> we had the single global platform bus iommu_ops and the SoC drivers
+>>>>> were forced to bodge their own notion of multiple instances, but with
+>>>>> the modern core code, ops are always called via a valid IOMMU
+>>>>> instance or domain, so in principle it should always be possible to
+>>>>> get at an appropriate IOMMU device now. IIRC it was mostly about
+>>>>> allocating and DMA-mapping the pagetables in domain_alloc, where the
+>>>>> private notion of instances didn't have enough information, but
+>>>>> domain_alloc_paging solves that.
+>>>>
+>>>> Bah, in fact I think I am going to have to do that now, since although
+>>>> it doesn't crash, rk_domain_alloc_paging() will also be failing for
+>>>> the same reason. Time to find a PSU for the RK3399 board, I guess...
+>>>>
+>>>> (Or maybe just move the dma_dev assignment earlier to match Exynos?)
+>>>
+>>> Well I just found that Exynos IOMMU is also broken on some on my test
+>>> boards. It looks that the runtime pm links are somehow not correctly
+>>> established. I will try to analyze this later in the afternoon.
+>>
+>> Hmm, I tried to get an Odroid-XU3 up and running, but it seems unable
+>> to boot my original 6.14-rc3-based branch - even with the IOMMU driver
+>> disabled, it's consistently dying somewhere near (or just after) init
+>> with what looks like some catastrophic memory corruption issue - very
+>> occasionally it's managed to print the first line of various different
+>> panics.
+>>
+>> Before that point though, with the IOMMU driver enabled it does appear
+>> to show signs of working OK:
+>>
+>> [    0.649703] exynos-sysmmu 14650000.sysmmu: hardware version: 3.3
+>> [    0.654220] platform 14450000.mixer: Adding to iommu group 1
+>> ...
+>> [    2.680920] exynos-mixer 14450000.mixer:
+>> exynos_iommu_attach_device: Attached IOMMU with pgtable 0x42924000
+>> ...
+>> [    5.196674] exynos-mixer 14450000.mixer:
+>> exynos_iommu_identity_attach: Restored IOMMU to IDENTITY from pgtable
+>> 0x42924000
+>> [    5.207091] exynos-mixer 14450000.mixer:
+>> exynos_iommu_attach_device: Attached IOMMU with pgtable 0x42884000
+>>
+>>
+>> The multi-instance stuff in probe/release does look a bit suspect,
+>> however - seems like the second instance probe would overwrite the
+>> first instance's links, and then there would be a double-del() if the
+>> device were ever actually released again? I may have made that much
+>> more likely to happen, but I suspect it was already possible with
+>> async driver probe...
 > 
-> 
-> On 21/03/2025 13:16, Dmitry Baryshkov wrote:
-> > On Fri, 21 Mar 2025 at 14:35, Srinivas Kandagatla
-> > <srinivas.kandagatla@linaro.org> wrote:
-> > > 
-> > > 
-> > > 
-> > > On 20/03/2025 14:03, Dmitry Baryshkov wrote:
-> > > > On Thu, Mar 20, 2025 at 11:56:32AM +0000, srinivas.kandagatla@linaro.org wrote:
-> > > > > From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> > > > > 
-> > > > > On some platforms to minimise pop and click during switching between
-> > > > > CTIA and OMTP headset an additional HiFi mux is used. Most common
-> > > > > case is that this switch is switched on by default, but on some
-> > > > > platforms this needs a regulator enable.
-> > > > > 
-> > > > > move to using mux control to enable both regulator and handle gpios,
-> > > > > deprecate the usage of gpio.
-> > > > > 
-> > > > > Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> > > > > ---
-> > > > >    sound/soc/codecs/Kconfig   |  2 ++
-> > > > >    sound/soc/codecs/wcd938x.c | 38 ++++++++++++++++++++++++++++++--------
-> > > > >    2 files changed, 32 insertions(+), 8 deletions(-)
-> > > > > 
-> > > > > diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-> > > > > index ee35f3aa5521..b04076282c8b 100644
-> > > > > --- a/sound/soc/codecs/Kconfig
-> > > > > +++ b/sound/soc/codecs/Kconfig
-> > > > > @@ -2226,6 +2226,8 @@ config SND_SOC_WCD938X
-> > > > >       tristate
-> > > > >       depends on SOUNDWIRE || !SOUNDWIRE
-> > > > >       select SND_SOC_WCD_CLASSH
-> > > > > +    select MULTIPLEXER
-> > > > > +    imply MUX_GPIO
-> > > > 
-> > > > Why? This is true for a particular platform, isn't it?
-> > > 
-> > > We want to move the codec to use gpio mux instead of using gpios directly
-> > > 
-> > > So this become codec specific, rather than platform.
-> > 
-> > Not quite. "select MULTIPLEXER" is correct and is not questionable.
-> > I'm asking about the MUX_GPIO. The codec itself has nothing to do with
-> > the board using _GPIO_ to switch 4-pin modes. It is a board-level
-> > decision. A board can use an I2C-controlled MUX instead. I'd say, that
-> > at least you should describe rationale for this `imply` clause in the
-> > commit message.
-> 
-> I agree to you point, but historically in this case us/euro selection is
-> only driven by gpio. But I see no harm in moving the MUX_GPIO dependency to
-> machine driver KConfigs.
+> That is really strange. My Odroid XU3 boots fine from commit
+> bcb81ac6ae3c ("iommu: Get DT/ACPI parsing into the proper probe path"),
+> although the IOMMU seems not to be working correctly. I've tested this
+> with 14450000.mixer device (one need to attach HDMI cable to get it
+> activated) and it looks that the video data are not being read from
+> memory at all (the lack of VSYNC is reported, no IOMMU fault). However,
+> from time to time, everything initializes and works properly.
 
-Machine driver also doesn't depend on it. MUX_GPIO is selectedable item,
-so please handle it via the usual way - defconfig.
+Urgh, seems my mistake was assuming exynos_defconfig was the right thing 
+to begin from - bcb81ac6ae3c with that still dies in the same way (this 
+time I saw a hint of spin_bug() being hit...), however a 
+multi_v7_defconfig build does get to userspace OK again with no obvious 
+signs of distress:
 
--- 
-With best wishes
-Dmitry
+[root@alarm ~]# grep -Hr . /sys/kernel/iommu_groups/*/type
+/sys/kernel/iommu_groups/0/type:identity
+/sys/kernel/iommu_groups/1/type:identity
+/sys/kernel/iommu_groups/10/type:identity
+/sys/kernel/iommu_groups/2/type:identity
+/sys/kernel/iommu_groups/3/type:identity
+/sys/kernel/iommu_groups/4/type:identity
+/sys/kernel/iommu_groups/5/type:identity
+/sys/kernel/iommu_groups/6/type:identity
+/sys/kernel/iommu_groups/7/type:identity
+/sys/kernel/iommu_groups/8/type:identity
+/sys/kernel/iommu_groups/9/type:identity
+
+Annoyingly I do have an adapter for the fiddly micro-HDMI, but it's at 
+home :(
+
+> It looks that this is somehow related to the different IOMMU/DMA-mapping
+> glue code, as the other boards (ARM64 based) with exactly the same
+> Exynos IOMMU driver always work fine. I've tried to figure out what
+> actually happens, but so far I didn't get anything for sure. Disabling
+> the call to dev->bus->dma_configure(dev) from iommu_init_device() seems
+> to be fixing this, but this is almost equal to the revert of the
+> $subject patch. I don't get why calling it in iommu_init_device() causes
+> problems. It also doesn't look that this is anyhow related to the
+> multi-instance stuff, as the same happens if I only leave a single
+> exynos-sysmmu instance and its client (only 14450000.mixer device in the
+> system).
+
+On a hunch I stuck a print in exynos_iommu_probe_device(), and it looks 
+like in fact device_link_add() isn't getting called at all, and indeed 
+your symptoms do sound like they could be explained by the IOMMU not 
+being reliably resumed... lemme stare at exynos_iommu_of_xlate() a bit 
+longer...
+
+Thanks,
+Robin.
 
