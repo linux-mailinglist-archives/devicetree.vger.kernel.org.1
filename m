@@ -1,60 +1,78 @@
-Return-Path: <devicetree+bounces-159829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 872B3A6C469
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 21:42:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8E2DA6C488
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 21:51:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 86441189AAAF
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 20:42:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4005E484B5A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 20:50:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2717A2309AA;
-	Fri, 21 Mar 2025 20:42:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFDD2232378;
+	Fri, 21 Mar 2025 20:50:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FZ10bVPP"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="TGFtRI8s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6CE822FF5F;
-	Fri, 21 Mar 2025 20:42:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9BF6221DA2;
+	Fri, 21 Mar 2025 20:50:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742589753; cv=none; b=QsYqnL1gKYhu9fEq5/Z70SgW1mDYFLlHlWWScRp0cvmVdg3LNaIKzLh+6vCCnogNS4jzjmug6J5tjb9d4uGbL8Ogc14ons6Onxvr5JlU8v2+gNd8iNc7lMrgGQHbqMIkcvz4aC3gR+kQHHU+funm6URCs0xCVomZlFAc3Y3re5A=
+	t=1742590212; cv=none; b=DdhCldJhg3x88lL6s4PHIafYqcw9584S0Hn5ZQEE1zukYWdhBJhI4Xe1bsf41s1Fb9L+cvgTcb5XAgHbtmUSMnDMazQKmRH+uSaEEdYZ8nxGVsrGg42IM/vTXZkUb/MO9hQQL/6jhA61hTugmZw4eweqrUnLUE31qCoBNWJ62bE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742589753; c=relaxed/simple;
-	bh=XsHupZXq9mP47xdssh7YIG1V2VG9jPjIpAnsYfLZZeg=;
+	s=arc-20240116; t=1742590212; c=relaxed/simple;
+	bh=NYDV0AH6VMybj+/Wwpfj6w3HLv/oqsj2RU5ib1yXgO8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hHzYgw6fK8VlwDhE11jdFM0vivsPdbIVECEgPr0EYsMdJznHU4mbrP5JLLS9K/SJkXTVZTe8MKaUB2+dUU5idqDxzTZmsWhscxVI0qLzMQhwwJnyCo9mvyevFagzd0GCnPZ+AJ8k1/k0bg0DIDkQ4M6Qbta4gV7mkc3c+yql6k4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FZ10bVPP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F691C4CEE3;
-	Fri, 21 Mar 2025 20:42:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742589751;
-	bh=XsHupZXq9mP47xdssh7YIG1V2VG9jPjIpAnsYfLZZeg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FZ10bVPP4aa+uN6spoypuceQTO8SP4QPWeccXxsIlYlhuZoJ1zdJeO97DazL3pHq8
-	 J/LoW3kqmiWfiAWymzcYpWcOyWFQSwDTe8Me1eYvjjv5XWRF2RLmn1BoZCYHf3QeAV
-	 pnh1JHINei16ioRte+fZdGRzVe+r4sNwPkQeR0l16Lw6ng+PXHGpmtXP0D+ts9smCJ
-	 JIpBRM7izWWBv3mb3ONwX8kKI22pDB+mv0VBX7cmyAj2KurPgMo78wqp/n2NvOl4s0
-	 Zp8AOrnTmQPpYCB3Dqa7hWUTC2picFAyqVgMfJYx7kxhniuJxg5l+dbRqR2WHZIyUk
-	 gLNVmPUkxAbHA==
-Date: Fri, 21 Mar 2025 15:42:30 -0500
-From: Rob Herring <robh@kernel.org>
-To: Alex Elder <elder@riscstar.com>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
-	mturquette@baylibre.com, sboyd@kernel.org, dlan@gentoo.org,
-	heylenay@4d2.org, guodong@riscstar.com, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, spacemit@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND 1/7] dt-bindings: soc: spacemit: define
- spacemit,k1-ccu resets
-Message-ID: <20250321204230.GA3902727-robh@kernel.org>
-References: <20250321151831.623575-1-elder@riscstar.com>
- <20250321151831.623575-2-elder@riscstar.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=RgCFdOv3/FjSXBRCeFRimXq6nzQ1g+PXYrL13JPJL4NYM44ySieUYIUFK8wq40r9qi4y+XYLIDxz1m1JyvKmA7ABgeQJyDhT8+vXIEZlodCxy8cHFxgkNGZ9gTx6Hzw5NSGl4bREFUsfZn3tJkzvJzm1QMNCQGvQ/T7Rxyq1Y+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=TGFtRI8s; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=yFzOysCPLuMjK3qzNNnYKx7eqzyb8A3svd4W9fSzPuQ=; b=TGFtRI8spN1abBT9KlSGFueqQh
+	6/YP2EDo6BjswLesT6nGpeMQ9l84PUNmOlDHSQO43O70iL0m5u383PDralyj13qYDcr5D7CjO2NAZ
+	RltzmllqpVOG9toqHbT8+tzjdJcPirCbfOYaqh9GGwj5dM49R26FCx00XWpFfKRnRsoQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tvjJA-006eT6-Hj; Fri, 21 Mar 2025 21:49:36 +0100
+Date: Fri, 21 Mar 2025 21:49:36 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-mips@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+Subject: Re: [PATCH net-next 01/13] dt-bindings: net: cdns,macb: add Mobileye
+ EyeQ5 ethernet interface
+Message-ID: <2dbbd6c0-84d0-4846-a48d-31891f395c7c@lunn.ch>
+References: <20250321-macb-v1-0-537b7e37971d@bootlin.com>
+ <20250321-macb-v1-1-537b7e37971d@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,81 +81,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250321151831.623575-2-elder@riscstar.com>
+In-Reply-To: <20250321-macb-v1-1-537b7e37971d@bootlin.com>
 
-On Fri, Mar 21, 2025 at 10:18:24AM -0500, Alex Elder wrote:
-> There are additional SpacemiT syscon CCUs whose registers control both
-> clocks and resets:  RCPU, RCPU2, and APBC2. Unlike those defined
-> previously, these will initially support only resets.  They do not
-> incorporate power domain functionality.
-> 
-> Define the index values for resets associated with all SpacemiT K1
-> syscon nodes, including those with clocks already defined, as well as
-> the new ones (without clocks).
-> 
-> Signed-off-by: Alex Elder <elder@riscstar.com>
-> ---
->  .../soc/spacemit/spacemit,k1-syscon.yaml      |  13 +-
->  include/dt-bindings/clock/spacemit,k1-ccu.h   | 134 ++++++++++++++++++
->  2 files changed, 143 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml b/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
-> index 07a6728e6f864..333c28e075b6c 100644
-> --- a/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
-> +++ b/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
-> @@ -19,6 +19,9 @@ properties:
->        - spacemit,k1-syscon-apbc
->        - spacemit,k1-syscon-apmu
->        - spacemit,k1-syscon-mpmu
-> +      - spacemit,k1-syscon-rcpu
-> +      - spacemit,k1-syscon-rcpu2
-> +      - spacemit,k1-syscon-apbc2
->  
->    reg:
->      maxItems: 1
-> @@ -57,13 +60,15 @@ allOf:
->        properties:
->          compatible:
->            contains:
-> -            const: spacemit,k1-syscon-apbc
-> +            enum:
-> +              - spacemit,k1-syscon-apmu
-> +              - spacemit,k1-syscon-mpmu
->      then:
-> -      properties:
-> -        "#power-domain-cells": false
-> -    else:
->        required:
->          - "#power-domain-cells"
-> +    else:
-> +      properties:
-> +        "#power-domain-cells": false
->  
->  additionalProperties: false
->  
-> diff --git a/include/dt-bindings/clock/spacemit,k1-ccu.h b/include/dt-bindings/clock/spacemit,k1-ccu.h
-> index 4a0c7163257e3..a1e1b1fe714ce 100644
-> --- a/include/dt-bindings/clock/spacemit,k1-ccu.h
-> +++ b/include/dt-bindings/clock/spacemit,k1-ccu.h
-> @@ -78,6 +78,9 @@
->  #define CLK_APB			31
->  #define CLK_WDT_BUS		32
->  
-> +/*	MPMU resets	*/
-> +#define RST_WDT			0
-> +
->  /*	APBC clocks	*/
->  #define CLK_UART0		0
->  #define CLK_UART2		1
-> @@ -109,6 +112,7 @@
->  #define CLK_PWM17		27
->  #define CLK_PWM18		28
->  #define CLK_PWM19		29
-> +
+>            - atmel,sama5d2-gem         # GEM IP (10/100) on Atmel sama5d2 SoCs
+>            - atmel,sama5d3-gem         # Gigabit IP on Atmel sama5d3 SoCs
+>            - atmel,sama5d4-gem         # GEM IP (10/100) on Atmel sama5d4 SoCs
+> +          - mobileye,eyeq5-gem        # Mobileye EyeQ5 SoCs
+>            - cdns,np4-macb             # NP4 SoC devices
+>            - microchip,sama7g5-emac    # Microchip SAMA7G5 ethernet interface
+>            - microchip,sama7g5-gem     # Microchip SAMA7G5 gigabit ethernet interface
 
-Stray change?
+These are kind of sorted. Maybe put mobileye after microchip?
 
-Otherwise,
-
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+	Andrew
 
