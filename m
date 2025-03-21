@@ -1,115 +1,125 @@
-Return-Path: <devicetree+bounces-159763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B495EA6BFB3
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 17:21:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C46AA6BFBC
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 17:22:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 769527AB26B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 16:17:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 904377AC376
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 16:18:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42C0522CBE4;
-	Fri, 21 Mar 2025 16:18:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B25022CBC9;
+	Fri, 21 Mar 2025 16:18:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hiIGkNKK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IGVwc9Bg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 163F719938D;
-	Fri, 21 Mar 2025 16:18:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FEAD22ACFA;
+	Fri, 21 Mar 2025 16:18:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742573894; cv=none; b=lHYDBVzOFyGLVh/pIh4BRil+Gq5lYPTbf9AIW5p1+9ia46gpwcoDgLya0Ep/dYHwSm7R1yiVqoSgcId3VEffXqJqVcsMttqW+ujO7aprERc04EMcl0nNut9KZy48/gOp0KWUso7ZpLcM4VH3U1gURzuyg+6ljRcyDBAFggIM4BE=
+	t=1742573936; cv=none; b=rr67ehQuX1L3QQyyweZpjaoTEBxXQdyEnAnXsRFsT08bW6AzKdQ6uZrdEvjVSF9XqhKSurDEEXOk2j8MnxvKfcdXJjMy2mauYNIL1Bz8FeXioVkCQiiZsoEei9cNmQGPrdLd7HzuSRiiJPaFO3MZ6HwE7s5sU1eaz3gDhpYcKo8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742573894; c=relaxed/simple;
-	bh=3F1jIy5v0t3SdVAgghqO/ik97He3ue6vAk0iAk9b8+A=;
+	s=arc-20240116; t=1742573936; c=relaxed/simple;
+	bh=YWZ/cjyQth34+4wEpvDKa7ez8+2hDJpFf95FAjoIHCQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C1NucxDVBCHW56JAvE+T8GqAIEP/EEPHPFFlcStt+17FhDwYLOSC2Yt2EqzfkdEu6nbbhAtNjZsh4NGVat0hKkfYJVu2YZsCdom9MOgvO/6WEW1Mxwl1fOoNLHa4sloTJ8dJmPd0f3JjRw286a2fcVxWsb/N/jyd3t/yn732mak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hiIGkNKK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FA56C4CEE3;
-	Fri, 21 Mar 2025 16:18:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BSQsf9mrcNJacJtDYOcaoiBieqsaXoA2OBgwT5m7LcScyd0tEHbsKTry2GOK3seQWGe5WFhD+ktRzzHkMvQ2yH1EPsO5EiduELyA1YjW9bU+z4Cx6INnAjOwTlbj45LfNh5UIFYUGtZHqRbdObiH58Jo3dtPPuIeWgevSuiFeAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IGVwc9Bg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 681CCC4CEE3;
+	Fri, 21 Mar 2025 16:18:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742573893;
-	bh=3F1jIy5v0t3SdVAgghqO/ik97He3ue6vAk0iAk9b8+A=;
+	s=k20201202; t=1742573935;
+	bh=YWZ/cjyQth34+4wEpvDKa7ez8+2hDJpFf95FAjoIHCQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hiIGkNKKtJCW+DBwOlSA8QAawq09/UynZMFTmW3wqMZMJkkgDWqdxEBOEzq2eLa6A
-	 rAOcbY1tXx03NioAXrY8Oa0dt2jd4c+6C8aqe26wsJyo9KzP3Gr+qEMYFCqpBR+S+x
-	 Sa7eQ3jOnLhUzuRQY073ObZnGxp+Rg3S7xA3ErW5zphHXhVeTV1gg5P8DDnGVSuB+r
-	 Zank0zWfDZaRgJy7HW19bcwpglAtJBJ+1eTk4L/Vy2lzC6FvoKCvewRwI3ORDIyWk/
-	 95Prm+rl2iY/9iTUrmpdqQkxOouxa4+Q1Yg+zWWxdREbDqb1YvwaDU6VCKIO9cMrCk
-	 PXjmDgSTJV+NA==
-Date: Fri, 21 Mar 2025 11:18:12 -0500
-From: Rob Herring <robh@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	b=IGVwc9Bg+gWRF809tfjsLtFASXqBzVg8CoNj9TAxjcu7yX8yTtiyFLwfGSKIE4crl
+	 MsAdNaZbEeLFRKo1lGAJ/tOWhO1sAW2mJsHftm43ghWxhXrbX7V1j/fWPd91WvT0hr
+	 rELKOr5E09MV3X5p/rxO6r2soStOMBYcI4YQasGFLLb+Jjjn+LzHq402FHPNm/in3P
+	 NlrhWtVMppM5kOC+QqPJa/8Nw5oG1WafCHTXMf6FQLgn/BpeDp1ltNBeWUNZ5MF05u
+	 aCB71yHyeaH2ukugHUM4VUuwyfJCnNADtOAfQ+sPvTRwdfrOfZU/BSFm8UawECGfYN
+	 Vrb+z2YvMfEiA==
+Date: Fri, 21 Mar 2025 16:18:52 +0000
+From: Conor Dooley <conor@kernel.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Daniel Golle <daniel@makrotopia.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	upstream@airoha.com
-Subject: Re: [net-next PATCH 4/6] dt-bindings: net: ethernet-controller:
- permit to define multiple PCS
-Message-ID: <20250321161812.GA3466720-robh@kernel.org>
-References: <20250318235850.6411-1-ansuelsmth@gmail.com>
- <20250318235850.6411-5-ansuelsmth@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mmc: Remove redundant sdhci.txt
+Message-ID: <20250321-jersey-upswing-0eb4b055de6f@spud>
+References: <20250320211922.1135669-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="wnNz0ZGNWG6SJzeG"
+Content-Disposition: inline
+In-Reply-To: <20250320211922.1135669-1-robh@kernel.org>
+
+
+--wnNz0ZGNWG6SJzeG
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250318235850.6411-5-ansuelsmth@gmail.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 19, 2025 at 12:58:40AM +0100, Christian Marangi wrote:
-> Drop the limitation of a single PCS in pcs-handle property. Multiple PCS
-> can be defined for an ethrnet-controller node to support various PHY
+On Thu, Mar 20, 2025 at 04:19:21PM -0500, Rob Herring (Arm) wrote:
+> The properties in sdhci.txt are documented in sdhci-common.yaml, too.
+> Remove the txt binding.
+>=20
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
-typo
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-> interface mode type.
-
-What limitation? It already supports multiple PCS phandles. It doesn't 
-support arg cells. If you want that, either you have to fix the number 
-of cells or define a #pcs-handle-cells property. You've done neither 
-here.
-
-Adding #pcs-handle-cells will also require some updates to the dtschema 
-tools.
-
-> 
-> It's very common for SoCs to have a dedicated PCS for SGMII mode and one
-> for USXGMII mode.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 > ---
->  Documentation/devicetree/bindings/net/ethernet-controller.yaml | 2 --
->  1 file changed, 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> index 45819b235800..a260ab8e056e 100644
-> --- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> +++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> @@ -110,8 +110,6 @@ properties:
->  
->    pcs-handle:
->      $ref: /schemas/types.yaml#/definitions/phandle-array
-> -    items:
-> -      maxItems: 1
->      description:
->        Specifies a reference to a node representing a PCS PHY device on a MDIO
->        bus to link with an external PHY (phy-handle) if exists.
-> -- 
-> 2.48.1
-> 
+>  Documentation/devicetree/bindings/mmc/sdhci.txt | 13 -------------
+>  1 file changed, 13 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mmc/sdhci.txt
+>=20
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci.txt b/Documentat=
+ion/devicetree/bindings/mmc/sdhci.txt
+> deleted file mode 100644
+> index 0e9923a64024..000000000000
+> --- a/Documentation/devicetree/bindings/mmc/sdhci.txt
+> +++ /dev/null
+> @@ -1,13 +0,0 @@
+> -The properties specific for SD host controllers. For properties shared b=
+y MMC
+> -host controllers refer to the mmc[1] bindings.
+> -
+> -  [1] Documentation/devicetree/bindings/mmc/mmc.txt
+> -
+> -Optional properties:
+> -- sdhci-caps-mask: The sdhci capabilities register is incorrect. This 64=
+bit
+> -  property corresponds to the bits in the sdhci capability register. If =
+the bit
+> -  is on in the mask then the bit is incorrect in the register and should=
+ be
+> -  turned off, before applying sdhci-caps.
+> -- sdhci-caps: The sdhci capabilities register is incorrect. This 64bit
+> -  property corresponds to the bits in the sdhci capability register. If =
+the
+> -  bit is on in the property then the bit should be turned on.
+> --=20
+> 2.47.2
+>=20
+
+--wnNz0ZGNWG6SJzeG
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ92RawAKCRB4tDGHoIJi
+0hGHAQCSV0LGwhHXQ8bzmA18hum8IlkZMIZhgvHIP7Vvl246cwEAmuB7cxwUZ8yu
+IdZNoKzkOtsRf1sbLvX/UbjP3Bjjjw0=
+=3KwP
+-----END PGP SIGNATURE-----
+
+--wnNz0ZGNWG6SJzeG--
 
