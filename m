@@ -1,148 +1,151 @@
-Return-Path: <devicetree+bounces-159731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E5F4A6BE07
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 16:13:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00FF2A6BE22
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 16:18:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8CA603A6EA5
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 15:13:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A39B16B8CF
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 15:18:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17C2A1DB356;
-	Fri, 21 Mar 2025 15:13:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CFEF1DE4C4;
+	Fri, 21 Mar 2025 15:18:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="h/6WsxSI"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="hXkiOk/i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 773821D5174
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 15:13:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 495AE18DF6D
+	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 15:18:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742570018; cv=none; b=Kds76nvUbFdvcyRtg79wihJjJWRP94iq0CJI0vUFUuihWebNTKB5YsQJiwpDupduff2WoFfWOT0o1so14f683wBcHBXqC2DFVujr34Q7r32iHMZZL71jITByyVhbWfmnpDBNGxF+6C3vPYLW80hneUyHX/OAgyfpDDIlSjf3x6c=
+	t=1742570318; cv=none; b=hZ6sUqU/cxxcMuJs5T0/hIOH5DTVMQhnGBdd/HQMVl3Xsp7c9PjkfIyPjBN7faxNuh0Jy5v+4T39sJPVCZls1ApeeDIdVRSHEFF/LAo26i2dBgVDHuq9f+nj0zzEs7VsTJHip3auxkqBvWuFh2T07J/UmxjnUSX4kdlPxp7d3B0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742570018; c=relaxed/simple;
-	bh=eUb6pFAQJsgClBFqUN//SWMcT52YNoD/1rKlYn3NhwQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jwDPCG+Dx9akvD1FZ4+1hv+xNdyPPo3aZ62KOHakwmUK3kaglEJY0Dcd3tqY07oNUYba63B39Dzbj4IIA+HOQSBrLcTxy1zXXNbc7dKNjIQTjxBJqJ9G0yzuCEj0ZduIHiSC5xYzCLHMnHBDL8sUicn8T847qYanErOkHAD5BxI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=h/6WsxSI; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52LATHGW001127
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 15:13:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=xMZqwFdk5KSv8eArmzuOQClA
-	gGlpgEE5tdbkxdpxDLQ=; b=h/6WsxSIpkBW/1vpvBD4bsmbgrPtvlQotX2E+c3P
-	l6lUuTmlKhEoKuu1aFsMZLe+kZd72mFSYJyZQxtw5NnuS6SawRGqz+0sL31k5xqE
-	YCTHuQKTtQrBVWupRyfq7nOGIUd5YKJbkHBByxPZWBHO31EF+wUbc0fUDGP9Ync8
-	4b60IeJb8RzC4RQj6hqN2dITSuYivsSbTKi6Ev7lVfom1Rjc9UxtSP8SshRsyjuV
-	9bUcTkeDeFhtQpAZAh/wJwIrUFMXWpBPmIHlB5W8GEZc2wJELyVkT/P7D9uPfoIm
-	SnmSU5CEHREX/2k6N1Q7QH9QsXPs7L8AhgXeTIg1RBw6xg==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45h4u9s39a-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 15:13:34 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6e8feea216aso53903406d6.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 08:13:34 -0700 (PDT)
+	s=arc-20240116; t=1742570318; c=relaxed/simple;
+	bh=zhaML4Pm1m+KgXGzKB1u6T1c5KY484O/gyZwJl4YL/E=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ckveQNHeeiph5mZSsRgMSWR2Q6uBs7w49YvQ14WFB1Iw7R4jMD8J60chEligRtLwCn8251x/NsYOe3hq+pIKfk3Dwx/fpv/hK6WbxQ9OHRgUzNGswDMnV4IZYLtJGMPWXyzXqDCHUgFrwV2ete75BUqDX8M8irleTrPlqsQt6mg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=hXkiOk/i; arc=none smtp.client-ip=209.85.166.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-io1-f44.google.com with SMTP id ca18e2360f4ac-85b515e4521so63893039f.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 08:18:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1742570315; x=1743175115; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UTantLRj2g1pI/nv2rQCu8piWojTNSsUaDvPh+ZcZxc=;
+        b=hXkiOk/ihh6uAQp8bV1d4GUG0/Shih91SHUOWa3E+gxKndxMWJT7xTfkhqDVlypUiw
+         QFI/Kmdi4a0DnbOBkeql/WVhXSrhT8rjeW9OljzsVNWuETVUVVbNn2YfL0PDoQ4/IaE0
+         qiCrzO7QBiOdYWiDPNGnORRmaN04WvUOQ8EFN8d2Lez1uxcahG2pgXOL3HdsLdb6IZ5w
+         pJBOzZlGZ6c2bZ//x7S0fzXICfi1EAtY56Ec7tPYew9UkLq87oY5L2te/Az5bkCR5grI
+         4xQkyOge3+qq1ryui2DbbG0vX3jJ9vJxDaz3JDCK4HgZY6FHjAmZJwuQqWf6YhZd9vcf
+         ABHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742570013; x=1743174813;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xMZqwFdk5KSv8eArmzuOQClAgGlpgEE5tdbkxdpxDLQ=;
-        b=I6aC5clJKbQ2+0/jBjxCxYErGDF/67+tYKW9m4JVxvz1Lafa6cckU577aC9gmRtXFX
-         Y9DfnsQPCPCq2FAY59DvaI2DoVtMLqr1RnmptloixnNcjxXh48lSzlhQJRTcqdfCgSCz
-         6sbBjImGedaN224b5dHO+NzK3pVgQi1MzBqp5xOErQic0y8vRl2DiGghxs5nyXa2fYeG
-         FwbY/eG+gY9Zu/Oa5kq6WAx0+nlUic6L+/fbR7yb+GITLlBRuafQenHEYr+1/BxQm/Z9
-         PQ52yOL2LkVUrUnfDIUgVhI1UcWMQ0GZt67Z7OlbzR9dqv9YqAJPWf1ZkqWxXrsrbS7v
-         2v0w==
-X-Forwarded-Encrypted: i=1; AJvYcCVj8wEdZP2F22TwYTIvOd9n7eOvRUKjHtfznW4InEnjgGmAsxqtO8arloNefh3cz6B8SjzYPxBBPDhP@vger.kernel.org
-X-Gm-Message-State: AOJu0YwEPo+cKHb4QUvNhn6QErns2dnxhYWPofghk64cJSdWlUFgMBIA
-	lLeUAGDs4fmDnzb77qF/C0UdUml5hV78sU1LtGtLbb5A3s1U9CpvbbYpn7RbetnpHkWmJxQBmgw
-	V/45QyyBO9UzadFTeewCFS1oxKPiIw0yB/FUuPPckCYIuOLBKaDsSSmaunnCf
-X-Gm-Gg: ASbGncvQCA/X5DeksqvwcR8Wa3JXP8jr4jHwKHOF4ZkiWM1yuyjC+A4++8Z5Etk5Bnj
-	iy3KHmhm1Y9sMCkEsTZiKFOrittmi1sKDvbslhSsrAlgkVHPRbnvWWPZBa8Kp64g0DroYWxxZ0m
-	0wCMaO3wK9kJShGivI2GkOyUdbP4/dcyl+3cGPH0M74LOKt0SkJEIF5jXK3h8WFfPqBmXPyGwME
-	uPLPj1UAUa0OTgRSz9GHXCCKac+5Uz0B4OXsxzaZs1kSM6PPJBSuyJRwBrwDT+7QFkWKcjwIlPG
-	a/C7u/GqXzKgCY1/BOKNZZXIaQwps0G2hHrSrKRC/Ain/i+4af8HZxj4WbuGayFJ0SnvAYxzQxu
-	1XQ0=
-X-Received: by 2002:a05:6214:2504:b0:6e4:5a38:dd0f with SMTP id 6a1803df08f44-6eb348e09bdmr117295196d6.4.1742570013192;
-        Fri, 21 Mar 2025 08:13:33 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEV2qUsrf8Ji8k4NQXXY0QZJ3uWE9bmcYzJL0crOi3WG2aGplZZOmwLfnoE3lH8ycAUmOl/vQ==
-X-Received: by 2002:a05:6214:2504:b0:6e4:5a38:dd0f with SMTP id 6a1803df08f44-6eb348e09bdmr117294576d6.4.1742570012721;
-        Fri, 21 Mar 2025 08:13:32 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30d7d8f4f79sm2679021fa.77.2025.03.21.08.13.30
+        d=1e100.net; s=20230601; t=1742570315; x=1743175115;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UTantLRj2g1pI/nv2rQCu8piWojTNSsUaDvPh+ZcZxc=;
+        b=KEeo5bU7koMqhOFmcXhFKriyWzGV5e5uC0hGWw4Ugg+keCAnlc69ByD/CAEjZT69JS
+         2myB/fvC/Fz4ZzTbBdCWmK1bkN2BkaR0Gg7x2xj67CjCWgMK8wgRin/2vDdILKRjE4pJ
+         SWqZaQae40l0yvV8N1LqAZ1bjpi11PBoEYHmbPOVqdSQPNPEPgz91SeteD5tTE+Nq/jv
+         fCt7Vv0OJuNXo38dpuTLUQpegGHRRXvxHxdir32Tt+SWPLl83iXepr45dGnwBgNl84VW
+         J6zHJy1DKEYNDJxFzd8X5Wz3wPgQxCC5wD6tKDeJ8exu/rkXY+8goGfvhT0fr/KM6OFM
+         nmdw==
+X-Forwarded-Encrypted: i=1; AJvYcCXF8MMsikHLyqQUrJK2xTeIcW7ekNokuxf+vsxar2Ij+TzPgr7lxnK4JHp/OrTAT5GHRaQlFQI60uwQ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyt1ZAhTzSzPnX1DNV2//aPNKV6+MYk/8ib+OMZlLUSZdHFuyJ9
+	VgJ4o/wsNzvbwVPMDnUAXqzopGYLh/BvlYq8Ceono275FL8xQhbogIcYBgtW8zk=
+X-Gm-Gg: ASbGncvqDe0FUGK562R07AgQ5a4dX8UqszU6pQxkD2UHu3SrtQdzw1gpQpGe+nB9u++
+	H4h+7z/WKvHMSVpZ/aTS8PQNp8g+eVmpCLEsmCy15s9JJ4aAXhdRG6gLZGMEDqDu6HZXk1I5D58
+	+kdFzVxN2hdXVK7IzoJpBN3lYVWPuJOHsiEiJ9FkrRqFUkRUzvKmnAFa8IvI5x5cm5YQfAuaG1L
+	3UEgt/Le8EzKDdiPFMlGGvdWxry9P6OaMvUYhY8nNCWULkFlAtce8nS5RDauAP5jzNb3qvnwYI9
+	Nu0hhE/RkRWD2lMoPBcHEAgXyVxkq8CEuMXpYKBM4Y+fVrfwHBIuuguO6ZIqQlU1kcS9Gwr3iae
+	fvdR1tl4LAmDEEFHLyBo9QGRb+HzNBW3GFtw=
+X-Google-Smtp-Source: AGHT+IGSab75MXOOp0j710KIm4LrkQU9r7YtJUQHaFEL9MotB5UuhKhBeVLzh5RSsEP9NerpL6ljFQ==
+X-Received: by 2002:a05:6602:3998:b0:85b:46d7:1892 with SMTP id ca18e2360f4ac-85e2ca1895amr415643939f.2.1742570315183;
+        Fri, 21 Mar 2025 08:18:35 -0700 (PDT)
+Received: from zoltan.localdomain (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4f2cbdd0a21sm475553173.41.2025.03.21.08.18.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Mar 2025 08:13:31 -0700 (PDT)
-Date: Fri, 21 Mar 2025 17:13:29 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Abel Vesa <abel.vesa@linaro.org>, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v3 06/10] phy: phy-snps-eusb2: make repeater optional
-Message-ID: <m6uabp57a2kskyspnrz65frcf7dqkljmdeffupqkcni5qbgya7@cwmdcac5eh52>
-References: <20250321135854.1431375-1-ivo.ivanov.ivanov1@gmail.com>
- <20250321135854.1431375-7-ivo.ivanov.ivanov1@gmail.com>
+        Fri, 21 Mar 2025 08:18:34 -0700 (PDT)
+From: Alex Elder <elder@riscstar.com>
+To: p.zabel@pengutronix.de,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	dlan@gentoo.org
+Cc: heylenay@4d2.org,
+	guodong@riscstar.com,
+	paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	spacemit@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH RESEND 0/7] clk: spacemit: add K1 reset support
+Date: Fri, 21 Mar 2025 10:18:23 -0500
+Message-ID: <20250321151831.623575-1-elder@riscstar.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250321135854.1431375-7-ivo.ivanov.ivanov1@gmail.com>
-X-Proofpoint-ORIG-GUID: cT0Vd0KEAZPpBFMLP1cpQMg4JAl-CjJW
-X-Authority-Analysis: v=2.4 cv=FYE3xI+6 c=1 sm=1 tr=0 ts=67dd821e cx=c_pps a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=pGLkceISAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=zXIZtLy0MoHwQ1NDvSoA:9 a=CjuIK1q_8ugA:10
- a=zZCYzV9kfG8A:10 a=1HOtulTD9v-eNWfpl4qZ:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: cT0Vd0KEAZPpBFMLP1cpQMg4JAl-CjJW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-21_05,2025-03-21_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
- impostorscore=0 mlxlogscore=678 mlxscore=0 priorityscore=1501 bulkscore=0
- phishscore=0 spamscore=0 clxscore=1015 adultscore=0 lowpriorityscore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503210111
+Content-Transfer-Encoding: 8bit
 
-On Fri, Mar 21, 2025 at 03:58:50PM +0200, Ivaylo Ivanov wrote:
-> As described in the device tree bindings, it's not necessary for the
-> SNPS eUSB2 phy to be connected to a repeater. In configurations where
-> there are such instances, the driver probing fails and the usb
-> controller does not work.
-> 
-> Make the repeater optional to avoid that, which also lets us use
-> the eUSB2 phy when it's connected to a repeater that is not configurable
-> by the kernel (for example it's missing a driver), as long as it has
-> been configured beforehand (usually by the bootloader).
-> 
-> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-> Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  drivers/phy/phy-snps-eusb2.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+(Resending as requested by Yixun, this timing adding the SpacemiT
+mailing list to the CC list.)
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+This series adds reset controller support for the SpacemiT K1 SoC.
+It is based on Linux v6.14-rc1.
+
+It is built upon the clock controller driver that Haylen Chu
+currently has out for review (currently at v5):
+  https://lore.kernel.org/lkml/20250306175750.22480-2-heylenay@4d2.org/
+
+It also depends on two commits that will land in v6.15: 5728c92ae1123
+("mfd: syscon: Restore device_node_to_regmap() for non-syscon nodes")
+and 7ff4faba63571 ("pinctrl: spacemit: enable config option").
+
+The first patch adds three more system controller CCU nodes to those
+implemented by the SpacemiT K1.  The second updates the existing clock
+driver with a structure used for OF match data, allowing both clocks
+and resets to be specified.  The third provides code that implements
+reset functionality.  The fourth defines groups of reset controls
+implemented by the CCUs that have alraady been defined.  The fifth
+makes it possible for a CCU to be defined with resets but no clocks.
+The sixth defines three new CCUs which define only resets.  And the
+last patch defines these additional syscon nodes in "k1.dtsi".
+
+All of these patches are available here:
+  https://github.com/riscstar/linux/tree/outgoing/reset-v1
+
+					-Alex
+
+Alex Elder (7):
+  dt-bindings: soc: spacemit: define spacemit,k1-ccu resets
+  clk: spacemit: define struct k1_ccu_data
+  clk: spacemit: add reset controller support
+  clk: spacemit: define existing syscon resets
+  clk: spacemit: make clocks optional
+  clk: spacemit: define new syscons with only resets
+  riscv: dts: spacemit: add reset support for the K1 SoC
+
+ .../soc/spacemit/spacemit,k1-syscon.yaml      |  13 +-
+ arch/riscv/boot/dts/spacemit/k1.dtsi          |  18 +
+ drivers/clk/spacemit/ccu-k1.c                 | 393 +++++++++++++++++-
+ include/dt-bindings/clock/spacemit,k1-ccu.h   | 134 ++++++
+ 4 files changed, 539 insertions(+), 19 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.43.0
+
 
