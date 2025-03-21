@@ -1,150 +1,190 @@
-Return-Path: <devicetree+bounces-159537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70CD9A6B597
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 08:59:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ACE27A6B59D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 09:00:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDAA63B3F5A
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 07:59:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3934D3B543B
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 08:00:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBC881EE7D5;
-	Fri, 21 Mar 2025 07:59:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HzetHDiP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5DE11EC01F;
+	Fri, 21 Mar 2025 08:00:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7CD81388;
-	Fri, 21 Mar 2025 07:59:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 229191E5B67;
+	Fri, 21 Mar 2025 08:00:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.201.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742543985; cv=none; b=oyHIuGmT9vJ6SJvODSe/+DAKzsPDRNlmgcqMhb9tmwH4Br+8hAt61VQ6IAp3ryvAs/CjFy+AGHXoynPndcuwWGRaOlscEIFDtyG5+/Xg9ck/XNeGQgZ0My4tCLGCUPd3GgI2Ae26YKZlTR3pgSDLTYBlFdZd6ZCu+EQWoAUKoHc=
+	t=1742544029; cv=none; b=iwLUrerReDgsxfCFrtxgUC3mOj25x50MLUD7cxtcDRPpud2WMlyM+VikHj02VdqZhq37RVCJJlj/93d0yhI9nvqyHuKk4MgZeDwqETJMN3mulqwi3rIMmi6q8WJg0TUxgIGm6IaSXNnPLEaVwFtsLonkntoLnRgiHSFVhipyMHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742543985; c=relaxed/simple;
-	bh=pOn9x6VL60RWSKq8tUSuctOL+F1TrQS8bDL/t0ctgOU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F7sX6ozOf4iKQLbSa2OXF//pnGXASw4YaYh3JrI3aeeZoubE9aOXtkcIByfxOuJDa9hmNpIFFixGu5OxNSmqurQN2fXLYT4LlvU1SbMBwugpM2wDQQs0ZiAw/RGzsCe4h5HR9DYft5NzRaUckq/4WtwogxHSD4d0ZP/H6uBj8/o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HzetHDiP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFC3AC4CEE3;
-	Fri, 21 Mar 2025 07:59:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742543985;
-	bh=pOn9x6VL60RWSKq8tUSuctOL+F1TrQS8bDL/t0ctgOU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HzetHDiP1v5WvZgW7SchOuLQEzW6PYuDsemfUwsjvpojaS0Cou9ctohlNmJhR/+eM
-	 vnqIBEHLmv4HivDJ0JQ+cAGzlAYXOdMiFtbrNDuR1mdLRkEHmbOyhQu9gHQcK2invq
-	 jNO6bWbiXpjPfAvICaWaJ0YKh8DyqHgijw0EfME6fRLAD4peQItcdbxrUGbZMaPsYE
-	 LCZttXhS80gXD0d5ru1Wn+gER79PZWmZiyzxyi67NcpKKhV/crmOlUCx8gcPSFa/cL
-	 p8Ot8loK6oZqEFM2HjOFEOoYYkBDzPpYNVog33tdvxKYTrACFpwKeCJ6uXBIG4Fh5y
-	 svQXTR8tRAoHQ==
-Message-ID: <b99eee70-5231-43fe-bff8-db92d78153e7@kernel.org>
-Date: Fri, 21 Mar 2025 08:59:36 +0100
+	s=arc-20240116; t=1742544029; c=relaxed/simple;
+	bh=hy3JSQIvjz/Z9j/8BaLWo/1xB0IRgIAwR+XkT0LjHKk=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
+	 References:In-Reply-To; b=f5HcBbnOFmHgnX9swUSc/FJAerdW3rGGqhrMGmXcu/wYqiIFKh4ZjU2MMY1YFxHlA6WmDHSKKUxxh14XDyCniN5xtziWtEAD4xV7TgM3Xh0UInvCSHKaoD86JWffHJB5rrgESL9a9i/8ifBZxr/RefWDehPHiXWO+MAJgthAUm0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=walle.cc; arc=none smtp.client-ip=159.69.201.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=walle.cc
+Received: from localhost (unknown [IPv6:2a02:810b:4320:1000:4685:ff:fe12:5967])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.3ffe.de (Postfix) with ESMTPSA id C13764CF;
+	Fri, 21 Mar 2025 09:00:18 +0100 (CET)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/3] dt-bindings: hwmon: Add Microchip emc2305 support
-To: "Florin Leotescu (OSS)" <florin.leotescu@oss.nxp.com>
-Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Michael Shych <michaelsh@nvidia.com>,
- "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Viorel Suman <viorel.suman@nxp.com>, Carlos Song <carlos.song@nxp.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "festevam@gmail.com" <festevam@gmail.com>,
- Florin Leotescu <florin.leotescu@nxp.com>, Frank Li <frank.li@nxp.com>
-References: <20250318085444.3459380-1-florin.leotescu@oss.nxp.com>
- <20250318085444.3459380-2-florin.leotescu@oss.nxp.com>
- <20250319-optimistic-positive-peacock-cc26b1@krzk-bin>
- <DU7PR04MB111631E2E5B074A306033D001FFD92@DU7PR04MB11163.eurprd04.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <DU7PR04MB111631E2E5B074A306033D001FFD92@DU7PR04MB11163.eurprd04.prod.outlook.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Date: Fri, 21 Mar 2025 09:00:18 +0100
+Message-Id: <D8LSAUU0358V.2H1D7QXB9WBOF@kernel.org>
+Subject: Re: [PATCH 2/3] mtd: spi-nor: use rdid-dummy-ncycles DT property
+Cc: "Takahiro Kuwano" <tkuw584924@gmail.com>, "Pratyush Yadav"
+ <pratyush@kernel.org>, "Miquel Raynal" <miquel.raynal@bootlin.com>,
+ "Richard Weinberger" <richard@nod.at>, "Vignesh Raghavendra"
+ <vigneshr@ti.com>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, <linux-mtd@lists.infradead.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Bacem
+ Daassi" <Bacem.Daassi@infineon.com>, "Takahiro Kuwano"
+ <Takahiro.Kuwano@infineon.com>, "Mark Brown" <broonie@kernel.org>
+From: "Michael Walle" <mwalle@kernel.org>
+To: "Tudor Ambarus" <tudor.ambarus@linaro.org>, "Rob Herring"
+ <robh@kernel.org>
+X-Mailer: aerc 0.16.0
+References: <20250319-snor-rdid-dummy-ncycles-v1-0-fbf64e4c226a@infineon.com> <20250319-snor-rdid-dummy-ncycles-v1-2-fbf64e4c226a@infineon.com> <20250319233024.GA2625856-robh@kernel.org> <a3818477-5a67-43ad-8961-88fa02916968@linaro.org> <CAL_JsqKtz5+R1kjEzjo6bVicOX2c=UauC0_STAF0T02rSDqO+w@mail.gmail.com> <50de19f7-2021-433e-b8f8-d928ed7d5d57@linaro.org>
+In-Reply-To: <50de19f7-2021-433e-b8f8-d928ed7d5d57@linaro.org>
 
-On 19/03/2025 12:54, Florin Leotescu (OSS) wrote:
+Hi,
 
->> No blank line here. Use existing code as template. If you find such code, share so we can fix it.
-> 
-> Thanks!   I will remove it.
-> 
-> Identified similar blank line on the following dt-binding files:
-> 
-> 1 adi,ad741x.yaml
-> 2 adi,adm1275.yaml
-> 3 adi,ltc2991.yaml
-> 4 maxim,max20730.yaml
-> 5 maxim,max6639.yaml
-> 6 maxim,max6650.yaml
-> 7 nuvoton,nct6775.yaml
-> 8 nuvoton,nct7363.yaml
-> 9 nuvoton,nct7802.yaml
-> 10 ti,adc128d818.yaml
-> 11 ti,ads7828.yaml
-> 12 ti,ina2xx.yaml
-> 13 ti,lm87.yaml
-> 14 ti,tmp513.yaml
-> 15 ti,tps23861.yaml
-> 16 winbond,w83781d.yaml
+> >>>> There are infineon flashes [1] that require 8 dummy cycles for the
+> >>>> 1-1-1 Read ID command. Since the command is not covered by JESD216
+> >>>> or any other standard, get the number of dummy cycles from DT and us=
+e
+> >>>> them to correctly identify the flash.
+> >>>
+> >>> If Read ID fails, then couldn't you just retry with dummy cycles? Or
+> >>
+> >> I think Read ID won't fail when the op requires 8 dummy cycles, it
+> >> probably just reads garbage on the first 8 cycles, so we risk to wrong=
+ly
+> >> match other flash IDs.
+> >>
+> >>> would unconditionally adding dummy cycles adversely affect other chip=
+s?
+> >>
+> >> Adding 8 dummy cycles to chips that don't need it, would mean ignoring
+> >> the first byte of the flash ID, thus we again risk to wrongly match
+> >> against other flash IDs.
+> >>
+> >>>
+> >>> Otherwise, add a specific compatible to imply this requirement. Addin=
+g
+> >>> quirk properties doesn't scale.
+> >>
+> >> Do you mean a flash name compatible, like "cyrs17b512,spi-nor"?
+> >=20
+> > Yes, but that's not the format of compatible strings.
+> >=20
+> >> The
+> >> problem that I see with that is that we no longer bind against the
+> >> generic jedec,spi-nor compatible, so people need to update their DT in
+> >> case they use/plug-in a different flash on their board.
+> >=20
+> > This chip is clearly *not* compatible with a generic chip.
+>
+> I think it is compatible. The chip defines the SFDP (serial flash
+> discoverable parameters) tables. At probe time we parse those tables and
+> initialize the flash based on them.
 
-Oh, that's quite a lot. Thanks, I'll fix them.
+I disagree. It's not compatible with "jedec,spi-nor", which is
+defined as
 
+      SPI NOR flashes compatible with the JEDEC SFDP standard or which may =
+be
+      identified with the READ ID opcode (0x9F) do not deserve a specific
+      compatible. They should instead only be matched against the generic
+      "jedec,spi-nor" compatible.
 
-Best regards,
-Krzysztof
+The first part was recently added and is a bit misleading. The old
+definition was:
+
+      Must also include "jedec,spi-nor" for any SPI NOR flash that can be
+      identified by the JEDEC READ ID opcode (0x9F).
+
+See my first reply, on how to possibly fix this mess (new
+compatible if accepted, just use RDSFDP sequence which is backed by
+the standard and do some fingerprinting).
+
+FWIW, a new (or rather different) compatible is needed because we
+cannot distinguish between random data returned during the dummy
+cycles and a proper manufacturer id. So there is no way we could fix
+this in the core itself.
+
+At least if we keep the logic as it is for now, if we use RDSFDP to
+fingerprint first and then fall back to RDID, we could get away with
+the old compatible.
+
+> We don't even care about the chip ID, if all the flash parameters can be
+> discovered via SFDP. Unfortunately these tables do not describe all the
+> flash capabilities (block protection being one). Or worse, manufacturers
+> mangle these tables.
+>
+> So vendors need to identify chips to either fix those tables via some
+> quirks after the parsing is done, or to specify support that's not
+> covered by those tables.
+>
+> For basic ops, flashes that get the SFDP tables right, don't even need a
+> flash entry defined, we don't care about their ID, we just initialize
+> the flash solely based on SFDP.
+>
+> In this particular case, this flash needs identification to fix some
+> wrong SFDP field, it corrects just the mode cycles for the FAST READ
+> command. All the other commands seem fine according to patch 3/3.
+>
+> >=20
+> > You have the same problem with a property. Users have to add or remove
+>
+> True. It's the same problem. Even if we specify the dummy cycles via a
+> property, the next plugged-in flash will use those. We can of course
+> fallback to the SFDP only init if the ID doesn't match any flash entry,
+> but the problem is the same.
+>
+> > the property if the flash changes. Anyone thinking they can use this
+> > chip as a compatible 2nd source is SOL.
+> >=20
+>
+> I think the property vs compatible decision resumes at whether we
+> consider that the dummy cycles requirement for Read ID is/will be
+> generic or not.
+
+It is not generic. Because it will break autodetection. And that is
+the whole purpose of this. Adding that property means, we can just
+autodetect flashes within this 'group'. And personally, I think this
+is a bad precedent.
+
+> I noticed that with higher frequencies or protocol modes (e.g, octal
+> DTR), flashes tend to require more dummy cycles. I think with time,
+> we'll have more flashes with such requirement. Takahiro can jump in and
+> tell if it's already the case with IFX.
+
+But hopefully not with RDID. Again this doesn't play nice with other
+flashes (or all flashes for now). Instead of adding random delay
+cycles one should rather define a max clock speed for this opcode.
+
+-michael
+
+> Thus instead of having lots of new compatibles for this, I lean towards
+> having this property. I'm still open for the compatible idea, I just
+> wanted to explain better where we are.
+>
+> Thanks,
+> ta
+
 
