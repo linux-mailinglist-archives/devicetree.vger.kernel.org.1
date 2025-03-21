@@ -1,145 +1,188 @@
-Return-Path: <devicetree+bounces-159754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF4DDA6BF29
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 17:08:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 365C6A6BF34
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 17:10:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D8C037A6917
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 16:06:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8E2F3B800D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 16:09:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 417211E5732;
-	Fri, 21 Mar 2025 16:07:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB388227E9B;
+	Fri, 21 Mar 2025 16:09:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mdKrMXYl"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MBt27kD4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A83AB78F51
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 16:07:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6389023BE
+	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 16:09:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742573240; cv=none; b=LiZ8zsEe1Ji/BwKXDZRceGllpigWqT686CIOYXZqpd8N9W3ToNIoZhqtfx5p4KcL1yG90zZEcY69nk4Rm2+Mlbdhv9qAjYY2jOjyYi15PyE6xW3ErEDPlBbQ6fEn0n3iuMf6TB/xGli2UT49pzSPffyhBLZSXeqikTEGXJfcSz0=
+	t=1742573358; cv=none; b=aJyZeb0WcbQ5VDjJMHrUwluU3Hbb3imk9MvKf6lWArjaBV5rq+lrN+z5Zyup2iTkjj4gG0C8Cvnn9A+66VGgkdyenYgT8bpXbwUwVCg9yKMNjyBRqVTNgZIcvBVNFn/qUMtoGAyLfGAxm1zs98/s9xSZhTbWyOtc/I/QMyfzALs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742573240; c=relaxed/simple;
-	bh=jsr+fAPmt8WjmyP75sUcyDnamN3OSk2i7iC9kIodCL8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GfyxEW96vWjXz04D8XX0XiAZr56HqoHnv39ohXofGdkcuFk9dY2vNIUjfJDpVjyA1xu4u8N9FwZuv1FZsJcBJ7YGfK6f7sP1L7GaJw9frUz8x+4ZEBhsQWKj2RXPIWmR+fGuTr4xpcrTjtGpL+1fizPRtTbTLfBqUEjilTm7sDk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mdKrMXYl; arc=none smtp.client-ip=209.85.219.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f43.google.com with SMTP id 6a1803df08f44-6e8f94c2698so11542666d6.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 09:07:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742573236; x=1743178036; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=cXTmQzSNArG0LUnqvWiAWAFfFrIQ2vrTyW8gsvrq5lE=;
-        b=mdKrMXYlfcX3XzWCxmwdsnEaldXHJ7n7byImv6JwiC0qgd0Cq/YJaSYFqn2hSqAyeW
-         +WlwkB9gpeBx/Z8wt1vqRbxQFRTizs+I5k6i64zIwdwXqWttBvjjWrFsmj+3OxZ+48BW
-         80jSZvp1/hLPyArCNB5k8tV4tnsM2fLt6Ibaci2hDOkNRBogQz9eK2OCVqancZ1Kpwyj
-         abT5OgsI5eFc8dwSq2biMgHKzzmBBzszRIdTTWB4R50yFilVuSTL7hninhJbtNpXP/Kn
-         VBLRBf2GGnotUycT8y9Txzp3nIcHCsoADPwUnO7dZmVEEWEHxPg3I8AdQKkLgbjx3Iv3
-         OQBw==
+	s=arc-20240116; t=1742573358; c=relaxed/simple;
+	bh=llZWZG8vrikSmiw8ydIW6hs/MJhHomqckp7K5dqW3d0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KaJoelN2kB/WKR03vguJ7dVutRlPPTGX3yJu3nIhh9OhBcgfgPzT9Vt9vvfoU7k5sFeLPxfJHW4whxsUJxGIjIjeqtnaOPY8BwGpqi53GzGLCg39k8kqfpxPkJPK6r738Wsj1I1M1yHrzlLta/bj8g606XebNLtgxgC+T0P0Xi8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MBt27kD4; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52LCSgms010551
+	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 16:09:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	fdOuElFLpccoJsuXgqKPQO+xF/9Y5vee1gm2/OiO0Gw=; b=MBt27kD4ga1ISE1Y
+	oYW+r5SB7YuIJ+WP2qd2UrnA9bVoMbvLpp5Ag6nBiypSs0xrww2+q4JskgZvPgEh
+	FfXtDFZQSKbkuuGSua1GvghQRGqBh+9M0S6PEv7JSilvs2kl6QO1uM2FN2H7Zjnr
+	LDT7PioLyMjyMH0rl3DqPfPkkWX9cjW4KzssK3WpktwvD0pvXnotcSGd2uKYVkCB
+	JM/Tqlr0ZQUgjKJTcL48w3PJVc/nAGf82cwFwiuHmOegvi9e+AD/uQwQWf5RFnOc
+	sVLDE2CO6twu/klPDlOell0cX7YaIgiWxafKlBrI1ye4lLVmpLJdRKzyD+3HWF3K
+	IrpZ2A==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45h85e0ka1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 16:09:16 +0000 (GMT)
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-2ff8c5d185aso6218339a91.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 09:09:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742573236; x=1743178036;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cXTmQzSNArG0LUnqvWiAWAFfFrIQ2vrTyW8gsvrq5lE=;
-        b=Um7ZCgeDvFs+xdNQbcMlhzrYQC74t6CWFAfImNhaHUm0nFGGNkhS5XAmSt/N1BaEku
-         +zWh2Mc3MuxTblrna+Fwegynzh3YaUADBg1z1sqB5ztYPBww0lF7J4CUbXg5qEMCu4Pr
-         uzl47RNdhWrej+25khOuBMt/SCZKTP48cB9UdzbmgHsNw03SssQC1amjvmX2Xlm/uLCJ
-         OMJEN0CsfQ/9989rXNSeZiE+QdTlHgXBj+FTyNLaTyG9ylgN7KMQ1rVGUz/bqGzr4nue
-         wQ0JOVIakmc7RN6rudIleAzBRzoPq1aU7f/nhsDDxzgmNlW4Tgv0Kj6muXLicolnaDRE
-         h5HA==
-X-Gm-Message-State: AOJu0Yx5Dh0y7ZydS6xymQkP96jtuAnn6DEjb2PuEDutm3tGnQKzvqm1
-	PZYb1beMHDnGizR4etGLLjmUxyLDTbOa6JiRVoMb1zfPpqvpEXPS
-X-Gm-Gg: ASbGncvEvPDLXZcTyF5sj4/jx2GPSaGTnPyNG+gQDCW+O7nE7XhHhX50MPUN6Fd4vnW
-	rbIzqFetGgSLnsJLJy3qS3kEIryHod2rMRGP/hpwIrvRMoFcJ5eHi247A6YVM1W3bpBiY0NZG8v
-	LTuL7EwTcono91L0EglazuKnMbp/NGp8xRY+bclVmvl9RTTRMmleCPSRp2AuyaedI407trbQCPq
-	zLkftyhD2KEoSPw0T4/ME/bZL4NxPJXSy9eDkR4BcXFxjSV35fJ5g346cdhXF7zul1bA5EYYe/w
-	GsJIzho95wtwIL6lPp19XFQ7I7ihcwxRoAS0Gm5jzb1ibGFxHRalxae7Wz6sEe5zFk1nzEFpwh0
-	dyKhPiA==
-X-Google-Smtp-Source: AGHT+IE6wBkSae8r7jDv077Rr9iye2+iQLB7YCA3JeuoVSlKHZ/rpng//xmWpjmG3Q8Z0Byq3nUFNg==
-X-Received: by 2002:ad4:5ca5:0:b0:6e6:684f:7f78 with SMTP id 6a1803df08f44-6eb3f275bd6mr53792736d6.3.1742573236245;
-        Fri, 21 Mar 2025 09:07:16 -0700 (PDT)
-Received: from VM-Arch (ool-1826d901.dyn.optonline.net. [24.38.217.1])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6eb3ef0f214sm12600176d6.7.2025.03.21.09.07.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Mar 2025 09:07:15 -0700 (PDT)
-Date: Fri, 21 Mar 2025 12:07:13 -0400
-From: Alex Lanzano <lanzano.alex@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Josef =?utf-8?B?THXFoXRpY2vDvQ==?= <josef.lusticky@braiins.cz>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, dri-devel@lists.freedesktop.org
-Subject: Re: Bug in mipi_dbi_hw_reset() causes incorrect DT entries
-Message-ID: <dycrognvv7mlxdqmgkqx3bc2377zvrezvpj33pegqk5nhlayqr@5e2zckplhmof>
-References: <v7krb2k3aybcpbzyx4ysjxpdpljpadk6xugpdsehzc6wp6aejw@53flicuphar4>
- <ebfdad9d-fe4b-41ac-b7df-eb7354dd9052@kernel.org>
+        d=1e100.net; s=20230601; t=1742573355; x=1743178155;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fdOuElFLpccoJsuXgqKPQO+xF/9Y5vee1gm2/OiO0Gw=;
+        b=hQy8FiDvkCtwQibFwiE2PjB+7GKFZNoZSjj8yM8TLciu7AVLhPTDoIDUFM3G4uuCB6
+         D8F+pC1nx/DnEu8EON2jyOm4P14dydS4OUVzIE3VgVI1IrNKHKybZIDAGim5SBQV7idB
+         QHtTj5RihuMaZhAyOuTc7E4KSBjBoIUjIi7Vznevd1CTY1ZERhk7vTLoRLPU6HCkLE6k
+         HK5Iz8FRhyVnyduzL8kwPy/oBKqzgDhqnBIYDtrqLAsDRxr4nDsp92RmrDAgRoFs/Ho0
+         eTIdXIb+eaL5B2uXqeCb9kjytppzpuP/IEFO1WRBGdJxpd2z1LzFcA7pManlo37EqEWg
+         d67w==
+X-Gm-Message-State: AOJu0Yyv/PjNYTyrfU3HBxnZzlOC77UMGQ7gTC2DrKIXqWN96LU6ObFG
+	iiTU2A8hRximcuHKmhtqg5hd9wrHT3pZFHDp88PX5JtwkeAv3OdrPtvga1nSCiZs3mSfnk6YXQD
+	YMjY3i8BkdG5mgArV5IYWHU+Zk7JKzBQYddk80YgeUrgluu3IZLmz4YSHeVQp
+X-Gm-Gg: ASbGncs62es6zO09g3tUlwX6tVsPLXPZqPE5KY95j2OtrghyO1U9ulIStduiRdaiI1h
+	eGWH/v1/pMNCSkeBfeiH5SFDXK8ZLwvV33orjPo+Q4B00DI11jhUt1fU2cv5ixbjkYmzCBypH4e
+	zoqRZJcb9jw6y83nOgsk4hHMqHQVAwx+gYLqe53cIa2HeU2yQE54udyQtvlrzH5dzX126PvDGar
+	90NMw2CaafbMsoYE86R0tyXcpBl8Cun0a4o4hGnStiJfTsu2kC8f6nHmv1FV5horhuz7r5EQubX
+	lAa4xC4pqOJyXVZrsr/782G5kddMmCSLCrWzwJ6nFyLk9h+vVknSy6/inEhy824ing==
+X-Received: by 2002:a05:6a00:4f81:b0:736:5822:74b4 with SMTP id d2e1a72fcca58-73905a530a9mr6797797b3a.21.1742573354422;
+        Fri, 21 Mar 2025 09:09:14 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGL5fYByHbvsD/gRtsSQfXYP8pBS52gj7BStPaMfEBPmc/gB4ybx9sZflEDEhvH+V7H0dixLA==
+X-Received: by 2002:a05:6a00:4f81:b0:736:5822:74b4 with SMTP id d2e1a72fcca58-73905a530a9mr6797719b3a.21.1742573353797;
+        Fri, 21 Mar 2025 09:09:13 -0700 (PDT)
+Received: from [10.226.59.182] (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-af8a27de717sm1957838a12.12.2025.03.21.09.09.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Mar 2025 09:09:13 -0700 (PDT)
+Message-ID: <4d617199-191c-47d9-a0f1-5bf9c149d09d@oss.qualcomm.com>
+Date: Fri, 21 Mar 2025 10:09:05 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ebfdad9d-fe4b-41ac-b7df-eb7354dd9052@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 6/7] accel/rocket: Add job submission IOCTL
+To: Tomeu Vizoso <tomeu@tomeuvizoso.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+        Oded Gabbay <ogabbay@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
+        linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
+References: <20250225-6-10-rocket-v2-0-d4dbcfafc141@tomeuvizoso.net>
+ <20250225-6-10-rocket-v2-6-d4dbcfafc141@tomeuvizoso.net>
+Content-Language: en-US
+From: Jeff Hugo <jeff.hugo@oss.qualcomm.com>
+In-Reply-To: <20250225-6-10-rocket-v2-6-d4dbcfafc141@tomeuvizoso.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: 8gSaH58M1YmN9jtPlVzKZj5buOdwU2Vy
+X-Proofpoint-ORIG-GUID: 8gSaH58M1YmN9jtPlVzKZj5buOdwU2Vy
+X-Authority-Analysis: v=2.4 cv=LKpmQIW9 c=1 sm=1 tr=0 ts=67dd8f2c cx=c_pps a=RP+M6JBNLl+fLTcSJhASfg==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=otp63fjl-Mw8CRR8ssMA:9 a=QEXdDO2ut3YA:10 a=iS9zxrgQBfv6-_F4QbHw:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-21_05,2025-03-21_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 impostorscore=0
+ phishscore=0 malwarescore=0 suspectscore=0 mlxscore=0 priorityscore=1501
+ spamscore=0 mlxlogscore=999 lowpriorityscore=0 clxscore=1015 bulkscore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503210118
 
-On Sun, Mar 16, 2025 at 12:51:29PM +0100, Krzysztof Kozlowski wrote:
-> On 15/03/2025 16:20, Alex Lanzano wrote:
-> > Hi all,
-> > 
-> > There is a bug in the mipi_dbi_hw_reset() function that handles the
-> > reset logic of the controller. Currently, it will set the reset gpio
-> > value to 0, wait a specified time, then set the reset gpio value to 1.
-> > 
-> > The issue with this implementation is that the MIPI DBI spec states that
-> > the reset signal is active low. So, in order to correct for this logic,
-> > the developer needs to incorrectly define the reset gpio as active high
-> > in the DT.
-> 
-> You should address it to driver and subsystem maintainers. Instead you
-> skipped all maintainers but Cc-ed people who have nothing to do with
-> MIPI DBI drivers in the kernel.
-> 
+On 2/25/2025 12:55 AM, Tomeu Vizoso wrote:
+> +/**
+> + * struct drm_rocket_task - A task to be run on the NPU
+> + *
+> + * A task is the smallest unit of work that can be run on the NPU.
+> + */
+> +struct drm_rocket_task {
+> +	/** DMA address to NPU mapping of register command buffer */
+> +	__u64 regcmd;
+> +
+> +	/** Number of commands in the register command buffer */
+> +	__u32 regcmd_count;
+> +};
+> +
+> +/**
+> + * struct drm_rocket_job - A job to be run on the NPU
+> + *
+> + * The kernel will schedule the execution of this job taking into account its
+> + * dependencies with other jobs. All tasks in the same job will be executed
+> + * sequentially on the same core, to benefit from memory residency in SRAM.
+> + */
+> +struct drm_rocket_job {
+> +	/** Pointer to an array of struct drm_rocket_task. */
+> +	__u64 tasks;
+> +
+> +	/** Pointer to a u32 array of the BOs that are read by the job. */
+> +	__u64 in_bo_handles;
+> +
+> +	/** Pointer to a u32 array of the BOs that are written to by the job. */
+> +	__u64 out_bo_handles;
+> +
+> +	/** Number of tasks passed in. */
+> +	__u32 task_count;
+> +
+> +	/** Number of input BO handles passed in (size is that times 4). */
+> +	__u32 in_bo_handle_count;
+> +
+> +	/** Number of output BO handles passed in (size is that times 4). */
+> +	__u32 out_bo_handle_count;
+> +};
+> +
+> +/**
+> + * struct drm_rocket_submit - ioctl argument for submitting commands to the NPU.
+> + *
+> + * The kernel will schedule the execution of these jobs in dependency order.
+> + */
+> +struct drm_rocket_submit {
+> +	/** Pointer to an array of struct drm_rocket_job. */
+> +	__u64 jobs;
+> +
+> +	/** Number of jobs passed in. */
+> +	__u32 job_count;
+> +};
 
-My apologies. I wanted to get the advice from you and the other device
-tree maintainers since I was proposing a new device property to address
-this issue. CC'ing them on the thread now.
-
-> > 
-> > Fixing the logic in the driver would cause all the displays using this
-> > driver downstream to stop working. To mitigate this, Josef and I were
-> > thinking about adding an additional boolean property to the DT that when
-> > present would use the correct reset logic in the driver. And if it's not
-> > present use the current reset logic and print out a warning that this
-> > reset logic is deprecated.
-> > 
-> > The overall plan would be to have this temporary fix for a few release
-> > cycles so downstream has time to be aware of the issue and update their
-> > DT. Eventually, we would remove the incorrect reset logic in the driver
-> > and this addtional boolean property.
-> 
-> That's an ABI now, so you cannot change it without affecting users. Code
-> is from 2018 so you have plenty of users now.
-> 
-> I did some workaround for wsa88xx speakers but that's an exception and
-> it should not necessarily be a pattern to follow.
-> 
-> Not sure if it the issue is worth changing considering the impact.
-> 
-
-Makes sense, I'm just a bit concerned about the device tree definitions
-not being compatible across different platforms.
-
-Best regards,
-Alex
+These 3 structs will be different sizes in 32-bit env vs 64-bit env. Yes 
+the driver depends on ARM64, but compat (32-bit userspace with 64-bit 
+kernel) is still possible. They should all be padded out to 64-bit 
+alignment.  When you do that, you should specify that the padding must 
+be zero, and check for that in the driver so that you have the option to 
+use the padding in the future.
 
