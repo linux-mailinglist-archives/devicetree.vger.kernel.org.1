@@ -1,264 +1,228 @@
-Return-Path: <devicetree+bounces-159775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D393A6C0F4
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 18:11:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A759AA6C10D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 18:16:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 597C0189FDC9
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 17:10:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E149618969DD
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 17:16:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C14122D797;
-	Fri, 21 Mar 2025 17:10:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60C4122AE59;
+	Fri, 21 Mar 2025 17:16:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lZXwNoL6"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="e/CG7mZx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59510229B26;
-	Fri, 21 Mar 2025 17:10:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA2E41DE8AD
+	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 17:16:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742577004; cv=none; b=OxlFEDSYxUSd4V5dTlinKdr3cJ1I0zpkIPx6Ksu5ppVQAyzZDaFkqotFvZtrx5Kspap65b+gsTDLGiLgaJdCawP7aCRVKbvyweqr+hqJVRjxICScaNQMosmPS3fFIRvG3FRcS5NgTTAEol2Avb22f290RDVgzfZNnC7jvKvgDzY=
+	t=1742577392; cv=none; b=ay32cafuq5Ef+SvvLK0jwJswTMaayqWvzzf98Z/ufWlcUkrcPljyXDoadstIJOAAWTKyZ/XNMWjjVK5Gy/ZGbZyxQzQBMF+VXKuj9oCz+Au4Lx8zvvCEmBOEFppv1pCJQVbFCZPwb6abgJ56FViy8Ggr0BEffvLoCOIHiM01SC0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742577004; c=relaxed/simple;
-	bh=Jf9O7KjMNA7NxwmRd31l+c7sfUh3Eaqc9SV8oiR4vQw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oUKziZW3TrYz3fKULWQTqZMvuxFcThJb/U7lGXUXarFVWD85YQmAnypHC2Es3I9/oiO7WYtRP2PoCmv/xT565tHVJekXdd5a/WdbW7bnBVbbdYbU7ZhgES9ntUA8FYTlkZwc9q7Gd7K+F2ka8iz9mL0+6Efyr5zZFJqRMVywTGk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lZXwNoL6; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2260c915749so32383875ad.3;
-        Fri, 21 Mar 2025 10:10:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742577001; x=1743181801; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=uztsJ7JzvIY981dArFAH0tUKF80EDOKJKLoCf65usL8=;
-        b=lZXwNoL65BjTcm6hc2GdLqorjndqIDKzzaYLHmlWmjmhVscRGC95MGHZ6xmLm2Ju4R
-         4AFzkFoAk66Xyg0o/K/dmQfIzervYu2o+G82LqvkI9Nw3x1nRX77TiRsjETGXiFSrvIU
-         vB+tNte/8V9D1RVGIP7eGGw/KfxQ3v0BXiZVS2UImiBaRSn6QY8XbTNS6kfL4v/pZMd+
-         qDj3PQpvXysvoMfe8vTe1vTkCgtq7N4oOnakZuDyefXZguPI4+QxxF9+tVtK8XtEAWkW
-         JvIGgyaJUtKh4vFwxBXJATpaL4KslAECg43p5DjIQUhvtxJlc+Vo/qgj7/C4uB3TBne9
-         h7jw==
+	s=arc-20240116; t=1742577392; c=relaxed/simple;
+	bh=+848UubEfUlVqHIh86yyMuR5GV6U3zPJjpafMFufYKo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Te0Ad/iNORjiwEI8shbijC87O2Xnt0BRSR87ehzJaReYK7yQKB9eSJkPpgG/25Cwot6ZWpolrQKTbQgApkQIvMvLobrReYJ0PsbDifP6OqG/ztQCZ4oBs980KP1vlJrt5c0XspZJ4Vewn1v+1gOTCPAJGtGeCJ+ebDMVGJ+LfhA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=e/CG7mZx; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52LATBqq012660
+	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 17:16:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=j1Qca/X2JAHkCd7JshisB8OI
+	A+vM4MvdVceWmdBp5HU=; b=e/CG7mZxpg689yaDCOVgEd5j3ytR4fMwAjUEg5T9
+	BGumteu0p2E0eV10N6qmzm9VKUpPsW3YTfxrevhFZ8t3bmOfaZDlHS3C0o0BSeuH
+	fxfYqyiF08piGWPies+09FNj2BbTZ9G+CMf/RDKMbyCKDFgLnr9xaCwlbPKxHCNg
+	W2yxrcWMMpoLk48b4xM1dcO4bNqUYY+4Pdz1SmitKW3spL5h6bLCMVLlOmljE8wM
+	Ir9OfxR1HmJ2IncJkKCGMJNTSBi4hfFxA74YsEBEBhZ7/jh9xaEDCb8LAy+asDgW
+	x+F76AHW8Noc6jW2KUaNJ/79zXJDaCdAhbo3mD3ySbUlXA==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45g4t46ktx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 17:16:29 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c59ac9781fso393520485a.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 10:16:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742577001; x=1743181801;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1742577388; x=1743182188;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=uztsJ7JzvIY981dArFAH0tUKF80EDOKJKLoCf65usL8=;
-        b=ee7aOAkms3Nc7m2To+k2qWeGCh9C5jxJoKbJ3zt6bXIqEU/MEPD/uKag22JOdQjmnH
-         0ygULqFO9iAkhIYxWkMAY8x2442BoFzRRkxv82qRCz3t5gmEbGQjrENC1PBZQIF+KS0i
-         ybFkILQATgrYHFOv3RLkK27NX2DLmFJOTLzdwGLQybK2vuzTgeM7rJquGfYwTltT2BOL
-         xjgGLaWOCNZjSJAwIk7yzfjsmNnTsdxga9aRyprEuPbq5UJtzaxviaAcferIce0myV7S
-         l19aMVpsCF2G9EC39AEF4wGZ99c9myRTcCazKV6pngOx8MalL4g+AkdCmNkclhPi0fKy
-         bjTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU07vQ1HYTILz3qU0Wkt+Ty+N5ItBaSNtThrBwocKIEFH1+DOqMqcA/j2PAcXU2TJKH8q7u8iPTvjzFx7M=@vger.kernel.org, AJvYcCWM9VD9+AS6FB0fyo24EzU/bYWn/MMY9MF3AyC8DTGWJdypbJJ6i6dkekUpnACl4J9xM2nM6kuGnfo9@vger.kernel.org, AJvYcCWbdaPKTkt9jbrNmrNJ07hl6xf/r+JQijwpAaJUqHZN11i16nMBf2fY9KOG9sU4OSpiZqeVd45Y3JRXFsAZ@vger.kernel.org, AJvYcCXf6iQjVLvwgcZNHXnrvmn3MhYkOWq+XbSCLMqtDUMW/CnJeCAGB4OmydpWqqacqOvbZ2+Uzma+Sck5@vger.kernel.org, AJvYcCXpoQi/n3Hij5KDOFG0PKmbNf+KRBn2c8IVmhMMXhWmH0+hJ5lIstqlG+pmkCHpmV0LO7Nn7Z8Ignkn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw9t1e167A55df+4DpEsc2wKK2Lk+0ImRsNGM9RABaSc1KaYaZs
-	6IlTtZHOAzfKyvM1t7eGB5sNf3RpwUFAE03WtuDZIm9ul2Tlsl1/
-X-Gm-Gg: ASbGnctyUZIeZLPZmgzTxQsrWrjqUSHYQqhfqOyKHWDYScdz+Ts8QChBjztWHRkNhkq
-	r5DyMoG5KZ8U4abWPPej38WsfVQymJEdWKEw8+7zzuKYpen4nqzbBE4L6TW1bnpeksMd772W6e4
-	coPrCSAC/fcPoRqjNPvuXfTW2uX2/vNwRMDH12lyQZ4rhR+jdZMu2HkpSs2c4jtUmy9IsLMCyE6
-	hPR9SyIIq8NssKQfIKooWvQ134xTTwjQTL8oGofhaLbgyB1rNoW7eQ6ylDSECNtaoPz8W/S35yj
-	1a69OP1k72Qh7sInQAf6V2OaS05Cortj4SaiEGqVBaSiea8hKqzrBXMJEEUf9PPGGSpWRv37+81
-	DdsPVerORKV8f+owWyw==
-X-Google-Smtp-Source: AGHT+IHtcpZdirGnF20GsQ/Lw15UUPPEPMY1zNwB4lkIWMtRuLnEhyFubklIvJ0hyQuY5L2tiR7fGQ==
-X-Received: by 2002:a17:902:dacd:b0:220:d257:cdbd with SMTP id d9443c01a7336-22780e2a4c4mr69685285ad.48.1742577001190;
-        Fri, 21 Mar 2025 10:10:01 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-227811d968asm19491495ad.162.2025.03.21.10.09.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Mar 2025 10:10:00 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <ab329813-2903-4bd1-8734-ab36466650c2@roeck-us.net>
-Date: Fri, 21 Mar 2025 10:09:59 -0700
+        bh=j1Qca/X2JAHkCd7JshisB8OIA+vM4MvdVceWmdBp5HU=;
+        b=OdbqDojKtZPoLvq9WhvYOLbCrtp2fMKnMbD2IDGsQ2dPUeB6pIeKaVwSjoALqIa6PK
+         l5jiwKb5KXWE5LzYsMe+q5F63xRdKNArtRoVMyZYc2DgGvvM0FfvUzDKCAXGFPxnKDG7
+         TA/I7avNO1vAjcqnSrifZNgPQqFdN97bQM31v1Wi0PRf11mrexVyVVCm4SAxEg1sNjDG
+         K7Sotb+JAzRLeBsM3GxiJE+S4j9BE0GHIwX7RzzFsKj9DX7JtYj0tK2byk0Pzk6Uy+u1
+         Komre/NQJNQLYYdhiFAVasorbQ+3gS9pHx3m4Yrvyqx5bDVZ7EXqtZjEN0ggaViCLF0k
+         6cDw==
+X-Forwarded-Encrypted: i=1; AJvYcCVcD9p6kVilqT++OSJQW7AMQ+MZcNwgXdojrTCfRNLm2+x/fQqTTWPd/ihpn7WvDfH3T+HqsXhtxcNv@vger.kernel.org
+X-Gm-Message-State: AOJu0YyPxFDIbSZehSXAlGtBEQ4G0eU43e/m4f43b6t+uVFCE0yzm7wh
+	aYpX9dA9cP7NP6iMVt9JdqNNCOfotUU1tEKAtqepDFm8nq3jYNZJ14LzHNbAskdcV1rX2ZlftrY
+	FI9D0Qu511tRUsipr4BGe5SnfNwZXgFllTU5Q+UrdUUnX/ra0ja5lp9KPrGQP
+X-Gm-Gg: ASbGncvs19t+qML9FomZUGCgsSq4sh/KLNxCDtYDUpZ+2bYgsPqzUEdaNMAkVV3VP47
+	aEQj8BT4ZjXweI3sAPTI0ar79VRBqH0tpqkKWAgxvUWxDw7l5YH8YyNjASgr9+rRQBoL4kixPpI
+	Sf3eAoba0cPCiHTHR8J9ABu8VjwOyIlvse23SCnz4yGemm4pv247ndD5HS194mq7wCo3GLgDPvN
+	gvvS32ylH9VUzOkFwXNGgBckYdFKT116ePY5+zE2Y0lj3teVq96Xo1FZJAqnpAeeOMrYlsBgyjK
+	g51Qa0E+SCGeKaYvEk5EnTVRQWk7iTsBl2/qnm8/7pFN/JodLyJ9C9p2xG5X1prc4k18aNEOJ0a
+	f10A=
+X-Received: by 2002:a05:620a:390c:b0:7c0:a1c8:1db3 with SMTP id af79cd13be357-7c5b0505f09mr1299545185a.11.1742577388433;
+        Fri, 21 Mar 2025 10:16:28 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGim5Ytd6Ycz4Lr38mIgtm2b1j4Nmu2dHEXnaayvaGs6Xyh2f8fMFf7D3pfIQqOvfw1h9+r5A==
+X-Received: by 2002:a05:620a:390c:b0:7c0:a1c8:1db3 with SMTP id af79cd13be357-7c5b0505f09mr1299538385a.11.1742577387725;
+        Fri, 21 Mar 2025 10:16:27 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54ad6468c7csm226104e87.5.2025.03.21.10.16.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Mar 2025 10:16:26 -0700 (PDT)
+Date: Fri, 21 Mar 2025 19:16:25 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: peda@axentia.se, broonie@kernel.org, andersson@kernel.org,
+        krzk+dt@kernel.org, ivprusov@salutedevices.com,
+        luca.ceresoli@bootlin.com, zhoubinbin@loongson.cn,
+        paulha@opensource.cirrus.com, lgirdwood@gmail.com, robh@kernel.org,
+        conor+dt@kernel.org, konradybcio@kernel.org, perex@perex.cz,
+        tiwai@suse.com, linux-sound@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, johan+linaro@kernel.org
+Subject: Re: [PATCH v2 4/5] ASoC: codecs: wcd938x: add mux control support
+ for hp audio mux
+Message-ID: <3ke2oxgd2dh5wghgatyzivaxspqlezn3x5vtjaxszqad4dhfxd@vpzxmi2nqmrw>
+References: <20250320115633.4248-1-srinivas.kandagatla@linaro.org>
+ <20250320115633.4248-5-srinivas.kandagatla@linaro.org>
+ <rdvsnxuc6by6sci56sh7thzpxo5cqi7q24fnmc7hi5yrfszwrg@kqjpiilko3xo>
+ <adfecf33-6ab2-4c3e-b7d9-3d6481ebd3f8@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: pmbus: add lt3074
-To: "Encarnacion, Cedric justine" <Cedricjustine.Encarnacion@analog.com>,
- Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
- Jonathan Corbet <corbet@lwn.net>,
- Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
- "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
- "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>
-References: <20250225-upstream-lt3074-v2-0-18ad10ba542e@analog.com>
- <20250225-upstream-lt3074-v2-1-18ad10ba542e@analog.com>
- <20250226-gentle-spicy-jacamar-2dd36a@krzk-bin>
- <20250226145931.GA2314060-robh@kernel.org>
- <3f7b031d-7b83-4a00-996d-aabb26278b67@roeck-us.net>
- <20250227-sceptical-phenomenal-wolverine-56e3cf@krzk-bin>
- <dbd9cc84-a0b6-4323-b343-6e80aaaf2d14@roeck-us.net>
- <PH0PR03MB69385BEFFD04ECF850311E988EDE2@PH0PR03MB6938.namprd03.prod.outlook.com>
- <15ce883f-444c-4b27-a48d-b17e3df5895d@roeck-us.net>
- <PH0PR03MB693831397416C4247F8BA58D8ED92@PH0PR03MB6938.namprd03.prod.outlook.com>
- <PH0PR03MB6938087B8F2EDB9899DD0F1D8EDB2@PH0PR03MB6938.namprd03.prod.outlook.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- xsFNBE6H1WcBEACu6jIcw5kZ5dGeJ7E7B2uweQR/4FGxH10/H1O1+ApmcQ9i87XdZQiB9cpN
- RYHA7RCEK2dh6dDccykQk3bC90xXMPg+O3R+C/SkwcnUak1UZaeK/SwQbq/t0tkMzYDRxfJ7
- nyFiKxUehbNF3r9qlJgPqONwX5vJy4/GvDHdddSCxV41P/ejsZ8PykxyJs98UWhF54tGRWFl
- 7i1xvaDB9lN5WTLRKSO7wICuLiSz5WZHXMkyF4d+/O5ll7yz/o/JxK5vO/sduYDIlFTvBZDh
- gzaEtNf5tQjsjG4io8E0Yq0ViobLkS2RTNZT8ICq/Jmvl0SpbHRvYwa2DhNsK0YjHFQBB0FX
- IdhdUEzNefcNcYvqigJpdICoP2e4yJSyflHFO4dr0OrdnGLe1Zi/8Xo/2+M1dSSEt196rXaC
- kwu2KgIgmkRBb3cp2vIBBIIowU8W3qC1+w+RdMUrZxKGWJ3juwcgveJlzMpMZNyM1jobSXZ0
- VHGMNJ3MwXlrEFPXaYJgibcg6brM6wGfX/LBvc/haWw4yO24lT5eitm4UBdIy9pKkKmHHh7s
- jfZJkB5fWKVdoCv/omy6UyH6ykLOPFugl+hVL2Prf8xrXuZe1CMS7ID9Lc8FaL1ROIN/W8Vk
- BIsJMaWOhks//7d92Uf3EArDlDShwR2+D+AMon8NULuLBHiEUQARAQABzTJHdWVudGVyIFJv
- ZWNrIChMaW51eCBhY2NvdW50KSA8bGludXhAcm9lY2stdXMubmV0PsLBgQQTAQIAKwIbAwYL
- CQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEFAlVcphcFCRmg06EACgkQyx8mb86fmYFg0RAA
- nzXJzuPkLJaOmSIzPAqqnutACchT/meCOgMEpS5oLf6xn5ySZkl23OxuhpMZTVX+49c9pvBx
- hpvl5bCWFu5qC1jC2eWRYU+aZZE4sxMaAGeWenQJsiG9lP8wkfCJP3ockNu0ZXXAXwIbY1O1
- c+l11zQkZw89zNgWgKobKzrDMBFOYtAh0pAInZ9TSn7oA4Ctejouo5wUugmk8MrDtUVXmEA9
- 7f9fgKYSwl/H7dfKKsS1bDOpyJlqhEAH94BHJdK/b1tzwJCFAXFhMlmlbYEk8kWjcxQgDWMu
- GAthQzSuAyhqyZwFcOlMCNbAcTSQawSo3B9yM9mHJne5RrAbVz4TWLnEaX8gA5xK3uCNCeyI
- sqYuzA4OzcMwnnTASvzsGZoYHTFP3DQwf2nzxD6yBGCfwNGIYfS0i8YN8XcBgEcDFMWpOQhT
- Pu3HeztMnF3HXrc0t7e5rDW9zCh3k2PA6D2NV4fews9KDFhLlTfCVzf0PS1dRVVWM+4jVl6l
- HRIAgWp+2/f8dx5vPc4Ycp4IsZN0l1h9uT7qm1KTwz+sSl1zOqKD/BpfGNZfLRRxrXthvvY8
- BltcuZ4+PGFTcRkMytUbMDFMF9Cjd2W9dXD35PEtvj8wnEyzIos8bbgtLrGTv/SYhmPpahJA
- l8hPhYvmAvpOmusUUyB30StsHIU2LLccUPPOwU0ETofVZwEQALlLbQeBDTDbwQYrj0gbx3bq
- 7kpKABxN2MqeuqGr02DpS9883d/t7ontxasXoEz2GTioevvRmllJlPQERVxM8gQoNg22twF7
- pB/zsrIjxkE9heE4wYfN1AyzT+AxgYN6f8hVQ7Nrc9XgZZe+8IkuW/Nf64KzNJXnSH4u6nJM
- J2+Dt274YoFcXR1nG76Q259mKwzbCukKbd6piL+VsT/qBrLhZe9Ivbjq5WMdkQKnP7gYKCAi
- pNVJC4enWfivZsYupMd9qn7Uv/oCZDYoBTdMSBUblaLMwlcjnPpOYK5rfHvC4opxl+P/Vzyz
- 6WC2TLkPtKvYvXmdsI6rnEI4Uucg0Au/Ulg7aqqKhzGPIbVaL+U0Wk82nz6hz+WP2ggTrY1w
- ZlPlRt8WM9w6WfLf2j+PuGklj37m+KvaOEfLsF1v464dSpy1tQVHhhp8LFTxh/6RWkRIR2uF
- I4v3Xu/k5D0LhaZHpQ4C+xKsQxpTGuYh2tnRaRL14YMW1dlI3HfeB2gj7Yc8XdHh9vkpPyuT
- nY/ZsFbnvBtiw7GchKKri2gDhRb2QNNDyBnQn5mRFw7CyuFclAksOdV/sdpQnYlYcRQWOUGY
- HhQ5eqTRZjm9z+qQe/T0HQpmiPTqQcIaG/edgKVTUjITfA7AJMKLQHgp04Vylb+G6jocnQQX
- JqvvP09whbqrABEBAAHCwWUEGAECAA8CGwwFAlVcpi8FCRmg08MACgkQyx8mb86fmYHNRQ/+
- J0OZsBYP4leJvQF8lx9zif+v4ZY/6C9tTcUv/KNAE5leyrD4IKbnV4PnbrVhjq861it/zRQW
- cFpWQszZyWRwNPWUUz7ejmm9lAwPbr8xWT4qMSA43VKQ7ZCeTQJ4TC8kjqtcbw41SjkjrcTG
- wF52zFO4bOWyovVAPncvV9eGA/vtnd3xEZXQiSt91kBSqK28yjxAqK/c3G6i7IX2rg6pzgqh
- hiH3/1qM2M/LSuqAv0Rwrt/k+pZXE+B4Ud42hwmMr0TfhNxG+X7YKvjKC+SjPjqp0CaztQ0H
- nsDLSLElVROxCd9m8CAUuHplgmR3seYCOrT4jriMFBtKNPtj2EE4DNV4s7k0Zy+6iRQ8G8ng
- QjsSqYJx8iAR8JRB7Gm2rQOMv8lSRdjva++GT0VLXtHULdlzg8VjDnFZ3lfz5PWEOeIMk7Rj
- trjv82EZtrhLuLjHRCaG50OOm0hwPSk1J64R8O3HjSLdertmw7eyAYOo4RuWJguYMg5DRnBk
- WkRwrSuCn7UG+qVWZeKEsFKFOkynOs3pVbcbq1pxbhk3TRWCGRU5JolI4ohy/7JV1TVbjiDI
- HP/aVnm6NC8of26P40Pg8EdAhajZnHHjA7FrJXsy3cyIGqvg9os4rNkUWmrCfLLsZDHD8FnU
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <PH0PR03MB6938087B8F2EDB9899DD0F1D8EDB2@PH0PR03MB6938.namprd03.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <adfecf33-6ab2-4c3e-b7d9-3d6481ebd3f8@linaro.org>
+X-Authority-Analysis: v=2.4 cv=HMPDFptv c=1 sm=1 tr=0 ts=67dd9eed cx=c_pps a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=KKAkSRfTAAAA:8 a=9s2PtkJ4WOh6SrYgvskA:9 a=CjuIK1q_8ugA:10 a=PEH46H7Ffwr30OY-TuGO:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: M8Buqaz2sNrt5xfS-6jx2yj4aHFa3rq_
+X-Proofpoint-ORIG-GUID: M8Buqaz2sNrt5xfS-6jx2yj4aHFa3rq_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-21_05,2025-03-21_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ priorityscore=1501 mlxscore=0 clxscore=1015 bulkscore=0 impostorscore=0
+ mlxlogscore=999 malwarescore=0 adultscore=0 suspectscore=0
+ lowpriorityscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502280000 definitions=main-2503210127
 
-On 3/21/25 09:53, Encarnacion, Cedric justine wrote:
->> -----Original Message-----
->> From: Encarnacion, Cedric justine
->> Sent: Wednesday, March 19, 2025 12:10 PM
->> To: Guenter Roeck <linux@roeck-us.net>; Krzysztof Kozlowski <krzk@kernel.org>
->> Cc: Rob Herring <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>;
->> Conor Dooley <conor+dt@kernel.org>; Jean Delvare <jdelvare@suse.com>;
->> Jonathan Corbet <corbet@lwn.net>; Delphine CC Chiu
->> <Delphine_CC_Chiu@wiwynn.com>; devicetree@vger.kernel.org; linux-
->> kernel@vger.kernel.org; linux-hwmon@vger.kernel.org; linux-
->> doc@vger.kernel.org; linux-i2c@vger.kernel.org
->> Subject: RE: [PATCH v2 1/2] dt-bindings: hwmon: pmbus: add lt3074
->>
->>> -----Original Message-----
->>> From: Guenter Roeck <groeck7@gmail.com> On Behalf Of Guenter Roeck
->>> Sent: Tuesday, March 18, 2025 11:17 PM
->>> To: Encarnacion, Cedric justine
->>> <Cedricjustine.Encarnacion@analog.com>;
->>> Krzysztof Kozlowski <krzk@kernel.org>
->>> Cc: Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
->>> <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Jean Delvare
->>> <jdelvare@suse.com>; Jonathan Corbet <corbet@lwn.net>; Delphine CC
->>> Chiu <Delphine_CC_Chiu@wiwynn.com>; devicetree@vger.kernel.org; linux-
->>> kernel@vger.kernel.org; linux-hwmon@vger.kernel.org; linux-
->>> doc@vger.kernel.org; linux-i2c@vger.kernel.org
->>> Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: pmbus: add lt3074
->>>
->>> [External]
->>>
->>> On 3/18/25 03:03, Encarnacion, Cedric justine wrote:
->>>>> -----Original Message-----
->>>>> From: Guenter Roeck <groeck7@gmail.com> On Behalf Of Guenter Roeck
->>>>> Sent: Friday, February 28, 2025 12:33 AM
->>>>> To: Krzysztof Kozlowski <krzk@kernel.org>
->>>>> Cc: Rob Herring <robh@kernel.org>; Encarnacion, Cedric justine
->>>>> <Cedricjustine.Encarnacion@analog.com>; Krzysztof Kozlowski
->>>>> <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Jean
->>>>> Delvare <jdelvare@suse.com>; Jonathan Corbet <corbet@lwn.net>;
->>>>> Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>;
->>>>> devicetree@vger.kernel.org; linux- kernel@vger.kernel.org;
->>>>> linux-hwmon@vger.kernel.org; linux- doc@vger.kernel.org;
->>>>> linux-i2c@vger.kernel.org
->>>>> Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: pmbus: add lt3074
->>>>>
->>>>> diff --git a/drivers/hwmon/pmbus/pmbus.h
->>>>> b/drivers/hwmon/pmbus/pmbus.h index ddb19c9726d6..289767e5d599
->>>>> 100644
->>>>> --- a/drivers/hwmon/pmbus/pmbus.h
->>>>> +++ b/drivers/hwmon/pmbus/pmbus.h
->>>>> @@ -512,7 +512,6 @@ int pmbus_regulator_init_cb(struct
->>>>> regulator_dev
->>> *rdev,
->>>>>    	{							\
->>>>>    		.name = (_name),				\
->>>>>    		.of_match = of_match_ptr(_name),		\
->>>>> -		.regulators_node = of_match_ptr("regulators"),	\
->>>>>    		.ops = &pmbus_regulator_ops,			\
->>>>>    		.type = REGULATOR_VOLTAGE,			\
->>>>>    		.owner = THIS_MODULE,				\
->>>>>
->>>>> Maybe someone can check if that works.
->>>>>
->>>>> Thanks,
->>>>> Guenter
->>>>
->>>> I'd like to follow up on this one. As of this writing, my
->>>> understanding is that the dt-binding should not expect regulators
->>>> subnodes for simple devices like this. There is already a similar
->>>> binding as mentioned in this thread particularly
->>>> "dt-bindings/regulator/infineon,ir38060". I think a binding without
->>>> the subnodes should still work with or without the change above.
->>>
->>> Interesting. I am not sure if it really works, though. I looked into
->>> the regulator code, and I don't immediately see the code path it would
->>> take.
->>>
->>>> With this, I'd like to know what the specific next steps are to
->>>> continue this patch series.
->>>
->>> Can you try on hardware using a devicetree file which doesn't have the
->>> regulators node ? If the current code works, just submit an updated
->>> (simplified) .yaml file and we should be good. If not, I have an
->>> untested patch series introducing another macro which doesn't set the
->>> regulators node.
->>
->> Okay. I'll test this and get back to you.
+On Fri, Mar 21, 2025 at 02:14:31PM +0000, Srinivas Kandagatla wrote:
 > 
-> The "simplified" dt file (without the regulators node) does not work with
-> the current regulator_desc macro. I have also tried simply removing the
-> regulators_node setting from the regulator_desc macro, and it does not
-> work too. of_match looks for a certain regulator name in dt, and it seems
-> like it must handle NULL cases as well as suggested previously. I would
-> appreciate if this would be also verified on other ends. For now, I think I'll
-> wait for another macro to be introduced in pmbus to support this kind of
-> bindings.
 > 
+> On 20/03/2025 14:03, Dmitry Baryshkov wrote:
+> > On Thu, Mar 20, 2025 at 11:56:32AM +0000, srinivas.kandagatla@linaro.org wrote:
+> > > From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> > > 
+> > > On some platforms to minimise pop and click during switching between
+> > > CTIA and OMTP headset an additional HiFi mux is used. Most common
+> > > case is that this switch is switched on by default, but on some
+> > > platforms this needs a regulator enable.
+> > > 
+> > > move to using mux control to enable both regulator and handle gpios,
+> > > deprecate the usage of gpio.
+> > > 
+> > > Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> > > ---
+> > >   sound/soc/codecs/Kconfig   |  2 ++
+> > >   sound/soc/codecs/wcd938x.c | 38 ++++++++++++++++++++++++++++++--------
+> > >   2 files changed, 32 insertions(+), 8 deletions(-)
+> > > 
+> > > diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
+> > > index ee35f3aa5521..b04076282c8b 100644
+> > > --- a/sound/soc/codecs/Kconfig
+> > > +++ b/sound/soc/codecs/Kconfig
+> > > @@ -2226,6 +2226,8 @@ config SND_SOC_WCD938X
+> > >   	tristate
+> > >   	depends on SOUNDWIRE || !SOUNDWIRE
+> > >   	select SND_SOC_WCD_CLASSH
+> > > +	select MULTIPLEXER
+> > > +	imply MUX_GPIO
+> > 
+> > Why? This is true for a particular platform, isn't it?
+> > 
+> > >   config SND_SOC_WCD938X_SDW
+> > >   	tristate "WCD9380/WCD9385 Codec - SDW"
+> > > diff --git a/sound/soc/codecs/wcd938x.c b/sound/soc/codecs/wcd938x.c
+> > > index f2a4f3262bdb..b7a235eef6ba 100644
+> > > --- a/sound/soc/codecs/wcd938x.c
+> > > +++ b/sound/soc/codecs/wcd938x.c
+> > > @@ -19,6 +19,7 @@
+> > >   #include <linux/regmap.h>
+> > >   #include <sound/soc.h>
+> > >   #include <sound/soc-dapm.h>
+> > > +#include <linux/mux/consumer.h>
+> > >   #include <linux/regulator/consumer.h>
+> > >   #include "wcd-clsh-v2.h"
+> > > @@ -178,6 +179,8 @@ struct wcd938x_priv {
+> > >   	int variant;
+> > >   	int reset_gpio;
+> > >   	struct gpio_desc *us_euro_gpio;
+> > > +	struct mux_control *us_euro_mux;
+> > > +	u32 mux_state;
+> > >   	u32 micb1_mv;
+> > >   	u32 micb2_mv;
+> > >   	u32 micb3_mv;
+> > > @@ -3243,9 +3246,16 @@ static bool wcd938x_swap_gnd_mic(struct snd_soc_component *component, bool activ
+> > >   	wcd938x = snd_soc_component_get_drvdata(component);
+> > > -	value = gpiod_get_value(wcd938x->us_euro_gpio);
+> > > +	if (!wcd938x->us_euro_mux) {
+> > > +		value = gpiod_get_value(wcd938x->us_euro_gpio);
+> > > -	gpiod_set_value(wcd938x->us_euro_gpio, !value);
+> > > +		gpiod_set_value(wcd938x->us_euro_gpio, !value);
+> > 
+> > This looks like a separate topic, but why is 'active' being ignored?
+> > 
+> > > +	} else {
+> > > +		mux_control_deselect(wcd938x->us_euro_mux);
+> > > +		wcd938x->mux_state = !wcd938x->mux_state;
+> > > +		if (mux_control_select(wcd938x->us_euro_mux, wcd938x->mux_state))
+> > 
+> > Can't it just be 'mux_control_select(wcd938x->us_euro_mux, active)' ?
+> > 
+> 
+> No, the way this is supposed to work is that if the codec detects cross
+> connection, It will try to switch the mux to other option.
 
-Figured. As it turns out, there is also a patch series pending which tries
-to fix the problem for ir38060 by changing its bindings.
+I see. It would be nice then to converge GPIO code and mux code in this
+area. Invert mux_state, then use it in both paths.
+> 
+> So using active will just work if we try to pulg one type of headset all the
+> time. But if we change the headset type the mux will still be configured to
+> use the old headset type and not work.
+> 
+> fyi, active is always set to true
+> 
+> I agree the argument to api is poorly labeled. It should be labeled as flip
+> or something on those lines?
 
-I'll dig up my patch series to add a new macro and send it out as RFT.
+If it is always true, then it should be dropped instead of renaming it.
 
-Thanks,
-Guenter
+> 
+> 
+> thanks,
+> Srini
+> > > +			dev_err(component->dev, "Unable to select us/euro mux state\n");
+> > > +	}
+> > >   	return true;
+> > >   }
+> > 
 
+-- 
+With best wishes
+Dmitry
 
