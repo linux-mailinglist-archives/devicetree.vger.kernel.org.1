@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-159812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B59FFA6C3CC
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 21:02:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0489A6C3D2
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 21:03:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 488D6189C981
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 20:02:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24F4C3A4A17
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 20:02:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 419B01D5CFD;
-	Fri, 21 Mar 2025 20:02:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 115EF1EE033;
+	Fri, 21 Mar 2025 20:02:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="VDxZ2EQ/"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="UAPj7u9D"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E25122E412
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 20:02:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 611C022FAC3
+	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 20:02:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742587347; cv=none; b=BfU9wDiZnfIbw8uxfqxgoxxhG/5CD/UvQ7GkNXNUWhTN3N8WlInjIxbKbEfwB+Dw+UNbCnCTqBcX0Epn/fFlD2DsQxXMlifc80N+r/5A6ZA+KJuLkRlMisrv4A1thL+ESG36rn2DIGxMuQJNRo+I3DYUWHmgJfk2p8ZMBpBdF48=
+	t=1742587349; cv=none; b=Ll5LDuWPNnW57BJKaPQk0rVekVyN7vW1DgNdCvEdDJGg/XZGAMoCn8rl79XGy4RT02gGUdiwqhRPmpLG6Iq1TtKAOYYb7zczFLFx8Thr0lABux0vF4GjbK90V3I4vgGXO0zduX0ZxEqdjYPKhwHeRg+VMPURarRVwX6ubsLSTfs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742587347; c=relaxed/simple;
-	bh=+a31KHpx4EtDNu2L2FViBzgQF8kY+2Ar5xJCTsB/ot0=;
+	s=arc-20240116; t=1742587349; c=relaxed/simple;
+	bh=xC5LZYUCbr73IMc8LcHgCXF4sZ1DcNwEfB4KFqgjCJs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=snUB6nhuapt43o4NOyNg/QJ19w4jqXpKq25dWrHPD0phcvR6aUa0L4IUB0g5C7I9OQmaLgdFtYWGzDJbNPtk73vR1HYp2yU8C3P+22rZ1SuiPE6IdzucPAG00d/biYFpoZCzFRKWtCGui28ExlvHvf0Wlm0ShDNawFPmegEh048=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=VDxZ2EQ/; arc=none smtp.client-ip=89.58.32.78
+	 In-Reply-To:Content-Type; b=RsxCOx4HM3RMM9SuduCael7AIgaLglzNHdMegUIoqBqRiOcbPJh51f70P+q7B48h7RJGspPC8yeluXFho86/RkTCZqpJ9xxTOn+16m9ugw9PqBMBmIIgRyFeZFxRo2M/5bnAE3ozCbxdopHtAcbbUo+1EY1Ho6SLdPp2qR52v1U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=UAPj7u9D; arc=none smtp.client-ip=89.58.32.78
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8A42E101E8FE7;
-	Fri, 21 Mar 2025 21:02:14 +0100 (CET)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 635FF101E8FE9;
+	Fri, 21 Mar 2025 21:02:17 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1742587336; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1742587339; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=3Ulsbme4hNQzYTq8vlOulaN2Y8LowM5FPAQmz8elBPM=;
-	b=VDxZ2EQ/5tg99PzI7sO7Iev5h1/wFCQ+DuZIPurcNhRu42cjUBDXfEBThUs7hHKYmEHyVb
-	j9OYINwC6QB3Sd1o1XsGYvtnGKqSXJpNCTVm2g7uEiYxd112uSCJ8xvB29ci2Zh3RX/euB
-	YddxYDnEYqWs9UsY0f9AWgBniVPLPyf4a32wbwjAvNiy73gpUA51StDBQRVb7BS5OiYfvg
-	3hXbQJ3zduLUkKjTAbwn9pjp8jobnNBp1cK/kWQYCtY8Vvx46VeoZDzvVv2eXelpVASJI4
-	5UnSh2YmrAM3yZ+T/+LNggwYMMjh+8oBMiFHZ/pUqesF43NhZK3OjJJIW4m7wQ==
-Message-ID: <d19fa0b9-b07b-46cf-aa3f-3c2e65fecd67@denx.de>
-Date: Fri, 21 Mar 2025 20:54:26 +0100
+	bh=drWgqDtEwtRQ/AqNec+865/QoSBEzToGMlvzXdRpbRc=;
+	b=UAPj7u9D99BzWdmrqugwwfMF1kOr649TjzIBIrq4luHu3EKIxBSYIlVak1XBT5eZi8IlIx
+	WH8Lb6E04i0EDXTUyFMYBabrxds3rJoJtAgSWLBRbbFg1/qhgZztdq2LGVCXJBvbyq+wc3
+	KCVQSBu2VkznmY8lFrQcOqkpiG86I7rhBwo/QO2z86gNO5Q+jqWpP+GH2Zkr1wAGUnmEu3
+	S9rvJQSGNl/aRqgtlG67xsnIuhxEIt5cFLHpccdkvSHaWRMeymOyJtuNiE0rhWoJytV8Jo
+	4GAR5ZO7/E7pOVsavK64sbJ4OFsnVYm/NtqDV/yWRBm3yMYvCUFpfBCvDKZ+QQ==
+Message-ID: <12a0c285-8f1a-4014-9253-0129a3a6ba21@denx.de>
+Date: Fri, 21 Mar 2025 21:00:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,56 +72,36 @@ References: <20250227170012.124768-1-marex@denx.de>
  <fa88c1c1-89ba-4a10-bd57-0819d7740c0a@denx.de>
  <Z8Wb05rmGW0ORnJB@e110455-lin.cambridge.arm.com>
  <20250303133523.2c5153ed@collabora.com>
+ <20250303134250.5ba726fc@collabora.com>
 Content-Language: en-US
 From: Marek Vasut <marex@denx.de>
-In-Reply-To: <20250303133523.2c5153ed@collabora.com>
+In-Reply-To: <20250303134250.5ba726fc@collabora.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Last-TLS-Session-Version: TLSv1.3
 
-On 3/3/25 1:35 PM, Boris Brezillon wrote:
+On 3/3/25 1:42 PM, Boris Brezillon wrote:
 
 Hi,
 
->> This looks like it has been part of a R50 release of the DDK, which is recent
->> enough to consider it up-to-date. The issues you're seeing with fast resume are
->> probably due to some integration issues or other quirks.
+>>> This looks like it has been part of a R50 release of the DDK, which is recent
+>>> enough to consider it up-to-date. The issues you're seeing with fast resume are
+>>> probably due to some integration issues or other quirks.
+>>>
+>>> Boris has the most recent experience with playing with fast resume, maybe
+>>> he can share some tips on where to add messages in Panthor to try to debug
+>>> your problem.
 >>
->> Boris has the most recent experience with playing with fast resume, maybe
->> he can share some tips on where to add messages in Panthor to try to debug
->> your problem.
+>> If you end up with fast_reset=true, that means the FW claims it entered
+>> a suspend state from which is can resume quickly (fast-reset), and in
+>> that case, we're only supposed to power on the L2 block at resume time
+>> AFAIK.
 > 
-> If you end up with fast_reset=true, that means the FW claims it entered
-> a suspend state from which is can resume quickly (fast-reset), and in
-> that case, we're only supposed to power on the L2 block at resume time
-> AFAIK. If there's a component that can tell us more, it's probably the
-> FW, unfortunately, it doesn't tell us much through the FW interface,
-> especially if it's not booting properly. Do you hit this error [1]
-> without this patch, and if you do, what's the status reported there?
-> 
-> [1]https://elixir.bootlin.com/linux/v6.14-rc4/source/drivers/gpu/drm/panthor/panthor_fw.c#L1051
+> Can you try deasserting the reset lines at probe time and keeping them
+> deasserted until the device is removed instead of re-asserting at
+> suspend time? If that doesn't work, try doing the same with power
+> domains.
+I'm afraid either of this makes no difference, no.
 
-Sorry for the late reply. I get the following, so I think the status is 
-"fatal" ?
-
-panthor 4d900000.gpu: [drm] clock rate = 1000000000
-panthor 4d900000.gpu: EM: created perf domain
-panthor 4d900000.gpu: [drm] mali-g310 id 0xac74 major 0x0 minor 0x0 
-status 0x1
-panthor 4d900000.gpu: [drm] Features: L2:0x7110306 Tiler:0x809 Mem:0x1 
-MMU:0x2830 AS:0xff
-panthor 4d900000.gpu: [drm] shader_present=0x1 l2_present=0x1 
-tiler_present=0x1
-panthor 4d900000.gpu: [drm] Firmware protected mode entry not be 
-supported, ignoring
-panthor 4d900000.gpu: [drm] Firmware git sha: 
-8e5cfcfec20cc8aff8509d37e72babc935d34a3b
-panthor 4d900000.gpu: [drm] CSF FW using interface v1.1.0, Features 0x0 
-Instrumentation features 0x71
-[drm] Initialized panthor 1.3.0 for 4d900000.gpu on minor 0
-panthor 4d900000.gpu: [drm] *ERROR* Failed to boot MCU (status=fatal)
-panthor 4d900000.gpu: [drm] *ERROR* FW fast reset failed
-panthor 4d900000.gpu: [drm] *ERROR* Fast reset failed, trying a slow reset
-panthor 4d900000.gpu: [drm] *ERROR* Failed to boot MCU (status=fatal)
-panthor 4d900000.gpu: [drm] *ERROR* FW slow reset failed
+I'll at least send a V2 now, so others can use the latest state of my work.
 
