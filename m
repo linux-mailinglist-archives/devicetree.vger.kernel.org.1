@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-159536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6B27A6B582
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 08:52:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70CD9A6B597
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 08:59:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA9C77A5231
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 07:50:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDAA63B3F5A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 07:59:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD93B1EDA35;
-	Fri, 21 Mar 2025 07:51:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBC881EE7D5;
+	Fri, 21 Mar 2025 07:59:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tSM7m5X/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HzetHDiP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 882A326ACB;
-	Fri, 21 Mar 2025 07:51:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7CD81388;
+	Fri, 21 Mar 2025 07:59:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742543512; cv=none; b=gjgwO469xH6+tci8kWg5oxCY3BF8AC+qJhJC0zGFf1bip2YyA4wem8weuUDDkAxjNIx16uexgk1rwqwMIoLKRn0PHLa57hpPTZouVw7utmsYrvEmkxhjRhDWICqMBodIBLQBwZg1uHOhCmj8/GS8rMTzjRqIZ0KHI5SaIfzOPZA=
+	t=1742543985; cv=none; b=oyHIuGmT9vJ6SJvODSe/+DAKzsPDRNlmgcqMhb9tmwH4Br+8hAt61VQ6IAp3ryvAs/CjFy+AGHXoynPndcuwWGRaOlscEIFDtyG5+/Xg9ck/XNeGQgZ0My4tCLGCUPd3GgI2Ae26YKZlTR3pgSDLTYBlFdZd6ZCu+EQWoAUKoHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742543512; c=relaxed/simple;
-	bh=eUqWIJcB3nSd/mXSYygUn6M3e1U2VTzoZUejWvBj2HU=;
+	s=arc-20240116; t=1742543985; c=relaxed/simple;
+	bh=pOn9x6VL60RWSKq8tUSuctOL+F1TrQS8bDL/t0ctgOU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NBnCbKFt502vSvC3f28yVpj2vrYmYCYhlq5RUYPQ0KDB4g1mR+GeHOWanKcVlyWX7OpB5Py5hBtyJxqe6NogiGe3iYq14TEqRwZ6WfrDlpTZ8pww7uC4N8Fwohv1EfKX+hq1LDbQyohpj33nbdG3pdHR3PMYWjtEYa3+bg3h5gU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tSM7m5X/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CB1CC4CEE3;
-	Fri, 21 Mar 2025 07:51:45 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=F7sX6ozOf4iKQLbSa2OXF//pnGXASw4YaYh3JrI3aeeZoubE9aOXtkcIByfxOuJDa9hmNpIFFixGu5OxNSmqurQN2fXLYT4LlvU1SbMBwugpM2wDQQs0ZiAw/RGzsCe4h5HR9DYft5NzRaUckq/4WtwogxHSD4d0ZP/H6uBj8/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HzetHDiP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFC3AC4CEE3;
+	Fri, 21 Mar 2025 07:59:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742543512;
-	bh=eUqWIJcB3nSd/mXSYygUn6M3e1U2VTzoZUejWvBj2HU=;
+	s=k20201202; t=1742543985;
+	bh=pOn9x6VL60RWSKq8tUSuctOL+F1TrQS8bDL/t0ctgOU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tSM7m5X/sYFP6LXrJRSTdDwt2LcAuSi/NbowmE7HCqzddAOieWE5YS0TfNr9wIg0I
-	 AGVEZRJrt+VbwkTIh90aVx86Rr2oN0yoR2uUY9wrwk/pZj174J35fL0seVaqCf3Rvv
-	 cSBqhCbyLj31KkLqd6j9BeBAPbhBSxK+1XClerEIAjXns3hVmnsqnPBwaC8GO9qEpz
-	 TzXd8DGFQV+7Jj2QTv7jruYJqRvjylgLH33whHVEgavMziPOqsYS2/kJnSai9fX+fn
-	 z/xfUz30MG8rKxg0LRzYWYVkAY8/q3a4MsdkWbAvaVOwiktgYDMOXWcBFq6r1np2Yf
-	 5ccvARZiKZqrw==
-Message-ID: <442bebf4-4de1-42d1-a14b-2bb509fea12f@kernel.org>
-Date: Fri, 21 Mar 2025 08:51:43 +0100
+	b=HzetHDiP1v5WvZgW7SchOuLQEzW6PYuDsemfUwsjvpojaS0Cou9ctohlNmJhR/+eM
+	 vnqIBEHLmv4HivDJ0JQ+cAGzlAYXOdMiFtbrNDuR1mdLRkEHmbOyhQu9gHQcK2invq
+	 jNO6bWbiXpjPfAvICaWaJ0YKh8DyqHgijw0EfME6fRLAD4peQItcdbxrUGbZMaPsYE
+	 LCZttXhS80gXD0d5ru1Wn+gER79PZWmZiyzxyi67NcpKKhV/crmOlUCx8gcPSFa/cL
+	 p8Ot8loK6oZqEFM2HjOFEOoYYkBDzPpYNVog33tdvxKYTrACFpwKeCJ6uXBIG4Fh5y
+	 svQXTR8tRAoHQ==
+Message-ID: <b99eee70-5231-43fe-bff8-db92d78153e7@kernel.org>
+Date: Fri, 21 Mar 2025 08:59:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/5] Add support for Battery Status & Battery Caps AMS in
- TCPM
-To: Amit Sunil Dhamne <amitsd@google.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Badhri Jagan Sridharan <badhri@google.com>,
- Sebastian Reichel <sre@kernel.org>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <len.brown@intel.com>,
- Pavel Machek <pavel@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-pm@vger.kernel.org, RD Babiera <rdbabiera@google.com>,
- Kyle Tso <kyletso@google.com>
-References: <20250312-batt_ops-v1-0-88e0bb3129fd@google.com>
- <20250313-determined-wild-seahorse-f7871a@krzk-bin>
- <914a0df4-96d0-4cd4-ac87-3826fa9c1440@google.com>
- <3f65fe16-56f8-4887-bb91-994b181ce5a9@kernel.org>
- <9852e5a8-843d-48ae-90d0-7991628e93b3@google.com>
+Subject: Re: [PATCH v5 1/3] dt-bindings: hwmon: Add Microchip emc2305 support
+To: "Florin Leotescu (OSS)" <florin.leotescu@oss.nxp.com>
+Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Michael Shych <michaelsh@nvidia.com>,
+ "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Viorel Suman <viorel.suman@nxp.com>, Carlos Song <carlos.song@nxp.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>,
+ "festevam@gmail.com" <festevam@gmail.com>,
+ Florin Leotescu <florin.leotescu@nxp.com>, Frank Li <frank.li@nxp.com>
+References: <20250318085444.3459380-1-florin.leotescu@oss.nxp.com>
+ <20250318085444.3459380-2-florin.leotescu@oss.nxp.com>
+ <20250319-optimistic-positive-peacock-cc26b1@krzk-bin>
+ <DU7PR04MB111631E2E5B074A306033D001FFD92@DU7PR04MB11163.eurprd04.prod.outlook.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,69 +113,37 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <9852e5a8-843d-48ae-90d0-7991628e93b3@google.com>
+In-Reply-To: <DU7PR04MB111631E2E5B074A306033D001FFD92@DU7PR04MB11163.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 20/03/2025 22:11, Amit Sunil Dhamne wrote:
-> On 3/16/25 9:52 AM, Krzysztof Kozlowski wrote:
->> On 15/03/2025 01:49, Amit Sunil Dhamne wrote:
->>> Hi Krzysztof,
->>>
->>> Thanks for the review!
->>>
->>> On 3/13/25 1:50 AM, Krzysztof Kozlowski wrote:
->>>> On Wed, Mar 12, 2025 at 04:42:00PM -0700, Amit Sunil Dhamne wrote:
->>>>> Support for Battery Status & Battery Caps messages in response to
->>>>> Get_Battery_Status & Get_Battery_Cap request is required by USB PD devices
->>>>> powered by battery, as per "USB PD R3.1 V1.8 Spec", "6.13 Message
->>>>> Applicability" section. This patchset adds support for these AMSes
->>>>> to achieve greater compliance with the spec.
->>>> Which board uses it? I would be happy to see that connection between
->>>> batteries and USB connector on the schematics of some real device. How
->>>> does it look like?
->>> Any board that uses a USB Type-C connector that supplies power into or
->> If you keep responding like this, you will got nowhere, so let me
->> re-iterate:
->>
->> Which upstream DTS (or upstream supported hardware) is going to use this
->> binding, so I can see how you are going to implement it there in the
->> entire system?
+On 19/03/2025 12:54, Florin Leotescu (OSS) wrote:
+
+>> No blank line here. Use existing code as template. If you find such code, share so we can fix it.
 > 
-> This is for maxim,max33359 Type-C controller.
-
-Stop deflecting the questions. max33359 is not a board. I already asked
-two times.
-
-Apparently admitting "no upstream users" is impossible, so let's state
-the obvious:
-
-There are no upstream users of this.
-
+> Thanks!   I will remove it.
 > 
-> This would property would have been present for the connector present in 
-> the typec device for gs101-oriole board (that uses the max33359 
-> controller).
-
-
-But it is not.
-
-
+> Identified similar blank line on the following dt-binding files:
 > 
-> However, I will be exploring existing bindings to describe the 
-> relationship for now.
-> 
->>> out of a battery while operating in sink or source mode respectively.
->>> The VBUS is connected to the (battery + buck boost IC's CHGin/Vin) or a
->>> companion IFPMIC connected to a battery.  In our board we have USB
->>> Connector <-> IFPMIC <-> Battery.
->> Which board is that?
-> 
-> gs101-oriole board.
+> 1 adi,ad741x.yaml
+> 2 adi,adm1275.yaml
+> 3 adi,ltc2991.yaml
+> 4 maxim,max20730.yaml
+> 5 maxim,max6639.yaml
+> 6 maxim,max6650.yaml
+> 7 nuvoton,nct6775.yaml
+> 8 nuvoton,nct7363.yaml
+> 9 nuvoton,nct7802.yaml
+> 10 ti,adc128d818.yaml
+> 11 ti,ads7828.yaml
+> 12 ti,ina2xx.yaml
+> 13 ti,lm87.yaml
+> 14 ti,tmp513.yaml
+> 15 ti,tps23861.yaml
+> 16 winbond,w83781d.yaml
 
+Oh, that's quite a lot. Thanks, I'll fix them.
 
-Then why this is not used? The board was released some years ago, so I
-do not see a problem in using it.
 
 Best regards,
 Krzysztof
