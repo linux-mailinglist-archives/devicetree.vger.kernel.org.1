@@ -1,135 +1,191 @@
-Return-Path: <devicetree+bounces-159780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159781-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF447A6C130
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 18:21:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95230A6C143
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 18:23:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BAB05189D963
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 17:20:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AC1327A660B
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 17:22:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E72D22D7AD;
-	Fri, 21 Mar 2025 17:20:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC9D922D7B2;
+	Fri, 21 Mar 2025 17:23:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dkhnGGp4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eBW8ma+y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96F3322D7BB
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 17:20:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B40BA1CAA80;
+	Fri, 21 Mar 2025 17:23:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742577647; cv=none; b=ERu/7Lg9yFlSs0U0xHuEaWCJEYmaH2Nd48Z6W0N7inqJbuJmSVGKznvL4SXpgJcvj72EYpD6tNYBfBIYAguOLwwaBQ96LyRz4SOyPMjd0ooYqV0BjIGj3/xDdh2JuS8S5v0YFwQb/S4wp4xZ6ejf7lOfeo2QxUl98/b/3TDjP2k=
+	t=1742577792; cv=none; b=JFcslEYkp+w3tS8Ays+CptSUcWIkGqL0mWTPt5bJGw783yDOQQX0WEjb5lZho5A6kDzjlSE5QGLa3jeF2oYCQ/JPOyoXnobX1ppReI6o59/BViUgFRhMMccRr8a53P06uhmoVIaV9AubCdY6noBqvIpWeTTTbqtAeWG74YgLc2E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742577647; c=relaxed/simple;
-	bh=qmKoCAZRoRbHTTOKcO+4PVhKdKeMHGgyeEZ3jlFoy9E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=totv7mddq7hdY27SbfZeo8vNHj80Rt7ms3Ty9BSVwaP8W/YdTp8EkhcYmTclP9Pm9eSNElIGsHNpUgHnfOJzkL+L+ZJ2POEy3Ym48aANbS/9Icd0RNhdVOe17L3mg1jj/bHYbf29nAlSa0hhSbOBnADCDk2XNOoHWarjW25/5iM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dkhnGGp4; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52LAThS4015854
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 17:20:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=uDTpwkPptGdzgbOoxDa8xyDZ
-	cduGG5xDhf0EsIsjkOI=; b=dkhnGGp4E36ZPnBzDW9+hVc9fAjGmC5BU860RBm+
-	tqmgwsd3pznlFpM5KMgCzG4LH8WN2QOiUj3Ka+fR7uUSB5O4adT7+rVbvjfIWivM
-	QfxVz05f3Morlm8DScJyFJMTpuqASsj4lN38RVYxnyGDle+1RxLff7UYYdNMHioh
-	FVz59BiX5bQpV0IOEog0kDxHQgL0kKhhIsIYGSB5sNBytRC3EnAeaRtAlpKCJyO9
-	y3sF3tv8cnvxbSVfML3YjZ2RH5A0N8q5Wxvr9sIKDp2YgpgiTdSk/nYsfC54o8as
-	z5zZgEKLSJWuu5OBi7IiR9X9agyfBVTP0fT94FPIIS7sHQ==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45gbngnqn0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 17:20:45 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-476900d10caso46955881cf.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 10:20:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742577644; x=1743182444;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uDTpwkPptGdzgbOoxDa8xyDZcduGG5xDhf0EsIsjkOI=;
-        b=MzdG4ng6CR3DLsDLtfVdd7KOd+gNmUkfJW791aC5tvistAvZgyoVaCTK2RiYaP+4WJ
-         QupiAvEFRFB9JkYDwHMM7BN+u5WZ+fne9yR3VA4MNO1DvXoojvXjGDXpbcIijzSD8Qon
-         neaUDGzBm4KmkY5Ip9IhtxHEy4pIWIrIRUZGib76H7ldoQ2vs7IKXFXzmeJD2cpAd6LM
-         N/ZSm0e4b/2Xtpp3IdioVFEXGLeNwny3zp9JU5FKgq+IMOjpdHvd7kSn8PeESnmQWlyp
-         TfVYU5tfEaoS9xP67g6kQytkB8GA9MJZg27LDi0d9No50gsJBvscboiJ+qT6Zx8iQMZi
-         /N7A==
-X-Forwarded-Encrypted: i=1; AJvYcCW7U19I7Ty+ZTfRcn9wymY4lBsV6E4sZnX+a172f2y2r18JXcP+co7tZZqS2oPSVXiNynUHf9ywUzkm@vger.kernel.org
-X-Gm-Message-State: AOJu0YwWjW4Ir2csvbUPCJelB6txm7l3aoJDF2oN1dxn4VqeXDIZaMAC
-	tHSYMG+HL5Ws8gaDG0N8ED9ObPP/184XnqkuSrVS1SIe4Li1bvZM3eOW9A4pZt5UYZ0vikJC9sZ
-	0/Wop+gl1Qs5DVPsLeSxh8liShLYUQ6+4waWvTGNG0f4YO6BPKgZHrQKTMvwK
-X-Gm-Gg: ASbGnct5xU23kdKnwnQlahhDDKNFWYeGwhX1Tho2T7F5rdbqIAnZGpPlGDYgqBizaMw
-	rgMdBGhSbOUPtxhZwYyZ3FVwyxxbSf/OkLZCmpzmYa2SIVNkKJKN8jfuHdlj9BBCNuujP2J7eV8
-	gNr+NeKzCJkGG4Annspf+96gbZyYWi+XT4yvR+h9xoD0J58yys9SHiQRvnRrWQHManoeXX0VLAR
-	evqUr01DQUCrYbcyrU+F12HwgKBqIGaPUnnsAajU2stPWJtc6Ffy9P8/sMbaV6mQLTyTu4MazRC
-	n5eDmDmr5K4cffP5f/NtTyGEpjBKorbOreiOrAqW7ZnVi6GrTlsogp/UuLieNp6LGMqT/45i3YZ
-	k9yM=
-X-Received: by 2002:a05:622a:4d8d:b0:476:a7f2:272d with SMTP id d75a77b69052e-4771de8b4b5mr72699161cf.44.1742577644393;
-        Fri, 21 Mar 2025 10:20:44 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHx0VZLa5EFNdEAjuIa1FS+mTNMST/xHfZhUEXNJJ7m5u9qI7CPpdWYXoz0qNcBgm/3w2c4Hg==
-X-Received: by 2002:a05:622a:4d8d:b0:476:a7f2:272d with SMTP id d75a77b69052e-4771de8b4b5mr72698801cf.44.1742577644139;
-        Fri, 21 Mar 2025 10:20:44 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54ad647c98dsm225951e87.67.2025.03.21.10.20.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Mar 2025 10:20:42 -0700 (PDT)
-Date: Fri, 21 Mar 2025 19:20:39 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sm6350: add APR and some audio-related
- services
-Message-ID: <aglvc2n5acln7lnnsnoyzyxega3bttz7qrzmmjn2atr77xsvph@dpzcohdphgdk>
-References: <20250321-sm6350-apr-v1-1-7805ce7b4dcf@fairphone.com>
+	s=arc-20240116; t=1742577792; c=relaxed/simple;
+	bh=ALF8uIdVgunXcUP0TGmP+eJ0CmXSJCrrrJygn06nOiM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gLYK0/6ZaZFKI7F7aMjAREqEOYwDFu2rl3lZM5X2V96FBeuNuTp0D6ucoYa8/M25eQB1USFak2Y3MX0K7qrM/sQdmU21Q06r8flppfcLqtTsRNPGkyY3Mii3n6Ju2/xZuRnakMP+TmVLB+oxxlOGGO6BjANKwWx01bHXghfuATk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eBW8ma+y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E527EC4CEE3;
+	Fri, 21 Mar 2025 17:23:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742577792;
+	bh=ALF8uIdVgunXcUP0TGmP+eJ0CmXSJCrrrJygn06nOiM=;
+	h=From:To:Cc:Subject:Date:From;
+	b=eBW8ma+yGXEACHnQAT1uqCIasZxE+WTQAkhXFnS+npwir/3VFXtY26bPunv+XNyie
+	 HXe2TQFw5JeR1PdFheb4r8SzpNDZBViEIuPRWOSUby7cpKPiRYbn0V0/YoKbAhAMLP
+	 bVrKSeVO0XCvKZ1DSdggUHL/cGAmmjLRZII7U/4MfA3ZI4kKXCj6/szJ18VuAjIaA1
+	 nKAGWI+pLSPB3z2Qs8nPyTLdaWS/z4pnzncmOhuj5cKdFycyEYg+Thr+SJfiClyoBr
+	 WwGfXxszZm2EmNC2yod//zm6wXOk45HpDDiCLXxiZdcGjMsfULmzFki42xlCA7G6Bw
+	 teEvcE3LTNWog==
+From: Conor Dooley <conor@kernel.org>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	pierre-henry.moussay@microchip.com,
+	valentina.fernandezalanis@microchip.com,
+	Michael Turquette <mturquette@baylibre.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Lee Jones <lee@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-riscv@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [RFC PATCH v2 0/9] Redo PolarFire SoC's mailbox/clock devicestrees and related code
+Date: Fri, 21 Mar 2025 17:22:33 +0000
+Message-ID: <20250321-cuddly-hazily-d0ab1e1747b5@spud>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250321-sm6350-apr-v1-1-7805ce7b4dcf@fairphone.com>
-X-Proofpoint-GUID: qrjm61E1IsTu_PXfBQ7MyKY9IO5c4JoO
-X-Authority-Analysis: v=2.4 cv=MJ5gmNZl c=1 sm=1 tr=0 ts=67dd9fed cx=c_pps a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=6H0WHjuAAAAA:8 a=EUspDBNiAAAA:8 a=d6hRspmLNtqVbEz1Xe4A:9 a=CjuIK1q_8ugA:10
- a=kacYvNCVWA4VmyqE58fU:22 a=Soq9LBFxuPC4vsCAQt-j:22
-X-Proofpoint-ORIG-GUID: qrjm61E1IsTu_PXfBQ7MyKY9IO5c4JoO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-21_05,2025-03-21_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=810 clxscore=1015
- spamscore=0 priorityscore=1501 mlxscore=0 adultscore=0 phishscore=0
- lowpriorityscore=0 malwarescore=0 impostorscore=0 bulkscore=0
- suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503210127
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5347; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=v72IsBW2yUvcvDH5N5nR2Mvll104/cwB1qRKakjs864=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDOl3F0TsqLATvPxVRrIrN5V7uvMEKb4CgYjTKz6qJL0Qf x7nlbito5SFQYyDQVZMkSXxdl+L1Po/Ljuce97CzGFlAhnCwMUpABPhXMfwv9Q1fMecYmvxSw6B LDGv47mD0pvm3F3r0Ka2YfPJA1yzmhkZ5gqdytFb+in49i4/N0VRhRkCp+S1DpufCZPjTl/R+u8 lMwA=
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
-On Fri, Mar 21, 2025 at 09:12:57AM +0100, Luca Weiss wrote:
-> Add the APR node and its associated services required for audio on
-> the SM6350 SoC.
-> 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
->  arch/arm64/boot/dts/qcom/sm6350.dtsi | 59 ++++++++++++++++++++++++++++++++++++
->  1 file changed, 59 insertions(+)
-> 
+From: Conor Dooley <conor.dooley@microchip.com>
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+(Back to RFC again, as I'm really just wanting to hear from Stephen on
+what I did with the regmap clocks, and if it was what he was looking
+for)
+
+Yo,
+
+Here's something that I've been mulling over for a while, since I
+started to understand how devicetree stuff was "meant" to be done.
+There'd been little reason to actually press forward with it, because it
+is fairly disruptive. I've finally opted to do it, because a user has
+come along with a hwmon driver that needs to access the same register
+region as the mailbox and the author is not keen on using the aux bus,
+and because I do not want the new pic64gx SoC that's based on PolarFire
+SoC to use bindings etc that I know to be incorrect.
+
+Given backwards compatibility needs to be maintained, this patch series
+isn't the prettiest thing I have ever written. The reset driver needs to
+retain support for the auxiliary bus, which looks a bit mess, but not
+much can be done there. The mailbox and clock drivers both have to have
+an "old probe" function to handle the old layout. Thankfully in the
+clock driver, regmap support can be used to identically
+handle both old and new devicetree formats - but using a regmap in the
+mailbox driver was only really possible for the new format, so the code
+there is unfortunately a bit of an if/else mess that I'm both not proud
+of, nor really sure is worth "improving".
+
+The series should be pretty splitable per subsystem, only the dts change
+has some sort of dependency, but I'll not be applying that till
+everything else is in Linus' tree, so that's not a big deal.
+
+I don't really want this stuff in stable, hence a lack of cc: stable
+anywhere here, since what's currently in the tree works fine for the
+currently supported hardware.
+
+AFAIK, the only other project affected here is U-Boot, which I have
+already modified to support the new format.
+
+I previously submitted this as an RFC, only to Lee and the dt list, in
+order to get some feedback on the syscon/mfd bindings:
+https://lore.kernel.org/all/20240815-shindig-bunny-fd42792d638a@spud/
+I'm not really going to bother with a proper changelog, since that was
+submitted with lots of WIP code to get answers to some questions. The
+main change was "removing" some of the child nodes of the syscons.
+
+and as a "real" series where discussion lead to me dropping use of the
+amlogic clk-regmap support:
+https://lore.kernel.org/linux-clk/20241002-private-unequal-33cfa6101338@spud/
+As a result of that, I've implemented what I think Stephen was asking
+for - but I'm not at all sure that it is..
+
+Cheers,
+Conor.
+
+CC: Conor Dooley <conor.dooley@microchip.com>
+CC: Daire McNamara <daire.mcnamara@microchip.com>
+CC: pierre-henry.moussay@microchip.com
+CC: valentina.fernandezalanis@microchip.com
+CC: Michael Turquette <mturquette@baylibre.com>
+CC: Stephen Boyd <sboyd@kernel.org>
+CC: Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: Jassi Brar <jassisinghbrar@gmail.com>
+CC: Lee Jones <lee@kernel.org>
+CC: Paul Walmsley <paul.walmsley@sifive.com>
+CC: Palmer Dabbelt <palmer@dabbelt.com>
+CC: Philipp Zabel <p.zabel@pengutronix.de>
+CC: linux-riscv@lists.infradead.org
+CC: linux-clk@vger.kernel.org
+CC: devicetree@vger.kernel.org
+CC: linux-kernel@vger.kernel.org
+
+Conor Dooley (9):
+  dt-bindings: mfd: syscon document the control-scb syscon on PolarFire
+    SoC
+  dt-bindings: soc: microchip: document the simple-mfd syscon on
+    PolarFire SoC
+  soc: microchip: add mfd drivers for two syscon regions on PolarFire
+    SoC
+  reset: mpfs: add non-auxiliary bus probing
+  dt-bindings: clk: microchip: mpfs: remove first reg region
+  riscv: dts: microchip: fix mailbox description
+  riscv: dts: microchip: convert clock and reset to use syscon
+  clk: divider, gate: create regmap-backed copies of gate and divider
+    clocks
+  clk: microchip: mpfs: use regmap clock types
+
+ .../bindings/clock/microchip,mpfs-clkcfg.yaml |  36 ++-
+ .../devicetree/bindings/mfd/syscon.yaml       |   2 +
+ .../microchip,mpfs-mss-top-sysreg.yaml        |  49 ++++
+ arch/riscv/boot/dts/microchip/mpfs.dtsi       |  34 ++-
+ drivers/clk/Kconfig                           |   8 +
+ drivers/clk/Makefile                          |   2 +
+ drivers/clk/clk-divider-regmap.c              | 270 ++++++++++++++++++
+ drivers/clk/clk-gate-regmap.c                 | 253 ++++++++++++++++
+ drivers/clk/clk-gate.c                        |   5 +-
+ drivers/clk/microchip/Kconfig                 |   4 +
+ drivers/clk/microchip/clk-mpfs.c              | 151 ++++++----
+ drivers/reset/reset-mpfs.c                    |  81 ++++--
+ drivers/soc/microchip/Kconfig                 |  13 +
+ drivers/soc/microchip/Makefile                |   1 +
+ drivers/soc/microchip/mpfs-control-scb.c      |  45 +++
+ drivers/soc/microchip/mpfs-mss-top-sysreg.c   |  48 ++++
+ include/linux/clk-provider.h                  | 120 ++++++++
+ 17 files changed, 1026 insertions(+), 96 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-mss-top-sysreg.yaml
+ create mode 100644 drivers/clk/clk-divider-regmap.c
+ create mode 100644 drivers/clk/clk-gate-regmap.c
+ create mode 100644 drivers/soc/microchip/mpfs-control-scb.c
+ create mode 100644 drivers/soc/microchip/mpfs-mss-top-sysreg.c
 
 -- 
-With best wishes
-Dmitry
+2.45.2
+
 
