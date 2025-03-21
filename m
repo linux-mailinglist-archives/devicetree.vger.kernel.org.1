@@ -1,169 +1,156 @@
-Return-Path: <devicetree+bounces-159762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72839A6BFA7
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 17:20:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F219BA6BF9D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 17:19:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53EE63BB152
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 16:18:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 807A91B61737
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 16:18:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A7C222B8CC;
-	Fri, 21 Mar 2025 16:18:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B49C226D1B;
+	Fri, 21 Mar 2025 16:17:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pereznus.es header.i=@pereznus.es header.b="h3zSnoO3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="itDBty/K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from p00-icloudmta-asmtp-us-central-1k-100-percent-8.p00-icloudmta-asmtp-vip.icloud-mail-production.svc.kube.us-central-1k.k8s.cloud.apple.com (p-east1-cluster1-host5-snip4-10.eps.apple.com [57.103.91.53])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24A2216D4E6
-	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 16:18:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=57.103.91.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2126C1D86F2;
+	Fri, 21 Mar 2025 16:17:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742573893; cv=none; b=qG10HUTkzAs0AQ33xwFxsunIwJMcs5QhUIkdzQiOH3srHdVKGc0lGaJkrmiByHg4mGoOZo+tyCpkMc6NLKPCEzE7kGV4PrvVCg3oGPPV/DJ1/orXOK3zxW3nkwLFy3sBpvNi37A0AD5/16xKtJyhc41NaQM6JckiSuAXnevQBVU=
+	t=1742573828; cv=none; b=FQl/w7YTv0Ibae+F7e3VNHtFg/R7lW1RojOqA3VCSgwRzow5Zkg39xnX8JHLqbJAuNf1PDokDZ3LRlQO0q1gLuprozwClJb1GXvr+F8caE9waKQXUwytZtwvYQLHNY0aoVrDNsw9b90mdU7keUonXO4sWboOxwF+Jfh4fX32U1w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742573893; c=relaxed/simple;
-	bh=H6o9I3+v4AZcYviKhQH6WKRTfrGF8tG7acbR4GpB+ss=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ijPu693czUlgLoDJNHEDSYVVEA4inKPpWJJsQbZBb5Wu5dA4YV8JasVPcHp1gH01XV+8RbFL5D0nttJtE2Lr4CH+mMWc68uwFqyNpGuWobQR89C2FTC/m8fHjZGgwvO1rk4Le2YeFRvwl5zfIhozDDJrUc31/9K6WMr0JiwJgms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pereznus.es; spf=pass smtp.mailfrom=pereznus.es; dkim=pass (2048-bit key) header.d=pereznus.es header.i=@pereznus.es header.b=h3zSnoO3; arc=none smtp.client-ip=57.103.91.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pereznus.es
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pereznus.es
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pereznus.es; s=sig1;
-	bh=oLL6xqfVSwrgkY0J2aQo0YZdH5erYvY/+9P5IAuUfq4=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:x-icloud-hme;
-	b=h3zSnoO3Nx0O28k5Jr45zo28oAFo3+6T0L3eu7YW4D7GJfz7WfMdjm//HfeYOdEAP
-	 o2lAKDBZr3fhTzzBIAwYEZRr9wwD9PJGfliHN7rtLrqJESjATP4oJI7oyzBv98G/0V
-	 x+hVNreddiRbHFlC5s/Xn4tZczFJ+zsrb+5bq7vtjHlMRClV4rI8orsExumk+fKFDf
-	 f7u2Lu2A2gBbhOew51GqAMfFyDYzgRlzklnBLxIXoC3cVXU2l4f60P4IIj46L6Rch8
-	 z1xmi/tKpMLP4neGfn0YBHhMaMhrukUoACXIQYdDKaoPCO//6ZEQBYxzpcxZo2QsIt
-	 +ei0dI3tRIwWA==
-Received: from localhost.localdomain (ci-asmtp-me-k8s.p00.prod.me.com [17.57.156.36])
-	by p00-icloudmta-asmtp-us-central-1k-100-percent-8.p00-icloudmta-asmtp-vip.icloud-mail-production.svc.kube.us-central-1k.k8s.cloud.apple.com (Postfix) with ESMTPSA id 985DB18009A1;
-	Fri, 21 Mar 2025 16:18:04 +0000 (UTC)
-From: Sergio Perez <sergio@pereznus.es>
-To: Tomasz Duszynski <tduszyns@gmail.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1742573828; c=relaxed/simple;
+	bh=umYqcnZz+agf38qEhHYrPYvQsxuxpuc1Mi3ge1ApdAc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Du6+gb9OJ8sanX67c4gedoaJNbDWtXroiDfEA9a0yhxoALomNGsolBtF27nizgR8F/XMHcI23TubmTZ9O+xJ5e36k4HnQnTN3ku9od+nlIPuhDarla4csx6eqKOZ3ze0yfWh5GXuvx9VSy2tpqlwXGplSFIL9vpK58QgZiPMVhY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=itDBty/K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5272AC4CEE3;
+	Fri, 21 Mar 2025 16:17:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742573827;
+	bh=umYqcnZz+agf38qEhHYrPYvQsxuxpuc1Mi3ge1ApdAc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=itDBty/KNEjPSwYMNa8z9uFKfsH0bVgmDLPIEi8PauRGi2IsNeIKCWCHA+7pug8TT
+	 HQGf94iD4NvsRp/7HPBYE0eBFgeIVSrDYjvkCaHWzwfWaauADPnUSFUHGyerp/SbAZ
+	 +LV1En1EFRXbtrXjhZXDbkGW/WllYWVrD+e7Fh+5rVh/qNWtfy1+8ZXyyMGvPkHL2c
+	 77sS5sVOpcqkOyU5IxGJNnBXBprsQ0Nn+f9+zIDJtt38hg4h0iZiEvDPGkRbyJHv+O
+	 OoLu72AYlRCo291i+Nvavko7MTXmPvzRrhF5k1RqmO/nxl4ApxB8OmBk5yPIV9Upmr
+	 pZr243kG80S9Q==
+Date: Fri, 21 Mar 2025 16:17:03 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Nick Hu <nick.hu@sifive.com>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Sergio Perez <sergio@pereznus.es>
-Subject: [PATCH v5 2/2] iio: light: bh1750: Add hardware reset support via GPIO
-Date: Fri, 21 Mar 2025 17:16:09 +0100
-Message-ID: <20250321161609.3662-2-sergio@pereznus.es>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250321161609.3662-1-sergio@pereznus.es>
-References: <20250321161609.3662-1-sergio@pereznus.es>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Anup Patel <anup@brainfault.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v3] dt-bindings: timer: Add SiFive CLINT2
+Message-ID: <20250321-crazily-attention-1aeb67606cf3@spud>
+References: <20250321083507.25298-1-nick.hu@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: ke2n7Kj045EMxJlpwH9li30QTXsRpBMC
-X-Proofpoint-ORIG-GUID: ke2n7Kj045EMxJlpwH9li30QTXsRpBMC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-21_05,2025-03-21_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 mlxscore=0 mlxlogscore=999
- malwarescore=0 bulkscore=0 spamscore=0 adultscore=0 suspectscore=0
- clxscore=1030 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2308100000 definitions=main-2503210120
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="dT2myeOCt2U0MUNc"
+Content-Disposition: inline
+In-Reply-To: <20250321083507.25298-1-nick.hu@sifive.com>
 
-Some BH1750 sensors require a hardware reset before they can be
-detected on the I2C bus. This implementation adds support for an
-optional reset GPIO that can be specified in the device tree.
 
-The reset sequence pulls the GPIO low and then high before initializing
-the sensor, which enables proper detection with tools like i2cdetect.
-This is particularly important for sensors that power on in an
-undefined state.
+--dT2myeOCt2U0MUNc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Sergio Perez <sergio@pereznus.es>
----
-Revision history:
-v4 => v5:
- - Logic change to be coherent with dt-binding as mentioned by Krzysztof Kozlowski
- - Adjust indentation as commented by Krzysztof Kozlowski
-v3 => v4:
- - No changes
-v2 => v3:
- - Split in two patches: dtbinding and code
- - Ensure list on mantainers following instructions by Krzysztof Kozlowski
- - Fix check tests as explainned by Krzysztof Kozlowski
-v1 => v2:
- - Fixes some whitespaces and end lines
- - Remove unnecessary include
- - Use of fsleep rather than usleep_range as suggested by Jonathan Cameron
- - Use of dev_dbg to reduce innecessary output as suggested by Jonathan Cameron
- - Delete an extra function implementing the functionality inline as suggested by Jonathan Cameron
----
- drivers/iio/light/bh1750.c | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+On Fri, Mar 21, 2025 at 04:35:06PM +0800, Nick Hu wrote:
+> Add compatible string and property for the SiFive CLINT v2. The SiFive
+> CLINT v2 is incompatible with the SiFive CLINT v0 due to differences
+> in their control methods.
+>=20
+> Signed-off-by: Nick Hu <nick.hu@sifive.com>
+> Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
 
-diff --git a/drivers/iio/light/bh1750.c b/drivers/iio/light/bh1750.c
-index 4b869fa9e5b1..764f88826fcb 100644
---- a/drivers/iio/light/bh1750.c
-+++ b/drivers/iio/light/bh1750.c
-@@ -22,12 +22,16 @@
- #include <linux/iio/iio.h>
- #include <linux/iio/sysfs.h>
- #include <linux/module.h>
-+#include <linux/gpio/consumer.h>
- 
- #define BH1750_POWER_DOWN		0x00
- #define BH1750_ONE_TIME_H_RES_MODE	0x20 /* auto-mode for BH1721 */
- #define BH1750_CHANGE_INT_TIME_H_BIT	0x40
- #define BH1750_CHANGE_INT_TIME_L_BIT	0x60
- 
-+/* Define the reset delay time in microseconds */
-+#define BH1750_RESET_DELAY_US 10000 /* 10ms */
-+
- enum {
- 	BH1710,
- 	BH1721,
-@@ -40,6 +44,7 @@ struct bh1750_data {
- 	struct mutex lock;
- 	const struct bh1750_chip_info *chip_info;
- 	u16 mtreg;
-+	struct gpio_desc *reset_gpio;
- };
- 
- struct bh1750_chip_info {
-@@ -248,6 +253,25 @@ static int bh1750_probe(struct i2c_client *client)
- 	data->client = client;
- 	data->chip_info = &bh1750_chip_info_tbl[id->driver_data];
- 
-+	/* Get reset GPIO from device tree */
-+	data->reset_gpio = devm_gpiod_get_optional(&client->dev,
-+						   "reset", GPIOD_OUT_HIGH);
-+
-+	if (IS_ERR(data->reset_gpio))
-+		return dev_err_probe(&client->dev, PTR_ERR(data->reset_gpio),
-+				     "Failed to get reset GPIO\n");
-+
-+	/* Perform hardware reset if GPIO is provided */
-+	if (data->reset_gpio) {
-+		/* Perform reset sequence: low-high */
-+		gpiod_set_value_cansleep(data->reset_gpio, 1);
-+		fsleep(BH1750_RESET_DELAY_US);
-+		gpiod_set_value_cansleep(data->reset_gpio, 0);
-+		fsleep(BH1750_RESET_DELAY_US);
-+
-+		dev_dbg(&client->dev, "BH1750 reset completed via GPIO\n");
-+	}
-+
- 	usec = data->chip_info->mtreg_to_usec * data->chip_info->mtreg_default;
- 	ret = bh1750_change_int_time(data, usec);
- 	if (ret < 0)
--- 
-2.43.0
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
+> ---
+> - v3 changes:
+>   - Add the reason for the incompatibility between sifive,clint2 and
+>     sifive,clint0.
+> - v2 changes:
+>   - Don't allow sifive,clint2 by itself. Add '-{}' to the first entry
+>   - Mark the sifive,fine-ctr-bits as the required property when
+>     the compatible includes the sifive,clint2
+>=20
+>  .../bindings/timer/sifive,clint.yaml          | 22 +++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/=
+Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> index 76d83aea4e2b..34684cda8b15 100644
+> --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> @@ -36,6 +36,12 @@ properties:
+>                - starfive,jh7110-clint   # StarFive JH7110
+>                - starfive,jh8100-clint   # StarFive JH8100
+>            - const: sifive,clint0        # SiFive CLINT v0 IP block
+> +      - items:
+> +          - {}
+> +          - const: sifive,clint2        # SiFive CLINT v2 IP block
+> +        description:
+> +          SiFive CLINT v2 is the HRT that supports the Zicntr. The contr=
+ol of sifive,clint2
+> +          differs from that of sifive,clint0, making them incompatible.
+>        - items:
+>            - enum:
+>                - allwinner,sun20i-d1-clint
+> @@ -62,6 +68,22 @@ properties:
+>      minItems: 1
+>      maxItems: 4095
+> =20
+> +  sifive,fine-ctr-bits:
+> +    maximum: 15
+> +    description: The width in bits of the fine counter.
+> +
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: sifive,clint2
+> +then:
+> +  required:
+> +    - sifive,fine-ctr-bits
+> +else:
+> +  properties:
+> +    sifive,fine-ctr-bits: false
+> +
+>  additionalProperties: false
+> =20
+>  required:
+> --=20
+> 2.17.1
+>=20
+
+--dT2myeOCt2U0MUNc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ92Q/wAKCRB4tDGHoIJi
+0rQ6AQCiSS55Yt7GDJR+NVBVe/vA621bKXpmgoK5F4s/BCg0YQD/cAZ/JN+9lRZi
+SzUkk9S/gW9bBvtexlGOY8rgWEaEmQ8=
+=pGkd
+-----END PGP SIGNATURE-----
+
+--dT2myeOCt2U0MUNc--
 
