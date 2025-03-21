@@ -1,40 +1,80 @@
-Return-Path: <devicetree+bounces-159772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C7BCA6C088
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 17:50:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10961A6C099
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 17:52:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 075623A343E
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 16:48:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 71A3E167640
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 16:51:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8153422AE75;
-	Fri, 21 Mar 2025 16:48:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E47222D4D6;
+	Fri, 21 Mar 2025 16:51:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="S5k0NFXa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5681D155A25;
-	Fri, 21 Mar 2025 16:48:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76DE71D5AC0
+	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 16:51:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742575737; cv=none; b=NFnmlNMkNd0Z6yU9UCuEhpTdsx/sq+6MK+PqytoXA0g34piRG0BUmUPY+AsBWj3Phk06kWjOSbRt9n08t+JgL3ywGHiuHOm0U2kPRv2unnKzyR9WgQnAhd5d7UzVh6Q0RaggQ6u5LbQm2rldv/vJCln7asKJXo/esk5/d9psqiM=
+	t=1742575879; cv=none; b=CxvbsWKdiPWIah1bwfH38pPpHQjLuS93giuqh4V2zLyHBvimD1cJTIKeyCIPOn/zLjMYrm21V2Dv4Ypmb5cj0upWeTfRzibJwOqqne/mXue0Dtplb4lZlQsWYZkZQaUN7CHwKX1GMhSGwwjPDYbdRRoWePOKniIF0Y9sj/2pBN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742575737; c=relaxed/simple;
-	bh=JBdg7xMBLd5iIqOC0TaR5k4K2Igly/gZ0cV4AKosEWo=;
+	s=arc-20240116; t=1742575879; c=relaxed/simple;
+	bh=mbKr0+rtZEmdF/mZsAZ97VBzgPF9w94dbXE77Hy8CHY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=faBHcupuM+NTzWoSBngJksg4r107iWuLqMWum7fKufEsxANAYLMN/wLIvzHWlLTQAOCtCBmNRC4c9qfjRiTYsQngOttF96f/aK7CAayoM2Y45dO/ci4dEKeIYAshOG81iSD2Ut+YfwNz/rtKpqiZdO7sEFCJDOsWMxvwExd5f0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 12A25106F;
-	Fri, 21 Mar 2025 09:49:01 -0700 (PDT)
-Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 791DD3F63F;
-	Fri, 21 Mar 2025 09:48:50 -0700 (PDT)
-Message-ID: <135390b1-c0c5-4595-a3f3-1fb376473872@arm.com>
-Date: Fri, 21 Mar 2025 16:48:46 +0000
+	 In-Reply-To:Content-Type; b=oJEVLMxQfrje+gy1YKGE7invDbKA3QIjTEzsDEvO/z4SVjwjX98KURvNS/zYxExHc4DR+XdlW5hLEXFZUJsj7ZoY+jR2FwcyH8h5CmWYOmteGVaJfI8uQozB8gcywWHo+mVoO4ZeiIcKID6aXI1CPUF0+irZbiSw7SgCWho8WIo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=S5k0NFXa; arc=none smtp.client-ip=209.85.166.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-io1-f41.google.com with SMTP id ca18e2360f4ac-85e14ce87ceso67358339f.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 09:51:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1742575875; x=1743180675; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pzK1WGYHzNSQEzJMM5cCsywytwS/BE8E1AY6ka1PBNQ=;
+        b=S5k0NFXaiDgSmvo0bAUPqtypsaqxCT9ffPdP6Zb+Psk4w05cTEQD5ae2KcbkXZVUuP
+         iXVclfMWxNbeDQV1264zV8TUAwPhhxrac1LAES1yLD4KA2xlBy3B1YQU1L6Si3H1JLcK
+         448YUk/PULbg4/1ESkYQUSSqLxwKhNoDYjNE6PF0tf5xiUbIKflOwv56O6dLm/vqk3DR
+         fPjAYffxBu/a87gxLIvMqlpyFqS9UjEq5xPUXL+UU11P/9okg4JUM3PW4EFGAwPqmyNo
+         Xc31HVaBSOuuBlmm9nf4dtlFs30UOEOzBUiqxIh2B8Aa3eA0TWf1JJchPx6/gjOPGLOR
+         ZvOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742575875; x=1743180675;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pzK1WGYHzNSQEzJMM5cCsywytwS/BE8E1AY6ka1PBNQ=;
+        b=sS3R5mDBV/QIRMj7gHHc8B/13rnPo1Dt7MqE6IEtk6mwil9Zq5hozyRNAFqkCyU6bx
+         B+koZvUsSIoVYRQMXlTb060Qom7j5pO46+pmkzmkfnkI9APN4M5CK3EG+lGe8WitGSBp
+         qYJe41cA0QQAoqj09Vn2b5jaL5IvyUtvvGVJgyczPjsuY/UqdnDmG+mYZe2fNOZzehsv
+         ke2KHFDcWuzVvpzkdcKw5MWhRLIW94TbuVa9wzRJgKggTyXbYhfJvXaGYwGOXVdLHnTC
+         bxD1IRtkQ8utOkFh8Boiaq2alD30vOIOkstCYoSYbT/MPByLQtdEqBk6Odz7hMlpXDDh
+         Ziqg==
+X-Forwarded-Encrypted: i=1; AJvYcCWWfs9j4KTwIx7PhvMPpFVZ6sGZHMWdRd7UO3AePElG2/SCZ0EdhL3qvWs1ppPnLcSvTtaPwljUO5i2@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJj8eigNtExTeRC5RW0V1UQ5iQB743iPW6N1EUU+TyrNebRWU9
+	K+fBdDuim2OJSTXK4l0UQyorXHkKvSjzk+n4LRI9KrS57vc6BIZjLTJIJ4krH+g=
+X-Gm-Gg: ASbGnctVBPj2RYzffbDcjGXySaQtqkoj5tWHVLnVnLcECGRWxWnd1qUxMHx8DuocCX1
+	/TObWOHrzU9Ea4CkTUgM6bmDbF7kRZ7tEQ9yFiAAvn53LRN+0qPEl/9+nDgEXXpD5htkfGAuu+d
+	/3Pi9kyiUtyXKnz+BEak7BmlThfWyMD4u/Ddog+9eRXR6JYG3PI3ApSd4ZE4UxXkGZjObD9yyZn
+	B27PXCAijAtYN31dyO4cHa3Igjgfc8GsgKvP3/0zRbk2P3V6weBNwSWBjHSy+UjMd52VkxuH3IG
+	tl1DBVaDpqbxCK11efnkj/qgo9kShZ7z3SOgvzgsapFnb2X5UEQ+DJmIFWPCT4r5SdoPQQ1a7Be
+	oYnnT2xwekJzTzjempA==
+X-Google-Smtp-Source: AGHT+IH20L7xZ9FbSSWQT43kyWkhTGHjv6LRqusofBtW84SCRx5VKyrgNItG2BhiTqAgVRCVgxE9tA==
+X-Received: by 2002:a05:6602:6a89:b0:85b:4cb9:5cf6 with SMTP id ca18e2360f4ac-85e2bc71838mr361639039f.0.1742575875339;
+        Fri, 21 Mar 2025 09:51:15 -0700 (PDT)
+Received: from [10.211.55.5] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
+        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-85e2bc13d74sm45863839f.11.2025.03.21.09.51.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Mar 2025 09:51:14 -0700 (PDT)
+Message-ID: <b0583550-eb2c-4918-b9e7-7041d3fd2e9e@riscstar.com>
+Date: Fri, 21 Mar 2025 11:51:13 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -42,196 +82,177 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] iommu: Get DT/ACPI parsing into the proper probe
- path
-To: Marek Szyprowski <m.szyprowski@samsung.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
- <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
- Russell King <linux@armlinux.org.uk>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Danilo Krummrich <dakr@kernel.org>, Stuart Yoder <stuyoder@gmail.com>,
- Nipun Gupta <nipun.gupta@amd.com>, Nikhil Agarwal <nikhil.agarwal@amd.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
- Bjorn Helgaas <bhelgaas@google.com>
-Cc: linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
- devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
- Charan Teja Kalla <quic_charante@quicinc.com>
-References: <cover.1740753261.git.robin.murphy@arm.com>
- <e3b191e6fd6ca9a1e84c5e5e40044faf97abb874.1740753261.git.robin.murphy@arm.com>
- <CGME20250313095633eucas1p29cb55f2504b4bcf67c16b3bd3fa9b8cd@eucas1p2.samsung.com>
- <9b358d68-332e-404e-9a75-740297f7b28d@samsung.com>
- <417d6f59-0d78-4e81-ad0b-e06846f786b0@arm.com>
- <bf2adf5d-1432-4bb7-846c-e1bcfa84858b@samsung.com>
- <016bb7ca-f0d3-464e-ac74-46e6f78e90d7@arm.com>
- <b63ff6b4-9dc3-42ea-8b87-d4fdead8d0eb@arm.com>
- <cdc333e4-25bb-4171-9f6e-01f1de947db3@samsung.com>
- <d6cd5e64-e2c0-4c6e-9c89-ce8b3e0a4a5b@arm.com>
- <ace3a01f-4700-4455-ada3-0f88fc8ea4cd@samsung.com>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <ace3a01f-4700-4455-ada3-0f88fc8ea4cd@samsung.com>
+Subject: Re: [PATCH RFC 2/2] mmc: sdhci-of-k1: add support for SpacemiT K1 SoC
+To: Yixun Lan <dlan@gentoo.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+References: <20250213-20-k1-sdhci-v1-0-1f4362a980cd@gentoo.org>
+ <20250213-20-k1-sdhci-v1-2-1f4362a980cd@gentoo.org>
+Content-Language: en-US
+From: Alex Elder <elder@riscstar.com>
+In-Reply-To: <20250213-20-k1-sdhci-v1-2-1f4362a980cd@gentoo.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 21/03/2025 12:15 pm, Marek Szyprowski wrote:
-> On 17.03.2025 19:22, Robin Murphy wrote:
->> On 17/03/2025 7:37 am, Marek Szyprowski wrote:
->>> On 13.03.2025 15:12, Robin Murphy wrote:
->>>> On 2025-03-13 1:06 pm, Robin Murphy wrote:
->>>>> On 2025-03-13 12:23 pm, Marek Szyprowski wrote:
->>>>>> On 13.03.2025 12:01, Robin Murphy wrote:
->>>>>>> On 2025-03-13 9:56 am, Marek Szyprowski wrote:
->>>>>>> [...]
->>>>>>>> This patch landed in yesterday's linux-next as commit bcb81ac6ae3c
->>>>>>>> ("iommu: Get DT/ACPI parsing into the proper probe path"). In my
->>>>>>>> tests I
->>>>>>>> found it breaks booting of ARM64 RK3568-based Odroid-M1 board
->>>>>>>> (arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts). Here is the
->>>>>>>> relevant kernel log:
->>>>>>>
->>>>>>> ...and the bug-flushing-out begins!
->>>>>>>
->>>>>>>> Unable to handle kernel NULL pointer dereference at virtual address
->>>>>>>> 00000000000003e8
->>>>>>>> Mem abort info:
->>>>>>>>        ESR = 0x0000000096000004
->>>>>>>>        EC = 0x25: DABT (current EL), IL = 32 bits
->>>>>>>>        SET = 0, FnV = 0
->>>>>>>>        EA = 0, S1PTW = 0
->>>>>>>>        FSC = 0x04: level 0 translation fault
->>>>>>>> Data abort info:
->>>>>>>>        ISV = 0, ISS = 0x00000004, ISS2 = 0x00000000
->>>>>>>>        CM = 0, WnR = 0, TnD = 0, TagAccess = 0
->>>>>>>>        GCS = 0, Overlay = 0, DirtyBit = 0, Xs = 0
->>>>>>>> [00000000000003e8] user address but active_mm is swapper
->>>>>>>> Internal error: Oops: 0000000096000004 [#1] PREEMPT SMP
->>>>>>>> Modules linked in:
->>>>>>>> CPU: 3 UID: 0 PID: 1 Comm: swapper/0 Not tainted 6.14.0-rc3+ #15533
->>>>>>>> Hardware name: Hardkernel ODROID-M1 (DT)
->>>>>>>> pstate: 00400009 (nzcv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
->>>>>>>> pc : devm_kmalloc+0x2c/0x114
->>>>>>>> lr : rk_iommu_of_xlate+0x30/0x90
->>>>>>>> ...
->>>>>>>> Call trace:
->>>>>>>>       devm_kmalloc+0x2c/0x114 (P)
->>>>>>>>       rk_iommu_of_xlate+0x30/0x90
->>>>>>>
->>>>>>> Yeah, looks like this is doing something a bit questionable which
->>>>>>> can't
->>>>>>> work properly. TBH the whole dma_dev thing could probably be
->>>>>>> cleaned up
->>>>>>> now that we have proper instances, but for now does this work?
->>>>>>
->>>>>> Yes, this patch fixes the problem I've observed.
->>>>>>
->>>>>> Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
->>>>>> Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
->>>>>>
->>>>>> BTW, this dma_dev idea has been borrowed from my exynos_iommu driver
->>>>>> and
->>>>>> I doubt it can be cleaned up.
->>>>>
->>>>> On the contrary I suspect they both can - it all dates back to when
->>>>> we had the single global platform bus iommu_ops and the SoC drivers
->>>>> were forced to bodge their own notion of multiple instances, but with
->>>>> the modern core code, ops are always called via a valid IOMMU
->>>>> instance or domain, so in principle it should always be possible to
->>>>> get at an appropriate IOMMU device now. IIRC it was mostly about
->>>>> allocating and DMA-mapping the pagetables in domain_alloc, where the
->>>>> private notion of instances didn't have enough information, but
->>>>> domain_alloc_paging solves that.
->>>>
->>>> Bah, in fact I think I am going to have to do that now, since although
->>>> it doesn't crash, rk_domain_alloc_paging() will also be failing for
->>>> the same reason. Time to find a PSU for the RK3399 board, I guess...
->>>>
->>>> (Or maybe just move the dma_dev assignment earlier to match Exynos?)
->>>
->>> Well I just found that Exynos IOMMU is also broken on some on my test
->>> boards. It looks that the runtime pm links are somehow not correctly
->>> established. I will try to analyze this later in the afternoon.
->>
->> Hmm, I tried to get an Odroid-XU3 up and running, but it seems unable
->> to boot my original 6.14-rc3-based branch - even with the IOMMU driver
->> disabled, it's consistently dying somewhere near (or just after) init
->> with what looks like some catastrophic memory corruption issue - very
->> occasionally it's managed to print the first line of various different
->> panics.
->>
->> Before that point though, with the IOMMU driver enabled it does appear
->> to show signs of working OK:
->>
->> [    0.649703] exynos-sysmmu 14650000.sysmmu: hardware version: 3.3
->> [    0.654220] platform 14450000.mixer: Adding to iommu group 1
->> ...
->> [    2.680920] exynos-mixer 14450000.mixer:
->> exynos_iommu_attach_device: Attached IOMMU with pgtable 0x42924000
->> ...
->> [    5.196674] exynos-mixer 14450000.mixer:
->> exynos_iommu_identity_attach: Restored IOMMU to IDENTITY from pgtable
->> 0x42924000
->> [    5.207091] exynos-mixer 14450000.mixer:
->> exynos_iommu_attach_device: Attached IOMMU with pgtable 0x42884000
->>
->>
->> The multi-instance stuff in probe/release does look a bit suspect,
->> however - seems like the second instance probe would overwrite the
->> first instance's links, and then there would be a double-del() if the
->> device were ever actually released again? I may have made that much
->> more likely to happen, but I suspect it was already possible with
->> async driver probe...
+On 2/13/25 4:58 AM, Yixun Lan wrote:
+> The SDHCI controller found in SpacemiT K1 SoC features SD,
+> SDIO, eMMC support, such as:
 > 
-> That is really strange. My Odroid XU3 boots fine from commit
-> bcb81ac6ae3c ("iommu: Get DT/ACPI parsing into the proper probe path"),
-> although the IOMMU seems not to be working correctly. I've tested this
-> with 14450000.mixer device (one need to attach HDMI cable to get it
-> activated) and it looks that the video data are not being read from
-> memory at all (the lack of VSYNC is reported, no IOMMU fault). However,
-> from time to time, everything initializes and works properly.
+> - Compatible for 4-bit SDIO 3.0 UHS-I protocol, up to SDR104
+> - Compatible for 4-bit SD 3.0 UHS-I protocol, up to SDR104
+> - Compatible for 8bit eMMC5.1, up to HS400
+> 
+> Signed-off-by: Yixun Lan <dlan@gentoo.org>
 
-Urgh, seems my mistake was assuming exynos_defconfig was the right thing 
-to begin from - bcb81ac6ae3c with that still dies in the same way (this 
-time I saw a hint of spin_bug() being hit...), however a 
-multi_v7_defconfig build does get to userspace OK again with no obvious 
-signs of distress:
+Why is this RFC? Have you tested it?
 
-[root@alarm ~]# grep -Hr . /sys/kernel/iommu_groups/*/type
-/sys/kernel/iommu_groups/0/type:identity
-/sys/kernel/iommu_groups/1/type:identity
-/sys/kernel/iommu_groups/10/type:identity
-/sys/kernel/iommu_groups/2/type:identity
-/sys/kernel/iommu_groups/3/type:identity
-/sys/kernel/iommu_groups/4/type:identity
-/sys/kernel/iommu_groups/5/type:identity
-/sys/kernel/iommu_groups/6/type:identity
-/sys/kernel/iommu_groups/7/type:identity
-/sys/kernel/iommu_groups/8/type:identity
-/sys/kernel/iommu_groups/9/type:identity
+I have a few minor comments but this seems reasonable to me.
 
-Annoyingly I do have an adapter for the fiddly micro-HDMI, but it's at 
-home :(
+> ---
+>   drivers/mmc/host/Kconfig       |  14 ++
+>   drivers/mmc/host/Makefile      |   1 +
+>   drivers/mmc/host/sdhci-of-k1.c | 320 +++++++++++++++++++++++++++++++++++++++++
+>   3 files changed, 335 insertions(+)
 
-> It looks that this is somehow related to the different IOMMU/DMA-mapping
-> glue code, as the other boards (ARM64 based) with exactly the same
-> Exynos IOMMU driver always work fine. I've tried to figure out what
-> actually happens, but so far I didn't get anything for sure. Disabling
-> the call to dev->bus->dma_configure(dev) from iommu_init_device() seems
-> to be fixing this, but this is almost equal to the revert of the
-> $subject patch. I don't get why calling it in iommu_init_device() causes
-> problems. It also doesn't look that this is anyhow related to the
-> multi-instance stuff, as the same happens if I only leave a single
-> exynos-sysmmu instance and its client (only 14450000.mixer device in the
-> system).
+. . .
 
-On a hunch I stuck a print in exynos_iommu_probe_device(), and it looks 
-like in fact device_link_add() isn't getting called at all, and indeed 
-your symptoms do sound like they could be explained by the IOMMU not 
-being reliably resumed... lemme stare at exynos_iommu_of_xlate() a bit 
-longer...
+> +#define SDHC_PHY_DLLCFG			0x168
+> +#define  DLL_PREDLY_NUM			0x04
+> +#define  DLL_FULLDLY_RANGE		0x10
+> +#define  DLL_VREG_CTRL			0x40
+> +#define  DLL_ENABLE			0x80000000
+> +#define  DLL_REFRESH_SWEN_SHIFT		0x1C
+> +#define  DLL_REFRESH_SW_SHIFT		0x1D
+> +
+> +#define SDHC_PHY_DLLCFG1		0x16C
+> +#define  DLL_REG2_CTRL			0x0C
+> +#define  DLL_REG3_CTRL_MASK		0xFF
 
-Thanks,
-Robin.
+As Adrian said, please use GENMASK() (or BIT()) to define
+these masks, and FIELD_GET() or similar to manipulate them.
+I prefer lower-case hex digits too.
+
+> +#define  DLL_REG3_CTRL_SHIFT		0x10
+> +#define  DLL_REG2_CTRL_MASK		0xFF
+> +#define  DLL_REG2_CTRL_SHIFT		0x08
+> +#define  DLL_REG1_CTRL			0x92
+> +#define  DLL_REG1_CTRL_MASK		0xFF
+> +#define  DLL_REG1_CTRL_SHIFT		0x00
+> +
+> +#define SDHC_PHY_DLLSTS			0x170
+> +#define  DLL_LOCK_STATE			0x01
+> +
+> +#define SDHC_PHY_DLLSTS1		0x174
+> +#define  DLL_MASTER_DELAY_MASK		0xFF
+> +#define  DLL_MASTER_DELAY_SHIFT		0x10
+> +
+> +#define SDHC_PHY_PADCFG_REG		0x178
+> +#define  RX_BIAS_CTRL			BIT(5)
+> +#define  PHY_DRIVE_SEL_MASK		0x7
+> +#define  PHY_DRIVE_SEL_DEFAULT		0x4
+> +
+> +struct spacemit_sdhci_host {
+> +	struct clk *clk_core;
+> +	struct clk *clk_io;
+> +};
+> +
+
+I don't think the next few functions add any real value.
+
+Just call sdhci_writel() and sdhci_readl() directly.  It
+might even take fewer characters (but above all, I think
+it's clearer without the function hiding what's done).
+
+> +static inline void spacemit_sdhci_setbits(struct sdhci_host *host, u32 val, int reg)
+> +{
+> +	sdhci_writel(host, sdhci_readl(host, reg) | val, reg);
+> +}
+> +
+> +static inline void spacemit_sdhci_clrbits(struct sdhci_host *host, u32 val, int reg)
+> +{
+> +	sdhci_writel(host, sdhci_readl(host, reg) & ~val, reg);
+> +}
+> +
+
+This too, just open-code this function in the two places it's used.
+
+> +static inline void spacemit_sdhci_clrsetbits(struct sdhci_host *host, u32 clr, u32 set, int reg)
+> +{
+> +	u32 val = sdhci_readl(host, reg);
+> +
+> +	val = (val & ~clr) | set;
+> +	sdhci_writel(host, val, reg);
+> +}
+> +
+> +static void spacemit_sdhci_reset(struct sdhci_host *host, u8 mask)
+> +{
+> +	struct platform_device *pdev;
+> +
+
+. . .
+
+> +	udelay(5);
+> +
+> +	spacemit_sdhci_setbits(host, PHY_FUNC_EN | PHY_PLL_LOCK, SDHC_PHY_CTRL_REG);
+> +}
+> +
+
+I don't feel as strongly about this, but...
+
+Here too, what the next function does is very typical and all
+of it could go in the probe function.  I do understand that it
+groups the clock-related code though.
+
+But aside from that, I think assigning pltfm_host->clock could
+be done in the probe function rather than hiding it in here.
+
+> +static inline int spacemit_sdhci_get_clocks(struct device *dev,
+> +					    struct sdhci_pltfm_host *pltfm_host)
+> +{
+> +	struct spacemit_sdhci_host *sdhst = sdhci_pltfm_priv(pltfm_host);
+> +
+> +	sdhst->clk_core = devm_clk_get_enabled(dev, "core");
+> +	if (IS_ERR(sdhst->clk_core))
+> +		return -EINVAL;
+> +
+> +	sdhst->clk_io = devm_clk_get_enabled(dev, "io");
+> +	if (IS_ERR(sdhst->clk_io))
+> +		return -EINVAL;
+> +
+> +	pltfm_host->clk = sdhst->clk_io;
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct sdhci_ops spacemit_sdhci_ops = {
+> +	.get_max_clock		= spacemit_sdhci_clk_get_max_clock,
+> +	.reset			= spacemit_sdhci_reset,
+> +	.set_bus_width		= sdhci_set_bus_width,
+> +	.set_clock		= spacemit_sdhci_set_clock,
+> +	.set_uhs_signaling	= spacemit_sdhci_set_uhs_signaling,
+> +};
+> +
+
+I think you should make the next structure be used as platform
+data for "spacemit,k1-sdhci", rather than just a global.  That
+way you could conceivably use the same driver with slightly
+different (or even the same) quirks for future hardware.
+
+					-Alex
+
+> +static const struct sdhci_pltfm_data spacemit_sdhci_k1_pdata = {
+> +	.ops = &spacemit_sdhci_ops,
+> +	.quirks = SDHCI_QUIRK_DATA_TIMEOUT_USES_SDCLK |
+> +		  SDHCI_QUIRK_NO_ENDATTR_IN_NOPDESC |
+> +		  SDHCI_QUIRK_32BIT_ADMA_SIZE |
+> +		  SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN |
+> +		  SDHCI_QUIRK_BROKEN_CARD_DETECTION |
+> +		  SDHCI_QUIRK_BROKEN_TIMEOUT_VAL,
+> +	.quirks2 = SDHCI_QUIRK2_BROKEN_64_BIT_DMA |
+> +		   SDHCI_QUIRK2_PRESET_VALUE_BROKEN,
+> +};
+> +. . .
 
