@@ -1,65 +1,100 @@
-Return-Path: <devicetree+bounces-159690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB14CA6BC95
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 15:09:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31465A6BC90
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 15:08:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E70447A67CD
-	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 14:02:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3748C4639FB
+	for <lists+devicetree@lfdr.de>; Fri, 21 Mar 2025 14:07:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E755C13D8B1;
-	Fri, 21 Mar 2025 14:02:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D5F078F29;
+	Fri, 21 Mar 2025 14:07:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="khWlefwO"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Y5FFyDMu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF30078F51;
-	Fri, 21 Mar 2025 14:02:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66E7978F52
+	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 14:07:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742565723; cv=none; b=Ji0EtrzHQITvBh3VNYnrP2qJoj6AfcmTW78OpWjVXQ+tpMj/iMZ9GVXclQbvxC1WZ89AZZn+RBqqBcX7wBxiiF1xP+ToTukPyKjncEs4QkP+E+AwPA8NoqBU6osvc9JzSlS54tatK8o2dT5BGEyNouFFI67hTO2ndOlLmeeylcc=
+	t=1742566037; cv=none; b=o0mIaAgi7wSkbQFNzQaCQ0k9ZkdtuDuedxzf76BmS9yTl2H99sYpTKF6cthQ10ZGeHhGmvcpHuxKwCVuZjCIwdIanPxltPwvDIBORYm6glWEaRUBZ/Wlb3fO6jDRYCzAANnPQp8p+A6+trHCLbQ/gLZc3GnTI3TmfH2tf8mZ/vQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742565723; c=relaxed/simple;
-	bh=Qwd1OjDeGAqCbYwL7o5MutzvzBIW/CFy3NKOIVcCn8w=;
+	s=arc-20240116; t=1742566037; c=relaxed/simple;
+	bh=e/XWsyI6BYdyPdl0XA1XeIvspxRAYhIZaXUiTyMFzjw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LfbFNic+qvVekq48XuDAn4RTKQaWq3RVINLNNbhJdURiFJfwiY9WpX7dFAS7rqVow8qAchXBeq0pqUwgdLqVNyHjFh5trCa3bdO8Ayy0vxINsP8ThCkO6eOSoVlsijeNIdMLg2T+LNEg23UyhreKZcpRM2ePzi1mCG+SsrU0fb8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=khWlefwO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B4F3C4CEE3;
-	Fri, 21 Mar 2025 14:02:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742565723;
-	bh=Qwd1OjDeGAqCbYwL7o5MutzvzBIW/CFy3NKOIVcCn8w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=khWlefwOsoylPZURq7kqnVa8gnSh4gGlyyrQTxNpmwR0ypkBHylbIa4SNkDc0FVjS
-	 tjup6w5tzsaTvdgc/pNsqBEBjocLL8IB/TM21LEsanaFN2nogKRUlZLn6qdqmGCkNG
-	 erJckZQShNBg9ySGpuVGTIYr6btTyrRSiw9xpeEfEzzghAcX8QbeLphgfstKn7rTkE
-	 ssKTN5Iv3L0xH0ZpkOihKSqyNNTc2YxtlUTGVeHjJwBkDggpZgjXsxC1gkhTzqRgkB
-	 7KbWBevmapajfIlLhVHbHRsLb70wq2qrqWMg8D4S0lAWfFIO1raAbLZkELe8RKWl3L
-	 rvcHqq+vpnJ0A==
-Date: Fri, 21 Mar 2025 09:02:00 -0500
-From: Rob Herring <robh@kernel.org>
-To: Patrice Chotard <patrice.chotard@foss.st.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, christophe.kerello@foss.st.com,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 2/7] dt-bindings: memory-controllers: Add STM32 Octo
- Memory Manager controller
-Message-ID: <20250321140200.GA3192411-robh@kernel.org>
-References: <20250321-upstream_ospi_v6-v6-0-37bbcab43439@foss.st.com>
- <20250321-upstream_ospi_v6-v6-2-37bbcab43439@foss.st.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=A0ucAe3cbQQx+4C7TkswCtXqLrP3zKmEwkCTnJAXYqWqdFSkizr+KLEKJJKLSuo3ERM8w/6YOXnurXzgdxlfUZY186aIdrq9WBc+8J7vG644eBRGmy2xkMX+Vc2DZxeq4tbCSCeOSEJ1co+MfaIR8rzPaU6q1eeh3ce4dT/+624=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Y5FFyDMu; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52LATL6p001141
+	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 14:07:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=n4dOWXKC6mPXFjDpSYZ/WJvo
+	CSfdzk/j2GPOhCYKVDY=; b=Y5FFyDMuplv32vbJvmFlofNE24HcYZWtCbdB9PuP
+	bY5dwKhHIUY/GcnqQhj6bH7Dvl2SngTIDpv1h4VbinxQDuuBIT/Jmg6TiP75ozfz
+	qmjQSCRr/tCYSKEazwyICdKwwhOU2nG8riMoCPOswFdnY4ZWXNX1DcziyankEY5K
+	3NgNK/iK6600o+5oA5IeVMk5j+HLCKyisUQCezbAiOBl9dyj43MHJ3UF05jhn34k
+	NrPsDQxH8JQTiLIRZ6RmEKYg8snGFsfJ3l9ZL/+W0qWuu9XVlru/HSERl5VGNHDp
+	0zE7o+smmzQQR8SobtgH610Cn1q3vO7Zv5TNgssHrgtqrQ==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45h4u9rway-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 14:07:14 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c3cbb51f03so366493785a.1
+        for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 07:07:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742566030; x=1743170830;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=n4dOWXKC6mPXFjDpSYZ/WJvoCSfdzk/j2GPOhCYKVDY=;
+        b=OvJZyk2u0/ZtZNnarLRQsjbyAkD/aHur2tsa9j9e4ETTxmKq5MlM1pjkAeYMvvk6pa
+         LqLGrhKgLdnmVFFGfZYKC4fz775OmBOKTGqHU8bE0ztDDTLYB9q5fZgLMlZyjrLwIcFN
+         M71Hl3/dnObWwUmvDyjdm5ei2IyRyJ8PjDPanFDgYzT4vNMWTPyfmxccks/AsAcG6OP+
+         DZzQd+Z997s9pI1HFqKCSw9JUXHoPMjBy0dAQcg5lb+nfTk+7kcBATwrkuCq5yoHGp92
+         aOGsl0qsvve4VAr7/KdT3jf/JsZmzLw6jIssMToCkVnMqBc8vXU5M+Kn8VzDZO40nUX5
+         dRhQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU5gnWPGIAeCEKIND8a6dV+aD4tR1axiCX1nbao+Ot5e7Gm7h/BEq0BECHOEzdJBLgP188BHbhauQGu@vger.kernel.org
+X-Gm-Message-State: AOJu0YxxT20CMIoFwRooX1IuKKd1ssYWMQjmTJrT5c1U3qxoMzlzpMlG
+	Ru3eORe+APF8wk6vZ8I6+tXOgagN5Ecmr6Fppe6fgxjlKGgt/4fdZdbadR7EsRnENMRGvknpMUb
+	xH4z7GMmKKcBswSL/kFMNzAvNiT/3Svqy4dw7ll4wdcr3q/xlbFB351oQ7c8w
+X-Gm-Gg: ASbGncuOYiqZ4Zyc7xmUDxbu1bZeQFiWNSNa/d3Mz/DTbRu3qqwIdhbwu65rfupy6xz
+	gWbpF/2Qx1gFKZiVAoMGzduKrY6hIQYIfw+7rDikqEB9+iYcg8j0c4wS3Vrfn7+r6JVQtz5Fduw
+	nvd9X1HZttSsE5PAjKe4dt9epdjQgKVcPNfEFsM7zA4h5AKGr8v3WAU4bUpdqENYvTPKtZPB9Gq
+	v38wRiTUwwT+gGNzVqhWdW0xRp7Hoa/CaxuBVqiCBT7rh+ktAf5Q4zuafrO9XGJmcWQyuSO3MUV
+	LV99p/kt/98Sj5Z6QtXTdd7MkRzawBoF74OVOchRDfe6ZofylBhK/kwG5Z8x8pfHHo2UDYm7xRG
+	Jj0w=
+X-Received: by 2002:a05:620a:40c7:b0:7c5:57e6:ee87 with SMTP id af79cd13be357-7c5ba1e41abmr470564885a.41.1742566030511;
+        Fri, 21 Mar 2025 07:07:10 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHCTJNsCfV0EF8Epu2f1YteJvCUL+F4ENn0D4b3RmEfnwrm5SjF78ayOE8NAWz/4oqCHm/szg==
+X-Received: by 2002:a05:620a:40c7:b0:7c5:57e6:ee87 with SMTP id af79cd13be357-7c5ba1e41abmr470561485a.41.1742566030053;
+        Fri, 21 Mar 2025 07:07:10 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54ad64fbbcesm194858e87.155.2025.03.21.07.07.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Mar 2025 07:07:09 -0700 (PDT)
+Date: Fri, 21 Mar 2025 16:07:06 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: Ling Xu <quic_lxu5@quicinc.com>, andersson@kernel.org,
+        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, amahesh@qti.qualcomm.com, arnd@arndb.de,
+        gregkh@linuxfoundation.org, quic_kuiw@quicinc.com,
+        quic_ekangupt@quicinc.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v2 2/3] misc: fastrpc: add support for gpdsp remoteproc
+Message-ID: <5r72xrv5rtw6bemh5onygkroyasroviijlta4hvwgm5c5hzvax@3icylchlufu3>
+References: <20250320091446.3647918-1-quic_lxu5@quicinc.com>
+ <20250320091446.3647918-3-quic_lxu5@quicinc.com>
+ <30bba296-8e6f-41ee-880e-2d5ecc8fe5a4@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,274 +103,131 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250321-upstream_ospi_v6-v6-2-37bbcab43439@foss.st.com>
+In-Reply-To: <30bba296-8e6f-41ee-880e-2d5ecc8fe5a4@linaro.org>
+X-Proofpoint-ORIG-GUID: jUhxOdnGkCbtM7220sB6zvTxqHq6dIRp
+X-Authority-Analysis: v=2.4 cv=FYE3xI+6 c=1 sm=1 tr=0 ts=67dd7292 cx=c_pps a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8 a=5a3lCsJK5BcCjL_2EzoA:9
+ a=0bXxn9q0MV6snEgNplNhOjQmxlI=:19 a=CjuIK1q_8ugA:10 a=bTQJ7kPSJx9SKPbeHEYW:22 a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: jUhxOdnGkCbtM7220sB6zvTxqHq6dIRp
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-21_05,2025-03-20_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
+ impostorscore=0 mlxlogscore=999 mlxscore=0 priorityscore=1501 bulkscore=0
+ phishscore=0 spamscore=0 clxscore=1015 adultscore=0 lowpriorityscore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503210103
 
-On Fri, Mar 21, 2025 at 10:32:22AM +0100, Patrice Chotard wrote:
-> Add bindings for STM32 Octo Memory Manager (OMM) controller.
+On Thu, Mar 20, 2025 at 05:11:20PM +0000, Srinivas Kandagatla wrote:
 > 
-> OMM manages:
->   - the muxing between 2 OSPI busses and 2 output ports.
->     There are 4 possible muxing configurations:
->       - direct mode (no multiplexing): OSPI1 output is on port 1 and OSPI2
->         output is on port 2
->       - OSPI1 and OSPI2 are multiplexed over the same output port 1
->       - swapped mode (no multiplexing), OSPI1 output is on port 2,
->         OSPI2 output is on port 1
->       - OSPI1 and OSPI2 are multiplexed over the same output port 2
->   - the split of the memory area shared between the 2 OSPI instances.
->   - chip select selection override.
->   - the time between 2 transactions in multiplexed mode.
 > 
-> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+> On 20/03/2025 09:14, Ling Xu wrote:
+> > The fastrpc driver has support for 5 types of remoteprocs. There are
+> > some products which support GPDSP remoteprocs. Add changes to support
+> > GPDSP remoteprocs.
+> > 
+> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> > Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
+> > ---
+> >   drivers/misc/fastrpc.c | 10 ++++++++--
+> >   1 file changed, 8 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/misc/fastrpc.c b/drivers/misc/fastrpc.c
+> > index 7b7a22c91fe4..80aa554b3042 100644
+> > --- a/drivers/misc/fastrpc.c
+> > +++ b/drivers/misc/fastrpc.c
+> > @@ -28,7 +28,9 @@
+> >   #define SDSP_DOMAIN_ID (2)
+> >   #define CDSP_DOMAIN_ID (3)
+> >   #define CDSP1_DOMAIN_ID (4)
+> > -#define FASTRPC_DEV_MAX		5 /* adsp, mdsp, slpi, cdsp, cdsp1 */
+> > +#define GDSP0_DOMAIN_ID (5)
+> > +#define GDSP1_DOMAIN_ID (6)
+> 
+> We have already made the driver look silly here, Lets not add domain ids for
+> each instance, which is not a scalable.
+> 
+> Domain ids are strictly for a domain not each instance.
+> 
+> 
+> > +#define FASTRPC_DEV_MAX		7 /* adsp, mdsp, slpi, cdsp, cdsp1, gdsp0, gdsp1 */
+> >   #define FASTRPC_MAX_SESSIONS	14
+> >   #define FASTRPC_MAX_VMIDS	16
+> >   #define FASTRPC_ALIGN		128
+> > @@ -107,7 +109,9 @@
+> >   #define miscdev_to_fdevice(d) container_of(d, struct fastrpc_device, miscdev)
+> >   static const char *domains[FASTRPC_DEV_MAX] = { "adsp", "mdsp",
+> > -						"sdsp", "cdsp", "cdsp1" };
+> > +						"sdsp", "cdsp",
+> > +						"cdsp1", "gdsp0",
+> > +						"gdsp1" };
+> >   struct fastrpc_phy_page {
+> >   	u64 addr;		/* physical address */
+> >   	u64 size;		/* size of contiguous region */
+> > @@ -2338,6 +2342,8 @@ static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
+> >   		break;
+> >   	case CDSP_DOMAIN_ID:
+> >   	case CDSP1_DOMAIN_ID:
+> > +	case GDSP0_DOMAIN_ID:
+> > +	case GDSP1_DOMAIN_ID:
+> >   		data->unsigned_support = true;
+> >   		/* Create both device nodes so that we can allow both Signed and Unsigned PD */
+> >   		err = fastrpc_device_register(rdev, data, true, domains[domain_id]);
+> 
+> 
+> Can you try this patch: only compile tested.
+> 
+> ---------------------------------->cut<---------------------------------------
+> From 3f8607557162e16673b26fa253d11cafdc4444cf Mon Sep 17 00:00:00 2001
+> From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Date: Thu, 20 Mar 2025 17:07:05 +0000
+> Subject: [PATCH] misc: fastrpc: cleanup the domain names
+> 
+> Currently the domain ids are added for each instance of domain, this is
+> totally not scalable approch.
+> 
+> Clean this mess and create domain ids for only domains not its
+> instances.
+> This patch also moves the domain ids to uapi header as this is required
+> for FASTRPC_IOCTL_GET_DSP_INFO ioctl.
+> 
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 > ---
->  .../memory-controllers/st,stm32mp25-omm.yaml       | 227 +++++++++++++++++++++
->  1 file changed, 227 insertions(+)
+>  drivers/misc/fastrpc.c      | 45 ++++++++++++++++++++-----------------
+>  include/uapi/misc/fastrpc.h |  7 ++++++
+>  2 files changed, 32 insertions(+), 20 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/st,stm32mp25-omm.yaml b/Documentation/devicetree/bindings/memory-controllers/st,stm32mp25-omm.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..2f8fa7569009369ebd077e4c6f4ab409a91838a5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/memory-controllers/st,stm32mp25-omm.yaml
-> @@ -0,0 +1,227 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/memory-controllers/st,stm32mp25-omm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: STM32 Octo Memory Manager (OMM)
-> +
-> +maintainers:
-> +  - Patrice Chotard <patrice.chotard@foss.st.com>
-> +
-> +description: |
-> +  The STM32 Octo Memory Manager is a low-level interface that enables an
-> +  efficient OCTOSPI pin assignment with a full I/O matrix (before alternate
-> +  function map) and multiplex of single/dual/quad/octal SPI interfaces over
-> +  the same bus. It Supports up to:
-> +    - Two single/dual/quad/octal SPI interfaces
-> +    - Two ports for pin assignment
-> +
-> +properties:
-> +  compatible:
-> +    const: st,stm32mp25-omm
-> +
-> +  "#address-cells":
-> +    const: 2
-> +
-> +  "#size-cells":
-> +    const: 1
-> +
-> +  ranges:
-> +    description: |
-> +      Reflects the memory layout with four integer values per OSPI instance.
 
-You say 4 here...
 
-> +      Format:
-> +      <chip-select> 0 <registers base address> <size>
-> +    minItems: 2
-> +    maxItems: 2
-
-And 2 here. I'm confused. From the example it doesn't look like you are 
-using ranges correctly. If you are parsing it yourself, that's wrong. 
-More below.
-
-> +
-> +  reg:
-> +    items:
-> +      - description: OMM registers
-> +      - description: OMM memory map area
-> +
-> +  reg-names:
-> +    items:
-> +      - const: regs
-> +      - const: memory_map
-> +
-> +  memory-region:
-> +    description: |
-> +      Memory region shared between the 2 OCTOSPI instance.
-> +      One or two phandle to a node describing a memory mapped region
-> +      depending of child number.
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  memory-region-names:
-> +    description: |
-
-Don't need '|'.
-
-> +      OCTOSPI instance's name to which memory region is associated
-
-That doesn't really tell me anything.
-
-> +    items:
-> +      enum: [ospi1, ospi2]
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  clocks:
-> +    minItems: 3
-> +    maxItems: 3
-> +
-> +  clock-names:
-> +    items:
-> +      enum: [omm, ospi1, ospi2]
-
-Define the order.
-
-> +    minItems: 3
-> +    maxItems: 3
-> +
-> +  resets:
-> +    minItems: 3
-> +    maxItems: 3
-> +
-> +  reset-names:
-> +    items:
-> +      enum: [omm, ospi1, ospi2]
-
-Define the order.
-
-> +    minItems: 3
-> +    maxItems: 3
-> +
-> +  access-controllers:
-> +    maxItems: 1
-> +
-> +  st,syscfg-amcr:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description: |
-> +      The Address Mapping Control Register (AMCR) is used to split the 256MB
-> +      memory map area shared between the 2 OSPI instance. The Octo Memory
-> +      Manager sets the AMCR depending of the memory-region configuration.
-> +      The memory split bitmask description is:
-> +        - 000: OCTOSPI1 (256 Mbytes), OCTOSPI2 unmapped
-> +        - 001: OCTOSPI1 (192 Mbytes), OCTOSPI2 (64 Mbytes)
-> +        - 010: OCTOSPI1 (128 Mbytes), OCTOSPI2 (128 Mbytes)
-> +        - 011: OCTOSPI1 (64 Mbytes), OCTOSPI2 (192 Mbytes)
-> +        - 1xx: OCTOSPI1 unmapped, OCTOSPI2 (256 Mbytes)
-> +    items:
-> +      - description: phandle to syscfg
-> +      - description: register offset within syscfg
-> +      - description: register bitmask for memory split
-> +
-> +  st,omm-req2ack-ns:
-> +    description: |
-
-Don't need '|'.
-
-> +      In multiplexed mode (MUXEN = 1), this field defines the time in
-> +      nanoseconds between two transactions.
-> +    default: 0
-> +
-> +  st,omm-cssel-ovr:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      Configure the chip select selector override for the 2 OCTOSPIs.
-> +      - 0: OCTOSPI1 chip select send to NCS1 OCTOSPI2 chip select send to NCS1
-> +      - 1: OCTOSPI1 chip select send to NCS2 OCTOSPI2 chip select send to NCS1
-> +      - 2: OCTOSPI1 chip select send to NCS1 OCTOSPI2 chip select send to NCS2
-> +      - 3: OCTOSPI1 chip select send to NCS2 OCTOSPI2 chip select send to NCS2
-> +    minimum: 0
-> +    maximum: 3
-> +    default: 0
-> +
-> +  st,omm-mux:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      Configure the muxing between the 2 OCTOSPIs busses and the 2 output ports.
-> +      - 0: direct mode
-> +      - 1: mux OCTOSPI1 and OCTOSPI2 to port 1
-> +      - 2: swapped mode
-> +      - 3: mux OCTOSPI1 and OCTOSPI2 to port 2
-> +    minimum: 0
-> +    maximum: 3
-> +    default: 0
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +patternProperties:
-> +  ^spi@[a-f0-9]+$:
-> +    type: object
-> +    $ref: /schemas/spi/st,stm32mp25-ospi.yaml#
-> +    description: Required spi child node
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - reset-names
-> +  - st,syscfg-amcr
-> +  - ranges
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/st,stm32mp25-rcc.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/reset/st,stm32mp25-rcc.h>
-> +    ommanager@40500000 {
-> +      compatible = "st,stm32mp25-omm";
-> +      reg = <0x40500000 0x400>, <0x60000000 0x10000000>;
-> +      reg-names = "regs", "memory_map";
-> +      ranges = <0 0 0x40430000 0x400>,
-> +               <1 0 0x40440000 0x400>;
-
-> +      #address-cells = <2>;
-> +      #size-cells = <1>;
-> +
-
-> +      spi@40430000 {
-
-ranges is okay, but the unit-address is wrong here. It should be based 
-on reg below. So 'spi@0' or 'spi@0,0' since chip select is a distinct 
-field. It's up to you, but you need to define the format in the schema.
-
-> +        compatible = "st,stm32mp25-ospi";
-> +        reg = <0 0 0x400>;
-> +        memory-region = <&mm_ospi1>;
-> +        interrupts = <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>;
-> +        dmas = <&hpdma 2 0x62 0x00003121 0x0>,
-> +               <&hpdma 2 0x42 0x00003112 0x0>;
-> +        dma-names = "tx", "rx";
-> +        clocks = <&scmi_clk CK_SCMI_OSPI1>;
-> +        resets = <&scmi_reset RST_SCMI_OSPI1>, <&scmi_reset RST_SCMI_OSPI1DLL>;
-> +        access-controllers = <&rifsc 74>;
-> +        power-domains = <&CLUSTER_PD>;
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        st,syscfg-dlyb = <&syscfg 0x1000>;
-> +      };
-> +
-> +      spi@40440000 {
-
-spi@1,0
-
-> +        compatible = "st,stm32mp25-ospi";
-> +        reg = <1 0 0x400>;
-> +        memory-region = <&mm_ospi1>;
-> +        interrupts = <GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>;
-> +        dmas = <&hpdma 3 0x62 0x00003121 0x0>,
-> +               <&hpdma 3 0x42 0x00003112 0x0>;
-> +        dma-names = "tx", "rx";
-> +        clocks = <&scmi_clk CK_KER_OSPI2>;
-> +        resets = <&scmi_reset RST_SCMI_OSPI2>, <&scmi_reset RST_SCMI_OSPI1DLL>;
-> +        access-controllers = <&rifsc 75>;
-> +        power-domains = <&CLUSTER_PD>;
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        st,syscfg-dlyb = <&syscfg 0x1000>;
-> +      };
-> +    };
+> diff --git a/include/uapi/misc/fastrpc.h b/include/uapi/misc/fastrpc.h
+> index f33d914d8f46..89516abd258f 100644
+> --- a/include/uapi/misc/fastrpc.h
+> +++ b/include/uapi/misc/fastrpc.h
+> @@ -133,6 +133,13 @@ struct fastrpc_mem_unmap {
+>  	__s32 reserved[5];
+>  };
 > 
+> +#define ADSP_DOMAIN_ID (0)
+> +#define MDSP_DOMAIN_ID (1)
+> +#define SDSP_DOMAIN_ID (2)
+> +#define CDSP_DOMAIN_ID (3)
+> +#define GDSP_DOMAIN_ID (4)
+
+Why are you adding these to uAPI? How are they going to be used by the
+userspace?
+
+> +
+> +#define FASTRPC_DOMAIN_MAX	4
+>  struct fastrpc_ioctl_capability {
+>  	__u32 domain;
+>  	__u32 attribute_id;
 > -- 
 > 2.25.1
 > 
+> 
+> ---------------------------------->cut<---------------------------------------
+
+-- 
+With best wishes
+Dmitry
 
