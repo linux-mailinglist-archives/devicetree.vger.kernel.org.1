@@ -1,233 +1,165 @@
-Return-Path: <devicetree+bounces-159879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5684CA6CA5B
-	for <lists+devicetree@lfdr.de>; Sat, 22 Mar 2025 14:36:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 836F9A6CA8F
+	for <lists+devicetree@lfdr.de>; Sat, 22 Mar 2025 15:27:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B42BB883A16
-	for <lists+devicetree@lfdr.de>; Sat, 22 Mar 2025 13:36:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1B671B628FA
+	for <lists+devicetree@lfdr.de>; Sat, 22 Mar 2025 14:27:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F1481422DD;
-	Sat, 22 Mar 2025 13:36:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FC0722B8BF;
+	Sat, 22 Mar 2025 14:27:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=inadvantage.onmicrosoft.com header.i=@inadvantage.onmicrosoft.com header.b="CIHUBRO6"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="kEHuW3fP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2119.outbound.protection.outlook.com [40.107.95.119])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C35E800;
-	Sat, 22 Mar 2025 13:36:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.95.119
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742650595; cv=fail; b=ELOQ0cHoqowiubhgS0w9zDzYiAUr/m8OZ9YFzk7akPvgbNBkg1IZZiRTUn2RAApFUojxDRCCzQYylytkywCxsNgqj+geC+zOOus4FhUGox+SBZfyrNAd6k3rN6hr/r4U8sXG1tt8OIygJpHCK5Kr0pu3yjeOci4w4ZahQk+iVaY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742650595; c=relaxed/simple;
-	bh=YsY0pfg6qsUkG9fgOsLnp9It4Sc2PoxSxm5NJKorxDs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=bGUzEc5mBOL6XGCv+rAamMcY1B0cUEMWr1Kr7pcfGsAq/BntflNz5s8+pGtyLJmNZbAPlAvNAzuIzvHwdcPHBmYOOlEQ0DgMkNIGfYDDDVZ/kcAWAKlylSJNu84VcNrCKkOznbfXMRQhAVzr7UqGkImYkwYBxiT07AlpSua48vs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=in-advantage.com; spf=pass smtp.mailfrom=in-advantage.com; dkim=pass (1024-bit key) header.d=inadvantage.onmicrosoft.com header.i=@inadvantage.onmicrosoft.com header.b=CIHUBRO6; arc=fail smtp.client-ip=40.107.95.119
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=in-advantage.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=in-advantage.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nS6x8iRcwycusFIrCFM/HeUKW/OKX5GjqRmD8yHVBRNQ48pK0ZMK4s0YLGxTelIJ34AWQ2/o5hThyWyLwo7Hb89p+lXg2IYYt7YtlAEloSrPqUs8us+AwqhFWPtxJsAPvV4/p35rKgQSkvrs4qPH/MmlHQZKjdV7rhQVdL3oolojKSatDGEalJuKunr47wO1jZJ1r1yDoAFhqzxd1O0555d3AvofXmPZwpmxKdOIm/ZcTyr0Iz07+Wyl10Ug4CAaKaDZyt6Nn48ARQXKNFL455GXwcpElD2o3QA4K+B3MdlilcL1XPKQOkEDH5iVnExzhvt0SGBjwqddcQb2yKhYfA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=I1AFSR34cgO/bxhEIgsrb56I2KLx0o4fTDYBZhbtgQc=;
- b=h5CP3v8gSRmUA0Puquol5uDC0JO26PDzj7bs9yQ/kknNrEwSwA51Mb35dFQ7sc4rCGp1zFUJo1rAasclk3aPpt+Ujs5vXY/OD6eX+aFQqsdu7+8By8IL0wlUrTNYYfysAHQjOzHn0LWEjsu5Gede/WdQtzsicUjs7GBSfOlOoxNB+1DJW0awRZHWgchHxHAlLz5EKe1Q7TCyrqiTfwlSlHkBqUrFYUmv+2csIkm7P8C75pquNxpQftSXLh2IQGAZm6cmGNrjN7SJjtc6+iLoMGyYVV+ZjfSnEZrGaydhW7U/fH3fKtrLcw1esHZZfIjncLCU7fmVP30Dv8VjSLt3Zg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=in-advantage.com; dmarc=pass action=none
- header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D4EF22424D
+	for <devicetree@vger.kernel.org>; Sat, 22 Mar 2025 14:27:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.48
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1742653657; cv=none; b=MVn2OjoxTfVPZkIIbAPuRDdeThWBsIpTzDTt0MqVxIoOzRHcXMKfWNRJr6W8LP33RnshQ+ZEsYTDU+YnG125IJbPZL2j0Gx8nNXHvXKMDa1wghRvc5taH1v5cqM9bNRvybSf+Odwxjv+GX8XQ8ByV+VR5GXOUvNVv+h/uZcJCz8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1742653657; c=relaxed/simple;
+	bh=wpCm+hqOG2wsbtPLPSsueiJdiduXYzbm2JN6/V7qei4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KA6+uf7P3MMc12sKihG6XLVmdMKY4KSdHglt5ky/Y1DODeaN2R81I/W0UjK0bOOj8PBsyWe46CAFfR1s1l7liVG/IBV/dDaR4Nv41VB8Eqsc8kdFk1VE9s75Qxq6VjB5vtMA7M03XgIR5Zk7pxuxH6wodY8g3np7nN0uRVyrnV4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=kEHuW3fP; arc=none smtp.client-ip=209.85.166.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-io1-f48.google.com with SMTP id ca18e2360f4ac-85e1b1f08a5so84506139f.2
+        for <devicetree@vger.kernel.org>; Sat, 22 Mar 2025 07:27:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=I1AFSR34cgO/bxhEIgsrb56I2KLx0o4fTDYBZhbtgQc=;
- b=CIHUBRO6tms/HXnLcqOhYH9PMwWMrhNSgb93aASLoyh9Av9UxfMaucsqT2op1aax9d5GlS8eF2E/h0FT1LzqCgrjOizRhBFSovyyxoq3NK8JOTNOq9NKBz9Ao20/52TCn4xmBPySqunY1DpaNpWbev2/7tSVLR0g9o7cjtDpTgs=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=in-advantage.com;
-Received: from DS0PR10MB6974.namprd10.prod.outlook.com (2603:10b6:8:148::12)
- by IA1PR10MB6195.namprd10.prod.outlook.com (2603:10b6:208:3a5::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.33; Sat, 22 Mar
- 2025 13:36:30 +0000
-Received: from DS0PR10MB6974.namprd10.prod.outlook.com
- ([fe80::7603:d234:e4ab:3fea]) by DS0PR10MB6974.namprd10.prod.outlook.com
- ([fe80::7603:d234:e4ab:3fea%6]) with mapi id 15.20.8534.036; Sat, 22 Mar 2025
- 13:36:29 +0000
-Date: Sat, 22 Mar 2025 08:36:27 -0500
-From: Colin Foster <colin.foster@in-advantage.com>
-To: Rasmus Villemoes <ravi@prevas.dk>
-Cc: Lee Jones <lee@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Felix Blix Everberg <felix.blix@prevas.dk>
-Subject: Re: [PATCH 3/8] mfd: ocelot: rework SPI (re-)initialization after
- chip reset
-Message-ID: <Z9682y2Z_BUUjg2e@colin-ia-desktop>
-References: <20250319123058.452202-1-ravi@prevas.dk>
- <20250319123058.452202-4-ravi@prevas.dk>
- <Z9tASE2-adiEUT-3@colin-ia-desktop>
- <87v7s4rlwu.fsf@prevas.dk>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87v7s4rlwu.fsf@prevas.dk>
-X-ClientProxiedBy: CH0PR03CA0261.namprd03.prod.outlook.com
- (2603:10b6:610:e5::26) To DS0PR10MB6974.namprd10.prod.outlook.com
- (2603:10b6:8:148::12)
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1742653654; x=1743258454; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZxLNYJpvB/TXLfXAqOdKhmy/q9FPbJFzYq67r8P8xbE=;
+        b=kEHuW3fPfu726en3O8HTTUvD7b2bnYxF/E6T2FNNhZEAQqq986sLpeCS8/waNy+3zG
+         i8iYZ2PYNQ9Hjh2I+ELvrGFjPj0IFPeajwjcn0HOCZKXnztsMyNGuUfW8ehxjjD9f4aT
+         Cs1AlxPFtF/C4kOhyNl6zDvjeLKqmw+AjcybgoAJrXSM6vbNh68oTvND+XAjI4OuKnHQ
+         6VIFiVJ/z0Hrq75nE72h7c/ePE/2+4XiSSfjanKyT1b7uV8QcHX7E5r27eXCXGEESv1/
+         sKEuctf/5Dqj0Q7/lYfUTH7FKD1nqhQTBwaAN4ZUygR+BTE3LzJxrkdZPt4SF37nfGfz
+         zwCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742653654; x=1743258454;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZxLNYJpvB/TXLfXAqOdKhmy/q9FPbJFzYq67r8P8xbE=;
+        b=BJDtmaorQokO3KJ+7swfjyxEysPSVxiraGH9yEZegQ3/HBGg/5IJWYYw8D93ffosAS
+         xlsh1tCYBPmi5CbxO9x8GgJORFwwg8oMzSbosEHjiu1sa266z5IxcSf+OSpITYNvn0K2
+         6Ai+pbqEUbQMCNJIOQZAFyjeROM9HS1N4Urjz2A8/niN2sNX/Eai7jNmoOEIOYNhDSOh
+         24MHDA6ny0r19IrNMi3UmVTLcUfmEbYUokRYJj4U0VrrUn0QV/6/wORu/wUH8HNF91f+
+         sQtIEq9zK7acQuMqUsKJuoN0gycaOzzfI3x5ABBvhv8LpY5yFAa9tR5I3glBl3CAay5j
+         BKlQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWnyY+M1oFWhZR2x+92JnmHgofNE9Xl/b7GzvgeEwGmdomWvqSbQRBWX/6iBkO31PtSRbba8gg1ySOi@vger.kernel.org
+X-Gm-Message-State: AOJu0YyVt/u4i4QXq2tgTvd2m9VANpt7IU7zwIk6Pjqdso7rN9/xNl9L
+	nzu0oVwTHZbJxkFn/Lfy7/thJyuitqDk60BHEWu6IirrLAnt06vt2iHQIL81unA=
+X-Gm-Gg: ASbGncsksabFwy7WbRzVNRzeWKIMhk18Ok5i82pnqGMWvRAKfJC1lZc3gGqt+c0g0iV
+	NxlZJWXR90SrVI/fpYD0UHRlVwKqE+jRv+/83AI5a0qAuMm4cP0uZ/YUq2sdBGJSzdOznSAAQRk
+	v5Uc6qUoMMnfoEXXi5WwmxomOw50f77cw3At8Rv6O/IeYgM52Ie8DBOq34V4P/wVeFGsHbje4VJ
+	eMnLjNZ88iEPI85QN/5Cvrommatl8JzxdaFZrWiMBluJLYMUuS8puRRtof2w2Rx67upKYRqWviF
+	6dEBMuZSpqfXDVXj/p1HdiSu/3wPPxnwn0F/8Nt3/n8KIE/9vb97OjoIzInWP8bvlO1w5GhcLvs
+	7IbKyObed3EKRSjFirQ==
+X-Google-Smtp-Source: AGHT+IHxH2JRqswkpmkABiwFlVLWGLbm4QGv8PyCPkc/LYC5FudrlksXf1TKCySAHhTc+btPlG9CLg==
+X-Received: by 2002:a05:6e02:2585:b0:3d0:235b:4810 with SMTP id e9e14a558f8ab-3d5960bf9b9mr82023985ab.2.1742653654335;
+        Sat, 22 Mar 2025 07:27:34 -0700 (PDT)
+Received: from [10.211.55.5] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4f2cbecb453sm908223173.142.2025.03.22.07.27.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 22 Mar 2025 07:27:33 -0700 (PDT)
+Message-ID: <1d79fb7e-4501-4c62-8379-f00515dec3e4@riscstar.com>
+Date: Sat, 22 Mar 2025 09:27:32 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR10MB6974:EE_|IA1PR10MB6195:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2ed65f35-61ee-481c-5dde-08dd69468d3f
-X-MS-Exchange-AtpMessageProperties: SA
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?9Fs9VzIHNpyNYbqp04CMTVgfc9TQuXLlKtGc6BQRcANFDQ6UoKa65+qH3BpU?=
- =?us-ascii?Q?Y5n8xjQoHslsMAbIYEIQzynbDSjwaPXq/HDvoxzj48lAsbFxXu6O2or67aaX?=
- =?us-ascii?Q?7emxYLKcfcsywueOj/QI29yokOmwS+4DvzyYglOw8Gm6G5Oi8mJCc2frngX+?=
- =?us-ascii?Q?MTnFKMmr+C6crHztsGwtKv/prB2wPxXtlF24kMk2U58r70KOx4yipQlOz772?=
- =?us-ascii?Q?KYCQdz+WeprnH73aG1xEwypou+yesUZOjhD9KqnjZAVDwXDR7lrlBAYMMuIy?=
- =?us-ascii?Q?PdpnVcxsE0fjghyIGZ6QKNvk+DZC/SjeaPrm95rBYud0uSRmas/k20CHwJ07?=
- =?us-ascii?Q?ubFDHoTGHJB2F6nguKAazNLuAmzBwpWQF0T4jx9O6DTywTfIeoc1uHeJrkXn?=
- =?us-ascii?Q?kyHQF2CqEQIVuB0MLWo6dHTJpt0jUSsjLKunBvU2YXq8z+2fLQno23Ux53B5?=
- =?us-ascii?Q?npgoJrXvuLfkRBdgV/uf/H7NlK9IF+zVB4BYzsQlrmtGtn3TX+G0J5QYE7gN?=
- =?us-ascii?Q?vfJKPDLNCbHffUYQ0F1VRFxlSfTpoUDGKG2an3PiGwDVLQZ0CO/kv2VAso3c?=
- =?us-ascii?Q?VYO7jrieQp1SkQa5DBXBcHbX9ys7o9jDZ9R4bdrIICPPqMbhqTEqokqFPjWY?=
- =?us-ascii?Q?x+sXw34hdmrzTwbRK+Z9KJUbh6ZyonyC0NScjVTAKw+B+o0Abvpo2GB0H9/B?=
- =?us-ascii?Q?8v32lNcCjA20kdl5VAxZrOu0yvR1V+L7UVSly1fMNbL28P8jP3fLWfkHyzX5?=
- =?us-ascii?Q?ewzL5WerPCoTL2uCwyhTTThRD3DlRBY90u1RHBr3011sRYlKi6S1S67e4ZFS?=
- =?us-ascii?Q?X5G0dzTck3B9VVDMoLo4dim5NbuBhiL8Gadq/+gjbh1M6DSCA6OmtOrtBbMT?=
- =?us-ascii?Q?LXbfcL/BYDuW3zWtZgVA/2ivZG6SDSxl+QxCtZyF5V9Vcqj1OcvkKe13h9z2?=
- =?us-ascii?Q?gvRKDbVc5cNlux8Owy3pHn0Zs6d1B1/2IH+KcQOzD1bg4dE2S44jN8DbdusA?=
- =?us-ascii?Q?20xZPpVyKkiLQvZqDUjgziZ2AJMQmHJ6aPYIPd6mVzjWbUQjAH3OIRaPi4O5?=
- =?us-ascii?Q?icHXvQ9pBm5E29HNQTJH2YSfEHfnj2aR5ZHAgnJMKup9d5MFaW+Ld8uK3UvX?=
- =?us-ascii?Q?hCbGHwfouOP30G4mhWlbUwgcO8ZrC1iu/T8MCu97/kZOfamcWc571eSue+yd?=
- =?us-ascii?Q?c+WbPZhkYtW03clAQ3I7eN51Mo3uXo+pOMYA6fYXmIq2KH7ZdllWQl+0KIp7?=
- =?us-ascii?Q?bxTfYNubVk7CrCb7l2K3xjsDxCm7BhX7wgYutg6yY9T6zPdOdvCPMCM/2+OC?=
- =?us-ascii?Q?WhNfRE6/l6QBia8yyFDNjV8iuLxJz+PjFSf+rx0rR3Hh2Txowfpu/oGwiR2X?=
- =?us-ascii?Q?STNnNjekWQisnRSZheIF4mqCzFiF?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR10MB6974.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?D2K+jgNSm2vrpggKgoCUOGz7KeaTcGcviBNykd4vHqKqD3q0kYR/kfK3YkZI?=
- =?us-ascii?Q?99WE8gZr5alXMf6EV+d0ZyovYwV7vuAKfOmWHLLMGMcqNP5bk1Kr+aE77RW+?=
- =?us-ascii?Q?e7nV/duOvbuknhjBssRKCxP1LBbxEWOhl9SkKWf4oztspyqgBtd9my6Uej5m?=
- =?us-ascii?Q?O8OiSUUCcXsCjFHie+nR/n9DYEjYO+u+OX0s5i2Ll0RC1TF4mqkLGVOLpJJC?=
- =?us-ascii?Q?d2cQIFRXq6Zh9tzVj1w7K0qbmoM3/6G+pBws72bYhCFcEg5SiGTtkbI3HJm5?=
- =?us-ascii?Q?ba9sqSQZ6XHeGa0+WzCLMAiNIEqnxoJ0HG2zTgW/tWQWZRolYyx6TU/PBhRo?=
- =?us-ascii?Q?3A9Zq4i+F70cs/iKcesVj7WPVsD5mDCbx2Eh9VCIan8kU1ylrHx6WFJuT+2v?=
- =?us-ascii?Q?HL7WxkSLCTjBHmQSvhksT6HU8IWSBAUbhxu5oH7j3oTS4idLaDIqWiD3i1lT?=
- =?us-ascii?Q?ijUmoLsAL62NVKBAj1v+8b56pTi9DxKBIl4piUwxg6p3yi9zBTR3y2vovVel?=
- =?us-ascii?Q?lNM6RE7pbRx+wSGIjxv1WAWqzuNE31AoyqAyBkcyjdlWqAiakbGuFfhLZQf4?=
- =?us-ascii?Q?RyKlwsjDvQgWIzolgrEFmtCepQcznokjg9d3UWtCV9acxsoeMtho5KNUMqJZ?=
- =?us-ascii?Q?ew7lQ52t7FoQXmMGJGW182vE2xRx5ItnlLPOZMK5oUlmivgED0B1wg3dl2xH?=
- =?us-ascii?Q?HOwAZVJZnGEPYrnSlEDLVOy2/hV3yDf/rA53ysGq7WKtZk1gvazHUOR+whJ9?=
- =?us-ascii?Q?KWNaeD5KfelW1Ku899g48QfLxrJdKLVGmnvE04S4VLL18khb8b6zF9mhzz0b?=
- =?us-ascii?Q?1zh8Roft/cL+tOl91FdANvBFlZr6KVRgb6QKSmjD1CKMT+SeTSyEEAJULYMR?=
- =?us-ascii?Q?/pvYlR2/fXW6VPJ4bDmNA4l1wVvb7fGYTsqVKhAjR7cKrx4Xd3GlBRm98GiT?=
- =?us-ascii?Q?hMVDqAtyHV2/iViE/G18GDN40cRSHDmRENLdQZ51FolwdS3azCivw+D4ALJ4?=
- =?us-ascii?Q?q1FmdYgukPsv06QO2MAD3ZzOfYdGEbmpeHhJKpfVpi5Otsh3unk8AVjT+4zo?=
- =?us-ascii?Q?pDeChwdelXo7RT/NDlFsFfWXejwgh+0bX0WLiBUCbmvo150i/vVMJ57bbukQ?=
- =?us-ascii?Q?31W1LQasbbbZI8Ptgn1VXZ+/cjKdBsJQz6MeUS0UovqHOulG/TOzBPEsSyEh?=
- =?us-ascii?Q?h2SV+5AR7D78ceyomqU1+nqU1TEf7LlnzNBXb7P00yxybPG2hS9nNdFN1jfH?=
- =?us-ascii?Q?MsK3QBrO4uWKPgWrFXBnDFstbKegUmFZX1fcEC90mhIcD8bNGxmqbhnhJdjw?=
- =?us-ascii?Q?Qx1fC3SWkIRJPrzzuPSjvOl/bmOnVZQkgV32EQ9QClwzLGK21SQe7FSQVzw6?=
- =?us-ascii?Q?3Fffz2s8sAkftB+G9JvU3HLSr3hzaSWgNu6w+pjQke8ZNNWrJooPaXZfOwVb?=
- =?us-ascii?Q?yXnt9y+8pwt8U22s0NBB1ehx0K77CAiXh9yoJQ3r8vY6onR5oWjy1k4LOmct?=
- =?us-ascii?Q?eqgut9Nruh0BVo4s4hrPrYftsVUdUXxUp+GKCJE6+Q76uejkSvc4B1a68KNm?=
- =?us-ascii?Q?Cz+Y/A96knKEtqQm+N0Hdyv4jiLzihMH/xjDYIECrUKjhdUpWc9m05Lnp62I?=
- =?us-ascii?Q?bfExZojz8znOtSRxKwFI3F4=3D?=
-X-OriginatorOrg: in-advantage.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2ed65f35-61ee-481c-5dde-08dd69468d3f
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR10MB6974.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Mar 2025 13:36:29.6949
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CH8o+SxApqLeiLBpEVPaAVyIADA69OD+GWvta9H2v+fGjI1fU4/wJ07X4P3OFwvdQ959W+dP5cG0XpQrFPHMVPhJMYgYknqyg/SDJ7zQQeA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR10MB6195
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RESEND 1/7] dt-bindings: soc: spacemit: define
+ spacemit,k1-ccu resets
+To: Yixun Lan <dlan@gentoo.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ p.zabel@pengutronix.de, mturquette@baylibre.com, sboyd@kernel.org,
+ heylenay@4d2.org, guodong@riscstar.com, paul.walmsley@sifive.com,
+ palmer@dabbelt.com, aou@eecs.berkeley.edu, spacemit@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250321151831.623575-1-elder@riscstar.com>
+ <20250321151831.623575-2-elder@riscstar.com> <20250321222546-GYA11633@gentoo>
+Content-Language: en-US
+From: Alex Elder <elder@riscstar.com>
+In-Reply-To: <20250321222546-GYA11633@gentoo>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Mar 20, 2025 at 12:17:37PM +0100, Rasmus Villemoes wrote:
-> Hi Colin
+On 3/21/25 5:25 PM, Yixun Lan wrote:
+> hi Alex:
 > 
-> On Wed, Mar 19 2025, Colin Foster <colin.foster@in-advantage.com> wrote:
-> 
-> > On Wed, Mar 19, 2025 at 01:30:53PM +0100, Rasmus Villemoes wrote:
-> >> As the comments in ocelot-spi.c explain, after a chip reset, the
-> >> CFGSTAT register must be written again setting the appropriate number
-> >> of padding bytes; otherwise reads are not reliable.
-> >> 
-> >> However, the way the code is currently structured violates that: After
-> >> the BIT_SOFT_CHIP_RST is written, ocelot_chip_reset() immediately
-> >> enters a readx_poll_timeout().
-> >
-> > I ran this new version and everything worked - and I've not seen an
-> > issue in previous versions. I'm looking for guidance as to whether this
-> > should include a Fixes tag and be backported.
-> 
-> Thanks a lot for testing and reviewing! As for backporting, IDK, I think
-> we'd at least first have to know that it really fixes a bug for somebody.
-> 
-> > Great find, by the way! Is there any information you would like from my
-> > setup?
-> 
-> Certainly I'd like to know if you do in fact use a SPI clock > 500 kHz?
+> On 10:18 Fri 21 Mar     , Alex Elder wrote:
+>> There are additional SpacemiT syscon CCUs whose registers control both
+>> clocks and resets:  RCPU, RCPU2, and APBC2. Unlike those defined
+>> previously, these will initially support only resets.  They do not
+>> incorporate power domain functionality.
+>>
+>> Define the index values for resets associated with all SpacemiT K1
+>> syscon nodes, including those with clocks already defined, as well as
+>> the new ones (without clocks).
+>>
+>> Signed-off-by: Alex Elder <elder@riscstar.com>
+>> ---
+>>   .../soc/spacemit/spacemit,k1-syscon.yaml      |  13 +-
+>>   include/dt-bindings/clock/spacemit,k1-ccu.h   | 134 ++++++++++++++++++
+>>   2 files changed, 143 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml b/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
+>> index 07a6728e6f864..333c28e075b6c 100644
+>> --- a/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
+>> +++ b/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
+>> @@ -19,6 +19,9 @@ properties:
+>>         - spacemit,k1-syscon-apbc
+>>         - spacemit,k1-syscon-apmu
+>>         - spacemit,k1-syscon-mpmu
+>> +      - spacemit,k1-syscon-rcpu
+>> +      - spacemit,k1-syscon-rcpu2
+>> +      - spacemit,k1-syscon-apbc2
+>>   
+>>     reg:
+>>       maxItems: 1
 
-Yep, looks like 2.5MHz
+. . .
 
-&spi0 {
-        #address-cells = <1>;
-        #size-cells = <0>;
-        status = "okay";
+32
+>> @@ -180,6 +184,60 @@
+>>   #define CLK_TSEN_BUS		98
+>>   #define CLK_IPC_AP2AUD_BUS	99
+>>   
+>> +/*	APBC resets	*/
+>> +
+> I'd also suggest to drop above blank line, keep style consistent
+> with others in this file, some same below that I won't comment
 
-        soc@0 {
-                compatible = "mscc,vsc7512";
-                spi-max-frequency = <2500000>;
+OK, I'll fix the weird extra line and will drop these blank
+lines as you suggest in v2.  I'll post another version after
+Sunday.  I recognize the merge window means I can't expect
+reviews during that time, but this code is waiting for the
+clock code to get accepted anyway.
 
-> 
-> And if so, could you try inserting a read and printk of e.g. CHIP_REGS.CHIP_ID
-> immediately after the fsleep(), but before the re-initialization, just
-> so we can see if my theory that the values are off-by-8-bits plus 8 bits
-> of MISO "garbage" is correct? Because that register should have a fairly
-> easily recognizable value.
+Thanks a lot.
 
-diff --git a/drivers/mfd/ocelot-core.c b/drivers/mfd/ocelot-core.c
-index c00d30dbfca8..5a2762b6ecac 100644
---- a/drivers/mfd/ocelot-core.c
-+++ b/drivers/mfd/ocelot-core.c
-@@ -115,6 +115,8 @@ static int ocelot_chip_reset(struct device *dev)
+					-Alex
 
-        if (ddata->init_bus) {
-                fsleep(VSC7512_GCB_RST_SLEEP_US);
-+               regmap_read(ddata->gcb_regmap, 0, &val);
-+               printk("7512 Chip ID after sleep: 0x%08x\n", val);
-                ret = ddata->init_bus(dev);
-                if (ret)
-                        return dev_err_probe(dev, ret,
+>> +#define RST_UART0		0
+>> +#define RST_UART2		1
+>> +#define RST_UART3		2
+>> +#define RST_UART4		3
+>> +#define RST_UART5		4
 
-
-Prints out this:
-
-[    3.360986] 7512 Chip ID after sleep: 0xf0e94051
-
-That doesn't seem right. I added a print after init and it makes more sense.
-
-[    3.351656] 7512 Chip ID after sleep: 0xf0e94051
-[    3.356828] 7512 Chip ID after init: 0x175140e9
-
-That looks better. Good find!
-
-
-Colin Foster
+. . .
 
