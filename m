@@ -1,415 +1,247 @@
-Return-Path: <devicetree+bounces-159872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49DFAA6C756
-	for <lists+devicetree@lfdr.de>; Sat, 22 Mar 2025 04:01:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C90A0A6C761
+	for <lists+devicetree@lfdr.de>; Sat, 22 Mar 2025 04:23:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 062A81895A93
-	for <lists+devicetree@lfdr.de>; Sat, 22 Mar 2025 03:02:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48C093BC214
+	for <lists+devicetree@lfdr.de>; Sat, 22 Mar 2025 03:23:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1944F12CD88;
-	Sat, 22 Mar 2025 03:01:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7EE412B17C;
+	Sat, 22 Mar 2025 03:23:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LBPHggUd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AUqQ4fZo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E57D149C7D
-	for <devicetree@vger.kernel.org>; Sat, 22 Mar 2025 03:01:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 142C88BEE
+	for <devicetree@vger.kernel.org>; Sat, 22 Mar 2025 03:23:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742612473; cv=none; b=clnl38VW7dnhm+wlGVHWuhbO+s9VNajd3FdwTNqVNgnUV6vNAulmhkZjvef4JbzBFfnay6FLXtnoYK3IU9Wt3atpCmY5T7XdFnxdU+UyDH+leJl5MV4C1ljVnJq9STGTDWAVlJ5Y+ay4gMym9kgx6TFx9vQi18GZrRgzOQ9qAGI=
+	t=1742613832; cv=none; b=McwjQfQ9U8DeOXK0b8PhN8HIl4SI8oq2FTI70jK/ST8GBiMriprJ122m7svEVxv/rlWjo70EeY+258H88Y0Aq/fITM1vS2WF0q5mUlzPVE1Zr9H9APvK6d2dXB76lt6HAeriCxm7BGZMRwUbzSRCNNaADsLlHeTUAifgJTQ1qm4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742612473; c=relaxed/simple;
-	bh=OcsIuznLjZUAtjrb/hnQscAcM6N2IyI9O79LK0QxW3c=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=N6/ux0JJWIz/wmkbYVj0dfwMYT9JseGpx/i1NKLYi0RDral1rYqbh5rJ6QKq5XVZzmffZhcEnsUNbwNHaZJEC6vWtVBtALuauiQtsQc8BuxJqfDdLAQpmHOUzWGD3PhO/nKx9Vd6L0TZk4FWp/E5ih5KUOCBT4XPbt84MzeGcog=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LBPHggUd; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52LCSsB4010802
-	for <devicetree@vger.kernel.org>; Sat, 22 Mar 2025 03:01:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	5TuaKD5nu/QplYVB4AwEHfIcahKIDJ4Ugxxeg3cp2iQ=; b=LBPHggUd2DVv923a
-	WbFGLv5IL9sspzXjpzvMZOMni5WM6HiRGXa8kadOxxAL2YR/Y3Slf1Ds8UvRP5mX
-	/aJ1dsnep4cZvpPTofvzrRzEkCfagVz6qz80noNY9sDjchB7jDiDHW/C7j4F7b96
-	VBPmdVCK0A92jkxgXgD/d8P3tJQ97BD0JmPuS3FX+eAtuVhIvpXjAqk8X0GlmKl3
-	3eyn7pjaEFOER6BNz0kM++XFBAlrF4TrTRXZfCFbOK0tnpFO81/msvr8YABwCNAN
-	3j7BouKWFOdNCLXmsMtNrcgzxvYohS5VtgDwm6NVtimUDhJQTHvcwqebqELQbKU7
-	MXywIA==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45h85e1qpy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 22 Mar 2025 03:01:09 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-22647ff3cf5so34501755ad.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 20:01:09 -0700 (PDT)
+	s=arc-20240116; t=1742613832; c=relaxed/simple;
+	bh=J+nYWBW9R4qNA1uVL3OyPVg0gLlGaLZ+2sOrX3X1NQw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nAkja8+MwuVU9OZxZANmwvH3CCQyzz++Bi/hIG1bub59trYBnEt8VKsntmAvd0xp91BmSorFtX5bHPYhAURwQB+bwFfytPU+mvpydKYZGhpAh01GQFhwiB0OW1o/slkkLAiyu7KBiHGsDyGNkYUX+tgvmjNwNMI0j2tQeDVjktw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AUqQ4fZo; arc=none smtp.client-ip=209.85.216.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-2ff6e91cff5so4499347a91.2
+        for <devicetree@vger.kernel.org>; Fri, 21 Mar 2025 20:23:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1742613830; x=1743218630; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=F4Hfl+6xzxImFIIBW6YfDpQ7N51w0n8dgIYu4tI/6Rk=;
+        b=AUqQ4fZoqEeAY/iDHL4PebjFvtjR78i1HF2qYK1aXZuYStnabXJTtGVOvcL/I0Npdh
+         tRZPyVX6t1TYjWQy9hHosYObdzuxUt8z36yuFwPMjy1XujgBRzdEYySKtVism3+zhlzR
+         FCzNO/v3Zdl3K83xZP25EBxntQ7PWpJf1tBT8Ltbtdrgpwi/Qh166+K1O0/GpYoA0XMe
+         3uR2OhrsF7EpgFiN8FuBwnv6vZuLjtYC0wLOHoC13fp7mhFN2UOts+nlreq8J68mBBa4
+         XLpws+GlJZC2hatMx54lfpArRV929Hqp2BO2vzzBoHcFmTmu1KS9OfoEwhNnBki667z5
+         oaCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742612469; x=1743217269;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5TuaKD5nu/QplYVB4AwEHfIcahKIDJ4Ugxxeg3cp2iQ=;
-        b=Ywt579LKGIa5Q3NKMrZPxwDn011ZO8wlmjq9zIZlo/Fww56o02pGzjqB5Ees4dPS/x
-         yLh4nF0heqh3+pnwC7DFv/RCdF4gxA5TU7ooTrDk9pJcGmtZ2pgdLkGW0bzxc5lqNPJF
-         Gmf+XpjE5ttjWlC2KcL15w9yGeQLtg3WeYuhwI2bnHci4uXczPGP1ySNkoRgsdOUaTIR
-         ZX10RKdGmp+xAgYanATkxunJi9Dg9cyOBAcZcbn9ic0p6yxmd/Ran1QleZTE3FOEu19w
-         z2Ub0fAhYNZH4ZiQ3lmMwH95Vrx9XY4q4aLhfBEqlld8rIiUMcQRBzkWDkWTsWjFcZ0n
-         J1nQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVKH0UVUrsTrkXyBXxJEtm0SE7MWn3tmdaoJ1bG1ztmzfokb7AvBC4r3NoqKXKn2guh8Kwwh9OCthzN@vger.kernel.org
-X-Gm-Message-State: AOJu0YwK/yVdRFkmYS24mqs/95rsShZ+PcXmKRgop+DkqwJgg43clUDC
-	TCWSrUGYHo5WI1+DZrfM2FxAdOlTIfy/VpRWOjP6dZfpBJkNtosVtWKNhgq4vTIMpwj9WpIRpwP
-	QGzg27IrVnZe0fcfqAYgK5RP+Rc/YKUjIauhZYdlIpPthS1NbPIZtV061sa5w
-X-Gm-Gg: ASbGnctb1k33AC2Cbol1djBGUl71rc6t2000YJabf7SGqeGmPb732peNr1QNkXWBTqB
-	Fo6E/MI/4X62IuJ15IwiFqgmzHYYvuwGHalUbgeRUVFF9daD/oAjbx1jp6zmMG6ptT7AiwTvSXe
-	jDz1+1jpX8lYPZg3poGP8hpp41OMs8EEegjk1yHoPr6IFL6/xLyHUQne6Zq1CVqp998Uq929q98
-	J4R4rw2iQtcDtJbHcErE/go5ZPGKnm1kS8sjmOvv93vXWQtUPkIXsMZslih63h+1ZS4Cp99wkVN
-	LcVZcfcTOlHdYZUja0FtDwvvU7mK4ki4/0lCv6zh2XCgQFuD4Fc=
-X-Received: by 2002:a17:903:2286:b0:224:249f:9723 with SMTP id d9443c01a7336-22780e38317mr77072405ad.51.1742612468553;
-        Fri, 21 Mar 2025 20:01:08 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEX0JuJ42Nry6a84KPdNyBZiNsGh22KBCKMNjpKA+L5XS01gQs1OjBDyxnkz6m4y+Kr0dA+Iw==
-X-Received: by 2002:a17:903:2286:b0:224:249f:9723 with SMTP id d9443c01a7336-22780e38317mr77072075ad.51.1742612468111;
-        Fri, 21 Mar 2025 20:01:08 -0700 (PDT)
-Received: from hu-krichai-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-227811bdca7sm25859945ad.137.2025.03.21.20.01.03
+        d=1e100.net; s=20230601; t=1742613830; x=1743218630;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=F4Hfl+6xzxImFIIBW6YfDpQ7N51w0n8dgIYu4tI/6Rk=;
+        b=i+PgSerAvZVPz8yIK4fFrVnXpq2u4S8pdl4qn1eeCakh0HbLhEAoAn3d6q21Ufd/EH
+         XIjat8SjtyI+R5Dk6+zZmLGEpOM1wzKvpQu9JZlAoek1dzEWos2IOgHEuDfE44i1A1XS
+         leCWS2WTTi7wdlSYR3YEqb+of6/8FH90UEPXTQ+HzsojOW/KUml6lWAl70LlJuc7tXvQ
+         HYjaug6YbOtg4Gk10/xDVkccbhr/CEYDfiTcOyH2H1lVAZ1u9fqOCPuvZVapHpwJE/DY
+         dWGlSvK3/nI2EdmTFNiOqFpEiqDlkGDOO2AJsvsN7Wy4/WJWBFe1fSs6rBU6kVARpgVy
+         7kcw==
+X-Forwarded-Encrypted: i=1; AJvYcCWGzMprzIQ2OxsM2/zHZ/EsblMLUHCLwtIBLnBNjY+idqGeHbc8pTJNyvBa3MrzN7qkEiryugG7W4DP@vger.kernel.org
+X-Gm-Message-State: AOJu0YxrVvrQYWy6cQW9NBw54RCkEO6A/u2dFxNEOxsZQ031QEXbiWjK
+	T/ATyUs7mCzRdYvcn0jEOOgDoJrNAqU+AEiZg0AjtGzB4m1D+RBClvGURauqZw==
+X-Gm-Gg: ASbGncsQY7Ue/LncPh7uYaVxjcUul5ZqtyodOZtfwvSd4heT0MzrpmeHl3AOmN3z+MD
+	83vEFdNXPsh/RHOPVXOm4btg5IMvW5DSNfujH6QvRwJh59lT7j7mRnLZQEJke1oLuJ/f/0gGdSb
+	7nNWcUJTsuNnJDg4pXtf9r/JgjsSmJXX5ARE2GDqUmq6IVbyVQIMmLyamF1aG0gjsn/ewIfhBD9
+	UU6h7hKbMvpCWwNfW9r9ee/zulsGUqqCpeIqO4TmkWc9FUoyDP64Z8ZbAEDEBPvX9ccS7SYtKj4
+	KP0fpcsUr3py2ZLxrXvT/F/ArccnLw/kYl6PLd9Z9n448i3ZPx6BaA2b
+X-Google-Smtp-Source: AGHT+IGPFsj+Jc4VPlEpNP66wC46f7AMzXaFW0ZW65RN2uw3bRmj6At2hMvhMK1bxXhX0MVBgzGk5w==
+X-Received: by 2002:a17:90b:2f4d:b0:2ff:62f8:9a12 with SMTP id 98e67ed59e1d1-3030fefe11cmr7509205a91.23.1742613830235;
+        Fri, 21 Mar 2025 20:23:50 -0700 (PDT)
+Received: from thinkpad ([220.158.156.77])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3030f5d71b5sm3003208a91.18.2025.03.21.20.23.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Mar 2025 20:01:07 -0700 (PDT)
-From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Date: Sat, 22 Mar 2025 08:30:45 +0530
-Subject: [PATCH 3/3] PCI: qcom: Add support for multi-root port
+        Fri, 21 Mar 2025 20:23:49 -0700 (PDT)
+Date: Sat, 22 Mar 2025 08:53:44 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Wei Fang <wei.fang@nxp.com>
+Cc: "devnull+manivannan.sadhasivam.linaro.org@kernel.org" <devnull+manivannan.sadhasivam.linaro.org@kernel.org>,
+	"bartosz.golaszewski@linaro.org" <bartosz.golaszewski@linaro.org>,
+	"bhelgaas@google.com" <bhelgaas@google.com>,
+	"brgl@bgdev.pl" <brgl@bgdev.pl>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>
+Subject: Re: [PATCH v3 3/5] PCI/pwrctrl: Skip scanning for the device further
+ if pwrctrl device is created
+Message-ID: <20250322032344.uypqhi3kg6nqixay@thinkpad>
+References: <20250116-pci-pwrctrl-slot-v3-3-827473c8fbf4@linaro.org>
+ <20250321025940.2103854-1-wei.fang@nxp.com>
+ <2BFDC577-949F-49EE-A639-A21010FEEE0E@linaro.org>
+ <PAXPR04MB85102429AE77159F8CAF914088DB2@PAXPR04MB8510.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250322-perst-v1-3-e5e4da74a204@oss.qualcomm.com>
-References: <20250322-perst-v1-0-e5e4da74a204@oss.qualcomm.com>
-In-Reply-To: <20250322-perst-v1-0-e5e4da74a204@oss.qualcomm.com>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org
-Cc: linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_vbadigan@quicinc.com, quic_mrana@quicinc.com,
-        Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1742612448; l=7891;
- i=krishna.chundru@oss.qualcomm.com; s=20230907; h=from:subject:message-id;
- bh=OcsIuznLjZUAtjrb/hnQscAcM6N2IyI9O79LK0QxW3c=;
- b=RBHOJiWkUKfaiWLxbUruJ9FvxtO4bp2bHH/7LUto9+ZwmBoOiS83AiN/jDW0Dj8b56pjtz2Jd
- k6A1tL/zwuhDVwrpJ3FLJD8F0WZqXI99izQHe3DrizktGict+45wrpA
-X-Developer-Key: i=krishna.chundru@oss.qualcomm.com; a=ed25519;
- pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
-X-Proofpoint-GUID: qZxxyNWLtAiDd0ojwxNMSwNmFuBMsvcv
-X-Proofpoint-ORIG-GUID: qZxxyNWLtAiDd0ojwxNMSwNmFuBMsvcv
-X-Authority-Analysis: v=2.4 cv=LKpmQIW9 c=1 sm=1 tr=0 ts=67de27f6 cx=c_pps a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=EUspDBNiAAAA:8 a=KZ4ZsdeBRq2BojHjq4kA:9 a=QEXdDO2ut3YA:10
- a=GvdueXVYPmCkWapjIL-Q:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-22_01,2025-03-21_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 impostorscore=0
- phishscore=0 malwarescore=0 suspectscore=0 mlxscore=0 priorityscore=1501
- spamscore=0 mlxlogscore=999 lowpriorityscore=0 clxscore=1015 bulkscore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503220019
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <PAXPR04MB85102429AE77159F8CAF914088DB2@PAXPR04MB8510.eurprd04.prod.outlook.com>
 
-Move phy, perst handling to root port and provide a way to have multi-port
-logic.
+On Fri, Mar 21, 2025 at 07:04:24AM +0000, Wei Fang wrote:
+> > Hi,
+> > 
+> > On March 21, 2025 8:29:40 AM GMT+05:30, Wei Fang <wei.fang@nxp.com>
+> > wrote:
+> > >@@ -2487,7 +2487,14 @@ static struct pci_dev *pci_scan_device(struct
+> > pci_bus *bus, int devfn)
+> > > 	struct pci_dev *dev;
+> > > 	u32 l;
+> > >
+> > >-	pci_pwrctrl_create_device(bus, devfn);
+> > >+	/*
+> > >+	 * Create pwrctrl device (if required) for the PCI device to handle the
+> > >+	 * power state. If the pwrctrl device is created, then skip scanning
+> > >+	 * further as the pwrctrl core will rescan the bus after powering on
+> > >+	 * the device.
+> > >+	 */
+> > >+	if (pci_pwrctrl_create_device(bus, devfn))
+> > >+		return NULL;
+> > >
+> > >Hi Manivannan,
+> > >
+> > >The current patch logic is that if the pcie device node is found to
+> > >have the "xxx-supply" property, the scan will be skipped, and then the
+> > >pwrctrl driver will rescan and enable the regulators. However, after
+> > >merging this patch, there is a problem on our platform. The .probe() of
+> > >our device driver will not be called. The reason is that
+> > >CONFIG_PCI_PWRCTL_SLOT is not enabled at all in our configuration file,
+> > >and the compatible string of the device is also not added to the pwrctrl driver.
+> > 
+> > Hmm. So I guess the controller driver itself is enabling the supplies I believe
+> > (which I failed to spot). May I know what platforms are affected?
+> 
+> Yes, the affected device is an Ethernet controller on our i.MX95
+> platform, it has a "phy-supply" property to control the power of the
+> external Ethernet PHY chip in the device driver.
 
-Currently, qcom controllers only support single port, and all properties
-are present in the controller node itself. This is incorrect, as
-properties like phy, perst, wake, etc. can vary per port and should be
-present in the root port node.
+Ah, I was not aware of any devices using 'phy-supply' in the pcie device node.
 
-pci-bus-common.yaml uses reset-gpios property for representing PERST, use
-same property instead of perst-gpios.
+> This part has not been
+> pushed upstream yet. So for upstream tree, there is no need to fix our
+> platform, but I am not sure whether other platforms are affected by
+> this on the upstream tree.
+> 
 
-Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
----
- drivers/pci/controller/dwc/pcie-qcom.c | 149 +++++++++++++++++++++++++++------
- 1 file changed, 123 insertions(+), 26 deletions(-)
+Ok, this makes sense and proves that my grep skills are not bad :) I don't think
+there is any platform in upstream that has the 'phy-supply' in the pcie node.
+But I do not want to ignore this property since it is pretty valid for existing
+ethernet drivers to control the ethernet device attached via PCIe.
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index e4d3366ead1f..6424dcfd3e1b 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -262,6 +262,11 @@ struct qcom_pcie_cfg {
- 	bool no_l0s;
- };
+> > 
+> > > I think other
+> > >platforms should also have similar problems, which undoubtedly make
+> > >these platforms be unstable. This patch has been applied, and I am not
+> > >familiar with this. Can you fix this problem? I mean that those
+> > >platforms that do not use pwrctrl can avoid skipping the scan.
+> > 
+> > Sure. It makes sense to add a check to see if the pwrctrl driver is enabled or not.
+> > If it is not enabled, then the pwrctrl device creation could be skipped. I'll send a
+> > patch once I'm infront of my computer.
+> > 
+> 
+> I don't know whether check the pwrctrl driver is enabled is a good idea,
+> for some devices it is more convenient to manage these regulators in
+> their drivers, for some devices, we may want pwrctrl driver to manage
+> the regulators. If both types of devices appear on the same platform,
+> it is not enough to just check whether the pinctrl driver is enabled.
+> 
+
+Hmm. Now that I got the problem clearly, I think more elegant fix would be to
+ignore the device nodes that has the 'phy-supply' property. I do not envision
+device nodes to mix 'phy-supply' and other '-supply' properties though.
+
+Can you please try this untested diff:
+
+diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+index 7a806f5c0d20..f3c43a91e71c 100644
+--- a/drivers/pci/of.c
++++ b/drivers/pci/of.c
+@@ -734,6 +734,10 @@ void of_pci_make_dev_node(struct pci_dev *pdev)
+  * Check if the power supply for the PCI device is present in the device tree
+  * node or not.
+  *
++ * NOTE: This API currently excludes the 'phy-supply' property as it is not a
++ * standard PCI supply, but rather the supply to the external PHY like in the
++ * case of ethernet devices.
++ *
+  * Return: true if at least one power supply exists; false otherwise.
+  */
+ bool of_pci_supply_present(struct device_node *np)
+@@ -746,7 +750,8 @@ bool of_pci_supply_present(struct device_node *np)
  
-+struct qcom_pcie_port {
-+	struct list_head list;
-+	struct gpio_desc *reset;
-+	struct phy *phy;
-+};
- struct qcom_pcie {
- 	struct dw_pcie *pci;
- 	void __iomem *parf;			/* DT parf */
-@@ -276,21 +281,36 @@ struct qcom_pcie {
- 	struct dentry *debugfs;
- 	bool suspended;
- 	bool use_pm_opp;
-+	struct list_head ports;
- };
- 
- #define to_qcom_pcie(x)		dev_get_drvdata((x)->dev)
- 
- static void qcom_ep_reset_assert(struct qcom_pcie *pcie)
- {
--	gpiod_set_value_cansleep(pcie->reset, 1);
-+	struct qcom_pcie_port *port, *tmp;
-+
-+	if (list_empty(&pcie->ports))
-+		gpiod_set_value_cansleep(pcie->reset, 1);
-+	else
-+		list_for_each_entry_safe(port, tmp, &pcie->ports, list)
-+			gpiod_set_value_cansleep(port->reset, 1);
-+
- 	usleep_range(PERST_DELAY_US, PERST_DELAY_US + 500);
- }
- 
- static void qcom_ep_reset_deassert(struct qcom_pcie *pcie)
- {
-+	struct qcom_pcie_port *port, *tmp;
-+
- 	/* Ensure that PERST has been asserted for at least 100 ms */
- 	msleep(100);
--	gpiod_set_value_cansleep(pcie->reset, 0);
-+	if (list_empty(&pcie->ports))
-+		gpiod_set_value_cansleep(pcie->reset, 0);
-+	else
-+		list_for_each_entry_safe(port, tmp, &pcie->ports, list)
-+			gpiod_set_value_cansleep(port->reset, 0);
-+
- 	usleep_range(PERST_DELAY_US, PERST_DELAY_US + 500);
- }
- 
-@@ -1229,10 +1249,19 @@ static int qcom_pcie_link_up(struct dw_pcie *pci)
- 	return !!(val & PCI_EXP_LNKSTA_DLLLA);
- }
- 
-+static void qcom_pcie_port_phy_off(struct qcom_pcie *pcie)
-+{
-+	struct qcom_pcie_port *port, *tmp;
-+
-+	list_for_each_entry_safe(port, tmp, &pcie->ports, list)
-+		phy_power_off(port->phy);
-+}
-+
- static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
- {
- 	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
- 	struct qcom_pcie *pcie = to_qcom_pcie(pci);
-+	struct qcom_pcie_port *port, *tmp;
- 	int ret;
- 
- 	qcom_ep_reset_assert(pcie);
-@@ -1241,13 +1270,27 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
- 	if (ret)
- 		return ret;
- 
--	ret = phy_set_mode_ext(pcie->phy, PHY_MODE_PCIE, PHY_MODE_PCIE_RC);
--	if (ret)
--		goto err_deinit;
-+	if (list_empty(&pcie->ports)) {
-+		ret = phy_set_mode_ext(pcie->phy, PHY_MODE_PCIE, PHY_MODE_PCIE_RC);
-+		if (ret)
-+			goto err_deinit;
- 
--	ret = phy_power_on(pcie->phy);
--	if (ret)
--		goto err_deinit;
-+		ret = phy_power_on(pcie->phy);
-+		if (ret)
-+			goto err_deinit;
-+	} else {
-+		list_for_each_entry_safe(port, tmp, &pcie->ports, list) {
-+			ret = phy_set_mode_ext(port->phy, PHY_MODE_PCIE, PHY_MODE_PCIE_RC);
-+			if (ret)
-+				goto err_deinit;
-+
-+			ret = phy_power_on(port->phy);
-+			if (ret) {
-+				qcom_pcie_port_phy_off(pcie);
-+				goto err_deinit;
-+			}
-+		}
-+	}
- 
- 	if (pcie->cfg->ops->post_init) {
- 		ret = pcie->cfg->ops->post_init(pcie);
-@@ -1268,7 +1311,10 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
- err_assert_reset:
- 	qcom_ep_reset_assert(pcie);
- err_disable_phy:
--	phy_power_off(pcie->phy);
-+	if (list_empty(&pcie->ports))
-+		phy_power_off(pcie->phy);
-+	else
-+		qcom_pcie_port_phy_off(pcie);
- err_deinit:
- 	pcie->cfg->ops->deinit(pcie);
- 
-@@ -1281,7 +1327,10 @@ static void qcom_pcie_host_deinit(struct dw_pcie_rp *pp)
- 	struct qcom_pcie *pcie = to_qcom_pcie(pci);
- 
- 	qcom_ep_reset_assert(pcie);
--	phy_power_off(pcie->phy);
-+	if (list_empty(&pcie->ports))
-+		phy_power_off(pcie->phy);
-+	else
-+		qcom_pcie_port_phy_off(pcie);
- 	pcie->cfg->ops->deinit(pcie);
- }
- 
-@@ -1579,11 +1628,41 @@ static irqreturn_t qcom_pcie_global_irq_thread(int irq, void *data)
- 	return IRQ_HANDLED;
- }
- 
-+static int qcom_pcie_parse_port(struct qcom_pcie *pcie, struct device_node *node)
-+{
-+	struct device *dev = pcie->pci->dev;
-+	struct qcom_pcie_port *port;
-+	struct gpio_desc *reset;
-+	struct phy *phy;
-+
-+	reset = devm_fwnode_gpiod_get(dev, of_fwnode_handle(node),
-+				      "reset", GPIOD_OUT_HIGH, "PERST#");
-+	if (IS_ERR(reset))
-+		return PTR_ERR(reset);
-+
-+	phy = devm_of_phy_get(dev, node, "pciephy");
-+	if (IS_ERR(phy))
-+		return PTR_ERR(phy);
-+
-+	port = devm_kzalloc(dev, sizeof(*port), GFP_KERNEL);
-+	if (!port)
-+		return -ENOMEM;
-+
-+	port->reset = reset;
-+	port->phy = phy;
-+	INIT_LIST_HEAD(&port->list);
-+	list_add_tail(&port->list, &pcie->ports);
-+
-+	return 0;
-+}
-+
- static int qcom_pcie_probe(struct platform_device *pdev)
- {
- 	const struct qcom_pcie_cfg *pcie_cfg;
- 	unsigned long max_freq = ULONG_MAX;
-+	struct qcom_pcie_port *port, *tmp;
- 	struct device *dev = &pdev->dev;
-+	struct device_node *of_port;
- 	struct dev_pm_opp *opp;
- 	struct qcom_pcie *pcie;
- 	struct dw_pcie_rp *pp;
-@@ -1611,6 +1690,8 @@ static int qcom_pcie_probe(struct platform_device *pdev)
- 	if (ret < 0)
- 		goto err_pm_runtime_put;
- 
-+	INIT_LIST_HEAD(&pcie->ports);
-+
- 	pci->dev = dev;
- 	pci->ops = &dw_pcie_ops;
- 	pp = &pci->pp;
-@@ -1619,12 +1700,6 @@ static int qcom_pcie_probe(struct platform_device *pdev)
- 
- 	pcie->cfg = pcie_cfg;
- 
--	pcie->reset = devm_gpiod_get_optional(dev, "perst", GPIOD_OUT_HIGH);
--	if (IS_ERR(pcie->reset)) {
--		ret = PTR_ERR(pcie->reset);
--		goto err_pm_runtime_put;
--	}
--
- 	pcie->parf = devm_platform_ioremap_resource_byname(pdev, "parf");
- 	if (IS_ERR(pcie->parf)) {
- 		ret = PTR_ERR(pcie->parf);
-@@ -1647,12 +1722,6 @@ static int qcom_pcie_probe(struct platform_device *pdev)
- 		}
- 	}
- 
--	pcie->phy = devm_phy_optional_get(dev, "pciephy");
--	if (IS_ERR(pcie->phy)) {
--		ret = PTR_ERR(pcie->phy);
--		goto err_pm_runtime_put;
--	}
--
- 	/* OPP table is optional */
- 	ret = devm_pm_opp_of_add_table(dev);
- 	if (ret && ret != -ENODEV) {
-@@ -1699,9 +1768,31 @@ static int qcom_pcie_probe(struct platform_device *pdev)
- 
- 	pp->ops = &qcom_pcie_dw_ops;
- 
--	ret = phy_init(pcie->phy);
--	if (ret)
--		goto err_pm_runtime_put;
-+	for_each_child_of_node(dev->of_node, of_port) {
-+		ret = qcom_pcie_parse_port(pcie, of_port);
-+		of_node_put(of_port);
-+		if (ret)
-+			break;
-+	}
-+
-+	/* Fallback to previous method */
-+	if (ret) {
-+		pcie->phy = devm_phy_optional_get(dev, "pciephy");
-+		if (IS_ERR(pcie->phy)) {
-+			ret = PTR_ERR(pcie->phy);
-+			goto err_pm_runtime_put;
-+		}
-+
-+		pcie->reset = devm_gpiod_get_optional(dev, "perst", GPIOD_OUT_HIGH);
-+		if (IS_ERR(pcie->reset)) {
-+			ret = PTR_ERR(pcie->reset);
-+			goto err_pm_runtime_put;
-+		}
-+
-+		ret = phy_init(pcie->phy);
-+		if (ret)
-+			goto err_pm_runtime_put;
-+	}
- 
- 	platform_set_drvdata(pdev, pcie);
- 
-@@ -1746,10 +1837,16 @@ static int qcom_pcie_probe(struct platform_device *pdev)
- err_host_deinit:
- 	dw_pcie_host_deinit(pp);
- err_phy_exit:
--	phy_exit(pcie->phy);
-+	if (list_empty(&pcie->ports))
-+		phy_exit(pcie->phy);
-+	else
-+		list_for_each_entry_safe(port, tmp, &pcie->ports, list)
-+			phy_exit(port->phy);
- err_pm_runtime_put:
- 	pm_runtime_put(dev);
- 	pm_runtime_disable(dev);
-+	list_for_each_entry_safe(port, tmp, &pcie->ports, list)
-+		list_del(&port->list);
- 
- 	return ret;
- }
+        for_each_property_of_node(np, prop) {
+                supply = strrchr(prop->name, '-');
+-               if (supply && !strcmp(supply, "-supply"))
++               if (supply && !strcmp(supply, "-supply") &&
++                   strcmp(prop, "phy-supply"))
+                        return true;
+        }
+
+> > But in the long run, we would like to move all platforms to use pwrctrl instead of
+> > fiddling the power supplies in the controller driver (well that was the motivation
+> > to introduce it in the first place).
+> > 
+> 
+> I understand this, but it should be compatible with the old method
+> instead of completely making the old method inoperable unless it
+> can be confirmed that all platforms in the upstream have completed
+> the conversion to use pwrctrl driver. Obviously, this is difficult to
+> confirm. :(
+> 
+
+The motive is to get rid of the supply handling from the controller drivers. But
+if there are some exceptions like the ethernet drivers, we can exclude them.
+
+> > Once you share the platform details, I'll try to migrate it to use pwrctrl. Also,
+> > please note that we are going to enable pwrctrl in ARM64 defconfig very soon.
+> > So I'll try to fix the affected platforms before that happens.
+> 
+> I think the current pwrctrl driver should still be in the early stage. If I
+> understand correctly, it should only enable the regulators when probing
+> and disable the regulators when removing. This does not meet all the use
+> cases at present. So I'm not sure how you can do the fixes for all the affected
+> platforms in pwrctrl driver for different use cases?
+> 
+> For example, some Ethernet devices need to support suspend/resume and
+> Wake-on-LAN (WOL). If WOL is not enabled, the power of the external PHY
+> needs to be turned off when it enters suspend state. If WOL is enabled, the
+> power of the external PHY needs to be kept on. So for this case, I think you
+> need to at least add PM interfaces in pwrctrl driver. For the other use cases,
+> other solutions may be needed.
+> 
+
+Yes, PM support is something I have on my todo list and required for other
+usecases too.
+
+- Mani
 
 -- 
-2.34.1
-
+மணிவண்ணன் சதாசிவம்
 
