@@ -1,70 +1,48 @@
-Return-Path: <devicetree+bounces-159888-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159889-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64D27A6CC25
-	for <lists+devicetree@lfdr.de>; Sat, 22 Mar 2025 21:16:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0185A6CCCC
+	for <lists+devicetree@lfdr.de>; Sat, 22 Mar 2025 22:42:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC04C17261C
-	for <lists+devicetree@lfdr.de>; Sat, 22 Mar 2025 20:16:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 689CF3B6A25
+	for <lists+devicetree@lfdr.de>; Sat, 22 Mar 2025 21:42:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BADEA1F3FDD;
-	Sat, 22 Mar 2025 20:16:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EtX7M70j"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E76D82356AE;
+	Sat, 22 Mar 2025 21:42:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fgw21-7.mail.saunalahti.fi (fgw21-7.mail.saunalahti.fi [62.142.5.82])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B1664C6C;
-	Sat, 22 Mar 2025 20:16:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2641823534A
+	for <devicetree@vger.kernel.org>; Sat, 22 Mar 2025 21:42:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.142.5.82
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742674579; cv=none; b=k/J929wVUDl4hq8FoJJ8thSB+pIx+TrsvhPfiDhO5IehdtnxbWhSunEND8wF32nXKEE4G/lbE9XzyoETwUoeW+/aXh2QY+i521jDHeGwQHFWeZstzHcdeckJVlAbZJfwMb87eRVTRnEdHZI2OdV05YCZgAjXz/Toc35OmQieoIw=
+	t=1742679753; cv=none; b=BKxXQHLNzStQHZGPL/09jw7OW/GJxu2RMmDkQ0D/yfxOkg8Zx9nIfKMPYc9JlZmZ04kwIcpMOEZeQ7rotuoP9ZLOKNTaK2HPUxpQKPSGjeJK/Tl6k67Fl5jjTwFY5rSZmIfMa5RMsgLdQswz2c8Vh67drURsl9C8RRZe2kOBXBA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742674579; c=relaxed/simple;
-	bh=wG6yAeIvUo6cSeHVafODK9l9ixZ9Z1WMTlZDD5+ozSg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p9YzDAd3Q4jrF8rzN19OnuR/sj6646qsbd6ntmuq0kODHn8ba3sIn2CVl3QREk+wBaMM2PBojwrMLWqhpc1ZjEPNtgjrcNaPYvGYEGq2gP88X2ZkolhXpdBaVcS8mVEJycMMYklBdb6gigj/lVlcM/Hj7ClakKcfVFjQdKS7s9A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EtX7M70j; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD3A2C4CEDD;
-	Sat, 22 Mar 2025 20:16:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742674574;
-	bh=wG6yAeIvUo6cSeHVafODK9l9ixZ9Z1WMTlZDD5+ozSg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EtX7M70jBfnFvZxZYHEHqcW1hrL/wSrQ2OerVfeABCqaRzjfX/lolndYDCTi+SExi
-	 Gmkp+tgxoIPavEepxwiUTjh5AxJyaD53cpkrByFt0wIjVHvzfLdKmu2nFnYgJlgs4h
-	 auauWj0I39DLdf04e9GLeL94RLYT8HNCO006oka5KrfxBYjH7LacCBbX1FpVl/Q2dN
-	 CNMRC7S+R7MkMT+AdLuD7xyXUcKZRB3GuqVCaQfpix+MwcbHkB5JlM+MNXVW2ze1pU
-	 bLAlYZFWAuzXjq+OyKO54fiZY1u1WOwsNy1Y8v9wGcOOsuX3w+ocSfEY5dxPA5iMEb
-	 Kb3tCRaECrvfw==
-Date: Sat, 22 Mar 2025 15:16:13 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: George Moussalem <george.moussalem@outlook.com>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Sricharan Ramabadhran <quic_srichara@quicinc.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-phy@lists.infradead.org, linux-pci@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Nitheesh Sekar <quic_nsekar@quicinc.com>,
-	Varadarajan Narayanan <quic_varada@quicinc.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	20250317100029.881286-2-quic_varada@quicinc.com,
-	linux-kernel@vger.kernel.org,
-	Kishon Vijay Abraham I <kishon@kernel.org>
-Subject: Re: [PATCH v6 1/6] dt-bindings: phy: qcom: uniphy-pcie: Add ipq5018
- compatible
-Message-ID: <174267455671.1906457.16602134107538739913.robh@kernel.org>
-References: <20250321-ipq5018-pcie-v6-0-b7d659a76205@outlook.com>
- <20250321-ipq5018-pcie-v6-1-b7d659a76205@outlook.com>
+	s=arc-20240116; t=1742679753; c=relaxed/simple;
+	bh=4mlURLbxYr++QPQiQtZCSsv6IeqehFcFfHzr30595W8=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hnSJyHLOg+B6LNUaa2sO+RgCN2dK7oHVQIykKBL3RWv9H/W1XQVSh1CmRug6Zn1HrJnfrv6MubCj1ALwNXJtIzxOnkpuKvQkx6UMgkYkIIX8oyoivMxh5fbgLSSruJ8VJgJrw9WZajdtRpVnA2isdyLtflR1v0sTZfjLj88Z1ts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=62.142.5.82
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
+Received: from localhost (88-113-26-232.elisa-laajakaista.fi [88.113.26.232])
+	by fgw23.mail.saunalahti.fi (Halon) with ESMTP
+	id 87275768-0766-11f0-8ddf-005056bdfda7;
+	Sat, 22 Mar 2025 23:42:18 +0200 (EET)
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Sat, 22 Mar 2025 23:42:18 +0200
+To: Benjamin Larsson <benjamin.larsson@genexis.eu>
+Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+	ansuelsmth@gmail.com, lorenzo@kernel.org,
+	gregkh@linuxfoundation.org
+Subject: Re: [PATCH 2/2] serial: Airoha SoC UART and HSUART support
+Message-ID: <Z98uumXXqj_opuTT@surfacebook.localdomain>
+References: <20250209210241.2622309-1-benjamin.larsson@genexis.eu>
+ <20250209210241.2622309-3-benjamin.larsson@genexis.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,23 +51,40 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250321-ipq5018-pcie-v6-1-b7d659a76205@outlook.com>
+In-Reply-To: <20250209210241.2622309-3-benjamin.larsson@genexis.eu>
 
+Sun, Feb 09, 2025 at 10:02:41PM +0100, Benjamin Larsson kirjoitti:
+> Support for Airoha AN7581 SoC UART and HSUART baud rate
+> calculation routine.
 
-On Fri, 21 Mar 2025 16:14:39 +0400, George Moussalem wrote:
-> From: Nitheesh Sekar <quic_nsekar@quicinc.com>
-> 
-> The IPQ5018 SoC contains a Gen2 1 and 2-lane PCIe UNIPHY which is the
-> same as the one found in IPQ5332. As such, add IPQ5018 compatible.
-> 
-> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
-> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
-> ---
->  .../bindings/phy/qcom,ipq5332-uniphy-pcie-phy.yaml | 49 ++++++++++++++++++----
->  1 file changed, 41 insertions(+), 8 deletions(-)
-> 
+...
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+>  drivers/tty/serial/8250/8250_port.c   | 26 +++++++++
+
+> +	/*
+> +	 * Airoha SoCs have custom registers for baud rate settings
+> +	 */
+> +	if (port->type == PORT_AIROHA)
+> +		airoha8250_set_baud_rate(port, baud, 0);
+> +	if (port->type == PORT_AIROHA_HS)
+> +		airoha8250_set_baud_rate(port, baud, 1);
+
+Why is this here? Please, make it stay in your module.
+
+...
+
+> +config SERIAL_8250_AIROHA
+> +	bool "Airoha UART support"
+
+Why bool?
+
+> +	depends on ARCH_AIROHA && OF && SERIAL_8250
+
+What is the purpose of the OF dependency?
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
