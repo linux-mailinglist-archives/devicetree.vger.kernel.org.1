@@ -1,57 +1,71 @@
-Return-Path: <devicetree+bounces-159886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87551A6CB8E
-	for <lists+devicetree@lfdr.de>; Sat, 22 Mar 2025 17:51:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B64BA6CBF8
+	for <lists+devicetree@lfdr.de>; Sat, 22 Mar 2025 20:13:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1D13A189910D
-	for <lists+devicetree@lfdr.de>; Sat, 22 Mar 2025 16:52:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D77C73A88BF
+	for <lists+devicetree@lfdr.de>; Sat, 22 Mar 2025 19:12:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 647B6231A2D;
-	Sat, 22 Mar 2025 16:51:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 162C01F9A85;
+	Sat, 22 Mar 2025 19:12:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lyI4sCRh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB5852F2E;
-	Sat, 22 Mar 2025 16:51:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD2E71AA791;
+	Sat, 22 Mar 2025 19:12:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742662309; cv=none; b=e5LWC6sqLFgFzHgybBCi8OjZZAGxTXYuToDKz0ZkF/94vKO/9+3gXxDz9GPmHL8vFAWj90OfUqWh5y8MNP3xWy0DkqYgWv+8Tr5LWcuLeFRaGlUhCAX22aDlnTblE3CoVpczewOBhley2nOesUwDFVQv5swV/u/QC9SVD9n3Nes=
+	t=1742670752; cv=none; b=j6cJ8WiGrtKAvv0xbUFnzyFdIGRdsIGNUGegeZLQ0RP5++NqH8UBve/NL85+ikhY0lVKYGGv01KHTIRlfLQyPXSi5VqbHcajhIEMZAUJdvLFi7FUHcTPJGdxvRdOtK3Zjd5YGJRDDliueRVBj6fz7UM5h+2qjcH5pEO2zhdLAYI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742662309; c=relaxed/simple;
-	bh=YY0zwQFccafI0e+UieGhfuVrKOH9vs96kL6/Y4+N8aw=;
+	s=arc-20240116; t=1742670752; c=relaxed/simple;
+	bh=hd78eeVosTOd4KlACodssv3XvVVN9zb3Aq9MsxkmGP8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Nw67nqLUPpevfIGzG8E+FneICwIBZGYZgvQlP/505EcSmRI88bK/yF4vzWB65Xg9htGsqYmPJo1TMhO+iKosMWd/SdK1GyF/jp3qCeROGNt4yXHIUuk9YqpMyvtfBY4kIuPW2n9rt9HYnGrraAJG1SNS6Rdk7E6wP5VEeuMzMIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.48.233])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id C4C90343231;
-	Sat, 22 Mar 2025 16:51:45 +0000 (UTC)
-Date: Sat, 22 Mar 2025 16:51:40 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Alex Elder <elder@riscstar.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	p.zabel@pengutronix.de, mturquette@baylibre.com, sboyd@kernel.org,
-	heylenay@4d2.org, guodong@riscstar.com, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, spacemit@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND 1/7] dt-bindings: soc: spacemit: define
- spacemit,k1-ccu resets
-Message-ID: <20250322165140-GYF11633@gentoo>
-References: <20250321151831.623575-1-elder@riscstar.com>
- <20250321151831.623575-2-elder@riscstar.com>
- <20250321222546-GYA11633@gentoo>
- <1d79fb7e-4501-4c62-8379-f00515dec3e4@riscstar.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=pI1ZNrPK4yvzlMeS6chWbFVsB9tJDrLHK5NUI7eBBo5i0Rqx9fVFkl9+v+C4oHuR4J8h/HuUL5mjT3t3uA71RuDX14kwztZTYarEaPynbSuladCysjLhcyyI03B9NEYNldOTwBgD8VDz1LHS0d7jldrRgoYMZxhUdi7Wq5hME/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lyI4sCRh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F6FEC4CEDD;
+	Sat, 22 Mar 2025 19:12:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742670751;
+	bh=hd78eeVosTOd4KlACodssv3XvVVN9zb3Aq9MsxkmGP8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lyI4sCRhX+wu+c82pLY5Dfs7mZt0ZonmFNJOxL8M1IVxv3HYH0tgIPU22CTgpZGvb
+	 yU8CbZ9/hVu7m9ofuVRiJjaeapqr3YF2RVUBClPDNcsVD8oNweJQywUYhnV9t5lf/p
+	 p16YBH3vAafJN32d7BmPXS+iJbxa/ymBFNEZKMBfh2fXO8xKpsJn4LAo+QY+VmbSbL
+	 pTmlAfrb43SSsx8tKqn9n99/3fsN0qFoR+dgIk9ZAONTiuE0lcI3GqGzdWqAKZNE2E
+	 P2nIkP7uUBe0lMxqdGdYLrF5iKd9mkfgg1Va4uJjSSIM2lXyoFWsO9LNnOCHZ1pcoC
+	 GiRSBlpr3jx1w==
+Date: Sat, 22 Mar 2025 15:12:26 -0400
+From: Mike Rapoport <rppt@kernel.org>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: Changyuan Lyu <changyuanl@google.com>, linux-kernel@vger.kernel.org,
+	graf@amazon.com, akpm@linux-foundation.org, luto@kernel.org,
+	anthony.yznaga@oracle.com, arnd@arndb.de, ashish.kalra@amd.com,
+	benh@kernel.crashing.org, bp@alien8.de, catalin.marinas@arm.com,
+	dave.hansen@linux.intel.com, dwmw2@infradead.org,
+	ebiederm@xmission.com, mingo@redhat.com, jgowans@amazon.com,
+	corbet@lwn.net, krzk@kernel.org, mark.rutland@arm.com,
+	pbonzini@redhat.com, pasha.tatashin@soleen.com, hpa@zytor.com,
+	peterz@infradead.org, ptyadav@amazon.de, robh+dt@kernel.org,
+	robh@kernel.org, saravanak@google.com,
+	skinsburskii@linux.microsoft.com, rostedt@goodmis.org,
+	tglx@linutronix.de, thomas.lendacky@amd.com,
+	usama.arif@bytedance.com, will@kernel.org,
+	devicetree@vger.kernel.org, kexec@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+	linux-mm@kvack.org, x86@kernel.org
+Subject: Re: [PATCH v5 09/16] kexec: enable KHO support for memory
+ preservation
+Message-ID: <Z98Lmo50h5RboFXq@kernel.org>
+References: <20250320015551.2157511-1-changyuanl@google.com>
+ <20250320015551.2157511-10-changyuanl@google.com>
+ <20250321134629.GA252045@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,68 +74,47 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1d79fb7e-4501-4c62-8379-f00515dec3e4@riscstar.com>
+In-Reply-To: <20250321134629.GA252045@nvidia.com>
 
-Hi Alex:
+On Fri, Mar 21, 2025 at 10:46:29AM -0300, Jason Gunthorpe wrote:
+> On Wed, Mar 19, 2025 at 06:55:44PM -0700, Changyuan Lyu wrote:
+> >
+> > +static void deserialize_bitmap(unsigned int order,
+> > +			       struct khoser_mem_bitmap_ptr *elm)
+> > +{
+> > +	struct kho_mem_phys_bits *bitmap = KHOSER_LOAD_PTR(elm->bitmap);
+> > +	unsigned long bit;
+> > +
+> > +	for_each_set_bit(bit, bitmap->preserve, PRESERVE_BITS) {
+> > +		int sz = 1 << (order + PAGE_SHIFT);
+> > +		phys_addr_t phys =
+> > +			elm->phys_start + (bit << (order + PAGE_SHIFT));
+> > +		struct page *page = phys_to_page(phys);
+> > +
+> > +		memblock_reserve(phys, sz);
+> > +		memblock_reserved_mark_noinit(phys, sz);
+> 
+> Mike asked about this earlier, is it work combining runs of set bits
+> to increase sz? Or is this sort of temporary pending something better
+> that doesn't rely on memblock_reserve?
 
-On 09:27 Sat 22 Mar     , Alex Elder wrote:
-> On 3/21/25 5:25 PM, Yixun Lan wrote:
-> > hi Alex:
-> > 
-> > On 10:18 Fri 21 Mar     , Alex Elder wrote:
-> >> There are additional SpacemiT syscon CCUs whose registers control both
-> >> clocks and resets:  RCPU, RCPU2, and APBC2. Unlike those defined
-> >> previously, these will initially support only resets.  They do not
-> >> incorporate power domain functionality.
-> >>
-> >> Define the index values for resets associated with all SpacemiT K1
-> >> syscon nodes, including those with clocks already defined, as well as
-> >> the new ones (without clocks).
-> >>
-> >> Signed-off-by: Alex Elder <elder@riscstar.com>
-> >> ---
-> >>   .../soc/spacemit/spacemit,k1-syscon.yaml      |  13 +-
-> >>   include/dt-bindings/clock/spacemit,k1-ccu.h   | 134 ++++++++++++++++++
-> >>   2 files changed, 143 insertions(+), 4 deletions(-)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml b/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
-> >> index 07a6728e6f864..333c28e075b6c 100644
-> >> --- a/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
-> >> +++ b/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
-> >> @@ -19,6 +19,9 @@ properties:
-> >>         - spacemit,k1-syscon-apbc
-> >>         - spacemit,k1-syscon-apmu
-> >>         - spacemit,k1-syscon-mpmu
-> >> +      - spacemit,k1-syscon-rcpu
-> >> +      - spacemit,k1-syscon-rcpu2
-> >> +      - spacemit,k1-syscon-apbc2
-> >>   
-> >>     reg:
-> >>       maxItems: 1
+This hunk actually came from me. I decided to keep it simple for now and
+check what are the alternatives, like moving away from memblock_reserve(),
+adding a maple_tree or even something else.
+
+> > +		page->private = order;
 > 
-> . . .
-> 
-> 32
-> >> @@ -180,6 +184,60 @@
-> >>   #define CLK_TSEN_BUS		98
-> >>   #define CLK_IPC_AP2AUD_BUS	99
-> >>   
-> >> +/*	APBC resets	*/
-> >> +
-> > I'd also suggest to drop above blank line, keep style consistent
-> > with others in this file, some same below that I won't comment
-> 
-> OK, I'll fix the weird extra line and will drop these blank
-> lines as you suggest in v2.  I'll post another version after
-> Sunday.  I recognize the merge window means I can't expect
-> reviews during that time, but this code is waiting for the
-> clock code to get accepted anyway.
-> 
-no need to hurry, we will postpone clock to next merge window,
-let's give more time for people to review, thanks
+> Can't just set the page order directly? Why use private?
+
+Setting the order means recreating the folio the way prep_compound_page()
+does. I think it's better to postpone it until the folio is requested. This
+way it might run after SMP is enabled. Besides, when we start allocating
+folios separately from struct page, initializing it here would be a real
+issue.
+ 
+> Jason
 
 -- 
-Yixun Lan (dlan)
-Gentoo Linux Developer
-GPG Key ID AABEFD55
+Sincerely yours,
+Mike.
 
