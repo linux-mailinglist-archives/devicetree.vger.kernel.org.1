@@ -1,71 +1,70 @@
-Return-Path: <devicetree+bounces-159887-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159888-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B64BA6CBF8
-	for <lists+devicetree@lfdr.de>; Sat, 22 Mar 2025 20:13:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64D27A6CC25
+	for <lists+devicetree@lfdr.de>; Sat, 22 Mar 2025 21:16:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D77C73A88BF
-	for <lists+devicetree@lfdr.de>; Sat, 22 Mar 2025 19:12:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC04C17261C
+	for <lists+devicetree@lfdr.de>; Sat, 22 Mar 2025 20:16:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 162C01F9A85;
-	Sat, 22 Mar 2025 19:12:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BADEA1F3FDD;
+	Sat, 22 Mar 2025 20:16:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lyI4sCRh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EtX7M70j"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD2E71AA791;
-	Sat, 22 Mar 2025 19:12:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B1664C6C;
+	Sat, 22 Mar 2025 20:16:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742670752; cv=none; b=j6cJ8WiGrtKAvv0xbUFnzyFdIGRdsIGNUGegeZLQ0RP5++NqH8UBve/NL85+ikhY0lVKYGGv01KHTIRlfLQyPXSi5VqbHcajhIEMZAUJdvLFi7FUHcTPJGdxvRdOtK3Zjd5YGJRDDliueRVBj6fz7UM5h+2qjcH5pEO2zhdLAYI=
+	t=1742674579; cv=none; b=k/J929wVUDl4hq8FoJJ8thSB+pIx+TrsvhPfiDhO5IehdtnxbWhSunEND8wF32nXKEE4G/lbE9XzyoETwUoeW+/aXh2QY+i521jDHeGwQHFWeZstzHcdeckJVlAbZJfwMb87eRVTRnEdHZI2OdV05YCZgAjXz/Toc35OmQieoIw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742670752; c=relaxed/simple;
-	bh=hd78eeVosTOd4KlACodssv3XvVVN9zb3Aq9MsxkmGP8=;
+	s=arc-20240116; t=1742674579; c=relaxed/simple;
+	bh=wG6yAeIvUo6cSeHVafODK9l9ixZ9Z1WMTlZDD5+ozSg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pI1ZNrPK4yvzlMeS6chWbFVsB9tJDrLHK5NUI7eBBo5i0Rqx9fVFkl9+v+C4oHuR4J8h/HuUL5mjT3t3uA71RuDX14kwztZTYarEaPynbSuladCysjLhcyyI03B9NEYNldOTwBgD8VDz1LHS0d7jldrRgoYMZxhUdi7Wq5hME/0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lyI4sCRh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F6FEC4CEDD;
-	Sat, 22 Mar 2025 19:12:28 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=p9YzDAd3Q4jrF8rzN19OnuR/sj6646qsbd6ntmuq0kODHn8ba3sIn2CVl3QREk+wBaMM2PBojwrMLWqhpc1ZjEPNtgjrcNaPYvGYEGq2gP88X2ZkolhXpdBaVcS8mVEJycMMYklBdb6gigj/lVlcM/Hj7ClakKcfVFjQdKS7s9A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EtX7M70j; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD3A2C4CEDD;
+	Sat, 22 Mar 2025 20:16:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742670751;
-	bh=hd78eeVosTOd4KlACodssv3XvVVN9zb3Aq9MsxkmGP8=;
+	s=k20201202; t=1742674574;
+	bh=wG6yAeIvUo6cSeHVafODK9l9ixZ9Z1WMTlZDD5+ozSg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lyI4sCRhX+wu+c82pLY5Dfs7mZt0ZonmFNJOxL8M1IVxv3HYH0tgIPU22CTgpZGvb
-	 yU8CbZ9/hVu7m9ofuVRiJjaeapqr3YF2RVUBClPDNcsVD8oNweJQywUYhnV9t5lf/p
-	 p16YBH3vAafJN32d7BmPXS+iJbxa/ymBFNEZKMBfh2fXO8xKpsJn4LAo+QY+VmbSbL
-	 pTmlAfrb43SSsx8tKqn9n99/3fsN0qFoR+dgIk9ZAONTiuE0lcI3GqGzdWqAKZNE2E
-	 P2nIkP7uUBe0lMxqdGdYLrF5iKd9mkfgg1Va4uJjSSIM2lXyoFWsO9LNnOCHZ1pcoC
-	 GiRSBlpr3jx1w==
-Date: Sat, 22 Mar 2025 15:12:26 -0400
-From: Mike Rapoport <rppt@kernel.org>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Cc: Changyuan Lyu <changyuanl@google.com>, linux-kernel@vger.kernel.org,
-	graf@amazon.com, akpm@linux-foundation.org, luto@kernel.org,
-	anthony.yznaga@oracle.com, arnd@arndb.de, ashish.kalra@amd.com,
-	benh@kernel.crashing.org, bp@alien8.de, catalin.marinas@arm.com,
-	dave.hansen@linux.intel.com, dwmw2@infradead.org,
-	ebiederm@xmission.com, mingo@redhat.com, jgowans@amazon.com,
-	corbet@lwn.net, krzk@kernel.org, mark.rutland@arm.com,
-	pbonzini@redhat.com, pasha.tatashin@soleen.com, hpa@zytor.com,
-	peterz@infradead.org, ptyadav@amazon.de, robh+dt@kernel.org,
-	robh@kernel.org, saravanak@google.com,
-	skinsburskii@linux.microsoft.com, rostedt@goodmis.org,
-	tglx@linutronix.de, thomas.lendacky@amd.com,
-	usama.arif@bytedance.com, will@kernel.org,
-	devicetree@vger.kernel.org, kexec@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
-	linux-mm@kvack.org, x86@kernel.org
-Subject: Re: [PATCH v5 09/16] kexec: enable KHO support for memory
- preservation
-Message-ID: <Z98Lmo50h5RboFXq@kernel.org>
-References: <20250320015551.2157511-1-changyuanl@google.com>
- <20250320015551.2157511-10-changyuanl@google.com>
- <20250321134629.GA252045@nvidia.com>
+	b=EtX7M70jBfnFvZxZYHEHqcW1hrL/wSrQ2OerVfeABCqaRzjfX/lolndYDCTi+SExi
+	 Gmkp+tgxoIPavEepxwiUTjh5AxJyaD53cpkrByFt0wIjVHvzfLdKmu2nFnYgJlgs4h
+	 auauWj0I39DLdf04e9GLeL94RLYT8HNCO006oka5KrfxBYjH7LacCBbX1FpVl/Q2dN
+	 CNMRC7S+R7MkMT+AdLuD7xyXUcKZRB3GuqVCaQfpix+MwcbHkB5JlM+MNXVW2ze1pU
+	 bLAlYZFWAuzXjq+OyKO54fiZY1u1WOwsNy1Y8v9wGcOOsuX3w+ocSfEY5dxPA5iMEb
+	 Kb3tCRaECrvfw==
+Date: Sat, 22 Mar 2025 15:16:13 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: George Moussalem <george.moussalem@outlook.com>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Sricharan Ramabadhran <quic_srichara@quicinc.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-phy@lists.infradead.org, linux-pci@vger.kernel.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Nitheesh Sekar <quic_nsekar@quicinc.com>,
+	Varadarajan Narayanan <quic_varada@quicinc.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	20250317100029.881286-2-quic_varada@quicinc.com,
+	linux-kernel@vger.kernel.org,
+	Kishon Vijay Abraham I <kishon@kernel.org>
+Subject: Re: [PATCH v6 1/6] dt-bindings: phy: qcom: uniphy-pcie: Add ipq5018
+ compatible
+Message-ID: <174267455671.1906457.16602134107538739913.robh@kernel.org>
+References: <20250321-ipq5018-pcie-v6-0-b7d659a76205@outlook.com>
+ <20250321-ipq5018-pcie-v6-1-b7d659a76205@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,47 +73,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250321134629.GA252045@nvidia.com>
+In-Reply-To: <20250321-ipq5018-pcie-v6-1-b7d659a76205@outlook.com>
 
-On Fri, Mar 21, 2025 at 10:46:29AM -0300, Jason Gunthorpe wrote:
-> On Wed, Mar 19, 2025 at 06:55:44PM -0700, Changyuan Lyu wrote:
-> >
-> > +static void deserialize_bitmap(unsigned int order,
-> > +			       struct khoser_mem_bitmap_ptr *elm)
-> > +{
-> > +	struct kho_mem_phys_bits *bitmap = KHOSER_LOAD_PTR(elm->bitmap);
-> > +	unsigned long bit;
-> > +
-> > +	for_each_set_bit(bit, bitmap->preserve, PRESERVE_BITS) {
-> > +		int sz = 1 << (order + PAGE_SHIFT);
-> > +		phys_addr_t phys =
-> > +			elm->phys_start + (bit << (order + PAGE_SHIFT));
-> > +		struct page *page = phys_to_page(phys);
-> > +
-> > +		memblock_reserve(phys, sz);
-> > +		memblock_reserved_mark_noinit(phys, sz);
+
+On Fri, 21 Mar 2025 16:14:39 +0400, George Moussalem wrote:
+> From: Nitheesh Sekar <quic_nsekar@quicinc.com>
 > 
-> Mike asked about this earlier, is it work combining runs of set bits
-> to increase sz? Or is this sort of temporary pending something better
-> that doesn't rely on memblock_reserve?
-
-This hunk actually came from me. I decided to keep it simple for now and
-check what are the alternatives, like moving away from memblock_reserve(),
-adding a maple_tree or even something else.
-
-> > +		page->private = order;
+> The IPQ5018 SoC contains a Gen2 1 and 2-lane PCIe UNIPHY which is the
+> same as the one found in IPQ5332. As such, add IPQ5018 compatible.
 > 
-> Can't just set the page order directly? Why use private?
+> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
+> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+> ---
+>  .../bindings/phy/qcom,ipq5332-uniphy-pcie-phy.yaml | 49 ++++++++++++++++++----
+>  1 file changed, 41 insertions(+), 8 deletions(-)
+> 
 
-Setting the order means recreating the folio the way prep_compound_page()
-does. I think it's better to postpone it until the folio is requested. This
-way it might run after SMP is enabled. Besides, when we start allocating
-folios separately from struct page, initializing it here would be a real
-issue.
- 
-> Jason
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
--- 
-Sincerely yours,
-Mike.
 
