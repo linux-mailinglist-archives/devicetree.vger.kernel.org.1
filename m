@@ -1,170 +1,111 @@
-Return-Path: <devicetree+bounces-159904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C38DFA6CF34
-	for <lists+devicetree@lfdr.de>; Sun, 23 Mar 2025 13:34:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FD68A6CF3B
+	for <lists+devicetree@lfdr.de>; Sun, 23 Mar 2025 13:38:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E950E3B44B1
-	for <lists+devicetree@lfdr.de>; Sun, 23 Mar 2025 12:33:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB43518995F7
+	for <lists+devicetree@lfdr.de>; Sun, 23 Mar 2025 12:38:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FC69647;
-	Sun, 23 Mar 2025 12:34:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E75F017D2;
+	Sun, 23 Mar 2025 12:38:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="eQ47Gk4F"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ttew/u6n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE161623;
-	Sun, 23 Mar 2025 12:34:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF5F1163;
+	Sun, 23 Mar 2025 12:38:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742733246; cv=none; b=VQoPvTKQ8rOTjH37L6fPSnbsy3azyvdrj64B2GpFBiiC2yuCI+cgwuJAlyivot5fjOO1O2nxhqlhnAn55j1R+CsV3T3D+nNwtebdEIGZoR8xy5tGWZvNy4CcRtWu8aJFWbn2yvIUX3n5geFUF8kl9RUwsF/pxzGinNztg/IFwNI=
+	t=1742733502; cv=none; b=uw0csZ7XOGc967+FOvtx8XDq4Cl6f2RJSX8A4chaJVs67uxmy30hK9o4TjguqH+4HDx1ezxIG+0Y3jql+xx3ARt0Cc05I9pipEmv5ly9ZGcM/JKjQMHg4qrzX0zZskB/9zL8zLlHY+iL4hAbSrbKv46hc6ZGHZEXz7uwPPInMQ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742733246; c=relaxed/simple;
-	bh=loay4Bp2+2OHJYqM7KRdnmJrNjgtWbQvqL9AEHGuZtI=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=eQuP091hlM7J/uIpKGjrygL3bBbENStAWoKj3jQvPe6fBGVbUd8bt7exZr4qiZTerYzStd7Ie3FalwCd9c+/EN4VEOJS+/MdZqJPl3jbAgDyM8n8w4VH13jZY5rHsPO7HeGwtTxVpiz55y+sQDjv5UAtsAErbFXFB3Cg6wwKjXs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=eQ47Gk4F; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52N4QXw6028190;
-	Sun, 23 Mar 2025 12:34:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=s6aNyRs/Idm70xSkxkdtYE
-	x6vdiW6K7s/uxxCnoMwxk=; b=eQ47Gk4F8nX0dcTs3wq/tNWR4CadwNbS4pilLV
-	3PtAeELTpnSCoLtL9MmtAu3Epn6ykJkog7Onn5f5S9NW5OjUHViZNYi50smBfnlk
-	7SZ7EdO09Alo7lBz9o+ndP/eHE0FRLeUe2mnx4lcvgilK8juQGACSMY3+8tpkRoE
-	U2g6Gu0Ri+vc50Co1jjVozOGNyxBli0WjzHYNaf2Aq5A36KhrLWDtLa0srvYORYh
-	1LsoqQ+Eqp1ourGaqOoncfjGetYuT8PZwGIph0pypxGVW1J78bjokEQDsKzY122B
-	dkyjoqqIPUO9DzD/QSyTMi6WHGoilUcGz0xMYXgoAX5rkWug==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45hjjnj7r4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 23 Mar 2025 12:34:00 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52NCXxK7015498
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 23 Mar 2025 12:33:59 GMT
-Received: from hu-nkumarsi-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Sun, 23 Mar 2025 05:33:52 -0700
-From: Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>
-To: <kernel@quicinc.com>, <andersson@kernel.org>, <konradybcio@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <quic_nkumarsi@quicinc.com>, <quic_akdwived@quicinc.com>,
-        <uchheda@qti.qualcomm.com>
-CC: Sahil Chandna <quic_chandna@quicinc.com>
-Subject: [PATCH v4] arm64: dts: qcom: Add industrial mezzanine support for qcs6490-rb3gen2
-Date: Sun, 23 Mar 2025 18:03:33 +0530
-Message-ID: <20250323123333.1622860-1-quic_nkumarsi@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1742733502; c=relaxed/simple;
+	bh=jd9wYHpyu6ZnNxDkrFxMFeP4lePw1I2neHhddWVkDjo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rfpF1t1m9EiyL1g6vX+RxLFLPJIHjL4j2+Jg+LIJm7l3TzyTUCiUg2ehYy69iFUrXJDrxOrVsBNl0xqzqv01IYFshSzHPrPYePt+VKzjgg+HJQ1UOKO44OFvDIt38URJmWVnrua64RN/x3YKPTsFn4q7/3xzMb/ycX1pV29dxKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ttew/u6n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 3C6A9C4CEE2;
+	Sun, 23 Mar 2025 12:38:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742733502;
+	bh=jd9wYHpyu6ZnNxDkrFxMFeP4lePw1I2neHhddWVkDjo=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=ttew/u6nQgjsmZc1H9mSur13NYjaBgIn/ReJVcimK3/wybUxVdwjM+4wEHv6fXxy7
+	 41Azx/0Crxal6TbG2QQSK7seb3qVxRoOqMohF+VdrA7LwxcUmBlQmF6L93enqmsEKT
+	 /J4fd6wk+/R+ysOrgjgjM/Yk00vsWJT4KGNQ7DpGZd4BFCIzLX4o8bYhxuY1Wzrd7G
+	 Y1Fi5w0w4NLZ4FKC2z/d5RcpfkG6KWoC1OkjmWPIAFUyReMHOiXFkQawmt0JOe1wwL
+	 SFo3J3FMzl7HYh+KE/wq7If7jAwL/WC7aJLsOLm1+hujELvwg5ogLO4EmzpTBb/35j
+	 Bvr4bY11Zk3TA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 24762C36002;
+	Sun, 23 Mar 2025 12:38:22 +0000 (UTC)
+From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
+Subject: [PATCH 0/3] Board support for Fernsehfee 3.0
+Date: Sun, 23 Mar 2025 13:37:49 +0100
+Message-Id: <20250323-fernsehfee-v1-0-2621341cd37a@posteo.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=fNc53Yae c=1 sm=1 tr=0 ts=67dfffb8 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=BE7Z3Aw2EIX7jhhZxrUA:9 a=RVmHIydaz68A:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: 9Fk-tNgwPI03Mu1TZaFd7PV89bYkzMLD
-X-Proofpoint-GUID: 9Fk-tNgwPI03Mu1TZaFd7PV89bYkzMLD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-23_06,2025-03-21_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
- lowpriorityscore=0 mlxlogscore=999 priorityscore=1501 mlxscore=0
- adultscore=0 spamscore=0 bulkscore=0 suspectscore=0 phishscore=0
- malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503230092
+X-B4-Tracking: v=1; b=H4sIAJ0A4GcC/x3MQQqAIBRF0a3IHydoIlFbiQZmz/wTC4UIxL0nD
+ c/g3koFmVFoEZUyHi58pQ49CPLRpROSj24a1WiV0VYG5FQQAyB36xBmo7ybQD24MwK//2zdWvs
+ Ay4jP+1wAAAA=
+X-Change-ID: 20250315-fernsehfee-b5aef930ca7e
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1742733500; l=1063;
+ i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
+ bh=jd9wYHpyu6ZnNxDkrFxMFeP4lePw1I2neHhddWVkDjo=;
+ b=AMu+SEgV81icPPkhvIuoyn3r3e/kUZ9XHrbb3+w4UrKlZvVcnjOaV72cWbnRxz1Tq+ff46kXf
+ HnZqH8mi1+GCDMiKMW7SNQtuKWKX4QVY/VSCHW+Icx2oN8iNGjFWRtI
+X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
+ pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
+X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
+ auth_id=156
+X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+Reply-To: j.ne@posteo.net
 
-Add DTS support for Qualcomm qcs6490-rb3gen2 industrial mezzanine board.
+Fernsehfee[1] ("TV fairy") is a family of set-top boxes marketed as
+ad-blocking appliances. This patchset adds board support in the form of
+a device tree for the third generation, Fernsehfee 3.0.
 
-Signed-off-by: Sahil Chandna <quic_chandna@quicinc.com>
-Signed-off-by: Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>
+[1]: https://fernsehfee.de/ (German), https://www.telefairy.com/ (English)
 
+Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
 ---
-Changes in v4:
-- Fixed the GPIO state setting using hardware rework instead of the
-  pinctrl framework, based on Dmitry's comment.
-- Link to V3: https://lore.kernel.org/all/20250122101424.1810844-1-quic_nkumarsi@quicinc.com/
+J. Neuschäfer (3):
+      dt-bindings: vendor-prefixes: Add TC Unterhaltungselektronik AG
+      dt-bindings: arm: amlogic: Add TCU Fernsehfee 3.0 board
+      ARM: dts: amlogic: Add TCU Fernsehfee 3.0
 
-Changes in v3:
-- Fixed tpm pinctrl node label.
-- Addressed comments by Dmitry.
-- Improved indentation/formatting.
-- Link to V2: https://lore.kernel.org/all/20250102190155.2593453-1-quic_nkumarsi@quicinc.com/
-
-Changes in V2:
-- Addressed comment by Konrad.
-- Validated dts bindings with dtb_checks suggested by Krzysztof.
-- Improved indentation/formatting.
-- Fixed bug encountered during testing.
-- Added dtb entry in makefile.
-- Link to V1: https://lore.kernel.org/all/20241206065156.2573-1-quic_chandna@quicinc.com/
+ Documentation/devicetree/bindings/arm/amlogic.yaml |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ arch/arm/boot/dts/amlogic/Makefile                 |   1 +
+ arch/arm/boot/dts/amlogic/meson8-fernsehfee3.dts   | 219 +++++++++++++++++++++
+ arch/arm/boot/dts/amlogic/meson8.dtsi              |  18 ++
+ 5 files changed, 241 insertions(+)
 ---
----
- arch/arm64/boot/dts/qcom/Makefile             |  4 ++++
- .../qcs6490-rb3gen2-industrial-mezzanine.dtso | 21 +++++++++++++++++++
- 2 files changed, 25 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
+base-commit: 4701f33a10702d5fc577c32434eb62adde0a1ae1
+change-id: 20250315-fernsehfee-b5aef930ca7e
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 140b0b2abfb5..625b47d94416 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -116,6 +116,10 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs615-ride.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2.dtb
-+
-+qcs6490-rb3gen2-industrial-mezzanine-dtbs	:= qcs6490-rb3gen2.dtb qcs6490-rb3gen2-industrial-mezzanine.dtbo
-+
-+dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2-industrial-mezzanine.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs8300-ride.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb
-diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
-new file mode 100644
-index 000000000000..619a42b5ef48
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
-@@ -0,0 +1,21 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2025, Qualcomm Innovation Center, Inc. All rights reserved.
-+*/
-+
-+/dts-v1/;
-+/plugin/;
-+#include <dt-bindings/clock/qcom,gcc-sc7280.h>
-+#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-+
-+&spi11 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	st33htpm0: tpm@0 {
-+		compatible = "st,st33htpm-spi", "tcg,tpm_tis-spi";
-+		reg = <0>;
-+		spi-max-frequency = <20000000>;
-+	};
-+};
+Best regards,
 -- 
-2.34.1
+J. Neuschäfer <j.ne@posteo.net>
+
 
 
