@@ -1,224 +1,238 @@
-Return-Path: <devicetree+bounces-159968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 487E1A6D251
-	for <lists+devicetree@lfdr.de>; Sun, 23 Mar 2025 23:55:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2EE1A6D27C
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 00:53:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E879188E4C9
-	for <lists+devicetree@lfdr.de>; Sun, 23 Mar 2025 22:55:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 63E5E16E863
+	for <lists+devicetree@lfdr.de>; Sun, 23 Mar 2025 23:53:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5BA51C84BA;
-	Sun, 23 Mar 2025 22:55:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AAA91C84DD;
+	Sun, 23 Mar 2025 23:53:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mKXBdL3R"
+	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="vXNUa/E1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1936178F52;
-	Sun, 23 Mar 2025 22:55:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2270E15539A;
+	Sun, 23 Mar 2025 23:53:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742770512; cv=none; b=NfFgmjHhM90eYYBrYhGAck33Ym+3DozoqvaZLuwjajfbzojd+bwUpVQ6t1KVyKj6CrotGb+/tSNx4REPGO1IMpS+Agr0ZfHk3hkNAJ6omtvYGR7aRGGECoIK4ZXXAkWiv6UUbcBhsXDjhX/no+B2RHm7Uu0qh1LtkvkFbyBLLQE=
+	t=1742774006; cv=none; b=J5ocTIg9280c0AfQK+mfWmlOSgBtdgjUrUC8OhvoF5han8TWbityHmlUMmpS/mpSHMpXOOcCX2Tgc7fVYzXbxqoOVbEfIEGEBW2AG5ysCy1FMKsVr/16bZzRmHglaOMmwW34+79OoG75TQET3nrvT2t+/j584iJt3E6+N3vM9hY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742770512; c=relaxed/simple;
-	bh=GQt07esGn+aeKgll8qN0I0EbwlD3oTZ1P43ARrEgJsw=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=dl1Mb6t9nf46fOTAFHfngWz3mg2pgRlpwBrhwGCfEwT8d19O/9JAoTb6Mp1R1r9+D3ILG6EXe0QiP4bRHT0fiV+eWfSAbs+VPASZf4gil/NrqzoLzKwk3Z9+hoVPLbSDlCcsJAtQyX3lhJSgAUiKERbAkS8UrRFwtVhYkAiwDXU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mKXBdL3R; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3913b539aabso1994826f8f.2;
-        Sun, 23 Mar 2025 15:55:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742770509; x=1743375309; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oOSmuF30hQhsZshA1dM7YsZdIW4f3itq09DSiAmlklo=;
-        b=mKXBdL3RDt56P+GP3felUrlM9mshbpeYjhiL5YXUsBqnMmV4kSpba0i4U31kITYFx3
-         Vq/FUMLqjApkagR/dSotxx4AFmar1WLZJiG4WWqztI3PkVrS0aOpHnp5m2MRDGiiywPO
-         cIOYJEFy5FgGyZnNSpjulgE2gfsrdc8yAR/E3545QNGUuxyRWmTB5Yp5ulB0yV11j165
-         5rXlU2t+pOebJl73OKmsbRJOrM7dTL5h65ibodqorR+htIrKUXHUzNWczHlzWB64RDjC
-         3fz0eIJYVBPXWHsj5jEoCSXxzIA8sRrXK/gfG/t4+01p2oSrxvAB3Z27EwHik1nels5D
-         35gQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742770509; x=1743375309;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oOSmuF30hQhsZshA1dM7YsZdIW4f3itq09DSiAmlklo=;
-        b=vb/vMMwCiZ5ws18TViikauVuQWO+SvE2VRoaSO0FySelArl8JG6j65/r3E5MBCbV3j
-         DhtJqn8Kq+hApL8Vq4c9bXeq32zu35UvKmU0g7JUllRs7LtPcJYfcli+H9wrwD//Dof1
-         K1VQaBJtJkp+czd+UUMDZMi0NOFuxOyVVl1gHZIzjBI8/wHBseI9jjZB3xsPbU9OKzJe
-         um84NJYxKiWEMvje2Ihxx+Q0oNW0teC7CpAv/D4CrnhCUjIjM7pOmyZ/OW+4CyoyVOtF
-         vXxcI0j6g/ew+r3nuj1qjv3rvoAOAy/0odxPRC/KOr8tEbIOBorhQ3k6jvsgdyKytGq5
-         IM6A==
-X-Forwarded-Encrypted: i=1; AJvYcCUDbd4VNqbTx7BdADbDRZtwYTJ1b0i6xji00g72qtxRaz1eSikCd5CLRMe1K/+USmFvR5S67P5g+LDf@vger.kernel.org, AJvYcCUTs27qNzBTLPtCBAL/2t28j9jfXP8NH3XB1ZD/NdH7LhRyY9Cloo95sqBlsNclS3WbUtLWqXjXS/h8gocM@vger.kernel.org, AJvYcCVWunQysriKNb1M8Wc89TBAt9/C0UJwhL3JcpfqBPN8R5tSXKAcOqc/iomBTj6HYH5uZIDZBpPk@vger.kernel.org
-X-Gm-Message-State: AOJu0YzzatFrxicKFLddxbVsTpYf4K2rL6kuulTv7zihHzkJIpbRthP8
-	MIvwPRjUJMvh9ugxLoVdTO3cDgbQLRgapldCfU2iund2Szv3yDzL
-X-Gm-Gg: ASbGncvKhxplvbf7BAuEHRPD+5JwkIvOmexDIZk4zEjrWoZuC4JwinZ8uu5vojRMJBL
-	mfd0Cuj2WjwGHCBeA/C/co3syraIs7HDP3LnKZWC090uM1B/M49FgxllmK0B3nM5NNT0CTRCUvA
-	nBYliv1t1Ysf331fR6Hx0oZJt0VyUPTj0BKR8rttoRbiLUT+oxduI54gysfeA8X9l3csd+tWYcG
-	Ps2QboXqqiyixGJuLfhgpjTvHja/EKgO1aTfPpvGpnpicT11063lrMEgOFWX0JmyeAXxKEP2/GA
-	gfkH/EKCYYsLUMoPmnU4AebFWUd1Z/2A8opGImNMt3JxTe1ZlEHIffGdy+Ryi/E0ZvrcHzujskw
-	C9S/4zYXDG0Tw4w==
-X-Google-Smtp-Source: AGHT+IHdCjK9tgTU4vMf0E2osA83T0jjCCRtAki4Zpd82WfsFJW8/gdQ06Qwo98HTGoDmbmovm1HQw==
-X-Received: by 2002:a05:6000:2c2:b0:391:2df9:772d with SMTP id ffacd0b85a97d-3997f90f731mr11301315f8f.13.1742770509270;
-        Sun, 23 Mar 2025 15:55:09 -0700 (PDT)
-Received: from localhost.localdomain (93-34-90-129.ip49.fastwebnet.it. [93.34.90.129])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3997f9a3f36sm9171129f8f.32.2025.03.23.15.55.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Mar 2025 15:55:08 -0700 (PDT)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Christian Marangi <ansuelsmth@gmail.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [net-next PATCH 2/2] dt-bindings: net: Document support for Aeonsemi PHYs
-Date: Sun, 23 Mar 2025 23:54:27 +0100
-Message-ID: <20250323225439.32400-2-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250323225439.32400-1-ansuelsmth@gmail.com>
-References: <20250323225439.32400-1-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1742774006; c=relaxed/simple;
+	bh=M6OGTvLw7CtrXFJe/5E6TOOm2mnJXkCUt54dENXIYBI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=E1A56NWGPLS1esmKLYskn5zdsJ1tySxeOcKDpQkafgdkbbXc/zn8VVn4vddCnM9sKS9GHRAdp+TvNJCFiNXI9+c5OHJ3rodPPi1fBbvZzhzUYYVJO3Zbkkp0ZZTXlxDwAI1bsIZbdNcjyex0d0XcodcdD6lhN4Z+WP211PFp5Rk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=vXNUa/E1; arc=none smtp.client-ip=5.135.140.105
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5AE4E2B096F;
+	Mon, 24 Mar 2025 00:53:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
+	t=1742774001; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=M45i0cNSjLCYGojqbS0h+f9E80WUbVF8rMlj+9W/SQY=;
+	b=vXNUa/E1enNAw74HG10KVbTB688tQfMjeU81OfZWzxid00a7D/DEA+CcLi3DmnorwLbCWv
+	qm5IZxZWFw0iN0pHQdSUlUHKjuCpgOhsGoE50iKtSI21o54vnI3zLeFhbcPGC6wV6FhBRQ
+	2KFvfCFMV6ys9MM5QjkS4W5LgSWxXZMDzqN4/Nb8vVg0wC0lBE9EXKMgoRCAmvr/OeCB2z
+	KKCtg1H/StfuIFIi9tc9bIcPCX4G6I8KRMCC2xQMCtjIl34OBGBO0/qBXUgFE8IISEoeKk
+	8BuQ/BRMo12d/7/nx9Pg7TEkRsf9G/HjzAc22Q2AjN/ioWM4gAIuCOPwlu2S1g==
+Message-ID: <d419bcd2-fa78-4390-88b0-64ed54b87081@cjdns.fr>
+Date: Mon, 24 Mar 2025 00:53:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH v1 4/8] dt-bindings: timer: Add EcoNet HPT CPU Timer
+To: Krzysztof Kozlowski <krzk@kernel.org>, linux-mips@vger.kernel.org
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, benjamin.larsson@genexis.eu
+References: <20250321134633.2155141-1-cjd@cjdns.fr>
+ <20250321134633.2155141-5-cjd@cjdns.fr>
+ <c1791b2e-bdf6-448c-88d3-c97511af3357@kernel.org>
+ <8f095a56-a188-45e9-945a-1d77ef175dc8@cjdns.fr>
+ <f2738225-564e-479b-a4f0-fac0ba6b6d53@kernel.org>
+Content-Language: en-US
+From: Caleb James DeLisle <cjd@cjdns.fr>
+In-Reply-To: <f2738225-564e-479b-a4f0-fac0ba6b6d53@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Document support for Aeonsemi PHYs and the requirement of a firmware to
-correctly work. Also document the max number of LEDs supported and what
-PHY ID expose when no firmware is loaded.
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- .../bindings/net/aeonsemi,as21xxx.yaml        | 87 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 88 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
+On 23/03/2025 13:39, Krzysztof Kozlowski wrote:
+> On 22/03/2025 00:21, Caleb James DeLisle wrote:
+>> Thank you for the review.
+>>
+>> On 21/03/2025 21:56, Krzysztof Kozlowski wrote:
+>>> On 21/03/2025 14:46, Caleb James DeLisle wrote:
+>>>> Add device tree binding documentation for the high-precision timer (HPT)
+>>>> in the EcoNet EN751221 SoC.
+>>>>
+>>>> Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
+>>> Previous patch was not tested, so was this one tested?
+>> Yes, all of this has been tested on multiple devices, I believe I was
+>> unclear in the question I added in patch 3.
+> Hm? How can you test a binding on a device? I meant here bindings - they
+> were not tested.
 
-diff --git a/Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml b/Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
-new file mode 100644
-index 000000000000..0549abcd3929
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
-@@ -0,0 +1,87 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/aeonsemi,as21xxx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Aeonsemi AS21XXX Ethernet PHY
-+
-+maintainers:
-+  - Christian Marangi <ansuelsmth@gmail.com>
-+
-+description: |
-+  Aeonsemi AS21xxx Ethernet PHYs requires a firmware to be loaded to actually
-+  work. The same firmware is compatible with various PHYs of the same family.
-+
-+  A PHY with not firmware loaded will be exposed on the MDIO bus with ID
-+  0x7500 0x7500
-+
-+  This can be done and is implemented by OEM in 2 different way:
-+    - Attached SPI flash directly to the PHY with the firmware. The PHY
-+      will self load the firmware in the presence of this configuration.
-+    - Manually provided firmware loaded from a file in the filesystem.
-+
-+  Each PHY can support up to 5 LEDs.
-+
-+allOf:
-+  - $ref: ethernet-phy.yaml#
-+
-+select:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - ethernet-phy-id7500.7500
-+  required:
-+    - compatible
-+
-+properties:
-+  reg:
-+    maxItems: 1
-+
-+  firmware-name:
-+    description: specify the name of PHY firmware to load
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/leds/common.h>
-+
-+    mdio {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        ethernet-phy@1f {
-+            compatible = "ethernet-phy-id7500.7500",
-+                         "ethernet-phy-ieee802.3-c45";
-+
-+            reg = <31>;
-+            firmware-name = "as21x1x_fw.bin";
-+
-+            leds {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                led@0 {
-+                    reg = <0>;
-+                    color = <LED_COLOR_ID_GREEN>;
-+                    function = LED_FUNCTION_LAN;
-+                    function-enumerator = <0>;
-+                    default-state = "keep";
-+                };
-+
-+                led@1 {
-+                    reg = <1>;
-+                    color = <LED_COLOR_ID_GREEN>;
-+                    function = LED_FUNCTION_LAN;
-+                    function-enumerator = <1>;
-+                    default-state = "keep";
-+                };
-+            };
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 9a2df6d221bd..59a863dd3b70 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -649,6 +649,7 @@ AEONSEMI PHY DRIVER
- M:	Christian Marangi <ansuelsmth@gmail.com>
- L:	netdev@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
- F:	drivers/net/phy/as21xxx.c
- 
- AF8133J THREE-AXIS MAGNETOMETER DRIVER
--- 
-2.48.1
 
+I see. For bindings I ran `make dt_binding_check` and assumed it good because
+it ran to completion. I now know that isn't reliable, but re-checked that it didn't
+log any errors (warnings?) about econet,timer-hpt.yaml
+
+
+>
+>>>> ---
+>>>>    .../bindings/timer/econet,timer-hpt.yaml      | 58 +++++++++++++++++++
+>>>>    1 file changed, 58 insertions(+)
+>>>>    create mode 100644 Documentation/devicetree/bindings/timer/econet,timer-hpt.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/timer/econet,timer-hpt.yaml b/Documentation/devicetree/bindings/timer/econet,timer-hpt.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..8b7ff9bce947
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/timer/econet,timer-hpt.yaml
+>>>> @@ -0,0 +1,58 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/timer/econet,timer-hpt.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: EcoNet High Precision Timer (HPT)
+>>>> +
+>>>> +maintainers:
+>>>> +  - Calev James DeLisle <cjd@cjdns.fr>
+>>>> +
+>>>> +description: |
+>>> Do not need '|' unless you need to preserve formatting.
+>> Ok
+>>>> +  The EcoNet High Precision Timer (HPT) is a timer peripheral found in various
+>>>> +  EcoNet SoCs, including the EN751221 and EN751627 families. It provides per-VPE
+>>>> +  count/compare registers and a per-CPU control register, with a single interrupt
+>>>> +  line using a percpu-devid interrupt mechanism.
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    const: econet,timer-hpt
+>>> Soc components must have soc-based compatible and then filename matching
+>>> whatever you use as fallback.
+>> I have so far been unable to find good documentation on writing DT bindings
+>> specifically for SoC devices. If you have anything to point me to, I will read it.
+>> If not, even a good example of someone else doing it right is helpful.
+>>
+>> Currently, I see qcom,pdc.yaml appears to do what you say, so I in absence
+>> of any other advice, I can try to do what they do.
+> Just don't use generic fallback.
+
+
+Ok I watched your "Accepted in Less Than 10 Iterations" lecture (I'm doing my
+homework). If I understand this correctly, you prefer that I use something specific
+like econet,en751221-timer as the fallback case, so for example on EN751627,
+it would be:
+
+compatible = "econet,en751627-timer", "econet,en751221-timer";
+
+The reason why I didn't do this is because this timer seems to show up in a lot of
+places. Vendor code says that it's older than EN751221, and (if my reading is
+correct) it has found it's way into chips branded TrendChip, MediaTek and Ralink
+as well as EcoNet.
+
+Now that I'll be adding strict checks on the number of register blocks, this way
+also has the advantage of allowing a case for users of the timer in SoCs we don't
+know about:
+
+// Only valid with 2 register blocks
+compatible = "econet,en751627-timer", "econet,timer-hpt";
+
+// Only valid with 1 register block
+compatible = "econet,en751612-timer", "econet,timer-hpt";
+
+// No restriction because we don't know how many timers the SoC has
+compatible = "econet,timer-hpt";
+
+
+That said, I'm fine to do it however you want as long as I'm clear on what you're
+asking for and you have all of the context behind my original decision.
+
+
+Thanks,
+
+Caleb
+
+
+>
+>>>> +
+>>>> +  reg:
+>>>> +    minItems: 1
+>>>> +    maxItems: 2
+>>> No, list items instead.
+>> I see qcom,pdc.yaml using items: with per-item description so can follow that.
+>>>> +    description: |
+>>>> +      Physical base address and size of the timer's register space. On 34Kc
+>>>> +      processors, a single region is used. On 1004Kc processors, two regions are
+>>>> +      used, one for each core.
+>>> So different hardware, different compatible. That's why you need
+>>> soc-based compatibles. Follow standard SoC upstreaming rules and examples.
+>> I presume this should ideally be with If: statements to further validate the DT (?)
+> Yes
+>
+>>>> +
+>>>> +  interrupts:
+>>>> +    maxItems: 1
+>>>> +    description: |
+>>> Do not need '|' unless you need to preserve formatting.
+>> Ok
+>>>> +      The interrupt number for the timer.
+>>> Drop, redundant.
+>> Ok
+>>>
+>>>> This is a percpu-devid interrupt shared
+>>>> +      across CPUs.
+>>>> +
+>>>> +  clocks:
+>>>> +    maxItems: 1
+>>>> +    description: |
+>>>> +      A clock to get the frequency of the timer.
+>>> Drop description, redundant
+>> Ok
+>>>> +
+>>>> +required:
+>>>> +  - compatible
+>>>> +  - reg
+>>>> +  - interrupts
+>>>> +  - clocks
+>>>> +
+>>>> +additionalProperties: false
+>>>> +
+>>>> +examples:
+>>>> +  - |
+>>>> +    timer_hpt@1fbf0400 {
+>>> No underscores
+>> I knew that, my mistake.
+>>> Node names should be generic. See also an explanation and list of
+>>> examples (not exhaustive) in DT specification:
+>>> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+>> Thank you, this is useful.
+>>> Look how other SoCs are calling this.
+>> As said, any documentation link or example of someone who does this right
+>> is much appreciated. In any case, thank you very much for your time and I
+>> will address these points in v2.
+> I gave one link above. Other could be one of my talks... or maybe what
+> elinux.org has, but I did not verify it.
+>
+> Best regards,
+> Krzysztof
 
