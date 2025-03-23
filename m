@@ -1,193 +1,331 @@
-Return-Path: <devicetree+bounces-159897-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159898-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D373A6CE7A
-	for <lists+devicetree@lfdr.de>; Sun, 23 Mar 2025 10:14:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 263EBA6CEA6
+	for <lists+devicetree@lfdr.de>; Sun, 23 Mar 2025 11:20:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 753293B5215
-	for <lists+devicetree@lfdr.de>; Sun, 23 Mar 2025 09:14:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F02B27A6490
+	for <lists+devicetree@lfdr.de>; Sun, 23 Mar 2025 10:19:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74F29202C2A;
-	Sun, 23 Mar 2025 09:14:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC00F1E7C28;
+	Sun, 23 Mar 2025 10:20:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="YB0GOurS";
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="NCQDlCUc"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="ZnEEewob"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bayard.4d2.org (bayard.4d2.org [155.254.16.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9F7113AA20;
-	Sun, 23 Mar 2025 09:14:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=155.254.16.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2238315E90;
+	Sun, 23 Mar 2025 10:20:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742721266; cv=none; b=AeXCZ0akPDnE0zC39bPqALr/r8tNVkRnlwWnklssEadoVfy9GBBxDs04WlyiQSQcVts9aTBQg/xVk6mtn2e/BvRbIOKnFimQ3V6PoIvOb8G1WgXyyRO3CPZE+0yOBxKhOTG5bYHZZS5MViJUEx1amKF3qP5RePlu0kuTi/oqSP8=
+	t=1742725209; cv=none; b=uDIEKshYU+AQ3ywV1DVEERBqcaPPv7u/LnWJkhEOOTrCiLM9VqLlH5xaLM4Jb1+/TLLphWgb1gTFBwCnKBxcA+MYBVv5s1Jl/gBXGlCTaGVV762jEFvTh5LqRTeHfFpsG1r1luS2nS+KNhf5NDa9N/Hv/JPZWtSl4/HqyqAREtQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742721266; c=relaxed/simple;
-	bh=42KjRZG4Ec7xBTXyyzIFb+83EFkreEJzD1byDRrYTvU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O0hOl+XMybScDYl9F3qb9YsjrnE+0K9Y2XgvIEsQEsFvttr2dfY9+Q6K0fkdeBHizgOF/NvhLMxeJ86N+Yct9fTfStxW/gToYtL3YT9pJA6MhPiqE31kZxssBfFXbPjzj8CJM9gvUqe6qJI3dIIiCCD6JJn24JrSDlgw5kd/5x4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=YB0GOurS; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=NCQDlCUc; arc=none smtp.client-ip=155.254.16.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
-Received: from bayard.4d2.org (bayard.4d2.org [127.0.0.1])
-	by bayard.4d2.org (Postfix) with ESMTP id 67FEEEC59F1;
-	Sun, 23 Mar 2025 01:55:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1742720143; bh=42KjRZG4Ec7xBTXyyzIFb+83EFkreEJzD1byDRrYTvU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YB0GOurS6e7ntM1c3szslhrVmNfTs29qW3DmV+4LusNNm/ZbyPsW22qezs41sbOmi
-	 Ny4wYzkogpnaK/lDgdomhH262gh1l0gCMIKIeH9v/0zD3Eq7NTZ9XbIUi9i3vB5wvt
-	 UYbntCXgGgr/w2Y4lkeATFRgAD/zQr9PbYURbHuZO66z8MQwrfluHDwgzqis3RLRb9
-	 FdsrvWv6O9MSbWvEO8y1YS/kTw4A+T7UDqVWlM+7krZn8dYOPd9R7DCnGN9Ct/rtfo
-	 scuWnLfZ1ycbhEbCyyZFHKC7Jb44vmqFqKcpyUlw6HPaEjZGuFzNkOpP2XXX7L5ZS3
-	 hnHNxcqmvj/Dw==
-X-Virus-Scanned: amavisd-new at 4d2.org
-Received: from bayard.4d2.org ([127.0.0.1])
- by bayard.4d2.org (bayard.4d2.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id cxXVrxWgCf42; Sun, 23 Mar 2025 01:55:40 -0700 (PDT)
-Received: from ketchup (unknown [183.217.80.115])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: heylenay@4d2.org)
-	by bayard.4d2.org (Postfix) with ESMTPSA id 58C7DEC59EE;
-	Sun, 23 Mar 2025 01:55:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1742720140; bh=42KjRZG4Ec7xBTXyyzIFb+83EFkreEJzD1byDRrYTvU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NCQDlCUcrc4vhN8OBM1cEf/Rw4Catjgu4eGkIeUvAN8bFaEzI8TBhnHzzvDGmYclf
-	 PPhmMpX7zIrmDfxICl/VQ0B2nMb+X4LzAEslEZga5vKaLZoHyMXO5ivn3K+UgTpiTN
-	 kGiit+2e9HxwtIs4sXD8doRmPzhC9bWR7jfIF/yjCiJLaGHOh+JGH7FYHuwPv9xeBO
-	 4st5JpY68yfbJuljaEgSgQYJ4okfB/DfuMO5QpKLrXt5DgkFh+6tfS6RtAcoL30Sz4
-	 TN6tvJ1SYgWkY0fOb88bQy/kPUo7mj/nO2rxj0xpcIVKRM+IaOAxEkX9968uLu0Oq8
-	 sWkVC4OpSoTEQ==
-Date: Sun, 23 Mar 2025 08:55:28 +0000
-From: Haylen Chu <heylenay@4d2.org>
-To: Inochi Amaoto <inochiama@gmail.com>, Yixun Lan <dlan@gentoo.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Haylen Chu <heylenay@outlook.com>, linux-riscv@lists.infradead.org,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, spacemit@lists.linux.dev,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Chen Wang <unicornxdotw@foxmail.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>
-Subject: Re: [PATCH v5 3/5] clk: spacemit: Add clock support for Spacemit K1
- SoC
-Message-ID: <Z9_MgAZE53eQ-FV8@ketchup>
-References: <20250306175750.22480-2-heylenay@4d2.org>
- <20250306175750.22480-5-heylenay@4d2.org>
- <20250318053736-GYA2516@gentoo>
- <xwo2jjqy634z4rimgyrbjmxlgzxzauxmqzl57qr5oasph74qwj@7we45fnhwfzh>
+	s=arc-20240116; t=1742725209; c=relaxed/simple;
+	bh=Qn3UWCySJthfP1r8oY7/3TqCuKi/gSeRu7h50ye3fws=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=DYYPo7XfhXfsSZIRdzIa6kroXhjxz/mh2VM2fitk7VD7vsRxCso2S9cY1Zknifp4tqi0NHI2V2r94MIWy8cyVKnriBMiGH14SS9ExTeXyEZPdIHXYfo869DvoNVHq+9oRgCUnP2oqRiVm1dbD2g5d3neiYPlO622Y4T7lNNrvGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=ZnEEewob; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <xwo2jjqy634z4rimgyrbjmxlgzxzauxmqzl57qr5oasph74qwj@7we45fnhwfzh>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1742725198;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=dQ9Z4yuasD0XhUC5V1EI5H6DAsn8b15J7B+WTK6PDjY=;
+	b=ZnEEewobcvlcLS5mnnk3N2I+xAVDbl4lYDRNHApDrtd/1+UadG44uWmvJULjxEcas9nc5x
+	uDemjDGqYTaDLI0fLHp9TX5deecvBcD2bZWk3vgLE6GffN2VtF5iTAfOSjpDa7MBje/xcp
+	bB3IP1WEOVBQbgEnDysEls0oLSXegj9xq0iG5YZxD5UQKUFPRGBZCjN2+Sbl7EToTJjzLd
+	9ZRvoveXvlgI+68O4DN+UarVE8LCu+nUAnmhAll9RFhDv+90p7t7n86TFh3gqH05kzOP9p
+	9GII2IFMrG7V6Bhcc1Z6+omB27RrrOV5X9yMqgSguckbBo/EUgLSlTrNYaz3vQ==
+Date: Sun, 23 Mar 2025 11:19:56 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Quentin Schulz <quentin.schulz@cherry.de>
+Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, stable@vger.kernel.org, Alexey Charkov
+ <alchark@gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Remove overdrive-mode OPPs from
+ RK3588J SoC dtsi
+In-Reply-To: <71b7c81b-6a4e-442b-a661-04d63639962a@cherry.de>
+References: <f929da061de35925ea591c969f985430e23c4a7e.1742526811.git.dsimic@manjaro.org>
+ <71b7c81b-6a4e-442b-a661-04d63639962a@cherry.de>
+Message-ID: <960c038ad9f7b83fe14d0ded388b42f7@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Tue, Mar 18, 2025 at 01:43:52PM +0800, Inochi Amaoto wrote:
-> On Tue, Mar 18, 2025 at 05:37:36AM +0000, Yixun Lan wrote:
-> > Hi Haylen Chu:
-> > 
-> > On 17:57 Thu 06 Mar     , Haylen Chu wrote:
-> > > The clock tree of K1 SoC contains three main types of clock hardware
-> > > (PLL/DDN/MIX) and has control registers split into several multifunction
-> > > devices: APBS (PLLs), MPMU, APBC and APMU.
-> > > 
-> > > All register operations are done through regmap to ensure atomiciy
-> > > between concurrent operations of clock driver and reset,
-> > > power-domain driver that will be introduced in the future.
-> > > 
-> > > Signed-off-by: Haylen Chu <heylenay@4d2.org>
-> > > ---
-> > >  drivers/clk/Kconfig               |    1 +
-> > >  drivers/clk/Makefile              |    1 +
-> > >  drivers/clk/spacemit/Kconfig      |   20 +
-> > >  drivers/clk/spacemit/Makefile     |    5 +
-> > >  drivers/clk/spacemit/ccu-k1.c     | 1714 +++++++++++++++++++++++++++++
-> > >  drivers/clk/spacemit/ccu_common.h |   47 +
-> > >  drivers/clk/spacemit/ccu_ddn.c    |   80 ++
-> > >  drivers/clk/spacemit/ccu_ddn.h    |   48 +
-> > >  drivers/clk/spacemit/ccu_mix.c    |  284 +++++
-> > >  drivers/clk/spacemit/ccu_mix.h    |  246 +++++
-> > >  drivers/clk/spacemit/ccu_pll.c    |  146 +++
-> > >  drivers/clk/spacemit/ccu_pll.h    |   76 ++
-> > >  12 files changed, 2668 insertions(+)
-> > >  create mode 100644 drivers/clk/spacemit/Kconfig
-> > >  create mode 100644 drivers/clk/spacemit/Makefile
-> > >  create mode 100644 drivers/clk/spacemit/ccu-k1.c
-> > >  create mode 100644 drivers/clk/spacemit/ccu_common.h
-> > >  create mode 100644 drivers/clk/spacemit/ccu_ddn.c
-> > >  create mode 100644 drivers/clk/spacemit/ccu_ddn.h
-> > >  create mode 100644 drivers/clk/spacemit/ccu_mix.c
-> > >  create mode 100644 drivers/clk/spacemit/ccu_mix.h
-> > >  create mode 100644 drivers/clk/spacemit/ccu_pll.c
-> > >  create mode 100644 drivers/clk/spacemit/ccu_pll.h
-> > > 
-> > > diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-> > > index 713573b6c86c..19c1ed280fd7 100644
-> > > --- a/drivers/clk/Kconfig
-> > > +++ b/drivers/clk/Kconfig
-> > > @@ -517,6 +517,7 @@ source "drivers/clk/samsung/Kconfig"
-> > >  source "drivers/clk/sifive/Kconfig"
-> > >  source "drivers/clk/socfpga/Kconfig"
-> > >  source "drivers/clk/sophgo/Kconfig"
-> > > +source "drivers/clk/spacemit/Kconfig"
-> > >  source "drivers/clk/sprd/Kconfig"
-> > >  source "drivers/clk/starfive/Kconfig"
-> > >  source "drivers/clk/sunxi/Kconfig"
-> > > diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-> > > index bf4bd45adc3a..42867cd37c33 100644
-> > > --- a/drivers/clk/Makefile
-> > > +++ b/drivers/clk/Makefile
-> > > @@ -145,6 +145,7 @@ obj-$(CONFIG_COMMON_CLK_SAMSUNG)	+= samsung/
-> > >  obj-$(CONFIG_CLK_SIFIVE)		+= sifive/
-> > >  obj-y					+= socfpga/
-> > >  obj-y					+= sophgo/
-> > > +obj-y					+= spacemit/
-> > >  obj-$(CONFIG_PLAT_SPEAR)		+= spear/
-> > >  obj-y					+= sprd/
-> > >  obj-$(CONFIG_ARCH_STI)			+= st/
-> > > diff --git a/drivers/clk/spacemit/Kconfig b/drivers/clk/spacemit/Kconfig
-> > > new file mode 100644
-> > > index 000000000000..76090cd85668
-> > > --- /dev/null
-> > > +++ b/drivers/clk/spacemit/Kconfig
-> > > @@ -0,0 +1,20 @@
-> > > +# SPDX-License-Identifier: GPL-2.0-only
-> > > +
+Hello Quentin,
 
-Hi Inochi, Yixun,
+Thanks for your comments!  Please see some responses below.
 
-> > > +config SPACEMIT_CCU
-> > > +	tristate "Clock support for Spacemit SoCs"
-> > > +	default y
-> > similar reason to pinctrl with these patches [1], [2]
-> > I'd suggest switch to "bool + default ARCH_SPACEMIT" 
-> > 
-> > Link: https://lore.kernel.org/all/20250218-k1-pinctrl-option-v3-1-36e031e0da1b@gentoo.org [1]
-> > Link: https://lore.kernel.org/all/6881b8d1ad74ac780af8a974e604b5ef3f5d4aad.1742198691.git.geert+renesas@glider.be [2]
-> > 
+On 2025-03-21 10:53, Quentin Schulz wrote:
+> On 3/21/25 4:28 AM, Dragan Simic wrote:
+>> The differences in the vendor-approved CPU and GPU OPPs for the 
+>> standard
+>> Rockchip RK3588 variant [1] and the industrial Rockchip RK3588J 
+>> variant [2]
+>> come from the latter, presumably, supporting an extended temperature 
+>> range
+>> that's usually associated with industrial applications, despite the 
+>> two SoC
+>> variant datasheets specifying the same upper limit for the allowed 
+>> ambient
+>> temperature for both variants.  However, the lower temperature limit 
+>> is
 > 
-> Clk subsystem prefers no defalt and set it in defconfig,
-> so should no default there.
+> RK3588 is rated for 0-80°C, RK3588J for -40-85°C, c.f. Recommended
+> Operating Conditions, Table 3-2, Ambient Operating Temperature.
 
-Thanks for these hints, I will drop default and set the configuration in
-defconfig, in which case it seems okay to keep it as bool.
+Indeed, which is why I specifically wrote "specifying the same upper
+limit", because having a lower negative temperature limit could hardly
+put the RK3588J in danger of overheating or running hotter. :)
 
-> Regards,
-> Inochi
+>> specified much lower for the RK3588J variant. [1][2]
+>> 
+>> To be on the safe side and to ensure maximum longevity of the RK3588J 
+>> SoCs,
+>> only the CPU and GPU OPPs that are declared by the vendor to be always 
+>> safe
+>> for this SoC variant may be provided.  As explained by the vendor [3] 
+>> and
+>> according to its datasheet, [2] the RK3588J variant can actually run 
+>> safely
+>> at higher CPU and GPU OPPs as well, but only when not enjoying the 
+>> assumed
+>> extended temperature range that the RK3588J, as an SoC variant 
+>> targeted
+> 
+> "only when not enjoying the assumed extended temperature range" is
+> extrapolated by me/us and not confirmed by Rockchip themselves. I've
+> asked for a statement on what "industrial environment" they specify in
+> the Normal Mode explanation means since it's the only time they use
+> the term. I've yet to receive an answer. The only thing Rockchip in
+> their datasheet is that the overdrive mode will shorten lifetime when
+> used for a long time, especially in high temperature conditions. It's
+> not clear whether we can use the overdrive mode even within the RK3588
+> typical range of operation.
 
-Thanks,
-Haylen Chu
+True.  I'll see to rephrase the patch description a bit in the v2,
+to avoid this kind of speculation.  I mean, perhaps the speculation
+is right, but it hasn't been confirmed officially by Rockchip.
+
+>> specifically at industrial applications, is made (or binned) for.
+>> 
+>> Thus, only the CPU and GPU OPPs that are specified by the vendor to be 
+>> safe
+>> throughout the entire RK3588J's extended temperature range may be 
+>> provided,
+>> while anyone who actually can ensure that their RK3588J-based board is
+>> never going to run within the extended temperature range, may probably
+>> safely apply a DT overlay that adds the higher CPU and GPU OPPs.  As 
+>> we
+> 
+> Wouldn't say "safely" here, Rockchip still says that running overdrive
+> mode for a long time may shorten lifetime... that followed by
+> "especially in high temperature condition" doesn't mean that operating
+> the RK3588J within the RK3588 typical range is safe to do.
+
+Also true, and I'll also try to address that in the v2.
+
+>> obviously can't know what will be the runtime temperature conditions 
+>> for
+>> a particular board, we may provide only the always-safe OPPs.
+>> 
+>> With all this and the downstream RK3588(J) DT definitions [4][5] in 
+>> mind,
+>> let's delete the RK3588J CPU and GPU OPPs that are not considered 
+>> belonging
+>> to the normal operation mode for this SoC variant.  To quote the 
+>> RK3588J
+>> datasheet [2], "normal mode means the chipset works under safety 
+>> voltage
+>> and frequency;  for the industrial environment, highly recommend to 
+>> keep in
+>> normal mode, the lifetime is reasonably guaranteed", while "overdrive 
+>> mode
+>> brings higher frequency, and the voltage will increase accordingly;  
+>> under
+>> the overdrive mode for a long time, the chipset may shorten the 
+>> lifetime,
+>> especially in high temperature condition".
+>> 
+>> To sum up the RK3588J datasheet [2] and the vendor-provided DTs, 
+>> [4][5]
+>> the maximum allowed CPU core and GPU frequencies are as follows:
+>> 
+>>     IP core    | Normal mode | Overdrive mode
+>>    ------------+-------------+----------------
+>>     Cortex-A55 |   1,296 MHz |      1,704 MHz
+>>     Cortex-A76 |   1,608 MHz |      2,016 MHz
+>>     GPU        |     700 MHz |        850 MHz
+>> 
+> 
+> The NPU too is impacted by this, so maybe list it anyway here? Even if
+> we don't support it right now and don't have OPPs for it.
+
+Agreed, will add in the v2.  Having all that information in a single
+place can only be helpful.
+
+>> Unfortunately, when it comes to the actual voltages for the RK3588J 
+>> CPU and
+>> GPU OPPs, there's a discrepancy between the RK3588J datasheet [2] and 
+>> the
+>> downstream kernel code. [4][5]  The RK3588J datasheet states that "the 
+>> max.
+>> working voltage of CPU/GPU/NPU is 0.75 V under the normal mode", while 
+>> the
+>> downstream kernel code actually allows voltage ranges that go up to 
+>> 0.95 V,
+>> which is still within the voltage range allowed by the datasheet.  
+>> However,
+>> the RK3588J datasheet also tells us to "strictly refer to the software
+>> configuration of SDK and the hardware reference design", so let's 
+>> embrace
+>> the voltage ranges provided by the downstream kernel code, which also
+>> prevents the undesirable theoretical outcome of ending up with no 
+>> usable
+>> OPPs on a particular board, as a result of the board's voltage 
+>> regulator(s)
+>> being unable to deliver the exact voltages, for whatever reason.
+>> 
+>> The above-described voltage ranges for the RK3588J CPU OPPs remain 
+>> taken
+>> from the downstream kernel code [4][5] by picking the highest, 
+>> worst-bin
+>> values, which ensure that all RK3588J bins will work reliably.  Yes, 
+>> with
+>> some power inevitably wasted as unnecessarily generated heat, but the
+>> reliability is paramount, together with the longevity.  This 
+>> deficiency
+>> may be revisited separately at some point in the future.
+>> 
+>> The provided RK3588J CPU OPPs follow the slightly debatable "provide 
+>> only
+>> the highest-frequency OPP from the same-voltage group" approach that's 
+>> been
+> 
+> Interesting that we went for a different strategy for the GPU OPPs :)
+
+Good point, and I'm fully aware of that. :)  Actually, I'm rather
+sure that omitting the additional CPU OPPs does no good to us, but
+I didn't want to argue about that when they were dropped originally,
+before I can have some hard numbers to prove it in a repeatable way.
+
+>> established earlier, [6] as a result of the "same-voltage, 
+>> lower-frequency"
+>> OPPs being considered inefficient from the IPA governor's standpoint, 
+>> which
+>> may also be revisited separately at some point in the future.
+>> 
+>> [1] 
+>> https://wiki.friendlyelec.com/wiki/images/e/ee/Rockchip_RK3588_Datasheet_V1.6-20231016.pdf
+>> [2] 
+>> https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2403201054_Rockchip-RK3588J_C22364189.pdf
+>> [3] 
+>> https://lore.kernel.org/linux-rockchip/e55125ed-64fb-455e-b1e4-cebe2cf006e4@cherry.de/T/#u
+>> [4] 
+>> https://raw.githubusercontent.com/rockchip-linux/kernel/604cec4004abe5a96c734f2fab7b74809d2d742f/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+>> [5] 
+>> https://raw.githubusercontent.com/rockchip-linux/kernel/604cec4004abe5a96c734f2fab7b74809d2d742f/arch/arm64/boot/dts/rockchip/rk3588j.dtsi
+>> [6] 
+>> https://lore.kernel.org/all/20240229-rk-dts-additions-v3-5-6afe8473a631@gmail.com/
+>> 
+>> Fixes: 667885a68658 ("arm64: dts: rockchip: Add OPP data for CPU cores 
+>> on RK3588j")
+>> Fixes: a7b2070505a2 ("arm64: dts: rockchip: Split GPU OPPs of RK3588 
+>> and RK3588j")
+>> Cc: stable@vger.kernel.org
+>> Cc: Heiko Stuebner <heiko@sntech.de>
+>> Cc: Alexey Charkov <alchark@gmail.com>
+>> Helped-by: Quentin Schulz <quentin.schulz@cherry.de>
+> 
+> Reported-by/Suggested-by?
+> 
+> I don't see Helped-by in
+> https://www.kernel.org/doc/html/latest/process/submitting-patches.html#using-reported-by-tested-by-reviewed-by-suggested-by-and-fixes
+> 
+> I see 2496b2aaacf137250f4ca449f465e2cadaabb0e8 got the Helped-by
+> replaced by a Suggested-by for example, but I see other patches with
+> Helped-by... if that is a standard trailer for kernel patches, then
+> maybe we should add it to that doc?
+
+Actually, I already tried to get the Helped-by tag added to the
+kernel documentation, by submitting a small patch series. [*]
+Unfortunately, it got rejected. :/
+
+However, Heiko accepts Helped-by tags and nobody higher up the
+tree seems to complain, so we should be fine. :)  It isn't the
+case with all maintainers, though.
+
+[*] 
+https://lore.kernel.org/all/cover.1730874296.git.dsimic@manjaro.org/T/#u
+
+>> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+>> ---
+>>   arch/arm64/boot/dts/rockchip/rk3588j.dtsi | 53 
+>> ++++++++---------------
+>>   1 file changed, 17 insertions(+), 36 deletions(-)
+>> 
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588j.dtsi 
+>> b/arch/arm64/boot/dts/rockchip/rk3588j.dtsi
+>> index bce72bac4503..3045cb3bd68c 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3588j.dtsi
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3588j.dtsi
+>> @@ -11,74 +11,59 @@ cluster0_opp_table: opp-table-cluster0 {
+>>   		compatible = "operating-points-v2";
+>>   		opp-shared;
+>>   -		opp-1416000000 {
+>> -			opp-hz = /bits/ 64 <1416000000>;
+>> +		opp-1200000000 {
+>> +			opp-hz = /bits/ 64 <1200000000>;
+>>   			opp-microvolt = <750000 750000 950000>;
+>>   			clock-latency-ns = <40000>;
+>>   			opp-suspend;
+>>   		};
+>> -		opp-1608000000 {
+>> -			opp-hz = /bits/ 64 <1608000000>;
+>> -			opp-microvolt = <887500 887500 950000>;
+>> -			clock-latency-ns = <40000>;
+>> -		};
+>> -		opp-1704000000 {
+>> -			opp-hz = /bits/ 64 <1704000000>;
+>> -			opp-microvolt = <937500 937500 950000>;
+>> +		opp-1296000000 {
+>> +			opp-hz = /bits/ 64 <1296000000>;
+>> +			opp-microvolt = <775000 775000 950000>;
+> 
+> Got tricked by this one.
+> 
+> In the Rockchip vendor kernel, the opp-microvolt is 750000 750000
+> 950000, so the same as CPU OPP 1.2GHz. However, the opp-microvolt-L1
+> and L0 are higher than that. Only a couple of the OPPs in vendor
+> kernel actually have opp-microvolt-L* higher than opp-microvolt, that
+> is a noteworthy oddity for anyone reviewing this patch :)
+> 
+> Anyway, that is correct, we take the highest voltage among all defined
+> opp-microvolt* properties.
+
+Indeed, and I also almost got tricked by the same OPP. :)
+
+> I only have comments on the commit log, the diff is fine so:
+> 
+> Reviewed-by: Quentin Schulz <quentin.schulz@cherry.de>
+
+Thanks once again for your detailed review! :)
 
