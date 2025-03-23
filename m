@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-159940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA1F2A6D19D
-	for <lists+devicetree@lfdr.de>; Sun, 23 Mar 2025 23:40:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F009A6D1A4
+	for <lists+devicetree@lfdr.de>; Sun, 23 Mar 2025 23:40:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 316CB16F29B
-	for <lists+devicetree@lfdr.de>; Sun, 23 Mar 2025 22:40:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B4871188969C
+	for <lists+devicetree@lfdr.de>; Sun, 23 Mar 2025 22:40:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EF901DF72C;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAC711E0DE4;
 	Sun, 23 Mar 2025 22:39:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ro5ATcEw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bqH2k5Wb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A47C71D6DAA
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD8661D5141
 	for <devicetree@vger.kernel.org>; Sun, 23 Mar 2025 22:39:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742769573; cv=none; b=ft/PalVN610U10/HXYHQoGJsYLEvgzkN4BCXZYsks+MHrYnwTwlLzLj/ckxRz01sH9wfPDeXYp7aFnOF2u7QfoFn8k21xRYXj5esP5Ab09gz339B6gAadw4AyZfQLoiBB82Va3KdP4uxHkQ5FxqzEv9UkAgi3PslmpD7ur4+61M=
+	t=1742769574; cv=none; b=o34NRMlK0L8uEmrBgAG5Raab1JqHzFbLoH+H16ezHVUxNWSPeTKCjcMzLQZ9dP3mXu4aK7agl2Ye+duTIb7QldRML5PNcJFxUSVTze7Lj189yHNuIKmjRczspB/s/wwoeGIyVOrzfWgiQ+p3uQU3P6PZe80esJimbN051bMvQrw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742769573; c=relaxed/simple;
-	bh=SOWDFBYDVimh2JZdbpqs93MuJ5ZKdaya15zjUJJgJoE=;
+	s=arc-20240116; t=1742769574; c=relaxed/simple;
+	bh=aNL2ZMIsaWDhYzyM225HQs3M+JBebedfnAV5JfLB8LU=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Ef5i5AiMU9e5QZGS++aVIe8PgiIpZqheKBPD28YfvgmgF/7pVI7VCccy3mCFk3tOmWPfZc6A/jtGzHLDBX8ON2wOt5nwf9PMdyDyjN3cmM46vBwDGEH5N1kMrA3MjN5a2IiwvTkxePdIw7KzakSoN9II5Zn5wkIkEDasuw14S2U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ro5ATcEw; arc=none smtp.client-ip=209.85.218.42
+	 In-Reply-To:To:Cc; b=u2LfmksdcilxAdjPqqlRNgiCBq/S7HjEdL+XnG6c304sBtFIyZ95TmMM9AVQf5Rk5NwjhcidzhBnAacDGs0m65IpdJO8d0J/0QA1xmlZVbqkbMMFw/ZjdnTGUwq/x3JVLvAczM9k48wkKhNirPdNxWB4xeG2eEd+Nx4OCs1U3gM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bqH2k5Wb; arc=none smtp.client-ip=209.85.208.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-ac2ab99e16eso764025566b.0
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5e5e63162a0so5902780a12.3
         for <devicetree@vger.kernel.org>; Sun, 23 Mar 2025 15:39:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742769568; x=1743374368; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1742769569; x=1743374369; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=a1WAgr4uwM04DZyOzCnLxT64GQbYEMMtR1/k9PjNmnI=;
-        b=Ro5ATcEwOXJoVYOumsx3SzyVEZr0IG0MbaEdO3CqShFnuHHX7IA3m+53Mge+A4z2+K
-         Y4gISwjjFDeTGH+A5hP5NV37c3Mfk1ZROF6AeKE66mHgWJ0rbvnyRe2h5SCxyavfrjP/
-         xOX05pEBekJgjHGfLO4PmSIYxso5YMdkOI8ZpXp5oiQLCrqMWFfYaQgp8lVJ96JPsfBy
-         KsOvSJRRe4uaTIPxXOF03cAA0oqbGCJ6CSP7YEO8x3Ncs1SsxqHmbjvwZR80nzm56bWY
-         zroBW25Zsp9DOgHUsb+nRZLCF0rlB+LDEdvogubZegvgBkEOGZO7l1skyOEFAAdhvJr7
-         9+aQ==
+        bh=PkErzt1Ss+Bkd54SXbmEFKlCZnBrxlDz3Xe8Bme42SE=;
+        b=bqH2k5WbpvoGhXCbaaGdtiyVBP2hZ8kMKQgAIxWxRiwhSejhXehUQCMhSmRSiyALDr
+         VT3FIr3b9MoUZtqqDEQB2rfTPsII/q0fbva1yRX3xx+SZR36rGKpI6jUQyQmXaYLerRY
+         mMbkZbSXgOYzr0EZlRYaDJS6NCu26n9d790TfwhqufvnUFbFp4JrNbszyTw8bt9XnbOr
+         O1W0UjEA/l4LN79gT07zi+Sf+npmBIxzRxFO+WuXme/YPcCAlUeL7dK54p6m1OG52X/G
+         X1ElnOccaR0fYrM5iBUmSn+r0Q6flBswUryzkpmWEIgW+HtSDugvkGCKfdyI/GrSsdqd
+         Jo7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742769568; x=1743374368;
+        d=1e100.net; s=20230601; t=1742769569; x=1743374369;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=a1WAgr4uwM04DZyOzCnLxT64GQbYEMMtR1/k9PjNmnI=;
-        b=PfJ+Fee+Y1MOEx2nBHtvBCFLzhzx8U4NvW+puPqFuxl6a8PchczwXVh0xObm9WG/Er
-         NPNNcMAhOkmo+ww6FOJ/XOLMDvahichvfA/HFpIqFFtpLWUoRZ5H9+A+NZVjLLJwzYh1
-         jwPJyVfjcGBEcX1ZtXBcYN/+CRd3GKp+2TWsnrYt5e3cMY2q7zoB5mdyIXerzq+BkSq3
-         8YZIfvT6yqk4xuYd3s2hCeLJCVPPE+v7clyPIfOXBfKHBYW+eQju7wMTUg5773t2dXeX
-         IgeU7v7sWHZ6jgOYURVFJLneafohWWxU90QChcYEghKwD4EkG4dCmcVO1H/bx/i8NNA4
-         pF/A==
-X-Forwarded-Encrypted: i=1; AJvYcCVxXY/tB3kiboEfmoxC3cGY3DDhm+nU/jOpi/h0ZWb5vmCEWMlUgju3pl8bIG4p6HmQkNyJHF/dDaeI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyo8+vkZTHeXz7Sm1R0tjqwByw5njO3+jpTanxoqdRJnNsndmCC
-	524WoHIwu5+1pHdrY+Xq+U1xFFVVS34yx96cVo/rQhFc1KAbM8Y4lRJ/yZCYQlY=
-X-Gm-Gg: ASbGncvoebBfw9RL435ktxtexBFSejHZ33DVKEzLXXrBK3x/XWg1K1EuW043GAYrPx4
-	kMeHX5BjFIG5N/hZ+GgQcYv1RgRyx04JuBXH1r5ESIPtfZFzXn/OQ8stdYt8pbZBNgeXneQ7ieq
-	BRcygmH1hmEdWHvg+94p3bMGE5DFjs9Xgof2CbPS1oKIEoaw3/hEsJlADwCqQ1v9nkvzyRVF2am
-	Fj7vC914VbM/iLMdOO5BEgPWxQX+aKmRl+KtzywTssYEelGjKhdzCm6nnaw7g7PF91tRKuKtvXY
-	H8N+Bzr+3BzDFGNIJarzKAW/7heRaRlypDxVLXoOOCxNpevTBywNfWQkT/Bn7wk7Id8Gcj+JhmO
-	j1jRitjt4vk5WheuHkcjxHj3JYY1N
-X-Google-Smtp-Source: AGHT+IGESlPld0TIZcF+ERlnjIFgWzaZCupFw8MycHD7wowlazt/klJI/2hD2dVdJFw5afV/HysuBA==
-X-Received: by 2002:a17:907:bd88:b0:ac4:491:1548 with SMTP id a640c23a62f3a-ac404911816mr803996166b.11.1742769568148;
+        bh=PkErzt1Ss+Bkd54SXbmEFKlCZnBrxlDz3Xe8Bme42SE=;
+        b=KjTHnVclFNhKzM5k6e9KA4ATO1KdlOVLP7TFvcM+YZQ9W3Rz3JoHQuUAUFRgeAfS/j
+         c6fqzko0Ct6R8rdg/4rWTuRoSgw0JfeGMVoNGYeEbh5C4xYhq/aA5A3ZYWDMcxwhiSfP
+         PgrkopqsutBtY1QxcmVNpHlSLYXVwymq/uG+0pY6u1+LMFGisnXsuJO4qZivw7aNjPx/
+         dv50modfsCOFGMt5FOIlIuKTyQnCTRNXL6P3S3a2iRhC4y3giXQ/QM4DRgyxQZc1fBlt
+         Qzvyp2m9RngVuLcFPzFQrgIZssJ9zrOd2vmx66EX9XXwQwCBC+PVTKbFUm5uH96KbJk+
+         qQqw==
+X-Forwarded-Encrypted: i=1; AJvYcCX8M28mVNB2H0jwZxxRMWEj3FCZQtVhcvl9q1lRHhcA8kfCmrkz0HdlL41Swt5JpITgS8GFcjOW8zgz@vger.kernel.org
+X-Gm-Message-State: AOJu0YwURTqjfzi+58OrJOxVNK0IlcxwTEubTObOoYFMDaBpSoeqOdB/
+	/njS89ZokUj8PlR+qm9FM2Mi0r22KAwNIJweod42euZTQtT63dgqXcD8XacjkSM=
+X-Gm-Gg: ASbGncsbCZzwDF/Hx9hRn1iQL+O8YESANTb8+F5H9LmPPTqBfAoEUy8sRQrd1rVbgLB
+	rZs6hCep1m56gc4HStxyFI2zW4iNvjOK2zuMMdPH+5DiPFMzsHKHGp9bAPMkfWY06AdcCZm+pmx
+	3chQDc7bY39tzp1DZPKTMDl3VwjvIbOI/CuhBD8wdjbxHs1Edi9zq9yw8LfuO17SAxlPsLPT0nc
+	AdVKSu9gd8BED429SKrW3uxTpGYPH046Nj7Yk9wb36Hpeo9SkGaXrbapGnUsmIGpeEQwdvkNSen
+	5gw0T0izSG7xuD+PpUHEW26B7plJSq5jcbRZTLO+cGSGjk7BxZOqhx4Hfw/rS8hFIVpwOpG11l+
+	uZnuHhuvk2RshgASaTGsgW0KGpuSe
+X-Google-Smtp-Source: AGHT+IGAFdzsUecxR0Ot+aNtVjqQT9dbvewdjFSLK22DE4stZjNqeNVzWwfh7T1/N7CaL7vQgLskZA==
+X-Received: by 2002:a17:907:ba0c:b0:ac2:4db0:1d22 with SMTP id a640c23a62f3a-ac3f251f16emr1170254266b.42.1742769568705;
         Sun, 23 Mar 2025 15:39:28 -0700 (PDT)
 Received: from puffmais.c.googlers.com (8.239.204.35.bc.googleusercontent.com. [35.204.239.8])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac3ef86e44dsm559686666b.31.2025.03.23.15.39.27
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac3ef86e44dsm559686666b.31.2025.03.23.15.39.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Mar 2025 15:39:27 -0700 (PDT)
+        Sun, 23 Mar 2025 15:39:28 -0700 (PDT)
 From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Sun, 23 Mar 2025 22:39:24 +0000
-Subject: [PATCH 08/34] mfd: sec: fix open parenthesis alignment
- (of_property_read_bool)
+Date: Sun, 23 Mar 2025 22:39:25 +0000
+Subject: [PATCH 09/34] mfd: sec: slightly rework runtime platform data
+ allocation
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +85,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250323-s2mpg10-v1-8-d08943702707@linaro.org>
+Message-Id: <20250323-s2mpg10-v1-9-d08943702707@linaro.org>
 References: <20250323-s2mpg10-v1-0-d08943702707@linaro.org>
 In-Reply-To: <20250323-s2mpg10-v1-0-d08943702707@linaro.org>
 To: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, 
@@ -110,37 +110,76 @@ connected via SPEEDY / ACPM rather than I2C, we're going to split out
 (move) all I2C-specific driver code into its own kernel module, and
 create a (common) core transport-agnostic kernel module.
 
-That move of code would highlight some unexpected alignment which
-checkpatch would complain about. To avoid that, address the error now,
-before the split, to keep the amount of unrelated changes to a minimum
-when actually doing the split.
+Transport drivers will have to do device tree parsing, and the core
+driver will allocate its own additional memory as needed.
+
+In preparation for that change, separate out runtime platform data
+allocation from device tree parsing.
+
+Having this change will create less churn in the upcoming split of the
+transport-specific parts.
 
 Signed-off-by: André Draszik <andre.draszik@linaro.org>
 ---
- drivers/mfd/sec-core.c | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+ drivers/mfd/sec-core.c | 30 ++++++++++++------------------
+ 1 file changed, 12 insertions(+), 18 deletions(-)
 
 diff --git a/drivers/mfd/sec-core.c b/drivers/mfd/sec-core.c
-index 83693686567df61b5e09f7129dc6b01d69156ff3..b931f66f366571d93ce59c301265fe1c9550b37d 100644
+index b931f66f366571d93ce59c301265fe1c9550b37d..9c514f4b5f853ec2b4e234c578935ffad145cd4b 100644
 --- a/drivers/mfd/sec-core.c
 +++ b/drivers/mfd/sec-core.c
-@@ -276,10 +276,12 @@ sec_pmic_i2c_parse_dt_pdata(struct device *dev)
- 	if (!pd)
- 		return ERR_PTR(-ENOMEM);
- 
--	pd->manual_poweroff = of_property_read_bool(dev->of_node,
--						"samsung,s2mps11-acokb-ground");
--	pd->disable_wrstbi = of_property_read_bool(dev->of_node,
--						"samsung,s2mps11-wrstbi-ground");
-+	pd->manual_poweroff =
-+		of_property_read_bool(dev->of_node,
-+				      "samsung,s2mps11-acokb-ground");
-+	pd->disable_wrstbi =
-+		of_property_read_bool(dev->of_node,
-+				      "samsung,s2mps11-wrstbi-ground");
- 	return pd;
+@@ -262,27 +262,16 @@ static void sec_pmic_configure(struct sec_pmic_dev *sec_pmic)
+  * Only the common platform data elements for s5m8767 are parsed here from the
+  * device tree. Other sub-modules of s5m8767 such as pmic, rtc , charger and
+  * others have to parse their own platform data elements from device tree.
+- *
+- * The s5m8767 platform data structure is instantiated here and the drivers for
+- * the sub-modules need not instantiate another instance while parsing their
+- * platform data.
+  */
+-static struct sec_platform_data *
+-sec_pmic_i2c_parse_dt_pdata(struct device *dev)
++static void sec_pmic_i2c_parse_dt_pdata(struct device *dev,
++					struct sec_platform_data *pd)
+ {
+-	struct sec_platform_data *pd;
+-
+-	pd = devm_kzalloc(dev, sizeof(*pd), GFP_KERNEL);
+-	if (!pd)
+-		return ERR_PTR(-ENOMEM);
+-
+ 	pd->manual_poweroff =
+ 		of_property_read_bool(dev->of_node,
+ 				      "samsung,s2mps11-acokb-ground");
+ 	pd->disable_wrstbi =
+ 		of_property_read_bool(dev->of_node,
+ 				      "samsung,s2mps11-wrstbi-ground");
+-	return pd;
  }
  
+ static int sec_pmic_probe(struct i2c_client *i2c)
+@@ -303,11 +292,16 @@ static int sec_pmic_probe(struct i2c_client *i2c)
+ 	sec_pmic->i2c = i2c;
+ 	sec_pmic->irq = i2c->irq;
+ 
+-	pdata = sec_pmic_i2c_parse_dt_pdata(sec_pmic->dev);
+-	if (IS_ERR(pdata)) {
+-		ret = PTR_ERR(pdata);
+-		return ret;
+-	}
++	/*
++	 * The s5m8767 platform data structure is instantiated here and the
++	 * drivers for the sub-modules need not instantiate another instance
++	 * while parsing their platform data.
++	 */
++	pdata = devm_kzalloc(sec_pmic->dev, sizeof(*pdata), GFP_KERNEL);
++	if (!pdata)
++		return -ENOMEM;
++
++	sec_pmic_i2c_parse_dt_pdata(sec_pmic->dev, pdata);
+ 
+ 	sec_pmic->device_type = (unsigned long)of_device_get_match_data(sec_pmic->dev);
+ 	sec_pmic->pdata = pdata;
 
 -- 
 2.49.0.395.g12beb8f557-goog
