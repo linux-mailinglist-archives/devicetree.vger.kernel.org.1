@@ -1,80 +1,54 @@
-Return-Path: <devicetree+bounces-159917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48308A6CF7D
-	for <lists+devicetree@lfdr.de>; Sun, 23 Mar 2025 14:25:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B96D8A6CFCA
+	for <lists+devicetree@lfdr.de>; Sun, 23 Mar 2025 15:45:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C7AC3B262D
-	for <lists+devicetree@lfdr.de>; Sun, 23 Mar 2025 13:24:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF2903B5ED4
+	for <lists+devicetree@lfdr.de>; Sun, 23 Mar 2025 14:45:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5014C84A35;
-	Sun, 23 Mar 2025 13:23:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBD4D14012;
+	Sun, 23 Mar 2025 14:45:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="clLmHD7c"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="dlH2wyFN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 901EC7BAEC
-	for <devicetree@vger.kernel.org>; Sun, 23 Mar 2025 13:23:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F19B417E
+	for <devicetree@vger.kernel.org>; Sun, 23 Mar 2025 14:45:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.60.130.6
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742736232; cv=none; b=V9FkIj+Kr4sGu8ekYg0x2Jaeh9DBY2tJUnFJVWnQKtZ5xj4Vxbu5Mt+/nI0XUGiL1xVrist9RH+gFshM1xFTCghQl1gdR5QpTEyyPmsd+ZpY8TIvc8u2OZSbPbT6474P1FFTsarZW+dTcGUhTtM8qivLFPSASfZrcu/Z21Tsx94=
+	t=1742741148; cv=none; b=Ll2JVlwJ8oPE7ysSjmKvD60keJ3+vXcAOxkB4NC5JGcF0Q4F9PHQxqKK0g2IfXH04+r/ihEDf//fiYgueb9RnaKW6kuword1uJ//B2vybGoXDGlbRnaEwJAe9OjOwqbvc0gR+GUjrC2fP0Mnzdp2KGJAKgAfq5x/+KUdQxPkgJw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742736232; c=relaxed/simple;
-	bh=WDHLZ4ZOpow/9eryokeFUPYvCTF9TtyU+hXACTUYy6g=;
+	s=arc-20240116; t=1742741148; c=relaxed/simple;
+	bh=CkO85VrKEjXajV2OzrpAsIm6hq+6xq8kZncFffUN3WQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZCiEYXmfIgYMABQdB5GnECc21XFrimJFzhWBYmsLJhFOmmL+mawC8PJ4ZjvYT32onC8ORRl3EQWfW9eBd03kPhxrCMoH0nQwhPiCjqOX1S9B6tc17/SFquH72fTgLtnVercAABPQ7NZIk+JpLWBf1M+c9cxyV8pFGz21h0U7Zy0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=clLmHD7c; arc=none smtp.client-ip=209.85.166.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-io1-f42.google.com with SMTP id ca18e2360f4ac-85afd2b9106so378288839f.0
-        for <devicetree@vger.kernel.org>; Sun, 23 Mar 2025 06:23:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1742736230; x=1743341030; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vOluyEJJQfX6U4qT7bfq8l8QHshCFBSDzvPzJIBTv80=;
-        b=clLmHD7c6WRz7dhOFH7Zr3x2cbfF3qRhjcou0vlWDwW6ktTo6hwLNL7jWJVCXGgNiQ
-         QlKzXdfWQXve8z8+BxSezkGcWQqwLmvrbQ4DfH1v1DoISOSJTZym5SaRstsAPCZhIpBJ
-         Kq9wxg37BDid4964huvz+EP4YqOoexccAT82bSACpH/U0iTDsZvo0xlVDRgmIixbvJ7G
-         ltdnGUeAlEeSPIRqlE4H1vi4ueQciaJkODoODS6XUl24P70BNUGdEGPZHsZb0jPbTqdq
-         RlWraRLFbLB/vs9YqwfOr9OZ8EWzL1X3aV6lSqIwcnOslBouIv07pcGOS6DpVBZBjzsZ
-         8WQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742736230; x=1743341030;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vOluyEJJQfX6U4qT7bfq8l8QHshCFBSDzvPzJIBTv80=;
-        b=FmoaZBW2SmHOrGoJeFLDWjVbBLhiq5jXXUPiiNbnwLPeLUz6OKOBm0zjCFg7aVP2rq
-         RA4OsoKT8kTPuyOxy719/+spxeqHK+CpEC3UAoEgu475/iiWDpVqKIGDC9tgcV9cWUs1
-         HZ7I2T10X41slZP9wFoAiXAttwfsx6hH1Opu8p9Tf+MW9jvGjkX9Uv5Akd/DK9EhXm5o
-         CQox8SDOrLd/goSBNpke5fekfQUM3hVqmi4ATQY7BluCF+syWCopWbJC2/j/fCTxXPUy
-         JBTUkxWy1cXZmEH0R4jrA96d+TpeP9DgGo0XuVt0/F+wNu3+ttZOsd/MbuxHv9uJtqmX
-         oU+A==
-X-Forwarded-Encrypted: i=1; AJvYcCVTEXh4teJo/STrV/OZqlUarka21xVl+UJ9lh0ULhAZMcU3gLeOTeqR6+YjOyCwsZBPKMDHq55vS9k2@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx8y7b2n8fdtQUEM1MsMlVp164yDKQHFqiD6eOenZZYxQkAWAjM
-	KHE0hu8C7seBttWBA3J6aU/dEQqFGoz5MyjEIuRDySvfXls6A0HLJnhmTYh+ROE=
-X-Gm-Gg: ASbGnctZriMsdER3Le4ym9autU/ObAkqj0XKg7jjBYX3xHOwEF5Ovoueo6S8+qtp3Qt
-	iMKAsiR1k01DZYTaKB1+JvJzv0ZTWth3receFndWxtLewGWBxCuZR9C1CzeNXeTTkePkodniTlg
-	aifQdM3NcmF6qTzF/wGLo15+f2MnaxPVnbm7+68qBOd2zYG3pjNG91BUj2F089numT5onz/iFAP
-	bOpFDoCURaR715hx7vm0QTmmO3udwQby7DbqMkbwF/kwZGe8H8YeGyZOJvRuM3pqiPy507zQAg4
-	uxrLhyiYnHkT0PGVBeYfeS8YvxroLSWW3YaVkt1/qheK3zu2BJzKvkPepRsm2BtvqCqAj6oOgRI
-	VpnsIsx+FzWj7/YixixBC9KZbbrtU
-X-Google-Smtp-Source: AGHT+IHvNHoOTQ7GjqXvKjbkWRzMHajkOVeKgTFwJL+MCalCStZsW2aoR41uPaZSxapIX+qE0BXZHg==
-X-Received: by 2002:a05:6602:7512:b0:85b:3c49:8825 with SMTP id ca18e2360f4ac-85e2ca62dd3mr974589339f.4.1742736229595;
-        Sun, 23 Mar 2025 06:23:49 -0700 (PDT)
-Received: from [10.211.55.5] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-85e2bc13d74sm125798039f.11.2025.03.23.06.23.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 23 Mar 2025 06:23:49 -0700 (PDT)
-Message-ID: <b5af3a7a-c5da-497a-ad67-c99edfdf665e@riscstar.com>
-Date: Sun, 23 Mar 2025 08:23:48 -0500
+	 In-Reply-To:Content-Type; b=X4bG/zxvEAs9ZsjDgQhmZfCD1rkJljxJ5uwBi6uAil49vGVePd1Mvfac9w/ON/eu9DK3mPRLBsspaFuC9p/YbgW62fozXcjHhc/lLZ7KwUWZp2W6+MJdl4ww0vBox2EKVJFY0hSSeaA6rGw9sJhkxLC6ApbiWrMgmG+iQB/qT38=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com; spf=pass smtp.mailfrom=igalia.com; dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b=dlH2wyFN; arc=none smtp.client-ip=178.60.130.6
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=igalia.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+	s=20170329; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=4c/0JfJqZsDrgnrmW86o9lGfPb20uB1PxBnL2vaKse4=; b=dlH2wyFNWO0t9GmXrHGcyS5cVG
+	96of4WZicc97HnBBG2VY3oDe1/xWUXa0YDYdqhcG0gwc7LsgBRYdjTrMxXE3EZn8G+v21lPRsP/6k
+	l8MAXeW99JdPWKI8WSlDpCJBE2WviR428ZAG0e2mS+zbYFC+CtR2Gql19AnGUd7IjNigDViD/119o
+	6MgG3QYyVdAXVAUDmQDCzjg43TfyUgjPwhNIV8xFuiP1djFMrhmzS/miXPs6QvEzufWwb+6uNWoMH
+	/Z/Iw9AVTkH9Gowt1W/gNLjLon9cu5BeuVoLfjxd4G4wtcQ93hu+7GGX0Yq8KBuUn+gvBTQX3k2o2
+	+jFqCTLQ==;
+Received: from [189.7.87.178] (helo=[192.168.0.224])
+	by fanzine2.igalia.com with esmtpsa 
+	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+	id 1twMZk-005Gyo-F1; Sun, 23 Mar 2025 15:45:20 +0100
+Message-ID: <f66fe250-8452-423f-aa0f-6f589e566e16@igalia.com>
+Date: Sun, 23 Mar 2025 11:45:12 -0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,98 +56,88 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND 7/7] riscv: dts: spacemit: add reset support for
- the K1 SoC
-To: Yixun Lan <dlan@gentoo.org>
-Cc: p.zabel@pengutronix.de, mturquette@baylibre.com, sboyd@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, heylenay@4d2.org,
- guodong@riscstar.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
- aou@eecs.berkeley.edu, spacemit@lists.linux.dev, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250321151831.623575-1-elder@riscstar.com>
- <20250321151831.623575-8-elder@riscstar.com> <20250322164830-GYE11633@gentoo>
+Subject: Re: [PATCH v6 0/5] drm/v3d: Fix GPU reset issues on the Raspberry Pi
+ 5
+To: Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nicolas Saenz Julienne <nsaenz@kernel.org>,
+ Stefan Wahren <wahrenst@gmx.net>,
+ Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, kernel-dev@igalia.com,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Emma Anholt <emma@anholt.net>, "Rob Herring (Arm)" <robh@kernel.org>
+References: <20250317-v3d-gpu-reset-fixes-v6-0-f3ee7717ed17@igalia.com>
 Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <20250322164830-GYE11633@gentoo>
+From: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
+In-Reply-To: <20250317-v3d-gpu-reset-fixes-v6-0-f3ee7717ed17@igalia.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 3/22/25 11:48 AM, Yixun Lan wrote:
-> On 10:18 Fri 21 Mar     , Alex Elder wrote:
->> Define syscon nodes for the RCPU, RCPU2, and APBC2 SpacemiT CCUS, which
->> currently support resets but not clocks in the SpacemiT K1.
->>
->> Signed-off-by: Alex Elder <elder@riscstar.com>
->> ---
->>   arch/riscv/boot/dts/spacemit/k1.dtsi | 18 ++++++++++++++++++
->>   1 file changed, 18 insertions(+)
->>
->> diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
->> index 09a9100986b19..f86d1b58c6d35 100644
->> --- a/arch/riscv/boot/dts/spacemit/k1.dtsi
->> +++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
->> @@ -350,6 +350,18 @@ soc {
->>   		dma-noncoherent;
->>   		ranges;
->>   
->> +		syscon_rcpu: system-controller@c0880000 {
-> I'm not sure if syscon_rcpu is good name to go, it's AUDIO Peripherals
-> in docs, see
+On 17/03/25 22:01, Maíra Canal wrote:
+> This series addresses GPU reset issues reported in [1], where running a
+> long compute job would trigger repeated GPU resets, leading to a UI
+> freeze.
 > 
-> 7.2 Main CPU Domain Address Mapping
-> https://developer.spacemit.com/documentation?token=LzJyw97BCipK1dkUygrcbT0NnMg
+> The patches that prevent the same faulty job from being resubmitted in a
+> loop were merged in drm-misc/drm-misc-fixes in v4.
+> 
+> However, those patches don't solve the issue entirely. Even with a single
+> GPU reset, the UI still freezes on the Raspberry Pi 5, indicating a GPU
+> hang. Patches #1, #3, and #5 address this by properly configuring the
+> V3D_SMS registers, which are required for power management and resets
+> in V3D 7.1.
+> 
+> Patches #2 and #4 are associated changes related to the robustness
+> of the DT bindings. Patch #3 added a new register bank to the DT binding
+> and during the reviewing process, we identified points that could to be
+> improved in the DT binding.
+> 
+> Patch #2 started by adding per-compatible register restrictions to ensure
+> that the DTB accurately reflects the hardware design and #5 updates the DT
+> maintainership, replacing Emma with the current v3d driver maintainer.
+> 
+> [1] https://github.com/raspberrypi/linux/issues/6660
+> 
+> Best Regards,
+> - Maíra
+> 
 
-They call it "AUD_MCUSYSCTRL section <RCPU(0xC0880000)>",
-where the registers layouts are defined, and the register
-names use the "RCPU" prefix by convention.
+[...]
 
-I guess I could use "AUDIO" instead, but I think it's
-"RCPU" is a little better because of the way things in
-the region are named.  It's a little like how "pll" is
-used for the DT node name for things in the "APBS" region.
-I don't really like that, because the connection between
-the two isn't very clear.
+Applied to misc/kernel.git (drm-misc-next). Before applying PATCH 1/5, I
+fixed the W=1 warning reported by the kernel test robot with the
+following diff:
 
->> +			compatible = "spacemit,k1-syscon-rcpu";
->> +			reg = <0x0 0xc0880000 0x0 0x2048>;
->> +			#reset-cells = <1>;
->> +		};
->> +
->> +		syscon_rcpu2: system-controller@c0888000 {
-> not found this address mapping in above docs link
+-       gen = (enum v3d_gen)of_device_get_match_data(dev);
++       gen = (uintptr_t)of_device_get_match_data(dev);
 
-You're right.  I was following what the downstream code did.
-I'll gladly just include this in the main "RCPU" node.
+Thanks for all involved in the reviewing process!
 
-Thank you very much for the review Yixun.
+Best Regards,
+- Maíra
 
-					-Alex
-
->> +			compatible = "spacemit,k1-syscon-rcpu2";
->> +			reg = <0x0 0xc0888000 0x0 0x28>;
->> +			#reset-cells = <1>;
->> +		};
->> +
->>   		syscon_apbc: system-control@d4015000 {
->>   			compatible = "spacemit,k1-syscon-apbc";
->>   			reg = <0x0 0xd4015000 0x0 0x1000>;
->> @@ -518,6 +530,12 @@ clint: timer@e4000000 {
->>   					      <&cpu7_intc 3>, <&cpu7_intc 7>;
->>   		};
->>   
->> +		syscon_apbc2: system-controller@f0610000 {
->> +			compatible = "spacemit,k1-syscon-apbc2";
->> +			reg = <0x0 0xf0610000 0x0 0x20>;
->> +			#reset-cells = <1>;
->> +		};
->> +
->>   		sec_uart1: serial@f0612000 {
->>   			compatible = "spacemit,k1-uart", "intel,xscale-uart";
->>   			reg = <0x0 0xf0612000 0x0 0x100>;
->> -- 
->> 2.43.0
->>
+> ---
+> Maíra Canal (5):
+>        drm/v3d: Associate a V3D tech revision to all supported devices
+>        dt-bindings: gpu: v3d: Add per-compatible register restrictions
+>        dt-bindings: gpu: v3d: Add SMS register to BCM2712 compatible
+>        dt-bindings: gpu: v3d: Add V3D driver maintainer as DT maintainer
+>        drm/v3d: Use V3D_SMS registers for power on/off and reset on V3D 7.x
+> 
+>   .../devicetree/bindings/gpu/brcm,bcm-v3d.yaml      |  90 ++++++++++++---
+>   drivers/gpu/drm/v3d/v3d_debugfs.c                  | 126 ++++++++++-----------
+>   drivers/gpu/drm/v3d/v3d_drv.c                      |  62 +++++++++-
+>   drivers/gpu/drm/v3d/v3d_drv.h                      |  22 +++-
+>   drivers/gpu/drm/v3d/v3d_gem.c                      |  27 ++++-
+>   drivers/gpu/drm/v3d/v3d_irq.c                      |   6 +-
+>   drivers/gpu/drm/v3d/v3d_perfmon.c                  |   4 +-
+>   drivers/gpu/drm/v3d/v3d_regs.h                     |  26 +++++
+>   drivers/gpu/drm/v3d/v3d_sched.c                    |   6 +-
+>   9 files changed, 271 insertions(+), 98 deletions(-)
+> ---
+> base-commit: 83a0237859bc5a9e0a716e1db8e7fd3cafd63259
+> change-id: 20250224-v3d-gpu-reset-fixes-2d21fc70711d
 > 
 
 
