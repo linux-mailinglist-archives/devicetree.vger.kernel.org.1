@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-159933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A322A6D180
-	for <lists+devicetree@lfdr.de>; Sun, 23 Mar 2025 23:39:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 831E8A6D182
+	for <lists+devicetree@lfdr.de>; Sun, 23 Mar 2025 23:39:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC7893AA17F
-	for <lists+devicetree@lfdr.de>; Sun, 23 Mar 2025 22:39:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F206916D8C5
+	for <lists+devicetree@lfdr.de>; Sun, 23 Mar 2025 22:39:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 251981C84AF;
-	Sun, 23 Mar 2025 22:39:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C2DD1CD1E1;
+	Sun, 23 Mar 2025 22:39:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AUILnTg5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bXVHTe/l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4028198E77
-	for <devicetree@vger.kernel.org>; Sun, 23 Mar 2025 22:39:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C8D91BD9C6
+	for <devicetree@vger.kernel.org>; Sun, 23 Mar 2025 22:39:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742769567; cv=none; b=jcKyNZHG6U8UgutP9JZ+D/h+ZBA3Npyt1jOHMjtSO0UH2HDGXe7c+o8bXcXEBLy3aEuuRlWl3/AG3E4CRRFCYKVMAfY//1I3B7hqhQeE4DWA6x0Rzk9hp/uDktZ2FMdrPc6Sz8GJaQ79EY0uHOjEv1I9ZBAZMtu2oqzoBYVG2mI=
+	t=1742769569; cv=none; b=gOZVWjlN3Y/6jhgbY0FK6+DqgmwxO+LclJPjlXV6zIIpcofhJf5oPDccPyN/ka2qas7d6owjzwS00HPbKfo9jDzpLiKqCNzZAz6gz1teZFNcpGoEziiJe+VEA5fgdVyL4G49FufddbJ6QuWoABEGdPMpTcEvJYtLe+FBCdimm2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742769567; c=relaxed/simple;
-	bh=6BfqEn0+AzamtK4yJsWD0fg9sFcnberX6yxt/ti3b7U=;
+	s=arc-20240116; t=1742769569; c=relaxed/simple;
+	bh=ft5MMINeJ0ZFFqsyd4wk/QMt+OACxl4RgJok7sE3LxY=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=R0HUI5HvzQ0lnz0Y3zcW7ozQTjoYAz3uAXnlRMwttnjltgLfgC9uOkL5tB5fF1iqglpLR86/ynai/9rw1G8DnKSrbDbhRbAFuXSSsc4Mrz4rSh3Ts6eJAdZXA37FDflIf86H+bqsZH4ttmdOAbO6uuYoiG2OpXP6sLcRe3HB5Mc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AUILnTg5; arc=none smtp.client-ip=209.85.208.52
+	 In-Reply-To:To:Cc; b=Fkc3FNI7RpkWYyIbSL/W5JFbbqP5/e6nO3pz5dpC0CDd347VpCjz5g22TR09/noneTvjX255JathQ7AYDn6tcOGsvItTO4GYDa0OxCa1IV2epNQAUSZ9EFGZXXwNRLiChxTETUCu9PXHPzmuDiE5DnvJLa+DAV+wwP/wIO0AONc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bXVHTe/l; arc=none smtp.client-ip=209.85.218.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5e6167d0536so7231891a12.1
-        for <devicetree@vger.kernel.org>; Sun, 23 Mar 2025 15:39:25 -0700 (PDT)
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-ac2bdea5a38so639715866b.0
+        for <devicetree@vger.kernel.org>; Sun, 23 Mar 2025 15:39:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742769564; x=1743374364; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1742769565; x=1743374365; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=HXb1pE2B5VZK7eIRvGjCX0bwONX10G0/gh8FJgs0P90=;
-        b=AUILnTg5pDyMjJktcjQAtmP1cN0YWyqEKXXo2XqFLorxlSzzY4rR4Y+GKYRE4L5Qpr
-         YAOgFfFJ8jr/0y3aYyYRjzmlWg1XGmdvjig6nStIcR5K3EEugCpiCrtqpnbYE0xX+VzX
-         cU3oJU3EJQ1l1Exx2tOzCS2IIEj5Uu9WypxXStl0JV2h1KbJ9snD3locDm9NdMXCxe+0
-         PbdQf1Va1iNNfWpUo9pbv5LDd+AZs+zxuXfOmxyY5xR1GyYgq/7xw6fb+uRaQPbIsO/P
-         Ggo4tyrvSmebQcqNHcSyIioe4w0x5AfrbuNtC49MKrZZRu+m5zTeEK+LYZ+baQXqFQRe
-         Hq1Q==
+        bh=76PH5cHSw8HwRSSvCBVkDwYPjRgUpAN3tWdOoIM1T/Y=;
+        b=bXVHTe/lCcytO1CcopVSOr+R+hBF2n7JErX0VIIT7eeqljv3nLzD9yrWhU2FJRKCfq
+         nrMVP3DWwwhuP3uNfZr4lsR1IstuIYajHcIuGpOcAZCaNGBrJ5HD4HuDdhBRjsK4UhLq
+         qbdb/dpq2m6Hab2PG9Qa1jvC0x2/gTHdDcRsF30MW8rFDTLPkOhKjEg4tXBCZ2b8B5s+
+         TwsC1hPhNTMkD7LnUqF/Fv4no0EQ7/SZf6wuR5uiA9EntK7eI8CPloNZTWPs6F301sM7
+         NtxzmRhE2IOAs5UjqFaKjDBOJVUmNa0D7LvcOOUA/HBuCoO0J+r+S7g4Oz7idMYVOLAg
+         kU5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742769564; x=1743374364;
+        d=1e100.net; s=20230601; t=1742769565; x=1743374365;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=HXb1pE2B5VZK7eIRvGjCX0bwONX10G0/gh8FJgs0P90=;
-        b=i2o3IBKHGeEIsDm2Of5QPG8iE3E5TLkocvrqGYI98fmInNJOq4pJSvdUJpyK6qpq3G
-         kS52uCu4g/lzpP5celpLeROzkALBmiieSwTTNAEQPKFz/SI0GxzxfUPTcLMyVZAIl/+N
-         Py8JPSVDg+kI6HFo7qoYQaDhcshRaqjUjkVOCJVGevS5OOqfbpFPc1MOmbxfC2G2OCp9
-         o520d8dJXZGE6SBZ1w/QrhJkUPA2hHYJLsXaUSBGAEYHI1IydZB4mcpa9Qh6+4gTDwd9
-         xaon8fXLcOv0gmvebl58AfVW63m63Dte4h4NNgGOfZqlYg7yYCtunzytT1D785qHmnQ9
-         rUFA==
-X-Forwarded-Encrypted: i=1; AJvYcCVpFq9838KmrFkWPFb94qH111UCIEHIaOg7wJa6Tg5EerQOw15onTkLOzPKxfWA/fQDYS1NYmA3SdgP@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqeicBDpP06NazkEZbgyifs4o8yb9gx//aFPVGvx3b3EOw24UF
-	zlo1iuvNlfCOsnT7iq0+fgTAVbtPJrZkILJ9x9sasOm/9vv27FxTmpuApA9hNQY=
-X-Gm-Gg: ASbGncuq6TOzbz1iBTOM3sx1PbAgvTQr/E4k8V+E0kjrcYDJTO3ibtxCJDm58Yrog3U
-	jsZdcemI3YEvZGBJdRCZMQF98shk5s+GtBh9IKiTOAQGtDPW12gXfkImVh7rVMyw6OC3374rQqT
-	dmbOD6KILpmi+g0nGXKGc8GJOE7UL2DvoPBzcy7pmuEVkisHTdLIdWQsGFm2DiSwdydIL0y3dwi
-	epu8fqUS6C8EV4UIlTW+AdN4ZzjXaWabKcK4QbsDAtWQ3GDHRrAi39B9I3XgyL0lGhDqJhqoa0A
-	ZhqG7cUsz8kIPJnOMJpKS7WopsAtWlKe5bp/agkQ4eYi4WluJ66uE40f18dMcZuRwLOoSow7dUZ
-	lrQUieka1LrrSrn+u6gPzK+CryCjC
-X-Google-Smtp-Source: AGHT+IFEmZ9BlAcg5cpLq9P2zpjpd5ecowSIznI/DDr2rcI73G5OWcR4yuBPI4oD1OUtU38fBId+Ng==
-X-Received: by 2002:a17:907:7ba8:b0:ac2:b684:542a with SMTP id a640c23a62f3a-ac3f23df97emr1170613466b.33.1742769564196;
+        bh=76PH5cHSw8HwRSSvCBVkDwYPjRgUpAN3tWdOoIM1T/Y=;
+        b=wbaaxii3ovyx3Tz9sfQk9YaPus/kniFaafre8DFQna/xLbDDBTXH8iC0ms43uQIPVh
+         BLL+rfjwx7g0sYuzLJx3+tW1Rj7KQZmsQo3lyFR6uMKcRLyUIyaJauQgtey+/9HY3xtr
+         UGDbTBBNlmJD/16k/F3vtzsYoRAd7gjfzppD29hBXYwsNHjYJ4KvBGbn499gypsSuGzE
+         YqbK6NkklbAmqAJCqLMc95SdP6dOJrUtJZwveUupeFT9ba6+b95VvRL/ryaeNY62C6CM
+         pVK8WYwHTrOIjEwgCeWET5uwMMQZvJA6nSfw/ASuGt9GcCN4tYypOvZW0CxWLH8ot0HE
+         g7xQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVtNRg6bpCb/gp4sXhfhWzkK4EJSc5l7bODIbSKIOkjO2quykpOEBLgm1G6XFYLMVh4E6vd1NovA5ZG@vger.kernel.org
+X-Gm-Message-State: AOJu0YyGcGoV7DeJ6I0L+vYdYdQNK1q6L23SoHTdrDUh5qhs0J/WYVGf
+	SKjxAgje/sJPGikY26Dc2hQZEPWjWeSa0Leq/90REyL6NqVGpIqbgoHHeuNL5As=
+X-Gm-Gg: ASbGncu3I99rLDFx1o19onx9fWsPhzEKLlu7rrR5lkLWT52Eqsuf+5D6YDlboRvCWdw
+	Xoq1IeFJGIva2HalH+hWEwyIW64V1yvRmXeYT1MNJzjvIaC3RtnBHbETuTvwrnTS5SeWWO1ZkNO
+	k04LwNAsrqoPAi44jfIOs0lgMbvkRqmDxKl2aeJ5kZzaOh7OaZGHCH6/71yN0pDYXZfJzOy9hmM
+	IlWf9GxJhopccj9OXXaHZwG3xUbZ89IfUz1FvZQ4KGTxppGHL2tWJeBwmNd3eC+/bfgn8bbv8j3
+	ZCwahCnbhluFRx6gAU5F7M3WvwmljRJvCU6krqJP+xyYmOiS0GqqNusJ9vXDbS+Cv96BARdL3bQ
+	B9iWNO4zKCXczJ7hd/OSuc+3JlRDx
+X-Google-Smtp-Source: AGHT+IEYfWzNbR+K5DYstAqClR9nSakyWw/N8LzTya4wskfRe5KrC67EU110F2zXc4Z6WRaZMMlhIQ==
+X-Received: by 2002:a17:907:7292:b0:ab7:6fa9:b0a9 with SMTP id a640c23a62f3a-ac3f208a29emr1120053966b.11.1742769564738;
         Sun, 23 Mar 2025 15:39:24 -0700 (PDT)
 Received: from puffmais.c.googlers.com (8.239.204.35.bc.googleusercontent.com. [35.204.239.8])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac3ef86e44dsm559686666b.31.2025.03.23.15.39.23
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac3ef86e44dsm559686666b.31.2025.03.23.15.39.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Mar 2025 15:39:23 -0700 (PDT)
+        Sun, 23 Mar 2025 15:39:24 -0700 (PDT)
 From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Sun, 23 Mar 2025 22:39:17 +0000
-Subject: [PATCH 01/34] dt-bindings: mfd: samsung,s2mps11: add s2mpg10
+Date: Sun, 23 Mar 2025 22:39:18 +0000
+Subject: [PATCH 02/34] dt-bindings: clock: samsung,s2mps11: add s2mpg10
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250323-s2mpg10-v1-1-d08943702707@linaro.org>
+Message-Id: <20250323-s2mpg10-v1-2-d08943702707@linaro.org>
 References: <20250323-s2mpg10-v1-0-d08943702707@linaro.org>
 In-Reply-To: <20250323-s2mpg10-v1-0-d08943702707@linaro.org>
 To: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, 
@@ -104,95 +104,27 @@ Cc: Peter Griffin <peter.griffin@linaro.org>,
  =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
 X-Mailer: b4 0.14.2
 
-The Samsung S2MPG10 PMIC is similar to the existing PMICs supported by
-this binding.
-
-It is a Power Management IC for mobile applications with buck
-converters, various LDOs, power meters, RTC, clock outputs, and
-additional GPIOs interfaces.
-
-Unlike other Samsung PMICs, communication is not via I2C, but via the
-Samsung ACPM firmware, it therefore doesn't need a 'reg' property but a
-handle to the ACPM firmware node instead.
-
-S2MPG10 can also act as a system power controller allowing
-implementation of a true cold-reset of the system.
-
-Support for the other components will be added in subsequent future
-patches.
+The Samsung S2MPG10 clock controller is similar to the existing clock
+controllers supported by this binding. Register offsets / layout are
+slightly different, so it needs its own compatible.
 
 Signed-off-by: André Draszik <andre.draszik@linaro.org>
 ---
- .../devicetree/bindings/mfd/samsung,s2mps11.yaml   | 34 ++++++++++++++++++++--
- 1 file changed, 32 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/clock/samsung,s2mps11.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/mfd/samsung,s2mps11.yaml b/Documentation/devicetree/bindings/mfd/samsung,s2mps11.yaml
-index ac5d0c149796b6a4034b5d4245bfa8be0433cfab..ae8adb80b3af7ec3722c2a5718ad8fddf0a5df34 100644
---- a/Documentation/devicetree/bindings/mfd/samsung,s2mps11.yaml
-+++ b/Documentation/devicetree/bindings/mfd/samsung,s2mps11.yaml
-@@ -20,6 +20,7 @@ description: |
+diff --git a/Documentation/devicetree/bindings/clock/samsung,s2mps11.yaml b/Documentation/devicetree/bindings/clock/samsung,s2mps11.yaml
+index d5296e6053a1881650b8e8ff2524ea01689b7395..91d455155a606a60ed2006e57709466ae8d72664 100644
+--- a/Documentation/devicetree/bindings/clock/samsung,s2mps11.yaml
++++ b/Documentation/devicetree/bindings/clock/samsung,s2mps11.yaml
+@@ -25,6 +25,7 @@ description: |
  properties:
    compatible:
      enum:
-+      - samsung,s2mpg10-pmic
-       - samsung,s2mps11-pmic
-       - samsung,s2mps13-pmic
-       - samsung,s2mps14-pmic
-@@ -43,6 +44,12 @@ properties:
-     description:
-       List of child nodes that specify the regulators.
- 
-+  exynos,acpm-ipc:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: |
-+      Phandle to the ACPM node for when ACPM is used to communicate with the
-+      PMIC, rather than I2C.
-+
-   samsung,s2mps11-acokb-ground:
-     description: |
-       Indicates that ACOKB pin of S2MPS11 PMIC is connected to the ground so
-@@ -58,16 +65,39 @@ properties:
-       reset (setting buck voltages to default values).
-     type: boolean
- 
-+  system-power-controller: true
-+
-   wakeup-source: true
- 
- required:
-   - compatible
--  - reg
--  - regulators
- 
- additionalProperties: false
- 
- allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: samsung,s2mpg10-pmic
-+    then:
-+      properties:
-+        regulators: false
-+        samsung,s2mps11-acokb-ground: false
-+        samsung,s2mps11-wrstbi-ground: false
-+
-+      required:
-+        - exynos,acpm-ipc
-+
-+    else:
-+      properties:
-+        exynos,acpm-ipc: false
-+        system-power-controller: false
-+
-+      required:
-+        - reg
-+        - regulators
-+
-   - if:
-       properties:
-         compatible:
++      - samsung,s2mpg10-clk
+       - samsung,s2mps11-clk
+       - samsung,s2mps13-clk # S2MPS13 and S2MPS15
+       - samsung,s2mps14-clk
 
 -- 
 2.49.0.395.g12beb8f557-goog
