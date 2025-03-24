@@ -1,172 +1,246 @@
-Return-Path: <devicetree+bounces-160190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D9A5A6DC87
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 15:05:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 190DDA6DC99
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 15:08:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C244C1704D5
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 14:04:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A18AA188B65F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 14:08:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B25825F7A4;
-	Mon, 24 Mar 2025 14:04:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A344D25F7AC;
+	Mon, 24 Mar 2025 14:08:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="jZjE5V4M"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Id7Qyvyw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C11219C569;
-	Mon, 24 Mar 2025 14:04:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC18625F786
+	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 14:08:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742825055; cv=none; b=SeF8vY7DDWLk1bTXCMF+Hf8CNPUJSpdW0pY+30tHwjoozAUL2v8gvy7eBrjLOTWevuA8OEoDXEnH7PV6WDvbf/ltLpJuveDHChaeWX0TW2yT1ZD2uTgCOhpFYf3iovBYhlfq/ncCRMeUuSNc6EoKTiFjJKU3SWy/NXDJW+y9YEc=
+	t=1742825317; cv=none; b=ofXXmr/obcFrGrrVlOLgDGObPghqd0vugjoii5Z0vx8d6J0m4xtnygifhK6XGLMxBSaVPDDK2z/p+kKBNlayHTiGO7DEGq6jQjjqBV1cwPb/AvAPqdOgsZRCGgB1hFY0EGhN9QeFEsebwui8EWIVtviX5Ygo12gmmqbEWZxqsxI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742825055; c=relaxed/simple;
-	bh=QZRyHaer4aVTsJACugml0QiF0ENOWqtGXsMcJVhuviY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QaqDmx9/lucJv2OK/GfemCVgouVx73UIzi8y17rmRqAYkfZpPeC+3UtpyUA90Iaa1j4vhUbGsAm7BUG2BZmB27rPF4b3wEidyZfwrwoNjnAtglpKTLt6XYzwb9FBB1qz6Evl0ZGnHyY+E7f2BByBfrUJzs6uQH0RH3lqgI4NniI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=jZjE5V4M; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=+reJuCbLkyPvkpR8TOLTyAMnNK1tq2tJBBQi3tYUQ9o=; b=jZjE5V4MBYSqGrnZjRfhUasREq
-	M3aD0DMus0d84LKGN8je7NwmG+egyqT73PWJO1brt6wf3HqiXreND05BwZ5wCm0rR9yTdr63P8TY1
-	eaEdYT2/5Nu0+f1Ilil4guY6OoX+Y/+rF/QFg2Atbbf65cRVbAgpJn59wt1IGy++Ojg4=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1twiP9-006wSY-Ji; Mon, 24 Mar 2025 15:03:51 +0100
-Date: Mon, 24 Mar 2025 15:03:51 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next PATCH 1/2] net: phy: Add support for new Aeonsemi PHYs
-Message-ID: <f0c685b0-b543-4038-a9bd-9db7fc00c808@lunn.ch>
-References: <20250323225439.32400-1-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1742825317; c=relaxed/simple;
+	bh=k9auSPKt0xDsiEz8cyRI0UCs31hNeF6aYfn1A9QhgOg=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=M3bffIfpVGhkVOnpyiaNsydRqMTWMomj+gSR6TcC68qwsMNZg/HGSbfe2mJezLN8ggj6iF2zF67IQQwxBCqoKFD+P+ki845SoPq8SmsZbmW8tIuTMfTkeWqGYZbeCYPspZ1vXWBSury6ITcVs6pbVwyuu+Q/FxrGx5aRWDgUd9g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Id7Qyvyw; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-ac297cbe017so982316066b.0
+        for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 07:08:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1742825314; x=1743430114; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LTS81nyVkU32wlX4TnObp+0zngaZswbVsK7/OVV7Vtw=;
+        b=Id7Qyvyw9KnqSa+jTLthIgiUDfC4Ws6i5ZHQ2V0A5dlbx/fHOlcRwKO5OzESlEr1JB
+         0xZ5tAWjBA0eGXcnVlbJkLbQnIMvQCgKcQJYcGQ+s5XqWTLSJABTLTRtc/ARNpuyN1cZ
+         ciNwoqTOUva7wRjeGRHd11wnFX1Yr9OBGsuxGZpoOp2Gjl1uouj38TK0NLrFX9CURDOE
+         39kyAcYv560FpYJwPJl57k4VKjN+yLOGzimAOGpQUfcUZI4yv2M8fAtY8hD/KX/Jnb23
+         XBjEX5mHW1ndtcED0iBIWzUICrb/KcUPfgrxNgOYVHrJE0uU/JbQJYoF+HpmnNvp3S85
+         6Rxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742825314; x=1743430114;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LTS81nyVkU32wlX4TnObp+0zngaZswbVsK7/OVV7Vtw=;
+        b=sSeQ9NZ8zeEpt05sbZa0WLJ7htJ2t/a3ZTcoLRriLdkcdic9l9ox/TKbOSuJkMU67Y
+         0zJe041+lPOm6UShSRpoen4BlFAlAXJr+Yb0fAkdLrxz9ykNpk5at/UfkrtY6dKyozlM
+         PMArs6CWOesHeu/qFVPwekImUV5oAJlA7MBQGQmX8dcs07uOtz8Nc5+SXH1Sj32zIanZ
+         YJ6CVLsFABsUCceHI8wTHG31rWO5JrDr6UMi9CDzewsVXBccHGNoku64/4JV/QNxqrE6
+         GUqqz3wK5kl1aMKetx88swcJYwbTdVp6mzIzBxWT8+Umdmm7UY/CQeEAYq+tZvEwkdWg
+         asVA==
+X-Forwarded-Encrypted: i=1; AJvYcCUfx5ULWSiL4xDbYVoDZ+aMlPpxRWoRfxPiv+Iue4Y+/pzohbm9EdmZVjlkQH31PEQ/42R38hdb/qW6@vger.kernel.org
+X-Gm-Message-State: AOJu0Yymca3TspKGmshXM/14256cmf5Yw5jD2q3CG7meRR0M1aQQO65j
+	rvRW70JVzIzlyD3V/FFSzG8gZR+/75052e72kasri6MXbEeoBIFu6dosEeysAQwKBuxkLxVwEF7
+	p
+X-Gm-Gg: ASbGncs27uGp2aknZJBzYoPLRuikILeLGBRJlde7tYhDJkDaO61NXSdRVCcXKT3ua1j
+	0V1zRlwUAVVz4fSz4PjHzHlDhqXahmAR5oY0Qoq/VsAi3NaWCFnBYhU87QB8buGgIzvJCUVAPzJ
+	KfTJvHLUTpLjl9QYdtvpN1v/O5I5gaKb4YOA7ShK8hrvxjUsb/GhzRktsj3Q9DBcC8Xn90SmYHd
+	vkdKJdq2EQm4+Yfp8FXRHjTCPdFRZdRl7qcoB8qZmIuUdpRKls4lVCb/xkLEiAJlx11azMJIaU2
+	QRp9nanm/GjPifi3Pf+2WfPhrc9iuduMP8hd8u9Fbxw=
+X-Google-Smtp-Source: AGHT+IFqz3+P/LzojKK63DKoN5LiDg2sAGczirpJQaykGYju35Pl96ChoHFNJWnrKSlYuL1pdxITnQ==
+X-Received: by 2002:a17:907:958a:b0:ac1:e45f:9c71 with SMTP id a640c23a62f3a-ac3f00b7260mr1203497566b.1.1742825313578;
+        Mon, 24 Mar 2025 07:08:33 -0700 (PDT)
+Received: from [127.0.1.1] ([62.231.96.41])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac3efda474bsm682381066b.183.2025.03.24.07.08.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Mar 2025 07:08:32 -0700 (PDT)
+From: Abel Vesa <abel.vesa@linaro.org>
+Date: Mon, 24 Mar 2025 16:08:19 +0200
+Subject: [PATCH] arm64: dts: qcom: x1e001de-devkit: Enable support for both
+ Type-A USB ports
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250323225439.32400-1-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250324-x1e001de-devkit-dts-enable-usb-a-ports-v1-1-81153b2d1edf@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAFJn4WcC/x2NwQqDMBAFf0X23IUkphb7K6WHxH1tl5YoiRVB/
+ HeDx5nDzEYFWVHo3myUsWjRMVWwl4aGT0hvsEplcsZdTes8rxbGWAELlq/OLHNhpBB/4H+JHHg
+ ac1WddPB964fY36jGpoyXrufo8dz3A4lU1W14AAAA
+X-Change-ID: 20250324-x1e001de-devkit-dts-enable-usb-a-ports-6d6e4934cb97
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Abel Vesa <abel.vesa@linaro.org>
+X-Mailer: b4 0.15-dev-dedf8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3076; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=k9auSPKt0xDsiEz8cyRI0UCs31hNeF6aYfn1A9QhgOg=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBn4Wda/npmRyJzqsiQLvERIxYU+ZFunlFl8/clm
+ am7qA1/oNGJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZ+FnWgAKCRAbX0TJAJUV
+ VpQ/EACl6/HG8ZoSuTu/f5fQ9UpouXKp+0BZNsYTrlPiAlfni/n5A3sulz9mZa4JzmmzvR74vOT
+ tkpYbvh2JqGZSNvQaGe4zhoRPuAu3Vt+ZEzqiKczPJtM7B3GplN+KMTdQfp/chpibwbc9TponPM
+ qcm1P+XjkY3mSirvzOYO53lu4cjKIcxBFEVj+iLMgJLWn65hmHXuBv4jUx+4Epe3fTiwDaLoaqP
+ 6hJabslNejFMTEnpQMHik5PUrz/lPKctbcxhVQaOgkVlMYhEo6hmwUp+KIlzG0n8dq+uOZMUpLs
+ ea/IICQr0BjESSzEGt6wBp1fYy+UW+/24TT9ewmumQz3nqGH1cud24arriyJc3W06YhvnqBHDwM
+ g0Mm7bcsX5sOMsWvhJsTHAVl5LS2bbOVHMVMj8Kdy4pg0WW7UyZ7TICFkKmT78VvS1zZ1moG9j0
+ eCuLY3SXfdGRxY/JAdDSZgy6JckPKgV5oESRtUS0Mae1ovFlgijSFhwfwT49BKXKemi8ZjqA1wv
+ D7Az4vIKoaqhwZ4XXO5Uaa6dN5wRsgSDS2YFJbCnbGE36OQuxPK29bf3Kwvm8wF1+IfUceqgYwU
+ Kfly5+HyrYMjGM7oaaRV6M9oOa9RzmbAv130wpQBum6DLZLAAg8cnTTNHB9NrQ/+vfJHL/OUm/z
+ FoQE8qqrqpbo93A==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-> Supported PHYs AS21011JB1, AS21011PB1, AS21010JB1, AS21010PB1,
-> AS21511JB1, AS21511PB1, AS21510JB1, AS21510PB1, AS21210JB1,
-> AS21210PB1 that all register with the PHY ID 0x7500 0x7500
-> before the firmware is loaded.
+The Qualcomm X Elite Devkit has 2 USB-A ports, both connected to the USB
+multiport controller, each one via a separate NXP PTN3222 eUSB2-to-USB2
+redriver to the eUSB2 PHY for High-Speed support, with a dedicated QMP
+PHY for SuperSpeed support.
 
-Does the value change after the firmware is loaded? Is the same
-firmware used for all variants?
+Describe each redriver and then enable each pair of PHYs and the
+USB controller itself, in order to enable support for the 2 USB-A ports.
 
-> +++ b/drivers/net/phy/Kconfig
-> @@ -121,6 +121,18 @@ config AMCC_QT2025_PHY
->  
->  source "drivers/net/phy/aquantia/Kconfig"
->  
-> +config AS21XXX_PHY
-> +	tristate "Aeonsemi AS21xxx PHYs"
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/x1e001de-devkit.dts | 86 ++++++++++++++++++++++++++++
+ 1 file changed, 86 insertions(+)
 
-The sorting is based on the tristate value, so that when you look at
-'make menuconfig' the menu is in alphabetical order. So this goes
-before aquantia.
+diff --git a/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts b/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
+index 74911861a3bf2606add8cf4aaa3816542e837513..643ab2876222b00bfd60b74b20dd79f105a43143 100644
+--- a/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
++++ b/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
+@@ -877,6 +877,40 @@ retimer_ss0_con_sbu_out: endpoint {
+ 	};
+ };
+ 
++&i2c5 {
++	clock-frequency = <400000>;
++
++	status = "okay";
++
++	eusb3_repeater: redriver@47 {
++		compatible = "nxp,ptn3222";
++		reg = <0x47>;
++		#phy-cells = <0>;
++
++		vdd3v3-supply = <&vreg_l13b_3p0>;
++		vdd1v8-supply = <&vreg_l4b_1p8>;
++
++		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
++
++		pinctrl-0 = <&eusb3_reset_n>;
++		pinctrl-names = "default";
++	};
++
++	eusb6_repeater: redriver@4f {
++		compatible = "nxp,ptn3222";
++		reg = <0x4f>;
++		#phy-cells = <0>;
++
++		vdd3v3-supply = <&vreg_l13b_3p0>;
++		vdd1v8-supply = <&vreg_l4b_1p8>;
++
++		reset-gpios = <&tlmm 184 GPIO_ACTIVE_LOW>;
++
++		pinctrl-0 = <&eusb6_reset_n>;
++		pinctrl-names = "default";
++	};
++};
++
+ &i2c7 {
+ 	clock-frequency = <400000>;
+ 
+@@ -1129,6 +1163,22 @@ wcd_tx: codec@0,3 {
+ &tlmm {
+ 	gpio-reserved-ranges = <44 4>; /* SPI (TPM) */
+ 
++	eusb3_reset_n: eusb3-reset-n-state {
++		pins = "gpio6";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++		output-low;
++	};
++
++	eusb6_reset_n: eusb6-reset-n-state {
++		pins = "gpio184";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++		output-low;
++	};
++
+ 	nvme_reg_en: nvme-reg-en-state {
+ 		pins = "gpio18";
+ 		function = "gpio";
+@@ -1371,3 +1421,39 @@ &usb_1_ss2_dwc3_hs {
+ &usb_1_ss2_qmpphy_out {
+ 	remote-endpoint = <&retimer_ss2_ss_in>;
+ };
++
++&usb_mp {
++	status = "okay";
++};
++
++&usb_mp_hsphy0 {
++	vdd-supply = <&vreg_l2e_0p8>;
++	vdda12-supply = <&vreg_l3e_1p2>;
++
++	phys = <&eusb6_repeater>;
++
++	status = "okay";
++};
++
++&usb_mp_hsphy1 {
++	vdd-supply = <&vreg_l2e_0p8>;
++	vdda12-supply = <&vreg_l3e_1p2>;
++
++	phys = <&eusb3_repeater>;
++
++	status = "okay";
++};
++
++&usb_mp_qmpphy0 {
++	vdda-phy-supply = <&vreg_l3e_1p2>;
++	vdda-pll-supply = <&vreg_l3c_0p8>;
++
++	status = "okay";
++};
++
++&usb_mp_qmpphy1 {
++	vdda-phy-supply = <&vreg_l3e_1p2>;
++	vdda-pll-supply = <&vreg_l3c_0p8>;
++
++	status = "okay";
++};
 
-> +/* 5 LED at step of 0x20
-> + * FE: Fast-Ethernet (100)
-> + * GE: Gigabit-Ethernet (1000)
-> + * NG: New-Generation (2500/5000/10000)
-> + * (Lovely ChatGPT managed to translate meaning of NG)
+---
+base-commit: 9388ec571cb1adba59d1cded2300eeb11827679c
+change-id: 20250324-x1e001de-devkit-dts-enable-usb-a-ports-6d6e4934cb97
 
-It might be a reference to NBase-T Gigabit.
+Best regards,
+-- 
+Abel Vesa <abel.vesa@linaro.org>
 
-Please add a comment somewhere about how locking works for IPCs. As
-far as i see, the current locking scheme is that IPCs are only called
-from probe, so no locking is actually required. But:
-
-> +#define IPC_CMD_NG_TESTMODE		0x1b /* Set NG test mode and tone */
-> +#define IPC_CMD_TEMP_MON		0x15 /* Temperature monitoring function */
-> +#define IPC_CMD_SET_LED			0x23 /* Set led */
-
-suggests IPCs might in the future be needed outside of probe, and then
-a different locking scheme might be needed, particularly for
-temperature monitoring.
-
-> +static int as21xxx_get_features(struct phy_device *phydev)
-> +{
-> +	int ret;
-> +
-> +	ret = genphy_read_abilities(phydev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* AS21xxx supports 100M/1G/2.5G/5G/10G speed. */
-> +	linkmode_clear_bit(ETHTOOL_LINK_MODE_10baseT_Half_BIT,
-> +			   phydev->supported);
-> +	linkmode_clear_bit(ETHTOOL_LINK_MODE_10baseT_Full_BIT,
-> +			   phydev->supported);
-> +	linkmode_clear_bit(ETHTOOL_LINK_MODE_100baseT_Half_BIT,
-> +			   phydev->supported);
-
-Does this mean the registers genphy_read_abilities() reads are broken
-and report link modes it does not actually support?
-
-> +	linkmode_set_bit(ETHTOOL_LINK_MODE_100baseT_Full_BIT,
-> +			 phydev->supported);
-> +	linkmode_set_bit(ETHTOOL_LINK_MODE_1000baseT_Full_BIT,
-> +			 phydev->supported);
-
-and it is also not reporting modes it does actually support? Is
-genphy_read_abilities() actually doing anything useful? Some more
-comments would be good here.
-
-> +	linkmode_set_bit(ETHTOOL_LINK_MODE_2500baseT_Full_BIT,
-> +			 phydev->supported);
-> +	linkmode_set_bit(ETHTOOL_LINK_MODE_5000baseT_Full_BIT,
-> +			 phydev->supported);
-> +	linkmode_set_bit(ETHTOOL_LINK_MODE_10000baseT_Full_BIT,
-> +			 phydev->supported);
-
-Does this mean genphy_c45_pma_read_abilities() also returns the wrong
-values?
-
-> +static int as21xxx_read_link(struct phy_device *phydev, int *bmcr)
-> +{
-> +	int status;
-> +
-> +	*bmcr = phy_read_mmd(phydev, MDIO_MMD_AN,
-> +			     MDIO_AN_C22 + MII_BMCR);
-> +	if (*bmcr < 0)
-> +		return *bmcr;
-> +
-> +	/* Autoneg is being started, therefore disregard current
-> +	 * link status and report link as down.
-> +	 */
-> +	if (*bmcr & BMCR_ANRESTART) {
-> +		phydev->link = 0;
-> +		return 0;
-> +	}
-> +
-> +	status = phy_read_mmd(phydev, MDIO_MMD_AN, MDIO_STAT1);
-
-No MDIO_AN_C22 + here? Maybe add a comment about which C22 registers
-are mapped into C45 space.
-
-	Andrew
 
