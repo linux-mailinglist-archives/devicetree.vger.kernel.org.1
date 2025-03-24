@@ -1,97 +1,129 @@
-Return-Path: <devicetree+bounces-160358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160354-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 900C4A6E74A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 00:42:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14F3EA6E73E
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 00:40:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5342A1896CCC
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 23:42:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CBA5E1893CFF
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 23:40:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D405A1F1518;
-	Mon, 24 Mar 2025 23:42:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B10A1F1507;
+	Mon, 24 Mar 2025 23:40:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="MKi1+MqQ"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="a5qdpjSi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 425AF1F1507
-	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 23:42:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 756C11F0E4B;
+	Mon, 24 Mar 2025 23:40:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742859750; cv=none; b=u21mDZEdJZKebrs1MioJz3CL8oCspFF4Se4R7iU+Bbn4Q6OoFL4RIaWlFzC+0ru1OVnDREHdsOgiFs1S/o2lgBqv57caRBSjEGPc1QwooN4Y+axvTdSOBtpfL0MFd2ujz3ry6xiPa0+OWxgT9q3mcbysntVlII8xn0GEzJJNoQE=
+	t=1742859644; cv=none; b=FmtYzwpTmGlTAF9XP3ODeaTIMAR+7IcqwHXprYF8ELwkYhZgGiENTX7LDtBjhla05H9am6SJ/GApbvwYW/j6qz3my9ZKKXlsNqKzKRnFQijQmZxjEz1wV6xZ7iSYecq8zmcD7SeCE73JDpSIhC5i2y6uHSmVc4j7JKjUiANr6YM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742859750; c=relaxed/simple;
-	bh=gHqNINmUE6Sh+aEqT7SFhVmRGu+NDrLTfw0qqUc99wE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Z4+SlExTqWRTnSsLpqlYq+UJmS+9uop6fFY7Ktzz1eA0hyCY1ku274PTg2Z00tCQWojK0Dgl2DBrnpfP6Sn80MhtzF9sJ4VUAJDXAntp5H4EcLLuPa4bm6tdAalyBs4T1kyUkKCJ2/yP3y0amjZoQCOebs5sfTMO3O/lC2ETcbo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=MKi1+MqQ; arc=none smtp.client-ip=89.58.32.78
+	s=arc-20240116; t=1742859644; c=relaxed/simple;
+	bh=rCmrnBlao2XUfzAQtujQ7ftFEmxwoE6+EH3ux0BP3Qs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=PqObv8FDjSRfFlFDKdWgCNZfOz7YAyqw40wXwCYe2ojbCjFrvgcWH52qvw4s8Qj/Gbs3C+UhTRMXEsRU5XfI7k5hIN7wcNMtdJme2jA0LpYPMFM8Rzn0kh1jl7yLDQBBJynTo5+VbvmS/Gy2EZ3vNeyRsOUtH1Nap1M0+97zwig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=a5qdpjSi; arc=none smtp.client-ip=89.58.32.78
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DDF9A102901EC;
-	Tue, 25 Mar 2025 00:42:24 +0100 (CET)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3619C102E64C5;
+	Tue, 25 Mar 2025 00:40:35 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1742859746; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=lXtYPxkN0FShPNZtCQz09+v2tB5oa8aca5wSl7XB7nE=;
-	b=MKi1+MqQFGvKBQMv6rvYCVscT5Ea/EVGZFWhhy+Cp9DphxbDIhFMtF7OfAAL85Xn6l9Hd5
-	dilTPqOCoXPD5niqb4Xj31uho+3FA4d6gjuW/SuuWav4VAKd6q8QamMGkcX3yABgY47zaB
-	QDnI1j+Iy2HB4WN9Ke3v1KhvkSLsooFC/7v9YGFkCFjQafKqc7v14bw9oMSudt0+Aru4QB
-	A/PmqqM29sMX7HKnjS8SQjWeVprVD7+Plhdt59GKzSBKsYD7CqEfn9ucuqKHJAGTkFuYzs
-	9CqjfTrzI3iQz6tlko+FREK/DGAD3QWMTiCk2AyzrUNg3QOiShLw8XAkNwPO6A==
-Message-ID: <c1de2afb-3559-4fbb-b13b-2373175b420b@denx.de>
-Date: Tue, 25 Mar 2025 00:37:59 +0100
+	t=1742859638; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=ebW5uUbDixz+WtbLPFY5UlkKryXzpM2RUhwCViXppAI=;
+	b=a5qdpjSiqcP8TPDm/nqcqKeCTCdZ/Aaw1VFhOf78vzuwvd+GofIRY7yLIoU2jEby8DcMA3
+	g52MEK89jy/T2o+oHOKIa2q0wsPPf2rp3EMZhN4VcQELMbPidB0YZlU25oG8Jwr1Skk0Qz
+	/iiFkliEWNAg8sBEHJdp8a9+lTheVQhzxxcP0lsf976Phajm4i9jUVGeQX+5CJspFbKEVT
+	wMIxBKYCLp9qn5AAq//ihsnuDOjwkGBEmH85FA1GeE7qxoyhYQdAWw8jGSCSA9U3MwgNjv
+	KVBiKhzlFmGt6KKdQmZkY8PgaLExbHse+cmiO1oHXYJQtO5nYEnlqYNMG4tYTw==
+From: Marek Vasut <marex@denx.de>
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marex@denx.de>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	Frieder Schrempf <frieder.schrempf@kontron.de>,
+	Hiago De Franco <hiago.franco@toradex.com>,
+	Joao Goncalves <joao.goncalves@toradex.com>,
+	Joao Goncalves <jpaulo.silvagoncalves@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Max Merchel <Max.Merchel@ew.tq-group.com>,
+	Michael Walle <mwalle@kernel.org>,
+	Peng Fan <peng.fan@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Tim Harvey <tharvey@gateworks.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: arm: imx: document i.MX 95 Verdin Evaluation Kit (EVK)
+Date: Tue, 25 Mar 2025 00:40:01 +0100
+Message-ID: <20250324234013.140440-1-marex@denx.de>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/9] drm/panthor: Implement optional reset
-To: Boris Brezillon <boris.brezillon@collabora.com>
-Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
- David Airlie <airlied@gmail.com>, Fabio Estevam <festevam@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Steven Price <steven.price@arm.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, imx@lists.linux.dev
-References: <20250321200625.132494-1-marex@denx.de>
- <20250321200625.132494-5-marex@denx.de>
- <20250324094333.7afb17a1@collabora.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <20250324094333.7afb17a1@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 
-On 3/24/25 9:43 AM, Boris Brezillon wrote:
+Document support for i.MX 95 Verdin Evaluation Kit (EVK), which
+used to be the Titan EVK.
 
-[...]
+Note that the SoM used in this EVK is a derivative SoM from Verdin
+line of SoMs, an actual i.MX95 Verdin SoM is under development.
 
->> @@ -563,6 +585,7 @@ int panthor_device_suspend(struct device *dev)
->>   
->>   	panthor_devfreq_suspend(ptdev);
->>   
->> +	reset_control_assert(ptdev->resets);
-> 
-> Hm, that might be the cause of the fast reset issue (which is a fast
-> resume more than a fast reset BTW): if you re-assert the reset line on
-> runtime suspend, I guess this causes a full GPU reset, and the MCU ends
-> up in a state where it needs a slow reset (all data sections reset to
-> their initial state). Can you try to move the reset_control_[de]assert
-> to the unplug/init functions?
-Is it correct to assume , that if I remove all reset_control_assert() 
-calls (and keep only the _deassert() calls), the slow resume problem 
-should go away too ?
+[1] https://www.toradex.com/computer-on-modules/verdin-arm-family/nxp-imx95-evaluation-kit
+
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Francesco Dolcini <francesco.dolcini@toradex.com>
+Cc: Frieder Schrempf <frieder.schrempf@kontron.de>
+Cc: Hiago De Franco <hiago.franco@toradex.com>
+Cc: Joao Goncalves <joao.goncalves@toradex.com>
+Cc: Joao Goncalves <jpaulo.silvagoncalves@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Max Merchel <Max.Merchel@ew.tq-group.com>
+Cc: Michael Walle <mwalle@kernel.org>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Tim Harvey <tharvey@gateworks.com>
+Cc: devicetree@vger.kernel.org
+Cc: imx@lists.linux.dev
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 1b90870958a22..30dc200cc1561 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1352,6 +1352,7 @@ properties:
+           - enum:
+               - fsl,imx95-15x15-evk       # i.MX95 15x15 EVK Board
+               - fsl,imx95-19x19-evk       # i.MX95 19x19 EVK Board
++              - toradex,verdin-imx95-19x19-evk  # i.MX95 Verdin Evaluation Kit (EVK)
+           - const: fsl,imx95
+ 
+       - description: i.MXRT1050 based Boards
+-- 
+2.47.2
+
 
