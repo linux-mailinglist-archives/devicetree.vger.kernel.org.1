@@ -1,124 +1,126 @@
-Return-Path: <devicetree+bounces-160172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62E89A6DAF1
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 14:19:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F9C6A6DB65
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 14:27:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9DE11884BE7
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 13:19:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A6713170790
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 13:26:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E63125E805;
-	Mon, 24 Mar 2025 13:18:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=temperror (0-bit key) header.d=aruba.it header.i=@aruba.it header.b="lU3l+Ig2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D65D825F99E;
+	Mon, 24 Mar 2025 13:25:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpdh17-1.aruba.it (smtpdh17-1.aruba.it [62.149.155.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEC72200CB
-	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 13:18:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.149.155.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38CE025F989;
+	Mon, 24 Mar 2025 13:25:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742822331; cv=none; b=X/Lz4esHrwBgT7AuoOUmLjowQIiqNAIL7wwL6433wAOtpW3mVKuAQriDhsqg+ChSXHN7yBjaScaTHVJujY6dsNvO3E4em2GCRbPJZcD9RlkBNdkEfRYwd60zF4ARK9f/AnWFRkbhk3rXeLPnuxuGIuumYZXxl68A9Q3o1rszf58=
+	t=1742822728; cv=none; b=qrO2RxcgmtBJM/X3VA78iOGFfiwPDjoymuU8jV/+d3zFldufakIptULjLjJIzEDNYASV6Qwv1Pp04XFVRLBO/6hgaKnkK29thzRLxmHCQ2ZEibDcM2f2amQ/RKkgbRtpCaGoD86oE1vrhf8XU2gBy8lnPTrkFb5IBkd3JLMqHk0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742822331; c=relaxed/simple;
-	bh=SDiqh0ysPGzyCfjrTu72lDTTTS2qXy/UjlB5vc/Sayk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=CCtXj3P+1KxYexpqF1qxRdtry3qWcTl3QHfFkUwnq/G64y/21IIRceJbEep8vUHR5FDY2q2RibAUaCSSgtDx+i09IuiPVm3nuILyYKJLijy6Zyr0HIVOLjRof+WjHDbbBPOi9bg+TLIKjIHGJVOjj7wKVYNWMVqNHvTFTDlWFNo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=enneenne.com; spf=pass smtp.mailfrom=enneenne.com; dkim=temperror (0-bit key) header.d=aruba.it header.i=@aruba.it header.b=lU3l+Ig2; arc=none smtp.client-ip=62.149.155.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=enneenne.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=enneenne.com
-Received: from [192.168.1.58] ([79.0.204.227])
-	by Aruba SMTP with ESMTPSA
-	id wheVtfUP6tfOnwheVt0Wdr; Mon, 24 Mar 2025 14:15:40 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
-	t=1742822140; bh=SDiqh0ysPGzyCfjrTu72lDTTTS2qXy/UjlB5vc/Sayk=;
-	h=Date:MIME-Version:Subject:To:From:Content-Type;
-	b=lU3l+Ig2sse+tbumA0SVjxNyqRwt9VRCOOK7vGvNnqxheuInnrGE+QSg23Ao9b2zv
-	 F+gzTcNL9kHUF8Wek40TcLmB9lhU9hrsA6gxq2zeDXHj+R8AtXvILnCyo8gQuIrBdy
-	 GTdGYyPq0T62lQ9EOfpafCYqsZxzeZ3VAexJDFFpa0bq2rulX/sq7RstsWDF0x5evZ
-	 tkGAcE7Yr4cem0lQBl+HoXKD7LhBqTNSpDGIhgBT2joes5ybu+ihPjawpjacM3CzDn
-	 20sce6NvZrER8TRUVKvjkiXILbjgfkgujPhkurMV/iZ/Byol0pQcstyJ0ds+hZaOtH
-	 9Qq1bQCHwklJQ==
-Message-ID: <8bd8ca96-1334-42c7-8dc4-2db1785301b9@enneenne.com>
-Date: Mon, 24 Mar 2025 14:15:39 +0100
+	s=arc-20240116; t=1742822728; c=relaxed/simple;
+	bh=5sydytHx7h525TTyhjomwsCO0JsaR5Fp//WMRl6worI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=uBtjaS2DGtG8g/EO9QjAf24LkLp99cqmKCt3T65aA7SMhgOyeZw8Rp0u1o6sU9lQJ21r80SlDDBKtAa7+6eZByYeKSDhtzz4eHrmjrsnLqGT5DMfVLBCG5oFUDnlEzBFbHVs8M1RbLpSWVRzBvhH9wKsHMeWG6Igyuzz+GgdfuY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-86d69774081so1832343241.0;
+        Mon, 24 Mar 2025 06:25:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742822725; x=1743427525;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pysUx5KjUsnCC7SRGDXolsL0u/kPjjXuwebo/Ew3v+g=;
+        b=EuduDbpz5L7JywfYN4Tjh49acGhOsd4c3lYwH5YyaumuUC7sJB7hotootVnNGilV3K
+         MofP5cGqV8kAs+ZfVatcQzMU1ZBYqebgV09FH35PXDrKQoow/ktPoq4xSVULy3F/MLxl
+         ieb6VZXWs4ykAcVjN+RBXJusminQzWsV0tpMRbfLQGBN9yGc5lG4LCUkpIBt+E3VLeNn
+         czzxZxw9AZxA8nBsz2ksloa8KRIKZJtqoHDDZ8Bqu4cq3LEgB8r/zCyce6/9XhYDaCiA
+         GWV0EZR3H5+anhQ2S1NTH5i1/k5aRIqCysA5Qfu9AZdeka2WydR7Mj4liiUkMbdMr9Vj
+         fmFA==
+X-Forwarded-Encrypted: i=1; AJvYcCVAEzChmIpfe2HStDmYzfukNbDjgxjjA3gcoMyGyEc+OZwS32S1FveKCH/csDt0PGItHFJiLQG8T3Oq26iubv3Fx2w=@vger.kernel.org, AJvYcCWzCkf3q2WZd+xOSSXaiIQBuGwPGbuFE62Uvj3HjrdRDMb4QCng2sLwa9RBvb70yzQ1JT78cjCg6p9ZKw==@vger.kernel.org, AJvYcCX0QqwhEVKIRh+zH+NOtEka02p0mVV1V9cCH+t6qvLu4aD40Rj8FLSaA9u4eeOO15aRv7MYS6Olfcrf@vger.kernel.org, AJvYcCXz9coG5I8a6VRSc1KqAJIiCwKoe7p73EszrL4AMm+GtbUbmjeDjFDYPu1uGtkDNaavjS3ORL9dZvV/0gdm@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywo63BD5bOd3D5cxEENwoj4r86QYexBS46eDqPV+v/11bEQy9pO
+	ic6Tq612AdN7Rw6HGX8cmwSwU4Zo9kfmVYc9TXVueHJ+fdcIS/CzNvPOhFbk
+X-Gm-Gg: ASbGnct0pOQvscCt+o8A0JFKv90StxSAjJDTGUhCUuYHZBJc0aLKZl/u3Szkkes+VWh
+	1MladtIyTYWYzUYdlOuMniDzaqvQBqm9hSnSxg+a2JboKvEFJ2j0s3JIhCVbJMPpi5dG8tUub4a
+	fknkrxTD8jHOSv7Dd4wYoW+if63btpEj6z97o9hTBdHdDwNfyvivhQB51lwuGT2qXYQJK/bWKR4
+	B+Ex/+HGsR2OVQJs/EC627yD4gccw5tL0ORn4JMMK1AKSXaqlbtmvRwJo2HhyEx0AdW/Gelck6C
+	HuUCn3k8v0TLhZtDjAxHcIgaxGkajcXLDor9UWmqNCNIOW8WwBjLEQTSspVCqDBfVO3/tsA3LTq
+	aNZumD9I=
+X-Google-Smtp-Source: AGHT+IHL9Ymtw3VlVx3jr9AyIdjS/9H5taPKKe/gOo+775noX2h3vSpl3dUq88TcU6DqvrglZhSW2w==
+X-Received: by 2002:a05:6102:1944:b0:4c5:1c0b:4ee9 with SMTP id ada2fe7eead31-4c51c0bb1c5mr4429730137.22.1742822724473;
+        Mon, 24 Mar 2025 06:25:24 -0700 (PDT)
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4c50bdbe1ebsm1548308137.29.2025.03.24.06.25.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Mar 2025 06:25:23 -0700 (PDT)
+Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-86d69774081so1832297241.0;
+        Mon, 24 Mar 2025 06:25:22 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUtVbmDoIDlgxbAdU67hlYPXmPtsvL7FdN75sSb6DmFRw9gMG6NomLnolczTDQXY/PSDUGuGUSrHrCs+NadLH7RgV0=@vger.kernel.org, AJvYcCUtvGSECi3hnpgU5FQAx2up1FbLrWti3nO2IZSY1UnadIhfkYmQODKf9Sa0prqhGlGHt2wdIhyC1MGAODgO@vger.kernel.org, AJvYcCV3WKQUMFuFOMHRS3UVWnlF0+y+ijnOuS3S1vO+ksgXHEt93EH6lziGiMZY07/TL6/igALP/4mcULi4@vger.kernel.org, AJvYcCWPWNyFLLFOxE36Z2beO9V/WWYULs8XF+ZLAWkbQD/ZVg6C8+8RyZ2GTVdqCWJDXjljnUERMo/iLzIEGg==@vger.kernel.org
+X-Received: by 2002:a05:6102:fa0:b0:4c1:76a4:aee4 with SMTP id
+ ada2fe7eead31-4c50d5c5525mr9355749137.19.1742822722526; Mon, 24 Mar 2025
+ 06:25:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: pps: gpio: Correct indentation and style in
- DTS example
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250324125122.81810-1-krzysztof.kozlowski@linaro.org>
-From: Rodolfo Giometti <giometti@enneenne.com>
-In-Reply-To: <20250324125122.81810-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4xfFwkio3Nsm9t/3K+JUXUTLnymPuZfWkyLodVABraDib2lMMuehDO7OtHqyP9/f5bCkqq7xu5U1aZzkLd4sCZJ75twsEE1HlWKJgOHZd01GBHLG1dn+pd
- lfApRn4G9tJo+YDpH0BHxaXqA45z4zxogwbXE6yaKt9ibi3KgubXMa0pFGtLV8DQ8QQ8iYyQJDWaWlbP7bNwArK/KAYa9onPHWAQV58ZbAYplOqBBey/mi/y
- 9ZZZTwwCsVxY47LKhI7e1uN8Jb6rQchYz5PJ659q76uxscWOYFsaxPibqqDWYrBTA4vbwzhOiPZsE0rIEFRL5SjgtAXeoiCkSQpe3BECk0pioaPqnFLLMuhb
- /lSRwkRl1ncZ/uYMneDWju17ujzOrV40SnQyV0IQrTamhDMUqTs=
+References: <20250324125326.82270-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250324125326.82270-1-krzysztof.kozlowski@linaro.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 24 Mar 2025 14:25:10 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVKFgm_44XXq7Zq8yqosBCQc1CK9dkJoz4nLQ=aDNx-Yg@mail.gmail.com>
+X-Gm-Features: AQ5f1JrAqzrQO9P6bZUVH1yKTkJKGarnEoNgpKJ1GLu55BnPfqFnSLdxcuz5LI0
+Message-ID: <CAMuHMdVKFgm_44XXq7Zq8yqosBCQc1CK9dkJoz4nLQ=aDNx-Yg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: gpio: Correct indentation and style in DTS example
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Nicolas Ferre <nicolas.ferre@microchip.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Samuel Holland <samuel.holland@sifive.com>, 
+	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>, 
+	Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>, Srinivas Neeli <srinivas.neeli@amd.com>, 
+	Michal Simek <michal.simek@amd.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, 
+	Manikandan Muralidharan <manikandan.m@microchip.com>, Maxime Ripard <mripard@kernel.org>, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
+	Sander Vanheule <sander@svanheule.net>, Bert Vermeulen <bert@biot.com>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+	linux-riscv@lists.infradead.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 24/03/25 13:51, Krzysztof Kozlowski wrote:
+On Mon, 24 Mar 2025 at 13:53, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 > DTS example in the bindings should be indented with 2- or 4-spaces and
 > aligned with opening '- |', so correct any differences like 3-spaces or
-> mixtures 2- and 4-spaces in one binding.
-> 
+> mixtures 2- and 4-spaces in one binding.  While re-indenting, drop
+> unused labels.
+>
 > No functional changes here, but saves some comments during reviews of
 > new patches built on existing code.
-> 
+>
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Acked-by: Rodolfo Giometti <giometti@enneenne.com>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-> ---
->   .../devicetree/bindings/pps/pps-gpio.yaml     | 20 +++++++++----------
->   1 file changed, 10 insertions(+), 10 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pps/pps-gpio.yaml b/Documentation/devicetree/bindings/pps/pps-gpio.yaml
-> index fd4adfa8d2d4..383a838744eb 100644
-> --- a/Documentation/devicetree/bindings/pps/pps-gpio.yaml
-> +++ b/Documentation/devicetree/bindings/pps/pps-gpio.yaml
-> @@ -36,14 +36,14 @@ additionalProperties: false
->   
->   examples:
->     - |
-> -      #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/gpio/gpio.h>
->   
-> -      pps {
-> -          compatible = "pps-gpio";
-> -          pinctrl-names = "default";
-> -          pinctrl-0 = <&pinctrl_pps>;
-> -          gpios = <&gpio1 26 GPIO_ACTIVE_HIGH>;
-> -          assert-falling-edge;
-> -          echo-gpios = <&gpio1 27 GPIO_ACTIVE_HIGH>;
-> -          echo-active-ms = <100>;
-> -      };
-> +    pps {
-> +        compatible = "pps-gpio";
-> +        pinctrl-names = "default";
-> +        pinctrl-0 = <&pinctrl_pps>;
-> +        gpios = <&gpio1 26 GPIO_ACTIVE_HIGH>;
-> +        assert-falling-edge;
-> +        echo-gpios = <&gpio1 27 GPIO_ACTIVE_HIGH>;
-> +        echo-active-ms = <100>;
-> +    };
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-GNU/Linux Solutions                  e-mail: giometti@enneenne.com
-Linux Device Driver                          giometti@linux.it
-Embedded Systems                     phone:  +39 349 2432127
-UNIX programming
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
