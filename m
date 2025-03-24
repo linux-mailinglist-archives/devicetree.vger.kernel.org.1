@@ -1,267 +1,381 @@
-Return-Path: <devicetree+bounces-160206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34471A6DD6E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 15:51:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08CEAA6DD83
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 15:56:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC066188322B
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 14:51:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 65A60164448
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 14:56:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E244025F7BC;
-	Mon, 24 Mar 2025 14:51:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B71EC25FA33;
+	Mon, 24 Mar 2025 14:56:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="a+4sbbwL"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="RNxgZ5NE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C30B1DD873;
-	Mon, 24 Mar 2025 14:51:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1218C25F986;
+	Mon, 24 Mar 2025 14:56:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742827886; cv=none; b=p0YYD/gpfR92VjK+EjxQUCYeqi1Jo8y4ioqVFm2xdyzrDSPWFjEzXVVugsOocU1idmlC0lBMfHP/EIcr4L4NbM1euV4Jrh/1q9Plurf/KJbk8ojUsgiJu1Fqfwd0nbRIwB44NDwWJ2FWgToMxAJ+61d9DXtxgjX91HXMHzoVAzE=
+	t=1742828166; cv=none; b=soPINecXnYbAtxswArNzb/C4a94k36xJIlfzX0yFHCRNCky45gTaT9zuFw0LNzyJiOxsYB51Oh+fE8ISMQw8D4dawLbwipVKKQWcNcKamziHcmpngD/yeetX6Gr1aGfl1cc7p+zZnOGe7JP2sjSLUxB7UOOKGaOPa6/1E0ADO5w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742827886; c=relaxed/simple;
-	bh=EVg8d56+GZtVAC5pFbcs69FBcsG9CzuUoAmVNueX/ls=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Ugc3558ihEuHOS65dn0tGUUIoLeWKpWLxXLAnCBPXxdZlGe2t2fl/xJbfpVyy5uJrTjA3qohmMX+/fCCQ2oDaGNXfY8a1G7rd/yE+JtiP5xtqh65DsgUeGojyk8s6zCpD2RSFgrqB/Obobz37kkk4AI5evDAP+33EMEeErEdYfc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=a+4sbbwL; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id F180A4426C;
-	Mon, 24 Mar 2025 14:51:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1742827876;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=IzBmYRSRbMO7GTYm/f5eh2yf1ytu606scnOtxAwouqQ=;
-	b=a+4sbbwLUg/mjA/aEGQc1+H1PcQwcyuv5gW/pLuUJyTO10Yb5OAJN4n+7Td37yB7zy54Hm
-	h4Xev7mOAVlrbYeKZ6fvmsTLJn/3O5yakpMeR94BO8uBg3sMWqmbb1uJSQhNEffCEGhJbv
-	j9jGAKcpF+0pLXDL+DJLu/ezbmjGeLTbOegHuSnDs7NN3HgKUyzqSiy6xi7IPOBrpu5DkC
-	ExcyuwN/isCDMxIPV0an++5Jqks93NBfohwUTQC41ovjUDcLILO/zkoKqZoj62opKSboxy
-	uGkx10TsjWYRqcd3h7xnBPNweknORYvLNZXazl2fZXW656tmIHAVKKFS4bevkQ==
-From: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Date: Mon, 24 Mar 2025 15:50:44 +0100
-Subject: [PATCH v4] ARM: dts: r9a06g032: add r9a06g032-rzn1d400-eb board
- device-tree
+	s=arc-20240116; t=1742828166; c=relaxed/simple;
+	bh=aJtROEr0p4QqFHVIFesS50f9Sn8u07RSp+2NpoUYgtU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rmdje9mJJrBWb/bRSDU2yTqXbTUPt1lDjwrDv+vYDz7ETQf516Kt2vo1TY81jz/6+1Pj+4nvnZ+aU5/6Zx9TnAOZ+hhyP9IqhmchlitfZcPJLLEbxVcDXp3jsB+7aq5H9bJauCnflqpUbl40ToIxbBgCUo/C6zOxtYcgpOtz/4c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=RNxgZ5NE; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=z0WKSF5GzBb+pmeXkSnUp4O1kxJLVDjr8oStmoA+P7c=; b=RNxgZ5NEnVGPgjYZu79iK/oB6F
+	HN3lPNZVjpH42XQWXmDubPn8tTMIus7z7HiAYeO2LFmLBo9JSHcKrF9R80CERENuV1Nwl8Gxj46v3
+	vEYCZrj+lP3ZlIIgnWqxYNWK3rIWqcZfSE2KeBe+M1xEY+FVTHUrGyyvM2RrxkQJFDFNVZ0VY/LQT
+	HAimw1IhPlud60qVuACBuRTURPXsyxclsfkatdjO6y9AKwS+hDkOCsUqluRGT/Ogxo5dlSSScy8hb
+	Ttwlsj9iThqF8goILtfVpItrp7JamSnGcri1z6SPoZ6jEruAAa9qhhTFoKVgL2p5cYdREUYh+Uwj5
+	wZLvDqVA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:46752)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1twjDR-0003gk-10;
+	Mon, 24 Mar 2025 14:55:49 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1twjDO-0002KC-1V;
+	Mon, 24 Mar 2025 14:55:46 +0000
+Date: Mon, 24 Mar 2025 14:55:46 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next PATCH 1/2] net: phy: Add support for new Aeonsemi PHYs
+Message-ID: <Z-FycizAnGoxQLOj@shell.armlinux.org.uk>
+References: <20250323225439.32400-1-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250324-rzn1d400-eb-v4-1-d7ebbbad1918@bootlin.com>
-X-B4-Tracking: v=1; b=H4sIAENx4WcC/1XMQQ6CMBCF4auQWVvToQWiK+9hWECZyiTakpY0K
- undrbhy+b/kfRtECkwRztUGgRJH9q6EPlRg5sHdSPBUGmpZNxLrToS3w0lLKWgUyhrU3WlARS2
- UxxLI8nPXrn3pmePqw2vHk/quP0eh/nOSEih0Y7SdlG1J4mX0fr2zOxr/gD7n/AFOadqWqAAAA
- A==
-X-Change-ID: 20250127-rzn1d400-eb-3fc1479a13e6
-To: Geert Uytterhoeven <geert+renesas@glider.be>, 
- Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- =?utf-8?q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>, 
- linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?Cl=C3=A9ment_L=C3=A9ger?= <clement.leger@bootlin.com>, 
- Thomas Bonnefille <thomas.bonnefille@bootlin.com>, 
- Wolfram Sang <wsa+renesas@sang-engineering.com>, 
- =?utf-8?q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-X-Mailer: b4 0.14.2
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdduiedttdeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhfffugggtgffkvfevofesthekredtredtjeenucfhrhhomhepvfhhohhmrghsuceuohhnnhgvfhhilhhlvgcuoehthhhomhgrshdrsghonhhnvghfihhllhgvsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeejgfduudejgffgvdduteeuteejvdeuieegkedvkefgueekleeghfeuueefieeiieenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplgduledvrdduieekrddtrddvtdeingdpmhgrihhlfhhrohhmpehthhhomhgrshdrsghonhhnvghfihhllhgvsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedugedprhgtphhtthhopehthhhomhgrshdrphgvthgriiiiohhnihessghoohhtlhhinhdrtghomhdprhgtphhtthhopehgvggvrhhtodhrvghnvghsrghssehglhhiuggvrhdrsggvpdhrtghpthhtoheptghlvghmvghnthdrlhgvghgvrhessghoohhtlhhinhdrtghomhdprhgtphhtthhopehlihhnuhigqdhrvghnvghsrghsqdhsohgtsehvghgvrhdrkhgvr
- hhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepmhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomhdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehnihhklhgrshdrshhouggvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgv
-X-GND-Sasl: thomas.bonnefille@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250323225439.32400-1-ansuelsmth@gmail.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-From: Clément Léger <clement.leger@bootlin.com>
+First, please include a cover message whenever you send a patch series.
 
-The EB board (Expansion board) supports both RZ/N1D and RZ-N1S. Since this
-configuration targets only the RZ/N1D, it is named r9a06g032-rzn1d400-eb.
-It adds support for the 2 additional switch ports (port C and D) that are
-available on that board.
+On Sun, Mar 23, 2025 at 11:54:26PM +0100, Christian Marangi wrote:
+> Add support for new Aeonsemi 10G C45 PHYs. These PHYs intergate an IPC
+> to setup some configuration and require special handling to sync with
+> the parity bit. The parity bit is a way the IPC use to follow correct
+> order of command sent.
+> 
+> Supported PHYs AS21011JB1, AS21011PB1, AS21010JB1, AS21010PB1,
+> AS21511JB1, AS21511PB1, AS21510JB1, AS21510PB1, AS21210JB1,
+> AS21210PB1 that all register with the PHY ID 0x7500 0x7500
+> before the firmware is loaded.
 
-Signed-off-by: Clément Léger <clement.leger@bootlin.com>
-[Thomas: move the DTS to the Renesas directory, declare the PHY LEDs]
-Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-Tested-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
----
-This short series adds support for the RZ/N1 Expansion Board. This board
-is a carrier board on which a daughter board (either RZ/N1D or RZ/N1S)
-can be plugged. The device-tree that is added by this series enables the
-use to the 2 external switch ports that are present on this board.
----
-V4:
- - Drop trailing whitespaces
+Hmm. That behaviour is really not nice for the kernel to deal with. C45
+PHYs have multiple IDs (there's registers 2,3 and also 14,15, each is
+per MMD). Do they all have the same value? Do any of them indicate any
+kind of valid OUI ?
 
-V3:
- - Drop bindings commit as it was applied to master
- - Move Makefile modification to arch/arm/boot/dts/renesas/Makefile
- - Declare LEDs in PHY.
- - Use the driver default LED configuration as there was no reason to
-   use a different one.
+If there is no way to sanely detect this PHY, then I would suggest that
+it is beyond the ability of the kernel, and at the very least, an
+initial firmware version needs to be loaded by board boot firmware so
+the PHY _can_ be properly identified.
 
-V2:
- - Add "renesas,rzn1d400-db" in list of compatibles for EB board
- - Replace '_' with '-' in eth pins node name
- - Split some long lines in dts
----
- arch/arm/boot/dts/renesas/Makefile                 |   1 +
- .../arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts | 120 +++++++++++++++++++++
- 2 files changed, 121 insertions(+)
+Basically, it isn't the kernel's job to fix such broken hardware.
 
-diff --git a/arch/arm/boot/dts/renesas/Makefile b/arch/arm/boot/dts/renesas/Makefile
-index 833a02447ecf7a02bd2efe70fae15213ede9a6de..947c7fe0280337a3aa6e9a0257f406694892239c 100644
---- a/arch/arm/boot/dts/renesas/Makefile
-+++ b/arch/arm/boot/dts/renesas/Makefile
-@@ -30,4 +30,5 @@ dtb-$(CONFIG_ARCH_RENESAS) += \
- 	r8a7794-alt.dtb \
- 	r8a7794-silk.dtb \
- 	r9a06g032-rzn1d400-db.dtb \
-+	r9a06g032-rzn1d400-eb.dtb \
- 	sh73a0-kzm9g.dtb
-diff --git a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..1aac06b0e423345bb6d9b88f86cfee99c11def46
---- /dev/null
-+++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts
-@@ -0,0 +1,120 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Device Tree Source for the RZN1D-EB Board
-+ *
-+ * Copyright (C) 2023 Schneider-Electric
-+ *
-+ */
-+
-+#include "r9a06g032-rzn1d400-db.dts"
-+
-+/ {
-+	model = "RZN1D-EB Board";
-+	compatible = "renesas,rzn1d400-eb", "renesas,rzn1d400-db",
-+		     "renesas,r9a06g032";
-+};
-+
-+&mii_conv2 {
-+	renesas,miic-input = <MIIC_SWITCH_PORTD>;
-+	status = "okay";
-+};
-+
-+&mii_conv3 {
-+	renesas,miic-input = <MIIC_SWITCH_PORTC>;
-+	status = "okay";
-+};
-+
-+&pinctrl{
-+	pins_eth1: pins-eth1 {
-+		pinmux = <RZN1_PINMUX(12, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(13, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(14, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(15, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(16, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(17, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(18, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(19, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(20, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(21, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(22, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(23, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>;
-+		drive-strength = <6>;
-+		bias-disable;
-+	};
-+
-+	pins_eth2: pins-eth2 {
-+		pinmux = <RZN1_PINMUX(24, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(25, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(26, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(27, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(28, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(29, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(30, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(31, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(32, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(33, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(34, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-+			 <RZN1_PINMUX(35, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>;
-+		drive-strength = <6>;
-+		bias-disable;
-+	};
-+};
-+
-+&switch {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pins_eth1>, <&pins_eth2>, <&pins_eth3>, <&pins_eth4>,
-+		    <&pins_mdio1>;
-+
-+	mdio {
-+		/* CN15 and CN16 switches must be configured in MDIO2 mode */
-+		switch0phy1: ethernet-phy@1 {
-+			reg = <1>;
-+			leds {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				led@0 {
-+					reg = <0>;
-+				};
-+				led@1 {
-+					reg = <1>;
-+				};
-+				led@2 {
-+					reg = <2>;
-+				};
-+			};
-+		};
-+
-+		switch0phy10: ethernet-phy@10 {
-+			reg = <10>;
-+			leds {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				led@0 {
-+					reg = <0>;
-+				};
-+				led@1 {
-+					reg = <1>;
-+				};
-+				led@2 {
-+					reg = <2>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&switch_port2 {
-+	label = "lan2";
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&switch0phy10>;
-+	status = "okay";
-+};
-+
-+&switch_port3 {
-+	label = "lan3";
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&switch0phy1>;
-+	status = "okay";
-+};
+> +#define VEND1_LED_REG(_n)		(0x1800 + ((_n) * 0x10))
+> +#define   VEND1_LED_REG_A_EVENT		GENMASK(15, 11)
+> +#define     VEND1_LED_REG_A_EVENT_ON_10 FIELD_PREP_CONST(VEND1_LED_REG_A_EVENT, 0x0)
+> +#define     VEND1_LED_REG_A_EVENT_ON_100 FIELD_PREP_CONST(VEND1_LED_REG_A_EVENT, 0x1)
 
----
-base-commit: 4701f33a10702d5fc577c32434eb62adde0a1ae1
-change-id: 20250127-rzn1d400-eb-3fc1479a13e6
+I really don't like the pattern of "define constants using
+FIELD_PREP*()". It seems to me it misses the entire point of the
+bitfield macros, which is to prepare and extract bitfields.
 
-Best regards,
+When I see:
+
+	swith (foo & BLAH_MASK) {
+	case BLAH_OPTION_1:
+		...
+
+where BLAH_OPTION_1 is defined using FIELD_PREP*(), it just
+makes me shudder.
+
+	SWITCH (FIELD_GET(BLAH_MASK, foo)) {
+	case BLAH_OPTION_1:
+		...
+
+where BLAH_OPTION_1 is defined as the numerical field value is much
+more how the bitfield stuff is supposed to be used.
+
+> +enum {
+> +	MDIO_AN_C22 = 0xffe0,
+
+I'd suggest defining this in a driver private namespace, rather than
+using the MDIO_xxx which is used by linux/mdio.h
+
+> +	/* Exit condition logic:
+> +	 * - Wait for parity bit equal
+> +	 * - Wait for status success, error OR ready
+> +	 */
+> +	ret = phy_read_mmd_poll_timeout(phydev, MDIO_MMD_VEND1, VEND1_IPC_STS, val,
+> +					FIELD_GET(AEON_IPC_STS_PARITY, val) ==
+> +						curr_parity &&
+> +					(val & AEON_IPC_STS_STATUS) !=
+> +						AEON_IPC_STS_STATUS_RCVD &&
+> +					(val & AEON_IPC_STS_STATUS) !=
+> +						AEON_IPC_STS_STATUS_PROCESS &&
+> +					(val & AEON_IPC_STS_STATUS) !=
+> +						AEON_IPC_STS_STATUS_BUSY,
+> +					10000, 2000000, false);
+
+Use an inline function, and also please wrap a bit tighter, val seems to
+wrap.
+
+	ret = phy_read_mmd_poll_timeout(phydev, MDIO_MMD_VEND1, VEND1_IPC_STS,
+					val, aeon_cmd_done(curr_parity, val),
+					10000, 2000000, false);
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	*ret_sts = val;
+> +	if ((val & AEON_IPC_STS_STATUS) != AEON_IPC_STS_STATUS_SUCCESS)
+> +		return -EFAULT;
+
+EFAULT means "Bad address". Does not returning successful status mean
+that there was a bad address? If not, please don't do this.
+
+EFAULT is specifically used to return to userspace to tell it that it
+passed the kernel a bad address.
+
+> +
+> +	return 0;
+> +}
+> +
+> +static int aeon_ipc_send_msg(struct phy_device *phydev, u16 opcode,
+> +			     u16 *data, unsigned int data_len, u16 *ret_sts)
+> +{
+> +	u32 cmd;
+> +	int ret;
+> +	int i;
+> +
+> +	if (data_len > AEON_IPC_DATA_MAX)
+> +		return -EINVAL;
+> +
+> +	for (i = 0; i < data_len / sizeof(u16); i++)
+> +		phy_write_mmd(phydev, MDIO_MMD_VEND1, VEND1_IPC_DATA(i),
+> +			      data[i]);
+
+What ensures that this won't overflow the number of registers?
+
+> +
+> +	cmd = FIELD_PREP(AEON_IPC_CMD_SIZE, data_len) |
+> +	      FIELD_PREP(AEON_IPC_CMD_OPCODE, opcode);
+> +	ret = aeon_ipc_send_cmd(phydev, cmd, ret_sts);
+> +	if (ret)
+> +		phydev_err(phydev, "failed to send ipc msg for %x: %d\n", opcode, ret);
+> +
+> +	return ret;
+> +}
+> +
+> +static int aeon_ipc_rcv_msg(struct phy_device *phydev, u16 ret_sts,
+> +			    u16 *data)
+> +{
+> +	unsigned int size = FIELD_GET(AEON_IPC_STS_SIZE, ret_sts);
+> +	int ret;
+> +	int i;
+> +
+> +	if ((ret_sts & AEON_IPC_STS_STATUS) == AEON_IPC_STS_STATUS_ERROR)
+> +		return -EINVAL;
+> +
+> +	for (i = 0; i < DIV_ROUND_UP(size, sizeof(u16)); i++) {
+> +		ret = phy_read_mmd(phydev, MDIO_MMD_VEND1, VEND1_IPC_DATA(i));
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		data[i] = ret;
+
+Unsafe. AEON_IPC_STS_SIZE is 5 bits in size, which means this can write
+indexes 0..31. You pass in a buffer of 8 u16's on the stack. What stops
+the hardware engaging in stack smashing... nothing. Please code more
+carefully.
+
+> +	}
+> +
+> +	return size;
+> +}
+> +
+> +/* Logic to sync parity bit with IPC.
+> + * We send 2 NOP cmd with same partity and we wait for IPC
+> + * to handle the packet only for the second one. This way
+> + * we make sure we are sync for every next cmd.
+> + */
+> +static int aeon_ipc_sync_parity(struct phy_device *phydev)
+> +{
+> +	struct as21xxx_priv *priv = phydev->priv;
+> +	u16 ret_sts;
+> +	u32 cmd;
+> +	int ret;
+> +
+> +	/* Send NOP with no parity */
+> +	cmd = FIELD_PREP(AEON_IPC_CMD_SIZE, 0) |
+> +	      FIELD_PREP(AEON_IPC_CMD_OPCODE, IPC_CMD_NOOP);
+> +	aeon_ipc_send_cmd(phydev, cmd, NULL);
+> +
+> +	/* Reset packet parity */
+> +	priv->parity_status = false;
+> +
+> +	/* Send second NOP with no parity */
+> +	ret = aeon_ipc_send_cmd(phydev, cmd, &ret_sts);
+> +	/* We expect to return -EFAULT */
+> +	if (ret != -EFAULT)
+> +		return ret;
+> +
+> +	if ((ret_sts & AEON_IPC_STS_STATUS) != AEON_IPC_STS_STATUS_READY)
+> +		return -EINVAL;
+> +
+> +	return 0;
+> +}
+> +
+> +static int aeon_ipc_get_fw_version(struct phy_device *phydev)
+> +{
+> +	u16 ret_data[8], data[1];
+> +	u16 ret_sts;
+> +	int ret;
+> +
+> +	data[0] = IPC_INFO_VERSION;
+> +	ret = aeon_ipc_send_msg(phydev, IPC_CMD_INFO, data, sizeof(data),
+> +				&ret_sts);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = aeon_ipc_rcv_msg(phydev, ret_sts, ret_data);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	phydev_info(phydev, "Firmware Version: %s\n", (char *)ret_data);
+> +
+> +	return 0;
+> +}
+> +
+> +static int aeon_dpc_ra_enable(struct phy_device *phydev)
+> +{
+> +	u16 data[2];
+> +	u16 ret_sts;
+> +
+> +	data[0] = IPC_CFG_PARAM_DIRECT;
+> +	data[1] = IPC_CFG_PARAM_DIRECT_DPC_RA;
+> +
+> +	return aeon_ipc_send_msg(phydev, IPC_CMD_CFG_PARAM, data,
+> +				 sizeof(data), &ret_sts);
+> +}
+> +
+> +static int as21xxx_probe(struct phy_device *phydev)
+> +{
+> +	struct as21xxx_priv *priv;
+> +	int ret;
+> +
+> +	phydev->priv = devm_kzalloc(&phydev->mdio.dev,
+> +				    sizeof(*priv), GFP_KERNEL);
+> +	if (!phydev->priv)
+> +		return -ENOMEM;
+> +
+> +	ret = aeon_firmware_load(phydev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = aeon_ipc_sync_parity(phydev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Enable PTP clk if not already Enabled */
+> +	ret = phy_set_bits_mmd(phydev, MDIO_MMD_VEND1, VEND1_PTP_CLK,
+> +			       VEND1_PTP_CLK_EN);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = aeon_dpc_ra_enable(phydev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = aeon_ipc_get_fw_version(phydev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static int as21xxx_get_features(struct phy_device *phydev)
+> +{
+> +	int ret;
+> +
+> +	ret = genphy_read_abilities(phydev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* AS21xxx supports 100M/1G/2.5G/5G/10G speed. */
+> +	linkmode_clear_bit(ETHTOOL_LINK_MODE_10baseT_Half_BIT,
+> +			   phydev->supported);
+> +	linkmode_clear_bit(ETHTOOL_LINK_MODE_10baseT_Full_BIT,
+> +			   phydev->supported);
+> +	linkmode_clear_bit(ETHTOOL_LINK_MODE_100baseT_Half_BIT,
+> +			   phydev->supported);
+> +	linkmode_set_bit(ETHTOOL_LINK_MODE_100baseT_Full_BIT,
+> +			 phydev->supported);
+> +	linkmode_set_bit(ETHTOOL_LINK_MODE_1000baseT_Full_BIT,
+> +			 phydev->supported);
+> +	linkmode_set_bit(ETHTOOL_LINK_MODE_2500baseT_Full_BIT,
+> +			 phydev->supported);
+> +	linkmode_set_bit(ETHTOOL_LINK_MODE_5000baseT_Full_BIT,
+> +			 phydev->supported);
+> +	linkmode_set_bit(ETHTOOL_LINK_MODE_10000baseT_Full_BIT,
+> +			 phydev->supported);
+
+Given all this, does genphy_read_abilities() actually read anything
+useful from the PHY?
+
+> +static struct phy_driver as21xxx_drivers[] = {
+> +	{
+> +		PHY_ID_MATCH_EXACT(PHY_ID_AS21XXX),
+> +		.name		= "Aeonsemi AS21xxx",
+> +		.probe		= as21xxx_probe,
+> +		.get_features	= as21xxx_get_features,
+> +		.read_status	= as21xxx_read_status,
+> +		.led_brightness_set = as21xxx_led_brightness_set,
+> +		.led_hw_is_supported = as21xxx_led_hw_is_supported,
+> +		.led_hw_control_set = as21xxx_led_hw_control_set,
+> +		.led_hw_control_get = as21xxx_led_hw_control_get,
+> +		.led_polarity_set = as21xxx_led_polarity_set,
+> +	},
+
+What if firmware was already loaded? I think you implied that this
+ID is only present when firmware hasn't been loaded.
+
+Thanks.
+
 -- 
-Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
