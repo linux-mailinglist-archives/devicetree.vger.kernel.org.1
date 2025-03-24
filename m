@@ -1,79 +1,48 @@
-Return-Path: <devicetree+bounces-160135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D094FA6D931
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 12:34:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3360EA6D935
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 12:35:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6819166B38
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 11:33:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8739D3AB8EC
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 11:34:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B270C25E467;
-	Mon, 24 Mar 2025 11:33:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59B3B25DD1D;
+	Mon, 24 Mar 2025 11:35:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Rk+6Q2Yy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j9EBxBp5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEA8D25E463
-	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 11:33:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B1EC1E633C;
+	Mon, 24 Mar 2025 11:35:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742816009; cv=none; b=LeAgn7zoWZmnQW+ywMqSuXU82PgYLhkS/7giNb5nXHjXDA/bslMdJtlJKNb1T6cItRvzpMtG5vpZUlHwgdxC01wlnXsQpmoRBoxmzO8omwEMznK+rGbsD0R1dQdzxjK36HfNbgULTyPaUkYV+sxE8WKgHT8oUSq1Lrr66v2ln+U=
+	t=1742816107; cv=none; b=Nu3YgI6qWg+IpOOHRwZ7LRthqEOZxzVWcm1dlnuswCteoIb7YjDP+rY9mvP9MXujgR+X0D5oRSXu3ZXTL1am9/4RGgQyxOMrCzXMHTeRWDP7v2iCT7WqSSz8vAcnVtPb3Ez90RgOkVAC2/9Y6IYfZ4u4uHNOnB4DcfxW9EY5qZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742816009; c=relaxed/simple;
-	bh=0QhCQHHqNirjdYBN4QdEl9+nTA8hPopgI9hEFzjoWzs=;
+	s=arc-20240116; t=1742816107; c=relaxed/simple;
+	bh=luEqyOul0WqVAc0jY9GtMfomrX5FF3FygVVz954eNBU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Mmoc34smy0ICey0wSxE1ykP27LqXA/vgDODSWurVlDvy9FC+72d+frEpcpGNqMDT7BA3Lq3Bs9qyb3wDn07YHwz8XmncnAQu+WWMc95yAC4paSjAGDozjXGlRxzlO8SWUV4IO2jN74G6Xq+xwE7PqoAxdMRSAkAoBpGmr5ZsYcw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Rk+6Q2Yy; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-39149bccb69so3842730f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 04:33:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742816006; x=1743420806; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RZaqAclEJIkWjFVuVskTZM+5u6eA26Yq4IN8pnm0qc8=;
-        b=Rk+6Q2YyZ5mwJEAB4v6YJLWozKyNqVLumD0a1sxc+G6Cqz6C32Zzk//+/wp9wD87qj
-         hp1Xk4Ucd67hLMhFK8M+R8Agh9rMNGJTvTlsJ2yWRllyO0w+4zPbPgy4FJ2WoVQ0W1n5
-         Mg87q6iSV1oPEM0+fdGq05TPo9jQBiJh50z+Pgd4V2qq1VFc/VamwWwkMbXIy+DBZyyO
-         8W9/xL/9UR8rudXN7oJ+wGtZKdrH0VOY896sXrbN3pYDkJ+wNN9LIUUY2Rhw8jIzg0Jr
-         t1mUBVhn11HpaD5wAcHSVk4VAL0Ru3Nf3LR21NrJ/OVhfL8OB3DgDBvhOBBdKvjrG+zG
-         /AcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742816006; x=1743420806;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RZaqAclEJIkWjFVuVskTZM+5u6eA26Yq4IN8pnm0qc8=;
-        b=Um7+TCs4CpzCAElxqEhTsOLnbTuw0Y0jfBgnkjpQQSq/8Eq2Uuj1hNX7Prbh5mFFTa
-         uIKVSLI6SeQ9E7wvAqgzhFuw1jQh0YtnMGpc478Wt65lDR6QV5EE40m6JgiDfS4rKrj3
-         DVAJdm4hCu95Oafc5u0fEHtVWefcY8je/ARSEp2/8IeDlReoZNkjMMjWZ2Famp6vqJVk
-         IaWwYSsKQvHWfTKFFZHVEGclLQpwyFg67avT20U6WCMIinkwV3ogE2EVArPnWRnqtw5M
-         ghg1SeRApzthsVI7CDfPFhpkhSoBWjgMh3ecAqrGluB360BlTFirtmYkBelZFF560BbP
-         3Xwg==
-X-Forwarded-Encrypted: i=1; AJvYcCXGP3VJYvcxSadSNl0tgs6leNDI//arDApxLoE1XzbSFfdIlbrzXrB3Vv2HoBQB2UElmdAnxprosK7U@vger.kernel.org
-X-Gm-Message-State: AOJu0YwoiIqQSaKbrQPdMcjJX4zSz8wDcECzShYOMGrlhvbzwgjlyj9s
-	k9eU23TMPO9wX7JUcTO5dwHBFmghK/xfAlTFYhlLWbY833eRblXrQlYuEc9JqUo=
-X-Gm-Gg: ASbGncsWhv9WIrCGQ9hGBgF7W1JYsbzoN+tuNuITgMyvtvoVSYPt+po3V4IGzLfDqr0
-	nylfAMKYpfow/K5snyucbNqW2bA3u81myk4kfIGaLKtGwJWCwEgpUMqV6wwsU6XajD9aHhz7wXd
-	YrlJ8IPR0B8m0Y6i7TmPliurbyAr59Q9ffPn3d/ehe/g7uRvkQ3SFEOSlUDpslhWaJt1rBAyKdv
-	2GndZ0bD52ZwzTxq8mI4QpWngwGB6CqmPw3/VBagQ5QPIJwtlsldBHI9K4BywJqZt5JzwKrdj7b
-	dbF9YXg7sFocSn95S/81gS4f5WOlNmPTNn4Wyuz7SQDLSapIZ9U4NpOGMm4EuRY=
-X-Google-Smtp-Source: AGHT+IFSfs1o8ReuKsDzD9hr5+CF5RuqGwYnwXccjml/f40pB4QQMqmLEg2EktW6960K8d3RhxZUkA==
-X-Received: by 2002:a05:6000:186b:b0:391:3768:f448 with SMTP id ffacd0b85a97d-3997f941b0fmr9625633f8f.49.1742816005906;
-        Mon, 24 Mar 2025 04:33:25 -0700 (PDT)
-Received: from [192.168.68.117] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3997f9b517csm10918673f8f.51.2025.03.24.04.33.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Mar 2025 04:33:25 -0700 (PDT)
-Message-ID: <4256f8ab-d975-4f5d-8762-50d301ce4dcd@linaro.org>
-Date: Mon, 24 Mar 2025 11:33:24 +0000
+	 In-Reply-To:Content-Type; b=YAOZfvUPV7JzH4yyAtyY6ipaaYgBtwy2tTSx1RN549c9S0V7v7asdqxJLtU2IRvzY94sgD21IldBA7mqkxwk4Sgjlu4RjeAd7NHVUmilm8BWIDwRAJsttOrawo0u+ZfXZRskjSQQPZbC4o0bzo6d/APVpWJCBj9pArPZWQjA+gE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j9EBxBp5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7860C4CEDD;
+	Mon, 24 Mar 2025 11:35:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742816106;
+	bh=luEqyOul0WqVAc0jY9GtMfomrX5FF3FygVVz954eNBU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=j9EBxBp5hN7pZmeMyysFRzU+bTx+uRv9sa3D6C0u7OGHjipp7jG1LIEgru3x6jNg9
+	 h0tZ31vK2qGZRl6AiCU8E3mh2Qwn6TZd2VP/vGGgXV4G5uyJ3esXc7sSkIlG2UW/FM
+	 /lVNHP5dCM1eYp5fEpryHbbsiwE4qDN3kPcGe5Q+wu3lVBqSSowPI24bL8UL4kSIar
+	 bjm2i227otTNQA4vzDwe9tXa103lKlqHtWFBCiFYyWEal5SRsIZPQ6O4AT9fTSzMQw
+	 QcqOv5zlu0Cto3xt1VqfUk+iAGI5VrmrIg/VDP3SlCbFjg1PU2ZNPXrZiiaIld0ngD
+	 srUpq8YwiBXmw==
+Message-ID: <09ed2eaa-70b5-4414-ae7d-71031c235cf2@kernel.org>
+Date: Mon, 24 Mar 2025 12:35:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,64 +50,83 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/6] ASoC: dt-bindings: wcd93xx: add bindings for audio
- mux controlling hp
-To: Krzysztof Kozlowski <krzk@kernel.org>, peda@axentia.se,
- broonie@kernel.org, andersson@kernel.org, krzk+dt@kernel.org
-Cc: ivprusov@salutedevices.com, luca.ceresoli@bootlin.com,
- zhoubinbin@loongson.cn, paulha@opensource.cirrus.com, lgirdwood@gmail.com,
- robh@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org,
- perex@perex.cz, tiwai@suse.com, dmitry.baryshkov@oss.qualcomm.com,
- linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- johan+linaro@kernel.org, Christopher Obbard <christopher.obbard@linaro.org>
-References: <20250324110606.32001-1-srinivas.kandagatla@linaro.org>
- <20250324110606.32001-5-srinivas.kandagatla@linaro.org>
- <201dc2a7-e031-47d7-9c17-c4275365b477@kernel.org>
+Subject: Re: [PATCH v2 3/4] dt-bindings: iio: dac: Add adi,ad3530r.yaml
+To: Kim Seer Paller <kimseer.paller@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250324-togreg-v2-0-f211d781923e@analog.com>
+ <20250324-togreg-v2-3-f211d781923e@analog.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <201dc2a7-e031-47d7-9c17-c4275365b477@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250324-togreg-v2-3-f211d781923e@analog.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
+On 24/03/2025 12:22, Kim Seer Paller wrote:
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vdd-supply
+> +  - iovdd-supply
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +additionalProperties: false
+
+This should be unevaluatedProperties. I don't get why you switched to
+additionalProps here and your other bindings like ltc26*.yaml
 
 
-On 24/03/2025 11:18, Krzysztof Kozlowski wrote:
-> On 24/03/2025 12:06, srinivas.kandagatla@linaro.org wrote:
->> From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->>
->> On some platforms to minimise pop and click during switching between
->> CTIA and OMTP headset an additional HiFi mux is used. Most common
->> case is that this switch is switched on by default, but on some
->> platforms this needs a regulator enable.
->>
->> Move to using mux-controls so that both the gpio and regulators can be
->> driven correctly, rather than adding regulator handing in the codec.
->>
->> This patch adds required bindings to add such mux controls.
->>
->> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->> Tested-by: Christopher Obbard <christopher.obbard@linaro.org>
-> 
-> I claim you cannot test a binding in the way we understand Tested-by
-> tags. Testing a binding is part of the build process and we do not have
-> tested-by for builds...
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-I see your point, Normally if the tested by is given to series Its 
-applied to all the patches in that series, I guess even b4 does that.
-
-Will make a note of this next time and not add tested by to bindings.
-
-
-
-Thanks,
-Srini
-
-> 
-> Anyway,
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Best regards,
-> Krzysztof
+Best regards,
+Krzysztof
 
