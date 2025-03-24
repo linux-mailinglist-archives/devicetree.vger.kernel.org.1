@@ -1,55 +1,90 @@
-Return-Path: <devicetree+bounces-160156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36241A6DA79
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 13:55:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C27FA6DA62
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 13:53:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F22227A8277
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 12:53:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 36B151894804
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 12:53:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52F4C261379;
-	Mon, 24 Mar 2025 12:52:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA26D25EF8A;
+	Mon, 24 Mar 2025 12:52:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="XuHjMZ4H"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nqEUBMt1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F60425FA33;
-	Mon, 24 Mar 2025 12:52:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.4
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6CCB25F99D
+	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 12:52:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742820772; cv=none; b=KckOfAv5L0yk2qj30Szfiv1xQQC/LaufLR2m5wW1bip0QrYe8Gm5PwZIt0QzL3E912fLXeIJHrAYwfN1jTf70AG8fv/unlvvwsH3lBx52BWByWPXho79mbkB55/Q6MfellFJKNQaccv0IfXNPK7wnXJglxD8/Qorf7bj1aKWqbY=
+	t=1742820741; cv=none; b=TXZQky0n/WXMfbcB2BoG/rt4ECOCQgvfzB6AuYR8oYHwaTRi7wkDBpqaYI3pPV1goO/pbsGekTSnaFbTRSjPrZDzjr/bAyQJWHjHyx+X0AAA7qLgXBDVcosQKxgNetN3dRFPXh3Ihxl9VkUKrCi/WtFJm+kr4pxeLEvoJHMBoUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742820772; c=relaxed/simple;
-	bh=DGpU04yKPRoOZy0YVkJWqS/S+9o26k7SQZrWuf3KMcA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TskoDnwY2jgI/4+vAIYfCK1AdjP4+w/9dv1Qz2pwaEQXyFepGWzg9lNfQ5UIllHYa+fCqjHKwVwp4c/IQyOrOZQB2XMzEd2CIwkX0YVNK8/4lcrTbnlnjySP6INVnKPw4rIud7VTBcY8fIaxYb5fob7TZo62oENenPdNHzdPJCw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=XuHjMZ4H; arc=none smtp.client-ip=220.197.31.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:Subject:Date:Message-ID:MIME-Version; bh=PHKuR
-	DmBKYPk3+KtVV7z/lVVayQrARu4WFny395S+VM=; b=XuHjMZ4HXjyo2LiJLFL/6
-	udAg/qCviGk94zLDk1nyK8+NvlfwSEO9Tljhwg4EHfObmZCK0PBf85mPEvnoJTWs
-	xULr6PoEvaxgANf+FluZJGMMDTdkLJ6FZWuhj8v1tCgE7Im3yjS3U1cnMH5tzV7u
-	HO1QUdR8DmhPDnDC5cFarE=
-Received: from ProDesk.. (unknown [])
-	by gzga-smtp-mtada-g1-2 (Coremail) with SMTP id _____wDnL9mAVeFnOfyBBg--.24149S2;
-	Mon, 24 Mar 2025 20:52:19 +0800 (CST)
-From: Andy Yan <andyshrk@163.com>
-To: heiko@sntech.de
-Cc: krzk+dt@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
+	s=arc-20240116; t=1742820741; c=relaxed/simple;
+	bh=XmslR/Vg4hs/QHIazREQ4yXkaF0TQY97XYcslTIRk04=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fp4je24CTinwxYtNgLqDlh16HCtEzP59De1vYuBubSDzzESfFEyZWIPrmrVTJhntc9GSlicSYKE4qeB1g7Xs2ANuMZlvV6lJIxUIcwXUZm2V4izUqXCpyLhph4mbf1CamCtgwupppzPmSzeLef9bj+a+zO7zUKxTdnmfcLno3SA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nqEUBMt1; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-43ceeb85ab2so1816985e9.0
+        for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 05:52:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1742820738; x=1743425538; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YmgPaODJNGvBgG/4ktzRCLfPHcR/ClhvCHwJ0srwcr0=;
+        b=nqEUBMt1ulxV5KZY2o/xJs+/F7y5rHG1GH7wWqlfRTxqp7wv/EWG56Zim7YU6CtDh5
+         xS6haPKSZ1qFRIwBOOM2CJWvn/L8zbjveBIb2vRDQL0nNsi40tJsDXw01Z4+1GRXEOzf
+         ozkFktIZ+5cr2Xyuqnf+BUEKuop0jR9ab5ekIw7TVt0zc82/713C/7BllugYUmmKnfJf
+         ef1a96QxtNUe3HsY0S8bGfpeib9JFckkncVUuP0+dMXHyxjxCCk7gV+A8xSLn8ozPvtb
+         o0MXdFZYqHYC/i4x6QulvU2Cc+puqJNnqUrIs2huiQ/tidAxOteq2x1ep1zzAmR/wbT+
+         g09w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742820738; x=1743425538;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YmgPaODJNGvBgG/4ktzRCLfPHcR/ClhvCHwJ0srwcr0=;
+        b=SD35ZjfmncGx9ah3X5E48E4l/DEmzbMvL4Nq3DRSfzeuW9igl7vbVjnuz8vZH/n49e
+         snRJvKrOUcz0vy1sI8i7H0QO5i4GBjd+Daw4z94YCKMv6xhJuE3H/MZ4+BFvLUBBL63Z
+         nw76xh0RDFsgfRCVFqrMn6bK16Q4eqZpzkNq3BBonyRfAnbw3fjqHNFUeMM9Vgvqyr9D
+         YZSGdivM7Nbie263IW6PfhXhO/rg/8H02ymxe/uemu3j2duvBc2yQ1FmHOX34KtdNbgb
+         4+gSWB+pfl1okGvI4BtrANKkBPuHbwD2iNg1WeY4IY+ngZ08VKBOWpwRX4EJSJE46eC0
+         uGtA==
+X-Forwarded-Encrypted: i=1; AJvYcCVXoO/OeRdBDP1JVeI3EOd2Cm+0RPEcvJRwhaV5yCuFHGKHtcVhmNVuR35F9tWYJfVQCSjFfbGFKhii@vger.kernel.org
+X-Gm-Message-State: AOJu0YxcOwD5FnbEQsIuRiI+S0/bgOhgapUOMFvdqOpD54QxjyXMR6Ap
+	WKpg2sG3vcpz5eOFWZ5ogJxXpEwqAQDiuKe0BgMHxWX01u2BaBCeAPiu5+3W2l0=
+X-Gm-Gg: ASbGncs1OlU84fPmUAZNs6FQG3HSzLKklzb4z56O+wZUxW6EGSawad5Lj4UHP2FOPM9
+	mgL6rs9JurvrJ6ODjNBTeqkQp/bq6sSuTRJ0jyyCZeHX9Gi610vzo8skRYxdjPURI3kpgwtzKFV
+	sFNMSW3ZP/nQYAFY4b5f7Ksvs6AtjBDv8ZAnK6PLmds0OfV/jsI3ym8RkIkVfgAVdCeQOZtqw0z
+	IrSmHoVlGOQBumcyu7iDZXJ9fwPwXnjjDAbRSiT/ir07hzNEHhH+nrrsF2f8Tx6loA7zbcWwarI
+	kxVdA1dZXAWKqG2XMf0hS5eXFMo95EIEIzbEiZzsBt8U7IBewp73SiWJzQ==
+X-Google-Smtp-Source: AGHT+IEdhY6sjyudCupWSNHVoMtEE08tS+Gsw4HB1HrNezGJ7bnExp/+sj0jdITIMdTxs+m/86N54A==
+X-Received: by 2002:a05:600c:3ba2:b0:439:930a:58a6 with SMTP id 5b1f17b1804b1-43d50a4f961mr35834435e9.8.1742820738094;
+        Mon, 24 Mar 2025 05:52:18 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.198.86])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3997f9b5939sm11135148f8f.60.2025.03.24.05.52.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Mar 2025 05:52:17 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Nicolas Saenz Julienne <nsaenz@kernel.org>,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	inux-rockchip@lists.infradead.org,
-	Andy Yan <andy.yan@rock-chips.com>
-Subject: [PATCH] ARM: dts: rockchip: Add aliases for MMC devices
-Date: Mon, 24 Mar 2025 20:52:11 +0800
-Message-ID: <20250324125215.160616-1-andyshrk@163.com>
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: nvmem: Correct indentation and style in DTS example
+Date: Mon, 24 Mar 2025 13:52:14 +0100
+Message-ID: <20250324125214.82028-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -58,41 +93,163 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wDnL9mAVeFnOfyBBg--.24149S2
-X-Coremail-Antispam: 1Uf129KBjvdXoWrtF1DuF47tFW3WFy7uFy8Zrb_yoW3tFg_ta
-	43Cw1rJa18GFy5Xw1Dt3yrW343Awn7Kay3G3WDAF18GF1vqa1kXF4kJas7t3WYyFW29rZ3
-	JFWfXa1Yqa13CjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU1LvKUUUUUU==
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbB0gYaXmfhTQKPYwADs2
 
-From: Andy Yan <andy.yan@rock-chips.com>
+DTS example in the bindings should be indented with 2- or 4-spaces and
+aligned with opening '- |', so correct any differences like 3-spaces or
+mixtures 2- and 4-spaces in one binding.  While re-indenting, drop
+unused labels.
 
-Add aliases for the MMC devices so that after the system starts up,
-they will all have fixed device numbers.
+No functional changes here, but saves some comments during reviews of
+new patches built on existing code.
 
-Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
+ .../devicetree/bindings/nvmem/nvmem.yaml      | 60 +++++++++----------
+ .../devicetree/bindings/nvmem/rmem.yaml       | 20 +++----
+ .../bindings/nvmem/rockchip-efuse.yaml        | 20 +++----
+ 3 files changed, 50 insertions(+), 50 deletions(-)
 
- arch/arm/boot/dts/rockchip/rk3036-kylin.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/arch/arm/boot/dts/rockchip/rk3036-kylin.dts b/arch/arm/boot/dts/rockchip/rk3036-kylin.dts
-index 15a8860c7ae47..a2d7ec2729116 100644
---- a/arch/arm/boot/dts/rockchip/rk3036-kylin.dts
-+++ b/arch/arm/boot/dts/rockchip/rk3036-kylin.dts
-@@ -8,6 +8,12 @@ / {
- 	model = "Rockchip RK3036 KylinBoard";
- 	compatible = "rockchip,rk3036-kylin", "rockchip,rk3036";
+diff --git a/Documentation/devicetree/bindings/nvmem/nvmem.yaml b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+index 4fd015d402ce..c24e3667accd 100644
+--- a/Documentation/devicetree/bindings/nvmem/nvmem.yaml
++++ b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+@@ -50,43 +50,43 @@ additionalProperties: true
  
-+	aliases {
-+		mmc0 = &emmc;
-+		mmc1 = &sdmmc;
-+		mmc2 = &sdio;
-+	};
-+
- 	chosen {
- 		stdout-path = "serial2:115200n8";
- 	};
+ examples:
+   - |
+-      #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/gpio/gpio.h>
+ 
+-      qfprom: eeprom@700000 {
+-          compatible = "qcom,msm8974-qfprom", "qcom,qfprom";
+-          #address-cells = <1>;
+-          #size-cells = <1>;
+-          reg = <0x00700000 0x100000>;
++    qfprom: eeprom@700000 {
++        compatible = "qcom,msm8974-qfprom", "qcom,qfprom";
++        #address-cells = <1>;
++        #size-cells = <1>;
++        reg = <0x00700000 0x100000>;
+ 
+-          wp-gpios = <&gpio1 3 GPIO_ACTIVE_HIGH>;
++        wp-gpios = <&gpio1 3 GPIO_ACTIVE_HIGH>;
+ 
+-          /* ... */
++        /* ... */
+ 
+-          nvmem-layout {
+-              compatible = "fixed-layout";
+-              #address-cells = <1>;
+-              #size-cells = <1>;
++        nvmem-layout {
++            compatible = "fixed-layout";
++            #address-cells = <1>;
++            #size-cells = <1>;
+ 
+-              /* Data cells */
+-              tsens_calibration: calib@404 {
+-                  reg = <0x404 0x10>;
+-              };
++            /* Data cells */
++            tsens_calibration: calib@404 {
++                reg = <0x404 0x10>;
++            };
+ 
+-              tsens_calibration_bckp: calib_bckp@504 {
+-                  reg = <0x504 0x11>;
+-                  bits = <6 128>;
+-              };
++            tsens_calibration_bckp: calib_bckp@504 {
++                reg = <0x504 0x11>;
++                bits = <6 128>;
++            };
+ 
+-              pvs_version: pvs-version@6 {
+-                  reg = <0x6 0x2>;
+-                  bits = <7 2>;
+-              };
++            pvs_version: pvs-version@6 {
++                reg = <0x6 0x2>;
++                bits = <7 2>;
++            };
+ 
+-              speed_bin: speed-bin@c{
+-                  reg = <0xc 0x1>;
+-                  bits = <2 3>;
+-              };
+-          };
+-      };
++            speed_bin: speed-bin@c{
++                reg = <0xc 0x1>;
++                bits = <2 3>;
++            };
++        };
++    };
+ 
+ ...
+diff --git a/Documentation/devicetree/bindings/nvmem/rmem.yaml b/Documentation/devicetree/bindings/nvmem/rmem.yaml
+index 85f9f5de3906..dc714309e7b9 100644
+--- a/Documentation/devicetree/bindings/nvmem/rmem.yaml
++++ b/Documentation/devicetree/bindings/nvmem/rmem.yaml
+@@ -38,17 +38,17 @@ unevaluatedProperties: false
+ 
+ examples:
+   - |
+-        reserved-memory {
+-                #address-cells = <1>;
+-                #size-cells = <1>;
++    reserved-memory {
++        #address-cells = <1>;
++        #size-cells = <1>;
+ 
+-                blconfig: nvram@10000000 {
+-                        compatible = "raspberrypi,bootloader-config", "nvmem-rmem";
+-                        #address-cells = <1>;
+-                        #size-cells = <1>;
+-                        reg = <0x10000000 0x1000>;
+-                        no-map;
+-                };
++        nvram@10000000 {
++            compatible = "raspberrypi,bootloader-config", "nvmem-rmem";
++            #address-cells = <1>;
++            #size-cells = <1>;
++            reg = <0x10000000 0x1000>;
++            no-map;
+         };
++    };
+ 
+ ...
+diff --git a/Documentation/devicetree/bindings/nvmem/rockchip-efuse.yaml b/Documentation/devicetree/bindings/nvmem/rockchip-efuse.yaml
+index b80fd8d1ae5b..aa93ebc41a8e 100644
+--- a/Documentation/devicetree/bindings/nvmem/rockchip-efuse.yaml
++++ b/Documentation/devicetree/bindings/nvmem/rockchip-efuse.yaml
+@@ -58,16 +58,16 @@ examples:
+   - |
+     #include <dt-bindings/clock/rk3288-cru.h>
+     efuse: efuse@ffb40000 {
+-            compatible = "rockchip,rk3288-efuse";
+-            reg = <0xffb40000 0x20>;
+-            #address-cells = <1>;
+-            #size-cells = <1>;
+-            clocks = <&cru PCLK_EFUSE256>;
+-            clock-names = "pclk_efuse";
++        compatible = "rockchip,rk3288-efuse";
++        reg = <0xffb40000 0x20>;
++        #address-cells = <1>;
++        #size-cells = <1>;
++        clocks = <&cru PCLK_EFUSE256>;
++        clock-names = "pclk_efuse";
+ 
+-            /* Data cells */
+-            cpu_leakage: cpu_leakage@17 {
+-                    reg = <0x17 0x1>;
+-            };
++        /* Data cells */
++        cpu_leakage@17 {
++            reg = <0x17 0x1>;
++        };
+     };
+ ...
 -- 
 2.43.0
 
