@@ -1,88 +1,80 @@
-Return-Path: <devicetree+bounces-160141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 185F7A6D9CF
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 13:07:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF232A6D9F3
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 13:17:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7EEFB3A5BBB
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 12:07:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82A2B3A7D17
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 12:17:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 556E725E457;
-	Mon, 24 Mar 2025 12:07:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66ACD25E808;
+	Mon, 24 Mar 2025 12:17:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="kk5JJ1O/"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="MpAoxs/a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 855BC28E7
-	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 12:07:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1148925E440
+	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 12:17:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742818059; cv=none; b=t0JHYOeie7+SXSdJeXNdVJiN504wEMZ9m2k3vBSH6aqplyjW9qkLqLMe8oxueSlru6aA0CsLWhgXXSIDJNdB8Qq7hlz31HoRsU3k8kOnbFOCGcmgJiZk77cinoGYBAnA2vmxMuzobmuSxWMbhIXkrZZTmtS2DxYeb9+2+JvMYGg=
+	t=1742818643; cv=none; b=sobnsWZG647dRD1mFCiNfsrlF6ITSZIuPcl7btX5h+DqZfmHKaOfull4yZbfIg3TfPvSzOd8u4J9iVp1+9GVtlp9ys1b+oih/w+2s3qGXvLCVHOiWCsgWJ39WefZ+DYj/zsFPKItVFasmsKul8U2+7Bkd/usJ1NB4FTkFncGdDc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742818059; c=relaxed/simple;
-	bh=d+ERUfYUYXaHGdBYuF3rKlVUr8YO7jNuYOdQfOGGZAg=;
+	s=arc-20240116; t=1742818643; c=relaxed/simple;
+	bh=EoiGMOryV4mIY4EbvcMo7ArzQaAHcSCytklybxuMWPY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eWe/S2ff5u1pamBp/E+/azvleZdEkXLjU0fNS9i/P/OGL0zKAnEM+PyTIkSCQcM9evyelcz0q53ncJLPn0voG1EeE4QyeNDEvxzoPrBTU5K2pVPDO3sN82zlh+9Na52VczrGSmvz/70DbNxV9ylXRrWpJfassy2pvwKPCsWpSCU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=kk5JJ1O/; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52O9PNwj030730
-	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 12:07:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	KcNnIDZwpmq1ce+wE7q/iQpaLgG583laB+g/tlbWzZE=; b=kk5JJ1O/orPMLRGy
-	1P4BQy7zZRscFTBJCX9rZSU3ka/ZudLWGUzBKWUTVYjZv6uWh4XNUCJm8VPz1Kl5
-	HewZ5OCI3bDGKmtcXlAun3VgPEoXpXgLygFkjgt787KgWlSZnYkbH110gTY/EYvs
-	tCNH5eH9T+CbLet29pEECdQQ3b1/xAUa/ypsop2QIX9mVLX8J/3ww6Gg2T4+B+Dd
-	d60dUYor63YnlY95jZ7pj0iZeEzJzGKjwiPSplnhgGdGTH7ELAm8990q7uhpe4+C
-	nr+knJqwfBZ9uOYINRNb7HylSSfRWsNmtHKkDfqL5do2PYTXcFPwxcIaXdUX7hSm
-	Oj5PUA==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45hmt048hy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 12:07:36 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c5c77aff55so415271685a.3
-        for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 05:07:35 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=F92vfrcc4RIPamGgpVEUxnQTqQps3fiB08HJkfu/aUWnrgK/CLvvJKoksIFb+fu9h0/Xxdu5WKUcY/1M+M/Yowk1rQm3pfcOtdsVL1ygyZRhE2zobqZZ5YGRLiuuBs9QYCgN9HFjvgn8tneD6tqVHfiHcaPqKOuBCqToYxQ0yso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=MpAoxs/a; arc=none smtp.client-ip=209.85.166.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-io1-f41.google.com with SMTP id ca18e2360f4ac-85e14ce87ceso125897439f.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 05:17:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1742818640; x=1743423440; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pQjy7+DZqFOo8SThpv8muVN+XmMk5JDMXBX8K79zwoY=;
+        b=MpAoxs/azJJ4uDlUjhS0mWI+IJ666ZsACIbSigtQPSwjkGzzOIca5dfrLJRGMjOdHM
+         rvS0g8Kk9ieWaEWwuADY/woqUyABGBYA5jkek8/fqGndLAlXI+EqxPrMbLWVpaqyVdKs
+         WvdXXHuqvF5Tzt0mXfJQnjVcZBVY5L0dRu5UIm3VK1i0DW4mHi9nKqg2RfDq4aRXmCbB
+         7uX6E+raly6t0IvZx/EkYQnQPPLaenOCX2Uy5+LKTb09/S0yG6N1pVHNTTmGSSnseu46
+         NUlmeX630of9h31BWZqF+gnNAM16KsyF1PWnC5pMrQ7F5wKfiP8asYNzeGy0ocSAyisE
+         kCFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742818055; x=1743422855;
+        d=1e100.net; s=20230601; t=1742818640; x=1743423440;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KcNnIDZwpmq1ce+wE7q/iQpaLgG583laB+g/tlbWzZE=;
-        b=vGnQIPHTq/+i4LmCJgY28vsnveYoMHbV69uq4cL2I4yydqF6D0kBKjS9yLKJLUcnEW
-         yybLIRYYDVJVapwjnqmrGRlNJYbsZxa6ASaLXcYZpGeVXRV0zDiyp3D0bEffd6wdCmGF
-         OkxDAHU3nms6WY4XLY6wyNqPEpimtQZJOxaOHmPSawTaoFNw+9fPDWpvscSIrH+S2SJA
-         tS+LPcOvEXgYRTK7JTLu/ttxnRhr05lGIxTiuVwC/IlibVCsvOsFS7PLd0sUYXYrUq5S
-         PRbALH03SapN83c1Dbvml44EaR/Rkj4wN7dTQIyTvtH7gLPb3NkT3gDNzG4I8SdZGH3O
-         xOcg==
-X-Forwarded-Encrypted: i=1; AJvYcCU4JyPXuEDZmMc+U4zJYm2+LX0g25cawsz2od+MrVKtK43boYp0v24oS7I4d3nEr5HQHwGp/i1LboGn@vger.kernel.org
-X-Gm-Message-State: AOJu0YyBwAJgrKhdoIb3wDrf45+t3e1sQ2DwSbIYM5Vhm9GusDYKdZRW
-	RWBWHyizPGaUsKmkh/Op1HEBZ4O8orpl5+hv3/ynFhxBmVC0g3laxOv9/iDOz7HwzOA4iDB86T9
-	+66Kli2ic/a+WWC5YF54v06x0I+TrW5FUTH4Q+LYbhmxfGFlygW1z0clyqOau
-X-Gm-Gg: ASbGncukvI3UO+fBVZ/J+3R20hMapaFeQyTb4PdAOIkvsygWOTGdDW5mWxnMW1YbOu3
-	wXykAo8emVqJ4q0gbNMQa7PJ+WULlYMQn+EYiQR1HOaXjqgSFVA23LrCR38qr0Ef60MgFy5ouWN
-	dmoqdXUvZ+crijIxdeIQBFrbSN8XEmzLEp34oQbD+UXuanJ43CVuDuWI2I9EGHLzuQ7ImOfk99R
-	i6GrU8LJUYOzLx5Yy5yNNjafY9QJ4BEO8etZTE8jLfLNBMrMilFlKuCQTO/XU0yJHgIXDLNj6yF
-	fhOI2hMvgx+Br/zTqQm/wXvxOlROoxgPa79JPBH6n1VBglb8Rxd1+3gTFt5U3COId0zObBqXkji
-	pfwr5pnJZ9LtcNhoiGsCag3ZVPVNpAStsf/GBg0LYXIljIk5HWFd4/wkVskgXzH86ngG9
-X-Received: by 2002:a05:620a:2441:b0:7c5:4a3a:bc0c with SMTP id af79cd13be357-7c5ba15c1damr2165459485a.13.1742818055136;
-        Mon, 24 Mar 2025 05:07:35 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHFhIJWCTAFRmJHVjzOLt//XwWxwcokHLD+xNo6A/E+ghzq26u2WkWcaFs6XOnrgmBembXkaA==
-X-Received: by 2002:a05:620a:2441:b0:7c5:4a3a:bc0c with SMTP id af79cd13be357-7c5ba15c1damr2165453485a.13.1742818054608;
-        Mon, 24 Mar 2025 05:07:34 -0700 (PDT)
-Received: from ?IPV6:2001:14bb:11c:bb1f:bc99:5dd2:1e47:705? (2001-14bb-11c-bb1f-bc99-5dd2-1e47-705.rev.dnainternet.fi. [2001:14bb:11c:bb1f:bc99:5dd2:1e47:705])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54ad6480ed6sm1110751e87.103.2025.03.24.05.07.31
+        bh=pQjy7+DZqFOo8SThpv8muVN+XmMk5JDMXBX8K79zwoY=;
+        b=Hxu5h7smOhIq+CQKiAPIuM3M5Goha/VBTU8kB9PcI8FqlN41H03Lq4ElKI3qs+5dDk
+         Uoq/V3thK2pG9wJzPBSEYjXH8xnh9AAuNvMYVTu4Xp/KH1Nx0TDPEAUMreIbsscrimhn
+         ORYBgM6CKfn3EMRy3VFrmjRjZTizvNFaCLY/sNu/c5sdoU9qQDFgcgYYyKj37qJsj6LV
+         moVCs0kECdjVBMthO5IlqLNEsNarN8EE70tg+KkrVol/zVqmy5hL/EshkFhRihb//wN8
+         0Fu4lPt12TMgKLXuQtxAlPWpRCJElQrmIW+5P5JBctY87NkbaDY5MV2pcVFLBo+Z8S78
+         6PeA==
+X-Forwarded-Encrypted: i=1; AJvYcCUskgVFR6TNLHo8Oq6pSaIdfs8kDAsm6UDi5yUKcwh0HfOMKDpBC0b1fwii00bi8GeAv3R2l/Q5Mn36@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJoHHgNBFPByLkpuZ1t58PAzavTkkIJ/11w6j9QN2WSw23WlRN
+	AaKyBhZ9myOKHuwl94IRCZg1T3HDDhprrJmudJoQqweI6t+Jh/d4ayhTEedOsSg=
+X-Gm-Gg: ASbGncvNO80yJRcmrD3Ji6JD5iLHwj8iTS9aa5rznI6ZSTwGqr8EPz+2vLOfkbTlyxE
+	++62CIij4UQiUU7RC+/omgSf7C20ovaCTjWYJHiotfra0jVhVnXTvz07wTFSWg9bTAtCSlSeNPM
+	eD5UF0BXpnhV59gnvUGC/amyTjLS5w4UK4Nt3Aj3Itq5iBfEYzup1mXiXWpQZzkYd78pRHLIo9r
+	45ZqFv13Oe6aHf/N1qsHYsbwymwE8imlGEUx7Cj5JHWnMYNvOIsF8hOaVJO6qrpi+6bFCYysUy+
+	Nva4r0og8HmkHtLJS/8uwnBX2lx3eFsbJGmUDL4JVVDhDD91gG7tIKz1ROzUTFMW8genlE90clQ
+	3PX+MfnRuB/7+cZOXdcao49KpdgmK
+X-Google-Smtp-Source: AGHT+IFRMWJu8cQwf/wCsj/90WfTQghFt/WjaXKq/fnbgU/ftzK6xeINV2Af8c2Selfxs/zF8TcQyA==
+X-Received: by 2002:a05:6602:7410:b0:85d:ad56:af88 with SMTP id ca18e2360f4ac-85e1ee299f1mr1629181439f.1.1742818639889;
+        Mon, 24 Mar 2025 05:17:19 -0700 (PDT)
+Received: from [10.211.55.5] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
+        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-85e2bd8c42esm160016039f.30.2025.03.24.05.17.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Mar 2025 05:07:32 -0700 (PDT)
-Message-ID: <fbc72787-6c98-48b4-a176-8d1b03815085@oss.qualcomm.com>
-Date: Mon, 24 Mar 2025 14:07:31 +0200
+        Mon, 24 Mar 2025 05:17:19 -0700 (PDT)
+Message-ID: <b8edc46b-bc99-47c1-8900-0e08c97de9d6@riscstar.com>
+Date: Mon, 24 Mar 2025 07:17:17 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,143 +82,137 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/6] ASoC: codecs: wcd938x: add mux control support for
- hp audio mux
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, peda@axentia.se,
-        broonie@kernel.org, andersson@kernel.org, krzk+dt@kernel.org
-Cc: ivprusov@salutedevices.com, luca.ceresoli@bootlin.com,
-        zhoubinbin@loongson.cn, paulha@opensource.cirrus.com,
-        lgirdwood@gmail.com, robh@kernel.org, conor+dt@kernel.org,
-        konradybcio@kernel.org, perex@perex.cz, tiwai@suse.com,
-        linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        johan+linaro@kernel.org,
-        Christopher Obbard <christopher.obbard@linaro.org>
-References: <20250324110606.32001-1-srinivas.kandagatla@linaro.org>
- <20250324110606.32001-6-srinivas.kandagatla@linaro.org>
- <7fc622e8-6f9d-4a14-bf5f-3122e6f81808@oss.qualcomm.com>
- <ac58b70a-b53a-4c91-8483-1b870623d5e9@linaro.org>
+Subject: Re: [PATCH RESEND 2/7] clk: spacemit: define struct k1_ccu_data
+To: Haylen Chu <heylenay@4d2.org>, p.zabel@pengutronix.de,
+ mturquette@baylibre.com, sboyd@kernel.org, dlan@gentoo.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ guodong@riscstar.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
+ aou@eecs.berkeley.edu, spacemit@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250321151831.623575-1-elder@riscstar.com>
+ <20250321151831.623575-3-elder@riscstar.com> <Z-FHt3mDyEBKpa8O@ketchup>
 Content-Language: en-US
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-In-Reply-To: <ac58b70a-b53a-4c91-8483-1b870623d5e9@linaro.org>
+From: Alex Elder <elder@riscstar.com>
+In-Reply-To: <Z-FHt3mDyEBKpa8O@ketchup>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: HYbAvSGi6ll8eEwLHPP3ks1Y8gUcIc7N
-X-Proofpoint-ORIG-GUID: HYbAvSGi6ll8eEwLHPP3ks1Y8gUcIc7N
-X-Authority-Analysis: v=2.4 cv=aqGyCTZV c=1 sm=1 tr=0 ts=67e14b08 cx=c_pps a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=KKAkSRfTAAAA:8 a=q6AXoensFbzIEcXt33sA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=PEH46H7Ffwr30OY-TuGO:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-24_04,2025-03-21_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- priorityscore=1501 malwarescore=0 mlxlogscore=952 bulkscore=0
- impostorscore=0 suspectscore=0 mlxscore=0 phishscore=0 adultscore=0
- spamscore=0 clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503240088
+Content-Transfer-Encoding: 7bit
 
-On 24/03/2025 14:04, Srinivas Kandagatla wrote:
-> 
-> 
-> On 24/03/2025 11:20, Dmitry Baryshkov wrote:
->> On 24/03/2025 13:06, srinivas.kandagatla@linaro.org wrote:
->>> From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->>>
->>> On some platforms to minimise pop and click during switching between
->>> CTIA and OMTP headset an additional HiFi mux is used. Most common
->>> case is that this switch is switched on by default, but on some
->>> platforms this needs a regulator enable.
->>>
->>> move to using mux control to enable both regulator and handle gpios,
->>> deprecate the usage of gpio.
->>>
->>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->>> Tested-by: Christopher Obbard <christopher.obbard@linaro.org>
->>> ---
->>>   sound/soc/codecs/Kconfig   |  1 +
->>>   sound/soc/codecs/wcd938x.c | 38 ++++++++++++++++++++++++++++++--------
->>>   2 files changed, 31 insertions(+), 8 deletions(-)
->>>
->>> diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
->>> index ee35f3aa5521..a2829d76e108 100644
->>> --- a/sound/soc/codecs/Kconfig
->>> +++ b/sound/soc/codecs/Kconfig
->>> @@ -2226,6 +2226,7 @@ config SND_SOC_WCD938X
->>>       tristate
->>>       depends on SOUNDWIRE || !SOUNDWIRE
->>>       select SND_SOC_WCD_CLASSH
->>> +    select MULTIPLEXER
->>>   config SND_SOC_WCD938X_SDW
->>>       tristate "WCD9380/WCD9385 Codec - SDW"
->>> diff --git a/sound/soc/codecs/wcd938x.c b/sound/soc/codecs/wcd938x.c
->>> index dfaa3de31164..948b5f6cc45a 100644
->>> --- a/sound/soc/codecs/wcd938x.c
->>> +++ b/sound/soc/codecs/wcd938x.c
->>> @@ -19,6 +19,7 @@
->>>   #include <linux/regmap.h>
->>>   #include <sound/soc.h>
->>>   #include <sound/soc-dapm.h>
->>> +#include <linux/mux/consumer.h>
->>>   #include <linux/regulator/consumer.h>
->>>   #include "wcd-clsh-v2.h"
->>> @@ -178,6 +179,8 @@ struct wcd938x_priv {
->>>       int variant;
->>>       int reset_gpio;
->>>       struct gpio_desc *us_euro_gpio;
->>> +    struct mux_control *us_euro_mux;
->>> +    u32 mux_state;
->>>       u32 micb1_mv;
->>>       u32 micb2_mv;
->>>       u32 micb3_mv;
->>> @@ -3243,9 +3246,16 @@ static bool wcd938x_swap_gnd_mic(struct 
->>> snd_soc_component *component)
->>>       wcd938x = snd_soc_component_get_drvdata(component);
->>> -    value = gpiod_get_value(wcd938x->us_euro_gpio);
->>> +    if (!wcd938x->us_euro_mux) {
->>> +        value = gpiod_get_value(wcd938x->us_euro_gpio);
->>> -    gpiod_set_value(wcd938x->us_euro_gpio, !value);
->>> +        gpiod_set_value(wcd938x->us_euro_gpio, !value);
+On 3/24/25 6:53 AM, Haylen Chu wrote:
+> On Fri, Mar 21, 2025 at 10:18:25AM -0500, Alex Elder wrote:
+>> Define a new structure type to be used for describing the OF match data.
+>> Rather than using the array of spacemit_ccu_clk structures for match
+>> data, we use this structure instead.
 >>
->> Is it possible to use mux_state for both GPIO and MUX paths?
-> 
-> Ideally I would like to do that the way that gpio is done, which is 
-> clear reflection of hw state, however mux f/w is lacking such api.
-
-Anyway, both paths should use the same flow.
-
-> 
-> 
+>> Move the definition of the spacemit_ccu_clk structure closer to the top
+>> of the source file, and add the new structure definition below it.
 >>
->>> +    } else {
->>> +        mux_control_deselect(wcd938x->us_euro_mux);
->>> +        wcd938x->mux_state = !wcd938x->mux_state;
->>> +        if (mux_control_select(wcd938x->us_euro_mux, wcd938x- 
->>> >mux_state))
->>> +            dev_err(component->dev, "Unable to select us/euro mux 
->>> state\n");
->>
->> This can lead to mux being deselected next time even if the 
->> mux_control_select returned an error. I think mux_control API needs a 
->> way to toggle the state without deselecting it first. Anyway, an error 
->> from mux_control_select() must prevent you from calling 
->> mux_control_deselect() next time.
+>> Shorten the name of spacemit_ccu_register() to be k1_ccu_register().
 > 
-> We can rearrange deselect to be done only on successful select, that 
-> should cleanup some of this.
-
-Yes, please.
-
+> I've read your conversation about moving parts of the patch into the
+> clock series, I'm of course willing to :)
 > 
-> --srini
+>> Signed-off-by: Alex Elder <elder@riscstar.com>
+>> ---
+>>   drivers/clk/spacemit/ccu-k1.c | 58 ++++++++++++++++++++++++++---------
+>>   1 file changed, 43 insertions(+), 15 deletions(-)
 >>
->>> +    }
->>>       return true;
->>>   }
->>
->>
+>> diff --git a/drivers/clk/spacemit/ccu-k1.c b/drivers/clk/spacemit/ccu-k1.c
+>> index 44db48ae71313..f7367271396a0 100644
+>> --- a/drivers/clk/spacemit/ccu-k1.c
+>> +++ b/drivers/clk/spacemit/ccu-k1.c
+>> @@ -129,6 +129,15 @@
+>>   #define APMU_EMAC0_CLK_RES_CTRL		0x3e4
+>>   #define APMU_EMAC1_CLK_RES_CTRL		0x3ec
+>>   
+>> +struct spacemit_ccu_clk {
+>> +	int id;
+>> +	struct clk_hw *hw;
+>> +};
+>> +
+>> +struct k1_ccu_data {
+>> +	struct spacemit_ccu_clk *clk;		/* array with sentinel */
+>> +};
+> 
+> This is something like what I've dropped in v5 of the clock series so I
+> doubt whether it should be added back in clock series again, as at that
+> point there's no reason for an extra structure: Alex, is it okay for you
+> to keep the change in reset series?
+
+That's perfectly fine with me.  It's not necessary yet, so it's
+just fine for you to do things the way you did, and I'll add this
+in as part of the reset series.
+
+> ...
+> 
+>> +static int k1_ccu_register(struct device *dev, struct regmap *regmap,
+>> +			   struct regmap *lock_regmap,
+>> +			   struct spacemit_ccu_clk *clks)
+>>   {
+>>   	const struct spacemit_ccu_clk *clk;
+>>   	int i, ret, max_id = 0;
+>> @@ -1648,15 +1668,24 @@ static int spacemit_ccu_register(struct device *dev,
+>>   
+>>   	clk_data->num = max_id + 1;
+>>   
+>> -	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, clk_data);
+>> +	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, clk_data);
+>> +	if (ret)
+>> +		dev_err(dev, "error %d adding clock hardware provider\n", ret);
+> 
+> This error message definitely should go in the clock series.
+> 
+>> +	return ret;
+>>   }
+> 
+>>   static int k1_ccu_probe(struct platform_device *pdev)
+>>   {
+>>   	struct regmap *base_regmap, *lock_regmap = NULL;
+>>   	struct device *dev = &pdev->dev;
+>> +	const struct k1_ccu_data *data;
+>>   	int ret;
+>>   
+>> +	data = of_device_get_match_data(dev);
+>> +	if (!data)
+>> +		return -EINVAL;
+> 
+> Looking through the reset series, I don't see a reason that
+> of_device_get_match_data() could return NULL. This is also something
+> you've asked me to drop in v4 of the clock series, so I guess it isn't
+> necessary.
+
+You are correct.  I'll drop it.  I contemplated this and thought
+it's useful to tell the reader it's necessary to not be null, but
+you can tell it has to be by inspection.
 
 
--- 
-With best wishes
-Dmitry
+>>   	base_regmap = device_node_to_regmap(dev->of_node);
+>>   	if (IS_ERR(base_regmap))
+>>   		return dev_err_probe(dev, PTR_ERR(base_regmap),
+>> @@ -1677,8 +1706,7 @@ static int k1_ccu_probe(struct platform_device *pdev)
+>>   					     "failed to get lock regmap\n");
+>>   	}
+>>   
+>> -	ret = spacemit_ccu_register(dev, base_regmap, lock_regmap,
+>> -				    of_device_get_match_data(dev));
+>> +	ret = k1_ccu_register(dev, base_regmap, lock_regmap, data->clk);
+>>   	if (ret)
+>>   		return dev_err_probe(dev, ret, "failed to register clocks\n");
+> 
+> For using ARRAY_SIZE() to simplify runtime code, it's mostly okay since
+> binding IDs are continuous 0-based integers. But I split the handling of
+> TWSI8 into another patch, which creates a hole in the range and breaks
+> the assumption. Do you think the TWSI8 commit should be merged back in
+> the clock driver one?
+
+I didn't understand the reason why you separated the TWSI8 into a
+separate commit.  Now I know.  The hole in the range doesn't really
+matter much; you already initialize your ->hws[] array of pointers
+with ERR_PTR(-ENOENT), so any holes are handled properly.
+
+					-Alex
+> 
+> Best regards,
+> Haylen Chu
+
 
