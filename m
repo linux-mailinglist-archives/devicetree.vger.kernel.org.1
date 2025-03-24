@@ -1,220 +1,190 @@
-Return-Path: <devicetree+bounces-160175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160177-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F5B0A6DB7A
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 14:30:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AAFEA6DBA1
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 14:32:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43FB6188F5A1
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 13:29:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4A57188E444
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 13:32:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B27125F797;
-	Mon, 24 Mar 2025 13:29:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FBQ0IH7L"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4025125E838;
+	Mon, 24 Mar 2025 13:32:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com [209.85.221.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D3A925EFB9
-	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 13:29:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4B3319C569;
+	Mon, 24 Mar 2025 13:32:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742822975; cv=none; b=TVaUIx8abX5cRHZXsOjiXOjZ+661t3iM2vAKLSiD3D9Vfm7eOwrd7LOu8dstwyB6+QNOm3gcJC5Nm8urVIRl+TTdP75Fpos702972JhhD74t6XqVtmpfM95c5ijxPUkf64cvuefKCAye7GA4JtbeSeA1EnvRtZtfKKGpAqJaebc=
+	t=1742823123; cv=none; b=H2K6w4HQEzIoidAdmUdIzrpg4hNZjzHw1mekCZeOkSNzdi3a4nY8XHzV8Z8iMGgNiuCob3sAiyfJHxkHWIaBreF1uL++BF4dojFTQRNgo0u5Kn2NYESs50rwdsQuA6VpX/LBunZxhPjz7rfQ6EOoVU6CrReeJTCKfLujnvsRu6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742822975; c=relaxed/simple;
-	bh=ToQFGwDDDePBcLj0Tl6e42Pcn77uyEQUZi/Zk7Ze/gY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=akf4hSHS7KXdm/5JtMheCzO8g0tQvuausrZmiT73hHA4yqov/BD6WpPHbnhQsXl3JeGD06RshqvRoi+xSh7DZ3o17pk7dydxIydDxjKG9h4zGkI4v1hQQwjLhEAbh4eGt91FG+H+f9xBmto3ZtCuzuJpoebkMqrVKKQDwLDEfE0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FBQ0IH7L; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-ac25520a289so791666066b.3
-        for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 06:29:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742822972; x=1743427772; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wTTdxiEXTLI0RB3J4azgwISZcRhYfAuhdc+KevBi5vw=;
-        b=FBQ0IH7Lil4t9nylwAriL9+AADyK4D7SWkKRjsG5xi2VT33mg92IGpF2cykNROCn8O
-         lJ6+ME1dBfD8L3JFQlJAqqod+S0Jv3EegET70RAB8WqXIT0GKNzdQiAAcnFYZRY78khY
-         Nav4G2mzWCl2GjoU64fyhBhGqRpn4svcfpH2CrFDXm/byrSDLnoNizxS6FS/ix0njbeI
-         +BCrEqbckeqoybCo5eqE35sy9XNeIf22lEaoP/L3y4G1JNe9y628aD5cdgbkIfbEzST4
-         MnwkxEuVcO46+zVaOgJdpNb8Rv7uDxFzM1AJpg/+9WzshEim0fjjkvEwLWB/PYgw54/O
-         XgCQ==
+	s=arc-20240116; t=1742823123; c=relaxed/simple;
+	bh=U7Sm8drjhhuf0oB9XuCn4Y6s8zWfPJWtUiwm4WERSR4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ui7LqJjuCJwOEfCm9QbzLx3qNhjmWP2GE/2KC+U6KERjUI3KYqv+S/cchev9xdKZ9QGfx6K4rxC2LR3lOdZE5RBvaYOzrg3HNnfgthJKt+oR92TxGtl8XVIqUIDjnpdIuEDSbf4uo5zFYA7Rh1zsMS6nxdBegpo/mxQJnGW3O/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-525b44ec88aso1103659e0c.3;
+        Mon, 24 Mar 2025 06:32:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742822972; x=1743427772;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wTTdxiEXTLI0RB3J4azgwISZcRhYfAuhdc+KevBi5vw=;
-        b=HTEL3FM6Jd/gapFgOBqDB5NuGgfIG4T3gs8ltwmCF6yUlNI1ZCte99dq/UGnJWWDqG
-         qwBoZaDlnxDcp+Enk8aHvNv2qOGmF5FjZk8xIaEaYjpA7ABnu8pKAzfOwNvRhpQF3f3M
-         iUfp15m8WxMH3CuzOwaTQSM8FD+wYOT6fuxOzFzGRXyn4HNY4sIL17GIEK+oM3V6Il3r
-         /RYWVW8af0aLLAQmW7ilAOZnY5IdAwpp+S4rFb8Ds+PmP3Cm9mF7dJY2mJXpfkV6jjRq
-         e9fZ0hrgrrl9cQoQbdj7SAxVU0Nh9Q4xc1UMPsK0bMLHRpvdilk7MTzOdEenFy7WmmrN
-         Qe6g==
-X-Forwarded-Encrypted: i=1; AJvYcCVWNXsssTpcNPb5uqtmz7vw+LxzaAsvUol/FMxcIprE54bxTXHOkb/EZ/Uc1PZ+bxTWxCW6PCJDEVK1@vger.kernel.org
-X-Gm-Message-State: AOJu0YyIAJ/Dfo4fW3C8DvvpJcuVKbWPIq8VmIs3yW7Hk8owwzDp+k8g
-	RBLvBwE939bDjVmakYBNVth5u1R9QlBuAgjQQ26BQaVX4KmHEGgqUZiDrU3ClkA=
-X-Gm-Gg: ASbGncse/z0gtZMaoUVe7lQ26LgNCjUJPA6m+ULDYl3H1dDjmYrgn+C/fH3x+aLG8MF
-	LtgczXtovcqN0u+/c6iVe+oUZx7/KJmD7bkSuiuH0QSiR5QuNWMJu+/J24PUg3yLRfAJIeGa86j
-	KrAT0IsnAqSK+efWvRf9hBi2aAj83vGz/vtj6DbU9xo5FC04zh6Duvv/ViabDVSQndY6vsXITVC
-	EZeiLbX/7x3r5F8Ar5Mx1t/4BFUOjzftVmFoE40/sHeyDf0TkyHWpqjPGSRIoBhEJwAy1I9e0ua
-	/+iqEnkgJjbNiUaS7LbOyvAsB0k4yx0/xyL3h9nMRR4PZNHsP8ZoRriz4d1G090=
-X-Google-Smtp-Source: AGHT+IH+XEdLXnQX6nhvXQgyxnwEG52GJc4c2uceRNSxMxazFeWfoa7SI9NnS80gXy0yOwDc7i3hHg==
-X-Received: by 2002:a17:907:9482:b0:ac3:10e3:7fa5 with SMTP id a640c23a62f3a-ac3f20f51cbmr1074443466b.21.1742822971571;
-        Mon, 24 Mar 2025 06:29:31 -0700 (PDT)
-Received: from [192.168.68.117] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-ac3efbdc78esm682685766b.134.2025.03.24.06.29.30
+        d=1e100.net; s=20230601; t=1742823120; x=1743427920;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JnTkaFn1tZplUqMgdVjTtixweNlaqZzoddw8gwDBD6A=;
+        b=rhpYaWm7Uk/rCJMHzz6nrooFQymAUQTW5Z7DR5INf2jFBoEut657deei0HejgzykVN
+         H/G1ergu/P+Gu0G0dgc2g8WI3NhLkiC3mk/25AOw2DR8O1fRUSOiIKDmEv1pdh6saAdU
+         QOsPUsgk3QWUrALGUjnpwFk1k5yibxDrxC8S+r0uaYBN3HG5v9f22cqplP6KWNXGt3D5
+         HX5cGLEmQNVkfBLxUfNhpcKhIWyrAm/XFLepK4Mk8gQUIDBCZIDuCx6ezrYUc615yt2h
+         z4aVIlzajsA1HMTj5HYb9igwjEKz68j6tkb+MPP149Ki+Bh94DtObUhXh2vR9ft8AD3q
+         Casw==
+X-Forwarded-Encrypted: i=1; AJvYcCUIvZW58xZV8Hu/9irKOLuKCoRcKjWDFJ8o7stQt43eP4mfFaj3qQQycJ9eouOy2AbQSn9vZFfvi98Pk9ClWZMsdLk=@vger.kernel.org, AJvYcCUo9BfSqFK26ijcaLf4p9m4Qr7UKURJWWEFkWEEfSccP4Tg9geg+30687QURphdpb6oM9CwCS4XQr50@vger.kernel.org, AJvYcCUoTRjGnQt6P+qGuO7tItZ8oF/z53dST8SkssiuRNotwDl026x6pChCGNim81WRAUZkAk6ilTem/IO5Y5dD@vger.kernel.org
+X-Gm-Message-State: AOJu0YziBZOG41Vdk10bayvy10z562Zh+cXuKMuyUO2JBI90utpud08F
+	cruVYXTmKLOOfnANOQgQpuJxRNVAXhQsihZWlqM9js5NIBXPocFD38HIUdY1
+X-Gm-Gg: ASbGncsvj5KN4O1yYbzN1X3nFrNjXe2IZr68E+SlHvl78G5cJOxFAU8YLl/ZuI/nTuu
+	8iS/ynV7E/qApOw9wvqGDK3nQkTCejsoM0i83vBiKrc4t99jz3UZGNlZeOpea3F4UiONrPQDyI4
+	FnD2H6AwJj+tjblCQD/NOFM4tLDTVaoQ1I2iIozTSyPhKerJv8tI49oyNuCmlaztalmomBrQycW
+	au3pr6RdUVGoXPin76rG1KgUQpz2Z88mMUuFwZkg7No2Kr9lgWcdq1lv1cFZDm4ToJhsD+PjH+O
+	4zPeA7Fk0eJMpDEVWhjEQOhxcb0rI4rLIiZN6D5XFXJS3OJf3jlvGS3j2A4TAse4yoCEyOge7Pl
+	rHGU1GdRJdPc=
+X-Google-Smtp-Source: AGHT+IHmKPnSUcLRyxNG4lXDJnIdwA1P2Ib2REO1ZyDXTngMRotthkjP9n8WBkPvUm1tqY+Kv3rEFw==
+X-Received: by 2002:a05:6122:8493:b0:525:bf40:e628 with SMTP id 71dfb90a1353d-525bf40f5bbmr2179238e0c.6.1742823119796;
+        Mon, 24 Mar 2025 06:31:59 -0700 (PDT)
+Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com. [209.85.221.169])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-525a767186fsm1373373e0c.46.2025.03.24.06.31.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Mar 2025 06:29:31 -0700 (PDT)
-Message-ID: <90f2bcab-d89f-40c0-9851-7ff25f2c1eda@linaro.org>
-Date: Mon, 24 Mar 2025 13:29:30 +0000
+        Mon, 24 Mar 2025 06:31:59 -0700 (PDT)
+Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-5241abb9761so1776849e0c.1;
+        Mon, 24 Mar 2025 06:31:59 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU/4hgSIulQ9i0yBFi2E9W+N8yxlWwedGDjJehkg7sQwk/REIFkF4hhh7qBqEchgwumsCNtKcZZNlx+pVXZ@vger.kernel.org, AJvYcCUlre5lK6lVdcElgTPNFTEBQHXgsz4EhxDxZJubN4oMmk/asbhTPv7J1Z3OWKRDLvuRlDXm6+R4a2mW@vger.kernel.org, AJvYcCUu20hJdarOuDicRKfax5fWWQ8TM8fWFKvESCinoDT24xLUEyuRiz1foYYNGNGxxdOrjw+11w6gOmdCW7X8ZQYbiLQ=@vger.kernel.org
+X-Received: by 2002:a05:6122:660c:b0:51f:3eee:89f2 with SMTP id
+ 71dfb90a1353d-525a82f6994mr9180028e0c.2.1742823119399; Mon, 24 Mar 2025
+ 06:31:59 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] misc: fastrpc: add support for gpdsp remoteproc
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Ling Xu <quic_lxu5@quicinc.com>, andersson@kernel.org,
- konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, amahesh@qti.qualcomm.com, arnd@arndb.de,
- gregkh@linuxfoundation.org, quic_kuiw@quicinc.com,
- quic_ekangupt@quicinc.com, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
-References: <20250320091446.3647918-1-quic_lxu5@quicinc.com>
- <20250320091446.3647918-3-quic_lxu5@quicinc.com>
- <30bba296-8e6f-41ee-880e-2d5ecc8fe5a4@linaro.org>
- <5r72xrv5rtw6bemh5onygkroyasroviijlta4hvwgm5c5hzvax@3icylchlufu3>
-Content-Language: en-US
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <5r72xrv5rtw6bemh5onygkroyasroviijlta4hvwgm5c5hzvax@3icylchlufu3>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250324125239.82098-1-krzysztof.kozlowski@linaro.org> <20250324125239.82098-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250324125239.82098-2-krzysztof.kozlowski@linaro.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 24 Mar 2025 14:31:46 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXkePsSX62+OyT8aTdqFfaNy9dGRM73Q5AuQ_pHTBi8Kg@mail.gmail.com>
+X-Gm-Features: AQ5f1Jql5zVib3xf6ikzA9vsEblCUa1jRbqsyGwqM1WFnlicozMsfGBqYmldRFc
+Message-ID: <CAMuHMdXkePsSX62+OyT8aTdqFfaNy9dGRM73Q5AuQ_pHTBi8Kg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: mfd: Correct indentation and style in
+ DTS example
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Colin Foster <colin.foster@in-advantage.com>, 
+	=?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>, 
+	Marek Vasut <marek.vasut+renesas@gmail.com>, Chen-Yu Tsai <wens@csie.org>, 
+	Jeff LaBundy <jeff@labundy.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+Hi Krzysztof,
 
+On Mon, 24 Mar 2025 at 13:55, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> DTS example in the bindings should be indented with 2- or 4-spaces and
+> aligned with opening '- |', so correct any differences like 3-spaces or
+> mixtures 2- and 4-spaces in one binding.  While re-indenting, drop
+> unused labels.
+>
+> No functional changes here, but saves some comments during reviews of
+> new patches built on existing code.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-On 21/03/2025 14:07, Dmitry Baryshkov wrote:
-> On Thu, Mar 20, 2025 at 05:11:20PM +0000, Srinivas Kandagatla wrote:
->>
->>
->> On 20/03/2025 09:14, Ling Xu wrote:
->>> The fastrpc driver has support for 5 types of remoteprocs. There are
->>> some products which support GPDSP remoteprocs. Add changes to support
->>> GPDSP remoteprocs.
->>>
->>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
->>> Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
->>> ---
->>>    drivers/misc/fastrpc.c | 10 ++++++++--
->>>    1 file changed, 8 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/misc/fastrpc.c b/drivers/misc/fastrpc.c
->>> index 7b7a22c91fe4..80aa554b3042 100644
->>> --- a/drivers/misc/fastrpc.c
->>> +++ b/drivers/misc/fastrpc.c
->>> @@ -28,7 +28,9 @@
->>>    #define SDSP_DOMAIN_ID (2)
->>>    #define CDSP_DOMAIN_ID (3)
->>>    #define CDSP1_DOMAIN_ID (4)
->>> -#define FASTRPC_DEV_MAX		5 /* adsp, mdsp, slpi, cdsp, cdsp1 */
->>> +#define GDSP0_DOMAIN_ID (5)
->>> +#define GDSP1_DOMAIN_ID (6)
->>
->> We have already made the driver look silly here, Lets not add domain ids for
->> each instance, which is not a scalable.
->>
->> Domain ids are strictly for a domain not each instance.
->>
->>
->>> +#define FASTRPC_DEV_MAX		7 /* adsp, mdsp, slpi, cdsp, cdsp1, gdsp0, gdsp1 */
->>>    #define FASTRPC_MAX_SESSIONS	14
->>>    #define FASTRPC_MAX_VMIDS	16
->>>    #define FASTRPC_ALIGN		128
->>> @@ -107,7 +109,9 @@
->>>    #define miscdev_to_fdevice(d) container_of(d, struct fastrpc_device, miscdev)
->>>    static const char *domains[FASTRPC_DEV_MAX] = { "adsp", "mdsp",
->>> -						"sdsp", "cdsp", "cdsp1" };
->>> +						"sdsp", "cdsp",
->>> +						"cdsp1", "gdsp0",
->>> +						"gdsp1" };
->>>    struct fastrpc_phy_page {
->>>    	u64 addr;		/* physical address */
->>>    	u64 size;		/* size of contiguous region */
->>> @@ -2338,6 +2342,8 @@ static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
->>>    		break;
->>>    	case CDSP_DOMAIN_ID:
->>>    	case CDSP1_DOMAIN_ID:
->>> +	case GDSP0_DOMAIN_ID:
->>> +	case GDSP1_DOMAIN_ID:
->>>    		data->unsigned_support = true;
->>>    		/* Create both device nodes so that we can allow both Signed and Unsigned PD */
->>>    		err = fastrpc_device_register(rdev, data, true, domains[domain_id]);
->>
->>
->> Can you try this patch: only compile tested.
->>
->> ---------------------------------->cut<---------------------------------------
->>  From 3f8607557162e16673b26fa253d11cafdc4444cf Mon Sep 17 00:00:00 2001
->> From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->> Date: Thu, 20 Mar 2025 17:07:05 +0000
->> Subject: [PATCH] misc: fastrpc: cleanup the domain names
->>
->> Currently the domain ids are added for each instance of domain, this is
->> totally not scalable approch.
->>
->> Clean this mess and create domain ids for only domains not its
->> instances.
->> This patch also moves the domain ids to uapi header as this is required
->> for FASTRPC_IOCTL_GET_DSP_INFO ioctl.
->>
->> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->> ---
->>   drivers/misc/fastrpc.c      | 45 ++++++++++++++++++++-----------------
->>   include/uapi/misc/fastrpc.h |  7 ++++++
->>   2 files changed, 32 insertions(+), 20 deletions(-)
->>
-> 
-> 
->> diff --git a/include/uapi/misc/fastrpc.h b/include/uapi/misc/fastrpc.h
->> index f33d914d8f46..89516abd258f 100644
->> --- a/include/uapi/misc/fastrpc.h
->> +++ b/include/uapi/misc/fastrpc.h
->> @@ -133,6 +133,13 @@ struct fastrpc_mem_unmap {
->>   	__s32 reserved[5];
->>   };
->>
->> +#define ADSP_DOMAIN_ID (0)
->> +#define MDSP_DOMAIN_ID (1)
->> +#define SDSP_DOMAIN_ID (2)
->> +#define CDSP_DOMAIN_ID (3)
->> +#define GDSP_DOMAIN_ID (4)
-> 
-> Why are you adding these to uAPI? How are they going to be used by the
-> userspace?
-> 
->> +
->> +#define FASTRPC_DOMAIN_MAX	4
->>   struct fastrpc_ioctl_capability {
->>   	__u32 domain;
+Thanks for your patch!
 
-here, in domain value of fastrpc_ioctl_capability.
+> --- a/Documentation/devicetree/bindings/mfd/iqs62x.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/iqs62x.yaml
+> @@ -60,43 +60,34 @@ examples:
+>      #include <dt-bindings/interrupt-controller/irq.h>
+>
+>      i2c {
+> -            #address-cells = <1>;
+> -            #size-cells = <0>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+>
+> -            iqs620a@44 {
+> -                    compatible = "azoteq,iqs620a";
+> -                    reg = <0x44>;
+> -                    interrupt-parent = <&gpio>;
+> -                    interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
+> +        iqs620a@44 {
+> +            compatible = "azoteq,iqs620a";
+> +            reg = <0x44>;
+> +            interrupt-parent = <&gpio>;
+> +            interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
+>
+> -                    keys {
+> -                            compatible = "azoteq,iqs620a-keys";
+> +            keys {
+> +                compatible = "azoteq,iqs620a-keys";
+>
+> -                            linux,keycodes = <KEY_SELECT>,
+> -                                             <KEY_MENU>,
+> -                                             <KEY_OK>,
+> -                                             <KEY_MENU>;
+> +                linux,keycodes = <KEY_SELECT>,
+> +                                 <KEY_MENU>,
+> +                                 <KEY_OK>,
+> +                                 <KEY_MENU>;
+>
+> -                            hall-switch-south {
+> -                                    linux,code = <SW_LID>;
+> -                                    azoteq,use-prox;
+> -                            };
+> -                    };
+> -
+> -                    iqs620a_pwm: pwm {
+> -                            compatible = "azoteq,iqs620a-pwm";
+> -                            #pwm-cells = <2>;
+> -                    };
+> +                hall-switch-south {
+> +                    linux,code = <SW_LID>;
+> +                    azoteq,use-prox;
+> +                };
+>              };
+> -    };
+>
+> -    pwmleds {
+> -            compatible = "pwm-leds";
+> -
+> -            led-1 {
+> -                    pwms = <&iqs620a_pwm 0 1000000>;
+> -                    max-brightness = <255>;
+> +            iqs620a_pwm: pwm {
+> +                compatible = "azoteq,iqs620a-pwm";
+> +                #pwm-cells = <2>;
+>              };
+> +        };
+>      };
+>
+>    - |
 
+The removal of the pwmleds node belongs in patch [1/2].
+The rest LGTM.
 
+Gr{oetje,eeting}s,
 
->>   	__u32 attribute_id;
->> -- 
->> 2.25.1
->>
->>
->> ---------------------------------->cut<---------------------------------------
-> 
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
