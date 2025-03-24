@@ -1,111 +1,82 @@
-Return-Path: <devicetree+bounces-160137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2F4BA6D93B
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 12:36:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04DF5A6D995
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 12:55:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52D7C167B3D
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 11:36:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5963816D95D
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 11:54:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3150025DD13;
-	Mon, 24 Mar 2025 11:36:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB7D425E44D;
+	Mon, 24 Mar 2025 11:53:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OvVbeUHf"
+	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="SnfWXEb5";
+	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="fQ6kxnKb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from bayard.4d2.org (bayard.4d2.org [155.254.16.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B11225E454
-	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 11:36:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C16C25D52D;
+	Mon, 24 Mar 2025 11:53:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=155.254.16.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742816194; cv=none; b=dRM45LyHwtzV5jL5160Cy7etwhLsMOPPxEQaGpm22a36nDvWLUBRszaSzW3GiT++lLe7iZSIFBPyCdwmyGxzSen6e1G/M8RSZ2RZTI2m+3CRKUwRP7dAyLwxJBg11YKHn16wrWCd7xAOO4LMM7IL52JtG+YEeXHufCq6VdPoZmA=
+	t=1742817223; cv=none; b=P7ZzoLSsKp+GU6b68H4x/xFiwpP7VfviOOad+65y2du7rH2DJy90mdOGe3UqpQqNHr+1A/hnMq5sx2/hINpVz+OaXDfi4VgMg4VT8qQ+o47Co6fy82yQOu88AAvOifBWVwc1KJuj2BToNx2hNgGOV8sRjd8odkdONK5Kx2QHcxg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742816194; c=relaxed/simple;
-	bh=EWSRmhbbw6LLM1coOGP4lGuUikaA2MC6Tf23MQjFju4=;
+	s=arc-20240116; t=1742817223; c=relaxed/simple;
+	bh=PslLqZRPAv6THOn+aClNegRKFMnOjNSyR7ChIic37Zk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h4DqoV/X/qpDORFlIDd4E+B+fVgHcLe7sWh8f0CmrCL5p5eodTs2cTK4qA7oVahF8+c2yio1yYFROzNM4N2wCEFERhDb+7Rg0zIwmOQ9c2osk8WZgh+zpKEshoB8FR9wQ1gIzJjO7UHw9ZGXENDnIANYo42xgtzC3waCibldnnI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OvVbeUHf; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52O9PNNK002605
-	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 11:36:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=/28KcOMGat0kJ0A+I2PAVvPM
-	UPGHSZSohwpSTh/nIWc=; b=OvVbeUHfaGN30I9z50iLXqFoxgxGpB1rppEadoDM
-	w63AU3lzC84r3w0yoVYyxWCcRGA8DDkazzfqLGLefiXCJYwSmU9qZ8FdXkKS87XW
-	pUtjNECBR2y+QdRsrFz8PekpkWkqmVx0ShzM6xDTY4YIGszTeV+k5sWKcEMgto7x
-	af2FVIX26jMFcG94mrl2mPh/0pUw6Yg1D630OGx0WfBylNZNX7gZ6LnRh4OD+IXW
-	uHbYtgmJ6DGEE+W0YJoR1JRGe7aAqwMSIoiOfEHKF2l0SwlDY3lvVfZoD6Q5eBdY
-	/7nw3HOI93Z4aASjNbXzIEo9+Y9AJN2QsP44M0yjId/xsg==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45hmhk47yy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 11:36:30 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c0c1025adbso988184985a.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 04:36:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742816190; x=1743420990;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/28KcOMGat0kJ0A+I2PAVvPMUPGHSZSohwpSTh/nIWc=;
-        b=FGvtrf5h2BUdLIlrCH9KXCAEBTrIMT+V1Kl0q+l9f1GJW4k8vj6jtPFHrrbyxNLbS2
-         Td1MCscy0d/4bA3ktVv0ilDO//eNjS1dyXJNs4PAt8r8JbBhYhi8N83xTXrCgQFabYFi
-         FHgwmFKaSrnLAmEuPgwHh2UQ3sk2UE3ybP1iPVJ7h1xFKFlN1u6QkXYxoVbPgO7CjOYe
-         iUI770uCX0Oqqx4/+TE5wlHZ9afB3JJZ+vTS7cGqOH+X6VG6I4mFTW3k+s1AVE4DiHLt
-         YMLiQ+q2wjRE0tQnh7YI8Ejhgo/8zl+rLsv8sTZwQMwtMqDYRZ/EXcl7QYz5sIxkt+7W
-         7y7A==
-X-Forwarded-Encrypted: i=1; AJvYcCWyN/t+FmCaX+o8Mjk1CiqZzjlC8/Bd+BiGIugWPO90yJcxxg/Gql6V/EVEq+kmlW1EtzUoyiUWDn46@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzy2yoroEVZHzJ8/5BjCr8k4/c+ag1yE6umtJ3XhT1S7mTKDO2a
-	DXcrvEY0rCsnZmfusMmxC0yM0J+ViAJXLgCMK5Upa9VD/LKqDWiyz6yEmewN26CgX5LgmJK0K20
-	i34N3LvyAkUwaVBKcY/bDZfu4fWJrJhEqL24LS0dml3Nr9smcAG2AJjysTL0f
-X-Gm-Gg: ASbGncvH/NF+A4hHIgwiDYvioJ4LhIM5Ahja0KcW82p2wWFJThQqcUL4CBvisgSrO9+
-	F7KyOAcB8/b8O8RT0+nlzt5t26WIWGpITGPmC5fq0bOctTsrWqb4GWOTXGsLgy49xfOOhZLfp/M
-	4S/GQ69IVzW7C6J+z14F0oXDPdFbtolYY9hc8g8JO3qxKYIASSIyyS/zDmwDWfaOjEVMrkSWQAb
-	52IWNYyu4ITszLOlvfVRLpUwYLNCt9EZ5MFnX4taRj40tjvbXr53B5fnYFZt6uRpSPyOXbhYSqQ
-	QbcyICVKMnyZtOByLjXpM92CRyUTTlE5ORpxNW49oKCJRWPpe1lDv9FlvzeH+1G2fJfdIr8s4hF
-	35uc=
-X-Received: by 2002:a05:620a:4406:b0:7c5:47c6:b888 with SMTP id af79cd13be357-7c5ba1deda8mr1530174285a.40.1742816190113;
-        Mon, 24 Mar 2025 04:36:30 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF1k3d4Gu7ZnJzBcOT4jbISqnGdwUgHdCGngrW5u1gHZ0r9dvw/9o90y5OiLlqIrOTsIOi56w==
-X-Received: by 2002:a05:620a:4406:b0:7c5:47c6:b888 with SMTP id af79cd13be357-7c5ba1deda8mr1530167985a.40.1742816189474;
-        Mon, 24 Mar 2025 04:36:29 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54ad6512127sm1144441e87.229.2025.03.24.04.36.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Mar 2025 04:36:27 -0700 (PDT)
-Date: Mon, 24 Mar 2025 13:36:25 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Praveenkumar I <quic_ipkumar@quicinc.com>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        george.moussalem@outlook.com, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Nitheesh Sekar <quic_nsekar@quicinc.com>,
-        Varadarajan Narayanan <quic_varada@quicinc.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        20250317100029.881286-2-quic_varada@quicinc.com,
-        Sricharan R <quic_srichara@quicinc.com>
-Subject: Re: [PATCH v6 5/6] arm64: dts: qcom: ipq5018: Add PCIe related nodes
-Message-ID: <ys56uezoe7uuhsvtejnptjuluvphpidg5tzx2d4x3bi6pan7aa@en3rx3llns5s>
-References: <20250321-ipq5018-pcie-v6-0-b7d659a76205@outlook.com>
- <20250321-ipq5018-pcie-v6-5-b7d659a76205@outlook.com>
- <a4n3w62bg6x2iux4z7enu3po56hr5pcavjfmvtzdcwv2w4ptrr@ssvfdrltfg5y>
- <6fa2bd30-762b-4a3a-b94f-8798c027764a@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=EqiaPLnODa6rRScSvvnHiYm7xieFl8r3iMVpvCLx18947jH0DUM82B4jA0D92sce5Vv8MUOKoiLedL1geBzeOCD3chLzuRsbiHRDZPun8dfuEoy+3ku14+bvsLT6ZnHNDJDDCkk6sH4UahZ9/4ND7QCwt4yEHAqZedsY2bNCtBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=SnfWXEb5; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=fQ6kxnKb; arc=none smtp.client-ip=155.254.16.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
+Received: from bayard.4d2.org (bayard.4d2.org [127.0.0.1])
+	by bayard.4d2.org (Postfix) with ESMTP id 35195EC59EE;
+	Mon, 24 Mar 2025 04:53:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
+	t=1742817220; bh=PslLqZRPAv6THOn+aClNegRKFMnOjNSyR7ChIic37Zk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SnfWXEb5quXO8QebTk3oYdvqnRQFyYnIO3C9LAFwhDyuBvUBGqCPW71s2Bk9BMo1C
+	 ODCv9TOWljXAYL+I2M0xm+4zY3DhJTye90S5Mq+rJR6yHm40BMdFaH3Gd3trwAO+xH
+	 RKW5wOoC5rc2aCz7K5m0yOG+pP0PRvwpYGo7iQceokMSQelKfHR7m719ilrtV1n04M
+	 d6UhKefzlY0FIJ4wgunttGWM77IzYtD3yvSgG8Hx2Iqhsvq7sQocB4TE53HBpcXftP
+	 jhvJKKjpEWtfC8X5tQd7VeyR6PocIqKcsWBSgUpDDtZqffSlHVsoM8u8YSY8N13R/L
+	 ES+RO6Kt0QlNg==
+X-Virus-Scanned: amavisd-new at 4d2.org
+Received: from bayard.4d2.org ([127.0.0.1])
+ by bayard.4d2.org (bayard.4d2.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id amLNQ8lVeRXh; Mon, 24 Mar 2025 04:53:38 -0700 (PDT)
+Received: from ketchup (unknown [183.217.80.115])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: heylenay@4d2.org)
+	by bayard.4d2.org (Postfix) with ESMTPSA id 548E1EC59F1;
+	Mon, 24 Mar 2025 04:53:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
+	t=1742817218; bh=PslLqZRPAv6THOn+aClNegRKFMnOjNSyR7ChIic37Zk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fQ6kxnKbFquVXp4L/B8k8qS93mpqZQn2LA68FSV0QKSKOpw7iU8DZIX7I0B2t60k4
+	 37gOk4rrguvAPfViOmT5OAWlUfav5UkWdQ/34oQkVsaYc8cGwdrr9uAdRBCGn+aAG1
+	 CRk+iLC8rCKR94Aed6870nYUso1dYB5td8yU9xeY58UR/4SJ0lujAo2j0HIH7M0gt8
+	 v4sBNPH7KjkK1HEJa+L7vsYJCmOUuf0zAfOywB+j3PtKv5mfZ7URRgPLobu4lWRYRP
+	 EGATZmOpseqDQPeDycny/Je1UL4CDnTx/eYsSqV4cms8Sn+jXlcDj//Cmwm5cKUqwS
+	 Bw9VXC3LiLgaA==
+Date: Mon, 24 Mar 2025 11:53:27 +0000
+From: Haylen Chu <heylenay@4d2.org>
+To: Alex Elder <elder@riscstar.com>, p.zabel@pengutronix.de,
+	mturquette@baylibre.com, sboyd@kernel.org, dlan@gentoo.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	guodong@riscstar.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, spacemit@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RESEND 2/7] clk: spacemit: define struct k1_ccu_data
+Message-ID: <Z-FHt3mDyEBKpa8O@ketchup>
+References: <20250321151831.623575-1-elder@riscstar.com>
+ <20250321151831.623575-3-elder@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -114,137 +85,105 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <6fa2bd30-762b-4a3a-b94f-8798c027764a@quicinc.com>
-X-Authority-Analysis: v=2.4 cv=C4PpyRP+ c=1 sm=1 tr=0 ts=67e143bf cx=c_pps a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=UqCG9HQmAAAA:8 a=KKAkSRfTAAAA:8 a=7B58IFT2DTbkiS-wfnYA:9 a=CjuIK1q_8ugA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22 a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: HRnHmqcPbrtXCC0ADb0aLkOamj9Bm5Ex
-X-Proofpoint-ORIG-GUID: HRnHmqcPbrtXCC0ADb0aLkOamj9Bm5Ex
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-24_04,2025-03-21_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxscore=0
- phishscore=0 mlxlogscore=999 priorityscore=1501 impostorscore=0
- bulkscore=0 clxscore=1015 spamscore=0 malwarescore=0 suspectscore=0
- lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503240084
+In-Reply-To: <20250321151831.623575-3-elder@riscstar.com>
 
-On Mon, Mar 24, 2025 at 04:48:34PM +0530, Praveenkumar I wrote:
+On Fri, Mar 21, 2025 at 10:18:25AM -0500, Alex Elder wrote:
+> Define a new structure type to be used for describing the OF match data.
+> Rather than using the array of spacemit_ccu_clk structures for match
+> data, we use this structure instead.
 > 
+> Move the definition of the spacemit_ccu_clk structure closer to the top
+> of the source file, and add the new structure definition below it.
 > 
-> On 3/24/2025 1:26 PM, Manivannan Sadhasivam wrote:
-> > On Fri, Mar 21, 2025 at 04:14:43PM +0400, George Moussalem via B4 Relay wrote:
-> > > From: Nitheesh Sekar<quic_nsekar@quicinc.com>
-> > > 
-> > > Add phy and controller nodes for a 2-lane Gen2 and
-> > Controller is Gen 3 capable but you are limiting it to Gen 2.
-> > 
-> > > a 1-lane Gen2 PCIe bus. IPQ5018 has 8 MSI SPI interrupts and
-> > > one global interrupt.
-> > > 
-> > > Signed-off-by: Nitheesh Sekar<quic_nsekar@quicinc.com>
-> > > Signed-off-by: Sricharan R<quic_srichara@quicinc.com>
-> > > Signed-off-by: George Moussalem<george.moussalem@outlook.com>
-> > One comment below. With that addressed,
-> > 
-> > Reviewed-by: Manivannan Sadhasivam<manivannan.sadhasivam@linaro.org>
-> > 
-> > > ---
-> > >   arch/arm64/boot/dts/qcom/ipq5018.dtsi | 234 +++++++++++++++++++++++++++++++++-
-> > >   1 file changed, 232 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> > > index 8914f2ef0bc4..d08034b57e80 100644
-> > > --- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> > > @@ -147,6 +147,40 @@ usbphy0: phy@5b000 {
-> > >   			status = "disabled";
-> > >   		};
-> > > +		pcie1_phy: phy@7e000{
-> > > +			compatible = "qcom,ipq5018-uniphy-pcie-phy";
-> > > +			reg = <0x0007e000 0x800>;
-> > > +
-> > > +			clocks = <&gcc GCC_PCIE1_PIPE_CLK>;
-> > > +
-> > > +			resets = <&gcc GCC_PCIE1_PHY_BCR>,
-> > > +				 <&gcc GCC_PCIE1PHY_PHY_BCR>;
-> > > +
-> > > +			#clock-cells = <0>;
-> > > +			#phy-cells = <0>;
-> > > +
-> > > +			num-lanes = <1>;
-> > > +
-> > > +			status = "disabled";
-> > > +		};
-> > > +
-> > > +		pcie0_phy: phy@86000{
-> > > +			compatible = "qcom,ipq5018-uniphy-pcie-phy";
-> > > +			reg = <0x00086000 0x800>;
-> > > +
-> > > +			clocks = <&gcc GCC_PCIE0_PIPE_CLK>;
-> > > +
-> > > +			resets = <&gcc GCC_PCIE0_PHY_BCR>,
-> > > +				 <&gcc GCC_PCIE0PHY_PHY_BCR>;
-> > > +
-> > > +			#clock-cells = <0>;
-> > > +			#phy-cells = <0>;
-> > > +
-> > > +			num-lanes = <2>;
-> > > +
-> > > +			status = "disabled";
-> > > +		};
-> > > +
-> > >   		tlmm: pinctrl@1000000 {
-> > >   			compatible = "qcom,ipq5018-tlmm";
-> > >   			reg = <0x01000000 0x300000>;
-> > > @@ -170,8 +204,8 @@ gcc: clock-controller@1800000 {
-> > >   			reg = <0x01800000 0x80000>;
-> > >   			clocks = <&xo_board_clk>,
-> > >   				 <&sleep_clk>,
-> > > -				 <0>,
-> > > -				 <0>,
-> > > +				 <&pcie0_phy>,
-> > > +				 <&pcie1_phy>,
-> > >   				 <0>,
-> > >   				 <0>,
-> > >   				 <0>,
-> > > @@ -387,6 +421,202 @@ frame@b128000 {
-> > >   				status = "disabled";
-> > >   			};
-> > >   		};
-> > > +
-> > > +		pcie1: pcie@80000000 {
-> > > +			compatible = "qcom,pcie-ipq5018";
-> > > +			reg = <0x80000000 0xf1d>,
-> > > +			      <0x80000f20 0xa8>,
-> > > +			      <0x80001000 0x1000>,
-> > > +			      <0x00078000 0x3000>,
-> > > +			      <0x80100000 0x1000>,
-> > > +			      <0x0007b000 0x1000>;
-> > > +			reg-names = "dbi",
-> > > +				    "elbi",
-> > > +				    "atu",
-> > > +				    "parf",
-> > > +				    "config",
-> > > +				    "mhi";
-> > > +			device_type = "pci";
-> > > +			linux,pci-domain = <0>;
-> > > +			bus-range = <0x00 0xff>;
-> > > +			num-lanes = <1>;
-> > > +			max-link-speed = <2>;
-> > This still needs some justification. If Qcom folks didn't reply, atleast move
-> > this to board dts with a comment saying that the link is not coming up with
-> > Gen3.
-> > 
-> > - Mani
-> The IPQ5018 PCIe controller can support Gen3, but the PCIe phy is limited
-> Gen2 and does not supported Gen3.
-> Hence, it is restricted using the DTSI property.
+> Shorten the name of spacemit_ccu_register() to be k1_ccu_register().
 
-Ideally this needs to be negotiated between the PCIe host and PHY
-drivers.
+I've read your conversation about moving parts of the patch into the
+clock series, I'm of course willing to :)
 
--- 
-With best wishes
-Dmitry
+> Signed-off-by: Alex Elder <elder@riscstar.com>
+> ---
+>  drivers/clk/spacemit/ccu-k1.c | 58 ++++++++++++++++++++++++++---------
+>  1 file changed, 43 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/clk/spacemit/ccu-k1.c b/drivers/clk/spacemit/ccu-k1.c
+> index 44db48ae71313..f7367271396a0 100644
+> --- a/drivers/clk/spacemit/ccu-k1.c
+> +++ b/drivers/clk/spacemit/ccu-k1.c
+> @@ -129,6 +129,15 @@
+>  #define APMU_EMAC0_CLK_RES_CTRL		0x3e4
+>  #define APMU_EMAC1_CLK_RES_CTRL		0x3ec
+>  
+> +struct spacemit_ccu_clk {
+> +	int id;
+> +	struct clk_hw *hw;
+> +};
+> +
+> +struct k1_ccu_data {
+> +	struct spacemit_ccu_clk *clk;		/* array with sentinel */
+> +};
+
+This is something like what I've dropped in v5 of the clock series so I
+doubt whether it should be added back in clock series again, as at that
+point there's no reason for an extra structure: Alex, is it okay for you
+to keep the change in reset series?
+
+...
+
+> +static int k1_ccu_register(struct device *dev, struct regmap *regmap,
+> +			   struct regmap *lock_regmap,
+> +			   struct spacemit_ccu_clk *clks)
+>  {
+>  	const struct spacemit_ccu_clk *clk;
+>  	int i, ret, max_id = 0;
+> @@ -1648,15 +1668,24 @@ static int spacemit_ccu_register(struct device *dev,
+>  
+>  	clk_data->num = max_id + 1;
+>  
+> -	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, clk_data);
+> +	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, clk_data);
+> +	if (ret)
+> +		dev_err(dev, "error %d adding clock hardware provider\n", ret);
+
+This error message definitely should go in the clock series.
+
+> +	return ret;
+>  }
+
+>  static int k1_ccu_probe(struct platform_device *pdev)
+>  {
+>  	struct regmap *base_regmap, *lock_regmap = NULL;
+>  	struct device *dev = &pdev->dev;
+> +	const struct k1_ccu_data *data;
+>  	int ret;
+>  
+> +	data = of_device_get_match_data(dev);
+> +	if (!data)
+> +		return -EINVAL;
+
+Looking through the reset series, I don't see a reason that
+of_device_get_match_data() could return NULL. This is also something
+you've asked me to drop in v4 of the clock series, so I guess it isn't
+necessary.
+
+>  	base_regmap = device_node_to_regmap(dev->of_node);
+>  	if (IS_ERR(base_regmap))
+>  		return dev_err_probe(dev, PTR_ERR(base_regmap),
+> @@ -1677,8 +1706,7 @@ static int k1_ccu_probe(struct platform_device *pdev)
+>  					     "failed to get lock regmap\n");
+>  	}
+>  
+> -	ret = spacemit_ccu_register(dev, base_regmap, lock_regmap,
+> -				    of_device_get_match_data(dev));
+> +	ret = k1_ccu_register(dev, base_regmap, lock_regmap, data->clk);
+>  	if (ret)
+>  		return dev_err_probe(dev, ret, "failed to register clocks\n");
+
+For using ARRAY_SIZE() to simplify runtime code, it's mostly okay since
+binding IDs are continuous 0-based integers. But I split the handling of
+TWSI8 into another patch, which creates a hole in the range and breaks
+the assumption. Do you think the TWSI8 commit should be merged back in
+the clock driver one?
+
+Best regards,
+Haylen Chu
 
