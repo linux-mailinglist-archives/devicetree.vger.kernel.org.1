@@ -1,441 +1,243 @@
-Return-Path: <devicetree+bounces-159998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8931EA6D484
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 08:00:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE751A6D488
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 08:02:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A93CF3AFBCA
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 06:59:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5AF1916C491
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 07:02:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89B171F76BD;
-	Mon, 24 Mar 2025 06:59:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D878C23F39F;
+	Mon, 24 Mar 2025 07:02:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="c7pMJOe/"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="OcwYFHzy";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="ZPioefSL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49A7F1EA7C7
-	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 06:59:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF3DD23ED7A
+	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 07:02:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742799595; cv=none; b=dNNawLMmVy4F5H7/2XE0b8zKXbKJvNTFQzLF91v7JSQXCcD00u81gK+krpWP4klCx3Qtl00j6U2I4G3ydbnx6nhHG6cE1c9R7ZPTGKNgOIL3XmgfW+LYD5cwnnCvaksGj3MzlnesFViioWpHlyyMpn6s+RBV/p70UCLS+7o29oI=
+	t=1742799747; cv=none; b=daT85+1fRtXkmUz477vF+ZpTkTxAOCvJWMpkauo0ci5YR0vwKJtNKmwbJz8nAkQtTYhaZzyfuip+B03oWkBgZX+/XFBaUffg+bDwAeIo9nREkDYWcoP3Gmt41yvRUgbuBSoVfG+AXLJ3EPdzowu0j+yD7FtNvRZzCdvfbyki32o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742799595; c=relaxed/simple;
-	bh=Jy0FNp3ZcF/f6v/FdqF2ElfeoOVY4lfbC6loLyB0JJ8=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Ec1DwXKkPqa3oN1ACpIWHRP1yKbEdmupgO61GgMPTp0DI5ttQquSRxDfDLrda7MDAsutWu872sflcYWmbNQV5ao2lxmwxwnJVf0WWZwvQ4vIsiVbHx6UwXbfmxRIS6F4mfL6JwzZCHDWAO7ZSDQH9RhZnl4k1fgpRurFfezkWec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=c7pMJOe/; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4394036c0efso23890515e9.2
-        for <devicetree@vger.kernel.org>; Sun, 23 Mar 2025 23:59:50 -0700 (PDT)
+	s=arc-20240116; t=1742799747; c=relaxed/simple;
+	bh=+c25SKjyUf4Q1GUnMho6FTLEfjD5H+fvs4jJ3yDCYNg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=SYIT9n5eQAfSEQ1mQ/yVIwHQZsV31lsUSnoUWKrJ6k38d29sZ778UcUEwdnG+cjufvaJI7RKY9FR3uOWF9mO77l08ofOwIkeapa0UFmZ2BmIiAylbNnqajFzGEhjYXkc9/pw3YQNOR7AQjqwtSkDUHsBjmIrzJvy2XRzlNBiGyg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=OcwYFHzy; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=ZPioefSL reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742799589; x=1743404389; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LeKKrgnLBG9T/eG/Gk6XtoPpi6QMVkqmhURfP3vslIg=;
-        b=c7pMJOe/auaiK+8hd4niRJZalku/K+5ueUFArUILL6QW7FHNBi4tDvQcC5+vznnk01
-         +wOTSpastl9kBa3kk3YCDsCGMYAgkuhJl7cPuXNdRFdZmuFVHxvKFBRLlu2rJminU7wJ
-         THAmsgkOefLhAHBf1wt8vb6po0LZgLeg1Tbmmllsj0n2sMXzd1ab1tKXHPSclJ0WQE0x
-         oQvV+gy7/Imt12HPhDnSweF8jf50eszQgKx2UXqH4MzbAE/KN5UwE0Mi5g7hC1m2dWCe
-         kz17jWyIJ7z61lZUaa3evS/LHmnW0i2ZgO5NxwGeItBl1hjgXEJvjtzSm7VFyIGIjPKU
-         Z/LQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742799589; x=1743404389;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=LeKKrgnLBG9T/eG/Gk6XtoPpi6QMVkqmhURfP3vslIg=;
-        b=aQ1w0BfvQp8MEqxcJCFiQ53WLya8vPEQoJbGrpsMmik2Bjp2sBWOlSgcH2rl8jF88F
-         mqdHe8S2BVKlCEAEh3zZYn4/JI/YGS1o04hxyB2k3CzjC6KNRu/bV8rxydMMGene3LWd
-         MYHfGjw21TTp+NFwARq9Aof+SUawaz7ersBy7ofpfWcP+AbMN1ytoSkCQ+7Mwcl02btG
-         UdOJJjl8JDm3K0yQwOUhXOyFY8BK5+EzIecuFMqMMbNe7le25W8oDlMw/5wWC6rEDNGn
-         1TQCrdLrlNY1IV45+uQpNr66CBz4/wddeZXXI3m74TYlqEyi7Y3dtAB26kgoqvWMYQSZ
-         RTAw==
-X-Gm-Message-State: AOJu0YybeAvhBDsDAVtKq/elTmNbvPgHTzBvdUcAh24PtFkJVk93h+n2
-	M4z5kU0IwxZjZBOT57l2pVMLV9cQCc/QGBIzrTMEPNCSY2QLRHlX2PB/ckqBndY=
-X-Gm-Gg: ASbGncs4Wx6Z/w9bTtFsCH6JGpTtLjNNc8zYUB6HH52NPeld+7pvDGEkendqsbxYExU
-	5aT/HMFcE8MUdXoI5BFFFeRMNYv+Okxh76pAtIWeDxAYM+kPEz1gjHs/YbUUOi0l3BisoHzThOo
-	Kma9RT97sWBKiSiPJZMmWOjm35BQNoKC2qtzZN37zbN/FvRSbBGCXDXFUVmPOdAza7eb7SBHQew
-	fHWrt8nnZ44YXDhOOF0e1xFBeD0c07Kcm+v11BgheDrwJYwLxkD293ljkyUZsSwsTTTY+ZIhD1N
-	UvCvyeqIHzb1tywrDQODs2dLpPkXJS+CKy0yoe7xcKuFd5n2DohPIUazHPm/O34yzQShSLnETi7
-	rdjuIHEO5bcuCiRPX
-X-Google-Smtp-Source: AGHT+IEV7+p8YJkKF2xllJmF1iygnLG2rxwF8AEdIWdNJB9wMlJdgYfQKAIWCl4+n4viMeZeNUkRYQ==
-X-Received: by 2002:a05:600c:35ca:b0:43c:fc04:6d48 with SMTP id 5b1f17b1804b1-43d50873ee8mr110879945e9.0.1742799589482;
-        Sun, 23 Mar 2025 23:59:49 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:a356:8d0:d4d:bb5f? ([2a01:e0a:3d9:2080:a356:8d0:d4d:bb5f])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d43f55c99sm162223625e9.24.2025.03.23.23.59.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 23 Mar 2025 23:59:49 -0700 (PDT)
-Message-ID: <c3f84f77-dc2c-447e-99cf-dedb20a2f93a@linaro.org>
-Date: Mon, 24 Mar 2025 07:59:48 +0100
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1742799744; x=1774335744;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=jtdsIlvZFuNXS5m+ytZfrbj/VE0WKhdwUACbuDCbmXo=;
+  b=OcwYFHzyYLqJ2shuKb8/fMS8HfLLWTnfr86ubMWfp6wf1cfxSOBjxuSP
+   RiqJFRhcLAhPbMEV+uW0KKHADmatSRvNqoCbqiku2w4QANurflLHavVyT
+   WX4tfU6bvc0tM66oa6GRNcM2/JEi1J7g9xGqXlEuLP3o8TN0Oa5xGkMLq
+   TtmnCnWTzOdUyZ8JsrQu9tlMwk0Y+eAggV4LkVpVYkJpE3RbEpYW8pyy3
+   1A7mydjePOIFyuPp8CQL3NWa601ZNMR0vRGOBfutsCs0XIb2CsyK09uRW
+   AmbXNw0+3FHB8+IyoIxF+Hlv94pgUpdVNOEpAnR09QPH21Jp9gt0qpuPC
+   Q==;
+X-CSE-ConnectionGUID: CV595JCOQeCMw8MqgTRvug==
+X-CSE-MsgGUID: 6Kkbv+/QRrKJfXic6OHNtg==
+X-IronPort-AV: E=Sophos;i="6.14,271,1736809200"; 
+   d="scan'208";a="43112009"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 24 Mar 2025 08:02:15 +0100
+X-CheckPoint: {67E10377-15-903EAEAC-E04C76C8}
+X-MAIL-CPID: 1D890C64261B07AD8684C1FEF37BE9A0_5
+X-Control-Analysis: str=0001.0A00639B.67E1036D.003C,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5C8771673F9;
+	Mon, 24 Mar 2025 08:02:06 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1742799731;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=jtdsIlvZFuNXS5m+ytZfrbj/VE0WKhdwUACbuDCbmXo=;
+	b=ZPioefSLN+FlFThMWD0H5hkSLzq2+eFOFR5/Nr1DxIkttSAr16drmLBsreSRcMrylHrIJN
+	TtRuu+Ea4B7HK+cGBVFKmRR03kXt7IZ/6limBz2iId/yblXkYZZhkMiHF8+kJANHgEX9bH
+	XVEUrl7EOLukSw6jseg6QCeYM4aZGN68IlYSrdx3sJF2ZQbW9WbvY0GIZ7puYCCEb6dCIO
+	Kzp3PEoHSNBdRZwFkhtV+fwvWH8LWZWyiIMqh/8MLxM/NFUgJXG5aRwyrZPRjY/lq3L4Ep
+	alMs13rW53+XkfDpLEYMCCF4Wf6ZRAA0tqrMfLFleLulmUWb77oEmPg4Lw2wFw==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org
+Cc: Marek Vasut <marex@denx.de>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
+ Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Liviu Dudau <liviu.dudau@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Steven Price <steven.price@arm.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ imx@lists.linux.dev, Marek Vasut <marex@denx.de>
+Subject: Re: [PATCH v2 9/9] arm64: dts: imx95: Describe Mali G310 GPU
+Date: Mon, 24 Mar 2025 08:02:06 +0100
+Message-ID: <6144881.lOV4Wx5bFT@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20250321200625.132494-10-marex@denx.de>
+References:
+ <20250321200625.132494-1-marex@denx.de>
+ <20250321200625.132494-10-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 3/3] ARM: dts: amlogic: Add TCU Fernsehfee 3.0
-To: j.ne@posteo.net, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-References: <20250323-fernsehfee-v1-0-2621341cd37a@posteo.net>
- <20250323-fernsehfee-v1-3-2621341cd37a@posteo.net>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250323-fernsehfee-v1-3-2621341cd37a@posteo.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 23/03/2025 13:37, J. Neuschäfer via B4 Relay wrote:
-> From: "J. Neuschäfer" <j.ne@posteo.net>
-> 
-> Fernsehfee[1] ("TV fairy") 3.0 is a set-top box with HDMI input and
-> output ports. It originally ran Android 4.4 and a Linux 3.10 kernel.
-> 
-> The following features are tested and known to work:
-> 
-> - Ethernet
-> - Power LED (switching between green and red)
-> - Power button
-> - eMMC
-> - SD Card
-> - USB
-> - Wifi
-> 
-> The following features are untested or not working:
-> 
-> - HDMI input and output
-> - Infrared remote control input and output
-> 
-> [1]: https://fernsehfee.de/ (German), https://telefairy.com/ (English)
-> 
-> Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+Am Freitag, 21. M=E4rz 2025, 21:05:59 CET schrieb Marek Vasut:
+> The instance of the GPU populated in i.MX95 is the G310,
+> describe this GPU in the DT. Include description of the
+> GPUMIX block controller, which can be operated as a simple
+> reset. Include dummy GPU voltage regulator and OPP tables.
+>=20
+> Signed-off-by: Marek Vasut <marex@denx.de>
 > ---
->   arch/arm/boot/dts/amlogic/Makefile               |   1 +
->   arch/arm/boot/dts/amlogic/meson8-fernsehfee3.dts | 219 +++++++++++++++++++++++
->   arch/arm/boot/dts/amlogic/meson8.dtsi            |  18 ++
->   3 files changed, 238 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/amlogic/Makefile b/arch/arm/boot/dts/amlogic/Makefile
-> index 504c533b1173298ec7f45099888d88b2fb74b978..3c8a1e88b386cd7fb9b5f41f47d7ff78fe7eeacc 100644
-> --- a/arch/arm/boot/dts/amlogic/Makefile
-> +++ b/arch/arm/boot/dts/amlogic/Makefile
-> @@ -1,6 +1,7 @@
->   # SPDX-License-Identifier: GPL-2.0
->   dtb-$(CONFIG_MACH_MESON8) += \
->   	meson8-minix-neo-x8.dtb \
-> +	meson8-fernsehfee3.dtb \
->   	meson8b-ec100.dtb \
->   	meson8b-mxq.dtb \
->   	meson8b-odroidc1.dtb \
-> diff --git a/arch/arm/boot/dts/amlogic/meson8-fernsehfee3.dts b/arch/arm/boot/dts/amlogic/meson8-fernsehfee3.dts
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..47507316ac4a56f2bcf84ad0446a06ea9fe890cd
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/amlogic/meson8-fernsehfee3.dts
-> @@ -0,0 +1,219 @@
-> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
-> +// Copyright (C) 2025 J. Neuschäfer <j.ne@posteo.net>
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/linux-event-codes.h>
-> +#include <dt-bindings/leds/common.h>
-> +
-> +#include "meson8.dtsi"
-> +
-> +/ {
-> +	model = "Fernsehfee 3.0";
-> +	compatible = "tcu,fernsehfee3", "amlogic,meson8";
-> +
-> +	aliases {
-> +		serial0 = &uart_AO;
-> +		gpiochip0 = &gpio;
-> +		gpiochip1 = &gpio_ao;
-> +		i2c0 = &i2c_AO;
-> +		i2c1 = &i2c_B;
-> +		mmc0 = &sdhc;
-> +		mmc1 = &sdio;
+> Cc: Boris Brezillon <boris.brezillon@collabora.com>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Liviu Dudau <liviu.dudau@arm.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Philipp Zabel <p.zabel@pengutronix.de>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Sebastian Reichel <sre@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> Cc: Steven Price <steven.price@arm.com>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: devicetree@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: imx@lists.linux.dev
+> Cc: linux-arm-kernel@lists.infradead.org
+> ---
+> V2: - Drop regulator-{always,boot}-on from fixed-gpu-reg regulator
+>     - Keep the GPU and GPUMIX always enabled
+>     - Switch from fsl, to nxp, vendor prefix
+>     - Fix opp_table to opp-table
+>     - Describe IMX95_CLK_GPUAPB as coregroup clock
+>     - Sort interrupts by their names to match bindings
+> ---
+>  arch/arm64/boot/dts/freescale/imx95.dtsi | 58 ++++++++++++++++++++++++
+>  1 file changed, 58 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/d=
+ts/freescale/imx95.dtsi
+> index 9bb26b466a061..3acdbd7fd4eee 100644
+> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
+> @@ -249,6 +249,35 @@ dummy: clock-dummy {
+>  		clock-output-names =3D "dummy";
+>  	};
+> =20
+> +	gpu_fixed_reg: fixed-gpu-reg {
+> +		compatible =3D "regulator-fixed";
+> +		regulator-min-microvolt =3D <920000>;
+> +		regulator-max-microvolt =3D <920000>;
+> +		regulator-name =3D "vdd_gpu";
 > +	};
 > +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
+> +	gpu_opp_table: opp-table {
+> +		compatible =3D "operating-points-v2";
 > +
-> +	memory@0 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x40000000>;  /* 1 GiB */
-> +	};
+> +		opp-500000000 {
+> +			opp-hz =3D /bits/ 64 <500000000>;
+> +			opp-hz-real =3D /bits/ 64 <500000000>;
+> +			opp-microvolt =3D <920000>;
+> +		};
 > +
-> +	gpio-keys {
-> +		compatible = "gpio-keys-polled";
-> +		poll-interval = <100>;
+> +		opp-800000000 {
+> +			opp-hz =3D /bits/ 64 <800000000>;
+> +			opp-hz-real =3D /bits/ 64 <800000000>;
+> +			opp-microvolt =3D <920000>;
+> +		};
 > +
-> +		power-button {
-> +			label = "Power button";
-> +			linux,code = <KEY_POWER>;
-> +			gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_LOW>;
+> +		opp-1000000000 {
+> +			opp-hz =3D /bits/ 64 <1000000000>;
+> +			opp-hz-real =3D /bits/ 64 <1000000000>;
+> +			opp-microvolt =3D <920000>;
 > +		};
 > +	};
 > +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		led-0 {
-> +			/*
-> +			 * The power LED can be turned red, otherwise it is green.
-> +			 */
-> +			gpios = <&gpio_ao GPIO_TEST_N GPIO_ACTIVE_LOW>;
-> +			function = LED_FUNCTION_POWER;
-> +			color = <LED_COLOR_ID_RED>;
+>  	clk_ext1: clock-ext1 {
+>  		compatible =3D "fixed-clock";
+>  		#clock-cells =3D <0>;
+> @@ -1890,6 +1919,35 @@ netc_emdio: mdio@0,0 {
+>  			};
+>  		};
+> =20
+> +		gpu_blk_ctrl: reset-controller@4d810000 {
+> +			compatible =3D "nxp,imx95-gpu-blk-ctrl";
+> +			reg =3D <0x0 0x4d810000 0x0 0xc>;
+> +			#reset-cells =3D <1>;
+> +			clocks =3D <&scmi_clk IMX95_CLK_GPUAPB>;
+> +			assigned-clocks =3D <&scmi_clk IMX95_CLK_GPUAPB>;
+> +			assigned-clock-parents =3D <&scmi_clk IMX95_CLK_SYSPLL1_PFD1_DIV2>;
+> +			assigned-clock-rates =3D <133333333>;
+> +			power-domains =3D <&scmi_devpd IMX95_PD_GPU>;
 > +		};
-> +	};
-> +
-> +	vcc_5v: regulator-5v {
-> +		/* 5V rail, always on as long as the system is running */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "5V";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	vcc_3v3: regulator-3v3 {
-> +		/* Chipown AP2420 step-down converter */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "3.3V";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		vin-supply = <&vcc_5v>;
-> +	};
-> +
-> +	vcc_1v8: regulator-1v8 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "1.8V";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		vin-supply = <&vcc_3v3>;
-> +	};
-> +
-> +	wifi_3v3: regulator-wifi {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "3.3V-WIFI";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		vin-supply = <&vcc_3v3>;
-> +		gpio = <&gpio GPIOX_11 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +};
-> +
-> +&ethmac {
-> +	status = "okay";
-> +	pinctrl-0 = <&eth_pins>;
-> +	pinctrl-names = "default";
-> +	phy-handle = <&eth_phy0>;
-> +	phy-mode = "rmii";
-> +
-> +	mdio {
-> +		compatible = "snps,dwmac-mdio";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		eth_phy0: ethernet-phy@0 {
-> +			/* IC Plus IP101A (0x02430c54) */
-> +			reg = <0>;
-> +
-> +			reset-assert-us = <10000>;
-> +			reset-deassert-us = <10000>;
-> +			reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
-> +		};
-> +	};
-> +};
-> +
-> +&i2c_AO {
-> +	status = "okay";
-> +	pinctrl-0 = <&i2c_ao_pins>;
-> +	pinctrl-names = "default";
-> +
-> +	pmic@32 {
-> +		compatible = "ricoh,rn5t618";
-> +		reg = <0x32>;
-> +		system-power-controller;
-> +	};
-> +
-> +	eeprom@50 {
-> +		/* Fairchild FM24C08A */
-> +		compatible = "atmel,24c08";
-> +		reg = <0x50>;
-> +		pagesize = <16>;
-> +		wp-gpios = <&gpio GPIOH_3 GPIO_ACTIVE_HIGH>;
-> +		num-addresses = <4>;
-> +	};
-> +};
-> +
-> +&i2c_B {
-> +	status = "okay";
-> +	pinctrl-0 = <&i2c_b_pins>;
-> +	pinctrl-names = "default";
-> +
-> +	/* TODO: SiI9293 HDMI receiver @ 0x39 */
-> +};
-> +
-> +&sdhc {
-> +	status = "okay";
-> +	pinctrl-0 = <&sdxc_c_pins>;
-> +	pinctrl-names = "default";
-> +
-> +	/* eMMC */
-> +	bus-width = <8>;
-> +	max-frequency = <100000000>;
-> +
-> +	disable-wp;
-> +	cap-mmc-highspeed;
-> +	mmc-hs200-1_8v;
-> +	no-sdio;
-> +
-> +	vmmc-supply = <&vcc_3v3>;
-> +	vqmmc-supply = <&vcc_1v8>;
-> +};
-> +
-> +&sdio {
-> +	status = "okay";
-> +	pinctrl-0 = <&sd_b_pins>;
-> +
-> +	/* SD card */
-> +	sd_card_slot: slot@1 {
 
-Small NIT: no need to for a label here
+With the SM release lf-6.12.3-1.0.0 AP does not have any access to
+this BLK_CTRL anymore. See [1]
 
-> +		compatible = "mmc-slot";
-> +		reg = <1>;
-> +		status = "okay";
+Best regards,
+Alexander
+
+[1] https://github.com/nxp-imx/imx-sm/blob/master/sm/doc/rn_cl.md#sm-184-de=
+assert-the-gpu-reset-when-the-gpumix-is-powered-up-rn_detail_sm_184
+
 > +
-> +		bus-width = <4>;
-> +		cap-mmc-highspeed;
-> +		cap-sd-highspeed;
-> +		disable-wp;
-> +
-> +		cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
-> +
-> +		vmmc-supply = <&vcc_3v3>;
-> +	};
-> +};
-> +
-> +&uart_AO {
-> +	status = "okay";
-> +	pinctrl-0 = <&uart_ao_a_pins>;
-> +	pinctrl-names = "default";
-> +};
-> +
-> +&usb0 {
-> +	status = "okay";
-> +};
-> +
-> +&usb0_phy {
-> +	status = "okay";
-> +};
-> +
-> +&usb1 {
-> +	status = "okay";
-> +	dr_mode = "host";
-> +	/*
-> +	 * This bus features a Realtek RTL8188 2.4GHz WiFi module, with a
-> +	 * 3.3V supply voltage that must be enabled before use.
-> +	 */
-> +	vbus-supply = <&wifi_3v3>;
-> +};
-> +
-> +&usb1_phy {
-> +	status = "okay";
-> +};
-> +
-> +&ir_receiver {
-> +	status = "okay";
-> +	pinctrl-0 = <&ir_recv_pins>;
-> +	pinctrl-names = "default";
-> +};
-> diff --git a/arch/arm/boot/dts/amlogic/meson8.dtsi b/arch/arm/boot/dts/amlogic/meson8.dtsi
-> index 9ff142d9fe3f4576fdd3230a966c8a6250870de7..300eccbfc0071ce10290be1c496132ac6b6a4dbc 100644
-> --- a/arch/arm/boot/dts/amlogic/meson8.dtsi
-> +++ b/arch/arm/boot/dts/amlogic/meson8.dtsi
-> @@ -477,6 +477,14 @@ gpio: bank@80 {
->   			gpio-ranges = <&pinctrl_cbus 0 0 120>;
->   		};
->   
-> +		i2c_b_pins: i2c-b {
-> +			mux {
-> +				groups = "i2c_sda_b", "i2c_sck_b";
-> +				function = "i2c_b";
-> +				bias-disable;
-> +			};
+> +		gpu: gpu@4d900000 {
+> +			compatible =3D "nxp,imx95-mali", "arm,mali-valhall-csf";
+> +			reg =3D <0 0x4d900000 0 0x480000>;
+> +			clocks =3D <&scmi_clk IMX95_CLK_GPU>, <&scmi_clk IMX95_CLK_GPUAPB>;
+> +			clock-names =3D "core", "coregroup";
+> +			interrupts =3D <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 290 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 288 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names =3D "job", "mmu", "gpu";
+> +			mali-supply =3D <&gpu_fixed_reg>;
+> +			operating-points-v2 =3D <&gpu_opp_table>;
+> +			power-domains =3D <&scmi_devpd IMX95_PD_GPU>, <&scmi_perf IMX95_PERF_=
+GPU>;
+> +			power-domain-names =3D "mix", "perf";
+> +			resets =3D <&gpu_blk_ctrl 0>;
+> +			#cooling-cells =3D <2>;
+> +			dynamic-power-coefficient =3D <1013>;
 > +		};
 > +
->   		sd_a_pins: sd-a {
->   			mux {
->   				groups = "sd_d0_a", "sd_d1_a", "sd_d2_a",
-> @@ -522,6 +530,16 @@ mux {
->   			};
->   		};
->   
-> +		sdxc_c_pins: sdxc-c {
-> +			mux {
-> +				groups = "sdxc_d0_c", "sdxc_d13_c",
-> +					"sdxc_clk_c", "sdxc_cmd_c",
-> +					"sdxc_d47_c";
-> +				function = "sdxc_c";
-> +				bias_pull_up;
-> +			};
-> +		};
-> +
->   		spdif_out_pins: spdif-out {
->   			mux {
->   				groups = "spdif_out";
-> 
+>  		ddr-pmu@4e090dc0 {
+>  			compatible =3D "fsl,imx95-ddr-pmu", "fsl,imx93-ddr-pmu";
+>  			reg =3D <0x0 0x4e090dc0 0x0 0x200>;
+>=20
 
-Apart that:
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-Thanks !
-Neil
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
+
 
