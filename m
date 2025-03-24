@@ -1,93 +1,119 @@
-Return-Path: <devicetree+bounces-160247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D8C1A6E06D
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 18:01:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CF73A6E080
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 18:05:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E11DC7A19E9
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 17:00:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B635B3A781F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 17:04:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE761263F4A;
-	Mon, 24 Mar 2025 17:01:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FEE52641CF;
+	Mon, 24 Mar 2025 17:04:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dhxwBWqP"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="FUnEuuvf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B253F79F5;
-	Mon, 24 Mar 2025 17:01:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D3DF263F49;
+	Mon, 24 Mar 2025 17:04:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742835686; cv=none; b=c+C8FK6fqi6z+XiF260QbR5JtR4+0hMSz3yROg0fbQo6in6DmlLD+xjm8KjiP48gVj54fq317E+xiIAqhW19DEVH4Awx2xTzBBZlxJ/LpBe8fYzfNm4/Ui5MogT4dBqqnsfSRss6i3uvj2NdrE1P5FvO/OmEzHaKtlPX23X6b50=
+	t=1742835867; cv=none; b=i8dsvouxC59YM9Ux5QuVxGTpSI4odTnrbOfKpO8uGnwfjMwrPF+iqqBRcwFeLtNhhkhHylCGvqHXLHRXxt68NCKbTLwGbW03x9ZHxeIBxlgDRpa5Qy1NnO6b/OCsWUaAlB+Z7kXZ02po0LyePsZm/JUpx7KzhlHUj2/VjI7RYyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742835686; c=relaxed/simple;
-	bh=uWJNLYuWvKSvpsPRw892gm1JEBoBmwCB/Kop1T7r8K0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IPBUBtMbYVQDipPyI6Vjaa7WvlW+/VallFdvQkEEkliS9L2Pi+FZMYS7HiqkQd4T+wortxWeOlR9l834dwsI0sH9hY3RVTLCbNIhh7hyqB90q/PrhB9K0sPHK442U+RNnmKdgtH5F3kZlkyudtVupBB6/LAS2kuNmplAwEcTyo8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dhxwBWqP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E69D1C4CEDD;
-	Mon, 24 Mar 2025 17:01:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742835686;
-	bh=uWJNLYuWvKSvpsPRw892gm1JEBoBmwCB/Kop1T7r8K0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dhxwBWqPsnqc/FF3Vh2Uq4XV7t5y8Ng7wB30cTge8lrbx9tO9gHSCqN3gBtdWPs03
-	 EpxpBwBLmPm3ahwXAOUOplvw1bcj3RZyMZw1tFz6+dEnObr48te3KjBa52QkvhNTBp
-	 MGEQ96c9nbqodOF5YsDbVx8YZepknuJjjkw5Mf5O5TtPEjUdeMZr8HvZ0cRsJuHzdv
-	 udbLUFCDFV9rSFStSJMKni8cpM7WHPHrsL/H4cr4jyewMzPJK5DJJzsHqhYQg9olHH
-	 9//4CbGTsTu/bB7IyIJcK88r5+O9BZheTpqmTHM5CP1UMBeASsvm0UdBBlg6DgtLBP
-	 MZ8ngxjMamstQ==
-Date: Mon, 24 Mar 2025 12:01:25 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-Cc: Chanwoo Choi <cw00.choi@samsung.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Lee Jones <lee@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	linux-rtc@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
-	linux-samsung-soc@vger.kernel.org,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Russell King <linux@armlinux.org.uk>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Catalin Marinas <catalin.marinas@arm.com>, kernel-team@android.com,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	Will Deacon <will@kernel.org>,
-	Will McVicker <willmcvicker@google.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH 02/34] dt-bindings: clock: samsung,s2mps11: add s2mpg10
-Message-ID: <174283568389.583762.1651160249139720114.robh@kernel.org>
-References: <20250323-s2mpg10-v1-0-d08943702707@linaro.org>
- <20250323-s2mpg10-v1-2-d08943702707@linaro.org>
+	s=arc-20240116; t=1742835867; c=relaxed/simple;
+	bh=5kYi8rB59tsd+qkVDJfncnPdyMyZuWc5phF2+nfbC5U=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Hb9FU9+IijHazbsMboJLZjXAgbnhkKIYpGfMr7XjFnq0MEu4hKn+Z45HhQn90FU/8LFKCUX4ldM/lFo4UDX14iXW0ps6lCmHy+wucqz5S9WBtbQ4G2V5zvCZ/YCKULJD9BbH9TZ3Rgy4hTYK0tKCqzovS7kQLRQskICcUAm1xPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=FUnEuuvf; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1742835863;
+	bh=5kYi8rB59tsd+qkVDJfncnPdyMyZuWc5phF2+nfbC5U=;
+	h=From:Subject:Date:To:Cc:From;
+	b=FUnEuuvf9PXpYxGtocUa5dPFGqWiX6wXhfsjHqqlHELLRlbkX0Bk/CaO9sP8uuTs+
+	 2rgdcprIcB0wT/SbMlAtyEnkOSo2vhlL19gwliqoKoSVSAIz7/KJkujLNPslfHV9CK
+	 PWg/Nf+eUgA07r234Q5lq6PJMyJiPWKHmfrNIkS9MOZZuHNAVyrwtpV1tiOHKYVvCW
+	 YdaoHW6HayYfsjgzXkZQ6INiuP6lzkyONlIJEL7MtGjyXISMLuvZo7TbKdZLGA2Qq7
+	 uKHJILJ2JiV6XMvBQ31FCPq2RSi9j8/JhPWJ7B6Brhh8Cx/3yYDwVKBqoar8PEmpiV
+	 dYnuv0xcvlkSA==
+Received: from jupiter.universe (dyndsl-091-248-188-184.ewe-ip-backbone.de [91.248.188.184])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 33C3217E0C4F;
+	Mon, 24 Mar 2025 18:04:23 +0100 (CET)
+Received: by jupiter.universe (Postfix, from userid 1000)
+	id D5B3D480034; Mon, 24 Mar 2025 18:04:22 +0100 (CET)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: [PATCH 0/5] arm64: dts: rockchip: add ROCK 5B+ support
+Date: Mon, 24 Mar 2025 18:04:21 +0100
+Message-Id: <20250324-rock5bp-for-upstream-v1-0-6217edf15b19@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250323-s2mpg10-v1-2-d08943702707@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJWQ4WcC/x3MQQ5AMBBA0avIrE1SpQmuIhbKlInQZopIxN01l
+ m/x/wORhClCmz0gdHFkvycUeQbjMuwzIU/JoJU2qtQVih9XYwM6L3iGeAgNG7qpNlYpa5rSQkq
+ DkOP733b9+35EzsIKZgAAAA==
+X-Change-ID: 20250324-rock5bp-for-upstream-fd85b00b593b
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1139; i=sre@kernel.org;
+ h=from:subject:message-id; bh=5kYi8rB59tsd+qkVDJfncnPdyMyZuWc5phF2+nfbC5U=;
+ b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGfhkJawCQI4XLraZ32+UGUEQ8dIBGyHdv77y
+ hKcblymMCyUIIkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJn4ZCWAAoJENju1/PI
+ O/qaSogQAIWUmw/Vgp0mj/l/Py2GuQ8gsfM8Y+aJdjYhhJG6c3vwZTJmsowhngtQKuKmDc84OGM
+ v1AApCEiJh+omnn2uPRiG20091Bxj4b5udgG8qxyXAxxLNxOgLaiSXfiCAxKGNoUWdWueEbOwJK
+ y5jrJ44cJNDYNNFeZVOiayrpVQ1AhV34iZmE3/ZyR5za8EZNSZrZXxiazJdzijFxKIQlZkFWQ1C
+ RMfBEdADPpB/oFjPWA/Wv5730P6BPvbHYa5WCEuWT5NaZgcCrfXIdKM0LtePRAofjfNmZerFcqA
+ waup3lgOX8tTLsvypbCiG9eAHLLRksELk98rsawaO32TohdL9TMO/4j5qohUdhW5N8j2+I+hNbq
+ INEFfHqTgAu4inG9/BV1r6ef+d5OHz3B1TnBn8uVmoagPmcKNqxvZPPc7k71YhBdzvPHn0ksBNI
+ pMGJe23nQQ5nYl2weM+Z4/2M5mbvdbBlbpBFB2fqbeespmo+PrM6e70OifK7IqEZDeGp6VoGs+z
+ 72k82Cx8Mn1UOVs3uRPcPCqVIFyJbN5rgJGAkn1eUMdoo4IpsLZcZNTQT4OCAUDR5fgGpOQmyO5
+ r+jMdgmqYMFXRrFoHQEnh9gCi3U9LPz1J4d3WiQspFKf9xoDoBMiRgMddBmaRN3hbf5vZS+P2ZR
+ OxOBhQGarglwyjs7jYmoi6w==
+X-Developer-Key: i=sre@kernel.org; a=openpgp;
+ fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 
+This series adds support for the ROCK 5B+, which (as the name suggests)
+is an improved version of the ROCK 5B. It also adds initial USB-C
+support for both the ROCK 5B and the 5B+.
 
-On Sun, 23 Mar 2025 22:39:18 +0000, André Draszik wrote:
-> The Samsung S2MPG10 clock controller is similar to the existing clock
-> controllers supported by this binding. Register offsets / layout are
-> slightly different, so it needs its own compatible.
-> 
-> Signed-off-by: André Draszik <andre.draszik@linaro.org>
-> ---
->  Documentation/devicetree/bindings/clock/samsung,s2mps11.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+---
+Sebastian Reichel (5):
+      arm64: dts: rockchip: move rock 5b to include file
+      arm64: dts: rockchip: move rock 5b to include file
+      dt-bindings: arm: rockchip: Add Radxa ROCK 5B+
+      arm64: dts: rockchip: add Rock 5B+
+      arm64: dts: rockchip: add USB-C support for ROCK 5B and 5B+
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+ .../devicetree/bindings/arm/rockchip.yaml          |    5 +
+ arch/arm64/boot/dts/rockchip/Makefile              |    1 +
+ .../boot/dts/rockchip/rk3588-rock-5b-plus.dts      |  117 +++
+ arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts    |  952 +----------------
+ arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi   | 1087 ++++++++++++++++++++
+ 5 files changed, 1220 insertions(+), 942 deletions(-)
+---
+base-commit: 76728fe54f547950f73c9dc446beb2e31604abd7
+change-id: 20250324-rock5bp-for-upstream-fd85b00b593b
+
+Best regards,
+-- 
+Sebastian Reichel <sre@kernel.org>
 
 
