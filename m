@@ -1,96 +1,172 @@
-Return-Path: <devicetree+bounces-160187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C313A6DC66
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 15:00:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D9A5A6DC87
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 15:05:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D1C6B16C23B
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 13:59:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C244C1704D5
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 14:04:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8E7225F7BA;
-	Mon, 24 Mar 2025 13:59:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B25825F7A4;
+	Mon, 24 Mar 2025 14:04:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="NoOFdZGM"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="jZjE5V4M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5CB225E81C;
-	Mon, 24 Mar 2025 13:59:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C11219C569;
+	Mon, 24 Mar 2025 14:04:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742824773; cv=none; b=s9Y5it4ohp7MQVR2m6TCs+ShsHz2PRsLNQpEr5B56xuzcRRgC7JAUpDrjbzFZclVSMxnhWSDvhV+zZ87AVdh0uwHGY1Bk8JLnKzeqblrBk+m/SrpQU1lroXQKzBKTCq25VbXx8Yl9zRistOuTo2yjGlCvibdM454wEAk15K0L3Y=
+	t=1742825055; cv=none; b=SeF8vY7DDWLk1bTXCMF+Hf8CNPUJSpdW0pY+30tHwjoozAUL2v8gvy7eBrjLOTWevuA8OEoDXEnH7PV6WDvbf/ltLpJuveDHChaeWX0TW2yT1ZD2uTgCOhpFYf3iovBYhlfq/ncCRMeUuSNc6EoKTiFjJKU3SWy/NXDJW+y9YEc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742824773; c=relaxed/simple;
-	bh=pPpPGmbFhlnpcrD/sdzrDoBTzh8QL5fZzQQDJK4oxFg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=YBISBCTmKGnYLqwM+cd84IJHI8B8yoQ7CKWfyyO1m+2TBLJc7VTLan0WyUIanA0pT+nbn6ZKiRoebX3H+7rD10sg/wSGjw9XEljhEHdyq8pg/e9+I7P7p0ax84pqixcaYANwYKCw9JqNs4ugDrfjwNB8KsTnGlIHty4s90hCV+g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=NoOFdZGM; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1742824770;
-	bh=pPpPGmbFhlnpcrD/sdzrDoBTzh8QL5fZzQQDJK4oxFg=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=NoOFdZGMVYWoM9DEu8WggGAbsUWyXP8z1gBmOVYNDchafopGHD8cg4ne8gCQsrEOh
-	 JuPHDleNcmv2mZtMw280dk7j8HJNk0a2bA09/3uu/G9Uan44pDZR/7pX1/ujgzT38+
-	 Rdagsu4hGj3TsONQ0hWTCj58/NVcn/+o8gN6FioqAwbbI51EgB2ciGuYEPfxVjU9aG
-	 4L9msFdmuoIAAHy336MF8sXfMWPhsl469v7mWyDIQtr9FU0VZYSEtdcGCqAPkFzK2G
-	 R6rVAXwgu/vjlgh73bV7Cxrpz4kZcKKNchIGPzlVxsKRAX+Ytb8w2TnpKBz7jOsxaQ
-	 3TNL44MXe1f6A==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3AAF417E0673;
-	Mon, 24 Mar 2025 14:59:28 +0100 (CET)
-Message-ID: <28135f96-ef99-4347-884d-20e870a3d64a@collabora.com>
-Date: Mon, 24 Mar 2025 14:59:26 +0100
+	s=arc-20240116; t=1742825055; c=relaxed/simple;
+	bh=QZRyHaer4aVTsJACugml0QiF0ENOWqtGXsMcJVhuviY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QaqDmx9/lucJv2OK/GfemCVgouVx73UIzi8y17rmRqAYkfZpPeC+3UtpyUA90Iaa1j4vhUbGsAm7BUG2BZmB27rPF4b3wEidyZfwrwoNjnAtglpKTLt6XYzwb9FBB1qz6Evl0ZGnHyY+E7f2BByBfrUJzs6uQH0RH3lqgI4NniI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=jZjE5V4M; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=+reJuCbLkyPvkpR8TOLTyAMnNK1tq2tJBBQi3tYUQ9o=; b=jZjE5V4MBYSqGrnZjRfhUasREq
+	M3aD0DMus0d84LKGN8je7NwmG+egyqT73PWJO1brt6wf3HqiXreND05BwZ5wCm0rR9yTdr63P8TY1
+	eaEdYT2/5Nu0+f1Ilil4guY6OoX+Y/+rF/QFg2Atbbf65cRVbAgpJn59wt1IGy++Ojg4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1twiP9-006wSY-Ji; Mon, 24 Mar 2025 15:03:51 +0100
+Date: Mon, 24 Mar 2025 15:03:51 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next PATCH 1/2] net: phy: Add support for new Aeonsemi PHYs
+Message-ID: <f0c685b0-b543-4038-a9bd-9db7fc00c808@lunn.ch>
+References: <20250323225439.32400-1-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: iommu: Correct indentation and style in DTS
- example
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Yong Wu <yong.wu@mediatek.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, Maxime Ripard
- <mripard@kernel.org>, David Heidelberg <david@ixit.cz>,
- iommu@lists.linux.dev, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-arm-msm@vger.kernel.org
-References: <20250324125250.82137-1-krzysztof.kozlowski@linaro.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250324125250.82137-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250323225439.32400-1-ansuelsmth@gmail.com>
 
-Il 24/03/25 13:52, Krzysztof Kozlowski ha scritto:
-> DTS example in the bindings should be indented with 2- or 4-spaces and
-> aligned with opening '- |', so correct any differences like 3-spaces or
-> mixtures 2- and 4-spaces in one binding.  While re-indenting, drop
-> unused labels.
-> 
-> No functional changes here, but saves some comments during reviews of
-> new patches built on existing code.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Supported PHYs AS21011JB1, AS21011PB1, AS21010JB1, AS21010PB1,
+> AS21511JB1, AS21511PB1, AS21510JB1, AS21510PB1, AS21210JB1,
+> AS21210PB1 that all register with the PHY ID 0x7500 0x7500
+> before the firmware is loaded.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Does the value change after the firmware is loaded? Is the same
+firmware used for all variants?
 
+> +++ b/drivers/net/phy/Kconfig
+> @@ -121,6 +121,18 @@ config AMCC_QT2025_PHY
+>  
+>  source "drivers/net/phy/aquantia/Kconfig"
+>  
+> +config AS21XXX_PHY
+> +	tristate "Aeonsemi AS21xxx PHYs"
 
+The sorting is based on the tristate value, so that when you look at
+'make menuconfig' the menu is in alphabetical order. So this goes
+before aquantia.
+
+> +/* 5 LED at step of 0x20
+> + * FE: Fast-Ethernet (100)
+> + * GE: Gigabit-Ethernet (1000)
+> + * NG: New-Generation (2500/5000/10000)
+> + * (Lovely ChatGPT managed to translate meaning of NG)
+
+It might be a reference to NBase-T Gigabit.
+
+Please add a comment somewhere about how locking works for IPCs. As
+far as i see, the current locking scheme is that IPCs are only called
+from probe, so no locking is actually required. But:
+
+> +#define IPC_CMD_NG_TESTMODE		0x1b /* Set NG test mode and tone */
+> +#define IPC_CMD_TEMP_MON		0x15 /* Temperature monitoring function */
+> +#define IPC_CMD_SET_LED			0x23 /* Set led */
+
+suggests IPCs might in the future be needed outside of probe, and then
+a different locking scheme might be needed, particularly for
+temperature monitoring.
+
+> +static int as21xxx_get_features(struct phy_device *phydev)
+> +{
+> +	int ret;
+> +
+> +	ret = genphy_read_abilities(phydev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* AS21xxx supports 100M/1G/2.5G/5G/10G speed. */
+> +	linkmode_clear_bit(ETHTOOL_LINK_MODE_10baseT_Half_BIT,
+> +			   phydev->supported);
+> +	linkmode_clear_bit(ETHTOOL_LINK_MODE_10baseT_Full_BIT,
+> +			   phydev->supported);
+> +	linkmode_clear_bit(ETHTOOL_LINK_MODE_100baseT_Half_BIT,
+> +			   phydev->supported);
+
+Does this mean the registers genphy_read_abilities() reads are broken
+and report link modes it does not actually support?
+
+> +	linkmode_set_bit(ETHTOOL_LINK_MODE_100baseT_Full_BIT,
+> +			 phydev->supported);
+> +	linkmode_set_bit(ETHTOOL_LINK_MODE_1000baseT_Full_BIT,
+> +			 phydev->supported);
+
+and it is also not reporting modes it does actually support? Is
+genphy_read_abilities() actually doing anything useful? Some more
+comments would be good here.
+
+> +	linkmode_set_bit(ETHTOOL_LINK_MODE_2500baseT_Full_BIT,
+> +			 phydev->supported);
+> +	linkmode_set_bit(ETHTOOL_LINK_MODE_5000baseT_Full_BIT,
+> +			 phydev->supported);
+> +	linkmode_set_bit(ETHTOOL_LINK_MODE_10000baseT_Full_BIT,
+> +			 phydev->supported);
+
+Does this mean genphy_c45_pma_read_abilities() also returns the wrong
+values?
+
+> +static int as21xxx_read_link(struct phy_device *phydev, int *bmcr)
+> +{
+> +	int status;
+> +
+> +	*bmcr = phy_read_mmd(phydev, MDIO_MMD_AN,
+> +			     MDIO_AN_C22 + MII_BMCR);
+> +	if (*bmcr < 0)
+> +		return *bmcr;
+> +
+> +	/* Autoneg is being started, therefore disregard current
+> +	 * link status and report link as down.
+> +	 */
+> +	if (*bmcr & BMCR_ANRESTART) {
+> +		phydev->link = 0;
+> +		return 0;
+> +	}
+> +
+> +	status = phy_read_mmd(phydev, MDIO_MMD_AN, MDIO_STAT1);
+
+No MDIO_AN_C22 + here? Maybe add a comment about which C22 registers
+are mapped into C45 space.
+
+	Andrew
 
