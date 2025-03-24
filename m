@@ -1,139 +1,232 @@
-Return-Path: <devicetree+bounces-160271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82532A6E198
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 18:53:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBF7EA6E1E2
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 18:59:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D81E1897602
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 17:50:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0702F3BC1C2
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 17:53:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABC8E267AEF;
-	Mon, 24 Mar 2025 17:41:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09671264A85;
+	Mon, 24 Mar 2025 17:49:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UM1CUWpv"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ILdBPfBw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BF06267718;
-	Mon, 24 Mar 2025 17:41:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0F0A264A7C;
+	Mon, 24 Mar 2025 17:49:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742838103; cv=none; b=tIuVuGmgqk6/P4prhX/XP9sL5q4eLLsJlRQ2OJUloKy3hmP5TZ9xVCgtD7TKDuoaJ+M9UA9Obx39aLCOqlRIddb0dhnQvKeB0caW7idHy9gQm2NSCsNMPpvaWN28inxxT3nnk14FRmGxaU1f5Rnispm8+xvT16YrYgzsReRTcvY=
+	t=1742838554; cv=none; b=FrsLiaFnQ7/6UAlyEE10ssk614KPGXYE3slrBtEL+yyz0vfPtwRzj6l+ID9cHqVQ/iCLay2PbRPejYpFyr9UYT5IZbVtX6zFs1GW3VTXBkiWnno1Bs3taL3JuD/VQIcOXg89/sOzcKZ1JvvikDZF4FWIPwYvd9/3bKuSsl2v4QM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742838103; c=relaxed/simple;
-	bh=eUFaq+yugIuksyG03BYSR72DIzc5mCrpziXwrV7Qk88=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=nNDElK9KBf9QVqY1XhvSwDEgNAxkvHoDfXxiQDqgUT222Dr8ILt/bnIOlfrbSdSc0yUxs9XuKwa7hrHByjqc1PP+vOREge3NPY6bJVfeoJ+mQ0TPRQOO8ZhfVgVz1K5LU5Y1VD3gNnALtL7NFXtC964HSyuDJcfcvsJTREBYxr8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UM1CUWpv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C5DD4C4CEF3;
-	Mon, 24 Mar 2025 17:41:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742838102;
-	bh=eUFaq+yugIuksyG03BYSR72DIzc5mCrpziXwrV7Qk88=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=UM1CUWpvVSEW6wS3JIFbX8YAbP+JaY4SD5GiSG4Zz6CB1zgKOyAhCB3AgB/HH+FN8
-	 44d2lmFCoAPEtkLYdURCEYv5a1foMznp81ItNJATSwLPsb74qsLhujdwfurwixlTKL
-	 5VlN7nmxRc6ZWe40mmTWRhkCcUKIBiepjDEFJebQxigxi/2ocLJXwVXZLIR0L9Ctjr
-	 wOzjglyhSFNojAC0Czd8m+ynxmC7U1fhAi7NqHSeRp4zsWa5JMN6uF7va0YcLUZq2X
-	 MLYjG5o5/pV0l/msILpbJZo7BC89SMb7By6AflujkGTHe7lY+EGmkERn32cGQdG2pw
-	 R/lv99dP0yFCw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BBF18C36008;
-	Mon, 24 Mar 2025 17:41:42 +0000 (UTC)
-From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
-Date: Mon, 24 Mar 2025 18:41:42 +0100
-Subject: [PATCH v5 5/5] dt-bindings: wireless: qcom,wcnss: Use
- wireless-controller.yaml
+	s=arc-20240116; t=1742838554; c=relaxed/simple;
+	bh=zehG0hVjOYg1/tDV+yvNPZobIUe5t9ArdAqwSYUqvIE=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
+	 References:In-Reply-To; b=h+gBB2xMitY8I7/dwAfPSQV1In4yvIddHxpN5CLtPZofurrz1ET7ZcAqj10efseLrrMQ1SOkSC+aVoSjRtNXUY18KPfMzzTZnDQWElwHUOWWVA6jU4VD9ndwqFk2zSjlgXVmyLTLO6QGcClfQoAqBXqYy93OfcCVgxzeT0JHdJo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ILdBPfBw; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 763A944346;
+	Mon, 24 Mar 2025 17:49:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1742838549;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=N1co+hewvkHIAplFR3edQapFDqNXgn6Qh8Bh0s6Wls8=;
+	b=ILdBPfBwjDB6/i9FTF9i30HeNSmixqDNKdGblbcS4i9t2sLXeOp5FG+QgyOU32qSB1+F5F
+	7G9rkeO90zADgQ+rnU1dOgtm8+YfOPYu9jpY0t+YCXHScFmZ0BH/4JrjrLQ3LmKwidjHId
+	HR4OZKF6V00ajD3rHljdQxoMe5mlenxUy2lZfuefwBTKvp0fcmf1kg3ufCziKCgCnpSYGj
+	8U1BbgfQ9S3DEQNsyS42/gkGUXtf8M2dsl5l8DEesVi2FDdIuJbnqVm30On3W4Yn12maU9
+	L3BKaUnAld55T2YJog8v6Ui8vpsf+mfvkvXMu29AdhG8qNA4Jbz3o3Gh5QDDNw==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250324-dt-bindings-network-class-v5-5-f5c3fe00e8f0@ixit.cz>
-References: <20250324-dt-bindings-network-class-v5-0-f5c3fe00e8f0@ixit.cz>
-In-Reply-To: <20250324-dt-bindings-network-class-v5-0-f5c3fe00e8f0@ixit.cz>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Mailing List <devicetree-spec-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, 
- Johannes Berg <johannes@sipsolutions.net>, 
- Lorenzo Bianconi <lorenzo@kernel.org>, van Spriel <arend@broadcom.com>, 
- =?utf-8?q?J=C3=A9r=C3=B4me_Pouiller?= <jerome.pouiller@silabs.com>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Andy Gross <agross@kernel.org>, 
- Mailing List <devicetree-spec@vger.kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, Janne Grunau <j@jannau.net>, 
- David Heidelberg <david@ixit.cz>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1122; i=david@ixit.cz;
- h=from:subject:message-id;
- bh=8m+TP7dhDaz8he9N9bMiZ3ZhzlbMMMqDKwJGp281Vxg=;
- b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBn4ZlU7W6DvkU/GtU/5mgv1mJEVjM4fMdd4lFLB
- YEnkBz9O4aJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCZ+GZVAAKCRBgAj/E00kg
- cjZWD/9gYT52tWM4Pj6Xa1C9vE5/lk54/lUY/gSgvswdtF7p8i7iEfWQ1TAp6bESqwxYpp3QaZ/
- hDpevbVV/KiBcnkL9XCOImWcaGNBM+KgPmZHmgj/dChDYuhxtBhSCGTAJlPA+fsBnwuP/le9X67
- wYDmWqJAvJOdRRvDosljxZoMoCMde9D0xEQ58b8wkKvEJIALE4hDmkMTrkNAcQ9kbQs0V8WqnHu
- FakuiaHdvBiRxln3b1Jb62vC9QdJFZvut36ORsLRJNj8bkeQOyFuybIodr6Pd1URNMBulafo76t
- /knBV1EuMz2KjnvNF7kC0r2sd8K3ZK6E81Kbpb+7zci+JShAdz6vm1VUbX83FTJKTled2L3ronh
- S1QR7GJKiJ2DLaqHiaBr+S5H9Bfwa+1Y6nGZgo0GAzRBFP5+ecG++alMEjCFaqPI0g0veZ5nN8a
- iduChlEKGZSwqVVXbQofOQ9f5IRZb/zqYbEydRIb25SeOei0XaF+kbl12j5ykx6Mu9MrTFPxXby
- RpL1Jp10Zox9eYFqfnYgiz+FN9D0a8sEyYS/BAUb/6z3hPxpnBIf+NMuNh0ulyQe81F7UOq1qdK
- WYWHmwXAOpdxaBuugB3TAwIt33DuRlAmS+8X9IMWwnjOd3RrsWW+P2mxZiXHFmBed4PbPg9Swvc
- 1gEwu7ZdbzaosRg==
-X-Developer-Key: i=david@ixit.cz; a=openpgp;
- fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
-X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
-X-Original-From: David Heidelberg <david@ixit.cz>
-Reply-To: david@ixit.cz
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 24 Mar 2025 18:49:05 +0100
+Message-Id: <D8OOPAXK16CI.3TE75O760JRSL@bootlin.com>
+Cc: "Andrew Lunn" <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, "Eric Dumazet" <edumazet@google.com>, "Jakub
+ Kicinski" <kuba@kernel.org>, "Paolo Abeni" <pabeni@redhat.com>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Nicolas Ferre"
+ <nicolas.ferre@microchip.com>, "Claudiu Beznea" <claudiu.beznea@tuxon.dev>,
+ "Paul Walmsley" <paul.walmsley@sifive.com>, "Palmer Dabbelt"
+ <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>, "Alexandre
+ Ghiti" <alex@ghiti.fr>, "Samuel Holland" <samuel.holland@sifive.com>,
+ "Richard Cochran" <richardcochran@gmail.com>, "Russell King"
+ <linux@armlinux.org.uk>, "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>, "Gregory CLEMENT"
+ <gregory.clement@bootlin.com>, <netdev@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-riscv@lists.infradead.org>, <linux-mips@vger.kernel.org>, "Thomas
+ Petazzoni" <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>
+To: "Andrew Lunn" <andrew@lunn.ch>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH net-next 07/13] net: macb: move HW IP alignment value to
+ macb_config
+X-Mailer: aerc 0.20.1-0-g2ecb8770224a
+References: <20250321-macb-v1-0-537b7e37971d@bootlin.com>
+ <20250321-macb-v1-7-537b7e37971d@bootlin.com>
+ <45b3e613-90c6-4499-b50b-383106172184@lunn.ch>
+In-Reply-To: <45b3e613-90c6-4499-b50b-383106172184@lunn.ch>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdduiedtgeduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkvefvhffuofhfjgesthhqredtredtjeenucfhrhhomhepvfhhrohoucfnvggsrhhunhcuoehthhgvohdrlhgvsghruhhnsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeigfelffeuffetteetuddufffghefhudeuteeigeekteevgeeileejgfdvffelheenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepjeejrddufeehrdekuddrieehnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepjeejrddufeehrdekuddrieehpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehthhgvohdrlhgvsghruhhnsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvkedprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopegrnhgurhgvfidonhgvthguvghvsehluhhnnhdrtghhpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopegvughumhgriigvthesghhoohhglhgvrdgtohhmpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehpr
+ ggsvghnihesrhgvughhrghtrdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrgh
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-From: David Heidelberg <david@ixit.cz>
+Hello Andrew,
 
-Reference wireless-controller.yaml schema, so we can use properties
-as local-mac-address or mac-address.
+On Fri Mar 21, 2025 at 10:06 PM CET, Andrew Lunn wrote:
+> On Fri, Mar 21, 2025 at 08:09:38PM +0100, Th=C3=A9o Lebrun wrote:
+>> The controller does IP alignment (two bytes).
+>
+> I'm a bit confused here. Is this hard coded, baked into the silicon?
+> It will always do IP alignment? It cannot be turned off?
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- Documentation/devicetree/bindings/soc/qcom/qcom,wcnss.yaml | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+Yes, the alignment is baked inside the silicon.
+I looked but haven't seen any register to configure the alignment.
 
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,wcnss.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,wcnss.yaml
-index fd6db0ca98eb7e56d7399f55c408844d5e782805..4fcae6bedfffa845ad61c776ee0b70768e9a38a5 100644
---- a/Documentation/devicetree/bindings/soc/qcom/qcom,wcnss.yaml
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom,wcnss.yaml
-@@ -54,7 +54,7 @@ properties:
-       - compatible
- 
-   wifi:
--    additionalProperties: false
-+    unevaluatedProperties: false
-     type: object
-     properties:
-       compatible:
-@@ -88,6 +88,9 @@ properties:
-       - qcom,smem-states
-       - qcom,smem-state-names
- 
-+    allOf:
-+      - $ref: /schemas/net/wireless/wireless-controller.yaml#
-+
- required:
-   - compatible
-   - qcom,mmio
+Sorry the commit message isn't clear, it needs improvements.
 
--- 
-2.49.0
+>> 	skb_reserve(skb, NET_IP_ALIGN);
+>
+> Why not just replace this with
+>
+>         skb_reserve(skb, 2);
 
+On arm64, NET_IP_ALIGN=3D0. I don't have HW to test, but the current code
+is telling us that the silicon doesn't do alignment on those:
+
+   skb =3D netdev_alloc_skb(...);
+   paddr =3D dma_map_single(..., skb->data, ...);
+   macb_set_addr(..., paddr);
+
+   // arm   =3D> NET_IP_ALIGN=3D2 =3D> silicon does alignment
+   // arm64 =3D> NET_IP_ALIGN=3D0 =3D> silicon doesn't do alignment
+   skb_reserve(skb, NET_IP_ALIGN);
+
+The platform we introduce is the first one where the silicon alignment
+(0 bytes) is different from the NET_IP_ALIGN value (MIPS, 2 bytes).
+
+Does that clarify things?
+
+>> The NET_IP_ALIGN value is arch-dependent and picked based on unaligned
+>> CPU access performance. The hardware alignment value should be
+>> compatible-specific rather than arch-specific. Offer a path forward by
+>> adding a hw_ip_align field inside macb_config.
+>>=20
+>> Values for macb_config->hw_ip_align are picked based on upstream
+>> devicetrees:
+>>=20
+>>     Compatible             |  DTS folders              |  hw_ip_align
+>>    ------------------------|---------------------------|----------------
+>>    cdns,at91sam9260-macb   | arch/arm/                 | 2
+>>    cdns,macb               | arch/{arm,riscv}/         | NET_IP_ALIGN
+>>    cdns,np4-macb           | NULL                      | NET_IP_ALIGN
+>>    cdns,pc302-gem          | NULL                      | NET_IP_ALIGN
+>>    cdns,gem                | arch/{arm,arm64}/         | NET_IP_ALIGN
+>>    cdns,sam9x60-macb       | arch/arm/                 | 2
+>>    atmel,sama5d2-gem       | arch/arm/                 | 2
+>>    atmel,sama5d29-gem      | arch/arm/                 | 2
+>>    atmel,sama5d3-gem       | arch/arm/                 | 2
+>>    atmel,sama5d3-macb      | arch/arm/                 | 2
+>>    atmel,sama5d4-gem       | arch/arm/                 | 2
+>>    cdns,at91rm9200-emac    | arch/arm/                 | 2
+>>    cdns,emac               | arch/arm/                 | 2
+>>    cdns,zynqmp-gem         | *same as xlnx,zynqmp-gem* | 0
+>>    cdns,zynq-gem           | *same as xlnx,zynq-gem*   | 2
+>>    sifive,fu540-c000-gem   | arch/riscv/               | 2
+>>    microchip,mpfs-macb     | arch/riscv/               | 2
+>>    microchip,sama7g5-gem   | arch/arm/                 | 2
+>>    microchip,sama7g5-emac  | arch/arm/                 | 2
+>>    xlnx,zynqmp-gem         | arch/arm64/               | 0
+>>    xlnx,zynq-gem           | arch/arm/                 | 2
+>>    xlnx,versal-gem         | NULL                      | NET_IP_ALIGN
+>
+> I don't remember seeing any other driver doing anything like
+> this. That often means it is wrong....
+
+Good question, let's look at skb_reserve() that follow dma_map_single():
+
+   =E2=9F=A9 git grep -A20 dma_map_single drivers/net/ethernet/ | \
+      rg skb_reserve | grep -v macb_main
+   drivers/net/ethernet/sun/sunbmac.c:          skb_reserve(copy_skb, 2);
+   drivers/net/ethernet/sun/sunhme.c:           skb_reserve(skb, RX_OFFSET)=
+;
+   drivers/net/ethernet/sun/sunhme.c:           skb_reserve(new_skb, RX_OFF=
+SET);
+   drivers/net/ethernet/sgi/ioc3-eth.c:         skb_reserve(new_skb, RX_OFF=
+SET);
+   drivers/net/ethernet/chelsio/cxgb/sge.c:     skb_reserve(skb, sge->rx_pk=
+t_pad);
+   drivers/net/ethernet/marvell/mv643xx_eth.c:  skb_reserve(skb, 2);
+   drivers/net/ethernet/dec/tulip/de2104x.c:    skb_reserve(copy_skb, RX_OF=
+FSET);
+   drivers/net/ethernet/marvell/pxa168_eth.c:   skb_reserve(skb, ETH_HW_IP_=
+ALIGN);
+   drivers/net/ethernet/alacritech/slicoss.c:   skb_reserve(skb, offset);
+   drivers/net/ethernet/toshiba/tc35815.c:      skb_reserve(skb, 2); /* mak=
+e IP header 4byte aligned */
+   drivers/net/ethernet/lantiq_etop.c:          skb_reserve(ch->skb[ch->dma=
+.desc], NET_IP_ALIGN);
+
+Out of those, two are using dynamic values:
+
+   // In drivers/net/ethernet/chelsio/cxgb/sge.c
+   // The value comes from [0]:
+   sge->rx_pkt_pad =3D t1_is_T1B(adapter) ? 0 : 2;
+   // The macro resolves to something like [1]:
+   adap->params.chip_version =3D=3D CHBT_TERM_T1 && adap->params.chip_revis=
+ion =3D=3D TERM_T1B
+
+   // In drivers/net/ethernet/alacritech/slicoss.c
+   // In slic_refill_rx_queue() [2]
+   /* ensure head buffer descriptors are 256 byte aligned */
+   offset =3D 0;
+   misalign =3D paddr & ALIGN_MASK;
+   if (misalign) {
+      offset =3D SLIC_RX_BUFF_ALIGN - misalign;
+      skb_reserve(skb, offset);
+   }
+
+Conclusion:
+ - one is HW revision dependent,
+ - the other knows that HW always aligns its buffer to 256.
+
+We aren't alone, but pretty lonely.
+
+Maybe I missed a common denominator that could be used to identify
+compatibles that do or do not have hardcoded alignemnt. Without such
+info, the approach taken (have alignment stored inside match data)
+sounds reasonable to me.
+
+Do you agree?
+
+Thanks,
+
+[0]: https://elixir.bootlin.com/linux/v6.13.7/source/drivers/net/ethernet/c=
+helsio/cxgb/sge.c#L2106
+[1]: https://elixir.bootlin.com/linux/v6.13.7/source/drivers/net/ethernet/c=
+helsio/cxgb/common.h#L292-L299
+[2]: https://elixir.bootlin.com/linux/v6.13.7/source/drivers/net/ethernet/a=
+lacritech/slicoss.c#L418-L424
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
