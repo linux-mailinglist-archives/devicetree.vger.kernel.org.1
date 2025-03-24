@@ -1,139 +1,204 @@
-Return-Path: <devicetree+bounces-160048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160050-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E204A6D67C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 09:42:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D842BA6D685
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 09:43:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 892837A5B06
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 08:40:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A5BC1884735
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 08:44:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FDF325DAEF;
-	Mon, 24 Mar 2025 08:41:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B29D1F3D5D;
+	Mon, 24 Mar 2025 08:43:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="BQOc0eox"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="LUfPERqY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F189425D8FC
-	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 08:41:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7809025C6F1
+	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 08:43:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742805673; cv=none; b=qPTam/aDqVmL8Or/FmDuoVN6b7RR3XJZwDkAmM+EouG5zpMPgtdmYjNMOpc/AyfR+1qPVS5m4wZJmgHotfJkba05Cie20FDEIpR8rVc9LGG0+SXFUXWjYLEqRpUn/NdcOaNH2vo+NrE0NWq3M6tmZFBkNkYTSPFZvCohGu4nA1A=
+	t=1742805828; cv=none; b=qv9Z2WPaoSIlB31dMHyG3dorRJJ8NRix0S/BTiDweB/vW2IBokWn4MPUpVZ0R+CRs2N2bFpt3q8LwSVBHrqlsEqtW5hr+cmOKCsTSN1njVy9gcrNSK86NiFaKDiogpgGNwZcYQKAdupgN1EghoewxN+SBzmrJG0LInbt9chrRj0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742805673; c=relaxed/simple;
-	bh=AFOsIAC6SS0fPbzq7D7EjSpe/9E/6d/qhu5Xf6WqtyU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=uzJaa6ymDOiEKVQsuDZi8Cm3/bR8+BSxLCFcazS81MBWVNJZ9Utn5Us4MMe9p47hOQc+MD4sH1QRDE93hjomTWjSqx+cyb0ihQd1aOmvqvMYi9ya7CxmjLnh0OVlLffGCaRx9HarRaxtQIaJg30oA2AtxkTPF3qVeG9lz/0T84U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=BQOc0eox; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-ac34257295dso857794466b.2
-        for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 01:41:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1742805669; x=1743410469; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uqyxDkKBXP2Up3UhH96Dx8TXoOJgbv9o3SaMoIVWQrE=;
-        b=BQOc0eoxoA4tl5p+pK+LyTEKozxCWGMFmUZJttxNB7EXcd/fD87YBvEC5EoYL2vJWm
-         HqJI/UTP22aCeaVl1igHjzTiKxb2A9ntxdH3T80xYpl0pNrLARnaNBZlfJkaX0Zqw/G2
-         aoC2OPFkt4yJdQsEleObm0TGqPUWa4591somJ2ggRKwzIz+IeTpz6OcIaa717Fxnsqbu
-         HAaf5sDwcgxW4ED7KdUZ6V5sAYDSE7PacQdlUxkLpk2fQRm4xH4YKDj6oyze8grtT2gf
-         ZUV4DsYLKBrRIMpuUpwqDe11Nl92a6XNE4saUkcMjZ30DTSWsi2W+UtI27HuTEfv09KO
-         t66g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742805669; x=1743410469;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uqyxDkKBXP2Up3UhH96Dx8TXoOJgbv9o3SaMoIVWQrE=;
-        b=F/tOYCbx69Lkp/DJK4fOfHNsOR93nH0t4R5LupjRPng13b1XyPVXtbUvTz7kArmABK
-         7FirnBMQv6AvzFEx8Eo+2GVhxZM2GW57tx12kMTy+nEP2x1QII/M36uzo0dftm0lRYwc
-         9A/IEqR+2v4QBvi9QrzJ7dowNgRHOd0CBxgCKkV16ppME7JcPk46kwp+dW48xVOm4sOo
-         9fOUux+LE1IHKtAAbQpsppeBJIxoBtgBijJiFPnw5Y2+x2iwg+jeotmhqFcUsMjvFpxm
-         RfgvtLWt0/gpTjAkJj69ULGW2sN1rEmX6vSnQijVA+rc366TwjXErMXLy+VQTd9bkXl3
-         mdfw==
-X-Forwarded-Encrypted: i=1; AJvYcCV6NpV/lFeCV6xswJzZDLDFrQuawOWHJIvyTznXHVMF64LAyvu7rFaOgirKKqlHfd1XJRNBW4BJpnb6@vger.kernel.org
-X-Gm-Message-State: AOJu0YyykAtJB/wAYSGTTpQOU7M+9Xr6A8ar6VfmfLIcEpZm+c8/IS2T
-	EyZ/vMNoBFARz3soWTBiqXWz99lhxRSPzEkoE603NXxcg8r6G6W7e7C1tlnbMWQ=
-X-Gm-Gg: ASbGncue1M4WGpn2/QSCTZrcW1amo+NzadOrSc3NReecShe5KgTHJMvPZYDaWFUfMFR
-	I7dVevv/560fCQw6oObqxIILNrRpOZw608+US2r9cI/ebYeGd63THK6IfRP1DqxnJZRGsiFxshk
-	T8tBA3yy82K9/GgQIcviMkhRkUVPzSZ5GPyBHvM9Cj3jMdKTPHgC84Dlc0M0HhrAqOiSMu9S1VL
-	bkj6sVCNeSFr1l+Kv0M+ef7BjANyuEFPqQ8OzLbMLges4grhIzgxWPLclOeCw7RIyZBYbyMhn2+
-	+jc/8wb3+RoNgGHyMOfmvak2auNGBJiM4CSLUlzlaChvK+cGHRjcn0zGWBxZCIlsqWgPH4ENUr7
-	Y5orQPETDBwaFWc4evA==
-X-Google-Smtp-Source: AGHT+IEIbECex1u2sz3obxMBVg9MXWDK5ZdDdAZm5/qlaOXilZZG6R+6m05Bcoh0lt+nXYcl9z01hQ==
-X-Received: by 2002:a17:907:d88:b0:ac1:e31e:de0a with SMTP id a640c23a62f3a-ac3f20f7101mr1341850266b.12.1742805669049;
-        Mon, 24 Mar 2025 01:41:09 -0700 (PDT)
-Received: from [100.64.0.4] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5ebcd0dfb33sm5715937a12.68.2025.03.24.01.41.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Mar 2025 01:41:08 -0700 (PDT)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Mon, 24 Mar 2025 09:41:04 +0100
-Subject: [PATCH v2 4/4] arm64: dts: qcom: sm6350: Add video clock
- controller
+	s=arc-20240116; t=1742805828; c=relaxed/simple;
+	bh=GHS3IpXQhdYO4TFfzI7IaDKnCl40cRYwui87XEEhlGg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=a6rDbGDLipNvwlifkNvLCDBPBIO335xyWOonMEdNOk95hUVfJu9MDX9YszAZ5+bixD380GYmfpIJTTclQcmJIK2jXu0/YXFobzhfsi+JJFaws1J+BSoJFqQDrwZRuyTfNRmPnSn1SIIgZ62rc0JfzLC3OX9t+uQuBxYnGmjer6c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=LUfPERqY; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1742805818;
+	bh=GHS3IpXQhdYO4TFfzI7IaDKnCl40cRYwui87XEEhlGg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=LUfPERqY2YeNmCMthC0TWEUy+C9p14zzstnLfbgvjTbPch2DOxOaKqVujvW2HNvYB
+	 +y39XCzpLEB/mQgovQmJQBZaVRbKBU7h3hZhawqAq9iFSMC97KCFaV2ac363LVS7We
+	 4i90Dk1PBGO8pG/Qd0S3C+2SYGfUDIR46u/gu0qjxaZ1Zcn+qhOVMPLTf4c+QYWIZg
+	 ZEv0Me5JE0QWWJ04ySu49wsr9DI4q62r+covXy7rnNWQSiCqfFFPLRvzHgBque2leE
+	 b7bk+wBjFCTZ+YE/zpkamGNVMpTr1ZMPbvHcnBjGb7oRl9arCUz7yN86YXHBo9fewF
+	 +ufZ6ufEzz8cw==
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: bbrezillon)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2F25417E0B12;
+	Mon, 24 Mar 2025 09:43:38 +0100 (CET)
+Date: Mon, 24 Mar 2025 09:43:33 +0100
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: Marek Vasut <marex@denx.de>
+Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley
+ <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>, Fabio Estevam
+ <festevam@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Liviu Dudau
+ <liviu.dudau@arm.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>, Philipp Zabel
+ <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>, Shawn Guo
+ <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>, Steven Price
+ <steven.price@arm.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ imx@lists.linux.dev
+Subject: Re: [PATCH v2 4/9] drm/panthor: Implement optional reset
+Message-ID: <20250324094333.7afb17a1@collabora.com>
+In-Reply-To: <20250321200625.132494-5-marex@denx.de>
+References: <20250321200625.132494-1-marex@denx.de>
+	<20250321200625.132494-5-marex@denx.de>
+Organization: Collabora
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250324-sm6350-videocc-v2-4-cc22386433f4@fairphone.com>
-References: <20250324-sm6350-videocc-v2-0-cc22386433f4@fairphone.com>
-In-Reply-To: <20250324-sm6350-videocc-v2-0-cc22386433f4@fairphone.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Taniya Das <quic_tdas@quicinc.com>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Luca Weiss <luca.weiss@fairphone.com>
-X-Mailer: b4 0.14.2
 
-Add a node for the videocc found on the SM6350 SoC.
+On Fri, 21 Mar 2025 21:05:54 +0100
+Marek Vasut <marex@denx.de> wrote:
 
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
- arch/arm64/boot/dts/qcom/sm6350.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+> The instance of the GPU populated in Freescale i.MX95 does require
+> release from reset by writing into a single GPUMIX block controller
+> GPURESET register bit 0. Implement support for one optional reset.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Boris Brezillon <boris.brezillon@collabora.com>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Liviu Dudau <liviu.dudau@arm.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Philipp Zabel <p.zabel@pengutronix.de>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Sebastian Reichel <sre@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> Cc: Steven Price <steven.price@arm.com>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: devicetree@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: imx@lists.linux.dev
+> Cc: linux-arm-kernel@lists.infradead.org
+> ---
+> V2: Drop the select RESET_SIMPLE from Kconfig
+> ---
+>  drivers/gpu/drm/panthor/panthor_device.c | 23 +++++++++++++++++++++++
+>  drivers/gpu/drm/panthor/panthor_device.h |  3 +++
+>  2 files changed, 26 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/panthor/panthor_device.c b/drivers/gpu/drm/panthor/panthor_device.c
+> index a9da1d1eeb707..51ee9cae94504 100644
+> --- a/drivers/gpu/drm/panthor/panthor_device.c
+> +++ b/drivers/gpu/drm/panthor/panthor_device.c
+> @@ -64,6 +64,17 @@ static int panthor_clk_init(struct panthor_device *ptdev)
+>  	return 0;
+>  }
+>  
+> +static int panthor_reset_init(struct panthor_device *ptdev)
+> +{
+> +	ptdev->resets = devm_reset_control_get_optional_exclusive_deasserted(ptdev->base.dev, NULL);
+> +	if (IS_ERR(ptdev->resets))
+> +		return dev_err_probe(ptdev->base.dev,
+> +				     PTR_ERR(ptdev->resets),
+> +				     "get reset failed");
+> +
+> +	return 0;
+> +}
+> +
+>  void panthor_device_unplug(struct panthor_device *ptdev)
+>  {
+>  	/* This function can be called from two different path: the reset work
+> @@ -217,6 +228,10 @@ int panthor_device_init(struct panthor_device *ptdev)
+>  	if (ret)
+>  		return ret;
+>  
+> +	ret = panthor_reset_init(ptdev);
+> +	if (ret)
+> +		return ret;
+> +
+>  	ret = panthor_devfreq_init(ptdev);
+>  	if (ret)
+>  		return ret;
+> @@ -470,6 +485,10 @@ int panthor_device_resume(struct device *dev)
+>  	if (ret)
+>  		goto err_disable_stacks_clk;
+>  
+> +	ret = reset_control_deassert(ptdev->resets);
+> +	if (ret)
+> +		goto err_disable_coregroup_clk;
+> +
+>  	panthor_devfreq_resume(ptdev);
+>  
+>  	if (panthor_device_is_initialized(ptdev) &&
+> @@ -512,6 +531,9 @@ int panthor_device_resume(struct device *dev)
+>  
+>  err_suspend_devfreq:
+>  	panthor_devfreq_suspend(ptdev);
+> +	reset_control_assert(ptdev->resets);
+> +
+> +err_disable_coregroup_clk:
+>  	clk_disable_unprepare(ptdev->clks.coregroup);
+>  
+>  err_disable_stacks_clk:
+> @@ -563,6 +585,7 @@ int panthor_device_suspend(struct device *dev)
+>  
+>  	panthor_devfreq_suspend(ptdev);
+>  
+> +	reset_control_assert(ptdev->resets);
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-index 42f9d16c2fa6da66a8bb524a33c2687a1e4b40e0..4498d6dfd61a7e30a050a8654d54dae2d06c220c 100644
---- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-@@ -1952,6 +1952,20 @@ usb_1_dwc3_ss_out: endpoint {
- 			};
- 		};
- 
-+		videocc: clock-controller@aaf0000 {
-+			compatible = "qcom,sm6350-videocc";
-+			reg = <0x0 0x0aaf0000 0x0 0x10000>;
-+			clocks = <&gcc GCC_VIDEO_AHB_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK>,
-+				 <&sleep_clk>;
-+			clock-names = "iface",
-+				      "bi_tcxo",
-+				      "sleep_clk";
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
- 		cci0: cci@ac4a000 {
- 			compatible = "qcom,sm6350-cci", "qcom,msm8996-cci";
- 			reg = <0x0 0x0ac4a000 0x0 0x1000>;
+Hm, that might be the cause of the fast reset issue (which is a fast
+resume more than a fast reset BTW): if you re-assert the reset line on
+runtime suspend, I guess this causes a full GPU reset, and the MCU ends
+up in a state where it needs a slow reset (all data sections reset to
+their initial state). Can you try to move the reset_control_[de]assert
+to the unplug/init functions?
 
--- 
-2.49.0
+>  	clk_disable_unprepare(ptdev->clks.coregroup);
+>  	clk_disable_unprepare(ptdev->clks.stacks);
+>  	clk_disable_unprepare(ptdev->clks.core);
+> diff --git a/drivers/gpu/drm/panthor/panthor_device.h b/drivers/gpu/drm/panthor/panthor_device.h
+> index da6574021664b..fea3a05778e2e 100644
+> --- a/drivers/gpu/drm/panthor/panthor_device.h
+> +++ b/drivers/gpu/drm/panthor/panthor_device.h
+> @@ -111,6 +111,9 @@ struct panthor_device {
+>  		struct clk *coregroup;
+>  	} clks;
+>  
+> +	/** @resets: GPU reset. */
+> +	struct reset_control *resets;
+> +
+>  	/** @coherent: True if the CPU/GPU are memory coherent. */
+>  	bool coherent;
+>  
 
 
