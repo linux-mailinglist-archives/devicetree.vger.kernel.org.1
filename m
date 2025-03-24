@@ -1,167 +1,230 @@
-Return-Path: <devicetree+bounces-160260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6390DA6E0B8
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 18:18:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D0D4A6E0BD
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 18:23:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B176716947C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 17:18:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E0681891385
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 17:23:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 240FE2641D7;
-	Mon, 24 Mar 2025 17:18:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4C4915E96;
+	Mon, 24 Mar 2025 17:23:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ymqhujPM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="U+VDPyKA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4A5325EF8E
-	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 17:18:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CC0E263C8A
+	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 17:23:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742836714; cv=none; b=Z2EmZHJKXedXtfdWRqselKsQPpbS1cX4BE3jsZfUC1n3Nf/WrU/Z1N+H0H85hBvGt0ntFxy2TLXOFhwI9JKQlHpUzoPOJKIWtxexplK4cOYIJVOeOK40N1lwI/8FtNCnGk66WmX0gn+Zkpby5pWoS54VaN/oFYGYH5RhC+oJVdM=
+	t=1742836987; cv=none; b=ej3s2WZ4UwxxItjAp6SGfUqlCZtwqYpsstmom0kdYqtZh6+QYmLsHOOB8ZYnPvl3Z7+Bk4PYD0PPXJZ3y23QB/bUb96XpJCa5OZaGmp8Ph5WmKrWjw/JsuizKypMWXVKkpRTBrsPZnrWZYlZlMRoP8E22RMJKGkuFzlclhS+/xY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742836714; c=relaxed/simple;
-	bh=OO4f4+Q0rzt9wElVeMHssbBupiD7LRrwqaMbqJE61yo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VuElapyyL0OotLS4x3vIgd7dTrMv77n3hsbvmRG3UQQkMNr+QJq8bjdNulDSFVwD2fXbxHD7eY5aDKpSYQi1KSdo5dusbQDLs2LrTECLZTm6plYSiA0hJDgd6Cc/lcWiRXmZuiD0id1Zh2ptWILQBTDv+gCp3WKiF1cezS4A4j0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ymqhujPM; arc=none smtp.client-ip=209.85.214.178
+	s=arc-20240116; t=1742836987; c=relaxed/simple;
+	bh=WzeJaaOIY3qOgasgq2SbP7NzsZnSi26UTmzBlBZdbZQ=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ldHSe75rv36/RQ/m7z1X/mK4lUyeq+YJeQWTVpDXQPnW8r7C8LnoFMlu2XqWGJgBdTrOdeHVkqXkgQbJAF7Kl9diX1H0IoYYpf+kqMAljM/NuIVt0PS2/fh4TzZNqCFPHMUOZ2SVDiHGabjrO4bKxUV2zayHqJb/tT5PGu9Xkzw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=U+VDPyKA; arc=none smtp.client-ip=209.85.221.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-22548a28d0cso90544145ad.3
-        for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 10:18:31 -0700 (PDT)
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-399744f74e9so2865113f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 10:23:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742836711; x=1743441511; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=HZEbKpA1frJBrkSoz9cnFIH7frubQfuf2pOMnH5himQ=;
-        b=ymqhujPMejytN3hGhaPOFgEwdmbPFw+LU/ZrxBVZ/zeSR+t9uomiWIdaZ4WeWx1z62
-         EDm7IUmJurV+QLTZEFIIFa+lzucxN231CvKPMzCx7QDjb8nJcvD5TBaY2H90uEfl/Y2V
-         28ER1h4eI6QdijFjo17/m7KpypX3N7uqBj7ICsZCLv/jTdoUniqHDV4QpdSgjPxltY0B
-         tcMI61hjhV7daoeAVc1bjxoYG5vo86I6NXZE1zTbvF0SSAF5Y19ufUxbzFjlNy9AksNB
-         Wp3Bo3G3MI52s12Ngvg5OvUck05+BaUbpBt5ZnIquGPe1Rb48ipqFu/g18qqSYTA+gjc
-         aB4w==
+        d=linaro.org; s=google; t=1742836984; x=1743441784; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=WzeJaaOIY3qOgasgq2SbP7NzsZnSi26UTmzBlBZdbZQ=;
+        b=U+VDPyKAxA/0uYzrU73vVChQ2bgZFoGLlSC3ukE7xR+054kYpMfJuiNnw6LzqrhHP5
+         lo2DvoQ32J94Wb6dqXInz0eXuIOWhFHt2bMPS525/imujMmOTW2DgwZswdjNSew98NvG
+         G51LxM86maSbXZdDqM46uezP9NhyRVH8y/iDfjUzxu8jqCHqFqJCyKaAFHWvU7D6cU1o
+         g0iir9uXWVaF2egHeAzRsGLkIZ4DyIMEWFw/dXv+UVXizRQi+uZGO405YHMIZVc6oo0T
+         MHvNOnvD7KyOU6BbTNx3pXIk7/NaF8dT8aUnD6JwhH1pXYwl380L4Kb8O8r9Y+D9w1kh
+         vy/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742836711; x=1743441511;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HZEbKpA1frJBrkSoz9cnFIH7frubQfuf2pOMnH5himQ=;
-        b=bV6R3GuYxzmxvBXYM5mpx687x1b2+itx0KlhMngV9D9p8ZkIaV9vqRTUr9nqehOkXH
-         qXbKnGufqx0W1+dCg+OEdi5UZtMLGCygHWhl1YDqX1FJNXNfxHUYZ/mhjhFBgLZcMaLF
-         6lA35tFMD9LZgp6Xnhn3WinE5TX4yTDgWaWMCwcwfupmUX294yqby7QpJWmpIPVzLuB6
-         NcLxdx7QXZl6dA9EEyi6h1hHXd5ap9rJJj5+kAUvIVDz40BjCsPAQS1zzytXe9dS1k1c
-         ma3pENvwLCCjKopYISDCJj3FyZ8gw9JPCBRE3HbcjXqJPyRhdTeHDqzqTwSgrC0BD8sr
-         5Odw==
-X-Forwarded-Encrypted: i=1; AJvYcCUaEvflHOAju0c+KbIxqJyFYVwdwPY+cizEm9jekwexndrJfIZUTNzuqEVjwzlEb0+rJQ7a/vizz7Z2@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQHm0Zwb5bnqtxBnGVjBCYSUSDSHKrQjWDxJakGYIYTA07UR6s
-	FzO0JySNVXxDt40HKe/Brvm28INlZQmfXCuscMnNacSszGFQzCRsxl7E09+6vQ==
-X-Gm-Gg: ASbGncvEyMXWZ6jBJxpvtCwFPTSzE/i/zF5fXibS1wpVz7ScH8GtQE4FnfmQ5PvSI4K
-	eEIWVoZV06LW6iz48NsYzanfwkB/3q+HUt6FSDQd0sM63IS3SHBcXk37Dg+YoRkE91lkMxGFLQT
-	ZMZ4BomqE5zzdKPaZhEdVAZNekTvH2gI8JRWkve97w7+gYrPqBmwNPAQIRuFvmZcTZwBKuN/CdC
-	h0RZnqWK9LyRTRTRMRgko+57kCvL1X8DWKPaPkISm9zi8ugq6DZ20xy03Lo+Lw1+p/GTBwObJH5
-	etOOkBdc3jqXVShwPXcX1o5DSFj2kuDcYT/EaTNNP+p2Gpk7MaQiiOKr6cX/kJUd0g==
-X-Google-Smtp-Source: AGHT+IG/+IMOKh9mdPF7QL4qAJQoeDmcoGNXXl94gtnk4lfwQykOcdsW47jIFy2/Z8VlBPbmIKO/Sg==
-X-Received: by 2002:a17:902:f648:b0:224:fa0:36da with SMTP id d9443c01a7336-22780c7c06fmr184562345ad.18.1742836710841;
-        Mon, 24 Mar 2025 10:18:30 -0700 (PDT)
-Received: from thinkpad ([120.60.67.138])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22780f3bbedsm73934205ad.3.2025.03.24.10.18.25
+        d=1e100.net; s=20230601; t=1742836984; x=1743441784;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WzeJaaOIY3qOgasgq2SbP7NzsZnSi26UTmzBlBZdbZQ=;
+        b=Ie5wNyxSo5sPRlQi2iQ09D5xIZzUi7WLEWe21UeW05KIS6C0YVpx7fzUwuUiE+nNfX
+         c+/qBq2nCbb8ItLgF6nVhT93PIEruhq732wUn9pH4AwVFWjeQEoAvTENymF81w4gL4M9
+         7I2beR1Zehfj6V3op54p+OTvcKAMnzzo5IdFVeIc4jrq3TmeimoVcuPuM3EEm7X6CEDv
+         3k+3iIgesgI2TL5pTpU2nKhCr8lr9FGJmVBCjoqBbTXu1kqFZhbXCJygiWohTKZKgHMb
+         2+m0X+UWeSGvj7PlHYLu9XZzl/fdz5FPgSW1RRduMqY9YeyuP/vCI0jFx2FdtTH5jdEV
+         rsiA==
+X-Forwarded-Encrypted: i=1; AJvYcCW6lckQ1yKe9yImJmDWYBVzEMove9CIR/pgK76fKbFUTsFm1QCs1TyArGwzmXo4hy6bkO8S+Hnv+tli@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywn/nWFNp7YSrdiX2ZW5rgUbIOKzmVZgqaGK9BdE2Fuc1xUIbxR
+	AlDbVUH49DPaYo58XFG/eGCOkUlG9Yao2FRTFobLYjoRE3Y0abP3F70cgYomrOA=
+X-Gm-Gg: ASbGncs18XfSVnqLOdw/GDqMpLN4cxlfOv5wWWZpgpJ40f0SlCt8WCjDPh+peYgEDhf
+	4lwJ8HfWsvNTPRDDcYLCDLd4heD4W92gEVo8+R7kjDIivaaeUVPhf/nmKs+1Vh4ycBMqojQFrYu
+	ibrKh3F18WP/osMBNslsbgikejq380wuMmGxA5ARxw0OWTJepv+z0b/nEYwAlgkK5MWMj7fMUHq
+	Cosi8avaoX0sIDFBKswZmFbqUSEDtAalFHKyV4kIhql1kS2JTxqXHWCOwFK9mCjylKQpefK7ZJb
+	Jnvi1V37+0/T5F0mtRKa0CtiuvUFN3ZoZaygIQSMyNyklck=
+X-Google-Smtp-Source: AGHT+IHfEsqVrCp9uQuTAuS3ap1nR417rILjVAh7N1JNOE8t++oFUPwfBJvs4SjxnMYZNeDOSpPNtQ==
+X-Received: by 2002:a05:6000:18a2:b0:391:3028:c779 with SMTP id ffacd0b85a97d-3997f95956cmr12682045f8f.45.1742836983616;
+        Mon, 24 Mar 2025 10:23:03 -0700 (PDT)
+Received: from salami.lan ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d43f556a4sm177445795e9.22.2025.03.24.10.23.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Mar 2025 10:18:30 -0700 (PDT)
-Date: Mon, 24 Mar 2025 22:48:23 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, Jingoo Han <jingoohan1@gmail.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, 
-	Richard Zhu <hongxing.zhu@nxp.com>, Lucas Stach <l.stach@pengutronix.de>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Niklas Cassel <cassel@kernel.org>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, 
-	Bjorn Helgaas <bhelgaas@google.com>
-Subject: Re: [PATCH v12 05/13] PCI: dwc: Add dw_pcie_parent_bus_offset()
-Message-ID: <j3qw4zmopulpn3iqq5wsjt6dbs4z3micoeoxkw3354txkx22ml@67ip5sfo6wwd>
-References: <20250315201548.858189-1-helgaas@kernel.org>
- <20250315201548.858189-6-helgaas@kernel.org>
+        Mon, 24 Mar 2025 10:23:03 -0700 (PDT)
+Message-ID: <26037d49069309915d6ac3dc4d0aff90175754de.camel@linaro.org>
+Subject: Re: [PATCH 01/34] dt-bindings: mfd: samsung,s2mps11: add s2mpg10
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Chanwoo Choi	 <cw00.choi@samsung.com>, Alim Akhtar
+ <alim.akhtar@samsung.com>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Russell King	 <linux@armlinux.org.uk>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon	 <will@kernel.org>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, Peter Griffin
+ <peter.griffin@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, Will
+ McVicker	 <willmcvicker@google.com>, kernel-team@android.com, 
+	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org
+Date: Mon, 24 Mar 2025 17:23:01 +0000
+In-Reply-To: <20250324165533.GA521455-robh@kernel.org>
+References: <20250323-s2mpg10-v1-0-d08943702707@linaro.org>
+	 <20250323-s2mpg10-v1-1-d08943702707@linaro.org>
+	 <20250324165533.GA521455-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.55.3-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250315201548.858189-6-helgaas@kernel.org>
 
-On Sat, Mar 15, 2025 at 03:15:40PM -0500, Bjorn Helgaas wrote:
-> From: Frank Li <Frank.Li@nxp.com>
-> 
-> Return the offset from CPU physical address to the parent bus address of
-> the specified element of the devicetree 'reg' property.
-> 
-> [bhelgaas: return offset, split .cpu_addr_fixup() checking and debug to
-> separate patch]
-> Link: https://lore.kernel.org/r/20250313-pci_fixup_addr-v11-5-01d2313502ab@nxp.com
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> Signed-off-by: Bjorn Helgaas <bhelgaas@google.com>
-> ---
->  drivers/pci/controller/dwc/pcie-designware.c | 23 ++++++++++++++++++++
->  drivers/pci/controller/dwc/pcie-designware.h |  3 +++
->  2 files changed, 26 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
-> index 9d0a5f75effc..0a35e36da703 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware.c
-> @@ -16,6 +16,7 @@
->  #include <linux/gpio/consumer.h>
->  #include <linux/ioport.h>
->  #include <linux/of.h>
-> +#include <linux/of_address.h>
->  #include <linux/platform_device.h>
->  #include <linux/sizes.h>
->  #include <linux/types.h>
-> @@ -1105,3 +1106,25 @@ void dw_pcie_setup(struct dw_pcie *pci)
->  
->  	dw_pcie_link_set_max_link_width(pci, pci->num_lanes);
->  }
-> +
-> +resource_size_t dw_pcie_parent_bus_offset(struct dw_pcie *pci,
-> +					  const char *reg_name,
-> +					  resource_size_t cpu_phy_addr)
-> +{
+Hi Rob,
 
-s/cpu_phy_addr/cpu_phys_addr/g
+Thanks for your review!
 
-'phy' usually refers to the physical layer IP block. So 'cpu_phy_addr' sounds
-like the address of the CPU PHY.
+On Mon, 2025-03-24 at 11:55 -0500, Rob Herring wrote:
+> On Sun, Mar 23, 2025 at 10:39:17PM +0000, Andr=C3=A9 Draszik wrote:
+> > The Samsung S2MPG10 PMIC is similar to the existing PMICs supported by
+> > this binding.
+> >=20
+> > It is a Power Management IC for mobile applications with buck
+> > converters, various LDOs, power meters, RTC, clock outputs, and
+> > additional GPIOs interfaces.
+> >=20
+> > Unlike other Samsung PMICs, communication is not via I2C, but via the
+> > Samsung ACPM firmware, it therefore doesn't need a 'reg' property but a
+> > handle to the ACPM firmware node instead.
+>=20
+> Can it be a child node of the ACPM node instead?
 
-> +	struct device *dev = pci->dev;
-> +	struct device_node *np = dev->of_node;
-> +	int index;
-> +	u64 reg_addr;
-> +
-> +	/* Look up reg_name address on parent bus */
+That should work, I'll do that instead so.
 
-'parent bus' is not accurate as the below code checks for the 'reg_name' in
-current PCI controller node.
+> >=20
+> > S2MPG10 can also act as a system power controller allowing
+> > implementation of a true cold-reset of the system.
+> >=20
+> > Support for the other components will be added in subsequent future
+> > patches.
+> >=20
+> > Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+> > ---
+> > =C2=A0.../devicetree/bindings/mfd/samsung,s2mps11.yaml=C2=A0=C2=A0 | 34=
+ ++++++++++++++++++++--
+> > =C2=A01 file changed, 32 insertions(+), 2 deletions(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/mfd/samsung,s2mps11.yaml=
+ b/Documentation/devicetree/bindings/mfd/samsung,s2mps11.yaml
+> > index ac5d0c149796b6a4034b5d4245bfa8be0433cfab..ae8adb80b3af7ec3722c2a5=
+718ad8fddf0a5df34 100644
+> > --- a/Documentation/devicetree/bindings/mfd/samsung,s2mps11.yaml
+> > +++ b/Documentation/devicetree/bindings/mfd/samsung,s2mps11.yaml
+> > @@ -20,6 +20,7 @@ description: |
+> > =C2=A0properties:
+> > =C2=A0=C2=A0 compatible:
+> > =C2=A0=C2=A0=C2=A0=C2=A0 enum:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - samsung,s2mpg10-pmic
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - samsung,s2mps11-pmic
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - samsung,s2mps13-pmic
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - samsung,s2mps14-pmic
+> > @@ -43,6 +44,12 @@ properties:
+> > =C2=A0=C2=A0=C2=A0=C2=A0 description:
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 List of child nodes that specify t=
+he regulators.
+> > =C2=A0
+> > +=C2=A0 exynos,acpm-ipc:
+> > +=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.yaml#/definitions/phandle
+> > +=C2=A0=C2=A0=C2=A0 description: |
+>=20
+> Don't need '|' if no formatting to preserve.
 
-> +	index = of_property_match_string(np, "reg-names", reg_name);
-> +
-> +	if (index < 0) {
-> +		dev_err(dev, "No %s in devicetree \"reg\" property\n", reg_name);
+Oops, yes, sorry.
 
-Both of these callers are checking for the existence of the 'reg_name' property
-before calling this API. So this check seems to be redundant (for now).
+Cheers,
+Andre'
 
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+>=20
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Phandle to the ACPM node for when ACPM =
+is used to communicate with the
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 PMIC, rather than I2C.
+> > +
+> > =C2=A0=C2=A0 samsung,s2mps11-acokb-ground:
+> > =C2=A0=C2=A0=C2=A0=C2=A0 description: |
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Indicates that ACOKB pin of S2MPS1=
+1 PMIC is connected to the ground so
+> > @@ -58,16 +65,39 @@ properties:
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reset (setting buck voltages to de=
+fault values).
+> > =C2=A0=C2=A0=C2=A0=C2=A0 type: boolean
+> > =C2=A0
+> > +=C2=A0 system-power-controller: true
+> > +
+> > =C2=A0=C2=A0 wakeup-source: true
+> > =C2=A0
+> > =C2=A0required:
+> > =C2=A0=C2=A0 - compatible
+> > -=C2=A0 - reg
+> > -=C2=A0 - regulators
+> > =C2=A0
+> > =C2=A0additionalProperties: false
+> > =C2=A0
+> > =C2=A0allOf:
+> > +=C2=A0 - if:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 contains:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 con=
+st: samsung,s2mpg10-pmic
+> > +=C2=A0=C2=A0=C2=A0 then:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 regulators: false
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 samsung,s2mps11-acokb-groun=
+d: false
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 samsung,s2mps11-wrstbi-grou=
+nd: false
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 required:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - exynos,acpm-ipc
+> > +
+> > +=C2=A0=C2=A0=C2=A0 else:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 exynos,acpm-ipc: false
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 system-power-controller: fa=
+lse
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 required:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - reg
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - regulators
+> > +
+> > =C2=A0=C2=A0 - if:
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible:
+> >=20
+> > --=20
+> > 2.49.0.395.g12beb8f557-goog
+> >=20
 
