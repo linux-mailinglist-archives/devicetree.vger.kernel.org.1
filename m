@@ -1,142 +1,126 @@
-Return-Path: <devicetree+bounces-160107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1194AA6D81F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 11:15:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BE30A6D830
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 11:21:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E7EE3B11D0
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 10:15:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 25584188CA8F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 10:21:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64CAD25C6FE;
-	Mon, 24 Mar 2025 10:15:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61C1825DCE7;
+	Mon, 24 Mar 2025 10:21:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Sa7nEvF6"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="XdTQiGyN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A91A6136E37;
-	Mon, 24 Mar 2025 10:15:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C4091E522;
+	Mon, 24 Mar 2025 10:21:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742811319; cv=none; b=OwOUcjYknJges6/6tM8uF2rnNH0RNv/uu466kq68ba3EPrc3g2UPwzFNfnLCbZ+a7+2/5d/jMlOcrzJrqCePeoBYSy+vn1xowTj3XWwqXdlOBxQ0AQD78R/sXitMpe5njWXPQ4EqvDM5a4HK1RghgRiofH0FwICV/kcm+GfUsJ4=
+	t=1742811686; cv=none; b=MOuQ6ShN24i4AlKjgxBtOejnKl7/+HCCP/40CMKQdEVCWbgtF8h3g0ACBNLG8vRkdkQkmP9rHlWROGvB+l/Y8tT6Y65fepK12baLsBrXLDXZf2qmCzywC3hX1OScJV7/+TbaXu+1hzZOkuJ1C9kLYFycDF1R8L/4JZorkhq6xvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742811319; c=relaxed/simple;
-	bh=ckL2H71VGJcEqW4jJr2q5w5tI/8gthiDoGYY1li3Srk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nSnYoYaiYsz7T4ICiD8SKJ5/kEwe8esPvkldnFnygF6ryoIqa+YqCwFOk1BQY0RkV5NT8GJajYpWz5DlCsBRUYJdxUxNeyO6PW59f1Fgc2WYznf84cIAAKazvE2Zi7ICTetmXEEi7a/50z8vKtTLYjOiivfeluJ7vTstRdrN8uo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Sa7nEvF6; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1742811318; x=1774347318;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ckL2H71VGJcEqW4jJr2q5w5tI/8gthiDoGYY1li3Srk=;
-  b=Sa7nEvF6NHOPIlg4gvU18dBDfyyXW/mb5N8yZxBsaRs36AuSTj+EVqlb
-   rii8HkrHII+E5kddxAZ6OpfKFrIDtKRP80aSkHZMeMbitGui8aFVM6LtX
-   PtpWb2PDgOBAsTXAcIgn+pvwVchMgzxTbEmzBjoFf1RPRz+MuYG9EtNg7
-   K747KxSgDmMcGygGllNQT33MjZqylGDNsw6YGeZ+HOzVjUPzJO2UlfOr9
-   KOnRSV3hilECUa4MJg+RSCCvbf4kMVkclrkbCOs3By+eIGulD9jBfdO+5
-   gs9feyDQ6rTIFQYvSQxYQh9batT/qiOlpjPRAFL3umvFP8y6JCE4Jmn9U
-   w==;
-X-CSE-ConnectionGUID: sa2Q5AJJR2KIyWLFy+kXDg==
-X-CSE-MsgGUID: xjLQ0toCRiKqje0F/3GsRQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11382"; a="61532046"
-X-IronPort-AV: E=Sophos;i="6.14,271,1736841600"; 
-   d="scan'208";a="61532046"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Mar 2025 03:15:17 -0700
-X-CSE-ConnectionGUID: 9d3orBLpQuS3/6S3NDh1tw==
-X-CSE-MsgGUID: GlQDv/8rQ42UHk+SyTtocg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,271,1736841600"; 
-   d="scan'208";a="155021334"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Mar 2025 03:15:11 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1twepo-00000005JFU-24ey;
-	Mon, 24 Mar 2025 12:15:08 +0200
-Date: Mon, 24 Mar 2025 12:15:08 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Pop Ioan Daniel <pop.ioan-daniel@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
-	Olivier Moysan <olivier.moysan@foss.st.com>,
-	David Lechner <dlechner@baylibre.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Guillaume Stols <gstols@baylibre.com>,
-	Trevor Gamblin <tgamblin@baylibre.com>,
-	Dumitru Ceclan <mitrutzceclan@gmail.com>,
-	Matteo Martelli <matteomartelli3@gmail.com>,
-	=?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <joao.goncalves@toradex.com>,
-	Alisa-Dariana Roman <alisadariana@gmail.com>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Ramona Alexandra Nechita <ramona.nechita@analog.com>,
-	Dragos Bogdan <dragos.bogdan@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/5] iio: adc: adi-axi-adc: add set decimation rate
-Message-ID: <Z-EwrBRVX4-81X9-@smile.fi.intel.com>
-References: <20250324090813.2775011-1-pop.ioan-daniel@analog.com>
- <20250324090813.2775011-3-pop.ioan-daniel@analog.com>
+	s=arc-20240116; t=1742811686; c=relaxed/simple;
+	bh=ox3nsjplR00PH6bCPDedTPwGXbTcF87dCS2/KJ6ajis=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=MyLoNAZ+b6dh+NSEuPqPjtwP8Vn1acuoaEoEaG39e1thJJCyrt3bM7/NOD/N8apFg0whSy5Uvgr+CmQBFp9LJcyB1ACIxKAMGOuRmpKv9OER+Bvh4n6vINxvdkU0iNf9A9P5ieD7RQbKv1FrNI/ir8mPKdrede25AGtkC0gb34U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=XdTQiGyN; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52O7ilKu011526;
+	Mon, 24 Mar 2025 11:21:09 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	VgcK61C1ClW+Bsv+nkLDe43OxgHSNo7fk3rpTcQgFK8=; b=XdTQiGyNpFJcJ7Yz
+	4ms/Nfk+xdVzp//FaxZbXEnnZlCWPLaMUALtg+cNzN1CFTwz5Aad33+EEUWSjJfT
+	i0Bc5Qdo9DQmkk1Y2Z7Xh2CQ2Hj8ePd7NFad5mlw4wc/u6NCeWpOuyicdiPrA/Li
+	6LjfyNBHNrMcpX38nb33bNf0Hs97xU9PbqmfHaSN0iNiGM3zMiJKITo37bGKytwl
+	0sW4leqlqZQF0R57dPQTBPzFAvyn4UDKTczlBiW7HAJ86cf9NJ30AvueWDApCTR/
+	z4tY9Nku9xrIBUiJ3gjyx1t/A3ZA30OkLvCUUyN61k3+wybe8uYsUnPgVVj4NkYc
+	svyLpQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45hkgr78c4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 24 Mar 2025 11:21:09 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 4E7114004A;
+	Mon, 24 Mar 2025 11:20:00 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 359C580B78C;
+	Mon, 24 Mar 2025 11:19:07 +0100 (CET)
+Received: from [10.48.87.62] (10.48.87.62) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 24 Mar
+ 2025 11:19:06 +0100
+Message-ID: <b99576c5-cc9f-455a-aa58-ce5a0489a5a9@foss.st.com>
+Date: Mon, 24 Mar 2025 11:19:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250324090813.2775011-3-pop.ioan-daniel@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] spi: dt-bindings: st,stm32mp25-ospi: Make "resets" a
+ required property
+To: Krzysztof Kozlowski <krzk@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <christophe.kerello@foss.st.com>, <linux-spi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20250321-upstream_ospi_required_resets-v1-0-9aa4702e3ae2@foss.st.com>
+ <20250321-upstream_ospi_required_resets-v1-1-9aa4702e3ae2@foss.st.com>
+ <688c619d-0e20-496a-ae24-d62ab34f93ab@kernel.org>
+Content-Language: en-US
+From: Patrice CHOTARD <patrice.chotard@foss.st.com>
+In-Reply-To: <688c619d-0e20-496a-ae24-d62ab34f93ab@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-24_04,2025-03-21_01,2024-11-22_01
 
-On Mon, Mar 24, 2025 at 11:07:57AM +0200, Pop Ioan Daniel wrote:
-> Add support for setting decimation rate.
+
+
+On 3/21/25 11:13, Krzysztof Kozlowski wrote:
+> On 21/03/2025 10:44, Patrice Chotard wrote:
+>> Make "resets" a required property.
 > 
-> Add separate compatible string for the custom AD7405 IP and implement
-> the necessary changes.
+> Please explain why. This is technically an ABI break, so you please
+> provide explanation what sort of issue is being fixed.
 
-...
+Hi
 
-> +static int axi_adc_set_dec_rate(struct iio_backend *back,
-> +				unsigned int rate)
-> +{
-> +	struct adi_axi_adc_state *st = iio_backend_get_priv(back);
-> +
-> +	return regmap_update_bits(st->regmap, (ADI_AXI_ADC_REG_CHAN_USR_CTRL_2),
+Right, i will add more details
 
-What' the purpose of the parentheses, please?
+Thanks
+Patrice
 
-> +					      ADI_AXI_ADC_DEC_RATE_MASK,
-> +					      FIELD_PREP(ADI_AXI_ADC_DEC_RATE_MASK, rate));
-> +}
-
-...
-
->  /* Match table for of_platform binding */
->  static const struct of_device_id adi_axi_adc_of_match[] = {
->  	{ .compatible = "adi,axi-adc-10.0.a", .data = &adc_generic },
->  	{ .compatible = "adi,axi-ad7606x", .data = &adc_ad7606 },
-> +	{ .compatible = "adi,axi-ad7405", .data = &adi_axi_ad7405},
-
-You really need to be as much as possible consistent with the style in the
-	current code.
-
->  	{ /* end of list */ }
->  };
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> 
+>>
+>> Fixes: bed97e35786a ("dt-bindings: spi: Add STM32 OSPI controller")
+>> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+>> ---
+>>  Documentation/devicetree/bindings/spi/st,stm32mp25-ospi.yaml | 1 +
+>>  1 file changed, 1 insertion(+)
+> 
+> 
+> Best regards,
+> Krzysztof
 
