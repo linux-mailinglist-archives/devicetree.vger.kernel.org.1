@@ -1,179 +1,183 @@
-Return-Path: <devicetree+bounces-160291-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160292-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5236A6E287
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 19:37:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 751E9A6E28E
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 19:41:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 716921890086
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 18:37:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E6F201684DB
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 18:41:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC0CC264FA1;
-	Mon, 24 Mar 2025 18:36:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2B03264F83;
+	Mon, 24 Mar 2025 18:40:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="QME6XJmc"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="FVWcJ/DA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B97126560C
-	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 18:36:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33D6A263F5F
+	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 18:40:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742841395; cv=none; b=WY8r2tmyUyX+l1n8IkLVKtymWG9v9JU115g2lK123qkz9Aj/YAFSk7bqJTufpnNRWE+a3QSfYc6j6xvZOhSAbXBWBtA78f3eIo0oaVxIQ8lzpkKdCrFL2fgbVs7yioCa20ifHeTep3ugGfr/sYJCLstlCUtiIEtwtfIXEjaz55I=
+	t=1742841657; cv=none; b=fPG3FyXx4sEnu1Sia3fz4ayrgCB1cRLS4qGg6MenR0ExOxdZX/C2836JNu5nqSHeIrjKmwsuhsd86hTPfv1Ls5JX4LLgugWnEcs9OZ29ntJp+M8TEhOHrmY91xFKxsI7Y+jHEkdqzbBYZXSYIuo02kK667NcRH9HPNWUB3JHa9I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742841395; c=relaxed/simple;
-	bh=LQsAKvmhZs69Y2s+zhZyJiZr0l+G260wB14+wSq0sOA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s1UbBxKqBjy78h3PKkG4TbqPQiQJxcsjrmMcnbhQ3+nrdkrbMIdwDhjnHPwQJWGZDcRTKMknmVGM0SzOsfL+l1QI/bgb1qyQKKIhiJQduK5rDd2fRs0r3MiP+L14lN3h6L7KrCqP/JxzG032rOtGsVIt+SelTgNRU3YirSlMifA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=QME6XJmc; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=bSAr
-	Y6VLETwn/qhfzi/EeyRVJVQ4dIOxDFxzv8uWqwY=; b=QME6XJmci3F2c5/2GR+P
-	n1p9LcrBopL8aB7I1Hl9pTZeWtPie7LtZ7ghEaicmAEyWXFi1uoh3Tb6jB4GGMBr
-	GEaRkJe3f5nVTosIgmYVkhq/jJI3Zq1iuhyBMbJxlP6i5frTG72N7ZxhiCQnsP1z
-	WSOLwhibXQQbR7+qPq8yCl52s19TZ6vRQzKexUSh6AvLGIJgM4WdU1FdkCjrdCI9
-	fjD0IkJuqsL3oQNI1C9214B7PxKKPdiYkkpM2ekp81hruVtQ3qEuR03orbqSopCq
-	ACzpdPCZncIKGzhS1CugThr9xdB7uLZZVuG1rINr/NBrV/Ly8BFFQ9hjabcbZqYH
-	uA==
-Received: (qmail 2686366 invoked from network); 24 Mar 2025 19:36:28 +0100
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 24 Mar 2025 19:36:28 +0100
-X-UD-Smtp-Session: l3s3148p1@YgfY4RoxjDFtKPAv
-Date: Mon, 24 Mar 2025 19:36:27 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	=?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
-	=?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH v4] ARM: dts: r9a06g032: add r9a06g032-rzn1d400-eb board
- device-tree
-Message-ID: <Z-GmK9EwMrRP1_Ay@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	"Rob Herring (Arm)" <robh@kernel.org>,
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	=?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
-	=?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-References: <20250324-rzn1d400-eb-v4-1-d7ebbbad1918@bootlin.com>
- <174283702242.732993.11666137383985833104.robh@kernel.org>
+	s=arc-20240116; t=1742841657; c=relaxed/simple;
+	bh=f4DdomVr0nagMtgc+/I4m7RjU+SfBMD1Z8bRaM4ug24=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sllmBCY622n/s3UcCgBYgXd+Z4wyZpncNC6gbkQcWNzEhbVPWo/RrxKFW4THW6sq4oDGVrjbBi3cIpMvgdgtU94adtcW+qLYBfmuxBKI1+HSEP9yzCZCXmEmG9ifTEO+bZyJqAcXFIPUpwJO/ni0SWE1dghltslJroSB1o+ojrQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=FVWcJ/DA; arc=none smtp.client-ip=209.85.160.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-47666573242so82031cf.0
+        for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 11:40:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1742841655; x=1743446455; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KVFFcWh5dZoKRR9sK5sDoRV9h4cdUzLL2+BzZ81kSD4=;
+        b=FVWcJ/DAyPeQjruz6D0IltEw1GE2o5uBRFsoT1jO48Qw4gOTOLTyG6rbPCL/7ZoK7W
+         zIs5woQMJhmqkx7tWt+t3+tlwxgDvnievXBp2csINaHtd7S0yhsFAJqu64AIoxl4xSuu
+         d0GPi4R2LjoUW7GwtdnK7r5b/+5e/FRTraE5VU5iLHrvOsq1+ARUKHGZradRVsUEz9u9
+         W2kFWIfTeplAb8TEOUrIgHrSJnRs09QMNX/xSNritvK40SfhcjwIdD1QetKu+QdJZ07d
+         fwAB4driL99492Fv++wB6axZSRH2SMseCinuu8SSSSKL2G5Vr7dVWztsKmpeZXiSa0WW
+         Ystg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742841655; x=1743446455;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KVFFcWh5dZoKRR9sK5sDoRV9h4cdUzLL2+BzZ81kSD4=;
+        b=MWifGJqRNU36AjI6bllsWBzX3MYZ1hNdQcwG/B04IxawZBpgRNjgJG3WxLcOI3D6Hf
+         w/Xt2L8MGFbcOYFlmuEy240+1GymvWxUk3NVInplGWgLa3Ps/YS0vcHQkHZzTtLVsNuS
+         imLOqAcHh4WkjlpUoF3bKHqnPKXvfU3ePK4wi3SzDrY5KVCPKAcRyyLPbW68yTBWO37S
+         Y6cCu/jczKm1cFEVkR87BvoWURfgYEVhyT4iysZtJ6qYkEB/ajKQkW/QItDGbYIlu3H/
+         I6c0anCwoYtGFOLgZD4kXQQDpfPh+m0ZaHsFlDnoJA2PAmbavOHH2pMYuFxCk/M5QSXi
+         k4eg==
+X-Forwarded-Encrypted: i=1; AJvYcCUhBjscXo5F2Cu/LvEhqamCOkRWGez90EDOSQItlANRtCUXGMYkVh8Z4a5ZcWcmdRaFsq62sYy32aj1@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxk5TooAeAV1iXqO+DBUSswrBur/fXAnzbMnA/fMh6KuuXlC3BR
+	BmfeI+Pq9pgB8B5B1+I7P3P9fpyCAsnGmWmoVuM9S8ZxaE0Ooth4UhqiNvTDyKmEXP6+hcPX19D
+	tRRSAJMZMwb924HwzfKPkOk8GW9GTTVY72+OM
+X-Gm-Gg: ASbGnctHZSKKFPJ8in6HplPDOT7VztiMbw+Vl3cQKyPBW4abDRjoLDITWZ0DZVso+z1
+	iAApvGsf9dKcepwbda6P4xXwAHEfafQqNdlZP9mppAPlfPj5zd7id2T1eL+bj1jKPdr7nZ/EqcK
+	66gFv7uyHCYOD+CdunYjBOVvE=
+X-Google-Smtp-Source: AGHT+IE5+gZ94fZfEMa4/mu+5y69Keqgf6GYglfVDQZk9TGfgwTjD/V2nGDREwNflvI0c0qaa+IqDh+lZikxQgFL/jU=
+X-Received: by 2002:a05:622a:17c4:b0:475:1410:2ca3 with SMTP id
+ d75a77b69052e-4772be23f26mr9607281cf.15.1742841654660; Mon, 24 Mar 2025
+ 11:40:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="PIVksPbFURqImh8e"
-Content-Disposition: inline
-In-Reply-To: <174283702242.732993.11666137383985833104.robh@kernel.org>
+References: <20250320015551.2157511-1-changyuanl@google.com> <20250320015551.2157511-8-changyuanl@google.com>
+In-Reply-To: <20250320015551.2157511-8-changyuanl@google.com>
+From: Frank van der Linden <fvdl@google.com>
+Date: Mon, 24 Mar 2025 11:40:43 -0700
+X-Gm-Features: AQ5f1JqgK3t9nzg4mdWiXWpH_sA43D2BNXiBuTZpvx6PAjAQCpPGjdYAtW64c_s
+Message-ID: <CAPTztWbFXajArSN8yKu32eSoR=xsk1CHM_4V7MJ0eQxydFqPUQ@mail.gmail.com>
+Subject: Re: [PATCH v5 07/16] kexec: add Kexec HandOver (KHO) generation helpers
+To: Changyuan Lyu <changyuanl@google.com>
+Cc: linux-kernel@vger.kernel.org, graf@amazon.com, akpm@linux-foundation.org, 
+	luto@kernel.org, anthony.yznaga@oracle.com, arnd@arndb.de, 
+	ashish.kalra@amd.com, benh@kernel.crashing.org, bp@alien8.de, 
+	catalin.marinas@arm.com, dave.hansen@linux.intel.com, dwmw2@infradead.org, 
+	ebiederm@xmission.com, mingo@redhat.com, jgowans@amazon.com, corbet@lwn.net, 
+	krzk@kernel.org, rppt@kernel.org, mark.rutland@arm.com, pbonzini@redhat.com, 
+	pasha.tatashin@soleen.com, hpa@zytor.com, peterz@infradead.org, 
+	ptyadav@amazon.de, robh+dt@kernel.org, robh@kernel.org, saravanak@google.com, 
+	skinsburskii@linux.microsoft.com, rostedt@goodmis.org, tglx@linutronix.de, 
+	thomas.lendacky@amd.com, usama.arif@bytedance.com, will@kernel.org, 
+	devicetree@vger.kernel.org, kexec@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org, 
+	linux-mm@kvack.org, x86@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Mar 19, 2025 at 6:56=E2=80=AFPM Changyuan Lyu <changyuanl@google.co=
+m> wrote:
+>
+> From: Alexander Graf <graf@amazon.com>
+>
+> Add the core infrastructure to generate Kexec HandOver metadata. Kexec
+> HandOver is a mechanism that allows Linux to preserve state - arbitrary
+> properties as well as memory locations - across kexec.
+>
+> It does so using 2 concepts:
+>
+>   1) State Tree - Every KHO kexec carries a state tree that describes the
+>      state of the system. The state tree is represented as hash-tables.
+>      Device drivers can add/remove their data into/from the state tree at
+>      system runtime. On kexec, the tree is converted to FDT (flattened
+>      device tree).
+>
+>   2) Scratch Regions - CMA regions that we allocate in the first kernel.
+>      CMA gives us the guarantee that no handover pages land in those
+>      regions, because handover pages must be at a static physical memory
+>      location. We use these regions as the place to load future kexec
+>      images so that they won't collide with any handover data.
+>
+> Signed-off-by: Alexander Graf <graf@amazon.com>
+> Co-developed-by: Pratyush Yadav <ptyadav@amazon.de>
+> Signed-off-by: Pratyush Yadav <ptyadav@amazon.de>
+> Co-developed-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+> Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+> Co-developed-by: Changyuan Lyu <changyuanl@google.com>
+> Signed-off-by: Changyuan Lyu <changyuanl@google.com>
+> ---
+>  MAINTAINERS                    |   2 +-
+>  include/linux/kexec_handover.h | 109 +++++
+>  kernel/Makefile                |   1 +
+>  kernel/kexec_handover.c        | 865 +++++++++++++++++++++++++++++++++
+>  mm/mm_init.c                   |   8 +
+>  5 files changed, 984 insertions(+), 1 deletion(-)
+>  create mode 100644 include/linux/kexec_handover.h
+>  create mode 100644 kernel/kexec_handover.c
+[...]
+> diff --git a/mm/mm_init.c b/mm/mm_init.c
+> index 04441c258b05..757659b7a26b 100644
+> --- a/mm/mm_init.c
+> +++ b/mm/mm_init.c
+> @@ -30,6 +30,7 @@
+>  #include <linux/crash_dump.h>
+>  #include <linux/execmem.h>
+>  #include <linux/vmstat.h>
+> +#include <linux/kexec_handover.h>
+>  #include "internal.h"
+>  #include "slab.h"
+>  #include "shuffle.h"
+> @@ -2661,6 +2662,13 @@ void __init mm_core_init(void)
+>         report_meminit();
+>         kmsan_init_shadow();
+>         stack_depot_early_init();
+> +
+> +       /*
+> +        * KHO memory setup must happen while memblock is still active, b=
+ut
+> +        * as close as possible to buddy initialization
+> +        */
+> +       kho_memory_init();
+> +
+>         mem_init();
+>         kmem_cache_init();
+>         /*
 
 
---PIVksPbFURqImh8e
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Thanks for the work on this.
 
-Hi all,
+Obviously it needs to happen while memblock is still active - but why
+as close as possible to buddy initialization?
 
-> My bot found new DTB warnings on the .dts files added or changed in this
-> series.
+Ordering is always a sticky issue when it comes to doing things during
+boot, of course. In this case, I can see scenarios where code that
+runs a little earlier may want to use some preserved memory. The
+current requirement in the patch set seems to be "after sparse/page
+init", but I'm not sure why it needs to be as close as possibly to
+buddy init.
 
-These warnings did exist before the patch and come from the underlying
-SoC-dtsi.
-
-> arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dtb: cpus: cpu@1:enable-method:0: 'spin-table' was expected
-> 	from schema $id: http://devicetree.org/schemas/cpus.yaml#
-
-This needs to be worked on (indipendently of this patch).
-
-> arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dtb: serial@40060000: compatible: 'oneOf' conditional failed, one must be fixed:
-> 	['renesas,r9a06g032-uart', 'renesas,rzn1-uart', 'snps,dw-apb-uart'] is too long
-> 	'renesas,r9a06g032-uart' is not one of ['brcm,bcm11351-dw-apb-uart', 'brcm,bcm21664-dw-apb-uart', 'rockchip,px30-uart', 'rockchip,rk1808-uart', 'rockchip,rk3036-uart', 'rockchip,rk3066-uart', 'rockchip,rk3128-uart', 'rockchip,rk3188-uart', 'rockchip,rk3288-uart', 'rockchip,rk3308-uart', 'rockchip,rk3328-uart', 'rockchip,rk3368-uart', 'rockchip,rk3399-uart', 'rockchip,rk3528-uart', 'rockchip,rk3568-uart', 'rockchip,rk3576-uart', 'rockchip,rk3588-uart', 'rockchip,rv1108-uart', 'rockchip,rv1126-uart', 'sophgo,sg2044-uart', 'starfive,jh7100-hsuart', 'starfive,jh7100-uart', 'starfive,jh7110-uart']
-> 	'snps,dw-apb-uart' was expected
-> 	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
-> arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dtb: serial@40060000: Unevaluated properties are not allowed ('compatible' was unexpected)
-> 	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
-> arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dtb: serial@40061000: compatible: 'oneOf' conditional failed, one must be fixed:
-> 	['renesas,r9a06g032-uart', 'renesas,rzn1-uart', 'snps,dw-apb-uart'] is too long
-> 	'renesas,r9a06g032-uart' is not one of ['brcm,bcm11351-dw-apb-uart', 'brcm,bcm21664-dw-apb-uart', 'rockchip,px30-uart', 'rockchip,rk1808-uart', 'rockchip,rk3036-uart', 'rockchip,rk3066-uart', 'rockchip,rk3128-uart', 'rockchip,rk3188-uart', 'rockchip,rk3288-uart', 'rockchip,rk3308-uart', 'rockchip,rk3328-uart', 'rockchip,rk3368-uart', 'rockchip,rk3399-uart', 'rockchip,rk3528-uart', 'rockchip,rk3568-uart', 'rockchip,rk3576-uart', 'rockchip,rk3588-uart', 'rockchip,rv1108-uart', 'rockchip,rv1126-uart', 'sophgo,sg2044-uart', 'starfive,jh7100-hsuart', 'starfive,jh7100-uart', 'starfive,jh7110-uart']
-> 	'snps,dw-apb-uart' was expected
-> 	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
-> arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dtb: serial@40062000: compatible: 'oneOf' conditional failed, one must be fixed:
-> 	['renesas,r9a06g032-uart', 'renesas,rzn1-uart', 'snps,dw-apb-uart'] is too long
-> 	'renesas,r9a06g032-uart' is not one of ['brcm,bcm11351-dw-apb-uart', 'brcm,bcm21664-dw-apb-uart', 'rockchip,px30-uart', 'rockchip,rk1808-uart', 'rockchip,rk3036-uart', 'rockchip,rk3066-uart', 'rockchip,rk3128-uart', 'rockchip,rk3188-uart', 'rockchip,rk3288-uart', 'rockchip,rk3308-uart', 'rockchip,rk3328-uart', 'rockchip,rk3368-uart', 'rockchip,rk3399-uart', 'rockchip,rk3528-uart', 'rockchip,rk3568-uart', 'rockchip,rk3576-uart', 'rockchip,rk3588-uart', 'rockchip,rv1108-uart', 'rockchip,rv1126-uart', 'sophgo,sg2044-uart', 'starfive,jh7100-hsuart', 'starfive,jh7100-uart', 'starfive,jh7110-uart']
-> 	'snps,dw-apb-uart' was expected
-> 	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
-> arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dtb: serial@50000000: dma-names:0: 'tx' was expected
-> 	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
-> arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dtb: serial@50000000: dma-names:1: 'rx' was expected
-> 	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
-> arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dtb: serial@50001000: dma-names:0: 'tx' was expected
-> 	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
-> arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dtb: serial@50001000: dma-names:1: 'rx' was expected
-> 	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
-> arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dtb: serial@50002000: dma-names:0: 'tx' was expected
-> 	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
-> arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dtb: serial@50002000: dma-names:1: 'rx' was expected
-> 	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
-> arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dtb: serial@50003000: dma-names:0: 'tx' was expected
-> 	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
-> arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dtb: serial@50003000: dma-names:1: 'rx' was expected
-> 	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
-> arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dtb: serial@50004000: dma-names:0: 'tx' was expected
-> 	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
-> arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dtb: serial@50004000: dma-names:1: 'rx' was expected
-> 	from schema $id: http://devicetree.org/schemas/serial/snps-dw-apb-uart.yaml#
-
-For these, patches exist and are on the way.
-
-> arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dtb: switch@44050000: Unevaluated properties are not allowed ('#address-cells', '#size-cells' were unexpected)
-> 	from schema $id: http://devicetree.org/schemas/net/dsa/renesas,rzn1-a5psw.yaml#
-
-This still needs fixing.
-
-I don't think these are blockers for the patch here.
-
-Happy hacking,
-
-   Wolfram
-
-
---PIVksPbFURqImh8e
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmfhpiUACgkQFA3kzBSg
-KbYEYA/9H+CYHaCahyIkGv6fXme01DrgkyELEd2MgSN6wcJQFjKJ2XsfPL91ULv7
-nwx++3sFKGZe5WontBykySjf42wg3+cnIp9sEns0uDwPcV60EXorZjx4lOTrOP/6
-gsCZc5S0IJfY/516+Vxuvo7GzWUPtovjMZMRdfNuB4rJ9sRPtfDimRJaNePKU28Q
-waCMbenQGG1g5caFyi5v06tLoy7uAPQwv3WCdRyGQyVFakzfUwBZB45UhcxVrtd+
-rKNxtjvEGfbCLNph28D99/UKMFceieNOz0jGmnNgf2gs7XwTxyZguobSKLmwDy/+
-9CHAM5mFOKmyaBLfb/2C6Cc/E0LlGq4GoNrYcv88v1JGu1P6TYMcjmUU44Eu+qBJ
-/yBzIVOvu69dGHbsxxTRbAg84CiAmuvsDzE+yl/zBiqNZjJzA79ozo7I6KofJVFL
-Y05IPur05UbrxiNCadyQwMCHAn4AzUzusFIMSGvn6ZxUF0bh1JsJ624PZUL6Tgi9
-Lndh290bXgh6+wHqaXDqTL66Gz+BoyceP0uUUpkLeGI2fofDOswYlfesjaGlb+2Q
-CEbH2a7EdkyyawRZPXSdxDuKA/pJEMWpl4kzW4loqFTsKd2YHMC8qj08/GAKy0iw
-qg/u64dBnfa1/P6j+YyT5O88hx+4Z7omVC+OJiOP+SuT8O5gc0o=
-=Ry7C
------END PGP SIGNATURE-----
-
---PIVksPbFURqImh8e--
+- Frank
 
