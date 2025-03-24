@@ -1,236 +1,102 @@
-Return-Path: <devicetree+bounces-160334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9ABDAA6E4C9
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 21:56:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C55DA6E540
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 22:14:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74C3716B54E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 20:55:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE3793B96BC
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 21:09:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E7F71DDC00;
-	Mon, 24 Mar 2025 20:55:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BB091F5434;
+	Mon, 24 Mar 2025 21:04:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QJd5wJwZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iCdrxbcB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8614C1C84A7;
-	Mon, 24 Mar 2025 20:55:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4092A1F4E54;
+	Mon, 24 Mar 2025 21:04:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742849754; cv=none; b=HH/iT4OltTYwKhbQegCcCQqKdBer8OpamiCUMItjvqnnYcpwEaq85XwW2Z7XKUBLliUNcJxgO09ljj0VterDENZLn+8+eE6PRABi6OKVlnmhP4LwpSwQyUqWsRRbLY3jzUvtWYqNhTED8N5hSHi7Znu/0WvXv27RRXdnRh1g1gw=
+	t=1742850277; cv=none; b=cMfGTldgHeWgHr4offSf1zSpxxDqGnwwC4ri4lBk+CNsRJSx35RdLbctIViwBRd894VugC9VBiubgU3B+bvSac7aA+eM1S9zE5b3Wl1P9i1qAGEyMrCBhjSQuCrhdshD0iz4q63kNsw4datFRbgdhEwVGB0alSOMcA6VglJMi+E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742849754; c=relaxed/simple;
-	bh=0RnhtgbzWG90TQe5/F2XubXbO7DIDjfDHmmIaPaPYz4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bjS5AKL7sstxqv2ZPPG/kOLPuNZzsTRJW0hpS2dyUR/X6mOlzKUkIST7JeUB3sVpR3LJ/gitvmXiJhTZHoYV7nY3cw78WyXtMZkrZOuaKsCePOblTTV5XUR/pYt5O5c2VLTP8BhMJrz0jC/c91Tx0ULj2cxYsDKKKgrM0qzNpUg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QJd5wJwZ; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-ac2902f7c2aso816020866b.1;
-        Mon, 24 Mar 2025 13:55:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742849751; x=1743454551; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ffez8IsBwXAmSHTwfnCsyGV87mn33YEBcB54VdHd4jE=;
-        b=QJd5wJwZ0tbtLEK2ekSWUfCRXq6FeZH1t5pDkumwBsKYmVJ4JZ5KeEZd0KevIXVLI1
-         kjt4czkUdVxGkZOl444qUXQNOIhHbDK/18/jIFixOE7ZZ6Nm1pj3yAGZwNFf32ZPdu9q
-         6JnoyR/6il7q+6czCBCRv8+WH7W5bZS9jV8Flj7GzlMnrrLLrY5ucUWdVGwdJlO/OTov
-         N33Jh55GCJfsjD8kmyD9wqO+4zgILkkcwzA6LCmelNqoaFpJ3laic5KUgxuE4hiDXPvU
-         zrvArC2V+x8TeKkdNVl6nGtX0Yhc/b0yNdLjsrKQByLF1Ug8OxEo3psFPQa7na0btuv/
-         RC0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742849751; x=1743454551;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ffez8IsBwXAmSHTwfnCsyGV87mn33YEBcB54VdHd4jE=;
-        b=jFp08eTwoT/xpHYgsZldo2lCEsCNbtr7zMBb+aBb5CYldzX7EYjqZ8OQeivPplr1u9
-         eItEs8rreZNQC7IsRSp6M/kgt+FJRITAUGnGuzLHSULueY2SuvfxLI+Cneaz/UNqQm9y
-         0LJELlw3v5Eo9zhYBP2RtILu9G9oCWV1uYyA2rZhB+hwjpEPTd+xDLOtcnT3B8F90ADL
-         SY9xDJ/me6YF7if/y3lrAgsLjUNqg/eYrw8oByi8jAuqXc9n4Os6jyMUtBp0Ba7paOeg
-         idIbuUE6qNQhKwFQmf/KPu+vMWm3ugtujyJooBBTZpCR86f+4Oa/YJlq552xkBn8q6Bp
-         W3Ug==
-X-Forwarded-Encrypted: i=1; AJvYcCUCnAYibwWFM+8Vqf9c0MdC8wRQBZFtTGbuZ3PUGFqk5gG3RpnT792HWH4yyTiC2sbLILukR5Bkq/mfNHs0@vger.kernel.org, AJvYcCUIcRlXxbFNz4ztMHa8TZjziUmCVIKupbwTcrc9dCN3WoAE3pNlQ6p2Ud1gbBO9TQqkHjw+8K1An2ul078=@vger.kernel.org, AJvYcCUe8vifd69YSA7GAnJFcke4VRypkFoEXiqdUsL2zUlmJAjUK3ZGZ/jx4ob0t6jl4YCnC9Vc2DCcg3O1@vger.kernel.org, AJvYcCV+inHKgytJ1I7fAv98Fy8gNSblatViRC083wPbBMLz+0feWDpoGBttEYY8L8iC9QrlVi6wnLGgwzbz0c1Ss8QG@vger.kernel.org, AJvYcCV1P35GDYj8mVkht6/himR7aPPrNAg0zHwfOpyTlNBqpCvvyWdDIaNIkgnVW0woPxNMkmnCU0kpY3M5@vger.kernel.org, AJvYcCVr4yIDlEaoU1PKkxNuVBa5dUW4OZYrsgmkLfeLnPc5tXpx2qYoIwlVNLNrL0vU8h0dL2YoWKpmO5alJs/Z@vger.kernel.org, AJvYcCWRFCAGssD67ERI4y/njLLMUlLBwXkqqqKWULepvROmrZbj0nf9fY2JTM3Y9jmckg8kHrqmoQrRg1Gh2cUQfMY=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwxFNuQ3JFk7fMS7Fw7U70eT0DQgXHECpCzNMnzUNTMTUapMChA
-	YHEPrrZuDYnQ/WE1+YgWnRIhO7XcgT1tBGZAPulmjP+3yop/SNDvTI2enB41IEhd5oZHzOKFNNB
-	yLZkc7GYyefEQN/tqembFhoDfMAE=
-X-Gm-Gg: ASbGncsWT1cl2AOTnaU/GVPlpcDWQRxBzZmhzRCNBnB+8l6PChERG7SzHBuGBllpQJT
-	fn2Hrz3JKzROGmJk5jTl8nXjgi/GKbE612pw5RZWrbKRCfoocr8/wHzZGKS8FrLP66pJJCk6LX0
-	o4uIpUVqsxDi1l7lI3eHpUF+oX4zB1TzIcORZBOHzIVw==
-X-Google-Smtp-Source: AGHT+IFeT1UyO/dId9MJzJXWNdAbKjDwWx1oex78KzDpAKkNNpKw/6i/iQ9Vzg6EpM5x9b9AJIfWe4OA1ifM9Bwkvms=
-X-Received: by 2002:a17:906:d552:b0:ac3:1373:8a3d with SMTP id
- a640c23a62f3a-ac3f226dfc0mr1348738566b.20.1742849750503; Mon, 24 Mar 2025
- 13:55:50 -0700 (PDT)
+	s=arc-20240116; t=1742850277; c=relaxed/simple;
+	bh=K1Xbe+sschQc/Ffbiv9QVBNfgYYwO/d/wVbgAvn8+iA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=J0ZHmAJYPSRPFNzHJBXUu4VTnlPRFDxjZ4fubmJo50Cp5lAWXHrxzC/JccDPflV0mfaF/8AW6xpiV3YUPGCTTPAgIbMA/0jVQFRXysWb4I3AyrOsSyxYDUvGIj1xzw/igktyBueqfS8o15gmrQ7gmH55qnbpkF3+27yFhG0rZXE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iCdrxbcB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F08CFC4CEED;
+	Mon, 24 Mar 2025 21:04:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742850276;
+	bh=K1Xbe+sschQc/Ffbiv9QVBNfgYYwO/d/wVbgAvn8+iA=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=iCdrxbcBP97Zz2LU9u2ySQzxqRicqz3IEJYFju65MU+Po2Od67XKI9kQR8nEcmkU0
+	 vQwnoB069r6Ao6r1u7wPHAh6jbZNIP93TR4vj/SP2yZF8brA5FqXZNH+g5ZV3U8nLa
+	 4bs/yqjIJnBz5mO1AGmg5cNU9jbyrMu6tI+OcGsIH7Azse8yW4pKzNTvSpw1NjmxVy
+	 dwagh7I/O0e9lGb9WHP1x9DnhzOQ+28wcSnKLcmVtl3iM8GQQELqrhp7EzlARDQO9F
+	 JrVxSgI0THxncDtoGAQbWRh0jvNz+pIenCsGfrNara9j5pohgCbsu5q7p7WTtitSTf
+	 IYVjH1bn+1+Jw==
+From: Miguel Ojeda <ojeda@kernel.org>
+To: Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>
+Cc: Boqun Feng <boqun.feng@gmail.com>,
+	Gary Guo <gary@garyguo.net>,
+	=?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>,
+	Trevor Gross <tmgross@umich.edu>,
+	Danilo Krummrich <dakr@kernel.org>,
+	rust-for-linux@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	patches@lists.linux.dev,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH 06/10] rust: of: add missing Markdown code span
+Date: Mon, 24 Mar 2025 22:03:53 +0100
+Message-ID: <20250324210359.1199574-7-ojeda@kernel.org>
+In-Reply-To: <20250324210359.1199574-1-ojeda@kernel.org>
+References: <20250324210359.1199574-1-ojeda@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250317-ptr-as-ptr-v5-0-5b5f21fa230a@gmail.com> <D8ORTXSUTKGL.1KOJAGBM8F8TN@proton.me>
-In-Reply-To: <D8ORTXSUTKGL.1KOJAGBM8F8TN@proton.me>
-From: Tamir Duberstein <tamird@gmail.com>
-Date: Mon, 24 Mar 2025 16:55:11 -0400
-X-Gm-Features: AQ5f1JpwAMSfzacQi9R58LlhLq7lrunQqMToRPSc7D3Wdlj2GhYLtvpMeTKPIOo
-Message-ID: <CAJ-ks9n-z0SETz+zBfJmda6Q_vJDeM2jmDXx48xX9qpMmR-mdQ@mail.gmail.com>
-Subject: Re: [PATCH v5 0/6] rust: reduce pointer casts, enable related lints
-To: Benno Lossin <benno.lossin@proton.me>
-Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
-	Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, 
-	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
-	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
-	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
-	Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, linux-kbuild@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
-	linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
-	linux-pci@vger.kernel.org, linux-block@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Mon, Mar 24, 2025 at 4:16=E2=80=AFPM Benno Lossin <benno.lossin@proton.m=
-e> wrote:
->
-> On Mon Mar 17, 2025 at 3:23 PM CET, Tamir Duberstein wrote:
-> > This started with a patch that enabled `clippy::ptr_as_ptr`. Benno
-> > Lossin suggested I also look into `clippy::ptr_cast_constness` and I
-> > discovered `clippy::as_ptr_cast_mut`. This series now enables all 3
-> > lints. It also enables `clippy::as_underscore` which ensures other
-> > pointer casts weren't missed. The first commit reduces the need for
-> > pointer casts and is shared with another series[1].
-> >
-> > The final patch also enables pointer provenance lints and fixes
-> > violations. See that commit message for details. The build system
-> > portion of that commit is pretty messy but I couldn't find a better way
-> > to convincingly ensure that these lints were applied globally.
-> > Suggestions would be very welcome.
->
-> I applied the patches to v6.14-rc7 and did a quick pass with
->
->     rg -nC 3 -t rust ' as ' | bat -l rust
->
-> to see if there are any cases left that we could fix and I found a
-> couple:
->
-> * there are several cases of `number as int_type` (like `num as c_int`
->   or `my_u32 as usize` etc.) not sure what we can do about these, some
->   are probably unavoidable, but since the kernel doesn't support 16 bit
->   systems (that is true, right?), we *could* have a `From<u32> for
->   usize` impl...
+Add missing Markdown code span.
 
-Yeah, these are the most difficult ones to get rid of.
+This was found using the Clippy `doc_markdown` lint, which we may want
+to enable.
 
-> * some instances of `'|' as u32` (samples/rust/rust_misc_device.rs:112).
->   There is a `From<char> for u32` impl, so this can just be replaced
->   with `.into()` (or maybe by using a byte literal `b'|'`?).
+Fixes: bbe3b4d1580d ("rust: of: add `of::DeviceId` abstraction")
+Signed-off-by: Miguel Ojeda <ojeda@kernel.org>
+---
+ rust/kernel/of.rs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-We can enable https://rust-lang.github.io/rust-clippy/master/index.html?lev=
-els=3Dallow#cast_lossless
-for this one.
+diff --git a/rust/kernel/of.rs b/rust/kernel/of.rs
+index 04f2d8ef29cb..60ed551b50fb 100644
+--- a/rust/kernel/of.rs
++++ b/rust/kernel/of.rs
+@@ -4,7 +4,7 @@
+ 
+ use crate::{bindings, device_id::RawDeviceId, prelude::*};
+ 
+-/// IdTable type for OF drivers.
++/// `IdTable` type for OF drivers.
+ pub type IdTable<T> = &'static dyn kernel::device_id::IdTable<DeviceId, T>;
+ 
+ /// An open firmware device id.
+-- 
+2.49.0
 
-> * `shared_ref as *const _` (for example in rust/kernel/uaccess.rs:247,
->   rust/kernel/str.rs:32 and rust/kernel/fs/file.rs:367), these we can
->   replace with `let ptr: *const ... =3D shared_ref;`. Don't know if there
->   is a clippy lint for this.
-
-I think there's not a focused one. There's a nuclear option:
-https://rust-lang.github.io/rust-clippy/master/index.html?levels=3Dallow#as=
-_conversions
-
-> * some pointer casts in rust/kernel/list/impl_list_item_mod.rs:{253,254}
->   not sure if they can be converted though (maybe they are unsizing the
->   pointer?)
-
-I have a local series that gets rid of these by doing similar things
-to https://lore.kernel.org/all/20250307-no-offset-v1-0-0c728f63b69c@gmail.c=
-om/.
-I can send it later this week but it probably can't land until Alice
-is back from vacation; she was the author of this code.
-
->   Another pointer cast in rust/kernel/driver.rs:81 (I'm pretty sure this
->   one can be replaced by a `.cast()`)
->
-> Some clippy lints that we could also enable that share the spirit of
-> this series:
->
-> * `char_lit_as_u8` (maybe that also covers the `'|' as u32` case from
->   above?)
-
-It's already enabled, it's warn-by-default.
-
-> * `cast_lossless` (maybe this catches some of the `num as int_type`
->   conversions I mentioned above)
-
-Yeah, suggested the same above. I had hoped this would deal with the
-char as u32 pattern but it did not.
-
-> I'll leave it up to you what you want to do with this: add it to this
-> series, make a new one, or let someone else handle it. If you don't want
-> to handle it, let me know, then I'll create a good-first-issue :)
-
-I'll add a patch for `cast_lossless` -- the rest should probably go
-into an issue.
-
->
-> > ---
-> > Tamir Duberstein (6):
-> >       rust: retain pointer mut-ness in `container_of!`
-> >       rust: enable `clippy::ptr_as_ptr` lint
-> >       rust: enable `clippy::ptr_cast_constness` lint
-> >       rust: enable `clippy::as_ptr_cast_mut` lint
-> >       rust: enable `clippy::as_underscore` lint
-> >       rust: use strict provenance APIs
-> >
-> >  Makefile                               |   4 ++
-> >  init/Kconfig                           |   3 +
-> >  rust/bindings/lib.rs                   |   1 +
-> >  rust/kernel/alloc.rs                   |   2 +-
-> >  rust/kernel/alloc/allocator_test.rs    |   2 +-
-> >  rust/kernel/alloc/kvec.rs              |   4 +-
-> >  rust/kernel/block/mq/operations.rs     |   2 +-
-> >  rust/kernel/block/mq/request.rs        |   7 +-
-> >  rust/kernel/device.rs                  |   5 +-
-> >  rust/kernel/device_id.rs               |   2 +-
-> >  rust/kernel/devres.rs                  |  19 +++---
-> >  rust/kernel/error.rs                   |   2 +-
-> >  rust/kernel/firmware.rs                |   3 +-
-> >  rust/kernel/fs/file.rs                 |   2 +-
-> >  rust/kernel/io.rs                      |  16 ++---
-> >  rust/kernel/kunit.rs                   |  15 ++---
-> >  rust/kernel/lib.rs                     | 113 +++++++++++++++++++++++++=
-+++++++-
-> >  rust/kernel/list/impl_list_item_mod.rs |   2 +-
-> >  rust/kernel/miscdevice.rs              |   2 +-
-> >  rust/kernel/of.rs                      |   6 +-
-> >  rust/kernel/pci.rs                     |  15 +++--
-> >  rust/kernel/platform.rs                |   6 +-
-> >  rust/kernel/print.rs                   |  11 ++--
-> >  rust/kernel/rbtree.rs                  |  23 +++----
-> >  rust/kernel/seq_file.rs                |   3 +-
-> >  rust/kernel/str.rs                     |  18 ++----
-> >  rust/kernel/sync/poll.rs               |   2 +-
-> >  rust/kernel/uaccess.rs                 |  12 ++--
-> >  rust/kernel/workqueue.rs               |  12 ++--
-> >  rust/uapi/lib.rs                       |   1 +
-> >  30 files changed, 218 insertions(+), 97 deletions(-)
-> > ---
-> > base-commit: 498f7ee4773f22924f00630136da8575f38954e8
->
-> Btw I didn't find this commit anywhere I usually check, where is it
-> from?
-
-It was probably nowhere, a local frankenstein that included some fixes
-from rust-fixes.
 
