@@ -1,154 +1,127 @@
-Return-Path: <devicetree+bounces-160004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 329CAA6D4A1
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 08:11:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C51A8A6D4A3
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 08:11:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8563B188E265
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 07:10:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A34016A94E
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 07:11:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89B552505A0;
-	Mon, 24 Mar 2025 07:10:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01EA02505A5;
+	Mon, 24 Mar 2025 07:11:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RZCpy7ic"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="XEmFjuJf";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="aCq86mTl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDA4D282F0;
-	Mon, 24 Mar 2025 07:10:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED71C18DB3D;
+	Mon, 24 Mar 2025 07:11:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742800219; cv=none; b=QwrXy7yQmZvFOOxCNRx5b5nB6PePtlEXBM6/BiBTtnu+khmiKy5m+jJsM3d7oAs9lJxM7X9Kdz5JS9huukAbOLgfVogL0I08lU4hPMldig/xREOnAbLj/OsWAiORcF5BjD9IZgxnDkyeYZJvFrIUsX6y0kaTzGpm2QUzZbbiZA8=
+	t=1742800278; cv=none; b=tPl5ELOLOGPx0mrALRNyjzejbnFNAeyBZwoaK4mC5j2vvIdZ9zsPn7St6mr745oImsxFuu4yksELJm/huuggazWl8I4Xw0h8Swgiu0Dj9vxoptiRp4klfUv9PIqm2h6tP8ob8auXXVH0dJHF66XcwzkLNdYpKtClIU9JXZdSzao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742800219; c=relaxed/simple;
-	bh=/E5r7FctBSlsnK6qvtNAZnnSmDu3x/s835r10KpoGMk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=DBTp4NH8Pbxh7a+kCHZFIheqfS73eg5CPDRWRP1z0i/D2b+gU0Z4uIWb6x1cZjWVdnvk76E/xBxEErR8R7K2Tn9l4s4/F7I8c3sbNaDcCtSgK+rUf5f0vaA3KFSOSh6m+94jGV1bgch2w2VC/QvUVdiQER0jCImLSA25VLGy7gY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=RZCpy7ic; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52O6bxXH000457;
-	Mon, 24 Mar 2025 07:10:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	/ngufI78IFU7yCiFrUdhla7M+4msjXhssA/3I0fUkc8=; b=RZCpy7icQiOHzGd6
-	Ibaq8xuuzPN6Fs7QreXFLZ4h0gzrwj57c8ArPBxXq4cjLVwz5Z4a36W38LuiK0B0
-	WrVqqoJxXyIR3ZcYlP28bWbPe89kxvSxdBaj8IosA5g1hMFbGp9d3F9qYMScd5mw
-	gJrTydS3ijuzuYGI3LaiuNoOPvJBJWZBJFXkMYDuBXOerewvTJyEhsC8mWhsdnRV
-	pWyPjhmfFn/A99fKyjEITU+pJK6wUPoYfvgfWHjr2ChILiS1qGa2Pq2cTgAJevfh
-	W8TqVfBblFeujjR5VZcCKGoLstsuR4PCwO3FMq+te+WLNUXv/ETSKc1SXvsP29zA
-	0g+Jag==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45hn9wbcka-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 24 Mar 2025 07:10:02 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52O7A16L028038
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 24 Mar 2025 07:10:01 GMT
-Received: from [10.233.19.224] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 24 Mar
- 2025 00:09:57 -0700
-Message-ID: <9ea8fe39-b818-403b-bd69-815e58eb2949@quicinc.com>
-Date: Mon, 24 Mar 2025 15:09:54 +0800
+	s=arc-20240116; t=1742800278; c=relaxed/simple;
+	bh=8np0Zkmy6itg5rwkoCInHPmTfQH1+t/VJrrTjZEeQwY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Ka9VgVlVFvXmwWOaDwrWHfETJ30oLzwGGL2K6VlpvBaaeFBfF25yQGdPlxSZ0TY9es6LaJbEQNuBi4gpz8pVS4qHKB+ZEF+N97F3Sp4gsZgo5t4tR2+3/a982D9C1yH66fry5eFcFJz6Umub5/QFNcCPurfqXb7EpkvdkGsCz0g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=XEmFjuJf; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=aCq86mTl reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1742800275; x=1774336275;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=WicwLy8Ia4IgEGPwRCubgPpXY8Bf4XQ7rwKIuQhB4mU=;
+  b=XEmFjuJfltCOQMQCyCcQso2rp8/5zToK5/fzH7WV5sYsYLD3BglJntTe
+   h3aD0Sim38JkSQqfoNWI/twemdvnehotFrPEQEu9Ym4KgIajJTAl5tAZx
+   FqVR9SdUF2War05P2ctIN1s2D74FFRvO0hl58o0urOQPeh+ZAwItW+iIy
+   a4PJL4qVztPVdxyw3zitjclxAv1yJA4Bgi07OLBbtcS1qeHxGZpR32V2S
+   5sttfvWa3vhuOC6c9JdioSILmX5go4hoNcBDX4lacXy2xE8AlVuQtfu5s
+   kb/qRbQ08fygCYysKKx/FiL2GBrPQdWjyTxcvWb07LolhEKBQ544/uO75
+   A==;
+X-CSE-ConnectionGUID: waMxGU0qSR+ZyXVE3a9JbQ==
+X-CSE-MsgGUID: uaNuE4RPReuhCNIaFbgCuQ==
+X-IronPort-AV: E=Sophos;i="6.14,271,1736809200"; 
+   d="scan'208";a="43112353"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 24 Mar 2025 08:11:12 +0100
+X-CheckPoint: {67E10590-4-DC4DC9A0-F4F29281}
+X-MAIL-CPID: D351269095FE72D618E19934B7466377_0
+X-Control-Analysis: str=0001.0A006376.67E1058B.002F,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0412516531A;
+	Mon, 24 Mar 2025 08:11:06 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1742800267;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=WicwLy8Ia4IgEGPwRCubgPpXY8Bf4XQ7rwKIuQhB4mU=;
+	b=aCq86mTlGFfY1qsXJwvQxCt/uMBelhsIwKkcWOgU8bq5mdYmHofCeFfIe7dji1+XIF/b4R
+	4ryHu3MMU9VqmXNxGyYVHddx3LRRUCHXcEqBlM3ikDxDL5YCgWuULWugLmQx5WLZ5qAuh1
+	3s+NM6iEWtBIOqukJwXpIr+lngDafogzRBmRa6UOE/HNoEonafdMTW/8FOxcfGJVHMNsoy
+	TT6yAYtcZDVVtUl4Jmdvl50eZU9TAFUoWnm7hR6p3F9xe1/fwS0Wr3EsyOw8RuxcUaox+2
+	GanXLb/NAiLL1+xM9fiXgFCs952qmv/6WPe/zGDoq9FLIob+iTmzrtfUsVpCTA==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Martin Schmiedel <Martin.Schmiedel@tq-group.com>,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux@ew.tq-group.com,
+	Alexander Stein <alexander.stein@ew.tq-group.com>
+Subject: [PATCH 1/2] arm64: dts: imx8mp-tqma8mpql-mba8mp-ras314: Add LVDS device tree overlay
+Date: Mon, 24 Mar 2025 08:10:59 +0100
+Message-ID: <20250324071102.23765-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/3] arm64: defconfig: enable PCI Power Control for
- PCIe3
-To: Bartosz Golaszewski <brgl@bgdev.pl>, Krzysztof Kozlowski <krzk@kernel.org>
-CC: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>, <quic_qianyu@quicinc.com>, <sfr@canb.auug.org.au>,
-        <linux-arm-kernel@lists.infradead.org>,
-        "Bartosz
- Golaszewski" <bartosz.golaszewski@linaro.org>
-References: <20250320055502.274849-1-quic_wenbyao@quicinc.com>
- <20250320055502.274849-2-quic_wenbyao@quicinc.com>
- <694b6638-92b2-4ac0-a175-bd29aea6cba9@kernel.org>
- <CAMRc=MfZrRp=VuEOLuMY_04JdyRrD+joGL56LwRFQ-+D-8Z_6w@mail.gmail.com>
-Content-Language: en-US
-From: "Wenbin Yao (Consultant)" <quic_wenbyao@quicinc.com>
-In-Reply-To: <CAMRc=MfZrRp=VuEOLuMY_04JdyRrD+joGL56LwRFQ-+D-8Z_6w@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: W5rVTvp_6yXf7rqNN-IOLx3unxZyMuqQ
-X-Proofpoint-ORIG-GUID: W5rVTvp_6yXf7rqNN-IOLx3unxZyMuqQ
-X-Authority-Analysis: v=2.4 cv=CPoqXQrD c=1 sm=1 tr=0 ts=67e1054b cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=5vY_lBfp_abUPGzNiLoA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-24_03,2025-03-21_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 mlxlogscore=892
- spamscore=0 priorityscore=1501 suspectscore=0 bulkscore=0 mlxscore=0
- lowpriorityscore=0 malwarescore=0 adultscore=0 phishscore=0
- impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503240051
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 3/21/2025 5:43 PM, Bartosz Golaszewski wrote:
-> On Fri, Mar 21, 2025 at 8:37 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->> On 20/03/2025 06:55, Wenbin Yao wrote:
->>> From: Qiang Yu <quic_qianyu@quicinc.com>
->>>
->>> Enable the pwrctrl driver, which is utilized to manage the power supplies
->>> of the devices connected to the PCI slots. This ensures that the voltage
->>> rails of the x8 PCI slots on the X1E80100 - QCP can be correctly turned
->>> on/off if they are described under PCIe port device tree node.
->>>
->>> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
->>> Signed-off-by: Wenbin Yao <quic_wenbyao@quicinc.com>
->>> ---
->>>   arch/arm64/configs/defconfig | 1 +
->>>   1 file changed, 1 insertion(+)
->>>
->>> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
->>> index 85ec2fba1..de86d1121 100644
->>> --- a/arch/arm64/configs/defconfig
->>> +++ b/arch/arm64/configs/defconfig
->>> @@ -245,6 +245,7 @@ CONFIG_PCIE_LAYERSCAPE_GEN4=y
->>>   CONFIG_PCI_ENDPOINT=y
->>>   CONFIG_PCI_ENDPOINT_CONFIGFS=y
->>>   CONFIG_PCI_EPF_TEST=m
->>> +CONFIG_PCI_PWRCTL_SLOT=y
->> Bartosz,
->>
->> Wasn't the intention to select it the same way as PCI_PWRCTL_PWRSEQ is
->> selected?
->>
->> Best regards,
->> Krzysztof
->>
-> For sure. I would expect there to be something like:
->
-> select PCI_PWRCTL_SLOT if ARCH_QCOM
->
-> in Kconfig and nothing in defconfig.
->
-> Bartosz
+From: Martin Schmiedel <Martin.Schmiedel@tq-group.com>
 
-IIUC, pci slot power driver is a common driver that could be used by all DT
-based platform.
+This adds an overlay for the supported LVDS display tianma tm070jvhg33.
+The LVDS interface is the same as for MBa8MPxL so the already existing
+overlay can be reused on this platform.
 
+Signed-off-by: Martin Schmiedel <Martin.Schmiedel@tq-group.com>
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+ arch/arm64/boot/dts/freescale/Makefile | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+index b6d3fe26d6212..d7ac8dda4bde5 100644
+--- a/arch/arm64/boot/dts/freescale/Makefile
++++ b/arch/arm64/boot/dts/freescale/Makefile
+@@ -247,8 +247,10 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk-pcie-ep.dtb
+ 
+ imx8mp-tqma8mpql-mba8mpxl-lvds-dtbs += imx8mp-tqma8mpql-mba8mpxl.dtb imx8mp-tqma8mpql-mba8mpxl-lvds.dtbo
+ imx8mp-tqma8mpql-mba8mpxl-lvds-g133han01-dtbs += imx8mp-tqma8mpql-mba8mpxl.dtb imx8mp-tqma8mpql-mba8mpxl-lvds-g133han01.dtbo
++imx8mp-tqma8mpql-mba8mp-ras314-lvds-dtbs += imx8mp-tqma8mpql-mba8mp-ras314.dtb imx8mp-tqma8mpql-mba8mpxl-lvds.dtbo
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-tqma8mpql-mba8mpxl-lvds.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-tqma8mpql-mba8mpxl-lvds-g133han01.dtb
++dtb-$(CONFIG_ARCH_MXC) += imx8mp-tqma8mpql-mba8mp-ras314-lvds.dtb
+ 
+ dtb-$(CONFIG_ARCH_MXC) += imx8mq-evk.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mq-hummingboard-pulse.dtb
 -- 
-With best wishes
-Wenbin
+2.43.0
 
 
