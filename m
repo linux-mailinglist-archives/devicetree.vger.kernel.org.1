@@ -1,64 +1,61 @@
-Return-Path: <devicetree+bounces-160321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160322-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABE6FA6E43E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 21:23:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72406A6E448
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 21:25:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B72851637F6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 20:23:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 24C051726A6
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 20:24:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B51F1C84AF;
-	Mon, 24 Mar 2025 20:23:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07C4A1C245C;
+	Mon, 24 Mar 2025 20:24:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ejdlva0s"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lpS0uqO+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BE3019CC08;
-	Mon, 24 Mar 2025 20:23:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D24DC19E99A;
+	Mon, 24 Mar 2025 20:24:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742847782; cv=none; b=CrCm8GuJHtg9Xwp8F6UvXhOGm66fPB/CwawIF8wBWujO0O+ICiiv1buY8PpitWw+bX4PdRz6l5EPE/dqXpzGVTSFnQwnyKWEp9HyeFw/CsFP30iePu/i/pJD0/1Z8rF8ujNgEDVxODeodBW18sxdSQKfc8ytsJcZDGj1Z2F4z8c=
+	t=1742847846; cv=none; b=oIPAdFOe3qw1eJ6s81AoqbevUj/57ccbdBrt8BdYW20YvJFc+F63JNeogcAMblcznLeqAhNGbVRF1nzrLwR+muErvgMY6fF3iBT4liS+MAoG33iefil4mNFisNb/T+lR2Yi8NxRZ1H7NH7MZ+PS6Of2I6T9F1cSEkiogOHx4hYM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742847782; c=relaxed/simple;
-	bh=ncQqNWoVKSEqFbwPcK2In9RG6rSS6r5IytFyAcwNeig=;
+	s=arc-20240116; t=1742847846; c=relaxed/simple;
+	bh=Y8JdXz4w7Rb3q/NzS3QDuCo0lwePkl8nwoggfeIM59I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P45COeCr+zBfIHsNmm242rvvOWyAGNttYa6/yG9lZjT1lVkqfnYUPjc78pPf1RWQcyomYPsZreZP9YK5RqygcXd6z+2xVS6p1nBgfIk6rj8XJGXGoriBny6C6O5Vv0qkdiP7lMmhFUttT9ZhnfmT8CaaE/J1SWvXEZZtPn/hyOE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ejdlva0s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83861C4CEDD;
-	Mon, 24 Mar 2025 20:23:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=kU1yA5v6X34bpl5jlNM/2q87nZO044nyAbq10qdeo9Gqx9YUzWt9XwTYso/aGrApezIR9Da6BPmtaKOUvuIyPvxktkcyQdedrGKEE0Ci4qvFdHhG1/7hhrZF0CVhF/sUu5M6tkiWAF22b7P1fYBzBlzHNN9eY37ldL0GM1t+YB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lpS0uqO+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22244C4CEDD;
+	Mon, 24 Mar 2025 20:24:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742847781;
-	bh=ncQqNWoVKSEqFbwPcK2In9RG6rSS6r5IytFyAcwNeig=;
+	s=k20201202; t=1742847846;
+	bh=Y8JdXz4w7Rb3q/NzS3QDuCo0lwePkl8nwoggfeIM59I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ejdlva0sboLce56+dojF4alyQ3vY8mOJn8F6yLgWJGTF/CcudDO3RVMp5mP75rcD6
-	 G+1clGY+geRG3CDgrjFOYaVkzKpT6q2xh0KqWSoxKUTlA4Z60ejkSttvQY2qO/XCHL
-	 3aUG4WA/EhAHgNf1nogUFmWyg3lM3I8Zh8RH8zeZvk9LL9XyjdEySvVApXpSCuLx/0
-	 LhwcrKg1+0TGmeqr33zDUDpZ6CQR1iV0P+ehOebOOT9s4tiIvuTr2BBdwXQAMzbV2w
-	 1tTXf/bbdgfmjKRdn2o82+/D4wI3opV0ARajLgWq0jZORADZkDDcG9Qm6puTtvM1p3
-	 bRimxV8JuiCsw==
-Date: Mon, 24 Mar 2025 15:23:00 -0500
-From: Rob Herring <robh@kernel.org>
+	b=lpS0uqO+GV78U+HhCW2Pa57Hp/F5lfUJ1TPrMxX9tm+Km4QEag0laYNWoLmJgmb0k
+	 zqWDfjUKKludodl+A9N5q2QDF5NSUuzG11SLqNeXdlUd3ac/AwnZIW6OAIW6De2STL
+	 mRdz2R22XloNfkaRETG6kAKRU8QZDJigmeAsmZ3In7+fjAx7tkwSewXO586gtQSV9+
+	 Q4ohWhfKrMgUQ5OGuApJitcmW0DUGYYnmEpM2fFCUe7XAuPgDTgziFh0MIWmDY64GR
+	 2KEOezRSks1Iz9iAGfweHqJUeNBhE+3AjtQEDzZs6pq7DnLQSu6IDlIahLOT4sSEwH
+	 oytTG/oMBeKyQ==
+Date: Mon, 24 Mar 2025 15:24:05 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Sean Wang <sean.wang@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
+Cc: Nicolas Saenz Julienne <nsaenz@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
 	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Andy Teng <andy.teng@mediatek.com>,
-	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/2] dt-bindings: pinctrl: mediatek: Correct indentation
- and style in DTS example
-Message-ID: <20250324202300.GA804681-robh@kernel.org>
-References: <20250324125105.81774-1-krzysztof.kozlowski@linaro.org>
- <20250324125105.81774-2-krzysztof.kozlowski@linaro.org>
+	Heiko Stuebner <heiko@sntech.de>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: nvmem: Correct indentation and style in DTS
+ example
+Message-ID: <174284784448.810985.2720262744540534185.robh@kernel.org>
+References: <20250324125214.82028-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,76 +64,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250324125105.81774-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250324125214.82028-1-krzysztof.kozlowski@linaro.org>
 
-On Mon, Mar 24, 2025 at 01:51:05PM +0100, Krzysztof Kozlowski wrote:
+
+On Mon, 24 Mar 2025 13:52:14 +0100, Krzysztof Kozlowski wrote:
 > DTS example in the bindings should be indented with 2- or 4-spaces and
 > aligned with opening '- |', so correct any differences like 3-spaces or
-> mixtures 2- and 4-spaces in one binding.
+> mixtures 2- and 4-spaces in one binding.  While re-indenting, drop
+> unused labels.
 > 
 > No functional changes here, but saves some comments during reviews of
 > new patches built on existing code.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  .../pinctrl/mediatek,mt65xx-pinctrl.yaml      | 83 +++++++------------
->  .../pinctrl/mediatek,mt7622-pinctrl.yaml      | 48 +++++------
->  .../pinctrl/mediatek,mt8183-pinctrl.yaml      | 68 +++++++--------
->  .../pinctrl/mediatek,mt8192-pinctrl.yaml      | 76 ++++++++---------
->  4 files changed, 127 insertions(+), 148 deletions(-)
+>  .../devicetree/bindings/nvmem/nvmem.yaml      | 60 +++++++++----------
+>  .../devicetree/bindings/nvmem/rmem.yaml       | 20 +++----
+>  .../bindings/nvmem/rockchip-efuse.yaml        | 20 +++----
+>  3 files changed, 50 insertions(+), 50 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml
-> index 5f2808212f39..b9680b896f12 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml
-> @@ -137,64 +137,43 @@ examples:
->          #size-cells = <2>;
->  
->          pinctrl@1c20800 {
-> -          compatible = "mediatek,mt8135-pinctrl";
-> -          reg = <0 0x1000B000 0 0x1000>;
-> -          mediatek,pctl-regmap = <&syscfg_pctl_a>, <&syscfg_pctl_b>;
-> -          gpio-controller;
-> -          #gpio-cells = <2>;
-> -          interrupt-controller;
-> -          #interrupt-cells = <2>;
-> -          interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>,
-> -              <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>,
-> -              <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>;
-> +            compatible = "mediatek,mt8135-pinctrl";
-> +            reg = <0 0x1000B000 0 0x1000>;
-> +            mediatek,pctl-regmap = <&syscfg_pctl_a>, <&syscfg_pctl_b>;
-> +            gpio-controller;
-> +            #gpio-cells = <2>;
-> +            interrupt-controller;
-> +            #interrupt-cells = <2>;
-> +            interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>;
->  
-> -          i2c0_pins_a: i2c0-pins {
-> -            pins1 {
-> -              pinmux = <MT8135_PIN_100_SDA0__FUNC_SDA0>,
-> -                <MT8135_PIN_101_SCL0__FUNC_SCL0>;
-> -              bias-disable;
-> -            };
-> -          };
-> -
-> -          i2c1_pins_a: i2c1-pins {
-> -            pins {
-> -              pinmux = <MT8135_PIN_195_SDA1__FUNC_SDA1>,
-> -                <MT8135_PIN_196_SCL1__FUNC_SCL1>;
-> -              bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
-> -            };
-> -          };
-> -
-> -          i2c2_pins_a: i2c2-pins {
-> -            pins1 {
-> -              pinmux = <MT8135_PIN_193_SDA2__FUNC_SDA2>;
-> -              bias-pull-down;
-> +            i2c0_pins_a: i2c0-pins {
-
-Perhaps drop the unused labels while you are here. Either way,
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
