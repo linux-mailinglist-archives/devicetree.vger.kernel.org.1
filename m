@@ -1,425 +1,241 @@
-Return-Path: <devicetree+bounces-160041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0403CA6D608
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 09:20:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96483A6D627
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 09:30:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0610D3AF171
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 08:20:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4F343ACDC5
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 08:30:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 322DD25D20E;
-	Mon, 24 Mar 2025 08:20:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9733025D1F1;
+	Mon, 24 Mar 2025 08:30:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="dVcEfcQN"
+	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="BtMnmjA0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2092.outbound.protection.outlook.com [40.107.117.92])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52EEE25D1F4
-	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 08:20:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742804418; cv=none; b=ih5tOe56h7DhFtoDxEfzbyAtJ7ZuuG+bmYZa/RAVvv5L3vRsbW2VoxiEd8RZPdGxzqYHsY3u2eDFNlxhB3jWYYqomTQpY5ZKAjF04TlDJvL+kmsHA9JuWELFGM0Yn3NnMCdHdkx3HrwoUo8qpUuzSJjW+hZYLdFntMoU9BxCujc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742804418; c=relaxed/simple;
-	bh=M4+k6YD1mCXTwas5eL+hsY8I+hzUqzWAWG8iyXWAySg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fjHj25dwY3Zt0GEouTVrciPofL+y1QV66c+fr1L9Bpfy4mhELej21ymuyj6t8PynUdMjbNlgm6Dogc2ZmXkgVljOQRd+1dT24p4+kQBYyrrUEqrTfepU/fMQC4NGVSSGja56rnEEkEECdfAb6hmFPd17F1lB5ggFbPAOe/dEU8E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=dVcEfcQN; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3913fdd003bso1951170f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 01:20:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1742804413; x=1743409213; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=X5KNi5vv+WwUHgiOiAE1zT6bKqb5UxIw1xZcRyktkIE=;
-        b=dVcEfcQNMPXouD0q0BpB4ThpSHYpMCJhVEpJx7bGecKDgtxWyZfxVQnC10XOI2tdLK
-         LlYuY/dTTHvePypS+csW3lF6uBhou/xAxSmYdmkVDcdk9S3CmW+zuORU8X0K4Eji7Tcg
-         Ax8A697eKrVVzoBc+TwxOK6btMciCbOXeDnOv/A4Ucq+LdrbyvxxRCAswuH/r8a2MjMZ
-         S43+imhKk1AGgVUtQyTUCmHrtWP/WXL077B8Mz414HUp25KVZ4j/IbzSw/LA/tNkVZOC
-         kmiwc2GuZFguEj6qf+5M2lkEfNBl/n7NsSJQt7CQc2xjsq81njWMbK65WL1G+a5mEiYV
-         KiSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742804413; x=1743409213;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=X5KNi5vv+WwUHgiOiAE1zT6bKqb5UxIw1xZcRyktkIE=;
-        b=LPcFv2b2u4JvEYvUDrCGU7HBREU4jGaDVrTW3d68EIjIuEoMSBV8i5TqtpcX3R9Z5w
-         7Ah4KasnBEpUYAzsFLG0zdE7OIq5nxKaw0bUHgzFYm3M+IDIEZqdvp+SlbH8Ku5HqA+V
-         ocT/HLJUaurkrVe2TM1r4lZwRBvT+rnVK/XlDdKiQpF4NUy36+4ZQaS10wVvSPUEi7vA
-         2RRfb41Y60szrdzpeyuHCkflZETSxLRDZA7G3fbwrAkGnasEWl+lHlzHVf7OOQ0Eb8b1
-         4dVGzJF0OMr6Xqr0wKun8qghlMDmGNgDhSGSx+/tHRwnyktzF8M1QRKEVKAyRNPy46G4
-         zJDw==
-X-Forwarded-Encrypted: i=1; AJvYcCU7D4Lqsw2P83NFuoSG9q/W1zePpztZwud5SoquVRSJe7M80B6TtJa/RG83dn9WRiwtFI4lsaHQrTB1@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHPJDtbi46taWeZm4nBLhSl6SbZyypJBedbUs1WDq9DnC10spP
-	U1GOr1Xhwopihn0yPxAIwZTbndAJRH6BsJwU7zvKKqZgpG+i7sLeUm2D/n/83J8=
-X-Gm-Gg: ASbGncsDJk6HTRf+uhNXo36rOkko3nWEeYR+FtBfjaugDJa+oGvCGAiUNhrrV2httlc
-	TscHoyj1cuoErG5I1eIzFYEBEgL1YVuJgHXM/jhfIuWpJyGd3qJF7V+QoHUdwWB+5y8v/QWWJIO
-	r0OQ75ymTlcSWmIQk6r8Z1Xu4P7mTHBts2StujN4QoOj1seiTBEzVXLItWds4NjcJtBnuWjEyE9
-	l/qkayJSVR/w/GRLtI7t5wTta6PvnlbWAglzkVu1R1GY+ibee4VKYq8AT1hyL1cQaH7+3tl5aEc
-	dgf2Z0QtGV5iB2g2cISBg/rN9gJTTO2O88hW1csxzSbEDOBNZbgUreN/vLLbA2c=
-X-Google-Smtp-Source: AGHT+IHieGvYY9xYsJ+hRcTxELd3WHjGIze3RgAfmcczbmeULThLVKV6pyFoFLcvCmypyhY+f3n/4w==
-X-Received: by 2002:a5d:584f:0:b0:38d:e0a9:7e5e with SMTP id ffacd0b85a97d-399795567ebmr13722154f8f.6.1742804413383;
-        Mon, 24 Mar 2025 01:20:13 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.46])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3997f9efc90sm10337434f8f.98.2025.03.24.01.20.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Mar 2025 01:20:12 -0700 (PDT)
-Message-ID: <1f5b71d6-872f-486d-9b06-7b5e407f8482@tuxon.dev>
-Date: Mon, 24 Mar 2025 10:20:10 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE206192B96;
+	Mon, 24 Mar 2025 08:30:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.117.92
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1742805024; cv=fail; b=tvRn2dDA+wgsU0Img3OpmdCC8+RKzpommCm9lz/hTTNVvQQcjlQaLnaKjN+xkCGnkVQZHCAjp2HjY4q2uIa957IpZ8qK+XEiRMtTsVVh2BqLnzchblaqiJHpumQTjnW5GdDSuswLvJ/gqqkBfNj+duGdCSjuDEJ4HGNZm6AYkHs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1742805024; c=relaxed/simple;
+	bh=zew1zA2b5Qc900FH4v419XyVgG+i7rAjOXnVIGm6ZLw=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=A/vDwKvA2WAmxKhlL2v75A4Ed3a0Jkp73AKgyugm97YwecqA3gktK49E4C9r9WejL7x1HwXuThRz6Rq+8Xra8KNKzT+BSZKe7vz1rHXHmEyaKMxhbM94Sc3nJOHK+7X3RNbHMakiMNQssW/aDAeYRoaX4g1a/SrbCBKccGf4u5g=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=BtMnmjA0; arc=fail smtp.client-ip=40.107.117.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=g5YxCgNHkmCRS6Nw71y3ssbLW6bl3hvMrxEkLIb34sMxsK/t+CJ30nGNtEdPiBFUY38RKUMLFS5X4/9AUBxmf/ZxjqW+FN/gIGJvzRQDILJOOEtOKeqO9db5ZzRNU1RYSv/uPb0RTsCJW+ddNNm0rczsQO5f+wlRQZ12JAVpMUVQTZWWgWUlvl53ai3RjhGReXOPPccMQxFeFe6/4MgrwiQWeqbh7xtCht2XR8AruNE1MWr8tIyz7KNuhEpY59ApX3dZbRrJi1Qujcxjhn9OXJ//h7Os4hRwAPEg/ZWZftJBw++a1/vTlPlREGVMqASJtnKhLYY1SeLSRFEQcvtASA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zew1zA2b5Qc900FH4v419XyVgG+i7rAjOXnVIGm6ZLw=;
+ b=Tv/BfBLXtMjVpnk6cLxdKtZcTEh9Z//7G3QN/xbM/t4ErlTawNV9afXwjY/N08w7DlvtUT/q90mLbq4gQdto2XYodTKoBnjgPmdAFSlwoYUY/xAWYjFD74lDEBWGc1YR00I6aakVyo8phOwQydz5B/3aaEY0EwoxvFydnLcRVTAOKWkz92iu+a52XTIcIwdPOHJn/XkwXOqJ+bQqLImp21CoWSyw1TMyx3bJImZw6HLD6d1EJDn81yeYQY/BkrM6hLBSPlGLZPV47jwThIkX2U1qDGHx82hpbKd17kvlQD1983M/TWCDYP+AAkdgtzs1wEqCp29IEFBGg+jBDwvRng==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zew1zA2b5Qc900FH4v419XyVgG+i7rAjOXnVIGm6ZLw=;
+ b=BtMnmjA0K914vluJKLny8XHCbW0aCCbFulQNkIwFjzEw9NAnuP9pIdLI+qbXdWGwoSGNtAnpkBOwaA6MdTT5S+IwZVgEkm2Dpa/xnDzLcDoqDXCoghH8gC+WGi18WzZvs9jVI5YsIj01sAeG0jK7cc92WS92uyuoOCdeWy43sTfTr75nr8faob3el/bNluOq3xOC8UCZbI7BhlvkuhPF6xdsCA3bwyZP9YvtzOUCvvLYh2YyN3JXw+vZgrnG2MgxEm//UaAHMlVCGHn08Q+kLw/GxJEPvG/GNANNV9q4ncPGu5RLmLDYkWurcRqqSUGshq8cS+gPf18Q1v8J+/eyOw==
+Received: from SI6PR06MB7535.apcprd06.prod.outlook.com (2603:1096:4:235::12)
+ by SG2PR06MB5360.apcprd06.prod.outlook.com (2603:1096:4:1db::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.42; Mon, 24 Mar
+ 2025 08:30:16 +0000
+Received: from SI6PR06MB7535.apcprd06.prod.outlook.com
+ ([fe80::8af2:b731:a5e5:169f]) by SI6PR06MB7535.apcprd06.prod.outlook.com
+ ([fe80::8af2:b731:a5e5:169f%6]) with mapi id 15.20.8534.036; Mon, 24 Mar 2025
+ 08:30:16 +0000
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: "benh@kernel.crashing.org" <benh@kernel.crashing.org>, "joel@jms.id.au"
+	<joel@jms.id.au>, "andi.shyti@kernel.org" <andi.shyti@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
+	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+	"andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
+	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+	"openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+	<linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, Mo Elbadry <elbadrym@google.com>
+Subject: RE: [PATCH v16 1/3] dt-bindings: i2c: aspeed: support for
+ AST2600-i2cv2
+Thread-Topic: [PATCH v16 1/3] dt-bindings: i2c: aspeed: support for
+ AST2600-i2cv2
+Thread-Index:
+ AQHbhoFMYr1F1iCu706pUdZbmBz0BrNWKwmAgAMnDQCAAApCgIABc/fggADIQoCACD7TUIATPNAAgAAVK0CAAw8fAIAAONYggAecSoCAABKwMA==
+Date: Mon, 24 Mar 2025 08:30:16 +0000
+Message-ID:
+ <SI6PR06MB753542037E1D6BBF5CE8D2E7F2A42@SI6PR06MB7535.apcprd06.prod.outlook.com>
+References: <20250224055936.1804279-1-ryan_chen@aspeedtech.com>
+ <20250224055936.1804279-2-ryan_chen@aspeedtech.com>
+ <20250224-arrogant-adventurous-mackerel-0dc18a@krzk-bin>
+ <OS8PR06MB75415E95342F26F576B5CF8AF2C22@OS8PR06MB7541.apcprd06.prod.outlook.com>
+ <50327725-f3b8-4a8b-94a2-85afccd2868a@kernel.org>
+ <OS8PR06MB7541B0DBC64B3EF6838DFE74F2CD2@OS8PR06MB7541.apcprd06.prod.outlook.com>
+ <d1b184c5-84c1-4d76-a1d0-a9f37f1e363c@kernel.org>
+ <OS8PR06MB7541D1D2E16C5E77037F3BB0F2CB2@OS8PR06MB7541.apcprd06.prod.outlook.com>
+ <069b9fe4-c54a-4efd-923e-1558c59fe3f4@kernel.org>
+ <OS8PR06MB7541C69AB8E6425313DA8606F2DF2@OS8PR06MB7541.apcprd06.prod.outlook.com>
+ <677cb075-24ae-45d8-bfb4-9b23fbacc5df@kernel.org>
+ <OS8PR06MB7541C3B70B15F45F4824772BF2D92@OS8PR06MB7541.apcprd06.prod.outlook.com>
+ <994cb954-f3c4-4a44-800e-9303787c1be9@kernel.org>
+In-Reply-To: <994cb954-f3c4-4a44-800e-9303787c1be9@kernel.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SI6PR06MB7535:EE_|SG2PR06MB5360:EE_
+x-ms-office365-filtering-correlation-id: eb7b60f4-cad5-47a6-d440-08dd6aae1b1e
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|366016|376014|7416014|38070700018;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?Rll6R3hyalpSa0pOOXgzNlpyOW1DSHB2T3lWQWtRd0VDZ0w1ckNBUjQxdGl1?=
+ =?utf-8?B?Z0p0Y0tIdVVwNGtzM2s2ZHpHNVBTNGViQjRLZDVYbEE5c1pSM3htV2pLa2JX?=
+ =?utf-8?B?M09YUXQrWkxVaEhOSGlTRTdSSnQrNSsyN1dHMlJUekNhU1ZsZ0tycHVqdGxi?=
+ =?utf-8?B?Y3Y2QTJCNE1tM2xyMUp3Wmxucmg5N2d4SitNd3p3c2k2NTlaSFplbDE2RVJC?=
+ =?utf-8?B?TVpZY1RSaVJydmFiblVQMVkySWdHelFNUmRzSU1ZNlUwRkh4ekl5bWlxUDRO?=
+ =?utf-8?B?VTFINXBEQytTNkxGdGkrTldzaHpNczNkTWJhZnhTczcxelFnckRVa0RjMlU1?=
+ =?utf-8?B?K3RSTVRGTjIxUk45TW9FVGpiYnFnUGFneGNid1BVV01VekhFS0hoc2VCaXdK?=
+ =?utf-8?B?bFoxNEdMbEpmVTA1MFVVWi9scElkNXdORU9id0lHdlNQTzhXQ01MZ1VZZWda?=
+ =?utf-8?B?a09HWGlZc0FPWnY3N0RXOTBMMExKS1g0SVZxbE42QmJWdW1hYXY3bllUaVJF?=
+ =?utf-8?B?ZC9WZjlaQXJRVGJzLzFNcGFLd3RkaWN6RTRZQWdETVVuRkhhWUp4bWVhaDJv?=
+ =?utf-8?B?MUV4eVNXMXAraUx1ZkRrTWxTSVhFbXl5K1JDaWdhbGVRdHoxNFlhZ3dpR3dJ?=
+ =?utf-8?B?Nk0yMFlYTWlSdWxBWXBDamFCc0lVeVdxM1ljSnd5OTJsKzlBeFdjTHhIUFBx?=
+ =?utf-8?B?ZWJ4WkNSM0FSckZ2U0VrWFBrZ1FHZzlqdzJueTkwQjRXSlByVGFiQThMam5M?=
+ =?utf-8?B?a0ZBUU0vTDFVejFWdWE1dDNadU9EM2tFeC81aUdLK1psRE9QbG5pcWdrSyta?=
+ =?utf-8?B?S3ZnYjN0SHF6a1I2YnJCTkFHS2c5WFhrV1BlemNXR3k3NzFrTlRHRnNjWVpu?=
+ =?utf-8?B?OVVyS1lwRnUyN3IwRVR6bnFKQmNvand6SGRVcGw1QTcwWk1yRVB1SHRoNEc0?=
+ =?utf-8?B?Y2p6N3o3T1gwU2tzeUtXYUJFUjdXbXV1d0tvOWQ2a3pTSkkvVTdES2ZsNnpX?=
+ =?utf-8?B?Y1RhZmIwTzlmNzRyMUNlRmY2NUpvR3huK2ZjaUw3Vm8zL20xSC94UjMwdlc0?=
+ =?utf-8?B?K28wekFGdUxDbjhFTDBId2IyV3pJMGNKQmZmM0xjcEVrZ2ZkK0Z3M2FuYnNL?=
+ =?utf-8?B?SzdQUWFxY3VhbGVvS1Z3RmZJdTdTV0FGSytuQS94N2lkR2Rpa2hPaUtQajla?=
+ =?utf-8?B?R0xMRnhQRkVnYXpRTmR6NURkNklsbWtvVCtjVzZ4RTc2OUl1Y3E4eUI1c0M5?=
+ =?utf-8?B?eTJuVDY5N0s2dGtTbTZaa3BVa3dMWWNrdVY1czYySk1HdEJLb25lZjA3WEdS?=
+ =?utf-8?B?QUs2MmpuVUN1N0FFMlQxNmtkc1NUUTViNnFweVZYR0NoR1JrcUNvMnVQOThn?=
+ =?utf-8?B?UXNWNGllUkhNK0F6UmJ3Y0JNcXVBVFNMWjZVcHlnZGtZVW10Q3dBejNtNEF0?=
+ =?utf-8?B?RkJHdmVKZ0toWmlWcmFMS1pWSXdFU01FR0VrSXZ2T1AySjhHSGNSZ1BPTjNy?=
+ =?utf-8?B?WE5KSll6eU9JVTVSUHJRQWFMYTRVN0QwQ0NHTEgxbktpZzJXUWlXeVZNanlL?=
+ =?utf-8?B?ZEdLSncxd01RcE9INXE4UWl5Q1RmZGRHRFVsdndodk52R1JuYnJsTCsxT2J5?=
+ =?utf-8?B?eUhSTlRFTjl3Z3UyTDdFUU41VlhXYnVWeVMyT0hKdGJzazd2eTNQdUhNM2tO?=
+ =?utf-8?B?WVhheUFrSUJpaWUvNWFqcFBXRGJ4NjRCRFlQWTM3NWtMTTFaM0hpMnJMN3Uw?=
+ =?utf-8?B?MzdydlViY1JDUTVNVmhTcElkYkNFSGRmd0tGTG90RmUyd21Id2VVeFJXcThM?=
+ =?utf-8?B?SncyL0FMQjNoaStCa1dxcm1RQTAwTk1NVmY4MXRUWHlyQ3g4NEFIVW9OTDY2?=
+ =?utf-8?B?L2k5N05RSkNiVXhzNndaT0VPNEtITWNCbmViZlU3Rmc3YWhMTHZZTnFJY0k3?=
+ =?utf-8?Q?7ES/Joc5xjG4nzIGgDaTUZyGlc+LrgMf?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:zh-tw;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SI6PR06MB7535.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?OWJ0QS9PalI3bEtPZmRvbG9CTGJrRjIxbWw1dldKOXp0UnR0ZXpSVFdTTTJi?=
+ =?utf-8?B?TjBma2VWSWhqVnhUYWJ4MmZOQmJrVTl1QW4rektoTlgvdjZsaVNYRGZnaStS?=
+ =?utf-8?B?SCsyNDFvWTN5SWlOb2w0ejVPbk5YTkxOU0lRRllJL2E4TlNaWUo1Y2Z1c1Nu?=
+ =?utf-8?B?RWc1dFBwZXl1dG9aUk5tU2gvY0IyS2l2bHhpaG15RGpQSy9rUnhTNFJuQkp2?=
+ =?utf-8?B?YXhGV1ZiOGlDNGpackh3M0NqdDN0T29RcUFEY1BJTllNa1BzamhCeVRUcThr?=
+ =?utf-8?B?ajV4VTVwbjlveFZnZlhGR05EU0l3Tk5TMDZDWTF3SE1MQVRjeGR1eWN3cGZh?=
+ =?utf-8?B?MmQ2clpsNFlNTHVTU2l4MkZsaHJocHcrQ1JmL2MxUlNXUlp1V0IwRkY5by9w?=
+ =?utf-8?B?TlFPSWxRTE51cUFPMzFzYVFETVdteFBBUEZvSGxJVHEyNSsycThHUnlIMUMy?=
+ =?utf-8?B?cGJucG9EczFLeXZ0U0F3cWRrTHkvVUoveGl2ZytBbEpicm1JRFhPeHYzWmtr?=
+ =?utf-8?B?OW5lZjI2Q01OUFlYcVNGMnp1Y3dBVUxvZVRaTVdGajAybjcvTnNzaDdSK0ZT?=
+ =?utf-8?B?MTM0U1NVRUErRTFWNUhTdEtSM3EwL3RiREMrSkYwcjFPL2pwUWdiaXhUYm0v?=
+ =?utf-8?B?S1czak9tZTRaRXpHWkV2Y1VMQjJQRHIzY1dnR0JwSnBycXpDZkN2ZC8zaVdz?=
+ =?utf-8?B?QnNtT2x1U3lWcDJicVYvNkhRaUs2bGJneURBT2VnSm9IN1g5V2lKTG5DOG83?=
+ =?utf-8?B?NjdlN2FrZnlSeXZvbm1qMzI1NUZHY2wyUkJqaHpCNU5LZjQ0U1BYaWQwbVk5?=
+ =?utf-8?B?K3g0M2RBNEFMMG9aYytYOTZqWHdvZDVISGs1WFc5SVlzRkNhOVEvSmxrcUE1?=
+ =?utf-8?B?Tlk0SElMWUNMOVQxNUt3WnBLWWM2eDFnZFpLVDF3elJ0dWNsTmVDMUVqV0tU?=
+ =?utf-8?B?eWN4UFhZT1lDK05rRkEzL0xidnU4RWdXVi90K2VKUVcyajIrQ0N2T1lKYUdt?=
+ =?utf-8?B?QkhlMkpMZm50U1kzeWVXcHNJUjM3a1ZaTERhT2VhNllWekJEMmU4ZjR3STZr?=
+ =?utf-8?B?M0JsY2NYTGh4d1k4TzBGQ2dPdk1yclI2VjV1STNQTmE2M2U2Q01UQUpkTFlU?=
+ =?utf-8?B?TS9icFBCeGMyaUlQKzVERGF6VkJVazhMMVBlN2RaRkp4TW54SzQ3R09xbjdI?=
+ =?utf-8?B?WW9vNExWNXFZYkpBWHZvb1lodmVzdTB5UXhIZ3ZNSmdRRVJUcWhxLzMrYjM2?=
+ =?utf-8?B?eHJmY1d5a2RLekhqSWJqYllIQTBFSDk3aU5yZGdhS3F6UUFLMFRTQ3BJQWRm?=
+ =?utf-8?B?VnUydVNKUDBGcDNKU3NCK0NqSHJoTlpWaFFTWEZFTEJWZHpOR2NDNk5tR3VZ?=
+ =?utf-8?B?T2U2bHJ3RGtxdVpVc0wyZ0cxbWJnWHEzdk1UdEVnRzhja2Q5TUhESEl2NkNU?=
+ =?utf-8?B?bEJJSCtNNDh4Q0JITGVLZHVyYms2c0JhRW5zc0JzWVdDbkNyd0ZMV0NoUG80?=
+ =?utf-8?B?TG53UDdjUFlMZ2wrWktrdzNKRnF3T1RuYkcvRzcxRGY1RHJKR2FvK3k3S1JW?=
+ =?utf-8?B?WWRNWFVlY25FL1lteFRIaGJWNmxWdzZIK3VMT3Bnazk5M1U3U015V2VGTE80?=
+ =?utf-8?B?ZmloSWh2M2JjakI0OWVLNysxaWdWaEkycVljbmNESGRBcEhyeGV1aFV5YU1v?=
+ =?utf-8?B?bXJKc05YajhSc0NrY1doeEZWakNNalVvak9OdktqZm9yTjRvUjNqUXNpd01K?=
+ =?utf-8?B?MmVDdW5aYXRwY1BHNW1PWlNIYkJBTjdXb25kbWIwM1pwOStJMUlYYjdWRHJn?=
+ =?utf-8?B?WnhoVlZBcGlHSUZCZ3hzbzZhaVcxVE1XUmJZSTBLRFhmQWJzZll1WmhaR2Ry?=
+ =?utf-8?B?bG9qdVIrM1BiTnRTM1lFRmIzNWdzamJPUEM2MlJidWZtZzk2QktlYS8zb1lM?=
+ =?utf-8?B?UUlhdjhHOFp2Vys5YkM4ajZBTGp2Tmt4NVFBNkx1NHRpWVJXNEFkZjR6eXlB?=
+ =?utf-8?B?TzY5dnBrRmhsdzQremZBUmo0cyszS1ZUSGRXV0o2cTNOT3loRDErKzlrR0hR?=
+ =?utf-8?B?dFBQY2N6bHg1VzgzaURzeVo1K3VBZDl4UmxCLzNzWG14b0dPeldXaEQ3OVpK?=
+ =?utf-8?Q?4uGXAmJSDZM+0Jfa3CkBBBVPz?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 08/13] net: macb: introduce DMA descriptor
- helpers (is 64bit? is PTP?)
-To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Samuel Holland <samuel.holland@sifive.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Russell King <linux@armlinux.org.uk>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
- Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-mips@vger.kernel.org, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>
-References: <20250321-macb-v1-0-537b7e37971d@bootlin.com>
- <20250321-macb-v1-8-537b7e37971d@bootlin.com>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Content-Language: en-US
-In-Reply-To: <20250321-macb-v1-8-537b7e37971d@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SI6PR06MB7535.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: eb7b60f4-cad5-47a6-d440-08dd6aae1b1e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Mar 2025 08:30:16.7972
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Vw130QbZvWdSPLH+HRifcdyWHq4sk3CwBakUCYSX75jKFz5pvrA1SpTsz9u42WarqogRxJYN1IyxX/5eVFMP+uwsa4qY66w4F+IdnyZZdbA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2PR06MB5360
 
-I think the "(is 64bit? is PTP?)" from title could be dropped.
-
-On 21.03.2025 21:09, Théo Lebrun wrote:
-> Introduce macb_dma_is_64b() and macb_dma_is_ptp() helper functions.
-> Many codepaths are made simpler by dropping conditional compilation.
-> 
-> This implies three changes:
->  - Always compile related structure definitions inside <macb.h>.
->  - Make the field hw_dma_cap in struct macb always present.
->  - MACB_EXT_DESC can be dropped as it is useless now.
-> 
-> The common case is:
-> 
-> 	#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
-> 		struct macb_dma_desc_64 *desc_64;
-> 		if (bp->hw_dma_cap & HW_DMA_CAP_64B) {
-> 			desc_64 = macb_64b_desc(bp, desc);
-> 			// ...
-> 		}
-> 	#endif
-> 
-> And replaced by:
-> 
-> 	struct macb_dma_desc_64 *desc_64;
-> 	if (macb_dma_is_64b(bp)) {
-> 		desc_64 = macb_64b_desc(bp, desc);
-> 		// ...
-> 	}
-> 
-> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
-> ---
->  drivers/net/ethernet/cadence/macb.h      |   8 ---
->  drivers/net/ethernet/cadence/macb_main.c | 110 +++++++++++--------------------
->  2 files changed, 38 insertions(+), 80 deletions(-)
-> 
-> diff --git a/drivers/net/ethernet/cadence/macb.h b/drivers/net/ethernet/cadence/macb.h
-> index 5bf7e7ff70490cdb068bfdbe7cfd5bb8e1db7f86..26e0af44a45926c782cf0f72184332ab3605a178 100644
-> --- a/drivers/net/ethernet/cadence/macb.h
-> +++ b/drivers/net/ethernet/cadence/macb.h
-> @@ -15,10 +15,6 @@
->  #include <linux/phy/phy.h>
->  #include <linux/workqueue.h>
->  
-> -#if defined(CONFIG_ARCH_DMA_ADDR_T_64BIT) || defined(CONFIG_MACB_USE_HWSTAMP)
-> -#define MACB_EXT_DESC
-> -#endif
-> -
->  #define MACB_GREGS_NBR 16
->  #define MACB_GREGS_VERSION 2
->  #define MACB_MAX_QUEUES 8
-> @@ -824,7 +820,6 @@ struct macb_dma_desc {
->  	u32	ctrl;
->  };
->  
-> -#ifdef MACB_EXT_DESC
->  #define HW_DMA_CAP_32B		0
->  #define HW_DMA_CAP_64B		(1 << 0)
->  #define HW_DMA_CAP_PTP		(1 << 1)
-> @@ -839,7 +834,6 @@ struct macb_dma_desc_ptp {
->  	u32	ts_1;
->  	u32	ts_2;
->  };
-> -#endif
->  
->  /* DMA descriptor bitfields */
->  #define MACB_RX_USED_OFFSET			0
-> @@ -1319,9 +1313,7 @@ struct macb {
->  
->  	struct phy		*sgmii_phy;	/* for ZynqMP SGMII mode */
->  
-> -#ifdef MACB_EXT_DESC
->  	uint8_t hw_dma_cap;
-> -#endif
->  	spinlock_t tsu_clk_lock; /* gem tsu clock locking */
->  	unsigned int tsu_rate;
->  	struct ptp_clock *ptp_clock;
-> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
-> index b32363ba1ec3be0fc42866c8585f0b465d178220..ad154cfe29106f642b32922fd4a03ca63112f4a7 100644
-> --- a/drivers/net/ethernet/cadence/macb_main.c
-> +++ b/drivers/net/ethernet/cadence/macb_main.c
-> @@ -98,6 +98,18 @@ struct sifive_fu540_macb_mgmt {
->  
->  #define MACB_MDIO_TIMEOUT	1000000 /* in usecs */
->  
-> +static bool macb_dma_is_64b(struct macb *bp)
-> +{
-> +	return IS_ENABLED(CONFIG_ARCH_DMA_ADDR_T_64BIT) &&
-> +	       bp->hw_dma_cap & HW_DMA_CAP_64B;
-> +}
-> +
-> +static bool macb_dma_is_ptp(struct macb *bp)
-> +{
-> +	return IS_ENABLED(CONFIG_MACB_USE_HWSTAMP) &&
-> +	       bp->hw_dma_cap & HW_DMA_CAP_PTP;
-> +}
-> +
->  /* DMA buffer descriptor might be different size
->   * depends on hardware configuration:
->   *
-> @@ -127,56 +139,31 @@ struct sifive_fu540_macb_mgmt {
->   */
->  static unsigned int macb_dma_desc_get_size(struct macb *bp)
->  {
-> -#ifdef MACB_EXT_DESC
-> -	unsigned int desc_size;
-> +	unsigned int desc_size = sizeof(struct macb_dma_desc);
-> +
-> +	if (macb_dma_is_64b(bp))
-> +		desc_size += sizeof(struct macb_dma_desc_64);
-> +	if (macb_dma_is_ptp(bp))
-> +		desc_size += sizeof(struct macb_dma_desc_ptp);
->  
-> -	switch (bp->hw_dma_cap) {
-> -	case HW_DMA_CAP_64B:
-> -		desc_size = sizeof(struct macb_dma_desc)
-> -			+ sizeof(struct macb_dma_desc_64);
-> -		break;
-> -	case HW_DMA_CAP_PTP:
-> -		desc_size = sizeof(struct macb_dma_desc)
-> -			+ sizeof(struct macb_dma_desc_ptp);
-> -		break;
-> -	case HW_DMA_CAP_64B_PTP:
-> -		desc_size = sizeof(struct macb_dma_desc)
-> -			+ sizeof(struct macb_dma_desc_64)
-> -			+ sizeof(struct macb_dma_desc_ptp);
-> -		break;
-> -	default:
-> -		desc_size = sizeof(struct macb_dma_desc);
-> -	}
->  	return desc_size;
-> -#endif
-> -	return sizeof(struct macb_dma_desc);
->  }
->  
->  static unsigned int macb_adj_dma_desc_idx(struct macb *bp, unsigned int desc_idx)
->  {
-> -#ifdef MACB_EXT_DESC
-> -	switch (bp->hw_dma_cap) {
-> -	case HW_DMA_CAP_64B:
-> -	case HW_DMA_CAP_PTP:
-> -		desc_idx <<= 1;
-> -		break;
-> -	case HW_DMA_CAP_64B_PTP:
-> -		desc_idx *= 3;
-> -		break;
-> -	default:
-> -		break;
-> -	}
-> -#endif
-> -	return desc_idx;
-> +	if (macb_dma_is_64b(bp) && macb_dma_is_ptp(bp))
-> +		return desc_idx * 3;
-> +	else if (macb_dma_is_64b(bp) || macb_dma_is_ptp(bp))
-> +		return desc_idx << 1;
-> +	else
-> +		return desc_idx;
->  }
->  
-> -#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
->  static struct macb_dma_desc_64 *macb_64b_desc(struct macb *bp, struct macb_dma_desc *desc)
->  {
->  	return (struct macb_dma_desc_64 *)((void *)desc
->  		+ sizeof(struct macb_dma_desc));
->  }
-> -#endif
->  
->  /* Ring buffer accessors */
->  static unsigned int macb_tx_ring_wrap(struct macb *bp, unsigned int index)
-> @@ -500,17 +487,13 @@ static void macb_init_buffers(struct macb *bp)
->  
->  	for (q = 0, queue = bp->queues; q < bp->num_queues; ++q, ++queue) {
->  		queue_writel(queue, RBQP, lower_32_bits(queue->rx_ring_dma));
-> -#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
-> -		if (bp->hw_dma_cap & HW_DMA_CAP_64B)
-> +		if (macb_dma_is_64b(bp))
->  			queue_writel(queue, RBQPH,
->  				     upper_32_bits(queue->rx_ring_dma));
-> -#endif
->  		queue_writel(queue, TBQP, lower_32_bits(queue->tx_ring_dma));
-> -#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
-> -		if (bp->hw_dma_cap & HW_DMA_CAP_64B)
-> +		if (macb_dma_is_64b(bp))
->  			queue_writel(queue, TBQPH,
->  				     upper_32_bits(queue->tx_ring_dma));
-> -#endif
->  	}
->  }
->  
-> @@ -1038,10 +1021,9 @@ static void macb_tx_unmap(struct macb *bp, struct macb_tx_skb *tx_skb, int budge
->  
->  static void macb_set_addr(struct macb *bp, struct macb_dma_desc *desc, dma_addr_t addr)
->  {
-> -#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
->  	struct macb_dma_desc_64 *desc_64;
-
-This can be moved
->  
-> -	if (bp->hw_dma_cap & HW_DMA_CAP_64B) {
-> +	if (macb_dma_is_64b(bp)) {
-
-here.
-
->  		desc_64 = macb_64b_desc(bp, desc);
->  		desc_64->addrh = upper_32_bits(addr);
->  		/* The low bits of RX address contain the RX_USED bit, clearing
-> @@ -1050,26 +1032,22 @@ static void macb_set_addr(struct macb *bp, struct macb_dma_desc *desc, dma_addr_
->  		 */
->  		dma_wmb();
->  	}
-> -#endif
-> +
->  	desc->addr = lower_32_bits(addr);
->  }
->  
->  static dma_addr_t macb_get_addr(struct macb *bp, struct macb_dma_desc *desc)
->  {
-> -	dma_addr_t addr = 0;
-> -#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
->  	struct macb_dma_desc_64 *desc_64;
-
-Same for this one.
-
-> +	dma_addr_t addr = 0;
->  
-> -	if (bp->hw_dma_cap & HW_DMA_CAP_64B) {
-> +	if (macb_dma_is_64b(bp)) {
->  		desc_64 = macb_64b_desc(bp, desc);
->  		addr = ((u64)(desc_64->addrh) << 32);
->  	}
-> -#endif
->  	addr |= MACB_BF(RX_WADDR, MACB_BFEXT(RX_WADDR, desc->addr));
-> -#ifdef CONFIG_MACB_USE_HWSTAMP
-> -	if (bp->hw_dma_cap & HW_DMA_CAP_PTP)
-> +	if (macb_dma_is_ptp(bp))
->  		addr &= ~GEM_BIT(DMA_RXVALID);
-> -#endif
->  	return addr;
->  }
->  
-> @@ -1176,10 +1154,8 @@ static void macb_tx_error_task(struct work_struct *work)
->  
->  	/* Reinitialize the TX desc queue */
->  	queue_writel(queue, TBQP, lower_32_bits(queue->tx_ring_dma));
-> -#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
-> -	if (bp->hw_dma_cap & HW_DMA_CAP_64B)
-> +	if (macb_dma_is_64b(bp))
->  		queue_writel(queue, TBQPH, upper_32_bits(queue->tx_ring_dma));
-> -#endif
->  	/* Make TX ring reflect state of hardware */
->  	queue->tx_head = 0;
->  	queue->tx_tail = 0;
-> @@ -2349,11 +2325,9 @@ static netdev_tx_t macb_start_xmit(struct sk_buff *skb, struct net_device *dev)
->  		return ret;
->  	}
->  
-> -#ifdef CONFIG_MACB_USE_HWSTAMP
-> -	if ((skb_shinfo(skb)->tx_flags & SKBTX_HW_TSTAMP) &&
-> -	    (bp->hw_dma_cap & HW_DMA_CAP_PTP))
-> +	if (macb_dma_is_ptp(bp) &&
-> +	    (skb_shinfo(skb)->tx_flags & SKBTX_HW_TSTAMP))
->  		skb_shinfo(skb)->tx_flags |= SKBTX_IN_PROGRESS;
-> -#endif
->  
->  	is_lso = (skb_shinfo(skb)->gso_size != 0);
->  
-> @@ -2813,14 +2787,10 @@ static void macb_configure_dma(struct macb *bp)
->  			dmacfg &= ~GEM_BIT(TXCOEN);
->  
->  		dmacfg &= ~GEM_BIT(ADDR64);
-> -#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
-> -		if (bp->hw_dma_cap & HW_DMA_CAP_64B)
-> +		if (macb_dma_is_64b(bp))
->  			dmacfg |= GEM_BIT(ADDR64);
-> -#endif
-> -#ifdef CONFIG_MACB_USE_HWSTAMP
-> -		if (bp->hw_dma_cap & HW_DMA_CAP_PTP)
-> +		if (macb_dma_is_ptp(bp))
->  			dmacfg |= GEM_BIT(RXEXT) | GEM_BIT(TXEXT);
-> -#endif
->  		netdev_dbg(bp->dev, "Cadence configure DMA with 0x%08x\n",
->  			   dmacfg);
->  		gem_writel(bp, DMACFG, dmacfg);
-> @@ -4326,12 +4296,10 @@ static int macb_init(struct platform_device *pdev)
->  			queue->TBQP = GEM_TBQP(hw_q - 1);
->  			queue->RBQP = GEM_RBQP(hw_q - 1);
->  			queue->RBQS = GEM_RBQS(hw_q - 1);
-> -#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
-> -			if (bp->hw_dma_cap & HW_DMA_CAP_64B) {
-> +			if (macb_dma_is_64b(bp)) {
->  				queue->TBQPH = GEM_TBQPH(hw_q - 1);
->  				queue->RBQPH = GEM_RBQPH(hw_q - 1);
->  			}
-> -#endif
->  		} else {
->  			/* queue0 uses legacy registers */
->  			queue->ISR  = MACB_ISR;
-> @@ -4340,12 +4308,10 @@ static int macb_init(struct platform_device *pdev)
->  			queue->IMR  = MACB_IMR;
->  			queue->TBQP = MACB_TBQP;
->  			queue->RBQP = MACB_RBQP;
-> -#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
-> -			if (bp->hw_dma_cap & HW_DMA_CAP_64B) {
-> +			if (macb_dma_is_64b(bp)) {
->  				queue->TBQPH = MACB_TBQPH;
->  				queue->RBQPH = MACB_RBQPH;
->  			}
-> -#endif
->  		}
->  
->  		/* get irq: here we use the linux queue index, not the hardware
-> 
-
+PiBTdWJqZWN0OiBSZTogW1BBVENIIHYxNiAxLzNdIGR0LWJpbmRpbmdzOiBpMmM6IGFzcGVlZDog
+c3VwcG9ydCBmb3INCj4gQVNUMjYwMC1pMmN2Mg0KPiANCj4gT24gMTkvMDMvMjAyNSAxMjoxMiwg
+UnlhbiBDaGVuIHdyb3RlOg0KPiA+PiBTdWJqZWN0OiBSZTogW1BBVENIIHYxNiAxLzNdIGR0LWJp
+bmRpbmdzOiBpMmM6IGFzcGVlZDogc3VwcG9ydCBmb3INCj4gPj4gQVNUMjYwMC1pMmN2Mg0KPiA+
+Pg0KPiA+PiBPbiAxNy8wMy8yMDI1IDEwOjIxLCBSeWFuIENoZW4gd3JvdGU6DQo+ID4+Pj4gTmVp
+dGhlciB0aGlzLg0KPiA+Pj4+DQo+ID4+Pj4gU28gaXQgc2VlbXMgeW91IGRlc2NyaWJlIGFscmVh
+ZHkgZXhpc3RpbmcgYW5kIGRvY3VtZW50ZWQgSTJDLCBidXQNCj4gPj4+PiBmb3Igc29tZSByZWFz
+b24geW91IHdhbnQgc2Vjb25kIGNvbXBhdGlibGUuIFRoZSBwcm9ibGVtIGlzIHRoYXQgeW91DQo+
+ID4+Pj4gZG8gbm90IHByb3ZpZGUgcmVhc29uIGZyb20gdGhlIHBvaW50IG9mIHZpZXcgb2YgYmlu
+ZGluZ3MuDQo+ID4+Pj4NCj4gPj4+PiBUbyBzdW1tYXJpemU6IHdoYXQgeW91ciB1c2VycyB3YW50
+IC0gZG9uJ3QgY2FyZS4gU3RhcnQgcHJvcGVybHkNCj4gPj4+PiBkZXNjcmliaW5nIGhhcmR3YXJl
+IGFuZCB5b3VyIFNvQy4NCj4gPj4+DQo+ID4+PiBPSywgZm9yIGFzdDI2MDAgaTJjIGNvbnRyb2xs
+ZXIgaGF2ZSB0d28gcmVnaXN0ZXIgbW9kZSBzZXR0aW5nLg0KPiA+Pj4gT25lLCBJIGNhbGwgaXQg
+aXMgb2xkIHJlZ2lzdGVyIHNldHRpbmcsIHRoYXQgaXMgcmlnaHQgbm93DQo+ID4+PiBpMmMtYXNw
+ZWVkLmMgLmNvbXBhdGlibGUgPSAiYXNwZWVkLGFzdDI2MDAtaTJjLWJ1cyIsIEFuZCB0aGVyZSBo
+YXZlDQo+ID4+PiBhIGdsb2JhbCByZWdpc3Rlcg0KPiA+PiB0aGF0IGNhbiBzZXQgaTJjIGNvbnRy
+b2xsZXIgYXMgbmV3IG1vZGUgcmVnaXN0ZXIgc2V0Lg0KPiA+Pj4gVGhhdCBJIGFtIGdvaW5nIHRv
+IGRyaXZlLiBUaGF0IEkgcG9zdCBpcyBhbGwgcmVnaXN0ZXIgaW4gbmV3IGFuIG9sZCByZWdpc3Rl
+cg0KPiBsaXN0Lg0KPiA+Pj4NCj4gPj4+IEZvciBleGFtcGxlLA0KPiA+Pj4gR2xvYmFsIHJlZ2lz
+dGVyIFsyXSA9IDAgPT4gaTJjIHByZXNlbnQgYXMgb2xkIHJlZ2lzdGVyIHNldCBHbG9iYWwNCj4g
+Pj4+IHJlZ2lzdGVyIFsyXSA9IDEgPT4gaTJjIHByZXNlbnQgYXMgbmV3IHJlZ2lzdGVyIHNldA0K
+PiA+PiBJdCdzIHRoZSBzYW1lIGRldmljZSB0aG91Z2gsIHNvIHRoZSBzYW1lIGNvbXBhdGlibGUu
+DQo+ID4NCj4gPiBTb3JyeSwgaXQgaXMgZGlmZmVyZW50IGRlc2lnbiwgYW5kIGl0IHNoYXJlIHRo
+ZSBzYW1lIHJlZ2lzdGVyIHNwYWNlLg0KPiA+IFNvIHRoYXQgdGhlIHJlYXNvbiBhZGQgbmV3IGNv
+bXBhdGlibGUgImFzcGVlZCxhc3QyNjAwLWkyY3YyIiBmb3IgdGhpcw0KPiBkcml2ZXIuDQo+ID4g
+SXQgaXMgZGlmZmVyZW50IHJlZ2lzdGVyIGxheW91dC4NCj4gDQo+IFdoaWNoIGRldmljZSBpcyBk
+ZXNjcmliZWQgYnkgdGhlIGV4aXN0aW5nICJhc3BlZWQsYXN0MjYwMC1pMmMtYnVzIg0KPiBjb21w
+YXRpYmxlPyBBbmQgd2hpY2ggZGV2aWNlIGlzIGRlc2NyaWJlZCBieSBuZXcgY29tcGF0aWJsZT8N
+Cj4gDQpPbiB0aGUgQVNUMjYwMCBTb0MsIHRoZXJlIGFyZSB1cCB0byAxNiBJMkMgY29udHJvbGxl
+ciBpbnN0YW5jZXMgKEkyQzEgfiBJMkMxNikuDQpFYWNoIG9mIHRoZXNlIGNvbnRyb2xsZXJzIGlz
+IGhhcmR3aXJlZCBhdCB0aGUgU29DIGxldmVsIHRvIHVzZSBlaXRoZXIgdGhlIGxlZ2FjeSByZWdp
+c3RlciBsYXlvdXQgb3IgdGhlIG5ldyB2MiByZWdpc3RlciBsYXlvdXQuDQpUaGUgbW9kZSBpcyBz
+ZWxlY3RlZCBieSBhIGJpdCBpbiB0aGUgZ2xvYmFsIHJlZ2lzdGVyLCB0aGVzZSByZXByZXNlbnQg
+dHdvIGRpZmZlcmVudCBoYXJkd2FyZSBibG9ja3M6DQoiYXNwZWVkLGFzdDI2MDAtaTJjLWJ1cyIg
+ZGVzY3JpYmVzIGNvbnRyb2xsZXJzIHVzaW5nIHRoZSBsZWdhY3kgcmVnaXN0ZXIgbGF5b3V0Lg0K
+ImFzcGVlZCxhc3QyNjAwLWkyY3YyIiBkZXNjcmliZXMgY29udHJvbGxlcnMgdXNpbmcgdGhlIG5l
+dyByZWdpc3RlciBsYXlvdXQNCj4gDQo+IA0KPiBCZXN0IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0K
 
