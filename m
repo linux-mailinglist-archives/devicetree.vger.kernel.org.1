@@ -1,258 +1,114 @@
-Return-Path: <devicetree+bounces-160192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D58B3A6DC9D
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 15:09:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E1D7A6DCAF
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 15:16:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 558031886774
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 14:09:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 51DCB3AF818
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 14:15:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20D6325E476;
-	Mon, 24 Mar 2025 14:09:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B631725F7BD;
+	Mon, 24 Mar 2025 14:15:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="hGbYObwC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GN+L7Yfj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 206FC1AAA1D;
-	Mon, 24 Mar 2025 14:09:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 119B125E836
+	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 14:15:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742825369; cv=none; b=EAw/i3Xro/yK9EAx+K6npv2PV1j16YODpWgLXB/bgROasz/J3OR339WA4b+hfhjfZS1iJkoJdWTxuzTgoDt8oQVwk6g8SYb6D56iEqO7OqfPslVAthszo2khO/6j7OvfTqgb5qNz05xuR9Up0LL+mTCKNta0vnfp+rHHDs2r8vA=
+	t=1742825758; cv=none; b=fSvrB5SrTdaWDqR88BVr7gGuVaX2Tm0hDByy19SJKSDiJWPSqHP8BH88G+5sxWvXrBFuwQHVqk6FIWLe6W3nDeLuIcvfNMud50me0VyGaA7qElnh9DXAJUW7UmZfmKsc3DfJpX7tDNeDeD6BWeySluv7CNr5CGxSg0iNg0X8jwY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742825369; c=relaxed/simple;
-	bh=zEZSfIN6Fl3MEvV/0zekr5/YFxEumJScw7YduuaZH0w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f7NW9JWyp9t0B8p983jyzsFyg2NtxGibgI+suJitGqjVEZLxCa0fMtE3nZ/jQbmVcOLP4vgnb+uSq9TRH84gEcjyFkOv0d9XLFIi/TZN/BqLuuttTtPpuYgd3sy6P28Mf5r9fntDAsLvdX/lXgsSaIdk0b1f3XK1VwCKCocvFH4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=hGbYObwC; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1742825365;
-	bh=zEZSfIN6Fl3MEvV/0zekr5/YFxEumJScw7YduuaZH0w=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hGbYObwCSzoMoUuei5KO2c0n1ogWFHwWv6dnJYjUJzp/5l+wPKvHZ2G4z8mlpLgQS
-	 gUfa8uFaVqfwsgcb/DCgmYTCWHMDSCFcsbIoAtycwxOvyRJbtwg6omYK4fjg2dtEWq
-	 mg2drmy/m3aCanjQGo4c4lTRec86x6pf5sQJLrH3PnnwNVErpkCCk/9MVW84K9AID5
-	 W+cNucu8TyZzZv/Suzy1L4icNc+1YxwsNBf1UrfpMmPNnwABHYz3h60UYJ1EYPmtDH
-	 au+C3CMjPvV9tI785lT6f3JWQDE4eOk9FMZ7MXQTpRy6tYDyaa+Q0cZwrVsYGVF2zu
-	 4L/0gkykc2IYg==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id AC28F17E088D;
-	Mon, 24 Mar 2025 15:09:24 +0100 (CET)
-Message-ID: <ecd8a46e-0f87-498e-8a12-fdeae6f5791d@collabora.com>
-Date: Mon, 24 Mar 2025 15:09:24 +0100
+	s=arc-20240116; t=1742825758; c=relaxed/simple;
+	bh=/YTUkjHZHGEAKDUjwWiEYmGKnaxSbNIbQRJt9OczQAk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=m33P6zuQ3cmzb3IDhhAdTW5srTavBqvSw2u8sHbbXVWSwEVhT2uynYRgPq+VOOVFt+lxuO8btyBoUFVdy/+C64DxSJjaGC5EzylJzyYQ9w6tCx6z7taRcpwtPBRXg0dgqg05SmPhVvqEMehI7LyOJQj/AY9dupGOpFIqV0CIi3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GN+L7Yfj; arc=none smtp.client-ip=209.85.219.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-6e904f53151so39059086d6.3
+        for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 07:15:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1742825756; x=1743430556; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=/YTUkjHZHGEAKDUjwWiEYmGKnaxSbNIbQRJt9OczQAk=;
+        b=GN+L7YfjxZe7gPnoaU/SnVIDd2ynb7r2hh94MPSlSNKXu8wOzbAc9hbHt7KSM7ccOT
+         E60pAgTOcML0uvQ96KrXxI7a7pLHd9eHwZzs7h77Lg/m1rOQ3ag7cFMMSJa9CjT1ESOP
+         Dbu7Y9uKV0WFaXur95wbrXE7s1LfVQIa/x2k0uepE4tBCwhQxHn0Ts/NfRQegKiFbs6l
+         BT934IiYJ6WY8rcoYyexZCdpnMu/4hWls/gYWmlYTuTszmMzwOanogCpfTMdxoQyNyT0
+         JDQvlpRhHOhXFYRd+wA4dHYOdLZzU5qUoIdYofuBHItAaYEMT6PULm9/gS3OzfgTNBCK
+         Ilvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742825756; x=1743430556;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/YTUkjHZHGEAKDUjwWiEYmGKnaxSbNIbQRJt9OczQAk=;
+        b=fzO4pMaYZs1M1SMLrJUcK2Emsa67NnpF01M3v3L00+vSXlGeFDsFia4MPtJu4r1cEM
+         9IsVivkVNSBuk7OI+4hr2eJ+NXw6DlYz51DYouZshFNdJZdKEU5pA6Ln8jOY2esoKi96
+         1eJcJsHdvcAyppirnWlI0LPtvzDmb3Q9JW9iAc8Y1FtRTUCU574bKIHhinphgQVl1dIF
+         69tNiRd8XnPM4dVGZ/0B4j77044X2pQHp17ZwFROd6bCLpkB2roCC7EFVg8UqZcLLiK6
+         vwPlhMWpxh+mQvfgu5aTJXetHJBstCChZ7Lb2TSN4v8C/w+pE7nTeDDzYtuV8HLDoZgp
+         h7aw==
+X-Forwarded-Encrypted: i=1; AJvYcCWL4pEgUmqw7iVdZ/Pc27tKU14Yjeg3Jvgm5a1bvqtPlGUiFNUgvn3uVuH1AJ3FxT620docdXdFDalS@vger.kernel.org
+X-Gm-Message-State: AOJu0YyPWci2Tm5ZKt7MpS+9NpSEGgpx3aXc/8vATUBheXO/C4d3wjW1
+	XqdS/3Bp1gA/dvfBteJq0kBoVOL7BYpGs0lXvRbTMZOBz6giPsPJMUXW1LWCHg0YrcMxDwzxhtV
+	ldK4aV+u8GbLf97O8Ndk+mhRWsFnjMRi0BOK/5w==
+X-Gm-Gg: ASbGncsnNJ4HRsI6yNIQal0DXsME/uoX7zdvtSZbLMJvNhzqlI0QucgO/FWCu5qI8Rs
+	4K1YUH400PoJFxenrrmjrjpopTAAkdFevOIEaUYeIoAcknITvfoH4IG3OUob1lfan+SX+L226Ka
+	8KVy5ABnOf//vtPLr2Iqbcfncoy+Kj7MKgo0kW
+X-Google-Smtp-Source: AGHT+IET01HrGYkfdsNQwuLGnPKedTxLw+MZzq0YOj9OYp+aXXjQ99ek0X4dg6AMPBw2zvLeAvxl7AVAjVE/wKcQkdg=
+X-Received: by 2002:a05:6214:21e8:b0:6e6:6ba9:9e84 with SMTP id
+ 6a1803df08f44-6eb3f2e89e9mr158682316d6.26.1742825755791; Mon, 24 Mar 2025
+ 07:15:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v2] arm64: dts: mediatek: add mmc2 support for
- mt8365-evk
-To: Alexandre Mergnat <amergnat@baylibre.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- macpaul.Lin@mediatek.com
-Cc: vsatoes@baylibre.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <20250109-mmc2-support-v2-1-5f660c809610@baylibre.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250109-mmc2-support-v2-1-5f660c809610@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250318-xps13-fingerprint-v1-0-fbb02d5a34a7@oss.qualcomm.com> <20250318-xps13-fingerprint-v1-2-fbb02d5a34a7@oss.qualcomm.com>
+In-Reply-To: <20250318-xps13-fingerprint-v1-2-fbb02d5a34a7@oss.qualcomm.com>
+From: Stefan Schmidt <stefan.schmidt@linaro.org>
+Date: Mon, 24 Mar 2025 15:15:45 +0100
+X-Gm-Features: AQ5f1JpC0RoI-SQpmS4z7rQW8vsesIlMQfF1ceo6NxFQog8bjicko6I-EYu81x0
+Message-ID: <CAEvtbuuyz_5xm1=juJFW5nOo+xL71TeuY-SV=YbTnAOsHW5yeg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: x1e80100-dell-xps13-9345: Enable
+ fingerprint sensor
+To: bjorn.andersson@oss.qualcomm.com
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Aleksandrs Vinarskis <alex.vinarskis@gmail.com>, linux-arm-msm@vger.kernel.org, 
+	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Il 24/03/25 14:54, Alexandre Mergnat ha scritto:
-> Adds support for the MMC2 interface on the MT8365 EVK board.
-> It introduces a fixed regulator for the MMC2 VDD33 supply and configures
-> the MMC2 node with a 4-bit bus width, high-speed capabilities, UHS
-> modes, and appropriate power supplies. Enabled SDIO IRQ, wakeup source,
-> and kept power during suspend (to save firmware module) for wireless
-> chip functionality.
-> 
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> ---
-> Changes in v2:
-> - Apply alphabetical order to pinctrl property items.
-> - Improve commit message
-> - Link to v1: https://lore.kernel.org/r/20250109-mmc2-support-v1-1-9b9d1b1ae35d@baylibre.com
-> ---
->   arch/arm64/boot/dts/mediatek/mt8365-evk.dts | 103 +++++++++++++++++++++++++---
->   1 file changed, 94 insertions(+), 9 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-> index 7d90112a7e274..a87f1b3ed6500 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-> @@ -53,6 +53,15 @@ memory@40000000 {
->   		reg = <0 0x40000000 0 0xc0000000>;
->   	};
->   
-> +	mmc2_vdd33: mmc2_vdd33-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "mmc2_vdd33";
+Hello Bjorn,
 
-mmc2-vdd33 please
+On Wed, 19 Mar 2025 at 04:23, Bjorn Andersson via B4 Relay
+<devnull+bjorn.andersson.oss.qualcomm.com@kernel.org> wrote:
+>
+> From: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
+>
+> The fingerprint sensor, hidden in the power button, is connected to one
+> of the USB multiport ports; while the other port is unused.
+>
+> Describe the USB controller, the four phys and the repeater involved to
+> make the fingerprint sensor operational.
+>
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
 
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		gpio = <&pio 121 0>;
-> +		enable-active-high;
-> +	};
-> +
->   	usb_otg_vbus: regulator-0 {
->   		compatible = "regulator-fixed";
->   		regulator-name = "otg_vbus";
-> @@ -197,6 +206,28 @@ &mmc1 {
->   	status = "okay";
->   };
->   
-> +&mmc2 {
-> +	assigned-clock-parents = <&topckgen CLK_TOP_MSDCPLL>;
-> +	assigned-clocks = <&topckgen CLK_TOP_MSDC50_2_SEL>;
-> +	bus-width = <4>;
-> +	cap-sd-highspeed;
-> +	cap-sdio-irq;
-> +	hs400-ds-delay = <0x12012>;
-> +	keep-power-in-suspend;
-> +	max-frequency = <200000000>;
-> +	non-removable;
-> +	pinctrl-0 = <&mmc2_default_pins>;
-> +	pinctrl-1 = <&mmc2_uhs_pins>;
-> +	pinctrl-names = "default", "state_uhs";
-> +	sd-uhs-sdr104;
-> +	sd-uhs-sdr25;
-> +	sd-uhs-sdr50;
-> +	vmmc-supply = <&mmc2_vdd33>;
-> +	vqmmc-supply = <&mt6357_vcn18_reg>;
-> +	wakeup-source;
-> +	status = "okay";
-> +};
-> +
->   &mt6357_pmic {
->   	interrupts-extended = <&pio 145 IRQ_TYPE_LEVEL_HIGH>;
->   	interrupt-controller;
-> @@ -324,8 +355,8 @@ cmd-dat-pins {
->   				 <MT8365_PIN_94_MSDC0_DAT6__FUNC_MSDC0_DAT6>,
->   				 <MT8365_PIN_93_MSDC0_DAT7__FUNC_MSDC0_DAT7>,
->   				 <MT8365_PIN_98_MSDC0_CMD__FUNC_MSDC0_CMD>;
-> -			input-enable;
->   			bias-pull-up;
-> +			input-enable;
+Goodix Fingerprint USB Device fingerprint device shows up on my XPS 9345 now.
 
-This is a cleanup and goes to a different commit
+Tested-by: Stefan Schmidt <stefan.schmidt@linaro.org>
 
->   		};
->   
->   		rst-pins {
-> @@ -337,8 +368,8 @@ rst-pins {
->   	mmc0_uhs_pins: mmc0-uhs-pins {
->   		clk-pins {
->   			pinmux = <MT8365_PIN_99_MSDC0_CLK__FUNC_MSDC0_CLK>;
-> -			drive-strength = <MTK_DRIVE_10mA>;
->   			bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
-> +			drive-strength = <MTK_DRIVE_10mA>;
-
-While at it, in a cleanup commit, if you could also remove those MTK_DRIVE_xxx and
-use just the number that'd be great.
-
->   		};
->   
->   		cmd-dat-pins {
-> @@ -351,21 +382,21 @@ cmd-dat-pins {
->   				 <MT8365_PIN_94_MSDC0_DAT6__FUNC_MSDC0_DAT6>,
->   				 <MT8365_PIN_93_MSDC0_DAT7__FUNC_MSDC0_DAT7>,
->   				 <MT8365_PIN_98_MSDC0_CMD__FUNC_MSDC0_CMD>;
-> -			input-enable;
-> -			drive-strength = <MTK_DRIVE_10mA>;
->   			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
-> +			drive-strength = <MTK_DRIVE_10mA>;
-> +			input-enable;
->   		};
->   
->   		ds-pins {
->   			pinmux = <MT8365_PIN_104_MSDC0_DSL__FUNC_MSDC0_DSL>;
-> -			drive-strength = <MTK_DRIVE_10mA>;
->   			bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
-> +			drive-strength = <MTK_DRIVE_10mA>;
->   		};
->   
->   		rst-pins {
->   			pinmux = <MT8365_PIN_97_MSDC0_RSTB__FUNC_MSDC0_RSTB>;
-> -			drive-strength = <MTK_DRIVE_10mA>;
->   			bias-pull-up;
-> +			drive-strength = <MTK_DRIVE_10mA>;
->   		};
->   	};
->   
-> @@ -386,16 +417,16 @@ cmd-dat-pins {
->   				 <MT8365_PIN_91_MSDC1_DAT2__FUNC_MSDC1_DAT2>,
->   				 <MT8365_PIN_92_MSDC1_DAT3__FUNC_MSDC1_DAT3>,
->   				 <MT8365_PIN_87_MSDC1_CMD__FUNC_MSDC1_CMD>;
-> -			input-enable;
->   			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
-> +			input-enable;
->   		};
->   	};
->   
->   	mmc1_uhs_pins: mmc1-uhs-pins {
->   		clk-pins {
->   			pinmux = <MT8365_PIN_88_MSDC1_CLK__FUNC_MSDC1_CLK>;
-> -			drive-strength = <8>;
->   			bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
-> +			drive-strength = <8>;
->   		};
->   
->   		cmd-dat-pins {
-> @@ -404,9 +435,63 @@ cmd-dat-pins {
->   				 <MT8365_PIN_91_MSDC1_DAT2__FUNC_MSDC1_DAT2>,
->   				 <MT8365_PIN_92_MSDC1_DAT3__FUNC_MSDC1_DAT3>,
->   				 <MT8365_PIN_87_MSDC1_CMD__FUNC_MSDC1_CMD>;
-> -			input-enable;
-> +			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
->   			drive-strength = <6>;
-> +			input-enable;
-> +		};
-> +	};
-> +
-> +	mmc2_default_pins: mmc2-default-pins {
-> +		clk-pins {
-> +			pinmux = <MT8365_PIN_81_MSDC2_CLK__FUNC_MSDC2_CLK>;
-> +			bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
-> +			drive-strength = <4>;
-> +		};
-> +
-> +		cmd-dat-pins {
-> +			pinmux = <MT8365_PIN_82_MSDC2_DAT0__FUNC_MSDC2_DAT0>,
-> +				 <MT8365_PIN_83_MSDC2_DAT1__FUNC_MSDC2_DAT1>,
-> +				 <MT8365_PIN_84_MSDC2_DAT2__FUNC_MSDC2_DAT2>,
-> +				 <MT8365_PIN_85_MSDC2_DAT3__FUNC_MSDC2_DAT3>,
-> +				 <MT8365_PIN_80_MSDC2_CMD__FUNC_MSDC2_CMD>;
->   			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
-> +			drive-strength = <4>;
-> +			input-enable;
-> +		};
-> +
-> +		sys-en-pins {
-> +			pinmux = <MT8365_PIN_120_DMIC1_CLK__FUNC_GPIO120>;
-
-My schematics say that the DMIC1_CLK pin is PERST_N, DMIC_DAT0 is PWR_EN: what's
-the intention here?!
-
-In any case, this is not a mmc2 pin, but something else :-)
-
-Cheers,
-Angelo
-
+regards
+Stefan Schmidt
 
