@@ -1,162 +1,104 @@
-Return-Path: <devicetree+bounces-159978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-159979-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F4E8A6D383
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 05:18:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 550B9A6D38C
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 05:34:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C534D16B3FD
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 04:18:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 273373B10F4
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 04:34:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CC63157A46;
-	Mon, 24 Mar 2025 04:18:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E57A118EB0;
+	Mon, 24 Mar 2025 04:34:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="FgYbdGRN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AfBPplIw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2183A41
-	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 04:18:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82D762E3383;
+	Mon, 24 Mar 2025 04:34:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742789889; cv=none; b=vF6I2ZemGvo2ZeObyobG8N5npHLZoLOgBkcYgzxb1+ggqn1gHr/0vylgJe1cOy37u4gUteWV+S7Fu2X0wubFB/DLBuN3Ty0CZztDDbn3aNOAa+LKez7dBp+AjG5ESfVRSOglyiiB9fVbEjR38NLHHD+UIX1SIvuKVHvIFmAS7JA=
+	t=1742790873; cv=none; b=kl84Flgl2r3FdTToODeWuU6EFg6H/9a7u5I1oMWf20TR/i3EMMW8b3v31+8iVlr+xDa24Png24uOAzWErMjVvjy0Rt4M9aZmGe2W/hb8o7TqMIp4WYEHRWvbKrerSvLpDHxHx6fT0G797zK2C1Ffw8AYvNya+V8kOjqLtKhjKoY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742789889; c=relaxed/simple;
-	bh=SlHG+ZWGRxRgZh//vL3zEjL4LluOqHa9hF+qK4JIDt0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pYTV7nr2wM763+QtqyPTD3k9Lo7CzQc6Yi+jay2bM5J5LC9U41gXTNGkzYauTlUQGSP6s1BliXMy7/Q5cEfE+GEXZetHvi2wu75qHh9SvbiNYXR6MfaNU0IKXYUPHjpKTFG5wi8U3/4SqBnci4bauFVCVblKP5Fb2uO7U+or5eM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=FgYbdGRN; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1742789886;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=tauycDhLSHK8+Z4SEw1ULV8RR4SX0dqi01Ofyz18GyY=;
-	b=FgYbdGRNCAgpSn5cUClOdMTia/xSZtWYcc28/vt6HsAoS46bJSo90RSHO+kkW2ed3G4RNh
-	BNRPFvs7XGF+HsUJdOfSbxzqqFXlwgPoU8noZPfBhcEsinuz3a6MOCKpdwS+HdUnPnmJY4
-	lUhxDJJPoUzK2lvhiiBJTOuPYO5PKBc=
-Received: from mail-il1-f197.google.com (mail-il1-f197.google.com
- [209.85.166.197]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-654-Nd0n-Q0zP-ucq4w5k1bMeQ-1; Mon, 24 Mar 2025 00:18:04 -0400
-X-MC-Unique: Nd0n-Q0zP-ucq4w5k1bMeQ-1
-X-Mimecast-MFC-AGG-ID: Nd0n-Q0zP-ucq4w5k1bMeQ_1742789884
-Received: by mail-il1-f197.google.com with SMTP id e9e14a558f8ab-3d438be189bso39875635ab.3
-        for <devicetree@vger.kernel.org>; Sun, 23 Mar 2025 21:18:04 -0700 (PDT)
+	s=arc-20240116; t=1742790873; c=relaxed/simple;
+	bh=I/KauccPAuIUUyygZIwODYR2nJ2wCjMs4XIaCqzCPPU=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=fN6S9giLEeSqr/z33l2JXVPdMPydZCLKpTEGOpi0x0IYuCzi5BxzMh8oDwhv2sj+QWY38rSQzeAbzgifB073ilZ1LV2uggMJmqId6CyLZrDLZ9Js6dWNlkuC97ta0X3FE3OafnkV1TpvKM50sgWkb0AOtjT6sFrpD9pM2MhScWw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AfBPplIw; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-223fb0f619dso75810215ad.1;
+        Sun, 23 Mar 2025 21:34:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742790872; x=1743395672; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=I/KauccPAuIUUyygZIwODYR2nJ2wCjMs4XIaCqzCPPU=;
+        b=AfBPplIw/bS3025GXAkardXMGFiXtwa9qGRfRgDSNr1GA1LGFbALjkM7CH5PMOSn3M
+         jRlGWMAtE4eGiVi7q4/org9K9zyKp2I7tUQl9ofCrWEFb/T8jbDtmEiM2LJN2MVr+53G
+         FxIiGPm4F0BCHOUNyrr3zRE+PmIsAC9nxLVNn/HLZIQISu+6Fq1y8OvJE7K1hKzzJmHK
+         H5EwwOyXghZHO6wCePouiOsV94r8yiO5qTk6IKkja7UG62m4eAI+KCndQ0RtGA3P/6M2
+         +5JFXluQ4WQL7wZsjfbnUbSdNy5PLBg8JQWIfOE2JHtiDT/w/ILFad60tOVn0A0qmt1c
+         RbBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742789883; x=1743394683;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tauycDhLSHK8+Z4SEw1ULV8RR4SX0dqi01Ofyz18GyY=;
-        b=CQrApdzr6Ye0CAF24Ft4qSHRZQE1thuhSQ5yV0OAi0ZLd144DK9n5w6AJuxNE1QX09
-         7pZxi40hrK/tnlCAllVka3Atzw5JRT8QFlDLDq5g9TDFCHCzgBGH+uC4YY8hUyvjXpBi
-         PNEyZ+gwv/vt1LpnYGEwlPSLf3k8xy0slPquDS74ESB1SkewvmFOCpKI2j+KpB8NoJo/
-         Npm3d0C6ZpI+KiTtONTs6k5esXgbmpD/ej/QF7rPJMyPYxQcvkBVXil/Fk8MTr1ymQa3
-         LddMIY3grua2ZhZzwrW9BACNdza4DEubWCjymmHH4hBj8Vc03G6ohW+ulRWcB9pPq2b9
-         TPTw==
-X-Forwarded-Encrypted: i=1; AJvYcCXvsbwpjAAJHrkPFjgpaKDQkdzaYr/IneNMHkSuslR2vc4b2WdoWuw0YTv959henAmqH8DuigKTbVGl@vger.kernel.org
-X-Gm-Message-State: AOJu0YydPqnU7BnB45rUmFHoI+jUVAwH9XQNBT4+nB+AUIJgA0CMGgfK
-	lir8txLJp/sZP2L2qnu/PXmiIC5PdbV4mjiGvn72457fjjtzrSbo/9HMruObMV6iSXN3PC0Q++I
-	+W6YwZ0BZaMNhrMrcgmj8JQXAocsb6bOgaX1G5kUd4IrGO3G/AVQpvmYZejfiFYk3dxJGyps3Ti
-	ZPJmfzZTjPzzZjZKKtOJMdXzy+WxnwmBxS5g==
-X-Gm-Gg: ASbGncvmZcoCzA/I3/5wFPC636AIqU754tU7+kki3nwXk96d9e18KYTdFXGJ53AVNQM
-	w0aOq7BDtwVJtnaXJbELjm9AtNsy5/1bsHDd38UH1wE0nYR1XsDI6X0SanxDOkOCgHKHNwRjP/A
-	==
-X-Received: by 2002:a05:6e02:3e03:b0:3d4:3cd7:d29c with SMTP id e9e14a558f8ab-3d5961087a4mr114773235ab.11.1742789883495;
-        Sun, 23 Mar 2025 21:18:03 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFKTYUkEhLDCfmTqCzwmW7lTzNOrlm9PhUUN5r+ilaum3pQSmAXsd7VnN9OVuQyn+lnI6uMUA4yOPPaWTzR6xc=
-X-Received: by 2002:a05:6e02:3e03:b0:3d4:3cd7:d29c with SMTP id
- e9e14a558f8ab-3d5961087a4mr114772865ab.11.1742789883003; Sun, 23 Mar 2025
- 21:18:03 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1742790872; x=1743395672;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=I/KauccPAuIUUyygZIwODYR2nJ2wCjMs4XIaCqzCPPU=;
+        b=J0Xu80Zx6KolWBwyk3T45q1D/svSDZLuB1ou482gzY47pHvjHaqPtJAnb/i2gk8QBt
+         vcTu+4iemTBQ0HuAImdenQMaJyJfdtEZEpNKuZjeRapXJRbo9ml5L/7CGrojQ6E3qz5t
+         xnlxVzWcE5yPwdQHf5cnRqCO/NsJjYdJ2VAYc9zwWf7WgXMbFwsPNEq8Sat/uiUj3eL9
+         IfFI2C8DH1HlzO0I08yUIi2ODXAI+MZRjI/P0Yehlaq3Gsu02ZxS5bvXMl+uEQxVjk8A
+         z4kRDY5NXo5S1iWFNX9B4zVfIK/HzvFD9FhTo7j16U6CCHmh37tvWwaoeRXK1C7JVWJI
+         mScg==
+X-Forwarded-Encrypted: i=1; AJvYcCVm1C3o3BL9tqy+0moRXlQPkja1f2RUAkjCVvGHHD+7H5HwqQh5GUYGtPlhcRN/rbdZc3wO2FLRnntCmEdS@vger.kernel.org, AJvYcCVpSwR1GVOsTByfxpfRAAtjSBt7SCaJ4HYh50KQemfUOmK7d9x2bcfAczzi3cH486Q/ggsx202Dfltn@vger.kernel.org, AJvYcCVseX/3f9C6Bj8Ms6fSm15oMoooc3x61nmG/q+OARRX3AUm9w/QMV2OMzhxG6HCb0jjilhONBXcicpFqw==@vger.kernel.org
+X-Gm-Message-State: AOJu0YzLPjaLdbkmXsPYlkffsA7VjhXCs3KT53VbYcIedFRAXJ6dRIRq
+	BP10/je+G79aHF7aYqAiUuZFrfcYwot92zZ3e61h5M+xitk4xs29W1raaYF2
+X-Gm-Gg: ASbGnctzSqIu4kZu2fDzcd0alCWmj3SyUl81Mo6FoHiR4Tm1SuWwozXMXhVFxwOnlfZ
+	SZmyzHLh0aqlkUPRvJBSYumvPeY+FkVYSJIr4vIYJEwB+P0+UdWUSy27Gd5/AYDhgfTZkQs0p7C
+	qPrMdkPkP6koDr8dYESVSrQnLH//iybDZyjXybaZOTRK4ulnqqE2ZRyqTORJg1C14N5E2YXmHQY
+	tT19lLfadsOZjsdAxxtULGQ/VfKBoK9SLokLZe/4YbbTuovp/3IpjQxFfLKyHXgkFfH7iM8lrQB
+	m9VVdmaW4ek7r7gTeSAdcQ/SmbAb4KgKCLsJ42gpTKttcz5NvmrdmYEoeAitBaveZSU0
+X-Google-Smtp-Source: AGHT+IEA2YgUDTs4JndOkGPpH9t1CsF5sL3RwabFC5JDF8x48W//RtHV9Udnl71HEc7Nh14BhQz2fw==
+X-Received: by 2002:a17:903:1aac:b0:223:5945:ffd5 with SMTP id d9443c01a7336-22780e110b1mr197060465ad.32.1742790871418;
+        Sun, 23 Mar 2025 21:34:31 -0700 (PDT)
+Received: from localhost.localdomain ([27.70.184.106])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-227811e3132sm60696135ad.200.2025.03.23.21.34.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 23 Mar 2025 21:34:30 -0700 (PDT)
+From: Nam Tran <trannamatk@gmail.com>
+To: lee@kernel.org
+Cc: pavel@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-leds@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 3/3] leds: add new LED driver for TI LP5812
+Date: Mon, 24 Mar 2025 11:34:04 +0700
+Message-Id: <20250324043404.14078-1-trannamatk@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250320155012.GT3890718@google.com>
+References: <20250320155012.GT3890718@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250320015551.2157511-1-changyuanl@google.com> <20250320015551.2157511-12-changyuanl@google.com>
-In-Reply-To: <20250320015551.2157511-12-changyuanl@google.com>
-From: Dave Young <dyoung@redhat.com>
-Date: Mon, 24 Mar 2025 12:18:24 +0800
-X-Gm-Features: AQ5f1Jo8cgDtoQHR7bje9Ajd-fT5hflpJGHeRbJSkzX-LSsy1GnvBgRPYu2INeE
-Message-ID: <CALu+AoS01QJ-H5Vpr378rbx==iRQLG0HajtMCUzDXRO75biCag@mail.gmail.com>
-Subject: Re: [PATCH v5 11/16] kexec: add config option for KHO
-To: Changyuan Lyu <changyuanl@google.com>
-Cc: linux-kernel@vger.kernel.org, graf@amazon.com, akpm@linux-foundation.org, 
-	luto@kernel.org, anthony.yznaga@oracle.com, arnd@arndb.de, 
-	ashish.kalra@amd.com, benh@kernel.crashing.org, bp@alien8.de, 
-	catalin.marinas@arm.com, dave.hansen@linux.intel.com, dwmw2@infradead.org, 
-	ebiederm@xmission.com, mingo@redhat.com, jgowans@amazon.com, corbet@lwn.net, 
-	krzk@kernel.org, rppt@kernel.org, mark.rutland@arm.com, pbonzini@redhat.com, 
-	pasha.tatashin@soleen.com, hpa@zytor.com, peterz@infradead.org, 
-	ptyadav@amazon.de, robh+dt@kernel.org, robh@kernel.org, saravanak@google.com, 
-	skinsburskii@linux.microsoft.com, rostedt@goodmis.org, tglx@linutronix.de, 
-	thomas.lendacky@amd.com, usama.arif@bytedance.com, will@kernel.org, 
-	devicetree@vger.kernel.org, kexec@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org, 
-	linux-mm@kvack.org, x86@kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Thu, 20 Mar 2025 at 23:05, Changyuan Lyu <changyuanl@google.com> wrote:
->
-> From: Alexander Graf <graf@amazon.com>
->
-> We have all generic code in place now to support Kexec with KHO. This
-> patch adds a config option that depends on architecture support to
-> enable KHO support.
->
-> Signed-off-by: Alexander Graf <graf@amazon.com>
-> Co-developed-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-> Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-> Co-developed-by: Changyuan Lyu <changyuanl@google.com>
-> Signed-off-by: Changyuan Lyu <changyuanl@google.com>
-> ---
->  kernel/Kconfig.kexec | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
->
-> diff --git a/kernel/Kconfig.kexec b/kernel/Kconfig.kexec
-> index 4d111f871951..57db99e758a8 100644
-> --- a/kernel/Kconfig.kexec
-> +++ b/kernel/Kconfig.kexec
-> @@ -95,6 +95,21 @@ config KEXEC_JUMP
->           Jump between original kernel and kexeced kernel and invoke
->           code in physical address mode via KEXEC
->
-> +config KEXEC_HANDOVER
-> +       bool "kexec handover"
-> +       depends on ARCH_SUPPORTS_KEXEC_HANDOVER && ARCH_SUPPORTS_KEXEC_FILE
-> +       select MEMBLOCK_KHO_SCRATCH
-> +       select KEXEC_FILE
-> +       select DEBUG_FS
-> +       select LIBFDT
-> +       select CMA
-> +       select XXHASH
-> +       help
-> +         Allow kexec to hand over state across kernels by generating and
-> +         passing additional metadata to the target kernel. This is useful
-> +         to keep data or state alive across the kexec. For this to work,
-> +         both source and target kernels need to have this option enabled.
-> +
+Thank you for your suggestion. I appreciate your guidance on proper email formatting.
+I will ensure my future responses follow this standard.
+Your feedback is very helpful for me to improve my contributions.
 
-Have you tested kdump?  In my mind there are two issues,  one is with
-CMA enabled, it could cause kdump crashkernel memory reservation
-failures more often due to the fragmented low memory.  Secondly,  in
-kdump kernel dump the crazy scratch memory in vmcore is not very
-meaningful.  Otherwise I suspect this is not tested under kdump.  If
-so please disable this option for kdump.
-
->  config CRASH_DUMP
->         bool "kernel crash dumps"
->         default ARCH_DEFAULT_CRASH_DUMP
-> --
-> 2.48.1.711.g2feabab25a-goog
->
->
-
+Best regards,
+Nam Tran
 
