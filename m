@@ -1,144 +1,143 @@
-Return-Path: <devicetree+bounces-160315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D51A2A6E41C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 21:20:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABE6FA6E43E
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 21:23:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 56D5F16C295
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 20:20:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B72851637F6
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 20:23:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DFF21DED49;
-	Mon, 24 Mar 2025 20:19:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B51F1C84AF;
+	Mon, 24 Mar 2025 20:23:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QjFDS/9W"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ejdlva0s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 095CD1C6FE4;
-	Mon, 24 Mar 2025 20:19:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BE3019CC08;
+	Mon, 24 Mar 2025 20:23:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742847576; cv=none; b=YjIy5vcQMaWZsXWY8CsmiqvZs62CqJs6V1ST9c0s9U3kBlIngVGVRcLNAZWK0bC4rLdxpySywC7SftDOpAoLfa1QIpIohdpu+tGa9LlF/48R1qCdmSEV4aH4navGHS7/8qoedivBF3OL7W2lIwVP3aIsD43OKSzZYDnR/wG9XeQ=
+	t=1742847782; cv=none; b=CrCm8GuJHtg9Xwp8F6UvXhOGm66fPB/CwawIF8wBWujO0O+ICiiv1buY8PpitWw+bX4PdRz6l5EPE/dqXpzGVTSFnQwnyKWEp9HyeFw/CsFP30iePu/i/pJD0/1Z8rF8ujNgEDVxODeodBW18sxdSQKfc8ytsJcZDGj1Z2F4z8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742847576; c=relaxed/simple;
-	bh=OKeCJyzN6SaEH50xyap3Uffbsoci15EVE1GvrWqjNOA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=qh+liIi2/omrgbOJUqPXxRAf7BIyFryeIzFDmI8ZxLNggNERyzZxLTIddM8DcB7bA2HMobKEutBbmxP1UtKnaq+8hPu+kfJONLjYQzwQfZQBI6P8RxnggsQxwb6XF2JYvExk+qMAyQkFg188FixpoGkT3Q+kpv2NcFb8h7K8+U4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QjFDS/9W; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52OJ9pPX004754;
-	Mon, 24 Mar 2025 20:19:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	UpFNbRAh//cdHjxJ6gv6hCpKQjJiA6pTR7bKNp1ho4g=; b=QjFDS/9WAzVTCGIO
-	9HSKBPA+q2jYoopewc/b1LdpjL9nCfKq4TOo3tSKZqJ4gfSKGLvPcTof9JY+g73G
-	pLLPV3EYtun5THPctW4XPorIARNP6TiNdlZPhm1Qek0Hp95v3VDTi07SocRfhAGS
-	68yaF3cB9R6kdDys0YuAi1fanBCn+yHZVuX6hSFoIBWKv7/AAgTiLqNekHmqwXCE
-	Wo1MVUH/IIiuT6PNadrI53xcwggo3y27qvyri3W+Qc6zjmJ8h7TYr/8bIXp+voIX
-	PDFfyuhtrOA2+fsTAj+JZHWWBe/HnmuuuchCzcsBHjcNCQZbjZsHVU4PDToDxrh7
-	ftDkQg==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45hm79nkvw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 24 Mar 2025 20:19:22 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52OKJLoE002454
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 24 Mar 2025 20:19:21 GMT
-Received: from hu-molvera-lv.qualcomm.com (10.49.16.6) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 24 Mar 2025 13:19:21 -0700
-From: Melody Olvera <quic_molvera@quicinc.com>
-Date: Mon, 24 Mar 2025 13:18:38 -0700
-Subject: [PATCH v3 10/10] arm64: defconfig: Add M31 eUSB2 PHY config for
- SM8750
+	s=arc-20240116; t=1742847782; c=relaxed/simple;
+	bh=ncQqNWoVKSEqFbwPcK2In9RG6rSS6r5IytFyAcwNeig=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P45COeCr+zBfIHsNmm242rvvOWyAGNttYa6/yG9lZjT1lVkqfnYUPjc78pPf1RWQcyomYPsZreZP9YK5RqygcXd6z+2xVS6p1nBgfIk6rj8XJGXGoriBny6C6O5Vv0qkdiP7lMmhFUttT9ZhnfmT8CaaE/J1SWvXEZZtPn/hyOE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ejdlva0s; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83861C4CEDD;
+	Mon, 24 Mar 2025 20:23:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742847781;
+	bh=ncQqNWoVKSEqFbwPcK2In9RG6rSS6r5IytFyAcwNeig=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ejdlva0sboLce56+dojF4alyQ3vY8mOJn8F6yLgWJGTF/CcudDO3RVMp5mP75rcD6
+	 G+1clGY+geRG3CDgrjFOYaVkzKpT6q2xh0KqWSoxKUTlA4Z60ejkSttvQY2qO/XCHL
+	 3aUG4WA/EhAHgNf1nogUFmWyg3lM3I8Zh8RH8zeZvk9LL9XyjdEySvVApXpSCuLx/0
+	 LhwcrKg1+0TGmeqr33zDUDpZ6CQR1iV0P+ehOebOOT9s4tiIvuTr2BBdwXQAMzbV2w
+	 1tTXf/bbdgfmjKRdn2o82+/D4wI3opV0ARajLgWq0jZORADZkDDcG9Qm6puTtvM1p3
+	 bRimxV8JuiCsw==
+Date: Mon, 24 Mar 2025 15:23:00 -0500
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Sean Wang <sean.wang@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Andy Teng <andy.teng@mediatek.com>,
+	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/2] dt-bindings: pinctrl: mediatek: Correct indentation
+ and style in DTS example
+Message-ID: <20250324202300.GA804681-robh@kernel.org>
+References: <20250324125105.81774-1-krzysztof.kozlowski@linaro.org>
+ <20250324125105.81774-2-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250324-sm8750_usb_master-v3-10-13e096dc88fd@quicinc.com>
-References: <20250324-sm8750_usb_master-v3-0-13e096dc88fd@quicinc.com>
-In-Reply-To: <20250324-sm8750_usb_master-v3-0-13e096dc88fd@quicinc.com>
-To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel
-	<p.zabel@pengutronix.de>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad
- Dybcio" <konradybcio@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        "Melody
- Olvera" <quic_molvera@quicinc.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1742847556; l=893;
- i=quic_molvera@quicinc.com; s=20241204; h=from:subject:message-id;
- bh=OKeCJyzN6SaEH50xyap3Uffbsoci15EVE1GvrWqjNOA=;
- b=/7NhWxL+xRQMCZ8HZsraLjw4HcZ6VpIRvi38Xx5ZVZQtqXvVfDvglGjKZtTNU+N5/65MboxvF
- XHbC6UQdwJpBf0xbjy+PTMClHjrzH6xsvvkNWNWOgPKvFpCp+Yh14Vu
-X-Developer-Key: i=quic_molvera@quicinc.com; a=ed25519;
- pk=1DGLp3zVYsHAWipMaNZZTHR321e8xK52C9vuAoeca5c=
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: uonaYQ3R4czR-Rxhp2suhf-04eTs1uOB
-X-Proofpoint-ORIG-GUID: uonaYQ3R4czR-Rxhp2suhf-04eTs1uOB
-X-Authority-Analysis: v=2.4 cv=IKYCChvG c=1 sm=1 tr=0 ts=67e1be4a cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=3H110R4YSZwA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=yCBuECYR7Rf6QDnvud8A:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-24_07,2025-03-21_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
- phishscore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0 spamscore=0
- priorityscore=1501 adultscore=0 malwarescore=0 mlxlogscore=544 mlxscore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503240143
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250324125105.81774-2-krzysztof.kozlowski@linaro.org>
 
-The SM8750 SoCs use an eUSB2 PHY driver different from the
-already existing M31 USB driver because it requires a connection
-to an eUSB2 repeater. Thus, for USB to probe and work properly on
-SM8750, enable the additional driver.
+On Mon, Mar 24, 2025 at 01:51:05PM +0100, Krzysztof Kozlowski wrote:
+> DTS example in the bindings should be indented with 2- or 4-spaces and
+> aligned with opening '- |', so correct any differences like 3-spaces or
+> mixtures 2- and 4-spaces in one binding.
+> 
+> No functional changes here, but saves some comments during reviews of
+> new patches built on existing code.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../pinctrl/mediatek,mt65xx-pinctrl.yaml      | 83 +++++++------------
+>  .../pinctrl/mediatek,mt7622-pinctrl.yaml      | 48 +++++------
+>  .../pinctrl/mediatek,mt8183-pinctrl.yaml      | 68 +++++++--------
+>  .../pinctrl/mediatek,mt8192-pinctrl.yaml      | 76 ++++++++---------
+>  4 files changed, 127 insertions(+), 148 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml
+> index 5f2808212f39..b9680b896f12 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml
+> @@ -137,64 +137,43 @@ examples:
+>          #size-cells = <2>;
+>  
+>          pinctrl@1c20800 {
+> -          compatible = "mediatek,mt8135-pinctrl";
+> -          reg = <0 0x1000B000 0 0x1000>;
+> -          mediatek,pctl-regmap = <&syscfg_pctl_a>, <&syscfg_pctl_b>;
+> -          gpio-controller;
+> -          #gpio-cells = <2>;
+> -          interrupt-controller;
+> -          #interrupt-cells = <2>;
+> -          interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>,
+> -              <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>,
+> -              <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>;
+> +            compatible = "mediatek,mt8135-pinctrl";
+> +            reg = <0 0x1000B000 0 0x1000>;
+> +            mediatek,pctl-regmap = <&syscfg_pctl_a>, <&syscfg_pctl_b>;
+> +            gpio-controller;
+> +            #gpio-cells = <2>;
+> +            interrupt-controller;
+> +            #interrupt-cells = <2>;
+> +            interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>;
+>  
+> -          i2c0_pins_a: i2c0-pins {
+> -            pins1 {
+> -              pinmux = <MT8135_PIN_100_SDA0__FUNC_SDA0>,
+> -                <MT8135_PIN_101_SCL0__FUNC_SCL0>;
+> -              bias-disable;
+> -            };
+> -          };
+> -
+> -          i2c1_pins_a: i2c1-pins {
+> -            pins {
+> -              pinmux = <MT8135_PIN_195_SDA1__FUNC_SDA1>,
+> -                <MT8135_PIN_196_SCL1__FUNC_SCL1>;
+> -              bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+> -            };
+> -          };
+> -
+> -          i2c2_pins_a: i2c2-pins {
+> -            pins1 {
+> -              pinmux = <MT8135_PIN_193_SDA2__FUNC_SDA2>;
+> -              bias-pull-down;
+> +            i2c0_pins_a: i2c0-pins {
 
-Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Perhaps drop the unused labels while you are here. Either way,
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 5bb8f09422a22116781169611482179b10798c14..914881c02cf1d0426f102674437907ed77574462 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1594,6 +1594,7 @@ CONFIG_PHY_QCOM_QUSB2=m
- CONFIG_PHY_QCOM_SNPS_EUSB2=m
- CONFIG_PHY_QCOM_EUSB2_REPEATER=m
- CONFIG_PHY_QCOM_M31_USB=m
-+CONFIG_PHY_QCOM_M31_EUSB=m
- CONFIG_PHY_QCOM_USB_HS=m
- CONFIG_PHY_QCOM_USB_SNPS_FEMTO_V2=m
- CONFIG_PHY_QCOM_USB_HS_28NM=m
-
--- 
-2.48.1
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
