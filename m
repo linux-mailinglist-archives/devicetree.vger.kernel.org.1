@@ -1,189 +1,123 @@
-Return-Path: <devicetree+bounces-160138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160139-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04DF5A6D995
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 12:55:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1BBAA6D9A0
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 12:58:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5963816D95D
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 11:54:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C04D1887C03
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 11:58:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB7D425E44D;
-	Mon, 24 Mar 2025 11:53:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BC9D25E44D;
+	Mon, 24 Mar 2025 11:58:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="SnfWXEb5";
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="fQ6kxnKb"
+	dkim=pass (2048-bit key) header.d=pereznus.es header.i=@pereznus.es header.b="ffAA0+93"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bayard.4d2.org (bayard.4d2.org [155.254.16.17])
+Received: from p00-icloudmta-asmtp-us-central-1k-100-percent-3.p00-icloudmta-asmtp-vip.icloud-mail-production.svc.kube.us-central-1k.k8s.cloud.apple.com (p-east1-cluster6-host2-snip4-4.eps.apple.com [57.103.90.145])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C16C25D52D;
-	Mon, 24 Mar 2025 11:53:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=155.254.16.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0F731E633C
+	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 11:58:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=57.103.90.145
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742817223; cv=none; b=P7ZzoLSsKp+GU6b68H4x/xFiwpP7VfviOOad+65y2du7rH2DJy90mdOGe3UqpQqNHr+1A/hnMq5sx2/hINpVz+OaXDfi4VgMg4VT8qQ+o47Co6fy82yQOu88AAvOifBWVwc1KJuj2BToNx2hNgGOV8sRjd8odkdONK5Kx2QHcxg=
+	t=1742817504; cv=none; b=R4zi8s0qq/5rsHtkYmPLTRom9K4JBaKr3ry51ExlGyM6KktqrU1zHeK8LuB8wKxmIFi0sPd+p/bdMrnH5YOOM+DRO5Hk+DTNPcbF0moYQWd3Aw3EuK+GCHlmyADvjYmrdO26EXYyEeeJFeFdMyxsMPce+4gOL8XVSSQKJfQoVrc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742817223; c=relaxed/simple;
-	bh=PslLqZRPAv6THOn+aClNegRKFMnOjNSyR7ChIic37Zk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EqiaPLnODa6rRScSvvnHiYm7xieFl8r3iMVpvCLx18947jH0DUM82B4jA0D92sce5Vv8MUOKoiLedL1geBzeOCD3chLzuRsbiHRDZPun8dfuEoy+3ku14+bvsLT6ZnHNDJDDCkk6sH4UahZ9/4ND7QCwt4yEHAqZedsY2bNCtBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=SnfWXEb5; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=fQ6kxnKb; arc=none smtp.client-ip=155.254.16.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
-Received: from bayard.4d2.org (bayard.4d2.org [127.0.0.1])
-	by bayard.4d2.org (Postfix) with ESMTP id 35195EC59EE;
-	Mon, 24 Mar 2025 04:53:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1742817220; bh=PslLqZRPAv6THOn+aClNegRKFMnOjNSyR7ChIic37Zk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SnfWXEb5quXO8QebTk3oYdvqnRQFyYnIO3C9LAFwhDyuBvUBGqCPW71s2Bk9BMo1C
-	 ODCv9TOWljXAYL+I2M0xm+4zY3DhJTye90S5Mq+rJR6yHm40BMdFaH3Gd3trwAO+xH
-	 RKW5wOoC5rc2aCz7K5m0yOG+pP0PRvwpYGo7iQceokMSQelKfHR7m719ilrtV1n04M
-	 d6UhKefzlY0FIJ4wgunttGWM77IzYtD3yvSgG8Hx2Iqhsvq7sQocB4TE53HBpcXftP
-	 jhvJKKjpEWtfC8X5tQd7VeyR6PocIqKcsWBSgUpDDtZqffSlHVsoM8u8YSY8N13R/L
-	 ES+RO6Kt0QlNg==
-X-Virus-Scanned: amavisd-new at 4d2.org
-Received: from bayard.4d2.org ([127.0.0.1])
- by bayard.4d2.org (bayard.4d2.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id amLNQ8lVeRXh; Mon, 24 Mar 2025 04:53:38 -0700 (PDT)
-Received: from ketchup (unknown [183.217.80.115])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: heylenay@4d2.org)
-	by bayard.4d2.org (Postfix) with ESMTPSA id 548E1EC59F1;
-	Mon, 24 Mar 2025 04:53:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1742817218; bh=PslLqZRPAv6THOn+aClNegRKFMnOjNSyR7ChIic37Zk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fQ6kxnKbFquVXp4L/B8k8qS93mpqZQn2LA68FSV0QKSKOpw7iU8DZIX7I0B2t60k4
-	 37gOk4rrguvAPfViOmT5OAWlUfav5UkWdQ/34oQkVsaYc8cGwdrr9uAdRBCGn+aAG1
-	 CRk+iLC8rCKR94Aed6870nYUso1dYB5td8yU9xeY58UR/4SJ0lujAo2j0HIH7M0gt8
-	 v4sBNPH7KjkK1HEJa+L7vsYJCmOUuf0zAfOywB+j3PtKv5mfZ7URRgPLobu4lWRYRP
-	 EGATZmOpseqDQPeDycny/Je1UL4CDnTx/eYsSqV4cms8Sn+jXlcDj//Cmwm5cKUqwS
-	 Bw9VXC3LiLgaA==
-Date: Mon, 24 Mar 2025 11:53:27 +0000
-From: Haylen Chu <heylenay@4d2.org>
-To: Alex Elder <elder@riscstar.com>, p.zabel@pengutronix.de,
-	mturquette@baylibre.com, sboyd@kernel.org, dlan@gentoo.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	guodong@riscstar.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, spacemit@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND 2/7] clk: spacemit: define struct k1_ccu_data
-Message-ID: <Z-FHt3mDyEBKpa8O@ketchup>
-References: <20250321151831.623575-1-elder@riscstar.com>
- <20250321151831.623575-3-elder@riscstar.com>
+	s=arc-20240116; t=1742817504; c=relaxed/simple;
+	bh=6QkqFzT4QB40LkKJxK39lWPXcsKwdkfaSqyF6gSHQ1k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PgHqYiYF6HpTbUmTPNYIkYwaG8vvzDpAWahq1r8gN7cQvxm43rwergsAq6bNcPwzK8BUkmwouuZQCd0abpf71A6JXa0EvZ+EFbtRPZivWapFUfjjxAAjyNUtv/ULju5UF094wJiQdANANXGn8rFtFthBYGQFHXAcO69pqWgFO1w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pereznus.es; spf=pass smtp.mailfrom=pereznus.es; dkim=pass (2048-bit key) header.d=pereznus.es header.i=@pereznus.es header.b=ffAA0+93; arc=none smtp.client-ip=57.103.90.145
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pereznus.es
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pereznus.es
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pereznus.es; s=sig1;
+	bh=N20daEFIEq76699cKPqoyrfhMtw+hJa1VLqQDUltJsE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:x-icloud-hme;
+	b=ffAA0+932tpG3paOZHMGzexahnSGDCkKv4NQul5apjlDuYLSCheAOINLNIl0aZ2dg
+	 xLYT67mJWKFBiJVis5hhQINYjQRa2npBqd4XZQmsqv4DVH9GarfHtJ39qnW56X04DF
+	 R4XfM5OY1DwSFNVHiPaIoBO3SB/AmXIqglXi76QnvO3g12OMuRro8r5NxQRvTiM5Uf
+	 pm1oTmTD5TtmjQLfJISxhZwXXXpoQdnuRHdYDEQFlmJqGDixZ/vZxzfiXkGoJ9YDdr
+	 c3h7ld5ZFAdQTsk0e6IojAmstLO0uBfmpeyJ/qVlyn15fGGe7Nz44gEM06mLZPvk8y
+	 pucqhJfTkMJ0g==
+Received: from [192.168.1.28] (ci-asmtp-me-k8s.p00.prod.me.com [17.57.156.36])
+	by p00-icloudmta-asmtp-us-central-1k-100-percent-3.p00-icloudmta-asmtp-vip.icloud-mail-production.svc.kube.us-central-1k.k8s.cloud.apple.com (Postfix) with ESMTPSA id 92657180026E;
+	Mon, 24 Mar 2025 11:58:18 +0000 (UTC)
+Message-ID: <113a789f-54e8-4d42-b260-829c194758a7@pereznus.es>
+Date: Mon, 24 Mar 2025 12:58:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250321151831.623575-3-elder@riscstar.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/2] dt-bindings: iio: light: bh1750: Add reset-gpios
+ property
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Tomasz Duszynski <tduszyns@gmail.com>, Jonathan Cameron
+ <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250321161609.3662-1-sergio@pereznus.es>
+ <20250324-massive-dancing-sidewinder-bd51b3@krzk-bin>
+Content-Language: es-ES, en-US, ca
+From: =?UTF-8?Q?Sergio_P=C3=A9rez?= <sergio@pereznus.es>
+In-Reply-To: <20250324-massive-dancing-sidewinder-bd51b3@krzk-bin>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: OicYdhtriXqdG9qklvA12TIxea9ZpqCK
+X-Proofpoint-ORIG-GUID: OicYdhtriXqdG9qklvA12TIxea9ZpqCK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-24_04,2025-03-21_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0 spamscore=0 mlxlogscore=999
+ adultscore=0 malwarescore=0 clxscore=1030 mlxscore=0 phishscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2503240087
 
-On Fri, Mar 21, 2025 at 10:18:25AM -0500, Alex Elder wrote:
-> Define a new structure type to be used for describing the OF match data.
-> Rather than using the array of spacemit_ccu_clk structures for match
-> data, we use this structure instead.
-> 
-> Move the definition of the spacemit_ccu_clk structure closer to the top
-> of the source file, and add the new structure definition below it.
-> 
-> Shorten the name of spacemit_ccu_register() to be k1_ccu_register().
 
-I've read your conversation about moving parts of the patch into the
-clock series, I'm of course willing to :)
-
-> Signed-off-by: Alex Elder <elder@riscstar.com>
+El 24/03/2025 a las 9:08, Krzysztof Kozlowski escribió:
+> On Fri, Mar 21, 2025 at 05:16:08PM +0100, Sergio Perez wrote:
+>> +  reset-gpios:
+>> +    description: GPIO connected to the DVI reset pin (active low)
+>> +    maxItems: 1
+>> +
+>>   required:
+>>     - compatible
+>>     - reg
+>> @@ -36,9 +40,12 @@ examples:
+>>         #address-cells = <1>;
+>>         #size-cells = <0>;
+>>   
+>> +      #include <dt-bindings/gpio/gpio.h>
+> This goes upper. Please open any other bindings to see how it is done.
+>
+> With fixed placement:
+>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thanks, I will fix the placement of include and send new version (v6).
 > ---
->  drivers/clk/spacemit/ccu-k1.c | 58 ++++++++++++++++++++++++++---------
->  1 file changed, 43 insertions(+), 15 deletions(-)
-> 
-> diff --git a/drivers/clk/spacemit/ccu-k1.c b/drivers/clk/spacemit/ccu-k1.c
-> index 44db48ae71313..f7367271396a0 100644
-> --- a/drivers/clk/spacemit/ccu-k1.c
-> +++ b/drivers/clk/spacemit/ccu-k1.c
-> @@ -129,6 +129,15 @@
->  #define APMU_EMAC0_CLK_RES_CTRL		0x3e4
->  #define APMU_EMAC1_CLK_RES_CTRL		0x3ec
->  
-> +struct spacemit_ccu_clk {
-> +	int id;
-> +	struct clk_hw *hw;
-> +};
-> +
-> +struct k1_ccu_data {
-> +	struct spacemit_ccu_clk *clk;		/* array with sentinel */
-> +};
-
-This is something like what I've dropped in v5 of the clock series so I
-doubt whether it should be added back in clock series again, as at that
-point there's no reason for an extra structure: Alex, is it okay for you
-to keep the change in reset series?
-
-...
-
-> +static int k1_ccu_register(struct device *dev, struct regmap *regmap,
-> +			   struct regmap *lock_regmap,
-> +			   struct spacemit_ccu_clk *clks)
->  {
->  	const struct spacemit_ccu_clk *clk;
->  	int i, ret, max_id = 0;
-> @@ -1648,15 +1668,24 @@ static int spacemit_ccu_register(struct device *dev,
->  
->  	clk_data->num = max_id + 1;
->  
-> -	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, clk_data);
-> +	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, clk_data);
-> +	if (ret)
-> +		dev_err(dev, "error %d adding clock hardware provider\n", ret);
-
-This error message definitely should go in the clock series.
-
-> +	return ret;
->  }
-
->  static int k1_ccu_probe(struct platform_device *pdev)
->  {
->  	struct regmap *base_regmap, *lock_regmap = NULL;
->  	struct device *dev = &pdev->dev;
-> +	const struct k1_ccu_data *data;
->  	int ret;
->  
-> +	data = of_device_get_match_data(dev);
-> +	if (!data)
-> +		return -EINVAL;
-
-Looking through the reset series, I don't see a reason that
-of_device_get_match_data() could return NULL. This is also something
-you've asked me to drop in v4 of the clock series, so I guess it isn't
-necessary.
-
->  	base_regmap = device_node_to_regmap(dev->of_node);
->  	if (IS_ERR(base_regmap))
->  		return dev_err_probe(dev, PTR_ERR(base_regmap),
-> @@ -1677,8 +1706,7 @@ static int k1_ccu_probe(struct platform_device *pdev)
->  					     "failed to get lock regmap\n");
->  	}
->  
-> -	ret = spacemit_ccu_register(dev, base_regmap, lock_regmap,
-> -				    of_device_get_match_data(dev));
-> +	ret = k1_ccu_register(dev, base_regmap, lock_regmap, data->clk);
->  	if (ret)
->  		return dev_err_probe(dev, ret, "failed to register clocks\n");
-
-For using ARRAY_SIZE() to simplify runtime code, it's mostly okay since
-binding IDs are continuous 0-based integers. But I split the handling of
-TWSI8 into another patch, which creates a hole in the range and breaks
-the assumption. Do you think the TWSI8 commit should be merged back in
-the clock driver one?
-
-Best regards,
-Haylen Chu
+>
+> <form letter>
+> This is an automated instruction, just in case, because many review tags
+> are being ignored. If you know the process, you can skip it (please do
+> not feel offended by me posting it here - no bad intentions intended).
+> If you do not know the process, here is a short explanation:
+>
+> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+> versions of patchset, under or above your Signed-off-by tag, unless
+> patch changed significantly (e.g. new properties added to the DT
+> bindings). Tag is "received", when provided in a message replied to you
+> on the mailing list. Tools like b4 can help here. However, there's no
+> need to repost patches *only* to add the tags. The upstream maintainer
+> will do that for tags received on the version they apply.
+>
+> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+> </form letter>
+>
+> Best regards,
+> Krzysztof
+>
 
