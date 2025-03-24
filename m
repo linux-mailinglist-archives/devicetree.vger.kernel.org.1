@@ -1,102 +1,132 @@
-Return-Path: <devicetree+bounces-160112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160111-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4A63A6D85A
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 11:34:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05374A6D857
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 11:34:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 79CB83B0F05
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 10:34:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D0E7616A3BA
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 10:34:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BABB25DB18;
-	Mon, 24 Mar 2025 10:34:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 868F725DCF3;
+	Mon, 24 Mar 2025 10:34:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="elvWNwM4"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="tzBmpe6y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E2CE433A8;
-	Mon, 24 Mar 2025 10:34:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.5
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50CD21953A9;
+	Mon, 24 Mar 2025 10:34:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742812456; cv=none; b=CJ2ccspcMNHhCbebyzATNXc2KEOHWKTs+mdBe4dIOyv/Z/+3vCQgnDSUcA7RoY4Rdflvr7K+S0UMg5ykzFCvDL45ax2+qFYF0KHR1zIKzU5tOfI4nxGIz6ko3IpMs8bZP5DZbVWUYHOgNAu5tlsAIjGARVvaU8SZf4/aumfCH+E=
+	t=1742812444; cv=none; b=DsUqtElZiwmCKXQh/oH4umt7l73uTO+nL8rMUTzD1l107HBP/2of09LgJLoDt7QLD01Cetgthe5UBEBVsy9mOMgOVabhay+u9a41MgHTMXKhnvZ80pWk8ET5GOG7RdrvalWs4WUD/7zJI1YQMniQhSvXlafOIDOhB2sMax/6Tlg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742812456; c=relaxed/simple;
-	bh=x/mD0bTH0CXdm70PWBi5rV+ZYD4VicWiXzaJVf4gyZ4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=nl00TOjzhBlCwaOdjEPThvXFP57/AQgXv9kjAZVLc3NsKv3jT3CpxozA38aaW1OHvR7g3VTc6rTFflrVvg13ZrO6OSCcq+AYtIA6w39yYqsFawx5KuvVJiRdow6pmbgACYCZUibv7e1ltvZBcYjdvx6xSi64vgzRjZhK4pvWe2E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=elvWNwM4; arc=none smtp.client-ip=220.197.31.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:Subject:Date:Message-ID:MIME-Version; bh=j+x/s
-	crjOmcuG4u3tqntsDdabnal7byUoT1fHHBPuh8=; b=elvWNwM461rRXqkfAgtBB
-	ppjW2/HxLzWcp1fUSO8y1uExIIoAlL4lk8VdwPK5yhsazfU3ON/fYB7n2yyMAV2p
-	7P356nkCF9njBeTSfxPGu9rU005zTiTxyZGAgdx/yYFenRlTExApGinSpyASf9we
-	+QX4TlUhcwAP398vVeYM9E=
-Received: from ProDesk.. (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id PigvCgA3TEH9NOFnDTbjAg--.63654S3;
-	Mon, 24 Mar 2025 18:33:38 +0800 (CST)
-From: Andy Yan <andyshrk@163.com>
-To: heiko@sntech.de
-Cc: conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	hjc@rock-chips.com,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Andy Yan <andy.yan@rock-chips.com>
-Subject: [PATCH 2/2] ARM: dts: rockchip: Add ref clk for hdmi
-Date: Mon, 24 Mar 2025 18:33:28 +0800
-Message-ID: <20250324103332.159682-2-andyshrk@163.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250324103332.159682-1-andyshrk@163.com>
-References: <20250324103332.159682-1-andyshrk@163.com>
+	s=arc-20240116; t=1742812444; c=relaxed/simple;
+	bh=yWHN60OPmraLqhtBq5lhjheIQXR/F7iBUPLr7BPi7R8=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=S+n4n1vJE2NJc8xowjeAmJi0I1t7yZjRkmKyBU9N15vkA4h0HqJcdzbAb7Nn3y3kGA7wiY1Jzpihnilteccrv/lFDMS4dflOUGNaZy9XTb3mwlOKx0B7vptMKJhe6fxkBC3kaY54B5DceJigqfjKVm2Gju5HhkYPTwnN8dQQNvU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=tzBmpe6y; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1742812433;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=eI7gPyQYRsRBMrw/lvACQBiN3JsT2YD+lfGEOC2JxYU=;
+	b=tzBmpe6y4C9C1mC187Q2hITuYbsywdQEk9ISEptzHhtaaMWMEXT9wyejk/K91P70RuDFt0
+	yh7LOLNj0Jig/SUKDRxlqgdmqpmo0oMmeKIK+xwWSbNxWJvDZzxuDLw3c6wLJ/E1WGOGGb
+	pD3aBw//mpNMo6fV55zHDAWQde+ldynndHLyeALFMMmKhlOk4AcDxIJegLTXfDXjcvBPbf
+	8y2M8OTgqv4oGnaNXRnoe31cVUh3p/UVivt/saEZKVSXm6SlwMWeDd/yvLXwB55zljrROj
+	ibghbX+nD1lzry+Y3YGz+tUT2YxukwHAEsvzw5tGERCd5xpDHei8z2x4TjtOBg==
+Date: Mon, 24 Mar 2025 11:33:53 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Quentin Schulz <quentin.schulz@cherry.de>
+Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, stable@vger.kernel.org, Alexey Charkov
+ <alchark@gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Remove overdrive-mode OPPs from
+ RK3588J SoC dtsi
+In-Reply-To: <170e4d8d-33ca-4c53-9ae7-ca9d674540a9@cherry.de>
+References: <f929da061de35925ea591c969f985430e23c4a7e.1742526811.git.dsimic@manjaro.org>
+ <71b7c81b-6a4e-442b-a661-04d63639962a@cherry.de>
+ <960c038ad9f7b83fe14d0ded388b42f7@manjaro.org>
+ <2ece5cca-50ea-4ec9-927e-e757c9c10c18@cherry.de>
+ <4d25c9af4380598b35a0d55e7c77ac3d@manjaro.org>
+ <170e4d8d-33ca-4c53-9ae7-ca9d674540a9@cherry.de>
+Message-ID: <17b55e889838f2c989bd0efc6528801b@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:PigvCgA3TEH9NOFnDTbjAg--.63654S3
-X-Coremail-Antispam: 1Uf129KBjvdXoWrKF1xJw4kAFWfZry3tw4xWFg_yoWDGwc_t3
-	WIgw15GF4fGrZIq34Dtw45W39Fvw4fC393XwnYqr4UJF9aqr4UXF4kJayIyFy5GFW2gasx
-	CFWfZF4aya1agjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU0Wq2JUUUUU==
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiqBkaXmfhNMYG2AAAsf
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-From: Andy Yan <andy.yan@rock-chips.com>
+On 2025-03-24 11:20, Quentin Schulz wrote:
+> On 3/24/25 10:53 AM, Dragan Simic wrote:
+>> On 2025-03-24 10:23, Quentin Schulz wrote:
+>>> On 3/23/25 11:19 AM, Dragan Simic wrote:
+>>>> On 2025-03-21 10:53, Quentin Schulz wrote:
+>>>>> On 3/21/25 4:28 AM, Dragan Simic wrote:
+>>>>>> The differences in the vendor-approved CPU and GPU OPPs for the 
+>>>>>> standard
+>>>>>> Rockchip RK3588 variant [1] and the industrial Rockchip RK3588J 
+>>>>>> variant [2]
+>>>>>> come from the latter, presumably, supporting an extended 
+>>>>>> temperature range
+>>>>>> that's usually associated with industrial applications, despite 
+>>>>>> the two SoC
+>>>>>> variant datasheets specifying the same upper limit for the allowed 
+>>>>>> ambient
+>>>>>> temperature for both variants.  However, the lower temperature 
+>>>>>> limit is
+>>>>> 
+>>>>> RK3588 is rated for 0-80°C, RK3588J for -40-85°C, c.f. Recommended
+>>>>> Operating Conditions, Table 3-2, Ambient Operating Temperature.
+>>>> 
+>>>> Indeed, which is why I specifically wrote "specifying the same upper
+>>>> limit", because having a lower negative temperature limit could 
+>>>> hardly
+>>>> put the RK3588J in danger of overheating or running hotter. :)
+>>> 
+>>> """
+>>> despite the two SoC variant datasheets specifying the same upper 
+>>> limit
+>>> for the allowed temperature for both variants
+>>> """
+>>> 
+>>> is incorrect. The whole range is different, yes it's only a 5°C
+>>> difference for the upper limit, but they still are different.
+>> 
+>> I just commented on this separately, with a couple of datasheet
+>> screenshots, before I saw your latest response.  Please, have
+>> a look at that message.
+> 
+> I see, I had a v1.3 datasheet opened:
+> 
+> https://github.com/FanX-Tek/rk3588-TRM-and-Datasheet/blob/master/Rockchip_RK3588_Datasheet_V1.3-20220328.pdf
 
-The RK3036 HDMI DDC bus requires it's PHY's reference clock to be
-enabled first before normal DDC communication can be carried out.
+Yup, the v1.6 of the RK3588 datasheet increased the upper ambient
+temperature limit from 80 to 85 oC.
 
-Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
----
+> Interestingly, it seems the RK3588S (still?) has a smaller operating 
+> range:
+> 
+> https://www.armboard.cn/download/Rockchip_RK3588S_Datasheet_V1.6-20240821.pdf
 
- arch/arm/boot/dts/rockchip/rk3036.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm/boot/dts/rockchip/rk3036.dtsi b/arch/arm/boot/dts/rockchip/rk3036.dtsi
-index 6039a0908af1c..22685cd23a708 100644
---- a/arch/arm/boot/dts/rockchip/rk3036.dtsi
-+++ b/arch/arm/boot/dts/rockchip/rk3036.dtsi
-@@ -403,8 +403,8 @@ hdmi: hdmi@20034000 {
- 		compatible = "rockchip,rk3036-inno-hdmi";
- 		reg = <0x20034000 0x4000>;
- 		interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
--		clocks = <&cru  PCLK_HDMI>;
--		clock-names = "pclk";
-+		clocks = <&cru PCLK_HDMI>, <&cru SCLK_LCDC>;
-+		clock-names = "pclk", "ref";
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&hdmi_ctl>;
- 		#sound-dai-cells = <0>;
--- 
-2.43.0
-
+Oh, that's quite interesting, I had the v1.5 as the newest version.
+The v1.6 of the RK3588S datasheet actually lowered the upper ambient
+temperature limit from 85 down to 80 oC.
 
