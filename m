@@ -1,142 +1,277 @@
-Return-Path: <devicetree+bounces-160115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09339A6D8B4
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 11:57:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F6B6A6D8C5
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 12:01:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80AF6166AE2
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 10:57:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C81953AFFC3
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 11:00:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59F2525D902;
-	Mon, 24 Mar 2025 10:57:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3222E1487D1;
+	Mon, 24 Mar 2025 11:00:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="WMUjG97C"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="mninbDkJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8DDA1A317E
-	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 10:57:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2BA010A3E;
+	Mon, 24 Mar 2025 11:00:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742813823; cv=none; b=oAE2zaKeklOhgGCRqtW4Lmms2lucKyAajL500twaaWi+r/8HKO+VcMauXHlPpNCrsiwcM2ui3q6HGD7EXem1FuX//Y8QDxyw+Fy2EL+7sjiofC+4Be3QV8wrwKuumbAp29PgD9CeitFMVHBD7QSqyMvD+u8Q4uNaBEyUTzAPuEQ=
+	t=1742814053; cv=none; b=uB71R02DBEPyABSe2cEoEuNaMmCaqKPlPkhR0K43xdIstwFmJm0ss+KxfaP1AKkij/kIaS8MBTPT9Q+pkcnHK1VfTgXyNDRNEQgtPNTVIHzstOuAEdiW3lG2LuyZ5WQZc1KezXn12XY4KpVKEDLATWqgDK8Vwmz3nbveP73tdyo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742813823; c=relaxed/simple;
-	bh=w6aPWy+Qhwe/Y2L6UoLVJWUQwbIVm3ZGC63aKmxOKVU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YQ/1eiUSgrk0kyC7B/rgljvhQV2FajM2Q/qr///clxSEUKNmCoVNU//TRZyojqOHIfPLR5GWVsZzdIwajkAnGf9LpMYCrpm2WMbWi7/r0Uuph/3YxG9ivxs7XRFrjzUCiROTc2b9N38FTwf3f+Srjxv/NVR4q4hLuEXGqa4Znbg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=WMUjG97C; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52O9PLfS004136
-	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 10:57:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=e4iq5ZmzgG7lLxopw43AFxoI
-	iRiSXqSMGZij+vqFUSc=; b=WMUjG97CfkjZxoEaKgZvO/dE/9TejQ/XF/zAx5wS
-	JOYy1QykJ5hriIcNX9mP4zYoYtCrTRvYJjOnGoGJl1ttAYm/OKdsZtPLXNLAseAR
-	WPiSXc1ix9qHCn4IRAPPDxWMq51e7BtjneVfwW9tT3EhCMzH5J5IFnVj2IVdLvzJ
-	M/HZL/A5UDX4bohIg9npfRnYdoAY/sDkioV0MkJvHisdxkgU93YcqSL7VR2AF3SK
-	M2LdZmYxJiFhDdma840K99rgWtMLUoFh1OpOaaawpdmx1h2yY3TwVRCAptni0qn9
-	E/gfYMvbR3BGnoREMkVuHvE2RCmCKmvrkJYcrX6cDQx09w==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45hnk8m3j4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 10:57:00 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7c5c9abdbd3so101915485a.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 03:57:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742813820; x=1743418620;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=e4iq5ZmzgG7lLxopw43AFxoIiRiSXqSMGZij+vqFUSc=;
-        b=YHtq+X1D369eH2Nwghh17Q3mEZMMLgyA7tyL2/lDm+QY78fBlSArZVeFu7gJIXXh1b
-         ENw/Hf4YdlEVMoF6CgfXyAEuFvLGTc4Pt/gA+KDbKWryntDZ0cSvQFMlaCdQ75N6NGRa
-         zVsCQpnWHx2W+5Cs8/WvhJO4/ll6hfALyZf5nGfbXd+Fud88NXXggiNy4qIYNmumVkZs
-         3APRdKMHfsz9CFqowg+VJ5k9eJWtpeq9ZHkxHkV6+VGWPTJJLv8OMlESEVEdoZKBq9Wv
-         i2dussw12vOqP8oRklDtGvKKemWGNLEfEyVmC6guv0BlY3k0Ru3BwhoWdev8l+XvjZjQ
-         n1Xg==
-X-Forwarded-Encrypted: i=1; AJvYcCUCa1+liYt5QxU0bVdDrpR27Tr8S0qmtmtgtSPp8HXEKmkIOMj54g/dZU74juv0RZmyXYVcMu4JVj0f@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxv3lyfBlvYwR9Us6m0uXlVNQxphHMgOe5urv3RaphCTz0ALEWN
-	CiOvDXc5iHJbQUOfvSH2zyLQC0tRXWLq8YuL87ik8KqUksYghY64xYzUe9twTp/QC+huAZkldXP
-	mHGo6KLeczrEIwa+VGlHYMeYTVubA+YCuCxpFeosfF63/E7/LA5QTt+z7IoGU
-X-Gm-Gg: ASbGnct730aAJaqhG5/HIV9BZL8sFWzS2W72IyomW23i6m3Z69hUPRCSOT6zbuEBCYt
-	wxvym0o4zeztWMuMGHG0FfUT+lu7A/XJO2YJAmOLTWSc0toF9FaFVfpJ/G61gAi9IZgHLf6zbYO
-	o0hStXCxEisPCByM8qwiGZ55rYR97FzQu98t63qrgYyKGm9F2vNaSldZV9/HVsN9CBbUEYjxJk+
-	SvfTIDyJCtEHTSNnPYfAhiDteLgMrkMPVCC41KwhL3uengW3XVR7tDrGe9XL9KiRBfrObOhu7WF
-	E9HC2cbcJ9M2stLc7aHO7vurTuoG3PPijEhvxef2CYg0Q4YBV90dzBSAXYoo6SMck7qnw0qLbzv
-	lmw0=
-X-Received: by 2002:a05:620a:2946:b0:7c5:a441:f440 with SMTP id af79cd13be357-7c5ba134078mr1404878585a.12.1742813819885;
-        Mon, 24 Mar 2025 03:56:59 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGT85bm2iUMTANL530hIieoil1fUEuIlPX9t3T5XtetsmXWHkoxzeE/XwgtI5CCHjlOMTf57Q==
-X-Received: by 2002:a05:620a:2946:b0:7c5:a441:f440 with SMTP id af79cd13be357-7c5ba134078mr1404875485a.12.1742813819419;
-        Mon, 24 Mar 2025 03:56:59 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30d7d7e0baesm13193461fa.38.2025.03.24.03.56.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Mar 2025 03:56:58 -0700 (PDT)
-Date: Mon, 24 Mar 2025 12:56:56 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Taniya Das <quic_tdas@quicinc.com>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] arm64: dts: qcom: sm6350: Align reg properties
- with latest style
-Message-ID: <yrxpfsh26ymo74olbgglrgb7d35nj6owkzndfnrbmjorb7tg3k@maccic4kvlwn>
-References: <20250324-sm6350-videocc-v2-0-cc22386433f4@fairphone.com>
- <20250324-sm6350-videocc-v2-1-cc22386433f4@fairphone.com>
+	s=arc-20240116; t=1742814053; c=relaxed/simple;
+	bh=dBLODITVg4xgq7yY5gLDq9AnZBGEPLBs0csATx5eMaU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=pqUhIQyuUxPN5eig1RqOOKCuTTZOynmBiM/W2xP69J5ErXDILZhiXPtYVxOschK4DYYNcjMMCw+YacM+ogi3vbiiS51ZLrU1evN0zB6kwGJS+AjUg6vQABtx7DFWmWkkrj/zjYGAPhL1LztiN/aGupikB7PIL0ZGt5D2Z6yunn4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=mninbDkJ; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+From: Dragan Simic <dsimic@manjaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1742814047;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=rHuROZnnYS52NtcI84OVTo9RCXp2wpkeXDDVlfPt4bY=;
+	b=mninbDkJMZh1hKxGonj2VDg1jotY3Rbe7BbbAYgxm1amZz1zas26XyE1/2CfsgLVgqT2YT
+	xII3MVh+AD0CxKqlSUNoiYIwONjWjt4vZqwLvReT+8HsgowpWv/9bhwpPvu+n4Lw/ZbeNL
+	fqMyeLrS0Ypyem7rfeFKgf+c3MS5QzaWZBWO0k1uUk6dRr6DGL5Vy2e2H10ykRCCvj/J01
+	mZWYgCNw+g+BNGNuMeDI5RflRISP7u6tfjSbaIEUor+H4Ofz2R6TfSClkJDfYQh3JeCC+z
+	Gbz6+S9XzLdKSdcv+htFZt4+D41SW/SUJfIJUxPoP0UQjgUBPf0P6lOxbIVIjg==
+To: linux-rockchip@lists.infradead.org
+Cc: heiko@sntech.de,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	stable@vger.kernel.org,
+	Alexey Charkov <alchark@gmail.com>,
+	Quentin Schulz <quentin.schulz@cherry.de>
+Subject: [PATCH v2] arm64: dts: rockchip: Remove overdrive-mode OPPs from RK3588J SoC dtsi
+Date: Mon, 24 Mar 2025 12:00:43 +0100
+Message-Id: <eeec0d30d79b019d111b3f0aa2456e69896b2caa.1742813866.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250324-sm6350-videocc-v2-1-cc22386433f4@fairphone.com>
-X-Proofpoint-ORIG-GUID: t3I1S5eC8BNPhPxyQnoIwM4NRbPzEMwt
-X-Authority-Analysis: v=2.4 cv=KMlaDEFo c=1 sm=1 tr=0 ts=67e13a7c cx=c_pps a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=6H0WHjuAAAAA:8 a=EUspDBNiAAAA:8 a=YQ0UDAJD0Z16suNoM6kA:9 a=CjuIK1q_8ugA:10
- a=NFOGd7dJGGMPyQGDc5-O:22 a=Soq9LBFxuPC4vsCAQt-j:22
-X-Proofpoint-GUID: t3I1S5eC8BNPhPxyQnoIwM4NRbPzEMwt
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-24_04,2025-03-21_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=669
- bulkscore=0 clxscore=1015 lowpriorityscore=0 mlxscore=0 priorityscore=1501
- adultscore=0 impostorscore=0 malwarescore=0 spamscore=0 suspectscore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503240079
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Mon, Mar 24, 2025 at 09:41:01AM +0100, Luca Weiss wrote:
-> While in the past the 'reg' properties were often written using decimal
-> '0' for #address-cells = <2> & #size-cells = <2>, nowadays the style is
-> to use hexadecimal '0x0' instead.
-> 
-> Align this dtsi file to the new style to make it consistent, and don't
-> use mixed 0x0 and 0 anymore.
-> 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
->  arch/arm64/boot/dts/qcom/sm6350.dtsi | 204 +++++++++++++++++------------------
->  1 file changed, 102 insertions(+), 102 deletions(-)
-> 
+The differences in the vendor-approved CPU and GPU OPPs for the standard
+Rockchip RK3588 variant [1] and the industrial Rockchip RK3588J variant [2]
+come from the latter, presumably, supporting an extended temperature range
+that's usually associated with industrial applications, despite the two SoC
+variant datasheets specifying the same upper limit for the allowed ambient
+temperature for both variants.  However, the lower temperature limit is
+specified much lower for the RK3588J variant. [1][2]
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To be on the safe side and to ensure maximum longevity of the RK3588J SoCs,
+only the CPU and GPU OPPs that are declared by the vendor to be always safe
+for this SoC variant may be provided.  As explained by the vendor [3] and
+according to the RK3588J datasheet, [2] higher-frequency/higher-voltage
+CPU and GPU OPPs can be used as well, but at the risk of reducing the SoC
+lifetime expectancy.  Presumably, using the higher OPPs may be safe only
+when not enjoying the assumed extended temperature range that the RK3588J,
+as an SoC variant targeted specifically at higher-temperature, industrial
+applications, is made (or binned) for.
 
--- 
-With best wishes
-Dmitry
+Anyone able to keep their RK3588J-based board outside the above-presumed
+extended temperature range at all times, and willing to take the associated
+risk of possibly reducing the SoC lifetime expectancy, is free to apply
+a DT overlay that adds the higher CPU and GPU OPPs.
+
+With all this and the downstream RK3588(J) DT definitions [4][5] in mind,
+let's delete the RK3588J CPU and GPU OPPs that are not considered belonging
+to the normal operation mode for this SoC variant.  To quote the RK3588J
+datasheet [2], "normal mode means the chipset works under safety voltage
+and frequency;  for the industrial environment, highly recommend to keep in
+normal mode, the lifetime is reasonably guaranteed", while "overdrive mode
+brings higher frequency, and the voltage will increase accordingly;  under
+the overdrive mode for a long time, the chipset may shorten the lifetime,
+especially in high-temperature condition".
+
+To sum the RK3588J datasheet [2] and the vendor-provided DTs up, [4][5]
+the maximum allowed CPU core, GPU and NPU frequencies are as follows:
+
+   IP core    | Normal mode | Overdrive mode
+  ------------+-------------+----------------
+   Cortex-A55 |   1,296 MHz |      1,704 MHz
+   Cortex-A76 |   1,608 MHz |      2,016 MHz
+   GPU        |     700 MHz |        850 MHz
+   NPU        |     800 MHz |        950 MHz
+
+Unfortunately, when it comes to the actual voltages for the RK3588J CPU and
+GPU OPPs, there's a discrepancy between the RK3588J datasheet [2] and the
+downstream kernel code. [4][5]  The RK3588J datasheet states that "the max.
+working voltage of CPU/GPU/NPU is 0.75 V under the normal mode", while the
+downstream kernel code actually allows voltage ranges that go up to 0.95 V,
+which is still within the voltage range allowed by the datasheet.  However,
+the RK3588J datasheet also tells us to "strictly refer to the software
+configuration of SDK and the hardware reference design", so let's embrace
+the voltage ranges provided by the downstream kernel code, which also
+prevents the undesirable theoretical outcome of ending up with no usable
+OPPs on a particular board, as a result of the board's voltage regulator(s)
+being unable to deliver the exact voltages, for whatever reason.
+
+The above-described voltage ranges for the RK3588J CPU OPPs remain taken
+from the downstream kernel code [4][5] by picking the highest, worst-bin
+values, which ensure that all RK3588J bins will work reliably.  Yes, with
+some power inevitably wasted as unnecessarily generated heat, but the
+reliability is paramount, together with the longevity.  This deficiency
+may be revisited separately at some point in the future.
+
+The provided RK3588J CPU OPPs follow the slightly debatable "provide only
+the highest-frequency OPP from the same-voltage group" approach that's been
+established earlier, [6] as a result of the "same-voltage, lower-frequency"
+OPPs being considered inefficient from the IPA governor's standpoint, which
+may also be revisited separately at some point in the future.
+
+[1] https://wiki.friendlyelec.com/wiki/images/e/ee/Rockchip_RK3588_Datasheet_V1.6-20231016.pdf
+[2] https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2403201054_Rockchip-RK3588J_C22364189.pdf
+[3] https://lore.kernel.org/linux-rockchip/e55125ed-64fb-455e-b1e4-cebe2cf006e4@cherry.de/T/#u
+[4] https://raw.githubusercontent.com/rockchip-linux/kernel/604cec4004abe5a96c734f2fab7b74809d2d742f/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+[5] https://raw.githubusercontent.com/rockchip-linux/kernel/604cec4004abe5a96c734f2fab7b74809d2d742f/arch/arm64/boot/dts/rockchip/rk3588j.dtsi
+[6] https://lore.kernel.org/all/20240229-rk-dts-additions-v3-5-6afe8473a631@gmail.com/
+
+Fixes: 667885a68658 ("arm64: dts: rockchip: Add OPP data for CPU cores on RK3588j")
+Fixes: a7b2070505a2 ("arm64: dts: rockchip: Split GPU OPPs of RK3588 and RK3588j")
+Cc: stable@vger.kernel.org
+Cc: Heiko Stuebner <heiko@sntech.de>
+Cc: Alexey Charkov <alchark@gmail.com>
+Helped-by: Quentin Schulz <quentin.schulz@cherry.de>
+Reviewed-by: Quentin Schulz <quentin.schulz@cherry.de>
+Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+---
+
+Notes:
+    Changes in v2:
+      - Reworded and expanded the patch description a bit, to include some
+        more information and to make it more clear what are the implied
+        speculations and assumptions, and what are the available official
+        statements from Rockchip, as suggested by Quentin [7]
+      - Collected Reviewed-by tag from Quentin [7]
+    
+    Link to v1: https://lore.kernel.org/linux-rockchip/f929da061de35925ea591c969f985430e23c4a7e.1742526811.git.dsimic@manjaro.org/T/#u
+    
+    [7] https://lore.kernel.org/linux-rockchip/71b7c81b-6a4e-442b-a661-04d63639962a@cherry.de/
+
+ arch/arm64/boot/dts/rockchip/rk3588j.dtsi | 53 ++++++++---------------
+ 1 file changed, 17 insertions(+), 36 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588j.dtsi b/arch/arm64/boot/dts/rockchip/rk3588j.dtsi
+index bce72bac4503..3045cb3bd68c 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588j.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588j.dtsi
+@@ -11,74 +11,59 @@ cluster0_opp_table: opp-table-cluster0 {
+ 		compatible = "operating-points-v2";
+ 		opp-shared;
+ 
+-		opp-1416000000 {
+-			opp-hz = /bits/ 64 <1416000000>;
++		opp-1200000000 {
++			opp-hz = /bits/ 64 <1200000000>;
+ 			opp-microvolt = <750000 750000 950000>;
+ 			clock-latency-ns = <40000>;
+ 			opp-suspend;
+ 		};
+-		opp-1608000000 {
+-			opp-hz = /bits/ 64 <1608000000>;
+-			opp-microvolt = <887500 887500 950000>;
+-			clock-latency-ns = <40000>;
+-		};
+-		opp-1704000000 {
+-			opp-hz = /bits/ 64 <1704000000>;
+-			opp-microvolt = <937500 937500 950000>;
++		opp-1296000000 {
++			opp-hz = /bits/ 64 <1296000000>;
++			opp-microvolt = <775000 775000 950000>;
+ 			clock-latency-ns = <40000>;
+ 		};
+ 	};
+ 
+ 	cluster1_opp_table: opp-table-cluster1 {
+ 		compatible = "operating-points-v2";
+ 		opp-shared;
+ 
++		opp-1200000000{
++			opp-hz = /bits/ 64 <1200000000>;
++			opp-microvolt = <750000 750000 950000>;
++			clock-latency-ns = <40000>;
++		};
+ 		opp-1416000000 {
+ 			opp-hz = /bits/ 64 <1416000000>;
+-			opp-microvolt = <750000 750000 950000>;
++			opp-microvolt = <762500 762500 950000>;
+ 			clock-latency-ns = <40000>;
+ 		};
+ 		opp-1608000000 {
+ 			opp-hz = /bits/ 64 <1608000000>;
+ 			opp-microvolt = <787500 787500 950000>;
+ 			clock-latency-ns = <40000>;
+ 		};
+-		opp-1800000000 {
+-			opp-hz = /bits/ 64 <1800000000>;
+-			opp-microvolt = <875000 875000 950000>;
+-			clock-latency-ns = <40000>;
+-		};
+-		opp-2016000000 {
+-			opp-hz = /bits/ 64 <2016000000>;
+-			opp-microvolt = <950000 950000 950000>;
+-			clock-latency-ns = <40000>;
+-		};
+ 	};
+ 
+ 	cluster2_opp_table: opp-table-cluster2 {
+ 		compatible = "operating-points-v2";
+ 		opp-shared;
+ 
++		opp-1200000000{
++			opp-hz = /bits/ 64 <1200000000>;
++			opp-microvolt = <750000 750000 950000>;
++			clock-latency-ns = <40000>;
++		};
+ 		opp-1416000000 {
+ 			opp-hz = /bits/ 64 <1416000000>;
+-			opp-microvolt = <750000 750000 950000>;
++			opp-microvolt = <762500 762500 950000>;
+ 			clock-latency-ns = <40000>;
+ 		};
+ 		opp-1608000000 {
+ 			opp-hz = /bits/ 64 <1608000000>;
+ 			opp-microvolt = <787500 787500 950000>;
+ 			clock-latency-ns = <40000>;
+ 		};
+-		opp-1800000000 {
+-			opp-hz = /bits/ 64 <1800000000>;
+-			opp-microvolt = <875000 875000 950000>;
+-			clock-latency-ns = <40000>;
+-		};
+-		opp-2016000000 {
+-			opp-hz = /bits/ 64 <2016000000>;
+-			opp-microvolt = <950000 950000 950000>;
+-			clock-latency-ns = <40000>;
+-		};
+ 	};
+ 
+ 	gpu_opp_table: opp-table {
+@@ -104,10 +89,6 @@ opp-700000000 {
+ 			opp-hz = /bits/ 64 <700000000>;
+ 			opp-microvolt = <750000 750000 850000>;
+ 		};
+-		opp-850000000 {
+-			opp-hz = /bits/ 64 <800000000>;
+-			opp-microvolt = <787500 787500 850000>;
+-		};
+ 	};
+ };
+ 
 
