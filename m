@@ -1,192 +1,519 @@
-Return-Path: <devicetree+bounces-160170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160171-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6641BA6DAB7
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 14:03:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A0A5A6DAC9
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 14:05:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 197CD1893FC5
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 13:02:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F66B3B42B9
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 13:03:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A825261364;
-	Mon, 24 Mar 2025 13:01:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA63125F783;
+	Mon, 24 Mar 2025 13:03:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zseKWQZ1"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="YNF2XMoS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B56025FA28
-	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 13:01:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C5AE25EFB4;
+	Mon, 24 Mar 2025 13:03:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742821278; cv=none; b=usrMNmfr7OSoFv5ut6xdNJWiy847Z9gp4f9jKtccY1DRc+vMT8K5wyfkgRQX/VTKH82qdFXO0BohPgMD4FUcq7HAG0bqy6bBHVmcNgd3tNHlFTwPP4YyOuOB+llbjL03MKRnRl1SnU+piRzG7bfVoNWOV0SObfQItMojc62N+HU=
+	t=1742821411; cv=none; b=geQH9666i2Ewgfowql8SsGXTp03KG9y1ikZuIIwNhvG8LOVX6Xy4RaCqL9+r7Fen46gEzoMtSDc50buJKvqGPiAcWZXVwKyJzOJqNdYHy3rwXujOghuknbye7qX4Q21WrMYAhFDO5GuQAGjUoYj1E/lBfayTi7eRAJYGMSlC2PE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742821278; c=relaxed/simple;
-	bh=4hK5NwvGZj3PELV41E3//V4IRXz5oGNBj9IGYps+vOQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=cM3mrGbd/i807HQh3ko0Eixn7uImp8YFruxfg+u83Ib6jbXFWWyKbaONml7CIYrfWN+FqK/5nd/LUBQca+F/qTDBdr3RriR5D4bKH5IUGCparMVhONUHGlrgI6oXBVTQTcO+vKxdyPBs+QfsHU44eSZDzUYhUXvvJZ866+pj4bw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zseKWQZ1; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-43cf0d787eeso47030685e9.3
-        for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 06:01:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742821275; x=1743426075; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LHH3q92f3jVI2cl1PwT0LmA+qhtDvCooULm9gmNkwck=;
-        b=zseKWQZ1gxUG0tcbCLCQLMHB1wbLR4Zw2JVmEYvdvKQO4NWr6xH8VEoo431zWwWjj1
-         rQ55pWEh47umQHhitPabr5c7C8fIcoH/cn6t6108ByjdeJUPaUYRtaOjoy05EgRPvGHD
-         /gquTLMwNrbwUNxc4SQe8ezuT3jK3iyrDLzft9E/XYTlQYYQDsnO4y5yAwLBnC/PQUnH
-         qNEh8PzEIHKrcEnf/71B6UORF3+886EvEURvbU9F7EqpnHV1TWnZdGwhu/wT+T13Obpt
-         e/ZtTJFHKdGPoD4qdrqfouK+QCN8+Dow4ou2wRhUhVScg5J220DK80h5DOnqdYK3e0cg
-         Ks3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742821275; x=1743426075;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LHH3q92f3jVI2cl1PwT0LmA+qhtDvCooULm9gmNkwck=;
-        b=PyGIH1aH1ia7jBPH/A39gCHDyQR0eDHKNdpIwDwxO85Qxv668nrRtE53dO1WTYw0Gl
-         A44zQK7xzGg6WWnS/T9kglNwmF2HhHGj7CLUP2trv4w4SgRsq9iTOZcK42a4PEA/iA2o
-         QZTzhoWx0YA4ulx3IMY3avhCwIgS6Ave8jmtxtUt1abHnVXmwUeFQ7uVt+X9U25Pg7Ro
-         srDJ1lkoeoHDdKEnnaBTF7S4VAx+eCkpJ3eNFiCMwhu8ZetMTbUHfSTI9ETrEdZU3O0z
-         lT92ymtujJJbTf4bY1NcaAIeQxGKX4HAmKQuuZ9RGXbGxmOGPe8vY0xgYKO7dEwByVFR
-         v1wQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU4SCZ7Ks+YKjfsFi194u/NGEt9RsN35hCEKxPS8M9Bsg06AVUmWkZLRgJv/eWTko/o+UDGq5pHEu5t@vger.kernel.org
-X-Gm-Message-State: AOJu0YybdmzaECpUQGIp2aVOM6oQN1GL3F0759B8h9+mz8swhIbRxDWT
-	Dd39QagClRsqB2kaSBocbSPsYF3QW4Kl11e7V0VbYrfT0+xgwChp7VFgC64R5xk=
-X-Gm-Gg: ASbGnctplKRTHF2MMyG/I2m7ss2ePdlueXxA81MunBpBrESVYdSv+s6n4HGCI6algKs
-	ZEAiLrSRJO8C4WetEt730hCLzCika6iAetZJ8B4+4JVxqfCVyOxtvDGTrv9WQkCemRKMteh/HkC
-	mTc14gfcFORjmUce2g1s0yIlDPxsR268g77BYPQeTbsp00j8sUy7ShqdPMIgzOPfzyMewGMPnIc
-	jygn43ivbJWyXEse+sZSbHMSI4U3f+5Kj8DhNL6jqDtuaFSfss3+OiaH+RXTdWy7yb74EsDjTyJ
-	QLWuO6D944YtHPmnsgUjsN5dbGPD+pbyHs5JJopFQtcTd+Qbxwty0vQect44aweKbQJ4Jg==
-X-Google-Smtp-Source: AGHT+IGeenGXBUxGWQuSKN6iBis1h2PL0x44PYgwRi+E3q/OLy/gfMO1oiAs9uaXyCp/vP0FDPrvPw==
-X-Received: by 2002:a05:600c:3110:b0:43c:f44c:72a6 with SMTP id 5b1f17b1804b1-43d509e3394mr108748655e9.2.1742821272912;
-        Mon, 24 Mar 2025 06:01:12 -0700 (PDT)
-Received: from localhost.localdomain ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d4fdbd1c7sm122275975e9.40.2025.03.24.06.01.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Mar 2025 06:01:11 -0700 (PDT)
-From: srinivas.kandagatla@linaro.org
-To: peda@axentia.se,
-	broonie@kernel.org,
-	andersson@kernel.org,
-	krzk+dt@kernel.org
-Cc: ivprusov@salutedevices.com,
-	luca.ceresoli@bootlin.com,
-	zhoubinbin@loongson.cn,
-	paulha@opensource.cirrus.com,
-	lgirdwood@gmail.com,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	konradybcio@kernel.org,
-	perex@perex.cz,
-	tiwai@suse.com,
-	dmitry.baryshkov@oss.qualcomm.com,
-	linux-sound@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	johan+linaro@kernel.org,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Christopher Obbard <christopher.obbard@linaro.org>
-Subject: [PATCH v4 6/6] arm64: dts: qcom: x1e78100-t14s: Enable audio headset support
-Date: Mon, 24 Mar 2025 13:00:57 +0000
-Message-Id: <20250324130057.4855-7-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250324130057.4855-1-srinivas.kandagatla@linaro.org>
-References: <20250324130057.4855-1-srinivas.kandagatla@linaro.org>
+	s=arc-20240116; t=1742821411; c=relaxed/simple;
+	bh=eos6W+9ir6pEgCNp1c8QmUJfmmzea1hANIHnNv6ejH8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=urd1oxDFOSj9diY8NYGmtU4PI5fK1uXZEY3Ejh8TcXA1mGFMg/QFwhppuC98buv5Yd5v/y5zqCoXojRps1qGAPq0Pnjmg6GSbtBBkJTuwpVo5JQ8o4RUVGuyB5AtcgpriYZYWjkU7vY7MAiBIkfk6KiUKyQ6klwAoFDKiexO+Ww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=YNF2XMoS; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id D9E2D2C6;
+	Mon, 24 Mar 2025 14:01:40 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1742821301;
+	bh=eos6W+9ir6pEgCNp1c8QmUJfmmzea1hANIHnNv6ejH8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YNF2XMoSxwT4Yx+jjaag38dPG2tWYfX/QmAsCY/Y+XSrA35i/zrDkOHoSF1GWER5c
+	 E47luNt80TOHi67jvn/8+ApN3l7DgVXDAdgYFfO6XgpPaS1y8J2S3i0QMb8fgcex7b
+	 MBqVXo3jIsy4n4PIayQXPe4WctkgqCQ1J/mXRzNs=
+Date: Mon, 24 Mar 2025 15:03:05 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+	Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+	Srinivas Neeli <srinivas.neeli@amd.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Manikandan Muralidharan <manikandan.m@microchip.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Sander Vanheule <sander@svanheule.net>,
+	Bert Vermeulen <bert@biot.com>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-riscv@lists.infradead.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: gpio: Correct indentation and style in DTS
+ example
+Message-ID: <20250324130305.GD5113@pendragon.ideasonboard.com>
+References: <20250324125326.82270-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250324125326.82270-1-krzysztof.kozlowski@linaro.org>
 
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Hi Krzysztof,
 
-On Lenovo ThinkPad T14s, the headset is connected via a HiFi mux to
-support CTIA and OMTP headsets. This switch is used to minimise pop and
-click during headset type switching.
+Thank you for the patch.
 
-Enable the mux controls required to power this switch along with wiring up
-gpio that control the headset switching.
+On Mon, Mar 24, 2025 at 01:53:26PM +0100, Krzysztof Kozlowski wrote:
+> DTS example in the bindings should be indented with 2- or 4-spaces and
+> aligned with opening '- |', so correct any differences like 3-spaces or
+> mixtures 2- and 4-spaces in one binding.  While re-indenting, drop
+> unused labels.
+> 
+> No functional changes here, but saves some comments during reviews of
+> new patches built on existing code.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Without this, headset audio will be very noisy and might see headset
-detection errors.
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Tested-by: Christopher Obbard <christopher.obbard@linaro.org>
----
- .../qcom/x1e78100-lenovo-thinkpad-t14s.dtsi   | 25 +++++++++++++++++++
- 1 file changed, 25 insertions(+)
+> ---
+>  .../bindings/gpio/atmel,at91rm9200-gpio.yaml  | 16 ++---
+>  .../bindings/gpio/fairchild,74hc595.yaml      | 20 +++---
+>  .../devicetree/bindings/gpio/gpio-mxs.yaml    | 70 +++++++++----------
+>  .../devicetree/bindings/gpio/nxp,pcf8575.yaml | 24 +++----
+>  .../bindings/gpio/realtek,otto-gpio.yaml      |  8 +--
+>  .../bindings/gpio/renesas,em-gio.yaml         | 20 +++---
+>  .../bindings/gpio/renesas,rcar-gpio.yaml      | 24 +++----
+>  .../devicetree/bindings/gpio/sifive,gpio.yaml |  6 +-
+>  .../bindings/gpio/toshiba,gpio-visconti.yaml  | 24 +++----
+>  .../bindings/gpio/xlnx,gpio-xilinx.yaml       | 48 ++++++-------
+>  10 files changed, 130 insertions(+), 130 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/atmel,at91rm9200-gpio.yaml b/Documentation/devicetree/bindings/gpio/atmel,at91rm9200-gpio.yaml
+> index 3dd70933ed8e..d810043b56b6 100644
+> --- a/Documentation/devicetree/bindings/gpio/atmel,at91rm9200-gpio.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/atmel,at91rm9200-gpio.yaml
+> @@ -69,13 +69,13 @@ examples:
+>      #include <dt-bindings/interrupt-controller/irq.h>
+>  
+>      gpio@fffff400 {
+> -            compatible = "atmel,at91rm9200-gpio";
+> -            reg = <0xfffff400 0x200>;
+> -            interrupts = <2 IRQ_TYPE_LEVEL_HIGH 1>;
+> -            #gpio-cells = <2>;
+> -            gpio-controller;
+> -            interrupt-controller;
+> -            #interrupt-cells = <2>;
+> -            clocks = <&pmc PMC_TYPE_PERIPHERAL 2>;
+> +        compatible = "atmel,at91rm9200-gpio";
+> +        reg = <0xfffff400 0x200>;
+> +        interrupts = <2 IRQ_TYPE_LEVEL_HIGH 1>;
+> +        #gpio-cells = <2>;
+> +        gpio-controller;
+> +        interrupt-controller;
+> +        #interrupt-cells = <2>;
+> +        clocks = <&pmc PMC_TYPE_PERIPHERAL 2>;
+>      };
+>  ...
+> diff --git a/Documentation/devicetree/bindings/gpio/fairchild,74hc595.yaml b/Documentation/devicetree/bindings/gpio/fairchild,74hc595.yaml
+> index 0e5c22929bde..ab35bcf98101 100644
+> --- a/Documentation/devicetree/bindings/gpio/fairchild,74hc595.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/fairchild,74hc595.yaml
+> @@ -71,15 +71,15 @@ unevaluatedProperties: false
+>  examples:
+>    - |
+>      spi {
+> -            #address-cells = <1>;
+> -            #size-cells = <0>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+>  
+> -            gpio5: gpio5@0 {
+> -                    compatible = "fairchild,74hc595";
+> -                    reg = <0>;
+> -                    gpio-controller;
+> -                    #gpio-cells = <2>;
+> -                    registers-number = <4>;
+> -                    spi-max-frequency = <100000>;
+> -            };
+> +        gpio5@0 {
+> +            compatible = "fairchild,74hc595";
+> +            reg = <0>;
+> +            gpio-controller;
+> +            #gpio-cells = <2>;
+> +            registers-number = <4>;
+> +            spi-max-frequency = <100000>;
+> +        };
+>      };
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-mxs.yaml b/Documentation/devicetree/bindings/gpio/gpio-mxs.yaml
+> index 8ff54369d16c..b58e08c8ecd8 100644
+> --- a/Documentation/devicetree/bindings/gpio/gpio-mxs.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/gpio-mxs.yaml
+> @@ -84,52 +84,52 @@ examples:
+>          reg = <0x80018000 0x2000>;
+>  
+>          gpio@0 {
+> -                compatible = "fsl,imx28-gpio";
+> -                reg = <0>;
+> -                interrupts = <127>;
+> -                gpio-controller;
+> -                #gpio-cells = <2>;
+> -                interrupt-controller;
+> -                #interrupt-cells = <2>;
+> +            compatible = "fsl,imx28-gpio";
+> +            reg = <0>;
+> +            interrupts = <127>;
+> +            gpio-controller;
+> +            #gpio-cells = <2>;
+> +            interrupt-controller;
+> +            #interrupt-cells = <2>;
+>          };
+>  
+>          gpio@1 {
+> -                compatible = "fsl,imx28-gpio";
+> -                reg = <1>;
+> -                interrupts = <126>;
+> -                gpio-controller;
+> -                #gpio-cells = <2>;
+> -                interrupt-controller;
+> -                #interrupt-cells = <2>;
+> +            compatible = "fsl,imx28-gpio";
+> +            reg = <1>;
+> +            interrupts = <126>;
+> +            gpio-controller;
+> +            #gpio-cells = <2>;
+> +            interrupt-controller;
+> +            #interrupt-cells = <2>;
+>          };
+>  
+>          gpio@2 {
+> -                compatible = "fsl,imx28-gpio";
+> -                reg = <2>;
+> -                interrupts = <125>;
+> -                gpio-controller;
+> -                #gpio-cells = <2>;
+> -                interrupt-controller;
+> -                #interrupt-cells = <2>;
+> +            compatible = "fsl,imx28-gpio";
+> +            reg = <2>;
+> +            interrupts = <125>;
+> +            gpio-controller;
+> +            #gpio-cells = <2>;
+> +            interrupt-controller;
+> +            #interrupt-cells = <2>;
+>          };
+>  
+>          gpio@3 {
+> -                compatible = "fsl,imx28-gpio";
+> -                reg = <3>;
+> -                interrupts = <124>;
+> -                gpio-controller;
+> -                #gpio-cells = <2>;
+> -                interrupt-controller;
+> -                #interrupt-cells = <2>;
+> +            compatible = "fsl,imx28-gpio";
+> +            reg = <3>;
+> +            interrupts = <124>;
+> +            gpio-controller;
+> +            #gpio-cells = <2>;
+> +            interrupt-controller;
+> +            #interrupt-cells = <2>;
+>          };
+>  
+>          gpio@4 {
+> -                compatible = "fsl,imx28-gpio";
+> -                reg = <4>;
+> -                interrupts = <123>;
+> -                gpio-controller;
+> -                #gpio-cells = <2>;
+> -                interrupt-controller;
+> -                #interrupt-cells = <2>;
+> +            compatible = "fsl,imx28-gpio";
+> +            reg = <4>;
+> +            interrupts = <123>;
+> +            gpio-controller;
+> +            #gpio-cells = <2>;
+> +            interrupt-controller;
+> +            #interrupt-cells = <2>;
+>          };
+>      };
+> diff --git a/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml b/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
+> index 8bca574bb66d..5a6ecaa7b44b 100644
+> --- a/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
+> @@ -128,17 +128,17 @@ additionalProperties: false
+>  examples:
+>    - |
+>      i2c {
+> -            #address-cells = <1>;
+> -            #size-cells = <0>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+>  
+> -            pcf8575: gpio@20 {
+> -                    compatible = "nxp,pcf8575";
+> -                    reg = <0x20>;
+> -                    interrupt-parent = <&irqpin2>;
+> -                    interrupts = <3 0>;
+> -                    gpio-controller;
+> -                    #gpio-cells = <2>;
+> -                    interrupt-controller;
+> -                    #interrupt-cells = <2>;
+> -            };
+> +        gpio@20 {
+> +            compatible = "nxp,pcf8575";
+> +            reg = <0x20>;
+> +            interrupt-parent = <&irqpin2>;
+> +            interrupts = <3 0>;
+> +            gpio-controller;
+> +            #gpio-cells = <2>;
+> +            interrupt-controller;
+> +            #interrupt-cells = <2>;
+> +        };
+>      };
+> diff --git a/Documentation/devicetree/bindings/gpio/realtek,otto-gpio.yaml b/Documentation/devicetree/bindings/gpio/realtek,otto-gpio.yaml
+> index 39fd959c45d2..728099c65824 100644
+> --- a/Documentation/devicetree/bindings/gpio/realtek,otto-gpio.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/realtek,otto-gpio.yaml
+> @@ -81,7 +81,7 @@ dependencies:
+>  
+>  examples:
+>    - |
+> -      gpio@3500 {
+> +    gpio@3500 {
+>          compatible = "realtek,rtl8380-gpio", "realtek,otto-gpio";
+>          reg = <0x3500 0x1c>;
+>          gpio-controller;
+> @@ -91,9 +91,9 @@ examples:
+>          #interrupt-cells = <2>;
+>          interrupt-parent = <&rtlintc>;
+>          interrupts = <23>;
+> -      };
+> +    };
+>    - |
+> -      gpio@3300 {
+> +    gpio@3300 {
+>          compatible = "realtek,rtl9300-gpio", "realtek,otto-gpio";
+>          reg = <0x3300 0x1c>, <0x3338 0x8>;
+>          gpio-controller;
+> @@ -103,6 +103,6 @@ examples:
+>          #interrupt-cells = <2>;
+>          interrupt-parent = <&rtlintc>;
+>          interrupts = <13>;
+> -      };
+> +    };
+>  
+>  ...
+> diff --git a/Documentation/devicetree/bindings/gpio/renesas,em-gio.yaml b/Documentation/devicetree/bindings/gpio/renesas,em-gio.yaml
+> index 8bdef812c87c..49fb8f613ead 100644
+> --- a/Documentation/devicetree/bindings/gpio/renesas,em-gio.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/renesas,em-gio.yaml
+> @@ -57,14 +57,14 @@ examples:
+>    - |
+>      #include <dt-bindings/interrupt-controller/arm-gic.h>
+>      gpio0: gpio@e0050000 {
+> -            compatible = "renesas,em-gio";
+> -            reg = <0xe0050000 0x2c>, <0xe0050040 0x20>;
+> -            interrupts = <GIC_SPI 67 IRQ_TYPE_LEVEL_HIGH>,
+> -                         <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>;
+> -            gpio-controller;
+> -            #gpio-cells = <2>;
+> -            gpio-ranges = <&pfc 0 0 32>;
+> -            ngpios = <32>;
+> -            interrupt-controller;
+> -            #interrupt-cells = <2>;
+> +        compatible = "renesas,em-gio";
+> +        reg = <0xe0050000 0x2c>, <0xe0050040 0x20>;
+> +        interrupts = <GIC_SPI 67 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>;
+> +        gpio-controller;
+> +        #gpio-cells = <2>;
+> +        gpio-ranges = <&pfc 0 0 32>;
+> +        ngpios = <32>;
+> +        interrupt-controller;
+> +        #interrupt-cells = <2>;
+>      };
+> diff --git a/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml b/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml
+> index cc7a950a6030..d32e103a64aa 100644
+> --- a/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml
+> @@ -138,16 +138,16 @@ examples:
+>      #include <dt-bindings/interrupt-controller/arm-gic.h>
+>      #include <dt-bindings/power/r8a77470-sysc.h>
+>      gpio3: gpio@e6053000 {
+> -            compatible = "renesas,gpio-r8a77470", "renesas,rcar-gen2-gpio";
+> -            reg = <0xe6053000 0x50>;
+> -            interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> -            clocks = <&cpg CPG_MOD 909>;
+> -            power-domains = <&sysc R8A77470_PD_ALWAYS_ON>;
+> -            resets = <&cpg 909>;
+> -            gpio-controller;
+> -            #gpio-cells = <2>;
+> -            gpio-ranges = <&pfc 0 96 30>;
+> -            gpio-reserved-ranges = <17 10>;
+> -            interrupt-controller;
+> -            #interrupt-cells = <2>;
+> +        compatible = "renesas,gpio-r8a77470", "renesas,rcar-gen2-gpio";
+> +        reg = <0xe6053000 0x50>;
+> +        interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&cpg CPG_MOD 909>;
+> +        power-domains = <&sysc R8A77470_PD_ALWAYS_ON>;
+> +        resets = <&cpg 909>;
+> +        gpio-controller;
+> +        #gpio-cells = <2>;
+> +        gpio-ranges = <&pfc 0 96 30>;
+> +        gpio-reserved-ranges = <17 10>;
+> +        interrupt-controller;
+> +        #interrupt-cells = <2>;
+>       };
+> diff --git a/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml b/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
+> index fc095646adea..4bdc201b719e 100644
+> --- a/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
+> @@ -76,8 +76,8 @@ additionalProperties: false
+>  
+>  examples:
+>    - |
+> -      #include <dt-bindings/clock/sifive-fu540-prci.h>
+> -      gpio@10060000 {
+> +    #include <dt-bindings/clock/sifive-fu540-prci.h>
+> +    gpio@10060000 {
+>          compatible = "sifive,fu540-c000-gpio", "sifive,gpio0";
+>          interrupt-parent = <&plic>;
+>          interrupts = <7>, <8>, <9>, <10>, <11>, <12>, <13>, <14>, <15>, <16>,
+> @@ -88,6 +88,6 @@ examples:
+>          #gpio-cells = <2>;
+>          interrupt-controller;
+>          #interrupt-cells = <2>;
+> -      };
+> +    };
+>  
+>  ...
+> diff --git a/Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml b/Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
+> index b085450b527f..712063417bc8 100644
+> --- a/Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
+> @@ -48,22 +48,22 @@ additionalProperties: false
+>  
+>  examples:
+>    - |
+> -      #include <dt-bindings/interrupt-controller/irq.h>
+> -      #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  
+> -      soc {
+> +    soc {
+>          #address-cells = <2>;
+>          #size-cells = <2>;
+>  
+>          gpio: gpio@28020000 {
+> -          compatible = "toshiba,gpio-tmpv7708";
+> -          reg = <0 0x28020000 0 0x1000>;
+> -          #gpio-cells = <0x2>;
+> -          gpio-ranges = <&pmux 0 0 32>;
+> -          gpio-controller;
+> -          interrupt-controller;
+> -          #interrupt-cells = <2>;
+> -          interrupt-parent = <&gic>;
+> +            compatible = "toshiba,gpio-tmpv7708";
+> +            reg = <0 0x28020000 0 0x1000>;
+> +            #gpio-cells = <0x2>;
+> +            gpio-ranges = <&pmux 0 0 32>;
+> +            gpio-controller;
+> +            interrupt-controller;
+> +            #interrupt-cells = <2>;
+> +            interrupt-parent = <&gic>;
+>          };
+> -      };
+> +    };
+>  ...
+> diff --git a/Documentation/devicetree/bindings/gpio/xlnx,gpio-xilinx.yaml b/Documentation/devicetree/bindings/gpio/xlnx,gpio-xilinx.yaml
+> index d3d8a2e143ed..8fbf12ca067e 100644
+> --- a/Documentation/devicetree/bindings/gpio/xlnx,gpio-xilinx.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/xlnx,gpio-xilinx.yaml
+> @@ -126,29 +126,29 @@ examples:
+>    - |
+>      #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  
+> -        gpio@a0020000 {
+> -            compatible = "xlnx,xps-gpio-1.00.a";
+> -            reg = <0xa0020000 0x10000>;
+> -            #gpio-cells = <2>;
+> -            #interrupt-cells = <0x2>;
+> -            clocks = <&zynqmp_clk 71>;
+> -            gpio-controller;
+> -            interrupt-controller;
+> -            interrupt-names = "ip2intc_irpt";
+> -            interrupt-parent = <&gic>;
+> -            interrupts = <0 89 4>;
+> -            xlnx,all-inputs = <0x0>;
+> -            xlnx,all-inputs-2 = <0x0>;
+> -            xlnx,all-outputs = <0x0>;
+> -            xlnx,all-outputs-2 = <0x0>;
+> -            xlnx,dout-default = <0x0>;
+> -            xlnx,dout-default-2 = <0x0>;
+> -            xlnx,gpio-width = <0x20>;
+> -            xlnx,gpio2-width = <0x20>;
+> -            xlnx,interrupt-present = <0x1>;
+> -            xlnx,is-dual = <0x1>;
+> -            xlnx,tri-default = <0xFFFFFFFF>;
+> -            xlnx,tri-default-2 = <0xFFFFFFFF>;
+> -        };
+> +    gpio@a0020000 {
+> +        compatible = "xlnx,xps-gpio-1.00.a";
+> +        reg = <0xa0020000 0x10000>;
+> +        #gpio-cells = <2>;
+> +        #interrupt-cells = <0x2>;
+> +        clocks = <&zynqmp_clk 71>;
+> +        gpio-controller;
+> +        interrupt-controller;
+> +        interrupt-names = "ip2intc_irpt";
+> +        interrupt-parent = <&gic>;
+> +        interrupts = <0 89 4>;
+> +        xlnx,all-inputs = <0x0>;
+> +        xlnx,all-inputs-2 = <0x0>;
+> +        xlnx,all-outputs = <0x0>;
+> +        xlnx,all-outputs-2 = <0x0>;
+> +        xlnx,dout-default = <0x0>;
+> +        xlnx,dout-default-2 = <0x0>;
+> +        xlnx,gpio-width = <0x20>;
+> +        xlnx,gpio2-width = <0x20>;
+> +        xlnx,interrupt-present = <0x1>;
+> +        xlnx,is-dual = <0x1>;
+> +        xlnx,tri-default = <0xFFFFFFFF>;
+> +        xlnx,tri-default-2 = <0xFFFFFFFF>;
+> +    };
+>  
+>  ...
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-index afea82616bc4..34d1d8927484 100644
---- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-@@ -41,6 +41,7 @@ wcd938x: audio-codec {
- 		qcom,tx-device = <&wcd_tx>;
- 
- 		reset-gpios = <&tlmm 191 GPIO_ACTIVE_LOW>;
-+		mux-controls = <&us_euro_mux_ctrl>;
- 
- 		vdd-buck-supply = <&vreg_l15b_1p8>;
- 		vdd-rxtx-supply = <&vreg_l15b_1p8>;
-@@ -149,6 +150,16 @@ pmic_glink_ss1_con_sbu_in: endpoint {
- 		};
- 	};
- 
-+	/* two muxes together support CTIA and OMTP switching */
-+	us_euro_mux_ctrl: mux-controller {
-+		compatible = "gpio-mux";
-+		pinctrl-0 = <&us_euro_hs_sel>;
-+		pinctrl-names = "default";
-+		mux-supply = <&vreg_l16b_2p5>;
-+		#mux-control-cells = <0>;
-+		mux-gpios = <&tlmm 68 GPIO_ACTIVE_HIGH>;
-+	};
-+
- 	reserved-memory {
- 		linux,cma {
- 			compatible = "shared-dma-pool";
-@@ -604,6 +615,13 @@ vreg_l15b_1p8: ldo15 {
- 			regulator-always-on;
- 		};
- 
-+		vreg_l16b_2p5: ldo16 {
-+			regulator-name = "vreg_l16b_2p5";
-+			regulator-min-microvolt = <2504000>;
-+			regulator-max-microvolt = <2504000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
- 		vreg_l17b_2p5: ldo17 {
- 			regulator-name = "vreg_l17b_2p5";
- 			regulator-min-microvolt = <2504000>;
-@@ -1461,6 +1479,13 @@ rtmr1_default: rtmr1-reset-n-active-state {
- 		bias-disable;
- 	};
- 
-+	us_euro_hs_sel: us-euro-hs-sel-state {
-+		pins = "gpio68";
-+		function = "gpio";
-+		bias-pull-down;
-+		drive-strength = <2>;
-+	};
-+
- 	usb1_pwr_1p15_reg_en: usb1-pwr-1p15-reg-en-state {
- 		pins = "gpio188";
- 		function = "gpio";
 -- 
-2.39.5
+Regards,
 
+Laurent Pinchart
 
