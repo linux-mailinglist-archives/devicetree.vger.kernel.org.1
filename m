@@ -1,204 +1,198 @@
-Return-Path: <devicetree+bounces-160254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54924A6E092
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 18:07:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDB23A6E09C
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 18:09:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CF6E188BC03
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 17:06:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7054216FCDC
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 17:09:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5C90264606;
-	Mon, 24 Mar 2025 17:06:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 535DE263F49;
+	Mon, 24 Mar 2025 17:09:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QzqFxv3h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MDt5jIm/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB6C0263F5D;
-	Mon, 24 Mar 2025 17:06:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 263E02638AD;
+	Mon, 24 Mar 2025 17:09:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742835974; cv=none; b=X3huWlP3q2Lci33RsEG2AasavigT/jueXFzIska1NgVnd7CY52zEOtaTdHfE1aiFb6vDkfsU5epRQ7bhEQn/5AtJ5Y04Uf7nQABMJRU+HILxhyoaqVELs4nKgKI6n92AyoTW0GPQvKCw31C20BTKv5zUd9OUxDl10Dsr5sTU558=
+	t=1742836178; cv=none; b=F5WJGDJSNxsXsMehXGAc9WQKjJXRYT4YyZ1BuahgAYRhdZp+oynOI36rn3HC7ss3hsYz7iRR2P/1hY5ocVszN49wwe3WGwTW1NPPa+90UeXL7H/3Nz1gnoS+5sJMy69mVI8tMGQW3a6B1FYseHFuH993qydrRAcVbRSUibBLV+M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742835974; c=relaxed/simple;
-	bh=41GT6Nz+bc0ecmxG6gaQLa2C9sVbGLrHlvcO4fqGlIk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QOuWEFjhbHWxGjfZgSgiHA+h5il2hUYFgRRbTBO5KL2bRsIhB7vmBiowRhj07CTJIOtXExgpoUcotFZWc1Gdate7YeXHorkvC04nWTK9eYv/0sl5pKgBfa0q/gHuIr4ufIjgquhefHDUaBdWGr1rq1x/ck9HSogk0dBJUUeQEFk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QzqFxv3h; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3912baafc58so3689492f8f.1;
-        Mon, 24 Mar 2025 10:06:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742835971; x=1743440771; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dFk3IdcSKxayCGlsiOfhMmx3PWLJAwIckQnSX27bd3Y=;
-        b=QzqFxv3hxj6K90kVavWZF7KFkPPitvqTsDgB6WJl0r9RQK66ZOv/sj1PMZakyHdEB0
-         kHEpN6Ex9t5H0pd3eiPSOWD8xVUjhWlRUUboIzk1Bsg3Wpf7A/3NYe/csPrzIRnKsGMW
-         3Zz7YciE11MFizr1uOzyZKBbOazvgwh2H5ZsQBcBVYK8H0hDmqg3/LrSUBQHGm9ED3PN
-         9ua0kTbLofi1JtnJN4iMejPgbO3Ft7/0gjc/6U/+U6Hsb7kgS14PDWQ8Xi3jjPxcTFLC
-         X1sDgHeMF70P61ggJygVsb9G3pziKgCeO8/j+X/7T9BDxxo4931Ktuh/TCJ4UggkfVPK
-         ptdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742835971; x=1743440771;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dFk3IdcSKxayCGlsiOfhMmx3PWLJAwIckQnSX27bd3Y=;
-        b=Z38RttQ2PyDJWfaTBp+imA5AIEtjx2A/k1/bjPwyVE5kulJwp0VL1kRlhz6jrWqoxH
-         YzVAHPvZ/OvPNUOIIBg1VLbY4XUxOVpoJ+bRYtWYoOyKuxWJRCWlTPWCXxjMGRYbsUS8
-         ga6juqSSGUZt6bTzICZmUDj8gRDijkrOCIoHegnM8XmgNOILkksBrySb4InXp/fYLEfJ
-         h11QbHcKJCM4XLETYXUMgFaTYrAuZP/6k/HgxwKBP3xzOZCz5+8eHdjj4/1YC7Lecj3C
-         FoJpigpOHhhxl479f+Qk1u1C9vIBV+0VvVVyVxDdLRUuzNDl7CQnCcOpDwquLBeUoABl
-         V3Bg==
-X-Forwarded-Encrypted: i=1; AJvYcCU2lirtyqylRC24oovI95KEK0XClD0i35yRioPC7ssqU7lRK3lb1Vjsuroevdf336JJ4F8k4480QPI=@vger.kernel.org, AJvYcCV9+PwBI81rSjem3o08F+1LtAZ7WyXez0OL9YQV4R4wh4e1DreNmTXT5Hy/KPejwf6rt15GITy4VEZhiQuz@vger.kernel.org, AJvYcCW+hcyfDFUTwL2If53omPhbF1AahLvuxkkWtntXGUXTrBiojieHX5ZE1ByehhPxifiOCbcXqmrIWLNi@vger.kernel.org, AJvYcCWniksdc1Tr9GdO8ERtObsrcVCPoj56URriR3tOcO7lAvTd9tjZB8kAyQyAlhdUhiJLAayZBfIv+/6+8sw=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz4kMHwvF+slHZlqUCOPDalAMET3YLv0s+ubjA+X615R5jgEOAt
-	ptXDoPv9DoZBmZ0SqcMwE+hLwGFLU9U18++PASi6OBr/W1Iq+GEeodjJiIgWVE/OW5NoDL/8R84
-	Mb2CKp/H12vCBKBkUNjOCKPmQjIc=
-X-Gm-Gg: ASbGncuBJCI28JcBqRDwvm2B0Asdk40lrKEuwel5/EjVJjxY8RJkfDNx5I1zDxG3mCx
-	T0ISVByENTpbIsID6IpJUGkukg6cd7nU2WJ/xdy0EImXwpiOX21c/ifWR5aRHdN82DjTZBhTdcf
-	RsWS1OaGwCwIfyshJ4sIP0Sn41TJA=
-X-Google-Smtp-Source: AGHT+IGFs85m2tb0CvbZ1cteIaSaWqbwx3SiFJBR4bxFXClC5PSNDvwcxnvalrKmwApXl+dNsAqoYgLQtb4T1r/VDvY=
-X-Received: by 2002:a05:6000:400e:b0:391:3f94:dc9e with SMTP id
- ffacd0b85a97d-3997f90394emr14378665f8f.16.1742835970541; Mon, 24 Mar 2025
- 10:06:10 -0700 (PDT)
+	s=arc-20240116; t=1742836178; c=relaxed/simple;
+	bh=oS/jVNiBr+Qb2HZtLsR6LBU3TK7KODsBV2+Ozy0ozVY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BFOQlRHHUU3VPq5xZH1vDyw0waBuVI1NrlFaIr8QXMKYTcrAoiXLvmZPHaBHz6KCLdlZ1yN6lEbZCXA84o0CJHPanobPWfOH/IMsE7sbu7L0z93isryOlyH5kFhlEgXf2uZ2Vs6Tg5CQa3N32dFsjBd/BWxeK2NzMxO+cT+9OQQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MDt5jIm/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B52BC4CEDD;
+	Mon, 24 Mar 2025 17:09:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742836177;
+	bh=oS/jVNiBr+Qb2HZtLsR6LBU3TK7KODsBV2+Ozy0ozVY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MDt5jIm/fSyr45MFjY+aw3XjhcUNk6TRMOuOfey2/9+sRdJ3QD0bhFAiNUi02mMc5
+	 ZbGSHNncsx7pctqwGTQwHyrum7EYESiq/lrkP+I67l4iJvwOUGQW2/ONEFlEBNJxb+
+	 WpKlm8IOtR0r6URfwrsVcwAir6X8fWPBPzBLB7TaOMQ4pY6x3BtuVkT1fFwGkNLwnW
+	 +pdtWamuMT+1G1wg5cXBhDM/tsCBe5tRWwLG92bbycPTXpAhy0pp99Sn2eiLp/ojck
+	 rTixPqR1BRonNMBVnpwu1awZQgIUhTQ0rmsl+AH10E1ussO74fCJdR+Ic0RNXDAKpk
+	 OKDEgEuj9ELWA==
+Date: Mon, 24 Mar 2025 12:09:36 -0500
+From: Rob Herring <robh@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next PATCH 2/2] dt-bindings: net: Document support for
+ Aeonsemi PHYs
+Message-ID: <20250324170936.GA584083-robh@kernel.org>
+References: <20250323225439.32400-1-ansuelsmth@gmail.com>
+ <20250323225439.32400-2-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250323071424.48779-1-clamor95@gmail.com> <20250323071424.48779-3-clamor95@gmail.com>
- <20250324165257.GA458528-robh@kernel.org>
-In-Reply-To: <20250324165257.GA458528-robh@kernel.org>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Mon, 24 Mar 2025 19:05:58 +0200
-X-Gm-Features: AQ5f1JqjtDObBIN6HWXp4Xb-bKxDpiwv0AZaLd-JroEnLNLYqWC2vlIVyshRnAE
-Message-ID: <CAPVz0n3=-QL1_NGP31WX_4LQBt5-T47BbU_yn6td1zk9C2T=iA@mail.gmail.com>
-Subject: Re: [PATCH v1 2/4] dt-bindings: mfd: Document Infineon/Cypress
- CG7153AM MCU
-To: Rob Herring <robh@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250323225439.32400-2-ansuelsmth@gmail.com>
 
-=D0=BF=D0=BD, 24 =D0=B1=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 18:52 Rob =
-Herring <robh@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Sun, Mar 23, 2025 at 09:14:22AM +0200, Svyatoslav Ryhel wrote:
-> > Add binding for Cypress CG7153AM embedded controller. Pegatron implemen=
-ted
-> > a custom configuration of this MCU in their Chagall tablets, utilizing =
-it
-> > for battery monitoring.
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > ---
-> >  .../bindings/mfd/cypress,cg7153am.yaml        | 55 +++++++++++++++++++
-> >  1 file changed, 55 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/mfd/cypress,cg715=
-3am.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/mfd/cypress,cg7153am.yam=
-l b/Documentation/devicetree/bindings/mfd/cypress,cg7153am.yaml
-> > new file mode 100644
-> > index 000000000000..f8469b5e3816
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mfd/cypress,cg7153am.yaml
-> > @@ -0,0 +1,55 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/mfd/cypress,cg7153am.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Infineon/Cypress Semicon CG7153AM Microcontroller
-> > +
-> > +maintainers:
-> > +  - Svyatoslav Ryhel <clamor95@gmail.com>
-> > +
-> > +description:
-> > +  The CG7153AM, an 8-bit programmable microcontroller from Infineon/Cy=
-press
-> > +  Semiconductor, communicates over I2C and is implemented in devices l=
-ike the
-> > +  Pegatron Chagall tablet for fuel gauge and battery control functions=
-.
-> > +
-> > +$ref: /schemas/power/supply/power-supply.yaml
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - items:
-> > +          - enum:
-> > +              - pegatron,chagall-ec # Pegatron Chagall tablet device
-> > +          - const: cypress,cg7153am
-> > +      - items:
-> > +          const: cypress,cg7153am
->
-> Is this just some general purpose uC which could be used for anything
-> and the interface exposed is Pegatron's invention. If so, then I'd drop
-> the cypress,cg7153am compatible. What use would it be to software?
->
+On Sun, Mar 23, 2025 at 11:54:27PM +0100, Christian Marangi wrote:
+> Document support for Aeonsemi PHYs and the requirement of a firmware to
+> correctly work. Also document the max number of LEDs supported and what
+> PHY ID expose when no firmware is loaded.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>  .../bindings/net/aeonsemi,as21xxx.yaml        | 87 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 88 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml b/Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
+> new file mode 100644
+> index 000000000000..0549abcd3929
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
+> @@ -0,0 +1,87 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/aeonsemi,as21xxx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Aeonsemi AS21XXX Ethernet PHY
+> +
+> +maintainers:
+> +  - Christian Marangi <ansuelsmth@gmail.com>
+> +
+> +description: |
+> +  Aeonsemi AS21xxx Ethernet PHYs requires a firmware to be loaded to actually
+> +  work. The same firmware is compatible with various PHYs of the same family.
+> +
+> +  A PHY with not firmware loaded will be exposed on the MDIO bus with ID
+> +  0x7500 0x7500
+> +
+> +  This can be done and is implemented by OEM in 2 different way:
+> +    - Attached SPI flash directly to the PHY with the firmware. The PHY
+> +      will self load the firmware in the presence of this configuration.
+> +    - Manually provided firmware loaded from a file in the filesystem.
+> +
+> +  Each PHY can support up to 5 LEDs.
+> +
+> +allOf:
+> +  - $ref: ethernet-phy.yaml#
+> +
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - ethernet-phy-id7500.7500
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  reg:
+> +    maxItems: 1
+> +
+> +  firmware-name:
+> +    description: specify the name of PHY firmware to load
 
-Yeah, Cypress made an MPU, Pegatron used it as a base to make a fuel gauge.
+maxItems: 1
 
-You propose smth like this?
+as I think we allow more than 1. 
 
-      - items:
-          - enum:
-              - pegatron,chagall-ec # Pegatron Chagall tablet device
-          - const: cypress,cg7153am
+Not required? Then what is the default name (default: ???)?
 
-Without oneOf and second item or remove cypress,cg7153am entirely and
-submit as pegatron,chagall-ec.yaml? Just to be clear.
-
-I am fine with removing oneOf and items: const: cypress,cg7153am, but
-I would like to preserve cypress,cg7153am as second compatible since
-this is an actual MCU model.
-
-Thanks.
-
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  monitored-battery: true
-> > +  power-supplies: true
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        embedded-controller@10 {
-> > +            compatible =3D "pegatron,chagall-ec", "cypress,cg7153am";
-> > +            reg =3D <0x10>;
-> > +
-> > +            monitored-battery =3D <&battery>;
-> > +            power-supplies =3D <&mains>;
-> > +        };
-> > +    };
-> > +...
-> > --
-> > 2.43.0
-> >
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/leds/common.h>
+> +
+> +    mdio {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        ethernet-phy@1f {
+> +            compatible = "ethernet-phy-id7500.7500",
+> +                         "ethernet-phy-ieee802.3-c45";
+> +
+> +            reg = <31>;
+> +            firmware-name = "as21x1x_fw.bin";
+> +
+> +            leds {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                led@0 {
+> +                    reg = <0>;
+> +                    color = <LED_COLOR_ID_GREEN>;
+> +                    function = LED_FUNCTION_LAN;
+> +                    function-enumerator = <0>;
+> +                    default-state = "keep";
+> +                };
+> +
+> +                led@1 {
+> +                    reg = <1>;
+> +                    color = <LED_COLOR_ID_GREEN>;
+> +                    function = LED_FUNCTION_LAN;
+> +                    function-enumerator = <1>;
+> +                    default-state = "keep";
+> +                };
+> +            };
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 9a2df6d221bd..59a863dd3b70 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -649,6 +649,7 @@ AEONSEMI PHY DRIVER
+>  M:	Christian Marangi <ansuelsmth@gmail.com>
+>  L:	netdev@vger.kernel.org
+>  S:	Maintained
+> +F:	Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
+>  F:	drivers/net/phy/as21xxx.c
+>  
+>  AF8133J THREE-AXIS MAGNETOMETER DRIVER
+> -- 
+> 2.48.1
+> 
 
