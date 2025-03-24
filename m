@@ -1,113 +1,124 @@
-Return-Path: <devicetree+bounces-160095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC6EDA6D798
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 10:37:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51100A6D7C9
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 10:44:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 353E43ADA29
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 09:36:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C7BE3ACB27
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 09:43:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8A8E25DAE3;
-	Mon, 24 Mar 2025 09:36:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5907725DCE8;
+	Mon, 24 Mar 2025 09:43:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="EvPCPcEv"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="o0SeTaSK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A35C25DAF6;
-	Mon, 24 Mar 2025 09:36:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E0A325DAEF;
+	Mon, 24 Mar 2025 09:43:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742809019; cv=none; b=tmV0HSmV5Pw5URcG4PrI8xqGlx+9h6hM1p4OqSZexgff9qx1yKoisNW2ccWYp5xLdcjSFOrTngtr9wOOsxikOUmt44dcGnCrl12FuCb10g2w41pJ6q2lR83DhqY9H3LxOpJV2JRDgl4T6znxHgVR2CPd4AYeUg6X8NEBGyFm7LU=
+	t=1742809410; cv=none; b=j31hR0i16zkgmqVzOypUjAg5XqL9ffxvCA7EYAGr08gK3TgqLuyVKv4ErBDiTcugsUsF9Wg1T6dgatnLNWftvx4RYsJI5RUsQYuEXvA8UeXazrMRyyA5u59BkrigpHEjJ73NqCr2Y3L3lurlbtYh10fj1scdGdtnEfjOSEZA1xs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742809019; c=relaxed/simple;
-	bh=tm8nETwBFY8xvceTYwTrlANHRYxXbk/mhl35P+x0Vo0=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=nW2ojUqyZTx6Hrzd8WgQmilCRSsEAjW0qwS3sEwnfP7Ci5Fq+91MuTEyVvMCdDhPVAVt89nxQzFq/wmzNXma5R84k/tIRRpUHJ5rWplo5TdVGY0RqK1YSWp3ChZvueAthBKifms4i8uImzRT2v9JPY8B/8WDwumn1gEVPQYdl0c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=EvPCPcEv; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1742809410; c=relaxed/simple;
+	bh=n3Nby/fIzs+O/ZqCo+jpEq1LFeyxYS3UFTduSwDh0Ks=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=MwbEmnOwRott/JRxb6MJ90S29b9QhLra/fMHq/ApJwoH460hmkUAvwiuBnofPpOyuskWmr3M8c+1UQl0WmsJGBOdiwMdqbgFC0Q2H+w2mW7rkZpSlejzhuvUHGbcFqauI8cHKzhRU3gUMTMoWY/xN0EjoEJx+fN5d2jpi5PmRl4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=o0SeTaSK; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52O7ELVd032168;
+	Mon, 24 Mar 2025 10:42:59 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=5fV2R1E3CKBb4WFfRo1d9P
+	Yp2TC8wiqYUiEwsJbh6Qc=; b=o0SeTaSKKMUsYOUmOa4/jofgvOu2CbNHqPZR4J
+	0590RDqcPG3Niu91HZ96V9+SDVJLcRZEQxzXpO+NqAsm1OdYKg7GrrGWPHiB5sCq
+	eS32CMq9KCaOAzG0KB64861IdL8niNlDmjJiJdaWejHtDhX/i8alovllZCCZyVu5
+	YamOpIJRGcro4TNuZ9uI25C0c8Gjk+12Lc+FN9BtTMY7/NUvNvDG9O34TtlN2U7F
+	H4LWx37jWYYfr8jMweBJRTkARmFIVR4W3VmvEpYMLV8vFKZgS3jjBxWuygR5X+go
+	ufO4+/kzPAsIOeYUpViumltgWd4rZih9TcGGtSNkPku75yvQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45j7n84eqn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 24 Mar 2025 10:42:59 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id E3BD1400DA;
+	Mon, 24 Mar 2025 10:41:40 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 14FE17EE902;
+	Mon, 24 Mar 2025 10:40:16 +0100 (CET)
+Received: from localhost (10.48.87.62) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 24 Mar
+ 2025 10:40:15 +0100
+From: Patrice Chotard <patrice.chotard@foss.st.com>
+Subject: [PATCH v2 0/2] spi: spi-stm32-ospi: dt-bindings fixes
+Date: Mon, 24 Mar 2025 10:40:12 +0100
+Message-ID: <20250324-upstream_ospi_required_resets-v2-0-85a48afcedec@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1742809015;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kFNrF1+QCqXJYQ2BxaXDZ6u0WsATr1kvUb16OTMEuz4=;
-	b=EvPCPcEvEphlFm4vzCrED3mmJuyz5P3exj1vtXKjA5BDHBcTewltFvy66o4BOPEX8mz0kY
-	rhEnfkbWToQg4L6QoDMvFRXwoTUGWwFn3deRY3BC2HrRqSzWS/u0M8ihvbzaM83vloTDjl
-	+JfonB2rs1O5tFvPmSfj+u9sakL0xAzFBFWbLjeXqS9dnjSCDI1zzr2iBoUBnMiUxsIyYv
-	SH3ITh28J/6HXzUkm3kEbDjz7JXTjKN3ENv4wf/cHFv5ptAyFgvQvDgHa7iYHJrSxCei5s
-	aqFPjayZCyGU+6SsUlQox67BonrIV7Vwoa3eO0ZKvuaO+7aFoJl63rn68lV3Fg==
-Date: Mon, 24 Mar 2025 10:36:54 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Quentin Schulz <quentin.schulz@cherry.de>
-Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, stable@vger.kernel.org, Alexey Charkov
- <alchark@gmail.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: Remove overdrive-mode OPPs from
- RK3588J SoC dtsi
-In-Reply-To: <960c038ad9f7b83fe14d0ded388b42f7@manjaro.org>
-References: <f929da061de35925ea591c969f985430e23c4a7e.1742526811.git.dsimic@manjaro.org>
- <71b7c81b-6a4e-442b-a661-04d63639962a@cherry.de>
- <960c038ad9f7b83fe14d0ded388b42f7@manjaro.org>
-Message-ID: <460503eb831485ede9a49dcf226aef1b@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHwo4WcC/42NQQ6CMBBFr0JmbUlbENSV9zCEFBhkFlCcKURDu
+ LuVE7j77y/e20CQCQVuyQaMKwn5KYI9JdAObnqioi4yWG3POrNGLbMERjfWXmaqGV8LMXZxCAZ
+ RWe4ujSkLY5oComNm7Ol9+B9V5IEkeP4cudX83n/Nq1FaXZ3LS20xc2jvvRdJJaStH6Ha9/0LN
+ jJtXcwAAAA=
+X-Change-ID: 20250321-upstream_ospi_required_resets-34a8b17611b6
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime
+ Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <christophe.kerello@foss.st.com>, <linux-spi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        Patrice Chotard <patrice.chotard@foss.st.com>
+X-Mailer: b4 0.14.2
+X-ClientProxiedBy: SAFCAS1NODE1.st.com (10.75.90.11) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-24_04,2025-03-21_01,2024-11-22_01
 
-Hello Quentin,
+Make "resets" property mandatory.
+Update spi-stm32-ospi driver and dt-bindings accordingly.
 
-On 2025-03-23 11:19, Dragan Simic wrote:
-> On 2025-03-21 10:53, Quentin Schulz wrote:
->> On 3/21/25 4:28 AM, Dragan Simic wrote:
->>> The differences in the vendor-approved CPU and GPU OPPs for the 
->>> standard
->>> Rockchip RK3588 variant [1] and the industrial Rockchip RK3588J 
->>> variant [2]
->>> come from the latter, presumably, supporting an extended temperature 
->>> range
->>> that's usually associated with industrial applications, despite the 
->>> two SoC
->>> variant datasheets specifying the same upper limit for the allowed 
->>> ambient
->>> temperature for both variants.  However, the lower temperature limit 
->>> is
->> 
->> RK3588 is rated for 0-80°C, RK3588J for -40-85°C, c.f. Recommended
->> Operating Conditions, Table 3-2, Ambient Operating Temperature.
-> 
-> Indeed, which is why I specifically wrote "specifying the same upper
-> limit", because having a lower negative temperature limit could hardly
-> put the RK3588J in danger of overheating or running hotter. :)
+Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+---
+Changes in v2:
+- Update dt-bindings commit message to explain why OSPI's resets becomes
+  a required property.
+- Link to v1: https://lore.kernel.org/r/20250321-upstream_ospi_required_resets-v1-0-9aa4702e3ae2@foss.st.com
 
-Oh, now I see what you actually wrote above, which I misread a bit
-initially...  In fact, the upper ambient temperature limit is the
-same for both RK3588J and RK3588, according to the datasheets;  it's
-just that the lower temperature limit is much lower for the RK3588J,
-which the patch description says.
+---
+Patrice Chotard (2):
+      spi: dt-bindings: st,stm32mp25-ospi: Make "resets" a required property
+      spi: spi-stm32-ospi: Make "resets" a required property
 
-I'm not sure where did you find the 80 vs. 85 oC difference;  please,
-see a couple of screenshots from the datasheets, linked below:
+ Documentation/devicetree/bindings/spi/st,stm32mp25-ospi.yaml | 1 +
+ drivers/spi/spi-stm32-ospi.c                                 | 2 +-
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+---
+base-commit: e94bd4ec45ac156616da285a0bf03056cd7430fc
+change-id: 20250321-upstream_ospi_required_resets-34a8b17611b6
 
-- RK3588 datasheet v1.6 (v1.7 is the same): https://0x0.st/8j1a.png
-- RK3588J datasheet v1.1: https://0x0.st/8j1m.png
+Best regards,
+-- 
+Patrice Chotard <patrice.chotard@foss.st.com>
 
-The v2 of the patch is coming soon, with the patch description improved
-according to your suggestions.
 
