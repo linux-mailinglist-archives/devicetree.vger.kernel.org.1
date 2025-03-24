@@ -1,117 +1,305 @@
-Return-Path: <devicetree+bounces-160220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB2EFA6DF61
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 17:14:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B455A6DF74
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 17:21:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 16843188CEA3
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 16:14:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED98B3B4438
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 16:18:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 082922620E7;
-	Mon, 24 Mar 2025 16:14:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D89E2638B1;
+	Mon, 24 Mar 2025 16:18:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Gf68N48I"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FVuZKjCz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2391D261583;
-	Mon, 24 Mar 2025 16:14:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E636A2638B0
+	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 16:18:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742832849; cv=none; b=TJYu+NA+XAMi7j+PlP0R41+jiTJbnadY/Ei5T2zfAvo/sHefBSwLfsyJ0pYcifLbdgTYeyPxiJAkNp4/Vkajw0kFy2Qc63zDWp7hrztR2ApXe+3S40UBjiNZXlnaiZMDUtQwn4++X3yZw3rct1B8t3dIOlwAlpBdp/JVt3kKJKk=
+	t=1742833130; cv=none; b=Eb870G+S5HyCz5T0jt36/zsXeGIfPfrfSQFnWn4D1f8FgjkvsXoRslCLmqezr+mrvybFeMzspjApN1utFOvA5VA42YAy9iJcsQnm9a2anWM9SwLmjVnPhkTwDXHyL0zZiC8HJ/6hkKe9cXTBuDmBbVlme5pzPzB9n5mLkIBTcYU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742832849; c=relaxed/simple;
-	bh=qWUcDEvNPwe+MVToQY1UJqIGr2oMYuSjPCHLZBofknA=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=luHPy+XmVpkyTl91yrZpLfQ/eNQqwdQx4m+/4Wk2GTQEKO0VN29b9MrlQIHyukPqaT5rMWGgcHY5fDL3j5D/iPlr5jP+VMSzcsy26/u2KZb/JRwOswBy94Oq9dD9vl5ynU5KIGC4yEmw6nqRuEru3eL0arqkF3AVlgKBGvegxSI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Gf68N48I; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id C9EB62047D;
-	Mon, 24 Mar 2025 16:14:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1742832845;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=N6KzmIi53X4fObYuJrA4GCKCHJLPzFl8bnqM+4sgwCQ=;
-	b=Gf68N48IxHGYxw5YhiOZutJryK0qFHSxJJeAYRbkVLq+oNDSGW0qesENhdVAAjAfxKxj9D
-	ZE/cLxKqWuH93q2c0TTha9uIb72TJzQnCArJ60qE9rphdjgh2rXoahvIdv8WFP6+7om7f1
-	fHSKvAZ4eKzHpX4Us105kKzkdm35JbDjF4lr72btvKLJSU3WG2SZ2KULSLV5mQUM7D509K
-	Wbt9VlL2xLhEtaqv6+fe+BwzpPU02bkyjLbZ+DrlOmwxQ0Abn+cT68213S1R07uGTL+j4N
-	n2336Y+3wBww2TlzhtGWwataCUV4jvefAI8JSJyL1IjQHIcV/tFTyTlKYk6tEw==
+	s=arc-20240116; t=1742833130; c=relaxed/simple;
+	bh=FhoXOYAA1iz/4SuQApCmCCm7e20hHuDPIHWlBiVTuas=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dcy7RxJ3jxJz6M+RQ+mRYNbQGAHjdNUnvBC/duuLZ4FnmHoGhqiyOnFk5gyG0oJ6crJ9Eh38LOE9WU0u0i3dctSH541+8KGcLiSOtRJ9havumVzj4kcz7PQHk2EUQIzONK3ZPJJw7KMY0EJyb3X0i8GQusLu4YCq0CKhAezTdWM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FVuZKjCz; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52O9PL2l025897
+	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 16:18:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=wlqnd0XrME7ieQy3eY1m4t2l
+	0GttO4vmYnyHol1MECg=; b=FVuZKjCzLD2+hAjZyrfggO4TbayQ+2FalZEUdx0h
+	TxNhn0mqqPMwv/+WI8f8OCCOsBq8CN9W7jCTp3MRhXxgrRQO91GtuigWM252ybrT
+	3WHONsjZ42N0ybxJlgejnEN/UTxO1pF5Bou3xarTS6X9cOwcExyL7xKia8pu1OuB
+	3aKGRRKEN3dhhF2IQDVsEu9qfuHayx1prrbJoqzv29xuWD7Ezhn821WNhFYGetRa
+	jG9aN5EA9nY4iONowS7XBt5xU+uIpQWB56APPDvSAvCvHtelWKHbwd0JwEjuO8Tt
+	ROChe4i4q14uhkbrRtHT8rX4rU8bGwASadF6FNN36gJwTw==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45hjjnn54h-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 16:18:45 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c5cd0f8961so256014885a.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 09:18:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742833125; x=1743437925;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wlqnd0XrME7ieQy3eY1m4t2l0GttO4vmYnyHol1MECg=;
+        b=w8OTQtSuDO6RAGLKN3EZimuO/2Brk/6gXBjwOs5MKltJqWlSzpt8Z3bc6hwP9pFL75
+         k+EqQPy+LalZfUSdvucQbhSjZRarVK+d91A4NjgeaNxBetGfbEZJsB9oX4FEGtvxurdN
+         0M9yWVWZMrPycSCY72mScInL7bJRaxBGyvtSMZLNLsM68MdPuB5DKdjqviPvP9w9Epx8
+         yDytVyZCnT1L/uV7yqLlHmUeL+fP+6CZuYtu9yy8SkHSq6AGTjBUET56NYMI8amz2otw
+         v/LBNikAJ7vgd08SxKk/Lu+Z37MBQJilAADOyzIQEt6/LHjrLPvASep7KKCfJpHxT7ew
+         v1vA==
+X-Forwarded-Encrypted: i=1; AJvYcCWSP7Mf8t44l+YFnorekeM3lkG346r6ii92aNjDLQnihmZFJ/jH4/Mw1CN62ebVS6E1jCiHnkykQBft@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzsm8rauvBcbAn4nx8l9e21NrKb3csPPOnsGS/SnWGsa353C8OK
+	SodklNjKFNSbl0Gr8C+/c9KRZeFnICk503hkyc5l6ns4TA+G+2jB98Jik4a0QEYPbotyb+B6EPf
+	vcnRQ9kHxRoL9/5UH7p2lV0rmHj1o263LEBTHTyUfmKbQKXho1seiBDVXCrOD
+X-Gm-Gg: ASbGncsvmIAdmbC5W8cI3K5xInaHZGveyY/p7rnRvys8GdJRmj/ExuROmTPP2A99h87
+	6ShweHWo8WQ4xQWvHKFdc2XsHjy6lLqnjoed1mw2q8Q5QQBqfq+IBPNEN+WxV31ue8DzHLyHz16
+	IVBZEsuSUpX6PDuMf7ykap1/8XsYU/HxEDNtBljOJIvlo2Vb9JSSPB4CAJMXxw26bJJERC4+rSB
+	Edy/ZJ6MEP+IXmiN59DpNkSZUD91jR4H1DoEKRXkFMtZ4SjkpY7DB0/lKP4te73peELBgPeTOIt
+	n7tbIxYQYqhiYw4MWyf/eHeg6nJuNAYoktMeMWFZoJvBxI7j314SRnBF49sQ3KsETbpxZerY7xo
+	X0Hg=
+X-Received: by 2002:a05:620a:46a5:b0:7c5:4738:8a0f with SMTP id af79cd13be357-7c5ba1476f2mr1698183685a.15.1742833124472;
+        Mon, 24 Mar 2025 09:18:44 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF0TAppUS3Au1eXF33air+jgVxzflNCCe1SVJzl/UnSMYgb3QVULayRcEbJnNV1cMl1e1FQQg==
+X-Received: by 2002:a05:620a:46a5:b0:7c5:4738:8a0f with SMTP id af79cd13be357-7c5ba1476f2mr1698179385a.15.1742833123865;
+        Mon, 24 Mar 2025 09:18:43 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54ad647b635sm1188629e87.63.2025.03.24.09.18.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Mar 2025 09:18:42 -0700 (PDT)
+Date: Mon, 24 Mar 2025 18:18:39 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: peda@axentia.se, broonie@kernel.org, andersson@kernel.org,
+        krzk+dt@kernel.org, ivprusov@salutedevices.com,
+        luca.ceresoli@bootlin.com, zhoubinbin@loongson.cn,
+        paulha@opensource.cirrus.com, lgirdwood@gmail.com, robh@kernel.org,
+        conor+dt@kernel.org, konradybcio@kernel.org, perex@perex.cz,
+        tiwai@suse.com, linux-sound@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, johan+linaro@kernel.org,
+        Christopher Obbard <christopher.obbard@linaro.org>
+Subject: Re: [PATCH v4 5/6] ASoC: codecs: wcd938x: add mux control support
+ for hp audio mux
+Message-ID: <fdshfu4g5bzrpva4skvydh5lizhtkqoskivoda7q2ai5byqd4j@rjza74mudtz5>
+References: <20250324130057.4855-1-srinivas.kandagatla@linaro.org>
+ <20250324130057.4855-6-srinivas.kandagatla@linaro.org>
+ <CAO9ioeX9RTBAeL3+9STn+=oEYR0wtaF6yoa=esNddEvqLQyO9Q@mail.gmail.com>
+ <e4e94fbf-172f-4cfd-becc-cb2836ac1fb1@linaro.org>
+ <ctcqkdbv6zh2rabkkr7tlhxlcfsn5nazjfbsnbbu4l4blyakft@pejdsvnazfh6>
+ <324d5789-6309-4a64-bbfa-3afa0632e7ff@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 24 Mar 2025 17:14:01 +0100
-Message-Id: <D8OMOI980I2X.1JH4RKWL1V86E@bootlin.com>
-Subject: Re: [PATCH net-next 01/13] dt-bindings: net: cdns,macb: add
- Mobileye EyeQ5 ethernet interface
-Cc: "Andrew Lunn" <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, "Eric Dumazet" <edumazet@google.com>, "Jakub
- Kicinski" <kuba@kernel.org>, "Paolo Abeni" <pabeni@redhat.com>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Nicolas Ferre"
- <nicolas.ferre@microchip.com>, "Claudiu Beznea" <claudiu.beznea@tuxon.dev>,
- "Paul Walmsley" <paul.walmsley@sifive.com>, "Palmer Dabbelt"
- <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>, "Alexandre
- Ghiti" <alex@ghiti.fr>, "Samuel Holland" <samuel.holland@sifive.com>,
- "Richard Cochran" <richardcochran@gmail.com>, "Russell King"
- <linux@armlinux.org.uk>, "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>, "Gregory CLEMENT"
- <gregory.clement@bootlin.com>, <netdev@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-riscv@lists.infradead.org>, <linux-mips@vger.kernel.org>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-To: "Andrew Lunn" <andrew@lunn.ch>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a
-References: <20250321-macb-v1-0-537b7e37971d@bootlin.com>
- <20250321-macb-v1-1-537b7e37971d@bootlin.com>
- <2dbbd6c0-84d0-4846-a48d-31891f395c7c@lunn.ch>
-In-Reply-To: <2dbbd6c0-84d0-4846-a48d-31891f395c7c@lunn.ch>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdduiedtvddvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkufevvffhofhfjgesthhqredtredtjeenucfhrhhomhepvfhhrohoucfnvggsrhhunhcuoehthhgvohdrlhgvsghruhhnsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeduteeltdevjedvkeelueejhfdvleeiueetvdfgveffffekueeghffhieduleejveenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepjeejrddufeehrdekuddrieehnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepjeejrddufeehrdekuddrieehpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehthhgvohdrlhgvsghruhhnsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvkedprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopegrnhgurhgvfidonhgvthguvghvsehluhhnnhdrtghhpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopegvughumhgriigvthesghhoohhglhgvrdgtohhmpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehpr
- ggsvghnihesrhgvughhrghtrdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrgh
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <324d5789-6309-4a64-bbfa-3afa0632e7ff@linaro.org>
+X-Authority-Analysis: v=2.4 cv=fNc53Yae c=1 sm=1 tr=0 ts=67e185e5 cx=c_pps a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=KKAkSRfTAAAA:8 a=9UW2u0tblTimzNtmCfUA:9 a=CjuIK1q_8ugA:10 a=PEH46H7Ffwr30OY-TuGO:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: -CCFbu8odb3xFa7Ah1Gea9Ipxl1ylcNb
+X-Proofpoint-GUID: -CCFbu8odb3xFa7Ah1Gea9Ipxl1ylcNb
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-24_04,2025-03-21_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
+ lowpriorityscore=0 mlxlogscore=999 priorityscore=1501 mlxscore=0
+ adultscore=0 spamscore=0 bulkscore=0 suspectscore=0 phishscore=0
+ malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503240117
 
-On Fri Mar 21, 2025 at 9:49 PM CET, Andrew Lunn wrote:
->>            - atmel,sama5d2-gem         # GEM IP (10/100) on Atmel sama5d=
-2 SoCs
->>            - atmel,sama5d3-gem         # Gigabit IP on Atmel sama5d3 SoC=
-s
->>            - atmel,sama5d4-gem         # GEM IP (10/100) on Atmel sama5d=
-4 SoCs
->> +          - mobileye,eyeq5-gem        # Mobileye EyeQ5 SoCs
->>            - cdns,np4-macb             # NP4 SoC devices
->>            - microchip,sama7g5-emac    # Microchip SAMA7G5 ethernet inte=
-rface
->>            - microchip,sama7g5-gem     # Microchip SAMA7G5 gigabit ether=
-net interface
->
-> These are kind of sorted. Maybe put mobileye after microchip?
+On Mon, Mar 24, 2025 at 03:58:32PM +0000, Srinivas Kandagatla wrote:
+> 
+> 
+> On 24/03/2025 15:18, Dmitry Baryshkov wrote:
+> > On Mon, Mar 24, 2025 at 01:58:06PM +0000, Srinivas Kandagatla wrote:
+> > > 
+> > > 
+> > > On 24/03/2025 13:50, Dmitry Baryshkov wrote:
+> > > > On Mon, 24 Mar 2025 at 15:01, <srinivas.kandagatla@linaro.org> wrote:
+> > > > > 
+> > > > > From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> > > > > 
+> > > > > On some platforms to minimise pop and click during switching between
+> > > > > CTIA and OMTP headset an additional HiFi mux is used. Most common
+> > > > > case is that this switch is switched on by default, but on some
+> > > > > platforms this needs a regulator enable.
+> > > > > 
+> > > > > move to using mux control to enable both regulator and handle gpios,
+> > > > > deprecate the usage of gpio.
+> > > > > 
+> > > > > Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> > > > > Tested-by: Christopher Obbard <christopher.obbard@linaro.org>
+> > > > > ---
+> > > > >    sound/soc/codecs/Kconfig   |  1 +
+> > > > >    sound/soc/codecs/wcd938x.c | 50 +++++++++++++++++++++++++++++---------
+> > > > >    2 files changed, 40 insertions(+), 11 deletions(-)
+> > > > > 
+> > > > > diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
+> > > > > index ee35f3aa5521..a2829d76e108 100644
+> > > > > --- a/sound/soc/codecs/Kconfig
+> > > > > +++ b/sound/soc/codecs/Kconfig
+> > > > > @@ -2226,6 +2226,7 @@ config SND_SOC_WCD938X
+> > > > >           tristate
+> > > > >           depends on SOUNDWIRE || !SOUNDWIRE
+> > > > >           select SND_SOC_WCD_CLASSH
+> > > > > +       select MULTIPLEXER
+> > > > > 
+> > > > >    config SND_SOC_WCD938X_SDW
+> > > > >           tristate "WCD9380/WCD9385 Codec - SDW"
+> > > > > diff --git a/sound/soc/codecs/wcd938x.c b/sound/soc/codecs/wcd938x.c
+> > > > > index dfaa3de31164..88c758efe40d 100644
+> > > > > --- a/sound/soc/codecs/wcd938x.c
+> > > > > +++ b/sound/soc/codecs/wcd938x.c
+> > > > > @@ -19,6 +19,7 @@
+> > > > >    #include <linux/regmap.h>
+> > > > >    #include <sound/soc.h>
+> > > > >    #include <sound/soc-dapm.h>
+> > > > > +#include <linux/mux/consumer.h>
+> > > > >    #include <linux/regulator/consumer.h>
+> > > > > 
+> > > > >    #include "wcd-clsh-v2.h"
+> > > > > @@ -178,6 +179,8 @@ struct wcd938x_priv {
+> > > > >           int variant;
+> > > > >           int reset_gpio;
+> > > > >           struct gpio_desc *us_euro_gpio;
+> > > > > +       struct mux_control *us_euro_mux;
+> > > > > +       u32 mux_state;
+> > > > >           u32 micb1_mv;
+> > > > >           u32 micb2_mv;
+> > > > >           u32 micb3_mv;
+> > > > > @@ -3235,17 +3238,31 @@ static void wcd938x_dt_parse_micbias_info(struct device *dev, struct wcd938x_pri
+> > > > >                   dev_info(dev, "%s: Micbias4 DT property not found\n", __func__);
+> > > > >    }
+> > > > > 
+> > > > > -static bool wcd938x_swap_gnd_mic(struct snd_soc_component *component)
+> > > > > +static int wcd938x_select_mux_state(struct device *dev, struct wcd938x_priv *wcd938x, int state)
+> > > > >    {
+> > > > > -       int value;
+> > > > > +       int ret = mux_control_try_select(wcd938x->us_euro_mux, state);
+> > > > 
+> > > > Hmm. Does this really work? You have selected the mux in probe
+> > > > function, now you are trying to select it again. If I'm reading the
+> > > > code correctly, you will get -EBUSY here.
+> > > 
+> > > On successful selection of mux state, the mux will be kept available
+> > > (mux_control_deselect) for any new callers.
+> > > 
+> > > So we will not get EBUSY for the second caller.
+> > 
+> > No. wcd938x_populate_dt_data() selects the state by calling
+> > wcd938x_select_mux_state().
+> 
+> At this point we also released it (both in success and error case).
 
-I never understood how most lists end up mostly sorted. Changes for V2:
- - add a "dt-bindings: net: cdns,macb: sort compatibles" patch,
- - add the mobileye compatible below microchip's.
+By which code path? You call this function directly from
+wcd938x_swap_gnd_mic() and the control is already selected from the
+probe path.
 
-Thanks,
+> This will hold on to the previous state unless we have defined a fallback
+> idle-state.
 
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+As I wrote, this doesn't seem to be a proper use of MUX API. I think
+it's much easier to add a boolean which states that MUX has been
+selected and use it to deselect the state both in this function and in
+shutdown path.
 
+Another option is really to expand the MUX API to add 'switch state'
+call which will work if the state is already selected.
+
+> 
+> 
+>  Then you call mux_control_try_select() here.
+> > As far as I understand, it will return -EBUSY as the sempahore is > already taken. Moreover, this is not how the MUX API is supposed to be
+> > used. The driver is supposed to hold a state while it is still in use.
+> > 
+> > > 
+> > > --srini
+> > > > 
+> > > > > 
+> > > > > -       struct wcd938x_priv *wcd938x;
+> > > > > +       if (ret) {
+> > > > > +               dev_err(dev, "Error (%d) Unable to select us/euro mux state\n", ret);
+> > > > > +               return ret;
+> > > > > +       }
+> > > > > 
+> > > > > -       wcd938x = snd_soc_component_get_drvdata(component);
+> > > > > +       wcd938x->mux_state = state;
+> > > > > +       mux_control_deselect(wcd938x->us_euro_mux);
+> > > > > +
+> > > > > +       return 0;
+> > > > > +}
+> > > > > 
+> > > > > -       value = gpiod_get_value(wcd938x->us_euro_gpio);
+> > > > > +static bool wcd938x_swap_gnd_mic(struct snd_soc_component *component)
+> > > > > +{
+> > > > > +       struct wcd938x_priv *wcd938x = snd_soc_component_get_drvdata(component);
+> > > > > 
+> > > > > -       gpiod_set_value(wcd938x->us_euro_gpio, !value);
+> > > > > +       if (wcd938x->us_euro_mux) {
+> > > > > +               if (wcd938x_select_mux_state(component->dev, wcd938x, !wcd938x->mux_state))
+> > > > > +                       return false;
+> > > > > +       } else {
+> > > > > +               gpiod_set_value(wcd938x->us_euro_gpio, !wcd938x->mux_state);
+
+Which codepath will update mux_state in case of the GPIO?
+
+> > > > > +       }
+> > > > > 
+> > > > >           return true;
+> > > > >    }
+> > > > > @@ -3261,11 +3278,22 @@ static int wcd938x_populate_dt_data(struct wcd938x_priv *wcd938x, struct device
+> > > > >                   return dev_err_probe(dev, wcd938x->reset_gpio,
+> > > > >                                        "Failed to get reset gpio\n");
+> > > > > 
+> > > > > -       wcd938x->us_euro_gpio = devm_gpiod_get_optional(dev, "us-euro",
+> > > > > -                                               GPIOD_OUT_LOW);
+> > > > > -       if (IS_ERR(wcd938x->us_euro_gpio))
+> > > > > -               return dev_err_probe(dev, PTR_ERR(wcd938x->us_euro_gpio),
+> > > > > -                                    "us-euro swap Control GPIO not found\n");
+> > > > > +       wcd938x->us_euro_mux = devm_mux_control_get(dev, NULL);
+> > > > > +       if (IS_ERR(wcd938x->us_euro_mux)) {
+> > > > > +               if (PTR_ERR(wcd938x->us_euro_mux) == -EPROBE_DEFER)
+> > > > > +                       return -EPROBE_DEFER;
+> > > > > +
+> > > > > +               /* mux is optional and now fallback to using gpio */
+> > > > > +               wcd938x->us_euro_mux = NULL;
+> > > > > +               wcd938x->us_euro_gpio = devm_gpiod_get_optional(dev, "us-euro", GPIOD_OUT_LOW);
+> > > > > +               if (IS_ERR(wcd938x->us_euro_gpio))
+> > > > > +                       return dev_err_probe(dev, PTR_ERR(wcd938x->us_euro_gpio),
+> > > > > +                                            "us-euro swap Control GPIO not found\n");
+> > > > > +       } else {
+> > > > > +               ret = wcd938x_select_mux_state(dev, wcd938x, wcd938x->mux_state);
+> > > > > +               if (ret)
+> > > > > +                       return ret;
+> > > > > +       }
+> > > > > 
+> > > > >           cfg->swap_gnd_mic = wcd938x_swap_gnd_mic;
+> > > > > 
+> > > > > --
+> > > > > 2.39.5
+> > > > > 
+> > > > 
+> > > > 
+> > 
+
+-- 
+With best wishes
+Dmitry
 
