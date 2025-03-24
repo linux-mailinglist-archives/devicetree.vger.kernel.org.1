@@ -1,156 +1,149 @@
-Return-Path: <devicetree+bounces-160143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160144-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33048A6D9FD
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 13:21:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 594B1A6DA0E
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 13:25:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1F211891BFB
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 12:21:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C44B1893457
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 12:26:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11A1925E810;
-	Mon, 24 Mar 2025 12:21:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C926825E824;
+	Mon, 24 Mar 2025 12:25:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="rDbmyv6v";
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="WKaMpdNi"
+	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="VBhlyXIB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bayard.4d2.org (bayard.4d2.org [155.254.16.17])
+Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5E9D25C71A;
-	Mon, 24 Mar 2025 12:21:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=155.254.16.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9D5625E81D;
+	Mon, 24 Mar 2025 12:25:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742818879; cv=none; b=N6IOCfX3WFpaNRt2DJrqIM4bYwv1Yvcp6LAvqX3+BwPDwQQyAUfiDGatYv+WzUAcKJkIEkg2yC++rqzFWZQ2aWCuDuLkUFOeialKrU8fGLL6jMVdXXQBpMRpm4ImRkXmdYjMSPcaiK3oCYaH6gFHEnJUoiywx3aMcKmBtLVZ3HU=
+	t=1742819141; cv=none; b=FGEfYYh9RWfyzbyBXMCoF7RtA5xX4Fv8XjpvZULf2FoNL2VpxgOp/o+UYs+Yley7jgzIoerHnbq5SE7IANT3NS1Xx1L/XvAhpapgV4s/bmaIcux8fic3T8TDtbDwhk+i8Mvf3Iq6C7trH2RdinlPofCPRrcYoTHcQuLEDzlJUUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742818879; c=relaxed/simple;
-	bh=9gpFd8EFx60nBxNFMoV0usv+BAC3zxeWfcnDeFxbqxo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sQhubFdBeacUp73R60WjnnBA1v/GRkhizmKOtPiTchOgymwWD8O6YM7Tv5g8vppIbwixN1TS40s5CVYV7kZmv8614RX9bSIL7l72ljJ4vcVNJCPG0iduq5e/vfnYnQZ6FIAiSdVoNv1mpmmrFafy3D7syr1jKT/NwIC213DYZJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=rDbmyv6v; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=WKaMpdNi; arc=none smtp.client-ip=155.254.16.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
-Received: from bayard.4d2.org (bayard.4d2.org [127.0.0.1])
-	by bayard.4d2.org (Postfix) with ESMTP id B3637EC59FA;
-	Mon, 24 Mar 2025 05:21:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1742818874; bh=9gpFd8EFx60nBxNFMoV0usv+BAC3zxeWfcnDeFxbqxo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rDbmyv6vIYVR4mO3RtZFWbK2+WP/H3WVLmsa5FJ9uNKgtGEb+SL3kMQo4Fnv4nVHf
-	 wmOyvW81EIWY2wwa6lRqcnC7SrSFjU8+56R2qa9PNSGBE9GUAGJp7bfUKbsSiuezMM
-	 +HGX90qUPKmNEsaoMroHF+qzA8ksiYt0pfdGVmNyKX9Sm6oDI87CCQsF3cPE7P8Cci
-	 SdMlddqRc9LMcXW76hxh02VTKMw2QtXC7mKPxC1GsGzmmL/yNK77y5a6h8yep5Nvvb
-	 K7+oISqlEPE2XiUFtAo73s/ej8k5uNvtKueS+OraDQK/7XwtAbBk5gC2jQe6jd7KnV
-	 svZwHSRWFsyRQ==
-X-Virus-Scanned: amavisd-new at 4d2.org
-Received: from bayard.4d2.org ([127.0.0.1])
- by bayard.4d2.org (bayard.4d2.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id GSqTSPtA-cE2; Mon, 24 Mar 2025 05:21:13 -0700 (PDT)
-Received: from ketchup (unknown [183.217.80.115])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: heylenay@4d2.org)
-	by bayard.4d2.org (Postfix) with ESMTPSA id A56AEEC59F0;
-	Mon, 24 Mar 2025 05:21:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1742818865; bh=9gpFd8EFx60nBxNFMoV0usv+BAC3zxeWfcnDeFxbqxo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WKaMpdNisRVneY5YjfL44Z9h1qM+1S/RZ/juY/PjwDLMi8svonxhF8S65hOXoZT4n
-	 Yeh7TYUS5Bgl/2Q6CBHJ09DUIZhAjsfRKEG1jCTNwqzTC+AWoYWmZHOiXdsPzhSEnr
-	 3aAPSl+cZ6eEz8SZoopFeidMCnwhq24C85M9qyy1FT/qt9wEYxJaWzXHB/762GkWkH
-	 OOK4riQLivvaYP+ECV2jv9AT0iiaDPwwTINBtsSCyncm5081eJL+SdciOvReu9hXj9
-	 pvvtu5hQQVQHcKS8GHN7Rlkod1B8eyr4/Anmn3uXRK+nKHivgiYlhn+v4ZOGBMBfvp
-	 wSYqGy8b5Osng==
-Date: Mon, 24 Mar 2025 12:20:52 +0000
-From: Haylen Chu <heylenay@4d2.org>
-To: Alex Elder <elder@riscstar.com>, p.zabel@pengutronix.de,
-	mturquette@baylibre.com, sboyd@kernel.org, dlan@gentoo.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	guodong@riscstar.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, spacemit@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND 3/7] clk: spacemit: add reset controller support
-Message-ID: <Z-FOJFHOsU_dLkmS@ketchup>
-References: <20250321151831.623575-1-elder@riscstar.com>
- <20250321151831.623575-4-elder@riscstar.com>
+	s=arc-20240116; t=1742819141; c=relaxed/simple;
+	bh=AMYE+1I/yOpxWnGJfI5UUdY1aUw0MEixbTcQYKG3ztc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BSE4FYJK+NN2fd45B520wWcEboZFCNKmpzleMCmTldjZWoFtjljkCfhNKgZzS3K690b0oXw6Sg8y4kyP9rVjoY6CUGJRms3ad4KhbGHJsLhuV095dxgrMd+lrVtsFNXTcTDNLmlm3tRMxmKr4QxXjmxbyl63Cbw26TNWMKpG78E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=VBhlyXIB; arc=none smtp.client-ip=5.135.140.105
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1A4522B2F11;
+	Mon, 24 Mar 2025 13:25:28 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
+	t=1742819131; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=kA8B7ILRQjbrf7vZCpIq+EjV0GTPDQ45jh2Yc92ZEFQ=;
+	b=VBhlyXIBFTdyC6vVDFd8THg2EDDIryPPVZQHDU6uDYMW86/kWbvAPg4tTYo2UnKgdQPf6C
+	HnJEiqmujfJ5B4PDWSc1x5nwttMZqdi5o1fD/JgWgabi3y1NCv7SQ+dfLH2CVJ/7zH+BNb
+	V/XSKQzb4qXI3fyj7GHQGMKy6PeV/9L7k4tLUkGcj1fZ8qblwZrhAmNrXFHOhC73Z71wKm
+	a6sDm7zKEnyAiQePQF8FRwkTBXZpNrzqxjR+n3ASWR2P/E4Rqt1Zc/dUJLZBJf3gt4jSlM
+	fbKa7jWPGhXvwoJkkdzi1I4KU0D2/GBqAj+w7o91WUriRBw9n6yAVj4lqEtDvg==
+Message-ID: <f4bb786d-09b2-4237-84bd-cdfe297f8165@cjdns.fr>
+Date: Mon, 24 Mar 2025 13:25:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250321151831.623575-4-elder@riscstar.com>
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH v1 4/8] dt-bindings: timer: Add EcoNet HPT CPU Timer
+To: Krzysztof Kozlowski <krzk@kernel.org>, linux-mips@vger.kernel.org
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, benjamin.larsson@genexis.eu
+References: <20250321134633.2155141-1-cjd@cjdns.fr>
+ <20250321134633.2155141-5-cjd@cjdns.fr>
+ <c1791b2e-bdf6-448c-88d3-c97511af3357@kernel.org>
+ <8f095a56-a188-45e9-945a-1d77ef175dc8@cjdns.fr>
+ <f2738225-564e-479b-a4f0-fac0ba6b6d53@kernel.org>
+ <d419bcd2-fa78-4390-88b0-64ed54b87081@cjdns.fr>
+ <b3fea7b9-b7ea-4987-9fe7-b0adb9346f07@kernel.org>
+Content-Language: en-US
+From: Caleb James DeLisle <cjd@cjdns.fr>
+In-Reply-To: <b3fea7b9-b7ea-4987-9fe7-b0adb9346f07@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Fri, Mar 21, 2025 at 10:18:26AM -0500, Alex Elder wrote:
-> Define ccu_reset_data as a structure that contains the constant
-> register offset and bitmasks used to assert and deassert a reset
-> control on a SpacemiT K1 CCU. Define ccu_reset_controller_data as
-> a structure that contains the address of an array of those structures
-> and a count of the number of elements in the array.
-> 
-> Add a pointer to a ccu_reset_controller_data structure to the
-> k1_ccu_data structure.  Reset support is optional for SpacemiT CCUs;
-> the new pointer field will be null for CCUs without any resets.
-> 
-> Finally, define a new ccu_reset_controller structure, which (for
-> a CCU with resets) contains a pointer to the constant reset data,
-> the regmap to be used for the controller, and an embedded a reset
-> controller structure.
-> 
-> Each reset control is asserted or deasserted by updating bits in
-> a register.  The bits used are defined by an assert mask and a
-> deassert mask.  In some cases, one (non-zero) mask asserts reset
-> and a different (non-zero) mask deasserts it.  Otherwise one mask
-> is nonzero, and the other is zero.  Either way, the bits in
-> both masks are cleared, then either the assert mask or the deassert
-> mask is set in a register to affect the state of a reset control.
-> 
-> Signed-off-by: Alex Elder <elder@riscstar.com>
-> ---
->  drivers/clk/spacemit/ccu-k1.c | 93 +++++++++++++++++++++++++++++++++++
->  1 file changed, 93 insertions(+)
-> 
-> diff --git a/drivers/clk/spacemit/ccu-k1.c b/drivers/clk/spacemit/ccu-k1.c
-> index f7367271396a0..6d879411c6c05 100644
-> --- a/drivers/clk/spacemit/ccu-k1.c
-> +++ b/drivers/clk/spacemit/ccu-k1.c
 
-...
+On 24/03/2025 08:13, Krzysztof Kozlowski wrote:
+> On 24/03/2025 00:53, Caleb James DeLisle wrote:
+>>>>>> +  compatible:
+>>>>>> +    const: econet,timer-hpt
+>>>>> Soc components must have soc-based compatible and then filename matching
+>>>>> whatever you use as fallback.
+>>>> I have so far been unable to find good documentation on writing DT bindings
+>>>> specifically for SoC devices. If you have anything to point me to, I will read it.
+>>>> If not, even a good example of someone else doing it right is helpful.
+>>>>
+>>>> Currently, I see qcom,pdc.yaml appears to do what you say, so I in absence
+>>>> of any other advice, I can try to do what they do.
+>>> Just don't use generic fallback.
+>>
+>> Ok I watched your "Accepted in Less Than 10 Iterations" lecture (I'm doing my
+>> homework). If I understand this correctly, you prefer that I use something specific
+>> like econet,en751221-timer as the fallback case, so for example on EN751627,
+>> it would be:
+>>
+>> compatible = "econet,en751627-timer", "econet,en751221-timer";
+> Yes
+>
+>> The reason why I didn't do this is because this timer seems to show up in a lot of
+>> places. Vendor code says that it's older than EN751221, and (if my reading is
+> Just like every other SoC component for every other SoC.
+>
+>> correct) it has found it's way into chips branded TrendChip, MediaTek and Ralink
+>> as well as EcoNet.
+>>
+>> Now that I'll be adding strict checks on the number of register blocks, this way
+>> also has the advantage of allowing a case for users of the timer in SoCs we don't
+>> know about:
+>>
+>> // Only valid with 2 register blocks
+>> compatible = "econet,en751627-timer", "econet,timer-hpt";
+>>
+>> // Only valid with 1 register block
+>> compatible = "econet,en751612-timer", "econet,timer-hpt";
+> Above do not differ...
+>
+>> // No restriction because we don't know how many timers the SoC has
+>> compatible = "econet,timer-hpt";
+> How can you not know? This is strictly defined on given hardware.
+>
+I mean I don't know, the person writing the DTS for that SoC needs to know.
 
-> +static int
-> +k1_rst_update(struct reset_controller_dev *rcdev, unsigned long id, bool assert)
-> +{
-> +	struct ccu_reset_controller *controller = rcdev_to_controller(rcdev);
-> +	struct regmap *regmap = controller->regmap;
-> +	const struct ccu_reset_data *data;
-> +	u32 val;
-> +	int ret;
-> +
-> +	data = &controller->data->data[id];
-> +
-> +	ret = regmap_read(regmap, data->offset, &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	val &= ~(data->assert_mask | data->deassert_mask);
-> +	val |= assert ? data->assert_mask : data->deassert_mask;
-> +
-> +	return regmap_write(regmap, data->offset, val);
-> +}
 
-I don't think it's safe to write the regmap based on a value read
-earlier without the regmap's inner lock held: it's totally fine for the
-clock part to issue an update of the register at the same time. Without
-knowledge on it, reset code may rollback the clock bits written by clock
-code earlier to the original value. That's why I keep using ccu_update()
-everywhere and dropped ccu_write().
+Per your preference, I'll do the following:
+
+
+// 2 blocks accepted
+
+compatible = "econet,en751627-timer", "econet,en751221-timer";
+
+// 1 block accepted
+
+compatible = "econet,en751221-timer";
+
+
+If someone has an SoC with more than 2 timers, it is not supported so they
+should update the binding, or (in downstream) they might write an invalid
+DTS. FWIW I have no evidence of any >2 core processor which uses this, so
+2 timers is probably the maximum.
+
+
+Lastly I'll change the driver name to timer-econet-en751221.c to avoid the
+proliferation of different names.
+
 
 Thanks,
-Haylen Chu
+
+Caleb
+
 
