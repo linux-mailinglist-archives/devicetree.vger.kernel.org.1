@@ -1,164 +1,171 @@
-Return-Path: <devicetree+bounces-160299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160300-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2BC5A6E329
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 20:16:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53399A6E381
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 20:27:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C41E1168E69
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 19:16:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 264091889C0C
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 19:27:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C76181925AB;
-	Mon, 24 Mar 2025 19:15:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DDE319C54A;
+	Mon, 24 Mar 2025 19:27:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Z3l8S/Ag"
+	dkim=pass (2048-bit key) header.d=soleen-com.20230601.gappssmtp.com header.i=@soleen-com.20230601.gappssmtp.com header.b="hzrlVIqF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B19992E3381
-	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 19:15:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0416519539F
+	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 19:27:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742843753; cv=none; b=kkLc3DfHMALI0z4cOlnoDCmVcwWrd6kr8KmkDqSkpJr36fW705W+c/r6gWnjLkBsU4wR/YeYvbifq2ex8XWAUE/E2NhhkWplDSlM69s/cZHQ29RJKuhY19r/fhaolb0qD3bLWmR/FrUvbr8kHCITglUKv5vB6qsGZX3daNOz96w=
+	t=1742844444; cv=none; b=FnK3s3P7XlENY57ehS3+6YBbJQEhVpiO0BINRs30UY8IUDSAsRJOd0/JedOhRhw0eqAId42n7ZjiPWUtLYkk/iyA5x/YrStBJ+t4uoZiMMbn6M4Tynr+Yx/Md67tG+l1sIkIrF1OQGZJgZdK8974BRxoZjym0zRFVAdwlLLPmUY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742843753; c=relaxed/simple;
-	bh=fBNjGhw6eywjKM4CPjTagVCVi48iAj00DoDAQIEtcVs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GJpSk/UHR5URi0394hY9Gx06+X6eE1iDcVbUQL0K1Y4k/HHpyuYCwBwAdQ//0thF6cZNy1yN8IolMKoiHh7GIIAUA4CBOnHXxgQfd/+wMZ5tAVHmhCjAFOAPmjElN8cVP+h+K/yAdh5U8m/DuNfc88/qRxLfZoFRRvR5quUNhRU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Z3l8S/Ag; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52OIj1iZ015727
-	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 19:15:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	g3WlA5imHAbR+jao8j3DyOpD0bdaiCLBhc5RaKXj5z4=; b=Z3l8S/Ag79s1WMv7
-	hGqHRFCxtFF/PTWnSmWTp2wvAP/2/2T1BzfZ9SDFxkX8OSNyeUYmPw1KDsJ0EhB+
-	PGY2Gh7fpOXeA6xrxJC4G0U5WI3QlM1FziRzPvsZHMxt7dp2tK+ouX8+ZKXSriQ2
-	lLvH/MelqWNHgrwuNyjVxV2EzizsAd2Uce14/a2eYBLlDTzhT8DXjZdYqDl8Lh+f
-	sJ/DNZcmT9yfyG/BlFMtFZOWYrt9wHIC0ASwCehN2npqq34GHlFCJnVB8Pw5Pv/4
-	LTKI2jkaLNzpN7hOdGVpVBK+gO/mZrSntgnQrWMYhoGyEMQ1GQvRs4lcwGmM+NJr
-	pBswtA==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45hn9wdcuj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 19:15:49 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-476695e930bso4704651cf.2
-        for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 12:15:49 -0700 (PDT)
+	s=arc-20240116; t=1742844444; c=relaxed/simple;
+	bh=tow1bbsuiMKdxwcgM5wqdG0LBLdJEDfAWZYo0p/RsCA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HZEHNo3SGXMnhofeu+AmInR7XmoAqOXXuj+jahX3a+Y/iU4e4RctVKCNmIVB10orcwfgpYfjq0kHjTRjMwrEzO/36wZ/icuf2aafiFR71W/CetuJiPW3WY1eQDP0iYStWwEcnmBQwSH+Vho3mN0jV4DQtvKk/rB5G6MsYO5GRf0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=soleen.com; spf=pass smtp.mailfrom=soleen.com; dkim=pass (2048-bit key) header.d=soleen-com.20230601.gappssmtp.com header.i=@soleen-com.20230601.gappssmtp.com header.b=hzrlVIqF; arc=none smtp.client-ip=209.85.160.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=soleen.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=soleen.com
+Received: by mail-qt1-f181.google.com with SMTP id d75a77b69052e-476a304a8edso42310411cf.3
+        for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 12:27:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=soleen-com.20230601.gappssmtp.com; s=20230601; t=1742844441; x=1743449241; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=risWjFwCypYzMEcsgslZMqIUPKF0hXh9xXq6g1dCnwU=;
+        b=hzrlVIqF5lXKCI9UnOheIx2QUoJEvTxg22bRKZZBa+LUBMgnKw+pD4bt4qLCuyssJk
+         XV6T0WIwlkOQFa6HFlqpDlXHqYyu1vfwxV5vegnUU+nD2dZh9AJR1xwcoCwU1AIti75W
+         VTpsCkZ+fdKar18/9YWbd+I2rZbCCBSR8hqqACZ07U/4ScUoeHEAZ+MP/2um+89n7+yC
+         0yTM5MNH4uHWkOi1uvdUmTVb8xpyXD3DPT1vl8eVrr2pTw8b6UOggWB1HWhHCwY7zhqh
+         TFB56YDd3f4rdl1xQXCvCCrMzR7h3VZ24+zNHQ1K8mnvig7AHXpQCVb0VhD/wG4ghasA
+         /vIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742843748; x=1743448548;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=g3WlA5imHAbR+jao8j3DyOpD0bdaiCLBhc5RaKXj5z4=;
-        b=nmrfQ/MZNgII1Gg9hjdqYFp2Mbqd7uHuAbmhbroe1MRUZFRAz8UFj33ayeGusnCGvC
-         bfjfTb1I73Jss26vAUt2C/3ljc7AKKko4bEQoY8iheg4M/tfPKAdgVbK4EC1bP2ThwPc
-         dVq/Seq5DSBAmy8qXQL/Bw72dJhgsiN7G3jxcMYpQurRxnkzSgEMaxwwP7HrUlceeyge
-         BL2g2xqc2I8cIUZnAX4muFHIqt9s7nuOTKrdpQwIWKILST4yeyJKs4V/gGRK4hl70jIf
-         al+KF1gH8SbapTH2Kaxq1ipt7pKzuSUSGQs/0q/jPHGmp91tDu6Ctbinmi/a9KDGOC4t
-         kDJg==
-X-Forwarded-Encrypted: i=1; AJvYcCX+7JnUFCkhEpd9AtQZ9tWTOaMxheQZB8Q27qxFRY+KoA2V6pZxG2j7Ram4IJxpwSxzufvrYguweClk@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx3sB552qSEfZkK8UuZuHDfeskHYqyKDWZ77duQUNrvj+qomPCV
-	499AWMEvM3Eo/379JpFCO4Aoj9XcEBVggLnGGC8BiS0DFr4lPeCz1864LkYn/aRMsy3kk1xvCKw
-	GqooHXtvSWOIZzHALh+6RTar97cdFuOBw8LSA2/6hbqwrUB5xAGkM+1qr1c4b
-X-Gm-Gg: ASbGnctM/176lHEY5pqHsT9HVTLqn0YAne4+mhBxIb7qjWbubn6lb+ky9M8P/pGRA/+
-	+ehF1+tcpxGNTPflST35SSAKsurH8aT/6Ynzs74gh+CYkVRCkpFE81z15MpRustZi7Ha0yJjO72
-	dEOVHt0+CfGtXqoTff1+GWEG6wvkNAqneHg4phfZ7alqk6NarNJeKsCXPt3Ze7g1eK5W78DwmPA
-	1PymwuP1pYlwcT8M+LRAqkjW1fKuC/8+daAl4Z7088u4j9vWkMsuJZtTafNBi4EJWw7WC/sDbJf
-	LvPpa6NmGwVF5arYYLiYhRmCviziBSWzA8+Cex8QoLNw2ze2v55jfp2qdyCjC/U9jvbs1A==
-X-Received: by 2002:a05:622a:8b:b0:474:efa8:3607 with SMTP id d75a77b69052e-4771dd591camr75030521cf.1.1742843748416;
-        Mon, 24 Mar 2025 12:15:48 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEtmaP6yOrhxO/q6iKc0oEvHBuaQJo1z8Kot1OeZWFMeia/4semGeZRZf9taq7A7UDWKD4wzA==
-X-Received: by 2002:a05:622a:8b:b0:474:efa8:3607 with SMTP id d75a77b69052e-4771dd591camr75030291cf.1.1742843747870;
-        Mon, 24 Mar 2025 12:15:47 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac3efb658e4sm719173166b.87.2025.03.24.12.15.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Mar 2025 12:15:47 -0700 (PDT)
-Message-ID: <2b038454-8994-490c-9d59-9bd03f52e337@oss.qualcomm.com>
-Date: Mon, 24 Mar 2025 20:15:44 +0100
+        d=1e100.net; s=20230601; t=1742844441; x=1743449241;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=risWjFwCypYzMEcsgslZMqIUPKF0hXh9xXq6g1dCnwU=;
+        b=mZ5PYVInaUAYgPZ9AcDv1mMG8m+1AVXDCanBxzGsaiLgzC9sJl0D5zVm1kD5VLDEAK
+         kcR1Kte265J6zmJAVIBowZ0Qvud34PxN0kGBuY2DkZtBh6SY5l8FdggxFYo4q7sQqj21
+         Ei2wmM8brtg8232nbZ2FGJSO2BTEBAOKVdEYZ/AJC1bQGS9zVJciFUZRNE9ixDmIOdL/
+         T1yQJeJyIS6dxFdaAehak49a7evgVb7Z9vzMg1YO/7VdKzy+Qax0Hpnms0o+HV+UwGSF
+         IKYgKGBWCPIw6F3tHop2eC9jCjKKilXefxj3bT6LkfUyXAizKIU7nIPd73AFX+JpX/J5
+         3ykw==
+X-Forwarded-Encrypted: i=1; AJvYcCXi9BfKxZEDyvEl+wshID8TWPbexJGQ8LSznzbbbYW55QKadIC1ATEavqiRxB/G5aIfhGVZoJlZsejN@vger.kernel.org
+X-Gm-Message-State: AOJu0YzdcPQzJCKQpNSEWTNZ6sIWYBp3XhXrk0y/iWR9iBfHk0LZIQQM
+	pEuTWnbvzzKJqt9PoLZAreFFLmbvaciSmr75uFDFg9kNPp0LzBhuphAhoi61ghWqvkygaJD3Iaz
+	faL7VKjwy7nNDiefb3A4Rnuj3PjP/TgyKi5bSvA==
+X-Gm-Gg: ASbGncv7LaySUVUD6KvlcOqEPEYkgbye1YZp00NIh1rAgT/MOxvS2Xun74t4lWFEk4Q
+	gSddEnzKwSzh4KkhEWjc8Ss1kvcgamyfsm3QklCRgGZQ85fWvHZ2YpWOsNTGxrYnB4XG9ijZdWf
+	ICGXl0dWKei2m3xVeLFBjzfsb+DRK82d6FA7M=
+X-Google-Smtp-Source: AGHT+IGstsIg4qTmJ5YmWZYDNChDQ3+AV2nMWCj2a+cFs02lJM90kE8eqj7HIwLM8JIykyDhXLdef0fVOQCXvqByXHY=
+X-Received: by 2002:a05:622a:550f:b0:472:bbb:1bab with SMTP id
+ d75a77b69052e-4771dd88e91mr196322501cf.24.1742844440714; Mon, 24 Mar 2025
+ 12:27:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] arm64: qcom: sc7280: Move phy, perst to root port
- node
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org
-Cc: linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_vbadigan@quicinc.com, quic_mrana@quicinc.com
-References: <20250322-perst-v1-0-e5e4da74a204@oss.qualcomm.com>
- <20250322-perst-v1-2-e5e4da74a204@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250322-perst-v1-2-e5e4da74a204@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: 7m7EVKzmnHsSNDDQw4feBIisN-oeUqe5
-X-Proofpoint-ORIG-GUID: 7m7EVKzmnHsSNDDQw4feBIisN-oeUqe5
-X-Authority-Analysis: v=2.4 cv=CPoqXQrD c=1 sm=1 tr=0 ts=67e1af65 cx=c_pps a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=EUspDBNiAAAA:8 a=bSnlr1PQR7FYCNIf-OoA:9 a=QEXdDO2ut3YA:10
- a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-24_06,2025-03-21_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxlogscore=999
- spamscore=0 priorityscore=1501 suspectscore=0 bulkscore=0 mlxscore=0
- lowpriorityscore=0 malwarescore=0 adultscore=0 phishscore=0
- impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503240137
+References: <20250320015551.2157511-1-changyuanl@google.com>
+ <20250320015551.2157511-12-changyuanl@google.com> <CALu+AoS01QJ-H5Vpr378rbx==iRQLG0HajtMCUzDXRO75biCag@mail.gmail.com>
+In-Reply-To: <CALu+AoS01QJ-H5Vpr378rbx==iRQLG0HajtMCUzDXRO75biCag@mail.gmail.com>
+From: Pasha Tatashin <pasha.tatashin@soleen.com>
+Date: Mon, 24 Mar 2025 15:26:43 -0400
+X-Gm-Features: AQ5f1JrjPincvTv7ELB8J7T2hdmnlfkqUUS0uCgm9_GvQ7ohVp8PZ0NaxW7sdEs
+Message-ID: <CA+CK2bC4PM0JnHOUm7qfpQ=wUhwsYQ-hJ12tTK_7pSWgYk+bhg@mail.gmail.com>
+Subject: Re: [PATCH v5 11/16] kexec: add config option for KHO
+To: Dave Young <dyoung@redhat.com>
+Cc: Changyuan Lyu <changyuanl@google.com>, linux-kernel@vger.kernel.org, graf@amazon.com, 
+	akpm@linux-foundation.org, luto@kernel.org, anthony.yznaga@oracle.com, 
+	arnd@arndb.de, ashish.kalra@amd.com, benh@kernel.crashing.org, bp@alien8.de, 
+	catalin.marinas@arm.com, dave.hansen@linux.intel.com, dwmw2@infradead.org, 
+	ebiederm@xmission.com, mingo@redhat.com, jgowans@amazon.com, corbet@lwn.net, 
+	krzk@kernel.org, rppt@kernel.org, mark.rutland@arm.com, pbonzini@redhat.com, 
+	hpa@zytor.com, peterz@infradead.org, ptyadav@amazon.de, robh+dt@kernel.org, 
+	robh@kernel.org, saravanak@google.com, skinsburskii@linux.microsoft.com, 
+	rostedt@goodmis.org, tglx@linutronix.de, thomas.lendacky@amd.com, 
+	usama.arif@bytedance.com, will@kernel.org, devicetree@vger.kernel.org, 
+	kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-doc@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 3/22/25 4:00 AM, Krishna Chaitanya Chundru wrote:
-> Move phy, perst, to root port from the controller node.
-> 
-> Rename perst-gpios to reset-gpios to align with the expected naming
-> convention of pci-bus-common.yaml.
-> 
-> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> ---
+On Mon, Mar 24, 2025 at 12:18=E2=80=AFAM Dave Young <dyoung@redhat.com> wro=
+te:
+>
+> On Thu, 20 Mar 2025 at 23:05, Changyuan Lyu <changyuanl@google.com> wrote=
+:
+> >
+> > From: Alexander Graf <graf@amazon.com>
+> >
+> > We have all generic code in place now to support Kexec with KHO. This
+> > patch adds a config option that depends on architecture support to
+> > enable KHO support.
+> >
+> > Signed-off-by: Alexander Graf <graf@amazon.com>
+> > Co-developed-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+> > Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+> > Co-developed-by: Changyuan Lyu <changyuanl@google.com>
+> > Signed-off-by: Changyuan Lyu <changyuanl@google.com>
+> > ---
+> >  kernel/Kconfig.kexec | 15 +++++++++++++++
+> >  1 file changed, 15 insertions(+)
+> >
+> > diff --git a/kernel/Kconfig.kexec b/kernel/Kconfig.kexec
+> > index 4d111f871951..57db99e758a8 100644
+> > --- a/kernel/Kconfig.kexec
+> > +++ b/kernel/Kconfig.kexec
+> > @@ -95,6 +95,21 @@ config KEXEC_JUMP
+> >           Jump between original kernel and kexeced kernel and invoke
+> >           code in physical address mode via KEXEC
+> >
+> > +config KEXEC_HANDOVER
+> > +       bool "kexec handover"
+> > +       depends on ARCH_SUPPORTS_KEXEC_HANDOVER && ARCH_SUPPORTS_KEXEC_=
+FILE
+> > +       select MEMBLOCK_KHO_SCRATCH
+> > +       select KEXEC_FILE
+> > +       select DEBUG_FS
+> > +       select LIBFDT
+> > +       select CMA
+> > +       select XXHASH
+> > +       help
+> > +         Allow kexec to hand over state across kernels by generating a=
+nd
+> > +         passing additional metadata to the target kernel. This is use=
+ful
+> > +         to keep data or state alive across the kexec. For this to wor=
+k,
+> > +         both source and target kernels need to have this option enabl=
+ed.
+> > +
+>
+> Have you tested kdump?  In my mind there are two issues,  one is with
+> CMA enabled, it could cause kdump crashkernel memory reservation
+> failures more often due to the fragmented low memory.  Secondly,  in
 
-[...]
+As I understand cma low memory scratch reservation is needed only to
+support some legacy pci devices that cannot use the full 64-bit space.
+If so, I am not sure if KHO needs to be supported on machines with
+such devices. However, even if we keep it, it should really be small,
+so I would not expect that to be a problem for crash kernel memory
+reservation.
 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 0f2caf36910b..6c21c320a2b5 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -2271,9 +2271,6 @@ pcie1: pcie@1c08000 {
->  
->  			power-domains = <&gcc GCC_PCIE_1_GDSC>;
->  
-> -			phys = <&pcie1_phy>;
-> -			phy-names = "pciephy";
-> -
->  			pinctrl-names = "default";
->  			pinctrl-0 = <&pcie1_clkreq_n>;
->  
-> @@ -2284,7 +2281,7 @@ pcie1: pcie@1c08000 {
->  
->  			status = "disabled";
->  
-> -			pcie@0 {
-> +			pcieport1: pcie@0 {
+> kdump kernel dump the crazy scratch memory in vmcore is not very
+> meaningful.  Otherwise I suspect this is not tested under kdump.  If
+> so please disable this option for kdump.
 
-pcie1_port0 (or pcie1_port), please
+The scratch memory will appear as regular CMA in the vmcore. The crash
+kernel can be kexec loaded only from userland, long after the scratch
+memory is converted to CMA.
 
-Konrad
+Pasha
 
