@@ -1,218 +1,156 @@
-Return-Path: <devicetree+bounces-160142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF232A6D9F3
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 13:17:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33048A6D9FD
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 13:21:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82A2B3A7D17
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 12:17:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1F211891BFB
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 12:21:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66ACD25E808;
-	Mon, 24 Mar 2025 12:17:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11A1925E810;
+	Mon, 24 Mar 2025 12:21:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="MpAoxs/a"
+	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="rDbmyv6v";
+	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="WKaMpdNi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bayard.4d2.org (bayard.4d2.org [155.254.16.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1148925E440
-	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 12:17:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5E9D25C71A;
+	Mon, 24 Mar 2025 12:21:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=155.254.16.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742818643; cv=none; b=sobnsWZG647dRD1mFCiNfsrlF6ITSZIuPcl7btX5h+DqZfmHKaOfull4yZbfIg3TfPvSzOd8u4J9iVp1+9GVtlp9ys1b+oih/w+2s3qGXvLCVHOiWCsgWJ39WefZ+DYj/zsFPKItVFasmsKul8U2+7Bkd/usJ1NB4FTkFncGdDc=
+	t=1742818879; cv=none; b=N6IOCfX3WFpaNRt2DJrqIM4bYwv1Yvcp6LAvqX3+BwPDwQQyAUfiDGatYv+WzUAcKJkIEkg2yC++rqzFWZQ2aWCuDuLkUFOeialKrU8fGLL6jMVdXXQBpMRpm4ImRkXmdYjMSPcaiK3oCYaH6gFHEnJUoiywx3aMcKmBtLVZ3HU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742818643; c=relaxed/simple;
-	bh=EoiGMOryV4mIY4EbvcMo7ArzQaAHcSCytklybxuMWPY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F92vfrcc4RIPamGgpVEUxnQTqQps3fiB08HJkfu/aUWnrgK/CLvvJKoksIFb+fu9h0/Xxdu5WKUcY/1M+M/Yowk1rQm3pfcOtdsVL1ygyZRhE2zobqZZ5YGRLiuuBs9QYCgN9HFjvgn8tneD6tqVHfiHcaPqKOuBCqToYxQ0yso=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=MpAoxs/a; arc=none smtp.client-ip=209.85.166.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-io1-f41.google.com with SMTP id ca18e2360f4ac-85e14ce87ceso125897439f.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 05:17:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1742818640; x=1743423440; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pQjy7+DZqFOo8SThpv8muVN+XmMk5JDMXBX8K79zwoY=;
-        b=MpAoxs/azJJ4uDlUjhS0mWI+IJ666ZsACIbSigtQPSwjkGzzOIca5dfrLJRGMjOdHM
-         rvS0g8Kk9ieWaEWwuADY/woqUyABGBYA5jkek8/fqGndLAlXI+EqxPrMbLWVpaqyVdKs
-         WvdXXHuqvF5Tzt0mXfJQnjVcZBVY5L0dRu5UIm3VK1i0DW4mHi9nKqg2RfDq4aRXmCbB
-         7uX6E+raly6t0IvZx/EkYQnQPPLaenOCX2Uy5+LKTb09/S0yG6N1pVHNTTmGSSnseu46
-         NUlmeX630of9h31BWZqF+gnNAM16KsyF1PWnC5pMrQ7F5wKfiP8asYNzeGy0ocSAyisE
-         kCFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742818640; x=1743423440;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pQjy7+DZqFOo8SThpv8muVN+XmMk5JDMXBX8K79zwoY=;
-        b=Hxu5h7smOhIq+CQKiAPIuM3M5Goha/VBTU8kB9PcI8FqlN41H03Lq4ElKI3qs+5dDk
-         Uoq/V3thK2pG9wJzPBSEYjXH8xnh9AAuNvMYVTu4Xp/KH1Nx0TDPEAUMreIbsscrimhn
-         ORYBgM6CKfn3EMRy3VFrmjRjZTizvNFaCLY/sNu/c5sdoU9qQDFgcgYYyKj37qJsj6LV
-         moVCs0kECdjVBMthO5IlqLNEsNarN8EE70tg+KkrVol/zVqmy5hL/EshkFhRihb//wN8
-         0Fu4lPt12TMgKLXuQtxAlPWpRCJElQrmIW+5P5JBctY87NkbaDY5MV2pcVFLBo+Z8S78
-         6PeA==
-X-Forwarded-Encrypted: i=1; AJvYcCUskgVFR6TNLHo8Oq6pSaIdfs8kDAsm6UDi5yUKcwh0HfOMKDpBC0b1fwii00bi8GeAv3R2l/Q5Mn36@vger.kernel.org
-X-Gm-Message-State: AOJu0YxJoHHgNBFPByLkpuZ1t58PAzavTkkIJ/11w6j9QN2WSw23WlRN
-	AaKyBhZ9myOKHuwl94IRCZg1T3HDDhprrJmudJoQqweI6t+Jh/d4ayhTEedOsSg=
-X-Gm-Gg: ASbGncvNO80yJRcmrD3Ji6JD5iLHwj8iTS9aa5rznI6ZSTwGqr8EPz+2vLOfkbTlyxE
-	++62CIij4UQiUU7RC+/omgSf7C20ovaCTjWYJHiotfra0jVhVnXTvz07wTFSWg9bTAtCSlSeNPM
-	eD5UF0BXpnhV59gnvUGC/amyTjLS5w4UK4Nt3Aj3Itq5iBfEYzup1mXiXWpQZzkYd78pRHLIo9r
-	45ZqFv13Oe6aHf/N1qsHYsbwymwE8imlGEUx7Cj5JHWnMYNvOIsF8hOaVJO6qrpi+6bFCYysUy+
-	Nva4r0og8HmkHtLJS/8uwnBX2lx3eFsbJGmUDL4JVVDhDD91gG7tIKz1ROzUTFMW8genlE90clQ
-	3PX+MfnRuB/7+cZOXdcao49KpdgmK
-X-Google-Smtp-Source: AGHT+IFRMWJu8cQwf/wCsj/90WfTQghFt/WjaXKq/fnbgU/ftzK6xeINV2Af8c2Selfxs/zF8TcQyA==
-X-Received: by 2002:a05:6602:7410:b0:85d:ad56:af88 with SMTP id ca18e2360f4ac-85e1ee299f1mr1629181439f.1.1742818639889;
-        Mon, 24 Mar 2025 05:17:19 -0700 (PDT)
-Received: from [10.211.55.5] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-85e2bd8c42esm160016039f.30.2025.03.24.05.17.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Mar 2025 05:17:19 -0700 (PDT)
-Message-ID: <b8edc46b-bc99-47c1-8900-0e08c97de9d6@riscstar.com>
-Date: Mon, 24 Mar 2025 07:17:17 -0500
+	s=arc-20240116; t=1742818879; c=relaxed/simple;
+	bh=9gpFd8EFx60nBxNFMoV0usv+BAC3zxeWfcnDeFxbqxo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sQhubFdBeacUp73R60WjnnBA1v/GRkhizmKOtPiTchOgymwWD8O6YM7Tv5g8vppIbwixN1TS40s5CVYV7kZmv8614RX9bSIL7l72ljJ4vcVNJCPG0iduq5e/vfnYnQZ6FIAiSdVoNv1mpmmrFafy3D7syr1jKT/NwIC213DYZJ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=rDbmyv6v; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=WKaMpdNi; arc=none smtp.client-ip=155.254.16.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
+Received: from bayard.4d2.org (bayard.4d2.org [127.0.0.1])
+	by bayard.4d2.org (Postfix) with ESMTP id B3637EC59FA;
+	Mon, 24 Mar 2025 05:21:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
+	t=1742818874; bh=9gpFd8EFx60nBxNFMoV0usv+BAC3zxeWfcnDeFxbqxo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rDbmyv6vIYVR4mO3RtZFWbK2+WP/H3WVLmsa5FJ9uNKgtGEb+SL3kMQo4Fnv4nVHf
+	 wmOyvW81EIWY2wwa6lRqcnC7SrSFjU8+56R2qa9PNSGBE9GUAGJp7bfUKbsSiuezMM
+	 +HGX90qUPKmNEsaoMroHF+qzA8ksiYt0pfdGVmNyKX9Sm6oDI87CCQsF3cPE7P8Cci
+	 SdMlddqRc9LMcXW76hxh02VTKMw2QtXC7mKPxC1GsGzmmL/yNK77y5a6h8yep5Nvvb
+	 K7+oISqlEPE2XiUFtAo73s/ej8k5uNvtKueS+OraDQK/7XwtAbBk5gC2jQe6jd7KnV
+	 svZwHSRWFsyRQ==
+X-Virus-Scanned: amavisd-new at 4d2.org
+Received: from bayard.4d2.org ([127.0.0.1])
+ by bayard.4d2.org (bayard.4d2.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id GSqTSPtA-cE2; Mon, 24 Mar 2025 05:21:13 -0700 (PDT)
+Received: from ketchup (unknown [183.217.80.115])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: heylenay@4d2.org)
+	by bayard.4d2.org (Postfix) with ESMTPSA id A56AEEC59F0;
+	Mon, 24 Mar 2025 05:21:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
+	t=1742818865; bh=9gpFd8EFx60nBxNFMoV0usv+BAC3zxeWfcnDeFxbqxo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WKaMpdNisRVneY5YjfL44Z9h1qM+1S/RZ/juY/PjwDLMi8svonxhF8S65hOXoZT4n
+	 Yeh7TYUS5Bgl/2Q6CBHJ09DUIZhAjsfRKEG1jCTNwqzTC+AWoYWmZHOiXdsPzhSEnr
+	 3aAPSl+cZ6eEz8SZoopFeidMCnwhq24C85M9qyy1FT/qt9wEYxJaWzXHB/762GkWkH
+	 OOK4riQLivvaYP+ECV2jv9AT0iiaDPwwTINBtsSCyncm5081eJL+SdciOvReu9hXj9
+	 pvvtu5hQQVQHcKS8GHN7Rlkod1B8eyr4/Anmn3uXRK+nKHivgiYlhn+v4ZOGBMBfvp
+	 wSYqGy8b5Osng==
+Date: Mon, 24 Mar 2025 12:20:52 +0000
+From: Haylen Chu <heylenay@4d2.org>
+To: Alex Elder <elder@riscstar.com>, p.zabel@pengutronix.de,
+	mturquette@baylibre.com, sboyd@kernel.org, dlan@gentoo.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	guodong@riscstar.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, spacemit@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RESEND 3/7] clk: spacemit: add reset controller support
+Message-ID: <Z-FOJFHOsU_dLkmS@ketchup>
+References: <20250321151831.623575-1-elder@riscstar.com>
+ <20250321151831.623575-4-elder@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND 2/7] clk: spacemit: define struct k1_ccu_data
-To: Haylen Chu <heylenay@4d2.org>, p.zabel@pengutronix.de,
- mturquette@baylibre.com, sboyd@kernel.org, dlan@gentoo.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- guodong@riscstar.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
- aou@eecs.berkeley.edu, spacemit@lists.linux.dev, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250321151831.623575-1-elder@riscstar.com>
- <20250321151831.623575-3-elder@riscstar.com> <Z-FHt3mDyEBKpa8O@ketchup>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <Z-FHt3mDyEBKpa8O@ketchup>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250321151831.623575-4-elder@riscstar.com>
 
-On 3/24/25 6:53 AM, Haylen Chu wrote:
-> On Fri, Mar 21, 2025 at 10:18:25AM -0500, Alex Elder wrote:
->> Define a new structure type to be used for describing the OF match data.
->> Rather than using the array of spacemit_ccu_clk structures for match
->> data, we use this structure instead.
->>
->> Move the definition of the spacemit_ccu_clk structure closer to the top
->> of the source file, and add the new structure definition below it.
->>
->> Shorten the name of spacemit_ccu_register() to be k1_ccu_register().
+On Fri, Mar 21, 2025 at 10:18:26AM -0500, Alex Elder wrote:
+> Define ccu_reset_data as a structure that contains the constant
+> register offset and bitmasks used to assert and deassert a reset
+> control on a SpacemiT K1 CCU. Define ccu_reset_controller_data as
+> a structure that contains the address of an array of those structures
+> and a count of the number of elements in the array.
 > 
-> I've read your conversation about moving parts of the patch into the
-> clock series, I'm of course willing to :)
+> Add a pointer to a ccu_reset_controller_data structure to the
+> k1_ccu_data structure.  Reset support is optional for SpacemiT CCUs;
+> the new pointer field will be null for CCUs without any resets.
 > 
->> Signed-off-by: Alex Elder <elder@riscstar.com>
->> ---
->>   drivers/clk/spacemit/ccu-k1.c | 58 ++++++++++++++++++++++++++---------
->>   1 file changed, 43 insertions(+), 15 deletions(-)
->>
->> diff --git a/drivers/clk/spacemit/ccu-k1.c b/drivers/clk/spacemit/ccu-k1.c
->> index 44db48ae71313..f7367271396a0 100644
->> --- a/drivers/clk/spacemit/ccu-k1.c
->> +++ b/drivers/clk/spacemit/ccu-k1.c
->> @@ -129,6 +129,15 @@
->>   #define APMU_EMAC0_CLK_RES_CTRL		0x3e4
->>   #define APMU_EMAC1_CLK_RES_CTRL		0x3ec
->>   
->> +struct spacemit_ccu_clk {
->> +	int id;
->> +	struct clk_hw *hw;
->> +};
->> +
->> +struct k1_ccu_data {
->> +	struct spacemit_ccu_clk *clk;		/* array with sentinel */
->> +};
+> Finally, define a new ccu_reset_controller structure, which (for
+> a CCU with resets) contains a pointer to the constant reset data,
+> the regmap to be used for the controller, and an embedded a reset
+> controller structure.
 > 
-> This is something like what I've dropped in v5 of the clock series so I
-> doubt whether it should be added back in clock series again, as at that
-> point there's no reason for an extra structure: Alex, is it okay for you
-> to keep the change in reset series?
+> Each reset control is asserted or deasserted by updating bits in
+> a register.  The bits used are defined by an assert mask and a
+> deassert mask.  In some cases, one (non-zero) mask asserts reset
+> and a different (non-zero) mask deasserts it.  Otherwise one mask
+> is nonzero, and the other is zero.  Either way, the bits in
+> both masks are cleared, then either the assert mask or the deassert
+> mask is set in a register to affect the state of a reset control.
+> 
+> Signed-off-by: Alex Elder <elder@riscstar.com>
+> ---
+>  drivers/clk/spacemit/ccu-k1.c | 93 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 93 insertions(+)
+> 
+> diff --git a/drivers/clk/spacemit/ccu-k1.c b/drivers/clk/spacemit/ccu-k1.c
+> index f7367271396a0..6d879411c6c05 100644
+> --- a/drivers/clk/spacemit/ccu-k1.c
+> +++ b/drivers/clk/spacemit/ccu-k1.c
 
-That's perfectly fine with me.  It's not necessary yet, so it's
-just fine for you to do things the way you did, and I'll add this
-in as part of the reset series.
+...
 
-> ...
-> 
->> +static int k1_ccu_register(struct device *dev, struct regmap *regmap,
->> +			   struct regmap *lock_regmap,
->> +			   struct spacemit_ccu_clk *clks)
->>   {
->>   	const struct spacemit_ccu_clk *clk;
->>   	int i, ret, max_id = 0;
->> @@ -1648,15 +1668,24 @@ static int spacemit_ccu_register(struct device *dev,
->>   
->>   	clk_data->num = max_id + 1;
->>   
->> -	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, clk_data);
->> +	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, clk_data);
->> +	if (ret)
->> +		dev_err(dev, "error %d adding clock hardware provider\n", ret);
-> 
-> This error message definitely should go in the clock series.
-> 
->> +	return ret;
->>   }
-> 
->>   static int k1_ccu_probe(struct platform_device *pdev)
->>   {
->>   	struct regmap *base_regmap, *lock_regmap = NULL;
->>   	struct device *dev = &pdev->dev;
->> +	const struct k1_ccu_data *data;
->>   	int ret;
->>   
->> +	data = of_device_get_match_data(dev);
->> +	if (!data)
->> +		return -EINVAL;
-> 
-> Looking through the reset series, I don't see a reason that
-> of_device_get_match_data() could return NULL. This is also something
-> you've asked me to drop in v4 of the clock series, so I guess it isn't
-> necessary.
+> +static int
+> +k1_rst_update(struct reset_controller_dev *rcdev, unsigned long id, bool assert)
+> +{
+> +	struct ccu_reset_controller *controller = rcdev_to_controller(rcdev);
+> +	struct regmap *regmap = controller->regmap;
+> +	const struct ccu_reset_data *data;
+> +	u32 val;
+> +	int ret;
+> +
+> +	data = &controller->data->data[id];
+> +
+> +	ret = regmap_read(regmap, data->offset, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	val &= ~(data->assert_mask | data->deassert_mask);
+> +	val |= assert ? data->assert_mask : data->deassert_mask;
+> +
+> +	return regmap_write(regmap, data->offset, val);
+> +}
 
-You are correct.  I'll drop it.  I contemplated this and thought
-it's useful to tell the reader it's necessary to not be null, but
-you can tell it has to be by inspection.
+I don't think it's safe to write the regmap based on a value read
+earlier without the regmap's inner lock held: it's totally fine for the
+clock part to issue an update of the register at the same time. Without
+knowledge on it, reset code may rollback the clock bits written by clock
+code earlier to the original value. That's why I keep using ccu_update()
+everywhere and dropped ccu_write().
 
-
->>   	base_regmap = device_node_to_regmap(dev->of_node);
->>   	if (IS_ERR(base_regmap))
->>   		return dev_err_probe(dev, PTR_ERR(base_regmap),
->> @@ -1677,8 +1706,7 @@ static int k1_ccu_probe(struct platform_device *pdev)
->>   					     "failed to get lock regmap\n");
->>   	}
->>   
->> -	ret = spacemit_ccu_register(dev, base_regmap, lock_regmap,
->> -				    of_device_get_match_data(dev));
->> +	ret = k1_ccu_register(dev, base_regmap, lock_regmap, data->clk);
->>   	if (ret)
->>   		return dev_err_probe(dev, ret, "failed to register clocks\n");
-> 
-> For using ARRAY_SIZE() to simplify runtime code, it's mostly okay since
-> binding IDs are continuous 0-based integers. But I split the handling of
-> TWSI8 into another patch, which creates a hole in the range and breaks
-> the assumption. Do you think the TWSI8 commit should be merged back in
-> the clock driver one?
-
-I didn't understand the reason why you separated the TWSI8 into a
-separate commit.  Now I know.  The hole in the range doesn't really
-matter much; you already initialize your ->hws[] array of pointers
-with ERR_PTR(-ENOENT), so any holes are handled properly.
-
-					-Alex
-> 
-> Best regards,
-> Haylen Chu
-
+Thanks,
+Haylen Chu
 
