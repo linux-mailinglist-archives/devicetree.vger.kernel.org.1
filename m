@@ -1,160 +1,136 @@
-Return-Path: <devicetree+bounces-160238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32066A6DFEF
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 17:39:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EF1FA6DFF6
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 17:40:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 759E81889712
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 16:39:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 59C3B3B1EDB
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 16:39:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C10B2263C6A;
-	Mon, 24 Mar 2025 16:39:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BD3E263C8A;
+	Mon, 24 Mar 2025 16:39:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="bS72eUr3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oEHhlF1+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC7993FBA7;
-	Mon, 24 Mar 2025 16:39:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC60F25F96B;
+	Mon, 24 Mar 2025 16:39:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742834354; cv=none; b=BBQAj4bev+8URjmPQBaoMOjkjxxd9WNrg0mxSs2TaEqj3CVVx6ya8hMpesXQLJdsAd0GEIMYrMhOVqqYfRW/tIVL/1+1zXNf4bdXKwSV/a74vqpdWEMMDICQq5FmjlfOQlqlXpXd3V/9tiAlFXzZrZcldXfZDBVZD6hEkFQSpN4=
+	t=1742834386; cv=none; b=NCTiEpbeH+3tU/v7DxgexyI0iU3UDG/Hu+yF8vKj0xc4d10OgXF26h6mrAt2Y+5zfmUU1w3PB9D2Sx0Kz87Hi8nvKGIqhaACeJF0TrJ8R4zMWUokGYZY8JqsJ2qk1/eXfmtdCoiOIBdnV3fRb0qGz4LydzV2YCivQR5cW7dI3Yo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742834354; c=relaxed/simple;
-	bh=pC30NeT45FvNA5LE4RaH+c4FzFm/glTDXwn8/9BQoV4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MKrmSqFfZybzYoOcoyN3LacuvRLAUo0Ay6+tTol4xFqSDOD9MiKO29nk9yIKspWjaBqLaVh1N00sTyTXoG2lnm6R+cbw88eEeOU2DQmXvWz36aRHV3unauv27whGkuSJJLpFQdwaUUgOAp9XlvGWnFoGFxsEj1UHwOMsDqzeSEE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=bS72eUr3; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 049F744522;
-	Mon, 24 Mar 2025 16:39:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1742834350;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Km2Teq2UiJ9T6r73JTHC/jGo8ahaVTtGZ9g3CgWRt0E=;
-	b=bS72eUr3nnbQpQbfzMQBNxFYZccIuCQhDx0EsUxkBzj9+Oe7dKoJnZWibu400zOn1o86pk
-	nyqVjjoqcmPjVtRMA45FPNM52z4IBfN8uLf4JJ2+Sqa5AnyaHsiBj+0dsjWsfJdVLNoRJc
-	2JaadQAkl5iz8LAgSgrRs/73AWW5y+XGPK400mVCDDP1cp2HSWk4dCu79et/+4f2z9BgMm
-	lhzea9bF4ABiBAL6KdP2aFBV4NvJuhKlv0VhZ513S3VYhEyMFj9WflNI45E/SYVJcMqMiw
-	IlOsNsw3BnnGwXf1WgMJE8qjnZpEowCj1uWH5YKR0dD2GH1GwSXBcFCl3c206w==
-Date: Mon, 24 Mar 2025 17:39:07 +0100
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
- Abeni <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Donald Hunter
- <donald.hunter@gmail.com>, Rob Herring <robh@kernel.org>, Andrew Lunn
- <andrew+netdev@lunn.ch>, Simon Horman <horms@kernel.org>, Heiner Kallweit
- <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Liam
- Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
- linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>, Dent
- Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de, Maxime
- Chevallier <maxime.chevallier@bootlin.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v6 06/12] net: pse-pd: Add support for budget
- evaluation strategies
-Message-ID: <20250324173907.3afa58d2@kmaincent-XPS-13-7390>
-In-Reply-To: <20250320173535.75e6419e@kmaincent-XPS-13-7390>
-References: <20250304-feature_poe_port_prio-v6-0-3dc0c5ebaf32@bootlin.com>
-	<20250304-feature_poe_port_prio-v6-6-3dc0c5ebaf32@bootlin.com>
-	<Z9gYTRgH-b1fXJRQ@pengutronix.de>
-	<20250320173535.75e6419e@kmaincent-XPS-13-7390>
-Organization: bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1742834386; c=relaxed/simple;
+	bh=PkU41z1npHU361mFlL7uOSF2RgIZLrl2UcM2T4+kpTY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eiCZS3qE1DP3i3Cs+gAM9EAdoX8sM14297RFmmhIQdqhlK1iQ7FrAL4BvDMOL2FCz7rDJd/dS+ZC8dhPH4/Ky8ZjldIg3inyZPsevEicZ28xFhs5MTxC0Qk2Sgi8Pvn+BB3JygVNaFJ86s3qOp251fg27Y7xAgr/Urv4P/SIOzY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oEHhlF1+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03E47C4CEEA;
+	Mon, 24 Mar 2025 16:39:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742834386;
+	bh=PkU41z1npHU361mFlL7uOSF2RgIZLrl2UcM2T4+kpTY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oEHhlF1+KjBN6VZ6R3OqvS0W9SotslDejwxbnt+zH6pZ52NTWTnx8QHhx2U3/sSQj
+	 r1L5bzp3hFx/6tas4BM1CRZd4gG8XtLw6FAvI97qvhxxIrAOnm6TBCxoTD72UEhIlI
+	 /MH6y0jOcYGdSfIDefC1dr+lrlZBj4drPIUsSAp01jTMFuMA/ZzqxhWWI8q9A60XhJ
+	 LvK4la4O0nq3ISKlqXpV4OB08co+9tzQgliYleonJWD2tT+ZHCcXxExGJFvt895/zg
+	 nB49fbHtc9TtnR5zrMzOlhjip2lFVTFRPpTw5PVzi8FP2LunktYpBJ+jQrmMX8QSBj
+	 GclopDQUx+69g==
+Date: Mon, 24 Mar 2025 11:39:45 -0500
+From: Rob Herring <robh@kernel.org>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, quic_vbadigan@quicinc.com,
+	quic_mrana@quicinc.com
+Subject: Re: [PATCH 1/3] dt-bindings: PCI: qcom: Move phy, wake & reset
+ gpio's to root port
+Message-ID: <20250324163945.GA304502-robh@kernel.org>
+References: <20250322-perst-v1-0-e5e4da74a204@oss.qualcomm.com>
+ <20250322-perst-v1-1-e5e4da74a204@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdduiedtvdekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtqhertdertdejnecuhfhrohhmpefmohhrhicuofgrihhntggvnhhtuceokhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgfdutdefvedtudegvefgvedtgfdvhfdtueeltefffefffffhgfetkedvfeduieeinecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppedvrgdtudemtggsudelmeekheekjeemjedutddtmegvheejsgemudejkeelmeeljeegugemudejheenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudelmeekheekjeemjedutddtmegvheejsgemudejkeelmeeljeegugemudejhedphhgvlhhopehkmhgrihhntggvnhhtqdgirffuqddufedqjeefledtpdhmrghilhhfrhhomhepkhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvdejpdhrtghpthhtohepohdrrhgvmhhpvghlsehpvghnghhuthhrohhnihigrdguvgdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopegurghvvghms
- egurghvvghmlhhofhhtrdhnvghtpdhrtghpthhtohepvgguuhhmrgiivghtsehgohhoghhlvgdrtghomhdprhgtphhtthhopehkuhgsrgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepphgrsggvnhhisehrvgguhhgrthdrtghomhdprhgtphhtthhopegtohhrsggvtheslhifnhdrnhgvthdprhgtphhtthhopeguohhnrghlugdrhhhunhhtvghrsehgmhgrihhlrdgtohhm
-X-GND-Sasl: kory.maincent@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250322-perst-v1-1-e5e4da74a204@oss.qualcomm.com>
 
-Hello Kyle, Oleksij,
+On Sat, Mar 22, 2025 at 08:30:43AM +0530, Krishna Chaitanya Chundru wrote:
+> Move the phy, phy-names, wake-gpio's to the pcie root port node instead of
+> the bridge node, as agreed upon in multiple places one instance is[1].
 
-On Thu, 20 Mar 2025 17:35:35 +0100
-Kory Maincent <kory.maincent@bootlin.com> wrote:
+You aren't really moving them except in the example. This is an ABI 
+break for sc7280. Is anyone going to care?
 
-> On Mon, 17 Mar 2025 13:40:45 +0100
-> Oleksij Rempel <o.rempel@pengutronix.de> wrote:
->=20
-> > On Tue, Mar 04, 2025 at 11:18:55AM +0100, Kory Maincent wrote: =20
-> > > From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+You need to deprecate the properties in the old location.
 
-> > > +int pse_ethtool_set_prio(struct pse_control *psec,
-> > > +			 struct netlink_ext_ack *extack,
-> > > +			 unsigned int prio)
-> > > +{
-> > > +	struct pse_controller_dev *pcdev =3D psec->pcdev;
-> > > +	const struct pse_controller_ops *ops;
-> > > +	int ret =3D 0;
-> > > +
-> > > +	if (!pcdev->pi[psec->id].pw_d) {
-> > > +		NL_SET_ERR_MSG(extack, "no power domain attached");
-> > > +		return -EOPNOTSUPP;
-> > > +	}
-> > > +
-> > > +	/* We don't want priority change in the middle of an
-> > > +	 * enable/disable call or a priority mode change
-> > > +	 */
-> > > +	mutex_lock(&pcdev->lock);
-> > > +	switch (pcdev->pi[psec->id].pw_d->budget_eval_strategy) {
-> > > +	case ETHTOOL_PSE_BUDGET_EVAL_STRAT_STATIC:
-> > > +		if (prio > pcdev->nr_lines) {
-> > > +			NL_SET_ERR_MSG_FMT(extack,
-> > > +					   "priority %d exceed priority
-> > > max %d",
-> > > +					   prio, pcdev->nr_lines);
-> > > +			ret =3D -ERANGE;
-> > > +			goto out;
-> > > +		}
-> > > +
-> > > +		pcdev->pi[psec->id].prio =3D prio;   =20
-> >=20
-> > In case we already out of the budget, we will need to re-evaluate the
-> > prios. New configuration may affect state of ports.
-> >
-> > Potentially we may need a bulk interface to assign prios, to speed-up
-> > reconfiguration. But it is not needed right now. =20
->=20
-> Oh indeed, I missed that. /o\
-> I will try to add something but lets keep it not too complex! ^^ Don't ad=
-d me
-> more work!! ;)
+> Update the qcom,pcie-common.yaml to include the phy, phy-names, and
+> wake-gpios properties in the root port node. There is already reset-gpio
+> defined for PERST# in pci-bus-common.yaml, start using that property
+> instead of perst-gpio.
+> 
+> For backward compatibility, do not remove any existing properties in the
+> bridge node.
+> 
+> [1] https://lore.kernel.org/linux-pci/20241211192014.GA3302752@bhelgaas/
+> 
+> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> ---
+>  .../devicetree/bindings/pci/qcom,pcie-common.yaml  | 22 ++++++++++++++++++++++
+>  .../devicetree/bindings/pci/qcom,pcie-sc7280.yaml  | 18 ++++++++++++++----
+>  2 files changed, 36 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml
+> index 0480c58f7d99..258c21c01c72 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml
+> @@ -85,6 +85,28 @@ properties:
+>    opp-table:
+>      type: object
+>  
+> +patternProperties:
+> +  "^pcie@":
+> +    type: object
+> +    $ref: /schemas/pci/pci-pci-bridge.yaml#
+> +
+> +    properties:
+> +      reg:
+> +        maxItems: 1
+> +
+> +      phys:
+> +        maxItems: 1
+> +
+> +      phy-names:
+> +        items:
+> +          - const: pciephy
 
-Small question on PSE core behavior for PoE users.
+Just drop phy-names in the new location. It's pointless especially when 
+foo-names is just "${module}foo".
 
-If we want to enable a port but we can't due to over budget.
-Should we :
-- Report an error (or not) and save the enable action from userspace. On th=
-at
-  case, if enough budget is available later due to priority change or port
-  disconnected the PSE core will try automatically to re enable the PoE por=
-t.
-  The port will then be enabled without any action from the user.
-- Report an error but do nothing. The user will need to rerun the enable
-  command later to try to enable the port again.
-
-How is it currently managed in PoE poprietary userspace tools?
-
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+> +
+> +      wake-gpios:
+> +        description: GPIO controlled connection to WAKE# signal
+> +        maxItems: 1
+> +
+> +    unevaluatedProperties: false
+> +
+>  required:
+>    - reg
+>    - reg-names
 
