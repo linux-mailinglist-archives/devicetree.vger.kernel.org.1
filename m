@@ -1,142 +1,95 @@
-Return-Path: <devicetree+bounces-160241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0FBBA6E012
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 17:44:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30B2CA6E02D
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 17:50:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B5BF16D1BD
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 16:44:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 42BC016E576
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 16:49:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C287263C6F;
-	Mon, 24 Mar 2025 16:44:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A07AF2641ED;
+	Mon, 24 Mar 2025 16:49:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BRHwpmNI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cND0NoAT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F7CD261570;
-	Mon, 24 Mar 2025 16:44:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74FCB2641E7;
+	Mon, 24 Mar 2025 16:49:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742834657; cv=none; b=HEb9Wgs3m7vOiz+xqY5zE5ocQBYHhqAZ5xEW8rmNbdbefQqSq+23O/S/8q5eeZAiG8d6I0j5IYQgq3IUdeyRKNv8MqUDUR/dTj/Vnx1UBy9OlhOwbFUHHMezXcdZVIx4YQPtPbRoLp0dJyOuwlXNbFbtl9O8waREJOpqJjYQh4g=
+	t=1742834968; cv=none; b=RelIuqTALSrbprwzIsaHFH5cxiSlEaDt/b5VGEQbbFFj8kDBkz1Q6D4gVhg+I7ovrDCzbcgM7Rfqyej1X2ErPPlU6AA0fylGvikYqJdOAMk0cAVh+UDMNwSS1eGmfr2wOv2iBsTPQGyK2+jPkbX6pj5DWD6HJToIVfttFI15wis=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742834657; c=relaxed/simple;
-	bh=WlcHSCuCE+B5oPFbUZhbIX6BCUYFF/YgHjdqP/AExfE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=VktPFj7DiTmrEvBrwYPBAk8PWjOiA8PWkA5tIlu5JVAWOF/X2Rx0nsdq1SNrF3i9sZ7wwJNBc+wU2vcF72jztSWBnpr4jV36AATIK3m/F/66jjgXJPIChrSmPDYDwRh4A+k9nBLrCoe13OLYVDkiF0xYOGJetu3H8apj7HIhyOk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BRHwpmNI; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52O9PSxE015755;
-	Mon, 24 Mar 2025 16:44:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	1DIxwp36ktfPlrjG2+HU7c3QBj3w7DAkJ+2V61M5xr8=; b=BRHwpmNIv6Y9u5Pq
-	sZoEL9PS4NEn24D3RJzk52AMNmTuXPUct77oFCpgLemkPpA4LztENVzJepovqHSz
-	1U6eS63TL0y3VRQ2Szg9uRAXvS1+AN8hAu+4tGAP264Ri/L7uthr3MnT05aet7k5
-	Tw8NH5VpV56CtHw0Jh9wPrO9l89KytBhih6Rx2mwq7ta0FCmgKxaMk6maUeUPSIl
-	+hg+6Iz4jMratxWDxQK9DmU0RaWpCFh4tt8IB96MATRcvgwW0zg7QQR1PDpsv7F5
-	ug5SdoYUnwMCVkRIcJXuTdGqXdTqVGxzyhpaV7ig3mS2BqVU9WlzNqfwcb/wQUAe
-	PEFZ6g==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45hn9wcyr8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 24 Mar 2025 16:44:11 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52OGiAYl027527
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 24 Mar 2025 16:44:10 GMT
-Received: from [10.216.17.237] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 24 Mar
- 2025 09:44:06 -0700
-Message-ID: <f565fee7-b222-4e6b-b022-68aed9a7d9ea@quicinc.com>
-Date: Mon, 24 Mar 2025 22:14:03 +0530
+	s=arc-20240116; t=1742834968; c=relaxed/simple;
+	bh=6Mwb1qD+CguuWVLptcwKTAjQQ8Ri9yrju+Fcusg5Azo=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=IaRcduNOIuNuowr1TyzP8YH+paK6mw6O7bzpWCWpKpGj5rIyzmrAhfWLJWa0nYTGfeaDkUSn2Ot6Yd9HgjwExRwWOrITRUy0eUwk6MwJKD0m+l0EKQHUB+hhaLuesxDpVhq0hYtDyK8kgk/qC6yL/jEGtwuy1PjyT3g9fopI0wA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cND0NoAT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D014AC4CEDD;
+	Mon, 24 Mar 2025 16:49:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742834968;
+	bh=6Mwb1qD+CguuWVLptcwKTAjQQ8Ri9yrju+Fcusg5Azo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=cND0NoATGotPtRmqTfuvZttDfEYNyhXPBBSZgvIczpo1sAd0zGd6LKlrzJtyDq5hO
+	 D2xHeRwC885//sAr1OLslTbI/b02ZjD0KpBCpBa0lqem2RCQJ4FUqWJwfVwJGGnrcD
+	 VlaYgXn8gpjuBcd5oxhCi/igpOLNAgr/s0/Ue2kErAQUEzQ6xT50aKGaqgjtN/er+l
+	 CWyaZG6FP+eBkntehQp+TgMOW0Um0SUcquv0EoX+O5/Ety0oiy9Uaok3zf2Swn3hhV
+	 pDM7QvFgI3KccjVMZLwhwJSlGCsY3WCHCbJ00tVFkUw3puK4u/jhxX8/tkAepGhtyR
+	 0FlI4F36gxsUw==
+Date: Mon, 24 Mar 2025 11:49:26 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Manikandan Karunakaran Pillai <mpillai@cadence.com>
+Cc: "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+	"manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
+	"bhelgaas@google.com" <bhelgaas@google.com>,
+	"kw@linux.com" <kw@linux.com>, "robh@kernel.org" <robh@kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>
+Subject: Re: [PATCH 0/6] Enhancements for PCIe Cadence Controllers
+Message-ID: <20250324164926.GA1252416@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] arm64: dts: qcom: sa8775p: Add default pin
- configurations for QUP SEs
-To: Bjorn Andersson <andersson@kernel.org>
-CC: <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_msavaliy@quicinc.com>, <quic_anupkulk@quicinc.com>
-References: <20250225154136.3052757-1-quic_vdadhani@quicinc.com>
- <keszvik5mrobfkdpgdz5rnl5l7tihgbpyd4en3dflmaflyl7io@d4my7wdrtkyg>
-Content-Language: en-US
-From: Viken Dadhaniya <quic_vdadhani@quicinc.com>
-In-Reply-To: <keszvik5mrobfkdpgdz5rnl5l7tihgbpyd4en3dflmaflyl7io@d4my7wdrtkyg>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ikxVXsEEZAd1-hjUiVAsxZMkQpXz-xsw
-X-Proofpoint-ORIG-GUID: ikxVXsEEZAd1-hjUiVAsxZMkQpXz-xsw
-X-Authority-Analysis: v=2.4 cv=CPoqXQrD c=1 sm=1 tr=0 ts=67e18bdb cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=Fu_YwIdgIx9_JamtqNsA:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-24_04,2025-03-21_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxlogscore=988
- spamscore=0 priorityscore=1501 suspectscore=0 bulkscore=0 mlxscore=0
- lowpriorityscore=0 malwarescore=0 adultscore=0 phishscore=0
- impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503240120
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CH2PPF4D26F8E1C205166209F012D4F3A81A2A42@CH2PPF4D26F8E1C.namprd07.prod.outlook.com>
 
-
-
-On 3/4/2025 10:05 AM, Bjorn Andersson wrote:
-> On Tue, Feb 25, 2025 at 09:11:36PM +0530, Viken Dadhaniya wrote:
->> Default pinctrl configurations for all QUP (Qualcomm Universal Peripheral)
->> Serial Engines (SEs) are missing in the SoC device tree. These
->> configurations are required by client teams when enabling any SEs as I2C,
->> SPI, or Serial protocols.
->>
->> Add default pin configurations for Serial Engines (SEs) for all supported
->> protocols, including I2C, SPI, and UART, to the sa8775p device tree.  This
->> change facilitates slave device driver clients to enable usecase with
->> minimal modifications.
->>
->> Additionally, move default pin configurations from target-specific files to
->> the SoC device tree file, as all possible pin configurations are now
->> comprehensively included in the SoC device tree, similar to other SoCs.
->>
->> Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi |  88 --
->>   arch/arm64/boot/dts/qcom/sa8775p.dtsi      | 908 +++++++++++++++++++++
->>   2 files changed, 908 insertions(+), 88 deletions(-)
->>
-> [..]
->> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> [..]
->> +			qup_i2c0_default: qup-i2c0-state {
->> +				pins = "gpio20", "gpio21";
->> +				function = "qup0_se0";
->> +				drive-strength = <2>;
->> +				bias-pull-up;
+On Mon, Mar 24, 2025 at 09:08:09AM +0000, Manikandan Karunakaran Pillai wrote:
+> Enhances the exiting Cadence PCIe controller drivers to support second
+> generation PCIe controller also referred as HPA(High Performance
+> Architecture) controllers.
 > 
-> Look at other examples, such as sc7280.dtsi, and you will see that
-> drive-strength and bias are considered board-specific properties and
-> should thereby not go in the soc.dtsi file.
-> 
+> Comments from the earlier patch submission on the same enhancements are
+> taken into consideration. The previous submitted patch links is
+> https://patchwork.kernel.org/project/linux-pci/patch/
+> CH2PPF4D26F8E1CB68755477DCA7AA9C6EBA2EE2@CH2PPF4D26F8E1C.namprd07.prod.outlook.com/
 
-Removed drive-strength and bias in v2.
+Thanks for splitting this into several patches.
 
-> Thanks,
-> Bjorn
+Thanks also for the pointer to the previous version.  It would be
+easier to follow if you could include the lore URL, e.g.,
+
+  https://lore.kernel.org/r/CH2PPF4D26F8E1CB68755477DCA7AA9C6EBA2EE2@CH2PPF4D26F8E1C.namprd07.prod.outlook.com/
+
+because lore is more widely used and more stable than patchwork.  It's
+helpful if you can also include a little changelog of what changed
+since the previous version.
+
+When you post the next version of this (no hurry, since the merge
+window is open and nothing new will be merged until v6.15-rc1), can
+you please send the individual patches as responses to the cover
+letter?  That keeps the whole series together and makes it easy for b4
+to download the entire series at once.  "git format-patch" and "git
+send-email" will do that for you automatically.
+
+Bjorn
 
