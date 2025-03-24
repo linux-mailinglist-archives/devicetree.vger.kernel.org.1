@@ -1,337 +1,204 @@
-Return-Path: <devicetree+bounces-160253-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160254-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B2C6A6E081
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 18:05:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54924A6E092
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 18:07:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF92D171B19
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 17:05:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CF6E188BC03
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 17:06:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B35A6264A7E;
-	Mon, 24 Mar 2025 17:04:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5C90264606;
+	Mon, 24 Mar 2025 17:06:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="AJsXmJg7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QzqFxv3h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92C66264618;
-	Mon, 24 Mar 2025 17:04:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB6C0263F5D;
+	Mon, 24 Mar 2025 17:06:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742835870; cv=none; b=QD69oQe1jaqMHNEciDFbQ5OTDkUfbEQTDD/Vb5X9z6h7tL1u65U6HMy6z1/l/vCN0vGmk0A22LKIH4sycrwAURBSdv7+oV3Ecj676tuIYddVfnZA2r/BYzzWRxKgRSArmm4RC+SmhYTTTvU2gVw0zZQpooaQYcVT52evH3HZ97c=
+	t=1742835974; cv=none; b=X3huWlP3q2Lci33RsEG2AasavigT/jueXFzIska1NgVnd7CY52zEOtaTdHfE1aiFb6vDkfsU5epRQ7bhEQn/5AtJ5Y04Uf7nQABMJRU+HILxhyoaqVELs4nKgKI6n92AyoTW0GPQvKCw31C20BTKv5zUd9OUxDl10Dsr5sTU558=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742835870; c=relaxed/simple;
-	bh=YoQAz5gy7VoClsPSkqwMktmtJTGxobd9i9vU73JymF8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=eJJWhVALNDkMM6NiVcVJ4Fn6XyEDY8zN+boptMULm3CZ791rqsCzaiBNrYGDXfafzH4L2BmWbS4M9e8/9HZDps7YR52dSFbecr251h+N1+O3c7zXPD0VJlhs2bnYir19ARbVyXgbuCUSopFkxDZusYXPjYUwMf41DPzvVGmfR18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=AJsXmJg7; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1742835863;
-	bh=YoQAz5gy7VoClsPSkqwMktmtJTGxobd9i9vU73JymF8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=AJsXmJg7AJZhin7aRMcQRR/B4F9Ec4CHcNlCp6/SVk2A9cHaMRWA6Rf0Fpobw5V0q
-	 cJFiAHn52ew3yF9KOI4xkwv05O0XDAHEsHjun/xvJBQnQcZuo4Ms2uXuEARnxc56mI
-	 3Gz21l86bJErYZyY/Sq9dqwv6/QIl2AzyYce2nhQMFB6BdAgDSyxbuhssdbM74XCFy
-	 Xyy7ZgJCzghPTeZaIVlPYQiQuQ7cxPb/wfibYhPt7FB3e/CarWh1lK1KIsqxnuWKUT
-	 OZv3QtxrhVeY0IzisSJH4lX7KjYPsOnqTjzl3KlZ1R/VZMtutdfLS7AxRrbSewFcbk
-	 u0gH1nJM0Fv8g==
-Received: from jupiter.universe (dyndsl-091-248-188-184.ewe-ip-backbone.de [91.248.188.184])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 740E717E0CA7;
-	Mon, 24 Mar 2025 18:04:23 +0100 (CET)
-Received: by jupiter.universe (Postfix, from userid 1000)
-	id DB1B548003D; Mon, 24 Mar 2025 18:04:22 +0100 (CET)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Mon, 24 Mar 2025 18:04:26 +0100
-Subject: [PATCH 5/5] arm64: dts: rockchip: add USB-C support for ROCK 5B
- and 5B+
+	s=arc-20240116; t=1742835974; c=relaxed/simple;
+	bh=41GT6Nz+bc0ecmxG6gaQLa2C9sVbGLrHlvcO4fqGlIk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QOuWEFjhbHWxGjfZgSgiHA+h5il2hUYFgRRbTBO5KL2bRsIhB7vmBiowRhj07CTJIOtXExgpoUcotFZWc1Gdate7YeXHorkvC04nWTK9eYv/0sl5pKgBfa0q/gHuIr4ufIjgquhefHDUaBdWGr1rq1x/ck9HSogk0dBJUUeQEFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QzqFxv3h; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3912baafc58so3689492f8f.1;
+        Mon, 24 Mar 2025 10:06:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742835971; x=1743440771; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dFk3IdcSKxayCGlsiOfhMmx3PWLJAwIckQnSX27bd3Y=;
+        b=QzqFxv3hxj6K90kVavWZF7KFkPPitvqTsDgB6WJl0r9RQK66ZOv/sj1PMZakyHdEB0
+         kHEpN6Ex9t5H0pd3eiPSOWD8xVUjhWlRUUboIzk1Bsg3Wpf7A/3NYe/csPrzIRnKsGMW
+         3Zz7YciE11MFizr1uOzyZKBbOazvgwh2H5ZsQBcBVYK8H0hDmqg3/LrSUBQHGm9ED3PN
+         9ua0kTbLofi1JtnJN4iMejPgbO3Ft7/0gjc/6U/+U6Hsb7kgS14PDWQ8Xi3jjPxcTFLC
+         X1sDgHeMF70P61ggJygVsb9G3pziKgCeO8/j+X/7T9BDxxo4931Ktuh/TCJ4UggkfVPK
+         ptdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742835971; x=1743440771;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dFk3IdcSKxayCGlsiOfhMmx3PWLJAwIckQnSX27bd3Y=;
+        b=Z38RttQ2PyDJWfaTBp+imA5AIEtjx2A/k1/bjPwyVE5kulJwp0VL1kRlhz6jrWqoxH
+         YzVAHPvZ/OvPNUOIIBg1VLbY4XUxOVpoJ+bRYtWYoOyKuxWJRCWlTPWCXxjMGRYbsUS8
+         ga6juqSSGUZt6bTzICZmUDj8gRDijkrOCIoHegnM8XmgNOILkksBrySb4InXp/fYLEfJ
+         h11QbHcKJCM4XLETYXUMgFaTYrAuZP/6k/HgxwKBP3xzOZCz5+8eHdjj4/1YC7Lecj3C
+         FoJpigpOHhhxl479f+Qk1u1C9vIBV+0VvVVyVxDdLRUuzNDl7CQnCcOpDwquLBeUoABl
+         V3Bg==
+X-Forwarded-Encrypted: i=1; AJvYcCU2lirtyqylRC24oovI95KEK0XClD0i35yRioPC7ssqU7lRK3lb1Vjsuroevdf336JJ4F8k4480QPI=@vger.kernel.org, AJvYcCV9+PwBI81rSjem3o08F+1LtAZ7WyXez0OL9YQV4R4wh4e1DreNmTXT5Hy/KPejwf6rt15GITy4VEZhiQuz@vger.kernel.org, AJvYcCW+hcyfDFUTwL2If53omPhbF1AahLvuxkkWtntXGUXTrBiojieHX5ZE1ByehhPxifiOCbcXqmrIWLNi@vger.kernel.org, AJvYcCWniksdc1Tr9GdO8ERtObsrcVCPoj56URriR3tOcO7lAvTd9tjZB8kAyQyAlhdUhiJLAayZBfIv+/6+8sw=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz4kMHwvF+slHZlqUCOPDalAMET3YLv0s+ubjA+X615R5jgEOAt
+	ptXDoPv9DoZBmZ0SqcMwE+hLwGFLU9U18++PASi6OBr/W1Iq+GEeodjJiIgWVE/OW5NoDL/8R84
+	Mb2CKp/H12vCBKBkUNjOCKPmQjIc=
+X-Gm-Gg: ASbGncuBJCI28JcBqRDwvm2B0Asdk40lrKEuwel5/EjVJjxY8RJkfDNx5I1zDxG3mCx
+	T0ISVByENTpbIsID6IpJUGkukg6cd7nU2WJ/xdy0EImXwpiOX21c/ifWR5aRHdN82DjTZBhTdcf
+	RsWS1OaGwCwIfyshJ4sIP0Sn41TJA=
+X-Google-Smtp-Source: AGHT+IGFs85m2tb0CvbZ1cteIaSaWqbwx3SiFJBR4bxFXClC5PSNDvwcxnvalrKmwApXl+dNsAqoYgLQtb4T1r/VDvY=
+X-Received: by 2002:a05:6000:400e:b0:391:3f94:dc9e with SMTP id
+ ffacd0b85a97d-3997f90394emr14378665f8f.16.1742835970541; Mon, 24 Mar 2025
+ 10:06:10 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250324-rock5bp-for-upstream-v1-5-6217edf15b19@kernel.org>
-References: <20250324-rock5bp-for-upstream-v1-0-6217edf15b19@kernel.org>
-In-Reply-To: <20250324-rock5bp-for-upstream-v1-0-6217edf15b19@kernel.org>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6611; i=sre@kernel.org;
- h=from:subject:message-id; bh=YoQAz5gy7VoClsPSkqwMktmtJTGxobd9i9vU73JymF8=;
- b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGfhkJa4nVZH5iVIc41MF9PcWcJSSCFZG+XGs
- EkysRqVS2ii04kCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJn4ZCWAAoJENju1/PI
- O/qa7aoP/RzLBqxZBfmAZNUe4mKUi1QIFpWIKLBRss7o/SW4rnU0aIVZB8rKZnhoWjEFcXeutm+
- ftxyeYWXgIwFtBgseOI43Eox+OboHCQCMk9dwSyk2RQJ6ad1nbDKRzr1anp+44CC6MQrSCrozRP
- WMDBX6bV/c+NBXNZY0qcY2GR1cl+jr/rWx4Mzf7eULK4QxIT+cny/E8cCIkbO0UsoxshMW9kFEj
- IHVbKMOIFunFDpbcRm3MWzA026iPUjftd+ysffTAI4qGREUwHpF2JUTzzHYQD6l+i+7u18LMZtt
- F3llZcbVhhcwf4xf3zQzm76h78ra4l+OSupdD8dUkEe1oFQzJ+pySkhIUXs6DoKqCh+6+Lm+2gi
- ZZshSeaWXuqdiE1vpZrUDbWi6SOlGmHQVLb41xl0Gw5/X0VUGyAQ6b6WfPqw57L7eFRXmedTrP6
- 5JudlUB/YD/L96AQHnmJRPwIK9lNn8VA66+U8iNbA65YwdUDlc0l5aN2So33ZuzUcOzYUJ25uza
- G/moe0hvAD/VxlXaTsh68iNVLcf2tKwi/+nMVBRwnEWeU5gRD6ckJRMN0szbApQZU3kXpB3sCYq
- xtBrdD2ExO4aeQb0V5LEad/4YsZotXzXeW4W7ANfrCDIiE21khH7HiCtPM4X3MfuzsZA9rEvSL4
- PdDnz841urI9rKpqIt3koDQ==
-X-Developer-Key: i=sre@kernel.org; a=openpgp;
- fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
+References: <20250323071424.48779-1-clamor95@gmail.com> <20250323071424.48779-3-clamor95@gmail.com>
+ <20250324165257.GA458528-robh@kernel.org>
+In-Reply-To: <20250324165257.GA458528-robh@kernel.org>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Mon, 24 Mar 2025 19:05:58 +0200
+X-Gm-Features: AQ5f1JqjtDObBIN6HWXp4Xb-bKxDpiwv0AZaLd-JroEnLNLYqWC2vlIVyshRnAE
+Message-ID: <CAPVz0n3=-QL1_NGP31WX_4LQBt5-T47BbU_yn6td1zk9C2T=iA@mail.gmail.com>
+Subject: Re: [PATCH v1 2/4] dt-bindings: mfd: Document Infineon/Cypress
+ CG7153AM MCU
+To: Rob Herring <robh@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add hardware description for the USB-C port in the Radxa ROCK 5 Model
-B and B+. This describes the OHCI, EHCI and XHCI USB parts, but not yet
-the DisplayPort AltMode, since the bindings for that are not yet upstream.
+=D0=BF=D0=BD, 24 =D0=B1=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 18:52 Rob =
+Herring <robh@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> On Sun, Mar 23, 2025 at 09:14:22AM +0200, Svyatoslav Ryhel wrote:
+> > Add binding for Cypress CG7153AM embedded controller. Pegatron implemen=
+ted
+> > a custom configuration of this MCU in their Chagall tablets, utilizing =
+it
+> > for battery monitoring.
+> >
+> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > ---
+> >  .../bindings/mfd/cypress,cg7153am.yaml        | 55 +++++++++++++++++++
+> >  1 file changed, 55 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mfd/cypress,cg715=
+3am.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/mfd/cypress,cg7153am.yam=
+l b/Documentation/devicetree/bindings/mfd/cypress,cg7153am.yaml
+> > new file mode 100644
+> > index 000000000000..f8469b5e3816
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mfd/cypress,cg7153am.yaml
+> > @@ -0,0 +1,55 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/mfd/cypress,cg7153am.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Infineon/Cypress Semicon CG7153AM Microcontroller
+> > +
+> > +maintainers:
+> > +  - Svyatoslav Ryhel <clamor95@gmail.com>
+> > +
+> > +description:
+> > +  The CG7153AM, an 8-bit programmable microcontroller from Infineon/Cy=
+press
+> > +  Semiconductor, communicates over I2C and is implemented in devices l=
+ike the
+> > +  Pegatron Chagall tablet for fuel gauge and battery control functions=
+.
+> > +
+> > +$ref: /schemas/power/supply/power-supply.yaml
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - items:
+> > +          - enum:
+> > +              - pegatron,chagall-ec # Pegatron Chagall tablet device
+> > +          - const: cypress,cg7153am
+> > +      - items:
+> > +          const: cypress,cg7153am
+>
+> Is this just some general purpose uC which could be used for anything
+> and the interface exposed is Pegatron's invention. If so, then I'd drop
+> the cypress,cg7153am compatible. What use would it be to software?
+>
 
-The fusb302 node is marked with status "fail" on ROCK 5B, since the board
-is usually powered through the USB-C port. Handling of errors can result
-in hard resets, which removed the bus power for some time resulting in
-a board reset.
+Yeah, Cypress made an MPU, Pegatron used it as a base to make a fuel gauge.
 
-The main problem right now is that devices are supposed to interact with
-the power-supply within 5 seconds after the plug event according to the
-USB PD specification. This is more or less impossible to achieve when
-the kernel is the first software communicating with the power-supply.
+You propose smth like this?
 
-Upstream U-Boot with fusb302 support overrides the status for the
-fusb302 node to "okay". That way booting a kernel with the updated DT
-on an old U-Boot avoids a reset loop.
+      - items:
+          - enum:
+              - pegatron,chagall-ec # Pegatron Chagall tablet device
+          - const: cypress,cg7153am
 
-This workaround is not needed for the ROCK 5B+, since fusb302 support
-landed in U-Boot before the board support gets upstreamed. Apart from
-that it also has a dedicated USB-C port with a standalone chip to supply
-the board power.
+Without oneOf and second item or remove cypress,cg7153am entirely and
+submit as pegatron,chagall-ec.yaml? Just to be clear.
 
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- .../boot/dts/rockchip/rk3588-rock-5b-plus.dts      |   4 +
- arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi   | 137 +++++++++++++++++++++
- 2 files changed, 141 insertions(+)
+I am fine with removing oneOf and items: const: cypress,cg7153am, but
+I would like to preserve cypress,cg7153am as second compatible since
+this is an actual MCU model.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-plus.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-plus.dts
-index 74c7b6502e4dda4b774f43c704ebaee350703c0d..70339920fd4951dff993a5799ae5db243f07bd6e 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-plus.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-plus.dts
-@@ -105,6 +105,10 @@ vcc5v0_host_en: vcc5v0-host-en {
- 	};
- };
- 
-+&usbc0 {
-+	status = "okay";
-+};
-+
- &vcc5v0_host {
- 	enable-active-high;
- 	gpio = <&gpio1 RK_PA1 GPIO_ACTIVE_HIGH>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi
-index dccb8492f9f0632abd96c3dafc723e01491abad5..5e119f167cd8ccbd08ff2a2d4955489730ab85fb 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtsi
-@@ -5,6 +5,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/leds/common.h>
- #include <dt-bindings/soc/rockchip,vop2.h>
-+#include <dt-bindings/usb/pd.h>
- #include "rk3588.dtsi"
- 
- / {
-@@ -92,6 +93,15 @@ rfkill-bt {
- 		shutdown-gpios = <&gpio3 RK_PD5 GPIO_ACTIVE_HIGH>;
- 	};
- 
-+	vcc12v_dcin: regulator-vcc12v-dcin {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc12v_dcin";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+	};
-+
- 	vcc3v3_pcie2x1l0: regulator-vcc3v3-pcie2x1l0 {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
-@@ -146,6 +156,19 @@ vcc5v0_sys: regulator-vcc5v0-sys {
- 		regulator-boot-on;
- 		regulator-min-microvolt = <5000000>;
- 		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc12v_dcin>;
-+	};
-+
-+	vbus5v0_typec: vbus5v0-typec {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio2 RK_PB6 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vbus5v0_typec_en>;
-+		regulator-name = "vbus5v0_typec";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc5v0_sys>;
- 	};
- 
- 	vcc_1v1_nldo_s3: regulator-vcc-1v1-nldo-s3 {
-@@ -309,6 +332,67 @@ regulator-state-mem {
- 	};
- };
- 
-+&i2c4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c4m1_xfer>;
-+	status = "okay";
-+
-+	usbc0: usb-typec@22 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x22>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <RK_PB4 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usbc0_int>;
-+		vbus-supply = <&vbus5v0_typec>;
-+		/*
-+		 * When the board is starting to send power-delivery messages
-+		 * too late (5 seconds according to the specification), the
-+		 * power-supply reacts with a hard-reset. That removes the
-+		 * power from VBUS for some time, which resets te whole board.
-+		 */
-+		status = "fail";
-+
-+		usb_con: connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			data-role = "dual";
-+			power-role = "sink";
-+			try-power-role = "sink";
-+			op-sink-microwatt = <1000000>;
-+			sink-pdos =
-+				<PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>,
-+				<PDO_VAR(5000, 20000, 5000)>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					usbc0_role_sw: endpoint {
-+						remote-endpoint = <&dwc3_0_role_switch>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					usbc0_orien_sw: endpoint {
-+						remote-endpoint = <&usbdp_phy0_orientation_switch>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+					dp_altmode_mux: endpoint {
-+						remote-endpoint = <&usbdp_phy0_dp_altmode_mux>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &i2c6 {
- 	status = "okay";
- 
-@@ -486,6 +570,14 @@ usb {
- 		vcc5v0_host_en: vcc5v0-host-en {
- 			rockchip,pins = <4 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
-+
-+		usbc0_int: usbc0-int {
-+			rockchip,pins = <3 RK_PB4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		vbus5v0_typec_en: vbus5v0-typec-en {
-+			rockchip,pins = <2 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
- 	};
- };
- 
-@@ -871,6 +963,14 @@ &uart2 {
- 	status = "okay";
- };
- 
-+&u2phy0 {
-+	status = "okay";
-+};
-+
-+&u2phy0_otg {
-+	status = "okay";
-+};
-+
- &u2phy1 {
- 	status = "okay";
- };
-@@ -898,6 +998,29 @@ &u2phy3_host {
- 	status = "okay";
- };
- 
-+&usbdp_phy0 {
-+	mode-switch;
-+	orientation-switch;
-+	sbu1-dc-gpios = <&gpio4 RK_PA6 GPIO_ACTIVE_HIGH>;
-+	sbu2-dc-gpios = <&gpio4 RK_PA7 GPIO_ACTIVE_HIGH>;
-+	status = "okay";
-+
-+	port {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		usbdp_phy0_orientation_switch: endpoint@0 {
-+			reg = <0>;
-+			remote-endpoint = <&usbc0_orien_sw>;
-+		};
-+
-+		usbdp_phy0_dp_altmode_mux: endpoint@1 {
-+			reg = <1>;
-+			remote-endpoint = <&dp_altmode_mux>;
-+		};
-+	};
-+};
-+
- &usbdp_phy1 {
- 	status = "okay";
- };
-@@ -910,6 +1033,20 @@ &usb_host0_ohci {
- 	status = "okay";
- };
- 
-+&usb_host0_xhci {
-+	usb-role-switch;
-+	status = "okay";
-+
-+	port {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		dwc3_0_role_switch: endpoint {
-+			remote-endpoint = <&usbc0_role_sw>;
-+		};
-+	};
-+};
-+
- &usb_host1_ehci {
- 	status = "okay";
- };
+Thanks.
 
--- 
-2.47.2
-
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  monitored-battery: true
+> > +  power-supplies: true
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    i2c {
+> > +        #address-cells =3D <1>;
+> > +        #size-cells =3D <0>;
+> > +
+> > +        embedded-controller@10 {
+> > +            compatible =3D "pegatron,chagall-ec", "cypress,cg7153am";
+> > +            reg =3D <0x10>;
+> > +
+> > +            monitored-battery =3D <&battery>;
+> > +            power-supplies =3D <&mains>;
+> > +        };
+> > +    };
+> > +...
+> > --
+> > 2.43.0
+> >
 
