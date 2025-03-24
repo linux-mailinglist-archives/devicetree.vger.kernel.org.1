@@ -1,237 +1,127 @@
-Return-Path: <devicetree+bounces-160109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81237A6D82D
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 11:21:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A1A3A6D85B
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 11:34:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A79F73AB7CD
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 10:21:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B03C7A69E0
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 10:33:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D656A25D52A;
-	Mon, 24 Mar 2025 10:21:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7CBD25DCFB;
+	Mon, 24 Mar 2025 10:34:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="axKC2kFi"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="KlYHZBq7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4500325D8E1;
-	Mon, 24 Mar 2025 10:21:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59D2C25DAE9;
+	Mon, 24 Mar 2025 10:34:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742811684; cv=none; b=Oxc9XShpHkzgHxGFdFCpVx+ZxyWzuenqVGo/kiLtIOmDkhduXHj3A3ojB56sxeziAO7mCjHW3v6lIORWfxhNub7YLCMIjOSnTVqfKZP+C4vokDr1PInrRFASc5KV9fQtq/X8WUGxQPAOCzcHoJeOjmX6US3Sepw16E6diQ+lImM=
+	t=1742812457; cv=none; b=lHJQWtaNapGyAEMD/yTMqtCtOSXUqQmokDvXgtnOXN2Dpl1g+YB+cFGHNZ8HRQ6SQf+pQ+VNgmslnxB0suiy+5ni0RKBq949ZDdAB5O0XDaCPaPoGP69iiENX7oN9vjshUu87m5m7nKRJzirKQfwr9CVivIUFJN5SL7MSEJfTes=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742811684; c=relaxed/simple;
-	bh=PWcff70uYRGeT65DOi87ho91eVgfvmx3lFZ5193ituU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=As/jc9p6JrTcbbRNG5nrqBZiTJnCsVvlnpCteoA3DimTeFtAqkFsbZEwfI5wZgH4x5o5toJHqJXjPyxF5NQEz+aPSlhFackzzw+0fqnZ+QpN3pbsgd8c5SH0CjGOI/XeCIU62WCRedQkeVYZBREmahpzYGlXNjE7YfgLviKISUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=axKC2kFi; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1742811684; x=1774347684;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=PWcff70uYRGeT65DOi87ho91eVgfvmx3lFZ5193ituU=;
-  b=axKC2kFiCVZzvwUJFbfRdYSCh8zdPLfnKzsNeN15haFh+tVlqGlx0Ic/
-   CeutQN+M+x2QtzXwgoR0ov3BRTpbxX2S+MxNuXifIaGoGtdwVZKDGBA7O
-   lGRLjMcupaTOVtOy2c3Jm7fHyZFhDbmDbF1U8el6ki9rAadTEmOQM8G6S
-   hM3I1ZCkoZ69BAlr4Ggx2s82AerlHU86u6/ctFEndzqchH2lAKOGWgOE0
-   sVqzO2ZGujeMGfEAz9aLHujWDDG4yggdW9UnwfVTuAw3oKaefNnHt8YLJ
-   At0AdAf+H8vBBRGfE2zjSIp25mpFxcXbsW6+M8Du58EFuvvoayvS8RX4j
-   w==;
-X-CSE-ConnectionGUID: 3JTNAvFgTva7CXOTysIGrw==
-X-CSE-MsgGUID: Rm5fp37aTrKkkewD1LcgvQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11382"; a="43895170"
-X-IronPort-AV: E=Sophos;i="6.14,271,1736841600"; 
-   d="scan'208";a="43895170"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Mar 2025 03:21:23 -0700
-X-CSE-ConnectionGUID: XNOMQ1H/Q7GZRb74Gm5BHQ==
-X-CSE-MsgGUID: jvHZhpUkTNidwGl+cyC7Ew==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,271,1736841600"; 
-   d="scan'208";a="124169532"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Mar 2025 03:21:17 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1twevi-00000005JJX-01o8;
-	Mon, 24 Mar 2025 12:21:14 +0200
-Date: Mon, 24 Mar 2025 12:21:13 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Pop Ioan Daniel <pop.ioan-daniel@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
-	Olivier Moysan <olivier.moysan@foss.st.com>,
-	David Lechner <dlechner@baylibre.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Guillaume Stols <gstols@baylibre.com>,
-	Trevor Gamblin <tgamblin@baylibre.com>,
-	Dumitru Ceclan <mitrutzceclan@gmail.com>,
-	Matteo Martelli <matteomartelli3@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Alisa-Dariana Roman <alisadariana@gmail.com>,
-	Michael Walle <michael@walle.cc>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
-	Dragos Bogdan <dragos.bogdan@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 5/5] iio: adc: ad7405: add ad7405 driver
-Message-ID: <Z-EyGWpu_hjgEUYO@smile.fi.intel.com>
-References: <20250324090813.2775011-1-pop.ioan-daniel@analog.com>
- <20250324090813.2775011-6-pop.ioan-daniel@analog.com>
+	s=arc-20240116; t=1742812457; c=relaxed/simple;
+	bh=/qLi6q7LEG6G+gTysNKTm/VHDb6U6FHfd5xdcOKhZRY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Xqd+PEl1zQS7+dQxvoMnenK5lNS5UIE4KMWM0KLrzizEqz6130VrLXSlo/mFeEd/MjlO/jLaPUDF4wthfCgEsBzugtK325NJXgEyd1WUaOpSGELrCpz31V41jeaynk3jXFjyx5oRczbexTp2t1sV3aL3HF/1rD+FERRcxKYcJbs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=KlYHZBq7; arc=none smtp.client-ip=220.197.31.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-ID:MIME-Version; bh=CsxSq
+	wIllapJ8LuBOULZiZ9puOmcXb0kK/lST1rS3uI=; b=KlYHZBq7R/W2BQ7zdJVkV
+	WUzZkIu6+L5n1kfRPJM2QD5nNS68FYaF7EFfZ14B+liGtLfSfhvmIkKrbNzr4vlC
+	nTa3hHaTE65m8EAyVZTg+Nq9zRyocLrP5rfM0PfCZRQ2v7tdUEc49Oy7e7jMnsww
+	cnHiYLOS2BFbo9MCO/N1Dc=
+Received: from ProDesk.. (unknown [])
+	by gzsmtp3 (Coremail) with SMTP id PigvCgA3TEH9NOFnDTbjAg--.63654S2;
+	Mon, 24 Mar 2025 18:33:37 +0800 (CST)
+From: Andy Yan <andyshrk@163.com>
+To: heiko@sntech.de
+Cc: conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	hjc@rock-chips.com,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: [PATCH 1/2] dt-bindings: display: rockchip,inno-hdmi: Fix ref clk Document of RK3036 compatible
+Date: Mon, 24 Mar 2025 18:33:27 +0800
+Message-ID: <20250324103332.159682-1-andyshrk@163.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250324090813.2775011-6-pop.ioan-daniel@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-CM-TRANSID:PigvCgA3TEH9NOFnDTbjAg--.63654S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7tw45GrW5ur4xJFyrWF45Wrg_yoW8WF43pa
+	93Cw1kXr1Ikr1UXw1ktr18CrZYya4kAa1Ykry2q3W8Gr1j9ayDKa1agr1DZay3Ar47Aa9F
+	vF47GFy8A34SvrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U_3ktUUUUU=
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbB0g0aXmfhMHZKxwABsX
 
-On Mon, Mar 24, 2025 at 11:08:00AM +0200, Pop Ioan Daniel wrote:
-> Add support for the AD7405/ADUM770x, a high performance isolated ADC,
-> 1-channel, 16-bit with a second-order Σ-Δ modulator that converts an
-> analog input signal into a high speed, single-bit data stream.
+From: Andy Yan <andy.yan@rock-chips.com>
 
-Datasheet: tag?
+The RK3036 HDMI DDC bus requires it's PHY's reference clock to be enabled
+first before normal DDC communication can be carried out.
 
-> Signed-off-by: Pop Ioan Daniel <pop.ioan-daniel@analog.com>
+Therefore, both RK3036 and RK3128 HDMI require two identical clocks.
 
-...
+Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+---
 
-The list of headers is semi-random and unordered. Please, follow IWYU principle
-and fix the ordering as well.
+ .../bindings/display/rockchip/rockchip,inno-hdmi.yaml | 11 ++---------
+ 1 file changed, 2 insertions(+), 9 deletions(-)
 
-> +#include <linux/module.h>
-> +#include <linux/log2.h>
-> +#include <linux/clk.h>
-> +#include <linux/platform_device.h>
-
-> +#include <linux/of.h>
-
-No of.h in the new code, please.
-
-> +#include <linux/iio/iio.h>
-> +#include <linux/iio/backend.h>
-
-Move this group...
-
-> +#include <linux/util_macros.h>
-> +#include <linux/regulator/consumer.h>
-> +
-
-...somewhere here as other (recent) drivers do.
-
-...
-
-> +#define AD7405_DEFAULT_DEC_RATE 1024
-
-What is the units?
-
-...
-
-> +const unsigned int ad7405_dec_rates[] = {
-> +		4096, 2048, 1024, 512, 256, 128, 64, 32,
-
-Too much TABbed.
-
-> +};
-
-...
-
-> +struct ad7405_chip_info {
-> +	const char *name;
-> +	unsigned int num_channels;
-> +	unsigned int max_rate;
-> +	unsigned int min_rate;
-> +	struct iio_chan_spec channel[3];
-> +	const unsigned long *available_mask;
-
-`pahole` has been run and this is the best choice, right?
-
-> +};
-> +
-> +struct ad7405_state {
-
-Ditto.
-
-> +	struct iio_backend *back;
-> +	struct clk *axi_clk_gen;
-> +	/* lock to protect multiple accesses to the device registers */
-> +	struct mutex lock;
-> +	struct regmap *regmap;
-> +	struct iio_info iio_info;
-> +	const struct ad7405_chip_info *info;
-> +	unsigned int sample_frequency_tbl[ARRAY_SIZE(ad7405_dec_rates)];
-> +	unsigned int sample_frequency;
-> +	unsigned int ref_frequency;
-> +};
-
-...
-
-> +static void ad7405_fill_samp_freq_table(struct ad7405_state *st)
-> +{
-> +	int i;
-
-Why signed.
-
-> +
-> +	for (i = 0; i < ARRAY_SIZE(ad7405_dec_rates); i++)
-> +		st->sample_frequency_tbl[i] = DIV_ROUND_CLOSEST_ULL(st->ref_frequency, ad7405_dec_rates[i]);
-
-This is too long even for relaxed mode...
-
-> +}
-
-...
-
-> +static int ad7405_set_sampling_rate(struct iio_dev *indio_dev,
-> +				    const struct iio_chan_spec *chan,
-> +				    unsigned int samp_rate)
-> +{
-> +	struct ad7405_state *st = iio_priv(indio_dev);
-> +	unsigned int dec_rate, idx;
-> +	int ret;
-> +
-> +	dec_rate = DIV_ROUND_CLOSEST_ULL(st->ref_frequency, samp_rate);
-> +
-> +	idx = find_closest_descending(dec_rate, ad7405_dec_rates,
-> +				      ARRAY_SIZE(ad7405_dec_rates));
-> +
-> +	    dec_rate = ad7405_dec_rates[idx];
-
-Something happened there...
-
-> +	ret = iio_backend_set_dec_rate(st->back, dec_rate);
-> +	if (ret)
-> +		return ret;
-> +
-> +	st->sample_frequency = DIV_ROUND_CLOSEST_ULL(st->ref_frequency, dec_rate);
-> +
-> +	return 0;
-> +}
-
-...
-
-Okay, I'll stop here, this driver is not ready for upstream. Please, consult
-with your colleagues and do round of internal review before sending a new
-version.
-
+diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,inno-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,inno-hdmi.yaml
+index 5b87b0f1963e1..9d1e7f894ea54 100644
+--- a/Documentation/devicetree/bindings/display/rockchip/rockchip,inno-hdmi.yaml
++++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,inno-hdmi.yaml
+@@ -23,13 +23,11 @@ properties:
+     maxItems: 1
+ 
+   clocks:
+-    minItems: 1
+     items:
+       - description: The HDMI controller main clock
+       - description: The HDMI PHY reference clock
+ 
+   clock-names:
+-    minItems: 1
+     items:
+       - const: pclk
+       - const: ref
+@@ -87,11 +85,6 @@ allOf:
+             const: rockchip,rk3128-inno-hdmi
+ 
+     then:
+-      properties:
+-        clocks:
+-          minItems: 2
+-        clock-names:
+-          minItems: 2
+       required:
+         - power-domains
+ 
+@@ -106,8 +99,8 @@ examples:
+       compatible = "rockchip,rk3036-inno-hdmi";
+       reg = <0x20034000 0x4000>;
+       interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
+-      clocks = <&cru  PCLK_HDMI>;
+-      clock-names = "pclk";
++      clocks = <&cru PCLK_HDMI>, <&cru SCLK_LCDC>;
++      clock-names = "pclk", "ref";
+       pinctrl-names = "default";
+       pinctrl-0 = <&hdmi_ctl>;
+       #sound-dai-cells = <0>;
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.43.0
 
 
