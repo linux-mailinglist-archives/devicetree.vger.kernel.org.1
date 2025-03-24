@@ -1,171 +1,191 @@
-Return-Path: <devicetree+bounces-160102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECB20A6D7EE
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 11:01:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 146C3A6D7F1
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 11:01:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E7713B117C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 10:00:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A62316D266
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 10:01:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F81725A2B0;
-	Mon, 24 Mar 2025 10:01:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 527BF25DB0B;
+	Mon, 24 Mar 2025 10:01:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="iJn5OtMQ"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="CIZ9xP7w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013043.outbound.protection.outlook.com [40.107.162.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECD78136988;
-	Mon, 24 Mar 2025 10:01:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.43
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742810467; cv=fail; b=T6/eWU8Zs4FbjuTbBQrG2+4/v/Xu0kE2ILKGHckgRas19o6R/wGSWGFXEYp5aLJALerHasp4fmyeF3piC3d1vp6uH/CzQB1ueghAy3NuruWbJ99mDuAF/mat7+Vu9WrlHJSe1AsVrrRQz+df/7CjZ1g7zFMTKymqLtP/+/sfCLI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742810467; c=relaxed/simple;
-	bh=xn57cBSlBVLM/hBz5OhdnxgflIvaZVTLf7TdENbhWs0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=MwBHQTavwJr5gGr3muVGy4IXx7jm+JlWt+P3Oc4cH7uc1ap5y3lhiNLm5kAREn39QK+SaMZ/BfYeOnDp6J5aFmYlRZ0aBzDyo+wz6CQJj1Rx7hwf2CryC22hXb+f6I4JnscG4dbQvfKgYkwBfNouNF1UFdYVm6Dx3qc5eDVMAMU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=iJn5OtMQ; arc=fail smtp.client-ip=40.107.162.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VxjE8oJiI8gJCdB6e3ZcKhZJABLXZOPI3iuKWyZtip8e+JYi9rEJhx31iTHpG3Wi0kzzcMpSFDS+xKynXnqpVC2Y+SdOEFLC57/M/nV1ewuzarjKhGtffMkaV0GAqThkDD1CtzYiCfQYR58/Id35Iho72SrIF0wVPIBxZhH38scePGONj65yXdGNNAU6S6TzpuwhCTL9tTJHz48TNiArpl3Av7h6tTYzFPCkpIyfbvdh4vuGSgq1FnQK3gHf7hlE2jt0wCYImKZiURT4wpG8DbS0mFAjEW95JzuW7FMpDVxBi2LvT+b0v+g3/6xbn8HRbtC/sVpY5pb5v6VdkYOROQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ei3LkgSr2eFFZC3g2qCR2DP11+xiQYgJgdWTykZh61Q=;
- b=Iu66HflvRzqhGbgeFiZP6ieWhV5bsm4+EbML5fMv+i13O9X9Ze0r7Xgq9mhs77TgnmIkjYW51ZmRbLD/mAqbkV+0zDziNlCzocFmZmV1YO8f5HnQJ2EYZgYfSSLd23t4vgnLlzibBSZqtCGb14/C/1KQVzNMNZU9Ku4Fubi5l1ToOvAPK1dp5oihWr+u0N2VtEasRYuOV9VvoNiD4U+6PXo1Oy87vyrzI1NyA65FdfOLOV/PlhWKsxw6G1Sbrthnu1VsjKIa98/KWUh+PwtCXGJuxsmFoHPNbf7wmHL372D7jOpNC5vYqKtXDJQaFvgZvSNgExuum44h0pj0OfUzBg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ei3LkgSr2eFFZC3g2qCR2DP11+xiQYgJgdWTykZh61Q=;
- b=iJn5OtMQLsVD0uMp9JsMXI0nsxMOYPmbBtr7iGbo90zG7QBMDjbMnZacYY4UXVyxUPFtlJHymwUZR9Fso0p8sYfwxY350WwmUNaQiyQA/otJUGomZWHB7CdIXaKSW6fiZpiEGyA4/N6OdbK70kejS6VzQ6i69Dzrp8kzX6355H0Q98c0ewVRRPaaP4fMLJPxatddz5JgvuqL4XbDBYcGsYPQXAOlX74sCYgf7RNSXyjIGQ74AM0EaGmd7Xfe1LlCEKb26IGcpGqFHlCZ0XaH+l/Tk5zlvVc3n9pdK3s0H9DqEIAZCa1mYYh11lu3eqqVqPi57kfELtmWU27CoXN63w==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM8PR04MB7779.eurprd04.prod.outlook.com (2603:10a6:20b:24b::14)
- by DU0PR04MB9299.eurprd04.prod.outlook.com (2603:10a6:10:356::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.42; Mon, 24 Mar
- 2025 10:00:58 +0000
-Received: from AM8PR04MB7779.eurprd04.prod.outlook.com
- ([fe80::7417:d17f:8d97:44d2]) by AM8PR04MB7779.eurprd04.prod.outlook.com
- ([fe80::7417:d17f:8d97:44d2%6]) with mapi id 15.20.8534.040; Mon, 24 Mar 2025
- 10:00:58 +0000
-Date: Mon, 24 Mar 2025 12:00:55 +0200
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
-To: Rasmus Villemoes <ravi@prevas.dk>
-Cc: Colin Foster <colin.foster@in-advantage.com>,
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-	Felix Blix Everberg <felix.blix@prevas.dk>, netdev@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: net: mscc,vsc7514-switch: allow
- specifying 'phys' for switch ports
-Message-ID: <20250324100055.rqx4rle6fdtn7dg2@skbuf>
-References: <20250324085506.55916-1-ravi@prevas.dk>
- <20250324085506.55916-3-ravi@prevas.dk>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250324085506.55916-3-ravi@prevas.dk>
-X-ClientProxiedBy: BE1P281CA0204.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:b10:89::13) To AM8PR04MB7779.eurprd04.prod.outlook.com
- (2603:10a6:20b:24b::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2B6025DAE4
+	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 10:01:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1742810494; cv=none; b=BbPbJKtN2tnrzJbhTtzIBabYE35weV7PhJZeWFLK1Ew205xZjMPicu+g+xEBGgsYXbSqAqmD1DS6pDxEiYI3k4jaPD4YukD7iKwwQGEVX5g4ewCla7L/0oZs978LYVrfaaW415YTMI/jHz+PtpmE20a6H1qOG51L3q+ly3CiMrs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1742810494; c=relaxed/simple;
+	bh=nEyIJ4RqPVknj4EvEL8pm91V8RRXmCyZ1bNH16KxDTI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kp2Q/2UaRyjqNvimzZE4SLPoT22aqBoFdIYKveNJEQmuqKns7Vphi97GqoksmNrl7LcJyMEoGUQ/PK6J9tcUS9fB8tUwlsxzWnDndRhiYJK76JiYigmuX6xwwERzgto3LFxWVDEDoy/vHBCHjWf9Z/s6cIDiE4W9oIgpMNFqWVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=CIZ9xP7w; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-43cef035a3bso28216945e9.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 03:01:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1742810489; x=1743415289; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=S9pWdndVU9dqNCdt5yutM0V93eSHB5go/aiJnsWq1dU=;
+        b=CIZ9xP7w3mW7+EFCAD4idzhxELDg2fH1QfGWNc9N6zaSQ3Cj+CFM68GUgxGQOC67cr
+         GoR9MyrGnDkjTLl428ElgY2oOR0GGVWPzYzgFuhOvnA26XJGACtPJUJbMMUWFg35ZE9B
+         gxuhgMc+phK5NCbku22kT9EUCVqc9MLk/4snYy12XeOYGYNNXoTjYb4g0vkOcj1rI2h8
+         MajunjsUCPz9D5YBemxUmbR2o894DiZzD/9TlRyBBqzFEHyo2seE/uz0/rW1NTY+45O/
+         eW0z3QcCgSU0YYTHKMRCiBFIEMtkHIOSt/JpVDB0VRpzJcWSV4l46CVnezZWkPmM+YGS
+         F4nQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742810489; x=1743415289;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=S9pWdndVU9dqNCdt5yutM0V93eSHB5go/aiJnsWq1dU=;
+        b=liDQdg/9763RMU5fSTgHmGuqZZ+I8+wVOEsaDq7pPGVoe0XzxiwUGdcmXz9zzTK9He
+         1eaydoDCnX/DLDrNKdSfrx003ZDxyls2H6tE50hdOa9YBmoLE3PRJtOO2s6QKClftdSL
+         UwS3EX74n88qvHUkhca86bGPhYJnsPcJvqC2dTFuKyc8dnLr0bAg9dH/HckwKPZbz1/9
+         cAbSKV98eqE7FCHSllozCzgrhyaVR/80A36720hR2lLq8Jq8GL07b37kxtG+QGstNtF1
+         AiFmtVh99+CCsMQ+Mi8eKunvg+/wCoWh5rn+8cNpLRg9tBnDDg7PS3Npw5Ii/ZEB9Wj+
+         bkPw==
+X-Forwarded-Encrypted: i=1; AJvYcCX5A21zJrtJrru8bPXgEptaSmBhiNsL9E2Qnz4+s/ju4l0EW59PW15YZAKvDdeTVRLVkNwLdgB5z71y@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxj/7XRDnB4WWK5s+v2mKJfq9SKD25BWRyQ4j3eLgj8wql+qbL9
+	p4xbl4/3anAPpazz2dpeoD/sqU4G+ppMgL2c27ciWL5PJkJUL1jlAQldGnhFEno=
+X-Gm-Gg: ASbGncuqxDtLf/X+g8vZ+K9lPvkogJBpU3wlQkNLW5swJi6sy1W4Q2HaRkYozicun/r
+	XDzhivRG2ngJypT+q+RCUtm4cvKdY/5oBG8blPq35iamZEuDESjmgTwlSAEZzIuYoBvy599GuEj
+	JrtMd6sWfGODL5lXkSUOpGs4Yg+J4AOtOjkY35ebflKdjHSw2yXtV8W1J5ardP6Zc3R1rGCNiKH
+	IpM7QST2jRBZWcyE3vGT8lGUR24IGEMmt0Mhiq30HRmOrOPSWGu9ugtgLrEtUPw5ePy6W2mg6W+
+	F2O5COZuRNpTKhdZhBomcpYxKxP2DFH36sJuzfbEI55+wi9tzfL4K44CepKzqkQfv22AsRG7sgO
+	/xneST3sOt88=
+X-Google-Smtp-Source: AGHT+IEP6KrMueYMbZ1EVyK2uRtOCWBQuSagI7B70MnPdQKoMaCVvuHwOTfSTcNlxRKEsAQJoF8LBg==
+X-Received: by 2002:a05:6000:1aca:b0:391:47a7:299c with SMTP id ffacd0b85a97d-3997f94de39mr11330639f8f.40.1742810488933;
+        Mon, 24 Mar 2025 03:01:28 -0700 (PDT)
+Received: from localhost (p200300f65f14610400000000000001b9.dip0.t-ipconnect.de. [2003:f6:5f14:6104::1b9])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3997f9e65e0sm10655928f8f.61.2025.03.24.03.01.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Mar 2025 03:01:28 -0700 (PDT)
+Date: Mon, 24 Mar 2025 11:01:27 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Dinh Nguyen <dinguyen@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 0/2] ARM: dts: socfpga: Add basic support for
+ Terrasic's de10-nano
+Message-ID: <v7btqobpnuss7rldvrnem3tmznyrd54kks6dcnpwqdhpqysqzq@p3bt6bdztiq4>
+References: <cover.1738600838.git.u.kleine-koenig@baylibre.com>
+ <6ae42224-74cf-4d2e-88fb-f766279d3525@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM8PR04MB7779:EE_|DU0PR04MB9299:EE_
-X-MS-Office365-Filtering-Correlation-Id: 086202cf-ed6f-4527-d334-08dd6abac670
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|7053199007;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?S1WguimKRQDjzNq7EvZ8zZeghUffD/o4+ufjrQuPofcDloRTrdhWwPo3zNAR?=
- =?us-ascii?Q?WM2GuAaDMVWrTSCXg4EIYBX0kZ1UkVnoPpTVRADuPKjmQG1B/IqfhK6mFUco?=
- =?us-ascii?Q?UiWOdodOSEaOmJ6Q/YqygGAEDbdECwUNvQ09Sp3mOXmionKSvdqngnlmO0l4?=
- =?us-ascii?Q?7sfFD17/0MN07LTn8CKs2Tv9OsooTRQiXRXQ3+KBxu80BHNG6AcNuBZ1yeI6?=
- =?us-ascii?Q?yTViulemynR1BPdORCCRClD6OvYx7QB9VTdw8Gb6TRgYWZOiQre3L41JOogx?=
- =?us-ascii?Q?epoqYJN8TTP7ciTPzvA3hqf6nCoFeiGTmd94hDkHEqp7tyShzSdZKRx6J0nw?=
- =?us-ascii?Q?Kn6J/y8ytCYDYmvO9m0trFR+28qEujTxXyM2M4N9jtlm7Sg+T4TikxBjNZjx?=
- =?us-ascii?Q?xdno4kBrOYFP8rK/qws9IEJKHZma7HMEXl1pBuZfuICUg64rzs2hVmwpmssA?=
- =?us-ascii?Q?6D/yUKXX5F/fm/05WWCGlSbx1qVkDqhDsXuoRwkRc/d1ahTYP6vWcENK6y0q?=
- =?us-ascii?Q?24gIdY4LEaOSFEcM2CYLoHKypJ/Urq4Q39uS26wKizoe1utva7R157S5Fxl8?=
- =?us-ascii?Q?OF2k89Trpf9gtDmqW16j6nj07zqHgoTmaFjLnQeqW3tQl1P35i9Y2lUSqTBV?=
- =?us-ascii?Q?Zw5betRRj/FIcAcsRDlxb2UR9x4kkdsb0eAZbF5AjnPmSwWD3d4C6R/J6e06?=
- =?us-ascii?Q?6Ey9cN2hdgkAO492Azkmay1cq2pGmGTGXlJmqXePQvxITERQ0yUtsRR0BLI3?=
- =?us-ascii?Q?PvS5+fmznuZCZTMtnyvgbGWJL2U1I6KSJ/f5hwDhmetJ3gHQWNFdgTR5TMf3?=
- =?us-ascii?Q?qKgW1+FXfnmyeqKfkZhyBS/MjilsmTfg3aovi2PcUxyp3DReNEX6SlOqk1Hi?=
- =?us-ascii?Q?VB4dppcCooiu6vH6cdfPEPZh0CIHY3U17Gh6fUf2X+9+4z/bxMlyMwdD5P4d?=
- =?us-ascii?Q?AfeEE6Oj3WLediUrb0cKHNrwVZqoB9wMnKqP5/mF/nBmsxLs//CXNTHPK2ex?=
- =?us-ascii?Q?UvJF7/w4pnCZksex9KLWsgUIPEVVw6JetcJlxDxdLxkWm+uaozi678OBu1Xj?=
- =?us-ascii?Q?a7SpedsH//xGrTKw3ctNuXZ3NXz6sRLY1u6fVD+UZ8C3LwOZ18QDlNcTpHRQ?=
- =?us-ascii?Q?TJQl6/FOl/nNswN0B2RogFrnGIbJtyfH/T4IJdIHp2j6P5ruJmLBjhe9ghAK?=
- =?us-ascii?Q?kGM1SUdt5vJL5FaTMQn5105vwRNxPIpznBBBe30quoq9+N8kmYJwXaaMtxmI?=
- =?us-ascii?Q?8PtvLqCTXbzoaD46/M1n+gq26mppXrOCSbz1D3TAE+fta0xu1cjrIJcOEZ1n?=
- =?us-ascii?Q?8syMGJ/fTKPI+nUPFrSbCd56/2d7FiwAEZ05m8pp1xVoXnFYBQ6E7hjHyG+1?=
- =?us-ascii?Q?thWEscdjOm634VsUJru/CriowoC8?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7779.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?JSmxIUHYaB0lbj6Id9ddLSuO2DJ+C4IBEMx6MCkMD9nitQtuO7NxJOaAdTbS?=
- =?us-ascii?Q?tDP2jNtwXEAybwhYnaNLXFeLIaRpC4JhrfaMJvbl/D99G3Pg7yR+2DoYSD8V?=
- =?us-ascii?Q?zL/IAQwTmEsnbrx2UPSiDq39LN4eN81QvTFiogb5G4nvukTkwAw24ImloeuY?=
- =?us-ascii?Q?9iRFgiBv083Mn/HvJ9A4IxuWlnvMnJ8DKUj8nRMI0bJtckxCoqEx0iM2ymna?=
- =?us-ascii?Q?Qjw5/xhbQ82420K4uTPxW3yEFFWuiuh1PsU4y8KMqYJhDvPmdAuMwnqQ7ZT2?=
- =?us-ascii?Q?/wzJEo1kUOVTy3YXtVmVV7LVp6ys00WiccTzKK9hdkv3FW7MI5h+9Rr7+yKZ?=
- =?us-ascii?Q?vfIHOsBtYJlJTXykh8rVTlR0ZeaDhuKy0VqdA3gosTnFgAMS3/SwNd6vepNp?=
- =?us-ascii?Q?P5j2/dESaeFsUfqJwcQoTvqAyK8sHZdz6v6ZJ6YVVuJEGmt2uwRfFwSwk97r?=
- =?us-ascii?Q?udrGwXelIJ7/IC5myhJu0qBoIj7aktyckTsUwo6q4amATNfyV5R0WRohHEuq?=
- =?us-ascii?Q?mtBQdXbw6KqPWNhpzyNcGS6uBREqowAYEeqGeTSSwElByVNJzOEsPzgR6WU/?=
- =?us-ascii?Q?TfROAWFkZQ4aXDAdMNn59+64N7Twh2SuWJsIyKxBjfiQHnpbJnLld1MHaOOZ?=
- =?us-ascii?Q?4zxR8l62Sv0D9GI3lTqj4rAtY2ClYjFv18v4jCFGQZs2pTC+4J2mpid4OzOX?=
- =?us-ascii?Q?h7Sp2Ej1j5ZnEg0tsLAkqBK5kBJp7n+rxIK7jtxD3FNDwwuMTO5HOuxof1yt?=
- =?us-ascii?Q?WEJxrqZMAesWPlzYo3EuDMkELGgLuq4ie/PgCkZLw6VyREa7JApQKCzc5One?=
- =?us-ascii?Q?znuuRrWMXAA8xtwWJDBVWaQb9iU5fnslpoPEZ9EShJ7HkRH2RsedvXHqMxtM?=
- =?us-ascii?Q?nbjupNJnPIpDazOcu69IuFo6LKkve13LX3SLJHEYeWTSromMSKuSrgR4V7mH?=
- =?us-ascii?Q?XPCu6WorL7dTjWFzQtsHnni8fqIIlWDFTwJlCAjeGKbSoi+G04hQUTwLCEGv?=
- =?us-ascii?Q?lnyJZkOF86tJSkkGttGWUlFZAsnV4eyv2kana+nehXORRtXk3yIVAb+hGUAM?=
- =?us-ascii?Q?ZVWA9aS5kd+eo9sKZJtrAsSPbJn9Qo3i7er2h8nPh+Ji1EAkig/knXpxSvAv?=
- =?us-ascii?Q?2KNmNt/KdZYZf/AK0O6CPn67KYqXCYaupNcNjtmb/7iXmvb4QyruY1Y61x7Y?=
- =?us-ascii?Q?XYY5NUhzTzY7AMjQuMAZQcPvapItIXJj8M6mM0s/Ee12zx3e/Bn7uv7VSLDP?=
- =?us-ascii?Q?RunoLUPPtFwFxCFFxvu6Bj9Yw2LMrT8MWGi6QOsvvTWyusLQa38CxGkv0tpL?=
- =?us-ascii?Q?NmwmJnNDjOU6s+ini5og8XhuuelNMnW4tjeke+YVq0gVdx3XqmuAw+vBT5SL?=
- =?us-ascii?Q?UKhoylQ/YaABSlZj3WZdtbl77Uar8b0U8n9khEQxN2Rn/LsYuCLifO2JmWqq?=
- =?us-ascii?Q?CrtRSZgMomuegPSvixpTdGt5jYBKsc6Z0n5Ar6z8t1codpG2BU5wUq6aRQJ+?=
- =?us-ascii?Q?YeMWLxkhld+wX9ug6+kK5GuHn4LXj4hu0FyxkHGeZ9D1k8aMcI9eT2xgcq7i?=
- =?us-ascii?Q?OR89KsnV9IhSL/Vx/bNyW6b6cnLov2RZ45dQyU43PeJU4CVUr79DB7j6Pv2m?=
- =?us-ascii?Q?nw=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 086202cf-ed6f-4527-d334-08dd6abac670
-X-MS-Exchange-CrossTenant-AuthSource: AM8PR04MB7779.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2025 10:00:58.4193
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ni9Cnvo2G2zQK0AixCHPXXls08Tj98m/EIUXov++pEDr9UY0u8bu1/BdxGzIJeT+qIIxZbOaz6gP1PqFqYhzIA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB9299
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="jwb25zmwvlnmq2g2"
+Content-Disposition: inline
+In-Reply-To: <6ae42224-74cf-4d2e-88fb-f766279d3525@kernel.org>
 
-On Mon, Mar 24, 2025 at 09:55:06AM +0100, Rasmus Villemoes wrote:
-> Ports that use SGMII / QSGMII to interface to external phys (or as
-> fixed-link to a cpu mac) need to configure the internal SerDes
-> interface appropriately. Allow an optional 'phys' property to describe
-> those relationships.
-> 
-> Signed-off-by: Rasmus Villemoes <ravi@prevas.dk>
-> ---
 
-Oops... I had thought 'phys' and 'phy-names' would be part of
-Documentation/devicetree/bindings/net/ethernet-controller.yaml...
+--jwb25zmwvlnmq2g2
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 0/2] ARM: dts: socfpga: Add basic support for
+ Terrasic's de10-nano
+MIME-Version: 1.0
 
-By the way, should you also accept 'phy-names' in the binding?
+Hello,
+
+On Tue, Mar 04, 2025 at 06:46:18AM -0600, Dinh Nguyen wrote:
+> On 2/3/25 10:46, Uwe Kleine-K=F6nig wrote:
+> > Hello,
+> >=20
+> > The only change since v2
+> > (https://lore.kernel.org/linux-arm-kernel/20250130074553.92023-2-u.klei=
+ne-koenig@baylibre.com):
+> > is that I added patch 1/2 that is supposed to fix the warning that I
+> > failed to notice with the testing I did. Thanks to Krzysztof and Rob for
+> > their patience with me. I hope I got it right now.
+> >=20
+> > Best regards
+> > Uwe
+> >=20
+> > Uwe Kleine-K=F6nig (2):
+> >    dt-bindings: altera: Add compatible for Terasic's DE10-nano
+> >    ARM: dts: socfpga: Add basic support for Terrasic's de10-nano
+> >=20
+> >   .../devicetree/bindings/arm/altera.yaml       |  1 +
+> >   arch/arm/boot/dts/intel/socfpga/Makefile      |  1 +
+> >   .../socfpga/socfpga_cyclone5_de10nano.dts     | 95 +++++++++++++++++++
+> >   3 files changed, 97 insertions(+)
+> >   create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_d=
+e10nano.dts
+> >=20
+> > base-commit: 00f3246adeeacbda0bd0b303604e46eb59c32e6e
+>=20
+> Applied!
+
+Thanks!
+
+I would have expected that patch to pop up on
+https://web.git.kernel.org/pub/scm/linux/kernel/git/dinguyen/linux.git/log/=
+?h=3Dsocfpga_dts_for_v6.15
+in the mean time, but it's not there. Is it still scheduled to go into
+mainline?
+
+Having said that, that branch looks really strange. It contains:
+
+	$ git show --format=3Dfuller 2445fc2d7863
+	commit 2445fc2d786304c38934199b1f95a9e52be0cec9
+	Author:     Linus Torvalds <torvalds@linux-foundation.org>
+	AuthorDate: Sun Feb 9 12:45:03 2025 -0800
+	Commit:     Dinh Nguyen <dinguyen@kernel.org>
+	CommitDate: Wed Feb 19 06:32:34 2025 -0600
+
+	    Linux 6.14-rc2
+
+	diff --git a/Makefile b/Makefile
+	index 9e0d63d9d94b..89628e354ca7 100644
+	--- a/Makefile
+	+++ b/Makefile
+	@@ -2,7 +2,7 @@
+	 VERSION =3D 6
+	 PATCHLEVEL =3D 14
+	 SUBLEVEL =3D 0
+	-EXTRAVERSION =3D -rc1
+	+EXTRAVERSION =3D -rc2
+	 NAME =3D Baby Opossum Posse
+
+	 # *DOCUMENTATION*
+
+I assume this is a rebase accident?=20
+
+Best regards
+Uwe
+
+--jwb25zmwvlnmq2g2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmfhLXQACgkQj4D7WH0S
+/k6gNwf9ERnBuzBvYoovtESv5fokVATPgIqwxS62IjWJNvA1XAnDfihLRKuV82FQ
+hVHJYpW7bLd2bAZuhtvPw9ZcWieSJw5+k21sDTYWTPapuwTrcFdzB+0QpgmEn951
+A8xQ4kMEv3faqma/VzsB1YZkeM2L+vGWgnzQUCXLsq041fAUr8Oqnvh1Km2QBm2a
+v9Bx+hu2+iPCVeTE30kuTHF7wQKiNW/gYNmvP+iQC3m1cSB6cWEKEzza9DRU/Ixx
+1Q8JnpPXgBOcu1Ml6BGleCkZNv3v1EXtCYeQJmGk+3XtFBLxBB4cmguXVfCQl2A7
+VFoauC0k2Fry5UD8Q7FsJM1HsE88Eg==
+=o5ZS
+-----END PGP SIGNATURE-----
+
+--jwb25zmwvlnmq2g2--
 
