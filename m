@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-160092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDA15A6D781
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 10:34:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19B4CA6D792
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 10:36:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 57A661647F6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 09:34:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 999B716CBBD
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 09:36:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D31E25D8ED;
-	Mon, 24 Mar 2025 09:34:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46A0325D8ED;
+	Mon, 24 Mar 2025 09:36:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HA98kcj3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IepI6eE/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7614210F9;
-	Mon, 24 Mar 2025 09:34:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C5781953A2;
+	Mon, 24 Mar 2025 09:36:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742808846; cv=none; b=gdMc2hbOompzJMl+mEMopwY8frlC6u6I9yJ5vagkPyTe+fEVBDZqWPUA+DgNVDCEaUHXW5GRDPc/CaeUU6nrKJdlofvG+8GNLGKZLIM94me8FyyPWVCBEpdbNs6gcXmoUH7fbnaGsOvbjkI8DgPvtuE+luSdYfn5p6ymzd2a9hE=
+	t=1742808999; cv=none; b=ej9lrVKjEg+MYsDQ4+labJ51IOfPGzfPxFbuSj3L+8fGQa/+X2xBAgMHcwrG8EQJvOUZFz3ck7n+WQGTEaQl6kAteTIFx/6P5rBM44TcMlycLYFfGP6BVo2F8u7X4/Nsu30kGPSuF1rS1fYlCg2RiLgU33GxRZIrkGnXPKhK2YE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742808846; c=relaxed/simple;
-	bh=FvQn3givm85EANWlfsUtGcpdsUFHMIzmUrIJkbrLKlU=;
+	s=arc-20240116; t=1742808999; c=relaxed/simple;
+	bh=PJzZLmVcfVBTyYixEnKzvpzn4eT4hlh6iQAK6VQBE3k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ePNNX6T5kNeCJw4MSZZ+N36Qa5YFTfJdZIUqZKidUmYsH63ursTbBUl3foCmyw8H5LMv0TPc6MEaNE25i3YAAhCCM1oHwsCgQ/Lt+7kByptcU07LbaE0B3qhSym1Drh5/NL3492ZtTj0ifkPXFJlULKb1vrbq9pDTFlcm4tYJH0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HA98kcj3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BF6CC4CEDD;
-	Mon, 24 Mar 2025 09:34:05 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=r5byzwCF6OckAWtOYeqmo3UqkHWGYs2c9+PM1G19GCplVuF+wQC9Qli/V0EUNB9pB80M4oNT53XyhuNFGD18gCzL6+BOLSum4aXz7BjiTO385XtdK5+GwF7tp3f/3pdGrKQg0YC+S3I5JNf+8w731OoUHUfVSc6ervn4CXJvC3A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IepI6eE/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F010DC4CEDD;
+	Mon, 24 Mar 2025 09:36:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742808846;
-	bh=FvQn3givm85EANWlfsUtGcpdsUFHMIzmUrIJkbrLKlU=;
+	s=k20201202; t=1742808998;
+	bh=PJzZLmVcfVBTyYixEnKzvpzn4eT4hlh6iQAK6VQBE3k=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HA98kcj3d+kiZI2Lofc3n1TBAGS7wYTceRz1BVXH62/B4d5TNdiIjqZNskJcWKKtz
-	 Vpjj0auztCgtdivyZ/WHR5b0zJT8QvR6jSYk4wTuy+2oYygLaULIWN+HSsUQ7Uo3/P
-	 1BZnR8plpgEWS3OmPmzjY6W/VBMYs6kI2b9dOLVchttfqBHLuv12TdXHDscJIA0lyz
-	 SoJ7xwUJoBzbbUejhLYLX84VY5pUXIVbxht9NSjtO5+M0J+BrMPKVlEzZ2FVCgKbmu
-	 wUoN4brf8KOLM6bRVYbq25XEeBlzOUX52q99zgulHr/en2hem1Hd0sToceVrHw0ALw
-	 gQx/wmwyQHGrg==
-Date: Mon, 24 Mar 2025 10:34:03 +0100
+	b=IepI6eE/HrjMOv4BkqvK3/BA94amIdm+TWEoIBz/29IkPA7bNK6NAJaZW0AqnHDPv
+	 E4DZfUi67CT3+W30Fcdi9b8cf/GuDyljgLmaUgAubP4QHh9eUAf2nXn4oru0jIgW5i
+	 bup58hM18Mwfzcuh12bXP3ZdJClglMQfD7Dm7Vv3r85ViIUfbrhwbhyNT3Byc93tPm
+	 Dpzw445pZKzm6AH9RlR3Tr3EVOuxOzOI1GWpmz6G0ATNakDTlSfft7dJnTrCK07M/O
+	 VuWaiy9WlSgfakHBSZxq/uiDCRo7p02Ro261R8eadCg59G/JbtXuKYKMmF4nyhtxRd
+	 i0VFiGWVlB8hg==
+Date: Mon, 24 Mar 2025 10:36:35 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: "paul-pl.chen" <paul-pl.chen@mediatek.com>
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
@@ -52,11 +52,11 @@ Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
 	linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
 	Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v2 02/15] dt-bindings: soc: mediatek: add mutex yaml for
- MT8196
-Message-ID: <20250324-amusing-pearl-yak-9d925a@krzk-bin>
+Subject: Re: [PATCH v2 04/15] dt-bindings: display: mediatek: add BLENDER
+ yaml for MT8196
+Message-ID: <20250324-vigilant-vagabond-earthworm-b4e2c9@krzk-bin>
 References: <20250321093435.94835-1-paul-pl.chen@mediatek.com>
- <20250321093435.94835-3-paul-pl.chen@mediatek.com>
+ <20250321093435.94835-5-paul-pl.chen@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,19 +65,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250321093435.94835-3-paul-pl.chen@mediatek.com>
+In-Reply-To: <20250321093435.94835-5-paul-pl.chen@mediatek.com>
 
-On Fri, Mar 21, 2025 at 05:33:31PM +0800, paul-pl.chen wrote:
-> From: Paul-pl Chen <paul-pl.chen@mediatek.com>
-> 
-> Add compatible string to support mutex for MT8196.
-> 
-> Signed-off-by: Paul-pl Chen <paul-pl.chen@mediatek.com>
-> ---
->  .../devicetree/bindings/soc/mediatek/mediatek,mutex.yaml        | 2 ++
->  1 file changed, 2 insertions(+)
+On Fri, Mar 21, 2025 at 05:33:33PM +0800, paul-pl.chen wrote:
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Why did you add here blank line? Random changes happening...
+
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        disp_ovl0_blender0: blender@328d0000 {
+> +            compatible = "mediatek,mt8196-blender";
+> +            reg = <0 0x328d0000 0 0x1000>;
+> +            clocks = <&ovlsys_config_clk 29>;
+
+With fixed code:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
