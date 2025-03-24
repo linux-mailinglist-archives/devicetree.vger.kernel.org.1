@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-160195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22724A6DCE1
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 15:24:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65EC3A6DCD9
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 15:23:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5067C3AFE3A
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 14:22:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22FDB16D968
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 14:23:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8E832627F1;
-	Mon, 24 Mar 2025 14:21:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48C9A26280A;
+	Mon, 24 Mar 2025 14:21:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qHX6jwgm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aEp+e2S2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF40425FA22;
-	Mon, 24 Mar 2025 14:21:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20A07262805;
+	Mon, 24 Mar 2025 14:21:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742826083; cv=none; b=fnK6bJucHf5C0IgIbUM0sOxrtjU2B9Y00+E6yywvUwZHOUyqKum/kvfs2Cn5BYMFiQ025haXgE7YUXnW5deoEQ8ivY0ERAWJgr/ZWiIQjbqnx/OCQx49DmnXsumdracWtBi/c2j/vqSLK+fGwJjHJbkQ1jOEZwhtStaMxkg07rM=
+	t=1742826085; cv=none; b=PX92ZoHsp0U9l3pkLsofiIhqtJA7fg9QD6p4/btXLoppU4VAwjjITAhxglEIz+E4VNpoWpU5k9eQitiG7aT/eYW2yg1MzY27567XUH1jiJxxdU8LoNMnCmF6YnXNjHmHOdz188TvfEMlgAl1hjaJjKqzTcay2lpyWDsMyJia/Bs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742826083; c=relaxed/simple;
-	bh=2gwvYreVDT8Y627DcuFPV+DCncDkxW/x6CETOG01N7I=;
+	s=arc-20240116; t=1742826085; c=relaxed/simple;
+	bh=BUz8zYXf16hLfQPBxgTj8QMJv/VwcmDZZs0OAPRiMrc=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=X7ia2ENnty52s/cUmSYpI5Ss97AVJrH1eNd5G1b7zDee4H+zdo3Gk6c2wt3qXQQ+rlVHNNh+kyj00igeAAUQngOsP43Gvx5JGXMoR9VYBqIroSZWTtMJnmFaJD6nTkcGBlM6AZJqYiS0Gl+NE6ilY8qpQSgh8T9YXojfjwQWEK0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qHX6jwgm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD198C4CEDD;
-	Mon, 24 Mar 2025 14:21:22 +0000 (UTC)
+	 Message-Id:Subject; b=VoDvHQj/9VkdaxGiwJ/rN0jy9iqA2Ty/yYfqSYn06pfTgdbwszWzBGnsEs0qVRsihA8yqhzPYIZvGkV3NDuq1K14nRgl8T7siG5sb19PM8wSWomgraxy1cnVJC3bTDtXQZvIDcc9ZKbiNxVQ6OdRdfS1ji7PJvjQ/1xSncaiK5E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aEp+e2S2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62F4EC4CEDD;
+	Mon, 24 Mar 2025 14:21:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742826083;
-	bh=2gwvYreVDT8Y627DcuFPV+DCncDkxW/x6CETOG01N7I=;
+	s=k20201202; t=1742826084;
+	bh=BUz8zYXf16hLfQPBxgTj8QMJv/VwcmDZZs0OAPRiMrc=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=qHX6jwgm8E6h2HP2t3CTTzi7hYl5PmKBjoT6O1v5gpSAVFPQjAMsFRDlp1/tuZQcL
-	 2jixSs5z1CEMoJOO8SCwXPXohgieVml12uTziedYE4DqZk8/Tbait0lWlebahVBaYo
-	 f1DmjPeVxtbxpw/m+CLd+mgYSq+P4moJ0sr7StyL53jC47K3Yv8j7jxqm2BVAeLZsZ
-	 V38YLJYXuZsmagE9DaM/6G3W95Av+SDOfs3ToYaDgfRYIO8bzdM4CAYTWxIlOQ+cdm
-	 wodYw/XHauqSPkRjf0jOTBxuKhtJnW4zuyZzLecBGq1d1QkyKwrewcqrEirrcVMmfz
-	 /re/0niX62cLQ==
-Date: Mon, 24 Mar 2025 09:21:21 -0500
+	b=aEp+e2S2Mt5oiqdGcYgXj22r5GuOik2+/7oBiJTp3js7wmt6R/EPVP7RrmIsPjT/d
+	 RtEXQPJXegXw9zanTSfpD1IMnJNDP3kDC2b31xYnNpLbUJRVYnFl8VedB9MH/HwsRK
+	 ajc7p/shnr8u603dLAsvdrNl7lqm0CvOg4MxaY98Zu314I3cEgjQr1Jx/HSmoC7gsy
+	 qIyKp4Efh70CMLHQ14x2hfmeYYspmORhbX7q3xFfINGgnM8xn/8r3OYIQXeY59qrlL
+	 NAiYUH3UmsSKI7gGFfkNsUy75IMg7sEnvrrQE9VSP7f2IvC0CX/CdOFzzYpuP01R5C
+	 GG7PkYK2LXqsg==
+Date: Mon, 24 Mar 2025 09:21:23 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,53 +51,48 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Colin Foster <colin.foster@in-advantage.com>, netdev@vger.kernel.org, 
- Vladimir Oltean <vladimir.oltean@nxp.com>, 
- Felix Blix Everberg <felix.blix@prevas.dk>, devicetree@vger.kernel.org
-To: Rasmus Villemoes <ravi@prevas.dk>
-In-Reply-To: <20250324085506.55916-3-ravi@prevas.dk>
-References: <20250324085506.55916-1-ravi@prevas.dk>
- <20250324085506.55916-3-ravi@prevas.dk>
-Message-Id: <174282607911.6262.15261935260960976141.robh@kernel.org>
-Subject: Re: [PATCH 2/2] dt-bindings: net: mscc,vsc7514-switch: allow
- specifying 'phys' for switch ports
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ devicetree@vger.kernel.org, 
+ Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ linux-arm-kernel@lists.infradead.org, 
+ Thomas Fossati <thomas.fossati@linaro.org>, tglx@linutronix.de, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ linux-stm32@st-md-mailman.stormreply.com
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20250324100008.346009-1-daniel.lezcano@linaro.org>
+References: <20250324100008.346009-1-daniel.lezcano@linaro.org>
+Message-Id: <174282608006.6289.10388719224772938093.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: NXP System Timer Module
 
 
-On Mon, 24 Mar 2025 09:55:06 +0100, Rasmus Villemoes wrote:
-> Ports that use SGMII / QSGMII to interface to external phys (or as
-> fixed-link to a cpu mac) need to configure the internal SerDes
-> interface appropriately. Allow an optional 'phys' property to describe
-> those relationships.
+On Mon, 24 Mar 2025 11:00:05 +0100, Daniel Lezcano wrote:
+> Add the System Timer Module description found on the NXP s32 platform
+> and the compatible for the s32g2 variant.
 > 
-> Signed-off-by: Rasmus Villemoes <ravi@prevas.dk>
+> Cc: Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Cc: Thomas Fossati <thomas.fossati@linaro.org>
+> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
 > ---
->  .../devicetree/bindings/net/mscc,vsc7514-switch.yaml      | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>  .../bindings/timer/nxp,stm-timer.yaml         | 59 +++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/timer/nxp,stm-timer.yaml
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml:40:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml: ignoring, error parsing file
-./Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml:40:1: found a tab character that violates indentation
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/mscc,ocelot.yaml:
-while scanning a plain scalar
-  in "<unicode string>", line 39, column 21
-found a tab character that violates indentation
-  in "<unicode string>", line 40, column 1
-make[2]: *** Deleting file 'Documentation/devicetree/bindings/net/mscc,vsc7514-switch.example.dts'
-Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml:40:1: found a tab character that violates indentation
-make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/net/mscc,vsc7514-switch.example.dts] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1522: dt_binding_check] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/timer/nxp,stm-timer.example.dtb: stm@4011c000: compatible: ['nxp,s32g2-stm'] is valid under each of {'items': [{'const': 'nxp,s32g2-stm'}], 'type': 'array', 'minItems': 1, 'maxItems': 1}, {'items': [{'const': 'nxp,s32g2-stm'}], 'type': 'array', 'minItems': 1, 'maxItems': 1}
+	from schema $id: http://devicetree.org/schemas/timer/nxp,stm-timer.yaml#
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250324085506.55916-3-ravi@prevas.dk
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250324100008.346009-1-daniel.lezcano@linaro.org
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
