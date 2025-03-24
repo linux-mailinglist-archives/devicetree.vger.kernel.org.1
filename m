@@ -1,232 +1,212 @@
-Return-Path: <devicetree+bounces-160272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBF7EA6E1E2
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 18:59:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CBA0A6E1E5
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 19:00:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0702F3BC1C2
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 17:53:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 838081688A5
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 18:00:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09671264A85;
-	Mon, 24 Mar 2025 17:49:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A407264A61;
+	Mon, 24 Mar 2025 18:00:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ILdBPfBw"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="Vnvp6Cyv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (mail-sn1nam02on2047.outbound.protection.outlook.com [40.107.96.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0F0A264A7C;
-	Mon, 24 Mar 2025 17:49:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742838554; cv=none; b=FrsLiaFnQ7/6UAlyEE10ssk614KPGXYE3slrBtEL+yyz0vfPtwRzj6l+ID9cHqVQ/iCLay2PbRPejYpFyr9UYT5IZbVtX6zFs1GW3VTXBkiWnno1Bs3taL3JuD/VQIcOXg89/sOzcKZ1JvvikDZF4FWIPwYvd9/3bKuSsl2v4QM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742838554; c=relaxed/simple;
-	bh=zehG0hVjOYg1/tDV+yvNPZobIUe5t9ArdAqwSYUqvIE=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
-	 References:In-Reply-To; b=h+gBB2xMitY8I7/dwAfPSQV1In4yvIddHxpN5CLtPZofurrz1ET7ZcAqj10efseLrrMQ1SOkSC+aVoSjRtNXUY18KPfMzzTZnDQWElwHUOWWVA6jU4VD9ndwqFk2zSjlgXVmyLTLO6QGcClfQoAqBXqYy93OfcCVgxzeT0JHdJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ILdBPfBw; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 763A944346;
-	Mon, 24 Mar 2025 17:49:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1742838549;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=N1co+hewvkHIAplFR3edQapFDqNXgn6Qh8Bh0s6Wls8=;
-	b=ILdBPfBwjDB6/i9FTF9i30HeNSmixqDNKdGblbcS4i9t2sLXeOp5FG+QgyOU32qSB1+F5F
-	7G9rkeO90zADgQ+rnU1dOgtm8+YfOPYu9jpY0t+YCXHScFmZ0BH/4JrjrLQ3LmKwidjHId
-	HR4OZKF6V00ajD3rHljdQxoMe5mlenxUy2lZfuefwBTKvp0fcmf1kg3ufCziKCgCnpSYGj
-	8U1BbgfQ9S3DEQNsyS42/gkGUXtf8M2dsl5l8DEesVi2FDdIuJbnqVm30On3W4Yn12maU9
-	L3BKaUnAld55T2YJog8v6Ui8vpsf+mfvkvXMu29AdhG8qNA4Jbz3o3Gh5QDDNw==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0C082641DB;
+	Mon, 24 Mar 2025 18:00:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.96.47
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1742839209; cv=fail; b=Rf9Re8W4pwzYU7bE+WMwcMlL2vinMKINuNmM7cdZTCmrHKsbkL0h8dw1AsUelNR3rZ8dBJG16TnJruZV5ywvaQ38GERnq8QrmOynek0Oiy/mdODQBa1e5pamV9PO2tmfGHUxe5JAXgvtd4a0vg58YI5h+7Xzgb+q2Z4zx3gwcZg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1742839209; c=relaxed/simple;
+	bh=ZiEUW2tpqFK48GU5nnL/1PlWIC+qW2P1CPrxGLQFL0E=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=VtdGOQd5Eg4MZQJ77WWmpGjHeo9v+trTjJhD7RLZfX/ulO3nSPLYMAQx/2T136eeQSenuqYwuVXkei8nIp6m+G40tn0m2PMxH1MFOrZDma7gu9KoSYuU/9zKoW697/SaK24MQaRTNobthVxcv68f9dfhBKICBrg32Krp1/Dab4o=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=Vnvp6Cyv; arc=fail smtp.client-ip=40.107.96.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Fq2O88h3dWOTAPbNIw8ihjrhQiakR2oYlsjMjdqIXaCWxL/Tl/dR5VVXooBRvumZdav5ObnhxMd5w0oXVH8YCTRcciMlkVmIUnoLj+NWO3gmkRHOtb0lBDXb0D9urIjFSJ8LQ6kj4iF5LvYm/cgdJhqoMy/K+xYvglfuCD9ZQkAr8SPZLmYvebdIP9SU4I1A9jIbSBRTAbQ/MgtFqSK4AcnGKGIgbvzY0Dl2DvurdQRskqFHdFEt49HZnV3DerNlIvYtY17OpPmDkh6f0H3hbnN26jJ2yKgm6yPuiqtReAGXaAHdC05yr2bBLAruR/ME9yAq1qgatGr8bs5l2CuzMw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GL1cDUKammEDDEoDXUXIeXN5sXVckvBTNfoMp3lq6zE=;
+ b=caBD4hHoRcsSZzuxNCLw9Um7xTC2qC9iz9voANLQLL4++WzA+D7RIzEzSww7+QpjfepH6ZdNi5tLBsa07A+hAWChZ5i3ly+UFMxCHo5zofyqCvkni+5eiIXTuGVNUAiGwEqKrseWwXjiIkYmKzpNtG33LpoB5pMGA+O+c7qLVBzGm+vMeUgMsSTuybnn5jKt6vUXoKJzRfR1B8i+LtkHAGCtAPbCPoLin+CtejHbpv7HTY4vYat9cGRBgEP6peak+XyYOI8u1+kwtnwZTMXHY0QfCmrEdWgtTM0pFZzpPIxG0E+VTOaXUozq3tz3Rf932lLmUHWANJLryE/4IiQZHA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GL1cDUKammEDDEoDXUXIeXN5sXVckvBTNfoMp3lq6zE=;
+ b=Vnvp6CyvgzHug4zNyOLUG8uqgDe2kGmqvJ399X3eqjVF7iVSDZjIZRofUyMjm0uNYl5ecSRpmtb4XCxsCSuS8tc6BNhN1Qvmr4PNRq7h3Vzb/UhDQItr/tftZcEh1ukHsZhKhaTJpGvmW6wt4whnMsVjcWuGNc0vXxdrNCKpcYHg6kXLDy8Mkpa4ATE7jtxJ7lbQRaGtQJilj4GoTyHRfuwhElj0jh6h6y6kKFYOccJDP8t8oH5Q83b6eBMtbz736OlX5Wn0mjV1DXAhVddFlLhuaHfKRctooAfMUcy5H6VAeQMQ3HjrfMvIYYqVI4c6ElaBlbGuIaKyeyN1hEfhXg==
+Received: from CH0PR08CA0025.namprd08.prod.outlook.com (2603:10b6:610:33::30)
+ by PH8PR12MB7206.namprd12.prod.outlook.com (2603:10b6:510:226::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.42; Mon, 24 Mar
+ 2025 18:00:00 +0000
+Received: from CH1PEPF0000AD78.namprd04.prod.outlook.com
+ (2603:10b6:610:33:cafe::5a) by CH0PR08CA0025.outlook.office365.com
+ (2603:10b6:610:33::30) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.42 via Frontend Transport; Mon,
+ 24 Mar 2025 18:00:00 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ CH1PEPF0000AD78.mail.protection.outlook.com (10.167.244.56) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8534.20 via Frontend Transport; Mon, 24 Mar 2025 18:00:00 +0000
+Received: from rnnvmail203.nvidia.com (10.129.68.9) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Mon, 24 Mar
+ 2025 10:59:40 -0700
+Received: from rnnvmail205.nvidia.com (10.129.68.10) by rnnvmail203.nvidia.com
+ (10.129.68.9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Mon, 24 Mar
+ 2025 10:59:40 -0700
+Received: from willie-obmc-builder.nvidia.com (10.127.8.10) by mail.nvidia.com
+ (10.129.68.10) with Microsoft SMTP Server id 15.2.1544.14 via Frontend
+ Transport; Mon, 24 Mar 2025 10:59:39 -0700
+From: Willie Thai <wthai@nvidia.com>
+To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<joel@jms.id.au>, <andrew@codeconstruct.com.au>, <kees@kernel.org>,
+	<tony.luck@intel.com>, <gpiccoli@igalia.com>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
+	<linux-kernel@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
+	<openbmc@lists.ozlabs.org>
+CC: <wthai@nvidia.com>, <leohu@nvidia.com>, <tingkaic@nvidia.com>,
+	<dkodihalli@nvidia.com>, Mars Yang <maryang@nvidia.com>, Krzysztof Kozlowski
+	<krzk@kernel.org>, Andrew Lunn <andrew@lunn.ch>, Paul Menzel
+	<pmenzel@molgen.mpg.de>
+Subject: [PATCH v4 0/3] Add device tree for Nvidia's GB200NVL BMC
+Date: Mon, 24 Mar 2025 17:59:23 +0000
+Message-ID: <20250324175926.222473-1-wthai@nvidia.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 24 Mar 2025 18:49:05 +0100
-Message-Id: <D8OOPAXK16CI.3TE75O760JRSL@bootlin.com>
-Cc: "Andrew Lunn" <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, "Eric Dumazet" <edumazet@google.com>, "Jakub
- Kicinski" <kuba@kernel.org>, "Paolo Abeni" <pabeni@redhat.com>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Nicolas Ferre"
- <nicolas.ferre@microchip.com>, "Claudiu Beznea" <claudiu.beznea@tuxon.dev>,
- "Paul Walmsley" <paul.walmsley@sifive.com>, "Palmer Dabbelt"
- <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>, "Alexandre
- Ghiti" <alex@ghiti.fr>, "Samuel Holland" <samuel.holland@sifive.com>,
- "Richard Cochran" <richardcochran@gmail.com>, "Russell King"
- <linux@armlinux.org.uk>, "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>, "Gregory CLEMENT"
- <gregory.clement@bootlin.com>, <netdev@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-riscv@lists.infradead.org>, <linux-mips@vger.kernel.org>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-To: "Andrew Lunn" <andrew@lunn.ch>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH net-next 07/13] net: macb: move HW IP alignment value to
- macb_config
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a
-References: <20250321-macb-v1-0-537b7e37971d@bootlin.com>
- <20250321-macb-v1-7-537b7e37971d@bootlin.com>
- <45b3e613-90c6-4499-b50b-383106172184@lunn.ch>
-In-Reply-To: <45b3e613-90c6-4499-b50b-383106172184@lunn.ch>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdduiedtgeduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkvefvhffuofhfjgesthhqredtredtjeenucfhrhhomhepvfhhrohoucfnvggsrhhunhcuoehthhgvohdrlhgvsghruhhnsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeigfelffeuffetteetuddufffghefhudeuteeigeekteevgeeileejgfdvffelheenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepjeejrddufeehrdekuddrieehnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepjeejrddufeehrdekuddrieehpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehthhgvohdrlhgvsghruhhnsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvkedprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopegrnhgurhgvfidonhgvthguvghvsehluhhnnhdrtghhpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopegvughumhgriigvthesghhoohhglhgvrdgtohhmpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehpr
- ggsvghnihesrhgvughhrghtrdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrgh
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: AnonymousSubmission
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD78:EE_|PH8PR12MB7206:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4610913d-2193-4d91-e885-08dd6afdb21d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|1800799024|376014|7416014|82310400026|921020|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?RkjAp5mIzXgNN6JgfJcf6Krt3n2IdbDOf0YByYK4tVtKqiKqPx4wcl0kUC5f?=
+ =?us-ascii?Q?BauOBAwg7dOuvNfjZOIS8qouw/x+tJTWYOpfSnS1EscN/4fFuc4vFwaxf+uL?=
+ =?us-ascii?Q?j8W6xYM3N4ckxGEnQEPfDjd1xO4snLxabg6C36Unl8BRFmZM4p5tkQCTQuBV?=
+ =?us-ascii?Q?IhIdSTRxKgpUaZUpNQXW3zX1TrqM0AQMEumi1YbXgdz5f6fzBQUXFCJZHnkn?=
+ =?us-ascii?Q?FI1fmVKCaq1u1zMPCDmRf8p62Ny0ZCFW9eNDy41f39HUqkKG4RwLZhhhO7fN?=
+ =?us-ascii?Q?R3VApvyTIG6RfCIa/w8rLtIljfStVf0Ok+eANZn9Y4NAU5PIvDFx/Kc0pt9R?=
+ =?us-ascii?Q?DRa2QHVCVJxh+KyJ2sJ4/RLL4rx2qICOmNzpA7TVKJ9ts0lYVLI9DqsKcdMp?=
+ =?us-ascii?Q?DIo6BNe2cP2YY6IDpS+alcG0FBSLLk8CzMPYcJhOFnhq2aCJuoYPskC0qj7s?=
+ =?us-ascii?Q?oUyUhD87uNDqjajlMbno9tIDbMXtfUx86wISM0EE1NOnv8CrO+HYwYXnOK6K?=
+ =?us-ascii?Q?o7RrQIWxU6fYYX1rU7IY4AB9PctfisBMz6h0EAAaLNvPTWV1jiEuOkQABzqO?=
+ =?us-ascii?Q?QRJ8NmHWEZLodeEV1REbomzdYi2vpsqI6LfY9p9LdZsj4nLggcTNIzJsuLQe?=
+ =?us-ascii?Q?/kFYMY7DU1I7wXvuq6HD0Rumij0dr/uaYH49lbD3m/Vy/5Uomg9NINktJgy4?=
+ =?us-ascii?Q?LQRqzcaq1DfvYxXpshI3iEvz7m69EwQLmHSZryPPRyHz2SEjl1DfynSeDWul?=
+ =?us-ascii?Q?Gh74AGbW0p4LW4TzdLn1zyhusoDU1KxYM9Lty/M/tlPnaymxJ7IHHzHfINk9?=
+ =?us-ascii?Q?92RyqagO1H1b+ruCZIA+AdsSpWKXMvmrmmf5MaKgN/wzhC0xeF3dZBlkjygw?=
+ =?us-ascii?Q?kMk67V1W2zlbSBSvqmnCzeHpfHSsPuiCLRzeUVFYko2tqAy2FGraeprKJaA7?=
+ =?us-ascii?Q?OeXWWTZjyBSRTxUhgIAj9FAbzazaHe+c3u98PQ+uI5Y6xAU12J4ouD4UuIHW?=
+ =?us-ascii?Q?DUIAI08vZ0h4ow4DKvJJ7k14jz3pec1J28EZABcdYp+a2uowpH5Uji/7f9hl?=
+ =?us-ascii?Q?myd3gcYVXEhAPYhukcFMqavKLVETwSwVt3WNDYEE1jRefu8qD4Sob+wQeVE+?=
+ =?us-ascii?Q?ToEBt4q8hd2PRbrrb6q57lSZNfyimw5CIweABxVMvWqeDEWSipGlIiJmcsdz?=
+ =?us-ascii?Q?jnPzIIWDcqiG2xPKcE2Ho3BJCL5Amfe8YqsGWPWg4OE9JigB+rgi5xljnaLr?=
+ =?us-ascii?Q?M1mq9rOyevlKgk9a7+fPP9zOvB3mFYxs04JGsXZF0gxe1mCChKdOCtttPQ8T?=
+ =?us-ascii?Q?Kw1i/nu749Gid0/SsKHlcOokwfWR733IdXIpYtsonqD2goyhaNeTrg8/LpUo?=
+ =?us-ascii?Q?cMdsJzL513Rze14gabRZVxpehswIQnSV6WWxcG24CysuEIqVqMm6UM7OtnxW?=
+ =?us-ascii?Q?6vAGDPphibdzaH46qMJlnc/GsGc5lk+eTa10ULJvhzq0APuLsZf4WiSrqGHQ?=
+ =?us-ascii?Q?2H7HOloNfeVpJ1/HwQ4pMQ5JWcYQ3kG5iGgP?=
+X-Forefront-Antispam-Report:
+	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(376014)(7416014)(82310400026)(921020)(7053199007);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2025 18:00:00.2646
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4610913d-2193-4d91-e885-08dd6afdb21d
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CH1PEPF0000AD78.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7206
 
-Hello Andrew,
+The GB200NVL BMC is an Aspeed Ast2600 based BMC
+for Nvidia Blackwell GB200NVL platform.
+Reference to Ast2600 SOC [1].
+Reference to Blackwell GB200NVL Platform [2].
 
-On Fri Mar 21, 2025 at 10:06 PM CET, Andrew Lunn wrote:
-> On Fri, Mar 21, 2025 at 08:09:38PM +0100, Th=C3=A9o Lebrun wrote:
->> The controller does IP alignment (two bytes).
->
-> I'm a bit confused here. Is this hard coded, baked into the silicon?
-> It will always do IP alignment? It cannot be turned off?
+Co-developed-by: Mars Yang <maryang@nvidia.com>
+Signed-off-by: Mars Yang <maryang@nvidia.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Andrew Lunn <andrew@lunn.ch>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Paul Menzel <pmenzel@molgen.mpg.de>
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Link: https://www.aspeedtech.com/server_ast2600/ [1]
+Link: https://nvdam.widen.net/s/wwnsxrhm2w/blackwell-datasheet-3384703 [2]
+Signed-off-by: Willie Thai <wthai@nvidia.com>
+---
+Changes v1 -> v2:
+  - Fix the SOB name [Krzysztof]
+  - Fix warnings from scripts/checkpatch.pl run [Krzysztof]
+  - Fix DTS coding style [Krzysztof]
+  - Move pinctrl override to the bottom [Krzysztof]
+  - Drop bootargs [Krzysztof]
+  - Follow DTS coding style and change naming for leds node [Krzysztof]
+  - Change flash 0 status property [Krzysztof]
+  - Change the phy-mode to rgmii [Andrew]
+  - Remove the max-speed in mac0 [Andrew]
+  - Put gpio line name in one line per group of 8 gpios, but keep some b/c they can exceed length limit [Paul]
+Changes v2 -> v3:
+  - Fix missing new line [Krzysztof]
+  - Fix missing binding define, adding it in the patch no.1 of this patch set v3 [Krzysztof, Rob]
+  - Fix DTS coding style [Krzysztof]
+  - Modify nodes name to generic name for: i2c expander pca9546, gpio expander pca9555, power monitor lm5066i, fan controller max31790 [Krzysztof]
+  - Skip mac setting and wait till the delay issue in phy-mode fix from Aspeed SOC vendor side [Andrew]
+  - Remove i2c-scl-clk-low-timeout-us which is Apseed proprietary property [Mars]
+Changes v3 -> v4:
+  - Order binding patch first in the patch set [Andrew Jeffery]
+  - Make the commit message more concise [Krzysztof]
+  - Remove stray blank lines [Krzysztof]
+  - Remove unnecessary comments [Krzysztof]
+  - Remove underscore, repalce by dash symbol in node name [Krzysztof]
+  - Remove disable-master property in i2c as it is downstream added property [Rob, Andrew Jeffery]
+  - Remove #address-cells, #size-cells in nxp,pca9555 and maxim,max31790 as they are no longer defined [Rob, Andrew Jeffery]
+---
 
-Yes, the alignment is baked inside the silicon.
-I looked but haven't seen any register to configure the alignment.
+Willie Thai (3):
+  dt-bindings: arm: aspeed: add Nvidia's GB200NVL BMC
+  dt-bindings: pinctrl: aspeed,ast2600-pinctrl
+  ARM: dts: aspeed: Add device tree for Nvidia's GB200NVL BMC
 
-Sorry the commit message isn't clear, it needs improvements.
+ .../bindings/arm/aspeed/aspeed.yaml           |    1 +
+ .../pinctrl/aspeed,ast2600-pinctrl.yaml       |    1 +
+ arch/arm/boot/dts/aspeed/Makefile             |    1 +
+ .../aspeed/aspeed-bmc-nvidia-gb200nvl-bmc.dts | 1149 +++++++++++++++++
+ 4 files changed, 1152 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-gb200nvl-bmc.dts
 
->> 	skb_reserve(skb, NET_IP_ALIGN);
->
-> Why not just replace this with
->
->         skb_reserve(skb, 2);
-
-On arm64, NET_IP_ALIGN=3D0. I don't have HW to test, but the current code
-is telling us that the silicon doesn't do alignment on those:
-
-   skb =3D netdev_alloc_skb(...);
-   paddr =3D dma_map_single(..., skb->data, ...);
-   macb_set_addr(..., paddr);
-
-   // arm   =3D> NET_IP_ALIGN=3D2 =3D> silicon does alignment
-   // arm64 =3D> NET_IP_ALIGN=3D0 =3D> silicon doesn't do alignment
-   skb_reserve(skb, NET_IP_ALIGN);
-
-The platform we introduce is the first one where the silicon alignment
-(0 bytes) is different from the NET_IP_ALIGN value (MIPS, 2 bytes).
-
-Does that clarify things?
-
->> The NET_IP_ALIGN value is arch-dependent and picked based on unaligned
->> CPU access performance. The hardware alignment value should be
->> compatible-specific rather than arch-specific. Offer a path forward by
->> adding a hw_ip_align field inside macb_config.
->>=20
->> Values for macb_config->hw_ip_align are picked based on upstream
->> devicetrees:
->>=20
->>     Compatible             |  DTS folders              |  hw_ip_align
->>    ------------------------|---------------------------|----------------
->>    cdns,at91sam9260-macb   | arch/arm/                 | 2
->>    cdns,macb               | arch/{arm,riscv}/         | NET_IP_ALIGN
->>    cdns,np4-macb           | NULL                      | NET_IP_ALIGN
->>    cdns,pc302-gem          | NULL                      | NET_IP_ALIGN
->>    cdns,gem                | arch/{arm,arm64}/         | NET_IP_ALIGN
->>    cdns,sam9x60-macb       | arch/arm/                 | 2
->>    atmel,sama5d2-gem       | arch/arm/                 | 2
->>    atmel,sama5d29-gem      | arch/arm/                 | 2
->>    atmel,sama5d3-gem       | arch/arm/                 | 2
->>    atmel,sama5d3-macb      | arch/arm/                 | 2
->>    atmel,sama5d4-gem       | arch/arm/                 | 2
->>    cdns,at91rm9200-emac    | arch/arm/                 | 2
->>    cdns,emac               | arch/arm/                 | 2
->>    cdns,zynqmp-gem         | *same as xlnx,zynqmp-gem* | 0
->>    cdns,zynq-gem           | *same as xlnx,zynq-gem*   | 2
->>    sifive,fu540-c000-gem   | arch/riscv/               | 2
->>    microchip,mpfs-macb     | arch/riscv/               | 2
->>    microchip,sama7g5-gem   | arch/arm/                 | 2
->>    microchip,sama7g5-emac  | arch/arm/                 | 2
->>    xlnx,zynqmp-gem         | arch/arm64/               | 0
->>    xlnx,zynq-gem           | arch/arm/                 | 2
->>    xlnx,versal-gem         | NULL                      | NET_IP_ALIGN
->
-> I don't remember seeing any other driver doing anything like
-> this. That often means it is wrong....
-
-Good question, let's look at skb_reserve() that follow dma_map_single():
-
-   =E2=9F=A9 git grep -A20 dma_map_single drivers/net/ethernet/ | \
-      rg skb_reserve | grep -v macb_main
-   drivers/net/ethernet/sun/sunbmac.c:          skb_reserve(copy_skb, 2);
-   drivers/net/ethernet/sun/sunhme.c:           skb_reserve(skb, RX_OFFSET)=
-;
-   drivers/net/ethernet/sun/sunhme.c:           skb_reserve(new_skb, RX_OFF=
-SET);
-   drivers/net/ethernet/sgi/ioc3-eth.c:         skb_reserve(new_skb, RX_OFF=
-SET);
-   drivers/net/ethernet/chelsio/cxgb/sge.c:     skb_reserve(skb, sge->rx_pk=
-t_pad);
-   drivers/net/ethernet/marvell/mv643xx_eth.c:  skb_reserve(skb, 2);
-   drivers/net/ethernet/dec/tulip/de2104x.c:    skb_reserve(copy_skb, RX_OF=
-FSET);
-   drivers/net/ethernet/marvell/pxa168_eth.c:   skb_reserve(skb, ETH_HW_IP_=
-ALIGN);
-   drivers/net/ethernet/alacritech/slicoss.c:   skb_reserve(skb, offset);
-   drivers/net/ethernet/toshiba/tc35815.c:      skb_reserve(skb, 2); /* mak=
-e IP header 4byte aligned */
-   drivers/net/ethernet/lantiq_etop.c:          skb_reserve(ch->skb[ch->dma=
-.desc], NET_IP_ALIGN);
-
-Out of those, two are using dynamic values:
-
-   // In drivers/net/ethernet/chelsio/cxgb/sge.c
-   // The value comes from [0]:
-   sge->rx_pkt_pad =3D t1_is_T1B(adapter) ? 0 : 2;
-   // The macro resolves to something like [1]:
-   adap->params.chip_version =3D=3D CHBT_TERM_T1 && adap->params.chip_revis=
-ion =3D=3D TERM_T1B
-
-   // In drivers/net/ethernet/alacritech/slicoss.c
-   // In slic_refill_rx_queue() [2]
-   /* ensure head buffer descriptors are 256 byte aligned */
-   offset =3D 0;
-   misalign =3D paddr & ALIGN_MASK;
-   if (misalign) {
-      offset =3D SLIC_RX_BUFF_ALIGN - misalign;
-      skb_reserve(skb, offset);
-   }
-
-Conclusion:
- - one is HW revision dependent,
- - the other knows that HW always aligns its buffer to 256.
-
-We aren't alone, but pretty lonely.
-
-Maybe I missed a common denominator that could be used to identify
-compatibles that do or do not have hardcoded alignemnt. Without such
-info, the approach taken (have alignment stored inside match data)
-sounds reasonable to me.
-
-Do you agree?
-
-Thanks,
-
-[0]: https://elixir.bootlin.com/linux/v6.13.7/source/drivers/net/ethernet/c=
-helsio/cxgb/sge.c#L2106
-[1]: https://elixir.bootlin.com/linux/v6.13.7/source/drivers/net/ethernet/c=
-helsio/cxgb/common.h#L292-L299
-[2]: https://elixir.bootlin.com/linux/v6.13.7/source/drivers/net/ethernet/a=
-lacritech/slicoss.c#L418-L424
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+-- 
+2.25.1
 
 
