@@ -1,58 +1,63 @@
-Return-Path: <devicetree+bounces-160258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07A4BA6E0A9
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 18:15:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DD8CA6E0AD
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 18:16:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 128833ABA14
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 17:14:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0C173ABD40
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 17:16:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 987E02641EF;
-	Mon, 24 Mar 2025 17:15:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB4642638AD;
+	Mon, 24 Mar 2025 17:16:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lHu7M+Xz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JvG7V7Y+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E04D26280C;
-	Mon, 24 Mar 2025 17:15:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85E8910F1;
+	Mon, 24 Mar 2025 17:16:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742836510; cv=none; b=BPSGltP03Jo5Wn6C1BknAXRLPpxf0EoIh3RINaiZYGhVEClg9INtnAevLTEXZApCnEdQqUO5d6E5OPJyVGF4b4H/6UcwjYv8fKZ/YvNQtsJaJNwoYxqceCJPbYFBEYknQJYOsHQdE+kfxtvLgDZ2BNestj7nk4QoNyVEnDc8NRI=
+	t=1742836573; cv=none; b=siUWLXBCCLcN4xBsM5YqjmYYCTsFGJM+ck0F/qrMtMJsdRRlluKFAdB+RhYK2HYUVx3VhC83h9PYVk4u2bvfHIMldFLHDCDzJ9XsYPssrXBMBfH/zRWFSo9yvFah7scJsw80vP6joN3sSUsbc70J4TcwBFRRHEYRKxnxv3w2Izk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742836510; c=relaxed/simple;
-	bh=zQxP07MhxVvj6zM9OfYRvoiZKKMGISEc3dM4iezMPa8=;
+	s=arc-20240116; t=1742836573; c=relaxed/simple;
+	bh=AkOY3OgFCEWlwpwEncqQoSIVnZQVS9uLbLd0AE0qH4k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KOG0D6yAUYMDYIbUnGzIWLY11Wsj938FzK6iQDrDUl/HndAuj5zmeyckZnVh1yQU5RkrliyGqNK4wj0Q+xqyfI04zJyfjx1HCN+puPbcM8GNpJl9qxY9M8W3750PaBlRhunFty2rONtHc93ZJWB8nUrGxHYSb07pxFa+LMdHoNY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lHu7M+Xz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C9F2C4CEEA;
-	Mon, 24 Mar 2025 17:15:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=iSR4P+D0o5wJ9m0mTFoy5QoRT9VVAXH4Xw78BMNdb2pbWfWMxSQOUwoWuVKHy1vIumZTitAQlcp74661yjWtOqbdsRcj2GBbE3ZQAiyHA7/sWEY3Eo46HradJdgAz0aqEENQ6enyQ+y9PJN2vknovagZoKgzUh3xLMPMBQVPkW0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JvG7V7Y+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B746FC4CEDD;
+	Mon, 24 Mar 2025 17:16:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742836509;
-	bh=zQxP07MhxVvj6zM9OfYRvoiZKKMGISEc3dM4iezMPa8=;
+	s=k20201202; t=1742836573;
+	bh=AkOY3OgFCEWlwpwEncqQoSIVnZQVS9uLbLd0AE0qH4k=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lHu7M+XzgPBAgS1CVIU28tpITVzELZe3b75+j6IN7V95QuFBjRIJV8aZCC831tb30
-	 og1lj+UMNqDw2XurTDMeoFWzaPQRttb209fbwccXapgXVcLBvXSMjvthcnvzTdbhl5
-	 tJXYkoSCQuo61hcDtMGXgeJVUGO0nxPsZbWc0uYRCXknxI45KMSuFkzC6kPoXnTlnN
-	 hQui2LHCuCvz9PxpGhBgmUnoVvh7Y791d9T7FenHXVBl/PLJ7zCqQ/6Jqm0Hi/GiW4
-	 KDI17Yc6kU8plgLfZhshKV42ca1yyeU+yPJLRWzDWcub+rWayLv+Bomb8COix+MNu3
-	 sVfPMAjAFrp8g==
-Date: Mon, 24 Mar 2025 12:15:08 -0500
-From: Rob Herring <robh@kernel.org>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: hdegoede@redhat.com, mchehab@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, sakari.ailus@linux.intel.com,
-	hverkuil@xs4all.nl, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/1] media: dt-bindings: Add OmniVision OV02C10
-Message-ID: <20250324171508.GA668235-robh@kernel.org>
-References: <20250319145927.70534-1-hdegoede@redhat.com>
- <20250324000912.105662-1-bryan.odonoghue@linaro.org>
- <20250324000912.105662-2-bryan.odonoghue@linaro.org>
+	b=JvG7V7Y++6F/Yg+Z4O0LkLrO+Vmc7bRjut7Be4IkF7qQ0jCGnz3CLcK013XWzKE13
+	 vK9eHYlC30m0bSLozm50RTSbqObGZFqBsw124e3f/M6K63E8SlyfBgHz0YaPDJJ4dU
+	 p7dziWaYyuUBf/1ynZgdjyURfPIqv+TA0tZFMjJMZTaSGA4roLQKKp7oIt13waM/xr
+	 SLkiUPLI3Yi1pqcYJri8F4VtH67RSEvvf9YrTHYLLdSpHTlgcyZycb3usGXSlOoAij
+	 Pq71bQnTS1H9Ia9xxMPXNaio1k6uSbzxldcCM1TKqNN9PlThriXmmfaDiNl90vmKjb
+	 ED2G1zpRPe/ug==
+Date: Mon, 24 Mar 2025 12:16:11 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht, devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Taniya Das <quic_tdas@quicinc.com>,
+	Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
+	Konrad Dybcio <konradybcio@kernel.org>
+Subject: Re: [PATCH v2 2/4] dt-bindings: clock: add SM6350 QCOM video clock
+ bindings
+Message-ID: <174283657138.689866.626962804194568549.robh@kernel.org>
+References: <20250324-sm6350-videocc-v2-0-cc22386433f4@fairphone.com>
+ <20250324-sm6350-videocc-v2-2-cc22386433f4@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,146 +66,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250324000912.105662-2-bryan.odonoghue@linaro.org>
+In-Reply-To: <20250324-sm6350-videocc-v2-2-cc22386433f4@fairphone.com>
 
-On Mon, Mar 24, 2025 at 12:09:12AM +0000, Bryan O'Donoghue wrote:
-> Add bindings for OVO2C10 a two megapixel 1080p RGB sensor.
+
+On Mon, 24 Mar 2025 09:41:02 +0100, Luca Weiss wrote:
+> From: Konrad Dybcio <konradybcio@kernel.org>
 > 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Add device tree bindings for video clock controller for SM6350 SoCs.
+> 
+> Signed-off-by: Konrad Dybcio <konradybcio@kernel.org>
+> Co-developed-by: Luca Weiss <luca.weiss@fairphone.com>
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 > ---
->  .../bindings/media/i2c/ovti,ov02c10.yaml      | 117 ++++++++++++++++++
->  1 file changed, 117 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov02c10.yaml
+>  .../devicetree/bindings/clock/qcom,videocc.yaml    | 20 ++++++++++++++++
+>  include/dt-bindings/clock/qcom,sm6350-videocc.h    | 27 ++++++++++++++++++++++
+>  2 files changed, 47 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov02c10.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov02c10.yaml
-> new file mode 100644
-> index 000000000000..6380a17fe65f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov02c10.yaml
-> @@ -0,0 +1,117 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright (c) 2025 Linaro Ltd.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov02c10.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Omnivision OV02C10 CMOS Sensor
-> +
-> +maintainers:
-> +  - Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> +
-> +description: |
-> +  The Omnivision OV02C10 is a 2 megapixel, CMOS image sensor which supports:
-> +  - Automatic black level calibration (ABLC)
-> +  - Programmable controls for frame rate, mirror and flip, binning, cropping
-> +    and windowing
-> +  - Output formats 10-bit 4C RGB RAW, 10-bit Bayer RAW
-> +  - 2-lane MIPI D-PHY TX @ 800 Mbps per lane
-> +  - 1-lane MIPI D-PHY TX @ 1.5 Gbps per lane
-> +  - Dynamic defect pixel cancellation
-> +  - Standard SCCB command interface
-> +
-> +allOf:
-> +  - $ref: /schemas/media/video-interface-devices.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: ovti,ov02c10
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  avdd-supply:
-> +    description: Analogue circuit voltage supply.
-> +
-> +  dovdd-supply:
-> +    description: I/O circuit voltage supply.
-> +
-> +  dvdd-supply:
-> +    description: Digital circuit voltage supply.
-> +
-> +  reset-gpios:
-> +    description: Active low GPIO connected to XSHUTDOWN pad of the sensor.
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        additionalProperties: false
-> +
-> +        properties:
-> +          data-lanes:
-> +            oneOf:
-> +              - items:
-> +                  - const: 1
-> +              - items:
-> +                  - const: 1
-> +                  - const: 2
 
-minItems: 1
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-And drop the first oneOf entry (and oneOf).
-
-> +          link-frequencies: true
-> +          remote-endpoint: true
-> +
-> +        required:
-> +          - data-lanes
-> +          - link-frequencies
-> +          - remote-endpoint
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - port
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        ov02c10: camera@36 {
-> +            compatible = "ovti,ov02c10";
-> +            reg = <0x36>;
-> +
-> +            reset-gpios = <&tlmm 237 GPIO_ACTIVE_LOW>;
-> +            pinctrl-names = "default";
-> +            pinctrl-0 = <&cam_rgb_defaultt>;
-> +
-> +            clocks = <&ov02c10_clk>;
-> +
-> +            assigned-clocks = <&ov02c10_clk>;
-> +            assigned-clock-parents = <&ov02c10_clk_parent>;
-> +            assigned-clock-rates = <19200000>;
-> +
-> +            avdd-supply = <&vreg_l7b_2p8>;
-> +            dvdd-supply = <&vreg_l7b_1p8>;
-> +            dovdd-supply = <&vreg_l3m_1p8>;
-> +
-> +            port {
-> +                ov02c10_ep: endpoint {
-> +                    remote-endpoint = <&csiphy4_ep>;
-> +                    data-lanes = <1 2>;
-> +                    link-frequencies = /bits/ 64 <400000000>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
-> -- 
-> 2.49.0
-> 
 
