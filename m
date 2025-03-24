@@ -1,260 +1,618 @@
-Return-Path: <devicetree+bounces-160104-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160105-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B61EA6D7F2
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 11:01:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94898A6D816
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 11:09:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97D2A3B10C7
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 10:01:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1805016CC08
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 10:09:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3104D25DB07;
-	Mon, 24 Mar 2025 10:01:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="MYfZgub6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DD1C1C8605;
+	Mon, 24 Mar 2025 10:09:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2133.outbound.protection.outlook.com [40.107.255.133])
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2092.outbound.protection.outlook.com [40.107.117.92])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 571891953A9;
-	Mon, 24 Mar 2025 10:01:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.255.133
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D29A22E3372;
+	Mon, 24 Mar 2025 10:09:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.117.92
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742810503; cv=fail; b=fPDGZfnBWXcxYij5WNMRClWRlf4T3z/+ODXrqkr5XnxqfotVyHE8m/rD8QFnql78M9LhPCXcpyiTpipU6KwYaOuvTuRNL5brylDdXy4IMtzfJrgjtGws8K551KxFTFJTbOcWywNhugE4s4iRtGbxzgcMMrWUZNGM43TYye+RpPg=
+	t=1742810979; cv=fail; b=Nbb3QsLnjQRtGxKCR5KFirr/WBOyp9e4FkOAdLz/VnpvaSsK4JogoHfxxNqZGBwm54lFz974eFa6+kmlX7MEGBkaN4njiAzC2ynUYjOEAU3iQf4pH5K1CvHAPNofYUdhbTvSUY+H49MHY36vOXfUcJzn7Lt0z8dcJpLal+EFOQo=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742810503; c=relaxed/simple;
-	bh=0lIBfMqRUz30ta5pnlpdNwTG8ELPqVQ0evXcUfn3VQg=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=AUr/3UFT+aH93KkWUQEtcQxNHUNLJmwkS43OjEbNdoR/v9qDM+0bVO7M5O+OsPqvV0Z4rmN3j4p0azNYnUBUi2DIzIm9wZYyGXIl1Luri0gRcUA0CTgvzpDFO/H0xyqeQTkB1h8kqTSO4LZFwCBL/CScxi+6luN/NUDF91MdRh4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=MYfZgub6; arc=fail smtp.client-ip=40.107.255.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+	s=arc-20240116; t=1742810979; c=relaxed/simple;
+	bh=yJr/zzLozDJtLIWf4RnKlc9DnDTBRIVaB089eWdisi4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UXai4AEqCq5ENe/rlebgIWm/zr7i7+5JBdRmoNHpTvDoupxCrMgWOLbUWmPeKLIcGVT1OzGOjhpsSxjJNcVSx0ZgnlLfPb7c4ELFwlfeYNi65VdBXOLNlfRbHib3HBVG2NumC11gSrNwCSA5ASDjbkXIRsXhWJKDf60s1KVQhIw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.117.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=r6w+FyWnvm8pkiapNrIw1Izr2oRP2fM8ld5KbROgAM0DU71qIAKPMxlwwzi9CB/4zvMc81oReaFe9NKYXdswdNHaDmNbfRHJCe7FGXNEd6WX9W7gSd3/JzGycuHAaQI4OYbQM14pCNhMJaybMa6l1O2/Q5cMCmgOnoFJSylVCz6XZ/pea3ccpnNbsRi7K8aEyFwNZlrCPG8q5uIh6m/OW+lopBFNUMncv/vc3zr4lFfriVaa16ylJu1gfGcHO+6Z5nT5SGVkTJXEl3k4ZCOV2Gi8bQiy8zXuKqqSjr1Iy3WKVUZLLqGgUSfIaYHZZ8u18ZODLSLgf+0tyn6bbJauGQ==
+ b=fBO+pSw+I+rw34YjZEI7R1bV40G8UUz1yna2VQEBiZwJoxH+3hv4SeZ7W0hBevMaaoDzePsNGYINALr19wyuBm7pLwhWWOPk08tAxgs/2UIcGjSgcdYHn9ez1MsjtNGV9TwelGGEDKJkBXZOlPnJZM9TVVJAE4C5zRfrWH0pAWUeIzpGPfwgfCtKGPPsQ6P6enwCuZahrixzHqtl4S+E8rlVA0o3MGhw1tPefBGSkwH/7+JtAEFeo4ydl33uebXlD7N9d8S0Y7Eovb9ngQC20fFr9vdsgz0CM4l2fM70YopYFlbli/mpSihMfqJxe1Flb0Gwb5iCHLi74bbOTtfoNQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0lIBfMqRUz30ta5pnlpdNwTG8ELPqVQ0evXcUfn3VQg=;
- b=k6UrGyHqSYSKDuwz5mIzAAsnyzckw3WGvW3LCtRObtymk7aV8isFjO6LRyLnmzH8jkLGjzYjMmiy9KAmlXH7iJ3U6SBQ6PBUIRBmpdRS22BCDnINE7duBsAlhrUrKqLTLW9HND6tdmuemWiEzICa7lNecaL03trWzqImeDYw6aIv6y946PkrGJIm8E9SEowKdWvV/HvkZCYut0T2q8QDNjPBH0gxacUbHZlLzsCmXc6zlK9GMh/Mb5KLpYEvozlhzmx2LfYqlnSH5ykTwVLKvfiRI8K0cy7L1/nLOY3dS+YH/TxPq52vDy3zPH47IbyZdyllaHx02ehE7ye03RHQ7w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0lIBfMqRUz30ta5pnlpdNwTG8ELPqVQ0evXcUfn3VQg=;
- b=MYfZgub6MCZJvKq9v8dVa856TP6R71wlPe5roNHtqNuqqW0AwzgNW4Y9Oeo013+/CPGImPWsekoX+U/DK75dP8bh63eprCYBtqZUAVzdYl+DT7o2AcqKS5fdfDAd1Sxu4yvuHqdTT+FpqS6tssxCZCEKs54zFL9ldqmd2Kthj8wEluVG37XBMa6Y8q2YBrZXVGKT0iop1H4xICpeLu4TiJ2CMz4JWa2IQBjWB1RoFLdbfSI+36Oz4x9VTk827jKohnEQpCqYwuZvxuYl0xfEJnfSfBngA9OPQuQzJ5MaAk5ARlARu32LVZYgJpOn21Jx6AUS3aEMAyly/l4udXxeNg==
-Received: from SI6PR06MB7535.apcprd06.prod.outlook.com (2603:1096:4:235::12)
- by TYSPR06MB6363.apcprd06.prod.outlook.com (2603:1096:400:417::11) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=VM2wD1cY+57eCpUnLDc+TOYnVKoxEZ5whbgUAEyNxg4=;
+ b=QeSn1s2q7BbRJC+IcnyExKuGzMpYpll/AMedJrfx3CYPLHa9XXhl8MzvjKK1YvY7EZOKp3XXYXnLjsRMCmRwis1KeShtGzv05KX2OWZ6cPkTZa6pBJMvfYW7mh88k9xnILlRZMTLV8973/4r65lMVmh+mzIGgNTq6qIKT2JjuNigLbQ5OwHBQ21ASy/zcBrF2nJ32MjLk6quF3TXPqKpWJrJs5ELCqTSnSAcLbS7XAq9mfPPVA5FhSbvfUX7lVu6nnNr8eS+VsYKQ1BUjowO3tQI6naf3Gj9ov6EAdNaI1hszSIH2SNtzaiwmrUDrAMD3BmfaXV1vrbVQctQA4Z34g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SI2PR01CA0012.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:191::8) by PUZPR06MB5449.apcprd06.prod.outlook.com
+ (2603:1096:301:ed::9) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.42; Mon, 24 Mar
- 2025 10:01:36 +0000
-Received: from SI6PR06MB7535.apcprd06.prod.outlook.com
- ([fe80::8af2:b731:a5e5:169f]) by SI6PR06MB7535.apcprd06.prod.outlook.com
- ([fe80::8af2:b731:a5e5:169f%6]) with mapi id 15.20.8534.036; Mon, 24 Mar 2025
- 10:01:36 +0000
-From: Ryan Chen <ryan_chen@aspeedtech.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: "benh@kernel.crashing.org" <benh@kernel.crashing.org>, "joel@jms.id.au"
-	<joel@jms.id.au>, "andi.shyti@kernel.org" <andi.shyti@kernel.org>,
-	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
-	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-	"andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
-	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-	"openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
-	<linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, Mo Elbadry <elbadrym@google.com>
-Subject: RE: [PATCH v16 1/3] dt-bindings: i2c: aspeed: support for
- AST2600-i2cv2
-Thread-Topic: [PATCH v16 1/3] dt-bindings: i2c: aspeed: support for
- AST2600-i2cv2
-Thread-Index:
- AQHbhoFMYr1F1iCu706pUdZbmBz0BrNWKwmAgAMnDQCAAApCgIABc/fggADIQoCACD7TUIATPNAAgAAVK0CAAw8fAIAAONYggAecSoCAABKwMIAACvyAgAANJ+A=
-Date: Mon, 24 Mar 2025 10:01:36 +0000
-Message-ID:
- <SI6PR06MB7535BAD19B51A381171A0E64F2A42@SI6PR06MB7535.apcprd06.prod.outlook.com>
-References: <20250224055936.1804279-1-ryan_chen@aspeedtech.com>
- <20250224055936.1804279-2-ryan_chen@aspeedtech.com>
- <20250224-arrogant-adventurous-mackerel-0dc18a@krzk-bin>
- <OS8PR06MB75415E95342F26F576B5CF8AF2C22@OS8PR06MB7541.apcprd06.prod.outlook.com>
- <50327725-f3b8-4a8b-94a2-85afccd2868a@kernel.org>
- <OS8PR06MB7541B0DBC64B3EF6838DFE74F2CD2@OS8PR06MB7541.apcprd06.prod.outlook.com>
- <d1b184c5-84c1-4d76-a1d0-a9f37f1e363c@kernel.org>
- <OS8PR06MB7541D1D2E16C5E77037F3BB0F2CB2@OS8PR06MB7541.apcprd06.prod.outlook.com>
- <069b9fe4-c54a-4efd-923e-1558c59fe3f4@kernel.org>
- <OS8PR06MB7541C69AB8E6425313DA8606F2DF2@OS8PR06MB7541.apcprd06.prod.outlook.com>
- <677cb075-24ae-45d8-bfb4-9b23fbacc5df@kernel.org>
- <OS8PR06MB7541C3B70B15F45F4824772BF2D92@OS8PR06MB7541.apcprd06.prod.outlook.com>
- <994cb954-f3c4-4a44-800e-9303787c1be9@kernel.org>
- <SI6PR06MB753542037E1D6BBF5CE8D2E7F2A42@SI6PR06MB7535.apcprd06.prod.outlook.com>
- <4523caea-3406-4de0-9ab5-424fb7a0a474@kernel.org>
-In-Reply-To: <4523caea-3406-4de0-9ab5-424fb7a0a474@kernel.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SI6PR06MB7535:EE_|TYSPR06MB6363:EE_
-x-ms-office365-filtering-correlation-id: 078f0254-edee-4abc-3a3c-08dd6abadd0c
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|376014|7416014|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?utf-8?B?T21xRWI0bjB0UkRGdVBsN01tUUhMbTljMnlrVVBSUVJTUFdJSDlYT21sa2FU?=
- =?utf-8?B?M3ZNVHlieVZ5dThrRHo3M3VXVDN3SkgvbHdkZVJvNWRkZVQzTVR3ZDZBL25E?=
- =?utf-8?B?Tzc1Q0tOdUV0NW1xUGd4amUySTYvazI0S2RuWWtRYVR6TlhnNEtPb0RQMzB2?=
- =?utf-8?B?cmNJcW1kbjVmN2hlK1lFWExTUS9LejFGVCszZThpYUZwZDI4T2R4WDhTenBW?=
- =?utf-8?B?R2RkeXdxeU5IVFd5MlA5L2pDNlRoWjZnaGFRcFJVUGkwdlZUY3BsZlFZRmFZ?=
- =?utf-8?B?RUdvREl0M1crbGlUZ0JLWllmakhNVFFxUmJsbGJJV2NTdEJlSWpsL05XYTNQ?=
- =?utf-8?B?WFd1M09yajdrOFB1Q1M2d0w3UC9kQkx6K1Y4aHlkaU5pQ09qOXJsSitGSzBU?=
- =?utf-8?B?OUJLNm5keWZKNUpYUUJmSGtpd0gvWklyV2hDREh0YU5EZFduQ241NjAxYXhY?=
- =?utf-8?B?Z2VrUCtuOElJVFdoL21pL2FMYXRrTXpXU1NwbUlxdU5PelNMclljK0p2Z3Nm?=
- =?utf-8?B?K0VrL2I3b28yeDNMR2tiLzQ0a1IyZjJ1Y3VER0JlVjJIUFdxMUgxS2o1ZXdK?=
- =?utf-8?B?Wk1iWStIVVF6NmxPdTBEWExiZEdnVmFrZDZjUzQveVhEL2xHeXB5LzBVS212?=
- =?utf-8?B?TlVxQWNXQmYwUXRCbmxDR0NGRUhpNmdDbUQ0SVBXR293eTcrRkdIdDlUWUtX?=
- =?utf-8?B?dU9QeCtTRWdFOXVWZG1vVzhDcUI1a3llc1hpR2E3RU9DbWlLMGtoT0pUQ0lz?=
- =?utf-8?B?ZlRQZG05eTBURFdTYzJObU1teUs2QmlJSU4rY1FDaFJGRiswNWxMTWE2M2M4?=
- =?utf-8?B?RlZpekJFT2NoYTFDVWY3MnhwK1BTQnl4cVViN2dhcGRIMXJSRkV6NFpPTUVX?=
- =?utf-8?B?OEFRWUU3VkppVEh4dUlSaDNwMmRNZWhnK3dMbGh5aWV4S1VUNUpXQ0JQanhG?=
- =?utf-8?B?RVlXNGQ0aE1mcTVPcUh2MUladjJISXYxS09PZklkbGVqSnVvb2QzSjl5M3BI?=
- =?utf-8?B?b3NYeVRTdlkycGZlT1pKVVVZN0tDOElpWXhSTjBDQWhJaTd4VktRMVVNQU5P?=
- =?utf-8?B?TkFiUnhtalhnQUdVb0JHdlRJdVVubW4vTUJsZngxd3h2cEZsKzEzY0RHL3VI?=
- =?utf-8?B?S3VJQ3dFZnBlSlppRnUwMWwzRUZEbUhZVHRPdGp1aXFmeVpuUys5NU1HUXZx?=
- =?utf-8?B?THJncmlLLzFRYmE5ajV2cC93SGoyQmtSNVA1eXNqUkhOYkVEa1NET3JOd0Fi?=
- =?utf-8?B?am1yT2tkcjh6UElZTG1kOXdScmJmc2JEZ1VPRjRyT0U0b0pYdS9reis4VUxq?=
- =?utf-8?B?R2hzU1FJeW85NmF5TjZZZ2VCV05kRlk0YlpQWG5ZTjU2L3c5RHpSQjJ0QXZY?=
- =?utf-8?B?K0RLaEp1ajhKNHArOWdvNnE4UmluNmZtVUJFZWJsNVdNaHNhMjZjTUFHTVJL?=
- =?utf-8?B?bnpQdGcvZTRnOUU0ODNKcVNjcmh3eFlZL09lQlRqVGFCdTZnSDRib0JJMzlZ?=
- =?utf-8?B?ZkdVc0NPcUxFS2RJd2tpZUxYcDZRRkxHUDdWc1hveTkyR0owZGZ1TkZxc2p1?=
- =?utf-8?B?djd5VkFQSlRaWHAwMEVpYWoyT0dOdWdpbkYvc3RwVEdTMlhZTzVRdlYzTWdz?=
- =?utf-8?B?STYwTEFNaFk1ekoyMkpmWnNXN3RpYnUzS29pWmFEQXBoMWJmT1prTFBMNkQ2?=
- =?utf-8?B?RkdveVlMZlJFNFFqdVlUL1RaVk1Uby9CdHBQejQvYUk1cTQ1NnVnSnVwSHdt?=
- =?utf-8?B?dCsyUktTYVhtQjc5VmVLYmRBOTVweE5JbHJ6MGR6RjlOUm1HWTBwMnRSdzZi?=
- =?utf-8?B?bkdROGVmMGtKWE1ZWEpqZGdZTGgzSTF5UmhyMXBJVldvTE1HNDhxWThZOHFx?=
- =?utf-8?B?bVBtWUZ0YUViL1k0UHpqWVJsSVl3YkdKbDZ1dnYvNlU1c2JORFA5cVFubEJm?=
- =?utf-8?Q?sO/3c61jADGvhVNZi5cEAJMOdDlY4Fu5?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:zh-tw;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SI6PR06MB7535.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(38070700018);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?aDE0ZUd4VzdGMmNrSHhleTVKL0NjdFVpdnRRdHVpcFRnN3l3YmU1R2NKQVJ5?=
- =?utf-8?B?SzBSWmZqQVlOTXNHMVYzZ1JqTG9rYjE0UmNKVUtyWGNFSmdYV1JINDRoRUVt?=
- =?utf-8?B?aVpyR2NoREJHVWl4SzBKNTN4Zm5MQ25hRDBvLzFBY2IxenlSQWZ2L2s2L3Bx?=
- =?utf-8?B?UXMxU0ZhUGlrTXpOWlNhZWVCbm5MYS9DVmpMV1ErOHpYVWtWd0tPcmhUMjVY?=
- =?utf-8?B?azY3T05jK1RyZVpFb0pmczlNSHN6NnBsbVBFTGhJejl6dU1NelgycEtCT1h2?=
- =?utf-8?B?TDZlTDVDMjBYcVdOZDlnVmplc2FKRURvV2JnM2tMaldMYzlNUHdOUkw5SVQ0?=
- =?utf-8?B?a2FwY1NLbG96eUJBeFU2SHVwb2R3VElkSUlCREsvdHdrM3hKOThQUVpKWkN5?=
- =?utf-8?B?YWNEWEtyaEZkblQ4NkJrR21ZNXIydWtvN2orNGZ3MXowZmZ2cEJxSGlUa2xr?=
- =?utf-8?B?eUgyd3BrM28wZ0JxZ0FSTE5BSmllbEZIai90U2pmRzZJTkhrQVd0bjBidys0?=
- =?utf-8?B?VUE5RWdNN3Y2bTFqdVA0OWJraXZSZFdsSS96akVtV0JFRkVRMzlyYXE5bi9I?=
- =?utf-8?B?YTJRSXdJQitBNlZqS0VhVm1FVEw2Rzl1a2xjaWRubXdpRkcyM3I0YTdvOEFI?=
- =?utf-8?B?RERhcVgwQUU2R2t3d09ZUXRONDRlVDRFSTljN1VGSTI2djhvQytBWFI1VU9S?=
- =?utf-8?B?Z3dYS1dYZG9RU0NWTHBQODlqZWxtZkIwM09VR1hUNTlqKzZHN0FTc2lOcXMz?=
- =?utf-8?B?MkZQSWVuRHdyQVR5RXBCcUlBZXhhWWZGWEF3VVUvNnFoZzlJUUFld0Z1Rm5J?=
- =?utf-8?B?c2hNWllHTHllTkZGL09ZQnBlN3NBZ2lId2xOWXVjQjcwUlo0bkwrdGN6aFBC?=
- =?utf-8?B?aFlLcEcxeGNmUnVmMHJXR0ZKRCtCZUNJT3BCYk90WU4wanVLQ1d0a1JzdnYx?=
- =?utf-8?B?and5NTJKSUozbVRLcG9uSWVQT2QwVTF6UmNLa0Uxa1p4eG5OMktWOHFpSmZH?=
- =?utf-8?B?R3RkbTBjckZKdHQrdXdMUURINysvRW5OVDVCZHFrc1RrWnBpVlh2UkFRRU1s?=
- =?utf-8?B?M2VPalV4bjlSNEpDUTJuTmdhUGRsMzhkNVFieFhIRktpY3BoOTNSbk1Yc2RS?=
- =?utf-8?B?bVo5bitNZDlsMm9GOE9ENlpqT1NGcS9iN3dFeFFJdEIxRS9uWlZuRGJlVjVk?=
- =?utf-8?B?RUZGeGhOcTZxZ21FMjV2Z3cvbGJtR1NiTmU5R3h1dnlYK1k1THg0cnhoYXQw?=
- =?utf-8?B?b084UnZreTZON2R6WFFrTWkrOUM1UmxoQXpWMTRUSGRHZUtCQm9JUXpBdHlR?=
- =?utf-8?B?SWFjZTNlNHpnQm4zMVpmSzhIK01DWlpFRGh1LzZlR0JEOStpbStkSlN2M1ZR?=
- =?utf-8?B?WlJPczRCSmI5U2NVKzZEaGhvVkdKbzBRRWNXWmMvbTJrT1BuVkpMU0Q5WTFo?=
- =?utf-8?B?SVJFcVpNODdiajlGTHRXUHJSMmhNdGY0QS9heFdFeHRXNC9aYTFKQ21MUVMx?=
- =?utf-8?B?SzA0UGlsRTJWOFFPbHMvamJOcmhMWUFQR3pBTnB5aks4dERNVm9zelA3ZDg1?=
- =?utf-8?B?T20xZERPb0NlRGtrSC96OFZMc3ozUWFOd1d1eHpFSDZWTW5EeHFtbWJhOVZJ?=
- =?utf-8?B?N1J3dlpPcklUSktOTDUrNk94K2grYmlWWDhleHE1dU4rc3VjZUNJb1pRRG8x?=
- =?utf-8?B?dzFhTmpMYjBNWXdqbUx0UHN4RHlwTDNJYWl5VEZJS3ROeUhFRjI3VmJOVG40?=
- =?utf-8?B?a0xFdlo2dTROTHdpb2x2ZHhpaThBNVhqUkQxYkovRmljOE03Sm4rL3NtMEh6?=
- =?utf-8?B?MVBtVTBDVXlYb0s0ZnBVbkJaMzZSQnhtd2VGdkNzSVRabjVCeVBld25qL2Fi?=
- =?utf-8?B?c3ZNQkJObjhuOHJITllUbnNjTXpQMThiRzNnUmMwd2haVVlIUGF2b1g3WGhE?=
- =?utf-8?B?QXNBRUd6RkxQL3R3QXdXNDhLdy9NSmZiVERKZjVtVjhDdU8wd0lMSXVhZ25Q?=
- =?utf-8?B?VC83VU1xVlNXeXFLZW9YaFpiTFlLaUVMckw2VHN6ME9KRDY5NitHbzNPemtI?=
- =?utf-8?B?YVdScmNGWFJlVmYxdWkrVi9RUVRYWTdrSTBDbFMvaXRnU0E0ZUJFeStQN1ZJ?=
- =?utf-8?Q?d+fHybYtTurZ+1skm/A2A4Cu1?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ 2025 10:09:31 +0000
+Received: from HK3PEPF0000021E.apcprd03.prod.outlook.com
+ (2603:1096:4:191:cafe::3f) by SI2PR01CA0012.outlook.office365.com
+ (2603:1096:4:191::8) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.42 via Frontend Transport; Mon,
+ 24 Mar 2025 10:09:31 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ HK3PEPF0000021E.mail.protection.outlook.com (10.167.8.40) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8534.20 via Frontend Transport; Mon, 24 Mar 2025 10:09:29 +0000
+Received: from [172.16.64.208] (unknown [172.16.64.208])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id B729640A5BFA;
+	Mon, 24 Mar 2025 18:09:28 +0800 (CST)
+Message-ID: <c69ef0ad-9391-42f2-9b6f-1742e9a746e4@cixtech.com>
+Date: Mon, 24 Mar 2025 18:09:28 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SI6PR06MB7535.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 078f0254-edee-4abc-3a3c-08dd6abadd0c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Mar 2025 10:01:36.1176
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/6] PCI: cadence: Add header support for PCIe next
+ generation controllers
+To: Manikandan Karunakaran Pillai <mpillai@cadence.com>,
+ "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+ "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
+ "bhelgaas@google.com" <bhelgaas@google.com>, "kw@linux.com" <kw@linux.com>,
+ "robh@kernel.org" <robh@kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>
+References: <20250324082353.2566115-1-mpillai@cadence.com>
+ <CH2PPF4D26F8E1CDE19710828C0186B13EEA2A42@CH2PPF4D26F8E1C.namprd07.prod.outlook.com>
+Content-Language: en-US
+From: "hans.zhang" <hans.zhang@cixtech.com>
+In-Reply-To: <CH2PPF4D26F8E1CDE19710828C0186B13EEA2A42@CH2PPF4D26F8E1C.namprd07.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: HK3PEPF0000021E:EE_|PUZPR06MB5449:EE_
+X-MS-Office365-Filtering-Correlation-Id: 87a39fcd-acf6-4252-e30b-08dd6abbf76f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|376014|1800799024|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?V0M0YXBDUzR3NTliQm5MdnN1MERQbC9qSGsvK24rdDNYbVJ1Q2xTLzB1aVRY?=
+ =?utf-8?B?RUt6Rzg2ZWFRUXhCU2lJTEcvbklvL0JMU2VFRndCRjNFSnozdy9BUXB6OXow?=
+ =?utf-8?B?alo1bzlzd2tuNlBwWjA0bTRBelMrMVRrdGszb0IralN6YlB4RVNHZlVhNjNX?=
+ =?utf-8?B?VU5zWlh1NkErMUxEck5ab0cxcE9NMmMrWUwzYUpIQnAzSUNZS3o5RUVvTkdI?=
+ =?utf-8?B?bEVia2dsU3IrR2NjMWRubUQ2T0pyOTZxUEVhQWltT0RaUUNGbW9vSG10Vnhh?=
+ =?utf-8?B?QmFGeWhTWlYrNlRKTWR4QTk3VEdXSjJIRmJIZXpRdUw2akVDTUNjQUduWm04?=
+ =?utf-8?B?a0N3clZFV3Z5eWRMQzVPZXJqSDdaVDBVUXl3TGVyK0tvL3A3Nnd4cjdPVkM0?=
+ =?utf-8?B?UWNMNUFkdnZlOWFjZy85dGV0UTl3VWp4N0QrSjlZd3VBSDg2YUtveWVJcjhp?=
+ =?utf-8?B?UEdXaGl1c2lDQUxCL0VPTFVtQ2tjOGllMnA4QnJXUXpBMVZpMlhKQVAzNEZF?=
+ =?utf-8?B?eEpSSzJXcW54U00vVnZqZGhEeUFybkJqQ1d0NVhmNy82Qng0SGZkYWk1dGtp?=
+ =?utf-8?B?dG9pWWxMdmpIQVJpdkRxcWdYc0dqZ0RlZjUvcVpkcWVJdGQ2UHo3bmJzMGZG?=
+ =?utf-8?B?RHQvSmVZY1I0YWdTOGpSTWM3MWFRaE9FWXZIcUg5U3BQbFFHdHVJU0t4cEtz?=
+ =?utf-8?B?bU85eGdZMU5UTFBUZERBWTlJcVBTVndxOEV5U0pMeGRLczZmVmNlQXBnNGo2?=
+ =?utf-8?B?amEyNkJZUjI2TlhqUXVpWVdGcTNxUk5IU3Z2eUk2UGtYalp1TWcyYnEwUE9h?=
+ =?utf-8?B?YUF1NDB1RHJZZUlSd2FGUlRyeHl6RmVxYy9Gb0tVL2ZSU2xMWWo1RmdKcm1B?=
+ =?utf-8?B?bW94VkJ1cUxpbnBYZXZhdysyNTNhOWh0SUJxdmFlV0dIY0xJOHBhT3B3RVhU?=
+ =?utf-8?B?blU5ZXd0UEkrbHZVSm1INU1Ma1pNSWFZbTVIMUhOSWFueHRGRmRpVFV5eENr?=
+ =?utf-8?B?YS9QOG9vdHhEendLcC9uR2tsVzRSejRDQTlSbWdnZ1dLU2owT1Z2R0tWTzdW?=
+ =?utf-8?B?S1kxNFkxeVZVWHliMmMxUDVGbmpKVFFBaGVYY3FLVTlpUUxTVTJMeUZnN3pB?=
+ =?utf-8?B?K1RuWnpldCt2VGsvVlVuU0JURzh3dGZ2Z2dFbVRLWjVzdVE0SjQ3c0ljN1E3?=
+ =?utf-8?B?aVEvZ3FzeHVNd0cvYXAwQXlMcXE1M3J3WHVvcisvdzkwM21KSk1TYUQ3YmNS?=
+ =?utf-8?B?ejFVTVdvYWtoNktuSTFyaVRHTHhFM2VDZ2RwbHR4VmVBS2ZuVzMyTHZ0REdX?=
+ =?utf-8?B?NE1jTVhPV09hdS9nVlczMkxKTG1UUVNaRHlvdVlVcVhXUVhsQ0E4blFGUTRs?=
+ =?utf-8?B?OU1aa2xKWVBnbVZwM2FnUGptRlc2L2t0K0ZVdjZ2SzNMM0FnYWMreVl2WVJG?=
+ =?utf-8?B?aDJZKy9udGg3M05FU1p0UHVpR05HM3R5UDBtVHg5djJzZmdMeE1ZdDJmKzNm?=
+ =?utf-8?B?VGFUSDNOdnZxcFFBR29RQWpsMzM4MDMwOWx4UjBLNHI2cERjUVBlRmxNNVJC?=
+ =?utf-8?B?azNrMUJuZURJZFBkV0FjWlZpaHJSNHVjdmFmSzFUTkMwQ2VGb2t0WURCUlZH?=
+ =?utf-8?B?V1RtaGtuNzIxbW8yV3NJTE9OSGxRK1NuUFEycDZZU045a0ZiR0NsdVJmcXhj?=
+ =?utf-8?B?ZXFHRkdaWHNnZ1R2bXdFc2N2SHVwaVpWQ1M0Uk53b1VlNTRiK2ZVSmxIZlRD?=
+ =?utf-8?B?U3BjamZUdHlJRXNHdXkvRlpsVVh5V3hHTng3ZmZPK3JXVlQrRDIxSlJ6Rlhj?=
+ =?utf-8?B?NHZ3UitrYmFzd3ZsWkxYNitZZ3UyQUY3Vk9aaUFFcDh3bEJKelRwc0pwT05i?=
+ =?utf-8?B?SW91cG92dmZNZm1oVFNMaDVON1NKYXdJQytpRU13aDFqQkdNWDdvc2pRMEpl?=
+ =?utf-8?B?b0xhTUhBRUR6UXArR3hrUEEzbmk1Vnc3ZjhPQjBaMlJ3QVF0V0NlYUszUE1z?=
+ =?utf-8?Q?3lp9RbgmXlUcdZoEpDFkuwKALXBuZo=3D?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026);DIR:OUT;SFP:1102;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2025 10:09:29.6712
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: rzRsIhdB9ZjLhohiUned6QMfq97C3SUm11T04PRvsT+RqlrGInb1/31BkX/bs0zTz/U4ijyvUJ8BUbetOCpaiF6TT0cl1OSJAR334B+3mj8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR06MB6363
+X-MS-Exchange-CrossTenant-Network-Message-Id: 87a39fcd-acf6-4252-e30b-08dd6abbf76f
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource: HK3PEPF0000021E.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PUZPR06MB5449
 
-PiBTdWJqZWN0OiBSZTogW1BBVENIIHYxNiAxLzNdIGR0LWJpbmRpbmdzOiBpMmM6IGFzcGVlZDog
-c3VwcG9ydCBmb3INCj4gQVNUMjYwMC1pMmN2Mg0KPiANCj4gT24gMjQvMDMvMjAyNSAwOTozMCwg
-UnlhbiBDaGVuIHdyb3RlOg0KPiA+PiBTdWJqZWN0OiBSZTogW1BBVENIIHYxNiAxLzNdIGR0LWJp
-bmRpbmdzOiBpMmM6IGFzcGVlZDogc3VwcG9ydCBmb3INCj4gPj4gQVNUMjYwMC1pMmN2Mg0KPiA+
-Pg0KPiA+PiBPbiAxOS8wMy8yMDI1IDEyOjEyLCBSeWFuIENoZW4gd3JvdGU6DQo+ID4+Pj4gU3Vi
-amVjdDogUmU6IFtQQVRDSCB2MTYgMS8zXSBkdC1iaW5kaW5nczogaTJjOiBhc3BlZWQ6IHN1cHBv
-cnQgZm9yDQo+ID4+Pj4gQVNUMjYwMC1pMmN2Mg0KPiA+Pj4+DQo+ID4+Pj4gT24gMTcvMDMvMjAy
-NSAxMDoyMSwgUnlhbiBDaGVuIHdyb3RlOg0KPiA+Pj4+Pj4gTmVpdGhlciB0aGlzLg0KPiA+Pj4+
-Pj4NCj4gPj4+Pj4+IFNvIGl0IHNlZW1zIHlvdSBkZXNjcmliZSBhbHJlYWR5IGV4aXN0aW5nIGFu
-ZCBkb2N1bWVudGVkIEkyQywgYnV0DQo+ID4+Pj4+PiBmb3Igc29tZSByZWFzb24geW91IHdhbnQg
-c2Vjb25kIGNvbXBhdGlibGUuIFRoZSBwcm9ibGVtIGlzIHRoYXQNCj4gPj4+Pj4+IHlvdSBkbyBu
-b3QgcHJvdmlkZSByZWFzb24gZnJvbSB0aGUgcG9pbnQgb2YgdmlldyBvZiBiaW5kaW5ncy4NCj4g
-Pj4+Pj4+DQo+ID4+Pj4+PiBUbyBzdW1tYXJpemU6IHdoYXQgeW91ciB1c2VycyB3YW50IC0gZG9u
-J3QgY2FyZS4gU3RhcnQgcHJvcGVybHkNCj4gPj4+Pj4+IGRlc2NyaWJpbmcgaGFyZHdhcmUgYW5k
-IHlvdXIgU29DLg0KPiA+Pj4+Pg0KPiA+Pj4+PiBPSywgZm9yIGFzdDI2MDAgaTJjIGNvbnRyb2xs
-ZXIgaGF2ZSB0d28gcmVnaXN0ZXIgbW9kZSBzZXR0aW5nLg0KPiA+Pj4+PiBPbmUsIEkgY2FsbCBp
-dCBpcyBvbGQgcmVnaXN0ZXIgc2V0dGluZywgdGhhdCBpcyByaWdodCBub3cNCj4gPj4+Pj4gaTJj
-LWFzcGVlZC5jIC5jb21wYXRpYmxlID0gImFzcGVlZCxhc3QyNjAwLWkyYy1idXMiLCBBbmQgdGhl
-cmUNCj4gPj4+Pj4gaGF2ZSBhIGdsb2JhbCByZWdpc3Rlcg0KPiA+Pj4+IHRoYXQgY2FuIHNldCBp
-MmMgY29udHJvbGxlciBhcyBuZXcgbW9kZSByZWdpc3RlciBzZXQuDQo+ID4+Pj4+IFRoYXQgSSBh
-bSBnb2luZyB0byBkcml2ZS4gVGhhdCBJIHBvc3QgaXMgYWxsIHJlZ2lzdGVyIGluIG5ldyBhbg0K
-PiA+Pj4+PiBvbGQgcmVnaXN0ZXINCj4gPj4gbGlzdC4NCj4gPj4+Pj4NCj4gPj4+Pj4gRm9yIGV4
-YW1wbGUsDQo+ID4+Pj4+IEdsb2JhbCByZWdpc3RlciBbMl0gPSAwID0+IGkyYyBwcmVzZW50IGFz
-IG9sZCByZWdpc3RlciBzZXQgR2xvYmFsDQo+ID4+Pj4+IHJlZ2lzdGVyIFsyXSA9IDEgPT4gaTJj
-IHByZXNlbnQgYXMgbmV3IHJlZ2lzdGVyIHNldA0KPiA+Pj4+IEl0J3MgdGhlIHNhbWUgZGV2aWNl
-IHRob3VnaCwgc28gdGhlIHNhbWUgY29tcGF0aWJsZS4NCj4gPj4+DQo+ID4+PiBTb3JyeSwgaXQg
-aXMgZGlmZmVyZW50IGRlc2lnbiwgYW5kIGl0IHNoYXJlIHRoZSBzYW1lIHJlZ2lzdGVyIHNwYWNl
-Lg0KPiA+Pj4gU28gdGhhdCB0aGUgcmVhc29uIGFkZCBuZXcgY29tcGF0aWJsZSAiYXNwZWVkLGFz
-dDI2MDAtaTJjdjIiIGZvcg0KPiA+Pj4gdGhpcw0KPiA+PiBkcml2ZXIuDQo+ID4+PiBJdCBpcyBk
-aWZmZXJlbnQgcmVnaXN0ZXIgbGF5b3V0Lg0KPiA+Pg0KPiA+PiBXaGljaCBkZXZpY2UgaXMgZGVz
-Y3JpYmVkIGJ5IHRoZSBleGlzdGluZyAiYXNwZWVkLGFzdDI2MDAtaTJjLWJ1cyINCj4gPj4gY29t
-cGF0aWJsZT8gQW5kIHdoaWNoIGRldmljZSBpcyBkZXNjcmliZWQgYnkgbmV3IGNvbXBhdGlibGU/
-DQo+ID4+DQo+ID4gT24gdGhlIEFTVDI2MDAgU29DLCB0aGVyZSBhcmUgdXAgdG8gMTYgSTJDIGNv
-bnRyb2xsZXIgaW5zdGFuY2VzIChJMkMxIH4NCj4gSTJDMTYpLg0KPiANCj4gU28geW91IGhhdmUg
-MTYgc2FtZSBkZXZpY2VzLg0KWWVzLCBvbmUgZHJpdmVyIGluc3RhbmNlIGZvciAxNiBpMmMgZGV2
-aWNlLiANCj4gDQo+ID4gRWFjaCBvZiB0aGVzZSBjb250cm9sbGVycyBpcyBoYXJkd2lyZWQgYXQg
-dGhlIFNvQyBsZXZlbCB0byB1c2UgZWl0aGVyIHRoZQ0KPiBsZWdhY3kgcmVnaXN0ZXIgbGF5b3V0
-IG9yIHRoZSBuZXcgdjIgcmVnaXN0ZXIgbGF5b3V0Lg0KPiA+IFRoZSBtb2RlIGlzIHNlbGVjdGVk
-IGJ5IGEgYml0IGluIHRoZSBnbG9iYWwgcmVnaXN0ZXIsIHRoZXNlIHJlcHJlc2VudCB0d28NCj4g
-ZGlmZmVyZW50IGhhcmR3YXJlIGJsb2NrczoNCj4gPiAiYXNwZWVkLGFzdDI2MDAtaTJjLWJ1cyIg
-ZGVzY3JpYmVzIGNvbnRyb2xsZXJzIHVzaW5nIHRoZSBsZWdhY3kgcmVnaXN0ZXINCj4gbGF5b3V0
-Lg0KPiA+ICJhc3BlZWQsYXN0MjYwMC1pMmN2MiIgZGVzY3JpYmVzIGNvbnRyb2xsZXJzIHVzaW5n
-IHRoZSBuZXcgcmVnaXN0ZXINCj4gPiBsYXlvdXQNCj4gDQo+IFdoaWNoIHBhcnQgb2YgInNhbWUg
-ZGV2aWNlIiBpcyBub3QgY2xlYXI/IFlvdSBoYXZlIG9uZSBkZXZpY2UsIG9uZSBjb21wYXRpYmxl
-Lg0KPiBXaGF0ZXZlciB5b3UgZG8gd2l0aCByZWdpc3RlciBsYXlvdXQsIGlzIGFscmVhZHkgZGVm
-aW5lZCBieSB0aGF0IGNvbXBhdGlibGUuIEl0DQo+IGRvZXMgbm90IG1hdHRlciB0aGF0IHlvdSBm
-b3Jnb3QgdG8gaW1wbGVtZW50IGl0IGluIHRoZSBMaW51eCBrZXJuZWwuDQoNClNvcnJ5LCBJIHN0
-aWxsIGNhbid0IGNhdGNoIHlvdXIgcG9pbnQuDQpJIHNlcGFyYXRlZCB0aGUgc3VwcG9ydCBpbnRv
-IHR3byBkcml2ZXJzOg0KaTJjLWFzcGVlZC5jIGZvciBsZWdhY3kgbGF5b3V0LCBjb21wYXRpYmxl
-ICJhc3BlZWQsYXN0MjYwMC1pMmMtYnVzIg0KaTJjLWFzdDI2MDAuYyBmb3IgdGhlIG5ldyByZWdp
-c3RlciBzZXQsIGNvbXBhdGlibGUgY29tcGF0aWJsZSAiYXNwZWVkLGFzdDI2MDAtaTJjdjIiDQpE
-byB5b3UgbWVhbiBJIGhhdmUgaW50ZWdyYXRlIGludG8gMSBkcml2ZXIgYXQgaTJjLWFzcGVlZC5j
-ID8gY2FuJ3QgYmUgc2VwYXJhdGUgdHdvIGRyaXZlcj8NCj4gDQo+IEJlc3QgcmVnYXJkcywNCj4g
-S3J6eXN6dG9mDQo=
+
+
+On 2025/3/24 17:08, Manikandan Karunakaran Pillai wrote:
+> [You don't often get email from mpillai@cadence.com. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
+> 
+> EXTERNAL EMAIL
+> 
+> Add the required definitions for register addresses and register bits
+> for the next generation Cadence PCIe controllers - High
+> performance architecture(HPA) controllers
+> 
+> Signed-off-by: Manikandan K Pillai <mpillai@cadence.com>
+> ---
+>   .../controller/cadence/pcie-cadence-host.c    |  12 +-
+>   drivers/pci/controller/cadence/pcie-cadence.h | 290 +++++++++++++++++-
+>   2 files changed, 295 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/cadence/pcie-cadence-host.c b/drivers/pci/controller/cadence/pcie-cadence-host.c
+> index 8af95e9da7ce..1e2df49e40c6 100644
+> --- a/drivers/pci/controller/cadence/pcie-cadence-host.c
+> +++ b/drivers/pci/controller/cadence/pcie-cadence-host.c
+> @@ -175,7 +175,7 @@ static int cdns_pcie_host_start_link(struct cdns_pcie_rc *rc)
+>          return ret;
+>   }
+> 
+> -static int cdns_pcie_host_init_root_port(struct cdns_pcie_rc *rc)
+> +int cdns_pcie_host_init_root_port(struct cdns_pcie_rc *rc)
+>   {
+>          struct cdns_pcie *pcie = &rc->pcie;
+>          u32 value, ctrl;
+> @@ -215,10 +215,10 @@ static int cdns_pcie_host_init_root_port(struct cdns_pcie_rc *rc)
+>          return 0;
+>   }
+> 
+> -static int cdns_pcie_host_bar_ib_config(struct cdns_pcie_rc *rc,
+> -                                       enum cdns_pcie_rp_bar bar,
+> -                                       u64 cpu_addr, u64 size,
+> -                                       unsigned long flags)
+> +int cdns_pcie_host_bar_ib_config(struct cdns_pcie_rc *rc,
+> +                                enum cdns_pcie_rp_bar bar,
+> +                                u64 cpu_addr, u64 size,
+> +                                unsigned long flags)
+>   {
+>          struct cdns_pcie *pcie = &rc->pcie;
+>          u32 addr0, addr1, aperture, value;
+> @@ -428,7 +428,7 @@ static int cdns_pcie_host_map_dma_ranges(struct cdns_pcie_rc *rc)
+>          return 0;
+>   }
+> 
+> -static int cdns_pcie_host_init_address_translation(struct cdns_pcie_rc *rc)
+> +int cdns_pcie_host_init_address_translation(struct cdns_pcie_rc *rc)
+>   {
+>          struct cdns_pcie *pcie = &rc->pcie;
+>          struct pci_host_bridge *bridge = pci_host_bridge_from_priv(rc);
+> diff --git a/drivers/pci/controller/cadence/pcie-cadence.h b/drivers/pci/controller/cadence/pcie-cadence.h
+> index f5eeff834ec1..2a806e5a3685 100644
+> --- a/drivers/pci/controller/cadence/pcie-cadence.h
+> +++ b/drivers/pci/controller/cadence/pcie-cadence.h
+> @@ -218,6 +218,218 @@
+>           (((delay) << CDNS_PCIE_DETECT_QUIET_MIN_DELAY_SHIFT) & \
+>           CDNS_PCIE_DETECT_QUIET_MIN_DELAY_MASK)
+> 
+> +/*
+> + * High Performance Architecture(HPA) PCIe controller register
+> + */
+> +#define CDNS_PCIE_HPA_IP_REG_BANK              0x01000000
+> +#define CDNS_PCIE_HPA_IP_CFG_CTRL_REG_BANK     0x01003C00
+> +#define CDNS_PCIE_HPA_IP_AXI_MASTER_COMMON     0x01020000
+> +/*
+> + * Address Translation Registers(HPA)
+> + */
+> +#define CDNS_PCIE_HPA_AXI_SLAVE                 0x03000000
+> +#define CDNS_PCIE_HPA_AXI_MASTER                0x03002000
+
+Hi Manikandan,
+
+Can you change this part of the code to look like this?
+
+#define CDNS_PCIE_HPA_IP_REG_BANK(a)              (a)
+#define CDNS_PCIE_HPA_IP_CFG_CTRL_REG_BANK(a)     (a)
+#define CDNS_PCIE_HPA_IP_AXI_MASTER_COMMON(a)     (a)
+#define CDNS_PCIE_HPA_AXI_SLAVE(a)                (a)
+#define CDNS_PCIE_HPA_AXI_MASTER(a)               (a)
+
+
+
+The offset we designed is: (Cixtech)
+#define CDNS_PCIE_HPA_IP_REG_BANK 0x1000
+#define CDNS_PCIE_HPA_IP_CFG_CTRL_REG_BANK 0x4c00
+#define CDNS_PCIE_HPA_IP_AXI_MASTER_COMMON 0xf000
+#define CDNS_PCIE_HPA_AXI_SLAVE 0x9000
+#define CDNS_PCIE_HPA_AXI_MASTER 0xb000
+#define CDNS_PCIE_HPA_AXI_HLS_REGISTERS 0xc000
+#define CDNS_PCIE_HPA_DTI_REGISTERS 0xd000
+#define CDNS_PCIE_HPA_AXI_RAS_REGISTERS 0xe000
+#define CDNS_PCIE_HPA_DMA_BASE 0xf400
+#define CDNS_PCIE_HPA_DMA_COMMON_BASE 0xf800
+
+
+The original register bank consumed at least 48MB address space which is 
+begin from 0x0000_0000 to 0x03020000. Because there is unoccupied 
+address space between every two register banks , our hardware remaps the 
+registers to a smaller address space which means the register bank 
+offset address is changed by custormer. So, we cannot utilise the common 
+code directly without rewriting the function.
+
+
+We submit and pull a Cadence case: #46872873
+
+We will also reply to you in the case.
+
+Best regards,
+Hans
+
+> +/*
+> + * Root port register base address
+> + */
+> +#define CDNS_PCIE_HPA_RP_BASE                  0x0
+> +
+> +#define CDNS_PCIE_HPA_LM_ID                    (CDNS_PCIE_HPA_IP_REG_BANK + 0x1420)
+> +
+> +/*
+> + * Endpoint Function BARs(HPA) Configuration Registers
+> + */
+> +#define CDNS_PCIE_HPA_LM_EP_FUNC_BAR_CFG(bar, fn) \
+> +       (((bar) < BAR_3) ? CDNS_PCIE_HPA_LM_EP_FUNC_BAR_CFG0(fn) : \
+> +                       CDNS_PCIE_HPA_LM_EP_FUNC_BAR_CFG1(fn))
+> +#define CDNS_PCIE_HPA_LM_EP_FUNC_BAR_CFG0(pfn) \
+> +       (CDNS_PCIE_HPA_IP_CFG_CTRL_REG_BANK  + (0x4000 * (pfn)))
+> +#define CDNS_PCIE_HPA_LM_EP_FUNC_BAR_CFG1(pfn) \
+> +       (CDNS_PCIE_HPA_IP_CFG_CTRL_REG_BANK  + (0x4000 * (pfn)) + 0x04)
+> +#define CDNS_PCIE_HPA_LM_EP_VFUNC_BAR_CFG(bar, fn) \
+> +       (((bar) < BAR_3) ? CDNS_PCIE_HPA_LM_EP_VFUNC_BAR_CFG0(fn) : \
+> +                       CDNS_PCIE_HPA_LM_EP_VFUNC_BAR_CFG1(fn))
+> +#define CDNS_PCIE_HPA_LM_EP_VFUNC_BAR_CFG0(vfn) \
+> +       (CDNS_PCIE_HPA_IP_CFG_CTRL_REG_BANK + (0x4000 * (vfn)) + 0x08)
+> +#define CDNS_PCIE_HPA_LM_EP_VFUNC_BAR_CFG1(vfn) \
+> +       (CDNS_PCIE_HPA_IP_CFG_CTRL_REG_BANK + (0x4000 * (vfn)) + 0x0C)
+> +#define CDNS_PCIE_HPA_LM_EP_FUNC_BAR_CFG_BAR_APERTURE_MASK(f) \
+> +       (GENMASK(9, 4) << ((f) * 10))
+> +#define CDNS_PCIE_HPA_LM_EP_FUNC_BAR_CFG_BAR_APERTURE(b, a) \
+> +       (((a) << (4 + ((b) * 10))) & (CDNS_PCIE_HPA_LM_EP_FUNC_BAR_CFG_BAR_APERTURE_MASK(b)))
+> +#define CDNS_PCIE_HPA_LM_EP_FUNC_BAR_CFG_BAR_CTRL_MASK(f) \
+> +       (GENMASK(3, 0) << ((f) * 10))
+> +#define CDNS_PCIE_HPA_LM_EP_FUNC_BAR_CFG_BAR_CTRL(b, c) \
+> +       (((c) << ((b) * 10)) & (CDNS_PCIE_HPA_LM_EP_FUNC_BAR_CFG_BAR_CTRL_MASK(b)))
+> +
+> +/*
+> + * Endpoint Function Configuration Register
+> + */
+> +#define CDNS_PCIE_HPA_LM_EP_FUNC_CFG           (CDNS_PCIE_HPA_IP_REG_BANK + 0x02c0)
+> +
+> +/*
+> + * Root Complex BAR Configuration Register
+> + */
+> +#define CDNS_PCIE_HPA_LM_RC_BAR_CFG (CDNS_PCIE_HPA_IP_CFG_CTRL_REG_BANK + 0x14)
+> +#define CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR0_APERTURE_MASK     GENMASK(9, 4)
+> +#define CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR0_APERTURE(a) \
+> +       FIELD_PREP(CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR0_APERTURE_MASK, a)
+> +#define CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR0_CTRL_MASK         GENMASK(3, 0)
+> +#define CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR0_CTRL(c) \
+> +       FIELD_PREP(CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR0_CTRL_MASK, c)
+> +#define CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR1_APERTURE_MASK     GENMASK(19, 14)
+> +#define CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR1_APERTURE(a) \
+> +       FIELD_PREP(CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR1_APERTURE_MASK, a)
+> +#define CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR1_CTRL_MASK         GENMASK(13, 10)
+> +#define CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR1_CTRL(c) \
+> +       FIELD_PREP(CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR1_CTRL_MASK, c)
+> +
+> +#define CDNS_PCIE_HPA_LM_RC_BAR_CFG_PREFETCH_MEM_ENABLE BIT(20)
+> +#define CDNS_PCIE_HPA_LM_RC_BAR_CFG_PREFETCH_MEM_64BITS BIT(21)
+> +#define CDNS_PCIE_HPA_LM_RC_BAR_CFG_IO_ENABLE           BIT(22)
+> +#define CDNS_PCIE_HPA_LM_RC_BAR_CFG_IO_32BITS           BIT(23)
+> +
+> +/* BAR control values applicable to both Endpoint Function and Root Complex */
+> +#define CDNS_PCIE_HPA_LM_BAR_CFG_CTRL_DISABLED              0x0
+> +#define CDNS_PCIE_HPA_LM_BAR_CFG_CTRL_IO_32BITS             0x3
+> +#define CDNS_PCIE_HPA_LM_BAR_CFG_CTRL_MEM_32BITS            0x1
+> +#define CDNS_PCIE_HPA_LM_BAR_CFG_CTRL_PREFETCH_MEM_32BITS   0x9
+> +#define CDNS_PCIE_HPA_LM_BAR_CFG_CTRL_MEM_64BITS            0x5
+> +#define CDNS_PCIE_HPA_LM_BAR_CFG_CTRL_PREFETCH_MEM_64BITS   0xD
+> +
+> +#define HPA_LM_RC_BAR_CFG_CTRL_DISABLED(bar)                \
+> +               (CDNS_PCIE_HPA_LM_BAR_CFG_CTRL_DISABLED << ((bar) * 10))
+> +#define HPA_LM_RC_BAR_CFG_CTRL_IO_32BITS(bar)               \
+> +               (CDNS_PCIE_HPA_LM_BAR_CFG_CTRL_IO_32BITS << ((bar) * 10))
+> +#define HPA_LM_RC_BAR_CFG_CTRL_MEM_32BITS(bar)              \
+> +               (CDNS_PCIE_HPA_LM_BAR_CFG_CTRL_MEM_32BITS << ((bar) * 10))
+> +#define HPA_LM_RC_BAR_CFG_CTRL_PREF_MEM_32BITS(bar) \
+> +               (CDNS_PCIE_HPA_LM_BAR_CFG_CTRL_PREFETCH_MEM_32BITS << ((bar) * 10))
+> +#define HPA_LM_RC_BAR_CFG_CTRL_MEM_64BITS(bar)              \
+> +               (CDNS_PCIE_HPA_LM_BAR_CFG_CTRL_MEM_64BITS << ((bar) * 10))
+> +#define HPA_LM_RC_BAR_CFG_CTRL_PREF_MEM_64BITS(bar) \
+> +               (CDNS_PCIE_HPA_LM_BAR_CFG_CTRL_PREFETCH_MEM_64BITS << ((bar) * 10))
+> +#define HPA_LM_RC_BAR_CFG_APERTURE(bar, aperture)           \
+> +               (((aperture) - 7) << ((bar) * 10))
+> +
+> +#define CDNS_PCIE_HPA_LM_PTM_CTRL              (CDNS_PCIE_HPA_IP_REG_BANK + 0x0520)
+> +#define CDNS_PCIE_HPA_LM_TPM_CTRL_PTMRSEN      BIT(17)
+> +
+> +/*
+> + * Root Port Registers PCI config space(HPA) for root port function
+> + */
+> +#define CDNS_PCIE_HPA_RP_CAP_OFFSET    0xC0
+> +
+> +/*
+> + * Region r Outbound AXI to PCIe Address Translation Register 0
+> + */
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0(r) \
+> +       (CDNS_PCIE_HPA_AXI_SLAVE + 0x1010 + ((r) & 0x1F) * 0x0080)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_NBITS_MASK    GENMASK(5, 0)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_NBITS(nbits) \
+> +       FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_NBITS_MASK, ((nbits) - 1))
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_DEVFN_MASK    GENMASK(23, 16)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_DEVFN(devfn) \
+> +       FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_DEVFN_MASK, devfn)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_BUS_MASK      GENMASK(31, 24)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_BUS(bus) \
+> +       FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_BUS_MASK, bus)
+> +
+> +/*
+> + * Region r Outbound AXI to PCIe Address Translation Register 1
+> + */
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR1(r) \
+> +       (CDNS_PCIE_HPA_AXI_SLAVE + 0x1014 + ((r) & 0x1F) * 0x0080)
+> +
+> +/*
+> + * Region r Outbound PCIe Descriptor Register 0
+> + */
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_DESC0(r) \
+> +       (CDNS_PCIE_HPA_AXI_SLAVE + 0x1008 + ((r) & 0x1F) * 0x0080)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_MASK         GENMASK(28, 24)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_MEM  \
+> +       FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_MASK, 0x0)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_IO   \
+> +       FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_MASK, 0x2)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_CONF_TYPE0  \
+> +       FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_MASK, 0x4)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_CONF_TYPE1  \
+> +       FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_MASK, 0x5)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_NORMAL_MSG  \
+> +       FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_MASK, 0x10)
+> +
+> +/*
+> + * Region r Outbound PCIe Descriptor Register 1
+> + */
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_DESC1(r) \
+> +       (CDNS_PCIE_HPA_AXI_SLAVE + 0x100C + ((r) & 0x1F) * 0x0080)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_DESC1_BUS_MASK  GENMASK(31, 24)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_DESC1_BUS(bus) \
+> +       FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_DESC1_BUS_MASK, bus)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_DESC1_DEVFN_MASK    GENMASK(23, 16)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_DESC1_DEVFN(devfn) \
+> +       FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_DESC1_DEVFN_MASK, devfn)
+> +
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_CTRL0(r) \
+> +       (CDNS_PCIE_HPA_AXI_SLAVE + 0x1018 + ((r) & 0x1F) * 0x0080)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_CTRL0_SUPPLY_BUS BIT(26)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_CTRL0_SUPPLY_DEV_FN BIT(25)
+> +
+> +/*
+> + * Region r AXI Region Base Address Register 0
+> + */
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_CPU_ADDR0(r) \
+> +       (CDNS_PCIE_HPA_AXI_SLAVE + 0x1000 + ((r) & 0x1F) * 0x0080)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_CPU_ADDR0_NBITS_MASK    GENMASK(5, 0)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_CPU_ADDR0_NBITS(nbits) \
+> +       FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_CPU_ADDR0_NBITS_MASK, ((nbits) - 1))
+> +
+> +/*
+> + * Region r AXI Region Base Address Register 1
+> + */
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_CPU_ADDR1(r) \
+> +       (CDNS_PCIE_HPA_AXI_SLAVE + 0x1004 + ((r) & 0x1F) * 0x0080)
+> +
+> +/*
+> + * Root Port BAR Inbound PCIe to AXI Address Translation Register
+> + */
+> +#define CDNS_PCIE_HPA_AT_IB_RP_BAR_ADDR0(bar) \
+> +       (CDNS_PCIE_HPA_AXI_MASTER + ((bar) * 0x0008))
+> +#define CDNS_PCIE_HPA_AT_IB_RP_BAR_ADDR0_NBITS_MASK        GENMASK(5, 0)
+> +#define CDNS_PCIE_HPA_AT_IB_RP_BAR_ADDR0_NBITS(nbits) \
+> +       FIELD_PREP(CDNS_PCIE_HPA_AT_IB_RP_BAR_ADDR0_NBITS_MASK, ((nbits) - 1))
+> +#define CDNS_PCIE_HPA_AT_IB_RP_BAR_ADDR1(bar) \
+> +       (CDNS_PCIE_HPA_AXI_MASTER + 0x04 + ((bar) * 0x0008))
+> +
+> +/*
+> + * AXI link down register
+> + */
+> +#define CDNS_PCIE_HPA_AT_LINKDOWN (CDNS_PCIE_HPA_AXI_SLAVE + 0x04)
+> +
+> +/*
+> + * Physical Layer Configuration Register 0
+> + * This register contains the parameters required for functional setup
+> + * of Physical Layer.
+> + */
+> +#define CDNS_PCIE_HPA_PHY_LAYER_CFG0     (CDNS_PCIE_HPA_IP_REG_BANK + 0x0400)
+> +#define CDNS_PCIE_HPA_DETECT_QUIET_MIN_DELAY_MASK  GENMASK(26, 24)
+> +#define CDNS_PCIE_HPA_DETECT_QUIET_MIN_DELAY(delay) \
+> +       FIELD_PREP(CDNS_PCIE_HPA_DETECT_QUIET_MIN_DELAY_MASK, delay)
+> +#define CDNS_PCIE_HPA_LINK_TRNG_EN_MASK  GENMASK(27, 27)
+> +
+> +#define CDNS_PCIE_HPA_PHY_DBG_STS_REG0   (CDNS_PCIE_HPA_IP_REG_BANK + 0x0420)
+> +
+> +#define CDNS_PCIE_HPA_RP_MAX_IB     0x3
+> +#define CDNS_PCIE_HPA_MAX_OB        15
+> +
+> +/*
+> + * Endpoint Function BAR Inbound PCIe to AXI Address Translation Register(HPA)
+> + */
+> +#define CDNS_PCIE_HPA_AT_IB_EP_FUNC_BAR_ADDR0(fn, bar) \
+> +       (CDNS_PCIE_HPA_IP_AXI_MASTER_COMMON + ((fn) * 0x0040) + ((bar) * 0x0008))
+> +#define CDNS_PCIE_HPA_AT_IB_EP_FUNC_BAR_ADDR1(fn, bar) \
+> +       (CDNS_PCIE_HPA_IP_AXI_MASTER_COMMON + 0x4 + ((fn) * 0x0040) + ((bar) * 0x0008))
+> +
+>   enum cdns_pcie_rp_bar {
+>          RP_BAR_UNDEFINED = -1,
+>          RP_BAR0,
+> @@ -249,6 +461,7 @@ struct cdns_pcie_rp_ib_bar {
+>   #define CDNS_PCIE_MSG_NO_DATA                  BIT(16)
+> 
+>   struct cdns_pcie;
+> +struct cdns_pcie_rc;
+> 
+>   enum cdns_pcie_msg_code {
+>          MSG_CODE_ASSERT_INTA    = 0x20,
+> @@ -286,6 +499,20 @@ struct cdns_pcie_ops {
+>          void    (*stop_link)(struct cdns_pcie *pcie);
+>          bool    (*link_up)(struct cdns_pcie *pcie);
+>          u64     (*cpu_addr_fixup)(struct cdns_pcie *pcie, u64 cpu_addr);
+> +       int     (*pcie_host_init_root_port)(struct cdns_pcie_rc *rc);
+> +       int     (*pcie_host_bar_ib_config)(struct cdns_pcie_rc *rc,
+> +                                          enum cdns_pcie_rp_bar bar,
+> +                                          u64 cpu_addr, u64 size,
+> +                                          unsigned long flags);
+> +       int     (*pcie_host_init_address_translation)(struct cdns_pcie_rc *rc);
+> +       void    (*pcie_detect_quiet_min_delay_set)(struct cdns_pcie *pcie);
+> +       void    (*pcie_set_outbound_region)(struct cdns_pcie *pcie, u8 busnr, u8 fn,
+> +                                           u32 r, bool is_io, u64 cpu_addr,
+> +                                           u64 pci_addr, size_t size);
+> +       void    (*pcie_set_outbound_region_for_normal_msg)(struct cdns_pcie *pcie,
+> +                                                          u8 busnr, u8 fn, u32 r,
+> +                                                          u64 cpu_addr);
+> +       void    (*pcie_reset_outbound_region)(struct cdns_pcie *pcie, u32 r);
+>   };
+> 
+>   /**
+> @@ -305,6 +532,7 @@ struct cdns_pcie {
+>          struct resource         *mem_res;
+>          struct device           *dev;
+>          bool                    is_rc;
+> +       bool                    is_hpa;
+>          int                     phy_count;
+>          struct phy              **phy;
+>          struct device_link      **link;
+> @@ -444,6 +672,8 @@ static inline void cdns_pcie_rp_writeb(struct cdns_pcie *pcie,
+>   {
+>          void __iomem *addr = pcie->reg_base + CDNS_PCIE_RP_BASE + reg;
+> 
+> +       if (pcie->is_hpa)
+> +               addr = pcie->reg_base + CDNS_PCIE_HPA_RP_BASE + reg;
+>          cdns_pcie_write_sz(addr, 0x1, value);
+>   }
+> 
+> @@ -452,6 +682,8 @@ static inline void cdns_pcie_rp_writew(struct cdns_pcie *pcie,
+>   {
+>          void __iomem *addr = pcie->reg_base + CDNS_PCIE_RP_BASE + reg;
+> 
+> +       if (pcie->is_hpa)
+> +               addr = pcie->reg_base + CDNS_PCIE_HPA_RP_BASE + reg;
+>          cdns_pcie_write_sz(addr, 0x2, value);
+>   }
+> 
+> @@ -459,6 +691,8 @@ static inline u16 cdns_pcie_rp_readw(struct cdns_pcie *pcie, u32 reg)
+>   {
+>          void __iomem *addr = pcie->reg_base + CDNS_PCIE_RP_BASE + reg;
+> 
+> +       if (pcie->is_hpa)
+> +               addr = pcie->reg_base + CDNS_PCIE_HPA_RP_BASE + reg;
+>          return cdns_pcie_read_sz(addr, 0x2);
+>   }
+> 
+> @@ -525,6 +759,22 @@ int cdns_pcie_host_init(struct cdns_pcie_rc *rc);
+>   int cdns_pcie_host_setup(struct cdns_pcie_rc *rc);
+>   void __iomem *cdns_pci_map_bus(struct pci_bus *bus, unsigned int devfn,
+>                                 int where);
+> +int cdns_pcie_host_init_root_port(struct cdns_pcie_rc *rc);
+> +int cdns_pcie_host_bar_ib_config(struct cdns_pcie_rc *rc,
+> +                                enum cdns_pcie_rp_bar bar,
+> +                                u64 cpu_addr, u64 size,
+> +                                unsigned long flags);
+> +int cdns_pcie_host_init_address_translation(struct cdns_pcie_rc *rc);
+> +int cdns_pcie_host_init(struct cdns_pcie_rc *rc);
+> +void __iomem *cdns_pci_hpa_map_bus(struct pci_bus *bus, unsigned int devfn, int where);
+> +int cdns_pcie_hpa_host_init_root_port(struct cdns_pcie_rc *rc);
+> +int cdns_pcie_hpa_host_bar_ib_config(struct cdns_pcie_rc *rc,
+> +                                    enum cdns_pcie_rp_bar bar,
+> +                                    u64 cpu_addr, u64 size,
+> +                                    unsigned long flags);
+> +int cdns_pcie_hpa_host_init_address_translation(struct cdns_pcie_rc *rc);
+> +int cdns_pcie_hpa_host_init(struct cdns_pcie_rc *rc);
+> +
+>   #else
+>   static inline int cdns_pcie_host_link_setup(struct cdns_pcie_rc *rc)
+>   {
+> @@ -546,6 +796,34 @@ static inline void __iomem *cdns_pci_map_bus(struct pci_bus *bus, unsigned int d
+>   {
+>          return NULL;
+>   }
+> +
+> +void __iomem *cdns_pci_hpa_map_bus(struct pci_bus *bus, unsigned int devfn, int where)
+> +{
+> +       return NULL;
+> +}
+> +
+> +int cdns_pcie_hpa_host_init_root_port(struct cdns_pcie_rc *rc)
+> +{
+> +       return 0;
+> +}
+> +
+> +int cdns_pcie_hpa_host_bar_ib_config(struct cdns_pcie_rc *rc,
+> +                                    enum cdns_pcie_rp_bar bar,
+> +                                    u64 cpu_addr, u64 size,
+> +                                    unsigned long flags)
+> +{
+> +       return 0;
+> +}
+> +
+> +int cdns_pcie_hpa_host_init_address_translation(struct cdns_pcie_rc *rc)
+> +{
+> +       return 0;
+> +}
+> +
+> +int cdns_pcie_hpa_host_init(struct cdns_pcie_rc *rc)
+> +{
+> +       return 0;
+> +}
+>   #endif
+> 
+>   #ifdef CONFIG_PCIE_CADENCE_EP
+> @@ -556,7 +834,10 @@ static inline int cdns_pcie_ep_setup(struct cdns_pcie_ep *ep)
+>          return 0;
+>   }
+>   #endif
+> -
+> +bool cdns_pcie_linkup(struct cdns_pcie *pcie);
+> +bool cdns_pcie_hpa_linkup(struct cdns_pcie *pcie);
+> +int cdns_pcie_hpa_startlink(struct cdns_pcie *pcie);
+> +void cdns_pcie_hpa_stop_link(struct cdns_pcie *pcie);
+>   void cdns_pcie_detect_quiet_min_delay_set(struct cdns_pcie *pcie);
+> 
+>   void cdns_pcie_set_outbound_region(struct cdns_pcie *pcie, u8 busnr, u8 fn,
+> @@ -571,6 +852,13 @@ void cdns_pcie_reset_outbound_region(struct cdns_pcie *pcie, u32 r);
+>   void cdns_pcie_disable_phy(struct cdns_pcie *pcie);
+>   int cdns_pcie_enable_phy(struct cdns_pcie *pcie);
+>   int cdns_pcie_init_phy(struct device *dev, struct cdns_pcie *pcie);
+> +void cdns_pcie_hpa_detect_quiet_min_delay_set(struct cdns_pcie *pcie);
+> +void cdns_pcie_hpa_set_outbound_region(struct cdns_pcie *pcie, u8 busnr, u8 fn,
+> +                                      u32 r, bool is_io, u64 cpu_addr, u64 pci_addr, size_t size);
+> +void cdns_pcie_hpa_set_outbound_region_for_normal_msg(struct cdns_pcie *pcie,
+> +                                                     u8 busnr, u8 fn, u32 r, u64 cpu_addr);
+> +void cdns_pcie_hpa_reset_outbound_region(struct cdns_pcie *pcie, u32 r);
+> +
+>   extern const struct dev_pm_ops cdns_pcie_pm_ops;
+> 
+>   #endif /* _PCIE_CADENCE_H */
+> --
+> 2.27.0
+> 
+> 
 
