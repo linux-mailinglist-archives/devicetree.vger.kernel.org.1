@@ -1,99 +1,121 @@
-Return-Path: <devicetree+bounces-160235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2973A6DFC5
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 17:33:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 658EFA6DFC9
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 17:33:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2EAB83AD2D6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 16:31:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8AE5B3B3895
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 16:31:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72F3F263C6A;
-	Mon, 24 Mar 2025 16:31:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8091F261380;
+	Mon, 24 Mar 2025 16:31:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NVy+zIOK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QZHNRmw7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 402F01799F;
-	Mon, 24 Mar 2025 16:31:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A19C25EFB9;
+	Mon, 24 Mar 2025 16:31:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742833869; cv=none; b=fYPe4y2Rexzbp3Z79K2OYKliy74eofcKdit3ARfM0tLjAyb4IHW4Otee+OOm3fHHXYlFyfrvbKrbI1QL15Q04+17ugNmqkCYDdLidJJ4b1Q/imqXribuHLEctCiwIPaqtU/Gg3wWQ9dazsKMB7CVWoDIMOr7ProXmiRlf1gxFeU=
+	t=1742833918; cv=none; b=q47VViFMGBt95sJ+yOpsmGwlwnTWfvUBdkgfNRIYc1eR0tMzeyuxbyuZdqj66k20qJ9EWV8KuWpBjVzDXuJKiqBuiZY8/w706fVvZ9jcJKaY2LPMD+HYBKLQstBwBeCPbwEI34KXwOrLBzB8gwYCvZF8mDhyVxkSd1s4kYPiyXo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742833869; c=relaxed/simple;
-	bh=gfXXiQCFAETf0jTJcsIlh59JFNBubS0WLf34O4y8etU=;
+	s=arc-20240116; t=1742833918; c=relaxed/simple;
+	bh=o3I1e5fW/j1ECXyCGvpQUQbB9Bbur37HOh3CsImYTnY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Kg6IUU9Ir1irpRS7g5p+dRdNcVCfSZxcXfmxGGAoIfOlOUAkG4CaiHmz9HHxyRPDR3jJEmIUVYteHx8AZY54p0s9XOm1EKUbeHymJxDzqLLvtR4Sc5qRNcQQ5e6aCCTXggHZ1F2dBL21mD5w02ZadefcXRBFW8PGmumKDateBz4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NVy+zIOK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D808EC4CEDD;
-	Mon, 24 Mar 2025 16:31:08 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=k8c7lmePgDkyVCU6/VvJqWyPGxIr6w05mv2OjTjP0vRpbG1KHiXC9VCMAfPMf787TGuk2SNOAyzzNrUU2O1OmItIQN9nmOfdIe0bCSD4BbdvQfXWc6dBG6YQhO6FMvu9SkIaR03DXLmEx3l3L3+z9p5nnfha09PFXLGCS/kxI7U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QZHNRmw7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F7F0C4CEDD;
+	Mon, 24 Mar 2025 16:31:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742833869;
-	bh=gfXXiQCFAETf0jTJcsIlh59JFNBubS0WLf34O4y8etU=;
+	s=k20201202; t=1742833917;
+	bh=o3I1e5fW/j1ECXyCGvpQUQbB9Bbur37HOh3CsImYTnY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NVy+zIOKcgk+jlVdsItdX1cqY1MqL1N9+iqr0YxbG4BiFkrD0ATC8oMKU2Ax9xSMP
-	 XwpcRgrIdK/0b60JJy+nOFgC3abTB2W89zJ9sS650vorQ07s1gLl20RcUAdJgaApdO
-	 i8wWsz4CS15XYwI+JsXxu6WHriRUJraQgE3NRDPrrlts/FWK11jmGnQ5Mz8ja2nMs8
-	 1pV8wPEeYBfxkhaPx4+A8cv2I56/oL7GVPFYxcBDQ48uRfsZHoKiMJifJAACnfrifM
-	 rL2SAaIAhHzHQANLKKDaHBGapLadtz54gQsO/ITTJqUdnW8gAhjglfhcEWBkctgDWv
-	 2h9l7gAy3WStw==
-Date: Mon, 24 Mar 2025 11:31:08 -0500
+	b=QZHNRmw74+ekrr0zxkkjseLuXiaqsD5WNVYWDlcI2/bERR6y0T+HFDCtn1gYK4Ak1
+	 JLgmb+VfUQyuiudy+XqUgBqrY99obqIb1gXHBeZ7Vm4P1A2hCx4JChnCMse4xZv6pn
+	 C09EgkVkJDDWA+BMEvCEv2rdApQY2WmQgBJeIoTm128OY8pPrXSQsuuajAiD6x7sk1
+	 EeXRLoT0MwEsTyn+X9xVsMJOeIKumvB10uvHaf8MgClykEqhM8glRYeJ+AHy2pWMRW
+	 jDPtC+ZiSsugV4gkgccUwYggW3q+Snk2Lj1da9O9lTV8l3+DmGRS1GUQywaO2E6MiC
+	 Je6dvOdLxbz0g==
+Date: Mon, 24 Mar 2025 11:31:56 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Gregory CLEMENT <gregory.clement@bootlin.com>,
-	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Eric Dumazet <edumazet@google.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	linux-kernel@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Andrew Lunn <andrew+netdev@lunn.ch>, netdev@vger.kernel.org,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Paolo Abeni <pabeni@redhat.com>,
+To: Marek Vasut <marex@denx.de>
+Cc: Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Liviu Dudau <liviu.dudau@arm.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	linux-mips@vger.kernel.org,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	Richard Cochran <richardcochran@gmail.com>
-Subject: Re: [PATCH net-next 03/13] dt-bindings: net: cdns,macb: allow
- dma-coherent
-Message-ID: <174283386719.296457.5916372144709687859.robh@kernel.org>
-References: <20250321-macb-v1-0-537b7e37971d@bootlin.com>
- <20250321-macb-v1-3-537b7e37971d@bootlin.com>
+	Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Steven Price <steven.price@arm.com>,
+	Sebastian Reichel <sre@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Frank Li <Frank.Li@nxp.com>, David Airlie <airlied@gmail.com>,
+	devicetree@vger.kernel.org, Simona Vetter <simona@ffwll.ch>,
+	Fabio Estevam <festevam@gmail.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Boris Brezillon <boris.brezillon@collabora.com>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 7/9] dt-bindings: gpu: mali-valhall-csf: Document
+ i.MX95 support
+Message-ID: <174283391598.303728.5865660880555702267.robh@kernel.org>
+References: <20250321200625.132494-1-marex@denx.de>
+ <20250321200625.132494-8-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250321-macb-v1-3-537b7e37971d@bootlin.com>
+In-Reply-To: <20250321200625.132494-8-marex@denx.de>
 
 
-On Fri, 21 Mar 2025 20:09:34 +0100, Théo Lebrun wrote:
-> On EyeQ5, the GEM DMA controller is coherent with the CPU;
-> allow specifying the information.
+On Fri, 21 Mar 2025 21:05:57 +0100, Marek Vasut wrote:
+> The instance of the GPU populated in Freescale i.MX95 is the
+> Mali G310, document support for this variant.
 > 
-> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+> Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Marek Vasut <marex@denx.de>
 > ---
->  Documentation/devicetree/bindings/net/cdns,macb.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> Cc: Boris Brezillon <boris.brezillon@collabora.com>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Liviu Dudau <liviu.dudau@arm.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Philipp Zabel <p.zabel@pengutronix.de>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Sebastian Reichel <sre@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> Cc: Steven Price <steven.price@arm.com>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: devicetree@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: imx@lists.linux.dev
+> Cc: linux-arm-kernel@lists.infradead.org
+> ---
+> V2: - Add RB from Frank and Alexander
+>     - Make resets: mandatory on i.MX95
+>     - Switch from fsl, to nxp, vendor prefix
+> ---
+>  .../devicetree/bindings/gpu/arm,mali-valhall-csf.yaml    | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
