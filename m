@@ -1,149 +1,148 @@
-Return-Path: <devicetree+bounces-160144-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160145-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 594B1A6DA0E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 13:25:55 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BC2CA6DA48
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 13:51:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C44B1893457
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 12:26:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AD6137A3507
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 12:50:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C926825E824;
-	Mon, 24 Mar 2025 12:25:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B64A625E46C;
+	Mon, 24 Mar 2025 12:51:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="VBhlyXIB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hNM/vz+m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9D5625E81D;
-	Mon, 24 Mar 2025 12:25:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBE8F25DD04
+	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 12:51:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742819141; cv=none; b=FGEfYYh9RWfyzbyBXMCoF7RtA5xX4Fv8XjpvZULf2FoNL2VpxgOp/o+UYs+Yley7jgzIoerHnbq5SE7IANT3NS1Xx1L/XvAhpapgV4s/bmaIcux8fic3T8TDtbDwhk+i8Mvf3Iq6C7trH2RdinlPofCPRrcYoTHcQuLEDzlJUUA=
+	t=1742820673; cv=none; b=QWwaW4bCYMV2revON09juIbAdQcZbHESsLIw+zHk78H3Kgx+iqGSAKGdtk0suAaP3EGLOXcz8xPQjpOolLY1FlBaqK6dGOVEtROz9n4hpWk/AIVe6p3O4wbOz85YkuBhlzlBu8jNDgcc861v/4O3LM8edgRTnlV220eMqElxBog=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742819141; c=relaxed/simple;
-	bh=AMYE+1I/yOpxWnGJfI5UUdY1aUw0MEixbTcQYKG3ztc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BSE4FYJK+NN2fd45B520wWcEboZFCNKmpzleMCmTldjZWoFtjljkCfhNKgZzS3K690b0oXw6Sg8y4kyP9rVjoY6CUGJRms3ad4KhbGHJsLhuV095dxgrMd+lrVtsFNXTcTDNLmlm3tRMxmKr4QxXjmxbyl63Cbw26TNWMKpG78E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=VBhlyXIB; arc=none smtp.client-ip=5.135.140.105
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1A4522B2F11;
-	Mon, 24 Mar 2025 13:25:28 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
-	t=1742819131; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=kA8B7ILRQjbrf7vZCpIq+EjV0GTPDQ45jh2Yc92ZEFQ=;
-	b=VBhlyXIBFTdyC6vVDFd8THg2EDDIryPPVZQHDU6uDYMW86/kWbvAPg4tTYo2UnKgdQPf6C
-	HnJEiqmujfJ5B4PDWSc1x5nwttMZqdi5o1fD/JgWgabi3y1NCv7SQ+dfLH2CVJ/7zH+BNb
-	V/XSKQzb4qXI3fyj7GHQGMKy6PeV/9L7k4tLUkGcj1fZ8qblwZrhAmNrXFHOhC73Z71wKm
-	a6sDm7zKEnyAiQePQF8FRwkTBXZpNrzqxjR+n3ASWR2P/E4Rqt1Zc/dUJLZBJf3gt4jSlM
-	fbKa7jWPGhXvwoJkkdzi1I4KU0D2/GBqAj+w7o91WUriRBw9n6yAVj4lqEtDvg==
-Message-ID: <f4bb786d-09b2-4237-84bd-cdfe297f8165@cjdns.fr>
-Date: Mon, 24 Mar 2025 13:25:27 +0100
+	s=arc-20240116; t=1742820673; c=relaxed/simple;
+	bh=lLfOSLdPa8J+gvx3KKdoc/YPg+4C/zjDSCX0M4dlUMY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VbaGUPzgsDV5No3ngqCsX6fJi7msU74/0akVGqUl+pvuTwteVmZ+bS0/RJCVFZkQjyuErCk2UZ1+srYozv/5JhJ4U32grv1p/fZGk2BC+ptPMNvyz81CbiNcw/KxBZTxmxtZqCK28B+UI9TMKpNm7MbUUYUTvsaEjgJxi142S6Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hNM/vz+m; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-38da6a1a20bso270476f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 05:51:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1742820670; x=1743425470; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZNkO323fCDGziIQ+TCe0Bh3YOcfzf6+FAg8ZnvrxNgo=;
+        b=hNM/vz+msgezokXpBQ1kH+3Ah+TuC4TN6SZHIftY+NXZ8EXuTyNJvK9k50XfQnYVm4
+         qipw3v2YxEnNXJP4hJXqvUyq/Rua3QeyTijVgcJAOwJijFvSHlyvRmXKnSTdWRK0ezze
+         jaPasXgPCGRaZmyWJLGnwVZ1PsubCkZLfrXV/+h5/8aR3hHtQ3MevswxgV6DN3E9eBXW
+         cGk+gsBMxPYP3PF2/LqvHoYEW39E+LKcpHVEu0yqC69ek9PQ2ZbC6GMM6a61Lx+OTvOE
+         TopHcdwJhhTTkhNSPBD2nwNVCbP4ZbQxJ8qI+dZk5sRdgBK6oD2ajpMrBQiBLCFBCG64
+         SOwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742820670; x=1743425470;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZNkO323fCDGziIQ+TCe0Bh3YOcfzf6+FAg8ZnvrxNgo=;
+        b=N2QH1o0RB6CclHQcXB4QcAKb4nSWKb7BREFDlDd4++3Q0XOcKcPFqBNHJYCU2j3ap0
+         NwNsdMtQrq6dZ2UmNKMOqhMrHbP23Ihf3Ff5S4mRwhEuCyjLQC8LjjNBvT7sSzXc3yuo
+         OGRNGAHKnKxQZr5Oe05ZSN5/AhYzK5wU/krDllYFgZ0rTkI4A/+wLorlyXaBY23uFU8v
+         JfqibP+lPlGPgsnrlYu3IeDz/uk+mWC8RjRWo9VOzo0VUoqKnTEwW5a8VT1LzzeJPtJk
+         mTHPv8U3Ib2p5EjNVTgziIETZqOLq+IchKyDS8rgNX8TJYe05OhIRSWe3hnKcyJM2zqS
+         rdSA==
+X-Forwarded-Encrypted: i=1; AJvYcCXzcLVSMoBSPE4e7uW6Z7tp9JlQNTJFfLd1hiIV4nnnpCLLtke7xOgGJe8C3brDRlJQ3PRvO746gi7O@vger.kernel.org
+X-Gm-Message-State: AOJu0YwZTwZUy5F0on7gjwqcRjOO8ZsHZP/kKo8STHStDctH7ZIHyhS7
+	QsoLQVnGudhf61N3KaesaphogiIxJhpLlagZCpv9qGSheVRzDVlDccRpAJ2ZBbQ=
+X-Gm-Gg: ASbGnctjWZAdm6HrdHbUBPDiGMvXCHAPh0tBjNTBSX80VTAKqEYSj+CxJ3E81MjbkO9
+	OFZELd8PD0uTTEa9mqSwI1GH6foH3XL6cs8CoWkRtFY8AiZtPEz30xtIpuMO61shjPXLLcs3LVF
+	7r8S0G5ge7RuUP/4KmGt3uwtRHzFq2+OFtTJSlvApnEbuBjMoLWCVCIeMICb+UBrldMRgWul+Hd
+	znIMfbLJ2E954Z7VZ2bz++pNwWglmnAro7yw1oNABb03eo3ptnUxCjLmyGzB9myPLBwA8p7JUg3
+	M3pdGI1soWQkCKCwO1QqJF5HewgB8L8oNDHYGRrMVmw/912fUBEk4+dvrg==
+X-Google-Smtp-Source: AGHT+IEQndIp5eFpgd1dTDP4lH7gXczSBzoAyRnBiPmFPk1TMdz1z67MW7mzStpV92IOyZshhOAyYg==
+X-Received: by 2002:a05:6000:1a87:b0:38e:48a6:280f with SMTP id ffacd0b85a97d-3997f9406bamr4947758f8f.9.1742820669984;
+        Mon, 24 Mar 2025 05:51:09 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.198.86])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3997f9b517csm11117180f8f.51.2025.03.24.05.51.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Mar 2025 05:51:09 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Sean Wang <sean.wang@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Andy Teng <andy.teng@mediatek.com>,
+	linux-mediatek@lists.infradead.org,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] dt-bindings: pinctrl: mediatek: Drop unrelated nodes from DTS example
+Date: Mon, 24 Mar 2025 13:51:04 +0100
+Message-ID: <20250324125105.81774-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH v1 4/8] dt-bindings: timer: Add EcoNet HPT CPU Timer
-To: Krzysztof Kozlowski <krzk@kernel.org>, linux-mips@vger.kernel.org
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, benjamin.larsson@genexis.eu
-References: <20250321134633.2155141-1-cjd@cjdns.fr>
- <20250321134633.2155141-5-cjd@cjdns.fr>
- <c1791b2e-bdf6-448c-88d3-c97511af3357@kernel.org>
- <8f095a56-a188-45e9-945a-1d77ef175dc8@cjdns.fr>
- <f2738225-564e-479b-a4f0-fac0ba6b6d53@kernel.org>
- <d419bcd2-fa78-4390-88b0-64ed54b87081@cjdns.fr>
- <b3fea7b9-b7ea-4987-9fe7-b0adb9346f07@kernel.org>
-Content-Language: en-US
-From: Caleb James DeLisle <cjd@cjdns.fr>
-In-Reply-To: <b3fea7b9-b7ea-4987-9fe7-b0adb9346f07@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 8bit
 
+Binding example should not contain other nodes, e.g. consumers of
+pinctrl of, because this is completely redundant and adds unnecessary
+bloat.
 
-On 24/03/2025 08:13, Krzysztof Kozlowski wrote:
-> On 24/03/2025 00:53, Caleb James DeLisle wrote:
->>>>>> +  compatible:
->>>>>> +    const: econet,timer-hpt
->>>>> Soc components must have soc-based compatible and then filename matching
->>>>> whatever you use as fallback.
->>>> I have so far been unable to find good documentation on writing DT bindings
->>>> specifically for SoC devices. If you have anything to point me to, I will read it.
->>>> If not, even a good example of someone else doing it right is helpful.
->>>>
->>>> Currently, I see qcom,pdc.yaml appears to do what you say, so I in absence
->>>> of any other advice, I can try to do what they do.
->>> Just don't use generic fallback.
->>
->> Ok I watched your "Accepted in Less Than 10 Iterations" lecture (I'm doing my
->> homework). If I understand this correctly, you prefer that I use something specific
->> like econet,en751221-timer as the fallback case, so for example on EN751627,
->> it would be:
->>
->> compatible = "econet,en751627-timer", "econet,en751221-timer";
-> Yes
->
->> The reason why I didn't do this is because this timer seems to show up in a lot of
->> places. Vendor code says that it's older than EN751221, and (if my reading is
-> Just like every other SoC component for every other SoC.
->
->> correct) it has found it's way into chips branded TrendChip, MediaTek and Ralink
->> as well as EcoNet.
->>
->> Now that I'll be adding strict checks on the number of register blocks, this way
->> also has the advantage of allowing a case for users of the timer in SoCs we don't
->> know about:
->>
->> // Only valid with 2 register blocks
->> compatible = "econet,en751627-timer", "econet,timer-hpt";
->>
->> // Only valid with 1 register block
->> compatible = "econet,en751612-timer", "econet,timer-hpt";
-> Above do not differ...
->
->> // No restriction because we don't know how many timers the SoC has
->> compatible = "econet,timer-hpt";
-> How can you not know? This is strictly defined on given hardware.
->
-I mean I don't know, the person writing the DTS for that SoC needs to know.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml      | 10 ----------
+ .../bindings/pinctrl/mediatek,mt6779-pinctrl.yaml      |  5 -----
+ 2 files changed, 15 deletions(-)
 
-
-Per your preference, I'll do the following:
-
-
-// 2 blocks accepted
-
-compatible = "econet,en751627-timer", "econet,en751221-timer";
-
-// 1 block accepted
-
-compatible = "econet,en751221-timer";
-
-
-If someone has an SoC with more than 2 timers, it is not supported so they
-should update the binding, or (in downstream) they might write an invalid
-DTS. FWIW I have no evidence of any >2 core processor which uses this, so
-2 timers is probably the maximum.
-
-
-Lastly I'll change the driver name to timer-econet-en751221.c to avoid the
-proliferation of different names.
-
-
-Thanks,
-
-Caleb
+diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml
+index bccff08a5ba3..5f2808212f39 100644
+--- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml
+@@ -136,16 +136,6 @@ examples:
+         #address-cells = <2>;
+         #size-cells = <2>;
+ 
+-        syscfg_pctl_a: syscfg-pctl-a@10005000 {
+-          compatible = "mediatek,mt8135-pctl-a-syscfg", "syscon";
+-          reg = <0 0x10005000 0 0x1000>;
+-        };
+-
+-        syscfg_pctl_b: syscfg-pctl-b@1020c020 {
+-          compatible = "mediatek,mt8135-pctl-b-syscfg", "syscon";
+-          reg = <0 0x1020C020 0 0x1000>;
+-        };
+-
+         pinctrl@1c20800 {
+           compatible = "mediatek,mt8135-pinctrl";
+           reg = <0 0x1000B000 0 0x1000>;
+diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.yaml
+index 3bbc00df5548..f4bab7a132d3 100644
+--- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.yaml
+@@ -245,9 +245,4 @@ examples:
+                 };
+             };
+         };
+-
+-        mmc0 {
+-           pinctrl-0 = <&mmc0_pins_default>;
+-           pinctrl-names = "default";
+-        };
+     };
+-- 
+2.43.0
 
 
