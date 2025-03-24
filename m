@@ -1,155 +1,80 @@
-Return-Path: <devicetree+bounces-160215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A329DA6DF32
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 17:02:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1FD7A6DF47
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 17:09:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4AA83A6CF9
-	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 16:02:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 37F38188D1DB
+	for <lists+devicetree@lfdr.de>; Mon, 24 Mar 2025 16:09:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A49426156D;
-	Mon, 24 Mar 2025 16:02:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E588326158A;
+	Mon, 24 Mar 2025 16:09:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fYwYfGSZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UUPp+PgA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 021E51CD1E4;
-	Mon, 24 Mar 2025 16:02:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCF5725EFB8;
+	Mon, 24 Mar 2025 16:09:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742832156; cv=none; b=ijQA8rdP2GDTQmzrUHSjo0fAJwVtm7HINBEGozSO3MEC93VX04mYvNb7Ikz9hbApAEyNLyO/Gbplq4M0gNzg54eCl5L7MdwknvRbJFKSDBjafcoTm30BpbNCMPAQtsxrkZtkQTAQc+HOJhVvPIvuqVxsfLsa4XViBK450w3aCjI=
+	t=1742832560; cv=none; b=DanO3YXg2Qw5P8EnOeCxeUi0Fce8QC6+mlt2ejQSzuN+/TENtX3VVNYHBfkZ/8EebetYSOm506y9geekHq+qTvbkqlOK10T3xijBdTXruMiLJlHupVUBQ8sy9U1sebHdWj00WY5FeGgiREyOvlGfwvDLTK4FJf6fHedAjl/BktQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742832156; c=relaxed/simple;
-	bh=lO70/EyOTHsSUCsToe3wwdpu/s9KqX41Qnit5o85758=;
+	s=arc-20240116; t=1742832560; c=relaxed/simple;
+	bh=dW2mHsbafla5tl6HOgIHdUFxukxCuwK2/r4vlOcdr8A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V42JDEuTS1kfuPMLiVOnuz57rRzB//JemqB80UurZKDon6g2T11K4JtJz/ZvPHWVtzikWTJ5RLXQ80HfK3dNDTESqzU1OsJHjDFxqgeMe2Nt97jjKnq+mVeZVCxBpKi9cd6Hr1sRL/2pk6i5lyf5AUjBYVVcpGl0IkEvfBtmdlg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fYwYfGSZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88EC6C4CEDD;
-	Mon, 24 Mar 2025 16:02:35 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=MO96JkC+PeusYxCNmMdAgVE3032t6u0JtdcXEoM51kf7MKOVPbRivYTuLrJIlmiLoxV/p34vfYXvavx9C0mbovM9yNPqyrersFr+8oYcxdTwenI2zf9M88P901qbkSuaqnxnHytrBc+4gJtf57h7ivEpZBPLOYP8bhyVuPDZSG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UUPp+PgA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF5A2C4CEDD;
+	Mon, 24 Mar 2025 16:09:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742832155;
-	bh=lO70/EyOTHsSUCsToe3wwdpu/s9KqX41Qnit5o85758=;
+	s=k20201202; t=1742832560;
+	bh=dW2mHsbafla5tl6HOgIHdUFxukxCuwK2/r4vlOcdr8A=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fYwYfGSZVzY31upbyL96Mn2jcC6wRm9sskzWthKcQ05zB6hH9VZVivy37hpuecwwl
-	 xc2cFdT2vZ5M7IjIYVJ6TZuD6OUHfwsb26FmHK6iijmHFu2rBYCrdXeACBHEqImCbu
-	 OH06I7Goiyrr9tiCwAvThh7vEAbwwHqzkhjTRWGsDcDJ0Jhr/y6cL6cEme8Wz8+/pO
-	 Yqe5AYNV3x7zfSs1n3TOg8GMJluf8wXbd9OiiqYwdjq0lhiy93wOFoWpfycs8xnFL0
-	 5XqidcdArCoZQE38NAu06CxseJ9qKIeK02KWZG/Sk34UbSU9a6zm2heVsfXUyDqjPY
-	 ew4royVay7aKw==
-Date: Mon, 24 Mar 2025 11:02:34 -0500
-From: Rob Herring <robh@kernel.org>
-To: "paul-pl.chen" <paul-pl.chen@mediatek.com>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, chunkuang.hu@kernel.org,
-	angelogioacchino.delregno@collabora.com, matthias.bgg@gmail.com,
-	p.zabel@pengutronix.de, jason-jh.lin@mediatek.com,
-	nancy.lin@mediatek.com, singo.chang@mediatek.com,
-	xiandong.wang@mediatek.com, sirius.wang@mediatek.com,
-	sunny.shen@mediatek.com, fshao@chromium.org, treapking@chromium.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v2 05/15] dt-bindings: display: mediatek: add OUTPROC
- yaml for MT8196
-Message-ID: <20250324160234.GA113887-robh@kernel.org>
-References: <20250321093435.94835-1-paul-pl.chen@mediatek.com>
- <20250321093435.94835-6-paul-pl.chen@mediatek.com>
+	b=UUPp+PgAEdBUUGJc/nn3Elx1H0pmey+Jw8QUF0dnOwRbWrXkVACB8QoZ5MxkMRWBD
+	 fRQPlwZXjLNphZxUCNeKGlCqFzhnJ0P4WMMnqLNxokjxEij+N3iIs5cH69ZgGW09rK
+	 Fk9O0sQlNtVlBlF71VJztkrjx37Wi+E9V1uvaj5J5AEPpWUqFuNm5pXbsuHaVY9nq2
+	 83YvPbnz+Pfz5gFB0CbS6UnYiN38MZHeDdLNYAAfCwc1XxJS2ECf5Jk3neQ+qOh/WO
+	 LP9kJCna2jQw4Ic24uvOVY+PxJtMsyntWVxJNCiHHsVR2tC8IQwnvzx/qjaWaFLivm
+	 3bO2pjEvCLHkg==
+Date: Mon, 24 Mar 2025 11:09:18 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Goran =?utf-8?B?UmHEkWVub3ZpxIc=?= <goran.radni@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	Goran =?utf-8?B?UmHEkWVub3ZpxIc=?= <gradenovic@ultratronik.de>
+Subject: Re: [PATCH v2 1/4] dt-bindings: vendor-prefixes: Add Ultratronik
+Message-ID: <174283255844.156394.6968260022481776351.robh@kernel.org>
+References: <20250321111821.361419-1-goran.radni@gmail.com>
+ <20250321111821.361419-2-goran.radni@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250321093435.94835-6-paul-pl.chen@mediatek.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250321111821.361419-2-goran.radni@gmail.com>
 
-On Fri, Mar 21, 2025 at 05:33:34PM +0800, paul-pl.chen wrote:
-> From: Paul-pl Chen <paul-pl.chen@mediatek.com>
+
+On Fri, 21 Mar 2025 12:18:16 +0100, Goran Rađenović wrote:
+> From: Goran Rađenović <gradenovic@ultratronik.de>
 > 
-> Add mediate,outproc.yaml to support OUTPROC for MT8196.
-> MediaTek display overlap output processor, namely OVL_OUTPROC
-> or OUTPROC,handles the post-stage of pixel processing in the
-> overlapping procedure.
+> Ultratronik GmbH is a German electronics company:
+> https://www.ultratronik-ems.de/
 > 
-> Signed-off-by: Paul-pl Chen <paul-pl.chen@mediatek.com>
+> Signed-off-by: Goran Rađenović <gradenovic@ultratronik.de>
 > ---
->  .../display/mediatek/mediatek,outproc.yaml    | 54 +++++++++++++++++++
->  1 file changed, 54 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,outproc.yaml
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,outproc.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,outproc.yaml
-> new file mode 100644
-> index 000000000000..f42e9abc1436
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,outproc.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/mediatek/mediatek,outproc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek display overlap output processor
-> +
-> +maintainers:
-> +  - Chun-Kuang Hu <chunkuang.hu@kernel.org>
-> +  - Philipp Zabel <p.zabel@pengutronix.de>
-> +
-> +description: |
 
-Don't need '|' if no formatting to preserve.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-> +  MediaTek display overlap output processor, namely OVL_OUTPROC or OUTPROC,
-> +  handles the post-stage of pixel processing in the overlapping procedure.
-> +  OVL_OUTPROC manages pixels for gamma correction and ensures that pixel
-> +  values are within the correct range.
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt8196-outproc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        disp_ovl0_outproc0: outproc@32970000 {
-
-Drop unused labels.
-
-> +            compatible = "mediatek,mt8196-outproc";
-> +            reg = <0 0x32970000 0 0x1000>;
-> +            clocks = <&ovlsys_config_clk 49>;
-> +            interrupts = <GIC_SPI 450 IRQ_TYPE_LEVEL_HIGH 0>;
-> +        };
-> +    };
-> -- 
-> 2.45.2
-> 
 
