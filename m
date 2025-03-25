@@ -1,115 +1,186 @@
-Return-Path: <devicetree+bounces-160627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42012A70537
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 16:37:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBCBFA70523
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 16:34:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 000CC3A80E5
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 15:33:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 38EF47A6CE3
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 15:33:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DEEB19F11B;
-	Tue, 25 Mar 2025 15:33:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2E961A0BFE;
+	Tue, 25 Mar 2025 15:34:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=proton.me header.i=@proton.me header.b="ISiwgb3d"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="tVuLplN5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-4322.protonmail.ch (mail-4322.protonmail.ch [185.70.43.22])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 454E618C903;
-	Tue, 25 Mar 2025 15:33:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CEFB18C903;
+	Tue, 25 Mar 2025 15:34:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742916836; cv=none; b=NHccXu96N0CPl++JTdndUWTR0YLjxe7XgQu6ejG73s9BMPAkmqVhFw6PUYJmqeXwd+iLTdyn17tlZ6yXG1aGNziWXfx2q1w8qMxrAn8z3mhmQVTnCo3tgow9QzMdfSUfTVYLX5WMJrq9opZAPKyn4wLUyJgmU0KZc6foL1WI44Q=
+	t=1742916888; cv=none; b=lePHyCc5N8c6n2OO2RVwj4Tr3ZpkIwolY1CEcpNIvv0w214s3tc1f+GERK+fVeIErywqAMll7LspT6d39BcahVFSEDvoM/RxATJw6nBpgFqQqGBcKY7eq0ezc7onjA7oAuM7wDaAtWfplSMAtINHxKTn6WXDTtgH+g9igun2T44=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742916836; c=relaxed/simple;
-	bh=NXENBimpOC5uHN+lh1DBMOj1AqfWo8oTaujcGaqeYX0=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cy3H/49H8RQJAoAjri0kbUUu61vjCHjaNXq3fKMHO2vzZr/aNwpU9O0tkYmmne9lQ1M//7zz4QTAdtLN4LPIuFxyie20S9NP3o/pVtouWsUFOsOKshIdsrCpeLJOyDTZ8uAevGOWPloMnVfMri+558QcOtUBAVrO5cDjSr2hDEc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me; spf=pass smtp.mailfrom=proton.me; dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b=ISiwgb3d; arc=none smtp.client-ip=185.70.43.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=proton.me
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
-	s=protonmail; t=1742916833; x=1743176033;
-	bh=ArxhSHha9/Qen+fEGX8KXzYMZVlNdNjiofaeqo+ocNc=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
-	b=ISiwgb3dN7ivBGn7nO/A2OWlnhdY09jCcWA/b4wE6o4d/sbcYc3R+0up4nGe3q1/3
-	 VhvRSQ+1cnPhWkOqdbexwdMVcO8A1gi6kMRvn7Uwd7bVT+sRnTbcHBMTxIAYxkDcdL
-	 5bMGYocJQw7kHwd4EBeMwNhYWVV6+QrcBs9qJkLPCdctXK98aXZNAL82EMcXN5b+t9
-	 ONuM5Cvl97DtnOEyAjiZDBBh3T3Pd6fagLxKj4+AAe8Hk2plvNT21y4PIINN04gy+A
-	 1RsB68RcqOldfq+ycAwEBB6YCupgqaUvbHRFxoA35XTTZ3A/p7t4SHJ+UZ0G5GxpGb
-	 5pjISaWiRHH9w==
-Date: Tue, 25 Mar 2025 15:33:48 +0000
-To: Tamir Duberstein <tamird@gmail.com>
-From: Benno Lossin <benno.lossin@proton.me>
-Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, =?utf-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com,
-	linux-pci@vger.kernel.org, linux-block@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 0/6] rust: reduce pointer casts, enable related lints
-Message-ID: <D8PGG7NTWB6U.3SS3A5LN4XWMN@proton.me>
-In-Reply-To: <CAJ-ks9kuG8SyybioKQ0+bYwjnCQFMhip+4A1WnMhsdgnNZGiZQ@mail.gmail.com>
-References: <20250317-ptr-as-ptr-v5-0-5b5f21fa230a@gmail.com> <D8ORTXSUTKGL.1KOJAGBM8F8TN@proton.me> <CAJ-ks9n-z0SETz+zBfJmda6Q_vJDeM2jmDXx48xX9qpMmR-mdQ@mail.gmail.com> <D8OTXLDQCOKI.34R1U5R0JSB8H@proton.me> <CAJ-ks9nc0ptzfh+tHj47aTCMqoaKB0SnGpZOLQ06upt7x8EBMQ@mail.gmail.com> <D8PAQXHJDVQE.36QKQGBVVL4QU@proton.me> <CAJ-ks9kuG8SyybioKQ0+bYwjnCQFMhip+4A1WnMhsdgnNZGiZQ@mail.gmail.com>
-Feedback-ID: 71780778:user:proton
-X-Pm-Message-ID: cf56dbe605b88fc3577b2bf3f99caf40cad5d047
+	s=arc-20240116; t=1742916888; c=relaxed/simple;
+	bh=8KfyOJBAZFmXTBDgsO0EBqDFDRKm4ygoD0e/Y33iedw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U1ba8UuRAxphgJXBTib3Za0I98fwMT3/+6P4l0belG2sDasFLquYetth4pktAHOfwmiX23hNNtwxVX8/ev2C5w5NdoNufu6QI8sVnkp0zd56KydLJr3FdofIAKOdHDen1QveHuTZR2J6893nit6llvwc82UTs+nC+GdZtYvxA3w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=tVuLplN5; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=UEb2Y00Ew1puHYL5oaOzdh6VZps8lUZ2BRTU7aqo884=; b=tVuLplN5WM4nKBrIbNca5mB2VL
+	XKuL5B8epwLBxeRFpLYyDpPUaP3agKjFVURZ2qFL68dSs8UpHYUFfCxOVzJK6OQkv1LjafhA2CSnZ
+	Tj/AFtGcuTk5o56Y7zIU5NOfRXY++dJA4S7kjstxekncmTK6cC9J0AuN/h9rSPirk+94=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tx6IX-0074Yt-MM; Tue, 25 Mar 2025 16:34:37 +0100
+Date: Tue, 25 Mar 2025 16:34:37 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Lukasz Majewski <lukma@denx.de>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Paolo Abeni <pabeni@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>, davem@davemloft.net,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>
+Subject: Re: [PATCH 5/5] net: mtip: The L2 switch driver for imx287
+Message-ID: <0a908dc7-55eb-4e23-8452-7b7d2e0f4289@lunn.ch>
+References: <20250325115736.1732721-1-lukma@denx.de>
+ <20250325115736.1732721-6-lukma@denx.de>
+ <32d93a90-3601-4094-8054-2737a57acbc7@kernel.org>
+ <20250325142810.0aa07912@wsk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250325142810.0aa07912@wsk>
 
-On Tue Mar 25, 2025 at 2:34 PM CET, Tamir Duberstein wrote:
-> On Tue, Mar 25, 2025 at 7:05=E2=80=AFAM Benno Lossin <benno.lossin@proton=
-.me> wrote:
->> On Mon Mar 24, 2025 at 10:59 PM CET, Tamir Duberstein wrote:
->> > On Mon, Mar 24, 2025 at 5:55=E2=80=AFPM Benno Lossin <benno.lossin@pro=
-ton.me> wrote:
->> >> On Mon Mar 24, 2025 at 9:55 PM CET, Tamir Duberstein wrote:
->> >> > On Mon, Mar 24, 2025 at 4:16=E2=80=AFPM Benno Lossin <benno.lossin@=
-proton.me> wrote:
->> >> >> I'll leave it up to you what you want to do with this: add it to t=
-his
->> >> >> series, make a new one, or let someone else handle it. If you don'=
-t want
->> >> >> to handle it, let me know, then I'll create a good-first-issue :)
->> >> >
->> >> > I'll add a patch for `cast_lossless` -- the rest should probably go
->> >> > into an issue.
->> >>
->> >> Do you mind filing the issue? Then you can decide yourself what you w=
-ant
->> >> to do yourself vs what you want to leave for others. Feel free to cop=
-y
->> >> from my mail summary.
->> >
->> > Well, I don't really know what's left to do. We're pretty close at
->> > this point to having enabled everything but the nukes. Then there's
->> > the strict provenance thing, which I suppose we can write down.
->>
->> Yes, but there are also these from my original mail:
->> * `shared_ref as *const _` (for example in rust/kernel/uaccess.rs:247,
->>   rust/kernel/str.rs:32 and rust/kernel/fs/file.rs:367), these we can
->>   replace with `let ptr: *const ... =3D shared_ref;`. Don't know if ther=
-e
->>   is a clippy lint for this.
->
-> I don't think we should go fixing things for which we don't have a
-> clippy lint. That way lies madness, particularly as patches begin to
-> be carried by other trees.
+> > > +config FEC_MTIP_L2SW
+> > > +	tristate "MoreThanIP L2 switch support to FEC driver"
+> > > +	depends on OF
+> > > +	depends on NET_SWITCHDEV
+> > > +	depends on BRIDGE
+> > > +	depends on ARCH_MXS || ARCH_MXC  
+> > 
+> > Missing compile test
+> 
+> Could you be more specific?
 
-There already exists a lint for that: `clippy::ref_as_ptr` (almost
-created an issue asking for one :)
+config FEC
+        tristate "FEC ethernet controller (of ColdFire and some i.MX CPUs)"
+        depends on (M523x || M527x || M5272 || M528x || M520x || M532x || \
+                   ARCH_MXC || ARCH_S32 || SOC_IMX28 || COMPILE_TEST)
 
-Here is another lint that we probably want to enable (after the `&raw
-{const,mut}` series lands): `clippy::borrow_as_ptr`.
+|| COMPILE_TEST
 
----
-Cheers,
-Benno
+So that it also gets build on amd64, s390, powerpc etc. The code
+should cleanly build on all architectures. It if does not, it probably
+means the code is using the kernel abstractions wrong. Also, most
+developers build test on amd64, not arm, so if they are making tree
+wide changes, you want this driver to build on amd64 so such tree wide
+changes get build tested.
 
+> There have been attempts to upstream this driver since 2020...
+> The original code is from - v4.4 for vf610 and 2.6.35 for imx287.
+> 
+> It has been then subsequently updated/rewritten for:
+> 
+> - 4.19-cip
+> - 5.12 (two versions for switchdev and DSA)
+> - 6.6 LTS
+> - net-next.
+> 
+> The pr_err() were probably added by me as replacement for
+> "printk(KERN_ERR". I can change them to dev_* or netdev_*. This shall
+> not be a problem.
+
+With Ethernet switches, you need to look at the context. Is it
+something specific to one interface? The netdev_err(). If it is global
+to the whole switch, then dev_err().
+
+> > > +	pr_info("Ethernet Switch Version %s\n", VERSION);  
+> > 
+> > Drivers use dev, not pr. Anyway drop. Drivers do not have versions and
+> > should be silent on success.
+> 
+> As I've written above - there are several "versions" on this particular
+> driver. Hence the information.
+
+There is only one version in mainline, this version (maybe). Mainline
+does not care about other versions. Such version information is also
+useless, because once it is merged, it never changes. What you
+actually want to know is the kernel git hash, so you can find the
+exact sources. ethtool -I will return that, assuming your ethtool code
+is correct.
+
+> > > +	pr_info("Ethernet Switch HW rev 0x%x:0x%x\n",
+> > > +		MCF_MTIP_REVISION_CUSTOMER_REVISION(rev),
+> > > +		MCF_MTIP_REVISION_CORE_REVISION(rev));  
+> > 
+> > Drop
+> 
+> Ok.
+
+You can report this via ethtool -I. But i suggest you leave that for
+later patches.
+
+> > > +	fep->reg_phy = devm_regulator_get(&pdev->dev, "phy");
+> > > +	if (!IS_ERR(fep->reg_phy)) {
+> > > +		ret = regulator_enable(fep->reg_phy);
+> > > +		if (ret) {
+> > > +			dev_err(&pdev->dev,
+> > > +				"Failed to enable phy regulator:
+> > > %d\n", ret);
+> > > +			goto failed_regulator;
+> > > +		}
+> > > +	} else {
+> > > +		if (PTR_ERR(fep->reg_phy) == -EPROBE_DEFER) {
+> > > +			ret = -EPROBE_DEFER;
+> > > +			goto failed_regulator;
+> > > +		}
+> > > +		fep->reg_phy = NULL;  
+> > 
+> > I don't understand this code. Do you want to re-implement
+> > get_optional? But why?
+> 
+> Here the get_optional() shall be used.
+
+This is the problem with trying to use old code. It needs more work
+than just making it compile. It needs to be brought up to HEAD of
+mainline standard, which often nearly ends in a re-write.
+
+> > > +	fep->clk_ipg = devm_clk_get(&pdev->dev, "ipg");
+> > > +	if (IS_ERR(fep->clk_ipg))
+> > > +		fep->clk_ipg = NULL;  
+> > 
+> > Why?
+> 
+> I will update the code.
+
+FYI: NULL is a valid clock. But do you actually want _optional()?
+
+This is the sort of thing a 10 year old codebase will be missing, and
+you need to re-write. You might also be able to use the clk _bulk_
+API?
+
+	Andrew
 
