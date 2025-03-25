@@ -1,80 +1,40 @@
-Return-Path: <devicetree+bounces-160572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6897A7034C
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 15:14:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7889BA7033C
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 15:10:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7AFA63B310A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 14:04:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE44E1687BC
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 14:09:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E6F02586FE;
-	Tue, 25 Mar 2025 14:04:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P5oC7SqO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B35C256C98;
+	Tue, 25 Mar 2025 14:09:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx01.omp.ru (mx01.omp.ru [90.154.21.10])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92050257ACF;
-	Tue, 25 Mar 2025 14:04:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E71DB1DD9D3;
+	Tue, 25 Mar 2025 14:09:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=90.154.21.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742911486; cv=none; b=pTBWPlkkqJzJIw17DrZ3IM9axqbX8v7IQdD2tninNySsRpk/F1uQXUPZ5QB7XQoh8N0hU359BqDUpZBfm00Oav/3CmVh8peQFA9ZMJwE0mNOvY4B1qMZNJL+++K5GEdMFKPOjiUYPzv9srchI8JhQBF0UMEYYMEUH75LmHBWO68=
+	t=1742911784; cv=none; b=Vq6m+ZKNBhx+PiMMUhGnXR2ePZ1rYk56cHNcIfPoSlWKfP2KO9Axo7xtVIpZ8SgRTVIEz+m1Wa1TVUqCB2vxLOmkXRIZWeS+od03tVPEUrqsP24s2OYWebMhaB2uLKmAyLGNLwVm0i+ch1DYJa7ypH8/8CEPHYhGFVA0/TCHbCM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742911486; c=relaxed/simple;
-	bh=xXUBo/r08ppfabdNhfRKMeAHV1zknb55oszvUJ1765I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=vGCw1l/0CUMAajAfYQHM3/DXWkmxYFGBxEoBniNDdxLKaspYKwlGEPYFc8Fec/wzc+2CO8TYZa3hAmS5BFESNleV3jb5zN+KZZ3pYXbTuYVkbKSvJrR7z9N5Sxq08sDK4UeZ+Y0luDVSnAzSBg3OR8Q/3u0tWNlazjt558yK48c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P5oC7SqO; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-ac2902f7c2aso938108166b.1;
-        Tue, 25 Mar 2025 07:04:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742911483; x=1743516283; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IR5ujn7AjLMQZFopFo7J/ncF6+SQ7YPLcWumbPW8qZ4=;
-        b=P5oC7SqORMiba42/Rys/CRSvR7K6P+tE/WJGRZU3I6yiLeXsLSM2wG2AveJlyTZsmA
-         /0D6YXbIx18rcLte8XGgY6cL40cLMt7zLLc2zYCAl9I+XKO+NgTlVJl6aqzKx6I8YC+b
-         4wuOyRowKudTohwGx9XOKZsCG3xgd7Y0roR4LGtS5drhao/nGMDzhssOcK1DOSUyKO0J
-         r0atoajUJlkYIH8EZXxhMMhPdqLxDM0YUx461lDNsJhJUn9lmR1tFWQQN5oOP6iRwET/
-         2ISh+BNpAUdHgFobAbGcEDS1ZXPUuPXSRU9/QJeSYUKeJXRrZUIESGHVJiDy1AiEicgQ
-         mwxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742911483; x=1743516283;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IR5ujn7AjLMQZFopFo7J/ncF6+SQ7YPLcWumbPW8qZ4=;
-        b=U45yd4G34no8Q1MJ+D7Q+PY4SWQGNp4SdFLgZBWhC8pHrS0N4xpwF/6A3n6SrKki7h
-         /xNSDdyymtz0/dd+NH5Li3VLP8VUuUnpR1x4xHp/L+mr2kTC6DLBdsZDSJcmh42Se9+G
-         V9A52PG6RCiuaT8hKmKIi8xjeF38fOoUwF8BfFrqU5i0lqrGcK35eCsrt57PkvR5jqJH
-         zUjkVYZdybfQ40XyHqD3s+0BNcGzZ+019+mE2AoNJ9SJcVsNHmxmbScSP+j3TIixsnLo
-         osdwGtIFfXj4qJduSH9bHDtjEjhkNw2UoY3T4BxFGBaSVbK1Rc5Qg3/KLbMZS33qsPFg
-         9EqA==
-X-Forwarded-Encrypted: i=1; AJvYcCUZgngMAQJwSlDsB33R0MW5333DX8GkByPTQT6y37bhE0gsLQBJ3FZ7MsUlnLygIs6gHJqdaVNhcgWn@vger.kernel.org, AJvYcCWLDDO9xkYQdP0MgsimnSOjVqn8ePx5N++uQC8otWQK4ZvGP8fDZx6BRoaj4L8XkmEhRmza/Es3klf8+9iL@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxw7XIINzzEcYe33SwdiJ8uGTA46RLpFRGe1wLNYYA0mAlzp6Rg
-	PNYL4FEiOP9W9tp7Y3h01/oi2Sc0zPv5OgsBw54+MGfp3BKXJ7RQ0hmu8GHS
-X-Gm-Gg: ASbGncv7rHSvJBucubCXIneTmaMsaAH6OKDRfWGY1Rc9BWNjYoXF0JqyEGgsJFq30XB
-	FeMPWmJVNuyjbtBI+/yNUfGNrjXwo7qkOlNRMWijqAPSAkupmivUD99dHJ+5/k32YfJeofNiUbf
-	7ZJVQJyUvTWZagb9qS2btVQmJxMZv2x2OvIPa3gPLicNvhoKg8V/SlZxL8YhObU5pSWN7Zm1I7+
-	fL8/h/pJ+O8L20A0P8EcqOQ/QVVo3EBvLsaHB97F7XWM+cjxkeLncZSTsqF3WiH3F2dB7PZa+VT
-	wqvK0omrF07SHahPx8hptYmfcZ5OooOd2aXDE4irM1pHRML/6QNr5P7qbflIxIL0UOlQaBrfnp0
-	qGcrp3Q==
-X-Google-Smtp-Source: AGHT+IG3vk5aFfvxYlBEnnsNJ8xlqwT5drWZzNV8Q3gYkvwhRoJfBqYWpFpPBoZTRvzyouJNQu2Jkg==
-X-Received: by 2002:a17:907:2ce3:b0:ac2:9093:6856 with SMTP id a640c23a62f3a-ac3f257b566mr1557114466b.54.1742911482303;
-        Tue, 25 Mar 2025 07:04:42 -0700 (PDT)
-Received: from [192.168.242.77] (mail.ultratronik.de. [82.100.224.114])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac696678277sm422700966b.174.2025.03.25.07.04.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Mar 2025 07:04:42 -0700 (PDT)
-Message-ID: <aeb4a980-1b92-48e7-97bd-ed98d5ed7845@gmail.com>
-Date: Tue, 25 Mar 2025 15:04:41 +0100
+	s=arc-20240116; t=1742911784; c=relaxed/simple;
+	bh=2uswpZV/3MbmSaOQPXyR9jbj0XssNkhBFZkF+PiK5wY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=H2BwifcFbvnOaXMjZobzgW1GrceOnHGctAcP/BzNsLMx37Y2lyUfJeHxR8zx7bXHDP8VpYOfw57N2Xi1edu5jVgrxvWqZvf9iw1S347HL5P3oaopXud7eHAyJs8abMDtTtj19UsAvBInOb+5od49hpczGZjfa4dec7lH1GbMlEE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=omp.ru; spf=pass smtp.mailfrom=omp.ru; arc=none smtp.client-ip=90.154.21.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=omp.ru
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=omp.ru
+Received: from [192.168.2.102] (213.87.148.48) by msexch01.omp.ru
+ (10.188.4.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.1258.12; Tue, 25 Mar
+ 2025 17:09:17 +0300
+Message-ID: <87933eef-e2b4-4f15-b6b6-1634a9ca17d1@omp.ru>
+Date: Tue, 25 Mar 2025 17:09:16 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,56 +42,84 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: vendor-prefixes: Add Ultratronik
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: =?UTF-8?B?R29yYW4gUmHEkWVub3ZpxIc=?= <gradenovic@ultratronik.de>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250325110409.2323611-1-goran.radni@gmail.com>
- <20250325110409.2323611-2-goran.radni@gmail.com>
- <08246305-b59d-4924-8421-805764f60d9e@kernel.org>
+Subject: Re: [PATCH v2 01/10] dt-bindings: vendor-prefixes: Add EcoNet
+To: Caleb James DeLisle <cjd@cjdns.fr>, <linux-mips@vger.kernel.org>
+CC: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Daniel Lezcano
+	<daniel.lezcano@linaro.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <benjamin.larsson@genexis.eu>
+References: <20250325134349.2476458-1-cjd@cjdns.fr>
+ <20250325134349.2476458-2-cjd@cjdns.fr>
 Content-Language: en-US
-From: Goran Radenovic <goran.radni@gmail.com>
-In-Reply-To: <08246305-b59d-4924-8421-805764f60d9e@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: Sergey Shtylyov <s.shtylyov@omp.ru>
+Organization: Open Mobile Platform
+In-Reply-To: <20250325134349.2476458-2-cjd@cjdns.fr>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: msexch01.omp.ru (10.188.4.12) To msexch01.omp.ru
+ (10.188.4.12)
+X-KSE-ServerInfo: msexch01.omp.ru, 9
+X-KSE-AntiSpam-Interceptor-Info: scan successful
+X-KSE-AntiSpam-Version: 6.1.1, Database issued on: 03/25/2025 13:44:17
+X-KSE-AntiSpam-Status: KAS_STATUS_NOT_DETECTED
+X-KSE-AntiSpam-Method: none
+X-KSE-AntiSpam-Rate: 19
+X-KSE-AntiSpam-Info: Lua profiles 192091 [Mar 25 2025]
+X-KSE-AntiSpam-Info: Version: 6.1.1.11
+X-KSE-AntiSpam-Info: Envelope from: s.shtylyov@omp.ru
+X-KSE-AntiSpam-Info: LuaCore: 51 0.3.51
+ 68896fb0083a027476849bf400a331a2d5d94398
+X-KSE-AntiSpam-Info: {rep_avail}
+X-KSE-AntiSpam-Info: {Tracking_from_domain_doesnt_match_to}
+X-KSE-AntiSpam-Info: {SMTP from is not routable}
+X-KSE-AntiSpam-Info: {Found in DNSBL: 213.87.148.48 in (user)
+ b.barracudacentral.org}
+X-KSE-AntiSpam-Info:
+	213.87.148.48:7.1.2;omp.ru:7.1.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1
+X-KSE-AntiSpam-Info: FromAlignment: s
+X-KSE-AntiSpam-Info: ApMailHostAddress: 213.87.148.48
+X-KSE-AntiSpam-Info: {DNS response errors}
+X-KSE-AntiSpam-Info: Rate: 19
+X-KSE-AntiSpam-Info: Status: not_detected
+X-KSE-AntiSpam-Info: Method: none
+X-KSE-AntiSpam-Info: Auth:dmarc=temperror header.from=omp.ru;spf=temperror
+ smtp.mailfrom=omp.ru;dkim=none
+X-KSE-Antiphishing-Info: Clean
+X-KSE-Antiphishing-ScanningType: Heuristic
+X-KSE-Antiphishing-Method: None
+X-KSE-Antiphishing-Bases: 03/25/2025 13:46:00
+X-KSE-Antivirus-Interceptor-Info: scan successful
+X-KSE-Antivirus-Info: Clean, bases: 3/25/2025 1:01:00 PM
+X-KSE-Attachment-Filter-Triggered-Rules: Clean
+X-KSE-Attachment-Filter-Triggered-Filters: Clean
+X-KSE-BulkMessagesFiltering-Scan-Result: InTheLimit
 
-Hi,
+On 3/25/25 4:43 PM, Caleb James DeLisle wrote:
 
-thank You for the advice. Tag was not added because I have forgotten to 
-do that. I am still learning the process.
+> Add the "econet" vendor prefix for SoC maker
+> 
+> Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index 5079ca6ce1d1..4cd050e50743 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -416,6 +416,8 @@ patternProperties:
+>      description: dServe Technology B.V.
+>    "^dynaimage,.*":
+>      description: Dyna-Image
+> +  "^econet,.*":
+> +    description: EcoNet (HK) Limited
+>    "^ea,.*":
+>      description: Embedded Artists AB
+>    "^ebang,.*":
 
-Best regards
-Goran
+   "econet" goes after "ea" and "ebang" in my book. :-)
 
-On 25.03.25 12:33, Krzysztof Kozlowski wrote:
-> On 25/03/2025 12:04, Goran Rađenović wrote:
->> From: Goran Rađenović <gradenovic@ultratronik.de>
->>
->> Ultratronik GmbH is a German electronics company:
->> https://www.ultratronik-ems.de/
->>
->> Signed-off-by: Goran Rađenović <goran.radni@gmail.com>
-> <form letter>
-> This is a friendly reminder during the review process.
->
-> It looks like you received a tag and forgot to add it.
->
-> If you do not know the process, here is a short explanation:
-> Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
-> of patchset, under or above your Signed-off-by tag, unless patch changed
-> significantly (e.g. new properties added to the DT bindings). Tag is
-> "received", when provided in a message replied to you on the mailing
-> list. Tools like b4 can help here. However, there's no need to repost
-> patches *only* to add the tags. The upstream maintainer will do that for
-> tags received on the version they apply.
->
-> Please read:
-> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
->
-> If a tag was not added on purpose, please state why and what changed.
-> </form letter>
->
-> Best regards,
-> Krzysztof
+MBR, Sergey
+
 
