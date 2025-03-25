@@ -1,137 +1,132 @@
-Return-Path: <devicetree+bounces-160604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95DF3A70452
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 15:53:01 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55E00A70458
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 15:55:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 71B2316D084
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 14:52:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0821618899AF
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 14:55:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EF6D25A34B;
-	Tue, 25 Mar 2025 14:52:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD31725A350;
+	Tue, 25 Mar 2025 14:55:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Pn99e2En"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ka8xV2V+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B2A725A34E
-	for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 14:52:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CE2D27456;
+	Tue, 25 Mar 2025 14:55:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742914361; cv=none; b=H0bWHbp65FY5//21zBmOv01rJgFWljumNi5eK7SAf6PsRprdq3pwjvd7849P+fuL+UfYz8hnYM6uEKrWqukgjGvDadEDMyqn+Gp1rirxNucuJWtNmKltKooEn4+Oz6GXNxFEagKoc14vzZ94IWGOLqz8Y7S3px19iN7jlJztTEI=
+	t=1742914525; cv=none; b=pU19+WjIW+BlVibI5afLvTLv6rfHxUvPbOySlqSTg3+Ft7Wy+mayLFo2QH2huLQtzs6pgpct4f5Hu1cowQT2Fwq1jX86ZJTz2gZ+qnQklqvye8Hgnf/6rV+CMCHbLLFK3Aq3IHYouGYea/Drwz4yUSey/3Mk5MLjhievnE+WT50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742914361; c=relaxed/simple;
-	bh=ySLulsbTbBlrZdXsS2hTqluDneFtFypME/m8PNZsRFs=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=BKhVVdD8fj+YKPc0eK7FaI4sNQcWm/dnHyWNDKhsy8SG5Vd+8yzgmwRjScuHLYIJO6iG5bgyoo305oXPn0HaQ3mcdO9BdfVgDQnr67GX3D5s9UOwA52Zr/2JoJUmRXhPcV+fkFheE55gfspRHbwyC7CLYSFIeUJTxphXFKD1Y9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Pn99e2En; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1742914357;
-	bh=ySLulsbTbBlrZdXsS2hTqluDneFtFypME/m8PNZsRFs=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Pn99e2En0lKlFt3i+/VG8+v3A5HD/Cgd196KF5qo6W7Bjc3Ab3rYVSxmMSrVTad3t
-	 /Yh3gMsDGhjY+Oq2WIbKZRvqCKsEgHW8y4FD0FRYUUbSJ1mZhJoROemNDx3nOm3MW/
-	 Vsxvu7JKKAjikCLN/pj3rbKc+1piGj06x1spsmqOEaMs964gmjWVAJTgjLR1Ybv1AT
-	 KdR1ZxM71NYJZ2aVy11nJOShHJdHMZziEzhmV45CBAeuI+vudinBifhO1N4uCVE9M5
-	 NrpcH37/MrU46pYz5xjAYvfhtLdgHLZvIb30w6E4UVGPxcW+AW6jaFSe3KUK5Pc+4V
-	 Ejf4t29puneoA==
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: bbrezillon)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id A5F6617E09BE;
-	Tue, 25 Mar 2025 15:52:36 +0100 (CET)
-Date: Tue, 25 Mar 2025 15:52:31 +0100
-From: Boris Brezillon <boris.brezillon@collabora.com>
-To: Marek Vasut <marex@denx.de>
-Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley
- <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>, Fabio Estevam
- <festevam@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Liviu Dudau
- <liviu.dudau@arm.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>, Philipp Zabel
- <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>, Shawn Guo
- <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>, Steven Price
- <steven.price@arm.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- imx@lists.linux.dev
-Subject: Re: [PATCH v2 4/9] drm/panthor: Implement optional reset
-Message-ID: <20250325155231.0d1b1000@collabora.com>
-In-Reply-To: <4c06aef3-a254-437c-aa15-8e3eb7bf5951@denx.de>
-References: <20250321200625.132494-1-marex@denx.de>
-	<20250321200625.132494-5-marex@denx.de>
-	<20250324094333.7afb17a1@collabora.com>
-	<c1de2afb-3559-4fbb-b13b-2373175b420b@denx.de>
-	<20250325084349.344a0f11@collabora.com>
-	<7aadf355-edf0-46fc-b969-65c3789375ca@denx.de>
-	<20250325153507.61d82e39@collabora.com>
-	<4c06aef3-a254-437c-aa15-8e3eb7bf5951@denx.de>
-Organization: Collabora
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1742914525; c=relaxed/simple;
+	bh=h+xC3o+EvRaEsszN3O1Z6v/cvKxIPSpgJ1OU/4mg0CY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dXMzcjPjgrHa1CE/qfkXBJDNhkp+krVEXsy+uHrRSuC/I1hbruFupuOLKq+8ecTkdzGEW/pX2jWVGi4vz9Z0TZIjaW1gF2bAdxBCxltVDz19e/NstfY6VOtau/lovKdtZz+O7ak6wC4vEpiJjyunYwZLLKuJjd86GEsqqv61c14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ka8xV2V+; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5e61da95244so9568622a12.2;
+        Tue, 25 Mar 2025 07:55:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742914521; x=1743519321; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=h+xC3o+EvRaEsszN3O1Z6v/cvKxIPSpgJ1OU/4mg0CY=;
+        b=ka8xV2V+fRAYXwOxhbF4MX5dcsZSQGvYE9QOQ1xIrF6OcOMnWVUEmqC+jSovKyA2pf
+         MNrGO/yzsEpxdCpjrVgseGFgVVEdbAYgwQmTLTAz9wNNsfqfs97Yvqy11VLsdqrOQnYB
+         3e93IZeRji0UsBo0jBavBZ43WrflkCGOFoe0J7k7vuP2+nrz74g0Qd3fvI70yKK8y+Di
+         DLgZeA9if/gvl6Vb6TSF4SzQOSM8aFRQXhIQxz8yrVGhjpKeqHFdQIAdCAD6I0i+DGlZ
+         iNdFpttI19Hs73g+gdkFEhuSWQlXv4ifE8kNQBKzeanIv0SIyfDEj4kU/uwa7G/UnRpK
+         aLcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742914521; x=1743519321;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=h+xC3o+EvRaEsszN3O1Z6v/cvKxIPSpgJ1OU/4mg0CY=;
+        b=LiNLw6o0jLri9WjThAbZZIb/KQvS2Xewy1ftvPhV9iaYJSoMZiGny7ki2CbECZLn1w
+         2a+bMVhQaFULd/AStGDYKxt+e0h3rBYup/idRJ9hM72T9k1iXMgvLBCKKjm/H88s7Oq2
+         iI5dvk+Q/7trx+UWZ1XgO37jrp37BFLkIzlW+i48l+bKw6ZL5l0T9l4DL/s1hM/LajlL
+         kyzSU38f2SrU8kFGGXrCnDfw6uRVDlDTg6RohJm+WEKlF84tL+SKKf51rST2pWImGHnL
+         n5uN+IZ7GAOQcxF6XYXJu08raZUzVMEnkKaUaA0VpAZ7r40g+i6Is4T6XTdpRRQrGFxI
+         KuAg==
+X-Forwarded-Encrypted: i=1; AJvYcCVlKrjuwlsnE28KdFLW+6N9zIiRHBVllYmyi1F2bqSE6AjpwwqGx8KuhUkk4Nis44s8g9hXpabY2Uag@vger.kernel.org, AJvYcCWWGLBv67HzrcXQJs2WV40dXSjXs0xRT2thWrI+3ZrKErZGYA/QyvlOHM/g/X9xNqhH0EsnY/3SUCVtmwP4@vger.kernel.org
+X-Gm-Message-State: AOJu0YxjHaZV+Mt5kEYSdONYE9UiXsbeMtjoR2LjV95CP+42K9SP/ZDe
+	2jjAHeWmuQwXgywzNNAbWfP0QdweQoXu6QUpgIhs0jpfUAz1Hlh3xcy6PNHa3lN35Ov/Ga5FCoc
+	CRpE8O9nhkftjA68DHkLhKzL+JInWV4K/OGw=
+X-Gm-Gg: ASbGnctYu1o+EBKLV+87gOJJTG0Z3gQP8LCf+i7NKtYKU2vXnvXUpG+05DRfJ4Et1Ke
+	eWCqPun/Lz3nxv5txp5uxLfZZHOkqlVaSzGOk4eqlnjbXxCl9IKMiU7zX3bH6ZliW32ceP6k4mI
+	JxJFaTTe2eq7CSPbA9DK3AGBeG3qZD
+X-Google-Smtp-Source: AGHT+IEuUQYN6PwvTvTwwnMGmt0P4vWLqhxNd+GIGHY0aZBd9Bo2XRNy5vfno9+jBysJbJXi8vwQWX5545PCjWwZqcQ=
+X-Received: by 2002:a17:907:1b2a:b0:ac3:8987:5ca9 with SMTP id
+ a640c23a62f3a-ac3f20dd210mr1724301566b.19.1742914520994; Tue, 25 Mar 2025
+ 07:55:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20250209210241.2622309-1-benjamin.larsson@genexis.eu>
+ <2025021019-overtake-elk-e644@gregkh> <28a3cbc9-53fb-44e3-bc87-d33cbc406c8e@genexis.eu>
+ <Z98veiHLkQWlCdBE@surfacebook.localdomain> <75df16f4-3413-414b-b71c-ed64d4ad7b0c@genexis.eu>
+In-Reply-To: <75df16f4-3413-414b-b71c-ed64d4ad7b0c@genexis.eu>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 25 Mar 2025 16:54:45 +0200
+X-Gm-Features: AQ5f1JpO7ftZ7FaSzFYxTvPrw5WSB7kut519fhl2Fwab-IM9CNoHs2bShgnelIQ
+Message-ID: <CAHp75VfPK9VjRFtM_-mMOwKOdO9Q7soPGhy3-TX5SA4emrPwbw@mail.gmail.com>
+Subject: Re: [PATCH v4 0/2] Airoha UART support
+To: Benjamin Larsson <benjamin.larsson@genexis.eu>
+Cc: Greg KH <gregkh@linuxfoundation.org>, linux-serial@vger.kernel.org, 
+	devicetree@vger.kernel.org, ansuelsmth@gmail.com, lorenzo@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 25 Mar 2025 15:37:01 +0100
-Marek Vasut <marex@denx.de> wrote:
+On Tue, Mar 25, 2025 at 4:45=E2=80=AFPM Benjamin Larsson
+<benjamin.larsson@genexis.eu> wrote:
+> On 2025-03-22 22:45, Andy Shevchenko wrote:
+> > [You don't often get email from andy.shevchenko@gmail.com. Learn why th=
+is is important at https://aka.ms/LearnAboutSenderIdentification ]
+> > Fri, Mar 21, 2025 at 09:37:09PM +0100, Benjamin Larsson kirjoitti:
+> >> On 10/02/2025 07:14, Greg KH wrote:
+> >>> On Sun, Feb 09, 2025 at 10:02:39PM +0100, Benjamin Larsson wrote:
 
-> On 3/25/25 3:35 PM, Boris Brezillon wrote:
-> > On Tue, 25 Mar 2025 14:50:32 +0100
-> > Marek Vasut <marex@denx.de> wrote:
-> >   
-> >> On 3/25/25 8:43 AM, Boris Brezillon wrote:  
-> >>> On Tue, 25 Mar 2025 00:37:59 +0100
-> >>> Marek Vasut <marex@denx.de> wrote:
-> >>>      
-> >>>> On 3/24/25 9:43 AM, Boris Brezillon wrote:
-> >>>>
-> >>>> [...]
-> >>>>     
-> >>>>>> @@ -563,6 +585,7 @@ int panthor_device_suspend(struct device *dev)
-> >>>>>>     
-> >>>>>>     	panthor_devfreq_suspend(ptdev);
-> >>>>>>     
-> >>>>>> +	reset_control_assert(ptdev->resets);  
-> >>>>>
-> >>>>> Hm, that might be the cause of the fast reset issue (which is a fast
-> >>>>> resume more than a fast reset BTW): if you re-assert the reset line on
-> >>>>> runtime suspend, I guess this causes a full GPU reset, and the MCU ends
-> >>>>> up in a state where it needs a slow reset (all data sections reset to
-> >>>>> their initial state). Can you try to move the reset_control_[de]assert
-> >>>>> to the unplug/init functions?  
-> >>>> Is it correct to assume , that if I remove all reset_control_assert()
-> >>>> calls (and keep only the _deassert() calls), the slow resume problem
-> >>>> should go away too ?  
-> >>>
-> >>> Yeah, dropping the _assert()s should do the trick.  
-> >> Hmmm, no, that does not help. I was hoping maybe NXP can chime in and
-> >> suggest something too ?  
-> > 
-> > Can you try keep all the clks/regulators/power-domains/... on after
-> > init, and see if the fast resume works with that. If it does,
-> > re-introduce one resource at a time to find out which one causes the
-> > MCU to lose its state.  
-> 
-> I already tried that too . I spent quite a while until I reached that L2 
-> workaround in fact.
+...
 
-So, with your RPM suspend/resume being NOPs, it still doesn't work?
-Unless the FW is doing something behind our back, I don't really see
-why this would fail on your platform, but not on the rk3588. Are you
-sure the power domains are kept on at all times. I'm asking, because if
-you linked all the PDs, the on/off sequence is automatically handled by
-the RPM core at suspend/resume time.
+> >> I would argue that I follow the current flow of the code. In 8250.h we=
+ have:
+> >>
+> >> CONFIG_SERIAL_8250_PNP
+> >> CONFIG_SERIAL_8250_RSA
+> > These are historically parts of the main driver, RSA code theoretically
+> > can be removed.
+> >
+> >> CONFIG_SERIAL_8250_FINTEK
+> > I would love to see this being not part of main driver.
+> >
+> >> none of those enables COMPILE_TEST or the option to compile as a modul=
+e.
+> > They all together may be compiled as a main driver module.
+> > Again, this is all historical and new code would need a very good justi=
+fication
+> > why it can be held in a separate module.
+>
+> Hmm, ok I'll see if I understand you. I should create 8250_airoha.c by
+> using 8250_fsl.c as a template. Adapt probe for Airoha by replacing
+> .set_termios with a wrapper that calls the custom baud rate calculation
+> code?
+
+Not sure that _fsl is the best example (we have so far: 8250_exar,
+8250_lpss, 8250_mid, ...), but overall yes, that's my expectation.
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
