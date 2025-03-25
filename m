@@ -1,167 +1,123 @@
-Return-Path: <devicetree+bounces-160656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160657-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C8BAA70694
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 17:18:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0166A706D9
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 17:28:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62795169A05
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 16:16:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69FB23ADB7C
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 16:26:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BD0219E971;
-	Tue, 25 Mar 2025 16:16:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB03325D91E;
+	Tue, 25 Mar 2025 16:26:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="etuhEHLc"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="dctl210D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F0BA12EBE7;
-	Tue, 25 Mar 2025 16:16:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1222254B09;
+	Tue, 25 Mar 2025 16:26:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742919403; cv=none; b=nYOnV17V0IW0sTNRAGThZVTAUwpxFw2ipjaacY3ieTnrPQg6KRquWpm+XbzvzlN7LBUO4vnLN1a8mbd3QdrOZl+LJ0VUx6o0cfkdK2ALAAET5O4rbYmp0OuB90ybNWi8lcNwNgSX8fQn77dSy8cyXIdnPjbawFEXebcQTiS3To4=
+	t=1742919980; cv=none; b=q63e/V+ST+mlQ9LJW7oQ6Abi1YVWEr5vUup16+Neu5pFNZ2Vmj5C3oM41jOpK63WI9hKve9p8MEsVJe/3qDVJWPpV/IEcqZj7ez/ZulF+JRbtD0X8olYbu854ndIp5LJGr9PJIi/bQJFmIVpXVJ4e4g4FJ1EVcvtZ6I1a3JeuFE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742919403; c=relaxed/simple;
-	bh=8aUjtTkLVSkcyr6ieKYqb/IyOv7g99gpoF5vwmnrsKY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RrCZ8qBLa2AA4gJ/YlNb/u9wLUUrCyPqWm9PQcI2Qeoojc4OhWiJ8tf4TH9O2xWubbSTVBG7cJsXY3+0QoB611G8efISV/5wrC1CxvkvEy+YWp9oDdwYAUu6VLu7Jp4qvNVDVhIlg1CTN9NfHrHi8CW0xEUwyTR8YJrRCKQynAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=etuhEHLc; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0EF54102F66E4;
-	Tue, 25 Mar 2025 17:16:36 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1742919398; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=RWBAlXIiGSk72+6SessRFhuHLNEcm290ACC2CqugoH8=;
-	b=etuhEHLcGMuGJ2sHkEQHMUW7CYyd3kSRO3VgG7YzetdL6iKlTmQA65K9QexSY4M43MDD/r
-	KCcEd+MmekrLuoa37EcJI/0jVOs3zXxpLl1cNyqzsJwavPkatyebPXJQXI+e0SWcf9o4eS
-	AWqtCd6tTylJ06cBTHBZfrXyioOnFHYokl3L/EkiJMyvXIzE9MnzQe5s011oXV+4lGofXM
-	pfrMFFlbky0wXbK5uLpu8eZlkIxe/PjP4+fC8ikwsQ9kfo1YuS51Ftr2OF/xs0Dlhmm6VT
-	0TURP8y1DhSClSnNk+U1Lc1odU0a219CNa/vm6D3qm0KjQMMA9r/8Loc5VVXmg==
-Date: Tue, 25 Mar 2025 17:16:34 +0100
-From: Lukasz Majewski <lukma@denx.de>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>, Paolo Abeni <pabeni@redhat.com>, Jakub
- Kicinski <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>,
- davem@davemloft.net, Andrew Lunn <andrew+netdev@lunn.ch>, Pengutronix
- Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Richard
- Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org, Maxime
- Chevallier <maxime.chevallier@bootlin.com>
-Subject: Re: [PATCH 4/5] arm: dts: imx287: Provide description for MTIP L2
- switch
-Message-ID: <20250325171634.1c982583@wsk>
-In-Reply-To: <40c6c272-d4a3-4bf2-87a1-17086d96afea@lunn.ch>
-References: <20250325115736.1732721-1-lukma@denx.de>
-	<20250325115736.1732721-5-lukma@denx.de>
-	<40c6c272-d4a3-4bf2-87a1-17086d96afea@lunn.ch>
-Organization: denx.de
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1742919980; c=relaxed/simple;
+	bh=924u+n0bgOIBMTiTtWUkSIOHz+odrnzAw+tnUn+dn6M=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:Subject:Cc:From:
+	 References:In-Reply-To; b=EiGhx3G8v3C9LUtTwHX3LHM3Smdp3oJJj//mwhIh/hKWYfeRJxF03HfBktBI5CKJOs5GsifH0Hi7A2eTDFgzF6IGda1m8uR5nPB1U8TyeExTOjPqEYDf2zHJpMvgfgePUGwRpfx58apWhK0tm+gbWR9/3dJI+K9gbN/eouV9fEU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=dctl210D; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 1B9D44433F;
+	Tue, 25 Mar 2025 16:26:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1742919974;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3RP2g3c4m72SDfdBZEvu1xhvowzJhly7QJTbUZeDQDo=;
+	b=dctl210DyqgmeRPmqeUNeEnRssv4YmnnnCiMEbFSwBFIdj+TsnpmpGWFZmBLyvC3uRPPB7
+	HDeYVa3zCuVh9s0IYdN1fArd/WKKN2jNkpV/YBis6TbVSjOYvEXXy+8PdAnR0jW2nXjGAj
+	YEFWnPMQC3n6+YHCi3SAfY6i0GMAHfD7MwqUNKBzDxv4cK/m3pn2OrTT/jV5VwFnsoAavq
+	l8Q2velsMMpy28KHi3g2J3Wc7UGbO9biaIdCSW0lAYNKXBbzdfthn+mPPy1fbyg58n4APx
+	uybWTDONI49eB0nemMrHZVt2jRe47nTvOBvri4ylzINB0JyEPqbAHl/BxEALzQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/greT4myIzbgADdfT0SPqvTm";
- protocol="application/pgp-signature"; micalg=pgp-sha512
-X-Last-TLS-Session-Version: TLSv1.3
-
---Sig_/greT4myIzbgADdfT0SPqvTm
-Content-Type: text/plain; charset=US-ASCII
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 25 Mar 2025 17:26:12 +0100
+Message-Id: <D8PHKDVTYTQ5.1HT80KX538PRQ@bootlin.com>
+To: "Andy Shevchenko" <andriy.shevchenko@intel.com>
+Subject: Re: [PATCH v5 02/11] mfd: Add max7360 support
+Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
+ Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
+ "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, "Michael Walle"
+ <mwalle@kernel.org>, "Mark Brown" <broonie@kernel.org>, "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, "Danilo Krummrich" <dakr@kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
+ <linux-pwm@vger.kernel.org>, =?utf-8?q?Gr=C3=A9gory_Clement?=
+ <gregory.clement@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>
+From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
+X-Mailer: aerc 0.18.2-0-ge037c095a049
+References: <20250318-mdb-max7360-support-v5-0-fb20baf97da0@bootlin.com>
+ <20250318-mdb-max7360-support-v5-2-fb20baf97da0@bootlin.com>
+ <Z9qmDkwSpZHxwuQj@smile.fi.intel.com>
+In-Reply-To: <Z9qmDkwSpZHxwuQj@smile.fi.intel.com>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdduieefuddvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkvffuvefhofhfjgesthhqredtredtjeenucfhrhhomhepfdforghthhhivghuucffuhgsohhishdquehrihgrnhgufdcuoehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeethfeiheehheegheekueeigfekffdvheegfeeivefgkeeftdehhfdthfehueejfeenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeipdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvvddprhgtphhtthhopegrnhgurhhihidrshhhvghvtghhvghnkhhosehinhhtvghlrdgtohhmpdhrtghpthhtoheplhgvvgeskhgvrhhnvghlr
+ dhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhgrmhgvlhdrsghouhhhrghrrgessghoohhtlhhinhdrtghomhdprhgtphhtthhopehlihhnuhhsrdifrghllhgvihhjsehlihhnrghrohdrohhrghdprhgtphhtthhopegsrhhglhessghguggvvhdrphhl
+X-GND-Sasl: mathieu.dubois-briand@bootlin.com
 
-Hi Andrew,
+On Wed Mar 19, 2025 at 12:10 PM CET, Andy Shevchenko wrote:
+> On Tue, Mar 18, 2025 at 05:26:18PM +0100, mathieu.dubois-briand@bootlin.c=
+om wrote:
+> > From: Kamel Bouhara <kamel.bouhara@bootlin.com>
+> > +	ret =3D max7360_mask_irqs(regmap);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret, "Could not mask interrupts\n");
+>
+> Hmm... As far as I can read this masks GPIO interrups. Does it do anythin=
+g
+> else? If it's covered by the GPIO/pin control drivers, one want probably =
+to
+> see that to be done there in the respective callback (init_hw_irq or alik=
+e,
+> I don't remember the name by heart).
+>
 
-> On Tue, Mar 25, 2025 at 12:57:35PM +0100, Lukasz Majewski wrote:
-> > This description is similar to one supprted with the cpsw_new.c
-> > driver.
-> >=20
-> > It has separated ports and PHYs (connected to mdio bus).
-> >=20
-> > Signed-off-by: Lukasz Majewski <lukma@denx.de>
-> > ---
-> >  arch/arm/boot/dts/nxp/mxs/imx28-xea.dts | 56
-> > +++++++++++++++++++++++++ 1 file changed, 56 insertions(+)
-> >=20
-> > diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-xea.dts
-> > b/arch/arm/boot/dts/nxp/mxs/imx28-xea.dts index
-> > 6c5e6856648a..e645b086574d 100644 ---
-> > a/arch/arm/boot/dts/nxp/mxs/imx28-xea.dts +++
-> > b/arch/arm/boot/dts/nxp/mxs/imx28-xea.dts @@ -5,6 +5,7 @@
-> >   */
-> > =20
-> >  /dts-v1/;
-> > +#include<dt-bindings/interrupt-controller/irq.h>
-> >  #include "imx28-lwe.dtsi"
-> > =20
-> >  / {
-> > @@ -18,6 +19,61 @@ &can0 {
-> >  	status =3D "okay";
-> >  };
-> > =20
-> > +&eth_switch {
-> > +	compatible =3D "fsl,imx287-mtip-switch"; =20
->=20
-> The switch is part of the SoC. So i would expect the compatible to be
-> in the .dtsi file for the SoC.
+Hum, I'm not sure I can do that.
 
-Ok.
+So the "inti" interrupt line is shared across the GPIO and the rotary
+encoder functionalities.
 
-I'm also wondering if I shall use "fsl," or "nxp," prefix. The former
-one is the same as in fec_main.c, but as I do add new driver, the
-prefix could be updated.
+On reset, GPIO interrupts are not masked. This means, if we do the
+masking in the GPIO driver and the GPIO driver is not loaded but the
+rotary encoder driver is, the rotary encoder driver might get a lot of
+spurious interrupts.
 
->=20
-> > +	pinctrl-names =3D "default";
-> > +	pinctrl-0 =3D <&mac0_pins_a>, <&mac1_pins_a>;
-> > +	phy-supply =3D <&reg_fec_3v3>;
-> > +	phy-reset-duration =3D <25>;
-> > +	phy-reset-post-delay =3D <10>;
-> > +	interrupts =3D <100>, <101>, <102>;
-> > +	clocks =3D <&clks 57>, <&clks 57>, <&clks 64>, <&clks 35>;
-> > +	clock-names =3D "ipg", "ahb", "enet_out", "ptp"; =20
->=20
-> Which of these properties are SoC properties? I _guess_ interrupts,
-> clocks and clock-names. So they should be in the SoC .dtsi file. You
-> should only add board properties here.
+So I believe it makes sense to mask the interrupts here, setting the
+chip in a sane configuration, whatever child drivers are present.
 
-Ok. I will add them.
+Any thought about that?
 
->=20
->        Andrew
+--=20
+Mathieu Dubois-Briand, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
-Best regards,
-
-Lukasz Majewski
-
---
-
-DENX Software Engineering GmbH,      Managing Director: Erika Unter
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
-
---Sig_/greT4myIzbgADdfT0SPqvTm
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmfi1uIACgkQAR8vZIA0
-zr1rmggAx1FgdV+Uvb819ObkX0K7D/zPrmuFUWMVgi8RNIV2Wr55ejmrX3s/QQRV
-emSwGiQ4g3CJL9w4bbtQ1lvEmxPMmzlzG69NXvgWyLykHKFLnlCQ8YBclJHRHNWy
-gwzqLyqpSkM4RgM/qVh8Tqg1HEk9hyhwiLVwZo25qyPOq/0mPzbFhgqyKHi3CIxT
-U75LviRxABG9/5/7/7cNgYsobJfrKjFA4rRDjXiSfxwv6gX0oO8hyKLGMviv+5B8
-KBoETzr7Ukhty1Iqp2g8HyUAeU11GV+HxPwENZ6EwAy1FytBgKj28mP/kl+pAXLQ
-zpHVgwgILNnvfDlFKcZPaAcUBdmeMw==
-=gPXo
------END PGP SIGNATURE-----
-
---Sig_/greT4myIzbgADdfT0SPqvTm--
 
