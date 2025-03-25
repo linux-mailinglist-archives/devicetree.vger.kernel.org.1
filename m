@@ -1,188 +1,125 @@
-Return-Path: <devicetree+bounces-160484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 826BDA6EE5F
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 12:02:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64763A6EE83
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 12:05:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BB1D3B3DD2
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 11:02:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 81BF61686B6
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 11:04:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 758C5255246;
-	Tue, 25 Mar 2025 11:02:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9217C254866;
+	Tue, 25 Mar 2025 11:04:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rSbVJsc+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="crpchLgC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D005254B0D;
-	Tue, 25 Mar 2025 11:02:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1A681B4F0E;
+	Tue, 25 Mar 2025 11:04:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742900554; cv=none; b=nH/JuuOKUfnWzb5LzrHDxF493tm8IHhYXcB+jES+pBU+Es5ecIqvm5P86BxZ3xP/bQN+5FqHUlOTWg5ahwkp1lJahQ7eIpA0cAeAyMDAaQxf/zey6hFrNVBK811neHmhgpsuGnWj0fl1glj5F9YL2mZ3Uz4YWYjD01qz4jJYghE=
+	t=1742900672; cv=none; b=TWI61PDWn6dsC34KIahRvofWb73YNWviCYjGc9IMEzKbpgB8mbb9uaCxx/VeJlJaa3g1Ryji55GfZXKUy43lM5mFcCqZyLtLfXxH8b4Kj+OP9HME1RtBJ3Gd1e6O2Q7ZhAbzBaFs0CegXIa6/R7hVS8m1HDZgUNGqntJ2j9iq1Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742900554; c=relaxed/simple;
-	bh=82PBDk1yiFJDvWrapv7fPLNTJc8KmRBR6OCSlAlVnvg=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZBecaRQBDs06HEE5gWfOKXLhrIwjvcnOD7jeFclowqBOtVXuGyrG+fDzsR2/QIVQYfkEPIfQcil0thyyvbXOggVLXW4X8cFC8gpYeIc5c5LgPj30Z54hJgoBvxmXvUTGpAUpo5WL3grsd5YL1eh0o2SnJnRhFMKQcHbPiRZq6KY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rSbVJsc+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 922ECC4CEE4;
-	Tue, 25 Mar 2025 11:02:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742900553;
-	bh=82PBDk1yiFJDvWrapv7fPLNTJc8KmRBR6OCSlAlVnvg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=rSbVJsc+GL6lv2xUEvkmMYClr4BiE9asuFbIhOWTxxaTs1tG0Q+KN6REoH02rnooI
-	 OAgNfErYs+2G3nGMOZAJMzD+1iqergbb9ImDFAFBpOq+vpOMy4/LiR+ZylRBJRwXuC
-	 fb+1o7mFU0aMOYtKunH3eSkvaM1E1sY+8+w+oNgNKxT0mTgioll1qq8uXcBg3ZDOcD
-	 pbp1V/ytAHzzsG7A2AYLooNSLrHZsk1ezedBL8ikmWbDSo9+DgO/c6Z3DYqxAWslNe
-	 Jbo9bTUbQJVq9vCZOkrWJy3L7Q9XZRDATr6uPPpLTlFma39EmhDluCsCLYWyYNsrNf
-	 249nDn7rWyJxA==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1tx23C-00Gt6v-IK;
-	Tue, 25 Mar 2025 11:02:30 +0000
-Date: Tue, 25 Mar 2025 11:02:30 +0000
-Message-ID: <864izhmkzd.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Mark Kettenis <mark.kettenis@xs4all.nl>
-Cc: linux-arm-kernel@lists.infradead.org,
-	linux-pci@vger.kernel.org,
+	s=arc-20240116; t=1742900672; c=relaxed/simple;
+	bh=n8tiOBnU2NtRg22qxDTzvMEb0wivFTtptf4nlizabLo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=iKSqk4PTJ0MveEVphS8f9Wn737vO0PAG4MjEjaIdP2hgNazR1Tyc2WZ7rsge6SL1gK0q+9eNGJY6LQPi6KpggmWDh4j9rxxg9qSgIAD2Vzz0l3yTXeMvgU1q566GesY8JvXI0j9sDXKNDynsGBurJ8gpNzvowbXJ5panuVbcjWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=crpchLgC; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5e5e63162a0so8373984a12.3;
+        Tue, 25 Mar 2025 04:04:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742900669; x=1743505469; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=J7y/5K3K5zXr9SYnsnRx1Xa8HIQouwi1RF9TlE0iU/E=;
+        b=crpchLgCYyUYacnQs//AkAfAtHYMZwRrZh/qHdgMiGK4OQR67F+hYwOiu3nmbkGRFi
+         macuENrIk22kmiXGEdMrUZ4rSl1fvedGVm1VbC3/pgD+cdZyikmjT5fJayX131XgbywW
+         aoVUE8z3q7S6W48G5Q/LrrPCSYy72YSVkfvlxgLonsUzHjK3256OuiR3g5VWQfnvYYEy
+         j8ZBG877BpXOEcohgLv8KfNonS8mSUA4B/aaK2o0x1vintSTzN0TeKIgo6FaNV2d/eAz
+         kkAaB9Gg9w+gzQP+oDbE1VkjLJruhM+VXZk5R5FVNO2bDr0ObzBUOOBGQrjXNKaDuQYA
+         ADFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742900669; x=1743505469;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=J7y/5K3K5zXr9SYnsnRx1Xa8HIQouwi1RF9TlE0iU/E=;
+        b=NzcGbTv1642VTlsUfOIT4vSgNK2Aq2R/H1hdIDnF3Mqzsg8FjcLfHJtVRf4B6oB0gG
+         EJKfX2g/I/zZpEJiCC9AikzZVDPuuqVmFJbzbbcjWIu7T58UbQavdHjxtX2CTARr7fdN
+         C7Au9dFc6NjiXPO/+kPeXpND/bYstiXKY7eWb7xDLhpK3TWIYvACdi5gZx2ho2xhka4O
+         t6kW15Hyg+vvl2+3hWQtEdr4T/skqUCFDfiD+vmMZ4wlqmyOj9Ta33t/ygJJJhvqoeLW
+         a0ev/j1HNs3TXRyP3lbBa77oqvEnwAVZi7x7+aNgeCo1DSjeY+K0boE3gWv/IAfGGg/t
+         IZ7A==
+X-Forwarded-Encrypted: i=1; AJvYcCXCPoeeQMHzeE06AW+zQrUvVyNj3fbJLKLkrQrq4epOAYI1mVsU0FrbbHWnqT7CYChTEhn+51uAhu8Zr9a7@vger.kernel.org, AJvYcCXEhs7kRtihwDF/J/ZR1h0CAYrHoqeB8ULGR6fxdikVMKQ+AMbK04piGyqL3eMyGAjmBMiCcQQ42Wxj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+ZvFZsQwmEp72dtrpJ4dBDDsL7RXX28ybAndpilkxPgHpwpAj
+	Wq1JZ6PcgxMYSLaVxtc1uWPjpal+Xlo7jNX8YL8twRBAZ6DtikEc
+X-Gm-Gg: ASbGnctUWqkC1454FyzTvbXxmVtSIsa4pTRkwTx3kBGBmGeo0XZlC/j8o+sC4aA/9js
+	Ij3BNCT35cHBurLJu1Qe1RK08IzkDkcWMq25Iy7RutXIxNk1Wj1LlKJBV2Aabw/TgQmCH8jVYeg
+	EUq/0vsIpH61ACFZ/89kyzuGgbjftB1Q83xWYTFF6JlFWcyhVjnC/TjRLPl1RgfnDZECP0eCjrK
+	IKfDkvXCe13mFyL7ZfO7/3x+UXenWab2651+9V710+jUXHwd9tYWAfjZlJWJVJvXU1wYpOvQ6XG
+	ILv13OVCjPNDiUoQ6q1MkVUia+bqHc1NAMdEz6fuegpT+8U6BVHJWz/94hXlxvEqwIdWL5yy+/b
+	xb/F3wA==
+X-Google-Smtp-Source: AGHT+IHlMqGTu3mmqZvP0NK7MNjtG8eN66pNcQTLOL0Wk2+owZv+QqgipNp7hNHlntiKlfyLgOXqTA==
+X-Received: by 2002:a05:6402:4309:b0:5ed:2a1b:fd7d with SMTP id 4fb4d7f45d1cf-5ed2a1bff96mr121240a12.19.1742900668715;
+        Tue, 25 Mar 2025 04:04:28 -0700 (PDT)
+Received: from wslxew242.ultratronik.de (mail.ultratronik.de. [82.100.224.114])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5ebccf8cc99sm7556809a12.32.2025.03.25.04.04.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Mar 2025 04:04:28 -0700 (PDT)
+From: =?UTF-8?q?Goran=20Ra=C4=91enovi=C4=87?= <goran.radni@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: =?UTF-8?q?Goran=20Ra=C4=91enovi=C4=87?= <gradenovic@ultratronik.de>,
+	=?UTF-8?q?Goran=20Ra=C4=91enovi=C4=87?= <goran.radni@gmail.com>,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	asahi@lists.linux.dev,
-	alyssa@rosenzweig.io,
-	j@jannau.net,
-	marcan@marcan.st,
-	sven@svenpeter.dev,
-	bhelgaas@google.com,
-	lpieralisi@kernel.org,
-	kw@linux.com,
-	manivannan.sadhasivam@linaro.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org
-Subject: Re: [PATCH v2 01/13] dt-bindings: pci: apple,pcie: Add t6020 compatible string
-In-Reply-To: <87iknx75at.fsf@bloch.sibelius.xs4all.nl>
-References: <20250325102610.2073863-1-maz@kernel.org>
-	<20250325102610.2073863-2-maz@kernel.org>
-	<87iknx75at.fsf@bloch.sibelius.xs4all.nl>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/3] dt-bindings: vendor-prefixes: Add Ultratronik
+Date: Tue, 25 Mar 2025 12:04:05 +0100
+Message-ID: <20250325110409.2323611-2-goran.radni@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250325110409.2323611-1-goran.radni@gmail.com>
+References: <20250325110409.2323611-1-goran.radni@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: mark.kettenis@xs4all.nl, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, asahi@lists.linux.dev, alyssa@rosenzweig.io, j@jannau.net, marcan@marcan.st, sven@svenpeter.dev, bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org, robh@kernel.org, krzk+dt@kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Mark,
+From: Goran Rađenović <gradenovic@ultratronik.de>
 
-On Tue, 25 Mar 2025 10:50:18 +0000,
-Mark Kettenis <mark.kettenis@xs4all.nl> wrote:
-> 
-> > From: Marc Zyngier <maz@kernel.org>
-> > Date: Tue, 25 Mar 2025 10:25:58 +0000
-> 
-> Hi Marc,
-> 
-> Sorry for not spotting this in the earlier versions, but:
+Ultratronik GmbH is a German electronics company:
+https://www.ultratronik-ems.de/
 
-No worries -- I expected issues in that department.
+Signed-off-by: Goran Rađenović <goran.radni@gmail.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
->
-> > From: Alyssa Rosenzweig <alyssa@rosenzweig.io>
-> > 
-> > t6020 adds some register ranges compared to t8103, so requires
-> > a new compatible as well as the new PHY registers themselves.
-> > 
-> > Signed-off-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
-> > [maz: added PHY registers]
-> > Signed-off-by: Marc Zyngier <maz@kernel.org>
-> > ---
-> >  Documentation/devicetree/bindings/pci/apple,pcie.yaml | 11 ++++++++++-
-> >  1 file changed, 10 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/pci/apple,pcie.yaml b/Documentation/devicetree/bindings/pci/apple,pcie.yaml
-> > index c8775f9cb0713..77554899b9420 100644
-> > --- a/Documentation/devicetree/bindings/pci/apple,pcie.yaml
-> > +++ b/Documentation/devicetree/bindings/pci/apple,pcie.yaml
-> > @@ -17,6 +17,10 @@ description: |
-> >    implements its root ports.  But the ATU found on most DesignWare
-> >    PCIe host bridges is absent.
-> >  
-> > +  On systems derived from T602x, the PHY registers are in a region
-> > +  separate from the port registers. In that case, there is one PHY
-> > +  register range per port register range.
-> > +
-> >    All root ports share a single ECAM space, but separate GPIOs are
-> >    used to take the PCI devices on those ports out of reset.  Therefore
-> >    the standard "reset-gpios" and "max-link-speed" properties appear on
-> > @@ -35,11 +39,12 @@ properties:
-> >            - apple,t8103-pcie
-> >            - apple,t8112-pcie
-> >            - apple,t6000-pcie
-> > +          - apple,t6020-pcie
-> >        - const: apple,pcie
-> 
-> Since the T602x PCIe controller has a different register layout, it
-> isn't compatible with the others, so it should not include the
-> "apple,pcie" compatible.  The "downstream" device trees for
-> T602x-based devices do indeed not list "apple,pcie" as a compatible.
-> So I think this needs to be written as:
-> 
->   compatible:
->     oneOf:
->       - items:
->           - enum:
->               - apple,t8103-pcie
->               - apple,t8112-pcie
->               - apple,t6000-pcie
->           - const: apple,pcie
->       - const: apple,t6020-pcie
-
-Ah, indeed, that's a good point. Thanks for that.
-
-Whilst I have your attention, how about my question below:
-
->
-> >  
-> >    reg:
-> >      minItems: 3
-> > -    maxItems: 6
-> > +    maxItems: 10
-> >  
-> >    reg-names:
-> >      minItems: 3
-> > @@ -50,6 +55,10 @@ properties:
-> >        - const: port1
-> >        - const: port2
-> >        - const: port3
-> > +      - const: phy0
-> > +      - const: phy1
-> > +      - const: phy2
-> > +      - const: phy3
-
-Do we need to make this t6020 specific?
-
-Obviously, separate PHY registers do not make much sense before t6020,
-but I couldn't find a way to describe that. I don't even know if
-that's a desirable outcome.
-
-Thanks,
-
-	M.
-
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 5079ca6ce1d1..91285296dbd3 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1597,6 +1597,8 @@ patternProperties:
+     description: Universal Scientific Industrial Co., Ltd.
+   "^usr,.*":
+     description: U.S. Robotics Corporation
++  "^ultratronik,.*":
++    description: Ultratronik GmbH
+   "^utoo,.*":
+     description: Aigo Digital Technology Co., Ltd.
+   "^v3,.*":
 -- 
-Without deviation from the norm, progress is not possible.
+2.43.0
+
 
