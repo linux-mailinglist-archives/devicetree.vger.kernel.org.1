@@ -1,366 +1,139 @@
-Return-Path: <devicetree+bounces-160732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B39EDA70D8F
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 00:18:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3CD1A70DA2
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 00:32:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B22963B75D9
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 23:18:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 483961713E2
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 23:32:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CFCB266B64;
-	Tue, 25 Mar 2025 23:18:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EE431F12F9;
+	Tue, 25 Mar 2025 23:32:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LhifCDcC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C36IW42v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 648CC1993B9;
-	Tue, 25 Mar 2025 23:18:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FC451624DD;
+	Tue, 25 Mar 2025 23:32:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742944707; cv=none; b=eURHDKDVImJMGS4WXU3PiJAyVpTfY0I6oG9RmkIuv8BXIIGUqEOTcD0ulEOkB51+DdGcA4sDSdyhfzVl6WdMzYJo4VNjvCgzcdNHIfBreBNaoxMjWvtO8HxdMXjl94uA9LyVBbTHoUVA/hJfHxp+cbnhRNvArcQE63ZA1vLZyLI=
+	t=1742945532; cv=none; b=pn2Q3+8kgqZUh5SezTkDPu9UBrBY3hYiR6WTnPjCRz24JP/FkccpNYBKrpbGDt6MD3mv1flRNINCurzpc9O3/gA8aCMNKBrbfmSbWOKiG5hPan6f2fukurDQ/ffpIW8AgfMd4zORoQiqp6vq7oJfkZIrLVhoEHrZgniTxTphrWc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742944707; c=relaxed/simple;
-	bh=AA7PwITKF5J3TEDy7nn32B1pSSpAw2zgf84VtrpwgJI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=WaB5HcRLYhKzFSZj4MJEztCmP2xuUl3h6EpLCP5Qu1ejluZbR2itwGggpe2X+tAaf5sfUfr+U2qMkFYK7hjUz7KJilqt7sGYID4LBj883xQfdLU1d6NZUCFs41eEjtbfDxC0IRD5yxx9QZFjRvlzucDHtKuFbSMwyYR/misWl3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LhifCDcC; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52PGasZD008357;
-	Tue, 25 Mar 2025 23:18:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	+XK13zwQWJ2coxBzt8SY6riXFsi3NmtdQnEKfhNLzeM=; b=LhifCDcC/FnQV8YR
-	RaQSCkG5l3fZlfw8hkVK8OGJjJjznipi6Tjhu5a4jXZbFJCG1MINPUIixzTeesu7
-	q6wM1Odzc29I+z8DgIHkImuHSRyzmhQc5EOd8LhHYCl66QT/8QnGxQsxy4EVRVEp
-	MEdVxupUr7K4roIKVdMvTQUZhHrHLIOX1pK1kWOFdQOOHUHyl2l9L7Tw4SdhT2uc
-	Kyr4dtQg0K2WU9wCClotbVHJJuE0RcKJwDZQHbKKwv4F+JqDtNJ8+adqoesnU6jr
-	ZXaDn8UULLsdPL2klBk2uG3+OZSVzUqbUTen0fqB75N3Hv2PAtE2G/v0Wl21vhck
-	GG/BFQ==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45kmd332se-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 25 Mar 2025 23:18:06 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52PNI5WW018006
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 25 Mar 2025 23:18:05 GMT
-Received: from [10.71.112.253] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 25 Mar
- 2025 16:18:04 -0700
-Message-ID: <871827f0-94ba-4565-865f-775cab9501eb@quicinc.com>
-Date: Tue, 25 Mar 2025 16:18:03 -0700
+	s=arc-20240116; t=1742945532; c=relaxed/simple;
+	bh=eefr6HbRlYtDKXKjCQxLxiNjejMQgJVFupcX7Ph1gcM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GNErjIcuch4bDZTh85MZI31r8G/3/9/O/45lx3+c5ivEvTzKRwBebe6t0Eg1hYh3RsAJTXVp1W9ZgdDrjQeMPHMkyOLNmgzrWAfjc+zbC3jbjF3RQakKW/l0BveEFb5PSpYCXFwofscmQWWGb3WnWSJzNJdEoQoEOEH9JoxWumg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=C36IW42v; arc=none smtp.client-ip=209.85.208.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-30613802a6bso64335101fa.1;
+        Tue, 25 Mar 2025 16:32:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742945528; x=1743550328; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eefr6HbRlYtDKXKjCQxLxiNjejMQgJVFupcX7Ph1gcM=;
+        b=C36IW42vSDX8AsfdN9ifM3U4YtkmuaYPPaQpdjFyT+zEpNKJFlO3NSMRMUoeo27+YJ
+         Ikf//JM+d/mpMqVbXuqyDdZ/yAjqGPWlaBikVhMANovhXviej+nCJqlH+vqnGLNK8NyX
+         ko9kVj09MQovDSGULzPkJmCMx7ywVBUaJ4HUpuUtVPHetpLr6+eWg81Q7jc3IpeE449t
+         DjeMTH8DKx3RWZv/ky+oA39RpktJ7sTgW5oEXGvgQ7rjj6yxxOR3XW6/GDFJVROMryIf
+         HHix0K/kAfWdvj6gjqcVOneCa4mT3URApTtcpc8DDepFyx89IhsQ0gwQ9E7XAKOyj9jL
+         6NSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742945528; x=1743550328;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=eefr6HbRlYtDKXKjCQxLxiNjejMQgJVFupcX7Ph1gcM=;
+        b=RvfA+9HP/7lBjf1goX/JrDR75gn642jTkOl6HOsPvIxGwP5R8ivtoEZ/x9GKgX8Iqh
+         JpOFhJK01mn+exee4syb/GXuQkywvIdjdFJH+kV5A5sbLyypFt1p9K7+3fwghGtRlI5i
+         c4AS1CYjlP4MNOeaQ5fnD9M/taluK/Zt5JAudDfnizEcy+iCHYbRQ8BEKFwazXs4k/9e
+         TPinBKWgC6MeaeeNOPE2iE5qiJgxq82o5kMEJg4CF5awxyDNOeP4HXTyis2/KfYFcFrg
+         ZZi4WB5bQpF5+5msKILR6zRS5YhRGt1THyTHVW8OozowEFr5wWhlx7Go/DYom+gak21S
+         ignQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU2Zkmkwsz4K+Pf9Jfp9tunpIBAnRFRiBSX0Gxr5WXyZ+Y87F1q3u9ALJT2DcztjzHT/n/U1XvQ+EhCqAs=@vger.kernel.org, AJvYcCUItrrFj7aqsGua/D7qmedLOKXeqykvMINUP3z7Rt68B0QH9DL0A0eK+vncwb5sBxUtRb3YYiPO@vger.kernel.org, AJvYcCUKTXz+tJJHbe0BtIy5LOTkE38/sV4ydf8bEdoIs2SSUgqpSHPUbOypENZfm7svqauZmRHHmlg4yb+r@vger.kernel.org, AJvYcCUUQCucInV3MyysM5xIxXrItWXcLOlQMYafQYlwQ5TBNlBTx+3Uifn1L9lVUSW2LOM4yUxJdwHD+Q/K2Ps4@vger.kernel.org, AJvYcCVj2Z0irQ6dTQc77IbeVSIqBjbcidIcrJsZgaVldCkj2reRzd5iULllxwK7hbI6bJtutANNQFDkyPkef1dU@vger.kernel.org, AJvYcCVq3uoRUKRXOra7ilvFfY79SSSUG5JxPq+CjPJDNQq0BbPUsmNP7enCxoD8tdmMC9lOTjimwS+xHQWFTTJ1spk=@vger.kernel.org, AJvYcCW4/1Ln6s2vkAnQZ+/R8wzrmlJN3H+/5B+Ajlowb9owh+70vkUYnybvJaS+38mDOCIlzNPDJb4byErG@vger.kernel.org, AJvYcCWPr0j3nVRh3zqJDUPpP5rbcH4ZOyvR2W5aA5leZ0IhdaT8iM18Wu9JK0ecUHG/GYvhAPPWJx1JXNPsIKkoi0Bp@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGy8QSgrQfbauiTH8lWmOHKEd9W+6RQNXnHTt1frIKTakFxyZI
+	sbSuLZcAxREy/szvwBH+k85ShR3i81Fuj+895CHZAwrc0Jz9SgYgkraKrBjKomjfx3pU33ph3Bo
+	UFlKJYGq6vp5kUM5AgIPIxELViHY=
+X-Gm-Gg: ASbGncsVI2Amp7e1bgffpm2CZROuDYDD0S68NfyW1hSy4aMkNE1vzleehXtoMOv+O7j
+	0v1MNMellL20JIBfD3lhH9IHTxHlb5cY8CFzYWh2E3umnks7iYmvv362mQYbOYEdoQ2DzbpFTkE
+	8OCiL2v2ZxxeSGfapcsJkgjvIJMU9K4uoRHauLBFUQbExgTZTbuPxhVKkIuvg=
+X-Google-Smtp-Source: AGHT+IFxHYJ+0IsL/dVIF9u+EAWIllGZhFdwDLi1uT8DJOuKNoI5GnEZcD+Vh9CnqpoEAhYqpPdcD4a8c0fhXk8RIyI=
+X-Received: by 2002:a2e:bc1b:0:b0:30b:a9b7:7dfa with SMTP id
+ 38308e7fff4ca-30d7e214c8dmr68301441fa.3.1742945528268; Tue, 25 Mar 2025
+ 16:32:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v36 22/31] ASoC: qcom: qdsp6: Introduce USB AFE port to
- q6dsp
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-CC: <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <conor+dt@kernel.org>, <dmitry.torokhov@gmail.com>,
-        <corbet@lwn.net>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
-        <krzk+dt@kernel.org>, <pierre-louis.bossart@linux.intel.com>,
-        <Thinh.Nguyen@synopsys.com>, <tiwai@suse.com>, <robh@kernel.org>,
-        <gregkh@linuxfoundation.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-sound@vger.kernel.org>,
-        <linux-input@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        Luca Weiss
-	<luca.weiss@fairphone.com>
-References: <20250319005141.312805-1-quic_wcheng@quicinc.com>
- <20250319005141.312805-23-quic_wcheng@quicinc.com>
- <Z-J2WnrZHP6iMIhT@linaro.org>
-Content-Language: en-US
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <Z-J2WnrZHP6iMIhT@linaro.org>
+References: <20250325-ptr-as-ptr-v7-0-87ab452147b9@gmail.com> <CANiq72kYt2mYG8FA=U6C4CPUGfAwDFZ8Jji5SH2Yt2NnOHua0w@mail.gmail.com>
+In-Reply-To: <CANiq72kYt2mYG8FA=U6C4CPUGfAwDFZ8Jji5SH2Yt2NnOHua0w@mail.gmail.com>
+From: Tamir Duberstein <tamird@gmail.com>
+Date: Tue, 25 Mar 2025 19:31:32 -0400
+X-Gm-Features: AQ5f1Jr6QN6jniT-TQODJ_8YxxFjZq1wvjuil1EsgVPT_xGsnF65ZNPxsL_Gs5g
+Message-ID: <CAJ-ks9kjY0i4ZHe6WJ=6Peo+6nN-5cPkuWQu1iYva_mH=356cw@mail.gmail.com>
+Subject: Re: [PATCH v7 0/7] rust: reduce `as` casts, enable related lints
+To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
+	Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, 
+	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+	Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Brendan Higgins <brendan.higgins@linux.dev>, 
+	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, 
+	Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, Abdiel Janulgue <abdiel.janulgue@gmail.com>, 
+	Daniel Almeida <daniel.almeida@collabora.com>, Robin Murphy <robin.murphy@arm.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	FUJITA Tomonori <fujita.tomonori@gmail.com>, linux-kbuild@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+	linux-pci@vger.kernel.org, linux-block@vger.kernel.org, 
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	netdev@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: jcBzSMG_Twd1ynIpoaY2_eOk2VnTd7Le
-X-Proofpoint-ORIG-GUID: jcBzSMG_Twd1ynIpoaY2_eOk2VnTd7Le
-X-Authority-Analysis: v=2.4 cv=P646hjAu c=1 sm=1 tr=0 ts=67e339ae cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=C-Td_spOXU67h79XLzoA:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-25_10,2025-03-25_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- malwarescore=0 adultscore=0 lowpriorityscore=0 clxscore=1015
- suspectscore=0 phishscore=0 mlxlogscore=999 priorityscore=1501 bulkscore=0
- mlxscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503250152
+Content-Transfer-Encoding: quoted-printable
 
-Hi Stephan,
+On Tue, Mar 25, 2025 at 4:23=E2=80=AFPM Miguel Ojeda
+<miguel.ojeda.sandonis@gmail.com> wrote:
+>
+> On Tue, Mar 25, 2025 at 9:07=E2=80=AFPM Tamir Duberstein <tamird@gmail.co=
+m> wrote:
+> >
+> > Changes in v7:
+> > - Add patch to enable `clippy::ref_as_ptr`.
+> > - Link to v6: https://lore.kernel.org/r/20250324-ptr-as-ptr-v6-0-49d1b7=
+fd4290@gmail.com
+>
+> Please slow down -- at least wait a few days between revisions (unless
+> there is a particular reason that requires it, of course).
 
-On 3/25/2025 2:24 AM, Stephan Gerhold wrote:
-> On Tue, Mar 18, 2025 at 05:51:32PM -0700, Wesley Cheng wrote:
->> The QC ADSP is able to support USB playback endpoints, so that the main
->> application processor can be placed into lower CPU power modes.  This adds
->> the required AFE port configurations and port start command to start an
->> audio session.
->>
->> Specifically, the QC ADSP can support all potential endpoints that are
->> exposed by the audio data interface.  This includes isochronous data
->> endpoints, in either synchronous mode or asynchronous mode. In the latter
->> case both implicit or explicit feedback endpoints are supported.  The size
->> of audio samples sent per USB frame (microframe) will be adjusted based on
->> information received on the feedback endpoint.
->>
->> Some pre-requisites are needed before issuing the AFE port start command,
->> such as setting the USB AFE dev_token.  This carries information about the
->> available USB SND cards and PCM devices that have been discovered on the
->> USB bus.  The dev_token field is used by the audio DSP to notify the USB
->> offload driver of which card and PCM index to enable playback on.
->>
->> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
->> ---
->>  sound/soc/qcom/qdsp6/q6afe-dai.c         |  60 +++++++
->>  sound/soc/qcom/qdsp6/q6afe.c             | 192 ++++++++++++++++++++++-
->>  sound/soc/qcom/qdsp6/q6afe.h             |  36 ++++-
->>  sound/soc/qcom/qdsp6/q6dsp-lpass-ports.c |  23 +++
->>  sound/soc/qcom/qdsp6/q6dsp-lpass-ports.h |   1 +
->>  sound/soc/qcom/qdsp6/q6routing.c         |  32 +++-
->>  6 files changed, 341 insertions(+), 3 deletions(-)
->>
->> diff --git a/sound/soc/qcom/qdsp6/q6afe-dai.c b/sound/soc/qcom/qdsp6/q6afe-dai.c
->> index 7d9628cda875..0f47aadaabe1 100644
->> --- a/sound/soc/qcom/qdsp6/q6afe-dai.c
->> +++ b/sound/soc/qcom/qdsp6/q6afe-dai.c
->> [...]
->> @@ -513,12 +520,96 @@ struct afe_param_id_cdc_dma_cfg {
->>  	u16	active_channels_mask;
->>  } __packed;
->>  
->> +struct afe_param_id_usb_cfg {
->> +/* Minor version used for tracking USB audio device configuration.
->> + * Supported values: AFE_API_MINOR_VERSION_USB_AUDIO_CONFIG
->> + */
->> +	u32                  cfg_minor_version;
->> +/* Sampling rate of the port.
->> + * Supported values:
->> + * - AFE_PORT_SAMPLE_RATE_8K
->> + * - AFE_PORT_SAMPLE_RATE_11025
->> + * - AFE_PORT_SAMPLE_RATE_12K
->> + * - AFE_PORT_SAMPLE_RATE_16K
->> + * - AFE_PORT_SAMPLE_RATE_22050
->> + * - AFE_PORT_SAMPLE_RATE_24K
->> + * - AFE_PORT_SAMPLE_RATE_32K
->> + * - AFE_PORT_SAMPLE_RATE_44P1K
->> + * - AFE_PORT_SAMPLE_RATE_48K
->> + * - AFE_PORT_SAMPLE_RATE_96K
->> + * - AFE_PORT_SAMPLE_RATE_192K
->> + */
->> +	u32                  sample_rate;
->> +/* Bit width of the sample.
->> + * Supported values: 16, 24
->> + */
->> +	u16                  bit_width;
->> +/* Number of channels.
->> + * Supported values: 1 and 2
->> + */
->> +	u16                  num_channels;
->> +/* Data format supported by the USB. The supported value is
->> + * 0 (#AFE_USB_AUDIO_DATA_FORMAT_LINEAR_PCM).
->> + */
->> +	u16                  data_format;
->> +/* this field must be 0 */
->> +	u16                  reserved;
->> +/* device token of actual end USB audio device */
->> +	u32                  dev_token;
->> +/* endianness of this interface */
->> +	u32                   endian;
-> 
-> Nitpick: The indentation between u32 and the struct field names is odd,
-> can you use a single tab character like in the afe_param_id_cdc_dma_cfg
-> instead?
-> 
+Thanks, certainly no urgency here. In this particular case this isn't
+a true revision: the difference between v7 and v6 is the presence of
+an additional patch.
 
-Ack.
+> We are in the merge window anyway, so there is no urgency to resend
+> since these cannot go in, and you may want to rebase on top of -rc1
+> when it gets released so that you can cover most/all cases added by
+> then.
 
->> +/* service interval */
->> +	u32                  service_interval;
->> +} __packed;
->> +
->> + [...]
->> diff --git a/sound/soc/qcom/qdsp6/q6dsp-lpass-ports.c b/sound/soc/qcom/qdsp6/q6dsp-lpass-ports.c
->> index 4919001de08b..4a96b11f7fd1 100644
->> --- a/sound/soc/qcom/qdsp6/q6dsp-lpass-ports.c
->> +++ b/sound/soc/qcom/qdsp6/q6dsp-lpass-ports.c
->> @@ -97,6 +97,26 @@
->>  	}
->>  
->>  static struct snd_soc_dai_driver q6dsp_audio_fe_dais[] = {
->> +	{
->> +		.playback = {
->> +			.stream_name = "USB Playback",
->> +			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_11025 |
->> +					SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_22050 |
->> +					SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_44100 |
->> +					SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 |
->> +					SNDRV_PCM_RATE_192000,
->> +			.formats = SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S16_BE |
->> +					SNDRV_PCM_FMTBIT_U16_LE | SNDRV_PCM_FMTBIT_U16_BE |
->> +					SNDRV_PCM_FMTBIT_S24_LE | SNDRV_PCM_FMTBIT_S24_BE |
->> +					SNDRV_PCM_FMTBIT_U24_LE | SNDRV_PCM_FMTBIT_U24_BE,
->> +			.channels_min = 1,
->> +			.channels_max = 2,
->> +			.rate_min =	8000,
->> +			.rate_max = 192000,
-> 
-> Nitpick: Indentation after rate_max is also odd here, please choose one
-> of the styles, either
-> 
-> 			.rate_min = 8000,
-> 
-> or
-> 
-> 			.rate_max =     192000,
-> 
+While it's true that this won't be picked up for some time (and that's
+ok), I wanted to get Benno's eyes on it sooner than later. Is there a
+workflow (within the mailing list) for such a case, or do folks go out
+of band in this situation?
 
-Ack.
-
->> +		},
->> +		.id = USB_RX,
->> +		.name = "USB_RX",
->> +	},
->>  	{
->>  		.playback = {
->>  			.stream_name = "HDMI Playback",
->> [...]
->> diff --git a/sound/soc/qcom/qdsp6/q6routing.c b/sound/soc/qcom/qdsp6/q6routing.c
->> index 90228699ba7d..b7439420b425 100644
->> --- a/sound/soc/qcom/qdsp6/q6routing.c
->> +++ b/sound/soc/qcom/qdsp6/q6routing.c
->> @@ -435,6 +435,26 @@ static struct session_data *get_session_from_id(struct msm_routing_data *data,
->>  
->>  	return NULL;
->>  }
->> +
->> +static bool is_usb_routing_enabled(struct msm_routing_data *data)
->> +{
->> +	int i;
->> +
->> +	/*
->> +	 * Loop through current sessions to see if there are active routes
->> +	 * to the USB_RX backend DAI.  The USB offload routing is designed
->> +	 * similarly to the non offload path.  If there are multiple PCM
->> +	 * devices associated with the ASoC platform card, only one active
->> +	 * path can be routed to the USB offloaded endpoint.
->> +	 */
->> +	for (i = 0; i < MAX_SESSIONS; i++) {
->> +		if (data->sessions[i].port_id == USB_RX)
->> +			return true;
->> +	}
->> +
->> +	return false;
->> +}
-> 
-> What is different about USB_RX compared to other output ports we have in
-> Q6AFE? Obviously, we can only play one stream on an output port. But
-> doesn't the ADSP mix streams together when you have multiple routes?
-> 
-
-This patch will limit the USB_RX from being able to be mixed to multiple
-q6adm paths.
-
-> Also, this doesn't actually check for *active* routes only. It just
-> looks if any other MultiMedia DAI is configured to output to USB_RX.
-> That doesn't mean they will ever be active at the same time.
-> 
-
-Yes, the main reason being that that is the mechanism we use to populate
-the active offload path within the USB SND card mixer.
-
-> I might for example want to have MultiMedia1 and MultiMedia2 both
-> configured to output to USB_RX. Let's assume MultiMedia1 is a normal PCM
-> DAI, MultiMedia2 is a compress offload DAI. When I want to playback
-> normal audio, I go through MultiMedia1, when I want to play compressed
-> audio, I go through MultiMedia2. Only one of them active at a time.
-> Why can't I set this up statically in the mixers?
-> 
-> If you confirm that it is really impossible to have multiple streams
-> mixed together to the USB_RX output in the ADSP, then this should be a
-> runtime check instead when starting the stream IMO.
-> 
-
-We can have multiple streams being mixed together, but it will get
-confusing because it changes the definition that we had discussed about in
-the past about the overall design for the interaction w/ userspace.
-Although we (QC) only support a single USB audio device for offloading,
-there could be other situations where the audio DSP can support multiple
-devices.  The assumption is that each MM path is assigned to a USB device.
-
->> +
->>  /**
->>   * q6routing_stream_close() - Deregister a stream
->>   *
->> @@ -499,7 +519,8 @@ static int msm_routing_put_audio_mixer(struct snd_kcontrol *kcontrol,
->>  	struct session_data *session = &data->sessions[session_id];
->>  
->>  	if (ucontrol->value.integer.value[0]) {
->> -		if (session->port_id == be_id)
->> +		if (session->port_id == be_id ||
->> +		    (be_id == USB_RX && is_usb_routing_enabled(data)))
->>  			return 0;
->>  
->>  		session->port_id = be_id;
->> @@ -515,6 +536,9 @@ static int msm_routing_put_audio_mixer(struct snd_kcontrol *kcontrol,
->>  	return 1;
->>  }
->>  
->> +static const struct snd_kcontrol_new usb_mixer_controls[] = {
-> 
-> usb_rx_mixer_controls
-> 
->> +	Q6ROUTING_RX_MIXERS(USB_RX) };
->> +
->>  static const struct snd_kcontrol_new hdmi_mixer_controls[] = {
->>  	Q6ROUTING_RX_MIXERS(HDMI_RX) };
->>  
->> @@ -950,6 +974,10 @@ static const struct snd_soc_dapm_widget msm_qdsp6_widgets[] = {
->>  	SND_SOC_DAPM_MIXER("MultiMedia8 Mixer", SND_SOC_NOPM, 0, 0,
->>  		mmul8_mixer_controls, ARRAY_SIZE(mmul8_mixer_controls)),
->>  
->> +	SND_SOC_DAPM_MIXER("USB Mixer", SND_SOC_NOPM, 0, 0,
->> +			   usb_mixer_controls,
->> +			   ARRAY_SIZE(usb_mixer_controls)),
-> 
-> Please put this next to the other playback mixers above (below
-> "RX_CODEC_DMA_RX_7 Audio Mixer").
-> 
-> I think it would also be more clear if you call this "USB_RX Mixer"
-> instead for consistency with the other playback mixers. This would also
-> avoid confusion later when USB_TX is added in addition to USB_RX.
-> 
-
-Sure, will do.
-
-> 
-> Are you planning to send follow-up patches for USB recording offload
-> (USB_TX) later? Me and Luca successfully used your series to playback
-> voice call audio via the ADSP to an USB headset, recording would be also
-> needed to use this fully. :-)
-> 
-
-Yes, I will follow up after getting the bulk of the changes for playback
-merged first.  The TX side changes should be minimal, and require only
-small updates.
-
-Thanks
-Wesley Cheng
+Thanks!
+Tamir
 
