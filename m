@@ -1,82 +1,48 @@
-Return-Path: <devicetree+bounces-160413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 554FDA6EA92
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 08:34:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8311A6EAAD
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 08:38:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD0653AB705
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 07:34:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D60481898C2A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 07:37:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11936252914;
-	Tue, 25 Mar 2025 07:34:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8091C253F00;
+	Tue, 25 Mar 2025 07:36:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QuC3VJ+D"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SBGhZyhs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E599D1AA7BF
-	for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 07:34:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AD5C253B68;
+	Tue, 25 Mar 2025 07:36:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742888074; cv=none; b=uF1svaX53o8JFkeKf44uqZMKxqAXJOUjhdTlIxUTDG3PqikzE1znjYkqO+M0zOIX3ayA61/KMBfauIczIOP7dXk7e/ZbrxuppUsvKJSWM+LCJ0yODb5NW04eR7l383KBY2twExmD16RYHLEKs31yaolHL080MYHvpStu31hvrXM=
+	t=1742888191; cv=none; b=lN/PC+UMGDmJDGT6FVhxiJ8PqIH7UMfQ+vCpwOPjcNnQqVjbL27paTq9Vz9vaSQFuwsjeWZH+xuMzDz3xZyO5Gt46lTU8VM0bEQfd630hY3jzw6j08+5UMVJl1wTRBqjy5GyjAYkKbZ92BJ0YXau4NLtadBlsiTS2e5grc9XAkU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742888074; c=relaxed/simple;
-	bh=vTXsTVR0ZKu4Wr6zEkooNTCYeYEv0t+nx3LtuQ8HjOU=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=G7N17EIhu/0of6qAuae3dO3CyEb4n9Jwl9BXrkPsHBclCnqFcDMn/HbDCN1ocdq06BvHCzhpblAsKFymxda+TkSIwQFNENMn/HJXdOyvOOXyDqSHhs2zLSxgQAl1Uzo58JoYvF3S06+FApMPpQX2aAM6rLCR5IQfMnCuaiPvOVc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QuC3VJ+D; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3913d129c1aso3714645f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 00:34:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742888069; x=1743492869; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dw4NCGNv66MAAuIS/WGnZWAoOWEAhDyM06XM2XtuC0M=;
-        b=QuC3VJ+DC1Q6/lo8+GRJOLwe2rXGr+0/qOica2dXGCrol57up252+MeIv2XMpL++N7
-         a03zBlAgj/2isCL7aaqQhilYw0D9SkG9twtfPt+/3J7pa3aff0LrkqhvSenewuVkkAsi
-         8kaKQylbCMVQZLkMBryBR1Z+v2M6I4iq+4Z2GjrzG0OEn1ETC/Sc0Q7MWDD06AY0/3vU
-         f6GoHVw6h0HVwyJp+SArV48J+dVh/udkjURSYXkd3db+M/kmEWYYu+LTzYTe9PN5gUbv
-         xeXXMSBC+uNPioFTHFR7GrTGVqks28OhBoeI43bHbLWfcNQsIvhm5o/4Yxm3QWvWz8iV
-         42nA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742888069; x=1743492869;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=dw4NCGNv66MAAuIS/WGnZWAoOWEAhDyM06XM2XtuC0M=;
-        b=lNrnibSnKy35XWNSfLfqisj4vNcWq/CFOrAonnWw4s07rwhIQAbWA9x8oNgL86yxSn
-         +uuC6Nxy+o3I252xcFO6dppPtkLt4+pAwgTSyzVS8PWSDmB/j4NT1m05DwQE0ed9o7Q3
-         6dAQUh/f9+ElzJHBEBGTf5Rnbvgk2bQpQ68Wa+ml2kHvXiOanAmn04aeZOMOL2NdXA83
-         5gsWYnNlfo9Do1I5+mEKociZBmxqQkCg6HQtmPEbKFYn6nXnuY2Dd5VEB1Y/FslIJNYQ
-         ojfSm9CFknkt6DVFMUlGITvF8f9M5H80CJ3qPUXGVgJ6gHYx/Vx+e2lKmVYEZ9PcRHmg
-         TnNw==
-X-Forwarded-Encrypted: i=1; AJvYcCUGdnBwKHbbbYcpiH0346XbpwmOlIOQWqYqtUW59MdusfCfMD1DsdV9jH3Q+L/bfvigl/J5w/9ajYr/@vger.kernel.org
-X-Gm-Message-State: AOJu0YzcJSq81jTmZmdyoqkXZ4aVgOHERXOHCbE7PV499pSejVX2F23E
-	EXLMdImXQatc3ETqXi2/9ONXOb6WGYr68/QV024WiV/f2IhuL4AOugomgriE2GI=
-X-Gm-Gg: ASbGnctJHyZXCmCtJIIGBnA3F5bnOmHsC7pOWaQdZJ1Vbyi+GgS6NTz81igl9nFyuYV
-	llubTWjhlgkfGBg6azTVkLzbGlN1wJgV+xN9Olhceeud4KOf6GbLwXTkgdUSNKc6Zo9v8vH1rUS
-	teJlevX6yT40dD89jQ1PmFElWTBFbgidkSJ7JNNOrhd2EybG/9tNZUxw97t8F4uKk7GXZqk6yaB
-	fXN5ZAsQ/RVU/XUEFckM98O+Xkzg6Jeozh/Vxa5yL/LAGuOEEhJsin7p2mAycSiqKclH2Sb4wvJ
-	OqDClzxRezvJKxaQAt1QA2ha4WTqNweV+dI2u2Q0cIbGZF0hNnJGvtzOWneCTeA13CR74/1s6OB
-	qmgksrRjJTRwiJ9bL
-X-Google-Smtp-Source: AGHT+IHWBeEyvVjrXMWACuoAPAwFdFBSgnXABio9agz6uinOol23K1b216zwJPS2SDqRfbcDRCxUBA==
-X-Received: by 2002:a05:6000:1a86:b0:391:2e6a:30fa with SMTP id ffacd0b85a97d-3997959cc2amr15956115f8f.27.1742888069073;
-        Tue, 25 Mar 2025 00:34:29 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:7a:6952:5850:1802? ([2a01:e0a:3d9:2080:7a:6952:5850:1802])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3997f9b3ebcsm12812684f8f.47.2025.03.25.00.34.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Mar 2025 00:34:28 -0700 (PDT)
-Message-ID: <731f1ad1-8979-49a1-b168-56e24b94f4fb@linaro.org>
-Date: Tue, 25 Mar 2025 08:34:28 +0100
+	s=arc-20240116; t=1742888191; c=relaxed/simple;
+	bh=448kB14eOCTQmz4QTqHOt7UiZQ0V5/amZmylJyoge28=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bltRQysc0EBcaD6EeXV3/sCoCHpADre+l5LX6c1g34EkuoYzuuYdiotAZdduYCGxBaKe75vHD4d0BCSCzz06S+mp5nHBcVTACSFoPt6ex0ARRBm2JGsFv3bghek3Idz7ZhQS82999XCsgXy9yfE3B+kVPJeUAisHnLuviNJg1bs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SBGhZyhs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAEB0C4CEE8;
+	Tue, 25 Mar 2025 07:36:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742888190;
+	bh=448kB14eOCTQmz4QTqHOt7UiZQ0V5/amZmylJyoge28=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=SBGhZyhsbN1ZIDLL8h8H6PuG7KZpa6aHo+Bx1VaFY7nzLFbU1uEO/KRexMGuuyL3A
+	 v51O9sqfOn7HBll/gOI2F2p5PhzsdZe38QwlknfTu1bLWS55vbBMbz+nrWFOCvRCbu
+	 GsjooB/oKXQvnGAsXBlWMXcwG3mOsAjmOsF+qjytbcX7ZXuNgrGttvUHFnkiNKry3X
+	 N2p3QLCVJ4Dmy1k7SzolAWNul4ZOxJgR1Wgye/9f0nnrNoAmFN0bafk87TjLk6uVp3
+	 eLlpuFateThpHKcEFePZd3t0rzrZL/Jk4NsYwnasqMcj/lszyfdojYDgaGqnoJFpVH
+	 sao/YoAALQg4w==
+Message-ID: <b3a5ec89-0125-4b01-8cca-69b9985b6089@kernel.org>
+Date: Tue, 25 Mar 2025 08:36:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,164 +50,90 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 2/6] phy: qcom-qmp-ufs: Add PHY Configuration support
- for sm8750
-To: Nitin Rawat <quic_nitirawa@quicinc.com>,
- Melody Olvera <quic_molvera@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
- Bart Van Assche <bvanassche@acm.org>, Bjorn Andersson
- <andersson@kernel.org>, Andy Gross <agross@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
- Trilok Soni <quic_tsoni@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+Subject: Re: [PATCH v3 1/7] dt-bindings: input: syna,rmi4: document
+ syna,pdt-fallback-desc
+To: David Heidelberg <david@ixit.cz>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, "Jason A. Donenfeld" <Jason@zx2c4.com>,
+ Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+ Vincent Huang <vincent.huang@tw.synaptics.com>, linux-input@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-scsi@vger.kernel.org, Manish Pandey <quic_mapa@quicinc.com>,
- Linux regressions mailing list <regressions@lists.linux.dev>
-References: <20250310-sm8750_ufs_master-v2-0-0dfdd6823161@quicinc.com>
- <20250310-sm8750_ufs_master-v2-2-0dfdd6823161@quicinc.com>
- <1526d8a4-9606-4fb3-bb86-79bd8eb8a789@linaro.org>
- <430ed11c-0490-45be-897b-27cad9682371@quicinc.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <430ed11c-0490-45be-897b-27cad9682371@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ Caleb Connolly <caleb.connolly@linaro.org>
+References: <20250308-synaptics-rmi4-v3-0-215d3e7289a2@ixit.cz>
+ <20250308-synaptics-rmi4-v3-1-215d3e7289a2@ixit.cz>
+ <20250310-hissing-vagabond-pegasus-cc8aed@krzk-bin>
+ <3c5e12fc-eb91-46e8-a558-9896f0bdcab4@ixit.cz>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <3c5e12fc-eb91-46e8-a558-9896f0bdcab4@ixit.cz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi,
-
-On 25/03/2025 04:12, Nitin Rawat wrote:
-> 
-> 
-> On 3/24/2025 11:40 PM, Neil Armstrong wrote:
->> Hi,
->>
->> On 10/03/2025 22:12, Melody Olvera wrote:
->>> From: Nitin Rawat <quic_nitirawa@quicinc.com>
+On 24/03/2025 19:00, David Heidelberg wrote:
+> On 10/03/2025 10:45, Krzysztof Kozlowski wrote:
+>> On Sat, Mar 08, 2025 at 03:08:37PM +0100, David Heidelberg wrote:
+>>> From: Caleb Connolly <caleb.connolly@linaro.org>
 >>>
->>> Add SM8750 specific register layout and table configs. The serdes
->>> TX RX register offset has changed for SM8750 and hence keep UFS
->>> specific serdes offsets in a dedicated header file.
->>>
->>> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
->>> Co-developed-by: Manish Pandey <quic_mapa@quicinc.com>
->>> Signed-off-by: Manish Pandey <quic_mapa@quicinc.com>
->>> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
->>> ---
->>>   drivers/phy/qualcomm/phy-qcom-qmp-qserdes-com-v6.h |   7 +
->>>   .../qualcomm/phy-qcom-qmp-qserdes-txrx-ufs-v7.h    |  67 ++++++++
->>>   drivers/phy/qualcomm/phy-qcom-qmp-ufs.c            | 180 +++++++++++ +++++++++-
->>>   3 files changed, 246 insertions(+), 8 deletions(-)
->>>
+>>> This new property allows devices to specify some register values which
+>>> are missing on units with third party replacement displays. These
+>>> displays use unofficial touch ICs which only implement a subset of the
+>>> RMI4 specification.
 >>
->> <snip>
->>
->> This change breaks UFS on the SM8550-HDK:
->>
->> [    7.418161] qcom-qmp-ufs-phy 1d80000.phy: phy initialization timed-out
->> [    7.427021] phy phy-1d80000.phy.0: phy poweron failed --> -110
->> [    7.493514] ufshcd-qcom 1d84000.ufshc: Enabling the controller failed
->> ...
+>> These are different ICs, so they have their own compatibles. Why this
+>> cannot be deduced from the compatible?
 > 
-> Hi Neil,
-> 
-> Thanks for testing and reporting.
-> I did tested this patch on SM8750 MTP, SM8750 QRD, SM8650 MTP, SM8550 MTP and SM8850 QRD all of these have rate B and hence no issue.
-> 
-> Unfortunately only SM8550 HDK platform which UFS4.0 and RateA couldn't get tested. As we know SM8550 with gear 5 only support rate A.
-> 
-> I was applying rate B setting without checking for mode type. Since
-> SM8550 is only platform which support only rate A with UFS4.0 . Hence
-> this could be the issue.
-> 
-> Meanwhile can you help test at your end with below change and let me if it resolves for you. I will also try at my end to test as well.
-> 
-> =============================================================================
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-> index 45b3b792696e..b33e2e2b5014 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-> @@ -1754,7 +1754,8 @@ static void qmp_ufs_init_registers(struct qmp_ufs *qmp, const struct qmp_phy_cfg
->                  qmp_ufs_init_all(qmp, &cfg->tbls_hs_overlay[i]);
->          }
-> 
-> -       qmp_ufs_init_all(qmp, &cfg->tbls_hs_b);
-> +       if (qmp->mode == PHY_MODE_UFS_HS_B)
-> +               qmp_ufs_init_all(qmp, &cfg->tbls_hs_b);
->   }
-> 
-> =================================================================================
+> Yes, but these identify as the originals.
 
-With this change the UFS works again.
 
-Thanks,
-Neil
+It does not matter how they identify. You have the compatible for them.
+If you cannot add compatible for them, how can you add dedicated
+property for them?
 
-> 
-> 
-> Thanks,
-> Nitin
-> 
->>
->> GIT bisect points to:
->> b02cc9a176793b207e959701af1ec26222093b05 is the first bad commit
->> Author: Nitin Rawat <quic_nitirawa@quicinc.com>
->> Date:   Mon Mar 10 14:12:30 2025 -0700
->>
->>      phy: qcom-qmp-ufs: Add PHY Configuration support for sm8750
->>
->> bisect log:
->> git bisect start 'ff7f9b199e3f' 'v6.14-rc1'
->> git bisect good 36c18c562846300d4e59f1a65008800b787f4fe4
->> git bisect good 85cf0293c3a75726e7bc54d3efdc5dc783debc07
->> git bisect good b2cd73e18cec75f917d14b9188f82a2fdef64ebe
->> git bisect bad b247639d33ad16ea76797268fd0eef08d8027dfd
->> git bisect good 9b3f2dfdad1cc0ab90a0fa371c8cbee08b2446e3
->> git bisect bad 8dc30c3e4cf8c4e370cf08bd09eb87b0deccd3de
->> git bisect bad 100aeb03a437f30300894091627e4406605ee3cb
->> git bisect bad b2a1a2ae7818c9d8da12bf7b1983c8b9f5fb712b
->> git bisect good 8f831f272b4c89aa13b45bd010c2c18ad97a3f1b
->> git bisect good e45cc62c23428eefbae18a9b4d88d10749741bdd
->> git bisect bad ebf198f17b5ac967db6256f4083bbcbdcc2a3100
->> git bisect good 12185bc38f7667b1d895b2165a8a47335a4cf31b
->> git bisect bad e46e59b77a9e6f322ef1ad08a8874211f389cf47
->> git bisect bad b02cc9a176793b207e959701af1ec26222093b05
->>
->> CI run: https://git.codelinaro.org/linaro/qcomlt/ci/staging/cdba- tester/-/jobs/229880#L1281
->>
->> #regzbot introduced: b02cc9a17679
->>
->> Neil
-> 
-
+Best regards,
+Krzysztof
 
