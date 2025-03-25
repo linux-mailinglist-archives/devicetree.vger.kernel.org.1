@@ -1,112 +1,144 @@
-Return-Path: <devicetree+bounces-160419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3C46A6EAD3
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 08:50:11 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68174A6EADD
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 08:54:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4521316BBD8
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 07:50:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A6CD27A393F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 07:52:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC2E41F03DC;
-	Tue, 25 Mar 2025 07:50:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F8251FE471;
+	Tue, 25 Mar 2025 07:53:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gjUpSktb"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LfSXwvPj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85D328460;
-	Tue, 25 Mar 2025 07:50:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ECD42F3B;
+	Tue, 25 Mar 2025 07:53:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742889006; cv=none; b=Q/F5ypSbomNE+TVecq8IgZPq42VGnba2Uo1btm8OWee0ilpRtz780QV+DGFujW9BAOCAAS+HF3uht6WL8BjGHYMRNyFQ0vHunXHgr011HpCp27oo/Pl86glUiKDEm5NYiBYvTgajYe128eFngmBsSYM3p0gYC9UW4hTuWPB0e+0=
+	t=1742889233; cv=none; b=i3GOLhZWdtTXODiGTc26if5FMFR7zdI8mzR4VrptUgzjuOxcwbpzSLpP6jQffZp7gQ8nbohI+wIRjo9hXUG+ZavzWJaAwFAuxoFxtVaTT7TPEE0NQkpt2RbXK4isRUA/ctOtMEMhaySgeVsiyAZBwBL8shFKzGEboHybD9N58Cw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742889006; c=relaxed/simple;
-	bh=gl7aw1gXR43jv6B8C8DV/bzy1B8aMUYob8A9EmYJ0dI=;
-	h=Content-Type:Date:Message-Id:Subject:Cc:From:To:References:
-	 In-Reply-To; b=pL1KHKT6fXPMgs034ab7bfq+GadCsYwHcdJCT736VCVs2BAHA4PlPlRR96igu+0U7znFyvxsHKzVcpaYNAWAbLY5EAP5spts/Uk7MREIr6114ES486CRG7PydR3vWObuUSmw9/9FBBAmdg3JevDl/3+ImF7nDDFKleKaV8g4HiI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gjUpSktb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDB1AC4CEE4;
-	Tue, 25 Mar 2025 07:50:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742889006;
-	bh=gl7aw1gXR43jv6B8C8DV/bzy1B8aMUYob8A9EmYJ0dI=;
-	h=Date:Subject:Cc:From:To:References:In-Reply-To:From;
-	b=gjUpSktbafio8QcZYsqZxOSgzLTrdgCWMi+nnIqkRovKENgOHSdJcxt7Fcp232cO9
-	 Go0SzbrvCB7Dvom6tTe7lbLJssaQKa4U1+H6HFwEHcXFjjzulnpnv06RnAFd4d+Sqm
-	 WDVCS6Bg8u+lSbcViC0F7oqauQMkG6YjCkb7tGHju3Fose+a8XtdpV4E8ih5eo2Ne+
-	 NsSEfqV2F/kGdiTB1FDdMOsFLxJq+Don13mwr6jWAqgKmpf3rodR5pT75KVs0STX32
-	 Ahq/iyqClRturu+LvUEx4i8a9BMQ86mIa9/EONx8v73mOWQgpUAHC6edo9FUd7NM32
-	 TB/VPu7WEWogg==
-Content-Type: multipart/signed;
- boundary=b5386466c50b7c8f35d2b14e7321876c2e3b218f6e31ca8e0fea76d5f944;
- micalg=pgp-sha384; protocol="application/pgp-signature"
-Date: Tue, 25 Mar 2025 08:50:02 +0100
-Message-Id: <D8P6L65D69PS.1VQKHJJA8TNL4@kernel.org>
-Subject: Re: [PATCH v5 06/11] gpio: regmap: Allow to allocate regmap-irq
- device
-Cc: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
- <linux-pwm@vger.kernel.org>, <andriy.shevchenko@intel.com>,
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>
-From: "Michael Walle" <mwalle@kernel.org>
-To: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>, "Lee Jones"
- <lee@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Kamel Bouhara"
- <kamel.bouhara@bootlin.com>, "Linus Walleij" <linus.walleij@linaro.org>,
- "Bartosz Golaszewski" <brgl@bgdev.pl>, "Dmitry Torokhov"
- <dmitry.torokhov@gmail.com>, =?utf-8?q?Uwe_Kleine-K=C3=B6nig?=
- <ukleinek@kernel.org>, "Mark Brown" <broonie@kernel.org>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, "Danilo Krummrich" <dakr@kernel.org>
-X-Mailer: aerc 0.16.0
-References: <20250318-mdb-max7360-support-v5-0-fb20baf97da0@bootlin.com>
- <20250318-mdb-max7360-support-v5-6-fb20baf97da0@bootlin.com>
- <D8K23TCWC5TO.3T1YPKL3G0OY5@kernel.org>
- <D8KYF2DZOBT4.1337YU51E0ZKH@bootlin.com>
-In-Reply-To: <D8KYF2DZOBT4.1337YU51E0ZKH@bootlin.com>
+	s=arc-20240116; t=1742889233; c=relaxed/simple;
+	bh=XrQaZRjO8ew439JNY1EllTC2gQVCKQ4kEK6eziMXiUY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ghVOMX5z4g3BWXfti20GHWirY4wfORAwurqJD2F1hp8ijD8hZi39jcKc5zu69Abz+0/3KZmxB6xZ6DMQ7AJt4hamSxSbuyMFxu/q66ALJoo9khCfpv2DtOATIO21tXHc5Pg4FTeMnqVhUthGXhMW0Pg0UkdxKoiAV2bDTsKWqgQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LfSXwvPj; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52P5vVsv002251;
+	Tue, 25 Mar 2025 07:53:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=CIcq8a62kenyIjAeBivGBN
+	WGYfvvNjBtVMn6t23wi/s=; b=LfSXwvPjxTmv+0CVb5KPDT25SK1mmOqXKhseXr
+	wipmJJ7KImGEuWDbHN6H0/FzTqhbS98PKkOKLj1ur2pvFuirnyaRuM33jJkBNiP8
+	OtsSUWpgKhYs8UUuzi4wvQEayylCtZtxXzQu7QUhD4vtnMWuIAKlTtYkEmmzp9wW
+	xmtey5LGIok7UhU+ShpYu9P9EtkKL6b8ZlcpUXxb8mL+rnGqGooZ69+aJObv4S3m
+	aUGubAmIrGQ4mLFzYTDPMcNVhAhuF03Qc2nShh9ZeUfXkG20n2PWiHt7gNm1gEac
+	dwUuEbsxKERRyXmR4ay78ByS9HyXUR+YFlSbgpi+V+bJjvGg==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45hn9wex3f-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 25 Mar 2025 07:53:47 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52P7rk0q016200
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 25 Mar 2025 07:53:46 GMT
+Received: from localhost.localdomain (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 25 Mar 2025 00:53:43 -0700
+From: Stone Zhang <quic_stonez@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_miaoqing@quicinc.com>,
+        <quic_zhichen@quicinc.com>, <quic_yuzha@quicinc.com>,
+        Stone Zhang
+	<quic_stonez@quicinc.com>
+Subject: [PATCH v4 0/2] Enable WLAN for qcs8300-ride
+Date: Tue, 25 Mar 2025 15:53:29 +0800
+Message-ID: <20250325075331.1662306-1-quic_stonez@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Q8OygXmS0UOJzZwrgHpZ9mRnwWh6VFsz
+X-Proofpoint-ORIG-GUID: Q8OygXmS0UOJzZwrgHpZ9mRnwWh6VFsz
+X-Authority-Analysis: v=2.4 cv=CPoqXQrD c=1 sm=1 tr=0 ts=67e2610b cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=Yeman0STanS9RNZiH04A:9
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-25_03,2025-03-21_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxlogscore=831
+ spamscore=0 priorityscore=1501 suspectscore=0 bulkscore=0 mlxscore=0
+ lowpriorityscore=0 malwarescore=0 adultscore=0 phishscore=0
+ impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503250054
 
---b5386466c50b7c8f35d2b14e7321876c2e3b218f6e31ca8e0fea76d5f944
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+Enable the WLAN subsystem of the qcs8300 ride board. The WCN6855 wireless
+chip is attached to PCIe interface 0.
 
-Hi,
+This patch series depends on:
+- PCIe
+https://lore.kernel.org/all/20250310063103.3924525-1-quic_ziyuzhan@quicinc.com/
+- PCIe SMMU
+https://lore.kernel.org/all/20250206-qcs8300-pcie-smmu-v1-1-8eee0e3585bc@quicinc.com/
 
-> > > +#ifdef CONFIG_GPIOLIB_IRQCHIP
-> >
-> > Why do we need this ifdef?
-> >
->
-> Hum yes, on second thought we probably need to depend on
-> CONFIG_REGMAP_IRQ here.
+Changes in v4:
+- Rename the symbol pcieport0 to pcie0_port0 (Konrad)
+- Adjust the property order in node pcie0_port0 (Konrad)
+- Add to the commit message mentioning FW and BDF used by QCS8300 (Dmitry)
+- Specify the calibration data using the correct variant (Dmitry)
+- Link to v3: https://lore.kernel.org/all/20250318093350.2682132-1-quic_stonez@quicinc.com/
 
-But then, you'd also require the regmap_irq support for chips that
-don't support IRQs at all. devm_regmap_add_irq_fwnode() seems to be
-missing a stub version.
+Changes in v3:
+- Complete the nodes property definitions according to DTS binding requirements (Bjorn)
+- Link to v2: https://lore.kernel.org/all/20250227065439.1407230-1-quic_stonez@quicinc.com/
 
--michael
+Changes in v2:
+- Rename the nodes name according to DTS coding style (Konrad & Krzysztof)
+- Provide regulator-min/max-microvolt to the regulators (Konrad)
+- Link to v1: https://lore.kernel.org/all/20250210062910.3618336-1-quic_stonez@quicinc.com/
 
---b5386466c50b7c8f35d2b14e7321876c2e3b218f6e31ca8e0fea76d5f944
-Content-Type: application/pgp-signature; name="signature.asc"
+Stone Zhang (2):
+  arm64: dts: qcom: qcs8300: add a PCIe port for WLAN
+  arm64: dts: qcom: qcs8300-ride: enable WLAN on qcs8300-ride
 
------BEGIN PGP SIGNATURE-----
+ arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 108 ++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/qcs8300.dtsi     |   9 ++
+ 2 files changed, 117 insertions(+)
 
-iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCZ+JgKhIcbXdhbGxlQGtl
-cm5lbC5vcmcACgkQEic87j4CH/gQDgGAu0gZkp5tnVphjXMlX9N85/T1hedWo0sj
-TAci3j5/eirJaHtI2qhUzGDVOpMtgKQjAYCkk3nqGplW+nghtvFBMgj0mKsadvwV
-or/OTN6lsHFE7+kc8CUvHgHMA9imk5i/txQ=
-=4ggC
------END PGP SIGNATURE-----
 
---b5386466c50b7c8f35d2b14e7321876c2e3b218f6e31ca8e0fea76d5f944--
+base-commit: da920b7df701770e006928053672147075587fb2
+prerequisite-patch-id: c87e5f1cb29568c24566e8a960d6c8dd0be5969d
+prerequisite-patch-id: f80a486c6e34dfb62f09faf0eb3fae586cda85ec
+prerequisite-patch-id: 0e2cb7a4d8779539a58261111deea6bd6b750f6f
+prerequisite-patch-id: 8b9034fca96bd8edb5c4eca5b88811df7206120c
+prerequisite-patch-id: bb6ec99692ade9d7c89f91b5507cc0ee248e43dd
+prerequisite-patch-id: 32c051e9f77de6b53a4f4539ce49dde9859002ea
+prerequisite-patch-id: ccfa56b7d00a1139fbbdccdc13496bfc98440d5e
+-- 
+2.34.1
+
 
