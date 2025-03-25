@@ -1,174 +1,260 @@
-Return-Path: <devicetree+bounces-160671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160672-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07B9FA7080C
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 18:23:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A64FA70820
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 18:25:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BBC93ABA52
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 17:22:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B3A318898DE
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 17:26:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3A161A5B9E;
-	Tue, 25 Mar 2025 17:23:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C55E725DD07;
+	Tue, 25 Mar 2025 17:25:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XBu/ekpS"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="djRgAH9Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD8D52E3387;
-	Tue, 25 Mar 2025 17:23:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85DBB257AF2;
+	Tue, 25 Mar 2025 17:25:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742923384; cv=none; b=S9hH6yW5L0vSX88O+7OaN0vLY92akEEGchLdjjFrl1VEftjDeyWr8055zEEn/Ma4iC2QOEmScaekwZ0MMiKsyEIi/wuUbnHWtqYpjmzQr9xCQIvXTh3JeH9NwpGtwiVc7OXWiqT5hqMdNDjYbcOIX2z6OvayTz2PDoZ5NehoXzI=
+	t=1742923551; cv=none; b=q7U2IeiopDa6/dC6ooXOLw3irpoBupcn2hfeBlzQK4GL75OJMtSw+UNZ6JTX95VU2seqtvUj2/9284UXX5clNy6aZ/fWC2QZinPwSldFalDpKbTS9887qSKB98MM32rqKJy4cMMwsyxwDJWOaQUudYVNVFijZzV6HgDIfR4uouE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742923384; c=relaxed/simple;
-	bh=tdpAAh+GOKYtqIhZ1RtVRehyfxTqXq+fJX7nN8hRojc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Gb+wi2u6b3L2RYGw41Lagpy/zdCQKyvbasQBGkmhjseo+9OEpv6CAGLhYyIIlXGYBEp8NwXi/tNmcB4qKKty8LaS4mV2PaDfHVmrUp9s/iEmoR+fGmJL9DZmJqiVIkMT/PdxoxItP5x5eaaBXyrIVFYiLt9fW4OEzL/HnTtNUeo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XBu/ekpS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61580C4CEE4;
-	Tue, 25 Mar 2025 17:23:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742923384;
-	bh=tdpAAh+GOKYtqIhZ1RtVRehyfxTqXq+fJX7nN8hRojc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XBu/ekpSLgvRCL1/Km5faa7bibk0xOJBCUZmQzYgWRR/AZAlCnngp5feZSXORaZx8
-	 GRc7p861/6x9PkdvVySUtsZ1f8pbNl4Q+j+6/NM+jKGC/vUHT3Whq1gc6adztpDJX0
-	 Aq5O7LolMfuZUuBZl/Ibd1TwmbXGI4PXn7R2iqmyZ3AHlDhRH6C3MQuLObNoQqwblB
-	 zxIfflPowB69jZ74bPy117Tda0ez3bkZBcfgxkgOfPTsY09VskXVJo3ZgrVrsBsWn5
-	 8bCXV8E5X8iJg8upQcClUJP/WYaQ+rmMpQ6y7fJyli0WVD9a+fJ8a/qWO6LqeUY03P
-	 i959wmVvDVQcg==
-Date: Tue, 25 Mar 2025 17:23:00 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 01/14] dt-bindings: regulator: Add ROHM BD96802 PMIC
-Message-ID: <20250325-universe-jigsaw-61da10ad3f77@spud>
-References: <cover.1742802856.git.mazziesaccount@gmail.com>
- <2cb4d103d011f0d4293f6ef9307cef57709263d9.1742802856.git.mazziesaccount@gmail.com>
+	s=arc-20240116; t=1742923551; c=relaxed/simple;
+	bh=S6T4TmlUdE7gvOPo3bQyO4uG51sRLu56OEoAsFNC4ek=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
+	 References:In-Reply-To; b=rIzGdSk6a2wN13ym1YSnz593dNTtZEQ6K7dOKZ7v8znytSx6c78Do2k5Mr6rFWBPjHg73BrJYdl0FuSUv5MV9UNyJM6Vv8pueXEOfS5bfRRNjXqmKOK9OzrLoV7yigXMz2NRlTlx2XKuyXQdiqIWACIOvNAlP9BDAWahDGLYGKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=djRgAH9Y; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 49E3A4433E;
+	Tue, 25 Mar 2025 17:25:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1742923540;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=LPvEeQoVwOan9vRz2MGLJjUipurACCpBk5gQyvnta10=;
+	b=djRgAH9YaswUdPWsaCe87EAlbswo5U9GhK3K6k5EYX2bvj6cj9H9AR++Q4xTrMjSQ5oaeG
+	rcgZDAWu9heu7gNHnzttKf1INMvKr+9LZuo1gvCZAUY1oDoIRAVMCJ/WLARxMlHSLL4LcR
+	uR4n0biXynNB5c/tk1wx15MFRJG8J1WrjS72JV1JIVc9wCjBi/7ysxM2w4T8zo1cH8CWaf
+	qJDgx/MHlD8/MDD2UNoAyImdQnzenXWLo9pfgfF1S/ruhg5GNfwtM4XkqyykzaobOQR38a
+	fZSaHTaOlra0UWasXGnvQYGeOOxYV9B89I4/ap9vV1559suWOMT3MzmRzHpevQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="N6UMaAbFGARVRbGb"
-Content-Disposition: inline
-In-Reply-To: <2cb4d103d011f0d4293f6ef9307cef57709263d9.1742802856.git.mazziesaccount@gmail.com>
-
-
---N6UMaAbFGARVRbGb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 25 Mar 2025 18:25:35 +0100
+Message-Id: <D8PITUNTWTXA.366TNSXDUL48G@bootlin.com>
+Cc: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+ <linux-mips@vger.kernel.org>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>
+To: "Claudiu Beznea" <claudiu.beznea@tuxon.dev>, "Andrew Lunn"
+ <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, "Eric
+ Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>, "Paolo
+ Abeni" <pabeni@redhat.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Nicolas Ferre" <nicolas.ferre@microchip.com>, "Paul Walmsley"
+ <paul.walmsley@sifive.com>, "Palmer Dabbelt" <palmer@dabbelt.com>, "Albert
+ Ou" <aou@eecs.berkeley.edu>, "Alexandre Ghiti" <alex@ghiti.fr>, "Samuel
+ Holland" <samuel.holland@sifive.com>, "Richard Cochran"
+ <richardcochran@gmail.com>, "Russell King" <linux@armlinux.org.uk>, "Thomas
+ Bogendoerfer" <tsbogend@alpha.franken.de>, "Vladimir Kondratiev"
+ <vladimir.kondratiev@mobileye.com>, "Gregory CLEMENT"
+ <gregory.clement@bootlin.com>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH net-next 10/13] net: macb: Add "mobileye,eyeq5-gem"
+ compatible
+X-Mailer: aerc 0.20.1-0-g2ecb8770224a
+References: <20250321-macb-v1-0-537b7e37971d@bootlin.com>
+ <20250321-macb-v1-10-537b7e37971d@bootlin.com>
+ <ea5de004-a26c-43a1-9408-0089fa18b44d@tuxon.dev>
+In-Reply-To: <ea5de004-a26c-43a1-9408-0089fa18b44d@tuxon.dev>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdduieefvdehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkvefvhffuofhfjgesthhqredtredtjeenucfhrhhomhepvfhhrohoucfnvggsrhhunhcuoehthhgvohdrlhgvsghruhhnsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeigfelffeuffetteetuddufffghefhudeuteeigeekteevgeeileejgfdvffelheenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepjeejrddufeehrdekuddrieehnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepjeejrddufeehrdekuddrieehpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehthhgvohdrlhgvsghruhhnsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvjedprhgtphhtthhopegtlhgruhguihhurdgsvgiinhgvrgesthhugihonhdruggvvhdprhgtphhtthhopegrnhgurhgvfidonhgvthguvghvsehluhhnnhdrtghhpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopegvughumhgriigvthesghhoohhglhgvrdgtohhmpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrg
+ hdprhgtphhtthhopehprggsvghnihesrhgvughhrghtrdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrgh
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On Mon, Mar 24, 2025 at 10:54:44AM +0200, Matti Vaittinen wrote:
-> BD96802Qxx-C is an automotive grade configurable Power Management
-> Integrated Circuit supporting Functional Safety features for application
-> processors, SoCs and FPGAs. BD96802 is controlled via I2C, provides two
-> interrupt lines and has two controllable buck regulators.
->=20
-> The BD96802 belongs to the family of ROHM Scalable PMICs and is intended
-> to be used as a companion PMIC for the BD96801.
->=20
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
->=20
-> ---
-> Revision history:
->  v1 =3D> :
->   - No changes
-> ---
->  .../regulator/rohm,bd96802-regulator.yaml     | 44 +++++++++++++++++++
->  1 file changed, 44 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd96=
-802-regulator.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/regulator/rohm,bd96802-reg=
-ulator.yaml b/Documentation/devicetree/bindings/regulator/rohm,bd96802-regu=
-lator.yaml
-> new file mode 100644
-> index 000000000000..671eaf1096d3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/rohm,bd96802-regulator.=
-yaml
-> @@ -0,0 +1,44 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/rohm,bd96802-regulator.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ROHM BD96802 Power Management Integrated Circuit regulators
-> +
-> +maintainers:
-> +  - Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-> +
-> +description:
-> +  This module is part of the ROHM BD96802 MFD device. For more details
-> +  see Documentation/devicetree/bindings/mfd/rohm,bd96802-pmic.yaml.
-> +
-> +  The regulator controller is represented as a sub-node of the PMIC node
-> +  on the device tree.
-> +
-> +  Regulator nodes should be named to buck1 and buck2.
+On Mon Mar 24, 2025 at 9:18 AM CET, Claudiu Beznea wrote:
+> On 21.03.2025 21:09, Th=C3=A9o Lebrun wrote:
+>> Add support for the two GEM instances inside Mobileye EyeQ5 SoCs, using
+>> compatible "mobileye,eyeq5-gem". With it, add a custom init sequence
+>> that accesses two system-controller registers.
+>>=20
+>> Noteworthy: NET_IP_ALIGN=3D2 on MIPS but the hardware does not align and
+>> low bits aren't configurable, so we cannot respect the requested IP
+>> header alignment.
+>>=20
+>> Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+>> ---
+>>  drivers/net/ethernet/cadence/macb_main.c | 95 +++++++++++++++++++++++++=
++++++++
+>>  1 file changed, 95 insertions(+)
+>>=20
+>> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethe=
+rnet/cadence/macb_main.c
+>> index 79161d559166478f85a6f8294d488ed961d9be7f..9f2a5bf9a5ebca5941229bd9=
+6091a0fb96f0607d 100644
+>> --- a/drivers/net/ethernet/cadence/macb_main.c
+>> +++ b/drivers/net/ethernet/cadence/macb_main.c
 
-Is it really needed to add a new binding for this, rather than including
-it in the mfd binding, particularly when this isn't actually a binding
-for the regulator but the pattern section applies to the mfd.
+[...]
 
-> +
-> +patternProperties:
-> +  "^buck[1-2]$":
-> +    type: object
-> +    description:
-> +      Properties for single BUCK regulator.
-> +    $ref: regulator.yaml#
-> +
-> +    properties:
-> +      rohm,initial-voltage-microvolt:
-> +        description:
-> +          Initial voltage for regulator. Voltage can be tuned +/-150 mV =
-=66rom
-> +          this value. NOTE, This can be modified via I2C only when PMIC =
-is in
-> +          STBY state.
-> +        minimum: 500000
-> +        maximum: 3300000
-> +
-> +      rohm,keep-on-stby:
-> +        description:
-> +          Keep the regulator powered when PMIC transitions to STBY state.
-> +        type: boolean
-> +
-> +    unevaluatedProperties: false
-> +
-> +additionalProperties: false
-> --=20
-> 2.49.0
->=20
+>> +static int eyeq5_init(struct platform_device *pdev)
+>> +{
+>> +	struct device *dev =3D &pdev->dev;
+>> +	struct net_device *netdev =3D platform_get_drvdata(pdev);
+>> +	struct macb *bp =3D netdev_priv(netdev);
+>> +	struct device_node *np =3D dev->of_node;
+>> +	unsigned int gp, sgmii;
+>> +	struct regmap *regmap;
+>> +	unsigned int args[2];
+>> +	unsigned int reg;
+>> +	int ret;
+>> +
+>> +	regmap =3D syscon_regmap_lookup_by_phandle_args(np, "mobileye,olb", 2,=
+ args);
+>> +	if (IS_ERR(regmap))
+>> +		return PTR_ERR(regmap);
+>> +
+>> +	gp =3D args[0];
+>> +	sgmii =3D args[1];
+>> +
+>> +	/* Forced reset */
+>> +	regmap_write(regmap, gp, 0);
+>> +	regmap_write(regmap, sgmii, 0);
+>> +	usleep_range(5, 20);
+>> +
+>> +	if (bp->phy_interface =3D=3D PHY_INTERFACE_MODE_SGMII) {
+>> +		regmap_write(regmap, gp, EYEQ5_OLB_GP_SGMII_MODE);
+>> +
+>> +		reg =3D EYEQ5_OLB_SGMII_PWR_EN | EYEQ5_OLB_SGMII_RST_DIS |
+>> +		      EYEQ5_OLB_SGMII_PLL_EN;
+>> +		regmap_write(regmap, sgmii, reg);
+>> +
+>> +		ret =3D regmap_read_poll_timeout(regmap, sgmii, reg,
+>> +					       reg & EYEQ5_OLB_SGMII_PLL_ACK,
+>> +					       1, 100);
+>> +		if (ret)
+>> +			return dev_err_probe(dev, ret, "PLL timeout");
+>> +
+>> +		regmap_read(regmap, sgmii, &reg);
+>> +		reg |=3D EYEQ5_OLB_SGMII_PWR_STATE | EYEQ5_OLB_SGMII_SIG_DET_SW;
+>> +		regmap_write(regmap, sgmii, reg);
+>
+> You can use regmap_update_bits() here.
+>
+>> +	}
+>> +
+>> +	regmap_read(regmap, gp, &reg);
+>> +	reg &=3D ~EYEQ5_OLB_GP_RGMII_DRV;
+>> +	if (phy_interface_mode_is_rgmii(bp->phy_interface))
+>> +		reg |=3D FIELD_PREP(EYEQ5_OLB_GP_RGMII_DRV, 0x9);
+>> +	reg |=3D EYEQ5_OLB_GP_TX_SWRST_DIS | EYEQ5_OLB_GP_TX_M_CLKE;
+>> +	reg |=3D EYEQ5_OLB_GP_SYS_SWRST_DIS | EYEQ5_OLB_GP_SYS_M_CLKE;
+>> +	regmap_write(regmap, gp, reg);
+>
+> To me it looks like this code could be abstracted as a phy driver. E.g.,
+> check the init_reset_optional() and its usage on "cdns,zynqmp-gem" (phy
+> driver here: drivers/phy/xilinx/phy-zynqmp.c).
 
+I thought about that question. Options to implement that sequence are:
 
+ - (1) Implement a separate PHY driver, what you are proposing. I just
+   made a prototype branch to see what it'd look like. Nothing too
+   surprising; mostly the above sequence is copy-pasted inside
+   phy_init|power_on(). I see two issues:
 
---N6UMaAbFGARVRbGb
-Content-Type: application/pgp-signature; name="signature.asc"
+    - First, a practical one. This adds a lot of boilerplate for no
+      obvious benefit compared to a raw registers read/write sequence
+      inside macb_config->init().
 
------BEGIN PGP SIGNATURE-----
+      The main reason for that boilerplate is to allow reuse of a PHY
+      across MACs; here we already know that cannot be useful because
+      the EyeQ5 has two GEMs and nothing else. Those registers are
+      EyeQ5-specific.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ+LmdAAKCRB4tDGHoIJi
-0u3rAQDqPdjt2xmzQXWuOlOyE35zGkdVZPNTqss92jW4buMwSQEA1Ch7Z2stdsZe
-bC0NRceECazgAR3MiINbjBXChBucags=
-=6Hyy
------END PGP SIGNATURE-----
+    - Second, a semantic one. The registers we are touching are *not*
+      the PHY's registers. They are configuring the PHY's integration:
+      its input PLL, resets, etc.
 
---N6UMaAbFGARVRbGb--
+ - (2) Second, taking into account that what we are configuring isn't
+   the PHY itself but its resources, we could try modeling each
+   individual register+field as a reset / clock / pin control (there is
+   some drive strength in here, *I think*). Issue: this would get
+   messy, fast.
+    - A single register would expose many resources.
+    - The sequence in macb_config->init() would need to be the exact
+      same order. IE we can't abstract much.
+
+   Something like this pseudocode (which is a bad idea, we'd all agree
+   here):
+
+      reset_deassert(bp->eq5_sgmii_reset);
+      reset_deassert(bp->eq5_sgmii_reset_pwr);
+      reset_deassert(bp->eq5_phy_reset_tx);
+      reset_deassert(bp->eq5_phy_reset_sys);
+
+      if (bp->phy_interface =3D=3D PHY_INTERFACE_MODE_SGMII) {
+         pinctrl_select_state(bp->eq5_phy_input_pinctrl, bp->eq5_pins_sgmii=
+);
+
+         reset_deassert(bp->eq5_sgmii_reset);
+         clk_prepare_enable(bp->eq5_sgmii_phy_input_pll);
+
+         reset_deassert(bp->eq5_sgmii_reset_pwr);
+      } else {
+         pinctrl_select_state(bp->eq5_pinctrl, bp->eq5_pins_rgmii);
+      }
+
+      reset_deassert(bp->eq5_phy_reset_tx);
+      reset_deassert(bp->eq5_phy_reset_sys);
+      clk_prepare_enable(bp->eq5_phy_mclk_tx);
+      clk_prepare_enable(bp->eq5_phy_mclk_sys);
+
+ - (3) Keep the sequence in macb_config->init(). Plain and simple.
+    - Issue: it is somewhat unrelated platform-specific code that's
+      present inside macb_main.c.
+
+The two serious options are (1) and (3).
+(1) is what you proposed and (3) is what's in the series.
+
+>>  static const struct of_device_id macb_dt_ids[] =3D {
+>>  	{ .compatible =3D "cdns,at91sam9260-macb", .data =3D &at91sam9260_conf=
+ig },
+>>  	{ .compatible =3D "cdns,macb" },
+>> @@ -5152,6 +5246,7 @@ static const struct of_device_id macb_dt_ids[] =3D=
+ {
+>>  	{ .compatible =3D "cdns,zynqmp-gem", .data =3D &zynqmp_config}, /* dep=
+recated */
+>>  	{ .compatible =3D "cdns,zynq-gem", .data =3D &zynq_config }, /* deprec=
+ated */
+>>  	{ .compatible =3D "sifive,fu540-c000-gem", .data =3D &fu540_c000_confi=
+g },
+>> +	{ .compatible =3D "mobileye,eyeq5-gem", .data =3D &eyeq5_config },
+>
+> Maybe move it after microchip to have it a bit sorted.
+
+Argh those semi sorted lists. I saw "cdns" then "atmel" then "cdns" so I
+ignored sorting.
+
+Thanks for the review!
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
