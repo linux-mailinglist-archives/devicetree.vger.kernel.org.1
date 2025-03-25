@@ -1,203 +1,145 @@
-Return-Path: <devicetree+bounces-160531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EE16A7024E
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 14:42:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52596A701FE
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 14:35:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB80B844CF9
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 13:27:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9303C19A7503
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 13:29:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 675D02594BD;
-	Tue, 25 Mar 2025 13:16:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48832DF59;
+	Tue, 25 Mar 2025 13:19:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="SmhH3SNb";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="QT45mSxu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98E9513B58A;
-	Tue, 25 Mar 2025 13:16:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEE8F125DF;
+	Tue, 25 Mar 2025 13:19:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742908606; cv=none; b=hfrtJVCc6XaLl5EnbqRRbyfuUd15erE9jsFgB+sIG5ouip8vJWXG9U87xL8saPJZutqKES/+Lz005zT0uXNGTq7JUC6ie6jj9TLbXo+RaLqAjCdBzceZXWQA4r0kxTBaFNkrnN1xCaR7Q4nJyOsBy8xAudbpNXECbwPdTCihfFU=
+	t=1742908783; cv=none; b=tfHkJjpfMWraSk510F8iQ3zK4lbcTTKpLVR74PZivgp+bmlzhSAd04i8B2yaSoZmvpE5J8Phheg8kYCGbXHjzlxqCCbR41iSk/Tvay/kMvAVM05EdeCvMJSuTbBsqEdz0RLQ7QUzU4QW6w4SfXnAfWwib90EYwhUYIDeWh9694U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742908606; c=relaxed/simple;
-	bh=TOtQbODRyOQXw/R+sPSuiV/4n6xwFBolNRfGAi3+ckg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pcQrf98+4AtJc4EpDRyX41olwvLK1indNH0yrDtEGRrKEX/JqjyIPE6L4O68K+3k/9hHq09IVYtL180ts7wTqJlfJyHqDWMHle1uH/poYnonQQq+oyLCa6zbp10Djz0pHe46he/mQJx8Iyrti3Up5rn4CI/hlldcXN2K7sUN148=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 6E71620487;
-	Tue, 25 Mar 2025 13:16:34 +0000 (UTC)
-Message-ID: <b0c2f8f3-3630-4704-b9a0-fb7a325d57fe@ghiti.fr>
-Date: Tue, 25 Mar 2025 14:16:33 +0100
+	s=arc-20240116; t=1742908783; c=relaxed/simple;
+	bh=DVeixBVuxDT4oMWaD2rURJ/uLpvPHd0QOtOr4AymZrg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=fGPc0QzgnZPEthpREpwZd0mvArfGIdLETNFvp7kUi39xMcNwbOb3AD8hQ4OYy8NNZqhqOB5sfzPGh6PRgiXq+gEQPJpP064PF7ZR2jb6ZOp4xEetnLDoNymD9Jn8/iR6G8pf960YIWLGn/AzPChKc0OxzvLsfIN8jN2bzefLO9k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=SmhH3SNb; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=QT45mSxu reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1742908779; x=1774444779;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=8UycVuZiVNJB4WUINByx61NDOE4aSQezliwEn5u6VQ8=;
+  b=SmhH3SNbMjaWwc0gCy97ZIyZBblJVIFnmwAKd+58/XodLBHMyD/vX7Dq
+   myG/YKURzqZBaMFq1kfQd8HbrgvOfgrtu61lQtsAsFDQUF2toGaomzGy+
+   lEX9p7nB6F5U6Y729hMYEs7+wxkEe5XMzJx181L2tsjSgPPUWYJ9D0zoB
+   AsO5/0JOIg5Ic0BjjVsAgC4kUOrNWP0F4TzwDxx46NBcMCudL0Km+PCK4
+   AEV7kY4PeAJ6c74gdoZtpfWyx3SdW439i+fLj7W+hDFDA76wVThYplLZl
+   DwRYF7l1XfunLsp6dONSsC5zjnnhCxJ54bJNv+8jDKzI+W++BN/U7Zidc
+   Q==;
+X-CSE-ConnectionGUID: xEkqf47SRmOlZuBVH8GBHA==
+X-CSE-MsgGUID: ZasAIHFhSm2cLlpvUuDSCQ==
+X-IronPort-AV: E=Sophos;i="6.14,275,1736809200"; 
+   d="scan'208";a="43148001"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 25 Mar 2025 14:19:30 +0100
+X-CheckPoint: {67E2AD62-2E-2417938-F0170C2B}
+X-MAIL-CPID: 13A640736E1C7EA6E91AFA08FE664B38_2
+X-Control-Analysis: str=0001.0A006396.67E2AD5A.0038,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7D57916AB6C;
+	Tue, 25 Mar 2025 14:19:24 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1742908765;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=8UycVuZiVNJB4WUINByx61NDOE4aSQezliwEn5u6VQ8=;
+	b=QT45mSxuM3bcqPqUbEzB60yOjsQ5VvM2MdE50KKc685znvgYCijep6FbiEbtaehC6jeAP/
+	SzcAom3TRCUoVz5tRUvkJ8hv3bOTmzrgBfyyJSSjgEsBQus3WpNmnThIhF3LkWUPeBz72q
+	LPR5YohyA4sdyU0F2L+NNWvDq30Aoi4uONEcRXTzrjS9fRL69bhGuYiwh7lxhVd1C2lTaE
+	klH0ZyzBA1OzIefw+9rv9ujPVnzH46p67+tuFKZtLCrrmLEztDwc7nux12hstszAgRheyf
+	4PQW5YgnoWukrmpte0yuKJdUqA+RUFlBFIUsjb8TMz1YVO/1I43yXEjcYFmbYQ==
+From: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Felipe Balbi <balbi@kernel.org>,
+	linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux@ew.tq-group.com,
+	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v3] dt-bindings: usb: dwc3: Allow connector in USB controller node
+Date: Tue, 25 Mar 2025 14:18:48 +0100
+Message-ID: <20250325131848.127438-1-matthias.schiffer@ew.tq-group.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/6] RISC-V: add vector extension validation checks
-Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>, linux-riscv@lists.infradead.org
-Cc: Conor Dooley <conor.dooley@microchip.com>,
- Eric Biggers <ebiggers@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?=
- <cleger@rivosinc.com>, Andy Chiu <andybnac@gmail.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250312-abide-pancreas-3576b8c44d2c@spud>
- <20250312-eclair-affluent-55b098c3602b@spud>
-From: Alexandre Ghiti <alex@ghiti.fr>
-In-Reply-To: <20250312-eclair-affluent-55b098c3602b@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdduiedvjeegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfesthejredttddvjeenucfhrhhomheptehlvgigrghnughrvgcuifhhihhtihcuoegrlhgvgiesghhhihhtihdrfhhrqeenucggtffrrghtthgvrhhnpedthfelfeejgeehveegleejleelgfevhfekieffkeeujeetfedvvefhledvgeegieenucfkphepfedurdefvddrkedurddukeejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepfedurdefvddrkedurddukeejpdhhvghloheplgduledvrdduieekrddvuddrvdehngdpmhgrihhlfhhrohhmpegrlhgvgiesghhhihhtihdrfhhrpdhnsggprhgtphhtthhopeduvddprhgtphhtthhopegtohhnohhrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhrihhstghvsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtoheptghonhhorhdrughoohhlvgihsehmihgtrhhotghhihhprdgtohhmpdhrtghpthhtohepvggsihhgghgvrhhssehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnv
- ghlrdhorhhgpdhrtghpthhtohepphgruhhlrdifrghlmhhslhgvhiesshhifhhivhgvrdgtohhmpdhrtghpthhtohepphgrlhhmvghrsegurggssggvlhhtrdgtohhm
-X-GND-Sasl: alex@ghiti.fr
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Conor,
+Allow specifying the connector directly in the USB controller node, as
+allow in other USB controller bindings and commonly used for
+"gpio-usb-b-connector". Linux already supports this without driver
+changes.
 
-On 12/03/2025 14:11, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
->
-> Using Clement's new validation callbacks, support checking that
-> dependencies have been satisfied for the vector extensions. From the
-> kernel's perfective, it's not required to differentiate between the
-> conditions for all the various vector subsets - it's the firmware's job
-> to not report impossible combinations. Instead, the kernel only has to
-> check that the correct config options are enabled and to enforce its
-> requirement of the d extension being present for FPU support.
->
-> Since vector will now be disabled proactively, there's no need to clear
-> the bit in elf_hwcap in riscv_fill_hwcap() any longer.
->
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->   arch/riscv/include/asm/cpufeature.h |  3 ++
->   arch/riscv/kernel/cpufeature.c      | 60 +++++++++++++++++++----------
->   2 files changed, 43 insertions(+), 20 deletions(-)
->
-> diff --git a/arch/riscv/include/asm/cpufeature.h b/arch/riscv/include/asm/cpufeature.h
-> index 569140d6e639..5d9427ccbc7a 100644
-> --- a/arch/riscv/include/asm/cpufeature.h
-> +++ b/arch/riscv/include/asm/cpufeature.h
-> @@ -56,6 +56,9 @@ void __init riscv_user_isa_enable(void);
->   #define __RISCV_ISA_EXT_BUNDLE(_name, _bundled_exts) \
->   	_RISCV_ISA_EXT_DATA(_name, RISCV_ISA_EXT_INVALID, _bundled_exts, \
->   			    ARRAY_SIZE(_bundled_exts), NULL)
-> +#define __RISCV_ISA_EXT_BUNDLE_VALIDATE(_name, _bundled_exts, _validate) \
-> +	_RISCV_ISA_EXT_DATA(_name, RISCV_ISA_EXT_INVALID, _bundled_exts, \
-> +			    ARRAY_SIZE(_bundled_exts), _validate)
->   
->   /* Used to declare extensions that are a superset of other extensions (Zvbb for instance) */
->   #define __RISCV_ISA_EXT_SUPERSET(_name, _id, _sub_exts) \
-> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-> index c6ba750536c3..dbea6ed3f4da 100644
-> --- a/arch/riscv/kernel/cpufeature.c
-> +++ b/arch/riscv/kernel/cpufeature.c
-> @@ -109,6 +109,38 @@ static int riscv_ext_zicboz_validate(const struct riscv_isa_ext_data *data,
->   	return 0;
->   }
->   
-> +static int riscv_ext_vector_x_validate(const struct riscv_isa_ext_data *data,
-> +				       const unsigned long *isa_bitmap)
-> +{
-> +	if (!IS_ENABLED(CONFIG_RISCV_ISA_V))
-> +		return -EINVAL;
-> +
-> +	return 0;
-> +}
-> +
-> +static int riscv_ext_vector_float_validate(const struct riscv_isa_ext_data *data,
-> +					   const unsigned long *isa_bitmap)
-> +{
-> +	if (!IS_ENABLED(CONFIG_RISCV_ISA_V))
-> +		return -EINVAL;
-> +
-> +	if (!IS_ENABLED(CONFIG_FPU))
-> +		return -EINVAL;
-> +
-> +	/*
-> +	 * The kernel doesn't support systems that don't implement both of
-> +	 * F and D, so if any of the vector extensions that do floating point
-> +	 * are to be usable, both floating point extensions need to be usable.
-> +	 *
-> +	 * Since this function validates vector only, and v/Zve* are probed
-> +	 * after f/d, there's no need for a deferral here.
-> +	 */
-> +	if (!__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_d))
-> +		return -EINVAL;
-> +
-> +	return 0;
-> +}
-> +
->   static int riscv_ext_zca_depends(const struct riscv_isa_ext_data *data,
->   				 const unsigned long *isa_bitmap)
->   {
-> @@ -326,12 +358,10 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
->   	__RISCV_ISA_EXT_DATA(d, RISCV_ISA_EXT_d),
->   	__RISCV_ISA_EXT_DATA(q, RISCV_ISA_EXT_q),
->   	__RISCV_ISA_EXT_SUPERSET(c, RISCV_ISA_EXT_c, riscv_c_exts),
-> -	__RISCV_ISA_EXT_SUPERSET(v, RISCV_ISA_EXT_v, riscv_v_exts),
-> +	__RISCV_ISA_EXT_SUPERSET_VALIDATE(v, RISCV_ISA_EXT_v, riscv_v_exts, riscv_ext_vector_float_validate),
->   	__RISCV_ISA_EXT_DATA(h, RISCV_ISA_EXT_h),
-> -	__RISCV_ISA_EXT_SUPERSET_VALIDATE(zicbom, RISCV_ISA_EXT_ZICBOM, riscv_xlinuxenvcfg_exts,
-> -					  riscv_ext_zicbom_validate),
-> -	__RISCV_ISA_EXT_SUPERSET_VALIDATE(zicboz, RISCV_ISA_EXT_ZICBOZ, riscv_xlinuxenvcfg_exts,
-> -					  riscv_ext_zicboz_validate),
-> +	__RISCV_ISA_EXT_SUPERSET_VALIDATE(zicbom, RISCV_ISA_EXT_ZICBOM, riscv_xlinuxenvcfg_exts, riscv_ext_zicbom_validate),
-> +	__RISCV_ISA_EXT_SUPERSET_VALIDATE(zicboz, RISCV_ISA_EXT_ZICBOZ, riscv_xlinuxenvcfg_exts, riscv_ext_zicboz_validate),
->   	__RISCV_ISA_EXT_DATA(ziccrse, RISCV_ISA_EXT_ZICCRSE),
->   	__RISCV_ISA_EXT_DATA(zicntr, RISCV_ISA_EXT_ZICNTR),
->   	__RISCV_ISA_EXT_DATA(zicond, RISCV_ISA_EXT_ZICOND),
-> @@ -372,11 +402,11 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
->   	__RISCV_ISA_EXT_DATA(ztso, RISCV_ISA_EXT_ZTSO),
->   	__RISCV_ISA_EXT_SUPERSET(zvbb, RISCV_ISA_EXT_ZVBB, riscv_zvbb_exts),
->   	__RISCV_ISA_EXT_DATA(zvbc, RISCV_ISA_EXT_ZVBC),
-> -	__RISCV_ISA_EXT_SUPERSET(zve32f, RISCV_ISA_EXT_ZVE32F, riscv_zve32f_exts),
-> -	__RISCV_ISA_EXT_DATA(zve32x, RISCV_ISA_EXT_ZVE32X),
-> -	__RISCV_ISA_EXT_SUPERSET(zve64d, RISCV_ISA_EXT_ZVE64D, riscv_zve64d_exts),
-> -	__RISCV_ISA_EXT_SUPERSET(zve64f, RISCV_ISA_EXT_ZVE64F, riscv_zve64f_exts),
-> -	__RISCV_ISA_EXT_SUPERSET(zve64x, RISCV_ISA_EXT_ZVE64X, riscv_zve64x_exts),
-> +	__RISCV_ISA_EXT_SUPERSET_VALIDATE(zve32f, RISCV_ISA_EXT_ZVE32F, riscv_zve32f_exts, riscv_ext_vector_float_validate),
-> +	__RISCV_ISA_EXT_DATA_VALIDATE(zve32x, RISCV_ISA_EXT_ZVE32X, riscv_ext_vector_x_validate),
-> +	__RISCV_ISA_EXT_SUPERSET_VALIDATE(zve64d, RISCV_ISA_EXT_ZVE64D, riscv_zve64d_exts, riscv_ext_vector_float_validate),
-> +	__RISCV_ISA_EXT_SUPERSET_VALIDATE(zve64f, RISCV_ISA_EXT_ZVE64F, riscv_zve64f_exts, riscv_ext_vector_float_validate),
-> +	__RISCV_ISA_EXT_SUPERSET_VALIDATE(zve64x, RISCV_ISA_EXT_ZVE64X, riscv_zve64x_exts, riscv_ext_vector_x_validate),
->   	__RISCV_ISA_EXT_DATA(zvfh, RISCV_ISA_EXT_ZVFH),
->   	__RISCV_ISA_EXT_DATA(zvfhmin, RISCV_ISA_EXT_ZVFHMIN),
->   	__RISCV_ISA_EXT_DATA(zvkb, RISCV_ISA_EXT_ZVKB),
-> @@ -960,16 +990,6 @@ void __init riscv_fill_hwcap(void)
->   		riscv_v_setup_vsize();
->   	}
->   
-> -	if (elf_hwcap & COMPAT_HWCAP_ISA_V) {
-> -		/*
-> -		 * ISA string in device tree might have 'v' flag, but
-> -		 * CONFIG_RISCV_ISA_V is disabled in kernel.
-> -		 * Clear V flag in elf_hwcap if CONFIG_RISCV_ISA_V is disabled.
-> -		 */
-> -		if (!IS_ENABLED(CONFIG_RISCV_ISA_V))
-> -			elf_hwcap &= ~COMPAT_HWCAP_ISA_V;
-> -	}
-> -
->   	memset(print_str, 0, sizeof(print_str));
->   	for (i = 0, j = 0; i < NUM_ALPHA_EXTS; i++)
->   		if (riscv_isa[0] & BIT_MASK(i))
+Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+---
 
+Changes in v3:
+- Rebased onto linux-next (moved to the new snps,dwc3-common.yaml)
+- Extended commit message
+- Pull patch out of "TQ-Systems TQMa62xx SoM and MBa62xx board" series,
+  as the series will need some more rework, and this patch should be
+  good to go independently (and should go through the USB tree, unlike
+  the rest of the series)
+  In the submissions of the previous versions, the linux-usb list was
+  forgotten by accident.
 
-Reviewed-by: Alexandre Ghiti <alexghiti@rivosinc.com>
+Changes in v2:
+- Collected ack
+- Rebased onto v6.13-rc1
 
-Thanks,
+ Documentation/devicetree/bindings/usb/snps,dwc3-common.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Alex
-
+diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3-common.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3-common.yaml
+index 71249b6ba6168..6c0b8b6538246 100644
+--- a/Documentation/devicetree/bindings/usb/snps,dwc3-common.yaml
++++ b/Documentation/devicetree/bindings/usb/snps,dwc3-common.yaml
+@@ -390,6 +390,12 @@ properties:
+     maximum: 8
+     default: 1
+ 
++  connector:
++    $ref: /schemas/connector/usb-connector.yaml#
++    description: Connector for dual role switch
++    type: object
++    unevaluatedProperties: false
++
+   port:
+     $ref: /schemas/graph.yaml#/properties/port
+     description:
+-- 
+TQ-Systems GmbH | Mühlstraße 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht München, HRB 105018
+Geschäftsführer: Detlef Schneider, Rüdiger Stahl, Stefan Schneider
+https://www.tq-group.com/
 
 
