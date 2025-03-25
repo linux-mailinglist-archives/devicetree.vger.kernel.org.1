@@ -1,38 +1,49 @@
-Return-Path: <devicetree+bounces-160564-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BDA5A702D9
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 14:53:44 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDDB5A702DA
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 14:53:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18930188460C
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 13:48:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C355A7A133D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 13:51:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AD22255E2E;
-	Tue, 25 Mar 2025 13:48:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACEA12561D7;
+	Tue, 25 Mar 2025 13:52:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="MVEK8L5m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F40E193062;
-	Tue, 25 Mar 2025 13:48:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 748161F55EF
+	for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 13:52:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742910508; cv=none; b=FYn4fMUw0PFB/pZC/yDkMqijRfQPVcUycZEw5WwiUFw7DeHzBMfy/KrdcWDOuCpIzzpSL16Qbt1mfJnnl7OMwy6u90dg/kkJMPh69N1kc21YztG/B/apRodj/nyUMMxsxav9SOrTWy/qFMjq3IbLH/y3vuy1WIUlCDvqwD5lP3g=
+	t=1742910732; cv=none; b=m3AFasQ2qc45aSgjKn3QY0NXu8ZqV8ainEb0ZyzLNdzvP4j1KXaYw0ZMxMfjW/9RFta8uz+VkWxpfnm85yDKdAKqmHENILSK135psrIRbi9/l011IQTO8LF8f967my/aHGll5fIo8xBXTdsxb+Myf/07BkQG+2zY2AF8552Mf7w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742910508; c=relaxed/simple;
-	bh=JZliSBmO9R3oqxSMGV6o65XnDID122HEJwJkSr6qQsE=;
+	s=arc-20240116; t=1742910732; c=relaxed/simple;
+	bh=1R1VK+T/436CbxUciSAXA3RyIxMtzJKemvJwu3t9UNE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dmjTtMf1yFHRlndQRf8fArZ1wcBAVMwg6KyTpr9jgRr8ZAxt19popjy6lo0hfUZzr0llkqUrj1tEUShcwSKNfVVpDSyUv2mYa1FgF2ACxJkK1MgtZvpjZms1rKelTY0uC7GZipT3EgkhdODIzLshFQk58FVU4PsMvP9ZzEfIe5Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
-Received: by mail.gandi.net (Postfix) with ESMTPSA id BF8B8442FE;
-	Tue, 25 Mar 2025 13:48:21 +0000 (UTC)
-Message-ID: <3e073897-9a58-40b7-8b45-80c73217742b@ghiti.fr>
-Date: Tue, 25 Mar 2025 14:48:21 +0100
+	 In-Reply-To:Content-Type; b=lAM0z2Qnpm5yKKH0G2rT3M06opW3O5qCyOiHZlSIVmMVgPGOS1266arAjMkJfsOMon2wlbr/mFhhDAsy8d6jgGqMCz22I15hEKlOaEqYXzopDmHorTk1A/2JQ264WoGbiQFYTW3y4r0Q0TdyuSnOaxRH78sTpvMrPlGNpKXI1/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=MVEK8L5m; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3C3A0102EBA49;
+	Tue, 25 Mar 2025 14:52:02 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1742910727; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=27tDlS9I7w+QHFZ7F9553jcj4LUb3Qxba7/RAdMTtto=;
+	b=MVEK8L5mQphFgbOHAcgIHBn/giW8wflKAJWs62f0xFcpzUrYLbX+LFoVPGQc15MCbKhTsO
+	MZTNAFqxpO4JA7BSJiq4agmIMhRir9M7KWdGrTnRt+W64Ah3ipCE9CdgtbJvUbosb7ola4
+	PwI3BUezAC7j6UeOmQ+i3UZfZeeMAX5XgHMmCi91PPJCy2ScevaKm3LEVAnMib3fx2Q3gk
+	5lOCW3xUQGZcNEtECJry3nyLRmVwZ4Qigs3txjCPfdT8J+ihDGAvACQY9IEuW0MJuYV+Gj
+	+l9TuvurOnP4pi4shJ4ujCgTxFbvmOOrjVN0g0sjTtO++Uo/M1BX+Wclwq/vgg==
+Message-ID: <7aadf355-edf0-46fc-b969-65c3789375ca@denx.de>
+Date: Tue, 25 Mar 2025 14:50:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -40,111 +51,57 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/6] RISC-V: add f & d extension validation checks
+Subject: Re: [PATCH v2 4/9] drm/panthor: Implement optional reset
+To: Boris Brezillon <boris.brezillon@collabora.com>
+Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
+ David Airlie <airlied@gmail.com>, Fabio Estevam <festevam@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Steven Price <steven.price@arm.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, imx@lists.linux.dev
+References: <20250321200625.132494-1-marex@denx.de>
+ <20250321200625.132494-5-marex@denx.de>
+ <20250324094333.7afb17a1@collabora.com>
+ <c1de2afb-3559-4fbb-b13b-2373175b420b@denx.de>
+ <20250325084349.344a0f11@collabora.com>
 Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>, linux-riscv@lists.infradead.org
-Cc: Conor Dooley <conor.dooley@microchip.com>,
- Eric Biggers <ebiggers@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?=
- <cleger@rivosinc.com>, Andy Chiu <andybnac@gmail.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250312-abide-pancreas-3576b8c44d2c@spud>
- <20250312-reptile-platinum-62ee0f444a32@spud>
-From: Alexandre Ghiti <alex@ghiti.fr>
-In-Reply-To: <20250312-reptile-platinum-62ee0f444a32@spud>
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <20250325084349.344a0f11@collabora.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdduiedvkeduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfesthekredttddvjeenucfhrhhomheptehlvgigrghnughrvgcuifhhihhtihcuoegrlhgvgiesghhhihhtihdrfhhrqeenucggtffrrghtthgvrhhnpedtgeeuhffhveeujeetveevieekleekvdffudefleevgefgieekkefggefhtddtveenucfkphepfedurdefvddrkedurddukeejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepfedurdefvddrkedurddukeejpdhhvghloheplgduledvrdduieekrddvuddrvdehngdpmhgrihhlfhhrohhmpegrlhgvgiesghhhihhtihdrfhhrpdhnsggprhgtphhtthhopeduvddprhgtphhtthhopegtohhnohhrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhrihhstghvsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtoheptghonhhorhdrughoohhlvgihsehmihgtrhhotghhihhprdgtohhmpdhrtghpthhtohepvggsihhgghgvrhhssehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnv
- ghlrdhorhhgpdhrtghpthhtohepphgruhhlrdifrghlmhhslhgvhiesshhifhhivhgvrdgtohhmpdhrtghpthhtohepphgrlhhmvghrsegurggssggvlhhtrdgtohhm
-X-GND-Sasl: alex@ghiti.fr
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 12/03/2025 14:11, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
->
-> Using Clement's new validation callbacks, support checking that
-> dependencies have been satisfied for the floating point extensions.
->
-> The check for "d" might be slightly confusingly shorter than that of "f",
-> despite "d" depending on "f". This is because the requirement that a
-> hart supporting double precision must also support single precision,
-> should be validated by dt-bindings etc, not the kernel but lack of
-> support for single precision only is a limitation of the kernel.
->
-> Since vector will now be disabled proactively, there's no need to clear
-> the bit in elf_hwcap in riscv_fill_hwcap() any longer.
-
-
-I guess this is a leftover from the split right? No need to respin a new 
-version only for that, I can remove it if you confirm.
-
-
->
-> Tested-by: Clément Léger <cleger@rivosinc.com>
-> Reviewed-by: Clément Léger <cleger@rivosinc.com>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->   arch/riscv/kernel/cpufeature.c | 31 +++++++++++++++++++++++++++++--
->   1 file changed, 29 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-> index 4fa951e9f1cf..21d3cf361e0a 100644
-> --- a/arch/riscv/kernel/cpufeature.c
-> +++ b/arch/riscv/kernel/cpufeature.c
-> @@ -109,6 +109,33 @@ static int riscv_ext_zicboz_validate(const struct riscv_isa_ext_data *data,
->   	return 0;
->   }
->   
-> +static int riscv_ext_f_validate(const struct riscv_isa_ext_data *data,
-> +				const unsigned long *isa_bitmap)
-> +{
-> +	if (!IS_ENABLED(CONFIG_FPU))
-> +		return -EINVAL;
-> +
-> +	/*
-> +	 * Due to extension ordering, d is checked before f, so no deferral
-> +	 * is required.
-> +	 */
-> +	if (!__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_d)) {
-> +		pr_warn_once("This kernel does not support systems with F but not D\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int riscv_ext_d_validate(const struct riscv_isa_ext_data *data,
-> +				const unsigned long *isa_bitmap)
-> +{
-> +	if (!IS_ENABLED(CONFIG_FPU))
-> +		return -EINVAL;
-> +
-> +	return 0;
-> +}
-> +
->   static int riscv_ext_vector_x_validate(const struct riscv_isa_ext_data *data,
->   				       const unsigned long *isa_bitmap)
->   {
-> @@ -371,8 +398,8 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
->   	__RISCV_ISA_EXT_DATA(i, RISCV_ISA_EXT_i),
->   	__RISCV_ISA_EXT_DATA(m, RISCV_ISA_EXT_m),
->   	__RISCV_ISA_EXT_DATA(a, RISCV_ISA_EXT_a),
-> -	__RISCV_ISA_EXT_DATA(f, RISCV_ISA_EXT_f),
-> -	__RISCV_ISA_EXT_DATA(d, RISCV_ISA_EXT_d),
-> +	__RISCV_ISA_EXT_DATA_VALIDATE(f, RISCV_ISA_EXT_f, riscv_ext_f_validate),
-> +	__RISCV_ISA_EXT_DATA_VALIDATE(d, RISCV_ISA_EXT_d, riscv_ext_d_validate),
->   	__RISCV_ISA_EXT_DATA(q, RISCV_ISA_EXT_q),
->   	__RISCV_ISA_EXT_SUPERSET(c, RISCV_ISA_EXT_c, riscv_c_exts),
->   	__RISCV_ISA_EXT_SUPERSET_VALIDATE(v, RISCV_ISA_EXT_v, riscv_v_exts, riscv_ext_vector_float_validate),
-
-
-Reviewed-by: Alexandre Ghiti <alexghiti@rivosinc.com>
-
-Thanks,
-
-Alex
-
+On 3/25/25 8:43 AM, Boris Brezillon wrote:
+> On Tue, 25 Mar 2025 00:37:59 +0100
+> Marek Vasut <marex@denx.de> wrote:
+> 
+>> On 3/24/25 9:43 AM, Boris Brezillon wrote:
+>>
+>> [...]
+>>
+>>>> @@ -563,6 +585,7 @@ int panthor_device_suspend(struct device *dev)
+>>>>    
+>>>>    	panthor_devfreq_suspend(ptdev);
+>>>>    
+>>>> +	reset_control_assert(ptdev->resets);
+>>>
+>>> Hm, that might be the cause of the fast reset issue (which is a fast
+>>> resume more than a fast reset BTW): if you re-assert the reset line on
+>>> runtime suspend, I guess this causes a full GPU reset, and the MCU ends
+>>> up in a state where it needs a slow reset (all data sections reset to
+>>> their initial state). Can you try to move the reset_control_[de]assert
+>>> to the unplug/init functions?
+>> Is it correct to assume , that if I remove all reset_control_assert()
+>> calls (and keep only the _deassert() calls), the slow resume problem
+>> should go away too ?
+> 
+> Yeah, dropping the _assert()s should do the trick.
+Hmmm, no, that does not help. I was hoping maybe NXP can chime in and 
+suggest something too ?
 
