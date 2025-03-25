@@ -1,342 +1,136 @@
-Return-Path: <devicetree+bounces-160443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B7AFA6EB90
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 09:30:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BDCEA6EBCF
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 09:40:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F0B23A6B9B
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 08:27:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3058C188D1CF
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 08:39:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D665D255252;
-	Tue, 25 Mar 2025 08:27:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7EE7252914;
+	Tue, 25 Mar 2025 08:36:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xtuFJqzP"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="XfLjqI8n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C014D253F2B
-	for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 08:27:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B591C18BC3B
+	for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 08:36:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742891234; cv=none; b=E8Emrxke2GYsUCE+lHlbw8EWMI7g4q7tb/6lXbliT81vcRe7NWmd1ykM0+8HUVpOfy0YYYj7/VFz4foA8sK8mTCi3sY1NwPtn+PZnHJpPLy/EtzAj2W6eyN0MdZqdDNpWkkd7NzOOv0cFoFDp5eQ12zpg6c4sAsd5pLxgpiuSx0=
+	t=1742891766; cv=none; b=fcK8nd8pIfTHqv7Jbvygp5vltN6a8khfcaESYXM7BxBtdKaXsBmKZx2QRjvNPs6zqNiCZg9aPqsXN7ZTYE1b4zmUjwtDAomfOjggRmiHiPOOY/fnSivj9UREQyEW3BzaAx+M8yMcRWygl4/SlcN4q3E8lmk9cAKME9jeJ4bzY/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742891234; c=relaxed/simple;
-	bh=uFJtcwIQ1CrXzPB2yfec+q99KZjeh90NRZivuV++Rmk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=pjqJiM2w8wyV7dMM25UaKTyKL+ad+4kQKtEQuKNwQQ1qRVE7CODdsjS+dd4S752As5RxQyNwk6al+XzdMvd0fvCyhly7Ngx8zfcQi6HK4ut67k0dzLMULeKjwxyIZLUjNM+qZA82+uD4smSemkfnvNHtynZrucsD/PkP8Y/6w9k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xtuFJqzP; arc=none smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5eb5ecf3217so9408772a12.3
-        for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 01:27:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742891230; x=1743496030; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1ZlhvhiNMPHxjTtYHGw42ITvKgA++Bx2WHTs5Yktipk=;
-        b=xtuFJqzP4zrLm9x5/z13MqpyEMQu2cjI4xTG5o4mIdeaVuHlk/ZZaCf/Ez6CjE9B+i
-         wdwNocYlEDCd8cJiXIZb33gJHkW1/0HuNkNO/Ul0TjGyTZXFQ8fYjdP9bs+WkIbpKtJ9
-         h4+VvXR/GzEt1bDFgqUAwAZPUDr/nkzMZ6pbhbyA1YIpdt/oDNonETFW26A+rOEiAW3U
-         wUsAS+IGQzxtRIcETmliBYREnnLnIch3JrHi6kUhV3O3zquyGlnB967ozU55X6x7Gb1W
-         NyshH5+CKhEoL66s+zWCECM8xkrxz/FsD1gHOxNOmJAZJPGqJ+WxcbHCJ0yCQG/qspHx
-         uxqQ==
+	s=arc-20240116; t=1742891766; c=relaxed/simple;
+	bh=OCleXFn9NZkH1PChKdrM+O63KYl9A/+phnDxXBrrIoE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=b75guu2oCqSdSkOrickXsGhxECb4wIPZgRYpiHBiqxEzn154O/KjjOpFeW/b+bVKijzLjjxrvtvcimIYc7cFU693tqxfOnyMrUxsaAEUXQvfcW3dhgrKivkh4Fcvf2gWwnEA3cN4AZe0REZsz9qMN3QQZdOurNgADwom0PLQTI8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=XfLjqI8n; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1742891763;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=bXwOjnHMzxUdXRa1xbPJFsVQQAIPiDayu2d6sm6acno=;
+	b=XfLjqI8nqqnCKjQoi71MLE1vs/XNLRcgxmwZITzzzCBAh3HsB24rxP6loqtD1tt7iJQMQS
+	QoXpFYpYciukOK5wUn1TbDF0MjIIwF/vTBosDHALGI1PO6/qVO0N6oLmWZKcAF86xg/fHY
+	r8FEa4Dcmw9Ppqpd6ojGyxkiMt2luxE=
+Received: from mail-il1-f200.google.com (mail-il1-f200.google.com
+ [209.85.166.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-310-_IVXZLUEODq-LpqXFCWmNg-1; Tue, 25 Mar 2025 04:36:02 -0400
+X-MC-Unique: _IVXZLUEODq-LpqXFCWmNg-1
+X-Mimecast-MFC-AGG-ID: _IVXZLUEODq-LpqXFCWmNg_1742891761
+Received: by mail-il1-f200.google.com with SMTP id e9e14a558f8ab-3d451ad5b2dso66360575ab.0
+        for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 01:36:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742891230; x=1743496030;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1ZlhvhiNMPHxjTtYHGw42ITvKgA++Bx2WHTs5Yktipk=;
-        b=bspq0+dEePFxTaOcmMGTBWqRb519xhU8SFzSdGxVltIXG9CWS2kXF/yPjYFLw8HJs5
-         EM3raDFrpfEDdHMEPAemwCfv75JIBAp1wW9yYHIfoPIaKiDUJDbFa17cOhxpOQ72Ynns
-         /dX7GYOkCItHwp28yJko4KhQnofGn2hZpESJNXifKE0hAx3cKFdLkQfZu97b+ZSUe8rf
-         KneLmWzw2110BEfnsz3EfHC3N/KD7xokxyCNHO/jU3zHsrLsdtFBBsM/yTsXdNH5NlNK
-         DwvC87E7bArRsgDnoAtja6WvHETUXnFF4dDzed7rseKm/cl6kig4VX8AFMGq6C3wSY90
-         2+Hg==
-X-Forwarded-Encrypted: i=1; AJvYcCU8h2NT8lTxz1jlCLwIOleEqSWRGJ3r2xXI3N+Y22QNXOmD8bzMUdTCg1zGxAhHOkV7oXuyj6zoSPl9@vger.kernel.org
-X-Gm-Message-State: AOJu0YwxclBmABvF9Y3pBKaDSV4ewPySodMT9jXJ976vFAPvfpsur+/g
-	sddGZKfTTIX3AqdFnqefq2SYKQ/0FtLm/xEIP+2E4kzw1BU6IMip/KL4DVeka/g=
-X-Gm-Gg: ASbGncugP7GK4NML9RdSKkVwuqMUUEi2Ue6w76nCyr/7oiOMGhjJiLelnXXAYPvZ9WX
-	OAXLplnusHJ+6zd+WmTqwiOSAAdHIy8D0GEKIgwvYxPp0vW22LOUfgq5hn/td08U7XXUwToMOQd
-	WGZrP2xr+Ov0hRzjqZEQspnIcljBaHnSsCrS0LKpG8nm4Xb3HJXhnp1bOM4ukwibR421if1NOxB
-	h0UnQZBgKO7Xbyce9TSJ7DCGrGWXNVADp7yiVy0g2pZhyBwyBJYW0cULcXBRCwVZt9xjjfEjTZc
-	ZFG9KKf5VJPioGGJJixeYaVnVrwJyN+gPEnUUvFjxlG4XMW7QcimdZ4dmjArbv8gvyWltckZTXr
-	3XTw1cTEVaouTUN0M/U8VGaE4Et7E
-X-Google-Smtp-Source: AGHT+IGsOlEepVW8/4u2HLRV8VYG0PhA3LZO4nlPjODGO5lOuFaODHgqEgmXyr2RxEXyzZt+hoP3+Q==
-X-Received: by 2002:a05:6402:2547:b0:5dc:7f96:6263 with SMTP id 4fb4d7f45d1cf-5ebcd45c370mr13500717a12.15.1742891229889;
-        Tue, 25 Mar 2025 01:27:09 -0700 (PDT)
-Received: from puffmais.c.googlers.com (8.239.204.35.bc.googleusercontent.com. [35.204.239.8])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5ebcce36d66sm7377366a12.0.2025.03.25.01.27.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Mar 2025 01:27:09 -0700 (PDT)
-From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Tue, 25 Mar 2025 08:27:07 +0000
-Subject: [PATCH v6 6/6] nvmem: max77759: add Maxim MAX77759 NVMEM driver
+        d=1e100.net; s=20230601; t=1742891761; x=1743496561;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bXwOjnHMzxUdXRa1xbPJFsVQQAIPiDayu2d6sm6acno=;
+        b=bXgLL+oV+Ch/071NnxXJFL1ZiUHquUY5lk9x3gPM/YQfCXWAoMd3N67pwumrRjs8LQ
+         vhkRj5ZDlSWV0ZXuyQfWvhUlnssg9O90nyXSTHShL5DLACrEwaqRMpo7yYziYQa3gRgs
+         mjyIBKHSGfcCb4jUpmvJjMX124iQal+zNd6GoLiOtcs+68P501sos5CnxOavJ+N4La2A
+         9vNpMxm0lSp2w2rn7AbKKZ0SHTjWLhydA76WT0goesoGvIo7siWTTbqCtHw2TUXIFax1
+         66uvXl9AOPc7N1H94ypwWyDcleOnh1EFQ53OSAxMJ1HL1BYOdiFRcB8kEZDxdIjNs4ol
+         /p1g==
+X-Forwarded-Encrypted: i=1; AJvYcCW0CYaD9KVpkuJFE6osOJvqYWNZDS/9Hd2nSw4ViJ+8LXvpw53f+LKBG73KYFBgP6VdgPi8YBBk5u6R@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz9khVQuUJ8mSkffWybHqSTajz77AQyu9Z+/FVNgA1b/DN7ON4+
+	35vYXOJhAMtT0iJXS5+rXDhUr89ZXukf/M3pGsTl/blkTwH2QFyXADbMPLEUJfIoxZI8L57YuvZ
+	T7a401W0t4o/Nhayy+gdnIKl8+9mwTMq5V4Ti9h4Ohi4jN+cnMB3F3E2+84VfpFSzLGifAtqWLe
+	O66VNQYNyW+R+xkLkA85l6qtyjVV3SrvENQA==
+X-Gm-Gg: ASbGncv5EHXb2yisrxhLgTLTbpaKuaAG/S/bS2zWSHZE25zRzs45AaDhxvydM+ZqfjA
+	tbO8GRAiS2i5o0EGxD4VJwPDJY2rxqIsWVDBhA93Zw4/P33PriPKTC3VBwjJ3AaozKLCAw0fj2Q
+	==
+X-Received: by 2002:a05:6e02:12c9:b0:3d1:4a69:e58f with SMTP id e9e14a558f8ab-3d58e81374emr209274435ab.2.1742891761228;
+        Tue, 25 Mar 2025 01:36:01 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF9E4/EucEBc/+iE2lWu+YyJiDtrud2DOWwH9Ttz3ALKtbFpsWVzZCuYuuSTYSC3OfYElupM2e2tE7hTWgAmd4=
+X-Received: by 2002:a05:6e02:12c9:b0:3d1:4a69:e58f with SMTP id
+ e9e14a558f8ab-3d58e81374emr209274145ab.2.1742891760802; Tue, 25 Mar 2025
+ 01:36:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250325-max77759-mfd-v6-6-c0870ca662ba@linaro.org>
-References: <20250325-max77759-mfd-v6-0-c0870ca662ba@linaro.org>
-In-Reply-To: <20250325-max77759-mfd-v6-0-c0870ca662ba@linaro.org>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, 
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
- Kees Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>
-Cc: Peter Griffin <peter.griffin@linaro.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-gpio@vger.kernel.org, linux-hardening@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-X-Mailer: b4 0.14.2
+References: <20250320015551.2157511-1-changyuanl@google.com>
+ <20250320015551.2157511-12-changyuanl@google.com> <CALu+AoS01QJ-H5Vpr378rbx==iRQLG0HajtMCUzDXRO75biCag@mail.gmail.com>
+ <Z+JT7kx+sfPqfWFA@MiWiFi-R3L-srv>
+In-Reply-To: <Z+JT7kx+sfPqfWFA@MiWiFi-R3L-srv>
+From: Dave Young <dyoung@redhat.com>
+Date: Tue, 25 Mar 2025 16:36:22 +0800
+X-Gm-Features: AQ5f1JqjFlzQ1M_D50CQArcQW8YwNNz0vfJYofXBEYquREvaq-g04uQRlGUrUgs
+Message-ID: <CALu+AoQj+mHECTvbuK8CpUTmOYgx6n2oMFm5kQXtSigL+5Ks2w@mail.gmail.com>
+Subject: Re: [PATCH v5 11/16] kexec: add config option for KHO
+To: Baoquan He <bhe@redhat.com>
+Cc: Changyuan Lyu <changyuanl@google.com>, linux-kernel@vger.kernel.org, graf@amazon.com, 
+	akpm@linux-foundation.org, luto@kernel.org, anthony.yznaga@oracle.com, 
+	arnd@arndb.de, ashish.kalra@amd.com, benh@kernel.crashing.org, bp@alien8.de, 
+	catalin.marinas@arm.com, dave.hansen@linux.intel.com, dwmw2@infradead.org, 
+	ebiederm@xmission.com, mingo@redhat.com, jgowans@amazon.com, corbet@lwn.net, 
+	krzk@kernel.org, rppt@kernel.org, mark.rutland@arm.com, pbonzini@redhat.com, 
+	pasha.tatashin@soleen.com, hpa@zytor.com, peterz@infradead.org, 
+	ptyadav@amazon.de, robh+dt@kernel.org, robh@kernel.org, saravanak@google.com, 
+	skinsburskii@linux.microsoft.com, rostedt@goodmis.org, tglx@linutronix.de, 
+	thomas.lendacky@amd.com, usama.arif@bytedance.com, will@kernel.org, 
+	devicetree@vger.kernel.org, kexec@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org, 
+	linux-mm@kvack.org, x86@kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-The Maxim MAX77759 is a companion PMIC for USB Type-C applications and
-includes Battery Charger, Fuel Gauge, temperature sensors, USB Type-C
-Port Controller (TCPC), NVMEM, and a GPIO expander.
+> >
+> > Have you tested kdump?  In my mind there are two issues,  one is with
+> > CMA enabled, it could cause kdump crashkernel memory reservation
+> > failures more often due to the fragmented low memory.  Secondly,  in
+>
+> kho scracth memorys are reserved much later than crashkernel, we may not
+> need to worry about it.
+> ====================
+> start_kernel()
+>   ......
+>   -->setup_arch(&command_line);
+>      -->arch_reserve_crashkernel();
+>   ......
+>   -->mm_core_init();
+>      -->kho_memory_init();
+>
+> > kdump kernel dump the crazy scratch memory in vmcore is not very
+> > meaningful.  Otherwise I suspect this is not tested under kdump.  If
+> > so please disable this option for kdump.
 
-This driver exposes the non volatile memory using the platform device
-registered by the core MFD driver.
+Ok,  it is fine if this is the case, thanks Baoquan for clearing this worry.
 
-Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Signed-off-by: André Draszik <andre.draszik@linaro.org>
----
-v5:
-* follow API updates of max77759 core driver
-
-v2:
-* align sentinel in max77759_nvmem_of_id[] with other max77759 drivers
- (Christophe)
----
- MAINTAINERS                    |   1 +
- drivers/nvmem/Kconfig          |  12 ++++
- drivers/nvmem/Makefile         |   2 +
- drivers/nvmem/max77759-nvmem.c | 156 +++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 171 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a1abc3fa52a9713da19a1d8d4f625fd9aeee06b3..e3e92ce1518140293069d1d544c37b20dd5c5b95 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14575,6 +14575,7 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/*/maxim,max77759*.yaml
- F:	drivers/gpio/gpio-max77759.c
- F:	drivers/mfd/max77759.c
-+F:	drivers/nvmem/max77759-nvmem.c
- F:	include/linux/mfd/max77759.h
- 
- MAXIM MAX77802 PMIC REGULATOR DEVICE DRIVER
-diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-index 8671b7c974b933e147154bb40b5d41b5730518d2..3de07ef524906ad24a89e58abdfe93529a83c80f 100644
---- a/drivers/nvmem/Kconfig
-+++ b/drivers/nvmem/Kconfig
-@@ -154,6 +154,18 @@ config NVMEM_LPC18XX_OTP
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called nvmem_lpc18xx_otp.
- 
-+config NVMEM_MAX77759
-+	tristate "Maxim Integrated MAX77759 NVMEM Support"
-+	depends on MFD_MAX77759
-+	default MFD_MAX77759
-+	help
-+	  Say Y here to include support for the user-accessible storage found
-+	  in Maxim Integrated MAX77759 PMICs. This IC provides space for 30
-+	  bytes of storage.
-+
-+	  This driver can also be built as a module. If so, the module
-+	  will be called nvmem-max77759.
-+
- config NVMEM_MESON_EFUSE
- 	tristate "Amlogic Meson GX eFuse Support"
- 	depends on (ARCH_MESON || COMPILE_TEST) && MESON_SM
-diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
-index 5b77bbb6488bf89bfb305750a1cbf4a6731a0a58..a9d03cfbbd27e68d40f8c330e72e20378b12a481 100644
---- a/drivers/nvmem/Makefile
-+++ b/drivers/nvmem/Makefile
-@@ -34,6 +34,8 @@ obj-$(CONFIG_NVMEM_LPC18XX_EEPROM)	+= nvmem_lpc18xx_eeprom.o
- nvmem_lpc18xx_eeprom-y			:= lpc18xx_eeprom.o
- obj-$(CONFIG_NVMEM_LPC18XX_OTP)		+= nvmem_lpc18xx_otp.o
- nvmem_lpc18xx_otp-y			:= lpc18xx_otp.o
-+obj-$(CONFIG_NVMEM_MAX77759)		+= nvmem-max77759.o
-+nvmem-max77759-y			:= max77759-nvmem.o
- obj-$(CONFIG_NVMEM_MESON_EFUSE)		+= nvmem_meson_efuse.o
- nvmem_meson_efuse-y			:= meson-efuse.o
- obj-$(CONFIG_NVMEM_MESON_MX_EFUSE)	+= nvmem_meson_mx_efuse.o
-diff --git a/drivers/nvmem/max77759-nvmem.c b/drivers/nvmem/max77759-nvmem.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..48727cdfd392bd686a524202f9752a19def9b115
---- /dev/null
-+++ b/drivers/nvmem/max77759-nvmem.c
-@@ -0,0 +1,156 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+//
-+// Copyright 2020 Google Inc
-+// Copyright 2025 Linaro Ltd.
-+//
-+// NVMEM driver for Maxim MAX77759
-+
-+#include <linux/dev_printk.h>
-+#include <linux/device.h>
-+#include <linux/device/driver.h>
-+#include <linux/err.h>
-+#include <linux/mfd/max77759.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/nvmem-provider.h>
-+#include <linux/overflow.h>
-+#include <linux/platform_device.h>
-+#include <linux/string.h>
-+
-+#define MAX77759_NVMEM_OPCODE_HEADER_LEN 3
-+/*
-+ * NVMEM commands have a three byte header (which becomes part of the command),
-+ * so we need to subtract that.
-+ */
-+#define MAX77759_NVMEM_SIZE (MAX77759_MAXQ_OPCODE_MAXLENGTH \
-+			     - MAX77759_NVMEM_OPCODE_HEADER_LEN)
-+
-+struct max77759_nvmem {
-+	struct device *dev;
-+	struct max77759 *max77759;
-+};
-+
-+static bool max77759_nvmem_is_valid(unsigned int offset, size_t bytes)
-+{
-+	return (offset + bytes - 1 <= MAX77759_NVMEM_SIZE);
-+}
-+
-+static int max77759_nvmem_reg_read(void *priv, unsigned int offset,
-+				   void *val, size_t bytes)
-+{
-+	struct max77759_nvmem *nvmem = priv;
-+	DEFINE_FLEX(struct max77759_maxq_command, cmd, cmd, length,
-+		    MAX77759_NVMEM_OPCODE_HEADER_LEN);
-+	DEFINE_FLEX(struct max77759_maxq_response, rsp, rsp, length,
-+		    MAX77759_MAXQ_OPCODE_MAXLENGTH);
-+	int ret;
-+
-+	if (!max77759_nvmem_is_valid(offset, bytes)) {
-+		dev_err(nvmem->dev, "outside NVMEM area: %u / %zu\n",
-+			offset, bytes);
-+		return -EINVAL;
-+	}
-+
-+	cmd->cmd[0] = MAX77759_MAXQ_OPCODE_USER_SPACE_READ;
-+	cmd->cmd[1] = offset;
-+	cmd->cmd[2] = bytes;
-+	rsp->length = bytes + MAX77759_NVMEM_OPCODE_HEADER_LEN;
-+
-+	ret = max77759_maxq_command(nvmem->max77759, cmd, rsp);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (memcmp(cmd->cmd, rsp->rsp, MAX77759_NVMEM_OPCODE_HEADER_LEN)) {
-+		dev_warn(nvmem->dev, "protocol error (read)\n");
-+		return -EIO;
-+	}
-+
-+	memcpy(val, &rsp->rsp[MAX77759_NVMEM_OPCODE_HEADER_LEN], bytes);
-+
-+	return 0;
-+}
-+
-+static int max77759_nvmem_reg_write(void *priv, unsigned int offset,
-+				    void *val, size_t bytes)
-+{
-+	struct max77759_nvmem *nvmem = priv;
-+	DEFINE_FLEX(struct max77759_maxq_command, cmd, cmd, length,
-+		    MAX77759_MAXQ_OPCODE_MAXLENGTH);
-+	DEFINE_FLEX(struct max77759_maxq_response, rsp, rsp, length,
-+		    MAX77759_MAXQ_OPCODE_MAXLENGTH);
-+	int ret;
-+
-+	if (!max77759_nvmem_is_valid(offset, bytes)) {
-+		dev_err(nvmem->dev, "outside NVMEM area: %u / %zu\n",
-+			offset, bytes);
-+		return -EINVAL;
-+	}
-+
-+	cmd->cmd[0] = MAX77759_MAXQ_OPCODE_USER_SPACE_WRITE;
-+	cmd->cmd[1] = offset;
-+	cmd->cmd[2] = bytes;
-+	memcpy(&cmd->cmd[MAX77759_NVMEM_OPCODE_HEADER_LEN], val, bytes);
-+	cmd->length = bytes + MAX77759_NVMEM_OPCODE_HEADER_LEN;
-+	rsp->length = cmd->length;
-+
-+	ret = max77759_maxq_command(nvmem->max77759, cmd, rsp);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (memcmp(cmd->cmd, rsp->rsp, cmd->length)) {
-+		dev_warn(nvmem->dev, "protocol error (write)\n");
-+		return -EIO;
-+	}
-+
-+	return 0;
-+}
-+
-+static int max77759_nvmem_probe(struct platform_device *pdev)
-+{
-+	struct nvmem_config config = {
-+		.dev = &pdev->dev,
-+		.name = dev_name(&pdev->dev),
-+		.id = NVMEM_DEVID_NONE,
-+		.type = NVMEM_TYPE_EEPROM,
-+		.ignore_wp = true,
-+		.size = MAX77759_NVMEM_SIZE,
-+		.word_size = sizeof(u8),
-+		.stride = sizeof(u8),
-+		.reg_read = max77759_nvmem_reg_read,
-+		.reg_write = max77759_nvmem_reg_write,
-+	};
-+	struct max77759_nvmem *nvmem;
-+
-+	nvmem = devm_kzalloc(&pdev->dev, sizeof(*nvmem), GFP_KERNEL);
-+	if (!nvmem)
-+		return -ENOMEM;
-+
-+	nvmem->dev = &pdev->dev;
-+	nvmem->max77759 = dev_get_drvdata(pdev->dev.parent);
-+
-+	config.priv = nvmem;
-+
-+	return PTR_ERR_OR_ZERO(devm_nvmem_register(config.dev, &config));
-+}
-+
-+static const struct of_device_id max77759_nvmem_of_id[] = {
-+	{ .compatible = "maxim,max77759-nvmem", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, max77759_nvmem_of_id);
-+
-+static struct platform_driver max77759_nvmem_driver = {
-+	.driver = {
-+		.name = "max77759-nvmem",
-+		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
-+		.of_match_table = max77759_nvmem_of_id,
-+	},
-+	.probe = max77759_nvmem_probe,
-+};
-+
-+module_platform_driver(max77759_nvmem_driver);
-+
-+MODULE_AUTHOR("André Draszik <andre.draszik@linaro.org>");
-+MODULE_DESCRIPTION("NVMEM driver for Maxim MAX77759");
-+MODULE_LICENSE("GPL");
-+MODULE_ALIAS("platform:max77759-nvmem");
-
--- 
-2.49.0.395.g12beb8f557-goog
+But the other concerns are still need to address, eg. KHO use cases
+are not good for kdump.
+There could be more to think about.
+eg. the issues talked in thread:
+https://lore.kernel.org/lkml/Z7dc9Cd8KX3b_brB@dwarf.suse.cz/T/
 
 
