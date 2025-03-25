@@ -1,155 +1,238 @@
-Return-Path: <devicetree+bounces-160520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160522-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EA20A7000F
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 14:10:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2939A7011D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 14:19:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7454A84270E
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 13:02:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DBEF61889807
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 13:13:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABE0929AB18;
-	Tue, 25 Mar 2025 12:30:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE04026FD90;
+	Tue, 25 Mar 2025 12:40:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mmbIRFMd"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Ph2VMeNV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1931B267B87
-	for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 12:30:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C298226FA70;
+	Tue, 25 Mar 2025 12:39:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742905847; cv=none; b=sju2w1biFI7UraYzpC+hpPqLvpdLhly6n0hV4/4EXQo7OpRUv0Y161T8qHGP+jlRfTGqLK64z+MufJTOy2YRxqrdVxXtEKqXYgycmJFCw1QByXwr7RsPUHcNFDbk1KD5vWY4k1BbMH59lLDMAXK0goCjY4/fHQiJgk5AXKn7ez4=
+	t=1742906400; cv=none; b=IGAOU9wUJzf02MtuWdqOGojlP/GDjLLHYFGf7oKvncZJCZ/4mwAUCbnr1mS8eWKpOXsc2fIqwlN3+lA81bi+KbaoujfXVPk6YU962sxSNC+Gw2eD9hoaHDGDLtN7Vl0kuHp7YdQBnQq/htlK1yebzEq1H0ZUWJyAK8UQyXfOjcA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742905847; c=relaxed/simple;
-	bh=OPB2Ai+uZO0JN8fesuuuEH/Ql4KaJvx16g8TbS7kDy4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=KBt6XRu9P0BE+OL80cxqBkVuCRTPcrm62+vzvyWD4dGPnXIoMHUp49QIW4UeVSzIj0NJB7mt8KlFCPVrtoZzeQGPTlkkC0kz/oOLdKWi/zzHebI4YhAGYuOgy+uGwPs4TyQZGRmYfSiRdzPyIlum+9qD8U2J5TBBC82Iv2S2zaA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mmbIRFMd; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52P5vUQt026021
-	for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 12:30:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=cV8GYTdiXT0
-	TDERwijtWAGMsmtXi/MaMGlqd90S9WIg=; b=mmbIRFMdx00S3E2liQsOzGgqEvK
-	P02eDegng3MohXPNrX+G8pFatT25bPvV4fZHo7HnAcrWNQD4oYG+GZXR8ZPSR2Iq
-	HvVRP3U8jC3to5/PnTQZ18Pl2NPUNI29qTLvB9rKOkEofGX/TyT/3WJIqZom9JqQ
-	Cqls5Q7ivmwc9mHoC8e3F6U7cJzGv6P4t4kHryfdHRrZH9ads+aENE6cjVrFbp0E
-	JOMlZSW5PtuNZC83vWHkXgwzKS6+KIJvz1OESstOfZPx5SeOUFiyshOWP330uX7I
-	zRjgoVyjL+CsvPuUREou/jx82Vx8jOsIeo23EuBwtV0HyTDtyeB258C3DWA==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45hnk8qtuv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 12:30:44 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-227a8cdd272so36212385ad.2
-        for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 05:30:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742905843; x=1743510643;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cV8GYTdiXT0TDERwijtWAGMsmtXi/MaMGlqd90S9WIg=;
-        b=cTir7i3r9rgBHPp/BdBRu4Sb5lyO4AFVs9adprrkU/XZn0jKgmtq1houu2YH/rfTNb
-         xiPeInukrFcAp5WiF235H/7ON/9PdP9mFPdLR9WSa5yZlqRdXsT0MHOhxRpTCDb6HlUb
-         asEO/6HxHYIpyTguqROfmLWzsBpVkbvS0bnf6dcRhLpjkc8U04xBZUoDNhsqJpP7VjqQ
-         E4gW9SFzetMYnUQieC/mwUFJz0NQQ97l2O2S9oJoznzhZpxcLDQGX2hpTuUHm4gfWDR4
-         gb1OM51qCa8YWvZZtTdenYHfgeYlWT8L6rRdpAHCPxIZeKs20QfMo4DMwOj79yALp2/1
-         H/Vw==
-X-Forwarded-Encrypted: i=1; AJvYcCUYJV6icGaPNqA8S2FH2KyzsgriIuetQLmK6r+XI4jBl23/hzdbwyAxec5KGUV/eYxyB70oKVWBypVX@vger.kernel.org
-X-Gm-Message-State: AOJu0YzF//smNWluJ798rQamlu1HC9OFjOH7mYcJwEEMW7xCpgT6JXlc
-	2V+Tp5ebtYzUo+jHeCko623fMGPDHydwossHNfxlbF+hABgsqtrosWecMdsJTD45HuTa1wN/+8l
-	8c/ORxXgGvh4L+q92+4HeYrdp3LtBOHK0d7zkuk32L5q0Vsi9u2eZRx24gHWo
-X-Gm-Gg: ASbGncsl1v6XSx65j+F+tKgtOhEpm9LDnvZ4d+S0ahKxw92Hl4bizZZsmHrQvBZC9wP
-	PL2pElUZ79MkKJjRUFUATNmV7Qpr8qo9hx4vtVIRpRcb6fFbBw5VrwzfLGFgc+hIzhHDp8ULiLV
-	YdLqr7bCHtmrn6B1H3CBRQg2BRV/vUKI4XqKsWU0ys3fPf2nDAQzbV7GA351UWxSGeUN52ccjVD
-	GMqy5nG1kNqNjnLZAIlTyCOcCYMFYWZWR7oIR+VsKTMLCwoX1qtMPhwrzPpKSrmDUIbLuUCDvEF
-	eSZDZsCWhvnDlJ3TRVd1AiH871yaMsc9JtraO+bdIrGq
-X-Received: by 2002:a05:6a00:c92:b0:736:3c77:31fd with SMTP id d2e1a72fcca58-73905a364b0mr22153576b3a.23.1742905843282;
-        Tue, 25 Mar 2025 05:30:43 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEjMUj1TLOsrYDkG5M5EtFQfcFnxQW3340OpNyCVSxp8cds6pRnYowPm6jrN3KQxqvr/9ZaFg==
-X-Received: by 2002:a05:6a00:c92:b0:736:3c77:31fd with SMTP id d2e1a72fcca58-73905a364b0mr22153500b3a.23.1742905842630;
-        Tue, 25 Mar 2025 05:30:42 -0700 (PDT)
-Received: from hu-prashk-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7390618e4b6sm9987391b3a.180.2025.03.25.05.30.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Mar 2025 05:30:42 -0700 (PDT)
-From: Prashanth K <prashanth.k@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Pratham Pratap <quic_ppratap@quicinc.com>,
-        Prashanth K <prashanth.k@oss.qualcomm.com>
-Subject: [PATCH v1 5/5] arm64: dts: qcom: qdu1000: Add snps,dis_u3_susphy_quirk
-Date: Tue, 25 Mar 2025 18:00:19 +0530
-Message-Id: <20250325123019.597976-6-prashanth.k@oss.qualcomm.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250325123019.597976-1-prashanth.k@oss.qualcomm.com>
-References: <20250325123019.597976-1-prashanth.k@oss.qualcomm.com>
+	s=arc-20240116; t=1742906400; c=relaxed/simple;
+	bh=hMfpvuD8OHyHlBPGVhbZTTgGFI+xWrk3NeZsR5xWQWE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CByc54kgVIvPtzCb6ZxkoD9W8k4NrYzWGPSY40N+C5gHyxs0HukgJIx8Rh+HCwBJmGXVRuWjngfi4ng55fBhvF3zl9soOp8WZAyd2nLzjywQbBuN16qDwPcRUmN26emuDnSPhNka0+RQn0robvGhfjQ0ugDF0bi4mms5JZOKFF0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Ph2VMeNV; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5F7EB10382F1B;
+	Tue, 25 Mar 2025 13:39:51 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1742906395; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=BlO6BNtBl1gk8zG3pRpzJ3qRY4omgmymjs/5E1n8HjU=;
+	b=Ph2VMeNVjojq7TyvN7jh1Xvncyxwlz6NpBlppHNo9w5Iu/1wa4qn5QR39AYjxqjTAPqwxR
+	TXeReWMOVxrLOSSlLiltJ2Wjjk18iMnCgzrRsVo1dHiPnSUCuiQMi9ACYt+WPA3/Fiyxtw
+	n9Tj4We6m0IQSaocMpO8/8CbewGDOxAHdmHmQ01rfWsS3KFbnTDUJWFJz2JlxQ19Ualrew
+	WRWDujnxrIt04pmWVl4zQWTf5IcXPwXu2uitdwbv7i7Bz2FqdYYnyuJSqHikLpGQTp5zub
+	mFnyW726zYKT9VIcjgCpTN8yRITpCo620DY8AGB8iiOhG6lu66/pX0AXMfDzfQ==
+Date: Tue, 25 Mar 2025 13:39:49 +0100
+From: Lukasz Majewski <lukma@denx.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
+ Hauer <s.hauer@pengutronix.de>, Paolo Abeni <pabeni@redhat.com>, Jakub
+ Kicinski <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ davem@davemloft.net, Andrew Lunn <andrew+netdev@lunn.ch>, Pengutronix
+ Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Richard
+ Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org, Maxime
+ Chevallier <maxime.chevallier@bootlin.com>
+Subject: Re: [PATCH 2/5] dt-bindings: net: Add MTIP L2 switch description
+ (fec,mtip-switch.yaml)
+Message-ID: <20250325133949.7782a8a5@wsk>
+In-Reply-To: <bf6d066c-f0dd-471a-bb61-9132476b515a@kernel.org>
+References: <20250325115736.1732721-1-lukma@denx.de>
+	<20250325115736.1732721-3-lukma@denx.de>
+	<2bf73cc2-c79a-4a06-9c5f-174e3b846f1d@kernel.org>
+	<20250325131507.692804cd@wsk>
+	<bf6d066c-f0dd-471a-bb61-9132476b515a@kernel.org>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: DXwNF1b0UhM_mI5rQAC_aZl3le8dCVdC
-X-Authority-Analysis: v=2.4 cv=KMlaDEFo c=1 sm=1 tr=0 ts=67e2a1f4 cx=c_pps a=IZJwPbhc+fLeJZngyXXI0A==:117 a=fChuTYTh2wq5r3m49p7fHw==:17 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=1HEuz3GWIXJSLhVaKDMA:9 a=uG9DUKGECoFWVXl0Dc02:22
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: DXwNF1b0UhM_mI5rQAC_aZl3le8dCVdC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-25_05,2025-03-25_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=870
- bulkscore=0 clxscore=1011 lowpriorityscore=0 mlxscore=0 priorityscore=1501
- adultscore=0 impostorscore=0 malwarescore=0 spamscore=0 suspectscore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503250088
+Content-Type: multipart/signed; boundary="Sig_/dA91ybGkb__gwOvzVaQYG_K";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Last-TLS-Session-Version: TLSv1.3
 
-From: Pratham Pratap <quic_ppratap@quicinc.com>
+--Sig_/dA91ybGkb__gwOvzVaQYG_K
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-During device mode initialization on certain QC targets, before the
-runstop bit is set, sometimes it's observed that the GEVNTADR{LO/HI}
-register write fails. As a result, GEVTADDR registers are still 0x0.
-Upon setting runstop bit, DWC3 controller attempts to write the new
-events to address 0x0, causing an SMMU fault and system crash.
+Hi Krzysztof,
 
-This was initially observed on SM8450 and later reported on few
-other targets as well. As suggested by Qualcomm HW team, clearing
-the GUSB3PIPECTL.SUSPHY bit resolves the issue by preventing register
-write failures. Address this by setting the snps,dis_u3_susphy_quirk
-to keep the GUSB3PIPECTL.SUSPHY bit cleared. This change was tested
-on multiple targets (SM8350, SM8450 QCS615 etc.) for over an year
-and hasn't exhibited any side effects.
+> On 25/03/2025 13:15, Lukasz Majewski wrote:
+> > Hi Krzysztof,
+> >  =20
+> >> On 25/03/2025 12:57, Lukasz Majewski wrote: =20
+> >>> This patch provides description of the MTIP L2 switch available in
+> >>> some NXP's SOCs - imx287, vf610.
+> >>>
+> >>> Signed-off-by: Lukasz Majewski <lukma@denx.de>
+> >>> ---
+> >>>  .../bindings/net/fec,mtip-switch.yaml         | 160
+> >>> ++++++++++++++++++   =20
+> >>
+> >> Use compatible as filename. =20
+> >=20
+> > I've followed the fsl,fec.yaml as an example. This file has
+> > description for all the device tree sources from fec_main.c =20
+>=20
+>=20
+> That's a 14 year old binding, so clear antipattern.
 
-Signed-off-by: Pratham Pratap <quic_ppratap@quicinc.com>
-Signed-off-by: Prashanth K <prashanth.k@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/qdu1000.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+For some reason it is still there...
 
-diff --git a/arch/arm64/boot/dts/qcom/qdu1000.dtsi b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-index f973aa8f7477..b3c673e24726 100644
---- a/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-@@ -1022,6 +1022,7 @@ usb_1_dwc3: usb@a600000 {
- 
- 				iommus = <&apps_smmu 0xc0 0x0>;
- 				snps,dis_u2_susphy_quirk;
-+				snps,dis_u3_susphy_quirk;
- 				snps,dis_enblslpm_quirk;
- 				snps,dis-u1-entry-quirk;
- 				snps,dis-u2-entry-quirk;
--- 
-2.25.1
+>=20
+> >=20
+> > I've considered adding the full name - e.g.
+> > fec,imx287-mtip-switch.yaml but this driver could (and probably
+> > will) be extended to vf610. =20
+>=20
+> Unless you add vf610 now, this should follow the compatible name.
 
+Ok.
+
+>=20
+> >=20
+> > So what is the advised way to go?
+> >  =20
+> >> =20
+> >>>  1 file changed, 160 insertions(+)
+> >>>  create mode 100644
+> >>> Documentation/devicetree/bindings/net/fec,mtip-switch.yaml
+> >>>
+> >>> diff --git
+> >>> a/Documentation/devicetree/bindings/net/fec,mtip-switch.yaml
+> >>> b/Documentation/devicetree/bindings/net/fec,mtip-switch.yaml new
+> >>> file mode 100644 index 000000000000..cd85385e0f79 --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/net/fec,mtip-switch.yaml
+> >>> @@ -0,0 +1,160 @@
+> >>> +# SPDX-License-Identifier: GPL-2.0-only
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/net/fsl,mtip-switch.yaml#
+> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: Freescale MTIP Level 2 (L2) switch
+> >>> +
+> >>> +maintainers:
+> >>> +  - Lukasz Majewski <lukma@denx.de>
+> >>> +   =20
+> >>
+> >> description? =20
+> >=20
+> > Ok.
+> >  =20
+> >> =20
+> >>> +allOf:
+> >>> +  - $ref: ethernet-controller.yaml#
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    oneOf:   =20
+> >>
+> >> Drop, you have only one variant. =20
+> >=20
+> > Ok, for imx287 this can be dropped, and then extended with vf610.
+> >  =20
+> >> =20
+> >>> +      - enum:
+> >>> +	  - imx287-mtip-switch   =20
+> >>
+> >> This wasn't tested. Except whitespace errors, above compatible does
+> >> not have format of compatible. Please look at other NXP bindings.
+> >>
+> >> Missing blank line.
+> >> =20
+> >>> +  reg:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  interrupts:
+> >>> +    maxItems: 3   =20
+> >>
+> >> Need to list items instead.
+> >> =20
+> >>> +
+> >>> +  clocks:
+> >>> +    maxItems: 4
+> >>> +    description:
+> >>> +      The "ipg", for MAC ipg_clk_s, ipg_clk_mac_s that are for
+> >>> register accessing.
+> >>> +      The "ahb", for MAC ipg_clk, ipg_clk_mac that are bus clock.
+> >>> +      The "ptp"(option), for IEEE1588 timer clock that requires
+> >>> the clock.
+> >>> +      The "enet_out"(option), output clock for external device,
+> >>> like supply clock
+> >>> +      for PHY. The clock is required if PHY clock source from
+> >>> SOC.=20
+> >>
+> >> Same problems. This binding does not look at all as any other
+> >> binding. I finish review here, but the code has similar trivial
+> >> issues all the way, including incorrect indentation. Start from
+> >> well reviewed existing binding or example-schema. =20
+> >=20
+> > As I've stated above - this code is reduced copy of fsl,fec.yaml...
+> > =20
+>=20
+> Don't take the worst, old code with all the anti-patterns we point out
+> on each review, as an example.
+>=20
+> Take the most recent, well reviewed binding as an example. Or
+> example-schema.
+
+Ok.
+
+>=20
+> Best regards,
+> Krzysztof
+
+
+Best regards,
+
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH,      Managing Director: Erika Unter
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/dA91ybGkb__gwOvzVaQYG_K
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmfipBUACgkQAR8vZIA0
+zr3d0wf/bxDkHq2CXcGN5WbTK8hga817FnMv0+WxVnrO7+RB2b0lrOdZaTXXcwb6
+KM0DjW6hv1ZV/tY9uU1hNCnw3dYxia9dKKts3Xy7doPol9M31NkM9HUYpZ2gZPtR
+Db9R7nCqrNZmh2h3jqbVB1lZBpR4B9mFilCVs6+3hMn3y5bQWu6hRNvq5K+oSc9D
+d//uIGq7euZXpaAXxujJyYGQDEuJdmVf9lzktP6g9PCt/Tk799ulW7qe0RWcjfYl
+E48J4AzVxR1rCs2gJqAsxN/cKsCsuLmerC057YamM8NKVuqa30xmt7UTPFjJ89wb
+KjeIiOpkE56KfTAlW8new9bOhBT09A==
+=AANv
+-----END PGP SIGNATURE-----
+
+--Sig_/dA91ybGkb__gwOvzVaQYG_K--
 
