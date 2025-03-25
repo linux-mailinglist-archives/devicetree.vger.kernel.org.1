@@ -1,191 +1,241 @@
-Return-Path: <devicetree+bounces-160361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A837A6E767
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 01:01:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 249CEA6E794
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 01:21:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 915EA1893CFD
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 00:00:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B3D1D18933CF
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 00:22:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97D901F1905;
-	Mon, 24 Mar 2025 23:59:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A69B6BB5B;
+	Tue, 25 Mar 2025 00:21:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dTH8Zuea"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="EHRDuH2o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f201.google.com (mail-pl1-f201.google.com [209.85.214.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC7BE1F1303
-	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 23:59:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E42001854
+	for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 00:21:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742860797; cv=none; b=oGwnKXW3ienF3xTM+0tz3X5Afz+viTDPM0IGPRk0JvEWJUg1Tk3go86ar7ie0d9mlXWTNG0cx+eSU97DmBp/Va6lpGfRGbTZeF2DVp4246G0WmIVSLNcDZCDvGI9hFWDe4yJZmo60886ErV91jyVPPF6o/6RETcCb34L/u+AhhU=
+	t=1742862110; cv=none; b=nYqbnDEUwepxXxZSTXgvmzglwBRBOLXEflz+klVWT8sOthAPhdLSzoCuStLCaD68Gkj1YnOC02rmlGFcz/nyjfAsvFdKZP4vpUuouRt4W4Q/TTjb/PDDFXlB/CABB/JZVCqjyqM3KsDJBxYB1zBm48WYMyl9+o0V0F2NacQ3o80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742860797; c=relaxed/simple;
-	bh=Gm4m/qnCBIk9eW6dtzI5t7WbQFiXoUSDnNsNWq2SfAY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=h90l0s9OYSgqtoy7cj26OYqGO2R6cmvTd/6O7i0/1BjSPgqd8ZG0YWs1mWaQtK4ek6VEGwp3zmDpmABXihxL+zMKPJfoS8j/t4KXVZsnkfe8dbpSSelUklqjofT5JCXpnV3x0zExWdbRtoMK5P9LwlmCwRiR3HH1BjZZ35tCVk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dTH8Zuea; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52OIse7D004772
-	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 23:59:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	GUUEA+5MifU8OXBHZIrL3fvNsszMlIyyIRJX6M6YE7o=; b=dTH8ZueaaFUskarn
-	viCSwxxA4D7ngqKz7+AZYux1F8YEiaD5OhQVfVCqpux5oroveaO0UA2LUdQouJ+d
-	4q/jPmejcHwzLTGMS5OUpBNOrQQDe1FSobdnkdK7H0H4y/jOha5dZMGAAx565Wz/
-	g3UX7graKa2uj/CHOzDBXbyWuVbSy0ITBSeZKYJLflE7FxhZXro1ygML7EI76G2v
-	sDGmxZFdB4Nuz2jbbZFWjNO8yRURJnK8IDallGpltG9UUyAClZgCRPVJU9FD4PjT
-	OafEw0/mkNFagXbJ2PvTnq8m+AlxrIOc/TjuHM6IxG63saqpvqI8LH36xmTBUwm0
-	iJ6kcw==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45hm79p087-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 23:59:54 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7c545ac340aso81029685a.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 16:59:54 -0700 (PDT)
+	s=arc-20240116; t=1742862110; c=relaxed/simple;
+	bh=vrj35GYsxNq9sLVJo6Xi68dZRxTptMeao+yGxpd7dYA=;
+	h=Date:In-Reply-To:Mime-Version:References:Message-ID:Subject:From:
+	 To:Cc:Content-Type; b=LGWZHUCwQxwq15tFZbTQes+gPu9XiwoxEqrn/bqs11euNYO+v5bXhZwRNI+7FnALM0723jIxM9EEQfX8bP6zH1THykqNjFq1bLgyoJbR03Ql39ZleueJb6U1L0OVgKaaB82gmrmrudkvini/f9p5Vf9tpUkVH/0a1WI/msX4KmM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--changyuanl.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=EHRDuH2o; arc=none smtp.client-ip=209.85.214.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--changyuanl.bounces.google.com
+Received: by mail-pl1-f201.google.com with SMTP id d9443c01a7336-2241e7e3addso71037655ad.1
+        for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 17:21:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1742862108; x=1743466908; darn=vger.kernel.org;
+        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+         :date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Kb8y09wjWZKZXgN+OK6vm5oWH5+mueKid+6zGQwN3TE=;
+        b=EHRDuH2oeDAdWBCfFcLk4ugHp0+QF2zJ163DPdc74wvbz12fWe55OmupORyBfmAkJk
+         7zi7ggzYJJQahDptjPVfaUBsEHqLNeZKhhVAaIXJxc+wlrxPunRLx/ayPQORmByHTuXk
+         3Hd+Abvpy762noQJUwZzwZp7vrLq7OGVjxSZaApZHJHPw6iSqbnRzrBx60kKE9y/JCZb
+         wYX8ewgTP7odMGMJEEwxzx51pZIQvZb7Sy3QVPSVUw8BVNy8zG6JRdDG834+ACclm02x
+         0d+1PCNQMgB8kuaZDaHmBLyHR3ZCcWZluYe6OdEgoI57NGhhBKUmbGoI8wpF70rRcT8j
+         te/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742860794; x=1743465594;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GUUEA+5MifU8OXBHZIrL3fvNsszMlIyyIRJX6M6YE7o=;
-        b=ZcInKpZgWMobmkgalaO7eaY5UNj7fFjNk0uMNkTiuV2+TiMcqV43OTMgY9RLOsVIyL
-         eZQk6QSW2l+Q/g+7ehBCbGyaS7oPSLwah6gVoR7RhTDCz6G5mq1ZQ6fNPcE1jR0LB9cn
-         wPXxZ99fUD6tB8WZPCbdZljzgMWHMZV6T4EhtPZJw95tirLtSK7z5qqdt1Kul0pL7yv2
-         YySDBnuLbGzHAAZ7B4dazPqkV/lmn6bvOr+EEsMP0kM3pN15u+4u6IXVlxVucwNuH+C/
-         kxwo8dHTgkmr41Bcpj5kUsnVMKjUjjLxLi0Ems/TMNJJb11Z0rVwlEI9PwvFUgNnl+xr
-         c3qg==
-X-Forwarded-Encrypted: i=1; AJvYcCWQyUjyBgqDmAwyvrh9sbAjQM0cPlFCSs1Y0JugyWCrYgVxrxnRaM5YQBSCCivBc638t08ab/Sym7XC@vger.kernel.org
-X-Gm-Message-State: AOJu0YztDONs2c+C9dLQujoWqtfxPGTsAJQ9oPximJ4QXlIEKWaXHaPp
-	IrrLRvSGuSGvWTVQipTW6XHHYuObuevFGpAozVmWehdrCaYbFqWv9m5wf45yW071nbamM9FOwdm
-	CKnWPrDjUXrXo9SgiJfLKWrRPm50hucNHKwLlScuycGJT8vxj5S/U0jL+2sIh
-X-Gm-Gg: ASbGncs/rrlzthbcgQ+HQMjS0uvnynTrhLSW0xwQcSFTvmDZqgifA7s4d4SxupNqr/O
-	k1l0+mSoXRrjv90ekFmW6N6y7AU4lanJEjU9yrN3kKsdUhmfjjAy+8JLHKkW7pG/ZVmcIjCB7mS
-	xZPopNhPIYr6ZgeHWZNWHQYkCiB1uj1nKtaFwT4rqnrWdV9IZHfP7XHWNJD6PJayqPTlUkElaG4
-	7GxU5IivBzJao3eWWyDnL9HmtWaPhG0dELuO0VJwVuVGaHMnYHBCaU9mWDPy8vVnH8RN6cRZISC
-	fQODWMTWbOCB5N9Be5rq70hkuiHJ83FpRv2XVmxsRv9BWG3a7blZlZ0SrS+qZjutm2ZHyQ==
-X-Received: by 2002:a05:620a:4482:b0:7c3:e399:3289 with SMTP id af79cd13be357-7c5ba1828cdmr656206485a.4.1742860793722;
-        Mon, 24 Mar 2025 16:59:53 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEHj0ppr+7xuQb9OW7wF3Px5IbXShixiG+Mq4HkZUqXFMac+ctdDTnQWLijCrc5IDwfw8wZqw==
-X-Received: by 2002:a05:620a:4482:b0:7c3:e399:3289 with SMTP id af79cd13be357-7c5ba1828cdmr656204785a.4.1742860793154;
-        Mon, 24 Mar 2025 16:59:53 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac3ef86e514sm749680066b.35.2025.03.24.16.59.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Mar 2025 16:59:51 -0700 (PDT)
-Message-ID: <ba6cbf94-3e78-4c77-8c4f-908d3d90a1b1@oss.qualcomm.com>
-Date: Tue, 25 Mar 2025 00:59:49 +0100
+        d=1e100.net; s=20230601; t=1742862108; x=1743466908;
+        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Kb8y09wjWZKZXgN+OK6vm5oWH5+mueKid+6zGQwN3TE=;
+        b=LSKUZ/mLP4N9v75dimEJ0RDrzG3ktrrlfjfsuU54YzM0m4aPIbRvSBcNjcus8KQ3uO
+         eGuyTvZoWsW8Z+AjNvHOLU/jLjP19WjPYy6jHzBjptPHwsyNxbEiSUh5bmHFPRVf9HaP
+         CwcvogC1pB5i3So14OeNorifBEm1Lz2FK0SSeaG3NCZGHzh5rh90mv8Fc0gwsVMPR6+l
+         +N6e50G5tuH7JR/dyNGbm3M9xtie63uT05T4koYu8joD9YuXZpE5Zfzw5JHFoTpCamc5
+         /chIN/UTAKF/fGfm4VreuUi19TqVEmXmYrIw8CGIiKikmN3xvoIjyEXb1SvXsJth36pi
+         pfyg==
+X-Forwarded-Encrypted: i=1; AJvYcCWOS+t56LP9Pn82XRIx/XnW6wU6DWPm9bGwhh3BnSQl2i2mAJ0kKySuTZJfaUHtNyO0vpG89o8Lmb0r@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHoWBVNIU1QPc69Dxxfleu1rexX+yDmm6QsX+6TJUxK2ilJ/ag
+	LmYFR8PTv7YLDyf22o6x11cHe3MOISboU2KEGLrN+/ZGlkb4EEu47IaOH1tDGa6KmBeZF48vHcU
+	2dofMx1FLwiYvRKMtHQ==
+X-Google-Smtp-Source: AGHT+IHG0g+Hm1IqtMzqXUj5Qn0QldzYjiLvO8Nyoi1zqCX0pxtjOavFlFPqDc4bNSQjw3dO9geHCTStZpDWLXuA
+X-Received: from pfbgi10.prod.google.com ([2002:a05:6a00:63ca:b0:736:59f0:d272])
+ (user=changyuanl job=prod-delivery.src-stubby-dispatcher) by
+ 2002:aa7:88c7:0:b0:736:5725:59b9 with SMTP id d2e1a72fcca58-7390593d43fmr22362509b3a.2.1742862108166;
+ Mon, 24 Mar 2025 17:21:48 -0700 (PDT)
+Date: Mon, 24 Mar 2025 17:21:45 -0700
+In-Reply-To: <Z+GIRecXeYXiPrYv@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: clock: qcom: Add CMN PLL support for
- IPQ5424 SoC
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Luo Jie <quic_luoj@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_kkumarcs@quicinc.com, quic_suruchia@quicinc.com,
-        quic_pavir@quicinc.com, quic_linchen@quicinc.com,
-        quic_leiwei@quicinc.com
-References: <20250321-qcom_ipq5424_cmnpll-v1-0-3ea8e5262da4@quicinc.com>
- <20250321-qcom_ipq5424_cmnpll-v1-1-3ea8e5262da4@quicinc.com>
- <55eada15-222e-4b97-a519-95b5e3aa7c23@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <55eada15-222e-4b97-a519-95b5e3aa7c23@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: JhplpAx0U-K8bJ5IL2lo-o8LnUXWYfnW
-X-Proofpoint-ORIG-GUID: JhplpAx0U-K8bJ5IL2lo-o8LnUXWYfnW
-X-Authority-Analysis: v=2.4 cv=IKYCChvG c=1 sm=1 tr=0 ts=67e1f1fa cx=c_pps a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=BPsefSz62mVIWsVq_7wA:9 a=QEXdDO2ut3YA:10 a=RVmHIydaz68A:10
- a=NFOGd7dJGGMPyQGDc5-O:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-24_07,2025-03-21_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
- phishscore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0 spamscore=0
- priorityscore=1501 adultscore=0 malwarescore=0 mlxlogscore=999 mlxscore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503240164
+Mime-Version: 1.0
+References: <Z+GIRecXeYXiPrYv@nvidia.com>
+X-Mailer: git-send-email 2.49.0.395.g12beb8f557-goog
+Message-ID: <20250325002145.982402-1-changyuanl@google.com>
+Subject: Re: [PATCH v5 07/16] kexec: add Kexec HandOver (KHO) generation helpers
+From: Changyuan Lyu <changyuanl@google.com>
+To: jgg@nvidia.com
+Cc: akpm@linux-foundation.org, anthony.yznaga@oracle.com, arnd@arndb.de, 
+	ashish.kalra@amd.com, benh@kernel.crashing.org, bp@alien8.de, 
+	catalin.marinas@arm.com, changyuanl@google.com, corbet@lwn.net, 
+	dave.hansen@linux.intel.com, devicetree@vger.kernel.org, dwmw2@infradead.org, 
+	ebiederm@xmission.com, graf@amazon.com, hpa@zytor.com, jgowans@amazon.com, 
+	kexec@lists.infradead.org, krzk@kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-mm@kvack.org, luto@kernel.org, 
+	mark.rutland@arm.com, mingo@redhat.com, pasha.tatashin@soleen.com, 
+	pbonzini@redhat.com, peterz@infradead.org, ptyadav@amazon.de, 
+	robh+dt@kernel.org, robh@kernel.org, rostedt@goodmis.org, rppt@kernel.org, 
+	saravanak@google.com, skinsburskii@linux.microsoft.com, tglx@linutronix.de, 
+	thomas.lendacky@amd.com, will@kernel.org, x86@kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 3/25/25 12:57 AM, Konrad Dybcio wrote:
-> On 3/21/25 1:49 PM, Luo Jie wrote:
->> The CMN PLL block in the IPQ5424 SoC takes 48 MHZ as the reference
->> input clock. The output clocks are the same as IPQ9574 SoC, except
->> for the clock rate of output clocks to PPE and NSS.
->>
->> Also, add macros for clock rates that are applicable specifically
->> only for IPQ5424.
->>
->> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
->> ---
->>  .../devicetree/bindings/clock/qcom,ipq9574-cmn-pll.yaml        |  1 +
->>  include/dt-bindings/clock/qcom,ipq-cmn-pll.h                   | 10 +++++++++-
->>  2 files changed, 10 insertions(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/clock/qcom,ipq9574-cmn-pll.yaml b/Documentation/devicetree/bindings/clock/qcom,ipq9574-cmn-pll.yaml
->> index f869b3739be8..bbaf896ae908 100644
->> --- a/Documentation/devicetree/bindings/clock/qcom,ipq9574-cmn-pll.yaml
->> +++ b/Documentation/devicetree/bindings/clock/qcom,ipq9574-cmn-pll.yaml
->> @@ -25,6 +25,7 @@ properties:
->>    compatible:
->>      enum:
->>        - qcom,ipq9574-cmn-pll
->> +      - qcom,ipq5424-cmn-pll
->>  
->>    reg:
->>      maxItems: 1
->> diff --git a/include/dt-bindings/clock/qcom,ipq-cmn-pll.h b/include/dt-bindings/clock/qcom,ipq-cmn-pll.h
->> index 936e92b3b62c..e30d57001c38 100644
->> --- a/include/dt-bindings/clock/qcom,ipq-cmn-pll.h
->> +++ b/include/dt-bindings/clock/qcom,ipq-cmn-pll.h
->> @@ -1,6 +1,6 @@
->>  /* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
->>  /*
->> - * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
->> + * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
->>   */
->>  
->>  #ifndef _DT_BINDINGS_CLK_QCOM_IPQ_CMN_PLL_H
->> @@ -19,4 +19,12 @@
->>  #define ETH1_50MHZ_CLK			7
->>  #define ETH2_50MHZ_CLK			8
->>  #define ETH_25MHZ_CLK			9
->> +
->> +/*
->> + * The CMN PLL output clock rates that are specifically applicable for IPQ5424
->> + * SoC. For IPQ5424, the other output clocks and their rates are same as IPQ9574.
->> + */
->> +#define NSS_300MHZ_CLK			4
->> +#define PPE_375MHZ_CLK			5
-> 
-> Not a huge fan of this, such differences are only relevant to the driver
-> part in my view - bindings only let a consumer reference a specific piece
-> of hardware
+Hi Jason,
 
-Oh I the bindings are stepping into the frequency department already,
-hmm.. Then I suppose it's fine if the dt-bindings maintainers don't have any
-concerns
+On Mon, Mar 24, 2025 at 13:28:53 -0300, Jason Gunthorpe <jgg@nvidia.com> wrote:
+> [...]
+> > > I feel like this patch is premature, it should come later in the
+> > > project along with a stronger justification for this approach.
+> > >
+> > > IHMO keep things simple for this series, just the very basics.
+> >
+> > The main purpose of using hashtables is to enable KHO users to save
+> > data to KHO at any time, not just at the time of activate/finalize KHO
+> > through sysfs/debugfs. For example, FDBox can save the data into KHO
+> > tree once a new fd is saved to KHO. Also, using hashtables allows KHO
+> > users to add data to KHO concurrently, while with notifiers, KHO users'
+> > callbacks are executed serially.
+>
+> This is why I like the recursive FDT scheme. Each serialization
+> operation can open its own FDT write to it and the close it
+> sequenatially within its operation without any worries about
+> concurrency.
+>
+> The top level just aggregates the FDT blobs (which are in preserved
+> memory)
+>
+> To me all this complexity here with the hash table and the copying
+> makes no sense compared to that. It is all around slower.
+>
+> > Regarding the suggestion of recursive FDT, I feel like it is already
+> > doable with this patchset, or even with Mike's V4 patch.
+>
+> Of course it is doable, here we are really talk about what is the
+> right, recommended way to use this system. recurisive FDT is a better
+> methodology than hash tables
+>
+> > just allocates a buffer, serialize all its states to the buffer using
+> > libfdt (or even using other binary formats), save the address of the
+> > buffer to KHO's tree, and finally register the buffer's underlying
+> > pages/folios with kho_preserve_folio().
+>
+> Yes, exactly! I think this is how we should operate this system as a
+> paradig, not a giant FDT, hash table and so on...
+>
+> [...]
+> > To completely remove fdt_max, I am considering the idea in [1]. At the
+> > time of kexec_file_load(), we pass the address of an anchor page to
+> > the new kernel, and the anchor page will later be fulfilled with the
+> > physical addresses of the pages containing the FDT blob. Multiple
+> > anchor pages can be linked together. The FDT blob pages can be physically
+> > noncontiguous.
+>
+> Yes, this is basically what I suggested too. I think this is much
+> prefered and doesn't require the wakky uapi.
+>
+> Except I suggested you just really need a single u64 to point to a
+> preserved page holding the top level FDT.
+>
+> With recursive FDT I think we can say that no FDT fragement should
+> exceed PAGE_SIZE, and things become much simpler, IMHO.
 
-Konrad
+Thanks for the suggestions! I am a little bit concerned about assuming
+every FDT fragment is smaller than PAGE_SIZE. In case a child FDT is
+larger than PAGE_SIZE, I would like to turn the single u64 in the parent
+FDT into a u64 list to record all the underlying pages of the child FDT.
+
+To be concrete and make sure I understand your suggestions correctly,
+I drafted the following design,
+
+Suppose we have 2 KHO users, memblock and gpu@0x2000000000, the KHO
+FDT (top level FDT) would look like the following,
+
+    /dts-v1/;
+    / {
+            compatible = "kho-v1";
+            memblock {
+                    kho,recursive-fdt = <0x00 0x40001000>;
+            };
+            gpu@0x100000000 {
+                    kho,recursive-fdt = <0x00 0x40002000>;
+            };
+    };
+
+kho,recursive-fdt in "memblock" points to a page containing another
+FDT,
+
+    / {
+            compatible = "memblock-v1";
+            n1 {
+                    compatible = "reserve-mem-v1";
+                    size = <0x04 0x00>;
+                    start = <0xc06b 0x4000000>;
+            };
+            n2 {
+                    compatible = "reserve-mem-v1";
+                    size = <0x04 0x00>;
+                    start = <0xc067 0x4000000>;
+            };
+    };
+
+Similarly, "kho,recursive-fdt" in "gpu@0x2000000000" points to a page
+containing another FDT,
+
+    / {
+            compatible = "gpu-v1"
+            key1 = "v1";
+            key2 = "v2";
+
+            node1 {
+                    kho,recursive-fdt = <0x00 0x40003000 0x00 0x40005000>;
+            }
+            node2 {
+                    key3 = "v3";
+                    key4 = "v4";
+            }
+    }
+
+and kho,recursive-fdt in "node1" contains 2 non-contagious pages backing
+the following large FDT fragment,
+
+    / {
+            compatible = "gpu-subnode1-v1";
+
+            key5 = "v5";
+            key6 = "v6";
+            key7 = "v7";
+            key8 = "v8";
+            ... // many many keys and small values
+    }
+
+In this way we assume that most FDT fragment is smaller than 1 page so
+"kho,recursive-fdt" is usually just 1 u64, but we can also handle
+larger fragments if that really happens.
+
+I also allow KHO users to add sub nodes in-place, instead of forcing
+to create a new FDT fragment for every sub node, if the KHO user is
+confident that those subnodes are small enough to fit in the parent
+node's page. In this way we do not need to waste a full page for a small
+sub node. An example is the "memblock" node above.
+
+Finally, the KHO top level FDT may also be larger than 1 page, this can
+be handled using the anchor-page method discussed in the previous mails.
+
+What do you think?
+
+Best,
+Changyuan
 
