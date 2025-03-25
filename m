@@ -1,124 +1,95 @@
-Return-Path: <devicetree+bounces-160642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B170A705C6
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 16:59:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E48EAA705D3
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 17:00:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1646A1635E9
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 15:58:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 278E63A7A14
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 16:00:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0AD225332E;
-	Tue, 25 Mar 2025 15:58:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B299725BAD5;
+	Tue, 25 Mar 2025 15:59:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WJJl+ED1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FKr6NAdT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9BD920E30F;
-	Tue, 25 Mar 2025 15:58:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 848FA2561DF;
+	Tue, 25 Mar 2025 15:59:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742918320; cv=none; b=Iw3uuFP/e1S0uwDsqmX8Le8WmnQ27Sy12ncPP3AXyrBTQarOVnecWpW9erorzKbACaCl0SvFTLVfvTNU+Sjb0tRejBzqr/WNVnAIt+L/ZVEKatuiEXZqyByqx2/vq1mgGEKvLB5zgRo7gjT8xu5LvEdNxoBoB+tORIM3ys5gDFg=
+	t=1742918399; cv=none; b=rE0iMRwXZ8nPwpaI+c8xxsHLV7cKtYSmdzg0x8Ia2lwT+cN/jToMhfBJCiZp0AP/fSKClESo973YhAOS0wXcm1XkAx3TVW4dW7UxRKLBjTHnSujqhxsRfn5Mc5YUKo6ljxgxkP5qsBhapX28N3mlNAoZMZDJkc9awollynoO+ag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742918320; c=relaxed/simple;
-	bh=B5U+FnoyiD8ehcQwNrX3Bjp4on7HLO0Q7pE59+Vx5is=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J5wybZRBnlwsZ2N0q+On8kkqWjfXMvOC8FjALm08OOSZHD01NFf5a0M36HH2Fpd7lBgkhFmM7GY9iJX0mxrsBZ3o+D3jHAc0kkvwoJ5gvtnza+G0PdADIcUZOmIKNBIt/ORDcofZJjtBn/5I4yKSb6qAI4q2apq0LzMR2YDkD7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WJJl+ED1; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1742918319; x=1774454319;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=B5U+FnoyiD8ehcQwNrX3Bjp4on7HLO0Q7pE59+Vx5is=;
-  b=WJJl+ED13g661dH+4Zso1nlB/UgQwA0JjhcDSCaU+/YOYvzhwrciKd+V
-   a1Re4bWH2MfObE1qAVwSvEcTMqKFhmcRHzjaEiz24/wxqMlaNE8bW6Mx7
-   A8XzCByoQsNDYn3cWgym8hZn8amcxAis9OL+/H12+ksWSH8YPD5ZII2h8
-   mWgihlOm2k+SO+SQnPjqh/0IIph2xiO07/zRLXHlE67lKWdz1MWhP7i5I
-   R3njqVKAhuVslDBgp2Gd0WhhcvAifUa3aiRSz291zCnFskWFoR9TJpr6M
-   GRdopDY6fl7YBQcSDN28+fE1W519hpd/rUDtc1KtC4Ydp/9jjeWrj1KP3
-   w==;
-X-CSE-ConnectionGUID: VAITzi+CR2SHtF1HeBeQ3g==
-X-CSE-MsgGUID: Uq+T3maRRte9eC6IMCGOgg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11384"; a="55554972"
-X-IronPort-AV: E=Sophos;i="6.14,275,1736841600"; 
-   d="scan'208";a="55554972"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Mar 2025 08:58:38 -0700
-X-CSE-ConnectionGUID: zM8aJLmCQ1uFZw0B+5Ks7w==
-X-CSE-MsgGUID: P+HCHL29QAGv6ulPZo1Uag==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,275,1736841600"; 
-   d="scan'208";a="124370501"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Mar 2025 08:58:33 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1tx6fd-00000005nK4-12Ba;
-	Tue, 25 Mar 2025 17:58:29 +0200
-Date: Tue, 25 Mar 2025 17:58:29 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v5 09/11] input: keyboard: Add support for MAX7360 keypad
-Message-ID: <Z-LSpRq3M3YYGOsW@smile.fi.intel.com>
-References: <20250318-mdb-max7360-support-v5-0-fb20baf97da0@bootlin.com>
- <20250318-mdb-max7360-support-v5-9-fb20baf97da0@bootlin.com>
- <Z9qybcY7VyQBvZMv@smile.fi.intel.com>
- <D8PFO3LSGWQD.38SX4PSHQ84W2@bootlin.com>
+	s=arc-20240116; t=1742918399; c=relaxed/simple;
+	bh=deKQHsSTq91cU+gs/lwy9UU8fJWk/D/NAudGGh5pVbA=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=Nut+VzYge6oTv8g4ogl6s8G9+IbYYRAhB70NOxCSq27MdRAsAT5b+KXU9ZFbMD2muH7ToFlbe8xkfk4aPe7Iw2R3zl9SKEetBFb/6AmkmCFkOm6als+rR0KYavbwrJTT2Y0bKvgjKZtllCwxWowCUOEawJcX8TrTzmgqFBQs2SI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FKr6NAdT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00F95C4CEE4;
+	Tue, 25 Mar 2025 15:59:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742918398;
+	bh=deKQHsSTq91cU+gs/lwy9UU8fJWk/D/NAudGGh5pVbA=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=FKr6NAdT2DkrIev+vLUH0x0gkYXnPoWCXigmGKiCxn/+dQkLV4mqFWfcdB8+e7zgA
+	 R9ow3fUG3YK4sXvy9mifQe/LKclyGUer/PiYOeHszJX7fEFmU58Eyx7DSOsB6YxIFv
+	 YAdByilcq/JxlzWenEgtH7jbXzF6QT+0PyQviXJjkXSuUxixWhbWLVaBwD7TDfYV9R
+	 eNPZKkNDQrVHe+at5jgXtL3gHi5/FYcI60JaE6H3r7UEATewUesbNnwNNhYHUAdBqm
+	 QVVP9wGGoY+8EwoijU1y986STkiBffZzHOKGyIfVP2yFTrg65rXHUTuDsU+/xt5+wC
+	 KVPQMIuuJNO0g==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 7122A380CFE7;
+	Tue, 25 Mar 2025 16:00:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <D8PFO3LSGWQD.38SX4PSHQ84W2@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH] dt-bindings: net: qcom,ipa: Correct indentation and style in
+ DTS example
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <174291843429.628657.8812268848912438806.git-patchwork-notify@kernel.org>
+Date: Tue, 25 Mar 2025 16:00:34 +0000
+References: <20250324125222.82057-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250324125222.82057-1-krzysztof.kozlowski@linaro.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, elder@kernel.org, linux-arm-msm@vger.kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
 
-On Tue, Mar 25, 2025 at 03:57:01PM +0100, Mathieu Dubois-Briand wrote:
-> On Wed Mar 19, 2025 at 1:02 PM CET, Andy Shevchenko wrote:
-> > On Tue, Mar 18, 2025 at 05:26:25PM +0100, Mathieu Dubois-Briand wrote:
+Hello:
 
-...
+This patch was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-> > > +	ret = devm_request_threaded_irq(&pdev->dev, irq, NULL, max7360_keypad_irq,
-> > > +					IRQF_TRIGGER_LOW | IRQF_ONESHOT,
-> >
-> > What's wrong with the interrupt flags provided by firmware description?
+On Mon, 24 Mar 2025 13:52:22 +0100 you wrote:
+> DTS example in the bindings should be indented with 2- or 4-spaces and
+> aligned with opening '- |', so correct any differences like 3-spaces or
+> mixtures 2- and 4-spaces in one binding.
 > 
-> So same question as for the GPIO driver: IRQF_TRIGGER_LOW from the
-> firmware, but IRQF_ONESHOT from the driver? Or should everything come
-> from the firmware?
+> No functional changes here, but saves some comments during reviews of
+> new patches built on existing code.
+> 
+> [...]
 
-The same answer, yes, the Linux stuff (e.g., ONESHOT) should be given
-explicitly here.
+Here is the summary with links:
+  - dt-bindings: net: qcom,ipa: Correct indentation and style in DTS example
+    https://git.kernel.org/netdev/net-next/c/a8b4ea7857ff
 
+You are awesome, thank you!
 -- 
-With Best Regards,
-Andy Shevchenko
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
 
