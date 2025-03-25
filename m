@@ -1,109 +1,92 @@
-Return-Path: <devicetree+bounces-160610-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4458A70486
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 16:04:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07C83A70489
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 16:05:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A545A3AD5A4
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 15:03:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9301D16669A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 15:05:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37AA125B68E;
-	Tue, 25 Mar 2025 15:03:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9824925A326;
+	Tue, 25 Mar 2025 15:05:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pUrY9lz+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cVTE8KaW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BE4D25B683;
-	Tue, 25 Mar 2025 15:03:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F76918A6AD;
+	Tue, 25 Mar 2025 15:05:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742915039; cv=none; b=KMr+7K0Jpuin8sFd3n2/9FZq1MOFBA6ag5gkdf4Wz5bMN8jETfIDN8/k9UKqolFBJkr3cyJqmq4F8KU22B5gCsHHNgqKc88zsBds6VcDXwgHz3cyNsbFv/ceqh0bEKUhGIrqkXrjtige69mUkyRwaSqYpuapNmQUHBLkNF+ylQs=
+	t=1742915134; cv=none; b=TyymZwBbzABH6f4xLD31Xcx8GVLAV3Nfgo/d6tzUfMYF/vaIUUcPdyTzHvgc0y1xtE1Ma0mc3LxB2cKV5Uo2USpTlzwPZ+A9lC4nd0N8uTCDE8WN/aUTK1/4OA0TUGvwENXFw7RyRYeY9GEbo1ypzGp4xHHYv9o0AqkBrgM6lK4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742915039; c=relaxed/simple;
-	bh=DlSm/XJ+691y9WK83MK+K+VAhVyt9Uh+O14MYitCEMU=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=q7Sqy2fW3Trk0QUaekotYyy3pCQZBCWN7Kwvf5uNCGK0ksZfJa+0YgiKf5Rf+Zd7zxaIq3afiEKo8pzK+VFf1vAoMUov/Fa9TxjoW4d8ZBpC+PwFNLw3PnrsqQDsh4b0eK3g6Jl9THUck7isU+22ddaHUxgkJf80ktqObbVGvnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pUrY9lz+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1174BC4CEEE;
-	Tue, 25 Mar 2025 15:03:58 +0000 (UTC)
+	s=arc-20240116; t=1742915134; c=relaxed/simple;
+	bh=tYkFuVNOqMc+WisSuseoSwC3bMrHo79j15VWlOW9ZpE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Nx+sH9gd4W0GDZ7TswVr1l7sFK5m4Dh0WCStFArvWsOmS6uUMfPOrGJEL4n+V1T+tiLpnPLib5+nRU9JHFi3KqQr72OQ7Y/DY1wwmwYQirQSh4tPSVodeOXDmagqa6nAt0RKyUy4ll+VfcKB04ml9O9OJxqLNqRujkfvKznhfVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cVTE8KaW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B95FDC4CEE4;
+	Tue, 25 Mar 2025 15:05:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742915038;
-	bh=DlSm/XJ+691y9WK83MK+K+VAhVyt9Uh+O14MYitCEMU=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:From;
-	b=pUrY9lz+D3qAxxjKU9sRrd3biaS0OmEhrrBkwmx4kPkTpUCMHpy/mzaWypb8rfZ4e
-	 WLOGhPmrBt3fs8APit625QUMpFR+e16CpN6BEITDKRtEtwtexF6oaMn3wIkjYwgOeN
-	 6FizHB25INbj95+5G1l44Aav81PK0heFxnEewIbWf7WuxLUokYDYAlKxW2nVNlvXo0
-	 +ZLGoHASqyFS74gwKSkv05fI01LQ9Iii2kDieVumQb9V4b3kd16w0Zxcxjv9wGWtEc
-	 lDYZMXceQTr71M7lM3D0LYTuesBJusjWuB+LWuX05PUAjv37EulHMnN5n7zgzuy3C2
-	 93XGDsyQIeifg==
-Date: Tue, 25 Mar 2025 11:03:21 -0400
-From: Mike Rapoport <rppt@kernel.org>
-To: Pasha Tatashin <pasha.tatashin@soleen.com>,
- Changyuan Lyu <changyuanl@google.com>
-CC: linux-kernel@vger.kernel.org, graf@amazon.com, akpm@linux-foundation.org,
- luto@kernel.org, anthony.yznaga@oracle.com, arnd@arndb.de,
- ashish.kalra@amd.com, benh@kernel.crashing.org, bp@alien8.de,
- catalin.marinas@arm.com, dave.hansen@linux.intel.com, dwmw2@infradead.org,
- ebiederm@xmission.com, mingo@redhat.com, jgowans@amazon.com, corbet@lwn.net,
- krzk@kernel.org, mark.rutland@arm.com, pbonzini@redhat.com, hpa@zytor.com,
- peterz@infradead.org, ptyadav@amazon.de, robh+dt@kernel.org, robh@kernel.org,
- saravanak@google.com, skinsburskii@linux.microsoft.com, rostedt@goodmis.org,
- tglx@linutronix.de, thomas.lendacky@amd.com, usama.arif@bytedance.com,
- will@kernel.org, devicetree@vger.kernel.org, kexec@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
- linux-mm@kvack.org, x86@kernel.org
-Subject: Re: [PATCH v5 00/16] kexec: introduce Kexec HandOver (KHO)
-User-Agent: K-9 Mail for Android
-In-Reply-To: <CA+CK2bDtBk=49hbz+C=fDswz_Nbtj8kVjsY-pTsmBt+O8YPLmg@mail.gmail.com>
-References: <20250320015551.2157511-1-changyuanl@google.com> <CA+CK2bDtBk=49hbz+C=fDswz_Nbtj8kVjsY-pTsmBt+O8YPLmg@mail.gmail.com>
-Message-ID: <01864D3D-C935-4AA6-85A9-363B14EA5443@kernel.org>
+	s=k20201202; t=1742915133;
+	bh=tYkFuVNOqMc+WisSuseoSwC3bMrHo79j15VWlOW9ZpE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cVTE8KaWPLJ1X9ne9sjek3EkHMaxC7yjZIM7c2KQchHRDBoDElAH0n9V2LAin/4mx
+	 vQRBieRUZbWaDr4iocwexomaAu+Otjd6a5XPZKGEm6QRllRjhX3149YHvgJZ1ux4po
+	 HOSaG+ZAk/kTmNAUiwA0YzlilVD8Irunw7rcIyU0oVkkxwNlajBIX7Bzk8n5LFP1bR
+	 jnWCcXqE3OwqRQ+pUtdIZ29AeUI6DT9QtYXCgnUvIMuxjUJhj6q1L4RY1kR8eJ3LRu
+	 hxVoslgf9QJ3PzKnqpDc7pgnKgT4VsG4g8/LaOJPOhSZO+dS/gp/zUBG3K4cLTyX4k
+	 8kLAtAV5I85pA==
+Date: Tue, 25 Mar 2025 10:05:31 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Goran =?utf-8?B?UmHEkWVub3ZpxIc=?= <goran.radni@gmail.com>
+Cc: Goran =?utf-8?B?UmHEkWVub3ZpxIc=?= <gradenovic@ultratronik.de>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: vendor-prefixes: Add Ultratronik
+Message-ID: <174291491488.2033850.8276285159291271594.robh@kernel.org>
+References: <20250325110409.2323611-1-goran.radni@gmail.com>
+ <20250325110409.2323611-2-goran.radni@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250325110409.2323611-2-goran.radni@gmail.com>
+
+
+On Tue, 25 Mar 2025 12:04:05 +0100, Goran Rađenović wrote:
+> From: Goran Rađenović <gradenovic@ultratronik.de>
+> 
+> Ultratronik GmbH is a German electronics company:
+> https://www.ultratronik-ems.de/
+> 
+> Signed-off-by: Goran Rađenović <goran.radni@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+
+
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
+
+If a tag was not added on purpose, please state why and what changed.
+
+Missing tags:
+
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
 
-On March 25, 2025 10:19:53 AM EDT, Pasha Tatashin <pasha=2Etatashin@soleen=
-=2Ecom> wrote:
->> To use the code, please boot the kernel with the "kho=3Don" command lin=
-e
->> parameter=2E
->> KHO will automatically create scratch regions=2E If you want to set the
->> scratch size explicitly you can use "kho_scratch=3D" command line param=
-eter=2E
->> For instance, "kho_scratch=3D16M,512M,256M" will reserve a 16 MiB low
->> memory scratch area, a 512 MiB global scratch region, and 256 MiB
->> per NUMA node scratch regions on boot=2E
->
->kho_scratch=3D is confusing=2E It should be renamed to what this memory
->actually represents, which is memory that cannot be preserved by KHO=2E
->
->I suggest renaming all references to "scratch" and this parameter to:
->
->kho_nopersistent=3D or kho_nopreserve=3D
-
-I'm leaning towards kho_bootstrap
-
->This way, we can also add checks that early allocations done by the
->kernel in this memory do not get preserved=2E We can also add checks to
->ensure that scarce low DMA memory does not get preserved across
->reboots, and we avoid adding fragmentation to that region=2E
->
->Pasha
->
-
---=20
-Sincerely yours,
-Mike
 
