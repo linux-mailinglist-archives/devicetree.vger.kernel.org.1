@@ -1,139 +1,110 @@
-Return-Path: <devicetree+bounces-160565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8CA6A702D5
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 14:53:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E904A7031B
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 15:04:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5D2797A229E
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 13:50:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1EE10168037
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 13:54:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92533256C75;
-	Tue, 25 Mar 2025 13:51:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 813702580E2;
+	Tue, 25 Mar 2025 13:54:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oTPcYtDi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B7191F55EF;
-	Tue, 25 Mar 2025 13:51:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 517842580C3;
+	Tue, 25 Mar 2025 13:54:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742910697; cv=none; b=G7Xrs6PwPeHDqtgtZijjz329CZf3Iq+blCHvx0t2iYKMQ/buDzBJo/8jpFn0xXFWbCf96xTHbiCJIh//MFAOHTuILuK2DMTblTYz983lnTVQ8wBHZ4S6ZmfaFUORBLvfHzQIvh+XTU6xbUrA21LK4xp3TsL9jEVJ8LAMlOaZvG0=
+	t=1742910875; cv=none; b=qKAO+ByQzwycGt8AZ1IsiKT6gdRrofsmBdFXu/uo6YhTx2CpxP2SGNNpEr++5PYVkRp2zfipTD3hzOW7jFNhuqLKpziQNCgc6dtcH4ClpVWU2M1Ehmr9TiigiDcnZC0E8o3qKn2nJpSQGL2pyM2e9ZVbhW39Zen3rSNy2qIvCJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742910697; c=relaxed/simple;
-	bh=58b+7j6bymR8Q3PTmjiR9EoWQsVTVX5p2SCXPJ6mBX8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Dag5dzDgsMetZSlw8I3OBRAg4lPkfIy668NkkORurwNcHiZNJqaFR0zk/rF7AF1JIvGX7IZXpjn3cZi8OAPu584lvIi5xvgpKYVDbzHDKK3C1GQWLAi1lc/d5HCRb3wB8oo8eRDwkCg2YryMnPguiD5fawxISQYIyAIPGii5A+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 6847244254;
-	Tue, 25 Mar 2025 13:51:29 +0000 (UTC)
-Message-ID: <0788826e-4b96-49ca-94ac-1d5b92f9ee64@ghiti.fr>
-Date: Tue, 25 Mar 2025 14:51:28 +0100
+	s=arc-20240116; t=1742910875; c=relaxed/simple;
+	bh=xoMvBcSgjUKFJ3Qcp/yF9ZqQZG2wG/vYLbflix1L8ys=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=G5H8JOGvTP6CGsiKnOKmqN5dlHrekdspJU2QmHL+qUDMQyHpT2xtLu3UPdonaG2dzAKRt2g2TZnm1sM/LlQQwQmaHR1M9A6PN6Poi7HBJDkV2LUjbMvlsTG1CZbEI1zU34zeWdIacJW48JNz/Of48jcLQG72k9X/W/y0dGeTF+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oTPcYtDi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76F7EC4CEE4;
+	Tue, 25 Mar 2025 13:54:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742910872;
+	bh=xoMvBcSgjUKFJ3Qcp/yF9ZqQZG2wG/vYLbflix1L8ys=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oTPcYtDivYGAgRq2hP7eACqfpz8ybDg3Up4mlgwwiPp7O9yaH38CtWOksHF59OjmP
+	 DVqE1Cw5tKeR3uMSDBpYAancvcwn+02EM2UL/Zb1jpCMfjbIF7G4rF2Bk2Hm7uyBqX
+	 22626H5bSRmFRQzDLkALzHIpoZVVPXAHjvIhAIpBQhABA6TSggPR4NDuRSRFg727L5
+	 yqAaCx5TfWRNy2VuqM0gKuSzK+6e8d1jNJu3qnYIgKn/8ZUEC2JAHZd1tiufwJcAHd
+	 3AGlLUrSPm0xYj/k/N+gmCXJnGY8W612f4jvrQWxbm5knYS6Jbr9QriocBOqIyvk65
+	 82T6yoolTVkzA==
+Date: Tue, 25 Mar 2025 08:54:31 -0500
+From: Rob Herring <robh@kernel.org>
+To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+Cc: linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Will McVicker <willmcvicker@google.com>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	linux-hardening@vger.kernel.org,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>, Kees Cook <kees@kernel.org>,
+	kernel-team@android.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 2/6] dt-bindings: nvmem: add max77759 binding
+Message-ID: <20250325135431.GA1819862-robh@kernel.org>
+References: <20250325-max77759-mfd-v6-0-c0870ca662ba@linaro.org>
+ <20250325-max77759-mfd-v6-2-c0870ca662ba@linaro.org>
+ <174290730682.1654974.16103236890365619009.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 6/6] dt-bindings: riscv: document vector crypto
- requirements
-Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>, linux-riscv@lists.infradead.org
-Cc: Conor Dooley <conor.dooley@microchip.com>,
- Eric Biggers <ebiggers@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?=
- <cleger@rivosinc.com>, Andy Chiu <andybnac@gmail.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250312-abide-pancreas-3576b8c44d2c@spud>
- <20250312-flask-relay-b36ee622b2c8@spud>
-From: Alexandre Ghiti <alex@ghiti.fr>
-In-Reply-To: <20250312-flask-relay-b36ee622b2c8@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdduiedvkeduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfesthejredttddvjeenucfhrhhomheptehlvgigrghnughrvgcuifhhihhtihcuoegrlhgvgiesghhhihhtihdrfhhrqeenucggtffrrghtthgvrhhnpeehiefhuddtuddukeetkeehhedtffduhfevfeeftdefveffgfeuffejjeejfeekueenucffohhmrghinhepghhithhhuhgsrdgtohhmnecukfhppeefuddrfedvrdekuddrudekjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeefuddrfedvrdekuddrudekjedphhgvlhhopegludelvddrudeikedrvddurddvhegnpdhmrghilhhfrhhomheprghlvgigsehghhhithhirdhfrhdpnhgspghrtghpthhtohepudefpdhrtghpthhtoheptghonhhorheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrhhishgtvheslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdprhgtphhtthhopegtohhnohhrrdguohholhgvhiesmhhitghrohgthhhiphdrtghomhdprhgtphhtthhopegvsghighhgvghrsheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdpr
- hgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehprghulhdrfigrlhhmshhlvgihsehsihhfihhvvgdrtghomhdprhgtphhtthhopehprghlmhgvrhesuggrsggsvghlthdrtghomh
-X-GND-Sasl: alex@ghiti.fr
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <174290730682.1654974.16103236890365619009.robh@kernel.org>
 
-On 12/03/2025 14:11, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
->
-> The Unpriv spec states:
-> | The Zvknhb and Zvbc Vector Crypto Extensions --and accordingly the
-> | composite extensions Zvkn, Zvknc, Zvkng, and Zvksc-- require a Zve64x
-> | base, or application ("V") base Vector Extension. All of the other
-> | Vector Crypto Extensions can be built on any embedded (Zve*) or
-> | application ("V") base Vector Extension.
->
-> Enforce the minimum requirement via schema.
->
-> Link: https://github.com/riscv/riscv-isa-manual/blob/main/src/vector-crypto.adoc#extensions-overview
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->   .../devicetree/bindings/riscv/extensions.yaml | 33 +++++++++++++++++++
->   1 file changed, 33 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> index 02065664f819..9aeb9d4731ca 100644
-> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> @@ -726,6 +726,39 @@ properties:
->               - contains:
->                   const: zve64f
->   
-> +      - if:
-> +          contains:
-> +            anyOf:
-> +              - const: zvbc
-> +              - const: zvkn
-> +              - const: zvknc
-> +              - const: zvkng
-> +              - const: zvknhb
-> +              - const: zvksc
-> +        then:
-> +          contains:
-> +            anyOf:
-> +              - const: v
-> +              - const: zve64x
-> +
-> +      - if:
-> +          contains:
-> +            anyOf:
-> +              - const: zvbb
-> +              - const: zvkb
-> +              - const: zvkg
-> +              - const: zvkned
-> +              - const: zvknha
-> +              - const: zvksed
-> +              - const: zvksh
-> +              - const: zvks
-> +              - const: zvkt
-> +        then:
-> +          contains:
-> +            anyOf:
-> +              - const: v
-> +              - const: zve32x
-> +
->   allOf:
->     # Zcf extension does not exist on rv64
->     - if:
+On Tue, Mar 25, 2025 at 07:55:09AM -0500, Rob Herring (Arm) wrote:
+> 
+> On Tue, 25 Mar 2025 08:27:03 +0000, André Draszik wrote:
+> > The Maxim MAX77759 is a companion PMIC for USB Type-C applications and
+> > includes Battery Charger, Fuel Gauge, temperature sensors, USB Type-C
+> > Port Controller (TCPC), NVMEM, and a GPIO expander.
+> > 
+> > This describes its storage module (NVMEM).
+> > 
+> > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> > Signed-off-by: André Draszik <andre.draszik@linaro.org>
+> > ---
+> > v2:
+> > * drop example as the MFD binding has a complete one (Rob)
+> > 
+> > Note: MAINTAINERS doesn't need updating, the binding update for the
+> > first leaf device (gpio) adds a wildcard matching all max77759 bindings
+> > ---
+> >  .../bindings/nvmem/maxim,max77759-nvmem.yaml       | 32 ++++++++++++++++++++++
+> >  1 file changed, 32 insertions(+)
+> > 
+> 
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> 
+> 
+> doc reference errors (make refcheckdocs):
+> Warning: Documentation/devicetree/bindings/nvmem/maxim,max77759-nvmem.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/maxim,max77759.yaml
+> Documentation/devicetree/bindings/nvmem/maxim,max77759-nvmem.yaml: Documentation/devicetree/bindings/mfd/maxim,max77759.yaml
 
-
-Ok I see now where you enforce the right dependencies, you can ignore my 
-question in patch 2.
-
-Thanks,
-
-Alex
-
+This can be disregarded.
 
