@@ -1,175 +1,176 @@
-Return-Path: <devicetree+bounces-160723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C961AA70C61
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 22:49:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3F94A70C7A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 22:57:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D62AD7A37BD
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 21:48:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 911101892F5A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 21:57:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9686D253F26;
-	Tue, 25 Mar 2025 21:49:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81EC5269B0E;
+	Tue, 25 Mar 2025 21:57:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="JIZDf1IB"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="WxUyLmdC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 190C9196C7B
-	for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 21:49:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D259A26980F
+	for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 21:57:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742939358; cv=none; b=HbDbL8A+pZKtIy9KSbFQr5f5jnQqdpMLQpjuD+nJcEzf+9GzJnBq1p8molggNGKXvUEcQiJNveieneE7L55BhHQfw/vTajtN1N/AIP6SZOU3FH+9l9clqm6drnqJkJEITslYuHzwthBWXoHFgvyyzm9nW8qp295dsegJ4kkcyiA=
+	t=1742939827; cv=none; b=Em3NYxAzoNJO+upxLELmy91LGELUA3Lvz46JOElkpH5VRiGKzdKo6EbMW1E5465vy5qGwVqBH5GBRGY9CKYCG1VilHHxnX6WDLKjFEpKXUdjn0WqQo+1gt/PctfbnRJTnuzG63Yhzn8MUhTJwZhxLFggE66KPhIH5eHx224acuU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742939358; c=relaxed/simple;
-	bh=nwPA9SIOejPkzpLh4ULI5UAZazEYdl1cPdB+6K4iWgA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dvxiJQtN/DyKH2Q87jOlNg+Dr0gpoh/iQcm9rllTw+XQfNmA3q/sDxf5FBxsVX7aLeyE8rI01049z+aCFIXnd30omuQ1bPxzn792UIuaBT6juDncsJlp13QmBDV9CO77LVqE3CNSpp8EjSv512dS27d9U/zpOQq8okuve4WSEmM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=JIZDf1IB; arc=none smtp.client-ip=209.85.166.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-io1-f41.google.com with SMTP id ca18e2360f4ac-85db3475637so9805639f.1
-        for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 14:49:16 -0700 (PDT)
+	s=arc-20240116; t=1742939827; c=relaxed/simple;
+	bh=HQ1y6K6+ej3yRZwY8vjRGO04KNMR+SXa0FKK7FdZ1GE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Z9DHOy3vcSVBlCyeDx3QwLUfhK4B0OaQ+rDiUZCPSwa+xJ5I2M1fuZBW2ippauQNHHTCacJDIqNVC4j1G3B5CXwcRjixH6k1ch4evdLENuOvLibIvt9Zr19rhnFVI9geY/OQjSLTp470aDcPBSEPnJ0Aatdgux+gCKc8xinknt0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=WxUyLmdC; arc=none smtp.client-ip=209.85.160.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-47681dba807so31351cf.1
+        for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 14:57:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1742939356; x=1743544156; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3q3oNbCpD8Yr3ggdluYQ7Oxw70IpYfziH8ybf4Z46oM=;
-        b=JIZDf1IBK6HRknqS/sEe4rhtGMl/yx8f7Pzs+nD/xM0r/y+7YzzjqmRa58iaGCQiOR
-         yz7yDUaUw8qGsbNnJTtyrrmM+cRcKpq2GjdfDJTTTQFaGslA19DpP5iPjGLAkXtaVPxJ
-         ujJDo8nSE62ff4soKYBtrB6bnvQmjMhjAvmbzl6TUJYRo4awdJ7XPxVnqEPV6099zjIn
-         bCbZMx/hQpJObCxsFgdb4Js5mvGNG47DSi6v9553csCBN5NthIqktyDZsstHua04jnL6
-         4uJL61p3HfdGWlUTWVhs+onO9SOcMO8iSBgVj5gyEpuvflXUYvnuT8omussBVMaL28k7
-         12Rw==
+        d=google.com; s=20230601; t=1742939825; x=1743544625; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HQ1y6K6+ej3yRZwY8vjRGO04KNMR+SXa0FKK7FdZ1GE=;
+        b=WxUyLmdCFoZsC+BKtF8H66dylGmm9zLuuJ0wR6VR76gBUJvKRQafOIVcYOvhNyUir7
+         h0Cpd1WlfyFWWGNweggRwRDWYhGV2fdMVrKK3uVnQZX52b5cYBn/y1+6rnGCFOl8n80A
+         7bj3buVqMtoK/w2Eq7xsudqWHIqBxRSdd/bHmWnAZss7bm+vGwsJislQ3bt0hRs/TEHl
+         /+FYtq2Tx83dTEvK2b3uwDPK8WtMDgAj8isrJTCAfAF/P/yltcBguu2lDlIUdjTqGc8i
+         CJAzjwXo5bhSMTK8wEQeWpsYdhEtYwH64eVqYisMudaheSv6vAnu7uK08Rwl+zkJKBBA
+         iAzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742939356; x=1743544156;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3q3oNbCpD8Yr3ggdluYQ7Oxw70IpYfziH8ybf4Z46oM=;
-        b=OBfnSQQYwmsLFhffUcN/NBaLP8mUDeLAuqZdJaWrUY14xw+Y9RN0kREDu4ijTew4lZ
-         EhIaa98X0qvhLaMdNHTwvgjwwmvd8CRK1tiB3ZvY6DUj5RCl7/CDSU+8+U00CYI3z3rF
-         EHRmcYPdK8b0Bjl4F5asR2Kv4EL8sfUPVDNN7sG84puxvlhWY8RChAP++iTBwwJyLhtY
-         wY/89pFTpBv18kriurCL4cDJoj7FQtzFaEnScS0m60HhGQF9gqZwYhHEnKii3r5ETx7S
-         3RVWm5OxbGPL2VfsYoplqyHZ9EerGCohaDsJe9JdKhBcVk4lQ6rERvq5lx+GwSSZJtm8
-         srew==
-X-Forwarded-Encrypted: i=1; AJvYcCWW3kvih9JYjEuRmLo5/l0s76z3zcxZgDCoXn4nyd7bRLHe+5LdoI/sFJs6Suk5wkD9HnaxZtss7GOA@vger.kernel.org
-X-Gm-Message-State: AOJu0YwmgvxQnFJfdsZZkKY+Y8qas8jMhRcGydufQRTSq9OVujsko5iC
-	x3HaNSCG8vM6I/SnoZHkG5GJ1+abQBodKSalXBqicNPsnAJsmcL8/uiXM9B2+cw=
-X-Gm-Gg: ASbGncvvGfnoB4oC2/RmgwJZIq4IsZ/788W/rJjrO7xEDXJjXbOplwG+exSoezFP+3z
-	xv23UUpWS/KeuV55oKwgxA6Q6KOYWVWrNTH+JbUDp1dSrWFpRG5ZSSFT7odWl+e3U8fa6RWjAPl
-	FaqU+a4vQoigaZCwR05Hi5dkaA2xk5g+pkMtHHWGtPRxLKQETtTfvbx4II6vUd8jIH2agPzBKil
-	m/kgm7cmmFKkrcO8m9NDjqumh5PtQxMTMwMYGTi1TtQbCLHCkf2JhGxYVdVH1mJKBEGhIgzKYHN
-	TETVbhUDp4dYrvHBuM1+wUnMIC5Xhopk0I60CH/7P6r6WPpdPPNM7VUDQOZxww==
-X-Google-Smtp-Source: AGHT+IFj7uKpDfJR5Iim77+HbZSnDjrxpbs+tP0WU77QjYNPslcMwQz6BHnLAD6zLR0ygkvZ39o04g==
-X-Received: by 2002:a05:6e02:4401:20b0:3d1:4a69:e58f with SMTP id e9e14a558f8ab-3d5c20b2c25mr15007025ab.2.1742939356043;
-        Tue, 25 Mar 2025 14:49:16 -0700 (PDT)
-Received: from [100.64.0.1] ([170.85.6.166])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4f2cbdcfeffsm2556607173.30.2025.03.25.14.49.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Mar 2025 14:49:15 -0700 (PDT)
-Message-ID: <a20d5849-770e-420d-b707-83a50c37810b@sifive.com>
-Date: Tue, 25 Mar 2025 16:49:14 -0500
+        d=1e100.net; s=20230601; t=1742939825; x=1743544625;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HQ1y6K6+ej3yRZwY8vjRGO04KNMR+SXa0FKK7FdZ1GE=;
+        b=Z7wu7rzOIH5wQ1qw0+buamD5daWB4UCJ7qEcs2oQBCZFAD7CwR5dWlqMWvzWtYzZnr
+         pLuOXqiBMYDl4I7MSSVrBdFSELlJiCdVaOkBDMHJdLsFHScEZALb6l0FzuKaQwICeLzZ
+         wZcJ7+E4lyGQZKFKoBBAJIy97aDT17ws0FwE2W74xmzILEIfh5a0oawFJ6yUajbbuDhj
+         bpqJmrGtGpwD5lnnCVJyNQHdmFwTvyS+ckanCMjc58xNaua9HthwLFl8chMpa2QdmeRs
+         g+3lgiYNFreL+RE+Y+hggZPevG8qCTeOTs9FmngSqjay2QmqYGdOXTfH4hrIV/zgtrKk
+         ZIPQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXI0PMGC+Exaydm/EWBCGnHgX2P03dYwj8ai4SVrwxBmxC6w/K2g01D/VUr+RUhT8N5GRKlV/q1wcCH@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1xQjSxVInk4pg2l+hDXokHVvK4XgXZHQV5L+vzEvDtpuQhnKI
+	zVaxdkknBE1s1agDYE/j2xkCsYilJDnqFXwWN2aD0Y3LfObwv7AYKv6enF5/ez9bruljCwTfGBo
+	E413bD+yTxpgAlrxdoXZCirkhGkiQDrH7/yQH
+X-Gm-Gg: ASbGncusdH0U4YfN4CjsIokSmmQYN6uOZZBxZCs1cKUq+oGnSQQFN8RqAf0vZXXajWx
+	HA9HO1/IitdeUC4leF9Ht72/UPRkWIxRiFRCaCs0kfFtqqvDWRqkiYzDjoSQwMAeuLH2QxlzsHt
+	4NZw/CMAjyu1QH/X9wgcPPKwo=
+X-Google-Smtp-Source: AGHT+IH/hOP5cz4/f0sHk0CeJX9EkyXr4jUNyz2/3phYBrvYUFI/aeZIqxahOHueL/ItRZ16YGhpvWcqwmSbOB39SDQ=
+X-Received: by 2002:ac8:6f05:0:b0:472:61:652 with SMTP id d75a77b69052e-47762e3319amr159031cf.28.1742939824283;
+ Tue, 25 Mar 2025 14:57:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 3/4] riscv: dts: Add EIC7700 pin controller node
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>,
- Pritesh Patel <pritesh.patel@einfochips.com>,
- Min Lin <linmin@eswincomputing.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Alexandre Ghiti <alex@ghiti.fr>,
- Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, =?UTF-8?B?6bKB546J5p6X?=
- <luyulin@eswincomputing.com>, =?UTF-8?B?5a6B5a6H?=
- <ningyu@eswincomputing.com>, Lin Feng <fenglin@eswincomputing.com>
-References: <20250325141311.758787-1-emil.renner.berthing@canonical.com>
- <20250325141311.758787-4-emil.renner.berthing@canonical.com>
-From: Samuel Holland <samuel.holland@sifive.com>
-Content-Language: en-US
-In-Reply-To: <20250325141311.758787-4-emil.renner.berthing@canonical.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250320015551.2157511-1-changyuanl@google.com>
+ <20250320015551.2157511-8-changyuanl@google.com> <CAPTztWbFXajArSN8yKu32eSoR=xsk1CHM_4V7MJ0eQxydFqPUQ@mail.gmail.com>
+ <Z-MB0Cj4tM6QgOAg@kernel.org>
+In-Reply-To: <Z-MB0Cj4tM6QgOAg@kernel.org>
+From: Frank van der Linden <fvdl@google.com>
+Date: Tue, 25 Mar 2025 14:56:52 -0700
+X-Gm-Features: AQ5f1JoGOY12Onu4tBrwgKWOKiM9GvbU7kfWg3JcOKhqducXkStWehGksThe0mY
+Message-ID: <CAPTztWbDtDhKZS89-aEBaZoPW2jZM2CAWW1Y_m3OnNE26=d9UQ@mail.gmail.com>
+Subject: Re: [PATCH v5 07/16] kexec: add Kexec HandOver (KHO) generation helpers
+To: Mike Rapoport <rppt@kernel.org>
+Cc: Changyuan Lyu <changyuanl@google.com>, linux-kernel@vger.kernel.org, graf@amazon.com, 
+	akpm@linux-foundation.org, luto@kernel.org, anthony.yznaga@oracle.com, 
+	arnd@arndb.de, ashish.kalra@amd.com, benh@kernel.crashing.org, bp@alien8.de, 
+	catalin.marinas@arm.com, dave.hansen@linux.intel.com, dwmw2@infradead.org, 
+	ebiederm@xmission.com, mingo@redhat.com, jgowans@amazon.com, corbet@lwn.net, 
+	krzk@kernel.org, mark.rutland@arm.com, pbonzini@redhat.com, 
+	pasha.tatashin@soleen.com, hpa@zytor.com, peterz@infradead.org, 
+	ptyadav@amazon.de, robh+dt@kernel.org, robh@kernel.org, saravanak@google.com, 
+	skinsburskii@linux.microsoft.com, rostedt@goodmis.org, tglx@linutronix.de, 
+	thomas.lendacky@amd.com, usama.arif@bytedance.com, will@kernel.org, 
+	devicetree@vger.kernel.org, kexec@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org, 
+	linux-mm@kvack.org, x86@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2025-03-25 9:13 AM, Emil Renner Berthing wrote:
-> Add node for the pin controller on the ESWIN EIC7700 SoC and gpio-ranges
-> properties mapping GPIOs to pins.
-> 
-> Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> ---
->  arch/riscv/boot/dts/eswin/eic7700.dtsi | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
-> 
-> diff --git a/arch/riscv/boot/dts/eswin/eic7700.dtsi b/arch/riscv/boot/dts/eswin/eic7700.dtsi
-> index 9cef940f07e4..7226647919b7 100644
-> --- a/arch/riscv/boot/dts/eswin/eic7700.dtsi
-> +++ b/arch/riscv/boot/dts/eswin/eic7700.dtsi
-> @@ -312,6 +312,13 @@ porta: gpio-port@0 {
->  					<324>, <325>, <326>, <327>, <328>, <329>, <330>,
->  					<331>, <332>, <333>, <334>;
->  				gpio-controller;
-> +				gpio-ranges = <&pinctrl  0 12  1>,
-> +					      <&pinctrl  1 14 12>,
-> +					      <&pinctrl 13  1  4>,
-> +					      <&pinctrl 17 32  1>,
-> +					      <&pinctrl 18 40  5>,
-> +					      <&pinctrl 23 51  7>,
-> +					      <&pinctrl 30 68  2>;
->  				ngpios = <32>;
->  				#gpio-cells = <2>;
->  			};
-> @@ -320,6 +327,9 @@ portb: gpio-port@1 {
->  				compatible = "snps,dw-apb-gpio-port";
->  				reg = <1>;
->  				gpio-controller;
-> +				gpio-ranges = <&pinctrl  0 70  3>,
-> +					      <&pinctrl  3 79  7>,
-> +					      <&pinctrl 10 89 22>;
->  				ngpios = <32>;
->  				#gpio-cells = <2>;
->  			};
-> @@ -328,6 +338,7 @@ portc: gpio-port@2 {
->  				compatible = "snps,dw-apb-gpio-port";
->  				reg = <2>;
->  				gpio-controller;
-> +				gpio-ranges = <&pinctrl 0 111 32>;
->  				ngpios = <32>;
->  				#gpio-cells = <2>;
->  			};
-> @@ -336,9 +347,15 @@ portd: gpio-port@3 {
->  				compatible = "snps,dw-apb-gpio-port";
->  				reg = <3>;
->  				gpio-controller;
-> +				gpio-ranges = <&pinctrl 0 143 16>;
->  				ngpios = <16>;
->  				#gpio-cells = <2>;
->  			};
->  		};
-> +
-> +		pinctrl: pinctrl@51600080 {
-> +			compatible = "eswin,eic7700-pinctrl";
-> +			reg = <0x0 0x51600080 0x0 0xff80>;
+On Tue, Mar 25, 2025 at 12:19=E2=80=AFPM Mike Rapoport <rppt@kernel.org> wr=
+ote:
+>
+> On Mon, Mar 24, 2025 at 11:40:43AM -0700, Frank van der Linden wrote:
+[...]
+> > Thanks for the work on this.
+> >
+> > Obviously it needs to happen while memblock is still active - but why
+> > as close as possible to buddy initialization?
+>
+> One reason is to have all memblock allocations done to autoscale the
+> scratch area. Another reason is to keep memblock structures small as long
+> as possible as memblock_reserve()ing the preserved memory would quite
+> inflate them.
+>
+> And it's overall simpler if memblock only allocates from scratch rather
+> than doing some of early allocations from scratch and some elsewhere and
+> still making sure they avoid the preserved ranges.
 
-Per the TRM, the MMIO range is 2M-128B large, so the size should be 0x1fff80.
-Other than that, the rest looks good (especially, the GPIO ranges match what I
-have), so:
+Ah, thanks, I see the argument for the scratch area sizing.
 
-Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
+>
+> > Ordering is always a sticky issue when it comes to doing things during
+> > boot, of course. In this case, I can see scenarios where code that
+> > runs a little earlier may want to use some preserved memory. The
+>
+> Can you elaborate about such scenarios?
 
-> +		};
->  	};
->  };
+There has, for example, been some talk about making hugetlbfs
+persistent. You could have hugetlb_cma active. The hugetlb CMA areas
+are set up quite early, quite some time before KHO restores memory. So
+that would have to be changed somehow if the location of the KHO init
+call would remain as close as possible to buddy init as possible. I
+suspect there may be other uses.
 
+Although I suppose you could just look up the addresses and then
+reserve them yourself, you would just need the KHO FDT to be
+initialized. And you'd need to avoid the KHO bitmap deserialize trying
+to redo the ranges you've already done.
+
+>
+> > current requirement in the patch set seems to be "after sparse/page
+> > init", but I'm not sure why it needs to be as close as possibly to
+> > buddy init.
+>
+> Why would you say that sparse/page init would be a requirement here?
+
+At least in its current form, the KHO code expects vmemmap to be
+initialized, as it does its restore base on page structures, as
+deserialize_bitmap expects them. I think the use of the page->private
+field was discussed in a separate thread, I think. If that is done
+differently, it wouldn't rely on vmemmap being initialized.
+
+A few more things I've noticed (not sure if these were discussed before):
+
+* Should KHO depend on CONFIG_DEFERRED_STRUCT_PAGE_INIT? Essentially,
+marking memblock ranges as NOINIT doesn't work without
+DEFERRED_STRUCT_PAGE_INIT. Although, if the page->private use
+disappears, this wouldn't be an issue anymore.
+* As a future extension, it could be nice to store vmemmap init
+information in the KHO FDT. Then you can use that to init ranges in an
+optimized way (HVO hugetlb or DAX-style persisted ranges) straight
+away.
+
+- Frank
+
+
+
+
+> > - Frank
+>
+> --
+> Sincerely yours,
+> Mike.
 
