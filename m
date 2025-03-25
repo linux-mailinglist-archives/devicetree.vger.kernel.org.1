@@ -1,920 +1,253 @@
-Return-Path: <devicetree+bounces-160674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E700A70842
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 18:32:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 631C4A70892
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 18:53:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C73E3B3BEA
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 17:31:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 378BB3B8281
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 17:51:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01DA625DD05;
-	Tue, 25 Mar 2025 17:31:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B36212620CD;
+	Tue, 25 Mar 2025 17:51:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b="ipvbmRNb"
+	dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b="LoorCBfw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com (mail-westcentralusazon11012018.outbound.protection.outlook.com [40.93.200.18])
+Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2086.outbound.protection.outlook.com [40.107.247.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BD2819E971;
-	Tue, 25 Mar 2025 17:31:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.200.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 680C91F2B82
+	for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 17:51:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.247.86
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742923916; cv=fail; b=lHruygW4su9z+sXXqiwD+6mPnYu+AE+IhkwOUiW74CYkDZ8qjZQAPUHAmNbd46Vr3LEB4scHxUdO3oe8UO80eF8x3+MWHgIhlfBcx0DoMXyONAh8b2B09UA6fVAGTLJbsiCJuVCDBbW9n2+3CT05zrWUrParR0npyMjYt4Drf/s=
+	t=1742925113; cv=fail; b=OQyFZIW7iwaoTVgFaoYksnmeHH2eeT90QDwOxcTDyJK3MdnrRJB06BfJNYXlWLbvdURBca0+JJslkTLVbpr8vEz83yzOWO1BVEeLKD/rrVJ9NaLZyndXB90+dCuK4qI91M34ACeNtFfDUQMrw1Hpc6YMFRepDLTInSGEDfMBfNk=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742923916; c=relaxed/simple;
-	bh=1OHJy35nowdVJ+aw56W5mUuCJJuErrcXs1RnjVf+kTs=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=cU97B4cDKhdYOCQJg8+KJEpfxpeNCjoW917/XxZ/BlttYrx7ru4/8uQpaXzKgn/lQhSXGkmtOhEgWCf1Yzvkr1KWOuBIPWKk+WzVCN3k8McNyAw+qWpTxv5zTEwQAqwA87OYggnNGTAfoAsFRiEcaHnvTf+vCIKfjKB+t4Oq94M=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com; spf=pass smtp.mailfrom=altera.com; dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b=ipvbmRNb; arc=fail smtp.client-ip=40.93.200.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=altera.com
+	s=arc-20240116; t=1742925113; c=relaxed/simple;
+	bh=9mKVUcwI3IbYyq+cWzJOQbDL5LW/b5DW+gSYfZ+dT8o=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=lLrpXzk5C/KsaoLi986DONwOVx6nPVVygR5j1tU2vHcEJyAxq2X33leqAgn1ytoZSE0q/V9eZb848pmJKB0vpJXyuExjkGO3r6ygGbNNSKitPHB1aRkIbYGt3EJHrjSRSnzBiePzi9kPboUHSAnWenI0Gw6WXnc+YJoQomBcsNU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b=LoorCBfw; arc=fail smtp.client-ip=40.107.247.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siemens.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Z44rRilSQMqmEZvYLf1KqOpPSavCJ7qNCcniBHUgFQpDOUX3MlgqqNPhixOGJVwml9nnoTRlx+Rs8cUjWc5Lu2Ax7jk9CWWiM//ldEFR4aWqsVqPqh55IJzqap+vd9Kywd+5zyT7n3zfsgJfK71+m9dSuon3AGNBbO4LksEK2g8NHW+tEYEGKCVFVAH/2iWfQdOCe6k4cQYUmn+8rExm+kqpfhG4gDw7jBxtowvqKPW0ltji9hsvk7MwiF7M4yaScT9Gumf5qbb/E42HLdt1AU1uuyEPaBdorys4MYoQ3d4wEQA9oIxjD/D/O7BZHH0XuI6sUo5uOCRqHeXHL4GcRQ==
+ b=NIIni7yTFHoHsOiONj1JuDbN4QhZmOu7Ho+4OAfzGUbwWtOXGD+wiib0wGoMNXOftk+Th4AmlH3BxR1A6Zwmn6LG52ojO1tVJy5zM6DPy9rK/NHqwDu2NqXhQhbRXo9Jq2uuQ3ITLRl+0cbgzhGn9HT6JAVYzVAoAikGQBgLh7beCfWG6l/YkssbZ9XTBSe51CjjDfTUXz+5N6v475d9Wl5nPaGTQs1VPHAL087jWEipLARhZL2+d9O7j9fD59z3ITYJLzsfF+usJLAhhpeEWZDcvdgAa52bCZ9yBAM4/ASd2YN3gK2rhHKDvDTJkpOjKTusR0vbpg/s4z5zB91Ezw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UPvpPADYG4eh5Lk2olLFgF2+o1UfNMu1dAT1Ij9UdiU=;
- b=cv2+lO37ZMGZZy+kL+j6OTMBUGOuLn0gvPu7xIvrkdyM9qhYA0DGw9KgignvMPxBbkjBoijyYxbCzld0PoJ8R5bG9YCfcOg5WJ5pBF3jaWC06AF5Tzq8fCfJsVIudfr0hAkWpyzJE0MfKieP+0zULI2oQ9PiynikYYcvA0DR2Qwvj4XcY9y9sZmy6aJJEQmndXCLoLLN92/H+XpJLfxmUVxSwJYQaeTky0Irmb0AUcVYDSFn5OXx50FZoLCO1DyA3063dd0vVaSAXs/GL0CVsW8MeWcPK5uQGq+IysmJ2c3yC0soD1B7CQCvBUqcIvkMyqqe0wursjf+50WxvDn4Cg==
+ bh=9mKVUcwI3IbYyq+cWzJOQbDL5LW/b5DW+gSYfZ+dT8o=;
+ b=e7UhVS8lB821Xy03vridfjHTT6iCoVcEPFSOBGmIcThL2PQOlVBc+J1lDQ3Wqc8T40di1A5EPEVUniJYVPIKMeagZ5D48TyDielt09atg6lUcwhqwWhmqmgvv85xTshaxWiV6rvjhsub2nAyJRmeCCSL8iy7Uihh8GaIIp/coSjFQBJn7rjDmah1c+zsSnoX7xl5cNhmTfZfgY56T/YxnctdWdG5nLDZWOi7vW5FA2/UZ56ucQW+iKaLiIQIGQWBN+6UrKfA+A+f3W3vXnwEafJRMxFjnL8V7+L+OvW0o3Dd3P0jZappdiOCAoFVAfTI06P1HQTMFAwcjiZShGsmDg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=altera.com; dmarc=pass action=none header.from=altera.com;
- dkim=pass header.d=altera.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=altera.com;
+ smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
+ dkim=pass header.d=siemens.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UPvpPADYG4eh5Lk2olLFgF2+o1UfNMu1dAT1Ij9UdiU=;
- b=ipvbmRNbGVlzm8pPgvGd6lZgeHhzi02nObYT7C4nzsu6PdYCJcVxaoIEYrsaP2eKx8+fRYn6Ex5koqA3p/INOcIppgiRI6RqvUKrwwT1tJfGe0bbxXa4yRb7MbFZVh/fd1ogKplPPqB/pt1vbofoaWPwZUq/vfsd3mdaVxbZhQg78xz5q3Fy94tSPG3VFfiOAxdRat+ykjBcNx3cR61jBSE8nxSEVm+xNZ2mi67XoHxOv2FLc3clq9SOPCyLUJe2JtRFQ4uy0wTjR5Jyh5cUdKKisDDmCKTquCzKl4cOQnatkM4E+i5jJC5czQhbn6eag+Je+ZKnISltqlRifniJeg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=altera.com;
-Received: from BYAPR03MB3461.namprd03.prod.outlook.com (2603:10b6:a02:b4::23)
- by SJ0PR03MB5710.namprd03.prod.outlook.com (2603:10b6:a03:2da::5) with
+ bh=9mKVUcwI3IbYyq+cWzJOQbDL5LW/b5DW+gSYfZ+dT8o=;
+ b=LoorCBfw+seU7JN9bh8WhCgJs0xKS6B6QdG/c3XjurE86FxXLvrG6T9tztqNEM+x6v5mII6IKIGE++CIS2HYn94sUewLEkrWtfIhisOqsag3vAxge5ltFY9paQmXvnE+v8lTeWqPHyW/AnMe9qw47S4KyUzAG9AN+AwMrHaXSMm+mlDADBN6ZaUUmSJsjkc4SKgctQT/yCUXDlbF07ZiKQ9NtwPgGA82XLiqCl8bxytzNqkrsjXIAcU6aP+FgSLPEksOlUpK9g+WgZZl76aOkvORVC0bLKMN8/CafJq2nJAeJczGKqVl22LD31y0qW+4oFOEIyVQzm0+qcwGo1Bk6A==
+Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:5b6::22)
+ by AS8PR10MB6414.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:56c::15) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.42; Tue, 25 Mar
- 2025 17:31:50 +0000
-Received: from BYAPR03MB3461.namprd03.prod.outlook.com
- ([fe80::706b:dd15:bc81:313c]) by BYAPR03MB3461.namprd03.prod.outlook.com
- ([fe80::706b:dd15:bc81:313c%2]) with mapi id 15.20.8534.040; Tue, 25 Mar 2025
- 17:31:49 +0000
-From: Matthew Gerlach <matthew.gerlach@altera.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Matthew Gerlach <matthew.gerlach@altera.com>
-Subject: [PATCH v3] dt-bindings: edac: altera: socfpga: Convert to YAML
-Date: Tue, 25 Mar 2025 10:31:39 -0700
-Message-Id: <20250325173139.27634-1-matthew.gerlach@altera.com>
-X-Mailer: git-send-email 2.35.3
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0125.namprd03.prod.outlook.com
- (2603:10b6:a03:33c::10) To BYAPR03MB3461.namprd03.prod.outlook.com
- (2603:10b6:a02:b4::23)
+ 2025 17:51:48 +0000
+Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::baa6:3ada:fbe6:98f4]) by AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::baa6:3ada:fbe6:98f4%7]) with mapi id 15.20.8534.040; Tue, 25 Mar 2025
+ 17:51:48 +0000
+From: "Sverdlin, Alexander" <alexander.sverdlin@siemens.com>
+To: "robh@kernel.org" <robh@kernel.org>, "dmitry.baryshkov@oss.qualcomm.com"
+	<dmitry.baryshkov@oss.qualcomm.com>, "Zini, Alessandro"
+	<alessandro.zini@siemens.com>
+CC: "Laurent.pinchart@ideasonboard.com" <Laurent.pinchart@ideasonboard.com>,
+	"andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
+	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>, "simona@ffwll.ch"
+	<simona@ffwll.ch>, "andrej.picej@norik.com" <andrej.picej@norik.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"airlied@gmail.com" <airlied@gmail.com>, "rfoss@kernel.org"
+	<rfoss@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"jonas@kwiboo.se" <jonas@kwiboo.se>, "jernej.skrabec@gmail.com"
+	<jernej.skrabec@gmail.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"marex@denx.de" <marex@denx.de>
+Subject: Re: [PATCH 2/2] drm/bridge: ti-sn65dsi83: add h/vsync-disable support
+Thread-Topic: [PATCH 2/2] drm/bridge: ti-sn65dsi83: add h/vsync-disable
+ support
+Thread-Index: AQHbjnfGR46m6PRz5kqDQuR5SHx5tLNnMNkAgAbmVYCAFikLAA==
+Date: Tue, 25 Mar 2025 17:51:48 +0000
+Message-ID: <75516ce64afc57cde365a234926fe96d07355533.camel@siemens.com>
+References: <20250306091133.46888-1-alessandro.zini@siemens.com>
+	 <20250306091133.46888-3-alessandro.zini@siemens.com>
+	 <tzrdtqpim2srjl3dihjdyejrwunirq7mbwngyqi3avdtympkjx@2kqsg562fcke>
+	 <b0f19f77d2db121f7dbc8a3b6091bf114427e839.camel@siemens.com>
+In-Reply-To: <b0f19f77d2db121f7dbc8a3b6091bf114427e839.camel@siemens.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+user-agent: Evolution 3.52.4 (3.52.4-2.fc40) 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siemens.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AS8PR10MB6867:EE_|AS8PR10MB6414:EE_
+x-ms-office365-filtering-correlation-id: 8a5bc1ef-9e13-4275-c354-08dd6bc5b76a
+x-ms-exchange-atpmessageproperties: SA
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|366016|376014|7416014|38070700018;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?cWtQQjJxME1RMTc5d015b1VhV0NMZytvWk0wOXJ6STVvcUJSSGcveVVDdG55?=
+ =?utf-8?B?V1VQZFR4bkh0UlJabFhOUkl1WUVWUHJKTHBCMTNSVStDeUdqVUUwVFUvV0dE?=
+ =?utf-8?B?L3dFRWxQWmxNMzM2bzhFalU0a2p6VTVGOHZFVkgrbk90NnFvbTZYcjE1ZnVq?=
+ =?utf-8?B?NVdmMkJ3cHlKUGg1WXRyb3BOYzFHSmFEdE1wUTMxS1p0T2FHTjVSbU1uZnp3?=
+ =?utf-8?B?SFZ2cjBtYTJEcGRqdE9PS3poZEs4SFhhdkVQeEhLSGphWS9SRDdMaEFZdGtp?=
+ =?utf-8?B?N01LZlZmS0hGWmx3eG90RVdCRHB3ZW1zMi9FcXZEMzV6eXFxR21tYnRmUkZC?=
+ =?utf-8?B?cTNYd0tpQWRHWmZwZ1N0MmJ0MmszNEJFdGd3dmFiR0srbVk5bmt2cyszZkYv?=
+ =?utf-8?B?bFlETlRybUJLcWt6MGJNRG1QOStQd1Y2TVBOdXpxTHZFRlZxN3VXRFhkNXlM?=
+ =?utf-8?B?TmFoNm4xVUd1ZzFTUFZOZGJvSGNMbnZBY2FPSlk1ZGhVODI3K05ZbzBqUzM2?=
+ =?utf-8?B?cmdOcjFFcUVYS2IvSjAwbEd2bFlBY3h4WGxsTGZxNkh4bEFSdkt0clVqaDdQ?=
+ =?utf-8?B?dTFYT2syTjBSTktpbXgrcE1tYjllV1hqeWg5VUNRdkk3S29KMFJrNFV1RThD?=
+ =?utf-8?B?VVpDLzVmUTZNYU9zTmJhZm1iQW5CVEQ1STRtdXpXcEpBZzh5MFp5V0ViaXpZ?=
+ =?utf-8?B?MnFrOUNSaEdRK2Z1N0MxelpvTE1YZWx2d1ZZdThJTUhvRkl6Z2dIUmMzRDF0?=
+ =?utf-8?B?NmxMZGZIY0hMNHViZ3I1VHhuc2NYa2Z3T2V2V1BqbEpSQVIyRXRCVWU1YUtM?=
+ =?utf-8?B?NStjZXVYNkVMYUNSR3g4RTFoT3dtaTlMVDUxRElhM210aGRFZWNlcGgwN1lB?=
+ =?utf-8?B?aWI1UytpUW1TZUNFcDZmVHBibEVSL0pqT2l1VHd5T21ocmV1SThnUjI1T25X?=
+ =?utf-8?B?ODd0Tk1NaEMra2h6VXBVa3F2ckVlUE8vZ3RWTTY1MUhUNjBNTyswRDZOVWdN?=
+ =?utf-8?B?eEI0K1BZeXREUE1qajk1VU9TR2ZIV0tXMTdaZjRQWS8wQnhMa2dLb1VaTDBl?=
+ =?utf-8?B?Ky92eFMxMzMwNktPc1BYNXM2TjJJdUZvZ29jd1V6aXlUdHEyMHVXNVhMbml5?=
+ =?utf-8?B?M01uUjVWU21JSURLN0MrK0pIUm5XbHNIMkhmZDE1RHNvUzlUYVpVc3JKaWVV?=
+ =?utf-8?B?b2dhNTJPSGJzcWFaa0NxT0c5cVdDY1VCWWRMQVM4bFgxZEV1OEsxWjFmOUJI?=
+ =?utf-8?B?dlZ4V29tZEVLeDRBa3hzYXRSakRmOEI1Z1pIWkVmSk1NaHdGNVphdm05VGpr?=
+ =?utf-8?B?OElZN0FEemlPU0V0SWovQzk4eWhYaXl2Vzl1RHBHeDZKSENrcW1ybkpNTVcx?=
+ =?utf-8?B?NldLRjRBeThDMktQUTgzV3B4WVJlK21RanppT0cwMEhOaE00Sjl1VW44eVEz?=
+ =?utf-8?B?bThCcEVYRU44QTZQZThQWitqa2dFT0hZOEovd1d2ZGNKSWMyZm1KbXV4d1J2?=
+ =?utf-8?B?U0xGb3IrOW5FKytGQnJkU2htOVlZRElPSEpnVHdjbVFRWUNLTHJOK0c2Mk5S?=
+ =?utf-8?B?MnpVYlE2dk1iZEpiN3VjMVRJbDZZb2h1U05EdkJlT3NBUlJlOVVwQzRocSth?=
+ =?utf-8?B?Z0VMVkxxazNwY3dPa1pxZHF4ZnJOVGVUSGFMdlFUTlJrS051WlJBRElCM3VU?=
+ =?utf-8?B?Rm13VHIzVmtYUHBpMHFpb0VOSVI5cTQycWxGYlFPdXRJOHJhUGZwbFdYdXRD?=
+ =?utf-8?B?LyszdjlDR1duZHdpWU5PeG1YZGxyRHVnME9CbCsrWEJWNkI1OXkyVlMwMWYx?=
+ =?utf-8?B?UGZxY1I3RjAwQURTV1dYdzJMOGpnSXZZVDI0SWQwV21IUVdRZ29CbVQxdUhw?=
+ =?utf-8?B?RnJCanlnUGhnOWFYaUZHZmczQmZlR3hpSXI0R0VyY1VxY0E9PQ==?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?cGhESjdSMFc3U3MrWUtsY003aldRN1duN2g3UEt4aGNSOTB5YmZhT3ZyV2VS?=
+ =?utf-8?B?S3FESTh5ZkJDVjIxY1Y2TmluYjBHNXhVUXZTbDNiZHVvU29vazJ4aVNuNlAy?=
+ =?utf-8?B?bVZEMjJzQlNHWGNFS1h4MVpKVkFKbGhxb0dDRnM4eUcrR1h1aVlseW9vdmdl?=
+ =?utf-8?B?REljVXlvWjdWei9hZGpqM05wbmNkY09aTWhxdFlSSTZpVzF3YTViejhBM04z?=
+ =?utf-8?B?eHYzMGxwRmFpNkFlYWQ4NXBtR09LNzc2eVpHOFlOY1lnc1BhQ3Y2TTlwMHJj?=
+ =?utf-8?B?T2ZtZ2RtZ2JHTmpEbjdMQnV4REN6VEdaM3RNV2RBWEdCbVprOWlFQ0dhNHdK?=
+ =?utf-8?B?ZnJ4SXIvaWs1MWNCTWJWclEwQzFHMWJoNC9CQWZKTGliZDQrWktOOFZyb1FM?=
+ =?utf-8?B?QVlidXNOZy92L2E2OTlYOFpKRE5HbW44T2dxSGp3SHZ2RW1Yd0JHNTRiZW90?=
+ =?utf-8?B?TW9OUWI0V2JXdGI4YjlNMDFFSXFiMGdtTDhVZUg0Tm1reUQyQ1VDV1R3SGN5?=
+ =?utf-8?B?V29lWGpEMlltc2poSE1EZG55VFV4Wi9JbWY4dUpGL1E1clRQQllnMkNteFA4?=
+ =?utf-8?B?cUFPODFSR2phQnRFcEQwbWw3L3pyUnRhTS8xSi80eDFaOGU0V2N0R3ZZYVk2?=
+ =?utf-8?B?YWtGRmhHeEpnZWY0UHVFWE5ibWZMZzB2OUdMd3hLcjBZVzJ5MmV1bWF6T04y?=
+ =?utf-8?B?MnMrZWxQTXh6SGcrdEpQRkgrZ0s1MXk5cmd5S3FzUGNyS0dldGNNZG01RlJs?=
+ =?utf-8?B?Q3FjR1V1K0Q2WVZHZFdDd0RlRTN3WkJHaVo4K0dpY3l1MUVhL2pmMk8wZkw5?=
+ =?utf-8?B?YWFON1FndEZ1U08va1dGRkNBQktQU2VjZ05hb1JhVk92eW5MNktneFkxVHRu?=
+ =?utf-8?B?SlBLS1ZtUkllNEZlbVdidDVLakRselErc2pBZ0dlUzdibldEU0N0dkZhTElG?=
+ =?utf-8?B?K0E2NUdCUUg0N214Z29LTzh0Q1g4dzhQa0h1YVNkNzRXTjZXZ01STnY1Rmlo?=
+ =?utf-8?B?Z1dJTC9WTkRJNjQvR1JUaDd6MXJmbzJyeXZCZnlCTkFPZUsyUVg4T01QTnZ4?=
+ =?utf-8?B?M3VaNVNFVGlyU21jNi9PaXpkNG83VXZ3RVAzaGdOZGpseHlmenZOTlEzY2Ny?=
+ =?utf-8?B?eDFTZWlzRTg4VTU3NFJBalFUUXlQdWVOR0tSZFJ5WnNPaHpwYXdhcDh2dDBn?=
+ =?utf-8?B?Q0VHTlRQZDM5R25HaGxxVWIzYldRcGc3Q3R4OTVXaGM3bnVoODBaSEdCcVNC?=
+ =?utf-8?B?WGVqSHpKNk5Yek85eFY2MlFNL1ZhcWJhMHI5NXUraWZ0ekk1RDR5Nk1yNjJC?=
+ =?utf-8?B?cDdOV1MwNVNrTXpxSjhuMDNDampxZHo5QnRrS0srK2Q4RVd2MDcwcFhacDN2?=
+ =?utf-8?B?cnNNaFlISGhHNGlrT0xIcWZWMUkxZ1JIU0ZyMDNPbW5qTk5EK21wY3VuNW5s?=
+ =?utf-8?B?V1FqcmIzb2o4dXdRclk3V0FaVVlQdDI5QTMxaG5Vbm1YUUQ4bTFkMjJoSVpx?=
+ =?utf-8?B?NGI2c21xQWJaMVpDMGhGNzk1N2FvOGduczFuVmNxT2luWExhM0VOQVZxWmtP?=
+ =?utf-8?B?N2R1RHhLeFYvMWROK292aDI1V2FWMUo2L0FnemgvdVN3aDA5REZWUk5yZEdl?=
+ =?utf-8?B?Y1dEOFYwZlhLOXRFdzhIeWl4RmZ1dU5xVDRQbmxLQk42SlRkRDdRYnVnM2Nk?=
+ =?utf-8?B?M0dkWDlTYmM5Q2JNRHpCeUtTWHVFZmU4bXljcnMyM05QeGZySVVOVXJzVzho?=
+ =?utf-8?B?bkhBRjREQ2Exb1ltZ1R6TVcrcUNnVHFtMUhJb25VcVNkT1RWV3dSUDlSWTc0?=
+ =?utf-8?B?UWFVQlNIelJGMGVSVE0xeENmNmpQOFNhZThzc1RaUStnMURCTFlvYXA0VVRD?=
+ =?utf-8?B?TmFHbGhCdEM3SGhveUUyNHBHTDlxRSthRzJYVXR6N0x0NFZ0c3RYb0JDRGpX?=
+ =?utf-8?B?U0VPSWFZSXJVbnUrRit0NmRHcW1LK0VpcERFdUZmKzNIY1hIWjZvdGRCbGNF?=
+ =?utf-8?B?ZUoyZ1FaY2wvcFNtdzNaSmxRNFNWS3JEV3RSb2drVXlUbzg0VzdROXUvaUls?=
+ =?utf-8?B?TDI5MnNPQ2NqZVBrcXU0aVlCejZjTGw1em9DVmR3YjMvRTVJWDVQaS9jRTZW?=
+ =?utf-8?B?aXl6eUt3c0pDRkR4aE5FYXAyM3V5SnNZUG5LQ3VPOEtpV0NRaDQ1MUtxQTU1?=
+ =?utf-8?Q?u8ycqSHlabtfj+MC1Z7LxCM=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <68ED5D061D64C148B8D5066424CB357E@EURPRD10.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR03MB3461:EE_|SJ0PR03MB5710:EE_
-X-MS-Office365-Filtering-Correlation-Id: f981beb4-c871-4318-df21-08dd6bc2ecca
-X-MS-Exchange-AtpMessageProperties: SA
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?wepUYaslTTh2LzQ1i+ZTSyKcMklBy0tCyT62dURX8rRae2VhcJxJ4gZvyhtj?=
- =?us-ascii?Q?ZGIq5ZOVQ6iTOtWgDV2FpP6l3s6X8yJfxb8nsTXXiIqUn14Rj5Bd3d3i0ToI?=
- =?us-ascii?Q?nqEnsL8KYFatiARYX1EAJ3mJ1FQoih9CORFa3zalcH0kUjzhPjv/AtonrufU?=
- =?us-ascii?Q?YpcigXhLoAA49Bo6Oa0Y1XDKCUqjZKf7i0d0ZzFyKeXaSQWWkyZd0XAaPVAl?=
- =?us-ascii?Q?VrmkMTlQuSVBVXOLsGpB3uEjQtSQqYOWV4sQvN1iP+ffEVrbeDg14BTOPcxE?=
- =?us-ascii?Q?XFdnE8x/H/dcoJnGZ5gTGFTixIaq3ajyBUHyXAZx+E23REZmjy2XUjokFXm2?=
- =?us-ascii?Q?biJqt6wp4YgamSBm2vT/gPLaLXzUFG17IAAEkSciOkH9aIdmHrZ0t4P7rjAa?=
- =?us-ascii?Q?rAQ4Tbuoy4c56c2zKK2cl8QtIe8AbdbON0GIDE2DZVdUfXfncTRAuFtdN/PY?=
- =?us-ascii?Q?qOhhEteGhptMKQRgZIkmK62+aNvHspuSdEhlnVUr8RiiqV0vxUwCGHZ4iaKq?=
- =?us-ascii?Q?LotRNwukZF41avfzJ5ja0sDC3M6wmGd3xNHYDMMK01w7nwWkyvCmjExfYwzw?=
- =?us-ascii?Q?p6DjEJx/X911EqgmpGMiilq1aayvd8H7vrfaXaBZx3d7vkTL7SdratJQkWPq?=
- =?us-ascii?Q?ZNEJyLhmsKuWN9mGoDdQY8aeSZmu2J/uD3nfaJNfkVl8d93qYuJpqwJuE/6m?=
- =?us-ascii?Q?EjmhV7fWK2TQ5JTNs6fuvQ5JAE2uBTpn6nG5SPfrbRTCF2CKDiLWmEPpVtfI?=
- =?us-ascii?Q?WhIjz76G9DA5HbNOqJ8zYgfAqTFhXL7QCE/wca7DrsQlpNcmmYByZNT/V6l0?=
- =?us-ascii?Q?NhBFCbH5FzLyCI8/ly2aOlW6tPO6oH84BqhZbYvjrOQCg6I3jKsDCy92QaLR?=
- =?us-ascii?Q?k9AhlI0dnfvuoBWvWqyfnBvNFCczuXCsKasKd0LMudyx9yJ6E895UWZMFh99?=
- =?us-ascii?Q?JE9SFp8mbqL4zLXgG/K5APKDJfnMg2N8dUj16K9q8QBRYn0iraQDTw9M4Tlw?=
- =?us-ascii?Q?uMbdLT3/PvmPFzWX+aYAGezt3YE2mqITCo4ozaQ9IwX9FGQE+cgfZVlX/GVR?=
- =?us-ascii?Q?l1BfSxQz2VFzIz3PBqoyz4pNrKZ7ueLhnHDl+AHMxonq31+PbgfYgdMGIfHS?=
- =?us-ascii?Q?mVidnBlevofrbZ5fJvPl2n+9GVzCce0/HEqwspt+Py4EdSyZbY3HHBj4Pwbd?=
- =?us-ascii?Q?OyzVucO/2WGRNZnhXOwlavYzZxWXTUx0k60sJK6XnrGODJjJkQ4gVeH5eNqc?=
- =?us-ascii?Q?wwPNRqS74b6XO4qguj8h1NNVp9pc4ig1cElU/Unv6bLqHj8GnlxkJ7mE6jX5?=
- =?us-ascii?Q?x+QN2Fo+WGsKNfixB+W/Urkq/tdPRdzg6M6hfSVB6irnJA=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR03MB3461.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?EpWs0FjqdKNoJJSADGvsjZwcMfRCORoCjwlKHnPvG/lsOAms3X1g5b7d4Qpw?=
- =?us-ascii?Q?GlevjnVLZxLeJsiE6Dk3sw4WyoRWaGfN2iymcHXTvN9fHqPpmv4G9eRIVBz5?=
- =?us-ascii?Q?jbpM0D+se4XBJG41uykvD6ry/57QMDbE+t5EJIovYsNBTjS5n1ExJyVFk+9a?=
- =?us-ascii?Q?gd8HEEnk6NVZ7kt7nwIHQ+R4iXAimbXgqtdX2ywixVz8hOLUhd/Z+yAAXnfz?=
- =?us-ascii?Q?yyZ4WcK0r4Ekoo42zQgnhGZGpnKRTLa6Ehfpe8JmqOJt5m6iAchkDRc6K5/L?=
- =?us-ascii?Q?gHIf96oAdvPe/niQyJRrNtGLUGAahyVSd8cnHsjb93u4sFgWgf9pEwcxjZzj?=
- =?us-ascii?Q?J3Cyb4Ccdo5CbKAIzUD1USqjA3qAq39NUl91O34jOHtU908vof9GLgmsvQNs?=
- =?us-ascii?Q?iaPGHYsPlv67lFPA3cBwsY2l+sL3K82+7uNnW5sq6V6if89jOA9PmU2kfTzH?=
- =?us-ascii?Q?XCjePh1pVBH6J/RUkubzqFKrm0xOISi6My+yw4f/w5u5s0jRHeTigOp9OAtU?=
- =?us-ascii?Q?mAdjxH6hgPFvSvywDVAva+7Jqm0fX9rhg0CDUcvQCMO6YSISltsqFjmzE/Lf?=
- =?us-ascii?Q?05ziMa8Lc05/b1TVRGDekbMqYcPahGGWoNxb+fGFcibXeMgc61uLHuG8pOTc?=
- =?us-ascii?Q?phqy1LP6xIuJtgzj4YVf5phjNJXHm4CAMaajQPvPYYdZGo2fVjNEqJgmnU36?=
- =?us-ascii?Q?YQBNhsHHhgpUG5ig2/gzHXrsgdCZrdd3yjf1Wa/qrjEO9uP8yi4OZydgjy75?=
- =?us-ascii?Q?zFuq91ywATKxYRXPMj14h91+wn8Wr+ZvFgpguDwpm0UMo1I3dkjGeKwvrGVF?=
- =?us-ascii?Q?W4iu5lRbJpuFHMqZo2Yx752aDP8JPYagJNI4jqoGJ7vL9vHHjNAaLsd1WxhM?=
- =?us-ascii?Q?U+xPEfS5wCvuKqVb7mKtOVQexwHtN/hq6Rlot3ldq/OGECRjaZPJ+US0Kdk1?=
- =?us-ascii?Q?xHWjc/6WZg2q8/f0jIDwVmJ3bVYGlHGhgU1fLG6B30aGRR5dAf9/amRd67Uk?=
- =?us-ascii?Q?gYtUYq4x0Gv+BJO4iROEwKaWC+Of4K7Yj0y7sTyIiVIPPfTOeLuKl1lLg/8t?=
- =?us-ascii?Q?pt/xrRQjV95nCdQiLoFFMFFNWPLkiZoFZT4q1fLLleUKxDrDAicEdqYJ5j44?=
- =?us-ascii?Q?ztoPhwPZzODRyA5TItqfXhP8apBn4d0vYDs+ehUlNumJMIFsDt0J1qClN/ap?=
- =?us-ascii?Q?qsHUwugL4vjuR9Xj9Cdu5mo8dhNNykk4IzwxEHvUxcGCzCz0ohEuya2EUqY/?=
- =?us-ascii?Q?ZZPGM1nzApJ3cxJmS0AXj1ImHVO3zNz+XCTnmvhdMeePUELA0u2IX/coTXx9?=
- =?us-ascii?Q?F54exvis0bD6pT1CPXHUEnR2e3/7pxvQA0PQQFFoOxVXie174mZeS0ffsP0L?=
- =?us-ascii?Q?VgJPwRptQ9EciplhiAQjXAVwOt9waT3IVAZWlqXEHFFM0WLv679iEGPEilW9?=
- =?us-ascii?Q?xkS3jdWprZFdup7h6H5tMI8+9DXiwdonvWswWgppxGJzjB0DyrjntutKoz3L?=
- =?us-ascii?Q?C/8M4GDR1F00657DQLkDIsvpnwT4vJtEIy9vLrgmxP2r4Ujmqr2skSFMdxe4?=
- =?us-ascii?Q?bjROnDnreEvFXvX5hC6xVEU0X5dlHABlvUQ6E0itsEeI4o9F3RfXAOELA50M?=
- =?us-ascii?Q?ZQ=3D=3D?=
-X-OriginatorOrg: altera.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f981beb4-c871-4318-df21-08dd6bc2ecca
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR03MB3461.namprd03.prod.outlook.com
+X-OriginatorOrg: siemens.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2025 17:31:49.8636
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8a5bc1ef-9e13-4275-c354-08dd6bc5b76a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Mar 2025 17:51:48.6295
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fbd72e03-d4a5-4110-adce-614d51f2077a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: d4SSWkZ5e2OOCEv+VLO/GGjy2/ZdgQVUbkkLLVuypWM6kezDhYIyibejfj5xba2tyv0JBp2AFiInlXkFuNqszhND7VxpeqB9P3Onj9INsCw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR03MB5710
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: RDHCVaKRzIrpa9P3uZo3lKdXOqnA6xNmYBgfRdlPfU/WxVyZXzMkpq8ZVIN5ko+4r3IBkgawHsIAX8xrEW9L9Px3ilAfdVFCLu1m72VZfGU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR10MB6414
 
-Convert the device tree bindings for the Altera SoCFPGA ECC
-Manager from text to yaml.
-
-Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
----
-v3:
- - Remove redundant $ref and description from compatible entries.
- - Add $ref and description for altr,sysmgr-syscon entry.
- - Fix description of altr,ecc-parent of sdmmca-ecc@ff8c8c00.
- - Successfully validated Cyclone5, Arria5/10, Stratix10, and Agilex.
- - Rename yaml file.
-
-v2:
- - Fix $id: path.
- - Remove unneeded '|'.
- - Move vendor properties last (but before child nodes).
- - Add appropriate blank lines.
- - Don't break ABI.
- - Avoid changing existing DTSI and DTS.
----
- .../edac/altr,socfpga-ecc-manager.yaml        | 323 +++++++++++++++
- .../bindings/edac/socfpga-eccmgr.txt          | 383 ------------------
- MAINTAINERS                                   |   5 +
- 3 files changed, 328 insertions(+), 383 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/edac/altr,socfpga-ecc-manager.yaml
- delete mode 100644 Documentation/devicetree/bindings/edac/socfpga-eccmgr.txt
-
-diff --git a/Documentation/devicetree/bindings/edac/altr,socfpga-ecc-manager.yaml b/Documentation/devicetree/bindings/edac/altr,socfpga-ecc-manager.yaml
-new file mode 100644
-index 000000000000..ec4634c5fa89
---- /dev/null
-+++ b/Documentation/devicetree/bindings/edac/altr,socfpga-ecc-manager.yaml
-@@ -0,0 +1,323 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright (C) 2025 Altera Corporation
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/edac/altr,socfpga-ecc-manager.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Altera SoCFPGA ECC Manager
-+
-+maintainers:
-+  - Matthew Gerlach <matthew.gerlach@altera.com>
-+
-+description:
-+  This binding describes the device tree nodes required for the Altera SoCFPGA
-+  ECC Manager for the Cyclone5, Arria5, Arria10, Stratix10, and Agilex chip
-+  families.
-+
-+properties:
-+
-+  compatible:
-+    oneOf:
-+      - items:
-+          - const: altr,socfpga-s10-ecc-manager
-+          - const: altr,socfpga-a10-ecc-manager
-+      - const: altr,socfpga-a10-ecc-manager
-+      - const: altr,socfpga-ecc-manager
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 1
-+
-+  interrupts:
-+    minItems: 1
-+    maxItems: 2
-+
-+  interrupt-controller: true
-+
-+  "#interrupt-cells":
-+    const: 2
-+
-+  ranges: true
-+
-+  altr,sysmgr-syscon:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: phandle to Stratix10 System Manager Block with the ECC manager registers
-+
-+  sdramedac:
-+    type: object
-+    additionalProperties: false
-+
-+    properties:
-+      compatible:
-+        enum:
-+          - altr,sdram-edac-a10
-+          - altr,sdram-edac-s10
-+
-+      interrupts:
-+        minItems: 1
-+        maxItems: 2
-+
-+      altr,sdr-syscon:
-+        $ref: /schemas/types.yaml#/definitions/phandle
-+        description: phandle to SDRAM parent
-+
-+    required:
-+      - compatible
-+      - interrupts
-+      - altr,sdr-syscon
-+
-+patternProperties:
-+  "^ocram-ecc@[a-f0-9]+$":
-+    type: object
-+    additionalProperties: false
-+
-+    properties:
-+      compatible:
-+        oneOf:
-+          - items:
-+              - const: altr,socfpga-s10-ocram-ecc
-+              - const: altr,socfpga-a10-ocram-ecc
-+          - const: altr,socfpga-a10-ocram-ecc
-+          - const: altr,socfpga-ocram-ecc
-+
-+      reg:
-+        maxItems: 1
-+
-+      interrupts:
-+        minItems: 1
-+        maxItems: 2
-+
-+      iram:
-+        $ref: /schemas/types.yaml#/definitions/phandle
-+        description: phandle to OCRAM parent
-+
-+      altr,ecc-parent:
-+        $ref: /schemas/types.yaml#/definitions/phandle
-+        description: phandle to OCRAM parent
-+
-+    required:
-+      - compatible
-+      - reg
-+      - interrupts
-+
-+  "^usb[0-9]-ecc@[a-f0-9]+$":
-+    type: object
-+    additionalProperties: false
-+
-+    properties:
-+      compatible:
-+        oneOf:
-+          - items:
-+              - const: altr,socfpga-s10-usb-ecc
-+              - const: altr,socfpga-usb-ecc
-+          - const: altr,socfpga-usb-ecc
-+
-+      reg:
-+        maxItems: 1
-+
-+      interrupts:
-+        minItems: 1
-+        maxItems: 2
-+
-+      altr,ecc-parent:
-+        $ref: /schemas/types.yaml#/definitions/phandle
-+        description: phandle to USB parent
-+
-+    required:
-+      - compatible
-+      - reg
-+      - interrupts
-+      - altr,ecc-parent
-+
-+  "^emac[0-9]-[t,r]x-ecc@[a-f0-9]+$":
-+    type: object
-+    additionalProperties: false
-+
-+    properties:
-+      compatible:
-+        oneOf:
-+          - items:
-+              - const: altr,socfpga-s10-eth-mac-ecc
-+              - const: altr,socfpga-eth-mac-ecc
-+          - const: altr,socfpga-eth-mac-ecc
-+
-+      reg:
-+        maxItems: 1
-+
-+      interrupts:
-+        minItems: 1
-+        maxItems: 2
-+
-+      altr,ecc-parent:
-+        $ref: /schemas/types.yaml#/definitions/phandle
-+        description: phandle to ethernet parent
-+
-+    required:
-+      - compatible
-+      - reg
-+      - interrupts
-+      - altr,ecc-parent
-+
-+  "^sdmmc[a-f]-ecc@[a-f0-9]+$":
-+    type: object
-+    additionalProperties: false
-+
-+    properties:
-+      compatible:
-+        oneOf:
-+          - items:
-+              - const: altr,socfpga-s10-sdmmc-ecc
-+              - const: altr,socfpga-sdmmc-ecc
-+          - const: altr,socfpga-sdmmc-ecc
-+
-+      reg:
-+        maxItems: 1
-+
-+      interrupts:
-+        minItems: 2
-+        maxItems: 4
-+
-+      altr,ecc-parent:
-+        $ref: /schemas/types.yaml#/definitions/phandle
-+        description: phandle to SD/MMC parent
-+
-+    required:
-+      - compatible
-+      - reg
-+      - interrupts
-+      - altr,ecc-parent
-+
-+  "^l2-ecc@[a-f0-9]+$":
-+    type: object
-+    additionalProperties: false
-+
-+    properties:
-+      compatible:
-+        enum:
-+          - altr,socfpga-a10-l2-ecc
-+          - altr,socfpga-l2-ecc
-+
-+      reg:
-+        maxItems: 1
-+
-+      interrupts:
-+        maxItems: 2
-+
-+    required:
-+      - compatible
-+      - reg
-+      - interrupts
-+
-+  "^dma-ecc@[a-f0-9]+$":
-+    type: object
-+    additionalProperties: false
-+
-+    properties:
-+      compatible:
-+        const: altr,socfpga-dma-ecc
-+      reg:
-+        maxItems: 1
-+
-+      interrupts:
-+        maxItems: 2
-+
-+      altr,ecc-parent:
-+        $ref: /schemas/types.yaml#/definitions/phandle
-+        description: phandle to SD/MMC parent
-+
-+    required:
-+      - compatible
-+      - reg
-+      - interrupts
-+      - altr,ecc-parent
-+
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: altr,socfpga-ecc-manager
-+then:
-+  required:
-+    - compatible
-+    - "#address-cells"
-+    - "#size-cells"
-+    - ranges
-+
-+else:
-+  required:
-+    - compatible
-+    - "#address-cells"
-+    - "#size-cells"
-+    - interrupts
-+    - interrupt-controller
-+    - "#interrupt-cells"
-+    - ranges
-+    - altr,sysmgr-syscon
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    eccmgr {
-+        compatible = "altr,socfpga-s10-ecc-manager",
-+                     "altr,socfpga-a10-ecc-manager";
-+        altr,sysmgr-syscon = <&sysmgr>;
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-controller;
-+        #interrupt-cells = <2>;
-+        ranges;
-+
-+        sdramedac {
-+            compatible = "altr,sdram-edac-s10";
-+            altr,sdr-syscon = <&sdr>;
-+            interrupts = <16 IRQ_TYPE_LEVEL_HIGH>;
-+        };
-+
-+        ocram-ecc@ff8cc000 {
-+            compatible = "altr,socfpga-s10-ocram-ecc",
-+                         "altr,socfpga-a10-ocram-ecc";
-+            reg = <0xff8cc000 0x100>;
-+            altr,ecc-parent = <&ocram>;
-+            interrupts = <1 IRQ_TYPE_LEVEL_HIGH>;
-+        };
-+
-+        usb0-ecc@ff8c4000 {
-+            compatible = "altr,socfpga-s10-usb-ecc",
-+                         "altr,socfpga-usb-ecc";
-+            reg = <0xff8c4000 0x100>;
-+            altr,ecc-parent = <&usb0>;
-+            interrupts = <2 IRQ_TYPE_LEVEL_HIGH>;
-+        };
-+
-+        emac0-rx-ecc@ff8c0000 {
-+            compatible = "altr,socfpga-s10-eth-mac-ecc",
-+                         "altr,socfpga-eth-mac-ecc";
-+            reg = <0xff8c0000 0x100>;
-+            altr,ecc-parent = <&gmac0>;
-+            interrupts = <4 IRQ_TYPE_LEVEL_HIGH>;
-+        };
-+
-+        emac0-tx-ecc@ff8c0400 {
-+            compatible = "altr,socfpga-s10-eth-mac-ecc",
-+                         "altr,socfpga-eth-mac-ecc";
-+            reg = <0xff8c0400 0x100>;
-+            altr,ecc-parent = <&gmac0>;
-+            interrupts = <5 IRQ_TYPE_LEVEL_HIGH>;
-+        };
-+
-+        sdmmca-ecc@ff8c8c00 {
-+            compatible = "altr,socfpga-s10-sdmmc-ecc",
-+                         "altr,socfpga-sdmmc-ecc";
-+            reg = <0xff8c8c00 0x100>;
-+            altr,ecc-parent = <&mmc>;
-+            interrupts = <14 IRQ_TYPE_LEVEL_HIGH>,
-+                         <15 IRQ_TYPE_LEVEL_HIGH>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/edac/socfpga-eccmgr.txt b/Documentation/devicetree/bindings/edac/socfpga-eccmgr.txt
-deleted file mode 100644
-index 8f52206cfd2a..000000000000
---- a/Documentation/devicetree/bindings/edac/socfpga-eccmgr.txt
-+++ /dev/null
-@@ -1,383 +0,0 @@
--Altera SoCFPGA ECC Manager
--This driver uses the EDAC framework to implement the SOCFPGA ECC Manager.
--The ECC Manager counts and corrects single bit errors and counts/handles
--double bit errors which are uncorrectable.
--
--Cyclone5 and Arria5 ECC Manager
--Required Properties:
--- compatible : Should be "altr,socfpga-ecc-manager"
--- #address-cells: must be 1
--- #size-cells: must be 1
--- ranges : standard definition, should translate from local addresses
--
--Subcomponents:
--
--L2 Cache ECC
--Required Properties:
--- compatible : Should be "altr,socfpga-l2-ecc"
--- reg : Address and size for ECC error interrupt clear registers.
--- interrupts : Should be single bit error interrupt, then double bit error
--	interrupt. Note the rising edge type.
--
--On Chip RAM ECC
--Required Properties:
--- compatible : Should be "altr,socfpga-ocram-ecc"
--- reg : Address and size for ECC error interrupt clear registers.
--- iram : phandle to On-Chip RAM definition.
--- interrupts : Should be single bit error interrupt, then double bit error
--	interrupt. Note the rising edge type.
--
--Example:
--
--	eccmgr: eccmgr@ffd08140 {
--		compatible = "altr,socfpga-ecc-manager";
--		#address-cells = <1>;
--		#size-cells = <1>;
--		ranges;
--
--		l2-ecc@ffd08140 {
--			compatible = "altr,socfpga-l2-ecc";
--			reg = <0xffd08140 0x4>;
--			interrupts = <0 36 1>, <0 37 1>;
--		};
--
--		ocram-ecc@ffd08144 {
--			compatible = "altr,socfpga-ocram-ecc";
--			reg = <0xffd08144 0x4>;
--			iram = <&ocram>;
--			interrupts = <0 178 1>, <0 179 1>;
--		};
--	};
--
--Arria10 SoCFPGA ECC Manager
--The Arria10 SoC ECC Manager handles the IRQs for each peripheral
--in a shared register instead of individual IRQs like the Cyclone5
--and Arria5. Therefore the device tree is different as well.
--
--Required Properties:
--- compatible : Should be "altr,socfpga-a10-ecc-manager"
--- altr,sysgr-syscon : phandle to Arria10 System Manager Block
--	containing the ECC manager registers.
--- #address-cells: must be 1
--- #size-cells: must be 1
--- interrupts : Should be single bit error interrupt, then double bit error
--	interrupt.
--- interrupt-controller : boolean indicator that ECC Manager is an interrupt controller
--- #interrupt-cells : must be set to 2.
--- ranges : standard definition, should translate from local addresses
--
--Subcomponents:
--
--L2 Cache ECC
--Required Properties:
--- compatible : Should be "altr,socfpga-a10-l2-ecc"
--- reg : Address and size for ECC error interrupt clear registers.
--- interrupts : Should be single bit error interrupt, then double bit error
--	interrupt, in this order.
--
--On-Chip RAM ECC
--Required Properties:
--- compatible : Should be "altr,socfpga-a10-ocram-ecc"
--- reg        : Address and size for ECC block registers.
--- interrupts : Should be single bit error interrupt, then double bit error
--	interrupt, in this order.
--
--Ethernet FIFO ECC
--Required Properties:
--- compatible      : Should be "altr,socfpga-eth-mac-ecc"
--- reg             : Address and size for ECC block registers.
--- altr,ecc-parent : phandle to parent Ethernet node.
--- interrupts      : Should be single bit error interrupt, then double bit error
--	interrupt, in this order.
--
--NAND FIFO ECC
--Required Properties:
--- compatible      : Should be "altr,socfpga-nand-ecc"
--- reg             : Address and size for ECC block registers.
--- altr,ecc-parent : phandle to parent NAND node.
--- interrupts      : Should be single bit error interrupt, then double bit error
--	interrupt, in this order.
--
--DMA FIFO ECC
--Required Properties:
--- compatible      : Should be "altr,socfpga-dma-ecc"
--- reg             : Address and size for ECC block registers.
--- altr,ecc-parent : phandle to parent DMA node.
--- interrupts      : Should be single bit error interrupt, then double bit error
--	interrupt, in this order.
--
--USB FIFO ECC
--Required Properties:
--- compatible      : Should be "altr,socfpga-usb-ecc"
--- reg             : Address and size for ECC block registers.
--- altr,ecc-parent : phandle to parent USB node.
--- interrupts      : Should be single bit error interrupt, then double bit error
--	interrupt, in this order.
--
--QSPI FIFO ECC
--Required Properties:
--- compatible      : Should be "altr,socfpga-qspi-ecc"
--- reg             : Address and size for ECC block registers.
--- altr,ecc-parent : phandle to parent QSPI node.
--- interrupts      : Should be single bit error interrupt, then double bit error
--	interrupt, in this order.
--
--SDMMC FIFO ECC
--Required Properties:
--- compatible      : Should be "altr,socfpga-sdmmc-ecc"
--- reg             : Address and size for ECC block registers.
--- altr,ecc-parent : phandle to parent SD/MMC node.
--- interrupts      : Should be single bit error interrupt, then double bit error
--	interrupt, in this order for port A, and then single bit error interrupt,
--	then double bit error interrupt in this order for port B.
--
--Example:
--
--	eccmgr: eccmgr@ffd06000 {
--		compatible = "altr,socfpga-a10-ecc-manager";
--		altr,sysmgr-syscon = <&sysmgr>;
--		#address-cells = <1>;
--		#size-cells = <1>;
--		interrupts = <0 2 IRQ_TYPE_LEVEL_HIGH>,
--			     <0 0 IRQ_TYPE_LEVEL_HIGH>;
--		interrupt-controller;
--		#interrupt-cells = <2>;
--		ranges;
--
--		l2-ecc@ffd06010 {
--			compatible = "altr,socfpga-a10-l2-ecc";
--			reg = <0xffd06010 0x4>;
--			interrupts = <0 IRQ_TYPE_LEVEL_HIGH>,
--				     <32 IRQ_TYPE_LEVEL_HIGH>;
--		};
--
--		ocram-ecc@ff8c3000 {
--			compatible = "altr,socfpga-a10-ocram-ecc";
--			reg = <0xff8c3000 0x90>;
--			interrupts = <1 IRQ_TYPE_LEVEL_HIGH>,
--				     <33 IRQ_TYPE_LEVEL_HIGH> ;
--		};
--
--		emac0-rx-ecc@ff8c0800 {
--			compatible = "altr,socfpga-eth-mac-ecc";
--			reg = <0xff8c0800 0x400>;
--			altr,ecc-parent = <&gmac0>;
--			interrupts = <4 IRQ_TYPE_LEVEL_HIGH>,
--				     <36 IRQ_TYPE_LEVEL_HIGH>;
--		};
--
--		emac0-tx-ecc@ff8c0c00 {
--			compatible = "altr,socfpga-eth-mac-ecc";
--			reg = <0xff8c0c00 0x400>;
--			altr,ecc-parent = <&gmac0>;
--			interrupts = <5 IRQ_TYPE_LEVEL_HIGH>,
--				     <37 IRQ_TYPE_LEVEL_HIGH>;
--		};
--
--		nand-buf-ecc@ff8c2000 {
--			compatible = "altr,socfpga-nand-ecc";
--			reg = <0xff8c2000 0x400>;
--			altr,ecc-parent = <&nand>;
--			interrupts = <11 IRQ_TYPE_LEVEL_HIGH>,
--				     <43 IRQ_TYPE_LEVEL_HIGH>;
--		};
--
--		nand-rd-ecc@ff8c2400 {
--			compatible = "altr,socfpga-nand-ecc";
--			reg = <0xff8c2400 0x400>;
--			altr,ecc-parent = <&nand>;
--			interrupts = <13 IRQ_TYPE_LEVEL_HIGH>,
--				     <45 IRQ_TYPE_LEVEL_HIGH>;
--		};
--
--		nand-wr-ecc@ff8c2800 {
--			compatible = "altr,socfpga-nand-ecc";
--			reg = <0xff8c2800 0x400>;
--			altr,ecc-parent = <&nand>;
--			interrupts = <12 IRQ_TYPE_LEVEL_HIGH>,
--				     <44 IRQ_TYPE_LEVEL_HIGH>;
--		};
--
--		dma-ecc@ff8c8000 {
--			compatible = "altr,socfpga-dma-ecc";
--			reg = <0xff8c8000 0x400>;
--			altr,ecc-parent = <&pdma>;
--			interrupts = <10 IRQ_TYPE_LEVEL_HIGH>,
--				     <42 IRQ_TYPE_LEVEL_HIGH>;
--
--		usb0-ecc@ff8c8800 {
--			compatible = "altr,socfpga-usb-ecc";
--			reg = <0xff8c8800 0x400>;
--			altr,ecc-parent = <&usb0>;
--			interrupts = <2 IRQ_TYPE_LEVEL_HIGH>,
--				     <34 IRQ_TYPE_LEVEL_HIGH>;
--		};
--
--		qspi-ecc@ff8c8400 {
--			compatible = "altr,socfpga-qspi-ecc";
--			reg = <0xff8c8400 0x400>;
--			altr,ecc-parent = <&qspi>;
--			interrupts = <14 IRQ_TYPE_LEVEL_HIGH>,
--				     <46 IRQ_TYPE_LEVEL_HIGH>;
--		};
--
--		sdmmc-ecc@ff8c2c00 {
--			compatible = "altr,socfpga-sdmmc-ecc";
--			reg = <0xff8c2c00 0x400>;
--			altr,ecc-parent = <&mmc>;
--			interrupts = <15 IRQ_TYPE_LEVEL_HIGH>,
--				     <47 IRQ_TYPE_LEVEL_HIGH>,
--				     <16 IRQ_TYPE_LEVEL_HIGH>,
--				     <48 IRQ_TYPE_LEVEL_HIGH>;
--		};
--	};
--
--Stratix10 SoCFPGA ECC Manager (ARM64)
--The Stratix10 SoC ECC Manager handles the IRQs for each peripheral
--in a shared register similar to the Arria10. However, Stratix10 ECC
--requires access to registers that can only be read from Secure Monitor
--with SMC calls. Therefore the device tree is slightly different. Note
--that only 1 interrupt is sent in Stratix10 because the double bit errors
--are treated as SErrors in ARM64 instead of IRQs in ARM32.
--
--Required Properties:
--- compatible : Should be "altr,socfpga-s10-ecc-manager"
--- altr,sysgr-syscon : phandle to Stratix10 System Manager Block
--	              containing the ECC manager registers.
--- interrupts : Should be single bit error interrupt.
--- interrupt-controller : boolean indicator that ECC Manager is an interrupt controller
--- #interrupt-cells : must be set to 2.
--- #address-cells: must be 1
--- #size-cells: must be 1
--- ranges : standard definition, should translate from local addresses
--
--Subcomponents:
--
--SDRAM ECC
--Required Properties:
--- compatible : Should be "altr,sdram-edac-s10"
--- interrupts : Should be single bit error interrupt.
--
--On-Chip RAM ECC
--Required Properties:
--- compatible      : Should be "altr,socfpga-s10-ocram-ecc"
--- reg             : Address and size for ECC block registers.
--- altr,ecc-parent : phandle to parent OCRAM node.
--- interrupts      : Should be single bit error interrupt.
--
--Ethernet FIFO ECC
--Required Properties:
--- compatible      : Should be "altr,socfpga-s10-eth-mac-ecc"
--- reg             : Address and size for ECC block registers.
--- altr,ecc-parent : phandle to parent Ethernet node.
--- interrupts      : Should be single bit error interrupt.
--
--NAND FIFO ECC
--Required Properties:
--- compatible      : Should be "altr,socfpga-s10-nand-ecc"
--- reg             : Address and size for ECC block registers.
--- altr,ecc-parent : phandle to parent NAND node.
--- interrupts      : Should be single bit error interrupt.
--
--DMA FIFO ECC
--Required Properties:
--- compatible      : Should be "altr,socfpga-s10-dma-ecc"
--- reg             : Address and size for ECC block registers.
--- altr,ecc-parent : phandle to parent DMA node.
--- interrupts      : Should be single bit error interrupt.
--
--USB FIFO ECC
--Required Properties:
--- compatible      : Should be "altr,socfpga-s10-usb-ecc"
--- reg             : Address and size for ECC block registers.
--- altr,ecc-parent : phandle to parent USB node.
--- interrupts      : Should be single bit error interrupt.
--
--SDMMC FIFO ECC
--Required Properties:
--- compatible      : Should be "altr,socfpga-s10-sdmmc-ecc"
--- reg             : Address and size for ECC block registers.
--- altr,ecc-parent : phandle to parent SD/MMC node.
--- interrupts      : Should be single bit error interrupt for port A
--		    and then single bit error interrupt for port B.
--
--Example:
--
--	eccmgr {
--		compatible = "altr,socfpga-s10-ecc-manager";
--		altr,sysmgr-syscon = <&sysmgr>;
--		#address-cells = <1>;
--		#size-cells = <1>;
--		interrupts = <0 15 4>;
--		interrupt-controller;
--		#interrupt-cells = <2>;
--		ranges;
--
--		sdramedac {
--			compatible = "altr,sdram-edac-s10";
--			interrupts = <16 IRQ_TYPE_LEVEL_HIGH>;
--		};
--
--		ocram-ecc@ff8cc000 {
--			compatible = "altr,socfpga-s10-ocram-ecc";
--			reg = <ff8cc000 0x100>;
--			altr,ecc-parent = <&ocram>;
--			interrupts = <1 IRQ_TYPE_LEVEL_HIGH>;
--		};
--
--		emac0-rx-ecc@ff8c0000 {
--			compatible = "altr,socfpga-s10-eth-mac-ecc";
--			reg = <0xff8c0000 0x100>;
--			altr,ecc-parent = <&gmac0>;
--			interrupts = <4 IRQ_TYPE_LEVEL_HIGH>;
--		};
--
--		emac0-tx-ecc@ff8c0400 {
--			compatible = "altr,socfpga-s10-eth-mac-ecc";
--			reg = <0xff8c0400 0x100>;
--			altr,ecc-parent = <&gmac0>;
--			interrupts = <5 IRQ_TYPE_LEVEL_HIGH>'
--		};
--
--		nand-buf-ecc@ff8c8000 {
--			compatible = "altr,socfpga-s10-nand-ecc";
--			reg = <0xff8c8000 0x100>;
--			altr,ecc-parent = <&nand>;
--			interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
--		};
--
--		nand-rd-ecc@ff8c8400 {
--			compatible = "altr,socfpga-s10-nand-ecc";
--			reg = <0xff8c8400 0x100>;
--			altr,ecc-parent = <&nand>;
--			interrupts = <13 IRQ_TYPE_LEVEL_HIGH>;
--		};
--
--		nand-wr-ecc@ff8c8800 {
--			compatible = "altr,socfpga-s10-nand-ecc";
--			reg = <0xff8c8800 0x100>;
--			altr,ecc-parent = <&nand>;
--			interrupts = <12 IRQ_TYPE_LEVEL_HIGH>;
--		};
--
--		dma-ecc@ff8c9000 {
--			compatible = "altr,socfpga-s10-dma-ecc";
--			reg = <0xff8c9000 0x100>;
--			altr,ecc-parent = <&pdma>;
--			interrupts = <10 IRQ_TYPE_LEVEL_HIGH>;
--
--		usb0-ecc@ff8c4000 {
--			compatible = "altr,socfpga-s10-usb-ecc";
--			reg = <0xff8c4000 0x100>;
--			altr,ecc-parent = <&usb0>;
--			interrupts = <2 IRQ_TYPE_LEVEL_HIGH>;
--		};
--
--		sdmmc-ecc@ff8c8c00 {
--			compatible = "altr,socfpga-s10-sdmmc-ecc";
--			reg = <0xff8c8c00 0x100>;
--			altr,ecc-parent = <&mmc>;
--			interrupts = <14 IRQ_TYPE_LEVEL_HIGH>,
--				     <15 IRQ_TYPE_LEVEL_HIGH>;
--		};
--	};
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 7a9b8fa5f032..13c62ec3dc89 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3192,6 +3192,11 @@ M:	Dinh Nguyen <dinguyen@kernel.org>
- S:	Maintained
- F:	drivers/clk/socfpga/
- 
-+ARM/SOCFPGA EDAC BINDINGS
-+M:	Matthew Gerlach <matthew.gerlach@altera.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/edac/altr,socfpga-ecc-manager.yaml
-+
- ARM/SOCFPGA EDAC SUPPORT
- M:	Dinh Nguyen <dinguyen@kernel.org>
- S:	Maintained
--- 
-2.35.3
-
+SGkgUm9iLCBEbWl0cnksDQoNCk9uIFR1ZSwgMjAyNS0wMy0xMSBhdCAxNToyNyArMDAwMCwgWmlu
+aSwgQWxlc3NhbmRybyB3cm90ZToNCj4gPiA+IFRoZSBoL3ZzeW5jLWRpc2FibGUgcHJvcGVydGll
+cyBhcmUgdXNlZCB0byBjb250cm9sIHdoZXRoZXIgdG8gdXNlIG9yDQo+ID4gPiBub3QgaC92c3lu
+YyBzaWduYWxzLCBieSBjb25maWd1cmluZyB0aGVpciBwdWxzZSB3aWR0aCB0byB6ZXJvLg0KPiA+
+ID4gDQo+ID4gPiBUaGlzIGlzIHJlcXVpcmVkIG9uIHNvbWUgcGFuZWxzIHdoaWNoIGFyZSBkcml2
+ZW4gaW4gREUtb25seSBtb2RlIGJ1dCBkbw0KPiA+ID4gbm90IGlnbm9yZSBzeW5jIHBhY2tldHMs
+IGFuZCBpbnN0ZWFkIHJlcXVpcmUgdGhlbSB0byBiZSBsb3ctdm9sdGFnZSBsZXZlbA0KPiA+ID4g
+b3IgZ3JvdW5kLg0KPiA+IA0KPiA+IElmIHRoaXMgaXMgcmVxdWlyZWQgYnkgJ3NvbWUgcGFuZWxz
+JywgdGhlbiBpdCBzaG91bGQgYmUgYSBwcm9wZXJ0eSBvZg0KPiA+IHRoZSBwYW5lbCwgbm90IGJ5
+IHRoZSBicmlkZ2UgaXRzZWxmLg0KPiANCj4gSSBnb3QgdGhlIHNhbWUsIHJpZ2h0ZnVsIG9iamVj
+dGlvbiBhbHNvIGZyb20gUm9iLiBJJ2xsIGFuc3dlciBoZXJlIHRvDQo+IHRoZSBib3RoIG9mIHlv
+dSB3aXRoIHRoZSByZWFzb25pbmcgYmVoaW5kIHRoZSBzdWJtaXNzaW9uIG9mIHRoaXMgcGF0Y2gu
+DQo+IEFjdHVhbGx5LCBJIHdhaXRlZCBmb3IgYSB3aGlsZSBiZWZvcmUgc2VuZGluZyB0aGlzIHBh
+dGNoLCBiZWNhdXNlIEkNCj4gb3JpZ2luYWxseSBoYWQgdGhlIHNhbWUgb3Bpbmlvbi4gSSBkbyBz
+dGlsbCBoYXZlIHNvbWUgZGlmZmljdWx0aWVzDQo+IGRyYXdpbmcgdGhlIGxpbmUgYmV0d2VlbiAi
+dGhpcyBpcyBhIHBhbmVsIHByb3BlcnR5IiBhbmQgInRoaXMgaXMgYQ0KPiBjb25maWd1cmFibGUg
+ZmVhdHVyZSBvZiB0aGUgYnJpZGdlIi4NCj4gDQo+IEhvd2V2ZXIsIEkgaGF2ZSBhbHNvIHByZXBh
+cmVkIGEgc2Vjb25kIHBhdGNoIHdoaWNoIGFkZHMgc3VwcG9ydCBmb3INCj4gY29uZmlndXJpbmcg
+dGhlIExWRFMgbmVhci1lbmQgdGVybWluYXRpb24uIEFmdGVyd2FyZCwgSSBmb3VuZCB0aGF0IHRo
+aXMNCj4gZmVhdHVyZSBoYXMgYWxyZWFkeSBtYWRlIGl0cyB3YXkgaW4gcmVjZW50bHksIHNvIEkg
+ZHJvcHBlZCB0aGUgcGF0Y2guDQo+IEFyZ3VhYmx5IHN0aWxsLCB0aGF0IGZlYXR1cmUgY291bGQg
+YmUgc2VlbiBpbiB0aGUgc2FtZSB3YXkgYXMgdGhlIG9uZQ0KPiBhZGRlZCBmcm9tIHRoaXMgcGF0
+Y2gsIHNpbmNlIGEgcGFuZWwgbWlnaHQgcmVxdWlyZSAxMDAgT2htLCB3aGlsZQ0KPiBhbm90aGVy
+IDIwMCBPaG0uIExpa2V3aXNlLCBhIHBhbmVsIG1pZ2h0IHJlcXVpcmUgaC92c3luYyBzaWduYWxz
+LCB3aGlsZQ0KPiBhbm90aGVyIG1pZ2h0IHJlcXVpcmUgdGhlbSB0byBiZSB6ZXJvL2Fic2VudC4N
+Cj4gDQo+IFRoZSBUSSBFMkUgZGlzY3Vzc2lvbiBJIGhhdmUgYXR0YWNoZWQgdG8gdGhlIGNvdmVy
+IGxldHRlciBvZiB0aGlzIHBhdGNoDQo+IHNlcmllcyBldmVudHVhbGx5IG1hZGUgbWUgY2hhbmdl
+IG15IG1pbmQuIEZyb20gbXkgcG9pbnQgb2YgdmlldywgdGhlDQo+IGRpc2N1c3Npb24gaW1wbGll
+cyB0aGF0IGF2b2lkaW5nIHRoZSBnZW5lcmF0aW9uIG9mIGgvdnN5bmMgc2lnbmFscyBpcw0KPiBp
+bmRlZWQgYSAoY29uZmlndXJhYmxlKSBmZWF0dXJlIG9mIHRoZSBicmlkZ2UsIGV2ZW4gdGhvdWdo
+IG5vdA0KPiBleHBsaWNpdGx5IGRvY3VtZW50ZWQgaW4gaXRzIGRhdGFzaGVldC4NCj4gDQo+IEdp
+dmVuIHRoZSB0d28gcmVhc29ucyBhYm92ZSwgSSB0aGluayB0aGlzIHBhdGNoIHdvdWxkIGJldHRl
+ciBmaXQgaW4gdGhlDQo+IGJyaWRnZSByYXRoZXIgdGhhbiBpbiB0aGUgcGFuZWwgKHdoaWNoLCBm
+b3IgY29udGV4dCwgaXMgZHJpdmVuIGFzIGENCj4gc2ltcGxlLXBhbmVsKS4NCj4gDQo+ID4gQ2Fu
+IHRoZSBwYW5lbCByZXR1cm4gdGhlIG1vZGUgd2l0aCBoc3luY19lbmQgPSBoc3luY19zdGFydCBh
+bmQNCj4gPiB2c3luY19lbmMgPSB2c3luY19zdGFydD8NCj4gDQo+IEkgZGlkIHRyeSB0byBzZXQg
+PGgvdnN5bmMtbGVuPiB0byB6ZXJvLCB3aGljaCByZXN1bHRlZCBpbiB2c3luY19lbmQgPQ0KPiB2
+c3luY19zdGFydCBhbmQgaHN5bmNfZW5kID0gaHN5bmNfc3RhcnQsIHdoaWxlIGFsc28gYWRqdXN0
+aW5nIHRoZSBvdGhlcg0KPiBibGFua2luZyBwcm9wZXJ0aWVzLiBJIGFtIG5vdCBzdXJlIGlmIHRo
+aXMgaXMgd2hhdCB5b3UgbWVhbnQuDQo+IEhvd2V2ZXIsIHRoaXMgcmVzdWx0ZWQgaW4gYW4gaXNz
+dWUgYWxvbmcgdGhlIHBpcGVsaW5lLCBhbmQgdWx0aW1hdGVseQ0KPiBjYXVzZWQgZHJtX2F0b21p
+Y19oZWxwZXJfd2FpdF9mb3JfdmJsYW5rcygpIHRvIHRpbWVvdXQuDQoNCnRoZSBwcm9ibGVtIGhl
+cmUgaXMgdGhhdCBhY3R1YWxseSB3ZSBjYW5ub3QgbW9kZWwgdGhpcyBwaXBlbGluZSB3aXRoDQp0
+aGUgY3VycmVudCBMaW51eCBzdGF0ZSBvZiBhZmZhaXJzOiB0aGUgYnJpZGdlIHJlcXVpcmVzIGhz
+eW5jL3ZzeW5jIHNpZ25hbHMNCmFuZCB0aGUgcGFuZWwgb25seSB3b3JrcyBpZiB0aGV5IGFyZSBh
+bHdheXMgIjAiLiBXaXRoIHRoZSBvbmx5DQpzb2x1dGlvbiB3ZSd2ZSBmb3VuZCB0byBzZXQgdGhl
+aXIgbGVuZ3RoIHRvICIwIiBpbiB0aGUgYnJpZGdlIGl0c2VsZi4NCg0KU28gaXQncyBhIHF1aXJr
+LCBub3QgYSBwcm9wZXIgY29uZmlndXJhdGlvbi4gQSBwcm9wZXIgY29uZmlndXJhdGlvbiB3b3Vs
+ZA0KbGVhZCB0byB2c3luYy9oc3luYyBtaXNzaW5nIGluIHRoZSB3aG9sZSBwaXBlbGluZSBhbmQg
+dGhlIGJyaWRnZSBjYW5ub3QNCnN5bmMuDQoNCkFzIEkgdW5kZXJzdGFuZCwgY3VycmVudGx5IERS
+TSBzdWJzeXN0ZW0gb25seSBzdXBwb3J0cyBkaWZmZXJlbnQgcG9sYXJpdGllcw0Kb2YgdGhlIHZz
+eW5jL2hzeW5jIHNpZ25hbHMgYWxvbmcgdGhlIHBpcGVsaW5lLCBidXQgbm90IHRoZSBlbnRpcmVs
+eQ0KZGlmZmVyZW50IGNvbmZpZ3VyYXRpb24gKGkuZS4gcHJlc2VudC9taXNzaW5nIHN5bmMgcHVs
+c2VzIGZvciBkaWZmZXJlbnQNCnBhcnRzIGluIHRoZSBwaXBlbGluZSkuDQoNCkFzIEkgdW5kZXN0
+YW5kLCB0aGUgYnJpZGdlcyBkbyBub3QgbG9vayBpbnRvIHRoZSBwYW5lbCBwcm9wZXJ0aWVzIGRp
+cmVjdGx5LA0KYnV0IHJhdGhlciB0aGVyZSBpcyBhIGNvbW1vbiAibW9kZSIgbmVnb3RpYXRlZCwg
+YnV0IHdoYXQgdG8gZG8gaWYgd2UgaGF2ZQ0KZGlmZmVyZW50IHJlcXVpcmVtZW50cyBhbG9uZyB0
+aGUgcGlwZWxpbmU/DQoNCi0tIA0KQWxleGFuZGVyIFN2ZXJkbGluDQpTaWVtZW5zIEFHDQp3d3cu
+c2llbWVucy5jb20NCg==
 
