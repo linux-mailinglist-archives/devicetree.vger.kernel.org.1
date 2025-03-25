@@ -1,176 +1,122 @@
-Return-Path: <devicetree+bounces-160724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160725-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3F94A70C7A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 22:57:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D6B8A70CAA
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 23:13:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 911101892F5A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 21:57:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E6740189FBDC
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 22:11:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81EC5269B0E;
-	Tue, 25 Mar 2025 21:57:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB817269D1E;
+	Tue, 25 Mar 2025 22:10:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="WxUyLmdC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="egAyl6g+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D259A26980F
-	for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 21:57:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BCF1269D04;
+	Tue, 25 Mar 2025 22:10:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742939827; cv=none; b=Em3NYxAzoNJO+upxLELmy91LGELUA3Lvz46JOElkpH5VRiGKzdKo6EbMW1E5465vy5qGwVqBH5GBRGY9CKYCG1VilHHxnX6WDLKjFEpKXUdjn0WqQo+1gt/PctfbnRJTnuzG63Yhzn8MUhTJwZhxLFggE66KPhIH5eHx224acuU=
+	t=1742940636; cv=none; b=baAFS2pH745+H9IZv74GtcmtgET4IIG2MqDVI1lpoyDsNzGHMDcqOND8idqFZEigjHBwrtOuyf0Qc6C83M8hrV38qAW36ZmgE/ioqI9t9KoUZ8qkvoqMzDutzJsImgu0zfSbrYkiznMYxYhw8v7cUJwQWZXtJwboSo3RN1F3594=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742939827; c=relaxed/simple;
-	bh=HQ1y6K6+ej3yRZwY8vjRGO04KNMR+SXa0FKK7FdZ1GE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Z9DHOy3vcSVBlCyeDx3QwLUfhK4B0OaQ+rDiUZCPSwa+xJ5I2M1fuZBW2ippauQNHHTCacJDIqNVC4j1G3B5CXwcRjixH6k1ch4evdLENuOvLibIvt9Zr19rhnFVI9geY/OQjSLTp470aDcPBSEPnJ0Aatdgux+gCKc8xinknt0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=WxUyLmdC; arc=none smtp.client-ip=209.85.160.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-47681dba807so31351cf.1
-        for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 14:57:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1742939825; x=1743544625; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HQ1y6K6+ej3yRZwY8vjRGO04KNMR+SXa0FKK7FdZ1GE=;
-        b=WxUyLmdCFoZsC+BKtF8H66dylGmm9zLuuJ0wR6VR76gBUJvKRQafOIVcYOvhNyUir7
-         h0Cpd1WlfyFWWGNweggRwRDWYhGV2fdMVrKK3uVnQZX52b5cYBn/y1+6rnGCFOl8n80A
-         7bj3buVqMtoK/w2Eq7xsudqWHIqBxRSdd/bHmWnAZss7bm+vGwsJislQ3bt0hRs/TEHl
-         /+FYtq2Tx83dTEvK2b3uwDPK8WtMDgAj8isrJTCAfAF/P/yltcBguu2lDlIUdjTqGc8i
-         CJAzjwXo5bhSMTK8wEQeWpsYdhEtYwH64eVqYisMudaheSv6vAnu7uK08Rwl+zkJKBBA
-         iAzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742939825; x=1743544625;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HQ1y6K6+ej3yRZwY8vjRGO04KNMR+SXa0FKK7FdZ1GE=;
-        b=Z7wu7rzOIH5wQ1qw0+buamD5daWB4UCJ7qEcs2oQBCZFAD7CwR5dWlqMWvzWtYzZnr
-         pLuOXqiBMYDl4I7MSSVrBdFSELlJiCdVaOkBDMHJdLsFHScEZALb6l0FzuKaQwICeLzZ
-         wZcJ7+E4lyGQZKFKoBBAJIy97aDT17ws0FwE2W74xmzILEIfh5a0oawFJ6yUajbbuDhj
-         bpqJmrGtGpwD5lnnCVJyNQHdmFwTvyS+ckanCMjc58xNaua9HthwLFl8chMpa2QdmeRs
-         g+3lgiYNFreL+RE+Y+hggZPevG8qCTeOTs9FmngSqjay2QmqYGdOXTfH4hrIV/zgtrKk
-         ZIPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXI0PMGC+Exaydm/EWBCGnHgX2P03dYwj8ai4SVrwxBmxC6w/K2g01D/VUr+RUhT8N5GRKlV/q1wcCH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1xQjSxVInk4pg2l+hDXokHVvK4XgXZHQV5L+vzEvDtpuQhnKI
-	zVaxdkknBE1s1agDYE/j2xkCsYilJDnqFXwWN2aD0Y3LfObwv7AYKv6enF5/ez9bruljCwTfGBo
-	E413bD+yTxpgAlrxdoXZCirkhGkiQDrH7/yQH
-X-Gm-Gg: ASbGncusdH0U4YfN4CjsIokSmmQYN6uOZZBxZCs1cKUq+oGnSQQFN8RqAf0vZXXajWx
-	HA9HO1/IitdeUC4leF9Ht72/UPRkWIxRiFRCaCs0kfFtqqvDWRqkiYzDjoSQwMAeuLH2QxlzsHt
-	4NZw/CMAjyu1QH/X9wgcPPKwo=
-X-Google-Smtp-Source: AGHT+IH/hOP5cz4/f0sHk0CeJX9EkyXr4jUNyz2/3phYBrvYUFI/aeZIqxahOHueL/ItRZ16YGhpvWcqwmSbOB39SDQ=
-X-Received: by 2002:ac8:6f05:0:b0:472:61:652 with SMTP id d75a77b69052e-47762e3319amr159031cf.28.1742939824283;
- Tue, 25 Mar 2025 14:57:04 -0700 (PDT)
+	s=arc-20240116; t=1742940636; c=relaxed/simple;
+	bh=cTquolJn+rUh2RRuwDkxwlWODcI2LbtYrc6pA6KyL3Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RBsOChrAw3uoIWYAN75+hTUbV+9OkFHtV6AV0fukQrTzNQLROYZ18HoAa5SkRz4Q3099/NsdcTiRmCd7VEQrA5ve/mpX4rdGvZFslVxWTeJ9p72z13rP/6+aVGHqcVuVx5BvFypkfjuGYutKSv8wUWsT25q6s+r8ePnyCd7iQhU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=egAyl6g+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E415C4CEE4;
+	Tue, 25 Mar 2025 22:10:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742940636;
+	bh=cTquolJn+rUh2RRuwDkxwlWODcI2LbtYrc6pA6KyL3Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=egAyl6g+iVGFzIBxy/6KPAEBc337m16BX37IGGjA9YtzkJcfDkBGaXUQB7e/W++fN
+	 GFjtLBvBkTsC/xkKm0hxxUA6i7BDN4NsGhkJQRq5BysJ5C0/gbzFk5EiB2TiajQzH1
+	 UXK56JTAeyPzRSL7Q1qvfOA0hPKvtumQxcqlXIcp+pJBVVgwjJNBsiEU+QNIBgJCjT
+	 IDa03BQbxpC0xQiqqVfh2Wlrl5Bl1NB9GgctLBHQyF/bwT3HHUd/ZF6kqeP6PWN4ry
+	 /Q0/KgMvoVSdwb3IGTOsMHHl3Gd5xmcp43/jG+OlH6eiNAoW0hbw3FW5yw+6xqMwQb
+	 yuOag9KE32bmg==
+Date: Tue, 25 Mar 2025 17:10:33 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Prashanth K <prashanth.k@oss.qualcomm.com>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 0/5] Add snps,dis_u3_susphy_quirk for some QC targets
+Message-ID: <5k45tcntn2bhxqt35quzfm2dsq6eug3hgqdcrta25oy47zuqja@4jclvspwob5x>
+References: <20250325123019.597976-1-prashanth.k@oss.qualcomm.com>
+ <ee0848ea-7a06-4f4e-9115-5e3c0ab8bf95@oss.qualcomm.com>
+ <7029a455-47be-475d-b429-98031d227653@oss.qualcomm.com>
+ <db0bbc62-ecf2-4f72-a0c9-462fbaadebc4@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250320015551.2157511-1-changyuanl@google.com>
- <20250320015551.2157511-8-changyuanl@google.com> <CAPTztWbFXajArSN8yKu32eSoR=xsk1CHM_4V7MJ0eQxydFqPUQ@mail.gmail.com>
- <Z-MB0Cj4tM6QgOAg@kernel.org>
-In-Reply-To: <Z-MB0Cj4tM6QgOAg@kernel.org>
-From: Frank van der Linden <fvdl@google.com>
-Date: Tue, 25 Mar 2025 14:56:52 -0700
-X-Gm-Features: AQ5f1JoGOY12Onu4tBrwgKWOKiM9GvbU7kfWg3JcOKhqducXkStWehGksThe0mY
-Message-ID: <CAPTztWbDtDhKZS89-aEBaZoPW2jZM2CAWW1Y_m3OnNE26=d9UQ@mail.gmail.com>
-Subject: Re: [PATCH v5 07/16] kexec: add Kexec HandOver (KHO) generation helpers
-To: Mike Rapoport <rppt@kernel.org>
-Cc: Changyuan Lyu <changyuanl@google.com>, linux-kernel@vger.kernel.org, graf@amazon.com, 
-	akpm@linux-foundation.org, luto@kernel.org, anthony.yznaga@oracle.com, 
-	arnd@arndb.de, ashish.kalra@amd.com, benh@kernel.crashing.org, bp@alien8.de, 
-	catalin.marinas@arm.com, dave.hansen@linux.intel.com, dwmw2@infradead.org, 
-	ebiederm@xmission.com, mingo@redhat.com, jgowans@amazon.com, corbet@lwn.net, 
-	krzk@kernel.org, mark.rutland@arm.com, pbonzini@redhat.com, 
-	pasha.tatashin@soleen.com, hpa@zytor.com, peterz@infradead.org, 
-	ptyadav@amazon.de, robh+dt@kernel.org, robh@kernel.org, saravanak@google.com, 
-	skinsburskii@linux.microsoft.com, rostedt@goodmis.org, tglx@linutronix.de, 
-	thomas.lendacky@amd.com, usama.arif@bytedance.com, will@kernel.org, 
-	devicetree@vger.kernel.org, kexec@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org, 
-	linux-mm@kvack.org, x86@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <db0bbc62-ecf2-4f72-a0c9-462fbaadebc4@oss.qualcomm.com>
 
-On Tue, Mar 25, 2025 at 12:19=E2=80=AFPM Mike Rapoport <rppt@kernel.org> wr=
-ote:
->
-> On Mon, Mar 24, 2025 at 11:40:43AM -0700, Frank van der Linden wrote:
-[...]
-> > Thanks for the work on this.
-> >
-> > Obviously it needs to happen while memblock is still active - but why
-> > as close as possible to buddy initialization?
->
-> One reason is to have all memblock allocations done to autoscale the
-> scratch area. Another reason is to keep memblock structures small as long
-> as possible as memblock_reserve()ing the preserved memory would quite
-> inflate them.
->
-> And it's overall simpler if memblock only allocates from scratch rather
-> than doing some of early allocations from scratch and some elsewhere and
-> still making sure they avoid the preserved ranges.
+On Tue, Mar 25, 2025 at 05:31:28PM +0100, Konrad Dybcio wrote:
+> On 3/25/25 4:01 PM, Prashanth K wrote:
+> > 
+> > 
+> > On 25-03-25 08:11 pm, Konrad Dybcio wrote:
+> >> On 3/25/25 1:30 PM, Prashanth K wrote:
+> >>> During device mode initialization on certain QC targets, before the
+> >>> runstop bit is set, sometimes it's observed that the GEVNTADR{LO/HI}
+> >>> register write fails. As a result, GEVTADDR registers are still 0x0.
+> >>> Upon setting runstop bit, DWC3 controller attempts to write the new
+> >>> events to address 0x0, causing an SMMU fault and system crash. More
+> >>> info about the crash at [1].
+> >>>
+> >>> This was initially observed on SM8450 and later reported on few
+> >>> other targets as well. As suggested by Qualcomm HW team, clearing
+> >>> the GUSB3PIPECTL.SUSPHY bit resolves the issue by preventing register
+> >>> write failures. Address this by setting the snps,dis_u3_susphy_quirk
+> >>> to keep the GUSB3PIPECTL.SUSPHY bit cleared. This change was tested
+> >>> on multiple targets (SM8350, SM8450 QCS615 etc.) for over an year
+> >>> and hasn't exhibited any side effects.
+> >>>
+> >>> [1]: https://lore.kernel.org/all/fa94cbc9-e637-ba9b-8ec8-67c6955eca98@quicinc.com/
+> >>>
+> >>> Prashanth K (3):
+> >>>   arm64: dts: qcom: sm8150: Add snps,dis_u3_susphy_quirk
+> >>>   arm64: dts: qcom: sm8350: Add snps,dis_u3_susphy_quirk
+> >>>   arm64: dts: qcom: sm8450: Add snps,dis_u3_susphy_quirk
+> >>>
+> >>> Pratham Pratap (2):
+> >>>   arm64: dts: qcom: qcs615: Add snps,dis_u3_susphy_quirk
+> >>>   arm64: dts: qcom: qdu1000: Add snps,dis_u3_susphy_quirk
+> >>
+> >> Are there more targets affected, from the list of the ones currently
+> >> supported upstream?
+> >>
+> >> Konrad
+> > 
+> > My initial plan was to add it for all the QC platforms, but wasn't
+> > confident enough about it. Because we have seen the issue only on these
+> > targets and hence tested only on these.
+> 
+> Okay, let's proceed with these and in the meantime please query internally
+> whether it could be applicable to others too
+> 
 
-Ah, thanks, I see the argument for the scratch area sizing.
+But if it applies to all qcom targets, wouldn't it make more sense to
+add the property in the qcom glue driver?
 
->
-> > Ordering is always a sticky issue when it comes to doing things during
-> > boot, of course. In this case, I can see scenarios where code that
-> > runs a little earlier may want to use some preserved memory. The
->
-> Can you elaborate about such scenarios?
+Regards,
+Bjorn
 
-There has, for example, been some talk about making hugetlbfs
-persistent. You could have hugetlb_cma active. The hugetlb CMA areas
-are set up quite early, quite some time before KHO restores memory. So
-that would have to be changed somehow if the location of the KHO init
-call would remain as close as possible to buddy init as possible. I
-suspect there may be other uses.
-
-Although I suppose you could just look up the addresses and then
-reserve them yourself, you would just need the KHO FDT to be
-initialized. And you'd need to avoid the KHO bitmap deserialize trying
-to redo the ranges you've already done.
-
->
-> > current requirement in the patch set seems to be "after sparse/page
-> > init", but I'm not sure why it needs to be as close as possibly to
-> > buddy init.
->
-> Why would you say that sparse/page init would be a requirement here?
-
-At least in its current form, the KHO code expects vmemmap to be
-initialized, as it does its restore base on page structures, as
-deserialize_bitmap expects them. I think the use of the page->private
-field was discussed in a separate thread, I think. If that is done
-differently, it wouldn't rely on vmemmap being initialized.
-
-A few more things I've noticed (not sure if these were discussed before):
-
-* Should KHO depend on CONFIG_DEFERRED_STRUCT_PAGE_INIT? Essentially,
-marking memblock ranges as NOINIT doesn't work without
-DEFERRED_STRUCT_PAGE_INIT. Although, if the page->private use
-disappears, this wouldn't be an issue anymore.
-* As a future extension, it could be nice to store vmemmap init
-information in the KHO FDT. Then you can use that to init ranges in an
-optimized way (HVO hugetlb or DAX-style persisted ranges) straight
-away.
-
-- Frank
-
-
-
-
-> > - Frank
->
-> --
-> Sincerely yours,
-> Mike.
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> 
+> Konrad
 
