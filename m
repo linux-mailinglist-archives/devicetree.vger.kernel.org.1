@@ -1,196 +1,135 @@
-Return-Path: <devicetree+bounces-160389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA244A6E940
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 06:21:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD468A6E94F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 06:35:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3218B16AEAC
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 05:21:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BAFA03AEFC4
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 05:34:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 001F01A8F60;
-	Tue, 25 Mar 2025 05:20:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="f8VvlodX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 356791A9B3F;
+	Tue, 25 Mar 2025 05:34:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10E7B149DE8;
-	Tue, 25 Mar 2025 05:20:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B03CB64D
+	for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 05:34:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742880057; cv=none; b=h1GfvKlAWj8w2o94irPYQ+8Xc/6+S6YTWetGYF/S33vucvnm0rOA1cZQ9MAlN0ZRaUA3S7PsNhD4WTRGBwnGJoH5C1gBo1dfWCyjCuo1vzm7oGD4HnSTHceHGnZs+u3Q200TlJ84KeHeUcTKOR/nNGt4laCo429Pz7Gg/FqhgRU=
+	t=1742880897; cv=none; b=j0MrvwhVxNHM4Ts0nR9eMIh6OFEYPH3HAvYBpDx41z9dJSJFGdineaq8R7K08CunzBrTBBhV+koHdTsnMQtiI2/aAtj+qxtkvpRKj4o59D2hPuAbaiDt438+jxbofnvIqQJdtkAia8+4mo1IReTo47/Hvf2mN6q4gNm57I3bpGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742880057; c=relaxed/simple;
-	bh=qXD97ZUHqYiJnZohYLFLbrftwnOclPGBDCBAuRUUFtg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=HBhW5P/UxIgT9uCuWpA1YYmt2fmZ8nT01yDgJuI31c2514Zd7zU7MBWeo+ivP3LbaVxblHySQy0rOwD4aJlHilijDuD2o+xG2UkRvrUwBleFybbPrh9mvCsOhe8oW6xyz7u3AqtLQI2zO46B3yEopHD0yd8Kwxtaw3ZxpLwaiRM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=f8VvlodX; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52OIj1Ls015727;
-	Tue, 25 Mar 2025 05:20:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	q/ZKsWZszj9a6vz4X4eyTuRLzkjltBj4c+jz9QDw2gg=; b=f8VvlodXOqa9THTL
-	RpikKS9p2GNYuY7JAshP4r2VJNvGEnZLrZCzTnCG9ZaI5nzPGbgr6Khxf8/WPOxU
-	hCk3xLbxAw6dKdtAhh0j0DVGHL0oBEV5h9G/xknZ3hIbjaS18VutGVx/d2MdpIrV
-	b06g/KeLz0opHyp73BRFtAc6wFPu7fBpN4ujUmCPVch6BmU17bNT2Kj+yXPAcBQk
-	dhCvm59USwc4Ol+m1FYqOUBXm1M1v+6fCqYaAFM+XwCAR2PSCXCz1fwYOor3xjoZ
-	sTvCuVZnCzdRqsJqsn/HSoI2ygGaihNglrmvxW8+6R8/PDAtVosxBJrPNiFSoVnT
-	9xqKXA==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45hn9wehy0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 25 Mar 2025 05:20:49 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52P5KlIk004471
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 25 Mar 2025 05:20:47 GMT
-Received: from [10.217.238.57] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 24 Mar
- 2025 22:20:44 -0700
-Message-ID: <2bc16a4e-96d6-4175-a52c-e344115fc4ac@quicinc.com>
-Date: Tue, 25 Mar 2025 10:50:41 +0530
+	s=arc-20240116; t=1742880897; c=relaxed/simple;
+	bh=c2Av66IXC/j5Ecmc1swHw1f2mz1THsByFbOQ2gd0qHM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=koqU8XFoKronh/5EoAwbGTLKoYVv3JK/LFeFfqeFAgugKGpAu/ammnnmk0EUXyMsMqkngYOFsEt9Uqw7URqnz40GIZZYdxQWkaPOUliM+B2ylbXFtHayOP6+lBBUbl0qSVhqWIgYKAAVuQ5bT5NIyB0qHYxT4n744VPj6/RFh2Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1twwve-0001R5-Q1; Tue, 25 Mar 2025 06:34:22 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1twwvY-001WnQ-2d;
+	Tue, 25 Mar 2025 06:34:17 +0100
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1twwvZ-00Fk6E-0G;
+	Tue, 25 Mar 2025 06:34:17 +0100
+Date: Tue, 25 Mar 2025 06:34:17 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Kyle Swenson <kyle.swenson@est.tech>
+Cc: Kory Maincent <kory.maincent@bootlin.com>, Andrew Lunn <andrew@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Donald Hunter <donald.hunter@gmail.com>,
+	Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	Simon Horman <horms@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+	Dent Project <dentproject@linuxfoundation.org>,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH net-next v6 06/12] net: pse-pd: Add support for budget
+ evaluation strategies
+Message-ID: <Z-JAWfL5U-hq79LZ@pengutronix.de>
+References: <20250304-feature_poe_port_prio-v6-0-3dc0c5ebaf32@bootlin.com>
+ <20250304-feature_poe_port_prio-v6-6-3dc0c5ebaf32@bootlin.com>
+ <Z9gYTRgH-b1fXJRQ@pengutronix.de>
+ <20250320173535.75e6419e@kmaincent-XPS-13-7390>
+ <20250324173907.3afa58d2@kmaincent-XPS-13-7390>
+ <Z-GXROTptwg3jh4J@p620>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sa8775p: add QCrypto node
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>
-CC: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20250227180817.3386795-1-quic_yrangana@quicinc.com>
- <2mlmhzllhb5fhcbwtupy2nk74my5hruliayyr3kayrjvmtou25@em5encygrn2i>
- <7b219289-4f3d-4428-a0af-42491acb1cbb@quicinc.com>
- <uohwigzosxv2onh7dtgvhqdkdu2jufiukp6ztxrvfbjoihrypx@cq3apkdx2rhw>
- <d5f67734-db1e-4096-98f9-3f026e4bd46b@kernel.org>
-Content-Language: en-US
-From: Yuvaraj Ranganathan <quic_yrangana@quicinc.com>
-In-Reply-To: <d5f67734-db1e-4096-98f9-3f026e4bd46b@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: YijUQdsRbaWW6ijmO6YaxxhiAHOV4-qw
-X-Proofpoint-ORIG-GUID: YijUQdsRbaWW6ijmO6YaxxhiAHOV4-qw
-X-Authority-Analysis: v=2.4 cv=CPoqXQrD c=1 sm=1 tr=0 ts=67e23d31 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8
- a=wEgAGjhJSUDKPyw9TBoA:9 a=QEXdDO2ut3YA:10 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-25_02,2025-03-21_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxlogscore=999
- spamscore=0 priorityscore=1501 suspectscore=0 bulkscore=0 mlxscore=0
- lowpriorityscore=0 malwarescore=0 adultscore=0 phishscore=0
- impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503250035
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <Z-GXROTptwg3jh4J@p620>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+Hi,
 
-
-On 3/1/2025 7:06 PM, Krzysztof Kozlowski wrote:
-> On 28/02/2025 15:14, Bjorn Andersson wrote:
->> On Fri, Feb 28, 2025 at 11:01:16AM +0530, Yuvaraj Ranganathan wrote:
->>> On 2/28/2025 5:56 AM, Bjorn Andersson wrote:
->>>> On Thu, Feb 27, 2025 at 11:38:16PM +0530, Yuvaraj Ranganathan wrote:
->>>>> The initial QCE node change is reverted by the following patch 
->>>>
->>>> s/is/was/
->>>>
->>>>> https://lore.kernel.org/all/20250128115333.95021-1-krzysztof.kozlowski@linaro.org/
->>>>> because of the build warning,
->>>>>
->>>>>   sa8775p-ride.dtb: crypto@1dfa000: compatible: 'oneOf' conditional failed, one must be fixed:
->>>>>     ...
->>>>>     'qcom,sa8775p-qce' is not one of ['qcom,ipq4019-qce', 'qcom,sm8150-qce']
->>>>>
->>>>> Add the QCE node back that fix the warnings.
->>>>>
->>>>
->>>> Are you saying that adding this node back will fix the warning?
->>>>
->>>> I'd expect that you would say something like "The changes to the
->>>> Devicetree binding has accepted, so add the node back".
->>>>
->>>> Regards,
->>>> Bjorn
->>>>
->>>>> Signed-off-by: Yuvaraj Ranganathan <quic_yrangana@quicinc.com>
->>>>> ---
->>>>>  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 12 ++++++++++++
->>>>>  1 file changed, 12 insertions(+)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->>>>> index 23049cc58896..b0d77b109305 100644
->>>>> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->>>>> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->>>>> @@ -2418,6 +2418,18 @@ cryptobam: dma-controller@1dc4000 {
->>>>>  				 <&apps_smmu 0x481 0x00>;
->>>>>  		};
->>>>>  
->>>>> +		crypto: crypto@1dfa000 {
->>>>> +			compatible = "qcom,sa8775p-qce", "qcom,sm8150-qce", "qcom,qce";
->>>>> +			reg = <0x0 0x01dfa000 0x0 0x6000>;
->>>>> +			dmas = <&cryptobam 4>, <&cryptobam 5>;
->>>>> +			dma-names = "rx", "tx";
->>>>> +			iommus = <&apps_smmu 0x480 0x00>,
->>>>> +				 <&apps_smmu 0x481 0x00>;
->>>>> +			interconnects = <&aggre2_noc MASTER_CRYPTO_CORE0 0
->>>>> +					 &mc_virt SLAVE_EBI1 0>;
->>>>> +			interconnect-names = "memory";
->>>>> +		};
->>>>> +
->>>>>  		stm: stm@4002000 {
->>>>>  			compatible = "arm,coresight-stm", "arm,primecell";
->>>>>  			reg = <0x0 0x4002000 0x0 0x1000>,
->>>>> -- 
->>>>> 2.34.1
->>>>>
->>>
->>> DeviceTree bindings were accepted but the comptabile string does not
->>> properly bind to it. Hence, adding the correct binding string in the
->>> compatible has resolved the issue.
->>>
->>
->> Please then write that in the commit message.
->>
->>
->> That said, what did you base this patch on? While I have picked
->> Krzysztof's two reverts in my local tree, I have not yet published them.
->> So your patch is not even based on v6.14-rc1, which now is 4 weeks old.
->>
->> Patches sent upstream should be built and tested on a suitable upstream
->> branch!
+On Mon, Mar 24, 2025 at 05:33:18PM +0000, Kyle Swenson wrote:
+> Hello Kory,
 > 
-> I sent reverts because author, even though pinged more than once (!),
-> ignored reported problems.
+> On Mon, Mar 24, 2025 at 05:39:07PM +0100, Kory Maincent wrote:
+> > Hello Kyle, Oleksij,
+> ...
+> > 
+> > Small question on PSE core behavior for PoE users.
+> > 
+> > If we want to enable a port but we can't due to over budget.
+> > Should we :
+> > - Report an error (or not) and save the enable action from userspace. On that
+> >   case, if enough budget is available later due to priority change or port
+> >   disconnected the PSE core will try automatically to re enable the PoE port.
+> >   The port will then be enabled without any action from the user.
+> > - Report an error but do nothing. The user will need to rerun the enable
+> >   command later to try to enable the port again.
+> > 
+> > How is it currently managed in PoE poprietary userspace tools?
 > 
-> It seems that reverting the code gets some attention, so maybe author
-> will fix the original issue and my reverts can be dropped/ignored.
-> 
-> Best regards,
-> Krzysztof
+> So in our implementation, we're using the first option you've presented.
+> That is, we save the enable action from the user and if we can't power
+> the device due to insufficient budget remaining, we'll indicate that status to the
+> user.  If enough power budget becomes available later, we'll power up
+> the device automatically.
 
-The original issue was not observed at our end during the first time
-validation and its due to some environment issue. This patch does
-resolves the issue and it is validated against the linux-next master branch.
+It seems to be similar to administrative UP state - "ip link set dev lan1 up".
+I'm ok with this behavior.
 
-Thanks,
-Yuvaraj.
-
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
