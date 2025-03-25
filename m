@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-160687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50021A70A31
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 20:22:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB097A70A40
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 20:23:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A25116F8AE
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 19:22:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A92873ACB8A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 19:21:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B10D1F0E59;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FB411F1303;
 	Tue, 25 Mar 2025 19:21:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ofg2URSg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nTbWBWyE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71C4D1E5B7C
-	for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 19:21:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C71E1E1DE2
+	for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 19:21:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742930508; cv=none; b=VK9V8PU73sRtjq2cyzrGP+fdHmRd2lCQOZGKCafDfrVNkBP+G5shQAMF3xzMobzPV+NDmEgzhBkM1IFdk0NdZ3FzisOqZIaFLtG5ZNAv2tq/VoNaUf0eGO9lWbc1m7wZswi0dFCVXcgc0fvijWMZZLzg0fsE2oPCHGTLpaHRdw0=
+	t=1742930508; cv=none; b=PctjOG6iMJ9CBKg7yxJnMTd6WWB58rjmlXVn17xJENNRZgzc9hC6QTWoLR3OnXpIESvO2fiEuf7JWW7pEFoWninMcloQA1wd+hP3yADXNZXtsOvEpoTaBHznPRNn9xqhFzGb+4nDsoMNAVMvSu7Wj2LiL6trFpMIsbKvg7GeijE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1742930508; c=relaxed/simple;
-	bh=tTDdAbM6FEoC6Rnmp/8WdmqaJi5csQEBgAAwOs8qGxY=;
+	bh=Nthaz0NG4GUzoxW0ejlW+T4NO4kSTaE/go27pedcyso=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=jIJmJOOks+BzzFsHU3hMcyBoby9nK9AtZ7KUmvO63XYej6zxDQfwHrKhqoo6oOm0dJMGZ9E7M7fxEw1yokT6QI6nkZluYB6DuBD6pzlw8bJVNksU0YPHyFPkvtZh5Rr0gy0c0O9beeX28Z3r4P8J3wp5l6SqqR2K75aaPlogsHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ofg2URSg; arc=none smtp.client-ip=209.85.128.50
+	 In-Reply-To:To:Cc; b=I3cSdvPZhmKCODyE0uzRygGuh7xL7W3f/TkowKKpAeiZvWP9HYiVOEKwlmghM9r2KVXsrDSCXJndZD9gwD1OgZV1eiOht2exzkFWMQ9K8K8tdhAShQMx9Dt99Zn+ENc/ZtO41zEe/V/cgWnwT5UaKz3zX5rQPwHrsRebr9rafG4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nTbWBWyE; arc=none smtp.client-ip=209.85.128.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-43ce71582e9so42117425e9.1
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-43d04dc73b7so63022315e9.3
         for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 12:21:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1742930503; x=1743535303; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=0xAjj1ZGQzbODWEBIkfTAWZWQleeUyTNk6b3kRAxKYM=;
-        b=ofg2URSgjEEXN29tAytCupZuL9oSQ6Fo2sTWNzZzXxVb1rVWZYUMCQW8qTIRPC7u50
-         5D4/gxc6RTw4G1xgu/inrK3t6E5jZJVgNpn6cEZFfg6NvGFbjtfUsSjsfqT6+Na5zBpi
-         05HK/0G9HudlvL31UHYfIyF0p+Joxfgsn+3EwctN0uNcltXrVGtuFvPg31Rqzuv2JrTK
-         jqlMLX4YH/49piUSka587fhZ+uF/CM7sSZrVuV0tYd1T9mcvaAzfvrJvInMfR5S6Qv90
-         VXhnixcL1u5V9MSJ52FXVks8JGPJWjnXX/WNLM6Rf0kSKtqwy7/r/nerBvXBqaZGCeju
-         AMjQ==
+        bh=NX3X2Lw9o8HyqDve0bpkran+lwUmFVl0q3xx6EdvBX4=;
+        b=nTbWBWyEXtujxkhHLdEeTPAk6HO/p/K4qZKoLHn7vaO1Npw9wE26hO4gw+So701Ib4
+         ZTjIzQQY/iQwundgfdjD8WYZNQithihJjt8KFCUsMOw7dhw+5ortYsavPUGEp2hz/eia
+         TlAi4A1eMBHR/7KUvct3up6h0pO9qsOlRphgBLI5/pkWDXdlSEcfJUYzYM6XMgU4O6eH
+         0kMALtSOTV30krpRM+Ou8SIrsyRhB+ZgzkMWdyiK/wFkJNfhJwRsCU8yec1CMrniu0Nb
+         I9HWT893j9cCdvLbskbKDhAwmgB5H7c3ONI1e6/5v5+LBeXFLG3/+7vylsE6saWWJxUg
+         w9zA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1742930503; x=1743535303;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=0xAjj1ZGQzbODWEBIkfTAWZWQleeUyTNk6b3kRAxKYM=;
-        b=ayJffvgIoh+ip786OTDKBcXQ7dXFoqU8F5W9Hyvt2hSYc5dJtP3HAo59QbY3mQgTwx
-         n/Do9l0sVPamPEj1eYp8Oz7l1Rmvw5GoXdkckrGB53FFAx8aQYQvFaMmM7/c1Uxj1ogJ
-         QjmjdHyyurgZJdzV97Hw3LIlEGEbE8u7tfVDjw/FAECBQMDX7wv8/U59Hw3n9Jo/g4mZ
-         X0R8H0FOW6ii2HB8gVM0zsrzFGy6HfLuK/eFamH15xlFjFxcwLtYzK84acCXLGZ79eGz
-         A/DgmvJuIH4hMNolm76ot1XKQeguS77LAcsOevYzPsUZkVO/JbYc+3PcQE2YU4DZJJLn
-         9zLw==
-X-Forwarded-Encrypted: i=1; AJvYcCXfIXOX/bd7ns+kJGA9d2RZxig0VEyocbeGVshIGjHIfXEnrmkiP+mYBCo7fXDM6ni688LHN4Vurjms@vger.kernel.org
-X-Gm-Message-State: AOJu0YwHB3eEdjMoQHTNBxe78VaTaxKt1ff1JdAMJW+6zQLvWzeQbYk2
-	hm/oajoSezdTTbUtqbozxSaBs0g/DY9nDFViFf0sFcdY0QA0dDqkwPYiId1nyeI=
-X-Gm-Gg: ASbGncvF3b08D2X+804q/wxaVih2PYlKjyLl0bF/TRhP2H7gSmGgJubQUowTXJPFhuD
-	WUpAG+UCjRRkvKmHpI5HzZPEZ23FhhRKe8Td+lfv//LQ0DorUe05Ao4sfSjpfmVS+VbkdJpfr7B
-	YDVn52Pb8cSy5mmN75sGRrplL/DzyJfrz8o7UUifdZWsL20Z7KlP2Dci0iophiSxCfcFLegVxDf
-	HD7We/VZayauB0Nvc+ACjKVIgMTCg9QlHDpPrHyzsAV9E0qIoXqVHhl1rquYfLGBj4GnL2NaWIX
-	vB5zh02Zi2YZnn6U2SeNv0wuO0g7h1ftkTZRc7rDradDS4NUEKRkhAra
-X-Google-Smtp-Source: AGHT+IGmYbu2karVwSKvKAwF5XS/np1cbnnSftiOniiKevwsN7ksXMbWmbShuyMDFyF/HI91Qcd+Vw==
-X-Received: by 2002:a5d:6d81:0:b0:397:8ef9:a143 with SMTP id ffacd0b85a97d-3997f90c860mr13768026f8f.23.1742930502791;
-        Tue, 25 Mar 2025 12:21:42 -0700 (PDT)
+        bh=NX3X2Lw9o8HyqDve0bpkran+lwUmFVl0q3xx6EdvBX4=;
+        b=wZyluiJS4zityA79vcK2lxoFybh3/IL4u6RPNY0oEWt9wJ+Bp8E73lqDvhnk3Hay1m
+         TRC4ZN1euIDWYRQGWM7T9aMDp7wsWJJfD4gwEab1DDH/8Ul7SrhfSRx3Rrx5PAxPkWzf
+         Oh/196KD4ETj2D7ijQ1AiEKLiMJKskeOvRcjo6+0/v/mS7ulbuYY33xmBetCaXDm3KIG
+         /h3e7RkcDe9JhXqyaR49qgGZ0CzN/+Jq9AOXM3IC4d7iHDl8KsncwCVCG51Fxlo6MgXN
+         2EoQ2JfvJSDFxdQdBoc8nXVq2Z++Bi6nndQptqpmf4uUgxK/99UlCYoh2iR7iSmi9kfC
+         hixg==
+X-Forwarded-Encrypted: i=1; AJvYcCWLs+/6W8naaknJSUEXOx385w0BaJafyHmlUq7ewRARXZgmbvny17SxbiHUNoEgNKvr2s48q9KrsLMZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwLhhqmz7BuzBTZIZ4SgRMQs7syEkMl3mhIRsC9zczG6irowBST
+	AI52Wmm1nC2GCJ4VU99o4ET03sSKXd9ryJVWOrpaHMNyTe/MLfi8AnA7vWJ1V10=
+X-Gm-Gg: ASbGncv0GgvocZKYsaS5xne7+Oo5csO/2X2JdqrLVD+e22GZaN7RYwdY5UGmInLEcv3
+	3FrbFC2HY8awKVeS2bIw9NAoFnRUZkwO055ag2e7d5xnrpuZn0KTbXG/Oe/130rzqsB3MlcqxkX
+	Fuhu6XqPDu+U9Xm36A3CSthP0SkVKeKhEjEUze6FqS4h8mR12tcasiaXD7wsxwCpe/AR95hao2T
+	cZYDKcPjv9L0gcD36g0aCQJdtE6SqHnohqsIwlKBRKtQBXUFYuSewNRdwjbVIMzrJ9RgChIUfnT
+	6iC2J9FGMgJauF2Clmoi0RPYMKN/Bhz4vzNobwoaK5Msv7toDWQAtvgP2+Ucwya1ZH8=
+X-Google-Smtp-Source: AGHT+IHJrql0z1/Oqero5ZGyDYqpm792+Y1VSees9b0ZQC0BjriRq7qtGyhraVJ5zsff8nRKEETpPg==
+X-Received: by 2002:a05:600c:12ca:b0:43d:7588:6688 with SMTP id 5b1f17b1804b1-43d75886820mr10210845e9.12.1742930503539;
+        Tue, 25 Mar 2025 12:21:43 -0700 (PDT)
 Received: from localhost ([2a00:23c8:b70a:ae01:9cf7:b69:fc50:980f])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3997f9e66c7sm14633284f8f.79.2025.03.25.12.21.42
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-43d43fdaca8sm213330615e9.28.2025.03.25.12.21.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Mar 2025 12:21:42 -0700 (PDT)
+        Tue, 25 Mar 2025 12:21:43 -0700 (PDT)
 From: Christopher Obbard <christopher.obbard@linaro.org>
-Date: Tue, 25 Mar 2025 19:21:26 +0000
-Subject: [PATCH v2 1/4] dt-bindings: display: panel: samsung,atna40yk20:
- document ATNA40YK20
+Date: Tue, 25 Mar 2025 19:21:27 +0000
+Subject: [PATCH v2 2/4] arm64: dts: qcom: x1e78100-t14s: add hpd gpio to
+ LCD panel
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,8 +83,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250325-wip-obbardc-qcom-t14s-oled-panel-v2-1-e9bc7c9d30cc@linaro.org>
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250325-wip-obbardc-qcom-t14s-oled-panel-v2-2-e9bc7c9d30cc@linaro.org>
 References: <20250325-wip-obbardc-qcom-t14s-oled-panel-v2-0-e9bc7c9d30cc@linaro.org>
 In-Reply-To: <20250325-wip-obbardc-qcom-t14s-oled-panel-v2-0-e9bc7c9d30cc@linaro.org>
 To: Douglas Anderson <dianders@chromium.org>, 
@@ -103,46 +103,70 @@ Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org, 
  Christopher Obbard <christopher.obbard@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1167;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1609;
  i=christopher.obbard@linaro.org; h=from:subject:message-id;
- bh=tTDdAbM6FEoC6Rnmp/8WdmqaJi5csQEBgAAwOs8qGxY=;
- b=owEBbQKS/ZANAwAKAWNNxPBocEb4AcsmYgBn4wJF7FGQSHT0VbmZT2yMBNAiYq7fD7bvHw/lr
- 4Kq+iRYd/aJAjMEAAEKAB0WIQTxi9yLbCX5CqI9UXRjTcTwaHBG+AUCZ+MCRQAKCRBjTcTwaHBG
- +CBAD/9APoHHKoz5Ux3QZFEQYB/24B/r4/Cw8EeywzGzDKkBf0HuS2/jarVACiKA2KzyIRnnA0o
- OrHx39pDhVkO+0wBl0FtK0cWjwlNsEGsrcy5OiL3rZYsz/xnmzeWCu1UJGgbgQ0KJvK5eSqaC1y
- /U++rbQMn3dbQlj16/sWmFiCqrMo5C8qWb1uietBgKlm5hVIUqnTfdYLvxlBi329pynqa8K/AHO
- 1Dci97G+SK6X/tXR4fru7iagN0AhcPUH3HI+og/zVqV7/GywsupiSAzy+8Usvv8qXxkE4qhTD31
- ini7tAYORal9ksQn0fhM3wTHa5nZH04AuznDcMTXLMUq5r5cR1UjJOPmj3aQG0AiRgmymtD1n07
- mdKNAXwq/o+vfXNRUvcX36tgjIhWZ2NHhkwnWURqM1hM4fKT9IdoP3FNbVFcqM4S6KSX8GrUFFu
- t1ttLx4Y7s0ko1iXSyEjYa6qv4d4Olb1+RvfdjJ6r2IzBpEtv1JdBxBiZ+HVtJW18S2F9SUZGjO
- fD2c2yfHSaytSFx1SygoVDQgwKJBoFwcWF5B9igCXjLqKX1B48tHjs8EmyvdlfCGx3VF2EtpG8x
- 5xYnINf8wSFQHl4KP/DUdhBM8vHvqX2/2o1gOdavJc4IIzFU7+iFzj7CQg0+CzNifKMfHsfB1lT
- pZiCe73XMa7poUQ==
+ bh=Nthaz0NG4GUzoxW0ejlW+T4NO4kSTaE/go27pedcyso=;
+ b=owEBbQKS/ZANAwAKAWNNxPBocEb4AcsmYgBn4wJFj2X98t0uiYe+j1XPDXnRw/zysHE5UWqp9
+ uWjnbfunrGJAjMEAAEKAB0WIQTxi9yLbCX5CqI9UXRjTcTwaHBG+AUCZ+MCRQAKCRBjTcTwaHBG
+ +JOrD/955KOQMYKGtxljAeIGHuWcjZ/P6LUTLpHgKDYqJKaM1/qzI+OfEzxDXv8lAUEz6+p/sQ7
+ 2jd0yryGySf26uxgE3BSbey1ETdbGTpjGSuR4t5SQyyYwM3A4kXFTZWcdCIKLO8IqOr/RzAL4vV
+ vPN/pBcgjf7sgC5+Kw5MMi0MpgNf/b8SG8aOgOsDOLqUP9jJr976gqMSNJ4VkFamqYO9PkOSxME
+ AVznSLYk7G8WB50xbnZ28hagju3n2WfXzLrGCmHLs+XM6fj2C5VhczeYVCO0zbA/nSb9UQvzQfT
+ V7nIm4fYZh2BAJ/+++624WOpJjDaGigsZ0EplgXHA59yO3gxk2LDVkfXZURyZFUn5mGv+4nMfBl
+ WW7hS7rfxc36vo5rAbSSUBFamyQ6GTEXYMFDNnPUVXPPduvSNqeWSbC4WWKyGVziWONuyd93B2B
+ owKQqdtIPDr1cRf9jd0WWClG/uzUTzGY76XLY2gNKN20EN/xRsMylfjsg+a1ISyrZNGVDsq7xDF
+ 9lHJsZibfyaGzYZujO9zMT42/YP4fH4ByREnqqOdK9t01FQJEQjzA7QvnGEhLT+jOqzKifGd2jQ
+ +kfCfPPgK8NsNVH+3+kNJUI+NqIsPEzVQ7KF+XTtBE40CRSWaGj5Ce8YXZhSWAnDd2Foz4aVTK3
+ WGWgvoArKHax4Jw==
 X-Developer-Key: i=christopher.obbard@linaro.org; a=openpgp;
  fpr=F18BDC8B6C25F90AA23D5174634DC4F0687046F8
 
-The Samsung ATNA40YK20 panel is a 14" AMOLED eDP panel. It is
-similar to the ATNA33XC20 except that it is larger and has a
-different resolution.
+The eDP panel has an HPD GPIO. Describe it in the devicetree.
+
+Unfortunately I cannot test this on the non-OLED model since I
+only have access to the model with OLED (which also uses the
+HPD GPIO).
+
+I believe this could be split into two patches; one adding the
+pinctrl node and one adding the hpd gpio to the T14s devicetree.
+But I will wait for your comments on this ;-).
 
 Signed-off-by: Christopher Obbard <christopher.obbard@linaro.org>
 ---
- Documentation/devicetree/bindings/display/panel/samsung,atna33xc20.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/panel/samsung,atna33xc20.yaml b/Documentation/devicetree/bindings/display/panel/samsung,atna33xc20.yaml
-index 684c2896d2387077cf2d91cc5a025e0838c0f536..31f0c0f038e494234d896691f3cf0b9b7cd8842d 100644
---- a/Documentation/devicetree/bindings/display/panel/samsung,atna33xc20.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/samsung,atna33xc20.yaml
-@@ -19,6 +19,8 @@ properties:
-       - const: samsung,atna33xc20
-       - items:
-           - enum:
-+              # Samsung 14" WQXGA+ (2880×1800 pixels) eDP AMOLED panel
-+              - samsung,atna40yk20
-               # Samsung 14.5" WQXGA+ (2880x1800 pixels) eDP AMOLED panel
-               - samsung,atna45af01
-               # Samsung 14.5" 3K (2944x1840 pixels) eDP AMOLED panel
+diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
+index 962fb050c55c4fd33f480a21a8c47a484d0c82b8..46c73f5c039ed982b553636cf8c4237a20ba7687 100644
+--- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
+@@ -980,8 +980,12 @@ &mdss_dp3 {
+ 	aux-bus {
+ 		panel: panel {
+ 			compatible = "edp-panel";
++			hpd-gpios = <&tlmm 119 GPIO_ACTIVE_HIGH>;
+ 			power-supply = <&vreg_edp_3p3>;
+ 
++			pinctrl-0 = <&edp_hpd_n_default>;
++			pinctrl-names = "default";
++
+ 			port {
+ 				edp_panel_in: endpoint {
+ 					remote-endpoint = <&mdss_dp3_out>;
+@@ -1286,6 +1290,13 @@ hall_int_n_default: hall-int-n-state {
+ 		bias-disable;
+ 	};
+ 
++	edp_hpd_n_default: edp-hpd-n-state {
++		pins = "gpio119";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-pull-up;
++	};
++
+ 	pcie4_default: pcie4-default-state {
+ 		clkreq-n-pins {
+ 			pins = "gpio147";
 
 -- 
 2.49.0
