@@ -1,168 +1,206 @@
-Return-Path: <devicetree+bounces-160372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB48BA6E870
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 04:00:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0268EA6E87C
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 04:06:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ACF9C3ABDE5
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 03:00:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D4C81700BD
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 03:06:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7C7E17B506;
-	Tue, 25 Mar 2025 03:00:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E3B818DB19;
+	Tue, 25 Mar 2025 03:06:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DkxmB9m5"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="gt/DY1J/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B62D929408;
-	Tue, 25 Mar 2025 03:00:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6155C18DB0E
+	for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 03:06:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742871612; cv=none; b=a34ov0Thwede/CuxNqyzH89JT3ksfsIlWPleCne2F2HtvxuYGlqfZtSfF5Pn8YIaO+idnuocl1s7ngA/e7kU2KGPfXhvPYXlz89Mp7LbZ1ej6JHGKcm/7VEattD+nCaNOGIqpfU1tK/ORjRELEF1WvvAvvCvBEKP4/liYCAaWMc=
+	t=1742872011; cv=none; b=qsiDABvZelcmacYSk+Kuru/3DHzuLTRvBeSNhRc9WFZb7r925Xyt9Fq9nqNvEEFX8jp5sO+69ZB3EQU200+P68VAkQq/MQWtsvxN/RImo7iqJZIfWgT8pAFGUUKu/uhBTMsbaenrCswpv6nx/GBtHViDUBQ1HUfSAuZOp6DC5ew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742871612; c=relaxed/simple;
-	bh=kdPMBibLH/yez18tp3tlaahIu5VsHTU259fGn/4jyQo=;
+	s=arc-20240116; t=1742872011; c=relaxed/simple;
+	bh=3AifEiAg7S/85pNP2ZR0L9nqZjoYs72DEVHapNmbIX0=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oJVlngQVp9TtJUkFsA79Om4H203Qgd9g0jN2ieQG9Pjjzo0PHcIov0xvovBYhpRhEsC9QBY/iswT01xVl38ThSCL53v5vEGjqfkiMAY0GqPtJVrXdAYhD0Ms7iQBMxCMHwPWfjvr4zbBgUPQHL1qtDJrwJ+EyrHS4wHr5/VbPTU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DkxmB9m5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32EADC4CEDD;
-	Tue, 25 Mar 2025 03:00:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742871612;
-	bh=kdPMBibLH/yez18tp3tlaahIu5VsHTU259fGn/4jyQo=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=DkxmB9m513BCDmqfq6M8Mm5MX+1h0K8ISn8PTtOoIPerDR7um/wMv77YtmWfmz2nZ
-	 fjdYCty2HfSs7IQhWAE2XeRbRDhIfywHUOhIqQI25Gm8k3agUI41LnWtZ+k/+LtAm3
-	 OKhs4vvF938iEX8bNDOFs0TcFc9RxDiEmSKBuX+wz9zMbvM0dCbp0Gb4j3Q/qV9X5o
-	 qfZKM/HH5IA3HwuBa3Y+r6cYuIqGiYxFYnbpdR4Gd4/Q6w7tLIBZlCW30g0EL3ZgES
-	 +vLaPw0vMR8sjRiCc8CdjtdIOVMG5CDsrySX0WMgS6/XmHU2tTll/R8gnH+0Sxgops
-	 UqTnqvH8kX6Dw==
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5eb5ecf3217so9032138a12.3;
-        Mon, 24 Mar 2025 20:00:12 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUy9sZMEQ55VYyBZLxDQv/KqTS7Xpsit4B5cwOUJE2HxpTO/f+9u9PX8xc/KGgCekaMl/Eq/1IoC5Hs5UqL@vger.kernel.org, AJvYcCVwT6Mdp758LfbQjmJlTkg4M3JE8D1i7u16qWoXCZjm9NUU8/NhG8zhy2dbcv9/gbbY4vvvM86HWaQC@vger.kernel.org, AJvYcCXSALVGQOZvw4MiHI2vTqN9sufvDnYMmiqer7BMYV4zFuHOAKSk36GxACzoEv+DPoKLl+XcfqdYE4wcux4=@vger.kernel.org, AJvYcCXldsxGbKjjJ8FOPNg0uDm7vD06am/c5AzWDKm09PMDuEruiqkrPZLi3qFRG57fdEKvXhzYmgnHtD0=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxV91zKGomy1X/ttxjO9C3Ct85fyf2oL4j2DaFDLYZdy0NY6QVw
-	tdA8lUEbVUXHW9Ubk6pomJwOGK8K9yPuagIQbHyXZT3/idAE0mu8yiPmrbJQ9uKIoVxAMwRo9uI
-	IA3lCy+AtBhz2YzH2SOAfbq+PAg==
-X-Google-Smtp-Source: AGHT+IE3QSDPASR1s+nvT5rVlKy95tLrHztKiVeza2RPpLc3nhGJkSRj8CDw6TvAGMN64kzNpUhRLGwyYJxd3/EHS/k=
-X-Received: by 2002:a17:907:2d92:b0:ac2:7cf9:71a0 with SMTP id
- a640c23a62f3a-ac3f251fba6mr1525711466b.48.1742871610756; Mon, 24 Mar 2025
- 20:00:10 -0700 (PDT)
+	 To:Cc:Content-Type; b=uaM0rZVrLVsypNidJPqRPHBHDP4bspCjN2GHkseT8vXWuADG4ccZPQcieLTlrlyUV0mXpxEta/1QmBX0Hgwi/JE6HDuTC90RIoi+hEY1qs/hPm5zr8wwv/9jqwzv/WTDgAHJn6McaVY9sngE4dxd/52hRqhnUb8c34koITX4dkc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=gt/DY1J/; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1742872008;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=8QX+zFdWjeuQlzuCcAZM/kErn+a5XVCQ6Ck8ssaU/og=;
+	b=gt/DY1J/08YJGkLPSbtFsj9R0wa9fKrpv0qFhOS8BcAQTTB+X7Wy+jG+mVWQ1vMk4yrREM
+	ZiH3R+YzkRLR9m9doV7s1JZsBY85LNv/o6pLKGyiTEx2Exp1aluntf5+ihk8Y6OuwmzG8v
+	29RgOsYkL7AjGDiqBAM+q01qch4kb1w=
+Received: from mail-il1-f197.google.com (mail-il1-f197.google.com
+ [209.85.166.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-342-WXhoRmpHOdCJsWr-7SS8Uw-1; Mon, 24 Mar 2025 23:06:46 -0400
+X-MC-Unique: WXhoRmpHOdCJsWr-7SS8Uw-1
+X-Mimecast-MFC-AGG-ID: WXhoRmpHOdCJsWr-7SS8Uw_1742872006
+Received: by mail-il1-f197.google.com with SMTP id e9e14a558f8ab-3d43b460962so93716555ab.2
+        for <devicetree@vger.kernel.org>; Mon, 24 Mar 2025 20:06:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742872006; x=1743476806;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8QX+zFdWjeuQlzuCcAZM/kErn+a5XVCQ6Ck8ssaU/og=;
+        b=jMkSl6sXNeHgYlzBcDBUq/bCuaz0zGYOqNeB4iinzpXRhmzbFx1EIgVeCGS7Ck9sKB
+         wX4zuWfQhbDHem3FyWx3autc2PDwi7fs5UprB7n+cxViJFSFpCfQ4FLHj7x+yg6zgrKa
+         r2FYVaHrPJg8bXjqPO02TP67elmZWwrr9FLeJDB/D3ULnorVMrHUfPVbYe3Aii0+eek7
+         cmGk6ZsgdBSq8UsjrXbOsKQ6t5BIpOvFIe4LTAdiUyaGVi0qKFClL/L3JSgJyMpzGev+
+         iW1m40SujYrRX8Dx1ER/Xo1EBvUNdUF9HYIBH9KjJu4zz8z6y2KiSa/mnZu6cO8+Kqzj
+         ZmxA==
+X-Forwarded-Encrypted: i=1; AJvYcCVLpDEmDqYh1+GZel+G0kyIHH4/NynrpKumm/z2iCX2XDuFBpRfjq28JG1dNf5jA3/iMYxKU6HPlTUI@vger.kernel.org
+X-Gm-Message-State: AOJu0YwSRpvgDWAqXEiim/hRsw9OqlYtZwOLuSYwumB/mSE2DeHuXxHZ
+	dzG7pYSqQywelyOvo1zNk6TjlwzF/Iqy4NxniVxGJeLzYbnx/VIkC9sZw8olU+BQh/Osb4TfZFT
+	X1pJe0QxJkCg5p38G9AR2MK/aIPZR55LLQU57J4k4A7C3scLLznFF08A0nbCY5qjlsCXHFHjPed
+	bm1+DRm+9QpVRisZEQ1t9/ka7VGFHqlFzI4g==
+X-Gm-Gg: ASbGncvWq1/bwDRkM7Dib2YqdA6D9GwQa6K5ycLRkD8rN856vhz8fcfaaqxktf9HPKx
+	zRdF8PFXSLvf1STh1xosCcKmdQCWDxudJEVpHwIqcxH9AZpWMD/nErUApJMt+Anm43lqE2g/1zQ
+	==
+X-Received: by 2002:a05:6e02:748:b0:3d4:6e2f:b493 with SMTP id e9e14a558f8ab-3d59615d9b2mr153651335ab.11.1742872006026;
+        Mon, 24 Mar 2025 20:06:46 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE5XTfTYA1qkf4MGjSh6Evza+A2MB/jUqh1YG/uG3OXh4qzNNvGTBc1K4PgXO/eVmwdqOvHcPKX5AjVSKaQhLs=
+X-Received: by 2002:a05:6e02:748:b0:3d4:6e2f:b493 with SMTP id
+ e9e14a558f8ab-3d59615d9b2mr153650885ab.11.1742872005537; Mon, 24 Mar 2025
+ 20:06:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250323071424.48779-1-clamor95@gmail.com> <20250323071424.48779-3-clamor95@gmail.com>
- <20250324165257.GA458528-robh@kernel.org> <CAPVz0n3=-QL1_NGP31WX_4LQBt5-T47BbU_yn6td1zk9C2T=iA@mail.gmail.com>
-In-Reply-To: <CAPVz0n3=-QL1_NGP31WX_4LQBt5-T47BbU_yn6td1zk9C2T=iA@mail.gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 24 Mar 2025 21:59:58 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLCW+zE2LfsVybuxn_xu1JwtLSXSbMNj-YYfVgtYhZcaQ@mail.gmail.com>
-X-Gm-Features: AQ5f1JpysCtkCUgcjLane3iayaPg4HSVsmHDOlKr6Lj27dEl2msQmnjpD8eCuPc
-Message-ID: <CAL_JsqLCW+zE2LfsVybuxn_xu1JwtLSXSbMNj-YYfVgtYhZcaQ@mail.gmail.com>
-Subject: Re: [PATCH v1 2/4] dt-bindings: mfd: Document Infineon/Cypress
- CG7153AM MCU
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	linux-pm@vger.kernel.org
+References: <20250320015551.2157511-1-changyuanl@google.com>
+ <20250320015551.2157511-12-changyuanl@google.com> <CALu+AoS01QJ-H5Vpr378rbx==iRQLG0HajtMCUzDXRO75biCag@mail.gmail.com>
+ <CA+CK2bC4PM0JnHOUm7qfpQ=wUhwsYQ-hJ12tTK_7pSWgYk+bhg@mail.gmail.com> <CALu+AoRL+oHW2vN8nf1wpsG2Ki8d44AABQRCBMd+CE4_XzqRTw@mail.gmail.com>
+In-Reply-To: <CALu+AoRL+oHW2vN8nf1wpsG2Ki8d44AABQRCBMd+CE4_XzqRTw@mail.gmail.com>
+From: Dave Young <dyoung@redhat.com>
+Date: Tue, 25 Mar 2025 11:07:06 +0800
+X-Gm-Features: AQ5f1JodZdPjZPmn7C-4IUrPojZILVca8awRM4MpIz-0KIylSAlKoZUHH0RUnGg
+Message-ID: <CALu+AoSzOixDBHiFdry=RbFGX5Umk5XxLC=BmPKMYW7rCLUxSw@mail.gmail.com>
+Subject: Re: [PATCH v5 11/16] kexec: add config option for KHO
+To: Pasha Tatashin <pasha.tatashin@soleen.com>
+Cc: Changyuan Lyu <changyuanl@google.com>, linux-kernel@vger.kernel.org, graf@amazon.com, 
+	akpm@linux-foundation.org, luto@kernel.org, anthony.yznaga@oracle.com, 
+	arnd@arndb.de, ashish.kalra@amd.com, benh@kernel.crashing.org, bp@alien8.de, 
+	catalin.marinas@arm.com, dave.hansen@linux.intel.com, dwmw2@infradead.org, 
+	ebiederm@xmission.com, mingo@redhat.com, jgowans@amazon.com, corbet@lwn.net, 
+	krzk@kernel.org, rppt@kernel.org, mark.rutland@arm.com, pbonzini@redhat.com, 
+	hpa@zytor.com, peterz@infradead.org, ptyadav@amazon.de, robh+dt@kernel.org, 
+	robh@kernel.org, saravanak@google.com, skinsburskii@linux.microsoft.com, 
+	rostedt@goodmis.org, tglx@linutronix.de, thomas.lendacky@amd.com, 
+	usama.arif@bytedance.com, will@kernel.org, devicetree@vger.kernel.org, 
+	kexec@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-doc@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Mar 24, 2025 at 12:06=E2=80=AFPM Svyatoslav Ryhel <clamor95@gmail.c=
-om> wrote:
+On Tue, 25 Mar 2025 at 09:24, Dave Young <dyoung@redhat.com> wrote:
 >
-> =D0=BF=D0=BD, 24 =D0=B1=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 18:52 Ro=
-b Herring <robh@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+> On Tue, 25 Mar 2025 at 03:27, Pasha Tatashin <pasha.tatashin@soleen.com> =
+wrote:
 > >
-> > On Sun, Mar 23, 2025 at 09:14:22AM +0200, Svyatoslav Ryhel wrote:
-> > > Add binding for Cypress CG7153AM embedded controller. Pegatron implem=
-ented
-> > > a custom configuration of this MCU in their Chagall tablets, utilizin=
-g it
-> > > for battery monitoring.
+> > On Mon, Mar 24, 2025 at 12:18=E2=80=AFAM Dave Young <dyoung@redhat.com>=
+ wrote:
 > > >
-> > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > > ---
-> > >  .../bindings/mfd/cypress,cg7153am.yaml        | 55 +++++++++++++++++=
-++
-> > >  1 file changed, 55 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/mfd/cypress,cg7=
-153am.yaml
+> > > On Thu, 20 Mar 2025 at 23:05, Changyuan Lyu <changyuanl@google.com> w=
+rote:
+> > > >
+> > > > From: Alexander Graf <graf@amazon.com>
+> > > >
+> > > > We have all generic code in place now to support Kexec with KHO. Th=
+is
+> > > > patch adds a config option that depends on architecture support to
+> > > > enable KHO support.
+> > > >
+> > > > Signed-off-by: Alexander Graf <graf@amazon.com>
+> > > > Co-developed-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+> > > > Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+> > > > Co-developed-by: Changyuan Lyu <changyuanl@google.com>
+> > > > Signed-off-by: Changyuan Lyu <changyuanl@google.com>
+> > > > ---
+> > > >  kernel/Kconfig.kexec | 15 +++++++++++++++
+> > > >  1 file changed, 15 insertions(+)
+> > > >
+> > > > diff --git a/kernel/Kconfig.kexec b/kernel/Kconfig.kexec
+> > > > index 4d111f871951..57db99e758a8 100644
+> > > > --- a/kernel/Kconfig.kexec
+> > > > +++ b/kernel/Kconfig.kexec
+> > > > @@ -95,6 +95,21 @@ config KEXEC_JUMP
+> > > >           Jump between original kernel and kexeced kernel and invok=
+e
+> > > >           code in physical address mode via KEXEC
+> > > >
+> > > > +config KEXEC_HANDOVER
+> > > > +       bool "kexec handover"
+> > > > +       depends on ARCH_SUPPORTS_KEXEC_HANDOVER && ARCH_SUPPORTS_KE=
+XEC_FILE
+> > > > +       select MEMBLOCK_KHO_SCRATCH
+> > > > +       select KEXEC_FILE
+> > > > +       select DEBUG_FS
+> > > > +       select LIBFDT
+> > > > +       select CMA
+> > > > +       select XXHASH
+> > > > +       help
+> > > > +         Allow kexec to hand over state across kernels by generati=
+ng and
+> > > > +         passing additional metadata to the target kernel. This is=
+ useful
+> > > > +         to keep data or state alive across the kexec. For this to=
+ work,
+> > > > +         both source and target kernels need to have this option e=
+nabled.
+> > > > +
 > > >
-> > > diff --git a/Documentation/devicetree/bindings/mfd/cypress,cg7153am.y=
-aml b/Documentation/devicetree/bindings/mfd/cypress,cg7153am.yaml
-> > > new file mode 100644
-> > > index 000000000000..f8469b5e3816
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/mfd/cypress,cg7153am.yaml
-> > > @@ -0,0 +1,55 @@
-> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/mfd/cypress,cg7153am.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Infineon/Cypress Semicon CG7153AM Microcontroller
-> > > +
-> > > +maintainers:
-> > > +  - Svyatoslav Ryhel <clamor95@gmail.com>
-> > > +
-> > > +description:
-> > > +  The CG7153AM, an 8-bit programmable microcontroller from Infineon/=
-Cypress
-> > > +  Semiconductor, communicates over I2C and is implemented in devices=
- like the
-> > > +  Pegatron Chagall tablet for fuel gauge and battery control functio=
-ns.
-> > > +
-> > > +$ref: /schemas/power/supply/power-supply.yaml
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    oneOf:
-> > > +      - items:
-> > > +          - enum:
-> > > +              - pegatron,chagall-ec # Pegatron Chagall tablet device
-> > > +          - const: cypress,cg7153am
-> > > +      - items:
-> > > +          const: cypress,cg7153am
+> > > Have you tested kdump?  In my mind there are two issues,  one is with
+> > > CMA enabled, it could cause kdump crashkernel memory reservation
+> > > failures more often due to the fragmented low memory.  Secondly,  in
 > >
-> > Is this just some general purpose uC which could be used for anything
-> > and the interface exposed is Pegatron's invention. If so, then I'd drop
-> > the cypress,cg7153am compatible. What use would it be to software?
+> > As I understand cma low memory scratch reservation is needed only to
+> > support some legacy pci devices that cannot use the full 64-bit space.
+> > If so, I am not sure if KHO needs to be supported on machines with
+> > such devices. However, even if we keep it, it should really be small,
+> > so I would not expect that to be a problem for crash kernel memory
+> > reservation.
+>
+> It is not easy to estimate how much of the KHO reserved memory is
+> needed.  I assume this as a mechanism for all different users, it is
+> not  predictable.  Also it is not only about the size, but also it
+> makes the memory fragmented.
+>
 > >
+> > > kdump kernel dump the crazy scratch memory in vmcore is not very
+> > > meaningful.  Otherwise I suspect this is not tested under kdump.  If
+> > > so please disable this option for kdump.
+> >
+> > The scratch memory will appear as regular CMA in the vmcore. The crash
+> > kernel can be kexec loaded only from userland, long after the scratch
+> > memory is converted to CMA.
 >
-> Yeah, Cypress made an MPU, Pegatron used it as a base to make a fuel gaug=
-e.
->
-> You propose smth like this?
->
->       - items:
->           - enum:
->               - pegatron,chagall-ec # Pegatron Chagall tablet device
->           - const: cypress,cg7153am
->
-> Without oneOf and second item or remove cypress,cg7153am entirely and
-> submit as pegatron,chagall-ec.yaml? Just to be clear.
->
-> I am fine with removing oneOf and items: const: cypress,cg7153am, but
-> I would like to preserve cypress,cg7153am as second compatible since
-> this is an actual MCU model.
+> Depending on the reserved size, if big enough it should be excluded in
+> vmcore dumping.
+> Otherwise if it is a kdump kernel it should skip the handling of the
+> KHO passed previous old states.
 
-I would just drop the cypress compatible entirely. It needs to be
-useful to a client (OS) in some way. If you said something like the
-firmware downloading is defined by Cypress or some other feature, then
-it would make sense. Otherwise, how this interface is implemented is
-irrelevant. I can't think of any other embedded controller where we
-have a compatible for the underlying MCU.
+If you do not want to make the KHO conflicts with kdump, then the
+above should be handled and well tested.  And then leave to end user
+and distribution to determine if they want the both enabled
+considering the risk of crashkernel reservation failure.
 
-Rob
+>
+> >
+> > Pasha
+> >
+
 
