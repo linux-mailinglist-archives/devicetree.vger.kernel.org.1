@@ -1,146 +1,127 @@
-Return-Path: <devicetree+bounces-160396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB1F9A6EA04
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 08:01:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97593A6EA43
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 08:18:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E30973ADB1C
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 07:00:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F8B33A5007
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 07:17:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62AC121A455;
-	Tue, 25 Mar 2025 07:00:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BCFC1FECBF;
+	Tue, 25 Mar 2025 07:17:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="JO5JS3P3";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="g+LXzTJV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="txHMkcgl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A3D014D283
-	for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 07:00:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1A548460;
+	Tue, 25 Mar 2025 07:17:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742886019; cv=none; b=Z6W47l7Hp0t1F2M7ERFBJoaXDL7xaM2clqmlg2GruvYoDw93XZEWBlyNHlZ5EqsKr4uNnczBTtDUjimrp/uXuO6Cw7dQEOx+GLT8wzyCRFRrz48bJSkc2Y1BkaDmvL2P7Q3p3BBdzf7JJEj5kW+HT6s+j67iWfsk3h3D6gXLoMs=
+	t=1742887050; cv=none; b=PHZ/47mAYtWvC5rR5NCdKaEsExoxtXMHRQIP2H+zSergSeaLU6u+3HRELT2SjI9ImWAh00baurhgkDhADlo+ZZoj9vkSDcoQ0J2EkS9AITcYTE4Gj6wuAqCpz3HkS78t2R80SNLPvQVJBVDmuO6i8vs47d/b/4ZG3H1FmAAq2+A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742886019; c=relaxed/simple;
-	bh=+JqXqW6GFX+G61Bz3yT7Trsp0s/RlbjFyxsJA6Yi36Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=r6uPzGbKxvxJbJWecHKLcWn3XmlIRcX1liTgHvQMeIdplbORzYLuMq8pm4dQ+rkDTxkDDXGH58kdRRyYTNeWPu38l6ErDhqKB8C3WV4v1vMCnAUzrOhlcGReF5uToYjyoDfTC22me1TJHeHrEwq1ZHxMvTmjGIE1GswLFz4I07Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=JO5JS3P3; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=g+LXzTJV reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1742886015; x=1774422015;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=IY1LRasI1a4gFwiAowe/BlaLi9qjAct5Q0v/7Pv3fzc=;
-  b=JO5JS3P3VDwQnLH1aJ/87xDTqMTYj439JWoeQA9hQvXxsCqlgMRtL4VX
-   FRv9Bn30CZXrrjbgV5WutvcKl9dRdCYqRDmwFcm4AFsW07hNHnZPuMrcg
-   K0NmXjYHDm0qklJFSf9aUngv5fkisMCGU0H8g7HLJlphRYM6hCw7pBBtw
-   NeX+OxOV9HYFWVocHrMKtOfS8lXl/lWkQtCnEDIZ5T42tRvZjl+pb9Zqv
-   QceW8yu13eK3Z154iAOXcKZeH9Bmw82Va3COnjCed+EKg2ZJx6NcLEaj2
-   dCn++qU4EpV8SFnXZxIIXF1AAfb0VLDAD3gunegK6cFBS+8STVE+vBUCC
-   A==;
-X-CSE-ConnectionGUID: wLTuKKJvS5uEe8ivLhc3ew==
-X-CSE-MsgGUID: Yk3E/ZCrRXKmkvWbyVJD1w==
-X-IronPort-AV: E=Sophos;i="6.14,274,1736809200"; 
-   d="scan'208";a="43135474"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 25 Mar 2025 08:00:11 +0100
-X-CheckPoint: {67E2547B-36-903EAEAC-E04C76C8}
-X-MAIL-CPID: 5ED2254210CBCBBAE887422E760A4071_5
-X-Control-Analysis: str=0001.0A006372.67E25477.00AF,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C2D251632F7;
-	Tue, 25 Mar 2025 08:00:00 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1742886006;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=IY1LRasI1a4gFwiAowe/BlaLi9qjAct5Q0v/7Pv3fzc=;
-	b=g+LXzTJVJqyoxffvyz8jSMsqghsG9czM4ntoP70bldxrkl6PwZuP0nAC/iIQ1doTUeZu5e
-	2GK1wKUKixhDvNAFOvNRLAtM2ilE/aXqZLe5TXIzXg+Ss4hb+hDfCzHJR8GvbroSDCXlz8
-	3HH/9ZEi3aJ07NCXqcZ7vYT0UQ5zX4NmtP5cMZAk+J8JwuqguqjBu+/39+cdzcQk+NE0s0
-	+1cMiMmP2hiMeVFM0czr5iYVDb8/Szl/WpA5aEabwAQ9v+52eJDJ4qkchtBrDsaw3zRIvG
-	ezps5JR5w/9paFGiHgw7unrftOPv6PqhrNMd6r0fxfmYfGArFAApZbWnFutKAA==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
- Marek Vasut <marex@denx.de>
-Cc: Boris Brezillon <boris.brezillon@collabora.com>,
- Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
- Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Liviu Dudau <liviu.dudau@arm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Steven Price <steven.price@arm.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- devicetree@vger.kernel.org, imx@lists.linux.dev
-Subject: Re: [PATCH v2 9/9] arm64: dts: imx95: Describe Mali G310 GPU
-Date: Tue, 25 Mar 2025 08:00:00 +0100
-Message-ID: <4643598.LvFx2qVVIh@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <e8e9f36a-6d05-425e-a0e5-89689424336d@denx.de>
-References:
- <20250321200625.132494-1-marex@denx.de> <6144881.lOV4Wx5bFT@steina-w>
- <e8e9f36a-6d05-425e-a0e5-89689424336d@denx.de>
+	s=arc-20240116; t=1742887050; c=relaxed/simple;
+	bh=n7mb7O4AT4k8LuaRNLE8Z2JLAXYdBakAXOdaSM+1GmU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=R3vjSAWSNZl42RSAnypkxXzNaMAsMIYcnD4Ys9cEkbiuJbL+SN8RbmxUKBPWTaPXeYyCpcKgwt7IQLI0lB94azji95epw9P3xK3wCBBeJexYGLljvRhWydAXztvSnW620xojPvWQxJKRo6TeYeXTUbURy+xLfOLMEyIVDCoRi6o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=txHMkcgl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2F13C4CEE8;
+	Tue, 25 Mar 2025 07:17:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742887049;
+	bh=n7mb7O4AT4k8LuaRNLE8Z2JLAXYdBakAXOdaSM+1GmU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=txHMkcglOJUEbzF3pVudhYJH8Zx103UOYJ+Au+ZBdlfkCSjChjlHiNrWZm5uIVdFQ
+	 l0w/ImzGjdHUf/9zwg6smsuZtt+5xzGJ74Q2kH1ZGTG1eJ1szWH8w+j8odsLd2ijj4
+	 44J2AMTmZExTkKjhg/jkKE6uVzffKBUrCsiWgCbb5jrxA+moXnG3Saz4NKzu+ddbEJ
+	 q7pNIkL8e9gnt0Kf8TpeVcM1g7+M10sxFEcUIH1NmqrgWZiMrA70ZY7TOmT2xd8mlh
+	 mNOWX6cZh0upUZsN3CXp6RU/7ehbNBv6xpUWnOyTHbpZUQIctkEn373FALe/JlsLkc
+	 jAdfB2MfabZLA==
+Message-ID: <99ec033f-7557-49cb-9b73-117ddc63d6d1@kernel.org>
+Date: Tue, 25 Mar 2025 08:17:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/3] dt-bindings: arm: aspeed: add Nvidia's GB200NVL
+ BMC
+To: Willie Thai <wthai@nvidia.com>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
+ kees@kernel.org, tony.luck@intel.com, gpiccoli@igalia.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org, openbmc@lists.ozlabs.org
+Cc: leohu@nvidia.com, tingkaic@nvidia.com, dkodihalli@nvidia.com,
+ Mars Yang <maryang@nvidia.com>
+References: <20250324175926.222473-1-wthai@nvidia.com>
+ <20250324175926.222473-2-wthai@nvidia.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250324175926.222473-2-wthai@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Marek,
+On 24/03/2025 18:59, Willie Thai wrote:
+> Add Nvidia's  GB200NVL BMC board compatible.
+> 
+> Co-developed-by: Mars Yang <maryang@nvidia.com>
+> Signed-off-by: Mars Yang <maryang@nvidia.com>
+> Cc: Krzysztof Kozlowski <krzk@kernel.org>
+> Signed-off-by: Willie Thai <wthai@nvidia.com>
+> ---
 
-Am Dienstag, 25. M=E4rz 2025, 00:35:41 CET schrieb Marek Vasut:
-> On 3/24/25 8:02 AM, Alexander Stein wrote:
->=20
-> Hi,
->=20
-> >> @@ -1890,6 +1919,35 @@ netc_emdio: mdio@0,0 {
-> >>   			};
-> >>   		};
-> >>  =20
-> >> +		gpu_blk_ctrl: reset-controller@4d810000 {
-> >> +			compatible =3D "nxp,imx95-gpu-blk-ctrl";
-> >> +			reg =3D <0x0 0x4d810000 0x0 0xc>;
-> >> +			#reset-cells =3D <1>;
-> >> +			clocks =3D <&scmi_clk IMX95_CLK_GPUAPB>;
-> >> +			assigned-clocks =3D <&scmi_clk IMX95_CLK_GPUAPB>;
-> >> +			assigned-clock-parents =3D <&scmi_clk IMX95_CLK_SYSPLL1_PFD1_DIV2>;
-> >> +			assigned-clock-rates =3D <133333333>;
-> >> +			power-domains =3D <&scmi_devpd IMX95_PD_GPU>;
-> >> +		};
-> >=20
-> > With the SM release lf-6.12.3-1.0.0 AP does not have any access to
-> > this BLK_CTRL anymore. See [1]
-> I just built SM 6.12 and it still requires the reset, without reset I=20
-> cannot use the GPU ... or ... which BLK CTRL do you refer to ?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-I'm specifically looking at [1]. AFAIU after that change AP has no access
-to BLK_CTRL_GPUMIX. But this is just from looking at the changes.
-
-Best regards
-Alexander
-
-[1] https://github.com/nxp-imx/imx-sm/commit/a3e5da9ea51144f513ac3909fa151f=
-a7df394100
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
-
+Best regards,
+Krzysztof
 
