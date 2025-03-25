@@ -1,121 +1,131 @@
-Return-Path: <devicetree+bounces-160591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160592-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3216A703E6
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 15:38:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27FB4A703DE
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 15:37:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53EED18920FE
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 14:37:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2BBA16C341
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 14:37:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E56C25A331;
-	Tue, 25 Mar 2025 14:37:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0359925A351;
+	Tue, 25 Mar 2025 14:37:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="J9EvbRS7"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="EKIkRHBn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8273C2571CD
-	for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 14:37:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05FDD1EE7AD;
+	Tue, 25 Mar 2025 14:37:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742913451; cv=none; b=gL18WE3vHOsCM2VcCTNUMxv0ckYJ/dGLebZqncWqkqoQUuzq4ErKB9xoQbu/yCjaTzKvZWeVvMjMelV4rhmYy1i6hNm6C10phfXfF9wGdqNlvN9QrsCV+vsVHaEWkxXCP6mNMrSK7EIGfSHL3SEGQURh/sTVBz63RUDRZmFjEJo=
+	t=1742913455; cv=none; b=R+fO8Nxu2HC7GlqjqN/dZ7cHhAEUL4iOwEGIYmy6fozUzGen6m/SMNbVs1icBLkf93QaRLfFYSebYScRG+rLyzEQpa7MRqaCl+xdetwrHXl/9ewiUsXEGTcaux8BMhX1cOe7CTy5d4enhZ4aEUz1JRwfcdj2ehVlvzokjkpTnfk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742913451; c=relaxed/simple;
-	bh=kwC2ynEylD9NEucK/H7rfkGlnWKV1STmUNU+8kNIIAM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=l1iKS75MQiYZeXsWsWMJgZdAQkgn8pVScnQSYeuAL4bk3OCu5/Y3+6O6oPTkf2J8ybUcXmjP2Ph3Q4igPzkrztndWsgZ+sRL2k65B4yjrXn4HHzRLEefLZmR5uPzxZS4rUGqM6oMn2ZhmsZ15Vtu1RdZ6P7THKJ+O0zt9Eu9WCU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=J9EvbRS7; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A8859102E64C4;
-	Tue, 25 Mar 2025 15:37:22 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1742913446; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=Gx78FzdSuoxvydX3OAmJrDm5VENfMIagJMouDlZNW7Q=;
-	b=J9EvbRS7UMr+zUOmz1lpNCnS04jKWkny9gRjE9/DZxMR7SGO59p02E0PT6z3LTMHwA4W49
-	54fLn2HkHZv+2PuokIiMXas2nul6iahBgtwliBB6NNTURWfCT6ZdLrinmjo6NVdUnQ+TZE
-	A8v527EIgWxqby2cLTzJ8CY82tYT1MI6ATmsCG+QkU2ALC75a+WDhut8xjSQjx+TaPSn72
-	wEoymXg6ih7DAvPIuykuQ3j1GglTo4PzyTQRtc7Hk6qUng0I5Gt64Xs+6yrWrP7ATGEGgS
-	gsoB/9uCV9EvBYqa9ZF0Cg88EiAkeGlxzTezuncvwUt/6RLWGXPH1F25kuvFmg==
-Message-ID: <4c06aef3-a254-437c-aa15-8e3eb7bf5951@denx.de>
-Date: Tue, 25 Mar 2025 15:37:01 +0100
+	s=arc-20240116; t=1742913455; c=relaxed/simple;
+	bh=xG0/szBJu70OcmWh3jP2ZdEvOWwAmwJE5cR+2i2FUho=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
+	 References:In-Reply-To; b=Jnno6hNEuIkpz0LAT+0DekLhzH+MNvkasiEdzBju8PNGiOsSt5oCB0O7Primu4f7UcjMqN2nOVrZFOTSoPHJFLYoh4iQ0Gt1PahtL00qBrvlga6I2z4wYvYGRQ3Pr7schVyzaigCoSGEmyqITtxNm08UoHCK2hP1tqDELz1lHdU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=EKIkRHBn; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 1492D204D0;
+	Tue, 25 Mar 2025 14:37:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1742913451;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=z7Lwuf+qvv4mXLFIz/xryFk97UaX7ituYqVU5VC582Q=;
+	b=EKIkRHBnaD+ebuEP9QkMglemu93QomYfbnyYHq2w7ok+JIR0mZR+xtbQ6mUmS+7E6F7Hy+
+	J9HLaysErfvKeD7PbRM2FJJK3J/FIwf9nfiMrW5jAQSTVp3lamJqxSYbblZ2BBinv3Ns9s
+	WEo1Jemw16AEw0cQfvjqFTbLA7z221hCH/vjcabpP4BC9woUHy7EaKxt5zz03Ww7rOavJ3
+	chzklLDfz3TaeSGnogpWJuL+09KD73zc50SHW69n6rC+dRBJdKD1/85bc+vYT7uyPY8k2k
+	Knw5FVm98oubsOb1COUpsDzJQ6YEmSDTbM6y3/0LVOuySu4zlZhxEisOcNfGvg==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/9] drm/panthor: Implement optional reset
-To: Boris Brezillon <boris.brezillon@collabora.com>
-Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
- David Airlie <airlied@gmail.com>, Fabio Estevam <festevam@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Steven Price <steven.price@arm.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, imx@lists.linux.dev
-References: <20250321200625.132494-1-marex@denx.de>
- <20250321200625.132494-5-marex@denx.de>
- <20250324094333.7afb17a1@collabora.com>
- <c1de2afb-3559-4fbb-b13b-2373175b420b@denx.de>
- <20250325084349.344a0f11@collabora.com>
- <7aadf355-edf0-46fc-b969-65c3789375ca@denx.de>
- <20250325153507.61d82e39@collabora.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <20250325153507.61d82e39@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 25 Mar 2025 15:37:29 +0100
+Message-Id: <D8PF958QL5AK.2JIE4F1N1NI0F@bootlin.com>
+Subject: Re: [PATCH v5 04/11] pwm: max7360: Add MAX7360 PWM support
+Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
+ Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
+ "Dmitry Torokhov" <dmitry.torokhov@gmail.com>, "Michael Walle"
+ <mwalle@kernel.org>, "Mark Brown" <broonie@kernel.org>, "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, "Danilo Krummrich" <dakr@kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
+ <linux-pwm@vger.kernel.org>, =?utf-8?q?Gr=C3=A9gory_Clement?=
+ <gregory.clement@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>
+From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
+To: "Andy Shevchenko" <andriy.shevchenko@intel.com>,
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+X-Mailer: aerc 0.18.2-0-ge037c095a049
+References: <20250318-mdb-max7360-support-v5-0-fb20baf97da0@bootlin.com>
+ <20250318-mdb-max7360-support-v5-4-fb20baf97da0@bootlin.com>
+ <Z9qoGmNKcozbIjeH@smile.fi.intel.com>
+ <hinocg3itjqizbmzgaxv6cfnhtus6wbykouiy6pa27cxnjjuuk@l5ppwh7md6ul>
+ <Z9vydaUguJiVaHtU@smile.fi.intel.com>
+In-Reply-To: <Z9vydaUguJiVaHtU@smile.fi.intel.com>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdduiedvleduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkufevhffvofhfjgesthhqredtredtjeenucfhrhhomhepfdforghthhhivghuucffuhgsohhishdquehrihgrnhgufdcuoehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeekhfekieeftefhjeetveefudehuddvvdeuvddvudfgfffhveekffethfeuffdtudenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeipdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvvddprhgtphhtthhopegrnhgurhhihidrshhhvghvtghhvghnkhhosehinhhtvghlrdgtohhmpdhrtghpthhtohepuhhklhgvihhnvghksehkv
+ ghrnhgvlhdrohhrghdprhgtphhtthhopehlvggvsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrghmvghlrdgsohhuhhgrrhgrsegsohhothhlihhnrdgtohhmpdhrtghpthhtoheplhhinhhushdrfigrlhhlvghijheslhhinhgrrhhordhorhhg
+X-GND-Sasl: mathieu.dubois-briand@bootlin.com
 
-On 3/25/25 3:35 PM, Boris Brezillon wrote:
-> On Tue, 25 Mar 2025 14:50:32 +0100
-> Marek Vasut <marex@denx.de> wrote:
-> 
->> On 3/25/25 8:43 AM, Boris Brezillon wrote:
->>> On Tue, 25 Mar 2025 00:37:59 +0100
->>> Marek Vasut <marex@denx.de> wrote:
->>>    
->>>> On 3/24/25 9:43 AM, Boris Brezillon wrote:
->>>>
->>>> [...]
->>>>   
->>>>>> @@ -563,6 +585,7 @@ int panthor_device_suspend(struct device *dev)
->>>>>>     
->>>>>>     	panthor_devfreq_suspend(ptdev);
->>>>>>     
->>>>>> +	reset_control_assert(ptdev->resets);
->>>>>
->>>>> Hm, that might be the cause of the fast reset issue (which is a fast
->>>>> resume more than a fast reset BTW): if you re-assert the reset line on
->>>>> runtime suspend, I guess this causes a full GPU reset, and the MCU ends
->>>>> up in a state where it needs a slow reset (all data sections reset to
->>>>> their initial state). Can you try to move the reset_control_[de]assert
->>>>> to the unplug/init functions?
->>>> Is it correct to assume , that if I remove all reset_control_assert()
->>>> calls (and keep only the _deassert() calls), the slow resume problem
->>>> should go away too ?
->>>
->>> Yeah, dropping the _assert()s should do the trick.
->> Hmmm, no, that does not help. I was hoping maybe NXP can chime in and
->> suggest something too ?
-> 
-> Can you try keep all the clks/regulators/power-domains/... on after
-> init, and see if the fast resume works with that. If it does,
-> re-introduce one resource at a time to find out which one causes the
-> MCU to lose its state.
+On Thu Mar 20, 2025 at 11:48 AM CET, Andy Shevchenko wrote:
+> On Thu, Mar 20, 2025 at 08:50:00AM +0100, Uwe Kleine-K=C3=B6nig wrote:
+> > On Wed, Mar 19, 2025 at 01:18:50PM +0200, Andy Shevchenko wrote:
+> > > On Tue, Mar 18, 2025 at 05:26:20PM +0100, mathieu.dubois-briand@bootl=
+in.com wrote:
+>
+> ...
+>
+> > > > +	chip =3D devm_pwmchip_alloc(dev->parent, MAX7360_NUM_PWMS, 0);
+> > >=20
+> > > This is quite worrying. The devm_ to parent makes a lot of assumption=
+s that may
+> > > not be realised. If you really need this, it has to have a very good =
+comment
+> > > explaining why and object lifetimes.
+> >=20
+> > Pretty sure this is broken. This results for example in the device link
+> > being created on the parent. So if the pwm devices goes away a consumer
+> > might not notice (at least in the usual way). I guess this was done to
+> > ensure that #pwm-cells is parsed from the right dt node? If so, that
+> > needs a different adaption. That will probably involve calling
+> > device_set_of_node_from_dev().
+>
+> It's an MFD based driver, and MFD core cares about propagating fwnode by
+> default. I believe it should just work if we drop that '->parent' part.
 
-I already tried that too . I spent quite a while until I reached that L2 
-workaround in fact.
+Are you sure about that?
+
+On my side it does not work if I just drop the '->parent', this is why I
+ended whit this (bad) pattern.
+
+Now it does work if I do call device_set_of_node_from_dev() manually, so
+it's definitely better. But I believe the MFD core is not propagating
+OF data, and I did not find where it would do that in the code. Yet it
+does something like this for ACPI in mfd_acpi_add_device(). Or maybe we
+do something bad in our MFD driver?
+
+
+--=20
+Mathieu Dubois-Briand, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
