@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-160497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE1DDA6F4A4
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 12:42:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D96DA6F4BD
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 12:42:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE4B116ECAA
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 11:42:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6393E17098C
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 11:42:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1878257423;
-	Tue, 25 Mar 2025 11:41:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CED9257452;
+	Tue, 25 Mar 2025 11:41:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wiJ7JQ22"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O37S5wV+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A604D2561B8
-	for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 11:41:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DE602566C0
+	for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 11:41:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742902873; cv=none; b=RoMid3tQweGM9l96oxeZMKKr6gYh4lWH762UEDxjSE/nnEoFQJsh/3u3InVC0nY1wtRWFJyZuX5y06IIYYpuF0GsSjNgwBGLGs2+JXR98R0vPH6t0bv4/yffHBvDuFVQvEbs9pd6UVzYS0BA8z2urD1HEBv139kFnkbelS3mFeA=
+	t=1742902875; cv=none; b=UBfeg8p13Kob6XUhCrU9tss8/Xbug7LNNwshqhqPoh2OjOyw6kpKM05nwmJhN58r9rOP/+tfbtwfx0aERzVR1i62saEz0Qf1kQZh3YKrY8gF2xBfH3iul7tvW5r0FxN333AqS6/7KYnjeJjiWUhcLPhOcoj+CWMqPpl+g0HIVQ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742902873; c=relaxed/simple;
-	bh=A0WtHTs89u0NRiqeb7jtxP3PC6SiQD+qIJMNWTfSuvQ=;
+	s=arc-20240116; t=1742902875; c=relaxed/simple;
+	bh=4hK5NwvGZj3PELV41E3//V4IRXz5oGNBj9IGYps+vOQ=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=k/3Nd+Caw2m3230yO7/ddMOoDG/734VQugfgOjVkWZXZdBX/KHwOwWN1xJAmKn8b978wbLab2qJv2BZdaV6H1TKSkuZWFd6FZshA0jGWQnS+B0wZcXqbtYQPYLmHCsqEktfwOP1YIYT4j7PwkGudh+xZjAGK+9dRCL1RNC6QQHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wiJ7JQ22; arc=none smtp.client-ip=209.85.128.41
+	 MIME-Version; b=OEYfhpQdQ5j3rnusDa1GNY6xrgc5Dts1ppxMeIzMUxDRTAM+3ADZh2TsCbYcuEoCkZB+WiFavYZNq3w4Vhg1K45u1eGTVap0B8oh6hOxgMqetEFJ+wnLMY8kcg6DUxrmbuKT8VSErm+8zR7i2sBV6E1az8ZvMnMpHEZrE0FPn6s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=O37S5wV+; arc=none smtp.client-ip=209.85.128.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-43690d4605dso38457665e9.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 04:41:11 -0700 (PDT)
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43948f77f1aso36456045e9.0
+        for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 04:41:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742902870; x=1743507670; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1742902872; x=1743507672; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ciCsmE+euFjZCUyipJS5apSViu1JxNfFN5bCQJg2zCQ=;
-        b=wiJ7JQ22WojqGzrhJ8Pl+cTT8qIbgdtpPw1H5fgulafVZdOcoggMP508EQlSHIugSy
-         u4FUL4udk5AUOI9r/sLg3gYySlqPBblpBL+7njJyH8DEdSzvpNtSsea3sqeOdIVQ4P9K
-         Ry45Iv8R19LXzFe/A5PJYShS4xvTibjZt/Scr/svzlzqC3NRnvoMG27Pjzw5slBNTkBH
-         tgRABLHmbq4zdLOVLuqlsim8cGrJ9kIKyLC4kl5W7hZgTRAjktbsLqMlEZcqBoS3OJDl
-         ErZhxOiLn9DNv6fzw8/cgQJDlS4IVZLqKQ53AJ7oKZIG77CE8APAD6bYJDsvbtdSzuId
-         R4HA==
+        bh=LHH3q92f3jVI2cl1PwT0LmA+qhtDvCooULm9gmNkwck=;
+        b=O37S5wV+iqpX8LHQLqDuBub3v39fJGQ1jyfFmU5HgS1AsV6pBmA00c4M0oJU2vSSSy
+         RhQnb2/5QHg18hkf+Ayg5tGQkQz7U6R8jui0UnBLcJWv4COW6MTfyrqDnbtJmk1IYWaP
+         MsNDYDcbEClzxgGIVWAjY87akqe7w5eaZHTM63o+jNya7GNn5akIBv0Bb5tVpemnQYul
+         8ycHGqhi7H9cQ9s8d9V3MkC9NBl6n+7213xOjRfFdpRG45ZyXYEOqv4UAtlCGeoDOsUy
+         cqJYWsGLq3QhZnBtCHjzW3O5e90rw/1X/ByTdSfPPwZOnf/ePaZ8wd2VbVqO6qTmyKBq
+         KYjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742902870; x=1743507670;
+        d=1e100.net; s=20230601; t=1742902872; x=1743507672;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ciCsmE+euFjZCUyipJS5apSViu1JxNfFN5bCQJg2zCQ=;
-        b=L39Vsf12K+uN6yKaFulPUM2J36UoUi5p0HnpQR/cMElceGRhOtXsLdZtbyiANoGl65
-         QOvuEQhzRq/AHeLlxZm5DnjUIbbNVr2NjRGqfSQODA6IagbpXFLpMDjtxBWgnL2vsRMg
-         WV0x7pM5RT1Tm3wbfAxeuMb+cwxzqmJyRDmRtD+SPvAV8ZqyUJrqQMrazOmNojPXqsyu
-         4Njph5CBwPS3wTraoGzlgDIXt3dVwepzMK4pBhCPuo9XDPE6cGfkVu8go+9mIsSbxuil
-         WL5sZ1doouOP7m+ng6T2VFM768o7JfghGvVFzIxpz/oC4tHLxBUrI4zINc+79X+mSA0m
-         j8dg==
-X-Forwarded-Encrypted: i=1; AJvYcCXRMBh0TPNuIS1g4/ppNczqiYVAzsNtKI+kGqwTzBSAuvx6h60Zkak98QNWMj5UteYPRZGOidpUX8wV@vger.kernel.org
-X-Gm-Message-State: AOJu0YzI2bGFppZzWvOGCHBdxEnF2tFOnIMgMcuWsKXEsJRCdKLJTFNW
-	VewjUIob62pVt+sicoM0HT/6r23uA9a0OTfFYwo7R+B4RictcVa2hqDPVpMl99M=
-X-Gm-Gg: ASbGncsd5xVg35IoP+ZlsTfbrsR09z37SkSUjTLoRGlsn/NIYUgkTzpj/21GeQjIovP
-	P8dJpUbRoPHNKQMZjmK63plbmmXy1wQtsGz9KbYQVkIQd+sHhtNzrjR8BBa4tOC+YPkql1HW6tQ
-	cInMIBFyfkVznwJKOj474SZn4cmQhMVelNRWo3j/hPYOXTxoXhbekC/CEVhLlpj2QQ+2wC3LHwp
-	a1j9+3RUj8sSUHDYHRtBMP4yyde6penU1CjEFsOo/PDUInPv+I6CDMNmZqYL/+P0YDhpKGDpesk
-	srLhzXxp4nogZQzdtLXzGzOsV3XtKAfVvcnkBm4SEt3NlCsqIQBCs2JHPgGKYG3UJ1GRig==
-X-Google-Smtp-Source: AGHT+IF0JTdKEiQNMaj66CfUpe4bYsSfOE4aj8Z5HReCu3uR/s99pqqLX+H/2CSyYdeTC/sC6+XkdA==
-X-Received: by 2002:a5d:5f96:0:b0:391:2fe3:24ec with SMTP id ffacd0b85a97d-3997f91072amr14239891f8f.14.1742902870048;
-        Tue, 25 Mar 2025 04:41:10 -0700 (PDT)
+        bh=LHH3q92f3jVI2cl1PwT0LmA+qhtDvCooULm9gmNkwck=;
+        b=o9g8NqibdvPx3kDX5eRIGiWhxWdHtw2R5e6ToqSn7OWL3XI5yaALpXbQQ+krr4zyDe
+         zm0j3F46m70Ud4hGgyF2mmSMAkxRV8nFcga45zjx9w3t3EXPu/69Oc7FQhdFDntgrQp0
+         O6IC6Be4ZGwA899PGaEX72ylqMqdH6wbh6LnNGiq+cvJRzpuhPheOlDtrfLnBio9RMSw
+         dNqx09DBznlGoZtv1vrRwHgehkvidWg9b/hbYGEIP/pHyPuu1LRLKRseto5OSJj4Ddwp
+         FzWntvoBHp4F8t/qaws24RpiQwG8w+UBKxOOy2AwP1QvCWJlwJPXaStzluMupgqUU92j
+         ss8g==
+X-Forwarded-Encrypted: i=1; AJvYcCWaEDF/jE2iYj8d6XSsSbsp/LB/yl40lA+UN1gYLBC064sFSdeVppbbXgbKxulezPfEme5i5/ez9SzE@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZ0l1yy5GGhpqOoUcLFVGgmGBkt0umZkas+1ILM68CYOvj/ikC
+	kqM4W4Bsd/ZeVzy5V2A7gsSzobTv3ccfDJnUrIjECNUgCCzz6vmqkGFNyf9d/90=
+X-Gm-Gg: ASbGncsSm/WMEeVqz0CLZldo/W7qFo4WTGn7amhIuAVN2w7XDT+URTMrfG3fvQyN7so
+	YgnONTPDjcpmtP8zpaJPJ5nAPjRrlQz0M3I6upaUyQyBbDmBn38uidzi7rdPFoPY8Rnxt+WmszQ
+	SuYGAMOIg3+twncj87yOd3rVpjXjHokz9bqRbRuLKCAXVte+yyMrFFOFq/fi3xV+VX1AoyA1WQo
+	s2MklWK42pP4OflpcPyV63MJubDY+T3lEPnaq6aKSTJfY+Q9BiRQNLGLDrULSF/sbMl9DEYr6iw
+	2rHn+WhFnVbd2eKRGYQ9kmbRujPG2xf7zXJCap+9fhnITsI77R6LWghr98xChCvDs9flBg==
+X-Google-Smtp-Source: AGHT+IEMuI1g0ZU02+lOgr8fYYCjQ7o8X4OMjftQEoVT08K9es8AYYCt3BGby4k10kE/8HnyILx4Lg==
+X-Received: by 2002:a5d:59a6:0:b0:390:f6aa:4e72 with SMTP id ffacd0b85a97d-3997f8fabdbmr14153166f8f.18.1742902871718;
+        Tue, 25 Mar 2025 04:41:11 -0700 (PDT)
 Received: from localhost.localdomain ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3997f9a6326sm13213330f8f.29.2025.03.25.04.41.09
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3997f9a6326sm13213330f8f.29.2025.03.25.04.41.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Mar 2025 04:41:09 -0700 (PDT)
+        Tue, 25 Mar 2025 04:41:10 -0700 (PDT)
 From: srinivas.kandagatla@linaro.org
 To: peda@axentia.se,
 	broonie@kernel.org,
@@ -94,10 +94,11 @@ Cc: ivprusov@salutedevices.com,
 	linux-kernel@vger.kernel.org,
 	johan+linaro@kernel.org,
 	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 	Christopher Obbard <christopher.obbard@linaro.org>
-Subject: [PATCH v5 5/6] ASoC: codecs: wcd938x: add mux control support for hp audio mux
-Date: Tue, 25 Mar 2025 11:40:57 +0000
-Message-Id: <20250325114058.12083-6-srinivas.kandagatla@linaro.org>
+Subject: [PATCH v5 6/6] arm64: dts: qcom: x1e78100-t14s: Enable audio headset support
+Date: Tue, 25 Mar 2025 11:40:58 +0000
+Message-Id: <20250325114058.12083-7-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20250325114058.12083-1-srinivas.kandagatla@linaro.org>
 References: <20250325114058.12083-1-srinivas.kandagatla@linaro.org>
@@ -111,124 +112,80 @@ Content-Transfer-Encoding: 8bit
 
 From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 
-On some platforms to minimise pop and click during switching between
-CTIA and OMTP headset an additional HiFi mux is used. Most common
-case is that this switch is switched on by default, but on some
-platforms this needs a regulator enable.
+On Lenovo ThinkPad T14s, the headset is connected via a HiFi mux to
+support CTIA and OMTP headsets. This switch is used to minimise pop and
+click during headset type switching.
 
-move to using mux control to enable both regulator and handle gpios,
-deprecate the usage of gpio.
+Enable the mux controls required to power this switch along with wiring up
+gpio that control the headset switching.
+
+Without this, headset audio will be very noisy and might see headset
+detection errors.
 
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Tested-by: Christopher Obbard <christopher.obbard@linaro.org>
 ---
- sound/soc/codecs/Kconfig   |  1 +
- sound/soc/codecs/wcd938x.c | 50 +++++++++++++++++++++++++++++---------
- 2 files changed, 39 insertions(+), 12 deletions(-)
+ .../qcom/x1e78100-lenovo-thinkpad-t14s.dtsi   | 25 +++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
-diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-index ee35f3aa5521..a2829d76e108 100644
---- a/sound/soc/codecs/Kconfig
-+++ b/sound/soc/codecs/Kconfig
-@@ -2226,6 +2226,7 @@ config SND_SOC_WCD938X
- 	tristate
- 	depends on SOUNDWIRE || !SOUNDWIRE
- 	select SND_SOC_WCD_CLASSH
-+	select MULTIPLEXER
+diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
+index afea82616bc4..34d1d8927484 100644
+--- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
+@@ -41,6 +41,7 @@ wcd938x: audio-codec {
+ 		qcom,tx-device = <&wcd_tx>;
  
- config SND_SOC_WCD938X_SDW
- 	tristate "WCD9380/WCD9385 Codec - SDW"
-diff --git a/sound/soc/codecs/wcd938x.c b/sound/soc/codecs/wcd938x.c
-index dfaa3de31164..209d0b64c8be 100644
---- a/sound/soc/codecs/wcd938x.c
-+++ b/sound/soc/codecs/wcd938x.c
-@@ -19,6 +19,7 @@
- #include <linux/regmap.h>
- #include <sound/soc.h>
- #include <sound/soc-dapm.h>
-+#include <linux/mux/consumer.h>
- #include <linux/regulator/consumer.h>
+ 		reset-gpios = <&tlmm 191 GPIO_ACTIVE_LOW>;
++		mux-controls = <&us_euro_mux_ctrl>;
  
- #include "wcd-clsh-v2.h"
-@@ -178,6 +179,8 @@ struct wcd938x_priv {
- 	int variant;
- 	int reset_gpio;
- 	struct gpio_desc *us_euro_gpio;
-+	struct mux_control *us_euro_mux;
-+	unsigned int mux_state;
- 	u32 micb1_mv;
- 	u32 micb2_mv;
- 	u32 micb3_mv;
-@@ -3237,15 +3240,22 @@ static void wcd938x_dt_parse_micbias_info(struct device *dev, struct wcd938x_pri
+ 		vdd-buck-supply = <&vreg_l15b_1p8>;
+ 		vdd-rxtx-supply = <&vreg_l15b_1p8>;
+@@ -149,6 +150,16 @@ pmic_glink_ss1_con_sbu_in: endpoint {
+ 		};
+ 	};
  
- static bool wcd938x_swap_gnd_mic(struct snd_soc_component *component)
- {
--	int value;
--
--	struct wcd938x_priv *wcd938x;
--
--	wcd938x = snd_soc_component_get_drvdata(component);
-+	struct wcd938x_priv *wcd938x = snd_soc_component_get_drvdata(component);
-+	struct device *dev = component->dev;
-+	int ret;
- 
--	value = gpiod_get_value(wcd938x->us_euro_gpio);
-+	if (wcd938x->us_euro_mux) {
-+		mux_control_deselect(wcd938x->us_euro_mux);
-+		ret = mux_control_try_select(wcd938x->us_euro_mux, !wcd938x->mux_state);
-+		if (ret) {
-+			dev_err(dev, "Error (%d) Unable to select us/euro mux state\n", ret);
-+			return false;
-+		}
-+	} else {
-+		gpiod_set_value(wcd938x->us_euro_gpio, !wcd938x->mux_state);
-+	}
- 
--	gpiod_set_value(wcd938x->us_euro_gpio, !value);
-+	wcd938x->mux_state = !wcd938x->mux_state;
- 
- 	return true;
- }
-@@ -3261,11 +3271,24 @@ static int wcd938x_populate_dt_data(struct wcd938x_priv *wcd938x, struct device
- 		return dev_err_probe(dev, wcd938x->reset_gpio,
- 				     "Failed to get reset gpio\n");
- 
--	wcd938x->us_euro_gpio = devm_gpiod_get_optional(dev, "us-euro",
--						GPIOD_OUT_LOW);
--	if (IS_ERR(wcd938x->us_euro_gpio))
--		return dev_err_probe(dev, PTR_ERR(wcd938x->us_euro_gpio),
--				     "us-euro swap Control GPIO not found\n");
-+	wcd938x->us_euro_mux = devm_mux_control_get(dev, NULL);
-+	if (IS_ERR(wcd938x->us_euro_mux)) {
-+		if (PTR_ERR(wcd938x->us_euro_mux) == -EPROBE_DEFER)
-+			return -EPROBE_DEFER;
++	/* two muxes together support CTIA and OMTP switching */
++	us_euro_mux_ctrl: mux-controller {
++		compatible = "gpio-mux";
++		pinctrl-0 = <&us_euro_hs_sel>;
++		pinctrl-names = "default";
++		mux-supply = <&vreg_l16b_2p5>;
++		#mux-control-cells = <0>;
++		mux-gpios = <&tlmm 68 GPIO_ACTIVE_HIGH>;
++	};
 +
-+		/* mux is optional and now fallback to using gpio */
-+		wcd938x->us_euro_mux = NULL;
-+		wcd938x->us_euro_gpio = devm_gpiod_get_optional(dev, "us-euro", GPIOD_OUT_LOW);
-+		if (IS_ERR(wcd938x->us_euro_gpio))
-+			return dev_err_probe(dev, PTR_ERR(wcd938x->us_euro_gpio),
-+					     "us-euro swap Control GPIO not found\n");
-+	} else {
-+		ret = mux_control_try_select(wcd938x->us_euro_mux, wcd938x->mux_state);
-+		if (ret) {
-+			dev_err(dev, "Error (%d) Unable to select us/euro mux state\n", ret);
-+			return ret;
-+		}
-+	}
+ 	reserved-memory {
+ 		linux,cma {
+ 			compatible = "shared-dma-pool";
+@@ -604,6 +615,13 @@ vreg_l15b_1p8: ldo15 {
+ 			regulator-always-on;
+ 		};
  
- 	cfg->swap_gnd_mic = wcd938x_swap_gnd_mic;
- 
-@@ -3581,6 +3604,9 @@ static void wcd938x_remove(struct platform_device *pdev)
- 	pm_runtime_set_suspended(dev);
- 	pm_runtime_dont_use_autosuspend(dev);
- 
-+	if (wcd938x->us_euro_mux)
-+		mux_control_deselect(wcd938x->us_euro_mux);
++		vreg_l16b_2p5: ldo16 {
++			regulator-name = "vreg_l16b_2p5";
++			regulator-min-microvolt = <2504000>;
++			regulator-max-microvolt = <2504000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++		};
 +
- 	regulator_bulk_disable(WCD938X_MAX_SUPPLY, wcd938x->supplies);
- 	regulator_bulk_free(WCD938X_MAX_SUPPLY, wcd938x->supplies);
- }
+ 		vreg_l17b_2p5: ldo17 {
+ 			regulator-name = "vreg_l17b_2p5";
+ 			regulator-min-microvolt = <2504000>;
+@@ -1461,6 +1479,13 @@ rtmr1_default: rtmr1-reset-n-active-state {
+ 		bias-disable;
+ 	};
+ 
++	us_euro_hs_sel: us-euro-hs-sel-state {
++		pins = "gpio68";
++		function = "gpio";
++		bias-pull-down;
++		drive-strength = <2>;
++	};
++
+ 	usb1_pwr_1p15_reg_en: usb1-pwr-1p15-reg-en-state {
+ 		pins = "gpio188";
+ 		function = "gpio";
 -- 
 2.39.5
 
