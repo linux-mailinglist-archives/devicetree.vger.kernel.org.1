@@ -1,160 +1,164 @@
-Return-Path: <devicetree+bounces-160395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160397-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A205CA6E9F0
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 07:58:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85DEDA6EA09
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 08:03:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31F6116CFB6
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 06:58:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E46C16DF1E
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 07:03:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 291822153F4;
-	Tue, 25 Mar 2025 06:58:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7144E171E49;
+	Tue, 25 Mar 2025 07:03:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="CMn2VPv0"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="CJv01tMC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B93481F4C83
-	for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 06:58:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AB2A79F5;
+	Tue, 25 Mar 2025 07:03:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742885891; cv=none; b=lauBEbnRZi2Op0zDk62h96KaS03nNoeb+FaCHWDvVvqW3RNqUKha/OWmy/22O8yAQx44U4iTRGSIxbjuJAc4ylzS6lF3CQ+nzKgwVkOleustX1ZqiWnzOPUEbS2NGu42rzQZ+Mg3JFs426/wcYmv6fUiBteYjyC3XAy/f/Omg84=
+	t=1742886203; cv=none; b=qbTO/k95gi6loihYy7sOqiQm8fVQz13YkS5AmUjO3CUoQdl3Zyo0Poff79ohbY+CT9lLwzV5KuJz/gE96XhFoGwmIqL+Xrf6h7859aHNyMvXJ4vO6NDzwVqbD7MMqszsEyniwUBYmy1a/XSpXOHAIAEOO4UI1vSwIOGxUf2nagc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742885891; c=relaxed/simple;
-	bh=h0fHlaZMz5XtoUH8OETHCDfjpLG0nPB1YaUWxFkCW2k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=goE5aHSBloVai7Nw5CscpE2IGERN4T2DOZseeGsgBcK/Z+JDEcWkPLHmd7zCye3+7IGPwc5Okj6ScLrRfsXHg3X/+vFbYKwVW09c7qTDUwownISkEKgULKNWvQ4PK4b/SBuqeVUOq3RAXFnu4ykewBR14U9bexnyASR+W79Temk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=CMn2VPv0; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1742885887;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=19WP4WFqsV7qujfoRGQmqqeN7h9hu1fjTeGwGJQZMdQ=;
-	b=CMn2VPv0kfXBG9p7mG4vt2kG6ulZJpUKA9B0nEXJuz6kuXNMH7E0C14TMrA4gQdAO5LkLk
-	9Pu4bm1u0piPs029Jl5j8//Dj4jnME+3gp0I+8RYOIjtw02eO8X8Pm/CoufXhjdR3BvG93
-	RE8UL/3ma/9q3hGN9dQ5+0KRgDODx2Q=
-Received: from mx-prod-mc-04.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-83-qE_0gAprMS2WIAV1lbNLxA-1; Tue,
- 25 Mar 2025 02:58:04 -0400
-X-MC-Unique: qE_0gAprMS2WIAV1lbNLxA-1
-X-Mimecast-MFC-AGG-ID: qE_0gAprMS2WIAV1lbNLxA_1742885880
-Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id E98ED18DBA01;
-	Tue, 25 Mar 2025 06:57:58 +0000 (UTC)
-Received: from localhost (unknown [10.72.112.60])
-	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 6E607180B48C;
-	Tue, 25 Mar 2025 06:57:54 +0000 (UTC)
-Date: Tue, 25 Mar 2025 14:57:50 +0800
-From: Baoquan He <bhe@redhat.com>
-To: Dave Young <dyoung@redhat.com>
-Cc: Changyuan Lyu <changyuanl@google.com>, linux-kernel@vger.kernel.org,
-	graf@amazon.com, akpm@linux-foundation.org, luto@kernel.org,
-	anthony.yznaga@oracle.com, arnd@arndb.de, ashish.kalra@amd.com,
-	benh@kernel.crashing.org, bp@alien8.de, catalin.marinas@arm.com,
-	dave.hansen@linux.intel.com, dwmw2@infradead.org,
-	ebiederm@xmission.com, mingo@redhat.com, jgowans@amazon.com,
-	corbet@lwn.net, krzk@kernel.org, rppt@kernel.org,
-	mark.rutland@arm.com, pbonzini@redhat.com,
-	pasha.tatashin@soleen.com, hpa@zytor.com, peterz@infradead.org,
-	ptyadav@amazon.de, robh+dt@kernel.org, robh@kernel.org,
-	saravanak@google.com, skinsburskii@linux.microsoft.com,
-	rostedt@goodmis.org, tglx@linutronix.de, thomas.lendacky@amd.com,
-	usama.arif@bytedance.com, will@kernel.org,
-	devicetree@vger.kernel.org, kexec@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
-	linux-mm@kvack.org, x86@kernel.org
-Subject: Re: [PATCH v5 11/16] kexec: add config option for KHO
-Message-ID: <Z+JT7kx+sfPqfWFA@MiWiFi-R3L-srv>
-References: <20250320015551.2157511-1-changyuanl@google.com>
- <20250320015551.2157511-12-changyuanl@google.com>
- <CALu+AoS01QJ-H5Vpr378rbx==iRQLG0HajtMCUzDXRO75biCag@mail.gmail.com>
+	s=arc-20240116; t=1742886203; c=relaxed/simple;
+	bh=dNIt5sYZC1anGLFkE3oGd0CMQ6xc95Vd2TU1BQ1udGU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=a1dUY5PnCjrJb17kwfShBpuPj7CIKzBEoix2xWaqKdOYeJFLeQpsucfR+hXwfX00fgjsufGqBlwHg/aG+MGywA3mhiHPZNBgrE+KfHT0y+BXgKuQqDlC70V9LGWFWHHYGF72w4URRDU1p9O1RhUH3i6qWocT0nVHCj1O+6MfWb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=CJv01tMC; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52P1AEon012512;
+	Tue, 25 Mar 2025 08:02:51 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=Xvjv8Q6GMp8xbn4OSbtSrx
+	KyPI/KGWvibRYnGOJDWOI=; b=CJv01tMCtGSKD2G5rOTz3msPm3VlloZwlB8fsY
+	ynawRhU+8qr0iT3DTGa7apMhYfAt22kh1vG6p1LgUobDzXwQhtLp7n1+JpmiWOWS
+	0RlHckp+sOZRUANipL43Vz7dV8DgKwimMXoQoGWNsAw+WahgT1nr1OQltdcU7ppG
+	frHKSCvQwpaMLCWPbqzp6m7FmZXyufmpv+LtoORAOF5xgY/KmTPDGDfmKPo8Hyc+
+	kMXLDs3GlKHxw1rnwzuzBZeaZWRngG7ubNllw3xvlQ5qiiv8pQ6V95fyUgMHAV0Y
+	zm89nIth7q9JX2gQDFeLDVDGugiUvWkaPFj8Qowrykz6itOQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45hne5b0py-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 25 Mar 2025 08:02:51 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 2C8D040052;
+	Tue, 25 Mar 2025 08:01:06 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0D5E882E0C6;
+	Tue, 25 Mar 2025 07:59:39 +0100 (CET)
+Received: from localhost (10.130.77.120) by SHFDAG1NODE3.st.com (10.75.129.71)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 25 Mar
+ 2025 07:59:38 +0100
+From: Christian Bruel <christian.bruel@foss.st.com>
+To: <christian.bruel@foss.st.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
+        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
+        <bhelgaas@google.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
+        <p.zabel@pengutronix.de>, <johan+linaro@kernel.org>,
+        <cassel@kernel.org>, <quic_schintav@quicinc.com>
+CC: <fabrice.gasnier@foss.st.com>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v5 0/9 RESEND] Add STM32MP25 PCIe drivers
+Date: Tue, 25 Mar 2025 07:59:26 +0100
+Message-ID: <20250325065935.908886-1-christian.bruel@foss.st.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CALu+AoS01QJ-H5Vpr378rbx==iRQLG0HajtMCUzDXRO75biCag@mail.gmail.com>
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-25_03,2025-03-21_01,2024-11-22_01
 
-On 03/24/25 at 12:18pm, Dave Young wrote:
-> On Thu, 20 Mar 2025 at 23:05, Changyuan Lyu <changyuanl@google.com> wrote:
-> >
-> > From: Alexander Graf <graf@amazon.com>
-> >
-> > We have all generic code in place now to support Kexec with KHO. This
-> > patch adds a config option that depends on architecture support to
-> > enable KHO support.
-> >
-> > Signed-off-by: Alexander Graf <graf@amazon.com>
-> > Co-developed-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-> > Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-> > Co-developed-by: Changyuan Lyu <changyuanl@google.com>
-> > Signed-off-by: Changyuan Lyu <changyuanl@google.com>
-> > ---
-> >  kernel/Kconfig.kexec | 15 +++++++++++++++
-> >  1 file changed, 15 insertions(+)
-> >
-> > diff --git a/kernel/Kconfig.kexec b/kernel/Kconfig.kexec
-> > index 4d111f871951..57db99e758a8 100644
-> > --- a/kernel/Kconfig.kexec
-> > +++ b/kernel/Kconfig.kexec
-> > @@ -95,6 +95,21 @@ config KEXEC_JUMP
-> >           Jump between original kernel and kexeced kernel and invoke
-> >           code in physical address mode via KEXEC
-> >
-> > +config KEXEC_HANDOVER
-> > +       bool "kexec handover"
-> > +       depends on ARCH_SUPPORTS_KEXEC_HANDOVER && ARCH_SUPPORTS_KEXEC_FILE
-> > +       select MEMBLOCK_KHO_SCRATCH
-> > +       select KEXEC_FILE
-> > +       select DEBUG_FS
-> > +       select LIBFDT
-> > +       select CMA
-> > +       select XXHASH
-> > +       help
-> > +         Allow kexec to hand over state across kernels by generating and
-> > +         passing additional metadata to the target kernel. This is useful
-> > +         to keep data or state alive across the kexec. For this to work,
-> > +         both source and target kernels need to have this option enabled.
-> > +
-> 
-> Have you tested kdump?  In my mind there are two issues,  one is with
-> CMA enabled, it could cause kdump crashkernel memory reservation
-> failures more often due to the fragmented low memory.  Secondly,  in
+Changes in v5:
+   Address driver comments from Manivanna:
+   - Use dw_pcie_{suspend/resume}_noirq instead of private ones.
+   - Move dw_pcie_host_init() to probe
+   - Add stm32_remove_pcie_port cleanup function
+   - Use of_node_put in stm32_pcie_parse_port
+   - Remove wakeup-source property
+   - Use generic dev_pm_set_dedicated_wake_irq to support wake# irq
+   
+Changes in v4:
+   Address bindings comments Rob Herring
+   - Remove phy property form common yaml
+   - Remove phy-name property
+   - Move wake_gpio and reset_gpio to the host root port
+   
+Changes in v3:
+   Address comments from Manivanna, Rob and Bjorn:
+   - Move host wakeup helper to dwc core (Mani)
+   - Drop num-lanes=<1> from bindings (Rob)
+   - Fix PCI address of I/O region (Mani)
+   - Moved PHY to a RC rootport subsection (Bjorn, Mani)
+   - Replaced dma-limit quirk by dma-ranges property (Bjorn)
+   - Moved out perst assert/deassert from start/stop link (Mani)
+   - Drop link_up test optim (Mani)
+   - DT and comments rephrasing (Bjorn)
+   - Add dts entries now that the combophy entries has landed
+   - Drop delaying Configuration Requests
 
-kho scracth memorys are reserved much later than crashkernel, we may not
-need to worry about it.
-====================
-start_kernel()
-  ......
-  -->setup_arch(&command_line);
-     -->arch_reserve_crashkernel();
-  ......
-  -->mm_core_init();
-     -->kho_memory_init();
+Changes in v2:
+   - Fix st,stm32-pcie-common.yaml dt_binding_check	
 
-> kdump kernel dump the crazy scratch memory in vmcore is not very
-> meaningful.  Otherwise I suspect this is not tested under kdump.  If
-> so please disable this option for kdump.
+Changes in v1:
+   Address comments from Rob Herring and Bjorn Helgaas:
+   - Drop st,limit-mrrs and st,max-payload-size from this patchset
+   - Remove single reset and clocks binding names and misc yaml cleanups
+   - Split RC/EP common bindings to a separate schema file
+   - Use correct PCIE_T_PERST_CLK_US and PCIE_T_RRS_READY_MS defines
+   - Use .remove instead of .remove_new
+   - Fix bar reset sequence in EP driver
+   - Use cleanup blocks for error handling
+   - Cosmetic fixes
 
-Yeah, it's not meaningful to dump out scratch memorys into vmcore. We
-may need to dig them out from eflcorehdr. While it's an optimization,
-kho scratch is not big relative to the entire system memory. It can be
-done in later stage. My personal opinion.
+Christian Bruel (9):
+  dt-bindings: PCI: Add STM32MP25 PCIe Root Complex bindings
+  PCI: stm32: Add PCIe host support for STM32MP25
+  dt-bindings: PCI: Add STM32MP25 PCIe Endpoint bindings
+  PCI: stm32: Add PCIe Endpoint support for STM32MP25
+  MAINTAINERS: add entry for ST STM32MP25 PCIe drivers
+  arm64: dts: st: add PCIe pinctrl entries in stm32mp25-pinctrl.dtsi
+  arm64: dts: st: Add PCIe Rootcomplex mode on stm32mp251
+  arm64: dts: st: Add PCIe Endpoint mode on stm32mp251
+  arm64: dts: st: Enable PCIe on the stm32mp257f-ev1 board
+
+ .../bindings/pci/st,stm32-pcie-common.yaml    |  33 ++
+ .../bindings/pci/st,stm32-pcie-ep.yaml        |  67 +++
+ .../bindings/pci/st,stm32-pcie-host.yaml      | 112 +++++
+ MAINTAINERS                                   |   7 +
+ arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi |  20 +
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        |  58 ++-
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    |  21 +
+ drivers/pci/controller/dwc/Kconfig            |  24 +
+ drivers/pci/controller/dwc/Makefile           |   2 +
+ drivers/pci/controller/dwc/pcie-stm32-ep.c    | 420 ++++++++++++++++++
+ drivers/pci/controller/dwc/pcie-stm32.c       | 367 +++++++++++++++
+ drivers/pci/controller/dwc/pcie-stm32.h       |  16 +
+ 12 files changed, 1146 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/st,stm32-pcie-common.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/st,stm32-pcie-ep.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/st,stm32-pcie-host.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-stm32-ep.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-stm32.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-stm32.h
+
+-- 
+2.34.1
 
 
