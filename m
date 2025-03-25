@@ -1,127 +1,142 @@
-Return-Path: <devicetree+bounces-160653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56834A70647
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 17:12:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60E85A7066E
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 17:14:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8FC0E174168
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 16:11:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0ACAD3B6462
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 16:12:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 165B925D547;
-	Tue, 25 Mar 2025 16:10:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F25F25D1EA;
+	Tue, 25 Mar 2025 16:11:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WN6t+BOI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39C0E2620CF;
-	Tue, 25 Mar 2025 16:10:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 712061DF72C;
+	Tue, 25 Mar 2025 16:11:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742919022; cv=none; b=FgHK8FQY0jE31cZUbKIv0+z9Pah9hLVg59ynH98pttnT5MHzgx3IlznLF+EKvFoaeQcFSXRyzPFQ7k3tYFWAu2eylEjhw4PdKmpmNOdYeg6YZg9tMqnOrbMUH/bQ5Q5w9yVgu23Hk6j8o/65Ufn5TUf6RmsXK5h3cibgy1zRYVo=
+	t=1742919097; cv=none; b=A0r4X17s0GScrJLcTtfdXZ4k29O1DeDVsJt2U54Tu2YhLNUB7qaZulDUcyakkhfSCaOPVaToD5N2DYh3QAtyMmACBZGAE+x2Qw/isgTVAS42uRmjfDbtZmd+cQbGnkt8VWDvj2/x8A2qr9Agke3MBjceQh91xYnu/cU10RWZ8l4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742919022; c=relaxed/simple;
-	bh=9X8+BdaE/xBvIvdhgZKU7zUgebGzdB1/9tmvmtD19F0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=dMJruQF6u3vs57mvQmoRLiQ7I7RK2Rpj55joJwvg2dmHhHu53DJjRmNhD7bdR/5OGMEzBU8bav+wqeL87V4EsjDGrqOS+VWZBpndx0a4dze48F9i4CjviqUObept48NOYMtg73apI4HKJbyiZG1HPrJCx8n0ngwHyoCLdP7YRus=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: 4g+UsfcnT1mxP4lfWhQR9g==
-X-CSE-MsgGUID: uR6zJziwR/epM9vPh0GqQg==
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 26 Mar 2025 01:10:20 +0900
-Received: from superbuilder.administration.lan (unknown [10.226.93.92])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 8E2624013766;
-	Wed, 26 Mar 2025 01:10:17 +0900 (JST)
-From: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
-To: thierry.bultel@linatsea.fr
-Cc: linux-renesas-soc@vger.kernel.org,
-	geert@linux-m68k.org,
-	paul.barker.ct@bp.renesas.com,
-	Thierry Bultel <thierry.bultel.yh@bp.renesas.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v5 12/13] arm64: dts: renesas: Add initial support for renesas RZ/T2H eval board
-Date: Tue, 25 Mar 2025 17:09:00 +0100
-Message-ID: <20250325160904.2688858-13-thierry.bultel.yh@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250325160904.2688858-1-thierry.bultel.yh@bp.renesas.com>
-References: <20250325160904.2688858-1-thierry.bultel.yh@bp.renesas.com>
+	s=arc-20240116; t=1742919097; c=relaxed/simple;
+	bh=jyHGvmbnbdeWa7XIMdLa87iQlVfILdAjrFO/D3rTsrc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=G2ZRd+MQK1sqeRMam5BlEaqXlBcoPbwPDNIEZFH4bU8l5dzS+rHtZYIn2KeOKwwvuU7rwRjYLixohkr3Wg0aKFtEKb89NJVGjtgfurUQ9J5BRaaS8C8UzvTCs+9T4LRwTX/c7jOXaNV98GYuZFW89OMvig1grAz4vdWJ3FmuCIY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WN6t+BOI; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1742919096; x=1774455096;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=jyHGvmbnbdeWa7XIMdLa87iQlVfILdAjrFO/D3rTsrc=;
+  b=WN6t+BOI2ILhJi6g21x9bvapC6L7LHFFVgp1ERUNZqBBG31UH7CM7Cna
+   nXVwhTAlH/H121NjLL0zxE4pGl6KZu052JmGkq6rNkiF7/ioOrkCqQylK
+   2yM8SXDP03wUT8X/8nRFahSuG3aqcFuG2M0AijJ2uIoY3BfewBWCCqCKg
+   IBng2AnBWsd39EgwKwcUFjeCPLSrIfAPZj8vkTvoKKBpBV3aeTbHsiYM6
+   8Sbwd3GoyVz9koUeuHHXvGcQ4WCC2D927HGrENFfLBrZI+fcjI7cAFQYw
+   jhwa42MK/jHxB06S5mfKjgJJHmNaG8+mhnLCfSV0HnN3YN4OL7xgjTpym
+   w==;
+X-CSE-ConnectionGUID: pSXzvV05Qn2zyXvPpkPkqQ==
+X-CSE-MsgGUID: rFG9trlRRsSNTCZuSToYdg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11384"; a="61700132"
+X-IronPort-AV: E=Sophos;i="6.14,275,1736841600"; 
+   d="scan'208";a="61700132"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Mar 2025 09:11:33 -0700
+X-CSE-ConnectionGUID: PhWCsTrISQKn7IZdH+GpnA==
+X-CSE-MsgGUID: 3rwQhTSyRQ+NR+krREQSCA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,275,1736841600"; 
+   d="scan'208";a="124891739"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Mar 2025 09:11:29 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1tx6sA-00000005nW6-0GLN;
+	Tue, 25 Mar 2025 18:11:26 +0200
+Date: Tue, 25 Mar 2025 18:11:25 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kamel Bouhara <kamel.bouhara@bootlin.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 10/11] input: misc: Add support for MAX7360 rotary
+Message-ID: <Z-LVrdvKCBI5x2wy@smile.fi.intel.com>
+References: <20250318-mdb-max7360-support-v5-0-fb20baf97da0@bootlin.com>
+ <20250318-mdb-max7360-support-v5-10-fb20baf97da0@bootlin.com>
+ <Z9q0eaxhecN0kGKI@smile.fi.intel.com>
+ <D8PGXIKGXXK9.244NSFST6C0YD@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <D8PGXIKGXXK9.244NSFST6C0YD@bootlin.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Add the initial device tree for the RZ/T2H evaluation board.
+On Tue, Mar 25, 2025 at 04:56:20PM +0100, Mathieu Dubois-Briand wrote:
+> On Wed Mar 19, 2025 at 1:11 PM CET, Andy Shevchenko wrote:
+> > On Tue, Mar 18, 2025 at 05:26:26PM +0100, Mathieu Dubois-Briand wrote:
 
-Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
----
-Changes v4->v5: none
-Changes v3->v4: none
----
- arch/arm64/boot/dts/renesas/Makefile          |  1 +
- .../dts/renesas/r9a09g077m44-rzt2h-evk.dts    | 35 +++++++++++++++++++
- 2 files changed, 36 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
+...
 
-diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-index 928635f2e76b..ee1af560f5e6 100644
---- a/arch/arm64/boot/dts/renesas/Makefile
-+++ b/arch/arm64/boot/dts/renesas/Makefile
-@@ -148,6 +148,7 @@ dtb-$(CONFIG_ARCH_R9A09G011) += r9a09g011-v2mevk2.dtb
- 
- dtb-$(CONFIG_ARCH_R9A09G047) += r9a09g047e57-smarc.dtb
- 
-+dtb-$(CONFIG_ARCH_R9A09G077) += r9a09g077m44-rzt2h-evk.dtb
- dtb-$(CONFIG_ARCH_R9A09G057) += r9a09g057h44-rzv2h-evk.dtb
- 
- dtb-$(CONFIG_ARCH_RCAR_GEN3) += draak-ebisu-panel-aa104xd12.dtbo
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
-new file mode 100644
-index 000000000000..0fe3a08ca9c3
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
-@@ -0,0 +1,35 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+/*
-+ * Device Tree Source for the RZ/T2H Development EVK board
-+ *
-+ * Copyright (C) 2025 Renesas Electronics Corp.
-+ */
-+
-+/dts-v1/;
-+
-+#include "r9a09g077m44.dtsi"
-+
-+/ {
-+	model = "Renesas Development EVK based on r9a09g077m44";
-+	compatible = "renesas,rzt2h-evk", "renesas,r9a09g077m44", "renesas,r9a09g077";
-+
-+	aliases {
-+		serial0 = &sci0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&extal_clk {
-+	clock-frequency = <25000000>;
-+};
-+
-+&loco_clk {
-+	clock-frequency = <1000000>;
-+};
-+
-+&sci0 {
-+	status = "okay";
-+};
+> > > +	int val;
+
+Btw, this has to be unsigned to match the API.
+
+> > > +	int ret;
+> > > +
+> > > +	ret = regmap_read(max7360_rotary->regmap, MAX7360_REG_RTR_CNT, &val);
+> > > +	if (ret < 0) {
+> > > +		dev_err(&max7360_rotary->input->dev,
+> > > +			"Failed to read rotary counter\n");
+> > > +		return IRQ_NONE;
+> > > +	}
+
+> > > +	input_report_rel(max7360_rotary->input, max7360_rotary->axis,
+> > > +			 (int8_t)val);
+> >
+> > This is strange:
+> > 1) why casting to begin with?
+> > 2) why to C type and not kernel (s8) type?
+> 
+> I believe the cast is needed, as, while the value read with
+> regmap_read() is stored in an int, the underlying value is indeed a
+> signed 8 bits integer.
+> 
+> Without cast negative values will not be correct: -1 (0xFF) -> will be
+> interpreted as 255 (0x000000FF).
+
+With the above fix it makes sense, but it's not clear for the reader still.
+What you want is most likely to call sign_extend32().
+
 -- 
-2.43.0
+With Best Regards,
+Andy Shevchenko
+
 
 
