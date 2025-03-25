@@ -1,63 +1,61 @@
-Return-Path: <devicetree+bounces-160433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07442A6EB33
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 09:13:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B72DFA6EB50
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 09:17:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C60B16BCC5
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 08:13:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 810201893A18
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 08:17:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7867B1A5B86;
-	Tue, 25 Mar 2025 08:13:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB43D149E13;
+	Tue, 25 Mar 2025 08:17:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="baEVxmc3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RLa7zgvd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CC0B481C4;
-	Tue, 25 Mar 2025 08:13:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADD091EB5B;
+	Tue, 25 Mar 2025 08:17:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742890406; cv=none; b=rTWm1z6zb/OU9J2cuTdBYtIAOwplb5zDo3LG2M8BiGDnJssMswbbkc0VZ0FSaFgECmEsHLCpFGUEaH9XHlcd1ep8GXq3x3+rlJGUQ5CiflWD+wnBzeQmr6s2NR+LLCYRUHYxZbNYF9+Y4qIBHRHpJIpori+O1YH2Y44+VZJ5BFA=
+	t=1742890658; cv=none; b=hD38/+hD9NC42CzakoOPUr4EQFG4M00TGsHYSu7PxfADJFzsqcLZfEY3TIxckKZJSMGz4QlGzXg2NT/6xtGmG37OmXl0apoBK/EpflWx4ckbcPdk0pUjZg5GsIByGGxQ/0ZPY5m/nREAH+G5ToaJE5EZZfyaGTFF89cfvsv52YM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742890406; c=relaxed/simple;
-	bh=f6XJAegToS0M5tfF5z+5zMcVYoym5F06kRgni6qPdOA=;
+	s=arc-20240116; t=1742890658; c=relaxed/simple;
+	bh=gKNHMvunsf0QCn4x1vQ3ox9/4PDJk+WGGmXX91GKMJ4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GQ+/zidwAYNvyE1juDaub3ba0S5e1P5A0sJEHPupMoYH5lp07cE6QeSLseD/a+P2LNt0uJWQYYrSO9ZbkfaAG9LEoOymBV9ORSQaMwb7aWE0Fjro0FNMWMpQkeco1ogTTGiBptQu4reYAhr8jBymTtHATssxCY3r8x5rhwhbmhI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=baEVxmc3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB913C4CEE4;
-	Tue, 25 Mar 2025 08:13:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=XdR7GR6wy5xkUH1/tyHhyGo6ZyQJgM7Vgy3BVWi2sra0O1gxZELyp3bsVOGf8BubWtPHGXfvz9iAgvMv5sL6o7/vU2Pc7WCRSKPlvwsmdmx/j6ChN1+ci9r3mUNwMLGhDAAQo59UAomEU3hIimqF7jRydheabPQjPNOLlBM8IiE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RLa7zgvd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9D9AC4CEE4;
+	Tue, 25 Mar 2025 08:17:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742890405;
-	bh=f6XJAegToS0M5tfF5z+5zMcVYoym5F06kRgni6qPdOA=;
+	s=k20201202; t=1742890658;
+	bh=gKNHMvunsf0QCn4x1vQ3ox9/4PDJk+WGGmXX91GKMJ4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=baEVxmc3M4Wz1Zex6nUZ6qxP+swaMOjHIO3FB4/csR5/EO+pEs+wJiHME3ZnE1fSa
-	 D7wpUsUNVxOFeyCtB0DT4hcxGOHEF4tHVYaCVN9fIq3bmd6FUPMXcbY7u7gZw5xEd4
-	 QMd/uIbZSH4vmVvEj7vq9wu77t/i7XUBAJsMxIOofygKG9Q1Klsi8zveL878QqYVK0
-	 l++w4HGhe8xpU2Sl65wzo/lBvI9pkiFXERmljUUq6vecU+hn3XmFbdkhYfGzMdDmVc
-	 uWBe7eNddDEEDIJurJvEIQ5yFRquLENP+JbXs35afdO6OAJzQAoCCwGNwnSqcbN58w
-	 jve2gNPx5FYag==
-Date: Tue, 25 Mar 2025 09:13:22 +0100
+	b=RLa7zgvdSkMAFnp6pUvDe4zheddMlB3KScxqFwwHiqWiudTbwjalyl06DC+N0gO09
+	 KfRHtq2kXTyWdGKfDakdnxoWv/n/Yv8QRG1nkay8Mx2Tlkor0wux1/Y6Ur4Psm6Ves
+	 ZIh0DPL6tMZEsF1I+9DB70P5e+Ok/+PExt7iypFYv8e/z1ivFYYtHNvyYN59K7kVZ3
+	 HaAWuYlvtwtoCI08taIJjbsERK6msit7L4nZ30SuS8eONBm14wd+eiFSw56ka6Ik2z
+	 iOriMlNYQ7TOxD4FtDQ6U88woxQ8D/TRdAfLIjb1S7w30NW/fjCP0JqUbwaFQeLYeS
+	 2H7GPA9hHE+WA==
+Date: Tue, 25 Mar 2025 09:17:35 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Stephen Boyd <sboyd@kernel.org>, 
-	Conor Dooley <conor.dooley@microchip.com>, Daire McNamara <daire.mcnamara@microchip.com>, 
-	pierre-henry.moussay@microchip.com, valentina.fernandezalanis@microchip.com, 
-	Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>, 
-	Lee Jones <lee@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+To: Mike Looijmans <mike.looijmans@topic.nl>
+Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	Bjorn Helgaas <bhelgaas@google.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Thippeswamy Havalige <thippeswamy.havalige@amd.com>, 
 	linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v2 2/9] dt-bindings: soc: microchip: document the
- simple-mfd syscon on PolarFire SoC
-Message-ID: <20250325-quiet-waxbill-of-realization-675469@krzk-bin>
-References: <20250321-cuddly-hazily-d0ab1e1747b5@spud>
- <20250321-ramrod-scabby-a1869f9979b6@spud>
+Subject: Re: [PATCH v2 2/3] dt-bindings: PCI: xilinx-pcie: Add reset-gpios
+ for PERST#
+Message-ID: <20250325-victorious-silky-firefly-2a3cec@krzk-bin>
+References: <20250325071832.21229-1-mike.looijmans@topic.nl>
+ <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.7424060c-f116-40af-8bb3-d789f371b07a@emailsignatures365.codetwo.com>
+ <20250325071832.21229-2-mike.looijmans@topic.nl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,41 +64,42 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250321-ramrod-scabby-a1869f9979b6@spud>
+In-Reply-To: <20250325071832.21229-2-mike.looijmans@topic.nl>
 
-On Fri, Mar 21, 2025 at 05:22:35PM +0000, Conor Dooley wrote:
-> +title: Microchip PolarFire SoC Microprocessor Subsystem (MSS) sysreg register region
-> +
-> +maintainers:
-> +  - Conor Dooley <conor.dooley@microchip.com>
-> +
-> +description:
-> +  An wide assortment of registers that control elements of the MSS on PolarFire
-> +  SoC, including pinmuxing, resets and clocks among others.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: microchip,mpfs-mss-top-sysreg
-> +      - const: syscon
-> +      - const: simple-mfd
+On Tue, Mar 25, 2025 at 08:18:26AM +0100, Mike Looijmans wrote:
+> Introduce optional `reset-gpios` property to enable GPIO-based control
+> of the PCIe root port PERST# signal, as described in pci.txt.
 
-You need to list the children if you use simple-mfd. Commit msg
-mentioned clock controller, so where is it?
+Drop pci.txt, we don't use TXT bindings anymore.
+
+> 
+> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
+> ---
+> 
+> Changes in v2:
+> Add binding for reset-gpios
+
+So what was in v1? Empty patch?
 
 
-> +
-> +  reg:
+> 
+>  .../devicetree/bindings/pci/xlnx,axi-pcie-host.yaml          | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/xlnx,axi-pcie-host.yaml b/Documentation/devicetree/bindings/pci/xlnx,axi-pcie-host.yaml
+> index fb87b960a250..2b0fabdd5e16 100644
+> --- a/Documentation/devicetree/bindings/pci/xlnx,axi-pcie-host.yaml
+> +++ b/Documentation/devicetree/bindings/pci/xlnx,axi-pcie-host.yaml
+> @@ -28,6 +28,9 @@ properties:
+>            ranges for the PCI memory regions (I/O space region is not
+>            supported by hardware)
+>  
+> +  reset-gpios:
 > +    maxItems: 1
-> +
-> +  '#reset-cells':
-> +    description:
-> +      The AHB/AXI peripherals on the PolarFire SoC have reset support, so
-> +      from CLK_ENVM to CLK_CFM. The reset consumer should specify the
-> +      desired peripheral via the clock ID in its "resets" phandle cell.
-> +      See include/dt-bindings/clock/microchip,mpfs-clock.h for the full list
-> +      of PolarFire clock/reset IDs.
-> +    const: 1
+
+Why do you need it? It's already there, in PCI schemas, isn't it?
+
+Why is this patch needed?
 
 Best regards,
 Krzysztof
