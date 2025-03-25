@@ -1,135 +1,121 @@
-Return-Path: <devicetree+bounces-160509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A8C2A6FAC1
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 13:09:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3011A6FAD0
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 13:13:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C130189D583
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 12:05:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43DD318916E0
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 12:10:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8534D2571AA;
-	Tue, 25 Mar 2025 12:05:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C0B6256C76;
+	Tue, 25 Mar 2025 12:10:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EgWo8HPb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FrvZuadI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F4B01A08CA;
-	Tue, 25 Mar 2025 12:05:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBFE12566EE;
+	Tue, 25 Mar 2025 12:10:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742904308; cv=none; b=cV+aHkmi7/7IgLzQjG5xcpnWMyhdj8BCd5GzxkyR0rfblixyEO2i0FgP6n9kx0UP1S0qQC3kVL/iW0u/76ri8AX/cl7MEhireid7ghLX5/AWGKxgyT2dtZBmY2hUh7XLJySh9HxsO5hYowh6yx5WO0NjAXF0iIKdG3FvCDKBExQ=
+	t=1742904625; cv=none; b=nkdXvRrDvaAA9c57R9WsMuSzKbzPIspPp5fu11+FqVoquQVvFuwTM+dUy0oTxBT3HSyCUJ6invnkwre7V2IQ+UwUDCQO/8IrYBaeq/DVxnnzEYcGtg4e6F5BO+pddu8uJJ+nBGJQGi/AxaY1Pc9VKjyhZPtyId71lrV93JFgXVU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742904308; c=relaxed/simple;
-	bh=VtttEXZ2GQhd/EjSumSB8FVKCizb2lPQSL5nCkB1qzA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=heGdVrYFCzWC7uhyIeAV342DsJMXpAJmDuU5S5CakNQkyWXov9pAvAJ9Hc9nMI0B9nlA7NbNlnQKlrM8X/UrRo61CqbTqrnM6EdXBTNplHKcaPFYo4+1Ur6iFpgHNwABSfl95UA8WC1q3j6Ku84TI+k3rcOQIo8CuxetyvL5Nrc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EgWo8HPb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39808C4CEE4;
-	Tue, 25 Mar 2025 12:04:59 +0000 (UTC)
+	s=arc-20240116; t=1742904625; c=relaxed/simple;
+	bh=577OtHttfNDdYR7kQYikDLa9bCmDa4e0P1wEjJehElo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TKgEi3GGk9X9qbK2D/UyO11xdqmi6T7KRDJ7ZB7BJjT1hsHYO5Pvi3iH6rs9IqADZ44cisMprdRC6vARqvQdA4JTrncm4FbXAEdcpasbZAGLqHAX8TufhjIVpANR/np1vQsJNyvrS6SYSCN1J11EgGkJUZ4gvgh5z8VybA+FkxU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FrvZuadI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61318C4CEE4;
+	Tue, 25 Mar 2025 12:10:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742904307;
-	bh=VtttEXZ2GQhd/EjSumSB8FVKCizb2lPQSL5nCkB1qzA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EgWo8HPbb181I+UHyz7z812jRD6IIlaeRXQfoTyQI8b+QmM8RP2KFljTw4gZ7F0Be
-	 7RcjN0BFX2xLv3FamkhW03fD2F2zJjOfoaCqtY/3Xlyxz+hnXm+PiSSFEh2MJ99Yr5
-	 LokbWEP4cVt35Qd4ENAuI6+k/qtHYQmD6JfaZOI5mvSZMSnvs+lvgV9iF19Uqwisuw
-	 2fkTEi+vouMcJdQkRDG8i5KQNkp/JqPjgjmF/IsPKc0/oPkys8+TRVhPN0qRxC39TP
-	 owKqc0vwyQtZHneA9waLg3UM24kUOcxQad2E9V5xZPSMTkdKc4M6XxYJdegOlqykkV
-	 FWagIT7nlARdA==
-Message-ID: <93c9bc3d-7ad8-438e-966e-cd28a91540af@kernel.org>
-Date: Tue, 25 Mar 2025 13:04:57 +0100
+	s=k20201202; t=1742904624;
+	bh=577OtHttfNDdYR7kQYikDLa9bCmDa4e0P1wEjJehElo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FrvZuadIe2+4aPpaOAS6IwXC4faCLbVvZDlgSpVj/8LdaXU0l9YyHR88Wu5PDLH18
+	 X89FwMlnz2RlbbfS2xrh/X1G1GEJRypX+D8P6POLM2y7lauQucO01MBmUO9Q08Zm02
+	 o+FOn6DWHjeoaGqNb/ezr0eTtNFx+Jcrun9aB4t987ea2gwzT56e8owG+RZ0Q2Zz6a
+	 EKuWFxyHQjYDqtIEVYs/JCb0KTI11hK3Eaeklxmjqp6fcx7KvukwmJAU9bbRBiLofi
+	 xanWGChvu8ZkH5yLXkl2wEEVFYP/VEwORoBMnHZZyE1x4wM+Ssc4XjY7O/wkkO1Mou
+	 5hrWsxpOzmVaQ==
+Date: Tue, 25 Mar 2025 12:10:19 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Jon Hunter <jonathanh@nvidia.com>
+Cc: Vishwaroop A <va@nvidia.com>, krzk+dt@kernel.org, robh@kernel.org,
+	conor+dt@kernel.org, thierry.reding@gmail.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-tegra@vger.kernel.org, linux-spi@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: spi: Add DT schema for Tegra SPIDEV
+ controller
+Message-ID: <48248165-c800-484f-be62-7c48b3c6829b@sirena.org.uk>
+References: <20241126134529.936451-1-va@nvidia.com>
+ <20241126134529.936451-3-va@nvidia.com>
+ <a1278046-038e-4825-b029-1b478f28cb7c@sirena.org.uk>
+ <e95f870f-1309-4ac3-a16f-ce58b02dc817@nvidia.com>
+ <59ec100f-1915-447b-98fb-3cbe2ca53a1f@sirena.org.uk>
+ <925fe847-68b4-4689-832c-08f8de3dfeb1@nvidia.com>
+ <48f9c8c0-5cac-4812-8d06-501193be731b@sirena.org.uk>
+ <909f0c92-d110-4253-903e-5c81e21e12c9@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] arm: dts: Adjust the 'reg' range for imx287 L2 switch
- description
-To: Lukasz Majewski <lukma@denx.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Paolo Abeni <pabeni@redhat.com>,
- Jakub Kicinski <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>,
- davem@davemloft.net, Andrew Lunn <andrew+netdev@lunn.ch>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Richard Cochran <richardcochran@gmail.com>,
- netdev@vger.kernel.org, Maxime Chevallier <maxime.chevallier@bootlin.com>
-References: <20250325115736.1732721-1-lukma@denx.de>
- <20250325115736.1732721-4-lukma@denx.de>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250325115736.1732721-4-lukma@denx.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="LgORjx2xzCbCn3hU"
+Content-Disposition: inline
+In-Reply-To: <909f0c92-d110-4253-903e-5c81e21e12c9@nvidia.com>
+X-Cookie: Visit beautiful Vergas, Minnesota.
 
-On 25/03/2025 12:57, Lukasz Majewski wrote:
-> The current range of 'reg' property is too small to allow full control
-> of the L2 switch on imx287.
-> 
-> As this IP block also uses ENET-MAC blocks for its operation, the address
-> range for it must be included as well.
-> 
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+--LgORjx2xzCbCn3hU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Missing nxp or mxs.
+On Tue, Mar 25, 2025 at 10:36:29AM +0000, Jon Hunter wrote:
+> On 27/11/2024 17:31, Mark Brown wrote:
 
-Best regards,
-Krzysztof
+> > You can put 'spidev' in as the compatible and get the warning, we don't
+> > require specific compatibles if the Linux device ID is good enough.  If
+> > you genuinely just have bare wires you're probably able to cope with the
+> > warning.  If something is actually connected you should use the
+> > compatible for whatever that is, if spidev makes sense for it then
+> > that'd be OK to add to spidev.
+
+> We finally got back to this. Looks like just having 'spidev' as the
+> compatible does not work. Apparently, it use to work and yes you would get
+> the warning, but that no longer seems to be the case. I see a few others
+> have been doing similar things and hacking their device-trees in different
+> ways [0].
+
+Huh, OK.  I don't recall any deliberate SPI change for that.
+
+> I completely agree that ideally we would have a proper compatible string for
+> this because after all device-tree describes the hardware. One use-case that
+> we use is external loop back for verifying SPI by simply connecting MOSI to
+> the MISO. Would it be acceptable to have a compatible string for external
+> loopback connections?
+
+That sounds fine.
+
+--LgORjx2xzCbCn3hU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmfinSoACgkQJNaLcl1U
+h9AshQf+KwN8vInoOZVe4L+kGzKRjyLwMOBbHyB1kfYXH5JIlQUOQFJWRku/N/UG
+tDBORCwZMXcFDJ349OftGFT1cT/eKyHcwNZuGuw0jNoOSeiMHnqkoIWrSh/6P4wd
+0RD74H8cb/+jYFl01jd7WIBR/sUGV1vfInkA0RIJqaS7ke8DijsF5KnnVn+R6Oh8
+82WqEwf5sNrk9mz4cW4VjibyK63iniaP27Kejt8HLXUUg94unJCdZfw84/6bBV8P
+ojsYa9uotV2AqJW+hjuq9rb13l2oGhIkFeBrm8aZk4gYpk8NzFfzzFWiHmOCQNtJ
+m5tZt/5YfJAULbaj9956RXHtlQoxGQ==
+=gKll
+-----END PGP SIGNATURE-----
+
+--LgORjx2xzCbCn3hU--
 
