@@ -1,131 +1,93 @@
-Return-Path: <devicetree+bounces-160431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B4E6A6EB16
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 09:07:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDB5EA6EB28
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 09:11:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 47809170D73
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 08:04:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7CF6016B8F1
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 08:11:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAAAF1A5BA6;
-	Tue, 25 Mar 2025 08:03:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75921254866;
+	Tue, 25 Mar 2025 08:11:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kodc+eER"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PMAY3ru9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93A84D530;
-	Tue, 25 Mar 2025 08:03:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48AEA1D7E37;
+	Tue, 25 Mar 2025 08:11:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742889815; cv=none; b=PB9BO/3tuvR1NVxXhN9AnxVZxvY1YnFf80+w+Bp7kJtt1MYK+MQXsYlbkhqB/WA03FkzUSP2+Kp6iNWJ5WW2h+VETHFEXnex1OF61e5J84o6F0qFnS+mnjEOw3GAzWS9Kbnla/Kbn2nxyp78r9YJzg8ni65J22ImdxMr4lEvgCo=
+	t=1742890278; cv=none; b=XNJpnjYOIQIrA+/tb7RXG2snmE/wvkMgg8TwYpBIojibXSsN50OPrgMoO8VZFtS/28rM9+2VNKVEJbj+syN7LGLjC/PdDqUOB83hN5VYrao5ynefxR3yVI7nfE3W85ZUUQPXZ4MX/jv1QDNNIbBy8dirL1+VFtepFdQuEv0OUTg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742889815; c=relaxed/simple;
-	bh=9uUKGyUB0WQ/1kbUYVgNq2hE+kFTuC/cc2gC83yJOkY=;
-	h=Content-Type:Date:Message-Id:Cc:From:To:Subject:References:
-	 In-Reply-To; b=hroUS6pEGPGhrD0KatLtLr8DFCpHqdhrEDtIAvMa9F1yppQ0V41m6iKAz3P3uTFcCAqZWEgvWT9sfNTbdxPtYCwEDPFh7Yw6FtpAq3nCPFv7aRuAU/Zd+53U/f4NO1SUHssPMRIAOzouIvoRo5Zq1tPPZliyNi9QLUSUu2nkAxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kodc+eER; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 953A7C4CEE4;
-	Tue, 25 Mar 2025 08:03:34 +0000 (UTC)
+	s=arc-20240116; t=1742890278; c=relaxed/simple;
+	bh=sqdqt6cZvQDX0oVFnEsMmomrp/59fMvqIHre9ETCDls=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rQUMpR9nY3kN8HybncffTN0na42KPN2dfVJDDHUEGSQHpJ48IrFT4FoLweSv7wA2YU/ZuPoy37qqm1p5YTLK9kH9EHiOW67zpVtIICcOPOpr4lP9Sx7k4i6YR3vKn/woyVbNmWHFBqLzP2V98AI35kDduPzYZRpLtxMIKszPrkk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PMAY3ru9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E849C4CEED;
+	Tue, 25 Mar 2025 08:11:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742889815;
-	bh=9uUKGyUB0WQ/1kbUYVgNq2hE+kFTuC/cc2gC83yJOkY=;
-	h=Date:Cc:From:To:Subject:References:In-Reply-To:From;
-	b=Kodc+eERFMSW0DHCjw1LRCw7LRDA8mQLSe1nD3GDSytmcvL3x8QfuNtRbDq0yGo7t
-	 f9Xz3egtGUINOb2zZgHQd40Y6te1bC3aQBYV665ODmT/MDdFXPcQgMttgZuFCmLhco
-	 HJan0DBnE8h5S0Uaq4exfLD6uZC7dMtoqmlggddy/azZCWjxi2ZO9BdVGWjHa2d8Nb
-	 IHcOrlQyyiUgYnhjBLwTbakyU44UGtmAh+5T2j1xJjdPV8Xad2t8WNW5oqbPmaIRcG
-	 mZJ6MDiyhPC2aWkwQjab8wlKiLbVc5uhYLvWe9kGwxenov/0RticZUeWfnaP47GS/r
-	 XU0osaqiRBWiQ==
-Content-Type: multipart/signed;
- boundary=749e0a89a59d4b144def041172d41866f10aeaa2d8bd591b89238716dc11;
- micalg=pgp-sha384; protocol="application/pgp-signature"
-Date: Tue, 25 Mar 2025 09:03:30 +0100
-Message-Id: <D8P6VHQPKLTO.17D0D63R63AGI@kernel.org>
-Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
- Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
- "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, "Mark Brown"
- <broonie@kernel.org>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, "Danilo Krummrich"
- <dakr@kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
- <linux-input@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>
-From: "Michael Walle" <mwalle@kernel.org>
-To: "Andy Shevchenko" <andriy.shevchenko@intel.com>, "Mathieu Dubois-Briand"
- <mathieu.dubois-briand@bootlin.com>
-Subject: Re: [PATCH v5 06/11] gpio: regmap: Allow to allocate regmap-irq
- device
-X-Mailer: aerc 0.16.0
-References: <20250318-mdb-max7360-support-v5-0-fb20baf97da0@bootlin.com>
- <20250318-mdb-max7360-support-v5-6-fb20baf97da0@bootlin.com>
- <D8K23TCWC5TO.3T1YPKL3G0OY5@kernel.org>
- <D8KYF2DZOBT4.1337YU51E0ZKH@bootlin.com>
- <Z9v0Mv6hYna3Znq8@smile.fi.intel.com>
-In-Reply-To: <Z9v0Mv6hYna3Znq8@smile.fi.intel.com>
+	s=k20201202; t=1742890276;
+	bh=sqdqt6cZvQDX0oVFnEsMmomrp/59fMvqIHre9ETCDls=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PMAY3ru9tqbAtQHP+Mmh0vHI9ITvVoixjATT8q9BGmYBsUbdiuyw5Hx/u0kdIZspb
+	 U27ZCeYIB2w5HMp6W+6gkT79t/2g2nIxcQqN028eqrj29zXDfVu61sGpa6aHVSWe4Y
+	 flDNs8AMn7f7tmMYkzsjJSqdKPR2vZNhoJESVKcJeAEQ7rg0/jT+h8KXT89mTu5e8Q
+	 p1/VI/ALO8ukV0nhSKs42FfLUUQEn3LL8Umu8U5uIJnhIrQAKUoQ5zhqVTGoGYcSQD
+	 cXqGW983DM3/cNO5YhMxxWQxAbDdgCU4QOIJnWbP5ZtLbJ1gO5a4QaWPp7SVkrW+Ua
+	 7iGQ0CbFBtpBw==
+Date: Tue, 25 Mar 2025 09:11:13 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Stephen Boyd <sboyd@kernel.org>, 
+	Conor Dooley <conor.dooley@microchip.com>, Daire McNamara <daire.mcnamara@microchip.com>, 
+	pierre-henry.moussay@microchip.com, valentina.fernandezalanis@microchip.com, 
+	Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>, 
+	Lee Jones <lee@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH v2 1/9] dt-bindings: mfd: syscon document the
+ control-scb syscon on PolarFire SoC
+Message-ID: <20250325-analytic-axolotl-of-prestige-e82aff@krzk-bin>
+References: <20250321-cuddly-hazily-d0ab1e1747b5@spud>
+ <20250321-idiom-remedial-daeddab1dcd8@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250321-idiom-remedial-daeddab1dcd8@spud>
 
---749e0a89a59d4b144def041172d41866f10aeaa2d8bd591b89238716dc11
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+On Fri, Mar 21, 2025 at 05:22:34PM +0000, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+> 
+> The "control-scb" region, contains the "tvs" temperature and voltage
+> sensors and the control/status registers for the system controller's
+> mailbox. The mailbox has a dedicated node, so there's no need for a
+> child node describing it, looking the syscon up by compatible is
+> sufficient.
+> 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> v2:
+> add the control-scb syscon here too, since it doesn't have any children.
+> ---
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-Hi,
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> > > Also, what is the advantage of this? Your caller doesn't have to
-> > > call devm_regmap_add_irq_chip_fwnode(), but on the flip side you
-> > > have to cram all its parameters in the gpio_regmap config. I'd like
-> > > to keep that small and simple (but still extensible!). IMHO just
-> > > setting the irq_domain is enough to achieve that.
-> >=20
-> > This was a request from Andy on my previous series.
->
-> The benefit is deduplication of a lot of code. You may consider it the sa=
-me as
-> GPIO library does with IRQ chip. This is just the same on a different lev=
-el.
+Best regards,
+Krzysztof
 
-I'd say "a lot of code" is slightly exaggerated :-) I was hesitant
-because it sounded like a one-off for the regmap_irq support. There
-could theoretically be other irq_domain providers (I think).
-
-I just had a quick look at all the gpio_regmap drivers and they all
-use regmap_irq. So maybe it's fair to say that one could be directly
-supported within gpio_regmap.
-
-> Besides the driver in this series, I would think of other GPIO drivers th=
-at
-> are not (yet) converted to regmap (partially because of this is being abs=
-ent)
-> or existing drivers, if any, that may utilise it.
-
-Yes probably all of the existing ones :)
-
--michael
-
---749e0a89a59d4b144def041172d41866f10aeaa2d8bd591b89238716dc11
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCZ+JjUxIcbXdhbGxlQGtl
-cm5lbC5vcmcACgkQEic87j4CH/gNlQF8DdstlMCMTWZP9/iSY2OUBfTMuiNEdE5N
-5Y/+ME1vDpDuwVKXM4WXbNULrK03UtiRAX0b4ebT46pIKOxwJjAhAvI6T8PQHvSq
-oqWoCmmSSQOWBm3LttqGq0dFLTDltZapkuQ=
-=mHti
------END PGP SIGNATURE-----
-
---749e0a89a59d4b144def041172d41866f10aeaa2d8bd591b89238716dc11--
 
