@@ -1,233 +1,158 @@
-Return-Path: <devicetree+bounces-160515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ABEEA6FE49
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 13:52:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D08E3A6FF91
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 14:06:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9EAA3BDEA2
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 12:46:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C6D3C7A6814
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 13:00:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B63D27D762;
-	Tue, 25 Mar 2025 12:24:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24A70267B00;
+	Tue, 25 Mar 2025 12:30:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s+/0HeFV"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="B7z/Rtql"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB0012571D1;
-	Tue, 25 Mar 2025 12:24:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90005267AE9
+	for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 12:30:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742905469; cv=none; b=ZtabhQvZpK7rLxUHnhOZL/JmtmdWgkxItI7QJfJJFl9Q4iLuMqyTSEp7tWAV7hQ2PVnq1hyPOrVRRUB7ZSOBlYVHurxuE98vSzlqc2Uxq+pI4ljXZD5JSOaLf9kM9wZt3Yfo44xoPtANn99l+hbAP+GeR0J+hmgFXhKLIyIq21c=
+	t=1742905839; cv=none; b=uJ0PFW5pYY1NEXmcUzQo2xCGZklji+tRBV7zvL46yoq1K0o/oxlDwyegowiD7BwY/QC7TXcQ12Ch91HA9ddoIIdXuhCEKKVYVo/OZMXGz7XcgVAQ7WyKbJ19rCRg1KWNOnjd8wya8MZQithVsA3oQX0ARJAFanQiYZ7IDqAMSEc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742905469; c=relaxed/simple;
-	bh=Mf0PY1BZwER+HJ9Mbh8TvIu8FULZZyssZyyQhg3Lxog=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G0canlWlTc9P+7pQCEAUjUwByCWEFW9FKshssW3cZmj61qMtYL2g1zp6/rX8KT0YKSZIDbayC1fN8cpJUw1Yughk6iK1s6oxlv7R12NReei1vEUAOy5n73C4txiFAwW1Xsi2sD/GGGgrUCj+lo51A/kvJNCT8jONa3Pj1C3Yxgs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s+/0HeFV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EB37C4CEE9;
-	Tue, 25 Mar 2025 12:24:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742905468;
-	bh=Mf0PY1BZwER+HJ9Mbh8TvIu8FULZZyssZyyQhg3Lxog=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=s+/0HeFVYw6E9ENxuZrurwBQZjTKxbCYZUpzZpQQkhJ/91XayRTQsrh0ZrPcxL6VT
-	 kWPsswaWOu92ibYtKPVQ8cCX8tI/AovpWLUHxbRfI0/LYO+BNEKvw0jz9tSM+iNekY
-	 vYO8pjYDmfb/z5KEqYkNLmTBUw5TNSgx7s3Tm+/YAcmPn6gD38V4dkw/SWkZ+YlcxW
-	 su7X/NDNRXtlVjRTXmyVRJXFZaFDSzVdX/xcyiKo4eSPgyWNkviNI88lTVQL8Pypxt
-	 ZQYp+1CfBBYtXUeraYsyNCniBCJqLg9oYiWYeeJrfpwq4Grdag9K+D7WLkJGrdzDGX
-	 yL7UoRVqqlcPQ==
-Message-ID: <bf6d066c-f0dd-471a-bb61-9132476b515a@kernel.org>
-Date: Tue, 25 Mar 2025 13:24:16 +0100
+	s=arc-20240116; t=1742905839; c=relaxed/simple;
+	bh=EWJKXkB8LgOYgPO2GqjsxkANuQt2ed1jlqMbsU/LlwI=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=CFkYqP8RqyjGeHYs3OH5TlVBP1W+rs7WYz2vnO9NnobE3wMQGulSKLzhHQ6UIOq/6fAFV01iBhhz1Ah86eLBDqgqAjH5FsHWU80z5Z2nvE1WT7IerqFWxLfFcoH0clWfY8OQ+BHbpyAlU+PQ+e6cQNyDBCyo3lrBAEjDiZ0qOCo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=B7z/Rtql; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52P5vX6o024750
+	for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 12:30:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:in-reply-to:message-id
+	:mime-version:references:subject:to; s=qcppdkim1; bh=/EQM6DEoDUu
+	6zxmdeqRLQ9xyT8MDYjKcZBBXwIJ855Y=; b=B7z/RtqluDa1rImIos/tyMn+Tt/
+	YhNGPX6sxI4vRWKSlSTbR/BNhIKdpOsdgqjrNozsWKFozs8fKQczvvmjgFfJ23KQ
+	GX5N74aCFVJ5+9Mn+UTULOhThkXvMC+BtSfbpKSr6I3vXJaa02wzH7M4IAn96yFF
+	HtvQ46Lygqt7/it1K3qOK+KUo6UIW+0A3CrFU7sW2wlM4kTtNgn8YDCy30hszN11
+	rtHzW4ts8HN9erkSmOEwbPTQJq9hb25988OUh4CIPuHQBhS0VdcKtn0IfhQzPqkM
+	pkBCFpHvBloXhHIhvZll/XXR7f1KELvsUdO/zynaphcX/NZBBR5GuHJ1PxQ==
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45k7qjbd2k-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 12:30:36 +0000 (GMT)
+Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-2ff7f9a0b9bso9637196a91.0
+        for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 05:30:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742905833; x=1743510633;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/EQM6DEoDUu6zxmdeqRLQ9xyT8MDYjKcZBBXwIJ855Y=;
+        b=Qy2thFZka/Th2S70y4e/nDRNX5Ojrn/drKvvzRSd3uUss33HUAGR7TGURHEnVH4FTq
+         pT3+Ci4oJ1B27aWv3SarpgzcvoBaEVKoXSAIQEpzr7H7H7qdgJa3Xek2blCaMjAE/5rW
+         u76JUWdLQlPIDctnOCaInp5wuKLZHgGk5Pwen7RlmdUslf1sj3NfMC5NqvykaaVpAw/4
+         s68Rbwky8LnX7kYsuX+pjd+IYqsFyaqzRANuN5ljfVqNvkw1+ki7UNDI1Pu0GLFMqgl9
+         Ou95sz9LMp/Xn1LKQ7KiFHrtGZHUF5NszxB6Bkf1QVasmllA1iNnADzzU15jWsHdwc+e
+         CB2g==
+X-Forwarded-Encrypted: i=1; AJvYcCXoPRFoNSigx7kdOsJ11d35sw0jHngxsdygOBeFRPW5TWydML/W6tsH4HAdJi3tdmRiD3jh157lx4Ez@vger.kernel.org
+X-Gm-Message-State: AOJu0YwEO6ODmipjeHotmjhwiTdECstd7QJrAIMdv4veNDv8tDTpR/Te
+	tSYUA4En7mtysW9k209/UdOI4O77W974bOVoT/0Ylwb8qX+fkLYT59pMl9R8xdu2mrrmgBD7lIj
+	vrf0fO9Kn5m4VOP12TrBPEe1OCWXaIRzAefv9QYKNymYhO/3hkqd899wTnBNp
+X-Gm-Gg: ASbGncukD6ucaCcAQJVl4jnkGWeO9ng4w7FlJcLF7w0gwGFfk9KzYZFMPkFDe2i5Zae
+	VfeCWFV92bVILC6ULyrLudZbYl1ttWD3IowfDPnZGyVS3U2mkqYMc74OnreM7hwOA9JeX2m5/5K
+	1+MGMdhdTm6/8bL7V9MCV4+eLv4y/jnmiWBoZVRZZ7mBhYKYUdT5YvI/ng71Lg7OFil6F8TKLYD
+	s3qfDJEtfIDrKAa4H4NvnX/jz2+RtSzwGMacXZNSFGplRcp8dH8VH8enaq0w9hpl/Qf0g6cVLxC
+	pWwTGWjje9HEA0mzyPH+nNKX1coTHTmlUsRbZ+hmjNm2
+X-Received: by 2002:a05:6a00:1301:b0:736:5e28:cfba with SMTP id d2e1a72fcca58-739059ffb1amr28507109b3a.18.1742905832867;
+        Tue, 25 Mar 2025 05:30:32 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHouuf4m/7aas0Ea6VvKqkVXtocGxmnrkYVDOh+y2Z/ngsR4dy9YmGQThpYoaWuqqdjbhek2w==
+X-Received: by 2002:a05:6a00:1301:b0:736:5e28:cfba with SMTP id d2e1a72fcca58-739059ffb1amr28507042b3a.18.1742905832325;
+        Tue, 25 Mar 2025 05:30:32 -0700 (PDT)
+Received: from hu-prashk-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7390618e4b6sm9987391b3a.180.2025.03.25.05.30.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Mar 2025 05:30:31 -0700 (PDT)
+From: Prashanth K <prashanth.k@oss.qualcomm.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prashanth K <prashanth.k@oss.qualcomm.com>
+Subject: [PATCH v1 2/5] arm64: dts: qcom: sm8350: Add snps,dis_u3_susphy_quirk
+Date: Tue, 25 Mar 2025 18:00:16 +0530
+Message-Id: <20250325123019.597976-3-prashanth.k@oss.qualcomm.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250325123019.597976-1-prashanth.k@oss.qualcomm.com>
+References: <20250325123019.597976-1-prashanth.k@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] dt-bindings: net: Add MTIP L2 switch description
- (fec,mtip-switch.yaml)
-To: Lukasz Majewski <lukma@denx.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Paolo Abeni <pabeni@redhat.com>,
- Jakub Kicinski <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>,
- davem@davemloft.net, Andrew Lunn <andrew+netdev@lunn.ch>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Richard Cochran <richardcochran@gmail.com>,
- netdev@vger.kernel.org, Maxime Chevallier <maxime.chevallier@bootlin.com>
-References: <20250325115736.1732721-1-lukma@denx.de>
- <20250325115736.1732721-3-lukma@denx.de>
- <2bf73cc2-c79a-4a06-9c5f-174e3b846f1d@kernel.org>
- <20250325131507.692804cd@wsk>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250325131507.692804cd@wsk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: CN4cNgRSGZVIfOzx1ZcxgmWLAN5a8XFF
+X-Proofpoint-GUID: CN4cNgRSGZVIfOzx1ZcxgmWLAN5a8XFF
+X-Authority-Analysis: v=2.4 cv=feOty1QF c=1 sm=1 tr=0 ts=67e2a1ec cx=c_pps a=0uOsjrqzRL749jD1oC5vDA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17 a=Vs1iUdzkB0EA:10 a=EUspDBNiAAAA:8 a=tc1TWAvYerzeY2VvnAsA:9 a=mQ_c8vxmzFEMiUWkPHU9:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-25_05,2025-03-25_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ adultscore=0 clxscore=1011 phishscore=0 impostorscore=0 bulkscore=0
+ lowpriorityscore=0 malwarescore=0 suspectscore=0 mlxscore=0
+ mlxlogscore=793 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503250088
 
-On 25/03/2025 13:15, Lukasz Majewski wrote:
-> Hi Krzysztof,
-> 
->> On 25/03/2025 12:57, Lukasz Majewski wrote:
->>> This patch provides description of the MTIP L2 switch available in
->>> some NXP's SOCs - imx287, vf610.
->>>
->>> Signed-off-by: Lukasz Majewski <lukma@denx.de>
->>> ---
->>>  .../bindings/net/fec,mtip-switch.yaml         | 160
->>> ++++++++++++++++++  
->>
->> Use compatible as filename.
-> 
-> I've followed the fsl,fec.yaml as an example. This file has description
-> for all the device tree sources from fec_main.c
+During device mode initialization on certain QC targets, before the
+runstop bit is set, sometimes it's observed that the GEVNTADR{LO/HI}
+register write fails. As a result, GEVTADDR registers are still 0x0.
+Upon setting runstop bit, DWC3 controller attempts to write the new
+events to address 0x0, causing an SMMU fault and system crash.
 
+This was initially observed on SM8450 and later reported on few
+other targets as well. As suggested by Qualcomm HW team, clearing
+the GUSB3PIPECTL.SUSPHY bit resolves the issue by preventing register
+write failures. Address this by setting the snps,dis_u3_susphy_quirk
+to keep the GUSB3PIPECTL.SUSPHY bit cleared. This change was tested
+on multiple targets (SM8350, SM8450 QCS615 etc.) for over an year
+and hasn't exhibited any side effects.
 
-That's a 14 year old binding, so clear antipattern.
+Signed-off-by: Prashanth K <prashanth.k@oss.qualcomm.com>
+---
+ arch/arm64/boot/dts/qcom/sm8350.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> 
-> I've considered adding the full name - e.g. fec,imx287-mtip-switch.yaml
-> but this driver could (and probably will) be extended to vf610.
+diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+index 5f93cae01b06..a4fc3657ff87 100644
+--- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+@@ -2651,6 +2651,7 @@ usb_1_dwc3: usb@a600000 {
+ 				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
+ 				iommus = <&apps_smmu 0x0 0x0>;
+ 				snps,dis_u2_susphy_quirk;
++				snps,dis_u3_susphy_quirk;
+ 				snps,dis_enblslpm_quirk;
+ 				snps,dis-u1-entry-quirk;
+ 				snps,dis-u2-entry-quirk;
+@@ -2729,6 +2730,7 @@ usb_2_dwc3: usb@a800000 {
+ 				interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
+ 				iommus = <&apps_smmu 0x20 0x0>;
+ 				snps,dis_u2_susphy_quirk;
++				snps,dis_u3_susphy_quirk;
+ 				snps,dis_enblslpm_quirk;
+ 				snps,dis-u1-entry-quirk;
+ 				snps,dis-u2-entry-quirk;
+-- 
+2.25.1
 
-Unless you add vf610 now, this should follow the compatible name.
-
-> 
-> So what is the advised way to go?
-> 
->>
->>>  1 file changed, 160 insertions(+)
->>>  create mode 100644
->>> Documentation/devicetree/bindings/net/fec,mtip-switch.yaml
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/net/fec,mtip-switch.yaml
->>> b/Documentation/devicetree/bindings/net/fec,mtip-switch.yaml new
->>> file mode 100644 index 000000000000..cd85385e0f79 --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/net/fec,mtip-switch.yaml
->>> @@ -0,0 +1,160 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/net/fsl,mtip-switch.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Freescale MTIP Level 2 (L2) switch
->>> +
->>> +maintainers:
->>> +  - Lukasz Majewski <lukma@denx.de>
->>> +  
->>
->> description?
-> 
-> Ok.
-> 
->>
->>> +allOf:
->>> +  - $ref: ethernet-controller.yaml#
->>> +
->>> +properties:
->>> +  compatible:
->>> +    oneOf:  
->>
->> Drop, you have only one variant.
-> 
-> Ok, for imx287 this can be dropped, and then extended with vf610.
-> 
->>
->>> +      - enum:
->>> +	  - imx287-mtip-switch  
->>
->> This wasn't tested. Except whitespace errors, above compatible does
->> not have format of compatible. Please look at other NXP bindings.
->>
->> Missing blank line.
->>
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    maxItems: 3  
->>
->> Need to list items instead.
->>
->>> +
->>> +  clocks:
->>> +    maxItems: 4
->>> +    description:
->>> +      The "ipg", for MAC ipg_clk_s, ipg_clk_mac_s that are for
->>> register accessing.
->>> +      The "ahb", for MAC ipg_clk, ipg_clk_mac that are bus clock.
->>> +      The "ptp"(option), for IEEE1588 timer clock that requires
->>> the clock.
->>> +      The "enet_out"(option), output clock for external device,
->>> like supply clock
->>> +      for PHY. The clock is required if PHY clock source from SOC.
->>>  
->>
->> Same problems. This binding does not look at all as any other
->> binding. I finish review here, but the code has similar trivial
->> issues all the way, including incorrect indentation. Start from well
->> reviewed existing binding or example-schema.
-> 
-> As I've stated above - this code is reduced copy of fsl,fec.yaml...
-
-Don't take the worst, old code with all the anti-patterns we point out
-on each review, as an example.
-
-Take the most recent, well reviewed binding as an example. Or
-example-schema.
-
-Best regards,
-Krzysztof
 
