@@ -1,138 +1,140 @@
-Return-Path: <devicetree+bounces-160663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72CB7A70731
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 17:43:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45DC1A7074F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 17:49:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6723916D826
-	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 16:40:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CFC93166ADA
+	for <lists+devicetree@lfdr.de>; Tue, 25 Mar 2025 16:49:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97FCE25DCFB;
-	Tue, 25 Mar 2025 16:40:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1A3525E81B;
+	Tue, 25 Mar 2025 16:49:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YeeD7cF3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KUks1kwH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7451B19F13B;
-	Tue, 25 Mar 2025 16:40:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F79F19F487;
+	Tue, 25 Mar 2025 16:49:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742920841; cv=none; b=c8z+nT3MHzljx34PWdlq6gS/BD20DeJXPMyOb2/PSk/X+VmDgTSaw19rQZUThhqEGjM9y6IaA3UiDK6daXhoGSNJl2IZqgnwpb936UDzkhpgQlh704gQK2V2WhSDBsNOYNvuJfz4HBdnYZDoyBr53C5anCUF0EYwWLhIVGc9r6U=
+	t=1742921342; cv=none; b=r2GKju90Dx5bSYxwfTYtElIwgO4JxdjPeYF6lmOeVijVyMoH8WEdGyWiqoN0xtAUhMzmRw/KcfAFehKplyawTZqyVEocsIGLcIId/B1UfVanCQload6EKHuBN9zF7YtQGjnVgapZF859zm4yV3t/GKJjy5Tg+Ax04pecGg+Td4k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742920841; c=relaxed/simple;
-	bh=YiWxemzCPcXInFipmbbXjiiIgfgNIEo4XpOPG15maUw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IDKgbx9rR0+dLRYd/AvTy7rCHS+niLETGzoX9FI7h3ovzGWzQ/NozDg92XWb2N3KqpjE30R5fxSvvSXLZv5GLcDd5GY+zXW/fiMpmG18sGidOKkEo6zFvz3gwDGyddonGLVh/b9iJKmRq8FoKSV6VwBVwBJHA6h8SKQkhqqe1Tw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YeeD7cF3; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1742920840; x=1774456840;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=YiWxemzCPcXInFipmbbXjiiIgfgNIEo4XpOPG15maUw=;
-  b=YeeD7cF37TvuTRVwgG7PRRo6kXvr7Qyj9tLp0PBPMmnHbjbMogn+EUpR
-   DtSeozVjIfXOAv9kcotD1sbDXeX8L3nkrwuq701gAd89e6gQHAscX5oWM
-   eqt62l12ATmLcDLV3+AJpr25kF2sywOpObouJu4SWwuFR8axwJtiCkeTG
-   3svGCx4suiMYosjiPHFM03W1KH48HlQ68gWbVD8UjPN5Nz9XDUNC137B9
-   dILN+L93iRIST5bHi+OnsAxbkf1cnP83KmN5jMk6He2ttyRbG2eL/kN6K
-   ZwAQPNgxAWmp+0xICMXSSH6FFb70tcjIXKRDMyOnDXSlyiBEy/UYqApyK
-   Q==;
-X-CSE-ConnectionGUID: jWdd0O1SROih+hy86e51yQ==
-X-CSE-MsgGUID: tM9ehbTqQbyOddy7KyZ6aw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11384"; a="61571901"
-X-IronPort-AV: E=Sophos;i="6.14,275,1736841600"; 
-   d="scan'208";a="61571901"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Mar 2025 09:40:39 -0700
-X-CSE-ConnectionGUID: aQj/cUsCSYO8/doZAHqAZg==
-X-CSE-MsgGUID: STQWoa1xQLWDZBx8Y3Ektg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,275,1736841600"; 
-   d="scan'208";a="129618481"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Mar 2025 09:40:34 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1tx7KJ-00000005nye-09u0;
-	Tue, 25 Mar 2025 18:40:31 +0200
-Date: Tue, 25 Mar 2025 18:40:30 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v5 02/11] mfd: Add max7360 support
-Message-ID: <Z-Lcfm6eXMm1QzEl@smile.fi.intel.com>
-References: <20250318-mdb-max7360-support-v5-0-fb20baf97da0@bootlin.com>
- <20250318-mdb-max7360-support-v5-2-fb20baf97da0@bootlin.com>
- <Z9qmDkwSpZHxwuQj@smile.fi.intel.com>
- <D8PHKDVTYTQ5.1HT80KX538PRQ@bootlin.com>
+	s=arc-20240116; t=1742921342; c=relaxed/simple;
+	bh=avp/c6N3lRSJ103iDEDRC4JwYP0yydF8DWmS20ImOPQ=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=M7hu5BcazvS72Da62jczdYhuf4hRayQ6x2ndg6pDlpYWJ/WMiaM5QadrdeaEFBzApmr9my/b0/kzYKOeimoWb59RFc+9Z4m/jlYwXMtoAB8jZKyTQM5DdPLSkgnDk6xcbec0TtpeHK86TryAYpKlLesqp795aXfsBpp8YVmGDnM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KUks1kwH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3B7CC4CEE4;
+	Tue, 25 Mar 2025 16:49:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742921342;
+	bh=avp/c6N3lRSJ103iDEDRC4JwYP0yydF8DWmS20ImOPQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=KUks1kwH7x+Q14S4ujHF1c73NCLQjw3NeZQ/ngWizjFUbNu9nfKtQkTau8pmgUky3
+	 DUC+fcV0cMw4cKVOFQZ4mtSRJLaBBIplIoLSbwgwEEdyTIywjydZEL6yDq8i5rn3Ow
+	 il+ixE64HXNAXRJIqPiEbQXzGGqDVqwQaEdm4o5CjXmEXrQzTP+An4dfz1OUN5AS2O
+	 NWMVAfJ0ViFxKzxXMCmrwYT1WOwEM9W3esYmTo2IApJAL0TNyxqvYevuU1kU9OoX1Z
+	 FfzpeQe2+tXedbaPg8Cla5zztvod2Twt5hRREim5sK7Iyh2FqH1ehWgdWwfzovp8qk
+	 Zehst1E9utW/g==
+Received: from 82-132-218-87.dab.02.net ([82.132.218.87] helo=wait-a-minute.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1tx7SU-00H1BS-Un;
+	Tue, 25 Mar 2025 16:48:59 +0000
+Date: Tue, 25 Mar 2025 16:48:53 +0000
+Message-ID: <87a599qcne.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Mark Kettenis <mark.kettenis@xs4all.nl>
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	asahi@lists.linux.dev,
+	alyssa@rosenzweig.io,
+	j@jannau.net,
+	marcan@marcan.st,
+	sven@svenpeter.dev,
+	bhelgaas@google.com,
+	lpieralisi@kernel.org,
+	kw@linux.com,
+	manivannan.sadhasivam@linaro.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org
+Subject: Re: [PATCH v2 01/13] dt-bindings: pci: apple,pcie: Add t6020 compatible string
+In-Reply-To: <87ecyl6rtw.fsf@bloch.sibelius.xs4all.nl>
+References: <20250325102610.2073863-1-maz@kernel.org>
+	<20250325102610.2073863-2-maz@kernel.org>
+	<87iknx75at.fsf@bloch.sibelius.xs4all.nl>
+	<864izhmkzd.wl-maz@kernel.org>
+	<87ecyl6rtw.fsf@bloch.sibelius.xs4all.nl>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <D8PHKDVTYTQ5.1HT80KX538PRQ@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 82.132.218.87
+X-SA-Exim-Rcpt-To: mark.kettenis@xs4all.nl, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, asahi@lists.linux.dev, alyssa@rosenzweig.io, j@jannau.net, marcan@marcan.st, sven@svenpeter.dev, bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org, robh@kernel.org, krzk+dt@kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-On Tue, Mar 25, 2025 at 05:26:12PM +0100, Mathieu Dubois-Briand wrote:
-> On Wed Mar 19, 2025 at 12:10 PM CET, Andy Shevchenko wrote:
-> > On Tue, Mar 18, 2025 at 05:26:18PM +0100, mathieu.dubois-briand@bootlin.com wrote:
-> > > From: Kamel Bouhara <kamel.bouhara@bootlin.com>
-> > > +	ret = max7360_mask_irqs(regmap);
-> > > +	if (ret)
-> > > +		return dev_err_probe(dev, ret, "Could not mask interrupts\n");
-> >
-> > Hmm... As far as I can read this masks GPIO interrups. Does it do anything
-> > else? If it's covered by the GPIO/pin control drivers, one want probably to
-> > see that to be done there in the respective callback (init_hw_irq or alike,
-> > I don't remember the name by heart).
+On Tue, 25 Mar 2025 15:41:15 +0000,
+Mark Kettenis <mark.kettenis@xs4all.nl> wrote:
 > 
-> Hum, I'm not sure I can do that.
+> > Date: Tue, 25 Mar 2025 11:02:30 +0000
+> > From: Marc Zyngier <maz@kernel.org>
 > 
-> So the "inti" interrupt line is shared across the GPIO and the rotary
-> encoder functionalities.
+> Hi Marc,
 > 
-> On reset, GPIO interrupts are not masked. This means, if we do the
-> masking in the GPIO driver and the GPIO driver is not loaded but the
-> rotary encoder driver is, the rotary encoder driver might get a lot of
-> spurious interrupts.
+> > Hi Mark,
+> > 
+> > On Tue, 25 Mar 2025 10:50:18 +0000,
+> > Mark Kettenis <mark.kettenis@xs4all.nl> wrote:
+> > > 
+> > > > From: Marc Zyngier <maz@kernel.org>
+> > > > Date: Tue, 25 Mar 2025 10:25:58 +0000
+> > > 
+> > > > @@ -50,6 +55,10 @@ properties:
+> > > >        - const: port1
+> > > >        - const: port2
+> > > >        - const: port3
+> > > > +      - const: phy0
+> > > > +      - const: phy1
+> > > > +      - const: phy2
+> > > > +      - const: phy3
+> > 
+> > Do we need to make this t6020 specific?
+> > 
+> > Obviously, separate PHY registers do not make much sense before t6020,
+> > but I couldn't find a way to describe that. I don't even know if
+> > that's a desirable outcome.
 > 
-> So I believe it makes sense to mask the interrupts here, setting the
-> chip in a sane configuration, whatever child drivers are present.
-> 
-> Any thought about that?
+> I don't think there is a way to do that other than creating a separate
+> binding for t6020.  But I'm far from a dt-schema expert.  Maybe robh
+> has some advice here.
 
-Okay, this makes sense. I forgot if you have any comment in the code
-(probably not if I asked the question), but in any case the above can
-be added on top of the function explaining this.
+Huh, I'd rather not create another binding. The only thing this would
+buy us is a stricter checking of the register ranges.  But it isn't
+like this block is going to find its way in random HW, and this is
+only described in a handful of core dtsi files anyway.
+
+Unless someone screams (and provides a reasonable alternative), I will
+leave it as is.
+
+Thanks,
+
+	M.
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Without deviation from the norm, progress is not possible.
 
