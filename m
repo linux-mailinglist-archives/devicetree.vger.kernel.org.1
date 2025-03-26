@@ -1,186 +1,130 @@
-Return-Path: <devicetree+bounces-160760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66675A7107C
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 07:18:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0BC6A7108C
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 07:31:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E950416C78A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 06:18:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7630D188F5AC
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 06:31:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40ADF17A310;
-	Wed, 26 Mar 2025 06:18:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6170E15381A;
+	Wed, 26 Mar 2025 06:30:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="luVKq1aB"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="KIbrKgF4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62282176AC8;
-	Wed, 26 Mar 2025 06:18:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8D1AEC4;
+	Wed, 26 Mar 2025 06:30:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742969928; cv=none; b=dgP6KDEU99lv+mJ1Gj71HbyMtPealI/FXtHPcUZpy4uES+mY1NFseq6OCSqpCKz3EUdgJLJIbkXKXxeNNCpGeVYnS5+eDObBIhR43Zlq/QGwj3Cl/HgWLwnnW5SWV4B9wd52VYAvDPj/llCrmT+nztPlUSfg24NQfbZMugL0QKw=
+	t=1742970658; cv=none; b=SFcyWdQj6DHgSC67tL6U3EDz8Qd5TzO/v2HAnFCz5kL7iMW2Yt/w1TzY3rXuMVN75cMRxhphZ90mzwvVMteow5eqCLACbeKfC5lLAGrSkkn7qWIYCE5Okry+n+dgiTBvmH7H/0SjbSI44yK3Pp4xdq8hoWhCSYdcJalISw4LwwU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742969928; c=relaxed/simple;
-	bh=kA3QSOsqdwnf3UkiS87cnd1QqYpSuL298aKbY6ya3bU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sDdzqi5FE8WWeSefjqO2E8EQ2CabvGUiQFh9UmHm0FDRaQWPvMGCAy2m5y3ZdCpKe2X1FbSsbptoTgGS7wk0mpdtuVm55gs4p9Cf1xJdNRekVHO/lTQGABH1W69aaHJhO+alF7H967eC1xr0DIMSd5tVKQWHSIHSAuw9nJQzMM8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=luVKq1aB; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-30bfc8faef9so64604071fa.1;
-        Tue, 25 Mar 2025 23:18:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742969924; x=1743574724; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eAOoA8Jyyx94raOkZYedOk/GTaALuBA9vxSD9BrEKSI=;
-        b=luVKq1aBmaY5nwllUO0ZEhoyp3RR0j/+V/dwkkME2hiVD5wYXcBggiIfEmOZuTKvtS
-         vc0g57OH3AgEyFcXNgjL6lqAdEmhP1JXz4N0ARaJCvgUr/0nHLoCJMmnDnr0/SIIEyEx
-         Mis6Icm/GvusH1odnDzrx7iYbYVE/f+HiUa2u7nWs3grzLZEUJB9DJ8N/eR+peOnNmUx
-         Gh4xy/d0t3M2+LTlaku+8AWfUM3Mls062PftI5pxNsI1FjbHrj4UA95oO7vBRh8u5ZkV
-         TDqoEUjlX1tTSD3Lh4mNxAbXJC4LUlvH84a0yoZUcQTHj7WQckMWD/0D9amVYPa+Zs1V
-         putQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742969924; x=1743574724;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eAOoA8Jyyx94raOkZYedOk/GTaALuBA9vxSD9BrEKSI=;
-        b=htnrxX2/uqLH8kTZU6XJuJrt4qVHKW/a2V9rmrQJ8V+w6xxV0V1YI43pQy8UVF6/qy
-         zNBUMLqPwdhRcuN/Gf6V6btj+IC/TNeLJNABDQVaKdbSGYUtbtouwTkHzm2fiWzg+SoF
-         uE+DIu7pUjBD14WpLo6mSXGLOBa/fk5I04f1I7/Ur2o3wy7I4xG8pLATb7SfbXeSVBOH
-         LlAwC7j26NJuMMZt1iwlhqM3HXcm0KEDEB5l40JzMwRywGYwH0EUFXjtVdDG+YyUUuls
-         1M4dI354TA+nY+82cW4rkWCPqYq3dC8DfLQIhkD17vwnKpLvPg2EXCL3f2gJs2TNzgl/
-         Slxw==
-X-Forwarded-Encrypted: i=1; AJvYcCW4sPFDW+beK1pOK1WWj9DyBEuYUVu9y6uptFLPd3bmAnKp+RVIvAki45GEq38HLq4VT2eP9I1/43BJ@vger.kernel.org, AJvYcCXvcxz8v3d8/2SH5/RW60T6NpunZyGTgxxFU1SSv5fsWsM7V2MCfWrgA1YC0QPJQtvpA/b1N+yPgBeMdpUy@vger.kernel.org
-X-Gm-Message-State: AOJu0YwvXnXFOsE9S5/UG8fCjlaOF82oIvYA1/toBd6D18q9iLO0AUaJ
-	+7YJpFyQiNpqd8oeaanlacF22CfhEsP1Q8Nl4YfwTNaul85YkWJi
-X-Gm-Gg: ASbGncujTDpwE3Ka2Mwzr3tNKlH1TUVw2I7J0EdH+vcxydU+b13lfVNe/Fjhb6p/4/e
-	TVSEqNTCeVajhEsJc7o117dhfm4d2Q7JnwbLcR83lyeLezW1wx99wMsPqjhIiW6bczEmcf/7sOV
-	O60HUml7L6e+0Yfep4Q5M42GiCEDsMBo/s9VG9F7qntjo5tQWjU/aT4CgEC6D40yrgbXXZTkg2R
-	VQyC+P9zZXoCBW1xif1Hdkdwn72xVRW1y3MNKpSdrpdWdkY6LUbEVGaodEOTgxWXDGNiiBVao1R
-	bWQt92YJ+4No7EL/4Ci/WAnfB114P2t4Fd5K4Ws7/9FsrJ3Aty1djv2KqH6E52NRLbFhGZBVFvM
-	jBo0CVeQ7hxGcuj6GOTM69bt9aQ==
-X-Google-Smtp-Source: AGHT+IGYrBtCuxkrCo7LF9BiU28gp01SDWjHKoug1hLGxgBsDIc8wVS29wWqnyZRgRgyOdlG5CT9zw==
-X-Received: by 2002:a2e:3504:0:b0:30b:9813:b010 with SMTP id 38308e7fff4ca-30d7e2f789bmr61432841fa.31.1742969924131;
-        Tue, 25 Mar 2025 23:18:44 -0700 (PDT)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30d7d7c1bd3sm20078391fa.12.2025.03.25.23.18.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Mar 2025 23:18:43 -0700 (PDT)
-Message-ID: <acaac658-1966-405e-ac20-4ff305d0100d@gmail.com>
-Date: Wed, 26 Mar 2025 08:18:42 +0200
+	s=arc-20240116; t=1742970658; c=relaxed/simple;
+	bh=NS5BOoNfVSDakVttI7Qvnjns6VTDEvEvJEzGUfFhAJw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=RCa8Hi5+bWZxPpxIISU2eOT6XnANg9yGr2H3qtMWFGt6BgPHVlegPcqQCTYUhiSQjwWRWGsdXVpCrluN2Yz2ABq0PLPdtC3ksfzsDAqwD2hFyLHUrdIYHmP9pwJttw5HmzsPcgVJrJShAbjagdwyaAlih+hW4kShMyhZFIAFLxg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=KIbrKgF4; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: db9aef380a0b11f08eb9c36241bbb6fb-20250326
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=aaBZuoENevLJbWKLyrTtql09PLoMSh8b42u2wmaoENc=;
+	b=KIbrKgF4iS2LkoziQeVaFG6aUh/D5H63p94/ruXthD3SXlO/ataD9j2zCq9iXI2e6NTZR0MpfEEVDvOq9lxM5TkOHIrw2N78Qngq87l8xDoedx/5P9CDa7ADfKkVczBJE+M06F6ilpZ/Rkbj1YBLLArukxJLs8tDl6B9KgUq+sM=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.2.1,REQID:2ffd698b-fc44-48a0-813c-14c44710edf2,IP:0,UR
+	L:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:-25
+X-CID-META: VersionHash:0ef645f,CLOUDID:0055cfc6-16da-468a-87f7-8ca8d6b3b9f7,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:ni
+	l,URL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: db9aef380a0b11f08eb9c36241bbb6fb-20250326
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
+	(envelope-from <crystal.guo@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1009903654; Wed, 26 Mar 2025 14:30:49 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.39; Wed, 26 Mar 2025 14:30:47 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.39 via Frontend Transport; Wed, 26 Mar 2025 14:30:47 +0800
+From: Crystal Guo <crystal.guo@mediatek.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Crystal Guo
+	<crystal.guo@mediatek.com>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [v3,0/2] Add an interface to get current DDR data rate
+Date: Wed, 26 Mar 2025 14:30:30 +0800
+Message-ID: <20250326063041.7126-1-crystal.guo@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 04/14] dt-bindings: mfd: bd96802: Add ROHM BD96806
-To: Conor Dooley <conor@kernel.org>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <cover.1742802856.git.mazziesaccount@gmail.com>
- <99ffe94d642b6c73cd5199103e65419c93214533.1742802856.git.mazziesaccount@gmail.com>
- <20250325-resent-presuming-39ad42e2ceef@spud>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20250325-resent-presuming-39ad42e2ceef@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-On 25/03/2025 19:14, Conor Dooley wrote:
-> On Mon, Mar 24, 2025 at 10:55:21AM +0200, Matti Vaittinen wrote:
->> The ROHM BD96806 is very similar to the BD96802. The differences visible
->> to the drivers is different tune voltage ranges.
->>
->> Add compatible for the ROHM BD96805 PMIC.
->>
->> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
->>
->> ---
->> Revision history:
->>   v1 => :
->>    - No changes
->> ---
->>   .../bindings/mfd/rohm,bd96802-pmic.yaml       | 19 ++++++++++---------
->>   1 file changed, 10 insertions(+), 9 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd96802-pmic.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd96802-pmic.yaml
->> index d5d9e69dc0c2..c6e6be4015b2 100644
->> --- a/Documentation/devicetree/bindings/mfd/rohm,bd96802-pmic.yaml
->> +++ b/Documentation/devicetree/bindings/mfd/rohm,bd96802-pmic.yaml
->> @@ -4,23 +4,23 @@
->>   $id: http://devicetree.org/schemas/mfd/rohm,bd96802-pmic.yaml#
->>   $schema: http://devicetree.org/meta-schemas/core.yaml#
->>   
->> -title: ROHM BD96802 Scalable Power Management Integrated Circuit
->> +title: ROHM BD96802 / BD96806Scalable Power Management Integrated Circuit
->                                  ^ Missing space here :)
-> 
->>   
->>   maintainers:
->>     - Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
->>   
->>   description: |
->> -  BD96802Qxx-C is an automotive grade configurable Power Management
->> -  Integrated Circuit supporting Functional Safety features for application
->> +  BD96802Qxx-C and BD96806 are automotive grade configurable Power Management
->> +  Integrated Circuits supporting Functional Safety features for application
->>     processors, SoCs and FPGAs
->>   
->>   properties:
->>     compatible:
->> -    const: rohm,bd96802
->> +    enum:
->> +      - rohm,bd96802
->> +      - rohm,bd96806
->>   
->>     reg:
->> -    description:
->> -      I2C slave address.
-> 
-> I'd just drop this from the original.
+This series is based on linux-next, tag: next-20250324.
 
-Ah, thanks! I should've noticed this.
+Vcore DVFS feature need know the current DDR data rate.
+Add MediaTek DRAMC driver to provide an interface that can
+obtain current DDR data rate.
 
->>       maxItems: 1
->>   
->>     interrupts:
->> @@ -29,7 +29,8 @@ properties:
->>         for fatal IRQs which will cause the PMIC to shut down power outputs.
->>         In many systems this will shut down the SoC contolling the PMIC and
->>         connecting/handling the errb can be omitted. However, there are cases
->> -      where the SoC is not powered by the PMIC. In that case it may be
->> +      where the SoC is not powered by the PMIC or has a short time backup
->> +      energy to handle shutdown of critical hardware. In that case it may be
->>         useful to connect the errb and handle errb events.
->>       minItems: 1
->>       maxItems: 2
->> @@ -69,7 +70,7 @@ examples:
->>               interrupt-names = "intb", "errb";
->>   
->>               regulators {
->> -                buck1: BUCK1 {
->> +                buck1 {
-> 
-> Here too?
+---
+Changes in v3:
+- Move register offset, register mask and other SoC-dependent variables
+  to the platform data;
+- Correct the spelling error.
 
-Yes! I had the node names with caps in downstream (due to a historical 
-reasons :]) - and I did a last minute clean-up where I changed it to 
-lowercase. Thanks for pointing these out!
+---
+Changes in v2:
+- Remove pr_info and pr_err, use dev_err or dev_err_probe to print
+  error message;
+- Replace module_init by module_platform_driver;
+- Remove unnecessary global variables;
+- Change fmeter-verison to platform data;
+- Remove mtk-dramc.h;
+- Refine compatible to "mediatek,mt8196-dramc";
+- Refine CONFIG name to MEDIATEK_MC;
+- Fix yaml build errors, remove unnecessary properties on yaml file.
 
-Yours,
-	-- Matti
+Link to v2:
+https://patchwork.kernel.org/patch/13964208
+
+Crystal Guo (2):
+  dt-bindings: memory-controllers: Add MediaTek DRAM controller
+    interface
+  memory/mediatek: Add an interface to get current DDR data rate
+
+ .../memory-controllers/mediatek,dramc.yaml    |  44 ++++
+ drivers/memory/Kconfig                        |   1 +
+ drivers/memory/Makefile                       |   1 +
+ drivers/memory/mediatek/Kconfig               |  21 ++
+ drivers/memory/mediatek/Makefile              |   2 +
+ drivers/memory/mediatek/mtk-dramc.c           | 232 ++++++++++++++++++
+ 6 files changed, 301 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,dramc.yaml
+ create mode 100644 drivers/memory/mediatek/Kconfig
+ create mode 100644 drivers/memory/mediatek/Makefile
+ create mode 100644 drivers/memory/mediatek/mtk-dramc.c
+
+-- 
+2.18.0
 
 
