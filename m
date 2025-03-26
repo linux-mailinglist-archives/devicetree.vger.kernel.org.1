@@ -1,58 +1,62 @@
-Return-Path: <devicetree+bounces-160795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32250A71207
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 09:07:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60290A7120C
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 09:08:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CAD5B189218F
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 08:05:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3BC98188C795
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 08:08:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E38F819D884;
-	Wed, 26 Mar 2025 08:05:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00EFC1A0B08;
+	Wed, 26 Mar 2025 08:07:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L8hle48v"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gjd2JiN5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B577D1885B4;
-	Wed, 26 Mar 2025 08:05:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAEF619FA8D;
+	Wed, 26 Mar 2025 08:07:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742976342; cv=none; b=ZNuk2/VVlclDF7BN9X4NUZeQxGDpaWZvDZQrbSc5iMS60u8N6koGRJUin5LY5rk8CBRiy4/DXWjXkN2hEAHV1cB1VOGRz2vvvm9DmMsycK25PFU974wvJw94N/5ZT6waDtIZDTkjjtOxTPyAYWq3ZvSFJ8OUhOVNhoD62pTUg7A=
+	t=1742976474; cv=none; b=ccxmBLcOd27TSh5KcYwSMcW38af1imBAEGV8AHzgnICAFpUv8EcR+bbO5E2FK1ACTrHT9utrdWX5PQNoR/3yfdKVBPV9K2+sbysZh9mBTQD+FNLI/W4gO7cW+ZVYC7xXt/XkRtQrf5tDJWGwt5erQ8Ii5r+MLXLm57LAjp70uOU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742976342; c=relaxed/simple;
-	bh=BbuDQ9m7pQGkk6s5okxeVhNbH74XzMaJE5uxlc+ba4Q=;
+	s=arc-20240116; t=1742976474; c=relaxed/simple;
+	bh=Cv/HmMifyea7NAlVz8PjHghRyG1Kaj1PLfIqdLh/J/8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cOVlsG3l7hbjWEqRVD5phFpx/FMbmvB5Vpw1saB6CcVucZauUS5G15iwrSy+Lt5boYFqOSQdn23hs0wsvTY5xJ0z3I6qMOP2N0NItyDMuxaGe+2hwJXUGs2cCKgWFVaMBeB/ZwESLUemc/Y+ROYYclkM6fJd74TLME5j19S0KsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L8hle48v; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0529BC4CEE2;
-	Wed, 26 Mar 2025 08:05:40 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ka5oWVkGLX2v2WTCzCjaOP0+fW3TByW0clxCAYB3e2KoPmNvLvdl9vMibvjHh8UMdLM1L9VvFgSvoTjULc+myCQG2oL3xxJ5AjVX461J1PFNE5mbN8EEoInMlJ6HMv/Fw3DcEOWDHmfVfPnvGi7lGe+s420LMDxIekgUSydOJEs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gjd2JiN5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4209BC4CEED;
+	Wed, 26 Mar 2025 08:07:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742976342;
-	bh=BbuDQ9m7pQGkk6s5okxeVhNbH74XzMaJE5uxlc+ba4Q=;
+	s=k20201202; t=1742976474;
+	bh=Cv/HmMifyea7NAlVz8PjHghRyG1Kaj1PLfIqdLh/J/8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=L8hle48v1huyNe4zr7WHd9h8j0yGRwYryyXm7WHy8u07+eBly/G0I3fxADCwoLrgR
-	 bPtdtLCW9QwLNMVRsKtOkMUdPrB4i/gYr6vkkbt16gTBbSPcH2a9CYrk1hbVesHOtZ
-	 15k8oQLuXfHFo5rsaotpvmAVJN2/Lh4pbmlUe71OcnS1/V0DPHk3kCoM4DKy6nsXiI
-	 4WfyF6ZGh9prI19KklAXOTXaNIQhiCSA+8wEUcapNWWBekIV6DeYDLN823uQI76YXx
-	 e3VZ5ZYQjMfQSeaIdMMhZ0fjkZKhrkV6sum2msXdLtgmGz+dQUGkm3eatqeoAcvkQm
-	 SSuLgz4r/vHzA==
-Date: Wed, 26 Mar 2025 09:05:37 +0100
+	b=Gjd2JiN5LYm6kxfwZotMRLcmXVKOA6Ci9nWiI6fC5f0QR6cadk9lSz1fNoHKRHZ98
+	 S3lLJSvJkUopqEq4AwRJGgvTNm9mWPpsEVGIL8hgwSIUo0PE5mBnHQdZAxvRq/kaEh
+	 wbcOFPcCQyerh/skraWZtv/JvR3nhf9EZ479tuFIvhxwZ/qtj0WVH0OdgNsnfPGr/m
+	 GEjcgKn8mxgjxHkOlVzpiTC/0RjgSHHRkaqeWfZWJHn594WeBPKxorQAiTy+9CUAL6
+	 PfAfYfN3yFfAAQM0X8yBTyaAZsTy3u1q1H04JAFdLZMw2sCtZ+tteVDF9Ht6IGX2+I
+	 RTfHUS8ltogrA==
+Date: Wed, 26 Mar 2025 09:07:49 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Caleb James DeLisle <cjd@cjdns.fr>
-Cc: linux-mips@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	benjamin.larsson@genexis.eu
-Subject: Re: [PATCH v2 06/10] dt-bindings: mips: Add EcoNet platform binding
-Message-ID: <20250326-woodoo-imaginary-crow-0b5a74@krzk-bin>
-References: <20250325134349.2476458-1-cjd@cjdns.fr>
- <20250325134349.2476458-7-cjd@cjdns.fr>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bryan O'Donoghue <bod@kernel.org>, Hans de Goede <hansg@kernel.org>, 
+	Jingjing Xiong <jingjing.xiong@intel.com>, Hao Yao <hao.yao@intel.com>, Jim Lai <jim.lai@intel.com>, 
+	You-Sheng Yang <vicamo.yang@canonical.com>, Alan Stern <stern@rowland.harvard.edu>, 
+	Hans de Goede <hdegoede@redhat.com>, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] media: dt-bindings: Add OmniVision OV02E10
+Message-ID: <20250326-active-mauve-muskrat-e0fbad@krzk-bin>
+References: <20250325-b4-media-comitters-next-25-03-13-ov02e10-v2-0-4d933ac8cff6@linaro.org>
+ <20250325-b4-media-comitters-next-25-03-13-ov02e10-v2-1-4d933ac8cff6@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,16 +65,13 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250325134349.2476458-7-cjd@cjdns.fr>
+In-Reply-To: <20250325-b4-media-comitters-next-25-03-13-ov02e10-v2-1-4d933ac8cff6@linaro.org>
 
-On Tue, Mar 25, 2025 at 01:43:45PM +0000, Caleb James DeLisle wrote:
-> Document the top-level device tree binding for EcoNet MIPS-based SoCs.
-> 
-> Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
-> ---
->  .../devicetree/bindings/mips/econet.yaml      | 26 +++++++++++++++++++
->  1 file changed, 26 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mips/econet.yaml
+On Tue, Mar 25, 2025 at 02:49:28PM +0000, Bryan O'Donoghue wrote:
+> Add bindings for OVO2E10 a two lane MIPI CSI, two megapixel 1080p RGB sensor.
+
+Missing wrapping of commit msg.
+
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
