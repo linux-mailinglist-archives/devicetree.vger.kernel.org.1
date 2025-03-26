@@ -1,63 +1,72 @@
-Return-Path: <devicetree+bounces-161076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 280EFA72402
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 23:31:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 237D7A72543
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 23:39:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B93661784E4
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 22:31:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D6D87175F62
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 22:39:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 867DD1E1DE9;
-	Wed, 26 Mar 2025 22:31:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 863EA25DD12;
+	Wed, 26 Mar 2025 22:39:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="WpahnDsE"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Vg/TKEfy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDA8B1A76AE
-	for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 22:31:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7339B19C569;
+	Wed, 26 Mar 2025 22:39:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743028304; cv=none; b=n8yaxPrO/7pnz9J4fAbbDK8qsXMeDSWetWTPZEE4OJWwJVwWNAjdTl1CYVSDRwx/1oZ2oV5zTE1A8V+5mZI099UdaNsv6s832w8abn8Up9kP9FuRIa/jo6gx713yiwTYi6Blor7PvQ7hhisK/1gZZlgUsE/P2iYtmHfgMX/RDRg=
+	t=1743028743; cv=none; b=Cggtyy9snfYXSW+m3OUnUmo8/UXyO1lo8LdBM5C6/qg3WnKUcdukQJ6O1mwJj3DOyf9XilZSdgwzhVL57qQJ008qGcecspxWJo1WYkOioNLAEPRGHNSMumntsjewMPUhgHFKpt4Qai/p3mcdKcxz5UahayEYzieeu7+iVNFFUeE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743028304; c=relaxed/simple;
-	bh=UsfnaCbfHX0S6oDxk4pR3+seu3B0/AH8MOkOA8GiqOE=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=RIeOo1tlyHey9lPYL0bNTiOu6dEMq4NfIWANTHdsdIW6QD0zKhItYTEK1yzhZVei8O6chd1pV6i5BVLR7E1LiQQaaSx5hJXRz2Qcn4FjYOIW/BjF0FoRI5U0Vqzcl8sNP92z9n/Ic+ckT6BVbcBtxlTsBDaSDAhR+gKrhapEATg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=WpahnDsE; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:mime-version:content-transfer-encoding; s=k1; bh=j+vnap5KKUmLNy
-	uj9wpVHMJmrsdxjxzBfUEJyBSA48o=; b=WpahnDsEeR1E0QhUxwXrqN1Af0cZTG
-	jpEBktE6NtEIhC3RW68StoIZ5VeSKDe24wfP9r9/NhK2RYGwDswwwRF14aDzSyuv
-	wTHxQL0YbRgabAAPWmKxnGURyxSZpnDB49oVavwVnZ07PiGYkaNikKbmsdici4R/
-	3Pm7G6JvHzHXnFtHccd9qE3ChPxKWDeFylClgsU1l4ZIwo991LFzdu6ZCvZGrOVE
-	ossM2UTtIBAriEZPJMNQsKE0pJR2yA/8vu3YDQK4cyhC+F1csFkGd6BHLwGoRPvd
-	cC7+F7/y/DvUd58YysXtnP5mBFLgVuNpjPPTDUKY6tFzKtIBytY6X9UA==
-Received: (qmail 3775632 invoked from network); 26 Mar 2025 23:31:39 +0100
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 26 Mar 2025 23:31:39 +0100
-X-UD-Smtp-Session: l3s3148p1@jkqcZkYxBK4ujnsv
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-renesas-soc@vger.kernel.org
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1743028743; c=relaxed/simple;
+	bh=mlEaBX9U88umeWt42naziyW6nVLrnt4dQkk77wbD1oY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XRjhA03MM+/HYJ8FT8oyhENo5kbsRdpGsLkIW15JVirXqn3FfzlDli32m9XHayT7yLL0Kz8sCYPApSZeWidZNb3E6C91HLMKzIY3bHlse4CmpMYl7CPpFuzIrmtgz8Ag5ZNVIVfdzETFzpTnW+Van7IdURXqaojxyj1RQbxL2KM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Vg/TKEfy; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 383CA102EB802;
+	Wed, 26 Mar 2025 23:38:54 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1743028737; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=JwViLCtqnXXrkg8ZqO8LKRpADuiS49lixDP4Qsj9lmc=;
+	b=Vg/TKEfyytNm3CmeTjATXlonhJRXlTftZAsd4u+cxKWHMtLekI/zFDgVUOQ2vl2DBobd4m
+	ut8qAlPythhuanpKfAVpMGXSatXvTcbPF4ECf6a88TFRSyy+sZPpnslFTkNA0D3llroiJ4
+	ntZXS9R5vtGNpvjRhiydLqRi9re/WYeSGtHwRKIXOD1OS80CFu/hJAhHBryqLaGxQ8iBGe
+	g35K6c9xzFsfokpeCbY+D0GcLcXkMgwsCEjA1n+OqaFQuczYs3R9Ky6QlIdd7W7AYBkZ9O
+	g034cgSKtqDQdwhqQJFBw+X5JiEh/QZEKUeEUO6dcubQOTEWjBOaofQfI/X9Mw==
+From: Marek Vasut <marex@denx.de>
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marex@denx.de>,
+	"Rob Herring (Arm)" <robh@kernel.org>,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Jarkko Nikula <jarkko.nikula@linux.intel.com>,
-	linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: i2c: snps,designware-i2c: describe Renesas RZ/N1D variant
-Date: Wed, 26 Mar 2025 23:26:58 +0100
-Message-ID: <20250326223123.11113-2-wsa+renesas@sang-engineering.com>
+	Fabio Estevam <festevam@gmail.com>,
+	Frieder Schrempf <frieder.schrempf@kontron.de>,
+	Hiago De Franco <hiago.franco@toradex.com>,
+	Joao Goncalves <joao.goncalves@toradex.com>,
+	Joao Goncalves <jpaulo.silvagoncalves@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Max Merchel <Max.Merchel@ew.tq-group.com>,
+	Michael Walle <mwalle@kernel.org>,
+	Peng Fan <peng.fan@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Tim Harvey <tharvey@gateworks.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: arm: imx: document i.MX 95 Verdin Evaluation Kit (EVK)
+Date: Wed, 26 Mar 2025 23:38:15 +0100
+Message-ID: <20250326223841.193234-1-marex@denx.de>
 X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -66,37 +75,60 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-So far, no differences are known, so it can fallback to the default
-compatible.
+Document support for i.MX 95 Verdin Evaluation Kit (EVK), which
+used to be the Titan EVK.
 
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Note that the SoM used in this EVK is a derivative SoM from Verdin
+line of SoMs, an actual i.MX95 Verdin SoM is under development.
+
+[1] https://www.toradex.com/computer-on-modules/verdin-arm-family/nxp-imx95-evaluation-kit
+
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+Reviewed-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+Signed-off-by: Marek Vasut <marex@denx.de>
 ---
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Francesco Dolcini <francesco.dolcini@toradex.com>
+Cc: Frieder Schrempf <frieder.schrempf@kontron.de>
+Cc: Hiago De Franco <hiago.franco@toradex.com>
+Cc: Joao Goncalves <joao.goncalves@toradex.com>
+Cc: Joao Goncalves <jpaulo.silvagoncalves@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Max Merchel <Max.Merchel@ew.tq-group.com>
+Cc: Michael Walle <mwalle@kernel.org>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Tim Harvey <tharvey@gateworks.com>
+Cc: devicetree@vger.kernel.org
+Cc: imx@lists.linux.dev
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+---
+V2: Add AB from Rob, RB from Daniel and Francesco
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Changes since v1:
-* added comments to clarify SoC & family relationship
-* added Conor's ack (Thanks!)
-
- .../devicetree/bindings/i2c/snps,designware-i2c.yaml         | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
-index e5d05263c45a..bc5d0fb5abfe 100644
---- a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
-+++ b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
-@@ -27,6 +27,11 @@ properties:
-     oneOf:
-       - description: Generic Synopsys DesignWare I2C controller
-         const: snps,designware-i2c
-+      - description: Renesas RZ/N1D I2C controller
-+        items:
-+          - const: renesas,r9a06g032-i2c  # RZ/N1D
-+          - const: renesas,rzn1-i2c       # RZ/N1
-+          - const: snps,designware-i2c
-       - description: Microsemi Ocelot SoCs I2C controller
-         items:
-           - const: mscc,ocelot-i2c
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 1b90870958a22..30dc200cc1561 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1352,6 +1352,7 @@ properties:
+           - enum:
+               - fsl,imx95-15x15-evk       # i.MX95 15x15 EVK Board
+               - fsl,imx95-19x19-evk       # i.MX95 19x19 EVK Board
++              - toradex,verdin-imx95-19x19-evk  # i.MX95 Verdin Evaluation Kit (EVK)
+           - const: fsl,imx95
+ 
+       - description: i.MXRT1050 based Boards
 -- 
 2.47.2
 
