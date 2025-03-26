@@ -1,87 +1,80 @@
-Return-Path: <devicetree+bounces-160758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160759-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A292A71067
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 07:09:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0B7CA71076
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 07:15:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A18977A233B
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 06:07:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E13D63BA88B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 06:15:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0AF5186E40;
-	Wed, 26 Mar 2025 06:08:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01BF217B50A;
+	Wed, 26 Mar 2025 06:15:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CwYiwTXk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lWj8dig+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3055C17A2F2
-	for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 06:08:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1331918DB1F;
+	Wed, 26 Mar 2025 06:15:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742969293; cv=none; b=f+uEmou5JhOCK3q9+hyyHpDvoku9nEMsRX4v4HhjocfKvY+DgVbu7BZCAi/FAATEwjspzIPUtLEwpeSq8WYMXVcDL8JvAiw9qNGELSHXF7BAIj1f/bfRJcF5Bd3acP9oDdrDZlnGR1zQqLGpQ/U+W0+TnbCU3epl6TObH9gNiR0=
+	t=1742969712; cv=none; b=sAbAv6WQaMPD/UKm1PMhFxYbxkb8dtBuHQawEGEyjVoAKZSLgwLts4jB4/tcmkAglQTmhwwfiLtyJfOpuyDXrpVRwx0M6hmUP6kfI0qd45huIQV9EV4F+YVgfUzzObbU8g7hN3icx5+98iuBA+j6zDipfDK0dXseDWSwe5OClUM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742969293; c=relaxed/simple;
-	bh=DV8Dt4NQTcwtQhBu3ee6ir786TfXKELwP+K9zh18GmM=;
+	s=arc-20240116; t=1742969712; c=relaxed/simple;
+	bh=GSeRjK4NcXpmWTkp+8hsV3XcE6bnjzemLGV6KNKky6E=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MkZMZ/w6f8SZZfAai7azwzN8IG240NswaNTlaiKHyo1I0XffYIBbkfY9zxRxxTd4f8UF5jbJPsFkIoVigH+a88u84OUH0zuWTPq5Zr9gBFwOlWIiJPnOy5uWr+/icONFmflbpnin14xImS27wxuoLMMML+DHT/lNnQWe0l4JBPQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CwYiwTXk; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52Q64eAT015120
-	for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 06:08:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	bs6P/y7OnnXl9wA9mcNU5vvj6Yur2Xri8LkAGJTa6fQ=; b=CwYiwTXkeMQo8M39
-	2AWWOe8cSAhLOrKuostRhfIBPzVEn8sObh8qKBh8FepDOpWAK2LeyfvOlTHAV2PN
-	0Ydl7bsIOJUkW/xSS0muvx1EM8WpAWJlHy/brDdDSV24DH9cHVLjIL26pLerQwx7
-	r1b2EsEzyXahnp/lLb2Edt7jP317SIUld0NjS5OUdSphhBU/ZvAcvFgShidFLwGr
-	iVm6zuSBClBNAbF85e0tHyvhheg4gLawUrPHXmKSluev39VLy9xZNUbTrrMTgpQi
-	g28TdNq7AH6qyfv5uR/CmCzRGMISifCRJRfd+GaGTOSr+sx3JA+oOsFcd5CY+dh6
-	FFzjFA==
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45m0xdscjb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 06:08:10 +0000 (GMT)
-Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-2ff68033070so10429638a91.2
-        for <devicetree@vger.kernel.org>; Tue, 25 Mar 2025 23:08:10 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=M7cAKyOaKNb4Wj3JgsTRfU1G8ZxTVrDaETRjcVwiOtFSXuMsY+xgyLQpL3JamXm9r5Jigbsi9iiu+G47DF5SdwqCSn9DE2f7wC0yDTMR8Cb8CgMTiQdMGl8W9rs/rpQumEkTVYQJH/VikjypiDkyGt77KBS+vEOFkVesdMJlcGc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lWj8dig+; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-54ac9b3ddf6so6431553e87.1;
+        Tue, 25 Mar 2025 23:15:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742969709; x=1743574509; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=o5G09pEcYe7jjM/U/eQ+1aZPEYDUfuYgQeF/Axfe18Y=;
+        b=lWj8dig+GTxKQ6GETvM3TSIMdT4s49QlM9ZRnPPqXS1cnEsa8D87YPkrb77I6MBkH/
+         hY6ZsFmedSD7nyLJczi7Av9IRLicN27m6mpk/yxhYCZBzSWn3aSA4addcpDDkNT1ckpX
+         KXqf920zUzKX+QlOdmuNQA6F/+WWAm1ePajRzBuTp6+gC5Bebp6xf3wdPbw1VkcsThpu
+         o0D99FuMmMy5KlnDm2ejFnuLLR27nZ4zXew2D1c7ewgwhBYj9gwFZu5kod5KbHizjO7n
+         Nxs4LFHupbfrU/8hj2ENqSShWBE9i0NVA3bfAF2yM1FLjohzkcIUYWHQNmSXCwHTyGnX
+         TYHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742969289; x=1743574089;
+        d=1e100.net; s=20230601; t=1742969709; x=1743574509;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bs6P/y7OnnXl9wA9mcNU5vvj6Yur2Xri8LkAGJTa6fQ=;
-        b=YUt7eRNJKu0dQdPOZoc3wg7JwgA7Z9dCf/AXZQr+stE1kBg9riO833r6ign2zucsPh
-         mz8pN0AOJcPZ5dil/xJHLq7rNeLaysrtTTXOe0k2mOUw4nAjMCfp8boTlxUI6P5y7/FQ
-         I70YM0au4k6RMVnRnhGOhJI0FdBEEgHFSr1/kWW9zjbfEeMOmWlr8vNsBDmGVaHH5oVT
-         xcjs9x0kf67KIVlz+0XeURAzHo09SWjnlQkbEcNlNJq36kYuTNrQbmziqE2tzfipXznj
-         odTPo9an8N/3+P/7hwTT/DFmHFDDz+syuhb47sjtfigboi2oAZYidjpbj8L2hYgY0bl7
-         mWTA==
-X-Forwarded-Encrypted: i=1; AJvYcCUh9lsis4lUBojtmCttVcBQ7AKZZp0JPa7ZX1ryKynRzM7J7uwFyrzofl2ZrPVprn0dV7j01OqpOSo3@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywk07/lRdi3h1IUfNMGlxDeez6WEZY995+ydyIAg7lyU3KcKfid
-	sos9BKWUlkR3A22NI0L3V33+RGA09vm2LhiaVmLCZggW+3WBzoLJsxhNiJU1AU4gh1i+2tcgVcs
-	h1kg6O2TP6ORTZCJlprezhhrOK2KtGhdAtpm/o9GfeX2A7MNRT1/z8x6cTsCP
-X-Gm-Gg: ASbGncsbuZ3xj+A4eha2Y8Ko2G6gbo8sMCYRF1aXyrPDUSE2YoBdEIw6n2J7fWXX8f5
-	3OTPBYrvEQ1/4yTRImC/MneMrGAdGkUY+7kE5sLM3E+NrBx6QknDChcxnxNMk/8ff8XeoxlYuHc
-	DuYGCEFstt4qsJkwgw0kytZg4GqcX9jw8rNA3gBFGsrfRdgqGQdn49plG9ln4jnr0J88xkXGExL
-	6M9QxSJjmb4qOJ4Cc4GpVzaW2YSAJdPLMwD50u7obs+poTRZJ7AEJF4MhKDeBkVtmoyWZ63fsii
-	TQB6gcvI9fwxqhURTp+ZFu6PGcHp6r4pGN1C/H1q
-X-Received: by 2002:a05:6a21:33a5:b0:1f5:882e:60f with SMTP id adf61e73a8af0-1fe42f2da7cmr26905140637.17.1742969289504;
-        Tue, 25 Mar 2025 23:08:09 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFSUcFYBXOOAqPpsEodlNU/8h9WWE4B5xscY9kxh7baPG6T5AYHq6bhQtT/uMIVHhhESqO7RA==
-X-Received: by 2002:a05:6a21:33a5:b0:1f5:882e:60f with SMTP id adf61e73a8af0-1fe42f2da7cmr26905106637.17.1742969289107;
-        Tue, 25 Mar 2025 23:08:09 -0700 (PDT)
-Received: from [10.218.35.239] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-af8a2a4747bsm10102367a12.68.2025.03.25.23.08.05
+        bh=o5G09pEcYe7jjM/U/eQ+1aZPEYDUfuYgQeF/Axfe18Y=;
+        b=GRbq5bxQ8oUzRHbYIT/c2AbMK26kzuvvnogLeKcBLIEzwkNdxiR51pPf9ul2OmiSkB
+         jZZ8TgJPkquIXB5MPFwqoJpYz09HO1AX3UZBGgGtorIeaVayrutY+CN9YQPzXBNBdFF3
+         d4kXex6JNoq6u8bjHGehXW0VQOpcEOtlTDJYq3fUd8VUA2mJWsscn8W6TahaJJqulTTQ
+         6RgEtC96bNo2CK4WIL0nVvBp+9F2UC/tnbg+nB3Av42tGecP74TfI2rtBFLqo/nG7Y42
+         fWNCrU8MfI6qG3Zl+3q7b8aYlSqt62rywKGwuyqtfu95yuab6o+30wN5xLRv3xkmRNFs
+         C+DA==
+X-Forwarded-Encrypted: i=1; AJvYcCUFV7kBa6RYBs1EPm3xGnncXOfhfAPw7opTrDhzTY0Cr0O03FceFWA5HnfmdrIyJ2cgApGYcpiNo14H@vger.kernel.org, AJvYcCUgCp3LkrUeqb1WEf8AwJEGW1b9STXlcrz9HDPV72sJ4Z1/op3HR9/ET3lLZ6a9yDU/BVPO1q1wZq+BYehI@vger.kernel.org
+X-Gm-Message-State: AOJu0YxbVRFkHStEgG4e+Zh+dg75FuofnnQysPrJpyuVXlEUzBPHtdJ6
+	PysvTuM8fLbQTNEaHwIfU7wW+jIUDWiP7qCS9uWZVbdKqcPgpQiO
+X-Gm-Gg: ASbGnct0WrHMNqITHU4DWoOEcOEaSXYUCHXhMwPPUixpbxtJFmsv1XQZNRHrck7hB0L
+	Il804t9zyhWYJYdxILAZFht4LffRbrhYJlDAFuTgGCJkKzM9XrQqsDmZFxNRqg7MO2xb44B++Na
+	rJGMWrV/RYKer/FNWYFRY7ejCT+ZiDM/raQgyEbKBZTEzH4yTuQ+L5pt83CP0xKY0mK/SHIk2O9
+	lP76c5KUZORWHqecYj9EAognYvsQ7n4gwje6ut1L3W1CEoWE/T4WXAzMQTGSXDkUfO+n3PXJmNy
+	OERa1B61KpMpYvnVCqhKu+ifhdwT4T2Q+DlU/ZKgW8HzFl4PvgCnwz+ZfO70TXnNqu5H6SIXSqk
+	/kBAlMeRkv2SlrvfXSJG1tfR4lg==
+X-Google-Smtp-Source: AGHT+IGgOeKXTv0dECYLW0Ci0Ftj19836lNGNZSo+8tjtne5kWhfChjdK46NnPAtITMub2+/mKZZew==
+X-Received: by 2002:a05:6512:1152:b0:545:2f9f:5f6a with SMTP id 2adb3069b0e04-54ad647e35cmr6415218e87.14.1742969708783;
+        Tue, 25 Mar 2025 23:15:08 -0700 (PDT)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54ad6508374sm1736802e87.191.2025.03.25.23.15.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Mar 2025 23:08:08 -0700 (PDT)
-Message-ID: <45d1dbc5-bf6e-4fe8-bf2e-0d517190fc8f@oss.qualcomm.com>
-Date: Wed, 26 Mar 2025 11:38:04 +0530
+        Tue, 25 Mar 2025 23:15:08 -0700 (PDT)
+Message-ID: <f8b0553d-d74d-47c5-89f1-6c61ed0951bc@gmail.com>
+Date: Wed, 26 Mar 2025 08:15:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,104 +82,105 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 0/5] Add snps,dis_u3_susphy_quirk for some QC targets
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250325123019.597976-1-prashanth.k@oss.qualcomm.com>
- <ee0848ea-7a06-4f4e-9115-5e3c0ab8bf95@oss.qualcomm.com>
- <7029a455-47be-475d-b429-98031d227653@oss.qualcomm.com>
- <db0bbc62-ecf2-4f72-a0c9-462fbaadebc4@oss.qualcomm.com>
- <5k45tcntn2bhxqt35quzfm2dsq6eug3hgqdcrta25oy47zuqja@4jclvspwob5x>
-Content-Language: en-US
-From: Prashanth K <prashanth.k@oss.qualcomm.com>
-In-Reply-To: <5k45tcntn2bhxqt35quzfm2dsq6eug3hgqdcrta25oy47zuqja@4jclvspwob5x>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH v2 01/14] dt-bindings: regulator: Add ROHM BD96802 PMIC
+To: Conor Dooley <conor@kernel.org>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <cover.1742802856.git.mazziesaccount@gmail.com>
+ <2cb4d103d011f0d4293f6ef9307cef57709263d9.1742802856.git.mazziesaccount@gmail.com>
+ <20250325-universe-jigsaw-61da10ad3f77@spud>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20250325-universe-jigsaw-61da10ad3f77@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: Cdexke3ZQhGBsfYlvRTRVgTDy_VRqmUz
-X-Proofpoint-GUID: Cdexke3ZQhGBsfYlvRTRVgTDy_VRqmUz
-X-Authority-Analysis: v=2.4 cv=Q43S452a c=1 sm=1 tr=0 ts=67e399ca cx=c_pps a=0uOsjrqzRL749jD1oC5vDA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=xMnwRdS-aKneeMBeM7YA:9
- a=QEXdDO2ut3YA:10 a=mQ_c8vxmzFEMiUWkPHU9:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-25_10,2025-03-26_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 impostorscore=0
- lowpriorityscore=0 bulkscore=0 spamscore=0 suspectscore=0 adultscore=0
- mlxlogscore=999 malwarescore=0 mlxscore=0 priorityscore=1501 clxscore=1015
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503260035
 
+Hi Conor,
 
+Thanks for taking a look at this :)
 
-On 26-03-25 03:40 am, Bjorn Andersson wrote:
-> On Tue, Mar 25, 2025 at 05:31:28PM +0100, Konrad Dybcio wrote:
->> On 3/25/25 4:01 PM, Prashanth K wrote:
->>>
->>>
->>> On 25-03-25 08:11 pm, Konrad Dybcio wrote:
->>>> On 3/25/25 1:30 PM, Prashanth K wrote:
->>>>> During device mode initialization on certain QC targets, before the
->>>>> runstop bit is set, sometimes it's observed that the GEVNTADR{LO/HI}
->>>>> register write fails. As a result, GEVTADDR registers are still 0x0.
->>>>> Upon setting runstop bit, DWC3 controller attempts to write the new
->>>>> events to address 0x0, causing an SMMU fault and system crash. More
->>>>> info about the crash at [1].
->>>>>
->>>>> This was initially observed on SM8450 and later reported on few
->>>>> other targets as well. As suggested by Qualcomm HW team, clearing
->>>>> the GUSB3PIPECTL.SUSPHY bit resolves the issue by preventing register
->>>>> write failures. Address this by setting the snps,dis_u3_susphy_quirk
->>>>> to keep the GUSB3PIPECTL.SUSPHY bit cleared. This change was tested
->>>>> on multiple targets (SM8350, SM8450 QCS615 etc.) for over an year
->>>>> and hasn't exhibited any side effects.
->>>>>
->>>>> [1]: https://lore.kernel.org/all/fa94cbc9-e637-ba9b-8ec8-67c6955eca98@quicinc.com/
->>>>>
->>>>> Prashanth K (3):
->>>>>   arm64: dts: qcom: sm8150: Add snps,dis_u3_susphy_quirk
->>>>>   arm64: dts: qcom: sm8350: Add snps,dis_u3_susphy_quirk
->>>>>   arm64: dts: qcom: sm8450: Add snps,dis_u3_susphy_quirk
->>>>>
->>>>> Pratham Pratap (2):
->>>>>   arm64: dts: qcom: qcs615: Add snps,dis_u3_susphy_quirk
->>>>>   arm64: dts: qcom: qdu1000: Add snps,dis_u3_susphy_quirk
->>>>
->>>> Are there more targets affected, from the list of the ones currently
->>>> supported upstream?
->>>>
->>>> Konrad
->>>
->>> My initial plan was to add it for all the QC platforms, but wasn't
->>> confident enough about it. Because we have seen the issue only on these
->>> targets and hence tested only on these.
+On 25/03/2025 19:23, Conor Dooley wrote:
+> On Mon, Mar 24, 2025 at 10:54:44AM +0200, Matti Vaittinen wrote:
+>> BD96802Qxx-C is an automotive grade configurable Power Management
+>> Integrated Circuit supporting Functional Safety features for application
+>> processors, SoCs and FPGAs. BD96802 is controlled via I2C, provides two
+>> interrupt lines and has two controllable buck regulators.
 >>
->> Okay, let's proceed with these and in the meantime please query internally
->> whether it could be applicable to others too
+>> The BD96802 belongs to the family of ROHM Scalable PMICs and is intended
+>> to be used as a companion PMIC for the BD96801.
 >>
-> 
-> But if it applies to all qcom targets, wouldn't it make more sense to
-> add the property in the qcom glue driver?
-
-Hi Bjorn, This issue was seen only on some targets 2 years back, so we
-only tested on those platforms. I think its better to add it to other QC
-targets only if we see that issue.
-
-> 
-> Regards,
-> Bjorn
-> 
->> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
 >>
->> Konrad
+>> ---
+>> Revision history:
+>>   v1 => :
+>>    - No changes
+>> ---
+>>   .../regulator/rohm,bd96802-regulator.yaml     | 44 +++++++++++++++++++
+>>   1 file changed, 44 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd96802-regulator.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/regulator/rohm,bd96802-regulator.yaml b/Documentation/devicetree/bindings/regulator/rohm,bd96802-regulator.yaml
+>> new file mode 100644
+>> index 000000000000..671eaf1096d3
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/regulator/rohm,bd96802-regulator.yaml
+>> @@ -0,0 +1,44 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/regulator/rohm,bd96802-regulator.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: ROHM BD96802 Power Management Integrated Circuit regulators
+>> +
+>> +maintainers:
+>> +  - Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+>> +
+>> +description:
+>> +  This module is part of the ROHM BD96802 MFD device. For more details
+>> +  see Documentation/devicetree/bindings/mfd/rohm,bd96802-pmic.yaml.
+>> +
+>> +  The regulator controller is represented as a sub-node of the PMIC node
+>> +  on the device tree.
+>> +
+>> +  Regulator nodes should be named to buck1 and buck2.
+> 
+> Is it really needed to add a new binding for this, rather than including
+> it in the mfd binding,
 
-Thanks for the review Konrad
+A valid question. I did this because that's what I've used with all the 
+other PMIC's regulator bindings. All of these have MFD counterpart:
 
-Regards,
-Prashanth K
+rohm,bd71815-regulator.yaml
+rohm,bd71828-regulator.yaml
+rohm,bd71837-regulator.yaml
+rohm,bd71847-regulator.yaml
+rohm,bd9576-regulator.yaml
+rohm,bd96801-regulator.yaml
+
+Basically, none of the MFD bindings I've written for ROHM PMICs contain 
+the regulator descriptions.
+
+The thing is that users might be used to look for the regulator bindings 
+from the regulator folder. I'd like to keep this consistent, especially 
+with the BD96801 because the BD96802 is intended to be used together 
+with it. (BD96802 is used as a companion PMIC for the BD96801 to extend 
+it's capabilities).
+
+> particularly when this isn't actually a binding
+> for the regulator but the pattern section applies to the mfd.
+
+Hmmm? I am not sure I understand what you mean here. I know I am really 
+bad with the YAML and bindings, but if I read correctly what I've copied 
+- the pattern section describes what is inside the 'regulators' node. I 
+think this is similar to what we have with the rest of the ROHM PMIC 
+bindings. Should they all be somehow modified?
+
+Yours,
+	-- Matti
 
