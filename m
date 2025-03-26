@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-160766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160767-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FE66A710E1
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 07:58:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95528A710F6
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 08:03:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA363189695E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 06:58:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CE0AA7A1E9B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 07:02:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60D2119D8BC;
-	Wed, 26 Mar 2025 06:57:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49A4B1917D0;
+	Wed, 26 Mar 2025 07:03:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MjaS5yUr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GfzrFpVU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C02E1990B7;
-	Wed, 26 Mar 2025 06:57:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A83B2AF0A;
+	Wed, 26 Mar 2025 07:03:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742972246; cv=none; b=a4p3gFf4ceVwA8H5jWCyjd5j6U2OgZzNRW7ZaoPtIoXNFCYC45ufPKzDheKhbMeTx2OaZzuJ6dRkeAcQ+06CvX58VJZoeuLKB3gci7gwIj/KpubsEOsjSlevrBo3+91I8NJG4SjkvhyuFPu9fqQfLofWcdH4qCVJyZWsaL2CgyM=
+	t=1742972598; cv=none; b=gEaMTfE3HAFLtmWmv8csfgUwwA8qkdO1JEFNURcxNgPFHGBOuIT6Vs2BQlA3iZLcgfzdqfD2ABDimKicwOJTIm+NNV4sWh+BERcRSMntpgFXmdDOmR4rZsrlhnTkkyStI81tWXXNL8r3VC9eG3TcZyTVn37vexK98kfzw6DOmYY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742972246; c=relaxed/simple;
-	bh=5edM3cdV/+75eEQTrQ/LXEZm/Jg8YlmkP78el+GFR4s=;
+	s=arc-20240116; t=1742972598; c=relaxed/simple;
+	bh=/fi76B5UtUwuwMA1yexCDk8ZTpcHFFnF0aLg1Y/cQUg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eH7gjbS+fRTJeiTczR9JxL9zM6tM1lTRoT6LwWV2CiyPn3W+hgDtB0BP2HyBiEVOqWRLyeGjDhTxNm0Kk0jaMwkeNXGgHBVEYk5mKLI+2BA75A/TKdaCUtxQx9F1iWUpdysbekKVIFVCNkEjoDorazMbWH9zzdRd/FTPgkkyXPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MjaS5yUr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC578C4CEED;
-	Wed, 26 Mar 2025 06:57:19 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=TSpbATYWLad9E1zUPWuy+h/jtG1GCNsBFSdvUcDfZNnfCPzkm8ffObaGluYI4ER4RsgiKr3O9ZLNbWiXkYVN0wZQqAt3kIJQcVPW2X9lXFUEGF1uMemljKX3oExfJWy0EQKS/jxHLwcqBqUkn+dcMctBRTKu5ruYGMtwJ7C01ws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GfzrFpVU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F2FBC4CEE2;
+	Wed, 26 Mar 2025 07:03:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742972245;
-	bh=5edM3cdV/+75eEQTrQ/LXEZm/Jg8YlmkP78el+GFR4s=;
+	s=k20201202; t=1742972596;
+	bh=/fi76B5UtUwuwMA1yexCDk8ZTpcHFFnF0aLg1Y/cQUg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MjaS5yUrwIRRQpEcqUrteJ6V/VpmKrDDXMBwUgYtmR95HFoaGV+dmGjFfN9wHHJky
-	 2LXis7MYWsUAH86eKbxaxoVqMkxbVVcRzBG/uVb/VcKWOn9qOHC1OpoW26P8iDtiW3
-	 PXFmE13XxjPSXuV//EWYrTdKvIpakWXeZ/7DSK8cgE/w5RfT3ThbQIdE/HiOWlB1KI
-	 tltRWfQ1EHhQAzA2TmqtKbryqfvnAfNFQsvhPbFdAWdnZ2vmfZJkOCMAafElD8H9Fq
-	 6yJesazDxTjO4zdrbsAouQHjiMAkyVNn1S4lphvICYvb+5nckjD1xPneoNflEGcATY
-	 gh9GgeknjfQhw==
-Message-ID: <492da0ab-3a5c-4ee9-bc37-d66b007ffd81@kernel.org>
-Date: Wed, 26 Mar 2025 07:57:16 +0100
+	b=GfzrFpVUxkChqlw79NMqvwzC4dVc5hJYOr/oeX7CD4pEWYqs8qVivKvvANfKrbtz3
+	 6XiA0M/wWJ8T8c/F1zEIu+NIKBY2X5FfYJJjVxfF4opH44do+Wn0zzg/I/HQDymLBB
+	 5JCo47b22IFmtyyGdY48HWCkhMNZS+2x8sNT68J8Uf8R77M/roVZNg6jXRDztl397Q
+	 319AZfKFr6K5lJBS20WN/Y0uBDDdUi9VKk557hJevSnaplWTGA8vRX53Uygdh8RsGc
+	 bPo/eqQAKrPwL0FO5L/ZZFiB45FuiRzVD5x8fu65ECgLQqm479w/sFgZNcFgTIx2/V
+	 ojcwzAZo5nPQw==
+Message-ID: <f1e24507-7cf3-4e0d-8989-05ef3aaa2708@kernel.org>
+Date: Wed, 26 Mar 2025 08:03:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/7] dt-bindings: input: syna,rmi4: document
- syna,pdt-fallback-desc
-To: Caleb Connolly <caleb.connolly@linaro.org>,
- David Heidelberg <david@ixit.cz>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, "Jason A. Donenfeld" <Jason@zx2c4.com>,
- Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
- Vincent Huang <vincent.huang@tw.synaptics.com>, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20250308-synaptics-rmi4-v3-0-215d3e7289a2@ixit.cz>
- <20250308-synaptics-rmi4-v3-1-215d3e7289a2@ixit.cz>
- <20250310-hissing-vagabond-pegasus-cc8aed@krzk-bin>
- <3c5e12fc-eb91-46e8-a558-9896f0bdcab4@ixit.cz>
- <b3a5ec89-0125-4b01-8cca-69b9985b6089@kernel.org>
- <48bb62eb-8aa9-465c-9e77-c0b375df0c9f@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 03/34] firmware: exynos-acpm: export
+ devm_acpm_get_by_phandle()
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Russell King <linux@armlinux.org.uk>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: Peter Griffin <peter.griffin@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
+ linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org
+References: <20250323-s2mpg10-v1-0-d08943702707@linaro.org>
+ <20250323-s2mpg10-v1-3-d08943702707@linaro.org>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -112,55 +114,32 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <48bb62eb-8aa9-465c-9e77-c0b375df0c9f@linaro.org>
+In-Reply-To: <20250323-s2mpg10-v1-3-d08943702707@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 25/03/2025 14:23, Caleb Connolly wrote:
+On 23/03/2025 23:39, André Draszik wrote:
+> The upcoming Samsung S2MPG10 PMIC driver will need this symbol to
+> communicate with the IC.
 > 
+> Export it.
 > 
-> On 3/25/25 08:36, Krzysztof Kozlowski wrote:
->> On 24/03/2025 19:00, David Heidelberg wrote:
->>> On 10/03/2025 10:45, Krzysztof Kozlowski wrote:
->>>> On Sat, Mar 08, 2025 at 03:08:37PM +0100, David Heidelberg wrote:
->>>>> From: Caleb Connolly <caleb.connolly@linaro.org>
->>>>>
->>>>> This new property allows devices to specify some register values which
->>>>> are missing on units with third party replacement displays. These
->>>>> displays use unofficial touch ICs which only implement a subset of the
->>>>> RMI4 specification.
->>>>
->>>> These are different ICs, so they have their own compatibles. Why this
->>>> cannot be deduced from the compatible?
->>>
->>> Yes, but these identify as the originals.
->>
->>
->> It does not matter how they identify. You have the compatible for them.
->> If you cannot add compatible for them, how can you add dedicated
->> property for them?
+> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+> ---
+>  drivers/firmware/samsung/exynos-acpm.c | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> Hi Krzysztof,
-> 
-> There are an unknown number of knock-off RMI4 chips which are sold in 
-> cheap replacement display panels from multiple vendors. We suspect 
-> there's more than one implementation.
-> 
-> A new compatible string wouldn't help us, since we use the same DTB on 
-> fully original hardware as on hardware with replacement parts.
-> 
-> The proposed new property describes configuration registers which are 
-> present on original RMI4 chips but missing on the third party ones, the 
-> contents of the registers is static.
+> diff --git a/drivers/firmware/samsung/exynos-acpm.c b/drivers/firmware/samsung/exynos-acpm.c
+> index a85b2dbdd9f0d7b1f327f54a0a283e4f32587a98..7525bee4c6715edb964fc770ac9d8b3dd2be2172 100644
+> --- a/drivers/firmware/samsung/exynos-acpm.c
+> +++ b/drivers/firmware/samsung/exynos-acpm.c
+> @@ -741,6 +741,7 @@ const struct acpm_handle *devm_acpm_get_by_phandle(struct device *dev,
+>  
+>  	return handle;
+>  }
+> +EXPORT_SYMBOL_GPL(devm_acpm_get_by_phandle);
 
-
-So you want to add redundant information for existing compatible, while
-claiming you cannot deduce it from that existing compatible... Well,
-no.. you cannot be sure that only chosen boards will have touchscreens
-replaced, thus you will have to add this property to every board using
-this compatible making it equal to the compatible and we are back at my
-original comment. This is deducible from the compatible. If not the new
-one, then from old one.
+If binding changes to parent-child relationship, this might not be needed.
 
 Best regards,
 Krzysztof
