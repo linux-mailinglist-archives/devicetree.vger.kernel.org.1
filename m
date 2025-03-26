@@ -1,122 +1,91 @@
-Return-Path: <devicetree+bounces-160996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1FC8A71CAE
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 18:10:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C930A71CC9
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 18:15:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8839E3B6582
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 17:09:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88F8516F6FF
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 17:14:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D6CA1F8691;
-	Wed, 26 Mar 2025 17:10:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qR2sTKIn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36AD51F8691;
+	Wed, 26 Mar 2025 17:14:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D2541F3B9C
-	for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 17:10:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8E751AF0A4;
+	Wed, 26 Mar 2025 17:14:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743009003; cv=none; b=Y5bXjOycSncBVMwgp2U0CFCHdIdj/QLMBwthieTJpVG49+ddnxJoc5TdgaaX9MKgkilbDYJGmV/KzdZNNEUC9vdR4yB5MezDGKHZMQ0Tpd4OIHj/jaKXmN2h7oPc5+0ODayCSIRQxPc3bV7AoKub2CZCmYAF61yeZzwSUpter7c=
+	t=1743009281; cv=none; b=sRSkAkdS6A1VVeU+gdjUORnW7Jlgp/+Km0MmmleM1Dv0kJncQU7SL0ckLScXY9kS2XXzP57TFoi3UjiErdAMWPE3EZlfka9CSvBY7lNb7FjImoQyGulearBXRYqqC0rIm+OPOdpd4HAri5bzXcVXGtnxPGUH5j/dG+yFrK8850s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743009003; c=relaxed/simple;
-	bh=s9hN7Yb2FDLvip8w32MVrFLFzpBsY05WU4O19Z4Nkz4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uBlTYjPJlDe5/Tpg9vDlWb9GmC16+I6JO+fU3cmt1QyAMekBxWeh96yHjr5UI4cHgES5Ga0sULL9sMP6dTOOHmAK/ClCstaRZVPvFQEDLEzieQIwtzBTLrZiXCUQ64iCbpkufri6heUhNaREQMrZlyrunmK7w8CHPGPM1OCuTUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qR2sTKIn; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-43948021a45so953485e9.1
-        for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 10:10:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743008999; x=1743613799; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3wp2aYV7Lf882bB2x9wggl6yd0pKTlalba7I61amZfg=;
-        b=qR2sTKInVEi9i10XSbjDLQhiZptNt9O3zqFML/mYYTq1Y3P0ej4KsEuz/MohTYHfhJ
-         rDawGswDJzqWxEUbJ04IrukQcCaXCGP/2sS2TAIt8nzQv/pWx0/sk6pOHwIyiwVnVaBb
-         yMfuRnxBBQDRfePfYiAbKzC3ZpO7b7Jpd8Ulyn/Ae8uJ9DlJ6EJ8SxLqTh+jHKYAgZzj
-         pHgbSFvang9MRfiCH28KjqdVIz6Hbiu/Cx/bBk9dxRC5C7bFosZBo7+ATWbwFw7TdQ91
-         W7DIFVE1I35+b4oTy3ruB7/ZWuPgyy5ivcWhWnMZDEr9rzozejyBx1sIZPPAdryt+DBh
-         xx3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743008999; x=1743613799;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3wp2aYV7Lf882bB2x9wggl6yd0pKTlalba7I61amZfg=;
-        b=el0y9Di3fRbV96RPordwyXJvz/Hny31qywsKBrMfid2CGW+Y4lj8O7ISfcNRU9oMzG
-         ML6aZcl2aekvd/S/ApxKGVsfVH2Pq6+0gBihrxnKwTFG92v7ehqzrLT3LoWA9rBuVhcm
-         3j2xee5EDqCPM6DmLTuRmbQKCKXzJPR6XYsRnZJb1w4r64Qpt4lInkbrp07AcyucbfEu
-         Q9q2gA/UwZiG/8PFriEVqxUk9nRmn8dETUKXluyTi8tB2tB6CgO+YKrnE3qMj8h9MR1y
-         /mIzFbcqwLjsSeQuYpFw3Py7sjpmXZKiDyB5xjh4C/8xKUnm8KcccQlcHhUkRdsUUsmi
-         6h9g==
-X-Forwarded-Encrypted: i=1; AJvYcCUjtBeI+DQQY57i43dUXU5GDwK3RElgAR0GSw/tbe2WZOvapdW7hNQ/HmJA7jUbsXE0IPQIYoJJo13m@vger.kernel.org
-X-Gm-Message-State: AOJu0YzpiwAjRVpXZEPTelSskZV2O56oQousuKjHnVdz+BfDULAcl/uA
-	Grp1ezk/8dAs1Y7EymF88N4gPOG1TTWDHPktG1FCOpt65gUmo6ogHMFeH0WjyLM=
-X-Gm-Gg: ASbGncv0IPQtNFp8r1qH/a5UBkEo+puSOgXZOsgMIs0j3ho6+jIgPzXRGlCvNXTsI3b
-	UFAF3wkWfHAdQZtZrwi66F9Rmr6U1thX03/zihytTYbUMzT05OwE6vVc5sNuAena89X9Ox891mR
-	jeeWv19fN3KTkekfe/1Kygbvp1BvoPly6ouDBIf7R45vUq+M8hRyZXAdYft60r+mSbz58vCYVaS
-	gnQ4vZ985GAINy1MLIZJOTRFb+aQT6PS6LAUxbVeoH9uqsmcIA8KJ9UjhswKDTRIWDuSQFG3l2K
-	zH5WdIYslO4sUW0zzFqG5m4tXbQJLLJ0FswUlJ/kBXRECpIoBmMwDKE4pl1+xmOoN3cSzmGnG3H
-	89XffyHw15g==
-X-Google-Smtp-Source: AGHT+IEaYcMyM2J73jN2KiJCnMVfuWrigIIuNN4q+hixY4NKk9003rs6CwEym3avXQ9u768D6WfaBg==
-X-Received: by 2002:a05:600c:1549:b0:43d:2313:7b54 with SMTP id 5b1f17b1804b1-43d84f5dfa7mr2331165e9.3.1743008999500;
-        Wed, 26 Mar 2025 10:09:59 -0700 (PDT)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d82dede2csm8298775e9.5.2025.03.26.10.09.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Mar 2025 10:09:59 -0700 (PDT)
-Message-ID: <0de575dc-5afb-40fb-be30-99906d0e493b@linaro.org>
-Date: Wed, 26 Mar 2025 17:09:57 +0000
+	s=arc-20240116; t=1743009281; c=relaxed/simple;
+	bh=VV5D+WSU9wDTGuyDpTjMKcWhEaqgJqPcE2h83K4BxYI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=L0ISspx4RjvWBsVxP5XH6utVFOlzgjuGMDRCUtJqhxfafaGl2hEugx8ozin+yD1zrSsPAmHIqCtTHLej80s5yXprW8ovYJpm4gc0Zvq8fHwshJ8Vo0cuD8DUVMoghBhIqjr+8ItcwKjMeFdC+lJDpPOGiPk35AlQEkoLhKVMyic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev; spf=pass smtp.mailfrom=buenzli.dev; arc=none smtp.client-ip=80.241.56.161
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=buenzli.dev
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4ZND1119Zpz9thy;
+	Wed, 26 Mar 2025 18:14:29 +0100 (CET)
+From: Remo Senekowitsch <remo@buenzli.dev>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Daniel Scally <djrscally@gmail.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Rob Herring <robh@kernel.org>
+Cc: Dirk Behme <dirk.behme@de.bosch.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>,
+	Gary Guo <gary@garyguo.net>,
+	=?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>,
+	Trevor Gross <tmgross@umich.edu>,
+	Remo Senekowitsch <remo@buenzli.dev>,
+	linux-kernel@vger.kernel.org,
+	linux-acpi@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	rust-for-linux@vger.kernel.org
+Subject: [PATCH 0/10] More Rust bindings for device property reads
+Date: Wed, 26 Mar 2025 18:13:39 +0100
+Message-ID: <20250326171411.590681-1-remo@buenzli.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] media: dt-bindings: Add OmniVision OV02C10
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, robh@kernel.org,
- hdegoede@redhat.com, mchehab@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, sakari.ailus@linux.intel.com, hverkuil@xs4all.nl
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, bod@kernel.org
-References: <20250324171508.GA668235-robh@kernel.org>
- <20250326150114.71401-1-bryan.odonoghue@linaro.org>
- <W8_0Ch2J0PWJ5pKHojZjFbM8huvxWlaWajtl_uhQF3UszGH_O8WTRZdQxh_eHs2JzLOx7CCxx01UZDHPQqAyCA==@protonmail.internalid>
- <1dd46a9e-e97d-415a-9e33-67ee234c4bac@kernel.org>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <1dd46a9e-e97d-415a-9e33-67ee234c4bac@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 4ZND1119Zpz9thy
 
-On 26/03/2025 15:40, Krzysztof Kozlowski wrote:
-> On 26/03/2025 16:01, Bryan O'Donoghue wrote:
->> Add bindings for OVO2C10 a two megapixel 1080p RGB sensor.
->>
-> You already sent this and got some review. What's more, it's exactly the
-> same as OV02E10, so just put it to that file.
-> 
-> Best regards,
-> Krzysztof
+More Rust bindings for device property reads
 
-They aren't exactly the same.
+This adds more Rust bindings for reading device properties, based on
+Rob Herring's work. I'm working on a driver[1] that uses these, but the
+driver has more dependencies than this.
 
-The i2c address of the sensors is different 0x10 for one and 0x36 the other.
+Rob Herring and Dirk Behme did several review iterations over on Zulip
+already[1], I'm thankful for their great input.
 
-Also different data-rates for each chip.
+This is my first time posting to the mailing list, please let me know if
+I did anything wrong.
 
-Seems simpler to me to have two separate files ?
+Remo
 
----
-bod
+[1] https://rust-for-linux.zulipchat.com/#narrow/channel/288089-General/topic/DS90UB954.20driver.20done.2C.20ready.20to.20upstream.3F/with/507874342
+
 
