@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-160765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA1C8A710C8
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 07:55:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FE66A710E1
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 07:58:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50950188F0AF
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 06:54:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA363189695E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 06:58:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ECD318C91F;
-	Wed, 26 Mar 2025 06:54:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60D2119D8BC;
+	Wed, 26 Mar 2025 06:57:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I1yoyuRT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MjaS5yUr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 715A04A29;
-	Wed, 26 Mar 2025 06:54:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C02E1990B7;
+	Wed, 26 Mar 2025 06:57:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742972046; cv=none; b=lNoOQR7OcQqxyoQ4CHfCCYFN6PAv6PF6sqmfvjGMx1+aBbp3cc5sXLrlOF/5JsRAoZQ+IZ7CCaC1n57Xd5KLrUsp/9w2bM3SNgfFiv1eshseut2Z63TRqK5+nD42nrNfcJaoYRKAtC7c3e8c4df0jevWFEqE5y6o5Z7/V17GLvQ=
+	t=1742972246; cv=none; b=a4p3gFf4ceVwA8H5jWCyjd5j6U2OgZzNRW7ZaoPtIoXNFCYC45ufPKzDheKhbMeTx2OaZzuJ6dRkeAcQ+06CvX58VJZoeuLKB3gci7gwIj/KpubsEOsjSlevrBo3+91I8NJG4SjkvhyuFPu9fqQfLofWcdH4qCVJyZWsaL2CgyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742972046; c=relaxed/simple;
-	bh=7zwoyPdNuSVZVKiHsKqqG73eThecfXF83qgiVSIJ2U4=;
+	s=arc-20240116; t=1742972246; c=relaxed/simple;
+	bh=5edM3cdV/+75eEQTrQ/LXEZm/Jg8YlmkP78el+GFR4s=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mEcFUcVJydlfA+b4MUFobOVzFPvQh5NmNVPEPVnvMobBZf3L8oUdXczPvlaLYMetNbTjozvmEDK+qqFt3k0c+qMl5THxPEeEHARvrPIRMEaXM8Es3JCkxDkPN3Rzze6zjOtxHj6zSEAP+iPgk4MtRwhFOQF1+bQqRdf34ZKBVnE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I1yoyuRT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D562DC4CEE2;
-	Wed, 26 Mar 2025 06:53:57 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=eH7gjbS+fRTJeiTczR9JxL9zM6tM1lTRoT6LwWV2CiyPn3W+hgDtB0BP2HyBiEVOqWRLyeGjDhTxNm0Kk0jaMwkeNXGgHBVEYk5mKLI+2BA75A/TKdaCUtxQx9F1iWUpdysbekKVIFVCNkEjoDorazMbWH9zzdRd/FTPgkkyXPI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MjaS5yUr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC578C4CEED;
+	Wed, 26 Mar 2025 06:57:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742972045;
-	bh=7zwoyPdNuSVZVKiHsKqqG73eThecfXF83qgiVSIJ2U4=;
+	s=k20201202; t=1742972245;
+	bh=5edM3cdV/+75eEQTrQ/LXEZm/Jg8YlmkP78el+GFR4s=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=I1yoyuRTZPYV+8QANl6Hc+Tw0BUQ9tvDhKCElr9TXtHQrMPD5vJM3eq62OiGFazBD
-	 R9FMd6nzLbhowCjQzMTsO+yJOuISqMdYMKO+NOhmEXqyabxKGK/KXHBnfEONTDo7mL
-	 ikicBP8MAdHVQxpFhEQwCNsT3KB0ZhlotpRDL3koQaIprPByu3HdvfHzMGamM3juqc
-	 hWDTYpd/f4JRsDHHTQ/Td3Rzzzz5lwgfO9d+G6pmV56oQu2dAQAUAIcdMRMedzEPsb
-	 WWm7S1ZHj16CcZ8wgqTWltrydfwqiHigsM2OoVOG1/OCacCow/AI5RF6BIEAWYw0pD
-	 E1/EIY3TA2Kxg==
-Message-ID: <58bb1186-08ee-41cf-8593-a6664bd874e6@kernel.org>
-Date: Wed, 26 Mar 2025 07:53:55 +0100
+	b=MjaS5yUrwIRRQpEcqUrteJ6V/VpmKrDDXMBwUgYtmR95HFoaGV+dmGjFfN9wHHJky
+	 2LXis7MYWsUAH86eKbxaxoVqMkxbVVcRzBG/uVb/VcKWOn9qOHC1OpoW26P8iDtiW3
+	 PXFmE13XxjPSXuV//EWYrTdKvIpakWXeZ/7DSK8cgE/w5RfT3ThbQIdE/HiOWlB1KI
+	 tltRWfQ1EHhQAzA2TmqtKbryqfvnAfNFQsvhPbFdAWdnZ2vmfZJkOCMAafElD8H9Fq
+	 6yJesazDxTjO4zdrbsAouQHjiMAkyVNn1S4lphvICYvb+5nckjD1xPneoNflEGcATY
+	 gh9GgeknjfQhw==
+Message-ID: <492da0ab-3a5c-4ee9-bc37-d66b007ffd81@kernel.org>
+Date: Wed, 26 Mar 2025 07:57:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v2 2/9] dt-bindings: soc: microchip: document the
- simple-mfd syscon on PolarFire SoC
-To: Conor Dooley <conor@kernel.org>
-Cc: Stephen Boyd <sboyd@kernel.org>, Conor Dooley
- <conor.dooley@microchip.com>, Daire McNamara <daire.mcnamara@microchip.com>,
- pierre-henry.moussay@microchip.com, valentina.fernandezalanis@microchip.com,
- Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Jassi Brar <jassisinghbrar@gmail.com>, Lee Jones <lee@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250321-cuddly-hazily-d0ab1e1747b5@spud>
- <20250321-ramrod-scabby-a1869f9979b6@spud>
- <20250325-quiet-waxbill-of-realization-675469@krzk-bin>
- <20250325-feline-roundworm-dc391b755673@spud>
+Subject: Re: [PATCH v3 1/7] dt-bindings: input: syna,rmi4: document
+ syna,pdt-fallback-desc
+To: Caleb Connolly <caleb.connolly@linaro.org>,
+ David Heidelberg <david@ixit.cz>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, "Jason A. Donenfeld" <Jason@zx2c4.com>,
+ Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+ Vincent Huang <vincent.huang@tw.synaptics.com>, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <20250308-synaptics-rmi4-v3-0-215d3e7289a2@ixit.cz>
+ <20250308-synaptics-rmi4-v3-1-215d3e7289a2@ixit.cz>
+ <20250310-hissing-vagabond-pegasus-cc8aed@krzk-bin>
+ <3c5e12fc-eb91-46e8-a558-9896f0bdcab4@ixit.cz>
+ <b3a5ec89-0125-4b01-8cca-69b9985b6089@kernel.org>
+ <48bb62eb-8aa9-465c-9e77-c0b375df0c9f@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,35 +112,55 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250325-feline-roundworm-dc391b755673@spud>
+In-Reply-To: <48bb62eb-8aa9-465c-9e77-c0b375df0c9f@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/03/2025 17:03, Conor Dooley wrote:
-> On Tue, Mar 25, 2025 at 09:13:22AM +0100, Krzysztof Kozlowski wrote:
->> On Fri, Mar 21, 2025 at 05:22:35PM +0000, Conor Dooley wrote:
->>> +title: Microchip PolarFire SoC Microprocessor Subsystem (MSS) sysreg register region
->>> +
->>> +maintainers:
->>> +  - Conor Dooley <conor.dooley@microchip.com>
->>> +
->>> +description:
->>> +  An wide assortment of registers that control elements of the MSS on PolarFire
->>> +  SoC, including pinmuxing, resets and clocks among others.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - const: microchip,mpfs-mss-top-sysreg
->>> +      - const: syscon
->>> +      - const: simple-mfd
->>
->> You need to list the children if you use simple-mfd. Commit msg
->> mentioned clock controller, so where is it?
+On 25/03/2025 14:23, Caleb Connolly wrote:
 > 
-> I don't think a child node is required here, there's not enough
+> 
+> On 3/25/25 08:36, Krzysztof Kozlowski wrote:
+>> On 24/03/2025 19:00, David Heidelberg wrote:
+>>> On 10/03/2025 10:45, Krzysztof Kozlowski wrote:
+>>>> On Sat, Mar 08, 2025 at 03:08:37PM +0100, David Heidelberg wrote:
+>>>>> From: Caleb Connolly <caleb.connolly@linaro.org>
+>>>>>
+>>>>> This new property allows devices to specify some register values which
+>>>>> are missing on units with third party replacement displays. These
+>>>>> displays use unofficial touch ICs which only implement a subset of the
+>>>>> RMI4 specification.
+>>>>
+>>>> These are different ICs, so they have their own compatibles. Why this
+>>>> cannot be deduced from the compatible?
+>>>
+>>> Yes, but these identify as the originals.
+>>
+>>
+>> It does not matter how they identify. You have the compatible for them.
+>> If you cannot add compatible for them, how can you add dedicated
+>> property for them?
+> 
+> Hi Krzysztof,
+> 
+> There are an unknown number of knock-off RMI4 chips which are sold in 
+> cheap replacement display panels from multiple vendors. We suspect 
+> there's more than one implementation.
+> 
+> A new compatible string wouldn't help us, since we use the same DTB on 
+> fully original hardware as on hardware with replacement parts.
+> 
+> The proposed new property describes configuration registers which are 
+> present on original RMI4 chips but missing on the third party ones, the 
+> contents of the registers is static.
 
-Then this is not a simple-mfd.
+
+So you want to add redundant information for existing compatible, while
+claiming you cannot deduce it from that existing compatible... Well,
+no.. you cannot be sure that only chosen boards will have touchscreens
+replaced, thus you will have to add this property to every board using
+this compatible making it equal to the compatible and we are back at my
+original comment. This is deducible from the compatible. If not the new
+one, then from old one.
 
 Best regards,
 Krzysztof
