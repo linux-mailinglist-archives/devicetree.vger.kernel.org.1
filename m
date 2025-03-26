@@ -1,110 +1,193 @@
-Return-Path: <devicetree+bounces-161033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161034-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 655DAA71E0A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 19:08:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5459EA71E0F
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 19:09:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 02D4B175CDA
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 18:08:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 404483B27C8
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 18:09:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A45924EF79;
-	Wed, 26 Mar 2025 18:08:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE37C24CECE;
+	Wed, 26 Mar 2025 18:09:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="tIAaVPrl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lhVWxj0C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B25E623E324;
-	Wed, 26 Mar 2025 18:08:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4B0619E7E2;
+	Wed, 26 Mar 2025 18:09:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743012505; cv=none; b=GuEEbJGRkIjTQT0RqsNB8Z7Fp2V0yoMaeCMI2UtsX/NdjQn7Az+VQ+WgE0QGa3th66owpLwXnD0/H4GxkQvk5Z9EYk3TrH7FT1UO+ph1cgxhLzgjEsKaGJGBa0nUEzYnjhbFYTDcw/mcCLq3doUWMRFTiYgrEjUzrceu6GdyNJo=
+	t=1743012566; cv=none; b=MWpSmTKPI7qtURM6/CGFf+oRHvy9jDKXufDmupkXlQTB2Hip7+mAwNen8iIhZgt6Xl6ZnL+gMvXECSQYP5WAhJyHYGPJlpQbs39ep2HD2TTYFziEHKAK0dkKyENNcRm1AmzS9LsW5CBKu1sLlzoEHJ9BuJGX1vIHfu4isX8plo8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743012505; c=relaxed/simple;
-	bh=VUWIUj2hfkXI+Qy0S+bOeux5uwuJCkBDwdfH5H5+a04=;
+	s=arc-20240116; t=1743012566; c=relaxed/simple;
+	bh=DyZC37BpernRq38cpRSS+1tvE9ZzaMZewkCDnXJtk1A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fF3sPpWgG8T/FhlqPCi5vVQvqZjZebGf3tZjiEZ0wtfbYiaEfb/u9AnEnu78pa6Ot0eYPOyB74c/klI48FAC/0S1ARK8KbVCaHaWeq0PfsVMbGb/S2fub5O8W96wpOu1lO6GezPJhSriGlvOHWk1o3JySxL6EF5ftxcYvfkcXuo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=tIAaVPrl; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=W9NKf/8mTYUYfIRNEyzd9z7p8OnoYdqWiENexZcINQs=; b=tIAaVPrlQIYxF6Z16HmkxlO/zN
-	MaqTLGdwwrT2x1RDu/stzwNSmKYIVGWk30woItxKAlJwr0+SAxQPqT2H0NlPsNZ4DNQXcm/jboLPH
-	0DDitU52H/T04+xuGboip2+QSFHJhcz52keptJ5h8ASfrhiUvuu1C0OEVTcpAzDfS4gqA2hg48vcY
-	xnwh9+F9DuSSDViL/8GV2DKoWjDqQFw8IMGt02IwdE/3SYlW5aTmmC+ABAhIzxAvD/mZ8EHxs8vbb
-	JUtqFeELrOxuL72kYV9FhZNewMcGuQkyUHuo8PBg7NcEokKr13ADUO7Kx26NC4/ddTSSoW/yh3s81
-	R9OsymiQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:33370)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1txVAi-0006RH-0w;
-	Wed, 26 Mar 2025 18:08:12 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1txVAg-0004c9-0c;
-	Wed, 26 Mar 2025 18:08:10 +0000
-Date: Wed, 26 Mar 2025 18:08:09 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Christian Marangi <ansuelsmth@gmail.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=mT9GDEI2d6/hqfosF9I6bh91rq9S6Y77z5/RtFddv5wVJrcA+lk8iZi+GYfSx6D8JExMk5v8Xb/KnDKLtqiRphNQUWyz/U972YJWWXbV44hW9nzeb35W8inTtWkiJg60+JbZNb1FoiEY/Zop+khjhsQ7N60uH3xaTmoz8BGvnwY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lhVWxj0C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94025C4CEE2;
+	Wed, 26 Mar 2025 18:09:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743012566;
+	bh=DyZC37BpernRq38cpRSS+1tvE9ZzaMZewkCDnXJtk1A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lhVWxj0Ct6jtlBV0eOTmpsqI77Ng4krl5yaHgNeK4YmGVFaREBgWPCF1oZOkxqeV5
+	 608tpeqma4zfJjWAgac4mwEGxIjq0WGl3AkjVn8TUIUkmTml5qZkdPk/q6b/JrDhGR
+	 CbhXdHRMrcjZ69U9WGeeSxLI6gIMoyiHE+ylFESwIiPOZ798lDptjWN+m7xIpDIduY
+	 vnDffboli5NbMLYkBqmEV2sZ4HMddsbhHKFdlfs7xxbZXmKyBFHWPa8WbcmncTlfRj
+	 gJRCMY1qfwP1B6Aifwn9h+7kM/FkVDDYgSyTRnccnPuLTL/f/a1Y2lFPxaAIVmkEID
+	 4yAnYriMHuYmg==
+Date: Wed, 26 Mar 2025 18:09:22 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next RFC PATCH v2 2/3] net: phy: Add support for Aeonsemi
- AS21xxx PHYs
-Message-ID: <Z-RCiWzRWbv7RlHJ@shell.armlinux.org.uk>
-References: <20250326002404.25530-1-ansuelsmth@gmail.com>
- <20250326002404.25530-3-ansuelsmth@gmail.com>
- <dfa78876-d4a6-4226-b3d4-dbf112e001ee@lunn.ch>
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 01/14] dt-bindings: regulator: Add ROHM BD96802 PMIC
+Message-ID: <20250326-candy-endocrine-2e7b2182e53b@spud>
+References: <cover.1742802856.git.mazziesaccount@gmail.com>
+ <2cb4d103d011f0d4293f6ef9307cef57709263d9.1742802856.git.mazziesaccount@gmail.com>
+ <20250325-universe-jigsaw-61da10ad3f77@spud>
+ <f8b0553d-d74d-47c5-89f1-6c61ed0951bc@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="WSc6Zv3nIINNi2x4"
+Content-Disposition: inline
+In-Reply-To: <f8b0553d-d74d-47c5-89f1-6c61ed0951bc@gmail.com>
+
+
+--WSc6Zv3nIINNi2x4
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <dfa78876-d4a6-4226-b3d4-dbf112e001ee@lunn.ch>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 26, 2025 at 03:56:15PM +0100, Andrew Lunn wrote:
-> After the firmware download, the phylib core will still have the wrong
-> ID values. So you cannot use PHY_ID_MATCH_EXACT(PHY_ID_AS21011JB1).
-> But what you can do is have a .match_phy_device function. It will get
-> called, and it can read the real ID from the device, and perform a
-> match. If it does not match return -ENODEV, and the core will try the
-> next entry.
+On Wed, Mar 26, 2025 at 08:15:05AM +0200, Matti Vaittinen wrote:
+> Hi Conor,
+>=20
+> Thanks for taking a look at this :)
+>=20
+> On 25/03/2025 19:23, Conor Dooley wrote:
+> > On Mon, Mar 24, 2025 at 10:54:44AM +0200, Matti Vaittinen wrote:
+> > > BD96802Qxx-C is an automotive grade configurable Power Management
+> > > Integrated Circuit supporting Functional Safety features for applicat=
+ion
+> > > processors, SoCs and FPGAs. BD96802 is controlled via I2C, provides t=
+wo
+> > > interrupt lines and has two controllable buck regulators.
+> > >=20
+> > > The BD96802 belongs to the family of ROHM Scalable PMICs and is inten=
+ded
+> > > to be used as a companion PMIC for the BD96801.
+> > >=20
+> > > Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> > >=20
+> > > ---
+> > > Revision history:
+> > >   v1 =3D> :
+> > >    - No changes
+> > > ---
+> > >   .../regulator/rohm,bd96802-regulator.yaml     | 44 ++++++++++++++++=
++++
+> > >   1 file changed, 44 insertions(+)
+> > >   create mode 100644 Documentation/devicetree/bindings/regulator/rohm=
+,bd96802-regulator.yaml
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/regulator/rohm,bd96802=
+-regulator.yaml b/Documentation/devicetree/bindings/regulator/rohm,bd96802-=
+regulator.yaml
+> > > new file mode 100644
+> > > index 000000000000..671eaf1096d3
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/regulator/rohm,bd96802-regula=
+tor.yaml
+> > > @@ -0,0 +1,44 @@
+> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/regulator/rohm,bd96802-regulator.=
+yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: ROHM BD96802 Power Management Integrated Circuit regulators
+> > > +
+> > > +maintainers:
+> > > +  - Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+> > > +
+> > > +description:
+> > > +  This module is part of the ROHM BD96802 MFD device. For more detai=
+ls
+> > > +  see Documentation/devicetree/bindings/mfd/rohm,bd96802-pmic.yaml.
+> > > +
+> > > +  The regulator controller is represented as a sub-node of the PMIC =
+node
+> > > +  on the device tree.
+> > > +
+> > > +  Regulator nodes should be named to buck1 and buck2.
+> >=20
+> > Is it really needed to add a new binding for this, rather than including
+> > it in the mfd binding,
+>=20
+> A valid question. I did this because that's what I've used with all the
+> other PMIC's regulator bindings. All of these have MFD counterpart:
+>=20
+> rohm,bd71815-regulator.yaml
+> rohm,bd71828-regulator.yaml
+> rohm,bd71837-regulator.yaml
+> rohm,bd71847-regulator.yaml
+> rohm,bd9576-regulator.yaml
+> rohm,bd96801-regulator.yaml
+>=20
+> Basically, none of the MFD bindings I've written for ROHM PMICs contain t=
+he
+> regulator descriptions.
+>=20
+> The thing is that users might be used to look for the regulator bindings
+> from the regulator folder. I'd like to keep this consistent, especially w=
+ith
+> the BD96801 because the BD96802 is intended to be used together with it.
+> (BD96802 is used as a companion PMIC for the BD96801 to extend it's
+> capabilities).
+>=20
+> > particularly when this isn't actually a binding
+> > for the regulator but the pattern section applies to the mfd.
+>=20
+> Hmmm? I am not sure I understand what you mean here. I know I am really b=
+ad
+> with the YAML and bindings, but if I read correctly what I've copied - the
+> pattern section describes what is inside the 'regulators' node. I think t=
+his
+> is similar to what we have with the rest of the ROHM PMIC bindings. Should
+> they all be somehow modified?
 
-Before it returns -ENODEV, it could re-read the ID values and fill
-them into struct phy_device. This would allow phylib's matching to
-work.
+I just think it is weird to be honest, describing the contents of
+regulators node, rather than the individual regulators themselves, but
+if Rob and Krzysztof, which they seem to be, I will not object.
 
-> You either need N match_phy_device functions, one per ID value, or you
-> can make use of the .driver_data in phy_driver, and place the matching
-> data there.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-An alternative would be to change the match_phy_device() method to
-pass the phy_driver, which would allow a single match_phy_device
-function to match the new hardware ID values against the PHY IDs in
-the phy_driver without needing to modify the IDs in phy_device.
+--WSc6Zv3nIINNi2x4
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ+RC0gAKCRB4tDGHoIJi
+0g11AQDm+Ek8Qkj0AQXpAxogNSnb3nlSLz25Zh4fCd9GlJMSLwD8DXpz6Ac5Sw52
+dHLpwGD9t7pM1gXv78/WB+o4KoLxUg0=
+=DPO3
+-----END PGP SIGNATURE-----
+
+--WSc6Zv3nIINNi2x4--
 
