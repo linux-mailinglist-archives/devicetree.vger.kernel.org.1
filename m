@@ -1,201 +1,137 @@
-Return-Path: <devicetree+bounces-160937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF7A7A719E2
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 16:12:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AFF4A719E4
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 16:12:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 201BC1702A4
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 15:07:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0AD8E161AAE
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 15:08:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2238C1C6FF5;
-	Wed, 26 Mar 2025 15:07:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 757F0189903;
+	Wed, 26 Mar 2025 15:08:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kCfJXrrN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F74619CC3E
-	for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 15:07:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90DFE1CB9E2
+	for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 15:08:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743001635; cv=none; b=q3L65tmYsOshz6h/rjWy2LKTM/nxs19cx+Wl8f75bz9pLhxp9qccrfyKbir0/+jJ/bozqnCAVdoA0KkSpYqjix/oK4QNLDAWwfr/1WRYJaD5ZJaY1jVVPtVOVbzNfat0A7yARYHieGbn12j7e2wHBt+pbSRBChZsiUEKG5xLusY=
+	t=1743001725; cv=none; b=ubfU2PJezQYJLZbZd4iwGHgAzEsWWOp0uJSI92Oqst8mNtxTsp23Fhqo3B/4iQk3V1eCvjHXqkTJ0/tGYgp88mYkFp7Hv5VAl1RaZNMtWf8/8QkTEZ+/4FZzAA+v65rz5KSicoxoylzwJIhsr/QIxSxpu+weFv5b6HdCHTXTDjI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743001635; c=relaxed/simple;
-	bh=huNmMUfTSUBb/zHm1nGTvGLDnkLOdcwACOspTe+Psek=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nYhgDzDrc4NwmroDnjaKtFmmM48CnYfO9XULWQ+yy6rH4VtzqAxZ0hVAALdONXW+bwMdKW0BAwJ9LBW7UzGxJvSbKHKUV0l8JR77ppMNzzdB7AbU9uFmdB3YsyNdGIAISxtz+dHKrIMiUYhRNxx+YCezvZXOXocYL9/etr9y/as=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 67D0A106F;
-	Wed, 26 Mar 2025 08:07:17 -0700 (PDT)
-Received: from [10.57.14.42] (unknown [10.57.14.42])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 985153F63F;
-	Wed, 26 Mar 2025 08:07:07 -0700 (PDT)
-Message-ID: <3df61a2e-5216-4ae3-961f-856d6334e6b7@arm.com>
-Date: Wed, 26 Mar 2025 15:07:05 +0000
+	s=arc-20240116; t=1743001725; c=relaxed/simple;
+	bh=J+Uwty62x7DdnPcwWCiCgXAH3nCocKjRLuMfYyRNiMQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LiAC8F5nvx+ETeavOg1BQ1dq6T51nqf+qnjL/hUillUHurK8w3/F1iDz1FmUMHw1HziA3wiB6l2+rLmmcKEyStdduJdWRZwXtGomt0os8nieq9aX2OqHiEPUPZSjH9RH3bt1BxRfk0ynl5cflwg1YjpTECssoYEVqSaUmEt9m9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kCfJXrrN; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-43d07ca6a80so35566705e9.1
+        for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 08:08:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1743001722; x=1743606522; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=K6QgeinZ4T2CEETUj1UU3X0d9N2W6dwCixOfG2GPPgo=;
+        b=kCfJXrrNGyYQnLL4wjLhwIilrMjQQcWNtxISBQt862laBdIFZliqrf+WGeLZ+AqMF+
+         xthCNCpObZNbaDen0ngVWtqhBuSIquBii1GOnL3yzUmLcuiY8VO+95GHTAsBsdIEwHSI
+         Ak108r1LvyTimKvteVjurk1UdEdzaelPT/McICBt7rKnqk0ltM9muX2qn5hGnCRiu4bU
+         I59t63++WcWoCiAWOGSSsRGs0HfeoSMhCGBdhdzdcGJklk5wtuWHKr0pdIu0QJFkY1jW
+         /cLXq4fV50KiEfQ4tBT5qYjR+WFO7A95n3AgWbVX4hk9NtenRq3vdfZnGaCTtATym1S6
+         Hn4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743001722; x=1743606522;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=K6QgeinZ4T2CEETUj1UU3X0d9N2W6dwCixOfG2GPPgo=;
+        b=VHN4wBOlNffpeJhuDWl8qpFcRI285zxkDw1dbOxX/cJMu9Uomrae12IZzvmFfLjtqp
+         cELx0n63E+pTdh/gqcRieSRHdji49kN/of0av33sfLybhx/k5NpRv3k2jHeAtq5GCTi5
+         xvZbNY+IiXORzGmRAK5Frsxd83Cudr9tg6OyPlJFVeY36T1DdPy4yec/q6VWMutGaTo9
+         /bB13wc4AdzU6jH1xVGyL+pWzxnoPlTRvqyFjNEBLIR0dZK6K91VNTqX2LNBwzEmvZoL
+         EW6cz9jOhrRQUWLAy9rfWSjBovMYyd7b221x7rkYHoSNWdcSqabdq3gncrnKYjTrwsX5
+         pj4A==
+X-Forwarded-Encrypted: i=1; AJvYcCXlRx0vuzt3IPHujwyHI8P+kfKIGxffN2sEOc9LvAxO5tOpMpe8x1sO7ZHNC8/9PWXQTAn9gbxKgowb@vger.kernel.org
+X-Gm-Message-State: AOJu0YxU6RWb0vrSRU6ydwIq/It9uBPSkK3T4f7bwNMxATcRHHPxsIOu
+	sGqkHE8LWP/CbrCvZIryiKz9XG6k0yQMzgsGmwKu/mwblDUeOaFC7/i4/IQQcMIgNSPSkyh+co0
+	Lx2Zf5keegDz5td03tdA6c/xyL2Ha52h9jUV+9g==
+X-Gm-Gg: ASbGncs5VhKed+zcHON7RBdi4PAab6P0K8Patk7xTSrO6UrWwGx5aH+Sxk8slk7uEgk
+	buGCSnURvopKW313TRmh24SH1G413fxm0KyQ9jPJziwNqbe+/HcnSUS0ng9hx5autNZT4uIcGSz
+	7Smh/MxuRaxL2jeiZ7MczqJiw+/KdC/cCSXMVWzgrHiQKJQ/bFZ4ER+ba3I04=
+X-Google-Smtp-Source: AGHT+IFRX9Dag9WPYVZCjInr7s5+x9rD882OTti+EwgHv/CLcHvYu2T59wrDheZNF3bNaOL19EhKT3JrZA0RrFDharQ=
+X-Received: by 2002:a05:6000:2b0c:b0:391:4bfd:6d5 with SMTP id
+ ffacd0b85a97d-3997f9389d0mr12644513f8f.52.1743001721724; Wed, 26 Mar 2025
+ 08:08:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/9] drm/panthor: Implement support for multiple power
- domains
-To: Marek Vasut <marex@denx.de>, linux-arm-kernel@lists.infradead.org
-Cc: Boris Brezillon <boris.brezillon@collabora.com>,
- Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
- Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, imx@lists.linux.dev
-References: <20250321200625.132494-1-marex@denx.de>
- <20250321200625.132494-6-marex@denx.de>
-From: Steven Price <steven.price@arm.com>
-Content-Language: en-GB
-In-Reply-To: <20250321200625.132494-6-marex@denx.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250325-wip-obbardc-qcom-t14s-oled-panel-v2-0-e9bc7c9d30cc@linaro.org>
+ <20250325-wip-obbardc-qcom-t14s-oled-panel-v2-4-e9bc7c9d30cc@linaro.org> <2cfdf7f3-56a6-495e-83cf-1921a2e0ef8d@oss.qualcomm.com>
+In-Reply-To: <2cfdf7f3-56a6-495e-83cf-1921a2e0ef8d@oss.qualcomm.com>
+From: Christopher Obbard <christopher.obbard@linaro.org>
+Date: Wed, 26 Mar 2025 15:08:30 +0000
+X-Gm-Features: AQ5f1JrG9jYOKFuYMJGa7mTyKExVbCzem5WJO44l_oFhXBZmwxNQppiXtjv4bCQ
+Message-ID: <CACr-zFBFpqgHVRiH37ooeVJ4Jk1UA4AhP5J5L5yV8_CHBTG07g@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] drm/dp: fallback to maximum when PWM bit count is zero
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Douglas Anderson <dianders@chromium.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, Johan Hovold <johan@kernel.org>, 
+	Rui Miguel Silva <rui.silva@linaro.org>, Abel Vesa <abel.vesa@linaro.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 21/03/2025 20:05, Marek Vasut wrote:
-> The driver code power domain binding to driver instances only works
-> for single power domain, in case there are multiple power domains,
-> it is necessary to explicitly attach via dev_pm_domain_attach*().
-> As DT bindings list support for up to 5 power domains, add support
-> for attaching them all. This is useful on Freescale i.MX95 which
-> does have two power domains.
-> 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Boris Brezillon <boris.brezillon@collabora.com>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Liviu Dudau <liviu.dudau@arm.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Philipp Zabel <p.zabel@pengutronix.de>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Sebastian Reichel <sre@kernel.org>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: Steven Price <steven.price@arm.com>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: devicetree@vger.kernel.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: imx@lists.linux.dev
-> Cc: linux-arm-kernel@lists.infradead.org
-> ---
-> V2: Exit from panthor_genpd_init() on any pm_domain_attach_by_id() failure
-> ---
->  drivers/gpu/drm/panthor/panthor_device.c | 52 ++++++++++++++++++++++++
->  drivers/gpu/drm/panthor/panthor_device.h |  5 +++
->  2 files changed, 57 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/panthor/panthor_device.c b/drivers/gpu/drm/panthor/panthor_device.c
-> index 51ee9cae94504..8aa79c6d157e1 100644
-> --- a/drivers/gpu/drm/panthor/panthor_device.c
-> +++ b/drivers/gpu/drm/panthor/panthor_device.c
-> @@ -75,6 +75,54 @@ static int panthor_reset_init(struct panthor_device *ptdev)
->  	return 0;
->  }
->  
-> +/* Generic power domain handling code, see drivers/gpu/drm/tiny/simpledrm.c */
-> +static void panthor_detach_genpd(void *res)
-> +{
-> +	struct panthor_device *ptdev = res;
-> +	int i;
-> +
-> +	if (ptdev->pwr_dom_count <= 1)
-> +		return;
-> +
-> +	for (i = ptdev->pwr_dom_count - 1; i >= 0; i--)
-> +		dev_pm_domain_detach(ptdev->pwr_dom_devs[i], true);
-> +}
-> +
-> +static int panthor_genpd_init(struct panthor_device *ptdev)
-> +{
-> +	struct device *dev = ptdev->base.dev;
-> +	int i;
-> +
-> +	ptdev->pwr_dom_count = of_count_phandle_with_args(dev->of_node, "power-domains",
-> +							  "#power-domain-cells");
-> +	/*
-> +	 * Single power-domain devices are handled by driver core nothing to do
-> +	 * here. The same for device nodes without "power-domains" property.
-> +	 */
-> +	if (ptdev->pwr_dom_count <= 1)
-> +		return 0;
-> +
-> +	if (ptdev->pwr_dom_count > ARRAY_SIZE(ptdev->pwr_dom_devs)) {
-> +		drm_warn(&ptdev->base, "Too many power domains (%d) for this device\n",
-> +			 ptdev->pwr_dom_count);
-> +		return -EINVAL;
-> +	}
-> +
-> +	for (i = 0; i < ptdev->pwr_dom_count; i++) {
-> +		ptdev->pwr_dom_devs[i] = dev_pm_domain_attach_by_id(dev, i);
-> +		if (!IS_ERR(ptdev->pwr_dom_devs[i]))
-> +			continue;
-> +
-> +		/* Missing dependency, try again. */
-> +		panthor_detach_genpd(ptdev);
+Hi Dmitry,
 
-If ptdev->pwr_dom_devs[i] is assigned an error pointer, then the call in
-panthor_detach_genpd() to dev_pm_domain_detach() is going to use that
-error pointer. But AFAICT dev_pm_domain_detach() assumes the pointer is
-valid. So this will break.
+On Tue, 25 Mar 2025 at 22:53, Dmitry Baryshkov
+<dmitry.baryshkov@oss.qualcomm.com> wrote:
+>
+> On 25/03/2025 21:21, Christopher Obbard wrote:
+> > Some eDP devices report DP_EDP_PWMGEN_BIT_COUNT as 0, but still provide
+> > valid non-zero MIN and MAX values. This patch reworks the logic to
+> > fallback to the max value in such cases, ensuring correct backlight PWM
+> > configuration even when the bit count value is not explicitly set.
+>
+> I don't think this matches the eDP standard. It tells to use MIN if
+> BIT_COUNT is less than MIN, if I understand it correctly.
 
-Steve
+Thanks for your comment; that's a good point.
 
-> +		return dev_err_probe(ptdev->base.dev,
-> +				     PTR_ERR(ptdev->pwr_dom_devs[i]),
-> +				     "pm_domain_attach_by_id(%u) failed\n", i);
-> +	}
-> +
-> +	return devm_add_action_or_reset(dev, panthor_detach_genpd, ptdev);
-> +}
-> +
->  void panthor_device_unplug(struct panthor_device *ptdev)
->  {
->  	/* This function can be called from two different path: the reset work
-> @@ -232,6 +280,10 @@ int panthor_device_init(struct panthor_device *ptdev)
->  	if (ret)
->  		return ret;
->  
-> +	ret = panthor_genpd_init(ptdev);
-> +	if (ret)
-> +		return ret;
-> +
->  	ret = panthor_devfreq_init(ptdev);
->  	if (ret)
->  		return ret;
-> diff --git a/drivers/gpu/drm/panthor/panthor_device.h b/drivers/gpu/drm/panthor/panthor_device.h
-> index fea3a05778e2e..7fb65447253e9 100644
-> --- a/drivers/gpu/drm/panthor/panthor_device.h
-> +++ b/drivers/gpu/drm/panthor/panthor_device.h
-> @@ -114,6 +114,11 @@ struct panthor_device {
->  	/** @resets: GPU reset. */
->  	struct reset_control *resets;
->  
-> +	/** @pwr_dom_count: Power domain count */
-> +	int pwr_dom_count;
-> +	/** @pwr_dom_dev: Power domain devices */
-> +	struct device *pwr_dom_devs[5];
-> +
->  	/** @coherent: True if the CPU/GPU are memory coherent. */
->  	bool coherent;
->  
+I need to re-read this section of the spec; but at least on this
+hardware I printed the values of the registers and it seems like
+MIN and MAX are the same, so I could switch the patch around to use
+MIN in the next version.
 
+   drm_edp_backlight_probe_max: pn=0, pn_min=11, pn_max=11, bl_caps=134
+
+
+diff --git a/drivers/gpu/drm/display/drm_dp_helper.c
+b/drivers/gpu/drm/display/drm_dp_helper.c
+index 6e519c58c2e84..2be2b00c8a531 100644
+--- a/drivers/gpu/drm/display/drm_dp_helper.c
++++ b/drivers/gpu/drm/display/drm_dp_helper.c
+@@ -4061,6 +4061,8 @@ drm_edp_backlight_probe_max(struct drm_dp_aux
+*aux, struct drm_edp_backlight_inf
+                        aux->name, ret);
+        }
+
++       pr_info("%s: pn=%d, pn_min=%d, pn_max=%d, bl_caps=%d\n",
+__func__, pn, pn_min, pn_max, bl_caps);
++
+        /*
+         * Some eDP panels report brightness byte count support, but
+the byte count
+         * reading is 0 (e.g. Samsung ATNA40YK20) so in these cases use pn_max
 
