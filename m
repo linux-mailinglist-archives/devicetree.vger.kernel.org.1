@@ -1,60 +1,59 @@
-Return-Path: <devicetree+bounces-160787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160789-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81E85A7118D
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 08:42:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FABAA7119D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 08:46:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 64CFD188EE40
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 07:42:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E97118901D5
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 07:46:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AABA19D898;
-	Wed, 26 Mar 2025 07:41:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6F9019D88B;
+	Wed, 26 Mar 2025 07:45:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TIxxlW39"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y+pTzN5B"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20B8919ABD8;
-	Wed, 26 Mar 2025 07:41:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ABDC823DE;
+	Wed, 26 Mar 2025 07:45:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742974917; cv=none; b=mOpVZItTgQJsYddNJUu8t0T5jOkefKzPFn5Q2Ui0k8l9aFL44XEKgsJAisaoz6wNF+IbPUAS1ZaJ1szVZAR4gZzVyTxUnNKaVG5UmXPwVVosUL9A9VI/+IL/rOipE8PZcZIXl82N5AcmyIl5Dnb3UEk4zvuRzokMvxS+laL22io=
+	t=1742975152; cv=none; b=XJFI+EMud274Jzp75PzgHN6zutFnRttCfP+Z/B0qLfsmVR+VOAGm9eh16/sks7dfCFfHG8NCMqYiMcj+wYcaWf+TD7OUVnKsy0Omt+R/ylt/X4diqiN9CwqPJ8DrCDxojjbbkDmBJtYbZvbi38JpuXPd/VO8kepUY4TAx/SiAFw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742974917; c=relaxed/simple;
-	bh=rKOd4j1t74rlaXbctW4uta67o0YN3LITaSJsnrWbc38=;
+	s=arc-20240116; t=1742975152; c=relaxed/simple;
+	bh=360J2yfqQ597HNTiFqR6IcA+Tuon4KwsfEhtV6HVjhc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pW0UmPrYhp83YEcDUdcj9zcUmX9b7CqF+ynPFtLhCHVKuOiidSa5Cejgiggxs/gLmVr6OuvAxGEYhLSX73zom1WGN0oq1UNGEG8G8sOLPwDMKPeS/lV96LWKgw8krMwcJv5IyPlBVqA/i1kFySCvm+HiDCaUvZ8CySFBq2XrCL4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TIxxlW39; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6B77C4CEE2;
-	Wed, 26 Mar 2025 07:41:55 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=f5H5FktJEM1jTXM63oo+0AeSuHMZOgy/1mjzhlKn3RsmbeLipqOb5N4wW8HtMQeZNzc/1o9y4gwgjrEY4Lm5o+RoPv3QrqrYpBd7uzQnf3P5Lb1GjCQIeG2vM+zbD3mx57g1utuNDtJlucbgCE18NcdIfWDFC+/qMCe3YDRyYvs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y+pTzN5B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5312C4CEE2;
+	Wed, 26 Mar 2025 07:45:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742974916;
-	bh=rKOd4j1t74rlaXbctW4uta67o0YN3LITaSJsnrWbc38=;
+	s=k20201202; t=1742975152;
+	bh=360J2yfqQ597HNTiFqR6IcA+Tuon4KwsfEhtV6HVjhc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TIxxlW39PQQqRFZ4v6Bj1eF/al7IN+zt+cDy8kyspl19eOj5XLtOWj7htTrZvJi7N
-	 aE/lZxGA5EszkpdfxtD7k11lkvQr0g1/+J5jyoSLYKE0SxCLAOgIqXCMc7PrGMHnyB
-	 yt8cwzZlBn5XrPmDoDGZCsZyNlEMWIc4778LGMVRPvPvxSe0jFUTZbqNgor+n4RRMB
-	 fSnHnc767b/nUtVW34ZGg6ZuXCh51oo0Zh/154dZ4KqAcKearMCt2mngjjhBSDBT/q
-	 1wnNxzRgObQErJrhcEo9fAXP7ViDzhvuBamqptBTFLN1m9/eaXt1Ncmd1td6FUaKmC
-	 r48TymtjCPb8A==
-Date: Wed, 26 Mar 2025 08:41:52 +0100
+	b=Y+pTzN5Brqudst3q9PS/Q55Ngb/P9g/qYew+wxAjpstieNfnpGNXSOGvUcdtzjhGh
+	 G76yfOy738qtt4ikqXZBVTA1t2lZAxSN754x2Qx+5J+zmTWjX+8M2IpPZKqnRexmB9
+	 G0bx3dmmjfFofY6V+Xp0OZOi35Riwwn4OsEcoBVkGZgN9o0tJp3lNwnzl5jMj/DxCb
+	 v4Tb3swOWG+gXGZHDVV5tV6nI289uCnLbb+mYTTQ4c1Pb3mYI8fwcmOKKlKdiBbxR4
+	 GAvbDJ69TjE0/ZrmY9c7DxDS4ZmgIWd6xrgMY1/7w/dUuhCTMUtbLcfrR2wkfbnlY7
+	 kGb8+awWcGslQ==
+Date: Wed, 26 Mar 2025 08:45:47 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Goran =?utf-8?B?UmHEkWVub3ZpxIc=?= <goran.radni@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	=?utf-8?B?QsO2cmdlIFN0csO8bXBmZWw=?= <boerge.struempfel@gmail.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Goran =?utf-8?B?UmHEkWVub3ZpxIc=?= <gradenovic@ultratronik.de>, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 3/3] ARM: dts: stm32: add initial support for
- stm32mp157-ultra-fly-sbc board
-Message-ID: <20250326-lumpy-spry-alpaca-ce087c@krzk-bin>
-References: <20250325110409.2323611-1-goran.radni@gmail.com>
- <20250325110409.2323611-4-goran.radni@gmail.com>
+To: Sai Krishna Musham <sai.krishna.musham@amd.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, 
+	manivannan.sadhasivam@linaro.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	cassel@kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, michal.simek@amd.com, bharat.kumar.gogada@amd.com, 
+	thippeswamy.havalige@amd.com
+Subject: Re: [PATCH v6 1/2] dt-bindings: PCI: xilinx-cpm: Add reset-gpios for
+ PCIe RP PERST#
+Message-ID: <20250326-stereotyped-agama-of-reward-e6baf1@krzk-bin>
+References: <20250326022811.3090688-1-sai.krishna.musham@amd.com>
+ <20250326022811.3090688-2-sai.krishna.musham@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,22 +62,146 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250325110409.2323611-4-goran.radni@gmail.com>
+In-Reply-To: <20250326022811.3090688-2-sai.krishna.musham@amd.com>
 
-On Tue, Mar 25, 2025 at 12:04:07PM +0100, Goran Ra=C4=91enovi=C4=87 wrote:
-> From: Goran Ra=C4=91enovi=C4=87 <gradenovic@ultratronik.de>
->=20
-> Add support for Ultratronik's stm32mp157c fly board. This board embeds
-> a STM32MP157c SOC and 1GB of DDR3. Several connections are available on
-> this boards: 2*USB2.0, 1*USB2.0 MiniUSB, Debug UART, 1*UART, 1*USART,
-> SDcard, RJ45, ...
->=20
-> This patch enables basic support for a kernel boot - SD-card or eMMC.
->=20
-> Signed-off-by: Goran Ra=C4=91enovi=C4=87 <goran.radni@gmail.com>
+On Wed, Mar 26, 2025 at 07:58:10AM +0530, Sai Krishna Musham wrote:
+> Introduce `reset-gpios` property to enable GPIO-based control of
+> the PCIe RP PERST# signal, generating assert and deassert signals.
 
-All patches seem to have same issue....
+I think it was removed, so this is not necessary. The property was there
+all the time.
+
+> 
+> Traditionally, the reset was managed in hardware and enabled during
+> initialization. With this patch set, the reset will be handled by the
+> driver. Consequently, the `reset-gpios` property must be explicitly
+> provided to ensure proper functionality.
+> 
+> Add CPM clock and reset control registers base (`cpm_crx`) to handle
+> PCIe IP reset along with PCIe RP PERST# to avoid Link Training errors.
+
+So does it mean it was not working before at all?
+
+> 
+> Signed-off-by: Sai Krishna Musham <sai.krishna.musham@amd.com>
+> ---
+> Changes for v6:
+> - Resolve ABI break.
+> - Update commit message.
+> 
+> Changes for v5:
+> - Remove `reset-gpios` property from required as it is already present
+>   in pci-bus-common.yaml
+> - Update commit message
+> 
+> Changes for v4:
+> - Add CPM clock and reset control registers base to handle PCIe IP
+>   reset.
+> - Update commit message.
+> 
+> Changes for v3:
+> - None
+> 
+> Changes for v2:
+> - Add define from include/dt-bindings/gpio/gpio.h for PERST# polarity
+> - Update commit message
+> ---
+>  .../bindings/pci/xilinx-versal-cpm.yaml       | 72 ++++++++++++++-----
+>  1 file changed, 55 insertions(+), 17 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml b/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
+> index d674a24c8ccc..26e9cea41889 100644
+> --- a/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
+> +++ b/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
+> @@ -9,9 +9,6 @@ title: CPM Host Controller device tree for Xilinx Versal SoCs
+>  maintainers:
+>    - Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>
+>  
+> -allOf:
+> -  - $ref: /schemas/pci/pci-host-bridge.yaml#
+> -
+>  properties:
+>    compatible:
+>      enum:
+> @@ -21,18 +18,12 @@ properties:
+>        - xlnx,versal-cpm5nc-host
+>  
+>    reg:
+> -    items:
+> -      - description: CPM system level control and status registers.
+> -      - description: Configuration space region and bridge registers.
+> -      - description: CPM5 control and status registers.
+> -    minItems: 2
+> +    minItems: 3
+
+That's an ABI break.
+
+> +    maxItems: 4
+>  
+>    reg-names:
+> -    items:
+> -      - const: cpm_slcr
+> -      - const: cfg
+> -      - const: cpm_csr
+> -    minItems: 2
+> +    minItems: 3
+> +    maxItems: 4
+>  
+>    interrupts:
+>      maxItems: 1
+> @@ -72,10 +63,53 @@ required:
+>    - msi-map
+>    - interrupt-controller
+>  
+> +allOf:
+> +  - $ref: /schemas/pci/pci-host-bridge.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - xlnx,versal-cpm-host-1.00
+> +    then:
+> +      properties:
+> +        reg:
+> +          items:
+> +            - description: CPM system level control and status registers.
+> +            - description: Configuration space region and bridge registers.
+> +            - description: CPM clock and reset control registers.
+
+Before two items, now min 3, so another ABI break. Missing minItems.
+
+> +        reg-names:
+> +          items:
+> +            - const: cpm_slcr
+> +            - const: cfg
+> +            - const: cpm_crx
+
+Same
+
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - xlnx,versal-cpm5-host
+> +              - xlnx,versal-cpm5-host1
+> +    then:
+> +      properties:
+> +        reg:
+> +          items:
+> +            - description: CPM system level control and status registers.
+> +            - description: Configuration space region and bridge registers.
+> +            - description: CPM5 control and status registers.
+> +            - description: CPM clock and reset control registers.
+
+This makes no sense, you still add the entry in the middle. This patch
+fixed nothing from issues previously pointed out.
+
+It's the third or fourth try and you keep repeating the same mistake,
+which means you do not understand the problem. The problem is: you
+cannot change the order. If you change it, it's an ABI break and nothing
+in commit msg explained that.
 
 Best regards,
 Krzysztof
