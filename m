@@ -1,162 +1,204 @@
-Return-Path: <devicetree+bounces-160992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95E73A71C5E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 17:51:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19E2EA71C8B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 17:58:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BB28189C4FD
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 16:50:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0099A1891F68
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 16:58:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97F601FDA8D;
-	Wed, 26 Mar 2025 16:49:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 684961F55FB;
+	Wed, 26 Mar 2025 16:58:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b="URw4LfbE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Qdgj+EHt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00376f01.pphosted.com (mx08-00376f01.pphosted.com [91.207.212.86])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AEA61F76CA;
-	Wed, 26 Mar 2025 16:49:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.86
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 776271F4288;
+	Wed, 26 Mar 2025 16:58:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743007766; cv=none; b=cviH+pDY2wuuT08eilfMGW16BmWD+Oh9+eBaIw5nsvfI1bcOr0Kh2FspktxNXauNyYDVCQty2Z9FLRfkxYButH4FP0MGIS5B3B4z/GW0tcKeD4gqeo3kJ5j5lPrDNDDl3x8zdZbeelNz/5KNE171Puw849jY/CXo1AVBS6oIU2Q=
+	t=1743008283; cv=none; b=oFMNtS8AzXuIJRrBUNVfUfbDTltJLzHyYopsTE1FDkpj8rMX/kuLE3LMda82BBeJjUQ2THEgX4LW9/YtFSXbCTZQ4apB84d5chQCynLmIiSM7oTfuu49ycDOaWhYmfVzeskGaHiiPrTjebD2PiGsvdRhd6iT2FpBcfEcWzrCTGg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743007766; c=relaxed/simple;
-	bh=9ciqbWOhP6QgnlA8rKn5pVqIA7HG18BMc8hwG3KLDFE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=L6ySRa752SuE+CUbOnL4cyYoazGMIljdwRBNcso2j30drvLDXLo9E76u0JpaFMZNPjba3SHkWNJ1QGWLwMob2odejhvPeRG2TACG8j+s4Pnwf6d9I59m6vIys95HEfNG2aB9ml3xL4EYl9+1YSCwQrtKAKYMdlugruV7daaerWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com; spf=pass smtp.mailfrom=imgtec.com; dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b=URw4LfbE; arc=none smtp.client-ip=91.207.212.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=imgtec.com
-Received: from pps.filterd (m0168888.ppops.net [127.0.0.1])
-	by mx08-00376f01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52QBt2Sq012691;
-	Wed, 26 Mar 2025 16:49:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=dk201812; bh=b
-	QzN0bTHMYFmVWdhWuUYAzcfw05axOq1UdTLnXCJ4to=; b=URw4LfbETQQjm1Rcc
-	/xCy5QAGnd44JFG81P5a2wsMuBZnphkPyYbAPmI92ErZCp/Qz8ZnTocJi6cnXGAq
-	sOBYeL6IwPbdE5UiduqfJKUHacZgAHG++xKyOa06dX3gPUV3oqmSYf5nwPh1TwR9
-	1/Guz+xAUZ1rutf4A//53z9ikWk8oaCY9qcbsOoi2hBy6JfkldLXFgPXdnajU3KH
-	AvDwnagcmtAkGUbrGxeJiD+1BhCBqCBMuau/G7Lrs1LHZAOxAERpzWu06u+WJc3P
-	TPT/v4iGwce3ENHrKMKoH5ZJaBtggiU1CcxRBBLHr59As7fLW6Sdt6Z9wKEn4Vbn
-	BPcZA==
-Received: from hhmail05.hh.imgtec.org (83-244-153-141.cust-83.exponential-e.net [83.244.153.141])
-	by mx08-00376f01.pphosted.com (PPS) with ESMTPS id 45kbmy9d6d-19
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Wed, 26 Mar 2025 16:49:02 +0000 (GMT)
-Received: from
- 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
- (172.25.0.133) by HHMAIL05.hh.imgtec.org (10.100.10.120) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Wed, 26 Mar 2025 16:48:54 +0000
-From: Matt Coster <matt.coster@imgtec.com>
-Date: Wed, 26 Mar 2025 16:48:38 +0000
-Subject: [PATCH DO NOT MERGE v5 18/18] arm64: dts: ti: k3-j721s2: Add GPU
- node
+	s=arc-20240116; t=1743008283; c=relaxed/simple;
+	bh=Jt0Xdrm+rScME3lM0LyrrW4w4gFEei0CeD35pgjnb7I=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TrH+DanCISY1Pd4QA1ld/QHuT7IZPVNiXSDn4X8WeFGqePZS+/1frxzJy09t9qCVCZqoo05nHV8bMIUoD0b7V9wGI6/HLqYplQEFEY2LJyCyJyG725G8vIKBekxdMw5YCqre9fpy5UpsgEjyRaTLaPDjRgSwrrUC4mrghuB4MEY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Qdgj+EHt; arc=none smtp.client-ip=209.85.208.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-30bf1d48843so954581fa.2;
+        Wed, 26 Mar 2025 09:58:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1743008279; x=1743613079; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YqICdU+/Fj/rPyvr8c71jUD3Qz8HzL0I+xuDALYEeNo=;
+        b=Qdgj+EHtQw8CFiDMTrOv4Bp4l3hFfVXb8eZhGJPaqr8T37dGgf1fWcC28QfsjReQrW
+         zqgONs2UPSbqmt1ldwkRO0BrdJHDWnuH8D/8KmdzFKOtwW77R5U6i1GmzB8MpAVe+AVi
+         Nc4Z0/p3S2Tyoh2pF7W20letKaWyXpKZG2mDj4nUk5WAUg5TsPpD09UCwynsbZYcDgEm
+         ejIY8J7UcYppqIO6Vqh7HOXG7QZZ1F5mcOaVK+fcPLP8X7pNZvZpGg7vbaAX1CO4NPEB
+         VSXyBHvhjxAZdpJDl91WJyPv/ikHwiVCcGDD1v7ULQ8Mx89VstM8PNTkiaWt9yV5nhrZ
+         HjYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743008279; x=1743613079;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YqICdU+/Fj/rPyvr8c71jUD3Qz8HzL0I+xuDALYEeNo=;
+        b=aNdpEWrTnorpXqb8VbZpexQUhzpDMRiOReNoy1Q9vj9e33ARpGySd7vZbsal4NH/5O
+         gJdivXOHF7/nklP8D74/vuwmCpHEJQVvLrir0cBPHfYEg4rT/CUv/Jr7Fo+Br92AK7am
+         cdlix95mU0HrymCOtrroz+NsCAL4OoM8S3vzNcV3gfR/JugEAjvvk6UmF0uq1XkG8U7Y
+         7UuAXojQqtoHEWCaBuKQfvP1S27qhqN57z6B1jZI13a2rpbBXKdv25uZFHT0ANVmBZPC
+         0EQd60JUvEZOrIw0DnUSzK11lmzXuW1mTaffUuTgFXRzKuCOOTcvCD3aMlviklXWj/2a
+         ZWDQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUYRml05JHQMK6q1w6JF+YL+TSZRd+RUujWRjZRXjSUM+yjp/GfsTx85gnNlvh2SAaY/TaE58fSiqM9KrZs@vger.kernel.org, AJvYcCVBoAmuNsSFxdUmQchaN4OiDZy+0rIgGX6368Kr/MEB6IllNfkHuvh+b9w9kYT4KX1BzgNHidNlcs6zLcVrDCA=@vger.kernel.org, AJvYcCW69+KjAvAUopHlghQLRyNEfcMhAjEwjwYvGe0E12mf7QtlHlwsUDxY2UUvjQWgRzjnwQz3Bzcb9ykp@vger.kernel.org, AJvYcCWTKc5JR+a2j+3yRjHNDhe8InVmrU07Uh3rdilKbk0jzC/xbWsdkj4F6NAAXRveTBfOBcw8JMxW@vger.kernel.org, AJvYcCWeaeQaMaPAO6S5Ju6LrY1MQgPWQ1WWRywkCwDBBntXBEKvEgh1Cs9KO2C7uYGl0A5OxRBvxKfW+f2qOFhO@vger.kernel.org, AJvYcCWsFZ32cg2H6DsDMjMQzeboOYFLIXyJkD5VHC/fCfAgIzdm5SlSm/kiEmeASJnYtOfRdM37sGCosrLmKYCC+rIh@vger.kernel.org, AJvYcCXSII6vGoH1eDwVCX3/ACGPuixjU5DxF5GsS4Ms3F4nypYPiYCiY+1nBd6/rt3eH0uf36FD0CRfh9DSo0Y=@vger.kernel.org, AJvYcCXX54MWEvRZ96Bfx2Gwy5v+2BtFhVl7piS0YhC+CQs6OepROhw0smhLS6qPzHVnx82BTiCIpk0Br06a@vger.kernel.org
+X-Gm-Message-State: AOJu0YxIZlYYtOjsUfMmveiCG/Rrpox83MJayw8naJLEzUuH8ObnctIl
+	P2VjXINMHoVeMwsEF/uMFYDfWm/eb23d0CU0FhS+ElnfNVKbXZ6JuvHxuJEcrpag3eB81tou+aN
+	esvNjAAPIthq0FrFOaxl/kciIJaE=
+X-Gm-Gg: ASbGncvtmXwAe8P0pED9WoAHxiQJyBsx1lPyALZ0jmTnJg299cxKmXwJtLFtD2bkxXk
+	xMGugQJHr/lFz2KXqaCbPSNB5GcVIZstjj1CgT2mLXTFW7H1vDhAT8JXoQBHcmnbE/oSqwgYSPz
+	XJRAss0lKWLvKcMPpGTAHxMiYCoL5NP2WKp7WcqOJJlQ==
+X-Google-Smtp-Source: AGHT+IHPmamLHlMJlHI8sBUo4uWAXvfGRb8nW0bPTmn1FCPvvjT2j+y8ppF5Dq8MM/1VqdX3RkASobn3JxoYQd4Kpg4=
+X-Received: by 2002:a2e:a901:0:b0:302:48fd:6922 with SMTP id
+ 38308e7fff4ca-30dc5f4fc11mr2688291fa.37.1743008279197; Wed, 26 Mar 2025
+ 09:57:59 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250326-sets-bxs-4-64-patch-v1-v5-18-e4c46e8280a9@imgtec.com>
-References: <20250326-sets-bxs-4-64-patch-v1-v5-0-e4c46e8280a9@imgtec.com>
-In-Reply-To: <20250326-sets-bxs-4-64-patch-v1-v5-0-e4c46e8280a9@imgtec.com>
-To: Frank Binns <frank.binns@imgtec.com>,
-        Matt Coster
-	<matt.coster@imgtec.com>,
-        David Airlie <airlied@gmail.com>, Simona Vetter
-	<simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        "Vignesh
- Raghavendra" <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Randolph Sapp <rs@ti.com>, Darren Etheridge <detheridge@ti.com>,
-        "Michal
- Wilczynski" <m.wilczynski@samsung.com>,
-        Alessio Belle
-	<alessio.belle@imgtec.com>,
-        Alexandru Dadu <alexandru.dadu@imgtec.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2059;
- i=matt.coster@imgtec.com; h=from:subject:message-id;
- bh=9ciqbWOhP6QgnlA8rKn5pVqIA7HG18BMc8hwG3KLDFE=;
- b=owGbwMvMwCFWuUfy8817WRsYT6slMaQ/0X/WWLL0fPucnrS4u9EnFP2cfs9wMNQXXv2EbfMOu
- Z3xebaOHaUsDGIcDLJiiiw7VliuUPujpiVx41cxzBxWJpAhDFycAjCRqXMY/hfPPpD8USjnltEk
- c+YHUmvD/576c2zDuSnd02QmLDq2g8+F4X/+4/YMhpk/nFVVX07k4pVfFeb2YPKUiYfTxA4dkAu
- WLGEEAA==
-X-Developer-Key: i=matt.coster@imgtec.com; a=openpgp;
- fpr=05A40CFCE7269D61D97100A1747F0A9036F90DFA
-X-EXCLAIMER-MD-CONFIG: 15a78312-3e47-46eb-9010-2e54d84a9631
-X-Proofpoint-ORIG-GUID: JWhJQH9zyMraeD4EfDQTXXETn1GSouhZ
-X-Authority-Analysis: v=2.4 cv=L+sdQ/T8 c=1 sm=1 tr=0 ts=67e42ffe cx=c_pps a=AKOq//PuzOIrVTIF9yBwbA==:117 a=AKOq//PuzOIrVTIF9yBwbA==:17 a=ETbM1kImDFEA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=sozttTNsAAAA:8 a=VwQbUJbxAAAA:8 a=r_1tXGB3AAAA:8
- a=hJ1mkiiSfvO0DrLeNb8A:9 a=QEXdDO2ut3YA:10 a=S-JV1fTmrHgA:10 a=j2-svP0xy3wA:10 a=t8nPyN_e6usw4ciXM-Pk:22
-X-Proofpoint-GUID: JWhJQH9zyMraeD4EfDQTXXETn1GSouhZ
+References: <20250325-ptr-as-ptr-v7-0-87ab452147b9@gmail.com>
+ <20250325-ptr-as-ptr-v7-7-87ab452147b9@gmail.com> <D8POWLFKWABG.37BVXN2QCL8MP@proton.me>
+ <CAJ-ks9mUYw4FEJQfmDrHHt0oMy256jhp7qZ-CHp6R5c_sOCD4w@mail.gmail.com>
+ <D8PPIYIJCNX8.13VPQULEI0ALN@proton.me> <CAJ-ks9k6220j6CQSOF4TDrgY9qq4PfV9uaMXz1Qk4m=eeSr5Ag@mail.gmail.com>
+ <D8Q4MSXXZ7OI.1NC226MO02VSN@proton.me> <CAJ-ks9nHKpQPuSBypXTSATYhbAFkQTJzUq8jN0nu4t=Kw+0xxg@mail.gmail.com>
+ <D8QCK3CQES3Y.3LTZ4MVO5B3KT@proton.me>
+In-Reply-To: <D8QCK3CQES3Y.3LTZ4MVO5B3KT@proton.me>
+From: Tamir Duberstein <tamird@gmail.com>
+Date: Wed, 26 Mar 2025 12:57:22 -0400
+X-Gm-Features: AQ5f1JqRV6BswIsFmo4Lj79OnLQkYDCkrkMtDbiR3sIOJuzkCqt-e4S8pI8XxRU
+Message-ID: <CAJ-ks9nKT2PUDm6=b4AB1QUWwwvcqPn7Vz60=c0B+uFMZrqPew@mail.gmail.com>
+Subject: Re: [PATCH v7 7/7] rust: enable `clippy::ref_as_ptr` lint
+To: Benno Lossin <benno.lossin@proton.me>
+Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
+	Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, 
+	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
+	Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, Abdiel Janulgue <abdiel.janulgue@gmail.com>, 
+	Daniel Almeida <daniel.almeida@collabora.com>, Robin Murphy <robin.murphy@arm.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	FUJITA Tomonori <fujita.tomonori@gmail.com>, linux-kbuild@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+	linux-pci@vger.kernel.org, linux-block@vger.kernel.org, 
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	netdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The J721S2 binding is based on the TI downstream binding in 54b0f2a00d92
-("arm64: dts: ti: k3-j721s2-main: add gpu node") from [1] but with updated
-compatible strings.
+On Wed, Mar 26, 2025 at 12:43=E2=80=AFPM Benno Lossin <benno.lossin@proton.=
+me> wrote:
+>
+> On Wed Mar 26, 2025 at 11:35 AM CET, Tamir Duberstein wrote:
+> > On Wed, Mar 26, 2025 at 6:31=E2=80=AFAM Benno Lossin <benno.lossin@prot=
+on.me> wrote:
+> >> On Wed Mar 26, 2025 at 12:54 AM CET, Tamir Duberstein wrote:
+> >> > On Tue, Mar 25, 2025 at 6:40=E2=80=AFPM Benno Lossin <benno.lossin@p=
+roton.me> wrote:
+> >> >> On Tue Mar 25, 2025 at 11:33 PM CET, Tamir Duberstein wrote:
+> >> >> > On Tue, Mar 25, 2025 at 6:11=E2=80=AFPM Benno Lossin <benno.lossi=
+n@proton.me> wrote:
+> >> >> >> On Tue Mar 25, 2025 at 9:07 PM CET, Tamir Duberstein wrote:
+> >> >> >> > diff --git a/rust/kernel/str.rs b/rust/kernel/str.rs
+> >> >> >> > index 40034f77fc2f..6233af50bab7 100644
+> >> >> >> > --- a/rust/kernel/str.rs
+> >> >> >> > +++ b/rust/kernel/str.rs
+> >> >> >> > @@ -29,7 +29,7 @@ pub const fn is_empty(&self) -> bool {
+> >> >> >> >      #[inline]
+> >> >> >> >      pub const fn from_bytes(bytes: &[u8]) -> &Self {
+> >> >> >> >          // SAFETY: `BStr` is transparent to `[u8]`.
+> >> >> >> > -        unsafe { &*(bytes as *const [u8] as *const BStr) }
+> >> >> >> > +        unsafe { &*(core::mem::transmute::<*const [u8], *cons=
+t Self>(bytes)) }
+> >> >> >>
+> >> >> >> Hmm I'm not sure about using `transmute` here. Yes the types are
+> >> >> >> transparent, but I don't think that we should use it here.
+> >> >> >
+> >> >> > What's your suggestion? I initially tried
+> >> >> >
+> >> >> > let bytes: *const [u8] =3D bytes;
+> >> >> > unsafe { &*bytes.cast() }
+> >> >> >
+> >> >> > but that doesn't compile because of the implicit Sized bound on p=
+ointer::cast.
+> >> >>
+> >> >> This is AFAIK one of the only places where we cannot get rid of the=
+ `as`
+> >> >> cast. So:
+> >> >>
+> >> >>     let bytes: *const [u8] =3D bytes;
+> >> >>     // CAST: `BStr` transparently wraps `[u8]`.
+> >> >>     let bytes =3D bytes as *const BStr;
+> >> >>     // SAFETY: `bytes` is derived from a reference.
+> >> >>     unsafe { &*bytes }
+> >> >>
+> >> >> IMO a `transmute` is worse than an `as` cast :)
+> >> >
+> >> > Hmm, looking at this again we can just transmute ref-to-ref and avoi=
+d
+> >> > pointers entirely. We're already doing that in
+> >> > `CStr::from_bytes_with_nul_unchecked`
+> >> >
+> >> > Why is transmute worse than an `as` cast?
+> >>
+> >> It's right in the docs: "`transmute` should be the absolute last
+> >> resort." [1]. IIRC, Gary was a bit more lenient in its use, but I thin=
+k
+> >> we should avoid it as much as possible such that people copying code o=
+r
+> >> taking inspiration also don't use it.
+> >>
+> >> So for both cases I'd prefer an `as` cast.
+> >>
+> >> [1]: https://doc.rust-lang.org/std/mem/fn.transmute.html
+> >
+> > I don't follow the logic. The trouble with `as` casts is that they are
+> > very lenient in what they allow, and to do these conversions with `as`
+> > casts requires ref -> pointer -> pointer -> pointer deref versus a
+> > single transmute. The safety comment perfectly describes why it's OK
+> > to do: the types are transparent. So why is `as` casting pointers
+> > better? It's just as unchecked as transmuting, and worse, it requires
+> > a raw pointer dereference.
+>
+> Note that you're not transmuting `[u8]` to `BStr`, but `*const [u8]` to
+> `*const BStr`. Those pointers have provenance and I'm not sure if
+> transmuting them preserves it.
 
-The clock[2] and power[3] indices were verified from docs, but the
-source of the interrupt index remains elusive.
+In the current code you're looking at, yes. But in the code I have
+locally I'm transmuting `[u8]` to `BStr`. See my earlier reply where I
+said "Hmm, looking at this again we can just transmute ref-to-ref and
+avoid pointers entirely. We're already doing that in
+`CStr::from_bytes_with_nul_unchecked`".
 
-[1]: https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel
-[2]: https://downloads.ti.com/tisci/esd/latest/5_soc_doc/j721s2/clocks.html
-[3]: https://downloads.ti.com/tisci/esd/latest/5_soc_doc/j721s2/devices.html
+> I tried to find some existing issues about the topic and found that
+> there exists a clippy lint `transmute_ptr_to_ptr`. There is an issue
+> asking for a better justification [1] and it seems like nobody provided
+> one there. Maybe we should ask the opsem team what happens to provenance
+> when transmuting?
 
-Signed-off-by: Matt Coster <matt.coster@imgtec.com>
----
-Changes in v5:
-- None
-- Link to v4: https://lore.kernel.org/r/20250320-sets-bxs-4-64-patch-v1-v4-18-d987cf4ca439@imgtec.com
-Changes in v4:
-- None
-- Link to v3: https://lore.kernel.org/r/20250310-sets-bxs-4-64-patch-v1-v3-18-143b3dbef02f@imgtec.com
-Changes in v3:
-- None
-- Link to v2: https://lore.kernel.org/r/20241118-sets-bxs-4-64-patch-v1-v2-21-3fd45d9fb0cf@imgtec.com
-Changes in v2:
-- Use normal reg syntax for 64-bit values
-- Link to v1: https://lore.kernel.org/r/20241105-sets-bxs-4-64-patch-v1-v1-21-4ed30e865892@imgtec.com
----
- arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-index 92bf48fdbeba45ecca8c854db5f72fd3666239c5..a79ac41b2c1f51b7193e6133864428bd35a5e835 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-@@ -2048,4 +2048,16 @@ watchdog8: watchdog@23f0000 {
- 		/* reserved for MAIN_R5F1_1 */
- 		status = "reserved";
- 	};
-+
-+	gpu: gpu@4e20000000 {
-+		compatible = "ti,j721s2-gpu", "img,img-bxs-4-64", "img,img-rogue";
-+		reg = <0x4e 0x20000000 0x00 0x80000>;
-+		clocks = <&k3_clks 130 1>;
-+		clock-names = "core";
-+		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
-+		power-domains = <&k3_pds 130 TI_SCI_PD_EXCLUSIVE>,
-+				<&k3_pds 373 TI_SCI_PD_EXCLUSIVE>;
-+		power-domain-names = "a", "b";
-+		dma-coherent;
-+	};
- };
-
--- 
-2.49.0
-
+Yeah, we should do this - but again: not relevant in this discussion.
 
