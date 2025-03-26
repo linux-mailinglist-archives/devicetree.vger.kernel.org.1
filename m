@@ -1,57 +1,56 @@
-Return-Path: <devicetree+bounces-160808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7370FA7126E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 09:17:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9CECA71272
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 09:18:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 433463BF344
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 08:14:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 519373B37AA
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 08:16:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 621D31A2564;
-	Wed, 26 Mar 2025 08:15:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA82B19049A;
+	Wed, 26 Mar 2025 08:16:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nhssw/C0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qq901tP2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 361EC1A23AD;
-	Wed, 26 Mar 2025 08:15:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE171282EE;
+	Wed, 26 Mar 2025 08:16:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742976902; cv=none; b=nV6h0JuofkYSFSoJnIC16OWtKIjxfCuGrQWtDha/HXPrDvR8CA2buwyK+Ic3B0TBSfUk6PBmdtmWvFqoRl9D4EjqUEjlC1mV2/vVtE0P92FmDNixdSnDCFCbQPqAF+7asMd1I/urOQ/1QrTqYmOTCEfuDrepTr05L4ek4Pxx4Vc=
+	t=1742976987; cv=none; b=kASXtsmfHWYNiDxCzyeyrNk5F/wDHugvi6ft84/tUGTIF8VAj94fzMxruyVRxzt8V9VTSQfWscuAiS1DBqwc3bDboP/WrRj4uAxDlwJN0ZmwB6AFJFe2v2X9aYIrXcK9usu/4/PVRFMYi+OukusfXZ196OrBq66p6rvtstX4cTg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742976902; c=relaxed/simple;
-	bh=gAniqJkuUHX0bLXDcqTZVfwYS6QnDyYuQRRlQh3xL/Y=;
+	s=arc-20240116; t=1742976987; c=relaxed/simple;
+	bh=T/xRUZGs7ItgYgVXiQ+hB5Q/0Hnxt8WtQdvXjVtJt70=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Qgi6dC/yPOSM35v21fHuFxeK4ABb08Ou6jerf1UA3nuMXKJsJ9Qk3qPzRBPnB+X4rxbEV9H1RtU/WFa82HIZ5ne+qa2ZKNQE6lO8mg5LefUL2VDiWgLLmD5h5GErqf7cq47X9xIRZU3ZSEMs7djynWkh1Zi+nwy+7F0E+UgsYoE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nhssw/C0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5DE6C4CEE2;
-	Wed, 26 Mar 2025 08:15:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=udVr/zZrjd/Zux59fEOTtWqt9Z7VUcIw/I+z/yJzfXgdljV0/KeYsG5dPyXeLhZUkiZD0VC9K15AiBhR0b0Dbeoy3Ny2w9l5PFSokyHxHB55vZyVqdBIVtsx2+NRbC+s6ua1IvS0KpDiL+XQ70ZvpWSwypX8TlQrbw+ZE7+o81Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qq901tP2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 878F0C4CEE2;
+	Wed, 26 Mar 2025 08:16:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742976901;
-	bh=gAniqJkuUHX0bLXDcqTZVfwYS6QnDyYuQRRlQh3xL/Y=;
+	s=k20201202; t=1742976987;
+	bh=T/xRUZGs7ItgYgVXiQ+hB5Q/0Hnxt8WtQdvXjVtJt70=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Nhssw/C0U+wwnY8xBlcTunqXAO/YAjz2Y0JICwMOInOIIbhtZb32J/if7AZYDjQ/n
-	 +6fQqMVw6e2npjuMDnyK9Uorf/nXu92RWjuaJz9FNIjhIoQ2SQoDNbxgYDgUPydkPd
-	 qEUu1oujj0YCBZqNSFRLIs60GbBf8krWzODE3T9YpPGMYXX2s8NMwYWekc0GvOChw0
-	 fglOKrE3V5hKGwew8mYR6x6jAaeMsTdGvGtEQP6oCM/vybtc7idXH4yLhGE3aCH/pT
-	 NL318W3jc8zV/TamNSVmF9Tetnm/ST6rQBE2tUXFrGbfQKHFNeuyHrmGjgF15WW8+S
-	 m5PW2lQT6BXcw==
-Date: Wed, 26 Mar 2025 09:14:57 +0100
+	b=qq901tP2RyP4BqnwzJQEbZEuuLP2h4kqqWQhL3YoxuvFuRFQozy/cNyBlrckHCjwQ
+	 omqE6jk2NCeE67u/poGn5zZ69v69AiHgQ0TnYqjoq51QNjkNFMpTS+kineMnV+tDXS
+	 pEhRrkGEiBRne6RS1Bw4y70rJaxUY4v+EUuJdsOoAm+NIyVjY+bFOWu2F4zVYn021M
+	 GPgHPkm//kWoT2CIBpHpj9HSXw9N0PBKX2+5LR5FlfeU0Z/zv3WuP/juUxk/z0ryt9
+	 tnVZo/bemgWPDIOiL4VaDT8NJt5w8xVBeAa3P5d+nABv+B31ugaFKll84KjxR63nhs
+	 cyPsIRBgl9lPA==
+Date: Wed, 26 Mar 2025 09:16:23 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Hu Ziji <huziji@marvell.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-mmc@vger.kernel.org, 
+To: Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-sound@vger.kernel.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings: mmc: marvell,xenon-sdhci: Drop
- requiring 2 clocks
-Message-ID: <20250326-light-shellfish-of-aptitude-2e64aa@krzk-bin>
-References: <20250320-dt-marvell-mmc-v1-0-e51002ea0238@kernel.org>
- <20250320-dt-marvell-mmc-v1-3-e51002ea0238@kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: fsl,mqs: Reference common DAI
+ properties
+Message-ID: <20250326-aloof-famous-lizard-3ada69@krzk-bin>
+References: <20250325062751.3296913-1-shengjiu.wang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,18 +59,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250320-dt-marvell-mmc-v1-3-e51002ea0238@kernel.org>
+In-Reply-To: <20250325062751.3296913-1-shengjiu.wang@nxp.com>
 
-On Thu, Mar 20, 2025 at 04:35:48PM -0500, Rob Herring (Arm) wrote:
-> The "axi" clock is optional on at least the "marvell,armada-ap806-sdhci"
-> variant. Not sure what's correct here, so just drop the constraint.
+On Tue, Mar 25, 2025 at 02:27:51PM +0800, Shengjiu Wang wrote:
+> Reference the dai-common.yaml schema to allow '#sound-dai-cells' and
+> "sound-name-prefix' to be used.
 > 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
 > ---
->  .../devicetree/bindings/mmc/marvell,xenon-sdhci.yaml | 20 --------------------
->  1 file changed, 20 deletions(-)
+>  Documentation/devicetree/bindings/sound/fsl,mqs.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/fsl,mqs.yaml b/Documentation/devicetree/bindings/sound/fsl,mqs.yaml
+> index 8c22e8348b14..99e7372abd0c 100644
+> --- a/Documentation/devicetree/bindings/sound/fsl,mqs.yaml
+> +++ b/Documentation/devicetree/bindings/sound/fsl,mqs.yaml
+> @@ -55,6 +55,7 @@ required:
+>    - clock-names
+>  
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+You need to constrain dai-cells to 0 (const: 0).
 
 Best regards,
 Krzysztof
