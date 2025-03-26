@@ -1,80 +1,48 @@
-Return-Path: <devicetree+bounces-160840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6436DA714C8
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 11:26:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94ABCA714D5
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 11:30:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB89916F09D
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 10:26:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47F7B189D5F5
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 10:27:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D1F91C1F21;
-	Wed, 26 Mar 2025 10:26:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A499D1B393A;
+	Wed, 26 Mar 2025 10:27:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XPPhUaHM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BoTXDB/J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B44BA1B412A
-	for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 10:26:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B76B1B0F3C;
+	Wed, 26 Mar 2025 10:27:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742984773; cv=none; b=hRihk5bFktyT29zeRTwhndobgnXx7Q4vTGKBhAzUKzC7yPnChqmz/Wca7avrD1ueaK7vGBptbHn5pkRUiOCfpSOQrHotUs0zRmk/BFcHaF6SanhtlxsNI1kNH2MDqvw5zyqK5bZSbGT6w9kBfi+npbrLfv6Wan8aJRelJjdsJrU=
+	t=1742984852; cv=none; b=hHWDWsuCB1a1gC+QIwtepuZFHsQmbzZ5SlkwXShjLPa9YQ2VCBRMOpIbFCewsEf0phIhvsUEQCVxIjKGJT+IiZAzedoPCum8goHuWM7TL0vSmrE7SKI9r0Hfx8PmFEq+9DhKzGIQuIHzvpulhEpn5VHNh5koTRnjVmRE3SWsAPw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742984773; c=relaxed/simple;
-	bh=VmZW3dYOkE+WcIdW+rTFDYurYECcNeudvlHZ1LESI8I=;
+	s=arc-20240116; t=1742984852; c=relaxed/simple;
+	bh=Xxyxru3tPYed0R2P7ea+/NwPUgMnKwxHss8FlSg3c40=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=W8yfRXNY5udPZQv7MIR+AwOy7L7off+vda4eA/tvSYl48x7ATiOBzyiIwCpz0behMwarEQuou7h1ezC5Q0DZ9p1MkB28H1c+wL3WufEoWwIuNdWq3qMZTxvU9nIUVCOSbRNdFCfbu+xA2PxUVPxayvVyIB7xJPKKl6x9aipGhxU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XPPhUaHM; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-43cfe63c592so63824315e9.2
-        for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 03:26:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742984769; x=1743589569; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=98hcAito2MMtQTY1iL6KWHxMYRyo687ywiMmqIh+p7A=;
-        b=XPPhUaHMMHildxl7E/pGbg3LqEdcenwWvdjeuLPj1f8OT7a6BYtjs2bu24XtbAnFFY
-         s9+jVhzzy9BFkI3JMO+QBwfdpCUz6XYuPUqDbZPhh1GKp+3K27W5+fCppeyI/7od9GV5
-         scsDjSsDhiRkFPWlWeter1dzRKgY0BJ24tX0Zakn7d3gRB/jl78ONFJba5+ry4db+fqB
-         w+6iIB3FLjU3RMJ99bkzWnP317J2KjottjvJYV3+hj66I0kjq40id1xBzpo5I2EkX5wd
-         w/9qMcNz3WXfeWm2gcUcFe6Pwo2OXAUJ2wzYK+dfZXPPfP1ln1vMQLy1bUed15eH795l
-         DSVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742984769; x=1743589569;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=98hcAito2MMtQTY1iL6KWHxMYRyo687ywiMmqIh+p7A=;
-        b=vQQHSy6FXIO14TcDdGG0a6CXcOJxLCprJcMukaG20eoyY7bOd3p5olxemy9vaQnHXc
-         n0fi65JyJ2kIv5qoj21uHgdLauB3ge+VSTrYxh+DZf3CmTugpU1I9r6IjSf9JzTnurc5
-         62W2wcHCkClfaIv470Pfs0PP89C/oD5CAr59OVKUfTnaR5O26MhPtrIWQ4KFpMDGiMRg
-         ATarXg/bL4nRtFEEWJVM5wQPFgbTSwcCRAxuOOwmKrXNKNL+RVvNPPzjZgcyspkBqw74
-         0YCW9Rjbm7faVOwB/2CtGCZwkjXewjT6JO3Xf7ZU5uU1Qv1QqZpGGaqaoKw+IloKLgZb
-         guxg==
-X-Forwarded-Encrypted: i=1; AJvYcCWNLujaw8a6uWmWpB7LFIPEpjwpmg7dlV9uBksH218gkRkNZGSxzK62R0MKXVNRKLpVFUSWcVlPUq3n@vger.kernel.org
-X-Gm-Message-State: AOJu0YykowTzj+JZ0wD2qzD7MoMGVsiZ+295BwamY5bOu1p/WOXwQhDB
-	GP4g4yUf3pKLT8QsZimInynuNRorGkl0vze1NPsC2QOaR2GSZQ8bMrBzrrJubNE=
-X-Gm-Gg: ASbGncsrZs1XrVBLnk4tJ8mNr4vpkJvUi5zfST4PRIhjr2bGMgTmRPEz4OqWr1EBB49
-	FXm5FV30iPqAu3sDp3OxaqF+NQc8xjVbuEsvZuxcPEsLpLYLa/tuNnBrYFzkSap+XjF7SskWMrh
-	UcapR46H/HU7Rzif9zEjoFn7dYcDH1KIMj/bFRWqL/JvDfFvzsNMy45Fzixl32Ihwln3saP3q0b
-	RReJ0UnUy7RbIQUirj53uZolYLbuT5gbjsJ22iBacVrFAmbU4rBKV8FRdVvtkioyHpMjnD+ssO7
-	fgAQ9YgcMoDJK3ki1UUzJ91+avIanTgsDs/dqBx3p+yz2IEadfED7FWwFgCL2GU8HSoDGJlRkbE
-	=
-X-Google-Smtp-Source: AGHT+IFNIgbM5SxndZJ31+RxAuvmVblk7zrUQEK1IUI9dhFX9c6aTpE7fdxiqMV2lHxT/eOf35nkUw==
-X-Received: by 2002:a05:600c:c0d:b0:43d:738:4a9 with SMTP id 5b1f17b1804b1-43d50a33d03mr154416225e9.27.1742984768921;
-        Wed, 26 Mar 2025 03:26:08 -0700 (PDT)
-Received: from [192.168.1.38] (i5E863BED.versanet.de. [94.134.59.237])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3997f9e6651sm16436745f8f.75.2025.03.26.03.26.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Mar 2025 03:26:08 -0700 (PDT)
-Message-ID: <5060c248-3160-4d52-81ec-8e06bbd246bf@linaro.org>
-Date: Wed, 26 Mar 2025 11:26:06 +0100
+	 In-Reply-To:Content-Type; b=ijeysJXkSBy/aFsn2loLl4LJxD/+sudePrVfUjBK2maQ+B1UeF/0mw4pRPRKtyPoKAfyteafSc16SgNNLXmxEEg95LaKPbngIjyhOz+DkUnld4PCfc0b7DF+DkQRf0Qhp8QOM+ENzETuByI6yEE1GoG6q6k19RvRMqblfa50Gr8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BoTXDB/J; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A3D7C4CEE2;
+	Wed, 26 Mar 2025 10:27:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742984851;
+	bh=Xxyxru3tPYed0R2P7ea+/NwPUgMnKwxHss8FlSg3c40=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BoTXDB/JShvYFk/ygVu6KgxkrUH7CEipQlnLfFHqw6Qo7kRkwtGiJxSd8StsGz2GG
+	 TpG6JNClQHqXTocK2IfEnl+hXowpPA8mBvRmoZFLiMabiRYDBlMSj5LLd9o3O8vWa6
+	 eopiKqkJ9IZPzfWIrXLveihd+5BGFdOgC7w5czH++75GQfA5reCdK+fG6KQaQQ7Ocu
+	 /joGlCWwh8i9Bj0KqaLehax0Dx+VpsEcrWypL38XVquLa2l97/87o2bMSk7Xt/ZA8b
+	 EXthH0W/g1MMB5ow/9EooOxm+nB71+JcF/ACkcXH6W2Ju/iq/aj0tdAy2pfmX/fOWv
+	 www9F92PV+4kA==
+Message-ID: <12f9b9ca-330b-4417-a805-da3880bc168f@kernel.org>
+Date: Wed, 26 Mar 2025 11:27:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,87 +50,102 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/7] dt-bindings: input: syna,rmi4: document
- syna,pdt-fallback-desc
-To: Krzysztof Kozlowski <krzk@kernel.org>, David Heidelberg <david@ixit.cz>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, "Jason A. Donenfeld" <Jason@zx2c4.com>,
- Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
- Vincent Huang <vincent.huang@tw.synaptics.com>, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20250308-synaptics-rmi4-v3-0-215d3e7289a2@ixit.cz>
- <20250308-synaptics-rmi4-v3-1-215d3e7289a2@ixit.cz>
- <20250310-hissing-vagabond-pegasus-cc8aed@krzk-bin>
- <3c5e12fc-eb91-46e8-a558-9896f0bdcab4@ixit.cz>
- <b3a5ec89-0125-4b01-8cca-69b9985b6089@kernel.org>
- <48bb62eb-8aa9-465c-9e77-c0b375df0c9f@linaro.org>
- <492da0ab-3a5c-4ee9-bc37-d66b007ffd81@kernel.org>
+Subject: Re: [v3,1/2] dt-bindings: memory-controllers: Add MediaTek DRAM
+ controller interface
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Crystal Guo <crystal.guo@mediatek.com>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20250326063041.7126-1-crystal.guo@mediatek.com>
+ <20250326063041.7126-2-crystal.guo@mediatek.com>
+ <20250326-courageous-cobra-of-promise-2c839e@krzk-bin>
+ <6e7ad33d-c0e3-4160-81c3-93f6c88976ae@collabora.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <492da0ab-3a5c-4ee9-bc37-d66b007ffd81@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <6e7ad33d-c0e3-4160-81c3-93f6c88976ae@collabora.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-
-
-On 3/26/25 07:57, Krzysztof Kozlowski wrote:
-> On 25/03/2025 14:23, Caleb Connolly wrote:
->>
->>
->> On 3/25/25 08:36, Krzysztof Kozlowski wrote:
->>> On 24/03/2025 19:00, David Heidelberg wrote:
->>>> On 10/03/2025 10:45, Krzysztof Kozlowski wrote:
->>>>> On Sat, Mar 08, 2025 at 03:08:37PM +0100, David Heidelberg wrote:
->>>>>> From: Caleb Connolly <caleb.connolly@linaro.org>
->>>>>>
->>>>>> This new property allows devices to specify some register values which
->>>>>> are missing on units with third party replacement displays. These
->>>>>> displays use unofficial touch ICs which only implement a subset of the
->>>>>> RMI4 specification.
->>>>>
->>>>> These are different ICs, so they have their own compatibles. Why this
->>>>> cannot be deduced from the compatible?
->>>>
->>>> Yes, but these identify as the originals.
+On 26/03/2025 11:17, AngeloGioacchino Del Regno wrote:
+> Il 26/03/25 08:56, Krzysztof Kozlowski ha scritto:
+>> On Wed, Mar 26, 2025 at 02:30:31PM +0800, Crystal Guo wrote:
+>>> A MediaTek DRAM controller interface to provide the current DDR
+>>> data rate.
 >>>
->>>
->>> It does not matter how they identify. You have the compatible for them.
->>> If you cannot add compatible for them, how can you add dedicated
->>> property for them?
+>>> Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
+>>> ---
+>>>   .../memory-controllers/mediatek,dramc.yaml    | 44 +++++++++++++++++++
+>>>   1 file changed, 44 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,dramc.yaml
 >>
->> Hi Krzysztof,
+>> Where is the rest of the patchset in DT patchwork? Where is any
+>> changelog? Cover letter? What changed here?
 >>
->> There are an unknown number of knock-off RMI4 chips which are sold in
->> cheap replacement display panels from multiple vendors. We suspect
->> there's more than one implementation.
+>> I receive dozen or hundreds of emails, so if you want to make
+>> it difficult for me to review, I will just ignore the patch.
 >>
->> A new compatible string wouldn't help us, since we use the same DTB on
->> fully original hardware as on hardware with replacement parts.
+>> I mark it as changes requested.
 >>
->> The proposed new property describes configuration registers which are
->> present on original RMI4 chips but missing on the third party ones, the
->> contents of the registers is static.
 > 
+> Krzysztof, I do see that devicetree cc'ed in all of the patches that Crystal
+> sent - including the cover letter... and the cover letter has a changelog... :-)
 > 
-> So you want to add redundant information for existing compatible, while
-> claiming you cannot deduce it from that existing compatible... Well,
-> no.. you cannot be sure that only chosen boards will have touchscreens
-> replaced, thus you will have to add this property to every board using
-> this compatible making it equal to the compatible and we are back at my
-> original comment. This is deducible from the compatible. If not the new
-> one, then from old one.
-
-hmm I see, so instead we should add a compatible for the specific 
-variant (S3320 or something) of RMI4 in this device and handle this in 
-the driver? I think that makes sense.
-
+> Was there any temporary issue with the DT patchwork or something, maybe?
 > 
-> Best regards,
-> Krzysztof
+> I anyway had to request some changes so no worries.
 
--- 
-Caleb (they/them)
+I was not precise. Rob's DT review process, which I also use, fetches
+entire thread with b4 and then runs local mail client (mutt) on it. I
+got only the binding patch. I see entire thread on my other mail client
+(I often don't connect these in my brain), so indeed no clue what happened.
 
+
+Best regards,
+Krzysztof
 
