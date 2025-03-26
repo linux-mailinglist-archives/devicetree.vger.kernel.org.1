@@ -1,87 +1,93 @@
-Return-Path: <devicetree+bounces-160889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D847A71810
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 15:05:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ADA7A7182A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 15:13:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F38D3BB881
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 14:05:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9218189B530
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 14:10:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87C1D1E5B96;
-	Wed, 26 Mar 2025 14:05:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB4531EFFBC;
+	Wed, 26 Mar 2025 14:09:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SrdA58Rl"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="GUcuf7q/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 594EF18EB0;
-	Wed, 26 Mar 2025 14:05:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 304EE1E1DEE;
+	Wed, 26 Mar 2025 14:09:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742997932; cv=none; b=akb8+asKePgh2YrWXH+VzUlJ5QvAtK7cw4e/h3FgO9FgCCcwjR/YW1V4cLLoe83YtL6eHcqYWRg7iGT7r7o0wzIpz23jrybPEi+gWd94yfWPoBAqtFWAPQH3nn8oYLoPqt8OVGS0gFom/CYWNVp1LhbpUHvlRMmhcbCOB74AnJw=
+	t=1742998196; cv=none; b=S5JPTD/R6uncc3nd2K/ZPUwVLUtoaxX4RKFE0c/WuWfGD823IGIJKjnWYhkgVGffCp35jczGM5PQx2KhNfC3eB0Pa/OiUtEhxOiRIwIP/xLErj1tAiaDHWWxS2A2WK9Odaom7Y3y9K/ftYvwMmcKDkNvJ84ksZtsG5Toyieh/v0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742997932; c=relaxed/simple;
-	bh=kMYN978mk+pPPm9GlHwciifdm/N4aIoXpSMxqJLqzLQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I8+9kZeRZukqjCQhC5luCPx1ZFF/hP5VYP2BtJXCOd5LQ2wIEI7qBG+Jpo24W7+uN3m5OPKNsEa1S4tjMSp7SryhmF3qgTSOcGRAZDTX72xc0efY54u3uUpv19Kp9A0b4CucbaG4pjOWs6vTFo68k5OtjuVDbSwSvcK11tAyieY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SrdA58Rl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 285D7C4CEE2;
-	Wed, 26 Mar 2025 14:05:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742997931;
-	bh=kMYN978mk+pPPm9GlHwciifdm/N4aIoXpSMxqJLqzLQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SrdA58RlAK3peuhLitCwgnfoDanKZx9OBZ4zw7pXtgVyjg2sf3bNitnoM8dH3bIdd
-	 KwUfWpX5kWV96Dj6uMP+ShtaflyvO7MS7VbBeSf3WMVCgXdOd/Jd+nH354ttmCh0j6
-	 QgfaVuB0gfz3ks9lAg26BEUeELYOB3vv+eT45Wi09z0K+B4wzZH2GhJ7Q9vH4T/R2n
-	 e6jcRFQxeE8GH+RIUgQ/2ABFDl/5kmwj+9veltu3QFdUVlk5sGbmpPSvga8KQJzBSf
-	 AwMf0Y8EyMnK+oPXsyrIgRbMThX1QGzrA+QiE9WJf3TlvfGTmpHmBMmg8/AryPxb2F
-	 IZVVe7u6C5urA==
-Date: Wed, 26 Mar 2025 14:05:26 +0000
-From: Simon Horman <horms@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1742998196; c=relaxed/simple;
+	bh=x0BhWl/XGa0eCjf2xd9Q9Sf3A7THwh85OBqQMQrv1KU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=BMMovM8lV93igpC2IKvJ8NIuECWOl0eSm96XDDwwSlr/tSGTyZEGRqLaBEbjlKMoP7IgIJIafYJbXKaq25sAI700/6Eli4YVyKhFIJZCs95Sk2JBkgqOnU0rxhqoy8PxoiwvQqCS1904XkaSoDC6CGaCcuJRf/p6jIYENmAG6GU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=GUcuf7q/; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B1FBB10246DA9;
+	Wed, 26 Mar 2025 15:09:50 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1742998192; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=wNc55uWXBq2CDe26PN6TZH3LTiWbpWVuLcLwZfaCHlQ=;
+	b=GUcuf7q/DQr3fKy6ZSqb6Qq9kMsqAdxwVuafqpVDGArdGaUtqyB8/D8gkGnc5d0I5Tw+/A
+	zzuLKmkyx4fjS39HtcQmwI5L4ve+NHgKHE9wt72eVcsTltuDvxrpIn9sSQdvC/LDF13YYE
+	0FKJgb9ITZDc/82G8tSN4/Uq8+R+8Sfv1JKHiOlvCjIo3Gnt5Vdurr4XuqjraT4HenptW6
+	4iEeLzF/YxHz8cEOQkDs8YoFEiAip6aAdLV6xpN/+yWR0F4QpsWW7NDOsE4E/9W2mw12pG
+	GE9upDIw/klBrGc/PI5yA0SdXaqpMPyughrSade+BLlv6Wqow4ZYgQ8rRat5sg==
+From: Lukasz Majewski <lukma@denx.de>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next RFC PATCH v2 2/3] net: phy: Add support for Aeonsemi
- AS21xxx PHYs
-Message-ID: <20250326140526.GE892515@horms.kernel.org>
-References: <20250326002404.25530-1-ansuelsmth@gmail.com>
- <20250326002404.25530-3-ansuelsmth@gmail.com>
- <20250326140015.GD892515@horms.kernel.org>
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Guenter Roeck <linux@roeck-us.net>,
+	Noah Wang <noahwang.wang@outlook.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Lukasz Majewski <lukma@denx.de>
+Subject: [PATCH RESEND] dt-bindings: trivial-devices: Document SPI measurement on LWE boards
+Date: Wed, 26 Mar 2025 15:09:30 +0100
+Message-Id: <20250326140930.2587775-1-lukma@denx.de>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250326140015.GD892515@horms.kernel.org>
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Wed, Mar 26, 2025 at 02:00:15PM +0000, Simon Horman wrote:
+The measurement device on Liebherr's (LWE) boards is used to monitor
+the overall state of the device. It does have SPI interface to
+communicate with Linux host via spidev driver. Document the SPI DT
+binding as trivial SPI device.
 
-...
+Signed-off-by: Lukasz Majewski <lukma@denx.de>
+---
+ Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> Please note that net-next is currently closed for the merge-window.
-> So please wait for it to re-open before posting patches for it.
-> 
-> RFCs are welcome any time.
-
-I'm very sorry that I missed that this is an RFC,
-so my comment above is just noise.
-
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index fadbd3c041c8..5d736a9792c2 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -161,6 +161,8 @@ properties:
+           - jedec,spd5118
+             # Linear Technology LTC2488
+           - lineartechnology,ltc2488
++            # Liebherr on-board measurement SPI device
++          - lwe,btt
+             # 5 Bit Programmable, Pulse-Width Modulator
+           - maxim,ds1050
+             # 10 kOhm digital potentiometer with I2C interface
 -- 
-pw-bot: RFC
+2.39.5
+
 
