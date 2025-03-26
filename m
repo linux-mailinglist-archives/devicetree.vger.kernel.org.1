@@ -1,264 +1,241 @@
-Return-Path: <devicetree+bounces-160739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10118A70E35
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 01:25:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1ACEA70E46
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 01:44:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A4F41896897
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 00:25:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECFA817856B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 00:44:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A1317404E;
-	Wed, 26 Mar 2025 00:24:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UeFV1VD+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A548A182BC;
+	Wed, 26 Mar 2025 00:44:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51BCD2AD02;
-	Wed, 26 Mar 2025 00:24:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 016BA10E4;
+	Wed, 26 Mar 2025 00:44:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742948688; cv=none; b=N//toXVx7KSfyVBwNGjTArObpZqtH22M8o0snnHjpGPi7QNGXHxdYlnX0fZVe0vD5HtRMx3idQ3ReQ3njmoZOzjgArE5SQ9kdhqio9sc/e/nAm53c245KaJHGs9xvF+mIyYGvi49BxyhLyOsB8zxPJ26AK8uBl4uxMSdU8ncsrE=
+	t=1742949887; cv=none; b=mk3O42yfzXQzjpzdT5xJhp8lNSOB0SiTwwQDDUVSBlzKI74tqAR5ZgKqJVGfcj+N/UgtdOmmPF9TXiFll78XWaafbPaGRmLOXBCGsihp9t5GNsu1zyW2S+v0WdcSzYWIF2lNc/sF5ZPpKwKtil/Xw46/Ht4Vz/seDD13FHSQIy8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742948688; c=relaxed/simple;
-	bh=aaP5jjL1QpF5Nj21o9Xb0lF9G3T0YoMhm8JsQ1WNWVU=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=fpq7B7szOuqLI2ADodukfV4VlWos9uvFXhhwW5/4UI8Bz7/AJTCalpvq/7twckZyxNAceOhz9cQyF2FtQkNVj1/7HjHOoqC18JF0SuyB8fPqrenaSY9EFBLhZ85ZWsU1uD2Y6bXxmHUmxOPqkbHnkxcytwJkfnaMB6d86xu9cDA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UeFV1VD+; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-39133f709f5so3320189f8f.0;
-        Tue, 25 Mar 2025 17:24:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742948684; x=1743553484; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7GVOqH2dtb9yz9XSZOrN5yDH4kiqYTHV4lLBUZDoMkU=;
-        b=UeFV1VD+0kyALjz6pU6+N7aU6p9Myc4mrEvFtNzOxlGcpzw0W6+ZIbnEegZl7O1VNC
-         QT/u+U9fVIt/5mHuNOGqwWG7tX7hSpzd+Yem6defiPL2gJGEzXQ7tKyFmy9UXSAa8Jf+
-         5IVC/9kCHWoO8PQZhPwqVDS0+RP/warQ5B6eaRfQ1mP5JqhSR9Z8ZE5qDYGTP911YHJO
-         Y785SDJwhr5YkdNWnry+5UtFLY9G7itO0D9a56akrqoVCtiI4QgIHc59AcSQGYAx5hjZ
-         c+7x4zVSSnaEYMy+WWL3FWzkbr3OjvYMMYptUaD8q3kAhGnRxgIaZahazFKilLOtogNU
-         AtOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742948684; x=1743553484;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7GVOqH2dtb9yz9XSZOrN5yDH4kiqYTHV4lLBUZDoMkU=;
-        b=RoB7k7YFQp/5knSC32Dh50zviYAx22cG5TENgCliG1rhrleMGVbpB+5wQNh3TkCrKy
-         7wy9AFa8e6/7LJGxSw+l9WgcgdI7yioa1z0MhTEx9gb+NkPtQPeb2MGUIvRwapHz8yRi
-         NwTXZtQuqbfW9J7ZXi0Lj6V2ucRWjdGO+OkDlXbU4hpBt6F2+A72KGUlnx0CYIH+rMAd
-         7hEPDdVdTOLv+rWORhHkL29H9sSLvNENPlWOK4RwtTvll8eq6Svxk0OeOkdpaBW/+iSd
-         VbzK22CvG1b8sq/m7RBlHadlMQuHex0Dil+6q9vKoJagwupe1z/wAev4lAWpcFB9txJm
-         qGQw==
-X-Forwarded-Encrypted: i=1; AJvYcCULBiJYvEL5FNwJH87TjxNiCJYBmcTopOZVrs8LsOG5PBYeuqh0MzDMDlN+NYkT2e9fWqGd/RxA@vger.kernel.org, AJvYcCUqaVc/X46K43jMoT+22+SPjYuE2ZtWRScRkckqxNflKAvr3CE0cH0LA72WCM+K7K9K4SyEVFcM90dj@vger.kernel.org, AJvYcCVq0WHKhrnpjJFOGEP5wk6yy+bqzb4y2JOtSl2+cwAK7Payhxd9hOTxKHef7ovlBv1iMwUOHuou4UNKB8MT@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzf0RnbWN+Zj2Qk81H0xaTPIuB6f2buH9tGHq0RHZ/TXKcGCdgD
-	SECsraAju8S6DUqce48UDCUZaxfwRyB253TAzaBVltRCFD99RVWR
-X-Gm-Gg: ASbGncuhoBCGCH2z4EsVCNLcIu5WUtEg7u6c5lKIny0h+Kuwy/SN8RYjfrBuwaJeHsB
-	l88qWUKM6F5nNxUCWA9gt/O7MPsVzqeBnXmiQtRtLruRBn6KYcj5ahql18rI2et+Erv5EENquxL
-	haqej5zlKNSzNhEBIladqwbt0MnHvD1o6+zVr9UI/OW/nrxLwr8O1nkrrJ/7z2/om/dQ17XF1f/
-	XrVpfg+E5FncRkEQNwpRqNMtslBhvywkZObj9cLgjOxuQ3UtquRu7HAMjP9dI2eQDtbOF/GRB62
-	qs9iUDOQRWu1fsnqr2u2l7b+RbkvsLWWRxw6hKaabfG1e1wkWr/MckewnjAkSRyyKIanNhI61el
-	hb7Ey4MsI309lQw==
-X-Google-Smtp-Source: AGHT+IFMZuYyHiG+kuQo5ASsKYd6qEZye9NJuU1S/BTl3/N4zFNkuG3JpLEKST1/WUmjYHSFdLYfng==
-X-Received: by 2002:a05:6000:188e:b0:391:20ef:62d6 with SMTP id ffacd0b85a97d-3997f8ef0f4mr17111653f8f.11.1742948684421;
-        Tue, 25 Mar 2025 17:24:44 -0700 (PDT)
-Received: from localhost.localdomain (93-34-90-129.ip49.fastwebnet.it. [93.34.90.129])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-39acb5d0c33sm1881990f8f.26.2025.03.25.17.24.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Mar 2025 17:24:44 -0700 (PDT)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Christian Marangi <ansuelsmth@gmail.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
+	s=arc-20240116; t=1742949887; c=relaxed/simple;
+	bh=NUOEHR7dk5KiHVe+jW5sAGgBP6C0nlCCJmq7FVIGbQw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sBYdI2OOhRJ1r41b77LttVOhjmn7RPfkJc7AcNaS/MDk70ssYBNoqpjuE10zk20fcq60bsmXOr1t42Um1kYNYHBmUUVuK5D27cNTTLUauSQ8nQcPajY/zlqZeTciRZtwhnyZmKJi5XPgGsRRSYytalZi7+tV+yZ3dL98HJ1rAyw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.48.233])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id C772C3431A4;
+	Wed, 26 Mar 2025 00:44:44 +0000 (UTC)
+Date: Wed, 26 Mar 2025 00:44:40 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>,
+	Pritesh Patel <pritesh.patel@einfochips.com>,
+	Min Lin <linmin@eswincomputing.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [net-next RFC PATCH v2 3/3] dt-bindings: net: Document support for Aeonsemi PHYs
-Date: Wed, 26 Mar 2025 01:23:59 +0100
-Message-ID: <20250326002404.25530-4-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250326002404.25530-1-ansuelsmth@gmail.com>
-References: <20250326002404.25530-1-ansuelsmth@gmail.com>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [RFC PATCH 1/4] dt-bindings: pinctrl: Add eswin,eic7700-pinctrl
+ binding
+Message-ID: <20250326004440-GYA24249@gentoo>
+References: <20250325141311.758787-1-emil.renner.berthing@canonical.com>
+ <20250325141311.758787-2-emil.renner.berthing@canonical.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250325141311.758787-2-emil.renner.berthing@canonical.com>
 
-Document support for Aeonsemi PHYs and the requirement of a firmware to
-correctly work. Also document the max number of LEDs supported and what
-PHY ID expose when no firmware is loaded.
+Hi Emil Renner Berthing: 
 
-Supported PHYs AS21011JB1, AS21011PB1, AS21010JB1, AS21010PB1,
-AS21511JB1, AS21511PB1, AS21510JB1, AS21510PB1, AS21210JB1,
-AS21210PB1 that all register with the PHY ID 0x7500 0x9410 on C45
-registers before the firmware is loaded.
+On 15:13 Tue 25 Mar     , Emil Renner Berthing wrote:
+> Add device tree binding for the pin controller on the ESWIN EIC7700
+> RISC-V SoC.
+> 
+> Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+> ---
+>  .../pinctrl/eswin,eic7700-pinctrl.yaml        | 141 ++++++++++++++++++
+>  1 file changed, 141 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/eswin,eic7700-pinctrl.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/eswin,eic7700-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/eswin,eic7700-pinctrl.yaml
+> new file mode 100644
+> index 000000000000..8ef966cebc5e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/eswin,eic7700-pinctrl.yaml
+> @@ -0,0 +1,141 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/eswin,eic7700-pinctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ESWIN EIC7700 SoC pin controller
+> +
+> +maintainers:
+> +  - Emil Renner Berthing <emil.renner.berthing@canonical.com>
+> +
+> +description: |
+no need |
+> +  Pinmux and pinconf controller in the ESWIN EIC7700 RISC-V SoC.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - eswin,eic7700-pinctrl
+why not const as single compatible here?
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +patternProperties:
+> +  '-[0-9]+$':
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    patternProperties:
+> +      '-pins$':
+> +        type: object
+> +        allOf:
+> +          - $ref: /schemas/pinctrl/pincfg-node.yaml#
+> +          - $ref: /schemas/pinctrl/pinmux-node.yaml#
+> +
+> +        additionalProperties: false
+> +
+> +        description:
+> +          A pinctrl node should contain at least one subnode describing one
+> +          or more pads and their associated pinmux and pinconf settings.
+> +
+> +        properties:
+> +          pins:
+> +            items:
+> +              enum: [ CHIP_MODE, MODE_SET0, MODE_SET1, MODE_SET2, MODE_SET3,
+> +                      XIN, RTC_XIN, RST_OUT_N, KEY_RESET_N, GPIO0, POR_SEL,
+> +                      JTAG0_TCK, JTAG0_TMS, JTAG0_TDI, JTAG0_TDO, GPIO5, SPI2_CS0_N,
+> +                      JTAG1_TCK, JTAG1_TMS, JTAG1_TDI, JTAG1_TDO, GPIO11, SPI2_CS1_N,
+> +                      PCIE_CLKREQ_N, PCIE_WAKE_N, PCIE_PERST_N, HDMI_SCL, HDMI_SDA,
+> +                      HDMI_CEC, JTAG2_TRST, RGMII0_CLK_125, RGMII0_TXEN,
+> +                      RGMII0_TXCLK, RGMII0_TXD0, RGMII0_TXD1, RGMII0_TXD2,
+> +                      RGMII0_TXD3, I2S0_BCLK, I2S0_WCLK, I2S0_SDI, I2S0_SDO,
+> +                      I2S_MCLK, RGMII0_RXCLK, RGMII0_RXDV, RGMII0_RXD0, RGMII0_RXD1,
+> +                      RGMII0_RXD2, RGMII0_RXD3, I2S2_BCLK, I2S2_WCLK, I2S2_SDI,
+> +                      I2S2_SDO, GPIO27, GPIO28, GPIO29, RGMII0_MDC, RGMII0_MDIO,
+> +                      RGMII0_INTB, RGMII1_CLK_125, RGMII1_TXEN, RGMII1_TXCLK,
+> +                      RGMII1_TXD0, RGMII1_TXD1, RGMII1_TXD2, RGMII1_TXD3, I2S1_BCLK,
+> +                      I2S1_WCLK, I2S1_SDI, I2S1_SDO, GPIO34, RGMII1_RXCLK,
+> +                      RGMII2_RXDV, RGMII2_RXD0, RGMII2_RXD1, RGMII2_RXD2,
+> +                      RGMII2_RXD3, SPI1_CS0_N, SPI1_CLK, SPI1_D0, SPI1_D1, SPI1_D2,
+> +                      SPI1_D3, SPI1_CS1_N, RGMII1_MDC, RGMII1_MDIO, RGMII1_INTB,
+> +                      USB0_PWREN, USB1_PWREN, I2C0_SCL, I2C0_SDA, I2C1_SCL, I2C1_SDA,
+> +                      I2C2_SCL, I2C2_SDA, I2C3_SCL, I2C3_SDA, I2C4_SCL, I2C4_SDA,
+> +                      I2C5_SCL, I2C5_SDA, UART0_TX, UART0_RX, UART1_TX, UART1_RX,
+> +                      UART1_CTS, UART1_RTS, UART2_TX, UART2_RX, JTAG2_TCK, JTAG2_TMS,
+> +                      JTAG2_TDI, JTAG2_TDO, FAN_PWM, FAN_TACH, MIPI_CSI0_XVS,
+> +                      MIPI_CSI0_XHS, MIPI_CSI0_MCLK, MIPI_CSI1_XVS, MIPI_CSI1_XHS,
+> +                      MIPI_CSI1_MCLK, MIPI_CSI2_XVS, MIPI_CSI2_XHS, MIPI_CSI2_MCLK,
+> +                      MIPI_CSI3_XVS, MIPI_CSI3_XHS, MIPI_CSI3_MCLK, MIPI_CSI4_XVS,
+> +                      MIPI_CSI4_XHS, MIPI_CSI4_MCLK, MIPI_CSI5_XVS, MIPI_CSI5_XHS,
+> +                      MIPI_CSI5_MCLK, SPI3_CS_N, SPI3_CLK, SPI3_DI, SPI3_DO, GPIO92,
+> +                      GPIO93, S_MODE, GPIO95, SPI0_CS_N, SPI0_CLK, SPI0_D0, SPI0_D1,
+> +                      SPI0_D2, SPI0_D3, I2C10_SCL, I2C10_SDA, I2C11_SCL, I2C11_SDA,
+> +                      GPIO106, BOOT_SEL0, BOOT_SEL1, BOOT_SEL2, BOOT_SEL3, GPIO111,
+> +                      LPDDR_REF_CLK ]
+> +            description: List of pads that properties in the node apply to.
+> +
+> +          function:
+> +            enum: [ csi, debug, ddr, fan, gpio, hdmi, i2c, i2s, jtag, mipi,
+> +                    mode, oscillator, pci, pwm, rgmii, reset, sata, spi, sdio,
+> +                    uart, usb ]
+> +            description: The mux function to select for the given pins.
+> +
+> +          bias-disable: true
+> +
+> +          bias-pull-up:
+> +            oneOf:
+> +              - type: boolean
+> +              - const: 25000
+> +            description: Enable internal 25kOhm pull-up
+> +
+> +          bias-pull-down:
+> +            oneOf:
+> +              - type: boolean
+> +              - const: 22000
+> +            description: Enable internal 22kOhm pull-down
+> +
+> +          drive-strength-microamp:
+> +            enum: [ 3100, 6700, 9600, 12900, 18000, 20900, 23200, 25900 ]
+> +
+> +          input-enable: true
+> +
+> +          input-disable: true
+> +
+> +          input-schmitt-enable: true
+> +
+> +          input-schmitt-disable: true
+> +
+> +        required:
+> +          - pins
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    pinctrl: pinctrl@51600080 {
+       ~~~~~~~ no need alias phandle in example..
+> +        compatible = "eswin,eic7700-pinctrl";
+> +        reg = <0x51600080 0xff80>;
+> +
+> +        uart0_pins: uart0-0 {
+> +            tx-pins {
+> +                pins = "UART0_TX";
+> +                function = "uart";
+> +                bias-disable;
+> +                drive-strength-microamp = <6700>;
+> +                input-disable;
+> +                input-schmitt-disable;
+> +            };
+> +
+> +            rx-pins {
+> +                pins = "UART0_RX";
+> +                function = "uart";
+> +                bias-pull-up;
+> +                drive-strength-microamp = <6700>;
+> +                input-enable;
+> +                input-schmitt-enable;
+> +            };
+> +        };
+> +    };
+> -- 
+> 2.43.0
+> 
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- .../bindings/net/aeonsemi,as21xxx.yaml        | 122 ++++++++++++++++++
- MAINTAINERS                                   |   1 +
- 2 files changed, 123 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
-
-diff --git a/Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml b/Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
-new file mode 100644
-index 000000000000..69eb29dc4d7b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
-@@ -0,0 +1,122 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/aeonsemi,as21xxx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Aeonsemi AS21XXX Ethernet PHY
-+
-+maintainers:
-+  - Christian Marangi <ansuelsmth@gmail.com>
-+
-+description: |
-+  Aeonsemi AS21xxx Ethernet PHYs requires a firmware to be loaded to actually
-+  work. The same firmware is compatible with various PHYs of the same family.
-+
-+  A PHY with not firmware loaded will be exposed on the MDIO bus with ID
-+  0x7500 0x7500 or 0x7500 0x9410 on C45 registers.
-+
-+  This can be done and is implemented by OEM in 2 different way:
-+    - Attached SPI flash directly to the PHY with the firmware. The PHY
-+      will self load the firmware in the presence of this configuration.
-+    - Manually provided firmware loaded from a file in the filesystem.
-+
-+  Each PHY can support up to 5 LEDs.
-+
-+  AS2xxx PHY Name logic:
-+
-+  AS21x1xxB1
-+      ^ ^^
-+      | |J: Supports SyncE/PTP
-+      | |P: No SyncE/PTP support
-+      | 1: Supports 2nd Serdes
-+      | 2: Not 2nd Serdes support
-+      0: 10G, 5G, 2.5G
-+      5: 5G, 2.5G
-+      2: 2.5G
-+
-+allOf:
-+  - $ref: ethernet-phy.yaml#
-+
-+select:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - ethernet-phy-id7500.9410
-+          - ethernet-phy-id7500.9402
-+          - ethernet-phy-id7500.9412
-+          - ethernet-phy-id7500.9422
-+          - ethernet-phy-id7500.9432
-+          - ethernet-phy-id7500.9442
-+          - ethernet-phy-id7500.9452
-+          - ethernet-phy-id7500.9462
-+          - ethernet-phy-id7500.9472
-+          - ethernet-phy-id7500.9482
-+          - ethernet-phy-id7500.9492
-+  required:
-+    - compatible
-+
-+properties:
-+  reg:
-+    maxItems: 1
-+
-+  firmware-name:
-+    description: specify the name of PHY firmware to load
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: ethernet-phy-id7500.9410
-+then:
-+  required:
-+    - firmware-name
-+else:
-+  properties:
-+    firmware-name: false
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/leds/common.h>
-+
-+    mdio {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        ethernet-phy@1f {
-+            compatible = "ethernet-phy-id7500.9410",
-+                         "ethernet-phy-ieee802.3-c45";
-+
-+            reg = <31>;
-+            firmware-name = "as21x1x_fw.bin";
-+
-+            leds {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                led@0 {
-+                    reg = <0>;
-+                    color = <LED_COLOR_ID_GREEN>;
-+                    function = LED_FUNCTION_LAN;
-+                    function-enumerator = <0>;
-+                    default-state = "keep";
-+                };
-+
-+                led@1 {
-+                    reg = <1>;
-+                    color = <LED_COLOR_ID_GREEN>;
-+                    function = LED_FUNCTION_LAN;
-+                    function-enumerator = <1>;
-+                    default-state = "keep";
-+                };
-+            };
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 9a2df6d221bd..59a863dd3b70 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -649,6 +649,7 @@ AEONSEMI PHY DRIVER
- M:	Christian Marangi <ansuelsmth@gmail.com>
- L:	netdev@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
- F:	drivers/net/phy/as21xxx.c
- 
- AF8133J THREE-AXIS MAGNETOMETER DRIVER
 -- 
-2.48.1
-
+Yixun Lan (dlan)
+Gentoo Linux Developer
+GPG Key ID AABEFD55
 
