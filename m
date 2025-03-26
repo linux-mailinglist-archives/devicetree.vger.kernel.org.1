@@ -1,241 +1,272 @@
-Return-Path: <devicetree+bounces-160740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1ACEA70E46
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 01:44:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADDC9A70E71
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 02:32:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECFA817856B
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 00:44:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E1D4D7A41B0
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 01:31:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A548A182BC;
-	Wed, 26 Mar 2025 00:44:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7A6A42A8B;
+	Wed, 26 Mar 2025 01:32:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SBfqqYy9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 016BA10E4;
-	Wed, 26 Mar 2025 00:44:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4D0020328;
+	Wed, 26 Mar 2025 01:32:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742949887; cv=none; b=mk3O42yfzXQzjpzdT5xJhp8lNSOB0SiTwwQDDUVSBlzKI74tqAR5ZgKqJVGfcj+N/UgtdOmmPF9TXiFll78XWaafbPaGRmLOXBCGsihp9t5GNsu1zyW2S+v0WdcSzYWIF2lNc/sF5ZPpKwKtil/Xw46/Ht4Vz/seDD13FHSQIy8=
+	t=1742952754; cv=none; b=WHFhcj4LkHdnDbJFErOx7+5GCIkt6iVgqW8XXHcg6xZm/ahyl9O+A+BBgALhBPdRtP1UYNsw7GrR4cwpwhXz/aWc1IdYtOWY6Ohb0kj1VeP2Z1abelJR4oMFUBd5YngVnC9mZ4q9v5GzE8T3ieRbFNzPkmDsy1bKkivqynTtKew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742949887; c=relaxed/simple;
-	bh=NUOEHR7dk5KiHVe+jW5sAGgBP6C0nlCCJmq7FVIGbQw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sBYdI2OOhRJ1r41b77LttVOhjmn7RPfkJc7AcNaS/MDk70ssYBNoqpjuE10zk20fcq60bsmXOr1t42Um1kYNYHBmUUVuK5D27cNTTLUauSQ8nQcPajY/zlqZeTciRZtwhnyZmKJi5XPgGsRRSYytalZi7+tV+yZ3dL98HJ1rAyw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.48.233])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id C772C3431A4;
-	Wed, 26 Mar 2025 00:44:44 +0000 (UTC)
-Date: Wed, 26 Mar 2025 00:44:40 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>,
-	Pritesh Patel <pritesh.patel@einfochips.com>,
-	Min Lin <linmin@eswincomputing.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [RFC PATCH 1/4] dt-bindings: pinctrl: Add eswin,eic7700-pinctrl
- binding
-Message-ID: <20250326004440-GYA24249@gentoo>
-References: <20250325141311.758787-1-emil.renner.berthing@canonical.com>
- <20250325141311.758787-2-emil.renner.berthing@canonical.com>
+	s=arc-20240116; t=1742952754; c=relaxed/simple;
+	bh=8MnpI20UdxMqh87LFXJcjku4Q1JF33CL6rL7FBIsOPY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=gM7MMfkzjDvVN6lRcuQ3IIIHepSZKzzNYrmKwySY5AEnP0D0R9HCHGpkwu7Jq0p/FO6IInGebmO93tp8zT7yUSxhU6emkbGc1xXrX/sdZLU3pTcJt8NilLo6ISBnQUZqOuDjZ7uNdXjEHcsCnDtXBuUIBKT33nSioRmiSaN9XvM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SBfqqYy9; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52PGawBt008370;
+	Wed, 26 Mar 2025 01:32:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Vuyh7BqsJ/hMBEiNyvqf3QR6amTKUZvN5jLgpWwgKT0=; b=SBfqqYy9PVSRgtl1
+	FFIlQXMDW3DGzQhMZe7t+Io+Syj+yGFhU7BoQXkhOptdi1EW9GD2FTZGdO+P62PT
+	Owq9F/5fv2mhDZMNpziewRWGdvATkcDHZ5OlyOl41IS/PFJsa+NHWf7M4/WLH+lG
+	TTdr2QSmmwhnqfSS+55K5HEJeXIqizw4pc1+uH0gukja8KoYnP1nWulweBkHAO32
+	NTidUx9bF+U7y2gk/k0r/uQlnE/ieezKO6dX0o6RNAlcaA59HEhSC8Q8DkDFFV2a
+	ua9dArd+Cf14MRuKMcp0UNbjjBqgTxPvonLxiyOqcEG7aCxqeE4S8R931sR1k4iX
+	7/+wew==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45kmd33969-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 26 Mar 2025 01:32:16 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52Q1WFeh005964
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 26 Mar 2025 01:32:15 GMT
+Received: from [10.71.112.253] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 25 Mar
+ 2025 18:32:15 -0700
+Message-ID: <5a7442c9-493d-4c23-a179-128f02a29f73@quicinc.com>
+Date: Tue, 25 Mar 2025 18:32:14 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250325141311.758787-2-emil.renner.berthing@canonical.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v36 28/31] ALSA: usb-audio: qcom: Introduce QC USB SND
+ offloading support
+To: Stephan Gerhold <stephan.gerhold@linaro.org>
+CC: <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <conor+dt@kernel.org>, <dmitry.torokhov@gmail.com>,
+        <corbet@lwn.net>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
+        <krzk+dt@kernel.org>, <pierre-louis.bossart@linux.intel.com>,
+        <Thinh.Nguyen@synopsys.com>, <tiwai@suse.com>, <robh@kernel.org>,
+        <gregkh@linuxfoundation.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-sound@vger.kernel.org>,
+        <linux-input@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        Luca Weiss
+	<luca.weiss@fairphone.com>
+References: <20250319005141.312805-1-quic_wcheng@quicinc.com>
+ <20250319005141.312805-29-quic_wcheng@quicinc.com>
+ <Z-J7n8qLMPVxpwuV@linaro.org>
+Content-Language: en-US
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <Z-J7n8qLMPVxpwuV@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: E0ngsLGvFpb83eXG9z44oDKFD781KFLE
+X-Proofpoint-ORIG-GUID: E0ngsLGvFpb83eXG9z44oDKFD781KFLE
+X-Authority-Analysis: v=2.4 cv=P646hjAu c=1 sm=1 tr=0 ts=67e35920 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=JhZuM8AjDx3iezwaYmoA:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-25_10,2025-03-25_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ malwarescore=0 adultscore=0 lowpriorityscore=0 clxscore=1015
+ suspectscore=0 phishscore=0 mlxlogscore=999 priorityscore=1501 bulkscore=0
+ mlxscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503260008
 
-Hi Emil Renner Berthing: 
+hi Stephan,
 
-On 15:13 Tue 25 Mar     , Emil Renner Berthing wrote:
-> Add device tree binding for the pin controller on the ESWIN EIC7700
-> RISC-V SoC.
+On 3/25/2025 2:47 AM, Stephan Gerhold wrote:
+> On Tue, Mar 18, 2025 at 05:51:38PM -0700, Wesley Cheng wrote:
+>> Several Qualcomm SoCs have a dedicated audio DSP, which has the ability to
+>> support USB sound devices.  This vendor driver will implement the required
+>> handshaking with the DSP, in order to pass along required resources that
+>> will be utilized by the DSP's USB SW.  The communication channel used for
+>> this handshaking will be using the QMI protocol.  Required resources
+>> include:
+>> - Allocated secondary event ring address
+>> - EP transfer ring address
+>> - Interrupter number
+>>
+>> The above information will allow for the audio DSP to execute USB transfers
+>> over the USB bus.  It will also be able to support devices that have an
+>> implicit feedback and sync endpoint as well.  Offloading these data
+>> transfers will allow the main/applications processor to enter lower CPU
+>> power modes, and sustain a longer duration in those modes.
+>>
+>> Audio offloading is initiated with the following sequence:
+>> 1. Userspace configures to route audio playback to USB backend and starts
+>> playback on the platform soundcard.
+>> 2. The Q6DSP AFE will communicate to the audio DSP to start the USB AFE
+>> port.
+>> 3. This results in a QMI packet with a STREAM enable command.
+>> 4. The QC audio offload driver will fetch the required resources, and pass
+>> this information as part of the QMI response to the STREAM enable command.
+>> 5. Once the QMI response is received the audio DSP will start queuing data
+>> on the USB bus.
+>>
+>> As part of step#2, the audio DSP is aware of the USB SND card and pcm
+>> device index that is being selected, and is communicated as part of the QMI
+>> request received by QC audio offload.  These indices will be used to handle
+>> the stream enable QMI request.
+>>
+>> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+>> ---
+>>  sound/usb/Kconfig                 |   14 +
+>>  sound/usb/Makefile                |    2 +-
+>>  sound/usb/qcom/Makefile           |    2 +
+>>  sound/usb/qcom/qc_audio_offload.c | 1988 +++++++++++++++++++++++++++++
+>>  4 files changed, 2005 insertions(+), 1 deletion(-)
+>>  create mode 100644 sound/usb/qcom/Makefile
+>>  create mode 100644 sound/usb/qcom/qc_audio_offload.c
+>>
+>> diff --git a/sound/usb/Kconfig b/sound/usb/Kconfig
+>> index 4a9569a3a39a..6daa551738da 100644
+>> --- a/sound/usb/Kconfig
+>> +++ b/sound/usb/Kconfig
+>> @@ -176,6 +176,20 @@ config SND_BCD2000
+>>  	  To compile this driver as a module, choose M here: the module
+>>  	  will be called snd-bcd2000.
+>>  
+>> +config SND_USB_AUDIO_QMI
+>> +	tristate "Qualcomm Audio Offload driver"
+>> +	depends on QCOM_QMI_HELPERS && SND_USB_AUDIO && USB_XHCI_SIDEBAND && SND_SOC_USB
+>> +	help
+>> +	  Say Y here to enable the Qualcomm USB audio offloading feature.
+>> +
+>> +	  This module sets up the required QMI stream enable/disable
+>> +	  responses to requests generated by the audio DSP.  It passes the
+>> +	  USB transfer resource references, so that the audio DSP can issue
+>> +	  USB transfers to the host controller.
+>> +
+>> +	  To compile this driver as a module, choose M here: the module
+>> +	  will be called snd-usb-audio-qmi.
+>> [...]
+>> diff --git a/sound/usb/qcom/qc_audio_offload.c b/sound/usb/qcom/qc_audio_offload.c
+>> new file mode 100644
+>> index 000000000000..3319363a0fd0
+>> --- /dev/null
+>> +++ b/sound/usb/qcom/qc_audio_offload.c
+>> @@ -0,0 +1,1988 @@
+>> [...]
+>> +static int __init qc_usb_audio_offload_init(void)
+>> +{
+>> +	struct uaudio_qmi_svc *svc;
+>> +	int ret;
+>> +
+>> +	svc = kzalloc(sizeof(*svc), GFP_KERNEL);
+>> +	if (!svc)
+>> +		return -ENOMEM;
+>> +
+>> +	svc->uaudio_svc_hdl = kzalloc(sizeof(*svc->uaudio_svc_hdl), GFP_KERNEL);
+>> +	if (!svc->uaudio_svc_hdl) {
+>> +		ret = -ENOMEM;
+>> +		goto free_svc;
+>> +	}
+>> +
+>> +	ret = qmi_handle_init(svc->uaudio_svc_hdl,
+>> +			      QMI_UAUDIO_STREAM_REQ_MSG_V01_MAX_MSG_LEN,
+>> +			      &uaudio_svc_ops_options,
+>> +			      &uaudio_stream_req_handlers);
+>> +	ret = qmi_add_server(svc->uaudio_svc_hdl, UAUDIO_STREAM_SERVICE_ID_V01,
+>> +			     UAUDIO_STREAM_SERVICE_VERS_V01, 0);
+>> +
+>> +	uaudio_svc = svc;
+>> +
+>> +	ret = snd_usb_register_platform_ops(&offload_ops);
+>> +	if (ret < 0)
+>> +		goto release_qmi;
+>> +
+>> +	return 0;
+>> +
+>> +release_qmi:
+>> +	qmi_handle_release(svc->uaudio_svc_hdl);
+>> +free_svc:
+>> +	kfree(svc);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static void __exit qc_usb_audio_offload_exit(void)
+>> +{
+>> +	struct uaudio_qmi_svc *svc = uaudio_svc;
+>> +	int idx;
+>> +
+>> +	/*
+>> +	 * Remove all connected devices after unregistering ops, to ensure
+>> +	 * that no further connect events will occur.  The disconnect routine
+>> +	 * will issue the QMI disconnect indication, which results in the
+>> +	 * external DSP to stop issuing transfers.
+>> +	 */
+>> +	snd_usb_unregister_platform_ops();
+>> +	for (idx = 0; idx < SNDRV_CARDS; idx++)
+>> +		qc_usb_audio_offload_disconnect(uadev[idx].chip);
+>> +
+>> +	qmi_handle_release(svc->uaudio_svc_hdl);
+>> +	kfree(svc);
+>> +	uaudio_svc = NULL;
+>> +}
+>> +
+>> +module_init(qc_usb_audio_offload_init);
+>> +module_exit(qc_usb_audio_offload_exit);
+>> +
+>> +MODULE_DESCRIPTION("QC USB Audio Offloading");
+>> +MODULE_LICENSE("GPL");
 > 
-> Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> ---
->  .../pinctrl/eswin,eic7700-pinctrl.yaml        | 141 ++++++++++++++++++
->  1 file changed, 141 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/eswin,eic7700-pinctrl.yaml
+> What will trigger loading this if this code is built as module?
 > 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/eswin,eic7700-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/eswin,eic7700-pinctrl.yaml
-> new file mode 100644
-> index 000000000000..8ef966cebc5e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/eswin,eic7700-pinctrl.yaml
-> @@ -0,0 +1,141 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/eswin,eic7700-pinctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ESWIN EIC7700 SoC pin controller
-> +
-> +maintainers:
-> +  - Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> +
-> +description: |
-no need |
-> +  Pinmux and pinconf controller in the ESWIN EIC7700 RISC-V SoC.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - eswin,eic7700-pinctrl
-why not const as single compatible here?
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +patternProperties:
-> +  '-[0-9]+$':
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    patternProperties:
-> +      '-pins$':
-> +        type: object
-> +        allOf:
-> +          - $ref: /schemas/pinctrl/pincfg-node.yaml#
-> +          - $ref: /schemas/pinctrl/pinmux-node.yaml#
-> +
-> +        additionalProperties: false
-> +
-> +        description:
-> +          A pinctrl node should contain at least one subnode describing one
-> +          or more pads and their associated pinmux and pinconf settings.
-> +
-> +        properties:
-> +          pins:
-> +            items:
-> +              enum: [ CHIP_MODE, MODE_SET0, MODE_SET1, MODE_SET2, MODE_SET3,
-> +                      XIN, RTC_XIN, RST_OUT_N, KEY_RESET_N, GPIO0, POR_SEL,
-> +                      JTAG0_TCK, JTAG0_TMS, JTAG0_TDI, JTAG0_TDO, GPIO5, SPI2_CS0_N,
-> +                      JTAG1_TCK, JTAG1_TMS, JTAG1_TDI, JTAG1_TDO, GPIO11, SPI2_CS1_N,
-> +                      PCIE_CLKREQ_N, PCIE_WAKE_N, PCIE_PERST_N, HDMI_SCL, HDMI_SDA,
-> +                      HDMI_CEC, JTAG2_TRST, RGMII0_CLK_125, RGMII0_TXEN,
-> +                      RGMII0_TXCLK, RGMII0_TXD0, RGMII0_TXD1, RGMII0_TXD2,
-> +                      RGMII0_TXD3, I2S0_BCLK, I2S0_WCLK, I2S0_SDI, I2S0_SDO,
-> +                      I2S_MCLK, RGMII0_RXCLK, RGMII0_RXDV, RGMII0_RXD0, RGMII0_RXD1,
-> +                      RGMII0_RXD2, RGMII0_RXD3, I2S2_BCLK, I2S2_WCLK, I2S2_SDI,
-> +                      I2S2_SDO, GPIO27, GPIO28, GPIO29, RGMII0_MDC, RGMII0_MDIO,
-> +                      RGMII0_INTB, RGMII1_CLK_125, RGMII1_TXEN, RGMII1_TXCLK,
-> +                      RGMII1_TXD0, RGMII1_TXD1, RGMII1_TXD2, RGMII1_TXD3, I2S1_BCLK,
-> +                      I2S1_WCLK, I2S1_SDI, I2S1_SDO, GPIO34, RGMII1_RXCLK,
-> +                      RGMII2_RXDV, RGMII2_RXD0, RGMII2_RXD1, RGMII2_RXD2,
-> +                      RGMII2_RXD3, SPI1_CS0_N, SPI1_CLK, SPI1_D0, SPI1_D1, SPI1_D2,
-> +                      SPI1_D3, SPI1_CS1_N, RGMII1_MDC, RGMII1_MDIO, RGMII1_INTB,
-> +                      USB0_PWREN, USB1_PWREN, I2C0_SCL, I2C0_SDA, I2C1_SCL, I2C1_SDA,
-> +                      I2C2_SCL, I2C2_SDA, I2C3_SCL, I2C3_SDA, I2C4_SCL, I2C4_SDA,
-> +                      I2C5_SCL, I2C5_SDA, UART0_TX, UART0_RX, UART1_TX, UART1_RX,
-> +                      UART1_CTS, UART1_RTS, UART2_TX, UART2_RX, JTAG2_TCK, JTAG2_TMS,
-> +                      JTAG2_TDI, JTAG2_TDO, FAN_PWM, FAN_TACH, MIPI_CSI0_XVS,
-> +                      MIPI_CSI0_XHS, MIPI_CSI0_MCLK, MIPI_CSI1_XVS, MIPI_CSI1_XHS,
-> +                      MIPI_CSI1_MCLK, MIPI_CSI2_XVS, MIPI_CSI2_XHS, MIPI_CSI2_MCLK,
-> +                      MIPI_CSI3_XVS, MIPI_CSI3_XHS, MIPI_CSI3_MCLK, MIPI_CSI4_XVS,
-> +                      MIPI_CSI4_XHS, MIPI_CSI4_MCLK, MIPI_CSI5_XVS, MIPI_CSI5_XHS,
-> +                      MIPI_CSI5_MCLK, SPI3_CS_N, SPI3_CLK, SPI3_DI, SPI3_DO, GPIO92,
-> +                      GPIO93, S_MODE, GPIO95, SPI0_CS_N, SPI0_CLK, SPI0_D0, SPI0_D1,
-> +                      SPI0_D2, SPI0_D3, I2C10_SCL, I2C10_SDA, I2C11_SCL, I2C11_SDA,
-> +                      GPIO106, BOOT_SEL0, BOOT_SEL1, BOOT_SEL2, BOOT_SEL3, GPIO111,
-> +                      LPDDR_REF_CLK ]
-> +            description: List of pads that properties in the node apply to.
-> +
-> +          function:
-> +            enum: [ csi, debug, ddr, fan, gpio, hdmi, i2c, i2s, jtag, mipi,
-> +                    mode, oscillator, pci, pwm, rgmii, reset, sata, spi, sdio,
-> +                    uart, usb ]
-> +            description: The mux function to select for the given pins.
-> +
-> +          bias-disable: true
-> +
-> +          bias-pull-up:
-> +            oneOf:
-> +              - type: boolean
-> +              - const: 25000
-> +            description: Enable internal 25kOhm pull-up
-> +
-> +          bias-pull-down:
-> +            oneOf:
-> +              - type: boolean
-> +              - const: 22000
-> +            description: Enable internal 22kOhm pull-down
-> +
-> +          drive-strength-microamp:
-> +            enum: [ 3100, 6700, 9600, 12900, 18000, 20900, 23200, 25900 ]
-> +
-> +          input-enable: true
-> +
-> +          input-disable: true
-> +
-> +          input-schmitt-enable: true
-> +
-> +          input-schmitt-disable: true
-> +
-> +        required:
-> +          - pins
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    pinctrl: pinctrl@51600080 {
-       ~~~~~~~ no need alias phandle in example..
-> +        compatible = "eswin,eic7700-pinctrl";
-> +        reg = <0x51600080 0xff80>;
-> +
-> +        uart0_pins: uart0-0 {
-> +            tx-pins {
-> +                pins = "UART0_TX";
-> +                function = "uart";
-> +                bias-disable;
-> +                drive-strength-microamp = <6700>;
-> +                input-disable;
-> +                input-schmitt-disable;
-> +            };
-> +
-> +            rx-pins {
-> +                pins = "UART0_RX";
-> +                function = "uart";
-> +                bias-pull-up;
-> +                drive-strength-microamp = <6700>;
-> +                input-enable;
-> +                input-schmitt-enable;
-> +            };
-> +        };
-> +    };
-> -- 
-> 2.43.0
+> Testing suggests nothing does at the moment: If this is built as module,
+> playback via USB_RX will fail until you manually modprobe
+> snd-usb-audio-qmi.
 > 
 
--- 
-Yixun Lan (dlan)
-Gentoo Linux Developer
-GPG Key ID AABEFD55
+Yes, it would only get triggered on a modprobe.  I think the more important
+part is when snd_usb_register_platform_ops() is called.  This is what would
+register the vendor USB offload driver callbacks for USB connect/disconnect
+events.
+
+> I think the easiest way to solve this would be to drop the
+> module_init()/module_exit() and instead call into these init/exit
+> functions from one of the other audio modules. This would also ensure
+> that the QMI server is only registered if we actually need it (if the
+> board sound card actually has a USB DAI link).
+> 
+
+It would be difficult from the perspective of USB SND, because if we got
+rid of the vendor ops, it would be messy, since the USB offload vendor
+driver will be specific for every SoC.
+
+Thanks
+Wesley Cheng
 
