@@ -1,111 +1,114 @@
-Return-Path: <devicetree+bounces-160813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48326A71291
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 09:23:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D605A712F8
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 09:44:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D7CA01727EC
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 08:23:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 241BE3B92EB
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 08:43:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 274DB19DFB4;
-	Wed, 26 Mar 2025 08:22:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6326D1AA1F6;
+	Wed, 26 Mar 2025 08:43:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jy+so43p"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="J8Dtg6pm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F07372A1B2;
-	Wed, 26 Mar 2025 08:22:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 921F91A5BA2;
+	Wed, 26 Mar 2025 08:43:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742977376; cv=none; b=AA7uKvcWbotO+uK8TjQ8fjhdWg5jvzhXG9QGCNjEk4rULRN3+P6Dn3aIMTYAl44Rgjj7xuzVxNKkhHQI7An+VR+tPyB8tUN+2HRh6Uz26gFP+xVDLk1UUDErV2P/CKFOuOIpE/7XSV7vUr+AjSXwFOYZ05Z38HTB4ErGGfNmB+E=
+	t=1742978602; cv=none; b=ngyIiuNLxUhiQ1rKHCzpNmLSUIpA89Dd2hJY4BQ5CsW2XgulyZiks5WBM10OBb5HvNloFTvBut+DCedVTwPoSM7ASIsls3VyUmQvAeKVlAEuaz+yiCraqwxudmWnxUsb0zb41yc7Dwe5Z5tFt8gEKQIvL7uBeA6gPvaObvbYGWw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742977376; c=relaxed/simple;
-	bh=9tkiqJYo1RoLYJT8Q7zax6/knmsceudeeZvRwv/gSoU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QZxtLSG1awDHADLvjB5v/x6nkyWPK94sf/yQDJ3oFBbgWv99QwRHrIKeinPVA7quf/65wmk6b90AWsMtpfYTTF/xqKCDKL92jbEOfT4kEfR/o4UnAzTMPuGNMt1QGCwoj4gyorXEdHinIJqRNI0qRV22yUok1uPgIg/QC0wD9OQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jy+so43p; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10405C4CEE2;
-	Wed, 26 Mar 2025 08:22:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742977375;
-	bh=9tkiqJYo1RoLYJT8Q7zax6/knmsceudeeZvRwv/gSoU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jy+so43pXJ9AMK+8zE5riNq1VLSBgz4885QM4+ZA1ZhLieRR32E2jnxcW4hcQGrR6
-	 /fA46i1qCPLfWYyCRbx4eIInfirVdR1XxMticFGzEDxSfA0TK/n1co+Q7K49LdvWZr
-	 o6SVLyC/2JueDn8F1T6fqnk2Hm0X+rL9MkFhsVhz71V1ZtwfPhFm1ulUgBweaG+8Z6
-	 a04TTyAq5v+gqsXQz5/hwnX1G2HvBwwttATSqErvgX5MST9xlS4N8NULGu1VmdrsB8
-	 vVsWkfvYOpT3JhPWL+DpGvfJn0JreUCY0bMNzvAYYUB8UyTcOjZqxa4sP+37YkjFIw
-	 eginNwMd9xDUw==
-Date: Wed, 26 Mar 2025 09:22:52 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Sai Krishna Musham <sai.krishna.musham@amd.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, 
-	manivannan.sadhasivam@linaro.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	cassel@kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, michal.simek@amd.com, bharat.kumar.gogada@amd.com, 
-	thippeswamy.havalige@amd.com
-Subject: Re: [PATCH 2/2] PCI: amd-mdb: Add support for PCIe RP PERST# signal
-Message-ID: <20250326-succinct-steadfast-pronghorn-5fcc21@krzk-bin>
-References: <20250326041507.98232-1-sai.krishna.musham@amd.com>
- <20250326041507.98232-3-sai.krishna.musham@amd.com>
+	s=arc-20240116; t=1742978602; c=relaxed/simple;
+	bh=ovNgZuY+NbD7763M/eaicHEHxCeaOSZ/OXBWloOm7vM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Gias1lcIWmY2EUZ87J/alNjOlC4pa7dBx9pTbhTt6M8HehzS/S+kTn+VLvgbZAdkb5hkfuhNDgVa/qaUeya8lHX/SqqZG19R3mK1ja5CrooqAx2AdKZb96S0gBhaRBe25+IJkphdHx6NfQya6+l+8CHr2uDnvvwa90M7tDYpH48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=J8Dtg6pm; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52Q8R0E7020083;
+	Wed, 26 Mar 2025 09:42:49 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=hAJu0kdEpj3Z9zT+qLxNZn
+	npfIMphhCV7QLcQTbwNUM=; b=J8Dtg6pmvhuECRvoHhoHnqlFiH1NWuvQEt+p56
+	fwnlYMh7vnreS690X/P4lUsCjB5UtyD5PNaLJyNezb1BoeIP52sLpBlcXQRQuXTG
+	64DcznkJqhSUKPAPdzIUlidew4n6HLZxfjYBoTdtrhCg8MaVexfSDD3L8oepicg6
+	rTXEJaJD2uIxKk4FrxXQKSKgSxTowKJwbsFbpoJrfxrPfvmRxMfIGk1hSeC4yre6
+	kJfIoo5XfdlFC7LzvzwMyPo0PBuIlCj+Uu5rakrGKt1WfZmD4q473sVzGEtBkDJx
+	ihbPjK6IlIEu3XfUGJo48/Cg1aOVRPmvsdJv4vOTK2VAqStg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45me348488-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 26 Mar 2025 09:42:49 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id A145440058;
+	Wed, 26 Mar 2025 09:41:50 +0100 (CET)
+Received: from Webmail-eu.st.com (eqndag1node6.st.com [10.75.129.135])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 4728787F421;
+	Wed, 26 Mar 2025 09:40:01 +0100 (CET)
+Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE6.st.com
+ (10.75.129.135) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 26 Mar
+ 2025 09:40:01 +0100
+Received: from localhost (10.48.86.121) by SAFDAG1NODE1.st.com (10.75.90.17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 26 Mar
+ 2025 09:40:00 +0100
+From: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+To: Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Arnaud Pouliquen
+	<arnaud.pouliquen@foss.st.com>
+Subject: [PATCH 0/2] stm32-rproc: Add firmware-name DT property support
+Date: Wed, 26 Mar 2025 09:39:10 +0100
+Message-ID: <20250326083912.12714-1-arnaud.pouliquen@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250326041507.98232-3-sai.krishna.musham@amd.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SAFCAS1NODE1.st.com (10.75.90.11) To SAFDAG1NODE1.st.com
+ (10.75.90.17)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-26_02,2025-03-26_02,2024-11-22_01
 
-On Wed, Mar 26, 2025 at 09:45:07AM +0530, Sai Krishna Musham wrote:
-> Add PERST# signal handling via I2C GPIO expander for AMD Versal2
-> MDB PCIe Root Port.
-> 
-> Signed-off-by: Sai Krishna Musham <sai.krishna.musham@amd.com>
-> ---
->  drivers/pci/controller/dwc/pcie-amd-mdb.c | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-amd-mdb.c b/drivers/pci/controller/dwc/pcie-amd-mdb.c
-> index 4eb2a4e8189d..4eea53e9e197 100644
-> --- a/drivers/pci/controller/dwc/pcie-amd-mdb.c
-> +++ b/drivers/pci/controller/dwc/pcie-amd-mdb.c
-> @@ -18,6 +18,7 @@
->  #include <linux/resource.h>
->  #include <linux/types.h>
->  
-> +#include "../../pci.h"
->  #include "pcie-designware.h"
->  
->  #define AMD_MDB_TLP_IR_STATUS_MISC		0x4C0
-> @@ -408,6 +409,7 @@ static int amd_mdb_add_pcie_port(struct amd_mdb_pcie *pcie,
->  	struct dw_pcie *pci = &pcie->pci;
->  	struct dw_pcie_rp *pp = &pci->pp;
->  	struct device *dev = &pdev->dev;
-> +	struct gpio_desc *reset_gpio;
->  	int err;
->  
->  	pcie->slcr = devm_platform_ioremap_resource_byname(pdev, "slcr");
-> @@ -426,6 +428,24 @@ static int amd_mdb_add_pcie_port(struct amd_mdb_pcie *pcie,
->  
->  	pp->ops = &amd_mdb_pcie_host_ops;
->  
-> +	/* Request the GPIO for PCIe reset signal and assert */
-> +	reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(reset_gpio)) {
-> +		if (PTR_ERR(reset_gpio) == -EPROBE_DEFER)
-> +			return -EPROBE_DEFER;
-> +		dev_err(dev, "Failed to request reset GPIO\n");
+Add flexibility by supporting the optional "firmware-name" property.
 
-Do not open-code dev_err_probe.
+This allows specifying in the device tree the firmware that needs to
+be loaded on boot, if the "st,auto-boot" DT property is set.
 
-Best regards,
-Krzysztof
+Arnaud Pouliquen (2):
+  dt-bindings: remoteproc: stm32-rproc: Add firmware-name property
+  drivers: remoteproc: stm32_rproc: Allow to specify firmware default
+    name
+
+ .../devicetree/bindings/remoteproc/st,stm32-rproc.yaml    | 5 +++++
+ drivers/remoteproc/stm32_rproc.c                          | 8 +++++++-
+ 2 files changed, 12 insertions(+), 1 deletion(-)
+
+
+base-commit: 38fec10eb60d687e30c8c6b5420d86e8149f7557
+-- 
+2.25.1
 
 
