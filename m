@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-160892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BE90A7183C
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 15:17:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 823FCA71854
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 15:20:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A9A218866A4
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 14:17:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D23216165A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 14:20:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE02F1EA7F3;
-	Wed, 26 Mar 2025 14:17:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D9801E832F;
+	Wed, 26 Mar 2025 14:20:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KqoKp+dK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iJnOwChJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92BAF54652;
-	Wed, 26 Mar 2025 14:17:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D46AB125DF;
+	Wed, 26 Mar 2025 14:20:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742998639; cv=none; b=Vond3QPWxeCZjbQDtSOtQK7B/1F80r9MBVCZ72QfylacAMQ4otAKAeXwIUWC1/pDdHyUPONqH7qrF7kO0xibIqEkgUwmRxzMgjq3zsfcWJPckfNUTaOGQUdcvyoJFSiO+3qs3gHc9qsw9x2IumTMbvvFtx0KN9J478I7yBqEJMI=
+	t=1742998816; cv=none; b=cWxhVCwqs/9GAn4zNd3pAViCt+iJdOrygMt04Angb+YJWkKIorUVzyFLf01MP+Z3D6/ByQRZwCCFLsxv85wl4KthII5UjZ1KCY9p+yOJAUoF8jTzrq7c/IPAhsIzYJqfm239D+4fLmLaOBFXwI7cZ48moINiKeE7KCJj7JE2NL8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742998639; c=relaxed/simple;
-	bh=HPPma/sz3Bshew6p5UOmYAxgSUqPUy/fDmusBpt5nxQ=;
+	s=arc-20240116; t=1742998816; c=relaxed/simple;
+	bh=4mUe84q+knTzutx1DErQS5WlZsgREQd5JAeOmoIzTSI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EW0sNBnx0Uk6AXsGI/U8TzKU3mdPbzO+/YHNUdMmRsyfCOkuq251HrYAWpwRYq7KfVOvuYDD5mlBorr/wZgfdqgT+hCY+PxCot5GtQEePfTu4+uYGAobFggwgoRXhq8Agi5vpFyaIfZjinPU8w5rMwTmmXtLUO0Glzk/slV3uP0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KqoKp+dK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DEC4C4CEE2;
-	Wed, 26 Mar 2025 14:17:09 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=IaZo0M+0wxhExJ4AnNHz3jXpJ3ak4W+JhxCHpKq5uA9CS9JKaNf0Tng4Qxd854DGM6CEuTcgiboTWKHyRWzI50PFQQFSofS1lth8lqtVT2JolHxsURQPlXKyaewfoKepyjbXiOR7/JZmj8jHVjTAPpBGJjH6yRakweBlRBragds=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iJnOwChJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0301C4CEE2;
+	Wed, 26 Mar 2025 14:20:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742998636;
-	bh=HPPma/sz3Bshew6p5UOmYAxgSUqPUy/fDmusBpt5nxQ=;
+	s=k20201202; t=1742998815;
+	bh=4mUe84q+knTzutx1DErQS5WlZsgREQd5JAeOmoIzTSI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KqoKp+dKtuMHnjn/bytxmpa17DsmXAQzSrvcYpEyVkMqOkmmGq04Tlx7tNfXx1EGj
-	 3sUQg5RUaZLIlua1r14SCdEQcFMYVJj9AIlt62Se+oa15YNaNHedBiFPqRftrGB51/
-	 GXTrryLKkknM44G9UVrN7IDFQoUtgPwTByGv3uKkHCNPJsGBLQDP5C+gcq72amk06z
-	 39g1uE9BpdNs7Cfnr1EuzgpTex3uZrMgiCFMizJegk0C1GvhpzbZcJHuEU62d5IY1i
-	 bYRVfqPj0ZR73InLul7LigAv/f8pxUadHrMF0+iuOeAoaScse6RtDWB7sYYp96gabC
-	 O3XXKC7aHCCOw==
-Message-ID: <845d620b-9d5b-49bd-8f36-6376ecf14249@kernel.org>
-Date: Wed, 26 Mar 2025 15:17:07 +0100
+	b=iJnOwChJ0VVArnIpCI72uvowtZe9RkVjiV2GThCe/V3J3MI37MWV3ORPgaoJqkBfh
+	 uIcRma5aLb5lsXq7/zbHGASMUXWUHC+ubN1VVQG4t4JCU1IjoMzJM5y/bZGsfgvFqw
+	 DyN65HAwc/YP4LhZWmwBfKHHArTom96x41482ie111Yaibj3AwMOE6wN7TV6fwg7cg
+	 mILYTxPhNmJRNy6RkvvjrzIwjo988QjZ4RHOD0HlPUVEQmNBPWNnKsX9LkeJRM+fQt
+	 mFShDNxSIDeqYDGuCVpqTv7+qfHeFr2L0gYa8hvGgX1ugo0Y6zXIjqu0u52YvgAbuw
+	 8Ph2RXcH4Y/Ig==
+Message-ID: <79452943-bb0e-4c0c-a47d-f33a5bdeca21@kernel.org>
+Date: Wed, 26 Mar 2025 15:20:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v2 2/9] dt-bindings: soc: microchip: document the
- simple-mfd syscon on PolarFire SoC
-To: Conor Dooley <conor@kernel.org>
-Cc: Stephen Boyd <sboyd@kernel.org>, Conor Dooley
- <conor.dooley@microchip.com>, Daire McNamara <daire.mcnamara@microchip.com>,
- pierre-henry.moussay@microchip.com, valentina.fernandezalanis@microchip.com,
- Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Jassi Brar <jassisinghbrar@gmail.com>, Lee Jones <lee@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250321-cuddly-hazily-d0ab1e1747b5@spud>
- <20250321-ramrod-scabby-a1869f9979b6@spud>
- <20250325-quiet-waxbill-of-realization-675469@krzk-bin>
- <20250325-feline-roundworm-dc391b755673@spud>
- <58bb1186-08ee-41cf-8593-a6664bd874e6@kernel.org>
- <20250326-tricycle-hesitate-e58633e62545@spud>
+Subject: Re: [PATCH v2 04/10] dt-bindings: timer: Add EcoNet EN751221 "HPT"
+ CPU Timer
+To: Caleb James DeLisle <cjd@cjdns.fr>
+Cc: linux-mips@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, benjamin.larsson@genexis.eu
+References: <20250325134349.2476458-1-cjd@cjdns.fr>
+ <20250325134349.2476458-5-cjd@cjdns.fr>
+ <20250326-gigantic-mauve-capuchin-e667ed@krzk-bin>
+ <890a302e-9105-446c-a2a9-110e94457dac@cjdns.fr>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,46 +108,26 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250326-tricycle-hesitate-e58633e62545@spud>
+In-Reply-To: <890a302e-9105-446c-a2a9-110e94457dac@cjdns.fr>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/03/2025 12:00, Conor Dooley wrote:
-> On Wed, Mar 26, 2025 at 07:53:55AM +0100, Krzysztof Kozlowski wrote:
->> On 25/03/2025 17:03, Conor Dooley wrote:
->>> On Tue, Mar 25, 2025 at 09:13:22AM +0100, Krzysztof Kozlowski wrote:
->>>> On Fri, Mar 21, 2025 at 05:22:35PM +0000, Conor Dooley wrote:
->>>>> +title: Microchip PolarFire SoC Microprocessor Subsystem (MSS) sysreg register region
->>>>> +
->>>>> +maintainers:
->>>>> +  - Conor Dooley <conor.dooley@microchip.com>
->>>>> +
->>>>> +description:
->>>>> +  An wide assortment of registers that control elements of the MSS on PolarFire
->>>>> +  SoC, including pinmuxing, resets and clocks among others.
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    items:
->>>>> +      - const: microchip,mpfs-mss-top-sysreg
->>>>> +      - const: syscon
->>>>> +      - const: simple-mfd
->>>>
->>>> You need to list the children if you use simple-mfd. Commit msg
->>>> mentioned clock controller, so where is it?
->>>
->>> I don't think a child node is required here, there's not enough
+On 26/03/2025 09:19, Caleb James DeLisle wrote:
 >>
->> Then this is not a simple-mfd.
+>>> +          - const: econet,en751221-timer
+>>> +      - items:
+>>> +          - const: econet,en751627-timer
+>>> +          - const: econet,en751221-timer
+>>> +
+>>> +  reg: true
+>> Widest constraints are always here.
 > 
-> The pinctrl will have one, whenever I get around to actually working on
-> that. I can leave the simple-mfd out until I establish exactly what
-> that's going to look like if that's what you want?
+> (AFACT) there's no common constraint to both.
 
+That's why I did not ask for common, but for the widest, just like the
+example I gave explicitly for that case in my talk.
 
-I want complete hardware, so simple-mfd with children, but if that is
-not possible for some reason then at least accurate picture, thus drop
-simple-mfd for now.
+https://elixir.bootlin.com/linux/v6.11-rc6/source/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml#L127
 
 Best regards,
 Krzysztof
