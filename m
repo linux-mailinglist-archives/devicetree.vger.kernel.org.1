@@ -1,58 +1,59 @@
-Return-Path: <devicetree+bounces-160790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160791-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16333A711A3
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 08:50:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 369E4A711B9
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 08:56:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66D66188F6F8
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 07:50:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 263203B0D0A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 07:56:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C13631A01CC;
-	Wed, 26 Mar 2025 07:50:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 237E819ABCE;
+	Wed, 26 Mar 2025 07:56:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kAafwzOT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="atJQTBWa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DC29174EF0;
-	Wed, 26 Mar 2025 07:50:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFF99142E67;
+	Wed, 26 Mar 2025 07:56:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742975402; cv=none; b=s/uSVTXR4SWTktqPobsmjYw89UudQQuUWKxR3Q0EB3nhkEBRkfxwMygIPqs5TzyltkOwlS33/pAUeBhuLceXR2maALGfIr6G/k5TYsmUxdGJVkj5+z46uHCZUGO3RqwfkrLuudrcwXi9d3Tli+4A1lWJviNIDy+bSQA+AcW7ocA=
+	t=1742975793; cv=none; b=rpOHoVK3M/rioGx5NHzcWqG+PZ4gF4MIVgHQusz5qDVi2O6klSPKypNTWdWnzsK0Xdp1vv8LvJQAzzwwb8Fop5REKwiVHVXeL+Fhu1lRuLqx7xdMpxo3ziloSx6eGjZbii/lNDQ6Q/dujcYQWJhn75BfHzCKvphcc09jB3AIHuo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742975402; c=relaxed/simple;
-	bh=+HmoQmZ+e63wV91IkgWswXeGaR7GVD5Pdeyax7MBkHs=;
+	s=arc-20240116; t=1742975793; c=relaxed/simple;
+	bh=93M97Q5kVlONcYkIQD1oTLgBJrmsEdqoHZ4roV1qLOc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CS1tzFr2Sud4Q8iyREzXcFtmrv5U3+Q9dAYyomNE4HrHAZLJEKjBbjx9GyKr25H1CE6MuCJGQBEWd+SE14d5EHOZYWYGw9xqusP3lptv2Ikqij17V1B4B7mwEORXE6s0h9HyxVPwdjpPBEjgDunkfA40RtZ8QT6B9bETroo6dJg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kAafwzOT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30505C4CEE2;
-	Wed, 26 Mar 2025 07:50:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=tUBnhjfnst/NDV1GK5NbeRAAEIlKMckqv0FjEpJ8qZGs6KHfAGiMaZMp6B1hIOXgRduAqIdSPxgLUsp5K6q/7JpJRC62o+2d2Qi7vT2BV3EMLgaZnin7nH+qzO6WvdLATeiY+1hY7GiQQbEmV5scQ2Jfv3jLDJaifok0SVxoVr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=atJQTBWa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90007C4CEE2;
+	Wed, 26 Mar 2025 07:56:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742975402;
-	bh=+HmoQmZ+e63wV91IkgWswXeGaR7GVD5Pdeyax7MBkHs=;
+	s=k20201202; t=1742975792;
+	bh=93M97Q5kVlONcYkIQD1oTLgBJrmsEdqoHZ4roV1qLOc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kAafwzOT0lqUjMuX53xExQ7/TqWhrFQcy8yTnO589rSH8pQKxFVH2wzK7MI296Bcg
-	 ywuBTgLyJrqKW4h3xFIU4VmsZHvJYX5wO84uzxlecTGcdBslqgBER1nHk/SSuj1zzb
-	 EHyThnjTCS5XBdsyiuDcWa4RCZwWdoX/Mb20CyDBmuORMauwh56q5ILjbbp3VMr0wj
-	 ++s/X1zrVLkbbWrTd//rW4jIoGnqo6wNKmYknR6vm+fPemc2LZSu/hSUpvbEz6yTwr
-	 dmlM3h64RA2/3DLaf6u0KMfQSVkgHNcym9iXR2Z2Q5QMKtKvu06QjfR6b4FCG359oe
-	 dLoJmx1CnPmZA==
-Date: Wed, 26 Mar 2025 08:49:57 +0100
+	b=atJQTBWaSaSbmkMwadDwCo4Hfkoqb5TImfMBBTK35qPENk6X8U/WCXyE/HKpiXmwG
+	 o7g/Tfy6tsesiE5L2JKbHnB8Tw9tXZoFn9sLsPtgekTVx559DoTXQCVAFc6a35lLrp
+	 4JfBdjXxmFSm0DiPAa+8woSlls3S6SutNrTv/GAQ+ngqtklHo9Via3liBfIehZyyNo
+	 O0BXr1H29a26C9U9Cluz6PXekohLGCrRauJ37s92HgoeGwfhJC29yf50IxBuA6OEvE
+	 pLB02aG1Eh7Uo5H2P4e2R8h+llNlXwi6+QuFINzBcY7pjB6k94B09v0DSqKdMX2y1g
+	 0LLbw4peq9NKw==
+Date: Wed, 26 Mar 2025 08:56:27 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
-Cc: thierry.bultel@linatsea.fr, linux-renesas-soc@vger.kernel.org, 
-	geert@linux-m68k.org, paul.barker.ct@bp.renesas.com, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 02/13] dt-bindings: clock: Add cpg for the Renesas
- RZ/T2H SoC
-Message-ID: <20250326-enigmatic-cuscus-of-enhancement-410130@krzk-bin>
-References: <20250325160904.2688858-1-thierry.bultel.yh@bp.renesas.com>
- <20250325160904.2688858-3-thierry.bultel.yh@bp.renesas.com>
+To: Crystal Guo <crystal.guo@mediatek.com>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [v3,1/2] dt-bindings: memory-controllers: Add MediaTek DRAM
+ controller interface
+Message-ID: <20250326-courageous-cobra-of-promise-2c839e@krzk-bin>
+References: <20250326063041.7126-1-crystal.guo@mediatek.com>
+ <20250326063041.7126-2-crystal.guo@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,106 +62,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250325160904.2688858-3-thierry.bultel.yh@bp.renesas.com>
+In-Reply-To: <20250326063041.7126-2-crystal.guo@mediatek.com>
 
-On Tue, Mar 25, 2025 at 05:08:50PM +0100, Thierry Bultel wrote:
-> Document RZ/T2H (a.k.a r9a09g077) cpg-mssr (Clock Pulse Generator) binding.
+On Wed, Mar 26, 2025 at 02:30:31PM +0800, Crystal Guo wrote:
+> A MediaTek DRAM controller interface to provide the current DDR
+> data rate.
 > 
-> Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
+> Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
 > ---
-> Changes v4->v5:
->   - Set reg minItems and maxItems defaults at top level
-> Changes v3->v4:
->   - Handle maxItems and clocks names properly in schema. 
+>  .../memory-controllers/mediatek,dramc.yaml    | 44 +++++++++++++++++++
+>  1 file changed, 44 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,dramc.yaml
 
+Where is the rest of the patchset in DT patchwork? Where is any
+changelog? Cover letter? What changed here?
 
-Can you start using b4 or send patchsets in standard way? No links to
-previous versions in changelog and b4 diff does not work:
+I receive dozen or hundreds of emails, so if you want to make
+it difficult for me to review, I will just ignore the patch.
 
-b4 diff '20250325160904.2688858-1-thierry.bultel.yh@bp.renesas.com'
-Grabbing thread from lore.kernel.org/all/20250325160904.2688858-1-thierry.bultel.yh@bp.renesas.com/t.mbox.gz
-Checking for older revisions
-Grabbing search results from lore.kernel.org
-  Added from v4: 14 patches
----
-Analyzing 140 messages in the thread
-Preparing fake-am for v4: dt-bindings: soc: Add Renesas RZ/T2H (R9A09G077) SoC
-ERROR: Could not fake-am version v4
----
-Could not create fake-am range for lower series v4
-
-
-> ---
->  .../bindings/clock/renesas,cpg-mssr.yaml      | 55 +++++++++++++------
->  .../clock/renesas,r9a09g077-cpg-mssr.h        | 49 +++++++++++++++++
->  2 files changed, 88 insertions(+), 16 deletions(-)
->  create mode 100644 include/dt-bindings/clock/renesas,r9a09g077-cpg-mssr.h
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/renesas,cpg-mssr.yaml b/Documentation/devicetree/bindings/clock/renesas,cpg-mssr.yaml
-> index 77ce3615c65a..5181ff826dbe 100644
-> --- a/Documentation/devicetree/bindings/clock/renesas,cpg-mssr.yaml
-> +++ b/Documentation/devicetree/bindings/clock/renesas,cpg-mssr.yaml
-> @@ -52,9 +52,11 @@ properties:
->        - renesas,r8a779f0-cpg-mssr # R-Car S4-8
->        - renesas,r8a779g0-cpg-mssr # R-Car V4H
->        - renesas,r8a779h0-cpg-mssr # R-Car V4M
-> +      - renesas,r9a09g077-cpg-mssr # RZ/T2H
->  
->    reg:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 2
->  
->    clocks:
->      minItems: 1
-> @@ -63,11 +65,6 @@ properties:
->    clock-names:
->      minItems: 1
->      maxItems: 2
-> -    items:
-> -      enum:
-> -        - extal     # All
-> -        - extalr    # Most R-Car Gen3 and RZ/G2
-> -        - usb_extal # Most R-Car Gen2 and RZ/G1
->  
->    '#clock-cells':
->      description: |
-> @@ -92,16 +89,6 @@ properties:
->        the datasheet.
->      const: 1
->  
-> -if:
-> -  not:
-> -    properties:
-> -      compatible:
-> -        items:
-> -          enum:
-> -            - renesas,r7s9210-cpg-mssr
-> -then:
-> -  required:
-> -    - '#reset-cells'
->  
->  required:
->    - compatible
-> @@ -113,6 +100,42 @@ required:
->  
->  additionalProperties: false
->  
-> +allOf:
-
-This goes befoer additionalProps. See example-schema.
-
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,r9a09g077-cpg-mssr
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 2
-
-Missing constriants for clocks.
+I mark it as changes requested.
 
 Best regards,
 Krzysztof
