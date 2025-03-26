@@ -1,159 +1,140 @@
-Return-Path: <devicetree+bounces-160969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1381CA71BDC
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 17:26:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4ACE0A71BE2
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 17:27:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD87D188F5BC
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 16:25:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63D27189F095
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 16:25:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25E3B1FA262;
-	Wed, 26 Mar 2025 16:23:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA2DB1F7075;
+	Wed, 26 Mar 2025 16:24:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thaumatec-com.20230601.gappssmtp.com header.i=@thaumatec-com.20230601.gappssmtp.com header.b="jDNjIUar"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="QEkpbNGp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D73BF1F5827
-	for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 16:23:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ECBB1F4289
+	for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 16:24:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743006238; cv=none; b=O8eF4HvO9G3H8cujbIHwRUK+y0BGZb+vQw7YnxmA+womL0yS74bnKVC/97+3Ao8MQ+nCm87/W5ozZrCpDm6bB8uoGMxBIUebHxEwXFg6yv74+FapbKvsgEyka7IjjDqaB06mmOEFCeIoGoyqV0scsH02JIiT2JPWYjfH6Maf5bs=
+	t=1743006260; cv=none; b=Rr/hvB5UDuiqgiiDI+POOs3f/obXQCPzqtc9J6JxE1fZtyWRNfwLrIixGkGRreE8oka93gpLMjns5QHT1e5FGnPqFvifA0ciCeKdWUwKNwnrRb0EU4g7Dzrb5sX+CraN35i1/mzQMfcbhu07yzQKtcns2NUlwApGquaVKlPBxxM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743006238; c=relaxed/simple;
-	bh=Grwt7YtWLNjsqzrKfnGrX2o+xxC08oKmj2pdJH3EBws=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=W7+tiDQMmowRNQWkWV3Zim46EuQwV9yjBXtxhaLBRwFIpgApuje7rfSXoQznwM4YJP3jIXSyDns0NHaOxX2w8SpGbomOMSuEfFYo6d/T9iu4ea4j3CqPILejG72raojKk39JVRLJT3hhVqqGepQ5zeY0x2RMAT2IcU4232cvSWE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thaumatec.com; spf=pass smtp.mailfrom=thaumatec.com; dkim=pass (2048-bit key) header.d=thaumatec-com.20230601.gappssmtp.com header.i=@thaumatec-com.20230601.gappssmtp.com header.b=jDNjIUar; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thaumatec.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thaumatec.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-ac3b12e8518so1834066b.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 09:23:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=thaumatec-com.20230601.gappssmtp.com; s=20230601; t=1743006234; x=1743611034; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wDm6vwX/7MhCy38Oh0zCGpwppmmiRhE1IJH2tHqDN4w=;
-        b=jDNjIUarMLMw2GSrmWZH7FiiRCngOP7ppmDqjZgYqt8Sq+kGperT4MXftWz+JJmrx5
-         V6vaoIMmC6QSZuofFFwVLvlN7kC7wrZQTyJS/XBByqToMrk2UUcgFX9LOi8RvOTWzgLk
-         SJPcAMaiZC127Fp3VFckSq63Y321c30TcnBSFsn67PEaKTPBStQvaem2h49Wkic2Tg1k
-         EpHhVxouNCM+F61SwuBW3DYvum+7I11sHsCzk0fuzobTj48z00hXZhblKs9+vbp8ppiu
-         44p42S12RzHtQxZdNZ3WSjINIW7WXUqIX0ojnexsDXvNA5supYiYGTz+gMBOwYfGUEZu
-         9ncA==
+	s=arc-20240116; t=1743006260; c=relaxed/simple;
+	bh=oZtJTe+Jtze6r/AtQgI7svOWxoBDIpn1QFZpYX+2F8k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UASpD909dis+kaNAhwMYQAoigMT/XDrXy3QFKpnsld0wMz15/smZ7u1ugIFnmr+MZBUBVYNOZ2qDl6Zv/AQxzuWvIaFbD6zM/FYH6LIoJrks47ZCSA2cNjhdDUQOXTO9DM+i00D70nV60gL5BAFwnoqKDLCSBWPEEEHXG1dAQ7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=QEkpbNGp; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52QEjxwH024572
+	for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 16:24:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=yhQYzgwtR00epObwgs2DNdBy
+	0sj30tE1iBd3j+fulDo=; b=QEkpbNGpDe4XxznZGpzE8ZbnHcw8nEVwR/RnWto8
+	/X2A2ckt68nuaxtBcZCyZi47BLjRylTdJDZF9gSBJF/MAblYOsv49gIbIMGTTql8
+	9uMTrpzQuu/k8jF5Xj8Hh7BRfYhZK3dGWPXqXWyZnGTV6QNP8609IyQurDedCme2
+	UW2jSlGbmTEVX6CTGtwCSYe+zSGC86DbNwizCcwyEAr5hGYHcb/4klTIDQjzXFxW
+	pUCRVrS04RmUdFg40U92GBA1Qibbl1po7LDUJQWjbcyTojl2SQILAZP3LUaFGx+2
+	k5U809H1k8AfYgaBGyyCZgdo2dnBxgq2QOoJHcMPb1A9qQ==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45kmd35k91-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 16:24:18 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7c5e2a31f75so14845585a.1
+        for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 09:24:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743006234; x=1743611034;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wDm6vwX/7MhCy38Oh0zCGpwppmmiRhE1IJH2tHqDN4w=;
-        b=PVnYIqLaeY6Kcacuyr9+dIb9Y4X/WcOunYrPbfANLMpfq7AeeYyI8l+5O6f04mKPdm
-         qq0c/o7rgKPsJ9ZGJ1Y8H3RUEqfcIeP0LrzHBdPdI0Q3wuoVDATfs5xVBVJ9NmQjcyHY
-         8jkgFkoSakrKzVuiCzzVlXzePFB0+nKGT5/x1cL02lgmGXoKTfT53UieG10DD7E55LYT
-         mGmBRQAdItUkunBcngoFCQlmddXnVgLONEgR7T4dF+sehxmUUHD5Llx5LXfO07XPFuWF
-         oNsv9G+hfm9gFskgVUWxiGB+Z/vee3SbURNlXkWD0cx9qPBg6AD4mLp/HFMwa1d8wjtT
-         +9iQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVoVDFGHgBZMQSG/MOr1NS0ZCjDcB8beZ/jFpEJNgkyGc7Yvcc9zkWNnEPN1sWd+goc0MGjXINeN5rc@vger.kernel.org
-X-Gm-Message-State: AOJu0YzLrxAp4ac+pVvJhaDauP26akQNEjeke+OpSswL50Ew/v01F7HW
-	o8ZUzwEKb6TC5AdJrgfOCvUEiZUQ8MAL4IZH2MTmlywBhZqmm2DXIrUk4iSoGjE=
-X-Gm-Gg: ASbGncvKz9AvFFsM6pkbWkKYg2xwZzaMyXS5Ima2yA1OGojFyRg1rbMzNe8VPeD0uTO
-	PQvNAXRMt6kT7B3AaAR2Iw4LOwwNf96qNX0V4ahhnixh+lLzxrBzmHyvivTwLk+TMGZUAGrSmwG
-	ZoR4ooa1g0G6djsZGMX/vE6B/oUTfignMeIZWIdIfnZBN/T8SF+SRZV3M7vQLERKpxNUAmn2So1
-	NuErc3MbR/yf1ToTvlCId7m0niorzm5esrC3PgFK37J1QD2eoajjCyRi4VuSabKR7wr6jbvi3Q3
-	uZ98KbAMBPQNEM7/mlJK27450mDO/qouDygWpiUUhHk0A3bAlINi06+YEw==
-X-Google-Smtp-Source: AGHT+IGQDtjWme6NCVpAtHSgi92qK4szwj72LFKXUSvl2zwfLCr6eOS0xs1KhoWnEmaFlvUG1YBTXQ==
-X-Received: by 2002:a17:907:2ce6:b0:ac3:446f:20cb with SMTP id a640c23a62f3a-ac6fb14f3f5mr1655966b.43.1743006233972;
-        Wed, 26 Mar 2025 09:23:53 -0700 (PDT)
-Received: from [127.0.1.1] ([91.90.172.13])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac6f0f498ecsm76678866b.135.2025.03.26.09.23.53
+        d=1e100.net; s=20230601; t=1743006257; x=1743611057;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yhQYzgwtR00epObwgs2DNdBy0sj30tE1iBd3j+fulDo=;
+        b=jf6DDqwN+pcyD9UBKAWJbC5sZdgXmDox+C3//eCjWII4QDUaAk+XAiC+GF+quRqVGl
+         SkcPDaEY1TS56FwunuKOsrDGmNZVp4xjVC/5DV9BANdI9Pia4dAGZTjZ0trWqKcbBHYp
+         5pGwg83Xcf6hLjC3Nx2YTZbUByZ2wzJ/73WuaGLulmbzMSUp08k4LvW5GSZIiwbQnuav
+         x//fF7agOJ4/dzxvZPk3aot2bYgBVbfTXZmKmfekmAGSXbXkLvR8SksWoV+0JHbgsGmG
+         LL8S1JpFs1mCKVUIR0cFV6VCaeN9emX0rrLlOsiVkEAoSJLNokAVmWGpsqvQmnbGdjSI
+         n8bQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVrofkbnv9GXKav137UW3YolbQyHvS/elZZAYLxdG+ZeuYyvpvGDcMIl6Lf+8MiOy7g9tmO2ZHpQYBP@vger.kernel.org
+X-Gm-Message-State: AOJu0YwcObP3G1yNW+4w465GEvgB24YOrD7bNd/jS+V2+Wyno2ZDbhEh
+	JmaDLzMFSK+suC2SvcuqRkSnJ6AYW/uSbN0g7DJVimJWgDixX15Mp+en4Da0W6j50H/bB721rpm
+	Ahk4RCFe8psWiOVvaWDTNPfUJha/SJoDvhk2nH0Yuob5EoNGEaHS+884VdAE/
+X-Gm-Gg: ASbGncv8Crjp7Wb+fbfjJykUXFRaKkNNACXJoJPXeK17RlqhMTGIKAXCku1SwaD1jDh
+	AZt9u34lVuGxafXpo4S6kWznrmNVV3sSOt4GOV7j8zIPR0PqDm9aVhGSe+9bV0G/U3YRDPraEeq
+	x43DQSI1FptGOhwo4zjq7XARUw/ExEHKlUSUKWrmMGu66jAemTepGhDFJArtX0s87XV9f7g3SVx
+	EO1slIxeSM76FaAfqa2ikaCqKUc61GVU5vWzO/tUC9Nhw9vIMQeal9p0WpRaYxJSpVT1ggLK4Lq
+	utZ4SNPSE5fGay/U2Puctx5+qTGnrJYiH7t+Ck1o+kYUG38lLm9qfGkfXmuZ+h0g44GvKuTL4Uu
+	vlHg=
+X-Received: by 2002:a05:620a:4256:b0:7c5:994a:7f62 with SMTP id af79cd13be357-7c5eda64767mr48479485a.41.1743006256653;
+        Wed, 26 Mar 2025 09:24:16 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHgncIKgJwh057F7F+azHQ8C62XAJ5G0SimDj0y23CHuroC0rH8G4xWqHGwZWbdX9ZUK2Ir/A==
+X-Received: by 2002:a05:620a:4256:b0:7c5:994a:7f62 with SMTP id af79cd13be357-7c5eda64767mr48474585a.41.1743006256181;
+        Wed, 26 Mar 2025 09:24:16 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54ad65082d8sm1882436e87.189.2025.03.26.09.24.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Mar 2025 09:23:53 -0700 (PDT)
-From: Lukasz Czechowski <lukasz.czechowski@thaumatec.com>
-Date: Wed, 26 Mar 2025 17:23:00 +0100
-Subject: [PATCH 5/5] arm64: dts: rockchip: disable unrouted USB controllers
- and PHY on RK3399 Puma with Haikou
+        Wed, 26 Mar 2025 09:24:14 -0700 (PDT)
+Date: Wed, 26 Mar 2025 18:24:12 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Cheng Jiang <quic_chejiang@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_jiaymao@quicinc.com, quic_shuaz@quicinc.com,
+        quic_zijuhu@quicinc.com, quic_mohamull@quicinc.com
+Subject: Re: [PATCH v1 1/1] arm64: dts: qcom: qcs8300-ride: enable BT on
+ qcs8300-ride
+Message-ID: <kqitrnxonh5sv7gqw3vfdefanmr4wrsoerd2il7enxqw55uskp@eqqnawyfkc4p>
+References: <20250211104421.1172892-1-quic_chejiang@quicinc.com>
+ <20250211104421.1172892-2-quic_chejiang@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250326-onboard_usb_dev-v1-5-a4b0a5d1b32c@thaumatec.com>
-References: <20250326-onboard_usb_dev-v1-0-a4b0a5d1b32c@thaumatec.com>
-In-Reply-To: <20250326-onboard_usb_dev-v1-0-a4b0a5d1b32c@thaumatec.com>
-To: Matthias Kaehlcke <mka@chromium.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Benjamin Bara <benjamin.bara@skidata.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Klaus Goger <klaus.goger@theobroma-systems.com>
-Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, 
- Lukasz Czechowski <lukasz.czechowski@thaumatec.com>, 
- quentin.schulz@cherry.de
-X-Mailer: b4 0.13.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250211104421.1172892-2-quic_chejiang@quicinc.com>
+X-Proofpoint-GUID: QjDWr2sT2tMSK9ill7BK7dynRBsMMc57
+X-Proofpoint-ORIG-GUID: QjDWr2sT2tMSK9ill7BK7dynRBsMMc57
+X-Authority-Analysis: v=2.4 cv=P646hjAu c=1 sm=1 tr=0 ts=67e42a32 cx=c_pps a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=ZFGkPW_SGG9sNUVis-cA:9 a=CjuIK1q_8ugA:10
+ a=IoWCM6iH3mJn3m4BftBB:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-26_08,2025-03-26_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ malwarescore=0 adultscore=0 lowpriorityscore=0 clxscore=1015
+ suspectscore=0 phishscore=0 mlxlogscore=846 priorityscore=1501 bulkscore=0
+ mlxscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503260100
 
-From: Quentin Schulz <quentin.schulz@cherry.de>
+On Tue, Feb 11, 2025 at 06:44:21PM +0800, Cheng Jiang wrote:
+> Enable BT on qcs8300-ride by adding a node for the BT module. Since the
+> platform uses the QCA6698 Bluetooth chip. While the QCA6698 shares th
+> same IP core as the WCN6855, it has different RF components and RAM sizes,
+> requiring new firmware files. Use the firmware-name property to specify
+> the NVM and rampatch firmware to load.
+> 
+> Signed-off-by: Cheng Jiang <quic_chejiang@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 24 +++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
 
-The u2phy0_host port is the part of the USB PHY0 (namely the
-HOST0_DP/DM lanes) which routes directly to the USB2.0 HOST
-controller[1]. The other lanes of the PHY are routed to the USB3.0 OTG
-controller (dwc3), which we do use.
+Just so that it doesn't get lost. It should be rebased on top of WiFi patchset ([1])
 
-The HOST0_DP/DM lanes aren't routed on RK3399 Puma so let's simply
-disable the USB2.0 controllers.
-
-USB3 OTG has been known to be unstable on RK3399 Puma Haikou for a
-while, one of the recurring issues being that only USB2 is detected and
-not USB3 in host mode. Reading the justification above and seeing that
-we are keeping u2phy0_host in the Haikou carrierboard DTS probably may
-have bothered you since it should be changed to u2phy0_otg. The issue is
-that if it's switched to that, USB OTG on Haikou is entirely broken. I
-have checked the routing in the Gerber file, the lanes are going to the
-expected ball pins (that is, NOT HOST0_DP/DM).
-u2phy0_host is for sure the wrong part of the PHY to use, but it's the
-only one that works at the moment for that board so keep it until we
-figure out what exactly is broken.
-
-No intended functional change.
-
-[1] https://rockchip.fr/Rockchip%20RK3399%20TRM%20V1.3%20Part2.pdf
-    Chapter 2 USB2.0 PHY
-Fixes: 2c66fc34e945 ("arm64: dts: rockchip: add RK3399-Q7 (Puma) SoM")
-Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
-Signed-off-by: Lukasz Czechowski <lukasz.czechowski@thaumatec.com>
----
- arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dts | 8 --------
- 1 file changed, 8 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dts b/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dts
-index 947bbd62a6b0..93cefacc7a01 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dts
-@@ -292,14 +292,6 @@ &uart2 {
- 	status = "okay";
- };
- 
--&usb_host0_ehci {
--	status = "okay";
--};
--
--&usb_host0_ohci {
--	status = "okay";
--};
--
- &vopb {
- 	status = "okay";
- };
+[1] https://lore.kernel.org/linux-arm-msm/20250325075331.1662306-1-quic_stonez@quicinc.com/
 
 -- 
-2.43.0
-
+With best wishes
+Dmitry
 
