@@ -1,170 +1,183 @@
-Return-Path: <devicetree+bounces-161085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29C5AA726F8
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 00:20:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACF56A72709
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 00:35:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C929189B414
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 23:21:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8EC0E3BD939
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 23:35:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 327791C861C;
-	Wed, 26 Mar 2025 23:20:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D1031C3C04;
+	Wed, 26 Mar 2025 23:35:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VulDeUkB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iazabXPb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D2D21A5BA6
-	for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 23:20:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C3EF12B94;
+	Wed, 26 Mar 2025 23:35:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743031246; cv=none; b=DFiaHSIQjpaf7x2T4pF7vG3uSjqBTi07Rd9M58LdWW1sdbtgDxO7YzgYWh3kPKnJJKxX7Ogl+V5bXkNs29Vwa6zerwcVy1rfV/YXo2VegPOnfjLK5qNAv6XfcJx7XvIkbAayGK7YysVPaLTWAbCCzr0xRkXEq5I+dmqmgzf8oUE=
+	t=1743032148; cv=none; b=mVqBMul1tIzTUO/XJ3PVWzI7tirR53C9SF82+W2LQ0PIvfJIJVdAbEydzqKF/O1UtA7vmqW+HqtsNa/UbsF9nzwifU2rK8HNe/gKziRe1/nv5GODVzuSJINGoMH+s/XycQPKmkHebptax0zQ/XhUA5JL20MaHMESUyi1pXa3qw4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743031246; c=relaxed/simple;
-	bh=eEE2r1yYFkUZu7hEG2XGMjMoeTAApxZuXF2Q5/43/SA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fqL8dpgjmFndvHCnApHttHmIHKXXvVgCe4sKx7bYTBFcRvSjPXsvRV1G92zNFj8jnF5mcs3mf890hTZbzSkz28opnpkKVmYQGtWH1s/sL9I2oO3DdcPZch9QQuCSObivfHmIh5y/auPBxxdNPbj4b2KVYyV7ABAEL0OS26L4WrM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VulDeUkB; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-43cfe63c592so3471085e9.2
-        for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 16:20:42 -0700 (PDT)
+	s=arc-20240116; t=1743032148; c=relaxed/simple;
+	bh=c3Tt3+vA8Yxr0G/PExjzWPiNolYn45ZBU8sWBesmmJU=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=Qz3V4dtWJcZxalyjqe7Hkfvf0EqFK3+Oqmiay1+KkpHy/Ib5igieiSLbg7k3BXR4tgHfUVPDr/8B3sP8JYJY4bv9t285AHgSCoz+fgNUWXFZvrk/U4VQ76iFh7mjgHxvTh1LbCpQM703m1Ry518TlTMJxQWMQ6GGL58qUJVe+Bc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iazabXPb; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-399676b7c41so160292f8f.3;
+        Wed, 26 Mar 2025 16:35:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743031241; x=1743636041; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XuFo84pE+zU/a5xWpeUooNoDSLrcVG0XywvPlUvoobY=;
-        b=VulDeUkBZJdhVfEi7UAmIteQ7+twfxrhvthHGXAEyq28sS9fPmb/uOb7gQXSB6Xav4
-         RMCHUXc4BeBrgQ3X45vo7Jg/X1rSNWWLXKpZNfQnzHEPtfLSrft73WmsvVEXCSJkZujr
-         gWlOQQZrhkIRisK1ZD6VfZXN89VHt/QFxjsIN0qbmtJ/1tbY8qHF1p3UQLUQnvv3UR4h
-         IRZiQxXKKuqv5swDsxNql7GCwDtHl6O91/eA4VwxWxVhttus5tMZMRyOs4jn+iQgjt8W
-         Fq3G3l5FKuyHR997ES4Bs1yyo0Z5bjM0RpgLwTuBhVTn924ka2MN/K4MJLUel8tSvOE/
-         pU6w==
+        d=gmail.com; s=20230601; t=1743032145; x=1743636945; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=we/QPj4/3MU8rZEsP3ihZT+uv62gYAHG2SRF5+Uz4Ok=;
+        b=iazabXPbdC0pCcMgs+waJxgApdRDtYLs3Gje/plFMPWxCu+HI8mwe0xlbwecS/8Vy2
+         ywEkKML1GhlzdFbzP106OvlG3EafCXoGw38PBm8WwrG1SK3wKLwhqK3KPeN4uVu0TkS+
+         mmwz5hwgazp/n/9uijrJNIEr7f7Ar0AXQiuUmxXogZWjVJ2xlXbSaMH1+nWNivhv3Djc
+         tozuK6nVS6kt8oufuDUgeNRqbqnBb1Xw2L5b8VYdjvCPOvyUqtv+rBIaL5c9fDXjWVrw
+         ci1t7rUD7z5MLQ0UCgJoZIuKA06cBEXRnQBbIlj0PX1pQ1XkU7DVcCigSDLqtUmiRjjG
+         Vwug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743031241; x=1743636041;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XuFo84pE+zU/a5xWpeUooNoDSLrcVG0XywvPlUvoobY=;
-        b=v9aMNABcPzn4tgbmMYy3eocgy7xeRtt/uNsFFJJPr0FHVXYA/DkSj4Vyfh37IDFIHj
-         GQTT9rp61Aqb+7oSrw3FidKrz8SrlVBKYUBZQDzO0DkatOg0H5ShMbINunAMTYtKUXpt
-         SZ6U6+nD44FUpw6WzviJDNfeMA73evQMmnpUqgE0ErHTjhh73pqJEHUZSFTsKsnFcm4D
-         kWc4C+vQdwknnuRKkcuXiIbE7AK4ZeMIWsHhu3VGv6pHzKdCzbm30/Xb7YS5g/FUeufn
-         d17ZzNP/BdoQhap2DuY79u6uttMNTwvt1K0Tepf6XyqwZ6C5m9I0aKOZH1CjRelcAMr2
-         lbRg==
-X-Forwarded-Encrypted: i=1; AJvYcCX3pNqX4pmwdpyCbm7mwmMjGxT/Bd7owZMMQ5cbPuYJyi4OgVvOM5iNwt5YHdfmiyK2gphSNEXTKM9S@vger.kernel.org
-X-Gm-Message-State: AOJu0YytG99avt0scmk8aai6si9+LdBDqvbINTRegxI2RobRGtQgKzo3
-	Em/dtP6FXpTAdg6uvC092YLFxYa2FwOLNEfaAB3rImAhbIH/LmDQ6HzpdAT73uc=
-X-Gm-Gg: ASbGncsyCp25LYKbni6ykm60YSF2J4b/B4aCUQr4Rm84b+lLEj8VtdUHHil6jHCI0TR
-	0WfAMeg57O3maYXoEGRSe+aOPQ03PC1oCHKF4CvtOEA61xxx/j+GACZFASg0v5m5H7Ddnt45ApY
-	f9IhTYBIR1Y59t0CAmnD+O76czZrYl0lJNciN+016QkS4rdojiKSnyvEFv84NdiUbFNoG9U7ub0
-	uev0J58llBicmepHAY3fV215H16+rk799j0ZXdvmtPfvh+7oiCVHWCaTFBvYRseW4bQVTSvFN1h
-	qOu1ZHjmlKYC6eoRCMUxPY+AKBy+9+fa3+fzhltdqc7uY2R5/n5bkOrUuqd0M49ZHtpbQrQOKLS
-	De6A4TAEy3g==
-X-Google-Smtp-Source: AGHT+IFFqiheC5thw/TIFb+2LZxLiMGm8Pw7LKkpF7QCjDZPBPf2FRSdFD6V9DQI8xaqabcvnC/8/w==
-X-Received: by 2002:a05:600c:3d97:b0:43a:b0ac:b10c with SMTP id 5b1f17b1804b1-43d8509745dmr9396235e9.26.1743031241531;
-        Wed, 26 Mar 2025 16:20:41 -0700 (PDT)
-Received: from [192.168.0.34] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d82f1bb75sm18551995e9.25.2025.03.26.16.20.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Mar 2025 16:20:41 -0700 (PDT)
-Message-ID: <316c55f5-189c-40f6-95e3-c7c0d858a6e8@linaro.org>
-Date: Wed, 26 Mar 2025 23:20:39 +0000
+        d=1e100.net; s=20230601; t=1743032145; x=1743636945;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=we/QPj4/3MU8rZEsP3ihZT+uv62gYAHG2SRF5+Uz4Ok=;
+        b=ojUeEKy1vRMIU6ax3DDXS9EWKs3JON6cWd0yc5/9d2ckQRdLXfsFRGWFAQaXqo+CLJ
+         v7iB39wNFQHEsOA+9ZwiqoaqiOOeCSrZe7adTOhQcU52INn0vX06AScfCZcQnFhi/hWb
+         p+6TI2loidUoUuKOZ0bGAlrJ2oCcdqHQ8T65MN31b+0ZX/rPzKq1h3suA504qj3jRydA
+         BGhFo3344djZ3OkqiP1Lf/F7IDGQXwD2vt/1c4FlUz0VCXTdT6NKiOroBH/TNukH5veo
+         adPJnR2Cq8poQ4lolyIuFA0KJcZrQjwPI9zImKHaB0krfoeZKvlgmRJBsJWSHOXTLbnO
+         VfUw==
+X-Forwarded-Encrypted: i=1; AJvYcCUNirrn/B94S5QdjHAIuSwGtRo+R36HtQMjbE3YdSRSXxm61c5RYw6WCmzhYEkqA0A6+3xfp9eZ@vger.kernel.org, AJvYcCXWFkz8rqUxmecjlyN+97wsqbiRA5FDM4injkuf4MEfzVYI9MALpIFuyZhFrxrAunuVEaBW7pKu0efBUfOC@vger.kernel.org, AJvYcCXxieCK39NQvkaunNkHrorLYnjlDeWrYlS5RjcC0jTbfxtawxufi02y4dt4uzz03xKMMbaAVYZ4EmsV@vger.kernel.org
+X-Gm-Message-State: AOJu0YxwRGeCyky76EkhKpiMwjoGpHgsTgiF6YFyRvPjNiUL6J9y7brd
+	6Ot6UVYlsGJ41vR5k0ROQwN2TAldkCW1YRKmQj3LQ7t4KzPsX+XO
+X-Gm-Gg: ASbGncvzW6DnrRg8UKmebpqC3Ct96HnjyoLTAHXwJa41k6q8w9Sq0tjpQwpBC7rB/5P
+	36+nxxSTnWkihW5LHOJOD/zOcX/3kmQe+0wZgHUgR7h2t0A6fNeZ94edh/TZyY7HV/y6dnr84ki
+	F3bLHWK9MNCTMxKODWWvfLrEHAKXVHT2IcpQOmJoQX/6nq2/xlG4gcLrUJStcJpmLiXNFNbmoEk
+	ZHIPRNo5mjcBd356JzJChJRZ48HVwjCjNHoUayZlaiHIY2xcdUvNQiGqCVSHaexMQceC2U8pbo5
+	Id5W0fUznrRgp/4/qmFxPh8/T/gLCZSTvuNV6zEN3HqU0qyP/Rj2KXm2MVizJm8mYu0M5P7HCv1
+	Qb+DF50E0B1Rzww==
+X-Google-Smtp-Source: AGHT+IHOgo0Z65SXbJ5BUuNgAMcHgJl03EH5kSMASa4VaMtQeNOZlg1TIjgiJT44LMqx3TjJJMHinA==
+X-Received: by 2002:a05:6000:18a4:b0:390:fd7c:98be with SMTP id ffacd0b85a97d-39ad174bf95mr1034790f8f.19.1743032145059;
+        Wed, 26 Mar 2025 16:35:45 -0700 (PDT)
+Received: from localhost.localdomain (93-34-88-225.ip49.fastwebnet.it. [93.34.88.225])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3997f99579bsm18390328f8f.19.2025.03.26.16.35.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Mar 2025 16:35:44 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Christian Marangi <ansuelsmth@gmail.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
+	Eric Woudstra <ericwouds@gmail.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [net-next RFC PATCH v3 0/4] net: phy: Add support for new Aeonsemi PHYs
+Date: Thu, 27 Mar 2025 00:35:00 +0100
+Message-ID: <20250326233512.17153-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] arm64: dts: qcom: x1e78100-t14s: add hpd gpio to
- LCD panel
-To: Christopher Obbard <christopher.obbard@linaro.org>,
- Douglas Anderson <dianders@chromium.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, Johan Hovold <johan@kernel.org>,
- Rui Miguel Silva <rui.silva@linaro.org>, Abel Vesa <abel.vesa@linaro.org>,
- devicetree@vger.kernel.org
-References: <20250325-wip-obbardc-qcom-t14s-oled-panel-v2-0-e9bc7c9d30cc@linaro.org>
- <OO_0LvWJ_pUpza-tYPX0qCtcJ0_aZFbYrE81PaiSXqt7-R2mUWB8XyJLww_1t9mMLrI92GH3PconB8FDnbq_NA==@protonmail.internalid>
- <20250325-wip-obbardc-qcom-t14s-oled-panel-v2-2-e9bc7c9d30cc@linaro.org>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20250325-wip-obbardc-qcom-t14s-oled-panel-v2-2-e9bc7c9d30cc@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 25/03/2025 19:21, Christopher Obbard wrote:
-> The eDP panel has an HPD GPIO. Describe it in the devicetree.
-> 
-> Unfortunately I cannot test this on the non-OLED model since I
-> only have access to the model with OLED (which also uses the
-> HPD GPIO).
-> 
-> I believe this could be split into two patches; one adding the
-> pinctrl node and one adding the hpd gpio to the T14s devicetree.
-> But I will wait for your comments on this ;-).
+Add support for new Aeonsemi 10G C45 PHYs. These PHYs intergate an IPC
+to setup some configuration and require special handling to sync with
+the parity bit. The parity bit is a way the IPC use to follow correct
+order of command sent.
 
-There's nothing wrong with defining a pin when you also use it but 
-emoji's in a commit log are surely verboten !
+Supported PHYs AS21011JB1, AS21011PB1, AS21010JB1, AS21010PB1,
+AS21511JB1, AS21511PB1, AS21510JB1, AS21510PB1, AS21210JB1,
+AS21210PB1 that all register with the PHY ID 0x7500 0x7500
+before the firmware is loaded.
 
-> 
-> Signed-off-by: Christopher Obbard <christopher.obbard@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi | 11 +++++++++++
->   1 file changed, 11 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-> index 962fb050c55c4fd33f480a21a8c47a484d0c82b8..46c73f5c039ed982b553636cf8c4237a20ba7687 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-> @@ -980,8 +980,12 @@ &mdss_dp3 {
->   	aux-bus {
->   		panel: panel {
->   			compatible = "edp-panel";
-> +			hpd-gpios = <&tlmm 119 GPIO_ACTIVE_HIGH>;
->   			power-supply = <&vreg_edp_3p3>;
-> 
-> +			pinctrl-0 = <&edp_hpd_n_default>;
-> +			pinctrl-names = "default";
-> +
->   			port {
->   				edp_panel_in: endpoint {
->   					remote-endpoint = <&mdss_dp3_out>;
-> @@ -1286,6 +1290,13 @@ hall_int_n_default: hall-int-n-state {
->   		bias-disable;
->   	};
-> 
-> +	edp_hpd_n_default: edp-hpd-n-state {
-> +		pins = "gpio119";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-pull-up;
-> +	};
-> +
->   	pcie4_default: pcie4-default-state {
->   		clkreq-n-pins {
->   			pins = "gpio147";
-> 
-> --
-> 2.49.0
-> 
-> 
-This definition looks consistent with the schematic to me.
+The big special thing about this PHY is that it does provide
+a generic PHY ID in C45 register that change to the correct one
+one the firmware is loaded.
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In practice:
+- MMD 0x7 ID 0x7500 0x9410 -> FW LOAD -> ID 0x7500 0x9422
+
+To handle this, we operate on .match_phy_device where
+we check the PHY ID, if the ID match the generic one,
+we load the firmware and we return 0 (PHY driver doesn't
+match). Then PHY core will try the next PHY driver in the list
+and this time the PHY is correctly filled in and we register
+for it.
+
+To help in the matching and not modify part of the PHY device
+struct, .match_phy_device is extended to provide also the
+current phy_driver is trying to match for. This add the
+extra benefits that some other PHY can simplify their
+.match_phy_device OP.
+
+Changes v3:
+- Correct typo intergate->intergate
+- Try to reduce to 80 column (where possible... define become
+  unreasable if split)
+- Rework to new .match_phy_device implementation
+- Init active_low_led and fix other minor smatch war
+- Drop inline tag (kbot doesn't like it but not reported by checkpatch???)
+Changes v2:
+- Move to RFC as net-next closed :(
+- Add lock for IPC command
+- Better check size values from IPC
+- Add PHY ID for all supported PHYs
+- Drop .get_feature (correct values are exported by standard
+  regs)
+- Rework LED event to enum
+- Update .yaml with changes requested (firmware-name required
+  for generic PHY ID)
+- Better document C22 in C45
+- Document PHY name logic
+- Introduce patch to load PHY 2 times
+
+Christian Marangi (4):
+  net: phy: pass PHY driver to .match_phy_device OP
+  net: phy: bcm87xx: simplify .match_phy_device OP
+  net: phy: Add support for Aeonsemi AS21xxx PHYs
+  dt-bindings: net: Document support for Aeonsemi PHYs
+
+ .../bindings/net/aeonsemi,as21xxx.yaml        |  122 ++
+ MAINTAINERS                                   |    7 +
+ drivers/net/phy/Kconfig                       |   12 +
+ drivers/net/phy/Makefile                      |    1 +
+ drivers/net/phy/as21xxx.c                     | 1048 +++++++++++++++++
+ drivers/net/phy/bcm87xx.c                     |   14 +-
+ drivers/net/phy/icplus.c                      |    6 +-
+ drivers/net/phy/marvell10g.c                  |   12 +-
+ drivers/net/phy/micrel.c                      |    6 +-
+ drivers/net/phy/nxp-tja11xx.c                 |    6 +-
+ drivers/net/phy/phy_device.c                  |    2 +-
+ drivers/net/phy/realtek/realtek_main.c        |   27 +-
+ drivers/net/phy/teranetics.c                  |    3 +-
+ include/linux/phy.h                           |    3 +-
+ 14 files changed, 1238 insertions(+), 31 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
+ create mode 100644 drivers/net/phy/as21xxx.c
+
+-- 
+2.48.1
+
 
