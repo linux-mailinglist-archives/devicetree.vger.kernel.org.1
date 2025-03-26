@@ -1,62 +1,64 @@
-Return-Path: <devicetree+bounces-160796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160797-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60290A7120C
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 09:08:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7514FA71219
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 09:10:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3BC98188C795
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 08:08:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4A2F3B4A20
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 08:08:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00EFC1A0B08;
-	Wed, 26 Mar 2025 08:07:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29F281A0BCD;
+	Wed, 26 Mar 2025 08:08:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gjd2JiN5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LhnkrNVW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAEF619FA8D;
-	Wed, 26 Mar 2025 08:07:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC1E119DF48;
+	Wed, 26 Mar 2025 08:08:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742976474; cv=none; b=ccxmBLcOd27TSh5KcYwSMcW38af1imBAEGV8AHzgnICAFpUv8EcR+bbO5E2FK1ACTrHT9utrdWX5PQNoR/3yfdKVBPV9K2+sbysZh9mBTQD+FNLI/W4gO7cW+ZVYC7xXt/XkRtQrf5tDJWGwt5erQ8Ii5r+MLXLm57LAjp70uOU=
+	t=1742976514; cv=none; b=WGPCmfBmA+cBK3eLp8rv2VHEXln2XkoUQtL33uOEhW/ZYGG2ubL1Zwpv01xcHUBHeOXNDDQkqENv2j9wXJSAL1uc36M8hh8nGFaE2SJ+zKwvax4TjYk2DMfe69fo0aKdUp/8lcakC/54gkfUBEU5Mi6tTwmMsQBuAAiJ25O/p1o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742976474; c=relaxed/simple;
-	bh=Cv/HmMifyea7NAlVz8PjHghRyG1Kaj1PLfIqdLh/J/8=;
+	s=arc-20240116; t=1742976514; c=relaxed/simple;
+	bh=CDFf2aeXu4QXIiFbZUwZnAMW6FSK+tUT/RdaVv9VNrU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ka5oWVkGLX2v2WTCzCjaOP0+fW3TByW0clxCAYB3e2KoPmNvLvdl9vMibvjHh8UMdLM1L9VvFgSvoTjULc+myCQG2oL3xxJ5AjVX461J1PFNE5mbN8EEoInMlJ6HMv/Fw3DcEOWDHmfVfPnvGi7lGe+s420LMDxIekgUSydOJEs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gjd2JiN5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4209BC4CEED;
-	Wed, 26 Mar 2025 08:07:52 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=uuq7lxdqz1eYx0N2LFLogdyBVF5MoX841r9P09wCXoHoXYtcHiU2BcRLCcAu9v4yT8ZkvuMWKdmyHwkvJBuCIth195xk1KCTXxkW5HHnX5xk37rGLNcvEDWKnb8zDWN2BdmgipKq1Q7gz6gzu5Xh7AkVJzZCQn8x2h/RcqM6IQA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LhnkrNVW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D9BAC4CEE2;
+	Wed, 26 Mar 2025 08:08:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742976474;
-	bh=Cv/HmMifyea7NAlVz8PjHghRyG1Kaj1PLfIqdLh/J/8=;
+	s=k20201202; t=1742976513;
+	bh=CDFf2aeXu4QXIiFbZUwZnAMW6FSK+tUT/RdaVv9VNrU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Gjd2JiN5LYm6kxfwZotMRLcmXVKOA6Ci9nWiI6fC5f0QR6cadk9lSz1fNoHKRHZ98
-	 S3lLJSvJkUopqEq4AwRJGgvTNm9mWPpsEVGIL8hgwSIUo0PE5mBnHQdZAxvRq/kaEh
-	 wbcOFPcCQyerh/skraWZtv/JvR3nhf9EZ479tuFIvhxwZ/qtj0WVH0OdgNsnfPGr/m
-	 GEjcgKn8mxgjxHkOlVzpiTC/0RjgSHHRkaqeWfZWJHn594WeBPKxorQAiTy+9CUAL6
-	 PfAfYfN3yFfAAQM0X8yBTyaAZsTy3u1q1H04JAFdLZMw2sCtZ+tteVDF9Ht6IGX2+I
-	 RTfHUS8ltogrA==
-Date: Wed, 26 Mar 2025 09:07:49 +0100
+	b=LhnkrNVWq0d5hbhno4LYFKTjshBak3FDQRA4QGpROYbmj8vw1FesRdCLkOUi2pyU6
+	 X2cClnnG9c6d4ciAS1sb+5Kok8y/vukWa3WiG8YULWwr6fSWl6+2bMsjApcCAv6Yyw
+	 wj5dFLiIEMsnLPoOPsk6BFeuK3WN6Gl9EywRwdShmk22sWV0szq9slCYUJa0mWtVea
+	 O4fyd6TOmDVs2ES6ukMrY5PfvvXda5I8u8bbm0jLFHFEIvWe+wNyE8TsA7TvT2x5oY
+	 2efh++eDThJB4eS9g4bxdEu5yfw95lnVrFDfDPWThuqkzqbMgHzEoAHx/qU1NxOxMa
+	 hkBWm1877pcZw==
+Date: Wed, 26 Mar 2025 09:08:29 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Christopher Obbard <christopher.obbard@linaro.org>
+Cc: Douglas Anderson <dianders@chromium.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bryan O'Donoghue <bod@kernel.org>, Hans de Goede <hansg@kernel.org>, 
-	Jingjing Xiong <jingjing.xiong@intel.com>, Hao Yao <hao.yao@intel.com>, Jim Lai <jim.lai@intel.com>, 
-	You-Sheng Yang <vicamo.yang@canonical.com>, Alan Stern <stern@rowland.harvard.edu>, 
-	Hans de Goede <hdegoede@redhat.com>, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] media: dt-bindings: Add OmniVision OV02E10
-Message-ID: <20250326-active-mauve-muskrat-e0fbad@krzk-bin>
-References: <20250325-b4-media-comitters-next-25-03-13-ov02e10-v2-0-4d933ac8cff6@linaro.org>
- <20250325-b4-media-comitters-next-25-03-13-ov02e10-v2-1-4d933ac8cff6@linaro.org>
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, Johan Hovold <johan@kernel.org>, 
+	Rui Miguel Silva <rui.silva@linaro.org>, Abel Vesa <abel.vesa@linaro.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: display: panel: samsung,atna40yk20:
+ document ATNA40YK20
+Message-ID: <20250326-foxhound-of-nonstop-temperance-6f5a67@krzk-bin>
+References: <20250325-wip-obbardc-qcom-t14s-oled-panel-v2-0-e9bc7c9d30cc@linaro.org>
+ <20250325-wip-obbardc-qcom-t14s-oled-panel-v2-1-e9bc7c9d30cc@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,15 +67,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250325-b4-media-comitters-next-25-03-13-ov02e10-v2-1-4d933ac8cff6@linaro.org>
+In-Reply-To: <20250325-wip-obbardc-qcom-t14s-oled-panel-v2-1-e9bc7c9d30cc@linaro.org>
 
-On Tue, Mar 25, 2025 at 02:49:28PM +0000, Bryan O'Donoghue wrote:
-> Add bindings for OVO2E10 a two lane MIPI CSI, two megapixel 1080p RGB sensor.
+On Tue, Mar 25, 2025 at 07:21:26PM +0000, Christopher Obbard wrote:
+> The Samsung ATNA40YK20 panel is a 14" AMOLED eDP panel. It is
+> similar to the ATNA33XC20 except that it is larger and has a
+> different resolution.
+> 
+> Signed-off-by: Christopher Obbard <christopher.obbard@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/display/panel/samsung,atna33xc20.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-Missing wrapping of commit msg.
-
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
