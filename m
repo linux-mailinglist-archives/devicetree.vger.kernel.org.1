@@ -1,244 +1,356 @@
-Return-Path: <devicetree+bounces-160831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39F02A71449
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 10:58:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7828A71458
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 11:01:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD599174C51
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 09:58:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B88893A5DA1
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 10:01:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 932451B0F31;
-	Wed, 26 Mar 2025 09:58:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="itxMEH9C"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D7091A08B8;
+	Wed, 26 Mar 2025 10:01:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E222D1B041A
-	for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 09:58:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87C0A1B393A
+	for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 10:01:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742983093; cv=none; b=g5YagaJM3HiH4n86TQ9hcfYM/DvxI4TFokDOGbVmGTGTSaGl+JVl0M91Wy2M/h/4uljXwcggbYfbEkb804fyabc7w2g8C72ECXibTtGo26MdZUN0/KtW3x9grB59mMlrbgQltSKAiCD7S2YeKwHDXxUS0bAEyUh1ICWMAPOsStY=
+	t=1742983311; cv=none; b=CU3n7aG66cuBGAq87PuBoedZ3dzCHpEWkmSL8anvLnXGoXYripiOSmVSYQMVICsEqPmk6XJOyViDG4hAY5JB//BZIubKtst8kp+FCwZ8G1XGsMS0sGIl/ifXa/mFBIK1g4GyKSDcWI62+7Nof7fdBgVAQIFREwLamCPtacK8rCA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742983093; c=relaxed/simple;
-	bh=G2mie2cYylZkzBkEuGSmLt098MlPBjaPdn6PWJttyKw=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qxF0vtjuFhGBMv/M03KKH65bm6YwX9jsA6qB1QJKk5z7aOUfqDYXJKwrjJapHYI+9n8XDU+RzlPanFr7NGzJ6Ciy9d2gslkB31zX/UH4GY1ZXCqr2IGmKGgZgy61Us2UePqj6y/e+ZeFE+TfIaEa1kBRjLjEWMIIzKkta/VSHA4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=itxMEH9C; arc=none smtp.client-ip=185.125.188.122
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-oa1-f69.google.com (mail-oa1-f69.google.com [209.85.160.69])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 28DD03FE2D
-	for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 09:58:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1742983083;
-	bh=YmqDnJYd3sHMeIErDl7QaGhRZ3q+ZmYDEpXuE0o+U+M=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=itxMEH9C00Fmbc6YYe39dKMSvOJ/MpFtHhfA/9kn9I200Jo43M1G3QMg/1Yy8OhNq
-	 scYxuwA+09/YVLXvaH4v40WTC46dJgKZNaDSILYRFxdqs4rKQb2HFItKJ1yYAgo8rX
-	 Az8dMmcakdBQ87dUsf9gPlYAi7u1JaOJP9xrl+csFx3jDAkdBEb7Dao2E3fuYRtAjU
-	 x/YLpesqQtOjDFKiIhz/yzy1XS4jYcE5ApNnkLR6Jie+pP7QpWTrV3eu24von9LECR
-	 SQdhHSXABcZqn/QsJIUk4IKOkstAXg1NCnSZgnsAEhTayoFqF5EXmiNzwU99Wh+oQw
-	 f0hHTkH54fzSw==
-Received: by mail-oa1-f69.google.com with SMTP id 586e51a60fabf-2c72e6e51ceso1873373fac.3
-        for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 02:58:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742983080; x=1743587880;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YmqDnJYd3sHMeIErDl7QaGhRZ3q+ZmYDEpXuE0o+U+M=;
-        b=cetjqE3EfZx9HrnUmumCbuCkxcdoLGkILbysvZdyGugEssikw0X8LlF3YcaJDoukRI
-         GzPqQQrTeRozfdfIkqk7A3p+pWTF0HXWkFgCKzjxAIVZAT/cFwtwIgyUp0pdwSvrFCtZ
-         agyC+uN0JKrlSRAw3X3rMz0MvTidEOeRKB+tJ484vWaAqeCaqvbYsexnfJx/V48RRSaL
-         4YEkOFH/m8IlvYQ9Ut75EsHgjPGZOWTWCW7LUiEbzA9f2m1RZLYtSIexGZcRH9qKXcjd
-         1TjzRjjCz6QX4EfayyPPj1GcG+zRnctbgqFoCSCkCrIfh+GQuE0pPAuxUw1ssurWqJ9B
-         qU7A==
-X-Forwarded-Encrypted: i=1; AJvYcCW3ImszAKg5apL2xXleYLaWcGYKfr0ecSvvPHfvQV7zBsWWMNQ06Vv+10DnRsHKnoyBUYbFMedDzsdi@vger.kernel.org
-X-Gm-Message-State: AOJu0YwdsILfUWqL1BwrLQK2odEHvoV0/lW6c6csgQZ1I2ol8Ec0NVv6
-	xP9ba6iPoQGlP5b+ylrsVVf0I5XmWIS6ctn74xypJJEsim9WJjh6WtByNWgbTEjO1ipt6Y/yzNe
-	0e2kkVHB2W92h7qaKT8fJzxguIpRsD+m02YnrUbNHhqFZkdJU9TRnf+swYcXKhsbCUD5dkZf9Cv
-	AT7CXA357yoXtde/HvK5R/dbx2UPJNE25bVbIZHin5Q+70xjlTOw==
-X-Gm-Gg: ASbGnctEItNc9dtJHm9UY7OPnYbNB/S6CuqIJr5EWG604sdgcWzdN7KzO2wE6KX1gKf
-	iRb5NwwpHa5OpeQU4dBE1JxghsEy0mt15aMNBo7r808Ex5aJnMLtMz5wqpR5P2e3xsoy95bUHW4
-	Jof8xVTWzfDFvje9jOeP0ilfI=
-X-Received: by 2002:a05:6870:c0d0:b0:2c2:4d76:f1ad with SMTP id 586e51a60fabf-2c7802fc7f4mr11950000fac.16.1742983079708;
-        Wed, 26 Mar 2025 02:57:59 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGusUKpLdTuUy3QkZj5OSCHZAzUQifzrm4ATjVXeFFaB5uxz8Mol5J1QaqA22HHkXCckElEM60R81g5exSGuLQ=
-X-Received: by 2002:a05:6870:c0d0:b0:2c2:4d76:f1ad with SMTP id
- 586e51a60fabf-2c7802fc7f4mr11949984fac.16.1742983079188; Wed, 26 Mar 2025
- 02:57:59 -0700 (PDT)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 26 Mar 2025 02:57:57 -0700
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 26 Mar 2025 02:57:57 -0700
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20250326-owl-of-algebraic-wealth-61aeda@krzk-bin>
-References: <20250325141311.758787-1-emil.renner.berthing@canonical.com>
- <20250325141311.758787-2-emil.renner.berthing@canonical.com> <20250326-owl-of-algebraic-wealth-61aeda@krzk-bin>
+	s=arc-20240116; t=1742983311; c=relaxed/simple;
+	bh=vmGfR78GgSmopo5iBksXNIf+knROMy3RNPpIVcy5r9s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ORolGpKE0b1i6DSih/c5ELcoBbdSUa7+3quHVoInNnLQ/Jw9ThSbnH33ou7ehEuOfybVpO+A+XgGBKG892LFP1R9n05bhIpnoreRKr4JGqCQwPRKQyzdZDQG9X7E7N7BRPSKxWOO9j0twmFWeym555nIfJHAsMVCRkEdR0OX3Uc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1txNZZ-0005En-T3; Wed, 26 Mar 2025 11:01:21 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1txNZW-001j6C-2Z;
+	Wed, 26 Mar 2025 11:01:19 +0100
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1txNZX-0004dA-0G;
+	Wed, 26 Mar 2025 11:01:19 +0100
+Date: Wed, 26 Mar 2025 11:01:19 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Kyle Swenson <kyle.swenson@est.tech>
+Cc: Kory Maincent <kory.maincent@bootlin.com>, Andrew Lunn <andrew@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Donald Hunter <donald.hunter@gmail.com>,
+	Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	Simon Horman <horms@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+	Dent Project <dentproject@linuxfoundation.org>,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH net-next v6 06/12] net: pse-pd: Add support for budget
+ evaluation strategies
+Message-ID: <Z-PQbyKj1CBdqIQh@pengutronix.de>
+References: <20250304-feature_poe_port_prio-v6-0-3dc0c5ebaf32@bootlin.com>
+ <20250304-feature_poe_port_prio-v6-6-3dc0c5ebaf32@bootlin.com>
+ <Z9gYTRgH-b1fXJRQ@pengutronix.de>
+ <20250320173535.75e6419e@kmaincent-XPS-13-7390>
+ <20250324173907.3afa58d2@kmaincent-XPS-13-7390>
+ <Z-GXROTptwg3jh4J@p620>
+ <Z-JAWfL5U-hq79LZ@pengutronix.de>
+ <20250325162534.313bc066@kmaincent-XPS-13-7390>
+ <Z-MUzZ0v_ZjT1i1J@p620>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Wed, 26 Mar 2025 02:57:57 -0700
-X-Gm-Features: AQ5f1JoPkONs1cP6b2bcNZ0PAFZ-pHAaJXVnYD4E0Nk0jWsjQfMiZsd9uQXxdiM
-Message-ID: <CAJM55Z9+dpbqt-c=55WXUXsw=Dhk6m6Q1_Js3s-T+8W7dtrURQ@mail.gmail.com>
-Subject: Re: [RFC PATCH 1/4] dt-bindings: pinctrl: Add eswin,eic7700-pinctrl binding
-To: Krzysztof Kozlowski <krzk@kernel.org>, 
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>, 
-	Pritesh Patel <pritesh.patel@einfochips.com>, Min Lin <linmin@eswincomputing.com>, 
-	Samuel Holland <samuel.holland@sifive.com>, Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Z-MUzZ0v_ZjT1i1J@p620>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Krzysztof Kozlowski wrote:
-> On Tue, Mar 25, 2025 at 03:13:03PM +0100, Emil Renner Berthing wrote:
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - eswin,eic7700-pinctrl
->
-> Blank line
->
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +required:
->
-> required: goes after patternProperties.
->
-> > +  - compatible
-> > +  - reg
-> > +
-> > +patternProperties:
-> > +  '-[0-9]+$':
->
-> Recommended is to have more meaningful prefix or suffix, e.g.
-> -grp/-group. I also don't get why it has to end with number.
->
-> > +    type: object
-> > +    additionalProperties: false
-> > +
-> > +    patternProperties:
-> > +      '-pins$':
-> > +        type: object
-> > +        allOf:
-> > +          - $ref: /schemas/pinctrl/pincfg-node.yaml#
-> > +          - $ref: /schemas/pinctrl/pinmux-node.yaml#
-> > +
-> > +        additionalProperties: false
-> > +
-> > +        description:
-> > +          A pinctrl node should contain at least one subnode describing one
-> > +          or more pads and their associated pinmux and pinconf settings.
-> > +
-> > +        properties:
-> > +          pins:
-> > +            items:
-> > +              enum: [ CHIP_MODE, MODE_SET0, MODE_SET1, MODE_SET2, MODE_SET3,
-> > +                      XIN, RTC_XIN, RST_OUT_N, KEY_RESET_N, GPIO0, POR_SEL,
-> > +                      JTAG0_TCK, JTAG0_TMS, JTAG0_TDI, JTAG0_TDO, GPIO5, SPI2_CS0_N,
-> > +                      JTAG1_TCK, JTAG1_TMS, JTAG1_TDI, JTAG1_TDO, GPIO11, SPI2_CS1_N,
-> > +                      PCIE_CLKREQ_N, PCIE_WAKE_N, PCIE_PERST_N, HDMI_SCL, HDMI_SDA,
-> > +                      HDMI_CEC, JTAG2_TRST, RGMII0_CLK_125, RGMII0_TXEN,
-> > +                      RGMII0_TXCLK, RGMII0_TXD0, RGMII0_TXD1, RGMII0_TXD2,
-> > +                      RGMII0_TXD3, I2S0_BCLK, I2S0_WCLK, I2S0_SDI, I2S0_SDO,
-> > +                      I2S_MCLK, RGMII0_RXCLK, RGMII0_RXDV, RGMII0_RXD0, RGMII0_RXD1,
-> > +                      RGMII0_RXD2, RGMII0_RXD3, I2S2_BCLK, I2S2_WCLK, I2S2_SDI,
-> > +                      I2S2_SDO, GPIO27, GPIO28, GPIO29, RGMII0_MDC, RGMII0_MDIO,
-> > +                      RGMII0_INTB, RGMII1_CLK_125, RGMII1_TXEN, RGMII1_TXCLK,
-> > +                      RGMII1_TXD0, RGMII1_TXD1, RGMII1_TXD2, RGMII1_TXD3, I2S1_BCLK,
-> > +                      I2S1_WCLK, I2S1_SDI, I2S1_SDO, GPIO34, RGMII1_RXCLK,
-> > +                      RGMII2_RXDV, RGMII2_RXD0, RGMII2_RXD1, RGMII2_RXD2,
-> > +                      RGMII2_RXD3, SPI1_CS0_N, SPI1_CLK, SPI1_D0, SPI1_D1, SPI1_D2,
-> > +                      SPI1_D3, SPI1_CS1_N, RGMII1_MDC, RGMII1_MDIO, RGMII1_INTB,
-> > +                      USB0_PWREN, USB1_PWREN, I2C0_SCL, I2C0_SDA, I2C1_SCL, I2C1_SDA,
-> > +                      I2C2_SCL, I2C2_SDA, I2C3_SCL, I2C3_SDA, I2C4_SCL, I2C4_SDA,
-> > +                      I2C5_SCL, I2C5_SDA, UART0_TX, UART0_RX, UART1_TX, UART1_RX,
-> > +                      UART1_CTS, UART1_RTS, UART2_TX, UART2_RX, JTAG2_TCK, JTAG2_TMS,
-> > +                      JTAG2_TDI, JTAG2_TDO, FAN_PWM, FAN_TACH, MIPI_CSI0_XVS,
-> > +                      MIPI_CSI0_XHS, MIPI_CSI0_MCLK, MIPI_CSI1_XVS, MIPI_CSI1_XHS,
-> > +                      MIPI_CSI1_MCLK, MIPI_CSI2_XVS, MIPI_CSI2_XHS, MIPI_CSI2_MCLK,
-> > +                      MIPI_CSI3_XVS, MIPI_CSI3_XHS, MIPI_CSI3_MCLK, MIPI_CSI4_XVS,
-> > +                      MIPI_CSI4_XHS, MIPI_CSI4_MCLK, MIPI_CSI5_XVS, MIPI_CSI5_XHS,
-> > +                      MIPI_CSI5_MCLK, SPI3_CS_N, SPI3_CLK, SPI3_DI, SPI3_DO, GPIO92,
-> > +                      GPIO93, S_MODE, GPIO95, SPI0_CS_N, SPI0_CLK, SPI0_D0, SPI0_D1,
-> > +                      SPI0_D2, SPI0_D3, I2C10_SCL, I2C10_SDA, I2C11_SCL, I2C11_SDA,
-> > +                      GPIO106, BOOT_SEL0, BOOT_SEL1, BOOT_SEL2, BOOT_SEL3, GPIO111,
-> > +                      LPDDR_REF_CLK ]
->
-> All these should be lowercase.
+Hi folks,
 
-Plenty of pinctrl drivers use uppercase names for the pins, intel, amd,
-mediatek to name a few, and this is also what the EIC7700 documentation uses.
-Do you still wan't Linux to call the pins something else?
+On Tue, Mar 25, 2025 at 08:40:54PM +0000, Kyle Swenson wrote:
+> Hello Kory,
+> 
+> On Tue, Mar 25, 2025 at 04:25:34PM +0100, Kory Maincent wrote:
+> > On Tue, 25 Mar 2025 06:34:17 +0100
+> > Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+> > 
+> > > Hi,
+> > > 
+> > > On Mon, Mar 24, 2025 at 05:33:18PM +0000, Kyle Swenson wrote:
+> > > > Hello Kory,
+> > > > 
+> > > > On Mon, Mar 24, 2025 at 05:39:07PM +0100, Kory Maincent wrote:  
+> > > > > Hello Kyle, Oleksij,  
+> > > > ...  
+> > > > > 
+> > > > > Small question on PSE core behavior for PoE users.
+> > > > > 
+> > > > > If we want to enable a port but we can't due to over budget.
+> > > > > Should we :
+> > > > > - Report an error (or not) and save the enable action from userspace. On
+> > > > > that case, if enough budget is available later due to priority change or
+> > > > > port disconnected the PSE core will try automatically to re enable the
+> > > > > PoE port. The port will then be enabled without any action from the user.
+> > > > > - Report an error but do nothing. The user will need to rerun the enable
+> > > > >   command later to try to enable the port again.
+> > > > > 
+> > > > > How is it currently managed in PoE poprietary userspace tools?  
+> > > > 
+> > > > So in our implementation, we're using the first option you've presented.
+> > > > That is, we save the enable action from the user and if we can't power
+> > > > the device due to insufficient budget remaining, we'll indicate that status
+> > > > to the user.  If enough power budget becomes available later, we'll power up
+> > > > the device automatically.  
+> > > 
+> > > It seems to be similar to administrative UP state - "ip link set dev lan1 up".
+> > > I'm ok with this behavior.
+> > 
+> > Ack I will go for it then, thank you!
+> > 
+> > Other question to both of you:
+> > If we configure manually the current limit for a port. Then we plug a Powered
+> > Device and we detect (during the classification) a smaller current limit
+> > supported. Should we change the current limit to the one detected. On that case
+> > we should not let the user set a power limit greater than the one detected after
+> > the PD has been plugged.
+> 
+> I don't know that we want to prevent the user from setting a higher
+> current than a device's classification current because that would
+> prevent the PD and PSE negotiating a higher current via LLDP.
+> 
+> That said, I'm struggling to think of a use-case where the user would be
+> setting a current limit before a PD is connected, so maybe we can reset
+> the current limit when the PD is classified to the classification
+> result, but also allow it to be adjusted after a PD is powered for the
+> LLDP negotiation case.
+> 
+> In our implementation, don't really let the user specify something like,
+> "Only class 3 and lower devices on this port" because we've not seen
+> customers need this.  We have, however, implemented the LLDP negotiation
+> support after several requests from customers, but this only makes sense
+> when a PD is powered at it's initial classification result.  The PD can
+> then request more power (via LLDP) and then we adjust the current limit
+> assuming the system has budget available for the request.
+> 
+> > 
+> > What do you think? Could we let a user burn a PD?
+> 
+> This seems like a very rare case, and if the PD is designed such that
+> it's reliant on the PSE's current limiting ability then seems like it's
+> just an accident waiting to happen with any PSE.
+> 
+> Very rarely have we seen a device actually pull more current than it's
+> classification result allows (except for LLDP negotiation). What's more
+> likely is a dual-channel 802.3bt device is incorrectly classified as a
+> single-channel 802.3at device; the device pulls more current than
+> allocated and gets shut off promptly, but no magic smoke escaped.  
 
->
-> > +            description: List of pads that properties in the node apply to.
-> > +
-> > +          function:
-> > +            enum: [ csi, debug, ddr, fan, gpio, hdmi, i2c, i2s, jtag, mipi,
-> > +                    mode, oscillator, pci, pwm, rgmii, reset, sata, spi, sdio,
-> > +                    uart, usb ]
-> > +            description: The mux function to select for the given pins.
-> > +
-> > +          bias-disable: true
-> > +
-> > +          bias-pull-up:
-> > +            oneOf:
-> > +              - type: boolean
-> > +              - const: 25000
-> > +            description: Enable internal 25kOhm pull-up
->
-> Why bool and fixed value? Do they have different meaning? Description
-> says they are the same.
->
-> Anyway, don't repeat constraints in free form text.
->
-> > +
-> > +          bias-pull-down:
-> > +            oneOf:
-> > +              - type: boolean
-> > +              - const: 22000
-> > +            description: Enable internal 22kOhm pull-down
->
-> Same questions
->
-> > +
-> > +          drive-strength-microamp:
-> > +            enum: [ 3100, 6700, 9600, 12900, 18000, 20900, 23200, 25900 ]
-> > +
-> > +          input-enable: true
-> > +
-> > +          input-disable: true
-> > +
-> > +          input-schmitt-enable: true
-> > +
-> > +          input-schmitt-disable: true
-> > +
-> > +        required:
-> > +          - pins
->
-> Best regards,
-> Krzysztof
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Here’s my understanding of the use cases described so far, and a proposal for
+how we could handle them in the kernel to avoid conflicts between different
+actors.
+
+We have multiple components that may affect power delivery:
+- The kernel, which reacts to detection and classification
+- The admin, who might want to override or restrict power for policy or safety reasons
+- The LLDP daemon, which may request more power dynamically based on what the PD asks for
+
+To avoid races and make things more predictable, I think it's best if each
+actor has its own dedicated input.
+
+## Use Cases
+
+### Use Case 1: Classification-based power (default behavior)  
+- Kernel detects PD and performs classification
+- Power is applied according to classification and hardware limits
+- No override used
+
+Steps:
+1. Detection runs
+2. Classification result obtained (e.g. Class 2 → 7W)
+3. Kernel computes:
+
+   effective_limit = min(
+       classification_result,
+       controller_capability,
+       board_limit,
+       dynamic_budget
+   )
+
+4. Power applied up to `effective_limit`
+
+### Use Case 2: Admin-configured upper bound (non-override)  
+- Admin sets a policy limit that restricts all power delivery
+- Does not override classification, only bounds it
+
+Steps:
+1. Admin sets `ETHTOOL_A_C33_PSE_AVAIL_PWR_LIMIT = 15000`
+2. Detection + classification run normally
+3. Kernel computes:
+
+   effective_limit = min(
+       classification_result,
+       AVAIL_PWR_LIMIT,
+       controller_capability,
+       board_limit,
+       dynamic_budget
+   )
+
+4. Classification is respected, but never exceeds admin limit
+
+This value is always included in power computation — even if classification
+or LLDP overrides are active.
+
+### Use Case 3: Persistent classification override (admin)  
+- Admin sets a persistent limit that overrides classification
+- Power is always based on this override
+
+Steps:
+1. Admin sets `CLASS_OVERRIDE_PERSISTENT = 25000` (mW)
+2. Detection/classification may run, but classification result is ignored
+3. Kernel computes:
+
+   effective_limit = min(
+       CLASS_OVERRIDE_PERSISTENT,
+       AVAIL_PWR_LIMIT,
+       controller_capability,
+       board_limit,
+       dynamic_budget
+   )
+
+4. Power applied accordingly
+5. Override persists until cleared
+
+### Use Case 4: Temporary classification override (LLDP)  
+- LLDP daemon overrides classification for current PD session only
+- Cleared automatically on PD disconnect
+
+Steps:
+1. PD connects, detection + classification runs (e.g. 7W)
+2. LLDP daemon receives PD request for 25000 mW
+3. LLDP daemon sets `CLASS_OVERRIDE_TEMPORARY = 25000`
+4. Kernel computes:
+
+   effective_limit = min(
+       CLASS_OVERRIDE_TEMPORARY,
+       AVAIL_PWR_LIMIT,
+       controller_capability,
+       board_limit,
+       dynamic_budget
+   )
+
+5. Power is increased for this session
+6. On PD disconnect, override is cleared automatically
+
+---
+
+### Use Case 5: Ignore detection and classification (force-on)  
+- Admin forces the port on, ignoring detection
+- Useful for passive/non-802.3 devices or bring-up
+
+Steps:
+1. Admin sets:
+   - `DETECTION_IGNORE = true`
+   - `CLASS_OVERRIDE_PERSISTENT = 5000`
+2. Kernel skips detection and classification
+3. Kernel computes:
+
+   effective_limit = min(
+       CLASS_OVERRIDE_PERSISTENT,
+       AVAIL_PWR_LIMIT,
+       controller_capability,
+       board_limit,
+       dynamic_budget
+   )
+
+4. Power is applied immediately
+
+## Proposed kernel UAPI
+
+### SET attributes (configuration input)
+
+| Attribute                                 | Type     | Lifetime              | Owner           | Description |
+|-------------------------------------------|----------|------------------------|------------------|-------------|
+| `ETHTOOL_A_PSE_CLASS_OVERRIDE_PERSISTENT` | u32 (mW) | Until cleared          | Admin            | Persistent classification override |
+| `ETHTOOL_A_PSE_CLASS_OVERRIDE_TEMPORARY`  | u32 (mW) | Cleared on detection failure / PD replug | LLDP daemon / test tool | Temporary override of classification |
+| `ETHTOOL_A_PSE_DETECTION_IGNORE`          | bool     | Until cleared          | Admin            | Ignore detection phase |
+| `ETHTOOL_A_C33_PSE_AVAIL_PWR_LIMIT`       | u32 (mW) | Until changed          | Admin            | Static admin-defined max power cap (non-override) |
+
+### GET attributes (status and diagnostics)
+
+| Attribute                                  | Type     | Description |
+|--------------------------------------------|----------|-------------|
+| `ETHTOOL_A_PSE_EFFECTIVE_PWR_LIMIT`        | u32 (mW) | Final power limit applied by kernel |
+| `ETHTOOL_A_PSE_CLASS_OVERRIDE_PERSISTENT`  | u32 (mW) | Current persistent override (if set) |
+| `ETHTOOL_A_PSE_CLASS_OVERRIDE_TEMPORARY`   | u32 (mW) | Current temporary override (if active) |
+| `ETHTOOL_A_PSE_DETECTION_IGNORE`           | bool     | Current detection ignore state |
+
+### Power Limit Priority
+
+Since we now have multiple sources that can influence how much power is
+delivered to a PD, we need to define a clear and deterministic priority
+order for all these values. This avoids confusion and ensures that the kernel
+behaves consistently, even when different actors (e.g. admin, LLDP daemon,
+hardware limits) are active at the same time.
+
+Below is the proposed priority list — values higher in the list take precedence
+over those below:
+
+| Priority | Source / Field                          | Description |
+|----------|------------------------------------------|-------------|
+| 1        | Hardware/board-specific limit         | Maximum allowed by controller or board design (e.g. via device tree or driver constraints) |
+| 2        | Dynamic power budget                  | Current system-level or PSE-level power availability (shared with other ports) |
+| 3        | `ETHTOOL_A_C33_PSE_AVAIL_PWR_LIMIT`       | Admin-configured upper bound — applies even when classification or override is used |
+| 4        | `ETHTOOL_A_PSE_CLASS_OVERRIDE_TEMPORARY`  | Temporary override, e.g. set by LLDP daemon, cleared on PD disconnect or detection loss |
+| 5        | `ETHTOOL_A_PSE_CLASS_OVERRIDE_PERSISTENT` | Admin override that persists until cleared |
+| 6        | `ETHTOOL_A_PSE_CLASSIFICATION_RESULT`     | Result of PD classification, used when no override is present |
+
+The effective power limit used by the kernel will always be the minimum of the
+values above.
+
+This way, even if the LLDP daemon requests more power, or classification result
+is high, power delivery will still be constrained by admin policies, hardware
+limits, and current budget.
+
+Best regards,  
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
