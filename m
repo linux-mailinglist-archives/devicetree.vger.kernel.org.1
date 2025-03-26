@@ -1,145 +1,145 @@
-Return-Path: <devicetree+bounces-161049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161050-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57379A71FA5
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 20:53:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9313CA71FD0
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 21:00:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 933881888DB6
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 19:51:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5740B1899134
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 20:00:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C147F1F4736;
-	Wed, 26 Mar 2025 19:51:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D9B624C676;
+	Wed, 26 Mar 2025 20:00:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hJSadGsS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Coz3br1C"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 917131DD539;
-	Wed, 26 Mar 2025 19:51:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 376C1137930;
+	Wed, 26 Mar 2025 20:00:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743018681; cv=none; b=pugztLsKHNSWAivks0V1+vgGOGU9KnyZMeiROYD9cWvJW8qy2peX6nUg5FEUH2wFqxFffflIHwyRVK09S9DLXvBIXw0JY1FvaboADUixL3bwDhkjtpZ7hKuIjYIiKxisSUWPH+UZQvtB454+cyDtl60Gvmjgx1Bo+h+DRwcbU4I=
+	t=1743019233; cv=none; b=Y2Ambe/gWxH3a1vVtsWy4WMds47n3VP4feQO1RUjqQI2Dw9ly5UtJLrn443G+EbJOp2qsSS3pMEhNYeA4HKB7+YyWpmjZknOylOiaViHVUMoSj9Ugry4hCOaPrZ+F9FCEnl5II0Wj35G9sHa0Z8qcTsqZctzIeO/Rn1repo6vFs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743018681; c=relaxed/simple;
-	bh=vpNjfjV9EyxkTqodYw2+3oCIshfkkDgO9rKwFnzprFE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dZcnO6DUCbO/Wlvh4h8+2LRBOAq3Y7K4f+vR29Uzmq2yyZutu/RmiDgYofNAuRw2mpQYIpAPXC6yWqQFQFrTIycZNB3jZxKVaKbQv5sKYKmsRpM6OnNtakTDSGIVncxgHoefn1T9raWvpcA8PEGGHs0zBovrPiaw5AGmYB0iuw4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hJSadGsS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17007C4CEED;
-	Wed, 26 Mar 2025 19:51:21 +0000 (UTC)
+	s=arc-20240116; t=1743019233; c=relaxed/simple;
+	bh=bvMdOWoWq0TBIL9gpxTw+jRmtDhjTC4zq9zMiMKAk0Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ecXqZGIpcRY1K8/2J2ckihFzMgw4x0/WmMjVRWIQTxsQ9DFX/Qk72N8lNFfVbxzrFd9P/QfWXe8fcUJ2u1551wRe9cWcfqNSErudu2qb/JdnvMXVZk5kuAP2J9Br84hvKtREmh5rSVy21tuzv1vDh8PpYKLNhAUXJw2O0c8FLho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Coz3br1C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B9D8C4CEE2;
+	Wed, 26 Mar 2025 20:00:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743018681;
-	bh=vpNjfjV9EyxkTqodYw2+3oCIshfkkDgO9rKwFnzprFE=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=hJSadGsSW0/H3IdFtLu1Ffm9kEt+mXwvCGfXmTNmN0KNyA2IE3BjoBwpf0l6m9oH7
-	 H9AuoevFkWOyO8SNjPEkyO4hZZbtZnXaXvIpl+Sl2zgkTWS9uj6hkQu12nKzGyTNqy
-	 VtksHZo79lgMLVmab+I94xG1woJ3SHBr83zLjh/TdHG06ywgL7+haooEF+qDgHRhRr
-	 nxkN38fBC6tFI+aB7GPl7ku+PR70i16/e0oDTAycXFLOrSOkR+vV18aZe0YatPpaZ1
-	 0mp3+oofRdRde6wV6yytnbBJhXErHFYVstEzO1RRRN27AFWTrYbEPv9Ji9koR5tojw
-	 GP7XLVfTBfYXA==
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5e5e8274a74so318360a12.1;
-        Wed, 26 Mar 2025 12:51:21 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUAlA1hDNbaInbNJfD0Pl3l1L2c+PNst7QvJY8mGDTufCmqm0MBmILIvhOdLy5mESd+TKFsD51JqOcQ@vger.kernel.org, AJvYcCWYQGYf4CDTSJgl9s6WBcAIofF6EOGtRoakpoKG5GVakKxZwx4TRIDUGs0S63+1Y6ig4C6xz9F6HfbA@vger.kernel.org, AJvYcCXebRG4+FPfICz8GEuxI99OWd3GvawoAf8q7MgMO2JR99pLD6SgbFhIJQNpWHXYAdFA3MHWpYShHTZhFPRe@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxl5kWQtJiYp05Mb4di4WMZfgTis+WmrcNEUEfR/fPd0PziwPFZ
-	VAcaMoO44lH1VAkMDZgpH4nOFTzHwbxY0cxZ0DIlgSanCN1UelEZGR+wzrqz5hfMpTkhzVZLg5I
-	Am+R5JArGzc+Ch2y7ZfyzXOtPzA==
-X-Google-Smtp-Source: AGHT+IErvamND+/bzF17Qvrj3EVovyzy2vc413tQ0D0dRY5KJx2kQCEC00XuxHxUOJAIkhyZqX/VrQo5NNwLV7Sr5Hk=
-X-Received: by 2002:a05:6402:4304:b0:5e7:b081:8b2f with SMTP id
- 4fb4d7f45d1cf-5ed8e28bba0mr700492a12.8.1743018679628; Wed, 26 Mar 2025
- 12:51:19 -0700 (PDT)
+	s=k20201202; t=1743019232;
+	bh=bvMdOWoWq0TBIL9gpxTw+jRmtDhjTC4zq9zMiMKAk0Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Coz3br1C085AjKg3xpEu3rqJOSHK4+9FHNRPrwigy2X+ZSLurJxOOx8bi6irynCeN
+	 Jk3QfzJoZpmz7BnBy2Fyj7sU68qAZhxCpbCrsDPouLni+XXcl5sN8xFHotAEy5IeBf
+	 N4SC0tRAJNR34XzWtelXMe5InrO3ipA2XNQdyrtb6bBU5MiSDw1u6pBmzEb0MKSu0F
+	 /4FOGMFT+bbQyqe1HaWzkhP66gSQMUbYhjc3fd4cbKvvhgxeLLbMdcM1n4Om0kojCo
+	 c3oeg0tPGGladfi9fiQIPJx4I5NZmS9M/IOt9vpyjkuOD++cmRNNSUsiI9GSWAYy9S
+	 3kF2HnsBEUJWg==
+Date: Wed, 26 Mar 2025 15:00:31 -0500
+From: Rob Herring <robh@kernel.org>
+To: Remo Senekowitsch <remo@buenzli.dev>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Daniel Scally <djrscally@gmail.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Dirk Behme <dirk.behme@de.bosch.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+	devicetree@vger.kernel.org, rust-for-linux@vger.kernel.org
+Subject: Re: [PATCH 02/10] rust: Add an Integer trait
+Message-ID: <20250326200031.GA2787672-robh@kernel.org>
+References: <20250326171411.590681-1-remo@buenzli.dev>
+ <20250326171411.590681-3-remo@buenzli.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250325102610.2073863-1-maz@kernel.org> <20250325102610.2073863-2-maz@kernel.org>
- <87iknx75at.fsf@bloch.sibelius.xs4all.nl> <864izhmkzd.wl-maz@kernel.org>
- <87ecyl6rtw.fsf@bloch.sibelius.xs4all.nl> <87a599qcne.wl-maz@kernel.org>
-In-Reply-To: <87a599qcne.wl-maz@kernel.org>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 26 Mar 2025 14:51:08 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+6B7dL9j+31kAhZ_n0HEQyU8KPHv8W9_RXHfZpC9iwxw@mail.gmail.com>
-X-Gm-Features: AQ5f1JqWuCb_FqGMc9ODy56dgNx98tFm3EJA04WKZS1ueKCtpmKEHZhRYL5yOAg
-Message-ID: <CAL_Jsq+6B7dL9j+31kAhZ_n0HEQyU8KPHv8W9_RXHfZpC9iwxw@mail.gmail.com>
-Subject: Re: [PATCH v2 01/13] dt-bindings: pci: apple,pcie: Add t6020
- compatible string
-To: Marc Zyngier <maz@kernel.org>
-Cc: Mark Kettenis <mark.kettenis@xs4all.nl>, linux-arm-kernel@lists.infradead.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, asahi@lists.linux.dev, alyssa@rosenzweig.io, 
-	j@jannau.net, marcan@marcan.st, sven@svenpeter.dev, bhelgaas@google.com, 
-	lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org, 
-	krzk+dt@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250326171411.590681-3-remo@buenzli.dev>
 
-On Tue, Mar 25, 2025 at 11:49=E2=80=AFAM Marc Zyngier <maz@kernel.org> wrot=
-e:
->
-> On Tue, 25 Mar 2025 15:41:15 +0000,
-> Mark Kettenis <mark.kettenis@xs4all.nl> wrote:
-> >
-> > > Date: Tue, 25 Mar 2025 11:02:30 +0000
-> > > From: Marc Zyngier <maz@kernel.org>
-> >
-> > Hi Marc,
-> >
-> > > Hi Mark,
-> > >
-> > > On Tue, 25 Mar 2025 10:50:18 +0000,
-> > > Mark Kettenis <mark.kettenis@xs4all.nl> wrote:
-> > > >
-> > > > > From: Marc Zyngier <maz@kernel.org>
-> > > > > Date: Tue, 25 Mar 2025 10:25:58 +0000
-> > > >
-> > > > > @@ -50,6 +55,10 @@ properties:
-> > > > >        - const: port1
-> > > > >        - const: port2
-> > > > >        - const: port3
-> > > > > +      - const: phy0
-> > > > > +      - const: phy1
-> > > > > +      - const: phy2
-> > > > > +      - const: phy3
-> > >
-> > > Do we need to make this t6020 specific?
-> > >
-> > > Obviously, separate PHY registers do not make much sense before t6020=
-,
-> > > but I couldn't find a way to describe that. I don't even know if
-> > > that's a desirable outcome.
-> >
-> > I don't think there is a way to do that other than creating a separate
-> > binding for t6020.  But I'm far from a dt-schema expert.  Maybe robh
-> > has some advice here.
->
-> Huh, I'd rather not create another binding. The only thing this would
-> buy us is a stricter checking of the register ranges.  But it isn't
-> like this block is going to find its way in random HW, and this is
-> only described in a handful of core dtsi files anyway.
->
-> Unless someone screams (and provides a reasonable alternative), I will
-> leave it as is.
+On Wed, Mar 26, 2025 at 06:13:41PM +0100, Remo Senekowitsch wrote:
+> From: "Rob Herring (Arm)" <robh@kernel.org>
+> 
+> Add an "Integer" trait similar to crate::num::Integer. This is useful
+> for implementing generic methods which operate on different sizes of
+> integers. One example is reading DT/ACPI firmware properties.
+> 
+> This was originally proposed by Alice Ryhl[1].
+> 
+> [1] https://lore.kernel.org/rust-for-linux/CAH5fLgiXPZqKpWSSNdx-Ww-E9h2tOLcF3_8Y4C_JQ0eU8EMwFw@mail.gmail.com/
+> 
+> Suggested-by: Alice Ryhl <aliceryhl@google.com>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
-The simplest thing to do here is (under the 'allOf'):
+This needs your Signed-off-by too because you are sending it.
 
-if:
-  properties:
-    compatible:
-      contains:
-        const: apple,t6020-pcie
-then:
-  properties:
-    reg-names:
-      minItems: 10
-
-If/when we start having different number of ports with phy entries,
-then it gets messy and each variant has to list out the names or we
-give up on defining the order.
-
-Rob
+> ---
+>  rust/kernel/types.rs | 22 +++++++++++++++++++++-
+>  1 file changed, 21 insertions(+), 1 deletion(-)
+> 
+> diff --git a/rust/kernel/types.rs b/rust/kernel/types.rs
+> index 2bbaab83b..21647b7ba 100644
+> --- a/rust/kernel/types.rs
+> +++ b/rust/kernel/types.rs
+> @@ -3,10 +3,11 @@
+>  //! Kernel types.
+>  
+>  use crate::init::{self, PinInit};
+> +use crate::transmute::{AsBytes, FromBytes};
+>  use core::{
+>      cell::UnsafeCell,
+>      marker::{PhantomData, PhantomPinned},
+> -    mem::{ManuallyDrop, MaybeUninit},
+> +    mem::{size_of, ManuallyDrop, MaybeUninit},
+>      ops::{Deref, DerefMut},
+>      ptr::NonNull,
+>  };
+> @@ -553,6 +554,25 @@ pub enum Either<L, R> {
+>      Right(R),
+>  }
+>  
+> +/// Trait defined for all integer types similar to `crate::num::Integer`
+> +pub trait Integer: FromBytes + AsBytes + Copy {
+> +    /// Size of the integer in bytes
+> +    const SIZE: usize;
+> +}
+> +
+> +macro_rules! impl_int {
+> +    ($($typ:ty),* $(,)?) => {$(
+> +        impl Integer for $typ {
+> +            const SIZE: usize = size_of::<Self>();
+> +        }
+> +    )*};
+> +}
+> +
+> +impl_int! {
+> +    u8, u16, u32, u64, usize,
+> +    i8, i16, i32, i64, isize,
+> +}
+> +
+>  /// Zero-sized type to mark types not [`Send`].
+>  ///
+>  /// Add this type as a field to your struct if your type should not be sent to a different task.
+> -- 
+> 2.49.0
+> 
 
