@@ -1,193 +1,116 @@
-Return-Path: <devicetree+bounces-161069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBF93A7214D
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 23:01:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 701C1A72244
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 23:07:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A223179660
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 22:01:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5339A3BCE93
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 22:07:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B869A195B1A;
-	Wed, 26 Mar 2025 22:01:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F03B31B0424;
+	Wed, 26 Mar 2025 22:07:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OyB6q4Z1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KtjxNbeR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7980B2E3364;
-	Wed, 26 Mar 2025 22:01:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF08D2E3364;
+	Wed, 26 Mar 2025 22:07:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743026491; cv=none; b=YxmKfOZVnUYYiuAqHiS5eSN45mDGginUEcDM47vIZGk11dXeDVpIT/opKWVA2WVWFN4ewbM1LDWZHuO/DEdxisKOvs1XaGIOO0XpX1knlLayr+lLkRSXng2/lEobCLeSi/LU7DArrKu7RnPZ2yQgtGYVnK57F6vimTfTwrrbdsk=
+	t=1743026842; cv=none; b=NmtxAFwns9coTPvTZxOSrXbHqKQGWf3qWVi/kSyWMQbDGTHLmq5RI2kx5ANZ/zOeUKx48wR2WHK6xUbU/15VcbJLCrADHgzSMP39dS4xFtqbIb+4tQFgzXy0m+g4MMqPkZba+2Y80PF0SIVY0VvwzzzY5O2tqLn15Q1bpDK2uR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743026491; c=relaxed/simple;
-	bh=5ajdgCMl4Ci8EWMzlvIr8d5WidkzjnJEtRxeoQYgF1c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YmiytMWWufmcMtNid14PlS3+7FeDrftwzx+nWr4z4U2GB34YZe4obdKffIL7/f1mAcURz6OoR1B7oONeZA7WnNzBsO3d6ueEMttLffFuNMVFAsfFE8P4qVscg+tO2uaLW/5UiR56gNS0aMmbMirnOrS7eI7praTwd0XHWiUDFzU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OyB6q4Z1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8B2CC4CEE2;
-	Wed, 26 Mar 2025 22:01:30 +0000 (UTC)
+	s=arc-20240116; t=1743026842; c=relaxed/simple;
+	bh=FRJikSsA8yzvaWCCYthGB510YL+dH/cvtcAVRudDpK8=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=THuMEYRa+nP8yTcQL0ambcnLh0N1gxK2/smrqJO0zE0Z41dySm18RCjyi6LMTFsLeP1PFAR4A6fyuggxCTMHl/UwoJLnL1h79qGCnTuwSukd6MDZAzgVhhznRBZOjPEugDm+phQsqD3cA4xiEEYxVR+0+XGChk5acw/czeVvKco=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KtjxNbeR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E105BC4CEE2;
+	Wed, 26 Mar 2025 22:07:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743026490;
-	bh=5ajdgCMl4Ci8EWMzlvIr8d5WidkzjnJEtRxeoQYgF1c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OyB6q4Z10bcmrv1/VonDP3KA1Jof0mOmYxDERrkyaJdyssuZRairW8yTKjOYjZFMp
-	 3RMCC/ULdoJeHSAt2GfZ36ywk7VPJGB8TpTzGWbMCFQCH0MHTgwypfRSoT9Il3QlVT
-	 mPLl1GsCN68AQotEozgNroAXui2MASgIwfNd7+37X2J93Goj2EcSBV2jA0cq6Ris+K
-	 eLHYGtx2SW0hLTFkYxk/KYYXC4ozyhAeyevNEPPkcw7gO7FboVkBq2jHs4VbTDRNqE
-	 ok4zCl9pNrRrudkQoGgHbrPKf7Yie/+zmK72bWRVWtEUOiCGyV2Rje2kTB60LgCsKj
-	 SRfy0qM0WOX5g==
-Date: Wed, 26 Mar 2025 17:01:29 -0500
-From: Rob Herring <robh@kernel.org>
-To: Remo Senekowitsch <remo@buenzli.dev>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Daniel Scally <djrscally@gmail.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Dirk Behme <dirk.behme@de.bosch.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
-	devicetree@vger.kernel.org, rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH 10/10] samples: rust: platform: Add property read examples
-Message-ID: <20250326220129.GD2844851-robh@kernel.org>
-References: <20250326171411.590681-1-remo@buenzli.dev>
- <20250326171411.590681-11-remo@buenzli.dev>
+	s=k20201202; t=1743026842;
+	bh=FRJikSsA8yzvaWCCYthGB510YL+dH/cvtcAVRudDpK8=;
+	h=Date:From:To:Subject:References:In-Reply-To:From;
+	b=KtjxNbeRid7Qwv9XXTLetaZMhymEgYHug6k8kVO25e6aEak5TVC5mg0W/Y8n8UiCv
+	 A848AXYFBLNCiIkiXEktHUxCG7ced23DUZQFhfbAxKAc7CFtHEseXp1bkdDvvpvhRf
+	 y0mbTf3u2tujBrAmP7VgZnlP+ua1KPoAKIJlAW6JSrCqxZeC++Ww0WrFUiY6OnUP92
+	 vEaXSuua0UL+6+XJOSFAQuFT7qEDTAwGBgFUMX8DFrmgnPsM4nBDVSRICh8G72Gid3
+	 QqioJWV3dJE8o2TGFnlOWjKEmzcOqedj8u7JT37O3cGWDajuVEn7U96Fm+W7g3jPfQ
+	 Qf0mWqYGflhZw==
+Date: Wed, 26 Mar 2025 22:07:17 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	linux-renesas-soc@vger.kernel.org,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: i2c: snps,designware-i2c: describe Renesas
+ RZ/N1D variant
+Message-ID: <20250326-dispute-eloquence-b66b1574307f@spud>
+References: <20250326090112.22495-2-wsa+renesas@sang-engineering.com>
+ <20250326-unhidden-alfalfa-4dabbeb32c9d@spud>
+ <Z-RzfZKaw7qtYj0p@shikoro>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="X3x43n9K5NuFCM7M"
+Content-Disposition: inline
+In-Reply-To: <Z-RzfZKaw7qtYj0p@shikoro>
+
+
+--X3x43n9K5NuFCM7M
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250326171411.590681-11-remo@buenzli.dev>
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 26, 2025 at 06:13:49PM +0100, Remo Senekowitsch wrote:
-> Add some example usage of the device property read methods for
-> DT/ACPI/swnode properties.
-> 
-> Co-developed-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
-> ---
->  drivers/of/unittest-data/tests-platform.dtsi |  3 ++
->  samples/rust/rust_driver_platform.rs         | 56 +++++++++++++++++++-
->  2 files changed, 58 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/of/unittest-data/tests-platform.dtsi b/drivers/of/unittest-data/tests-platform.dtsi
-> index 4171f43cf..50a51f38a 100644
-> --- a/drivers/of/unittest-data/tests-platform.dtsi
-> +++ b/drivers/of/unittest-data/tests-platform.dtsi
-> @@ -37,6 +37,9 @@ dev@100 {
->  			test-device@2 {
->  				compatible = "test,rust-device";
->  				reg = <0x2>;
-> +
-> +				test,u32-prop = <0xdeadbeef>;
-> +				test,i16-array = /bits/ 16 <1 2 (-3) (-4)>;
->  			};
->  		};
->  
-> diff --git a/samples/rust/rust_driver_platform.rs b/samples/rust/rust_driver_platform.rs
-> index 8120609e2..ed25a3781 100644
-> --- a/samples/rust/rust_driver_platform.rs
-> +++ b/samples/rust/rust_driver_platform.rs
-> @@ -2,7 +2,7 @@
->  
->  //! Rust Platform driver sample.
->  
-> -use kernel::{c_str, of, platform, prelude::*};
-> +use kernel::{c_str, of, platform, prelude::*, str::CString};
->  
->  struct SampleDriver {
->      pdev: platform::Device,
-> @@ -28,6 +28,60 @@ fn probe(pdev: &mut platform::Device, info: Option<&Self::IdInfo>) -> Result<Pin
->              dev_info!(pdev.as_ref(), "Probed with info: '{}'.\n", info.0);
->          }
->  
-> +        let dev = pdev.as_ref();
+On Wed, Mar 26, 2025 at 10:37:01PM +0100, Wolfram Sang wrote:
+>=20
+> > > +          - const: renesas,r9a06g032-i2c
+> > > +          - const: renesas,rzn1-i2c
+> >=20
+> > I don't really understand the rzn1/r9a06g032 difference here. Why are
+> > both needed?
+>=20
+> From our experience with Renesas R-Car, we concluded to have a binding
+> for the SoC and one for the family it belongs to.
+>=20
+> For example, the already upstream watchdog bindings:
+>=20
+>       - items:
+>           - enum:
+>               - renesas,r9a06g032-wdt    # RZ/N1D
+>           - const: renesas,rzn1-wdt      # RZ/N1
+>=20
+> I could add the comments here as well if that helps?
 
-We should move this to the top and replace all the 'pdev.as_ref()' with 
-'dev'.
+I think that would be helpful, to explain the relationship between the
+devices. With it
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> +        if let Ok(idx) = dev.property_match_string(c_str!("compatible"), c_str!("test,rust-device"))
-> +        {
-> +            dev_info!(pdev.as_ref(), "matched compatible string idx = {}\n", idx);
 
-Like here. (Looks like this is my fault.)
+--X3x43n9K5NuFCM7M
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +        }
-> +
-> +        if let Ok(str) = dev
-> +            .property_read::<CString>(c_str!("compatible"))
-> +            .required()
-> +        {
-> +            dev_info!(pdev.as_ref(), "compatible string = {:?}\n", str);
-> +        }
-> +
-> +        let prop = dev
-> +            .property_read::<bool>(c_str!("test,bool-prop"))
-> +            .required()?;
+-----BEGIN PGP SIGNATURE-----
 
-The 'required' is kind of odd for boolean properties. They are never 
-required as not present is the only way to to get false.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ+R6lQAKCRB4tDGHoIJi
+0pmZAP94LgRG4Bi2cS0tjrdo86Fn0vQVZVXykyaAirCcl273dAD9EW+VyO18XGP+
+aMS1u1S6qZxh4qjFgJUPvxhSlyiEZQk=
+=Vk5v
+-----END PGP SIGNATURE-----
 
-> +        dev_info!(dev, "bool prop is {}\n", prop);
-> +
-> +        if dev.property_present(c_str!("test,u32-prop")) {
-> +            dev_info!(dev, "'test,u32-prop' is present\n");
-> +        }
-> +
-> +        let prop = dev
-> +            .property_read::<u32>(c_str!("test,u32-optional-prop"))
-> +            .or(0x12);
-> +        dev_info!(
-> +            dev,
-> +            "'test,u32-optional-prop' is {:#x} (default = {:#x})\n",
-> +            prop,
-> +            0x12
-> +        );
-> +
-> +        // Missing property without a default will print an error
-> +        let _ = dev
-> +            .property_read::<u32>(c_str!("test,u32-required-prop"))
-> +            .required()?;
-> +
-> +        let prop: u32 = dev.property_read(c_str!("test,u32-prop")).required()?;
-> +        dev_info!(dev, "'test,u32-prop' is {:#x}\n", prop);
-> +
-> +        let prop: [i16; 4] = dev.property_read(c_str!("test,i16-array")).required()?;
-> +        dev_info!(dev, "'test,i16-array' is {:?}\n", prop);
-> +        dev_info!(
-> +            dev,
-> +            "'test,i16-array' length is {}\n",
-> +            dev.property_count_elem::<u16>(c_str!("test,i16-array"))
-> +                .unwrap()
-> +        );
-> +
-> +        let prop: KVec<i16> = dev
-> +            .property_read_array_vec(c_str!("test,i16-array"), 4)?
-> +            .required()?;
-> +        dev_info!(dev, "'test,i16-array' is KVec {:?}\n", prop);
-> +
->          let drvdata = KBox::new(Self { pdev: pdev.clone() }, GFP_KERNEL)?;
->  
->          Ok(drvdata.into())
-> -- 
-> 2.49.0
-> 
+--X3x43n9K5NuFCM7M--
 
