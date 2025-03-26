@@ -1,278 +1,307 @@
-Return-Path: <devicetree+bounces-160835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AABEA71471
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 11:09:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62A0AA71487
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 11:14:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6AB5B7A63C5
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 10:08:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CAA23B0922
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 10:14:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD5E81B412A;
-	Wed, 26 Mar 2025 10:09:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B97361B0F3C;
+	Wed, 26 Mar 2025 10:14:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q0aKifaQ"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="nGOZiOKk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D6141AD3E0
-	for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 10:09:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CED8015381A
+	for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 10:14:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742983759; cv=none; b=OGrnkTZqwWtBo+m0lg3SxGFAn3iknEvCq6nursPVgKKdndC02NRDtSwdUWGnHGTBEzvlP5nJown1ymWjXeb7sKX3VIg7sLj3D7pu3RHR9oqsRNPu27uvVws6bP09czPPm1R4NUPICYReRP8YGg7ntr2xaXgkNH3zDoSKG0IdDRM=
+	t=1742984085; cv=none; b=gy2qubQaLt7UX2zAewjgB8TCQ0oSVAI7+rDR8E6ItPaNouiiZXZg9AVKP6hlH4f8fyij87TsJULNdiq2oKBgGH31yibIK8Ae6r11p2+MohvShF13neyFdagUbJOz5p0sBWcmZv4AJDMfsNpnj5pIohD16yBk4TZUAienQQ1aWj0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742983759; c=relaxed/simple;
-	bh=P2ErozGc1YzloiYKFY8XVll++8O7M+IJCl8ipftI2Iw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gKBNjSvoIZrvJIpyt/waV718UTvNP+IMfHvL54uue84SzLgIAi4TXO9xzb8foqeZITKIsi9vzGV1u8x2KAu2dtPxy0CYIIcj35PZcr5vc/cObZUXv50weuGIeJ6a5m0eFZairnXNSwoXkGld3Vlwsh7qbs30fLojEUSVrHD64Cg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=q0aKifaQ; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-ac2a81e41e3so1317598866b.1
-        for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 03:09:17 -0700 (PDT)
+	s=arc-20240116; t=1742984085; c=relaxed/simple;
+	bh=UmsMuhpZlu+Njl9EMinVLEfXAWYFXiGBm7wBgkQV+HM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uVofjq7Hv62Lb6gqlI9bSo3jh/iXrsnZU8OUq2VOdrvr83G4/5HVJ4z7/AtHFf3m6bcvAImqBAY160ZASmrob7vHoYb2jk1MTEv/QstBhpynVoowOxp7ci9AKVqd3P8T0KeIu+Oz+RYngx1lPo8LYayG3By0UyjmxBk5izUGZkk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=nGOZiOKk; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-43cfe63c592so63698365e9.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 03:14:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742983756; x=1743588556; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=mxE8mSuQFba5USugxIRzMPXLK6rZ2IlU479/J4S7RRQ=;
-        b=q0aKifaQ2qy5v288k5NA63z5aNi0UvdiSrsQXvU1PzWFATC5wn/+uaFX05IL5Gi6Xl
-         T6wSSwD0/qtdTxQtx83rT/9A+LcCPNWK7UO7v8wZjF2Wet5rLDWIoUKvKMrttpByUuUq
-         QQegCzmu73TDiurY1QJNV1ry+9zjEpxFbViPQoQ8s0bjCvOdcQgtV6+OY2Mt2qQMUXqK
-         2ag+iKc1VemK1wWwGLGjoEU5pLGcN8oSQwn1E3tshfHMEcgGdPDVG7sf/HFXs8+pDVVs
-         QtsTg4UEBke3wDZs9YJBrJxPemcBwfulTiZETMnMC8Rimp/YWcHdnrOaPXipVIgkqTJN
-         Ggbg==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1742984080; x=1743588880; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=u+DNp9QMgdrRGLxMsL46W/r+9G/+hiEbxecdzU4iISI=;
+        b=nGOZiOKkGcDJb357qlVR8SRL0tkKb4UmIAvL9qApqeuGVLuVvjxRqZd1HZ1rgM3ZnA
+         0fuV6zqZ5pYYgVh1Bl3OtseXLN/9VYf7gT0JshJY5Av95wWkc6U6kjEXyCgNAey7imyu
+         LFOwKBWajFFifWhD4KGG+0FBLzJKcmAeo8EIjav67CxmJh2i7oLAB62oDEztUlzBOO1g
+         BOSRJhUmLnz8enKW92n4DwyNKI+0k6JExO4L0DPWO2V56TbNl4PVLPTPTWeKwG8TMETD
+         QwthG2pog2DbZGIb6yKZic9VD4RYt5E8BgBfELXYiGaHQ3lUAEpCQWq3nMGe2Qy2awMy
+         ZLUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742983756; x=1743588556;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mxE8mSuQFba5USugxIRzMPXLK6rZ2IlU479/J4S7RRQ=;
-        b=qkUb9VvWzhdZMIfCJfAgc/HduFr/NiH3qMoifQapuKITa1DUhdPp6yjruyX3gJiVl0
-         m3PZh4wLuGt45JHkezIqnX2KUyLPI859Ufuso0eaC8VoGEJd0140y/raWBJ9Cin62wi0
-         BRVHNgGAoSxV2mmkefegBBX9onJEkccmTjgcrzHzs+0DzUnqZTnqlO4FdT8op9BzvpSN
-         A8vcjf2M3soGZplckP4j0pYifd96JvV2NSeJQ9CV2YQCi45Q0Hx7qwYA3sXIl7mmXCAR
-         2aMxRjs6XaoapLb8lAbwHZpHhm3nTUHpkFqXbFhBfeqApvB/b/aThmVbvOIapxUOaU4f
-         qKXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUs3dECsw1DgKeGux20fMMBDWaCd2QDLe18hRa9dWkd8bqLuYwaQThal1i2SQgVO1s74+hZmrCMMAH7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw5rVmSP9tUILjgeCf3gG/2WPF4WVWiM2Mg7s7p4q3oA19huLPX
-	jczfCwL9lZxDDxYf0mMDVYlpKQROpwVvFE9Y0Gr6RmdEL6LT3X//C78hnJUGNag=
-X-Gm-Gg: ASbGncv1pDWtb+tBwljsUrWUHAn0n1rzsDGvBYPT0LfIUJFoqQxSrEsNsvW1f22ttwx
-	McD+aaXFalk4Xmm6S1nSVkKX5/UzmxHghpsEoZnz9HqrOPKx+R7CkG9ocqYnSRiE6Z4cZKgEay7
-	qLtKR6QXM8RrvHlOPCLtBOzqVu2zte2iZCGcEA8bgcgu5UCmAs86XlwdLQJlTTv5SzGz2Y8OEAG
-	dJDAzU+36D+4A11GogxgeU82BqyooVd82zsXkfL+w7Cox9JbC2VFIJ2MBND16SO+7F/AeKNeWtO
-	8hgTLyhbuVOaJzZ9mq3DH93S49aNMb/6shzLDouEgvVSouwCDvVJwqU=
-X-Google-Smtp-Source: AGHT+IGuB/epcJCgNqpypGqs/8PJnFxUfea7pF2X+I+R3S5XuLqn/BDqdYJIFIeL24XP+sXSUduRlw==
-X-Received: by 2002:a17:907:7292:b0:ac3:8895:8e99 with SMTP id a640c23a62f3a-ac3f20ba753mr2011787766b.3.1742983755500;
-        Wed, 26 Mar 2025 03:09:15 -0700 (PDT)
-Received: from linaro.org ([2a02:2454:ff21:ef30:b2cf:5182:7604:e8d])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac3ef869eefsm993244766b.30.2025.03.26.03.09.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Mar 2025 03:09:15 -0700 (PDT)
-Date: Wed, 26 Mar 2025 11:09:13 +0100
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Wesley Cheng <quic_wcheng@quicinc.com>
-Cc: srinivas.kandagatla@linaro.org, mathias.nyman@intel.com, perex@perex.cz,
-	conor+dt@kernel.org, dmitry.torokhov@gmail.com, corbet@lwn.net,
-	broonie@kernel.org, lgirdwood@gmail.com, krzk+dt@kernel.org,
-	pierre-louis.bossart@linux.intel.com, Thinh.Nguyen@synopsys.com,
-	tiwai@suse.com, robh@kernel.org, gregkh@linuxfoundation.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-sound@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-doc@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
-Subject: Re: [PATCH v36 28/31] ALSA: usb-audio: qcom: Introduce QC USB SND
- offloading support
-Message-ID: <Z-PSSXt8WY3yVFM4@linaro.org>
-References: <20250319005141.312805-1-quic_wcheng@quicinc.com>
- <20250319005141.312805-29-quic_wcheng@quicinc.com>
- <Z-J7n8qLMPVxpwuV@linaro.org>
- <5a7442c9-493d-4c23-a179-128f02a29f73@quicinc.com>
+        d=1e100.net; s=20230601; t=1742984080; x=1743588880;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=u+DNp9QMgdrRGLxMsL46W/r+9G/+hiEbxecdzU4iISI=;
+        b=b6NBQ6w3ZfPND/37ETt8usbb/xOvs+uJ/7lAH0U0S2kQli4Winsnd4cFs9Iy5U7az6
+         Ccfflf/X0S9VxmFaGoLPurRpu35qsKzcqAHtbdsIlHYBTy1sFISjWcgt1sMRnmvy2TcE
+         jPS6DnprsNuOI11LGCWSytYsAsuQSEd79oNyZIE34/XAMbXvbp89QUqITv8m7QRCTp1X
+         EXmH8Gv8SPxIzoos4fac640zP32siPXqQtYyg3I3OjAfdTL//bbU9eFNU2AEjYlYFyZx
+         PUrN/UxxVhJ8cB5qrVGD+f6cEVWYH67fdMvu++8Lo5Hre7qBGBeN9f9PzHE9/1aDqXSB
+         Fheg==
+X-Forwarded-Encrypted: i=1; AJvYcCVlWg5J47tDHLK4z3wRxyalx1HmjHZ2394gUISNy96avkN7arXtmJZVlvU5EgqyQK3oAhfnOrY11AZA@vger.kernel.org
+X-Gm-Message-State: AOJu0YwCnmL93k8M5xirBQu93WBvEb7rZJ66XiII4eTcmF5Dbi+LhiLE
+	QCIAJGfL/3DDh3uBM4rj1R12lQp26JMJLJ/I8A+x2CL6MH71isMJzp4hQau6yZk=
+X-Gm-Gg: ASbGncu6Gu2LAMWcYcMpJn6MlCyk2zAUoJBnJ6uG7u5xiGTmbiXxjhcoBkarO9yuO5L
+	kEIfNjCAX6mp9JZWWekQyBY4BWq+zEMySA3A4dMOdUE2NOLAROBpn5mufj2nIZsBL7w6+WGpALF
+	GkF3z1lQRSGxwZ9aQufg/StQBSOeeVeH1lAdApsNujmsQWwm+EimPK6ukNbw3F6pFNjZg6/HtpP
+	d7Vbf3PXtMrlI4cGgt7bbkaOZZ4auZ7Wevl30uWkkAG6S6/98bElBX1PkrUxO+YKSI0SHtGT6/2
+	jyn5ZYZLcjUyQ61cen1aPuXc68lghVZawxa+gdEg9/ZZU3fBkAgF6NeAN8NNGoWby6fI66UNeWU
+	ADuDRIAn+ffsDvv7o
+X-Google-Smtp-Source: AGHT+IHwhUQzzlTOSTisycIZUmQB3vcpLzOCNhJ8f/5tktjjSbuVrOP11IMJCJMu5JzNW6Sn0rBjNw==
+X-Received: by 2002:a05:600c:1e07:b0:43c:fdbe:439b with SMTP id 5b1f17b1804b1-43d509e374bmr207124305e9.4.1742984079808;
+        Wed, 26 Mar 2025 03:14:39 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:5ee:79d0:9b00:d804:1c3a:7697? ([2a01:e0a:5ee:79d0:9b00:d804:1c3a:7697])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d4fdbcfaasm176097065e9.35.2025.03.26.03.14.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Mar 2025 03:14:39 -0700 (PDT)
+Message-ID: <8fde6af6-baaa-4f26-b9c0-a17ebcb67073@baylibre.com>
+Date: Wed, 26 Mar 2025 11:14:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5a7442c9-493d-4c23-a179-128f02a29f73@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RESEND v2] arm64: dts: mediatek: add mmc2 support for
+ mt8365-evk
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, macpaul.Lin@mediatek.com
+Cc: vsatoes@baylibre.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20250109-mmc2-support-v2-1-5f660c809610@baylibre.com>
+ <ecd8a46e-0f87-498e-8a12-fdeae6f5791d@collabora.com>
+Content-Language: en-US
+From: Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <ecd8a46e-0f87-498e-8a12-fdeae6f5791d@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Tue, Mar 25, 2025 at 06:32:14PM -0700, Wesley Cheng wrote:
-> On 3/25/2025 2:47 AM, Stephan Gerhold wrote:
-> > On Tue, Mar 18, 2025 at 05:51:38PM -0700, Wesley Cheng wrote:
-> >> Several Qualcomm SoCs have a dedicated audio DSP, which has the ability to
-> >> support USB sound devices.  This vendor driver will implement the required
-> >> handshaking with the DSP, in order to pass along required resources that
-> >> will be utilized by the DSP's USB SW.  The communication channel used for
-> >> this handshaking will be using the QMI protocol.  Required resources
-> >> include:
-> >> - Allocated secondary event ring address
-> >> - EP transfer ring address
-> >> - Interrupter number
-> >>
-> >> The above information will allow for the audio DSP to execute USB transfers
-> >> over the USB bus.  It will also be able to support devices that have an
-> >> implicit feedback and sync endpoint as well.  Offloading these data
-> >> transfers will allow the main/applications processor to enter lower CPU
-> >> power modes, and sustain a longer duration in those modes.
-> >>
-> >> Audio offloading is initiated with the following sequence:
-> >> 1. Userspace configures to route audio playback to USB backend and starts
-> >> playback on the platform soundcard.
-> >> 2. The Q6DSP AFE will communicate to the audio DSP to start the USB AFE
-> >> port.
-> >> 3. This results in a QMI packet with a STREAM enable command.
-> >> 4. The QC audio offload driver will fetch the required resources, and pass
-> >> this information as part of the QMI response to the STREAM enable command.
-> >> 5. Once the QMI response is received the audio DSP will start queuing data
-> >> on the USB bus.
-> >>
-> >> As part of step#2, the audio DSP is aware of the USB SND card and pcm
-> >> device index that is being selected, and is communicated as part of the QMI
-> >> request received by QC audio offload.  These indices will be used to handle
-> >> the stream enable QMI request.
-> >>
-> >> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
-> >> ---
-> >>  sound/usb/Kconfig                 |   14 +
-> >>  sound/usb/Makefile                |    2 +-
-> >>  sound/usb/qcom/Makefile           |    2 +
-> >>  sound/usb/qcom/qc_audio_offload.c | 1988 +++++++++++++++++++++++++++++
-> >>  4 files changed, 2005 insertions(+), 1 deletion(-)
-> >>  create mode 100644 sound/usb/qcom/Makefile
-> >>  create mode 100644 sound/usb/qcom/qc_audio_offload.c
-> >>
-> >> diff --git a/sound/usb/Kconfig b/sound/usb/Kconfig
-> >> index 4a9569a3a39a..6daa551738da 100644
-> >> --- a/sound/usb/Kconfig
-> >> +++ b/sound/usb/Kconfig
-> >> @@ -176,6 +176,20 @@ config SND_BCD2000
-> >>  	  To compile this driver as a module, choose M here: the module
-> >>  	  will be called snd-bcd2000.
-> >>  
-> >> +config SND_USB_AUDIO_QMI
-> >> +	tristate "Qualcomm Audio Offload driver"
-> >> +	depends on QCOM_QMI_HELPERS && SND_USB_AUDIO && USB_XHCI_SIDEBAND && SND_SOC_USB
-> >> +	help
-> >> +	  Say Y here to enable the Qualcomm USB audio offloading feature.
-> >> +
-> >> +	  This module sets up the required QMI stream enable/disable
-> >> +	  responses to requests generated by the audio DSP.  It passes the
-> >> +	  USB transfer resource references, so that the audio DSP can issue
-> >> +	  USB transfers to the host controller.
-> >> +
-> >> +	  To compile this driver as a module, choose M here: the module
-> >> +	  will be called snd-usb-audio-qmi.
-> >> [...]
-> >> diff --git a/sound/usb/qcom/qc_audio_offload.c b/sound/usb/qcom/qc_audio_offload.c
-> >> new file mode 100644
-> >> index 000000000000..3319363a0fd0
-> >> --- /dev/null
-> >> +++ b/sound/usb/qcom/qc_audio_offload.c
-> >> @@ -0,0 +1,1988 @@
-> >> [...]
-> >> +static int __init qc_usb_audio_offload_init(void)
-> >> +{
-> >> +	struct uaudio_qmi_svc *svc;
-> >> +	int ret;
-> >> +
-> >> +	svc = kzalloc(sizeof(*svc), GFP_KERNEL);
-> >> +	if (!svc)
-> >> +		return -ENOMEM;
-> >> +
-> >> +	svc->uaudio_svc_hdl = kzalloc(sizeof(*svc->uaudio_svc_hdl), GFP_KERNEL);
-> >> +	if (!svc->uaudio_svc_hdl) {
-> >> +		ret = -ENOMEM;
-> >> +		goto free_svc;
-> >> +	}
-> >> +
-> >> +	ret = qmi_handle_init(svc->uaudio_svc_hdl,
-> >> +			      QMI_UAUDIO_STREAM_REQ_MSG_V01_MAX_MSG_LEN,
-> >> +			      &uaudio_svc_ops_options,
-> >> +			      &uaudio_stream_req_handlers);
-> >> +	ret = qmi_add_server(svc->uaudio_svc_hdl, UAUDIO_STREAM_SERVICE_ID_V01,
-> >> +			     UAUDIO_STREAM_SERVICE_VERS_V01, 0);
-> >> +
-> >> +	uaudio_svc = svc;
-> >> +
-> >> +	ret = snd_usb_register_platform_ops(&offload_ops);
-> >> +	if (ret < 0)
-> >> +		goto release_qmi;
-> >> +
-> >> +	return 0;
-> >> +
-> >> +release_qmi:
-> >> +	qmi_handle_release(svc->uaudio_svc_hdl);
-> >> +free_svc:
-> >> +	kfree(svc);
-> >> +
-> >> +	return ret;
-> >> +}
-> >> +
-> >> +static void __exit qc_usb_audio_offload_exit(void)
-> >> +{
-> >> +	struct uaudio_qmi_svc *svc = uaudio_svc;
-> >> +	int idx;
-> >> +
-> >> +	/*
-> >> +	 * Remove all connected devices after unregistering ops, to ensure
-> >> +	 * that no further connect events will occur.  The disconnect routine
-> >> +	 * will issue the QMI disconnect indication, which results in the
-> >> +	 * external DSP to stop issuing transfers.
-> >> +	 */
-> >> +	snd_usb_unregister_platform_ops();
-> >> +	for (idx = 0; idx < SNDRV_CARDS; idx++)
-> >> +		qc_usb_audio_offload_disconnect(uadev[idx].chip);
-> >> +
-> >> +	qmi_handle_release(svc->uaudio_svc_hdl);
-> >> +	kfree(svc);
-> >> +	uaudio_svc = NULL;
-> >> +}
-> >> +
-> >> +module_init(qc_usb_audio_offload_init);
-> >> +module_exit(qc_usb_audio_offload_exit);
-> >> +
-> >> +MODULE_DESCRIPTION("QC USB Audio Offloading");
-> >> +MODULE_LICENSE("GPL");
-> > 
-> > What will trigger loading this if this code is built as module?
-> > 
-> > Testing suggests nothing does at the moment: If this is built as module,
-> > playback via USB_RX will fail until you manually modprobe
-> > snd-usb-audio-qmi.
-> > 
+Hello Angelo,
+
+Thanks for the review :D
+
+I've some comment below:
+
+On 24/03/2025 15:09, AngeloGioacchino Del Regno wrote:
+> Il 24/03/25 14:54, Alexandre Mergnat ha scritto:
+>> Adds support for the MMC2 interface on the MT8365 EVK board.
+>> It introduces a fixed regulator for the MMC2 VDD33 supply and configures
+>> the MMC2 node with a 4-bit bus width, high-speed capabilities, UHS
+>> modes, and appropriate power supplies. Enabled SDIO IRQ, wakeup source,
+>> and kept power during suspend (to save firmware module) for wireless
+>> chip functionality.
+>>
+>> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+>> ---
+>> Changes in v2:
+>> - Apply alphabetical order to pinctrl property items.
+>> - Improve commit message
+>> - Link to v1: https://lore.kernel.org/r/20250109-mmc2-support-v1-1-9b9d1b1ae35d@baylibre.com
+>> ---
+>>   arch/arm64/boot/dts/mediatek/mt8365-evk.dts | 103 +++++++++++++++++++++++++---
+>>   1 file changed, 94 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
+>> index 7d90112a7e274..a87f1b3ed6500 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
+>> @@ -53,6 +53,15 @@ memory@40000000 {
+>>           reg = <0 0x40000000 0 0xc0000000>;
+>>       };
+>> +    mmc2_vdd33: mmc2_vdd33-regulator {
+>> +        compatible = "regulator-fixed";
+>> +        regulator-name = "mmc2_vdd33";
 > 
-> Yes, it would only get triggered on a modprobe.  I think the more important
-> part is when snd_usb_register_platform_ops() is called.  This is what would
-> register the vendor USB offload driver callbacks for USB connect/disconnect
-> events.
+> mmc2-vdd33 please
+
+Ok
+
 > 
-> > I think the easiest way to solve this would be to drop the
-> > module_init()/module_exit() and instead call into these init/exit
-> > functions from one of the other audio modules. This would also ensure
-> > that the QMI server is only registered if we actually need it (if the
-> > board sound card actually has a USB DAI link).
-> > 
+>> +        regulator-min-microvolt = <3300000>;
+>> +        regulator-max-microvolt = <3300000>;
+>> +        gpio = <&pio 121 0>;
+>> +        enable-active-high;
+>> +    };
+>> +
+>>       usb_otg_vbus: regulator-0 {
+>>           compatible = "regulator-fixed";
+>>           regulator-name = "otg_vbus";
+
+Then, I will change this too.
+
+>> @@ -197,6 +206,28 @@ &mmc1 {
+>>       status = "okay";
+>>   };
+>> +&mmc2 {
+>> +    assigned-clock-parents = <&topckgen CLK_TOP_MSDCPLL>;
+>> +    assigned-clocks = <&topckgen CLK_TOP_MSDC50_2_SEL>;
+>> +    bus-width = <4>;
+>> +    cap-sd-highspeed;
+>> +    cap-sdio-irq;
+>> +    hs400-ds-delay = <0x12012>;
+>> +    keep-power-in-suspend;
+>> +    max-frequency = <200000000>;
+>> +    non-removable;
+>> +    pinctrl-0 = <&mmc2_default_pins>;
+>> +    pinctrl-1 = <&mmc2_uhs_pins>;
+>> +    pinctrl-names = "default", "state_uhs";
+>> +    sd-uhs-sdr104;
+>> +    sd-uhs-sdr25;
+>> +    sd-uhs-sdr50;
+>> +    vmmc-supply = <&mmc2_vdd33>;
+>> +    vqmmc-supply = <&mt6357_vcn18_reg>;
+>> +    wakeup-source;
+>> +    status = "okay";
+>> +};
+>> +
+>>   &mt6357_pmic {
+>>       interrupts-extended = <&pio 145 IRQ_TYPE_LEVEL_HIGH>;
+>>       interrupt-controller;
+>> @@ -324,8 +355,8 @@ cmd-dat-pins {
+>>                    <MT8365_PIN_94_MSDC0_DAT6__FUNC_MSDC0_DAT6>,
+>>                    <MT8365_PIN_93_MSDC0_DAT7__FUNC_MSDC0_DAT7>,
+>>                    <MT8365_PIN_98_MSDC0_CMD__FUNC_MSDC0_CMD>;
+>> -            input-enable;
+>>               bias-pull-up;
+>> +            input-enable;
 > 
-> It would be difficult from the perspective of USB SND, because if we got
-> rid of the vendor ops, it would be messy, since the USB offload vendor
-> driver will be specific for every SoC.
+> This is a cleanup and goes to a different commit
+
+Agree
+
+> 
+>>           };
+>>           rst-pins {
+>> @@ -337,8 +368,8 @@ rst-pins {
+>>       mmc0_uhs_pins: mmc0-uhs-pins {
+>>           clk-pins {
+>>               pinmux = <MT8365_PIN_99_MSDC0_CLK__FUNC_MSDC0_CLK>;
+>> -            drive-strength = <MTK_DRIVE_10mA>;
+>>               bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
+>> +            drive-strength = <MTK_DRIVE_10mA>;
+> 
+> While at it, in a cleanup commit, if you could also remove those MTK_DRIVE_xxx and
+> use just the number that'd be great.
+
+Sure
+
+> 
+>>           };
+>>           cmd-dat-pins {
+>> @@ -351,21 +382,21 @@ cmd-dat-pins {
+>>                    <MT8365_PIN_94_MSDC0_DAT6__FUNC_MSDC0_DAT6>,
+>>                    <MT8365_PIN_93_MSDC0_DAT7__FUNC_MSDC0_DAT7>,
+>>                    <MT8365_PIN_98_MSDC0_CMD__FUNC_MSDC0_CMD>;
+>> -            input-enable;
+>> -            drive-strength = <MTK_DRIVE_10mA>;
+>>               bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+>> +            drive-strength = <MTK_DRIVE_10mA>;
+>> +            input-enable;
+>>           };
+>>           ds-pins {
+>>               pinmux = <MT8365_PIN_104_MSDC0_DSL__FUNC_MSDC0_DSL>;
+>> -            drive-strength = <MTK_DRIVE_10mA>;
+>>               bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
+>> +            drive-strength = <MTK_DRIVE_10mA>;
+>>           };
+>>           rst-pins {
+>>               pinmux = <MT8365_PIN_97_MSDC0_RSTB__FUNC_MSDC0_RSTB>;
+>> -            drive-strength = <MTK_DRIVE_10mA>;
+>>               bias-pull-up;
+>> +            drive-strength = <MTK_DRIVE_10mA>;
+>>           };
+>>       };
+>> @@ -386,16 +417,16 @@ cmd-dat-pins {
+>>                    <MT8365_PIN_91_MSDC1_DAT2__FUNC_MSDC1_DAT2>,
+>>                    <MT8365_PIN_92_MSDC1_DAT3__FUNC_MSDC1_DAT3>,
+>>                    <MT8365_PIN_87_MSDC1_CMD__FUNC_MSDC1_CMD>;
+>> -            input-enable;
+>>               bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+>> +            input-enable;
+>>           };
+>>       };
+>>       mmc1_uhs_pins: mmc1-uhs-pins {
+>>           clk-pins {
+>>               pinmux = <MT8365_PIN_88_MSDC1_CLK__FUNC_MSDC1_CLK>;
+>> -            drive-strength = <8>;
+>>               bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
+>> +            drive-strength = <8>;
+>>           };
+>>           cmd-dat-pins {
+>> @@ -404,9 +435,63 @@ cmd-dat-pins {
+>>                    <MT8365_PIN_91_MSDC1_DAT2__FUNC_MSDC1_DAT2>,
+>>                    <MT8365_PIN_92_MSDC1_DAT3__FUNC_MSDC1_DAT3>,
+>>                    <MT8365_PIN_87_MSDC1_CMD__FUNC_MSDC1_CMD>;
+>> -            input-enable;
+>> +            bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+>>               drive-strength = <6>;
+>> +            input-enable;
+>> +        };
+>> +    };
+>> +
+>> +    mmc2_default_pins: mmc2-default-pins {
+>> +        clk-pins {
+>> +            pinmux = <MT8365_PIN_81_MSDC2_CLK__FUNC_MSDC2_CLK>;
+>> +            bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
+>> +            drive-strength = <4>;
+>> +        };
+>> +
+>> +        cmd-dat-pins {
+>> +            pinmux = <MT8365_PIN_82_MSDC2_DAT0__FUNC_MSDC2_DAT0>,
+>> +                 <MT8365_PIN_83_MSDC2_DAT1__FUNC_MSDC2_DAT1>,
+>> +                 <MT8365_PIN_84_MSDC2_DAT2__FUNC_MSDC2_DAT2>,
+>> +                 <MT8365_PIN_85_MSDC2_DAT3__FUNC_MSDC2_DAT3>,
+>> +                 <MT8365_PIN_80_MSDC2_CMD__FUNC_MSDC2_CMD>;
+>>               bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+>> +            drive-strength = <4>;
+>> +            input-enable;
+>> +        };
+>> +
+>> +        sys-en-pins {
+>> +            pinmux = <MT8365_PIN_120_DMIC1_CLK__FUNC_GPIO120>;
+> 
+> My schematics say that the DMIC1_CLK pin is PERST_N, DMIC_DAT0 is PWR_EN: what's
+> the intention here?!
+> 
+> In any case, this is not a mmc2 pin, but something else :-)
+
+First of all, name in schematic are wrong, I noticed that when I've port these feature from kernel 
+5.15 to 6.6. After digging and talking to MTK, they confirm me that PERST_N is actually an enable 
+pin (or power_on).
+
+Secondly, MT7663_PERST_N (MT8365_PIN_120_DMIC1_CLK__FUNC_GPIO120) is part of mmc2 pin since is it 
+connected to the MMC2 connector pin number 52.
+
+> 
+> Cheers,
+> Angelo
 > 
 
-What I meant is calling qc_usb_audio_offload_init() from any of the
-other drivers that are involved, e.g. q6usb. Or register an auxilliary
-device like in qcom_pd_mapper, so the modules don't need to link
-together directly. That shouldn't get too messy.
-
-There are several reasonable options here, any of them is fine as long
-as this module will get automatically loaded for users that need it.
-Anything else would defeat the purpose of the generic USB sound
-offloading userspace interface, because you would need to load the
-QC-specific snd-usb-audio-qmi module manually. :-)
-
-Thanks,
-Stephan
+-- 
+Regards,
+Alexandre
 
