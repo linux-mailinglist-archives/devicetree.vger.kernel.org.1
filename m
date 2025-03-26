@@ -1,263 +1,132 @@
-Return-Path: <devicetree+bounces-160864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65229A716A9
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 13:25:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44EC7A716EB
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 13:52:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5390E3ACDE7
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 12:25:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FF73189C065
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 12:52:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAE851E1DE0;
-	Wed, 26 Mar 2025 12:25:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A0361B983F;
+	Wed, 26 Mar 2025 12:52:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Grnt17tZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D2901E1020
-	for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 12:25:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DA6B1B3950;
+	Wed, 26 Mar 2025 12:52:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742991939; cv=none; b=tx2zcsFGUdPSyo5SCYBxkL2XeV07xBdlvGqnjHCBaduNtbl8R1Ure9rGzOQ/3MLpi1lIhKCKIAUszGYMAPf/wCcUFqSwQypE4aQWbxxvtLkqybERAcNvPNzmBzoX1XCPzKDvYWi+UAof/aeGcsRoI/iQqZ8tQ8DugPAJXTJVWWU=
+	t=1742993566; cv=none; b=a5djTvTjrJk4mige5GLOTDBWuVvH10BoVeuS7H7qiaOob7CbD1lxI55/I+tvVXSc3zRKcNGN627pTA/AYBQi5f04DmvwZqyqgIOMV/Wb8fPy2CrQZXOAj6ooRUO2DXy+QSbFD1fQIHRRkxGAxPHF9IFMdQ16IyZCUAIfCd3f7yU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742991939; c=relaxed/simple;
-	bh=X8k0tKirUg1631PzRrSi+8OgAtwG0D84TAV/OPt/W7c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jg07VxmPtG0u5cziUL6rg6hG7PMqj5kTSojwjKvFDP/7XhYISFVXTxoB+7EH/ryRHgZ1AuF5eVrgHiGg/NG4olP0YbpM/7pDkSU8fpsRMjBMuu/19YEorFIZHeI3rLWc5Joz30YOQS8pcsvv38zIDeLx/T7WVa5uyIGb8kZTHXI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1txPp9-0006zg-5Z; Wed, 26 Mar 2025 13:25:35 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1txPp8-001kJe-1G;
-	Wed, 26 Mar 2025 13:25:34 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1txPp8-0006jP-2E;
-	Wed, 26 Mar 2025 13:25:34 +0100
-Date: Wed, 26 Mar 2025 13:25:34 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Rob Herring <robh@kernel.org>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>, devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>, Frank Li <Frank.li@nxp.com>,
-	linux-kernel@vger.kernel.org,
-	Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>,
-	Marc Kleine-Budde <mkl@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 1/5] dt-bindings: bus: add documentation for the IMX
- AIPSTZ bridge
-Message-ID: <20250326122534.dazofwurjhouj6fw@pengutronix.de>
-References: <20250324162556.30972-1-laurentiumihalcea111@gmail.com>
- <20250324162556.30972-2-laurentiumihalcea111@gmail.com>
- <20250325032303.GA1624882-robh@kernel.org>
- <20250326102522.rtsffb37wvolhwd4@pengutronix.de>
+	s=arc-20240116; t=1742993566; c=relaxed/simple;
+	bh=yCg1rgqOSeu+rLDpXWfBkyZmFWl++cTnnHvhB3T0ZmU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XC+CEYJ6L6bF5jqYGv8j36q7HVfgr0MFS74hIcpigkMgmDRIFplMlzWH/oF30BT1lfNjb3FzAahVRTTZIsinWoLrIY6S2eajptgYHjn6hAUU+ggQpg3KqebDNDO+J6fsQPhHERYRq03sf/n+LOSy2qMXV/nTLtCzIK0smbFSdLY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Grnt17tZ; arc=none smtp.client-ip=209.85.221.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-521b84da5e9so2896550e0c.0;
+        Wed, 26 Mar 2025 05:52:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742993564; x=1743598364; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yCg1rgqOSeu+rLDpXWfBkyZmFWl++cTnnHvhB3T0ZmU=;
+        b=Grnt17tZgotgkdQ5lzTM7aeNu1bWMjxHTs9cVU8eEa/0xmudI2zh0GiTwl3S59jl4Q
+         zr2rdvaCGvWwYrMLHauKKWNl9zBdbv41ITXaDF+EWRdJab5cjbp0LgIO59Wmry9g6qt5
+         bswCBMhqrfwz/ipZB7BhGWdos0ziZK+rBddTmw/czO3TiNeX7nss22nvbRJ8rekvnrEn
+         FSvWMe+iR34CEeE++Ri2UkRKEdRaH7Kkb13SNvp8EWqWsUZ7wqGg8kGgzgTvD2FkxIJg
+         Qm5cQWopsvqL6AOGOkcLtR+UB8lxzUCMQeGzc6ZavbPxo4vjeO8ZBTVb3TGrv+Cr7spY
+         SQCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742993564; x=1743598364;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yCg1rgqOSeu+rLDpXWfBkyZmFWl++cTnnHvhB3T0ZmU=;
+        b=n9zAEuYgIC1+jC7i/0gtSoFhEp8zpb2mkpScLAvqz0x4LkF4zQnFgEoFCI0PAmiIsj
+         rzT4KllI0jwuPrORvq1c/OzYj2GI3Yw6/OiX+zotHPJ3OtxS6sQMBolUXn6NZEiZ0bXB
+         v0rFD3kUH4JzggGbKuhhz+U+vtx6W5jKDtBnCtVJMxuIcYxmCRWtlNPEsR4mDLMThzT6
+         oVgF2qTGP/PWz3kR0RgrVOyBDyB9hqa4oe60TEqvjMtW9nWpAn1bCb5lzgB6XU7p/XnN
+         /nGWYiT76Y6fTlhnGoOiHv399plSglSawYLfDJuEtsm+sEfbu7uBgv5qC71/CR5Tt4WW
+         ZLgw==
+X-Forwarded-Encrypted: i=1; AJvYcCVrsHXvY/j9MN49gE95JfJVmepR7U4/R+/l8JNxIzArjWuF3Q5O6UqBXr/8TnhPAtwTZjsjsfjQU15k@vger.kernel.org, AJvYcCVvVBeHl2+USTU+RtYGVb9Kuy/UoQ3uPyA5ZsvtV5MdAW5vqx4bXAwl/HagQI4z7KRyuaZMWrVKxA8FW3WK47eP4KQ=@vger.kernel.org, AJvYcCXR8tiUJqDvc6+kuDNm6mGKZYUs5yPmpqaoxTRYI+VUycFV1nz/9guO8U/YXcNzzIA21g9zQK9/buGszIA4@vger.kernel.org, AJvYcCXS1HFEx0urdAzykKW6zJGWG/97eeuUxswK+RPJAWI1C6ZNKaIfMjhVlxqKIkC4pj60Y6zkhNRW@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw0MyKTjdlI56ySrux3riPwSEqUmApHWZ/uHOUVVYUM2rlpHwFv
+	R3dDrq3l+Zu2+jTN7jxIG1CoAAo8pLcONCCDFasivW3X11F2NQERxp0IkqdpBvWCzP+BjcaZ4MD
+	mirOsooeETzutSvjIhzdLu65moho=
+X-Gm-Gg: ASbGncsliD2LsrinKJRPFZA20obnS+PRXxRHZ0P/bHU411JiXIfdenDZfBr4CidekH/
+	izVi/Fh4H19MD/nUeoQGAsXSGiBq/CNr4Vlr4M3BHSZ+f3suxC01PyxzAERQEjAnlqYc7XCrQeS
+	93h5dA5aHcbxtRBCCF9rwjzobtbYwyIWhagGRtV8jTypfWwjUGu9oofbbcug==
+X-Google-Smtp-Source: AGHT+IF2GYlRCksm5iOmvAw5h/Nm2NCHn/eSKqWf0IIrVguqLczqhR9m/OA32gWx7ZdbP9xEUZ5cFF4uby3trZm3JSs=
+X-Received: by 2002:a05:6122:614d:b0:520:652b:cdf9 with SMTP id
+ 71dfb90a1353d-525a838806amr14632718e0c.5.1742993563651; Wed, 26 Mar 2025
+ 05:52:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250326102522.rtsffb37wvolhwd4@pengutronix.de>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20250318205735.122590-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250318205735.122590-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Wed, 26 Mar 2025 12:52:17 +0000
+X-Gm-Features: AQ5f1Jp8vxfqG0NLOvLDVY_2Yq7ayGqmlj-XifLUdImduJ_U681u5FCcCZ32CJM
+Message-ID: <CA+V-a8tBh1Ev-8=0vcmz0XB7iqKzZZ5dKefrZCrY49Je3KTCAg@mail.gmail.com>
+Subject: Re: [PATCH net-next v4 0/3] Add GBETH glue layer driver for Renesas
+ RZ/V2H(P) SoC
+To: Paolo Abeni <pabeni@redhat.com>, Jakub Kicinski <kuba@kernel.org>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, netdev@vger.kernel.org, 
+	Jose Abreu <joabreu@synopsys.com>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>, Magnus Damm <magnus.damm@gmail.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Eric Dumazet <edumazet@google.com>, 
+	"David S. Miller" <davem@davemloft.net>, Andrew Lunn <andrew+netdev@lunn.ch>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 25-03-26, Marco Felsch wrote:
-> Hi Laurentiu,
-> 
-> On 25-03-24, Rob Herring wrote:
-> > On Mon, Mar 24, 2025 at 12:25:52PM -0400, Laurentiu Mihalcea wrote:
-> > > From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-> > > 
-> > > Add documentation for IMX AIPSTZ bridge.
-> > > 
-> > > Co-developed-by: Daniel Baluta <daniel.baluta@nxp.com>
-> > > Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
-> > > Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-> > > ---
-> > >  .../bindings/bus/fsl,imx8mp-aipstz.yaml       | 107 ++++++++++++++++++
-> > >  1 file changed, 107 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/bus/fsl,imx8mp-aipstz.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/bus/fsl,imx8mp-aipstz.yaml b/Documentation/devicetree/bindings/bus/fsl,imx8mp-aipstz.yaml
-> > > new file mode 100644
-> > > index 000000000000..c0427dfcdaca
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/bus/fsl,imx8mp-aipstz.yaml
-> > > @@ -0,0 +1,107 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/bus/fsl,imx8mp-aipstz.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Secure AHB to IP Slave bus (AIPSTZ) bridge
-> > > +
-> > > +description:
-> > > +  The secure AIPS bridge (AIPSTZ) acts as a bridge for AHB masters
-> > > +  issuing transactions to IP Slave peripherals. Additionally, this module
-> > > +  offers access control configurations meant to restrict which peripherals
-> > > +  a master can access.
-> > 
-> > Wrap at 80 chars.
-> > 
-> > > +
-> > > +maintainers:
-> > > +  - Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: fsl,imx8mp-aipstz
-> > > +
-> > > +  reg:
-> > > +    maxItems: 2
-> > > +
-> > > +  reg-names:
-> > > +    items:
-> > > +      - const: bus
-> > > +      - const: ac
-> > > +
-> > > +  power-domains:
-> > > +    maxItems: 1
-> > > +
-> > > +  "#address-cells":
-> > > +    const: 1
-> > > +
-> > > +  "#size-cells":
-> > > +    const: 1
-> > > +
-> > > +  "#access-controller-cells":
-> > > +    const: 0
-> > 
-> > With 0 cells, how do you identify which device it is?
-> > 
-> > > +
-> > > +  ranges: true
-> > > +
-> > > +# borrowed from simple-bus.yaml, no additional requirements for children
-> > > +patternProperties:
-> > > +  "@(0|[1-9a-f][0-9a-f]*)$":
-> > > +    type: object
-> > > +    additionalProperties: true
-> > > +    properties:
-> > > +      reg:
-> > > +        items:
-> > > +          minItems: 2
-> > > +          maxItems: 4
-> > > +        minItems: 1
-> > > +        maxItems: 1024
-> > > +      ranges:
-> > > +        oneOf:
-> > > +          - items:
-> > > +              minItems: 3
-> > > +              maxItems: 7
-> > > +            minItems: 1
-> > > +            maxItems: 1024
-> > > +          - $ref: /schemas/types.yaml#/definitions/flag
-> > > +    anyOf:
-> > > +      - required:
-> > > +          - reg
-> > > +      - required:
-> > > +          - ranges
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - reg-names
-> > > +  - power-domains
-> > > +  - "#address-cells"
-> > > +  - "#size-cells"
-> > > +  - "#access-controller-cells"
-> > > +  - ranges
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/clock/imx8mp-clock.h>
-> > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > > +
-> > > +    bus@30c00000 {
-> > > +        compatible = "fsl,imx8mp-aipstz";
-> > > +        reg = <0x30c00000 0x400000>, <0x30df0000 0x10000>;
-> > 
-> > It doesn't look like you have any registers in the 1st entry, but they 
-> > are child devices? Then you should use ranges and drop it here:
-> > 
-> > ranges = <0x0 0x30c00000 0x400000>;
-> > 
-> > 
-> > > +        reg-names = "bus", "ac";
-> 
-> Thanks for picking up my suggestion :) IMHO it does look more logical
-> now. I wasn't aware of the 'ranges' property else I would have suggested
-> you to use this property instead of having two regs, sorry. Once you
-> changed it to ranges we can drop the 'reg-names' as well since you only
-> need to supply the 'ac' register space.
-> 
-> Regards,
->   Marco
-> 
-> > > +        power-domains = <&pgc_audio>;
-> > > +        #address-cells = <1>;
-> > > +        #size-cells = <1>;
-> > > +        #access-controller-cells = <0>;
-> > > +        ranges;
+Hi Paolo and Jakub
 
-I didn't noticed that we already do have the ranges 1:1 mapping, sorry!
+On Tue, Mar 18, 2025 at 8:57=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
+om> wrote:
+>
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Hi All,
+>
+> This patch series adds support for the GBETH (Gigabit Ethernet) interface
+> on the Renesas RZ/V2H(P) SoC. The changes include updating the device tre=
+e
+> bindings, documenting the GBETH bindings, and adding the DWMAC glue layer
+> for the Renesas GBETH.
+>
+> Note, this patch series depends on [0].
+>
+> [0] https://lore.kernel.org/all/Z82tWYZulV12Pjir@shell.armlinux.org.uk/
+>
+This patch series has been marked as "Changes Requested" on Patchwork,
+but there were no review comments on the series. If the status was
+marked as "Changes Requested" due to build failures reported by the
+kernel bots, I=E2=80=99d like to clarify that the failure was caused by a
+patch dependency, which has now been merged into net-next [0]. As a
+result, this series should now build successfully on net-next.
 
-@Rob
-A "ranges = <0x0 0x30c00000 0x400000>;" would make writing/syncing the
-.dtsi harder since NXP decided to use use global addresses in their
-technical reference manual.
+Please let me know if you would like me to resend the series.
 
-@Laurentiu
-Could you please add a "ranges = <0x30c00000 0x30c00000 0x400000>;" for
-the bus? Of course it is still a 1:1 mapping but limits the bus size
-which can be helpful if someone add a device on the wrong bus.
+[0] https://web.git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git=
+/commit/?id=3D0c1f1eb65425
 
-Sorry for my previous suggestion on your V2 which seems more reasonable
-now.
-
-Regards,
-  Marco
-
-> > > +        dma-controller@30e00000 {
-> > > +            compatible = "fsl,imx8mp-sdma", "fsl,imx8mq-sdma";
-> > > +            reg = <0x30e00000 0x10000>;
-> > > +            #dma-cells = <3>;
-> > > +            clocks = <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_SDMA3_ROOT>,
-> > > +                     <&clk IMX8MP_CLK_AUDIO_ROOT>;
-> > > +            clock-names = "ipg", "ahb";
-> > > +            interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
-> > > +            fsl,sdma-ram-script-name = "imx/sdma/sdma-imx7d.bin";
-> > 
-> > No 'access-controllers' here?
-> > 
-> > > +        };
-> > > +    };
-> > > -- 
-> > > 2.34.1
-> > > 
-> > 
-> 
-> 
+Cheers,
+Prabhakar
 
