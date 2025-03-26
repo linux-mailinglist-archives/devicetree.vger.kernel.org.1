@@ -1,66 +1,62 @@
-Return-Path: <devicetree+bounces-161029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C92C2A71DE2
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 18:59:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7CC7A71DEA
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 19:01:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48EC13B8D4A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 17:58:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ABE9F188F6D8
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 18:01:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E762923FC6B;
-	Wed, 26 Mar 2025 17:58:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3324A24C079;
+	Wed, 26 Mar 2025 18:01:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CnS2FyLz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IkZgRZm8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B81C223E334;
-	Wed, 26 Mar 2025 17:58:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05201219317;
+	Wed, 26 Mar 2025 18:01:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743011896; cv=none; b=Cz2HgaYdW1HqjjZLzemzNRcRMB1YiQW7dbGssCEzQK6jZnH/7FNaIJJ6h23a6wJpbfBoAO8fWoTUFuxv3wJza/VTAlFZ+8ho5wv3YciGoM7NF0WLdk2LcT2YeNnW51n0N1ctIwksMoE8FYbn/ekc4rNCssnNsLqQy0gHAMDjGqg=
+	t=1743012087; cv=none; b=NF/UsScT2zkREkguLIvU/WLRtljuWKzxTMq17LDYW6w3mv7z+16XMSP1XGH0MJD2NAXRlanZ9EPviNRwAM/fJlhvcTKso5QGytatj6FowRrRbkrT1JVwEoVhtiuS8TqaqeKBLrdixCNJpl3fRHbujECgcKrye5TFx9T1ZAXCM00=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743011896; c=relaxed/simple;
-	bh=qD/cQ41RTo+8BDYdoRt9s5SKovqsdZGdDznd1NSpQ6s=;
+	s=arc-20240116; t=1743012087; c=relaxed/simple;
+	bh=XODh12uIsFY2/tj2p+YwbHSsmwijeYtL0jmgiLU4w9I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iQv7oB+8enMWHqvxoKl8OsrYfPmtk3TmNe31Rk1IxF3W+xN/AQMZ78jGvW1R2wQgPpH77+pN80gVMmM9+TVzmokiVxn2r1KWLup0+pbpNrPPrTLKdnHLS9JKJNTlD5HkTrrJU6Vt9ccdNJlGrbeMxXfqCDA9NCJ4z1BxDJOLxNQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CnS2FyLz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95A90C4CEE2;
-	Wed, 26 Mar 2025 17:58:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=aPqgM/h4S4Shw8kFICy3MLwbjzzqePBG+ttnHyfPqvjuCz7pmNESHnR8yBixVe5D0JVpnnRU4yVz6TFpD2cXqiL2jN5iUt4l3DmUWgYdaclnBt4IAQrVH0FIw6N6GusezWBs0Ca0EYsuqwy7TIWqZDBSRTn+KhSckXsBKM7TlRQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IkZgRZm8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C5ACC4CEE2;
+	Wed, 26 Mar 2025 18:01:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743011896;
-	bh=qD/cQ41RTo+8BDYdoRt9s5SKovqsdZGdDznd1NSpQ6s=;
+	s=k20201202; t=1743012086;
+	bh=XODh12uIsFY2/tj2p+YwbHSsmwijeYtL0jmgiLU4w9I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CnS2FyLz/sd/a9zJ6hmgsKESQg/fH8iDeWVq2tPaA4JXR14WInCiekYIY9X8GYBxv
-	 v+2S2s5YrK+EMlc62REZ7YCao5x9cUjTH6z6a0dLif7BvHSQvYq4JMHSxwwTM1aXuS
-	 1EtwJmvhlHKjnereQixhR2d5dcJOhjBr3Jn4xpGWAjM3BqKD0FbvbiAQThaoGFlkDd
-	 DLZKN7T0R+XMRSD1ZwgxVHqlc54xkVBIdunljgm39zqs7ZJwjDS7xZcGmOITVYfLee
-	 zEI19BS2enPqpLIrDi+7FNL2jSpOalh01klMNugAgsXT0+cE407KhXs1hZwu0pUaNS
-	 D2VDFkTjl2AGg==
-Date: Wed, 26 Mar 2025 17:58:11 +0000
+	b=IkZgRZm8wml2HVtC+O/eqSFAkprTGfM81nBDqexI5RRmNHZsV93BEQv1aei31/d9v
+	 yvD40/G5WuakWxjh6SNpAWOBfT7mMi/PGiwFslZt0nkdIuQoTvDNCDdjzUN33fDqJP
+	 xmWZYFAHMOLAKzGjFhTn91MBgA/OjohNO03bJYUoYh5RaIfpbvu3sM4BjZcJ90mm8w
+	 DQX4LFBWo+2RcpJ84AJzRdv2s15r924MY5w1c8/hawE8WM4VeAj4FP7RrFuKPBtDLi
+	 PTdlp77XVzoBC1vof6cGRhZONEuY+b3ANQuRQhecinu7nJ7+hIdkE64S3XbSDGOMce
+	 CJl9gNAFBnQaA==
+Date: Wed, 26 Mar 2025 18:01:21 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Lukasz Czechowski <lukasz.czechowski@thaumatec.com>
-Cc: Matthias Kaehlcke <mka@chromium.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Benjamin Bara <benjamin.bara@skidata.com>,
-	Rob Herring <robh@kernel.org>,
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Klaus Goger <klaus.goger@theobroma-systems.com>,
-	linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, quentin.schulz@cherry.de,
-	stable@vger.kernel.org
-Subject: Re: [PATCH 2/5] dt-bindings: usb: cypress,hx3: Add support for all
- variants
-Message-ID: <20250326-fanatic-onion-5f6bf8ec97e3@spud>
-References: <20250326-onboard_usb_dev-v1-0-a4b0a5d1b32c@thaumatec.com>
- <20250326-onboard_usb_dev-v1-2-a4b0a5d1b32c@thaumatec.com>
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: i2c: snps,designware-i2c: describe Renesas
+ RZ/N1D variant
+Message-ID: <20250326-unhidden-alfalfa-4dabbeb32c9d@spud>
+References: <20250326090112.22495-2-wsa+renesas@sang-engineering.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,70 +64,65 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="9k9ZnTZP7lApPE38"
+	protocol="application/pgp-signature"; boundary="wO6ufMVLLAbN5dhW"
 Content-Disposition: inline
-In-Reply-To: <20250326-onboard_usb_dev-v1-2-a4b0a5d1b32c@thaumatec.com>
+In-Reply-To: <20250326090112.22495-2-wsa+renesas@sang-engineering.com>
 
 
---9k9ZnTZP7lApPE38
+--wO6ufMVLLAbN5dhW
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 26, 2025 at 05:22:57PM +0100, Lukasz Czechowski wrote:
-> The Cypress HX3 hubs use different default PID value depending
-> on the variant. Update compatibles list.
+On Wed, Mar 26, 2025 at 09:59:12AM +0100, Wolfram Sang wrote:
+> So far, no differences are known, so it can fallback to the default
+> compatible.
 >=20
-> Fixes: 1eca51f58a10 ("dt-bindings: usb: Add binding for Cypress HX3 USB 3=
-=2E0 family")
-> Cc: stable@vger.kernel.org # 6.6
-> Cc: stable@vger.kernel.org # Backport of the patch in this series fixing =
-product ID in onboard_dev_id_table and onboard_dev_match in drivers/usb/mis=
-c/onboard_usb_dev.{c,h} driver
-> Signed-off-by: Lukasz Czechowski <lukasz.czechowski@thaumatec.com>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 > ---
->  Documentation/devicetree/bindings/usb/cypress,hx3.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/usb/cypress,hx3.yaml b/Doc=
-umentation/devicetree/bindings/usb/cypress,hx3.yaml
-> index 1033b7a4b8f9..f0b93002bd02 100644
-> --- a/Documentation/devicetree/bindings/usb/cypress,hx3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/cypress,hx3.yaml
-> @@ -15,8 +15,14 @@ allOf:
->  properties:
->    compatible:
->      enum:
-> +      - usb4b4,6500
-> +      - usb4b4,6502
-> +      - usb4b4,6503
->        - usb4b4,6504
->        - usb4b4,6506
-> +      - usb4b4,6507
-> +      - usb4b4,6508
-> +      - usb4b4,650a
-
-All these devices seem to have the same match data, why is a fallback
-not suitable?
-
-> =20
->    reg: true
-> =20
+> If everyone is OK with this patch, does anyone mind if I shortcut it
+> into the v6.15 mergewindow? It is just a documentation update and would
+> simplify upstreaming the I2C chain for this board. One dependency less.
 >=20
+>  .../devicetree/bindings/i2c/snps,designware-i2c.yaml         | 5 +++++
+>  1 file changed, 5 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.ya=
+ml b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
+> index e5d05263c45a..87eea87bdd52 100644
+> --- a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
+> @@ -27,6 +27,11 @@ properties:
+>      oneOf:
+>        - description: Generic Synopsys DesignWare I2C controller
+>          const: snps,designware-i2c
+> +      - description: Renesas RZ/N1D I2C controller
+> +        items:
+> +          - const: renesas,r9a06g032-i2c
+> +          - const: renesas,rzn1-i2c
+
+I don't really understand the rzn1/r9a06g032 difference here. Why are
+both needed?
+
+> +          - const: snps,designware-i2c
+>        - description: Microsemi Ocelot SoCs I2C controller
+>          items:
+>            - const: mscc,ocelot-i2c
 > --=20
-> 2.43.0
+> 2.47.2
 >=20
 
---9k9ZnTZP7lApPE38
+--wO6ufMVLLAbN5dhW
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ+RAMwAKCRB4tDGHoIJi
-0tRpAQDNS6dW2CGP9zLlr+W7yJhcE2bWiGiO3BKrgWFrmthJsAEAs22eY1Eg/Hrt
-9vPFW4oviBxxip0Da3nn9lOjzkpFSQM=
-=9XYv
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ+RA8QAKCRB4tDGHoIJi
+0v4QAP9DXKKZysCWunErwZHjrYGbQOXK48O3PgUAkjZ0t1lEAQD+LT9ExzPmd1LA
+AitpOoskg8ey9MBhSCaIF8WG99anfwQ=
+=VqwC
 -----END PGP SIGNATURE-----
 
---9k9ZnTZP7lApPE38--
+--wO6ufMVLLAbN5dhW--
 
