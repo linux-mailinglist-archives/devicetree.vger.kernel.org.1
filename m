@@ -1,126 +1,110 @@
-Return-Path: <devicetree+bounces-161032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B33B3A71DF4
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 19:03:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 655DAA71E0A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 19:08:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 194B918907C6
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 18:03:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 02D4B175CDA
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 18:08:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4536B24C090;
-	Wed, 26 Mar 2025 18:02:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A45924EF79;
+	Wed, 26 Mar 2025 18:08:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DU7uG78f"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="tIAaVPrl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B52123E34C;
-	Wed, 26 Mar 2025 18:02:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B25E623E324;
+	Wed, 26 Mar 2025 18:08:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743012171; cv=none; b=ODTz5sMiUJhRB/hGLEZK38yQ7/CNCMi4XPSBmZF9A+e1uKqAWdEF+GA1jjNqeoW1nj10H7BKFzA3dy2Faeyyf8udj/ev785ebQ6yCPzr14IzskJGaCxP+6PByQVW8Ner5TTLGwS4z9iV/u1C9pAKhq9FmR6u2bP17lT5kfkSsMw=
+	t=1743012505; cv=none; b=GuEEbJGRkIjTQT0RqsNB8Z7Fp2V0yoMaeCMI2UtsX/NdjQn7Az+VQ+WgE0QGa3th66owpLwXnD0/H4GxkQvk5Z9EYk3TrH7FT1UO+ph1cgxhLzgjEsKaGJGBa0nUEzYnjhbFYTDcw/mcCLq3doUWMRFTiYgrEjUzrceu6GdyNJo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743012171; c=relaxed/simple;
-	bh=mCdk+P8p/pxLv5pZKLEF1MRBDsB6k071tpMVyXHg/i8=;
+	s=arc-20240116; t=1743012505; c=relaxed/simple;
+	bh=VUWIUj2hfkXI+Qy0S+bOeux5uwuJCkBDwdfH5H5+a04=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Uxp5PCOwRNsSf01KRfX7/3DM7/7iQQdzKLHa/kTm18rFJVQYeH7bxEFB8XG0DL4+4i4iVXJNzwKEZ2TGx1qPegij/Ok/ePDgp1UwRo2JxnofeRSl8EJNvezB8pJSHFOuaDdoGTqpMameJSuUNk41vclILU8dtOgBgNQutgCQTAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DU7uG78f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80658C4CEE2;
-	Wed, 26 Mar 2025 18:02:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743012170;
-	bh=mCdk+P8p/pxLv5pZKLEF1MRBDsB6k071tpMVyXHg/i8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DU7uG78fcayWWNWGPZI/LxhjRwbFf0OsHTKN4h0TxpNI2BotBiazAwhqSsBUSEUdk
-	 s0GEk4PlA/khBLWS4nU/7WwdUecp7PpFI7q8xzTAtXJPGitYLtujmRDpWCa6gcv/IJ
-	 YoSyWDmxUPC+kFOcxZeznrHy8OWHsUAk2ObcAf6QMJIQvcmetYj6AQOYWW9lunG19T
-	 wuATgZm+59mKhninq8V0pcIex+Z3GIJEsvBsLmiXHkyYg0sDwaQdsxhdutn+IV9Cjf
-	 vVLKSp8qm2KGES6cIk7mqRJA2tjZqedN9Iu5ZY1jw5hzW2LHbcddY8+ee6Tps7wo7N
-	 IXK21x5v7Wgbw==
-Date: Wed, 26 Mar 2025 18:02:46 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=fF3sPpWgG8T/FhlqPCi5vVQvqZjZebGf3tZjiEZ0wtfbYiaEfb/u9AnEnu78pa6Ot0eYPOyB74c/klI48FAC/0S1ARK8KbVCaHaWeq0PfsVMbGb/S2fub5O8W96wpOu1lO6GezPJhSriGlvOHWk1o3JySxL6EF5ftxcYvfkcXuo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=tIAaVPrl; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=W9NKf/8mTYUYfIRNEyzd9z7p8OnoYdqWiENexZcINQs=; b=tIAaVPrlQIYxF6Z16HmkxlO/zN
+	MaqTLGdwwrT2x1RDu/stzwNSmKYIVGWk30woItxKAlJwr0+SAxQPqT2H0NlPsNZ4DNQXcm/jboLPH
+	0DDitU52H/T04+xuGboip2+QSFHJhcz52keptJ5h8ASfrhiUvuu1C0OEVTcpAzDfS4gqA2hg48vcY
+	xnwh9+F9DuSSDViL/8GV2DKoWjDqQFw8IMGt02IwdE/3SYlW5aTmmC+ABAhIzxAvD/mZ8EHxs8vbb
+	JUtqFeELrOxuL72kYV9FhZNewMcGuQkyUHuo8PBg7NcEokKr13ADUO7Kx26NC4/ddTSSoW/yh3s81
+	R9OsymiQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:33370)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1txVAi-0006RH-0w;
+	Wed, 26 Mar 2025 18:08:12 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1txVAg-0004c9-0c;
+	Wed, 26 Mar 2025 18:08:10 +0000
+Date: Wed, 26 Mar 2025 18:08:09 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Christian Marangi <ansuelsmth@gmail.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: stm32-rproc: Add
- firmware-name property
-Message-ID: <20250326-giblet-endearing-cd76a00c6077@spud>
-References: <20250326083912.12714-1-arnaud.pouliquen@foss.st.com>
- <20250326083912.12714-2-arnaud.pouliquen@foss.st.com>
+	Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next RFC PATCH v2 2/3] net: phy: Add support for Aeonsemi
+ AS21xxx PHYs
+Message-ID: <Z-RCiWzRWbv7RlHJ@shell.armlinux.org.uk>
+References: <20250326002404.25530-1-ansuelsmth@gmail.com>
+ <20250326002404.25530-3-ansuelsmth@gmail.com>
+ <dfa78876-d4a6-4226-b3d4-dbf112e001ee@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="pIJa1m7h2upDJxWu"
-Content-Disposition: inline
-In-Reply-To: <20250326083912.12714-2-arnaud.pouliquen@foss.st.com>
-
-
---pIJa1m7h2upDJxWu
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <dfa78876-d4a6-4226-b3d4-dbf112e001ee@lunn.ch>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Wed, Mar 26, 2025 at 09:39:11AM +0100, Arnaud Pouliquen wrote:
-> Add the 'firmware-name' property to the remote processor binding
-> to allow specifying the default firmware name in the device tree.
->=20
-> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-> ---
->  .../devicetree/bindings/remoteproc/st,stm32-rproc.yaml       | 5 +++++
->  1 file changed, 5 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.=
-yaml b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
-> index 370af61d8f28..a0a16bfe8ef7 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
-> @@ -139,6 +139,11 @@ properties:
->        If defined, when remoteproc is probed, it loads the default firmwa=
-re and
->        starts the remote processor.
-> =20
-> +  firmware-name:
+On Wed, Mar 26, 2025 at 03:56:15PM +0100, Andrew Lunn wrote:
+> After the firmware download, the phylib core will still have the wrong
+> ID values. So you cannot use PHY_ID_MATCH_EXACT(PHY_ID_AS21011JB1).
+> But what you can do is have a .match_phy_device function. It will get
+> called, and it can read the real ID from the device, and perform a
+> match. If it does not match return -ENODEV, and the core will try the
+> next entry.
 
-> +    $ref: /schemas/types.yaml#/definitions/string-array
+Before it returns -ENODEV, it could re-read the ID values and fill
+them into struct phy_device. This would allow phylib's matching to
+work.
 
-This should not be needed, it's a standard property, no?
+> You either need N match_phy_device functions, one per ID value, or you
+> can make use of the .driver_data in phy_driver, and place the matching
+> data there.
 
-> +    maxItems: 1
-> +    description: Default name of the remote processor firmware.
-> +
->  required:
->    - compatible
->    - reg
-> --=20
-> 2.25.1
->=20
+An alternative would be to change the match_phy_device() method to
+pass the phy_driver, which would allow a single match_phy_device
+function to match the new hardware ID values against the PHY IDs in
+the phy_driver without needing to modify the IDs in phy_device.
 
---pIJa1m7h2upDJxWu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ+RBRgAKCRB4tDGHoIJi
-0vE1AP9J58xanH9W6GTrEbCuKn5eu2aDyiiSA/vp2NtSg8fYyQD9EWt7Ndn+h+NW
-CEY02RuwuVdniaCzT+U+CADdHf+7SgQ=
-=4xuG
------END PGP SIGNATURE-----
-
---pIJa1m7h2upDJxWu--
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
