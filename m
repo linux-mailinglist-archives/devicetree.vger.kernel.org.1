@@ -1,137 +1,141 @@
-Return-Path: <devicetree+bounces-161036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26384A71E1F
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 19:14:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8865A71E2B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 19:18:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EAFDC188F111
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 18:14:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8512D18940A1
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 18:18:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5749823FC5B;
-	Wed, 26 Mar 2025 18:14:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 242502517BD;
+	Wed, 26 Mar 2025 18:18:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=codethink.co.uk header.i=@codethink.co.uk header.b="XWdheIXY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cSz+5m5Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from imap4.hz.codethink.co.uk (imap4.hz.codethink.co.uk [188.40.203.114])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EC256FB0;
-	Wed, 26 Mar 2025 18:14:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.203.114
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 654221F7561;
+	Wed, 26 Mar 2025 18:18:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743012858; cv=none; b=qs9S4ReCH7iU9Xho6Q2vz0ptEaWKxyymLdgId2OydGLZ1LDTYRTn3iolaA6v5WjhhvX5n585Fyae2v/gvbVfymdJwrOrwme6ROj2mGAsjkPvHcOG1k5sQiU05GqexZ9OgsdRK8467dgOGMoNv9/4gEH+OxrqROWXO5xvGlwUiUM=
+	t=1743013099; cv=none; b=G1oM0da44Y4qFiT8jZyDf/V0cvF4gGWzK4gRCW4ONMWSNv2iHXku6Y+ZGxuElTH8HRDtLWAVIKHswkP8LK6XvHQlR0fT31Me+NcU/mhvnBWFGjNNoQQSZQTmF/haCEX/LOyawGSo1Xiiac8PPQovcd5fn/kgCQRSScM2Uh3pZD0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743012858; c=relaxed/simple;
-	bh=5Rx8o+rsjCY9GlFunVyrcmqBelS0z89PcsLnWD/BdKY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DIwCgWaKRPME6eVuiilqGLCDsCXcX6t5gzI78P3MTivT8+F9bfjL5KQM5RL5K9A5oDvJcuObLeBoFs7MI7+FRZaBjgH2a9BKMOF4RxKMo3MHzXZLgv9+M2rkrWmmVhuoySYRXtfZhIdN+yIIoMm2iUPHSGcb/uHbJqZvfUFnBbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=codethink.co.uk; spf=pass smtp.mailfrom=codethink.co.uk; dkim=pass (2048-bit key) header.d=codethink.co.uk header.i=@codethink.co.uk header.b=XWdheIXY; arc=none smtp.client-ip=188.40.203.114
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=codethink.co.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codethink.co.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=codethink.co.uk; s=imap4-20230908; h=Sender:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=IwGQlTa50b11s0/QB0TMViZRNAPGc3dv8qv0hUaDBFw=; b=XWdheIXYnr/QruXm3c4EN6hiz0
-	RmY829zjrqRP/rERC2OME6bZbau2rh+ICaEniwmsUTscf21co+WGCbPYEXfAF+3/yxxnGO//jhifx
-	O+XyHJm8TDTWw3/6Mrhl8OJSUW9dFoZmns/OsCclrgaIrz+t7Ug27KmXq7bttBuni/zq/TbqWeCVB
-	C5EwqKbUBGGIAGt1pqdj5Ibwbjgv+3609tuqoxRpuU2MEz3jwjh/ZD3TlMmtUcFFBIOt+oS3zvcL3
-	bBr43rsJo3z4g+64lm5Zcu+ryRO1bRFh/idEd9IVFYRscEVn4r8uo8LN11oah3aPyW7U1ljL/qN7a
-	1b7NCJnQ==;
-Received: from [167.98.27.226] (helo=[10.35.6.194])
-	by imap4.hz.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
-	id 1txVFh-003lrg-Lc; Wed, 26 Mar 2025 18:13:22 +0000
-Message-ID: <f38e690b-2eaa-461c-87e6-72927a02bc9e@codethink.co.uk>
-Date: Wed, 26 Mar 2025 18:13:21 +0000
+	s=arc-20240116; t=1743013099; c=relaxed/simple;
+	bh=BCcusAiZcAMHVSpBfkVYYDvlZnORz0u1WzBhrdpt5Ek=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CHmpADEYXLC0sH7yZHIWjXWXNQWZNMOBWN9C55cYMvuTGc9kCiI1vngnFn01UEK1P4G/P/JibZcgccm7EghJLDCRJ6TQKELLrNRcx+MbSi7Ohcq9dRb9a4ZtXarDsQjsYzc9wci+B1uylahTnJsCu2uv+u6ZQgwMJlnNxXtf9Jc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cSz+5m5Z; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-39141ffa9fcso74460f8f.0;
+        Wed, 26 Mar 2025 11:18:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1743013096; x=1743617896; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=h+OYzJdahmjkb1uM2uwDmxOrko89EeT2kB7mZ5ExR2w=;
+        b=cSz+5m5ZQiWief4kYJKcjABIqS9nQB1puBb7V10vYvm+IcqOgrh/XsUFUer1HeeCMk
+         iBNobf4W1rpAkbsa8U7zyLXHd50045UaKGalziFgICYdzgTnWkt7hpnAflvry6jWd2c7
+         GYkSb58nc4mDstZsW3xgGX+xHy5TJuJwGZ4aBC5/MJYkOca1eXhBcK0FmHSmGEreQXSv
+         KAmhD8IL64V8kOVeozQyXlPWPRP/73wRAXh/Z43bzQR3Lun48WmHBZ+9TleWldVwukhu
+         zt+TA23xPwWw5bQDGer2NOYsiWjvdX6oxMg1cTkpJaPCNlORFTQUc38CK6srepQQi+me
+         P7FQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743013096; x=1743617896;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=h+OYzJdahmjkb1uM2uwDmxOrko89EeT2kB7mZ5ExR2w=;
+        b=B9Ct4H1I6Irbzhtzmhz49r6YAeHwM7lVfpCXEB2q8HLAQzvO0nD6338ZlSKDK8pv3q
+         KKSCQrr9VPPgBMbLy9s0rjManqJP5mfalvHPvCEUDZ99c3kA9b/NdgPjCStU6athKAgY
+         /N/1RTjwBHdc9eEwCr6PxzDtTOxOm3STTSXhNdu5Ocu9lkyhEhpoBEw5MIMpdLv9jPJW
+         bhA5BChzq3TctmW2adOKuvmdpg7C0/idl3jl/mPlLtDIEEDnWgVT/0LEoVOawlTyBbj2
+         6Alke+HA5FV3zfDM2gY5rmNT3IqYNbkALypVHE9JGiy+5r8zvYoFcLrv0xlr/XCjyXL7
+         ueOw==
+X-Forwarded-Encrypted: i=1; AJvYcCU6x6Y/2dE8cs1E1gkYo1NzvN7n7r/UqopzM7sfJY+XUwQc6i/n3IMsjvC/G/62B9BA4w60EbkIkCrF@vger.kernel.org, AJvYcCVrOwB19vBEGRLA8Y4EeVbaNk/LFiTG88P2DbJoN2IgJKG5hDuQFM6fNyUvvVwkXqBeoZHhlw9Zu8d5sBEH@vger.kernel.org, AJvYcCXF8SRCLDWnA1LiGUwkZV/wYobazTVkDIyAXOiH7Qha4MwqB+aQy0Iuw0qMMIPXnL/jDJ6zF6K6@vger.kernel.org
+X-Gm-Message-State: AOJu0YwFIqr8Ke85cTTS6oWibGobVmw2ZcRPAsdNSh8Nve9cGvtWLF18
+	5cQ20YDv+3uenTs/DBuC9NIa9DF1kRzTn0bZaLPruoOy0G9++t6o
+X-Gm-Gg: ASbGncukMAeAAEkcEsAtxxVwdTBa6TzuRfV0tM0EVi4+XGdFgsUUp8i+30wTusciwu4
+	mjtdaZVBS+XR83jSkrMBi1BaEdUZpOTLPwlJS4IwYzd5kI0ld1zyc6xbkogUgY+6+nYTcr9YPvx
+	ffaVdIl36L/KDpPpxzBFlkAxHRmCEc+9WwYd9QJFqXOnQX4A/Y0/XtGaTAG7aAxk6B5slvwvca9
+	6M6+mLHgxXxMiWdUP8idAWBSx4g875pEmjpzXuX3IX2Vo4Xa/mrqWzTFIgQ2pdxQorelcoQ8GRe
+	0susBUH4F40JHjfIbA3QKrEPd6J5Ipm2nQS3aMNSTz1aIMdH0BJLOVHlVZ2IQHwdfq4Wt80Itux
+	t
+X-Google-Smtp-Source: AGHT+IHbLlrFdmSIcrPT6c3gVNy3Gg0+ecoorqwfqJv6yTpwt3N7gCX+tGY77Wakr5GU6+aKMH/Aig==
+X-Received: by 2002:a05:6000:2912:b0:391:30b9:556c with SMTP id ffacd0b85a97d-39ad1743cd8mr466272f8f.21.1743013095347;
+        Wed, 26 Mar 2025 11:18:15 -0700 (PDT)
+Received: from Ansuel-XPS. (93-34-88-225.ip49.fastwebnet.it. [93.34.88.225])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3997f9efc9bsm17258861f8f.87.2025.03.26.11.18.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Mar 2025 11:18:14 -0700 (PDT)
+Message-ID: <67e444e6.050a0220.81044.004e@mx.google.com>
+X-Google-Original-Message-ID: <Z-RE5O_FKEY3y3Vt@Ansuel-XPS.>
+Date: Wed, 26 Mar 2025 19:18:12 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Andrew Lunn <andrew@lunn.ch>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next RFC PATCH v2 2/3] net: phy: Add support for Aeonsemi
+ AS21xxx PHYs
+References: <20250326002404.25530-1-ansuelsmth@gmail.com>
+ <20250326002404.25530-3-ansuelsmth@gmail.com>
+ <dfa78876-d4a6-4226-b3d4-dbf112e001ee@lunn.ch>
+ <Z-RCiWzRWbv7RlHJ@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 09/10] riscv: dts: add initial support for EIC7700 SoC
-To: Conor Dooley <conor@kernel.org>,
- Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>
-Cc: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Samuel Holland <samuel.holland@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Min Lin <linmin@eswincomputing.com>,
- Pritesh Patel <pritesh.patel@einfochips.com>, Yangyu Chen
- <cyy@cyyself.name>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Yu Chien Peter Lin <peterlin@andestech.com>,
- Charlie Jenkins <charlie@rivosinc.com>,
- Kanak Shilledar <kanakshilledar@gmail.com>,
- Darshan Prajapati <darshan.prajapati@einfochips.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Heiko Stuebner
- <heiko@sntech.de>, Aradhya Bhatia <a-bhatia1@ti.com>,
- "rafal@milecki.pl" <rafal@milecki.pl>, Anup Patel <anup@brainfault.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20250320105449.2094192-1-pinkesh.vaghela@einfochips.com>
- <20250320105449.2094192-10-pinkesh.vaghela@einfochips.com>
- <CAJM55Z-LUoeh0pSDnPKpduub_UBOPeg4g3t20JA0GBosJKuiAQ@mail.gmail.com>
- <CH3PR04MB89282DDB25C289C34581DC0083A62@CH3PR04MB8928.namprd04.prod.outlook.com>
- <20250326-headpiece-muskiness-dc167183018e@spud>
-Content-Language: en-GB
-From: Ben Dooks <ben.dooks@codethink.co.uk>
-Organization: Codethink Limited.
-In-Reply-To: <20250326-headpiece-muskiness-dc167183018e@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Sender: ben.dooks@codethink.co.uk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z-RCiWzRWbv7RlHJ@shell.armlinux.org.uk>
 
-On 26/03/2025 17:55, Conor Dooley wrote:
-> On Wed, Mar 26, 2025 at 02:20:55PM +0000, Pinkesh Vaghela wrote:
->> On Tue, Mar 25, 2025 at 7:06 PM, Emil Renner Berthing wrote:
->>> Pinkesh Vaghela wrote:
->>>> +     soc {
->>>> +             compatible = "simple-bus";
->>>> +             ranges;
->>>> +             interrupt-parent = <&plic>;
->>>> +             #address-cells = <2>;
->>>> +             #size-cells = <2>;
->>>
->>> Hi Pinkesh,
->>>
->>> Thank your for the patches!
->>>
->>> Should this not be marked dma-noncoherent to avoid having to mark each
->>> peripheral as such?
->>
->> Thanks for your feedback.
->>
->> We have not added "dma-noncoherent" because there are no DMA-capable
->> peripherals in the devicetree yet.
->> We planned to add this later when we add any DMA capable devices
->> i.e. sdhci, gmac, sata, pcie, spi.
->>
->> Do you recommend to add this property in current version?
+On Wed, Mar 26, 2025 at 06:08:09PM +0000, Russell King (Oracle) wrote:
+> On Wed, Mar 26, 2025 at 03:56:15PM +0100, Andrew Lunn wrote:
+> > After the firmware download, the phylib core will still have the wrong
+> > ID values. So you cannot use PHY_ID_MATCH_EXACT(PHY_ID_AS21011JB1).
+> > But what you can do is have a .match_phy_device function. It will get
+> > called, and it can read the real ID from the device, and perform a
+> > match. If it does not match return -ENODEV, and the core will try the
+> > next entry.
 > 
-> If the bus is not cache coherent, then it should be marked as such now.
+> Before it returns -ENODEV, it could re-read the ID values and fill
+> them into struct phy_device. This would allow phylib's matching to
+> work.
+>
 
-If it was like any other P550, then the DMA has to go via the cache 
-coherent part of the interconnect which is a different address space
-that maps into the same bus the P550 and cache controllers are on.
+Is it ok for PHY driver to change values in phy_device ""externally"" to
+phy_device.c ? Maybe you still have to read the other response but a
+bool with needs_rescan to handle this internally? 
 
-You just need to add the right node to map the DMA addresses and then
-have the pain of what happens when there's no memory in the 32bit
-address space.
+> > You either need N match_phy_device functions, one per ID value, or you
+> > can make use of the .driver_data in phy_driver, and place the matching
+> > data there.
+> 
+> An alternative would be to change the match_phy_device() method to
+> pass the phy_driver, which would allow a single match_phy_device
+> function to match the new hardware ID values against the PHY IDs in
+> the phy_driver without needing to modify the IDs in phy_device.
+> 
 
+I also considered extending the function with additional stuff but then
+I considered that would mean rework each PHY driver and destroy PHY
+driver downstream, not something we should care but still quite a big
+task. If the -ENODEV path is not OK, I feel an additional OP is better
+than tweaking match_phy_device.
 
 -- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
-
-https://www.codethink.co.uk/privacy.html
+	Ansuel
 
