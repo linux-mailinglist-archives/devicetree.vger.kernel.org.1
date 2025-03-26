@@ -1,164 +1,263 @@
-Return-Path: <devicetree+bounces-160863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43E5BA71699
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 13:23:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65229A716A9
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 13:25:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 61EC11743C1
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 12:21:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5390E3ACDE7
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 12:25:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39A991E1DE4;
-	Wed, 26 Mar 2025 12:21:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d852OeBw"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAE851E1DE0;
+	Wed, 26 Mar 2025 12:25:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A5121DFE12;
-	Wed, 26 Mar 2025 12:21:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D2901E1020
+	for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 12:25:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742991682; cv=none; b=eLMKqse9sFENWt0Yga6Sdu4dcGhmV4x+PabmEr6f10/Eq/6ROVRYngErVNG6Mv34fRi1q4fEUroTXU6jK+SJc+wYQw9H2c5wSYVkc06Y7+SLl9EmDHhreJqgXbIFQ8HZLW9a0UIcZr/FbJ9X8sZWDfo9ulpjNas3e5zdXy5+rpg=
+	t=1742991939; cv=none; b=tx2zcsFGUdPSyo5SCYBxkL2XeV07xBdlvGqnjHCBaduNtbl8R1Ure9rGzOQ/3MLpi1lIhKCKIAUszGYMAPf/wCcUFqSwQypE4aQWbxxvtLkqybERAcNvPNzmBzoX1XCPzKDvYWi+UAof/aeGcsRoI/iQqZ8tQ8DugPAJXTJVWWU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742991682; c=relaxed/simple;
-	bh=F+UTro7qxQyOTKSepxN6JKqVHXJ4srwwzq6xtNZ/Pdo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pPsAR8ALoIapwfQQj3Jx2m4zhYM0NjY3w6j+e6Kxu7Rg6aE91OHaMr8la513wY0RbvSKdYUuP6n7LkKndlSJ1BmxFWOHDa58rZMwY0fXAoX3H/lFNhAvr1Mm0MkykL4/bxRG8flBKxfrEQyd8mOFHwf77qUuwQ0HxyXqChFPq3Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d852OeBw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DBB9C4CEE2;
-	Wed, 26 Mar 2025 12:21:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742991681;
-	bh=F+UTro7qxQyOTKSepxN6JKqVHXJ4srwwzq6xtNZ/Pdo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=d852OeBwYEbh29vfchDr2GrK5GwPHGV3jWITXZ3KB+qgkB2UiKjaY/cM3E7w3XBj/
-	 P37rjVmgV9trFeHdYasnM9j+s2ab9Sd7AwmUT6HB76iECYKOyyf+8XLGTYYSWz7G7o
-	 SDcEG63ZTaidSJ/W30ZHyvkBKChSH8dpI2lXt9Ww+eya+2wXksynCY/GoaSFZVo6w2
-	 LR3x73eAzD7EcQHgNSGX9HcBXK/y5cAiqX3KqwGfhUjIUE5X9mTOJAxGm+FNuIiDUw
-	 fixbhmU5PqGkMBs1UUVdllgVYS2sfURCVY5fGC70g4YG+IJOKBmNUUXrR62hMFScjm
-	 n0lmfvA7LRI5A==
-Message-ID: <8936844a-c6a0-4107-bb6d-f67a32b13eff@kernel.org>
-Date: Wed, 26 Mar 2025 13:21:17 +0100
+	s=arc-20240116; t=1742991939; c=relaxed/simple;
+	bh=X8k0tKirUg1631PzRrSi+8OgAtwG0D84TAV/OPt/W7c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Jg07VxmPtG0u5cziUL6rg6hG7PMqj5kTSojwjKvFDP/7XhYISFVXTxoB+7EH/ryRHgZ1AuF5eVrgHiGg/NG4olP0YbpM/7pDkSU8fpsRMjBMuu/19YEorFIZHeI3rLWc5Joz30YOQS8pcsvv38zIDeLx/T7WVa5uyIGb8kZTHXI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1txPp9-0006zg-5Z; Wed, 26 Mar 2025 13:25:35 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1txPp8-001kJe-1G;
+	Wed, 26 Mar 2025 13:25:34 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1txPp8-0006jP-2E;
+	Wed, 26 Mar 2025 13:25:34 +0100
+Date: Wed, 26 Mar 2025 13:25:34 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Rob Herring <robh@kernel.org>
+Cc: Daniel Baluta <daniel.baluta@nxp.com>, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>, Frank Li <Frank.li@nxp.com>,
+	linux-kernel@vger.kernel.org,
+	Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 1/5] dt-bindings: bus: add documentation for the IMX
+ AIPSTZ bridge
+Message-ID: <20250326122534.dazofwurjhouj6fw@pengutronix.de>
+References: <20250324162556.30972-1-laurentiumihalcea111@gmail.com>
+ <20250324162556.30972-2-laurentiumihalcea111@gmail.com>
+ <20250325032303.GA1624882-robh@kernel.org>
+ <20250326102522.rtsffb37wvolhwd4@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] spi: dt-bindings: cdns,qspi-nor: Update minItems/maxItems
- of resets for Cadence OSPI controller
-To: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>, broonie@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, git@amd.com, amitrkcian2002@gmail.com
-References: <20250326113731.1657593-1-amit.kumar-mahapatra@amd.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250326113731.1657593-1-amit.kumar-mahapatra@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250326102522.rtsffb37wvolhwd4@pengutronix.de>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 26/03/2025 12:37, Amit Kumar Mahapatra wrote:
-> The Cadence Octal SPI (OSPI) controller on AMD Versal SoCs requires only
-> one reset entry. To reflect this, the maxItems for "resets" and
-> "reset-names" has been set to 1 for AMD Versal SoCs, and the minItems for
-> these properties has also been updated to 1. Additionally, these properties
-> have been added to the required property list for Versal SoCs.
+On 25-03-26, Marco Felsch wrote:
+> Hi Laurentiu,
 > 
-> Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-> ---
-> BRANCH: mtd/next
-> ---
->  .../devicetree/bindings/spi/cdns,qspi-nor.yaml     | 14 ++++++++++++--
->  1 file changed, 12 insertions(+), 2 deletions(-)
+> On 25-03-24, Rob Herring wrote:
+> > On Mon, Mar 24, 2025 at 12:25:52PM -0400, Laurentiu Mihalcea wrote:
+> > > From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> > > 
+> > > Add documentation for IMX AIPSTZ bridge.
+> > > 
+> > > Co-developed-by: Daniel Baluta <daniel.baluta@nxp.com>
+> > > Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+> > > Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> > > ---
+> > >  .../bindings/bus/fsl,imx8mp-aipstz.yaml       | 107 ++++++++++++++++++
+> > >  1 file changed, 107 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/bus/fsl,imx8mp-aipstz.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/bus/fsl,imx8mp-aipstz.yaml b/Documentation/devicetree/bindings/bus/fsl,imx8mp-aipstz.yaml
+> > > new file mode 100644
+> > > index 000000000000..c0427dfcdaca
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/bus/fsl,imx8mp-aipstz.yaml
+> > > @@ -0,0 +1,107 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/bus/fsl,imx8mp-aipstz.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Secure AHB to IP Slave bus (AIPSTZ) bridge
+> > > +
+> > > +description:
+> > > +  The secure AIPS bridge (AIPSTZ) acts as a bridge for AHB masters
+> > > +  issuing transactions to IP Slave peripherals. Additionally, this module
+> > > +  offers access control configurations meant to restrict which peripherals
+> > > +  a master can access.
+> > 
+> > Wrap at 80 chars.
+> > 
+> > > +
+> > > +maintainers:
+> > > +  - Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: fsl,imx8mp-aipstz
+> > > +
+> > > +  reg:
+> > > +    maxItems: 2
+> > > +
+> > > +  reg-names:
+> > > +    items:
+> > > +      - const: bus
+> > > +      - const: ac
+> > > +
+> > > +  power-domains:
+> > > +    maxItems: 1
+> > > +
+> > > +  "#address-cells":
+> > > +    const: 1
+> > > +
+> > > +  "#size-cells":
+> > > +    const: 1
+> > > +
+> > > +  "#access-controller-cells":
+> > > +    const: 0
+> > 
+> > With 0 cells, how do you identify which device it is?
+> > 
+> > > +
+> > > +  ranges: true
+> > > +
+> > > +# borrowed from simple-bus.yaml, no additional requirements for children
+> > > +patternProperties:
+> > > +  "@(0|[1-9a-f][0-9a-f]*)$":
+> > > +    type: object
+> > > +    additionalProperties: true
+> > > +    properties:
+> > > +      reg:
+> > > +        items:
+> > > +          minItems: 2
+> > > +          maxItems: 4
+> > > +        minItems: 1
+> > > +        maxItems: 1024
+> > > +      ranges:
+> > > +        oneOf:
+> > > +          - items:
+> > > +              minItems: 3
+> > > +              maxItems: 7
+> > > +            minItems: 1
+> > > +            maxItems: 1024
+> > > +          - $ref: /schemas/types.yaml#/definitions/flag
+> > > +    anyOf:
+> > > +      - required:
+> > > +          - reg
+> > > +      - required:
+> > > +          - ranges
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - reg-names
+> > > +  - power-domains
+> > > +  - "#address-cells"
+> > > +  - "#size-cells"
+> > > +  - "#access-controller-cells"
+> > > +  - ranges
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/clock/imx8mp-clock.h>
+> > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > +
+> > > +    bus@30c00000 {
+> > > +        compatible = "fsl,imx8mp-aipstz";
+> > > +        reg = <0x30c00000 0x400000>, <0x30df0000 0x10000>;
+> > 
+> > It doesn't look like you have any registers in the 1st entry, but they 
+> > are child devices? Then you should use ranges and drop it here:
+> > 
+> > ranges = <0x0 0x30c00000 0x400000>;
+> > 
+> > 
+> > > +        reg-names = "bus", "ac";
 > 
-> diff --git a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
-> index d48ecd6cd5ad..cc94c59280a1 100644
-> --- a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
-> +++ b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
-> @@ -17,8 +17,18 @@ allOf:
->            contains:
->              const: xlnx,versal-ospi-1.0
->      then:
-> +      properties:
-> +        resets:
-> +          maxItems: 1
-> +
-> +        reset-names:
-> +          maxItems: 1
-> +          items:
-> +            enum: [ qspi ]
+> Thanks for picking up my suggestion :) IMHO it does look more logical
+> now. I wasn't aware of the 'ranges' property else I would have suggested
+> you to use this property instead of having two regs, sorry. Once you
+> changed it to ranges we can drop the 'reg-names' as well since you only
+> need to supply the 'ac' register space.
+> 
+> Regards,
+>   Marco
+> 
+> > > +        power-domains = <&pgc_audio>;
+> > > +        #address-cells = <1>;
+> > > +        #size-cells = <1>;
+> > > +        #access-controller-cells = <0>;
+> > > +        ranges;
 
-Just list the items instead of these three lines.
+I didn't noticed that we already do have the ranges 1:1 mapping, sorry!
 
->        required:
->          - power-domains
-> +        - resets
-> +        - reset-names
+@Rob
+A "ranges = <0x0 0x30c00000 0x400000>;" would make writing/syncing the
+.dtsi harder since NXP decided to use use global addresses in their
+technical reference manual.
 
-Why? That's an ABI break.
+@Laurentiu
+Could you please add a "ranges = <0x30c00000 0x30c00000 0x400000>;" for
+the bus? Of course it is still a 1:1 mapping but limits the bus size
+which can be helpful if someone add a device on the wrong bus.
 
+Sorry for my previous suggestion on your V2 which seems more reasonable
+now.
 
->    - if:
->        properties:
->          compatible:
-> @@ -132,11 +142,11 @@ properties:
->      maxItems: 1
->  
->    resets:
-> -    minItems: 2
-> +    minItems: 1
+Regards,
+  Marco
 
-You need to update other variants now.
-
-Best regards,
-Krzysztof
+> > > +        dma-controller@30e00000 {
+> > > +            compatible = "fsl,imx8mp-sdma", "fsl,imx8mq-sdma";
+> > > +            reg = <0x30e00000 0x10000>;
+> > > +            #dma-cells = <3>;
+> > > +            clocks = <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_SDMA3_ROOT>,
+> > > +                     <&clk IMX8MP_CLK_AUDIO_ROOT>;
+> > > +            clock-names = "ipg", "ahb";
+> > > +            interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+> > > +            fsl,sdma-ram-script-name = "imx/sdma/sdma-imx7d.bin";
+> > 
+> > No 'access-controllers' here?
+> > 
+> > > +        };
+> > > +    };
+> > > -- 
+> > > 2.34.1
+> > > 
+> > 
+> 
+> 
 
