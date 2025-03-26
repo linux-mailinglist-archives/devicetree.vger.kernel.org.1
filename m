@@ -1,97 +1,146 @@
-Return-Path: <devicetree+bounces-160926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06330A7197E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 15:57:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52B28A719A3
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 16:02:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D904189A60C
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 14:50:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C513117C1F3
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 14:57:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10B1D1F3D59;
-	Wed, 26 Mar 2025 14:49:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 657301F3BA7;
+	Wed, 26 Mar 2025 14:56:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="LW6QP3il"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="wQ6UwGiE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 723191EEA36;
-	Wed, 26 Mar 2025 14:49:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98E631547C9;
+	Wed, 26 Mar 2025 14:56:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743000589; cv=none; b=rPucMh/eGASjgTGIsUqO5dGQY4vzf7k5Yqa2qjpGhvUfZ5U4m7D0gwrGkplOihDQ16E2h0R0VXaBXWphh7y52dKWjOLXvJOyDa7CLQZT1LPVV1qZQ19P/oNxzQGbzEp5E9HDmTnSwzzdN4H6XrkQ02RSioUXZtS9ktLVxyRPxZ8=
+	t=1743000987; cv=none; b=cjEtstPGynH0j9If6Gm6M8dUIb9+r9na7NVFlE9zsGwQNxGPs+hOKuQ3ckOgX+ef4eXgoFPTJ5sp0W9xeH+d35M1XAIGU1587nAxW63naeqXQGCNg+W1A7tfbleXs1X8iD4MHeeH/KwhrVh8D/zS6g2kAmgzS5YLSZPh/c0qoDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743000589; c=relaxed/simple;
-	bh=xYk0auRz9Q8+16dg83y0wKUaBH/EeXKBzvwJLglzuJw=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=CLWNnbheyV6Qa/pjZew1uo2wR8b5QFPAlrupBBDUNcHEQDUUwf2AtQEvyopFfRxQ0hI6hJpVsviG/EgM4V451NZa/qTMbWLoLd2g3mszAM8cONaQR7HJc0b1kd3Si7pfntp2mDZodXeqJJNnePbhFOuonlzzzUVvILv78MoM0IQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=LW6QP3il; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 1B70C432EB;
-	Wed, 26 Mar 2025 14:49:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1743000578;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=BANocZLjlDV8/uTYp9TCbf/5ElQ8CaMKQxWJxwAP4dk=;
-	b=LW6QP3il8PmsYf7iO9sdSOqh3v899p3W+wSflWLQEsjv9+HUkjPeMl9aZ21IoOf4dos2zN
-	UwGXhgp3uO8wK5SVTm89rV/xdqz/kVjCEIophpqVcUiQTMTZCY6MkeJFEqufW4sjinAaBx
-	69HhmCStAk782cdr6fcahYz73zZumTybI0Qmxe903YH5eRbKTZ4wnkF4SZeMqH0NbJQ7ne
-	PFZUhsX+FSIhm95MaayEcJ2FYELAaHcQZ7D7Cb5BuO/ccA0vJ4c4i2us23wkw0HsRg4IES
-	WT77u4QgNpEPUXeAczt9NJIUcnt0zPOYlV7AOUz5x0ov6wzNa0HqHfDtLMkG+g==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Md Sadre Alam <quic_mdalam@quicinc.com>,  broonie@kernel.org,
-  robh@kernel.org,  krzk+dt@kernel.org,  conor+dt@kernel.org,
-  richard@nod.at,  vigneshr@ti.com,  linux-arm-msm@vger.kernel.org,
-  linux-spi@vger.kernel.org,  devicetree@vger.kernel.org,
-  linux-kernel@vger.kernel.org,  linux-mtd@lists.infradead.org
-Subject: Re: [PATCH v15 2/2] spi: spi-qpic: add driver for QCOM SPI NAND
- flash Interface
-In-Reply-To: <CAMuHMdUOt8PxbRt-vGfeD5=uEtMVV0TLPUridu=nCkzX9iP24Q@mail.gmail.com>
-	(Geert Uytterhoeven's message of "Wed, 26 Mar 2025 15:24:03 +0100")
-References: <20250224111414.2809669-1-quic_mdalam@quicinc.com>
-	<20250224111414.2809669-3-quic_mdalam@quicinc.com>
-	<CAMuHMdUOt8PxbRt-vGfeD5=uEtMVV0TLPUridu=nCkzX9iP24Q@mail.gmail.com>
-User-Agent: mu4e 1.12.7; emacs 29.4
-Date: Wed, 26 Mar 2025 15:49:37 +0100
-Message-ID: <874izfrgn2.fsf@bootlin.com>
+	s=arc-20240116; t=1743000987; c=relaxed/simple;
+	bh=V7bIP3PfXYHdxWscf/6gdQ5fxEXhiB2IjmMn4K1DbyQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=najUy2SpNoasz6baJlauTnpijZCsOXuBUWZpdLoICfNQlQqZAx3byFZgT8OUO6EEixa27GyawwMwGXQhNUXO43FXeHk/4Wylb85zZEamQX50jIbPSR643JjY2QtAeiezNesVZSa0W7gi1JtgBHn9HU7qC566iIHOkpwjueoWnMw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=wQ6UwGiE; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=XsXoxAWOHRxb8XUNWIPSw3DwDe7Nwe/bbRvZogg7X78=; b=wQ6UwGiE+di8+hXe0P4v50aG+y
+	PpXsJ74I/SUjB5p+UszPuGpykVfHURE4rvToqITr5EHQXHov0N+BE0Qgc67Ye40x96hbbplFIaaN/
+	COv7cvehMHhaJNMy4kDozA5AbkyziIg8Kh0kiEHAJNMT1jf1Jt6zOZ9OKBndtSWeb/CM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1txSAx-007BFX-38; Wed, 26 Mar 2025 15:56:15 +0100
+Date: Wed, 26 Mar 2025 15:56:15 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next RFC PATCH v2 2/3] net: phy: Add support for Aeonsemi
+ AS21xxx PHYs
+Message-ID: <dfa78876-d4a6-4226-b3d4-dbf112e001ee@lunn.ch>
+References: <20250326002404.25530-1-ansuelsmth@gmail.com>
+ <20250326002404.25530-3-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdduieehkeduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufgjfhgffffkgggtgfesthhqredttderjeenucfhrhhomhepofhiqhhuvghlucftrgihnhgrlhcuoehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeffgefhjedtfeeigeduudekudejkedtiefhleelueeiueevheekvdeludehiedvfeenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedufedprhgtphhtthhopehgvggvrhhtsehlihhnuhigqdhmieekkhdrohhrghdprhgtphhtthhopehquhhitggpmhgurghlrghmsehquhhitghinhgtrdgtohhmpdhrtghpthhtohepsghrohhonhhivgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgut
- heskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhitghhrghrugesnhhougdrrghtpdhrtghpthhtohepvhhighhnvghshhhrsehtihdrtghomh
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250326002404.25530-3-ansuelsmth@gmail.com>
 
+> +#define PHY_ID_AS21XXX			0x75009410
+> +/* AS21xxx ID Legend
+> + * AS21x1xxB1
+> + *     ^ ^^
+> + *     | |J: Supports SyncE/PTP
+> + *     | |P: No SyncE/PTP support
+> + *     | 1: Supports 2nd Serdes
+> + *     | 2: Not 2nd Serdes support
+> + *     0: 10G, 5G, 2.5G
+> + *     5: 5G, 2.5G
+> + *     2: 2.5G
+> + */
+> +#define PHY_ID_AS21011JB1		0x75009402
+> +#define PHY_ID_AS21011PB1		0x75009412
+> +#define PHY_ID_AS21010JB1		0x75009422
+> +#define PHY_ID_AS21010PB1		0x75009432
+> +#define PHY_ID_AS21511JB1		0x75009442
+> +#define PHY_ID_AS21511PB1		0x75009452
+> +#define PHY_ID_AS21510JB1		0x75009462
+> +#define PHY_ID_AS21510PB1		0x75009472
+> +#define PHY_ID_AS21210JB1		0x75009482
+> +#define PHY_ID_AS21210PB1		0x75009492
+> +#define PHY_VENDOR_AEONSEMI		0x75009400
 
->> Change in [v11]
->>
->> * Changed "depends on MTD" to "select MTD" in
->>   drivers/spi/Kconfig file
->
-> Why? This is the only driver that selects MTD instead of depending on it.
->
->> Change in [v7]
->>
->> * Made CONFIG_SPI_QPIC_SNAND as bool
->
-> Why? The driver uses MODULE_*, so a janitor may remove the latter.
+O.K. This helps.
 
-Good catch, I agree on both comments.
+> +static struct phy_driver as21xxx_drivers[] = {
+> +	{
+> +		/* PHY expose in C45 as 0x7500 0x9410
+> +		 * before firmware is loaded.
+> +		 */
+> +		PHY_ID_MATCH_EXACT(PHY_ID_AS21XXX),
+> +		.name		= "Aeonsemi AS21xxx",
+> +		.probe		= as21xxx_probe,
+> +	},
+> +	{
+> +		PHY_ID_MATCH_EXACT(PHY_ID_AS21011JB1),
+> +		.name		= "Aeonsemi AS21011JB1",
+> +		.read_status	= as21xxx_read_status,
+> +		.led_brightness_set = as21xxx_led_brightness_set,
+> +		.led_hw_is_supported = as21xxx_led_hw_is_supported,
+> +		.led_hw_control_set = as21xxx_led_hw_control_set,
+> +		.led_hw_control_get = as21xxx_led_hw_control_get,
+> +		.led_polarity_set = as21xxx_led_polarity_set,
+> +	},
 
-Thanks,
-Miqu=C3=A8l
+It is guaranteed by the current code that these entries are tried in
+the order listed here. If that was to change, other drivers would
+break.
+
+So what you can do is have the first entry for PHY_ID_AS21XXX with
+as21xxx_probe, have the probe download the firmware and then return
+-ENODEV. PHY_ID_AS21XXX tells us there is no firmware, so this is what
+we need to do. The -ENODEV then tells the core that this driver entry
+does not match the hardware, try the next.
+
+After the firmware download, the phylib core will still have the wrong
+ID values. So you cannot use PHY_ID_MATCH_EXACT(PHY_ID_AS21011JB1).
+But what you can do is have a .match_phy_device function. It will get
+called, and it can read the real ID from the device, and perform a
+match. If it does not match return -ENODEV, and the core will try the
+next entry.
+
+You either need N match_phy_device functions, one per ID value, or you
+can make use of the .driver_data in phy_driver, and place the matching
+data there.
+
+In the end you should have the correct phy_driver structure for the
+device. The core will still have the wrong ID values, which you should
+document with a comment. But that mostly only effects
+/sys/class/bus/mdio-bus/...
+
+	Andrew
 
