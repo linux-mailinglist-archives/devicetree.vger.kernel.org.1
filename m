@@ -1,132 +1,97 @@
-Return-Path: <devicetree+bounces-160865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44EC7A716EB
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 13:52:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 866CEA71725
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 14:12:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FF73189C065
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 12:52:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 30EFC18902CB
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 13:12:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A0361B983F;
-	Wed, 26 Mar 2025 12:52:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82C161E51FB;
+	Wed, 26 Mar 2025 13:12:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Grnt17tZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bzr5k3Cv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DA6B1B3950;
-	Wed, 26 Mar 2025 12:52:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BEBF1C701C;
+	Wed, 26 Mar 2025 13:12:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742993566; cv=none; b=a5djTvTjrJk4mige5GLOTDBWuVvH10BoVeuS7H7qiaOob7CbD1lxI55/I+tvVXSc3zRKcNGN627pTA/AYBQi5f04DmvwZqyqgIOMV/Wb8fPy2CrQZXOAj6ooRUO2DXy+QSbFD1fQIHRRkxGAxPHF9IFMdQ16IyZCUAIfCd3f7yU=
+	t=1742994723; cv=none; b=UMqOi9aY2znKcZCJ8dCS/JGU8a/lSqCRIa6EXeipKoMgXJus+xhEahaLSFMJ8kubD+Z2dgUyItyd7sfCPvXbvMbME/JtZyKMXMgsP+BFdo32FSB+PrsFEBMy14FfP6lTCQY5v0vt5eVTC/JN7fR3vm/VSo81MGtNKaaKx1M0YIo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742993566; c=relaxed/simple;
-	bh=yCg1rgqOSeu+rLDpXWfBkyZmFWl++cTnnHvhB3T0ZmU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XC+CEYJ6L6bF5jqYGv8j36q7HVfgr0MFS74hIcpigkMgmDRIFplMlzWH/oF30BT1lfNjb3FzAahVRTTZIsinWoLrIY6S2eajptgYHjn6hAUU+ggQpg3KqebDNDO+J6fsQPhHERYRq03sf/n+LOSy2qMXV/nTLtCzIK0smbFSdLY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Grnt17tZ; arc=none smtp.client-ip=209.85.221.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-521b84da5e9so2896550e0c.0;
-        Wed, 26 Mar 2025 05:52:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742993564; x=1743598364; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yCg1rgqOSeu+rLDpXWfBkyZmFWl++cTnnHvhB3T0ZmU=;
-        b=Grnt17tZgotgkdQ5lzTM7aeNu1bWMjxHTs9cVU8eEa/0xmudI2zh0GiTwl3S59jl4Q
-         zr2rdvaCGvWwYrMLHauKKWNl9zBdbv41ITXaDF+EWRdJab5cjbp0LgIO59Wmry9g6qt5
-         bswCBMhqrfwz/ipZB7BhGWdos0ziZK+rBddTmw/czO3TiNeX7nss22nvbRJ8rekvnrEn
-         FSvWMe+iR34CEeE++Ri2UkRKEdRaH7Kkb13SNvp8EWqWsUZ7wqGg8kGgzgTvD2FkxIJg
-         Qm5cQWopsvqL6AOGOkcLtR+UB8lxzUCMQeGzc6ZavbPxo4vjeO8ZBTVb3TGrv+Cr7spY
-         SQCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742993564; x=1743598364;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yCg1rgqOSeu+rLDpXWfBkyZmFWl++cTnnHvhB3T0ZmU=;
-        b=n9zAEuYgIC1+jC7i/0gtSoFhEp8zpb2mkpScLAvqz0x4LkF4zQnFgEoFCI0PAmiIsj
-         rzT4KllI0jwuPrORvq1c/OzYj2GI3Yw6/OiX+zotHPJ3OtxS6sQMBolUXn6NZEiZ0bXB
-         v0rFD3kUH4JzggGbKuhhz+U+vtx6W5jKDtBnCtVJMxuIcYxmCRWtlNPEsR4mDLMThzT6
-         oVgF2qTGP/PWz3kR0RgrVOyBDyB9hqa4oe60TEqvjMtW9nWpAn1bCb5lzgB6XU7p/XnN
-         /nGWYiT76Y6fTlhnGoOiHv399plSglSawYLfDJuEtsm+sEfbu7uBgv5qC71/CR5Tt4WW
-         ZLgw==
-X-Forwarded-Encrypted: i=1; AJvYcCVrsHXvY/j9MN49gE95JfJVmepR7U4/R+/l8JNxIzArjWuF3Q5O6UqBXr/8TnhPAtwTZjsjsfjQU15k@vger.kernel.org, AJvYcCVvVBeHl2+USTU+RtYGVb9Kuy/UoQ3uPyA5ZsvtV5MdAW5vqx4bXAwl/HagQI4z7KRyuaZMWrVKxA8FW3WK47eP4KQ=@vger.kernel.org, AJvYcCXR8tiUJqDvc6+kuDNm6mGKZYUs5yPmpqaoxTRYI+VUycFV1nz/9guO8U/YXcNzzIA21g9zQK9/buGszIA4@vger.kernel.org, AJvYcCXS1HFEx0urdAzykKW6zJGWG/97eeuUxswK+RPJAWI1C6ZNKaIfMjhVlxqKIkC4pj60Y6zkhNRW@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0MyKTjdlI56ySrux3riPwSEqUmApHWZ/uHOUVVYUM2rlpHwFv
-	R3dDrq3l+Zu2+jTN7jxIG1CoAAo8pLcONCCDFasivW3X11F2NQERxp0IkqdpBvWCzP+BjcaZ4MD
-	mirOsooeETzutSvjIhzdLu65moho=
-X-Gm-Gg: ASbGncsliD2LsrinKJRPFZA20obnS+PRXxRHZ0P/bHU411JiXIfdenDZfBr4CidekH/
-	izVi/Fh4H19MD/nUeoQGAsXSGiBq/CNr4Vlr4M3BHSZ+f3suxC01PyxzAERQEjAnlqYc7XCrQeS
-	93h5dA5aHcbxtRBCCF9rwjzobtbYwyIWhagGRtV8jTypfWwjUGu9oofbbcug==
-X-Google-Smtp-Source: AGHT+IF2GYlRCksm5iOmvAw5h/Nm2NCHn/eSKqWf0IIrVguqLczqhR9m/OA32gWx7ZdbP9xEUZ5cFF4uby3trZm3JSs=
-X-Received: by 2002:a05:6122:614d:b0:520:652b:cdf9 with SMTP id
- 71dfb90a1353d-525a838806amr14632718e0c.5.1742993563651; Wed, 26 Mar 2025
- 05:52:43 -0700 (PDT)
+	s=arc-20240116; t=1742994723; c=relaxed/simple;
+	bh=xHZogpAlfVgjvBtrplSMrJoXKmiEydbukh1as+FD2O8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pVW/uIlCEu7Yssh/zc1jwHZZeyfSX/HwkvHTREF+VcZo5ELp0g0OKcFtu2ffcMqAT+sQQTlzyuVFuRL8ZYD6SriaFgofobOJD/JieJwlti7Cv9W+syheoDx+j9abuMRZYiRtyvxNmX+5MKpzgMOIQ98MRCS11SvgGIIOIHYR5Rk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bzr5k3Cv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE0C5C4CEE8;
+	Wed, 26 Mar 2025 13:12:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742994722;
+	bh=xHZogpAlfVgjvBtrplSMrJoXKmiEydbukh1as+FD2O8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Bzr5k3Cvlla2zMdEiiP86+F+aOlVP4en8Gqiz4gMNr64PaXRE4ab8T8ye3va1iE2G
+	 lYkrDncOI1/ApyvnvY8nfPa23vB9eXVx04Wdr4cC4O9g/NnS+N8m7GSWXWITa4nzmP
+	 XVRsRb7vyWkd/xGbzieWlb8ufbuJhGvvRY6lSX2CmX5+rSLrUaJMpsUvl7Dq9Kw1sf
+	 xQx3K4ryHHUBt6gFX7HGCsjL5yGYukCc9t+71xZgCodnnmuAS70QkQYKGO2NApuFw5
+	 KMvKS5uoU4+7ElBO/qGt2JmbeLoLyEdqlVs8eNZRhaD7p16i83t4gVhcnpGIOILZwx
+	 C7BL9P8WJZx+g==
+Date: Wed, 26 Mar 2025 13:11:58 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 11/14] regulator: bd96801: Support ROHM BD96805 PMIC
+Message-ID: <e2f720b9-018a-45af-9fce-1241fa3c0fb4@sirena.org.uk>
+References: <cover.1742802856.git.mazziesaccount@gmail.com>
+ <bf33c911e77254420f5481b98fde29041e8f7823.1742802856.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250318205735.122590-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250318205735.122590-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Wed, 26 Mar 2025 12:52:17 +0000
-X-Gm-Features: AQ5f1Jp8vxfqG0NLOvLDVY_2Yq7ayGqmlj-XifLUdImduJ_U681u5FCcCZ32CJM
-Message-ID: <CA+V-a8tBh1Ev-8=0vcmz0XB7iqKzZZ5dKefrZCrY49Je3KTCAg@mail.gmail.com>
-Subject: Re: [PATCH net-next v4 0/3] Add GBETH glue layer driver for Renesas
- RZ/V2H(P) SoC
-To: Paolo Abeni <pabeni@redhat.com>, Jakub Kicinski <kuba@kernel.org>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, netdev@vger.kernel.org, 
-	Jose Abreu <joabreu@synopsys.com>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>, Magnus Damm <magnus.damm@gmail.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Eric Dumazet <edumazet@google.com>, 
-	"David S. Miller" <davem@davemloft.net>, Andrew Lunn <andrew+netdev@lunn.ch>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="niBskJ8PwBoezgCJ"
+Content-Disposition: inline
+In-Reply-To: <bf33c911e77254420f5481b98fde29041e8f7823.1742802856.git.mazziesaccount@gmail.com>
+X-Cookie: To err is humor.
 
-Hi Paolo and Jakub
 
-On Tue, Mar 18, 2025 at 8:57=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
-om> wrote:
->
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Hi All,
->
-> This patch series adds support for the GBETH (Gigabit Ethernet) interface
-> on the Renesas RZ/V2H(P) SoC. The changes include updating the device tre=
-e
-> bindings, documenting the GBETH bindings, and adding the DWMAC glue layer
-> for the Renesas GBETH.
->
-> Note, this patch series depends on [0].
->
-> [0] https://lore.kernel.org/all/Z82tWYZulV12Pjir@shell.armlinux.org.uk/
->
-This patch series has been marked as "Changes Requested" on Patchwork,
-but there were no review comments on the series. If the status was
-marked as "Changes Requested" due to build failures reported by the
-kernel bots, I=E2=80=99d like to clarify that the failure was caused by a
-patch dependency, which has now been merged into net-next [0]. As a
-result, this series should now build successfully on net-next.
+--niBskJ8PwBoezgCJ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Please let me know if you would like me to resend the series.
+On Mon, Mar 24, 2025 at 10:56:50AM +0200, Matti Vaittinen wrote:
+> The ROHM BD96805 is from the software perspective almost identical to
+> the ROHM BD96801. The main difference is different voltage tuning
+> ranges.
 
-[0] https://web.git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git=
-/commit/?id=3D0c1f1eb65425
+Reviewed-by: Mark Brown <broonie@kernel.org>
 
-Cheers,
-Prabhakar
+--niBskJ8PwBoezgCJ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmfj/R0ACgkQJNaLcl1U
+h9DALwf+OGA6Eoy2jOF/SjEhoVfjSwKoG+6Vu3+cmCwA1yU7YXlPLFLGjCr60p+Y
+Z0q1p8HxycwiTCalJEXf1kVGMd0xf35MUo98FSEOVKeH8L/4IkooiAWIcaovfUpx
+i5ZtuzzqUOXFlxS3ILcvfZDu2/HqoW/doTht0ZBcf/Y1wthrpZL0vA0zCUbFF17B
+aIsOUzo31uTo72kEqaxzVm3GDJ5Qth7qT6PUWwsVvXE25dWRSjL1+/qEL0hYFq3G
+LITYNnrPcaOpjD4r7xvq2eRpkhSNuzMJvAHPNKpmTQJxE8wZ4XHXgvYTpaglR5wN
+4jNYMHl7Sq4KYddG0sN+8EYSkRq+aw==
+=GuJU
+-----END PGP SIGNATURE-----
+
+--niBskJ8PwBoezgCJ--
 
