@@ -1,47 +1,48 @@
-Return-Path: <devicetree+bounces-160960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3D8DA71ADF
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 16:43:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9028DA71AFB
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 16:47:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3D2D47A82DD
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 15:39:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 16F30189CB61
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 15:43:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 735141FCFEE;
-	Wed, 26 Mar 2025 15:37:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 534501F4701;
+	Wed, 26 Mar 2025 15:40:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="QCZ/1a3p"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Spzyt6Nn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4B661F583A;
-	Wed, 26 Mar 2025 15:37:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09E2A1F419C;
+	Wed, 26 Mar 2025 15:40:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743003451; cv=none; b=mb5wpHfIPA4SXVCIBHKF2mKgvRd2GrJrWsL74VkfCPCJHERZDsMZai/ylB5ZffV9Ngd6gRAs7ZgnWIAtAoP7EXFTmUktTAd18+sAYTSa/ZI51bCO6pBwa4X9EDni4nVKnC/wLDwf+8iww7eS1Xlo/x8M7ZjfoMDCBqi9svLvbns=
+	t=1743003621; cv=none; b=uxSDnyRLt7pwlmKAS1FoD6jQNV4l/p/tjTpO6K+JAK+52gKprTnw39E7jdK8cq7Or7XR75fAoQR3c5PXIHCVtXkbBzeKuF0R1kdxM9pIcYiRuj+dmaXyxZGMSey5slOMq3RV622vCJrJSCawpRNRnKNAzUt5XFqEeITktusxAyE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743003451; c=relaxed/simple;
-	bh=X7FAEgRsV2xbboJ7QKOztmy6O5MW3v9XOfceR4QGwks=;
+	s=arc-20240116; t=1743003621; c=relaxed/simple;
+	bh=EFq8FuRe4FVrFdsKD2tP38ukAxHvOKwCgqNcwsvLoJA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HYVB6x44gE4rKHzJcLxHvMSuDeclHUqkTGg/jvU3+nLvr8vyqHP7p99TFhf5XEokWIkzBXOQxNfKOucxfZtRiVz5VV4EC6sFsZEj8hAE/6iBPrHOaYm+ajIWrTr50hSupHUXteVvbhX7/sExJtTx1DkEUKy97HwLA4qJHFuuq4Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=QCZ/1a3p; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: from [10.137.184.60] (unknown [131.107.160.188])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 204B22036597;
-	Wed, 26 Mar 2025 08:37:29 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 204B22036597
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1743003449;
-	bh=WjzFIgjV9jVjkAChBrIFVJQnAYd6k3ZAKIpA/MaT4yo=;
+	 In-Reply-To:Content-Type; b=D+OU+2EgCvOtfmhSomWTAgdWXGe7BW5AqTkenTcfq4RKn9LIxT2Tksv0Qcu5H3MvZB6MKtdUlgofQgUMVPaUOJ7aRpYxpWcD+gzTjACXjwobPDtGQl9AzgIUSRNwG6P4+wv2gjKIo1/R9yBJH1ohASpX5QODiFgjMSdFKV0sq/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Spzyt6Nn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4AE5C4CEE2;
+	Wed, 26 Mar 2025 15:40:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743003620;
+	bh=EFq8FuRe4FVrFdsKD2tP38ukAxHvOKwCgqNcwsvLoJA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QCZ/1a3p+ZIUFWcAhkJvic5IwY8U0ufXEKXOuGNNCfYPOL2C8wZRVb0oHeZ26p7MN
-	 55ghDNm1zZbkc7h9pH8j0WaY5qfjqpwdKTYWPi2UX1+7ck4WlgOZl7f4IIiSvY3N3U
-	 3LSW1a2/cC6In4mf7262M02Vm2HMR/pY2ogrm5bY=
-Message-ID: <83b983a4-064e-4a81-9c58-239b630eb299@linux.microsoft.com>
-Date: Wed, 26 Mar 2025 08:37:28 -0700
+	b=Spzyt6Nnv0LFkjIKuIlTUcaGk8Ak7YNfM73W+hKuAY4BqaXGOapVlpSILio651i2n
+	 tzFAb7vi16Qq061u6tuvT82p1Ov/W4+2n7kS5KtzCTmxCIorjGtSxdlKO0eCCONUFz
+	 d17n46p9xbp0YwzSV25HWIjrOQARaEZMyvlU++oOA2ZQyENVdl6PoGyzx9WGbxXzLp
+	 mhtHwuohdOIiOOD7w54D749+pqMKdTyU4pFCKLppJEB2LgJedFkwwaZHjJYne8nHJf
+	 Z3RSVHt2q6CBiWBMJT+AhvL9GjIc/cS4AdlIJHghw20ZS3QYTsVLaH3iOiRGoazL1S
+	 7bqdsygwHJfcQ==
+Message-ID: <1dd46a9e-e97d-415a-9e33-67ee234c4bac@kernel.org>
+Date: Wed, 26 Mar 2025 16:40:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -49,77 +50,69 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH hyperv-next v6 11/11] PCI: hv: Get vPCI MSI IRQ domain
- from DeviceTree
-To: "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: arnd@arndb.de, bhelgaas@google.com, bp@alien8.de,
- catalin.marinas@arm.com, conor+dt@kernel.org, dan.carpenter@linaro.org,
- dave.hansen@linux.intel.com, decui@microsoft.com, haiyangz@microsoft.com,
- hpa@zytor.com, joey.gouly@arm.com, krzk+dt@kernel.org, kw@linux.com,
- kys@microsoft.com, lenb@kernel.org, lpieralisi@kernel.org,
- manivannan.sadhasivam@linaro.org, mark.rutland@arm.com, maz@kernel.org,
- mingo@redhat.com, oliver.upton@linux.dev, robh@kernel.org,
- ssengar@linux.microsoft.com, sudeep.holla@arm.com, suzuki.poulose@arm.com,
- tglx@linutronix.de, wei.liu@kernel.org, will@kernel.org,
- yuzenghui@huawei.com, devicetree@vger.kernel.org, kvmarm@lists.linux.dev,
- linux-acpi@vger.kernel.org, linux-arch@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-hyperv@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, x86@kernel.org,
- apais@microsoft.com, benhill@microsoft.com, bperkins@microsoft.com,
- sunilmut@microsoft.com
-References: <20250315001931.631210-1-romank@linux.microsoft.com>
- <20250315001931.631210-12-romank@linux.microsoft.com>
- <CAJZ5v0jNEO2VcwmMXLZaS+Kqg3iBgHcWb65f90HKUADtPuvgqA@mail.gmail.com>
+Subject: Re: [PATCH] media: dt-bindings: Add OmniVision OV02C10
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, robh@kernel.org,
+ hdegoede@redhat.com, mchehab@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, sakari.ailus@linux.intel.com, hverkuil@xs4all.nl
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, bod@kernel.org
+References: <20250324171508.GA668235-robh@kernel.org>
+ <20250326150114.71401-1-bryan.odonoghue@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Roman Kisel <romank@linux.microsoft.com>
-In-Reply-To: <CAJZ5v0jNEO2VcwmMXLZaS+Kqg3iBgHcWb65f90HKUADtPuvgqA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250326150114.71401-1-bryan.odonoghue@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-
-On 3/26/2025 7:56 AM, Rafael J. Wysocki wrote:
-> On Sat, Mar 15, 2025 at 1:19 AM Roman Kisel <romank@linux.microsoft.com> wrote:
-
-[...]
-
->> -                                                         chip_data);
->> +#ifdef CONFIG_ACPI
->> +       if (!acpi_disabled)
->> +               irq_domain_parent = hv_pci_acpi_irq_domain_parent();
->> +#endif
->> +#if defined(CONFIG_OF)
+On 26/03/2025 16:01, Bryan O'Donoghue wrote:
+> Add bindings for OVO2C10 a two megapixel 1080p RGB sensor.
 > 
-> Why don't you do
-> 
-> #ifdef CONFIG_OF
-> 
-> here for consistency?
-> 
+You already sent this and got some review. What's more, it's exactly the
+same as OV02E10, so just put it to that file.
 
-Agree, that'd be easier on the eyes :) Will fix in the next version,
-thanks for the suggestion!
-
->> +       if (!irq_domain_parent)
->> +               irq_domain_parent = hv_pci_of_irq_domain_parent();
->> +#endif
->> +       if (!irq_domain_parent) {
->> +               WARN_ONCE(1, "Invalid firmware configuration for VMBus interrupts\n");
->> +               ret = -EINVAL;
->> +               goto free_chip;
->> +       }
->> +
->> +       hv_msi_gic_irq_domain = irq_domain_create_hierarchy(
->> +               irq_domain_parent, 0, HV_PCI_MSI_SPI_NR,
->> +               fn, &hv_pci_domain_ops,
->> +               chip_data);
->>
->>          if (!hv_msi_gic_irq_domain) {
->>                  pr_err("Failed to create Hyper-V arm64 vPCI MSI IRQ domain\n");
->> --
-
--- 
-Thank you,
-Roman
-
+Best regards,
+Krzysztof
 
