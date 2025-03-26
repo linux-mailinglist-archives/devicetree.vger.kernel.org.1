@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-160940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27AF6A719ED
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 16:14:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EBC3BA71A06
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 16:18:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E796171533
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 15:09:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B12016D757
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 15:16:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CF591EEA36;
-	Wed, 26 Mar 2025 15:09:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF7521527B1;
+	Wed, 26 Mar 2025 15:16:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AsmzYU6S"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XjPTI6da"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4001F1E1E0D;
-	Wed, 26 Mar 2025 15:09:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 092121487FE;
+	Wed, 26 Mar 2025 15:16:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743001773; cv=none; b=BVZ8ZZ3LmVDZdY9W4ylgnjRTU4ZLy0lhqezJnF3/G422uphCYr6jeaZdIQSeMv8XMsV7H4qZLfKZgO65lEcO5T7umlojHOvzIlqitEZiBzCfSusrtxQvVIsP1Ay8/7psRXQA7aXzy852pFsvcvGkACU8STZznwBaHp3iALb62Uk=
+	t=1743002203; cv=none; b=g0c5u5FiBDpdPa1bM/s+rm+Txt//qWdpvSbktZ2DuGEzWXxu/UyeFn9l2sosEiuNtriSGLbx6AoJve+FPvDkfZWAD441tuLuJ7pkNMEYI52+n+G1MyvjOQinf4yxv/Sba4UBfNb0d/kvNdPSJKLGG29l3B1cSURU9iwFVfunBcQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743001773; c=relaxed/simple;
-	bh=fzD10Xrzl75x3+V0T0ImuW3xAFsLTLCnDLt1yzfwsS4=;
+	s=arc-20240116; t=1743002203; c=relaxed/simple;
+	bh=24X/ZdyDqQkvrH6CWkwNHWJIQTB8tBU3RYiNFxsB0EI=;
 	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=E4ReExyEK8nol0VhvXnAlkhzyEPG77kxWE4wI4uEt1m+yaUvwMxjnAOQxXVxwoFTLVaOFAezsFVaO4jKVJWHjdvH2ESTAgqZ18kEi043kmoqC3nG6xQPN3UdiQtLLBa1dwLwV5mTx9sMCpCCQerDqZMVNtpgw11vPVVzHrSRrlQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AsmzYU6S; arc=none smtp.client-ip=209.85.128.41
+	 Content-Type:Content-Disposition:In-Reply-To; b=OTV5If9gRAiPKSvEfGc0605POUrJ4BhbP9dM7KlVtxRj6uep0/cpT9+LtT3zUMRisHUhYruzAeIZdmA7LemBIJ10gqF/k+eAnOL9W/tWJ9WGr1OvWpSD9X3G9hIGbPx6mVyvdO+xv4gWVKTMLSPw+wPz/RH8uGcb+HTEViCQbF8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XjPTI6da; arc=none smtp.client-ip=209.85.128.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4394a0c65fcso62157355e9.1;
-        Wed, 26 Mar 2025 08:09:30 -0700 (PDT)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43d07ca6a80so35624075e9.1;
+        Wed, 26 Mar 2025 08:16:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743001769; x=1743606569; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1743002200; x=1743607000; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:subject:cc
          :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=5Ce5BiQM2/fANf7gq6gy5sOXGo7Ftl1D3smnzrrXQk4=;
-        b=AsmzYU6S3XWMSW3WyiHhzAC2uU+jXeY3leip6FrxDMqotaMIMv2D1Svg0I92qJ4Pme
-         ZtuODhc5RSsYVa1301DGUlyWSY6oDsn01w0F102yRyy6pkzcY7oDDbJ/NW4eRdOggZpT
-         j7zBkO6/lXRD14iWlFt8dpcaphXMY6N52Q7KHFia4sVjsbqFkQ86hWuUx01Og+MSMEP1
-         YP3BkhtpBvMLsV06iXs0qKZVsfiRk1LMKWJ40k/mQLnGO4HE7RhBN/6cGrnoo6SAH0+8
-         9lSu198W4IAz3NL0ANojqkRTdkwscKUS5fTf7MqdRVeQJNXReGt1yCP3g8+UPYKc0AY6
-         Wgtg==
+        bh=Y85oIIcm8gxsyGNFmtbfLlnKY/DF/ZVUpoApBWzNdw4=;
+        b=XjPTI6daBoQibAYSGrnkbP2D29Xq5zjELN+deVVEWTFFEofj/skljMtRGenWJfgxCf
+         /U+4R5dpG9RHl131E3msqS4IQOC+BzTc8ylg5pxjl78MwT5Jeho/RjOu9RiWGP4J/ZuY
+         1TX2eNjGc8KbkXWhPqsQqvNQ8XtLg+en83mP9lbHSeMSz+07Aajq1XEkJ/Eda/Lyq6P0
+         Qq+8NcILPurC17vBsJMtqve4f6uylySXxYQvDlkaW7Yp8uj8O9RKJ87Ea8qTjgArfXCD
+         oCknbPJ36iwkmF4X0o3PRwIPxTSq8ww7utd+Qz79efVOcwNnVzBjOjV6lj33P54MpEB3
+         GOVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743001769; x=1743606569;
+        d=1e100.net; s=20230601; t=1743002200; x=1743607000;
         h=in-reply-to:content-disposition:mime-version:references:subject:cc
          :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=5Ce5BiQM2/fANf7gq6gy5sOXGo7Ftl1D3smnzrrXQk4=;
-        b=BXYd+pcplDxa6NnoLs0C+H9S/QXqCr3qCcf0QeyWO/ovULLeLFHDhYcHNMFeAoNVJe
-         tCTMry4wZs2KZXCmFfaPDAvzQGlsSx6kjzubsUnqsT7GDkiimUxB2XGx54ICiQLDlLhO
-         f3azTKMdjQlp3mqHj8sTLZrCFUFHDdvFZx9K4RsFXNF2Srj9IrDeMCEVb0pxyeB4iWnC
-         aS7VWDi+FIkYCPgEuvHcflUPxfQ2u+3r02rvX3PcIbjy+mZR3S6hUdpTc9DNBHIu1CnN
-         oU/8DNV28Iq80B/kNiVw0+82QPkAxpo7GWQTWMt2jV7wS4vd4IjWmmoJ6cFi13dy5qGT
-         d0sg==
-X-Forwarded-Encrypted: i=1; AJvYcCU6bqppoMbSVagyEyEMdqhOocWd+F14qQj3zJQRuvEXhDiq7Dmm11s8J10AJB6KplXQHMZWYgzH@vger.kernel.org, AJvYcCUyzsjN6JijIeKuJU7i06EcKBVpL7VhPPSFNC9IepPwhOzcaoSl0bF4K9GbpVkR8j2v026HjG1EN258ffu6@vger.kernel.org, AJvYcCXqQi0MiqyfFNgjhM5bmJGNKTW52YEs94CnQYfHC8daL7E3tlRnrkXMhWXXz39YaiTkeohiiRPfA1EP@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywyye3xbd5LZlBssc9Uo8/1B7gfkLeGEQG2d+M5AkmVCPFtYiNJ
-	k4QCa+FcK7U7TxNYSSD7elN99n4/SX4veLEcmbewJ90+tkZm8FId
-X-Gm-Gg: ASbGncvSWGbDZv2doaTU4+Xma+D3ojKDs/aAPC1nBF0lX27QujKFIJPpt9NLiB61EIL
-	wxZKRlAYvy5DMnBOUx1xFyz+/KZWZLvQ7HxZImZoLNgYdLU49JgUVl4dtUBfYNqCVDXQdjFU28C
-	4MlM9R2blGgZXYY0TkfpgTmQ1HFx5AoY47L+B6jpCHDcMlu9jv9riryAmSO95zo1LiN8Tao6Mrj
-	tiAeiDDexQgsi6+ma7/qo9+Q4YrLMMoqLpCsqc+4XqaGJRVc4+psjEte9lRa20n8JBcF7xxJOKa
-	qp8GPQr+bVmJdIEdhsAO+CjrTnBNj1z6Ua9ArrVM6eV4Bn4QzqbUASLtvuYYEAcuFMwasTWFIDw
-	m
-X-Google-Smtp-Source: AGHT+IETUQMPwJWNVeDlOxoEpYq62E+au6l2JD19LeAqaVlcwIhL15hqZjmgELSkgfMolh9se1W/Xw==
-X-Received: by 2002:a05:600c:15c8:b0:43d:94:cff0 with SMTP id 5b1f17b1804b1-43d51a91d05mr121962375e9.19.1743001769155;
-        Wed, 26 Mar 2025 08:09:29 -0700 (PDT)
+        bh=Y85oIIcm8gxsyGNFmtbfLlnKY/DF/ZVUpoApBWzNdw4=;
+        b=VpCR7FsShxO/iVWU6QtPRQc21/2BxW43T+RO7bXPEMMGYd0OOq31FGquKqDDVfXQyr
+         7IC25mXvB3JmgH83zBWmOY0ExDkQZXgkZtUYZO27X9jnSSi51Zc9iIU5iqcwQPE5NiWZ
+         Rnw9z9xTqR2BeWriYVbo+nmOdBtpuF2Bg3/gFgS0P+Fdi0baSoiAAkUw2iMQvShasB84
+         0SFrGb7fRu0f8IlFPdZxzK2rBJf8FNs8iqwBHvn2lHQANQrNW+nt5LgTPWjxbOmhYC1q
+         DaXUEOxRgV9K4iHpgcu8ff75qEbZ9P301GspYt3kSOjzgymdHfi43e4LF22VAwX+kCi4
+         KhTQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU7rjuRy2FCvfQaC4kFVL451gn0nrCqU0oeb4/ePkL1XwVujXeSJoU5GqmkjrEM7ms4uLP/mj6+@vger.kernel.org, AJvYcCUWecEuHLKUwROhYfpe4P7l5Y918eXE7Ga/d1hs/tjE36AsIAo73LL6IdzCCXEO+65pWAncAdm+KjCq@vger.kernel.org, AJvYcCWPHPbxOFlN6GAwgJV/kvMoG6uwrm048gMFyiyXh66U+6PSYUT47MmNpScx6B4JSibLbWpGO/tQWGHv6e2a@vger.kernel.org
+X-Gm-Message-State: AOJu0Yynh4Q1B5Rd+/QdMUb4dPFDBtCntgf7IRqt7gWU2HgUO5jXXFQM
+	dNZO4gvOIh2leLFAfjTzMuDzh/TjCPiHaFuWPlbGxR/CJy5znR7k
+X-Gm-Gg: ASbGncu/4/ZrvpUbAzNxWVa3xoQ94/vl8ok8brxuJo4lGhS5afX0UhiMgWT0ZEDUvte
+	DlcXu9cjdhPa4KV3pHo/xA71wDpOVgeQrwpQAXxR3uEMcXEVUDxIUOWFp723VQWz/faC6ueMnOf
+	9zV5oSPRhjAxd4NS0/WqQLjtZMwWmRoXAg+1jYS3bfNA4dNvcIT0oB7MYbNWNO1WCxd2Lpf+ema
+	KGTcDlTc8SYI4gG/6tLid/7RGdLe/bY1DxgwpvZbv4arncidx2PLROrpfNk4qQJy03MtSGjwqeM
+	CtIEnxsvol7yL2L5o+FgTga/oRRuFtGPGSyNXSrKIhnq8USKyTDs2bYXpPxAiXGBIYOpz34c6aa
+	M
+X-Google-Smtp-Source: AGHT+IHq4/YZ4/H5LWJdb571fFty3ntzrqohrYGC3QHhtf0iMCl7uuDPZdsJX1dTGPwHqjX0z+upeg==
+X-Received: by 2002:a05:600c:1d81:b0:43d:10a:1b90 with SMTP id 5b1f17b1804b1-43d509f8691mr209903635e9.16.1743002200098;
+        Wed, 26 Mar 2025 08:16:40 -0700 (PDT)
 Received: from Ansuel-XPS. (93-34-88-225.ip49.fastwebnet.it. [93.34.88.225])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d82efdffdsm4754705e9.18.2025.03.26.08.09.28
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3997f9b517csm17433341f8f.51.2025.03.26.08.16.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Mar 2025 08:09:28 -0700 (PDT)
-Message-ID: <67e418a8.050a0220.3b7a97.7228@mx.google.com>
-X-Google-Original-Message-ID: <Z-QYpcogNHEzizMD@Ansuel-XPS.>
-Date: Wed, 26 Mar 2025 16:09:25 +0100
+        Wed, 26 Mar 2025 08:16:39 -0700 (PDT)
+Message-ID: <67e41a57.df0a0220.21de93.f609@mx.google.com>
+X-Google-Original-Message-ID: <Z-QaVe1BiFCZ2Hqj@Ansuel-XPS.>
+Date: Wed, 26 Mar 2025 16:16:37 +0100
 From: Christian Marangi <ansuelsmth@gmail.com>
 To: Andrew Lunn <andrew@lunn.ch>
 Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
@@ -87,11 +87,11 @@ Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
 	Heiner Kallweit <hkallweit1@gmail.com>,
 	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next RFC PATCH v2 2/3] net: phy: Add support for Aeonsemi
- AS21xxx PHYs
+Subject: Re: [net-next RFC PATCH v2 3/3] dt-bindings: net: Document support
+ for Aeonsemi PHYs
 References: <20250326002404.25530-1-ansuelsmth@gmail.com>
- <20250326002404.25530-3-ansuelsmth@gmail.com>
- <dfa78876-d4a6-4226-b3d4-dbf112e001ee@lunn.ch>
+ <20250326002404.25530-4-ansuelsmth@gmail.com>
+ <77a366f8-0b58-4e1f-9020-b57f7c90b3bb@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,96 +100,63 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <dfa78876-d4a6-4226-b3d4-dbf112e001ee@lunn.ch>
+In-Reply-To: <77a366f8-0b58-4e1f-9020-b57f7c90b3bb@lunn.ch>
 
-On Wed, Mar 26, 2025 at 03:56:15PM +0100, Andrew Lunn wrote:
-> > +#define PHY_ID_AS21XXX			0x75009410
-> > +/* AS21xxx ID Legend
-> > + * AS21x1xxB1
-> > + *     ^ ^^
-> > + *     | |J: Supports SyncE/PTP
-> > + *     | |P: No SyncE/PTP support
-> > + *     | 1: Supports 2nd Serdes
-> > + *     | 2: Not 2nd Serdes support
-> > + *     0: 10G, 5G, 2.5G
-> > + *     5: 5G, 2.5G
-> > + *     2: 2.5G
-> > + */
-> > +#define PHY_ID_AS21011JB1		0x75009402
-> > +#define PHY_ID_AS21011PB1		0x75009412
-> > +#define PHY_ID_AS21010JB1		0x75009422
-> > +#define PHY_ID_AS21010PB1		0x75009432
-> > +#define PHY_ID_AS21511JB1		0x75009442
-> > +#define PHY_ID_AS21511PB1		0x75009452
-> > +#define PHY_ID_AS21510JB1		0x75009462
-> > +#define PHY_ID_AS21510PB1		0x75009472
-> > +#define PHY_ID_AS21210JB1		0x75009482
-> > +#define PHY_ID_AS21210PB1		0x75009492
-> > +#define PHY_VENDOR_AEONSEMI		0x75009400
+On Wed, Mar 26, 2025 at 04:08:31PM +0100, Andrew Lunn wrote:
+> > +  A PHY with not firmware loaded will be exposed on the MDIO bus with ID
+> > +  0x7500 0x7500 or 0x7500 0x9410 on C45 registers.
 > 
-> O.K. This helps.
+> > +select:
+> > +  properties:
+> > +    compatible:
+> > +      contains:
+> > +        enum:
+> > +          - ethernet-phy-id7500.9410
+> > +          - ethernet-phy-id7500.9402
+> > +          - ethernet-phy-id7500.9412
+> > +          - ethernet-phy-id7500.9422
+> > +          - ethernet-phy-id7500.9432
+> > +          - ethernet-phy-id7500.9442
+> > +          - ethernet-phy-id7500.9452
+> > +          - ethernet-phy-id7500.9462
+> > +          - ethernet-phy-id7500.9472
+> > +          - ethernet-phy-id7500.9482
+> > +          - ethernet-phy-id7500.9492
 > 
-> > +static struct phy_driver as21xxx_drivers[] = {
-> > +	{
-> > +		/* PHY expose in C45 as 0x7500 0x9410
-> > +		 * before firmware is loaded.
-> > +		 */
-> > +		PHY_ID_MATCH_EXACT(PHY_ID_AS21XXX),
-> > +		.name		= "Aeonsemi AS21xxx",
-> > +		.probe		= as21xxx_probe,
-> > +	},
-> > +	{
-> > +		PHY_ID_MATCH_EXACT(PHY_ID_AS21011JB1),
-> > +		.name		= "Aeonsemi AS21011JB1",
-> > +		.read_status	= as21xxx_read_status,
-> > +		.led_brightness_set = as21xxx_led_brightness_set,
-> > +		.led_hw_is_supported = as21xxx_led_hw_is_supported,
-> > +		.led_hw_control_set = as21xxx_led_hw_control_set,
-> > +		.led_hw_control_get = as21xxx_led_hw_control_get,
-> > +		.led_polarity_set = as21xxx_led_polarity_set,
-> > +	},
+> > +        ethernet-phy@1f {
+> > +            compatible = "ethernet-phy-id7500.9410",
+> > +                         "ethernet-phy-ieee802.3-c45";
 > 
-> It is guaranteed by the current code that these entries are tried in
-> the order listed here. If that was to change, other drivers would
-> break.
+> You need to be careful here. And fully understand what this means.  In
+> general, you don't list a compatible here, or only
+> ethernet-phy-ieee802.3-c45. This is because the bus can be enumerated,
+> you can get the ID from the device. What is in the device is more
+> likely to be correct than whatever the DT author put here. However,
+> you can state a compatible with an ID, and when you do that, it means
+> the PHY device ID in the silicon is broken, ignore it, probe based on
+> the value here.  So if you state ethernet-phy-id7500.9410, it does not
+> matter if there is firmware or not in the PHY, what ID the PHY has, it
+> will get probed as a ethernet-phy-id7500.9410.
 > 
-> So what you can do is have the first entry for PHY_ID_AS21XXX with
-> as21xxx_probe, have the probe download the firmware and then return
-> -ENODEV. PHY_ID_AS21XXX tells us there is no firmware, so this is what
-> we need to do. The -ENODEV then tells the core that this driver entry
-> does not match the hardware, try the next.
-> 
-> After the firmware download, the phylib core will still have the wrong
-> ID values. So you cannot use PHY_ID_MATCH_EXACT(PHY_ID_AS21011JB1).
-> But what you can do is have a .match_phy_device function. It will get
-> called, and it can read the real ID from the device, and perform a
-> match. If it does not match return -ENODEV, and the core will try the
-> next entry.
-> 
-> You either need N match_phy_device functions, one per ID value, or you
-> can make use of the .driver_data in phy_driver, and place the matching
-> data there.
-> 
-> In the end you should have the correct phy_driver structure for the
-> device. The core will still have the wrong ID values, which you should
-> document with a comment. But that mostly only effects
-> /sys/class/bus/mdio-bus/...
+> Except, if there is a .match_phy_device in the driver ops. If there is
+> a .match_phy_device the driver does whatever it wants to try to
+> identify the device and perform a match.
 >
 
-Thanks a lot for the hint on how to use .match_phy_device for this,
-wasn't aware of the enforced PHY order.
+Yep I will note this for the PHY driver. I really need to use
+match_phy_device for the FW load OPs to prevent any kind of bad
+compatible.
 
-I will investigate this but may I ask who creates the sysfs entry and
-at what stage? After phy_register?
+In C22 75007500 is reported while in C45 a more correct 75009410 is
+reported, this is why the c45 compatible.
 
-Cause if that is the case can't this be solved by making the PHY
-function rescan the ID? Checking patch 1 of this series, it won't be
-driver_release/attach but just a flag to read the PHY again and update
-phy_device.
+Aside from this, the compatible listed here are really just to document
+the need for firmware-name and to what PHY it should be needed. It's a
+pattern I followed from the aquantia schema.
 
-From what I observed, updating the phy_id entry in phy_device (or
-c45_ids) is harmless. A rescan totally deletes the problem of having to
-use the match functions.
+Example for PHY with ID 7500.9410 in C45, firmware-name is required, for
+anything else (example 7500.9422) firmware-name property should not be
+used (case with a SPI attached for example).
 
 -- 
 	Ansuel
