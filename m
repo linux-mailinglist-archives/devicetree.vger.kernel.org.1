@@ -1,125 +1,201 @@
-Return-Path: <devicetree+bounces-160852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98DD4A715C5
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 12:31:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D54B3A715E7
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 12:37:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 64EE1188E46E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 11:29:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8DBBF188D883
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 11:38:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2B9F1DCB09;
-	Wed, 26 Mar 2025 11:28:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B58851B4139;
+	Wed, 26 Mar 2025 11:37:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dO+wudTy"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="aadnlcle"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2072.outbound.protection.outlook.com [40.107.92.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86BE11DC9AC;
-	Wed, 26 Mar 2025 11:28:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742988539; cv=none; b=HwkRay/yf2ybTAX6w2Ie/7TqFbm4QATWzTar+NT00cOXqjnIZ2cRV08empkau/VGRq4qBAhpDm7/18I8qE4fHl6tF4MRYojB1cB7PTA3re3qQogI/LHwxOdUjz90wh32ilUpMiPZYB1Iv2ZdhE18X8s2SJFP0/f0Exx6zoRGi2k=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742988539; c=relaxed/simple;
-	bh=4Sh1ikImfk7eyob7pJYLP87Gp+VBMFoDyKt80LgWr+w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=plw8L5OCv0Ar3yYMz0KWPNTZyjlhZmOJPAX2K1F/n51rb5Yei4QX/xbXN5u5B/Hqiq5i7sHIJCw8LQL8KzWZNK/GrLmr96LvvlebILrsD0SpFT+u0PY2IoC02NyjlbzheuoewPYEsislaaRG0QgtQo/YfaclX4Xd021E2Ac7JuM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dO+wudTy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82D4CC4CEEA;
-	Wed, 26 Mar 2025 11:28:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742988538;
-	bh=4Sh1ikImfk7eyob7pJYLP87Gp+VBMFoDyKt80LgWr+w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dO+wudTy752jbZBiKbEzH/y7kZltbC12thCjkIvnZenkEwF5D2goiKObY33+DZByK
-	 62goXNL37ZMBjPsOFTzt1itoLJjbfI4q2kHo+gcavcD8Ed+ocOY+Elo0yUuq/RzkD4
-	 FOqbHWsKAMpikkVh2I3TcWSLtiluyof3uUc5RxuLdFK2gbkm+vCt964jw4Ou0EI2Iy
-	 SJHfXybHBPCt7535DKZ9pCxr1axSlbqbsF7nsodCCYZDBGsbw1rDAozoM+sEo3H3k5
-	 40tkPnOq6VoCDvDqRAzPP/4s0qs6uIS8Ba3o5wFBmsURz9VrW0qQnuUQ5iLdNYoEuu
-	 YHaiM9Fkt9Z/A==
-Date: Wed, 26 Mar 2025 07:28:52 -0400
-From: Mike Rapoport <rppt@kernel.org>
-To: Dave Young <dyoung@redhat.com>
-Cc: Baoquan He <bhe@redhat.com>, Changyuan Lyu <changyuanl@google.com>,
-	linux-kernel@vger.kernel.org, graf@amazon.com,
-	akpm@linux-foundation.org, luto@kernel.org,
-	anthony.yznaga@oracle.com, arnd@arndb.de, ashish.kalra@amd.com,
-	benh@kernel.crashing.org, bp@alien8.de, catalin.marinas@arm.com,
-	dave.hansen@linux.intel.com, dwmw2@infradead.org,
-	ebiederm@xmission.com, mingo@redhat.com, jgowans@amazon.com,
-	corbet@lwn.net, krzk@kernel.org, mark.rutland@arm.com,
-	pbonzini@redhat.com, pasha.tatashin@soleen.com, hpa@zytor.com,
-	peterz@infradead.org, ptyadav@amazon.de, robh+dt@kernel.org,
-	robh@kernel.org, saravanak@google.com,
-	skinsburskii@linux.microsoft.com, rostedt@goodmis.org,
-	tglx@linutronix.de, thomas.lendacky@amd.com,
-	usama.arif@bytedance.com, will@kernel.org,
-	devicetree@vger.kernel.org, kexec@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
-	linux-mm@kvack.org, x86@kernel.org
-Subject: Re: [PATCH v5 11/16] kexec: add config option for KHO
-Message-ID: <Z-Pk9Bnr0lDVopKj@kernel.org>
-References: <20250320015551.2157511-1-changyuanl@google.com>
- <20250320015551.2157511-12-changyuanl@google.com>
- <CALu+AoS01QJ-H5Vpr378rbx==iRQLG0HajtMCUzDXRO75biCag@mail.gmail.com>
- <Z+JT7kx+sfPqfWFA@MiWiFi-R3L-srv>
- <CALu+AoQj+mHECTvbuK8CpUTmOYgx6n2oMFm5kQXtSigL+5Ks2w@mail.gmail.com>
- <CALu+AoRdfjNcjweq_ipxCC6UGBzM-a5ma417RBr-C3EQ=Em9OQ@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6D531DC9A8;
+	Wed, 26 Mar 2025 11:37:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.92.72
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1742989066; cv=fail; b=qQZS7Xfb8qmSKela+RjAq6XLwNFn68RUwsszatz5V/xISh209dalVT1Hzwj5gATgd4mOB+IRuy0KoPP/7upMb8NhQ0y8hz1C2OY5GmrGzaRHMGUGlbLOFb1DV1jO2YVx4EQyGBSO3EE0N/8iIrzU8fPMZD24lhPIQHlghcqw99E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1742989066; c=relaxed/simple;
+	bh=WSdca+p089Yrp9XYmWyMEeBFwBBgL/spJKpfnQjveQQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=VgUFIGVPaZjr061vfatqDivK9g3c5y3Dy9Ypl/6sGmZZeSkvRIuU68ObShNZNHBC48gLvIOfv4ftJc7dXRWzxv0aQt7mjpsErUXz/PVX2LzoDjMDxykQ4X9Fk0D4Zar2PQvY/SSo41KffXjBR9LoZxr7Qw3BVylItxr26989IJk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=aadnlcle; arc=fail smtp.client-ip=40.107.92.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=DbxchlAncjJtHicpFlOL4uK/kWa7F4pfbdTgKJVA24rMi/qkNwGUAOUxaQz7qkfewXSgz9SvDRSduV82DfJU6l/F9L//cfh2fzMosp4Z7JiVi/CKFDqoyBw5OojRtf8z2MkSL4KJqiEtiDIDZPOErn/uJs93i8o4H0hDx0JTm/GYjBM6Odlprc69ASfa/juZ9ez2VNL9z4OkfnrLCOQmC3FKabpAufpUSr9dQskJgBcaKIFKeQtm3CXXAY9SpmlNtGVr0iR6A45Qs8xGGXBV+EDJ+5t+9hJsI7ZfsalY8KSzfEuXqfG4pTQpsUz4xfvW9k1vJpNG1GwppD85PIYygQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aJLiPXkOVFfRboqmTGr+OemzQK93tG0l1uRxwySse50=;
+ b=NwnyiC6SOTwHLeT1nQyUlhC2lY5vGZq4H0NK5Mjfw7XJClNYoY9WVEsrDZOFrozvGNDQTt9H3Y9MFfSsoFNCWvqEXX8EIAMZns1qd0fMUiDLG6171NMmrng1tjeAsjiZupzqmLuhNG1kgNtbSI5BYKz+ZFwlI54pVzHZkq5DhsjI5NtjZelrNYLpo/lBrDVLlNHI3682iZpBk1cmX/6Lsk4geFw4J7ssFwqPJHvoHLWWiddMag1qPBHdTFA0sp6tfEhML6WM0oErEWoHJ8mC6p1nM18PM2F8DYJF/4tj6AZgGkpg1kX1msSuZwQOAvW9SnI7pdtUeOuU+JYQcnVd8w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=aJLiPXkOVFfRboqmTGr+OemzQK93tG0l1uRxwySse50=;
+ b=aadnlcleXbbCL77z344eW0wTwdRLW+4XAti6IwoYOBabS8My+Keb4/kwZTvftvnFbyi2UhKu+ldieUqCEjqdJAaXJRNX8QFt2at5N7OTS6unQGZ7eygSEH3JQP/QlGIM4qqQLqaAN3lTnFJ5hr+bDmV3Lcml4xEbzAeuqTiNA4I=
+Received: from DS2PEPF00004551.namprd21.prod.outlook.com
+ (2603:10b6:f:fc00::517) by PH8PR12MB6937.namprd12.prod.outlook.com
+ (2603:10b6:510:1bc::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.42; Wed, 26 Mar
+ 2025 11:37:38 +0000
+Received: from CY4PEPF0000EE3E.namprd03.prod.outlook.com
+ (2603:10b6:92f::1004:0:12) by DS2PEPF00004551.outlook.office365.com
+ (2603:10b6:f:fc00::517) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8606.9 via Frontend Transport; Wed,
+ 26 Mar 2025 11:37:37 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CY4PEPF0000EE3E.mail.protection.outlook.com (10.167.242.16) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8534.20 via Frontend Transport; Wed, 26 Mar 2025 11:37:37 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 26 Mar
+ 2025 06:37:36 -0500
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 26 Mar
+ 2025 06:37:35 -0500
+Received: from xhdakumarma40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
+ Transport; Wed, 26 Mar 2025 06:37:33 -0500
+From: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+To: <broonie@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>
+CC: <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <git@amd.com>, <amitrkcian2002@gmail.com>,
+	Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+Subject: [PATCH] spi: dt-bindings: cdns,qspi-nor: Update minItems/maxItems of resets for Cadence OSPI controller
+Date: Wed, 26 Mar 2025 17:07:31 +0530
+Message-ID: <20250326113731.1657593-1-amit.kumar-mahapatra@amd.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CALu+AoRdfjNcjweq_ipxCC6UGBzM-a5ma417RBr-C3EQ=Em9OQ@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB05.amd.com: amit.kumar-mahapatra@amd.com does not
+ designate permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3E:EE_|PH8PR12MB6937:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0e71723d-5a77-4a6c-7bf3-08dd6c5a9bf3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|376014|36860700013|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?blCAOHDzqDAYy3iWJSAdLhy2oyTfrjr9SaSep7G4kWN8eZyRg8NpfF2K2JMD?=
+ =?us-ascii?Q?hxLq9MQiv/tqN1+vSp3wq8UUUiVi/zPd1c9H01pcis55Th3UXD59Ei5NtLQm?=
+ =?us-ascii?Q?W2AjPSWkYBFaG7BE7iODQRDEyRND6NiTpfN76aR0eAm/8OjOtLSMspzkePOm?=
+ =?us-ascii?Q?dXF6pD8Hrh/Irc3mhxyMDJfwQEYkCjPARccyFFi6ubaq3nLSyNb/RHgUj9DD?=
+ =?us-ascii?Q?APnRn/n38VMqpZMygybDaYbOTxdRh92+NMgVlD+YowDz8a/D8oLdfET0p5PS?=
+ =?us-ascii?Q?ufhDrjpfqMWU21ClgHSLXtUp6hcQanqOh7cQ3PDf5tPv7VVHfDk2kArT2j+c?=
+ =?us-ascii?Q?PCOBKGXasYPDn6reA+oJnJniJRGw68FN7l8vQWSql+xJkLjgjwBamRzR5VM2?=
+ =?us-ascii?Q?5Tf2m5FhkYkGEk4o3p0r44HdTviBOgK4pxfHoQUy1a3uWbeeRP0UtcwM/nh+?=
+ =?us-ascii?Q?zMK0j4f5W11rlv4p85N/zmZeGklDBI3lvhwO2yBrlp0KQctaTrnEP8Wudg2g?=
+ =?us-ascii?Q?ZxfXHkdwhFVSt3hcE3svHa0l1orReLYQFPAh5lKIqUAlH8NO+VA2OTkckZ5w?=
+ =?us-ascii?Q?z0Q9YMofdZLMTYo73MDg8ZaRyRAFoGrZf6SNg7NJl9qyU/pDtqELY6JUD9lm?=
+ =?us-ascii?Q?1+TOGy7Y38SH5sTGYBDZIKhKmG6qDXD1BZlvNHUS/DFgC7fzzrf1vDwsHVbZ?=
+ =?us-ascii?Q?cL3OObOGwAvs5V51AHj105WYGkqzAA/qz+puuqyR7IEHkL0M4VzcGxW+4BFg?=
+ =?us-ascii?Q?ii14cuwnwvardM0kq/Ri/TaXzMdtZU4SK9N5O9eZJ5DvSFvJOD/E/l5bs3Mj?=
+ =?us-ascii?Q?enDmqd0reb+km/bWAbSFlH2jzxr4fY9WWivzydXtvhA8CY6n95b6DKdkLPat?=
+ =?us-ascii?Q?xHZCpn+tc3bNaXkNUocIupxlPQNOSicYf7cPqTYUvx+q1cvKtveDbdi1V3D4?=
+ =?us-ascii?Q?njSlYznU8Q0qW43U/EYWuC4GSwgtM3nLZsSZXbRLJ80dmps1R+xzQisbpZ0S?=
+ =?us-ascii?Q?EBHDB7B9HzoROerqxVvSopnu/I2xi70Dj5m1YW18vg8KsO1CNG3j7bP2pjOr?=
+ =?us-ascii?Q?jtDr1mxh1x+KX/xi7eq73vKf9HIIdo0Taix3BXIo9x81835B2KkB1yhg018q?=
+ =?us-ascii?Q?c6SyWg8+LQsuPsPuKQFOdSQq3tgdyFWkZ1MjMOU3+v55t8uVeC44LG2FLl9D?=
+ =?us-ascii?Q?PtyeiVe3MG9oskIjHdSnut6naoSlBmgXlK4kmlwrf+jCDkXRzzrXoRm8en+L?=
+ =?us-ascii?Q?PnbtnSg2uJr1lu02SUbL6g0A1lhKZsFkqFGxkA3Q1HjzXFi+Zu5YhW02eXo2?=
+ =?us-ascii?Q?no0NjgNFddKtrv0Hd650S46LsRr1eAomGYrsWEdrOjXVDJ9O7hpdMe5Ukoao?=
+ =?us-ascii?Q?d1VTQ37mdCj/nVGTVNFpT9qKlK4RxdUsdCE/4OHnc2bsZc/u2bV7AW35Kkox?=
+ =?us-ascii?Q?lvafnCZ3L0mJvtXzQVCrh4Bv7qYBUNiBO+L/1GmSM1X5msUmrkxDdNtE6r4K?=
+ =?us-ascii?Q?d7Q/A/vrvg+4yyw=3D?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(36860700013)(1800799024);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2025 11:37:37.4197
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0e71723d-5a77-4a6c-7bf3-08dd6c5a9bf3
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CY4PEPF0000EE3E.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB6937
 
-Hi Dave,
+The Cadence Octal SPI (OSPI) controller on AMD Versal SoCs requires only
+one reset entry. To reflect this, the maxItems for "resets" and
+"reset-names" has been set to 1 for AMD Versal SoCs, and the minItems for
+these properties has also been updated to 1. Additionally, these properties
+have been added to the required property list for Versal SoCs.
 
-On Wed, Mar 26, 2025 at 05:17:16PM +0800, Dave Young wrote:
-> On Tue, 25 Mar 2025 at 16:36, Dave Young <dyoung@redhat.com> wrote:
-> >
-> > > >
-> > > > Have you tested kdump?  In my mind there are two issues,  one is with
-> > > > CMA enabled, it could cause kdump crashkernel memory reservation
-> > > > failures more often due to the fragmented low memory.  Secondly,  in
-> > >
-> > > kho scracth memorys are reserved much later than crashkernel, we may not
-> > > need to worry about it.
-> > > ====================
-> > > start_kernel()
-> > >   ......
-> > >   -->setup_arch(&command_line);
-> > >      -->arch_reserve_crashkernel();
-> > >   ......
-> > >   -->mm_core_init();
-> > >      -->kho_memory_init();
-> > >
-> > > > kdump kernel dump the crazy scratch memory in vmcore is not very
-> > > > meaningful.  Otherwise I suspect this is not tested under kdump.  If
-> > > > so please disable this option for kdump.
-> >
-> > Ok,  it is fine if this is the case, thanks Baoquan for clearing this worry.
-> >
-> > But the other concerns are still need to address, eg. KHO use cases
-> > are not good for kdump.
-> > There could be more to think about.
-> > eg. the issues talked in thread:
-> > https://lore.kernel.org/lkml/Z7dc9Cd8KX3b_brB@dwarf.suse.cz/T/
-> 
-> Rethink about this,  other than previous concerns.  Transferring the
-> old kernel state to kdump kernel makes no sense since the old state is
-> not stable as the kernel has crashed.
+Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+---
+BRANCH: mtd/next
+---
+ .../devicetree/bindings/spi/cdns,qspi-nor.yaml     | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+index d48ecd6cd5ad..cc94c59280a1 100644
+--- a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
++++ b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+@@ -17,8 +17,18 @@ allOf:
+           contains:
+             const: xlnx,versal-ospi-1.0
+     then:
++      properties:
++        resets:
++          maxItems: 1
++
++        reset-names:
++          maxItems: 1
++          items:
++            enum: [ qspi ]
+       required:
+         - power-domains
++        - resets
++        - reset-names
+   - if:
+       properties:
+         compatible:
+@@ -132,11 +142,11 @@ properties:
+     maxItems: 1
  
-KHO won't be active for kdump case. The KHO segments are only added to
-kexec_image and never to kexec_crash_image. 
-
+   resets:
+-    minItems: 2
++    minItems: 1
+     maxItems: 3
+ 
+   reset-names:
+-    minItems: 2
++    minItems: 1
+     maxItems: 3
+     items:
+       enum: [ qspi, qspi-ocp, rstc_ref ]
 -- 
-Sincerely yours,
-Mike.
+2.34.1
+
 
