@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-160964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160965-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42D11A71BBB
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 17:25:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED2DFA71BBC
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 17:25:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8380D189121D
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 16:24:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C2A38177AC1
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 16:24:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BBE51F754A;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25FFF1F7557;
 	Wed, 26 Mar 2025 16:23:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thaumatec-com.20230601.gappssmtp.com header.i=@thaumatec-com.20230601.gappssmtp.com header.b="aaQ1J2Xv"
+	dkim=pass (2048-bit key) header.d=thaumatec-com.20230601.gappssmtp.com header.i=@thaumatec-com.20230601.gappssmtp.com header.b="RRRbODCm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28CE61F4289
-	for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 16:23:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 209771F5826
+	for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 16:23:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743006234; cv=none; b=qi54/2qLkB7DaSVxY9NmB+nCdDUYrTjVekFnh73fYYn6TNkrkDstuag6Wv+n05OHk/OSdT+ozVo/o2oBoozOTvYIkbLR/dF4holxAN0ILHfsyv+8hTXOUPkKAaAvERbyj+b4Qr6Uvrh1lBLNduYw5jOL8b6LhmcF/TsNZ97zhpA=
+	t=1743006234; cv=none; b=bGW+me+3230o76z0Zd9ghz67XeB32ZXUNw+7Sx9p6YlPjUHEdcpRzWIL/e8tW4CvSqg13mjdHJ6lB0QwCqshfOO9XnDRyrvlnJUtQ2AvvaL3nbtWHcg5HAXtDEB+f0n/Hnv7z3AoCyTcwgUYgpdFGniOC2xBcrDkLZl1PJ4Xcig=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1743006234; c=relaxed/simple;
-	bh=O/r8gbGACCdKsQpd9YaJGrSlEj//D5Z8hvnF0c8Mbxo=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hKf6XbuV42H1Pfce7BfeREyfQR/KxsX0lKhCG9g/lt0jigGHe8zwRwze2U59uGHoRZ4pujX1RnYAVEMDKZQMVlysMxoAkd+T21w5IZR42DoWIlsah6W/MNmKikF9pnm44VXH14L2NWs/whnA4vUJUBWg2+WGqXk9yLnnYddfsBY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thaumatec.com; spf=pass smtp.mailfrom=thaumatec.com; dkim=pass (2048-bit key) header.d=thaumatec-com.20230601.gappssmtp.com header.i=@thaumatec-com.20230601.gappssmtp.com header.b=aaQ1J2Xv; arc=none smtp.client-ip=209.85.218.51
+	bh=PeEgCfBvUgiOjdlm8XMEYe+at2eqiLHn8dkuleqfmAU=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=PPB3AOFIZqc8ESHnROc09YBSibMvV33sn62vWLIvU6Hh0awCimRUxyRr/EHJpCO5rDjf1CxkxKTiy5TXT0hDydU3jw2VcwvXavU7g1qfd2FwN2UgqzY31vRyOf91YoWttgujnXvQvIjBqxFbfb/sW8YjdVihjKHvsbaeG/zIH7g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thaumatec.com; spf=pass smtp.mailfrom=thaumatec.com; dkim=pass (2048-bit key) header.d=thaumatec-com.20230601.gappssmtp.com header.i=@thaumatec-com.20230601.gappssmtp.com header.b=RRRbODCm; arc=none smtp.client-ip=209.85.208.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thaumatec.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thaumatec.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-ac289147833so1041010666b.2
-        for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 09:23:50 -0700 (PDT)
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5e61375c108so9305452a12.1
+        for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 09:23:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=thaumatec-com.20230601.gappssmtp.com; s=20230601; t=1743006229; x=1743611029; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=fKYanQIfYCncszgpyLAY2Jfcp3L50T71jyYK0/4Yps0=;
-        b=aaQ1J2Xv/kKn9m8lRKyeMZvTwyLiN0Fc61PmVzA9H4mufDlqqtGz5IwOxqRILCrI9+
-         amfw4dS3kGaMPBJwKnr20qI1rdaeULirbqG7KU01UMTGINRYhRf9RZ5Nzm8YXEkhHK06
-         I6UTvp5sxlmkPPcpz2JYfaH5at0NxcsxMiFyo6VuqymDPonhj8uKYh7aHQfpGXIdImjs
-         O27PwlMjAoZEj7cBBM5NHnWk6f9hgO8pFsqtBkdy0MuIq9iWRpZLhwCRkn3Ep8S2EzGU
-         +51K7FZRqoVdAjWYxZbQBCOkGtNMGk/1rgsF1tCSZ+Qo1L9FWEn8btuPYhq8oiqs4ZGa
-         YKmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743006229; x=1743611029;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=thaumatec-com.20230601.gappssmtp.com; s=20230601; t=1743006230; x=1743611030; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=fKYanQIfYCncszgpyLAY2Jfcp3L50T71jyYK0/4Yps0=;
-        b=LrUqUGer0vfSqUeJDY6aP7QU+UOpOKscN+UUzDuSHLIytHHTmnv77b9x0qTvpW2Z9Y
-         lfEk5pk6Bs7qO5VXfV73IU3BTvH8jePwKzDIEslYPfh6sODXsc+2A0A704M8vquK7JbW
-         2YpNFejD9vyVtqlrKIN87Y+L1qnlV7iyT1lz6jr7yFCSw//cqF1Zou9MBQCvM7zjvJd0
-         BoZHxFkXSV5ibfR45wTyKbBCJiP+kpISePD00iJTp+pT/j2eE22AYXA8YP+33eMyiQBO
-         Vujfo5hQqPHyOqkHORTPUdPvqrQZuvReXzr9BDCaQb0vdXATR71CVqBNLSSSpstYAadn
-         SHDg==
-X-Forwarded-Encrypted: i=1; AJvYcCUa1aof/MlVYB3lkS1Z8RmZJPs8iSzfQeNXEWM/8hFkSj01tKxgPw263QVRVCf/OZ8s6XDtCC24wQ8V@vger.kernel.org
-X-Gm-Message-State: AOJu0YxNso9QVBsHfdohq2713hDkiGOP7oQTUaWljjoHRW1IPUjC3Km3
-	f91rnsUPhoIBuvQ9oN0UYEdyUAqhlhhh0Z2gtM1C6inmP2dOce7LX5sXbvvwa8w=
-X-Gm-Gg: ASbGncvT9rmzoVAg2NWKyzqdvXd5ZuiVd+35BkIY2dGXmRPuefBCPmF59UMFj4c48uC
-	JzO/MxhX28dFM0fK6WYQsCgS7VNnLC1cAlvE5wWg+C6uFM8ou5mkki8SpgPIaMJ1BUdte+wf443
-	5sNfMMFuAzqv6mp+1MHlHfu0VLlXhiqUA1J1SwRuCEl7qL5fZDHb7WA0uWXTZwfhnA4C7V8wOJh
-	Op9uYP8qsKavdAtJIKTZJKKJCRPWwjHgUMyux9vsIBBed9ZzsLcfsypAXaEng2VVly3L2WxEPg8
-	BrxdEZdUTDj7FQOxeAjR3Bg9sfBLMK4ru1dJiS7P7gzNs0jFKh+t6A/FiA==
-X-Google-Smtp-Source: AGHT+IHTxPRGm5mNkyz/LXIEUO2w8nqKfRSkk2yHl8zPEU3IqZLbPjnGdEzUK5cPc1Bb6wHgkTIrlA==
-X-Received: by 2002:a17:906:7949:b0:abf:3cb2:1c04 with SMTP id a640c23a62f3a-ac6fae428c5mr5377966b.9.1743006229345;
-        Wed, 26 Mar 2025 09:23:49 -0700 (PDT)
+        bh=G9tCKOxWlZzVo+LW0OfZaKnD5ARH/KKbqzp36dlNLJM=;
+        b=RRRbODCm2LHcPlpkQaQqOc/Puj2Or9Bj5XdulAevFh0ud/qukCO75P+4YPpZJbn/iq
+         9SkpVndWh1PAh9YPIgLEhHoDRyv8QSUYPwNRFiAHqyGir6030Qa9kLCOBO0ZBrg4rwlx
+         KYVucIlPZVexwY0o6PiBpke4W+MECeWkDvY+NabYNdiAInVxlJXL3nlthuMEdEtV3OP0
+         PwmhUSDCVi9QlAy8jdomeOgzfvJ3ZgGJ4W5OLld0lNjsPmn+MniJO56pVB0jlA0IYSVz
+         LsBg7gc3cVZ/i0PpBk6DSwmsBHOy/0pZ8U4Dh5woYvDnihRIvWP1g57FJQ0vJtbpLdCJ
+         iyQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743006230; x=1743611030;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=G9tCKOxWlZzVo+LW0OfZaKnD5ARH/KKbqzp36dlNLJM=;
+        b=YiM7Ys9zpswqhSCfoSE4FFIlrYzE+1Zg4POJmVAJbvdVpZJXX6Xu3ad3+GSE1MSXLK
+         m69JU6cJyxoVG5kTIPGpH8kuDoK9jQEvoe3az9ahSCWvaJVQvqWrqZZKlKiLBeg3/rd1
+         EDlaWK8n4UzUF0aHCe7rVcRxDUYUx33BGJjU1DK4Xq22NR2UnhrG0zQgc/GSb3tYCfmP
+         27Sr56CdscQPsU3tB0lmidwXAd5oXw7OdidpXk4vK7g2FQNbIs5aeiOvD/PEqG9FAuWQ
+         UqVx7qysVM69okBuBV9FC2yZMMLHG/iaGZ8Uz6Hi6e+vPEVMeMcCnPzIcOKYZZk7j0Zv
+         4XiA==
+X-Forwarded-Encrypted: i=1; AJvYcCViktz7aPYeF/A6yt/xQojOqUQRfjd7PhXjh/XD/iCTL9JYFqPDCxL7YlF19YIsYo28D5ebYxd6orSY@vger.kernel.org
+X-Gm-Message-State: AOJu0YwbOg+CZTbA0fZxKQqUNQ4BLojcGTK55srkKUK1QkW9POXmeGyd
+	84PT3tNqWG4eomW4YP6h4XEkO/2NSPrzPXNaGgX86q+0fEuBwhrQ0spfXlqraCM=
+X-Gm-Gg: ASbGncuUGUS8NFduIqPYwfmCfkENSpNAe1Gocc06l9m2gSKMBIkVOlwbLFL/vU+CtJ4
+	j0OLqwJVLiheVG24uNO6aODe6o9Ww/Z7xdNktWBreDZ6KQuJNwQ9Fph7CB4M8C7WDKi2ppLHDMe
+	fImsd0pjmnmxV0aa2H2WkEeUGeI16o92zAvmdUtoPJFiezLUlpQd1bNZEphtVcZZwOuMudUD6Gb
+	C0PCPAFyJgaUrq+7azgyRdzQXVorachuVbYBRCaIjbvZ3VuAfhR4mZVHLCuBbOjk//VZBRhuPW4
+	rQgMraMk7TB7qc2x0seuHzzxC9QGhCnFneDojZ1hK6Md7SMwHv5lcLGZJw==
+X-Google-Smtp-Source: AGHT+IFR7MKgek1aYBM8pLPyUk2XklCCGA9XeiQoGfN17QwCt+mtrdcAqb3TA1eUWqsMBXRD9Qv/5A==
+X-Received: by 2002:a17:906:794a:b0:ac2:dfcf:3e09 with SMTP id a640c23a62f3a-ac6fb100848mr1832966b.43.1743006230250;
+        Wed, 26 Mar 2025 09:23:50 -0700 (PDT)
 Received: from [127.0.1.1] ([91.90.172.13])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac6f0f498ecsm76678866b.135.2025.03.26.09.23.48
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac6f0f498ecsm76678866b.135.2025.03.26.09.23.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Mar 2025 09:23:49 -0700 (PDT)
+        Wed, 26 Mar 2025 09:23:50 -0700 (PDT)
 From: Lukasz Czechowski <lukasz.czechowski@thaumatec.com>
-Subject: [PATCH 0/5] Fix onboard USB hub instability on RK3399 Puma SoM
-Date: Wed, 26 Mar 2025 17:22:55 +0100
-Message-Id: <20250326-onboard_usb_dev-v1-0-a4b0a5d1b32c@thaumatec.com>
+Date: Wed, 26 Mar 2025 17:22:56 +0100
+Subject: [PATCH 1/5] usb: misc: onboard_usb_dev: fix support for Cypress
+ HX3 hubs
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,9 +84,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAN8p5GcC/x3MQQqAIBBA0avIrBPUsKKrRMSUU81GY6QIorsnL
- d/i/wcyCVOGXj0gdHHmFAtspWDZMW6kORSDM86b2jU6xTmhhOnM8xTo0tgupqmxQ289lOoQWvn
- +j8P4vh/3hyZEYQAAAA==
+Message-Id: <20250326-onboard_usb_dev-v1-1-a4b0a5d1b32c@thaumatec.com>
+References: <20250326-onboard_usb_dev-v1-0-a4b0a5d1b32c@thaumatec.com>
+In-Reply-To: <20250326-onboard_usb_dev-v1-0-a4b0a5d1b32c@thaumatec.com>
 To: Matthias Kaehlcke <mka@chromium.org>, 
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
  Benjamin Bara <benjamin.bara@skidata.com>, Rob Herring <robh@kernel.org>, 
@@ -98,52 +100,73 @@ Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
  quentin.schulz@cherry.de, stable@vger.kernel.org
 X-Mailer: b4 0.13.0
 
-The RK3399 Puma SoM contains the internal Cypress CYUSB3304 USB
-hub, that shows instability due to improper reset pin configuration.
-Currently reset pin is modeled as a vcc5v0_host regulator, that
-might result in too short reset pulse duration.
-Starting with the v6.6, the Onboard USB hub driver (later renamed
-to Onboard USB dev) contains support for Cypress HX3 hub family.
-It can be now used to correctly model the RK3399 Puma SoM hardware.
+The Cypress HX3 USB3.0 hubs use different PID values depending
+on the product variant. The comment in compatibles table is
+misleading, as the currently used PIDs (0x6504 and 0x6506 for
+USB 3.0 and USB 2.0, respectively) are defaults for the CYUSB331x,
+while CYUSB330x and CYUSB332x variants use different values.
+Based on the datasheet [1], update the compatible usb devices table
+to handle different types of the hub.
+The change also includes vendor mode PIDs, which are used by the
+hub in I2C Master boot mode, if connected EEPROM contains invalid
+signature or is blank. This allows to correctly boot the hub even
+if the EEPROM will have broken content.
+Number of vcc supplies and timing requirements are the same for all
+HX variants, so reuse existing onboard_hub_pdata.
 
-The first commits in this series fix the onboard USB dev driver to
-support all HX3 hub variants, including the CYUSB3304 found in
-the RK3399 Puma SoM. 
-This allows to introduce fix for internal USB hub instability on
-RK3399 Puma, by replacing the vcc5v0_host regulator with
-cy3304_reset, used inside the hub node.
-Please be aware that the patch that fixes USB hub instability in
-arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi can me merged only
-after updating the Onboard USB dev driver, otherwise the hub
-will not work. 
+[1] https://www.infineon.com/dgdl/Infineon-HX3_USB_3_0_Hub_Consumer_Industrial-DataSheet-v22_00-EN.pdf?fileId=8ac78c8c7d0d8da4017d0ecb53f644b8
+    Table 9. PID Values
 
-Two last commits in the series disable unrouted USB controllers
-and PHYs on RK3399 Puma SOM and Haikou carrier board, with no
-intended functional changes.
-
+Fixes: b43cd82a1a40 ("usb: misc: onboard-hub: add support for Cypress HX3 USB 3.0 family")
+Cc: stable@vger.kernel.org
 Signed-off-by: Lukasz Czechowski <lukasz.czechowski@thaumatec.com>
 ---
-Lukasz Czechowski (3):
-      usb: misc: onboard_usb_dev: fix support for Cypress HX3 hubs
-      dt-bindings: usb: cypress,hx3: Add support for all variants
-      arm64: dts: rockchip: fix internal USB hub instability on RK3399 Puma
+ drivers/usb/misc/onboard_usb_dev.c | 10 ++++++++--
+ drivers/usb/misc/onboard_usb_dev.h |  6 ++++++
+ 2 files changed, 14 insertions(+), 2 deletions(-)
 
-Quentin Schulz (2):
-      arm64: dts: rockchip: disable unrouted USB controllers and PHY on RK3399 Puma
-      arm64: dts: rockchip: disable unrouted USB controllers and PHY on RK3399 Puma with Haikou
+diff --git a/drivers/usb/misc/onboard_usb_dev.c b/drivers/usb/misc/onboard_usb_dev.c
+index 75ac3c6aa92d..f5372dfa241a 100644
+--- a/drivers/usb/misc/onboard_usb_dev.c
++++ b/drivers/usb/misc/onboard_usb_dev.c
+@@ -569,8 +569,14 @@ static void onboard_dev_usbdev_disconnect(struct usb_device *udev)
+ }
+ 
+ static const struct usb_device_id onboard_dev_id_table[] = {
+-	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6504) }, /* CYUSB33{0,1,2}x/CYUSB230x 3.0 HUB */
+-	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6506) }, /* CYUSB33{0,1,2}x/CYUSB230x 2.0 HUB */
++	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6500) }, /* CYUSB330x 3.0 HUB */
++	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6502) }, /* CYUSB330x 2.0 HUB */
++	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6503) }, /* CYUSB33{0,1}x 2.0 HUB, Vendor Mode */
++	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6504) }, /* CYUSB331x 3.0 HUB */
++	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6506) }, /* CYUSB331x 2.0 HUB */
++	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6507) }, /* CYUSB332x 2.0 HUB, Vendor Mode */
++	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6508) }, /* CYUSB332x 3.0 HUB */
++	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x650a) }, /* CYUSB332x 2.0 HUB */
+ 	{ USB_DEVICE(VENDOR_ID_CYPRESS, 0x6570) }, /* CY7C6563x 2.0 HUB */
+ 	{ USB_DEVICE(VENDOR_ID_GENESYS, 0x0608) }, /* Genesys Logic GL850G USB 2.0 HUB */
+ 	{ USB_DEVICE(VENDOR_ID_GENESYS, 0x0610) }, /* Genesys Logic GL852G USB 2.0 HUB */
+diff --git a/drivers/usb/misc/onboard_usb_dev.h b/drivers/usb/misc/onboard_usb_dev.h
+index 317b3eb99c02..17696f7c5e43 100644
+--- a/drivers/usb/misc/onboard_usb_dev.h
++++ b/drivers/usb/misc/onboard_usb_dev.h
+@@ -104,8 +104,14 @@ static const struct of_device_id onboard_dev_match[] = {
+ 	{ .compatible = "usb451,8027", .data = &ti_tusb8020b_data, },
+ 	{ .compatible = "usb451,8140", .data = &ti_tusb8041_data, },
+ 	{ .compatible = "usb451,8142", .data = &ti_tusb8041_data, },
++	{ .compatible = "usb4b4,6500", .data = &cypress_hx3_data, },
++	{ .compatible = "usb4b4,6502", .data = &cypress_hx3_data, },
++	{ .compatible = "usb4b4,6503", .data = &cypress_hx3_data, },
+ 	{ .compatible = "usb4b4,6504", .data = &cypress_hx3_data, },
+ 	{ .compatible = "usb4b4,6506", .data = &cypress_hx3_data, },
++	{ .compatible = "usb4b4,6507", .data = &cypress_hx3_data, },
++	{ .compatible = "usb4b4,6508", .data = &cypress_hx3_data, },
++	{ .compatible = "usb4b4,650a", .data = &cypress_hx3_data, },
+ 	{ .compatible = "usb4b4,6570", .data = &cypress_hx2vl_data, },
+ 	{ .compatible = "usb5e3,608", .data = &genesys_gl850g_data, },
+ 	{ .compatible = "usb5e3,610", .data = &genesys_gl852g_data, },
 
- .../devicetree/bindings/usb/cypress,hx3.yaml       |  6 +++
- .../arm64/boot/dts/rockchip/rk3399-puma-haikou.dts |  8 ----
- arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi      | 43 ++++++++++------------
- drivers/usb/misc/onboard_usb_dev.c                 | 10 ++++-
- drivers/usb/misc/onboard_usb_dev.h                 |  6 +++
- 5 files changed, 39 insertions(+), 34 deletions(-)
----
-base-commit: 1e26c5e28ca5821a824e90dd359556f5e9e7b89f
-change-id: 20250326-onboard_usb_dev-a7c063a8a515
-
-Best regards,
 -- 
-Lukasz Czechowski <lukasz.czechowski@thaumatec.com>
+2.43.0
 
 
