@@ -1,131 +1,124 @@
-Return-Path: <devicetree+bounces-160849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE499A71539
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 12:01:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59AAEA71552
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 12:10:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 294327A5B84
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 11:00:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6723188A240
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 11:09:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 817401DC19D;
-	Wed, 26 Mar 2025 11:01:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEF851CEAB2;
+	Wed, 26 Mar 2025 11:09:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jtMwMZpl"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aERq/NW6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57E291BEF74;
-	Wed, 26 Mar 2025 11:01:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BC6D1AF0AE;
+	Wed, 26 Mar 2025 11:09:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742986863; cv=none; b=G/GbEuPUfC98Rkd3Nr5TzH57SkZKCXY0HCb9jJs/ng20/EJ7knu2teFWvObx0mvJiHyRUSvE0RyVdoL8W1ev81BuDtmGlsStRaTpHeV65uEjxHTa6jLu9TuOqnrI2JlWqiX0jEnIzA+7AHgDziAsebmdkpDoGi/d9ejTryv0qGM=
+	t=1742987349; cv=none; b=CJqo5cK+6+Wwji9vLVzBbHWHT7i/ii31CoEfl1rR9RKx5Xp4Jpo9m7CRJ6oXn85nEjEP7UjqVqktWJz+J4aSYDuWgv/w09vX7WZ/3y0K5qym/Qv7Fkw3xLX8pBt2czYYQMAt7p1EX/YklvwkAk8IOIRCMhC7WE5yk+Vxn4+Pthw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742986863; c=relaxed/simple;
-	bh=i5EM31pPlZ7zaytBldZoUh4/6CAZrGXC0cCO7MtVZYY=;
+	s=arc-20240116; t=1742987349; c=relaxed/simple;
+	bh=ZrGXGtpLu9V6i8WaDAYslIOE9Xmgz7g6O3/KWU/N4BQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=evy5x5CGFa5FqKqcr9S+wYInSjRFuDa0jKoOGU6fxUIjYXA8aVWhYwV/07xfgvbkr3ld9lGdXL9yUGrSLZBKiVkMLHv3/dAFmZXBlouHizrCjPQCzv62wT83dXwbjWeYwDWa6djl5JJWU2yXIr8RfbNd+HfvcuPeiXxbh/DgyKo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jtMwMZpl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DAC91C4CEE2;
-	Wed, 26 Mar 2025 11:00:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742986863;
-	bh=i5EM31pPlZ7zaytBldZoUh4/6CAZrGXC0cCO7MtVZYY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jtMwMZplUGaTHjvxtXkF+OmwLt/B2vyVDNY/Z3nr0U01+2RPN9SJte6qEgGszG6Tc
-	 Av6yzEFyFnep8Zq+g5vji8Fm+Jyq7efIBIaqnSILPVpshpYx0pdDHGU0EIoVqTJHrp
-	 /65cV47mgkEX8mSkaTMJKwBo1Euy/ksvUz72wbS30yBVC8mrQLlfzuDOIhvsdf50Io
-	 U7D0DrqP6OVhVz9u7Gyxfns4PCxK1YZBuCPYc71N6/j85KuFt7VqozRDdPKwyIpdzg
-	 Wl8nGIBKNAl9wCqTY1RWv5imTIyuoMK5LgGZi8WqwBHr8XpfavhYnhZezTqT/xwKrA
-	 vg49qnev6SUdg==
-Date: Wed, 26 Mar 2025 11:00:57 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Stephen Boyd <sboyd@kernel.org>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	pierre-henry.moussay@microchip.com,
-	valentina.fernandezalanis@microchip.com,
-	Michael Turquette <mturquette@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>, Lee Jones <lee@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v2 2/9] dt-bindings: soc: microchip: document the
- simple-mfd syscon on PolarFire SoC
-Message-ID: <20250326-tricycle-hesitate-e58633e62545@spud>
-References: <20250321-cuddly-hazily-d0ab1e1747b5@spud>
- <20250321-ramrod-scabby-a1869f9979b6@spud>
- <20250325-quiet-waxbill-of-realization-675469@krzk-bin>
- <20250325-feline-roundworm-dc391b755673@spud>
- <58bb1186-08ee-41cf-8593-a6664bd874e6@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=BbH1c1Cy+Z8gTAx0UkazDv9E20UUHQPPy97x3ltOrqs0tcNxsxela3CS3MebG//+FP269BVxJ+T2L3ym4Tvvb5GwpTEz1sPkate4T4fy/3N7moMFz1/jK4kzbWgWdHXvgm/HKwh6/FIcmGGSYeKamF2Eq2tk5fUfUuk+8GXGpY8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aERq/NW6; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-22622ddcc35so16407145ad.2;
+        Wed, 26 Mar 2025 04:09:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742987347; x=1743592147; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ZrGXGtpLu9V6i8WaDAYslIOE9Xmgz7g6O3/KWU/N4BQ=;
+        b=aERq/NW6M1Qv+xhCLkJTpueK0YFK5NW/RbH6NFkoO5iPO1+I12Wf8pJEMbYRbWZXfK
+         yMjOPbf0u8uMdz4pUHB2p25ZiMhCEL5z9qCpb+9m7VUkSGRfHntuD0EagUXmMugp8sv0
+         bd3tyZagEyxRgUDg0Wx7GMMYNxZ6zHJAjvsdt+G+xU8eIRZhpQsy3ofb+8J5LiguldF0
+         nuqebF5f1QW1wghxuggs3gXNomcxyy1WgMQbTQ7PM2wUhGGIS2txRM1jNuaRfQh4iA39
+         kxHBoY76/QRewKjyDhvBD458iwSArEvWKT4qeTrWQ1F2x+xc+FtTQNsri7Df6FYEgGNo
+         tGCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742987347; x=1743592147;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZrGXGtpLu9V6i8WaDAYslIOE9Xmgz7g6O3/KWU/N4BQ=;
+        b=KSu2iprSRaA8pzRCk+dkc58gp5w/LVfoq31KrumF+0c792n/3qcZWNDuxilu8QuX2r
+         VhH8he1/usTmKr024zndllSyBYDM5LRrsaBVqu8mX7yactPUD46p828c+b1tA+VqlQiu
+         Kds8erIE+IbXazzqIGC2AMuFtBdB2h0C4ie2v+M+eRCUHiXUrjvfDF5NNSQi6BIR27TZ
+         QxixDIdxQtK/MDEe7g5QU6Vf8134WJZKb2/4bsSE4pl0iEyGl+OwFCPufgnAAapvlVat
+         5M4waqRKzboX4kqzkriWLdOClcgBrxb/3/Ppl775BOCJyW1UrZnpEIliWB6oxCV1hKBV
+         1O7A==
+X-Forwarded-Encrypted: i=1; AJvYcCW8mjFXhobqi9MZ9LAXJwezBEFfyY3e3iKxhFFTkgBPNPYR/Q1zSJ08MlY/hzNx90FmSZ6dVoGbt0kR@vger.kernel.org, AJvYcCWhQmYvzPO2XUEur5ZpHIoSXsOkvAtwOzi1uX6YwfZ7PSR4Kf7Ie9pdIhHbZlKAaeye+6mVq0L7EvLOJwd9@vger.kernel.org
+X-Gm-Message-State: AOJu0YymZIpSCvioSdsvt6rXdKMvt1GPZ1WKkQTy21j+BXPL+rdQMgYB
+	0RPiTOXDtG5YFouyhKRGY/HJDYn++GyRSTxoInoKtGBk2GsV6T4Z
+X-Gm-Gg: ASbGncuMoFVQrX3zTKSBWgV5n7bqf/Phu8LEj6GDR5kbZpm8ktCN4sxhZUy1JFpCNFy
+	qcxnOLTXW65Rzq1Y58NUapNW5/xsosXjMTdMu/Ylok7gKplmOkSDr17+AfzrdFytfIF181qL7BD
+	3TnEf/24Vai1xtLduVYopJsy+H8DGlcOBPZoiRsL5QZapYEUXIiK+qTaqzFo8x1AMId1Bf0nxSI
+	We4Gr0y/GqKEqYtgtVtQkydPHEON26R67T5b19GxLQANcaqFVV+vC6HIENiiTFZys6RQTIk7Ss7
+	5avRGPIcWKm9Ta5MRbRUu2qJu4lR2bKrzVfDYk91i2Ix4xbLiK/VkYmfVHX77Zxq0q/LRVWMVBh
+	I7CU=
+X-Google-Smtp-Source: AGHT+IEdpeiZOhB9p6BzPG2n+dG5uj/m8aGyipMLZavA4DA41FA6uOxitkCJlsSQo6NctVfLWb7LBw==
+X-Received: by 2002:a17:902:d491:b0:224:1074:63a0 with SMTP id d9443c01a7336-22780e0305dmr375094395ad.34.1742987347254;
+        Wed, 26 Mar 2025 04:09:07 -0700 (PDT)
+Received: from joaog-nb.corp.toradex.com ([67.159.246.222])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-22780f396fasm106711465ad.27.2025.03.26.04.09.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Mar 2025 04:09:06 -0700 (PDT)
+Date: Wed, 26 Mar 2025 08:09:00 -0300
+From: 
+	=?utf-8?Q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <jpaulo.silvagoncalves@gmail.com>
+To: Marek Vasut <marex@denx.de>
+Cc: linux-arm-kernel@lists.infradead.org, 
+	Alexander Stein <alexander.stein@ew.tq-group.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Fabio Estevam <festevam@gmail.com>, Francesco Dolcini <francesco.dolcini@toradex.com>, 
+	Frieder Schrempf <frieder.schrempf@kontron.de>, Hiago De Franco <hiago.franco@toradex.com>, 
+	Joao Goncalves <joao.goncalves@toradex.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Max Merchel <Max.Merchel@ew.tq-group.com>, Michael Walle <mwalle@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
+	Tim Harvey <tharvey@gateworks.com>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: freescale: add initial support for i.MX
+ 95 Verdin Evaluation Kit (EVK)
+Message-ID: <7ts6jkfg2kfpfhteomlhn5ewxetcaav5bi6x5kgtklqhaa5iph@olxjy6l3icy4>
+References: <20250324234013.140440-1-marex@denx.de>
+ <20250324234013.140440-2-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="nlJEEonkgyvP8Dzi"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <58bb1186-08ee-41cf-8593-a6664bd874e6@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250324234013.140440-2-marex@denx.de>
 
+On Tue, Mar 25, 2025 at 12:40:02AM +0100, Marek Vasut wrote:
+> Add initial support for i.MX 95 Verdin Evaluation Kit (EVK), which
+> used to be the Titan EVK. Currently supported is lpuart1 as console,
+> SDHC1/2/3 as storage, WM8904 Audio, USB3.0 and ENETC ethernet RGMII
+> Gigabit port.
+>
+> Note that the SoM used in this EVK is a derivative SoM from Verdin
+> line of SoMs, an actual i.MX95 Verdin SoM is under development.
+>
+> [1] https://www.toradex.com/computer-on-modules/verdin-arm-family/nxp-imx95-evaluation-kit
+>
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
---nlJEEonkgyvP8Dzi
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
+Tested-by: João Paulo Gonçalves <joao.goncalves@toradex.com> # i.MX95 Verdin EVK
 
-On Wed, Mar 26, 2025 at 07:53:55AM +0100, Krzysztof Kozlowski wrote:
-> On 25/03/2025 17:03, Conor Dooley wrote:
-> > On Tue, Mar 25, 2025 at 09:13:22AM +0100, Krzysztof Kozlowski wrote:
-> >> On Fri, Mar 21, 2025 at 05:22:35PM +0000, Conor Dooley wrote:
-> >>> +title: Microchip PolarFire SoC Microprocessor Subsystem (MSS) sysreg=
- register region
-> >>> +
-> >>> +maintainers:
-> >>> +  - Conor Dooley <conor.dooley@microchip.com>
-> >>> +
-> >>> +description:
-> >>> +  An wide assortment of registers that control elements of the MSS o=
-n PolarFire
-> >>> +  SoC, including pinmuxing, resets and clocks among others.
-> >>> +
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    items:
-> >>> +      - const: microchip,mpfs-mss-top-sysreg
-> >>> +      - const: syscon
-> >>> +      - const: simple-mfd
-> >>
-> >> You need to list the children if you use simple-mfd. Commit msg
-> >> mentioned clock controller, so where is it?
-> >=20
-> > I don't think a child node is required here, there's not enough
->=20
-> Then this is not a simple-mfd.
-
-The pinctrl will have one, whenever I get around to actually working on
-that. I can leave the simple-mfd out until I establish exactly what
-that's going to look like if that's what you want?
-
---nlJEEonkgyvP8Dzi
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ+PeaQAKCRB4tDGHoIJi
-0t7jAQCCLwmHuZCd9933PeQR17AUr1HNZd3fYK3blMGPPpfn5wD/dNQnm3RNPn8P
-lY3prJBqUjp9Wxq+q1mGw/BIyBKFlwY=
-=i6NH
------END PGP SIGNATURE-----
-
---nlJEEonkgyvP8Dzi--
+Best Regards,
+João Paulo Gonçalves
 
