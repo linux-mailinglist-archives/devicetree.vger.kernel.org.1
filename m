@@ -1,90 +1,77 @@
-Return-Path: <devicetree+bounces-160947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160949-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30A7FA71A77
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 16:36:01 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0440BA71A84
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 16:36:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB1EE1889D17
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 15:36:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 336D2188BA52
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 15:37:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0B4B1F0E5D;
-	Wed, 26 Mar 2025 15:35:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFE4F1F4284;
+	Wed, 26 Mar 2025 15:36:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=smile.fr header.i=@smile.fr header.b="gJKTJK32"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="s7lLJnGl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 609771624D2
-	for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 15:35:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A7C81F3BB6;
+	Wed, 26 Mar 2025 15:36:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743003353; cv=none; b=YsJ+Ol9Hwr8jHijiaR6BjwfeCcnEd1wcy4bCo9wzKn1KHOgMl0VI1eXGVr63VjvptuSHke8VTRpc0y+1T1fIeAqOU4U4jU/SvccHa8fY8a5wkEVNKtkkoQmrAJUMJyOVI1fjjLxdGZgW1nNKeRExE1V+rOwxW7m6foE35xyxZw4=
+	t=1743003398; cv=none; b=DUR9Ex6FvyZXyZiBGlADRvmQYkHc68KNA4uPL1KiwNcMd2fzpotz9/CsBfmN6w67qhLZ7puNzIWHDW8j1POTofp6MiwjXclXWGz8YlMkbMTfcTSURKk51hVE8nyn8t+cqK7FAH2KTTams1WHp1q+DA0dn5WPJNr9NSLm2/Xppfs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743003353; c=relaxed/simple;
-	bh=zWS37NwBQynY8d7fVOe2aEY/kflnlB7Z831LkNsWMCI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=CfM1dX/2YZolf7ME4Zs8rRkIFiEPULKExHHo0neZYJR8nnpRcaDHstT9lj0JWBGmKT4vrCKjTrZUC6EMFp6dSoi1imwoafwv9gn9OomKPZWDU+Fy+crp2B/mttV4un7UNvnsFZzQ2HafSyap/um6abtvGZxNtU08jCdf3Wmnjp8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=smile.fr; spf=pass smtp.mailfrom=smile.fr; dkim=pass (1024-bit key) header.d=smile.fr header.i=@smile.fr header.b=gJKTJK32; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=smile.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=smile.fr
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-39143200ddaso4072878f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 08:35:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=smile.fr; s=google; t=1743003350; x=1743608150; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ryoKDomEM8QC52XTS10f6105+9enq22DIQJhjcBG4KE=;
-        b=gJKTJK32wDDkHPs8Ndf818qgwr5syJFeKEZxT9Hva9ZeIfXKIySBBv21xTltKNEVNy
-         sO1YCBL6NxTtDmJBKbMGc4MpP3ex4PWlHCYU50HteSrCYP8iBLcL4inEbHdhd0NUNukY
-         swNfgaqA9wH4VpNJkjfcIbQth+zWVFOVFsEdI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743003350; x=1743608150;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ryoKDomEM8QC52XTS10f6105+9enq22DIQJhjcBG4KE=;
-        b=iHQ9rmI2vLH4RN3DpJ5LbV8spFBFomVyJ9g4T/ltqsg3/442/qyRrMiIGs3NUDKP00
-         U+outbviAIWARV7Vfc1J18b8NbWUaCWwOQTfGbLsp+YQCEPSriIQrOY5AMB9DnJv2Wll
-         8gtwV3tz8ViL5tl0AZrN5sIFpSrt6PR2hcLtSIrIdAzAmfWcRzyKUvFLE5+pgwXY96OI
-         zEw55/EqpRto/IpwoMd4KoA2PgSYvnXGmH0Ghu4WV14bsdZA5z0Uh9aUAyrYfKRb9NHL
-         NONFoP+LgOyy0akmYgykvH3izcXLEPIBD5ueYSJMAJiw7efhLgLR11Q3UHOr9WjCYmnR
-         7O5g==
-X-Forwarded-Encrypted: i=1; AJvYcCWt5g+1eWtlKJoeE0PBW/76WP7OwFlnNxAr/uEut/Z6eUhzrvNLMMkOF4VzrM/LG/UIn/wjWlW91ep6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz3C32IYmojSVj7uKVnrvh6Nh2sYQvFqtoPbm15irQuDR0myJM4
-	rMWAWT+EUF3OyEDQ1reNa1DoNlnbgW+0DZ8RJoGSakdmWQVW8in5/6oVGmaE7PQ=
-X-Gm-Gg: ASbGncvD3CyAIX4ql+NfZT74KiF0w0owrvmlzyuCJ1cc7WG39Yi/T0Kc44WJI0N5Jd+
-	6SOsbDIHs0sE182eFzwurerSHd5yT68JD5WMZsxBTGe2IMa1AmgzMpHTmYkH9h7SjbBkYGZuHyy
-	uIEZg9mQil0g1xup0gjifzPZ8pTs/H6O/w5gIQdbruATxpV7ntv3nGmNCcvmpva7VpQhGKA1rHI
-	eTlUXgH6kK2y8MSL1y78fn613Qs4cUjnC2ucRNnI66tMeQGvexou6Y6XPXQVvc6bOUc1AR9P/r7
-	0/EDP9RwKndzD/BFW77sfi2WQg+aCCwf2GdJig10lsw6683Icfgzp0TGu/Vi18o=
-X-Google-Smtp-Source: AGHT+IG+gKYpgpOhUJRwdwD+l4A2600bYtEYFYwQWPHBA42eyZhpvsPB1Ox0uvb35nLOjc9QtMB5/w==
-X-Received: by 2002:a5d:64e4:0:b0:390:f9d0:5e3 with SMTP id ffacd0b85a97d-3997f8f6450mr21534753f8f.1.1743003349659;
-        Wed, 26 Mar 2025 08:35:49 -0700 (PDT)
-Received: from heaven.lanfs.local ([62.161.254.42])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3997f9eff6esm17141771f8f.100.2025.03.26.08.35.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Mar 2025 08:35:49 -0700 (PDT)
-From: Corentin Guillevic <corentin.guillevic@smile.fr>
-To: Pavel Machek <pavel@ucw.cz>,
-	Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Corentin Guillevic <corentin.guillevic@smile.fr>
-Cc: linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: leds: Add TI TLC5928 LED
-Date: Wed, 26 Mar 2025 16:35:33 +0100
-Message-ID: <20250326153535.158137-2-corentin.guillevic@smile.fr>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250326153535.158137-1-corentin.guillevic@smile.fr>
-References: <20250326153535.158137-1-corentin.guillevic@smile.fr>
+	s=arc-20240116; t=1743003398; c=relaxed/simple;
+	bh=y6zBcUQgWavANG8NsuRsZDucUUdJh5SHXwtzFjn3t3c=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=RbSO0b737ftAR+dBJLDedsUY4yzPrBoAjXfd845XDeBI5kksTDVLAG9dSV6cWL5fxxneWyk8pzAIwNDc6b3qmTQ65JmHK1T85BeznMdWervbRA3tBTXrIIhL1cZCa9mFDBx0pkg2uHBRN7Z2KA9TZIX7APyyYlZ+tOVAXISvbzg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=s7lLJnGl; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1743003397; x=1774539397;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=y6zBcUQgWavANG8NsuRsZDucUUdJh5SHXwtzFjn3t3c=;
+  b=s7lLJnGlFQAUWQuKogbfkKdEXNC/FuQIZK7WFEPQSHFZPKxrthktx7p/
+   YVvTS6ZpNfkVD5SpybSOu+NKM7HEvztfA+3CLq7IfCeKvGeuMDhD+dOVh
+   HXun0mCIRmfJKjmQA6sM7CAwpvl/17cf7JMSWjs1p8WjFlc0NURHlMCCv
+   wRPq5mpgRQKsxe6oClue/1Glh36vxz3ltkz8PkXH6pP4gRYM2+X6qOs6V
+   CUZUVR/JV+ypFEd3OjO9M4fR2JNiW9dX/HXb0JJhQMMGy5uEaK6Y4MPST
+   JUR7698aHaWJ3aYNmu5sigP8PTcyVsIwnwka/I8fh08mhXer2NUiOC5m+
+   g==;
+X-CSE-ConnectionGUID: NRxSiTFnT3ucBnaYj7CaZg==
+X-CSE-MsgGUID: nwryJGrFR6W9xwUv1FaEAg==
+X-IronPort-AV: E=Sophos;i="6.14,278,1736838000"; 
+   d="scan'208";a="44096097"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 26 Mar 2025 08:36:29 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Wed, 26 Mar 2025 08:35:50 -0700
+Received: from ryan-Precision-3630-Tower.microchip.com (10.10.85.11) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2507.44 via Frontend Transport; Wed, 26 Mar 2025 08:35:50 -0700
+From: <Ryan.Wanner@microchip.com>
+To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+	<claudiu.beznea@tuxon.dev>, <lee@kernel.org>, <sre@kernel.org>,
+	<p.zabel@pengutronix.de>
+CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+	<linux-rtc@vger.kernel.org>, Ryan Wanner <Ryan.Wanner@microchip.com>
+Subject: [PATCH v4 01/11] dt-bindings: sram: Add microchip,sama7d65-sram
+Date: Wed, 26 Mar 2025 08:35:34 -0700
+Message-ID: <35015e91dfd7d2240d05160a75cdd6dc4f4e6e79.1742936082.git.Ryan.Wanner@microchip.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <cover.1742936082.git.Ryan.Wanner@microchip.com>
+References: <cover.1742936082.git.Ryan.Wanner@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,234 +79,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Document Texas Instruments TLC5928 LED driver devicetree bindings.
+From: Ryan Wanner <Ryan.Wanner@microchip.com>
 
-Signed-off-by: Corentin Guillevic <corentin.guillevic@smile.fr>
+Add microchip,sama7d65-sram compatibility to DT binding documentation.
+
+Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- .../bindings/leds/leds-tlc5928.yaml           | 212 ++++++++++++++++++
- 1 file changed, 212 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/leds/leds-tlc5928.yaml
+ Documentation/devicetree/bindings/sram/sram.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/leds/leds-tlc5928.yaml b/Documentation/devicetree/bindings/leds/leds-tlc5928.yaml
-new file mode 100644
-index 000000000000..0d857c9b1feb
---- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/leds-tlc5928.yaml
-@@ -0,0 +1,212 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/leds-tlc5928.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: LED driver for TLC5928 from Texas Instruments.
-+
-+maintainers:
-+  - Corentin Guillevic <corentin.guillevic@smile.fr>
-+
-+description: |
-+  The TLC5928 is a LED controller handling up to 16 LEDs. It can
-+  control LED on/off using a SPI-compatible interface, and has an
-+  on/off control data shift register (blank) and data latch.
-+
-+  This driver also supports the daisy-chaining of several TLC5928
-+  chips, as illustrated by the diagram below (with two controllers):
-+
-+  +--------------+           +--------------+
-+  |          SCLK|-----+---->|SCLK     BLANK|--
-+  |              |     |     |              |
-+  |  SPI     MOSI|-----|---->|MOSI  TLC5928 |
-+  | Master       |     |     |        (1)   |
-+  |          MISO|<--+ |  +--|MISO          |
-+  |              |   | |  |  |              |
-+  |      CS/LATCH|-+-|-|--|->|LATCH         |
-+  +--------------+ | | |  |  +--------------+
-+                   | | |  |  +--------------+
-+                   | | +--|->|SCLK     BLANK|--
-+                   | |    |  |              |
-+                   | |    +->|MOSI  TLC5928 |
-+                   | |       |        (2)   |
-+                   | +-------|MISO          |
-+                   |         |              |
-+                   +-------->|LATCH         |
-+                             +--------------+
-+
-+  For more product information please see the link below:
-+  https://www.ti.com/product/TLC5928/part-details/TLC5928PWPR
-+
-+properties:
-+  compatible:
-+    const: ti,tlc5928
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+  reg:
-+    maxItems: 1
-+    description:
-+      SPI slave address
-+
-+  enable-gpios:
-+    description: |
-+      Array of GPIO specifiers, referring to the GPIO pins to enable/disable
-+      each device (active high to disable). In the daisy chain case, each
-+      GPIO has to be in the same sequence than the devices.
-+
-+  latch-gpio:
-+    maxItems: 1
-+    description: Latch GPIO (SPI chip select)
-+
-+patternProperties:
-+  "^spi-chip@[0-9]$":
-+    type: object
-+    unevaluatedProperties: false
-+    description: Properties for a TLC5928 controller.
-+
-+    properties:
-+      '#address-cells':
-+        const: 1
-+
-+      '#size-cells':
-+        const: 0
-+
-+    patternProperties:
-+
-+      "^led@[0-9a-f]+$":
-+        type: object
-+        $ref: common.yaml#
-+        unevaluatedProperties: false
-+        description:
-+          Properties for a single LED.
-+
-+        properties:
-+          reg:
-+            description: Index of the LED.
-+            minimum: 0
-+            maximum: 15
-+
-+        required:
-+          - reg
-+
-+    required:
-+      - "#address-cells"
-+      - "#size-cells"
-+
-+required:
-+  - compatible
-+  - reg
-+  - latch-gpio
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  # Single controller
-+  - |
-+	#include <dt-bindings/leds/common.h>
-+
-+	tlc5928@0 {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		compatible = "ti,tlc5928";
-+		reg = <0x0>;
-+
-+		enable-gpios = <&gpiof 10 GPIO_ACTIVE_HIGH>;
-+		latch-gpio = <&gpiof 3 GPIO_ACTIVE_HIGH>;
-+
-+		spi-chip@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			led@0 {
-+				label = "tlc5928:led0";
-+				led = <LED_COLOR_ID_WHITE>;
-+				reg = <0x0>;
-+			};
-+
-+			led@1 {
-+				label = "tlc5928:led1";
-+				led = <LED_COLOR_ID_RED>;
-+				reg = <0x1>;
-+			};
-+
-+			led@f {
-+				label = "tlc5928:led15";
-+				led = <LED_COLOR_ID_GREEN>;
-+				reg = <0xf>;
-+			};
-+		};
-+	};
-+
-+  # Two controllers, in daisy chain
-+  - |
-+	#include <dt-bindings/leds/common.h>
-+
-+	tlc5928@0 {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		compatible = "ti,tlc5928";
-+		reg = <0x0>;
-+
-+		enable-gpios = <&gpiof 10 GPIO_ACTIVE_HIGH>, /* OUT_EN_1 */
-+			<&gpiof 9 GPIO_ACTIVE_HIGH>; /* OUT_EN_2 */
-+		latch-gpio = <&gpiof 3 GPIO_ACTIVE_HIGH>;
-+
-+		spi-chip@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			led@0 {
-+				label = "tlc5928:0:led0";
-+				led = <LED_COLOR_ID_WHITE>;
-+				reg = <0x0>;
-+			};
-+
-+			led@1 {
-+				label = "tlc5928:0:led1";
-+				led = <LED_COLOR_ID_RED>;
-+				reg = <0x1>;
-+			};
-+
-+			led@f {
-+				label = "tlc5928:0:led15";
-+				led = <LED_COLOR_ID_GREEN>;
-+				reg = <0xf>;
-+			};
-+		};
-+
-+		spi-chip@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			led@0 {
-+				label = "tlc5928:1:led0";
-+				led = <LED_COLOR_ID_BLUE>;
-+				reg = <0x0>;
-+			};
-+
-+			led@1 {
-+				label = "tlc5928:1:led1";
-+				led = <LED_COLOR_ID_AMBER>;
-+				reg = <0x1>;
-+			};
-+
-+			led@2 {
-+				label = "tlc5928:1:led2";
-+				led = <LED_COLOR_ID_VIOLET>;
-+				reg = <0x2>;
-+			};
-+
-+			led@f {
-+				label = "tlc5928:1:led15";
-+				led = <LED_COLOR_ID_YELLOW>;
-+				reg = <0xf>;
-+			};
-+		};
-+	};
+diff --git a/Documentation/devicetree/bindings/sram/sram.yaml b/Documentation/devicetree/bindings/sram/sram.yaml
+index 7c1337e159f2..3071c5075ee4 100644
+--- a/Documentation/devicetree/bindings/sram/sram.yaml
++++ b/Documentation/devicetree/bindings/sram/sram.yaml
+@@ -31,6 +31,7 @@ properties:
+         - amlogic,meson-gxbb-sram
+         - arm,juno-sram-ns
+         - atmel,sama5d2-securam
++        - microchip,sama7d65-securam
+         - nvidia,tegra186-sysram
+         - nvidia,tegra194-sysram
+         - nvidia,tegra234-sysram
 -- 
-2.45.2
+2.43.0
 
 
