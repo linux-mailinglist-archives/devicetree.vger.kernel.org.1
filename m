@@ -1,260 +1,274 @@
-Return-Path: <devicetree+bounces-161047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A290A71EFF
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 20:21:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A07D5A71F78
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 20:47:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36CF33AF643
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 19:21:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1FA3C1790B9
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 19:46:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 488662505D4;
-	Wed, 26 Mar 2025 19:21:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F075A19E998;
+	Wed, 26 Mar 2025 19:45:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZPtQBPVy"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="EY1jYUiD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11012022.outbound.protection.outlook.com [52.101.66.22])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75D1415990C;
-	Wed, 26 Mar 2025 19:21:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743016894; cv=none; b=hm0CXlK3m7ePFvcjyvPbPx3PLZRn6Juz9UGuewMeaMrLBLNC8qi0FW0BL6SSfWDveTmX/FIO0hsriQkLO3e/9ywRt8soDCtFKpwufZ02rSVBy8ntkXEjFxjwjt6+6rqhoano0xyCbVbb3+gQUHf3WSpUkvOHBkut2LO9LTkg4Ck=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743016894; c=relaxed/simple;
-	bh=9SujrNYMLA/XAMHXQB+2rCkk6Yg1jBiNU3xCW6K3B9w=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UDmAEKU5pQsps3V28PieeooHO+Njbmfiz63OPRc/3b4lk4RXO4Bsv2lI9txXnqAgHkhKkl5w8+qHvWx6YXWKg9bkkyEyuWyPm8BM/AiCW7WzOTUfpap9V629D6xZxTOD3KcVB3ZWCiI1dwruGfuYDdU0nyavcC883K50ekWyUCM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZPtQBPVy; arc=none smtp.client-ip=209.85.221.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-5240b014f47so100640e0c.1;
-        Wed, 26 Mar 2025 12:21:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743016891; x=1743621691; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=64vjjGgKkyej47wZkg9Q8gzWkXdomxA9oEZPcwE0Oo0=;
-        b=ZPtQBPVyyDWXoYnU9uFhHV+QqhPn8GIaTVlFnZrw0Gkjfs1uEwK3V4y8JJo1LKZrJw
-         zSWqdauIyJTTivBFnVsKLYc1LDpO/VJYSPhpbpBW3f0MeY0vIl+rzCi90w1DTsWkrel0
-         WK5BARvBjzGEHU+ZbP4/GpFVWgM8OWDE+2X6T7NEVorBIicJAK+ebpKbPv8EPM7lzX2D
-         a9QChfoaTa7mYCLJnd7PbpUc+lddhCw6DErbqR1LSwoslQ1kQXpAbDC9RlPVyRzrGCc0
-         GHMfdaKqPLlPpNYYbnGFs7Va0fKTmu+NVIrka/BsPe5gF8HfzgQiiidL8BWi6buMmrmD
-         mDwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743016891; x=1743621691;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=64vjjGgKkyej47wZkg9Q8gzWkXdomxA9oEZPcwE0Oo0=;
-        b=WiqJKThFJczmooXs2SU/emJf+mtDhuQoN6LHz3WqK/1vBFfHMrlUe7Nww378RYH5rt
-         iDxHItyYVcTMBXXAQAi9QNt2EvKf2WuDwdE0Ltmbjw4LyMIo2miuVqD3ZQfTTi/vwLdR
-         HSDlLGveoe7r5S7SElX/ol5bVO1dl+iZQ+3PMiBngRUup2IFY8YBSC5haV6IvZCul2dg
-         y9bgKYHAO5W3fAxksCqkOppZtXZyAeuWyxYpEQY3dAegLvZlWIzWW2WLpclsVBzVgoBv
-         tL5a8lfQoyKDTO1BwsotNoxFfz9n7uCGAvWLP5JbcFKqgW/AKuzjAz02gAg0nkG7VM2q
-         517g==
-X-Forwarded-Encrypted: i=1; AJvYcCUNFBGKlBuG7YBWYKUhsYnP0yfhUSUF3HfccUNXdeu9L6DRfM1w+cJi9D+3B0k4XHfcacHL8+0AXWpnew==@vger.kernel.org, AJvYcCUy4tlNwHhRH1ska91YonaTkEwYdUoA8V9oHU0bmYWA3/SR5/KunjS7e48eHKYVq7+vXs0rQhW9T2PWfFGF68sHwMQ=@vger.kernel.org, AJvYcCWZmden09U1k3WzZaKVOaSvjizRI6bDghfZdbfJ/fOQnpVX+fvORy//yqORbT7GQ9/yLnnTSY53ThxH+cJN@vger.kernel.org, AJvYcCWg7OR5AwjEWOsJpUkwoeCIq7euOMade+KnT2ingrICZgAZ/qS6CPApL6r0YkemkP2AyK6Nehl8mTJyNaJo@vger.kernel.org, AJvYcCX1J9ziV9C49Bw4jZGmWnkgBHCK6QnvMh0L+pOc9T2qjzPqwhyNgEt+dJ9Qdg5XQNPCUUYYAPg/oOPt@vger.kernel.org, AJvYcCXaqQlayKgOr6A7+EDvjZX0t38KvvJYmw1rHuJP+qSkubFKxXGjB4DP1KH5aSATEfUBntffhNhHK8pI@vger.kernel.org
-X-Gm-Message-State: AOJu0YyU4yK/Te9qwyNXsD1x1Y6S7yJyCrdEf8eN1CrMfPkTU/jBl63i
-	ImRjpiv2jLwgkSwlEmQrJSHzMxHyuJ7ydk0//tHCzVhFLALUoH1LjT3C8YTuHhTcvWttNKD6mom
-	rnYxEIDtLMsCqu/+sfuI6cn/yacc=
-X-Gm-Gg: ASbGncsXAFiucXKdHzOnjugnL7DW/HEZtcvAv17PF/UIzbS8igZBPlsmARuOogOuKsK
-	FnWmhxEi44gB7zDMDYbF6zreWGMq7HCb2y4BX7fSnGUZATXR73BFE9l3Scrg6zzaDHcqw4DXANc
-	73Dw9BzDU7HboJGzATBz1YsrnaW/Luv8ql41oelv0=
-X-Google-Smtp-Source: AGHT+IEMDUu/kTsNu1CbItYSDxUZeO1gxYDQkWcrekLYRRg2eqkHhtGCeqXHHIbGy6v6eIHaPx/Rv/onzgSKYSV/BuA=
-X-Received: by 2002:a05:6122:660c:b0:50b:e9a5:cd7b with SMTP id
- 71dfb90a1353d-52600a8ada4mr1173468e0c.9.1743016890983; Wed, 26 Mar 2025
- 12:21:30 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0A871917F9;
+	Wed, 26 Mar 2025 19:45:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.22
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1743018320; cv=fail; b=fkyk3jgaXoV5Ivt5SSuGCVVSnHAuywmApQSQoG/ZGYloZXMFYOgOZuhhcPQBZS+Ae547+IWCs8WbKR1yKhL4cZv2No7wDGWqg/oOq7m40TuSNJwtUMJoomhcypDq4v9ytqLqSCdIhjWowT2QEERgNhVJE8zBL1U/xF3ecNGaOZU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1743018320; c=relaxed/simple;
+	bh=sBYJSBHb0r73LaejBwcD/3UXb4NmcaEwWcz27KrXpuo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=nqzrPusuJidBHFpaw8F7pNhx95yfgC5p68CbqPdqiSh3AteEMx2Ffij5Yowc9YrfXqlSCRMFaSV6Xi1KE6+bTx8VLh74RirIsYeA1Rj4TYVMGg1wIQJec34bxchuE/b8zm8uKjDPOMP1UbUx1za3VlHBXOnT0L5pJKcFqDOW4do=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=EY1jYUiD; arc=fail smtp.client-ip=52.101.66.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bkqzWZZen9+1kpa/RcR5E5l//ciWhR5rw0fF/FmWVG4EGnwrALJSh9ERHtgD4qcjkRRncWJXgtUy62E/CQiWKOv/ek39A9PkjDtDGKAfIIqwYvbasMbBeAukNlJjFkrsPHrEsKfIaNxFPQ0hXuFWVs1vOHRfvZzVSBln+2Mhb1CMuk09ZjXJ05rcj3WVEQEa2zDr8Vu5MM2mU451AyKWpbLqMVOdbZ3mYDiI+2uVomKPeAnAFRdsl0bTjzAFrhy20njYGdQDmyV/bR6eneP3p8P3joaJh9zERgdxQ7yJ77BssHm6Y8jCmxZf037KsvoVevnHmdXbsq/MBFAsnn4TLA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=85Ik2Hrtwj4Us9MekeLRtWcPmDz92U+GI3Y1C0Z7uXw=;
+ b=SyyYQiZiC8hJVsNQDc2T0ila0MCuQ8gpriKGS/mFY9Duqsq90CBML8R79K4GMZZsmhm/VNW+g1mzfU9MEIWSdsa3hWNIc0Mfqek3iUVMJLrlTU0aubWcf8ZqY4+6TJSijJfz3/8z+A/IhOzgMdPFQFJ1o+w/S7roUeGVQ/tbpWww+85Zeh/gbn+7riQMaaIURRUDY9zgJhn/S5A/WwCj0tPAk1BAXVzzPTHkBwYYew1Qdfpp2shJFspxo11ItqdbboPx3icKt9Xp1sB3jXugNZmB2WbatHN7mjbrBqDmdHQkLnMLKZj0Dg13ynhlAzk6FMXn8qosO+fp11uJVAwsSg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=85Ik2Hrtwj4Us9MekeLRtWcPmDz92U+GI3Y1C0Z7uXw=;
+ b=EY1jYUiDFiZvzDcjGUe7e8PDmOePVrj4fZGg1e9T2gOVl174FTm6rT4sMkTCxQn89ZJwh4KoOFho1azDZwU1x7+Gi7rKijoZ+w30AUm5fUV6C/mF9XIYwtCZpAVSkEQSB9Y5CbYlMmyPYZljba1pQr5jABI4wpHJ+Sm5WOkYKgaHrdt2tjYmnUzlqI/UjP9cgT9uTrAmg/C0ebLdEkczlnpe1jwFIQsrd2zEQQRodj485/JxEbc+cs7B+p0iNZvP1b2YzLVE6+YArn4IzXnbUd8gZ8MD+r9/5VAwu/aW/YrtV4GLwrehkTidv1xz5Tg04YGJOVz9Aclp58paDLQ/cg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by PAXPR04MB9188.eurprd04.prod.outlook.com (2603:10a6:102:222::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.44; Wed, 26 Mar
+ 2025 19:45:14 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%3]) with mapi id 15.20.8534.040; Wed, 26 Mar 2025
+ 19:45:14 +0000
+Date: Wed, 26 Mar 2025 15:45:03 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dong Aisheng <aisheng.dong@nxp.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rui Miguel Silva <rmfrfs@gmail.com>,
+	Martin Kepplinger <martink@posteo.de>,
+	Purism Kernel Team <kernel@puri.sm>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-media@vger.kernel.org, Robert Chiras <robert.chiras@nxp.com>,
+	"Guoniu.zhou" <guoniu.zhou@nxp.com>
+Subject: Re: [PATCH v3 00/12] media: imx8: add camera support
+Message-ID: <Z+RZP/E4GT5R6dHH@lizhi-Precision-Tower-5810>
+References: <20250210-8qxp_camera-v3-0-324f5105accc@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250210-8qxp_camera-v3-0-324f5105accc@nxp.com>
+X-ClientProxiedBy: BYAPR06CA0071.namprd06.prod.outlook.com
+ (2603:10b6:a03:14b::48) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250326143945.82142-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <174301523991.2716417.14351851624098585706.robh@kernel.org>
-In-Reply-To: <174301523991.2716417.14351851624098585706.robh@kernel.org>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Wed, 26 Mar 2025 19:21:03 +0000
-X-Gm-Features: AQ5f1Jp6yjmSyKSnpYoXWKYVnLBzGIWh9gTSXr8OSv020P_GOH986D8KqbvLGlA
-Message-ID: <CA+V-a8tBGdAFoUW1Dt2wZTeQBcVts-CGc9DgC24uvtFSfoUFeA@mail.gmail.com>
-Subject: Re: [PATCH 00/15] Add support for Renesas RZ/V2N SoC and EVK
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-serial@vger.kernel.org, 
-	Michael Turquette <mturquette@baylibre.com>, Linus Walleij <linus.walleij@linaro.org>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Conor Dooley <conor+dt@kernel.org>, 
-	Will Deacon <will@kernel.org>, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-renesas-soc@vger.kernel.org, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-kernel@vger.kernel.org, 
-	Jiri Slaby <jirislaby@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Stephen Boyd <sboyd@kernel.org>, Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAXPR04MB9188:EE_
+X-MS-Office365-Filtering-Correlation-Id: 543f8c2a-9f90-4564-19fe-08dd6c9eba30
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|1800799024|52116014|366016|7416014|376014|7053199007|38350700014|921020;
+X-Microsoft-Antispam-Message-Info:
+ =?us-ascii?Q?03EQTb+vyjdzZamv+Md42TyZQHHYBgQzp1XKB0j7dlSzEmuo/zJxxSz6l0KB?=
+ =?us-ascii?Q?BbDKXsJNskcQ/WksbYzmz/BYctr5cfqs/mnMX0kui7DLaCe1EiwB3qpq4zoZ?=
+ =?us-ascii?Q?O1yByCqO4MQOyV/GN1sRmRLgha34TJKKiTo/qobV1G0NkNnIyZDJ81qQGyoP?=
+ =?us-ascii?Q?r1R4GNGS44MrK6T37IsWGR8BF2I6h6Q89+55dOh/smMvbVl05IbLQat32+vY?=
+ =?us-ascii?Q?PJaihv7glo95Z8fJGIeFXtlrNrdUk3n6lc68ObtjaQ9iqS/ttohY0TZJtC0o?=
+ =?us-ascii?Q?TiH7ryUOqeGZKTm5DX8NNvLdRW23o9f5TS67xEVg5u2mUManUsPvuuLC5MNT?=
+ =?us-ascii?Q?9511Nk4ubPBlZozYEIoLcOfFC1CDBxNul6GFM+lGVpPwermx36prROJTaNc/?=
+ =?us-ascii?Q?Z/76B/cK2XuXNbNubcc8ijOnnnbcaqqDBdtQmMFdsQawX7fLWAVXKu2YUr9P?=
+ =?us-ascii?Q?ONM3kvDOIlOIsrWkO0AqbevU8UuUruDmnp6a2Ma8knBP5zH1WxmToKVNUwC6?=
+ =?us-ascii?Q?rbGV5hiRRVLjfZ7gmQhsYaD2n5Psl9A0qw/FDM59BZiygVckGoYiT7lQd1cG?=
+ =?us-ascii?Q?3EeTx1xxvZ/VQGJ9EXwFQHcav9gdrn+zVuZ6RDKBWOyQ3CNfCnceV7G8ULqT?=
+ =?us-ascii?Q?5bRSEWYiB6KQ887YqiyYYOt2Lqjkjmraig5xyaXHr6ztbgstHu4rwgJZ5mkl?=
+ =?us-ascii?Q?hNzOc7CDEM+A86QLBsGwGKrdfHS5e9arGJ9FRy52E3vYo09TBQXfJzVCJ9lB?=
+ =?us-ascii?Q?YVpzJiMSHTHAk6r0bz1z5DiYCJmfOeD/BbIOzK/NLJok7n1OqgCKDwFfIOHU?=
+ =?us-ascii?Q?x5Eo819gwhyxU9j6JDkPAhZRthzi6v3UkguR8TPHWjeTAJkKlXz1OXKqMBLY?=
+ =?us-ascii?Q?MfBMtYQym2oVgfMH/BNJPRnSovegYZAD1lk+5x9ce2qPOebxOS1dq0J0MT9Z?=
+ =?us-ascii?Q?RWkzRs02qRh4V+N/WOJMH5sx8f06S5WIXxbByVPSI4biucBTHFY/BCSei8R1?=
+ =?us-ascii?Q?Pm286UngsTqYvOW+ve9z219fJGp1VwVIxKQF6WjTrOY9b9BxQT0gunG/fEQb?=
+ =?us-ascii?Q?HMCXCAOGxmam9TBQ+MW6IoZoCn0NSAaXkkSl7tufNWFY/NEmUc81/mP1JdzP?=
+ =?us-ascii?Q?ymc5WSNq9yT2Sjy1YSEufoSvlaN8ys7MAJQOEuBuc1iFA5Da1VR/bazphnBp?=
+ =?us-ascii?Q?j7KYytyFD+/YyiwsUJdeQXqYiOY2cb6uWyWaW928S0WtQq5BzO5O3KwyCIXv?=
+ =?us-ascii?Q?k75x2RQqc6SRGam+nC1E8N0itIyaSj9+YisV9Zmdi/PVlv0ZyKiXcrX9tEqQ?=
+ =?us-ascii?Q?66RqXZcoh43t1RlPCpVqb+14IISwJ5HvXi9Omay4eKkFfgRL/d2t2ktxOA50?=
+ =?us-ascii?Q?pgTPx5npdIdSxZICRWnINXAiPGdRlUJPwBPPl7lsHz9DcGEb90CLDbK9rU4R?=
+ =?us-ascii?Q?suCWG0Ryg4Cu/R6t69T2wwbbvTL0ROfhU9g+IF6dhxInRC8XFtG2qAHCONAV?=
+ =?us-ascii?Q?Dd5Kohw1WCEAAeJgqwh+G2cNFDLU3AbBFBdG?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(366016)(7416014)(376014)(7053199007)(38350700014)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?4trjCcGBr/UQpQ7J2uFhTPBrUla6cpYvTvyhXv9uYQm6P6vDc2dc2ot/ct+g?=
+ =?us-ascii?Q?HEXC0wCXQrWc2PNJuQsuLJtruH99AaefhlaDV6u9fz7+iV86Y+F+1VkcPhag?=
+ =?us-ascii?Q?AcV93nxFOmjVVuNIbMgxzwCsmBK1fGY5eyrQIAOeukt0VWyqwFmCs8phO82q?=
+ =?us-ascii?Q?el3LEjb9JPGBt0XkQPH90Ofx1vIC6BZ+AGdrmEnvbgVLPKl/PIcHIpPBDwW/?=
+ =?us-ascii?Q?9nHYe3qG8xt3YPHfdVAPBGXJHnXggp6sBycUxpwnc9TkumFmM4itTCgMD+uv?=
+ =?us-ascii?Q?e48aajKGnQHi4WYcBpvzWaVKNOQIpbn3CyenW+uKpcVZNLRaG9PEzLkzhjQk?=
+ =?us-ascii?Q?kX5WrlDBWoA3OvIY6ryhLTwrPM188/y/0TM8H6L7JFPPg/dXm6v9qsWeAXEz?=
+ =?us-ascii?Q?5t1kowzb6o9Vu/cDnRzok42w9hhzs9bU22hObgky8dFzkPhlGhRavbQDCRTr?=
+ =?us-ascii?Q?DedR1EJNgwXQJTu5zbMybsyeplHKq5euaeUz3/ZIwPA2mGNtqALX4isEYNCa?=
+ =?us-ascii?Q?FIEBGilnTPw0aBHmn2njYk77pH90Xnrgy+47I7vtiXig560DkJfE450RQMBk?=
+ =?us-ascii?Q?uVt5o/Kdw5qTj7nXrtY9h7RfJ2L0hThmgalowrtHRzHr64k7UV5rt5k30Gxd?=
+ =?us-ascii?Q?z8dWZlgv7zU/PZVNFWTSzalylgOU5JFS5Zmmjk0K712/zjr4i/mcOiGCeUfn?=
+ =?us-ascii?Q?NpE/G3R6b4aK3nRYMve7h2Bk2eRL8tVrDazJ/xibBEL62jdLTemljW3skCbe?=
+ =?us-ascii?Q?1n1q42Yyh85l9Kb3O9d+c8CBgkzY2ZHRE2ytjj52ywpQZsmBR5d/dOwEZAc2?=
+ =?us-ascii?Q?RkURW5QF6PQwadZQ+Ij7lV7XvpeMyy36lO/TJYZksdWLsq9d0DAk4rP4csEs?=
+ =?us-ascii?Q?EbSUvCL2pWBa6bm/+NoyXgot7DkiS+DwAW3vZebyR18nM0wj7/90uw2EXt6F?=
+ =?us-ascii?Q?GmtXaQ72ueksVEKSpdg96OXISwK3wEBwQV3czc/IyGep5m73iw7Sbe9X0pbr?=
+ =?us-ascii?Q?UJxV6PERafvEvLDXFXRYE50L6aHMB4mHlC5LijuYwhgINDMALF8kZ1cazBxg?=
+ =?us-ascii?Q?RASmRcTL+w9D71c2He8Lu0djr9SjGmpGuRCBdo5GvhJShJ2P3jGjT1IOD8vz?=
+ =?us-ascii?Q?Q4m3zuOGyCGI3GjpzwwAqgn/1CsSNXD4RRDCPs+qvx5ZbmDLVDRvPvmfe2nP?=
+ =?us-ascii?Q?z3CsEABKvwymR5HWzFtRRE7xGNfEoVVtZCIT64AYRuQ6exgEiIpzyzjW3ZB/?=
+ =?us-ascii?Q?ZWGQBPwP6C8+7eSlFEEyM/snvp3RBMmBqF0Nffhe0dp/Cab90D+hpe2NhSRS?=
+ =?us-ascii?Q?9pjMYWgEVo0hNTjpVRCiUnSW5icNRrFpv/nxWLUPhBE/VHt72xKXbKun2Lq6?=
+ =?us-ascii?Q?jrhpdnef7kofFe8v4eSQvy6w7aPN98RDOgoekOZGzHQ2gXhGbnInMBPQ0VA7?=
+ =?us-ascii?Q?nGveacjGSoeQ2VUGn/do2+00v6KrT8CTgI8VERbRWpOwf05HyGSXWLe/adoG?=
+ =?us-ascii?Q?3ED+igLXZFCM9FrgTOjvRsEtE39Xi5Z1doHWWaR0NvjCEYE2CZRmvC4o/V59?=
+ =?us-ascii?Q?Sl91XxA7gipUBUtE2V8USXce7Q6wMV5kNjaIWd/3?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 543f8c2a-9f90-4564-19fe-08dd6c9eba30
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2025 19:45:14.4600
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: dX9BPYmg0f7n5RjLYsmHRe6zHTilNWEhdBNS9o/fAY7TKs9dJcDKyHUFaqpA9bZLadYFdN3gD0ct2dSzbXF/gA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9188
 
-Hi Rob,
+On Mon, Feb 10, 2025 at 03:59:19PM -0500, Frank Li wrote:
+> Add SCU reset driver for i.MX8QM/i.MX8QXP.
+> Update binding doc.
+> Update driver for imx8qxp and imx8qm.
+> Add dts files for it.
+>
 
-On Wed, Mar 26, 2025 at 7:11=E2=80=AFPM Rob Herring (Arm) <robh@kernel.org>=
- wrote:
->
->
-> On Wed, 26 Mar 2025 14:39:30 +0000, Prabhakar wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > This patch series adds initial support for the Renesas RZ/V2N (R9A09G05=
-6)
-> > SoC and its evaluation board (EVK). The Renesas RZ/V2N is a vision AI
-> > microprocessor (MPU) designed for power-efficient AI inference and
-> > real-time vision processing. It features Renesas' proprietary AI
-> > accelerator (DRP-AI3), delivering up to 15 TOPS AI performance, making
-> > it ideal for applications such as Driver Monitoring Systems (DMS),
-> > industrial monitoring cameras, and mobile robots.
-> >
-> > Key features of the RZ/V2N SoC:
-> >   Processing Power:
-> >     - Quad Arm Cortex-A55 cores at 1.8GHz for high-performance computin=
-g
-> >     - Single Arm Cortex-M33 core at 200MHz for real-time processing
-> >     - 1.5MB on-chip SRAM for fast data access
-> >     - LPDDR4/LPDDR4X memory interface for high-speed RAM access
-> >
-> >   AI and Vision Processing:
-> >     - DRP-AI3 accelerator for low-power, high-efficiency AI inference
-> >     - Arm Mali-C55 ISP (optional) for image signal processing
-> >     - Dual MIPI CSI-2 camera interfaces for multi-camera support
-> >
-> >   High-Speed Interfaces:
-> >     - PCIe Gen3 (2-lane) 1ch for external device expansion
-> >     - USB 3.2 (Gen2) 1ch (Host-only) for high-speed data transfer
-> >     - USB 2.0 (Host/Function) 1ch for legacy connectivity
-> >     - Gigabit Ethernet (2 channels) for network communication
-> >
-> >   Industrial and Automotive Features:
-> >     - 6x CAN FD channels for automotive and industrial networking
-> >     - 24-channel ADC for sensor data acquisition
-> >
-> > LINK: https://tinyurl.com/renesas-rz-v2n-soc
-> >
-> > The series introduces:
-> > - Device tree bindings for various subsystems (SYS, SCIF, SDHI, CPG, pi=
-nctrl).
-> > - RZ/V2N SoC identification support.
-> > - Clock and pinctrl driver updates for RZ/V2N.
-> > - Initial DTSI and device tree for the RZ/V2N SoC and EVK.
-> > - Enabling RZ/V2N SoC support in `arm64 defconfig`.
-> >
-> > These patches have been tested on the RZ/V2N EVK with v6.14,
-> > logs can be found here https://pastebin.com/8i3jgVby
-> >
-> > Cheers,
-> > Prabhakar
-> >
-> > Lad Prabhakar (15):
-> >   dt-bindings: soc: renesas: Document Renesas RZ/V2N SoC variants
-> >   dt-bindings: soc: renesas: Document RZ/V2N EVK board
-> >   soc: renesas: Add config option for RZ/V2N (R9A09G056) SoC
-> >   dt-bindings: soc: renesas: Document SYS for RZ/V2N SoC
-> >   soc: renesas: sysc: Add SoC identification for RZ/V2N SoC
-> >   dt-bindings: serial: renesas: Document RZ/V2N SCIF
-> >   dt-bindings: mmc: renesas,sdhi: Document RZ/V2N support
-> >   dt-bindings: clock: renesas: Document RZ/V2N SoC CPG
-> >   clk: renesas: rzv2h-cpg: Sort compatible list based on SoC part numbe=
-r
-> >   clk: renesas: rzv2h: Add support for RZ/V2N SoC
-> >   dt-bindings: pinctrl: renesas: Document RZ/V2N SoC
-> >   pinctrl: renesas: rzg2l: Add support for RZ/V2N SoC
-> >   arm64: dts: renesas: Add initial SoC DTSI for RZ/V2N
-> >   arm64: dts: renesas: Add initial device tree for RZ/V2N EVK
-> >   arm64: defconfig: Enable Renesas RZ/V2N SoC
-> >
-> >  .../bindings/clock/renesas,rzv2h-cpg.yaml     |   5 +-
-> >  .../devicetree/bindings/mmc/renesas,sdhi.yaml |   4 +-
-> >  .../pinctrl/renesas,rzg2l-pinctrl.yaml        |   2 +
-> >  .../bindings/serial/renesas,scif.yaml         |   1 +
-> >  .../soc/renesas/renesas,r9a09g057-sys.yaml    |   1 +
-> >  .../bindings/soc/renesas/renesas.yaml         |  15 +
-> >  arch/arm64/boot/dts/renesas/Makefile          |   2 +
-> >  arch/arm64/boot/dts/renesas/r9a09g056.dtsi    | 264 ++++++++++++++++++
-> >  .../dts/renesas/r9a09g056n48-rzv2n-evk.dts    | 115 ++++++++
-> >  arch/arm64/configs/defconfig                  |   1 +
-> >  drivers/clk/renesas/Kconfig                   |   5 +
-> >  drivers/clk/renesas/Makefile                  |   1 +
-> >  drivers/clk/renesas/r9a09g056-cpg.c           | 152 ++++++++++
-> >  drivers/clk/renesas/rzv2h-cpg.c               |  18 +-
-> >  drivers/clk/renesas/rzv2h-cpg.h               |   1 +
-> >  drivers/pinctrl/renesas/Kconfig               |   1 +
-> >  drivers/pinctrl/renesas/pinctrl-rzg2l.c       |  36 ++-
-> >  drivers/soc/renesas/Kconfig                   |  10 +
-> >  drivers/soc/renesas/Makefile                  |   1 +
-> >  drivers/soc/renesas/r9a09g056-sys.c           | 107 +++++++
-> >  drivers/soc/renesas/rz-sysc.c                 |   3 +
-> >  drivers/soc/renesas/rz-sysc.h                 |   1 +
-> >  .../dt-bindings/clock/renesas,r9a09g056-cpg.h |  24 ++
-> >  .../pinctrl/renesas,r9a09g056-pinctrl.h       |  30 ++
-> >  24 files changed, 790 insertions(+), 10 deletions(-)
-> >  create mode 100644 arch/arm64/boot/dts/renesas/r9a09g056.dtsi
-> >  create mode 100644 arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.=
-dts
-> >  create mode 100644 drivers/clk/renesas/r9a09g056-cpg.c
-> >  create mode 100644 drivers/soc/renesas/r9a09g056-sys.c
-> >  create mode 100644 include/dt-bindings/clock/renesas,r9a09g056-cpg.h
-> >  create mode 100644 include/dt-bindings/pinctrl/renesas,r9a09g056-pinct=
-rl.h
-> >
-> > --
-> > 2.49.0
-> >
-> >
-> >
->
->
-> My bot found new DTB warnings on the .dts files added or changed in this
-> series.
->
-> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-> are fixed by another series. Ultimately, it is up to the platform
-> maintainer whether these warnings are acceptable or not. No need to reply
-> unless the platform maintainer has comments.
->
-> If you already ran DT checks and didn't see these error(s), then
-> make sure dt-schema is up to date:
->
->   pip3 install dtschema --upgrade
->
->
-> This patch series was applied (using b4) to base:
->  Base: attempting to guess base-commit...
->  Base: tags/next-20250326 (best guess, 15/18 blobs matched)
->
-> If this is not the correct base, please add 'base-commit' tag
-> (or use b4 which does this automatically)
->
-> New warnings running 'make CHECK_DTBS=3Dy for arch/arm64/boot/dts/renesas=
-/' for 20250326143945.82142-1-prabhakar.mahadev-lad.rj@bp.renesas.com:
->
-> arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dtb: pinctrl@10410000:=
- 'interrupt-controller' is a required property
->         from schema $id: http://devicetree.org/schemas/pinctrl/renesas,rz=
-g2l-pinctrl.yaml#
-> arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dtb: pinctrl@10410000:=
- '#interrupt-cells' is a required property
->         from schema $id: http://devicetree.org/schemas/pinctrl/renesas,rz=
-g2l-pinctrl.yaml#
->
->
-As mentioned in patch 13/15 [0] the above warnings are expected this
-is because as part of the initial support, the ICU has not been added
-yet. The interrupt-related properties will be added to the pinctrl
-node along with ICU support.
+Laurent Pinchart:
 
-[0] https://lore.kernel.org/all/20250326143945.82142-14-prabhakar.mahadev-l=
-ad.rj@bp.renesas.com/
+	I saw Philipp Zabel already pick up SCU reset part. Do you have
+more concern about media part? Could you please take care this patches?
 
-Cheers,
-Prabhakar
+Frank
+
+
+> To: Rob Herring <robh@kernel.org>
+> To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> To: Conor Dooley <conor+dt@kernel.org>
+> To: Dong Aisheng <aisheng.dong@nxp.com>
+> To: Philipp Zabel <p.zabel@pengutronix.de>
+> To: Shawn Guo <shawnguo@kernel.org>
+> To: Sascha Hauer <s.hauer@pengutronix.de>
+> To: Pengutronix Kernel Team <kernel@pengutronix.de>
+> To: Fabio Estevam <festevam@gmail.com>
+> To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> To: Mauro Carvalho Chehab <mchehab@kernel.org>
+> To: Rui Miguel Silva <rmfrfs@gmail.com>
+> To: Martin Kepplinger <martink@posteo.de>
+> To: Purism Kernel Team <kernel@puri.sm>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: imx@lists.linux.dev
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-media@vger.kernel.org
+> Cc: Robert Chiras <robert.chiras@nxp.com>
+> Cc: "Guoniu.zhou" <guoniu.zhou@nxp.com>
+>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+>
+> Changes in v3:
+> - Remove phy driver parts.
+> - csr is dedicate for mipi csi2, so add it as second register space. csr is
+> mixed with PHY and link control with csi2.
+> - Link to v2: https://lore.kernel.org/r/20250205-8qxp_camera-v2-0-731a3edf2744@nxp.com
+>
+> Changes in v2:
+> - move scu reset binding doc to top scu doc.
+> - isi use seperate binding doc for imx8qxp and imx8qm.
+> - phy and csi2, compatible string 8qm fallback to qxp
+> - remove internal review tags
+> - Link to v1: https://lore.kernel.org/r/20250131-8qxp_camera-v1-0-319402ab606a@nxp.com
+>
+> ---
+> Frank Li (9):
+>       dt-bindings: firmware: imx: add property reset-controller
+>       reset: imx: Add SCU reset driver for i.MX8QXP and i.MX8QM
+>       media: dt-bindings: Add binding doc for i.MX8QXP and i.MX8QM ISI
+>       media: nxp: imx8-isi: Allow num_sources to be greater than num_sink
+>       media: imx8mq-mipi-csi2: Add support for i.MX8QXP
+>       arm64: dts: imx8: add capture controller for i.MX8's img subsystem
+>       arm64: dts: imx8qm: add 24MHz clock-xtal24m
+>       arm64: dts: imx8q: add linux,cma node for imx8qm-mek and imx8qxp-mek
+>       arm64: dts: imx8q: add camera ov5640 support for imx8qm-mek and imx8qxp-mek
+>
+> Guoniu.zhou (1):
+>       media: imx8mq-mipi-csi2: Add imx8mq_plat_data for different compatible strings
+>
+> Robert Chiras (2):
+>       media: imx8-isi: Add support for i.MX8QM and i.MX8QXP
+>       media: dt-bindings: nxp,imx8mq-mipi-csi2: Add i.MX8QM(QXP) compatible strings
+>
+>  .../devicetree/bindings/firmware/fsl,scu.yaml      |  12 +
+>  .../devicetree/bindings/media/fsl,imx8qm-isi.yaml  | 117 +++++++
+>  .../devicetree/bindings/media/fsl,imx8qxp-isi.yaml | 103 ++++++
+>  .../bindings/media/nxp,imx8mq-mipi-csi2.yaml       |  38 ++-
+>  MAINTAINERS                                        |   1 +
+>  arch/arm64/boot/dts/freescale/Makefile             |  12 +
+>  arch/arm64/boot/dts/freescale/imx8-ss-img.dtsi     | 376 +++++++++++++++++++++
+>  .../boot/dts/freescale/imx8qm-mek-ov5640-csi0.dtso |  90 +++++
+>  .../boot/dts/freescale/imx8qm-mek-ov5640-csi1.dtso |  90 +++++
+>  arch/arm64/boot/dts/freescale/imx8qm-mek.dts       |  60 ++++
+>  arch/arm64/boot/dts/freescale/imx8qm-ss-img.dtsi   |  45 +++
+>  arch/arm64/boot/dts/freescale/imx8qm.dtsi          |  12 +
+>  .../boot/dts/freescale/imx8qxp-mek-ov5640-csi.dtso |  89 +++++
+>  arch/arm64/boot/dts/freescale/imx8qxp-mek.dts      |  44 +++
+>  arch/arm64/boot/dts/freescale/imx8qxp-ss-img.dtsi  |  60 ++++
+>  arch/arm64/boot/dts/freescale/imx8qxp.dtsi         |   5 +
+>  .../media/platform/nxp/imx8-isi/imx8-isi-core.c    |  47 +++
+>  .../media/platform/nxp/imx8-isi/imx8-isi-core.h    |   2 +
+>  .../platform/nxp/imx8-isi/imx8-isi-crossbar.c      |   8 +-
+>  drivers/media/platform/nxp/imx8mq-mipi-csi2.c      | 179 +++++++++-
+>  drivers/reset/Kconfig                              |   7 +
+>  drivers/reset/Makefile                             |   1 +
+>  drivers/reset/reset-imx-scu.c                      | 101 ++++++
+>  23 files changed, 1477 insertions(+), 22 deletions(-)
+> ---
+> base-commit: ce37eebeae8fa9e6c53f7f1ccd182ad5f27d66cd
+> change-id: 20250114-8qxp_camera-c1af5749d304
+>
+> Best regards,
+> ---
+> Frank Li <Frank.Li@nxp.com>
+>
 
