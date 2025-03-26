@@ -1,400 +1,236 @@
-Return-Path: <devicetree+bounces-160762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD121A7108E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 07:31:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 017C4A710B2
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 07:44:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C46277A46E5
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 06:30:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E50873B1B2F
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 06:44:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C71618E750;
-	Wed, 26 Mar 2025 06:30:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4012919047C;
+	Wed, 26 Mar 2025 06:44:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="nWWFm+1b"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mGexHaIg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C70E61BC41;
-	Wed, 26 Mar 2025 06:30:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10F13823DE;
+	Wed, 26 Mar 2025 06:44:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742970659; cv=none; b=hUa+7jqv/E8tWye/h0qMJTcHaFGIOYOPbsAQbB96SOxhSt89Ow7DEg5UfwyswgfpzHql6u2XttHLQZy85dC+nCwjCaK9a+UvU17lPgsbolnLjk0ZfM0NIKwAdmGXxqSx0lLigmZM9g9edyWm9yDcg1BJET9iPoTShkXO52i2ErM=
+	t=1742971491; cv=none; b=pkuZUmLSglBQjuEtK0BR0NkpOCSz9AOaDlilSAwqswd9YBDw7V082I6+F436L4PuWuPt9FGI3R7Zcg+9p2qVvpdaCoz+BN9ChWw7JECGb4fGC48WzUDBNSHUqbtLnVu7YOGXMi8RJvlI8J0kCFqcczMrgr4ZcEoYxmHCIjjpGTQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742970659; c=relaxed/simple;
-	bh=kafvIR4yCHmlSXlASeHB9y14csd763NgLzmQs/+InCM=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Vw0uGiYbR2StbcvVd6PghiW/UMl7okfzhBBPJKsI2456012Tr9B8NC5sSxSU/DT/+jtOLVjKDrDhCGGneibWr2yRk2H9cr7ckcpLCgLHvdHx3Bh1uHSm1U7z6qgFUUQWfQinWGPtRmY2XUKQ8emC3SgcXRX4qS8/TwDwh9psCGc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=nWWFm+1b; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: dc7d58960a0b11f08eb9c36241bbb6fb-20250326
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=3M60JeCSn2pGOvEmA1Fg/RS61NlVnIgN2BJbNhjZiVQ=;
-	b=nWWFm+1bPcQGElpT3/llMBzTbYXXCnsH75bInltCxyQ58T3szPxuEtHBQxXgM6BV40HuDzK6oPTFUBhR+WKj40BgiZe2sQNK8qpNwkI/uj/olzAU3C/kex/+BFN65I3F/FpkdPz/SjHPYiDjMpFf19/yUXLKnYi4oN+HaTcFMTU=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.2.1,REQID:8927d2ef-b614-4577-85a2-46125fd669f8,IP:0,UR
-	L:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-	:release,TS:-25
-X-CID-META: VersionHash:0ef645f,CLOUDID:0355cfc6-16da-468a-87f7-8ca8d6b3b9f7,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0|50,EDM:-3
-	,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV
-	:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: dc7d58960a0b11f08eb9c36241bbb6fb-20250326
-Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw02.mediatek.com
-	(envelope-from <crystal.guo@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 29433327; Wed, 26 Mar 2025 14:30:50 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Wed, 26 Mar 2025 14:30:49 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Wed, 26 Mar 2025 14:30:48 +0800
-From: Crystal Guo <crystal.guo@mediatek.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Crystal Guo
-	<crystal.guo@mediatek.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [v3,2/2] memory/mediatek: Add an interface to get current DDR data rate
-Date: Wed, 26 Mar 2025 14:30:32 +0800
-Message-ID: <20250326063041.7126-3-crystal.guo@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20250326063041.7126-1-crystal.guo@mediatek.com>
-References: <20250326063041.7126-1-crystal.guo@mediatek.com>
+	s=arc-20240116; t=1742971491; c=relaxed/simple;
+	bh=N+Le9MFtc/k1LZ1LVkIPmZk2oGdIyqo4T5HKb+AHZPQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qUT15Ve5bPs/JkfsZl+Xe1j0zLM4JT4Dof5SrRG7BubS+VRqM15ohoiDIv/lIgkp4OJqhOHMQjBIZmqECFn22dVpRABz61K04O8qWC0kB2NgzdKSOVudimx6xy8Eta/41KjjWKWfrHGMgFCqlx7LHxfXPcYcI4nC/Sy2gAxUW+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mGexHaIg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 876BAC4CEED;
+	Wed, 26 Mar 2025 06:44:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742971490;
+	bh=N+Le9MFtc/k1LZ1LVkIPmZk2oGdIyqo4T5HKb+AHZPQ=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=mGexHaIgLbSTRVHs1aAeFQlPGcyoCZW7ra4H38PmdGzDelCOcdKx1PSXmCzV7zHg4
+	 t4BXlaPJZl4M++7SmdtJc6OS8JjvQRphtWZwBCWtmx/alHR1Io5/u7TZToVoyJOSou
+	 96VjLRob86BRO7cjMzROfgRLhBnxIvMMr+R4vtlIUeOGTcng2xdyftnauroj5ZowGD
+	 xzqLtB/oFZyge5ZZJr/oxGRcBJ2TtgorNnVd6M4vPVwtA8/remvhxw2JO6w5AmNBGW
+	 LWfgRtD9plTNy/EtRrTL21OA4Ltzhsl8gLg9J9a66/mPT8tJvI+frlHwy6w6//C7jk
+	 Cj6THAiU6V/PQ==
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-30c416cdcc0so66700351fa.2;
+        Tue, 25 Mar 2025 23:44:50 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVrmuqXy0K9cajr0azmFL4+Pf6aBWNe3qYxGW0g2O/hfr5Lcj66UTi8OLbcqOmB7DfRjc364FcBdqT0@vger.kernel.org, AJvYcCVzTu2309+2Q4uD9wIfI0yq+XWdKBq62p4IY1yhlVgcrkjs4Un9AgSf6K+qZdYcbD250UTVuZaDIL+hAmrm@vger.kernel.org, AJvYcCX22mXorEkFKLJ0KozHNYfK+7KjiR4EBG+qA1xn9QhQlKOXnXQtUG8QdEHbLtbg6PPMdD3QsDhmvpMIDy2o2w==@vger.kernel.org, AJvYcCXYa84ydnApj4NIDQwClnlzVJFosKZsXWTnNOmUfwvoEU0a4sWVpF75yBx/u8AoGKfUlIbOOopmxiNh5S8cz+gpAg==@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzw67eBUdY2FzEQWUbBU42acRzwWpawS/ryPLQQDkLkF/ciZTNz
+	TqXDmz9tVm++JqWhZNtWsy7wowpNTCfQlT1Hyhh5q25YpcDoM2rLyc6HqKjshjkIcQeaM53LvlU
+	9ZZ8DqpW8UUdaVRffXvNXDqT7qpk=
+X-Google-Smtp-Source: AGHT+IGMF6j2X+Jr6WCvccPSUBNATvTU7YZt+i3mWvl9VVSwRgH7cCtIrbRrCInxLepNvpLKepp5tmas4mw+ODC5pdo=
+X-Received: by 2002:a05:651c:201c:b0:30b:f924:3554 with SMTP id
+ 38308e7fff4ca-30d7e236c49mr59160551fa.21.1742971488912; Tue, 25 Mar 2025
+ 23:44:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+References: <20250317232426.952188-1-robh@kernel.org> <20250317232426.952188-3-robh@kernel.org>
+In-Reply-To: <20250317232426.952188-3-robh@kernel.org>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Wed, 26 Mar 2025 14:44:36 +0800
+X-Gmail-Original-Message-ID: <CAGb2v65djD5DLQnjQrp9kSHTQYVd9p_vP9WySj2Cx81rHmh5Mw@mail.gmail.com>
+X-Gm-Features: AQ5f1Jq6AIDujd8iNXwgSFrroWq7EbdFM1zyiw-quoSbfHrKnBQnEEqsHIIoRaI
+Message-ID: <CAGb2v65djD5DLQnjQrp9kSHTQYVd9p_vP9WySj2Cx81rHmh5Mw@mail.gmail.com>
+Subject: Re: [PATCH 2/3] of: Simplify of_dma_set_restricted_buffer() to use of_for_each_phandle()
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Saravana Kannan <saravanak@google.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Mathieu Poirier <mathieu.poirier@linaro.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Patrice Chotard <patrice.chotard@foss.st.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-remoteproc@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add MediaTek DRAMC driver to provide an interface that can
-obtain current DDR data rate.
+Hi,
 
-Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
----
- drivers/memory/Kconfig              |   1 +
- drivers/memory/Makefile             |   1 +
- drivers/memory/mediatek/Kconfig     |  21 +++
- drivers/memory/mediatek/Makefile    |   2 +
- drivers/memory/mediatek/mtk-dramc.c | 232 ++++++++++++++++++++++++++++
- 5 files changed, 257 insertions(+)
- create mode 100644 drivers/memory/mediatek/Kconfig
- create mode 100644 drivers/memory/mediatek/Makefile
- create mode 100644 drivers/memory/mediatek/mtk-dramc.c
+On Tue, Mar 18, 2025 at 7:29=E2=80=AFAM Rob Herring (Arm) <robh@kernel.org>=
+ wrote:
+>
+> Simplify of_dma_set_restricted_buffer() by using of_property_present()
+> and of_for_each_phandle() iterator.
+>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>  drivers/of/device.c | 34 +++++++++++++---------------------
+>  1 file changed, 13 insertions(+), 21 deletions(-)
+>
+> diff --git a/drivers/of/device.c b/drivers/of/device.c
+> index edf3be197265..bb4a47d58249 100644
+> --- a/drivers/of/device.c
+> +++ b/drivers/of/device.c
+> @@ -35,44 +35,36 @@ EXPORT_SYMBOL(of_match_device);
+>  static void
+>  of_dma_set_restricted_buffer(struct device *dev, struct device_node *np)
+>  {
+> -       struct device_node *node, *of_node =3D dev->of_node;
+> -       int count, i;
+> +       struct device_node *of_node =3D dev->of_node;
+> +       struct of_phandle_iterator it;
+> +       int rc, i =3D 0;
+>
+>         if (!IS_ENABLED(CONFIG_DMA_RESTRICTED_POOL))
+>                 return;
+>
+> -       count =3D of_property_count_elems_of_size(of_node, "memory-region=
+",
+> -                                               sizeof(u32));
+>         /*
+>          * If dev->of_node doesn't exist or doesn't contain memory-region=
+, try
+>          * the OF node having DMA configuration.
+>          */
+> -       if (count <=3D 0) {
+> +       if (!of_property_present(of_node, "memory-region"))
+>                 of_node =3D np;
+> -               count =3D of_property_count_elems_of_size(
+> -                       of_node, "memory-region", sizeof(u32));
+> -       }
+>
+> -       for (i =3D 0; i < count; i++) {
+> -               node =3D of_parse_phandle(of_node, "memory-region", i);
+> +       of_for_each_phandle(&it, rc, of_node, "memory-region", NULL, 0) {
+>                 /*
+>                  * There might be multiple memory regions, but only one
+>                  * restricted-dma-pool region is allowed.
+>                  */
+> -               if (of_device_is_compatible(node, "restricted-dma-pool") =
+&&
+> -                   of_device_is_available(node)) {
+> -                       of_node_put(node);
+> -                       break;
+> +               if (of_device_is_compatible(it.node, "restricted-dma-pool=
+") &&
+> +                   of_device_is_available(it.node)) {
+> +                       if (!of_reserved_mem_device_init_by_idx(dev, of_n=
+ode, i)) {
+> +                               of_node_put(it.node);
+> +                               return;
+> +                       }
+>                 }
+> -               of_node_put(node);
+> +               i++;
+>         }
+>
+> -       /*
+> -        * Attempt to initialize a restricted-dma-pool region if one was =
+found.
+> -        * Note that count can hold a negative error code.
+> -        */
+> -       if (i < count && of_reserved_mem_device_init_by_idx(dev, of_node,=
+ i))
+> -               dev_warn(dev, "failed to initialise \"restricted-dma-pool=
+\" memory node\n");
+> +       dev_warn(dev, "failed to initialise \"restricted-dma-pool\" memor=
+y node\n");
 
-diff --git a/drivers/memory/Kconfig b/drivers/memory/Kconfig
-index c82d8d8a16ea..b1698549ff81 100644
---- a/drivers/memory/Kconfig
-+++ b/drivers/memory/Kconfig
-@@ -227,5 +227,6 @@ config STM32_FMC2_EBI
- 
- source "drivers/memory/samsung/Kconfig"
- source "drivers/memory/tegra/Kconfig"
-+source "drivers/memory/mediatek/Kconfig"
- 
- endif
-diff --git a/drivers/memory/Makefile b/drivers/memory/Makefile
-index d2e6ca9abbe0..c0facf529803 100644
---- a/drivers/memory/Makefile
-+++ b/drivers/memory/Makefile
-@@ -27,6 +27,7 @@ obj-$(CONFIG_STM32_FMC2_EBI)	+= stm32-fmc2-ebi.o
- 
- obj-$(CONFIG_SAMSUNG_MC)	+= samsung/
- obj-$(CONFIG_TEGRA_MC)		+= tegra/
-+obj-$(CONFIG_MEDIATEK_MC)	+= mediatek/
- obj-$(CONFIG_TI_EMIF_SRAM)	+= ti-emif-sram.o
- obj-$(CONFIG_FPGA_DFL_EMIF)	+= dfl-emif.o
- 
-diff --git a/drivers/memory/mediatek/Kconfig b/drivers/memory/mediatek/Kconfig
-new file mode 100644
-index 000000000000..3f238e0d9647
---- /dev/null
-+++ b/drivers/memory/mediatek/Kconfig
-@@ -0,0 +1,21 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+config MEDIATEK_MC
-+	bool "MediaTek Memory Controller support"
-+	help
-+	  This option allows to enable MediaTek memory controller drivers,
-+	  which may include controllers for DRAM or others.
-+	  Select Y here if you need support for MediaTek memory controller.
-+	  If you don't need, select N.
-+
-+if MEDIATEK_MC
-+
-+config MTK_DRAMC
-+	tristate "MediaTek DRAMC driver"
-+	default y
-+	help
-+	  This option selects the MediaTek DRAMC driver, which provides
-+	  an interface for reporting the current data rate of DRAM.
-+	  Select Y here if you need support for the MediaTek DRAMC driver.
-+	  If you don't need, select N.
-+
-+endif
-diff --git a/drivers/memory/mediatek/Makefile b/drivers/memory/mediatek/Makefile
-new file mode 100644
-index 000000000000..a1395fc55b41
---- /dev/null
-+++ b/drivers/memory/mediatek/Makefile
-@@ -0,0 +1,2 @@
-+# SPDX-License-Identifier: GPL-2.0
-+obj-$(CONFIG_MTK_DRAMC)		+= mtk-dramc.o
-diff --git a/drivers/memory/mediatek/mtk-dramc.c b/drivers/memory/mediatek/mtk-dramc.c
-new file mode 100644
-index 000000000000..22042c9d8e42
---- /dev/null
-+++ b/drivers/memory/mediatek/mtk-dramc.c
-@@ -0,0 +1,232 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2025 MediaTek Inc.
-+ */
-+#include <linux/bitops.h>
-+#include <linux/bitfield.h>
-+#include <linux/device.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/of_platform.h>
-+#include <linux/platform_device.h>
-+#include <linux/printk.h>
-+
-+static unsigned int read_reg_field(void __iomem *base, unsigned int offset, unsigned int mask)
-+{
-+	unsigned int val = readl(base + offset);
-+	unsigned int shift = __ffs(mask);
-+
-+	return (val & mask) >> shift;
-+}
-+
-+struct mtk_dramc_pdata {
-+	u8 fmeter_version;
-+	u8 ref_freq_mhz;
-+	const u16 *regs;
-+	const u32 *masks;
-+	u32 posdiv_purify;
-+	u8 prediv;
-+	u16 shuffle_offset;
-+};
-+
-+struct mtk_dramc_dev_t {
-+	void __iomem *anaphy_base;
-+	void __iomem *ddrphy_base;
-+	const struct mtk_dramc_pdata *pdata;
-+};
-+
-+enum mtk_dramc_reg_index {
-+	DRAMC_DPHY_DVFS_STA,
-+	DRAMC_APHY_SHU_PHYPLL2,
-+	DRAMC_APHY_SHU_CLRPLL2,
-+	DRAMC_APHY_SHU_PHYPLL3,
-+	DRAMC_APHY_SHU_CLRPLL3,
-+	DRAMC_APHY_SHU_PHYPLL4,
-+	DRAMC_APHY_ARPI0,
-+	DRAMC_APHY_CA_ARDLL1,
-+	DRAMC_APHY_B0_TX0,
-+};
-+
-+enum mtk_dramc_mask_index {
-+	DRAMC_DPHY_DVFS_SHU_LV,
-+	DRAMC_DPHY_DVFS_PLL_SEL,
-+	DRAMC_APHY_PLL2_SDMPCW,
-+	DRAMC_APHY_PLL3_POSDIV,
-+	DRAMC_APHY_PLL4_FBKSEL,
-+	DRAMC_APHY_ARPI0_SOPEN,
-+	DRAMC_APHY_ARDLL1_CK_EN,
-+	DRAMC_APHY_B0_TX0_SER_MODE,
-+};
-+
-+static const u16 mtk_dramc_regs_mt8196[] = {
-+	[DRAMC_DPHY_DVFS_STA] = 0xe98,
-+	[DRAMC_APHY_SHU_PHYPLL2] = 0x908,
-+	[DRAMC_APHY_SHU_CLRPLL2] = 0x928,
-+	[DRAMC_APHY_SHU_PHYPLL3] = 0x90c,
-+	[DRAMC_APHY_SHU_CLRPLL3] = 0x92c,
-+	[DRAMC_APHY_SHU_PHYPLL4] = 0x910,
-+	[DRAMC_APHY_ARPI0] = 0x0d94,
-+	[DRAMC_APHY_CA_ARDLL1] = 0x0d08,
-+	[DRAMC_APHY_B0_TX0] = 0x0dc4,
-+};
-+
-+static const u32 mtk_dramc_masks_mt8196[] = {
-+	[DRAMC_DPHY_DVFS_SHU_LV] = GENMASK(15, 14),
-+	[DRAMC_DPHY_DVFS_PLL_SEL] = GENMASK(25, 25),
-+	[DRAMC_APHY_PLL2_SDMPCW] = GENMASK(18, 3),
-+	[DRAMC_APHY_PLL3_POSDIV] = GENMASK(13, 11),
-+	[DRAMC_APHY_PLL4_FBKSEL] = GENMASK(6, 6),
-+	[DRAMC_APHY_ARPI0_SOPEN] = GENMASK(26, 26),
-+	[DRAMC_APHY_ARDLL1_CK_EN] = GENMASK(0, 0),
-+	[DRAMC_APHY_B0_TX0_SER_MODE] = GENMASK(4, 3),
-+};
-+
-+static int mtk_dramc_probe(struct platform_device *pdev)
-+{
-+	struct mtk_dramc_dev_t *dramc;
-+	const struct mtk_dramc_pdata *pdata;
-+
-+	dramc = devm_kzalloc(&pdev->dev, sizeof(struct mtk_dramc_dev_t), GFP_KERNEL);
-+	if (!dramc)
-+		return dev_err_probe(&pdev->dev, -ENOMEM, "Failed to allocate memory\n");
-+
-+	pdata = of_device_get_match_data(&pdev->dev);
-+	if (!pdata)
-+		return dev_err_probe(&pdev->dev, -EINVAL, "No platform data available\n");
-+
-+	dramc->pdata = pdata;
-+
-+	dramc->anaphy_base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(dramc->anaphy_base))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(dramc->anaphy_base),
-+				     "Unable to map ANAPHY base\n");
-+
-+	dramc->ddrphy_base = devm_platform_ioremap_resource(pdev, 1);
-+	if (IS_ERR(dramc->ddrphy_base))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(dramc->ddrphy_base),
-+				     "Unable to map DDRPHY base\n");
-+
-+	platform_set_drvdata(pdev, dramc);
-+	return 0;
-+}
-+
-+static unsigned int mtk_fmeter_v1(struct mtk_dramc_dev_t *dramc)
-+{
-+	const struct mtk_dramc_pdata *pdata = dramc->pdata;
-+	unsigned int shu_level, pll_sel, offset;
-+	unsigned int sdmpcw, posdiv, clkdiv, fbksel, sopen, async_ca, ser_mode;
-+	unsigned int prediv_freq, posdiv_freq, vco_freq;
-+	unsigned int final_rate;
-+
-+	shu_level = read_reg_field(dramc->ddrphy_base, pdata->regs[DRAMC_DPHY_DVFS_STA],
-+				   pdata->masks[DRAMC_DPHY_DVFS_SHU_LV]);
-+	pll_sel = read_reg_field(dramc->ddrphy_base, pdata->regs[DRAMC_DPHY_DVFS_STA],
-+				 pdata->masks[DRAMC_DPHY_DVFS_PLL_SEL]);
-+	offset = pdata->shuffle_offset * shu_level;
-+
-+	sdmpcw = read_reg_field(dramc->anaphy_base,
-+				((pll_sel == 0) ?
-+				pdata->regs[DRAMC_APHY_SHU_PHYPLL2] :
-+				pdata->regs[DRAMC_APHY_SHU_CLRPLL2]) + offset,
-+				pdata->masks[DRAMC_APHY_PLL2_SDMPCW]);
-+	posdiv = read_reg_field(dramc->anaphy_base,
-+				((pll_sel == 0) ?
-+				pdata->regs[DRAMC_APHY_SHU_PHYPLL3] :
-+				pdata->regs[DRAMC_APHY_SHU_CLRPLL3]) + offset,
-+				pdata->masks[DRAMC_APHY_PLL3_POSDIV]);
-+	fbksel = read_reg_field(dramc->anaphy_base, pdata->regs[DRAMC_APHY_SHU_PHYPLL4] + offset,
-+				pdata->masks[DRAMC_APHY_PLL4_FBKSEL]);
-+	sopen = read_reg_field(dramc->anaphy_base, pdata->regs[DRAMC_APHY_ARPI0] + offset,
-+			       pdata->masks[DRAMC_APHY_ARPI0_SOPEN]);
-+	async_ca = read_reg_field(dramc->anaphy_base, pdata->regs[DRAMC_APHY_CA_ARDLL1] + offset,
-+				  pdata->masks[DRAMC_APHY_ARDLL1_CK_EN]);
-+	ser_mode = read_reg_field(dramc->anaphy_base, pdata->regs[DRAMC_APHY_B0_TX0] + offset,
-+				  pdata->masks[DRAMC_APHY_B0_TX0_SER_MODE]);
-+
-+	clkdiv = (ser_mode == 1) ? 1 : 0;
-+	posdiv &= ~(pdata->posdiv_purify);
-+
-+	prediv_freq = pdata->ref_freq_mhz * (sdmpcw >> pdata->prediv);
-+	posdiv_freq = (prediv_freq >> posdiv) >> 1;
-+	vco_freq = posdiv_freq << fbksel;
-+	final_rate = vco_freq >> clkdiv;
-+
-+	if (sopen == 1 && async_ca == 1)
-+		final_rate >>= 1;
-+
-+	return final_rate;
-+}
-+
-+/*
-+ * mtk_dramc_get_data_rate - calculate DRAM data rate
-+ *
-+ * Returns DRAM data rate (MB/s)
-+ */
-+static unsigned int mtk_dramc_get_data_rate(struct device *dev)
-+{
-+	struct mtk_dramc_dev_t *dramc_dev = dev_get_drvdata(dev);
-+
-+	if (!dramc_dev) {
-+		dev_err(dev, "DRAMC device data not found\n");
-+		return -EINVAL;
-+	}
-+
-+	if (dramc_dev->pdata) {
-+		if (dramc_dev->pdata->fmeter_version == 1)
-+			return mtk_fmeter_v1(dramc_dev);
-+
-+		dev_err(dev, "Unsupported fmeter version\n");
-+		return -EINVAL;
-+	}
-+	dev_err(dev, "DRAMC platform data not found\n");
-+	return -EINVAL;
-+}
-+
-+static ssize_t dram_data_rate_show(struct device *dev,
-+				   struct device_attribute *attr, char *buf)
-+{
-+	return snprintf(buf, PAGE_SIZE, "DRAM data rate = %u\n",
-+			mtk_dramc_get_data_rate(dev));
-+}
-+
-+static DEVICE_ATTR_RO(dram_data_rate);
-+
-+static struct attribute *mtk_dramc_attrs[] = {
-+	&dev_attr_dram_data_rate.attr,
-+	NULL
-+};
-+ATTRIBUTE_GROUPS(mtk_dramc);
-+
-+static const struct mtk_dramc_pdata dramc_pdata_mt8196 = {
-+	.fmeter_version = 1,
-+	.ref_freq_mhz = 26,
-+	.regs = mtk_dramc_regs_mt8196,
-+	.masks = mtk_dramc_masks_mt8196,
-+	.posdiv_purify = BIT(2),
-+	.prediv = 7,
-+	.shuffle_offset = 0x700,
-+};
-+
-+static const struct of_device_id mtk_dramc_of_ids[] = {
-+	{ .compatible = "mediatek,mt8196-dramc", .data = &dramc_pdata_mt8196 },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, mtk_dramc_of_ids);
-+
-+static struct platform_driver mtk_dramc_driver = {
-+	.probe = mtk_dramc_probe,
-+	.driver = {
-+		.name = "mtk_dramc_drv",
-+		.of_match_table = mtk_dramc_of_ids,
-+		.dev_groups = mtk_dramc_groups,
-+	},
-+};
-+
-+module_platform_driver(mtk_dramc_driver);
-+
-+MODULE_AUTHOR("Crystal Guo <crystal.guo@mediatek.com>");
-+MODULE_DESCRIPTION("MediaTek DRAM Controller Driver");
-+MODULE_LICENSE("GPL");
--- 
-2.18.0
+This changes the behavior. Before this patch, it was:
 
+    if a restricted dma pool was found, but initializing it failed, print
+    a warning.
+
+Whereas now it has become:
+
+     print a warning unless a restricted dma pool was found and successfull=
+y
+     initialized.
+
+This change causes the kernel to print out the warning for devices that
+don't even do DMA:
+
+simple-pm-bus soc: failed to initialise "restricted-dma-pool" memory node
+simple-pm-bus 10006000.syscon: failed to initialise
+"restricted-dma-pool" memory node
+mtk-tphy soc:t-phy@11c80000: failed to initialise
+"restricted-dma-pool" memory node
+mtk-tphy soc:t-phy@11ca0000: failed to initialise
+"restricted-dma-pool" memory node
+mediatek-mipi-tx 11cc0000.dsi-phy: failed to initialise
+"restricted-dma-pool" memory node
+mediatek-mipi-tx 11cc0000.dsi-phy: can't get nvmem_cell_get, ignore it
+clk-mt8186-apmixed 1000c000.syscon: failed to initialise
+"restricted-dma-pool" memory node
+clk-mt8186-topck 10000000.syscon: failed to initialise
+"restricted-dma-pool" memory node
+clk-mt8186-infra-ao 10001000.syscon: failed to initialise
+"restricted-dma-pool" memory node
+clk-mt8186-cam 1a000000.clock-controller: failed to initialise
+"restricted-dma-pool" memory node
+clk-mt8186-cam 1a04f000.clock-controller: failed to initialise
+"restricted-dma-pool" memory node
+clk-mt8186-cam 1a06f000.clock-controller: failed to initialise
+"restricted-dma-pool" memory node
+clk-mt8186-img 15020000.clock-controller: failed to initialise
+"restricted-dma-pool" memory node
+clk-mt8186-img 15820000.clock-controller: failed to initialise
+"restricted-dma-pool" memory node
+clk-mt8186-imp_iic_wrap 11017000.clock-controller: failed to
+initialise "restricted-dma-pool" memory node
+clk-mt8186-ipe 1c000000.clock-controller: failed to initialise
+"restricted-dma-pool" memory node
+clk-mt8186-mcu c53a000.syscon: failed to initialise
+"restricted-dma-pool" memory node
+clk-mt8186-mdp 1b000000.clock-controller: failed to initialise
+"restricted-dma-pool" memory node
+clk-mt8186-mfg 13000000.clock-controller: failed to initialise
+"restricted-dma-pool" memory node
+clk-mt8186-vdec 1602f000.clock-controller: failed to initialise
+"restricted-dma-pool" memory node
+clk-mt8186-venc 17000000.clock-controller: failed to initialise
+"restricted-dma-pool" memory node
+clk-mt8186-wpe 14020000.clock-controller: failed to initialise
+"restricted-dma-pool" memory node
+mt-pmic-pwrap 1000d000.pwrap: failed to initialise
+"restricted-dma-pool" memory node
+platform 1000d000.pwrap:pmic: failed to initialise
+"restricted-dma-pool" memory node
+mtk-svs 1100bc00.svs: failed to initialise "restricted-dma-pool" memory nod=
+e
+
+
+ChenYu
+>  }
+>
+>  /**
+> --
+> 2.47.2
+>
+>
 
