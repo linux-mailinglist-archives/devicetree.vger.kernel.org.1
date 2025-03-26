@@ -1,190 +1,177 @@
-Return-Path: <devicetree+bounces-160927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C21EA719B8
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 16:06:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE98CA719B7
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 16:06:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 81F3018873D8
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 14:57:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F63A3B0322
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 14:59:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 738641F3BAE;
-	Wed, 26 Mar 2025 14:55:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A384C1F5413;
+	Wed, 26 Mar 2025 14:58:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HX6aTZbf"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="L8oXOrmj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D1471EEA36;
-	Wed, 26 Mar 2025 14:55:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA0871F4E41;
+	Wed, 26 Mar 2025 14:58:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743000928; cv=none; b=ZBnDrQqNqtPVR5d3WT+NObr7pfoX9FG4ABKkemqRLWNGDXlfJ13aFo43zCQWP0TQbiTd1PbL5RWRKp8TBZ/j0U++RZuFBVcm5tnNMwmvtGQAudwMPYjLoKx+t8LgefYBXPBI6dSXkHkKs8ZA+/zI8EW6ttQo/76o8g4lpbOYGys=
+	t=1743001093; cv=none; b=H11W56zB2lgoXzWQxJG5BK0oE2Et0KEfctdraNGISpBG9/8gEsiP7NP6vNQmkJL2YZIxT7iymrnVuxaF9KnWlrg2sPc3rNIT6XZ7uOZuFmdvKNg/crCool+NiSTLib3Rzuff0ij/s4+sBGHiFFqkpEl2qxJPkU59JFozlPvbDek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743000928; c=relaxed/simple;
-	bh=2FjJkXZ1Sr7UVOgZLzCfOaayYT0ey4QBq9TK9OK+P/E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iny8sHywRy1KDbeDQ8bEOeoLWeS1yRNjap40ktcb3yMCdjkyEfceIfsqdJeUTQgKG49caAwF1cPGvHqOINZLTHf0aqZyZKw7Au8JqWQ4MeTWJiYHGfE10lUYCv63ivspVyEhYd3nhB7vgqgW3XT8D5Mmd9MFksXJBH9qBvaA6Cg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HX6aTZbf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6CA9C4CEE2;
-	Wed, 26 Mar 2025 14:55:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743000927;
-	bh=2FjJkXZ1Sr7UVOgZLzCfOaayYT0ey4QBq9TK9OK+P/E=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=HX6aTZbfmKW3A2e/vn8L0G+6m4LL7IV/4qxaFFkyjSE9WQc2yJgVcmxtQn0yvGNkB
-	 j6/G1HeyjUGGQ+beZvHvcO588uANwt91E4OKcxRzxTXZI5mCXQTIZ2GG9s8mhOZjSp
-	 TS0R+5Y4qCBs+JMfbnbCvadMlrkMaksBOO3waBiF05sW9mCoLUbEcMF8Yx3tUsMpXq
-	 fHw/Kn1InTPrQzu2NX8fmA9qXnwoc+6z/41+WHWS62uemtTQ1oQHUCZj9FZzfLavBp
-	 5C39yp2vgvXV6jaJWKLHkNQxTEJwn3NhnThF88ek5cHtzIAmEj4Zxl7WPMuPhOcEm9
-	 Z//hTubBOrTcw==
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-2c2c754af3cso3523539fac.3;
-        Wed, 26 Mar 2025 07:55:27 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU/nLXbfqNxVE6AKjH4vRNioLbDxaMz94xZdKU7DF6o8QZZx7QJ5OT5LNAnsj5HJfj0DT1mcfO2OZD/7Asw@vger.kernel.org, AJvYcCVBwVumVtKSzzDL3fRQgHJsNyZitgY5rtR7MooIXKcotd/J2MM2zwlANPKYDWd7tDG2pJkuSWqEkkdB@vger.kernel.org, AJvYcCVLM2AEqUVI6S5NEaf4QGYR/jksq1lONKFoboKm6tM38msGE4e/glC1DIjKdEIdOChN8wJvRpT7mAT//Q==@vger.kernel.org, AJvYcCWZE/EOvRFCRUzrabNmjb5ZEUm3KJpMXQzK5uZvlOD4tSgHY0k57YM3XWVseGIHDahL04QAKAcnKdz1@vger.kernel.org, AJvYcCXO77w8RQlvdpbARz9KV2CX/7pEmkYSZyoImlBt6ppwx3eEiFFXyjkYX8rcLxD6uGsMsIuyMtduYoZXNOal@vger.kernel.org, AJvYcCXjeHZ97FWu/c0b7Nyew0lu4N3lIEt7maak/pm5VLy+r/BYjrnTgrn1DvLZoYfygOFokG3uqQaTTFOL4w==@vger.kernel.org
-X-Gm-Message-State: AOJu0YzHW6hqHItVobhEdS17eTiFOAWMBtIy0LkA/0afBker09U/MIYI
-	NMA45GSvzl7+/vKcjiFF5w0uZho8JHLUCfjKgxby8qW7W73zLfWWZQ88gg7aTTN2f7r3SxcC8er
-	Vsol+BoEQRLRMxkKn4NVTVi3D4pU=
-X-Google-Smtp-Source: AGHT+IEYYA/6LylePhPYpVsBFlVh+o1a/2X6ugf3+5Zk77UyBnBXpaSo0UzJzWGtji5Mqp0Q8hwWmxY8a4Ns27KKFng=
-X-Received: by 2002:a05:6871:5223:b0:2bd:455e:c22e with SMTP id
- 586e51a60fabf-2c7803002damr12663712fac.19.1743000926945; Wed, 26 Mar 2025
- 07:55:26 -0700 (PDT)
+	s=arc-20240116; t=1743001093; c=relaxed/simple;
+	bh=Wn7Qb1SQGz8Zryi8HLrCbCFNQ5T1GsiTic8f0hyyvHA=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=McECqhi6EwL/NyrJ4NildqGbotIGDqaiMD5dAeo0TOJbSLhOdljX4chmNGZbrwPzHvgiOEaz+PUZeMs1uNc2Wzfdiz2FGdS6ruKRdUbn41qgpKBaeVS5sdgqzgClN4OyV/63hNukyODAVnYd+Jxy8/KCdQ/A6UOR8dZmZxvPz8Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=L8oXOrmj; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52QEvdKk1586306
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 26 Mar 2025 09:57:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1743001059;
+	bh=5/m2Zukb6dg9jgdXSIpG/BHqhzwwA9cDdERdnkfjlOg=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=L8oXOrmjhNyCfFMqLH0alein0rCFa0rg0onPFFfvOYAjVUumBrRLJA2ZBKzxEOCh+
+	 dUMfC7InHoc9T2O7LcHtUHd1AlJFRzy8pDT+GxBbAPePA0fzq8fhw6UMdx215Xmbum
+	 xpHzTvNsRqEZmIwuILLU4FiWdgC1Fr1qGxsrI138=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 52QEvdRc020884
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 26 Mar 2025 09:57:39 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 26
+ Mar 2025 09:57:38 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 26 Mar 2025 09:57:38 -0500
+Received: from localhost (ti.dhcp.ti.com [172.24.227.95] (may be forged))
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52QEvbHK045780;
+	Wed, 26 Mar 2025 09:57:38 -0500
+From: Devarsh Thakkar <devarsht@ti.com>
+To: <jyri.sarha@iki.fi>, <tomi.valkeinen@ideasonboard.com>,
+        <airlied@gmail.com>, <maarten.lankhorst@linux.intel.com>,
+        <mripard@kernel.org>, <tzimmermann@suse.de>,
+        <dri-devel@lists.freedesktop.org>, <simona@ffwll.ch>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <praneeth@ti.com>, <vigneshr@ti.com>, <aradhya.bhatia@linux.dev>,
+        <s-jain1@ti.com>, <r-donadkar@ti.com>, <j-choudhary@ti.com>,
+        <h-shenoy@ti.com>, <devarsht@ti.com>
+Subject: [PATCH v4 1/3] dt-bindings: display: ti,am65x-dss: Add support for AM62L DSS
+Date: Wed, 26 Mar 2025 20:27:34 +0530
+Message-ID: <20250326145736.3659670-2-devarsht@ti.com>
+X-Mailer: git-send-email 2.39.1
+In-Reply-To: <20250326145736.3659670-1-devarsht@ti.com>
+References: <20250326145736.3659670-1-devarsht@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250315001931.631210-1-romank@linux.microsoft.com> <20250315001931.631210-11-romank@linux.microsoft.com>
-In-Reply-To: <20250315001931.631210-11-romank@linux.microsoft.com>
-From: "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Wed, 26 Mar 2025 15:55:15 +0100
-X-Gmail-Original-Message-ID: <CAJZ5v0g1bX_3zRUUf-=euuvhm1dPB6bjEXPH9O-kMGcZjRspcw@mail.gmail.com>
-X-Gm-Features: AQ5f1Jr4yQ264W4Fr4uvYbe-kFtKKfam4-v0_OqzzA1JU-y-jScH9oT2tKvFv-0
-Message-ID: <CAJZ5v0g1bX_3zRUUf-=euuvhm1dPB6bjEXPH9O-kMGcZjRspcw@mail.gmail.com>
-Subject: Re: [PATCH hyperv-next v6 10/11] ACPI: irq: Introduce acpi_get_gsi_dispatcher()
-To: Roman Kisel <romank@linux.microsoft.com>
-Cc: arnd@arndb.de, bhelgaas@google.com, bp@alien8.de, catalin.marinas@arm.com, 
-	conor+dt@kernel.org, dan.carpenter@linaro.org, dave.hansen@linux.intel.com, 
-	decui@microsoft.com, haiyangz@microsoft.com, hpa@zytor.com, 
-	joey.gouly@arm.com, krzk+dt@kernel.org, kw@linux.com, kys@microsoft.com, 
-	lenb@kernel.org, lpieralisi@kernel.org, manivannan.sadhasivam@linaro.org, 
-	mark.rutland@arm.com, maz@kernel.org, mingo@redhat.com, 
-	oliver.upton@linux.dev, rafael@kernel.org, robh@kernel.org, 
-	ssengar@linux.microsoft.com, sudeep.holla@arm.com, suzuki.poulose@arm.com, 
-	tglx@linutronix.de, wei.liu@kernel.org, will@kernel.org, yuzenghui@huawei.com, 
-	devicetree@vger.kernel.org, kvmarm@lists.linux.dev, 
-	linux-acpi@vger.kernel.org, linux-arch@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-hyperv@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, x86@kernel.org, 
-	apais@microsoft.com, benhill@microsoft.com, bperkins@microsoft.com, 
-	sunilmut@microsoft.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Sat, Mar 15, 2025 at 1:19=E2=80=AFAM Roman Kisel <romank@linux.microsoft=
-.com> wrote:
->
-> Using acpi_irq_create_hierarchy() in the cases where the code
-> also handles OF leads to code duplication as the ACPI subsystem
-> doesn't provide means to compute the IRQ domain parent whereas
-> the OF does.
->
-> Introduce acpi_get_gsi_dispatcher() so that the drivers relying
-> on both ACPI and OF may use irq_domain_create_hierarchy() in the
-> common code paths.
->
-> No functional changes.
->
-> Signed-off-by: Roman Kisel <romank@linux.microsoft.com>
-> Reviewed-by: Michael Kelley <mhklinux@outlook.com>
+The DSS controller on TI's AM62L SoC is an update from that on TI's
+AM625/AM65x/AM62A7 SoC. The AM62L DSS [1] only supports a single display
+pipeline using a single overlay manager, single video port and a single
+video lite pipeline which does not support scaling.
 
-This basically looks OK to me except for a couple of coding style
-related nits below.
+The output of video port is routed to SoC boundary via DPI interface and
+the DPI signals from the video port are also routed to DSI Tx controller
+present within the SoC.
 
-> ---
->  drivers/acpi/irq.c   | 15 +++++++++++++--
->  include/linux/acpi.h |  5 ++++-
->  2 files changed, 17 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/acpi/irq.c b/drivers/acpi/irq.c
-> index 1687483ff319..8eb09e45e5c5 100644
-> --- a/drivers/acpi/irq.c
-> +++ b/drivers/acpi/irq.c
-> @@ -12,7 +12,7 @@
->
->  enum acpi_irq_model_id acpi_irq_model;
->
-> -static struct fwnode_handle *(*acpi_get_gsi_domain_id)(u32 gsi);
-> +static acpi_gsi_domain_disp_fn acpi_get_gsi_domain_id;
->  static u32 (*acpi_gsi_to_irq_fallback)(u32 gsi);
->
->  /**
-> @@ -307,12 +307,23 @@ EXPORT_SYMBOL_GPL(acpi_irq_get);
->   *     for a given GSI
->   */
->  void __init acpi_set_irq_model(enum acpi_irq_model_id model,
-> -                              struct fwnode_handle *(*fn)(u32))
+[1]: Section 11.7 (Display Subsystem and Peripherals)
+Link : https://www.ti.com/lit/pdf/sprujb4
 
-Please retain the indentation here and analogously below.
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+Reviewed-by: Jayesh Choudhary <j-choudhary@ti.com>
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+---
+V4:
+- No change
 
-> +       acpi_gsi_domain_disp_fn fn)
->  {
->         acpi_irq_model =3D model;
->         acpi_get_gsi_domain_id =3D fn;
->  }
->
-> +/**
-> + * acpi_get_gsi_dispatcher - Returns dispatcher function that
-> + *                           computes the domain fwnode for a
-> + *                           given GSI.
-> + */
+V3:
+- Remove AM62A references as suggested
+- Add Reviewed-by
 
-I would format this kerneldoc comment a bit differently:
+V2: 
+- Add Reviewed-by
+- s/ti,am62l,dss/ti,am62l-dss
 
-/*
- * acpi_get_gsi_dispatcher() - Get the GSI dispatcher function
- *
- * Return the dispatcher function that computes the domain fwnode for
-a given GSI.
- */
+ .../bindings/display/ti/ti,am65x-dss.yaml     | 21 ++++++++++++++++++-
+ 1 file changed, 20 insertions(+), 1 deletion(-)
 
-> +acpi_gsi_domain_disp_fn acpi_get_gsi_dispatcher(void)
-> +{
-> +       return acpi_get_gsi_domain_id;
-> +}
-> +EXPORT_SYMBOL_GPL(acpi_get_gsi_dispatcher);
-> +
->  /**
->   * acpi_set_gsi_to_irq_fallback - Register a GSI transfer
->   * callback to fallback to arch specified implementation.
-> diff --git a/include/linux/acpi.h b/include/linux/acpi.h
-> index 4e495b29c640..abc51288e867 100644
-> --- a/include/linux/acpi.h
-> +++ b/include/linux/acpi.h
-> @@ -336,8 +336,11 @@ int acpi_register_gsi (struct device *dev, u32 gsi, =
-int triggering, int polarity
->  int acpi_gsi_to_irq (u32 gsi, unsigned int *irq);
->  int acpi_isa_irq_to_gsi (unsigned isa_irq, u32 *gsi);
->
-> +typedef struct fwnode_handle *(*acpi_gsi_domain_disp_fn)(u32);
-> +
->  void acpi_set_irq_model(enum acpi_irq_model_id model,
-> -                       struct fwnode_handle *(*)(u32));
-> +       acpi_gsi_domain_disp_fn fn);
-> +acpi_gsi_domain_disp_fn acpi_get_gsi_dispatcher(void);
->  void acpi_set_gsi_to_irq_fallback(u32 (*)(u32));
->
->  struct irq_domain *acpi_irq_create_hierarchy(unsigned int flags,
-> --
+diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+index 31c4ffcb599c..a5b13cb7bc73 100644
+--- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
++++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+@@ -12,18 +12,25 @@ maintainers:
+   - Tomi Valkeinen <tomi.valkeinen@ti.com>
+ 
+ description: |
+-  The AM625 and AM65x TI Keystone Display SubSystem with two output
++  The AM625 and AM65x TI Keystone Display SubSystem has two output
+   ports and two video planes. In AM65x DSS, the first video port
+   supports 1 OLDI TX and in AM625 DSS, the first video port output is
+   internally routed to 2 OLDI TXes. The second video port supports DPI
+   format. The first plane is full video plane with all features and the
+   second is a "lite plane" without scaling support.
++  The AM62L display subsystem has a single output port which supports DPI
++  format but it only supports single video "lite plane" which does not support
++  scaling. The output port is routed to SoC boundary via DPI interface and same
++  DPI signals are also routed internally to DSI Tx controller present within the
++  SoC. Due to clocking limitations only one of the interface i.e. either DSI or
++  DPI can be used at once.
+ 
+ properties:
+   compatible:
+     enum:
+       - ti,am625-dss
+       - ti,am62a7-dss
++      - ti,am62l-dss
+       - ti,am65x-dss
+ 
+   reg:
+@@ -91,6 +98,8 @@ properties:
+           For AM625 DSS, the internal DPI output port node from video
+           port 1.
+           For AM62A7 DSS, the port is tied off inside the SoC.
++          For AM62L DSS, the DSS DPI output port node from video port 1
++          or DSI Tx controller node connected to video port 1.
+ 
+       port@1:
+         $ref: /schemas/graph.yaml#/properties/port
+@@ -123,6 +132,16 @@ allOf:
+         ports:
+           properties:
+             port@0: false
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: ti,am62l-dss
++    then:
++      properties:
++        ports:
++          properties:
++            port@1: false
+ 
+ required:
+   - compatible
+-- 
+2.39.1
 
-With the above addressed, please feel free to add
-
-Acked-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
-
-to the patch and route it along with the rest of the series.
-
-Thanks!
 
