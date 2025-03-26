@@ -1,149 +1,240 @@
-Return-Path: <devicetree+bounces-160838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160839-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B5B8A714A0
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 11:20:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F34CA714D1
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 11:29:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 134283B8582
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 10:18:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CFE8188BE76
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 10:25:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB2891AB52F;
-	Wed, 26 Mar 2025 10:18:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="R2w7KzYZ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ED321A8405;
+	Wed, 26 Mar 2025 10:25:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E72108C1F;
-	Wed, 26 Mar 2025 10:18:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E182191461
+	for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 10:25:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742984332; cv=none; b=os3KRe78ZpxAX3V/KcoYF3F8SR+7r5X5TCFTV7PYZRzSTf+stiWfPR3FtzWBhRTvvbflAKYXSbJJ/obvl4XSmmAEMG1GSReg4B2Kda7VZNGanmIlhjPIH6ZATuNC9wcNOwv1Yo+stO+oHxrK27Xk6Y86pJRmWI7LzQ+0DhXRCac=
+	t=1742984740; cv=none; b=hKucgXFDZpk5R/Bic1c/PjeSmGfsElEr873b1lEpeTWex9zHtRGfBJ4ELyhWog18+/ZMFvcX3ZJcRVaFGGEoOiA0+bauO8OJruoBtt1FZRIHLWm7oseJIVwU3LPpaZsFtmsOackh/FhnuIL1JroV9ZQRPxViRJ3JP/+mCFFWwNk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742984332; c=relaxed/simple;
-	bh=q/nFNojlosborYJGt0qwUe6tullznsb4Pf2IVsxtddI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EuYHFb/dGH2dn4aiH9pczPlqHGxDEH/x/zuLT9k1A6Ckelh/FOgfQqStJWkVkBPxCgspTMKs093KDzyBi+QKJoXjbbnYwwBvsjOPc5Q3sVTmdW9fjxXh385CQiosh23T7mR6JLx/DALStOj+xGg+3/3MfLaqoHCA8JlFxfbF22I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=R2w7KzYZ; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1742984329;
-	bh=q/nFNojlosborYJGt0qwUe6tullznsb4Pf2IVsxtddI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=R2w7KzYZhiCblvBuuvmzKgygHYi2uZCJ+vZIKkxh9za6J8dIz2FAZoiRvvM6OBmdI
-	 38FwuPBbPOrgaeJnsVXy81JlZ2l+ypPoTzCouhW+gZ4Ffm+7w2uPubNLS3utlWhZnj
-	 mIFuelbr0pR3PcR2LLEX7K+J0oNehKGrLvFaf+J0OeFWNp9zDy/aL6ObaWWZ1rovEK
-	 CoToye6Vmdx2cy4GJ8Sn2v+imUq8oJkI4rtiNF7r3qa5L0V6sDns8Xb6VFfM6uQbKw
-	 enm6x+qSmGOFhxNqz47IKsgb8Z6Di62ZiIfNKkPyV5gYE2Qrdp4ksrZFMuk18OagZh
-	 4L7kHRlPWWP+g==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 88E8017E0E8F;
-	Wed, 26 Mar 2025 11:18:48 +0100 (CET)
-Message-ID: <fb154077-e650-480e-a4d7-0a141b563dfc@collabora.com>
-Date: Wed, 26 Mar 2025 11:18:47 +0100
+	s=arc-20240116; t=1742984740; c=relaxed/simple;
+	bh=wuFLlvUXlFpsXneQRdiEzeRYO/930T9m8+BICitSVn8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FazfG99PpYMIpZ2EWQuIGyWau4TN0Ak2l2i8E851QLhTYVz9akUNSyur5hZVEPzUcheufzNudWPjf8xPQbv+F9MlC3VQiTAQ6XBUVh+3+fVuci6Vx4+GttYlZIS6RFgYkBwGW+CoApLZyJvIHmBcfy+N2cqShlGCk9Xv6lxSFKc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1txNwp-0008Ep-B0; Wed, 26 Mar 2025 11:25:23 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1txNwo-001jOU-1d;
+	Wed, 26 Mar 2025 11:25:22 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1txNwo-000552-2V;
+	Wed, 26 Mar 2025 11:25:22 +0100
+Date: Wed, 26 Mar 2025 11:25:22 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Rob Herring <robh@kernel.org>
+Cc: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>, Frank Li <Frank.li@nxp.com>,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/5] dt-bindings: bus: add documentation for the IMX
+ AIPSTZ bridge
+Message-ID: <20250326102522.rtsffb37wvolhwd4@pengutronix.de>
+References: <20250324162556.30972-1-laurentiumihalcea111@gmail.com>
+ <20250324162556.30972-2-laurentiumihalcea111@gmail.com>
+ <20250325032303.GA1624882-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [v3,1/2] dt-bindings: memory-controllers: Add MediaTek DRAM
- controller interface
-To: Crystal Guo <crystal.guo@mediatek.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20250326063041.7126-1-crystal.guo@mediatek.com>
- <20250326063041.7126-2-crystal.guo@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250326063041.7126-2-crystal.guo@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250325032303.GA1624882-robh@kernel.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Il 26/03/25 07:30, Crystal Guo ha scritto:
-> A MediaTek DRAM controller interface to provide the current DDR
-> data rate.
+Hi Laurentiu,
+
+On 25-03-24, Rob Herring wrote:
+> On Mon, Mar 24, 2025 at 12:25:52PM -0400, Laurentiu Mihalcea wrote:
+> > From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> > 
+> > Add documentation for IMX AIPSTZ bridge.
+> > 
+> > Co-developed-by: Daniel Baluta <daniel.baluta@nxp.com>
+> > Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+> > Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> > ---
+> >  .../bindings/bus/fsl,imx8mp-aipstz.yaml       | 107 ++++++++++++++++++
+> >  1 file changed, 107 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/bus/fsl,imx8mp-aipstz.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/bus/fsl,imx8mp-aipstz.yaml b/Documentation/devicetree/bindings/bus/fsl,imx8mp-aipstz.yaml
+> > new file mode 100644
+> > index 000000000000..c0427dfcdaca
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/bus/fsl,imx8mp-aipstz.yaml
+> > @@ -0,0 +1,107 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/bus/fsl,imx8mp-aipstz.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Secure AHB to IP Slave bus (AIPSTZ) bridge
+> > +
+> > +description:
+> > +  The secure AIPS bridge (AIPSTZ) acts as a bridge for AHB masters
+> > +  issuing transactions to IP Slave peripherals. Additionally, this module
+> > +  offers access control configurations meant to restrict which peripherals
+> > +  a master can access.
 > 
-> Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
-> ---
->   .../memory-controllers/mediatek,dramc.yaml    | 44 +++++++++++++++++++
->   1 file changed, 44 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,dramc.yaml
+> Wrap at 80 chars.
 > 
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,dramc.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,dramc.yaml
-> new file mode 100644
-> index 000000000000..8bdacfc36cb5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/memory-controllers/mediatek,dramc.yaml
+> > +
+> > +maintainers:
+> > +  - Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: fsl,imx8mp-aipstz
+> > +
+> > +  reg:
+> > +    maxItems: 2
+> > +
+> > +  reg-names:
+> > +    items:
+> > +      - const: bus
+> > +      - const: ac
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> > +  "#address-cells":
+> > +    const: 1
+> > +
+> > +  "#size-cells":
+> > +    const: 1
+> > +
+> > +  "#access-controller-cells":
+> > +    const: 0
+> 
+> With 0 cells, how do you identify which device it is?
+> 
+> > +
+> > +  ranges: true
+> > +
+> > +# borrowed from simple-bus.yaml, no additional requirements for children
+> > +patternProperties:
+> > +  "@(0|[1-9a-f][0-9a-f]*)$":
+> > +    type: object
+> > +    additionalProperties: true
+> > +    properties:
+> > +      reg:
+> > +        items:
+> > +          minItems: 2
+> > +          maxItems: 4
+> > +        minItems: 1
+> > +        maxItems: 1024
+> > +      ranges:
+> > +        oneOf:
+> > +          - items:
+> > +              minItems: 3
+> > +              maxItems: 7
+> > +            minItems: 1
+> > +            maxItems: 1024
+> > +          - $ref: /schemas/types.yaml#/definitions/flag
+> > +    anyOf:
+> > +      - required:
+> > +          - reg
+> > +      - required:
+> > +          - ranges
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reg-names
+> > +  - power-domains
+> > +  - "#address-cells"
+> > +  - "#size-cells"
+> > +  - "#access-controller-cells"
+> > +  - ranges
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/imx8mp-clock.h>
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +
+> > +    bus@30c00000 {
+> > +        compatible = "fsl,imx8mp-aipstz";
+> > +        reg = <0x30c00000 0x400000>, <0x30df0000 0x10000>;
+> 
+> It doesn't look like you have any registers in the 1st entry, but they 
+> are child devices? Then you should use ranges and drop it here:
+> 
+> ranges = <0x0 0x30c00000 0x400000>;
+> 
+> 
+> > +        reg-names = "bus", "ac";
 
-The filename should be "mediatek,mt8196-dramc.yaml"
+Thanks for picking up my suggestion :) IMHO it does look more logical
+now. I wasn't aware of the 'ranges' property else I would have suggested
+you to use this property instead of having two regs, sorry. Once you
+changed it to ranges we can drop the 'reg-names' as well since you only
+need to supply the 'ac' register space.
 
+Regards,
+  Marco
 
-> @@ -0,0 +1,44 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (c) 2025 MediaTek Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/memory-controllers/mediatek,dramc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek DRAM Controller (DRAMC)
-> +
-> +maintainers:
-> +  - Crystal Guo <crystal.guo@mediatek.com>
-> +
-> +description:
-> +  A MediaTek DRAM controller interface to provide the current data rate of DRAM.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - mediatek,mt8196-dramc
-
-P.S.: bindings maintainers: this driver is expected to get more compatibles soon.
-
-Cheers,
-Angelo
-
-
-> +
-> +  reg:
-> +    items:
-> +      - description: anaphy registers
-> +      - description: ddrphy registers
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        memory-controller@10236000 {
-> +            compatible = "mediatek,mt8196-dramc";
-> +            reg = <0 0x10236000 0 0x2000>,
-> +                  <0 0x10238000 0 0x2000>;
-> +        };
-> +    };
-
-
+> > +        power-domains = <&pgc_audio>;
+> > +        #address-cells = <1>;
+> > +        #size-cells = <1>;
+> > +        #access-controller-cells = <0>;
+> > +        ranges;
+> > +
+> > +        dma-controller@30e00000 {
+> > +            compatible = "fsl,imx8mp-sdma", "fsl,imx8mq-sdma";
+> > +            reg = <0x30e00000 0x10000>;
+> > +            #dma-cells = <3>;
+> > +            clocks = <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_SDMA3_ROOT>,
+> > +                     <&clk IMX8MP_CLK_AUDIO_ROOT>;
+> > +            clock-names = "ipg", "ahb";
+> > +            interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+> > +            fsl,sdma-ram-script-name = "imx/sdma/sdma-imx7d.bin";
+> 
+> No 'access-controllers' here?
+> 
+> > +        };
+> > +    };
+> > -- 
+> > 2.34.1
+> > 
+> 
 
