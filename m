@@ -1,87 +1,92 @@
-Return-Path: <devicetree+bounces-160797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7514FA71219
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 09:10:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 319C4A7123E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 09:12:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4A2F3B4A20
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 08:08:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F31E71726CF
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 08:12:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29F281A0BCD;
-	Wed, 26 Mar 2025 08:08:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEA901A2547;
+	Wed, 26 Mar 2025 08:11:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LhnkrNVW"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="RgXrxQ0K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC1E119DF48;
-	Wed, 26 Mar 2025 08:08:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13DD81A23AD;
+	Wed, 26 Mar 2025 08:11:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742976514; cv=none; b=WGPCmfBmA+cBK3eLp8rv2VHEXln2XkoUQtL33uOEhW/ZYGG2ubL1Zwpv01xcHUBHeOXNDDQkqENv2j9wXJSAL1uc36M8hh8nGFaE2SJ+zKwvax4TjYk2DMfe69fo0aKdUp/8lcakC/54gkfUBEU5Mi6tTwmMsQBuAAiJ25O/p1o=
+	t=1742976704; cv=none; b=SqASAZt5UhV3iF548ofm7wjQ+naG1COLAeAj6F+SGfiCVgUSGSiC7xypLxgqJ/qiKD9b4J6NabqlrQPL84ojfIeLeGIxJD+BjxZI7FLpObeeZuKQ8JeZpSgkF7ZhrPkM347y2GupNipOc5WWVROV0Zz8oY+Eq90hLEo6u9DNbfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742976514; c=relaxed/simple;
-	bh=CDFf2aeXu4QXIiFbZUwZnAMW6FSK+tUT/RdaVv9VNrU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uuq7lxdqz1eYx0N2LFLogdyBVF5MoX841r9P09wCXoHoXYtcHiU2BcRLCcAu9v4yT8ZkvuMWKdmyHwkvJBuCIth195xk1KCTXxkW5HHnX5xk37rGLNcvEDWKnb8zDWN2BdmgipKq1Q7gz6gzu5Xh7AkVJzZCQn8x2h/RcqM6IQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LhnkrNVW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D9BAC4CEE2;
-	Wed, 26 Mar 2025 08:08:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1742976513;
-	bh=CDFf2aeXu4QXIiFbZUwZnAMW6FSK+tUT/RdaVv9VNrU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LhnkrNVWq0d5hbhno4LYFKTjshBak3FDQRA4QGpROYbmj8vw1FesRdCLkOUi2pyU6
-	 X2cClnnG9c6d4ciAS1sb+5Kok8y/vukWa3WiG8YULWwr6fSWl6+2bMsjApcCAv6Yyw
-	 wj5dFLiIEMsnLPoOPsk6BFeuK3WN6Gl9EywRwdShmk22sWV0szq9slCYUJa0mWtVea
-	 O4fyd6TOmDVs2ES6ukMrY5PfvvXda5I8u8bbm0jLFHFEIvWe+wNyE8TsA7TvT2x5oY
-	 2efh++eDThJB4eS9g4bxdEu5yfw95lnVrFDfDPWThuqkzqbMgHzEoAHx/qU1NxOxMa
-	 hkBWm1877pcZw==
-Date: Wed, 26 Mar 2025 09:08:29 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Christopher Obbard <christopher.obbard@linaro.org>
-Cc: Douglas Anderson <dianders@chromium.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, Johan Hovold <johan@kernel.org>, 
-	Rui Miguel Silva <rui.silva@linaro.org>, Abel Vesa <abel.vesa@linaro.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: display: panel: samsung,atna40yk20:
- document ATNA40YK20
-Message-ID: <20250326-foxhound-of-nonstop-temperance-6f5a67@krzk-bin>
-References: <20250325-wip-obbardc-qcom-t14s-oled-panel-v2-0-e9bc7c9d30cc@linaro.org>
- <20250325-wip-obbardc-qcom-t14s-oled-panel-v2-1-e9bc7c9d30cc@linaro.org>
+	s=arc-20240116; t=1742976704; c=relaxed/simple;
+	bh=wCzUubWpI7qbmQBS32q7t9ANxbIzbn/3ILLojBnJFaI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=vDmTfxGO+hU4sc/qfVa51laBo23oczq05dXG05L5HKspzg6KbrLaa880E9/I3xa77+PF5zys5fQEa5iqDvj1Qt3epypXcFkgvU0P8LB02gNv4dG5avn1ZN5dlaDzltkbNcSy9QARDrhNb+4trMuS+i677CiIwSgT2nafu4OpCHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=fail (1024-bit key) header.d=163.com header.i=@163.com header.b=RgXrxQ0K reason="signature verification failed"; arc=none smtp.client-ip=220.197.31.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
+	Message-ID; bh=ww0BkFy4aWA0YRYiXhyPOQOR4G2Nus3Dw378EDkmqd8=; b=R
+	gXrxQ0Kh0sHRTtUVhdTIMLk5EjQc46fR/N7c+l6i772hwD+5qoYZE7LNfGQ2pidY
+	b98Z+JZlBaiVh3OCRe+PsPAfu6Mc0EQrEFI6Li1AHFZ1+KxBdpBPKVDWW39ePtlr
+	gzBNQPg8JML3FAbw0Xqqd56fPeHXyrd6YbUMlWI+Ck=
+Received: from andyshrk$163.com ( [58.22.7.114] ) by
+ ajax-webmail-wmsvr-40-115 (Coremail) ; Wed, 26 Mar 2025 16:10:40 +0800
+ (CST)
+Date: Wed, 26 Mar 2025 16:10:40 +0800 (CST)
+From: "Andy Yan" <andyshrk@163.com>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>
+Cc: heiko@sntech.de, conor+dt@kernel.org, krzk+dt@kernel.org,
+	robh@kernel.org, hjc@rock-chips.com, devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	"Andy Yan" <andy.yan@rock-chips.com>
+Subject: Re:Re: [PATCH v2 2/6] dt-bindings: display: rockchip,inno-hdmi:
+ Document GRF for RK3036 HDMI
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20240801(9da12a7b)
+ Copyright (c) 2002-2025 www.mailtech.cn 163com
+In-Reply-To: <20250326-poetic-happy-peacock-a79d29@krzk-bin>
+References: <20250325132944.171111-1-andyshrk@163.com>
+ <20250325132944.171111-3-andyshrk@163.com>
+ <20250326-poetic-happy-peacock-a79d29@krzk-bin>
+X-NTES-SC: AL_Qu2fAPWcuU4v5iabY+kfmkcVgOw9UcO5v/Qk3oZXOJF8jDzp/xADZW1jPVTtweeEIS+ujTi3dDVRxcBmeZlRU6UgfbysO0M0gOJZSe6spqRDuA==
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250325-wip-obbardc-qcom-t14s-oled-panel-v2-1-e9bc7c9d30cc@linaro.org>
+Message-ID: <617e3d7f.77d1.195d180e680.Coremail.andyshrk@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:cygvCgD3v8uAtuNnBmmNAA--.58577W
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiqB4cXmfjtY8XaAABs0
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 
-On Tue, Mar 25, 2025 at 07:21:26PM +0000, Christopher Obbard wrote:
-> The Samsung ATNA40YK20 panel is a 14" AMOLED eDP panel. It is
-> similar to the ATNA33XC20 except that it is larger and has a
-> different resolution.
-> 
-> Signed-off-by: Christopher Obbard <christopher.obbard@linaro.org>
-> ---
->  Documentation/devicetree/bindings/display/panel/samsung,atna33xc20.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+CkhpCgpBdCAyMDI1LTAzLTI2IDE1OjU5OjI1LCAiS3J6eXN6dG9mIEtvemxvd3NraSIgPGtyemtA
+a2VybmVsLm9yZz4gd3JvdGU6Cj5PbiBUdWUsIE1hciAyNSwgMjAyNSBhdCAwOToyOTozNlBNICsw
+ODAwLCBBbmR5IFlhbiB3cm90ZToKPj4gRnJvbTogQW5keSBZYW4gPGFuZHkueWFuQHJvY2stY2hp
+cHMuY29tPgo+PiAKPj4gSERNSSBvbiBSSzMwMzYgdXNlIEdSRiBjb250cm9sIHRoZSBIU1lOQy9W
+U1lOQyBwb2xhcml0eSwgYnV0IHRoaXMgcGFydAo+PiBpcyBtaXNzaW5nIHdoZW4gaXQgZmlyc3Qg
+bGFuZGluZyB1cHN0cmVhbS4KPj4gCj4+IERvY3VtZW50IHRoYXQgaXQgaXMgbWFuZGF0b3J5IGZv
+ciBSSzMwMzYgSERNSS4KPj4gCj4+IFNpZ25lZC1vZmYtYnk6IEFuZHkgWWFuIDxhbmR5LnlhbkBy
+b2NrLWNoaXBzLmNvbT4KPj4gLS0tCj4+IAo+PiAobm8gY2hhbmdlcyBzaW5jZSB2MSkKPgo+V2hl
+cmUgd2FzIHYxPyBJIGNhbm5vdCBmaW5kIGl0LgoKU29ycnksIEkgZm9yZ290IHRvIG1lbnRpb24g
+aXQgOiAiIHRoaXMgcGF0Y2ggaXMgZmlyc3QgaW5jbHVkZWQgaW4gdGhpcyBzZXJpZXMiCgoKPgo+
+YjQgZGlmZiAnMjAyNTAzMjUxMzI5NDQuMTcxMTExLTMtYW5keXNocmtAMTYzLmNvbScKPkNoZWNr
+aW5nIGZvciBvbGRlciByZXZpc2lvbnMKPkdyYWJiaW5nIHNlYXJjaCByZXN1bHRzIGZyb20gbG9y
+ZS5rZXJuZWwub3JnCj5Ob3RoaW5nIG1hdGNoaW5nIHRoYXQgcXVlcnkuCj4tLS0KPkFuYWx5emlu
+ZyA3IG1lc3NhZ2VzIGluIHRoZSB0aHJlYWQKPkNvdWxkIG5vdCBmaW5kIGxvd2VyIHNlcmllcyB0
+byBjb21wYXJlIGFnYWluc3QuCj4KPkJlc3QgcmVnYXJkcywKPktyenlzenRvZgo+Cj4KPl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj5MaW51eC1yb2NrY2hp
+cCBtYWlsaW5nIGxpc3QKPkxpbnV4LXJvY2tjaGlwQGxpc3RzLmluZnJhZGVhZC5vcmcKPmh0dHA6
+Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtcm9ja2NoaXAK
 
