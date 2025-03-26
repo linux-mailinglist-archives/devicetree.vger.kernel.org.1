@@ -1,217 +1,126 @@
-Return-Path: <devicetree+bounces-160843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160844-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D463FA714DD
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 11:31:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5EC1A714EC
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 11:34:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 641503B4FC4
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 10:28:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 61CD218910A7
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 10:31:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D13341C7000;
-	Wed, 26 Mar 2025 10:28:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D7C41B6D08;
+	Wed, 26 Mar 2025 10:31:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=proton.me header.i=@proton.me header.b="ViqpvZj2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EEDF191461;
-	Wed, 26 Mar 2025 10:28:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from mail-4316.protonmail.ch (mail-4316.protonmail.ch [185.70.43.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F03FD19C569;
+	Wed, 26 Mar 2025 10:31:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742984891; cv=none; b=Zbv2y5oGAUarPqnpub8JBurMgdVYd5/6mxReW6cD8M1oML3Mnx21S7Fwd3SrkHiJwlY/jxPfPsBPfONJxW73J/f4TwRbgV+iBOY71xRlkFCocjOywFCsWeFAqasZkyblLhnIeQIsCTi41CQGJxKGMffkaj1miHOQImvr/VJ+Azc=
+	t=1742985069; cv=none; b=htyH/4e0KIJXuxwzoOjYBjcH7utLtV6y+zxs/lAFaXlJ93GzfDtLgHFzG615mjRX2gVRllOs9ONVMtX6RvpgamPDR279i27ac1ovimnOtDX+Y03+YjZGXdKah+KkZoErKq9OQusurIcI/G6jmEAUgwXi8ZC/fb15Qu13PslJEDs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742984891; c=relaxed/simple;
-	bh=BQ+RCQroniN8Gs4KUOSyIz68iYPmSvAwuWQ0g/bg6x0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KD/qiJKtL7X6LX9tJ1wS43rWyG54nTWaQ4KQ0D/Bn8CmGuhnntWmwWw4gx7PMUabpL26F9tIHRmtSoPYk5Y8acR9W34kZ80g0bWPGlqkdus8QgYmJjg5z8VnZsYxCZpX13ZhA+/ItZEXhI1wkduC8sBz9CpGJDfgOVGo7l227UI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: 4yRLzn7tTCunCWnpSjpHEg==
-X-CSE-MsgGUID: u40O+HspSB6HLClGfoz4Hw==
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 26 Mar 2025 19:28:06 +0900
-Received: from [10.226.94.2] (unknown [10.226.94.2])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id EB1DF424103D;
-	Wed, 26 Mar 2025 19:28:03 +0900 (JST)
-Message-ID: <d2d09918-5555-47a7-8b82-f88e9ff022d7@bp.renesas.com>
-Date: Wed, 26 Mar 2025 10:28:01 +0000
+	s=arc-20240116; t=1742985069; c=relaxed/simple;
+	bh=pSoI1WGaycGSmBtCOUNQSjGw+nskVB7jyyqdbGzX9pE=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Ncvpb7w7tbUILWIH+762f9hHpsIRPMeKu4tBtTYdkWEhGHNSKL9ULCDREtHtfJUpCSscC6GBi1QXuydvV9bkBTtu93ZLO6jhWA9kmhKCL4PfhvXlpVU9H5f19vEY5CQfKT6j0VSJoTiobUv9AW/HCTyFbGd86UlUwefu/Nlow5A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me; spf=pass smtp.mailfrom=proton.me; dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b=ViqpvZj2; arc=none smtp.client-ip=185.70.43.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=proton.me
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
+	s=protonmail; t=1742985064; x=1743244264;
+	bh=PD6QsKlbd/UTEIZFjdWL2INF7cdUTBh6ExeiHs8aHeE=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
+	b=ViqpvZj2DYShZqRsjkXRHya7dm+a8V1pJaSqmByjF0GxUAhLHBw9zK8OGj2tJfKYn
+	 W22bKXuOek30uCw7TONhJ+SsJ5O2t36d68I0KUmw1yXcEV0uuTtKPD0yOVbeuOSTeB
+	 eGeVXA9Js4rg17xXT76DaF91riSkaGXNVfpX6+zdJxwt16NqaSXUZGFh6s1LLN5KEU
+	 gflg5QvG69rpxM1yFrnnlcWKeat+CI7hMkQ/PiLfWdwH2ouVQcYV6hfwWt4oXPjVxq
+	 OP5L7EM+1YJYcwmU6Bqj6wY6i2ytPo1CNgJx1tbMtBTTsAOpafptEC3pI24CS7+euR
+	 W1EGIj+3YmK+Q==
+Date: Wed, 26 Mar 2025 10:30:56 +0000
+To: Tamir Duberstein <tamird@gmail.com>
+From: Benno Lossin <benno.lossin@proton.me>
+Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, =?utf-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, Abdiel Janulgue <abdiel.janulgue@gmail.com>, Daniel Almeida <daniel.almeida@collabora.com>, Robin Murphy <robin.murphy@arm.com>, Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, FUJITA Tomonori <fujita.tomonori@gmail.com>, linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, linux-pci@vger.kernel.org, linux-block@vger.kernel.org, devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, netdev@vger.kernel.org
+Subject: Re: [PATCH v7 7/7] rust: enable `clippy::ref_as_ptr` lint
+Message-ID: <D8Q4MSXXZ7OI.1NC226MO02VSN@proton.me>
+In-Reply-To: <CAJ-ks9k6220j6CQSOF4TDrgY9qq4PfV9uaMXz1Qk4m=eeSr5Ag@mail.gmail.com>
+References: <20250325-ptr-as-ptr-v7-0-87ab452147b9@gmail.com> <20250325-ptr-as-ptr-v7-7-87ab452147b9@gmail.com> <D8POWLFKWABG.37BVXN2QCL8MP@proton.me> <CAJ-ks9mUYw4FEJQfmDrHHt0oMy256jhp7qZ-CHp6R5c_sOCD4w@mail.gmail.com> <D8PPIYIJCNX8.13VPQULEI0ALN@proton.me> <CAJ-ks9k6220j6CQSOF4TDrgY9qq4PfV9uaMXz1Qk4m=eeSr5Ag@mail.gmail.com>
+Feedback-ID: 71780778:user:proton
+X-Pm-Message-ID: e50c9b550854ec00eb95a773d66c999d39fa5c32
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 02/13] dt-bindings: clock: Add cpg for the Renesas
- RZ/T2H SoC
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
-Cc: thierry.bultel@linatsea.fr, linux-renesas-soc@vger.kernel.org,
- geert@linux-m68k.org, Geert Uytterhoeven <geert+renesas@glider.be>,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250325160904.2688858-1-thierry.bultel.yh@bp.renesas.com>
- <20250325160904.2688858-3-thierry.bultel.yh@bp.renesas.com>
- <20250326-enigmatic-cuscus-of-enhancement-410130@krzk-bin>
-Content-Language: en-GB
-From: Paul Barker <paul.barker.ct@bp.renesas.com>
-In-Reply-To: <20250326-enigmatic-cuscus-of-enhancement-410130@krzk-bin>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------UM2wLDiSoAOiEvwXIjdeLEJP"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------UM2wLDiSoAOiEvwXIjdeLEJP
-Content-Type: multipart/mixed; boundary="------------Aj96iPSh1N0A0O7GX10xCQuL";
- protected-headers="v1"
-From: Paul Barker <paul.barker.ct@bp.renesas.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
-Cc: thierry.bultel@linatsea.fr, linux-renesas-soc@vger.kernel.org,
- geert@linux-m68k.org, Geert Uytterhoeven <geert+renesas@glider.be>,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Message-ID: <d2d09918-5555-47a7-8b82-f88e9ff022d7@bp.renesas.com>
-Subject: Re: [PATCH v5 02/13] dt-bindings: clock: Add cpg for the Renesas
- RZ/T2H SoC
-References: <20250325160904.2688858-1-thierry.bultel.yh@bp.renesas.com>
- <20250325160904.2688858-3-thierry.bultel.yh@bp.renesas.com>
- <20250326-enigmatic-cuscus-of-enhancement-410130@krzk-bin>
-In-Reply-To: <20250326-enigmatic-cuscus-of-enhancement-410130@krzk-bin>
-
---------------Aj96iPSh1N0A0O7GX10xCQuL
-Content-Type: multipart/mixed; boundary="------------bVwkNm3YyFrnF17NTE9h5pKF"
-
---------------bVwkNm3YyFrnF17NTE9h5pKF
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-On 26/03/2025 07:49, Krzysztof Kozlowski wrote:
-> On Tue, Mar 25, 2025 at 05:08:50PM +0100, Thierry Bultel wrote:
->> Document RZ/T2H (a.k.a r9a09g077) cpg-mssr (Clock Pulse Generator) bin=
-ding.
+On Wed Mar 26, 2025 at 12:54 AM CET, Tamir Duberstein wrote:
+> On Tue, Mar 25, 2025 at 6:40=E2=80=AFPM Benno Lossin <benno.lossin@proton=
+.me> wrote:
+>> On Tue Mar 25, 2025 at 11:33 PM CET, Tamir Duberstein wrote:
+>> > On Tue, Mar 25, 2025 at 6:11=E2=80=AFPM Benno Lossin <benno.lossin@pro=
+ton.me> wrote:
+>> >> On Tue Mar 25, 2025 at 9:07 PM CET, Tamir Duberstein wrote:
+>> >> > diff --git a/rust/kernel/str.rs b/rust/kernel/str.rs
+>> >> > index 40034f77fc2f..6233af50bab7 100644
+>> >> > --- a/rust/kernel/str.rs
+>> >> > +++ b/rust/kernel/str.rs
+>> >> > @@ -29,7 +29,7 @@ pub const fn is_empty(&self) -> bool {
+>> >> >      #[inline]
+>> >> >      pub const fn from_bytes(bytes: &[u8]) -> &Self {
+>> >> >          // SAFETY: `BStr` is transparent to `[u8]`.
+>> >> > -        unsafe { &*(bytes as *const [u8] as *const BStr) }
+>> >> > +        unsafe { &*(core::mem::transmute::<*const [u8], *const Sel=
+f>(bytes)) }
+>> >>
+>> >> Hmm I'm not sure about using `transmute` here. Yes the types are
+>> >> transparent, but I don't think that we should use it here.
+>> >
+>> > What's your suggestion? I initially tried
+>> >
+>> > let bytes: *const [u8] =3D bytes;
+>> > unsafe { &*bytes.cast() }
+>> >
+>> > but that doesn't compile because of the implicit Sized bound on pointe=
+r::cast.
 >>
->> Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
->> ---
->> Changes v4->v5:
->>   - Set reg minItems and maxItems defaults at top level
->> Changes v3->v4:
->>   - Handle maxItems and clocks names properly in schema.=20
->=20
->=20
-> Can you start using b4 or send patchsets in standard way? No links to
-> previous versions in changelog and b4 diff does not work:
->=20
-> b4 diff '20250325160904.2688858-1-thierry.bultel.yh@bp.renesas.com'
-> Grabbing thread from lore.kernel.org/all/20250325160904.2688858-1-thier=
-ry.bultel.yh@bp.renesas.com/t.mbox.gz
-> Checking for older revisions
-> Grabbing search results from lore.kernel.org
->   Added from v4: 14 patches
-> ---
-> Analyzing 140 messages in the thread
-> Preparing fake-am for v4: dt-bindings: soc: Add Renesas RZ/T2H (R9A09G0=
-77) SoC
-> ERROR: Could not fake-am version v4
-> ---
-> Could not create fake-am range for lower series v4
+>> This is AFAIK one of the only places where we cannot get rid of the `as`
+>> cast. So:
+>>
+>>     let bytes: *const [u8] =3D bytes;
+>>     // CAST: `BStr` transparently wraps `[u8]`.
+>>     let bytes =3D bytes as *const BStr;
+>>     // SAFETY: `bytes` is derived from a reference.
+>>     unsafe { &*bytes }
+>>
+>> IMO a `transmute` is worse than an `as` cast :)
+>
+> Hmm, looking at this again we can just transmute ref-to-ref and avoid
+> pointers entirely. We're already doing that in
+> `CStr::from_bytes_with_nul_unchecked`
+>
+> Why is transmute worse than an `as` cast?
 
-Hi Krzysztof,
+It's right in the docs: "`transmute` should be the absolute last
+resort." [1]. IIRC, Gary was a bit more lenient in its use, but I think
+we should avoid it as much as possible such that people copying code or
+taking inspiration also don't use it.
 
-The above b4 command works for me. Which b4 version are you using and
-which base tree do you have checked out?
+So for both cases I'd prefer an `as` cast.
 
-FYI, this series now applies cleanly on top of tty-next as Geert's
-patch [1] has been integrated.
+[1]: https://doc.rust-lang.org/std/mem/fn.transmute.html
 
-[1]: https://lore.kernel.org/linux-renesas-soc/11c2eab45d48211e75d8b8202c=
-ce60400880fe55.1741114989.git.geert+renesas@glider.be/T/#u
+---
+Cheers,
+Benno
 
-Thanks,
-
---=20
-Paul Barker
---------------bVwkNm3YyFrnF17NTE9h5pKF
-Content-Type: application/pgp-keys; name="OpenPGP_0x27F4B3459F002257.asc"
-Content-Disposition: attachment; filename="OpenPGP_0x27F4B3459F002257.asc"
-Content-Description: OpenPGP public key
-Content-Transfer-Encoding: quoted-printable
-
------BEGIN PGP PUBLIC KEY BLOCK-----
-
-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3D
-=3DsIIN
------END PGP PUBLIC KEY BLOCK-----
-
---------------bVwkNm3YyFrnF17NTE9h5pKF--
-
---------------Aj96iPSh1N0A0O7GX10xCQuL--
-
---------------UM2wLDiSoAOiEvwXIjdeLEJP
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-wnsEABYIACMWIQSiu8gv1Xr0fIw/aoLbaV4Vf/JGvQUCZ+PWsQUDAAAAAAAKCRDbaV4Vf/JGvdey
-AQDfiAJ8CgqUXQ4GyeQ5Y9jP3hLVXfATQlkuc8bRq+cvMQEA3AbLsUg6gMXZoH55IOK40i2EKWJK
-iQ8YSEguFbn08gg=
-=oUeY
------END PGP SIGNATURE-----
-
---------------UM2wLDiSoAOiEvwXIjdeLEJP--
 
