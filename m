@@ -1,148 +1,238 @@
-Return-Path: <devicetree+bounces-160833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFA92A71468
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 11:06:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E43F3A7146D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 11:07:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 08B4B189A68B
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 10:04:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 714DF168A30
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 10:07:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6AD61B21A7;
-	Wed, 26 Mar 2025 10:04:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6182E19DF66;
+	Wed, 26 Mar 2025 10:07:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="UnhEVOve"
+	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="EyKTZQZQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2064.outbound.protection.outlook.com [40.107.20.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF0F58C1F;
-	Wed, 26 Mar 2025 10:04:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742983462; cv=none; b=QhUxQ+S8VQarIfQB1yZFVb7mZg2vMiW6lA4L8Ge3he3twjaXKcLWQwG5Z/iXJz5zLVUY0bb0qRXtl1LIvtGiSllcgnivNPQsoe4RLZTBlHXlu24Ou/65LuVMie1iIoKKKnnaf/HcZ3RXN/gcQW7i04cR6LXmzCfG72zX9V8yTlM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742983462; c=relaxed/simple;
-	bh=OSQzX4kBNdMJcD7vMO1kOYwadCccPeHTBGPWcJm7IY0=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=gdaq6eP1qBJS97vkWQ32rZuWTl3il3t7vIC9/U4Os6JHXIvUJT728iOOU87KqaC7umn/iqL88zMkstEQW866QhdU9PKtQ4YTuWNLn35+AFPAgi7IoTdKiiNi7jyFampFjkJW1xFbEjlFyPtzZOG8gKs8cJWV/dHh2/HRtKOyKX4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=UnhEVOve; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 159D420483;
-	Wed, 26 Mar 2025 10:04:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1742983456;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=R6SJe1q7HnXDWNnYhZ89APQIhGwWw4epexqG70iweUg=;
-	b=UnhEVOveRNaKW893lMfVvlDfa3mHmkxnR4jwgXzcsSN7fbcT78GzLuvdmauZlL98E+SY/w
-	gn2nY2B5yosz8Jpi6HOz+/IYsp9tNQfKceIoojhV6xJJUFrE2i2TuG3clP1w7HwYyMXP8K
-	g5IcszNCc1wdYrGeCSdyDP8Z5yc8MI17tVSv9ax4u+gi/Ifd76NQA9lpARaC+c0E1FE3xx
-	uNkHhFAjlJeX+PvLp4wBhJTwujuUtCdQKHoIKKlxJZZ0WnR3FU5KwFknwtX6UP1IO2hGGr
-	GsQGgAZjsIqA40iFtfASlu7vSv/TCQFfjWBzqX9d7HhjIQqfl/5DUwkDofpjEg==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4603E1ADFE4;
+	Wed, 26 Mar 2025 10:07:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.64
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1742983676; cv=fail; b=RsYfdQ60ReJOOIpwyBf9k3kuqs/bfEtKa6yxMtTIn0zeErjqgwKAUDa5DQAcXUIwRB3vA8viDJMEUxDrUoC4gmZo2d606QN/bKj5w1rHuZPkjvsmqqRzc62Tr118ucT7ugiaBOEfZUa5rlS5TjI/JDZuafbSOHjdjjQdxSPAfJM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1742983676; c=relaxed/simple;
+	bh=PfGc57GCessjc7RCul66IMha7AmLRsRWQsYw6AH+Qcg=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=J7fT10SzMmca2oJPzyF3N4KROvplKD2MTVEbMLhzo/zPLnT4CeR0PlzWsmj9GJ5PYbuuxqrow653H2/qefzOxiSLBnwnQ5Rp39yk042Nl85k45Z+CLSz/ujD11JFY5MJ3nMkweIYb2wxPLAGHq7mkmSaMTcYsyJ5TDgbiYZ7Tlo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=EyKTZQZQ; arc=fail smtp.client-ip=40.107.20.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=U7vmuVhwo5WdO/JUbTsD1/Vy0+4NiTGJjPWtMxEWXQN0oRxb2fD3JSuEBL5rHpdt6+d3N2t9y/W1HSDQPTgzQYZTAm1+7etg/5f70ZYTm3/G7WOo+nYZ8N4033w50zMioa7WX98Gf9K8cUAoK8ISjKfVbVlLI1qRBS0X/Wn13ltd4lIOjphnpJm4NkR42lIjRdz+gH6C3YCmmUA+PK8juMpBM3En1fXKeRvzNKt1Ha6aQysu6I/dghdiEIiASCpi1WWLKgw8/UvVfwRsWnGPAlet0zTA/+3bttPfxywl28ySWIQDK3rtie0Bp8LBrMnqUqjVLPFms3Sd8niKO1Wsow==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CftGM7F50bgJ5vj1z5Mh9VxqneGieh04XpjTw8sGDzU=;
+ b=kijME9jPR+W73mY9vOiPnrC+SrUTV2rnqoXoTiJoDsCogIFQLPF/bkG43/vFpE3hqC7RtPGXkYhbAXWlegotsavnJt4+dvXNixzWZmkU2hXeWNCDXV9owSiBvXDh2jIpYV/4QQNkRR5rMnKB/x2MBMsW79C64Bh0cdRmCmDkQjO4H1P780oJ1a7H+pHTIIvpXjBR2h4NnuRtABQOSkzGG3RLg9JdJ0C2QshseZJRa+ZkRxqXDnY0bGjLBF5DMbF4ijCv18nzOzpe1RBsKd7vsHsYjD651TcKJOq71bIhc8R2aK1wE95TXUp37V4qiq1klPiSOMEQ3UHgAyUDXZBxLg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
+ dkim=pass header.d=cherry.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CftGM7F50bgJ5vj1z5Mh9VxqneGieh04XpjTw8sGDzU=;
+ b=EyKTZQZQfUIwVSdyz7Yk0F/P/bri1iI+6qnsf/RVF7EQCbuF7kRKU3069UYJrYAxejQ+qLBX93141qOf6jaeGGlg9+MIl2eX8xlccKfhrG+FNXnvNsMC1PEincxy4DaQjnbLEGLE68308l00bPd3mJI4qcNqHHxO/7G9e2SfRFc=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=cherry.de;
+Received: from AS8PR04MB8897.eurprd04.prod.outlook.com (2603:10a6:20b:42c::20)
+ by DU2PR04MB8661.eurprd04.prod.outlook.com (2603:10a6:10:2dc::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.42; Wed, 26 Mar
+ 2025 10:07:48 +0000
+Received: from AS8PR04MB8897.eurprd04.prod.outlook.com
+ ([fe80::35f6:bc7d:633:369a]) by AS8PR04MB8897.eurprd04.prod.outlook.com
+ ([fe80::35f6:bc7d:633:369a%6]) with mapi id 15.20.8534.040; Wed, 26 Mar 2025
+ 10:07:48 +0000
+Message-ID: <f73743cb-fdea-4b53-9665-4cc303498171@cherry.de>
+Date: Wed, 26 Mar 2025 11:07:47 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: rockchip: Remove overdrive-mode OPPs from
+ RK3588J SoC dtsi
+To: Dragan Simic <dsimic@manjaro.org>, linux-rockchip@lists.infradead.org
+Cc: heiko@sntech.de, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, stable@vger.kernel.org,
+ Alexey Charkov <alchark@gmail.com>
+References: <eeec0d30d79b019d111b3f0aa2456e69896b2caa.1742813866.git.dsimic@manjaro.org>
+Content-Language: en-US
+From: Quentin Schulz <quentin.schulz@cherry.de>
+In-Reply-To: <eeec0d30d79b019d111b3f0aa2456e69896b2caa.1742813866.git.dsimic@manjaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR4P281CA0196.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:e5::18) To AS8PR04MB8897.eurprd04.prod.outlook.com
+ (2603:10a6:20b:42c::20)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 26 Mar 2025 11:04:14 +0100
-Message-Id: <D8Q42H2O4AC0.1HV63W6F5L45U@bootlin.com>
-Subject: Re: [PATCH net-next 05/13] net: macb: add no LSO capability
- (MACB_CAPS_NO_LSO)
-Cc: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
- <linux-mips@vger.kernel.org>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-To: "Claudiu Beznea" <claudiu.beznea@tuxon.dev>, "Andrew Lunn"
- <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, "Eric
- Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>, "Paolo
- Abeni" <pabeni@redhat.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Nicolas Ferre" <nicolas.ferre@microchip.com>, "Paul Walmsley"
- <paul.walmsley@sifive.com>, "Palmer Dabbelt" <palmer@dabbelt.com>, "Albert
- Ou" <aou@eecs.berkeley.edu>, "Alexandre Ghiti" <alex@ghiti.fr>, "Samuel
- Holland" <samuel.holland@sifive.com>, "Richard Cochran"
- <richardcochran@gmail.com>, "Russell King" <linux@armlinux.org.uk>, "Thomas
- Bogendoerfer" <tsbogend@alpha.franken.de>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, "Gregory CLEMENT"
- <gregory.clement@bootlin.com>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a
-References: <20250321-macb-v1-0-537b7e37971d@bootlin.com>
- <20250321-macb-v1-5-537b7e37971d@bootlin.com>
- <3e6cb322-bc8d-471c-87c8-286b98f12ad9@tuxon.dev>
-In-Reply-To: <3e6cb322-bc8d-471c-87c8-286b98f12ad9@tuxon.dev>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdduieehvdegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkufevvffhofhfjgesthhqredtredtjeenucfhrhhomhepvfhhrohoucfnvggsrhhunhcuoehthhgvohdrlhgvsghruhhnsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeduteeltdevjedvkeelueejhfdvleeiueetvdfgveffffekueeghffhieduleejveenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepjeejrddufeehrdekuddrieehnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepjeejrddufeehrdekuddrieehpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehthhgvohdrlhgvsghruhhnsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvjedprhgtphhtthhopegtlhgruhguihhurdgsvgiinhgvrgesthhugihonhdruggvvhdprhgtphhtthhopegrnhgurhgvfidonhgvthguvghvsehluhhnnhdrtghhpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopegvughumhgriigvthesghhoohhglhgvrdgtohhmpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrg
- hdprhgtphhtthhopehprggsvghnihesrhgvughhrghtrdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrgh
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR04MB8897:EE_|DU2PR04MB8661:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5b32f82b-c5eb-4a77-1ec4-08dd6c4e0fa7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?WkNUVy9FeXFXMTFZU1dmc0lyOHFmVGk0allOL1BnMlRlL0RPa2IrVDEyOGE0?=
+ =?utf-8?B?cHdCL1RFSHJrWlhtY3lpYTY5ck1tVmlhSW80TUJkMTlyc2pOclVYQ0JTZXBm?=
+ =?utf-8?B?ZEdsR1o5NE45SFd0T0lDS1I1WUxLTXlBeU42RTdXZkhGZHlZbG5iWXJncFBy?=
+ =?utf-8?B?ZjlncnhPaDFWdW53SHpCU3VueWZadmVsM3JsS2ZmZ2dQYXkwWEU1cHJTMmNy?=
+ =?utf-8?B?aVh3alNmOG5WU0l6a21JQ0ZJVkpLQmxWUTRxdkxFYWtuKy9JamgySHBJSThZ?=
+ =?utf-8?B?eDZoTjJWV2t0NWE1SUQ3NVVoVUkzWHhsMTB1RXk5SEF0cmpSWGFPeVdaV09y?=
+ =?utf-8?B?aE5YdGJDaXMzc3lSWStQbURwbkg4bVlKM0kza1Q0YldSSzhwQkc5T0pUVDVy?=
+ =?utf-8?B?dkVTS21uNVM1UVBIUVJCeXhGQ093dmkycEFoUzJla3Y5VWpjNWpONm0rVzZD?=
+ =?utf-8?B?Vm14QVJiZVYwZE4zRis2bURIS1NPaFBlRGp5dWtkTlhQTk85SmhlNnpkd0tG?=
+ =?utf-8?B?V2hHM1o3UnZNcDhRZm94UWFWQ3BWb3lkV0tPWlYySy95MW9vcFNVLzYxVzMv?=
+ =?utf-8?B?RXJUWmZTTWRhclVlYzBDYS9ackxQMW9ueXk3MUQ5NEN1b2pqbUxxV2h6am0z?=
+ =?utf-8?B?aUJlR0h6U1FXZ0pUSG1MV09ZRUxHL3BuZXM0NVh5bGtZUXJqSHMzN0V6K0I2?=
+ =?utf-8?B?dkxveVFpOWljYTdsWW9QSVpRT2IzVW9Tcy8rRms3K0xPbS9ZUjZ1aGh1WkRp?=
+ =?utf-8?B?MWw4K1A5KzdMRlhEYUQ4Slh3eVBQcmtMYUxScGhuZXpYVThTSHdvZU0zOEVM?=
+ =?utf-8?B?d2JFOFM0eE1VUkgwck1oRW5jTytqZUZ4TXBUY0dBMmYzc2QzZTVwMlBvak9U?=
+ =?utf-8?B?U1JpNGgxRVM2L3NhM0QwQU5FMGRyaXc1MkZNZjFMRWlIWVFmZHJucXRyUlVR?=
+ =?utf-8?B?QnVJdGJMNlVTZGloRDlZbFM2d0pzSzA2S05ORU50bGNwVThac3pTOFlaNGo4?=
+ =?utf-8?B?YlhYc2pucnVNZSs1UHFkbXladDRQeTJRWTA4WXJianY4TkxEOG9SRERUampm?=
+ =?utf-8?B?UUxxU29QV28vcDFHRkxheVhVVVNOMTAzVTBvMW0ranJ1Uzl3ZytHYzlYTG8z?=
+ =?utf-8?B?UUlLSzlJWk1nNnE5TzlIUFN0VmFSSUxVcDJhZ2t6d0p0MW5GSU1OTy9LeTB0?=
+ =?utf-8?B?SGhkMzY1SmNQbEJBSDZPc3VqSzMraVUrWUtmanFWb2I5UzRaMElRUmlBQTFz?=
+ =?utf-8?B?Rk9qSzIvZXJLbDdxMXVVNFFQWmtQeklNc1c4TTI0TmV1NTA5K1Rtdml2TjdL?=
+ =?utf-8?B?YUVENm44dDQ2c1A1bDJCMUVDWHY5WFBxOXh1WkNYNUJibVJPZDNNbnliZnJk?=
+ =?utf-8?B?L0Y2d1RhdkRhcCtlY0dLYUZrL1d0Mi9XYnMvaEM0dThsbkxnVkRyT1pTdGtV?=
+ =?utf-8?B?a2NVc3RBdHovRXoxMnV2M2VINkxZVnIvZEJObXVMRklFOTAwZ0pPMlBhTHEz?=
+ =?utf-8?B?ai9vRW9WTGlxRjVwNmNxVm01UkZvcTdqall0TXlQMmw2Q0xNcVJ1VGtWK3pR?=
+ =?utf-8?B?VzZJYmJDcTVoKzZYY3ZtSzlHWEZJMnpRTWRHTkprNWY3Z3F2MkdtQ3E3TWVQ?=
+ =?utf-8?B?ell0WFdhMHRKY0l5Z2lseGdFRXBReWNSNzNXZWVTM2MyNU9KVkdSSEkxM3hj?=
+ =?utf-8?B?dWR6bzVwazZKbktjd2V1R0E2b24rQm9QU2JDUGxSZEp3MmZrRUdsZzNldVRk?=
+ =?utf-8?B?N3FyMmJzUDNGZld1TitGYlhmLzF0Y2lMZGloMnpHQUk0OFowVTR3WWNYZzVK?=
+ =?utf-8?B?a0lnT3NieGJvTFk2MGd4Zz09?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8897.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?ZzFQMUk2YWdXZUFUckRwaEYwNlNEcFEzTkliTXlkY2RuWEJmODJLdEZOcGRE?=
+ =?utf-8?B?cGFZY1A1cHJ1Tyt4eERIRkhoK01JMjN1aGVBY0ExS2FOakMva045OGtlYU5w?=
+ =?utf-8?B?MXcreUlOL0swUkh0c0FibStvalVNMWFxUEZ5ZDBJWHFjQkFXWXVsZjdDZHlX?=
+ =?utf-8?B?d2M5MjBSMmovaUtibXJXNFNiL2wyYmp5dEhPZVI0aTJQbGwxNDJXTWwyVGJk?=
+ =?utf-8?B?K2RyUldWL0IyU3UrbytOajB6SXA4VlkzaFVqbjJFWG5uRmJiazVQUkNiZHFa?=
+ =?utf-8?B?Rk1GWDFQZHBUckpQbFJYZzdBM0lLaWk5MnNXSGdsMGNweVZLVy8zaG94VWRW?=
+ =?utf-8?B?ek9WRExqT29hcnFJcmdiWTZNZk1wcGdHOHNwRCtlV0lpTGpPTU9DOFd2enNC?=
+ =?utf-8?B?VkVpNGV6VkMyQzVsUkhXZ043RlErOG5nZjRudytkRE15cnRSdlpDbXVUVFVK?=
+ =?utf-8?B?d2dNa2d2bWM3bTdxdVlYa1FXV1JCUXNjV3E3TjVZa2x3bzc1aEFiN3NKRWV4?=
+ =?utf-8?B?UmZieXE2ZXJVUitxZkZ2cXN3NUYyQmwyN3cyZE9pVno1UFc1QVlHTmJ1dkpW?=
+ =?utf-8?B?UDRKc2NnRjV5QVJDOUt3blJjNmhscmJyQUdkYi9kajloaVBmMmxrUmhPK2hl?=
+ =?utf-8?B?R095MnVpNlJwdjdTVlJaKzN1L1VBTytyNCswQnYyZjFZK3NVenVDYlpXSDRO?=
+ =?utf-8?B?ZzEwM0hYTVFJVy9qWGh1cUZheUp4SGoyVjFTL2V2V1NHS043TFE2M2daWThL?=
+ =?utf-8?B?OEpnVUhSRXRUSjYxRkZsVVRGNGx6S2RscW1TOXE5MU9QYzJjTjVGdGFkVm0y?=
+ =?utf-8?B?RktwTWpac3pFd010dmFSeHdIWUcyaHlOZHVtT1JRelRYSkRZbEZtSzF4d0Q5?=
+ =?utf-8?B?Rk9qQWsxMndXaVpBQXQ3Z0l2NXdQUVFZdEJJYVF2dWczY3MxNmt4MEZrMjQv?=
+ =?utf-8?B?M3RBUHVwTHdkVm9mVTEzUithaW5JUERSYWVLaUF5VmE0blMvZDJkTzV3K1d3?=
+ =?utf-8?B?NmNJeDBpaytDNU4wV2pJK01rL0J5VEJoY2dtU1FvYVdVM2hTa2c1T2Y5cTU2?=
+ =?utf-8?B?Vk9mN2FDcXV1QkZUa3V6NVA4RzVYUzB5UjA0WnNxT0gxdXhhQ2FqUVQrWDQr?=
+ =?utf-8?B?UGVMU281SzBMRDYrY3QyQkFQc09iQ0NlSGd0OEFseUlmc0QzeE4wUmZHeFJv?=
+ =?utf-8?B?S01ySy9wQitZelYxQjdGVTBiaVgxNFpqcEF6bnc2OHBRZmxhUEpuYkNyUEdW?=
+ =?utf-8?B?cnp6MjJsbU9NTnBNaml6djJRRUxieHVZU2s5Z1NkWUpxeExBVlR0TU0yTnNo?=
+ =?utf-8?B?UVM2c2xsWkc0VW8zYzFzeUhxbWs0d2w1VjFrZFhsSVJSeUFNOWxZL0VqdTFU?=
+ =?utf-8?B?ZkUrMjRubW4rZ2U0YzNhVWcvYkNYU0NBZjNHTWo0bWxrRDRqZjZtakI3Vy85?=
+ =?utf-8?B?d0lxaE0wTUVoZXJjVEVRckRrcm5sWEMzMDgyNnNDZ2ZyMkVVbFBJRWlKZ3cw?=
+ =?utf-8?B?UmlTVkY1VHdLYmJFSGQ2ZEF1RVUreGhjcjYrUzNndDJ3eVljUFdVUm1jaHVa?=
+ =?utf-8?B?QTU4Mm1xb0tvUVVqeEd5NmY3TVFLRTFGSUR0Q3liN3QxLzV0Z2YrWjhibTBY?=
+ =?utf-8?B?Zlh5Z2cyQmlpcU1HQ2U1R0dsK1pKSTlFanY1VDB6TTJWV2NNVWFLY0sxMk9v?=
+ =?utf-8?B?cVgrUkNwY0RrVWV4NldXUFduL3BodjRBeXVUbHFaU2tvSXZGR05sR0ROeExv?=
+ =?utf-8?B?TkNIckx5d1FiVzdYaExSeGg1TzJpdHJlSU4ySnYxV1JTeU1iWlAyRGYrQVl4?=
+ =?utf-8?B?TkJwb3ZKQVJnSlRkVzF4a0l2OWw1V3ovbDdIYm9TWERyZk5Ba1BkLzBLV3hp?=
+ =?utf-8?B?dUdRQVprK2VjbkFrOG9FVjV6KzdZbE8rZThQVUptYVhHVkIxd1BWQTV5L3cv?=
+ =?utf-8?B?aU9TZFMwTkc3S01pOGpqZ28wSHRRbU9TR3BaQ3JwMDh0dGtGVXJDRGVPK0kr?=
+ =?utf-8?B?MVJRMlF6b0pFa3RFSnZjcmtrVXVqN0lFYTNHakNkL1M0b0I4QVRYMjUrK2NW?=
+ =?utf-8?B?WTRVZ2lEc2lXSGJIbkEwZWlSTnZMMEVTNE44anQzaUhnNVZiaXJDS3B2d1FK?=
+ =?utf-8?B?VzVlYlhCZzR6MitJbjZXcmY3czd2RkZsS2VjTG9aWnZmajFlS0F5UVFkbDh3?=
+ =?utf-8?B?OFE9PQ==?=
+X-OriginatorOrg: cherry.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5b32f82b-c5eb-4a77-1ec4-08dd6c4e0fa7
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8897.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2025 10:07:48.4607
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: uGNSpWui42q2Q/usNtZulgBR3vu+46iKdXBlkNph/TiBadpnpWzy0MU4J4I8IzzSuyGU52LPa9lKxXOqUBDoU64+sJRfazLpcRCy3q+dXTg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8661
 
-Hello Claudiu,
+Hi Dragan,
 
-On Mon Mar 24, 2025 at 9:18 AM CET, Claudiu Beznea wrote:
-> On 21.03.2025 21:09, Th=C3=A9o Lebrun wrote:
->> LSO is runtime-detected using the PBUF_LSO field inside register
->> designcfg_debug6/GEM_DCFG6. Allow disabling that feature if it is
->> broken by using struct macb_config->caps.
->>=20
->> Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
->> ---
->>  drivers/net/ethernet/cadence/macb.h      | 1 +
->>  drivers/net/ethernet/cadence/macb_main.c | 5 +++--
->>  2 files changed, 4 insertions(+), 2 deletions(-)
->>=20
->> diff --git a/drivers/net/ethernet/cadence/macb.h b/drivers/net/ethernet/=
-cadence/macb.h
->> index 3b43cb9468e3618754ff2bc6c5f360447bdeeed0..e9da6e3b869fc772613a0d6b=
-86308917c9bff7fe 100644
->> --- a/drivers/net/ethernet/cadence/macb.h
->> +++ b/drivers/net/ethernet/cadence/macb.h
->> @@ -739,6 +739,7 @@
->>  #define MACB_CAPS_MIIONRGMII			BIT(9)
->>  #define MACB_CAPS_NEED_TSUCLK			BIT(10)
->>  #define MACB_CAPS_QUEUE_DISABLE			BIT(11)
->> +#define MACB_CAPS_NO_LSO			BIT(12)
->>  #define MACB_CAPS_PCS				BIT(24)
->>  #define MACB_CAPS_HIGH_SPEED			BIT(25)
->>  #define MACB_CAPS_CLK_HW_CHG			BIT(26)
->> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethe=
-rnet/cadence/macb_main.c
->> index b5797c1ac0a41e9472883b013c1e44a01092f257..807f7abbd9941bf624f14a5d=
-dead68dad1c8deb2 100644
->> --- a/drivers/net/ethernet/cadence/macb_main.c
->> +++ b/drivers/net/ethernet/cadence/macb_main.c
->> @@ -4373,8 +4373,9 @@ static int macb_init(struct platform_device *pdev)
->>  	/* Set features */
->>  	dev->hw_features =3D NETIF_F_SG;
->> =20
->> -	/* Check LSO capability */
->> -	if (GEM_BFEXT(PBUF_LSO, gem_readl(bp, DCFG6)))
->> +	/* Check LSO capability; capability is for buggy HW */
->
-> The comment here is a bit confusing to me.
+On 3/24/25 12:00 PM, Dragan Simic wrote:
+> The differences in the vendor-approved CPU and GPU OPPs for the standard
+> Rockchip RK3588 variant [1] and the industrial Rockchip RK3588J variant [2]
+> come from the latter, presumably, supporting an extended temperature range
+> that's usually associated with industrial applications, despite the two SoC
+> variant datasheets specifying the same upper limit for the allowed ambient
+> temperature for both variants.  However, the lower temperature limit is
+> specified much lower for the RK3588J variant. [1][2]
+> 
+> To be on the safe side and to ensure maximum longevity of the RK3588J SoCs,
+> only the CPU and GPU OPPs that are declared by the vendor to be always safe
+> for this SoC variant may be provided.  As explained by the vendor [3] and
+> according to the RK3588J datasheet, [2] higher-frequency/higher-voltage
+> CPU and GPU OPPs can be used as well, but at the risk of reducing the SoC
+> lifetime expectancy.  Presumably, using the higher OPPs may be safe only
+> when not enjoying the assumed extended temperature range that the RK3588J,
+> as an SoC variant targeted specifically at higher-temperature, industrial
+> applications, is made (or binned) for.
+> 
+> Anyone able to keep their RK3588J-based board outside the above-presumed
+> extended temperature range at all times, and willing to take the associated
+> risk of possibly reducing the SoC lifetime expectancy, is free to apply
+> a DT overlay that adds the higher CPU and GPU OPPs.
+> 
+> With all this and the downstream RK3588(J) DT definitions [4][5] in mind,
+> let's delete the RK3588J CPU and GPU OPPs that are not considered belonging
+> to the normal operation mode for this SoC variant.  To quote the RK3588J
+> datasheet [2], "normal mode means the chipset works under safety voltage
+> and frequency;  for the industrial environment, highly recommend to keep in
 
-Proposal:
+FYI, the answer from Rockchip support about what "industrial 
+environment" means is:
 
-+  /* Check LSO capability; runtime detection can be overridden by a cap
-+   * flag if the hardware is known to be buggy */
+"""
+Industrial environments encompass a wide range of settings, from
+manufacturing plants to chemical processing facilities. These
+environments are characterized by the use of complex machinery,
+stringent safety protocols, and the need for continuous operations.
+"""
 
-I'll use that in V2, or feel free to reply if it's still unclear.
+which is not really helping me understand when we should be able to use 
+the overdrive mode.
 
-Thanks,
+Why would you buy an RK3588J variant if you don't plan on using them on 
+the -40 - -20°C range that isn't supported by the RK3588 variant, which 
+seems to me to be the only advertised difference?
 
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+It also seems like the RK3588M supports the same operating range as the 
+RK3588J but at faster speeds? c.f. 
+https://en.t-firefly.com/product/industry/aio3588mq#spec and 
+https://download.t-firefly.com/%E4%BA%A7%E5%93%81%E8%A7%84%E6%A0%BC%E6%96%87%E6%A1%A3/%E6%A0%B8%E5%BF%83%E6%9D%BF/iCore-3588MQ%20-%20Automotive-Grade%20AI%20Core%20Board.pdf
 
+Couldn't find a datasheet though.
+
+Talk about confusing specs...
+
+I'll stop caring from now about this very topic :)
+
+Cheers,
+Quentin
 
