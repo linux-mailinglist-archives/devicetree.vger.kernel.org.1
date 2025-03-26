@@ -1,102 +1,146 @@
-Return-Path: <devicetree+bounces-160817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AC06A71343
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 10:01:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24C5BA71363
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 10:13:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D531B3AE9B1
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 09:01:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A42EB176CAD
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 09:13:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 168011AA1D9;
-	Wed, 26 Mar 2025 09:01:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50D2B1A4F3C;
+	Wed, 26 Mar 2025 09:13:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="fz6JMQxa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KO4GxINV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06EF3185920
-	for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 09:01:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2758817A2F8;
+	Wed, 26 Mar 2025 09:13:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742979689; cv=none; b=brF9QK2L5tsZdO8KE3+hBh2TLK1kjnThWO914oeac9VJDXNo1kN3PC6QmUnVpqaPgdqMjNMrMqC7+cX9k826n9zc8E4j3xyxUse8HvTDXK2IKaJzo0FeibmMHc7DHdB+GqNRjPTuSOgwb8h5ttANpr4Hb5rZY7MhapRdYfxhpoI=
+	t=1742980382; cv=none; b=mNobakUzCe6VeKL5WjrZyp6M1/LNJd4CVXEdfr9Truw0Gnjoft/IeObXSpAMczIuRgW0JRCiXx58sXBGOrF8zoNEcapSe+WNKROZWxCtbVWqmJLvZkjIwarlMKBuStjr/wfb/coT3If59BEw5qoYudmSG13BOmCaLfyiVLJA+Hs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742979689; c=relaxed/simple;
-	bh=eDD4g6HDiV1YtqTZs/PmIG8u9bFA/7yg2fvRvWMhuFs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TYuqyx7Je13jNZRKAUBYztf9lUw+dv1rsEBhUbEFeLMAi7tVxqBWLOCEZ/exNuH+ioh89IKBzHggBbOHD1/paV9Cg9oegxEEBWUU4ffLg4XKhHHhBOtpoo4A61Jpkx+wuXJ+nGciXlZBCEDf6yU0YxBqwj7UwgdpKQhHjVico/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=fz6JMQxa; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:mime-version:content-transfer-encoding; s=k1; bh=+3xxi3QPwHftSA
-	+CLkZ2grWAAGv0GGU4/4NfNwtpY4U=; b=fz6JMQxaxiKCr8BObpq0LXHBK+BGIA
-	QsMN4RrBbT8aZG5bUJMFAHNhob/gCNcJE1t6Ax09bgbG5/odyd2fFo6Vm1nuWSgp
-	1x2rgZ7YIs//N/JwnjCnCAphcS4yrki/WkXBJqsQl21JXJsZ0QWKEo1/S+J4f6aU
-	LRZdGfPvpo+dikjRAaxC/qA4tygQZ2QLiE2vC9xF2AnYdNK+mjUDs8coCQ0A8HNY
-	WkJSa5+FKhU4OuPn6lqoLJm1aJm4gl0HLYLjwHYU9q2/DUcuENihp9d1jpetttuw
-	umKnYrjeXRl7KTIEfYC8Fr8FF5IIvavFYpB+Kgi5O1hw79FgJnjlJhcQ==
-Received: (qmail 3490736 invoked from network); 26 Mar 2025 10:01:21 +0100
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 26 Mar 2025 10:01:21 +0100
-X-UD-Smtp-Session: l3s3148p1@hOS4FDsxiqkgAwDPXyTHAJp038nK7dx+
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-renesas-soc@vger.kernel.org
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Jarkko Nikula <jarkko.nikula@linux.intel.com>,
-	linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: i2c: snps,designware-i2c: describe Renesas RZ/N1D variant
-Date: Wed, 26 Mar 2025 09:59:12 +0100
-Message-ID: <20250326090112.22495-2-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.47.2
+	s=arc-20240116; t=1742980382; c=relaxed/simple;
+	bh=aN+g0071I7Vt/PENJP2xKw1ev/MOlfvCtYEPMiSMFoo=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=irouq8/UuoZFd1kKS2fgw+nKub3f/QbD8T/aXsZ/VkhAzBRrLmigY698/dg1FG50znGuY6DALVYHvlDDEu1+iwu1nPsLvgnpJvBO4t8e0UwzIVsZOP9NnxbCYwLy+lhwwPJ9R0dXNJyeldsaws19e61i9faYJJzfltnyb9TBrzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KO4GxINV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A119EC4CEE2;
+	Wed, 26 Mar 2025 09:13:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742980381;
+	bh=aN+g0071I7Vt/PENJP2xKw1ev/MOlfvCtYEPMiSMFoo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=KO4GxINV6olNF2UQXuKkU8PE7klKPjHGZdg2MCcNmhwRPQWiGhojXXelfplsWVCi+
+	 AM9jbm6mLHrSoRMiDVMT7lMk/u4nAD0eRkb32dhblMEll6b/F0/n1KumF+aeY3y0s3
+	 OneulYbDcLOrIjrwP+JJRIpN7Sn7xkLXqM/3DvbVzq4hEe0XgcesrU3psE3OUe6wBP
+	 pm/l64u3LGqEdzkZ0p0+LieV00X7THRVODBGW+vRK6jzmvs/sonuyGcUgEjsQBParA
+	 d7RxtjIu8b5r9gvi+O4JYO7lDvRoLkNFN4HJMXm05vh42ep74Rj00961kpa78jfY14
+	 ExyrBH2W51E/g==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1txMol-00HEBK-5u;
+	Wed, 26 Mar 2025 09:12:59 +0000
+Date: Wed, 26 Mar 2025 09:12:58 +0000
+Message-ID: <861pukm9yd.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Peter Chen <peter.chen@cixtech.com>
+Cc: soc@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	catalin.marinas@arm.com,
+	will@kernel.org,
+	arnd@arndb.de,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	cix-kernel-upstream@cixtech.com,
+	marcin@juszkiewicz.com.pl,
+	kajetan.puchalski@arm.com,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Fugang Duan <fugang.duan@cixtech.com>
+Subject: Re: [PATCH v5 5/6] arm64: dts: cix: add initial CIX P1(SKY1) dts support
+In-Reply-To: <Z-Nz0DU441Wwj1i4@nchen-desktop>
+References: <20250324062420.360289-1-peter.chen@cixtech.com>
+	<20250324062420.360289-6-peter.chen@cixtech.com>
+	<865xjxmlgl.wl-maz@kernel.org>
+	<Z-Nz0DU441Wwj1i4@nchen-desktop>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: peter.chen@cixtech.com, soc@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com, marcin@juszkiewicz.com.pl, kajetan.puchalski@arm.com, krzysztof.kozlowski@linaro.org, fugang.duan@cixtech.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-So far, no differences are known, so it can fallback to the default
-compatible.
+On Wed, 26 Mar 2025 03:26:08 +0000,
+Peter Chen <peter.chen@cixtech.com> wrote:
+> 
+> On 25-03-25 10:52:10, Marc Zyngier wrote:
+> > > +     timer {
+> > > +             compatible = "arm,armv8-timer";
+> > > +             interrupt-names = "sec-phys", "phys", "virt", "hyp-phys", "hyp-virt";
+> > > +             interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW 0>,
+> > > +                          <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW 0>,
+> > > +                          <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW 0>,
+> > > +                          <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW 0>,
+> > > +                          <GIC_PPI 12 IRQ_TYPE_LEVEL_LOW 0>;
+> > > +     };
+> > > +};
+> > 
+> > I don't think there is anything wrong here, but it is also a pretty
+> > useless DT. There isn't even a UART to interact with the machine and
+> > find out whether it has actually booted.
+> > 
+> 
+> UEFI uses the same UART, so we could see all kernel boot logs until
+> switch to use kernel UART driver for printk. If you would like boot
+> to the console at initramfs, just add uart node like patchset v1.
 
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
+What's the point in upstreaming something that requires extra changes
+just to boot it? It only outlines these patches are not useful as they
+stand.
 
-If everyone is OK with this patch, does anyone mind if I shortcut it
-into the v6.15 mergewindow? It is just a documentation update and would
-simplify upstreaming the I2C chain for this board. One dependency less.
+>
+> > I reckon this should be part of the initial DT, as this otherwise
+> > serves little purpose.
+> > 
+> 
+> Without this initial support, we can't add some base drivers, like
+> mailbox. The dt_binding_check will report warnings/errors [1].
 
- .../devicetree/bindings/i2c/snps,designware-i2c.yaml         | 5 +++++
- 1 file changed, 5 insertions(+)
+Of course you can. You just add additional patches to this series,
+making it something that is actually useful. So far, this series only
+serves as marketing material.
 
-diff --git a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
-index e5d05263c45a..87eea87bdd52 100644
---- a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
-+++ b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
-@@ -27,6 +27,11 @@ properties:
-     oneOf:
-       - description: Generic Synopsys DesignWare I2C controller
-         const: snps,designware-i2c
-+      - description: Renesas RZ/N1D I2C controller
-+        items:
-+          - const: renesas,r9a06g032-i2c
-+          - const: renesas,rzn1-i2c
-+          - const: snps,designware-i2c
-       - description: Microsemi Ocelot SoCs I2C controller
-         items:
-           - const: mscc,ocelot-i2c
+> Full UART support depends on clock, clock control needs mailbox
+> to talk with FW using SCMI protocol.
+
+Then do it. You obviously have existing DT support for it already.
+
+> There is no any support for CIX SoC, so we had to add one small step by
+> step.
+
+No, you are deliberately choosing to make this platform useless.
+
+That's a bit sad, and a waste of everybody's time.
+
+	M.
+
 -- 
-2.47.2
-
+Without deviation from the norm, progress is not possible.
 
