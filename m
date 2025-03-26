@@ -1,87 +1,64 @@
-Return-Path: <devicetree+bounces-160815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160817-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1F38A712F0
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 09:43:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AC06A71343
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 10:01:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D4E3C7A6024
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 08:42:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D531B3AE9B1
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 09:01:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DC2E1A3171;
-	Wed, 26 Mar 2025 08:43:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 168011AA1D9;
+	Wed, 26 Mar 2025 09:01:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="qkCXizyo"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="fz6JMQxa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F5F2383A5;
-	Wed, 26 Mar 2025 08:43:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06EF3185920
+	for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 09:01:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742978599; cv=none; b=NuxJD/XLnqMCOR76X0mMrjWW3jq06W77UDLXLcaelNgEqY7Stqs4TeOXnJ+fEpTjR2d3UwPZglU0aWm7ivlf1drIDv6Q9vcOtIzN4StBS+Mi9woceNuoyXFiDgnBgIaWfMNrzvSyc4mkAxJzV3gjdVY+KPZyIuhqnkYd9oqBIbo=
+	t=1742979689; cv=none; b=brF9QK2L5tsZdO8KE3+hBh2TLK1kjnThWO914oeac9VJDXNo1kN3PC6QmUnVpqaPgdqMjNMrMqC7+cX9k826n9zc8E4j3xyxUse8HvTDXK2IKaJzo0FeibmMHc7DHdB+GqNRjPTuSOgwb8h5ttANpr4Hb5rZY7MhapRdYfxhpoI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742978599; c=relaxed/simple;
-	bh=7aRxn016cduRYWqcqszkwFib9wwX66b4Cxm4UsEQB1g=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iu/HXd7RiSzc7pNBdl6ypqJ+9txXM5QvGsdIpHedc5gwMz75RfW6Tf6TUCQG4cVGJJ8OdzdEvahyrE/AWBR+dZbvhzicnR4Q9ituE4jSRz+9QPLAp6fK3xRVvwhtwQEw9bHQ7UJ7OAAxDdoZB75T4YvgXAUxaWoPKpkmq0vsSCI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=qkCXizyo; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52Q7DlLo008642;
-	Wed, 26 Mar 2025 09:42:50 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	4spI71XBW9TktNPtgUKlhmqprWhHOZmJMEc8QqOQvcI=; b=qkCXizyoHkMe01YE
-	F+Vzk+z1oNCmncd47k45IZZP6kxoQGn5OqYUDc0bxj4K7VSq1TKRgqKPKafPHWQY
-	YbFp6blgCH/I42voM4eu7IgzRjwgznABk4VgQSho+9WJCnc602vIkzfgc4VbyiCE
-	DyhsfMh9ZfyDBBMV3rNPwB3WD818bu3rgYVxLe3ElcjgkqIpQVnphCrJzXQzePK2
-	hExaptP3lETDselbZUv33wotyPfBngteLrrUw9TuLzw2drhNhzF9IFgtgOsdvEVB
-	rCG3YOAEZq8vv2z1CBxmO8SmNm9T2FH/87AS4KFmeuiAwoZCLS/EOO8TAemHt7qz
-	xMKYQA==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45j91se31f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 26 Mar 2025 09:42:50 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id A0D524004D;
-	Wed, 26 Mar 2025 09:41:50 +0100 (CET)
-Received: from Webmail-eu.st.com (eqndag1node4.st.com [10.75.129.133])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B73DB87F42B;
-	Wed, 26 Mar 2025 09:40:02 +0100 (CET)
-Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE4.st.com
- (10.75.129.133) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 26 Mar
- 2025 09:40:02 +0100
-Received: from localhost (10.48.86.121) by SAFDAG1NODE1.st.com (10.75.90.17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 26 Mar
- 2025 09:40:02 +0100
-From: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-To: Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Arnaud Pouliquen
-	<arnaud.pouliquen@foss.st.com>
-Subject: [PATCH 2/2] drivers: remoteproc: stm32_rproc: Allow to specify firmware default name
-Date: Wed, 26 Mar 2025 09:39:12 +0100
-Message-ID: <20250326083912.12714-3-arnaud.pouliquen@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250326083912.12714-1-arnaud.pouliquen@foss.st.com>
-References: <20250326083912.12714-1-arnaud.pouliquen@foss.st.com>
+	s=arc-20240116; t=1742979689; c=relaxed/simple;
+	bh=eDD4g6HDiV1YtqTZs/PmIG8u9bFA/7yg2fvRvWMhuFs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TYuqyx7Je13jNZRKAUBYztf9lUw+dv1rsEBhUbEFeLMAi7tVxqBWLOCEZ/exNuH+ioh89IKBzHggBbOHD1/paV9Cg9oegxEEBWUU4ffLg4XKhHHhBOtpoo4A61Jpkx+wuXJ+nGciXlZBCEDf6yU0YxBqwj7UwgdpKQhHjVico/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=fz6JMQxa; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=+3xxi3QPwHftSA
+	+CLkZ2grWAAGv0GGU4/4NfNwtpY4U=; b=fz6JMQxaxiKCr8BObpq0LXHBK+BGIA
+	QsMN4RrBbT8aZG5bUJMFAHNhob/gCNcJE1t6Ax09bgbG5/odyd2fFo6Vm1nuWSgp
+	1x2rgZ7YIs//N/JwnjCnCAphcS4yrki/WkXBJqsQl21JXJsZ0QWKEo1/S+J4f6aU
+	LRZdGfPvpo+dikjRAaxC/qA4tygQZ2QLiE2vC9xF2AnYdNK+mjUDs8coCQ0A8HNY
+	WkJSa5+FKhU4OuPn6lqoLJm1aJm4gl0HLYLjwHYU9q2/DUcuENihp9d1jpetttuw
+	umKnYrjeXRl7KTIEfYC8Fr8FF5IIvavFYpB+Kgi5O1hw79FgJnjlJhcQ==
+Received: (qmail 3490736 invoked from network); 26 Mar 2025 10:01:21 +0100
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 26 Mar 2025 10:01:21 +0100
+X-UD-Smtp-Session: l3s3148p1@hOS4FDsxiqkgAwDPXyTHAJp038nK7dx+
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+	linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: i2c: snps,designware-i2c: describe Renesas RZ/N1D variant
+Date: Wed, 26 Mar 2025 09:59:12 +0100
+Message-ID: <20250326090112.22495-2-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,50 +66,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SAFCAS1NODE1.st.com (10.75.90.11) To SAFDAG1NODE1.st.com
- (10.75.90.17)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-26_02,2025-03-26_02,2024-11-22_01
 
-Enhance the stm32_rproc driver to allow enabling the configuration of the
-firmware name based on the 'firmware-name' property in the device tree,
-offering flexibility compared to using the remote proc device node
-name.
+So far, no differences are known, so it can fallback to the default
+compatible.
 
-Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 ---
- drivers/remoteproc/stm32_rproc.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/remoteproc/stm32_rproc.c b/drivers/remoteproc/stm32_rproc.c
-index b02b36a3f515..431648607d53 100644
---- a/drivers/remoteproc/stm32_rproc.c
-+++ b/drivers/remoteproc/stm32_rproc.c
-@@ -835,6 +835,7 @@ static int stm32_rproc_probe(struct platform_device *pdev)
- 	struct device *dev = &pdev->dev;
- 	struct stm32_rproc *ddata;
- 	struct device_node *np = dev->of_node;
-+	const char *fw_name;
- 	struct rproc *rproc;
- 	unsigned int state;
- 	int ret;
-@@ -843,7 +844,12 @@ static int stm32_rproc_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
--	rproc = devm_rproc_alloc(dev, np->name, &st_rproc_ops, NULL, sizeof(*ddata));
-+	/* Look for an optional firmware name */
-+	ret = rproc_of_parse_firmware(dev, 0, &fw_name);
-+	if (ret < 0 && ret != -EINVAL)
-+		return ret;
-+
-+	rproc = devm_rproc_alloc(dev, np->name, &st_rproc_ops, fw_name, sizeof(*ddata));
- 	if (!rproc)
- 		return -ENOMEM;
- 
+If everyone is OK with this patch, does anyone mind if I shortcut it
+into the v6.15 mergewindow? It is just a documentation update and would
+simplify upstreaming the I2C chain for this board. One dependency less.
+
+ .../devicetree/bindings/i2c/snps,designware-i2c.yaml         | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
+index e5d05263c45a..87eea87bdd52 100644
+--- a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
++++ b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
+@@ -27,6 +27,11 @@ properties:
+     oneOf:
+       - description: Generic Synopsys DesignWare I2C controller
+         const: snps,designware-i2c
++      - description: Renesas RZ/N1D I2C controller
++        items:
++          - const: renesas,r9a06g032-i2c
++          - const: renesas,rzn1-i2c
++          - const: snps,designware-i2c
+       - description: Microsemi Ocelot SoCs I2C controller
+         items:
+           - const: mscc,ocelot-i2c
 -- 
-2.25.1
+2.47.2
 
 
