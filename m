@@ -1,209 +1,327 @@
-Return-Path: <devicetree+bounces-160754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 778FEA70FDB
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 05:17:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 601C3A71006
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 06:02:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD4F819A12AD
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 04:16:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 13755188A663
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 05:02:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 765E818BC3F;
-	Wed, 26 Mar 2025 04:15:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4825176AC8;
+	Wed, 26 Mar 2025 05:01:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="g7TfxD8w"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="R3BmUlfO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2078.outbound.protection.outlook.com [40.107.237.78])
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2063.outbound.protection.outlook.com [40.107.220.63])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8265B18C034;
-	Wed, 26 Mar 2025 04:15:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.237.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E35CF42A8F;
+	Wed, 26 Mar 2025 05:01:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.220.63
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742962528; cv=fail; b=ir3jLcLHcpXk+ZwQoTt4+MrYUtRhol1Vy5vi2A29lPRq7KsEDvZqQYu1aDpFYOAPC6qsczKZmPBtdLrWu82BRZPVtCMrG4FAy3iw0S1CxCzqTNlRLemhb705NipynKgd8vHW98HZjTOx4qz/UHhCY2S64ltXH8JQuWrKxvEAc4U=
+	t=1742965315; cv=fail; b=RT5nXDnPfa/eWFFs4zrG1ELWaSAxU1iAPip0iVhMxeQdRT5tFtXhactc82b/HPvGSBrAfniOcglCKa7QgmEtSdYjtVPYdiqVT7E2FG8e90TZ/1ls0TKtcPqYTvpzDC1m8Krv/3s4s1Hd2nkww4p6iAkwZrbARv1P+Ofzs0VX+E4=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742962528; c=relaxed/simple;
-	bh=iOAk0jqU21lny6aH34YKGEuCG5pV8c5/KEqLvbWwf2k=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RRg57JaWUSC6aDWY9aUrMWZfcUjMqL0MQdU5apMc6eC3i7+O0FuyLhIr77g5H6IqZhkojGYo5ToGcfLH+cUIWoNu8mh5sFs4cVFltwQRZry2PFrwkxe5OkOkhNuuSD9s5mjYkhf7FkhrZooGKqOJmH+Jq5CBQRUbTZ2PSxJhXHs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=g7TfxD8w; arc=fail smtp.client-ip=40.107.237.78
+	s=arc-20240116; t=1742965315; c=relaxed/simple;
+	bh=7d8zc1Uh+Cu6Pmybxq72LMlRKqP02Hv/qEnXKUgVxNQ=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=mcmhlFU2U4OPxmT3KcmDL/eMpXBVV80PEVGWfzgorRnafXXkx1ksiMLERGFwSmV43hKxrmQmx2PPCKORIIzSPqLk1dak7aEtEQh6bAXaN6DOPdNl7RZRTn2HPod/XoAd4QQm3pfIzoFou6WSovY+BJKlqMMLjH9+uk+inf2eSpc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=R3BmUlfO; arc=fail smtp.client-ip=40.107.220.63
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sXCNbhF3tjetV9ZHB3E/vVNb2sWSJ676uWhIFPP9coFiEuwhhxD942gQsfVKUWR4/7bu+oir/tS0ZpdtU7P9PQjQapUYYtbbJyFdfhwPjBmPUtauQRekpWUsNSpPmpIgIPiTACdA1ZE6SuiD1xe1x1BFbh8r7pVEMYDsHNNWmWLjNhQyzCv7xOErbz3O7eBe9VPcnlpv+fnaheomVdAxKXKqmR6SprizQLdoPSrj/UL6xcWyZf75xDquuH+JeSOIL9kDmem9s9ethJlahagw+2PPnS4oCDweMkpP+J/lnc7uG0kaj89DZpatm/KXEK+YvUaVc5xjx3EM7Kx215tHTA==
+ b=kRwPOI+ssIrgHw0naUHNQa6kWkYYNWIviXsv9+Ni9Mnp1vdSAfQZqTjtjo+jiKRQid7mjscTyxBDTe4BPOjm9fMhfV0rSHkYsAv4BqRFhLNuyyd7nkNgip86FYZm6U+SYDKzNWL0EIIAr96ITrSZgX6uCYPwDx9G1ih9v7qx/xldJl55tTbzS3S5R+XSt8OdIQg+ggxi2AaW29d7f5Mm66wiANukEKjINn+ZT+b2IX1+QrkvIU/UCrJ8KsUHmhdukt01hDWoAX7S6qNNCMvgBmNJxIfoqgf2POYolgLgjFYRRrk+5seWHTeaOqMy3vBxwh4hCchvcoKPxoQVA0XAdw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JPrBNUPb1RTMcWHgsNiDcnCi1G0nHbuK8AN8lux1JGY=;
- b=AKbg6uHSn0jK3lDe3UqZICGOPS5px1Im9kNgCzw9kGHb54WTKI+x70r502NpXfB/bHX4uW+OTPnU9ISTQjtx5aZquOj48RuEAT0frJaywU92ITltVfqeR8mLMUo4NRZtTgxM44RP/Od78QvztyEk9bV/dlChZiTu57R6r1RJNmyw5fENEj4HgvtFeDqY7LRz/j+svnOnAyw/7o39FEmLXpDzU8q9b7US5SwsVgWfZtoh9J+tYHq+4mqlhyQWcTXGya3jIgaT7FxvNrQouPy7D1h4AJlthef24bN4Y9fJk7PorVgMV2he6tb8BIFx1f+GmO3hgVax89IM/w5sTZEK5g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=google.com smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
+ bh=mCJuwk4J6Xmz2FR4NyHIzcJ+B7q2tjDGhln32EoxU64=;
+ b=nmjoav79WZ2n2ZxrkXZ4+y54VYdO3b9uVX+5KWkpckBahijaIR0EYbtOaB8YtIMGYRPEUfs5EhMVF6yYqu5JHGzcG0PPbfEUBYCTd34wdNU4MsuDr2NqeRSOBKLiV9TWMlBBIn3XD0WGXbqlhpXhpKhb5Co5m4rErDyw2h1HoVgc0nitIiKiAdx+mBGAAlpCaxdz/FZpQiuOqX9ixc6tzJJ1WhcQtkBCAzhBQudkDk5k4Ji8fwL24f0FFWPTWB5CcwnfXqgbmh3BCYqe8zhLLjUK/+2kXfLpxhih7pMj3Bhqy38SbmNIjVlRNO/6AusI3g9m9IzndayKuYLswoLfKA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JPrBNUPb1RTMcWHgsNiDcnCi1G0nHbuK8AN8lux1JGY=;
- b=g7TfxD8wMABytRPXAm0S4dYJ5uP7XBIO7lUQZPXSoaaK+IkwkbA7O6euOE5ef0atCdLDJkHxfo8+xHS+shgNUJjWNGb9JVtWHwfuyTQr6u3r5WiqIr0uVVXz6hGZNh9VR/KCjvgHJrfhrIbY7Ohp0Ckm7SSBGRKRN2wGhl2xk54=
-Received: from BYAPR05CA0039.namprd05.prod.outlook.com (2603:10b6:a03:74::16)
- by LV8PR12MB9229.namprd12.prod.outlook.com (2603:10b6:408:191::14) with
+ bh=mCJuwk4J6Xmz2FR4NyHIzcJ+B7q2tjDGhln32EoxU64=;
+ b=R3BmUlfO6QYlvYMjb2gRPYT6cOpbvcqOWojl+Cdqczk3qvBMEwSBjNr98XMofEoSOu/Qu9PT1FEfLtPf5aZd/j7vsNNPGKWZWpyzdpVfRFh4h9HShGRyCsq0kQ4pt8Q0ygdHldYtdONStcr2Rz8vkmhGKzYKHgG0sLPNJppbK7c=
+Received: from SJ2PR12MB8739.namprd12.prod.outlook.com (2603:10b6:a03:549::10)
+ by IA0PR12MB7530.namprd12.prod.outlook.com (2603:10b6:208:440::5) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.42; Wed, 26 Mar
- 2025 04:15:22 +0000
-Received: from SJ1PEPF00001CDF.namprd05.prod.outlook.com
- (2603:10b6:a03:74:cafe::80) by BYAPR05CA0039.outlook.office365.com
- (2603:10b6:a03:74::16) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.43 via Frontend Transport; Wed,
- 26 Mar 2025 04:15:22 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SJ1PEPF00001CDF.mail.protection.outlook.com (10.167.242.7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8534.20 via Frontend Transport; Wed, 26 Mar 2025 04:15:22 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 25 Mar
- 2025 23:15:21 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 25 Mar
- 2025 23:15:21 -0500
-Received: from xhdlc190412.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Tue, 25 Mar 2025 23:15:17 -0500
-From: Sai Krishna Musham <sai.krishna.musham@amd.com>
-To: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
-	<manivannan.sadhasivam@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <cassel@kernel.org>
-CC: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <michal.simek@amd.com>,
-	<bharat.kumar.gogada@amd.com>, <thippeswamy.havalige@amd.com>,
-	<sai.krishna.musham@amd.com>
-Subject: [PATCH 2/2] PCI: amd-mdb: Add support for PCIe RP PERST# signal
-Date: Wed, 26 Mar 2025 09:45:07 +0530
-Message-ID: <20250326041507.98232-3-sai.krishna.musham@amd.com>
-X-Mailer: git-send-email 2.44.1
-In-Reply-To: <20250326041507.98232-1-sai.krishna.musham@amd.com>
-References: <20250326041507.98232-1-sai.krishna.musham@amd.com>
+ 2025 05:01:50 +0000
+Received: from SJ2PR12MB8739.namprd12.prod.outlook.com
+ ([fe80::29bb:9aa:2a72:df1b]) by SJ2PR12MB8739.namprd12.prod.outlook.com
+ ([fe80::29bb:9aa:2a72:df1b%3]) with mapi id 15.20.8534.040; Wed, 26 Mar 2025
+ 05:01:50 +0000
+From: "Katakam, Harini" <harini.katakam@amd.com>
+To: Andrew Lunn <andrew@lunn.ch>, =?iso-8859-1?Q?Th=E9o_Lebrun?=
+	<theo.lebrun@bootlin.com>
+CC: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+	<davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>, Claudiu
+ Beznea <claudiu.beznea@tuxon.dev>, Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>, Samuel Holland <samuel.holland@sifive.com>,
+	Richard Cochran <richardcochran@gmail.com>, Russell King
+	<linux@armlinux.org.uk>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, Gregory CLEMENT
+	<gregory.clement@bootlin.com>, "netdev@vger.kernel.org"
+	<netdev@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-riscv@lists.infradead.org"
+	<linux-riscv@lists.infradead.org>, "linux-mips@vger.kernel.org"
+	<linux-mips@vger.kernel.org>, Thomas Petazzoni
+	<thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+Subject: RE: [PATCH net-next 07/13] net: macb: move HW IP alignment value to
+ macb_config
+Thread-Topic: [PATCH net-next 07/13] net: macb: move HW IP alignment value to
+ macb_config
+Thread-Index: AQHbmpXdimvWxTuoTUe8kI1qHgz0XrN+FQEAgAR/5YCAAA0jAIACOyiA
+Date: Wed, 26 Mar 2025 05:01:50 +0000
+Message-ID:
+ <SJ2PR12MB8739A1E03E116F9D6A312EB99EA62@SJ2PR12MB8739.namprd12.prod.outlook.com>
+References: <20250321-macb-v1-0-537b7e37971d@bootlin.com>
+ <20250321-macb-v1-7-537b7e37971d@bootlin.com>
+ <45b3e613-90c6-4499-b50b-383106172184@lunn.ch>
+ <D8OOPAXK16CI.3TE75O760JRSL@bootlin.com>
+ <967fcb66-6a64-4e97-8293-a38b0ef1bc01@lunn.ch>
+In-Reply-To: <967fcb66-6a64-4e97-8293-a38b0ef1bc01@lunn.ch>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+ MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ActionId=782d21aa-4929-4c1e-9040-a62f9cf00242;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=0;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=true;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
+ Internal Distribution
+ Only;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2025-03-26T04:40:21Z;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Tag=10,
+ 3, 0, 1;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ2PR12MB8739:EE_|IA0PR12MB7530:EE_
+x-ms-office365-filtering-correlation-id: e7b8b480-76ef-4a58-6db8-08dd6c235170
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|366016|7416014|1800799024|38070700018;
+x-microsoft-antispam-message-info:
+ =?iso-8859-1?Q?6RHcrkqr/t64JxoYcePf+8W83HJDmPpusRSyuq6Zu21y8RB9fx2MmKts6G?=
+ =?iso-8859-1?Q?nBH8LtjuAF69iLgVc6IF1u4xHkWafYCLfvXm8g+hi+LnQQcKWEjHypJaw3?=
+ =?iso-8859-1?Q?1mhn7A03jGlsCtXgr67PvgPxBhmsP1LJDBnICCRRC7DQMOg9Th/1qye6lM?=
+ =?iso-8859-1?Q?ontIMuhfheBjaXfCrZhpAicI4OCcBuqpyFzIbrd1I0B1yyYfXaI3+2u6Al?=
+ =?iso-8859-1?Q?pJYeyYrhLMmWmfS/WK+n9jKw4QKRvasSw0iMxFrFVOwXzpssl8rAxN78/L?=
+ =?iso-8859-1?Q?lG2jiFtNVjAc+7wJL0YNAwkaI4jKhiswuNQZf8Ckya6ZTNajtqaAVJkPgY?=
+ =?iso-8859-1?Q?pC3Od9RWipZNMH6cEBv4LE+xh93Lkn1IE+p5aRkxa20gQ1yvsxOvD/1acg?=
+ =?iso-8859-1?Q?21hnMRC0I+X27UIQua1/bqi2Q3d+VgGvosKpqOr6FVNyLa/ugJe4gX5SmI?=
+ =?iso-8859-1?Q?knEf7NgajzoclUENXMWtnop9yH7gsk6mq+CRed4tb5WwUwcNZKN7x5Kx9j?=
+ =?iso-8859-1?Q?SE+RpQNrwvtb6ji85OcJ3xcFV7jrtPdM2aHVi49mh/sVmSfYRHysuEDnku?=
+ =?iso-8859-1?Q?I8iPIxSDGkLrb/WQxoTabP4TdnRFX4fmoSdPv/cXKdgBQIpowoSBEjW7E/?=
+ =?iso-8859-1?Q?u03l0qMT5BmVSMTTsj8tyc3eKtxmU15hx5ghy34efnaMYoHoocwTY3seUR?=
+ =?iso-8859-1?Q?S/IcEuYxE6I5ZpVhn69jJa/Y1zoDgUwAqY3KDmNXaS1KUyxCXJHnQHzpX0?=
+ =?iso-8859-1?Q?CECykHIaJJjFHn3+hB0IO6zshCsNgJ5e5E7xphcIaDkDxCwoHalVgcuema?=
+ =?iso-8859-1?Q?SwmRSFV2SRy3iSzbfIMOLqjqRuUXpVOLP/t69O/2y4UxtQHlh6LU1Miv9L?=
+ =?iso-8859-1?Q?fpLgpRaxerLxXdIX4Q9KMgSdvns9saTd5vhR7deQLXKhrQEVeUs1DCFwDM?=
+ =?iso-8859-1?Q?I3rQq/1clsNoXJPZ0os08G7X30UyRBoCFQI4btnYmMULTU6Ncra54udVMu?=
+ =?iso-8859-1?Q?xRjWNu4uHv3ud12ZBXt0mi8Zj9F6VojfFInUWK9jkXBcUntk6m7wnR1Vbx?=
+ =?iso-8859-1?Q?qeI5BE4dDlgOQ0h8Is/BwVebFYqXH5MXbDAqrt9bsWF9gvpE/l0kEvFl2k?=
+ =?iso-8859-1?Q?ze8dvUd33Cr36TgA5J3c99rp3jf3C9Mdx60eoh/2MAVyy6QJlA2PNIIkMU?=
+ =?iso-8859-1?Q?bATZTwOfHGX67Or18IlMMqqS6DrK9jb0NsTvabmvjr2ANquIr9copBrtRw?=
+ =?iso-8859-1?Q?qBbJ5WnEx96P3unGoOKm4or5QGiU+iTJZBOn0ldGSpg99oQZhBih9IePvo?=
+ =?iso-8859-1?Q?ORsQZgNcTyMiPQZ84gj1tqSn9Xmeuz62qJcZamsympsYFEpipaPN24vRAs?=
+ =?iso-8859-1?Q?IQ4TygD1qstxZikZHpCPizDikPixwYNqtqe1J/W8hT8ZjDSnD2djazPQC8?=
+ =?iso-8859-1?Q?JBwwBa2tAS2FtTcyRUsIiGBPP1gI9vnG7Y7Ke1gYbBR2E9LpFDVGAppZBv?=
+ =?iso-8859-1?Q?HtrhWJudicAp0jcQ0W3fAJ?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB8739.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(7416014)(1800799024)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-1?Q?Czq2SMFaD2F1M+Pr6Z5e3UBRApGA0NTtaiNNXn2zv1B5+8B6bBkIiCd9oo?=
+ =?iso-8859-1?Q?YagqdpuyKnIzLdq3QZMN4v679ZRlclga9gBbBETDAS3eXIDqzz8t4c06iO?=
+ =?iso-8859-1?Q?3VfzXEU5IGd2/VhORBdCQaHu1qz1tl7HFCsCTPSvhZEPfYcWKdF/3n/poa?=
+ =?iso-8859-1?Q?5VvdYEMJz2kRPA/RJ15POCSc1Du0x55SS3rlLR7Y6RJ+vGKO5WFHO0VbJg?=
+ =?iso-8859-1?Q?dC0r5zDDXvitjLRE2rxcBe8Wo/nUH+MSohr04oTE30UZLMZzLtorYt8P9v?=
+ =?iso-8859-1?Q?E9sXWfPhcoTXYhZjzmPRpXwP6hu9ORSU67t3tDSLr4uI7vVEb5R2q8TCIO?=
+ =?iso-8859-1?Q?sea04zn7pVPfXGzspZFiKha9WLQl3Ft/tXorl1ox5Qr8KD8+/3m01Ipaxt?=
+ =?iso-8859-1?Q?TXd+vMzSP2+IsvxdmoIGnNJC0ExmwDc0ITj6TSXQn6PYlX3u4tQSXyGTvn?=
+ =?iso-8859-1?Q?gb/09QHmVMjW+CCjntAGktimAzuR5xd9fol7nirOo38iJPzG+WFENgQFDN?=
+ =?iso-8859-1?Q?Mr9sIHRXAbTSQv4AlQjZLVmqG2xE3zb+PRGZk6ItakU1YvXTNfBY0eHC7S?=
+ =?iso-8859-1?Q?4CshJdjuulpNy/gAysvqKc+76kXieKlmb/9vWjDttMXnrFP5DVL0w9SgX/?=
+ =?iso-8859-1?Q?9OjRmVhZAvdEh9m7VPCEeOlJzLZdguxJFpzXK41mkYvmn8Zn3jaoh17P4H?=
+ =?iso-8859-1?Q?ODCTSIUqcJYGxGg8wMjuresflCMPfBs1Dmw3DUU7i4nLaApcplshKbOJ+6?=
+ =?iso-8859-1?Q?Ebox8y1qOKv0Cp7G3Gh2hNdcxI4XKVOWFjMFfjvUbHeVgbgOuI4Vx0zlc6?=
+ =?iso-8859-1?Q?Yg7/IzmivlcFiFKdrSR5mOklQb0arJxo4Ic1reYCJ9xFIrbd7Yf5Dk4i94?=
+ =?iso-8859-1?Q?5hbV7nziplLGLOBTfvAdNa0byjO4fzOfPnTngXg6PKmWHNgVjpiH1bgGNb?=
+ =?iso-8859-1?Q?oRBsAE2+Ym1IPWvHnMMSqTMQFEPPgW847QaypuOWPm6xLMQFjMEWiy+tkd?=
+ =?iso-8859-1?Q?WRzKH0es48r4laeZIiL0ilIu7mQ5nCHZxojHuATzI05Xqlg2IEnMtv4QAa?=
+ =?iso-8859-1?Q?P6bYX2Rc6AHufye+3mwk+8SA7xITeXXR/mD8JC+ajwxOjEmDzR4fRoTV2Q?=
+ =?iso-8859-1?Q?nfT0V/dziYVtCWDepTGVVftyWtzEYMRM7WawjbW9mlfdvcFJkuMFiCyzOV?=
+ =?iso-8859-1?Q?0ApNXtV1yb8CIIISDt1Qse7ApHNyZ+ma+Bovof995zliReUeQD0nzVEx5a?=
+ =?iso-8859-1?Q?WkXE6QLSXMjV6e3AU4GNTC6logZH11r70n2LYKvXY6Wz2YRfgMMcQj8kKj?=
+ =?iso-8859-1?Q?M488ZnzYllPh1ZCRPs9+MRD6pqr1SINuSPtjBKcenYN/JWRdXcMTCmLtXI?=
+ =?iso-8859-1?Q?V7G9Bd5CpT1fp5oYECEAXI5qlgHsI4btytFEPTS/oATpVM0fLRch/um3qO?=
+ =?iso-8859-1?Q?Wr6f25Wxhce0FS1XCkCwQKZ4U5Ez9MomlIcwMsVTtr4e7+gLAZnOlswI3O?=
+ =?iso-8859-1?Q?XDwGu7fdrF+1e1niOunKlF+SAYUzdbNPuqB44HVSol8kfwwwk18nJHx8Ip?=
+ =?iso-8859-1?Q?xur8YC4nJwPis/XXaBPRxggeyjZyhLUOoYbL1tBRKftVYYe/KCEmPvUjTs?=
+ =?iso-8859-1?Q?XtAtxHFu3BJOE=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB05.amd.com: sai.krishna.musham@amd.com does not
- designate permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CDF:EE_|LV8PR12MB9229:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0677a83d-8681-4870-3553-08dd6c1cd3a6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|82310400026|1800799024|36860700013;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?1aIxc9azgWTTCC/H5AZesxyxHjuGpjHLOFHoSbhmc0QJwdaJSWTE8d5RQgV5?=
- =?us-ascii?Q?HuXvoHy5Tq0Jdda0CCJq2D3z/BF8ckW4BUe1IkUTEM0UFZ8lq/BSGV/6U7/Q?=
- =?us-ascii?Q?+YIN3sDoTtuK5/myOrQNoOJbhGR4sQL5YtNJBlH0ElqpbWXItrpHWPTiP462?=
- =?us-ascii?Q?s676eviKjEtS13vqEDVIu48S9eD+VLwlks5WnRCnvu3E+G57v4lWrrCCTnlq?=
- =?us-ascii?Q?2n2G/EXeNZG5o59r40W8FTUnx79/1vMX7C/xVy3ohHuLqY230TeODgvR1yZD?=
- =?us-ascii?Q?iSx5g7/j3OHc5VwgwUCDV33JpSuYfiERi83q7ZiSb8X11gMjgANe50OFcO8U?=
- =?us-ascii?Q?TZGtducWJcxg1Llj/HFoZhafrKzjwZHYrcQdykvocL06kbHoyH2reWBCB7ZG?=
- =?us-ascii?Q?gucuM+4NLehQHY7lY4wdTopz+hZjEacXEbuHRJxVvUruInM+GWjJ/vvbf4Ia?=
- =?us-ascii?Q?d9wcCGwLNEciTYqn5Efp0TTQuxGPYIaeXymiwpLnA9CYjCJAgZJue3vfD+gw?=
- =?us-ascii?Q?z2WveCul0mRhBEwnH1XgtD3f6Q34hfW+caW+WycpC9t+aeC0sYEsi3nKKw26?=
- =?us-ascii?Q?eWoCOvzIbuIh1M/YXDdU9Gv++Ogxj70ZTDV6N73XRtM1nAtguj75tNK5M6UB?=
- =?us-ascii?Q?7yYD4M9cHl7RFRLEkP/lQ3Pm/bphH5GAwk3qAGRvBVc6v/NtoXVffN56MSa3?=
- =?us-ascii?Q?ISDzYGr19qgD0B/D1SbBXl18L8FSdAvQpKKoOQaVEp9Nb4NJZcEgD3X+zDxh?=
- =?us-ascii?Q?mlnUFdW4JWVrKhcsQRIkMVwX3yHC5NxfnmqagK2uEltE9GvuN1l8ode2v4Sn?=
- =?us-ascii?Q?MuAZNcdkIfcKwpasKrYmZinmCbuaKUiieYa50yp7e00YNLYoObzguMkP7i+F?=
- =?us-ascii?Q?ANPSM6s4s7YxJwfUXQiNwYvu7A8iIqIbeYxX9EaVq2zVDq1v5vpvxDURy+nc?=
- =?us-ascii?Q?wts9WYHBtPpOWooYfgUZZYK97UsJkQJuKBLdHQFpcoP3jadbswXcjr6tDf6+?=
- =?us-ascii?Q?kPrKcV7+1eJg7owYZFrltjb+q9qIiPg5LKZnujhelWN+m8vjM8E+avnBRbhs?=
- =?us-ascii?Q?5w9P79idbcBrAB9RkVN9WJiYqUvKszOgV4qAp+JYld57DonzX1Q9p5gkQVUH?=
- =?us-ascii?Q?l4ZJU9G5qxcCmcdaLFw2oJLUWSnJZP37cY94N13CcHE6b4IvWS02jg8RECuu?=
- =?us-ascii?Q?X042Yj1Zc4RDBvWLOV977Qpa3PBoV54ewPs9mH7ZSDk/Drw3/cmJl7cqHa5v?=
- =?us-ascii?Q?2volnj98/hK5B13Z6ccT9MSZ1OzbcwUGJtJB9um3XqagEP5j3yxakOvZNdGb?=
- =?us-ascii?Q?6OmAyrXd07lCw9pCxXd27DhzIn+abzIM8M93kyt69xBlX+nZUseqvsQv11uG?=
- =?us-ascii?Q?NQuc0FGS4002sftiUpYsEy07bl++D4MboYLkRtkM0X2K1NtdT/LZyeA7aFyv?=
- =?us-ascii?Q?WP8Z2DwdDVPoR8lggVkUYpDKa52iuT1q7/nTXuuL+j/HDxpaT0EH0H0K3c9Z?=
- =?us-ascii?Q?IJ6Za/EbySyUJ0I=3D?=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(7416014)(82310400026)(1800799024)(36860700013);DIR:OUT;SFP:1101;
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2025 04:15:22.0997
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB8739.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e7b8b480-76ef-4a58-6db8-08dd6c235170
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Mar 2025 05:01:50.2413
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0677a83d-8681-4870-3553-08dd6c1cd3a6
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SJ1PEPF00001CDF.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9229
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: JBRPMncZQ6oziIMy/QdcHsge/R9/NpctfdVhAM3UDOAw6xdgdoUKbc+dmySLcrlK
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7530
 
-Add PERST# signal handling via I2C GPIO expander for AMD Versal2
-MDB PCIe Root Port.
+[AMD Official Use Only - AMD Internal Distribution Only]
 
-Signed-off-by: Sai Krishna Musham <sai.krishna.musham@amd.com>
----
- drivers/pci/controller/dwc/pcie-amd-mdb.c | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+Hi Theo,
 
-diff --git a/drivers/pci/controller/dwc/pcie-amd-mdb.c b/drivers/pci/controller/dwc/pcie-amd-mdb.c
-index 4eb2a4e8189d..4eea53e9e197 100644
---- a/drivers/pci/controller/dwc/pcie-amd-mdb.c
-+++ b/drivers/pci/controller/dwc/pcie-amd-mdb.c
-@@ -18,6 +18,7 @@
- #include <linux/resource.h>
- #include <linux/types.h>
- 
-+#include "../../pci.h"
- #include "pcie-designware.h"
- 
- #define AMD_MDB_TLP_IR_STATUS_MISC		0x4C0
-@@ -408,6 +409,7 @@ static int amd_mdb_add_pcie_port(struct amd_mdb_pcie *pcie,
- 	struct dw_pcie *pci = &pcie->pci;
- 	struct dw_pcie_rp *pp = &pci->pp;
- 	struct device *dev = &pdev->dev;
-+	struct gpio_desc *reset_gpio;
- 	int err;
- 
- 	pcie->slcr = devm_platform_ioremap_resource_byname(pdev, "slcr");
-@@ -426,6 +428,24 @@ static int amd_mdb_add_pcie_port(struct amd_mdb_pcie *pcie,
- 
- 	pp->ops = &amd_mdb_pcie_host_ops;
- 
-+	/* Request the GPIO for PCIe reset signal and assert */
-+	reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(reset_gpio)) {
-+		if (PTR_ERR(reset_gpio) == -EPROBE_DEFER)
-+			return -EPROBE_DEFER;
-+		dev_err(dev, "Failed to request reset GPIO\n");
-+		return PTR_ERR(reset_gpio);
-+	}
-+
-+	if (reset_gpio) {
-+		/* Controller specific delay */
-+		udelay(50);
-+
-+		/* Deassert the reset signal */
-+		gpiod_set_value_cansleep(reset_gpio, 0);
-+		mdelay(PCIE_T_RRS_READY_MS);
-+	}
-+
- 	err = dw_pcie_host_init(pp);
- 	if (err) {
- 		dev_err(dev, "Failed to initialize host, err=%d\n", err);
--- 
-2.31.1
+> -----Original Message-----
+> From: Andrew Lunn <andrew@lunn.ch>
+> Sent: Tuesday, March 25, 2025 12:06 AM
+> To: Th=E9o Lebrun <theo.lebrun@bootlin.com>
+> Cc: Andrew Lunn <andrew+netdev@lunn.ch>; David S. Miller
+> <davem@davemloft.net>; Eric Dumazet <edumazet@google.com>; Jakub Kicinski
+> <kuba@kernel.org>; Paolo Abeni <pabeni@redhat.com>; Rob Herring
+> <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
+> <conor+dt@kernel.org>; Nicolas Ferre <nicolas.ferre@microchip.com>; Claud=
+iu
+> Beznea <claudiu.beznea@tuxon.dev>; Paul Walmsley
+> <paul.walmsley@sifive.com>; Palmer Dabbelt <palmer@dabbelt.com>; Albert O=
+u
+> <aou@eecs.berkeley.edu>; Alexandre Ghiti <alex@ghiti.fr>; Samuel Holland
+> <samuel.holland@sifive.com>; Richard Cochran <richardcochran@gmail.com>;
+> Russell King <linux@armlinux.org.uk>; Thomas Bogendoerfer
+> <tsbogend@alpha.franken.de>; Vladimir Kondratiev
+> <vladimir.kondratiev@mobileye.com>; Gregory CLEMENT
+> <gregory.clement@bootlin.com>; netdev@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-
+> riscv@lists.infradead.org; linux-mips@vger.kernel.org; Thomas Petazzoni
+> <thomas.petazzoni@bootlin.com>; Tawfik Bayouk <tawfik.bayouk@mobileye.com=
+>
+> Subject: Re: [PATCH net-next 07/13] net: macb: move HW IP alignment value=
+ to
+> macb_config
+>
+> On Mon, Mar 24, 2025 at 06:49:05PM +0100, Th=E9o Lebrun wrote:
+> > Hello Andrew,
+> >
+> > On Fri Mar 21, 2025 at 10:06 PM CET, Andrew Lunn wrote:
+> > > On Fri, Mar 21, 2025 at 08:09:38PM +0100, Th=E9o Lebrun wrote:
+> > >> The controller does IP alignment (two bytes).
+> > >
+> > > I'm a bit confused here. Is this hard coded, baked into the silicon?
+> > > It will always do IP alignment? It cannot be turned off?
+> >
+> > Yes, the alignment is baked inside the silicon.
+> > I looked but haven't seen any register to configure the alignment.
+> >
+> > Sorry the commit message isn't clear, it needs improvements.
+> >
+> > >>  skb_reserve(skb, NET_IP_ALIGN);
+> > >
+> > > Why not just replace this with
+> > >
+> > >         skb_reserve(skb, 2);
+> >
+> > On arm64, NET_IP_ALIGN=3D0. I don't have HW to test, but the current
+> > code is telling us that the silicon doesn't do alignment on those:
+>
+> This is part of the confusion. You say the hardware does alignment, and t=
+hen say it
+> does not....
+>
+> >    skb =3D netdev_alloc_skb(...);
+> >    paddr =3D dma_map_single(..., skb->data, ...);
+> >    macb_set_addr(..., paddr);
+> >
+> >    // arm   =3D> NET_IP_ALIGN=3D2 =3D> silicon does alignment
+> >    // arm64 =3D> NET_IP_ALIGN=3D0 =3D> silicon doesn't do alignment
+> >    skb_reserve(skb, NET_IP_ALIGN);
+> >
+> > The platform we introduce is the first one where the silicon alignment
+> > (0 bytes) is different from the NET_IP_ALIGN value (MIPS, 2 bytes).
+>
+> This is starting to make it clearer. So the first statement that the cont=
+roller does IP
+> alignment (two bytes) is not the full story. I would start there, explain=
+ the full story,
+> otherwise readers get the wrong idea.
+>
+> > >>     Compatible             |  DTS folders              |  hw_ip_alig=
+n
+> > >>    ------------------------|---------------------------|------------=
+----
+> > >>    cdns,at91sam9260-macb   | arch/arm/                 | 2
+> > >>    cdns,macb               | arch/{arm,riscv}/         | NET_IP_ALIG=
+N
+> > >>    cdns,np4-macb           | NULL                      | NET_IP_ALIG=
+N
+> > >>    cdns,pc302-gem          | NULL                      | NET_IP_ALIG=
+N
+> > >>    cdns,gem                | arch/{arm,arm64}/         | NET_IP_ALIG=
+N
+> > >>    cdns,sam9x60-macb       | arch/arm/                 | 2
+> > >>    atmel,sama5d2-gem       | arch/arm/                 | 2
+> > >>    atmel,sama5d29-gem      | arch/arm/                 | 2
+> > >>    atmel,sama5d3-gem       | arch/arm/                 | 2
+> > >>    atmel,sama5d3-macb      | arch/arm/                 | 2
+> > >>    atmel,sama5d4-gem       | arch/arm/                 | 2
+> > >>    cdns,at91rm9200-emac    | arch/arm/                 | 2
+> > >>    cdns,emac               | arch/arm/                 | 2
+> > >>    cdns,zynqmp-gem         | *same as xlnx,zynqmp-gem* | 0
+> > >>    cdns,zynq-gem           | *same as xlnx,zynq-gem*   | 2
+> > >>    sifive,fu540-c000-gem   | arch/riscv/               | 2
+> > >>    microchip,mpfs-macb     | arch/riscv/               | 2
+> > >>    microchip,sama7g5-gem   | arch/arm/                 | 2
+> > >>    microchip,sama7g5-emac  | arch/arm/                 | 2
+> > >>    xlnx,zynqmp-gem         | arch/arm64/               | 0
+> > >>    xlnx,zynq-gem           | arch/arm/                 | 2
+> > >>    xlnx,versal-gem         | NULL                      | NET_IP_ALIG=
+N
+
+Thanks for the patch. xlnx,versal-gem is arm64 and NET_IP_ALIGN is 0.
+
+AFAIK, IP alignment is controlled by the register field " receive buffer of=
+fset "
+in the NW config register. The only exception is when " gem_pbuf_rsc " i.e.
+receive coalescing is enabled in the RTL in the IP. In that case, the Caden=
+c
+specification states that these bits are ignored.
+So to summarize, if RSC is not enabled (see bit 26 of designcfg_debug6),
+then the current implementation works for all architectures i.e. these two
+statements are in sync:
+config |=3D MACB_BF(RBOF, NET_IP_ALIGN);  /* Make eth data aligned */
+skb_reserve(skb, NET_IP_ALIGN);
+
+Hope this helps simplify the patch (and also fill up the table that Andrew =
+suggested)
+
+Regards,
+Harini
+
+>
+> I'm not sure this table is useful. What might be more interesting is
+>
+>      Compatible             |  architecture |  hw_ip_align | value of NET=
+_IP_ALIGN
+>
+> We can then see if there are cases when the 3rd and 4th column differ.
+>
+>       Andrew
 
 
