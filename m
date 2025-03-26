@@ -1,263 +1,125 @@
-Return-Path: <devicetree+bounces-160851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75C9DA715A7
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 12:25:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98DD4A715C5
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 12:31:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F20D416B0F3
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 11:25:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 64EE1188E46E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 11:29:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C4031DB12E;
-	Wed, 26 Mar 2025 11:25:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2B9F1DCB09;
+	Wed, 26 Mar 2025 11:28:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="owjI7ujj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dO+wudTy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 134D21ADC86
-	for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 11:24:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86BE11DC9AC;
+	Wed, 26 Mar 2025 11:28:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742988302; cv=none; b=at+vgcO2sMuiHRrywpTV1PP7MNxwyvI5PzO5ivwIN4R7E4wDJjG/DAlAWDc4jK1gIG7PHDsyo7SQN14Rbpd06ZbmSqKK6h73U4UQreqDvY4vZjzmwbcF+XMXB7NXPksSuRUU6n1UIbaw6bgoI8qs3ceQNvOE1Xzf6Q4WbHbtC9Q=
+	t=1742988539; cv=none; b=HwkRay/yf2ybTAX6w2Ie/7TqFbm4QATWzTar+NT00cOXqjnIZ2cRV08empkau/VGRq4qBAhpDm7/18I8qE4fHl6tF4MRYojB1cB7PTA3re3qQogI/LHwxOdUjz90wh32ilUpMiPZYB1Iv2ZdhE18X8s2SJFP0/f0Exx6zoRGi2k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742988302; c=relaxed/simple;
-	bh=PtOldyJkQTuOrIlrZ0MS2qSdzcnjeTVIRPUO/G6iQWg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OLIZRYQHZTBevgDUWITlfX5duDJZmB+4tcBARdvkNLxd05TD4ZouuBrQEOQL2Az4UF8j0cAcBx/K94SJDhBLWus5LURi8tHfBIDgicgPKqrwSYNcg03IKMa3seHTrHjn4c6vZB4hC46J+Q4xUsNO1fzJ6gcf5LF3AiheY5/DAoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=owjI7ujj; arc=none smtp.client-ip=209.85.128.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6fd80f30ba5so43263327b3.3
-        for <devicetree@vger.kernel.org>; Wed, 26 Mar 2025 04:24:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1742988299; x=1743593099; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=CAKfg0qsqFTp3rC4gKRjScpyZGRWGz93JbWST6kAsnA=;
-        b=owjI7ujj7JWmWS6SVVsCM7txATPiNOvF3yprKYwoxiSW6Rp7yL5r5cSaQjrmWrz2tF
-         tzcgp0wApnTXPa/lCxK3HLlCgRuZVWUozrxLXku69AbUwLU3mx7ydZFpjlP76+5zygxF
-         C7ofQyaO+ieEFzkr3Jv88po1SaZFM8pCTxtm/XkwL6MC6BTFPV9DMdT5oLDz3K5AM0sp
-         2ea9xPu7bMqnEgVCn/Nja7hvwpje+WjEI0av+drjFY55e+5Awxn+dAyqIqqL3edeKdcl
-         SF/lXyJ/znTHi4EV5AUFMPQip/mtkFGW0MLV3ljD/jp5YwloM5dk2iZgVIFsY0c5Wm+W
-         D3iQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742988299; x=1743593099;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CAKfg0qsqFTp3rC4gKRjScpyZGRWGz93JbWST6kAsnA=;
-        b=G9Nny4pKXjSV/s/vtNdskLc8GQBkuymvZxOS81bBX9EclYmKI4Z5UjuuMxumbUVmJY
-         fAxFvIyl/RCohodW1UPR/+IesUIb9lOw92nk5Hm5M7MzE27N41MpvxsO1+/XW87EPcrB
-         oT97tjRoCEQhjkZUe3vl0Q534WZeTjHysMjWNP/ruC5o1KBHaR6uCv6lIrcdB9zQCXDb
-         rH88lJN6gghE10c8o9pK4arMqeZN9i6WHH2rDGBP9IhRfNPesQ9J1u5iq7NWYaQ3qX49
-         iL3cuoW6a8WLWkhFwQUF6quK3fNJ/ovLC9/3mOQ+XMSj8nt0c/QJTIZe3XxFtJiPTbQC
-         YcHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVod4hego+L6e9RH4trj0r9VY/4Qm71OFkj7ab3mc87lw5fNxfSPAqzqdxumhY/SWcVcdZE8uNXw1mB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+lmV20yYvk/6bdUJ7oAbStapmnDAmgSp3bvOvDRCHXBXHd4+2
-	hB9KSeJpNt32boma4a/QemVpog0jCr74tY71qmqGG70DCUmTG+6h+XflMsYkxL+RpcEE6MW+Ays
-	G9PC6MEj+1CM8R8EOptUr1moisGZODuRhVjWs1g==
-X-Gm-Gg: ASbGnctiILKHsM7wjDhZt4xYtdevm0Zfi4oeqtgOc/3yLsiW5ZD2B9Wyn/ujMkh750z
-	+nXrfKJtCsseayHK7EjB6UrjYI9BZHWD0PoJ+dUZ0U/8hTQOo0fc5hSeoCgNvv1/Dl/YyiNnxZN
-	LAalGCKUmuOMFjjwmCsb8x/mm4Uq63Lji+PMbo4vyGigWDx3PBx3fxQIOLUOc=
-X-Google-Smtp-Source: AGHT+IG0bRqZ7yucLkko4jSBCBt6Lj/LtcXgRGGRXa8ZXxRF/rWOCdZbLtb/q8iP+odXXLa6ynfR6bWujWIchPutkxQ=
-X-Received: by 2002:a05:690c:f86:b0:6f9:7921:480e with SMTP id
- 00721157ae682-700babfd2d6mr231478087b3.5.1742988298731; Wed, 26 Mar 2025
- 04:24:58 -0700 (PDT)
+	s=arc-20240116; t=1742988539; c=relaxed/simple;
+	bh=4Sh1ikImfk7eyob7pJYLP87Gp+VBMFoDyKt80LgWr+w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=plw8L5OCv0Ar3yYMz0KWPNTZyjlhZmOJPAX2K1F/n51rb5Yei4QX/xbXN5u5B/Hqiq5i7sHIJCw8LQL8KzWZNK/GrLmr96LvvlebILrsD0SpFT+u0PY2IoC02NyjlbzheuoewPYEsislaaRG0QgtQo/YfaclX4Xd021E2Ac7JuM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dO+wudTy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82D4CC4CEEA;
+	Wed, 26 Mar 2025 11:28:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1742988538;
+	bh=4Sh1ikImfk7eyob7pJYLP87Gp+VBMFoDyKt80LgWr+w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dO+wudTy752jbZBiKbEzH/y7kZltbC12thCjkIvnZenkEwF5D2goiKObY33+DZByK
+	 62goXNL37ZMBjPsOFTzt1itoLJjbfI4q2kHo+gcavcD8Ed+ocOY+Elo0yUuq/RzkD4
+	 FOqbHWsKAMpikkVh2I3TcWSLtiluyof3uUc5RxuLdFK2gbkm+vCt964jw4Ou0EI2Iy
+	 SJHfXybHBPCt7535DKZ9pCxr1axSlbqbsF7nsodCCYZDBGsbw1rDAozoM+sEo3H3k5
+	 40tkPnOq6VoCDvDqRAzPP/4s0qs6uIS8Ba3o5wFBmsURz9VrW0qQnuUQ5iLdNYoEuu
+	 YHaiM9Fkt9Z/A==
+Date: Wed, 26 Mar 2025 07:28:52 -0400
+From: Mike Rapoport <rppt@kernel.org>
+To: Dave Young <dyoung@redhat.com>
+Cc: Baoquan He <bhe@redhat.com>, Changyuan Lyu <changyuanl@google.com>,
+	linux-kernel@vger.kernel.org, graf@amazon.com,
+	akpm@linux-foundation.org, luto@kernel.org,
+	anthony.yznaga@oracle.com, arnd@arndb.de, ashish.kalra@amd.com,
+	benh@kernel.crashing.org, bp@alien8.de, catalin.marinas@arm.com,
+	dave.hansen@linux.intel.com, dwmw2@infradead.org,
+	ebiederm@xmission.com, mingo@redhat.com, jgowans@amazon.com,
+	corbet@lwn.net, krzk@kernel.org, mark.rutland@arm.com,
+	pbonzini@redhat.com, pasha.tatashin@soleen.com, hpa@zytor.com,
+	peterz@infradead.org, ptyadav@amazon.de, robh+dt@kernel.org,
+	robh@kernel.org, saravanak@google.com,
+	skinsburskii@linux.microsoft.com, rostedt@goodmis.org,
+	tglx@linutronix.de, thomas.lendacky@amd.com,
+	usama.arif@bytedance.com, will@kernel.org,
+	devicetree@vger.kernel.org, kexec@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+	linux-mm@kvack.org, x86@kernel.org
+Subject: Re: [PATCH v5 11/16] kexec: add config option for KHO
+Message-ID: <Z-Pk9Bnr0lDVopKj@kernel.org>
+References: <20250320015551.2157511-1-changyuanl@google.com>
+ <20250320015551.2157511-12-changyuanl@google.com>
+ <CALu+AoS01QJ-H5Vpr378rbx==iRQLG0HajtMCUzDXRO75biCag@mail.gmail.com>
+ <Z+JT7kx+sfPqfWFA@MiWiFi-R3L-srv>
+ <CALu+AoQj+mHECTvbuK8CpUTmOYgx6n2oMFm5kQXtSigL+5Ks2w@mail.gmail.com>
+ <CALu+AoRdfjNcjweq_ipxCC6UGBzM-a5ma417RBr-C3EQ=Em9OQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250303143629.400583-1-m.wilczynski@samsung.com>
- <CGME20250303143637eucas1p1a3abdea520ab88688de1263a5f07bba0@eucas1p1.samsung.com>
- <20250303143629.400583-5-m.wilczynski@samsung.com> <de50dd55e1285726e8d5ebae73877486.sboyd@kernel.org>
- <4c035603-4c11-4e71-8ef3-b857a81bf5ef@samsung.com> <aacd03a071dce7b340d7170eae59d662d58f23b1.camel@pengutronix.de>
- <e90a0c77-61a0-49db-86ba-bac253f8ec53@samsung.com> <38d9650fc11a674c8b689d6bab937acf@kernel.org>
-In-Reply-To: <38d9650fc11a674c8b689d6bab937acf@kernel.org>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 26 Mar 2025 12:24:22 +0100
-X-Gm-Features: AQ5f1Jr_9rY3NEgVW4bBC1NZ3qSkcNWvCh-D1oUbC5XKRCPzJhBOl8lQH97_HVA
-Message-ID: <CAPDyKFqsJaTrF0tBSY-TjpqdVt5=6aPQHYfnDebtphfRZSU=-Q@mail.gmail.com>
-Subject: Re: [PATCH v1 4/4] clk: thead: Add GPU clock gate control with CLKGEN
- reset support
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Michal Wilczynski <m.wilczynski@samsung.com>, Philipp Zabel <p.zabel@pengutronix.de>, alex@ghiti.fr, 
-	aou@eecs.berkeley.edu, conor+dt@kernel.org, drew@pdp7.com, guoren@kernel.org, 
-	jszhang@kernel.org, krzk+dt@kernel.org, m.szyprowski@samsung.com, 
-	mturquette@baylibre.com, palmer@dabbelt.com, paul.walmsley@sifive.com, 
-	robh@kernel.org, wefu@redhat.com, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CALu+AoRdfjNcjweq_ipxCC6UGBzM-a5ma417RBr-C3EQ=Em9OQ@mail.gmail.com>
 
-On Tue, 25 Mar 2025 at 23:40, Stephen Boyd <sboyd@kernel.org> wrote:
->
-> Quoting Michal Wilczynski (2025-03-19 02:22:11)
+Hi Dave,
+
+On Wed, Mar 26, 2025 at 05:17:16PM +0800, Dave Young wrote:
+> On Tue, 25 Mar 2025 at 16:36, Dave Young <dyoung@redhat.com> wrote:
 > >
-> >
-> > On 3/13/25 10:25, Philipp Zabel wrote:
-> > > On Do, 2025-03-06 at 17:43 +0100, Michal Wilczynski wrote:
-> > >>
-> > >> On 3/6/25 00:47, Stephen Boyd wrote:
-> > >>> Quoting Michal Wilczynski (2025-03-03 06:36:29)
-> > >>>> The T-HEAD TH1520 has three GPU clocks: core, cfg, and mem. The mem
-> > >>>> clock gate is marked as "Reserved" in hardware, while core and cfg are
-> > >>>> configurable. In order for these clock gates to work properly, the
-> > >>>> CLKGEN reset must be managed in a specific sequence.
-> > >>>>
-> > >>>> Move the CLKGEN reset handling to the clock driver since it's
-> > >>>> fundamentally a clock-related workaround [1]. This ensures that clk_enabled
-> > >>>> GPU clocks stay physically enabled without external interference from
-> > >>>> the reset driver.  The reset is now deasserted only when both core and
-> > >>>> cfg clocks are enabled, and asserted when either of them is disabled.
-> > >>>>
-> > >>>> The mem clock is configured to use nop operations since it cannot be
-> > >>>> controlled.
-> > >>>>
-> > >>>> Link: https://lore.kernel.org/all/945fb7e913a9c3dcb40697328b7e9842b75fea5c.camel@pengutronix.de [1]
-> > >>>>
-> > >>>> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
-> > >>> [...]
-> > >>>> diff --git a/drivers/clk/thead/clk-th1520-ap.c b/drivers/clk/thead/clk-th1520-ap.c
-> > >>>> index ea96d007aecd..1dfcde867233 100644
-> > >>>> --- a/drivers/clk/thead/clk-th1520-ap.c
-> > >>>> +++ b/drivers/clk/thead/clk-th1520-ap.c
-> > >>>> @@ -862,17 +863,70 @@ static CCU_GATE(CLK_SRAM1, sram1_clk, "sram1", axi_aclk_pd, 0x20c, BIT(3), 0);
-> > >>> [...]
-> > >>>>
-> > >>>>  static CCU_GATE_CLK_OPS(CLK_GPU_MEM, gpu_mem_clk, "gpu-mem-clk",
-> > >>>>                         video_pll_clk_pd, 0x0, BIT(2), 0, clk_nop_ops);
-> > >>>> +static CCU_GATE_CLK_OPS(CLK_GPU_CORE, gpu_core_clk, "gpu-core-clk",
-> > >>>> +                       video_pll_clk_pd, 0x0, BIT(3), 0, ccu_gate_gpu_ops);
-> > >>>> +static CCU_GATE_CLK_OPS(CLK_GPU_CFG_ACLK, gpu_cfg_aclk, "gpu-cfg-aclk",
-> > >>>> +                       video_pll_clk_pd, 0x0, BIT(4), 0, ccu_gate_gpu_ops);
-> > >>>> +
-> > >>>> +static void ccu_gpu_clk_disable(struct clk_hw *hw)
-> > >>>> +{
-> > >>>> +       struct ccu_gate *cg = hw_to_ccu_gate(hw);
-> > >>>> +       unsigned long flags;
-> > >>>> +
-> > >>>> +       spin_lock_irqsave(&gpu_reset_lock, flags);
-> > >>>> +
-> > >>>> +       ccu_disable_helper(&cg->common, cg->enable);
-> > >>>> +
-> > >>>> +       if ((cg == &gpu_core_clk &&
-> > >>>> +            !clk_hw_is_enabled(&gpu_cfg_aclk.common.hw)) ||
-> > >>>> +           (cg == &gpu_cfg_aclk &&
-> > >>>> +            !clk_hw_is_enabled(&gpu_core_clk.common.hw)))
-> > >>>> +               reset_control_assert(gpu_reset);
-> > >>>
-> > >>> Why can't the clk consumer control the reset itself? Doing this here is
-> > >>> not ideal because we hold the clk lock when we try to grab the reset
-> > >>> lock. These are all spinlocks that should be small in lines of code
-> > >>> where the lock is held, but we're calling into an entire other framework
-> > >>> under a spinlock. If an (unrelated) reset driver tries to grab the clk
-> > >>> lock it will deadlock.
-> > >>
-> > >> So in our case the clk consumer is the drm/imagination driver. Here is
-> > >> the comment from the maintainer for my previous attempt to use a reset
-> > >> driver to abstract the GPU init sequence [1]:
-> > >>
-> > >> "Do you know what this resets? From our side, the GPU only has a single
-> > >> reset line (which I assume to be GPU_RESET)."
-> > >>
-> > >> "I don't love that this procedure appears in the platform reset driver.
-> > >> I appreciate it may not be clear from the SoC TRM, but this is the
-> > >> standard reset procedure for all IMG Rogue GPUs. The currently
-> > >> supported TI SoC handles this in silicon, when power up/down requests
-> > >> are sent so we never needed to encode it in the driver before.
-> > >>
-> > >> Strictly speaking, the 32 cycle delay is required between power and
-> > >> clocks being enabled and the reset line being deasserted. If nothing
-> > >> here touches power or clocks (which I don't think it should), the delay
-> > >> could potentially be lifted to the GPU driver."
-> > >>
-> > >> From the drm/imagination maintainers point of view their hardware has
-> > >> only one reset, the extra CLKGEN reset is SoC specific.
+> > > >
+> > > > Have you tested kdump?  In my mind there are two issues,  one is with
+> > > > CMA enabled, it could cause kdump crashkernel memory reservation
+> > > > failures more often due to the fragmented low memory.  Secondly,  in
 > > >
-> > > If I am understanding correctly, the CLKGEN reset doesn't reset
-> > > anything in the GPU itself, but holds the GPU clock generator block in
-> > > reset, effectively disabling the three GPU clocks as a workaround for
-> > > the always-ungated GPU_MEM clock.
+> > > kho scracth memorys are reserved much later than crashkernel, we may not
+> > > need to worry about it.
+> > > ====================
+> > > start_kernel()
+> > >   ......
+> > >   -->setup_arch(&command_line);
+> > >      -->arch_reserve_crashkernel();
+> > >   ......
+> > >   -->mm_core_init();
+> > >      -->kho_memory_init();
 > > >
-> > >> Also the reset driver maintainer didn't like my way of abstracting two
-> > >> resets ("GPU" and and SoC specific"CLKGEN") into one reset
-> > >
-> > > That is one part of it. The other is that (according to my
-> > > understanding as laid out above), the combined GPU+CLKGEN reset would
-> > > effectively disable all three GPU clocks for a while, after the GPU
-> > > driver has already requested them to be enabled.
+> > > > kdump kernel dump the crazy scratch memory in vmcore is not very
+> > > > meaningful.  Otherwise I suspect this is not tested under kdump.  If
+> > > > so please disable this option for kdump.
 > >
-> > Thank you for your comments Philipp, it seems like we're on the same
-> > page here. I was wondering whether there is anything I can do to move the
-> > patches forward.
+> > Ok,  it is fine if this is the case, thanks Baoquan for clearing this worry.
 > >
-> > Stephen, if the current patch is a no go from your perspective could you
-> > please advise whether there is a way to solve this in a clock that would
-> > be acceptable to you.
->
-> It looks like the SoC glue makes the interactions between the clk and
-> reset frameworks complicated because GPU clks don't work if a reset is
-> asserted. You're trying to find a place to coordinate the clk and reset.
-> Am I right?
->
-> I'd advise managing the clks and resets in a generic power domain that
-> is attached to the GPU device. In that power domain, coordinate the clk
-> and reset sequencing so that the reset is deasserted before the clks are
-> enabled (or whatever the actual requirement is). If the GPU driver
-> _must_ have a clk and reset pointer to use, implement one that either
-> does nothing or flag to the GPU driver that the power domain is managing
-> all this for it so it should just use runtime PM and system PM hooks to
-> turn on the clks and take the GPU out of reset.
->
-> From what I can tell, the GPU driver maintainer doesn't want to think
-> about the wrapper that likely got placed around the hardware block
-> shipped by IMG. This wrapper is the SoC glue that needs to go into a
-> generic power domain so that the different PM resources, reset, clk,
-> etc. can be coordinated based on the GPU device's power state. It's
-> either that, or go the dwc3 route and have SoC glue platform drivers
-> that manage this stuff and create a child device to represent the hard
-> macro shipped by the vendor like Synopsys/Imagination. Doing the parent
-> device design isn't as flexible as PM domains because you can only have
-> one parent device and the child device state can be ignored vs. many PM
-> domains attached in a graph to a device that are more directly
-> influenced by the device using runtime PM.
->
-> Maybe you'll be heartened to know this problem isn't unique and has
-> existed for decades :) I don't know what state the graphics driver is in
-> but they'll likely be interested in solving this problem in a way that
-> doesn't "pollute" their driver with SoC specific details. It's all a
-> question of where you put the code. The reset framework wants to focus
-> on resets, the clk framework wants to focus on clks, and the graphics
-> driver wants to focus on graphics. BTW, we went through a similar
-> discussion with regulators and clks years ago and ended up handling that
-> with OPPs and power domains.
+> > But the other concerns are still need to address, eg. KHO use cases
+> > are not good for kdump.
+> > There could be more to think about.
+> > eg. the issues talked in thread:
+> > https://lore.kernel.org/lkml/Z7dc9Cd8KX3b_brB@dwarf.suse.cz/T/
+> 
+> Rethink about this,  other than previous concerns.  Transferring the
+> old kernel state to kdump kernel makes no sense since the old state is
+> not stable as the kernel has crashed.
+ 
+KHO won't be active for kdump case. The KHO segments are only added to
+kexec_image and never to kexec_crash_image. 
 
-Right, power-domain providers are mostly implementing SoC specific code.
-
-In some cases, power-domain providers also handle per device SoC
-specific constraints/sequences, which seems what you are discussing
-here. For that, genpd has a couple of callbacks that could be
-interesting to have a look at, such as:
-
-genpd->attach|detach_dev() - for probe/remove
-genpd.dev_ops->start|stop() - for runtime/system PM
-
-That said, maybe just using the regular genpd->power_on|off() callback
-is sufficient here, depending on how you decide to model things.
-
->
-> I believe a PM domain is the right place for this kind of stuff, and I
-> actually presented on this topic at OSSEU[1], but I don't maintain that
-> code. Ulf does.
->
-> [1] https://osseu2024.sched.com/event/1ej38/the-case-for-an-soc-power-management-driver-stephen-boyd-google
-
-Kind regards
-Uffe
+-- 
+Sincerely yours,
+Mike.
 
