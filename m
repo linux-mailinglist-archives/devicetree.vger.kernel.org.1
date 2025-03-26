@@ -1,179 +1,179 @@
-Return-Path: <devicetree+bounces-160846-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-160847-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7942A714FC
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 11:37:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB50EA71531
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 12:00:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A8F5188A92A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 10:36:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D1402188C651
+	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 10:59:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1DBF1C6FF6;
-	Wed, 26 Mar 2025 10:35:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 753FD1D7E54;
+	Wed, 26 Mar 2025 10:59:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PZrKcg5f"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FUGEgc/7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01A921AD41F;
-	Wed, 26 Mar 2025 10:35:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6A971C8606;
+	Wed, 26 Mar 2025 10:59:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1742985359; cv=none; b=oAoD3YFL7RoQjhNAEH5KP03WtqvSf4ZxzMZZR2VHVm3SI4V/icH4kMdCtt5f2CZFWeXKLZF4AqrrQQrSeDC7VxHxJ8sXWm298Lz7ywybNar1ZNA9WmNZrf/Gk7sXuZmYzYewuENZBYSL56TUVPckwJe9D6KhHRmRBTZy5QoZfxc=
+	t=1742986763; cv=none; b=gz4SnmCQbnBpM5jxEgWpcJoCkr7RmVpqrXIYjfMeCxlHuPCl7v0P0df5pa3Y8AhPjv0pTJzW9+W6sEd7REu8HnFGKUMPScwVkD8PAbGmiYd4g5KFIYI8in/jePa2A8FPWwNUXd+8waeBo9Z/MiMlyUe19opuzIvTwcxEJokv+Do=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1742985359; c=relaxed/simple;
-	bh=r1PHUol5LLO2tzaycxfoWPPA5kKeTN/K4bVoytzpK4A=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CEpKgkAj/nb40VVmqYSKdt7qJlnjUd74ffRnwqF4SXGA2mUTjUYfqlwkROigMW5ZNDIPEpqTaV5Hx4wp9qao0/dkX3Bkrqx/1mCNuMZi2kl6Q+8YDMHCqV0ombePHyo3qvw/DudZdln6WgGQzu7gJtD2dk6QHMzvJSjywh8TEfo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PZrKcg5f; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-30bee1cb370so67999201fa.1;
-        Wed, 26 Mar 2025 03:35:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1742985356; x=1743590156; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=W5AiCDUgeTdwDyc9crOgWfabxPyQS/xAXOnubihQEcg=;
-        b=PZrKcg5f04M1e3Gk0XmU1ZW985+y49XDKKMnHWfvYwXGAvW2SEQ0l7FJbl1pC2l7Ge
-         faHMa7khQ1iSjTVCB3+1ShdsQiaCM89fDlZEKCYWFWfGHS5O1kAvwNv8Lax2Aw1gyKcn
-         MeJ/sIl4s6jxbZZde8h9mnpa6mI2k0f4+I1tTU2yjvefLJvGYihYA77sXQNyxzZArZES
-         wC0wUeKUUFErdnh7DZ+uoyYXJ25AyGLD6QAto/SX+P3tt46YhLznaeXgOskv7zOPxNg8
-         p9f5xZrJuuxYFKO7sNI/Utv8w05dP6osqoQsLJSU0SfOm7TDBA0lBfrDxHVbzvO4bnsc
-         nkbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742985356; x=1743590156;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=W5AiCDUgeTdwDyc9crOgWfabxPyQS/xAXOnubihQEcg=;
-        b=PFRRdhb17lhBC9SODdW3jsfdg6mpatrPCxn3fj62X/ufsyQzaAHKUPQkoZwl8DdeHC
-         uGLbafgdAU2kcxe7kfYhhl7/4RARshyR8RET7sdnV7BSN8H7939AZ+F33POVavHXGZye
-         bAk3ALMVp/uRkSEPfyRGeBNhojxwzcOpC9nFBEAeSfO9P8pHHL/zvNME+xrBCC9P1TC9
-         hedTl/p3f0WT7VrnX7oc+ZcJQKeeol41OJ7y4aBpTcQsSPUMgQUnyAd5AHjVVm/yn2Nv
-         wjbhoMjaCC1iHwaUQwAXNR3yUOY8eYK15HUhGKQ5Hotgsx2ybDPxsn6YP8zIysAcXhAT
-         jY/w==
-X-Forwarded-Encrypted: i=1; AJvYcCUDKkPZI4wq06RL8NnW6CkRmB7j5pXRYtUo4I4ui9w0W5MxBLM+Yn/haRNXMPJkDDkfspuVftlPgvkGbqHRRh1K@vger.kernel.org, AJvYcCV1n/mbHqpcpqQuS4E4nBNm4TK4s1CfVgCGv8QvYM3xQ25oM4qhoVIhGF9I7J1Fqj7XW62qWcr3N6Dt@vger.kernel.org, AJvYcCVQB6LhJKIt5uFh1ynU0gTNKbQwNNTQn2gk8c3Qw4q2/P3p/qYR1cIi2NKkENjziGszjjFEUIK8cxCnYfA=@vger.kernel.org, AJvYcCVuXaEuxHlTmfMOxfOU9SMbSScaxpH8sRAvv44DjdtjlprXcyHe2o/XumfYiFwKuvoJyswlsuSHXZueHjk7@vger.kernel.org, AJvYcCWI1kM7kj+GmyH33cjGcBkldtN+9bTHRby9Frie4ZvaBU9aPu68oAVwQZpVFF4pKhPtFw3rgBKk@vger.kernel.org, AJvYcCWiFtlbn4gZHLvS4cjm2lU/ICb1eXEZ3jXCFVJbuUcHpe3fZYHVaXoDr0Tog2h1joDyVJTJB7I/UaHqGs4S@vger.kernel.org, AJvYcCXeN5vo0c+OIAFkO2OZUJLBxetu3S9FwOaIfkdp9zzJ7cKQDk6pUJePJ8ksATehEzoNpHXgb9IUnNfA@vger.kernel.org, AJvYcCXv+laXmL+id4uFbBtv34gwaVKxpzLJKL+NCsXtmXukRtKrDhSKj9fcFGBT8FM3xev5ssxygkiVE4OrjrXD+rM=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzKSENhGyeesRN5s9p3RNL3IFyZmwgFDaSLXrPUhtuXNcmy23dC
-	iyAC7R7cVpFLky+GWxRTm7pFYeP3SoP6KywYhZq9xnAIScTxC8dyPSr7efEY07KO1A/7Ymfqpfu
-	BZv+pBrDyDN3LpbEipNMNF1XEG2k=
-X-Gm-Gg: ASbGncvKJddCYO/jDR+lYrt8sJxiPsaTvCDePC7r2jP+Cl4JGCNLRJ1SLcsltgdLkUL
-	XOclDRCKPMigDKCi2gmF0XfRoWhRQh7wGz8KVEhobYkapBMB5SxppUhYAyFPocwG1oSgwpsfikG
-	VjBka8DCzyScw6BPDx3Vov1k6dnMmGkvSIft9m8sXQ+Xzm0YvQnJvMutIBVmQ=
-X-Google-Smtp-Source: AGHT+IH0DKwACe1nymEzj0ftx+SgXxFXIMCVyyNtqlvCyo9K6/6zTdS4KoA/gl5ad9HnVZ30KIalN9jorXqZaQaGEEE=
-X-Received: by 2002:a2e:6a05:0:b0:308:ec25:9004 with SMTP id
- 38308e7fff4ca-30d7e2bb98dmr75572281fa.35.1742985355748; Wed, 26 Mar 2025
- 03:35:55 -0700 (PDT)
+	s=arc-20240116; t=1742986763; c=relaxed/simple;
+	bh=xM0pKJ8sRe+w6GWU9I1Dy+FTjnKA3yceusf+jKEC0+A=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
+	 References:In-Reply-To; b=K/QrADEqdLeFh7nr9vymLCy7o0HfSkXMQzgMHwQ7fp/PxHX8jGRlgu4sG/GIlT4ixMwZ1r3O/Bs66XHVZMuJeWMukO+mpZyE5e2582yxJBwPz4sw5z3Tm+biyfyDl1tCR0LQOHA5Fof3eeU3c4LqNlrTTL0sVfY9hzPviDQgxms=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=FUGEgc/7; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 080264435E;
+	Wed, 26 Mar 2025 10:59:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1742986758;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=0t5QSc/Inlh5P0gL04QSWLOfREn/t3CkeGZkKLYdjDE=;
+	b=FUGEgc/7iedXlqTTbqAcAA02XV8B6oh9Y7Bqm+fFLGpWd49hbrCIc0l/Bom4tRDfAdpfxN
+	C+mSXaVZjS8viJztlY0tp1Jmw0hvhW/1ceZPdb5wiGtYc1je6aAFI5TiHdO+P9FJKmRmfx
+	eWncdS7EimoRYsZHB++4IT3E0MlwDx4w9Fe5zz49duRxQWN0qvat+MtfFrTz2J8U2Xd7HU
+	Hc/jtwjqt9d5o94wNdn1lcwKBr/jAF9Kb1AcdXPCVatvLn8mKVBVsKR/p4LNlXi6/kl63Q
+	qxddGv2E69HVgUqlyM1jbWK1dNqK8asjSsiq1ina4MTDSp9PAqFA/y2O6mk2EA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20250325-ptr-as-ptr-v7-0-87ab452147b9@gmail.com>
- <20250325-ptr-as-ptr-v7-7-87ab452147b9@gmail.com> <D8POWLFKWABG.37BVXN2QCL8MP@proton.me>
- <CAJ-ks9mUYw4FEJQfmDrHHt0oMy256jhp7qZ-CHp6R5c_sOCD4w@mail.gmail.com>
- <D8PPIYIJCNX8.13VPQULEI0ALN@proton.me> <CAJ-ks9k6220j6CQSOF4TDrgY9qq4PfV9uaMXz1Qk4m=eeSr5Ag@mail.gmail.com>
- <D8Q4MSXXZ7OI.1NC226MO02VSN@proton.me>
-In-Reply-To: <D8Q4MSXXZ7OI.1NC226MO02VSN@proton.me>
-From: Tamir Duberstein <tamird@gmail.com>
-Date: Wed, 26 Mar 2025 06:35:19 -0400
-X-Gm-Features: AQ5f1JrL9k74M9QnPZ9eBW9sSNazpeGZMopS8Asu-Kcyr5Yu4M92EoF_Ba4pH7Y
-Message-ID: <CAJ-ks9nHKpQPuSBypXTSATYhbAFkQTJzUq8jN0nu4t=Kw+0xxg@mail.gmail.com>
-Subject: Re: [PATCH v7 7/7] rust: enable `clippy::ref_as_ptr` lint
-To: Benno Lossin <benno.lossin@proton.me>
-Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
-	Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, 
-	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
-	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
-	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
-	Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, Abdiel Janulgue <abdiel.janulgue@gmail.com>, 
-	Daniel Almeida <daniel.almeida@collabora.com>, Robin Murphy <robin.murphy@arm.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	FUJITA Tomonori <fujita.tomonori@gmail.com>, linux-kbuild@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
-	linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
-	linux-pci@vger.kernel.org, linux-block@vger.kernel.org, 
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	netdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 26 Mar 2025 11:59:13 +0100
+Message-Id: <D8Q58KMGV4R4.ELW8TLEK5W5V@bootlin.com>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH net-next 08/13] net: macb: introduce DMA descriptor
+ helpers (is 64bit? is PTP?)
+Cc: "Andrew Lunn" <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, "Eric Dumazet" <edumazet@google.com>, "Jakub
+ Kicinski" <kuba@kernel.org>, "Paolo Abeni" <pabeni@redhat.com>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Nicolas Ferre"
+ <nicolas.ferre@microchip.com>, "Claudiu Beznea" <claudiu.beznea@tuxon.dev>,
+ "Paul Walmsley" <paul.walmsley@sifive.com>, "Palmer Dabbelt"
+ <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>, "Alexandre
+ Ghiti" <alex@ghiti.fr>, "Samuel Holland" <samuel.holland@sifive.com>,
+ "Richard Cochran" <richardcochran@gmail.com>, "Russell King"
+ <linux@armlinux.org.uk>, "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>, "Gregory CLEMENT"
+ <gregory.clement@bootlin.com>, <netdev@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-riscv@lists.infradead.org>, <linux-mips@vger.kernel.org>, "Thomas
+ Petazzoni" <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>
+To: "Maxime Chevallier" <maxime.chevallier@bootlin.com>
+X-Mailer: aerc 0.20.1-0-g2ecb8770224a
+References: <20250321-macb-v1-0-537b7e37971d@bootlin.com>
+ <20250321-macb-v1-8-537b7e37971d@bootlin.com>
+ <20250324095522.2ab1c38b@fedora.home>
+In-Reply-To: <20250324095522.2ab1c38b@fedora.home>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdduieehfeeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkhffuvefvofhfjgesthhqredtredtjeenucfhrhhomhepvfhhrohoucfnvggsrhhunhcuoehthhgvohdrlhgvsghruhhnsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeluefgiefgtdegfeehjeetteevveejkefgiedtkeefteejgfdvkeffgeejhfduieenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepjeejrddufeehrdekuddrieehnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepjeejrddufeehrdekuddrieehpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehthhgvohdrlhgvsghruhhnsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvkedprhgtphhtthhopehmrgigihhmvgdrtghhvghvrghllhhivghrsegsohhothhlihhnrdgtohhmpdhrtghpthhtoheprghnughrvgifodhnvghtuggvvheslhhunhhnrdgthhdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnvghtpdhrtghpthhtohepvgguuhhmrgiivghtsehgohhoghhlvgdrtghomhdprhgtphhtthhopehkuhgsrgeskhgvrhhnv
+ ghlrdhorhhgpdhrtghpthhtohepphgrsggvnhhisehrvgguhhgrthdrtghomhdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhg
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On Wed, Mar 26, 2025 at 6:31=E2=80=AFAM Benno Lossin <benno.lossin@proton.m=
-e> wrote:
->
-> On Wed Mar 26, 2025 at 12:54 AM CET, Tamir Duberstein wrote:
-> > On Tue, Mar 25, 2025 at 6:40=E2=80=AFPM Benno Lossin <benno.lossin@prot=
-on.me> wrote:
-> >> On Tue Mar 25, 2025 at 11:33 PM CET, Tamir Duberstein wrote:
-> >> > On Tue, Mar 25, 2025 at 6:11=E2=80=AFPM Benno Lossin <benno.lossin@p=
-roton.me> wrote:
-> >> >> On Tue Mar 25, 2025 at 9:07 PM CET, Tamir Duberstein wrote:
-> >> >> > diff --git a/rust/kernel/str.rs b/rust/kernel/str.rs
-> >> >> > index 40034f77fc2f..6233af50bab7 100644
-> >> >> > --- a/rust/kernel/str.rs
-> >> >> > +++ b/rust/kernel/str.rs
-> >> >> > @@ -29,7 +29,7 @@ pub const fn is_empty(&self) -> bool {
-> >> >> >      #[inline]
-> >> >> >      pub const fn from_bytes(bytes: &[u8]) -> &Self {
-> >> >> >          // SAFETY: `BStr` is transparent to `[u8]`.
-> >> >> > -        unsafe { &*(bytes as *const [u8] as *const BStr) }
-> >> >> > +        unsafe { &*(core::mem::transmute::<*const [u8], *const S=
-elf>(bytes)) }
-> >> >>
-> >> >> Hmm I'm not sure about using `transmute` here. Yes the types are
-> >> >> transparent, but I don't think that we should use it here.
-> >> >
-> >> > What's your suggestion? I initially tried
-> >> >
-> >> > let bytes: *const [u8] =3D bytes;
-> >> > unsafe { &*bytes.cast() }
-> >> >
-> >> > but that doesn't compile because of the implicit Sized bound on poin=
-ter::cast.
-> >>
-> >> This is AFAIK one of the only places where we cannot get rid of the `a=
-s`
-> >> cast. So:
-> >>
-> >>     let bytes: *const [u8] =3D bytes;
-> >>     // CAST: `BStr` transparently wraps `[u8]`.
-> >>     let bytes =3D bytes as *const BStr;
-> >>     // SAFETY: `bytes` is derived from a reference.
-> >>     unsafe { &*bytes }
-> >>
-> >> IMO a `transmute` is worse than an `as` cast :)
-> >
-> > Hmm, looking at this again we can just transmute ref-to-ref and avoid
-> > pointers entirely. We're already doing that in
-> > `CStr::from_bytes_with_nul_unchecked`
-> >
-> > Why is transmute worse than an `as` cast?
->
-> It's right in the docs: "`transmute` should be the absolute last
-> resort." [1]. IIRC, Gary was a bit more lenient in its use, but I think
-> we should avoid it as much as possible such that people copying code or
-> taking inspiration also don't use it.
->
-> So for both cases I'd prefer an `as` cast.
->
-> [1]: https://doc.rust-lang.org/std/mem/fn.transmute.html
+Hello Maxime,
 
-I don't follow the logic. The trouble with `as` casts is that they are
-very lenient in what they allow, and to do these conversions with `as`
-casts requires ref -> pointer -> pointer -> pointer deref versus a
-single transmute. The safety comment perfectly describes why it's OK
-to do: the types are transparent. So why is `as` casting pointers
-better? It's just as unchecked as transmuting, and worse, it requires
-a raw pointer dereference.
+On Mon Mar 24, 2025 at 9:55 AM CET, Maxime Chevallier wrote:
+> On Fri, 21 Mar 2025 20:09:39 +0100
+> Th=C3=A9o Lebrun <theo.lebrun@bootlin.com> wrote:
+>
+>> Introduce macb_dma_is_64b() and macb_dma_is_ptp() helper functions.
+>> Many codepaths are made simpler by dropping conditional compilation.
+>>=20
+>> This implies three changes:
+>>  - Always compile related structure definitions inside <macb.h>.
+>>  - Make the field hw_dma_cap in struct macb always present.
+>>  - MACB_EXT_DESC can be dropped as it is useless now.
+>>=20
+>> The common case is:
+>>=20
+>> 	#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
+>> 		struct macb_dma_desc_64 *desc_64;
+>> 		if (bp->hw_dma_cap & HW_DMA_CAP_64B) {
+>> 			desc_64 =3D macb_64b_desc(bp, desc);
+>> 			// ...
+>> 		}
+>> 	#endif
+>>=20
+>> And replaced by:
+>>=20
+>> 	struct macb_dma_desc_64 *desc_64;
+>> 	if (macb_dma_is_64b(bp)) {
+>> 		desc_64 =3D macb_64b_desc(bp, desc);
+>> 		// ...
+>> 	}
+>
+> Just a thought, but this is adding some more branches in the hotpath on
+> 32 bits DMA setups. Did you measure any performance changes on
+> these platforms (if you have access to one :) )
+>
+> As the caps can't be changed dynamically, maybe these helpers could be
+> replaced more efficiently with some static_key ? This would benefit
+> both 32 and 64 bits systems as the following would be more efficient
+>
+> 	if (bp->hw_dma_cap & HW_DMA_CAP_64B) {
+> 		//  ...
+> 	}
+>
+> Just a thought of course, maybe this patch doesn't really hurt perfs :)
+
+Good question! I asked myself the same thing before posting.
+
+We go from:
+
+	void bar(struct macb *bp) {
+	#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
+		if (bp->hw_dma_cap & HW_DMA_CAP_64B) {
+			foo();
+		}
+	#endif
+	}
+
+To:
+
+	static bool macb_dma_is_64b(struct macb *bp)
+	{
+		return IS_ENABLED(CONFIG_ARCH_DMA_ADDR_T_64BIT) &&
+		       bp->hw_dma_cap & HW_DMA_CAP_64B;
+	}
+
+	void bar(struct macb *bp) {
+		if (macb_dma_is_64b(bp)) {
+			foo();
+		}
+	}
+
+In the first case, we use explicit preprocessor directives to remove
+code if CONFIG_ARCH_DMA_ADDR_T_64BIT isn't defined.
+
+In the second case, our compiler optimises away the IS_ENABLED() call.
+ - If false, then the branch doesn't appear.
+ - If true, then only the capability check is inlined in bar().
+I checked the assembly on arm/arm64/MIPS.
+
+Conclusion: the hotpath doesn't change.
+
+Thanks,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
