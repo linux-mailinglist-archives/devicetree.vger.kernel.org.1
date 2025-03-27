@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-161123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01660A72A5F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 08:04:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 223F1A72A61
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 08:06:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C81A33A773B
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 07:03:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 05563188EBCC
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 07:07:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F8F416DEB1;
-	Thu, 27 Mar 2025 07:04:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08281189F20;
+	Thu, 27 Mar 2025 07:06:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dhpHNze9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KBKLrEh7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27605C2C8;
-	Thu, 27 Mar 2025 07:04:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9FC7C2C8;
+	Thu, 27 Mar 2025 07:06:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743059042; cv=none; b=pJSsxXPttA0IBryymIUCmBlqTXSaqJOWiFs4AGNBby5XpUkhF5a7vmF3+iDeKRlsE+ip4AkY/w7YrukNseC5Vm6vZG1x3SgEU77Mh9uoOa7EkXDBJPdl79Etz/zhM9Xjr3qXuBe1S8CaUTUwN5kIS1vB6chXp6aTeMFJUQXHlXU=
+	t=1743059211; cv=none; b=myzPGaOe3huiW02wleVJXzPIeQHoAkIGZ8P7dKyGIhUUh576MJ86T+eBr/6l6XeMrsi751cKWyNktl98ltkeiptYEAwr9TdjqIS0it/PCnikYQtJf/XY18vlfWJVCW8jlpXiC717JVnymb2CEeAsAhWXOl/kbEHXp2gHmZmxz20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743059042; c=relaxed/simple;
-	bh=JwMOXfCgg0PYhzF2lSOyfo6X3eX52HE6b+bApBxnbl0=;
+	s=arc-20240116; t=1743059211; c=relaxed/simple;
+	bh=HSLTuwSaGgEMzbLqtXv4C8JquylXq0jIc4SxKuDhHBM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RE8qWApCIXSkSNS61dzdI0bIYZerSGJjCWkcMImr1uCdxPdI69rBAW1RBaQ9ZJgQkgj97w4G/XfcqcfPC0joz0wUDGBinMLlht5rMmHXOTYvtnVojO4vuzrWRNXHNR+zkH464buiz0tRLr5rDHbpbWt032yCy376DSuSSU1jefY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dhpHNze9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4446C4CEDD;
-	Thu, 27 Mar 2025 07:03:55 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=hGUAuN8tAqUbGu8iDai0S6x/sZXRQHujfeTiDcINP1bYiWmXP1XdUNry3URHH+r8gu7JUg7LA2M3eulFnc/iHMtDw8LHOIjWznNcG7CYdhJTBclo8vSu99O9ya8V33NzVO93m+6gU5/ZVf5yGQeyhMTDIr78M/TQ9gB1aurQcHQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KBKLrEh7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFB68C4CEDD;
+	Thu, 27 Mar 2025 07:06:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743059041;
-	bh=JwMOXfCgg0PYhzF2lSOyfo6X3eX52HE6b+bApBxnbl0=;
+	s=k20201202; t=1743059211;
+	bh=HSLTuwSaGgEMzbLqtXv4C8JquylXq0jIc4SxKuDhHBM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dhpHNze9iAjIG0ssBGX1dzv2sLwHvJ4ch9sw2Z5o1Bfj+p0XrmAW9T4KuQNkILG2y
-	 /xhRy5Rbso9V8wAjl3V/sOx2i2MiwFgBDiUZy9DqXvRhSk18/hAg2GNkCxxwnTM3m6
-	 0GKjxI2fudg52yrLfAfmt4o9c6qzW7+Dxb9SDUjaA+4g2FoiK0JqLqpolrM3ley/K5
-	 KeUvN2QdG+lJoGJ24Av40Ka8a+I4TonLOGQHZU7jLudKqcv8A/ctX7OiHRKMKMbYGw
-	 qMbzxmkE+DIxxtO8d0icpoTnktKRPN8Z6O/HQcLirLq5Y70KLq+payqV3WisqppyuB
-	 IwV2Evrbd8ACQ==
-Message-ID: <201983d6-1719-4df5-acca-455ef1e3025c@kernel.org>
-Date: Thu, 27 Mar 2025 08:03:52 +0100
+	b=KBKLrEh7ft1Ot9F3wdPGIVNWUKpH1/32ouHWb2rrjLLPmq714j9+AvjowlPV04O9j
+	 0Ke0bhtoUSs5UUb/w0YpD0aLO1x1xYaXjr9v3WV6yk/S0iKanBJUO5uGN4VxbsQoRK
+	 +cOQ4WlWrEBUKXOe9eidXUrIjjSOE5LRqwpXK1L6qgLNXU5Bhgg0UjeiEU1T4HV1o7
+	 8TOBEwQGRLHuaHSW5EC/wa59b9M1gEflopp9guiMppR2k9E5J3kGGdsjPtE0CrsKJv
+	 sTaEROSBkJWh2+4Js2ZRqdnGIJWz25eB4Kh67qgp5fDbzNW2fJye9OHnOM+AemFMdd
+	 PSRs3OUjCNvFA==
+Message-ID: <1023814e-1cc5-4f0d-9d60-cbe848d69a9b@kernel.org>
+Date: Thu, 27 Mar 2025 08:06:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,13 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND v5 0/2] ASoC: codecs: add support for ES8389
+Subject: Re: [RESEND v5 2/2] ASoC: dt-bindings: Add Everest ES8389 audio CODEC
 To: Zhang Yi <zhangyi@everest-semi.com>, broonie@kernel.org, robh@kernel.org,
  tiwai@suse.com, devicetree@vger.kernel.org, conor+dt@kernel.org,
  lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
  linux-sound@vger.kernel.org, perex@perex.cz, krzk+dt@kernel.org
 Cc: amadeuszx.slawinski@linux.intel.com
 References: <20250327063531.47005-1-zhangyi@everest-semi.com>
+ <20250327063531.47005-3-zhangyi@everest-semi.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,20 +103,31 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250327063531.47005-1-zhangyi@everest-semi.com>
+In-Reply-To: <20250327063531.47005-3-zhangyi@everest-semi.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 27/03/2025 07:35, Zhang Yi wrote:
-> The driver is for codec ES8389 of everest-semi.
+> Add device tree binding documentation for Everest ES8389 which
+> is different from ES8388
 > 
-> Differing from v4, I added es8389_set_tdm_slot.
-> At the same time I removed some unnecessary properties in the dts
-Where is full changelog? Look how other patchsets create it, so it is
-readable.
+> Signed-off-by: Zhang Yi <zhangyi@everest-semi.com>
 
-Even this entry is not detailed - what did you remove?
+So you not only ignored review but I gave you long instruction what to
+do, so that will not happen. And what happened? You wrote:
 
+"Thank you for the explanation.I will do it in a following patch"
+
+and then ignored it entirely!
+
+That entire instruction was on purpose - to prevent possible mistake, to
+explain how the process works, because I assume you will not read our
+documents like submitting-patches. Well, you should read them prior to
+sending, but it happens, so thus my instruction.
+
+And yet we are in the same spot.
+
+I am not doing the same work twice.
 
 Best regards,
 Krzysztof
