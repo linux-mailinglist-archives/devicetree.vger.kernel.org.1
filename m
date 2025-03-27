@@ -1,272 +1,229 @@
-Return-Path: <devicetree+bounces-161328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30C91A73639
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 17:00:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FB35A73644
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 17:02:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 275B67A6FBE
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 15:58:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F224A170749
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 16:02:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E27EC19F111;
-	Thu, 27 Mar 2025 15:59:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 897E21A5B9C;
+	Thu, 27 Mar 2025 16:01:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VI7bUcUZ"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="EgPnj9fC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2080.outbound.protection.outlook.com [40.107.247.80])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8A97199E9A
-	for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 15:59:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743091180; cv=none; b=e2NZS2y1pFjgRgLDF0XVBtzATaTTsN6lfzM9So2RTysFxWxyAh+wX0Y7P9ylduFk/I1rAaOgh2nQfQiGomJiAnCPZX17BU7HjZEuFOHH4Oohnjo4X09tPFjzlR/vrHT0bai661LvMpriqyWizpWkWsUUhq2RToAfBUNEc3pAIjU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743091180; c=relaxed/simple;
-	bh=4zwazcHbMAN85Q5YIWO50guLLoljH2OWpw/t9rHm0X8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=l6mWBf2cgHm5ueQQaXy9AaqJ0C1ynvtR95RdD+xlureHtYZGZW4K44TZZRAYGN+Yzu4xET2YZ8R1kuoS9+cJLfPhQMTyDh1iMFUGY9Zl+WqwMgCugfn9WplRFqg7XJYS0wvaWsRBM8bfDgpPg4+fZGsAoghurE18qPSShRm/SKM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VI7bUcUZ; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-391342fc148so723492f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 08:59:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743091177; x=1743695977; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=s3LYBmOjs9vXus21YCTvRCPx8NmJYW635XOAaJkUhHA=;
-        b=VI7bUcUZQDR5f3GFV9mWubVPzyf3DiiUSlJEIEldWekA99ER2YpJSU4ono7xpPU9Nc
-         LM87F3AOwIgpmxkwwu0Oh6XIr+xbTGdLiuwsj5DyiFZ5z0iQX4MhPt3e9k0jZu9zaCgJ
-         m6CO1O1Gtz+4lEKLSeOmZlR0Gbg0v0hov4E9FFF7797crfFH7WNexP914/SvbN8Cftd3
-         2st+StrD/Noqnt/VHmvr4WcAzG8wU4ADKUIXQ8gUln8R3evGBOvxnEoCd25foTE3NAvx
-         LuH7DIVUzHq3WOgiYBSmPH2v411Jt3YrHsVxXKgkN68JkGT8ijg3Nl1sQ5oza7QvqiVO
-         nk6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743091177; x=1743695977;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=s3LYBmOjs9vXus21YCTvRCPx8NmJYW635XOAaJkUhHA=;
-        b=jx87Wi+SOC2qgLr9pbesZQ/7ciw01CNbIZXx+9NO5FK5yj+8eyMlhxA9K+gkauKzFz
-         7MftOD/o/Y0dd/VBNF3uSUpn+LpFy6PVIj2SqkNRNmjkOSwahIvC6x9Iuxf73TAQU+Qg
-         Zqo1d2CbWgQ0dYobNa9tT8zxHEA1QMpDtWixvVXWuFwM+8PWXi1G4oj0ebWUN3TdVnsu
-         FhxYimhSLCyQ6uEmQhNXmGeupDbr/khKyUEF1oeMLFnWb/cnqfFmtUCGb6a1na79qAWz
-         4oGwVomJuUXL4habZ4BViabZebtbPACg+GOoT/2GcfRB8wfjb8qGSNytLFXBziHe7H2P
-         +jXw==
-X-Forwarded-Encrypted: i=1; AJvYcCWreFWKtl+Jo1171SnNmjEvu8PQsbABmCc0AIM0D4AkBhjte6PkMr67UOm8KkkBAk3zBXfXgCSy0T8c@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxp/0vCPI3D/WqslUN/JCZ13zoq1ns7eR055EHjUQHu1t4LWwmz
-	IYEEwBvMsX9hHfqE3NsRdt+KZ3KcpADCt2v4cGJbp6y+wLGMVFglBv/RivO3dbI=
-X-Gm-Gg: ASbGnct0ImynVCh8zCPzBuUfqou9XB2Y1WU7RdNeYppJCQKzmRUUJStBXo3xuLnbaxp
-	Yr80tK/Lzxz80YJ5FvGep+Oy61pUwWOYdIoi4sl6mo/lv7PlNeDt3z1yZiMMjqxazA6yjwtAoAu
-	VT2cITJySd810Cb2fm81oS+/AzxHAfgBtd/NM47kD56aPsIa5c0NpR6V0ll538sCIej+dxzXas1
-	pXTXArEx+iCpJTshlE8ARXJ1nA38jTNPO7XsEamNw04Td8U3ukZPwBFvTcnJJT7NIPymwmzS0zt
-	818Mw2B2Wt1vneSBb06IHYypoxt1ziyYa25taEyKJc0pPur0o+zrKTVcbsgmDJ2QdbJj3LkOQcl
-	TDD7g05tDXA==
-X-Google-Smtp-Source: AGHT+IGmDAavivcgiH2y4m4XZXDrn9ZbRWAH7pM1su/BtfNcQn1b5fqQkuccIMqTc2K2ixN2jW9vhg==
-X-Received: by 2002:a05:6000:4021:b0:391:27f1:fbf8 with SMTP id ffacd0b85a97d-39ad1742f57mr3570847f8f.4.1743091176931;
-        Thu, 27 Mar 2025 08:59:36 -0700 (PDT)
-Received: from [192.168.0.34] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3997f995611sm20673037f8f.15.2025.03.27.08.59.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Mar 2025 08:59:36 -0700 (PDT)
-Message-ID: <bd2a5cfa-5e7a-42f3-809b-eaf34ef22294@linaro.org>
-Date: Thu, 27 Mar 2025 15:59:35 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74B781A8F84;
+	Thu, 27 Mar 2025 16:01:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.247.80
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1743091315; cv=fail; b=n04XRoTCe0pKaXLJNx40GYC3bQjngS2tvjZENO0JhBeADtgQ6VFHM28y7M7gxw4OHVvP8lPvMntZCK6/EfBDQzyVGPN+iWN4RX+mLrH9XYXqpVZXK5KxD7FnBMZYjnmmHBdUgYlhG02UGOkKTATkRbjL3reB64+YhIt0FO6gyMg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1743091315; c=relaxed/simple;
+	bh=P/8eJrkcTFY7ffdI2HOmtCgr3XLIYZOp0fWAXup/EXc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=dTdFv2fkHfk5shuIHXTDGzGJQcVPazl6CJV5aVDXThIOYU3ByaVEyucHDar9OUchcdxOFlF2hQSKUB1CITkSVCdTEBbFlD2Z+/lGdVN/Ti1G7k19PBXGVbuIZfTuj8KKLLc73BQjXZHkjGIiRcz3lTtYl29hzKF4+utRz/hKg20=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=EgPnj9fC; arc=fail smtp.client-ip=40.107.247.80
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rzwOxtkdr7UKxjhCDdcFl/9NeyFKhpInePlG56zzYTVFlX8iL4rLqGoCE3KBDPt+xDlWzk4gBc+Y93MKNUspYJ0MeG8GAvLxclhs+EXPtZlX6lGitournbBAiQHNpCja+/4kuGfjBGmO3YgZ/b0o7Hw3s5LJaQyJR52pZ+o8j1CH3J/GADUW05mhGYAMB3D38elUe+Kol+5Z9aKpVvRn6GwxNNke87vQVRSCpgUTQyrxCLIJ4JwW6Dx7bpKoe5URwYTtAE5vLcdDWxfvlg1t5+4eZu7jbNIKGJXM5/CmPPmEYOY1TEbb0EIR2dUCclA1PSMa6Ie0BBXFd6QB/tbjYg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vjoGlCh1TsgjiyPECYjuwmpyGsscgipoHdAUUxeAyFE=;
+ b=Sxjy7NV5agSKhcVBGe4LyVIR+a0PUrcfQXS7aIfVL3/Y2US/OcabSkFOxQFaBay2hNv2D9hHaKv41AiTNTvZWG6kmy+onu2WxEh3RUXt0tL1EwICUHuSTHlD3te2JL8hlajFn9i5QCmdLSmTJ584Wna7J877QhfD7m7jySGLAiK8RIxmXEjR3Nb9jhwxORUTLc3Mp0Cd3V8Nql5RB0P3gkGmGnzokQEDvqOMWNpxKkLrcjJpRQkeVa1HyfLnn/mN/noTWo3sXSN1OJYc1sLBHNq4N5+e6ag4zXST7Qz9f6oOI4AcnniYWAd4259UZpASMtgXp6LcZnWynusn6V/vmA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vjoGlCh1TsgjiyPECYjuwmpyGsscgipoHdAUUxeAyFE=;
+ b=EgPnj9fCbgv9CyorLECBCO/cCbUxCLdLScEgP1k+JAswjMVUM1p/LPzse/+bGzbrKkFOzcYiY1dqGb0/Dug/G4dm3PO3KUQikdiJhwfDQgWIR9jgJXYlv0EgW5xWtRZbl87vj5GN6foB8AS2Y3jfwywPodifgXPV+dQpujH1tuWPyrJMuarAHPUtATNby8rOQzNIP/vb+MebR6ZRq8P4xHZZSJmJqp4zJk48Fe6OghmBxTC71p/EA4e4VGectOG2AL7P6WOupSItM91XVzgqJi6aTAiU66Z15oFvcFk7OOkobFyD1sY9JtFs1b1MuYWWR6rX2hBl19OoMJ4ktm38bw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AS4PR04MB9241.eurprd04.prod.outlook.com (2603:10a6:20b:4e0::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.44; Thu, 27 Mar
+ 2025 16:01:51 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%3]) with mapi id 15.20.8534.040; Thu, 27 Mar 2025
+ 16:01:50 +0000
+Date: Thu, 27 Mar 2025 12:01:43 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: maudspierings@gocontroll.com
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 2/8] arm64: dts: imx8mp: Add pinctrl config
+ definitionsy
+Message-ID: <Z+V2Z296gJsl2U+V@lizhi-Precision-Tower-5810>
+References: <20250327-initial_display-v3-0-4e89ea1676ab@gocontroll.com>
+ <20250327-initial_display-v3-2-4e89ea1676ab@gocontroll.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250327-initial_display-v3-2-4e89ea1676ab@gocontroll.com>
+X-ClientProxiedBy: PH5P222CA0002.NAMP222.PROD.OUTLOOK.COM
+ (2603:10b6:510:34b::9) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 12/18] clk: qcom: camcc-x1e80100: Move PLL & clk
- configuration to really probe
-To: Jagadeesh Kona <quic_jkona@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Dmitry Baryshkov <lumag@kernel.org>
-Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>,
- Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250327-videocc-pll-multi-pd-voting-v3-0-895fafd62627@quicinc.com>
- <20250327-videocc-pll-multi-pd-voting-v3-12-895fafd62627@quicinc.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20250327-videocc-pll-multi-pd-voting-v3-12-895fafd62627@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS4PR04MB9241:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0789e96c-863b-4e91-4cf3-08dd6d48af7a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|376014|52116014|7416014|38350700014|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?YQJHufppB/KaQgtEPP+r0W7RRviuU1/fC5ncVok3u+GeiNirTp2fSNw/yB1z?=
+ =?us-ascii?Q?dfi2oxxSelOwTKstHyvMTX6F8P/FKFGg7jwiFqoE/FiLUVT8LJcAYCve8GBW?=
+ =?us-ascii?Q?k739lPEmi4ydRHA+wfMS1y0+OQTUGxT+SHP32OlIvHaoHfj6SR1QxrxmY2YG?=
+ =?us-ascii?Q?wRj1feGjhE6ZHBDDCMs1Lf3Tgtywev+fv67lWzmewOo2ADYWZ7obbA5sIwa/?=
+ =?us-ascii?Q?aA/zOr0Ge3RdDOWOK4Lrd8nHOKbHnw7WZDh7XgyCIXPEjVKC8Geka5hxzpZh?=
+ =?us-ascii?Q?xiTU5c1ct0RqzGwdO7+iFxhYXrZOR3cBzbKpne26fX0pmZupIC9c3Osr7SlS?=
+ =?us-ascii?Q?eutJPUl26DUWtGig/dukjQu6b+HROI7iMO4QbXRMHxMT2d625QxIZbb4oWyE?=
+ =?us-ascii?Q?Y3ukHHCTar47CbrWnweF8nXx+lne8dEEVT8MuCV2Z+g78nkMXTWJHrMcoFeq?=
+ =?us-ascii?Q?/nDhwPOKWeyXaHFL3tutDfaw8Yx+NJdoScapVC+17gOAKDUkZWZltXtezDwZ?=
+ =?us-ascii?Q?jAvOrrejdtkTrmulWZliwzKLJ6l+VQ+KyBEnjeFosyVrePLODTtknIPIEo5k?=
+ =?us-ascii?Q?VlUOp60jyrMVBRwmRrCwddj8n6YtlKmpS2uEZIvwMiemd29gGAktjTl9k46g?=
+ =?us-ascii?Q?SgGH7KZQZXYREhZdmU0L0qkEUecCwGbyTurnC4HLhuxmgh5Jq7n9DoHTbXcz?=
+ =?us-ascii?Q?AxixVFT5sx2WzczMUUsU9pK/CdxehfQrkt3VsUry6E0GB6n0jmkvqoVFnF5j?=
+ =?us-ascii?Q?xIVnNyVfSxVaJS3N0bZzDRsiZonr6gF9RNheSgJ0drobN/j3UMWI3iC4N1X5?=
+ =?us-ascii?Q?BoK5uvh6zHtYfzxCqXXG/WCITJBKCmoGJZ4S1Bf/NM98GmSoFYH8jy18dpno?=
+ =?us-ascii?Q?TR6z5Q8e8ag6Y9kfxK3w2r2ux+0Zyl8k1h4jYJQANv9WVE6vjq+v+sQqqdIJ?=
+ =?us-ascii?Q?OB8L9QysMC92vvG2fRmiJXioLUHjR1k8ngEyv1ooggxoySNsm33kig6Rfco1?=
+ =?us-ascii?Q?RY+uIREA1qVocyJQIzX5WOuXNP8u8W7hdEr0Cdp+F7Um9rBQxHX0ktfDvZKq?=
+ =?us-ascii?Q?hQPo1tL6Ljv9CMVmqXxwN5HGPGDPADr1X8a8A/nZZ0N3hrr5HMVgswOdnypu?=
+ =?us-ascii?Q?Y2nKSp9gB3YCg9Iw0vahxoX52vblNGDrmkkH4SYIV5H+Iy1nm0IkL0HinUR4?=
+ =?us-ascii?Q?ctIkR4pO7rI2zOCMVZbpI7G5+5ki6A2VRjOEvmV4xBnLlRsvtrpoiRXNgqiY?=
+ =?us-ascii?Q?Te/y5x1hckgZ2BVDNEABruUtJ2lkXat1yqydnLNx00EHOsz9yuxr3aDGQZRj?=
+ =?us-ascii?Q?eLnvEuBCpPJSjJca/4w0IiC3AUvV1/gGGk8vl1LKwHJK8Fh+fEAQpFXg1MU7?=
+ =?us-ascii?Q?lESlN5AvjJC3IY2BmzeSyG53SG9Y3rVoo1SQf2qPGGlVvhLc30ZvCKtbQ/ps?=
+ =?us-ascii?Q?EZbwh5xCpb+2/XgoFSvpDg+rv86X3MON5LAyr+DKdlJZAXVSLeNK2NgYM32h?=
+ =?us-ascii?Q?KwWuEAl3+fKa6VI=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(52116014)(7416014)(38350700014)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?Jb7G+tu6hvQMWWS7IjBnvw/C8qa18WXohLLK+8Zvp4Dvcj1LSvbpnzN7Z3Gq?=
+ =?us-ascii?Q?Jt+iSQWTzaD+O1Jv4P4577+Z8/3ECdwDBgApq9qnYn674gF0UX48Ptb+fSSH?=
+ =?us-ascii?Q?MPCrrCvot3Nuzkhlf4Jv4XxZZNZXNFvpW+D/jnMPWR90xxmqJ5gAaYq12OFH?=
+ =?us-ascii?Q?N6xQLvJgz6MceeaLe+wR3IoZkf7c5zAjC/y870chk995qaqvvCmr5vGGvlrG?=
+ =?us-ascii?Q?bE5m3HD9I2/npV+Ts+92QBn9jfwWytVoR156ICgayj6tj7zcWmvCXVT+lrE0?=
+ =?us-ascii?Q?z71peLrUY5ZQo215M7zD9OyBOjjF/aCAlkHgIFGVPVtvw4OZTw3S4KeUXWyf?=
+ =?us-ascii?Q?hgI+W+yoplU0bpn13ECFk0npn1FRzYnLLyUshBHQHblWnJQ2xnAFImN3FHoO?=
+ =?us-ascii?Q?MfD+ZRlp4Myutpk+pvzNOdwfvAOkUaU1xDxtbiFD/kzrURk32uxI0Iq1ZPsq?=
+ =?us-ascii?Q?P/wyrMOjzb3aH9RMSLe0nWZlBNDjPKSKytlE6SUVnIFcSWBOCVV1o1CeyMWK?=
+ =?us-ascii?Q?AeaBpcsUh1GBMzPtUeARGeocqrbUeXqoL+XLP4sMFr5ZEHRN1TP1yJCW/x97?=
+ =?us-ascii?Q?F1mhYo3JqbMaGveZfxgVH4h2R318pX+QD42QYTgyy0Y9CAJeHrRpb+qEiT7X?=
+ =?us-ascii?Q?9rQDZduTMX3ZN0mKU/vPexW5mLqzua/uKXYVMrwVTk8wYUDQcU4K868rIuUu?=
+ =?us-ascii?Q?sOlRBZPZFFWFPPBT3pZ1vF5R+xG+bDzvYC8W2tLUvzDaortOfvlv0NsOE9Ht?=
+ =?us-ascii?Q?ndgtGuNeFfvr0T3EtpNiHimNPOXdoaskTXiDcHewpDTc4PPzoBeNr/3mRzDY?=
+ =?us-ascii?Q?V7BenFiVOdA3Nx98dj8qj/H6q4bhUtgrmTWf30YlXbxgxhajqhQjLiFcbdAB?=
+ =?us-ascii?Q?M5ZP6A/9fWQgmU+MmMVpHkECZMwc/EdengkJCWRvgycjs1DRYIQBFpm7DE7z?=
+ =?us-ascii?Q?09xS2h543uGZGhN+2oePlOfaDiWH2nepIV5/9eE44qrURCGMzLeqM8hp2ovE?=
+ =?us-ascii?Q?ZC0gPmz3XTsqWZaVE6Aw3ohTNT5WGHJskjzXPHJA6JrzCFC+5AKokDzPxQhM?=
+ =?us-ascii?Q?DyoRmunw8wOPAw46w47XXBCCrZGdTZIeKTMdUtUtuY0vVeFvMxiY2CBHWTtN?=
+ =?us-ascii?Q?c5e4Xe3l9PgK8IchaALFiKnYgITze/6i5qlj6+pg2XX5l/tZtah3poy4m6zB?=
+ =?us-ascii?Q?4PGZEGjsSXAlYMR/ufhbPrqrGOfTTCpEEe77YoerBHayvvX9XHm/qq+qw8pj?=
+ =?us-ascii?Q?GnbK56tBGpWz3GRyjD9fs1r95z599XEmaNFfYHpkA6KtnQmLSPTUAxEKZdcI?=
+ =?us-ascii?Q?6oU+L9O+rKdnCHdfm5ScvCbbaNayfuiNW2vYo8Vp7a9PmToRl3XljygUAPMf?=
+ =?us-ascii?Q?We0G09IQOrnn+MSAPrDFAOZVy5UbznAWZRJuNotMm3fyqQfMW/35vHO6Uj3D?=
+ =?us-ascii?Q?YdZik8o3/rXSfAeJp39Y/3pVLpqpODB5apUkW5ta9x6v1MYuEDZJImH8z6vI?=
+ =?us-ascii?Q?5jOwUNCu+QdV/eiBjl0Isd6y0pMAVsVuwNX+F50qqmq39kJWKJzK4x9DGBNo?=
+ =?us-ascii?Q?Tmr4C8ZYvzkiIYOtSUUQFhqkKgbz7+/BHUuOXwYU?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0789e96c-863b-4e91-4cf3-08dd6d48af7a
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Mar 2025 16:01:50.7353
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9nXqwzUM7pL5NMedZuH9EU+xJrJC/rrh9XavlNkJFhD3Z3d/M/ojkrQseoAw4Q2shVwnDzdW8SLwMvz/w3+Pxg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR04MB9241
 
-On 27/03/2025 09:52, Jagadeesh Kona wrote:
-> Camera PLLs on X1E80100 require both MMCX and MXC rails to be kept ON
-> to configure the PLLs properly. Hence move runtime power management,
-> PLL configuration and enabling critical clocks to qcom_cc_really_probe()
-> which ensures all required power domains are in enabled state before
-> configuring the PLLs or enabling the clocks.
-> 
-> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+On Thu, Mar 27, 2025 at 04:52:37PM +0100, Maud Spierings via B4 Relay wrote:
+> From: Maud Spierings <maudspierings@gocontroll.com>
+>
+> Currently to configure each IOMUXC_SW_PAD_CTL_PAD the raw value of this
+> register is written in the dts, these values are not obvious. Add defines
+> which describe the fields of this register which can be or-ed together to
+> produce readable settings.
+>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
 > ---
->   drivers/clk/qcom/camcc-x1e80100.c | 63 +++++++++++++++++----------------------
->   1 file changed, 28 insertions(+), 35 deletions(-)
-> 
-> diff --git a/drivers/clk/qcom/camcc-x1e80100.c b/drivers/clk/qcom/camcc-x1e80100.c
-> index b73524ae64b1b2b1ee94ceca88b5f3b46143f20b..1f2e49c4798f33b2204b95665cc977b4a52b549a 100644
-> --- a/drivers/clk/qcom/camcc-x1e80100.c
-> +++ b/drivers/clk/qcom/camcc-x1e80100.c
-> @@ -7,7 +7,6 @@
->   #include <linux/mod_devicetable.h>
->   #include <linux/module.h>
->   #include <linux/platform_device.h>
-> -#include <linux/pm_runtime.h>
->   #include <linux/regmap.h>
->   
->   #include <dt-bindings/clock/qcom,x1e80100-camcc.h>
-> @@ -67,6 +66,7 @@ static const struct alpha_pll_config cam_cc_pll0_config = {
->   
->   static struct clk_alpha_pll cam_cc_pll0 = {
->   	.offset = 0x0,
-> +	.config = &cam_cc_pll0_config,
->   	.vco_table = lucid_ole_vco,
->   	.num_vco = ARRAY_SIZE(lucid_ole_vco),
->   	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_LUCID_OLE],
-> @@ -144,6 +144,7 @@ static const struct alpha_pll_config cam_cc_pll1_config = {
->   
->   static struct clk_alpha_pll cam_cc_pll1 = {
->   	.offset = 0x1000,
-> +	.config = &cam_cc_pll1_config,
->   	.vco_table = lucid_ole_vco,
->   	.num_vco = ARRAY_SIZE(lucid_ole_vco),
->   	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_LUCID_OLE],
-> @@ -194,6 +195,7 @@ static const struct alpha_pll_config cam_cc_pll2_config = {
->   
->   static struct clk_alpha_pll cam_cc_pll2 = {
->   	.offset = 0x2000,
-> +	.config = &cam_cc_pll2_config,
->   	.vco_table = rivian_ole_vco,
->   	.num_vco = ARRAY_SIZE(rivian_ole_vco),
->   	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_RIVIAN_EVO],
-> @@ -225,6 +227,7 @@ static const struct alpha_pll_config cam_cc_pll3_config = {
->   
->   static struct clk_alpha_pll cam_cc_pll3 = {
->   	.offset = 0x3000,
-> +	.config = &cam_cc_pll3_config,
->   	.vco_table = lucid_ole_vco,
->   	.num_vco = ARRAY_SIZE(lucid_ole_vco),
->   	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_LUCID_OLE],
-> @@ -279,6 +282,7 @@ static const struct alpha_pll_config cam_cc_pll4_config = {
->   
->   static struct clk_alpha_pll cam_cc_pll4 = {
->   	.offset = 0x4000,
-> +	.config = &cam_cc_pll4_config,
->   	.vco_table = lucid_ole_vco,
->   	.num_vco = ARRAY_SIZE(lucid_ole_vco),
->   	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_LUCID_OLE],
-> @@ -333,6 +337,7 @@ static const struct alpha_pll_config cam_cc_pll6_config = {
->   
->   static struct clk_alpha_pll cam_cc_pll6 = {
->   	.offset = 0x6000,
-> +	.config = &cam_cc_pll6_config,
->   	.vco_table = lucid_ole_vco,
->   	.num_vco = ARRAY_SIZE(lucid_ole_vco),
->   	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_LUCID_OLE],
-> @@ -387,6 +392,7 @@ static const struct alpha_pll_config cam_cc_pll8_config = {
->   
->   static struct clk_alpha_pll cam_cc_pll8 = {
->   	.offset = 0x8000,
-> +	.config = &cam_cc_pll8_config,
->   	.vco_table = lucid_ole_vco,
->   	.num_vco = ARRAY_SIZE(lucid_ole_vco),
->   	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_LUCID_OLE],
-> @@ -2418,6 +2424,21 @@ static const struct qcom_reset_map cam_cc_x1e80100_resets[] = {
->   	[CAM_CC_SFE_0_BCR] = { 0x1327c },
->   };
->   
-> +static struct clk_alpha_pll *cam_cc_x1e80100_plls[] = {
-> +	&cam_cc_pll0,
-> +	&cam_cc_pll1,
-> +	&cam_cc_pll2,
-> +	&cam_cc_pll3,
-> +	&cam_cc_pll4,
-> +	&cam_cc_pll6,
-> +	&cam_cc_pll8,
-> +};
-> +
-> +static u32 cam_cc_x1e80100_critical_cbcrs[] = {
-> +	0x13a9c, /* CAM_CC_GDSC_CLK */
-> +	0x13ab8, /* CAM_CC_SLEEP_CLK */
-> +};
-> +
->   static const struct regmap_config cam_cc_x1e80100_regmap_config = {
->   	.reg_bits = 32,
->   	.reg_stride = 4,
-> @@ -2434,6 +2455,11 @@ static const struct qcom_cc_desc cam_cc_x1e80100_desc = {
->   	.num_resets = ARRAY_SIZE(cam_cc_x1e80100_resets),
->   	.gdscs = cam_cc_x1e80100_gdscs,
->   	.num_gdscs = ARRAY_SIZE(cam_cc_x1e80100_gdscs),
-> +	.alpha_plls = cam_cc_x1e80100_plls,
-> +	.num_alpha_plls = ARRAY_SIZE(cam_cc_x1e80100_plls),
-> +	.clk_cbcrs = cam_cc_x1e80100_critical_cbcrs,
-> +	.num_clk_cbcrs = ARRAY_SIZE(cam_cc_x1e80100_critical_cbcrs),
-> +	.use_rpm = true,
->   };
->   
->   static const struct of_device_id cam_cc_x1e80100_match_table[] = {
-> @@ -2444,40 +2470,7 @@ MODULE_DEVICE_TABLE(of, cam_cc_x1e80100_match_table);
->   
->   static int cam_cc_x1e80100_probe(struct platform_device *pdev)
->   {
-> -	struct regmap *regmap;
-> -	int ret;
-> -
-> -	ret = devm_pm_runtime_enable(&pdev->dev);
-> -	if (ret)
-> -		return ret;
-> -
-> -	ret = pm_runtime_resume_and_get(&pdev->dev);
-> -	if (ret)
-> -		return ret;
-> -
-> -	regmap = qcom_cc_map(pdev, &cam_cc_x1e80100_desc);
-> -	if (IS_ERR(regmap)) {
-> -		pm_runtime_put(&pdev->dev);
-> -		return PTR_ERR(regmap);
-> -	}
-> -
-> -	clk_lucid_ole_pll_configure(&cam_cc_pll0, regmap, &cam_cc_pll0_config);
-> -	clk_lucid_ole_pll_configure(&cam_cc_pll1, regmap, &cam_cc_pll1_config);
-> -	clk_rivian_evo_pll_configure(&cam_cc_pll2, regmap, &cam_cc_pll2_config);
-> -	clk_lucid_ole_pll_configure(&cam_cc_pll3, regmap, &cam_cc_pll3_config);
-> -	clk_lucid_ole_pll_configure(&cam_cc_pll4, regmap, &cam_cc_pll4_config);
-> -	clk_lucid_ole_pll_configure(&cam_cc_pll6, regmap, &cam_cc_pll6_config);
-> -	clk_lucid_ole_pll_configure(&cam_cc_pll8, regmap, &cam_cc_pll8_config);
-> -
-> -	/* Keep clocks always enabled */
-> -	qcom_branch_set_clk_en(regmap, 0x13a9c); /* CAM_CC_GDSC_CLK */
-> -	qcom_branch_set_clk_en(regmap, 0x13ab8); /* CAM_CC_SLEEP_CLK */
-> -
-> -	ret = qcom_cc_really_probe(&pdev->dev, &cam_cc_x1e80100_desc, regmap);
-> -
-> -	pm_runtime_put(&pdev->dev);
-> -
-> -	return ret;
-> +	return qcom_cc_probe(pdev, &cam_cc_x1e80100_desc);
->   }
->   
->   static struct platform_driver cam_cc_x1e80100_driver = {
-> 
 
-Thanks for this work.
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Tested-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org> # Dell Inspiron 
-14 Plus 7441
+> This patch has already been sent in a different group of patches: [1]
+> It was requested there to submit it along with a user, this series also
+> includes some users for it.
+>
+> [1]: https://lore.kernel.org/all/20250218-pinctrl_defines-v2-2-c554cad0e1d2@gocontroll.com/
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h | 27 ++++++++++++++++++++++++++
+>  1 file changed, 27 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h b/arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h
+> index 0fef066471ba607be02d0ab15da5a048a8a213a7..34a6d3090926b8d9d7c96d1b0b01be0ed05cbd27 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h
+> @@ -6,6 +6,33 @@
+>  #ifndef __DTS_IMX8MP_PINFUNC_H
+>  #define __DTS_IMX8MP_PINFUNC_H
+>
+> +/* Drive Strength */
+> +#define MX8MP_DSE_X1 0x0
+> +#define MX8MP_DSE_X2 0x4
+> +#define MX8MP_DSE_X4 0x2
+> +#define MX8MP_DSE_X6 0x6
+> +
+> +/* Slew Rate */
+> +#define MX8MP_FSEL_FAST 0x10
+> +#define MX8MP_FSEL_SLOW 0x0
+> +
+> +/* Open Drain */
+> +#define MX8MP_ODE_ENABLE 0x20
+> +#define MX8MP_ODE_DISABLE 0x0
+> +
+> +#define MX8MP_PULL_DOWN 0x0
+> +#define MX8MP_PULL_UP 0x40
+> +
+> +/* Hysteresis */
+> +#define MX8MP_HYS_CMOS 0x0
+> +#define MX8MP_HYS_SCHMITT 0x80
+> +
+> +#define MX8MP_PULL_ENABLE 0x100
+> +#define MX8MP_PULL_DISABLE 0x0
+> +
+> +/* SION force input mode */
+> +#define MX8MP_SION 0x40000000
+> +
+>  /*
+>   * The pin function ID is a tuple of
+>   * <mux_reg conf_reg input_reg mux_mode input_val>
+>
+> --
+> 2.49.0
+>
+>
 
