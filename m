@@ -1,185 +1,122 @@
-Return-Path: <devicetree+bounces-161257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161258-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15F3AA7339E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 14:53:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AFEFA733A2
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 14:56:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F1B3189A222
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 13:53:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E2388173E41
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 13:56:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF73F212D7A;
-	Thu, 27 Mar 2025 13:53:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CC05215F43;
+	Thu, 27 Mar 2025 13:55:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="F1ZLME6I"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EV/KxfQb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4918820CCEA
-	for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 13:52:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.60.130.6
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C16B8BEC;
+	Thu, 27 Mar 2025 13:55:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743083583; cv=none; b=gag871SVlX2rJDP9UGDXiilKHfPDzBPlqesOCGzWMGrvBhAEVBYuQf1t/2ISN1gO8VE6U/6GnyJZtSBACYGYp/7ijPGgPAC06m+Vo41im3jlj0FmkPLFdTteTk5aKxZb1TxV0CYxtPUaTwcpoKxIzOhiiu3qyoE99P3ceOHQ5OQ=
+	t=1743083756; cv=none; b=ljPm6gWvwuqslo+mYjnRNipGqMokEuXk2ZDSMHT+Sg2yNdfl2jaD4DHodrIf0oVdRCQOSlJhNblG6qA3K2kMY79gcHShvwndrOu3QR2V6ths45vZ9S/ZIcFFbdk8YzfgOPJjLjAZ2hDttkagrggX3s7wWRd6ITNoEKY8Wvyx6ZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743083583; c=relaxed/simple;
-	bh=EZKmbj4a0S+xZFcQ9z651sZz2O0pU5YmZoqPo4X8Eh4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ftwN6soqs1e3qRpDQ6XDCnPE+allnsosoZkuUr9hVR/m3NsryNmYLL6wQeKsy3fwurcRXKGtE4uNqKVKFV55YR5V56Y/7yiNh8iOGfI1t3MjqLNYL5mR7ExkE+pFNUV6TNHY+mAe4zDj/2IPTXcu8jWnVp+6GBAkVGYFsKjypDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com; spf=pass smtp.mailfrom=igalia.com; dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b=F1ZLME6I; arc=none smtp.client-ip=178.60.130.6
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=igalia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=igalia.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
-	s=20170329; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=wM4oVcwxrWlVGmyeT76cBxZCuG1OHMlHbi5XRiXUE3g=; b=F1ZLME6IBFhaWhNOqrnCIpeuWQ
-	gzS1smS8aYoHNOOODtVPT7oyzhs5YSOttJMd2TnrW0Cn/Jenw0Krgq+m6TzpeCduWk77MEwXEnwyi
-	blRikOCyYUc88/gZ+cT2ztCRH4/K4kBer/CDLP55jefU5/YF5fwLaClVYb1reRVgUui1KtOakyZre
-	Q3UDUad4GWhdngdTn95GRpep36R3r6D5x3nJPrfpDTY3POp3v8clWup6dx9sEZz6VI0UjzWjs3XhP
-	YOboGAyVgo/D2/2dmPKx27M2iTcHs8/xgCTyy4zDerK7IbDN50sJYi4+xRkDrKSwFvfybvhO225BB
-	hNYH353A==;
-Received: from [189.7.87.178] (helo=[192.168.0.224])
-	by fanzine2.igalia.com with esmtpsa 
-	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
-	id 1txnf1-007FSA-L2; Thu, 27 Mar 2025 14:52:43 +0100
-Message-ID: <f85dc2d3-a601-4caf-9ddb-c3256423f001@igalia.com>
-Date: Thu, 27 Mar 2025 10:52:38 -0300
+	s=arc-20240116; t=1743083756; c=relaxed/simple;
+	bh=1ahn52S0KUDmtK33z7svEfP2CGjDVfmB/atebDqTFKQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ETgi2RUyMnrkCiCNYKL5ea7+XBws3sMUZknC+Y34v0n4lVfcGU8Lx+2YyVBri+W7UTX0HfF360c/jF294LD6jJY4iGvnarpAFnl592+dSw062veor/yruVidkiFKK/8O8GQ9QkvP2LrIaJ243+JASezVRlHjpwcVJBqxJlw2JKM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EV/KxfQb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0D0DC4CEF4;
+	Thu, 27 Mar 2025 13:55:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743083755;
+	bh=1ahn52S0KUDmtK33z7svEfP2CGjDVfmB/atebDqTFKQ=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=EV/KxfQbKVQE/Xhh32pls3VHowTGMWwBqvlK5i+uCtF7tMlVRZ8TkWIBLp9tCMxgy
+	 0p5001fqREESfEQLGaJhAcLrm44OHWW33HEmVz3G4H0XHD1HEXOsISIC9aDEYY3Svs
+	 e5URMla/v2QstTdDob5RnwvcTzGMvtdrIT5AOcB62bN4v3AgYaz0zan3dViDHBZ5ER
+	 LSX+nFaVX0bK2De+dWKX3ybxLogcAVskmEg1mxaPYiemdEf9AHKljSpRnkcuVyXIzc
+	 MEkz0Lth5m3VK+5xYxZrXqJFOinJ6JqT6/jG+E6sAjKaWtVYjR4hVRLuG9GW5sxjSn
+	 jdgBZ++XNtnqQ==
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-ac2af2f15d1so132364066b.1;
+        Thu, 27 Mar 2025 06:55:55 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV+WIWp3JRR/hhcv7wugUAW7FBuH4OHCTKGLPL0jtQEsJ6sLWXtw9OuDJllAb7IBO1sQVoC4ozqziAP@vger.kernel.org, AJvYcCVcESlG2cNg/0qCMavJQlIM3JyEHx2ja8n3S1+LGB9ZltnLhFy3cNy+erH+mwpn8HY0OV+T/y/u2VJx2w==@vger.kernel.org, AJvYcCWXPpuUXbqYd1nzJPcHscCs+Gv32xk0PAuEWDe46G3+bx6NRObaG8ES/xl3VJ+ckXS1McIrSStZQZzG0TdZoXo=@vger.kernel.org, AJvYcCWZ5rUILW81xvBYMzA9D3Ua7TSiHOrpl+HW1t8RIYHSi3b0s1qSUl++T8gdji9G//EALONq6D9rdi/MJm8J@vger.kernel.org
+X-Gm-Message-State: AOJu0YyBhk9dpq+742DUSwFwTYxKg//zM9lXZuXE9z/56yzSuYahKr3y
+	meK41Fb19bM5m3Qy+nPnp8nDjrWr180oZtX+KwqorMfD9K5i8tPihHuNR+EkWpRElIXmiaFzjFM
+	cPUK1BJsDfpbj0CCndhEDNq8JiA==
+X-Google-Smtp-Source: AGHT+IEfUnAlbEn5c8C7zrv5VilBfYXTQwORXTJobYHDkpxBenmsrtDu6IozbVwFugPY8mIaVUJRwg4U2RpBt2Ktt8w=
+X-Received: by 2002:a17:906:dc8a:b0:abf:7a26:c486 with SMTP id
+ a640c23a62f3a-ac6fb10c9ebmr335651766b.40.1743083753985; Thu, 27 Mar 2025
+ 06:55:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 5/5] drm/v3d: Use V3D_SMS registers for power on/off
- and reset on V3D 7.x
-To: Stefan Wahren <wahrenst@gmx.net>, Melissa Wen <mwen@igalia.com>,
- Iago Toral <itoral@igalia.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Nicolas Saenz Julienne <nsaenz@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, kernel-dev@igalia.com
-References: <20250317-v3d-gpu-reset-fixes-v6-0-f3ee7717ed17@igalia.com>
- <20250317-v3d-gpu-reset-fixes-v6-5-f3ee7717ed17@igalia.com>
- <bffb4df1-1171-4a9b-9b73-af33136c620a@gmx.net>
-Content-Language: en-US
-From: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
-In-Reply-To: <bffb4df1-1171-4a9b-9b73-af33136c620a@gmx.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20250326171411.590681-1-remo@buenzli.dev> <20250326171411.590681-2-remo@buenzli.dev>
+ <Z-UOUKq8GKZM1wuo@smile.fi.intel.com>
+In-Reply-To: <Z-UOUKq8GKZM1wuo@smile.fi.intel.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 27 Mar 2025 08:55:42 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKY17zfLo5rUd9zvO46M1_dR0-V1X-d-NmsO+exDbGY5A@mail.gmail.com>
+X-Gm-Features: AQ5f1JpHBP9OYrAt6ksLNzcvIfJhXRJNf4iMM1GxH64Mmcu5lH6rMLCYPLqF7Fs
+Message-ID: <CAL_JsqKY17zfLo5rUd9zvO46M1_dR0-V1X-d-NmsO+exDbGY5A@mail.gmail.com>
+Subject: Re: [PATCH 01/10] rust: Move property_present to property.rs
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Remo Senekowitsch <remo@buenzli.dev>, Daniel Scally <djrscally@gmail.com>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, Dirk Behme <dirk.behme@de.bosch.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Danilo Krummrich <dakr@kernel.org>, Saravana Kannan <saravanak@google.com>, Miguel Ojeda <ojeda@kernel.org>, 
+	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, linux-kernel@vger.kernel.org, 
+	linux-acpi@vger.kernel.org, devicetree@vger.kernel.org, 
+	rust-for-linux@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Stefan,
+On Thu, Mar 27, 2025 at 3:37=E2=80=AFAM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> On Wed, Mar 26, 2025 at 06:13:40PM +0100, Remo Senekowitsch wrote:
+> > Not all property-related APIs can be exposed directly on a device.
+> > For example, iterating over child nodes of a device will yield
+> > fwnode_handle. Thus, in order to access properties on these child nodes=
+,
+> > the APIs has to be duplicated on a fwnode as they are in C.
+> >
+> > A related discussion can be found on the R4L Zulip[1].
+> >
+> > [1] https://rust-for-linux.zulipchat.com/#narrow/channel/288089-General=
+/topic/DS90UB954.20driver.20done.2C.20ready.20to.20upstream.3F/near/5054156=
+97
+>
+> You can make the above to be a Link tag like
+>
+> Link: ... [1]
+>
+> > Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
+>
+> ...
+>
+> > +struct fwnode_handle *rust_helper_dev_fwnode(struct device *dev)
+> > +{
+> > +     return dev_fwnode(dev);
+> > +}
+>
+> Why not const? For most of the property retrieval APIs the parameter is c=
+onst.
 
-On 27/03/25 07:57, Stefan Wahren wrote:
-> Hi Maíra,
-> 
-> Am 18.03.25 um 02:01 schrieb Maíra Canal:
->> In addition to the standard reset controller, V3D 7.x requires 
->> configuring
->> the V3D_SMS registers for proper power on/off and reset. Add the new
->> registers to `v3d_regs.h` and ensure they are properly configured during
->> device probing, removal, and reset.
->>
->> This change fixes GPU reset issues on the Raspberry Pi 5 (BCM2712).
->> Without exposing these registers, a GPU reset causes the GPU to hang,
->> stopping any further job execution and freezing the desktop GUI. The same
->> issue occurs when unloading and loading the v3d driver.
->>
->> Link: https://github.com/raspberrypi/linux/issues/6660
->> Reviewed-by: Iago Toral Quiroga <itoral@igalia.com>
->> Signed-off-by: Maíra Canal <mcanal@igalia.com>
->> ---
->>   drivers/gpu/drm/v3d/v3d_drv.c  | 40 ++++++++++++++++++++++++++++++++ 
->> ++++++++
->>   drivers/gpu/drm/v3d/v3d_drv.h  | 11 +++++++++++
->>   drivers/gpu/drm/v3d/v3d_gem.c  | 17 +++++++++++++++++
->>   drivers/gpu/drm/v3d/v3d_regs.h | 26 ++++++++++++++++++++++++++
->>   4 files changed, 94 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/v3d/v3d_drv.c b/drivers/gpu/drm/v3d/ 
->> v3d_drv.c
->> index 
->> c63f0ed1bd8a3d5511085e76ed2fbd6ee7df6f80..122848cdccc4a02039d9ea2e77aa2f377886b5d6 100644
->> --- a/drivers/gpu/drm/v3d/v3d_drv.c
->> +++ b/drivers/gpu/drm/v3d/v3d_drv.c
->> @@ -263,6 +263,36 @@ static const struct of_device_id v3d_of_match[] = {
->>   };
->>   MODULE_DEVICE_TABLE(of, v3d_of_match);
->>
->> +static void
->> +v3d_idle_sms(struct v3d_dev *v3d)
->> +{
->> +    if (v3d->ver < V3D_GEN_71)
->> +        return;
->> +
->> +    V3D_SMS_WRITE(V3D_SMS_TEE_CS, V3D_SMS_CLEAR_POWER_OFF);
->> +
->> +    if (wait_for((V3D_GET_FIELD(V3D_SMS_READ(V3D_SMS_TEE_CS),
->> +                    V3D_SMS_STATE) == V3D_SMS_IDLE), 100)) {
->> +        DRM_ERROR("Failed to power up SMS\n");
->> +    }
->> +
->> +    v3d_reset_sms(v3d);
->> +}
->> +
->> +static void
->> +v3d_power_off_sms(struct v3d_dev *v3d)
->> +{
->> +    if (v3d->ver < V3D_GEN_71)
->> +        return;
->> +
->> +    V3D_SMS_WRITE(V3D_SMS_TEE_CS, V3D_SMS_POWER_OFF);
->> +
->> +    if (wait_for((V3D_GET_FIELD(V3D_SMS_READ(V3D_SMS_TEE_CS),
->> +                    V3D_SMS_STATE) == V3D_SMS_POWER_OFF_STATE), 100)) {
->> +        DRM_ERROR("Failed to power off SMS\n");
->> +    }
->> +}
->> +
->>   static int
->>   map_regs(struct v3d_dev *v3d, void __iomem **regs, const char *name)
->>   {
->> @@ -300,6 +330,12 @@ static int v3d_platform_drm_probe(struct 
->> platform_device *pdev)
->>       if (ret)
->>           return ret;
->>
->> +    if (v3d->ver >= V3D_GEN_71) {
->> +        ret = map_regs(v3d, &v3d->sms_regs, "sms");
->> +        if (ret)
->> +            return ret;
-> Is it correct, that BCM2712 now requires the SMS register and otherwise
-> the driver doesn't probe?
+Because you might need to modify the refcount.
 
-Hum, yeah, it is correct, but I can send a patch to ensure backwards
-compatibility. But keep in mind that you won't be able to reset the GPU
-or unload/load (power on/off).
+Though the rust code should probably use __dev_fwnode() and/or
+__dev_fwnode_const() directly and avoid the need for the helper here.
 
-> 
-> Just a note for the future: the devicetree is considered as an ABI [1],
-> so new kernels should still work with old DTB (no regression). For
-> Raspberry Pi OS, the kernel and DTB are always updated, but this doesn't
-> apply for Linux Mainline. AFAIK V3D doesn't work with Linux Mainline on
-> Raspberry Pi 5 yet, so this is just a theoretical problem.
-
-Yeah, I had that in mind, but due to the reason pointed in the end of
-your comment, it was okay to do so and ensure that reset and power on/
-off will work when RPi 5 reach upstream support.
-
-But, I'm open to send a patch removing the requirement.
-
-Best Regards,
-- Maíra
-
-> 
-> Best regards
-> 
-> [1] - https://docs.kernel.org/devicetree/bindings/ABI.html
-
+Rob
 
