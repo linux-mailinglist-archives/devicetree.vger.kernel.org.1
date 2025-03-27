@@ -1,128 +1,118 @@
-Return-Path: <devicetree+bounces-161225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71A80A72E72
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 12:07:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A72DA72E7A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 12:07:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2317A189D0D5
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 11:07:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AEE4916A1AC
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 11:07:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1279320FA91;
-	Thu, 27 Mar 2025 11:07:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26D78211476;
+	Thu, 27 Mar 2025 11:07:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UQbVgKTX"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="WqKOpCJw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76D8F20D504;
-	Thu, 27 Mar 2025 11:07:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69A26211261;
+	Thu, 27 Mar 2025 11:07:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743073622; cv=none; b=eDxEARLMtGunLVTatXf66sNZCiO3XIIAJvjxM0JG7T4Z2+0/yNOyTWj2oIKIySfg5Q7bSrs+qbyVrIBaXZEY4kjy4N0zWK0bVUFEdApmpGVqRvVPZi4DZNG4D2ff4pzUShap7G9lxN+4I6UXiTLSAZ6apnEv/INKZ/U33W0XQ7o=
+	t=1743073659; cv=none; b=KbwbV+dbO3kJAuAQQd5RFoNEmqPfoiI08t9HvHj8YMsbe1QFV+ZrZNdbLTysikTz0kjb8uvfEvIBplfVY9qsV9ZNBpJdGu/QsgO+5qjActVUAB2wx8Rf322PlcyJMEO4v5QCYxmPBoSpPU3REamfSvRpvERj/oO0FDG+eDzKk40=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743073622; c=relaxed/simple;
-	bh=BuQdKLqrhWHmhs+mT0ivoRzo7Ii9+wiV5JhiJYZKvi8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mf5nx1JR7Leugvce2FGxqUdMOdbnqd/yXAHL2LXznIK3aforDQDfqYXk5Ge+RFqCz2G/ci3IayaP57917wn1IdlScyIQHhBzvTdjTYhF81anyLPhMyZEHeRp9cocl3af1aKJb021jA5+cAT2UnB42m2AX1o3qWxz9x02LNN0bxA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UQbVgKTX; arc=none smtp.client-ip=209.85.221.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-523f19d39d3so452112e0c.2;
-        Thu, 27 Mar 2025 04:07:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743073619; x=1743678419; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BuQdKLqrhWHmhs+mT0ivoRzo7Ii9+wiV5JhiJYZKvi8=;
-        b=UQbVgKTX1tZzQhqimw3SmQ42Fbvcy8lKOpP8LzoB2JZ3xHxOJCgSjKYvlHFrl2+mKy
-         BdjwYF8crc1guEZIskZmPDbQIfqFigtunQwsQcbUfBioqGfUFH2mppzxC4sEPKWwh5xt
-         duThTIAtmTDQ73crJPN1ogTOjJ0PrpADURtgl6lReu/x1ta+nDSKI/X20bVDr/5t06F8
-         9V5uD976YCBZ+KaW/DJdtwHtD5Nqqb8z/N/v1bpLTcqzr4vg9zXgzHzpWsw+7x1KtTu8
-         Al8UcET38BobFo57T4/wLXTO/Y+wJ77gIq2v9YJx2zyc+Q1WNi4b+HWX60LVhPl0wtdD
-         Piog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743073619; x=1743678419;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BuQdKLqrhWHmhs+mT0ivoRzo7Ii9+wiV5JhiJYZKvi8=;
-        b=QHLm8NrYwFBS14AkuXpv6HjlFrzN2yH/Xc5eBruQXYrqkWrdfkUF0pvq90E/ZQTidc
-         6i3bXgJ5AtWpWbOwAkLXnYLdg1Y78KGrXJzCzAkonnF2tcG0dKRqVp1eTnBrTXvgZMWW
-         xfwx20gtUQb4/By/O9MNUNqZktxhVohoAP9LQNNoEN8cQN45JnnFVkqz5gafqRPBYZvK
-         4rAShcqcPXcjp0buHtue6D7FFm8bVgG/N5FVC0pLycvG93QVd9cwKcrNaIArLvt1ggDh
-         H5edoF7V9lPp6iqptURO4cPP1YW4Z8l3MgC3QRtmoiIsr0B8/t+ZxLI1Nsfk/KdamSvb
-         aP9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCV+gEWke3N30/b9uGxoDsVdlsRYQfkECgkXPEAKgZLPe9EmhgKYLqtLZ6wqs26eYw+SpAuXpMsxEXSoB5P6PYnfTP4=@vger.kernel.org, AJvYcCV5EGAl7LKrQ5pqCOJAlPJexyperLpFZFfBDaitRXND0hRFiWnTBTqyUwHQG1pNxOTh1oPUmICf6dMo@vger.kernel.org, AJvYcCVd4mbAzzzS8ILoR5aLQ2D2kkGg7hUupntErxUOUbLKFrSFrH9+YJbER3DCbt3Fx7fD3DVLNICQdzXmgFc8@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz1ZJIn8wK76dXncxJTqtFV9vNkqPYdcBvj1yTIgJ8Z7G6X4Mw4
-	PEijXB7H676C3ilgDTxkTnpgTZfaZmGsIZpGHCrdGGYcLA8RAEUlY129VQadW3SPg1d1GiEa5S/
-	UeKuzMt86DM+2NtMo2wZpSbLzpoU=
-X-Gm-Gg: ASbGnctpNUI5G4XI22tkK839Lc9DNktm1hOuvUhxbmuoSsRmOj9Gc3jcKuWFDgAGB/E
-	iLg5LusxO0r0yTvCVm6RD5yysctNk39P2MSzE9J+R+V29IS+aYfmh3QqS9p0LpRz/Tp7fZSeDc1
-	CsWFjqn78JrHi4gsD6QvVM9lMDyXcZ/5G4JQAv3i3cO7NhFHwnMLfFdgjvfyo=
-X-Google-Smtp-Source: AGHT+IEOm9cUCIzbmcm35mwEwgAg+CYjQj2nruO0LZ2GtSnT5RPVCXqpeRK85lo+9GVPGIgUHTU0QTXBaUZG5i4aiHQ=
-X-Received: by 2002:a05:6122:430c:b0:520:60c2:3fb with SMTP id
- 71dfb90a1353d-52600705addmr1888914e0c.0.1743073619001; Thu, 27 Mar 2025
- 04:06:59 -0700 (PDT)
+	s=arc-20240116; t=1743073659; c=relaxed/simple;
+	bh=iUwlzKQcSJXS8+bcSJdrfEtFRAl1OnhjN9CsrsWizcU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LlsZJCOS6KgpudfWyvTgYgoDjjDk7mUP+QIhdFvf8PjA92dA5SHgHq2BeBmKcJUgBA9agfuKbl1JymO+o/der0Ka1YlnCuvZBqnw3HTFwc9hgYiVKd3A4RIyNmbYxDk0U/8eFyb//6OxVTak4Gq582eq+3jnBU065sBPO3NAHcw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=WqKOpCJw; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=WZqb+6ZduzORjFqfT2budPi5gkMW/3J6mbS3Z4qhKJI=; b=WqKOpCJwUCCRxAWTzc+Zhf8/ag
+	qvEPB2pNoyfOnLwCRl4aTnPj2AnLckChSlAsqqOusG7XqUB4i2FOMVXO9hYO7+LfHb0bPjJWiYMyh
+	1na9SHYDsUrGTjkVw1T0I3DEwos1Lj8CNB18qpWAh+qIPMr88+5U9/BegR90MxQ/bkhrfhidZ4sKH
+	rBQarEIl0lC3f19L9k9nhMnqp6p4GzcZ3TphTWrZbe/nLacCEl98CftWI5Wj6c3THpTiRLuF3whi4
+	Tg+U2zaSuNflYbDsSf1pREbhXcVs/Whw4In2gRlw+7/uuAPxT087Lzab9gai4/weVc0boQ0B2bWxV
+	3XzYlkvg==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:40456)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1txl4z-00078z-0Z;
+	Thu, 27 Mar 2025 11:07:22 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1txl4u-0005Zf-2Q;
+	Thu, 27 Mar 2025 11:07:16 +0000
+Date: Thu, 27 Mar 2025 11:07:16 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+	Eric Woudstra <ericwouds@gmail.com>,
+	Daniel Golle <daniel@makrotopia.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next RFC PATCH v3 1/4] net: phy: pass PHY driver to
+ .match_phy_device OP
+Message-ID: <Z-UxZMJR7-Hp_7d0@shell.armlinux.org.uk>
+References: <20250326233512.17153-1-ansuelsmth@gmail.com>
+ <20250326233512.17153-2-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250305123915.341589-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250305123915.341589-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250305-cesspool-headlock-4d28a2a1333e@spud> <CA+V-a8uQTL+SHYqVU_J0th4PT6YPF7q6ypzDu33nS_6onWLoOQ@mail.gmail.com>
- <20250306-slather-audition-a6b28ba1483e@spud> <18780ad4be2c28999af314c97ae4104fb161a691.camel@pengutronix.de>
- <CA+V-a8tYv_u4UM5XVysVMPbfJoVwKFHqucLdJOmDP-xrXZ0L5Q@mail.gmail.com>
-In-Reply-To: <CA+V-a8tYv_u4UM5XVysVMPbfJoVwKFHqucLdJOmDP-xrXZ0L5Q@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Thu, 27 Mar 2025 11:06:33 +0000
-X-Gm-Features: AQ5f1Jo2y4aHX-Ul1mcjzUHpwZcTz5IMogldURDHGCK5Eh0UhKB7pBr8uELbClA
-Message-ID: <CA+V-a8sfx-QwzPz_zEEmGAyAoqha5cfMs9CvWDVJ_b0-D7QfpQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: reset: Document RZ/V2H(P) USB2PHY Control
-To: Philipp Zabel <p.zabel@pengutronix.de>, Conor Dooley <conor@kernel.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250326233512.17153-2-ansuelsmth@gmail.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-Hi Philipp and Conor
+On Thu, Mar 27, 2025 at 12:35:01AM +0100, Christian Marangi wrote:
+> Pass PHY driver pointer to .match_phy_device OP in addition to phydev.
+> Having access to the PHY driver struct might be useful to check the
+> PHY ID of the driver is being matched for in case the PHY ID scanned in
+> the phydev is not consistent.
+> 
+> A scenario for this is a PHY that change PHY ID after a firmware is
+> loaded, in such case, the PHY ID stored in PHY device struct is not
+> valid anymore and PHY will manually scan the ID in the match_phy_device
+> function.
+> 
+> Having the PHY driver info is also useful for those PHY driver that
+> implement multiple simple .match_phy_device OP to match specific MMD PHY
+> ID. With this extra info if the parsing logic is the same, the matching
+> function can be generalized by using the phy_id in the PHY driver
+> instead of hardcoding.
+> 
+> Suggested-by: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Thu, Mar 13, 2025 at 1:17=E2=80=AFPM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
->
-> Hi Philipp,
->
-> On Thu, Mar 13, 2025 at 1:09=E2=80=AFPM Philipp Zabel <p.zabel@pengutroni=
-x.de> wrote:
-> >
-> > On Do, 2025-03-06 at 16:26 +0000, Conor Dooley wrote:
-> > [...]
-> > > That sounds awfully like "it was wrong before, and I want to keep usi=
-ng
-> > > the wrong node name"... If you're claiming to be some other class of
-> > > device, "ctrl" should really be "controller" like all the other sorts=
- of
-> > > controllers ;)
-> >
-> > There are "usb-phy-controller" nodes on the rcar-gen2 SoCs.
-> >
-> Ok, I will rename the node name to "usb-phy-controller".
->
-Fyi to chime in with other reset drivers I'll rename this binding file
-to `renesas,rzv2h-usb2phy-reset.yaml` and have the node named
-`usb2phy-reset@15830000` in the example node.
+Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
 
-Cheers
-Prabhakar
+Please also update the email address in the suggested-by to match the
+one in my reviewed-by for the next resend.
+
+Thanks!
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
