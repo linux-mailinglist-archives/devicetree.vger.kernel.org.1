@@ -1,144 +1,134 @@
-Return-Path: <devicetree+bounces-161263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C469A733CC
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 15:01:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 683DFA733D7
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 15:03:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 510FC17CB56
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 14:01:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B2063A9AC9
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 14:03:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CDBE216E30;
-	Thu, 27 Mar 2025 14:00:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4647F21578B;
+	Thu, 27 Mar 2025 14:03:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="NH26j7Th"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="munLR9BX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DEA6215F47
-	for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 14:00:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A5CA197A8A;
+	Thu, 27 Mar 2025 14:03:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743084051; cv=none; b=OeSKSY5nZeRM5OhXHPiuFmzY379/7b+m+RHi8Q47Xw4aQa7OSowu9HpfQJJcpY8GEqvYsutisiWT7eaNNecQoRNIrkvvNcwfgwxo+V/CwKO5ap8Pv3fUSKlZHCPrNKs8Cr2F3n2mmrJ269bHsj8l7RWW9VJ/oL7iTqbScUn8fH4=
+	t=1743084209; cv=none; b=cIOKqZHMWvwyermGrUiGikvDEg47yJ9awa203AJrfpDBEeQreW0TG4lGJfolOKH2EFr3YkOhbhwXA9tcx3er01G0idduwhbmZxkuSkM3/bLIkMRpAVZ2HnA1okvkKboEIS81GGwc+1CNkPTSpEHIU8wh1b9n1H7U+sUfy3odGEA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743084051; c=relaxed/simple;
-	bh=SEZO9qBx5pmsR70QUhs9LOaTH6O8WpbkUZdAtq7YYMI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PPJD9mUMpdMPVvZT5iwMhNAmo59sahCh1xyUj5aUBkBmdGGuwc36HBv50+ZzappuK1TT4FHKX1YDz+0I4wlIDXrVkNlfP9l5QeDtv/YSbdzUAIyYlIOYl2tbqvQQzVUXVmUJ8CC7dYBZ32nWuIRC4vH9WWbq6O18dUlXpbNZh50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=NH26j7Th; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52R5jD6W002235
-	for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 14:00:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=ljIDS8nBjc2VG8d0ZzZqDDV7
-	zEKCh4Md768L4ui2t70=; b=NH26j7ThGzFqPxp06QogCGK3u3Fdi6kN8lm4QxEO
-	DkBqU3thpimrfMEUr8z5CNs54LqtQgRUBoh6f9zpqpYjNNtNd0d15SQaNnFQcQP7
-	zf6i2NrndfqU33/+J8YLC9TNMnMkzuJCuDoVKa3Klek+4LXPS2Yp0zkneXQ8l/c9
-	gmQD84HDeTLQs+Mb8yTWsuK6P39mvKxM33fT/5xIoti88xL4qmcn30P9HhJEQu+Q
-	xfx1NOg3aLgN3AP21nz/RZZO0KAjOo/EN2xdN2aoPsLSTkSScnh0uePIN1lFQe9m
-	oLGKhcqCAccDp/VSqoEjnsXewm8bUCYUUUw5qBCHJ8NfxA==
-Received: from mail-oo1-f70.google.com (mail-oo1-f70.google.com [209.85.161.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45m0xdxcwd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 14:00:48 +0000 (GMT)
-Received: by mail-oo1-f70.google.com with SMTP id 006d021491bc7-60214b7cdbcso918203eaf.0
-        for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 07:00:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743084048; x=1743688848;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ljIDS8nBjc2VG8d0ZzZqDDV7zEKCh4Md768L4ui2t70=;
-        b=if1qn7M/Ymwv36ahAqgMCPVrloEOlVCmyvhVyGqu40GX7H44/K9WnOug9xi+o0phrk
-         vgeC/CMv6rE4o6EfEa4U1bh3THlj1UXzYAgL4K7YPGtVAH0QsuXyfCiXJCf2QpSsWG+m
-         2xKUh/oPfERxtjW7BHHXdrKEWoIjzvgy4Z+2COWxjbKWabXjz1JkozSjdasBO8Qt5c0U
-         9n8tFhyfcBOGCbLCzT8Uw6fpCzNCyOYeXUwp0yl0hoJB8ZkFNsWSDO3vfoS5moWmuWG2
-         AxNDDhbNvY3IuZ2+B/JfIIq8c/c//gg/DD+H/EGzRAIfolt+zd7W9yhOi6Zd58GjbiH4
-         AHGg==
-X-Forwarded-Encrypted: i=1; AJvYcCVX031F/Qevppzhpt3UPq37XkmKPRGBXtQBJIBJRX5oL71DeVwIJLft2g5U/r2Pw+AceVhHU8KrYvhq@vger.kernel.org
-X-Gm-Message-State: AOJu0YyamjTtxiQis1rpj8XgVCiv5sskm696ExjaUhcKnbFmOjwN8egc
-	MbHUtoUzS0ov8H2LFCx5eKWy5DTt+fFSbrhdaEaz7Cz0ry8HB00Dsj08U+B8B55khx0gkMszKPd
-	830M9pGvYIf9R2USFmFkfW0WiOoigCVZiCN8rrNbLZd0SQQi9W63OaQokQBY5
-X-Gm-Gg: ASbGncv4Ppyj1VPTJApGPQjTyQwswsW7x7cXaQb12vOeuhC/qpzYvTFJ6mKpb3bqw5F
-	auiuE9NrgX8fIXswrJQ4VBk/u7vyyLK76S2xila6L1g07dQXLVizSytkojfy0KsUjcQv+pO1Krt
-	TM9NJok/Z4PMqPI3mEu5eD6Kahkb2g3XgRJnZW4vtwE32cqLJ+yI+ufyDUGV23f3cit6YJxeZ01
-	4557NXF1W/Giq5dAXwraCVOZKgSnm5XMXmw6BRUUv1qjZYXH7ejcFZQaIDX2QY1grldh10n5ZDT
-	pIqgiPMzi9GPgZZaSmdlwfIrtpK5aAD7imVfk+Avcum5kN61935S5DBQ1Tn3iBaaWeaIxQLDKcR
-	hR+w=
-X-Received: by 2002:a05:6820:418d:b0:5fe:9b5a:531 with SMTP id 006d021491bc7-60282f734a0mr160597eaf.0.1743084047617;
-        Thu, 27 Mar 2025 07:00:47 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFzv3shkUjdIzmBbQcYnd9sMhyUVqFh0YY+uJOnkJ41kguWyH8HnLjBcqHJ31+I4eWoL8bF3g==
-X-Received: by 2002:a05:6820:418d:b0:5fe:9b5a:531 with SMTP id 006d021491bc7-60282f734a0mr160480eaf.0.1743084046857;
-        Thu, 27 Mar 2025 07:00:46 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54ad64fbc99sm2078251e87.125.2025.03.27.07.00.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Mar 2025 07:00:44 -0700 (PDT)
-Date: Thu, 27 Mar 2025 16:00:41 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org,
-        Marc Gonzalez <mgonzalez@freebox.fr>,
-        Dmitry Baryshkov <lumag@kernel.org>, Arnaud Vrac <avrac@freebox.fr>,
-        Sayali Lokhande <quic_sayalil@quicinc.com>,
-        Xin Liu <quic_liuxin@quicinc.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v2 12/12] arm64: dts: qcom: qcs615: Fix up UFS clocks
-Message-ID: <753oerdfl5m4rvtpqqvjkd5nhk7gv246nmywtnh73nehh5nhal@s4je6izjuawd>
-References: <20250327-topic-more_dt_bindings_fixes-v2-0-b763d958545f@oss.qualcomm.com>
- <20250327-topic-more_dt_bindings_fixes-v2-12-b763d958545f@oss.qualcomm.com>
+	s=arc-20240116; t=1743084209; c=relaxed/simple;
+	bh=r2nebabuKIAEpNzA037xHqghzQDApSKNTfnGOqwEwN8=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=Q8BKjnElzvB1n6uWaBKugiXM0ZyXFxhTRfz1BJZX+mEbwMXospV1+NbA8b55256E7EYXzuyp8CIeZvpMe/YiR6WI1W9v8UiE1J5NKNKCLw5hz+wZzX5cTapED2GiJFLpQsAoHc5EH3aesWG0oh9FBgA574y64e8og8Db5l2vnkU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=munLR9BX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A695C4CEDD;
+	Thu, 27 Mar 2025 14:03:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743084208;
+	bh=r2nebabuKIAEpNzA037xHqghzQDApSKNTfnGOqwEwN8=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=munLR9BXsDWJrcnjMNzaDqeLN+axN0GePf7D1fsqRI2yT+YQ343M7qm0RSjtDUKcm
+	 K/GOsPxuGqTy6zorIYUUtuGiTVin6EAzVxItq7XwQqC+2KDFaeCasiV9G9uKbyhaUY
+	 SGx3TGMUsqd+3B7AS4tqoDiUqg6CQDb0Ct6QRnGCmkSEOBi3XuuTPAuXRKqvvEPinr
+	 86IjOI1vMPaWGSKRBlVKXWbzGjXReY7Bdz1zc/8hPkpZpVYG9aSjsIHDX5RTa9acGq
+	 QHa9Sn1RHgqwrfOnnqX3r9XJsIXLNJieyjGF8yHOkU5h4ta2+HSExFnOrRzSBR7CQ8
+	 ZfX9USQFBYs8Q==
+Date: Thu, 27 Mar 2025 09:03:27 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250327-topic-more_dt_bindings_fixes-v2-12-b763d958545f@oss.qualcomm.com>
-X-Proofpoint-ORIG-GUID: xvyDXgSZhwqv6Kcxb0tobTmI_0LMv-_Q
-X-Proofpoint-GUID: xvyDXgSZhwqv6Kcxb0tobTmI_0LMv-_Q
-X-Authority-Analysis: v=2.4 cv=Q43S452a c=1 sm=1 tr=0 ts=67e55a10 cx=c_pps a=lkkFf9KBb43tY3aOjL++dA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=EUspDBNiAAAA:8 a=y2As-JX5KrBiNkWRAOIA:9 a=CjuIK1q_8ugA:10 a=k4UEASGLJojhI9HsvVT1:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-27_01,2025-03-26_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 impostorscore=0
- lowpriorityscore=0 bulkscore=0 spamscore=0 suspectscore=0 adultscore=0
- mlxlogscore=762 malwarescore=0 mlxscore=0 priorityscore=1501 clxscore=1015
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503270096
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>, 
+ kernel@collabora.com, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ imx@lists.linux.dev, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ Conor Dooley <conor+dt@kernel.org>
+To: Martyn Welch <martyn.welch@collabora.com>
+In-Reply-To: <20250327123907.542132-1-martyn.welch@collabora.com>
+References: <20250327123907.542132-1-martyn.welch@collabora.com>
+Message-Id: <174308402878.604918.5811022747265232650.robh@kernel.org>
+Subject: Re: [PATCH v2] arm64: dts: imx8mp: Add device tree for Nitrogen8M
+ Plus ENC Carrier Board
 
-On Thu, Mar 27, 2025 at 02:47:14AM +0100, Konrad Dybcio wrote:
-> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+
+On Thu, 27 Mar 2025 12:39:02 +0000, Martyn Welch wrote:
+> Add support for Boundary Devices/Ezurio Nitrogen8M Plus ENC Carrier
+> Board and it's SOM. Supported interfaces:
 > 
-> The clocks are out of order with the bindings' expectations.
+>  - Serial Console
+>  - EQoS Ethernet
+>  - USB
+>  - eMMC
+>  - HDMI
 > 
-> Reorder them to resolve the errors.
-> 
-> Fixes: a6a9d10e7969 ("arm64: dts: qcom: qcs615: add UFS node")
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
 > ---
->  arch/arm64/boot/dts/qcom/qcs615.dtsi | 16 ++++++++--------
->  1 file changed, 8 insertions(+), 8 deletions(-)
+> 
+> Changes in v2:
+>  - Add missing entries to binding documents.
+> 
+>  .../devicetree/bindings/arm/fsl.yaml          |   6 +
+>  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+>  .../imx8mp-nitrogen-enc-carrier-board.dts     | 478 ++++++++++++++++++
+>  .../dts/freescale/imx8mp-nitrogen-som.dtsi    | 415 +++++++++++++++
+>  4 files changed, 900 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-nitrogen-enc-carrier-board.dts
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-nitrogen-som.dtsi
 > 
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
--- 
-With best wishes
-Dmitry
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: attempting to guess base-commit...
+ Base: failed to guess base
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/freescale/' for 20250327123907.542132-1-martyn.welch@collabora.com:
+
+arch/arm64/boot/dts/freescale/imx8mp-nitrogen-enc-carrier-board.dtb: pinctrl@30330000: 'usdhc1grp-100mhz', 'usdhc1grp-200mhz', 'usdhc1grp-gpio' do not match any of the regexes: 'grp$', 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/pinctrl/fsl,imx8m-pinctrl.yaml#
+arch/arm64/boot/dts/freescale/imx8mp-nitrogen-enc-carrier-board.dtb: pinctrl@30330000: usdhc1grp-gpio: {'fsl,pins': [[184, 792, 0, 5, 0, 452]], 'phandle': 71} is not of type 'array'
+	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
+arch/arm64/boot/dts/freescale/imx8mp-nitrogen-enc-carrier-board.dtb: pmic@25: regulators:BUCK2: Unevaluated properties are not allowed ('regulator-limit-microvolt' was unexpected)
+	from schema $id: http://devicetree.org/schemas/regulator/nxp,pca9450-regulator.yaml#
+arch/arm64/boot/dts/freescale/imx8mp-nitrogen-enc-carrier-board.dtb: i2cmux9546@70: Unevaluated properties are not allowed ('i2c2@0', 'i2c2@1', 'i2c2@2', 'i2c2@3' were unexpected)
+	from schema $id: http://devicetree.org/schemas/i2c/i2c-mux-pca954x.yaml#
+arch/arm64/boot/dts/freescale/imx8mp-nitrogen-enc-carrier-board.dtb: usb-phy@381f0040: Unevaluated properties are not allowed ('fsl,phy-tx-preemp-amp-tune' was unexpected)
+	from schema $id: http://devicetree.org/schemas/phy/fsl,imx8mq-usb-phy.yaml#
+arch/arm64/boot/dts/freescale/imx8mp-nitrogen-enc-carrier-board.dtb: usb-phy@382f0040: Unevaluated properties are not allowed ('fsl,phy-tx-preemp-amp-tune' was unexpected)
+	from schema $id: http://devicetree.org/schemas/phy/fsl,imx8mq-usb-phy.yaml#
+
+
+
+
+
 
