@@ -1,170 +1,203 @@
-Return-Path: <devicetree+bounces-161113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4E22A7296D
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 05:13:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 696D4A7297C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 05:32:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C4BF0188E19F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 04:13:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C91AD3AD5F4
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 04:32:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81236192D8A;
-	Thu, 27 Mar 2025 04:12:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE05E1AC882;
+	Thu, 27 Mar 2025 04:32:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="o5W243hy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RjNLK19U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 471F9C2C8;
-	Thu, 27 Mar 2025 04:12:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 790341AA1D5;
+	Thu, 27 Mar 2025 04:32:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743048775; cv=none; b=TAfM+XA4NdoXysTYjVf+kAgUq6KPAmBe0Z4jW0UqhJapFQ1V3q9cu656SqXQec9UUZ3Li7omG7iK6PEZhbkWJexoVucwSH0R1qvnV6fru00bkLzOA+j6ccJq/P/HEOvVgHAWp5+3KECzsMsmp4XcZ20MWgT0BAwrAerpvYEZCeo=
+	t=1743049959; cv=none; b=btCV4j2tRb4JaH8es33h0hEcDUzK6CUKJ4GtjSdACtd2C36AOdgdH1XEn+UbJcgI9RIxJLWoPxwiR/Dqy1GMGgM//MMP24ShkMvqzG7b9/2PV2c6qEIRx5IEdk00ssu+gRwWw0GOzzm34wBtgcBNbFqqdnxIJWL25DeF51PYHLA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743048775; c=relaxed/simple;
-	bh=JmCZSUbNWMfIFUh6Av6OLQn87rP1uQlH7td6P0E7CEs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ItkOgtePFRtvnIS3WWGl6hlJ2xmfj9zenLMCPz0/C/ndclsWLhWdK7j7ocQxOAnWR2MF/NoqU4PnNsyjvBiY8d69Mgr0EwH40EeNnUibcakfU2qScyYj/4oJPbF/Dyyo4tlbKp4mv3FYIVyg1y3+EdxwtQwA0pAZYy72rpThTpY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=o5W243hy; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52R4CgO72377169
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 26 Mar 2025 23:12:42 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1743048762;
-	bh=QTcUvUKbScEe+aC02fC8wk+Yibgrocm6jZqJKvio2YM=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=o5W243hy9wtXdmPurOWIA15/QglK5GrnUCVZ43J+FL+RcULEpBWXXXckZfDfl6cs9
-	 9Z0B2cd3CjqNfyAhXIIgFvEbpWjw35HZMFHMEasivGG5WU8dzPrxFDhduDWp+qvSpb
-	 tY16gxj1F9yvWYHhuJD/ggqG4iW2ioFEQY4EpprQ=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 52R4CgUQ033117
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 26 Mar 2025 23:12:42 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 26
- Mar 2025 23:12:42 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 26 Mar 2025 23:12:41 -0500
-Received: from [10.24.69.37] (a0497641-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [10.24.69.37] (may be forged))
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52R4CcVx045056;
-	Wed, 26 Mar 2025 23:12:39 -0500
-Message-ID: <bd7bee62-38fd-412b-a2d4-611890238e9e@ti.com>
-Date: Thu, 27 Mar 2025 09:42:38 +0530
+	s=arc-20240116; t=1743049959; c=relaxed/simple;
+	bh=vkEar+Bp4mb9U1ErBYXk0ufSXnmYuVhKsrxGSFbrQIw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=l0ed8hmUBx6B/SKpAvZmG+fMEWDXh8OzhAMG/YrhvpkTXC+qRKmCQAORA3XRGj3N1fs91tG0+iI7ngTsghWMirX/2/MlpcBZzKjdTQNkRjXdN7ir3aS7pHeWDFIwNesjyL4TeZPKrNd8cmxyvyUDRvm/LIeJt6x165Qy3YYbWc8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RjNLK19U; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0115C4CEE4;
+	Thu, 27 Mar 2025 04:32:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743049958;
+	bh=vkEar+Bp4mb9U1ErBYXk0ufSXnmYuVhKsrxGSFbrQIw=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=RjNLK19Ua83WOdqGeiIkiXP+kkZ6tB9H3gdBqX+f434sWgg8md3d4JywjLxUNK+S/
+	 YNzS+8eiLPRabeg5zQLw1mKp2jm9t2r4A+4zrn2vrweZtSVuIU8MlforeKvegAfg0J
+	 MSixpKgXXITUUiiXkMSeNmKKUNZsjW8e2k6aFadcwj7t2Yq2pCqXI6cSzzeIWxBXoc
+	 /mUgYaPW2dbLJySsKGmTszOYvNNJvcUElMVKdwXyXEtpMG+DlCPbIhK4t1XSgDSH0j
+	 zP0CVsusc1EtWTkUyN67HZlKQx5o5e7steT7i9jDQVISB/tQaWrQEQpUkbsAaHc3KB
+	 QGWSTihjCYYvg==
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-30bfd4d4c63so6307131fa.2;
+        Wed, 26 Mar 2025 21:32:38 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU2NjLDK3IMhbWPFqEUk4I5wZXIGlpLS3O+t10VJdIQwnz9r+MSdxp3+aPA5MfKyVeFZXvsmJ0mftsc@vger.kernel.org, AJvYcCVGRCGH64ckuvCxGN2RAZ99EcPPEm/tFgiDRZTNGv4PGSjR3b8ooJNyq2YYoC6e70AStpkGKlqxDw2ZC1iv0AOZDQ==@vger.kernel.org, AJvYcCVWMBL8+G08Qd7UWrzi939ajWrOEi8xwtsacdT6n7EHyTEOHWRWuRUJf/cMnTkcMJMXXMJCoyKHWLfW3ZqF@vger.kernel.org, AJvYcCXPQaCZqrd6PP9Dn5j+kZZlRSm+QYPZKB1OuV1lKm8w2r2VuS02hpIzQ+BvfHh8YRomJlK9asa7fXNFLlV2sg==@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx7Z84P6dnsXWZzDG7vqdXUJSoeZcc85Z0xdtOxEvfazRu5Qth2
+	aqR3C5p0Rk9rKgLsu3TYN4I0ewCNp+uOwlvpUV7ZBndAwaa0zyeEIFV1S9hi4U8yBORjC8wapys
+	AqZ9aeIY4+3TtKwssv0NcaHLUUb0=
+X-Google-Smtp-Source: AGHT+IF6fAB138KxHWy/pT7d/+7sa0DqbsRN8WZ3PB5VKFSTgeIGYi9SJIdz25/4ZRPKiUb58v/Gi3ZiI0Z3sR4FiZc=
+X-Received: by 2002:a05:651c:1a0b:b0:30b:b7c3:ea71 with SMTP id
+ 38308e7fff4ca-30dc5e31b95mr9042391fa.15.1743049957271; Wed, 26 Mar 2025
+ 21:32:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: misc: bist: Add BIST dt-binding for TI
- K3 devices
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>
-References: <20241128140825.263216-1-n-francis@ti.com>
- <20241128140825.263216-2-n-francis@ti.com>
- <ho7ktcnbtl7mvamfthqho23co2fc4z7bgjha7pu4wivxm6ndhu@tfbpveonhckz>
- <837d329b-bcdd-4c3b-b508-e916b110ce25@ti.com>
- <e57dfc3e-b702-4803-b776-20c6dbd98fef@kernel.org>
- <8e58b093-1c64-45b9-a9d3-9835a3bbc4fd@ti.com>
- <1da4e402-62f3-4bad-9129-1f5a08148987@kernel.org>
- <f39d80fc-3600-4c2c-b09c-980288f86fa2@ti.com>
- <a2397c92-2884-4f4d-b036-808208892af5@kernel.org>
-Content-Language: en-US
-From: Neha Malcom Francis <n-francis@ti.com>
-In-Reply-To: <a2397c92-2884-4f4d-b036-808208892af5@kernel.org>
+References: <20250317232426.952188-1-robh@kernel.org> <20250317232426.952188-3-robh@kernel.org>
+ <CAGb2v65djD5DLQnjQrp9kSHTQYVd9p_vP9WySj2Cx81rHmh5Mw@mail.gmail.com> <CAL_JsqLoJAwPeWjXyQYK1rvVzn6Meapz3iS9gW+QqYpYKuJkBQ@mail.gmail.com>
+In-Reply-To: <CAL_JsqLoJAwPeWjXyQYK1rvVzn6Meapz3iS9gW+QqYpYKuJkBQ@mail.gmail.com>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Thu, 27 Mar 2025 12:32:25 +0800
+X-Gmail-Original-Message-ID: <CAGb2v65nG82vDvTHMW0GQFHed5L4pQFMDggtTpuLqfm=woKm=w@mail.gmail.com>
+X-Gm-Features: AQ5f1JqdFE0VpmnOb9GgVtgJfb7ntGDb2tyu8gNbju_XzgxeziYqnhZQK0zKPKw
+Message-ID: <CAGb2v65nG82vDvTHMW0GQFHed5L4pQFMDggtTpuLqfm=woKm=w@mail.gmail.com>
+Subject: Re: [PATCH 2/3] of: Simplify of_dma_set_restricted_buffer() to use of_for_each_phandle()
+To: Rob Herring <robh@kernel.org>
+Cc: Saravana Kannan <saravanak@google.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Mathieu Poirier <mathieu.poirier@linaro.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Patrice Chotard <patrice.chotard@foss.st.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-remoteproc@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: quoted-printable
 
-On 24/03/25 12:53, Krzysztof Kozlowski wrote:
-> On 19/03/2025 10:02, Neha Malcom Francis wrote:
->> Hi Krzysztof,
->>
->> On 19/03/25 13:16, Krzysztof Kozlowski wrote:
->>> On 13/03/2025 12:14, Neha Malcom Francis wrote:
->>>> Hi Krzysztof
->>>>
->>>> On 29/11/24 14:45, Krzysztof Kozlowski wrote:
->>>>> On 29/11/2024 08:43, Neha Malcom Francis wrote:
->>>>>>>> +
->>>>>>>> +  power-domains:
->>>>>>>> +    maxItems: 1
->>>>>>>> +
->>>>>>>> +  ti,bist-instance:
->>>>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>>>>>> +    description:
->>>>>>>> +      the BIST instance in the SoC represented as an integer
->>>>>>>
->>>>>>> No instance indices are allowed. Drop.
->>>>>>>
->>>>>>
->>>>>> Question on this, this is not a property that is driven by software but rather 
->>>>>> indicates which register sequences have to be picked up for triggering this test 
->>>>>> from this instance. So I don't see how I can workaround this without getting 
->>>>>> this number. Or maybe call it ID rather than instance?
->>>>>
->>>>> I don't understand how the device operates, so what is exactly behind
->>>>> some sequences of registers for triggering this test. You described
->>>>> property as index or ID of one instance of the block. That's not what we
->>>>> want in the binding. That's said maybe other, different hardware
->>>>> characteristic is behind, who knows. Or maybe it's about callers... or
->>>>> maybe that's not hardware property at all, but runtime OS, who knows.
->>>>>
->>>>
->>>> Sorry for such a late reply, but I was hoping to get more details on
->>>> this "ID" and never got back to the thread...
->>>>
->>>> The best way I can describe is this device (BIST) runs a safety
->>>> diagnostic test on a bunch of processors/blocks (let's call them
->>>> targets). There's a mapping between the instance of this device and the
->>>> targets it will run the test. This ID was essentially letting the BIST
->>>> driver know which are these targets.
->>>
->>>
->>> So you want to configure some target? Then this is your property. If you
->>> want to configure 'foo' difference in DT, you do not write 'bar'...
->>>
->>
->> So the difficulty in doing this is, what I mentioned in the earlier
->> email just copying it over again:
->>
->> "Yet another way would be the BIST points out the targets it controls via
->> their phandles in its node... but this approach would trigger the probe
-> 
-> No, it would not. Which part of OF kernel code causes probe ordering
-> (device links) if some random phandle appears?
+On Thu, Mar 27, 2025 at 2:53=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> On Wed, Mar 26, 2025 at 1:44=E2=80=AFAM Chen-Yu Tsai <wens@kernel.org> wr=
+ote:
+> >
+> > Hi,
+> >
+> > On Tue, Mar 18, 2025 at 7:29=E2=80=AFAM Rob Herring (Arm) <robh@kernel.=
+org> wrote:
+> > >
+> > > Simplify of_dma_set_restricted_buffer() by using of_property_present(=
+)
+> > > and of_for_each_phandle() iterator.
+> > >
+> > > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> > > ---
+> > >  drivers/of/device.c | 34 +++++++++++++---------------------
+> > >  1 file changed, 13 insertions(+), 21 deletions(-)
+> > >
+> > > diff --git a/drivers/of/device.c b/drivers/of/device.c
+> > > index edf3be197265..bb4a47d58249 100644
+> > > --- a/drivers/of/device.c
+> > > +++ b/drivers/of/device.c
+> > > @@ -35,44 +35,36 @@ EXPORT_SYMBOL(of_match_device);
+> > >  static void
+> > >  of_dma_set_restricted_buffer(struct device *dev, struct device_node =
+*np)
+> > >  {
+> > > -       struct device_node *node, *of_node =3D dev->of_node;
+> > > -       int count, i;
+> > > +       struct device_node *of_node =3D dev->of_node;
+> > > +       struct of_phandle_iterator it;
+> > > +       int rc, i =3D 0;
+> > >
+> > >         if (!IS_ENABLED(CONFIG_DMA_RESTRICTED_POOL))
+> > >                 return;
+> > >
+> > > -       count =3D of_property_count_elems_of_size(of_node, "memory-re=
+gion",
+> > > -                                               sizeof(u32));
+> > >         /*
+> > >          * If dev->of_node doesn't exist or doesn't contain memory-re=
+gion, try
+> > >          * the OF node having DMA configuration.
+> > >          */
+> > > -       if (count <=3D 0) {
+> > > +       if (!of_property_present(of_node, "memory-region"))
+> > >                 of_node =3D np;
+> > > -               count =3D of_property_count_elems_of_size(
+> > > -                       of_node, "memory-region", sizeof(u32));
+> > > -       }
+> > >
+> > > -       for (i =3D 0; i < count; i++) {
+> > > -               node =3D of_parse_phandle(of_node, "memory-region", i=
+);
+> > > +       of_for_each_phandle(&it, rc, of_node, "memory-region", NULL, =
+0) {
+> > >                 /*
+> > >                  * There might be multiple memory regions, but only o=
+ne
+> > >                  * restricted-dma-pool region is allowed.
+> > >                  */
+> > > -               if (of_device_is_compatible(node, "restricted-dma-poo=
+l") &&
+> > > -                   of_device_is_available(node)) {
+> > > -                       of_node_put(node);
+> > > -                       break;
+> > > +               if (of_device_is_compatible(it.node, "restricted-dma-=
+pool") &&
+> > > +                   of_device_is_available(it.node)) {
+> > > +                       if (!of_reserved_mem_device_init_by_idx(dev, =
+of_node, i)) {
+> > > +                               of_node_put(it.node);
+> > > +                               return;
+> > > +                       }
+> > >                 }
+> > > -               of_node_put(node);
+> > > +               i++;
+> > >         }
+> > >
+> > > -       /*
+> > > -        * Attempt to initialize a restricted-dma-pool region if one =
+was found.
+> > > -        * Note that count can hold a negative error code.
+> > > -        */
+> > > -       if (i < count && of_reserved_mem_device_init_by_idx(dev, of_n=
+ode, i))
+> > > -               dev_warn(dev, "failed to initialise \"restricted-dma-=
+pool\" memory node\n");
+> > > +       dev_warn(dev, "failed to initialise \"restricted-dma-pool\" m=
+emory node\n");
+> >
+> > This changes the behavior. Before this patch, it was:
+> >
+> >     if a restricted dma pool was found, but initializing it failed, pri=
+nt
+> >     a warning.
+> >
+> > Whereas now it has become:
+> >
+> >      print a warning unless a restricted dma pool was found and success=
+fully
+> >      initialized.
+> >
+> > This change causes the kernel to print out the warning for devices that
+> > don't even do DMA:
+>
+> Thanks. I fixed it up to only warn if i is non-zero.
 
-Going through device links now, I realize I may have come to the wrong
-conclusion while writing the driver. Let me try to respin the driver
-using this approach then post which I will resume this series.
+Not sure if that matches the old behavior though? A node could have
+memory-regions for shared dma pools but not restricted dma pools,
+and i would be non-zero.
 
-> 
->> of these targets before the test runs on them. And in hardware, the test
->> must run only one before the device is used, else we see indefinite
->> behavior."
->>
->> Property that has a list of strings (targets) instead of phandles maybe?
->> Would that be acceptable?
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
+IMO the warning should be in the "else" branch of
 
--- 
-Thanking You
-Neha Malcom Francis
+    if (!of_reserved_mem_device_init_by_idx(dev, of_node, i))
+
+
+ChenYu
 
