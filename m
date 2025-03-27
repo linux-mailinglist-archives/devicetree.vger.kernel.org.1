@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-161124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 223F1A72A61
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 08:06:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1E39A72A67
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 08:10:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 05563188EBCC
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 07:07:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35A3F3B8B59
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 07:08:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08281189F20;
-	Thu, 27 Mar 2025 07:06:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7DF91990C7;
+	Thu, 27 Mar 2025 07:08:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KBKLrEh7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CSWThTiY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9FC7C2C8;
-	Thu, 27 Mar 2025 07:06:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB291C2C8;
+	Thu, 27 Mar 2025 07:08:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743059211; cv=none; b=myzPGaOe3huiW02wleVJXzPIeQHoAkIGZ8P7dKyGIhUUh576MJ86T+eBr/6l6XeMrsi751cKWyNktl98ltkeiptYEAwr9TdjqIS0it/PCnikYQtJf/XY18vlfWJVCW8jlpXiC717JVnymb2CEeAsAhWXOl/kbEHXp2gHmZmxz20=
+	t=1743059300; cv=none; b=KPsgnoKBe42/B7wUqt4P8jZEMYFDzlh9cHfmuiFnvxYbQruJPowp0P7/VR2OB3Z+Eqs3RWaNHCXHs9t4m+cPyy3n9WG/kRRrn5hSTEZJCwI9oANEUSz+LP+W0AjZ116xE815QLG1KBOqPnbM5zUxnR8kUGbfa08vIapZM5WcREQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743059211; c=relaxed/simple;
-	bh=HSLTuwSaGgEMzbLqtXv4C8JquylXq0jIc4SxKuDhHBM=;
+	s=arc-20240116; t=1743059300; c=relaxed/simple;
+	bh=8LM2VLYDIcl7t+HUtlJBVtXIl56Fx/CcZ0AjFE+jJ6Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hGUAuN8tAqUbGu8iDai0S6x/sZXRQHujfeTiDcINP1bYiWmXP1XdUNry3URHH+r8gu7JUg7LA2M3eulFnc/iHMtDw8LHOIjWznNcG7CYdhJTBclo8vSu99O9ya8V33NzVO93m+6gU5/ZVf5yGQeyhMTDIr78M/TQ9gB1aurQcHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KBKLrEh7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFB68C4CEDD;
-	Thu, 27 Mar 2025 07:06:46 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=MB82bWCb5T3ZvVMUWR2MnVn2arKP7y8JV3QtMkbEyLIPOajYBw24D6sxGNmNReFiHI8ClMOe+HIMOwXpPKRXvoc0BYL+PBqvQAfW7EYwOM3VyI3Lhq2wsp8MqyV49iXN9hDlIacPcRrsOIuJNNgqSNy6Naidy4073kVJJdxJTAI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CSWThTiY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4234C4CEEA;
+	Thu, 27 Mar 2025 07:08:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743059211;
-	bh=HSLTuwSaGgEMzbLqtXv4C8JquylXq0jIc4SxKuDhHBM=;
+	s=k20201202; t=1743059296;
+	bh=8LM2VLYDIcl7t+HUtlJBVtXIl56Fx/CcZ0AjFE+jJ6Y=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KBKLrEh7ft1Ot9F3wdPGIVNWUKpH1/32ouHWb2rrjLLPmq714j9+AvjowlPV04O9j
-	 0Ke0bhtoUSs5UUb/w0YpD0aLO1x1xYaXjr9v3WV6yk/S0iKanBJUO5uGN4VxbsQoRK
-	 +cOQ4WlWrEBUKXOe9eidXUrIjjSOE5LRqwpXK1L6qgLNXU5Bhgg0UjeiEU1T4HV1o7
-	 8TOBEwQGRLHuaHSW5EC/wa59b9M1gEflopp9guiMppR2k9E5J3kGGdsjPtE0CrsKJv
-	 sTaEROSBkJWh2+4Js2ZRqdnGIJWz25eB4Kh67qgp5fDbzNW2fJye9OHnOM+AemFMdd
-	 PSRs3OUjCNvFA==
-Message-ID: <1023814e-1cc5-4f0d-9d60-cbe848d69a9b@kernel.org>
-Date: Thu, 27 Mar 2025 08:06:44 +0100
+	b=CSWThTiYuEdOMYivq9Ukm43bnQ9XzdZAD1hjKo+0gbDSMqMb3E7PSjb9s7Wq1HUlG
+	 1fOIAW89Z9HTm31tVvz6AnZWLbsGbA9DJBkbEor9qVTeWtTaP7uyq6P/7Mym6Uofgs
+	 J9VXT1HgfITfT9S9JdRCk7NlWQlYzjnyGZRmKEMbcq803tXOaErFapihA/yQ0WKin+
+	 e6xxqc0D+L/WEpPAkAGoHJMUk2r6U+uUkKyT4fR1DUMT5L8WgW4x4u0wfAyhSKg0kX
+	 pr60vqIiMOYStrGkW3RqGiA9OHh1UFmpyZtN4gNMdQIOpUGa9aOAcawN81R1xLUXWQ
+	 yPjln4+D88pxw==
+Message-ID: <73ed6108-27ab-43ac-abd3-82656693404d@kernel.org>
+Date: Thu, 27 Mar 2025 08:08:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND v5 2/2] ASoC: dt-bindings: Add Everest ES8389 audio CODEC
-To: Zhang Yi <zhangyi@everest-semi.com>, broonie@kernel.org, robh@kernel.org,
- tiwai@suse.com, devicetree@vger.kernel.org, conor+dt@kernel.org,
- lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
- linux-sound@vger.kernel.org, perex@perex.cz, krzk+dt@kernel.org
-Cc: amadeuszx.slawinski@linux.intel.com
-References: <20250327063531.47005-1-zhangyi@everest-semi.com>
- <20250327063531.47005-3-zhangyi@everest-semi.com>
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sa8775p: add QCrypto node
+To: Yuvaraj Ranganathan <quic_yrangana@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250227180817.3386795-1-quic_yrangana@quicinc.com>
+ <ea79cee4-8c47-4054-bd17-2097ada4e583@kernel.org>
+ <b57fa204-d3d2-4b74-8834-3f2d93726a99@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,31 +105,33 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250327063531.47005-3-zhangyi@everest-semi.com>
+In-Reply-To: <b57fa204-d3d2-4b74-8834-3f2d93726a99@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/03/2025 07:35, Zhang Yi wrote:
-> Add device tree binding documentation for Everest ES8389 which
-> is different from ES8388
+On 26/03/2025 18:40, Yuvaraj Ranganathan wrote:
+> On 3/25/2025 1:00 PM, Krzysztof Kozlowski wrote:
+>> On 27/02/2025 19:08, Yuvaraj Ranganathan wrote:
+>>> The initial QCE node change is reverted by the following patch 
+>>> https://lore.kernel.org/all/20250128115333.95021-1-krzysztof.kozlowski@linaro.org/
+>>
+>> Use commit SHA syntax (see submitting patches, checkpatch).
+>>
+>>> because of the build warning,
+>>>
+>>>   sa8775p-ride.dtb: crypto@1dfa000: compatible: 'oneOf' conditional failed, one must be fixed:
+>>>     ...
+>>>     'qcom,sa8775p-qce' is not one of ['qcom,ipq4019-qce', 'qcom,sm8150-qce']
+>>
+>> Not relevant warning.
+>>
+>>
+>>
+>> Best regards,
+>> Krzysztof
 > 
-> Signed-off-by: Zhang Yi <zhangyi@everest-semi.com>
-
-So you not only ignored review but I gave you long instruction what to
-do, so that will not happen. And what happened? You wrote:
-
-"Thank you for the explanation.I will do it in a following patch"
-
-and then ignored it entirely!
-
-That entire instruction was on purpose - to prevent possible mistake, to
-explain how the process works, because I assume you will not read our
-documents like submitting-patches. Well, you should read them prior to
-sending, but it happens, so thus my instruction.
-
-And yet we are in the same spot.
-
-I am not doing the same work twice.
+> Are you saying this is not the warning seen at merging?
+Tell me how it is relevant? Tell me how can I reproduce it.
 
 Best regards,
 Krzysztof
