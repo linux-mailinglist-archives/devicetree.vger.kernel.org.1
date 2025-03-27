@@ -1,139 +1,133 @@
-Return-Path: <devicetree+bounces-161338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6EABA736F7
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 17:37:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62106A73701
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 17:39:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A48B7A7A62
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 16:36:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E6751899C00
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 16:38:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58AE919F111;
-	Thu, 27 Mar 2025 16:37:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F279F19E819;
+	Thu, 27 Mar 2025 16:38:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b5Coy4zz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Kd0UnV6l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f67.google.com (mail-lf1-f67.google.com [209.85.167.67])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BAFC165F16;
-	Thu, 27 Mar 2025 16:37:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A93C1586C8;
+	Thu, 27 Mar 2025 16:38:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743093432; cv=none; b=fjt3IZ5GdOKJnYJW8AxEVTLFMn1YI9t8NSbQkIxUGGW8R6Hj0P5kjTQylRZxLs7VW/+t51uBkP7569B0s+ryVQK/2nm4xyFTnYBHBMdFokYqzlDricofzCprW8Dn+SOicJVAfE9p8d9PNUwY4RWeazmtQ4gMv3EOUgTGHWRoH9I=
+	t=1743093518; cv=none; b=qQc99Cer98lx/gie+Mx1T+vuvmhEIkDy5WYmmqwx9XPy/erRW6oveUT/qRNhhVU2g1Kg3X4PveXmkF8gFRZsgEkiHUjDEryl5dzoVeI307iae77iuHdlNLQ3YbRw2T3WQZAMQuh15clEzCBKlt2J7T1/ufVN1ZXrzg7z+7B/+YA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743093432; c=relaxed/simple;
-	bh=7ZK9arp7BfLf5qjglWhRdpg667PLJGkQX32ma3/m/Jk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LCVr8Wp5XQul4p26gru10cnSh3mZnBQHbURj4bWr10PpOtTj9r09QVhGc/0QLz7uuM40zKQhqi7lrH86cGxpbdSWUTnhA8KAr4KZBYiFnQ4gIf9XnO2R3Ewm6kXp+2G5630BUyMPE8M1595yJWbvf8fCTkXgPZevYBj02/KZ38c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b5Coy4zz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C60CAC4CEDD;
-	Thu, 27 Mar 2025 16:37:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743093430;
-	bh=7ZK9arp7BfLf5qjglWhRdpg667PLJGkQX32ma3/m/Jk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=b5Coy4zzx92cLI+R/jdLE8fnj0SVv07G2XFhp35wDT+wYpLKiLuB/Op9Jn9ZYHyPO
-	 WEqoOA7lJI2qvfk/0k1UT6NmV1YP+BDOyau6AlfPnDZpZiiO8hG3D/Jrgva6Pl6kQc
-	 Y8nOgmW7lsutCwkYmePzrUGBedMM0rs4HpKwCaUXs52znXzyFfg5E22vh6mimMKPvR
-	 XfRRV7Qjedk2Y285OOn+xx7w/6o2lYy4pW86RrD8ObYeytJTgz3pX0KNUr9uM1swH7
-	 cHeU3lC9jtCtuHritB7qEGjhYa/uDnUsdHNxIbh9IVpzn/uSPnK1aK3i08/iB/hTgD
-	 7nweqKtiM5l1A==
-Date: Thu, 27 Mar 2025 16:37:05 +0000
-From: Conor Dooley <conor@kernel.org>
-To: xianwei.zhao@amlogic.com
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] dt-bindings: pinctl: amlogic,pinctrl-a4: Add
- compatible string for A5
-Message-ID: <20250327-juicy-relieve-a9c5f89cb4e0@spud>
-References: <20250327-a5-pinctrl-v1-0-49320349c463@amlogic.com>
- <20250327-a5-pinctrl-v1-1-49320349c463@amlogic.com>
+	s=arc-20240116; t=1743093518; c=relaxed/simple;
+	bh=0VL5IT0thy2MWB+1ad+ibGOcycK23WTiOqVf89IlNSo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=IR4lfqZTTAz9nr5YuPJIcJyOwKp7ODB2kPhBK6K2Evq0lljAnNt1ukuMdw9Lf1jiE6sQOG2WiuzePMJ2NFB9ECQFY35aTmttZnPCPUzHvOU8yDrPa4nl6EF756dgat0GRGLCU5Vv+GFdy4ToWRwueddVO2OHDIQO7ljlkw2TJKQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Kd0UnV6l; arc=none smtp.client-ip=209.85.167.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f67.google.com with SMTP id 2adb3069b0e04-54af20849adso1189208e87.1;
+        Thu, 27 Mar 2025 09:38:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1743093515; x=1743698315; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MCipadPWDc9+WNsaYqHuzZhnDYq2MJBL/KTC3dNV0xw=;
+        b=Kd0UnV6lDPJ8jCC92OU7HAwCx85ZQv4TEfGE6n0ozEQ/l2ZUCW7QO+KaJGTJNEMtF2
+         ZfIgWLxrDRL7zfkLTkhvkqFWSvwYTN7/MbWzQVoWBIfHQrL5o178uR6hlHNoRUMiLAFp
+         Bn1XrsWfcuQnwQBl0wI6x9riuVlAywscxnUqRlEWSXPCIrHo3Y2Y7YdjKSXSSKkj5AxN
+         0n5c/69YCbahRK1kFx/HBOVt2jFbujclLtRpj5P6J0p1tx8SBzViQ2KLx5ZnBIMsFvsD
+         PHGaBXpTA4457KP1UCoHjqagG7kCO7aI4ED0FcOYbtLejN/JUHOggy44AuHF7/x0Y3mK
+         f+pQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743093515; x=1743698315;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MCipadPWDc9+WNsaYqHuzZhnDYq2MJBL/KTC3dNV0xw=;
+        b=mc52cT24DpnmgWLitplGYjNKvkMQnQnjpmn4OoLvPRUTmYRSlKvMeWVY/A0t4ygGER
+         7FfrMHXjEu47aPjOhxGMng5BN1fIDS0VcVqvyWH56Rh/UoHLSjPt8Np95oncsUkcoDVx
+         vCWML66DmoXXfFb1sZnxoSkCxZFr8ODZZTgCMkx2nrsLxhlJ73veLwjuRSsVd8YqtLPj
+         b8+P7YoPQA0Yoh5qNf1imFU3bGRj9hk1qeVaBxmkFUVeIG89K6T0jOOLo49ROc1mXm1o
+         CoLj9uQxG1BJlCk8bdP/KBXNVzkLNFc0WWhVI9xKkuaaxw5pgmYIeqSXtxlU/l+Npkgu
+         xVsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW0n4D7Nu81lbvJ/O40MDmvskt/FN5E39BTrHZW1lVVWe3/6G5DRhnC2Li2rHpJPVVwxUIwbhPuDWlK@vger.kernel.org, AJvYcCXFF0vQ5i2ln9pZ+XcVreOQ6i8eJu+Ym4bfrDlXaU9xzqn8qHNXWLA0zXL/Yfjn5LMRcnGMWrPsEHF9Skmi@vger.kernel.org
+X-Gm-Message-State: AOJu0YwX7khBdW14s7bPjBzmI/KRewrftmeW6DhVsqxK33N9AeOzCsGS
+	mGIU/BLHbRY//Z7kXOqxtd8d8Biiv/BH9nvUQeoKsv0tuoGhtZ+Y
+X-Gm-Gg: ASbGnctd6B6wSXJ7CTev8PR8CkiyQOUPrMMDT7WCcFLeIahqnX1VqrhlMJ4gnIkqhPl
+	py9AYEHX0QojcGi0F1pOHjoBIEjiG4ZnJYfFARxWd16lD+E6Qpg8MDW+w8C5tF1DOaJVLOExegw
+	uB439zpOO58bDd/gukGjzLQzpva1DTZiiW1OLRAlGffAqAXUAqZyROE3woiSWXL+mVcr1tpLI3v
+	heGLnlcvN+Dub0T7qK9YFJMGGYDiAMjNQsSVQBu45y57QMTI8NwEJwqQhPbu/K6EtwCigz28qon
+	uyuGLLPV6Kmg4EHJ5m9yNUNADTESFO04QR7Zu7Q5r0gtIAUqy7OE8vBaCAWdKj+ZEpL0
+X-Google-Smtp-Source: AGHT+IE2P34XSAHmzmsA5k5rQZOJz8G4YUEkCHQ1A39qmpTMqdjFzDpAeyy8rjX1BH6WCbNx9lRzLw==
+X-Received: by 2002:ac2:4bc6:0:b0:549:68a7:177c with SMTP id 2adb3069b0e04-54b08b38577mr533774e87.7.1743093515026;
+        Thu, 27 Mar 2025 09:38:35 -0700 (PDT)
+Received: from pilotmaintrash.lan ([178.34.180.83])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54b0957feedsm10150e87.110.2025.03.27.09.38.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Mar 2025 09:38:33 -0700 (PDT)
+From: Alexander Baransky <sanyapilot496@gmail.com>
+To: neil.armstrong@linaro.org,
+	quic_jesszhan@quicinc.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: Alexander Baransky <sanyapilot496@gmail.com>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] Add Visionox G2647FB105 panel support
+Date: Thu, 27 Mar 2025 19:37:43 +0300
+Message-ID: <20250327163750.986815-1-sanyapilot496@gmail.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="fAwn1XnIQAAgXUg9"
-Content-Disposition: inline
-In-Reply-To: <20250327-a5-pinctrl-v1-1-49320349c463@amlogic.com>
+Content-Transfer-Encoding: 8bit
 
+This patch series adds support for the Visionox G2647FB105 panel, used in:
+- Xiaomi Mi Note 10 / CC9 Pro (sm7150-xiaomi-tucana)
+- Xiaomi Mi Note 10 Lite (sm7150-xiaomi-toco)
 
---fAwn1XnIQAAgXUg9
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Testing has been done by me on sm7150-xiaomi-tucana. According to the
+downstream DTS, this driver should be fully compatible with the
+sm7150-xiaomi-toco (unfortunately not tested) without requiring any
+modifications.
 
-On Thu, Mar 27, 2025 at 05:26:35PM +0800, Xianwei Zhao via B4 Relay wrote:
-> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
->=20
-> Amlogic A5 SoCs uses the same pintrl controller as A4 SoCs. There is
-> no need for an extra compatible line in the driver, but add A5
-> compatible line for documentation.
->=20
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
->  .../devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml          | 9 +++=
-++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4=
-=2Eyaml b/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml
-> index 8eb50cad61d5..a94f4dfb9a7f 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml
-> @@ -14,8 +14,13 @@ allOf:
-> =20
->  properties:
->    compatible:
-> -    const: amlogic,pinctrl-a4
-> -
-> +    oneOf:
+Changes in v2:
+- Describe the power configuration in commit message (and fix the sentence style) in patch 1
+- Add Krzysztof's Reviewed-by tag to patch 1
+- Use a static const struct for supplies in patch 2
+- Fix identations in patch 2
+Link to v1: https://lore.kernel.org/all/20250325155756.703907-1-sanyapilot496@gmail.com/
 
-> +      - enum:
-> +          - amlogic,pinctrl-a4
+Signed-off-by: Alexander Baransky <sanyapilot496@gmail.com>
 
-This one here only has a single entry, so could just be
-- const: amlogic,pinctrl-a4.
+Alexander Baransky (2):
+  dt-bindings: display: panel: Add Visionox G2647FB105
+  drm/panel: Add Visionox G2647FB105 panel driver
 
-With that,
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+ .../display/panel/visionox,g2647fb105.yaml    |  79 +++++
+ drivers/gpu/drm/panel/Kconfig                 |   9 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ .../gpu/drm/panel/panel-visionox-g2647fb105.c | 282 ++++++++++++++++++
+ 4 files changed, 371 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/visionox,g2647fb105.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-visionox-g2647fb105.c
 
-> +      - items:
-> +          - enum:
-> +              - amlogic,pinctrl-a5
-> +          - const: amlogic,pinctrl-a4
->    "#address-cells":
->      const: 2
-> =20
->=20
-> --=20
-> 2.37.1
->=20
->=20
+-- 
+2.49.0
 
---fAwn1XnIQAAgXUg9
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ+V+sQAKCRB4tDGHoIJi
-0lebAP9IKStu0S+/c9r0UyNUXENvJGtGJQJUfYxnwEVlRQIKgwD/Zb+0TeVHBQ36
-m/oSQf6LHtuk/wQRhnkpFZgEpYTnpAc=
-=KQTF
------END PGP SIGNATURE-----
-
---fAwn1XnIQAAgXUg9--
 
