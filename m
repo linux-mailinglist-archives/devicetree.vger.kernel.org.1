@@ -1,137 +1,91 @@
-Return-Path: <devicetree+bounces-161147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6E25A72B38
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 09:17:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EC10A72B40
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 09:18:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1715D18994C9
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 08:15:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A3427173C92
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 08:18:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7FD320011B;
-	Thu, 27 Mar 2025 08:15:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4F9620469A;
+	Thu, 27 Mar 2025 08:18:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X7/NNwFk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp134-84.sina.com.cn (smtp134-84.sina.com.cn [180.149.134.84])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5586C1FFC55
-	for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 08:14:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=180.149.134.84
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6BFF2045AC;
+	Thu, 27 Mar 2025 08:18:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743063302; cv=none; b=iNQEUqVBixOcZn24A7c6wMIJSJmzfXhY/gZnxyjl7oRp7ANLH9PdxJC/wl9DCQUBqsfQXi6a0/8Ou7fqM4Mgdv/Oq1XwgNo7RsnPK7PjgWh7A07cp0e8+lzY2ZUB7mwVIMYgUwA9cB9ICSnHVzhwg3lsLGj9f5I49zhOTrf5BIA=
+	t=1743063507; cv=none; b=WaysRs1VKXnYNia9uL4p28GLtv6n6b5nxFVQDR40gut7s+bOq0HobXa0FYV2UWrQO53LDIvPlVM9TTK7vVkSwilqi+N/Q7FAMmVI8LwHjPxiIV6IRAL/Ff5796bs4Hs/ezUFEZh5c+VxnJAFksNgZADiY1EGnMW1Jn+Xj3z0leQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743063302; c=relaxed/simple;
-	bh=mqJ2zpr0rM1SozvZK0nLMqNWqEKb6AcbZ6KjfpKuxrc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=ml+WIyEeAgaPm3Bc5OWZyOjhpObH7IaCkg1lWCvpuufVJ7c6dDlkBcbFW792xw3HoZyf8+m7xAha/X/i54CMjBm518X2qfI4cnDf8TolLZUa7j1hqZOmwCMZaenJRRQ3WSMGLR39jBHQOI5s2N3RKAcwdasoLD2pwXrRhuDgA8s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=180.149.134.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=everest-semi.com
-Received: from unknown (HELO zy-virtual-machine.localdomain)([180.159.108.242])
-	by sina.net (10.185.250.29) with ESMTP
-	id 67E508FB00003D6D; Thu, 27 Mar 2025 16:14:54 +0800 (CST)
-X-Sender: zhangyi@everest-semi.com
-X-Auth-ID: zhangyi@everest-semi.com
-Authentication-Results: sina.net;
-	 spf=none smtp.mailfrom=zhangyi@everest-semi.com;
-	 dkim=none header.i=none;
-	 dmarc=none action=none header.from=zhangyi@everest-semi.com
-X-SMAIL-MID: 3E6F532D54F649C3A54263EF24D8E850
-X-SMAIL-UIID: 3E6F532D54F649C3A54263EF24D8E850-20250327-161454
-From: Zhang Yi <zhangyi@everest-semi.com>
-To: broonie@kernel.org,
-	robh@kernel.org,
-	tiwai@suse.com,
-	devicetree@vger.kernel.org,
-	conor+dt@kernel.org,
-	lgirdwood@gmail.com,
-	linux-kernel@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	perex@perex.cz,
-	krzk+dt@kernel.org
-Cc: amadeuszx.slawinski@linux.intel.com,
-	krzk@kernel.org,
-	Zhang Yi <zhangyi@everest-semi.com>
-Subject: [PATCH v6 2/2] ASoC: dt-bindings: Add Everest ES8389 audio CODEC
-Date: Thu, 27 Mar 2025 16:14:50 +0800
-Message-Id: <20250327081450.47690-3-zhangyi@everest-semi.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20250327081450.47690-1-zhangyi@everest-semi.com>
-References: <20250327081450.47690-1-zhangyi@everest-semi.com>
+	s=arc-20240116; t=1743063507; c=relaxed/simple;
+	bh=jAZ1aKuhdSPivDH8Se4rgDcAqAGbxcmhAiCOummgWF0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hfE5lmP8QOF5UMoZJNT3EYkhgxCVC7KY96ibuZ95dFKdFjF6dYUq9zjtaHX7MBu29H0PTG24GfLz0ovaE39r8iAMbkWPjrDArxH1Q9AoEtz03bA+BX7pedwRYlLAZ4zup4+TLrAMTtFk5priwza8095Eey424sSLeL5dnvgdVqo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X7/NNwFk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D72FC4CEDD;
+	Thu, 27 Mar 2025 08:18:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743063507;
+	bh=jAZ1aKuhdSPivDH8Se4rgDcAqAGbxcmhAiCOummgWF0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=X7/NNwFk+7OT5vU/PYfWPBuoLXygjli9p5Bl8O/9+RFzdRsfdqosm5h5t4ecxubqG
+	 tID34AUl1elZh8H43WnUFb2QSZJJrtDIPxgi+KEzwaYXFD4BW6i+mGt4WeLUvv2SBu
+	 SJbN5nS0DZp2ah3y7bOVWPxNzsHuJC7KRtIOzfX8o6AU7CENuNItF4F7Etw08lOg7V
+	 aAYVkK0UzuhvJsBrKk0z2XMY3DmV1uPhOiLAuB5NY08tHs+G0Lv5fVqZGG6tD4EKpu
+	 izUfiKe2qgC8qKUO7Yp4/hAHdbe+kC30gL6RmRYVrrzIydAtYu+8aQKzUV3IuHXQIk
+	 OhCiQhbqN28Mg==
+Date: Thu, 27 Mar 2025 09:18:23 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	cros-qcom-dts-watchers@chromium.org, Marc Gonzalez <mgonzalez@freebox.fr>, 
+	Dmitry Baryshkov <lumag@kernel.org>, Arnaud Vrac <avrac@freebox.fr>, 
+	Sayali Lokhande <quic_sayalil@quicinc.com>, Xin Liu <quic_liuxin@quicinc.com>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Marijn Suijten <marijn.suijten@somainline.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v2 01/12] dt-bindings: soc: qcom,rpmh-rsc: Limit
+ power-domains requirement
+Message-ID: <20250327-noisy-dogfish-of-advertising-69bb05@krzk-bin>
+References: <20250327-topic-more_dt_bindings_fixes-v2-0-b763d958545f@oss.qualcomm.com>
+ <20250327-topic-more_dt_bindings_fixes-v2-1-b763d958545f@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250327-topic-more_dt_bindings_fixes-v2-1-b763d958545f@oss.qualcomm.com>
 
-Add device tree binding documentation for Everest ES8389 which
-is different from ES8388
+On Thu, Mar 27, 2025 at 02:47:03AM +0100, Konrad Dybcio wrote:
+> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> 
+> Certain platforms (such as Chrome SDM845 and SC7180 with a TF-A running
+> as secure firmware) do not have a OSI-mode capable PSCI implementation.
+> 
+> That in turn means the PSCI-associated power domain which represents the
+> system's power state can't provide enough feedback to the RSC device.
+> 
+> Don't require power-domains on platforms where this may be the case.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> ---
+>  .../bindings/soc/qcom/qcom,rpmh-rsc.yaml           | 24 ++++++++++++++++++++--
+>  1 file changed, 22 insertions(+), 2 deletions(-)
 
-Signed-off-by: Zhang Yi <zhangyi@everest-semi.com>
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/sound/everest,es8389.yaml        | 50 +++++++++++++++++++
- 1 file changed, 50 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/everest,es8389.yaml
 
-diff --git a/Documentation/devicetree/bindings/sound/everest,es8389.yaml b/Documentation/devicetree/bindings/sound/everest,es8389.yaml
-new file mode 100644
-index 000000000000..a673df485ab3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/everest,es8389.yaml
-@@ -0,0 +1,50 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/everest,es8389.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Everest ES8389 audio CODEC
-+
-+maintainers:
-+  - Michael Zhang <zhangyi@everest-semi.com>
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: everest,es8389
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: clock for master clock (MCLK)
-+
-+  clock-names:
-+    items:
-+      - const: mclk
-+
-+  "#sound-dai-cells":
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#sound-dai-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      es8389: codec@10 {
-+        compatible = "everest,es8389";
-+        reg = <0x10>;
-+        #sound-dai-cells = <0>;
-+      };
-+    };
--- 
-2.17.1
+Best regards,
+Krzysztof
 
 
