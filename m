@@ -1,130 +1,186 @@
-Return-Path: <devicetree+bounces-161157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161158-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2143A72B9B
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 09:37:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 494F9A72BA2
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 09:40:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 104D13B483F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 08:37:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 207103BB344
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 08:40:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53B702080C3;
-	Thu, 27 Mar 2025 08:37:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8193E2080C8;
+	Thu, 27 Mar 2025 08:40:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="m3t/pveb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bdf6RvOv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAB70207E1A;
-	Thu, 27 Mar 2025 08:37:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56FD7204F76;
+	Thu, 27 Mar 2025 08:40:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743064668; cv=none; b=N848TtIqzJZQNr5KA17xLHAO6PJ5Phq0V9Q3109cQi3jhV3s0JhrWDG2sEw8Mjqn525yrHDtlBOpkNN981JJ7cHlF7UiMo1crVFJeQ0KgPFU60bkPF3jV+YlJ9h8xB7zA/l+Pc/p9kO9GX8Q1Yb8jTGDy4jp5OlTt2DAnBrjMv0=
+	t=1743064819; cv=none; b=iXzFicyNN46vhXRGaqKYatyDT+r/MGg8S7iT5TnNmjI+pKS6IjwlOkCFkv/He99XbNseSBav0AG/l1DLfhsWzaBfT6rF3tXLbDUd0xx6vTBfMMyXqY49VtkWQU3i/Q5mjuozleYB+YVo4ii37y/CXEBS2/ErmsJ3IIYWgUnoC2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743064668; c=relaxed/simple;
-	bh=fvNCk8mWPbYbqIm9YLpQcvKGz7nO0wU4sub/wgDHloM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ToGKK1oKCdmI7aE+YkcXK+kubni16LjTzFnbUJq+Q+4U0FyZMHmNArBrYT1sq1M4evMJQh3r8cbEvQOCsKIDewoOIRaspyFodh2yt6m1f5wos11SQ6TjSUk9hehmtba68L2Itjcy85CkTI5CuprOQZ1aKbmvjRO/mQM+PRdZaSI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=m3t/pveb; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1743064667; x=1774600667;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=fvNCk8mWPbYbqIm9YLpQcvKGz7nO0wU4sub/wgDHloM=;
-  b=m3t/pvebAR7wptMyScWtTmBKhRZYneucHvDtd2fcns/V3Z8F6fuRrMwu
-   Wz4qpyiLuFv9MhMCDuvtzoF9mIp0+9EdSg7OYmZY/H/HEb91QhiNCmxVa
-   1fVnFq9OyPpmfQ+cXxr9LU7BJeHKdBZ4lFowPDpkj80wmrVnOGmWrRthp
-   Hapq5i/wDjYkJ4DwsOpk/SrilKtSBy4xta5NGJ3R7cL5i60r3xwmLAQKW
-   7XIF+JVClyiF9SY87bGuV9EpF4XpUI913jP6AIdKdT/6ViafDqm24EPV9
-   goW+OCDJ+Uyq2tPnkbSCa7+XyYk1SHt5hfRUuu+XAmw7z3pNq2qi85iAE
-   w==;
-X-CSE-ConnectionGUID: icQfVMQPQs6JAn7o17gQYg==
-X-CSE-MsgGUID: A580wrFnQ3+j+70VIOavJw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="66852908"
-X-IronPort-AV: E=Sophos;i="6.14,280,1736841600"; 
-   d="scan'208";a="66852908"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Mar 2025 01:37:46 -0700
-X-CSE-ConnectionGUID: imB5jEJOQ/Gcy44BQuru+w==
-X-CSE-MsgGUID: GhLbc/iSQhKIDv2K52yJdA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,280,1736841600"; 
-   d="scan'208";a="129918508"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Mar 2025 01:37:40 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1txik5-00000006KZB-0xsF;
-	Thu, 27 Mar 2025 10:37:37 +0200
-Date: Thu, 27 Mar 2025 10:37:36 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Remo Senekowitsch <remo@buenzli.dev>
-Cc: Daniel Scally <djrscally@gmail.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Rob Herring <robh@kernel.org>, Dirk Behme <dirk.behme@de.bosch.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
-	devicetree@vger.kernel.org, rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH 01/10] rust: Move property_present to property.rs
-Message-ID: <Z-UOUKq8GKZM1wuo@smile.fi.intel.com>
-References: <20250326171411.590681-1-remo@buenzli.dev>
- <20250326171411.590681-2-remo@buenzli.dev>
+	s=arc-20240116; t=1743064819; c=relaxed/simple;
+	bh=M7YLTOwmxz8VNCLJQrpSFgrai1rDE44BnsnAtSQ+8g8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SO+5oNEkQcCTV/G76mNq+YjusLAibrsgtgiaRjJAAC6oPfmfDqhotr9vHSkUr3J4v/3uEolfCJg2XPhtqgmFHcj6ncIh3sMjN7qqoJt0dD2bTrMU9jwafyvR9SNwc+SZfoo7XBjYLb1NBGIBe1z0HkDImIuaHVoyEjouPe8xlXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bdf6RvOv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AD14C4CEE5;
+	Thu, 27 Mar 2025 08:40:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743064818;
+	bh=M7YLTOwmxz8VNCLJQrpSFgrai1rDE44BnsnAtSQ+8g8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Bdf6RvOvjEYGXlZr9JhtetcwgGmZLV4uKQvjuyvEWbnJDYHu1tbclQY2tjfznu1FQ
+	 zbi/zRNqFeRhmiWVpaxPSug73eKw25hU31ypTmaQdw5i+07Mrz9mUdnaYloqrCOOEk
+	 XfkG/SAOQm6ZDkq/7ym88pdQ6V0qQdDpkqqWkA3daJmzv1NzZCxCFJhvi1nIiRye/o
+	 CeqnIvKDHUSDBA2gq11N2l8n3Qj1bSrH/qNyrw5S1OF4nLwiGyGxUCRdyRd6KIzI4Q
+	 EQnfw5OfTtxqYFyHJXw3aPv6KurYyzCbqi0oUtmQX+D5/BBRr2R6QURTVmZ1FU/lJb
+	 AOQyB4RR4EBDw==
+Message-ID: <b2e1da92-0dfe-42c6-9f36-32486b768220@kernel.org>
+Date: Thu, 27 Mar 2025 09:40:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250326171411.590681-2-remo@buenzli.dev>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 5/6] arm64: dts: cix: add initial CIX P1(SKY1) dts
+ support
+To: Peter Chen <peter.chen@cixtech.com>
+Cc: Marc Zyngier <maz@kernel.org>, soc@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, catalin.marinas@arm.com,
+ will@kernel.org, arnd@arndb.de, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ cix-kernel-upstream@cixtech.com, marcin@juszkiewicz.com.pl,
+ kajetan.puchalski@arm.com,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Fugang Duan <fugang.duan@cixtech.com>
+References: <20250324062420.360289-1-peter.chen@cixtech.com>
+ <20250324062420.360289-6-peter.chen@cixtech.com>
+ <865xjxmlgl.wl-maz@kernel.org> <Z-Nz0DU441Wwj1i4@nchen-desktop>
+ <861pukm9yd.wl-maz@kernel.org> <Z-Tz1moMNozx23k6@nchen-desktop>
+ <e43b1a00-b221-413b-a36a-3a65e17f800f@kernel.org>
+ <Z-UNufwSNmZreKya@nchen-desktop>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <Z-UNufwSNmZreKya@nchen-desktop>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Mar 26, 2025 at 06:13:40PM +0100, Remo Senekowitsch wrote:
-> Not all property-related APIs can be exposed directly on a device.
-> For example, iterating over child nodes of a device will yield
-> fwnode_handle. Thus, in order to access properties on these child nodes,
-> the APIs has to be duplicated on a fwnode as they are in C.
+On 27/03/2025 09:35, Peter Chen wrote:
+> On 25-03-27 08:16:33, Krzysztof Kozlowski wrote:
+>>>>
+>>>> No, you are deliberately choosing to make this platform useless.
+>>>>
+>>>> That's a bit sad, and a waste of everybody's time.
+>>>>
+>>>
+>>> Hi Marc,
+>>>
+>>> Thanks for your interesting of our platform, and your comments
+>>> help us a lot. But I don't think it wastes reviewers and maintainers
+>>> time, a clean patch set saves everyone's time during upstream process.
+>>>
+>>> For how to organize the patch set for SoC, Krzysztof gave good summary
+>>> at [1]. We are going on upstream [2], this patch set is just a start
+>>> and base but not like you said for marketing purpose.
+>>
+>>
+>> I do not think I suggested in [1] to ever send new SoC containing only
+>> CPUs and interrupt controller, without even serial. My instruction [1]
+>> was how to organize it. The DTS can be even fully complete, see the
+>> upstreaming example I have been using all the time - Qualcomm SM8650:
+>>
+>> https://lore.kernel.org/all/20231124-topic-sm8650-upstream-dt-v4-0-e402e73cc5f0@linaro.org/
+>>
+>> Entire SoC sent to mailing list on the day one of public release of that
+>> flagship Qualcomm SoC. The SoC DTSI and board DTS have almost complete
+>> picture, except few trickier pieces... but it even has full display and
+>> GPU! Plus, as I explained on my email on samsung-soc, that DTS/DTSI
+>> patchset references all other bindings with their state, so SoC
+>> maintainers can understand what is the overall progress and what will be
+>> the result in DT schema checks, if they apply the patchset.
+>>
 > 
-> A related discussion can be found on the R4L Zulip[1].
+> Hi Krzysztof,
 > 
-> [1] https://rust-for-linux.zulipchat.com/#narrow/channel/288089-General/topic/DS90UB954.20driver.20done.2C.20ready.20to.20upstream.3F/near/505415697
+> Like I said in this thread before, without this initial support,
+> we can't even add mailbox binding that the dt_binding_check will
+> report warnings/errors [1], the reason is "cix" has not existed
+> at vendor-prefixes binding. How we handle this dependency?
 
-You can make the above to be a Link tag like
+Not different than all other SoCs. There is no dependency, you just send
+your patch and tell where the bindings are. Just like I asked in the [1]
+you linked on samsung-soc. Just like all Qualcomm upstreaming goes, e.g.
+SM8650 I linked here.
 
-Link: ... [1]
+Just like maintainer-soc profiles are explaining. I told you to read
+them on IRC.
 
-> Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
+Your way is contradictory to three sources describing process and two of
+these sources - my samsung-soc posting and maintainers-soc-clean-dts
+profile - are known to you.
 
-...
+> 
+> I thought we need to move one step and step before, and keep clean
+> and avoid warning and error for every submission, but it seems not
+> the way you prefer. 
 
-> +struct fwnode_handle *rust_helper_dev_fwnode(struct device *dev)
-> +{
-> +	return dev_fwnode(dev);
-> +}
+No, from where did you get such impression? Maintainers-soc-clean-dts
+explicitly covers this case and I WROTE IT, so how can I prefer
+something else?
 
-Why not const? For most of the property retrieval APIs the parameter is const.
+Follow SM8650 style or what's written in maintainer soc profiles.
 
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Best regards,
+Krzysztof
 
