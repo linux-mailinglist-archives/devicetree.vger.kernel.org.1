@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-161137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 361E2A72ADD
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 08:56:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 120B3A72AE1
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 08:56:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 052653AEE08
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 07:55:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 018FF189721F
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 07:56:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F7921FF7CA;
-	Thu, 27 Mar 2025 07:55:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 844BB1FF7D5;
+	Thu, 27 Mar 2025 07:56:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bcz0RfUU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="erB0l3R7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 346AA1A0BF8;
-	Thu, 27 Mar 2025 07:55:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CA4A1FF61D;
+	Thu, 27 Mar 2025 07:56:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743062158; cv=none; b=CA1s+TxDFXwc6h8BfSTUch60t+GlyzZAsep2AZN2Csi29TT847QAdKuAvbFOtu6a8tr+yhlkyNRbG8+9/O4yN5HW40bk8cV0L658fwzikF9NUIKUcQLxkLBhZWxk1hHODnXB9D9yTbYlStxhQVBDgAosDo33sG1A7nXhddUGgAI=
+	t=1743062202; cv=none; b=H1IWboFgCBDh0GdcaMq62xmZlLnxZ7fg28YpzSY9KfdYEhjI5jjRtbGIzJmdf2fA/zXDqUaMDDyFNAlnd/PVzo2UPzcK24xYksvsN1hwzBOPYDYClllt8dzE5AVf20HQvcxq7/qwOQqqBGZiFA3SGyQ8JtkVkTq8Ovb9qHoq/Ls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743062158; c=relaxed/simple;
-	bh=XwCGCufdAWY9+XJt03fhUGbNeZ4m9tswVxZeGzrbztM=;
+	s=arc-20240116; t=1743062202; c=relaxed/simple;
+	bh=9MOdzY1W+VK84uZ8tY1V+cmmJLQHaZQN4UG+HUI98rQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BC/FmBwxEMe2ZautXzN/bPYWbPaKtcVgqD60oXw10v9Fzdh6tq0+GjK/LcoCTQxnLrAbFAnHakAHWqHLRz929eNv5cKoRKc8Ze6GCoUkAJ5KdL8m6+RfjKtONLIcJBZZZzJTI6Ze9ivV+XQpDKNnBN4okVzHG44uZJ5W7y/V9BQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bcz0RfUU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4E03C4CEDD;
-	Thu, 27 Mar 2025 07:55:56 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Mze686rHB/Bd1FZagCAE0N7JbSQFr7WQtaeucJy2d7OV6Oj29J/mG+iieL9J+iFpf7lFSpAci3+wbbuxJgNJ50kG2PWJsEg4d/+f7UB2S7h1qpBkPwe+sqro7Zxzjuz6h3noOf3o7ZiMfk1LaY9P/fRNZLwxWSSchnvtIfFG0v8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=erB0l3R7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AAEEC4CEDD;
+	Thu, 27 Mar 2025 07:56:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743062157;
-	bh=XwCGCufdAWY9+XJt03fhUGbNeZ4m9tswVxZeGzrbztM=;
+	s=k20201202; t=1743062199;
+	bh=9MOdzY1W+VK84uZ8tY1V+cmmJLQHaZQN4UG+HUI98rQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bcz0RfUU2oa+EZHU2Vp0WF0C2DVMOMzOMUwEtb7hV1R4SacNCyvy/2GIb97V+uKtb
-	 BidzlLAIKlWG6R1wPA+K7DOFCQCwT6iNSOBFFRSbwgoCI/H0TJkqESKdxMU6BJ/+jK
-	 6LFOdaEKlV1275mkmIt04r4cUsTZGMACGN28QzaPWBMUYBGX6F8s/oHpDK8H0KlvFB
-	 ahnNpwQnmpdGFja9fOdgEwKkNmgFwLM/DnmaNZFtApJ5H9bLprpDpRtwLBH+iAzLKs
-	 wfquhQ5C8xGa2hRcz48VNQOh2dMweFDr6RPXbM4SK2TOPGKF1yFAqQ+9+gziI0MGBk
-	 HVIcZgydh0Jjw==
-Date: Thu, 27 Mar 2025 08:55:53 +0100
+	b=erB0l3R7EZDRT5tgRtDDgHuHvjoMgzFzVBPut/hNLKYULis63NkBUwQ8amwI1nSGY
+	 H+IAjZDBV2smrpYpmatjq595O6QZIhurrBae0x9QY/tSlZr09+uipP32v+6rcJpBnx
+	 uDqxnJkDADTBj+t0srgIwZQFsY/RD6LNfaACBx8+UXOrkbZ3I9RuzbYBr5gTWhWd3H
+	 ZZyb+TYdSqBaryp4F7vmgk65ssy/xGwpZ6de7mO+AN3QRyizHBhAg+mEpGJBB8Ht7Z
+	 NDrScMHw/vxq+NwIT2Ag9iiePE0AdMOiK3uZ4dkw/Ryz4U2EPxi9zRyaCEnIw3l73F
+	 3ADvX2kN/vvLg==
+Date: Thu, 27 Mar 2025 08:56:36 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Matt Coster <matt.coster@imgtec.com>
 Cc: Frank Binns <frank.binns@imgtec.com>, David Airlie <airlied@gmail.com>, 
@@ -54,11 +54,11 @@ Cc: Frank Binns <frank.binns@imgtec.com>, David Airlie <airlied@gmail.com>,
 	linux-arm-kernel@lists.infradead.org, Randolph Sapp <rs@ti.com>, Darren Etheridge <detheridge@ti.com>, 
 	Michal Wilczynski <m.wilczynski@samsung.com>, Alessio Belle <alessio.belle@imgtec.com>, 
 	Alexandru Dadu <alexandru.dadu@imgtec.com>
-Subject: Re: [PATCH v5 01/18] dt-bindings: gpu: img: Future-proofing
- enhancements
-Message-ID: <20250327-pragmatic-lemon-flounder-e2936a@krzk-bin>
+Subject: Re: [PATCH v5 02/18] dt-bindings: gpu: img: Add BXS-4-64 devicetree
+ bindings
+Message-ID: <20250327-beneficial-crouching-rottweiler-90d0e7@krzk-bin>
 References: <20250326-sets-bxs-4-64-patch-v1-v5-0-e4c46e8280a9@imgtec.com>
- <20250326-sets-bxs-4-64-patch-v1-v5-1-e4c46e8280a9@imgtec.com>
+ <20250326-sets-bxs-4-64-patch-v1-v5-2-e4c46e8280a9@imgtec.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,18 +67,16 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250326-sets-bxs-4-64-patch-v1-v5-1-e4c46e8280a9@imgtec.com>
+In-Reply-To: <20250326-sets-bxs-4-64-patch-v1-v5-2-e4c46e8280a9@imgtec.com>
 
-On Wed, Mar 26, 2025 at 04:48:21PM +0000, Matt Coster wrote:
-> The first compatible strings added for the AXE-1-16M are not sufficient to
-> accurately describe all the IMG Rogue GPUs. The current "img,img-axe"
-> string refers to the entire family of Series AXE GPUs, but this is
-> primarily a marketing term and does not denote a level of hardware
-> similarity any greater than just "Rogue".
+On Wed, Mar 26, 2025 at 04:48:22PM +0000, Matt Coster wrote:
+> Unlike AXE-1-16M, BXS-4-64 uses two power domains.
 > 
-> The more specific "img,img-axe-1-16m" string refers to individual AXE-1-16M
-> GPU. For example, unlike the rest of the Series AXE GPUs, the AXE-1-16M
-> only uses a single power domain.
+> Like the existing AXE-1-16M integration, BXS-4-64 uses the single clock
+> integration in the TI k3-j721s2.
+> 
+> Signed-off-by: Matt Coster <matt.coster@imgtec.com>
+> ---
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
