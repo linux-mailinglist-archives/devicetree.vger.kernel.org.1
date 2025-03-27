@@ -1,224 +1,248 @@
-Return-Path: <devicetree+bounces-161307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8376FA73574
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 16:17:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 446EEA7357E
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 16:21:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 453263B85DC
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 15:17:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21837179AB3
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 15:19:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 531B714B086;
-	Thu, 27 Mar 2025 15:17:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5C2E17A315;
+	Thu, 27 Mar 2025 15:19:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="pI2ft4KY";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="gazNy7g5"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="oyDOgFje"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3860E224F0;
-	Thu, 27 Mar 2025 15:17:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26EFD154423
+	for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 15:19:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743088644; cv=none; b=aGBl5dlGTfp3002vkYYSUYUeYMBcSBOvXinVHPEowdU4BMzfOLuWR8SjiYA47VgMQFQgvXbrNLVho0FMIDOCjsLTTJHYJ0nnsC+IukMqWhlJhz80K1KwcGBoNK8+QpN2+zDeoEnqvvrE4q3WKiXjq0dNk5er4yToLS8QkJwOutU=
+	t=1743088756; cv=none; b=Yf1aMVtLYVt/scLVtrWW3zDJswJeGrgY/bwWDbdO6SQJc3YadquimdltNIY0dl+nbM8MFZb2VKgn+cdzg1IVng1VKzBz8d8HcmQQ+JjyjlKMvvc210ZLNjpZQEJzETI7BVGDQt0MQKiKK5I7cxkKsEt2GAQVn1l2iRytwqI9H4c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743088644; c=relaxed/simple;
-	bh=oCznubISwDBJTpXZxjSqwKCnkYhZ8P4u13fownGsO/E=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Tco7t6eExOaVSKQ55rhqf0b8Fh1ZvhL72rfFWVe7vE5yqtHMPZJ2gySmxFCQCkfBfCoNEv73Mf10d/1rB0kfRmAD8+ADe9wxpYFnVHNPR9MHgpSE5LzUOE4jjgxTik2i7c7Y4vzWIEqfDYSSjM5V2v5o3bhUFvox1RIez4bXNhI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=pI2ft4KY; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=gazNy7g5 reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1743088641; x=1774624641;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Q5N17KOsgfd5tU8QCiBgB2dYYl62hiU+7Jh0VcyVGqQ=;
-  b=pI2ft4KYS8XB7+bTkevYQKYf6Oy5d1V4wYYavmU6FK9kYb7XbBmpcr3N
-   h30L+NsX4QkByeEiC2DnUbhn8pjXDkjOlDsdYwV2AC9ubwX5AvOU/sWAn
-   +6sz7zWhdFzoUnrLDisbrnVp5nznCK7AVBZnRPgkhw29IOHb77lldaS71
-   u5MJ0oYVsfuhe0TrOvF0pxmQv96iSWj0zP7peS52ga4E8cOT7EVA8WrYW
-   YzhN44UI3EORsaBW5kETdchD3N/AbSfQxPOX/ZL5lK69kofDwSLBJihhw
-   3PXZOMJX18JSyQzxUJuuubbvRsWDKm6GRxr7UWFFlVx/stGW70MR/VV2B
-   Q==;
-X-CSE-ConnectionGUID: zFpRplEPRlihr1sVJCWn0w==
-X-CSE-MsgGUID: VhuchQarTSmZCCqKjJv0nQ==
-X-IronPort-AV: E=Sophos;i="6.14,280,1736809200"; 
-   d="scan'208";a="43200592"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 27 Mar 2025 16:17:18 +0100
-X-CheckPoint: {67E56BFE-25-2417938-F0170C2B}
-X-MAIL-CPID: 9D2C94109F316BB6688BAB2DCFEC054B_2
-X-Control-Analysis: str=0001.0A006378.67E56BF7.006E,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CA52416C5D9;
-	Thu, 27 Mar 2025 16:17:11 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1743088634;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Q5N17KOsgfd5tU8QCiBgB2dYYl62hiU+7Jh0VcyVGqQ=;
-	b=gazNy7g5HlLQhl60V7ofVmlS/b8twdF3ZC9kSnv5Wz7NV3mgX/0oINBbyGumnGGYfqE8sR
-	RWOZbtNhO+a1OL30b6x3ZdfojCxQpv1vENTaIoxIooUn86g9uqO08Ph4azErd6VOhj5BE5
-	fxDq9slGOJTnHprTsSav7tmW2sl9N7XAZTaIGxkbtLHgWL8NvqCTCSngkOJ6Ati8/OnnOV
-	nX4sNGntFocf4mDFyWfhHv4ekGPo0/OfTeenaso+O+ixdUMJMAw7hMzYTVhBpKjys2ayUt
-	EwieziGJ+xpKb/6wYjj7s0mWGo6uhIxHTUAz31JADuhe1ABKrPmrktTidGUb8A==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH 4/7] ARM: dts: ls1021a-tqmals1021a: Add LVDS overlay for Tianma
- TM070JVGH33
-Date: Thu, 27 Mar 2025 16:17:09 +0100
-Message-ID: <3347513.aeNJFYEL58@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <Z+VoEI9Ep3izRKBJ@lizhi-Precision-Tower-5810>
-References:
- <20250327144118.504260-1-alexander.stein@ew.tq-group.com>
- <20250327144118.504260-5-alexander.stein@ew.tq-group.com>
- <Z+VoEI9Ep3izRKBJ@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1743088756; c=relaxed/simple;
+	bh=fycumse8yqNHOHHACVAXGPuLaZr6jVx+l1EKF0RpT1g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cxso+6y0fWu0JiGY1ZF1M3B9NmoNxX4NexgGfbb3WzN3I5kxXnG/IDkicAV/JswYwIvzSqMkzaaAoVsNthC9H5uihiTlsAOnzICf9BMaymX6nYBC6BMq8lwtRPuMq0I631RHFxdg7lIBaN/K9nquUFqgepXFrGZTOsCqlpWeN44=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=oyDOgFje; arc=none smtp.client-ip=212.227.15.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1743088752; x=1743693552; i=wahrenst@gmx.net;
+	bh=fycumse8yqNHOHHACVAXGPuLaZr6jVx+l1EKF0RpT1g=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=oyDOgFjepTERFHfnJ/z6W+2kqreEstcRBjpNk48yMsR0UOJrDNFY+LEnCDKHAlkC
+	 8wSF12m7poMK3mcjfYhJk9fWsC3C9PG056xyH7Ng7Bc8hMIWZNEguPhcP7YPQ3wHi
+	 y0xsVP/x8QAztqrOg0q3VABKtgk6d/Awgq4c/CQQLBnIJ+5OU3X/7tbV4ibE7hg4F
+	 Y5VyRmX3Kk1TUAuOHXFh48uk3TUR7UWwiMvp7oWAY8tJo9DjA9wHtRC7ZWlknCUCp
+	 IdPQLiJAn6voCnHYzRTs4X811lTXDR7KqEySQAKVtmiIT6FUGq8/lAmZUTSlomlIg
+	 7ydwKcly3IwxseGPwA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.107] ([37.4.251.153]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1M8ykW-1u1gco0FFu-0031Xx; Thu, 27
+ Mar 2025 16:19:12 +0100
+Message-ID: <6186975b-4f28-4caf-89c1-f2eef2e28a65@gmx.net>
+Date: Thu, 27 Mar 2025 16:19:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 5/5] drm/v3d: Use V3D_SMS registers for power on/off
+ and reset on V3D 7.x
+To: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
+ Melissa Wen <mwen@igalia.com>, Iago Toral <itoral@igalia.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nicolas Saenz Julienne <nsaenz@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Phil Elwell <phil@raspberrypi.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, kernel-dev@igalia.com
+References: <20250317-v3d-gpu-reset-fixes-v6-0-f3ee7717ed17@igalia.com>
+ <20250317-v3d-gpu-reset-fixes-v6-5-f3ee7717ed17@igalia.com>
+ <bffb4df1-1171-4a9b-9b73-af33136c620a@gmx.net>
+ <f85dc2d3-a601-4caf-9ddb-c3256423f001@igalia.com>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+Autocrypt: addr=wahrenst@gmx.net; keydata=
+ xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
+ IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
+ NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
+ JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
+ TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
+ f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
+ V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
+ aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
+In-Reply-To: <f85dc2d3-a601-4caf-9ddb-c3256423f001@igalia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+X-Provags-ID: V03:K1:QtIeX+lgVlLAaan2V7Rzg2Dg/uvbZOnnoGBx7bK428OQDSiJ+Re
+ YGyrVCfwM94yuO9hFby6gBILYzVU0jbl2p7wG/p4chrWV2Kf0Br47WK0FS/ymFPSOAyV3Hz
+ HA8enH+xRHTn0n2PyIPd98uckS1PLBxLvzjtVWn6dTd4nVeJ8d8A3Oxi4zZOD/cvB5XkGHj
+ 2DkkNpIzEsYevb/O9I0xQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:1omchPZ5PmY=;m4Ic4shIas5jqAAq48TGu8scags
+ 3amylJOacgKWXTkh+8YQKV3AM5K9xxZDIqECDt2nZCJozIVxnQrXZMV/NA8uAaiBtEMBgFNpH
+ OK8rz0XLQae4XCGYYrEJKqTgKYSL83Ro+yGJnhuYt4CCffqXzop052FF28D0zS3gx4UNtyo81
+ 4kdv4+xvi1WE3TOV4F8AvsiEjYfkSHW5eMvWHEp24bC15z+eQlcY4i0/I/fJgsEGAnH9JCu3v
+ zp1SUuhaObmbH7kDM+ls/3paxy+Ge2MO1yi/1KGb47x2W6RtIhqTgkOhfkqFhPt5Fk3bG3+LI
+ JOnDzUpkDsblk89WTlpeZe0+OP8y5MMJwR+qYLLaFThFuCg5YHL3BNujEkbOfV3ZoxngRvEV4
+ hwIxxAk9XHVlijj7syeT3MNzkkhXIYKBc0DhZOcL2Vn+D/ZamUBq8PMEoWrahkvoKmfHn9JEG
+ dx3mgU/F6SFNsW3Rup3MZnGYSn5yT67idQVzprE9EDWPQEcF5WsebBxrr5/U/pEzTqMteyMj7
+ 0coXaFe+YcH56FoDoIKUeUgutmQdyoTvJkZIvz1rvvH8A5ncA6HwBRIihQ/eb5qIZ01169xNR
+ LAvuvsu7T4SQSaPym7RpABR4yUzVOm5Ej2/f5RhmMI/z6ak/AneLVt7teRNCsWtuSr28Ycnug
+ /4XUA+BE2SL67tUPJTxuJWeshC1UxQhRHNWR3nZbuH8PW7vFt4l4SQlECBBZgp/BqxUl5Fesv
+ bz8+jKVMxDjk7O/54Y3pUQL6TtGvPsaOjfKBaZN5CeZeIDkJyDf/l5GdnTWDAon4rJhHnkZNe
+ ONjft2W9eRNplGMS7X7O3gVCzSFzVvn5dW+HK8ce3F5CsSQ0KLTVl0Nz8bqCxEKs7j+HDIKIF
+ qMAfSFShUVn70i2l40tlG07P0HIoHLbRZ3ZVWw18tgQ7vTu10s7W77jraucAbPLlB+m3vU17k
+ 4bc0TBLqzLjpQ8ZIin6cL+ZRlU3NiwEatkQXFHJKP/YaPF78jWUUe8gYTO801tU3+4Qxgo+A4
+ wph2Z15YqeTqPDIUkPOyMyUM/VuUkHqyAfzdVt+vnjavjJZss2rr8BXR1wtFf72j31IUgBjRP
+ f1W3CK+gcWiU+qNeqp6yVguv6a4MQvdh9l0QJCYkECNrkBagp7TWc/q18nFU9TQCVGkpf07DV
+ HcSYD3ClrdItPgAbqcjrsbdXBmmuu78/XPn05o1w69tLeHjOJFK8hpT8hhA4Ukg6O70jefiH3
+ ivaUBe1lAFLqnGoL+G4a1lOxbuGJ1/cFiHdJVfGTWu1mvdsb03kIIbk+lY+BoIetp1Q+3MQPM
+ c9zcVIjSzA0qzUQG3HUiIU3nlUgAvYl6vEDBXncpKUA31D5nnDEbV87sncnZgWBDwiyM08/CW
+ a2xdSVjmxHFDvaEwjHKYRMJtD4pAkFHaL/V1qV8WSi+J2ZY/H/8tA98g8U6HpTT8SxQflTK1J
+ sKrgVCxkf54yCQ2yRHW9v3cW1Wv0G1GEpgrcysxwsOeHO9PtDJSebd6YmtpaXWti3EWuNpQ==
 
-Hi Frank,
-
-Am Donnerstag, 27. M=E4rz 2025, 16:00:32 CET schrieb Frank Li:
-> On Thu, Mar 27, 2025 at 03:41:10PM +0100, Alexander Stein wrote:
-> > This adds an overlay for the supported LVDS display tianma tm070jvhg33.
-> > The on-board RGB-to-LVDS encoder and DCU graphics chain are configured
-> > accordingly. Add the missing power supply as well.
->=20
-> 		      ^^^ missed?
-
-Thanks for the comment. We are touching English grammar here and I might
-be completely wrong.
-IMHO this gerund is describing the power supply is missing the whole time.
-In contrast to 'missed' which indicates it had been missed (just) once.
-Anyway I don't have hard feelings.
-
-Best regards,
-Alexander
-
-> >
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > ---
-> >  arch/arm/boot/dts/nxp/ls/Makefile             |  2 +
-> >  ...tqmls1021a-mbls1021a-lvds-tm070jvhg33.dtso | 47 +++++++++++++++++++
-> >  .../nxp/ls/ls1021a-tqmls1021a-mbls1021a.dts   |  1 +
-> >  3 files changed, 50 insertions(+)
-> >  create mode 100644 arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls102=
-1a-lvds-tm070jvhg33.dtso
-> >
-> > diff --git a/arch/arm/boot/dts/nxp/ls/Makefile b/arch/arm/boot/dts/nxp/=
-ls/Makefile
-> > index 225a7665b8ad1..7f96de6f80224 100644
-> > --- a/arch/arm/boot/dts/nxp/ls/Makefile
-> > +++ b/arch/arm/boot/dts/nxp/ls/Makefile
-> > @@ -8,4 +8,6 @@ dtb-$(CONFIG_SOC_LS1021A) +=3D \
-> >  	ls1021a-twr.dtb
-> >
-> >  ls1021a-tqmls1021a-mbls1021a-hdmi-dtbs +=3D ls1021a-tqmls1021a-mbls102=
-1a.dtb ls1021a-tqmls1021a-mbls1021a-hdmi.dtbo
-> > +ls1021a-tqmls1021a-mbls1021a-lvds-tm070jvhg33-dtbs +=3D ls1021a-tqmls1=
-021a-mbls1021a.dtb ls1021a-tqmls1021a-mbls1021a-lvds-tm070jvhg33.dtbo
-> >  dtb-$(CONFIG_SOC_LS1021A) +=3D ls1021a-tqmls1021a-mbls1021a-hdmi.dtb
-> > +dtb-$(CONFIG_SOC_LS1021A) +=3D ls1021a-tqmls1021a-mbls1021a-lvds-tm070=
-jvhg33.dtb
-> > diff --git a/arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a-lvds=
-=2Dtm070jvhg33.dtso b/arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a=
-=2Dlvds-tm070jvhg33.dtso
-> > new file mode 100644
-> > index 0000000000000..e9708f3c67403
-> > --- /dev/null
-> > +++ b/arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a-lvds-tm070j=
-vhg33.dtso
-> > @@ -0,0 +1,47 @@
-> > +// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
-> > +/*
-> > + * Copyright 2013-2014 Freescale Semiconductor, Inc.
-> > + * Copyright 2018-2025 TQ-Systems GmbH <linux@ew.tq-group.com>,
-> > + * D-82229 Seefeld, Germany.
-> > + * Author: Alexander Stein
-> > + */
-> > +
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +
-> > +/dts-v1/;
-> > +/plugin/;
-> > +
-> > +&backlight_dcu {
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&dcu {
-> > +	status =3D "okay";
-> > +
-> > +	port {
-> > +		dcu_out: endpoint {
-> > +			remote-endpoint =3D <&lvds_encoder_in>;
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +&display {
-> > +	compatible =3D "tianma,tm070jvhg33";
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&lvds_encoder {
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&lvds_encoder_in {
-> > +	remote-endpoint =3D <&dcu_out>;
-> > +};
-> > +
-> > +&lvds_encoder_out {
-> > +	remote-endpoint =3D <&panel_in>;
-> > +};
-> > +
-> > +&panel_in {
-> > +	remote-endpoint =3D <&lvds_encoder_out>;
-> > +};
-> > diff --git a/arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a.dts =
-b/arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a.dts
-> > index 27a55fa638128..80dae0c09542d 100644
-> > --- a/arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a.dts
-> > +++ b/arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a.dts
-> > @@ -147,6 +147,7 @@ hdmi_in: endpoint {
-> >  	display: panel {
-> >  		backlight =3D <&backlight_dcu>;
-> >  		enable-gpios =3D <&pca9554_1 3 GPIO_ACTIVE_HIGH>;
-> > +		power-supply =3D <&reg_3p3v>;
-> >  		status =3D "disabled";
-> >
-> >  		port {
-> > --
-> > 2.43.0
-> >
->=20
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
+Am 27.03.25 um 14:52 schrieb Ma=C3=ADra Canal:
+> Hi Stefan,
+>
+> On 27/03/25 07:57, Stefan Wahren wrote:
+>> Hi Ma=C3=ADra,
+>>
+>> Am 18.03.25 um 02:01 schrieb Ma=C3=ADra Canal:
+>>> In addition to the standard reset controller, V3D 7.x requires
+>>> configuring
+>>> the V3D_SMS registers for proper power on/off and reset. Add the new
+>>> registers to `v3d_regs.h` and ensure they are properly configured
+>>> during
+>>> device probing, removal, and reset.
+>>>
+>>> This change fixes GPU reset issues on the Raspberry Pi 5 (BCM2712).
+>>> Without exposing these registers, a GPU reset causes the GPU to hang,
+>>> stopping any further job execution and freezing the desktop GUI. The
+>>> same
+>>> issue occurs when unloading and loading the v3d driver.
+>>>
+>>> Link: https://github.com/raspberrypi/linux/issues/6660
+>>> Reviewed-by: Iago Toral Quiroga <itoral@igalia.com>
+>>> Signed-off-by: Ma=C3=ADra Canal <mcanal@igalia.com>
+>>> ---
+>>> =C2=A0 drivers/gpu/drm/v3d/v3d_drv.c=C2=A0 | 40
+>>> ++++++++++++++++++++++++++++++++ ++++++++
+>>> =C2=A0 drivers/gpu/drm/v3d/v3d_drv.h=C2=A0 | 11 +++++++++++
+>>> =C2=A0 drivers/gpu/drm/v3d/v3d_gem.c=C2=A0 | 17 +++++++++++++++++
+>>> =C2=A0 drivers/gpu/drm/v3d/v3d_regs.h | 26 ++++++++++++++++++++++++++
+>>> =C2=A0 4 files changed, 94 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/v3d/v3d_drv.c b/drivers/gpu/drm/v3d/
+>>> v3d_drv.c
+>>> index
+>>> c63f0ed1bd8a3d5511085e76ed2fbd6ee7df6f80..122848cdccc4a02039d9ea2e77aa=
+2f377886b5d6
+>>> 100644
+>>> --- a/drivers/gpu/drm/v3d/v3d_drv.c
+>>> +++ b/drivers/gpu/drm/v3d/v3d_drv.c
+>>> @@ -263,6 +263,36 @@ static const struct of_device_id v3d_of_match[]
+>>> =3D {
+>>> =C2=A0 };
+>>> =C2=A0 MODULE_DEVICE_TABLE(of, v3d_of_match);
+>>>
+>>> +static void
+>>> +v3d_idle_sms(struct v3d_dev *v3d)
+>>> +{
+>>> +=C2=A0=C2=A0=C2=A0 if (v3d->ver < V3D_GEN_71)
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return;
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0 V3D_SMS_WRITE(V3D_SMS_TEE_CS, V3D_SMS_CLEAR_POWER_=
+OFF);
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0 if (wait_for((V3D_GET_FIELD(V3D_SMS_READ(V3D_SMS_T=
+EE_CS),
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 V3D_SMS_STATE) =3D=3D V3D_SM=
+S_IDLE), 100)) {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 DRM_ERROR("Failed to power=
+ up SMS\n");
+>>> +=C2=A0=C2=A0=C2=A0 }
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0 v3d_reset_sms(v3d);
+>>> +}
+>>> +
+>>> +static void
+>>> +v3d_power_off_sms(struct v3d_dev *v3d)
+>>> +{
+>>> +=C2=A0=C2=A0=C2=A0 if (v3d->ver < V3D_GEN_71)
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return;
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0 V3D_SMS_WRITE(V3D_SMS_TEE_CS, V3D_SMS_POWER_OFF);
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0 if (wait_for((V3D_GET_FIELD(V3D_SMS_READ(V3D_SMS_T=
+EE_CS),
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 V3D_SMS_STATE) =3D=3D V3D_SM=
+S_POWER_OFF_STATE),
+>>> 100)) {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 DRM_ERROR("Failed to power=
+ off SMS\n");
+>>> +=C2=A0=C2=A0=C2=A0 }
+>>> +}
+>>> +
+>>> =C2=A0 static int
+>>> =C2=A0 map_regs(struct v3d_dev *v3d, void __iomem **regs, const char *=
+name)
+>>> =C2=A0 {
+>>> @@ -300,6 +330,12 @@ static int v3d_platform_drm_probe(struct
+>>> platform_device *pdev)
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (ret)
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return ret;
+>>>
+>>> +=C2=A0=C2=A0=C2=A0 if (v3d->ver >=3D V3D_GEN_71) {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ret =3D map_regs(v3d, &v3d=
+->sms_regs, "sms");
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (ret)
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 re=
+turn ret;
+>> Is it correct, that BCM2712 now requires the SMS register and otherwise
+>> the driver doesn't probe?
+>
+> Hum, yeah, it is correct, but I can send a patch to ensure backwards
+> compatibility. But keep in mind that you won't be able to reset the GPU
+> or unload/load (power on/off).
+>
+>>
+>> Just a note for the future: the devicetree is considered as an ABI [1],
+>> so new kernels should still work with old DTB (no regression). For
+>> Raspberry Pi OS, the kernel and DTB are always updated, but this doesn'=
+t
+>> apply for Linux Mainline. AFAIK V3D doesn't work with Linux Mainline on
+>> Raspberry Pi 5 yet, so this is just a theoretical problem.
+>
+> Yeah, I had that in mind, but due to the reason pointed in the end of
+> your comment, it was okay to do so and ensure that reset and power on/
+> off will work when RPi 5 reach upstream support.
+Fine :-)
+>
+> But, I'm open to send a patch removing the requirement.
+I think, this is not necessary. There is no need to introduce such
+"complexity".
+>
+> Best Regards,
+> - Ma=C3=ADra
+>
+>>
+>> Best regards
+>>
+>> [1] - https://docs.kernel.org/devicetree/bindings/ABI.html
+>
 
 
