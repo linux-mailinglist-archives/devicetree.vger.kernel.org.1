@@ -1,156 +1,459 @@
-Return-Path: <devicetree+bounces-161173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161174-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B32B6A72C9E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 10:38:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C400EA72CB1
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 10:47:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 149C51737C8
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 09:38:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9AF483B69B6
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 09:47:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 884A720CCD7;
-	Thu, 27 Mar 2025 09:38:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7C5420D4E9;
+	Thu, 27 Mar 2025 09:47:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="ShKgLqAI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp134-84.sina.com.cn (smtp134-84.sina.com.cn [180.149.134.84])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7EFA20C025
-	for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 09:38:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=180.149.134.84
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 102491FF7D1
+	for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 09:47:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743068310; cv=none; b=tAIZ1CSRuSoxYCXCDPdXBcg/9xibapH2lMoDZtpSCRXSeNVAuq1A5WEHImvCYLC9pV1z2UqAg4etUSi/gPiikt/CRBCJ/bFZgDEkGnUuyIOT4fQMt7R7DJUClndFQUJ9pRbKyUbWvyu8jByvjve/MXpN/AkokD0yzymvJ+GMyHM=
+	t=1743068831; cv=none; b=UVc985FecnVQUe2i6CJuax9LKlsZOHPMzYx6Ff3LPRTb/49gFxYt/PiR6qvded8R1KndQRM+rbc6rafzDrPfaYxv838EsOC9pCcHKqn7aYrkDLffOj0+Cj5madn+gzYBUrZ6B0sNRaIpkUfaPgToiDJMSFZaD424/j1O8CsHtx4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743068310; c=relaxed/simple;
-	bh=hXjAPFrEm6g0Zx8qm9hJGyjV1JomIaQsolkTA0hkEvY=;
-	h=From:To:Cc:Subject:Date:Message-Id; b=h3FM+1O7B4ZuJNOblwuxRuuMIrHW6pn9+GGavGn5w1vAl+ilaWfzULswyPXwJW52OAc/Orqk8my9oLDe6TlecpoRBTCL+Mgjh/GhEcvquLNMfIruxfXZlXUysHp4hfFnrhUgGZeVpczszQrx57GawTtO0YgyYiIRbJM8smSK4Zs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=180.149.134.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=everest-semi.com
-Received: from unknown (HELO zy-virtual-machine.localdomain)([180.159.108.242])
-	by sina.net (10.185.250.29) with ESMTP
-	id 67E51C8B00005989; Thu, 27 Mar 2025 17:38:20 +0800 (CST)
-X-Sender: zhangyi@everest-semi.com
-X-Auth-ID: zhangyi@everest-semi.com
-Authentication-Results: sina.net;
-	 spf=none smtp.mailfrom=zhangyi@everest-semi.com;
-	 dkim=none header.i=none;
-	 dmarc=none action=none header.from=zhangyi@everest-semi.com
-X-SMAIL-MID: EA3D3A9DBD6743E6AFDA933E0A47562C
-X-SMAIL-UIID: EA3D3A9DBD6743E6AFDA933E0A47562C-20250327-173820
-From: Zhang Yi <zhangyi@everest-semi.com>
-To: broonie@kernel.org,
-	robh@kernel.org,
-	tiwai@suse.com,
-	devicetree@vger.kernel.org,
-	conor+dt@kernel.org,
-	lgirdwood@gmail.com,
-	linux-kernel@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	perex@perex.cz,
-	krzk+dt@kernel.org
-Cc: amadeuszx.slawinski@linux.intel.com,
-	krzk@kernel.org
-Subject: RE: [PATCH v6 1/2] ASoC: codecs: add support for ES8389
-Date: Thu, 27 Mar 2025 17:38:18 +0800
-Message-Id: <20250327093818.48050-1-zhangyi@everest-semi.com>
-X-Mailer: git-send-email 2.17.1
+	s=arc-20240116; t=1743068831; c=relaxed/simple;
+	bh=pT9PkSrT7mqR+WQ6DEQw+ntfETqkmHkkVbQrJp/Yxyw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LjIGzTtQE2TsM9XjzqnQat/bSUU/vgRj+KsL6R0vmlv5iFq1LI8+WId1U47nOyaGfbpH4c3vQRpZMMXQTnJDitKK9TQvqDHMyjv3otA5qZ0PcLGZTY7leZE/bHtSE3H/yO084Tj5ynpFGuHi5Qc1YezMFX95sw/UgQweIsSBP3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=ShKgLqAI; arc=none smtp.client-ip=209.85.216.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-2ff615a114bso2921884a91.0
+        for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 02:47:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1743068828; x=1743673628; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=SW9HCzyLQIZzY69YplM0Pf2SuZh3YD6bPueDr3mT+uc=;
+        b=ShKgLqAIBVI6t6MoN6R7UM0qFNopGJWRD8L/eFlvlA5xTes03oCWNuwAXETlZsWK6m
+         nwGOQBTVY6fuuD1U0+VIU/hltO4JB6CafXFWrPtgB2uv/6i9Y0nhsSBcL2t1eC8r5/mL
+         MqnfpvhJ6uaIH10W2tfX9XrLk08OX/Rc0Jcqk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743068828; x=1743673628;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SW9HCzyLQIZzY69YplM0Pf2SuZh3YD6bPueDr3mT+uc=;
+        b=G1HyEoVzjXJU04f9m1cl7fP5WLxrENIZ41E6dLiQQWXcUKQRNO0C3Lx4c1LrZ/0MaR
+         dFBA/h7eWSetuJ8nzKVaioINXg0em/vbqqwoikvOdUZ4Jc7BAc/ekmOAcMNDR8ZmZdAt
+         mGPyA906o/BDR+FbVYqtva3Qlo98+LYjBqOSMrieyCEn7mQ7EtTgaFoosgZfIwEKAi7T
+         BRNOE3u37VLndofyKxswWLpzMxdAsklgRSkiO5eHer28MFvOByf7oBB4jTmz+XFB/sUi
+         0D3S10sF68XtmZseuTO6wp55qZygfgvycQC8K0n0/GNm3uptn5Qtnh6aYSPexxVF2rKK
+         sD9w==
+X-Forwarded-Encrypted: i=1; AJvYcCXkgJLtI/rBzbmsd+uCajLHrIowoOpYK6r4g/0sV0PdrHYsyYIW5lqgtx3lEsESdxVrv+QpxJM9Rkmj@vger.kernel.org
+X-Gm-Message-State: AOJu0YyTcf8PbDE5e/aP51PxY/PfJsLEOyKW19dfGMkm8tuqM8EoxbmD
+	d7xXX1WL6UmVcCCmaYHFn3gNf+Za/fC2Vgt6/K/+FHTixO/b2R3vS9rXlhjziw==
+X-Gm-Gg: ASbGncsEStSmFcwGKDpXb26suw/X7Zsm5XXXc7YXukvQKk5UjtZy/yoqZMeIXGPZMz3
+	XmSZ317K7oxN0JWthz2GxegstZw+D/yf5QsC3eYDnWMYmsXjYerRMlfsszBQYXwOIbE3gVi22UJ
+	5D5crhnxUXADI9YDYZgv93JgHNFMgO1AYKSnx57J37sQethvuNJ4LL2uclHfUFdH8fjU4j4H6/M
+	UsPbkDE/vsO7I4wHPAY/Cs13C9ZdTUmVjSv7z3fCNibPuZp9JY7gYTwh8UCNXVRw9CGDKcVFMl9
+	lL8EgjMTUYtZvMvY3mFsUwVkNAtC8+OdulkzZA==
+X-Google-Smtp-Source: AGHT+IFJkmLWd/lonFB+EtD7O5kAypEs9+uoWSd7MhEjp5k731wZKwYQHKuuFIZHJ3I3Aw60m3IKpg==
+X-Received: by 2002:a17:90b:5703:b0:2fa:603e:905c with SMTP id 98e67ed59e1d1-303788c1d9amr11144403a91.2.1743068827905;
+        Thu, 27 Mar 2025 02:47:07 -0700 (PDT)
+Received: from google.com ([2401:fa00:1:10:2c04:d30e:5507:f399])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3039dfd499csm1946525a91.10.2025.03.27.02.47.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Mar 2025 02:47:07 -0700 (PDT)
+Date: Thu, 27 Mar 2025 17:47:01 +0800
+From: Chen-Yu Tsai <wenst@chromium.org>
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Len Brown <lenb@kernel.org>, Russell King <linux@armlinux.org.uk>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Stuart Yoder <stuyoder@gmail.com>,
+	Laurentiu Tudor <laurentiu.tudor@nxp.com>,
+	Nipun Gupta <nipun.gupta@amd.com>,
+	Nikhil Agarwal <nikhil.agarwal@amd.com>,
+	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-acpi@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	iommu@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	Charan Teja Kalla <quic_charante@quicinc.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v2 4/4] iommu: Get DT/ACPI parsing into the proper probe
+ path
+Message-ID: <20250327094701.GA791706@google.com>
+References: <cover.1740753261.git.robin.murphy@arm.com>
+ <e3b191e6fd6ca9a1e84c5e5e40044faf97abb874.1740753261.git.robin.murphy@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e3b191e6fd6ca9a1e84c5e5e40044faf97abb874.1740753261.git.robin.murphy@arm.com>
 
-> >   	imply SND_SOC_ES8316
-> >   	imply SND_SOC_ES8323
-> >   	imply SND_SOC_ES8326
-> > +	imply SND_SOC_ES8389
-> >   	imply SND_SOC_ES8328_SPI
-> >   	imply SND_SOC_ES8328_I2C
-> >   	imply SND_SOC_ES7134
+Hi,
+
+On Fri, Feb 28, 2025 at 03:46:33PM +0000, Robin Murphy wrote:
+> In hindsight, there were some crucial subtleties overlooked when moving
+> {of,acpi}_dma_configure() to driver probe time to allow waiting for
+> IOMMU drivers with -EPROBE_DEFER, and these have become an
+> ever-increasing source of problems. The IOMMU API has some fundamental
+> assumptions that iommu_probe_device() is called for every device added
+> to the system, in the order in which they are added. Calling it in a
+> random order or not at all dependent on driver binding leads to
+> malformed groups, a potential lack of isolation for devices with no
+> driver, and all manner of unexpected concurrency and race conditions.
+> We've attempted to mitigate the latter with point-fix bodges like
+> iommu_probe_device_lock, but it's a losing battle and the time has come
+> to bite the bullet and address the true source of the problem instead.
 > 
-> Add it in alphabetical order?
-
-I'll fix the issue about the order of this couple of places.
-
-> > diff --git a/sound/soc/codecs/es8389.c b/sound/soc/codecs/es8389.c new 
-> > file mode 100644 index 000000000000..73c1966c30be
-> > --- /dev/null
-> > +++ b/sound/soc/codecs/es8389.c
-> > @@ -0,0 +1,966 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * es8389.c  --  ES8389/ES8390 ALSA SoC Audio Codec
+> The crux of the matter is that the firmware parsing actually serves two
+> distinct purposes; one is identifying the IOMMU instance associated with
+> a device so we can check its availability, the second is actually
+> telling that instance about the relevant firmware-provided data for the
+> device. However the latter also depends on the former, and at the time
+> there was no good place to defer and retry that separately from the
+> availability check we also wanted for client driver probe.
 > 
-> The only place that mentions ES8390? Is this correct?
-
-Actually ES8389 and ES8390 are the same chip.I'll drop the ES8390 in this place
-to avoid any misunderstandings.
-
-> > +	{50, 400000, 8000, 0x00, 0x75, 0x05, 0xC8, 0x01, 0xC1, 0x90, 0x10, 0x00, 0x18, 0xC7, 0xD0, 0xC0, 0x8F, 0xC7, 0x01, 0x12, 0x00, 0x09, 0x19, 0x07},
-> > +	{600, 4800000, 8000, 0x05, 0x65, 0x25, 0xF9, 0x00, 0xD1, 0x90, 0x10, 0x00, 0x18, 0xC7, 0xD0, 0xC0, 0x8F, 0xC7, 0x01, 0x12, 0x00, 0x09, 0x19, 0x07},
-> > +	{1500, 12000000, 8000, 0x0E, 0x25, 0x25, 0xE8, 0x00, 0xD1, 0x90, 0x40, 0x00, 0x31, 0xC7, 0xC5, 0x00, 0x8F, 0xC7, 0x01, 0x12, 0x00, 0x09, 0x19, 0x07},
-> > +	{2400, 19200000, 8000, 0x0B, 0x01, 0x00, 0xD0, 0x00, 0xD1, 0x80, 0x90, 0x00, 0x31, 0xC7, 0xC5, 0x00, 0xC7, 0xC7, 0x00, 0x12, 0x00, 0x09, 0x19, 0x07},
-> > +	{3000, 24000000, 8000, 0x0E, 0x24, 0x05, 0xD0, 0x00, 0xC2, 0x80, 0xC0, 0x00, 0x31, 0xC7, 0xC5, 0x00, 0x8F, 0xC7, 0x01, 0x12, 0x00, 0x09, 0x19, 0x07},
-> > +	{3250, 26000000, 8000, 0x40, 0x05, 0xA4, 0xC0, 0x00, 0xD1, 0x80, 
-> > +0xD0, 0x00, 0x31, 0xC7, 0xC5, 0x00, 0xC7, 0xC7, 0x00, 0x12, 0x00, 
-> > +0x09, 0x19, 0x07},
-> > +
-> > +};
+> Nowadays, though, we have a proper notion of multiple IOMMU instances in
+> the core API itself, and each one gets a chance to probe its own devices
+> upon registration, so we can finally make that work as intended for
+> DT/IORT/VIOT platforms too. All we need is for iommu_probe_device() to
+> be able to run the iommu_fwspec machinery currently buried deep in the
+> wrong end of {of,acpi}_dma_configure(). Luckily it turns out to be
+> surprisingly straightforward to bootstrap this transformation by pretty
+> much just calling the same path twice. At client driver probe time,
+> dev->driver is obviously set; conversely at device_add(), or a
+> subsequent bus_iommu_probe(), any device waiting for an IOMMU really
+> should *not* have a driver already, so we can use that as a condition to
+> disambiguate the two cases, and avoid recursing back into the IOMMU core
+> at the wrong times.
 > 
-> Missing new line between array above and below function? I think checkpatch warns about this?
-
-I'll fix it
-
-> > +
-> > +static int es8389_probe(struct snd_soc_component *codec) {
-> > +	int ret = 0;
-> > +	struct es8389_private *es8389 = 
-> > +snd_soc_component_get_drvdata(codec);
+> Obviously this isn't the nicest thing, but for now it gives us a
+> functional baseline to then unpick the layers in between without many
+> more awkward cross-subsystem patches. There are some minor side-effects
+> like dma_range_map potentially being created earlier, and some debug
+> prints being repeated, but these aren't significantly detrimental. Let's
+> make things work first, then deal with making them nice.
 > 
-> Use "reverse christmas tree" notation for declaring variables? Also ret gets overwritten below, so it is useless to set it.
-
-I'll fix it
-
-> > +static const struct regmap_config es8389_regmap = {
-> > +	.reg_bits = 8,
-> > +	.val_bits = 8,
-> > +
-> > +	.max_register = ES8389_MAX_REGISTER,
-> > +
-> > +	.volatile_reg = es8389_volatile_register,
-> > +	.cache_type = REGCACHE_MAPLE,
-> > +};
-> > +
-> > +static void es8389_i2c_shutdown(struct i2c_client *i2c) {
-> > +	struct snd_soc_component *component;
-> > +	struct es8389_private *es8389;
-> > +
-> > +	es8389 = i2c_get_clientdata(i2c);
-> > +	component = es8389->component;
+> With the basic flow finally in the right order again, the next step is
+> probably turning the bus->dma_configure paths inside-out, since all we
+> really need from bus code is its notion of which device and input ID(s)
+> to parse the common firmware properties with...
 > 
-> Unused variable? And while you are removing it, you can also remove it from 'struct es8389_private', as this place seems to be the only user.
+> Acked-by: Bjorn Helgaas <bhelgaas@google.com> # pci-driver.c
+> Acked-by: Rob Herring (Arm) <robh@kernel.org> # of/device.c
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
 
-Yes, I'll drop them
+This change causes the MediaTek IOMMU driver to panic on probe,
+resulting in multiple MediaTek platforms not being able to boot.
+This was observed on Linus's tree at commit 1a9239bb4253
+("Merge tag 'net-next-6.15' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next")
+which just received the IOMMU updates a couple merge commits
+prior.
 
-> > +
-> > +	regmap_write(es8389->regmap, ES8389_MASTER_MODE, 0x28);
-> > +	regmap_write(es8389->regmap, ES8389_HPSW, 0x00);
-> > +	regmap_write(es8389->regmap, ES8389_VMID, 0x00);
-> > +	regmap_write(es8389->regmap, ES8389_RESET, 0x00);
-> > +	regmap_write(es8389->regmap, ES8389_CSM_JUMP, 0xCC);
-> > +	usleep_range(500000, 550000);//500MS
-> > +	regmap_write(es8389->regmap, ES8389_CSM_JUMP, 0x00);
-> > +	regmap_write(es8389->regmap, ES8389_ANA_CTL1, 0x08);
-> > +	regmap_write(es8389->regmap, ES8389_ISO_CTL, 0xC1);
-> > +	regmap_write(es8389->regmap, ES8389_PULL_DOWN, 0x00); }
-> > +
-> > +static int es8389_i2c_probe(struct i2c_client *i2c_client) {
-> > +	struct es8389_private *es8389;
-> > +	int ret = -1;
+The regression was bisected down to this patch on MT8183 Juniper
+Chromebook. The error is a NULL pointer dereference. Here's the
+decoded backtrace:
+
+    Unable to handle kernel read from unreadable memory at virtual address 0000000000000000
+    Mem abort info:
+      ESR = 0x0000000096000005
+    usb 1-1.1.2: new high-speed USB device number 6 using xhci-mtk
+      EC = 0x25: DABT (current EL), IL = 32 bits
+      SET = 0, FnV = 0
+      EA = 0, S1PTW = 0
+      FSC = 0x05: level 1 translation fault
+    Data abort info:
+      ISV = 0, ISS = 0x00000005, ISS2 = 0x00000000
+      CM = 0, WnR = 0, TnD = 0, TagAccess = 0
+      GCS = 0, Overlay = 0, DirtyBit = 0, Xs = 0
+    [0000000000000000] user address but active_mm is swapper
+    Internal error: Oops: 0000000096000005 [#1]  SMP
+    Modules linked in:
+    CPU: 4 UID: 0 PID: 68 Comm: kworker/u34:1 Tainted: G    B              6.14.0-05877-g1a9239bb4253 #621 PREEMPT  a6631d3f04612a5c23866dc67cf38316c6b023e0
+    Tainted: [B]=BAD_PAGE
+    Hardware name: Google juniper sku16 board (DT)
+    Workqueue: events_unbound deferred_probe_work_func
+    pstate: 40400005 (nZcv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+    pc : mtk_iommu_device_group (drivers/iommu/mtk_iommu.c:368 drivers/iommu/mtk_iommu.c:940)
+    lr : mtk_iommu_device_group (drivers/iommu/mtk_iommu.c:368 drivers/iommu/mtk_iommu.c:940)
+    sp : ffffffc0809674a0
+    x29: ffffffc0809674a0 x28: ffffff80c1f0f078 x27: ffffff80c1f0f460
+    x26: ffffff80c1f0f458 x25: ffffffdb1b738788 x24: ffffffc0809676d0
+    x23: ffffff80c8fe4130 x22: ffffffffffffffed x21: 0000000000000000
+    x20: ffffff80c1f0f010 x19: ffffff80c8fd7d00 x18: 0000000000000000
+    x17: 000000040044ffff x16: 00500072b5593510 x15: 0000000000000000
+    x14: ffffff80c09fbb80 x13: ffffffa5bf03f000 x12: ffffffbb6399cdf1
+    x11: 1ffffffb6399cdf0 x10: ffffffbb6399cdf0 x9 : dfffffc000000000
+    x8 : 000000449c663210 x7 : ffffffdb1cce6f87 x6 : 0000000000000001
+    x5 : ffffffdb1cce6f80 x4 : ffffffbb6399cdf1 x3 : 0000000000000000
+    x2 : 0000000000000020 x1 : ffffff80c22ed940 x0 : 0000000000000001
+    Call trace:
+    mtk_iommu_device_group (drivers/iommu/mtk_iommu.c:368 drivers/iommu/mtk_iommu.c:940) (P)
+    __iommu_probe_device (drivers/iommu/iommu.c:461 drivers/iommu/iommu.c:563)
+    probe_iommu_group (drivers/iommu/iommu.c:1722)
+    bus_for_each_dev (drivers/base/bus.c:370)
+    iommu_device_register (drivers/iommu/iommu.c:1875 drivers/iommu/iommu.c:276)
+    mtk_iommu_probe (drivers/iommu/mtk_iommu.c:1380)
+    platform_probe (drivers/base/platform.c:1404)
+    really_probe (drivers/base/dd.c:579 drivers/base/dd.c:658)
+    __driver_probe_device (drivers/base/dd.c:800)
+    driver_probe_device (drivers/base/dd.c:830)
+    __device_attach_driver (drivers/base/dd.c:959)
+    bus_for_each_drv (drivers/base/bus.c:462)
+    __device_attach (drivers/base/dd.c:1032)
+    device_initial_probe (drivers/base/dd.c:1080)
+    bus_probe_device (drivers/base/bus.c:537)
+    deferred_probe_work_func (drivers/base/dd.c:124)
+    process_one_work (./arch/arm64/include/asm/jump_label.h:36 ./include/trace/events/workqueue.h:110 kernel/workqueue.c:3243)
+    worker_thread (kernel/workqueue.c:3313 (discriminator 2) kernel/workqueue.c:3400 (discriminator 2))
+    kthread (kernel/kthread.c:464)
+    ret_from_fork (arch/arm64/kernel/entry.S:863)
+    Code: 92800256 f940d2b5 aa1503e0 97e8dbd7 (f94002b5)
+    All code
+    ========
+       0:	92800256 	mov	x22, #0xffffffffffffffed    	// #-19
+       4:	f940d2b5 	ldr	x21, [x21, #416]
+       8:	aa1503e0 	mov	x0, x21
+       c:	97e8dbd7 	bl	0xffffffffffa36f68
+      10:*	f94002b5 	ldr	x21, [x21]		<-- trapping instruction
+
+    Code starting with the faulting instruction
+    ===========================================
+       0:	f94002b5 	ldr	x21, [x21]
+    ---[ end trace 0000000000000000 ]---
+
+
+ChenYu
+
+> ---
 > 
-> No need to set ret as it will be overwritten anyway, and '-1' is not considered a proper value. Use some error code if you must.
-
-Ok
+> v2:
+>  - Comment bus driver changes for clarity
+>  - Use dev->iommu as the now-robust replay condition
+>  - Drop the device_iommu_mapped() checks in the firmware paths as they
+>    weren't doing much - we can't replace probe_device_lock just yet...
+>  
+>  drivers/acpi/arm64/dma.c        |  5 +++++
+>  drivers/acpi/scan.c             |  7 -------
+>  drivers/amba/bus.c              |  3 ++-
+>  drivers/base/platform.c         |  3 ++-
+>  drivers/bus/fsl-mc/fsl-mc-bus.c |  3 ++-
+>  drivers/cdx/cdx.c               |  3 ++-
+>  drivers/iommu/iommu.c           | 24 +++++++++++++++++++++---
+>  drivers/iommu/of_iommu.c        |  7 ++++++-
+>  drivers/of/device.c             |  7 ++++++-
+>  drivers/pci/pci-driver.c        |  3 ++-
+>  10 files changed, 48 insertions(+), 17 deletions(-)
+> 
+> diff --git a/drivers/acpi/arm64/dma.c b/drivers/acpi/arm64/dma.c
+> index 52b2abf88689..f30f138352b7 100644
+> --- a/drivers/acpi/arm64/dma.c
+> +++ b/drivers/acpi/arm64/dma.c
+> @@ -26,6 +26,11 @@ void acpi_arch_dma_setup(struct device *dev)
+>  	else
+>  		end = (1ULL << 32) - 1;
+>  
+> +	if (dev->dma_range_map) {
+> +		dev_dbg(dev, "dma_range_map already set\n");
+> +		return;
+> +	}
+> +
+>  	ret = acpi_dma_get_range(dev, &map);
+>  	if (!ret && map) {
+>  		end = dma_range_map_max(map);
+> diff --git a/drivers/acpi/scan.c b/drivers/acpi/scan.c
+> index 9f4efa8f75a6..fb1fe9f3b1a3 100644
+> --- a/drivers/acpi/scan.c
+> +++ b/drivers/acpi/scan.c
+> @@ -1632,13 +1632,6 @@ static int acpi_iommu_configure_id(struct device *dev, const u32 *id_in)
+>  		err = viot_iommu_configure(dev);
+>  	mutex_unlock(&iommu_probe_device_lock);
+>  
+> -	/*
+> -	 * If we have reason to believe the IOMMU driver missed the initial
+> -	 * iommu_probe_device() call for dev, replay it to get things in order.
+> -	 */
+> -	if (!err && dev->bus)
+> -		err = iommu_probe_device(dev);
+> -
+>  	return err;
+>  }
+>  
+> diff --git a/drivers/amba/bus.c b/drivers/amba/bus.c
+> index 8ef259b4d037..71482d639a6d 100644
+> --- a/drivers/amba/bus.c
+> +++ b/drivers/amba/bus.c
+> @@ -364,7 +364,8 @@ static int amba_dma_configure(struct device *dev)
+>  		ret = acpi_dma_configure(dev, attr);
+>  	}
+>  
+> -	if (!ret && !drv->driver_managed_dma) {
+> +	/* @drv may not be valid when we're called from the IOMMU layer */
+> +	if (!ret && dev->driver && !drv->driver_managed_dma) {
+>  		ret = iommu_device_use_default_domain(dev);
+>  		if (ret)
+>  			arch_teardown_dma_ops(dev);
+> diff --git a/drivers/base/platform.c b/drivers/base/platform.c
+> index 6f2a33722c52..1813cfd0c4bd 100644
+> --- a/drivers/base/platform.c
+> +++ b/drivers/base/platform.c
+> @@ -1451,7 +1451,8 @@ static int platform_dma_configure(struct device *dev)
+>  		attr = acpi_get_dma_attr(to_acpi_device_node(fwnode));
+>  		ret = acpi_dma_configure(dev, attr);
+>  	}
+> -	if (ret || drv->driver_managed_dma)
+> +	/* @drv may not be valid when we're called from the IOMMU layer */
+> +	if (ret || !dev->driver || drv->driver_managed_dma)
+>  		return ret;
+>  
+>  	ret = iommu_device_use_default_domain(dev);
+> diff --git a/drivers/bus/fsl-mc/fsl-mc-bus.c b/drivers/bus/fsl-mc/fsl-mc-bus.c
+> index d1f3d327ddd1..a8be8cf246fb 100644
+> --- a/drivers/bus/fsl-mc/fsl-mc-bus.c
+> +++ b/drivers/bus/fsl-mc/fsl-mc-bus.c
+> @@ -153,7 +153,8 @@ static int fsl_mc_dma_configure(struct device *dev)
+>  	else
+>  		ret = acpi_dma_configure_id(dev, DEV_DMA_COHERENT, &input_id);
+>  
+> -	if (!ret && !mc_drv->driver_managed_dma) {
+> +	/* @mc_drv may not be valid when we're called from the IOMMU layer */
+> +	if (!ret && dev->driver && !mc_drv->driver_managed_dma) {
+>  		ret = iommu_device_use_default_domain(dev);
+>  		if (ret)
+>  			arch_teardown_dma_ops(dev);
+> diff --git a/drivers/cdx/cdx.c b/drivers/cdx/cdx.c
+> index c573ed2ee71a..780fb0c4adba 100644
+> --- a/drivers/cdx/cdx.c
+> +++ b/drivers/cdx/cdx.c
+> @@ -360,7 +360,8 @@ static int cdx_dma_configure(struct device *dev)
+>  		return ret;
+>  	}
+>  
+> -	if (!ret && !cdx_drv->driver_managed_dma) {
+> +	/* @cdx_drv may not be valid when we're called from the IOMMU layer */
+> +	if (!ret && dev->driver && !cdx_drv->driver_managed_dma) {
+>  		ret = iommu_device_use_default_domain(dev);
+>  		if (ret)
+>  			arch_teardown_dma_ops(dev);
+> diff --git a/drivers/iommu/iommu.c b/drivers/iommu/iommu.c
+> index a3b45b84f42b..1cec7074367a 100644
+> --- a/drivers/iommu/iommu.c
+> +++ b/drivers/iommu/iommu.c
+> @@ -414,9 +414,21 @@ static int iommu_init_device(struct device *dev)
+>  	if (!dev_iommu_get(dev))
+>  		return -ENOMEM;
+>  	/*
+> -	 * For FDT-based systems and ACPI IORT/VIOT, drivers register IOMMU
+> -	 * instances with non-NULL fwnodes, and client devices should have been
+> -	 * identified with a fwspec by this point. Otherwise, we can currently
+> +	 * For FDT-based systems and ACPI IORT/VIOT, the common firmware parsing
+> +	 * is buried in the bus dma_configure path. Properly unpicking that is
+> +	 * still a big job, so for now just invoke the whole thing. The device
+> +	 * already having a driver bound means dma_configure has already run and
+> +	 * either found no IOMMU to wait for, or we're in its replay call right
+> +	 * now, so either way there's no point calling it again.
+> +	 */
+> +	if (!dev->driver && dev->bus->dma_configure) {
+> +		mutex_unlock(&iommu_probe_device_lock);
+> +		dev->bus->dma_configure(dev);
+> +		mutex_lock(&iommu_probe_device_lock);
+> +	}
+> +	/*
+> +	 * At this point, relevant devices either now have a fwspec which will
+> +	 * match ops registered with a non-NULL fwnode, or we can reasonably
+>  	 * assume that only one of Intel, AMD, s390, PAMU or legacy SMMUv2 can
+>  	 * be present, and that any of their registered instances has suitable
+>  	 * ops for probing, and thus cheekily co-opt the same mechanism.
+> @@ -426,6 +438,12 @@ static int iommu_init_device(struct device *dev)
+>  		ret = -ENODEV;
+>  		goto err_free;
+>  	}
+> +	/*
+> +	 * And if we do now see any replay calls, they would indicate someone
+> +	 * misusing the dma_configure path outside bus code.
+> +	 */
+> +	if (dev->driver)
+> +		dev_WARN(dev, "late IOMMU probe at driver bind, something fishy here!\n");
+>  
+>  	if (!try_module_get(ops->owner)) {
+>  		ret = -EINVAL;
+> diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
+> index e10a68b5ffde..6b989a62def2 100644
+> --- a/drivers/iommu/of_iommu.c
+> +++ b/drivers/iommu/of_iommu.c
+> @@ -155,7 +155,12 @@ int of_iommu_configure(struct device *dev, struct device_node *master_np,
+>  		dev_iommu_free(dev);
+>  	mutex_unlock(&iommu_probe_device_lock);
+>  
+> -	if (!err && dev->bus)
+> +	/*
+> +	 * If we're not on the iommu_probe_device() path (as indicated by the
+> +	 * initial dev->iommu) then try to simulate it. This should no longer
+> +	 * happen unless of_dma_configure() is being misused outside bus code.
+> +	 */
+> +	if (!err && dev->bus && !dev_iommu_present)
+>  		err = iommu_probe_device(dev);
+>  
+>  	if (err && err != -EPROBE_DEFER)
+> diff --git a/drivers/of/device.c b/drivers/of/device.c
+> index edf3be197265..5053e5d532cc 100644
+> --- a/drivers/of/device.c
+> +++ b/drivers/of/device.c
+> @@ -99,6 +99,11 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
+>  	bool coherent, set_map = false;
+>  	int ret;
+>  
+> +	if (dev->dma_range_map) {
+> +		dev_dbg(dev, "dma_range_map already set\n");
+> +		goto skip_map;
+> +	}
+> +
+>  	if (np == dev->of_node)
+>  		bus_np = __of_get_dma_parent(np);
+>  	else
+> @@ -119,7 +124,7 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
+>  		end = dma_range_map_max(map);
+>  		set_map = true;
+>  	}
+> -
+> +skip_map:
+>  	/*
+>  	 * If @dev is expected to be DMA-capable then the bus code that created
+>  	 * it should have initialised its dma_mask pointer by this point. For
+> diff --git a/drivers/pci/pci-driver.c b/drivers/pci/pci-driver.c
+> index f57ea36d125d..4468b7327cab 100644
+> --- a/drivers/pci/pci-driver.c
+> +++ b/drivers/pci/pci-driver.c
+> @@ -1653,7 +1653,8 @@ static int pci_dma_configure(struct device *dev)
+>  
+>  	pci_put_host_bridge_device(bridge);
+>  
+> -	if (!ret && !driver->driver_managed_dma) {
+> +	/* @driver may not be valid when we're called from the IOMMU layer */
+> +	if (!ret && dev->driver && !driver->driver_managed_dma) {
+>  		ret = iommu_device_use_default_domain(dev);
+>  		if (ret)
+>  			arch_teardown_dma_ops(dev);
+> -- 
+> 2.39.2.101.g768bb238c484.dirty
+> 
 
