@@ -1,142 +1,132 @@
-Return-Path: <devicetree+bounces-161162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D932A72BD9
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 09:55:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01336A72BE6
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 09:56:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 152D63BC052
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 08:55:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC3143BC0BA
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 08:56:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFAA720B208;
-	Thu, 27 Mar 2025 08:55:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5F9220B217;
+	Thu, 27 Mar 2025 08:56:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="f9EIa3z+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com [209.85.222.52])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EE8E5A79B;
-	Thu, 27 Mar 2025 08:55:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF1D420B1E5
+	for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 08:56:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743065737; cv=none; b=hRvMj6vCeCVsrVm5gDiFvsMc72IyGspTR9xqWpxQwTFq5ejSUgcbXd/K2jHxDeUvSZsQ3mlHEqgt0Ex7yp1wrJTyB2fdbgDGnzdTiwPeuf/oaCDd6yMH94vB4/Wwgi5HCG/zB7rQ0uF0LfJadsHnhcmBE7yl4b2SFqngWkSXz9Q=
+	t=1743065807; cv=none; b=C/r4HCMLzF7Ft15klJtP2hrivz3vukxBZ5chX4O1ZnpxovSPBrQS3GptpGuQqtNgtCxVHBREhXhdsdvsPGkFtn6fpkBlFdMedf/IoBUgQWlBvEosdEGM+iwjgzQM+a3V1nrsuyok0FSuhKfnZoMywjNDpUlpI7ASb+wBGqR561g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743065737; c=relaxed/simple;
-	bh=wvP8K5jCDRc2bxGl9NjMTxlO/EqRfqfDWOCnH7CiRSc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PJEUyrKbYcrq7Z2RW1DBMcDvL0oCMzt4WxwqE0hxC0lSmiOtkE0KRVy1UpLyLcBgs5nbrs+sgSS/2/P3AsQt5d87QBjag/C3lD02wJKUOQ8RIABCXFfdbF+e1HCeGmhrkJuaNfj2ZVpivpEL/6b2rh8Vpt+VO09EhrdnfsLKXEU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f52.google.com with SMTP id a1e0cc1a2514c-86715793b1fso330781241.0;
-        Thu, 27 Mar 2025 01:55:35 -0700 (PDT)
+	s=arc-20240116; t=1743065807; c=relaxed/simple;
+	bh=FIYwhtEw1euleTwTcbZCNX9K84qUUjXQZZcm3DuTqE0=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=CCTO9zG0hsNPtEMd/g5N38yys/oNMMvvZcvszCnoNqwrhtiEMGFlHth7Qf6aAk2EtpyOa17OWjKzjz+wK8ZrUpUvzMEam7y3EeohZEXp3j0JtfX1TmhKqC+t4VsFuBm/zuNGDXP0oI9v33q0S+LJtjZy18e+/1CarT7m/lohajE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=f9EIa3z+; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-39141ffa9fcso537429f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 01:56:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1743065804; x=1743670604; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=FIYwhtEw1euleTwTcbZCNX9K84qUUjXQZZcm3DuTqE0=;
+        b=f9EIa3z+WG3ihErGNo5scvrjbc3TWVbr1yXum03sHB5O1vlZwZJ2LWsWhi9c/Erpyz
+         pDHBJrhhg/kl1JYkoUW2DvVwv5zXmNrBIpnoGDK7t3r0LErmLGK4mt+b9oDq6dR/ACbT
+         h3yO8ewgkhjzo0ULTYzEeX8AMKfEHWN7uiMOQO2OBcBuoNEPW537c7kP9L0EFehXJC+w
+         W6mFwVOxXIgUVd8FY1GafWAdg+kfCix8vS7Uk9nkAh/cjjiBIfLxT1r/4JL0eE02Uf9R
+         pWb9MJag9OwNf9ymAFuL7xvWnOhlwPATHgmw4mihphDFXarzPumdjSnZ4nnOVPSwxr1s
+         xpTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743065733; x=1743670533;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wK9lKk51F8Ig4IUd/YTVgiulwDpAR89rwMrTX7A/kVQ=;
-        b=hka/0wOydXRExKl0IaJ/Fvix/LnUTmlLWn5gfqs2U3t0D9u24U4CJGPYgWZVUgEGpv
-         bHgYnxFL5p3TS+8mfbDvBi6yz+jf9U8EbQ27CIRerI/SRotIrSl8GiHNQdYNVV0agp8y
-         IgwbSerQrQGNTR5z7cHPLQnTUOxoWtgeDq1mVHzUAmgLSzFpyyQA/gZHKleynwYTsscG
-         3zQxz7gn/z/29oJSK5NoxqlLRM13Xy5nrABOsu8dxIOfXPUXxXOW08hWt9057n1Z0FtH
-         /oEwpnFPa4yaq4u5XohNThfyh+ZFpS+6Tk4zb0429fPBwVxCtlrUzdsFFlIhEMobcCJf
-         7FSQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUUM8NWH6R1lOFgd1L+rOS5Vt8B53tba3xW3DztwAznChxF2PXPQ54CdDxUYvPeANG5MZZtMFQkG3hmUglC@vger.kernel.org, AJvYcCUv9w2Kz6gZdWNg8J6cdfLY/RNP+wPDMKNmpRA8F+NXWjDWIuD2N8SUqhssczX7vASj4yojRiyFgzmc@vger.kernel.org, AJvYcCV8uNsFB3DIKdyYVxiH7BKpSXGLrEIAG1wxcTjR9Wv/5vfjh1O5Cq7Ft9DRYVG06SexYKz7EzJhLmbJ1g==@vger.kernel.org, AJvYcCV9IBU+q0/NFZAlmTQKMcJ++qr6wzQtKfsbT6FihdT00ZxvKIbbsvxkVMV2xF6sg+uByIBAOu/RN77olT4n@vger.kernel.org, AJvYcCWjjd2pi2H3VW1GbC7mdn/Hn/edP4qTPzyT0KJW37a2KOeAiCMb/oSVOE3bDEWY+srYO3DxGMrPO4pS@vger.kernel.org, AJvYcCWkW4wYU/RnzEbyjAMIERJR67cSwc4UJVqqVgHVhWz7Qj25drUhFfIZRQOU/vH2MBaqtk8tCTS4QczQ@vger.kernel.org, AJvYcCXBQv6aELkSFmtpMu9P/d2jxLYeoyqC2TOmlgOoSe9TZCbmYnMh3JZTRE3HLNzUMFUtsRTWN6ARZ2KVO3pXpOx8ZyA=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxUat5BP9mV1o8OMihgN0es+CSJsMp+u0x8HiH3nr7HYE0DHT/r
-	Gcz07VHtFAwvIp5dxB4XXNT3ul0k1/FPIgqV2eLUeJxI4s5/vQfk3lQxBNtv2ik=
-X-Gm-Gg: ASbGnctl7XYluZmZ0vnYJXnSZd1aQPQlwrbbkWbru+FHav0YsuMP0lpXGVInCRBQBLe
-	CUS7sdyy+d8eI6vpsEO5oqPpmYML++dUeQ3uQIJSEDnY80+is9KK8V28M7xpQutUFVuwN7jjBJK
-	TJ3ze0qx4qDEU6zmNfLxgBbCyzm/iyZhrfwmvGn7geyITbiUyTsYnMSve0v5ILTLU+fXPHSUFXE
-	WNSQ0QqtWAwO5WaOudyZw29aaVzZI6ztJsVn3ohx64Wbr5w0CH9oQnoLYxxt7mhsNFv2O5LvJr8
-	R4wcEZclvdz/7rrNsnx6yy53lCj+YvH9nFiuqWCuTYFVF1iwhBHSzotXZH/eDAj1mtHbnDt4x4E
-	jOLj9HoY=
-X-Google-Smtp-Source: AGHT+IEIGZkAkfBiG5Ncpc2NKTQbIdtxmpakKbyQefAVcKv5OwG0DYQ8p0OcMmD0J0t+DXrL8xhiBw==
-X-Received: by 2002:a05:6102:162c:b0:4c2:d9d3:2aae with SMTP id ada2fe7eead31-4c5870aefdbmr2195083137.21.1743065732597;
-        Thu, 27 Mar 2025 01:55:32 -0700 (PDT)
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com. [209.85.222.51])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4c50bc55ad1sm2734817137.18.2025.03.27.01.55.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Mar 2025 01:55:30 -0700 (PDT)
-Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-86b9ea43955so300916241.2;
-        Thu, 27 Mar 2025 01:55:29 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU5r1xHpXGn5TS3L+RAFQdsT+yFi8tf4WNwY6PM341IIKcQieV8xi0eAGTY+e0EWRv5pw+JRmb1il7K@vger.kernel.org, AJvYcCUiUqJhMWkoL6fjrarxlLYZa5y31jr34z6YZE1gd9kAzirqGlpxLrwqaeqEVta+DY6mN3vWD8it0kZHYc74@vger.kernel.org, AJvYcCVFNFnkK1KakRrDi5Jh0Vc+VG0DMLibmcom2P47acf8IBlikUXQm7pP8cLwPpfZ6X666DAURdq1gk3T@vger.kernel.org, AJvYcCVgA0qHBYp2IbSYti3Jm9i1ItBMx45ypqtSrHo2LMj3lahztzASTQj5na49bLUBEa+KKvnEnAh+kZ0Fm6gEoDLNc1Q=@vger.kernel.org, AJvYcCWqJ9WpvGUa6uduKI8nFUZica+3WDZ0F3fvBB9pwjR14pnfnVsH98JR0f9RyLXR5QwQ91WtkXHXLiNJC0Jt@vger.kernel.org, AJvYcCX2palGYjuidhqxgraiRNG0WUZisYOA+flLRMC7NF0DVVXWZPgx2qllh2w3+czwxRoHHfXvjCij4k0B@vger.kernel.org, AJvYcCXjpI/gj9BghIP4YkfWcp0+osOpe9/croDa46dJ3YemH/xH+7m4UfJCRsXota+k3fVjQaB9QSo29U0zwQ==@vger.kernel.org
-X-Received: by 2002:a05:6102:50a5:b0:4ba:971a:41fd with SMTP id
- ada2fe7eead31-4c587074bf4mr2444666137.19.1743065729369; Thu, 27 Mar 2025
- 01:55:29 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1743065804; x=1743670604;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FIYwhtEw1euleTwTcbZCNX9K84qUUjXQZZcm3DuTqE0=;
+        b=vTn5JmhjV3Aoe+sG2VfyDrHfzKYH4kOm3S3m9Hkkprx38HljuuSkezYYri2kds4NAp
+         cGEfQGZQGMiPtlHePRZnRyRfABdcp17WNi3NAEgb3hIHd8ENAn3rrlSlo9tTIawbNcqf
+         /13BnPqxY2CIVnRhxt/SAo33+MoVC+rPE+ORWvLtbAjW5heHnpqI7zVNF4ZcJ0Q7vW1Q
+         w2zAALy+4l3s9+YE2sG7jyUKxR2QLg7xBBxsxLtto+8qBZXCkHnkzDZLgDnzeIZ2D3SK
+         qbvrCuWZzQM2cF5Qvf0X8zmHlsHXCiLRjdPK8n9vbM1Gns3m0LtEngvlH/u/JTfSvj6g
+         BYbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWOVOmPYOWDdxI61mXuHp/jdy0nlACJwg6B0DDosQ2kXKgclH/JytyQvHvg9dnC+uWOKJf6WZhM1/89@vger.kernel.org
+X-Gm-Message-State: AOJu0YzHL4N/wXPL5tc4b2SSfZpN2riSlwrMFcvsxqIdG9d7HgGof8db
+	E5Zak22CiGJSQdxyVC95lMb2j01Ld5+F58FUO43IC8UERywQyabmK09DE4VT1/Q=
+X-Gm-Gg: ASbGnctsZsfz1ByBnlmcsHjR0J1Gw+H4M1d5eFgDgM2bk3VWBSh1yCjvtawgzqkA74o
+	fzaIOjSS37GKfRfqUiimy0HApdGJWcWZ81bRAZ5ItiafIuPiIxYQ7Fzm45B10Luf+Jt7ZwX4pF4
+	zYY5FMG4cDzIkw0iVgjnGO34080UfyD7QrndqIFtkW70M/RiCYBjhU74+OS5SljFx79U5F2RiyC
+	dW3zi5SbB8l1cSAjTz1uOoP0+mKPbX8rB0hyUcb1enInrYN/RU1BgC/86Tfupni7zmQabvI3uQf
+	e6AR8HQ8ngp3OTjbZ4lciRUL/VVMOT97CtID43tqZy4oOAtPNg==
+X-Google-Smtp-Source: AGHT+IFYnqDl6ib4NKqjPWss5rPeynt8Vendp/W2yLiXx4uK7gmEAWHDdxKjvkNq1tkjNGSpWl64yQ==
+X-Received: by 2002:a5d:59a7:0:b0:38d:eb33:79c2 with SMTP id ffacd0b85a97d-39ad174e4famr1984580f8f.32.1743065803956;
+        Thu, 27 Mar 2025 01:56:43 -0700 (PDT)
+Received: from [10.1.1.109] ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d82f1bb80sm30629875e9.28.2025.03.27.01.56.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Mar 2025 01:56:43 -0700 (PDT)
+Message-ID: <62bf00c37566964d6be794ed12a34cd057d9bb1d.camel@linaro.org>
+Subject: Re: [PATCH 11/34] defconfigs: rename CONFIG_MFD_SEC_CORE to
+ CONFIG_MFD_SEC_I2C
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, Rob
+ Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Sylwester
+ Nawrocki	 <s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>,
+ Alim Akhtar	 <alim.akhtar@samsung.com>, Michael Turquette
+ <mturquette@baylibre.com>,  Stephen Boyd <sboyd@kernel.org>, Russell King
+ <linux@armlinux.org.uk>, Catalin Marinas	 <catalin.marinas@arm.com>, Will
+ Deacon <will@kernel.org>, Alexandre Belloni	 <alexandre.belloni@bootlin.com>
+Cc: Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus
+	 <tudor.ambarus@linaro.org>, Will McVicker <willmcvicker@google.com>, 
+	kernel-team@android.com, linux-kernel@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rtc@vger.kernel.org
+Date: Thu, 27 Mar 2025 08:56:41 +0000
+In-Reply-To: <b733eff2-171e-4ab6-8546-565d87d5ba84@kernel.org>
+References: <20250323-s2mpg10-v1-0-d08943702707@linaro.org>
+	 <20250323-s2mpg10-v1-11-d08943702707@linaro.org>
+	 <b733eff2-171e-4ab6-8546-565d87d5ba84@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250326143945.82142-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250326143945.82142-16-prabhakar.mahadev-lad.rj@bp.renesas.com> <41c6f512-47a5-4723-bbdc-64ed85ae8391@kernel.org>
-In-Reply-To: <41c6f512-47a5-4723-bbdc-64ed85ae8391@kernel.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 27 Mar 2025 09:55:17 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVKfL-FRhDaFfOACV8R=ziqXdhmeW7Xd4WYXqHnSbR0ZA@mail.gmail.com>
-X-Gm-Features: AQ5f1Jp1SYp8iWPpWJ6Tj5rp6ScglN-F4PfZy1-_zatQI8UsxeHgk8YvFPlKy5w
-Message-ID: <CAMuHMdVKfL-FRhDaFfOACV8R=ziqXdhmeW7Xd4WYXqHnSbR0ZA@mail.gmail.com>
-Subject: Re: [PATCH 15/15] arm64: defconfig: Enable Renesas RZ/V2N SoC
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Prabhakar <prabhakar.csengg@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
 
-Hi Krzysztof,
-
-On Thu, 27 Mar 2025 at 08:43, Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> On 26/03/2025 15:39, Prabhakar wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Enable support for the Renesas RZ/V2N (R9A09G056) SoC in the ARM64
-> > defconfig.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Wed, 2025-03-26 at 08:16 +0100, Krzysztof Kozlowski wrote:
+> On 23/03/2025 23:39, Andr=C3=A9 Draszik wrote:
+> > We are adding support for Samsung PMICs that aren't using I2C and
+> > therefore had to rename the Kconfig symbol.
+> >=20
+> > Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
 > > ---
-> >  arch/arm64/configs/defconfig | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> > index 11e7d0ad8656..c7b41f86c128 100644
-> > --- a/arch/arm64/configs/defconfig
-> > +++ b/arch/arm64/configs/defconfig
-> > @@ -1483,6 +1483,7 @@ CONFIG_ARCH_R9A07G054=y
-> >  CONFIG_ARCH_R9A08G045=y
-> >  CONFIG_ARCH_R9A09G011=y
-> >  CONFIG_ARCH_R9A09G047=y
-> > +CONFIG_ARCH_R9A09G056=y
->
-> So the pattern will keep growing and none of you will ever bother to fix
-> it, because you have your patchset to throw over the wall.
+> > =C2=A0arch/arm/configs/exynos_defconfig=C2=A0=C2=A0 | 2 +-
+> > =C2=A0arch/arm/configs/multi_v7_defconfig | 2 +-
+> > =C2=A0arch/arm/configs/pxa_defconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 2 =
++-
+> > =C2=A0arch/arm64/configs/defconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 | 2 +-
+> > =C2=A04 files changed, 4 insertions(+), 4 deletions(-)
+> defconfigs go separate tree, so this must not be in the middle of the
+> patchset. Bisectability, as for defconfig, is anyway broken in previous
+> change, so no benefit of putting this in the middle anyway.
 
-Yes, the pattern will keep on growing.
-Just like the minimum kernel size will keep on growing, especially if
-you can no longer compile a kernel without support for SoCs you do not
-intend to run the kernel on.  Not everyone has GiBs of RAM to spare...
+OK. Should it still be part of this series, e.g. at the start, after
+the binding changes, or a completely separate stand-alone patch with
+a reference to this series?
 
-Gr{oetje,eeting}s,
+Cheers,
+Andre'
 
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
