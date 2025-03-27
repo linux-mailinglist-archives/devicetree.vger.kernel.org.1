@@ -1,194 +1,114 @@
-Return-Path: <devicetree+bounces-161152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15432A72B68
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 09:25:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7611BA72B83
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 09:30:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 853973B49BB
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 08:24:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 542053B1301
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 08:30:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 267B62054EB;
-	Thu, 27 Mar 2025 08:24:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50981207A01;
+	Thu, 27 Mar 2025 08:30:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="KZgKVwiF"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="h33hU/l4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B0B5204F87;
-	Thu, 27 Mar 2025 08:24:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 734EA20764B;
+	Thu, 27 Mar 2025 08:30:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743063865; cv=none; b=AHFjsXqHH7rBsYkX8xg5rjNNkkEfvxwTqTzaDYKi+gQeQF5tqi5cfeCsLAbdTFavoXsMeFKDyCbDmktgCePqsz1LPKzvPVO/v9Kom7MuTiNLmhOn/2GdyfvrOxUDb5mbA9lG5td3CDkO+VsUI60kyAp7xzeapioOfG5M95hTzxY=
+	t=1743064232; cv=none; b=l+Vsdhxcf/ZorfaBi5loEqDjVRPvmXVdzHDhT1ImlUcJB59pvindPa6AyqI2OEy7CS6KSvkVFhGwPJJ2k0XlCqcpM3dj03+kYzu2zwLOIr/J8zCRFhmGV9C0NxlfZxpc8G0RzHpTrxn3CCs3EgVHN/ZAgblUS6+SjTt+Bg+oOVQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743063865; c=relaxed/simple;
-	bh=Oo9S+xOjeLws4diGw62TueYch40yhype9WmT5f8Bm7Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=eLr7ZyVYtxMzPg58fLtQLaNWrVmeE++GSWGc/XHR8Fbr3BROJ9d5TxDUw42Jbv9tjlMzQQuWtlijY7qsh5HzAEvvmQDDwVbgNXoUfNORTkUXS3LNRKUK4P6XiGbByZ9p15aNWQ8moSyAzTKPfD0gmsrXkJZqeYdM/gLDgYDXBc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=KZgKVwiF; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id D9D49442AC;
-	Thu, 27 Mar 2025 08:24:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1743063860;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=cakyJcamr6ifEel+JnINPPg6H4O22U1iqk8+y8IL+AY=;
-	b=KZgKVwiFiDok0zNj49lyw5D4FkrgzsyLYQZvEGSYYA3irgreWf+6l2q+DBOU56ZnJW5wsA
-	z0kySULXDZJbPwysZ5bPRlOYDYGHyKTb2BscqmY/nEe3wXLd4eCAYwWyOmlECFjeOFiu7K
-	gAVC69qbrDQlfHlDzceJSEbEC7bzpCi0nUTP26F4hk8G0heA57Qc5inu17yd/EYMldik4C
-	CRYKF/+tBLAcUN512/gEL00e6oIuWFcPIGQFhtNwL6XzLKcFSNicyu4U/vlhod3XCHVC4L
-	WgvvXoKcSeHuLxgtu73pYV+r1iHHyry3owRj5DjRgtUF/GCU9WC+ikfUUk6Juw==
-Date: Thu, 27 Mar 2025 09:24:18 +0100
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
- <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Marek =?UTF-8?B?QmVow7pu?=
- <kabel@kernel.org>, Eric Woudstra <ericwouds@gmail.com>, Daniel Golle
- <daniel@makrotopia.org>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next RFC PATCH v3 3/4] net: phy: Add support for Aeonsemi
- AS21xxx PHYs
-Message-ID: <20250327092418.78f55466@fedora-2.home>
-In-Reply-To: <20250326233512.17153-4-ansuelsmth@gmail.com>
-References: <20250326233512.17153-1-ansuelsmth@gmail.com>
-	<20250326233512.17153-4-ansuelsmth@gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1743064232; c=relaxed/simple;
+	bh=KiHi053QWRNWU2KsjEHYFN94kS2d/rNecMtACLhRtck=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=FFVvxvimKR5yqLWMA32YkApr910RK0FoQWIS2gzH4rNSxyi2jbNtVqWXAhHmV8Sx5Sb9JQvaPFn478F0gY6l6n725iVLf5SN45kUZt/y+BfoJ0dL1skyo+fTQPfCPfOk27Q0lCzHGynP9sM8y8VaxW0N4xMEZa1OQu6E1aevfXE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=h33hU/l4; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52R5oYpX010674;
+	Thu, 27 Mar 2025 09:30:05 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=RwQA9b/mWaVp+3r4CodO9C
+	jopcR6rVnhFumfJnY0gE0=; b=h33hU/l4STScdpRVI9zvhixwzWwfXEZJVEOENO
+	smat1YitnZ6UnS2mtrUyF5nL5sVArlpOIrWzRcZHSZksDK2dj8w4Mi5/U8ES9Mt3
+	qcQnIoFj6fj3oktYTwC92EKiPvft/BpMeiNtztYd1xcUIOCKnsNOaivtgmfWYdi9
+	RG4UrurOwopaOgOdKPPXdeFWfF9kuMQJfCrrRDMVDm7Z2A2aojsg1GV5ZJ/TgCC4
+	im0p22kz1d+1YI2YsdKSpekXg1u7sqf/5srwtsAV8eVZzZ6/+YS9brKPSbmY1iZf
+	0MR9GH3SCGmyBfVhCirUAKRbBG6A2ixlF22RUzPFLbXoCvEg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45mwrb2c4a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 27 Mar 2025 09:30:05 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 012A640096;
+	Thu, 27 Mar 2025 09:28:58 +0100 (CET)
+Received: from Webmail-eu.st.com (eqndag1node5.st.com [10.75.129.134])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 9D6A28329EE;
+	Thu, 27 Mar 2025 09:27:32 +0100 (CET)
+Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE5.st.com
+ (10.75.129.134) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 27 Mar
+ 2025 09:27:32 +0100
+Received: from localhost (10.252.3.68) by SAFDAG1NODE1.st.com (10.75.90.17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 27 Mar
+ 2025 09:27:32 +0100
+From: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+To: Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Arnaud Pouliquen
+	<arnaud.pouliquen@foss.st.com>
+Subject: [PATCH v2 0/2] stm32-rproc: Add firmware-name DT property support
+Date: Thu, 27 Mar 2025 09:27:19 +0100
+Message-ID: <20250327082721.641278-1-arnaud.pouliquen@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdduieejledvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtqhertdertddvnecuhfhrohhmpeforgigihhmvgcuvehhvghvrghllhhivghruceomhgrgihimhgvrdgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepveeiveeghefgkeegtdelvdelueeileehgeeiffdtuefhledvudefleehgeetveegnecukfhppedvrgdtudemtggsudelmeekugegheemgeeltddtmeeiheeikeemvdelsgdumeelvghfheemvgektgejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgduleemkegugeehmeegledttdemieehieekmedvlegsudemlegvfhehmegvkegtjedphhgvlhhopehfvgguohhrrgdqvddrhhhomhgvpdhmrghilhhfrhhomhepmhgrgihimhgvrdgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudelpdhrtghpthhtoheprghnshhuvghlshhmthhhsehgmhgrihhlrdgtohhmpdhrtghpthhtoheprghnughrvgifodhnvghtuggvvheslhhunhhnrdgthhdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtr
- dhnvghtpdhrtghpthhtohepvgguuhhmrgiivghtsehgohhoghhlvgdrtghomhdprhgtphhtthhopehkuhgsrgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepphgrsggvnhhisehrvgguhhgrthdrtghomhdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhg
-X-GND-Sasl: maxime.chevallier@bootlin.com
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SAFCAS1NODE1.st.com (10.75.90.11) To SAFDAG1NODE1.st.com
+ (10.75.90.17)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-26_09,2025-03-26_02,2024-11-22_01
 
-Hi Christian,
+Add flexibility by supporting the optional "firmware-name" property.
 
-On Thu, 27 Mar 2025 00:35:03 +0100
-Christian Marangi <ansuelsmth@gmail.com> wrote:
+This allows specifying in the device tree the firmware that needs to
+be loaded on boot, if the "st,auto-boot" DT property is set.
 
-> Add support for Aeonsemi AS21xxx 10G C45 PHYs. These PHYs integrate
-> an IPC to setup some configuration and require special handling to
-> sync with the parity bit. The parity bit is a way the IPC use to
-> follow correct order of command sent.
->=20
-> Supported PHYs AS21011JB1, AS21011PB1, AS21010JB1, AS21010PB1,
-> AS21511JB1, AS21511PB1, AS21510JB1, AS21510PB1, AS21210JB1,
-> AS21210PB1 that all register with the PHY ID 0x7500 0x7510
-> before the firmware is loaded.
->=20
-> They all support up to 5 LEDs with various HW mode supported.
->=20
-> While implementing it was found some strange coincidence with using the
-> same logic for implementing C22 in MMD regs in Broadcom PHYs.
->=20
-> For reference here the AS21xxx PHY name logic:
->=20
-> AS21x1xxB1
->     ^ ^^
->     | |J: Supports SyncE/PTP
->     | |P: No SyncE/PTP support
->     | 1: Supports 2nd Serdes
->     | 2: Not 2nd Serdes support
->     0: 10G, 5G, 2.5G
->     5: 5G, 2.5G
->     2: 2.5G
->=20
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-=09
- [...]
+Arnaud Pouliquen (2):
+  dt-bindings: remoteproc: stm32-rproc: Add firmware-name property
+  drivers: remoteproc: stm32_rproc: Allow to specify firmware default
+    name
 
-I know this is only RFC, but I have some questions
+ .../devicetree/bindings/remoteproc/st,stm32-rproc.yaml    | 4 ++++
+ drivers/remoteproc/stm32_rproc.c                          | 8 +++++++-
+ 2 files changed, 11 insertions(+), 1 deletion(-)
 
-> +static int as21xxx_match_phy_device(struct phy_device *phydev,
-> +				    const struct phy_driver *phydrv)
-> +{
-> +	struct as21xxx_priv *priv;
-> +	u32 phy_id;
-> +	int ret;
-> +
-> +	/* Skip PHY that are not AS21xxx or already have firmware loaded */
-> +	if (phydev->c45_ids.device_ids[MDIO_MMD_PCS] !=3D PHY_ID_AS21XXX)
-> +		return phydev->phy_id =3D=3D phydrv->phy_id;
-> +
-> +	/* Read PHY ID to handle firmware just loaded */
-> +	ret =3D phy_read_mmd(phydev, MDIO_MMD_PCS, MII_PHYSID1);
-> +	if (ret < 0)
-> +		return ret;
-> +	phy_id =3D ret << 16;
-> +
-> +	ret =3D phy_read_mmd(phydev, MDIO_MMD_PCS, MII_PHYSID2);
-> +	if (ret < 0)
-> +		return ret;=09
-> +	phy_id |=3D ret;
-> +
-> +	/* With PHY ID not the generic AS21xxx one assume
-> +	 * the firmware just loaded
-> +	 */
-> +	if (phy_id !=3D PHY_ID_AS21XXX)
-> +		return phy_id =3D=3D phydrv->phy_id;
-> +
-> +	/* Allocate temp priv and load the firmware */
-> +	priv =3D kzalloc(sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	mutex_init(&priv->ipc_lock);
-> +
-> +	ret =3D aeon_firmware_load(phydev);
-> +	if (ret)
-> +		return ret;
 
-Here, and below, you leak priv by returning early.
+base-commit: 38fec10eb60d687e30c8c6b5420d86e8149f7557
+-- 
+2.25.1
 
-> +
-> +	ret =3D aeon_ipc_sync_parity(phydev, priv);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Enable PTP clk if not already Enabled */
-> +	ret =3D phy_set_bits_mmd(phydev, MDIO_MMD_VEND1, VEND1_PTP_CLK,
-> +			       VEND1_PTP_CLK_EN);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D aeon_dpc_ra_enable(phydev, priv);
-> +	if (ret)
-> +		return ret;
-
-Does all of the above with sync_parity, PTP clock cfg and so on needs
-to be done in this first pass of the matching process for this PHY ?
-
-=46rom what I got from the discussions, the only important bit is to load
-the FW to get the correct PHY id ?
-
-> +	mutex_destroy(&priv->ipc_lock);
-> +	kfree(priv);
-> +
-> +	/* Return not maching anyway as PHY ID will change after
-> +	 * firmware is loaded.
-> +	 */
-> +	return 0;
-> +}
-
-Maxime
 
