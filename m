@@ -1,155 +1,104 @@
-Return-Path: <devicetree+bounces-161333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161334-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B80BA7366D
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 17:12:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46CFCA73686
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 17:16:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C6A118988AA
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 16:12:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D50071891EA2
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 16:15:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA4421A0BCA;
-	Thu, 27 Mar 2025 16:12:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 905BB187858;
+	Thu, 27 Mar 2025 16:15:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NrShe43z"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Dm1Q/8/Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9572E19F115;
-	Thu, 27 Mar 2025 16:12:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23C9B41C85;
+	Thu, 27 Mar 2025 16:15:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743091958; cv=none; b=W4vPW93Q2wc7HKZvumauo+N1omzgy9bHZH8tqT2hRaSLlgs6BKVxxOc4Je/j0VajkASfsrVUeSMIRJ0Pw3nyBlm243N6h7G/E1F7Pq8KWnacZ/VIw24XQRFdQztM6exSrm0hdkfntc39fsjkOytZpRtiifl+0rCqSBYD41ZrXbA=
+	t=1743092115; cv=none; b=ty/gB4eJVCO9WItCZ6KI4E4ov2XZCo3QgP3GSJL7xTDB3zAQpEauz2ppZXVHkOp1FW99N2BgL+2g+djs7jkHYuGqEbSCBrLNNmOlofBxhOcVXcnN9hqBO7rV2c7M26GmuWXBPIznPj+i0D/6PAwBxqvmeWLxJhzLQAvFvzhXm7k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743091958; c=relaxed/simple;
-	bh=LZ+n3jvrWXEe3JYdA7aqvPpBArjNbfn+MKiS7jovIFc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ZVZ0m8JwNXEl7XGMfuSKlkyok+naF7dc6FzqfGBpkJJT2KyXOYol0IGscZMUTQfZMgyo5n6BCc8SuT/694eG/EmtgRxGN7cgsO0+r21yB0BQwerwNGQVPQ7kCMpaeYy7uLHCDNpQ6liIu9ZPcNLZWTwlg0i5KFbbHRFk1x2aQAY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NrShe43z; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52REfBhV013285;
-	Thu, 27 Mar 2025 16:12:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Iqq5avW0+1sLCZczfNr3CBGpc6aR6FbWfWSBDPMZlsk=; b=NrShe43zwaBLaSpb
-	prqGmyqHiJY4waqWGwwqyE3W0OGpMP8CMT3k7GRYxzx30oIQZ94TgiQP2BBwuRrt
-	Xxs9k0AbajOR5bz95BgxbpXajDq3htaeJuB2fTZTxN7WN/UBZx2nlFnOeRuc8MB6
-	lj6QQEAkhZbLawmUUw90GQx8XWrK0nzp6LWq3HuYxS7Hw++9mfiQKgIuqhCLMA4L
-	3BqlmevbB1u8QNcF1jBET+CLsgzNcNc6+UEw7aY5+o/Q11sMoxXqLtqR1I8OgyEH
-	hhXkpkJ1G42V2X+IcNEwYH17aZgr8zl4vlGAHhELUE/XpLdrEl0JwQO1yTgQayyy
-	Y6ehUA==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45mmutkhhd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 27 Mar 2025 16:12:18 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52RGCHIe032316
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 27 Mar 2025 16:12:17 GMT
-Received: from [10.71.114.104] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 27 Mar
- 2025 09:12:16 -0700
-Message-ID: <87746e66-84c1-4ff3-8b69-fbee1664eff6@quicinc.com>
-Date: Thu, 27 Mar 2025 09:12:12 -0700
+	s=arc-20240116; t=1743092115; c=relaxed/simple;
+	bh=PBjMIPbm34YhMtcHEbuTRJblo1v587ku20drBHEc6xE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=aBXfV8pi5ve+b+ao/C8GQTA4EuHc2aQN3cQHBXK/RB+w/AZGayRSUX3HR3vXY5C5mDV/TUQFEsyn+AlcmaM9sFtr6x3Nj/wJUhFUkiHJRNTUCtbsESvSxQUL+zmMDC3MD2XEt41rDDPisdCNpHhFB5BrSUjDaEpRHQwTpHK2reU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Dm1Q/8/Q; arc=none smtp.client-ip=209.85.216.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-3014ae35534so1701317a91.0;
+        Thu, 27 Mar 2025 09:15:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1743092113; x=1743696913; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PBjMIPbm34YhMtcHEbuTRJblo1v587ku20drBHEc6xE=;
+        b=Dm1Q/8/QWsBU6hU5k9gnpnQMZkx98SMdBsRyKncmC5zPjl945JdNVjOIpDwDy6uUE5
+         ooMLo/h+DtaDCAWmbPwn5lOUhiXX/9JOpuCEiQVUQH0oJUhgUJRREN9OhiZmz+Uzy0xa
+         4XC2b0UV1Kb0+qql3rdhJu++dJ8VoNQ05kFp6jyk0Q4pQ+NlzlEWTRD7XV1ZmiN6u+Qy
+         fSM4+it0q7vR/RE+pDZk5ENWZbm/jt+juyYb4A7kRhjF7wivdkJ89IP+YV+blLsUV5L2
+         UUN0fWkxodiBxZNSK1Z+S5Gs/z3Pz2frV6cm4DnVrHkAxaFBbvUPFDZtYn1u9bvjmqVL
+         Fgtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743092113; x=1743696913;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=PBjMIPbm34YhMtcHEbuTRJblo1v587ku20drBHEc6xE=;
+        b=kWRWPnuVhdDhpi0egdvAEpVin4wrpLsxJKaDsltVGhGK8n6bATnSqduvsxuoi+mBBX
+         y2kW0x9Hf5jXq5oXKCBpQEPaXZ5o9P0KbABlNk0vzm714j7STQJ1TQZIkHO0wA1cTe+G
+         o65JPSyKtFLKrb+arA9Kt2hgl6s1rikdF5qX+3D7N5ErNBwnoayh2yLk2Aa3j35Fo6yp
+         6/PDTHXEcw1vvKn4paPh/4ABcEIieLjZVlAp3QiPp2jhZ8dt/AsGsj1mXNLd0Xm57Zgc
+         N/OvhzDT34Wkx/euy0zvZYBjp9w22ytPFrLt2wsuxdNEVWhoaRDtWFfn3V3pogKv/aDj
+         UKlg==
+X-Forwarded-Encrypted: i=1; AJvYcCU64HXfXOyK3vVW+tn6Xwf2q2DRVisXMNjmwWkTgsJC5QDuj90ydmaLUGl8xBF8/3QP8FQdvVlcPQ5I@vger.kernel.org, AJvYcCUy4mm0iYbrHPkqZcE6byZ8++mD/V0QufVwxpg9xjaoL2ih3q+5lh3poNZaMDhRlXnQlaSh8aDRkHZcs1Ew@vger.kernel.org
+X-Gm-Message-State: AOJu0YzUrhBkshMOc6I7xRHGJ6xii/uNkkv/9lkNLL1l/8mZVe3SlciV
+	5sYH4FRT0f38+aiE/l5Lv0AkoQfi0wLiat3GC2YeL5V+JMfjLETFbj/y5rDMAj+UXjOYT+WxoIw
+	t7vqerJXcIQxT3dOHFC5qfswGTyY=
+X-Gm-Gg: ASbGncuqNN4vqX9pZ2LFnqnaEPOcgQeL7x0wka/fghDQ4xD/k+Xfr+NOFWdKTx3cG/a
+	lgoMWL2w5rnW/9gV0uyAU9GqvMvesB4BKbIVvsPRtuHNgesNUh0L8nR4qBKcvQdnHeypCAQ8iqQ
+	v4X3I3PJVU0RCx94SuOu9k/ag=
+X-Google-Smtp-Source: AGHT+IGxfLnA21DnRIbYYx8S6PoJ4aTz0uiokeIMBWjywJxr9DzgkdlxVh3T7ZtOpKy2EtNnbCJT4rNDAaVAjO4mHv8=
+X-Received: by 2002:a17:90b:4c05:b0:2ee:9b09:7d3d with SMTP id
+ 98e67ed59e1d1-303a81651bcmr5489458a91.19.1743092113156; Thu, 27 Mar 2025
+ 09:15:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v36 01/31] xhci: sideband: add initial api to register a
- secondary interrupter entity
-To: Puma Hsu <pumahsu@google.com>, Greg KH <gregkh@linuxfoundation.org>
-CC: <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <conor+dt@kernel.org>, <dmitry.torokhov@gmail.com>,
-        <corbet@lwn.net>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
-        <krzk+dt@kernel.org>, <pierre-louis.bossart@linux.intel.com>,
-        <Thinh.Nguyen@synopsys.com>, <tiwai@suse.com>, <robh@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-input@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>,
-        Mathias Nyman <mathias.nyman@linux.intel.com>
-References: <20250319005141.312805-1-quic_wcheng@quicinc.com>
- <20250319005141.312805-2-quic_wcheng@quicinc.com>
- <CAGCq0LZoi0MOJLJYUeQJW6EfOU_Ch=v1Sg8L4_B-KhdDCx1fCw@mail.gmail.com>
- <2025032734-reward-fantasize-dc16@gregkh>
- <CAGCq0LamxvvE8b45VAshw9aWJNC2so_vK9t+pzXd3C7Y7tfYAg@mail.gmail.com>
-Content-Language: en-US
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <CAGCq0LamxvvE8b45VAshw9aWJNC2so_vK9t+pzXd3C7Y7tfYAg@mail.gmail.com>
+References: <20250326215214.1706887-1-Frank.Li@nxp.com>
+In-Reply-To: <20250326215214.1706887-1-Frank.Li@nxp.com>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Thu, 27 Mar 2025 18:16:41 +0200
+X-Gm-Features: AQ5f1JqSne5RAICGf_1pTfxM4Me80uo-4iPsnpzylek8szz9S9jRRSHS2H44qaY
+Message-ID: <CAEnQRZD+OUSuysUBmReO0kwdZ61oDucXF7nNAuCYArxk0sRUwg@mail.gmail.com>
+Subject: Re: [PATCH 1/1] arm64: dts: imx8qm-mek: consolidate reserved-memory
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>, 
+	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, 
+	open list <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: VKu6mly6uDVxrTZ_4qep-1yzn1tKWQKe
-X-Authority-Analysis: v=2.4 cv=MqlS63ae c=1 sm=1 tr=0 ts=67e578e2 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=ag1SF4gXAAAA:8 a=J1T5opX5dgJ5NFXlbwAA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=Yupwre4RP9_Eg_Bd0iYG:22
-X-Proofpoint-GUID: VKu6mly6uDVxrTZ_4qep-1yzn1tKWQKe
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-27_02,2025-03-26_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
- priorityscore=1501 mlxlogscore=999 mlxscore=0 bulkscore=0 adultscore=0
- malwarescore=0 suspectscore=0 lowpriorityscore=0 clxscore=1015
- phishscore=0 impostorscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502280000 definitions=main-2503270110
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Mar 26, 2025 at 11:52=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrote:
+>
+> Move dsp_vdev* to under existed reserved-memory node to consolidate all
+> reserved-memory together.
+>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-
-On 3/27/2025 3:14 AM, Puma Hsu wrote:
-> On Thu, Mar 27, 2025 at 3:02 PM Greg KH <gregkh@linuxfoundation.org> wrote:
->>
->> On Thu, Mar 27, 2025 at 02:27:00PM +0800, Puma Hsu wrote:
->>> Hi,
->>>
->>> We have implemented and verified the USB audio offloading feature with
->>> the xhci sideband driver on our Google Pixel products. We would
->>> appreciate it if this solution can be accepted. Thank you all for the
->>> work!
->>>
->>
->> Great, can you properly send a "Tested-by:" line for this against the
->> 00/XX email so that it will be properly saved?
->>
-> 
-> We(Google Pixel) only use the xhci sideband related changes and two
-> changes in the sound card driver. For the details, what we actually
-> tested are patch [01], [02], [03], [04], [05], [06], [08], and [12].
-> Do I still send the "Tested-by:" line to 00/31 email? Or should I just
-> send the "Tested-by:" line to the 8 changes above? (I added
-> "Tested-by" line for this [01/31] first.)
-> 
->> Also, I think a new version of the series is coming, can you test that
->> to verify it works properly?  We have to wait until after -rc1 is out
->> anyway.
->>
-> 
-> I think this v36 is the last version of the series as I discussed with
-> QCOM Wesley. And for sure I will test it if they do have a new
-> version.
-> 
-
-Hi Puma,
-
-I'm discussing with Stephan on the QC specific stuff, so the common changes
-won't change on v37.  Please provide your tested-by tags for each commit,
-so I can carry them accordingly on the next submission.  If I do end up
-making changes to any of the common patches, I will remove your tested by
-tag, which means you might have to test it again.
-
-Thanks
-Wesley Cheng
-
+Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
 
