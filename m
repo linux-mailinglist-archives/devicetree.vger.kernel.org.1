@@ -1,153 +1,192 @@
-Return-Path: <devicetree+bounces-161433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 884DDA740AD
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 23:17:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34497A7410C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 23:46:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E7A43BA8D8
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 22:17:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0D513B1B31
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 22:45:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40CA81DE3D5;
-	Thu, 27 Mar 2025 22:17:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C4481DF246;
+	Thu, 27 Mar 2025 22:46:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=proton.me header.i=@proton.me header.b="jic0rZP8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QCY3hxiD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-4316.protonmail.ch (mail-4316.protonmail.ch [185.70.43.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DD161C6FED;
-	Thu, 27 Mar 2025 22:17:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4898D125B2;
+	Thu, 27 Mar 2025 22:46:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743113842; cv=none; b=G7FH4APpwoFIt39hWpKwVT41nGngMPqn3ay4dGCKTbaDfd+CQn17ZNGv3qLGovtplAHY5gmUrAtz5L5hsa1a3H4ERJfGiLX8fSGMKI+e6cCErpjtYZr6RYCaTU3eLqCVI8lrzfHfyQczX4ceN+IuMNiWJZqmjOR5U+5WfoEvyvU=
+	t=1743115564; cv=none; b=jMlCjwt3ADQlc0rZrIiMUUlGprR0VUgZuUQ/rr+dbD3uq1gIbB93Z3vUYjXfC4EDLADIzn95oX92lEigGkicGg6k6BlsiRfGxMNxHoXhIX1obY05mIxumESxCONnzxgOu/pskXmE/37I+2bqERvSi3+50kiq4i0bCXfGbGc3RvM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743113842; c=relaxed/simple;
-	bh=89psVsuhmLnpB0D1Kli4UHQLPn+imufHphtlmAmXIs0=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Yj1jiFYyPNoKQl+l+O+b07F1z86xYEMDAGueip+THKLPuwU85vKsUxH0oxueoiDnTWO/XfUV6VjTXd+EbMJgeTElPUnDAhNwoyIC+ZhiRge+GXJQEkZWqdADZ8GFqTU0feCecPqyzxNL8C0Xs6JKcrIiwXO6mqx+EPYVBwe2GEA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me; spf=pass smtp.mailfrom=proton.me; dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b=jic0rZP8; arc=none smtp.client-ip=185.70.43.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=proton.me
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
-	s=protonmail; t=1743113838; x=1743373038;
-	bh=pOr0DNwW22udl+QjNXdk6JXxuaFTQiZdJAYlJD9wBnM=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
-	b=jic0rZP8jIRDUlYJVFn/WyH0SzSXhx/zI69q9kX7QeIHgrcfENJqk0J8WRHjnVLi8
-	 NYQ1OQjEs2l7GGNjObJEnLrPxDYndr08EDpfs5TYJPPr+lShwi3LeLeDuagfKMTX0v
-	 UXJnlwsDLJtsylUVLqPjRLZYRG8dDGGuGYSii/uS3sv0xX1IDXSgSC7+Wz31lLkvL2
-	 5BnTTLJTUPFluto7iYwREkzHvpTxJGSFCr0IhBxuyRScrQ9B5ClXkGkU0BdIv7WVEx
-	 65PCUwy1qRK0ngPc/CSLFvWJ2GfvoP8cmalbSSqimzg1t97SUicTxDSvJk0LsHlwll
-	 zekMJyBpIF4Pg==
-Date: Thu, 27 Mar 2025 22:17:13 +0000
-To: Tamir Duberstein <tamird@gmail.com>
-From: Benno Lossin <benno.lossin@proton.me>
-Cc: Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>, Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, =?utf-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, Abdiel Janulgue <abdiel.janulgue@gmail.com>, Daniel Almeida <daniel.almeida@collabora.com>, Robin Murphy <robin.murphy@arm.com>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, FUJITA Tomonori <fujita.tomonori@gmail.com>, linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, linux-pci@vger.kernel.org, linux-block@vger.kernel.org, devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, netdev@vger.kernel.org
-Subject: Re: [PATCH v7 7/7] rust: enable `clippy::ref_as_ptr` lint
-Message-ID: <D8REA6VW7QFS.Y5195VX38USO@proton.me>
-In-Reply-To: <CAJ-ks9n3BdKkfCpMXhE8M8Sx4B5rASoNvbmA4zPU3rmPQwZCiQ@mail.gmail.com>
-References: <20250325-ptr-as-ptr-v7-0-87ab452147b9@gmail.com> <CAJ-ks9nKT2PUDm6=b4AB1QUWwwvcqPn7Vz60=c0B+uFMZrqPew@mail.gmail.com> <D8QDOBUM6NF0.CGJY7ZA5KD9S@proton.me> <CAJ-ks9ntTxBM=c5nUZWGv3MoRt-LveBchn-c1Xy-DGap7fLVRA@mail.gmail.com> <D8QI804Q3DAS.2BV4WSL81H52Z@proton.me> <CAJ-ks9mA5QDeZ3EvOD3THayFt4TtDysgm0jp2aiSF2mQCrhWiQ@mail.gmail.com> <D8QJMH5UR6VG.2OT5MXJJQU5QT@proton.me> <CAJ-ks9m96vf_HxttuopuC_UfNGJbHHNdEGS2er6nZZG38pe3HQ@mail.gmail.com> <CAJ-ks9n3BdKkfCpMXhE8M8Sx4B5rASoNvbmA4zPU3rmPQwZCiQ@mail.gmail.com>
-Feedback-ID: 71780778:user:proton
-X-Pm-Message-ID: 82a53baabf13e0ce95fda485724e51f17f7c7368
+	s=arc-20240116; t=1743115564; c=relaxed/simple;
+	bh=KUqEm5MnoAUzKHmKnlVh1eJvguqmc7pQUCkCF/Bg8gQ=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=chQk4cWuaI1dgr3hUpn66IoQgt96NMotxxc9dgvAECovd7sMJaF3ekFXSwkvN38rv1Emrp52R+cEQuKPuIoqvmhy8xxbeOojZ4VF0Do8/YOpUKLy3Swv6fMPjEOM3l97t0vTdekJtoeRZKbh5dkoqq87OBYw1ZyMRdSIN4e5Nyk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QCY3hxiD; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-39ac56756f6so1155932f8f.2;
+        Thu, 27 Mar 2025 15:46:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1743115560; x=1743720360; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Iadl/X2QlPSCcfkOvJqcMDrid10XKLM+kB+mM4Kp2q0=;
+        b=QCY3hxiDqJDzPS17Q+tK8KX7TzUZDYV1b3ladZNcaTsiDnpzY9oJIILWBUvgX0h9ZD
+         au6N9jQ/zj1mtfc8zhnKv03Oq+yWcc6ELo0WllU2LYNNUtGGX5SB48QHsxNIN1GT7f5Z
+         7BNJdk7l7EgoxeMaF1a3yM3++WHP2kMYYUYLGjKba/WPC5hRQzU5h2PGksHs9fgm8RKc
+         dmdl+4lnZXc92kYx38V/uQok3aYH9iWC19Qo8alV1g9511tGWjgk/BSRcNd+DFWcgQBQ
+         /dVVVq3dpSyKoH0Tmx/XvOn0XyAbHony60WVYnu9McfjpsgiYvjYfdn9js24F2V8iB+C
+         VGqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743115560; x=1743720360;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Iadl/X2QlPSCcfkOvJqcMDrid10XKLM+kB+mM4Kp2q0=;
+        b=QkeYMwV6jMSqUAHRM803ZzOPkPBTNitndcMmva0EzLhkvxZ9ltGMraj534PtJuD7Ka
+         aZY0f7CJrhA6q3y4fc45O83iw2jxRc1Jw8Nq5aIRPn2fRkpQpARhY6ogVwUrcuboNvHt
+         DJADbq2z+VM64Vp0VuiGSqHJoopo13QWdqpGTXpGmYw484vM5TrGTuCGc/731Y7zTtg5
+         JwH9cZ3sb0V4JE1z0GYPpRS3L+QBWcY66AZIgBDptn1pDrE+p0lUdABeFR0lIAciDgY8
+         97cyYrgvcH9BdDqWYX0ue/XWeTAVIelbBq+0hhcq9XcPgyBBNCUhcNaWgMr8vz+ZgRBo
+         EvAQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVX7/QIH4KkDtkqMfBhEAFGFKwCDOAPtlspgXuQXU8DGn13FNUdMNPo8BQvjoRf0qgBYy/r2KQY@vger.kernel.org, AJvYcCWgRDk1oSl5tlwXZN/EYuTymUFEAlEApHcN5MzMhtPQ2UO5S6n7Ojcu7W6/fDb0cqI0ZUo/jPgJwJhJ@vger.kernel.org, AJvYcCWj0fNo1l6sUlR6MbfbH1k6GPY7e65jk1PZae5DGEeFlC55LhCut8F32ibB6/q/9ZLReDtfBdhrU7hd119u@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/Tai6x7dF0mGIaggm3TTS3St7ZJ+3Nk+oGA8ZJzWCx5dsvASr
+	r0fNfTpeJj5ESuxR9l55CwKkatyQAmDP11zR8zdMsKSbar5BMsfE
+X-Gm-Gg: ASbGncuw4fyYS4IxrIx3GBUN7wMwCjmVhXV72+XTP8pNW/JCkf40KzzVUlhfaAlfFiZ
+	5vLd+N1C2uRF/JiAWnuzcvFvt/1LpyHTte3JeYfWmANtYOeM9As82t6McXpxhV55PixrU6Epc4X
+	NZtA/ehVONmYM3C33J2cYztqspMCemGkrJITFLt5bFKM1xpctgbS5NtpzCeywuQEyab3WmaYI92
+	XCKDbGGBON1s66kF/orSyOaHFMYUcPbbpG0y3EU5JMDKI2UB1adolvsSAjOFHRrvc3kzqaLENFi
+	iyrD1EUvtcOF7geheaBBqr5RrSR3h5vb7kqruveFDmESGGhdBBudIt+LaDHKfUEX/b/Nu9HE+Wq
+	GvOkDqBlvlYNv/pa+WbcNsdd0
+X-Google-Smtp-Source: AGHT+IHG6b2pXNoI79W9j+T6uUy15MIOUaloxrlYtXSIowcduSIPRTMiiVzMI/VB6P4xxuOiUrbFzQ==
+X-Received: by 2002:a5d:5989:0:b0:391:47d8:de23 with SMTP id ffacd0b85a97d-39ad175bcacmr5363249f8f.31.1743115560231;
+        Thu, 27 Mar 2025 15:46:00 -0700 (PDT)
+Received: from localhost.localdomain (93-34-88-225.ip49.fastwebnet.it. [93.34.88.225])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-39c0b6588dbsm789476f8f.2.2025.03.27.15.45.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Mar 2025 15:45:59 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Christian Marangi <ansuelsmth@gmail.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
+	Andrei Botila <andrei.botila@oss.nxp.com>,
+	Sabrina Dubroca <sd@queasysnail.net>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Eric Woudstra <ericwouds@gmail.com>,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [net-next RFC PATCH v4 0/6] net: phy: Add support for new Aeonsemi PHYs
+Date: Thu, 27 Mar 2025 23:45:11 +0100
+Message-ID: <20250327224529.814-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Thu Mar 27, 2025 at 8:44 PM CET, Tamir Duberstein wrote:
-> On Thu, Mar 27, 2025 at 10:15=E2=80=AFAM Tamir Duberstein <tamird@gmail.c=
-om> wrote:
->> On Wed, Mar 26, 2025 at 6:15=E2=80=AFPM Benno Lossin <benno.lossin@proto=
-n.me> wrote:
->> > On Wed Mar 26, 2025 at 11:09 PM CET, Tamir Duberstein wrote:
->> > > On Wed, Mar 26, 2025 at 5:09=E2=80=AFPM Benno Lossin <benno.lossin@p=
-roton.me> wrote:
->> > >> On Wed Mar 26, 2025 at 8:06 PM CET, Tamir Duberstein wrote:
->> > >> > On Wed, Mar 26, 2025 at 1:36=E2=80=AFPM Benno Lossin <benno.lossi=
-n@proton.me> wrote:
->> > >> >> On Wed Mar 26, 2025 at 5:57 PM CET, Tamir Duberstein wrote:
->> > >> >> >
->> > >> >> > Yeah, we should do this - but again: not relevant in this disc=
-ussion.
->> > >> >>
->> > >> >> I think it's pretty relevant.
->> > >> >
->> > >> > It's not relevant because we're no longer talking about transmuti=
-ng
->> > >> > pointer to pointer. The two options are:
->> > >> > 1. transmute reference to reference.
->> > >> > 2. coerce reference to pointer, `as` cast pointer to pointer (tri=
-ggers
->> > >> > `ptr_as_ptr`), reborrow pointer to reference.
->> > >> >
->> > >> > If anyone can help me understand why (2) is better than (1), I'd
->> > >> > certainly appreciate it.
->> > >>
->> > >> I am very confident that (2) is correct. With (1) I'm not sure (see
->> > >> above), so that's why I mentioned it.
->> > >
->> > > Can you help me understand why you're confident about (2) but not (1=
-)?
->> >
->> > My explanation from above explains why I'm not confident about (1):
->> >
->> >     For ptr-to-int transmutes, I know that they will probably remove
->> >     provenance, hence I am a bit cautious about using them for ptr-to-=
-ptr or
->> >     ref-to-ref.
->> >
->> > The reason I'm confident about (2) is that that is the canonical way t=
-o
->> > cast the type of a reference pointing to an `!Sized` value.
->>
->> Do you have a citation, other than the transmute doc?
+Add support for new Aeonsemi 10G C45 PHYs. These PHYs intergate an IPC
+to setup some configuration and require special handling to sync with
+the parity bit. The parity bit is a way the IPC use to follow correct
+order of command sent.
 
-Not that I am aware of anything.
+Supported PHYs AS21011JB1, AS21011PB1, AS21010JB1, AS21010PB1,
+AS21511JB1, AS21511PB1, AS21510JB1, AS21510PB1, AS21210JB1,
+AS21210PB1 that all register with the PHY ID 0x7500 0x7500
+before the firmware is loaded.
 
-> Turns out this appeases clippy:
->
-> diff --git a/rust/kernel/uaccess.rs b/rust/kernel/uaccess.rs
-> index 80a9782b1c6e..7a6fc78fc314 100644
-> --- a/rust/kernel/uaccess.rs
-> +++ b/rust/kernel/uaccess.rs
-> @@ -240,9 +240,10 @@ pub fn read_raw(&mut self, out: &mut
-> [MaybeUninit<u8>]) -> Result {
->      /// Fails with [`EFAULT`] if the read happens on a bad address,
-> or if the read goes out of
->      /// bounds of this [`UserSliceReader`]. This call may modify
-> `out` even if it returns an error.
->      pub fn read_slice(&mut self, out: &mut [u8]) -> Result {
-> +        let out: *mut [u8] =3D out;
->          // SAFETY: The types are compatible and `read_raw` doesn't
-> write uninitialized bytes to
->          // `out`.
-> -        let out =3D unsafe { &mut *(out as *mut [u8] as *mut
-> [MaybeUninit<u8>]) };
-> +        let out =3D unsafe { &mut *(out as *mut [MaybeUninit<u8>]) };
->          self.read_raw(out)
->      }
+The big special thing about this PHY is that it does provide
+a generic PHY ID in C45 register that change to the correct one
+one the firmware is loaded.
 
-Seems like your email client auto-wrapped that :(
+In practice:
+- MMD 0x7 ID 0x7500 0x9410 -> FW LOAD -> ID 0x7500 0x9422
 
-> Benno, would that work for you? Same in str.rs, of course.
+To handle this, we operate on .match_phy_device where
+we check the PHY ID, if the ID match the generic one,
+we load the firmware and we return 0 (PHY driver doesn't
+match). Then PHY core will try the next PHY driver in the list
+and this time the PHY is correctly filled in and we register
+for it.
 
-For this specific case, I do have a `cast_slice_mut` function I
-mentioned in the other thread, but that is still stuck in the untrusted
-data series, I hope that it's ready tomorrow or maybe next week. I'd
-prefer if we use that (since its implementation also doesn't use `as`
-casts :). But if you can't wait, then the above is fine.
+To help in the matching and not modify part of the PHY device
+struct, .match_phy_device is extended to provide also the
+current phy_driver is trying to match for. This add the
+extra benefits that some other PHY can simplify their
+.match_phy_device OP.
 
----
-Cheers,
-Benno
+Changes v4:
+- Add Reviewed-by tag
+- Better handle PHY ID scan in as21xxx
+- Also simplify nxp driver and fix .match_phy_device
+Changes v3:
+- Correct typo intergate->integrate
+- Try to reduce to 80 column (where possible... define become
+  unreasable if split)
+- Rework to new .match_phy_device implementation
+- Init active_low_led and fix other minor smatch war
+- Drop inline tag (kbot doesn't like it but not reported by checkpatch???)
+Changes v2:
+- Move to RFC as net-next closed :(
+- Add lock for IPC command
+- Better check size values from IPC
+- Add PHY ID for all supported PHYs
+- Drop .get_feature (correct values are exported by standard
+  regs)
+- Rework LED event to enum
+- Update .yaml with changes requested (firmware-name required
+  for generic PHY ID)
+- Better document C22 in C45
+- Document PHY name logic
+- Introduce patch to load PHY 2 times
+
+Christian Marangi (6):
+  net: phy: pass PHY driver to .match_phy_device OP
+  net: phy: bcm87xx: simplify .match_phy_device OP
+  net: phy: nxp-c45-tja11xx: simplify .match_phy_device OP
+  net: phy: introduce genphy_match_phy_device()
+  net: phy: Add support for Aeonsemi AS21xxx PHYs
+  dt-bindings: net: Document support for Aeonsemi PHYs
+
+ .../bindings/net/aeonsemi,as21xxx.yaml        |  122 ++
+ MAINTAINERS                                   |    7 +
+ drivers/net/phy/Kconfig                       |   12 +
+ drivers/net/phy/Makefile                      |    1 +
+ drivers/net/phy/as21xxx.c                     | 1067 +++++++++++++++++
+ drivers/net/phy/bcm87xx.c                     |   14 +-
+ drivers/net/phy/icplus.c                      |    6 +-
+ drivers/net/phy/marvell10g.c                  |   12 +-
+ drivers/net/phy/micrel.c                      |    6 +-
+ drivers/net/phy/nxp-c45-tja11xx.c             |   35 +-
+ drivers/net/phy/nxp-tja11xx.c                 |    6 +-
+ drivers/net/phy/phy_device.c                  |   52 +-
+ drivers/net/phy/realtek/realtek_main.c        |   27 +-
+ drivers/net/phy/teranetics.c                  |    3 +-
+ include/linux/phy.h                           |    6 +-
+ 15 files changed, 1310 insertions(+), 66 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
+ create mode 100644 drivers/net/phy/as21xxx.c
+
+-- 
+2.48.1
 
 
