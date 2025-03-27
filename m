@@ -1,133 +1,142 @@
-Return-Path: <devicetree+bounces-161161-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161162-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 028EEA72BB9
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 09:44:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D932A72BD9
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 09:55:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7EDF43B3488
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 08:42:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 152D63BC052
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 08:55:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C8122080D3;
-	Thu, 27 Mar 2025 08:42:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nOnUw5Ci"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFAA720B208;
+	Thu, 27 Mar 2025 08:55:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com [209.85.222.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CEB32080CB;
-	Thu, 27 Mar 2025 08:42:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EE8E5A79B;
+	Thu, 27 Mar 2025 08:55:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743064973; cv=none; b=BU7UAyVZnC3WWMUUCE+rj4yNTSnpKIXJJZ6df197aAL3fEc1RuiG15htEuygdsalRL0/xeiHV2zU+1dEsfvxbQsypWRAGENckIq7WwKBJy+JvEH8qOG/qVJYRsmPqzI1/g5eQQPUn0uKduZxcqA7FZcDijXbZb4Xrze3TIgXhso=
+	t=1743065737; cv=none; b=hRvMj6vCeCVsrVm5gDiFvsMc72IyGspTR9xqWpxQwTFq5ejSUgcbXd/K2jHxDeUvSZsQ3mlHEqgt0Ex7yp1wrJTyB2fdbgDGnzdTiwPeuf/oaCDd6yMH94vB4/Wwgi5HCG/zB7rQ0uF0LfJadsHnhcmBE7yl4b2SFqngWkSXz9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743064973; c=relaxed/simple;
-	bh=YD48CO4FsnwCglT67h5qBvSC1Oj4vkTc/ynkSqfBkbU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kIDc5Zk+16CmWU+AGyW7MBuzy9TjpBB71iSM2KsLpV6+6zb1TTBEixvlHGH7zInhg/P2FQmPIpVPkoCgXfgchw3mvZNIuNFAZKJJggSPAKN3miFmoBkkrxn99HYpXEqnaEOKbWyNQ8LXfBjMbzszEE3yORtRpsJjFFse912Bk/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nOnUw5Ci; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10F1FC4CEDD;
-	Thu, 27 Mar 2025 08:42:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743064972;
-	bh=YD48CO4FsnwCglT67h5qBvSC1Oj4vkTc/ynkSqfBkbU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nOnUw5CiiGx9MW6mTLS3QpYBwCi1ecL7NIZ54rPiNogF5wqbYofbS7ZsUmJuRxOEK
-	 VmjINAOiHZG5fr2UqaSFPFa0RR7aoWNBY3rd6ldXeDEwC+r6h8zCfOBjuI1A7p8E1q
-	 HFPn5tXVTytEjQ+XcTNZ8fxwCSkLnnVis6YszVKWXfuNWunvmnzxF5pnASBCr3NHIR
-	 Z6JeGIbiyq05a9lLiEV9gTwA7OszwjPB4CXTD/6QsVB674OCI73mGO/M00/RC9/vhi
-	 CfJuG9imQVqlDaHgG9M8gB/2mzm1d9SekbfhqlLWkHgNnzAWHhs9VecB0F5JLILSNV
-	 U5ExS4PeES/YQ==
-Date: Thu, 27 Mar 2025 09:42:49 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Aleksandr Shubin <privatesub2@gmail.com>
-Cc: linux-kernel@vger.kernel.org, 
-	Conor Dooley <conor.dooley@microchip.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Cheo Fusi <fusibrandon13@gmail.com>, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v11 1/3] dt-bindings: pwm: Add binding for Allwinner
- D1/T113-S3/R329 PWM controller
-Message-ID: <t3zbutuclculgqchj2byhjqbebdyrs3sslt65faph5tljppljk@lr5pbdovyuxv>
-References: <20250213094018.134081-1-privatesub2@gmail.com>
- <20250213094018.134081-2-privatesub2@gmail.com>
+	s=arc-20240116; t=1743065737; c=relaxed/simple;
+	bh=wvP8K5jCDRc2bxGl9NjMTxlO/EqRfqfDWOCnH7CiRSc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PJEUyrKbYcrq7Z2RW1DBMcDvL0oCMzt4WxwqE0hxC0lSmiOtkE0KRVy1UpLyLcBgs5nbrs+sgSS/2/P3AsQt5d87QBjag/C3lD02wJKUOQ8RIABCXFfdbF+e1HCeGmhrkJuaNfj2ZVpivpEL/6b2rh8Vpt+VO09EhrdnfsLKXEU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f52.google.com with SMTP id a1e0cc1a2514c-86715793b1fso330781241.0;
+        Thu, 27 Mar 2025 01:55:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743065733; x=1743670533;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wK9lKk51F8Ig4IUd/YTVgiulwDpAR89rwMrTX7A/kVQ=;
+        b=hka/0wOydXRExKl0IaJ/Fvix/LnUTmlLWn5gfqs2U3t0D9u24U4CJGPYgWZVUgEGpv
+         bHgYnxFL5p3TS+8mfbDvBi6yz+jf9U8EbQ27CIRerI/SRotIrSl8GiHNQdYNVV0agp8y
+         IgwbSerQrQGNTR5z7cHPLQnTUOxoWtgeDq1mVHzUAmgLSzFpyyQA/gZHKleynwYTsscG
+         3zQxz7gn/z/29oJSK5NoxqlLRM13Xy5nrABOsu8dxIOfXPUXxXOW08hWt9057n1Z0FtH
+         /oEwpnFPa4yaq4u5XohNThfyh+ZFpS+6Tk4zb0429fPBwVxCtlrUzdsFFlIhEMobcCJf
+         7FSQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUUM8NWH6R1lOFgd1L+rOS5Vt8B53tba3xW3DztwAznChxF2PXPQ54CdDxUYvPeANG5MZZtMFQkG3hmUglC@vger.kernel.org, AJvYcCUv9w2Kz6gZdWNg8J6cdfLY/RNP+wPDMKNmpRA8F+NXWjDWIuD2N8SUqhssczX7vASj4yojRiyFgzmc@vger.kernel.org, AJvYcCV8uNsFB3DIKdyYVxiH7BKpSXGLrEIAG1wxcTjR9Wv/5vfjh1O5Cq7Ft9DRYVG06SexYKz7EzJhLmbJ1g==@vger.kernel.org, AJvYcCV9IBU+q0/NFZAlmTQKMcJ++qr6wzQtKfsbT6FihdT00ZxvKIbbsvxkVMV2xF6sg+uByIBAOu/RN77olT4n@vger.kernel.org, AJvYcCWjjd2pi2H3VW1GbC7mdn/Hn/edP4qTPzyT0KJW37a2KOeAiCMb/oSVOE3bDEWY+srYO3DxGMrPO4pS@vger.kernel.org, AJvYcCWkW4wYU/RnzEbyjAMIERJR67cSwc4UJVqqVgHVhWz7Qj25drUhFfIZRQOU/vH2MBaqtk8tCTS4QczQ@vger.kernel.org, AJvYcCXBQv6aELkSFmtpMu9P/d2jxLYeoyqC2TOmlgOoSe9TZCbmYnMh3JZTRE3HLNzUMFUtsRTWN6ARZ2KVO3pXpOx8ZyA=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxUat5BP9mV1o8OMihgN0es+CSJsMp+u0x8HiH3nr7HYE0DHT/r
+	Gcz07VHtFAwvIp5dxB4XXNT3ul0k1/FPIgqV2eLUeJxI4s5/vQfk3lQxBNtv2ik=
+X-Gm-Gg: ASbGnctl7XYluZmZ0vnYJXnSZd1aQPQlwrbbkWbru+FHav0YsuMP0lpXGVInCRBQBLe
+	CUS7sdyy+d8eI6vpsEO5oqPpmYML++dUeQ3uQIJSEDnY80+is9KK8V28M7xpQutUFVuwN7jjBJK
+	TJ3ze0qx4qDEU6zmNfLxgBbCyzm/iyZhrfwmvGn7geyITbiUyTsYnMSve0v5ILTLU+fXPHSUFXE
+	WNSQ0QqtWAwO5WaOudyZw29aaVzZI6ztJsVn3ohx64Wbr5w0CH9oQnoLYxxt7mhsNFv2O5LvJr8
+	R4wcEZclvdz/7rrNsnx6yy53lCj+YvH9nFiuqWCuTYFVF1iwhBHSzotXZH/eDAj1mtHbnDt4x4E
+	jOLj9HoY=
+X-Google-Smtp-Source: AGHT+IEIGZkAkfBiG5Ncpc2NKTQbIdtxmpakKbyQefAVcKv5OwG0DYQ8p0OcMmD0J0t+DXrL8xhiBw==
+X-Received: by 2002:a05:6102:162c:b0:4c2:d9d3:2aae with SMTP id ada2fe7eead31-4c5870aefdbmr2195083137.21.1743065732597;
+        Thu, 27 Mar 2025 01:55:32 -0700 (PDT)
+Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com. [209.85.222.51])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4c50bc55ad1sm2734817137.18.2025.03.27.01.55.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Mar 2025 01:55:30 -0700 (PDT)
+Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-86b9ea43955so300916241.2;
+        Thu, 27 Mar 2025 01:55:29 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU5r1xHpXGn5TS3L+RAFQdsT+yFi8tf4WNwY6PM341IIKcQieV8xi0eAGTY+e0EWRv5pw+JRmb1il7K@vger.kernel.org, AJvYcCUiUqJhMWkoL6fjrarxlLYZa5y31jr34z6YZE1gd9kAzirqGlpxLrwqaeqEVta+DY6mN3vWD8it0kZHYc74@vger.kernel.org, AJvYcCVFNFnkK1KakRrDi5Jh0Vc+VG0DMLibmcom2P47acf8IBlikUXQm7pP8cLwPpfZ6X666DAURdq1gk3T@vger.kernel.org, AJvYcCVgA0qHBYp2IbSYti3Jm9i1ItBMx45ypqtSrHo2LMj3lahztzASTQj5na49bLUBEa+KKvnEnAh+kZ0Fm6gEoDLNc1Q=@vger.kernel.org, AJvYcCWqJ9WpvGUa6uduKI8nFUZica+3WDZ0F3fvBB9pwjR14pnfnVsH98JR0f9RyLXR5QwQ91WtkXHXLiNJC0Jt@vger.kernel.org, AJvYcCX2palGYjuidhqxgraiRNG0WUZisYOA+flLRMC7NF0DVVXWZPgx2qllh2w3+czwxRoHHfXvjCij4k0B@vger.kernel.org, AJvYcCXjpI/gj9BghIP4YkfWcp0+osOpe9/croDa46dJ3YemH/xH+7m4UfJCRsXota+k3fVjQaB9QSo29U0zwQ==@vger.kernel.org
+X-Received: by 2002:a05:6102:50a5:b0:4ba:971a:41fd with SMTP id
+ ada2fe7eead31-4c587074bf4mr2444666137.19.1743065729369; Thu, 27 Mar 2025
+ 01:55:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="chw7rzoep466ms63"
-Content-Disposition: inline
-In-Reply-To: <20250213094018.134081-2-privatesub2@gmail.com>
+References: <20250326143945.82142-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250326143945.82142-16-prabhakar.mahadev-lad.rj@bp.renesas.com> <41c6f512-47a5-4723-bbdc-64ed85ae8391@kernel.org>
+In-Reply-To: <41c6f512-47a5-4723-bbdc-64ed85ae8391@kernel.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 27 Mar 2025 09:55:17 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVKfL-FRhDaFfOACV8R=ziqXdhmeW7Xd4WYXqHnSbR0ZA@mail.gmail.com>
+X-Gm-Features: AQ5f1Jp1SYp8iWPpWJ6Tj5rp6ScglN-F4PfZy1-_zatQI8UsxeHgk8YvFPlKy5w
+Message-ID: <CAMuHMdVKfL-FRhDaFfOACV8R=ziqXdhmeW7Xd4WYXqHnSbR0ZA@mail.gmail.com>
+Subject: Re: [PATCH 15/15] arm64: defconfig: Enable Renesas RZ/V2N SoC
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Prabhakar <prabhakar.csengg@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Ulf Hansson <ulf.hansson@linaro.org>, Linus Walleij <linus.walleij@linaro.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
+Hi Krzysztof,
 
---chw7rzoep466ms63
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v11 1/3] dt-bindings: pwm: Add binding for Allwinner
- D1/T113-S3/R329 PWM controller
-MIME-Version: 1.0
+On Thu, 27 Mar 2025 at 08:43, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> On 26/03/2025 15:39, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Enable support for the Renesas RZ/V2N (R9A09G056) SoC in the ARM64
+> > defconfig.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> >  arch/arm64/configs/defconfig | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> > index 11e7d0ad8656..c7b41f86c128 100644
+> > --- a/arch/arm64/configs/defconfig
+> > +++ b/arch/arm64/configs/defconfig
+> > @@ -1483,6 +1483,7 @@ CONFIG_ARCH_R9A07G054=y
+> >  CONFIG_ARCH_R9A08G045=y
+> >  CONFIG_ARCH_R9A09G011=y
+> >  CONFIG_ARCH_R9A09G047=y
+> > +CONFIG_ARCH_R9A09G056=y
+>
+> So the pattern will keep growing and none of you will ever bother to fix
+> it, because you have your patchset to throw over the wall.
 
-Hello,
+Yes, the pattern will keep on growing.
+Just like the minimum kernel size will keep on growing, especially if
+you can no longer compile a kernel without support for SoCs you do not
+intend to run the kernel on.  Not everyone has GiBs of RAM to spare...
 
-On Thu, Feb 13, 2025 at 12:40:12PM +0300, Aleksandr Shubin wrote:
-> Allwinner's D1, T113-S3 and R329 SoCs have a new pwm
-> controller witch is different from the previous pwm-sun4i.
->=20
-> The D1 and T113 are identical in terms of peripherals,
-> they differ only in the architecture of the CPU core, and
-> even share the majority of their DT. Because of that,
-> using the same compatible makes sense.
-> The R329 is a different SoC though, and should have
-> a different compatible string added, especially as there
-> is a difference in the number of channels.
->=20
-> D1 and T113s SoCs have one PWM controller with 8 channels.
-> R329 SoC has two PWM controllers in both power domains, one of
-> them has 9 channels (CPUX one) and the other has 6 (CPUS one).
->=20
-> Add a device tree binding for them.
->=20
-> Signed-off-by: Aleksandr Shubin <privatesub2@gmail.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Gr{oetje,eeting}s,
 
-nitpick: Put your S-o-b last.
+                        Geert
 
-> +  allwinner,npwms:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: The number of PWM channels configured for this instance
-> +    enum: [6, 9]
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Maybe mention the default that is assumed if this property isn't
-provided? Reading the commit log makes me wonder if the default is 8. If
-so I suggest to also allow that value explicitly.
-
-Best regards
-Uwe
-
---chw7rzoep466ms63
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmflD4YACgkQj4D7WH0S
-/k4zPwf/YgFEiTFLIAzGN93hGhAtrlBkY9Wk7sGF/1me7yiQulyYfZVNVE6VYT+d
-ePJ4J6WFE+mBBUN7AUaq2L3TqRbq0Fe5fRURdVxpk+RHdtcMhn5FKUTpUWSfB9eM
-v1qDWxVJfZEFhhs5w6pdVeOP3EUjqNxD6oKqTXROCLJQIe4WA/TtPOMK3oJccVCv
-nSnAtTGktNW1RdDOZH6iltBKmY01oZJO1AkRjE7sOcWkjDVk6f68cgig337GWs7p
-b/2z0uKOyAlDQZFi8TaMA323lLDgPyoKAbNx+xdcLdlCKNMXUADk+3vF5caqPwQL
-9InY8wuNgSZh208F1a8d2YBqGxJlhA==
-=gz3O
------END PGP SIGNATURE-----
-
---chw7rzoep466ms63--
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
