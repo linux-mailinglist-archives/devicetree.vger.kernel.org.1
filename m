@@ -1,214 +1,156 @@
-Return-Path: <devicetree+bounces-161172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9588CA72C7E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 10:32:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B32B6A72C9E
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 10:38:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A42B517682D
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 09:31:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 149C51737C8
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 09:38:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC86020CCCD;
-	Thu, 27 Mar 2025 09:31:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 884A720CCD7;
+	Thu, 27 Mar 2025 09:38:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from HK2PR02CU002.outbound.protection.outlook.com (mail-eastasiaazon11020092.outbound.protection.outlook.com [52.101.128.92])
+Received: from smtp134-84.sina.com.cn (smtp134-84.sina.com.cn [180.149.134.84])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DAAE20C00C;
-	Thu, 27 Mar 2025 09:31:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.128.92
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743067894; cv=fail; b=kUGtw53D8uqtkHon4NPmz0ksGhqDNxA4Web4/db/IYjkCu1PDve2XPD6/owywCGH7FtAhQ53HRsWLr/LgHmNEm6Hlvh2Heg0/klS83EVqW1gNzXgLkPoPpCPn4RbXTz/P+lzCT1Igl0md24SLjiY/B0iAsZIMFH30jzqqipXgSM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743067894; c=relaxed/simple;
-	bh=zGEE6EINUBCs6cuL6udZH98jAdWYSvhk12hQgiyMa3E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z1SH+gx5TKsMkqmqaXdm56EY4HpogjuoirEjDqYXhUErgGFsr26dI+UTRSUroKKIaSuurIwVc2t5lmstjQiNDVovJObhCik75MAvb1XGH8NiWxX+N0Q5S4gb9bQ+6HRNa7F9lXG8ZeHNuPmsXxKIUPIZs0JO52u1YKaaCiinSX0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.128.92
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qpEYhQQ4JGgIyyHP6oleno36rnGq0LNT0VZ24jB23msj1zs0L4SEyJeUzpCok1zTTb/tXsqcgKjtB1/g1VgB7Pe96fkvAeWGDEB81FGQ9mrxWAkaeeDWW4tkYbDwWBqm+STegh2k3v0THsRGPwQ672Bd61GrUgyMCyywCS4lpdTTuDZRJilKwTYxeltm624BAJSnMfV2LNrKEalvPWk9KUgaqz0kqveMpUSNIol3gCjb5nWDruRl5MLVz6C/8MzFPqxxE5THfaL7/zDdMT07JFtUXh/4h0tkJ/clgaRUX59WsVrXkbdoZJJGft80n5HqCOr3VjaO/REqCzFx+mxZPg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SV9LP68hf6K2CE8y+aCr/2IhFIriqYosoWyBNsTOUYM=;
- b=gjxyGcadIDsPrYJ9egJQF6ZDQHPpvXPh9EY8ro7AyBD/oliFttNvPaa/Zgy8lcl99h5PsjxfCzxQXnf4ApWvOi5q4bMG+KHkKMt18zA9w3pyeTSdr4vhmXExdTCEeMA34MxBmHj7tUcJtSDTuLEXUFmlmDegYqg7i1g1wKLj8i7YinbMs/xnfu/DaC5e70vT9xMEfyJch+uVsJ+mIW5zm7exeCj1p7Q9Tn6nXyHaDWEFrgXofpzu9xzdYr0P5wxAeASF/qoCr2UJQq5pYl2qYIYlnAMYdHf1YBUw60y1eeQWzLtL8VGomwKJK4Ca2AyP5L7r0H2lt8ofyS2dgTiyKw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from TYCPR01CA0181.jpnprd01.prod.outlook.com (2603:1096:400:2b0::10)
- by SEYPR06MB5986.apcprd06.prod.outlook.com (2603:1096:101:df::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.44; Thu, 27 Mar
- 2025 09:31:27 +0000
-Received: from TY2PEPF0000AB83.apcprd03.prod.outlook.com
- (2603:1096:400:2b0:cafe::1b) by TYCPR01CA0181.outlook.office365.com
- (2603:1096:400:2b0::10) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.43 via Frontend Transport; Thu,
- 27 Mar 2025 09:31:27 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- TY2PEPF0000AB83.mail.protection.outlook.com (10.167.253.4) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8534.20 via Frontend Transport; Thu, 27 Mar 2025 09:31:26 +0000
-Received: from nchen-desktop (unknown [172.16.64.25])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 22C5841604EB;
-	Thu, 27 Mar 2025 17:31:25 +0800 (CST)
-Date: Thu, 27 Mar 2025 17:31:24 +0800
-From: Peter Chen <peter.chen@cixtech.com>
-To: "Arnd Bergmann" <arnd@arndb.de>
-Cc: "Krzysztof Kozlowski" <krzk@kernel.org>,
-	"Marc Zyngier" <maz@kernel.org>, soc@kernel.org,
-	"Rob Herring" <robh@kernel.org>, krzk+dt@kernel.org,
-	"Conor Dooley" <conor+dt@kernel.org>,
-	"Catalin Marinas" <catalin.marinas@arm.com>,
-	"Will Deacon" <will@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
-	marcin@juszkiewicz.com.pl, kajetan.puchalski@arm.com,
-	"Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
-	"Fugang . duan" <fugang.duan@cixtech.com>
-Subject: Re: [PATCH v5 5/6] arm64: dts: cix: add initial CIX P1(SKY1) dts
- support
-Message-ID: <Z-Ua7MK-Kv033uDu@nchen-desktop>
-References: <20250324062420.360289-1-peter.chen@cixtech.com>
- <20250324062420.360289-6-peter.chen@cixtech.com>
- <865xjxmlgl.wl-maz@kernel.org>
- <Z-Nz0DU441Wwj1i4@nchen-desktop>
- <861pukm9yd.wl-maz@kernel.org>
- <Z-Tz1moMNozx23k6@nchen-desktop>
- <e43b1a00-b221-413b-a36a-3a65e17f800f@kernel.org>
- <422deb4d-db29-48c1-b0c9-7915951df500@app.fastmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7EFA20C025
+	for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 09:38:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=180.149.134.84
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1743068310; cv=none; b=tAIZ1CSRuSoxYCXCDPdXBcg/9xibapH2lMoDZtpSCRXSeNVAuq1A5WEHImvCYLC9pV1z2UqAg4etUSi/gPiikt/CRBCJ/bFZgDEkGnUuyIOT4fQMt7R7DJUClndFQUJ9pRbKyUbWvyu8jByvjve/MXpN/AkokD0yzymvJ+GMyHM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1743068310; c=relaxed/simple;
+	bh=hXjAPFrEm6g0Zx8qm9hJGyjV1JomIaQsolkTA0hkEvY=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=h3FM+1O7B4ZuJNOblwuxRuuMIrHW6pn9+GGavGn5w1vAl+ilaWfzULswyPXwJW52OAc/Orqk8my9oLDe6TlecpoRBTCL+Mgjh/GhEcvquLNMfIruxfXZlXUysHp4hfFnrhUgGZeVpczszQrx57GawTtO0YgyYiIRbJM8smSK4Zs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=180.149.134.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=everest-semi.com
+Received: from unknown (HELO zy-virtual-machine.localdomain)([180.159.108.242])
+	by sina.net (10.185.250.29) with ESMTP
+	id 67E51C8B00005989; Thu, 27 Mar 2025 17:38:20 +0800 (CST)
+X-Sender: zhangyi@everest-semi.com
+X-Auth-ID: zhangyi@everest-semi.com
+Authentication-Results: sina.net;
+	 spf=none smtp.mailfrom=zhangyi@everest-semi.com;
+	 dkim=none header.i=none;
+	 dmarc=none action=none header.from=zhangyi@everest-semi.com
+X-SMAIL-MID: EA3D3A9DBD6743E6AFDA933E0A47562C
+X-SMAIL-UIID: EA3D3A9DBD6743E6AFDA933E0A47562C-20250327-173820
+From: Zhang Yi <zhangyi@everest-semi.com>
+To: broonie@kernel.org,
+	robh@kernel.org,
+	tiwai@suse.com,
+	devicetree@vger.kernel.org,
+	conor+dt@kernel.org,
+	lgirdwood@gmail.com,
+	linux-kernel@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	perex@perex.cz,
+	krzk+dt@kernel.org
+Cc: amadeuszx.slawinski@linux.intel.com,
+	krzk@kernel.org
+Subject: RE: [PATCH v6 1/2] ASoC: codecs: add support for ES8389
+Date: Thu, 27 Mar 2025 17:38:18 +0800
+Message-Id: <20250327093818.48050-1-zhangyi@everest-semi.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <422deb4d-db29-48c1-b0c9-7915951df500@app.fastmail.com>
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB83:EE_|SEYPR06MB5986:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4ac0e4e0-db5d-40c4-1faf-08dd6d122589
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|1800799024|36860700013|376014|7416014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?xghCp3v/qoHCy1aiDnm2ZwVF6gh8+5W1MwQeaQSbGhu67R4LuJ2qmJRSXthe?=
- =?us-ascii?Q?+QhiLM76wLhcLVKQdw7oY3UyZUl6qbu5vWmO8qgZ0T5354hKrtlNVoD4/ZTJ?=
- =?us-ascii?Q?xA2JAEUxwKna6V1jsfPuAk0MYUQmj+k0kitrlt54zsgp3PyAuy3Z64uPOD/N?=
- =?us-ascii?Q?MUyicJFXnGMDd+8iGb4bZZ7zoJrYh0GISu+weCcZw+tpSspzj3ZLfzbC/zrx?=
- =?us-ascii?Q?+RD0ttgruohh05gntpyrpRCuhjEX4qXDUuimNb4J/zNFpQTxm5dy2pJiB7RB?=
- =?us-ascii?Q?wjlqgmAfBzarSk5LMgq6yXVNVe8MYRwtPgwALsSu1BHA0GysygO9bQXFMymD?=
- =?us-ascii?Q?6o420o/PE8kE50EGXDj26mVyS8FrsRSl39WlCav2jtUNHY+D4rqAdG8+e60j?=
- =?us-ascii?Q?B71vpWCYsRn3lEvk1lpwvSJ1SQAJmyH0EvnM798GnP4UMev5Q7tdSc+CnWgx?=
- =?us-ascii?Q?rkSoW1NmudRDnMwlZNKb2pJhXEUQ4xfM9M2g67Bz/+KF2/lkphboYYkb+wK2?=
- =?us-ascii?Q?phtvkf4bfZuh7qq6k0IJ0ybScLp7z11YX/isFGt4Ng5Vpt3f8pbGqaiL1O8C?=
- =?us-ascii?Q?uTzvVtF9hFjUawdBf4DkQxUxqDYOUTlhpNMeN7KUiCkqrcGil1mq7ygy63Nb?=
- =?us-ascii?Q?Tic1iKgcuUZjGhx1R4QcZGprVzlTjybkXkrkIlcCvp6QA7GMQFw7Jnk652cy?=
- =?us-ascii?Q?W9+fCHg3v94wIn7MsgLrE7HGxWTZhuGe8V37PPpCwh8NsC+DcUsbJTfW0q4+?=
- =?us-ascii?Q?yEr+ig48jcqPK+XH5qvp486fWnuW8NEOE2XTFeyUJqFpG+RF5g7RU7RjDwNU?=
- =?us-ascii?Q?yxnAfx3UHy/uCU3FPXQlcvO7vmRZwZKN2CIYt/x3tQJqnQKJgv39Mg9pxef4?=
- =?us-ascii?Q?OyogI/00Ips1gyYhByDbIuKgtoHXfk+M60IkOV37DpVWlstNRz9CrSs4WmVv?=
- =?us-ascii?Q?ZQVpzekjaIWM9m0qn9nyYVkBWuSLed6vojxlrMxJ4SaNtxWP2u2Z09OeP4W+?=
- =?us-ascii?Q?xQj376VYP8f3kozZYfnDYMAYPD0aXxO/psMyKQoxsMkq687NkeWWedzzxiTC?=
- =?us-ascii?Q?YjIyT9opAoYWsyjH0UnwMJxEap8Ls2Tfh8dqYud/iKaIJYWtXOFmeIpkDL/l?=
- =?us-ascii?Q?tE/GoGwKBA5+0wHTAw4BA8/HXox9iJUsbqsAL3QipqpY6ymJBmxs932H7GZW?=
- =?us-ascii?Q?8y+hE7FTsx7mrAJLk6nA/WfMYEfrxcQ4uq8EGdRfse2DUAvG1A59HIElGhRV?=
- =?us-ascii?Q?sSF3/dk0K57qaLGwj2zM8vETXZJ74Ro10vM7Yb6Os6uc4zNLjNNqbwnU6h57?=
- =?us-ascii?Q?auoQT+JHLdmtPehsyZWzBLhNYcWVNZlPGEKu3q3E4DcI38ZYTrdqeRIvABeT?=
- =?us-ascii?Q?6vY2xVW7FXtdue2XnqjQM45Is+UjpMOAqGQING/cTQ31q8778mZ3eoTl77De?=
- =?us-ascii?Q?95YLv+B31Vqiu2NEKBGe8HNRqJKK/NgnAgJ1An80EjPSQBo1d92uJ2peam5D?=
- =?us-ascii?Q?z6CFH6uQFzLbvF8=3D?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(36860700013)(376014)(7416014);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Mar 2025 09:31:26.0716
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4ac0e4e0-db5d-40c4-1faf-08dd6d122589
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource: TY2PEPF0000AB83.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR06MB5986
 
-On 25-03-27 09:18:42, Arnd Bergmann wrote:
+> >   	imply SND_SOC_ES8316
+> >   	imply SND_SOC_ES8323
+> >   	imply SND_SOC_ES8326
+> > +	imply SND_SOC_ES8389
+> >   	imply SND_SOC_ES8328_SPI
+> >   	imply SND_SOC_ES8328_I2C
+> >   	imply SND_SOC_ES7134
 > 
-> On Thu, Mar 27, 2025, at 08:16, Krzysztof Kozlowski wrote:
-> > On 27/03/2025 07:44, Peter Chen wrote:
-> >>>> On 25-03-25 10:52:10, Marc Zyngier wrote:
-> >>
-> >> Thanks for your interesting of our platform, and your comments
-> >> help us a lot. But I don't think it wastes reviewers and maintainers
-> >> time, a clean patch set saves everyone's time during upstream process.
-> >>
-> >> For how to organize the patch set for SoC, Krzysztof gave good summary
-> >> at [1]. We are going on upstream [2], this patch set is just a start
-> >> and base but not like you said for marketing purpose.
-> >
-> >
-> > I do not think I suggested in [1] to ever send new SoC containing only
-> > CPUs and interrupt controller, without even serial. My instruction [1]
-> > was how to organize it. The DTS can be even fully complete, see the
-> > upstreaming example I have been using all the time - Qualcomm SM8650:
-> >
-> > https://lore.kernel.org/all/20231124-topic-sm8650-upstream-dt-v4-0-e402e73cc5f0@linaro.org/
-> 
-> It is easier if there are other SoCs in the same family that are
-> already supported than an entire new platform, but we have certainly
-> done it for new SoC families as well.
-> 
-> > Entire SoC sent to mailing list on the day one of public release of that
-> > flagship Qualcomm SoC. The SoC DTSI and board DTS have almost complete
-> > picture, except few trickier pieces... but it even has full display and
-> > GPU! Plus, as I explained on my email on samsung-soc, that DTS/DTSI
-> > patchset references all other bindings with their state, so SoC
-> > maintainers can understand what is the overall progress and what will be
-> > the result in DT schema checks, if they apply the patchset.
-> >
-> > The minimum, absolute minimum submission is with the serial nodes. I
-> > would prefer to have some storage or any other interface as well, but
-> > that's fine.
-> 
-> Agreed. The usual arrangement for a new SoC family is to have
-> the minimum set of drivers (uart, clk, pinctrl, regulator,
-> iommu, irqchip) along with the DT bindings and the dts files
-> in one branch and have that go through the SoC tree as part of
-> the soc/newsoc branch. It sounds like in this case we only need
-> uart and a mailbox since the rest are shared with existing
-> firmware based drivers, so this isn't even the worst case
-> but still requires some coordination between subsystem maintainers
-> to ensure that all patches have been properly reviewed before
-> I merge them.
+> Add it in alphabetical order?
 
-So, in this case, we should add mailbox driver support in this
-series, and once the mailbox maintainer has reviewed mailbox
-driver, all the patches could go your tree?
+I'll fix the issue about the order of this couple of places.
 
+> > diff --git a/sound/soc/codecs/es8389.c b/sound/soc/codecs/es8389.c new 
+> > file mode 100644 index 000000000000..73c1966c30be
+> > --- /dev/null
+> > +++ b/sound/soc/codecs/es8389.c
+> > @@ -0,0 +1,966 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * es8389.c  --  ES8389/ES8390 ALSA SoC Audio Codec
 > 
-> Any peripheral drivers that are not essential for booting
-> (typically mmc, ufs, spi, i2c, gpu, sound, pci) can get
-> submitted at the same time, as there is no dependency on
-> the platform being merged first.
+> The only place that mentions ES8390? Is this correct?
+
+Actually ES8389 and ES8390 are the same chip.I'll drop the ES8390 in this place
+to avoid any misunderstandings.
+
+> > +	{50, 400000, 8000, 0x00, 0x75, 0x05, 0xC8, 0x01, 0xC1, 0x90, 0x10, 0x00, 0x18, 0xC7, 0xD0, 0xC0, 0x8F, 0xC7, 0x01, 0x12, 0x00, 0x09, 0x19, 0x07},
+> > +	{600, 4800000, 8000, 0x05, 0x65, 0x25, 0xF9, 0x00, 0xD1, 0x90, 0x10, 0x00, 0x18, 0xC7, 0xD0, 0xC0, 0x8F, 0xC7, 0x01, 0x12, 0x00, 0x09, 0x19, 0x07},
+> > +	{1500, 12000000, 8000, 0x0E, 0x25, 0x25, 0xE8, 0x00, 0xD1, 0x90, 0x40, 0x00, 0x31, 0xC7, 0xC5, 0x00, 0x8F, 0xC7, 0x01, 0x12, 0x00, 0x09, 0x19, 0x07},
+> > +	{2400, 19200000, 8000, 0x0B, 0x01, 0x00, 0xD0, 0x00, 0xD1, 0x80, 0x90, 0x00, 0x31, 0xC7, 0xC5, 0x00, 0xC7, 0xC7, 0x00, 0x12, 0x00, 0x09, 0x19, 0x07},
+> > +	{3000, 24000000, 8000, 0x0E, 0x24, 0x05, 0xD0, 0x00, 0xC2, 0x80, 0xC0, 0x00, 0x31, 0xC7, 0xC5, 0x00, 0x8F, 0xC7, 0x01, 0x12, 0x00, 0x09, 0x19, 0x07},
+> > +	{3250, 26000000, 8000, 0x40, 0x05, 0xA4, 0xC0, 0x00, 0xD1, 0x80, 
+> > +0xD0, 0x00, 0x31, 0xC7, 0xC5, 0x00, 0xC7, 0xC7, 0x00, 0x12, 0x00, 
+> > +0x09, 0x19, 0x07},
+> > +
+> > +};
 > 
+> Missing new line between array above and below function? I think checkpatch warns about this?
 
-Thanks for telling us this.
+I'll fix it
 
--- 
+> > +
+> > +static int es8389_probe(struct snd_soc_component *codec) {
+> > +	int ret = 0;
+> > +	struct es8389_private *es8389 = 
+> > +snd_soc_component_get_drvdata(codec);
+> 
+> Use "reverse christmas tree" notation for declaring variables? Also ret gets overwritten below, so it is useless to set it.
 
-Best regards,
-Peter
+I'll fix it
+
+> > +static const struct regmap_config es8389_regmap = {
+> > +	.reg_bits = 8,
+> > +	.val_bits = 8,
+> > +
+> > +	.max_register = ES8389_MAX_REGISTER,
+> > +
+> > +	.volatile_reg = es8389_volatile_register,
+> > +	.cache_type = REGCACHE_MAPLE,
+> > +};
+> > +
+> > +static void es8389_i2c_shutdown(struct i2c_client *i2c) {
+> > +	struct snd_soc_component *component;
+> > +	struct es8389_private *es8389;
+> > +
+> > +	es8389 = i2c_get_clientdata(i2c);
+> > +	component = es8389->component;
+> 
+> Unused variable? And while you are removing it, you can also remove it from 'struct es8389_private', as this place seems to be the only user.
+
+Yes, I'll drop them
+
+> > +
+> > +	regmap_write(es8389->regmap, ES8389_MASTER_MODE, 0x28);
+> > +	regmap_write(es8389->regmap, ES8389_HPSW, 0x00);
+> > +	regmap_write(es8389->regmap, ES8389_VMID, 0x00);
+> > +	regmap_write(es8389->regmap, ES8389_RESET, 0x00);
+> > +	regmap_write(es8389->regmap, ES8389_CSM_JUMP, 0xCC);
+> > +	usleep_range(500000, 550000);//500MS
+> > +	regmap_write(es8389->regmap, ES8389_CSM_JUMP, 0x00);
+> > +	regmap_write(es8389->regmap, ES8389_ANA_CTL1, 0x08);
+> > +	regmap_write(es8389->regmap, ES8389_ISO_CTL, 0xC1);
+> > +	regmap_write(es8389->regmap, ES8389_PULL_DOWN, 0x00); }
+> > +
+> > +static int es8389_i2c_probe(struct i2c_client *i2c_client) {
+> > +	struct es8389_private *es8389;
+> > +	int ret = -1;
+> 
+> No need to set ret as it will be overwritten anyway, and '-1' is not considered a proper value. Use some error code if you must.
+
+Ok
 
