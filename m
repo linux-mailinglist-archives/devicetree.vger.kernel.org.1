@@ -1,303 +1,143 @@
-Return-Path: <devicetree+bounces-161205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEA6AA72D6F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 11:10:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 767ADA72D7A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 11:12:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7048D16BC03
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 10:10:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B9DE189551A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 10:12:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F86620E317;
-	Thu, 27 Mar 2025 10:10:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0150920E312;
+	Thu, 27 Mar 2025 10:11:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kQd2+ZuM"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IW8atlC/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A69720D4E1
-	for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 10:10:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12F7220E037
+	for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 10:11:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743070222; cv=none; b=EvS8fjvXgl6N8/Sflq7R+LnBnOeRXewlwk3qvRbjj5I9oUAYbg9ityMc61Yw1YvLAJRCAUqLWhSZeYzrqR1JjHopGqyRtzqnPUQ8bEvldUSpACvJZZZYX+uDC74SJQjbLlXuvCpyB1ChbqHpsBW2i6Vs04THfcHDHxVNFbX9YBc=
+	t=1743070306; cv=none; b=GvHjs4Pm1bs5dZ1etX9esUdnp+bzWOX/BVXGgWL/ERgTAzfYOjTCMSyKTETnhcG/pPtJe5Dqc1wxnxUvBqdzxOIDABWOFQSivg/HzJLdhjnYq3joYduonw7DvIew2cht0jRViN2kPGhvF09QxiMsmsu7Awy/atOd+4OtrzJ/MmQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743070222; c=relaxed/simple;
-	bh=M7BVbYjjTabRtaCO3AEPIhTcv/A/5Tj0nQsS4MNbnps=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=pHtaIavVH4qDqQWGVntFHfRCdWovMDp5vsUHAp/ngkVRzitTmhlbd+VvWxQAaBfDs1QGnCE0IbGaDQWplULwFhjduiCPHptytlsEYe7cVYHcckiSroW17AZGz+JIbVBzXuCIjLu/Ao/gv2Kzua1kOMjRQS3caicuk86UwS6h/I8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kQd2+ZuM; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-43ce70f9afbso7853375e9.0
-        for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 03:10:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743070219; x=1743675019; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5dVK4MEqf6X0TMeYGVfQUWRHq14IdZfNCfWTmHkdE5g=;
-        b=kQd2+ZuMYYzWGLSSnVZwZphMRbe8teWZ5hv0iq6sM4K/O4FjtzsJk5UMrvHCuFwVQd
-         spuBh7kFWLUryKfDUy5hcdH0iQPvwKDX6WIBGXXWsShC7+iL9MAza/YG4T3uA0CAkwlw
-         yi/KNr8sJ2ma/duHg2pTPZO0IS9mWBR6ImEK59/uIFslcVLi380camnXoNC0Us9myjfv
-         0muNfA4EOvwVuFbAe75617yp1WoeoHetyWoK7aWdDp+98H/6wnHX8p98oTexoYsCNdLQ
-         osY56aEioobpj3vr6aYUZOkPfTToG+2CBn48nB2RElcZN1QYkIJkH3csy+p+CgD6lWrX
-         Q/dA==
+	s=arc-20240116; t=1743070306; c=relaxed/simple;
+	bh=lmxrzIS+d76Qh3zL9kdazJJMQfZpNeJz82hwqqtwmOI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LduImw6wqxpf6Pc2OWblKfzGq31ehdM8vBdVvCnDkYwQdg1J3YxrbAbulgFpT27BUX8ftmN5SaAMHdgW1x7S7FawjOMk7Fg8T9eAManGtGE8KKxRYXuEWh5mVN9DQ5Q5Fryn3URneZnwtiLIP3vsz1bZ/MKDYyJQtx7KV9BZxbo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IW8atlC/; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52R5jEpp012429
+	for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 10:11:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=v9Zn3NFoa6qbW13srYFRWI0q
+	FLJJSbYP/Owvwt3xu9A=; b=IW8atlC/ZbCqtLPdmVzYR7QaIKAQHk6HlAPOhO4W
+	q0Q9QyyxoZmdkoyJ4YKOFFDndYGN55NsprSTh+IlEfYhzpE60HmbXgBu3QceAYUF
+	19PUEMEWhme3G+WxsCNFBEIjA+fKL14fVor9ymQqp9XnVRx44+/8mHNmX+NcyDH4
+	YWtK+Y+hUeiFKgcVXBOxBgPnHf2S/NqZ8hO+ZQzWi/L+RZHfi8wqqa+xLzerHDH8
+	3cavsP072EH6sEj2hObuL3hwCgT08HY1x2oAQX/PKfHWHtA6T+2z9j2yRFIQs0uC
+	IRnJ/q6KbR7NczWZX7u3RRNVM8+lS/0x+OiPoDnvfZ0rsw==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45mmutjhg4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 10:11:43 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c5bb68b386so238445385a.3
+        for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 03:11:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743070219; x=1743675019;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=5dVK4MEqf6X0TMeYGVfQUWRHq14IdZfNCfWTmHkdE5g=;
-        b=A2EWgXrtr6UVwAB0fCJP030qHcADFL2virAP1zRAACfWpY47bwX9LldntSMRR2A5go
-         oXOr3Dwyw6jeA1WVfyer7MmBZT1hpcPbmm/A3Arn8gj9B7kDA5vsmmEr2ak8AjFUcBnT
-         oLoQdSNrHPEQ2wuCqq72F7y50eDARQkgzMCJaTa0EIQFOlk9ZtiJuw4ouVnAs7SJJgYQ
-         lJ+gE3krt29u4yBZNIYomoAFeJMa+y3onWGhSWwHoAVX5OPTsfuySbPjA1k6hWGy8zZV
-         9YlJ7NpijpKRyx+ULJX88doAUhUB0ODdeARKzLKrvbfhkXDAiBi/+NOYlntbsXmjeRPC
-         rahQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVRED3rm/aqJORFoeI6M0b/j9xrlBPIzwpuGoCkCveziiAY81z1unIJGm9JJPF5qsB7LjxH2KTY3aN1@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz2Rktoq9t1naHFjGwRQub/n7WT0gAWn/6vsWnrSGognuekCGVa
-	nLELCEwhqR10cb9HjFIsShvP4gB9cJnrj0LKVdL1krM0erHlax3vDws30cLpAYw=
-X-Gm-Gg: ASbGncurwGdvd/MMo1Th+xIfKAiCV7gbdHJ7/irNCUdBnrukER/ISUe+r9kfPRvr9PK
-	w1vLFVoC+QoEccnsvDt7ygKhmI17RNkyac116WtCaXwHH040eTjbukG1HVaLLFhI0AbqN/YbN1X
-	tKzJnkD1TG7L+I7aC0rfuEp9XRgumAqdNA/vY9wP4beZoe9byj+ZS+NYIAk1UiZ+EzNrCMUILzY
-	wZTa9FESLda2Ju7GPQokXJ8VjwNJizDS8Apt/k6dhFoA59A0U51vg2NsO5+N6v1C+StAUzFHOdh
-	/bboTp/xCfpi81Yhv2aUEHRGmw7Co4s4AYN86G5nNgx102szt1GBPBJEERxgjNUtWzeOT6IcCg6
-	5EfCUm/aDktbCPLK+PUe88Q==
-X-Google-Smtp-Source: AGHT+IFdm/AJweeb4Ls+JsWWO80Odn3wmJFBflJjpJ8ov4hI0GxODhTug3GPSfXEWpEi5SzYYyG8Fw==
-X-Received: by 2002:a05:600c:4fd4:b0:43c:fceb:91f with SMTP id 5b1f17b1804b1-43d84f8b8a2mr35592795e9.11.1743070218550;
-        Thu, 27 Mar 2025 03:10:18 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:f1b8:272a:1fa5:f554? ([2a01:e0a:3d9:2080:f1b8:272a:1fa5:f554])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3997f9b5939sm19851219f8f.60.2025.03.27.03.10.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Mar 2025 03:10:18 -0700 (PDT)
-Message-ID: <d83eede1-2bf9-4ec1-ac8a-a55328324613@linaro.org>
-Date: Thu, 27 Mar 2025 11:10:17 +0100
+        d=1e100.net; s=20230601; t=1743070302; x=1743675102;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=v9Zn3NFoa6qbW13srYFRWI0qFLJJSbYP/Owvwt3xu9A=;
+        b=cJvAdQEQBOthT0p1jfaA/Qrxml4Mwpt6DSwnrGX7V2Su/uUNvcnxlsebj1wbdKwUjE
+         zk96u82ietQDKWwQvfF1fdEpKVvI7OBKGpXdTF5moPOMy4Ca4QCFuox9zhIHM8te/wfx
+         pdeC/1Hlb3Q5GWaoqvinYh8Ozyx0uYYxATo7uRqC669rbA9q0fl8Bl6WQkBOnasaXx3I
+         qUZjkOZiUmDzC0WyRvI6F7AB6uNgYLOCK9eofwB+GruE1KQXm/vVXyAx7EthOJO3MCxP
+         f+HwIo1LuIWgmr5eQgISTk5lQRCWNzpKYq4nVOxd5ZbVtpfLGRZg6dDjnxjNdSe63itD
+         IFtQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXBqLpJc9xJffrJpjPTY6BK4OWoFvEjae1k4dbRUwIjo8eebY0LvOAlFQjIc6+mBk87Flv7yWvLtrYp@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/hVRjtM7KqhO0cdNDlOf/SuOFOhn5rusakBTNJfddKY9qsdq1
+	7vjQgjrRGMiy69aSdRSsvkwdMWjiXItNxxte4olttw1HZG/Tc99lF+7YkB4Js3yDJnqQ/BlhBsA
+	b67ONBSttvjLG7SRNa84p15MC21dSEzEzDdSGtNXe0hNhRwkH6r4j7TPCjZMo
+X-Gm-Gg: ASbGncuqAHndC7eaAbc7cEiOofmI3xyDIKuC9YpvWfWPTBmUHO9Wh3VV6Vie1VOx1e6
+	gI1He2zzLmgUz/GD5hdTAIAKeEOacRLlauazJ3pSRKx5kKgm5SP822rLtDoBUhjFw7zAoPhlaeT
+	jZjnYGzPnzXvAt4sCnQib+5EyZBSvb/G5wb8PtIC5CC85FE4FSDCd1zRyxT9brbj2pDgT92A2jd
+	LwPTqTkV6+C3LYLAdANOpoU2lgr5oZTnA+DoIwF13cqOh5gu1EpraRxDUJF5riOlEFXwXt5jCu5
+	eOQQodHdO+ezHi/yE8c+89lSpNKg4CV8cERe0ywGwMYXnXnqIL4BWoAfl4DeDBk+WX0tWMfi2DW
+	lIcc=
+X-Received: by 2002:a05:620a:2914:b0:7c5:6140:734f with SMTP id af79cd13be357-7c5ed9f4dd6mr490782685a.18.1743070301844;
+        Thu, 27 Mar 2025 03:11:41 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE6t2DqPJhmH7olRi6YdWjzEC6o9DeKuF8NojAtig4n9I6xDbgHy0ROgN2hW3aSNsHavREJnA==
+X-Received: by 2002:a05:620a:2914:b0:7c5:6140:734f with SMTP id af79cd13be357-7c5ed9f4dd6mr490777485a.18.1743070301405;
+        Thu, 27 Mar 2025 03:11:41 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30d7d7c18ecsm24091031fa.23.2025.03.27.03.11.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Mar 2025 03:11:39 -0700 (PDT)
+Date: Thu, 27 Mar 2025 12:11:36 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org,
+        Marc Gonzalez <mgonzalez@freebox.fr>,
+        Dmitry Baryshkov <lumag@kernel.org>, Arnaud Vrac <avrac@freebox.fr>,
+        Sayali Lokhande <quic_sayalil@quicinc.com>,
+        Xin Liu <quic_liuxin@quicinc.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v2 09/12] arm64: dts: qcom: sm6350-pdx213: Wire up USB
+ regulators
+Message-ID: <5votyeeny5k7dyozzhksaeskvcut3z6zvp7nh6qilcjhxjx7hp@zfrwhyzoaoc2>
+References: <20250327-topic-more_dt_bindings_fixes-v2-0-b763d958545f@oss.qualcomm.com>
+ <20250327-topic-more_dt_bindings_fixes-v2-9-b763d958545f@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] arm64: dts: amlogic: a4: add pinctrl node
-To: xianwei.zhao@amlogic.com, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250326-pinctrl-node-a4-v1-1-8c30639480f6@amlogic.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250326-pinctrl-node-a4-v1-1-8c30639480f6@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250327-topic-more_dt_bindings_fixes-v2-9-b763d958545f@oss.qualcomm.com>
+X-Proofpoint-ORIG-GUID: Hc4krFyQNzzaJ07Cjdpmwz2CmIPlhqV4
+X-Authority-Analysis: v=2.4 cv=MqlS63ae c=1 sm=1 tr=0 ts=67e5245f cx=c_pps a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=EUspDBNiAAAA:8 a=iXEU_j0xfCFYBHAbzAYA:9 a=CjuIK1q_8ugA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-GUID: Hc4krFyQNzzaJ07Cjdpmwz2CmIPlhqV4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-26_09,2025-03-26_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ priorityscore=1501 mlxlogscore=604 mlxscore=0 bulkscore=0 adultscore=0
+ malwarescore=0 suspectscore=0 lowpriorityscore=0 clxscore=1015
+ phishscore=0 impostorscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502280000 definitions=main-2503270069
 
-On 26/03/2025 06:17, Xianwei Zhao via B4 Relay wrote:
-> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On Thu, Mar 27, 2025 at 02:47:11AM +0100, Konrad Dybcio wrote:
+> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > 
-> Add pinctrl device to support Amlogic A4 and add uart pinconf.
+> Wire up the regulators based on the downstream release to appease the
+> devicetree checker.
 > 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > ---
-> This commit is based on the Neil's suggestion, rebase the commit on top of
-> https://web.git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git/log/?h=for-next
-> which merges this commit:
-> https://lore.kernel.org/all/20250212-amlogic-pinctrl-v5-4-282bc2516804@amlogic.com/
-> with another one:
-> https://lore.kernel.org/all/20250321-fix-a4-pinctrl-node-v1-1-5719f9f09932@amlogic.com/
-> ---
->   arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi | 125 ++++++++++++++++++++++++++++
->   1 file changed, 125 insertions(+)
+>  arch/arm64/boot/dts/qcom/sm6350-sony-xperia-lena-pdx213.dts | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-> index a06838552f21..c02fa5ee9fd2 100644
-> --- a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-> @@ -5,6 +5,7 @@
->   
->   #include "amlogic-a4-common.dtsi"
->   #include <dt-bindings/power/amlogic,a4-pwrc.h>
-> +#include <dt-bindings/pinctrl/amlogic,pinctrl.h>
->   / {
->   	cpus {
->   		#address-cells = <2>;
-> @@ -50,6 +51,107 @@ pwrc: power-controller {
->   };
->   
->   &apb {
-> +	periphs_pinctrl: pinctrl@4000 {
-> +		compatible = "amlogic,pinctrl-a4";
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges = <0x0 0x0 0x0 0x4000 0x0 0x280>;
-> +
-> +		gpiox: gpio@100 {
-> +			reg = <0 0x100 0 0x40>, <0 0xc 0 0xc>;
-> +			reg-names = "gpio", "mux";
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_X<<8) 18>;
-> +		};
-> +
-> +		gpiot: gpio@140 {
-> +			reg = <0 0x140 0 0x40>, <0 0x2c 0 0xc>;
-> +			reg-names = "gpio", "mux";
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_T<<8) 23>;
-> +		};
-> +
-> +		gpiod: gpio@180 {
-> +			reg = <0 0x180 0 0x40>, <0 0x40 0 0x8>;
-> +			reg-names = "gpio", "mux";
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_D<<8) 16>;
-> +		};
-> +
-> +		gpioe: gpio@1c0 {
-> +			reg = <0 0x1c0 0 0x40>, <0 0x48 0 0x4>;
-> +			reg-names = "gpio", "mux";
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_E<<8) 2>;
-> +		};
-> +
-> +		gpiob: gpio@240 {
-> +			reg = <0 0x240 0 0x40>, <0 0 0 0x8>;
-> +			reg-names = "gpio", "mux";
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_B<<8) 14>;
-> +		};
-> +
-> +		func-uart-a {
-> +			uart_a_default: group-uart-a-pins1 {
-> +				pinmux = <AML_PINMUX(AMLOGIC_GPIO_X, 11, 1)>,
-> +					 <AML_PINMUX(AMLOGIC_GPIO_X, 12, 1)>,
-> +					 <AML_PINMUX(AMLOGIC_GPIO_X, 13, 1)>,
-> +					 <AML_PINMUX(AMLOGIC_GPIO_X, 14, 1)>;
-> +			};
-> +
-> +			group-uart-a-pins2 {
-> +				pinmux = <AML_PINMUX(AMLOGIC_GPIO_D, 2, 3)>,
-> +					 <AML_PINMUX(AMLOGIC_GPIO_D, 3, 3)>;
-> +				bias-pull-up;
-> +				drive-strength-microamp = <4000>;
-> +			};
-> +		};
-> +
-> +		func-uart-b {
-> +			uart_b_default: group-uart-b-pins {
-> +				pinmux = <AML_PINMUX(AMLOGIC_GPIO_E, 0, 3)>,
-> +					 <AML_PINMUX(AMLOGIC_GPIO_E, 1, 3)>;
-> +				bias-pull-up;
-> +				drive-strength-microamp = <4000>;
-> +			};
-> +		};
-> +
-> +		func-uart-d {
-> +			uart_d_default: group-uart-d-pins1 {
-> +				pinmux = <AML_PINMUX(AMLOGIC_GPIO_T, 18, 4)>,
-> +					 <AML_PINMUX(AMLOGIC_GPIO_T, 19, 4)>;
-> +				bias-pull-up;
-> +				drive-strength-microamp = <4000>;
-> +			};
-> +
-> +			group-uart-d-pins2 {
-> +				pinmux = <AML_PINMUX(AMLOGIC_GPIO_T, 7, 2)>,
-> +					 <AML_PINMUX(AMLOGIC_GPIO_T, 8, 2)>,
-> +					 <AML_PINMUX(AMLOGIC_GPIO_T, 9, 2)>,
-> +					 <AML_PINMUX(AMLOGIC_GPIO_T, 10, 2)>;
-> +				bias-pull-up;
-> +				drive-strength-microamp = <4000>;
-> +			};
-> +		};
-> +
-> +		func-uart-e {
-> +			uart_e_default: group-uart-e-pins {
-> +				pinmux = <AML_PINMUX(AMLOGIC_GPIO_T, 14, 3)>,
-> +					 <AML_PINMUX(AMLOGIC_GPIO_T, 15, 3)>,
-> +					 <AML_PINMUX(AMLOGIC_GPIO_T, 16, 3)>,
-> +					 <AML_PINMUX(AMLOGIC_GPIO_T, 17, 3)>;
-> +				bias-pull-up;
-> +				drive-strength-microamp = <4000>;
-> +			};
-> +		};
-> +	};
-> +
->   	gpio_intc: interrupt-controller@4080 {
->   		compatible = "amlogic,a4-gpio-intc",
->   			     "amlogic,meson-gpio-intc";
-> @@ -60,6 +162,29 @@ gpio_intc: interrupt-controller@4080 {
->   			<10 11 12 13 14 15 16 17 18 19 20 21>;
->   	};
->   
-> +	ao_pinctrl: pinctrl@8e700 {
-> +		compatible = "amlogic,pinctrl-a4";
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges = <0x0 0x0 0x0 0x8e700 0x0 0x80>;
-> +
-> +		gpioao: gpio@4 {
-> +			reg = <0 0x4 0 0x16>, <0 0 0 0x4>;
-> +			reg-names = "gpio", "mux";
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_AO<<8) 7>;
-> +		};
-> +
-> +		test_n: gpio@44 {
-> +			reg = <0 0x44 0 0x20>;
-> +			reg-names = "gpio";
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_TEST_N<<8) 1>;
-> +		};
-> +	};
-> +
->   	gpio_ao_intc: interrupt-controller@8e72c {
->   		compatible = "amlogic,a4-gpio-ao-intc",
->   			     "amlogic,meson-gpio-intc";
-> 
-> ---
-> base-commit: 23a708916ec7ab21c8c81d61bdb7cb933f6867d5
-> change-id: 20250325-pinctrl-node-a4-a4667d5ec8cb
-> 
-> Best regards,
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+
+-- 
+With best wishes
+Dmitry
 
