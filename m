@@ -1,64 +1,70 @@
-Return-Path: <devicetree+bounces-161339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161344-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83DB5A73703
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 17:39:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 052F0A7371C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 17:41:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E09F93A9EBA
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 16:38:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A217189D212
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 16:41:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE4241A8F84;
-	Thu, 27 Mar 2025 16:38:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D43E20CCC5;
+	Thu, 27 Mar 2025 16:40:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o3ztZUCE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JjNJmDSj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A24C11586C8;
-	Thu, 27 Mar 2025 16:38:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 209F41A3159;
+	Thu, 27 Mar 2025 16:40:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743093496; cv=none; b=B0U3pFaTMUZbcTtQuJqlvdvvtddR/ZxU1fWlf8ru+GbxgImEKrsa+UkJCkH5XpCh4uRlQMrx0eqatsMJ77bgoS6alxS47EgkjLOvDW/grntskReNcxOujBjJD15eO8N2eSp47VAi+MQR5cfKdx6Gip2wl/f+lAc9rYHjRKfp43M=
+	t=1743093647; cv=none; b=sh3CK+T03RFFeepvR3rBOHpXVBOBRpRdBeHta0Va5z9RsY2whbCXR4ncSSC+JeR7PR0FjpTOypktyJq1CNe0xAkC27l4Y0FqWfVKRsz6hPMlITDTdOt9KiaFQHHdjbjXijKRqT1mSVdhTz2QFUpMrqOL8/GzdlIQ5clH6i9BU1g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743093496; c=relaxed/simple;
-	bh=NvC16u1aqR/2KG04a8f4N6Xoq/iI1HOtNPpUepOa0Ms=;
+	s=arc-20240116; t=1743093647; c=relaxed/simple;
+	bh=nw6QSPdQYYmQyRESFL7Fz5mINk4DCE5DFYZA3PpZUDw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Y2AJ9EB+13Trywv+FbxUzuZQ14zAe1jmB+z6+F0eeHUCsRXHaKySKVH3yHQ6L7yCq8yjNv/W+NQm1tYpgLosrF9T+Y7TDzZ8Y0l2Q9PZ6u2lyn7os1N5hLlVaGOvcNc8haPis72fYz2LojKaboAnZ8Hlpnt4LZT4YKTTi7Dx/es=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o3ztZUCE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15777C4CEE8;
-	Thu, 27 Mar 2025 16:38:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=q4yT8xdmOUevaz2JwgFb4h3VTLYZ3PDTmxPmWvn1F16xuFwIDqC7ffj1tKMeFzjgKbsiFnRc8k/29IIiohjnfyRO5JtBbkl7h/4vnMQNwmboEkdmVdOrTdsC9mo1k8JfCJ2pKKd3PEEUIg99T/m++d/OKLOZh+ZT6Wz2H0d2q/8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JjNJmDSj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 733A2C4CEDD;
+	Thu, 27 Mar 2025 16:40:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743093496;
-	bh=NvC16u1aqR/2KG04a8f4N6Xoq/iI1HOtNPpUepOa0Ms=;
+	s=k20201202; t=1743093646;
+	bh=nw6QSPdQYYmQyRESFL7Fz5mINk4DCE5DFYZA3PpZUDw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=o3ztZUCEsTgAufZFIr54bxgGmr3liOeSSxSNHer94WsXcmqD6VkiFMJpgxN4qBDpI
-	 BtOIwp8CLI6Ri4PDU0wPxHZv5eCUfsEgY7UXGM0/Ipj1Quhx6WA8bn+cnuw5/RSjpN
-	 bGulEuC72O8WOwISAx5IXkbmdCIw4BWmhGMyjjoQINgPphdojzU37IE9tM1hJf4cHc
-	 O4CLk/OaeYXzHinKCDM+z/NZ/ltVO6XamoCGyi9f6WXu+dYHBuxHbEWcS2uYtUzd9Q
-	 XeWV1DkJRBHxTNFVnGvmccUeI6FFgZYGXMTEfcfvg4P/nF4X5H6d7Hs+9tSjt4MFvc
-	 v8so7ojzrKQSA==
-Date: Thu, 27 Mar 2025 16:38:11 +0000
+	b=JjNJmDSjniiHESAwwEREi4LiwbjB3qor5cylvoS18QWsR+Spef+njkGLG72eVnT7y
+	 o0iaHMB+d73aM7hBDVdH0f4LqWTrnhAAat++01K8k+za6IJaN0SxSIkJZxyiEg3UP8
+	 yIqgGQ6xvariEMMzu0YlTCyclpVmNMCi1/7a699YhXlNjfn4VObZn6FTT2FB0hF/2c
+	 MGSbokdLs0844btP/PGeq6aIefHkqSZGiIdrffl3HFxA0Nnf6/ja6NSyj6VE0ad3aO
+	 kh778KziwBFVv4XvJILvkZqGI2RGLHqsQBwvwZTEeqtTSFLl9cOWkI/BEeb/A+mn1A
+	 vk5rep2sL1xwQ==
+Date: Thu, 27 Mar 2025 16:40:42 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: remoteproc: stm32-rproc: Add
- firmware-name property
-Message-ID: <20250327-defiant-quicksand-83cfdd8cf8d8@spud>
-References: <20250327082721.641278-1-arnaud.pouliquen@foss.st.com>
- <20250327082721.641278-2-arnaud.pouliquen@foss.st.com>
+	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: reset: Document RZ/V2H(P) USB2PHY
+ Control
+Message-ID: <20250327-comply-murky-cffc47465429@spud>
+References: <20250305123915.341589-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250305123915.341589-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250305-cesspool-headlock-4d28a2a1333e@spud>
+ <CA+V-a8uQTL+SHYqVU_J0th4PT6YPF7q6ypzDu33nS_6onWLoOQ@mail.gmail.com>
+ <20250306-slather-audition-a6b28ba1483e@spud>
+ <18780ad4be2c28999af314c97ae4104fb161a691.camel@pengutronix.de>
+ <CA+V-a8tYv_u4UM5XVysVMPbfJoVwKFHqucLdJOmDP-xrXZ0L5Q@mail.gmail.com>
+ <CA+V-a8sfx-QwzPz_zEEmGAyAoqha5cfMs9CvWDVJ_b0-D7QfpQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,34 +72,59 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ytieV3SLIaVgIcdG"
+	protocol="application/pgp-signature"; boundary="t7DfaAM27KeM8t9g"
 Content-Disposition: inline
-In-Reply-To: <20250327082721.641278-2-arnaud.pouliquen@foss.st.com>
+In-Reply-To: <CA+V-a8sfx-QwzPz_zEEmGAyAoqha5cfMs9CvWDVJ_b0-D7QfpQ@mail.gmail.com>
 
 
---ytieV3SLIaVgIcdG
-Content-Type: text/plain; charset=us-ascii
+--t7DfaAM27KeM8t9g
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Mar 27, 2025 at 09:27:20AM +0100, Arnaud Pouliquen wrote:
-> Add the 'firmware-name' property to the remote processor binding
-> to allow specifying the default firmware name in the device tree.
+On Thu, Mar 27, 2025 at 11:06:33AM +0000, Lad, Prabhakar wrote:
+> Hi Philipp and Conor
 >=20
-> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+> On Thu, Mar 13, 2025 at 1:17=E2=80=AFPM Lad, Prabhakar
+> <prabhakar.csengg@gmail.com> wrote:
+> >
+> > Hi Philipp,
+> >
+> > On Thu, Mar 13, 2025 at 1:09=E2=80=AFPM Philipp Zabel <p.zabel@pengutro=
+nix.de> wrote:
+> > >
+> > > On Do, 2025-03-06 at 16:26 +0000, Conor Dooley wrote:
+> > > [...]
+> > > > That sounds awfully like "it was wrong before, and I want to keep u=
+sing
+> > > > the wrong node name"... If you're claiming to be some other class of
+> > > > device, "ctrl" should really be "controller" like all the other sor=
+ts of
+> > > > controllers ;)
+> > >
+> > > There are "usb-phy-controller" nodes on the rcar-gen2 SoCs.
+> > >
+> > Ok, I will rename the node name to "usb-phy-controller".
+> >
+> Fyi to chime in with other reset drivers I'll rename this binding file
+> to `renesas,rzv2h-usb2phy-reset.yaml` and have the node named
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> `usb2phy-reset@15830000` in the example node.
 
---ytieV3SLIaVgIcdG
+At that point, isn't it then "just" a reset controller with only a
+single device that it resets, so "reset-controller" is the right class
+of device to label it as?
+
+--t7DfaAM27KeM8t9g
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ+V+8wAKCRB4tDGHoIJi
-0rA7AP9JyUbjLOakoM+hJBNcmQksv1MkDD5pE8noBMWu3qQ68AEAsjA4jPrHo7Co
-a14daJ3eTuSb4JbviHqOsCWo9L2j0As=
-=9SvW
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ+V/igAKCRB4tDGHoIJi
+0nDwAP492sO8TrE28FCvFPFQPB+n3zVDKJ701XsdVAH4BZIC8gD/WPlRuig/cC4Z
+dsNjG53TeGJNVW1VNZGR4PzVV2wLlgQ=
+=rz9f
 -----END PGP SIGNATURE-----
 
---ytieV3SLIaVgIcdG--
+--t7DfaAM27KeM8t9g--
 
