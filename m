@@ -1,175 +1,115 @@
-Return-Path: <devicetree+bounces-161252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161254-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 745C7A73320
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 14:15:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4C0CA7333F
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 14:21:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E5733AD040
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 13:14:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 175CA177E41
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 13:20:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7884E215181;
-	Thu, 27 Mar 2025 13:14:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23389215F56;
+	Thu, 27 Mar 2025 13:20:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Pl2+sj8+"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="LEw1n6Wb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E66561E98EC;
-	Thu, 27 Mar 2025 13:14:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9038A2135B1;
+	Thu, 27 Mar 2025 13:20:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743081273; cv=none; b=lxJ/IsJCjxmFdAe+ZBXHUtu+DWrTL8fkOkGxudaoNa3WWmqgEEQrdYYSgwjaXfgF3/QJmYZkNw/4oOc8d4NQP+twsY3qfNRhtCD6OZDbQgUvOp9tbm09C0fsBoRjDvwVFScaOBGzFxr0pYgQLVLI2YtUtflfJcNUQ/ThDp0oIXM=
+	t=1743081636; cv=none; b=tOPx8l6XhbPFJN84w0UGqGfajsfdL/lwBsL+I+I1Q56pSr7RxsgFIQT6gvRc7y9ghz7DzoUTPn9HZRGJ72su3DSDWCma3zeMLl123ZZnA1yQJrcUEz4j6uHicN0TQCgViqX9+BsxhtGby922iSbdgvPLcfsC7QyImTMVj15soak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743081273; c=relaxed/simple;
-	bh=BPY/l5DCooBOnd2duEJQni/suWmytJExjLNYTcbLjdI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KU4S5To/8GLzsoATQLBQ/kWKlB/maQIsZDUPigAkG7Ftvc+VbifYeOZvF7YQSiPA1f7fuRmpWOK5yUFBiHZflCqZcKRnwU7GxBk0wtLhZuUjUuz5qu9Tst3Mo1KV+KGqbyzlfetEYWkwI0S5PKMpiwtUVOveD8U1MCYxiacG6lE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Pl2+sj8+; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=xd0Le9uNqc8iLeDsVGU9xvTYo37Co9fJowBFqoxOwKg=; b=Pl2+sj8+HxF9sbnbAkv6TbuvR3
-	j2kjve1wh1KP7gKNFrylM0AFjGDDcuwIJH7+T0KGeL1inglPb60L7FLqWkKS1tPYnbU51PPJdsk0J
-	Ocab63LddNV6acIOvYEC+0Ds5A4r7kaVcMO0n+dnLJOZ/Fmw65QLPXtffNgVvGyht578=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1txn3s-007Hlc-IF; Thu, 27 Mar 2025 14:14:20 +0100
-Date: Thu, 27 Mar 2025 14:14:20 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Manikandan.M@microchip.com
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
-	claudiu.beznea@tuxon.dev, tudor.ambarus@linaro.org,
-	pratyush@kernel.org, mwalle@kernel.org, miquel.raynal@bootlin.com,
-	richard@nod.at, vigneshr@ti.com, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-mtd@lists.infradead.org
-Subject: Re: [PATCH v2 3/3] ARM: dts: microchip: sama5d29_curiosity: Add
- nvmem-layout in QSPI for EUI48 MAC Address
-Message-ID: <807f29fe-2fe1-455b-8357-4caafc45090e@lunn.ch>
-References: <20250326072140.172244-1-manikandan.m@microchip.com>
- <20250326072140.172244-4-manikandan.m@microchip.com>
- <eed1531a-353a-4244-a10a-95e67c8416ae@lunn.ch>
- <906d596b-391b-43ec-8654-38de64f043f1@microchip.com>
+	s=arc-20240116; t=1743081636; c=relaxed/simple;
+	bh=6MGs1yQBSPS4LA4tu+8JjiTOcI1H9cGA3IwjG1Snr5M=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=EEhpQXBIC699B3fFnnehdFZvAAlIald0ycIZ3n1YKils1Wb1utJH9Zb2JSIxGyE5itsvOhVhWVBu3rAEm6V8/Dtl4uMtBrnYLa4xQ45mmLUsbEoRiO/sQX21V7t57pKRD8Y4waoVSvXlQt5O4LwcV4wngHHRWcxy4wO8jylulYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=LEw1n6Wb; arc=none smtp.client-ip=117.135.210.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-Id; bh=MF0CCH1EBw+S02V1IG
+	fRTMbUhkYsgkt9URZu0EGveoU=; b=LEw1n6WbhapyZmogvjV+Nfx8AMMeK69g1Q
+	cRmoVx91DdJ1pFAFN7D7UIU5vjoiRv+5FSM/3+yh88FSgAqbqKH/HuGu8won+4w0
+	MQaAJVlNconbxSnuLPVgGf9qg41cZiC0XnOW/xjU8Jk2/Ci048Q3Ha5FfkZHLy5M
+	VjGlEIYjo=
+Received: from localhost.localdomain (unknown [])
+	by gzga-smtp-mtada-g1-3 (Coremail) with SMTP id _____wD3f7xtUOVn1ekMCQ--.39600S6;
+	Thu, 27 Mar 2025 21:19:50 +0800 (CST)
+From: Wenliang Yan <wenliang202407@163.com>
+To: linux@roeck-us.net,
+	Jean Delvare <jdelvare@suse.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Wenliang Yan <wenliang202407@163.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	christophe.jaillet@wanadoo.fr
+Subject: [PATCH v6 4/4] dt-bindings:Add SQ52206 to ina2xx devicetree bindings
+Date: Thu, 27 Mar 2025 09:18:41 -0400
+Message-Id: <20250327131841.15013-5-wenliang202407@163.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20250327131841.15013-1-wenliang202407@163.com>
+References: <20250327131841.15013-1-wenliang202407@163.com>
+X-CM-TRANSID:_____wD3f7xtUOVn1ekMCQ--.39600S6
+X-Coremail-Antispam: 1Uf129KBjvJXoW7uFy7tF4rZrykGr4xWr4UJwb_yoW8GrWxpr
+	WfCF18tryFqF13W3y7t3Z5Gr15u3Wv9F48KF1DJr1a93WkZa4Fq39xKr1v9F1UCr1fZFWf
+	uFn2gr48Xw18AaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pRsXowUUUUU=
+X-CM-SenderInfo: xzhqzxhdqjjiisuqlqqrwthudrp/1tbibg0d02flSlJ+aQAAsg
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <906d596b-391b-43ec-8654-38de64f043f1@microchip.com>
 
-On Thu, Mar 27, 2025 at 06:03:05AM +0000, Manikandan.M@microchip.com wrote:
-> Hi Andrew Lunn,
-> 
-> On 26/03/25 6:48 pm, Andrew Lunn wrote:
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> > 
-> > On Wed, Mar 26, 2025 at 12:51:40PM +0530, Manikandan Muralidharan wrote:
-> >> Add nvmem-layout in QSPI to read the EUI48 Mac address by the
-> >> net drivers using the nvmem property.The offset is set to 0x0
-> >> since the factory programmed address is available in the
-> >> resource managed space and the size determine if the requested
-> >> address is of EUI48 (0x6) or EUI-64 (0x8) type.
-> >> This is useful for cases where U-Boot is skipped and the Ethernet
-> >> MAC address is needed to be configured by the kernel
-> >>
-> >> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
-> >> ---
-> >>   .../arm/boot/dts/microchip/at91-sama5d29_curiosity.dts | 10 ++++++++++
-> >>   1 file changed, 10 insertions(+)
-> >>
-> >> diff --git a/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
-> >> index 35756cc01e68..6c5ff08f0b3f 100644
-> >> --- a/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
-> >> +++ b/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
-> >> @@ -478,6 +478,16 @@ flash@0 {
-> >>                label = "atmel_qspi1";
-> >>                status = "okay";
-> >>
-> >> +             nvmem-layout {
-> >> +                     compatible = "fixed-layout";
-> >> +                     #address-cells = <1>;
-> >> +                     #size-cells = <1>;
-> >> +
-> >> +                     mac_address_eui48: mac-address@0 {
-> >> +                             reg = <0x0 0x6>;
-> >> +                     };
-> >> +             };
-> >> +
-> > 
-> > I've not looked too deeply how this all works. Don't you need a
-> > reference in the ethernet node pointing to this?
-> Yes we need a reference to 'mac_address_eui48' using nvmem-cells in the 
-> Ethernet node, since the sama5d29_curiosity uses a daughter card for PHY 
-> [1], the DTS properties are defined in overlay files. Here is the quick 
-> usage of the nvmem ref in the ethernet node:
-> 	macb0 {
-> 		nvmem-cells = <&mac_address_eui48>;
-> 		nvmem-cell-names = "mac-address";
-> 		
-> 		phy {
-> 
-> 		};
-> 	};
+Add the sq52206 compatible to the ina2xx.yaml
 
-So why are you not adding this as part of this patch?
+Signed-off-by: Wenliang Yan <wenliang202407@163.com>
+---
 
-> > And are there ordering issues? Boards used to use the MAC address from
-> > somewhere else now start using this address, causing a change in
-> > behaviour. I would expect somewhere a comment that this MAC address
-> > will be used last, after all other options have been tried, in order
-> > to avoid regressions.
-> > 
-> The order of search is documented in of_get_mac_address() in 
-> net/core/of_net.c file
-> 
-> The driver attempts to retrieve the MAC address through a hierarchical 
-> approach: first checking device tree properties, then exploring NVMEM 
-> cells, followed by the U-Boot 'ethaddr' environment variable. If no 
-> valid MAC address is found through these methods, the driver will 
-> generate a random but valid MAC address as a final fallback mechanism.
+Add the meaning of 'shunt-gain' in SQ52206.
 
-This is not quite correct. macb first uses
-of_get_ethdev_address()->of_get_mac_address() which looks for DT
-properties:
+v5->v6:add content to meet the update requirements of the ina2xx.yaml
 
-	ret = of_get_mac_addr(np, "mac-address", addr);
-	if (!ret)
-		return 0;
+ Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-	ret = of_get_mac_addr(np, "local-mac-address", addr);
-	if (!ret)
-		return 0;
+diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+index bc03781342c0..8cd672e6bf62 100644
+--- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
++++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+@@ -19,6 +19,7 @@ description: |
+ properties:
+   compatible:
+     enum:
++      - silergy,sq52206
+       - silergy,sy24655
+       - ti,ina209
+       - ti,ina219
+@@ -58,6 +59,9 @@ properties:
+       shunt voltage, and a value of 4 maps to ADCRANGE=0 such that a wider
+       voltage range is used.
+ 
++      For SQ52206,the shunt-gain value 1 mapps to ADCRANGE=10/11, the value 2
++      mapps to ADCRANGE=01, and the value 4 mapps to ADCRANGE=00.
++
+       The default value is device dependent, and is defined by the reset value
+       of PGA/ADCRANGE in the respective configuration registers.
+     $ref: /schemas/types.yaml#/definitions/uint32
+@@ -97,6 +101,7 @@ allOf:
+         compatible:
+           contains:
+             enum:
++              - silergy,sy24655
+               - silergy,sy24655
+               - ti,ina209
+               - ti,ina219
+-- 
+2.17.1
 
-	ret = of_get_mac_addr(np, "address", addr);
-	if (!ret)
-		return 0;
-
-And then it looks in nvram.
-
-	return of_get_mac_address_nvmem(np, addr);
-
-If they all fail, it uses macb_get_hwaddr() which looks in 4 different
-locations within the macb register set.
-
-Then lastly it uses a random MAC address.
-
-So with your proposed change, anybody using the curiosity board and
-this last mechanism to set the MAC address sees a change in behaviour,
-it will start using nvram instead. You should at least document this,
-and if possible, argue that nobody is using this last mechanism
-because ....
-
-	Andrew
 
