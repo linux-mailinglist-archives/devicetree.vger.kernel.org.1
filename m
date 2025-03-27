@@ -1,101 +1,170 @@
-Return-Path: <devicetree+bounces-161112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68034A72930
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 04:27:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4E22A7296D
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 05:13:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6C93189E9F3
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 03:26:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C4BF0188E19F
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 04:13:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D61451DE89D;
-	Thu, 27 Mar 2025 03:24:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81236192D8A;
+	Thu, 27 Mar 2025 04:12:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PDsXEgSJ"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="o5W243hy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A87B81B415F;
-	Thu, 27 Mar 2025 03:24:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 471F9C2C8;
+	Thu, 27 Mar 2025 04:12:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743045859; cv=none; b=sVhWoN5DlmUOVZRSKz2TBQANrAPAwLDwKS+z7lN3VzZYndbHArs4BYJ2Oe78Me3+0osJ4v9Gzm+5V1hckr15K4Ji+CR6BCsJLKwMMyWG6o/tE77kVLwT5HIQUNvnh237r5p1/1ZUpbXIINTTEwuqV+QpA9WLUm5urZ4iDPV/v58=
+	t=1743048775; cv=none; b=TAfM+XA4NdoXysTYjVf+kAgUq6KPAmBe0Z4jW0UqhJapFQ1V3q9cu656SqXQec9UUZ3Li7omG7iK6PEZhbkWJexoVucwSH0R1qvnV6fru00bkLzOA+j6ccJq/P/HEOvVgHAWp5+3KECzsMsmp4XcZ20MWgT0BAwrAerpvYEZCeo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743045859; c=relaxed/simple;
-	bh=q3uWifr4a1+xayQ552RxBKHFkKXY6qRWxXi9pE7LfJU=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=YBmgtx/kUvfrSwm8pLwWcStEeDmuxOPF3BozyaEjLrWb0kD05zvX/12f2/nd1NJKRG002BNvd4wlpWa6lFx724Yd/XvXhGlYempRZA7B2qDd+0+NwgqSjbQiw76etQoDM/bl0bfolg2hZByuB68RndTIgaCrCV5snDscNQ2WJpM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PDsXEgSJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 246B7C4CEEE;
-	Thu, 27 Mar 2025 03:24:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743045859;
-	bh=q3uWifr4a1+xayQ552RxBKHFkKXY6qRWxXi9pE7LfJU=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=PDsXEgSJtwj2Mjih1sDwHOgHBXgkOYVF5IktBUYPID/1O5spP9khhBIse1WWrNRYX
-	 ACd4JKcnyVJzlJcfxeSvGiaJkg7qg8OZm23pgLgMPZ2cMacrA2uvjRzUJ5T9IAfMMX
-	 L1x10rDBc5YD6M1cW79yqRmqEVYp/DBGPHLkCiWnHeKEcTFyUOzRheqK40Gp0EoZtZ
-	 4+/glFMR87VfU2Yvj85UesipsHEkd/Pf/WKTSXfinMwweomFXYfuq7XDIOQFHudwoa
-	 IN7/fqY8tS3c5Vck4bm3p+XPCUZwxk57BSFz3BHr5vHkr4XSdkLqVk9T5jj05CK2A2
-	 Cjy5KLfcGX6cw==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id ADD60380AAFD;
-	Thu, 27 Mar 2025 03:24:56 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1743048775; c=relaxed/simple;
+	bh=JmCZSUbNWMfIFUh6Av6OLQn87rP1uQlH7td6P0E7CEs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ItkOgtePFRtvnIS3WWGl6hlJ2xmfj9zenLMCPz0/C/ndclsWLhWdK7j7ocQxOAnWR2MF/NoqU4PnNsyjvBiY8d69Mgr0EwH40EeNnUibcakfU2qScyYj/4oJPbF/Dyyo4tlbKp4mv3FYIVyg1y3+EdxwtQwA0pAZYy72rpThTpY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=o5W243hy; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52R4CgO72377169
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 26 Mar 2025 23:12:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1743048762;
+	bh=QTcUvUKbScEe+aC02fC8wk+Yibgrocm6jZqJKvio2YM=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=o5W243hy9wtXdmPurOWIA15/QglK5GrnUCVZ43J+FL+RcULEpBWXXXckZfDfl6cs9
+	 9Z0B2cd3CjqNfyAhXIIgFvEbpWjw35HZMFHMEasivGG5WU8dzPrxFDhduDWp+qvSpb
+	 tY16gxj1F9yvWYHhuJD/ggqG4iW2ioFEQY4EpprQ=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 52R4CgUQ033117
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 26 Mar 2025 23:12:42 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 26
+ Mar 2025 23:12:42 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 26 Mar 2025 23:12:41 -0500
+Received: from [10.24.69.37] (a0497641-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [10.24.69.37] (may be forged))
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52R4CcVx045056;
+	Wed, 26 Mar 2025 23:12:39 -0500
+Message-ID: <bd7bee62-38fd-412b-a2d4-611890238e9e@ti.com>
+Date: Thu, 27 Mar 2025 09:42:38 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v3 0/3] riscv: Add bfloat16 instruction support
-From: patchwork-bot+linux-riscv@kernel.org
-Message-Id: 
- <174304589524.1549280.4582301504340621621.git-patchwork-notify@kernel.org>
-Date: Thu, 27 Mar 2025 03:24:55 +0000
-References: <20241206055829.1059293-1-inochiama@gmail.com>
-In-Reply-To: <20241206055829.1059293-1-inochiama@gmail.com>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: linux-riscv@lists.infradead.org, unicorn_wang@outlook.com, corbet@lwn.net,
- paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- cleger@rivosinc.com, evan@rivosinc.com, charlie@rivosinc.com,
- ajones@ventanamicro.com, jesse@rivosinc.com, andybnac@gmail.com,
- alexghiti@rivosinc.com, samuel.holland@sifive.com, yongxuan.wang@sifive.com,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, dlan@gentoo.org, looong.bin@gmail.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: misc: bist: Add BIST dt-binding for TI
+ K3 devices
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>
+References: <20241128140825.263216-1-n-francis@ti.com>
+ <20241128140825.263216-2-n-francis@ti.com>
+ <ho7ktcnbtl7mvamfthqho23co2fc4z7bgjha7pu4wivxm6ndhu@tfbpveonhckz>
+ <837d329b-bcdd-4c3b-b508-e916b110ce25@ti.com>
+ <e57dfc3e-b702-4803-b776-20c6dbd98fef@kernel.org>
+ <8e58b093-1c64-45b9-a9d3-9835a3bbc4fd@ti.com>
+ <1da4e402-62f3-4bad-9129-1f5a08148987@kernel.org>
+ <f39d80fc-3600-4c2c-b09c-980288f86fa2@ti.com>
+ <a2397c92-2884-4f4d-b036-808208892af5@kernel.org>
+Content-Language: en-US
+From: Neha Malcom Francis <n-francis@ti.com>
+In-Reply-To: <a2397c92-2884-4f4d-b036-808208892af5@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hello:
-
-This series was applied to riscv/linux.git (for-next)
-by Alexandre Ghiti <alexghiti@rivosinc.com>:
-
-On Fri,  6 Dec 2024 13:58:26 +0800 you wrote:
-> Add description for the BFloat16 precision Floating-Point ISA extension,
-> (Zfbfmin, Zvfbfmin, Zvfbfwma). which was ratified in commit 4dc23d62
-> ("Added Chapter title to BF16") of the riscv-isa-manual.
+On 24/03/25 12:53, Krzysztof Kozlowski wrote:
+> On 19/03/2025 10:02, Neha Malcom Francis wrote:
+>> Hi Krzysztof,
+>>
+>> On 19/03/25 13:16, Krzysztof Kozlowski wrote:
+>>> On 13/03/2025 12:14, Neha Malcom Francis wrote:
+>>>> Hi Krzysztof
+>>>>
+>>>> On 29/11/24 14:45, Krzysztof Kozlowski wrote:
+>>>>> On 29/11/2024 08:43, Neha Malcom Francis wrote:
+>>>>>>>> +
+>>>>>>>> +  power-domains:
+>>>>>>>> +    maxItems: 1
+>>>>>>>> +
+>>>>>>>> +  ti,bist-instance:
+>>>>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>>>>>> +    description:
+>>>>>>>> +      the BIST instance in the SoC represented as an integer
+>>>>>>>
+>>>>>>> No instance indices are allowed. Drop.
+>>>>>>>
+>>>>>>
+>>>>>> Question on this, this is not a property that is driven by software but rather 
+>>>>>> indicates which register sequences have to be picked up for triggering this test 
+>>>>>> from this instance. So I don't see how I can workaround this without getting 
+>>>>>> this number. Or maybe call it ID rather than instance?
+>>>>>
+>>>>> I don't understand how the device operates, so what is exactly behind
+>>>>> some sequences of registers for triggering this test. You described
+>>>>> property as index or ID of one instance of the block. That's not what we
+>>>>> want in the binding. That's said maybe other, different hardware
+>>>>> characteristic is behind, who knows. Or maybe it's about callers... or
+>>>>> maybe that's not hardware property at all, but runtime OS, who knows.
+>>>>>
+>>>>
+>>>> Sorry for such a late reply, but I was hoping to get more details on
+>>>> this "ID" and never got back to the thread...
+>>>>
+>>>> The best way I can describe is this device (BIST) runs a safety
+>>>> diagnostic test on a bunch of processors/blocks (let's call them
+>>>> targets). There's a mapping between the instance of this device and the
+>>>> targets it will run the test. This ID was essentially letting the BIST
+>>>> driver know which are these targets.
+>>>
+>>>
+>>> So you want to configure some target? Then this is your property. If you
+>>> want to configure 'foo' difference in DT, you do not write 'bar'...
+>>>
+>>
+>> So the difficulty in doing this is, what I mentioned in the earlier
+>> email just copying it over again:
+>>
+>> "Yet another way would be the BIST points out the targets it controls via
+>> their phandles in its node... but this approach would trigger the probe
 > 
-> Changed from v2:
-> 1. rebase for v6.13-rc1
+> No, it would not. Which part of OF kernel code causes probe ordering
+> (device links) if some random phandle appears?
+
+Going through device links now, I realize I may have come to the wrong
+conclusion while writing the driver. Let me try to respin the driver
+using this approach then post which I will resume this series.
+
 > 
-> [...]
+>> of these targets before the test runs on them. And in hardware, the test
+>> must run only one before the device is used, else we see indefinite
+>> behavior."
+>>
+>> Property that has a list of strings (targets) instead of phandles maybe?
+>> Would that be acceptable?
+> 
+> 
+> 
+> Best regards,
+> Krzysztof
 
-Here is the summary with links:
-  - [v3,1/3] dt-bindings: riscv: add bfloat16 ISA extension description
-    https://git.kernel.org/riscv/c/35bc1883733c
-  - [v3,2/3] riscv: add ISA extension parsing for bfloat16 ISA extension
-    (no matching commit)
-  - [v3,3/3] riscv: hwprobe: export bfloat16 ISA extension
-    https://git.kernel.org/riscv/c/a4863e002cf0
-
-You are awesome, thank you!
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+Thanking You
+Neha Malcom Francis
 
