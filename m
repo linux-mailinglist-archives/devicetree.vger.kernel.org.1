@@ -1,157 +1,232 @@
-Return-Path: <devicetree+bounces-161195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12092A72D37
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 11:01:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6457A72D49
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 11:04:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 414F6167345
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 09:58:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 552DD1888BCE
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 10:04:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C53B520E005;
-	Thu, 27 Mar 2025 09:58:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3095A20E01C;
+	Thu, 27 Mar 2025 10:03:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="kG+/ZIg7"
+	dkim=pass (1024-bit key) header.d=amazon.de header.i=@amazon.de header.b="twVegJQU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+Received: from smtp-fw-2101.amazon.com (smtp-fw-2101.amazon.com [72.21.196.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09BAB20D4FE
-	for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 09:58:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0F0D20D4FF;
+	Thu, 27 Mar 2025 10:03:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=72.21.196.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743069489; cv=none; b=KtWCASXaMPJnxsrjLXIiQa9cWKpzit30SAD/pHa9IeMIQLB3rnG2/d1s0uv5E0tRZ7X5LEBwPhJn2GpLhKR7QAsiAup/ZW2LmBRT9reulIcLMqY0XSfB7r4v9/EHTFgFmaLBFwQAodizTH/I6Stom/pBrNXoBiVFwo79PpqYQzU=
+	t=1743069814; cv=none; b=THCNmePN+vPpLOXiqZqaNZ+RkL4X+ojKTuxCscHtVQYMqIlOZf0rN47WH5K7u/nCmUaEA/zrP0h3puwU6tZE50ECrL5XJ/ckkoG0JXHSiNBDXfCWDBQXU5eftvG0Ve20Mz99inpI8e5tDcJzwRo/PdNmtZJCR1IBD7Ry1WUomSM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743069489; c=relaxed/simple;
-	bh=p3JC4yQhrsYhpFs8EKo57zPThjeS/Gbcpw5YS1QEuI4=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=agd4yhl4vVtz/QElR0wXrWq0eesRA/N4g+cJLyAXj1OvUPL/7I0rHWjEhcNMZExsav+fOFeqCpVLIsDK9F97xoWyF0aXZ6K9gBLIDJnSCFDXSJwHk9X80LSjHAbOlFNB+PW8WhMBWzk9AKmOs7k4fhtFQKRJqpn4/1YSiTD1zMM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=kG+/ZIg7; arc=none smtp.client-ip=185.125.188.122
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-oo1-f70.google.com (mail-oo1-f70.google.com [209.85.161.70])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 3E6263FE2B
-	for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 09:52:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1743069163;
-	bh=B77IjrCuB6vIebp/9p2+ET8GiOtyI9dx9sa72qBo+cs=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=kG+/ZIg7s24EVWtPf3XKfIm1jil8ZtsoxNK+5eOD3TiO9Azs91VwzGnDa2JAryzJT
-	 aQRTtLfhl0aH63EH33ByxYyb4PL+IFhWiklxIRumORZaDk2Pll1Gx4hpRPGpP6y8vN
-	 ObLPwb2bB4sFnrum/fkCDPbsgTkVYv3C+dHb8/DU6XUHJvLyvug3ElJ3BEzyRjv4Ui
-	 //FJOeAHqky3Oj/0gCFz4GEeQJ0I+ANtUdirkL6XAr9F1PEg1qVnsB2vQsd4oDmx46
-	 3GdRSTc8OWFSoT+l2ik7c6YqoIWz4zxrg8nbcLcLkdE4qNg/nm6kO4CxdxUDXXpK9P
-	 yYWo5Ao9qSxFg==
-Received: by mail-oo1-f70.google.com with SMTP id 006d021491bc7-5fa359ec475so649595eaf.1
-        for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 02:52:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743069161; x=1743673961;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=B77IjrCuB6vIebp/9p2+ET8GiOtyI9dx9sa72qBo+cs=;
-        b=nAAAtrEJ1iXbG3qrihaBq3xFo23+NrhKCBDFfz+8YNLv0GB5535INNlRcqo982XzCJ
-         TfiPSQlFPiHM6sumaB0YzpFCNR3TkojsikaBQeve3ze0QTHj8SfaJHZt6j3tqePsHOGW
-         8hFZ2jOVnScfLPgB7LsId4oM1n6nDP9X2sreWBrCm4gu2C+hf0XZ4yuFTN7CHbpEL/dK
-         KABXrZGu7S1lVrRa5jT5eZ3PDGhRp+DuAKzI7V2diyY59F/2bCL8aF2pH9ePd5YP6+68
-         gN9IQw0wyutCnNDEvNVSPSqIZqxh7okWAKQjEvZyA236P1o6NPyLh71Etj0a2UfkKYBV
-         M/+w==
-X-Forwarded-Encrypted: i=1; AJvYcCW/yWZddutBB43+IEwKpTAG+O6yCGS/vrbnKCpLw/fc5QKIa86L88k8ETmlmu6pdk6xFKcIxjjOF8eH@vger.kernel.org
-X-Gm-Message-State: AOJu0YzsJdTjsj5toyYsgh+stuWAc0EK+iIp53PafRKos9d8Eh2Lqepm
-	a88ihJVavDq5h2aNgGVfpme+EUrPSqYD7kl3q5Qcu+eJx+Np+STviTlYQ1q0JFdkdyVDE1Icuwl
-	LjPOWDWTldZbiogKLfTpkjyhnQSTgQ/fLVYHckEyuNmXgTzesCWdaiYteeoxZ8dbk/6v6yvGkGH
-	KxHIpXfB/wjazfKU5VbAbZt6I4zajqM7LNN6wZJU+jRV5NWrNufg==
-X-Gm-Gg: ASbGncvImpf0g7qXsn2tgvQwG2biffzBnJTWXMjQRJxN8LSE4JMgx/AI8rLw1yVHi6Z
-	Ok4zErkD0r1VyA7AYpYOYKj3c/wLxzKZbG71AK4l+GJg9QhhMQ5rBOPKzrLU6QdByahuVTkY2
-X-Received: by 2002:a05:6870:d24f:b0:2c1:504f:42ed with SMTP id 586e51a60fabf-2c84819f95bmr1979686fac.29.1743069161495;
-        Thu, 27 Mar 2025 02:52:41 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE83awQwNx+dMBWzJP2MzicfAHDKESqCJA4TNMWkSjbXkwlUAjf18/JZSrbIX0oCS21SczuNPt9Cl5/K55Brwg=
-X-Received: by 2002:a05:6870:d24f:b0:2c1:504f:42ed with SMTP id
- 586e51a60fabf-2c84819f95bmr1979649fac.29.1743069161029; Thu, 27 Mar 2025
- 02:52:41 -0700 (PDT)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 27 Mar 2025 02:52:40 -0700
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 27 Mar 2025 02:52:40 -0700
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <CH3PR04MB89282DDB25C289C34581DC0083A62@CH3PR04MB8928.namprd04.prod.outlook.com>
-References: <20250320105449.2094192-1-pinkesh.vaghela@einfochips.com>
- <20250320105449.2094192-10-pinkesh.vaghela@einfochips.com>
- <CAJM55Z-LUoeh0pSDnPKpduub_UBOPeg4g3t20JA0GBosJKuiAQ@mail.gmail.com> <CH3PR04MB89282DDB25C289C34581DC0083A62@CH3PR04MB8928.namprd04.prod.outlook.com>
+	s=arc-20240116; t=1743069814; c=relaxed/simple;
+	bh=7q5G2oViNC8w2MREEd4XQqxGVKMOap7GRu6dwYLtn00=;
+	h=From:To:CC:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=mLjF+2w6zieS+V4jDY+WciGwdOJB5IHmBnoH4f7BUrcfhpSvx73N1OtTQS+pxnzLqEldC3ZOtslYqzeb2Y0PWQfuXyjvINGTbyM83MUP7223F06ugU81VmiBhmJZqECUL2tp0IemaS3RvRY+++PW4D2viSf+2CWHV9YOMCnmX6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.de; spf=pass smtp.mailfrom=amazon.de; dkim=pass (1024-bit key) header.d=amazon.de header.i=@amazon.de header.b=twVegJQU; arc=none smtp.client-ip=72.21.196.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.de; i=@amazon.de; q=dns/txt; s=amazon201209;
+  t=1743069812; x=1774605812;
+  h=from:to:cc:subject:in-reply-to:references:date:
+   message-id:mime-version;
+  bh=1AYkt3UZmdT/puNZc9A2b9Jl693S9yxUDwwUM5aOO5U=;
+  b=twVegJQUoej3d4SkcwksHir7lQyumsz06QrC52opt6xIMCyN8XPvhLr+
+   Bi3T7blowFdmaEkePXyFVWf4+z0CCXlrG7IIlOA3io/Bc/mUCeZgfcXy7
+   qwE3OTztYs8qI1sLIuUwTqUD6l4ILLOFA1Tn9ucEBNkPz9c3wtbXor67D
+   w=;
+X-IronPort-AV: E=Sophos;i="6.14,280,1736812800"; 
+   d="scan'208";a="478704841"
+Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev) ([10.43.8.6])
+  by smtp-border-fw-2101.iad2.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Mar 2025 10:03:26 +0000
+Received: from EX19MTAUWA002.ant.amazon.com [10.0.7.35:25558]
+ by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.26.232:2525] with esmtp (Farcaster)
+ id a4642778-ac88-44ce-8afd-012d72d51f0e; Thu, 27 Mar 2025 10:03:25 +0000 (UTC)
+X-Farcaster-Flow-ID: a4642778-ac88-44ce-8afd-012d72d51f0e
+Received: from EX19D020UWA002.ant.amazon.com (10.13.138.222) by
+ EX19MTAUWA002.ant.amazon.com (10.250.64.202) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1544.14;
+ Thu, 27 Mar 2025 10:03:18 +0000
+Received: from EX19MTAUWC001.ant.amazon.com (10.250.64.145) by
+ EX19D020UWA002.ant.amazon.com (10.13.138.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1544.14;
+ Thu, 27 Mar 2025 10:03:18 +0000
+Received: from email-imr-corp-prod-iad-all-1b-af42e9ba.us-east-1.amazon.com
+ (10.25.36.210) by mail-relay.amazon.com (10.250.64.145) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id
+ 15.2.1544.14 via Frontend Transport; Thu, 27 Mar 2025 10:03:18 +0000
+Received: from dev-dsk-ptyadav-1c-43206220.eu-west-1.amazon.com (dev-dsk-ptyadav-1c-43206220.eu-west-1.amazon.com [172.19.91.144])
+	by email-imr-corp-prod-iad-all-1b-af42e9ba.us-east-1.amazon.com (Postfix) with ESMTP id BE3CE40570;
+	Thu, 27 Mar 2025 10:03:17 +0000 (UTC)
+Received: by dev-dsk-ptyadav-1c-43206220.eu-west-1.amazon.com (Postfix, from userid 23027615)
+	id 7A8925228; Thu, 27 Mar 2025 10:03:17 +0000 (UTC)
+From: Pratyush Yadav <ptyadav@amazon.de>
+To: Changyuan Lyu <changyuanl@google.com>
+CC: <linux-kernel@vger.kernel.org>, <graf@amazon.com>,
+	<akpm@linux-foundation.org>, <luto@kernel.org>, <anthony.yznaga@oracle.com>,
+	<arnd@arndb.de>, <ashish.kalra@amd.com>, <benh@kernel.crashing.org>,
+	<bp@alien8.de>, <catalin.marinas@arm.com>, <dave.hansen@linux.intel.com>,
+	<dwmw2@infradead.org>, <ebiederm@xmission.com>, <mingo@redhat.com>,
+	<jgowans@amazon.com>, <corbet@lwn.net>, <krzk@kernel.org>, <rppt@kernel.org>,
+	<mark.rutland@arm.com>, <pbonzini@redhat.com>, <pasha.tatashin@soleen.com>,
+	<hpa@zytor.com>, <peterz@infradead.org>, <robh+dt@kernel.org>,
+	<robh@kernel.org>, <saravanak@google.com>,
+	<skinsburskii@linux.microsoft.com>, <rostedt@goodmis.org>,
+	<tglx@linutronix.de>, <thomas.lendacky@amd.com>, <usama.arif@bytedance.com>,
+	<will@kernel.org>, <devicetree@vger.kernel.org>, <kexec@lists.infradead.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-doc@vger.kernel.org>,
+	<linux-mm@kvack.org>, <x86@kernel.org>, Jason Gunthorpe <jgg@nvidia.com>
+Subject: Re: [PATCH v5 09/16] kexec: enable KHO support for memory preservation
+In-Reply-To: <20250320015551.2157511-10-changyuanl@google.com>
+References: <20250320015551.2157511-1-changyuanl@google.com>
+	<20250320015551.2157511-10-changyuanl@google.com>
+Date: Thu, 27 Mar 2025 10:03:17 +0000
+Message-ID: <mafs0y0wqrdsq.fsf@amazon.de>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Thu, 27 Mar 2025 02:52:40 -0700
-X-Gm-Features: AQ5f1JqCbdx_VNT37OdJPVr3F0efA0rT47C_sey_CmVIAYSwd2z2XmZaZ3-bc1k
-Message-ID: <CAJM55Z9=0sxXiC20OEe=W0E5S_jHd6JW+7SWvW5JFiu4vpr=nQ@mail.gmail.com>
-Subject: Re: [PATCH v2 09/10] riscv: dts: add initial support for EIC7700 SoC
-To: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>, 
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>, Conor Dooley <conor@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Thomas Gleixner <tglx@linutronix.de>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>, Samuel Holland <samuel.holland@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Min Lin <linmin@eswincomputing.com>, 
-	Pritesh Patel <pritesh.patel@einfochips.com>, Yangyu Chen <cyy@cyyself.name>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Yu Chien Peter Lin <peterlin@andestech.com>, Charlie Jenkins <charlie@rivosinc.com>, 
-	Kanak Shilledar <kanakshilledar@gmail.com>, 
-	Darshan Prajapati <darshan.prajapati@einfochips.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Heiko Stuebner <heiko@sntech.de>, 
-	Aradhya Bhatia <a-bhatia1@ti.com>, "rafal@milecki.pl" <rafal@milecki.pl>, Anup Patel <anup@brainfault.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: text/plain
 
-Pinkesh Vaghela wrote:
-> >
-> > Hi Pinkesh,
-> >
-> > Thank your for the patches!
-> >
-> > Should this not be marked dma-noncoherent to avoid having to mark each
-> > peripheral as such?
->
-> Thanks for your feedback.
->
-> We have not added "dma-noncoherent" because there are no DMA-capable
-> peripherals in the devicetree yet.
-> We planned to add this later when we add any DMA capable devices
-> i.e. sdhci, gmac, sata, pcie, spi.
->
-> Do you recommend to add this property in current version?
+Hi Changyuan,
 
-Yeah, Conor also answered this already.
+On Wed, Mar 19 2025, Changyuan Lyu wrote:
 
-> > > +             gpio@51600000 {
-> > > +                     compatible = "snps,dw-apb-gpio";
-> > > +                     reg = <0x0 0x51600000 0x0 0x80>;
-> > > +                     #address-cells = <1>;
-> > > +                     #size-cells = <0>;
-> > > +
-> > > +                     porta: gpio-port@0 {
-> >
-> > Maybe these labels could be something like gpioA, gpioB, etc. to not be
-> > confused with an HDMI port fx.
+> From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
 >
-> The gpio node labels are based on the example provided in
-> "snps,dw-apb-gpio.yaml" dt-binding and other dtsi.
+> Introduce APIs allowing KHO users to preserve memory across kexec and
+> get access to that memory after boot of the kexeced kernel
 >
-> Could you clarify more on how these labels cause confusion with HDMI
-> port as I don't see any example for HDMI port using name as porta, portb?
+> kho_preserve_folio() - record a folio to be preserved over kexec
+> kho_restore_folio() - recreates the folio from the preserved memory
+> kho_preserve_phys() - record physically contiguous range to be
+> preserved over kexec.
+> kho_restore_phys() - recreates order-0 pages corresponding to the
+> preserved physical range
+>
+> The memory preservations are tracked by two levels of xarrays to manage
+> chunks of per-order 512 byte bitmaps. For instance the entire 1G order
+> of a 1TB x86 system would fit inside a single 512 byte bitmap. For
+> order 0 allocations each bitmap will cover 16M of address space. Thus,
+> for 16G of memory at most 512K of bitmap memory will be needed for order 0.
+>
+> At serialization time all bitmaps are recorded in a linked list of pages
+> for the next kernel to process and the physical address of the list is
+> recorded in KHO FDT.
 
-Sure. Try git grep 'port.*:' -- '*.dts*' and you'll see that "port" labels are
-used for many things that aren't GPIOs. It'll be a lot easier to scan through
-the device tree and see what <&gpioA 27 0> references.
+Why build the xarray only to transform it down to bitmaps when you can
+build the bitmaps from the get go? This would end up wasting both time
+and memory. At least from this patch, I don't really see much else being
+done with the xarray apart from setting bits in the bitmap.
 
-/Emil
+Of course, with the current linked list structure, this cannot work. But
+I don't see why we need to have it. I think having a page-table like
+structure would be better -- only instead of having PTEs at the lowest
+levels, you have the bitmap.
+
+Just like page tables, each table is page-size. So each page at the
+lowest level can have 4k * 8 == 32768 bits. This maps to 128 MiB of 4k
+pages. The next level will be pointers to the level 1 table, just like
+in page tables. So we get 4096 / 8 == 512 pointers. Each level 2 table
+maps to 64 GiB of memory. Similarly, level 3 table maps to 32 TiB and
+level 4 to 16 PiB.
+
+Now, __kho_preserve() can just find or allocate the table entry for the
+PFN and set its bit. Similar work has to be done when doing the xarray
+access as well, so this should have roughly the same performance. When
+doing KHO, we just need to record the base address of the table and we
+are done. This saves us from doing the expensive copying/transformation
+of data in the critical path.
+
+I don't see any obvious downsides compared to the current format. The
+serialized state might end up taking slightly more memory due to upper
+level tables, but it should still be much less than having two
+representations of the same information exist simultaneously.
+
+>
+> The next kernel then processes that list, reserves the memory ranges and
+> later, when a user requests a folio or a physical range, KHO restores
+> corresponding memory map entries.
+>
+> Suggested-by: Jason Gunthorpe <jgg@nvidia.com>
+> Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+> Co-developed-by: Changyuan Lyu <changyuanl@google.com>
+> Signed-off-by: Changyuan Lyu <changyuanl@google.com>
+[...]
+> +static void deserialize_bitmap(unsigned int order,
+> +			       struct khoser_mem_bitmap_ptr *elm)
+> +{
+> +	struct kho_mem_phys_bits *bitmap = KHOSER_LOAD_PTR(elm->bitmap);
+> +	unsigned long bit;
+> +
+> +	for_each_set_bit(bit, bitmap->preserve, PRESERVE_BITS) {
+> +		int sz = 1 << (order + PAGE_SHIFT);
+> +		phys_addr_t phys =
+> +			elm->phys_start + (bit << (order + PAGE_SHIFT));
+> +		struct page *page = phys_to_page(phys);
+> +
+> +		memblock_reserve(phys, sz);
+> +		memblock_reserved_mark_noinit(phys, sz);
+
+Why waste time and memory building the reserved ranges? We already have
+all the information in the serialized bitmaps, and memblock is already
+only allocating from scratch. So we should not need this at all, and
+instead simply skip these pages in memblock_free_pages(). With the
+page-table like format I mentioned above, this should be very easy since
+you can find out whether a page is reserved or not in O(1) time.
+
+> +		page->private = order;
+> +	}
+> +}
+> +
+> +static void __init kho_mem_deserialize(void)
+> +{
+> +	struct khoser_mem_chunk *chunk;
+> +	struct kho_in_node preserved_mem;
+> +	const phys_addr_t *mem;
+> +	int err;
+> +	u32 len;
+> +
+> +	err = kho_get_node(NULL, "preserved-memory", &preserved_mem);
+> +	if (err) {
+> +		pr_err("no preserved-memory node: %d\n", err);
+> +		return;
+> +	}
+> +
+> +	mem = kho_get_prop(&preserved_mem, "metadata", &len);
+> +	if (!mem || len != sizeof(*mem)) {
+> +		pr_err("failed to get preserved memory bitmaps\n");
+> +		return;
+> +	}
+> +
+> +	chunk = *mem ? phys_to_virt(*mem) : NULL;
+> +	while (chunk) {
+> +		unsigned int i;
+> +
+> +		memblock_reserve(virt_to_phys(chunk), sizeof(*chunk));
+> +
+> +		for (i = 0; i != chunk->hdr.num_elms; i++)
+> +			deserialize_bitmap(chunk->hdr.order,
+> +					   &chunk->bitmaps[i]);
+> +		chunk = KHOSER_LOAD_PTR(chunk->hdr.next);
+> +	}
+> +}
+> +
+>  /* Helper functions for KHO state tree */
+>  
+>  struct kho_prop {
+[...]
+
+-- 
+Regards,
+Pratyush Yadav
 
