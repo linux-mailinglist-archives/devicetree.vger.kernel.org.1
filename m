@@ -1,134 +1,128 @@
-Return-Path: <devicetree+bounces-161092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06D3BA727A2
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 01:03:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9522DA72836
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 02:47:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1D75189BF89
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 00:03:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2557317803C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 01:47:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5200366;
-	Thu, 27 Mar 2025 00:03:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDB432556E;
+	Thu, 27 Mar 2025 01:47:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vL+NKwqp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s0+5etIV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A74152114;
-	Thu, 27 Mar 2025 00:03:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE5582E3392;
+	Thu, 27 Mar 2025 01:47:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743033790; cv=none; b=SHE3uGmfsJGcnZ0irax4375NSHtGBAx4QMbvc2GKrvqWvFz29trsfYDQ6zh+L5zS27/55rcOd4wej8jcK/xmLPySCKNk5ScA0rxEKbrJb9y4r2X1CwPhWFQRWlp+cHhLPIhdaXFeEwzRmq1QRYTzqic3W6mwZXdZerRRDrCoUnQ=
+	t=1743040033; cv=none; b=GKITAmLqtutvQnj8NjQ/qEdurr7GDY1Fri+QFgxRhm7qnI8e6zmSDDrSJeo7wyHRWEkMGiuI9mBXrkeojjCzNObPgD9dckQtp05X+FeGou0XYrxORH5UVHNzh5+cEb4M5fOZKhZnjkGFh8QZRSkuENz+3IwE+nYPgB+VzMk7JVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743033790; c=relaxed/simple;
-	bh=CCjSPDZVo2hoLF4g6LePOKhEhcRY89Xy5MCm450/MOU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mGjvi71tfcSCvviMv6nessEEMLWpY8bKKnQK38bGpia2t7OFsvxkJnZcfMtvjJMZ5Jp/WNMsSnj4HMUp+ubRfETsVhWqJHxsx6bpN0ohZEUjESERiXnzmoEk85XUGXZKrKkbE1vxqHz8Gb2RFnmzKMpboFzIkAGWVYiCcZ54CII=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vL+NKwqp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EF98C4CEE2;
-	Thu, 27 Mar 2025 00:03:10 +0000 (UTC)
+	s=arc-20240116; t=1743040033; c=relaxed/simple;
+	bh=gDv4EjDZM6idD7UsAdcbUpvFhV6136B9/fnEJQhqUsk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=A1QEzLA91rWcqJv4Ntgmq/LOqAO+GL0fmztZ1jt5Q6mP+ulLqfVaTFXZbaMM8tZJeAhBKbZLht9A7/hf5ZKobCEUY42X8Scjli/3Kv72Vafw9JJ6RHmbXfEqUvn3tNA7WQ627l6bxqoO1jwjKn895pOFw/UhHAQQVhSWlscycX4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s0+5etIV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A10C4C4CEE2;
+	Thu, 27 Mar 2025 01:47:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743033790;
-	bh=CCjSPDZVo2hoLF4g6LePOKhEhcRY89Xy5MCm450/MOU=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=vL+NKwqp8c9HC5c30Q6ri1Y5yuTsi/EpenHjDf9CNMaeXqpxghA8YA6YWhwz1hQ+F
-	 VUWA5uSym/8DTgSLWQImCc80GnbJE3NnA1VWdjal24PqvWRmIOA+gf/9OAo9DRVTRW
-	 3JpAp9PAt7xs7L0tLjRrrvowhdrURlG2LlCwfG/tg/1NGrjUnDxkvAEGYyM3fu6RLx
-	 eIjePamEWaufKTbh1ZSrGZGKhmIlxxiVVLjS89zWUt1kPQy/79qOwHN+ej0psdlae/
-	 tzkFnZyhZjYS/msFoHekHQO90cwrJ+u7NsVP8yS0Xu7SCYrhnD/BlOLShy4MmLa0OC
-	 A/Ffz0TWBl1XA==
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5e5e8274a74so616917a12.1;
-        Wed, 26 Mar 2025 17:03:10 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV2n2u31D6yVidZr7RcImNkQfw0HmVVHa7aiKsQ6HwmexO1b+49n9obxfGrSQ8dBz4N5hOzUZLa3BP4bA==@vger.kernel.org, AJvYcCVcDrf0PJX7ciz8oUIQ1S6BwjMyvmbWYZkV8rj4GQTq7pU1jlwDLziR+7SOK1snnErdgJsRGzHRIR2u0kMF@vger.kernel.org, AJvYcCVkwJdWe+ySZCXd8eloOvyNFIrbCGBgkOD+/ftzjk9mCy9VgWYCVa/tW9ovVkcMqvUqowpVoezGEtJd@vger.kernel.org, AJvYcCWWftW046uoOpveLYzNSAgFTN3Sdt7PItfTjZmHna+HvP1eeLDWtdH8hgJLqaoS1A+mo5K75VPkHaYPU/1Cl3w=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw3U7e55GOL+UndvZdMfZgC12m9LnuqxhgzCgnVjBPNARS6UTdo
-	hfM7bB5u+E+u9FZcJs0Zb/2gex9vwcIf+U0rjL3m3SObMhOK28+ZETQ+T2jZAPFLYDEGu+6/fxA
-	YfI3Z8MYKZBBanSMwHEPjgAOHFw==
-X-Google-Smtp-Source: AGHT+IERzT0kl1LknG2usIHMI1+Lt1VD4s7YUfGbLkTeY7qe+y/QCZpxxzGJSyF5y3Gin8FJCELvt/lRJqwoZFoadfA=
-X-Received: by 2002:a17:907:d89:b0:ac6:d9cb:58c0 with SMTP id
- a640c23a62f3a-ac6fb1a73c2mr107112066b.50.1743033788647; Wed, 26 Mar 2025
- 17:03:08 -0700 (PDT)
+	s=k20201202; t=1743040033;
+	bh=gDv4EjDZM6idD7UsAdcbUpvFhV6136B9/fnEJQhqUsk=;
+	h=From:Subject:Date:To:Cc:From;
+	b=s0+5etIVQarNxjY6XxcXjAvLk2E8KNtbTQNoqXSdwObR1iQZf5MT+NKLhH0KDWA6B
+	 posqysP+dtHziCz+8/R2LRRIbKIYhq3Hq7IMYBmZmVyIwnpXJoR+o9Exu36uHobkk5
+	 d+EM5DyvdDd6yIqbPpUvtiOIKBtvXgALg7FBe57xbIJPa9TdbHs9A/ABldziQL6bMI
+	 Wom4Cv9Y5P0Hf3wD/ak/IE3M2lIODOBROOUe4s6d1UW09uFnTxjS2lE3r7cQro3YgI
+	 H3QK2dFhRof04jIPxIw7FaHD+pM59qno5sMY9YPRRrmokM+2VCUEmSben2w44SOWtc
+	 2esWG5S/EiRGA==
+From: Konrad Dybcio <konradybcio@kernel.org>
+Subject: [PATCH v2 00/12] More more dt-bindings fixes for arm64/qcom
+Date: Thu, 27 Mar 2025 02:47:02 +0100
+Message-Id: <20250327-topic-more_dt_bindings_fixes-v2-0-b763d958545f@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250326171411.590681-1-remo@buenzli.dev> <20250326171411.590681-11-remo@buenzli.dev>
- <20250326220129.GD2844851-robh@kernel.org> <D8QJSRGJIYHS.K4H9W8N8N0YO@buenzli.dev>
-In-Reply-To: <D8QJSRGJIYHS.K4H9W8N8N0YO@buenzli.dev>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 26 Mar 2025 19:02:56 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqK0SH+HTtquxDNvp8jCLwJgg7YJDNQT8h=kHO=nJChk4Q@mail.gmail.com>
-X-Gm-Features: AQ5f1JpETx50vOdiMhHoK95MGuYfdGvgMOPx1IsTpXGdDGU44Po8M857aSNDVHs
-Message-ID: <CAL_JsqK0SH+HTtquxDNvp8jCLwJgg7YJDNQT8h=kHO=nJChk4Q@mail.gmail.com>
-Subject: Re: [PATCH 10/10] samples: rust: platform: Add property read examples
-To: Remo Senekowitsch <remo@buenzli.dev>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Dirk Behme <dirk.behme@de.bosch.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Danilo Krummrich <dakr@kernel.org>, Saravana Kannan <saravanak@google.com>, Miguel Ojeda <ojeda@kernel.org>, 
-	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
-	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, linux-kernel@vger.kernel.org, 
-	linux-acpi@vger.kernel.org, devicetree@vger.kernel.org, 
-	rust-for-linux@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABeu5GcC/42NUQqDMBBEryL73YhJaKv98h5FgiarLtTEZq20i
+ Hdv6gn6M/Bm4M0GjJGQ4ZZtEHElpuATqFMGdmz9gIJcYlCFOhdalmIJM1kxhYjGLaYj78gPbHp
+ 6Iwupr+gkoqp6B0kxRzyGZLg3iUfiJcTP8bbKX/uneJWiELbTl7JU2FbW1oE5f77ahw3TlKeAZ
+ t/3L0R4nCrPAAAA
+X-Change-ID: 20250318-topic-more_dt_bindings_fixes-137ed1ee29fd
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
+ Marc Gonzalez <mgonzalez@freebox.fr>, Dmitry Baryshkov <lumag@kernel.org>, 
+ Arnaud Vrac <avrac@freebox.fr>, Sayali Lokhande <quic_sayalil@quicinc.com>, 
+ Xin Liu <quic_liuxin@quicinc.com>, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1743040027; l=2191;
+ i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
+ bh=gDv4EjDZM6idD7UsAdcbUpvFhV6136B9/fnEJQhqUsk=;
+ b=NAjgN2EiJrO9Og6G7WgxnWmtmD5N/liTfwvC6F4oIdV+UkENC/2TQDL1HVHkgTHLqTCss9EkW
+ 30wbK0NpMU0D5Xnd/Z+jtGiivi9RALXB1Z5b6Pt/NT+gJs1NrXSMpGB
+X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-On Wed, Mar 26, 2025 at 5:24=E2=80=AFPM Remo Senekowitsch <remo@buenzli.dev=
-> wrote:
->
-> On Wed Mar 26, 2025 at 11:01 PM CET, Rob Herring wrote:
-> >>
-> >> +        let prop =3D dev
-> >> +            .property_read::<bool>(c_str!("test,bool-prop"))
-> >> +            .required()?;
-> >
-> > The 'required' is kind of odd for boolean properties. They are never
-> > required as not present is the only way to to get false.
->
-> Agreed. I can think of a few alternatives:
->
-> * Make the trait `Property` more flexible to allow each implementor to sp=
-ecify
->   what its output type for the `read` function is, via an associated type=
-.
->   I really don't like this idea, because overly generic APIs can mess wit=
-h type
->   inference and become less ergonomic because of it.
->
-> * Use `propert_present` instead. That doesn't perfectly express the inten=
-tion,
->   because it doesn't warn if the property is present but has a type other=
- than
->   bool.
+Just some routine stuff, really
 
-Right. I've been cleaning up the tree to use of_property_read_bool()
-on bools and of_property_present() on non-bools, so don't want to go
-back to 1 function. The C code now warns on a mismatch.
+Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+---
+Changes in v2:
+- Iron out the YAML changes (indentation adjustment)
+- Pick up tags
+- Link to v1: https://lore.kernel.org/r/20250318-topic-more_dt_bindings_fixes-v1-0-cb36882ea9cc@oss.qualcomm.com
 
-> * Add an additional inherent method `property_read_bool`, which returns a=
- plain
->   `bool` instead of `PropertyGuard<bool>`. Then there will be three sligh=
-tly
->   different ways to read a bool: `property_present`, `property_read_bool`=
- and
->   `property_read::<bool>`. Maybe that's confusing.
->
-> * Add `property_read_bool` and remove `impl Property for bool`. That woul=
-d avoid
->   confusion between `property_read_bool` and `property_read::<bool>`, onl=
-y the
->   former would work.
+---
+Konrad Dybcio (12):
+      dt-bindings: soc: qcom,rpmh-rsc: Limit power-domains requirement
+      arm64: dts: qcom: sc7180: Add specific APPS RSC compatible
+      arm64: dts: qcom: sdm845: Add specific APPS RSC compatible
+      arm64: dts: qcom: msm8998: Remove mdss_hdmi_phy phandle argument
+      arm64: dts: qcom: qcs615: Remove disallowed property from AOSS_QMP node
+      arm64: dts: qcom: msm8998-fxtec: Add QUSB2PHY VDD supply
+      arm64: dts: qcom: msm8998-mtp: Add QUSB2PHY VDD supply
+      arm64: dts: qcom: msm8998-yoshino: Add QUSB2PHY VDD supply
+      arm64: dts: qcom: sm6350-pdx213: Wire up USB regulators
+      arm64: dts: qcom: msm8996-oneplus: Add SLPI VDD_PX
+      arm64: dts: qcom: sa8775p: Clean up the PSCI PDs
+      arm64: dts: qcom: qcs615: Fix up UFS clocks
 
-I think I would go with this option. Easier to add another way later
-than remove one.
+ .../bindings/soc/qcom/qcom,rpmh-rsc.yaml           | 24 ++++++++++++++++++++--
+ .../boot/dts/qcom/msm8996-oneplus-common.dtsi      |  5 +++++
+ arch/arm64/boot/dts/qcom/msm8996-oneplus3.dts      |  2 ++
+ arch/arm64/boot/dts/qcom/msm8996-oneplus3t.dts     |  2 ++
+ arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts    |  1 +
+ arch/arm64/boot/dts/qcom/msm8998-mtp.dts           |  1 +
+ .../boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi |  1 +
+ arch/arm64/boot/dts/qcom/msm8998.dtsi              |  2 +-
+ arch/arm64/boot/dts/qcom/qcs615.dtsi               | 17 ++++++++-------
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi              |  7 ++++---
+ arch/arm64/boot/dts/qcom/sc7180.dtsi               |  2 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi               |  2 +-
+ .../dts/qcom/sm6350-sony-xperia-lena-pdx213.dts    |  7 +++++++
+ 13 files changed, 56 insertions(+), 17 deletions(-)
+---
+base-commit: c4d4884b67802c41fd67399747165d65c770621a
+change-id: 20250318-topic-more_dt_bindings_fixes-137ed1ee29fd
 
-Rob
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+
 
