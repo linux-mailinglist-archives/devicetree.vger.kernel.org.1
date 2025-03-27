@@ -1,119 +1,134 @@
-Return-Path: <devicetree+bounces-161091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161092-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DB86A7275C
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 00:51:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06D3BA727A2
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 01:03:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F04C817931C
-	for <lists+devicetree@lfdr.de>; Wed, 26 Mar 2025 23:51:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1D75189BF89
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 00:03:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6569C1C8624;
-	Wed, 26 Mar 2025 23:51:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5200366;
+	Thu, 27 Mar 2025 00:03:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fnEbuyR+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vL+NKwqp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AC651C6FE6;
-	Wed, 26 Mar 2025 23:51:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A74152114;
+	Thu, 27 Mar 2025 00:03:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743033104; cv=none; b=jwQhuQnrPKcRMfkn4AoUmeoAXqWsf3Z/gleLaLx6JWIHmyqWltTSrxIPKKCHeRaaWofVpn1clHvRMpeUmvlxHMkuwRyJxRhNvepH94ROssegjmZGK8i7aziJoxSQ9MYbOOR6Xrabp8qsR5I8ZWaznp5U+kazXwiC1rM43In9PlQ=
+	t=1743033790; cv=none; b=SHE3uGmfsJGcnZ0irax4375NSHtGBAx4QMbvc2GKrvqWvFz29trsfYDQ6zh+L5zS27/55rcOd4wej8jcK/xmLPySCKNk5ScA0rxEKbrJb9y4r2X1CwPhWFQRWlp+cHhLPIhdaXFeEwzRmq1QRYTzqic3W6mwZXdZerRRDrCoUnQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743033104; c=relaxed/simple;
-	bh=uA4AdssvpPqQ86j2mMIE0l6Ccwq4JMgcJayRJEXySK0=;
+	s=arc-20240116; t=1743033790; c=relaxed/simple;
+	bh=CCjSPDZVo2hoLF4g6LePOKhEhcRY89Xy5MCm450/MOU=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uu+bPHj+ZQrsi+Aqma/eACW1mBp2FbojMhcRBSmMj8xbHR2y8eajhyJPPNp+74/FTaMAXKhWgLE5acjt29arzwGAv5Zj6HNM28e5qe6YYMXzADDE29NxQ8gi8AMs5iUCcWFPraFs0VRPVxIwibYOtxe3GmMbw77OiJeS9O6UCIU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fnEbuyR+; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-548409cd2a8so490011e87.3;
-        Wed, 26 Mar 2025 16:51:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743033101; x=1743637901; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uA4AdssvpPqQ86j2mMIE0l6Ccwq4JMgcJayRJEXySK0=;
-        b=fnEbuyR+o6vGooi7cdhHEyWsyQU+ZVJfcHn+Q0kcSqw5r9Zg6+tc0nA694vAAqTirX
-         9OlyiWplBm0F61zT6RUYEw3fr9pDJqtgKdocCq5op1pf0cRbj/eEw7MM2xhwIqWMaZqD
-         U8M7T4IhlwLPmXT/DLiApx3Ql3aAEqT5pdJi+AEa3ED5PoUiI80AkA6++HQhlan5/b95
-         VUBSeXp9yIbJuHVcsC0p0M4sKr2RXQ8W8L9eyfO8IAmlAsWf2P+VDsGHpCCBdvi967Fz
-         nwypITS0RcOB8/LH/D8C64K1N+GyfsNKXXPKdzMOVlcKIZKMPKm0UEW8OoScVsnvrOhE
-         KlEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743033101; x=1743637901;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uA4AdssvpPqQ86j2mMIE0l6Ccwq4JMgcJayRJEXySK0=;
-        b=eEvdW4jp7UuQLubZuY3G9JRQO8CollueabVIcszqbHneBRN5NniBqc5czlO1DL0ewg
-         R1AdfblzzbosWExsNSMAUPcWOt/dsIiifdjj6sJyakDU6Gyt+vTdcqaGr3K2EFnz3N3P
-         pYLGI0FOOkzsAUTBqLlf6FQvDZ2PkfbgDcLXE4uYrbNMebx0bwbkim7EKCmEG/X+Uutm
-         dp/0ZiPAq0Z5/D3xLvBVqxO8gEZhQoDFIOHAId1b4VArWO4tQnDQrZsGARO4QQrE74hQ
-         Wtq//9UprIR34vtNS8h8gM99szfLj8gRJ+imjMm49e8+KQeMg+/JLTkza+K9zRrDR674
-         QGdg==
-X-Forwarded-Encrypted: i=1; AJvYcCUXPLsEU6q/gnoe77FWja76j2vyQIhNjZSg3tdeeUEfDSgty/aj40XSRmZ5yYQC7nCmyO3OKL+GOtDghrlL@vger.kernel.org, AJvYcCWdvcjp2OWZ4nR53a9W2JLVGtPc///cII1SqnrxW6Lub7N93EaSuIAZLiLtIP7sHngj8U12qDP/YY6Y@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz8xuP3kT1WDx9hnYxrIp7sTnlMJN6zGUiRRt6bOenDgEVRIE2b
-	/SCKbv568XB9hKls4l/Tc4DmDuqw9Pz/HyBxFe8I4VrJ18ucv189n3F39/nZGgmxdJ2syGlJelE
-	IUaS5tVFaGdlR5IzTFxaCfHASeGmOOg==
-X-Gm-Gg: ASbGncucy/4OfPbV/yycymj/U+Cj/dBsUuYdWaNUJ++fAzgpYUAltrmCSPLjVL315nu
-	0BbQZd9qlVUG/vy59kFA91hc5DyA+rjo8YR6C2SegHYOI4y02w1zQAIg+8txKkgz8aGKDeibG8J
-	uFd2OfZLSwPHt9gvy0F3l3EZCZBTe8Kz1K7R5aDhq1NqdgcZL8x10Kp8/Ipg==
-X-Google-Smtp-Source: AGHT+IFYELfgiO+wxoWio008fIXIKA1kkoHvCfFRSp46GuCuNDakMgDbEsBHq6K37MFmmLbGrQDsEYkZtP/RiQvI5A4=
-X-Received: by 2002:a05:6512:108d:b0:549:8f4a:6ba7 with SMTP id
- 2adb3069b0e04-54b012201fbmr462220e87.36.1743033100314; Wed, 26 Mar 2025
- 16:51:40 -0700 (PDT)
+	 To:Cc:Content-Type; b=mGjvi71tfcSCvviMv6nessEEMLWpY8bKKnQK38bGpia2t7OFsvxkJnZcfMtvjJMZ5Jp/WNMsSnj4HMUp+ubRfETsVhWqJHxsx6bpN0ohZEUjESERiXnzmoEk85XUGXZKrKkbE1vxqHz8Gb2RFnmzKMpboFzIkAGWVYiCcZ54CII=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vL+NKwqp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EF98C4CEE2;
+	Thu, 27 Mar 2025 00:03:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743033790;
+	bh=CCjSPDZVo2hoLF4g6LePOKhEhcRY89Xy5MCm450/MOU=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=vL+NKwqp8c9HC5c30Q6ri1Y5yuTsi/EpenHjDf9CNMaeXqpxghA8YA6YWhwz1hQ+F
+	 VUWA5uSym/8DTgSLWQImCc80GnbJE3NnA1VWdjal24PqvWRmIOA+gf/9OAo9DRVTRW
+	 3JpAp9PAt7xs7L0tLjRrrvowhdrURlG2LlCwfG/tg/1NGrjUnDxkvAEGYyM3fu6RLx
+	 eIjePamEWaufKTbh1ZSrGZGKhmIlxxiVVLjS89zWUt1kPQy/79qOwHN+ej0psdlae/
+	 tzkFnZyhZjYS/msFoHekHQO90cwrJ+u7NsVP8yS0Xu7SCYrhnD/BlOLShy4MmLa0OC
+	 A/Ffz0TWBl1XA==
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5e5e8274a74so616917a12.1;
+        Wed, 26 Mar 2025 17:03:10 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV2n2u31D6yVidZr7RcImNkQfw0HmVVHa7aiKsQ6HwmexO1b+49n9obxfGrSQ8dBz4N5hOzUZLa3BP4bA==@vger.kernel.org, AJvYcCVcDrf0PJX7ciz8oUIQ1S6BwjMyvmbWYZkV8rj4GQTq7pU1jlwDLziR+7SOK1snnErdgJsRGzHRIR2u0kMF@vger.kernel.org, AJvYcCVkwJdWe+ySZCXd8eloOvyNFIrbCGBgkOD+/ftzjk9mCy9VgWYCVa/tW9ovVkcMqvUqowpVoezGEtJd@vger.kernel.org, AJvYcCWWftW046uoOpveLYzNSAgFTN3Sdt7PItfTjZmHna+HvP1eeLDWtdH8hgJLqaoS1A+mo5K75VPkHaYPU/1Cl3w=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw3U7e55GOL+UndvZdMfZgC12m9LnuqxhgzCgnVjBPNARS6UTdo
+	hfM7bB5u+E+u9FZcJs0Zb/2gex9vwcIf+U0rjL3m3SObMhOK28+ZETQ+T2jZAPFLYDEGu+6/fxA
+	YfI3Z8MYKZBBanSMwHEPjgAOHFw==
+X-Google-Smtp-Source: AGHT+IERzT0kl1LknG2usIHMI1+Lt1VD4s7YUfGbLkTeY7qe+y/QCZpxxzGJSyF5y3Gin8FJCELvt/lRJqwoZFoadfA=
+X-Received: by 2002:a17:907:d89:b0:ac6:d9cb:58c0 with SMTP id
+ a640c23a62f3a-ac6fb1a73c2mr107112066b.50.1743033788647; Wed, 26 Mar 2025
+ 17:03:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250326223841.193234-1-marex@denx.de> <20250326223841.193234-2-marex@denx.de>
-In-Reply-To: <20250326223841.193234-2-marex@denx.de>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Wed, 26 Mar 2025 20:51:29 -0300
-X-Gm-Features: AQ5f1Jr4DbKXNs0s_yqnIidvZAgpTckMlWcRo8PQ0KBPDukXSJkiLvMa4vA1eSg
-Message-ID: <CAOMZO5A0HKUNrYmdVrSZp6zcmVcdS0TRTiz_7py73c3b+ng3Bg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] arm64: dts: freescale: add initial support for
- i.MX 95 Verdin Evaluation Kit (EVK)
-To: Marek Vasut <marex@denx.de>
-Cc: linux-arm-kernel@lists.infradead.org, 
-	=?UTF-8?Q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <joao.goncalves@toradex.com>, 
-	Alexander Stein <alexander.stein@ew.tq-group.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Francesco Dolcini <francesco.dolcini@toradex.com>, 
-	Frieder Schrempf <frieder.schrempf@kontron.de>, Hiago De Franco <hiago.franco@toradex.com>, 
-	Joao Goncalves <jpaulo.silvagoncalves@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Max Merchel <Max.Merchel@ew.tq-group.com>, Michael Walle <mwalle@kernel.org>, 
-	Peng Fan <peng.fan@nxp.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
-	Tim Harvey <tharvey@gateworks.com>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-kernel@vger.kernel.org
+References: <20250326171411.590681-1-remo@buenzli.dev> <20250326171411.590681-11-remo@buenzli.dev>
+ <20250326220129.GD2844851-robh@kernel.org> <D8QJSRGJIYHS.K4H9W8N8N0YO@buenzli.dev>
+In-Reply-To: <D8QJSRGJIYHS.K4H9W8N8N0YO@buenzli.dev>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 26 Mar 2025 19:02:56 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqK0SH+HTtquxDNvp8jCLwJgg7YJDNQT8h=kHO=nJChk4Q@mail.gmail.com>
+X-Gm-Features: AQ5f1JpETx50vOdiMhHoK95MGuYfdGvgMOPx1IsTpXGdDGU44Po8M857aSNDVHs
+Message-ID: <CAL_JsqK0SH+HTtquxDNvp8jCLwJgg7YJDNQT8h=kHO=nJChk4Q@mail.gmail.com>
+Subject: Re: [PATCH 10/10] samples: rust: platform: Add property read examples
+To: Remo Senekowitsch <remo@buenzli.dev>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, Dirk Behme <dirk.behme@de.bosch.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Danilo Krummrich <dakr@kernel.org>, Saravana Kannan <saravanak@google.com>, Miguel Ojeda <ojeda@kernel.org>, 
+	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, linux-kernel@vger.kernel.org, 
+	linux-acpi@vger.kernel.org, devicetree@vger.kernel.org, 
+	rust-for-linux@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 26, 2025 at 7:39=E2=80=AFPM Marek Vasut <marex@denx.de> wrote:
+On Wed, Mar 26, 2025 at 5:24=E2=80=AFPM Remo Senekowitsch <remo@buenzli.dev=
+> wrote:
 >
-> Add initial support for i.MX 95 Verdin Evaluation Kit (EVK), which
-> used to be the Titan EVK. Currently supported is lpuart1 as console,
-> SDHC1/2/3 as storage, WM8904 Audio, USB3.0 and ENETC ethernet RGMII
-> Gigabit port.
+> On Wed Mar 26, 2025 at 11:01 PM CET, Rob Herring wrote:
+> >>
+> >> +        let prop =3D dev
+> >> +            .property_read::<bool>(c_str!("test,bool-prop"))
+> >> +            .required()?;
+> >
+> > The 'required' is kind of odd for boolean properties. They are never
+> > required as not present is the only way to to get false.
 >
-> Note that the SoM used in this EVK is a derivative SoM from Verdin
-> line of SoMs, an actual i.MX95 Verdin SoM is under development.
+> Agreed. I can think of a few alternatives:
 >
-> [1] https://www.toradex.com/computer-on-modules/verdin-arm-family/nxp-imx=
-95-evaluation-kit
+> * Make the trait `Property` more flexible to allow each implementor to sp=
+ecify
+>   what its output type for the `read` function is, via an associated type=
+.
+>   I really don't like this idea, because overly generic APIs can mess wit=
+h type
+>   inference and become less ergonomic because of it.
 >
-> Reviewed-by: Jo=C3=A3o Paulo Gon=C3=A7alves <joao.goncalves@toradex.com>
-> Tested-by: Jo=C3=A3o Paulo Gon=C3=A7alves <joao.goncalves@toradex.com> # =
-i.MX95 Verdin EVK
-> Signed-off-by: Marek Vasut <marex@denx.de>
+> * Use `propert_present` instead. That doesn't perfectly express the inten=
+tion,
+>   because it doesn't warn if the property is present but has a type other=
+ than
+>   bool.
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+Right. I've been cleaning up the tree to use of_property_read_bool()
+on bools and of_property_present() on non-bools, so don't want to go
+back to 1 function. The C code now warns on a mismatch.
+
+> * Add an additional inherent method `property_read_bool`, which returns a=
+ plain
+>   `bool` instead of `PropertyGuard<bool>`. Then there will be three sligh=
+tly
+>   different ways to read a bool: `property_present`, `property_read_bool`=
+ and
+>   `property_read::<bool>`. Maybe that's confusing.
+>
+> * Add `property_read_bool` and remove `impl Property for bool`. That woul=
+d avoid
+>   confusion between `property_read_bool` and `property_read::<bool>`, onl=
+y the
+>   former would work.
+
+I think I would go with this option. Easier to add another way later
+than remove one.
+
+Rob
 
