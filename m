@@ -1,126 +1,127 @@
-Return-Path: <devicetree+bounces-161311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3A3AA73599
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 16:29:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BA9BA735B4
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 16:35:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C02163BE48F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 15:28:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA06E3BE284
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 15:33:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0EBF189B84;
-	Thu, 27 Mar 2025 15:28:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED0E818C332;
+	Thu, 27 Mar 2025 15:33:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sb0Urkyr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nSS9HWM2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB52A18C907
-	for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 15:28:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9A90140E30;
+	Thu, 27 Mar 2025 15:33:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743089319; cv=none; b=ERxS3dmiPnLvJtGW8crE/iydfc0oCRZpl7PLTbCFaAWOhWgRIgA2ZS349Ry6iiTODuNhxQCVNknj2KYgiPkljb6xsnM9+NLA4U0uPhB8j3pIKAdy4SDnXkiiZX6N1G86/ZzeSD2i0UtBG4YIFxcOjQ3sSQqPHrfnOZGWJh2lklk=
+	t=1743089610; cv=none; b=mbzN4zCw1xgQzQwR+7znyWVLqN5z7cnzG++md+wDWUQ6+bFd1deVwPX2fgZQuM8ErjFR1dgDjd9LBaQcQuEXl8OZ+GZYucnjEM6sM62FbYaJNshLeANbcvnYgx7/2HH4ca8IsOIK6kYjSkCiAfakdo7C6K43En+vn7+K1XRKGNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743089319; c=relaxed/simple;
-	bh=1/Xh1YTj3T8SDNh7s5nflXDE32vsD7ydzcDzfXrzX/A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pf2mwxd5zp25ZDWBB4i8FZjjgEokWp7OpsMJRQkI8WIzwCcm5mDZCczy29hSLwLFW9DJVXBY4cp4WmD924wFP+AtWT9uta4Fu7X5UUbTs9X1s+n7i8Qi2t+UISK09xlpRn5r1Hm93qNdyLR/Vjg3Zz5yDVsoTL+fM4YvT62OV/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sb0Urkyr; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43cf05f0c3eso8542615e9.0
-        for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 08:28:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743089315; x=1743694115; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DE06nIo71/Mq528QWhpVuT3dqschnPU18VT092l6miM=;
-        b=sb0Urkyrcr2wBewLD7s+rGL3gBBfpOjilCMkQG+PGENV4qpH2iSTIZKkp6BGxIQKuS
-         GhG7JORwl1NZHTe2QTWc2CT8NVAODcIj4v1FKUYWjgmTI+FeXiBlfnSV5HlKEEA8I3VF
-         PoHJWy3qPxnneigS66CwpfMemvlVg/kc4giMH0wzVG0NRPonqycLq2uUsgseFpIjZRGz
-         0eMgriHzuUWhGMBkMVYvQ0jA62ZdQVpuqrigrIBa/EU8S1ToAgcO+m5Dv5Kj29uQ+VYV
-         BUpz/w7MeLZYYfP+m9mVuQvSn72g2UrQIagXr0bRgwDSA6J+hdvyC0k10WCSmKTXuYCG
-         EUXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743089315; x=1743694115;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DE06nIo71/Mq528QWhpVuT3dqschnPU18VT092l6miM=;
-        b=WDOfuICL3zf2c8Rd8RAbHx1YYZs8LBqsx3isfEdtA51KXBgY+4/+2ba4n/kxlFB02m
-         PiPa/qS/fTLnY8LnWogF2sOEd8H77JwOFSEnKvsV6nP4D0mi9ANwTX3Ukp+S/RzDHs5V
-         sl2bAVONwxjArapcOzvhc1odVZvNsjSOA9P9uztQXBDtVJKOCZMXwVqUc7/tx6N6Eja4
-         G9eDBHr+FcwevUOr9SbbbwhaL1ZEELt8IGPm2MlpSfvXNjiaqNDgwRRouoaD1N7xBDIA
-         CtVGHsC3i0akEYcVFV/Qg/qVPWN2IlZer6lpOVaOAISbcSojg/8nB32sQWMaNnTia1HY
-         4eSQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW9lYIp/i474LFYm2jv3kt8EN2xF/00P71RWuE4U/9Hh5PucxwDfcRbSAxvE3Ll18QRnqiwxw7bY6s7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz2yToMCRX7owuhCGHDjPiETNlzTNEZ8a+C7WSBmmqsHFcohIP2
-	mvalkLWvgkyc5f0X5V3fEh8Rv3F/HuVXoAMYXAUmF/PpPuHW96Xuepw5AGSFy+k=
-X-Gm-Gg: ASbGncuqhxL8kxpj7EZIjtEX6QuOAZrkuCpyjp2CpljmmiPE5u4fUbHXwIYRy1pdbFm
-	PN8uey/UfqNgTKkzhBUsw/Qp/7//Gf+E05WDqjlM97+ykqgY/Tft7f57odVoZtKC5SlnjEEUvpy
-	zdqzEzPhozWfOVHAAQaAHbQpI6gQBW0Jj0T9tcfu7/n9jo5YcyBLOpRyopkDnbrb2m0Qp/PHJCO
-	PnZc9TtNaBEKsanInUsAWw/rSpwiq/uc7iKxP7YQXdlFw5khDvgZ2AhKGa5rb1GBPYJyKe9Xmnn
-	m6sa0lBWkQxdcjdalmXLheEtEdO53/5dzzY60IgXJAz2Yu/uyVnfdqKOcKm9AJAgP5eWGjfruFb
-	JKtKZRtNZoQ==
-X-Google-Smtp-Source: AGHT+IFNIkqkO/Sz8Zoq2RlgMDHLZQ4+HD+omJCdCjySdmnror3V45qCoIHUI3fPbTVEMJl1bOlNow==
-X-Received: by 2002:a5d:64a9:0:b0:390:db07:87ea with SMTP id ffacd0b85a97d-39ad17704c4mr3242572f8f.34.1743089315216;
-        Thu, 27 Mar 2025 08:28:35 -0700 (PDT)
-Received: from [192.168.0.34] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39ac67970a2sm10007035f8f.16.2025.03.27.08.28.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Mar 2025 08:28:34 -0700 (PDT)
-Message-ID: <c58b129c-1c83-44f3-bd52-13cc24e50cbb@linaro.org>
-Date: Thu, 27 Mar 2025 15:28:33 +0000
+	s=arc-20240116; t=1743089610; c=relaxed/simple;
+	bh=0KDQW9+C3D+KXwtbTogcCrI3F0K6VvQRKUDhTMU1Lp0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UzR7J1vqRZgqiIoFUNiUBdhTUCcHVfUFXipX4efUx94k8EBZrz/7KOwUayiWHx7xyd5McQn+zVxWF4WCnyr/R8HemmlYQLVHdvOt0qwmYOTJb+X60Kpa3XZHqyhS6SScozEjw8NVmO2AkypJwDPs4gNjjSgW7oQbnAl/rZztRbs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nSS9HWM2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03A6AC4CEDD;
+	Thu, 27 Mar 2025 15:33:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743089610;
+	bh=0KDQW9+C3D+KXwtbTogcCrI3F0K6VvQRKUDhTMU1Lp0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nSS9HWM2nAIfW9XwGL5KbsuKDnmV4IJY9eoebBhcfR9Hu4Xe2hypKXmDN7Ai3m7Ls
+	 XvkQMaFSrnMy3V2Fr+xi1j6B8btyM4iZzX95/oCTN/IQii+O3wSrB7UD8usykj/zYx
+	 b1xzwGK5r5R2vpMFz5xiXtje+GtORpYRz2O0I187ZhfqikrzJ86ZdHkIdbTG7KkkbT
+	 EVGdXE2ARUoJ7ZCsLh7bGRTUXlamgbjv2ET7MFMkFrS5TuJQSP4cQZyeCCTF2blvMt
+	 0iowcCqtqLlMR54RbBKdel2b2SJB24WTkkq/46MhZcRG25RbzNofTjxwjUVAvR5FCJ
+	 cglV8hkYoRY9g==
+Date: Thu, 27 Mar 2025 15:33:24 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Jon Hunter <jonathanh@nvidia.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>, Vishwaroop A <va@nvidia.com>,
+	krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-tegra@vger.kernel.org, linux-spi@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: spi: Add DT schema for Tegra SPIDEV
+ controller
+Message-ID: <9760cd70-cbd6-4865-92b9-b48eb2cdea55@sirena.org.uk>
+References: <925fe847-68b4-4689-832c-08f8de3dfeb1@nvidia.com>
+ <48f9c8c0-5cac-4812-8d06-501193be731b@sirena.org.uk>
+ <909f0c92-d110-4253-903e-5c81e21e12c9@nvidia.com>
+ <48248165-c800-484f-be62-7c48b3c6829b@sirena.org.uk>
+ <4zic633abvwj377kfqem42zmc2yruflbwfmmqrpvjjgr6jae6h@jthoycb3vzzz>
+ <ljxxml7z2k6xniamzzw4ssi7u75qqfpcvmidzy3ekr3imtoxau@eztnxovsjplg>
+ <499703ae-dba1-49a6-869b-a60b44c2a85f@sirena.org.uk>
+ <2oxhmcrhbwlwqgyqy62p77eoag6nkavhjwmwfjfizcrhunrkjv@eaxjy6uoxszq>
+ <25857b7f-5c10-46ec-b0b7-9ff89ca5ab1e@sirena.org.uk>
+ <63b87feb-32ee-423c-8d82-61445414c6f7@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 03/18] dt-bindings: clock: qcom: sm8450-camcc: Allow to
- specify two power domains
-To: Jagadeesh Kona <quic_jkona@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Dmitry Baryshkov <lumag@kernel.org>
-Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>,
- Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250327-videocc-pll-multi-pd-voting-v3-0-895fafd62627@quicinc.com>
- <20250327-videocc-pll-multi-pd-voting-v3-3-895fafd62627@quicinc.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20250327-videocc-pll-multi-pd-voting-v3-3-895fafd62627@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="V6enJj/euRlY3UZ2"
+Content-Disposition: inline
+In-Reply-To: <63b87feb-32ee-423c-8d82-61445414c6f7@nvidia.com>
+X-Cookie: Multics is security spelled sideways.
 
-On 27/03/2025 09:52, Jagadeesh Kona wrote:
-> -      A phandle to an OPP node describing required MMCX performance point.
-> +      Phandles to OPP nodes that describe required performance point on power domains
 
-I believe we are dropping "Phandle to" generally as this is a redundant 
-statement.
+--V6enJj/euRlY3UZ2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-You should also pluralise performance-points.
+On Wed, Mar 26, 2025 at 12:16:53PM +0000, Jon Hunter wrote:
+> On 25/03/2025 17:05, Mark Brown wrote:
 
-.. required performance-points on power-domains
+> > > The way I imagine it, exporting would involve writing a chip-select to a
+> > > specific SPI controller's "export" sysfs attribute to have a SPI device
+> > > created for that particular chip-select and bind it to spidev.
 
-Other than that
+> > My general feeling with those is that if you're building for them you're
+> > probably either already modifiying your kernel or easily able to cope
+> > with doing so.
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> That's definitely what we do today, modify the kernel directly to achieve
+> what we need. I am trying to avoid carrying too many out of tree patches for
+> stuff like this and have something in the kernel that works by default. This
+> is even more important for 3rd party Linux distros that will not accept
+> non-upstream code.
 
----
-bod
+Overlays should work well for that case too!
+
+> Our devkits, very much like Raspberry PI, allow users to connect various
+> hardware for development and so having an easy way to connect a SPI device
+> is useful. For any production systems, users will definitely want a proper
+> device and device-tree bindings. So I am just trying to explore what would
+> be acceptable. If it is acceptable to have a sysfs interface for creating a
+> SPI device at runtime, then we can look into that.
+
+The main issue I see with the sysfs thing is that you have to describe
+the presence of the device somehow which currently needs a device of
+some kind there, it's not like I2C where you can just use the address.
+
+--V6enJj/euRlY3UZ2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmflb8MACgkQJNaLcl1U
+h9DsHQf+NXjnU8ML3q8LwR6HQSbPEMS/nn66hHJ7e1y2wdqwvw94h4+/K4wKEU2P
+RZ8O344/O37YkKwHYkB0x9g2dlnPxxU4bsmAF8+/+E3E+LU0cz0rS6mBZQro7XTs
+ZIvKeQ0bccC+I5yulZ+j3dCtbXEeFhtz1fXUq2s0J+602XBfHYnx2pYGOPrOmFvY
+aAbF/lgMi2eRUWkxXHqDxXSFRmz+cPxZh4vOPG4OqKqiFhi3CU135eDxzAO3Lh3L
+9OIoBZlADkghIluiOo/DHUk4rmvNdOPjjecMQJJlVawNT770QeZswZDaRHMforCa
+8u0plKE9d9ramj7w1Yvb/zdG+JCFOA==
+=YS3V
+-----END PGP SIGNATURE-----
+
+--V6enJj/euRlY3UZ2--
 
