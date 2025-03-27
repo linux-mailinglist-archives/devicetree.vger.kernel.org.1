@@ -1,115 +1,166 @@
-Return-Path: <devicetree+bounces-161212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3097BA72DB5
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 11:26:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43DB9A72DBE
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 11:29:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C65D6176EEF
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 10:26:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3394F18954A8
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 10:29:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2819B20E327;
-	Thu, 27 Mar 2025 10:26:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 625DF20E6E3;
+	Thu, 27 Mar 2025 10:29:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="p60j44pP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DMH8PRfU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB9DD20C032;
-	Thu, 27 Mar 2025 10:26:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FA4D20E03B;
+	Thu, 27 Mar 2025 10:29:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743071164; cv=none; b=Vl1xi85QWxqSfkkb9ixIOOBZnXsFrL8PLe45QuTlRunYNLKIcqU6QJ3WIh9s4XsBWfrwOHSD/Y+4t34fp6aYLPR3iuJ9VoI3BrINtwufCJ7wEI8sHLKMcr8Xyl78iQuqvIjFBplND3vdkJbpQzF1ISh7M+GpGbF8ThvFvkJseJ4=
+	t=1743071347; cv=none; b=oua51eIdpvOFD2PkUmowoF7M+fUeScNmdDSG+numlifuVXQtA/QukezR4O4G4v1BQEK1z9UcH9VngNYhnH1bVWS+5KaqSIHpafyF78ezM8NhiKnFOJrajIkweQ97mn0VVDLJGj/+V8Teg8qjh0zubHF22Gt/QrgAl/Qbb0TNWs4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743071164; c=relaxed/simple;
-	bh=0tsbp848yXM+K/838IvLLfnAYwT3qLnRDwYA8IihXJM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=TBxQlOhvdh6uDvZnrZDsAWqgKKUo264sk6swEb4/CvIuDW+lnDczHJO5eLa5YnARW/SWbhV4Kk3pdPrIe2PMQT+YYxQuMkY1vlcJvL9tkezKHoP392kOTQI9OEQhTdkxggGArE7E25cz3GGt7ZtcZixlFJQVUPdOvr4BHk1KydY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=p60j44pP; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52R5jFD7024945;
-	Thu, 27 Mar 2025 10:25:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	0tsbp848yXM+K/838IvLLfnAYwT3qLnRDwYA8IihXJM=; b=p60j44pPfqOa6jw2
-	kcSDzZCs14TNVTJx3PYUEvkHI97mrZyhivOuzOPAMcSEK3EmzVbiDuulHIl61gZZ
-	nqrgcJqSJ3we7ZSAtuZ4HSkgEsISPi8CQKJDv4wjys6akRMJNmLgtEJ7J793JSx9
-	/fEwG0LLblvAnL1QejhVfaqgwyvYKvyZsJ603FZVydVuDdNR9paWrxyBMshCLKBU
-	r3a6Ex7u+039vF2kUpg+YvnWCrfPzi4N+ElBuPLnZSyeLGQWN5hbaJayag3IrBnB
-	s+fVBC9QBmXpSJXiHRkigaBzCXCBRDAEfgsxmrZAUnHxaUKJhugBjoIBNXDXWPu2
-	G5kRpw==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45kmd4r6wd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 27 Mar 2025 10:25:44 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52RAPhnB006720
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 27 Mar 2025 10:25:43 GMT
-Received: from [10.216.8.158] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 27 Mar
- 2025 03:25:37 -0700
-Message-ID: <8abf9cff-4931-bc8e-734d-86a2e2ad6763@quicinc.com>
-Date: Thu, 27 Mar 2025 15:55:34 +0530
+	s=arc-20240116; t=1743071347; c=relaxed/simple;
+	bh=NAF2vsNFyg0cvCLYEPLLXD2j50hqtM/yWmWAgBOxym0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FoszEA713zDWpjOwrKRk/wG8WCMYyI/V9swAZs3mhfXb5BPgZxPxsF064qYHn1Ev04i+jX2+PQ6QKSgvTNtJFU5q9nf1v0mS1ibgB258IugqkrdDAQRf2wNoYiJTS/JQbTetHQp6lTY+bVvaX7LBJ3rC+n/YFTRX7O/GYywjzGU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DMH8PRfU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67623C4CEDD;
+	Thu, 27 Mar 2025 10:29:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743071345;
+	bh=NAF2vsNFyg0cvCLYEPLLXD2j50hqtM/yWmWAgBOxym0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DMH8PRfUym9SXob0XTs+3UqyBUmb0wdk3kel4QTR1FHOK/CSFqJglYwccJntcR2I0
+	 a8ZkatnvRf1aomVo7KCFGEIPlPnjiWu1k1oer4JodtZRoxO//tats2uIVg81q+iWyM
+	 w7LL52JmPiekFfB97DzbWAFxC4NZbPli/WwPHWhkEcVNaJN+yuQbWwunJSdR+n99mm
+	 XGUojGl81prawFjwcCDlR05ATFqWxWfB3/kx3nSEZwrNRCRs70uvPAcgQFiXBgBtRF
+	 qY+7ABnK/K8l068sLRNEV+osz/oc23mjop58pHbC8WCTTmqfYW0y2ANdr1+3uVHCMr
+	 V1XeTrKuxKRow==
+Date: Thu, 27 Mar 2025 11:28:58 +0100
+From: Danilo Krummrich <dakr@kernel.org>
+To: Remo Senekowitsch <remo@buenzli.dev>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Daniel Scally <djrscally@gmail.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Rob Herring <robh@kernel.org>, Dirk Behme <dirk.behme@de.bosch.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+	devicetree@vger.kernel.org, rust-for-linux@vger.kernel.org
+Subject: Re: [PATCH 10/10] samples: rust: platform: Add property read examples
+Message-ID: <Z-UoapC4zkKFOD9-@pollux>
+References: <20250326171411.590681-1-remo@buenzli.dev>
+ <20250326171411.590681-11-remo@buenzli.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH 5/6] ARM: dts: qcom: sdx75-idp: Enable QPIC BAM support
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, <vkoul@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <manivannan.sadhasivam@linaro.org>, <miquel.raynal@bootlin.com>,
-        <richard@nod.at>, <vigneshr@ti.com>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <agross@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <dmaengine@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mtd@lists.infradead.org>
-References: <20250313130918.4238-1-quic_kaushalk@quicinc.com>
- <20250313130918.4238-6-quic_kaushalk@quicinc.com>
- <d964117a-6e74-42a9-a7fb-c08e3ab84217@oss.qualcomm.com>
-From: Kaushal Kumar <quic_kaushalk@quicinc.com>
-In-Reply-To: <d964117a-6e74-42a9-a7fb-c08e3ab84217@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: enttYmezz8AKXM2p1X5KcCidk_NYKs9Q
-X-Proofpoint-GUID: enttYmezz8AKXM2p1X5KcCidk_NYKs9Q
-X-Authority-Analysis: v=2.4 cv=QLZoRhLL c=1 sm=1 tr=0 ts=67e527a8 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=LYm1BIvnotKkRNd3cYoA:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-26_09,2025-03-26_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- priorityscore=1501 adultscore=0 malwarescore=0 phishscore=0
- mlxlogscore=654 mlxscore=0 clxscore=1015 lowpriorityscore=0 suspectscore=0
- bulkscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503270071
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250326171411.590681-11-remo@buenzli.dev>
 
-On 3/13/2025 8:07 PM, Konrad Dybcio wrote:
-> On 3/13/25 2:09 PM, Kaushal Kumar wrote:
->> Enable QPIC BAM devicetree node for Qualcomm SDX75-IDP board.
->>
->> Signed-off-by: Kaushal Kumar <quic_kaushalk@quicinc.com>
->> ---
-> There's not reason for this to be a separate commit
-Okay, will combine it along with nand enablement in v2.
->
-> Konrad
+On Wed, Mar 26, 2025 at 06:13:49PM +0100, Remo Senekowitsch wrote:
+> --- a/samples/rust/rust_driver_platform.rs
+> +++ b/samples/rust/rust_driver_platform.rs
+> @@ -2,7 +2,7 @@
+>  
+>  //! Rust Platform driver sample.
+>  
+> -use kernel::{c_str, of, platform, prelude::*};
+> +use kernel::{c_str, of, platform, prelude::*, str::CString};
+>  
+>  struct SampleDriver {
+>      pdev: platform::Device,
+> @@ -28,6 +28,60 @@ fn probe(pdev: &mut platform::Device, info: Option<&Self::IdInfo>) -> Result<Pin
+>              dev_info!(pdev.as_ref(), "Probed with info: '{}'.\n", info.0);
+>          }
+>  
+> +        let dev = pdev.as_ref();
+> +        if let Ok(idx) = dev.property_match_string(c_str!("compatible"), c_str!("test,rust-device"))
+> +        {
+> +            dev_info!(pdev.as_ref(), "matched compatible string idx = {}\n", idx);
+> +        }
+> +
+> +        if let Ok(str) = dev
+> +            .property_read::<CString>(c_str!("compatible"))
+> +            .required()
+> +        {
+> +            dev_info!(pdev.as_ref(), "compatible string = {:?}\n", str);
+> +        }
+> +
+> +        let prop = dev
+> +            .property_read::<bool>(c_str!("test,bool-prop"))
+> +            .required()?;
+> +        dev_info!(dev, "bool prop is {}\n", prop);
+> +
+> +        if dev.property_present(c_str!("test,u32-prop")) {
+> +            dev_info!(dev, "'test,u32-prop' is present\n");
+> +        }
+> +
+> +        let prop = dev
+> +            .property_read::<u32>(c_str!("test,u32-optional-prop"))
+> +            .or(0x12);
+> +        dev_info!(
+> +            dev,
+> +            "'test,u32-optional-prop' is {:#x} (default = {:#x})\n",
+> +            prop,
+> +            0x12
+> +        );
 
+Printing the default value looks more like a test, rather than a sample.
+
+> +
+> +        // Missing property without a default will print an error
+> +        let _ = dev
+> +            .property_read::<u32>(c_str!("test,u32-required-prop"))
+> +            .required()?;
+> +
+> +        let prop: u32 = dev.property_read(c_str!("test,u32-prop")).required()?;
+> +        dev_info!(dev, "'test,u32-prop' is {:#x}\n", prop);
+> +
+> +        let prop: [i16; 4] = dev.property_read(c_str!("test,i16-array")).required()?;
+> +        dev_info!(dev, "'test,i16-array' is {:?}\n", prop);
+> +        dev_info!(
+> +            dev,
+> +            "'test,i16-array' length is {}\n",
+> +            dev.property_count_elem::<u16>(c_str!("test,i16-array"))
+> +                .unwrap()
+
+Please no unwrap() in the kernel, it may panic.
+
+> +        );
+> +
+> +        let prop: KVec<i16> = dev
+> +            .property_read_array_vec(c_str!("test,i16-array"), 4)?
+> +            .required()?;
+> +        dev_info!(dev, "'test,i16-array' is KVec {:?}\n", prop);
+> +
+
+Please move this code to a new function, e.g.
+
+	impl SampleDriver {
+	   fn properties_parse(dev: &device::Device)) -> Result;
+	}
+
+in order to keep probe() as clean as possible. If we put too much stuff in
+there, it might become too confusing to serve as a simple example showing how to
+implement a platform driver in Rust.
+
+Besides that, are we sure we really want to print everything?
 
