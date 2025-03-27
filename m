@@ -1,104 +1,108 @@
-Return-Path: <devicetree+bounces-161276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83D06A7344F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 15:25:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18172A7346A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 15:29:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 94F057A2308
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 14:24:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 404A53AAF8F
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 14:27:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B51621771B;
-	Thu, 27 Mar 2025 14:25:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0791218596;
+	Thu, 27 Mar 2025 14:27:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="0EX3l78V"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WH5bLeyY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79ED8216E30;
-	Thu, 27 Mar 2025 14:25:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71CC421858A;
+	Thu, 27 Mar 2025 14:27:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743085547; cv=none; b=Vb/07CYO9jFNwEHlhHK6D72Rtssc+1bhTYH/DjTmEP1D/ZN5MxZaY5vrPkxpGoI8o9BL9fZE46D6LlwTZOsucGyW6cYIT5h32uvPcfkD4WO9uEiAWMoC3VdrVd56gMNtgGtz0o3S/wUvfz1bJGU1uikkIE7xAXrNzm/6QCI927c=
+	t=1743085648; cv=none; b=LgzaNmGt+IAZF0VJGi0pO52YvLxGULWq1r1u3pWYrbbBr3K0zAy2trOjzTncZPdDibwJs1hvJZiydBZ9VObJ4i87yTuozk1gJC13BznGxq56IRaahTJigbgjmejgqooeoQmu7qZjN7Ao6ggV204n/SP2MvuT1VXUexGtzcVXN50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743085547; c=relaxed/simple;
-	bh=wmOSQGQoljl9Kvl9qqHqoIdr6Yuih947V+Sqww42Wi4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W3q2LjUE/ZwapqUe5yawu/PqEwa/SAIyRWOgYjPfBKZsEGVTrVkIakNjRdLe+nxq9Jx19ir/TWAImMltm+PxJdFpC0IxtRZUWLQa2EZP9jjPyHO0XUVZ5SmIJuiqGb/t6J2dNln3vXF9grIgyFTW49GNOH7DHjcPvUmEWq6d/U0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=0EX3l78V; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=+m0Ulp+iyZSTL8Hc3fHL+e5d9ZfjycSRNPvxPdSsDN4=; b=0EX3l78VIC/2SYqvnQIGHuE3fx
-	MzNifBjKPpaF9Ouvha9QKVGjoS82mavtDzOLBbkgnK1VMie/dXk6DyiNIEMaRIpU9IJvM0zIoBRbh
-	1XrbWab7NGSjUusNnwBtrshEAuh/xM6FfcytDoLQAVZPL0m/G/nAK2SjCECGxsw1HE90=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1txoAs-007IAg-Gr; Thu, 27 Mar 2025 15:25:38 +0100
-Date: Thu, 27 Mar 2025 15:25:38 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Martyn Welch <martyn.welch@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, kernel@collabora.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2] arm64: dts: imx8mp: Add device tree for Nitrogen8M
- Plus ENC Carrier Board
-Message-ID: <cf525617-b895-4d58-8455-a5c7fa9bbeab@lunn.ch>
-References: <20250327123907.542132-1-martyn.welch@collabora.com>
+	s=arc-20240116; t=1743085648; c=relaxed/simple;
+	bh=PHCtWk2ujBixo9IvPmi6q3vmA3r7w6UW4s2qw+/aOKI=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=u/WnOduzucT7DOHIfDAsZ8QxYYWtFdG9zvJ1rcSJFSycp68dWkRYGxgtwGavYx8FjMz5T9049JwemSIpgtpDKYUbvvRkax9BYj5jizaIJmoXNCYkC7LKy/2+J9spjB9qo1E5bIr7aUQPkyiMHq+ZaaVa8EENKQmEJh0MG7ydfh8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WH5bLeyY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EA91C4CEE8;
+	Thu, 27 Mar 2025 14:27:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743085647;
+	bh=PHCtWk2ujBixo9IvPmi6q3vmA3r7w6UW4s2qw+/aOKI=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=WH5bLeyYejpQfYXXDzOiCSxKnk5iMRHvuy3xImI7mNxU1PZaahP4bZNgHqYhnzN5h
+	 9b593HZ86bRvjkIOlj7WNhEZ1YRC16twAPNAE1mkWYmtuBvHCTuo63Uejwa7tklIzj
+	 /G9TZ/HC2BUVn3jeYAhRUdYes2woGmKEbQqcadWPgsI8X87TOHsj34vskpCDiimyNa
+	 UmaU1MT5T3HxIAv8iQNaeBvaHQ/ZLp0fFPwkprY1Xm/lWGXa1fAya05u4qKiWziDy9
+	 OlGl3rX7Y7j1TYKFlAHNVRye+iFuB1mAyG17/ewDUrvm5fYyzgHuI7NYB8OOA/nws6
+	 kprtWqXfj5fTw==
+Date: Thu, 27 Mar 2025 09:27:26 -0500
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250327123907.542132-1-martyn.welch@collabora.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: christophe.jaillet@wanadoo.fr, linux@roeck-us.net, 
+ Jonathan Corbet <corbet@lwn.net>, Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org, 
+ devicetree@vger.kernel.org
+To: Wenliang Yan <wenliang202407@163.com>
+In-Reply-To: <20250327131841.15013-5-wenliang202407@163.com>
+References: <20250327131841.15013-1-wenliang202407@163.com>
+ <20250327131841.15013-5-wenliang202407@163.com>
+Message-Id: <174308564652.728326.9393437187243408438.robh@kernel.org>
+Subject: Re: [PATCH v6 4/4] dt-bindings:Add SQ52206 to ina2xx devicetree
+ bindings
 
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-nitrogen-som.dtsi
-> @@ -0,0 +1,415 @@
-> +&eqos {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_eqos>;
-> +	phy-handle = <&ethphy0>;
-> +	phy-mode = "rgmii-id";
-> +	status = "okay";
-> +
-> +	mdio {
-> +		compatible = "snps,dwmac-mdio";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		ethphy0: ethernet-phy@4 {
 
-Just conformation, the PHY is on the SOM? Are the magnetics and RJ45
-socket on the SOM, or the carrier?
+On Thu, 27 Mar 2025 09:18:41 -0400, Wenliang Yan wrote:
+> Add the sq52206 compatible to the ina2xx.yaml
+> 
+> Signed-off-by: Wenliang Yan <wenliang202407@163.com>
+> ---
+> 
+> Add the meaning of 'shunt-gain' in SQ52206.
+> 
+> v5->v6:add content to meet the update requirements of the ina2xx.yaml
+> 
+>  Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
 
-> +			compatible = "ethernet-phy-ieee802.3-c22";
-> +			reg = <4>;
-> +			eee-broken-1000t;
+My bot found errors running 'make dt_binding_check' on your patch:
 
-> +#if 0
-> +			interrupts-extended = <&gpio3 2 IRQ_TYPE_LEVEL_LOW>;
-> +			reset-gpios = <&gpio3 16 GPIO_ACTIVE_LOW>;
-> +#endif
+yamllint warnings/errors:
 
-Please don't have disabled properties.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml: allOf:1:if:properties:compatible:contains:enum: ['silergy,sy24655', 'silergy,sy24655', 'ti,ina209', 'ti,ina219', 'ti,ina220', 'ti,ina226', 'ti,ina230', 'ti,ina231', 'ti,ina237', 'ti,ina238', 'ti,ina260'] has non-unique elements
+	hint: "enum" must be an array of either integers or strings
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
 
-> +			reg-mask = <0x90>;
+doc reference errors (make refcheckdocs):
 
-What does this property do? It is not one i recognise.
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250327131841.15013-5-wenliang202407@163.com
 
-     Andrew
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
