@@ -1,194 +1,246 @@
-Return-Path: <devicetree+bounces-161412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD0E2A73EFC
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 20:47:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95311A73F00
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 20:48:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F48E3BF1BB
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 19:43:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 77DDD3BFBBC
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 19:43:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB4B821C9FD;
-	Thu, 27 Mar 2025 19:40:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5030321ABCA;
+	Thu, 27 Mar 2025 19:41:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="plHOSKhi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j8QTw/c+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 090EA219A9D;
-	Thu, 27 Mar 2025 19:40:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F42A18AE2;
+	Thu, 27 Mar 2025 19:41:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743104417; cv=none; b=h16tXbVzO3fa1G6pSi5zPE92VF0fo0xrKDaakhomQ/YPcH/fmqZpUVyUrLlhH/5hoeudcEt0VNhk7NUFHf44YY5JJPltiAUFGCeexxg97zCe3tOj0x4Wnkqb9v6JldWbOTAL3YXBNC/PKnm4dgxRlc+Cyhr5j5QBeZ7oDsdLmoo=
+	t=1743104506; cv=none; b=VofcvdXPjid6GZGu4r63DWtQH+V+wkaxe9stZcua33WNG95V2Cj9v+mK5cFfdynbnkvkhBG/xf2AcK0kyBVCiJxyN6jgO67s+7GsL2D9wQEiHzmxLafn+Ydeqdg0el3S/S2bR77aG7QARht9/P+GvmxJNCpbQS9QPbzztubtAHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743104417; c=relaxed/simple;
-	bh=sExg9F8y8vGlQy/7nA7zkKPHGm1kx8ymbfVtL2PE38A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LA5qqbqDGGUHpA03lZNpN+a/W3UzjnoabqgYVijH2+VyEXGeeohEdXQdwf5Pdu9NCOvUU8PWwwRTU0q40DDguI+SaR6yTFterKrNNaNHUpVIXJ1QLJBkHzYchlLKUQHeZLKN/hhcnbMtFi2FTFVSFwsqSQRRZgYFfkk3N+3C6VE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=plHOSKhi; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6C0DA446;
-	Thu, 27 Mar 2025 20:38:25 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1743104305;
-	bh=sExg9F8y8vGlQy/7nA7zkKPHGm1kx8ymbfVtL2PE38A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=plHOSKhi6KcECMrx+0gSCODQ0vqJGdU7L/Uu+YerzWTQYTmEqNYh76XmD/FrNZVD0
-	 e12hkjaI5AV2PvOMlsUxjYOY0O/wjAAlR4H2nkJvKXoVaipBKQA8HQcOlXStQ9WH0O
-	 E4r3BiGX2gKE3S6ndMahDXFx6fluDFjVyjOU36Jk=
-Date: Thu, 27 Mar 2025 21:39:51 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dong Aisheng <aisheng.dong@nxp.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rui Miguel Silva <rmfrfs@gmail.com>,
-	Martin Kepplinger <martink@posteo.de>,
-	Purism Kernel Team <kernel@puri.sm>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-	Robert Chiras <robert.chiras@nxp.com>,
-	"Guoniu.zhou" <guoniu.zhou@nxp.com>
-Subject: Re: [PATCH v3 06/12] media: dt-bindings: nxp,imx8mq-mipi-csi2: Add
- i.MX8QM(QXP) compatible strings
-Message-ID: <20250327193951.GF4861@pendragon.ideasonboard.com>
-References: <20250210-8qxp_camera-v3-0-324f5105accc@nxp.com>
- <20250210-8qxp_camera-v3-6-324f5105accc@nxp.com>
+	s=arc-20240116; t=1743104506; c=relaxed/simple;
+	bh=IBqTsvUGoCy/YkiVeaOE/fHgyV2HsXFMDrAO0iAIKUA=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=Fr/kB4XDKGjQB/vBwRzI21bgt1GZ2r5MgcQ2GR/VdsAy65fzkSa+nPHrQkJOqdDDsJ9xOO0dQDZ/G+nJVX6WLa/Cd1lUd38i77iunFhpY2QwvYOgodvBTLAuiu3DKCUs2KbRbyQ1ihhr5MeUnWn3SWuRL24w5PErmzF6uzoy0zc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j8QTw/c+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 658D3C4CEE5;
+	Thu, 27 Mar 2025 19:41:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743104505;
+	bh=IBqTsvUGoCy/YkiVeaOE/fHgyV2HsXFMDrAO0iAIKUA=;
+	h=Date:From:To:Cc:Subject:From;
+	b=j8QTw/c+z3keIZR0gMkHhAtq3UEIE8KJauA8POOCjtq3dmNjjJfppIpD98QfCx106
+	 wi8m/PKXhKzKV9fP0Hdw3vkd/xxxgi//gT6Ke+gSbi/baB5vduoZcGD2GzwXpbUhQh
+	 6xFXwVGzQ1G0Jh/TcJ3HaA9C/ea/3hHaFPZDQvOBP06PR1FdnJEUIt+xds/ggkrQs7
+	 PwO0TwvWaKhnd6xOKGewooELhIBxJzWwMBy34ciXa2eIVRTzRAbuXoN01YkJ4gVb6K
+	 3tlGNnUYFwRjIt2fJMbrlnmWyPAktDSbdOO2pEQyHUNY8Ipf9s7XHazlB8/1/njqUm
+	 H5tUyG1w1DoKQ==
+Date: Thu, 27 Mar 2025 14:41:44 -0500
+From: Rob Herring <robh@kernel.org>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Saravana Kannan <saravanak@google.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [GIT PULL] Devicetree updates for v6.15
+Message-ID: <20250327194144.GA884505-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20250210-8qxp_camera-v3-6-324f5105accc@nxp.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Frank,
+Linus,
 
-Thank you for the patch.
+Please pull DT updates for 6.15. There's a trivial merge conflict with 
+your tree in of_private.h (actually from fixes from me for 6.14 which I 
+never merged into this cycle's branch).
 
-On Mon, Feb 10, 2025 at 03:59:25PM -0500, Frank Li wrote:
-> From: Robert Chiras <robert.chiras@nxp.com>
-> 
-> Add compatible strings for i.MX8QM/i.MX8QXP platform. Remove
-> fsl,mipi-phy-gpr from required properties and add new reg space, since
-> i.MX8QM and i.MX8QXP use dedicate control and status register(csr) space.
-> 
-> Keep the same restriction for other compatible strings.
-> 
-> Signed-off-by: Robert Chiras <robert.chiras@nxp.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> change from v2 to v3
-> - use dedicate csr register space
-> change from v1 to v2
-> - remove internal review tags
-> - remove reg maxitems:1
-> - remove 8ulp part
-> - add 8qxp compatible string and make 8qm failback to 8qxp
-> - limit reset and power domain number to 1 for 8qxp and 8qm
-> - remove power-domains change because 8qm/8qxp only need 1 power domain
-> ---
->  .../bindings/media/nxp,imx8mq-mipi-csi2.yaml       | 38 +++++++++++++++++++---
->  1 file changed, 34 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
-> index 2a14e3b0e0040..522449e50079e 100644
-> --- a/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
-> +++ b/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
-> @@ -16,11 +16,19 @@ description: |-
->  
->  properties:
->    compatible:
-> -    enum:
-> -      - fsl,imx8mq-mipi-csi2
-> +    oneOf:
-> +      - enum:
-> +          - fsl,imx8mq-mipi-csi2
-> +          - fsl,imx8qxp-mipi-csi2
-> +      - items:
-> +          - const: fsl,imx8qm-mipi-csi2
-> +          - const: fsl,imx8qxp-mipi-csi2
->  
->    reg:
-> -    maxItems: 1
-> +    items:
-> +      - description: mipi csi2 rx host controller register.
+Rob
 
-s/mipi csi2 rx/MIPI CSI-2 RX/
 
-> +      - description: mipi csi2 control and status register (csr).
+The following changes since commit 2014c95afecee3e76ca4a56956a936e23283f05b:
 
-Same here, and s/csr/CSR/
+  Linux 6.14-rc1 (2025-02-02 15:39:26 -0800)
 
-> +    minItems: 1
->  
->    clocks:
->      items:
-> @@ -46,6 +54,7 @@ properties:
->        - description: CORE_RESET reset register bit definition
->        - description: PHY_REF_RESET reset register bit definition
->        - description: ESC_RESET reset register bit definition
-> +    minItems: 1
+are available in the Git repository at:
 
-Is this because on QM and QXP the three resets are handled by the SCU,
-which exposes them as a single reset ? The reset description is then not
-very accurate anymore, but I suppose we can live with that.
+  ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-6.15
 
-With the above small changes,
+for you to fetch changes up to 314655d41e650b3d72c60aa80a449e0ab22e2ffd:
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+  scripts/make_fit: Print DT name before libfdt errors (2025-03-27 14:03:32 -0500)
 
->  
->    fsl,mipi-phy-gpr:
->      description: |
-> @@ -113,9 +122,30 @@ required:
->    - clock-names
->    - power-domains
->    - resets
-> -  - fsl,mipi-phy-gpr
->    - ports
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - fsl,imx8qxp-mipi-csi2
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 2
-> +        resets:
-> +          maxItems: 1
-> +    else:
-> +      properties:
-> +        reg:
-> +          maxItems: 1
-> +        resets:
-> +          minItems: 3
-> +      required:
-> +        - fsl,mipi-phy-gpr
-> +
->  additionalProperties: false
->  
->  examples:
+----------------------------------------------------------------
+Devicetree for v6.15:
 
--- 
-Regards,
+DT core:
+- Fix ref counting errors in interrupt parsing code
 
-Laurent Pinchart
+- Allow "nonposted-mmio" property per device and on non-Apple h/w
+
+- Use typed accessors in platform driver code
+
+- Fix mismatch between DT MAX_PHANDLE_ARGS and NR_FWNODE_REFERENCE_ARGS
+  and increase the maximum number args
+
+- Rework of_resolve_phandles() to use __free() cleanup and fix ref count
+  error
+
+- Use of_prop_cmp() in a few more places
+
+- Improve make_fit.py script error handling
+
+DT bindings:
+- Update DT property ordering rules for properties within groups (i.e.
+  common suffix)
+
+- Update DT submitting-patches doc to cover sending .dts patches and
+  SoC maintainer rules on being warning free against linux-next
+
+- Add ti,tps53681, ti,tps53681, Maxim max15301, max15303, and
+  max20751 to trivial devices
+
+- Add Renesas RZ/V2H(P) and Allwinner H616 support to Arm Mali Bifrost
+  GPU. Add Samsung exynos7870 support to Arm Mail Midgard.
+
+- Rework qcom,ebi2 and samsung,exynos4210-sram memory controller
+  bindings to split child node properties. Fix the LAN9115 binding to
+  use the child node schema so all properties are documented.
+
+- Convert nxp,lpc3220-mic and Altera ECC manager bindings to schema
+
+- Fix some issues with LVDS display panels causing validation warnings
+
+- Drop some obsolete parts of Xilinx bindings
+
+----------------------------------------------------------------
+Ahmad Fatoum (1):
+      dt-bindings: display/lvds-codec: add ti,sn65lvds822
+
+Andre Przywara (1):
+      dt-bindings: gpu: mali-bifrost: Add Allwinner H616 compatible
+
+Dragan Simic (1):
+      docs: dt-bindings: Specify ordering for properties within groups
+
+J. Neuschäfer (1):
+      scripts/make_fit: Print DT name before libfdt errors
+
+Kaustabh Chakraborty (1):
+      dt-bindings: gpu: arm,mali-midgard: add exynos7870-mali compatible
+
+Konrad Dybcio (2):
+      of: address: Expand nonposted-mmio to non-Apple Silicon platforms
+      of: address: Allow to specify nonposted-mmio per-device
+
+Krzysztof Kozlowski (5):
+      docs: dt: submitting-patches: Document sending DTS patches
+      docs: process: maintainer-soc-clean-dts: linux-next is decisive
+      dt-bindings: memory-controllers: samsung,exynos4210-srom: Enforce child props
+      dt-bindings: memory-controllers: qcom,ebi2: Enforce child props
+      dt-bindings: pps: gpio: Correct indentation and style in DTS example
+
+Lad Prabhakar (1):
+      dt-bindings: gpu: mali-bifrost: Add compatible for RZ/V2H(P) SoC
+
+Leonardo Felipe Takao Hirata (1):
+      dt-bindings: interrupt-controller: Convert nxp,lpc3220-mic.txt to yaml format
+
+Matthew Gerlach (1):
+      dt-bindings: edac: altera: socfpga: Convert to YAML
+
+Michal Simek (5):
+      dt-bindings: xilinx: Remove uartlite from xilinx.txt
+      dt-bindings: xilinx: Remove description for SystemACE
+      dt-bindings: xilinx: Remove desciption for 16550 uart
+      dt-bindings: trivial-devices: Add ti,tps546b24
+      dt-bindings: trivial-devices: Add ti,tps53681
+
+Rob Herring (Arm) (13):
+      dt-bindings: memory-controllers: Move qcom,ebi2 from bindings/bus/
+      dt-bindings: memory-controllers: qcom,ebi2: Split out child node properties
+      dt-bindings: memory-controllers: samsung,exynos4210-srom: Split out child node properties
+      dt-bindings: net: smsc,lan9115: Ensure all properties are defined
+      dt-bindings: imx: fsl,aips-bus: Ensure all properties are defined
+      of: resolver: Simplify of_resolve_phandles() using __free()
+      dt-bindings: display: mitsubishi,aa104xd12: Allow jeida-18 for data-mapping
+      dt-bindings: display: mitsubishi,aa104xd12: Adjust allowed and required properties
+      dt-bindings: fsi: ibm,p9-scom: Add "ibm,fsi2pib" compatible
+      dt-bindings: trivial-devices: Add Maxim max15301, max15303, and max20751
+      of/platform: Use typed accessors rather than of_get_property()
+      of: Move of_prop_val_eq() next to the single user
+      media: dt-bindings: mediatek,vcodec-encoder: Drop assigned-clock properties
+
+Zijun Hu (15):
+      of: unittest: Add a case to test if API of_irq_parse_one() leaks refcount
+      of/irq: Fix device node refcount leakage in API of_irq_parse_one()
+      of: unittest: Add a case to test if API of_irq_parse_raw() leaks refcount
+      of/irq: Fix device node refcount leakage in API of_irq_parse_raw()
+      of/irq: Fix device node refcount leakages in of_irq_count()
+      of/irq: Fix device node refcount leakage in API irq_of_parse_and_map()
+      of/irq: Fix device node refcount leakages in of_irq_init()
+      of/irq: Add comments about refcount for API of_irq_find_parent()
+      of: resolver: Fix device node refcount leakage in of_resolve_phandles()
+      of: Compare property names by of_prop_cmp() in of_alias_scan()
+      of: Introduce and apply private is_pseudo_property()
+      of: Correct property name comparison in __of_add_property()
+      of/platform: Do not use of_get_property() to test property presence
+      of: property: Increase NR_FWNODE_REFERENCE_ARGS
+      of: Align macro MAX_PHANDLE_ARGS with NR_FWNODE_REFERENCE_ARGS
+
+ .../bindings/display/bridge/lvds-codec.yaml        |   1 +
+ .../display/panel/mitsubishi,aa104xd12.yaml        |   6 +-
+ .../devicetree/bindings/dts-coding-style.rst       |   8 +-
+ .../bindings/edac/altr,socfpga-ecc-manager.yaml    | 323 +++++++++++++++++
+ .../devicetree/bindings/edac/socfpga-eccmgr.txt    | 383 ---------------------
+ .../devicetree/bindings/fsi/ibm,p9-scom.yaml       |   1 +
+ .../devicetree/bindings/gpu/arm,mali-bifrost.yaml  |   3 +
+ .../devicetree/bindings/gpu/arm,mali-midgard.yaml  |   5 +-
+ .../interrupt-controller/nxp,lpc3220-mic.txt       |  58 ----
+ .../interrupt-controller/nxp,lpc3220-mic.yaml      |  68 ++++
+ .../bindings/media/mediatek,vcodec-encoder.yaml    |   6 -
+ .../bindings/memory-controllers/exynos-srom.yaml   |  36 +-
+ .../memory-controllers/mc-peripheral-props.yaml    |   2 +
+ .../qcom,ebi2-peripheral-props.yaml                |  91 +++++
+ .../{bus => memory-controllers}/qcom,ebi2.yaml     |  87 +----
+ .../samsung,exynos4210-srom-peripheral-props.yaml  |  35 ++
+ .../devicetree/bindings/net/smsc,lan9115.yaml      |   6 +-
+ .../devicetree/bindings/pps/pps-gpio.yaml          |  22 +-
+ .../devicetree/bindings/soc/imx/fsl,aips-bus.yaml  |   5 +-
+ .../devicetree/bindings/submitting-patches.rst     |  19 +-
+ .../devicetree/bindings/trivial-devices.yaml       |   9 +
+ Documentation/devicetree/bindings/xilinx.txt       |  26 --
+ Documentation/process/maintainer-soc-clean-dts.rst |   5 +-
+ MAINTAINERS                                        |   5 +
+ drivers/of/address.c                               |  13 +-
+ drivers/of/base.c                                  |   6 +-
+ drivers/of/irq.c                                   |  84 +++--
+ drivers/of/of_private.h                            |   7 +
+ drivers/of/overlay.c                               |  10 +-
+ drivers/of/platform.c                              |   8 +-
+ drivers/of/resolver.c                              |  41 +--
+ drivers/of/unittest-data/tests-interrupts.dtsi     |  13 +
+ drivers/of/unittest.c                              |  67 ++++
+ include/linux/fwnode.h                             |   2 +-
+ include/linux/of.h                                 |   8 +-
+ scripts/make_fit.py                                |   6 +-
+ 36 files changed, 766 insertions(+), 709 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/edac/altr,socfpga-ecc-manager.yaml
+ delete mode 100644 Documentation/devicetree/bindings/edac/socfpga-eccmgr.txt
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/nxp,lpc3220-mic.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/nxp,lpc3220-mic.yaml
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/qcom,ebi2-peripheral-props.yaml
+ rename Documentation/devicetree/bindings/{bus => memory-controllers}/qcom,ebi2.yaml (63%)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/samsung,exynos4210-srom-peripheral-props.yaml
 
