@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-161126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63D7AA72A69
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 08:10:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B3FFA72A78
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 08:16:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F1353B9670
-	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 07:08:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 543233B3C88
+	for <lists+devicetree@lfdr.de>; Thu, 27 Mar 2025 07:16:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0E2F1C8615;
-	Thu, 27 Mar 2025 07:09:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2EC51CEAC8;
+	Thu, 27 Mar 2025 07:16:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U04CPQDc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rfmlQaWl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0315C2C8;
-	Thu, 27 Mar 2025 07:09:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99DFC1CDA2D;
+	Thu, 27 Mar 2025 07:16:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743059347; cv=none; b=EV11jt5TvoyKAFRxtHSvDyOlafbZ92bBc3XjQQGm8Jx14hUK9VOug0kjJ0M0Uv5BmtA+UcbqED5RGDUVLC4P25BTJfKveJfRw5MCs5ml4ecNok9VAZFYN3eQ9Z4kb8ZjQ3VN8BYDirS1NH8rM3UL7JC5sHunzv1Su1WNrgvkqnY=
+	t=1743059802; cv=none; b=SA0CshNoqBgHFBJIs5fQZG8iz8fzxu7PTFuxAO9+Z63lnpbwzxpmH4ykjKyVVv9xrXqSiipVQR/vTZeCabxcL+ZReXccqAucs0fR2KhUfpF4jcNxigZaw9RX+oDTl20ilUw5J5U3hPmisAy4zxYusXuh9mKitbZeFvpTahsTguI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743059347; c=relaxed/simple;
-	bh=RTO5t/LI0jIMfKv+KM5XxXFziRhRYwgdAn1ECXSY6XM=;
+	s=arc-20240116; t=1743059802; c=relaxed/simple;
+	bh=6MsLFXJTO1nHRU7fxYGjWw4YNdH3bXJp7NDPTR8FanM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FVh+hT0uPTsNbLpcGXo2ycwyVgv19dXcdQ5jeWMzF1Gx3pJM68RLh7KW2xp1KyLsNR/RUIGg8M3kVhL+2qznuWwPPgiX8jGaPlR9dB2ZIzWb4dNXD95VeH8Egap6nwsZQXidYt8UqBPUVu2zn/R7pFBNS7lcoBGDUdsCwIh0lmY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U04CPQDc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B918C4CEDD;
-	Thu, 27 Mar 2025 07:09:02 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=IDH6DQK2Eb62eQrkGCqlIcatdPIOJ7N8SOzCKgJFNeB3YuvUIPM59mdhlELFr5X3Nh2z9rttSFILZCZQu1OS2C6p0ImHTGyXlM7G4QAUzStlrc5AM+fXz4UOctYiwnL+KQlAEoa+Wqg7pzz+V2sFUVzfgcOje1mLsU7cWKk/NUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rfmlQaWl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE92AC4CEDD;
+	Thu, 27 Mar 2025 07:16:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743059347;
-	bh=RTO5t/LI0jIMfKv+KM5XxXFziRhRYwgdAn1ECXSY6XM=;
+	s=k20201202; t=1743059801;
+	bh=6MsLFXJTO1nHRU7fxYGjWw4YNdH3bXJp7NDPTR8FanM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=U04CPQDcY3gzL8RpY9KoV0VVAL012KmNh2pSctz+IrjUMuuJUf2dQuWF/K3llVV8B
-	 cCEyG5XPLhQlOi25ILmRnCqjbpTB7u7TLyfBKIttZ9tLc+aTrDowJ9A9jLlgsQRuQO
-	 eYS/C+V7hIuUuiV/mz+Rr9WzaoE920ea4rCT/lbSjrAFDeCc4YTJzPBJ3SY+4wcQAt
-	 8OSk+wTKvxSL/qVWW/WSp48rewfqL9vpx7qQCeNXS92ic4wSrcCmTXV5aToVDRPrdE
-	 UK7Ok39Y0XVdmv4kGEgW9+PoGlxx6f7KaOyDQRvQrF2xUfEBufH55tyWCHx2NFcu+o
-	 nA0Dx3TMKlCEQ==
-Message-ID: <da93bf6c-b4bc-4c4f-9373-583fbd0c031c@kernel.org>
-Date: Thu, 27 Mar 2025 08:09:00 +0100
+	b=rfmlQaWlXP/aVoSXq9kgeLjNE7tRfLq0IHl/9h0PxFlaiIZ6J3yq1FMzN7FuS0v3v
+	 TBr8wJwKxrN1uA85rwpEXdytFMKbfAiLfZQmHY30vWG/+5k2yNZzReX3LcVUxOOdvt
+	 rbEGrSXoTriIViqdSIiJExP4BREY3TTpRPgEWbZ+Lm8PMe5vKWzxDM5K+eth+//smd
+	 wjKF8A3z/0xGem/0wwl9DZfoIpXx5o50RbdPRKFVY1Lo2q//m+mnAI8v4eRnwdt6BX
+	 eT0QjWJwkvwTbD6r2rC200BgzcxSNQ7s7yStryWKepIOQBdLXrDthNzK8CT3PUep3+
+	 3c9qpSlN1vPPw==
+Message-ID: <e43b1a00-b221-413b-a36a-3a65e17f800f@kernel.org>
+Date: Thu, 27 Mar 2025 08:16:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] media: dt-bindings: Add OmniVision OV02C10
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, robh@kernel.org,
- hdegoede@redhat.com, mchehab@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, sakari.ailus@linux.intel.com, hverkuil@xs4all.nl
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, bod@kernel.org
-References: <20250324171508.GA668235-robh@kernel.org>
- <20250326150114.71401-1-bryan.odonoghue@linaro.org>
- <W8_0Ch2J0PWJ5pKHojZjFbM8huvxWlaWajtl_uhQF3UszGH_O8WTRZdQxh_eHs2JzLOx7CCxx01UZDHPQqAyCA==@protonmail.internalid>
- <1dd46a9e-e97d-415a-9e33-67ee234c4bac@kernel.org>
- <0de575dc-5afb-40fb-be30-99906d0e493b@linaro.org>
- <c1959f95-9ee1-4597-b6ec-fbedc8a872db@kernel.org>
- <afae182f-b264-4b57-acd7-2c2cf090e1ad@linaro.org>
+Subject: Re: [PATCH v5 5/6] arm64: dts: cix: add initial CIX P1(SKY1) dts
+ support
+To: Peter Chen <peter.chen@cixtech.com>, Marc Zyngier <maz@kernel.org>
+Cc: soc@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
+ marcin@juszkiewicz.com.pl, kajetan.puchalski@arm.com,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Fugang Duan <fugang.duan@cixtech.com>
+References: <20250324062420.360289-1-peter.chen@cixtech.com>
+ <20250324062420.360289-6-peter.chen@cixtech.com>
+ <865xjxmlgl.wl-maz@kernel.org> <Z-Nz0DU441Wwj1i4@nchen-desktop>
+ <861pukm9yd.wl-maz@kernel.org> <Z-Tz1moMNozx23k6@nchen-desktop>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,30 +109,98 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <afae182f-b264-4b57-acd7-2c2cf090e1ad@linaro.org>
+In-Reply-To: <Z-Tz1moMNozx23k6@nchen-desktop>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/03/2025 18:34, Bryan O'Donoghue wrote:
+On 27/03/2025 07:44, Peter Chen wrote:
+>>>
+>>> On 25-03-25 10:52:10, Marc Zyngier wrote:
+>>>>> +     timer {
+>>>>> +             compatible = "arm,armv8-timer";
+>>>>> +             interrupt-names = "sec-phys", "phys", "virt", "hyp-phys", "hyp-virt";
+>>>>> +             interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW 0>,
+>>>>> +                          <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW 0>,
+>>>>> +                          <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW 0>,
+>>>>> +                          <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW 0>,
+>>>>> +                          <GIC_PPI 12 IRQ_TYPE_LEVEL_LOW 0>;
+>>>>> +     };
+>>>>> +};
+>>>>
+>>>> I don't think there is anything wrong here, but it is also a pretty
+>>>> useless DT. There isn't even a UART to interact with the machine and
+>>>> find out whether it has actually booted.
+>>>>
+>>>
+>>> UEFI uses the same UART, so we could see all kernel boot logs until
+>>> switch to use kernel UART driver for printk. If you would like boot
+>>> to the console at initramfs, just add uart node like patchset v1.
 >>
->> I meant bindings are exactly the same, unless I missed something.
->> Devices are similar enough as well.
+>> What's the point in upstreaming something that requires extra changes
+>> just to boot it? It only outlines these patches are not useful as they
+>> stand.
 >>
->>> Seems simpler to me to have two separate files ?
+>>>
+>>>> I reckon this should be part of the initial DT, as this otherwise
+>>>> serves little purpose.
+>>>>
+>>>
+>>> Without this initial support, we can't add some base drivers, like
+>>> mailbox. The dt_binding_check will report warnings/errors [1].
 >>
->> Not really, more files to maintain, more trivialities to fix if we
->> decide to change something in all bindings (e.g. style).
+>> Of course you can. You just add additional patches to this series,
+>> making it something that is actually useful. So far, this series only
+>> serves as marketing material.
 >>
->> Best regards,
->> Krzysztof
+>>> Full UART support depends on clock, clock control needs mailbox
+>>> to talk with FW using SCMI protocol.
+>>
+>> Then do it. You obviously have existing DT support for it already.
+>>
+>>> There is no any support for CIX SoC, so we had to add one small step by
+>>> step.
+>>
+>> No, you are deliberately choosing to make this platform useless.
+>>
+>> That's a bit sad, and a waste of everybody's time.
+>>
 > 
-> Hmm, so we have two in-flight series and one yaml file.
+> Hi Marc,
 > 
-> OK, I'll drop this patch and add ov02c10 to the ov02e10 yaml as you suggest.
+> Thanks for your interesting of our platform, and your comments
+> help us a lot. But I don't think it wastes reviewers and maintainers
+> time, a clean patch set saves everyone's time during upstream process.
 > 
-> So long as the yaml file goes in first, the order of application of the 
-> ov02c10/ov02e10 drivers won't matter and can be fixed with a cherry-pick.
-You can combine the series or add here a dependency.
+> For how to organize the patch set for SoC, Krzysztof gave good summary
+> at [1]. We are going on upstream [2], this patch set is just a start
+> and base but not like you said for marketing purpose.
+
+
+I do not think I suggested in [1] to ever send new SoC containing only
+CPUs and interrupt controller, without even serial. My instruction [1]
+was how to organize it. The DTS can be even fully complete, see the
+upstreaming example I have been using all the time - Qualcomm SM8650:
+
+https://lore.kernel.org/all/20231124-topic-sm8650-upstream-dt-v4-0-e402e73cc5f0@linaro.org/
+
+Entire SoC sent to mailing list on the day one of public release of that
+flagship Qualcomm SoC. The SoC DTSI and board DTS have almost complete
+picture, except few trickier pieces... but it even has full display and
+GPU! Plus, as I explained on my email on samsung-soc, that DTS/DTSI
+patchset references all other bindings with their state, so SoC
+maintainers can understand what is the overall progress and what will be
+the result in DT schema checks, if they apply the patchset.
+
+The minimum, absolute minimum submission is with the serial nodes. I
+would prefer to have some storage or any other interface as well, but
+that's fine.
+
+
+> 
+> [1] https://lore.kernel.org/linux-samsung-soc/CADrjBPq_0nUYRABKpskRF_dhHu+4K=duPVZX==0pr+cjSL_caQ@mail.gmail.com/T/#m2d9130a1342ab201ab49670fa6c858ee3724c83c
+> [2] https://lore.kernel.org/lkml/20250325101807.2202758-1-guomin.chen@cixtech.com/
+> 
+
 
 Best regards,
 Krzysztof
