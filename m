@@ -1,107 +1,161 @@
-Return-Path: <devicetree+bounces-161521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161522-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C142DA745B8
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 09:52:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECACCA745C4
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 09:56:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 66A1217B95C
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 08:52:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9171517C0D1
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 08:56:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 363BE213220;
-	Fri, 28 Mar 2025 08:52:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70993213253;
+	Fri, 28 Mar 2025 08:56:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XMmvzhZb"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="IkzDgYGP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95CC21CAA9E;
-	Fri, 28 Mar 2025 08:52:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A20E721147C;
+	Fri, 28 Mar 2025 08:56:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743151923; cv=none; b=PaSwQLBJOjqzCJKcFldHfcL0oCevWsnbPTcSi393NO64+mFGEThL0t8bnufyYgZ/2q474Uea7Z13ea3wWQVyXwUU2DCkRy+0jVkzuuNoQH5Cgaf6hF1+TaQttuPQ5P0+zpnkpFAjDKvu9Z7B7uhpteRdBTph/mpkjVdQ70MJXbw=
+	t=1743152194; cv=none; b=c1BBU/tlBj85Mm9vMEiUJ0WdrsrZgxvExje7WhdrpRmKNZ0c40vsfMdsPNwKAlXUUWjOOQk+1+s2fOy1sNWieAqPDgBOSKQvPfcKOsn95amjiBkk6uIODN5dwv0gM2QtO+ZzPUvondlXJX9XL9/yG7SjjFEfyeGSguY4+9HvxPQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743151923; c=relaxed/simple;
-	bh=FlC+37ZiGcWL51fch9yxH6KM9+9dpWQkrmsOyOZA0kY=;
-	h=Message-ID:Date:MIME-Version:To:CC:References:Subject:From:
-	 In-Reply-To:Content-Type; b=gCXIkTdtljcewicd55pgkacqNd86yHxRYWgabROBvSN6yhjBXDwi47wmwPeyNZAwWratxcFugk5pMppyEPLFmSDzob+mPNuE8sX4VRxwwY1bkDhQadu/VwoWlOZM7gWdNL+E9hJ/ZqnEgbfEvrcJBQqsBfyZ66GkWadvym/uSZY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XMmvzhZb; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52S1UGE6016879;
-	Fri, 28 Mar 2025 08:51:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	FyG8JFZiRbUg5Gq8GBkPclQ3vKTpi36PdswEVszV1z0=; b=XMmvzhZbeXD3MyNe
-	brL+4A9MaV8ToH6/FjdJEXyYUL0ebW2XfzpIZWklfx9+pRxF5iaCIcannoBjNVDl
-	HYH05NzKm/2KaqUzsoTrWxGOgGPWJAKiTePuRu0+w3mMH9FIiMwJ8Y6aAWYrSABR
-	tArGj5P2pF82ttIsiznQVXOX47HE8cfu8GldNoMSXz9mljKdNEUg+eMPDMv5c5UA
-	GbsnuJ8guRb9Pap+DCu8EX5GvpaXO8M7mcsJu5Zp6Ffdpqzp+JFOXQpMPau424gH
-	l8YrHeeFuEBqtZc2A3GHt8nNr+IcnC2yu9LfYQd/cO6hkS4b6VRtNLeOv860kp89
-	XhcLGA==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45nj5q94fj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 28 Mar 2025 08:51:58 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52S8pu5M008063
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 28 Mar 2025 08:51:56 GMT
-Received: from [10.218.5.175] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 28 Mar
- 2025 01:51:53 -0700
-Message-ID: <79504e6d-5ccb-4909-a88e-307280c5d359@quicinc.com>
-Date: Fri, 28 Mar 2025 14:21:44 +0530
+	s=arc-20240116; t=1743152194; c=relaxed/simple;
+	bh=8LFkZVlNrqslp/Rsd3HJnDbo9vMoZv8DWHlbdsSgBo8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=s1ztcS21Lhq3exTV+Lz6KI6DXWgunCz9Fa5Ut3VHFlnu7F1cVVEJwMjT1qwRuaMPfZhL3M6kjkPrXdDpzd6D8ctdWfdS3SViuxKiyEAJBGDufGsOc13ISnN47YK+1qJKe2eRk/NJyvDBtYEw6AaVYoxmtZD/Z7VaVC7XWPl0b08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=IkzDgYGP; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6ABA0844;
+	Fri, 28 Mar 2025 09:54:41 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1743152081;
+	bh=8LFkZVlNrqslp/Rsd3HJnDbo9vMoZv8DWHlbdsSgBo8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IkzDgYGPVMxD3mg2AwvkZ17isoDdkfKt9nfBsfyBoTue9jtF1EhfThMNtkBkXObxy
+	 GhJfFMdJv7+ZAuBJCV/Fw5ul134XKC69iVN/Kti8IVtiGkBOMszH0WiYiCDx5vCZog
+	 G7vCeNxeVEnoQFWFQuu/zmkRgQ+IkLkYr+u/67dw=
+Date: Fri, 28 Mar 2025 10:56:07 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Daniel Baluta <daniel.baluta@gmail.com>
+Cc: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dong Aisheng <aisheng.dong@nxp.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rui Miguel Silva <rmfrfs@gmail.com>,
+	Martin Kepplinger <martink@posteo.de>,
+	Purism Kernel Team <kernel@puri.sm>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+	Robert Chiras <robert.chiras@nxp.com>,
+	"Guoniu.zhou" <guoniu.zhou@nxp.com>
+Subject: Re: [PATCH v3 07/12] media: imx8mq-mipi-csi2: Add imx8mq_plat_data
+ for different compatible strings
+Message-ID: <20250328085607.GE22295@pendragon.ideasonboard.com>
+References: <20250210-8qxp_camera-v3-0-324f5105accc@nxp.com>
+ <20250210-8qxp_camera-v3-7-324f5105accc@nxp.com>
+ <CAEnQRZAmCrZ=OmMLWF80mrMih+uFDKMp3dGsEosJe0vCHgEEYw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: <konrad.dybcio@oss.qualcomm.com>
-CC: <andersson@kernel.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <konradybcio@kernel.org>,
-        <krzk+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <lumag@kernel.org>,
-        <quic_pbrahma@quicinc.com>, <robh@kernel.org>
-References: <c5ead68a-f108-4e73-aea0-d6cb562092ac@oss.qualcomm.com>
-Subject: Re: [PATCH] arm64: dts: qcom: qcs8300: add the pcie smmu node
-Content-Language: en-US
-From: Pratyush Brahma <quic_pbrahma@quicinc.com>
-In-Reply-To: <c5ead68a-f108-4e73-aea0-d6cb562092ac@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: QkuncVBr8qHMhrdsP0y3Q50KOBIa1QBh
-X-Proofpoint-ORIG-GUID: QkuncVBr8qHMhrdsP0y3Q50KOBIa1QBh
-X-Authority-Analysis: v=2.4 cv=Gr9C+l1C c=1 sm=1 tr=0 ts=67e6632e cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=7tu3_stWU1f-8F5rTL4A:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-28_04,2025-03-27_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
- bulkscore=0 clxscore=1015 malwarescore=0 adultscore=0 spamscore=0
- suspectscore=0 mlxlogscore=635 mlxscore=0 lowpriorityscore=0
- priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503280060
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAEnQRZAmCrZ=OmMLWF80mrMih+uFDKMp3dGsEosJe0vCHgEEYw@mail.gmail.com>
 
-Hi Konrad
+On Fri, Mar 28, 2025 at 10:35:44AM +0200, Daniel Baluta wrote:
+> On Mon, Feb 10, 2025 at 11:02 PM Frank Li <Frank.Li@nxp.com> wrote:
+> >
+> > From: "Guoniu.zhou" <guoniu.zhou@nxp.com>
+> >
+> > Introduce `imx8mq_plat_data` along with enable/disable callback operations
+> > to facilitate support for new chips. No functional changes.
+> >
+> > Signed-off-by: Guoniu.zhou <guoniu.zhou@nxp.com>
+> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > ---
+> > Change from v2 to v3
+> > - none
+> > change from v1 to v2
+> > - remove internal review tags
+> > ---
+> >  drivers/media/platform/nxp/imx8mq-mipi-csi2.c | 60 ++++++++++++++++++++-------
+> >  1 file changed, 46 insertions(+), 14 deletions(-)
+> >
+> > diff --git a/drivers/media/platform/nxp/imx8mq-mipi-csi2.c b/drivers/media/platform/nxp/imx8mq-mipi-csi2.c
+> > index 1f2657cf6e824..b5eae56d92f49 100644
+> > --- a/drivers/media/platform/nxp/imx8mq-mipi-csi2.c
+> > +++ b/drivers/media/platform/nxp/imx8mq-mipi-csi2.c
+> > @@ -62,6 +62,8 @@
+> >  #define CSI2RX_CFG_VID_P_FIFO_SEND_LEVEL       0x188
+> >  #define CSI2RX_CFG_DISABLE_PAYLOAD_1           0x130
+> >
+> > +struct csi_state;
+> > +
+> >  enum {
+> >         ST_POWERED      = 1,
+> >         ST_STREAMING    = 2,
+> > @@ -83,11 +85,11 @@ static const char * const imx8mq_mipi_csi_clk_id[CSI2_NUM_CLKS] = {
+> >
+> >  #define CSI2_NUM_CLKS  ARRAY_SIZE(imx8mq_mipi_csi_clk_id)
+> >
+> > -#define        GPR_CSI2_1_RX_ENABLE            BIT(13)
+> > -#define        GPR_CSI2_1_VID_INTFC_ENB        BIT(12)
+> > -#define        GPR_CSI2_1_HSEL                 BIT(10)
+> > -#define        GPR_CSI2_1_CONT_CLK_MODE        BIT(8)
+> > -#define        GPR_CSI2_1_S_PRG_RXHS_SETTLE(x) (((x) & 0x3f) << 2)
+> > +struct imx8mq_plat_data {
+> > +       const char *name;
+> > +       int (*enable)(struct csi_state *state, u32 hs_settle);
+> > +       void (*disable)(struct csi_state *state);
+> > +};
+> >
+> >  /*
+> >   * The send level configures the number of entries that must accumulate in
+> > @@ -106,6 +108,7 @@ static const char * const imx8mq_mipi_csi_clk_id[CSI2_NUM_CLKS] = {
+> >
+> >  struct csi_state {
+> >         struct device *dev;
+> > +       const struct imx8mq_plat_data *pdata;
+> >         void __iomem *regs;
+> >         struct clk_bulk_data clks[CSI2_NUM_CLKS];
+> >         struct reset_control *rst;
+> > @@ -137,6 +140,35 @@ struct csi2_pix_format {
+> >         u8 width;
+> >  };
+> >
+> > +/* -----------------------------------------------------------------------------
+> 
+> I would drop this line. It doesn't make code easier to read.
 
-Can you please share any updates from your internal investigation?
-Do you still have concerns or can this be merged?
+I personally find that clear section markers make the code easier to
+read. It's a personal preference though, so I leave it to individual
+driver maintainers, and aim for consistency within drivers.
+
+> > + * i.MX8MQ GPR
+> > + */
+> 
+> Just say: /* i.MX8MQ GPR */
+> 
+> This pattern happens in a lot of places.
 
 -- 
-Thanks and Regards
-Pratyush Brahma
+Regards,
 
+Laurent Pinchart
 
