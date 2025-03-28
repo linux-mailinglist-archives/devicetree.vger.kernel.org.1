@@ -1,286 +1,214 @@
-Return-Path: <devicetree+bounces-161658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 538B3A74DA2
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 16:21:48 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC9A8A74DAE
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 16:27:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 649C0189D92E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 15:21:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 804827A6222
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 15:26:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33FB91D61B7;
-	Fri, 28 Mar 2025 15:21:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 694EF1D416B;
+	Fri, 28 Mar 2025 15:27:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="HR0T81It"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="HxPDGX2k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11011037.outbound.protection.outlook.com [52.101.65.37])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E62171B4257;
-	Fri, 28 Mar 2025 15:21:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743175289; cv=none; b=VIXolLYF45Kv6XXQRBtDJia9l91SC6eIaG8hkBCdtppUBVLiZ8H+eY26mdxFAh9ZOqXC2KEc1hIs8MGIPfWVmvNeo005AyEjDjLVlZMp2yywJMwyUFxyztrzL9qKo7TVOes+XSj7BxO7XVHpez8xDcv6ap0HsLIOgFaYaPjE4YI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743175289; c=relaxed/simple;
-	bh=VhPm2s6F8u50aVYbaCa6/EYrQ2WdUIRZwvMuwy2pwbE=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PXwr8A3c7mXDV9Vu4mZQH+eVpCirGTV2nDsX5pp9RAZimq+YTYBMV11CgdXK41fqiYZMe81KNfJfaLoDWJUYVeknQ7GmU7k6eAeTl4PxXmzE516FZO4hd5r/KbMfT5SUu+7F5YCUkwb3jaN4ou1YZ690zImv+fIb/x9QX5UHUF0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=HR0T81It; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52SFLCsP2195666
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 28 Mar 2025 10:21:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1743175272;
-	bh=Lu7OQHrwsF2ia/OLiHFgjNKQ6t/ACm/lnjgCvTJD/OM=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=HR0T81ItniugJhjhJ0zhVxuByYwLpIJ8maACasCnOVMH5I+EJUY/wHDu2F5ZHOOSm
-	 2cArtAf2cjQD74gW8B4/i4wzE8DhNLLEmcZ5IjFrrzjdcn/0bmH5M0GnkIA0Yf5d2S
-	 /fFLmwR5NquI+UMeVv6XOrc/wJ5MN0kBbp/wYbPw=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 52SFLCBQ097515
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 28 Mar 2025 10:21:12 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 28
- Mar 2025 10:21:12 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 28 Mar 2025 10:21:12 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52SFLChf124302;
-	Fri, 28 Mar 2025 10:21:12 -0500
-Date: Fri, 28 Mar 2025 10:21:12 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Wadim Egorov <w.egorov@phytec.de>
-CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <upstream@lists.phytec.de>
-Subject: Re: [PATCH v2 1/5] arm64: dts: ti: k3-am62x-phyboard-lyra: Add boot
- phase tags
-Message-ID: <20250328152112.lh7i3rgkkmhzekzi@kimono>
-References: <20250305085537.3976579-1-w.egorov@phytec.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34DF123CB;
+	Fri, 28 Mar 2025 15:27:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.37
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1743175644; cv=fail; b=gSJwGLeuAnArSDhatJkVoT9IFufy72uCN4EBc/2XHMp18ywoBM4PhGT+VYpzC5fi4rygJPZAjcO/OTuoJKT6+Gan/JicTn1lMFx53SPHzR2UzYxiTBZ5fI9j8JxN04LIbgmtPraFJAw62AQCs6+ZS9o0tqBKvtLSsGw+8fcebYA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1743175644; c=relaxed/simple;
+	bh=m0RXXRGE3iBAqhy+wg93DGobIdPxSDc+hZf/bcUyTjY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=ddz3xcJFgDSgkYfKDZVM+jqxnnkLAkwdrMcqvunqnSgpUr8ILCho99LQokc+/Y+Vo0k8lAEmlGzsZ+hU9pFOJ/yTKWL7qkhV4o/wHQUnPLXH5YnzMZ1P5cgzHyGmSmKPQiGEXPG4qjHYigE/44vaU5PSWcW5dlMp+gr4Y4IVNRU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=fail (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=HxPDGX2k reason="signature verification failed"; arc=fail smtp.client-ip=52.101.65.37
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=zCQHzJ6rjfhTKv50rjtBJV1Ow5tXa3vHYb+Nne4wBuMOCIWfCzWcMdRc4RTaWeEcC+7KQBC8SyfPOGgfeGDmRhPtTzipKOtKZh8XKP2fUv+bSuBW7n3BFZIKagd5oA5GduamEKZzx/EoA00eSIwaADuD1qn+xbzXc73g1uN3pw0RJ8XR9I5Msv+OuzICeYdS6GrrSiYkZxYn7t3E8RfedV+2fPiOTluRm5Y+3RfsrWxBYMWsKPj7Tw5dypUVYmxa17pYxmdkQE3JfFP+AcR/fCE+Nm7V1gYBN7KjaUKpcFQWPsCf8BUrMnhcWq6CAGO8pTgxoLBVPkPTDedRQOAvsw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=oH/sufy3NjiowwRXnPY3ZH5vtv30xBCfzOrQ5DNiIRU=;
+ b=itsAo5sYNtNQLT20/6fkZNqJKTh9HEXMSRczXvjvacNLJy1lQZWCADD97keEqtUhVfmy2DGjHdK0RNxAkbsWC0yD7dUac+yGcr7WI4wgIYZKAAPYbybYFVfqVCcsYqxaHmH3O6YoA7gZ1suck9AkX8wcsETGP7E98HUu0H2teaBGihYVAQrILa7g4T40rGn7ELfQykFUG5Kz23BpGXoenyJf4oy2YVkiX8QI8YfFES7wMqmkT1SGfEDgZ3CmDDnTkTbF3ljhzZNIONiHeGtp8zkZWXxbdFYbV088WV3+S3XWHND7EwjMduLJxHQ7wYpQuXZ54889hytiXvtZo/X9ZA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oH/sufy3NjiowwRXnPY3ZH5vtv30xBCfzOrQ5DNiIRU=;
+ b=HxPDGX2k4oeri3FGt/ZP8/4jTsCaSI316Cx9YIATXSyDdQ7kqw0OvKnvwu7q2ylSJ3OwQ4uaeqwSg1lE2+JoOnxqXSKHQWjhoDC7kUGF0JrYKhEdMYKgvkyEQYk8U1n3lXU54F5M29JyZcTUT5I6/U8C3d30ec2msP1o1NdiXcL73UaXLz5utGwhvPYxiKmytZTd2ijsISZU+35qrzOJYimg7EUeUqLCbRI4BRWl9Q4QXFz5KLV6gxtMDjU/DXpSwyVDDRBV6vKUl1RDZcBCWuFnk1vjGQMTLYYKnof/2IYf3qNfV8zCc8DMy4rAbDNRkYl+hDBp7F4MaI4xTCXAgw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
+ by PAXPR04MB8237.eurprd04.prod.outlook.com (2603:10a6:102:1cc::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.49; Fri, 28 Mar
+ 2025 15:27:19 +0000
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::e81:b393:ebc5:bc3d]) by DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::e81:b393:ebc5:bc3d%4]) with mapi id 15.20.8534.043; Fri, 28 Mar 2025
+ 15:27:19 +0000
+Date: Fri, 28 Mar 2025 11:27:11 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Maud Spierings | GOcontroll <maudspierings@gocontroll.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v3 5/8] arm64: dts: freescale: add Ka-Ro Electronics
+ tx8p-ml81 COMy
+Message-ID: <Z+a/zwGksilJVN7/@lizhi-Precision-Tower-5810>
+References: <20250327-initial_display-v3-0-4e89ea1676ab@gocontroll.com>
+ <20250327-initial_display-v3-5-4e89ea1676ab@gocontroll.com>
+ <Z+V6VAZLqIPuEsmk@lizhi-Precision-Tower-5810>
+ <PA4PR04MB7630DD14BB8A55B57487B790C5A02@PA4PR04MB7630.eurprd04.prod.outlook.com>
+ <PA4PR04MB7630342FE066C2C45D25AD4FC5A02@PA4PR04MB7630.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <PA4PR04MB7630342FE066C2C45D25AD4FC5A02@PA4PR04MB7630.eurprd04.prod.outlook.com>
+X-ClientProxiedBy: BYAPR21CA0025.namprd21.prod.outlook.com
+ (2603:10b6:a03:114::35) To DB9PR04MB9626.eurprd04.prod.outlook.com
+ (2603:10a6:10:309::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250305085537.3976579-1-w.egorov@phytec.de>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|PAXPR04MB8237:EE_
+X-MS-Office365-Filtering-Correlation-Id: 791c1f6e-74f8-49bd-019b-08dd6e0d070a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|7416014|52116014|366016|38350700014|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?iso-8859-1?Q?F2/oqBMI/sd8z0ghW85Mb2HekVORaRZfsne47XWYj9juWkx1pzPRUmeX3S?=
+ =?iso-8859-1?Q?+1VtRBtTY0qTN41mUne7qNMmf82W+n6Jo0JNaeHbh67OUyqZVe63kVxV1K?=
+ =?iso-8859-1?Q?ytjevnsHiw6aqJIlNGb82eW5dJ62Ze3NeP2Ci5ajCclhHdATW1Nzz2sxUC?=
+ =?iso-8859-1?Q?hXsZ0K/fNZ6Rr2FLPKOVnuYCj4LfUjFAdXEOVpOv5jeOsv5O2yv79ECGJ+?=
+ =?iso-8859-1?Q?Gyia3NmSeHqVrUp19TkdCOQXX2hGw9evIKNAmBz0NzUSvyAeQkSvj9zZLB?=
+ =?iso-8859-1?Q?WkIdT7RzSwrHPOXMJZn8wd/f0xsK6Wodyx93Dgxfr+clM/RnRpV05UV74q?=
+ =?iso-8859-1?Q?yn4idt6fFz8HLywR3UAjmkOEy68LuH0bwk/zcQBVYf/QWqw72vnJXpThzS?=
+ =?iso-8859-1?Q?rlb2s3Xh7UFrMOgiEwWFYpW7Ht9PGWp8O+phYe2DT6EJA1pC+pCJV/RozP?=
+ =?iso-8859-1?Q?ZB9M4mjkWQO8MsGWbqi3VBE/6tZ+p3sr4dNvgESOWU1YAAH4K2NgSnTBJU?=
+ =?iso-8859-1?Q?SM1hHBax4D3eDY83lMZxZpFrrG2nVRm47nxU21afDG1lHlKpzjr8yhYpdO?=
+ =?iso-8859-1?Q?16WuK4btkwNluL14h8oDE6yAgjP2rAMrgVYij5JE0LxuEkeS5oKOFZmPdM?=
+ =?iso-8859-1?Q?ph50xDMagBlKn/1Mu4iJPRxBD9q2y067MgRiENjseIpSWeHmWT21q044zb?=
+ =?iso-8859-1?Q?MHvsLO6ua3oH3Z+N4qbVYgPd7cWUWyuVgvZyaTDtWg6Izp2mQ9lSSSDgNU?=
+ =?iso-8859-1?Q?xgma61QdloFmDYZHaT1JsCJI2rRpneHo7/KvVcdk1c3uaH21LJ/v46NMfm?=
+ =?iso-8859-1?Q?sXh8fMtdBTap9/bkEFwMa18PSCTpDDnFLEGtamRaxpSaBB2RHrvCIoD3oz?=
+ =?iso-8859-1?Q?Eyo1EQNQBokSdNk/s44fHYTJJu/+gtvdwjA56goX9ru0frpdurhH+9ezSA?=
+ =?iso-8859-1?Q?YzTCjTRNJmWwVpRYsVGsVoitfx3uVEagQnywR8czFzNnaCZH3kdA6Q7gI7?=
+ =?iso-8859-1?Q?3uJ8aH2i7CXBg1RpuiddHS+c573/F0ZEiSC7DRsXvRHRHmuu8yvrVf+Jt7?=
+ =?iso-8859-1?Q?uskEP6iv8inBPxaMvl3grWgiYROPXsrESxldzVEivcxSXKWZ3bRW4wBBnG?=
+ =?iso-8859-1?Q?IObNUaUtbYP2iWZw489iaFdmTzJM89SRwWBhN5nTaRsip+V+VJdOtsQj+l?=
+ =?iso-8859-1?Q?p01uyY1b7f9jZy4IFEKNqBUj0zs2JxJObwASgRyAReMRUmldwRAUXDzSMV?=
+ =?iso-8859-1?Q?3A0Lzu0Fem7PncxVSuYC0b/YzkrvfQMFZiMO/apUjuG8H212rw+9fXIhPl?=
+ =?iso-8859-1?Q?pS0NE0gaMg49EQkwrkoNkkrzppN1l2cFl9YBVdOKyekzQucqc5RgujkVVZ?=
+ =?iso-8859-1?Q?P3i932jZ3LIydUgz0vJFqh6tEbFOo/S1/znYetP2ZYOtFGA4hE9Mlp3EHu?=
+ =?iso-8859-1?Q?87wIgqZ35nT1WZrYCQZIpksiBcBrtBd4g1Kb1jPX7lBTWlBPYLgoxretHa?=
+ =?iso-8859-1?Q?zJq6e8FpGbUZg23KYs+FRC?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(52116014)(366016)(38350700014)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?iso-8859-1?Q?t/TxMXehvxL7MMl7s+de9FXRFKZlpaoGf6JNPgjfZNXOTUv1AKvUza43xr?=
+ =?iso-8859-1?Q?UnEOp3fKXQ+bEs2RtwN7ZviiKhj9BTo9A4W7kYIFou0DiLwdUCkGkoImRg?=
+ =?iso-8859-1?Q?SNj1Tr8yW9BhrVjPEO3k0qThPWtRhMpQV1f9rQGzoxavqd/l5aCeMFQTER?=
+ =?iso-8859-1?Q?Eik6bMMVl8k7BFV2EUOcK02sLL3Lp7bq1jpO5mSU+rqCGhWNRVzLEIJraG?=
+ =?iso-8859-1?Q?EMu1bBTvnlli711XaeCfwnrozv/BIGBeg0x56D6V0eJzGgqNMjuMyDmYc+?=
+ =?iso-8859-1?Q?xCFFeaxMT8GlyUAqW5EciSdIgFZMlyTMk+00H7EPKkkNCw3WGYjujIxKs7?=
+ =?iso-8859-1?Q?eV/B0y0hdD/g4iOScgPbDDneoZJjjOh2u/olPMlVblviC+QnDL5fgpv9hf?=
+ =?iso-8859-1?Q?ZZvos7itxhOzo0bMmBjUWsoQt+0wMYqct30c0zl79E1R0oEYzJSCMgX0LJ?=
+ =?iso-8859-1?Q?5nkYaNS/4udZCKqayN6msmfUntAuU19eNBp02DxXjmZkECvMQvuNaqKI+l?=
+ =?iso-8859-1?Q?ErmVLKwQuW2k1/WpB/vd5YSdQ8kP/MTZQIWYbeg4uaqo3SmOdw/TMGsvbb?=
+ =?iso-8859-1?Q?BI8Y6sn1UsHsp4+zjTqid1HtilgfX0wdkoh8gi7JZebwKc4tLTelkME1wn?=
+ =?iso-8859-1?Q?a96OF/X/Igq5v41L+N1bhAhcGSRGCTUk2dvRsH1YhXsqCeb3UJo3U4lm1f?=
+ =?iso-8859-1?Q?eiZAS98CXssGhr3iIBqyrD+IO3hSVv2YBAIodXgfOwjmuW6f6zuc1dBEpw?=
+ =?iso-8859-1?Q?SaNjhI99xbqDUQhFWs0h//rmDvNWPTrGLgQ7iuQjn8ZMdAnGzy/LJy3XQ1?=
+ =?iso-8859-1?Q?j5cRECnmYvUQmXlS27tKOkyheZ+XhaMRkXuBXeL+a1k+hRnExHbjkdHiCN?=
+ =?iso-8859-1?Q?E0zu1aZ/mFxE0cLNYKzpzbyL6pwaBfxc8GQvWNnhYInBzX83aCbNxvUo1v?=
+ =?iso-8859-1?Q?tIZ29XqOOZWPKi2t7KVDihv1HU0aNmNnT7FHDtydntXuf/j74HusAeTh+x?=
+ =?iso-8859-1?Q?sSp5hfwv9zc7XWh7IokgTJ/y+8yLFZXTs9/IFVTtRT9j+UQLW9Q37gEdtn?=
+ =?iso-8859-1?Q?CPUzS8Pm8Bk+z0ed8JPALVKu42pvCQPTwIVTxA48IXduKua3agUhHrr8T8?=
+ =?iso-8859-1?Q?C2/pCh2+rbmSOuRsuMVdSfgQM2+ti9LyaelfMPmCs0rWaa1YeyKg5b+c0B?=
+ =?iso-8859-1?Q?7y+R2itrfilrUbS0Mfu5rbs3s7sWdTz30JeV9WXQydePogaWCiQyC4Vn4e?=
+ =?iso-8859-1?Q?xb9PeffuXUXKZFnnfsyKMMnkpo5rAeIsN4TkRYQv9fKWVaQPrkuuZj7g4f?=
+ =?iso-8859-1?Q?Mc7tDqMgBU1Edf9qmGPPCJG8tFoTw/WJkkhytbU/Ey8UsiHBuYmA0M9Skd?=
+ =?iso-8859-1?Q?C8vz/mytOncpksTUFTmyzpB/oD1xYrL7mJmbABJg1wQ/B3qa4hGZ3Xy+jG?=
+ =?iso-8859-1?Q?kIPfn7GWAoogLi1W6/X6WZhPzFQ7QYKRnubBkAnFB+S4SLSKiHiE5IC/Gy?=
+ =?iso-8859-1?Q?xKMB8IDx5rwyEIDn0/rC6/Zrg2PXSFGs+x0M76qc5FRfGynVWdtK2nio7i?=
+ =?iso-8859-1?Q?qAik69vzkJL3iM+wfSKfLGLed2FihOpkbAEiAgtFRfZwimbPjaZ2371v3s?=
+ =?iso-8859-1?Q?LD3mN1vzWDFS1WgH4UxWvuDmErfqc1fszQ?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 791c1f6e-74f8-49bd-019b-08dd6e0d070a
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2025 15:27:18.9954
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Gp+3I3d14tlXxFYE6mVpakmTHHZV3V+prblt0ucp8xABVEjWqEKX9HIKJJPEIoFsgBtnu4Y9gETn40YStu2sVg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8237
 
-On 09:55-20250305, Wadim Egorov wrote:
-> The bootph-all and bootph-pre-ram tags were introduced in dt-schema
-> (dtschema/schemas/bootph.yaml) to define node usage across different
-> boot phases.
-> 
-> Add boot phase tags to all required nodes to ensure boot support from
-> all sources, including UART, USB (DFU), Ethernet, uSD card, eMMC, and
-> OSPI NOR Flash.
-> 
-> Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
-> ---
-> v1: http://lists.infradead.org/pipermail/linux-arm-kernel/2025-February/1006239.html
-> v2:
->   - Add bootph-all to cpsw_port1 and main_pktma 
->   - Remove bootph-all from cpsw3g
-> ---
->  arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi   | 15 +++++++++++++++
->  .../arm64/boot/dts/ti/k3-am62x-phyboard-lyra.dtsi |  9 +++++++++
->  2 files changed, 24 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi b/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi
-> index 2ef4cbaec789..effab2f810c2 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi
-> @@ -29,6 +29,7 @@ aliases {
->  	memory@80000000 {
->  		device_type = "memory";
->  		reg = <0x00000000 0x80000000 0x00000000 0x80000000>;
-> +		bootph-all;
->  	};
->  
->  	reserved_memory: reserved-memory {
-> @@ -131,6 +132,7 @@ main_i2c0_pins_default: main-i2c0-default-pins {
->  			AM62X_IOPAD(0x1e0, PIN_INPUT_PULLUP, 0) /* (B16) I2C0_SCL */
->  			AM62X_IOPAD(0x1e4, PIN_INPUT_PULLUP, 0) /* (A16) I2C0_SDA */
->  		>;
-> +		bootph-all;
->  	};
->  
->  	main_mdio1_pins_default: main-mdio1-default-pins {
-> @@ -138,6 +140,7 @@ main_mdio1_pins_default: main-mdio1-default-pins {
->  			AM62X_IOPAD(0x160, PIN_OUTPUT, 0) /* (AD24) MDIO0_MDC */
->  			AM62X_IOPAD(0x15c, PIN_INPUT, 0) /* (AB22) MDIO0_MDIO */
->  		>;
-> +		bootph-all;
->  	};
->  
->  	main_mmc0_pins_default: main-mmc0-default-pins {
-> @@ -153,6 +156,7 @@ AM62X_IOPAD(0x200, PIN_INPUT_PULLUP, 0) /* (AC1) MMC0_DAT5 */
->  			AM62X_IOPAD(0x1fc, PIN_INPUT_PULLUP, 0) /* (AD2) MMC0_DAT6 */
->  			AM62X_IOPAD(0x1f8, PIN_INPUT_PULLUP, 0) /* (AC2) MMC0_DAT7 */
->  		>;
-> +		bootph-all;
->  	};
->  
->  	main_rgmii1_pins_default: main-rgmii1-default-pins {
-> @@ -170,6 +174,7 @@ AM62X_IOPAD(0x140, PIN_OUTPUT, 0) /* (AD18) RGMII1_TD3 */
->  			AM62X_IOPAD(0x130, PIN_OUTPUT, 0) /* (AE19) RGMII1_TXC */
->  			AM62X_IOPAD(0x12c, PIN_OUTPUT, 0) /* (AD19) RGMII1_TX_CTL */
->  		>;
-> +		bootph-all;
->  	};
->  
->  	ospi0_pins_default: ospi0-default-pins {
-> @@ -186,6 +191,7 @@ AM62X_IOPAD(0x024, PIN_INPUT, 0) /* (H25) OSPI0_D6 */
->  			AM62X_IOPAD(0x028, PIN_INPUT, 0) /* (J22) OSPI0_D7 */
->  			AM62X_IOPAD(0x008, PIN_INPUT, 0) /* (J24) OSPI0_DQS */
->  		>;
-> +		bootph-all;
->  	};
->  
->  	pmic_irq_pins_default: pmic-irq-default-pins {
-> @@ -210,6 +216,7 @@ &cpsw3g {
->  &cpsw_port1 {
->  	phy-mode = "rgmii-rxid";
->  	phy-handle = <&cpsw3g_phy1>;
-> +	bootph-all;
->  };
->  
->  &cpsw3g_mdio {
-> @@ -220,6 +227,7 @@ &cpsw3g_mdio {
->  	cpsw3g_phy1: ethernet-phy@1 {
->  		compatible = "ethernet-phy-id2000.a231", "ethernet-phy-ieee802.3-c22";
->  		reg = <1>;
-> +		bootph-all;
->  		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
->  		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
->  	};
-> @@ -232,10 +240,15 @@ mbox_m4_0: mbox-m4-0 {
->  	};
->  };
->  
-> +&main_pktdma {
-> +	bootph-all;
-> +};
-> +
->  &main_i2c0 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&main_i2c0_pins_default>;
->  	clock-frequency = <400000>;
-> +	bootph-all;
+On Fri, Mar 28, 2025 at 10:43:44AM +0000, Maud Spierings | GOcontroll wrote:
+> From: Maud Spierings | GOcontroll <maudspierings@gocontroll.com>
+> Sent: Friday, March 28, 2025 8:20 AM
+>
+> > From: Frank Li <Frank.li@nxp.com>
+> > Sent: Thursday, March 27, 2025 5:18 PM
+> >
+> >> On Thu, Mar 27, 2025 at 04:52:40PM +0100, Maud Spierings via B4 Relay wrote:
+> >>> From: Maud Spierings <maudspierings@gocontroll.com>
+> >>>
+> >>> The Ka-Ro Electronics tx8p-ml81 is a COM based on the imx8mp SOC. It has
+> >>> 2 GB or ram and 8 GB of eMMC storage on board.
+> >>>
+> >>> Add it to enable boards based on this Module
+> >>>
+> >>> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
+> >>> ---
+> >>>  .../arm64/boot/dts/freescale/imx8mp-tx8p-ml81.dtsi | 549 +++++++++++++++++++++
+> >>>  1 file changed, 549 insertions(+)
+> >>>
+> >>> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tx8p-ml81.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-tx8p-ml81.dtsi
+> >>> new file mode 100644
+> >>> index 0000000000000000000000000000000000000000..9c4304e909b96afeb62962198da377319eda8506
+> >>> --- /dev/null
+> >>
+> >> New dts files, suggest run https://github.com/lznuaa/dt-format to make
+> >> nodes and property ordered.
+> >
+> > Ah I didn't know there is a tool for that, never seen it before, will
+> > check it out.
+>
+> I checked it out but I have one question, this tool orders all nodes
+> alphabetically, which is correct. But from what I've seen all imx
+> devicetrees have the iomuxc node at the bottom, regardless whether it
+> should be there alphabetically. Should I still keep the iomuxc node at the
+> bottom?
 
-please review closer the series to ensure that no parent node has a
-bootph property if the child node has it.
+Old dts iomux is bottom. But I think there should not such requirement now.
 
->  	status = "okay";
->  
->  	pmic@30 {
-> @@ -355,6 +368,7 @@ serial_flash: flash@0 {
->  		cdns,tchsh-ns = <60>;
->  		cdns,tslch-ns = <60>;
->  		cdns,read-delay = <0>;
-> +		bootph-all;
->  	};
->  };
->  
-> @@ -363,5 +377,6 @@ &sdhci0 {
->  	pinctrl-0 = <&main_mmc0_pins_default>;
->  	disable-wp;
->  	non-removable;
-> +	bootph-all;
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62x-phyboard-lyra.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-phyboard-lyra.dtsi
-> index 922cad14c9f8..aab74d6019b0 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62x-phyboard-lyra.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62x-phyboard-lyra.dtsi
-> @@ -138,6 +138,7 @@ vcc_3v3_mmc: regulator-vcc-3v3-mmc {
->  		regulator-max-microvolt = <3300000>;
->  		regulator-always-on;
->  		regulator-boot-on;
-> +		bootph-all;
->  	};
->  
->  	vcc_3v3_sw: regulator-vcc-3v3-sw {
-> @@ -233,6 +234,7 @@ AM62X_IOPAD(0x228, PIN_INPUT_PULLUP, 0) /* (C21) MMC1_DAT2 */
->  			AM62X_IOPAD(0x224, PIN_INPUT_PULLUP, 0) /* (D22) MMC1_DAT3 */
->  			AM62X_IOPAD(0x240, PIN_INPUT_PULLUP, 0) /* (D17) MMC1_SDCD */
->  		>;
-> +		bootph-all;
->  	};
->  
->  	main_rgmii2_pins_default: main-rgmii2-default-pins {
-> @@ -257,6 +259,7 @@ main_uart0_pins_default: main-uart0-default-pins {
->  			AM62X_IOPAD(0x1c8, PIN_INPUT, 0) /* (D14) UART0_RXD */
->  			AM62X_IOPAD(0x1cc, PIN_OUTPUT, 0) /* (E14) UART0_TXD */
->  		>;
-> +		bootph-all;
->  	};
->  
->  	main_uart1_pins_default: main-uart1-default-pins {
-> @@ -266,6 +269,7 @@ AM62X_IOPAD(0x198, PIN_OUTPUT, 2) /* (A19) MCASP0_AXR2.UART1_RTSn */
->  			AM62X_IOPAD(0x1ac, PIN_INPUT, 2) /* (E19) MCASP0_AFSR.UART1_RXD */
->  			AM62X_IOPAD(0x1b0, PIN_OUTPUT, 2) /* (A20) MCASP0_ACLKR.UART1_TXD */
->  		>;
-> +		bootph-pre-ram;
->  	};
->  
->  	main_usb1_pins_default: main-usb1-default-pins {
-> @@ -430,12 +434,14 @@ &main_mcan0 {
->  &main_uart0 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&main_uart0_pins_default>;
-> +	bootph-all;
->  	status = "okay";
->  };
->  
->  &main_uart1 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&main_uart1_pins_default>;
-> +	bootph-pre-ram;
->  	/* Main UART1 may be used by TIFS firmware */
->  	status = "okay";
->  };
-> @@ -467,11 +473,13 @@ &sdhci1 {
->  	pinctrl-0 = <&main_mmc1_pins_default>;
->  	disable-wp;
->  	no-1-8-v;
-> +	bootph-all;
->  	status = "okay";
->  };
->  
->  &usbss0 {
->  	ti,vbus-divider;
-> +	bootph-all;
->  	status = "okay";
->  };
->  
-> @@ -482,6 +490,7 @@ &usbss1 {
->  
->  &usb0 {
->  	usb-role-switch;
-> +	bootph-all;
->  
->  	port {
->  		typec_hs: endpoint {
-> -- 
-> 2.34.1
-> 
+Frank
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+>
+> Kind regards,
+> Maud
 
