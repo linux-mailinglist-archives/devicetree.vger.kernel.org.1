@@ -1,124 +1,144 @@
-Return-Path: <devicetree+bounces-161549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36510A74868
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 11:36:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EB64A7487A
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 11:41:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C981517A5AA
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 10:36:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F89317C245
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 10:41:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31B2D1C3BE2;
-	Fri, 28 Mar 2025 10:36:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A069F21322B;
+	Fri, 28 Mar 2025 10:41:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="AcRV5sTy"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fnDoUv7x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.2])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFF744A35;
-	Fri, 28 Mar 2025 10:36:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.2
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EAE41C174E;
+	Fri, 28 Mar 2025 10:41:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743158188; cv=none; b=ete3RM5KjWZoFKvc3djyAVtjKDDPzkOcSUf9rTMc5cqb6XLPkB9hzqVuZw/iRXfOoOZXLoLxK7y/HCkG7zTN90ft6XN+ZuRrVXpW/1ZwXN38/rbM7IU0b4q5sUxf/B1GUp85rEiSABKSgnhLmUTLzt409iSRJN3bEUIFrW7rSss=
+	t=1743158474; cv=none; b=Ow/kV+3+AjgWQ1gn6T0JNzOnNZbIMldPPI4TKG5lNfRvqX9bIJdWZuN4l059iAd4LpTziWHVcH9GetbxIY/zLFIge+XyTksmU2U4pDj7F+L6QvP5otk7tc70sybAsKbDo9T1qSbcHEynkV1IHjNrVc3tJc4p/VYv0JASi8r9Kdc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743158188; c=relaxed/simple;
-	bh=Kfudq2zBmF5GsfnfmqkxJPDAA0WqYO+pmhs87CvpzdU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=B1MqC8BzyXzy3a79Q5uquX/a+itt/C37HT1ILJm/MaNa8Xj2n3lEjhzeKPGPcoWIeIfTiGMmnSgjpih6kbaCVVsZ5uhFREfWNYb9BYGfa3GVCnfalg7rF39Ew45WG1qsi9WyDLkFQWYDkx27UEDLQOe40H00BBUBEA8w/t3ds2s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=AcRV5sTy; arc=none smtp.client-ip=220.197.31.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:Subject:Date:Message-Id; bh=UdJbnIvHTJoyF1Q8KH
-	RV7bQemCVQTNqvc+BySkfmlO4=; b=AcRV5sTyAtxYtNhrjhprcxUQmFXWh+9zM/
-	6Fe+tqqJv48GMHSoibYQNdXXzl4yRY9591xa9jC/q54IwqU8VU4q54ZaTFV+h/8p
-	FSXFLJ3WV1cJ2NPT2ch+PT0oQMGpckSpJ3Eeg3DZmpTt9WTLRQPaQ2VLtDQWVN3d
-	qCcTO5HgQ=
-Received: from localhost.localdomain (unknown [])
-	by gzga-smtp-mtada-g1-3 (Coremail) with SMTP id _____wD3HXGFe+ZnIgTgCQ--.59704S2;
-	Fri, 28 Mar 2025 18:35:50 +0800 (CST)
-From: Wenliang Yan <wenliang202407@163.com>
-To: linux@roeck-us.net
-Cc: christophe.jaillet@wanadoo.fr,
-	conor+dt@kernel.org,
-	corbet@lwn.net,
-	devicetree@vger.kernel.org,
-	jdelvare@suse.com,
-	krzk+dt@kernel.org,
-	linux-hwmon@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	robh@kernel.org,
-	wenliang202407@163.com
-Subject: Re: [PATCH v6 4/4] dt-bindings:Add SQ52206 to ina2xx devicetree bindings
-Date: Fri, 28 Mar 2025 06:35:32 -0400
-Message-Id: <20250328103532.18102-1-wenliang202407@163.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <b93159ed-247e-4cdf-81c0-f32b85d4fbbf@roeck-us.net>
-References: <b93159ed-247e-4cdf-81c0-f32b85d4fbbf@roeck-us.net>
-X-CM-TRANSID:_____wD3HXGFe+ZnIgTgCQ--.59704S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7ur1DCrW7JrWrWr1fKw4Durg_yoW8Ar48pr
-	W3CF18tF90qr13XrW2y3ZYkw15Z3WvvF40krWDXr1a9a4kua4Sqa9xKr109F17Ar1SvFWf
-	uFyvg3yfJw40yaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0JUG9akUUUUU=
-X-CM-SenderInfo: xzhqzxhdqjjiisuqlqqrwthudrp/1tbiJRAd02fl1K4jAgABsj
+	s=arc-20240116; t=1743158474; c=relaxed/simple;
+	bh=+Cr53Mv5cVCxK2AEW2QgAI5641P4VOCPUL4p240FVn0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=RtHpgKmC7/bO+tGJGmZ7Fvc1HjneGK2RnLeW3TPhegSZ/tIERBnBl2mglbnT1opsMSR2l/vmDxucD4/cezLYov7fXHYfw4OfMLXaoq3p/VSIIiEX8A5ZNu1gEBAdnHH8oFAb42CfKoaRUPf4sGdbbzCf/QFTRj5sVE4cmf+cXn8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fnDoUv7x; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52S853YL011141;
+	Fri, 28 Mar 2025 10:41:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	9iwwtYnFPmLMO4Z6C59FXnTyRLkIi5qrCDGvyDBIlMM=; b=fnDoUv7xmWhLszKE
+	A/rasxif8J23znv+w1KdvgFyfL3Z4iBfux8/7ok0wz1T4uwC5ensxf4K30OMvxhx
+	QK9OfOP8nPSJFEmBikJBDzrv42+Rq1fiiGzxG5c1TdVPdyxApdvj8t5VwqDYTAxC
+	keejGPiyBTlncdtoDhttnTFrslSthLWssDzCu6mF952BdxgCOyvCRHsc3FuHWgMe
+	iUSqgFV6By4x90Bs3d2VWGmfvVTFLmcsRati7DahEqqJIG3t5PAIbyTOSji3IrE3
+	Odkku51jfHXrUF22KtTWUE5w+EVDPkMey2Ak2V/kBor3gt3szp9sTaTHCSo9uQMi
+	AIxirA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45nqxugfmt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 28 Mar 2025 10:41:08 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52SAf70L007015
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 28 Mar 2025 10:41:07 GMT
+Received: from [10.218.22.7] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 28 Mar
+ 2025 03:41:01 -0700
+Message-ID: <98bf09d2-0ad4-4499-b020-88107c115c01@quicinc.com>
+Date: Fri, 28 Mar 2025 16:09:27 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 03/18] dt-bindings: clock: qcom: sm8450-camcc: Allow to
+ specify two power domains
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Stephen
+ Boyd" <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Dmitry Baryshkov <lumag@kernel.org>
+CC: Ajit Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        "Satya Priya
+ Kakitapalli" <quic_skakitap@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>
+References: <20250327-videocc-pll-multi-pd-voting-v3-0-895fafd62627@quicinc.com>
+ <20250327-videocc-pll-multi-pd-voting-v3-3-895fafd62627@quicinc.com>
+ <c58b129c-1c83-44f3-bd52-13cc24e50cbb@linaro.org>
+Content-Language: en-US
+From: Jagadeesh Kona <quic_jkona@quicinc.com>
+In-Reply-To: <c58b129c-1c83-44f3-bd52-13cc24e50cbb@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: jXzdg-JTLd6aqric1QWOXm2CB2Aj13W6
+X-Authority-Analysis: v=2.4 cv=e7QGSbp/ c=1 sm=1 tr=0 ts=67e67cc4 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=KKAkSRfTAAAA:8 a=SowLGM7tv_KyZWzOVrUA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: jXzdg-JTLd6aqric1QWOXm2CB2Aj13W6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-28_05,2025-03-27_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1015
+ malwarescore=0 spamscore=0 bulkscore=0 mlxlogscore=795 lowpriorityscore=0
+ priorityscore=1501 adultscore=0 impostorscore=0 suspectscore=0
+ phishscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503280073
 
-At 2025-03-28 06:53:02, "Guenter Roeck" <linux@roeck-us.net> wrote:
->On 3/27/25 06:18, Wenliang Yan wrote:
->> Add the sq52206 compatible to the ina2xx.yaml
->> 
->> Signed-off-by: Wenliang Yan <wenliang202407@163.com>
->> ---
->> 
->> Add the meaning of 'shunt-gain' in SQ52206.
->> 
->> v5->v6:add content to meet the update requirements of the ina2xx.yaml
->> 
->>   Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 5 +++++
->>   1 file changed, 5 insertions(+)
->> 
->> diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
->> index bc03781342c0..8cd672e6bf62 100644
->> --- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
->> +++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
->> @@ -19,6 +19,7 @@ description: |
->>   properties:
->>     compatible:
->>       enum:
->> +      - silergy,sq52206
->>         - silergy,sy24655
->>         - ti,ina209
->>         - ti,ina219
->> @@ -58,6 +59,9 @@ properties:
->>         shunt voltage, and a value of 4 maps to ADCRANGE=0 such that a wider
->>         voltage range is used.
->>   
->> +      For SQ52206,the shunt-gain value 1 mapps to ADCRANGE=10/11, the value 2
->> +      mapps to ADCRANGE=01, and the value 4 mapps to ADCRANGE=00.
->> +
->>         The default value is device dependent, and is defined by the reset value
->>         of PGA/ADCRANGE in the respective configuration registers.
->>       $ref: /schemas/types.yaml#/definitions/uint32
->> @@ -97,6 +101,7 @@ allOf:
->>           compatible:
->>             contains:
->>               enum:
->> +              - silergy,sy24655
->
->silergy,sq52206 ?
->
 
-Yes, it is my oversight, which may be the reason why 'make dt_binding_check' fails 
 
->>                 - silergy,sy24655
->>                 - ti,ina209
->>                 - ti,ina219
+On 3/27/2025 8:58 PM, Bryan O'Donoghue wrote:
+> On 27/03/2025 09:52, Jagadeesh Kona wrote:
+>> -      A phandle to an OPP node describing required MMCX performance point.
+>> +      Phandles to OPP nodes that describe required performance point on power domains
+> 
+> I believe we are dropping "Phandle to" generally as this is a redundant statement.
+> 
+> You should also pluralise performance-points.
+> 
+> .. required performance-points on power-domains
+> 
+> Other than that
+> 
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> 
+
+Yes, I will fix above in the next series.
 
 Thanks,
-Wenliang Yan
+Jagadeesh
 
+> ---
+> bod
 
