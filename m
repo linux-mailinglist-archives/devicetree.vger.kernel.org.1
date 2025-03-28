@@ -1,150 +1,125 @@
-Return-Path: <devicetree+bounces-161565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83671A74974
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 12:48:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E410A74977
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 12:48:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8714D1893E11
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 11:48:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 153963BF225
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 11:48:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73A851DD877;
-	Fri, 28 Mar 2025 11:48:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4138021ADDB;
+	Fri, 28 Mar 2025 11:48:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M6E2M6/y"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Qerq+QpF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4693226289;
-	Fri, 28 Mar 2025 11:48:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F21121ABCD
+	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 11:48:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743162491; cv=none; b=TV6lzSIPFq7TuXqpNqxCTdOKCi1OPH8SRJ7vltflPCsJWf/kG/yLBySDuUiHOK+QyFoN7v79H+hrj/nX1c0z7fTjttv1mUpjvV8DO0Kx/1C1YZ26pklf5pJavDO7D4gnekKOGIFLmSK8TVysz+3H0m6SozhxAMWhYZqDH/R30a4=
+	t=1743162494; cv=none; b=e3YgvVixib4aUfHGnkjjrtrq4OQAaHRAtV6yR9COVm9E/Qxbg4AGvVmmX93iKXZyHZQXHklmVKbK124nDqYD685RIQK5f8ixu/DQabF18kgPt1TN/zM/q5PUzxeot7PWiDMkuTNPGZpBC7EEpuOHnZptMp1KQUGlFiRPfm2DQfM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743162491; c=relaxed/simple;
-	bh=zUtebBjH55CnQyB7qOWJh7tG/blA6JzN9MwAUcSs3ds=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UWP9vBLMUhuKO3Xpa8y0aUW5fFQsECEZe7lw5cA76iaXXLQAtv7ojm5leTiPVo48s1xfSrAhtqc+iQe+39gbW/G6ybIarcPq4fLK7hyswJSHGuoGaJ2Re0QWZWHwMXt2mPEsBNv2eQP2ET9fXJ/Xq9+DBaOUW/c2/FxKH8lQNiU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M6E2M6/y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 062A9C4CEE4;
-	Fri, 28 Mar 2025 11:48:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743162490;
-	bh=zUtebBjH55CnQyB7qOWJh7tG/blA6JzN9MwAUcSs3ds=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=M6E2M6/yepb6TFdvsuisCuEmjwXQsBRCZJ1nl52Zt6qkJ5VzU68CQFKy17CmQnIJ2
-	 jHWP+5A5t+glQXYUeCW9EaHsE/lqcbV9qdubvapFYICcndX5qBRD/ZUVvyKvo9okD/
-	 PBU4q0ewdbn8jP1qa+eVo+t4gvQyVclq9W/eekd1qzLEloHg/e9Pvs/5Ep6WrY6J3o
-	 s8FN8uau96AYw7IAZQpsReHlVXo8xrTol+Hw8VI/OcwtE+HEerSrBtRrBz0FD1hhbw
-	 wxaqRHQ+FYEgPNB9u5You+X0TjayNxRfzBZEYM2qXYThdNGeZDGvaggDF1MnOJS4rZ
-	 EKZSjP1/A5amQ==
-Message-ID: <fc4d9a33-2d3f-47e2-b1cf-59962cc54bce@kernel.org>
-Date: Fri, 28 Mar 2025 12:48:03 +0100
+	s=arc-20240116; t=1743162494; c=relaxed/simple;
+	bh=cE16fnSOvZivKFHC4zQdYYvzlgv6Zjj6Dj+eXgi5qGE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JRKKXHbf4HL7y5wWQqByaJXjPRMKU36Y31VpoCT3fIU9zrA+v5gKejIvAftosdwd/d/fmXGf13V1yngZ1hG0vjzBbZAPaarfydYQDc2sJ8ATjSEJNkTXrffaSaaeT4GhkEgF+a1nqD61bfqi0c6p/CibhOKsWMeQTZA4853nQF0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Qerq+QpF; arc=none smtp.client-ip=209.85.216.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-2ff64550991so2518182a91.0
+        for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 04:48:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1743162492; x=1743767292; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Td2A/QQBRN6mIkZVEPKhOMec4rSaELJjaXeK/AIS/TM=;
+        b=Qerq+QpFPNuq3OG7h2+SDzsnOb0G7P+pejPEpDfFIPlVNFlBhoxyedQK92JbQNC/1g
+         +N4rXb5M9ZCVaM+4zYnWlgjsElM3lFnooZVkkcS62Ux7hKCH4yS5XYi96axk1NQTvQaD
+         0o6XmRMAHt9Msoz+j7iava6YOfUEuH4EoV3IP2H6BVDkRl+wrYB/6UMfWiH8d1UecpXX
+         J/Ce660t8RZmKihGNJBKsG+JsrPi1Tds2belHNHfm0K0+SLMNUSzijgwMb15p0uMCarF
+         ipvWwievVPzTmU4+MStRK36IClIYI8yi8w49D59vkCcnpfwCI0iM4SGBuQp8OUzrI7Yy
+         AtJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743162492; x=1743767292;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Td2A/QQBRN6mIkZVEPKhOMec4rSaELJjaXeK/AIS/TM=;
+        b=t96MraWnJ/l6w1o94juL4V9epiYx8BofcnKkx8gBAPKXzf+P1ztzd74I3UBFDn5s5g
+         otdpULEQE5EaVKaoi6+VLRvY3VKofuJQmVoGhQLkllbu2DcHbhrtms+2lQpREDBM2grd
+         2hFyZ5U0kcoWQDBKtLZWaGCo0eUyMhUvHdkEFZ5XLKFPDkQKXcKSHWBMnYNkBo8m+c2c
+         ym4tV4dhECbBpcf3pwqfvuhPwBKAPwHRgTP883WfqEuhre4MyLYl2P9ZIDbSTZjz3D/n
+         A9mm6m6Uhp5FcGMBn+jBYfuGIQDGGXO0oqsrFkfIp7519vi3HYniz2t1HB2bm9YeBSUL
+         YKQg==
+X-Forwarded-Encrypted: i=1; AJvYcCUzkbnm5n+BFswk22crajTn1k+lbHp/Ke0AjrxKM6g8kQ16PMGTzyR/90WdDFULHDBCzYYbpXw6nRas@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYo/6GYtBQiEIxZ6Qx093Kig+HjP2y2iUrSPqKlzJn1OIGXdim
+	anTly3Ur06r8XradkBEFbgW8vYNnnriNIfQWOVL8+uYw/zlkRiFT2e/AnT8DyA==
+X-Gm-Gg: ASbGncu/uh9848JCQU6j7EpyE+cYj6Putd6/NDWrehWfdUUKNDkHwhRopjZH/FfdwP3
+	RshguWl3GSxjLJtyajXs1oQd6TBMtqqCaIJhgRmaTj53J6QYs9syBe4oHGK7DWuP6eI8OsuPW0c
+	LwP/uNVE7P2ubu6+JQH/9zL78qDwoNpxpnKSBkpzZ5iCNE5ShWh8+af/66cK3ZtLv0fotJnbAAn
+	PvJ1aPjYGHLSjtbQ8TFQkzB1PKcESw9SidJwXxFh1cLKhf4no9oDI7ZO8Qy90P2RI+MFjslw/my
+	smxO+atP9Qd84IeN4mFmbpCq/ea8cVU6R+NAutyNjiOuS8qRN5Pbtd9jJCgzTOqHRA==
+X-Google-Smtp-Source: AGHT+IHkFyrQLO8ThGmZA+vIQj3/oOedMM4lGeaL5SeGczjykX6lPC7XrgIdUY3TMx68guIRyMVfjw==
+X-Received: by 2002:a17:90b:1ccd:b0:2ee:b875:6d30 with SMTP id 98e67ed59e1d1-303a7d73279mr11051363a91.9.1743162491754;
+        Fri, 28 Mar 2025 04:48:11 -0700 (PDT)
+Received: from thinkpad ([120.60.68.219])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3039f1d4ba4sm3942816a91.31.2025.03.28.04.48.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Mar 2025 04:48:11 -0700 (PDT)
+Date: Fri, 28 Mar 2025 17:18:03 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: cros-qcom-dts-watchers@chromium.org, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Jingoo Han <jingoohan1@gmail.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com, 
+	quic_mrana@quicinc.com, quic_vpernami@quicinc.com, mmareddy@quicinc.com
+Subject: Re: [PATCH v5 2/7] dt-bindings: PCI: qcom,pcie-sc7280: Make elbi
+ register as an optional
+Message-ID: <23cjiqtpyzuprvhezrrrbayxweahazlnelswkv4axrc772lpra@tgegltyd2355>
+References: <20250309-ecam_v4-v5-0-8eff4b59790d@oss.qualcomm.com>
+ <20250309-ecam_v4-v5-2-8eff4b59790d@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: soc: ti: bist: Add BIST for K3
- devices
-To: Neha Malcom Francis <n-francis@ti.com>, nm@ti.com, vigneshr@ti.com,
- kristo@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, u-kumar1@ti.com
-References: <20250328111439.374748-1-n-francis@ti.com>
- <20250328111439.374748-2-n-francis@ti.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250328111439.374748-2-n-francis@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250309-ecam_v4-v5-2-8eff4b59790d@oss.qualcomm.com>
 
-On 28/03/2025 12:14, Neha Malcom Francis wrote:
-> +properties:
-> +  compatible:
-> +    const: ti,j784s4-bist
-> +
-> +  reg:
-> +    maxItems: 2
-> +
-> +  reg-names:
-> +    items:
-> +      - const: cfg
-> +      - const: ctrl_mmr
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  ti,bist-under-test:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    description:
-> +      the device IDs of the devices under test control of the BIST device, the
+On Sun, Mar 09, 2025 at 11:15:24AM +0530, Krishna Chaitanya Chundru wrote:
+> ELBI regitsers are optional registers and not been using in this
+> platform. Having this register as required is not allowing to enable
+> ECAM feature of the PCIe cleanly. ECAM feature needs to do single
+> remap of entire 256MB which includes DBI and ELBI. Having optional
+> ELBI registers in the devicetree and binding is causing resorce
+> conflicts when enabling ECAM feature.
+> 
+> So, make ELBI registers as optional one.
+> 
+> Suggested-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-Still not phandle... What is a "device ID"?
+Wait... I never suggested to make ELBI optional in the binding. So this tag is
+completely wrong.
 
-> +      number of devices may be more than one. The HW logic will trigger the
-> +      tests on all of these devices at once.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - ti,bist-under-test
-> +
-> +additionalProperties: false
+And the change itself is not correct since ELBI is indeed present in the hw. So
+we cannot just drop it from the binding because the driver is not using it
+currently.
 
+- Mani
 
-Best regards,
-Krzysztof
+-- 
+மணிவண்ணன் சதாசிவம்
 
