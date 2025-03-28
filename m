@@ -1,119 +1,93 @@
-Return-Path: <devicetree+bounces-161496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6706A744FA
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 09:05:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F8F0A74512
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 09:10:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 875C93BC654
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 08:04:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7E5D3BB1B7
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 08:07:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E6A7212B18;
-	Fri, 28 Mar 2025 08:05:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oxV4e41O"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0C7F212F94;
+	Fri, 28 Mar 2025 08:07:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4184A14885B;
-	Fri, 28 Mar 2025 08:05:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B27B4212D67;
+	Fri, 28 Mar 2025 08:07:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743149108; cv=none; b=qu4sKI0rxXBsAh+RJ9Q19NsT2iPd7AXaTylODr/wIq9kHaxxT0ph31dHu41pFcIoXXV4JnnOjBV3ZtX2jcay+pB8RH/EhUytzzDmSuv0E2E3SZ8u5mUpwN1qmTHHQU5j7CZlb+wb+6cdrLW2EcG0JqSd83FgCaW9s6xfibUvO0E=
+	t=1743149277; cv=none; b=ZLNCNczeZzie7QoRKoJ06XrotWTTFM2t7KkW96MP788X+WyeXqN/b0tpiRe3kqCkzKrib/eY6zRoZKhfuZ/UwMkw6y1ntgznIffMfT0Hq+tnGvHKCPl7ElDcAErqrt1jScaIK2dXd9YYXCMvlt5Q4EnAET+/2feuqpN2ZeWV8+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743149108; c=relaxed/simple;
-	bh=gwAYp9P/m5BCJQdLgcvyrWULpPnCynoYB/01bOTg0R8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=q0iy9u15trnJFJu02XPcv7cv93t57nq6gY+PHv1Oi1+nyOEIk1pcBWmmzWihWqeZ56dqEJSPsOzGGBo7nzbf9NSwEkeSYzhaBvi/yc1LvJw6McW/Ji9ywSx49bogQ2lq44Li3HcJn0w4pyj4+OH19W525gg4DEW0+wrl2O0tgVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oxV4e41O; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 248BAC4CEE4;
-	Fri, 28 Mar 2025 08:05:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743149107;
-	bh=gwAYp9P/m5BCJQdLgcvyrWULpPnCynoYB/01bOTg0R8=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=oxV4e41OdYTa6c+MRtELqGfUJHfqSWsScYQSKWwFFyWxUqrwA44O2QXsyfC3NzKjk
-	 rZG0J3PydcSZGfmR8eNCD+qM3W7TzhtNzSRO6S4VAavJZhC6Di8Rt9BGGYgUWLos99
-	 zyU8eWLYfxd/ql6mReuXLGe2lEvjoTWXhMyCqrTJ4m30C3S3fdDa6klYwc/OzGhu6C
-	 HVTSHsfJL1RODgWmfXFHHd/mfar1vtX20LdGOeRqUlyZi1+WKKIAbiHybjybsNyFPu
-	 dY4IwbK7411c6Qxx5rDrVPdsFilKLhKTwWYa6meqE+kCmt0N7SPfhcXlomUAjhiaFb
-	 cBEQMumky+21Q==
-Message-ID: <9c8e9828-3622-4621-b46f-d8794beb307f@kernel.org>
-Date: Fri, 28 Mar 2025 09:05:01 +0100
+	s=arc-20240116; t=1743149277; c=relaxed/simple;
+	bh=3xUZXpN8D1lX2nEy3t/qnZ5UZ74iZPzdr+7+jYDYfG8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y2scn03sDRbXHNnUKeOiIV2Byr9HTrGUZLg+8iTrXqupswGcqgFHlJ+YGiNyo3afN8etjx/I9a0zSVIUmbeMEcxb/e1xz0i1McCMeQhQD4wEs0EaMqsSlKGlBGIYpPECXxmzXkj6N9w3tF82Q1rIajBuErfmKBzyAo601WB5rFM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76459C4CEE4;
+	Fri, 28 Mar 2025 08:07:56 +0000 (UTC)
+Date: Fri, 28 Mar 2025 09:07:53 +0100
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Jagadeesh Kona <quic_jkona@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
+	Dmitry Baryshkov <lumag@kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>, 
+	Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>, 
+	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: Re: [PATCH v3 02/18] dt-bindings: clock: qcom: Update sc8280xp camcc
+ bindings
+Message-ID: <20250328-nifty-oriole-of-admiration-d20b05@krzk-bin>
+References: <20250327-videocc-pll-multi-pd-voting-v3-0-895fafd62627@quicinc.com>
+ <20250327-videocc-pll-multi-pd-voting-v3-2-895fafd62627@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] ASoC: dt-bindings: fsl,mqs: Reference common DAI
- properties
-To: Shengjiu Wang <shengjiu.wang@nxp.com>, lgirdwood@gmail.com,
- broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250328021339.1593635-1-shengjiu.wang@nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250328021339.1593635-1-shengjiu.wang@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250327-videocc-pll-multi-pd-voting-v3-2-895fafd62627@quicinc.com>
 
-On 28/03/2025 03:13, Shengjiu Wang wrote:
-> Reference the dai-common.yaml schema to allow '#sound-dai-cells' and
-> "sound-name-prefix' to be used.
+On Thu, Mar 27, 2025 at 03:22:22PM +0530, Jagadeesh Kona wrote:
+> Move SC8280XP camcc bindings from SM8450 to SA8775P camcc.
+> SC8280XP camcc only requires the MMCX power domain, unlike
+> SM8450 camcc which will now support both MMCX and MXC power
+> domains.
 > 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
 > ---
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>  Documentation/devicetree/bindings/clock/qcom,sa8775p-camcc.yaml | 2 ++
+>  Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml  | 2 --
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,sa8775p-camcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sa8775p-camcc.yaml
+> index 81623f59d11d73839e5c551411a52427e2f28415..127c369dd452608e5e7a52c7297b6b343d1c1bf8 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,sa8775p-camcc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,sa8775p-camcc.yaml
+> @@ -17,12 +17,14 @@ description: |
+>    See also:
+>      include/dt-bindings/clock/qcom,qcs8300-camcc.h
+>      include/dt-bindings/clock/qcom,sa8775p-camcc.h
+> +    include/dt-bindings/clock/qcom,sc8280xp-camcc.h
+>  
+>  properties:
+>    compatible:
+>      enum:
+>        - qcom,qcs8300-camcc
+>        - qcom,sa8775p-camcc
+> +      - qcom,sc8280xp-camcc
+
+That's not equivalent. You miss required-opps.
 
 Best regards,
 Krzysztof
+
 
