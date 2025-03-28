@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-161526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDF19A74604
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 10:10:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5E30A7462D
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 10:18:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 727677A6E71
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 09:09:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4890F172697
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 09:18:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B03721147B;
-	Fri, 28 Mar 2025 09:10:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07D9C1DE4D7;
+	Fri, 28 Mar 2025 09:18:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uSUANAlK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XmGrsR7y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E6831D5170;
-	Fri, 28 Mar 2025 09:10:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CECF81C36;
+	Fri, 28 Mar 2025 09:18:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743153007; cv=none; b=neirHMDbvKT3jCfEI+PiIDmrP/rhf7WqOFlgsgZG+B/SIBdVjPPD48VybNgYJ+CMO5TEbwaG7N45k/XrA4B3RnAv1YTI0uiJtsdQNyYJ7vj0OrlGkKk9U68Lp6tSwamnGD1yoKT9E0X9r+1DMOu+jwD0uppStCRajbVDq0qdu2Q=
+	t=1743153487; cv=none; b=H3OKZNnDdvvs9DXjFPQwqKJ9CBWVyIKstxg5T7TacqvGvmuAJmNAA/ry8AobVbhjzxEUP8wSBoamq9JsAYEJjnNLDglWFGE2QsNhlBC7uTVl4PjglagXpCDj7vRfGywWvepEdCfhuOMmC0ysLlEGWMV9f8dBd5F+zCUTIDEDlTU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743153007; c=relaxed/simple;
-	bh=CK74oiFd8Lt9pvGCt8PX1xWQ/8O4B+iUVrHW4iQ6Y/c=;
+	s=arc-20240116; t=1743153487; c=relaxed/simple;
+	bh=TJ+puOTjlQzem0yimtt0N188rd/UxQlMIIGlW7A2+ZI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RTjNs5MxF9/PMqgIzdnDkgOc4EceG3kdo/SwS/5jChePfKTUvJaBwJ7lSBEof5T7p/yCaxYtJ5t9liLWloam4uedZ0zDARP5m6dB7RzAelARiqlqsPMOjmZ0tBNZ1bvOV1ETzusOoBUdNUydlgnyp+f47BRzNXfUEuy7yAM+6Mc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uSUANAlK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3B9CC4CEE4;
-	Fri, 28 Mar 2025 09:10:02 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=eWAYQGE8rbazvKMrjcf/bbGiOT0DXqyP5cyWW0fxgUPu/hCyD4pqRUBiQ0DHY/V/2PCMZqQ2oEwTcOADFqpIKEWZGxfsh++0JA5V+XWfXiVJU1m00+6yVEF6BarmAbabN+tsbW55FI712CD7i3ItvfVlfv6ba/qq0H9uuFdBRhA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XmGrsR7y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBBDCC4CEE4;
+	Fri, 28 Mar 2025 09:18:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743153006;
-	bh=CK74oiFd8Lt9pvGCt8PX1xWQ/8O4B+iUVrHW4iQ6Y/c=;
+	s=k20201202; t=1743153487;
+	bh=TJ+puOTjlQzem0yimtt0N188rd/UxQlMIIGlW7A2+ZI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uSUANAlKyjNR9xOUXTB7nXEYjjXGkdghJfc5pBD7aea9EVwgfwz924OL76cCm9Kok
-	 Q28CAraw21zD3eb0ClmeL1T31EvVcDEglLUMQQSVovfZ0Zd0oONWSyRwn9egvsuS4z
-	 uLz6FDozlLEENqxQ2+Xcp7vp62nXB/3KLvY/SwIBilKP+s0bplriQS4lH+4mOyHBoi
-	 13Gf1BfqsbfOgs9WgoDyI5n9Npi3z616kBn9sdKCSR4kKF/1RmGnhf9C6jCewHgXTN
-	 OUxaTTeZLU1zwtpTJ46IqvQlPqkLyvqqBaxom1jC6V7xTUT9wffHBor0Ua/bCTFZfn
-	 gVIoj5bJQKR3g==
-Message-ID: <aaf21b5e-e910-4e03-b9a9-f37b7dd118bb@kernel.org>
-Date: Fri, 28 Mar 2025 10:09:59 +0100
+	b=XmGrsR7yEoxnDVOUJ6nmv0UC6MYVGHiXK3i841FzvwSHzc0EIF6Y6tPtGVg9DKsqB
+	 6t/Kn5gjd/vFZGjSPU5UaWi97zE1bK6llsWZWSQZ5DhFBmKbewbRDYUCQyzUut+c7g
+	 srSIsdj2VYmp2DQ3Jv9mEhA5mIa0RaVFY2SXIpFFTQecxFTwndSNQ6En8QSu2PoZsC
+	 +I1w65pmn/2EyOINS0fmU8QbCuc2iPIfqiDKBEYzZ8XD4uwAu9vsv/8Yrucftj2YZP
+	 HSE2KSWvM+2Tyqk+vO8V83WWBBLnd9rbrAZMrRXDQ+61ALMLk26AQ7hQiR4CTxUFXO
+	 L7LlHsKwMR+Tg==
+Message-ID: <d275cfe1-db7e-47d6-9ec6-b36f13524d65@kernel.org>
+Date: Fri, 28 Mar 2025 10:17:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sa8775p: add QCrypto node
-To: Yuvaraj Ranganathan <quic_yrangana@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250227180817.3386795-1-quic_yrangana@quicinc.com>
- <ea79cee4-8c47-4054-bd17-2097ada4e583@kernel.org>
- <b57fa204-d3d2-4b74-8834-3f2d93726a99@quicinc.com>
- <73ed6108-27ab-43ac-abd3-82656693404d@kernel.org>
- <4a205725-af49-4f28-ab78-7059451d66c8@quicinc.com>
- <29f41232-28fc-439d-bb35-7b9cd1e4be16@kernel.org>
- <6ccf4cad-a99b-4168-b4d7-577112c011e1@quicinc.com>
-Content-Language: en-US
+Subject: Re: [PATCH 1/7] dt-bindings: pci: cadence: Extend compatible for new
+ platform configurations
+To: Hans Zhang <hans.zhang@cixtech.com>,
+ Manikandan Karunakaran Pillai <mpillai@cadence.com>
+Cc: "bhelgaas@google.com" <bhelgaas@google.com>,
+ "lpieralisi@kernel.org" <lpieralisi@kernel.org>, "kw@linux.com"
+ <kw@linux.com>,
+ "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <CH2PPF4D26F8E1CA951AF03C17D11C7BEB3A2A12@CH2PPF4D26F8E1C.namprd07.prod.outlook.com>
+ <20250327111106.2947888-1-mpillai@cadence.com>
+ <CH2PPF4D26F8E1C1CBD2A866C59AA55CD7AA2A12@CH2PPF4D26F8E1C.namprd07.prod.outlook.com>
+ <20250328-poised-dolphin-of-sympathy-e1d83e@krzk-bin>
+ <4bcc07b1-00ce-4ff9-bf23-e06b78950026@cixtech.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -109,55 +113,37 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <6ccf4cad-a99b-4168-b4d7-577112c011e1@quicinc.com>
+In-Reply-To: <4bcc07b1-00ce-4ff9-bf23-e06b78950026@cixtech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/03/2025 09:32, Yuvaraj Ranganathan wrote:
+On 28/03/2025 09:48, Hans Zhang wrote:
 > 
 > 
-> On 3/28/2025 12:47 PM, Krzysztof Kozlowski wrote:
->> On 28/03/2025 07:04, Yuvaraj Ranganathan wrote:
->>>>>> Use commit SHA syntax (see submitting patches, checkpatch).
->>>>>>
->>>>>>> because of the build warning,
->>>>>>>
->>>>>>>   sa8775p-ride.dtb: crypto@1dfa000: compatible: 'oneOf' conditional failed, one must be fixed:
->>>>>>>     ...
->>>>>>>     'qcom,sa8775p-qce' is not one of ['qcom,ipq4019-qce', 'qcom,sm8150-qce']
->>>>>>
->>>>>> Not relevant warning.
->>>>>>
->>>>>>
->>>>>>
->>>>>> Best regards,
->>>>>> Krzysztof
->>>>>
->>>>> Are you saying this is not the warning seen at merging?
->>>> Tell me how it is relevant? Tell me how can I reproduce it.
->>>>
->>>> Best regards,
->>>> Krzysztof
+> On 2025/3/28 16:22, Krzysztof Kozlowski wrote:
+>> EXTERNAL EMAIL
+>>
+>> On Thu, Mar 27, 2025 at 11:19:47AM +0000, Manikandan Karunakaran Pillai wrote:
+>>> Document the compatible property for the newly added values for PCIe EP and
+>>> RP configurations. Fix the compilation issues that came up for the existing
+>>> Cadence bindings
 >>>
->>> Below commands will show the above warnings without the fix,
->>> make clean && make qcom/qcs9100-ride.dtb CHECK_DTBS=1
->>> make clean && make qcom/qcs8300-ride.dtb CHECK_DTBS=1
+>>> Signed-off-by: Manikandan K Pillai <mpillai@cadence.com>
+>>> ---
+>>>   .../bindings/pci/cdns,cdns-pcie-ep.yaml       |  12 +-
+>>>   .../bindings/pci/cdns,cdns-pcie-host.yaml     | 119 +++++++++++++++---
+>>>   2 files changed, 110 insertions(+), 21 deletions(-)
 >>
->> As I suspected, not possible to reproduce.
+>> One more thing: SoB mismatch. Maybe got corrupted by Microsoft (it is
+>> known), so you really need to fix your mailing setup or use b4 relay.
 >>
->> Best regards,
->> Krzysztof
 > 
-> I'm able to reproduce without this fix, I hope you are discussing about
-> this failure only,
+> Hi Krzysztof,
 > 
-> 	from schema $id:
-> http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-I suspect you work on outdated tree. I followed your instructions on my
-tree (you did not specify which) and did not see these errors.
+> I have obtained Manikandan's consent and we will collaborate to submit 
 
-I bet you reply now third time, without any more details claiming the
-same but it's just waste of my time.
+It does not matter. You still need proper SoB / DCO chain. Please follow
+submitting patches.
 
 Best regards,
 Krzysztof
