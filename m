@@ -1,115 +1,251 @@
-Return-Path: <devicetree+bounces-161507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D044BA74556
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 09:25:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 229A3A74567
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 09:31:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18D4D1B60414
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 08:25:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1AE273BD29E
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 08:30:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0529A212F89;
-	Fri, 28 Mar 2025 08:25:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37F44212FBF;
+	Fri, 28 Mar 2025 08:30:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="16WTuBUb"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="VzBf0E0k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2029618DB2B;
-	Fri, 28 Mar 2025 08:25:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7436E1C6FEE
+	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 08:30:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743150309; cv=none; b=ufyuAMKxx0zt1FuuP1B0C2yFb8qS+f6NIHHa86N/6dsVWNMMamgUXf23MlMlxXX4NejQKYdRGbVWu7EKEw97hrWAtgnCa5rT4DCN2x6u610CfYZKS7BC+B1ZiXzVgeQcZzA78K8oKvdHhksggJjz16tUu3VA9TEwUHW1+kws1sM=
+	t=1743150625; cv=none; b=KpL9vQf6BNVbNOGmEMgrLZ9ZH5K/uOc+if588ZqgICKatgpjOJA/KTBTkMrUzy1+FgtDCypPE3pHXcEYR6ubxltBnsEGvnA3dr76l7DCI2oPujqCa1Wo14fR5PM13Rb3DyA1lvq83hp6/gHuq89SL+PssPors5hP2DL4CglAQ+E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743150309; c=relaxed/simple;
-	bh=l6ChTbG9Qhsc98nwnwWgm9s9uTeB3u4h5qNXJ1yunOQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZYMWPgncqhvJnrOteVgZdKspuFCs0ud+Ujz33+3q+G4WaM7esvRIemekDLnemBD45EHx9X7y7rT9+g+CLTQLa6QbZ+XorPyD7YEpTenLPE361/VXJDVdoe5NQWSYK6I6UrpOVK3LJCxY3h+kCgodNIVmgK/7zxxNsFRAGR1uP7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=16WTuBUb; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=ZtSWqFwAavuSWx2kZ4KZ73onSPNyQ8d79/hfLcfS0lI=; b=16WTuBUbF7ZTFB1iaHRfiOEFY1
-	5eQ3ShAn2l+G12XISCztGiYHraIycIzVrOM4Ny5P/lsvdgzlBVDLd9StsApvXlSBkNcxohbWi1bhZ
-	4lQLx1hPTa0Xp7c7cljwgDFUeE9mz3YnuiUaf6MjPpYPKpshdS3ObhOgHRFIYgQQQhkKXfQCRGhuP
-	CQVHOR3g5Aps/R0ly9hl383SHuVPuKMv2xNJaxMTA5JSbfeh/BjNLB5x5e59kbai33ujsImSuqM/4
-	ykZd5+8N1reK71j5nI/Cpc6jPjeywybzLPFnmBjHylrDhgHdjEcGYQeqscdRRn7AVS6M5AD8VFVlf
-	A/c0dk5g==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:59108)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1ty51G-0008BV-1s;
-	Fri, 28 Mar 2025 08:24:50 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1ty51A-00072E-1d;
-	Fri, 28 Mar 2025 08:24:44 +0000
-Date: Fri, 28 Mar 2025 08:24:44 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	s=arc-20240116; t=1743150625; c=relaxed/simple;
+	bh=fDqF6O4FnTPiRQdfgNkPd+mtmIU2vY7UGxECVEdgvno=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=SdZJl42JdphO5sqUlv3m7wCpLWVi3YtlYWFYW8WBRvbkAD+DVVbxOfIb1ZbKGbFluvD6j/XUcNCgPIBhbiKYlRTK6t5BcQWttOJmsWZm2u6mrFCj8AZlnFbsQNp86QQekCSwWq++ZxkM6Yjmzm1N77QKYnwF54wH7ujfonnGTFY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=VzBf0E0k; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-225477548e1so37025275ad.0
+        for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 01:30:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1743150623; x=1743755423; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=iMvSX3/8MLdcWMy6QaV85qtOi5tjLAdkUxquxvyJjpk=;
+        b=VzBf0E0kLGuYHHdVFN3ZEHUhWfc8i6rVrgAk+EkgWmA2Z5LS/PyRRKgST+muqvzSaI
+         j+zUvu7zs8jMjh3EzXcXPe9HLmGHWM8QErcs5jeizznoYs/jxgy2U864AN6CCoXvACRM
+         5W1kXrO6XcKsr+3ZsPufFmwo+U8DTvCX404WM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743150623; x=1743755423;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iMvSX3/8MLdcWMy6QaV85qtOi5tjLAdkUxquxvyJjpk=;
+        b=IjnL53Id1LYPAr63mW2+aN54DdKB+sevaURCqskG4WbGmlPhtH2TN0bQG5XiVdNlEn
+         SNRz4mzRD50DQjTxOe38o9Us6s7JANyygMYh6OxNwkZBCVlCXy0K9bV9Lj7e3+AlXFVE
+         ed08F6xz+JNGOwRr9rUrFirHJxajqNZZHP9qRmHuFCAFnTY5122zVRfEKWQ9BtMdNZK0
+         3F40P+fCickZ2A2pvId9jory1gOXtsXjXF9/BxG1xne3qnMPrKwfTZz3R0Nj8XsiAI2B
+         wzA/n0L8axKqSjfy3j3y4yuVsMGMrk7vxm5e+iw+iEjG7fSyD+g3ORCkN7JtLVXngiSG
+         3qcA==
+X-Forwarded-Encrypted: i=1; AJvYcCXm3oLbmFFB7hA9nyKwEEjm6sFbE5NTU5BovE7BsB2K5T37mCb2E6yqsmLgNsADPSbWURgEIjl5DIPG@vger.kernel.org
+X-Gm-Message-State: AOJu0YyspsHIQUum1GFesdPUUIJgG3smPjwvjWpYwN4gEU8A5ah7yyDq
+	KM8gSxsHTv/MM9uAtH8Nz2JA0B/8gF0+5rxPF9tY9uWk00PQBpZmqZDYG9QdIg==
+X-Gm-Gg: ASbGncukiCv0kQ/E6cDI9EjnBbNyNiUM2BSj/dCf72lJU++a2gMfjJGfqCv5yFnUjvq
+	jbtxQpXaEX1rJMuJLkk806Gz/w1D3TNBRIK1GLyhxemXeWzE3YKatOL3DEaOQLYH2dFOdybyhJh
+	4szo4Mm6NW/snvpiZy23v8g4KOWoVo+W6iE8JR6hmE1ij/8TzoQtx7/v/c8SIAfrBDWjp54714X
+	PxfAAmcNCfLmHnVqB58IPwbLkcVREpY1HYIXE5phQJdWJHrq30sMflqkZPpRNbkDuybwXAboBah
+	lXa3kkIVj5XTy+kX6EB6fP0lYHW1SO4nXD11SmjdPdaDBc5Q5oh/Nk2kV7TbnrGdOg==
+X-Google-Smtp-Source: AGHT+IHk5g+zM1oUsjRtviy05Z0HNph2qVB5VdMrxZ+hrOLHHnalDkunfM120pSNG/jfbr5zMflnrg==
+X-Received: by 2002:a17:902:e886:b0:220:e63c:5b13 with SMTP id d9443c01a7336-2280491c3f4mr112692905ad.46.1743150622552;
+        Fri, 28 Mar 2025 01:30:22 -0700 (PDT)
+Received: from treapking.tpe.corp.google.com ([2401:fa00:1:10:9004:7029:99b:276])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2291f1ef62asm12283775ad.217.2025.03.28.01.30.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Mar 2025 01:30:22 -0700 (PDT)
+From: Pin-yen Lin <treapking@chromium.org>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-	Andrei Botila <andrei.botila@oss.nxp.com>,
-	Sabrina Dubroca <sd@queasysnail.net>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Eric Woudstra <ericwouds@gmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next RFC PATCH v4 1/6] net: phy: pass PHY driver to
- .match_phy_device OP
-Message-ID: <Z-ZczBztZbnc8XPa@shell.armlinux.org.uk>
-References: <20250327224529.814-1-ansuelsmth@gmail.com>
- <20250327224529.814-2-ansuelsmth@gmail.com>
+	Matthias Kaehlcke <mka@chromium.org>
+Cc: linux-kernel@vger.kernel.org,
+	Stephen Boyd <swboyd@chromium.org>,
+	linux-usb@vger.kernel.org,
+	Pin-yen Lin <treapking@chromium.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: usb: Add binding for PS5511 hub controller
+Date: Fri, 28 Mar 2025 16:28:45 +0800
+Message-ID: <20250328082950.1473406-1-treapking@chromium.org>
+X-Mailer: git-send-email 2.49.0.472.ge94155a9ec-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250327224529.814-2-ansuelsmth@gmail.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: 8bit
 
-On Thu, Mar 27, 2025 at 11:45:12PM +0100, Christian Marangi wrote:
-> Pass PHY driver pointer to .match_phy_device OP in addition to phydev.
-> Having access to the PHY driver struct might be useful to check the
-> PHY ID of the driver is being matched for in case the PHY ID scanned in
-> the phydev is not consistent.
-> 
-> A scenario for this is a PHY that change PHY ID after a firmware is
-> loaded, in such case, the PHY ID stored in PHY device struct is not
-> valid anymore and PHY will manually scan the ID in the match_phy_device
-> function.
-> 
-> Having the PHY driver info is also useful for those PHY driver that
-> implement multiple simple .match_phy_device OP to match specific MMD PHY
-> ID. With this extra info if the parsing logic is the same, the matching
-> function can be generalized by using the phy_id in the PHY driver
-> instead of hardcoding.
-> 
-> Suggested-by: Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+Parade PS5511 is USB hub with 4 USB 3.2 compliant 5Gbps downstream(DS)
+ports, and 1 extra USB 2.0 downstream port. The hub has one reset pin
+control and two power supplies (3V3 and 1V1).
 
-Too much copy'n'pasting?
+Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+---
 
+ .../bindings/usb/parade,ps5511.yaml           | 138 ++++++++++++++++++
+ 1 file changed, 138 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/parade,ps5511.yaml
+
+diff --git a/Documentation/devicetree/bindings/usb/parade,ps5511.yaml b/Documentation/devicetree/bindings/usb/parade,ps5511.yaml
+new file mode 100644
+index 00000000000000..605f94df561428
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/parade,ps5511.yaml
+@@ -0,0 +1,138 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/usb/parade,ps5511.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: PS5511 4+1 Port USB 3.2 Gen 1 Hub Controller
++
++maintainers:
++  - Pin-yen Lin <treapking@chromium.org>
++
++properties:
++  compatible:
++    enum:
++      - usb1da0,5511
++      - usb1da0,55a1
++
++  reg: true
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++  reset-gpios:
++    items:
++      - description: GPIO specifier for GRST# pin.
++
++  vddd11-supply:
++    description:
++      1V1 power supply to the hub
++
++  vdd33-supply:
++    description:
++      3V3 power supply to the hub
++
++  peer-hub:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      phandle to the peer hub on the controller.
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          1st downstream facing USB port
++
++      port@2:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          2nd downstream facing USB port
++
++      port@3:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          3rd downstream facing USB port
++
++      port@4:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          4th downstream facing USB port
++
++      port@5:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          5th downstream facing USB port
++
++required:
++  - compatible
++  - reg
++  - peer-hub
++
++patternProperties:
++  '^.*@[1-5]$':
++    description: The hard wired USB devices
++    type: object
++    $ref: /schemas/usb/usb-device.yaml
++    additionalProperties: true
++
++additionalProperties: false
++
++allOf:
++  - $ref: usb-device.yaml#
++  - if:
++      not:
++        properties:
++          compatible:
++            enum:
++              - usb1da0,usb55a1
++    then:
++      properties:
++        port@5: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    usb {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        /* 2.0 hub on port 1 */
++        hub_2_0: hub@1 {
++            compatible = "usb1da0,55a1";
++            reg = <1>;
++            peer-hub = <&hub_3_0>;
++            #address-cells = <1>;
++            #size-cells = <0>;
++            /* USB 2.0 device on port 5 */
++            device@5 {
++                reg = <5>;
++                compatible = "usb123,4567";
++            };
++        };
++
++        /* 3.0 hub on port 2 */
++        hub_3_0: hub@2 {
++            compatible = "usb1da0,5511";
++            reg = <2>;
++            peer-hub = <&hub_2_0>;
++
++            ports {
++                #address-cells = <1>;
++                #size-cells = <0>;
++                /* Type-A connector on port 3 */
++                port@3 {
++                    reg = <3>;
++                    endpoint {
++                        remote-endpoint = <&usb_a0_ss>;
++                    };
++                };
++            };
++        };
++    };
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+2.49.0.472.ge94155a9ec-goog
+
 
