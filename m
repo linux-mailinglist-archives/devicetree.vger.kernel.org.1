@@ -1,99 +1,115 @@
-Return-Path: <devicetree+bounces-161506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F810A7454D
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 09:24:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D044BA74556
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 09:25:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5154D7A40A7
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 08:22:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18D4D1B60414
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 08:25:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21C42211485;
-	Fri, 28 Mar 2025 08:23:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0529A212F89;
+	Fri, 28 Mar 2025 08:25:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kfdEU50t"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="16WTuBUb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F253B18DB2B
-	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 08:23:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2029618DB2B;
+	Fri, 28 Mar 2025 08:25:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743150238; cv=none; b=bjKWLafbfh/UQ1e1krREcw111AoJcGbkh9QmU/sq9aO9OG9XiQkGk9XJkJt6tLc/jxBMkTbJ2sDDBKwzPg6YSe3QxdQvqx1NrDtObuqpT6aCU1IWQurbtT6Ze9iBmBP60V14a3pAec7YlYFAn7iNVsi97fophJyV2jAmgV/ahaQ=
+	t=1743150309; cv=none; b=ufyuAMKxx0zt1FuuP1B0C2yFb8qS+f6NIHHa86N/6dsVWNMMamgUXf23MlMlxXX4NejQKYdRGbVWu7EKEw97hrWAtgnCa5rT4DCN2x6u610CfYZKS7BC+B1ZiXzVgeQcZzA78K8oKvdHhksggJjz16tUu3VA9TEwUHW1+kws1sM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743150238; c=relaxed/simple;
-	bh=EChM5lZ02vQW3NFPu4SvlJhSoekdEWsTAF8Ta+yEhxs=;
+	s=arc-20240116; t=1743150309; c=relaxed/simple;
+	bh=l6ChTbG9Qhsc98nwnwWgm9s9uTeB3u4h5qNXJ1yunOQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=riei4s455ho52oRBi3vt8Aq/q++ldxu1xCr3hjuQof6vok5G5WkA546WZGokbw3R6qQdpKL5TFZzfwFFOfDPBGyBTfHvKTw2AEhskS0m1IhIzdLq5GXUqz5set9gOcqcSqU7jbrBB2z4tmOP7TxfapZhp8IMRKfLJaC6jWwLF1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kfdEU50t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA09DC4CEE4;
-	Fri, 28 Mar 2025 08:23:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743150237;
-	bh=EChM5lZ02vQW3NFPu4SvlJhSoekdEWsTAF8Ta+yEhxs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kfdEU50tAlrImVBnCDiKUb91BGet1mqQjVmlmN0LJxzj3fb6Zx+gnBwOkbROkkaAy
-	 VkPuX5MSz7e8ApRUdk12TUrQp1q/IEPIEKPQ+Mq6/J8H75jsOr79xrFQOzv8VT8bRn
-	 GnAiYg3pgDS/lt6qLw/HsNRhTcVnlk/9VKDUywnGyqQBsT5B2AG/jX8IkAdKPfiOQC
-	 VYGVP89JlLmIG78fyih0GYUoqKKz2xf1T99Bw0FT+pHDQR0bSXWlF8at/5KhtiZHkS
-	 O0nh+26hROskyWX6ySHBkfPokPVHjPhT/aemHaTCLeaGA1o1yZIVgd5o2gCWVTLqCw
-	 DWoOV+bRBxhjg==
-Date: Fri, 28 Mar 2025 09:23:53 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: justin.chen@broadcom.com
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-phy@lists.infradead.org, rafal@milecki.pl, alcooperx@gmail.com, 
-	bcm-kernel-feedback-list@broadcom.com, florian.fainelli@broadcom.com, conor+dt@kernel.org, 
-	krzk+dt@kernel.org, robh@kernel.org, kishon@kernel.org, vkoul@kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: phy: brcmstb-usb-phy: Add support for
- bcm74110
-Message-ID: <20250328-acrid-pygmy-dogfish-babce2@krzk-bin>
-References: <20250327185623.3047893-1-justin.chen@broadcom.com>
- <20250327185623.3047893-3-justin.chen@broadcom.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZYMWPgncqhvJnrOteVgZdKspuFCs0ud+Ujz33+3q+G4WaM7esvRIemekDLnemBD45EHx9X7y7rT9+g+CLTQLa6QbZ+XorPyD7YEpTenLPE361/VXJDVdoe5NQWSYK6I6UrpOVK3LJCxY3h+kCgodNIVmgK/7zxxNsFRAGR1uP7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=16WTuBUb; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=ZtSWqFwAavuSWx2kZ4KZ73onSPNyQ8d79/hfLcfS0lI=; b=16WTuBUbF7ZTFB1iaHRfiOEFY1
+	5eQ3ShAn2l+G12XISCztGiYHraIycIzVrOM4Ny5P/lsvdgzlBVDLd9StsApvXlSBkNcxohbWi1bhZ
+	4lQLx1hPTa0Xp7c7cljwgDFUeE9mz3YnuiUaf6MjPpYPKpshdS3ObhOgHRFIYgQQQhkKXfQCRGhuP
+	CQVHOR3g5Aps/R0ly9hl383SHuVPuKMv2xNJaxMTA5JSbfeh/BjNLB5x5e59kbai33ujsImSuqM/4
+	ykZd5+8N1reK71j5nI/Cpc6jPjeywybzLPFnmBjHylrDhgHdjEcGYQeqscdRRn7AVS6M5AD8VFVlf
+	A/c0dk5g==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:59108)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1ty51G-0008BV-1s;
+	Fri, 28 Mar 2025 08:24:50 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1ty51A-00072E-1d;
+	Fri, 28 Mar 2025 08:24:44 +0000
+Date: Fri, 28 Mar 2025 08:24:44 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+	Andrei Botila <andrei.botila@oss.nxp.com>,
+	Sabrina Dubroca <sd@queasysnail.net>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Eric Woudstra <ericwouds@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next RFC PATCH v4 1/6] net: phy: pass PHY driver to
+ .match_phy_device OP
+Message-ID: <Z-ZczBztZbnc8XPa@shell.armlinux.org.uk>
+References: <20250327224529.814-1-ansuelsmth@gmail.com>
+ <20250327224529.814-2-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250327185623.3047893-3-justin.chen@broadcom.com>
+In-Reply-To: <20250327224529.814-2-ansuelsmth@gmail.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Thu, Mar 27, 2025 at 11:56:23AM -0700, justin.chen@broadcom.com wrote:
-> From: Justin Chen <justin.chen@broadcom.com>
+On Thu, Mar 27, 2025 at 11:45:12PM +0100, Christian Marangi wrote:
+> Pass PHY driver pointer to .match_phy_device OP in addition to phydev.
+> Having access to the PHY driver struct might be useful to check the
+> PHY ID of the driver is being matched for in case the PHY ID scanned in
+> the phydev is not consistent.
 > 
-> bcm74110 brcmstb usb phy adds further power savings during suspend
-> states.
+> A scenario for this is a PHY that change PHY ID after a firmware is
+> loaded, in such case, the PHY ID stored in PHY device struct is not
+> valid anymore and PHY will manually scan the ID in the match_phy_device
+> function.
 > 
-> Signed-off-by: Justin Chen <justin.chen@broadcom.com>
-
-Please order the patches as stated in DT submitting patches.
-
-> ---
->  Documentation/devicetree/bindings/phy/brcm,brcmstb-usb-phy.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> Having the PHY driver info is also useful for those PHY driver that
+> implement multiple simple .match_phy_device OP to match specific MMD PHY
+> ID. With this extra info if the parsing logic is the same, the matching
+> function can be generalized by using the phy_id in the PHY driver
+> instead of hardcoding.
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/brcm,brcmstb-usb-phy.yaml b/Documentation/devicetree/bindings/phy/brcm,brcmstb-usb-phy.yaml
-> index 580fbe37b37f..2e668935b454 100644
-> --- a/Documentation/devicetree/bindings/phy/brcm,brcmstb-usb-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/brcm,brcmstb-usb-phy.yaml
-> @@ -15,6 +15,7 @@ maintainers:
->  properties:
->    compatible:
->      enum:
-> +      - brcm,bcm74110-usb-phy
->        - brcm,bcm4908-usb-phy
->        - brcm,bcm7211-usb-phy
->        - brcm,bcm7216-usb-phy
+> Suggested-by: Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
 
-That's incomplete. Where are the updates for constraints? Look at entire
-file, not just top 10 lines.
+Too much copy'n'pasting?
 
-Best regards,
-Krzysztof
-
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
