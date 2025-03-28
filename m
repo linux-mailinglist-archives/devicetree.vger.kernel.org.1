@@ -1,274 +1,286 @@
-Return-Path: <devicetree+bounces-161656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96188A74D8B
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 16:15:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 538B3A74DA2
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 16:21:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 074493BC439
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 15:15:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 649C0189D92E
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 15:21:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C042F1D88CA;
-	Fri, 28 Mar 2025 15:15:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33FB91D61B7;
+	Fri, 28 Mar 2025 15:21:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="E1KWx1gU"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="HR0T81It"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B83CE1D416E
-	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 15:15:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E62171B4257;
+	Fri, 28 Mar 2025 15:21:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743174927; cv=none; b=mXD6Ei5kD+0tAb0WjpgxkzPQ/ZbAcn72fHm/bsswyk7vriip58jruYrAxOE45GCXSXd9oH5MueXioWT/I6ndK/w1P+K5k1UXIwYNRr2ovC3Z0Ol8+xmc5wCqHzIkKi1pXBSnSqdeHjuivTTm2FRccTy8zuW1Du7eYgsz6zMma08=
+	t=1743175289; cv=none; b=VIXolLYF45Kv6XXQRBtDJia9l91SC6eIaG8hkBCdtppUBVLiZ8H+eY26mdxFAh9ZOqXC2KEc1hIs8MGIPfWVmvNeo005AyEjDjLVlZMp2yywJMwyUFxyztrzL9qKo7TVOes+XSj7BxO7XVHpez8xDcv6ap0HsLIOgFaYaPjE4YI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743174927; c=relaxed/simple;
-	bh=HRG8oyx+Mi+MU4biPMgGQvsmz+b2lSbgekhPGs2M778=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=BPTJoyXFezZan1hbBr/dqPlinkH27pF6IuRdc65Pf2s9lTwS6qeL4qw51Y4X8Dw8+7xx3Ts4TwgP6wPPXSeuNAtOmKqQkGrjtuk55uNfSwOdJQqmrT3tLxjrVe3+J5sgLJ4QiE90cs/dztgj2zwAMGohBLqr3I6O276T4oOXZgg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=E1KWx1gU; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5e5e8274a74so3721815a12.1
-        for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 08:15:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743174923; x=1743779723; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tSsT7QLwFrGtJXgYzLTDttFLB1HtTy9nHcX9oWhHWK8=;
-        b=E1KWx1gUIjH8LmxEmjm5ft8KOb/nCqPtxV3i/1LMY2s4S2pZjkIEqlLvoHE1AfARq4
-         7xKEZjMNOnEubOpnR6cQ/8bkb6cEbxPldIpuw1GrtZwyDjrmR2g8zG7H/tzpz9N5J2R2
-         rFC3joXT0eSQDAALzyRP1E0I6VZTmgHvFodSW5Sr9/3h/BKACfhfFbq5/ZTnNjQI305T
-         hAYGn1pVdQqKCqsuYHfWKpH1cIMdwnYuTVuSo9CvNe+XawcQxivVBxJi5K7ePNweE/gf
-         smEC7yCfI2jU/c3mGXn2iX4u0d4hsufkhKsW2a5H6oeUu0Zcj0zM27SVhOV3WSOUArwR
-         Hn/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743174923; x=1743779723;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tSsT7QLwFrGtJXgYzLTDttFLB1HtTy9nHcX9oWhHWK8=;
-        b=V92DslMq8hSS4aHTxTjJ6svukluMsW8Ev88ElrBxSVX3NORfuRK79nkmRABJthr68v
-         V3FONYn20Y/59DNiXSZN76ohwqx0z8xRQY0IMIAoTHGwKH0DLx2lqC58PwkouJ/o+zC4
-         LPzgH24nbTm5sFE45nbnkd3lsSzoHW+rwY9vgZx044Mc2yp8tq5eVXMspHYlDh0cAve6
-         dSsJCj4rxciPA3+IM4pKpQ3nelvOf1Q/hbEXbDe+/0ZFJpREf/0DyGAAKp0sD7zwPVqM
-         YBQebhhfQY9P5xIlmRu/OV65DUmemmCj7BrwSYf/g2j7h7ybBvRZgIu/HJpDG65kl/UA
-         4p4w==
-X-Forwarded-Encrypted: i=1; AJvYcCXrE5hRxfI6rlAuAv5dUCQ6tMNf+ZBf8AcEgzd4DaG+p6DViP3/1m4iivRHHhlD9SLMfrTagsAaE7Sn@vger.kernel.org
-X-Gm-Message-State: AOJu0YyI8ztqGZrvaKDDIS1F2ceHdUNWiwe6wbUQ3VolYYjp3PT5DzHf
-	ddvY7bFYnlhH2fAeN920g9NAOPVvakotQQ12906td9JXj0o/Dq4pibDRC8D4NwNlEylJLnGjQuA
-	xlu8=
-X-Gm-Gg: ASbGncsJ1AszKT00X94+qKh1hAei8gUL/B7KM62kRUZOYUqN1PWEZVb1Sm9EPXiWyK5
-	uKgJjhmhfdgPJBUTha1vKycNqlYKFWTR7wWxekk+BaH8jQ+vKemp729Jeyd0yslMd1+RPElbWNP
-	UzC+qLeZNni+9lnTgawPui5O1+np9tWneOu4ZQ+irWyOojYm1rSs0yq8tx/gHU61bKkWYJAkGq4
-	RC0tX725Ik7QUnehEZdig2NUNn9OdnQux5mxMlh1DemiWUPBXwL8urahJSHI8qS1fC/KhCf4UK3
-	UJfdorke1dRI96kZbZkoO5F6VYWC4ibdHKjydmapwPzblyzf0O/NvOWuDeU9QAL+xLmwMFDswF8
-	PY6DJRkLAwRZ+y1lapl3fqVZWc1+8
-X-Google-Smtp-Source: AGHT+IEWPzD/U+QVIvLgLhOsjJHdSVScC1Inq2Efi46czBnZaUtFyAtnrEbdytwYUOnTSrDbDskAIw==
-X-Received: by 2002:a17:907:868c:b0:ac4:169:3664 with SMTP id a640c23a62f3a-ac6faf04132mr673143566b.33.1743174922634;
-        Fri, 28 Mar 2025 08:15:22 -0700 (PDT)
-Received: from puffmais.c.googlers.com (8.239.204.35.bc.googleusercontent.com. [35.204.239.8])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac71927b742sm178789266b.65.2025.03.28.08.15.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Mar 2025 08:15:22 -0700 (PDT)
-From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Fri, 28 Mar 2025 15:15:21 +0000
-Subject: [PATCH v4 3/3] power: reset: syscon-reboot: add gs101-specific
- reset
+	s=arc-20240116; t=1743175289; c=relaxed/simple;
+	bh=VhPm2s6F8u50aVYbaCa6/EYrQ2WdUIRZwvMuwy2pwbE=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PXwr8A3c7mXDV9Vu4mZQH+eVpCirGTV2nDsX5pp9RAZimq+YTYBMV11CgdXK41fqiYZMe81KNfJfaLoDWJUYVeknQ7GmU7k6eAeTl4PxXmzE516FZO4hd5r/KbMfT5SUu+7F5YCUkwb3jaN4ou1YZ690zImv+fIb/x9QX5UHUF0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=HR0T81It; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52SFLCsP2195666
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 28 Mar 2025 10:21:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1743175272;
+	bh=Lu7OQHrwsF2ia/OLiHFgjNKQ6t/ACm/lnjgCvTJD/OM=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=HR0T81ItniugJhjhJ0zhVxuByYwLpIJ8maACasCnOVMH5I+EJUY/wHDu2F5ZHOOSm
+	 2cArtAf2cjQD74gW8B4/i4wzE8DhNLLEmcZ5IjFrrzjdcn/0bmH5M0GnkIA0Yf5d2S
+	 /fFLmwR5NquI+UMeVv6XOrc/wJ5MN0kBbp/wYbPw=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 52SFLCBQ097515
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 28 Mar 2025 10:21:12 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 28
+ Mar 2025 10:21:12 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 28 Mar 2025 10:21:12 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52SFLChf124302;
+	Fri, 28 Mar 2025 10:21:12 -0500
+Date: Fri, 28 Mar 2025 10:21:12 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Wadim Egorov <w.egorov@phytec.de>
+CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <upstream@lists.phytec.de>
+Subject: Re: [PATCH v2 1/5] arm64: dts: ti: k3-am62x-phyboard-lyra: Add boot
+ phase tags
+Message-ID: <20250328152112.lh7i3rgkkmhzekzi@kimono>
+References: <20250305085537.3976579-1-w.egorov@phytec.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250328-syscon-reboot-reset-mode-v4-3-77ba57703ace@linaro.org>
-References: <20250328-syscon-reboot-reset-mode-v4-0-77ba57703ace@linaro.org>
-In-Reply-To: <20250328-syscon-reboot-reset-mode-v4-0-77ba57703ace@linaro.org>
-To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Peter Griffin <peter.griffin@linaro.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20250305085537.3976579-1-w.egorov@phytec.de>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Linux supports a couple different reset modes, but this driver here
-doesn't distinguish between them and issues the same syscon register
-write irrespective of the reset mode requested by the kernel.
+On 09:55-20250305, Wadim Egorov wrote:
+> The bootph-all and bootph-pre-ram tags were introduced in dt-schema
+> (dtschema/schemas/bootph.yaml) to define node usage across different
+> boot phases.
+> 
+> Add boot phase tags to all required nodes to ensure boot support from
+> all sources, including UART, USB (DFU), Ethernet, uSD card, eMMC, and
+> OSPI NOR Flash.
+> 
+> Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
+> ---
+> v1: http://lists.infradead.org/pipermail/linux-arm-kernel/2025-February/1006239.html
+> v2:
+>   - Add bootph-all to cpsw_port1 and main_pktma 
+>   - Remove bootph-all from cpsw3g
+> ---
+>  arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi   | 15 +++++++++++++++
+>  .../arm64/boot/dts/ti/k3-am62x-phyboard-lyra.dtsi |  9 +++++++++
+>  2 files changed, 24 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi b/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi
+> index 2ef4cbaec789..effab2f810c2 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi
+> @@ -29,6 +29,7 @@ aliases {
+>  	memory@80000000 {
+>  		device_type = "memory";
+>  		reg = <0x00000000 0x80000000 0x00000000 0x80000000>;
+> +		bootph-all;
+>  	};
+>  
+>  	reserved_memory: reserved-memory {
+> @@ -131,6 +132,7 @@ main_i2c0_pins_default: main-i2c0-default-pins {
+>  			AM62X_IOPAD(0x1e0, PIN_INPUT_PULLUP, 0) /* (B16) I2C0_SCL */
+>  			AM62X_IOPAD(0x1e4, PIN_INPUT_PULLUP, 0) /* (A16) I2C0_SDA */
+>  		>;
+> +		bootph-all;
+>  	};
+>  
+>  	main_mdio1_pins_default: main-mdio1-default-pins {
+> @@ -138,6 +140,7 @@ main_mdio1_pins_default: main-mdio1-default-pins {
+>  			AM62X_IOPAD(0x160, PIN_OUTPUT, 0) /* (AD24) MDIO0_MDC */
+>  			AM62X_IOPAD(0x15c, PIN_INPUT, 0) /* (AB22) MDIO0_MDIO */
+>  		>;
+> +		bootph-all;
+>  	};
+>  
+>  	main_mmc0_pins_default: main-mmc0-default-pins {
+> @@ -153,6 +156,7 @@ AM62X_IOPAD(0x200, PIN_INPUT_PULLUP, 0) /* (AC1) MMC0_DAT5 */
+>  			AM62X_IOPAD(0x1fc, PIN_INPUT_PULLUP, 0) /* (AD2) MMC0_DAT6 */
+>  			AM62X_IOPAD(0x1f8, PIN_INPUT_PULLUP, 0) /* (AC2) MMC0_DAT7 */
+>  		>;
+> +		bootph-all;
+>  	};
+>  
+>  	main_rgmii1_pins_default: main-rgmii1-default-pins {
+> @@ -170,6 +174,7 @@ AM62X_IOPAD(0x140, PIN_OUTPUT, 0) /* (AD18) RGMII1_TD3 */
+>  			AM62X_IOPAD(0x130, PIN_OUTPUT, 0) /* (AE19) RGMII1_TXC */
+>  			AM62X_IOPAD(0x12c, PIN_OUTPUT, 0) /* (AD19) RGMII1_TX_CTL */
+>  		>;
+> +		bootph-all;
+>  	};
+>  
+>  	ospi0_pins_default: ospi0-default-pins {
+> @@ -186,6 +191,7 @@ AM62X_IOPAD(0x024, PIN_INPUT, 0) /* (H25) OSPI0_D6 */
+>  			AM62X_IOPAD(0x028, PIN_INPUT, 0) /* (J22) OSPI0_D7 */
+>  			AM62X_IOPAD(0x008, PIN_INPUT, 0) /* (J24) OSPI0_DQS */
+>  		>;
+> +		bootph-all;
+>  	};
+>  
+>  	pmic_irq_pins_default: pmic-irq-default-pins {
+> @@ -210,6 +216,7 @@ &cpsw3g {
+>  &cpsw_port1 {
+>  	phy-mode = "rgmii-rxid";
+>  	phy-handle = <&cpsw3g_phy1>;
+> +	bootph-all;
+>  };
+>  
+>  &cpsw3g_mdio {
+> @@ -220,6 +227,7 @@ &cpsw3g_mdio {
+>  	cpsw3g_phy1: ethernet-phy@1 {
+>  		compatible = "ethernet-phy-id2000.a231", "ethernet-phy-ieee802.3-c22";
+>  		reg = <1>;
+> +		bootph-all;
+>  		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+>  		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+>  	};
+> @@ -232,10 +240,15 @@ mbox_m4_0: mbox-m4-0 {
+>  	};
+>  };
+>  
+> +&main_pktdma {
+> +	bootph-all;
+> +};
+> +
+>  &main_i2c0 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&main_i2c0_pins_default>;
+>  	clock-frequency = <400000>;
+> +	bootph-all;
 
-Since DTs should not encode register writes (see e.g. [1]), update this
-driver to support different reset modes based on DT compatible match.
+please review closer the series to ensure that no parent node has a
+bootph property if the child node has it.
 
-At the same time, add support for Google GS101, which does support
-cold, hard, warm, and soft.
-
-As an example why this is useful, other than properly supporting the
-Linux reboot= kernel command line option or sysfs entry, this change
-allows gs101-platforms to default to a more secure cold-reset, but also
-to warm-reset in case RAM contents needs to be retained across the
-reset.
-
-Link: https://lore.kernel.org/all/20250227132644.GA1924628-robh@kernel.org/ [1]
-Signed-off-by: André Draszik <andre.draszik@linaro.org>
----
- drivers/power/reset/syscon-reboot.c | 98 +++++++++++++++++++++++++++++--------
- 1 file changed, 77 insertions(+), 21 deletions(-)
-
-diff --git a/drivers/power/reset/syscon-reboot.c b/drivers/power/reset/syscon-reboot.c
-index d623d77e657e4c233d8ae88bb099bee13c48a9ef..2e2cf5f62d733c7c07110f3052583607e25afd5d 100644
---- a/drivers/power/reset/syscon-reboot.c
-+++ b/drivers/power/reset/syscon-reboot.c
-@@ -14,11 +14,24 @@
- #include <linux/reboot.h>
- #include <linux/regmap.h>
- 
--struct syscon_reboot_context {
--	struct regmap *map;
-+struct reboot_mode_bits {
- 	u32 offset;
--	u32 value;
- 	u32 mask;
-+	u32 value;
-+	bool valid;
-+};
-+
-+struct reboot_data {
-+	struct reboot_mode_bits mode_bits[REBOOT_SOFT + 1];
-+	struct reboot_mode_bits catchall;
-+};
-+
-+struct syscon_reboot_context {
-+	struct regmap *map;
-+
-+	const struct reboot_data *rd; /* from of match data, if any */
-+	struct reboot_mode_bits catchall; /* from DT */
-+
- 	struct notifier_block restart_handler;
- };
- 
-@@ -28,9 +41,21 @@ static int syscon_restart_handle(struct notifier_block *this,
- 	struct syscon_reboot_context *ctx =
- 			container_of(this, struct syscon_reboot_context,
- 					restart_handler);
-+	const struct reboot_mode_bits *mode_bits;
-+
-+	if (ctx->rd) {
-+		if (mode < ARRAY_SIZE(ctx->rd->mode_bits) &&
-+		    ctx->rd->mode_bits[mode].valid)
-+			mode_bits = &ctx->rd->mode_bits[mode];
-+		else
-+			mode_bits = &ctx->rd->catchall;
-+	} else {
-+		mode_bits = &ctx->catchall;
-+	}
- 
- 	/* Issue the reboot */
--	regmap_update_bits(ctx->map, ctx->offset, ctx->mask, ctx->value);
-+	regmap_update_bits(ctx->map, mode_bits->offset, mode_bits->mask,
-+			   mode_bits->value);
- 
- 	mdelay(1000);
- 
-@@ -42,7 +67,6 @@ static int syscon_reboot_probe(struct platform_device *pdev)
- {
- 	struct syscon_reboot_context *ctx;
- 	struct device *dev = &pdev->dev;
--	int mask_err, value_err;
- 	int priority;
- 	int err;
- 
-@@ -60,24 +84,33 @@ static int syscon_reboot_probe(struct platform_device *pdev)
- 	if (of_property_read_s32(pdev->dev.of_node, "priority", &priority))
- 		priority = 192;
- 
--	if (of_property_read_u32(pdev->dev.of_node, "offset", &ctx->offset))
--		if (of_property_read_u32(pdev->dev.of_node, "reg", &ctx->offset))
--			return -EINVAL;
-+	ctx->rd = of_device_get_match_data(dev);
-+	if (!ctx->rd) {
-+		int mask_err, value_err;
- 
--	value_err = of_property_read_u32(pdev->dev.of_node, "value", &ctx->value);
--	mask_err = of_property_read_u32(pdev->dev.of_node, "mask", &ctx->mask);
--	if (value_err && mask_err) {
--		dev_err(dev, "unable to read 'value' and 'mask'");
--		return -EINVAL;
--	}
-+		if (of_property_read_u32(pdev->dev.of_node, "offset",
-+					 &ctx->catchall.offset) &&
-+		    of_property_read_u32(pdev->dev.of_node, "reg",
-+					 &ctx->catchall.offset))
-+			return -EINVAL;
- 
--	if (value_err) {
--		/* support old binding */
--		ctx->value = ctx->mask;
--		ctx->mask = 0xFFFFFFFF;
--	} else if (mask_err) {
--		/* support value without mask*/
--		ctx->mask = 0xFFFFFFFF;
-+		value_err = of_property_read_u32(pdev->dev.of_node, "value",
-+						 &ctx->catchall.value);
-+		mask_err = of_property_read_u32(pdev->dev.of_node, "mask",
-+						&ctx->catchall.mask);
-+		if (value_err && mask_err) {
-+			dev_err(dev, "unable to read 'value' and 'mask'");
-+			return -EINVAL;
-+		}
-+
-+		if (value_err) {
-+			/* support old binding */
-+			ctx->catchall.value = ctx->catchall.mask;
-+			ctx->catchall.mask = 0xFFFFFFFF;
-+		} else if (mask_err) {
-+			/* support value without mask */
-+			ctx->catchall.mask = 0xFFFFFFFF;
-+		}
- 	}
- 
- 	ctx->restart_handler.notifier_call = syscon_restart_handle;
-@@ -89,7 +122,30 @@ static int syscon_reboot_probe(struct platform_device *pdev)
- 	return err;
- }
- 
-+static const struct reboot_data gs101_reboot_data = {
-+	.mode_bits = {
-+		[REBOOT_WARM] = {
-+			.offset = 0x3a00, /* SYSTEM_CONFIGURATION */
-+			.mask = 0x00000002, /* SWRESET_SYSTEM */
-+			.value = 0x00000002,
-+			.valid = true,
-+		},
-+		[REBOOT_SOFT] = {
-+			.offset = 0x3a00, /* SYSTEM_CONFIGURATION */
-+			.mask = 0x00000002, /* SWRESET_SYSTEM */
-+			.value = 0x00000002,
-+			.valid = true,
-+		},
-+	},
-+	.catchall = {
-+		.offset = 0x3e9c, /* PAD_CTRL_PWR_HOLD */
-+		.mask = 0x00000100,
-+		.value = 0x00000000,
-+	},
-+};
-+
- static const struct of_device_id syscon_reboot_of_match[] = {
-+	{ .compatible = "google,gs101-reboot", .data = &gs101_reboot_data  },
- 	{ .compatible = "syscon-reboot" },
- 	{}
- };
+>  	status = "okay";
+>  
+>  	pmic@30 {
+> @@ -355,6 +368,7 @@ serial_flash: flash@0 {
+>  		cdns,tchsh-ns = <60>;
+>  		cdns,tslch-ns = <60>;
+>  		cdns,read-delay = <0>;
+> +		bootph-all;
+>  	};
+>  };
+>  
+> @@ -363,5 +377,6 @@ &sdhci0 {
+>  	pinctrl-0 = <&main_mmc0_pins_default>;
+>  	disable-wp;
+>  	non-removable;
+> +	bootph-all;
+>  	status = "okay";
+>  };
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62x-phyboard-lyra.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-phyboard-lyra.dtsi
+> index 922cad14c9f8..aab74d6019b0 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62x-phyboard-lyra.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62x-phyboard-lyra.dtsi
+> @@ -138,6 +138,7 @@ vcc_3v3_mmc: regulator-vcc-3v3-mmc {
+>  		regulator-max-microvolt = <3300000>;
+>  		regulator-always-on;
+>  		regulator-boot-on;
+> +		bootph-all;
+>  	};
+>  
+>  	vcc_3v3_sw: regulator-vcc-3v3-sw {
+> @@ -233,6 +234,7 @@ AM62X_IOPAD(0x228, PIN_INPUT_PULLUP, 0) /* (C21) MMC1_DAT2 */
+>  			AM62X_IOPAD(0x224, PIN_INPUT_PULLUP, 0) /* (D22) MMC1_DAT3 */
+>  			AM62X_IOPAD(0x240, PIN_INPUT_PULLUP, 0) /* (D17) MMC1_SDCD */
+>  		>;
+> +		bootph-all;
+>  	};
+>  
+>  	main_rgmii2_pins_default: main-rgmii2-default-pins {
+> @@ -257,6 +259,7 @@ main_uart0_pins_default: main-uart0-default-pins {
+>  			AM62X_IOPAD(0x1c8, PIN_INPUT, 0) /* (D14) UART0_RXD */
+>  			AM62X_IOPAD(0x1cc, PIN_OUTPUT, 0) /* (E14) UART0_TXD */
+>  		>;
+> +		bootph-all;
+>  	};
+>  
+>  	main_uart1_pins_default: main-uart1-default-pins {
+> @@ -266,6 +269,7 @@ AM62X_IOPAD(0x198, PIN_OUTPUT, 2) /* (A19) MCASP0_AXR2.UART1_RTSn */
+>  			AM62X_IOPAD(0x1ac, PIN_INPUT, 2) /* (E19) MCASP0_AFSR.UART1_RXD */
+>  			AM62X_IOPAD(0x1b0, PIN_OUTPUT, 2) /* (A20) MCASP0_ACLKR.UART1_TXD */
+>  		>;
+> +		bootph-pre-ram;
+>  	};
+>  
+>  	main_usb1_pins_default: main-usb1-default-pins {
+> @@ -430,12 +434,14 @@ &main_mcan0 {
+>  &main_uart0 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&main_uart0_pins_default>;
+> +	bootph-all;
+>  	status = "okay";
+>  };
+>  
+>  &main_uart1 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&main_uart1_pins_default>;
+> +	bootph-pre-ram;
+>  	/* Main UART1 may be used by TIFS firmware */
+>  	status = "okay";
+>  };
+> @@ -467,11 +473,13 @@ &sdhci1 {
+>  	pinctrl-0 = <&main_mmc1_pins_default>;
+>  	disable-wp;
+>  	no-1-8-v;
+> +	bootph-all;
+>  	status = "okay";
+>  };
+>  
+>  &usbss0 {
+>  	ti,vbus-divider;
+> +	bootph-all;
+>  	status = "okay";
+>  };
+>  
+> @@ -482,6 +490,7 @@ &usbss1 {
+>  
+>  &usb0 {
+>  	usb-role-switch;
+> +	bootph-all;
+>  
+>  	port {
+>  		typec_hs: endpoint {
+> -- 
+> 2.34.1
+> 
 
 -- 
-2.49.0.472.ge94155a9ec-goog
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
