@@ -1,134 +1,106 @@
-Return-Path: <devicetree+bounces-161557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 296D7A748D2
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 11:59:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FCAAA7490B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 12:15:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC0113BD13F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 10:59:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 900DC17D5C1
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 11:14:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9092F1F583D;
-	Fri, 28 Mar 2025 10:59:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9C232185A0;
+	Fri, 28 Mar 2025 11:14:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="FRrfQ/96"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="wEIxN62M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEA511C3BE2;
-	Fri, 28 Mar 2025 10:59:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06DC3214205;
+	Fri, 28 Mar 2025 11:14:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743159562; cv=none; b=RHJQku8zjNP0KW7TT2RJLrgROPc/SOMGt6d3AjhiLmIy8kMD+tEy878oNvd2OdYt7BPlhVUc+OucnxoxbpFceTiZ8hy72wTgnFEH5OrIQttK9qRvTI1SCQrZupxN1PEyTI5dgDE3i/kqnhdqi+DWPvwDeAlvAZMSfnIt1OIrHIM=
+	t=1743160493; cv=none; b=CZhzz5WG65pOluKaFZl8b+81l59475nvQGcx9uCdh9l4vob6MjS9sO81eYorG62ybfCuxsyBnju1T/9Gqf6MxmOwW7c5Xu1cs8D7etWYUSAM6/nPpvVI/1dWFRcUlemOVaDdOch3JqgkazO9p5/qmhYt6Ez6H539gFWaSzrXuAw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743159562; c=relaxed/simple;
-	bh=apc4iycMNLyIViO3H+yzrkm8toCkD/TbV+3AEof97Is=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=M2k0yjvHgfQTTaVvCitWvJ1L9AVsN7lbCHSLC6fXN/FuWeDV9Trd6N616x+8YCJQemSrr4VCsGTxcT2sLokRwNEaDkoRXFi0utPqIVLIjzgr1NwmaFVkqUOdWsu+bq9GqJw+NEJTVl3m7ZJ0xwxFbAvwicsHupHCcuzIzAIaZLI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=FRrfQ/96; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52S9Grai015797;
-	Fri, 28 Mar 2025 11:58:50 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	EzHzTCgsYvR0knstWtXnq/fUHYTmf/QEn7nWUuuZZXs=; b=FRrfQ/96DFmzUkc/
-	KKtAdxsc8kocIb0gx5yVhoZYpVkJaf7e0c1I0vOH0ZhPE5s/5BIGULV5gR+SexNF
-	WMHSDAiNOrxxkMeiWYQYr2ZQTtNgfD2nlZYlEZf/Yp/Tqs7lFCmQnaI///rBV/5+
-	Educe7Tz5lRRcSVdbUZdBsoaPWv4JKEjVHZCC05yOCF8d6c8DowDVmhKHO9oTGjJ
-	QvtTbrUcQN5M5xK1VaYP8JvtKDMiJUPp91ZxEGXXxatPDQ1typFb7POHumxwozAT
-	a4UdoplXzABff8pIYfAOgUYAtQ9eqM1rk8jCfZCaGtojOEbBXu0KYP5j7CHICfHm
-	+oE/9g==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45nq0b1511-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 28 Mar 2025 11:58:50 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id F1EE14004F;
-	Fri, 28 Mar 2025 11:57:49 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B835B87D247;
-	Fri, 28 Mar 2025 11:54:56 +0100 (CET)
-Received: from [10.252.9.227] (10.252.9.227) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 28 Mar
- 2025 11:54:55 +0100
-Message-ID: <537f2dbd-7b94-4e2c-8a81-fdac10481413@foss.st.com>
-Date: Fri, 28 Mar 2025 11:54:54 +0100
+	s=arc-20240116; t=1743160493; c=relaxed/simple;
+	bh=1T51feJFPE7kZM0F6IZyMUjawj05EKro+rczGe7vhBw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=XdtGha4Qctx0g+He//6Isuo27Nr7CLR+/jtt/YitiL/Gk3987skwaWzvQTjYyiZXdK6EA1sCJao5zK0ycqCmroTzxJRPMy+E7sQ3zSnGn3rGck55lCAFIqZZdgMYQOUR3pEyhBqzL5/aNmjLqJoGMgIIzLvuEDLpo8ggx+9N2+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=wEIxN62M; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52SBEiXE2102971
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 28 Mar 2025 06:14:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1743160484;
+	bh=9ghP861EMT1qEkNnFXGo6eMHzjXYl6QYHOQmMTm96Dg=;
+	h=From:To:CC:Subject:Date;
+	b=wEIxN62MNZCLPjpLloMEWvliQYbyAcGhX2cFCh9s2MtM6NzhK7cdOxPftr0jFlDse
+	 mAB4H/TCnpBEBX6aC2G804RPsPldhuEVQm1zfcX2kM53Jp/ipUPWhNppv50CVcFtRL
+	 IJgYIwVPn5C0f3wl7tr/Ww0QzAi2mRC3ILM1DhNs=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 52SBEicU013878
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 28 Mar 2025 06:14:44 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 28
+ Mar 2025 06:14:43 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 28 Mar 2025 06:14:43 -0500
+Received: from a0497641-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (a0497641-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [10.24.69.37] (may be forged))
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52SBEeIp029420;
+	Fri, 28 Mar 2025 06:14:40 -0500
+From: Neha Malcom Francis <n-francis@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>, <n-francis@ti.com>
+Subject: [PATCH v2 0/2] Add support for K3 BIST
+Date: Fri, 28 Mar 2025 16:44:37 +0530
+Message-ID: <20250328111439.374748-1-n-francis@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: media: st,stmipid02: correct
- lane-polarities maxItems
-To: Alain Volmat <alain.volmat@foss.st.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Sylvain Petinot
-	<sylvain.petinot@foss.st.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Marek Vasut <marex@denx.de>
-CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-media@vger.kernel.org>, <stable@vger.kernel.org>
-References: <20250210-6-14-stm32-media-fixes-v1-0-c64ebe9af8bb@foss.st.com>
- <20250210-6-14-stm32-media-fixes-v1-2-c64ebe9af8bb@foss.st.com>
-Content-Language: en-US
-From: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
-In-Reply-To: <20250210-6-14-stm32-media-fixes-v1-2-c64ebe9af8bb@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-28_05,2025-03-27_02,2024-11-22_01
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Alain,
+BIST (Built-In Self Test) is an IP responsible for triggering hardware
+circuitry tests on both logic as well as memory blocks. This driver is
+currently being upstreamed in U-Boot [1] and triggers these tests on
+cores. This patch series adds the dt-binding as well as a node for BIST
+on J784S4.
 
-Reviewed-by: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+Changes since v1:
+https://lore.kernel.org/all/20241128140825.263216-1-n-francis@ti.com/
+- Krzysztof
+    - move from misc/ to soc/ti/
+    - minor property changes
+    - drop ti,bist-instance and instead opt for ti,bist-under-test
+    - correct example dt
 
-Thank you.
+[1] https://lore.kernel.org/all/20250204123147.939917-1-n-francis@ti.com/
 
-On 2/10/25 11:04, Alain Volmat wrote:
-> The MIPID02 can use up to 2 data lanes which leads to having a maximum
-> item number of 3 for the lane-polarities since this also contains the
-> clock lane.
-> 
-> CC: stable@vger.kernel.org
-> Fixes: c2741cbe7f8a ("dt-bindings: media: st,stmipid02: Convert the text bindings to YAML")
-> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
-> ---
->  Documentation/devicetree/bindings/media/i2c/st,st-mipid02.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/st,st-mipid02.yaml b/Documentation/devicetree/bindings/media/i2c/st,st-mipid02.yaml
-> index b68141264c0e9fe0e530ce3b06fa3434fa712b38..4d40e75b4e1efff673647dff7bf984c89abca4cf 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/st,st-mipid02.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/st,st-mipid02.yaml
-> @@ -71,7 +71,7 @@ properties:
->                  description:
->                    Any lane can be inverted or not.
->                  minItems: 1
-> -                maxItems: 2
-> +                maxItems: 3
->  
->              required:
->                - data-lanes
-> 
+Neha Malcom Francis (2):
+  dt-bindings: soc: ti: bist: Add BIST for K3 devices
+  arm64: dts: ti: k3-j784s4-main: Add PBIST_14 node
+
+ .../bindings/soc/ti/ti,j784s4-bist.yaml       | 67 +++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi    | 11 +++
+ 2 files changed, 78 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/ti/ti,j784s4-bist.yaml
 
 -- 
-Regards,
-Benjamin
+2.34.1
+
 
