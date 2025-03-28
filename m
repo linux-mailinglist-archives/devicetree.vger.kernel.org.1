@@ -1,245 +1,142 @@
-Return-Path: <devicetree+bounces-161671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161672-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33F6DA74ED7
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 18:05:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27D6EA74F26
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 18:20:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9C0D3AEB05
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 17:04:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 131BB3A89FC
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 17:18:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FC2E1C9B62;
-	Fri, 28 Mar 2025 17:05:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 634D91DB14C;
+	Fri, 28 Mar 2025 17:14:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="TD2RjWEF"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="kUbgJB4g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 915363C0C
-	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 17:05:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5076B23CB
+	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 17:14:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743181509; cv=none; b=sgaStJk415us/ptG4anedvadfDugrDC/wF5V2x9o9slEkf8uF5wEaEUmis1m8/TYOcMIyr2Wzmw0VNTve80rru9ZWrXe0IGRYDceOO0AIJpOczt+LnS+YiHjCyL3aqJaI/t8gWZnOr/Z5DVLi+xq6qrtrGrLU8f1ZyluGQv3mZo=
+	t=1743182063; cv=none; b=B3zrTPneb+OsdwsEDRqrWYiUKUkbemyYDpsERTaAYTgXPIkAS1fkqy0OUyXyOr+CJE2Avr0nE8HXvxnJFd6xam2eOe+mgT3ZMh4eAmHGcM1lVw2Vm2DsMvS6r6IZFrBKcN2mFaXIwlwkxsQ1wQtIsUKNJ2IOa2rcEIPTTVOqilU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743181509; c=relaxed/simple;
-	bh=kvxvjWfgbBU+S4p0ERJAmOKQrkFFn1vNwKG2HluMuc0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VEgFHSbi92QEQjxhJib+lArU70CZ0D4Oh5yuJsB182ofTZmJyNxSzGYx6Lh0GwraljnAkf7z3JRSm0HXDWXOjWcXHE1eVCRIqwF4sTeELFfuqQP/EV/Sm/IDwj0DTJozw2h6aAB9noJlpT5cikyW+6VXNPr68+qte7fNJKtTDzo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=TD2RjWEF; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1743181506;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=hvNbFLnzJrDma9+r6dzKNIHJ4GD7qovFDxkdkK1j7ug=;
-	b=TD2RjWEFe8Y9kmmtWILkQyDzKOSh6gKJx4Xmboy8fdRxP738MKGmuFTGWyd/C+k1R3yE9k
-	8VOTFArEBr2MUIsW9Z/LIG3xues4W6Uhxi640P3Nnwsf+mZ5nWA/EJ+OcBjje5FT7Sb7RS
-	feyXcv3GXoDFl2X7vfk0ci97zgVEJAI=
-Received: from mail-vk1-f197.google.com (mail-vk1-f197.google.com
- [209.85.221.197]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-451-nmy0h_PmMBqiUuKLx29WSQ-1; Fri, 28 Mar 2025 13:02:20 -0400
-X-MC-Unique: nmy0h_PmMBqiUuKLx29WSQ-1
-X-Mimecast-MFC-AGG-ID: nmy0h_PmMBqiUuKLx29WSQ_1743181340
-Received: by mail-vk1-f197.google.com with SMTP id 71dfb90a1353d-52480d42c8eso2811398e0c.3
-        for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 10:02:20 -0700 (PDT)
+	s=arc-20240116; t=1743182063; c=relaxed/simple;
+	bh=BHpq2UbaF3kL6H8YXDTV3jWJ+lPDn0AShBL5PzMnA/s=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=NzRa29ugLK82nigC65xabrPpEkl9KDw+4hFre7Jd2KAjQOSu7HHFUY/HSL56PYUWoH3m09GZLVGgvSGT+hYX5IOBVlGI/OoF57yQ1AqKBi9QM1Lafe2NIMjAJun6f+eUW3DtWJdHrepgK6o/eViTCRl4haN0iuRD02F5/ku7dl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=kUbgJB4g; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4394a823036so23804015e9.0
+        for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 10:14:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1743182059; x=1743786859; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7RiNKZlkxAxgBvokSU2RyRmQNQI1s7tLyPaBleKgV+A=;
+        b=kUbgJB4gqhhexGM6ll2HP2FSW+7Jx3atEPKxelgMdMpo+pfLhPpmTbPKdRNIrYc5Vf
+         4pGgN3Nku2rwYk+xe3Z4UtBqLThWveElusbGNf5mmkU9Y1tXebVM45pXiHf3Fv6tyk2Y
+         qM5+8ig7Felmw+F+BIYGIG+yLh9D8Ga7lsZiPtBxCsb3gX8v0gJicEbEWViJOWw9eUB6
+         MTr+45ngygEb1bTtkmFm9obcHLbfK9qWPMJqxXeousab1brFRW+A2QhKMrzTHaTKK5g5
+         iYecI/DKq9iOzyBuX66T8RgwVkakO7REXGP1Z4hCUHzyL+x9pud8WD8GLcXE29il03fH
+         3k4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743181339; x=1743786139;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hvNbFLnzJrDma9+r6dzKNIHJ4GD7qovFDxkdkK1j7ug=;
-        b=arknCRRAHYTelcQJ95a0pW87sjAjtAxnkXUUjRW0lElsm28DxN5pBuHKw1/OBidiFG
-         MzYMNFdGotMT3vsJLAZDbhpGrJg89jdNCEH78TkYLpD+oFRmAbZZg0c99s4zzQYAFoPg
-         O4EcH+WrkV6/uSdza5u1UVHeb/Ya+5mbiXwRa4hx16g7xd+P63Ph3F/x01u6HsAhWUMG
-         Tg/H8PsTzVWQ6OiTcEybfBBjpa3yFhT9DzLNDzg0lgVBwEGnxVq/tzU4iMvnvaXeirda
-         uOdseFBa2dNi+w8t4inS4eE3223hCw0abDVMLgVHYzCvB1uycfTB5mAbNJNNQZR5eMBS
-         2dnA==
-X-Forwarded-Encrypted: i=1; AJvYcCW97fZyvqR3MbN8C6+n+x46jbEgXmw0fXsq/zsBESvJNChrEWwkMVh4S4lEYL8fTFciA8iL/8yVoWWA@vger.kernel.org
-X-Gm-Message-State: AOJu0YwhvPVXCtnevZTnvTHBd3L8xwAMKcR9GnH6wT8W+ICVm/Nzglxf
-	A7I3HmnkFYNs7KkPVyaImFBcykOB0CJz2Yydg5FYQz4puXhcnJELcFUWuBadClxqpBjpJyKs3db
-	OrpWbeHcPGe5LhibmZiXu5iwObF+g6V4l9sWeI+Tt7oqJ3UctTJi4DtOK8sKZVNqaaXuhpMvp+X
-	RnhBAg8m89gVqfWvpDGQ011hECy8ZrbCYILA==
-X-Gm-Gg: ASbGncsmAlSCbqBFbLYOWu0XB+JmiwrBWA4s21T1yCp2rOhgqYYX49Kkhum+E09mTCw
-	EGG5pNAYFd/CqSm96g3apPkmVOB7ez4jaQGufifdjb+jJ5nSlgcMX98KV14K0crqk2whStt73VA
-	==
-X-Received: by 2002:a05:6122:3d0e:b0:520:4996:7cf2 with SMTP id 71dfb90a1353d-5261d4e4be8mr193230e0c.10.1743181339309;
-        Fri, 28 Mar 2025 10:02:19 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEd6hLtMvhq4HNYFNHxAAkTD6XavMmym8TKCPEKvHwtYxwkeFgbJc/fK471eEupFUFa7sF/zVZqhJ21ofGw1UU=
-X-Received: by 2002:a05:6122:3d0e:b0:520:4996:7cf2 with SMTP id
- 71dfb90a1353d-5261d4e4be8mr193156e0c.10.1743181338657; Fri, 28 Mar 2025
- 10:02:18 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1743182059; x=1743786859;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7RiNKZlkxAxgBvokSU2RyRmQNQI1s7tLyPaBleKgV+A=;
+        b=gUjILwiNv4sEBbl65mT870hNn3o27Sb8KJf6lR9sgWgPqnwSxLRiaPSr545KRU30kR
+         57wsI63hbL4mReeBa6wo4LR4L8mmt2euOvWUVn6jaa4RiD6X+Tz+SBegumj0mqY0uv9t
+         +QqQyekJnl96169YR9wwUJfYa2YF0OGpd1Z6wutYWfKy9nZhpO7IZ3WsMXnCB3qQpJSh
+         KIWLRmWXP1+6Y3GZTfZruGGWgy7Kwpf1qnrntpf+qn4Ca6aD0K/SKNN6ykWoZY7BgxQa
+         SEVXxZSHPVBCJkkQ9xXW045LYay5TikqJPjb42rLwGRF2ACeihAvj897Xwj/BGQacf+R
+         ru9g==
+X-Forwarded-Encrypted: i=1; AJvYcCXPrQ5wY/YJrqPjxUSVgh78p6sqsKxG5gUlsO4AY9o7KotzTVu/M8DQywCb34OC8B2KeKX2OMJj2bNY@vger.kernel.org
+X-Gm-Message-State: AOJu0YxgNd+jCmiVpxo3QH/Af3VUFpP0kUWH1/A4LnedJ8PTpyKEmjF1
+	ZcNXPmkmz3sgab9dl8GAWoFpa2xO0CI8m0uOJ4v2bbECaO4C3R780TfKO90uV1g=
+X-Gm-Gg: ASbGnct1T0mwwpmbiqMs4QLKJt5vNCRD/2UGz8YMOs4jekiy9f0AeknaIh2/ykywAm9
+	kqR2LorknfKNX7FhkQ5AdYupg/4w3ieITt/4Ky45/XDUdS9z4R1O+13NNOR1DecVONLWYqYYSkM
+	YAte6hIf37S6rE0QitoCVVavsmkADRddxsXN7/gb1lbk6E8sr7LIHhwK4KklJHFYYxXIsAxNK6L
+	riRVixVLap6RFLLOKUCIsq5nU/KBSbVomwXN7nsf42TkiHTgDXg+OZqfx0Iyu50DsRhZTJyFF83
+	mwOnuOkL37r21bkeAV1PAOev+rw9lX5HLwYvacsY24oeYj6vYMabUKF71THnD7Q8CW8ij9Qn4N9
+	ZdRtImOsM/pM=
+X-Google-Smtp-Source: AGHT+IGR/kzMV6Atudb0fRu185H6wdA1+X5asjv7gAZNnxUUZIM/KcLBLHgVDu+28V8mgpkJV6Xccw==
+X-Received: by 2002:a05:600c:310c:b0:43b:c0fa:f9cd with SMTP id 5b1f17b1804b1-43db6227ac9mr3380065e9.7.1743182056212;
+        Fri, 28 Mar 2025 10:14:16 -0700 (PDT)
+Received: from localhost (p200300f65f14610400000000000001b9.dip0.t-ipconnect.de. [2003:f6:5f14:6104::1b9])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d8ff042c8sm33411655e9.27.2025.03.28.10.14.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Mar 2025 10:14:15 -0700 (PDT)
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	Ahmad Fatoum <a.fatoum@pengutronix.de>
+Subject: [PATCH] ARM: dts: stm32: Add nvmem-cells to ethernet nodes for constant mac-addresses
+Date: Fri, 28 Mar 2025 18:14:05 +0100
+Message-ID: <20250328171406.3307778-2-u.kleine-koenig@baylibre.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250327081427.19693-1-johan+linaro@kernel.org> <CAJesf3M-LSS3PqGKBSzM+4SEYgRmqrVmv-kvJLYUZqqU_Vjjuw@mail.gmail.com>
-In-Reply-To: <CAJesf3M-LSS3PqGKBSzM+4SEYgRmqrVmv-kvJLYUZqqU_Vjjuw@mail.gmail.com>
-From: Dennis Gilmore <dgilmore@redhat.com>
-Date: Fri, 28 Mar 2025 12:02:07 -0500
-X-Gm-Features: AQ5f1Jpj60Hl13BHdrN6RSD_2D2y5OHb6ER9AEjwGhHIzzI5_xDfbU8zIfdpjJQ
-Message-ID: <CAJesf3NhrkoE2Sip2XzKNrjVNz0HFqZZYfLLfPxk8yV=RY323g@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: x1e78100-t14s: enable SDX62 modem
-To: Johan Hovold <johan+linaro@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1643; i=u.kleine-koenig@baylibre.com; h=from:subject; bh=BHpq2UbaF3kL6H8YXDTV3jWJ+lPDn0AShBL5PzMnA/s=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBn5tjen6l7NAtT3+JrsCCThqn5k1qsVD1vc0M9Y ZVXM89Rdy2JATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZ+bY3gAKCRCPgPtYfRL+ TvPRB/9KuR3rJQ0M41W3nqDBh5GaE52iNnZd3KKvvPv9z7cHHQyJwdW77AFGgNSv3keG14zGVSh nAHzmRdowRt1Fv163Ri4lOD0ZQnL/albfzfHGGROLZGh3oZBuL0i0maRccS66D8bgiBlBfDjRHg 3v3ENgAwKOizz1eaAS4zsVozyMRtX8NC90c1HgQmwEdL6kCE5QFbvcLSaq+9yUTv0pxa0uyJFBA yWEcssCDxRMk38qor1VgCbVh7P67TQtNg0RHohxrNulSGjG15Ca8O29fr4AGZHWvZg3qejOSO52 aMUKLoIqXEQ5DMJ5DpPflMnYGF52droNnFSzBVBd1q3/1nyV
+X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+Content-Transfer-Encoding: 8bit
 
-Resending it as plain text so it ends up on the lists. My phone does
-not allow me to send plain text emails. The modem shows up as device
-ID 1eac:1007
+The efuse device tree description already has the two labels pointing to
+the efuse nodes that specify the mac-addresses to be used. Wire them up
+to the ethernet nodes. This is enough to make barebox pick the right
+mac-addresses and pass them to Linux.
 
-Tested-by: Dennis Gilmore <dgilmore@redhat.com>
+Suggested-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
+---
+ arch/arm/boot/dts/st/stm32mp131.dtsi | 2 ++
+ arch/arm/boot/dts/st/stm32mp133.dtsi | 2 ++
+ 2 files changed, 4 insertions(+)
 
+diff --git a/arch/arm/boot/dts/st/stm32mp131.dtsi b/arch/arm/boot/dts/st/stm32mp131.dtsi
+index 8512a6e46b33..9175ed77d769 100644
+--- a/arch/arm/boot/dts/st/stm32mp131.dtsi
++++ b/arch/arm/boot/dts/st/stm32mp131.dtsi
+@@ -1609,6 +1609,8 @@ ethernet1: ethernet@5800a000 {
+ 				snps,axi-config = <&stmmac_axi_config_1>;
+ 				snps,tso;
+ 				access-controllers = <&etzpc 48>;
++				nvmem-cells = <&ethernet_mac1_address>;
++				nvmem-cell-names = "mac-address";
+ 				status = "disabled";
+ 
+ 				stmmac_axi_config_1: stmmac-axi-config {
+diff --git a/arch/arm/boot/dts/st/stm32mp133.dtsi b/arch/arm/boot/dts/st/stm32mp133.dtsi
+index 73e470019ce4..708c0af50bc4 100644
+--- a/arch/arm/boot/dts/st/stm32mp133.dtsi
++++ b/arch/arm/boot/dts/st/stm32mp133.dtsi
+@@ -91,6 +91,8 @@ ethernet2: ethernet@5800e000 {
+ 		snps,axi-config = <&stmmac_axi_config_2>;
+ 		snps,tso;
+ 		access-controllers = <&etzpc 49>;
++		nvmem-cells = <&ethernet_mac2_address>;
++		nvmem-cell-names = "mac-address";
+ 		status = "disabled";
+ 
+ 		stmmac_axi_config_2: stmmac-axi-config {
 
-On Fri, Mar 28, 2025 at 7:05=E2=80=AFAM Dennis Gilmore <dgilmore@redhat.com=
-> wrote:
->
-> Tested-by: Dennis Gilmore <dgilmore@redhat.com>
->
-> It worked fine here, the modem already exists in mhi and the fcc- unlock =
-code is already upstream in ModemManager
->
-> Dennis
->
-> On Thu, 27 Mar 2025, 03:24 Johan Hovold, <johan+linaro@kernel.org> wrote:
->>
->> Enable PCIe5 and the SDX62 modem present on some T14s.
->>
->> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
->> ---
->>
->> I don't have a modem in my T14s, but this is based on the work I did to
->> enable the modem on the CRD reference design and the T14s schematics.
->>
->> I'm hopping Dennis will be able to help out with testing.
->>
->> Note that we may possibly need a new entry for SDX62 in the MHI driver
->> device id table (mhi_pci_id_table) as well. The output of 'lspci -n'
->> will tell.
->>
->> Johan
->>
->>
->>  .../qcom/x1e78100-lenovo-thinkpad-t14s.dtsi   | 65 +++++++++++++++++++
->>  1 file changed, 65 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi=
- b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
->> index 962fb050c55c..8b3f715bfc0b 100644
->> --- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
->> @@ -310,6 +310,22 @@ vph_pwr: regulator-vph-pwr {
->>                 regulator-boot-on;
->>         };
->>
->> +       vreg_wwan: regulator-wwan {
->> +               compatible =3D "regulator-fixed";
->> +
->> +               regulator-name =3D "VCC3B_WAN_RCM";
->> +               regulator-min-microvolt =3D <3300000>;
->> +               regulator-max-microvolt =3D <3300000>;
->> +
->> +               gpio =3D <&tlmm 221 GPIO_ACTIVE_HIGH>;
->> +               enable-active-high;
->> +
->> +               pinctrl-0 =3D <&wwan_sw_en>;
->> +               pinctrl-names =3D "default";
->> +
->> +               regulator-boot-on;
->> +       };
->> +
->>         sound {
->>                 compatible =3D "qcom,x1e80100-sndcard";
->>                 model =3D "X1E80100-LENOVO-Thinkpad-T14s";
->> @@ -1028,6 +1044,25 @@ &pcie4_phy {
->>         status =3D "okay";
->>  };
->>
->> +&pcie5 {
->> +       perst-gpios =3D <&tlmm 149 GPIO_ACTIVE_LOW>;
->> +       wake-gpios =3D <&tlmm 151 GPIO_ACTIVE_LOW>;
->> +
->> +       vddpe-3v3-supply =3D <&vreg_wwan>;
->> +
->> +       pinctrl-0 =3D <&pcie5_default>;
->> +       pinctrl-names =3D "default";
->> +
->> +       status =3D "okay";
->> +};
->> +
->> +&pcie5_phy {
->> +       vdda-phy-supply =3D <&vreg_l3i_0p8>;
->> +       vdda-pll-supply =3D <&vreg_l3e_1p2>;
->> +
->> +       status =3D "okay";
->> +};
->> +
->>  &pcie6a {
->>         perst-gpios =3D <&tlmm 152 GPIO_ACTIVE_LOW>;
->>         wake-gpios =3D <&tlmm 154 GPIO_ACTIVE_LOW>;
->> @@ -1309,6 +1344,29 @@ wake-n-pins {
->>                 };
->>         };
->>
->> +       pcie5_default: pcie5-default-state {
->> +               clkreq-n-pins {
->> +                       pins =3D "gpio150";
->> +                       function =3D "pcie5_clk";
->> +                       drive-strength =3D <2>;
->> +                       bias-pull-up;
->> +               };
->> +
->> +               perst-n-pins {
->> +                       pins =3D "gpio149";
->> +                       function =3D "gpio";
->> +                       drive-strength =3D <2>;
->> +                       bias-disable;
->> +               };
->> +
->> +               wake-n-pins {
->> +                       pins =3D "gpio151";
->> +                       function =3D "gpio";
->> +                       drive-strength =3D <2>;
->> +                       bias-pull-up;
->> +               };
->> +       };
->> +
->>         pcie6a_default: pcie6a-default-state {
->>                 clkreq-n-pins {
->>                         pins =3D "gpio153";
->> @@ -1367,6 +1425,13 @@ wcd_default: wcd-reset-n-active-state {
->>                 bias-disable;
->>                 output-low;
->>         };
->> +
->> +       wwan_sw_en: wwan-sw-en-state {
->> +               pins =3D "gpio221";
->> +               function =3D "gpio";
->> +               drive-strength =3D <4>;
->> +               bias-disable;
->> +       };
->>  };
->>
->>  &usb_1_ss0_hsphy {
->> --
->> 2.48.1
->>
-
-
---=20
-Dennis Gilmore
-Senior Manager Systems Enablement OpenShift Development
+base-commit: e21edb1638e82460f126a6e49bcdd958d452929c
+-- 
+2.47.1
 
 
