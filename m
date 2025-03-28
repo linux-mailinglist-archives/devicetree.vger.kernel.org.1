@@ -1,291 +1,130 @@
-Return-Path: <devicetree+bounces-161482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B2A6A7449B
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 08:46:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FB70A744A2
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 08:46:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D335917D2FB
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 07:44:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C04473B8F80
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 07:45:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB1FB212D8D;
-	Fri, 28 Mar 2025 07:44:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8090212B31;
+	Fri, 28 Mar 2025 07:45:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vb6E7N2F"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="yoQpUS5G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B57F0211A3C
-	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 07:44:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19F71211A35
+	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 07:45:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743147862; cv=none; b=k7W4cHXRDk+2rxTjUwNlK+s3rYTdwIeehUvGcE4ESUsHpnwjsuYLV+TG88P0uBonDponLwXztA1tCgpBH2HX2n+1/TebED0uNTyDmIPYzXvR7UpOB9NWNSO/slVkRgK+QNNgHJeDECVv/XCzwuBixzbt/JR6COq0/5aPt9d6s9U=
+	t=1743147948; cv=none; b=KCJnCgkUbtclLVqo/XvK0a21SS96HTECCsldPNzOr46sEAVglaIqLLUi9nspVWPDxt1JWAcblZJE4NpbGENyAiKVXmKMTwOCskdP3fH5JpbT5GAfgWkf/MGqPYrpt7DZm3sMifK4sSrGGHq6Ev21xYl8E9FzOdIUlqNvcShWHFs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743147862; c=relaxed/simple;
-	bh=y7ZAvrhGluYrDjVhgXCFn6OEXHONB/Wv2XYAOsXd8HA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=RSDH/tujh30WGOhFyauEnpTwuSf7DETH7BDC8Ch8kAu7jYw01hh/IfynwSYc6HqsWeeWYbMcXnZKMFNaWUUDe0mw8mZGwvkNN/AhUM+nWN70Fp+8875ltmkXorZ8pjkkQfjyCPpIeXwoY0HLBZ7/LVlYHTxDEHCxeXsUGsQNHt8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vb6E7N2F; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5495c1e1b63so2117845e87.0
-        for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 00:44:20 -0700 (PDT)
+	s=arc-20240116; t=1743147948; c=relaxed/simple;
+	bh=jhd8eqeLqKtgOMegJHXn9/RBH+p95nA916u23Bs1/xU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EcSQcJUlH2eIIMJN2YKcDYPMdaRiDJUvJKuqpDc8c2mcdJufIxft21Zgm1jxToaldH1IVBy5K5NlmFz/9txiL24SQjdmgQQO7bbI9eImV8qc5324iCb0NAIElVQNDEjfZ/nw97II/dsJNk5QBq5ujzG0tABaai9Kxtw9s+rDKQE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=yoQpUS5G; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-224171d6826so47857505ad.3
+        for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 00:45:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743147859; x=1743752659; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9jj2jQLKKNMRGoDJk1I4iWsw2NxXlVz80Tt33k/kg9c=;
-        b=vb6E7N2Fit0+kgUAuz8dkOiMO6siIjH5D69pqaVYO01nL8MuGI+WHgItcGZ71qzkMF
-         pryIP9eyweCXaFOoWE/5DWXMFaF0gvQeH4DGCOQrGgZhCZLJW1fmCgXvZ1IZjISmPqXR
-         pgwQAZhBlptdzG+Wwm4Fn+baWT+xr1OuBRVDpPYuJ2eg8F7iAQ7Vz/DmTGt7oMxMwEj6
-         HHpNglfw/c5mL+pauEI5HuzxN+G0tuwrefzLk9mwHg/Ad7PpN9JFr6InPNsj+BrKMCpW
-         UjgQyHb3xygKcwL9yv9fDCSf0ldF4DpCNVSyJS8VrmHPV+HBdpxrPFPQbGDFdjyChHf6
-         R/sA==
+        d=google.com; s=20230601; t=1743147946; x=1743752746; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Cju4PP3BDwNUuGXUxlhnczSfO2O+sRFjPqYxZUsY/Fs=;
+        b=yoQpUS5G1WczIvAr6LZUddcvjI2Ojd88Y/vPHrUHg4KODVEnxp4CDjPh5nN/C5lkl6
+         4KHSVb6atT653sH9Vet0J5t6AW/HzeLjLJdE+EBhMzxU/DdQ2q9B72iULBdgU51ZTzjF
+         MjnZu25rtaYV6ksKxvNcHC4jtyHZ09IJjwk+gEnK60g7mTOvzYvw+DoJV9Mo7RwQQFnM
+         GqjPR78lvbPD3S3bAMjUM2cfq4Ibap6ZQMqXPLc1V9swCmoZHXprFEhUKL94KXY/7Qgm
+         EKQL6G4LXXkl5lbhnEJGzxH6eRGeFTlWNUiBp+4yHOTz9ZsS05wU4lN7dzTbXJ1M40+3
+         RUUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743147859; x=1743752659;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1743147946; x=1743752746;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9jj2jQLKKNMRGoDJk1I4iWsw2NxXlVz80Tt33k/kg9c=;
-        b=eucft+jnmELjN1rmUDx6YRw+yUPEA2PVMRaalOdYCFpmolqu9AZ19mw08CI0dU7FAv
-         nAoO2plwXm1N4WwKL0b1GqodULkGAemw08jeDL7qeU5sRATqoSt5FydfCYOUf2QODNDy
-         jisSqiANKSIrv/7/AMcVmChUQxLC3EdR6WSaLmgaMHnzuUTrZ17WdQylfuPdPIMhDsSQ
-         8jxIeRurVjTYmqfpJ2umpWYXLgTefvXdnTJ+8Kzykn64O8vKOQObKS9ZK5ZWfAOTOKZN
-         DW72rFcw+HI5/eVUprR3C6YqQCoQoqMeMMOQQRA2VajjjI82eyxUkpnd8WzLh0Rc3LS6
-         pzKw==
-X-Gm-Message-State: AOJu0YxuwdpWysG4qRl/IyJnpnBzPvVppoyqHcmsB+qDGP+ixjHevCuR
-	lK0U3SNnmSdCQ7yS5ZD1PWXVO1t4JjYQN+hNRU67nSAABdn6SCCZDPuFr0ejEt4=
-X-Gm-Gg: ASbGncthYKBBmCDL+gI5CqYcnzAMwZVQIN18l09b2K9NRpHt8G1zN6urz8tgcAwvmjl
-	dR8ldI6lLo9zP1m/9gBulIrAPpBQqAYioc2tJ3vs4e45uj0QZP/7z9VbJ0oTCamZIDwh9dKiqmT
-	OJvbJHNmD3/TWN1SnMA4FZakE5izTcQHs0InjWInmsX2sL3SkeVfUv35Vk9OBEew+VPznxmcyht
-	8YmMWT7a5weldyCYTszmsKFSIU9s0kG0k074S77twrF0ZAY8Dl9Sv1HLk2f7g+Z1tSspcZXtDl0
-	e46Bn26UODMj0WTUOlkow19z52vJh9wKfc+zS0+KIHSyWaYUyfTnEfg=
-X-Google-Smtp-Source: AGHT+IEhjnETIkoSdipUb4jt9SrhDKL7ky47sTQx7mnWbPsv0F5+Wr/UgwEAs1mGGfzuq6GFwk0EgA==
-X-Received: by 2002:a05:6512:118f:b0:545:62c:4b13 with SMTP id 2adb3069b0e04-54b01264c81mr1971096e87.40.1743147858828;
-        Fri, 28 Mar 2025 00:44:18 -0700 (PDT)
-Received: from [192.168.1.140] ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54b094bb32esm215589e87.26.2025.03.28.00.44.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Mar 2025 00:44:17 -0700 (PDT)
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 28 Mar 2025 08:44:00 +0100
-Subject: [PATCH 10/12] ARM64: dts: bcm6856: Add BCMBCA peripherals
+        bh=Cju4PP3BDwNUuGXUxlhnczSfO2O+sRFjPqYxZUsY/Fs=;
+        b=hF495gHaFx4ocrPiFwPH01t+OpervmL8qsgyLOAzH3gpZAYdF60WaksGsp5l+Eabzy
+         DQ7B6Y421dMePTuf1r6LUTnS15jVzidcmB2KgpXwh5EtbUL/Gn9SGOFk2XnZYYsDJU0u
+         H/NdzDatNjKYw5CjBe5Bx+xvX2NRD/UWvwO3Wcvl3ZdAWKYlj5/M5B/6BX4VQuw3+u1P
+         if54rH8o+XOfFAjPwDIYlxJkC7PYPTv1SbIXnlJCnr/GOV19v/SX47saJ7q929kQ91GF
+         D/wAwMISA+1qsW/xJoEkqO3aOaN3p5CXQwRDuf/e75CZrh7vv0sXpFZH1hIsI6SDXoPX
+         F4Fw==
+X-Forwarded-Encrypted: i=1; AJvYcCUE4AB16eTkv5RQneixZSZrp6GyXRVwXOtWPBo6Lw4KXRQktG0D1e7BpYJNnJApbl9B0ivoRsIvggkI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyy7R4N6pwZ7RieeG6lkV7zf7HeHLu2qLsdEY6B+NiCZ3anWEoN
+	/aLFlVpB3CMCiczg/CrDK+dgDvD4Y2of8HVhsNGnGJsmlkwJ/RRKW3ZH3QMr5D0DMLcebD40c4m
+	1/dqCrNVTlsQ0o6WwKg0H0sbDnjJw4wvYl8+5
+X-Gm-Gg: ASbGnctAJTPLcCjoe/U8ITury6bJF0zA6naS1JWEnJjSNSkr9UNB/GJYXo4ETUBohZb
+	W6mJWwT6UoMuN5wN8N/EJ3j5QlqFCQpdFVgADmSpXVuJjdIgJ35YQ5yb23nlvKMwhZDDjJOWwVs
+	q10XKcXXAcdpUU9/BOONxJ7HsRarTOaVllnAosVwOjTigIb/gvcSp1dUzy
+X-Google-Smtp-Source: AGHT+IHOrcw9DisHzvvGCzWpEdMq/2DuAlul4EC/64JuosmYAwms2YN5mduIbPIPWnfzDcFKN8g6PnqvAgOWYqzB4tA=
+X-Received: by 2002:a17:903:41d2:b0:21f:7e12:5642 with SMTP id
+ d9443c01a7336-22804855243mr78114555ad.18.1743147945996; Fri, 28 Mar 2025
+ 00:45:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250328-bcmbca-peripherals-arm-v1-10-e4e515dc9b8c@linaro.org>
-References: <20250328-bcmbca-peripherals-arm-v1-0-e4e515dc9b8c@linaro.org>
-In-Reply-To: <20250328-bcmbca-peripherals-arm-v1-0-e4e515dc9b8c@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- William Zhang <william.zhang@broadcom.com>, 
- Anand Gore <anand.gore@broadcom.com>, 
- Kursad Oney <kursad.oney@broadcom.com>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Olivia Mackall <olivia@selenic.com>, Ray Jui <rjui@broadcom.com>, 
- Scott Branden <sbranden@broadcom.com>, 
- Florian Fainelli <f.fainelli@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-crypto@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>
-X-Mailer: b4 0.14.2
+References: <20250319005141.312805-1-quic_wcheng@quicinc.com> <20250319005141.312805-5-quic_wcheng@quicinc.com>
+In-Reply-To: <20250319005141.312805-5-quic_wcheng@quicinc.com>
+From: Puma Hsu <pumahsu@google.com>
+Date: Fri, 28 Mar 2025 15:44:00 +0800
+X-Gm-Features: AQ5f1JrxKR_5At3wbtVqdesBrs5EjD2B83PPzVhOxlnkDOQEImF4VUCzY3fgoP4
+Message-ID: <CAGCq0LYNn6VZwKpvvf=N2ra8ZJcSso80ZDpirByHO9ChBZv3eg@mail.gmail.com>
+Subject: Re: [PATCH v36 04/31] usb: host: xhci-plat: Set XHCI max interrupters
+ if property is present
+To: Wesley Cheng <quic_wcheng@quicinc.com>
+Cc: srinivas.kandagatla@linaro.org, mathias.nyman@intel.com, perex@perex.cz, 
+	conor+dt@kernel.org, dmitry.torokhov@gmail.com, corbet@lwn.net, 
+	broonie@kernel.org, lgirdwood@gmail.com, krzk+dt@kernel.org, 
+	pierre-louis.bossart@linux.intel.com, Thinh.Nguyen@synopsys.com, 
+	tiwai@suse.com, robh@kernel.org, gregkh@linuxfoundation.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-sound@vger.kernel.org, linux-input@vger.kernel.org, 
+	linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-doc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-All the BCMBCA SoCs share a set of peripherals at 0xff800000,
-albeit at slightly varying memory locations on the bus and
-with varying IRQ assignments. ARM64 SoCs have additional
-peripherals at 0xff858000. On BCM6856 the PERF window was
-too big so adjust it down to its real size (0x3000) and add
-another window for PERF1 at 0xff858000.
+On Wed, Mar 19, 2025 at 8:54=E2=80=AFAM Wesley Cheng <quic_wcheng@quicinc.c=
+om> wrote:
+>
+> Some platforms may want to limit the number of XHCI interrupters allocate=
+d.
+> This is passed to xhci-plat as a device property.  Ensure that this is re=
+ad
+> and the max_interrupters field is set.
+>
+> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
 
-Add the watchdog, GPIO blocks, RNG, LED, second UART and DMA
-blocks for the BCM6856 based on the vendor files 6856_map_part.h
-and 6856_intr.h from the "bcmopen-consumer" code drop.
+Tested-by: Puma Hsu <pumahsu@google.com>
 
-This SoC has up to 256 possible GPIOs due to having 8
-registers with 32 GPIOs in each available.
-
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- arch/arm64/boot/dts/broadcom/bcmbca/bcm6856.dtsi | 138 ++++++++++++++++++++++-
- 1 file changed, 137 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm6856.dtsi b/arch/arm64/boot/dts/broadcom/bcmbca/bcm6856.dtsi
-index 00c62c1e5df00c722884a7adfcb7be08a43c0dc3..d6d0b8e1a65b494be414dd5841b65f8ff489d684 100644
---- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm6856.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm6856.dtsi
-@@ -93,11 +93,103 @@ gic: interrupt-controller@1000 {
- 		};
- 	};
- 
-+	/* PERF Peripherals */
- 	bus@ff800000 {
- 		compatible = "simple-bus";
- 		#address-cells = <1>;
- 		#size-cells = <1>;
--		ranges = <0x0 0x0 0xff800000 0x800000>;
-+		ranges = <0x0 0x0 0xff800000 0x3000>;
-+
-+		watchdog@480 {
-+			compatible = "brcm,bcm6345-wdt";
-+			reg = <0x480 0x10>;
-+		};
-+
-+		watchdog@4c0 {
-+			compatible = "brcm,bcm6345-wdt";
-+			reg = <0x4c0 0x10>;
-+			status = "disabled";
-+		};
-+
-+		/* GPIOs 0 .. 31 */
-+		gpio0: gpio@500 {
-+			compatible = "brcm,bcm6345-gpio";
-+			reg = <0x500 0x04>, <0x520 0x04>;
-+			reg-names = "dirout", "dat";
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			status = "disabled";
-+		};
-+
-+		/* GPIOs 32 .. 63 */
-+		gpio1: gpio@504 {
-+			compatible = "brcm,bcm6345-gpio";
-+			reg = <0x504 0x04>, <0x524 0x04>;
-+			reg-names = "dirout", "dat";
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			status = "disabled";
-+		};
-+
-+		/* GPIOs 64 .. 95 */
-+		gpio2: gpio@508 {
-+			compatible = "brcm,bcm6345-gpio";
-+			reg = <0x508 0x04>, <0x528 0x04>;
-+			reg-names = "dirout", "dat";
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			status = "disabled";
-+		};
-+
-+		/* GPIOs 96 .. 127 */
-+		gpio3: gpio@50c {
-+			compatible = "brcm,bcm6345-gpio";
-+			reg = <0x50c 0x04>, <0x52c 0x04>;
-+			reg-names = "dirout", "dat";
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			status = "disabled";
-+		};
-+
-+		/* GPIOs 128 .. 159 */
-+		gpio4: gpio@510 {
-+			compatible = "brcm,bcm6345-gpio";
-+			reg = <0x510 0x04>, <0x530 0x04>;
-+			reg-names = "dirout", "dat";
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			status = "disabled";
-+		};
-+
-+		/* GPIOs 160 .. 191 */
-+		gpio5: gpio@514 {
-+			compatible = "brcm,bcm6345-gpio";
-+			reg = <0x514 0x04>, <0x534 0x04>;
-+			reg-names = "dirout", "dat";
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			status = "disabled";
-+		};
-+
-+		/* GPIOs 192 .. 223 */
-+		gpio6: gpio@518 {
-+			compatible = "brcm,bcm6345-gpio";
-+			reg = <0x518 0x04>, <0x538 0x04>;
-+			reg-names = "dirout", "dat";
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			status = "disabled";
-+		};
-+
-+		/* GPIOs 224 .. 255 */
-+		gpio7: gpio@51c {
-+			compatible = "brcm,bcm6345-gpio";
-+			reg = <0x51c 0x04>, <0x53c 0x04>;
-+			reg-names = "dirout", "dat";
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			status = "disabled";
-+		};
- 
- 		uart0: serial@640 {
- 			compatible = "brcm,bcm6345-uart";
-@@ -108,6 +200,29 @@ uart0: serial@640 {
- 			status = "disabled";
- 		};
- 
-+		uart1: serial@660 {
-+			compatible = "brcm,bcm6345-uart";
-+			reg = <0x660 0x18>;
-+			interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&periph_clk>;
-+			clock-names = "refclk";
-+			status = "disabled";
-+		};
-+
-+		leds: led-controller@800 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "brcm,bcm63138-leds";
-+			reg = <0x800 0xdc>;
-+			status = "disabled";
-+		};
-+
-+		rng@b80 {
-+			compatible = "brcm,iproc-rng200";
-+			reg = <0xb80 0x28>;
-+			interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
-+		};
-+
- 		hsspi: spi@1000 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-@@ -134,4 +249,25 @@ nandcs: nand@0 {
- 			};
- 		};
- 	};
-+
-+	/* PERF1 Peripherals */
-+	bus@ff858000 {
-+		compatible = "simple-bus";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0x0 0x0 0xff858000 0x4000>;
-+
-+		pl081_dma: dma-controller@1000 {
-+			compatible = "arm,pl081", "arm,primecell";
-+			// The magic B105F00D info is missing
-+			arm,primecell-periphid = <0x00041081>;
-+			reg = <0x1000 0x1000>;
-+			interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
-+			memcpy-burst-size = <256>;
-+			memcpy-bus-width = <32>;
-+			clocks = <&periph_clk>;
-+			clock-names = "apb_pclk";
-+			#dma-cells = <2>;
-+		};
-+	};
- };
-
--- 
-2.48.1
-
+> ---
+>  drivers/usb/host/xhci-plat.c | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/drivers/usb/host/xhci-plat.c b/drivers/usb/host/xhci-plat.c
+> index 3155e3a842da..6dab142e7278 100644
+> --- a/drivers/usb/host/xhci-plat.c
+> +++ b/drivers/usb/host/xhci-plat.c
+> @@ -267,6 +267,8 @@ int xhci_plat_probe(struct platform_device *pdev, str=
+uct device *sysdev, const s
+>
+>                 device_property_read_u32(tmpdev, "imod-interval-ns",
+>                                          &xhci->imod_interval);
+> +               device_property_read_u16(tmpdev, "num-hc-interrupters",
+> +                                        &xhci->max_interrupters);
+>         }
+>
+>         /*
+>
 
