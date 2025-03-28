@@ -1,108 +1,139 @@
-Return-Path: <devicetree+bounces-161709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161710-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41D75A75108
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 20:52:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FDB5A75117
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 21:01:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C86D18949BA
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 19:52:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 754EA1895563
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 20:01:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55E161D61B7;
-	Fri, 28 Mar 2025 19:52:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 859411D90DD;
+	Fri, 28 Mar 2025 20:01:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="DsWrrv4p"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m5gvcytu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B88E322B;
-	Fri, 28 Mar 2025 19:52:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.177.23.149
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9B2D38DD1;
+	Fri, 28 Mar 2025 20:01:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743191554; cv=none; b=gYnwLt0+02ck4fuz17ADbcvxonxE+X3ot3mkuUiSfBha1YQEmO3KKDsY9OFKrwyF7Sla22SnL+2tJo7r4LU1Zojlj5nEZcmh+jmZchViLzPorwh1KBspomccwjeAWqu3ZWaid+Lkb8fco/D2zFsrewtGh9gvBEWimomODKbvEZI=
+	t=1743192086; cv=none; b=lvlQ6VRmtfT6xkfCYGRmr6hYaUfxhNNkZlNVJTJdbIqLemJzGBAKRyj0eNMNbvfWx+2Hdn8vIGRQo7hr4NBodvOroyPKikk2wcY+ZAlLPupahxN+dq5omCQMcvO04RwMAvYJPuqrrgycPHXicfBy5RIzPn0Cc5Zk1uS7M/q6lOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743191554; c=relaxed/simple;
-	bh=YaO70SFlWiugUmK0UvlOIGdArpJwA4i3j0CMMhbaJtg=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=FfEbr4oM9gpShlR+xtvO5WCfamDlXLDiMPF9CtcUANxMn+6zwVv3JOCWOdL/rZOpG1T0OtC6nezvbDfx6LlY3sV7bs4/Wl7ZH3IFNGnIJHCyOqswBY4w5477kzVUBoP+jlX20f8ljcOdlo+rwjl710uAaQWx6tjJMvaA0D/5lh8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=DsWrrv4p; arc=none smtp.client-ip=89.177.23.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [127.0.0.1] (78-80-113-104.customers.tmcz.cz [78.80.113.104])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id C7768166734;
-	Fri, 28 Mar 2025 20:52:20 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1743191541;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=YaO70SFlWiugUmK0UvlOIGdArpJwA4i3j0CMMhbaJtg=;
-	b=DsWrrv4pATyhBjy330V52YVR7/U6IEbdIN0bLmMqS7u0ypYW1s9HicPipP+Ea+DVpEzYEo
-	J4KpYiRjNreuP0JfptcLoB5gKSZWxU1UlErJQiedYNLxo97rB6/s3m9O76C0MBhROW00Q+
-	vR9LNUtjnlr3vUIDJsJfqMoYoxOISS4=
-Date: Fri, 28 Mar 2025 19:52:18 +0000
-From: David Heidelberg <david@ixit.cz>
-To: Johannes Berg <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>
-CC: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Mailing List <devicetree-spec-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>,
- Lorenzo Bianconi <lorenzo@kernel.org>, van Spriel <arend@broadcom.com>,
- =?ISO-8859-1?Q?J=E9r=F4me_Pouiller?= <jerome.pouiller@silabs.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Andy Gross <agross@kernel.org>,
- Mailing List <devicetree-spec@vger.kernel.org>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- Janne Grunau <j@jannau.net>
-Subject: Re: [PATCH v5 0/5] dt-bindings: net: Add network-class.yaml schema
-In-Reply-To: <69bd300d79f7f6317a964030930252b307b85007.camel@sipsolutions.net>
-References: <20250324-dt-bindings-network-class-v5-0-f5c3fe00e8f0@ixit.cz> <3452b67752228665fa275030a7d8100b73063392.camel@sipsolutions.net> <CAL_JsqLv9THitHzj8nj7ppCp-aKn010-Oz=s+AUNKOCoDmBnbQ@mail.gmail.com> <bfb7433131cb9aeebc75666f86a67a6c71521229.camel@sipsolutions.net> <4B465FA3-E6B5-4EB1-A712-0C8874402FCE@ixit.cz> <69bd300d79f7f6317a964030930252b307b85007.camel@sipsolutions.net>
-Message-ID: <42F3BE66-15C3-4C95-8133-2EA19E54B32F@ixit.cz>
+	s=arc-20240116; t=1743192086; c=relaxed/simple;
+	bh=F9lG5VQiBqijdc1BsSIAl5jdTQjId2FOU05kNe/eQ10=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fefDTTtcj8D8iy7PWstwHSgjNoIxdxCKYF1DosqwLr37+M1QNkTM41aNvBwWZRXiaeIyOy6+KI2XLNBY0Va5ZAW2ut4FdIOOxr/XkSxIF9n2H3d7/alpMVEZSqUUFM6XbKmCAn4ipmNLbSL40upI/eYcDsGn1IuKLq2E5nBLnbI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m5gvcytu; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-43cf628cb14so25677415e9.1;
+        Fri, 28 Mar 2025 13:01:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1743192083; x=1743796883; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=CWlDjObtNCMAig2x0XE/n+rj8AXxIshTECeaANEV/mU=;
+        b=m5gvcytuTzb+6WEl9rBqN7TlXQQglWNfiz9c3YrTAOxhUXS+mReAaGzRZ6uuGoyqNT
+         qGc8eQjPpGjaaj3tR4qdsZ2wJWANNZvP5icWV6Dnti0dwaae53UL5QJFLfEllLAjg29q
+         XrIQQfD32wu6JngbrN6W37clpEiNhdGdURVsX3Usr7WBr5sgfyO/OGYdFVLPlQTdoRga
+         0lTxw2I5/83UYwnH74sVsTMn7lo2TJ8YxvbEO87Tcpl2rnlQc8CyNN8IIdOY6FnxhI9g
+         vdnhm9Ofx9Cy4jAZOLK40M3JGwkR/EYrAsRLjhEVH+mmxssDMDP3DNykC70XNYLeiXTS
+         8/nQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743192083; x=1743796883;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CWlDjObtNCMAig2x0XE/n+rj8AXxIshTECeaANEV/mU=;
+        b=tCOqTDpCem5UHHOi97KHMxbqjoxrhKDvqgMSRki4xoSl/ynoMvxXihebS2+Yw/pNBS
+         l+GOWk6N72Ehe1SJJoDj+DigzComEr2686bBy2Wx7tF4ZVKSV0HFEv1ufADuzfqCBCjV
+         ihKpeLP9i5dUZAT66UM0cVpKjpyGcbCeOf/OHSJAM4ALLL3rcR+MGvhJj7/EWaGmiKdq
+         dM52kIfLONqnzr3G6RLknby/nCMMxQFTxoXXCeCxsuMMNtw9pd7uHooEisU2m7MZsa/x
+         NpD9mC2GQ+XBmsaK0c/Tv1MkDiSvzYSzHUVa7z7ZnncM2VEleFoTB90k92RybUh+Q2DD
+         PewA==
+X-Forwarded-Encrypted: i=1; AJvYcCU0P9x9pVGw1R7aqFX/oBFNd9/RCA9khsgevcUHP/otjf59NrIWCU6Y5FFruEiY+1THfDk0djzV73db@vger.kernel.org, AJvYcCUad1xjAwqAYlyP7bzMktRQvGZ5S5J9jajYEbwj4p5BqyNKKoMzdc+W3bUk0oafE9DvZ4nWIY0ztffB@vger.kernel.org, AJvYcCUgfsTHhmIhwZvItRV/DRKhyIZoZXVgyAJ7Sln+JC16LGwt//KfnKeilzKBsWb2WwAmBq79+loqqVyvfUl4@vger.kernel.org
+X-Gm-Message-State: AOJu0YyfFJnwzvPtLNP3HoXRMd61b4U5PWU07RIeaR8yiCGdCyk2XtQT
+	dvy2OSvWj2JtbbZXVdj3ybaUmEne41wENiwEVP90AoXaAt3w/VZ3
+X-Gm-Gg: ASbGncvyL170rAMPF9RzjcpBz3Obu4p4Q5bYmQWDRqBktHDvyX6ck1X668bXEqc0EL/
+	RZ3FBafaGF/rrpo6QMv9hNoqZXKbOgi7CgTXob6syPnMR1lcDX0gy4g8UAxcN/TiWM+a11IVzsm
+	fTkjkcU1XGp2CJDHZg8+RJ0yRSn86a1IhmUvYd9Kg9/R56wMkol11fBTMCWHlstn2RIJb8UgUSp
+	GTSq0HjZzcXW+Onp8QcM6IgvVKR0/lwaKc5FGPkQ1mMxiauPU+qeH5CARPnX24Eb4qnh8SKzF2r
+	iVVIOwtRBGIWCx0UMJJvdzR0GT9rpWvoOoDnNEiWpoh2qPqNphx2JgaNbxYg9lx6drg=
+X-Google-Smtp-Source: AGHT+IG8hqXIrn97tmW/uHBB5qDdkcyinu5eWQt92U1S5xKjZO1U+G4x3Wv5X8+GrwnTs7rlRRWhZQ==
+X-Received: by 2002:a05:600c:c08:b0:439:8e95:796a with SMTP id 5b1f17b1804b1-43db62bda6cmr6056355e9.13.1743192082378;
+        Fri, 28 Mar 2025 13:01:22 -0700 (PDT)
+Received: from iku.Home ([2a06:5906:61b:2d00:b400:d08:873:badd])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d8fcceaaasm37930955e9.18.2025.03.28.13.01.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Mar 2025 13:01:21 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-renesas-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/6] clk: renesas: rzv2h: Add clock and reset entries for USB2 and GBETH
+Date: Fri, 28 Mar 2025 20:00:59 +0000
+Message-ID: <20250328200105.176129-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Johannes,
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-from the functionality standpoint this bindings do not change anything=2E
+Hi All,
 
-From=20validation point, if the `make dtbs_check` will pass as expected, it =
-should yield only better results for integrators and developers=2E=20
+This patch series adds clock and reset entries for USB2 and GBETH in the
+R9A09G057 SoC. Support for ignoring the monitoring of CLK_MON bits for
+external clocks is also added and the logic to ensure that module clock
+is ON now checks both CLK_ON and CLK_MON bits. Also the core clocks for
+USB2 and GBETH are added in the device tree bindings.
 
-Thou if you want to postpone it for 6=2E16, I'll understand=2E
+Note, these patch apply on top of the following patch series:
+https://lore.kernel.org/all/20250228202655.491035-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
 
-Thank you
-David
+Cheers,
+Prabhakar
 
-On Wed, 2025-03-26 at 23:08 +0000, David Heidelberg wrote:
-> > I can do that, but I suppose it's 6=2E16 material at this point=2E
->=20
-> Hi Johannes=2E=20
->=20
-> I assume you meant 6=2E15?=20
+Lad Prabhakar (6):
+  clk: renesas: rzv2h-cpg: Use str_on_off() helper in
+    rzv2h_mod_clock_endisable()
+  clk: renesas: rzv2h-cpg: Use both CLK_ON and CLK_MON bits for clock
+    state validation
+  clk: renesas: rzv2h-cpg: Ignore monitoring CLK_MON bits for external
+    clocks
+  dt-bindings: clock: renesas,r9a09g057-cpg: Add USB2 PHY and GBETH PTP
+    core clocks
+  clk: renesas: r9a09g057: Add clock and reset entries for USB2
+  clk: renesas: r9a09g057: Add clock and reset entries for GBETH0/1
 
-No=2E 6=2E15 merge window just opened=2E
+ drivers/clk/renesas/r9a09g057-cpg.c           | 92 ++++++++++++++++++-
+ drivers/clk/renesas/rzv2h-cpg.c               | 36 +++++++-
+ drivers/clk/renesas/rzv2h-cpg.h               | 39 +++++++-
+ .../dt-bindings/clock/renesas,r9a09g057-cpg.h |  4 +
+ 4 files changed, 162 insertions(+), 9 deletions(-)
 
-> This patchset should mainly clarify where these properties can be used a=
-nd address incorrect warnings regarding device-tree verification=2E=20
+-- 
+2.49.0
 
-I'm not really convinced that makes it a bugfix for the rc series
-though?
-
-johannes
 
