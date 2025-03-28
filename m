@@ -1,231 +1,188 @@
-Return-Path: <devicetree+bounces-161581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0DC4A74A29
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 13:54:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80544A74A4C
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 14:05:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 28AEE172193
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 12:54:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D6A6316D496
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 13:05:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9557E2D78A;
-	Fri, 28 Mar 2025 12:54:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A3AE14B950;
+	Fri, 28 Mar 2025 13:05:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nrYy/kep"
+	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="Qy+sQ3N6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2139.outbound.protection.outlook.com [40.107.22.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E50D049620
-	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 12:54:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743166476; cv=none; b=FMxYKbGsY8yWwLuGlh8L+H1mhg/HPKZxrUEr+byDVlsJeNSdQdf+Sl1MUOwmpD6a9x/AezOFwCQFU8V9vDT7JcsO78/SomwmE5y1enGCpsP2josILBqtyFusNQ/RG0zEko0o3l/hsnPzhfchA8V8MxuJnyWN1fDcOf1ieivHIPE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743166476; c=relaxed/simple;
-	bh=G3WWYuc5GvW8h32iSiZgqgWX1hDfDZ8BHoTOP2eBi4c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EPGRAlogHyEH7XHq9VKUJqiIrKOYhz+XmXhCpsmNy4sLsLFBKQtU54uktNxZ+WjlcSSrxlT78d84MMKxcuKqjpOQLgZXUwu8PXmSGLB2jfDM4W3qUdn4zEFWKEFdXhH27Cx0SAnfLSmUKqrmf1x+5QNsUwVgzxrX9vfjzRZ9wWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nrYy/kep; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52SCSpnf011602
-	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 12:54:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ShLIqJChs4NQY13uEAwgUNFU1goNqz+IV4be6pPmZCY=; b=nrYy/kepSE6IBcBv
-	cDNecBAQRggndoQGem2wsyyOA/ab90nb6y+TXiqaDQdwa5sTh8UPzDzUHuUEzVYf
-	ZoE+6xmddcg7QgMsmvoHfPezbsYbBILxd7EgZbXPOE12EqHtNJ7rZ/+ozXAXMUhb
-	tXWyApgzgEDrYhPC3XBCZFuDhg27HTKOQhW+nJc8wab3CJ7w1N5WJHCSD+yOSzlW
-	6WRcL3Ap7YiAgphYo5d/uYY+4upEJ4YTn7eeh2MNMCgxlxayKC0xcdg/rIgU/O0I
-	4YmtBjZSTkpWtUEaohkzXyN6X/0+Gby2lzz9kVotPH7uhbPalnSsY1s/tqiGK14I
-	0rhI1Q==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45manj8kgy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 12:54:33 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-22410053005so60701775ad.1
-        for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 05:54:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743166472; x=1743771272;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ShLIqJChs4NQY13uEAwgUNFU1goNqz+IV4be6pPmZCY=;
-        b=vSdTHBZ5kk/zDRfMgnls84o8uiDTcjaivTcZlZG1L6h0DvCXef96FxijrlSdgdsox1
-         24GSl+rTLc1gKlydjpdtiZUEGSAaLA+DBJ+Y77NQ86xLh1hqNAimGulNjhVZn4IZOsEs
-         66/264L8FqV9mr3PNZNKnEtoQkH4F8symIh6dmWG4hFHh2PePGBDFzOkw8phAwsLNKRh
-         1u13Pp5hnVRid/BP7nzTekbzQjumIrLkC70xcCyFsf/D5i94ZzXp4wvfX03tILT8Gi0L
-         RVFfqr7GHhIRAXWk1uq9u207Y5O2I6w8S+UnbDLdQKKjWA+jh3xJNvwv9wcPACIHtF1e
-         +F+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWzzSI+xlcv2r0R/ZXqqHhzeqzi5T3mi6uPH07gk/fwpvFsEbiy/PthQIAOvCf3J5dB/ECHwWXMAR0W@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJr1oVIqA03I/H73Uf4C+cG6SUb1UbrPit1702dj5R84RmBozx
-	C6EBSdoJFwjMfr1r2CrA7QFxfW46GKnEn/PrsminCzLuyl7RRZr+PEDgwT5TRdVHHtP2OCqRgxL
-	vRPdqmaCC4HjbmzCF6yrw5RqTohPYaLvwRtv6PUmL7uhLecqAZ/KvyHSA3q83
-X-Gm-Gg: ASbGncsXE7zJNsSOttNYVWq3bllYN121O+d5gJxUyvKwjqrlqsxAxUK/KoHSNenOzD7
-	V0h/7s+3QEEJrbrS6CXwfBbi7AvkN4zW6wFpotsye5io06Pgtgvu/ALwPEgwUgp2/viDV3n0cz9
-	562vi9B32nBJmhTQfxoyAKmWdGMTBX3rA6y44cuS9XFPds8ehAT9gtWgvISDx8NLOw07CYNnfYC
-	Lvw0b7ymD/yNUn2W75ckbeAY5DyXXdcPzPvPlt1o8Ac31RwUDgqVk08SFtlX3ZpPPFdjpRiBgCR
-	bTrFCLQ14mIPUXMbJ+VhSz9wdpsZF6kUvAH2ASfMI7uNvGw=
-X-Received: by 2002:a17:902:e805:b0:223:6254:b4ba with SMTP id d9443c01a7336-22804840baemr107748655ad.13.1743166472155;
-        Fri, 28 Mar 2025 05:54:32 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG3anLwA38qSCKKag9lmtLmor/BQAnLHTK54dL2de4RfOxS+atpW42HtIHCjKX01cq8OUGIKw==
-X-Received: by 2002:a17:902:e805:b0:223:6254:b4ba with SMTP id d9443c01a7336-22804840baemr107748345ad.13.1743166471521;
-        Fri, 28 Mar 2025 05:54:31 -0700 (PDT)
-Received: from [192.168.29.92] ([49.43.229.109])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2291eee5011sm17016405ad.103.2025.03.28.05.54.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Mar 2025 05:54:31 -0700 (PDT)
-Message-ID: <090572fa-7c4c-798d-26e9-39570215b2b7@oss.qualcomm.com>
-Date: Fri, 28 Mar 2025 18:24:23 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 435772F37;
+	Fri, 28 Mar 2025 13:05:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.139
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1743167136; cv=fail; b=XDYwibfa/6egZzs5PP0iJJd3zkf7n7IiXAmFbOjtkS+aRBP7nQiZjKKcbIRsoD4yA7GOlvxI58BSKjEBV3ucj+Dcgjnr9rjpvsufWdKCR7RDP4QQbI6DjGxS8u4RM8coeujaXBPNbh62e/MRm+y7vXxdGIdV6vPoGlegi863QMo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1743167136; c=relaxed/simple;
+	bh=dK1PUOb8fTE3ruVzZWdTBA8rErxhCrEj3bi11sRE0N8=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=SGBrPwp6gJDou+kvMLmJ3d04KPwDhWFMq1c1yQLdjv8+jNGQuABhuSVTJzQ8r3R1UIq1rOaUUxWdlgQ0Xtlfpc1xY9ePK3YzwUAXBfkevoDlSB3Zs2v1oeAGobeuJUK0nHBzvcIOYEjaJppbmRY7c4DjKeu++dxxGsbhmzUbA2I=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=Qy+sQ3N6; arc=fail smtp.client-ip=40.107.22.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=PibHe14Xr3FF4nD6uBjdYl2IVBp1oUdPPzD20+7gspjGwAk2Ir0j6dyuFY0wN9PJyN58s8U3fun4SXsuK+jU+HF9YvkTPR4GkMpj1k07LMHeqaNWv2x87AfZXywxvQZvz4sVDEJqglFY8oMZuzUxLmFtv48chhoeEjOCG4diH2/g6texM47yTYQhos/pYCQW50EJUE2doEmGasz7v1eszj4PmtqBZD4tU54wSjz1PqMjUNOCcSxbM6G09EfkpoDzWc36LADqb2eVlJ6ge6+sN0yn0quGoXpAOed7OFmOPzIdWl7mfNkww/b1CUjUEjVEEXYLg1uBdSS2ZUDpn5aImw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ch+xJIhNT6llCQDR65BvcG+QgaGbGi3JSaEvxyGXn08=;
+ b=wvTRm+ZGLTbWaza1eE7pgis9bWKSOps2MG2345V3zc2Yjb/t5J5WYSBEAy62kY+4cKI7hEPUoamyw1DJ/KtpimPcipvp8Zm9Aa0WA0TbSWP1RwbP4CxZbN/gqOMHPnsAlOKhxIiBXFSCWDfFXHfmh7r9TLKsPtLpe6S7+SQNLfq6bsImLhHoOgUBe2oHMMjKd2ufEKcy04ogR6hn02Q5g974JX3ewmkrixTWdY9Emn4P1/Kh3iOdKd9RnOsmSh/yyMlsIf3HNRpGIdwe7U3yEze572SuyTi6iE4qrcr11kuu3k1xaUfr9OifAolKg5qe1RdrAuV8U32olv6L1L3TGA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
+ is 91.26.50.189) smtp.rcpttodomain=pengutronix.de smtp.mailfrom=phytec.de;
+ dmarc=fail (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=phytec.de; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ch+xJIhNT6llCQDR65BvcG+QgaGbGi3JSaEvxyGXn08=;
+ b=Qy+sQ3N6zygoSIQxK0ZeMek1FcgrznZY8XeRbXUu06jUx3pT/547H6PiI7IW1jCrrDre78TWNiWvo8KfFVSWCaKBb+1IpmHMADzO6uUDjI27K6EUfBqqQA0XKizGSP6DDEqNklxnKEdROC7Bo2Kvq5H0vDrNhQ3W4facyDwYtvYntGC9cBNVAwakIxDC5Rg5JS7IqFivrLydgIEVRG0PRY5Xeugx7Lj/D1SxK4kvDsYOWTRHZ3LV/lev5DqvK5Hb+BNfeN26Hk+tcrw3VHhmtKgn3ugUL8mU1w6b73OZjOqZ8it5ypWUFqLMDlEF2uDo6xxhEQV6MStV6ZfOTwqUzw==
+Received: from AS4P195CA0053.EURP195.PROD.OUTLOOK.COM (2603:10a6:20b:65a::9)
+ by AM9P195MB1346.EURP195.PROD.OUTLOOK.COM (2603:10a6:20b:3a5::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.46; Fri, 28 Mar
+ 2025 13:05:27 +0000
+Received: from AMS0EPF000001A4.eurprd05.prod.outlook.com
+ (2603:10a6:20b:65a:cafe::32) by AS4P195CA0053.outlook.office365.com
+ (2603:10a6:20b:65a::9) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.44 via Frontend Transport; Fri,
+ 28 Mar 2025 13:05:27 +0000
+X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
+ smtp.mailfrom=phytec.de; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=phytec.de;
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ phytec.de discourages use of 91.26.50.189 as permitted sender)
+Received: from Diagnostix.phytec.de (91.26.50.189) by
+ AMS0EPF000001A4.mail.protection.outlook.com (10.167.16.229) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8534.20 via Frontend Transport; Fri, 28 Mar 2025 13:05:27 +0000
+Received: from Florix.phytec.de (172.25.0.13) by Diagnostix.phytec.de
+ (172.25.0.14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Fri, 28 Mar
+ 2025 14:05:27 +0100
+Received: from [127.0.1.1] (172.25.39.168) by Florix.phytec.de (172.25.0.13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Fri, 28 Mar
+ 2025 14:05:26 +0100
+From: Yannic Moog <y.moog@phytec.de>
+Subject: [PATCH 0/3] Add new imx imx8mp-libra-rdk-fpsc SBC
+Date: Fri, 28 Mar 2025 14:04:36 +0100
+Message-ID: <20250328-wip-y-moog-phytec-de-imx8mp-phycore-fpsc-v1-0-28324c7f81fa@phytec.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v5 1/7] arm64: dts: qcom: sc7280: Increase config size to
- 256MB for ECAM feature
-Content-Language: en-US
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: cros-qcom-dts-watchers@chromium.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        quic_vbadigan@quicinc.com, quic_mrana@quicinc.com,
-        quic_vpernami@quicinc.com, mmareddy@quicinc.com
-References: <20250309-ecam_v4-v5-0-8eff4b59790d@oss.qualcomm.com>
- <20250309-ecam_v4-v5-1-8eff4b59790d@oss.qualcomm.com>
- <3332fe69-dddb-439d-884f-2b97845c14e1@oss.qualcomm.com>
- <0cc247a4-d857-4fb1-8f87-0d52d641eced@oss.qualcomm.com>
- <h6bnt7ti3yy3welkzqwia7kieunspfqtxf6k46t4j4d5tathls@hra2gbpzazep>
-From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-In-Reply-To: <h6bnt7ti3yy3welkzqwia7kieunspfqtxf6k46t4j4d5tathls@hra2gbpzazep>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: yJj8A5WZUdi0oFd5OIM6B0mtXnESaLec
-X-Proofpoint-ORIG-GUID: yJj8A5WZUdi0oFd5OIM6B0mtXnESaLec
-X-Authority-Analysis: v=2.4 cv=KvJN2XWN c=1 sm=1 tr=0 ts=67e69c09 cx=c_pps a=IZJwPbhc+fLeJZngyXXI0A==:117 a=YFFC5ybGexI6wqmPE8t+iw==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8 a=taV9Rfz_io-hon4YrvgA:9 a=QEXdDO2ut3YA:10
- a=uG9DUKGECoFWVXl0Dc02:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-28_06,2025-03-27_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=999
- malwarescore=0 priorityscore=1501 clxscore=1015 mlxscore=0 spamscore=0
- impostorscore=0 suspectscore=0 phishscore=0 lowpriorityscore=0
- adultscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503280089
+X-B4-Tracking: v=1; b=H4sIAGSe5mcC/42NQQ6CMBBFr0K6dkxnBERX3sOw0HaAWUCbliCEc
+ HcLXsDle/n5b1WRg3BU92xVgSeJ4oYEeMqU6V5DyyA2sSJNORJq+IiHBXrnWvDdMrIBmzb9XPV
+ +F8YFhsZHA4auF01FWVFDKt35wI3MR+pZJ+4kji4sR3nC3e6RQiPm/0cmBA2F1mzfN2RT8uO3P
+ 1tW9bZtX8npie/gAAAA
+X-Change-ID: 20241210-wip-y-moog-phytec-de-imx8mp-phycore-fpsc-c273025682f2
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, "Sascha
+ Hauer" <s.hauer@pengutronix.de>, Pengutronix Kernel Team
+	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
+CC: <upstream@lists.phytec.de>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <imx@lists.linux.dev>,
+	<linux-arm-kernel@lists.infradead.org>, Benjamin Hahn <b.hahn@phytec.de>,
+	"Jan Remmet" <j.remmet@phytec.de>, Teresa Remmet <t.remmet@phytec.de>,
+	"Yashwanth Varakala" <y.varakala@phytec.de>, Yannic Moog <y.moog@phytec.de>
+X-Mailer: b4 0.14.2
+X-ClientProxiedBy: Diagnostix.phytec.de (172.25.0.14) To Florix.phytec.de
+ (172.25.0.13)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AMS0EPF000001A4:EE_|AM9P195MB1346:EE_
+X-MS-Office365-Filtering-Correlation-Id: a2f8babc-84c4-4e62-beda-08dd6df935ee
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|7416014|376014|82310400026|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?blo1Q3c3QnZWalFLV0E3dkZKOHNFWFRGZzF5aHNESHVRWFNRMmI0Zk8yTEJi?=
+ =?utf-8?B?TGk0VmRyamVXSmljWXk1V3RnVmIzNTN3czV2bmxScHNGT3E2eE16aVc5TXMz?=
+ =?utf-8?B?U3hpbGVuSndLa1lmbWxYWUIwakVaNTN6R3duaEplK1hYd3J0VE5hb09zaE9W?=
+ =?utf-8?B?V0p5N2JaMkNHNlNDQkwyb2NrcnVVSGU5Sm1MT1FmL0lDb0FHaDlPaWdsZ0VI?=
+ =?utf-8?B?SWcwa2NNQUVsQ3lmL3FHbTUxNFZ1emZENnFUZWNWakZRQ0xvMVJLQWRqTzUz?=
+ =?utf-8?B?Y2dFaGsxajB5SnlmeHBCNUhYODBPSi9jRWxkSkxaQnJGR3dsQnZzdVlGenVR?=
+ =?utf-8?B?cnhYOXpCTWJob2ZlY0hKVTBkQ2NiSllieE1jdmVnTUVlVU1naENqeFZBaG5X?=
+ =?utf-8?B?UFkzdjNnQ0V1SEMyTXY1V2xndEEvL3BjWmRSRWVtMFVtdlVrUTFqL293c2h5?=
+ =?utf-8?B?eU5ud0tobXlvMUV1QUQ1dHZHOFErSi9iYnlSeUpJMWFMZ0pvaVEyTW9kVzRN?=
+ =?utf-8?B?YlFKWkk4NGdmYkRiMUN6NURYNFV2NWxsWUtzZURJUVZDZHBxbUUyVjN6V2Vo?=
+ =?utf-8?B?cGIrY0lhVGUrRFZRUzhUcG1iUFZTUkx2WEltK0Z3TklERG8xaTR5MlE1ZnF5?=
+ =?utf-8?B?Q2psbXYyRDBaZnBOYXo3RXFmM09FSlJKNzRYRUVFeU96azdYVk9uajBTKzgw?=
+ =?utf-8?B?Rktad1JNTDBiSGRlUytOaS8xYmVFdTdQdzVVa01SU24zTlNOL0orRW9XNnVG?=
+ =?utf-8?B?Z29rV1NHQ3ArZldJYUNtc0ZVOWM5K1N2V210QUlJZTFYUEE5MklyV0xoemgy?=
+ =?utf-8?B?TkRyNU5GWUJiVXZTemUzRlJYZkRHcUZkNXN3SjhKUFlPMm9lUDFtMytKbEFi?=
+ =?utf-8?B?b2J6NU44N1RoaHdMZWxtWmNwQi9aMGpWUzFZalBob0NoYTN3MU16eWh2S0dN?=
+ =?utf-8?B?ZjY1ajNSLzVORllWMG1ua1R6UlRiYU1jUGhXSmtNc3dtTThjNlZUVitMellX?=
+ =?utf-8?B?V21BZEFacmF3L0VxZVZBZEMyMDErVHkrZ0N6OUVIVzNkbHRwQnhHT2lXdkRZ?=
+ =?utf-8?B?QzJVRzk1ZjFUMmppWlB0MTI4SXVWU1hJbUt2TklvbmQ2ZFpOU3ZiRjNVTnBS?=
+ =?utf-8?B?aEpIWTZZTjd3b3lERHBLeUh1ZTkyRXRkelMvZlZKTE85NG15TEVMb0pEY2tX?=
+ =?utf-8?B?QlFoV2x4RTVXa2lYVExiY3ZHakVGSCt1UGxySzIva3I5SGtIQmVzMy85d21N?=
+ =?utf-8?B?bUhoaTBFamZGcVBKVS9MZ3M1SlBvcUpWb1U5OEhoRVJlUE8wNmlLUkVsbVJa?=
+ =?utf-8?B?TXpibldCUnBsblAzT0dBQXgyOCtlb3NzTHpkRlozWGkwcVNDRHNtdmRsYUdu?=
+ =?utf-8?B?OG40VmdXOXFoMG45Vk1WaDVEeW5KUmJUNE5SWW5HY0tMV0tBTnlmYkNWRXlF?=
+ =?utf-8?B?aHdxazVFU0FWRy9xWTNvZDJRVFZyTmlQYVIrQnZwUkdWbHU2cUxVVEUrK3FS?=
+ =?utf-8?B?ZzRBNEY0dmhmQWZ4VEphWU5LcDR4VjdHbkZ6cGRMSFFLL2xJWituS0oyZEZ0?=
+ =?utf-8?B?aHo0ZlJWSGdYM2NQaTVaOUd4N09JTWdOeXdWOE9mQk9QUnJBZDUybkROL3hJ?=
+ =?utf-8?B?b081bEhRZGxVYXRxb0FLeVh1SWJGbkhTd205U3U4VDRwYW5Hb2l5UTFVSG1r?=
+ =?utf-8?B?eWduM0pZSkp3VjFLbGs5Wkhqb2xaU1p4YnUva2VqTEtGeWpjL3JyMWpxUTd5?=
+ =?utf-8?B?SWtLK0JkUHdubzFlWkZEYzM2VGlOakZUcWh1L0pRb1NMVnZ0Q29EeElsby9n?=
+ =?utf-8?B?SHZSa3BnanI3MExuV1JrUkN2M04rTWlyNisxd1QwbkgrU3Z0ZGg4My9KUjZR?=
+ =?utf-8?B?SzJKbU5GRC9iQ2RVcDJUcVgzNmVYZjdUNjVYNmZBWUhZVExFK3dhQVNWT01Y?=
+ =?utf-8?B?QzcrckljYXQrTlZrZERvcHdIbGVJSExyNmJuT0x5OGFFZnl0YnBWNmNZS2JH?=
+ =?utf-8?B?OE9Ea1ZNZGJ3PT0=?=
+X-Forefront-Antispam-Report:
+	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:Diagnostix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(7416014)(376014)(82310400026)(1800799024);DIR:OUT;SFP:1102;
+X-OriginatorOrg: phytec.de
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2025 13:05:27.5289
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a2f8babc-84c4-4e62-beda-08dd6df935ee
+X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Diagnostix.phytec.de]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AMS0EPF000001A4.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9P195MB1346
 
+The Libra i.MX 8M Plus is a SBC that consists of the Libra base board
+and the phyCORE i.MX 8M Plus FPSC SoM.
+This series adds its binding and device trees.
+In addition add an overlay for an LVDS display that may optionally be
+connected to the Libra board.
 
+---
+Yannic Moog (3):
+      dt-bindings: add imx8mp-libra-rdk-fpsc
+      arm64: dts: add imx8mp-libra-rdk-fpsc board
+      arm64: dts: add imx8mp-libra-rdk-fpsc LVDS panel overlay
 
-On 3/28/2025 5:14 PM, Manivannan Sadhasivam wrote:
-> On Wed, Mar 26, 2025 at 06:56:02PM +0100, Konrad Dybcio wrote:
->> On 3/11/25 12:13 PM, Konrad Dybcio wrote:
->>> On 3/9/25 6:45 AM, Krishna Chaitanya Chundru wrote:
->>>> PCIe ECAM(Enhanced Configuration Access Mechanism) feature requires
->>>> maximum of 256MB configuration space.
->>>>
->>>> To enable this feature increase configuration space size to 256MB. If
->>>> the config space is increased, the BAR space needs to be truncated as
->>>> it resides in the same location. To avoid the bar space truncation move
->>>> config space, DBI, ELBI, iATU to upper PCIe region and use lower PCIe
->>>> iregion entirely for BAR region.
->>>>
->>>> This depends on the commit: '10ba0854c5e6 ("PCI: qcom: Disable mirroring
->>>> of DBI and iATU register space in BAR region")'
->>>>
->>>> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
->>>> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->>>> ---
->>>
->>> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->>
->> I took a second look - why are dbi and config regions overlapping?
->>
-> 
-> Not just DBI, ELBI too.
-> 
->> I would imagine the latter to be at a certain offset
->>
-> 
-> The problem is that for ECAM, we need config space region to be big enough to
-> cover all 256 buses. For that reason Krishna overlapped the config region and
-> DBI/ELBI. Initially I also questioned this and somehow convinced that there is
-> no other way (no other memory). But looking at the internal documentation now,
-> I realized that atleast 512MiB of PCIe space is available for each controller
-> instance.
-> 
-DBI is the config space of the root port0,  ecam expects all the config
-space is continuous i.e 256MB and this 256MB config space is ioremaped
-in ecam driver[1]. This 256 MB should contain the dbi memory too and
-elbi always with dbi region we can't move it other locations. We are
-keeping overlap region because once ecam driver io remaped all 256MB
-including dbi and elbi memory dwc memory can't ioremap the dbi and elbi
-region again. That is the reason for having this overlap region.
-> So I just quickly tried this series on SA8775p and by moving the config space
-> after the iATU region, I was able to have ECAM working without overlapping
-> addresses in DT. Here is the change I did:
-> 
-I am sure ecam is not enabled with this below change because ecam block
-have the address alignment requirement that address should be aligned to
-the base address of the range is aligned to a 2(n+20)-byte memory 
-address boundary from pcie spec 6.0.1, sec 7.2.2 (PCI Express Enhanced
-Configuration Access Mechanism (ECAM)), with out that address alignment
-ecam will not work since ecam driver gets bus number function number
-by shifting the address internally.
+ Documentation/devicetree/bindings/arm/fsl.yaml     |   7 +
+ arch/arm64/boot/dts/freescale/Makefile             |   3 +
+ .../imx8mp-libra-rdk-fpsc-lvds-etml1010g3dra.dtso  |  44 ++
+ .../boot/dts/freescale/imx8mp-libra-rdk-fpsc.dts   | 291 ++++++++
+ .../boot/dts/freescale/imx8mp-phycore-fpsc.dtsi    | 796 +++++++++++++++++++++
+ 5 files changed, 1141 insertions(+)
+---
+base-commit: 90453dc4dee29b96b9162895f45776bc25526e07
+change-id: 20241210-wip-y-moog-phytec-de-imx8mp-phycore-fpsc-c273025682f2
 
-If this is not acceptable we have mimic the ecam driver in dwc driver
-which is also not recommended.
+Best regards,
+-- 
+Yannic Moog <y.moog@phytec.de>
 
-- Krishna Chaitanya.
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> index 3394ae2d1300..e41c8e3dd30c 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> @@ -6395,18 +6395,18 @@ arch_timer: timer {
->          pcie0: pcie@1c00000 {
->                  compatible = "qcom,pcie-sa8775p";
->                  reg = <0x0 0x01c00000 0x0 0x3000>,
-> -                     <0x0 0x40000000 0x0 0xf20>,
-> -                     <0x0 0x40000f20 0x0 0xa8>,
-> -                     <0x0 0x40001000 0x0 0x4000>,
-> -                     <0x0 0x40100000 0x0 0x100000>,
-> +                     <0x4 0x00000000 0x0 0xf20>,
-> +                     <0x4 0x00000f20 0x0 0xa8>,
-> +                     <0x4 0x10000000 0x0 0x4000>,
-> +                     <0x4 0x10004000 0x0 0x10000000>,
->                        <0x0 0x01c03000 0x0 0x1000>;
->                  reg-names = "parf", "dbi", "elbi", "atu", "config", "mhi";
->                  device_type = "pci";
->   
->                  #address-cells = <3>;
->                  #size-cells = <2>;
-> -               ranges = <0x01000000 0x0 0x00000000 0x0 0x40200000 0x0 0x100000>,
-> -                        <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x1fd00000>;
-> +               ranges = <0x01000000 0x0 0x00000000 0x0 0x40000000 0x0 0x100000>,
-> +                        <0x02000000 0x0 0x40100000 0x0 0x40100000 0x0 0x1ff00000>;
->                  bus-range = <0x00 0xff>;
->   
->                  dma-coherent;
->   
-> 
-> Krishna: Could you also try similar change on SC7280 and see if it works?
-> 
-> - Mani
-> 
 
