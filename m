@@ -1,349 +1,561 @@
-Return-Path: <devicetree+bounces-161674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBA31A74F34
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 18:25:07 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38ECDA74F3D
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 18:31:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A8161723A1
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 17:24:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C7EA07A5E08
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 17:30:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE1651DE2C4;
-	Fri, 28 Mar 2025 17:24:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 504511DB933;
+	Fri, 28 Mar 2025 17:31:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="rkmijI6e"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="euqLfTOw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TYVP286CU001.outbound.protection.outlook.com (mail-japaneastazon11011056.outbound.protection.outlook.com [52.101.125.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92AB91DDA36
-	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 17:24:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.46
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743182681; cv=none; b=S6LR6QMCboX/MyZzdyJCbX1q636BaSI0/PjKlh9XNyT3jeMmLry9Tk27pKoKIEB3fv5iiNZR7Qvqd1X2ITR5wC9MdN60eRjnRFejfG996i6hhVUmaI/0V4xqNRfOhNMqZ43rrKpg3TkPYCusXe8Wb5SBOj0aPbGvWCC/cX71JxQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743182681; c=relaxed/simple;
-	bh=A2iV1R4x78HPNIt4Yh0n/qz71rAxVerxDRYyntJ5mIA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bx1JbhDR+/sb4p8PwZQaadEClm3w+Vwzg3npNnRSGHiycbkQLhKMu0bY4isNl2Kt+6ObKPTi37PA+4Tk0N3hAA3BToH6u4eusmAqvcVV0+92HOlQqI2daArZno1AjHkeb5ossfga6xPjFjBQqyGwsIQoyL1tUDtz5IYia/ZFjfc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=rkmijI6e; arc=none smtp.client-ip=209.85.161.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-oo1-f46.google.com with SMTP id 006d021491bc7-601ebdf02daso1363150eaf.0
-        for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 10:24:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1743182678; x=1743787478; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HLrzm/zQ4gwThho8YYqEd980PysyFD6/Tw5SCyS4qEg=;
-        b=rkmijI6eKH3mq3S+u/VNyht0Ya8YEYCjbvDn8TWH4bQpVC5bWwZUKzx/nBG1SzweC1
-         /lHQEBhjBJpDF03nd9Vo/69oTv6R+7N+xS1xzbA0KpYwg3NC2/gklmPgg6ygW5T/eH1M
-         tfVFXAXrzSeOPDG14/um23J0AbB4DcACoi80IljMDdUQKjjN8zZVUw9/HlJZGAIZLJNk
-         83dbfP94/NhRceKfKUNovaz400wONkstxrdGM1/xQBiz2KbxtWSD8jzGbSGbfpTQV1Qv
-         35M+wn34sMNle0/emwK/Kggy7ZN6WZhmR5nKt0Kf+fjj6dQeX+pUpPX4YUHe65vY+dXv
-         QMoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743182678; x=1743787478;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HLrzm/zQ4gwThho8YYqEd980PysyFD6/Tw5SCyS4qEg=;
-        b=g5dkygieRjNliwdkmKdP+xcn38zoJvMA2YnbbEl1S0YBcjhOBqxkK1g2/2QUM9DWmK
-         flZsQ/M8EzG7hg+sdnv8oQ+9JWtjQhfooLMcBDcOt/EYbiGCuKzHQQtiO4rIPQg5FW2G
-         agYpoJKT7jCrpfQTQdt2ToTP2WKqG2lm5yCRyqNwVc+5WEqM1YM528rqxdCyjmmIzF7w
-         yYrm6QdMQ02XkW0uFW5FxCNeiis1uUDjlYyG3lPQU84p9wLZMep1sHjWkIsbSmuYsALF
-         YKWM5a4ROC32iqmsEZrIv9DgH63WSio4a5CT2eMpjG+s7pnT2CypiXYKbqxJqjQI0WhE
-         4xDg==
-X-Forwarded-Encrypted: i=1; AJvYcCVPED8AL3cHgcJRI6KJKMD2DwnshCNmQHxk2o3N5IizSLF1fx7QjlbrgMRNtGdYwOAt1JIfQ1z4MKUq@vger.kernel.org
-X-Gm-Message-State: AOJu0YzigHGGoyCINzhewV/WHQYcjcbAv22uJrzjq6bwV0CBe0OAudjV
-	D/QR2iQEVY48iOwyAkF7YdgnbpcYibOH5MVVZj1eSJfXg/jZ6HmEY6IPFUMVz1Y=
-X-Gm-Gg: ASbGncunBJCgY7XyYjJgxpeUUzXO8gFrSFZSnXTO1iqPrtP3vxmY4FBhsNTj7KqABv5
-	j584ExUAj+oF0KgR5lqtICK7bo5fT8VPYybtboepqXuMStEbBmMbdiJQuhtqdPEybwdHy3WWKZs
-	IkpQY3dNwj9fPfv/28zulhti9yoQ2PGSL6mmfyGAdWFxOdpLq+usMM6fo10SOoGfuxptPz34lS1
-	FZYpOPe5R2IhtcACoxDU1WiUTrheVKpOMyYUOW38U0AJ/CuCq4ZKvGYaCnM9E6JoeEQJS872U1s
-	0AMGvnYDGXgY4umqyMY9hqzWqRvYerQdi/uq9MDZHjKpsHERCPJcZ3Pd/20ev4fL8MOI1O6ILOr
-	nViaOFOM0
-X-Google-Smtp-Source: AGHT+IGsEzLTxyMqQfC/rhlkp/3Yy0FWpMm5miVCQoyz9/uttGUbad/c15R9zzLWjxbYr4ZawMaYsw==
-X-Received: by 2002:a05:6820:1885:b0:601:d595:3b08 with SMTP id 006d021491bc7-60290414a86mr192697eaf.2.1743182678377;
-        Fri, 28 Mar 2025 10:24:38 -0700 (PDT)
-Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-602844e6574sm401475eaf.2.2025.03.28.10.24.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Mar 2025 10:24:37 -0700 (PDT)
-Message-ID: <8211eca2-c768-4472-a849-17208848d361@riscstar.com>
-Date: Fri, 28 Mar 2025 12:24:36 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E0E81805E;
+	Fri, 28 Mar 2025 17:31:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.125.56
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1743183069; cv=fail; b=eF8zxoPp3pa7RmtAjfFkNhB25llZJ1J7KzOLv/F/51CcuRUqc3dZDMifq8eAg+BpvGndthJVxGVEQKD4GhWyIBKi5c/lhyWh1+S/Sr/0P0O//fpGaRb1A5ZrSj5H4WNf7tEF6RjFiiYvZ6mEHHgsMQ0xr6DfeqORJLlEgkSWTz8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1743183069; c=relaxed/simple;
+	bh=Riabw4GaQPzGEidC7l8KjXuh0TPOufq8M3wcqZLBBnw=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=KDOXCeAhtPQmgJbnnptaLYr4X7h071Vdz4xAC1fXT2x7XGSrpS98LIe+mxny5nkx+Bf0v9LCOeco9V0we8aj9eKX7lo1O04WZzwIKotPtqUqCBER4ofVoMT6wB9revGgcOxjiKm5QCmJtLjOXyFxl1QdlsSaYkyU7TV53k4eXFk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=euqLfTOw; arc=fail smtp.client-ip=52.101.125.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Jtk32pdCfXAzHS6fkwYS1qtG130HPiNamcjWwlehGQnTxw2SgWAPfyCce3p7IWsOv+Kw0bDH0om84Hd5C+el/iv9U1epd5iA5jdi4nywNfSEIiw+v8GgJDOOWxlPXv5Btoi6mEW8MDHEm9i+DpUwUMpCY7dM57VmOobLh19dABI61htc8nZAuZmZWf1J4fCLZK0ia/CytecRmm+/ywdqJLapUED+1eW2cw+H8THj3s+CB0GRxW6La2WFV2NveBPrf9wL9BnvOPJGLtFRFkDmadr23pQAMwBVcLJLf2c+K/7sBzNq+d98OZXb8h0jigJcTLbqDSIH5V0EvIsP22tZRQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=93hNrxQTbc4mTgpeGH3iGkLy2QQqFv6t6aP6H+cDIWc=;
+ b=eno3RI6IXa1zfol+g6hyaHIgOPoM9aPODSyg6qMpJkTCrGJ5i8BUIenB0qiE5MOe6P55BOSsLezvqGyAp7Zyzi8xTA5JngcEKHRGW8xSLJKM5pURKeeIPg3YV2QqzsgX/OSbi7Nh3Ny1OTs6JFra82iM8hlu1EwD28EWrQwvGRG7urZXDI/4jUmjLZ401IP159Pzif5IjNtWyOODcAtkAwOCfgdrTSI/5NakHIBkgq5IFpqCyjO89iWG2Jois3bTb/0JZ/3Ba6lKcQ7yH/xH3U7UJPRj4lrdEoYJmCgWsjuTtT/IAG9jPJM1HSUFBUCYDYh8etJuEWtyhmJ+oLjfzw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=93hNrxQTbc4mTgpeGH3iGkLy2QQqFv6t6aP6H+cDIWc=;
+ b=euqLfTOwUE4AzCciqsBzXMfy2HNj8qDBzTYDNqI2reOnO1ZkjMpEVfhCBfyPk6x6dROMvr31koyUNk0DoquuueKiNt6Vh27FELe0vKLXUVV2d+/sH5TJvoEbYexgx0L6FI5H1HWG7slOVEgSuVMfbCUaWrfQjj6zWYi0ICPhzoY=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+Received: from OS9PR01MB13950.jpnprd01.prod.outlook.com (2603:1096:604:35e::5)
+ by OS3PR01MB9720.jpnprd01.prod.outlook.com (2603:1096:604:1f1::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.42; Fri, 28 Mar
+ 2025 17:30:58 +0000
+Received: from OS9PR01MB13950.jpnprd01.prod.outlook.com
+ ([fe80::244d:8815:7064:a9f3]) by OS9PR01MB13950.jpnprd01.prod.outlook.com
+ ([fe80::244d:8815:7064:a9f3%5]) with mapi id 15.20.8534.043; Fri, 28 Mar 2025
+ 17:30:57 +0000
+From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+To: tomm.merciai@gmail.com
+Cc: linux-renesas-soc@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	biju.das.jz@bp.renesas.com,
+	prabhakar.mahadev-lad.rj@bp.renesas.com,
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v5 00/17] media: rzg2l-cru: Add support for RZ/G3E (CSI2, CRU)
+Date: Fri, 28 Mar 2025 18:29:36 +0100
+Message-ID: <20250328173032.423322-1-tommaso.merciai.xr@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: FR0P281CA0057.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:49::14) To OS9PR01MB13950.jpnprd01.prod.outlook.com
+ (2603:1096:604:35e::5)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND 6/7] clk: spacemit: define new syscons with only
- resets
-To: Yixun Lan <dlan@gentoo.org>
-Cc: p.zabel@pengutronix.de, mturquette@baylibre.com, sboyd@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, heylenay@4d2.org,
- paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- spacemit@lists.linux.dev, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250321151831.623575-1-elder@riscstar.com>
- <20250321151831.623575-7-elder@riscstar.com> <20250322164247-GYD11633@gentoo>
- <c080eb55-943e-4564-8dcc-dd5f27b296a9@riscstar.com>
- <20250324062129-GYA19363@gentoo>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <20250324062129-GYA19363@gentoo>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OS9PR01MB13950:EE_|OS3PR01MB9720:EE_
+X-MS-Office365-Filtering-Correlation-Id: cf5209c6-ce5d-4549-2928-08dd6e1e4c75
+X-LD-Processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|52116014|366016|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?JzdKRjuGHQpONy7QXQnmLeL+WKSqBKg0VIqG6uxY3zaz4rDJsacavUUwtOgL?=
+ =?us-ascii?Q?q/GTqGqoq3XwR9AL/1L5/k9hHNzyoYjL28P0119mf5J3cYS7KbHqGhgCuvVQ?=
+ =?us-ascii?Q?Oqk/pjw1DNnDuKFBXvcdELwHvExHxiL8HCrQzoiTEdSbAekNDAaHYUzI09M9?=
+ =?us-ascii?Q?rBG5u9B9AriD2yMyclkXanRLHGV8WMUBFoBLYyFTz51/nAFs5tpjDvmxXZNN?=
+ =?us-ascii?Q?2nhGb8b3p4Nk4YU8uX7KdC+YasipDi3BsnRLB9hyV8xVZiK0g7/eLJMKFJ6l?=
+ =?us-ascii?Q?jrKxoingvVdjPNYTPS9QLCsyIkoqtmmXu9/zFf2CpZwCH/auiFmGF0No4yKw?=
+ =?us-ascii?Q?lX8fGDhLUWkXnjNGuAs8n/ne2tUa+2O92hy7sVugiPuUa7BjWQmO54qQB3bY?=
+ =?us-ascii?Q?ETGfZew2XsHHivimHkzGnPsjiMVY9JoGvmKZt2jovhaMaBECZPLh0O1L0a5V?=
+ =?us-ascii?Q?snKa7IKuEW/vQF0LFRUhNyvxvZhJLhKWaA3MXIY2D8xqvZr5qZwF4WZwHVgn?=
+ =?us-ascii?Q?0CcCTQRnuDf2upi1rG2wf3HZPtUVhtdscBkmPzzUjCUP6hZju0ezPC5695p5?=
+ =?us-ascii?Q?t4MVaYEuhi9yD22G80Z0INKGFrP5clqKUrWKfIXxLdISss4hn9AY/iTGR1JB?=
+ =?us-ascii?Q?WmUYjvtjaiFWOaThhroXWYNbCxTEg4e3hjbveoY9mSboFENfhFgZJA7Geddn?=
+ =?us-ascii?Q?GRLyx/3dpj75qLp8g9RcB9UA0XGOygCt3J2+eey5hvFSdcKtMNBy7mEKQIdA?=
+ =?us-ascii?Q?2HEScG5c85KMSdR4Hr0Fht2sz/NfA0bENhtCSbBVfwa23c0BGkaCAMtTCgyK?=
+ =?us-ascii?Q?4U9sNLi4yV5ip00dm/2VzT2Utrytm6sJTPzlMeaawAy8e0DfRu6gWLiyeA2e?=
+ =?us-ascii?Q?4GV4aaQ6p0vgl6GqiDW9MH1fBq4DJMceuJP+co3GTrW3wD3rAxa0tR2bnh/3?=
+ =?us-ascii?Q?VSz+a663MHpWBGzoDyXcaYN4PW6RYSgu6MNzFiHk71kRVMHTQ+0QyI9+c6RR?=
+ =?us-ascii?Q?ulq38Wc0qDo99KvaW/IsSSpXznrl0jlsrrmgR5bQFcOSRrxoHHeMomXhUNWG?=
+ =?us-ascii?Q?7Jk/Kx4IPVRQHKB3VqI/3joW1u8I9ChjUZaHupRA9cscijA35I/xS1/TA0xn?=
+ =?us-ascii?Q?ivWhEwjGcLjmueoy82UigqENkVDqu4ZV5+LRK1Nsl1utR0AaTVHLVjMqFDoO?=
+ =?us-ascii?Q?Kbf+j3ghdX78szwxmxQGShQj45wpx+hKh78zdtetPSLnBtCWcTqb3udRnXxd?=
+ =?us-ascii?Q?gzyYi/G+kPKqAEBRNHxGlFseDokuGeRUkBd37bTT+xKzwbiN0ubFBCRsVh1i?=
+ =?us-ascii?Q?tViulnml2HOYOE9SABbLyt9+hVoFEny1iNJoMd3bglqIoM1Lf1WSbEKUAOvl?=
+ =?us-ascii?Q?sdf0YjgpeI3PJ6DdqChhWbIPcxTjydj4zj7kYEJJYXtIT5covMMRaA+p4ROQ?=
+ =?us-ascii?Q?d2TdjBtsiRcXl6AyFvBRfDb6ZrTrT4EAiJ1ZGl1wGqlsOcIx59OjfA=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS9PR01MB13950.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(52116014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?1lS4fqXAOR18+FKFZDxpSSxa/NTWr+YG2hyw5lxtZGp8/znjDOzy44Ceb9NQ?=
+ =?us-ascii?Q?V0pVoeHobkKkId2+HCnyWlnwI5X3Tnn4e0zH0WpFD3EIQnbI0PyykwUSJvl1?=
+ =?us-ascii?Q?2+L7oyaniSmMMLY4IiF6Awd+I9g+3GS37AqDxVDJLjnURctdQZTZxWrJY4x8?=
+ =?us-ascii?Q?Flx/sI3lYoRbi9+aKTBnWSwy9NAzLygZM3jYNi7/cqLq5PqER3eMFg/3oY6t?=
+ =?us-ascii?Q?KTX7I+CUz+BgRYACLH0s/rOQhU+UUL5uxi9/lFGMq4mEsL84Q3QeLqg9QP/i?=
+ =?us-ascii?Q?MQzA/R0geLUouNHA4ZlyiyPBxPjkmCBT2UCSwIbByAXRO9F3jQpV1Q+d5zRi?=
+ =?us-ascii?Q?EP9u6bc+nIWz+aWTHOJ8l4sw7I9fkRZTPW9OU088+YyY2Xk4E1RdEnFfxfLZ?=
+ =?us-ascii?Q?SCsETG+rWBpdxYMW4dnOJfIJgLTsvOkyLWlDcA3mdM5Hin/C/XP9CVFra9AK?=
+ =?us-ascii?Q?LUtv3pjPVXqehZY4M0XEcyUjGcvY6Co4+StHj+iCc90/w0MMOWOXhYLflMkD?=
+ =?us-ascii?Q?RABTn9eZCytUjhjTAVLr9Y2+xhdnh1UeQ9v0cTp6t52a+Mw626EuOS/zIumh?=
+ =?us-ascii?Q?eN+fZsm5Wg5WEcf8tgjOOnrGuuto1A7WB1AgnKK12C0BWFb9wj7poJvogs/D?=
+ =?us-ascii?Q?GpfkKs6e759UPx4ty1bsTRvXoNmkmAn/zd5o5CFA2eiCPmg2iiwuX14MrIke?=
+ =?us-ascii?Q?XFBM0L5QpCVkMn2rMPq6ILhlLGajnSL/q/Sx7beingDHOuV72d/izPD+X5ae?=
+ =?us-ascii?Q?Y0GG+1r/Ym+kJMJJoc+6r++yP39i50cON30aPr1jq/cR156jYRt/ehbeA7JG?=
+ =?us-ascii?Q?xjNi8XIPyGXrtdKlwk7jc2LaeXh/GLulXe04oGaEDHrNKBtQMDzqYoxtYPOF?=
+ =?us-ascii?Q?7qvmKonf/inAI3PHg4AkdoufhQvpfaFkLcTHzFekAyun/Mo+XHfYw3sjZ0nv?=
+ =?us-ascii?Q?EtfOE10jjRjdK/IM7HFKiqPwzZ/r+vVWFrNS9qbSD0ap6n6fqkc7SV6pX+G2?=
+ =?us-ascii?Q?4++HQGBT9eFCGNbJQb4Ee4jZdsiMjxY+NmO4xbUC61eqRVYNW5WF+ByJmfmX?=
+ =?us-ascii?Q?fFyHIk0zwcP6UX53HNZdv6dz/j+04J964iwPOl9K37Q4pI1gHM8D0U+nD4v9?=
+ =?us-ascii?Q?7YJDYLIQ+7Un7KhGLZAtYir3pabMVKsd4W3dIJWDWA3uTK2f2/D3KYKeoovZ?=
+ =?us-ascii?Q?KXWual528NGa3k52fS+0Y86JCUmdHkX4wHGRmElx8gPJrgXYFJOPR5676HR9?=
+ =?us-ascii?Q?aieLhg0ZqvBdrpDwA5Q/mIt1DhN+gV/MCFnCDBRaXTUFw/nOzjEl7i6WbsiJ?=
+ =?us-ascii?Q?fKjgvvs/52CQpn6lNYF6Z+pFK2sloZc/nI9K6BduKe9JLH+vUJV7rWI37IHy?=
+ =?us-ascii?Q?Zd7BdgxJd+WeESpYOcl3dPVi9nw/eVyB++WYJcAhQT0DONZGAOuSKUcVAvaM?=
+ =?us-ascii?Q?77ESNbyylB/xTg/RHmIvJJtKjp9y7euN6k9uFuc2fV3wRA8xutqxkI3AtvWK?=
+ =?us-ascii?Q?Bcyekt8wozhqhzl5BCeKLeyfjjEfwF8cEQlJSyigTmRKbX6ihc1cDmLt5mF2?=
+ =?us-ascii?Q?cy2TBDA/4BJ/XOOTApVIeKMq0t46PvYm/Zrqmhph4tNro253V9lYD7GbH9sO?=
+ =?us-ascii?Q?I4xYTLzwsQmLSGz5frhLZZo=3D?=
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cf5209c6-ce5d-4549-2928-08dd6e1e4c75
+X-MS-Exchange-CrossTenant-AuthSource: OS9PR01MB13950.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2025 17:30:57.0644
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: BO/4eptxtk2xeYMHJiaKF4GNa4s+Vz3yEJHwXLk3raM3tWrAwbitwK6wT8F2NLhO8kNpAeOLNHwtfq/TGHj+p4Z21ThFLHnCWrjNwDFNzhicypFSpQnTTiJt5D05cnNt
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB9720
 
-On 3/24/25 1:21 AM, Yixun Lan wrote:
-> Hi Alex:
-> 
-> On 08:23 Sun 23 Mar     , Alex Elder wrote:
->> On 3/22/25 11:42 AM, Yixun Lan wrote:
->>> Hi Alex:
->>>
->>> It occur to me it's a little odd to implemnt reset driver
->>> for RCPU block, but after check with vendor the RCPU region can
->>> be accessed both by ACPU and RCPU, then I'm fine with this.
->>
->> I implemented just the resets that were found in the downstream
->> code.
->>
->> I first implemented a separate reset driver, very simple, which
->> only implemented the resets.  I had a separate DTS binding (like
->> was done for the PLLs).  I was ready to post it for review, then
->> noticed that the registers used were shared with clocks.  So I
->> merged all of that separate code into the clock driver, as you
->> see here.
->>
-> ok
-> 
->>> ACPU - RISC-V Main CPU, with mmu, running Linux
->>> RCPU - real time CPU, without mmu, running RT-OS
->>
->> I didn't realize there was a separate CPU running its
->> own OS.  Is this managed as a remoteproc by the RISC-V AP?
->> The reset signals, I hope, are only touched by the AP
->> and not the real-time CPU.  Can you provide any further
->> information about this?
->>
-> As far as I know, the RCPU region can be acccesed via AP and real-time CPU
-> from hardware perspective, there is no guarantee of isolation,
-> so maybe software should take care of this in case only one side can touch
+Dear All,
 
-The downstream code implements clocks and resets that are
-apparently associated with that real-time CPU.  Now that
-you've pointed this out, I investigated a little further.
+In preparation of supporting the CRU/CSI2 IPs found into the Renesas RZ/G3E
+SoC, this series adds driver/dt-bindings support.
+This adds also some minor fixes into rzg2l-csi2 and rzg2l-core drivers.
 
-In "k1-x.dtsi" I see these used (in downstram):
-   CLK_RCPU_UART1 and RESET_RCPU_UART1
-   CLK_RCPU_I2C0 and RESET_RCPU_I2C0
-   CLK_RCPU_IR and RESET_RCPU_IR
-   CLK_RCPU_CAN, CLK_RCPU_CAN_BUS, and RESET_RCPU_CAN
-   CLK_RCPU2_PWM0 through CLK_RCPU2_PWM9 and
-   RESET_RCPU2_PWM0 through RESET_RCPU2_PWM9
+The series was tested in an out of tree branch with the following hw pipeline:
 
-In "k1-x-hdmi.dtsi" I see these used:
-   CLK_RCPU_HDMIAUDIO and RESET_RCPU_HDMIAUDIO
+ov5645 image sensor (Coral Camera) -> rzg3e CSI2 -> rzg3e CRU
+imx219 image sensor (Pi PiNoir Camera Module V2.1) -> rzg3e CSI2 -> rzg3e CRU
 
-Also, the memory region associated with the "RCPU2"
-really is 0xc0888000 in the downstream code, even though
-that isn't seen in the documentation.
+base commit: e21edb1638e82 (tag: next-20250328, linux-next/master)
 
-Yixun, do you think we should remove code that supports
-RCPU resets *and* clocks, until we really need it (and
-we understand better how/why they're used)?
+------
+Some logs:
 
+root@smarc-rzg3e:~# media-ctl -p
+Media controller API version 6.14.0
 
-In the next version of my reset series (which I plan to
-send today) I will keep the RCPU resets.
+Media device information
+------------------------
+driver          rzg2l_cru
+model           renesas,r9a09g047-cru
+serial
+bus info        platform:16000000.video
+hw revision     0x0
+driver version  6.14.0
 
-> for remoteproc, I haven't checked, and it's unrelated to this discussion
-> (doesn't change shared resource fact whether remoteproc supported or not)
+Device topology
+- entity 1: csi-16000400.csi2 (2 pads, 2 links, 0 routes)
+            type V4L2 subdev subtype Unknown flags 0
+            device node name /dev/v4l-subdev0
+        pad0: Sink
+                [stream:0 fmt:UYVY8_1X16/1280x960 field:none]
+                <- "ov5645 0-003c":0 [ENABLED,IMMUTABLE]
+        pad1: Source
+                [stream:0 fmt:UYVY8_1X16/1280x960 field:none]
+                -> "cru-ip-16000000.video":0 [ENABLED,IMMUTABLE]
 
-I don't understand why the AP would manage multiple
-clocks and resets for a separate processor.  I'm not
-going to look at that now though.
+- entity 4: ov5645 0-003c (1 pad, 1 link, 0 routes)
+            type V4L2 subdev subtype Sensor flags 0
+            device node name /dev/v4l-subdev1
+        pad0: Source
+                [stream:0 fmt:UYVY8_1X16/1280x960 field:none colorspace:srgb
+                 crop:(0,0)/1280x960]
+                -> "csi-16000400.csi2":0 [ENABLED,IMMUTABLE]
 
->>> On 10:18 Fri 21 Mar     , Alex Elder wrote:
->>>> Enable support for three additional syscon CCUs which support reset
->>>> controls but no clocks:  ARCPU, RCPU2, and APBC2.
->>>>
->>>> Signed-off-by: Alex Elder <elder@riscstar.com>
->>>> ---
->>>>    drivers/clk/spacemit/ccu-k1.c | 106 ++++++++++++++++++++++++++++++++++
->>>>    1 file changed, 106 insertions(+)
->>>>
->>>> diff --git a/drivers/clk/spacemit/ccu-k1.c b/drivers/clk/spacemit/ccu-k1.c
->>>> index 17e321c25959a..bf5a3e2048619 100644
->>>> --- a/drivers/clk/spacemit/ccu-k1.c
->>>> +++ b/drivers/clk/spacemit/ccu-k1.c
->>>> @@ -130,6 +130,37 @@
->>>>    #define APMU_EMAC0_CLK_RES_CTRL		0x3e4
->>>>    #define APMU_EMAC1_CLK_RES_CTRL		0x3ec
->>>>    
->>>> +/* RCPU register offsets */
->>>> +#define RCPU_SSP0_CLK_RST		0x0028
->>>> +#define RCPU_I2C0_CLK_RST		0x0030
->>>> +#define RCPU_UART1_CLK_RST		0x003c
->>>> +#define RCPU_CAN_CLK_RST		0x0048
->>>> +#define RCPU_IR_CLK_RST			0x004c
->>>> +#define RCPU_UART0_CLK_RST		0x00d8
->>>> +/* XXX Next one is part of the AUD_AUDCLOCK region @ 0xc0882000 */
->>> this comment looks odd, XXX?
->>
->> Yeah, I meant to remove that before sending but I forgot.
->>
->> The downstream code treats this one register as being
->> part of the RCPU memory region, and extends that region
->> to be 0x2048 bytes to "fit" it.
->>
->> The hardware documentation actually defines a different
->> "RCPU Audio Clock" memory region, and it might be more
->> correct (though less convenient) to define that as a
->> distinct region of memory.
->>
->> What do you think?
->>
-> I'm not sure, but from DT perspective, is it an independent device?
-> if yes, then need to describe as a distinct region..
+- entity 8: cru-ip-16000000.video (2 pads, 2 links, 0 routes)
+            type V4L2 subdev subtype Unknown flags 0
+            device node name /dev/v4l-subdev2
+        pad0: Sink
+                [stream:0 fmt:UYVY8_1X16/1280x960 field:none]
+                <- "csi-16000400.csi2":1 [ENABLED,IMMUTABLE]
+        pad1: Source
+                [stream:0 fmt:UYVY8_1X16/1280x960 field:none]
+                -> "CRU output":0 [ENABLED,IMMUTABLE]
 
-I think we should just remove these definitions.  And
-because of that, I'm going to leave this as-is (included
-with the existing RCPU memory region and device) in the
-next version of my code.  If we decide to keep them, I
-can separate them later.
+- entity 17: CRU output (1 pad, 1 link)
+             type Node subtype V4L flags 0
+             device node name /dev/video0
+        pad0: Sink
+                <- "cru-ip-16000000.video":1 [ENABLED,IMMUTABLE]
 
-					-Alex
+root@smarc-rzg3e:~# v4l2-compliance -d /dev/v4l-subdev0
+v4l2-compliance 1.26.1-5142, 64 bits, 64-bit time_t
+v4l2-compliance SHA: 4aee01a02792 2023-12-12 21:40:38
 
->> 					-Alex
->>
->>>> +#define AUDIO_HDMI_CLK_CTRL		0x2044
->>>> +
->>>> +/* RCPU2 register offsets */
->>>> +#define RCPU2_PWM0_CLK_RST		0x0000
->>>> +#define RCPU2_PWM1_CLK_RST		0x0004
->>>> +#define RCPU2_PWM2_CLK_RST		0x0008
->>>> +#define RCPU2_PWM3_CLK_RST		0x000c
->>>> +#define RCPU2_PWM4_CLK_RST		0x0010
->>>> +#define RCPU2_PWM5_CLK_RST		0x0014
->>>> +#define RCPU2_PWM6_CLK_RST		0x0018
->>>> +#define RCPU2_PWM7_CLK_RST		0x001c
->>>> +#define RCPU2_PWM8_CLK_RST		0x0020
->>>> +#define RCPU2_PWM9_CLK_RST		0x0024
->>>> +
->>>> +/* APBC2 register offsets */
->>>> +#define APBC2_UART1_CLK_RST		0x0000
->>>> +#define APBC2_SSP2_CLK_RST		0x0004
->>>> +#define APBC2_TWSI3_CLK_RST		0x0008
->>>> +#define APBC2_RTC_CLK_RST		0x000c
->>>> +#define APBC2_TIMERS0_CLK_RST		0x0010
->>>> +#define APBC2_KPC_CLK_RST		0x0014
->>>> +#define APBC2_GPIO_CLK_RST		0x001c
->>>> +
->>>>    struct spacemit_ccu_clk {
->>>>    	int id;
->>>>    	struct clk_hw *hw;
->>>> @@ -1781,6 +1812,69 @@ static const struct k1_ccu_data k1_ccu_apmu_data = {
->>>>    	.rst_data	= &apmu_reset_controller_data,
->>>>    };
->>>>    
->>>> +static const struct ccu_reset_data rcpu_reset_data[] = {
->>>> +	[RST_RCPU_SSP0]		= RST_DATA(RCPU_SSP0_CLK_RST,	0, BIT(0)),
->>>> +	[RST_RCPU_I2C0]		= RST_DATA(RCPU_I2C0_CLK_RST,	0, BIT(0)),
->>>> +	[RST_RCPU_UART1]	= RST_DATA(RCPU_UART1_CLK_RST,	0, BIT(0)),
->>>> +	[RST_RCPU_IR]		= RST_DATA(RCPU_CAN_CLK_RST,	0, BIT(0)),
->>>> +	[RST_RCPU_CAN]		= RST_DATA(RCPU_IR_CLK_RST,	0, BIT(0)),
->>>> +	[RST_RCPU_UART0]	= RST_DATA(RCPU_UART0_CLK_RST,	0, BIT(0)),
->>>> +	[RST_RCPU_HDMI_AUDIO]	= RST_DATA(AUDIO_HDMI_CLK_CTRL,	0, BIT(0)),
->>>> +};
->>>> +
->>>> +static const struct ccu_reset_controller_data rcpu_reset_controller_data = {
->>>> +	.count		= ARRAY_SIZE(rcpu_reset_data),
->>>> +	.data		= rcpu_reset_data,
->>>> +};
->>>> +
->>>> +static struct k1_ccu_data k1_ccu_rcpu_data = {
->>>> +	/* No clocks in the RCPU CCU */
->>>> +	.rst_data	= &rcpu_reset_controller_data,
->>>> +};
->>>> +
->>>> +static const struct ccu_reset_data rcpu2_reset_data[] = {
->>>> +	[RST_RCPU2_PWM0]	= RST_DATA(RCPU2_PWM9_CLK_RST,	BIT(2), BIT(0)),
->>>> +	[RST_RCPU2_PWM1]	= RST_DATA(RCPU2_PWM9_CLK_RST,	BIT(2), BIT(0)),
->>>> +	[RST_RCPU2_PWM2]	= RST_DATA(RCPU2_PWM9_CLK_RST,	BIT(2), BIT(0)),
->>>> +	[RST_RCPU2_PWM3]	= RST_DATA(RCPU2_PWM9_CLK_RST,	BIT(2), BIT(0)),
->>>> +	[RST_RCPU2_PWM4]	= RST_DATA(RCPU2_PWM9_CLK_RST,	BIT(2), BIT(0)),
->>>> +	[RST_RCPU2_PWM5]	= RST_DATA(RCPU2_PWM9_CLK_RST,	BIT(2), BIT(0)),
->>>> +	[RST_RCPU2_PWM6]	= RST_DATA(RCPU2_PWM9_CLK_RST,	BIT(2), BIT(0)),
->>>> +	[RST_RCPU2_PWM7]	= RST_DATA(RCPU2_PWM9_CLK_RST,	BIT(2), BIT(0)),
->>>> +	[RST_RCPU2_PWM8]	= RST_DATA(RCPU2_PWM9_CLK_RST,	BIT(2), BIT(0)),
->>>> +	[RST_RCPU2_PWM9]	= RST_DATA(RCPU2_PWM9_CLK_RST,	BIT(2), BIT(0)),
->>>> +};
->>>> +
->>>> +static const struct ccu_reset_controller_data rcpu2_reset_controller_data = {
->>>> +	.count		= ARRAY_SIZE(rcpu2_reset_data),
->>>> +	.data		= rcpu2_reset_data,
->>>> +};
->>>> +
->>>> +static struct k1_ccu_data k1_ccu_rcpu2_data = {
->>>> +	/* No clocks in the RCPU2 CCU */
->>>> +	.rst_data	= &rcpu2_reset_controller_data,
->>>> +};
->>>> +
->>>> +static const struct ccu_reset_data apbc2_reset_data[] = {
->>>> +	[RST_APBC2_UART1]	= RST_DATA(APBC2_UART1_CLK_RST,	BIT(2), (0)),
->>>> +	[RST_APBC2_SSP2]	= RST_DATA(APBC2_SSP2_CLK_RST,	BIT(2), (0)),
->>>> +	[RST_APBC2_TWSI3]	= RST_DATA(APBC2_TWSI3_CLK_RST,	BIT(2), (0)),
->>>> +	[RST_APBC2_RTC]		= RST_DATA(APBC2_RTC_CLK_RST,	BIT(2), (0)),
->>>> +	[RST_APBC2_TIMERS0]	= RST_DATA(APBC2_TIMERS0_CLK_RST, BIT(2), (0)),
->>>> +	[RST_APBC2_KPC]		= RST_DATA(APBC2_KPC_CLK_RST,	BIT(2), (0)),
->>>> +	[RST_APBC2_GPIO]	= RST_DATA(APBC2_GPIO_CLK_RST,	BIT(2), (0)),
->>>> +};
->>>> +
->>>> +static const struct ccu_reset_controller_data apbc2_reset_controller_data = {
->>>> +	.count		= ARRAY_SIZE(apbc2_reset_data),
->>>> +	.data		= apbc2_reset_data,
->>>> +};
->>>> +
->>>> +static struct k1_ccu_data k1_ccu_apbc2_data = {
->>>> +	/* No clocks in the RCPU2 CCU */
->>>> +	.rst_data	= &apbc2_reset_controller_data,
->>>> +};
->>>> +
->>>>    static struct ccu_reset_controller *
->>>>    rcdev_to_controller(struct reset_controller_dev *rcdev)
->>>>    {
->>>> @@ -1959,6 +2053,18 @@ static const struct of_device_id of_k1_ccu_match[] = {
->>>>    		.compatible	= "spacemit,k1-syscon-apmu",
->>>>    		.data		= &k1_ccu_apmu_data,
->>>>    	},
->>>> +	{
->>>> +		.compatible	= "spacemit,k1-syscon-rcpu",
->>>> +		.data		= &k1_ccu_rcpu_data,
->>>> +	},
->>>> +	{
->>>> +		.compatible	= "spacemit,k1-syscon-rcpu2",
->>>> +		.data		= &k1_ccu_rcpu2_data,
->>>> +	},
->>>> +	{
->>>> +		.compatible	= "spacemit,k1-syscon-apbc2",
->>>> +		.data		= &k1_ccu_apbc2_data,
->>>> +	},
->>>>    	{ }
->>>>    };
->>>>    MODULE_DEVICE_TABLE(of, of_k1_ccu_match);
->>>> -- 
->>>> 2.43.0
->>>>
->>>
->>
-> 
+Compliance test for device /dev/v4l-subdev0:
+
+Driver Info:
+        Driver version   : 6.14.0
+        Capabilities     : 0x00[  466.011745] csi-16000400.csi2: =================  START STATUS  =================
+000000
+
+Requir[  466.011745] csi-16000400.csi2: =================  START STATUS  =================
+ed ioctls:
+        tes[  466.029168] csi-16000400.csi2: ==================  END STATUS  ==================
+t VIDIOC_SUDBEV_[  466.029168] csi-16000400.csi2: ==================  END STATUS  ==================
+QUERYCAP: OK
+        test invalid ioctls: OK
+
+Allow for multiple opens:
+        test second /dev/v4l-subdev0 open: OK
+        test VIDIOC_SUBDEV_QUERYCAP: OK
+        test for unlimited opens: OK
+
+Debug ioctls:
+        test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+        test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+        test VIDIOC_ENUMAUDIO: OK (Not Supported)
+        test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDIO: OK (Not Supported)
+        Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+        test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+        test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+        Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+        test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+        test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+        test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+        test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+        test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+        test VIDIOC_QUERYCTRL: OK (Not Supported)
+        test VIDIOC_G/S_CTRL: OK (Not Supported)
+        test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+        test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+        test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+        Standard Controls: 0 Private Controls: 0
+
+Format ioctls:
+        test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+        test VIDIOC_G/S_PARM: OK (Not Supported)
+        test VIDIOC_G_FBUF: OK (Not Supported)
+        test VIDIOC_G_FMT: OK (Not Supported)
+        test VIDIOC_TRY_FMT: OK (Not Supported)
+        test VIDIOC_S_FMT: OK (Not Supported)
+        test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+        test Cropping: OK (Not Supported)
+        test Composing: OK (Not Supported)
+        test Scaling: OK (Not Supported)
+
+Codec ioctls:
+        test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+        test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+        test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+        test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+        test CREATE_BUFS maximum buffers: OK
+        test VIDIOC_EXPBUF: OK (Not Supported)
+        test Requests: OK (Not Supported)
+
+Total for device /dev/v4l-subdev0: 44, Succeeded: 44, Failed: 0, Warnings: 0
+root@smarc-rzg3e:~# v4l2-compliance -d /dev/v4l-subdev1
+v4l2-compliance 1.26.1-5142, 64 [  478.758872] ov5645 0-003c: =================  START STATUS  =================
+bits, 64-bit tim[  478.758872] ov5645 0-003c: =================  START STATUS  =================
+e_t
+v4l2-compli[  478.775381] ov5645 0-003c: ==================  END STATUS  ==================
+ance SHA: 4aee01[  478.775381] ov5645 0-003c: ==================  END STATUS  ==================
+a02792 2023-12-1[  478.785470] systemd-journald[107]: Sent WATCHDOG=1 notification.
+2 21:40:38
+
+Co[  478.785470] systemd-journald[107]: Sent WATCHDOG=1 notification.
+mpliance test for device /dev/v4l-subdev1:
+
+Driver Info:
+        Driver version   : 6.14.0
+        Capabilities     : 0x00000000
+
+Required ioctls:
+        test VIDIOC_SUDBEV_QUERYCAP: OK
+        test invalid ioctls: OK
+
+Allow for multiple opens:
+        test second /dev/v4l-subdev1 open: OK
+        test VIDIOC_SUBDEV_QUERYCAP: OK
+        test for unlimited opens: OK
+
+Debug ioctls:
+        test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+        test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+        test VIDIOC_ENUMAUDIO: OK (Not Supported)
+        test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDIO: OK (Not Supported)
+        Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+        test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+        test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+        Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+        test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+        test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+        test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+        test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+        test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+        test VIDIOC_QUERYCTRL: OK
+        test VIDIOC_G/S_CTRL: OK
+        test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+        test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+        test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+        Standard Controls: 12 Private Controls: 0
+
+Format ioctls:
+        test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+        test VIDIOC_G/S_PARM: OK (Not Supported)
+        test VIDIOC_G_FBUF: OK (Not Supported)
+        test VIDIOC_G_FMT: OK (Not Supported)
+        test VIDIOC_TRY_FMT: OK (Not Supported)
+        test VIDIOC_S_FMT: OK (Not Supported)
+        test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+        test Cropping: OK (Not Supported)
+        test Composing: OK (Not Supported)
+        test Scaling: OK (Not Supported)
+
+Codec ioctls:
+        test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+        test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+        test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+        test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+        test CREATE_BUFS maximum buffers: OK
+        test VIDIOC_EXPBUF: OK (Not Supported)
+        test Requests: OK (Not Supported)
+
+Total for device /dev/v4l-subdev1: 44, Succeeded: 44, Failed: 0, Warnings: 0
+root@smarc-rzg3e:~# v4l2-compliance -d /dev/v4l-subdev2
+v4l2-compliance 1.26.1-5142, 64 [  488.827763] cru-ip-16000000.video: =================  START STATUS  =================
+bits, 64-bit tim[  488.827763] cru-ip-16000000.video: =================  START STATUS  =================
+e_t
+v4l2-compli[  488.845579] cru-ip-16000000.video: ==================  END STATUS  ==================
+ance SHA: 4aee01[  488.845579] cru-ip-16000000.video: ==================  END STATUS  ==================
+a02792 2023-12-12 21:40:38
+
+Compliance test for rzg2l_cru device /dev/v4l-subdev2:
+
+Driver Info:
+        Driver version   : 6.14.0
+        Capabilities     : 0x00000000
+Media Driver Info:
+        Driver name      : rzg2l_cru
+        Model            : renesas,r9a09g047-cru
+        Serial           :
+        Bus info         : platform:16000000.video
+        Media version    : 6.14.0
+        Hardware revision: 0x00000000 (0)
+        Driver version   : 6.14.0
+Interface Info:
+        ID               : 0x0300000f
+        Type             : V4L Sub-Device
+Entity Info:
+        ID               : 0x00000008 (8)
+        Name             : cru-ip-16000000.video
+        Function         : Video Pixel Formatter
+        Pad 0x01000009   : 0: Sink, Must Connect
+          Link 0x02000015: from remote pad 0x1000003 of entity 'csi-16000400.csi2' (Video Interface Bridge): Data, Enabled, Immutable
+        Pad 0x0100000a   : 1: Source, Must Connect
+          Link 0x02000017: to remote pad 0x1000012 of entity 'CRU output' (V4L2 I/O): Data, Enabled, Immutable
+
+Required ioctls:
+        test MC information (see 'Media Driver Info' above): OK
+        test VIDIOC_SUDBEV_QUERYCAP: OK
+        test invalid ioctls: OK
+
+Allow for multiple opens:
+        test second /dev/v4l-subdev2 open: OK
+        test VIDIOC_SUBDEV_QUERYCAP: OK
+        test for unlimited opens: OK
+
+Debug ioctls:
+        test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+        test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+        test VIDIOC_ENUMAUDIO: OK (Not Supported)
+        test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDIO: OK (Not Supported)
+        Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+        test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+        test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+        Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+        test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+        test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+        test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+        test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Sub-Device ioctls (Sink Pad 0):
+        Try Stream 0
+        test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+        test Try VIDIOC_SUBDEV_G/S_FMT: OK
+        test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+        Active Stream 0
+        test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+        test Active VIDIOC_SUBDEV_G/S_FMT: OK
+        test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+        test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 1):
+        Try Stream 0
+        test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+        test Try VIDIOC_SUBDEV_G/S_FMT: OK
+        test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+        Active Stream 0
+        test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+        test Active VIDIOC_SUBDEV_G/S_FMT: OK
+        test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+        test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Control ioctls:
+        test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+        test VIDIOC_QUERYCTRL: OK (Not Supported)
+        test VIDIOC_G/S_CTRL: OK (Not Supported)
+        test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+        test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+        test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+        Standard Controls: 0 Private Controls: 0
+
+Format ioctls:
+        test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+        test VIDIOC_G/S_PARM: OK (Not Supported)
+        test VIDIOC_G_FBUF: OK (Not Supported)
+        test VIDIOC_G_FMT: OK (Not Supported)
+        test VIDIOC_TRY_FMT: OK (Not Supported)
+        test VIDIOC_S_FMT: OK (Not Supported)
+        test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+        test Cropping: OK (Not Supported)
+        test Composing: OK (Not Supported)
+        test Scaling: OK (Not Supported)
+
+Codec ioctls:
+        test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+        test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+        test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+        test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+        test CREATE_BUFS maximum buffers: OK
+        test VIDIOC_EXPBUF: OK (Not Supported)
+        test Requests: OK (Not Supported)
+
+Total for rzg2l_cru device /dev/v4l-subdev2: 59, Succeeded: 59, Failed: 0, Warnings: 0
+
+Thanks & Regards,
+Tommaso
+
+Lad Prabhakar (12):
+  media: dt-bindings: renesas,rzg2l-csi2: Document Renesas RZ/V2H(P) SoC
+  media: rzg2l-cru: csi2: Use local variable for struct device in
+    rzg2l_csi2_probe()
+  media: rzg2l-cru: rzg2l-core: Use local variable for struct device in
+    rzg2l_cru_probe()
+  media: rzg2l-cru: csi2: Introduce SoC-specific D-PHY handling
+  media: rzg2l-cru: csi2: Add support for RZ/V2H(P) SoC
+  media: rzg2l-cru: Add register mapping support
+  media: rzg2l-cru: Pass resolution limits via OF data
+  media: rzg2l-cru: Add image_conv offset to OF data
+  media: rzg2l-cru: Add IRQ handler to OF data
+  media: rzg2l-cru: Add function pointer to check if FIFO is empty
+  media: rzg2l-cru: Add function pointer to configure CSI
+  media: rzg2l-cru: Add support for RZ/G3E SoC
+
+Tommaso Merciai (5):
+  media: dt-bindings: renesas,rzg2l-csi2: Document Renesas RZ/G3E CSI-2
+    block
+  media: dt-bindings: renesas,rzg2l-cru: Document Renesas RZ/G3E SoC
+  media: rzg2l-cru: csi2: Use devm_pm_runtime_enable()
+  media: rzg2l-cru: rzg2l-core: Use devm_pm_runtime_enable()
+  media: rzg2l-cru: csi2: Skip system clock for RZ/V2H(P) SoC
+
+ .../bindings/media/renesas,rzg2l-cru.yaml     |  65 +++-
+ .../bindings/media/renesas,rzg2l-csi2.yaml    |  62 +++-
+ .../platform/renesas/rzg2l-cru/rzg2l-core.c   | 148 ++++++++-
+ .../renesas/rzg2l-cru/rzg2l-cru-regs.h        |  91 ++++--
+ .../platform/renesas/rzg2l-cru/rzg2l-cru.h    |  39 ++-
+ .../platform/renesas/rzg2l-cru/rzg2l-csi2.c   | 165 ++++++++--
+ .../platform/renesas/rzg2l-cru/rzg2l-ip.c     |  13 +-
+ .../platform/renesas/rzg2l-cru/rzg2l-video.c  | 298 ++++++++++++++++--
+ 8 files changed, 749 insertions(+), 132 deletions(-)
+
+-- 
+2.43.0
 
 
