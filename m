@@ -1,149 +1,116 @@
-Return-Path: <devicetree+bounces-161698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9B86A74FC0
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 18:51:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C7ACA75021
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 19:08:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE2CE178A21
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 17:50:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00C913AB1FE
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 18:08:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AB101DED66;
-	Fri, 28 Mar 2025 17:50:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D66E1DC99E;
+	Fri, 28 Mar 2025 18:08:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b="sojH8WbF"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gyTdR5lk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-14.pe-a.jellyfish.systems (out-14.pe-a.jellyfish.systems [198.54.127.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22CAA1DE3AC;
-	Fri, 28 Mar 2025 17:50:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.54.127.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC657C2FA;
+	Fri, 28 Mar 2025 18:08:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743184234; cv=none; b=l9Ttf+LKuNkiVDIO6i7vjqeMPkWzerUXn7zRhxDthtHHTd5Tk5ldGOgHN+ai8Z19hxFBBAVcmAOT7CZuYXyMOBr5dR1xihwC+Jj28cQhxms4jUQF3+f6bzDyP8ojhmh6OrMzh2pFz9/uat2moaB52ll0axAuU4FsI3IT7Carqes=
+	t=1743185300; cv=none; b=geFbFHELPtm/9PaiamhKUc1bmPvz4wLSQXs+MyZR+kY0hvpQqP3yevixsCs7rFOKfdOmiEFuZkDRy0fP1NSA1DopWBOE3rADzoxU8UM9rjE8xUiYOhaSvE6FfDNemDo/Xy6BkUXAInXCYw8L7jmtNrj/sw4KcGA2wJNY2OdRgmU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743184234; c=relaxed/simple;
-	bh=a4wb0o07elSzfnSvnFun1jxLv/nj4dn1gQgFhZ1pABk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SPQAiIUzALKWEQECB2JB6vgQ7icdUVXLenkVQrULICUTBL/wnFlrDMpQJDHzIqjEZA0PLGSFRmw9hwvm/H0VQcOEqxH69iXjGMwblcxc2X158ovG2lTE/26p/snEToUXqNDdNmQMqsBNADTVne9UYwH9Tux+0wp4Oy6uQ8Q1598=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=framepointer.org; spf=pass smtp.mailfrom=framepointer.org; dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b=sojH8WbF; arc=none smtp.client-ip=198.54.127.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=framepointer.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=framepointer.org
-Received: from prod-lbout-phx.jellyfish.systems (new-01-3.privateemail.com [66.29.159.56])
-	by pe-a.jellyfish.systems (Postfix) with ESMTPA id 4ZPSjg5Z9Sz3xGq;
-	Fri, 28 Mar 2025 17:50:31 +0000 (UTC)
-Received: from MTA-14.privateemail.com (unknown [10.50.14.30])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by NEW-01-3.privateemail.com (Postfix) with ESMTPS id 4ZPSjg4ykKz2Sd0Q;
-	Fri, 28 Mar 2025 13:50:31 -0400 (EDT)
-Received: from mta-14.privateemail.com (localhost [127.0.0.1])
-	by mta-14.privateemail.com (Postfix) with ESMTP id 4ZPSjg3fP8z3hhVQ;
-	Fri, 28 Mar 2025 13:50:31 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=framepointer.org;
-	s=default; t=1743184231;
-	bh=a4wb0o07elSzfnSvnFun1jxLv/nj4dn1gQgFhZ1pABk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=sojH8WbFRP8Fhm85PrwsdsTjLQJOwxvIejbgV6Ta2AWed4O3iLe0EQbECGPzgzGCL
-	 ZESH2FYChFjvXYJQEkfZ4cYui1FWJEX98BURQpdg3Wct9P57FZhlibXpAsefBkH6hO
-	 XCSi4xiCwMMBfS3iwpI0m5JZX0nkC9n786Q4yi3EFiY2YHH28WN+q9B7q6KGBj5ocT
-	 FC63yssBa89aI2F/ninuAqckq0+vHu/YXD2JWHlQCsFcwkzCQK8R7q5cMHPD8AGHu4
-	 1OoTooaNfxkxNINn1g5z4kIL67ryHfC1cFukqnBRGl3JB4+b98PUEcU0Xk2Fae1knO
-	 m8cPoq7h6jNag==
-Received: from 65YTFL3.secure.tethers.com (unknown [152.44.190.141])
-	by mta-14.privateemail.com (Postfix) with ESMTPA;
-	Fri, 28 Mar 2025 13:50:15 -0400 (EDT)
-From: Sam Winchenbach <sam.winchenbach@framepointer.org>
-To: linux-kernel@vger.kernel.org
-Cc: lars@metafoo.de,
-	Michael.Hennerich@analog.com,
-	antoniu.miclaus@analog.com,
-	jic23@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	sam.winchenbach@framepointer.org,
-	bpellegrino@arka.org,
-	Sam Winchenbach <swinchenbach@arka.org>
-Subject: [PATCH v8 6/6] iio: filter: admv8818: Support frequencies >= 2^32
-Date: Fri, 28 Mar 2025 13:48:31 -0400
-Message-ID: <20250328174831.227202-7-sam.winchenbach@framepointer.org>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250328174831.227202-1-sam.winchenbach@framepointer.org>
-References: <20250328174831.227202-1-sam.winchenbach@framepointer.org>
+	s=arc-20240116; t=1743185300; c=relaxed/simple;
+	bh=F56ZuT/aFD/W5ny+YhT0YUCeoNkuOsSqzkEo4/2+J1c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BEw7TzyogOuJ2k2bVzTcRe1EWCdT/NTHzWG86UPMZaEgyychOaduXPbZqmYCIGiBgFsSEChlGaF28MLcMSM8hv0/RISXwHK+/xcKHqeO1XxES1808X+Ck2hEvf3z0UsY8hoBYlfUybpTloB0maEzz68b9RfBU40/eTnDnzrVD9I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gyTdR5lk; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1743185297; x=1774721297;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=F56ZuT/aFD/W5ny+YhT0YUCeoNkuOsSqzkEo4/2+J1c=;
+  b=gyTdR5lk7Ut5hEaTa35zRvn4xBWyVdBLBIJmbJy13am3PJBvetue5O0F
+   NWL4fFvHWF7aFKjshW2avlf2KaDQavqxEwBmczflzVMqnLJLN/Oo28SJ7
+   DAuKMNo2PQdZi2cX+HWVNLJrJ1bDsiEXpV8oRr1a5j4IWHZn4Be5PZt9R
+   iPN8GJOlmSJegiV0WB2rtmsjZ/hFzHTT0MUdSHcfPh7hSCnlJiFDnqq2/
+   3vrtAAxiTxbiF65qhSbbP9TN0zAuSTFS0YbQNwJuDm4Wa3HGCIWEEpso1
+   onEOZ3IQu2/9b9kRt4X0QPgb6ge5fDJccxBVPc55IcaE/gHhSEexFrxQl
+   w==;
+X-CSE-ConnectionGUID: soLj2Bg7RRylMrDnermWkg==
+X-CSE-MsgGUID: anAE24gfRMilMkcbpizAWA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11387"; a="48429396"
+X-IronPort-AV: E=Sophos;i="6.14,284,1736841600"; 
+   d="scan'208";a="48429396"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Mar 2025 11:08:17 -0700
+X-CSE-ConnectionGUID: ZUzXqq+HScaj2lWSyxngbQ==
+X-CSE-MsgGUID: XUjL2sE7Q/+r3Dahith76A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,284,1736841600"; 
+   d="scan'208";a="126431158"
+Received: from lkp-server02.sh.intel.com (HELO e98e3655d6d2) ([10.239.97.151])
+  by orviesa008.jf.intel.com with ESMTP; 28 Mar 2025 11:08:14 -0700
+Received: from kbuild by e98e3655d6d2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tyE7n-0007cg-0w;
+	Fri, 28 Mar 2025 18:08:11 +0000
+Date: Sat, 29 Mar 2025 02:07:15 +0800
+From: kernel test robot <lkp@intel.com>
+To: Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] media: i2c: Add driver for ST VD55G1 camera sensor
+Message-ID: <202503290148.tTZNa6UU-lkp@intel.com>
+References: <20250328-b4-vd55g1-v1-2-8d16b4a79f29@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: ClamAV using ClamSMTP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250328-b4-vd55g1-v1-2-8d16b4a79f29@foss.st.com>
 
-From: Brian Pellegrino <bpellegrino@arka.org>
+Hi Benjamin,
 
-This patch allows writing u64 values to the ADMV8818's high and low-pass
-filter frequencies. It includes the following changes:
+kernel test robot noticed the following build errors:
 
-- Rejects negative frequencies in admv8818_write_raw.
-- Adds a write_raw_get_fmt function to admv8818's iio_info, returning
-  IIO_VAL_INT_64 for the high and low-pass filter 3dB frequency channels.
+[auto build test ERROR on b2c4bf0c102084e77ed1b12090d77a76469a6814]
 
-Fixes: f34fe888ad05 ("iio:filter:admv8818: add support for ADMV8818")
-Signed-off-by: Brian Pellegrino <bpellegrino@arka.org>
-Signed-off-by: Sam Winchenbach <swinchenbach@arka.org>
----
- drivers/iio/filter/admv8818.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+url:    https://github.com/intel-lab-lkp/linux/commits/Benjamin-Mugnier/media-dt-bindings-Add-ST-VD55G1-camera-sensor-binding/20250328-215939
+base:   b2c4bf0c102084e77ed1b12090d77a76469a6814
+patch link:    https://lore.kernel.org/r/20250328-b4-vd55g1-v1-2-8d16b4a79f29%40foss.st.com
+patch subject: [PATCH 2/2] media: i2c: Add driver for ST VD55G1 camera sensor
+config: csky-randconfig-002-20250329 (https://download.01.org/0day-ci/archive/20250329/202503290148.tTZNa6UU-lkp@intel.com/config)
+compiler: csky-linux-gcc (GCC) 13.3.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250329/202503290148.tTZNa6UU-lkp@intel.com/reproduce)
 
-diff --git a/drivers/iio/filter/admv8818.c b/drivers/iio/filter/admv8818.c
-index 380e119b3cf54..cc8ce0fe74e7c 100644
---- a/drivers/iio/filter/admv8818.c
-+++ b/drivers/iio/filter/admv8818.c
-@@ -402,6 +402,19 @@ static int admv8818_read_lpf_freq(struct admv8818_state *st, u64 *lpf_freq)
- 	return ret;
- }
- 
-+static int admv8818_write_raw_get_fmt(struct iio_dev *indio_dev,
-+								struct iio_chan_spec const *chan,
-+								long mask)
-+{
-+	switch (mask) {
-+	case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
-+	case IIO_CHAN_INFO_HIGH_PASS_FILTER_3DB_FREQUENCY:
-+		return IIO_VAL_INT_64;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
- static int admv8818_write_raw(struct iio_dev *indio_dev,
- 			      struct iio_chan_spec const *chan,
- 			      int val, int val2, long info)
-@@ -410,6 +423,9 @@ static int admv8818_write_raw(struct iio_dev *indio_dev,
- 
- 	u64 freq = ((u64)val2 << 32 | (u32)val);
- 
-+	if ((s64)freq < 0)
-+		return -EINVAL;
-+
- 	switch (info) {
- 	case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
- 		return admv8818_lpf_select(st, freq);
-@@ -571,6 +587,7 @@ static int admv8818_set_mode(struct iio_dev *indio_dev,
- 
- static const struct iio_info admv8818_info = {
- 	.write_raw = admv8818_write_raw,
-+	.write_raw_get_fmt = admv8818_write_raw_get_fmt,
- 	.read_raw = admv8818_read_raw,
- 	.debugfs_reg_access = &admv8818_reg_access,
- };
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503290148.tTZNa6UU-lkp@intel.com/
+
+All errors (new ones prefixed by >>, old ones prefixed by <<):
+
+WARNING: modpost: missing MODULE_DESCRIPTION() in lib/slub_kunit.o
+>> ERROR: modpost: "__udivdi3" [drivers/media/i2c/vd55g1.ko] undefined!
+
 -- 
-2.49.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
