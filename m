@@ -1,159 +1,231 @@
-Return-Path: <devicetree+bounces-161542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 160ADA7483D
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 11:28:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C8E9A7483E
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 11:29:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E9BA3AEEF6
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 10:27:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE1F618935C5
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 10:29:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E5292192FC;
-	Fri, 28 Mar 2025 10:27:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0658219E93;
+	Fri, 28 Mar 2025 10:29:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="umW9MFd0"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="m9+d0dBj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3B2C21018A
-	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 10:27:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 116EC21771D
+	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 10:28:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743157658; cv=none; b=UWkXjFkr3EKUjEwv2mPQm0KlQ3evweDa9XtabiOrvCI0rTZ+nFUTlHNHk8TifaMPoDO7aIM2wsHk22vXcpkEjSh/8tKjUzuqTdHvzWzmeU11+kKIuUJLjjl8b8etF61jkTst85d1ANO7Vo/bKmGrW2NZrCiSImu5JDZiRFSXWsU=
+	t=1743157741; cv=none; b=hpA4CgOfA+cfyBuXjQX9RL1TQ5ECeCk5jDR+DIBzgKhaGDVbQRHZkcVMR17r8bDKyHqZWxsI9ZW8uApPFmr7+ERi9iCTOlZB+r2wavFUQn8964hAoE5HAUzoNyQEEoNL4t5Un8zE73ehXsxQiUCqpE2z4XVBT7tBbIfOkB69THs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743157658; c=relaxed/simple;
-	bh=i7mKZzkMcZp9ZJNbdNTwSjYL8EgM/QpuemcpfsUTFPY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lyEmhzFUds4xYjddei8PVsUBbCpuaBNPBhRndq5/LEWwwrNdtfd8CL6mi/iXreJ1dOu+44D99zkXA0fRSuOHKP0kFiwcG0KvooI8kgF+tr/vIzVAZ29PesyMQR6ln09UFVjLYoxyVOlKwDgscI42jY6+eDeCjqB8X+lwrNAOZ7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=umW9MFd0; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3913fdd0120so1151408f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 03:27:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1743157654; x=1743762454; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Eax7YxGwWpnNu4N9Cuk0JD950DXdwRHhk8wiSiixGbg=;
-        b=umW9MFd0krK7a+hul5ik+iolir9Sw1NcDEW3w7a9PXLJaWJQWd+PZoEm+a/vdKVsaF
-         cislUlDX5ZaJ08+ov+HAjhyvijx4XPpCMGG/Xj0DVzWgmqlyV0AgsFUk4HBzbzz2+2wx
-         X95KJs4+aOC7XHailEqaA2ol1knWdDi7Ccj/CswHCsgLJzR8gdLhDqVI/H51Fmboqtl8
-         CeSvyIC5wTa0R7ZrVkx5rUkMICW2TKZDPfZI7smrUYPFuFFOOgWgXRCu2crmxLOXmTbt
-         m55gAxqIKquyUYqQwmhHHceQq1bO063B4t0E/DP6b0HqZka+zg1iCBXNV/fNIw6hSte8
-         JMAg==
+	s=arc-20240116; t=1743157741; c=relaxed/simple;
+	bh=mf5BuP4DbTs8hTdfi6oMr/Lqb1LlM5HErZJeEIbfzrc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=f4pIHfYy4MgDTxQ2xCGSNcY2o/dVPwFYoaxVydU7iBX02KEbTxc+5ZFCEI19+kPRt0Of17+GsP7XBsCjRGo6rIGo6aagzLAZzXgK2/tL6+PEZ80VdRFDis5GBTKtd5j8URqsXOq6XDLJdCrufMnwpPAGw+8iU0/lzfytbjqH+NU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=m9+d0dBj; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52S6NP2V011014
+	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 10:28:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=CrA1bYnBuWeYn44o2Bh0OW
+	jG65xH/Z9n/7BBROFN/aw=; b=m9+d0dBj/Aavca+RXxdi4QsUdzHUOovMU6x6Zm
+	hSji8uKd2fXuP9BvvS0UaKRalKb/jpDDuEiLKuSkWrLJLI07d4mY21Jh9ciIv0lj
+	yoTEhXeV8ytCu3yULvM3s85vrn7UDX9QsBDVuEFZhzC/nL/MTcsIGzFz0O07NrB3
+	28DbFSvcr8KW0fxO0Kp0XsaXU/dVys2kRV1rG/s7tw8HOAjAOl0zYJvHlzkonx11
+	addwqUPDtUBQcWanTLB5ImrsAEaKoJKyil1KqryyikMkMUMMmvcmx1AUjIvxwKuk
+	EdBsO0nXnpMTxGbYrQ7K5CM/2mNFfvfC6wi0BN88c78IUO+Q==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45n0kqm9fp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 10:28:58 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2241ae15dcbso43907215ad.0
+        for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 03:28:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743157654; x=1743762454;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Eax7YxGwWpnNu4N9Cuk0JD950DXdwRHhk8wiSiixGbg=;
-        b=R8sKioF/Y7MJx4+VfMBdBkPNAkCIgeBI1tjhslh0DzpseAuc7VXK8s8+r6MKAqKAKb
-         xN3TlyW9+i5sBGu8jZLsSA7yL9DtdZiM0rZde++4wgt6nG+TdKcE/JyGj+qUzBhO7mem
-         Tq32A5QziWtRuzMWt8xLFmQ26+++ges3vD4XxIq0FpP+qug+4oua3E+mHCTFQkQUJAjY
-         BL7J+ZP79uP13OD3jy/AQYTyqOTjQVUtoRGPMliF8xojt6QwR2AY4yTrXvXhd8wTlV5u
-         b7L9k0bQalcpFdCmT5NEFBqxrHOsxGXpaNd7CF0axYviJy9gkoR1sbU1d5VRMfk+dfN1
-         hMhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUtS/5eVB9Ogq5F7NmNDzgCOjCltu8pruX0y47vfTOO7aEYe9ieugCJv/zstBjGbIICPtAYJFY/tIdi@vger.kernel.org
-X-Gm-Message-State: AOJu0YzYoqIV/ZRmDM2+MYmRACtHuiUqNbBrcNWYc382VsrTpSIzoia5
-	i8qBccLQXtS8C+BVcAVdD0lrVmvFp5NEb/Hxdy4RlD/ZwBa0/YlGDNF86zE2zes=
-X-Gm-Gg: ASbGncsS+GU0O2jmHKYjNWBSPWSgQkGlomERSXFsiLbx4rkMy41lccGY+IqwblnwMxv
-	6eAcXnqqPBjfddboswSYHnRKObED6H3sP0zTK5/ylnuzPi4CQfK8zMsaMEmX0Q1U9opW3xTf+4I
-	wxo59rDAAb7OD+feEDv2jqfqD7FZxedAjpzArEcKa9OODAniFZAoDtwEIPzs8Q9lJdlgR7iT4ah
-	OF9h1cYxmKCSL2n03jLxnrR+8nkbiguXTAKB+rz0tQaY7GXAPb4G4n4//rDyyU/GVBxLj0zg24D
-	cyWgF3FNfCVToA2cBxe4Xb/zYgWb4Li4jgtY1mESKNj2mfPqXe66FZqltPwwhw0PV+YqArDA4tc
-	jX13f4le4MB0=
-X-Google-Smtp-Source: AGHT+IEKgI3nQYHCH8DidEWqf2UoGJFR4wRiYpFWDfNslXOnE0ABJu9zI68fN3BS8uzY8lwCUjes4A==
-X-Received: by 2002:a05:6000:4284:b0:391:3aab:a7d0 with SMTP id ffacd0b85a97d-39ad1749aa3mr6077097f8f.19.1743157653814;
-        Fri, 28 Mar 2025 03:27:33 -0700 (PDT)
-Received: from localhost (p200300f65f14610400000000000001b9.dip0.t-ipconnect.de. [2003:f6:5f14:6104::1b9])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39c0b6588d0sm2148585f8f.7.2025.03.28.03.27.33
+        d=1e100.net; s=20230601; t=1743157738; x=1743762538;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CrA1bYnBuWeYn44o2Bh0OWjG65xH/Z9n/7BBROFN/aw=;
+        b=lT8rrE5wu95D6mVNDgTO8bcHWwH6SV8ERicgR0LTiUDwasKsHl+eblCNukBj53snBV
+         thLInu5WO8Ms5OmxJmTHBp1ls/evcm2AUASg8csum+S+rKaAX5GcZ+RIF6EmgA66MZjM
+         795qoK+8cPJq/0RpEIK3jqiqb3fb/eXZjW+VTzwi+MShoiJCkDrmgU20OSNq4hUPtsJf
+         0CMxNDGSHHgPKpCFZMOWHeeEcxQhURfO7l7ZyHBIBGtwELvvBppNREpEiQ0psn8OpG8S
+         H1DPeoOMbvUtui7UJvJ7/HXGiUa5CB4yOBPr0kH9JGjBAaH+9VSKk/DHLznxqqjFVDZs
+         XUMw==
+X-Forwarded-Encrypted: i=1; AJvYcCUohe7RyllDKIPqjBU1OfcebiMoGd5vDXffk7/ECjvKczuAM1Co8j5R4/8k7jAFWcTFSC1Wv+F/OCVI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+p7U6bNumQtyDaNETA0NCEn9v21sjKGmU3BtH0q++yGoR/N8/
+	tVFGCZp2xbEn+v6Nmb0fI2Nctxlsp7JMX/AMRfN3kBIBIqbcPoMsx8FrLCJPBNL+2h2ydSnMPLl
+	PFQ0LEAQPcstQ6jtt9XxfewEyCznYBJ2JtK/wp2oGjMP2YT1Zsp7ik5kYxMMx
+X-Gm-Gg: ASbGncvURIhOffys9dKEoBIGvsmQVA2WS7d37x5+ybYvPKfniGTbksC8Zv5G9IGCrkN
+	spHsH3JHywQYX3sQ/Yl0P6QZJBM0XKgzbnFXWQrQOPnGfVSToCLKhrpVeGJV2SAcws/KdiR2eN6
+	RAZh0TAD8+u2DbuHgCD2Jfkc3D0BNh/jFCruJc3SGNcQYQVETbXC7y0hTQ+cqWQfHqtqXKiroZa
+	DIOp+L4rrTEmqNo0jOtvNQb7HWmDXUxCjLp3K4hFyL3Sp/sL9zyxjbfAlx0Q+c2hZnlhXYzOVMw
+	l210BD6PMfMSOks7FwU2WDSM6Dt+S6C1Hq2Wp6rMbAgST2V9uo0=
+X-Received: by 2002:a17:903:2b0b:b0:226:252e:b6ef with SMTP id d9443c01a7336-2280481d0d5mr114123675ad.7.1743157737943;
+        Fri, 28 Mar 2025 03:28:57 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHJ6Wp9H4IH/hwWRloE8NFm6xudfOST1lZ3UslYecN1jAwAqFCFXqGZc8RTchinS4ImWDIc3Q==
+X-Received: by 2002:a17:903:2b0b:b0:226:252e:b6ef with SMTP id d9443c01a7336-2280481d0d5mr114123185ad.7.1743157737365;
+        Fri, 28 Mar 2025 03:28:57 -0700 (PDT)
+Received: from hu-krichai-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2291eee11b7sm14561965ad.86.2025.03.28.03.28.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Mar 2025 03:27:33 -0700 (PDT)
-Date: Fri, 28 Mar 2025 11:27:31 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Nylon Chen <nylon.chen@sifive.com>
-Cc: linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Samuel Holland <samuel.holland@sifive.com>, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v10 0/3] Change PWM-controlled LED pin active mode and
- algorithm
-Message-ID: <ktmanz3mufxvme3gspm46p7vyjxsmzfxckqxg2e5a2mbqc5pxe@uc56iqoryuzr>
-References: <20241224093902.1632627-1-nylon.chen@sifive.com>
- <zqkx7cx5nalslfmxeoxdnsjbvrvzajrjybsmsyeyc65a64sntr@gpc5qp6aoyp7>
- <CAHh=Yk_j1ZnJ+=XQ_geN1sXMaye=P4jk-vduwj0-1soM7d+wQw@mail.gmail.com>
+        Fri, 28 Mar 2025 03:28:56 -0700 (PDT)
+From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Subject: [PATCH v9 0/5] PCI: dwc: Add support for configuring lane
+ equalization presets
+Date: Fri, 28 Mar 2025 15:58:28 +0530
+Message-Id: <20250328-preset_v6-v9-0-22cfa0490518@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="c2otz6rwcboba37k"
-Content-Disposition: inline
-In-Reply-To: <CAHh=Yk_j1ZnJ+=XQ_geN1sXMaye=P4jk-vduwj0-1soM7d+wQw@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMx55mcC/3XMTQqDMBAF4KtI1o1MEvJjV71HKSWaWAPVtMZKi
+ 3j3jm7qwsIw8N4M30SS74NP5JhNpPdjSCF2GIpDRqrGdjdPg8NMOHAJnAF99D754ToqyryupQL
+ HhHUE//FSh/dqnS+Ym5CG2H9WelRLu6fgAK1KZ4R2ANy4U0wpf77svYptm+MiCzbqDcDlFtAIW
+ FmIWvhaFJL9AcwPEExtAYMAaBBWm6oUUu4A8zx/AQsTU3krAQAA
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        quic_mrana@quicinc.com, quic_vbadigan@quicinc.com,
+        Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1743157732; l=4598;
+ i=krishna.chundru@oss.qualcomm.com; s=20230907; h=from:subject:message-id;
+ bh=mf5BuP4DbTs8hTdfi6oMr/Lqb1LlM5HErZJeEIbfzrc=;
+ b=a/zjTo3TtQV0vTCF+vmKHjKo2bIsuH+js3eqMkJyGZY3grCN+EeBrwH3mZvVxsSU0A358WCmc
+ LQphtlup3AdC+dz1vha2uSW/tvniTXpxOCRRQJjg6z/DhCf+KL4IHfK
+X-Developer-Key: i=krishna.chundru@oss.qualcomm.com; a=ed25519;
+ pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
+X-Proofpoint-ORIG-GUID: IEGqsotGWMgmVfT3mcjVvIClCaRqVXK8
+X-Authority-Analysis: v=2.4 cv=FrcF/3rq c=1 sm=1 tr=0 ts=67e679eb cx=c_pps a=IZJwPbhc+fLeJZngyXXI0A==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=NEAV23lmAAAA:8 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8
+ a=DYBN0Cp5FbWaLJN7M44A:9 a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: IEGqsotGWMgmVfT3mcjVvIClCaRqVXK8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-28_05,2025-03-27_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxlogscore=999
+ clxscore=1015 suspectscore=0 malwarescore=0 adultscore=0 impostorscore=0
+ mlxscore=0 phishscore=0 priorityscore=1501 lowpriorityscore=0 bulkscore=0
+ classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503280071
 
+PCIe equalization presets are predefined settings used to optimize
+signal integrity by compensating for signal loss and distortion in
+high-speed data transmission.
 
---c2otz6rwcboba37k
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v10 0/3] Change PWM-controlled LED pin active mode and
- algorithm
-MIME-Version: 1.0
+As per PCIe spec 6.0.1 revision section 8.3.3.3 & 4.2.4 for data rates
+of 8.0 GT/s, 16.0 GT/s, 32.0 GT/s, and 64.0 GT/s, there is a way to
+configure lane equalization presets for each lane to enhance the PCIe
+link reliability. Each preset value represents a different combination
+of pre-shoot and de-emphasis values. For each data rate, different
+registers are defined: for 8.0 GT/s, registers are defined in section
+7.7.3.4; for 16.0 GT/s, in section 7.7.5.9, etc. The 8.0 GT/s rate has
+an extra receiver preset hint, requiring 16 bits per lane, while the
+remaining data rates use 8 bits per lane.
 
-On Fri, Mar 28, 2025 at 05:41:37PM +0800, Nylon Chen wrote:
->  * (T) period.
-> > > The `frac` variable is pulse "inactive" time so we need to invert it.
-> >
-> > I'm trying to understand that. You're saying that the PWMCMP register
-> > holds the inactive time. Looking at the logic diagram (Figure 29) of
-> > "SiFive FU740-C000 Manual v1p6" that is because pwms is feed into the
-> > comparator after going through that XNOR where the lower input is always
-> > 0 (as pwmcmpXcenter is always 0) and so effectively counts backwards,
-> > right?
-> > In that case the sentence "The output of each comparator is high
-> > whenever the value of pwms is greater than or equal to the corresponding
-> > pwmcmpX." from the description of the Compare Registers is wrong.
-> >
-> Hi Uwe, I've contacted the spec's author, and he is willing to correct
-> the spec-related error.
->=20
-> Based on your suggestions, I think we have two approaches
-> 1. First add comments explaining where the spec and implementation
-> don't match, then after the spec is corrected, submit another patch to
-> remove the comments
-> 2. No need to add this error explanation part, because the spec will
-> be corrected later.
->=20
-> I don't have a preference, so I wanted to check with you - do you lean
-> more toward option 1 or option 2
+Based on the number of lanes and the supported data rate, read the
+device tree property and stores in the presets structure.
 
-I would go for 1, mentioning the version of the broken documenatation
-and the expectation that this will be fixed in later revisions. So there
-is no confusion when the documenatation is fixed but the comments not
-removed yet.
+Based upon the lane width and supported data rate update lane
+equalization registers.
 
-Best regards
-Uwe
+This patch depends on the this dt binding pull request which got recently
+merged: https://github.com/devicetree-org/dt-schema/pull/146
 
---c2otz6rwcboba37k
-Content-Type: application/pgp-signature; name="signature.asc"
+Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+---
+Changes in v9:
+- Add support for data rates 32 GT/s & 64 GT/s in dwc driver & macros
+  for those registers (mani).
+- update the print statements (mani).
+- Link to v8: https://lore.kernel.org/r/20250316-preset_v6-v8-0-0703a78cb355@oss.qualcomm.com
 
------BEGIN PGP SIGNATURE-----
+Changes in v8:
+- Couple of nits by (bjorn & mani)
+- Add EQ_PRESET_8GTS by (mani).
+- Remove the logic not to update the DWC registers if the num_lanes is
+  not equal to maximum lanes (mani)
+- Link to v7: https://lore.kernel.org/r/20250225-preset_v6-v7-0-a593f3ef3951@oss.qualcomm.com
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmfmeZEACgkQj4D7WH0S
-/k44egf+LuxtxM7lTyagceD7gOIIrg8b15gWwsEr7jfLegP4q6GIa2Y25I+zqTqA
-AdjCfRboH1x1fp8tD2TIsb/fE4lZa0ywNQSCr3UVyW3CUSrjGCDxB0NuqxI5oaGb
-8mP+9Doa3A4UgYviPaeBxrK5pN5yPOJwigwyPzADtwMi/u18bn38sRDlGmRfQAbp
-AzzpywbZHJIhcBXCDM6j5bhsQD0jWiQM7/YBkHF1Ftiwx87wNmcOJGR8o9C0LKDG
-xfad+UWIz0nVJiGXxnFyeG6+quS7uUglSv0mvtLseWlh7pQ17MLVQkmnRILaESYy
-Ginzw97MvNyFjEns8lQWRr/yidY+rQ==
-=uVv6
------END PGP SIGNATURE-----
+Changes in v7:
+- Update the 16bit array in the array (mani & konrad)
+- Update the couple of nits (comments, error log format etc) (mani)
+- remove !num_lanes check as this is not needed with this series (mani)
+- Add warning prints if the data rate is not supported and if there is
+  no devicetree property for the data rate (mani).
+- Link to v6: https://lore.kernel.org/r/20250210-preset_v6-v6-0-cbd837d0028d@oss.qualcomm.com
 
---c2otz6rwcboba37k--
+Changes in v6:
+- update the dt properties to match the lane width ( mani & konard)
+- move everything to helper function and let the helper function
+  determine reg size and offset (mani)
+- update the function header (mani)
+- move the num_lanes check to the main function (mani)
+- Link to v5: https://lore.kernel.org/linux-kernel/20250128-preset_v2-v5-0-4d230d956f8c@oss.qualcomm.com/
+
+Changes in v5:
+- Instead of using of_property_present use return value of
+  of_property_read_u8_array to know about property is present or not and
+  add a macro for reserved value(Konrad).
+- Link to v4: https://lore.kernel.org/r/20250124-preset_v2-v4-0-0b512cad08e1@oss.qualcomm.com
+
+Changes in v4:
+- use static arrays for storing preset values and use default value 0xff
+  to indicate the property is not present (Dimitry & konrad).
+- Link to v3: https://lore.kernel.org/r/20241223-preset_v2-v3-0-a339f475caf5@oss.qualcomm.com
+
+Changes in v3:
+- In previous series a wrong patch was attached, correct it
+- Link to v2: https://lore.kernel.org/r/20241212-preset_v2-v2-0-210430fbcd8a@oss.qualcomm.com
+
+Changes in v2:
+- Fix the kernel test robot error
+- As suggested by konrad use for loop and read "eq-presets-%ugts", (8 << i)
+- Link to v1: https://lore.kernel.org/r/20241116-presets-v1-0-878a837a4fee@quicinc.com
+
+---
+Krishna Chaitanya Chundru (5):
+      arm64: dts: qcom: x1e80100: Add PCIe lane equalization preset properties
+      PCI: of: Add of_pci_get_equalization_presets() API
+      PCI: dwc: Update pci->num_lanes to maximum supported link width
+      PCI: Add lane equalization register offsets
+      PCI: dwc: Add support for configuring lane equalization presets
+
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi            | 11 ++++
+ drivers/pci/controller/dwc/pcie-designware-host.c | 79 +++++++++++++++++++++++
+ drivers/pci/controller/dwc/pcie-designware.c      |  8 +++
+ drivers/pci/controller/dwc/pcie-designware.h      |  4 ++
+ drivers/pci/of.c                                  | 44 +++++++++++++
+ drivers/pci/pci.h                                 | 32 ++++++++-
+ include/uapi/linux/pci_regs.h                     | 12 +++-
+ 7 files changed, 188 insertions(+), 2 deletions(-)
+---
+base-commit: 3175967ecb3266d0ad7d2ca7ccceaf15fa2f15e2
+change-id: 20250210-preset_v6-1e7f560d13ad
+
+Best regards,
+-- 
+Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+
 
