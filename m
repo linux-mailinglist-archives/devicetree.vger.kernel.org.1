@@ -1,243 +1,188 @@
-Return-Path: <devicetree+bounces-161471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5261FA74471
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 08:43:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77292A74482
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 08:45:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5FC8C189FFB9
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 07:43:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 440A81B607E8
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 07:44:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D95E211A20;
-	Fri, 28 Mar 2025 07:43:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42C45212B0D;
+	Fri, 28 Mar 2025 07:44:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="SamfyIl/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oKSqu4/E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D329F21146D
-	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 07:43:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2866D211A31
+	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 07:44:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743147821; cv=none; b=AHH4ayDlzq31AeuxN9bRXys5vwficLh3xspWV88xUGgRUS/VUTTawvr5Yeq+ZJIDBwSd2/Kl9HMmyG+kpS5+eC7fbfCmXdGL3pOZUmq4YgzsX3rf74eNRu2x/KCcL1nmulESeU2fSTsSFvb9ZXGwl2cA5d7ZyLgpCx2ot68g41c=
+	t=1743147847; cv=none; b=DIwp8SJ0roPm+0OTe+y2A9hn2MadHHDGCOJGkS8dR8n2jk9h0KuYvVXWz6cf58krBTqjmKuNVl96Q42kVylERjNFYOgcZKisnmYFuw5Amt3v+2IGDx/d4WL0m2OYXRlxMEj+oQz5bfZ5uONzXlg2T/v1gP9f/rAh4P1BweFw1dk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743147821; c=relaxed/simple;
-	bh=GUwHGHtcekuJHk1xhCjyFJJsexDTEJVvMOtVROHgMUg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VTGDn8M6uiTYoDl5yGqukG+xLKs9kVASCdfl3PPwArI3WJrJuiqLK6mGYo3LSIqUZL7RRmgKNnXaZopm8FkeaYRBKKWJYkjY2pO7Hgbn2zeK79NifwyEe6IBWYC1O4hg1XTvcdaXwQzbHL7CRjE6tED9XayigxKDzxalhfk/eRo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=SamfyIl/; arc=none smtp.client-ip=209.85.216.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-301493f461eso2265503a91.3
-        for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 00:43:39 -0700 (PDT)
+	s=arc-20240116; t=1743147847; c=relaxed/simple;
+	bh=bQNAOLncjZ55StGnNbbul6w593t1Q3Ii5iuZ14D5Tzw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=UhU/q8liw46ROq6gcjGXQ6U9v49OJQz/PdE4/xU3H/p1W6VOZvry65+R6oiW+DMj9Au0PoVrLHO+egJZwnDl0dgX9vfNNWDZEH/flBrQ9IQEAdOpeit2VRYX/A6RykrJ0E8ncavsRD+baLtaOCrbJyP09M3LMTOUd9DxvVI935k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oKSqu4/E; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-54af20849adso1800326e87.1
+        for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 00:44:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1743147819; x=1743752619; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EhPsI/ZEvgNXitJgR9ckQ3y8+qZ9nTwox9jyo4rmDzU=;
-        b=SamfyIl/T1QsiyCwCTcn2AxfXxPBDJcVehgo7JvRz2QXvultucq5fQAm2kRS9zEA44
-         yQ1iYpuFYcHo+8BbBYoxuhXzkViHLZ8rjmitzuY+yS8USvZ5nsGn0tv1hywYVtC96eMl
-         64/df5pRZcfcvoSt7j6aaSQCMVzGQngL0C9y/zHQ1ZveGYaxCXGaiikkAIf2RaSpQfnD
-         uSnmHpNnIehG+H5USYAnez9i8LUr9r6hJT+7poEPNAW9dh2/yE9SwwEXztL+ldlBl2XG
-         FHAXjPf4OEO60qKhgwRB0vgKyjB+xlaXiInc+1nyet3QEmT6OIUpa9m8E+g3o4JGMBUL
-         OC0g==
+        d=linaro.org; s=google; t=1743147843; x=1743752643; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=F8x/z/Nkqrr7H/Lu9hfS6HH6GDSoLC2Q3m41soDjtO8=;
+        b=oKSqu4/EtFnKHXtodJnTVBsxJd1H4NT5MLESrtFU14jgXZQ5yBGNqaxcRAGqlvC3/d
+         ReHzaheYAh1qKgj9wsAJwEHSOPq8OHjUPXhS/hnTjQUZoB+X7FDzB5ksR5qc3ywObcNb
+         dX6MEebxMC5q+vyyneqr+wwlscTCqI7psYCiHySSII7r+YDrE/nC2YP2Z3vhIQkhj1dg
+         QFzvuilafj7TZ2Oa6AbHuiKNQkiq0sb+SxUOnjhoD4pSGR1NKN5JGEaMhsn4BVXYFMcb
+         0k/bOcHBI54k2e4UKe62rLquFaaFTvK3tqSK321+4RdSkkoZNJ8697YIt3sLi6Ua6t2G
+         ScAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743147819; x=1743752619;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EhPsI/ZEvgNXitJgR9ckQ3y8+qZ9nTwox9jyo4rmDzU=;
-        b=IViYQghY6TK8xBkGdz9+k4wJawGQR+ndVYNmfol92jreRA188SnhJiwoXbXYBHfn1t
-         d0T+cTeXMG24mWPUMeHLwAC0KLW7INljlRzH1n170UJa/rR+Ig/+D5eshVgF4Zqrl+qU
-         PbN9zgV69XdKi5LW7nYmEBSl2NStO/xdjX8EyqaSMGWpOU6qai2WZIJKQp/r9rDSLEWO
-         CHjUF83fJvb6C2P8sX950ZQxvWhQbxywrqJNXVJHkzHCXHaOSCpv09tCCNpi1FlzI5F2
-         UbYpMkEy3jPqbH+rseefKUZL/pIRHBHqfbqAIpKzSBsSAjQrQuu8PZu4TmvrFsbJA4nF
-         CwKA==
-X-Forwarded-Encrypted: i=1; AJvYcCWOYkSJnbPwiFUpHJRyTP+pfCmhgUFM8K5wmY/yI5XoBQYYpFHQNfILyZfqmiNWykGPjq8MJ+DIJVRd@vger.kernel.org
-X-Gm-Message-State: AOJu0YyXBgM5PawOI+pDmG9c9UDZEJljc6KiO7CnOYcRWaq2KmyY9OVj
-	+DFIcbsXXe0ONB/Lc9bbO5K+UMz6sTT3GmmRTk/OKg/Ys+9S8cigtbKOZjnH5WuheWG0bd1RH+p
-	VYlz2XIIXyM0GXCP22rWRu0SSHeUg6Q4JbwK3jckSy7d04su/n0ClnnA=
-X-Gm-Gg: ASbGnctokiC4Hm6IkeR5KZi1TUnMaREI+/LcOTK8/otoIHK9EjZrmZrucrdGjFIopv3
-	L7kKGpLU1Vhd7QBOCELPqo/UIywlLz0lUOrApXei6d9vdIFNKJcs72hnrG/85Eynw8n+J4lrT8z
-	COwha+1m3xRHUBkxzaQuqCa/pD7D92DBjD/h/0CurwK4bVCQ1PcHDuze+U
-X-Google-Smtp-Source: AGHT+IE/m0PqM3Q/R1MJGOYp2CNoRyCUvk7Z2WplHUYzJmL6YLxuW3IrkCSrOJ4naDkFdoQXHdd6i6W39PZ+itf3HRs=
-X-Received: by 2002:a17:90b:1f90:b0:2ff:5357:1c7f with SMTP id
- 98e67ed59e1d1-303a906c301mr10597175a91.30.1743147818760; Fri, 28 Mar 2025
- 00:43:38 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1743147843; x=1743752643;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=F8x/z/Nkqrr7H/Lu9hfS6HH6GDSoLC2Q3m41soDjtO8=;
+        b=L9gxkgWF8TBTO00YplIYu6Ku0dG7+pyakb8SJGzT+Bc60JMFTkhrt8pCwWmG1nSXcY
+         DWjHM7gZilo8/v4d5bpf8iZ2iWDZj7+Z4NG/OpZMJtXFsoyDqzY86rNQbX+LIHGROvTU
+         G6GANfREUxi6fteaP/X8rkvKtQOvxykmwvI/oOr/xEVflonsIqgFZX8TtkMfvbGy3TJi
+         TaI9bgtT4299qfVaUBzMI5xDBvIbWBBr3nix73MXl8R8lLdjBVaLA72DJYsPIlYbRB9q
+         0PIm/U79vlf6zsEDHM4MJbuuYpp7D08umsuV7kjJhxHZgiZflPqDwDruvEEPbOjroUZe
+         e5Lg==
+X-Gm-Message-State: AOJu0Yy0B5xVrGNYL6cXBdjc6o3Up6CrYn782TqIlgzYii5h6YsDQtMV
+	cII0pl6vvs1lxgwP3Ad7HA04Kfcss+OOUrO2/cdQtQ++LqwJtJgLejY6fs5TmGk=
+X-Gm-Gg: ASbGncsQuhjY52xYxcwCr9wP4Id9P7RKAoUl1rE61Ry/f2ZH0g5WsIJKCVcubeIZZQ7
+	i3oX8SgLqndHN0PYe876wJp9qaGdMM/p7ODunsjn/DO1ewomaSgdu6m7hJQ+4vI6deEl4cstaDP
+	L/wy0jPHhh54R2CkKkBAVEbYFs4m7ZmgcPuABlhVjGsPNCZd+oWTKYJEousgoyHHwIvbj48y1T+
+	LJTpo8SJLVFc8sblceGzCfCj7qPZrJtRvGOcmNmolCyjLPJ+XSTM41weaw0RsVOtiyxNTe9UsxN
+	l7njnfrceWDfNfD8r2qZd3IRsJr36gTYmhoOQnnRkWkdXebMD7NiDic=
+X-Google-Smtp-Source: AGHT+IGwOpwq5nTctC/xlT0Ki4waUjHwgO55lfPawCG5kxZPMW8PL2t6IaqM0EloVwWDIeWXGrpXDw==
+X-Received: by 2002:ac2:51c7:0:b0:549:9813:3e6b with SMTP id 2adb3069b0e04-54b0ad08976mr814131e87.0.1743147843127;
+        Fri, 28 Mar 2025 00:44:03 -0700 (PDT)
+Received: from [192.168.1.140] ([85.235.12.238])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54b094bb32esm215589e87.26.2025.03.28.00.44.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Mar 2025 00:44:02 -0700 (PDT)
+From: Linus Walleij <linus.walleij@linaro.org>
+Subject: [PATCH 00/12] ARM: bcm: Add some BCMBCA peripherals
+Date: Fri, 28 Mar 2025 08:43:50 +0100
+Message-Id: <20250328-bcmbca-peripherals-arm-v1-0-e4e515dc9b8c@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250319005141.312805-1-quic_wcheng@quicinc.com> <20250319005141.312805-4-quic_wcheng@quicinc.com>
-In-Reply-To: <20250319005141.312805-4-quic_wcheng@quicinc.com>
-From: Puma Hsu <pumahsu@google.com>
-Date: Fri, 28 Mar 2025 15:43:00 +0800
-X-Gm-Features: AQ5f1JoscHqcjKIzzp3PhAhHjK1iWgRRVM5T75yBZmXckMY8JRIwcMocaWatiQI
-Message-ID: <CAGCq0LZBDa9H6wQhvmM3twAJwM_z_XWEy=-N9mp=HA4e+9Ee0g@mail.gmail.com>
-Subject: Re: [PATCH v36 03/31] usb: host: xhci-mem: Allow for interrupter
- clients to choose specific index
-To: Wesley Cheng <quic_wcheng@quicinc.com>
-Cc: srinivas.kandagatla@linaro.org, mathias.nyman@intel.com, perex@perex.cz, 
-	conor+dt@kernel.org, dmitry.torokhov@gmail.com, corbet@lwn.net, 
-	broonie@kernel.org, lgirdwood@gmail.com, krzk+dt@kernel.org, 
-	pierre-louis.bossart@linux.intel.com, Thinh.Nguyen@synopsys.com, 
-	tiwai@suse.com, robh@kernel.org, gregkh@linuxfoundation.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-sound@vger.kernel.org, linux-input@vger.kernel.org, 
-	linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-doc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADdT5mcC/x3MSwqAMAwA0atI1gZqigpeRVy0NWrAT0lBhOLdL
+ S5n8SZDYhVOMFQZlG9Jcp0lmrqCsLlzZZS5NJCh1ljq0YfDB4exsLixuj2h0wPnxduGTEu2s1B
+ wVF7k+cfj9L4fFwvIjGgAAAA=
+X-Change-ID: 20250327-bcmbca-peripherals-arm-dfb312052363
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ William Zhang <william.zhang@broadcom.com>, 
+ Anand Gore <anand.gore@broadcom.com>, 
+ Kursad Oney <kursad.oney@broadcom.com>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Olivia Mackall <olivia@selenic.com>, Ray Jui <rjui@broadcom.com>, 
+ Scott Branden <sbranden@broadcom.com>, 
+ Florian Fainelli <f.fainelli@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-crypto@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>
+X-Mailer: b4 0.14.2
 
-On Wed, Mar 19, 2025 at 8:59=E2=80=AFAM Wesley Cheng <quic_wcheng@quicinc.c=
-om> wrote:
->
-> Some clients may operate only on a specific XHCI interrupter instance.
-> Allow for the associated class driver to request for the interrupter that
-> it requires.
->
-> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+This adds a bunch peripherals to the Broadcom BRCMBCA
+SoC:s that I happened to find documentation for in some
+vendor header files.
 
-Tested-by: Puma Hsu <pumahsu@google.com>
+It started when I added a bunch of peripherals for the
+BCM6846, and this included really helpful peripherals
+such as the PL081 DMA, for which I think the most common
+usecase is to be used as a memcpy engine to offload
+transfer of blocks from NAND flash to/from the NAND
+flash controller (at least this is how the STMicro
+FSMC controller was using it).
 
-> ---
->  drivers/usb/host/xhci-mem.c       | 24 ++++++++++++++----------
->  drivers/usb/host/xhci-sideband.c  |  5 +++--
->  drivers/usb/host/xhci.h           |  2 +-
->  include/linux/usb/xhci-sideband.h |  2 +-
->  4 files changed, 19 insertions(+), 14 deletions(-)
->
-> diff --git a/drivers/usb/host/xhci-mem.c b/drivers/usb/host/xhci-mem.c
-> index daea0f76e844..ed36df46b140 100644
-> --- a/drivers/usb/host/xhci-mem.c
-> +++ b/drivers/usb/host/xhci-mem.c
-> @@ -2331,14 +2331,15 @@ xhci_add_interrupter(struct xhci_hcd *xhci, struc=
-t xhci_interrupter *ir,
->
->  struct xhci_interrupter *
->  xhci_create_secondary_interrupter(struct usb_hcd *hcd, unsigned int segs=
-,
-> -                                 u32 imod_interval)
-> +                                 u32 imod_interval, unsigned int intr_nu=
-m)
->  {
->         struct xhci_hcd *xhci =3D hcd_to_xhci(hcd);
->         struct xhci_interrupter *ir;
->         unsigned int i;
->         int err =3D -ENOSPC;
->
-> -       if (!xhci->interrupters || xhci->max_interrupters <=3D 1)
-> +       if (!xhci->interrupters || xhci->max_interrupters <=3D 1 ||
-> +           intr_num >=3D xhci->max_interrupters)
->                 return NULL;
->
->         ir =3D xhci_alloc_interrupter(xhci, segs, GFP_KERNEL);
-> @@ -2346,15 +2347,18 @@ xhci_create_secondary_interrupter(struct usb_hcd =
-*hcd, unsigned int segs,
->                 return NULL;
->
->         spin_lock_irq(&xhci->lock);
-> -
-> -       /* Find available secondary interrupter, interrupter 0 is reserve=
-d for primary */
-> -       for (i =3D 1; i < xhci->max_interrupters; i++) {
-> -               if (xhci->interrupters[i] =3D=3D NULL) {
-> -                       err =3D xhci_add_interrupter(xhci, ir, i);
-> -                       break;
-> +       if (!intr_num) {
-> +               /* Find available secondary interrupter, interrupter 0 is=
- reserved for primary */
-> +               for (i =3D 1; i < xhci->max_interrupters; i++) {
-> +                       if (!xhci->interrupters[i]) {
-> +                               err =3D xhci_add_interrupter(xhci, ir, i)=
-;
-> +                               break;
-> +                       }
->                 }
-> +       } else {
-> +               if (!xhci->interrupters[intr_num])
-> +                       err =3D xhci_add_interrupter(xhci, ir, intr_num);
->         }
-> -
->         spin_unlock_irq(&xhci->lock);
->
->         if (err) {
-> @@ -2370,7 +2374,7 @@ xhci_create_secondary_interrupter(struct usb_hcd *h=
-cd, unsigned int segs,
->                           i, imod_interval);
->
->         xhci_dbg(xhci, "Add secondary interrupter %d, max interrupters %d=
-\n",
-> -                i, xhci->max_interrupters);
-> +                ir->intr_num, xhci->max_interrupters);
->
->         return ir;
->  }
-> diff --git a/drivers/usb/host/xhci-sideband.c b/drivers/usb/host/xhci-sid=
-eband.c
-> index 19c58ae60414..742bbc6c2d9b 100644
-> --- a/drivers/usb/host/xhci-sideband.c
-> +++ b/drivers/usb/host/xhci-sideband.c
-> @@ -259,7 +259,7 @@ EXPORT_SYMBOL_GPL(xhci_sideband_get_event_buffer);
->   */
->  int
->  xhci_sideband_create_interrupter(struct xhci_sideband *sb, int num_seg,
-> -                                bool ip_autoclear, u32 imod_interval)
-> +                                bool ip_autoclear, u32 imod_interval, in=
-t intr_num)
->  {
->         int ret =3D 0;
->
-> @@ -273,7 +273,8 @@ xhci_sideband_create_interrupter(struct xhci_sideband=
- *sb, int num_seg,
->         }
->
->         sb->ir =3D xhci_create_secondary_interrupter(xhci_to_hcd(sb->xhci=
-),
-> -                                                  num_seg, imod_interval=
-);
-> +                                                  num_seg, imod_interval=
-,
-> +                                                  intr_num);
->         if (!sb->ir) {
->                 ret =3D -ENOMEM;
->                 goto out;
-> diff --git a/drivers/usb/host/xhci.h b/drivers/usb/host/xhci.h
-> index 3fa8669e3b2d..7eaabe4f6c87 100644
-> --- a/drivers/usb/host/xhci.h
-> +++ b/drivers/usb/host/xhci.h
-> @@ -1853,7 +1853,7 @@ void xhci_free_container_ctx(struct xhci_hcd *xhci,
->                 struct xhci_container_ctx *ctx);
->  struct xhci_interrupter *
->  xhci_create_secondary_interrupter(struct usb_hcd *hcd, unsigned int segs=
-,
-> -                                 u32 imod_interval);
-> +                                 u32 imod_interval, unsigned int intr_nu=
-m);
->  void xhci_remove_secondary_interrupter(struct usb_hcd
->                                        *hcd, struct xhci_interrupter *ir)=
-;
->  void xhci_skip_sec_intr_events(struct xhci_hcd *xhci,
-> diff --git a/include/linux/usb/xhci-sideband.h b/include/linux/usb/xhci-s=
-ideband.h
-> index 4b382af892fa..f8722afb8a2d 100644
-> --- a/include/linux/usb/xhci-sideband.h
-> +++ b/include/linux/usb/xhci-sideband.h
-> @@ -66,7 +66,7 @@ struct sg_table *
->  xhci_sideband_get_event_buffer(struct xhci_sideband *sb);
->  int
->  xhci_sideband_create_interrupter(struct xhci_sideband *sb, int num_seg,
-> -                                bool ip_autoclear, u32 imod_interval);
-> +                                bool ip_autoclear, u32 imod_interval, in=
-t intr_num);
->  void
->  xhci_sideband_remove_interrupter(struct xhci_sideband *sb);
->  int
->
+So I took a sweep and added all the stuff that has
+bindings to:
+
+ARM:
+- BCM6846
+- BCM6855
+- BCM6878
+- BCM63138
+- BCM63148
+- BCM63178
+
+ARM64:
+- BCM4908
+- BCM6856
+- BCM6858
+- BCM63158
+
+There are several "holes" in this SoC list, I simply
+just fixed those that I happened to run into documentation
+for.
+
+Unfortunately while very similar, some IP blocks vary
+slightly in version, the GPIO block is differently
+integrated on different systems, and the interrupt assignments
+are completely different, so it's safest to add these to each
+DTSI individually.
+
+I add the interrupt binding for the RNG block in the
+process as this exists even if Linux isn't using the
+IRQ, and I put the RNG and DMA engines as default-enabled
+because they are not routed to the outside and should
+"just work" so why not.
+
+I did a rogue patch adding some stuff to BCM6756 based
+on guessed but eventually dropped it. If someone has
+docs for this SoC I can add it.
+
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+Linus Walleij (12):
+      ARM: dts: bcm6878: Correct UART0 IRQ number
+      dt-bindings: rng: r200: Add interrupt property
+      ARM: dts: bcm6846: Add interrupt to RNG
+      ARM: dts: bcm6855: Add BCMBCA peripherals
+      ARM: dts: bcm6878: Add BCMBCA peripherals
+      ARM: dts: bcm63138: Add BCMBCA peripherals
+      ARM: dts: bcm63148: Add BCMBCA peripherals
+      ARM: dts: bcm63178: Add BCMBCA peripherals
+      ARM64: dts: bcm4908: Add BCMBCA peripherals
+      ARM64: dts: bcm6856: Add BCMBCA peripherals
+      ARM64: dts: bcm6858: Add BCMBCA peripherals
+      ARM64: dts: bcm63158: Add BCMBCA peripherals
+
+ .../devicetree/bindings/rng/brcm,iproc-rng200.yaml |   6 +
+ arch/arm/boot/dts/broadcom/bcm63138.dtsi           |  79 ++++++++++-
+ arch/arm/boot/dts/broadcom/bcm63148.dtsi           |  64 +++++++++
+ arch/arm/boot/dts/broadcom/bcm63178.dtsi           | 112 +++++++++++++++
+ arch/arm/boot/dts/broadcom/bcm6846.dtsi            |   1 +
+ arch/arm/boot/dts/broadcom/bcm6855.dtsi            | 127 +++++++++++++++++
+ arch/arm/boot/dts/broadcom/bcm6878.dtsi            | 120 ++++++++++++++++-
+ arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi   | 122 ++++++++++++++++-
+ arch/arm64/boot/dts/broadcom/bcmbca/bcm63158.dtsi  | 150 ++++++++++++++++++++-
+ arch/arm64/boot/dts/broadcom/bcmbca/bcm6856.dtsi   | 138 ++++++++++++++++++-
+ arch/arm64/boot/dts/broadcom/bcmbca/bcm6858.dtsi   | 120 ++++++++++++++++-
+ 11 files changed, 1030 insertions(+), 9 deletions(-)
+---
+base-commit: 8359b1e7edc722d4b1be26aa515041a79e4224a3
+change-id: 20250327-bcmbca-peripherals-arm-dfb312052363
+
+Best regards,
+-- 
+Linus Walleij <linus.walleij@linaro.org>
+
 
