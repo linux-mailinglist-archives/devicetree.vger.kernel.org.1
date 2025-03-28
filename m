@@ -1,286 +1,230 @@
-Return-Path: <devicetree+bounces-161716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE168A7512D
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 21:02:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83E12A75195
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 21:44:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5BB14173885
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 20:02:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 314713AFA84
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 20:44:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18A5A1F3BBD;
-	Fri, 28 Mar 2025 20:01:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58C5A1EA7E5;
+	Fri, 28 Mar 2025 20:44:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gc6bTIox"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="X+ceMpwO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 120CF1F09B9;
-	Fri, 28 Mar 2025 20:01:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFB6419DF7D
+	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 20:44:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743192095; cv=none; b=kX7d+veg8+jQx2SCR/dHTwb1g/w4HuEOs8xQMCQr6mTH1qN96+cCF2MIvhAwuRaVdrnSKp7Pzl4sxxHv2SDDc1fYScelYCxfuS1EHuvpj/NG3CPiU6+0Eu4+SLcSj0ZpH6OkTG1j0KYGpfjXXa60o8aDdbAUZf/CK9YVSalwmP0=
+	t=1743194669; cv=none; b=dbrwkTzHpK/3cZs2+NDeytLxYNk0NgIRFqhH8wi0JHii6OANJpgF/0g7yg6VmtQszCOLjYDwxP7B1/MiqHNczF88ouELUEemRvpxu42a4lYerBGUvxnmvYdZvo3nlyr5TrD8Dt99ZEv2Ed99M9hsdJUssPqom/uukHVJw3vap/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743192095; c=relaxed/simple;
-	bh=U+t9Q2ALK7lnJq1xvyNquzDJ6+QGuiYORhdXe+k1nFo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=OcCbzoR9UPSjJHD+HqKlSarSXxixuZ9rCFeCbd7PeHNmq4IBBarK5Y8LHUrr29my28CfSeRgYPloCupPK8zzH/TRtVQa7XQalet6hksqVEPehjPs57uWN8q1R2210SWu0jFm8ApCK2nS7Qxr7LlrJqmPEa+AGfA0ErpwJ8OTJRk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gc6bTIox; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-43690d4605dso17854535e9.0;
-        Fri, 28 Mar 2025 13:01:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743192091; x=1743796891; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=h1fOeglNqBPsySK9Pv3vXlmCbugVsWq/fJq9OAzmtGo=;
-        b=gc6bTIoxmdQ5RvTuEkFAb8/f8FoMeAA+XlA4GuidwLIBHME7FTpbg3To4HHvv4Tb0z
-         kyzQmpJXeOYgmZb2LI/XVo7rhem8D/DB9zxG+L52oGjw3oOsHN3vLNMuzxOZbLZq6Su0
-         gFFcbBwyDt9kZBY3+MjHdrDZ3tIrq3wmh7V6AeIsx2o1zUb+4ukehn/DIeuHxj+lOaaz
-         uGfvPf6Z+OTpIgWlu7s9AZBdtfahkPSrBKILoRD95WKliLzwjFXD16Ia2j7+l1DuEwKX
-         oQxApKLXEP7MiaakjpS2wf9DTdPwXqz9S4Z9uItnGBW8pj2NbEvbsbkSPhD+/qiV9dL1
-         vP6g==
+	s=arc-20240116; t=1743194669; c=relaxed/simple;
+	bh=6xG34knEseWKNz9saWS4s1ZPtAPMmFZrPoV7j2MQ3Rc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RtAkDIjp7n1XpQRTVw9dR/+xkdPhJZk2mrMSe+5eSCiG11sCA9YDxrk2JKbOodco9PSqOLihRIsrodP2HGArBx1kBruKKq98jhYqkMkNs8jLNqfxbO0V1iL5If4SDcCE94771oA8xa+4ahIHbmjrFz0hH72bOoI4OhPbHko84wY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=X+ceMpwO; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52SKcHjb014934
+	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 20:44:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	8yHDGP7/eVuTZLkMLBqQuH/oJ0/g2CL9JnCxVOVSt5s=; b=X+ceMpwOyuhWWY74
+	qkpg++ZtPXA/Vq+8Jn1X1Xq4aYQooljKEkDYjfCpsXWUP+4rvSxx525ZZY1HJUrK
+	kBg58IaC/jQpC0LX/e97zPtHzDAur7rQT/nhxY+C1B2sWKHcW1deQqG5OKjhPjV9
+	P6BLCBNQcqyJlkrtv9fC/+8cOFQYV7x/LP4norMvMKDSQvdhHYmCf/9rPAAHcgwn
+	l2FbmqN37vYwC2S5XzvlUA4FTfwlffmyYI3EMHfbOr0J75Xn+ORldfVjRMXy939X
+	Al2j9q0SFIDI6Y/oq8IvJb/+CphgCEUL9SzsLYN0SwyQNJd9BP4QBnYUDmknPd9b
+	ACl/Kg==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45p2yu00d4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 20:44:25 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6e8fb83e15fso6586356d6.0
+        for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 13:44:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743192091; x=1743796891;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=h1fOeglNqBPsySK9Pv3vXlmCbugVsWq/fJq9OAzmtGo=;
-        b=q/clfP86sgz/dqnQirhb6XBa7deSJ5RK6CRKYEM709mVA3iOAfkIM9mYV2x0YDOYOP
-         RgYrEEJmcqRQKMi1sAdSDnEsjeL7wHK5I+1i6nzak+M4LEbf1vGsSg5cxhRTrbTYNXTQ
-         7PkDnCzYL4zU2WYznj78LHTvstnv5uQo6issGVBCQ3JGdYEMT7vDVem4ZR1BOy0cW7D/
-         ma/Rgh1gOBDvSflfp83kh62MYFnKd017XaFyBEAf91Mm+HlR/qQxGvk9VOyQtNgo3D1o
-         aO/BCVGx4BVM8Ku5Os2b9pLowtln7KAT/Vu0Zzi2wwzuZF/CeEsyZlRLi0Cu67LekNxB
-         +X5A==
-X-Forwarded-Encrypted: i=1; AJvYcCU3QM92kMZWiuOqDUsHYfEAWu0lMAGjkD2Zk3RNB16Xvfd52v257wSwtUKLr3xP2ctIExRSx5j0i0Oq@vger.kernel.org, AJvYcCX5Tli8cy455RSsHt2BYR6HvxlmNtIK3CIWRXV0w2q+tNwp42+KMak3d4FK2w0RFVXolKZyr2mqfR0m7nMs@vger.kernel.org, AJvYcCXfu/Ki0AkW/F25984kKw4gtj5G0NfqEEzTi3Vg17Bc+uztzHkNWSnlwNWt1WAqlqWW2DoIWwU3yKJf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzy5uUalFvW1eldMZLycAXuBH2UW+OuMtRX2W6scLnsgwDxrgfP
-	4vAQLnaSliHM95kGiFrz4Gq5YCZvBFZvS4fFq1cgrabmLHy/g2S7QxvaE94Z
-X-Gm-Gg: ASbGncs1QNYfFJ+jEenwSXDBWAE4ThI2jfYLCxZdWZ3hUHmAYeKDrc7wfMvofPDKE9E
-	K43nD8nXgfPUDZUZWsnI4U11eYyM6uSlvNoVZGWZk+jffIdrXWQbg0YW0HHgyoxVV248AbTIKja
-	OmAs5T0qepJN7u4bvva9BayKyIyh7I050ZesWPMjfDOe67uf7Onh37Zg1Aqx0R8i2UYI2dHVBZs
-	JDtwS1qkkHhSxZmqKCTx3xXoACH5wVofkt9+o3va3yQVj57vGKdbVfhpedJaN6LbuLAzkqUkxIC
-	RgBfYts52STiWvmrOnfs3IPZBvL+/mKdklwfbyZ+8F0l5o+eCMWeiWm4cYEpKJuh3I4=
-X-Google-Smtp-Source: AGHT+IG4w4ACsDcndQ7Upce7oKR1gqjBvl646Cf0+8vYVeyx/0n805sGlP0QgfEMS0tRCN9uqfxV3g==
-X-Received: by 2002:a05:600c:34ce:b0:43d:9d5:474d with SMTP id 5b1f17b1804b1-43dabe23634mr9218175e9.0.1743192091027;
-        Fri, 28 Mar 2025 13:01:31 -0700 (PDT)
-Received: from iku.Home ([2a06:5906:61b:2d00:b400:d08:873:badd])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d8fcceaaasm37930955e9.18.2025.03.28.13.01.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Mar 2025 13:01:29 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 6/6] clk: renesas: r9a09g057: Add clock and reset entries for GBETH0/1
-Date: Fri, 28 Mar 2025 20:01:05 +0000
-Message-ID: <20250328200105.176129-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250328200105.176129-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250328200105.176129-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        d=1e100.net; s=20230601; t=1743194665; x=1743799465;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8yHDGP7/eVuTZLkMLBqQuH/oJ0/g2CL9JnCxVOVSt5s=;
+        b=ibFs6Qj5nBio/1gxZZauwcCyteSyh6JI++3tcSiz620PqY1QJBZl0xVhlIeOW9qR5q
+         5+wTojKTgBvoTyoaCCet9/KfPzIWyLHD8UkjTyjxBcayO4dJVG7M4GF9KLTVyDcSB+Ek
+         2yNon69e20B7XhC8A6rf12j3jA1VzlktXRI3gWh7jawMuv3BapOdoTM1OMbmf474NvSk
+         /9qj2L+edzfq0/NpGnv9/137MGoTmsZ7+ZiIpzwQuBRPQFPFZrAl6L8PrgIpVbKg/xhA
+         Ba5GyVwCjRmjGojuK4NuGukdRTFRm6ZESMIoZWMQhghsY1vAgIiUZoJ61krOV3NnMKaY
+         nuEg==
+X-Forwarded-Encrypted: i=1; AJvYcCUxBqk94hsK0I21STEK3D5kCN9422uB4PfH+mW4WGM3I2XoVNbQvXsO6EK3FvSpcrDsKjLoD/BlsLiu@vger.kernel.org
+X-Gm-Message-State: AOJu0YwAyIQp87NFacRo+ggfGKVESiHpHsKD8pO+2E7uVG8HBIa7QZB2
+	Bdcpwo1VQgVeyrz01ICAGtSL/bZpgUjTx+OWdjSygf/h6IVooDkevGxU9U4Ih9Cj93AAhjXsJNp
+	kNdgi2Vs5k2+hUm+P7fFbdHujFHbSiMPTlmf1ExuzOgPc1RKP/Z7+ItM6sGXM
+X-Gm-Gg: ASbGncsQn+s3o6/8onpc8y78BbIdw+gcmCsSkCOlX/DzCnMf63SJHFDmohKXhX91qLx
+	GS/67j6DvKZdOiwAos1Ja8cA5jOhGUyCvb+tc+UO+/GeKc8V8RdjZRYvm/o7fOX1gphrBvpPFRW
+	o62tdRBLrTi1Z7jKTAQIBdnlMtJ+g5y0WewKfZv8xYvUhhGrF18aLQSt+7CCk5dD5SlAWAk8ljV
+	Ym5DZ4ZM7v8fGpde5yzTRaaH5SgLKqTmdh8DAA0aJg9ydlsIdCulIrxNJ5TMYOOm5knFJ+jItJJ
+	j74TiMxmV/4GA25nEYcZPQ6PlzbBLjtMAz3MeqwHFADDyFCc6+nX0FajSkXmxuYX6oL6PQ==
+X-Received: by 2002:a05:620a:44d0:b0:7c5:ba85:c66 with SMTP id af79cd13be357-7c6862ec401mr31641885a.2.1743194664475;
+        Fri, 28 Mar 2025 13:44:24 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEqujRiP7i0Omvp7do4h3yW4uLO0tTNKX1Nh389QWiCirHaopwa9oCC/P/3oCQfSQ9kZRLu7w==
+X-Received: by 2002:a05:620a:44d0:b0:7c5:ba85:c66 with SMTP id af79cd13be357-7c6862ec401mr31637785a.2.1743194663895;
+        Fri, 28 Mar 2025 13:44:23 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac71961f9fbsm209770266b.111.2025.03.28.13.44.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 28 Mar 2025 13:44:23 -0700 (PDT)
+Message-ID: <71a60727-0dc8-4117-82a5-f9ecae1ce967@oss.qualcomm.com>
+Date: Fri, 28 Mar 2025 21:44:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/7] arm64: dts: qcom: sc7280: Increase config size to
+ 256MB for ECAM feature
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        cros-qcom-dts-watchers@chromium.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        quic_vbadigan@quicinc.com, quic_mrana@quicinc.com,
+        quic_vpernami@quicinc.com, mmareddy@quicinc.com
+References: <20250309-ecam_v4-v5-0-8eff4b59790d@oss.qualcomm.com>
+ <20250309-ecam_v4-v5-1-8eff4b59790d@oss.qualcomm.com>
+ <3332fe69-dddb-439d-884f-2b97845c14e1@oss.qualcomm.com>
+ <0cc247a4-d857-4fb1-8f87-0d52d641eced@oss.qualcomm.com>
+ <h6bnt7ti3yy3welkzqwia7kieunspfqtxf6k46t4j4d5tathls@hra2gbpzazep>
+ <090572fa-7c4c-798d-26e9-39570215b2b7@oss.qualcomm.com>
+ <f44tte5b3hlm7ir6lyp65fnl6ylq4og5wrvllwr47xdvnhqscg@t3tsy3c6jypw>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <f44tte5b3hlm7ir6lyp65fnl6ylq4og5wrvllwr47xdvnhqscg@t3tsy3c6jypw>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=d8r1yQjE c=1 sm=1 tr=0 ts=67e70a29 cx=c_pps a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8 a=j8DWiabEr3BJiYCl9dcA:9 a=QEXdDO2ut3YA:10
+ a=pJ04lnu7RYOZP9TFuWaZ:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: U3TZt0npxnUsbGjGtgJx0f3nMUENVtl6
+X-Proofpoint-ORIG-GUID: U3TZt0npxnUsbGjGtgJx0f3nMUENVtl6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-28_10,2025-03-27_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
+ spamscore=0 phishscore=0 lowpriorityscore=0 mlxscore=0 adultscore=0
+ suspectscore=0 impostorscore=0 malwarescore=0 priorityscore=1501
+ mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503280138
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 3/28/25 4:29 PM, Manivannan Sadhasivam wrote:
+> On Fri, Mar 28, 2025 at 06:24:23PM +0530, Krishna Chaitanya Chundru wrote:
+>>
+>>
+>> On 3/28/2025 5:14 PM, Manivannan Sadhasivam wrote:
+>>> On Wed, Mar 26, 2025 at 06:56:02PM +0100, Konrad Dybcio wrote:
+>>>> On 3/11/25 12:13 PM, Konrad Dybcio wrote:
+>>>>> On 3/9/25 6:45 AM, Krishna Chaitanya Chundru wrote:
+>>>>>> PCIe ECAM(Enhanced Configuration Access Mechanism) feature requires
+>>>>>> maximum of 256MB configuration space.
+>>>>>>
+>>>>>> To enable this feature increase configuration space size to 256MB. If
+>>>>>> the config space is increased, the BAR space needs to be truncated as
+>>>>>> it resides in the same location. To avoid the bar space truncation move
+>>>>>> config space, DBI, ELBI, iATU to upper PCIe region and use lower PCIe
+>>>>>> iregion entirely for BAR region.
+>>>>>>
+>>>>>> This depends on the commit: '10ba0854c5e6 ("PCI: qcom: Disable mirroring
+>>>>>> of DBI and iATU register space in BAR region")'
+>>>>>>
+>>>>>> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+>>>>>> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+>>>>>> ---
+>>>>>
+>>>>> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>>>>
+>>>> I took a second look - why are dbi and config regions overlapping?
+>>>>
+>>>
+>>> Not just DBI, ELBI too.
+>>>
+>>>> I would imagine the latter to be at a certain offset
+>>>>
+>>>
+>>> The problem is that for ECAM, we need config space region to be big enough to
+>>> cover all 256 buses. For that reason Krishna overlapped the config region and
+>>> DBI/ELBI. Initially I also questioned this and somehow convinced that there is
+>>> no other way (no other memory). But looking at the internal documentation now,
+>>> I realized that atleast 512MiB of PCIe space is available for each controller
+>>> instance.
+>>>
+>> DBI is the config space of the root port0,  ecam expects all the config
+>> space is continuous i.e 256MB and this 256MB config space is ioremaped
+>> in ecam driver[1]. This 256 MB should contain the dbi memory too and
+>> elbi always with dbi region we can't move it other locations. We are
+>> keeping overlap region because once ecam driver io remaped all 256MB
+>> including dbi and elbi memory dwc memory can't ioremap the dbi and elbi
+>> region again. That is the reason for having this overlap region.
+>>> So I just quickly tried this series on SA8775p and by moving the config space
+>>> after the iATU region, I was able to have ECAM working without overlapping
+>>> addresses in DT. Here is the change I did:
+>>>
+>> I am sure ecam is not enabled with this below change
+> 
+> ECAM is indeed enabled. But...
+> 
+>> because ecam block
+>> have the address alignment requirement that address should be aligned to
+>> the base address of the range is aligned to a 2(n+20)-byte memory address
+>> boundary from pcie spec 6.0.1, sec 7.2.2 (PCI Express Enhanced
+>> Configuration Access Mechanism (ECAM)), with out that address alignment
+>> ecam will not work since ecam driver gets bus number function number
+>> by shifting the address internally.
+>>
+> 
+> You are right, but the ECAM driver doesn't have a check for the config space
+> address alignment, so it didn't catch it (I will add the check now). But with
+> the unaligned address, endpoint is not getting enumerated (though bridge is
+> enumerated as it lives under root port, so I got misleaded).
+> 
+>> If this is not acceptable we have mimic the ecam driver in dwc driver
+>> which is also not recommended.
+>>
+> 
+> You can still move the config space in the upper region to satisfy alignment.
+> Like,
+> 
+> +                     <0x4 0x00000000 0x0 0xf20>,
+> +                     <0x4 0x00000f20 0x0 0xa8>,
+> +                     <0x4 0x10000000 0x0 0x4000>,
+> +                     <0x4 0x20000000 0x0 0x10000000>,
+> 
+> With this change, ECAM works fine and I can enumerate endpoint on the host. I
+> believe this requires more PCIe space on the SoC. Not sure if SC7280 could
+> support it or not. But IMO, we should enable ECAM for SoCs that satisfy this
+> requirement. This will avoid overlapping and also simplify the code (w.r.t
+> DBI/ELBI).
 
-Add clock and reset entries for GBETH instances. Include core clocks for
-PTP, sourced from PLLETH, and add PLLs, dividers, and static mux clocks
-used as clock sources for the GBETH IP.
+FWIW it seems like most recent SoCs have a <32b space, a _LOWER space which ACPI
+describes as QWordMemory, and another _UPPER space that is way way above them.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- drivers/clk/renesas/r9a09g057-cpg.c | 72 +++++++++++++++++++++++++++++
- drivers/clk/renesas/rzv2h-cpg.h     | 11 +++++
- 2 files changed, 83 insertions(+)
+Not sure about the prefetchability and other nuances of the last region though.
 
-diff --git a/drivers/clk/renesas/r9a09g057-cpg.c b/drivers/clk/renesas/r9a09g057-cpg.c
-index 3c40e36259fe..057bfa0e2a57 100644
---- a/drivers/clk/renesas/r9a09g057-cpg.c
-+++ b/drivers/clk/renesas/r9a09g057-cpg.c
-@@ -29,6 +29,7 @@ enum clk_ids {
- 	CLK_PLLDTY,
- 	CLK_PLLCA55,
- 	CLK_PLLVDO,
-+	CLK_PLLETH,
- 	CLK_PLLGPU,
- 
- 	/* Internal Core Clocks */
-@@ -49,6 +50,14 @@ enum clk_ids {
- 	CLK_PLLVDO_CRU1,
- 	CLK_PLLVDO_CRU2,
- 	CLK_PLLVDO_CRU3,
-+	CLK_PLLETH_DIV_250_FIX,
-+	CLK_PLLETH_DIV_125_FIX,
-+	CLK_CSDIV_PLLETH_GBE0,
-+	CLK_CSDIV_PLLETH_GBE1,
-+	CLK_SMUX2_GBE0_TXCLK,
-+	CLK_SMUX2_GBE0_RXCLK,
-+	CLK_SMUX2_GBE1_TXCLK,
-+	CLK_SMUX2_GBE1_RXCLK,
- 	CLK_PLLGPU_GEAR,
- 
- 	/* Module Clocks */
-@@ -78,6 +87,19 @@ static const struct clk_div_table dtable_2_64[] = {
- 	{0, 0},
- };
- 
-+static const struct clk_div_table dtable_2_100[] = {
-+	{0, 2},
-+	{1, 10},
-+	{2, 100},
-+	{0, 0},
-+};
-+
-+/* Mux clock tables */
-+static const char * const smux2_gbe0_rxclk[] = { ".plleth_gbe0", "et0-rxc-rxclk" };
-+static const char * const smux2_gbe0_txclk[] = { ".plleth_gbe0", "et0-txc-txclk" };
-+static const char * const smux2_gbe1_rxclk[] = { ".plleth_gbe1", "et1-rxc-rxclk" };
-+static const char * const smux2_gbe1_txclk[] = { ".plleth_gbe1", "et1-txc-txclk" };
-+
- static const struct cpg_core_clk r9a09g057_core_clks[] __initconst = {
- 	/* External Clock Inputs */
- 	DEF_INPUT("audio_extal", CLK_AUDIO_EXTAL),
-@@ -90,6 +112,7 @@ static const struct cpg_core_clk r9a09g057_core_clks[] __initconst = {
- 	DEF_FIXED(".plldty", CLK_PLLDTY, CLK_QEXTAL, 200, 3),
- 	DEF_PLL(".pllca55", CLK_PLLCA55, CLK_QEXTAL, PLLCA55),
- 	DEF_FIXED(".pllvdo", CLK_PLLVDO, CLK_QEXTAL, 105, 2),
-+	DEF_FIXED(".plleth", CLK_PLLETH, CLK_QEXTAL, 125, 3),
- 	DEF_PLL(".pllgpu", CLK_PLLGPU, CLK_QEXTAL, PLLGPU),
- 
- 	/* Internal Core Clocks */
-@@ -115,6 +138,17 @@ static const struct cpg_core_clk r9a09g057_core_clks[] __initconst = {
- 	DEF_DDIV(".pllvdo_cru2", CLK_PLLVDO_CRU2, CLK_PLLVDO, CDDIV4_DIVCTL1, dtable_2_4),
- 	DEF_DDIV(".pllvdo_cru3", CLK_PLLVDO_CRU3, CLK_PLLVDO, CDDIV4_DIVCTL2, dtable_2_4),
- 
-+	DEF_FIXED(".plleth_250_fix", CLK_PLLETH_DIV_250_FIX, CLK_PLLETH, 1, 4),
-+	DEF_FIXED(".plleth_125_fix", CLK_PLLETH_DIV_125_FIX, CLK_PLLETH_DIV_250_FIX, 1, 2),
-+	DEF_CSDIV(".plleth_gbe0", CLK_CSDIV_PLLETH_GBE0,
-+		  CLK_PLLETH_DIV_250_FIX, CSDIV0_DIVCTL0, dtable_2_100),
-+	DEF_CSDIV(".plleth_gbe1", CLK_CSDIV_PLLETH_GBE1,
-+		  CLK_PLLETH_DIV_250_FIX, CSDIV0_DIVCTL1, dtable_2_100),
-+	DEF_SMUX(".smux2_gbe0_txclk", CLK_SMUX2_GBE0_TXCLK, SSEL0_SELCTL2, smux2_gbe0_txclk),
-+	DEF_SMUX(".smux2_gbe0_rxclk", CLK_SMUX2_GBE0_RXCLK, SSEL0_SELCTL3, smux2_gbe0_rxclk),
-+	DEF_SMUX(".smux2_gbe1_txclk", CLK_SMUX2_GBE1_TXCLK, SSEL1_SELCTL0, smux2_gbe1_txclk),
-+	DEF_SMUX(".smux2_gbe1_rxclk", CLK_SMUX2_GBE1_RXCLK, SSEL1_SELCTL1, smux2_gbe1_rxclk),
-+
- 	DEF_DDIV(".pllgpu_gear", CLK_PLLGPU_GEAR, CLK_PLLGPU, CDDIV3_DIVCTL1, dtable_2_64),
- 
- 	/* Core Clocks */
-@@ -130,6 +164,10 @@ static const struct cpg_core_clk r9a09g057_core_clks[] __initconst = {
- 	DEF_FIXED("iotop_0_shclk", R9A09G057_IOTOP_0_SHCLK, CLK_PLLCM33_DIV16, 1, 1),
- 	DEF_FIXED("usb2_0_clk_core0", R9A09G057_USB2_0_CLK_CORE0, CLK_QEXTAL, 1, 1),
- 	DEF_FIXED("usb2_0_clk_core1", R9A09G057_USB2_0_CLK_CORE1, CLK_QEXTAL, 1, 1),
-+	DEF_FIXED("gbeth_0_clk_ptp_ref_i", R9A09G057_GBETH_0_CLK_PTP_REF_I,
-+		  CLK_PLLETH_DIV_125_FIX, 1, 1),
-+	DEF_FIXED("gbeth_1_clk_ptp_ref_i", R9A09G057_GBETH_1_CLK_PTP_REF_I,
-+		  CLK_PLLETH_DIV_125_FIX, 1, 1),
- };
- 
- static const struct rzv2h_mod_clk r9a09g057_mod_clks[] __initconst = {
-@@ -233,6 +271,38 @@ static const struct rzv2h_mod_clk r9a09g057_mod_clks[] __initconst = {
- 						BUS_MSTOP(7, BIT(10))),
- 	DEF_MOD("usb2_0_pclk_usbtst1",		CLK_PLLDTY_ACPU_DIV4, 11, 7, 5, 23,
- 						BUS_MSTOP(7, BIT(11))),
-+	DEF_MOD_EXTERNAL("gbeth_0_clk_tx_i",	CLK_SMUX2_GBE0_TXCLK, 11, 8, 5, 24,
-+						BUS_MSTOP(8, BIT(5)),
-+						0x300, 8, 1),
-+	DEF_MOD_EXTERNAL("gbeth_0_clk_rx_i",	CLK_SMUX2_GBE0_RXCLK, 11, 9, 5, 25,
-+						BUS_MSTOP(8, BIT(5)),
-+						0x300, 12, 1),
-+	DEF_MOD_EXTERNAL("gbeth_0_clk_tx_180_i", CLK_SMUX2_GBE0_TXCLK, 11, 10, 5, 26,
-+						BUS_MSTOP(8, BIT(5)),
-+						0x300, 8, 1),
-+	DEF_MOD_EXTERNAL("gbeth_0_clk_rx_180_i", CLK_SMUX2_GBE0_RXCLK, 11, 11, 5, 27,
-+						BUS_MSTOP(8, BIT(5)),
-+						0x300, 12, 1),
-+	DEF_MOD("gbeth_0_aclk_csr_i",		CLK_PLLDTY_DIV8, 11, 12, 5, 28,
-+						BUS_MSTOP(8, BIT(5))),
-+	DEF_MOD("gbeth_0_aclk_i",		CLK_PLLDTY_DIV8, 11, 13, 5, 29,
-+						BUS_MSTOP(8, BIT(5))),
-+	DEF_MOD_EXTERNAL("gbeth_1_clk_tx_i",	CLK_SMUX2_GBE1_TXCLK, 11, 14, 5, 30,
-+						BUS_MSTOP(8, BIT(6)),
-+						0x304, 8, 1),
-+	DEF_MOD_EXTERNAL("gbeth_1_clk_rx_i",	CLK_SMUX2_GBE1_RXCLK, 11, 15, 5, 31,
-+						BUS_MSTOP(8, BIT(6)),
-+						0x304, 12, 1),
-+	DEF_MOD_EXTERNAL("gbeth_1_clk_tx_180_i", CLK_SMUX2_GBE1_TXCLK, 12, 0, 6, 0,
-+						BUS_MSTOP(8, BIT(6)),
-+						0x304, 8, 1),
-+	DEF_MOD_EXTERNAL("gbeth_1_clk_rx_180_i", CLK_SMUX2_GBE1_RXCLK, 12, 1, 6, 1,
-+						BUS_MSTOP(8, BIT(6)),
-+						0x304, 12, 1),
-+	DEF_MOD("gbeth_1_aclk_csr_i",		CLK_PLLDTY_DIV8, 12, 2, 6, 2,
-+						BUS_MSTOP(8, BIT(6))),
-+	DEF_MOD("gbeth_1_aclk_i",		CLK_PLLDTY_DIV8, 12, 3, 6, 3,
-+						BUS_MSTOP(8, BIT(6))),
- 	DEF_MOD("cru_0_aclk",			CLK_PLLDTY_ACPU_DIV2, 13, 2, 6, 18,
- 						BUS_MSTOP(9, BIT(4))),
- 	DEF_MOD_NO_PM("cru_0_vclk",		CLK_PLLVDO_CRU0, 13, 3, 6, 19,
-@@ -304,6 +374,8 @@ static const struct rzv2h_reset r9a09g057_resets[] __initconst = {
- 	DEF_RST(10, 13, 4, 30),		/* USB2_0_U2H1_HRESETN */
- 	DEF_RST(10, 14, 4, 31),		/* USB2_0_U2P_EXL_SYSRST */
- 	DEF_RST(10, 15, 5, 0),		/* USB2_0_PRESETN */
-+	DEF_RST(11, 0, 5, 1),		/* GBETH_0_ARESETN_I */
-+	DEF_RST(11, 1, 5, 2),		/* GBETH_1_ARESETN_I */
- 	DEF_RST(12, 5, 5, 22),		/* CRU_0_PRESETN */
- 	DEF_RST(12, 6, 5, 23),		/* CRU_0_ARESETN */
- 	DEF_RST(12, 7, 5, 24),		/* CRU_0_S_RESETN */
-diff --git a/drivers/clk/renesas/rzv2h-cpg.h b/drivers/clk/renesas/rzv2h-cpg.h
-index 0277871e298b..2250436c4c24 100644
---- a/drivers/clk/renesas/rzv2h-cpg.h
-+++ b/drivers/clk/renesas/rzv2h-cpg.h
-@@ -81,10 +81,13 @@ struct smuxed {
- 		.width = _width, \
- 	})
- 
-+#define CPG_SSEL0		(0x300)
-+#define CPG_SSEL1		(0x304)
- #define CPG_CDDIV0		(0x400)
- #define CPG_CDDIV1		(0x404)
- #define CPG_CDDIV3		(0x40C)
- #define CPG_CDDIV4		(0x410)
-+#define CPG_CSDIV0		(0x500)
- 
- #define CDDIV0_DIVCTL1	DDIV_PACK(CPG_CDDIV0, 4, 3, 1)
- #define CDDIV0_DIVCTL2	DDIV_PACK(CPG_CDDIV0, 8, 3, 2)
-@@ -99,6 +102,14 @@ struct smuxed {
- #define CDDIV4_DIVCTL1	DDIV_PACK(CPG_CDDIV4, 4, 1, 17)
- #define CDDIV4_DIVCTL2	DDIV_PACK(CPG_CDDIV4, 8, 1, 18)
- 
-+#define CSDIV0_DIVCTL0	DDIV_PACK(CPG_CSDIV0, 0, 2, CSDIV_NO_MON)
-+#define CSDIV0_DIVCTL1	DDIV_PACK(CPG_CSDIV0, 4, 2, CSDIV_NO_MON)
-+
-+#define SSEL0_SELCTL2	SMUX_PACK(CPG_SSEL0, 8, 1)
-+#define SSEL0_SELCTL3	SMUX_PACK(CPG_SSEL0, 12, 1)
-+#define SSEL1_SELCTL0	SMUX_PACK(CPG_SSEL1, 0, 1)
-+#define SSEL1_SELCTL1	SMUX_PACK(CPG_SSEL1, 4, 1)
-+
- #define BUS_MSTOP_IDX_MASK	GENMASK(31, 16)
- #define BUS_MSTOP_BITS_MASK	GENMASK(15, 0)
- #define BUS_MSTOP(idx, mask)	(FIELD_PREP_CONST(BUS_MSTOP_IDX_MASK, (idx)) | \
--- 
-2.49.0
-
+Konrad
 
