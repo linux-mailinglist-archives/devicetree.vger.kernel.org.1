@@ -1,231 +1,233 @@
-Return-Path: <devicetree+bounces-161455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 369E1A74333
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 06:17:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF7C2A74347
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 06:25:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5AF6E17AFAC
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 05:17:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D4EBD17B001
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 05:24:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA87C1891A8;
-	Fri, 28 Mar 2025 05:17:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FE3E20FAAC;
+	Fri, 28 Mar 2025 05:24:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="M+QPkzpt"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dQpQ2U9Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC1F121019C
-	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 05:17:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D75201DE2BA
+	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 05:24:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743139054; cv=none; b=IrP73fT1MJhBF2aKJq+OZgBKxlVw0R/7yLzuc1Y4Pbt7V6qShAsoUrRhv7eSMKifOOO90dN78rnqUky+EY6L+mMoc4OKDG3aHcUePx6IlghAifoy1KUHA+xO/Vc8ISdYxLze7+unp1FK7PCF90BZPaMzxlQTLbuUR08wg69ecaU=
+	t=1743139476; cv=none; b=LcMtY4X4afOnONJ0QEVFX5/wDBAsocJUyFvXi8Z+VjA3xD97yznUfO8TVr9FQPveRXrGyzabGmY6zb9+nRPRZvSzH9ohl6GtYuuuPiaUP3f2AwUj63jejeBvS+LNEqpWV0vepcrbmqLrqixdzN0Ge/02eN+jcBYJE37RMeItD+o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743139054; c=relaxed/simple;
-	bh=CS5VMMk0LUE5wGq9IgIbXDHaQ2F3DWmXr4+f0/6topA=;
+	s=arc-20240116; t=1743139476; c=relaxed/simple;
+	bh=hKwE0aVj7IxvPgqbug4g8fwgNRQS3t1i+9RqDv29W3c=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sGEjZ8lVEr7NNq4+aIcRhGrZziAeWYwfX/jv2PBpWAvyn8j4951oZ932Iz/8h50nHPHeqKpMKvon2cGT+Ah8Pc0j28vJ7Vv6IK70VYTDW3Tw+YML1yZjX0DNEtMePO1K4HU8/zuGPdGcyqCbQbcKG/aTm72DdbQTV1mDZdoQsVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=M+QPkzpt; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:Content-Type; b=mRHKuSoLjLq++WuLXRLnUiaroVg0f0/gGU87pBBGkE35pN0aIg/72+E2JOh6SwNXAgC98fAhPLHLDo6jDhAlhbU21TdbLA9nuOJ0mZ33SKg5tIx0yPkUTHmsLjMmScScW1GhIUptpZneDVnLUVv2eF+LKD6qbrveoMefp+Zn+n4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dQpQ2U9Y; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52S4oBeN021258
-	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 05:17:25 GMT
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52S57lli013188
+	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 05:24:34 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	HQgkYP40+p7+yHQUfnTVW3yGM29lJJuQVYPsqQvyoQY=; b=M+QPkzptLgiuhzRe
-	BaqsaoWSuwcjSGk6EjXMN5en4gjxQl7jP2AuzoFMB93ZkDFLG+8Jcz4ahUYliavt
-	DrRbu80T9CYxAsf4qIhgmkWldM39JMYlhV1w4Mw3YDu3BBMEJrU7xuz5VBzmfRg1
-	AqctpupqSwEhNilFjcneL5futNMheZXfXoypfMX6YY/gio734IpobucYDrMyEHzd
-	AGRCQckKH0q0F8ARB6Cd/JvKbS6bvbFcIcJAJ2A90t4mrS5/0k/vZXdKXJ4xm7pb
-	XRPfQzfCHu7NU/2X24mh9MP+Jt8bsD9qaCkwD/0lNdBSBTUyNL8/0zvXpXENCPqx
-	yI33wA==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45kyr9rhsq-1
+	QSK0TFoPYN4H7p8t4mXqY9o9fUEjdQFFbsNmfIJdZ1g=; b=dQpQ2U9Y2CX//k4l
+	gx8DBLqDIuov7liNgOfVdZtMJt6yvqOw4TdP4KqswW8V8Ka7LUZ9nY5CJfRiawUo
+	ZnE8y5wti0LeBjeM62+HgBC3sfJDq8MhY9dq/yPOkN/TTO0cLusKIHq9KkiVlWWe
+	DOO5urZAdMcdgQK6/MISwmfUvL7ATeFtTWEc0mpF1IzETczZCSLXydCxzoZZWkLy
+	V0Cip2AnVX+UJGjieF3BJj9omLDUo0L+9vid4rf531lW+3Ax051rSA2LqKbeUUet
+	Kmxu+1thsu/9P98x46dh4aLFeVDGZzGx8HggVSjgbs+Liu6BrY3Cf8fK5jkZa46T
+	tYvhCg==
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45mmutn4nu-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 05:17:25 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-2ff78dd28ecso1900316a91.1
-        for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 22:17:25 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 05:24:33 +0000 (GMT)
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-304cf76fd6aso3292034a91.2
+        for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 22:24:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743139044; x=1743743844;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1743139473; x=1743744273;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HQgkYP40+p7+yHQUfnTVW3yGM29lJJuQVYPsqQvyoQY=;
-        b=rEpEykvpX7cnYdZI2TpFt92wvuoWfE/pVcohgQ2ztUatgwSxfet+nSpoWpJjH7p/3T
-         N3klEHFphUrkthLIf/q8hKUq6iY72h5Yd4L3/EDsF/qqeIpDn+H+bOyH+bJ9O7X/UdFO
-         QmmUI/Ki3NkY3BDFhEKB/l9dDqH/w4TQO9v1DPDRdShIkSpzrB8dZ+tLcE+coWkhOz0P
-         UbfFhWRekK+9TqTgIaOWJkIajsULb1lE5EMcOs2+nveOUfRWY4nwrwqQrtITQET6D9Pa
-         zTbV4qeeFGeZ9gSI/K+fQ5Xde+PjwZXg4DXh3bHoc1Y9yo8F+nJxYvVHAqtEHYI8/Pi9
-         LloA==
-X-Forwarded-Encrypted: i=1; AJvYcCVTXZo4HQ/cKC8g68P3LYYACCkDmEO3uqnlIurUUZorDka/gFwtW2jt+1LkcIAsj71O2j03qwo9Ze1X@vger.kernel.org
-X-Gm-Message-State: AOJu0YycTzpgIY7679H6QPMsku361plCcFQVU0EZbkZqVKmQ58DZT0xN
-	qjaVXZfWa8w5YOWAjhaOHXSDxFxBPZzsnSarTSICBAOLKTUYzRU3hJtmH/LCovs+58+qYaaL+3F
-	E/Ts4kuStCGaZ+R1DcpXwOr0W/zpqV3Mp7PDSfkZfaR2VkvlypMnHlzTLmfvo
-X-Gm-Gg: ASbGncudbJqfev7IR8jOVvY1qUQwLdELQOp/vvAOaQscG8bcwyVNMoORy9O+a+vGX93
-	PVHV/Ykwytr8NhtWhTC1iUbUQK18ShuaIa/l31k28lKqISEkaDJo8WEt+xacmcDK557bXm8olLE
-	43COy3kcNeQrZ9xrvw8Jwq7KnGz0QbkNmQGc8rVPelHm1/ICgdahCOEAbthWmeRdgFfHb2G6Oo7
-	l6BwuimQ+wk0OD/Xp+uIWaXhUlIYIKGMHRiED2IThtKjNenXs96OXCUzYDYQWSSUNAJLvGON6Mc
-	TX7wr9BTu3CLDP7t/r7Fy35o894K+hDISnm5G3DlvH5VshnBS871Sg==
-X-Received: by 2002:a05:6a20:7f98:b0:1f5:769a:a4c3 with SMTP id adf61e73a8af0-1fea2f396e8mr10316342637.27.1743139043434;
-        Thu, 27 Mar 2025 22:17:23 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFVTpXZbP8MYkTaSUxvCf6P7tZPuQ3S9l3jbd9DcFaTnK18JUIF8nKYAtQNBzPJZrQEUQnBHg==
-X-Received: by 2002:a05:6a20:7f98:b0:1f5:769a:a4c3 with SMTP id adf61e73a8af0-1fea2f396e8mr10316280637.27.1743139042853;
-        Thu, 27 Mar 2025 22:17:22 -0700 (PDT)
-Received: from [192.168.0.113] ([183.82.177.119])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-af93b8b1aa6sm792238a12.52.2025.03.27.22.17.18
+        bh=QSK0TFoPYN4H7p8t4mXqY9o9fUEjdQFFbsNmfIJdZ1g=;
+        b=Kwra0A/nXB1MkVy1KHbeu1dqDNlGIM/46KeV9gdjnsWcKAO4WdSXddZ72T3xKiTptV
+         Hq3++AsahZGwFFOCnYUptPgwZCiVsYg9oFw6cprQIZZBMMmiPAIIlSWYzg6d3lhO1JtX
+         P7nSi8kuloVHdEInF9CHwEa8DLUNXMEy2Mp7fktYigp831ykFbYkyyxVxzyT5fs71hpP
+         b9SAV6nALBBNWWq4ox0BIaGuyQ2j+/lzWet6tKeCT/IWB3Oq4YoeoVcPgXXqXu6F8om5
+         3zWyz0DRd0f4Nil1y/+xcT/d8TDOPs/xdhqVEe+08Z++u4+F+rpecrL//eMmLJ6LMp3R
+         7YvA==
+X-Forwarded-Encrypted: i=1; AJvYcCXaZ1NmY58zhr73hCPxwCHGfQ1xwjyMuc2Dg7AnVI4VMNwyzHAwpD/DyVmPButw+ICzOsZv7Gs5Ct2T@vger.kernel.org
+X-Gm-Message-State: AOJu0YwtPjdLdwBUQlBeVrWjeUkHoCxhCce3UCLZZSGg7bvlC41ZVnCJ
+	SSOQnNtTNvMtGOnSQhoo7LtJltYlblIaGErThLn9xGR/OVd5bP525e0nuX/rHCqnrZDiOOuBuCr
+	AjKZ//N3Zb/kSR57QiwfwhO5qE/D8juv2JKt0Y2Po//5BadTLGDeDEigDrNvz
+X-Gm-Gg: ASbGnctLtNaVVRipdmUur2gaVHLAZL71qb9bGCG5bnwxeyHu5MNSNUzaiBcaD2cwjt/
+	oc7k9dBC9gaBMdXEy5ublM657TTzVoGG9dr+4UwS+jqJOusMvWUZyktwum108jyEXFNfhTPxs2r
+	6KzS3j5OoPU+VOo2i24oeC3lxO6UsavAXalxGarNg6dnaBnU9/H4MaJnNxmTFySZqfMIwxZIHEZ
+	q8D7N93H9ZEzNuuTYi7gH844Meu3iRCAPIntGRLgH63lkfR9fV/Oa2ow6OkGQ+EnShVfAqJHwlN
+	/LhLF3yXCkE8oXJyv3S5GnHI4p0EaPgh4gUxmLNj9wOWIg==
+X-Received: by 2002:a05:6a20:a108:b0:1fa:9819:b064 with SMTP id adf61e73a8af0-1fea2d70237mr12642140637.18.1743139472662;
+        Thu, 27 Mar 2025 22:24:32 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGJ6Ufty4NvxamcgmWJLeaXvoKya4Z1DfFIgAAvJV3k/9x3mn97U7mCVnp7j3hgm0R0G+mdyg==
+X-Received: by 2002:a05:6a20:a108:b0:1fa:9819:b064 with SMTP id adf61e73a8af0-1fea2d70237mr12642107637.18.1743139472118;
+        Thu, 27 Mar 2025 22:24:32 -0700 (PDT)
+Received: from [10.92.192.202] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-af93ba1b22bsm795906a12.77.2025.03.27.22.24.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Mar 2025 22:17:22 -0700 (PDT)
-Message-ID: <7ce80ffb-6519-4765-8418-42135ab07a3f@oss.qualcomm.com>
-Date: Fri, 28 Mar 2025 10:47:16 +0530
+        Thu, 27 Mar 2025 22:24:31 -0700 (PDT)
+Message-ID: <7a0724ad-89a5-0ccd-eba5-ca4871ce1cdd@oss.qualcomm.com>
+Date: Fri, 28 Mar 2025 10:54:25 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 0/8] Add new driver for WCSS secure PIL loading
-To: Jeff Johnson <quic_jjohnson@quicinc.com>,
-        Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>,
-        jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, andersson@kernel.org, mathieu.poirier@linaro.org,
-        konradybcio@kernel.org, quic_mmanikan@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        dmitry.baryshkov@linaro.org
-Cc: quic_viswanat@quicinc.com, quic_srichara@quicinc.com
-References: <20250107101647.2087358-1-quic_gokulsri@quicinc.com>
- <4b624830-00eb-46e8-ae5a-b822e32b2005@quicinc.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v8 2/4] PCI: of: Add of_pci_get_equalization_presets() API
 Content-Language: en-US
-From: Vignesh Viswanathan <vignesh.viswanathan@oss.qualcomm.com>
-In-Reply-To: <4b624830-00eb-46e8-ae5a-b822e32b2005@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
+        Lorenzo Pieralisi
+ <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?=
+ <kw@linux.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        quic_mrana@quicinc.com, quic_vbadigan@quicinc.com
+References: <20250316-preset_v6-v8-0-0703a78cb355@oss.qualcomm.com>
+ <20250316-preset_v6-v8-2-0703a78cb355@oss.qualcomm.com>
+ <gl2klkvpkb2vrxrzdqbqjomfis66tldy6witvbqdd2ig3st3rw@jstguoejcofa>
+From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+In-Reply-To: <gl2klkvpkb2vrxrzdqbqjomfis66tldy6witvbqdd2ig3st3rw@jstguoejcofa>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: jcJZvmAYMniw34hapKiiC_edMbLwA4V5
-X-Authority-Analysis: v=2.4 cv=UblRSLSN c=1 sm=1 tr=0 ts=67e630e5 cx=c_pps a=RP+M6JBNLl+fLTcSJhASfg==:117 a=VrYi6RMOWE5NFa6aqCLEpg==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=LpQP-O61AAAA:8 a=atyioMQIshmohzJ9PWcA:9
- a=QEXdDO2ut3YA:10 a=iS9zxrgQBfv6-_F4QbHw:22 a=TjNXssC_j7lpFel5tvFf:22 a=pioyyrs4ZptJ924tMmac:22
-X-Proofpoint-ORIG-GUID: jcJZvmAYMniw34hapKiiC_edMbLwA4V5
+X-Proofpoint-ORIG-GUID: PaA8WgicfKoSS0Op6KffHn0tfVPEeP5r
+X-Authority-Analysis: v=2.4 cv=MqlS63ae c=1 sm=1 tr=0 ts=67e63291 cx=c_pps a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=EUspDBNiAAAA:8 a=wBt9fhMRhOodALO6grUA:9 a=QEXdDO2ut3YA:10
+ a=uKXjsCUrEbL0IQVhDsJ9:22
+X-Proofpoint-GUID: PaA8WgicfKoSS0Op6KffHn0tfVPEeP5r
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-03-28_02,2025-03-27_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- suspectscore=0 priorityscore=1501 phishscore=0 mlxscore=0 impostorscore=0
- adultscore=0 clxscore=1011 mlxlogscore=999 bulkscore=0 malwarescore=0
- spamscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503280034
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ priorityscore=1501 mlxlogscore=985 mlxscore=0 bulkscore=0 adultscore=0
+ malwarescore=0 suspectscore=0 lowpriorityscore=0 clxscore=1015
+ phishscore=0 impostorscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502280000 definitions=main-2503280035
 
-On 1/24/2025 11:30 PM, Jeff Johnson wrote:
-> On 1/7/25 02:16, Gokul Sriram Palanisamy wrote:
->> This series depends on Sricharan's tmel-qmp mailbox driver series v2 [1].
->>
->> - Secure PIL is signed, split firmware images which only TrustZone (TZ)
->>   can authenticate and load. Linux kernel will send a request to TZ to
->>   authenticate and load the PIL images.
->>
->> - When secure PIL support was added to the existing wcss PIL driver
->>   earlier in [2], Bjorn suggested not to overload the existing WCSS
->>   rproc driver, instead post a new driver for PAS based IPQ WCSS driver.
->>   This series adds a new secure PIL driver for the same.
->>
->> - Also adds changes to scm to pass metadata size as required for IPQ5332,
->>   reposted from [3].
->>
->> [1]
->> https://patchwork.kernel.org/project/linux-arm-msm/cover/20241231054900.2144961-1-quic_srichara@quicinc.com/
->>
->> [2]
->> https://patchwork.kernel.org/project/linux-arm-msm/patch/1611984013-10201-3-git-send-email-gokulsri@codeaurora.org/
->>
->> [3]
->> https://patchwork.kernel.org/project/linux-arm-msm/patch/20240820055618.267554-6-quic_gokulsri@quicinc.com/
->>
->> changes in v3:
->> 	- fixed copyright years and markings based on Jeff's comments.
->> 	- replaced devm_ioremap_wc() with ioremap_wc() in
->> 	  wcss_sec_copy_segment().
->> 	- replaced rproc_alloc() and rproc_add() with their devres
->> 	  counterparts.
->> 	- added mailbox call to tmelcom for secure image authentication
->> 	  as required for IPQ5424. Added ipq5424 APCS comatible required. 
->> 	- added changes to scm call to pass metadata size as equired for
->> 	  IPQ5332.
->>
->> changes in v2:
->> 	- Removed dependency of this series to q6 clock removal series
->> 	  as recommended by Krzysztof
->>
->> Gokul Sriram Palanisamy (3):
->>   dt-bindings: mailbox: qcom: Add IPQ5424 APCS compatible
->>   mailbox: qcom: Add support for IPQ5424 APCS IPC
->>   arm64: dts: qcom: ipq5424: add nodes to bring up q6
->>
->> Manikanta Mylavarapu (4):
->>   firmware: qcom_scm: ipq5332: add support to pass metadata size
->>   dt-bindings: remoteproc: qcom: document hexagon based WCSS secure PIL
->>   arm64: dts: qcom: ipq5332: add nodes to bringup q6
->>   arm64: dts: qcom: ipq9574: add nodes to bring up q6
->>
->> Vignesh Viswanathan (1):
->>   remoteproc: qcom: add hexagon based WCSS secure PIL driver
->>
->>  .../mailbox/qcom,apcs-kpss-global.yaml        |   1 +
->>  .../remoteproc/qcom,wcss-sec-pil.yaml         | 131 ++++++
->>  arch/arm64/boot/dts/qcom/ipq5332.dtsi         |  64 ++-
->>  arch/arm64/boot/dts/qcom/ipq5424.dtsi         |  80 +++-
->>  arch/arm64/boot/dts/qcom/ipq9574.dtsi         |  60 ++-
->>  drivers/firmware/qcom/qcom_scm.c              |  13 +-
->>  drivers/firmware/qcom/qcom_scm.h              |   1 +
->>  drivers/mailbox/qcom-apcs-ipc-mailbox.c       |   1 +
->>  drivers/remoteproc/Kconfig                    |  22 +
->>  drivers/remoteproc/Makefile                   |   1 +
->>  drivers/remoteproc/qcom_q6v5_wcss_sec.c       | 406 ++++++++++++++++++
->>  11 files changed, 775 insertions(+), 5 deletions(-)
->>  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,wcss-sec-pil.yaml
->>  create mode 100644 drivers/remoteproc/qcom_q6v5_wcss_sec.c
->>
-> 
-> This series is listed as a dependency of a WLAN series, and when I pull this
-> series using my automation I see the following kernel-doc warnings. I don't
-> know if these are existing issues, or issues introduced by the series, since
-> the automation runs kernel-doc on all of the patched files.
-> 
-> drivers/firmware/qcom/qcom_scm.c:302: warning: No description found for return value of 'qcom_scm_call'
-> drivers/firmware/qcom/qcom_scm.c:328: warning: No description found for return value of 'qcom_scm_call_atomic'
-> drivers/firmware/qcom/qcom_scm.c:425: warning: No description found for return value of 'qcom_scm_set_warm_boot_addr'
-> drivers/firmware/qcom/qcom_scm.c:438: warning: No description found for return value of 'qcom_scm_set_cold_boot_addr'
-> drivers/firmware/qcom/qcom_scm.c:675: warning: No description found for return value of 'qcom_scm_pas_mem_setup'
-> drivers/firmware/qcom/qcom_scm.c:714: warning: No description found for return value of 'qcom_scm_pas_auth_and_reset'
-> drivers/firmware/qcom/qcom_scm.c:750: warning: No description found for return value of 'qcom_scm_pas_shutdown'
-> drivers/firmware/qcom/qcom_scm.c:787: warning: No description found for return value of 'qcom_scm_pas_supported'
-> drivers/firmware/qcom/qcom_scm.c:892: warning: No description found for return value of 'qcom_scm_restore_sec_cfg_available'
-> drivers/firmware/qcom/qcom_scm.c:1070: warning: No description found for return value of 'qcom_scm_assign_mem'
-> drivers/firmware/qcom/qcom_scm.c:1141: warning: No description found for return value of 'qcom_scm_ocmem_lock_available'
-> drivers/firmware/qcom/qcom_scm.c:1158: warning: No description found for return value of 'qcom_scm_ocmem_lock'
-> drivers/firmware/qcom/qcom_scm.c:1182: warning: No description found for return value of 'qcom_scm_ocmem_unlock'
-> drivers/firmware/qcom/qcom_scm.c:1298: warning: No description found for return value of 'qcom_scm_hdcp_available'
-> drivers/firmware/qcom/qcom_scm.c:1323: warning: No description found for return value of 'qcom_scm_hdcp_req'
-> drivers/firmware/qcom/qcom_scm.c:1879: warning: No description found for return value of 'qcom_scm_is_available'
-> drivers/firmware/qcom/qcom_scm.h:47: warning: missing initial short description on line:
->  * struct qcom_scm_desc
-> drivers/firmware/qcom/qcom_scm.h:57: warning: Function parameter or struct member 'svc' not described in 'qcom_scm_desc'
-> drivers/firmware/qcom/qcom_scm.h:57: warning: Function parameter or struct member 'cmd' not described in 'qcom_scm_desc'
-> drivers/firmware/qcom/qcom_scm.h:57: warning: Function parameter or struct member 'owner' not described in 'qcom_scm_desc'
-> drivers/firmware/qcom/qcom_scm.h:60: warning: missing initial short description on line:
->  * struct qcom_scm_res
-> 21 warnings as Errors
-Hi Jeff,
 
-These warnings are not introduced as part of this series.
 
-Thanks,
-Vignesh
+On 3/28/2025 10:09 AM, Manivannan Sadhasivam wrote:
+> On Sun, Mar 16, 2025 at 09:39:02AM +0530, Krishna Chaitanya Chundru wrote:
+>> PCIe equalization presets are predefined settings used to optimize
+>> signal integrity by compensating for signal loss and distortion in
+>> high-speed data transmission.
+>>
+>> As per PCIe spec 6.0.1 revision section 8.3.3.3 & 4.2.4 for data rates
+>> of 8.0 GT/s, 16.0 GT/s, 32.0 GT/s, and 64.0 GT/s, there is a way to
+>> configure lane equalization presets for each lane to enhance the PCIe
+>> link reliability. Each preset value represents a different combination
+>> of pre-shoot and de-emphasis values. For each data rate, different
+>> registers are defined: for 8.0 GT/s, registers are defined in section
+>> 7.7.3.4; for 16.0 GT/s, in section 7.7.5.9, etc. The 8.0 GT/s rate has
+>> an extra receiver preset hint, requiring 16 bits per lane, while the
+>> remaining data rates use 8 bits per lane.
+>>
+>> Based on the number of lanes and the supported data rate,
+>> of_pci_get_equalization_presets() reads the device tree property and
+>> stores in the presets structure.
+>>
+>> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+>> ---
+>>   drivers/pci/of.c  | 44 ++++++++++++++++++++++++++++++++++++++++++++
+>>   drivers/pci/pci.h | 32 +++++++++++++++++++++++++++++++-
+>>   2 files changed, 75 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+>> index 7a806f5c0d20..18691483e108 100644
+>> --- a/drivers/pci/of.c
+>> +++ b/drivers/pci/of.c
+>> @@ -851,3 +851,47 @@ u32 of_pci_get_slot_power_limit(struct device_node *node,
+>>   	return slot_power_limit_mw;
+>>   }
+>>   EXPORT_SYMBOL_GPL(of_pci_get_slot_power_limit);
+>> +
+>> +/**
+>> + * of_pci_get_equalization_presets - Parses the "eq-presets-Ngts" property.
+>> + *
+>> + * @dev: Device containing the properties.
+>> + * @presets: Pointer to store the parsed data.
+>> + * @num_lanes: Maximum number of lanes supported.
+>> + *
+>> + * If the property is present, read and store the data in the @presets structure.
+>> + * Else, assign a default value of PCI_EQ_RESV.
+>> + *
+>> + * Return: 0 if the property is not available or successfully parsed else
+>> + * errno otherwise.
+>> + */
+>> +int of_pci_get_equalization_presets(struct device *dev,
+>> +				    struct pci_eq_presets *presets,
+>> +				    int num_lanes)
+>> +{
+>> +	char name[20];
+>> +	int ret;
+>> +
+>> +	presets->eq_presets_8gts[0] = PCI_EQ_RESV;
+>> +	ret = of_property_read_u16_array(dev->of_node, "eq-presets-8gts",
+>> +					 presets->eq_presets_8gts, num_lanes);
+>> +	if (ret && ret != -EINVAL) {
+>> +		dev_err(dev, "Error reading eq-presets-8gts :%d\n", ret);
 > 
+> 'Error reading eq-presets-8gts: %d'
 > 
+>> +		return ret;
+>> +	}
+>> +
+>> +	for (int i = 0; i < EQ_PRESET_TYPE_MAX - 1; i++) {
+>> +		presets->eq_presets_Ngts[i][0] = PCI_EQ_RESV;
+>> +		snprintf(name, sizeof(name), "eq-presets-%dgts", 8 << (i + 1));
+>> +		ret = of_property_read_u8_array(dev->of_node, name,
+>> +						presets->eq_presets_Ngts[i],
+>> +						num_lanes);
+>> +		if (ret && ret != -EINVAL) {
+>> +			dev_err(dev, "Error reading %s :%d\n", name, ret);
+> 
+> 'Error reading %s: %d'
+> 
+>> +			return ret;
+>> +		}
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +EXPORT_SYMBOL_GPL(of_pci_get_equalization_presets);
+>> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
+>> index 01e51db8d285..78c9cc0ad8fa 100644
+>> --- a/drivers/pci/pci.h
+>> +++ b/drivers/pci/pci.h
+>> @@ -9,6 +9,8 @@ struct pcie_tlp_log;
+>>   /* Number of possible devfns: 0.0 to 1f.7 inclusive */
+>>   #define MAX_NR_DEVFNS 256
+>>   
+>> +#define MAX_NR_LANES 16
+> 
+> Why did you limit to 16?
+> 
+As per PCIe spec we support maximum of 16 lanes only right
 
+- Krishna Chaitanya.
+> - Mani
+> 
 
