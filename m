@@ -1,157 +1,188 @@
-Return-Path: <devicetree+bounces-161518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16A31A745A6
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 09:46:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 790ABA745AA
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 09:48:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB64D3BBFA8
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 08:46:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 339B57A406F
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 08:47:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 439C81C6BE;
-	Fri, 28 Mar 2025 08:46:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="W8LLHozJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60C381D63FD;
+	Fri, 28 Mar 2025 08:48:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2097.outbound.protection.outlook.com [40.107.117.97])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6E921B87FD
-	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 08:46:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743151605; cv=none; b=IG8IR2Tjl0GdXHCRAcB+FrV3MgdOC0sPBNG8vLmMVctMnURA7AfYnFvzlUeK0NURIjzLvZyIYcz4gvqHUbF2R+Nez/frGDWAE9fmPHxWIl1R5wBfYDEFgF3eKxpsFcutXTzaY302H10/1/J6Wjp+I3O/8mB1UshPVE/eCPMgFS8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743151605; c=relaxed/simple;
-	bh=as/nwDc6tpW0x5Rq8lY1UK/LDUF9Ljw4CWXjcjoSyIA=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=lGXNbYqsEx8vqLBCSfDsXAsYIqQz7yiGVCL+SchwqyZ2ZyHiTAuVultfdrDWfkPgRZbUB+su9lqQOIX+qeEXkcyXUgfvAyZrKWnt9vUwDgefnXd4Ik2KBnCU5U4CL3BoqrYRkr+Cf8GjiXJGcQLyP8FWq/WMKNBRdaUwOdpk0Qo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=W8LLHozJ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52S2C2IC023507
-	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 08:46:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=VeuF90ZbIxKLHjHHxyB/BcpBXCnucnai8se
-	TjlBYVYo=; b=W8LLHozJc1qJgb12tib4EjIobbBjrmPXz8UEPMfIkC1ejCMETD9
-	Sjdoy/92OU5TpvRnse3qC3aP6q6mGKwfXvMF64+NbKgQsgJuB0HspT8C8MjMvhLw
-	K1bmTM7xIVnjWzuHW524xmKBEHlL0TuKxvQRwfmMEFZ91Zo/91ydXKYpjojaPRmd
-	2UvFwm14mJqFpGHhF1gHdJSxaDlOYL6PqAWXZALuweTk30T/Mw5OfWJJgSutz7vi
-	xvnp6hTDS9c9LbW8PvxUfuM9zgLx9sgjTyVxzeQXGDh9364UpcAqOlnUPATYsSpr
-	UyPk+tLEQbzfjUbPWQ9lnc6XpLMzXu8OXNw==
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45njsc10xd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 08:46:42 +0000 (GMT)
-Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-3032f4ea8cfso3623937a91.3
-        for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 01:46:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743151602; x=1743756402;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VeuF90ZbIxKLHjHHxyB/BcpBXCnucnai8seTjlBYVYo=;
-        b=caz1u7Ud8MgI9sX5tSOwyLv71cU7dPCvogazXFVPEzKv9KG/2JtqCKAG6WezIjRxiw
-         91BlvVArTPa9eMEfSmcSF0ElHx9SQtmrGb9l7Nam8yAuzN07P+vGVTQJdMq0Y0bIZwBz
-         Dtq2RaslCvCZbJvy9pdLJ/p5sZ31K08v7rUbpThPNb67KEOeIe6B2H4xz/NYgoBh1jqg
-         t/bY48BM/ZM1DuZi1y5YCNlvWVKKzx4okpw/c3PAJaboK8UfGOWhulY06MRr6yUPfynL
-         y0Ps41r/uc6Zo7FGh4+WZKqsdiMwA3D9VPIG9jYDBdAvpE01WoCbIvIsGqxZaAZ7c4KA
-         4+dw==
-X-Forwarded-Encrypted: i=1; AJvYcCVMYJiBCtOi9AmBPWFmBu1Rx6f1wia09feJdXqFUCW5LgLacY+41clAQu7wVrseWwXk2Fo9LSAS0/Wt@vger.kernel.org
-X-Gm-Message-State: AOJu0YxIFYxPfw17weDLHwY+0QJShcqoHRRqPTbWgEUZCgdF8pI7HMGj
-	lOU3GWIIQw78Gp7pFNsCA6I7vtkKXu20k7fUlfx2mCb8/0eFEsSG2K+0Whtk69hcbLoLPJnbRHY
-	LVWftU677vIwohID3q9GmuFw+EQtYuSgUhsJAnj2GKho4C0JslZYwC51K/l3y
-X-Gm-Gg: ASbGncvg3Jn4IjcuFT2zjqBgJ+ivCUDGnImpdxWZISXmUlpSagU7PatCctGVX0ty5ab
-	vlHePyYhMcqJ9osV6mCQKFQp1l5D/63wMWO5kavODtQjrxteMSEhJ1EZzzOFQsFLKEldoLr47GK
-	h3R7di04tBCVRhT7/9v2n8hZ7E/Y/mdAq8EhJpNshKaXGfXXAuvHp2EI4jt/ee/u+49jl3w8Nug
-	0SN5zmOxsTRi/BUSwtmAR3yNn1IQoUZRPozEdsuVlcSAz3rsxr+U0QXsQp6+P0MU2+17MxWwx6R
-	xsLdSPpbQ7gl+2lVixmyTEvBZ1sBHQR7VWUiflRw5/WfW8jDKfQ=
-X-Received: by 2002:a17:90b:2b8b:b0:2ee:ed1c:e451 with SMTP id 98e67ed59e1d1-303a7f6eb38mr10648560a91.15.1743151601613;
-        Fri, 28 Mar 2025 01:46:41 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHIXAXo8F17vmdUxdCArQZWMf6OcZ2S+QRE7Rf2hJ9sqvGmbRD2L/Y/wTIuvzG26jsvcouGEQ==
-X-Received: by 2002:a17:90b:2b8b:b0:2ee:ed1c:e451 with SMTP id 98e67ed59e1d1-303a7f6eb38mr10648511a91.15.1743151601113;
-        Fri, 28 Mar 2025 01:46:41 -0700 (PDT)
-Received: from QCOM-eG0v1AUPpu.qualcomm.com ([2a01:e0a:82c:5f0:7062:5f5a:bf69:400d])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3039f8b1998sm3595249a91.49.2025.03.28.01.46.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Mar 2025 01:46:40 -0700 (PDT)
-From: Loic Poulain <loic.poulain@oss.qualcomm.com>
-To: andersson@kernel.org, konradybcio@kernel.org
-Cc: robh@kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        dmitry.baryshkov@oss.qualcomm.com,
-        Loic Poulain <loic.poulain@oss.qualcomm.com>
-Subject: [PATCH v2] arm64: dts: qcom: qcm2290: Add crypto engine
-Date: Fri, 28 Mar 2025 09:46:29 +0100
-Message-Id: <20250328084629.1290797-1-loic.poulain@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69F5A1C6BE;
+	Fri, 28 Mar 2025 08:48:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.117.97
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1743151717; cv=fail; b=t5fQIrvVivlKa+Tj0GWrh7z+r5q4HtMC92Ubf0ynMqcOktS1z8pLFAWPzBA4vv0oMro4qFIsA/4eRZoqtJ7PiOHU3LXzcteGn0410GFIYDBIkz3INF3teJriRUabtsfCrKjgmKNhLwzW+tqZayV5KimZd+AA898UkEsM+PhUJ5A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1743151717; c=relaxed/simple;
+	bh=xXnBOBSULOhD2skRnACJ/byE2Edf7u8z/Nw+beW8NyY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lV+Fj2WH7zeMXpG5HuXNQWY+Nf8/gG/9Of/V0AZwUNoHTyErI/H63gQpcp1Ow+ETJlYONEBMJNHMuDtmUSwR5CpJHaWEMPpJAptvyeDGbfRsBbX+eHALDC6MhJAG5rBIq/mBvX384jGeXANqU5NwfdYTCPfxhCvUFQS/ZjzhiZg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.117.97
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=b+d+x8YXYuq9Ls0gL08c8wJQG0SQGb/p5MC5wrMTeYlwkhGXIUtThrb9n6VsFALh6f1EAREcdpz5nmqSplohTi0RY97s0jJ6KJnP7sJV6FQChGilPH5oHfZXKHRI0HE0Lq9878x8dR9iOXBaUAEdaPOd2w/c1HDLNkW49eWXvr69zmHKxyKgxNK/FsbDzN7sLwBqfpb/5Qe3Y3a4h70IlccjAsijLTY9Dyz2pEPHZTW+rfNOpP7fiyP4sOhV3Tx6I1kY8eqZc1GaNJoTRNJFnoBqwNlxbBphOpCG2Cn33BzRhCyLxR9ak68nxXlX7ymu+AvHwetcrA22JmLYhITpFg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SPOE3NVLvgMt6HVkW86Zy1q3QGqWtj2+1JccXytRWBo=;
+ b=ZaKZE5YemBD9hA9zsV8Bwqs4tzC2OmVfcjM1vGLPl2rY8ha7AMN6oxi8ZkeOZjBJLlhaOCvgi9rGzk0tkdckjZH/8cdzqronfHk0AfafkHa0m9hUh1p+QPDeBqzcaTEF68qMq/HHfXBriVCfB0mgedLtExE+WlC3QA+ygiUn4kOwSPK+HKctasfIxy29mOtjxdCD/MOLGxN0yxFYZZJr5oLd1ydDDH4vwSbjo1oblppfpEKIuQ65Ahqfls4ffn/IOABnFfeoPEwha761EszBh6qmLRMhsoDqBUF9YM/+y8VineB7HHGukXT4ZiWcPcfO8KgAEkPTRYw/Xzwqjxj6+A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from PS2PR02CA0062.apcprd02.prod.outlook.com (2603:1096:300:5a::26)
+ by JH0PR06MB6416.apcprd06.prod.outlook.com (2603:1096:990:d::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.46; Fri, 28 Mar
+ 2025 08:48:30 +0000
+Received: from HK2PEPF00006FAF.apcprd02.prod.outlook.com
+ (2603:1096:300:5a:cafe::ac) by PS2PR02CA0062.outlook.office365.com
+ (2603:1096:300:5a::26) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.43 via Frontend Transport; Fri,
+ 28 Mar 2025 08:48:30 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ HK2PEPF00006FAF.mail.protection.outlook.com (10.167.8.5) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8534.20 via Frontend Transport; Fri, 28 Mar 2025 08:48:28 +0000
+Received: from [172.16.64.208] (unknown [172.16.64.208])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id B90254160CA0;
+	Fri, 28 Mar 2025 16:48:27 +0800 (CST)
+Message-ID: <4bcc07b1-00ce-4ff9-bf23-e06b78950026@cixtech.com>
+Date: Fri, 28 Mar 2025 16:48:27 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=fJk53Yae c=1 sm=1 tr=0 ts=67e661f2 cx=c_pps a=vVfyC5vLCtgYJKYeQD43oA==:117 a=xqWC_Br6kY4A:10 a=Vs1iUdzkB0EA:10 a=QcRrIoSkKhIA:10 a=EUspDBNiAAAA:8 a=foE35NVKWDKkT8SmfxwA:9 a=rl5im9kqc5Lf4LNbBjHf:22
-X-Proofpoint-GUID: kqTu5zB9A_KTlg4Cfdhl0NjajNkfOik3
-X-Proofpoint-ORIG-GUID: kqTu5zB9A_KTlg4Cfdhl0NjajNkfOik3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-28_04,2025-03-27_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 mlxscore=0 mlxlogscore=999 clxscore=1015 phishscore=0
- lowpriorityscore=0 bulkscore=0 malwarescore=0 suspectscore=0 spamscore=0
- adultscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503280060
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/7] dt-bindings: pci: cadence: Extend compatible for new
+ platform configurations
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Manikandan Karunakaran Pillai <mpillai@cadence.com>
+Cc: "bhelgaas@google.com" <bhelgaas@google.com>,
+ "lpieralisi@kernel.org" <lpieralisi@kernel.org>, "kw@linux.com"
+ <kw@linux.com>,
+ "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <CH2PPF4D26F8E1CA951AF03C17D11C7BEB3A2A12@CH2PPF4D26F8E1C.namprd07.prod.outlook.com>
+ <20250327111106.2947888-1-mpillai@cadence.com>
+ <CH2PPF4D26F8E1C1CBD2A866C59AA55CD7AA2A12@CH2PPF4D26F8E1C.namprd07.prod.outlook.com>
+ <20250328-poised-dolphin-of-sympathy-e1d83e@krzk-bin>
+Content-Language: en-US
+From: Hans Zhang <hans.zhang@cixtech.com>
+In-Reply-To: <20250328-poised-dolphin-of-sympathy-e1d83e@krzk-bin>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: HK2PEPF00006FAF:EE_|JH0PR06MB6416:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3c4a9fe3-d727-402d-029c-08dd6dd54fb4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|36860700013|82310400026|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?MGFqQmhrMGg5Ym1lem5SWHRXbWNEUDZiY3k2TWVBa0x4ZlRUTEtiT21uaTVI?=
+ =?utf-8?B?NWVUdmRyVHNvdzEwVytJNjBiWG9CQVpaV0F5c2lKb3BlSkpuRXhBYThhR1FU?=
+ =?utf-8?B?aDEybVo1Sm5RRmRZKzllRG1WVnFCbmxKME8wUjQ1RE9ZYkVvd2s5bDhvZ04x?=
+ =?utf-8?B?aHpXSmRVSkhSaWVicXpKemlrb0NzczZOYzYyQXlOeXlDRDA0Vmo4dDNXVGUy?=
+ =?utf-8?B?N1M5QUpIYk5Zb3pKUGFBMHArMC9Db3YvU25mSGl2blVlTEE1MFBoKzRIeFdw?=
+ =?utf-8?B?a1BHdmFoV2VkS2ZJTG9tZUpnam1OYWlEK0E5c1B4b3k3VEhqNloxeFdMM2FY?=
+ =?utf-8?B?NVdsUE56M2NUR0tjS1k0disvdnNaZndZTkxiUVFsd1JRWCtkeVV5dkpmVFdh?=
+ =?utf-8?B?ak1PZHdtaHh3L0wxTkpnNzBSbWV3b2J3c2gzaFZRbDBERkNkcXBUWmxaSlVp?=
+ =?utf-8?B?bjFETTlncUx5bFdMcUgvcmNENXc1Zm9uVEN4SHl3TWIzR2ZkUWRHVTlmT2kz?=
+ =?utf-8?B?SGhWV2dzbzRwRTFoeHRZeGZYK3E1NHNsTURmSmZvSEpDQUN3cmFLVEllK3Rx?=
+ =?utf-8?B?RndtQ05WazBoUGtrclI0cFRtUE4xTmhsbmI2by9TekJ1K21zaS8ybDRoZlpr?=
+ =?utf-8?B?aVQ0LzZWWHptOTZSUzFpYm1MSkk4L0diZ3o3bDBCWlVmS0JJSjJRL2dmVTc1?=
+ =?utf-8?B?eFppSzh3d01LN1lvZWlETExoRFQ1R1EvWTh4UkxUTzF2MDRaVm5QUjZFZE4w?=
+ =?utf-8?B?aUc0cFNhLzBpZy90QkhOeXRlbEJBV1g2b0szd0ZMdTRQbGNMZHF6dHJuWkdq?=
+ =?utf-8?B?RUJVb3JRRmNyNTlsNUZFbm8wWkF6bWk5SzI1ZVZjSGRpYXh4Z1R6ejRoYlF0?=
+ =?utf-8?B?Q0FvWnFZbFhvQUFsOGdPVmx2Y21tT3N6SzJ6V2x3QmQzd1FNaGZsNUNuNURp?=
+ =?utf-8?B?blhJWUVZU2xBVGFuWEVUQlU3ZGMxQmN0UDAxVkE0cTczV0RhYmo5TkVxRFRv?=
+ =?utf-8?B?NlNmd0hud0czdnBheCswdEEzT3BvWDh0eUR5V1c1UE5RME1KRW1tZjFHNnFF?=
+ =?utf-8?B?RmtDSVYxSFZVT0pIZzBsY0lHNUVBaEd6STZzeGh3R0tWVTRSSXNZeWNoQnc0?=
+ =?utf-8?B?MXRhYjJYNzFsc2xoZFlrV05GRUhYdjZEbnFLSEZPYzQ4OVpUZ205d1hOL01i?=
+ =?utf-8?B?VTRac3ZRL0pMS2tSR1M4Q3ZEblVOa1o5bDluNXZoNEpGaWNVcVFXRFVHUUtl?=
+ =?utf-8?B?Sk8rR2xEVnJQbDdrT1kxYlpSSHc5VUhVOFFvdEhjNHRHdTdEWHBHb0pKNUxX?=
+ =?utf-8?B?SmdraFAyVVlTemlUYXUzTkg3N1pPQ2pnYmF4ZCtKVjVXbnU2Yi9DQXFoeEJX?=
+ =?utf-8?B?OUx6QnFkS011cEVBYmM5amQ5bUVZZjBNQzhrVW5pMnZyUEtWUjNoMnE4RG1W?=
+ =?utf-8?B?WmZCMnhIcjZXcksrS1ltL3FTVGcwM1MyOGJpdjBzRGRnbStmUGNIcmd3bU8w?=
+ =?utf-8?B?OFZsb0tuMWZqanpmMDB0L1Z6L3JUa3MxQllVbDFueFhjWXByWnloMHA4NGg0?=
+ =?utf-8?B?eFowdDBNUlgzdFg3UmI2elQ5ejM5R0IvdVlLdTgwSUk3SnI2cUsrR1kvRDRK?=
+ =?utf-8?B?WkdEWXB2UnNrY2dueHduaWttMTV5TW5GbGVhOEdKRjlSMjdTNk15VkZhVE51?=
+ =?utf-8?B?UzZqTGQ2d0Z6SnJyUzFFUG0rTk1MalpoOXhxdjhLM0RWVzhmMThCaHQ0Qm44?=
+ =?utf-8?B?YnZEbit1MUd4NjZRWkxOK3RDTUhWUVcwNW55cTRRdjN2OHh3d1pPQ1Y5WS9z?=
+ =?utf-8?B?M1BjdDB6alQ3NXhWcnl4bWRhKzFnRlk5TjY5bW9Nc3hzN2QrQWN0K2h3ZkVK?=
+ =?utf-8?B?UXRFQllNcnRYSjNmVlJlcHlNK2VlWUUrNEJvQ3RSVWVoNEk1SmpvQ0YzV3Zs?=
+ =?utf-8?B?ZDVlUnpsSUgvZGk0b2lwNjIrSE1HWnFQcXhGTWl5U21SRElZY1gxOEZzNUNu?=
+ =?utf-8?Q?BJGuAkQk0y5qiHzuwrYs/qdzJinbSs=3D?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014);DIR:OUT;SFP:1102;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2025 08:48:28.6637
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3c4a9fe3-d727-402d-029c-08dd6dd54fb4
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource: HK2PEPF00006FAF.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR06MB6416
 
-Add Qualcomm Crypto Engine (QCE) and BAM related nodes for this SoC.
 
-Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
----
- v2: Remove redundant iommu streams already covered by the SMR masks
 
- arch/arm64/boot/dts/qcom/qcm2290.dtsi | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+On 2025/3/28 16:22, Krzysztof Kozlowski wrote:
+> EXTERNAL EMAIL
+> 
+> On Thu, Mar 27, 2025 at 11:19:47AM +0000, Manikandan Karunakaran Pillai wrote:
+>> Document the compatible property for the newly added values for PCIe EP and
+>> RP configurations. Fix the compilation issues that came up for the existing
+>> Cadence bindings
+>>
+>> Signed-off-by: Manikandan K Pillai <mpillai@cadence.com>
+>> ---
+>>   .../bindings/pci/cdns,cdns-pcie-ep.yaml       |  12 +-
+>>   .../bindings/pci/cdns,cdns-pcie-host.yaml     | 119 +++++++++++++++---
+>>   2 files changed, 110 insertions(+), 21 deletions(-)
+> 
+> One more thing: SoB mismatch. Maybe got corrupted by Microsoft (it is
+> known), so you really need to fix your mailing setup or use b4 relay.
+> 
 
-diff --git a/arch/arm64/boot/dts/qcom/qcm2290.dtsi b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-index f0746123e594..ffe4b2444256 100644
---- a/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-@@ -749,6 +749,30 @@ config_noc: interconnect@1900000 {
- 			#interconnect-cells = <2>;
- 		};
- 
-+		cryptobam: dma@1b04000 {
-+			compatible = "qcom,bam-v1.7.0";
-+			reg = <0x0 0x01b04000 0x0 0x24000>;
-+			interrupts = <GIC_SPI 247 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&rpmcc RPM_SMD_CE1_CLK>;
-+			clock-names = "bam_clk";
-+			#dma-cells = <1>;
-+			qcom,ee = <0>;
-+			qcom,controlled-remotely;
-+			iommus = <&apps_smmu 0x0084 0x11>,
-+				 <&apps_smmu 0x0086 0x11>;
-+		};
-+
-+		crypto: crypto@1b3a000 {
-+			compatible = "qcom,qcm2290-qce", "qcom,qce";
-+			reg = <0x0 0x01b3a000 0x0 0x6000>;
-+			clocks = <&rpmcc RPM_SMD_CE1_CLK>;
-+			clock-names = "core";
-+			dmas = <&cryptobam 6>, <&cryptobam 7>;
-+			dma-names = "rx", "tx";
-+			iommus = <&apps_smmu 0x0084 0x11>,
-+				 <&apps_smmu 0x0086 0x11>;
-+		};
-+
- 		qfprom@1b44000 {
- 			compatible = "qcom,qcm2290-qfprom", "qcom,qfprom";
- 			reg = <0x0 0x01b44000 0x0 0x3000>;
--- 
-2.34.1
+Hi Krzysztof,
+
+I have obtained Manikandan's consent and we will collaborate to submit 
+the series patch. Our Cixtech P1 (internal name sky1) is currently 
+upstream. Because I need upstream Cadence root port driver, However, the 
+Cadence common code of the current linux master does not support 
+HPA[High Performance Architecture IP] is the second generation of 
+cadence PCIe IP. Subsequently, I will send git send-email to pci mail list.
+
+Peter Chen patchs:
+https://patchwork.kernel.org/project/linux-arm-kernel/cover/20250324062420.360289-1-peter.chen@cixtech.com/
+
+Best regards,
+Hans
 
 
