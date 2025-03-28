@@ -1,113 +1,201 @@
-Return-Path: <devicetree+bounces-161532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9083FA74662
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 10:30:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2154AA74669
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 10:37:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 504983BE314
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 09:29:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D626C7A8030
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 09:36:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA328214201;
-	Fri, 28 Mar 2025 09:30:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEE72213221;
+	Fri, 28 Mar 2025 09:37:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="B1KNts01"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q6zF2ynJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5469213E7A
-	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 09:29:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89F381DE2BA;
+	Fri, 28 Mar 2025 09:37:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743154201; cv=none; b=MKiW2xyeOLP2n3jlnJuPbvlz/zM/aNqgXBj9CNja4L02eptSYCMdC2PtDauVUNmPhBvb0VhkgqzPcvFtiF3c8iGk/577vUfbqOezZenJvjHZAruUPcliENqiXA+371Hy7OyLX72x94rS8IXVuVLD9lwYb/KvCDHEBHQ0OdJzmZg=
+	t=1743154652; cv=none; b=Xh4jRhWK+tzMn0qBNd6+rIq06yITOq1LcyyDN9B7q08E+ejQKwvPwVzTCETZO+bWDQ5moJ/h8YU8ZnS62F9Ioji4tJapVkAq/d+8YY/weuGa3ugriu0RooLtLk73t1UP0bOJumHMO5I+9TKlxjNvOUC78fafGH4jXWVyHpLmTc4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743154201; c=relaxed/simple;
-	bh=8Vu9wccvRJP8ukJq1AmbQm1pxBvfrY2JQJAGM24f+qs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LbPZIOHzyrNHI0hxZmbW7EYs+oTjQsANSwF+B0Ou0rFFoYt8vo9tb+eeZ5wbJlSRFjlJL15nbtxqCZ4WqFT77PDyA5NPQ+42TUlcmZhUb2Qsip/9qFNFP3WIvpp1wLILRUAyWCNncLP6AYL+qFQHrFUm6H8biejEmdVhVufvJ+8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=B1KNts01; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5eb92df4fcbso3485412a12.0
-        for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 02:29:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743154197; x=1743758997; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=MqSShgXJw3PA+4hUdB5QsWQTuvezZ525Q5xMzwXN2rc=;
-        b=B1KNts01BRgg0aJXETm7M6ea9egioMTZOIPIYRmp8obe2y+Rtl1ox9bvusii+2cWI5
-         HMbh4bl3aimUyn8yB0+Kn2tyKR6qxXDci0DUZS9ccyou4jT+ndhhQKULxSxmKYd8/wXd
-         mUnWj1GokpFp2BWgdTbcRz15DVGkb5KEgfdOv5kRLsXuNMtvArhaKpJ85HyfebojAmKp
-         Af3+OI3+AqVjV4O0wfB5Nv6NN2+YSJ2x0ntpHQtZNkXZ0EUs+zmxy+Lcsy/pDQAbvJ15
-         X1MPVzOAXR0dh+vfMyZLWO2q2WRTjAnCgd3ccinl1LdnbBoDUW6dBBPyauRrA2+b+d8E
-         CcjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743154197; x=1743758997;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MqSShgXJw3PA+4hUdB5QsWQTuvezZ525Q5xMzwXN2rc=;
-        b=clGT0FZmiqVvVBwLveeduW6xuuhU9r1SBWnkWpwJioUoNO9IM8rCWJ8LQL9WzXot5D
-         gxNZsnXtUYiI6cGbB4JuyY7Qu7PEJXuJ/f8o07iYR3hsjkaOBkzfh7+ESojG4aM4YiXV
-         ZyrBXjKT0hCStQ4whm4RB3oW8tLO8LOZZF3LcyST6St4TEvb6p3gkY3BIomw5cBcTMAv
-         SRb0WXOO4jQOMibh4BGZGPpBkN9W18Z3yKNuUAoaYkI2BiPp9HJ+Ac7byJl3an4IswjD
-         Pc6EQBNPSsQ+elkFLGrJ7YhOB29zDsXAAeE6eibXTca6eLqkKS2vjLbKq2GY+6Rw9Yj+
-         ogSg==
-X-Forwarded-Encrypted: i=1; AJvYcCWkDeKAFk1ZeRdxCkiTPvm/hoIz327vi6fUgHSfVelr2ao/02cmRXtSlk8Wu8gslpbCbT5+QxZVXf6G@vger.kernel.org
-X-Gm-Message-State: AOJu0YzEqiNub2y+h1gx/uXUxC1uADMG0pcxtjQTKwh6U0R41koR5WM7
-	c0HUkUaLxIDLpuRViqTTZgzPwX9Zr4VNR8eCAVpif4zP+n148+lIfF+q/zkLlN0=
-X-Gm-Gg: ASbGncvy2zBhaaVL34jcC6ejg1mMc+G4zGX4dLyHz+2rDsAI4ZzJ9a8t1ElaFlz6zED
-	sfNSoA0uKmYnwexVBUL+7jqSGZR8DV9K5ZfFuyvxPjF45WbcA+efwCLP+Do0/6xwFBqqAPlRnCx
-	wl8HtFzH3jPo6SlhjvsIfuwisSHZy50GO+4s+/VFRHXCTLi9Tdo/+3b8XLDC/AVrSddGAF7XQpm
-	sGDJ287xiEfGYjXkb5Sm8oVz1BWIObu+ekRFzbt2dgQn4sUQhXsT+F2HVHUhuVRuSwGbeKmyhu4
-	O/bxw0c5Tpfj6GqmAkfbNznKUgN6w9AivyhwBaFOjg==
-X-Google-Smtp-Source: AGHT+IHfluKIRr7jH95wATbLlb3zKl9uT5b3dRjhMmF+OXcjSLOy4S6m1p6fE0ADRn8ZZaTWKhlyrQ==
-X-Received: by 2002:a05:6402:90a:b0:5e5:e78a:c4d7 with SMTP id 4fb4d7f45d1cf-5ed8e387bbcmr7030250a12.12.1743154197144;
-        Fri, 28 Mar 2025 02:29:57 -0700 (PDT)
-Received: from linaro.org ([62.231.96.41])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5edc18030afsm1108964a12.81.2025.03.28.02.29.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Mar 2025 02:29:56 -0700 (PDT)
-Date: Fri, 28 Mar 2025 11:29:55 +0200
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Johan Hovold <johan+linaro@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dennis Gilmore <dgilmore@redhat.com>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: x1e78100-t14s: enable SDX62 modem
-Message-ID: <Z+ZsE1wm87GfVanE@linaro.org>
-References: <20250327081427.19693-1-johan+linaro@kernel.org>
+	s=arc-20240116; t=1743154652; c=relaxed/simple;
+	bh=0fclWiepa/taOkA725bzSJS68oko6/7LBYyWLSBlxDk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=D9WEYIXOJPjbe1ye0TMm3mN5KtH+/uMIEDQLXsWE4/AdkYla2N4jPefgenA+gu3n4O18cwRFY07mSYU5khaxeRUHbkuAvKm9mNNaBTz9gtJqtbqYVvV3oe8mfJxnDjVTa/wat2TMr92k9gGQH0YvE6OYXDukDLOYeaSnnhiXY6g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q6zF2ynJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3417EC4CEE4;
+	Fri, 28 Mar 2025 09:37:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743154652;
+	bh=0fclWiepa/taOkA725bzSJS68oko6/7LBYyWLSBlxDk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=q6zF2ynJhkl5yzeak6vXduN2dKM0dPK06WtOZjKVWlDcX+jDEkRlfrb0z/bpCWrFQ
+	 s1EcLmtlgGwo8b92WifNdbPK4wKYyywEvhNfjffG0Gpb/a53QnmBclbjvMOw8K3V1g
+	 acBPl828nzpd2rQwz6ZMuO1fHgaZabV8kL/ahqz1Oil8Z4bx/HO7332WS2hlwt3PxA
+	 L8ooAvtN2RxJ6f1ZnQ5eNiRvU5Kijdk5hXahXllqD4QS8M1X1K2Oj9VqYc+CAlLsSm
+	 S5All6X3M5xlVSZ6ymvycs7IvOPM2CEgibXJhF75BcZ2WoPemBh4NIBWVJvZBOzWO0
+	 9BhC0gm7ww3QQ==
+Message-ID: <aad0e28d-1164-47fb-b08b-ee70d94eab9c@kernel.org>
+Date: Fri, 28 Mar 2025 10:37:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250327081427.19693-1-johan+linaro@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 0/2] arm64: dts: fsd: Add Ethernet support for FSD SoC
+To: Swathi K S <swathi.ks@samsung.com>, krzk+dt@kernel.org,
+ linux-fsd@tesla.com, robh@kernel.org, conor+dt@kernel.org,
+ richardcochran@gmail.com, alim.akhtar@samsung.com
+Cc: jayati.sahu@samsung.com, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ pankaj.dubey@samsung.com, ravi.patel@samsung.com, gost.dev@samsung.com
+References: <CGME20250307045516epcas5p3b4006a5e2005beda04170179dc92ad16@epcas5p3.samsung.com>
+ <20250307044904.59077-1-swathi.ks@samsung.com>
+ <017801db9fbc$81bfa490$853eedb0$@samsung.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <017801db9fbc$81bfa490$853eedb0$@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 25-03-27 09:14:27, Johan Hovold wrote:
-> Enable PCIe5 and the SDX62 modem present on some T14s.
+On 28/03/2025 09:36, Swathi K S wrote:
 > 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
 > 
-> I don't have a modem in my T14s, but this is based on the work I did to
-> enable the modem on the CRD reference design and the T14s schematics.
+>> -----Original Message-----
+>> From: Swathi K S <swathi.ks@samsung.com>
+>> Sent: 18 March 2025 16:22
+>> To: 'krzk+dt@kernel.org' <krzk+dt@kernel.org>; 'linux-fsd@tesla.com'
+>> <linux-fsd@tesla.com>; 'robh@kernel.org' <robh@kernel.org>;
+>> 'conor+dt@kernel.org' <conor+dt@kernel.org>; 'richardcochran@gmail.com'
+>> <richardcochran@gmail.com>; 'alim.akhtar@samsung.com'
+>> <alim.akhtar@samsung.com>
+>> Cc: 'jayati.sahu@samsung.com' <jayati.sahu@samsung.com>; 'linux-arm-
+>> kernel@lists.infradead.org' <linux-arm-kernel@lists.infradead.org>; 'linux-
+>> samsung-soc@vger.kernel.org' <linux-samsung-soc@vger.kernel.org>;
+>> 'devicetree@vger.kernel.org' <devicetree@vger.kernel.org>; 'linux-
+>> kernel@vger.kernel.org' <linux-kernel@vger.kernel.org>;
+>> 'netdev@vger.kernel.org' <netdev@vger.kernel.org>;
+>> 'pankaj.dubey@samsung.com' <pankaj.dubey@samsung.com>;
+>> 'ravi.patel@samsung.com' <ravi.patel@samsung.com>;
+>> 'gost.dev@samsung.com' <gost.dev@samsung.com>
+>> Subject: RE: [PATCH v8 0/2] arm64: dts: fsd: Add Ethernet support for FSD
+>> SoC
+>>
+>>
+>>
+>>> -----Original Message-----
+>>> From: Swathi K S <swathi.ks@samsung.com>
+>>> Sent: 07 March 2025 10:19
+>>> To: krzk+dt@kernel.org; linux-fsd@tesla.com; robh@kernel.org;
+>>> conor+dt@kernel.org; richardcochran@gmail.com;
+>>> alim.akhtar@samsung.com
+>>> Cc: jayati.sahu@samsung.com; swathi.ks@samsung.com; linux-arm-
+>>> kernel@lists.infradead.org; linux-samsung-soc@vger.kernel.org;
+>>> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
+>>> netdev@vger.kernel.org; pankaj.dubey@samsung.com;
+>>> ravi.patel@samsung.com; gost.dev@samsung.com
+>>> Subject: [PATCH v8 0/2] arm64: dts: fsd: Add Ethernet support for FSD
+>>> SoC
+>>>
+>>> FSD platform has two instances of EQoS IP, one is in FSYS0 block and
+>>> another one is in PERIC block. This patch series add required DT file
+>>> modifications for the same.
+>>>
+>>> Changes since v1:
+>>> 1. Addressed the format related corrections.
+>>> 2. Addressed the MAC address correction.
+>>>
+>>> Changes since v2:
+>>> 1. Corrected intendation issues.
+>>>
+>>> Changes since v3:
+>>> 1. Removed alias names of ethernet nodes
+>>>
+>>> Changes since v4:
+>>> 1. Added more details to the commit message as per review comment.
+>>>
+>>> Changes since v5:
+>>> 1. Avoided inserting node in the end and inserted it in between as per
+>>> address.
+>>> 2. Changed the node label.
+>>> 3. Separating DT patches from net patches and posting in different
+>> branches.
+>>>
+>>> Changes since v6:
+>>> 1. Addressed Andrew's review comment and removed phy-mode from
+>> .dtsi
+>>> to .dts
+>>>
+>>> Changes since v7:
+>>> 1. Addressed Russell's review comment-Implemented clock tree setup in
+>>> DT
+>>>
+>>
+>> Hi,
+>> The DT binding and driver patches corresponding to this patch is now
+>> reflecting in linux-next
+>> https://web.git.kernel.org/pub/scm/linux/kernel/git/next/linux-
+>> next.git/diff/Documentation/devicetree/bindings/net/tesla,fsd-
+>> ethqos.yaml?id=f654ead4682a1d351d4d780b1b59ab02477b1185
+>>
 > 
+> Hi reviewers, 
+> Could you please confirm whether this set of patches can be considered for review or should I resend them?
 
-What happens with T14s variants that do not have the WWAN ?
+Don't ping during merge window.
 
-Is it OK to enable it on those, HW-wise ?
-
-(Hope we don't have to split the devicetree again, like we did for the
-panel)
+Best regards,
+Krzysztof
 
