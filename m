@@ -1,273 +1,166 @@
-Return-Path: <devicetree+bounces-161448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C221DA742BC
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 04:13:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A81B8A742E8
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 05:08:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 61997188F3A6
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 03:14:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7905F1B60101
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 04:08:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 399B820E710;
-	Fri, 28 Mar 2025 03:13:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D02571C5F34;
+	Fri, 28 Mar 2025 04:08:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="eroXl0n8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from HK3PR03CU002.outbound.protection.outlook.com (mail-eastasiaazon11021092.outbound.protection.outlook.com [52.101.129.92])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FEF420E002;
-	Fri, 28 Mar 2025 03:13:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.129.92
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743131629; cv=fail; b=AkT7QCQO2iW15AcA6lXQ7gsv79CVQlmKQ+pPXRGjLY01H29M8UqOh35tb5QmYj+CTdjiTFdk0EQODeNC+T5r+C8LTvu3b+kJkCN4LQPvJE9lG06EcuJjhPlAKjKSMNSGsfNgQ017DkuUzJp+zvS0LhbHOcJonYsoz0/y9/uSIpI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743131629; c=relaxed/simple;
-	bh=AaT6M6kYRbIubCMxOFtvg/eI9YsrdrlvRMMWJDcG+y4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UpbcLGNnIF5kdZk27JmItQN+O2opunTotLZY9LK2QqaPhu8J1NuCd/5fBitVvuPc0VLay/cqtpsHH3r4lf/XNpV9V7JDF9SKMPJ2hhba0OaQGHH5Le4yHwJfuzTmZMnH3JPWsXXpcv9Vj/GiZWZ1snG7NyL975CXWWBdo+ArGvc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.129.92
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iT1daxZLLzkTrHQZosDKmtj2C8t6GsOyKDy0lEOvGCALjDrb9omj+JYYPAilIdzmlP33cLRUbPlVY9ZYULuXZTGyHs/5wonYuMLfpEiD6ycJpchpIuMboES1eOeIFdi4Sc5kbCqmmMNK/1W0CkjknoJxlB2ViOhPUQEd1lYzlCk02b9nbcLrVyhopw6rv/sPPyDu001L4b3Zmo4BzjELSX+r3i3h8mGnWETc7lWy6sVVl05fJLYVOQzWCh58SUyVqfjUYSg82DBbt3uz9j7jNvTBPFMz9p3EcezcobEzwqs3rHowIRg3RntHU1BINkKKrpkFNIcQN2ksV3cp70yDQw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GWd4V/sJuYT1ZhMNkVkLxnZfyx66UNlv3qiplqWiEPU=;
- b=uSWbN3zaaTXg2smWck4SUCtx+QjaUbYZfAdJCi0LT8hYQdhtQSSNOfqmapnWAzwjWTi9ON9tcBTVdAlO/8P0RcJyYfH18LavNL+ntx1EWPwOC9781UJqFp4DJTelKy8AzxC03j9soav3iXme8ap8wsO7U7vZ1j2BoHtK7awLT7X0cqYziJE6V7HQOT5qgHZABeu9HxymFYMiuikJHVrTBzJ/J5WHnyI3w/pkQ1qc4BfWqTV2/ILDe6Ih1U7/BE+OVQI1t2rlNDb9QWXZdxtRpt8idNDFN5jrTF4KaRvdtEQnB3/3AuPLlozVma7h4rBn2fCfZbDDAexX3mvz2Rsy8Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from SI2PR02CA0043.apcprd02.prod.outlook.com (2603:1096:4:196::12)
- by TY2PPF7BEC1550B.apcprd06.prod.outlook.com (2603:1096:408::797) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.27; Fri, 28 Mar
- 2025 03:13:41 +0000
-Received: from HK3PEPF00000220.apcprd03.prod.outlook.com
- (2603:1096:4:196:cafe::4) by SI2PR02CA0043.outlook.office365.com
- (2603:1096:4:196::12) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.44 via Frontend Transport; Fri,
- 28 Mar 2025 03:13:41 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- HK3PEPF00000220.mail.protection.outlook.com (10.167.8.42) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8534.20 via Frontend Transport; Fri, 28 Mar 2025 03:13:40 +0000
-Received: from gchen (unknown [172.20.64.84])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 235A64160D20;
-	Fri, 28 Mar 2025 11:13:39 +0800 (CST)
-Date: Fri, 28 Mar 2025 03:13:37 +0000
-From: Guomin chen <guomin.chen@cixtech.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, cix-kernel-upstream@cixtech.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: mailbox: add cix,sky1-mbox
-Message-ID: <Z+YT4XroHJ3OjiBX@gchen>
-References: <20250325101807.2202758-1-guomin.chen@cixtech.com>
- <20250325101807.2202758-2-guomin.chen@cixtech.com>
- <77f94763-5604-484f-93c8-dc018c166b37@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2974413DBA0
+	for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 04:08:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1743134904; cv=none; b=UQ4pQYAydlkaSDpjX2nmoSYpdfQrjO/ZkcR8wKaLqozd9gKbTwITB+HZXAYRgibKhQ0860vud4Y5DUktapfSQEuVj/i+B9babtA0kigax/qstEeUiYpbXMezj73suXa71kPMlaX/2kcYUKwa7NATr4nokawimymqXUKYVuW2ofU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1743134904; c=relaxed/simple;
+	bh=iYrVRcD+hMzJtKzodR0ESNhu7mLxGvDK1xY/1pi4jNw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JPYl77PAP6uJyY1KpxzZMlAy65TFE6fH160dLNM6eBlgE6Ce55m7cTvXIjUHc+MJ5MHaScrFCc3KMBSpJNMr1NCHqlu4HS/sCbzl5618CJ1GikrOWBj5/0HRpDg/0F6rcc04BfXQ6X6gwAVV1VR0Jg7bCDa7EghQMIndMrHo1H4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=eroXl0n8; arc=none smtp.client-ip=209.85.216.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-2ff694d2d4dso2781606a91.0
+        for <devicetree@vger.kernel.org>; Thu, 27 Mar 2025 21:08:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1743134902; x=1743739702; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=N03iBb0aPoOa1EMU2w3tNSLo9fIJtKzm12qVBAP380o=;
+        b=eroXl0n8+OT1WgONptV+EA+kK8ucFA8h5gKi/zuj5OQRMp/bjukCcy0en5STiHvPjF
+         hk+0RbyfQArUFzXVJCZIU4lcCM91HpM/R6oLg8REt3szqn/8DlbFUqRaFz7KVW1uUhC2
+         2R8lLzlWzv6PGJtf5oH90dHAX4cRqBki80bGQli/mIh7ZKqVh16jWHyF8BwonOgC8xc7
+         Z58exKQhCj/OHYjOLyfr0Yzl57V4S4mqh5MMEoBf0uJYiiEa9z8FZgYVjc1Rkeys5wkW
+         c9jZIRU2rtdOEMJu1njuawOnnUTKseg6qPEo2Os8ZhCqc/A/C6VyepPeTfTpL9L62XQc
+         HrYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743134902; x=1743739702;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=N03iBb0aPoOa1EMU2w3tNSLo9fIJtKzm12qVBAP380o=;
+        b=kqpclTV70JvKyou0oceomUSikAolr1lqEQViCxVeaIeN8zkaSTq6NcELfL3cGbWU8r
+         8PbBJGzUcNFWkm/oIJaE2goBRJAeWbjxdooAG2MUNxgIHZpSCR+2t2v8ylEvWHTx5W+H
+         6DskAH2B7wJWXh0fNK8gPGl2dnQRxIjpct8zZzb7cDQ01RyoxnP1X1n6qptw+ehs7zv7
+         q341dMN7+YZHZVBpxeMcppHcd/MOT/i874PqWjejESed3t7AA4Ss4/NFXigwXU6hpAIB
+         CLWvheACNHYU/z6aBl9Pk00ZEnQNMPM3cd6vHKCgxlChBV6dMuNZ/hShTv0EldW1Xpn2
+         RZ9Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXqsL1M86rz9ECeb2LEDfhoxNNT+NHZPWDSTxhlF3Vw/FAvGRz6BAo6vWvFyHKQqhWB/tQZxLFCRH7v@vger.kernel.org
+X-Gm-Message-State: AOJu0Yya/U0d6vlSUhozVtV9LGNm2g02bDSCS9Wsq7RMj0aN6R+NycPi
+	dabSUYKK7jBVOvvCByUJdohfmoInCAJdBUpjBBmJSsR2xO4voOuK+o1NPrEPk3cvc6yPbqjxcyP
+	T2t7zoQVCs8YjxhLK8X/ucVseNzqmBAVufLg2
+X-Gm-Gg: ASbGncvt8CwOcXFfC9c+rGDBMYcUshfsbS4buAYeJLdOF6c33z/WC40E/TduxQ/i6HO
+	yw8B9fQKDkWKGJZ+IoR3v+QgfvB6wShU+k47yL2Urw5aHDOUUvJIEzqojplrGbqaXzeQaUgJklv
+	9iGkNCYvs96mQ4CDIV0k6JRvDsDHANAME90qZ5nF3HiuO3MLnwSsb67Yc3
+X-Google-Smtp-Source: AGHT+IET2SIyJWG/WqM8dYN2pMoj552qvEHpWMKKbW6yAwVAwSlCGxAcGWCgJC6GDSoyfDHa7yGjAkBy+fMLLMAo3AE=
+X-Received: by 2002:a17:90a:e185:b0:2ee:cded:9ac7 with SMTP id
+ 98e67ed59e1d1-303a8164d83mr9850612a91.20.1743134902056; Thu, 27 Mar 2025
+ 21:08:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <77f94763-5604-484f-93c8-dc018c166b37@kernel.org>
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: HK3PEPF00000220:EE_|TY2PPF7BEC1550B:EE_
-X-MS-Office365-Filtering-Correlation-Id: 301b7a4b-d34b-4e00-dd40-08dd6da68a15
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|1800799024|36860700013|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?VTJuRTJhY3JaS1c4ODRhRkxGcGRJYkJOcmt4Nk1TZS81cVZ6R0MwbU03QzBl?=
- =?utf-8?B?cW1nUUNJVXZCSUZVbnRBVVFubXNWQ1hXc2htWEhuWFljR0xCaFlDVXRoSGVJ?=
- =?utf-8?B?ejNqL3NkQTIrSnlUUmhFZlVKazhlR1pSeFZoY0REMkJCTHVHY0VtZkwwaFpR?=
- =?utf-8?B?aVBNcjJFbWRQU0o3VXp4eStHYkpGSWY2aHJqQkJGSzlzbW1sTWZKWkdWWERz?=
- =?utf-8?B?Ykw1Yks4RnQ1WjNseXM5VUhrTkVpcDZBN1N2MFFPM3hFbGl4dE9LSTUvbmtT?=
- =?utf-8?B?M3dnaWIwOWlyellRaHRra0ZtN3ZxTkhqRzczSTNuNlRkQzBHaXJRUk5pemtn?=
- =?utf-8?B?My92a0JiaVpTcStSWW9qeEpMWmlqSjF6SHJ0ZEhCcGo3M2puSnpxRTJDY2pR?=
- =?utf-8?B?N3RWWTZyMFJLSWRVdFRUZGs3aStsQzIrVUlwZUZuREdUdVlQTDI4U0lUZW5G?=
- =?utf-8?B?cWpMR0xuVFFZSjFmTzViNFBSRnkwVWd0dzN1NUFSRmd0UUx5OVo3L1ErL2sy?=
- =?utf-8?B?NWkwQVFEazNzWXl5aVl3T3AzazFMZytrSXhLbUZOT05VekV3OHhaWGlQb25r?=
- =?utf-8?B?Yjl3MVR4WHRJalNhaHJtV3BTQ2owZ1FTQklXS2YxR3E5cE1rdkhER0x2Z2FV?=
- =?utf-8?B?aUNaVnk1U21YZUhUaTBCSW5OZlJyS3RPaXRIWC9KMG5FQ3ZyTUhRazZJR1ZM?=
- =?utf-8?B?akJnZnBER1p6ZWNhRjBuMVBQUEJyM0RBMklRM0VPRUlrUVRXaU5Ia2NFbktx?=
- =?utf-8?B?QWtsUjNIeTJEN0ZaTzFaQWJxTU5mSnlKdm03SVZISzVPc3ZQTkYxRTc3ZXg3?=
- =?utf-8?B?NGJER09EQlljZ1JIRGczZXBOYnRVRC9uc2ZyVUhHUWI1Y0QyMGsxZ210WUN5?=
- =?utf-8?B?WmJ4Z1B2YzREd2crMUVNY2lLek0zUEVOcEZtT3pxSDRjU1J3cDZidlJJR0pq?=
- =?utf-8?B?Mm9pUWNWeWZTYWN3Vk04RVpML0dZdkROdWRPUkVDL2oxVG5PeTU1YU9Ec0pD?=
- =?utf-8?B?L0pRTm1DaHFOcDJsRFE1YlZRayt4NXBFclAyMHBCRTZlQUJycUdaajE4THBO?=
- =?utf-8?B?SHhCNzZHR1RiVklLQ09telhUZUtwY29ma1Y1STIwejdZNkg4cjdick1ySnFU?=
- =?utf-8?B?Ym5pYWNZOVVxRlNiNHBOV0hnMEVLYVNrWWdCa1lveFc3VkxHSUlVa2RmaUtF?=
- =?utf-8?B?cE53d2lHTUVtU0NyTUNWTzBLSjROQXhQNUlnUE1NcUYzS2loOHhrOWZVUEMz?=
- =?utf-8?B?amsyQk9IRjJGRWdEeGwzZkROWU9YM0FLNmRURWUxdWs0dlZKWTZHU2JyT0I2?=
- =?utf-8?B?aW9QK3daU3c2cUl4MjVGL05ldXluWStLVmN5T1NXS2N3OVBLU1FqYWdENGNx?=
- =?utf-8?B?V1NaSGNpY2ltOG1hSnJsZG1mSkdsdHgwN3FURWZrN1Vtc2UrSTNBeXArb3Zy?=
- =?utf-8?B?eFZzTy9XblF2TXl3N3JTTDliQmovZHRsOWRjWUdmVXdRVEtDVkVDaXFqTkhv?=
- =?utf-8?B?elBQK3FDdm55RDdqcDY1aW1RaS8zRE5BWC90aGRDWE9Ja0N3S2JSdzdLUXo2?=
- =?utf-8?B?YUVyaFFTTjVRQk15R3BGVFNvR05wL0JqYncxZzdVOTVlUngrUDJCbU5nakl0?=
- =?utf-8?B?SDQxTWlWQUJldENWbmQ0M3hTZGwvM3ZyUFJrQ1RBMmhyaWZ2ZlZiUjN2ZVI0?=
- =?utf-8?B?MmN3K3paQTBQbVg2SWZOK1U3V25OaWpCN1IrWFpza1FCNU0zczYvbW5TaVdi?=
- =?utf-8?B?L0Q1UXkzTlJWb2JnSFNYNVNWMlBPczZKNkIzRVhQTXhnSHlSMkdETklXTzRv?=
- =?utf-8?B?Z0gzcjdEc1R2UFFaK0hWbFdpZ1plSEdhanNCeTJoUmk2U1U4T1dIcUUyUUp2?=
- =?utf-8?B?cDZ3Vjk5M0ZIMkx0N1pua3lTSVRUMWsxNUM0T3d3WTZNcnltNXBhM0tGT3Ba?=
- =?utf-8?B?RytCYTRXUGJwYWpadlMrM3o3UWM2QXl0VWkvZ2wvS1A5WUNESlk4N3Y4bncx?=
- =?utf-8?Q?czdFocBXs+suDyeha4a4pP/UEguzRQ=3D?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2025 03:13:40.2822
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 301b7a4b-d34b-4e00-dd40-08dd6da68a15
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource: HK3PEPF00000220.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY2PPF7BEC1550B
+References: <20250319005141.312805-1-quic_wcheng@quicinc.com>
+ <20250319005141.312805-2-quic_wcheng@quicinc.com> <CAGCq0LZoi0MOJLJYUeQJW6EfOU_Ch=v1Sg8L4_B-KhdDCx1fCw@mail.gmail.com>
+ <2025032734-reward-fantasize-dc16@gregkh> <CAGCq0LamxvvE8b45VAshw9aWJNC2so_vK9t+pzXd3C7Y7tfYAg@mail.gmail.com>
+ <2025032756-aliens-ibuprofen-79e5@gregkh>
+In-Reply-To: <2025032756-aliens-ibuprofen-79e5@gregkh>
+From: Puma Hsu <pumahsu@google.com>
+Date: Fri, 28 Mar 2025 12:08:00 +0800
+X-Gm-Features: AQ5f1JorDK6fkpVgYpd1mPibjV42TOlpaMjT0M3mouvQUfQc-UcxBnx7ecDNaLc
+Message-ID: <CAGCq0LZUezCBoqrS2+6Dphd4J2T0w5tPNweNVtGcNzMzjgSUXw@mail.gmail.com>
+Subject: Re: [PATCH v36 01/31] xhci: sideband: add initial api to register a
+ secondary interrupter entity
+To: Greg KH <gregkh@linuxfoundation.org>
+Cc: Wesley Cheng <quic_wcheng@quicinc.com>, srinivas.kandagatla@linaro.org, 
+	mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org, 
+	dmitry.torokhov@gmail.com, corbet@lwn.net, broonie@kernel.org, 
+	lgirdwood@gmail.com, krzk+dt@kernel.org, pierre-louis.bossart@linux.intel.com, 
+	Thinh.Nguyen@synopsys.com, tiwai@suse.com, robh@kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-sound@vger.kernel.org, linux-input@vger.kernel.org, 
+	linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-doc@vger.kernel.org, Mathias Nyman <mathias.nyman@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Mar 25, 2025 at 11:36:18AM +0100, Krzysztof Kozlowski wrote:
-> EXTERNAL EMAIL
-> 
-> On 25/03/2025 11:18, Guomin Chen wrote:
-> > +
-> > +description:
-> > +  The Cixtech mailbox controller, used in the Cixtech Sky1 SoC,
-> > +  is used for message transmission between multiple processors
-> > +  within the SoC, such as the AP, PM, audio DSP, SensorHub MCU,
-> > +  and others
-> > +
-> > +  Each Cixtech mailbox controller is unidirectional, so they are
-> > +  typically used in pairs-one for receiving and one for transmitting.
-> > +
-> > +  Each Cixtech mailbox supports 11 channels with different transmission modes
-> > +    channel 0-7 - Fast channel with 32bit transmit register and IRQ support
-> > +    channel 8   - Doorbell mode,using the mailbox as an interrupt-generating
-> > +                   mechanism.
-> > +    channel 9   - Fifo based channel with 32*32bit depth fifo and IRQ support
-> > +    channel 10  - Reg based channel with 32*32bit transmit register and
-> > +                   Doorbell+transmit acknowledgment IRQ support
-> 
-> Maybe you split one device into two and that's why you have
-> unidirectional mailboxes?
-Not like this. Each Cixtech mailbox controller is unidirectional, so two mailboxs
-are required to achieve bidirectional communication between two internal
-coprocessors—one for receiving and one for transmitting.
+On Thu, Mar 27, 2025 at 6:48=E2=80=AFPM Greg KH <gregkh@linuxfoundation.org=
+> wrote:
+>
+> On Thu, Mar 27, 2025 at 06:14:00PM +0800, Puma Hsu wrote:
+> > On Thu, Mar 27, 2025 at 3:02=E2=80=AFPM Greg KH <gregkh@linuxfoundation=
+.org> wrote:
+> > >
+> > > On Thu, Mar 27, 2025 at 02:27:00PM +0800, Puma Hsu wrote:
+> > > > Hi,
+> > > >
+> > > > We have implemented and verified the USB audio offloading feature w=
+ith
+> > > > the xhci sideband driver on our Google Pixel products. We would
+> > > > appreciate it if this solution can be accepted. Thank you all for t=
+he
+> > > > work!
+> > > >
+> > >
+> > > Great, can you properly send a "Tested-by:" line for this against the
+> > > 00/XX email so that it will be properly saved?
+> > >
+> >
+> > We(Google Pixel) only use the xhci sideband related changes and two
+> > changes in the sound card driver. For the details, what we actually
+> > tested are patch [01], [02], [03], [04], [05], [06], [08], and [12].
+> > Do I still send the "Tested-by:" line to 00/31 email? Or should I just
+> > send the "Tested-by:" line to the 8 changes above? (I added
+> > "Tested-by" line for this [01/31] first.)
+>
+> Send it to the commits that you used if you only used portions.
+>
+> But that feels odd, why are you only using portions here?  Why not the
+> whole thing?  Are you going to have to revert portions of this series in
+> order for your device to work properly?
+>
 
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: cix,sky1-mbox
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  "#mbox-cells":
-> > +    description: Common mailbox binding property to identify the number
-> 
-> Drop
-> 
-> > +        of cells required for the mailbox specifier. Should be 1
-> 
-> Drop
-> 
-> Don't repeat constraints in free form text. Missing const.
-Okay, I will remove this duplicate description and add const.
+Google Pixels use Tensor instead of QCOM chip, so we won't enable
+QCOM specific drivers from this series(i.g. patch [14~31]). What we
+need from this series are common xhci stuff and portions of alsa. We
+won't build QCOM driver even if this series is all merged, so we don't
+have to revert anything.
 
-> You kept here pieces I asked to drop. You dropped pieces I did not
-> comment under. Please observe where the comments appear.
-> 
-> So again: explain what each cell argument means.
-> 
-> 
-> > +> +  cix,mbox-dir:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: Direction of the mailbox (0:TX or 1:RX)
-> > +    enum: [0, 1]
-> 
-> Respond to comments or implement them. Previous discussion was not
-> resolved - you did not respond. Sending the same with unfinished
-> discussion is not way to convince maintainer. Opposite: you will get
-> NAKed because you try to finish discussion and push your patch over the
-> wall.
-> 
-Sorry, about your previous comments.
 
-As previously mentioned, each Cixtech mailbox controller is unidirectional.
-Each mailbox supports 11 channels, which differ only in their transmission
-methods (e.g., FIFO, REG, doorbell). However, the transmission direction of
-all channels within the same mailbox is fixed and determined by the mailbox
-controller itself.
+> > > Also, I think a new version of the series is coming, can you test tha=
+t
+> > > to verify it works properly?  We have to wait until after -rc1 is out
+> > > anyway.
+> > >
+> >
+> > I think this v36 is the last version of the series as I discussed with
+> > QCOM Wesley. And for sure I will test it if they do have a new
+> > version.
+>
+> See:
+>         https://lore.kernel.org/r/ee95520b-cdcc-4e10-a70e-683993cafe36@qu=
+icinc.com
+> for where the need for a new version is discussed.
+>
 
-The Sky1 SoC contains 4 pairs (8 total) mailbox controllers. To identify
-whether a controller is TX or RX relative to the AP, the driver introduces
-the 'mbox-dir' property in DTS.
+Thank you for the information. It looks like QCOM specific, but I will
+track and test if there was any change for common xhci in the new
+version.
 
-Alternatively, the direction could be specified directly in the compatible string
-without using 'mbox-dir'. However, I think these two approaches are the same.
-
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - "#mbox-cells"
-> > +  - cix,mbox-dir
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +
-> > +    soc {
-> > +        #address-cells = <2>;
-> > +        #size-cells = <2>;
-> > +
-> > +        mbox_ap2pm: mailbox@30000000 {
-> > +            compatible = "cix,sky1-mbox";
-> > +            reg = <0 0x30000000 0 0x10000>;
-> > +            interrupts = <GIC_SPI 136 IRQ_TYPE_LEVEL_HIGH 0>;
-> > +            #mbox-cells = <1>;
-> > +            cix,mbox-dir = <0>; /* 0:tx; 1:rx */
-> 
-> Drop comment. If you need comment, then this should be string.
-> 
-> > +        };
-> > +
-> > +        mbox_pm2ap: mailbox@30010000 {
-> > +            compatible = "cix,sky1-mbox";
-> > +            reg = <0 0x30010000 0 0x10000>;
-> > +            interrupts = <GIC_SPI 137 IRQ_TYPE_LEVEL_HIGH 0>;
-> > +            #mbox-cells = <1>;
-> > +            cix,mbox-dir = <1>; /* 0:tx; 1:rx */
-> 
-> Drop second example. Wasn't here and is not needed. Same properties,
-> difference in one value is not that much.
-> 
-Okay, I will remove the comments.
-
-Using two examples is merely to illustrate that the Cixtech mailbox
-appears in pairs to achieve bidirectional communication.
-If you think it's unnecessary, I will remove the second example. thanks.
-
-Best regards,
-Guomin Chen
+Thanks
+Puma
 
