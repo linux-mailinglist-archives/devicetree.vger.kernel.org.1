@@ -1,134 +1,295 @@
-Return-Path: <devicetree+bounces-161516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161517-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C419A74591
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 09:38:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C23B2A745A0
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 09:43:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C328D3BD520
-	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 08:37:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB1383AA3E5
+	for <lists+devicetree@lfdr.de>; Fri, 28 Mar 2025 08:42:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BAD2212FBF;
-	Fri, 28 Mar 2025 08:37:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96367212FB4;
+	Fri, 28 Mar 2025 08:42:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V5Mk04WO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MJnlqtmA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01955212FA1;
-	Fri, 28 Mar 2025 08:37:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 687DE2F3B;
+	Fri, 28 Mar 2025 08:42:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743151059; cv=none; b=Bpm8Rz/K+LJ4zqCfYnq8Kt1Qs+8fsQxfhUznFFWOBtb0asNFwqG2+ei7dSx9PnRjxXAQm1k9IK1kM7UlNv9AZq5i5CoWjJITqOcv/gyimoT6hTtF4+ZKxYh4NH70gTnUZwWkyoui4aI1jx0wt8aGAFyo1LwS7lQ9CUXOpy0FYsw=
+	t=1743151377; cv=none; b=pe/Xj8lCDREL6KaQNaSew0OHvo7z19HaSH+cUGD95BymSI4bvn3CMLInQtVC1lJ+JoWxGP48vARW72SJFzAdaP7yVHxjxLHYbK6s9Ckdn81zhoyquyQ2pVbML11zzqu+kbKpEr3gUoUJmaUp/0JoeS9l01xT82724JkNTAaJxRc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743151059; c=relaxed/simple;
-	bh=p7l/YosBDhxAEFU++sA6L3zaEVejf9OcRhzmBwb3Ymo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SmjCB+pSYos/F1mxY4+9gzmS+Y0zGoabMGhbF8ysGnFLlr/7WOdIcvzSgc/KIk13NwjchvvU1pJN39L+UTJqR9Q+sGjZH53SskozH6JUrie9nedrB+eRUk7j0bqWRc3pJGd/TLGFEojpiqtqfi/6JG6Fq5hSNBaKnVnsWFXAurE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V5Mk04WO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4625CC4CEE4;
-	Fri, 28 Mar 2025 08:37:37 +0000 (UTC)
+	s=arc-20240116; t=1743151377; c=relaxed/simple;
+	bh=jaBdE82HtRD7nwM1AMEv568HmmOnskrmL0Kbhtzr+do=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Xut0asG7OrA9ASZLF4tbDgKG4Cf486NZvkQcISnJAE7OvJYpVA7VroHgYuDZ+0CIg7o6CEYy7R1sPepCn+xoXw0RXz+VvANn+PTmlL3YNNPs/0PVIrXx6IpUMKT9ebynEnf/J/mKESm4tB/DDvgGdqKw10g5PdMInDfHtZomGg0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MJnlqtmA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4209C4CEE4;
+	Fri, 28 Mar 2025 08:42:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743151058;
-	bh=p7l/YosBDhxAEFU++sA6L3zaEVejf9OcRhzmBwb3Ymo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=V5Mk04WOOVOdryvynoOdNe3VxXsqA8v55HqRtM319hVNGb2nzfmHV7EmX5l/lMLsR
-	 GvHFFS7Dh6YNeRt5yfTN3WFLEzL1f/VeaR6boT5HHtmgOrtPmWEHXp0WueA4L6Mh7+
-	 zqACs+ExNC/u2iQqNzPU1zBzFau4b2/ALruwzQVWHyI1HLtlZcJ7+XvZnnuDNlDSHN
-	 KBicg6QDyru7SMgq5h2BOniWC+smFVn0WdcPONbYY/kAC8xeCFPnBqJLzjmDMkdJwU
-	 yTQiXp7UJaiTxefBDnya4Mr1FxFI62Z91kEWnGqzv8qTTkEkpeYXcvsNE6R5o0N9Kc
-	 zsirgigJXWqmw==
-Date: Fri, 28 Mar 2025 08:37:34 +0000
-From: Lee Jones <lee@kernel.org>
-To: Rasmus Villemoes <ravi@prevas.dk>
-Cc: Colin Foster <colin.foster@in-advantage.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Felix Blix Everberg <felix.blix@prevas.dk>
-Subject: Re: [PATCH 1/8] mfd: ocelot: refactor bus-specific regmap
- initialization
-Message-ID: <20250328083734.GC585744@google.com>
-References: <20250319123058.452202-1-ravi@prevas.dk>
- <20250319123058.452202-2-ravi@prevas.dk>
- <Z9skKTf30m9DVaC5@colin-ia-desktop>
- <20250321114159.GJ1750245@google.com>
- <87r02qeexm.fsf@prevas.dk>
+	s=k20201202; t=1743151376;
+	bh=jaBdE82HtRD7nwM1AMEv568HmmOnskrmL0Kbhtzr+do=;
+	h=From:To:Cc:Subject:Date:From;
+	b=MJnlqtmAxabfRFbMqvOTD6GsBieLFQPNOy2FKdciPxVtwwHssRucNElEoKQ0A3E2+
+	 xMg6JpCR4br8y1G0KABP6khJr3jG373yBEnlKcIgrLO+JdA8kBnuoRNGb665obMu3k
+	 2WjFhppIxrafyHNkXc0JuVn3ghlOiwVvwYyzzuoNhRZmEYR7NwS4SHl90GzGZtyFBf
+	 eEohY4G749Szovf8fC+Zb7gY8mRTRdFlBvOKHCNuXJwSosgr5F294kEa3Nmc1kZ1nl
+	 5AKOsJ1aBXitkYxWU6kTpAO49L+TCezIiy7JO20sCYPQS+p4r9viXTNwXgsAn8D3c1
+	 ZGph1MuTkp5LQ==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan+linaro@kernel.org>)
+	id 1ty5Ir-000000004Nj-1wPA;
+	Fri, 28 Mar 2025 09:43:01 +0100
+From: Johan Hovold <johan+linaro@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
+	Abel Vesa <abel.vesa@linaro.org>,
+	Stephan Gerhold <stephan.gerhold@linaro.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH] arm64: dts: qcom: x1e80100-hp-x14: drop bogus USB retimer
+Date: Fri, 28 Mar 2025 09:41:54 +0100
+Message-ID: <20250328084154.16759-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <87r02qeexm.fsf@prevas.dk>
 
-On Fri, 21 Mar 2025, Rasmus Villemoes wrote:
+Jens reported that the sanity checks added to the new ps883x USB retimer
+driver breaks USB and display on the HP X14. Turns out the X14 only has
+a retimer on one of the ports, but this initially went unnoticed due to
+the missing sanity check (and error handling) in the retimer driver.
 
-> On Fri, Mar 21 2025, Lee Jones <lee@kernel.org> wrote:
-> 
-> > On Wed, 19 Mar 2025, Colin Foster wrote:
-> >
-> >> On Wed, Mar 19, 2025 at 01:30:51PM +0100, Rasmus Villemoes wrote:
-> >> > diff --git a/drivers/mfd/ocelot-core.c b/drivers/mfd/ocelot-core.c
-> >> > index 41aff27088548..78b5fe15efdd2 100644
-> >> > --- a/drivers/mfd/ocelot-core.c
-> >> > +++ b/drivers/mfd/ocelot-core.c
-> >> > @@ -200,10 +200,12 @@ static const struct mfd_cell vsc7512_devs[] = {
-> >> >  static void ocelot_core_try_add_regmap(struct device *dev,
-> >> >                                        const struct resource *res)
-> >> >  {
-> >> > +       struct ocelot_ddata *ddata = dev_get_drvdata(dev);
-> >> > +
-> >> >         if (dev_get_regmap(dev, res->name))
-> >> >                 return;
-> >> > 
-> >> > -       ocelot_spi_init_regmap(dev, res);
-> >> > +       ddata->init_regmap(dev, res);
-> >> 
-> >> I remember changing this from function pointers to the direct function
-> >> call during initial development, per Lee's suggestion. I like it though,
-> >> and I'm glad to see multiple users now.
-> >
-> > Yeah, we're still not going to be putting call-backs into device data.
-> 
-> OK. Can you explain why that is such a bad design?
+Drop the non-existing retimer from the devicetree to enable the second
+USB port and the display subsystem.
 
-It opens things up for all kinds of other 'cleverness' (a.k.a. hackery).
+Note that this also matches the ACPI tables.
 
-Save call-backs for things like class-level ops, not driver level hacks.
+Fixes: 6f18b8d4142c ("arm64: dts: qcom: x1e80100-hp-x14: dt for HP Omnibook X Laptop 14")
+Cc: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+---
 
-> > Either pass the differentiating config through to the core driver
-> 
-> So you mean something like defining a new struct ocelot_backend_ops { } with
-> those function pointers, and pass an instance of that to
-> ocelot_core_init (and from there down to the static helper functions)?
-> That should be doable.
+The devicetree went upstream before the retimer driver so the display
+would already be broken in 6.14 and there's no need to backport this
+one (but it should go into 6.15).
 
-No call-backs at all.  Pass a pointer to the Regmap data.
+Note that the SBU mux can be added later when/if someone figures out how
+it is connected.
 
-> > or handle the differentiation inside the *-i2c.c / *-spi.c files.
-> 
-> I really fail to see how that could be done. Currently, the core file
-> has a hard-coded call of ocelot_spi_init_regmap(). I don't suppose you
-> mean to teach that function to realize "hey, this struct device is not
-> really a struct spi_device, let's delegate to ocelot_mdio_init_regmap()
-> instead". So _somehow_ the core will need to know to call one or the
-> other init_regmap implementation. I could add some "enum ocelot_type"
-> and switch on that and then call the appropriate bus-specific function,
-> but that's morally equivalent to having the function pointers.
+Johan
 
-Enums are acceptable for this use-case.  Opaque function pointers that
-are troublesome to debug / read without; running the code, printing
-pointers then conducting a system table look-up, are not.
 
-It's not that function pointers wouldn't work perfectly well in this
-scenario.  The issue is the precedent it (or any of the previous
-attempts to do this) would set and the chaos that would follow.
+ .../dts/qcom/x1e80100-hp-omnibook-x14.dts     | 146 +-----------------
+ 1 file changed, 2 insertions(+), 144 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts b/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts
+index 05ad07d90b97..03bbebff4576 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dts
+@@ -150,15 +150,7 @@ port@1 {
+ 					reg = <1>;
+ 
+ 					pmic_glink_ss1_ss_in: endpoint {
+-						remote-endpoint = <&retimer_ss1_ss_out>;
+-					};
+-				};
+-
+-				port@2 {
+-					reg = <2>;
+-
+-					pmic_glink_ss1_con_sbu_in: endpoint {
+-						remote-endpoint = <&retimer_ss1_con_sbu_out>;
++						remote-endpoint = <&usb_1_ss1_qmpphy_out>;
+ 					};
+ 				};
+ 			};
+@@ -370,54 +362,6 @@ vreg_rtmr0_3p3: regulator-rtmr0-3p3 {
+ 		regulator-boot-on;
+ 	};
+ 
+-	vreg_rtmr1_1p15: regulator-rtmr1-1p15 {
+-		compatible = "regulator-fixed";
+-
+-		regulator-name = "VREG_RTMR1_1P15";
+-		regulator-min-microvolt = <1150000>;
+-		regulator-max-microvolt = <1150000>;
+-
+-		gpio = <&tlmm 188 GPIO_ACTIVE_HIGH>;
+-		enable-active-high;
+-
+-		pinctrl-0 = <&usb1_pwr_1p15_reg_en>;
+-		pinctrl-names = "default";
+-
+-		regulator-boot-on;
+-	};
+-
+-	vreg_rtmr1_1p8: regulator-rtmr1-1p8 {
+-		compatible = "regulator-fixed";
+-
+-		regulator-name = "VREG_RTMR1_1P8";
+-		regulator-min-microvolt = <1800000>;
+-		regulator-max-microvolt = <1800000>;
+-
+-		gpio = <&tlmm 175 GPIO_ACTIVE_HIGH>;
+-		enable-active-high;
+-
+-		pinctrl-0 = <&usb1_pwr_1p8_reg_en>;
+-		pinctrl-names = "default";
+-
+-		regulator-boot-on;
+-	};
+-
+-	vreg_rtmr1_3p3: regulator-rtmr1-3p3 {
+-		compatible = "regulator-fixed";
+-
+-		regulator-name = "VREG_RTMR1_3P3";
+-		regulator-min-microvolt = <3300000>;
+-		regulator-max-microvolt = <3300000>;
+-
+-		gpio = <&tlmm 186 GPIO_ACTIVE_HIGH>;
+-		enable-active-high;
+-
+-		pinctrl-0 = <&usb1_pwr_3p3_reg_en>;
+-		pinctrl-names = "default";
+-
+-		regulator-boot-on;
+-	};
+-
+ 	vreg_vph_pwr: regulator-vph-pwr {
+ 		compatible = "regulator-fixed";
+ 
+@@ -1027,64 +971,6 @@ eusb3_repeater: redriver@47 {
+ 	};
+ };
+ 
+-&i2c7 {
+-	clock-frequency = <400000>;
+-
+-	status = "okay";
+-
+-	typec-mux@8 {
+-		compatible = "parade,ps8830";
+-		reg = <0x8>;
+-
+-		clocks = <&rpmhcc RPMH_RF_CLK4>;
+-
+-		vdd-supply = <&vreg_rtmr1_1p15>;
+-		vdd33-supply = <&vreg_rtmr1_3p3>;
+-		vdd33-cap-supply = <&vreg_rtmr1_3p3>;
+-		vddar-supply = <&vreg_rtmr1_1p15>;
+-		vddat-supply = <&vreg_rtmr1_1p15>;
+-		vddio-supply = <&vreg_rtmr1_1p8>;
+-
+-		reset-gpios = <&tlmm 176 GPIO_ACTIVE_LOW>;
+-
+-		pinctrl-0 = <&rtmr1_default>;
+-		pinctrl-names = "default";
+-
+-		orientation-switch;
+-		retimer-switch;
+-
+-		ports {
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-
+-			port@0 {
+-				reg = <0>;
+-
+-				retimer_ss1_ss_out: endpoint {
+-					remote-endpoint = <&pmic_glink_ss1_ss_in>;
+-				};
+-			};
+-
+-			port@1 {
+-				reg = <1>;
+-
+-				retimer_ss1_ss_in: endpoint {
+-					remote-endpoint = <&usb_1_ss1_qmpphy_out>;
+-				};
+-			};
+-
+-			port@2 {
+-				reg = <2>;
+-
+-				retimer_ss1_con_sbu_out: endpoint {
+-					remote-endpoint = <&pmic_glink_ss1_con_sbu_in>;
+-				};
+-			};
+-
+-		};
+-	};
+-};
+-
+ &i2c8 {
+ 	clock-frequency = <400000>;
+ 
+@@ -1519,13 +1405,6 @@ wake-n-pins {
+ 		};
+ 	};
+ 
+-	rtmr1_default: rtmr1-reset-n-active-state {
+-		pins = "gpio176";
+-		function = "gpio";
+-		drive-strength = <2>;
+-		bias-disable;
+-	};
+-
+ 	tpad_default: tpad-default-state {
+ 		pins = "gpio3";
+ 		function = "gpio";
+@@ -1547,27 +1426,6 @@ reset-n-pins {
+ 		};
+ 	};
+ 
+-	usb1_pwr_1p15_reg_en: usb1-pwr-1p15-reg-en-state {
+-		pins = "gpio188";
+-		function = "gpio";
+-		drive-strength = <2>;
+-		bias-disable;
+-	};
+-
+-	usb1_pwr_1p8_reg_en: usb1-pwr-1p8-reg-en-state {
+-		pins = "gpio175";
+-		function = "gpio";
+-		drive-strength = <2>;
+-		bias-disable;
+-	};
+-
+-	usb1_pwr_3p3_reg_en: usb1-pwr-3p3-reg-en-state {
+-		pins = "gpio186";
+-		function = "gpio";
+-		drive-strength = <2>;
+-		bias-disable;
+-	};
+-
+ 	wcd_default: wcd-reset-n-active-state {
+ 		pins = "gpio191";
+ 		function = "gpio";
+@@ -1670,7 +1528,7 @@ &usb_1_ss1_dwc3_hs {
+ };
+ 
+ &usb_1_ss1_qmpphy_out {
+-	remote-endpoint = <&retimer_ss1_ss_in>;
++	remote-endpoint = <&pmic_glink_ss1_ss_in>;
+ };
+ 
+ &usb_mp {
 -- 
-Lee Jones [李琼斯]
+2.48.1
+
 
