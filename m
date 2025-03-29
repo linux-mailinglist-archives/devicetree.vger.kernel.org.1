@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-161738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55A8BA7544D
-	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 06:42:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F553A75461
+	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 06:48:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8E4257A6AA4
-	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 05:41:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C821174682
+	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 05:48:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7754F85626;
-	Sat, 29 Mar 2025 05:42:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5733216D32A;
+	Sat, 29 Mar 2025 05:46:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qGW27wT4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gla560DJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ADCA5D477;
-	Sat, 29 Mar 2025 05:42:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25FB31632D9;
+	Sat, 29 Mar 2025 05:46:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743226955; cv=none; b=emLF3IoIF6ml9n0+WVhuXBt1LFkMUTmVNnZOrc3sKp5gWNniDpK3Zpo8MpuMILt4rZiEKpmF06bg2QvQb24F/2M4UN/0+vWE2VuMcoIRX9Z0Vs3RYa9e/SaGeiU9bvU5dJXLon+tJ1Njg5uZL0S3f4ADY1jvpdeeLW2umy12fzs=
+	t=1743227200; cv=none; b=doiw4nsgEeGbouvYn37EFbowSwx2LaA2hmELvWE1FGKWewejf0wb+IdTB90PtO0Din0HBM6jnV78uZ1Ppr8Z+rxzXnb+KTB5/DByDPNzbZkoAbaCqTvt1le1oOXs+UTYp6cfxMlzPT/HWpUwEMra7A77cfQFR6ggxhkr3kLvI9k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743226955; c=relaxed/simple;
-	bh=MQU3IqgTCz/ZEmtMvjQWzCjudUy0UJnOGc4cTmv9iak=;
+	s=arc-20240116; t=1743227200; c=relaxed/simple;
+	bh=bIU0pSOCE3HExIAhjfEhDcaCzlmpUpFHgJ66hIsSFN8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ES/HmQklUscHeuNVnzolkwDPrIrSpUDymmrDNAdmHgBegmlghgw5WxhnvRQXb7v3jxbGsail+pnPvBWJvZ/bChFUkDVC3joLcvv4REkkl0ple5QPRDi6AcNT7IBmY2Kw3aL8plvxTRXvEni3DYso/s4QYFOtqprc+e0W1KvSnRo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qGW27wT4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E95CBC4CEE2;
-	Sat, 29 Mar 2025 05:42:30 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=S5tapIiBo7PAuACz9+z37Y7j5A6vQWp22Mm86Q97wf4RAmUVHY1RUf/Cuc4ZKr01ne2+zAJ5s0uwIvrXTQz2X8/scuRoIGcFFvrQzd9vlh5tDNkkL1brBFjF6vZqz9DItZKlcCl4za6G4Oyhch9mcFP6jK87zHwAM9HD560llKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gla560DJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF8EDC4CEE2;
+	Sat, 29 Mar 2025 05:46:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743226954;
-	bh=MQU3IqgTCz/ZEmtMvjQWzCjudUy0UJnOGc4cTmv9iak=;
+	s=k20201202; t=1743227199;
+	bh=bIU0pSOCE3HExIAhjfEhDcaCzlmpUpFHgJ66hIsSFN8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qGW27wT4u4BYNWcVOeasU602NvStBEt74Wu5SoPO3e6tSrv3sE0FZFADL5hCA8q3N
-	 aO6nCOhCwb6RnXsrEldXkJy1GsemwjjvT1Dd6AlXub9oCpzi/q7iiYRTITe/w4e5hy
-	 /oWAXKsj6rWXAfo+sORcgCfuLkq+nBiXW7FryeyjxgpTxkOEBlXh0td9+16vOVrFbK
-	 SmeExZFD8ltxRG5me6sDCRqVqajPznxdTawt+oKZiZ2Jq7D2E6Y1iYZ0u2D/P2Ek8s
-	 N+gkBi5Bfo3/XAhV6MrXmkm6JMhIiUn595AlABJw2QyPMe1KJMfqpvPZqsvURMXZyt
-	 f12m9Ab5yY9TQ==
-Message-ID: <5c7b41bb-8e4e-44b2-9fd6-b5dd9258ee4e@kernel.org>
-Date: Sat, 29 Mar 2025 06:42:27 +0100
+	b=Gla560DJMjJEehGKJolLh7QucPgqK4jQhHaRnBrSnQ8VhC1Mt27sKDi9goKEmus+b
+	 XPjnAjNms07FkTLzHgNc+w6ME9Fcp6uJ33lQ4wnjJeWKyA+d6u3/zuTP3EXc1yVOw9
+	 FaekH4EOaQ0Dtq6U1x6nyA44SOvro0UlpvsFKCIS8IcQ9SOgX/zIRI9u1zIt99X4DO
+	 3j6Mb4Ig6dFJYHo6xRjJ/zpxqq0Uhli1eBalHk9ekzJSw5b/1Pv0OJD8Rqc8yICyqh
+	 XiMmgrDnYHPyg7O/uOOIQJK2fOU7fQNyaqG4dbGiZbDwn5uXrUx+Igfyy6bN3elDuA
+	 jhFtqwSTIRMfA==
+Message-ID: <7556a0a8-47f3-4cf7-ae4d-9ea444d98c6b@kernel.org>
+Date: Sat, 29 Mar 2025 06:46:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,8 +50,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] media: dt-bindings: Add ST VD55G1 camera sensor
- binding
+Subject: Re: [PATCH 2/2] media: i2c: Add driver for ST VD55G1 camera sensor
 To: Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
  Sylvain Petinot <sylvain.petinot@foss.st.com>,
  Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -60,7 +59,7 @@ To: Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
 Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 References: <20250328-b4-vd55g1-v1-0-8d16b4a79f29@foss.st.com>
- <20250328-b4-vd55g1-v1-1-8d16b4a79f29@foss.st.com>
+ <20250328-b4-vd55g1-v1-2-8d16b4a79f29@foss.st.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,167 +105,117 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250328-b4-vd55g1-v1-1-8d16b4a79f29@foss.st.com>
+In-Reply-To: <20250328-b4-vd55g1-v1-2-8d16b4a79f29@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 28/03/2025 14:40, Benjamin Mugnier wrote:
 > +
-> +allOf:
-> +  - $ref: /schemas/media/video-interface-devices.yaml#
+> +static void vd55g1_subdev_cleanup(struct vd55g1 *sensor)
+> +{
+> +	v4l2_async_unregister_subdev(&sensor->sd);
+> +	v4l2_subdev_cleanup(&sensor->sd);
+> +	media_entity_cleanup(&sensor->sd.entity);
+> +	v4l2_ctrl_handler_free(sensor->sd.ctrl_handler);
+> +}
 > +
-> +properties:
-> +  compatible:
-> +    const: st,st-vd55g1
+> +static int vd55g1_err_probe(struct device *dev, int ret, char *msg)
 
-Drop st. See your filename how this should be called. Anyway, filename
-must match the compatible.
+Drop, it's really useless. Don't create own abstraction layers for other
+systems.
 
+> +{
+> +	return dev_err_probe(dev, ret, msg);
+> +}
 > +
-> +  reg:
-> +    maxItems: 1
+> +static int vd55g1_probe(struct i2c_client *client)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct vd55g1 *sensor;
+> +	int ret;
 > +
-> +  clocks:
-> +    maxItems: 1
+> +	sensor = devm_kzalloc(dev, sizeof(*sensor), GFP_KERNEL);
+> +	if (!sensor)
+> +		return -ENOMEM;
 > +
-> +  vcore-supply:
-> +    description: Digital core power supply (1.15V)
+> +	v4l2_i2c_subdev_init(&sensor->sd, client, &vd55g1_subdev_ops);
+> +	sensor->i2c_client = client;
 > +
-> +  vddio-supply:
-> +    description: Digital IO power supply (1.8V)
+> +	ret = vd55g1_parse_dt(sensor);
+> +	if (ret)
+> +		return vd55g1_err_probe(dev, ret,
+> +					"Failed to parse Device Tree.");
 > +
-> +  vana-supply:
-> +    description: Analog power supply (2.8V)
+> +	/* Get (and check) resources : power regs, ext clock, reset gpio */
+> +	ret = vd55g1_get_regulators(sensor);
+> +	if (ret)
+> +		return vd55g1_err_probe(dev, ret, "Failed to get regulators.");
 > +
-> +  reset-gpios:
-> +    description: Sensor reset active low GPIO (XSHUTDOWN)
-> +    maxItems: 1
-> +
-> +  st,leds:
-> +    description:
-> +      List sensor's GPIOs used to control strobe light sources during exposure
-> +      time. The numbers identify the sensor pin on which the illumination
-> +      system is connected. GPIOs are active-high.
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    minItems: 1
-> +    maxItems: 4
-> +    items:
-> +      minimum: 0
-> +      maximum: 3
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          data-lanes:
-> +            description:
-> +              VD55G1 only has one data lane, and must be 1.
-> +            maxItems: 1
-> +            items:
-> +              const: 1
+> +	sensor->xclk = devm_clk_get(dev, NULL);
+> +	if (IS_ERR(sensor->xclk)) {
 
-Instead of five lines, just two:
+Drop {}
 
-items:
-  - const: 1
+Please run scripts/checkpatch.pl on the patches and fix reported
+warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
+patches and (probably) fix more warnings. Some warnings can be ignored,
+especially from --strict run, but the code here looks like it needs a
+fix. Feel free to get in touch if the warning is not clear.
 
-Don't repeat constraints in free form text.
+> +		return vd55g1_err_probe(dev, PTR_ERR(sensor->xclk),
 
+No. Syntax is return dev_err_probe, not some custom wrappers over single
+function.
 
+> +					"Failed to get xclk.");
+> +	}
+> +	sensor->xclk_freq = clk_get_rate(sensor->xclk);
+> +	ret = vd55g1_prepare_clock_tree(sensor);
+> +	if (ret)
+> +		return ret;
 > +
-> +          link-frequencies:
-> +            maxItems: 1
-> +            items:
-> +              minimum: 125000000
-> +              maximum: 600000000
-> +
-> +          lane-polarities:
-> +            minItems: 1
-> +            maxItems: 2
-> +
-> +        required:
-> +          - data-lanes
-> +          - link-frequencies
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - vcore-supply
-> +  - vddio-supply
-> +  - vana-supply
-> +  - reset-gpios
-> +  - port
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        camera-sensor@10 {
-> +            compatible = "st,vd55g1";
+> +	sensor->reset_gpio =
+> +		devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
 
-And here another compatible...
+Odd wrapping. This should be one line with optionally wrapped last argument.
 
-> +            reg = <0x10>;
+> +	if (IS_ERR(sensor->reset_gpio))
+> +		return vd55g1_err_probe(dev, PTR_ERR(sensor->reset_gpio),
+> +					"Failed to get reset gpio.");
 > +
-> +            clocks = <&camera_clk_12M>;
+> +	sensor->regmap = devm_cci_regmap_init_i2c(client, 16);
+> +	if (IS_ERR(sensor->regmap))
+> +		return vd55g1_err_probe(dev, PTR_ERR(sensor->regmap),
+> +					"Failed to init regmap.");
 > +
-> +            vcore-supply = <&camera_vcore_v1v15>;
-> +            vddio-supply = <&camera_vddio_v1v8>;
-> +            vana-supply = <&camera_vana_v2v8>;
+> +	/* Detect if sensor is present and if its revision is supported */
+> +	ret = vd55g1_power_on(dev);
+> +	if (ret)
+> +		return ret;
 > +
-> +            reset-gpios = <&gpio 5 GPIO_ACTIVE_LOW>;
-> +            st,leds = <2>;
+> +	ret = vd55g1_subdev_init(sensor);
+> +	if (ret) {
+> +		dev_err(dev, "V4l2 init failed : %d", ret);
+> +		goto err_power_off;
+> +	}
 > +
-> +            orientation = <2>;
-> +            rotation = <0>;
+> +	ret = v4l2_async_register_subdev(&sensor->sd);
+> +	if (ret) {
+> +		dev_err(dev, "async subdev register failed %d", ret);
+> +		goto err_subdev;
+> +	}
 > +
-> +            port {
-> +                endpoint {
-> +                    data-lanes = <1>;
-> +                    link-frequencies = /bits/ 64 <600000000>;
-> +                    remote-endpoint = <&csiphy0_ep>;
-> +                };
-> +            };
-> +        };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 2286200b355bde3604607be916ef09aa88feed0e..857af27ef392b6e6865d9a545061d1b012cce07e 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -22410,6 +22410,14 @@ S:	Maintained
->  F:	Documentation/hwmon/stpddc60.rst
->  F:	drivers/hwmon/pmbus/stpddc60.c
->  
-> +ST VD55G1 DRIVER
-> +M:	Benjamin Mugnier <benjamin.mugnier@foss.st.com>
-> +M:	Sylvain Petinot <sylvain.petinot@foss.st.com>
-> +L:	linux-media@vger.kernel.org
-> +S:	Maintained
-> +T:	git git://linuxtv.org/media.git
+> +	/* Enable pm_runtime and power off the sensor */
+> +	pm_runtime_set_active(dev);
+> +	pm_runtime_get_noresume(dev);
+> +	pm_runtime_enable(dev);
+> +	pm_runtime_set_autosuspend_delay(dev, 4000);
+> +	pm_runtime_use_autosuspend(dev);
+> +	pm_runtime_mark_last_busy(dev);
+> +
+> +	dev_dbg(dev, "vd55g1 probe successfully");
 
-Drop, unless you push patches there. Otherwise what is the point of
-duplicating subsystem data?
-
-> +F:	Documentation/devicetree/bindings/media/i2c/st,vd55g1.yaml
-> +
->  ST VGXY61 DRIVER
->  M:	Benjamin Mugnier <benjamin.mugnier@foss.st.com>
->  M:	Sylvain Petinot <sylvain.petinot@foss.st.com>
-> 
-
+Drop. Kernel already provides you such debugging/tracing.
 
 Best regards,
 Krzysztof
