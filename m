@@ -1,122 +1,101 @@
-Return-Path: <devicetree+bounces-161754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BFB9A755B9
-	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 11:24:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24C4BA755C3
+	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 11:48:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 943193AF619
-	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 10:24:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B75573AEAA0
+	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 10:48:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61706189F43;
-	Sat, 29 Mar 2025 10:24:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDDC713A87C;
+	Sat, 29 Mar 2025 10:48:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="wsaGJWT2"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="LEvALe9X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [217.72.192.78])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4FD0DDC5;
-	Sat, 29 Mar 2025 10:24:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.72.192.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB759A926;
+	Sat, 29 Mar 2025 10:48:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743243851; cv=none; b=rSpb6L+rcWdnEiR0s3sDSf4kMR4LtLXcTWk2+ds/ItNJGtOMNVtk9TZbsJ0qVanHv4HCQFkV8wJ6yJbEOxlQv2tFPQ0Y/FgIGVKYkrluzUr+bZi9mHO3i5mQD4j//XkqlmgKYJJcBC1uRXGq2UluZIiEjrGBxt8S6beCtC8FbbI=
+	t=1743245303; cv=none; b=FlxWmSI2OecNd3UmKNpSc3uSDtABWojBZqLpE7AlvPLJzkSsEpWb2YhbEYMdDYDWpLYEZ8cg5q5Ec7UH+e5f9+xNOmWAspvL1wxu7vTzDHqFocZizBoRXlMO2uz0HEjdRjXR46McUsgDGdsDyb4tVmnkixq/T/utaSFdiR5NtjY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743243851; c=relaxed/simple;
-	bh=TrP/Wn4eGdTF9dtf8nunHsdhuK0sv13xjOztlIjAtNM=;
-	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
-	 In-Reply-To:Content-Type; b=trVZkvN9nrux5TjaQaFEsIITyeXdl0foL0MmJuElKa5z2U1iQaB27bilMAV52kmG78ILp9NjYjpryrBJ7a8InkU+ftFf9SHnxHWnkzpKRsXuQgEBbTRKjtqDKdFnbRwdhRZ8MpJg7q78fPay6TOCzIOBJsA1d+xh7F/WCqZAlio=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=wsaGJWT2; arc=none smtp.client-ip=217.72.192.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1743243829; x=1743848629; i=markus.elfring@web.de;
-	bh=5LdYBXjWs0RyPdcjUc2Be6rWzStGoVEOUQW1Riy+q3U=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
-	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=wsaGJWT2jLlmHkroDUKYzkhpUHqTOaXmezvlvEioH7x1qIquKnTPhyHNlZxx8JDI
-	 AyT3LS6cOF9vhfEV/kXuI/QzPC4hWXX3ekouWMa88TtArnC6FlYNAo/S5N23QEd2I
-	 lPx7j8xjmtWsCyPJI3EbSQTo4YQqm9HKmGPigZ8oubjJA6v/1BumJUiDNUZKog67y
-	 Bv1e9Ftlc70HksOvjQCVdnaF71SyAM2IR5kXSDczWeTDW+XVjAJVRFxcGj8+0CKOi
-	 lmwpSzEp5N8pjHVnFQjrjPcOafgRyoin68ZiYiWTQ7LQpEu5XV36TD6kXLwZy1kT0
-	 eWDAOVV1cY9jQ3M7zQ==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.29] ([94.31.93.33]) by smtp.web.de (mrweb105
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1MKMA1-1th4h81HKx-00WiVs; Sat, 29
- Mar 2025 11:23:49 +0100
-Message-ID: <6ff5acac-4d41-4d4a-853c-9902e9673ef0@web.de>
-Date: Sat, 29 Mar 2025 11:23:39 +0100
+	s=arc-20240116; t=1743245303; c=relaxed/simple;
+	bh=VRILCUl6tghO5fvQBAa9MBDTlEh08r9uEGUP7rrLACI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hbSGy6K1DMHC+24lXDvUt9G/puEGlMVEPhMODNgXDzuA7lvjRNtSklGRAAp7bYGQobaBjmMK2NYDga+4jUsEyv3OCeTyMp3Du0E+2JUrFF4P9DO9OlMXFXbqV6cZpApW8KAwFz0U23/Q+bRYvxpI7a4bPqtBgMGjRukQw/PnAvE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=LEvALe9X; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 5F5EF44570;
+	Sat, 29 Mar 2025 10:48:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1743245293;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=YyQo1MenJXkYhqS5gJTFkqIlunC7aRR8PjTnQH8TVW0=;
+	b=LEvALe9XtbyP6nloZS51W+XWdzDiIx+iG6xmC+eMZJ924dmDzAVeUmmRhWhlp5z4grPXDm
+	rjhoGw6/Ejt41w8iW3DB108kNlupUjE2xYcWec2V6vIgqLbWCNkyFsriIKodu9L67kVp9L
+	mqoeMs17Vp0+8tBTWSRNmFigSCJceAdbKIKZo2dgb/N7AfvKht6ek/M1KHHclD43AYcGA8
+	CTta/gxw3ssdSgRKydKCaMt3zDrcZUGJXkIt5xtUDRMty7+LF70fknBXzkdbmj6tdwW5Q3
+	Fr/z8NOTEoGo/qc3/RCnAPT8o59dA73I7G1/ifHhcqs4enS3PmbZDwSv5u7c6w==
+Date: Sat, 29 Mar 2025 11:48:12 +0100
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+Cc: Markus Elfring <Markus.Elfring@web.de>, linux-i3c@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	LKML <linux-kernel@vger.kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>
+Subject: Re: [v2 2/3] i3c: master: Add Qualcomm I3C controller driver
+Message-ID: <20250329104812225f9ee5@mail.local>
+References: <20250326141641.3471906-3-quic_msavaliy@quicinc.com>
+ <66d344b9-5cc6-4060-86ff-8100a00de477@web.de>
+ <4161e6de-b16f-4371-be41-cc12adb3e9b8@quicinc.com>
+ <e32324c8-1888-451b-8621-0e468ca61fd9@web.de>
+ <a96511dc-5ba1-4302-acb0-f3b49bf8990c@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Keke Li <keke.li@amlogic.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: LKML <linux-kernel@vger.kernel.org>,
- Daniel Scally <dan.scally@ideasonboard.com>,
- Kieran Bingham <kieran.bingham@ideasonboard.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-References: <20250311-c3isp-v7-8-c3551bed9005@amlogic.com>
-Subject: Re: [PATCH v7 08/10] media: platform: Add C3 ISP driver
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20250311-c3isp-v7-8-c3551bed9005@amlogic.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:riFjtPdbDedxzsNaYtyXo2sh6luU6tuyWJXs0z3HvNwCQBLzhxp
- 065KY/dRCY5x3GJfxAN6znLfG5OqoW3fS447hGBLX/5krmf8rk8J7fEntEsRLGU75aosVU2
- l1YsPoP/Ko3nAtUDQEVizVJSA23PGAUczp6NUia+wNo2ypZgxD8xC8avM+KKPsIpgz4spL6
- 1gBONuD3929yaB+ClTPfg==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:DGlqtvh/EY8=;Ddz7mg13dgziraSgEKsDLx1bmaB
- XphbsDkuHCJiOBVKYf8j6LxY9XuYN5vksxveD3Zyld4QGG9awoWG4guLP5VekANWHaBfrG9sP
- jIVbZ0OZpVpW/vfit7+KFbWAGkKcbqla/fn7fKzdH+HE5JbCHfV7nDFbytfyN4hcKXrpW5xRP
- yAQ2InOfdvSN+sHp1RfOf+xWe3U/HuA/rQxTwqWZ151irQ0XPZGyjMh5h1glo236g6Ed8nf4+
- f+JSBvgzPEBSCb/ILtwDTrJR9FhE/fPlDmL1JruaPvew3ZlWVvCg7lpm+t+lks8D/+il3YnGr
- uMer4eoYNkW6b8h/OOYyNIqcIaYnqWHtQCDhptlowo3yuYQp2DDUubSRQjANG9JdtdGMJ63dG
- FihBIyVufuhd0avNRxQHGS7eo1BpxL5R6/siuCKeScSafMxs9LRwwKgJpz1CD3BL5U/NwSwZn
- 0s84TcZg33A2Q/a6xMNR/8YYb4yhGMUQHz83GLdhO1PmCvxRYEIzBjHupPfph5bl+XG/suLW4
- lWRGlgJdPgXEqbjBEM76QEplRF4Ay3YssQKz4+PzgQJDQN2vDpLXq2f+ZLMPIbU/LeTxLyH1G
- 1QXFCKNTlRsehS6M7c/DvZJ6VY+RZkPkbOrT+ulyAVfGQcUegtnikR/MdXueqtVeKJxgBLOmh
- HH8zbJPAzqD44NyED3dilUiVSWEd7zgrXh9Tg+aO4cca3+cWN5nGB3s7+RDwuW0/ePG9t49i2
- nuEOBKOGDnEQalYPcX/BDRkPYo8aVWMmPTMDiNhS1Wkc29LbbnaNkE43MnTd8H8lOMsrEDJn9
- p03XAXNmZtA8BDwtmFIzejIS6wNH2eaVCzpp17kQLvQwCDcwoxEUA4FS2MfWimsN0GeT0RO3U
- Zhee6BgP7A4L9E4YVJOGiT18A6hJjABniB+t6bWf9MmJtHaou5wF0Nnd14X4pdBPF7mPrDpf5
- nXK27Fh09354zKnsYqd4CdSBYHtMpRiHJf+pOL9bJKwbHva4C3L2JkwIMc7uEt5uGf2NycjxV
- 5TMLyVjET7af8XVvI4oJxuuj8Dfg+LTPrtvZLiS14DZyYY7NudFKyPyLinRI7/8eIG7XWc8+d
- QrFWAak8TKMCaDuOPvWjFib747NPQrfImfcfNgWSKyrR26HEq6R+kqctMn/zNfuWcIFFhCvW3
- fdP3ZjI+dq4HjSJzb0hPeB3x3YEhhbCh4Kt1dwhn4M/60KU5l1pAVakSInE9QDz1y830/iScO
- o0jTnQC8Af4ltUYreUaR+sCoapI1T3ioLsh+AyoAuU2D3Z3azdox6Ga2x9cOGtRgjXHjqT+ks
- xKOFmy3tWLKLvQ9jX7X2ywuWY+CIeU2x3zmyq8C/Mmbt1Ia21j1xEBbXiwdidc/rLP7ci7SGW
- MDMuOAcq1WdGhvaTG4TKBoz8CCO/0IBD6ldKYFuxRKUo1Vl+s8c7gmic795P7E4XiwBnyjk+d
- bYadjhnPX5AXLuibo0OBHMARnO5eyV1GEAzQZ7sklsbeTtWd9pW6HJIQMx5OScPoqFTVhSw==
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <a96511dc-5ba1-4302-acb0-f3b49bf8990c@quicinc.com>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddujeefleejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtugfgjgesthekredttddtjeenucfhrhhomheptehlvgigrghnughrvgcuuegvlhhlohhnihcuoegrlhgvgigrnhgurhgvrdgsvghllhhonhhisegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpefgheeuieeikefhgfdvhfehiedvhffgjeetfffgtefhudfgtefffeevledtleejteenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegvtdgrmedvugemieefjedtmeejkegvtdemtgdtvgekmedvkedtieemkegrtgeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegvtdgrmedvugemieefjedtmeejkegvtdemtgdtvgekmedvkedtieemkegrtgeipdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpegrlhgvgigrnhgurhgvrdgsvghllhhonhhisegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeduvddprhgtphhtthhopehquhhitggpmhhsrghvrghlihihsehquhhitghinhgtrdgtohhmpdhrtghpthhtohepofgrrhhkuhhsrdfglhhfrhhinhhgseifvggsrdguvgdprhgtphhtthhopehli
+ hhnuhigqdhifegtsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqmhhsmhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopegrnhguvghrshhsohhnsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhg
+X-GND-Sasl: alexandre.belloni@bootlin.com
 
-> The C3 ISP supports multi-camera and muti-exposure
+On 29/03/2025 14:38:14+0530, Mukesh Kumar Savaliya wrote:
+> Hi Markus,
+> 
+> On 3/29/2025 12:34 AM, Markus Elfring wrote:
+> > > > Under which circumstances would you become interested to apply a statement
+> > > > like “guard(spinlock_irqsave)(&gi3c->irq_lock);”?
+> > > Didn't get, hence a question.  Do you suggest to use DEFINE_LOCK_GUARD_1 instead of existing method ?
+> > I propose to pick further opportunities up for benefits from scope-based resource management.
+> > 
+> Sorry, still not clear to me what should i add/change ? please share me some
+> example.
 
-                                       multiexposure?
+Don't change anything, Markus is wasting your time.
 
-
-> high dynamic range (HDR). It brings together some
-> advanced imaging technologies to provide good image quality.
-=E2=80=A6
-
-You may occasionally put more than 60 characters into text lines
-of such a change description.
-
-See also:
-https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tre=
-e/Documentation/process/submitting-patches.rst?h=3Dv6.14#n94
-
-Regards,
-Markus
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
