@@ -1,105 +1,167 @@
-Return-Path: <devicetree+bounces-161730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36D1FA753E5
-	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 02:37:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C48BA75427
+	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 05:35:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD1941769E5
-	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 01:37:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7BCC37A6C60
+	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 04:34:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B315339A1;
-	Sat, 29 Mar 2025 01:37:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C73914AA9;
+	Sat, 29 Mar 2025 04:35:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wzn/Hixh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kEJ52tBs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1009D2940F;
-	Sat, 29 Mar 2025 01:37:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4D4EA50;
+	Sat, 29 Mar 2025 04:35:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743212225; cv=none; b=mO5VmHzywdpLYabKrQ/xkudq07ppDICqkxpsKiHW8RThtEfOLIp6UAyX7QeWHCLLp0S8WxWlkh9stVOz0cAO0OLB9BMEdEnVZM3S/LzVNFfX5eCt92wVMaSONud4bJyuFq4v33Z/lnDb5S8pE2HE+ThkCHs/xQvv3FDlTy3jyV0=
+	t=1743222919; cv=none; b=NQUY000g0fzuHWjcD6VcNMUc0xlhPltdyJriHVwelUagpGwRrDwXO7VgsIk/3yOK9vX4fkSThTtcHZZetPljTfpeazRrZH7xrmbSgSoEg3dHxfAfXH1BBozwzvRPUZ1zpbzh/Yn2rK9V73tKGaTlNRzcxl9cbfAPpw4vIODv3SE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743212225; c=relaxed/simple;
-	bh=AEGkd/T+++fTkI+0PWDV+7VHoIu42JovBtOhzZmLmYY=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=MztR6d3kqUurVQO47nHtw5fYOVzrQYKNpZ+rLToB/H1i7gSqzAmksNWpePfP5IMz5d4BPDt5f1NspyGMqP0DXMj4M8F0/Lcg0AAGsfEvXUgCnOmND2Mkl6iwrqNfXxkG4uLTAEdulmLLeTv7nAXnmHsCy3HN0+0o4nDm5wMgmHs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wzn/Hixh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34FAEC4CEE4;
-	Sat, 29 Mar 2025 01:37:04 +0000 (UTC)
+	s=arc-20240116; t=1743222919; c=relaxed/simple;
+	bh=v0cfE1DRzxT5S46yhgmeP5GBIfVEyu77Bp03e+u1BK8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ILiyd74A3GyRZxQFmn3VMixnmhprKowust+sdiDlOun3LxMB6lka3SffQc3miMnQj4jUcgU7uZ+uSe0TiPJRvkL4rm2YeHJmPbL+U+0Ghj+XnEM5vtxQpYftxB02CHMAxCg1tk153wMo7ME7Pwvw1owSD2cl3FC+ZgWES0RQAHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kEJ52tBs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 296AFC4CEE2;
+	Sat, 29 Mar 2025 04:35:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743212224;
-	bh=AEGkd/T+++fTkI+0PWDV+7VHoIu42JovBtOhzZmLmYY=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Wzn/Hixhr00W282gN8wMfNXVqujyRBD/N1zXVNfwQhUYT0JD77S5LkNNDcuc+azP+
-	 gLuS3nZketikuMV7Vif76r992Ut6hOP7lwyxMMRDRXVxzrHq+cm4/dRIneXcCivGvA
-	 fIBua5rXlj9n75KVn47EyIAjU7KtRvjcyv7ledw3ioRD602WGeetiEvJmMNH9j4FP9
-	 dalINg8y2ydVsWsO8O6QmpQgpFcn0yBR5ZLzNZq0QbcLYdB1BbggK5azbXXv6CGqeb
-	 1gpCqzisWJNYRGb/WWQQV/CLLqcJSdSZD0YUAb7hvlxbLBTtWqFYa5f6PrkFLKqPS3
-	 YZpb0/l0m0ZTg==
-Date: Fri, 28 Mar 2025 20:37:03 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1743222915;
+	bh=v0cfE1DRzxT5S46yhgmeP5GBIfVEyu77Bp03e+u1BK8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=kEJ52tBsR2jJ7zUuLtV+vJofx3QvJ14UMTatjpdiwASdnz+tdALzjwovxt30PHI62
+	 ZXdTHd4+Cma7OkNXe00XRJ3QZDE3iy96XN1h4/FrdHOh/QNCF3J5Verng4T6jJP14P
+	 cFvZCYeIYhyNfzOBaPBO2dNqrFSOfoGiROF/cabtv4amIyGWRS8YMJ8UXPeV/bYcBZ
+	 rp0WICI6pKrulb4opPmYrsjPlk1DZiMTZ6Vrh+o4rD/y9dUORYRUrMCTHVdmL9n1gK
+	 3jnJpJ9gjW5H8wA3A4Y9m19p2fR908xRLHoG3Vt4OeFvtljDCZe4g+N3sDMXXqnDoI
+	 0bqhQwEnzH7FQ==
+Message-ID: <5a460228-ab50-490d-a222-d6a10aea3ff0@kernel.org>
+Date: Sat, 29 Mar 2025 05:35:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>, linux@roeck-us.net, 
- Thomas Fossati <thomas.fossati@linaro.org>, linux-watchdog@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, wim@linux-watchdog.org, S32@nxp.com, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20250328151516.2219971-1-daniel.lezcano@linaro.org>
-References: <20250328151516.2219971-1-daniel.lezcano@linaro.org>
-Message-Id: <174321222207.2172829.15350189767926637719.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: watchdog: Add NXP Software Watchdog
- Timer
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] dt-bindings: mailbox: Add devicetree binding for
+ bcm74110 mbox
+To: Justin Chen <justin.chen@broadcom.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: florian.fainelli@broadcom.com, conor+dt@kernel.org, krzk+dt@kernel.org,
+ robh@kernel.org, jassisinghbrar@gmail.com,
+ bcm-kernel-feedback-list@broadcom.com
+References: <20250327221628.651042-1-justin.chen@broadcom.com>
+ <20250327221628.651042-3-justin.chen@broadcom.com>
+ <e7f51014-10b2-4f9c-9929-f2a4f32b023c@kernel.org>
+ <cb0905ec-1e80-4c56-befd-b90243dcfa31@broadcom.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <cb0905ec-1e80-4c56-befd-b90243dcfa31@broadcom.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-On Fri, 28 Mar 2025 16:15:13 +0100, Daniel Lezcano wrote:
-> Describe the Software Watchdog Timer available on the S32G platforms.
+On 28/03/2025 19:36, Justin Chen wrote:
+>>> +    const: 2
+>>> +    description:
+>>> +      The first cell is channel type and second cell is shared memory slot
+>>> +
+>>> +  brcm,mbox_tx:
+>>
+>> No underscores. See DTS coding style.
+>>
 > 
-> Cc: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-> Cc: Thomas Fossati <thomas.fossati@linaro.org>
-> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-> ---
->  .../bindings/watchdog/nxp,s32g-wdt.yaml       | 46 +++++++++++++++++++
->  1 file changed, 46 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/watchdog/nxp,s32g-wdt.yaml
+> Acked. I already had this fixed in the driver, but not in the doc. Woops!
+
+So this did not even work and you did not test DTS.
+
+Where is the DTS?
+
 > 
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    description: Mailbox transmit doorbell
+>>
+>> Why is this needed in DT? How many instances do you have in one SoC?
+>> Where is the SoC DTS?
+>>
+> 
+> We have 3 possible instances in our current SoC. We currently only 
+> implement one. arm,scmi. But more will come in the future. I'll put a 
+> sample arm,scmi node as an example consumer in v2.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+No. Post your DTS instead.
 
-yamllint warnings/errors:
+> 
+>>> +
+>>> +  brcm,mbox_rx:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    description: Mailbox receive doorbell
+>>> +
+>>> +  brcm,mbox_shmem:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>>> +    maxItems: 2
+>>> +    description: Mailbox shared memory region and size
+>>
+>> No, use existing properties, e.g. memory region.
+>>
+> 
+> This is a region from the on chip memory. I will rename to be clear. It 
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/watchdog/nxp,s32g-wdt.example.dts:18.29-23.11: Warning (unit_address_format): /example-0/watchdog@0x40100000: unit name should not have leading "0x"
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/watchdog/nxp,s32g-wdt.example.dtb: watchdog@0x40100000: 'timeout-sec' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/watchdog/nxp,s32g-wdt.yaml#
+memory? so reserved region is for what? Not memory?
 
-doc reference errors (make refcheckdocs):
+If this is memory, then reserved region. If this is not memory, but
+MMIO, then you have reg for that.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250328151516.2219971-1-daniel.lezcano@linaro.org
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Best regards,
+Krzysztof
 
