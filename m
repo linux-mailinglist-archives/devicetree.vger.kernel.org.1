@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-161734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A1ACA7542F
-	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 05:48:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B49CA75436
+	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 05:59:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0FC873AD027
-	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 04:47:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 360853B1249
+	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 04:59:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B4EB17C91;
-	Sat, 29 Mar 2025 04:48:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01E014437C;
+	Sat, 29 Mar 2025 04:59:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gZsDUrI7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pm3ehZX3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E1283208;
-	Sat, 29 Mar 2025 04:48:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4F77250F8;
+	Sat, 29 Mar 2025 04:59:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743223687; cv=none; b=Wpz85uTh0VPqgHA68f7VH8M38nF1nqP6fBqLiJfpXlViAKptK1w3xfOfbeYWVhIBro6PeemnzkKKwcMQtpWpzjwFm64cKIqEbC98weR/S4wWk9I7MVzZMx/yelsTA2vYQe6HKkjD5JBzUOApo1dFbUyWrbfT7OPDU9rjuw2UNrg=
+	t=1743224355; cv=none; b=o+7IwOLsx87WY+YnHnVs4SGySgRR3uOlXT520th6crATYDFTXlJORPG3XVZLy9EO6jv2zV8fenP+7k/V4mZrCIxnXeISFlb9v3TMB0OKsXoybifs3zZlO6OuUQGmBHVj7+VDp0IEPQZIvnnvtrjwhFpvov1fj3eJWYRY+jb3MGQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743223687; c=relaxed/simple;
-	bh=qtQbSKTVK0pkTE7f/yrntIG8E5GlCocMcADgNGlg+Gk=;
+	s=arc-20240116; t=1743224355; c=relaxed/simple;
+	bh=MjvLsjOhoUCj12Cu7Ko4BrNiS+GzaxVSVFniRoHJB6s=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PRJd45mumVhCzPfzkpvg+FHz7jNHI80r3qeJfr4fKbAooPp5uJ1O78izjoch9AArMkk8KxJT9Jht6c+JPRr1eSFbxZEdf6ElSpqI7ePXzB+Ocio5GrovD5fCTVR+FfjR9ipC7/NIWU9+IwsDr4hnUug8PFiHGuoDlFx+F5rf+Ws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gZsDUrI7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23A5CC4CEE2;
-	Sat, 29 Mar 2025 04:48:02 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=C7df3yYgqdbU3n8NF9B7iTsW8vcWy/rGrd/RDODyKCrawyxryODxg/qDT9Bu17+6vsK56iBCShPWnHMmFp0ZxVAm16nPE9bE3Nc2iS0vGnkx55lOoTtRapuhjOviX7hZV2wdlqbSwuHklZBuzXAYl9e/8TVMX9Pr9On2S/o0TIA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pm3ehZX3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D554AC4CEE2;
+	Sat, 29 Mar 2025 04:59:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743223686;
-	bh=qtQbSKTVK0pkTE7f/yrntIG8E5GlCocMcADgNGlg+Gk=;
+	s=k20201202; t=1743224355;
+	bh=MjvLsjOhoUCj12Cu7Ko4BrNiS+GzaxVSVFniRoHJB6s=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gZsDUrI7ldOi3vkvjWOf7DUko6rc8xVOPcvZCzUMLeDAVjUfGryoHqhl3fraSpLtu
-	 1J12uxZiRx0dnljYLrAosZsVVwUSSSvoo6fXymPVvgGf0dpNx5kGtDCDMCAQj3cE0O
-	 N0ubMSU1aV1RcPgHKGNK3dHdL6U/LyvOgM/7j9jJ0A8g3aRtB6E3ByhRVsiJxhGWpA
-	 K02hn7TEH4FtlxpNr53SkDd4zu4rG6M2KYKuT/cbi7LTlrMWPPyvnmvMCJrRJMin+0
-	 ov8FG/So8jNsjZyki1LFVhqUDRElw7r0kgosvN5McoUvrR2g4AUQokPqWZm+GD7jud
-	 VlDhzuK9CbXwg==
-Message-ID: <b46aad11-4787-49f9-ab4e-1737e583622f@kernel.org>
-Date: Sat, 29 Mar 2025 05:48:00 +0100
+	b=Pm3ehZX3uHEn4NmSfkU9SUfJtTsJnVAjOKkx8vicYrP7SMLPp/f4pO/FQtz99rJvO
+	 /JWhNxH57Vukt7p5uhGE/lbO6hkATpXxzHz/TIuBSwtLN/b6RE6ZmZaTPutGpUmNtu
+	 x/aPm30T9WHMXstXgMT3MoP4S6CBG4P2lRHcub7oVk4T25KN7wPM0s89sH+M1AmJjR
+	 G5La+3/0856hOcQr+nFJhSasfCuehTIXOSw8k5oV587Q3PKvx92ZMOoVkOZxxmVvXS
+	 EjyC9eKVom7115wZdchG2PoZt4vCPY1YZR6v21EicmZ9Qaldu25SUUAZXwHueH2ok1
+	 9MhImU61nC1tg==
+Message-ID: <02496a88-3d9c-49ee-93ab-8f1400fc0c6b@kernel.org>
+Date: Sat, 29 Mar 2025 05:59:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,26 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 5/6] arm64: dts: qcom: Add support for QCS9075 Ride &
- Ride-r3
-To: Wasim Nazir <quic_wasimn@quicinc.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@quicinc.com
-References: <67b888fb-2207-4da5-b52e-ce84a53ae1f9@kernel.org>
- <Z3/hmncCDG8OzVkc@hu-wasimn-hyd.qualcomm.com>
- <b0b08c81-0295-4edb-ad97-73715a88bea6@kernel.org>
- <Z4dMRjK5I8s2lT3k@hu-wasimn-hyd.qualcomm.com>
- <80e59b3b-2160-4e24-93f2-ab183a7cbc74@kernel.org>
- <Z8AWHiVu05s0RJws@hu-wasimn-hyd.qualcomm.com>
- <a8991221-88b2-4a39-a51b-587c4cdeebe4@kernel.org>
- <Z8laCxtHOdNm3rRu@hu-wasimn-hyd.qualcomm.com>
- <Z8lb889QrqluPXXl@hu-wasimn-hyd.qualcomm.com>
- <e00a7061-5283-4809-b652-5f6c5e1e4496@kernel.org>
- <Z9v/z/i6OyWXXe7N@hu-wasimn-hyd.qualcomm.com>
+Subject: Re: [PATCH 1/2] dt-bindings: fpga: zynq: Document ICAP on boot
+To: Sam Winchenbach <sam.winchenbach@framepointer.org>,
+ linux-kernel@vger.kernel.org
+Cc: mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com, trix@redhat.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ michal.simek@amd.com, linux-fpga@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Sam Winchenbach <swinchenbach@arka.org>
+References: <20250328141944.119504-1-sam.winchenbach@framepointer.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,163 +104,46 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <Z9v/z/i6OyWXXe7N@hu-wasimn-hyd.qualcomm.com>
+In-Reply-To: <20250328141944.119504-1-sam.winchenbach@framepointer.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/03/2025 12:45, Wasim Nazir wrote:
-> Hi Krzysztof,
+On 28/03/2025 15:19, Sam Winchenbach wrote:
+> From: Sam Winchenbach <swinchenbach@arka.org>
 > 
->>>>
->>>> Which piece of actual hardware is represented in qcom-ride-common?
->>>>
->>>
->>> All daughter cards like SOC-card, display, camera, ethernet, pcie, sensor, etc.
->>
->> No, I asked about the name of the hardware, datasheet, ID or picture.
->> Common DTSI represents somoething, not just because you wanted to add
->> something you had in downstream.
->>
+> Documents the ability to enable the ICAP interface on boot.
 > 
-> Currently we don't have any datasheet or document which is publicly
-> available, so I will try my best to describe our HW.
+> Signed-off-by: Sam Winchenbach <swinchenbach@arka.org>
+> ---
+>  .../devicetree/bindings/fpga/xilinx-zynq-fpga-mgr.yaml     | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> Ride is a modular hardware system with several smaller daughter cards
-> connected to single backplane board and each daughter card is stacked on
-> top of each other. I will try to explain each daughter card with HW
-> components and how it is connected to construct the ride-hw.
-> 
-> Backplane board:
->   - It contains an MCU (Aurix TC397), CAN/LIN transceiver,
-> 	Audio/GNSS/IMU-I2C signals, Fan header
->   - It holds & connects all the daughter cards.
-> 
-> SoC card:
->   - It contains:
->     - SoM:
->       - One of QCS9075M/QCS9100M/QAM8775p SoM.
-> 	  - Each SoM is composed of either qcs9075/qcs9100/sa8775p SoC, along
-> 		with DDR & PMICs.
->       - Each SoM can be mounted to same SoC-daughter card of ride-hw.
->     - In addition to SoM, it also has
->       - 4x UART, 2x USB 3.1 & 1x USB 2.0
->       - Memory: 1x OSPI, 2x UFS-3.1
->       - Debug: JTAG/QDSS header
->       - PCIe0, PCIe1 & Display signals
->       - Reset button
->   - It is connected to backplain board via B2B connector.
-> 
-> Display card:
->   - It contains:
->     - 4 eDP ports & 2 DSI-DP bridge
->     - I2C GPIO expander & I2C switch
->   - It is connected to SoC-card via B2B connector.
-> 
-> Camera card:
->   - It contains:
->     - 4 Quad DE-serializer, each supporting 4 MIPI CSI inputs
->     - Total upto 16 Cameras ports are supported.
->   - It is connected to backplain board via B2B connector.
-> 
-> Ethernet card:
->   - There are two variants of ethernet card each with different
-> 	capabilities:
->     - [Ethernet-v1] card contains:
->       - 2x 1G RGMII phy, 2x 1G SGMII phy(enabled currently)
-> 	  - Total 4 phy supported, only 2 phy are enabled and it is used in
-> 		ride.
->     - [Ethernet-v2] card contains:
-> 	  - 2x 1G RGMII phy, 2x 2.5G HSGMII(enabled currently) & 10G PCIe based
-> 		MAC+PHY controller
-> 	  - Total 5 phy supported, only 2 phy are enabled and it is used in
-> 		ride-r3.
->   - Either [Ethernet-v1] or [Ethernet-v2] is connected to backplain board
-> 	via B2B connector.
-> 
-> PCIe card:
->   - It contains:
->     - PCIe connections to SoC-card
-> 	- NVME, 2x WLBT module QCA6696/QCA6698 (Wi-Fi & bluetooth solution) &
-> 	  GNSS module
->   - It is connected to backplain board via B2B connector & PCIe signals are
-> 	connected to SoC card via flyover cables.
-> 
-> Sensor Card:
->   - It contains 3-Axix compass & 6-Axis 3D IMU (accel/gyro) module which
-> 	are communicating via I2C
->   - It is connected to backplain board via B2B connector.
-> 
-> Front panel card:
->   - It does not contain any active circuitry, only ports are available
->     - Audio-in/out ports
->     - USB hub ports
->     - CAN/LIN ports
->     - 12V power off switch
->   - It is connected to backplain board via ribbon cable.
-> 
->>
->>>
-> 
->>>> |             |                      | +-------------------------+-----------------------+-----------------< sa8775p-ride-common.dtsi           |
->>
->>
->> There is no ride-common hardware. If there is, send us any proof of its
->> existence. all your statements here show you want to create some
->> structure because you like it. I don't think you get my questions. You
->> painted diagram of DTS, not hardware.
->>
->> We talk about hardware. Not your DTS. Drop all DTSI, DTS, DTSO from here
->> and show us the hardware.
->>
-> 
-> Considering outlined h/w description, following are ride configuration
-> variation each platform supporting:
-> 
-> Between qcs9075, qcs9100 & sa8775p ride/ride-r3 boards, SoM is changing;
+> diff --git a/Documentation/devicetree/bindings/fpga/xilinx-zynq-fpga-mgr.yaml b/Documentation/devicetree/bindings/fpga/xilinx-zynq-fpga-mgr.yaml
+> index 04dcadc2c20e9..bb2781ae126ca 100644
+> --- a/Documentation/devicetree/bindings/fpga/xilinx-zynq-fpga-mgr.yaml
+> +++ b/Documentation/devicetree/bindings/fpga/xilinx-zynq-fpga-mgr.yaml
+> @@ -31,6 +31,13 @@ properties:
+>      description:
+>        Phandle to syscon block which provide access to SLCR registers
+>  
+> +  enable-icap-on-load:
 
-Define these as SoMs then.
+Missing vendor prefix.
 
-> And between ride & ride-r3 ethernet is changing.
+> +    type: boolean
+> +    description: If present, the ICAP controller will be enabled when
+> +      the driver probes. This is useful if the fabric is loaded
+> +      during the boot process and contains a core, such as the SEM,
 
-Different ethernet cards can be also represented as cards - their own
-DTSI. But there is no soc-card with one or other ethernet, so do not
-create fake structure just because downstream had it.
+I don't get how this is suitable for DT. If you decide to load the
+fabric from driver, that's driver decision so not DT.
 
+> +      that requires access to ICAP interface to operate properly.
+> +
+>  required:
+>    - compatible
+>    - reg
 
-> Excluding these differences all other cards i.e SoC, display, camera, PCIe,
-> sensor, front & backplain are same and are refactored in ride-common.
-> If any variant of these cards comes up in future we need to refactor
-> ride-common accordingly. I will try to outline this as clearly as possible
-> in next commit log.
-> 
-> Considering current outlines of all daughter cards, following defines
-> ride/ride-r3 variant boards:
->   - sa8775p ride    : QAM8775p SoM + [Ethernet-v1] + other daughter cards
->   - sa8775p ride-r3 : QAM8775p SoM + [Ethernet-v2] + other daughter cards
->   - qcs9100 ride-r3 : QCS9100M SoM + [Ethernet-v2] + other daughter cards
->   - qcs9075 ride-r3 : QCS9075M SoM + [Ethernet-v2] + other daughter cards
-> 
-> Since we don't have a document yet which formally describes
-> qcs9075/qcs9100 ride board with [Ethernet-v1] card, I shall be dropping
-> this particular variant in next patch series and re-send after complete
-> documentation is available.
-> 
->>> Actually we are not including dts here instead *.dtso file will be
->>> overlayed to *-ride.dts to generate *-ride-r3.dts.
->>>
->>> Below is the correct arrow sequence.
->>
->> And the overlay represents what exactly? Different board? No, that's not
->> how overlays should be used.
->>
->> You have different board, you have different DTS.
->>
-> 
-> No the overlay is not a different ride board. This overlay represents
-> [Ethernet-v2] card which is different than [Ethernet-v1] card.
-
-Different cards is not an overlay. Overlay is for added cards, but you
-replace here the card.
 
 Best regards,
 Krzysztof
