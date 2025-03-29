@@ -1,48 +1,87 @@
-Return-Path: <devicetree+bounces-161756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161757-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0F77A755D3
-	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 12:06:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E5CFA75606
+	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 12:42:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B6F16189435B
-	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 11:06:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3CC7916F375
+	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 11:42:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 812E11B4257;
-	Sat, 29 Mar 2025 11:06:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C188C1C1F22;
+	Sat, 29 Mar 2025 11:42:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cmHor07s"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="C/vbrsxU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CCF71A8F61;
-	Sat, 29 Mar 2025 11:06:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8FE438FA6
+	for <devicetree@vger.kernel.org>; Sat, 29 Mar 2025 11:42:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743246402; cv=none; b=s6kaUtvr0XBbjPOpcjguUV/UhuEo+KpcRmCGRF05U6UsYIoTYcA84Fku/9nRA/BGyVtWDnBGAzMaHhJri80/JUY9pPaqGfi1gA5x1E8TX+dqZVbPoLSzmunqBaHr4nGL1EF2ltum153/4A36o9VE8FqTHh1VVy062Am9HtiUnrU=
+	t=1743248536; cv=none; b=Wnk4/cvotqJpflU24dmFBSYwYLnx22xg0p03JeMSqZiZFtU51jY/nVACIwRnPOap2SKBb4QK2WddYXHVNGxAAjfPBhXPI5wVVDBIJX0u+ESvHfrMtjH4jgF92WUTpOISfP5hpbxJFRrYr0k4ukjvFvVkhyZMbpCIilsxDfclfJo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743246402; c=relaxed/simple;
-	bh=was+ytU0YEHXTnWHMcX45+zuLYr/5rHvcBsQlaBb66s=;
+	s=arc-20240116; t=1743248536; c=relaxed/simple;
+	bh=/3fUFv9I1+6hyqB935Ue7MnXiU0wbFfGhPTCP5NZvdk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=apco/c4UCOcuR1Ui0B7WZjkmwSiCjwQ/8k2rHkTSEiwLa/lhq9kW12lsZ6BVWHRadfaAll/z/g8Ng/3zYpMahMT5HCVOoEUsKRmv82KFy8iOUQyshI57WW5IPGOqb8ZYcEksLlumx9ejBlKyXdMm8qJxEb+ad7voYyY6EvEqFhg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cmHor07s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FDA0C4CEE2;
-	Sat, 29 Mar 2025 11:06:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743246401;
-	bh=was+ytU0YEHXTnWHMcX45+zuLYr/5rHvcBsQlaBb66s=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cmHor07su1qJnS29u0lPYMH6jjLWgGeTdGrtNtHfkcZlEF/kcvy0g/LaDqkmAi0dH
-	 4kAxG/AQhzwDU0pC4AhQ2n6e0U2l05fvf/2YpAu5H9afMldDZUoMZFCceGyH9AAAEv
-	 uD2oS3MfasEYE7lYqIDeob+sabJRmwjrcdgf8mQGyBw84G6ATVOthuQEiJnstPHpmM
-	 i5KRCacq39xLbuy6gk8DBHRt3qmsJAqj0ts2COLBGLCfPqtQ1e8oRawKWDOVtBXfKF
-	 kd7b/TyTi18/puIy8qVUlDkED1D9iJZ/wyHBVmW1R3IN0mnHAuouwhPkn7XvXHu2f8
-	 RCg9VG0g96LrA==
-Message-ID: <04945ad2-1372-4c73-beae-fc6449fb9a76@kernel.org>
-Date: Sat, 29 Mar 2025 12:06:34 +0100
+	 In-Reply-To:Content-Type; b=FxZ+YapSrXyai5qvOBUz2pjrdUquS4rneIas5hIg35+UJRTm4bfm01x6b70Ngyme+lEsV+KJOR1JFUQEN3OopUinCgCVpB+zLwvwBN83VMm8uuwYF4UT9Uxc/CRPPMaeSgQAXm0mbZNZG5k3J2Ddwi+yk9lqpWvuHgOSJmxn1II=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=C/vbrsxU; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52T7iQk1014813
+	for <devicetree@vger.kernel.org>; Sat, 29 Mar 2025 11:42:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Mmm54hP5tMFj63YRNzC7S/gSA1WThy35TAoW/ZFfd30=; b=C/vbrsxU9RKNWNvY
+	PAo6sqUhnvDrdDvQG1F+uEFcNNfr6OV/1cVvP1w2MtpZqljllvTTmcyFecwB1u+s
+	tycfWw3fAKs9/CDFnQPri7xaXY7OPt76tszYznMnKIvS8g47H96JcK6FWycwcov9
+	PKPsprgkMpeFV1xNy60ccevdFFwMdq+f5iqQ3ctCSG5njnFtZwtwR6gm46LU+vjj
+	vD0ccxta+SjlDqnuj6GX5boEZMc7TICVXbb15pj1sKF/6gmuOhiiyoeBBazATet9
+	bsUMJ96d9cgkja+vD9L1Rc7gjeZlQ8M4+LmCIxomidYWpnObsHG+0jj0ez0sF6cb
+	3n4Tdw==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45pa1nrj69-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 29 Mar 2025 11:42:07 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6e8f3c21043so6536506d6.1
+        for <devicetree@vger.kernel.org>; Sat, 29 Mar 2025 04:42:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743248526; x=1743853326;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Mmm54hP5tMFj63YRNzC7S/gSA1WThy35TAoW/ZFfd30=;
+        b=IgSkB47ll4c5XBPV5BhAnw2to90HCFmJw6FSA2cV55Tj2g9fONkEFjxbexWR1way3X
+         6RvR50FQjE8buqjBI+UNzO0Jy4RlxgjsJ0g6uYuu/I/rFEWdsJpnzNgE198lN0ypj6dh
+         S9ER17jAGC2semY7G4aKSBZdy8CbC0uZlyPx/eEUpR80iBKWgG0WHCHy73vEnii+q/zo
+         EU0hylvmHcxHBhbs6jbOqslonXu1CuD4XEncsjvwp1n3SO2WaxHerNlITeB+Qp8/tSR8
+         HMvUKJXlZv4fg/8yf6U84B8BP6ixw7NEZ0/aRrZP4ruBljxN/OCciSkmN6C9GfsAUos8
+         DpyQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUeApek02AcmNS3eLgPaxB13xl7Q2ERLGBOvgbgeqeugB4d+xjfzoGnpdOv2JjmRLhOG43F3PHChhyI@vger.kernel.org
+X-Gm-Message-State: AOJu0YwJzrR4YfIX/M/gKrvyYlYzDeo3sqM3wbXlV4w5pe2aKE8GaQwd
+	pyf4g52OOchcyznyibUVpslqu8hH41S6dk3mnTE3Ps3NqF2RuJklSRNehsUrKl+XhBFP2kQ9KmF
+	gKKseBiB8ogFvhOR66/f+UeTKUgwJOc6isbZf1BcPV8AwUVh9dLJxi/KESmh9
+X-Gm-Gg: ASbGnctoExrpJ3eWr2GKfHEZdNiqhzKdOrkC3J8W0A90mGAe7l0I2pwFEp+G9sNjfrl
+	j0Rc5jwtzE7LqK4oyKgRD8ZGjLnQVNU++HkUKWByj19IBU25sQ5tDixVU38wJirPDAktmrV9slJ
+	v7iltVphMjeUSfxrtflzwk1gsis1YJAk5SNoheo1qnnsEJIrSDzGUALL5Q6dACwI9Gkja+DyHc2
+	wlgfnzxzb56jJbuiSGVYqgB3JZG2Z7X11iuYXwcTg2DmSo/4n36pDg/SCJAFWdYf7NpgAEl9vf+
+	MvlyDhL4ZiQ7ZN1+jNoHk+jqUwI9ZDr+K8KgZlSwXn5xaqSyzFS0lvjZOeRatBR69CYcMg==
+X-Received: by 2002:a05:6214:19e3:b0:6e8:98ce:dd75 with SMTP id 6a1803df08f44-6eed6240a60mr13440676d6.9.1743248526294;
+        Sat, 29 Mar 2025 04:42:06 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHyNtCjF7eZFHg5e8sgPfDmRiZq6NbJYI+bCAjDsmzT1x0V+Z5zGALW3AuIi5S1IGq561tZRQ==
+X-Received: by 2002:a05:6214:19e3:b0:6e8:98ce:dd75 with SMTP id 6a1803df08f44-6eed6240a60mr13440496d6.9.1743248525880;
+        Sat, 29 Mar 2025 04:42:05 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac71961f3c7sm320820566b.94.2025.03.29.04.42.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 29 Mar 2025 04:42:05 -0700 (PDT)
+Message-ID: <ed8a59ce-0527-4514-91f8-c27972d799d4@oss.qualcomm.com>
+Date: Sat, 29 Mar 2025 12:42:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,108 +89,168 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: i3c: Add Qualcomm I3C master
- controller
-To: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>,
- alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, jarkko.nikula@linux.intel.com,
- linux-i3c@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: andersson@kernel.org, konradybcio@kernel.org
-References: <20250326141641.3471906-1-quic_msavaliy@quicinc.com>
- <20250326141641.3471906-2-quic_msavaliy@quicinc.com>
- <991b0652-76f2-40d6-b49b-1e6f76e254ac@kernel.org>
- <661e1a21-0f3a-497a-9b3b-fab284e30d19@quicinc.com>
- <36b67f9c-5905-4fa6-8190-ab980850b3a2@kernel.org>
- <e997bd15-728c-4316-8050-d461f115fd9f@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v8 4/4] PCI: dwc: Add support for configuring lane
+ equalization presets
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
+        Lorenzo Pieralisi
+ <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
+ <kw@linux.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        quic_mrana@quicinc.com, quic_vbadigan@quicinc.com
+References: <20250316-preset_v6-v8-0-0703a78cb355@oss.qualcomm.com>
+ <20250316-preset_v6-v8-4-0703a78cb355@oss.qualcomm.com>
+ <3sbflmznjfqpcja52v6bso74vhouv7ncuikrba5zlb74tqqb5u@ovndmib3kgqf>
+ <92c4854d-033e-c7b5-ca92-cf44a1a8c0cc@oss.qualcomm.com>
+ <mslh75np4tytzzk3dvwj5a3ulqmwn73zkj5cq4qmld5adkkldj@ad3bt3drffbn>
+ <5fece4ac-2899-4e7d-8205-3b1ebba4b56b@oss.qualcomm.com>
+ <abgqh3suczj2fckmt4m2bkqazfgwsfj43762ddzrpznr4xvftg@n5dkemffktyv>
+ <622788fa-a067-49ac-b5b1-e4ec339e026f@oss.qualcomm.com>
+ <4rep2gvymazkk7pgve36cw7moppozaju7h6aqc3gflxrvkskig@62ykri6v4trs>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <e997bd15-728c-4316-8050-d461f115fd9f@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <4rep2gvymazkk7pgve36cw7moppozaju7h6aqc3gflxrvkskig@62ykri6v4trs>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: GAuvJEMqIslok3jDmyEmKZGiEM43lbru
+X-Proofpoint-GUID: GAuvJEMqIslok3jDmyEmKZGiEM43lbru
+X-Authority-Analysis: v=2.4 cv=MPlgmNZl c=1 sm=1 tr=0 ts=67e7dc8f cx=c_pps a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=EUspDBNiAAAA:8 a=jKyjlexm6IKzr5l-IOMA:9 a=QEXdDO2ut3YA:10
+ a=pJ04lnu7RYOZP9TFuWaZ:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-29_01,2025-03-27_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ malwarescore=0 suspectscore=0 phishscore=0 spamscore=0 clxscore=1015
+ bulkscore=0 mlxlogscore=999 impostorscore=0 mlxscore=0 adultscore=0
+ priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503290083
 
-On 29/03/2025 10:08, Mukesh Kumar Savaliya wrote:
->>>>> +  I3C in master mode supports up to 12.5MHz, SDR mode data transfer in mixed
->>>>> +  bus mode (I2C and I3C target devices on same i3c bus). It also supports
->>>>> +  hotjoin, IBI mechanism.
->>>>> +
->>>>> +  I3C Controller nodes must be child of GENI based Qualcomm Universal
->>>>> +  Peripharal. Please refer GENI based QUP wrapper controller node bindings
->>>>> +  described in Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml.
->>>>> +
->>>>> +allOf:
->>>>> +  - $ref: i3c.yaml#
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    const: qcom,i3c-master
+On 3/29/25 10:39 AM, Manivannan Sadhasivam wrote:
+> On Sat, Mar 29, 2025 at 09:59:46AM +0100, Konrad Dybcio wrote:
+>> On 3/29/25 7:30 AM, Manivannan Sadhasivam wrote:
+>>> On Fri, Mar 28, 2025 at 10:53:19PM +0100, Konrad Dybcio wrote:
+>>>> On 3/28/25 7:45 AM, Manivannan Sadhasivam wrote:
+>>>>> On Fri, Mar 28, 2025 at 11:04:11AM +0530, Krishna Chaitanya Chundru wrote:
+>>>>>>
+>>>>>>
+>>>>>> On 3/28/2025 10:23 AM, Manivannan Sadhasivam wrote:
+>>>>>>> On Sun, Mar 16, 2025 at 09:39:04AM +0530, Krishna Chaitanya Chundru wrote:
+>>>>>>>> PCIe equalization presets are predefined settings used to optimize
+>>>>>>>> signal integrity by compensating for signal loss and distortion in
+>>>>>>>> high-speed data transmission.
+>>>>>>>>
+>>>>>>>> Based upon the number of lanes and the data rate supported, write
+>>>>>>>> the preset data read from the device tree in to the lane equalization
+>>>>>>>> control registers.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+>>>>>>>> ---
+>>>>>>>>   drivers/pci/controller/dwc/pcie-designware-host.c | 60 +++++++++++++++++++++++
+>>>>>>>>   drivers/pci/controller/dwc/pcie-designware.h      |  3 ++
+>>>>>>>>   include/uapi/linux/pci_regs.h                     |  3 ++
+>>>>>>>>   3 files changed, 66 insertions(+)
+>>>>>>>>
+>>>>>>>> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+>>>>>>>> index dd56cc02f4ef..7c6e6a74383b 100644
+>>>>>>>> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+>>>>>>>> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+>>>>>>>> @@ -507,6 +507,10 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
+>>>>>>>>   	if (pci->num_lanes < 1)
+>>>>>>>>   		pci->num_lanes = dw_pcie_link_get_max_link_width(pci);
+>>>>>>>> +	ret = of_pci_get_equalization_presets(dev, &pp->presets, pci->num_lanes);
+>>>>>>>> +	if (ret)
+>>>>>>>> +		goto err_free_msi;
+>>>>>>>> +
+>>>>>>>>   	/*
+>>>>>>>>   	 * Allocate the resource for MSG TLP before programming the iATU
+>>>>>>>>   	 * outbound window in dw_pcie_setup_rc(). Since the allocation depends
+>>>>>>>> @@ -808,6 +812,61 @@ static int dw_pcie_iatu_setup(struct dw_pcie_rp *pp)
+>>>>>>>>   	return 0;
+>>>>>>>>   }
+>>>>>>>> +static void dw_pcie_program_presets(struct dw_pcie_rp *pp, enum pci_bus_speed speed)
+>>>>>>>> +{
+>>>>>>>> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+>>>>>>>> +	u8 lane_eq_offset, lane_reg_size, cap_id;
+>>>>>>>> +	u8 *presets;
+>>>>>>>> +	u32 cap;
+>>>>>>>> +	int i;
+>>>>>>>> +
+>>>>>>>> +	if (speed == PCIE_SPEED_8_0GT) {
+>>>>>>>> +		presets = (u8 *)pp->presets.eq_presets_8gts;
+>>>>>>>> +		lane_eq_offset =  PCI_SECPCI_LE_CTRL;
+>>>>>>>> +		cap_id = PCI_EXT_CAP_ID_SECPCI;
+>>>>>>>> +		/* For data rate of 8 GT/S each lane equalization control is 16bits wide*/
+>>>>>>>> +		lane_reg_size = 0x2;
+>>>>>>>> +	} else if (speed == PCIE_SPEED_16_0GT) {
+>>>>>>>> +		presets = pp->presets.eq_presets_Ngts[EQ_PRESET_TYPE_16GTS - 1];
+>>>>>>>> +		lane_eq_offset = PCI_PL_16GT_LE_CTRL;
+>>>>>>>> +		cap_id = PCI_EXT_CAP_ID_PL_16GT;
+>>>>>>>> +		lane_reg_size = 0x1;
+>>>>>>>> +	} else {
+>>>>>>>
+>>>>>>> Can you add conditions for other data rates also? Like 32, 64 GT/s. If
+>>>>>>> controller supports them and if the presets property is defined in DT, then you
+>>>>>>> should apply the preset values.
+>>>>>>>
+>>>>>>> If the presets property is not present in DT, then below 'PCI_EQ_RESV' will
+>>>>>>> safely return.
+>>>>>>>
+>>>>>> I am fine to add it, but there is no GEN5 or GEN6 controller support
+>>>>>> added in dwc, isn't it best to add when that support is added and
+>>>>>> tested.
+>>>>>>
+>>>>>
+>>>>> What is the guarantee that this part of the code will be updated once the
+>>>>> capable controllers start showing up? I don't think there will be any issue in
+>>>>> writing to these registers.
 >>>>
->>>> And this got worse. It makes also no sense either: how can you claim
->>>> that this covers all possible future I3C masters from Qualcomm?
+>>>> Let's not make assumptions about the spec of a cross-vendor mass-deployed IP
 >>>>
->>>> What was the resolution of previous discussion?
->>>>
->>> Below was my understanding and reply.
->>> "
->>> I think i should remove const. kept it for now as no other compatible to
->>> be added as of now.
->>> let me remove const.
->>> SoC name is not required, as this compatible is generic to all the SOCs.
+>>>
+>>> I have seen the worse... The problem is, if those controllers start to show up
+>>> and define preset properties in DT, there will be no errors whatsoever to
+>>> indicate that the preset values were not applied, resulting in hard to debug
+>>> errors.
 >>
->> I don't see any talks about const, what are you referring to?
+>> else {
+>> 	dev_warn(pci->dev, "Missing equalization presets programming sequence\n");
+>> }
 >>
-> +properties:
-> +  compatible:
-> +    : qcom,i3c-geni
-> will this be fine ?
+> 
+> Then we'd warn for controllers supporting GEN5 or more if they do not pass the
+> presets property (which is optional).
 
-Yes, I think that was also suggested by Rob. Or rather follow existing
-style so qcom,geni-i3c for the compatible and filename.
+Ohh, I didn't think about that - and I can only think about solutions that are
+rather janky.. with perhaps the least janky one being changing the else case I
+proposed above into:
 
+else if (speed >= PCIE_SPEED_32_0GT && eq_presets_Ngts[speed - PCIE_SPEED_16_0GT][0] != PCI_EQ_RESV) {
+	...
+}> 
+>>>
+>>> I'm not forseeing any issue in this part of the code to support higher GEN
+>>> speeds though.
+>>
+>> I would hope so as well, but both not programming and misprogramming are
+>> equally hard to detect
+>>
+> 
+> I don't disagree. I wanted to have it since there is no sensible way of warning
+> users that this part of the code needs to be updated in the future.
 
-Best regards,
-Krzysztof
+I understand, however I'm worried that the programming sequence or register
+may change for higher speeds in a way that would be incompatible with what
+we assume here
+
+Konrad
 
