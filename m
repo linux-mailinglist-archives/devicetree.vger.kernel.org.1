@@ -1,222 +1,215 @@
-Return-Path: <devicetree+bounces-161739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F553A75461
-	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 06:48:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2A64A7547D
+	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 07:26:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C821174682
-	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 05:48:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF28718924DD
+	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 06:26:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5733216D32A;
-	Sat, 29 Mar 2025 05:46:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE00817A2EC;
+	Sat, 29 Mar 2025 06:26:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gla560DJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Y3k/0jev"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25FB31632D9;
-	Sat, 29 Mar 2025 05:46:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BF8215442A
+	for <devicetree@vger.kernel.org>; Sat, 29 Mar 2025 06:26:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743227200; cv=none; b=doiw4nsgEeGbouvYn37EFbowSwx2LaA2hmELvWE1FGKWewejf0wb+IdTB90PtO0Din0HBM6jnV78uZ1Ppr8Z+rxzXnb+KTB5/DByDPNzbZkoAbaCqTvt1le1oOXs+UTYp6cfxMlzPT/HWpUwEMra7A77cfQFR6ggxhkr3kLvI9k=
+	t=1743229567; cv=none; b=W8+GXMF3Epjaj4yRDdxhsMs9wmSndTxFTkvl71+Av4Syonoykf/X0HUoPx558bb2TP5ZtUb+/mRMICUFNOtl8muuiRAwKT5Frx99xcXeqR0hfJ6Hshaa/G+VNd9Xf0qR+YXu6ISNNA5gLafuIFhbP3DRcJglnFCtLZI9JZNHHcs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743227200; c=relaxed/simple;
-	bh=bIU0pSOCE3HExIAhjfEhDcaCzlmpUpFHgJ66hIsSFN8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=S5tapIiBo7PAuACz9+z37Y7j5A6vQWp22Mm86Q97wf4RAmUVHY1RUf/Cuc4ZKr01ne2+zAJ5s0uwIvrXTQz2X8/scuRoIGcFFvrQzd9vlh5tDNkkL1brBFjF6vZqz9DItZKlcCl4za6G4Oyhch9mcFP6jK87zHwAM9HD560llKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gla560DJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF8EDC4CEE2;
-	Sat, 29 Mar 2025 05:46:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743227199;
-	bh=bIU0pSOCE3HExIAhjfEhDcaCzlmpUpFHgJ66hIsSFN8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Gla560DJMjJEehGKJolLh7QucPgqK4jQhHaRnBrSnQ8VhC1Mt27sKDi9goKEmus+b
-	 XPjnAjNms07FkTLzHgNc+w6ME9Fcp6uJ33lQ4wnjJeWKyA+d6u3/zuTP3EXc1yVOw9
-	 FaekH4EOaQ0Dtq6U1x6nyA44SOvro0UlpvsFKCIS8IcQ9SOgX/zIRI9u1zIt99X4DO
-	 3j6Mb4Ig6dFJYHo6xRjJ/zpxqq0Uhli1eBalHk9ekzJSw5b/1Pv0OJD8Rqc8yICyqh
-	 XiMmgrDnYHPyg7O/uOOIQJK2fOU7fQNyaqG4dbGiZbDwn5uXrUx+Igfyy6bN3elDuA
-	 jhFtqwSTIRMfA==
-Message-ID: <7556a0a8-47f3-4cf7-ae4d-9ea444d98c6b@kernel.org>
-Date: Sat, 29 Mar 2025 06:46:33 +0100
+	s=arc-20240116; t=1743229567; c=relaxed/simple;
+	bh=P9s1i7/CqBtWsXLXaqfrQ0tc/n6VCQbknYZtV9RVoAg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QUFaP5TWLs5idkOio7zz3CiA0k6gf6I/1ML7bQiwgvnu/ROXeXaTsyGw2ijJlHle3nbsPDt93L5MZBQPuYC9079Xphsv5iOXlquqf1s0YLicHI1+L66+gsffeZmFywyDA56kBu/5bwbjk+uINsk9tH0Lacdl+IsWYI9CF2o3/1U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Y3k/0jev; arc=none smtp.client-ip=209.85.216.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-303a66af07eso4124170a91.2
+        for <devicetree@vger.kernel.org>; Fri, 28 Mar 2025 23:26:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1743229563; x=1743834363; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=mRSN5koB7TeiHhVAdgjJ6QAs7uTTVv87bTB+zeS8BK4=;
+        b=Y3k/0jevyJ748poNsWZQNnuPm9J2q/io+o1+gPFw12Zc/+LH+J/dKXVK8H1ucwnuV4
+         NspLcilwDmaMbID7e6Ys1x5KRDm5v7qXLKiVpfAjyiDvCZqVO/5QCbIbkbvltdy4eMfv
+         6OYU9Lk9URBtzfh1yfqmvvxD9qkZHAdAtedW2R10Gi9qBX506ey0orNi24z8QrHSVgEE
+         mU7tSqkF25twwaZfxl6jJRlZ1leQnCcVIQgTLnidfU4oku6KkF9NiyyPF7eC4rFYDb+1
+         lI0OmzmHmtSkSbzA3/3ECs03VajFraDB1iIsjnxhP/GNnFw+FDyQtOVT5vh4V0rikUYD
+         Vr0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743229563; x=1743834363;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mRSN5koB7TeiHhVAdgjJ6QAs7uTTVv87bTB+zeS8BK4=;
+        b=KMdvL0zWI4Nxj/ZNvguTwDTNrovGshjyY8zn/rBzEZnt50gHZb1DsI4lebs9MOWdtp
+         vKkGaRs2/wmu4V9tEUPnr3PwVjH3+BPIjfsWoEVnp2QvXzcOI7LC69PrjSJE4mQnbANE
+         CY0pfsPRnURLjwmdKaXbh9//N9iV3Tyb68uD2aSMe70MDVwN/ySUeljgy6Hj3uMj4p19
+         X25ARATkbHJkKPeCsArVK4egWK1PZKV2CNU7m5er/DUn1HYCHqsUIGynPryII6TvSDeX
+         W+M/NmTocl/JavZJvrZBVFG4L86FSxFggbsVM+av/sdKnk/hiordwYpbDS0mQEhfWc8g
+         H5aw==
+X-Forwarded-Encrypted: i=1; AJvYcCXtPFKzexI2N4SP4cVloruhzX2Q2GHgniwOjVP+7Fysyk2B2TfQ7aJ0RSUlqa2Rg2tjFXRESe83DTmH@vger.kernel.org
+X-Gm-Message-State: AOJu0YwctUXvU7ppJ+b7I5YZYGkbr7oU4zx6zA9gY5g0tFj7dlp5Eav+
+	qeQtKzA+T/WbVuVS4FbhEwGl3OS6knMwlJX3NId1IFuxf/Z44nGVJdOY9kPb/A==
+X-Gm-Gg: ASbGncvzQMDY3FvSZ+RpD9jfE8Y0GLGyG+GsmT1nljfQz0QHKq/ZABBCSI46y3i0cPA
+	jL4oFA6oInSL310psbr97xYYQxgVcjV9BEynlgxtw6QobJBOwbHyAKxBn7sRyOFVPrnbdM+s1AH
+	fCyvCcOY0W/4yfTjgvlm/PDjWwSEIDzP84RcrKa+Nc3aO4WNpvcyw8Z+gRPUvRqm76JB55nEHGF
+	P1q6S8WfPeksf6skTfdp84n0ENlHo7PyXBfBKLE5s/fVj35cLUiy3QFBMT8ZLspy6FJpvK3i7AF
+	Gsol4LYyiB7H1gVkaKjR08tgD3Mc31gYA8LXLTjs4Un3TcOftXDqewc=
+X-Google-Smtp-Source: AGHT+IEa9ousfM+eWpglC7OecikLrwKiKNU9qfU/hQ7NO9ig3EhJu5QjZNwDismYqLU0vTtOytj2zA==
+X-Received: by 2002:a17:90b:3a4b:b0:2ee:f076:20fb with SMTP id 98e67ed59e1d1-305320ae1edmr3407754a91.17.1743229563125;
+        Fri, 28 Mar 2025 23:26:03 -0700 (PDT)
+Received: from thinkpad ([120.60.65.227])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30516d3cdf9sm2976509a91.7.2025.03.28.23.25.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Mar 2025 23:26:02 -0700 (PDT)
+Date: Sat, 29 Mar 2025 11:55:55 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
+	cros-qcom-dts-watchers@chromium.org, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+	quic_vbadigan@quicinc.com, quic_mrana@quicinc.com, quic_vpernami@quicinc.com, 
+	mmareddy@quicinc.com
+Subject: Re: [PATCH v5 1/7] arm64: dts: qcom: sc7280: Increase config size to
+ 256MB for ECAM feature
+Message-ID: <kjys3yjmbg4jvy47zcq57e6mnbz3hjvj4hqv5ntn36sglib7fy@nzxzlgqvi74z>
+References: <20250309-ecam_v4-v5-0-8eff4b59790d@oss.qualcomm.com>
+ <20250309-ecam_v4-v5-1-8eff4b59790d@oss.qualcomm.com>
+ <3332fe69-dddb-439d-884f-2b97845c14e1@oss.qualcomm.com>
+ <0cc247a4-d857-4fb1-8f87-0d52d641eced@oss.qualcomm.com>
+ <h6bnt7ti3yy3welkzqwia7kieunspfqtxf6k46t4j4d5tathls@hra2gbpzazep>
+ <090572fa-7c4c-798d-26e9-39570215b2b7@oss.qualcomm.com>
+ <f44tte5b3hlm7ir6lyp65fnl6ylq4og5wrvllwr47xdvnhqscg@t3tsy3c6jypw>
+ <71a60727-0dc8-4117-82a5-f9ecae1ce967@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] media: i2c: Add driver for ST VD55G1 camera sensor
-To: Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
- Sylvain Petinot <sylvain.petinot@foss.st.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250328-b4-vd55g1-v1-0-8d16b4a79f29@foss.st.com>
- <20250328-b4-vd55g1-v1-2-8d16b4a79f29@foss.st.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250328-b4-vd55g1-v1-2-8d16b4a79f29@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <71a60727-0dc8-4117-82a5-f9ecae1ce967@oss.qualcomm.com>
 
-On 28/03/2025 14:40, Benjamin Mugnier wrote:
-> +
-> +static void vd55g1_subdev_cleanup(struct vd55g1 *sensor)
-> +{
-> +	v4l2_async_unregister_subdev(&sensor->sd);
-> +	v4l2_subdev_cleanup(&sensor->sd);
-> +	media_entity_cleanup(&sensor->sd.entity);
-> +	v4l2_ctrl_handler_free(sensor->sd.ctrl_handler);
-> +}
-> +
-> +static int vd55g1_err_probe(struct device *dev, int ret, char *msg)
+On Fri, Mar 28, 2025 at 09:44:20PM +0100, Konrad Dybcio wrote:
+> On 3/28/25 4:29 PM, Manivannan Sadhasivam wrote:
+> > On Fri, Mar 28, 2025 at 06:24:23PM +0530, Krishna Chaitanya Chundru wrote:
+> >>
+> >>
+> >> On 3/28/2025 5:14 PM, Manivannan Sadhasivam wrote:
+> >>> On Wed, Mar 26, 2025 at 06:56:02PM +0100, Konrad Dybcio wrote:
+> >>>> On 3/11/25 12:13 PM, Konrad Dybcio wrote:
+> >>>>> On 3/9/25 6:45 AM, Krishna Chaitanya Chundru wrote:
+> >>>>>> PCIe ECAM(Enhanced Configuration Access Mechanism) feature requires
+> >>>>>> maximum of 256MB configuration space.
+> >>>>>>
+> >>>>>> To enable this feature increase configuration space size to 256MB. If
+> >>>>>> the config space is increased, the BAR space needs to be truncated as
+> >>>>>> it resides in the same location. To avoid the bar space truncation move
+> >>>>>> config space, DBI, ELBI, iATU to upper PCIe region and use lower PCIe
+> >>>>>> iregion entirely for BAR region.
+> >>>>>>
+> >>>>>> This depends on the commit: '10ba0854c5e6 ("PCI: qcom: Disable mirroring
+> >>>>>> of DBI and iATU register space in BAR region")'
+> >>>>>>
+> >>>>>> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> >>>>>> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> >>>>>> ---
+> >>>>>
+> >>>>> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> >>>>
+> >>>> I took a second look - why are dbi and config regions overlapping?
+> >>>>
+> >>>
+> >>> Not just DBI, ELBI too.
+> >>>
+> >>>> I would imagine the latter to be at a certain offset
+> >>>>
+> >>>
+> >>> The problem is that for ECAM, we need config space region to be big enough to
+> >>> cover all 256 buses. For that reason Krishna overlapped the config region and
+> >>> DBI/ELBI. Initially I also questioned this and somehow convinced that there is
+> >>> no other way (no other memory). But looking at the internal documentation now,
+> >>> I realized that atleast 512MiB of PCIe space is available for each controller
+> >>> instance.
+> >>>
+> >> DBI is the config space of the root port0,  ecam expects all the config
+> >> space is continuous i.e 256MB and this 256MB config space is ioremaped
+> >> in ecam driver[1]. This 256 MB should contain the dbi memory too and
+> >> elbi always with dbi region we can't move it other locations. We are
+> >> keeping overlap region because once ecam driver io remaped all 256MB
+> >> including dbi and elbi memory dwc memory can't ioremap the dbi and elbi
+> >> region again. That is the reason for having this overlap region.
+> >>> So I just quickly tried this series on SA8775p and by moving the config space
+> >>> after the iATU region, I was able to have ECAM working without overlapping
+> >>> addresses in DT. Here is the change I did:
+> >>>
+> >> I am sure ecam is not enabled with this below change
+> > 
+> > ECAM is indeed enabled. But...
+> > 
+> >> because ecam block
+> >> have the address alignment requirement that address should be aligned to
+> >> the base address of the range is aligned to a 2(n+20)-byte memory address
+> >> boundary from pcie spec 6.0.1, sec 7.2.2 (PCI Express Enhanced
+> >> Configuration Access Mechanism (ECAM)), with out that address alignment
+> >> ecam will not work since ecam driver gets bus number function number
+> >> by shifting the address internally.
+> >>
+> > 
+> > You are right, but the ECAM driver doesn't have a check for the config space
+> > address alignment, so it didn't catch it (I will add the check now). But with
+> > the unaligned address, endpoint is not getting enumerated (though bridge is
+> > enumerated as it lives under root port, so I got misleaded).
+> > 
+> >> If this is not acceptable we have mimic the ecam driver in dwc driver
+> >> which is also not recommended.
+> >>
+> > 
+> > You can still move the config space in the upper region to satisfy alignment.
+> > Like,
+> > 
+> > +                     <0x4 0x00000000 0x0 0xf20>,
+> > +                     <0x4 0x00000f20 0x0 0xa8>,
+> > +                     <0x4 0x10000000 0x0 0x4000>,
+> > +                     <0x4 0x20000000 0x0 0x10000000>,
+> > 
+> > With this change, ECAM works fine and I can enumerate endpoint on the host. I
+> > believe this requires more PCIe space on the SoC. Not sure if SC7280 could
+> > support it or not. But IMO, we should enable ECAM for SoCs that satisfy this
+> > requirement. This will avoid overlapping and also simplify the code (w.r.t
+> > DBI/ELBI).
+> 
+> FWIW it seems like most recent SoCs have a <32b space, a _LOWER space which ACPI
+> describes as QWordMemory, and another _UPPER space that is way way above them.
+> 
+> Not sure about the prefetchability and other nuances of the last region though.
+> 
 
-Drop, it's really useless. Don't create own abstraction layers for other
-systems.
+Perfetchability only matters for MEM/IO space, not for config space. AFAIK,
+recent SoCs seem to be supporting PCIe memory in GiB, so moving the 256MiB of
+config space above iATU with 2^28 byte alignment seems plausible.
 
-> +{
-> +	return dev_err_probe(dev, ret, msg);
-> +}
-> +
-> +static int vd55g1_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct vd55g1 *sensor;
-> +	int ret;
-> +
-> +	sensor = devm_kzalloc(dev, sizeof(*sensor), GFP_KERNEL);
-> +	if (!sensor)
-> +		return -ENOMEM;
-> +
-> +	v4l2_i2c_subdev_init(&sensor->sd, client, &vd55g1_subdev_ops);
-> +	sensor->i2c_client = client;
-> +
-> +	ret = vd55g1_parse_dt(sensor);
-> +	if (ret)
-> +		return vd55g1_err_probe(dev, ret,
-> +					"Failed to parse Device Tree.");
-> +
-> +	/* Get (and check) resources : power regs, ext clock, reset gpio */
-> +	ret = vd55g1_get_regulators(sensor);
-> +	if (ret)
-> +		return vd55g1_err_probe(dev, ret, "Failed to get regulators.");
-> +
-> +	sensor->xclk = devm_clk_get(dev, NULL);
-> +	if (IS_ERR(sensor->xclk)) {
+Otherwise, it becomes a mess to avoid remapping DBI/ELBI registers in the
+driver.
 
-Drop {}
+- Mani
 
-Please run scripts/checkpatch.pl on the patches and fix reported
-warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
-patches and (probably) fix more warnings. Some warnings can be ignored,
-especially from --strict run, but the code here looks like it needs a
-fix. Feel free to get in touch if the warning is not clear.
-
-> +		return vd55g1_err_probe(dev, PTR_ERR(sensor->xclk),
-
-No. Syntax is return dev_err_probe, not some custom wrappers over single
-function.
-
-> +					"Failed to get xclk.");
-> +	}
-> +	sensor->xclk_freq = clk_get_rate(sensor->xclk);
-> +	ret = vd55g1_prepare_clock_tree(sensor);
-> +	if (ret)
-> +		return ret;
-> +
-> +	sensor->reset_gpio =
-> +		devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-
-Odd wrapping. This should be one line with optionally wrapped last argument.
-
-> +	if (IS_ERR(sensor->reset_gpio))
-> +		return vd55g1_err_probe(dev, PTR_ERR(sensor->reset_gpio),
-> +					"Failed to get reset gpio.");
-> +
-> +	sensor->regmap = devm_cci_regmap_init_i2c(client, 16);
-> +	if (IS_ERR(sensor->regmap))
-> +		return vd55g1_err_probe(dev, PTR_ERR(sensor->regmap),
-> +					"Failed to init regmap.");
-> +
-> +	/* Detect if sensor is present and if its revision is supported */
-> +	ret = vd55g1_power_on(dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = vd55g1_subdev_init(sensor);
-> +	if (ret) {
-> +		dev_err(dev, "V4l2 init failed : %d", ret);
-> +		goto err_power_off;
-> +	}
-> +
-> +	ret = v4l2_async_register_subdev(&sensor->sd);
-> +	if (ret) {
-> +		dev_err(dev, "async subdev register failed %d", ret);
-> +		goto err_subdev;
-> +	}
-> +
-> +	/* Enable pm_runtime and power off the sensor */
-> +	pm_runtime_set_active(dev);
-> +	pm_runtime_get_noresume(dev);
-> +	pm_runtime_enable(dev);
-> +	pm_runtime_set_autosuspend_delay(dev, 4000);
-> +	pm_runtime_use_autosuspend(dev);
-> +	pm_runtime_mark_last_busy(dev);
-> +
-> +	dev_dbg(dev, "vd55g1 probe successfully");
-
-Drop. Kernel already provides you such debugging/tracing.
-
-Best regards,
-Krzysztof
+-- 
+மணிவண்ணன் சதாசிவம்
 
