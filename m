@@ -1,156 +1,121 @@
-Return-Path: <devicetree+bounces-161777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9109AA756AC
-	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 15:31:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98C96A75730
+	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 17:45:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 815F6188C7F4
-	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 14:31:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F7EC3AD363
+	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 16:45:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68DFA189F43;
-	Sat, 29 Mar 2025 14:31:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B28F2187FEC;
+	Sat, 29 Mar 2025 16:45:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cifIv/QA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IHTx76mj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3096322E;
-	Sat, 29 Mar 2025 14:31:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0E4749620;
+	Sat, 29 Mar 2025 16:45:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743258685; cv=none; b=IoxCYtsy4rBkjeuWLbm4yWZjcneirSHJ8JQwnAxBd3fZbU6JEb1XUPpaIk/0mcN3CMHHo/0AfuWTz5gyxI2K2DVU0FHYdztrym4ZGCdTKywDsPoBHtVJ4uvxra3RewuGRM9uAKkgj0GZ5v/QH4B15NMgP7RpgL3HlLNlL4x0gRM=
+	t=1743266737; cv=none; b=UmRW+gJCs1oMFPwhtHxF1VmoOvX5CdQPv8a8EvhLgXE8jEiItqXMHZei0CuJtGQe753qNeSKS/gKCqkhTYKuDOX+/f4zK82FJ1FpyPJdBHo53tpmgV5lAkfbCrcrqNB+UPQhgd8475eMWVAoVE9mdESbU2/e3gOfRpbJFvJ2wbE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743258685; c=relaxed/simple;
-	bh=Yx3IR/M3JUiaq7t3IZjt+0mZMncu92M93RmE0vOeBZE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=E7zxY/Dxls9ZzD2UgQhJcpf/JWIN1wNXH8uKILdzX8K8Uo1hT2kJ0RinsZ6/P8ee/rqTV2zVE5FhEbC2Zy0qITeVvDWKPEz6l8OS9fcFBU38B+SJXrIikAJvehBEkoAXGp0I+N8VBE6gkD9QpT74Vq5nq9BG23f/HpOryUZ4BD4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cifIv/QA; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52TD8DRl027703;
-	Sat, 29 Mar 2025 14:31:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	D7JGWpf4zSqQHxjFlFAOFoBTH0UKM5nfoIZyrOVrklU=; b=cifIv/QAEV+lRetw
-	Udchh9z3Nv4/ZnIOHgnydEm/SwNNnNFKDWjgpUGIEG1l3hg70ads47irsWBvZVtI
-	s68ND21o1lyLnNYOrPHbrY+rg51qq3kj8Jm/cfHjmN50SLHhRWcFEVjRmrwWkt7K
-	FyjNN17mxukBbJi+miFpVaUz5ZrdsmZGB6YAKEBNoNoktuAjWzBurPw9sABhm635
-	6fHCp42MwaH3U7FVkO8Kga+q2mdfjYcjzWaullKZ1Ln70dcG17XuSzZaOJgskjN5
-	8QjIwJ/QSUT2UBib68V9YLhEu5fAWKGDtz4TE5Nupr2+204ISNGA84t9XJtAyz3P
-	FO6vDg==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45p9890v22-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 29 Mar 2025 14:31:12 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52TEVBa2023088
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 29 Mar 2025 14:31:11 GMT
-Received: from [10.216.2.59] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sat, 29 Mar
- 2025 07:31:07 -0700
-Message-ID: <838dfc8d-24c3-4f03-9c24-863259bb22b1@quicinc.com>
-Date: Sat, 29 Mar 2025 20:01:03 +0530
+	s=arc-20240116; t=1743266737; c=relaxed/simple;
+	bh=Q0AqhTRu8I3JIwz6XEjzjmMKjXpp2QvaC/SC7OwckyA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Zex7HBepqaWcxPgQgpd7FpWG8pkUBFboZ1HyVmEvKfB3M581XCjQ9Nk/2ylE+5otnglXGUTNpyAM5XF9O3sxC3pVXumN/NffPPJd+hoAE16E7Tf0loBBK7Nubqy52XJe7GvInjkYZFIRslNC6s7rUyzF0LPTvuRq/dex1Ox9hHY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IHTx76mj; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-22438c356c8so67785175ad.1;
+        Sat, 29 Mar 2025 09:45:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1743266735; x=1743871535; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=QZ5NMxcHXS4j1Y/cyNQH2lM00ZrZuZiyjF/fhiQFYvs=;
+        b=IHTx76mjdyEb9q/B9Q0QHMmWdXM+t9Ct9b6ZfucUFpkqKa2BoT6aXwGvgeB8DRQOpD
+         50uIgOe/WE3pZ4XuBPxcMOMPCpPm2L147Z4WN9gnvWSsud93SM6wYBCXV0Km4c/wLnnQ
+         TPM2ccizpplrEWkI5BiZvbhCeMCqggtcjiGV8UKRbzzFCc9Sv9r1QZ/DtBMIeQeioJnN
+         ZB01zYf47meV1JQSnyrQ/L5fH1M5VF4aEDfKbrztI40oY80U5wSr1Q08ISZbclhhykGE
+         zHvtC/6aYHEYwlv/GBQGp0kWvb0LSXbVJcfuTeVWAO5qZ94hZywkgFza/s2gEwpdhaIa
+         VvyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743266735; x=1743871535;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QZ5NMxcHXS4j1Y/cyNQH2lM00ZrZuZiyjF/fhiQFYvs=;
+        b=RbVfkJzvU2TIjMmrx75gxoBgCEkPieZjGrKwDI2g3qN40+ntXsP+oc7XrL+j27H4fD
+         IR8hWZQOrGDVO/2UPaUW6LbGgTHJU9KdxgHp68dRXzIWVgHr03kTrMNqMS7B8VQMDV8l
+         Eendg59dBX+RpEQ+HLqa+8AG+qONOdkltpix6KdlA7hOw5ZB3oadU4i/LT8yD12UpwFV
+         x4+mjFfDqzhQQgWKD9phwn78S/18efAJwFwVMpj7/b8OQIPYDa2p5GMXtpAM6Z9RWTgP
+         aw3zoqSUJwlbX8XsjG4Z39Aa/0RGRFV4M1Rl/ArBIgEapr+3gDwPIS9MZSHxl6STEe8S
+         4QXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVOfv3ThDwu4CscXeU/UJAIt2qijYw9JXPHZOSak3nq00oa+x8o05GtxLw6CFkajXht107O0hlvGuvJ@vger.kernel.org, AJvYcCW15VjtN0fLanIzOdibEQ2jV+XqY6elhg9b/dRLqAAcZBIZK7GEhnUhlOP5Jt6F0jbUSlZxSto57HpC@vger.kernel.org
+X-Gm-Message-State: AOJu0YyGshX5+vxI77CJlqxJJaYNJZQjz3lLRZfPN0CKcuPF00aZ8BDS
+	H42UxINr+B5gmmE1MjFlkK8ytmt9kN0FTg50osurM/9haUt+RJSylZQMgg==
+X-Gm-Gg: ASbGncs9D/+4sOKMAL1rAV97k2aJtPBok7GJRQ1vlkxg4gGxJPR5rI8Q27z2A2fhfBP
+	475x1MoW4F0LwimVqo8EQ0fshlJRQtbZrEdkGjX6vTb1BmvDi/5/Ib8W7gka4DtRfkF20bNFwrt
+	1V9w1BCvNM5Uv1WJTXZHrYvd14yxkJ1U/qNLMfk9z2Z9/mJA8QzpKcdLEPuw6hBXZOxEVavsGM9
+	0eRLdg6Qx/VjVNi3J2vhHJxhWqLyu9lv3Ep7UC/9tgCNYs7GRWpHu7nBXJRRNZsSxwFNi90qX9b
+	qXRDe3mtp2wVpP8VPN+SJKFMFs4sBunhJX4l3mVsnunRYmOvOfQ=
+X-Google-Smtp-Source: AGHT+IGyWWcvJ9EvlN25pgkkNyyYLL9Z2LxE0fLb6aFVpet4QjMVOY6Zc41Ke1U/JILiGmWF+ZSyzw==
+X-Received: by 2002:a17:902:e549:b0:223:fbc7:25f4 with SMTP id d9443c01a7336-2292f95d954mr48479655ad.14.1743266735155;
+        Sat, 29 Mar 2025 09:45:35 -0700 (PDT)
+Received: from gye-ThinkPad-T590.. ([39.120.225.141])
+        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2291f1ded45sm38170735ad.163.2025.03.29.09.45.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 29 Mar 2025 09:45:34 -0700 (PDT)
+From: Gyeyoung Baek <gye976@gmail.com>
+To: jic23@kernel.org
+Cc: Gyeyoung Baek <gye976@gmail.com>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	lars@metafoo.de,
+	gustavograzs@gmail.com,
+	javier.carrasco.cruz@gmail.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Subject: 
+Date: Sun, 30 Mar 2025 01:41:32 +0900
+Message-Id: <20250329164135.631824-1-gye976@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: i3c: Add Qualcomm I3C master
- controller
-To: Krzysztof Kozlowski <krzk@kernel.org>, <alexandre.belloni@bootlin.com>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <jarkko.nikula@linux.intel.com>, <linux-i3c@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <andersson@kernel.org>, <konradybcio@kernel.org>
-References: <20250326141641.3471906-1-quic_msavaliy@quicinc.com>
- <20250326141641.3471906-2-quic_msavaliy@quicinc.com>
- <991b0652-76f2-40d6-b49b-1e6f76e254ac@kernel.org>
- <661e1a21-0f3a-497a-9b3b-fab284e30d19@quicinc.com>
- <36b67f9c-5905-4fa6-8190-ab980850b3a2@kernel.org>
- <e997bd15-728c-4316-8050-d461f115fd9f@quicinc.com>
- <04945ad2-1372-4c73-beae-fc6449fb9a76@kernel.org>
-Content-Language: en-US
-From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-In-Reply-To: <04945ad2-1372-4c73-beae-fc6449fb9a76@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=fIk53Yae c=1 sm=1 tr=0 ts=67e80430 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=bnyXp7fuzn0CGs69xTYA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-GUID: MLNCRU1aZpFZEFVeXiHbbgMVZQRbktZ8
-X-Proofpoint-ORIG-GUID: MLNCRU1aZpFZEFVeXiHbbgMVZQRbktZ8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-29_01,2025-03-27_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- impostorscore=0 mlxscore=0 adultscore=0 phishscore=0 suspectscore=0
- mlxlogscore=999 clxscore=1015 lowpriorityscore=0 spamscore=0
- priorityscore=1501 bulkscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502280000 definitions=main-2503290104
+Content-Transfer-Encoding: 8bit
 
+Date: Sun, 30 Mar 2025 00:31:21 +0900
+Subject: [PATCH 0/3] add support for winsen MHZ19B CO2 sensor
 
+This patch series adds support for winsen MHZ19B CO2 sensor.
 
-On 3/29/2025 4:36 PM, Krzysztof Kozlowski wrote:
-> On 29/03/2025 10:08, Mukesh Kumar Savaliya wrote:
->>>>>> +  I3C in master mode supports up to 12.5MHz, SDR mode data transfer in mixed
->>>>>> +  bus mode (I2C and I3C target devices on same i3c bus). It also supports
->>>>>> +  hotjoin, IBI mechanism.
->>>>>> +
->>>>>> +  I3C Controller nodes must be child of GENI based Qualcomm Universal
->>>>>> +  Peripharal. Please refer GENI based QUP wrapper controller node bindings
->>>>>> +  described in Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml.
->>>>>> +
->>>>>> +allOf:
->>>>>> +  - $ref: i3c.yaml#
->>>>>> +
->>>>>> +properties:
->>>>>> +  compatible:
->>>>>> +    const: qcom,i3c-master
->>>>>
->>>>> And this got worse. It makes also no sense either: how can you claim
->>>>> that this covers all possible future I3C masters from Qualcomm?
->>>>>
->>>>> What was the resolution of previous discussion?
->>>>>
->>>> Below was my understanding and reply.
->>>> "
->>>> I think i should remove const. kept it for now as no other compatible to
->>>> be added as of now.
->>>> let me remove const.
->>>> SoC name is not required, as this compatible is generic to all the SOCs.
->>>
->>> I don't see any talks about const, what are you referring to?
->>>
->> +properties:
->> +  compatible:
->> +    : qcom,i3c-geni
->> will this be fine ?
-> 
-> Yes, I think that was also suggested by Rob. Or rather follow existing
-> style so qcom,geni-i3c for the compatible and filename.
-> 
-Sure, makes sense. With below i3c becomes similar in naming conventions 
-to spi, i2c, serial uart.
+Datasheet:
+https://www.winsen-sensor.com/d/files/infrared-gas-sensor/mh-z19b-co2-ver1_0.pdf
 
-Driver file name : i3c-qcom-geni.c
-dt-binding file name: qcom,i3c-geni-qcom.yaml
-compatible = "qcom,geni-i3c";
-> 
-> Best regards,
-> Krzysztof
+Gyeyoung Baek (3):
+  iio: chemical: add support for winsen MHZ19B CO2 sensor
+  dt-bindings: add device tree support for winsen MHZ19B CO2 sensor
+  dt-bindings: add winsen to the vendor prefixes
+
+ .../bindings/iio/chemical/winsen,mhz19b.yaml  |  31 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ drivers/iio/chemical/Kconfig                  |   6 +
+ drivers/iio/chemical/Makefile                 |   1 +
+ drivers/iio/chemical/mhz19b.c                 | 354 ++++++++++++++++++
+ 5 files changed, 394 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/chemical/winsen,mhz19b.yaml
+ create mode 100644 drivers/iio/chemical/mhz19b.c
+
+-- 
+2.34.1
 
 
