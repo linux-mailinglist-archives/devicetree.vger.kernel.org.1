@@ -1,123 +1,259 @@
-Return-Path: <devicetree+bounces-161782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABD35A75738
-	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 17:50:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 384DCA75747
+	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 18:09:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 919427A5901
-	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 16:49:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AB9D188B280
+	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 17:09:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F18A1DDC15;
-	Sat, 29 Mar 2025 16:50:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E3871AAA23;
+	Sat, 29 Mar 2025 17:09:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fYDPGUTx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R2e1lVzE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2126413C3C2;
-	Sat, 29 Mar 2025 16:50:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A89B134B0;
+	Sat, 29 Mar 2025 17:09:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743267011; cv=none; b=qgQlClKC0fH1anEfinq7ECQzLjnAAaAQJrSvHfdzf4KnFDumRJAGa4AQ6vEC3o8ReoTRDzbGXeXjp6labge4dzwiZkjmhFZ95Hy96HgXCBukfwx5tHO8oYlcXn8sEBockXRnt7uiazP6JUfmPLq086MSDtcqfwtuEaJMtfvxqZs=
+	t=1743268178; cv=none; b=N8hhCqRPnCTCVXXIoiXA4o4/9lTAoO8tluJA/mltEXDLdE/Y0xCI0gzqdk9zreFQFPRgF2ept2ivOLofsmY35Ls61claYUzW+IhBIiOnDrkpr3ZP5vrZUao2GRtgSNkURdvNQo5o40gz1Jdyl2qK9Mkzdk7XTfDhov4dgwf+2fo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743267011; c=relaxed/simple;
-	bh=TwYKGxk2Xb5h4ET+WdIh5zx2Mu2nuAXbKKhgIRZwD90=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=NKuVCZX7skymoQIOXSZn1py8TfgDqPGKJLO7Md+11yFR6A6PWk3tiPwwkXngfGNsc8p4hyNtnGwueFQMYtaO6hAByB1wDdVoCc4TUZW97n/53GTPWI45Yj9wINpWg6nRkXG4atNXNmgLS9EyVdMy9UMV0GN9/luElBPcO92rRmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fYDPGUTx; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-22622ddcc35so30910715ad.2;
-        Sat, 29 Mar 2025 09:50:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743267009; x=1743871809; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QBw6C0ziFRnbZ9N8eAluNk0SPMVQX2BRjnDnpLWinvM=;
-        b=fYDPGUTx+1hN4QP4LU9vqsYm9uUvlNGXuMg1BUv63a3yaWm6koWyaMXlrR+PZ+8ow+
-         D7lJ22oqrEGfmMO9HlJifaAPSAYR0vPLUV+zBdv61moqOTH0eVmKespkz6U1VUUugMto
-         sIgOqc+YP4GUfC5gx+1KR/Zzq08afQSVJQde7k/vk8jLtcNqG714SnMJfhEnYgQfmJtu
-         sF+COVgdRlaTouHS1uquJMytLLhH8jim7eJr80h9XOX2SfE42FX8gptMxT35nBo4NXA9
-         4tZBK1QhNc5Eb6jidm0GYXO8cfhBAPEx+mfg4HoulIZoWyUP23qDvCkLZyX93RCtmvjf
-         mXZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743267009; x=1743871809;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QBw6C0ziFRnbZ9N8eAluNk0SPMVQX2BRjnDnpLWinvM=;
-        b=O7EEmDIyJ/7JDKiNo7PNAqXwiFG4mT6jy/nXiOG5wI/0vX1yjkRRhIoGzo13pTWdVx
-         z/wkEJtlv5YvAMqGb6cCg/zOlxpC9osisgGxmDvxk8FW+EMjfwQ41y1sH027ceVhaTBf
-         MpSz/mx6lRCE6hxmg/H2+/C6yCTbshhrlJ/Gy/cylCCouNfiHl3ABmp2bpEHA0cRT6CJ
-         3SgiTZN8R5hpCFe5dKkgw6x+UQMn2ILmbGkQ0uV3KDTWRgahqbtzpd6HBvoqCLRmXfKm
-         PJOazh30SIY0wNyAue6rKF9BhAGYobRqgp2TSuGGBfBs8TtC1PGZ8XvyqHbTOiONghaQ
-         G4gg==
-X-Forwarded-Encrypted: i=1; AJvYcCUeWdnjPSQoBiWl1XMKMA6y13CHA6pIIWLpVWxz/QO71YjTKTRU61ewwC9MDm7AazHeZXoLtQWwASb/@vger.kernel.org, AJvYcCW+2O0oi2cWV98ZA4t2dOIoxJ/Mvb3awAGPN0/BvRjR79iVsJ5fGEo6QyndU+MXQptVGvKu5qrsFPs8@vger.kernel.org
-X-Gm-Message-State: AOJu0YxIbInnr7RC+GnDRdcEjXfRVeW2i0qNMaVXSP2ihqq2hQskFS+e
-	eeDZUrAKNIGm738fS445s3sfMNLVEmVoHpfQyEezL10NOucI27Hz
-X-Gm-Gg: ASbGnctegeum2A97nftmczkeCo0K0fEIdSGXKmnSyiWQ3dVpPOKs2w6IlgxUl5CfHxM
-	IN3P7ki1+gJJXbRWglT/3sINemnda3qvyQAo7wjcms2Wgyi99Q3+jzaDgcd1gnU4wMmrNIuNgQv
-	j0Jr3FvKzl4G+Qm3Oxqm6zsGu7Rm1aEQ2/KM2Y0A2kKuvmwul535PCKit17MabmTsNsEF221sdE
-	icdVlSVYWHNsDChgm5A90maK/IIv4WajzuJ+HfvwFrIfoSVpAlxSFZQLf6hUaw54NlFOEWICRdZ
-	WDb4sgm54/WUAEdGRhn5IPBGkec4L8Nxt+u4V2mU5QP24iEk/aw=
-X-Google-Smtp-Source: AGHT+IFG/WMjPBQ21GhWTbkT3aa8eGLRfNpFat1jbBlXtE5+4nDh0b9rIKwu3zqVe6kSoKSrHaMKgA==
-X-Received: by 2002:a17:903:985:b0:21f:35fd:1b7b with SMTP id d9443c01a7336-2292fa08a10mr54995185ad.50.1743267009317;
-        Sat, 29 Mar 2025 09:50:09 -0700 (PDT)
-Received: from gye-ThinkPad-T590.. ([39.120.225.141])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2291eec6fb2sm38565425ad.26.2025.03.29.09.50.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 29 Mar 2025 09:50:08 -0700 (PDT)
-From: Gyeyoung Baek <gye976@gmail.com>
-To: jic23@kernel.org
-Cc: Gyeyoung Baek <gye976@gmail.com>,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	lars@metafoo.de,
-	gustavograzs@gmail.com,
-	javier.carrasco.cruz@gmail.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Subject: [PATCH 3/3] dt-bindings: add winsen to the vendor prefixes
-Date: Sun, 30 Mar 2025 01:49:05 +0900
-Message-Id: <20250329164905.632491-4-gye976@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250329164905.632491-1-gye976@gmail.com>
-References: <20250329164905.632491-1-gye976@gmail.com>
+	s=arc-20240116; t=1743268178; c=relaxed/simple;
+	bh=Yrw919Z8v9sEOEODycWBG0VcN6JIS2JIx7r8X2SNbqU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Afm+7GbCCdgHg55C6hYkxuQ0KHWDT6cOvF4lK9maGgKi6SaqoCtwBcguUmuuTvZ9GMHVe7OPhQXXgvvA5RwbUyW4FxyhbB1rt7mU6Hb9LssYGy8M8KIRTqau1eFcYuH4BywjEWdS+O5qjuSI9tzJQga2xRJ1XKCHjRIOlEgjz0c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R2e1lVzE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 620FFC4CEE2;
+	Sat, 29 Mar 2025 17:09:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743268177;
+	bh=Yrw919Z8v9sEOEODycWBG0VcN6JIS2JIx7r8X2SNbqU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=R2e1lVzEIvqf8lTsrBOSozuxtbCArwAs8UQRY23wwkrO922x4WOT97/YmYE1kBx1h
+	 hrVMXalk0q6ylxGuY63GwGj7vkUCTafxVvG+KXeW0+LpkmXoXfAPjdw+ZqHFaFbS/m
+	 p0km9gIq2073Orqk0UMuOroc/9WQi1mZFq8RtD1mPY76N3y4LD4uk1PUmOGCIMGkoS
+	 U/bt8VATBZu9+hSBrfVxZ0zG9WASaNewvAakSIzZ13y2Dzu1j5r4WEwL1gdY7Asa1y
+	 Xe/km4URkWd6FU13FL6jv4jaXkN5+sKt5bUpMlooiEHVVLugz7mmuJ7G1vnvOMnLbS
+	 xUONiztU+GCmA==
+Date: Sat, 29 Mar 2025 12:09:36 -0500
+From: Rob Herring <robh@kernel.org>
+To: Lukasz Majewski <lukma@denx.de>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: net: Add MTIP L2 switch description
+Message-ID: <20250329170936.GA2246988-robh@kernel.org>
+References: <20250328133544.4149716-1-lukma@denx.de>
+ <20250328133544.4149716-2-lukma@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250328133544.4149716-2-lukma@denx.de>
 
-Add winsen to the vendor prefixes.
+On Fri, Mar 28, 2025 at 02:35:41PM +0100, Lukasz Majewski wrote:
+> This patch provides description of the MTIP L2 switch available in some
+> NXP's SOCs - e.g. imx287.
+> 
+> Signed-off-by: Lukasz Majewski <lukma@denx.de>
+> ---
+> Changes for v2:
+> - Rename the file to match exactly the compatible
+>   (nxp,imx287-mtip-switch)
+> ---
+>  .../bindings/net/nxp,imx287-mtip-switch.yaml  | 165 ++++++++++++++++++
+>  1 file changed, 165 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/nxp,imx287-mtip-switch.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/nxp,imx287-mtip-switch.yaml b/Documentation/devicetree/bindings/net/nxp,imx287-mtip-switch.yaml
+> new file mode 100644
+> index 000000000000..a3e0fe7783ec
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/nxp,imx287-mtip-switch.yaml
+> @@ -0,0 +1,165 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/nxp,imx287-mtip-switch.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP SoC Ethernet Switch Controller (L2 MoreThanIP switch)
+> +
+> +maintainers:
+> +  - Lukasz Majewski <lukma@denx.de>
+> +
+> +description:
+> +  The 2-port switch ethernet subsystem provides ethernet packet (L2)
+> +  communication and can be configured as an ethernet switch. It provides the
+> +  reduced media independent interface (RMII), the management data input
+> +  output (MDIO) for physical layer device (PHY) management.
+> +
+> +properties:
+> +  compatible:
+> +    const: nxp,imx287-mtip--switch
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description:
+> +      The physical base address and size of the MTIP L2 SW module IO range
+> +
+> +  phy-supply:
+> +    description:
+> +      Regulator that powers Ethernet PHYs.
+> +
+> +  clocks:
+> +    items:
+> +      - description: Register accessing clock
+> +      - description: Bus access clock
+> +      - description: Output clock for external device - e.g. PHY source clock
+> +      - description: IEEE1588 timer clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ipg
+> +      - const: ahb
+> +      - const: enet_out
+> +      - const: ptp
+> +
+> +  interrupts:
+> +    items:
+> +      - description: Switch interrupt
+> +      - description: ENET0 interrupt
+> +      - description: ENET1 interrupt
+> +
+> +  pinctrl-names: true
+> +
+> +  ethernet-ports:
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      '#address-cells':
+> +        const: 1
+> +      '#size-cells':
+> +        const: 0
+> +
+> +    patternProperties:
+> +      "^port@[0-9]+$":
+> +        type: object
+> +        description: MTIP L2 switch external ports
+> +
+> +        $ref: ethernet-controller.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          reg:
+> +            items:
+> +              - enum: [1, 2]
+> +            description: MTIP L2 switch port number
+> +
+> +          label:
+> +            description: Label associated with this port
+> +
+> +        required:
+> +          - reg
+> +          - label
+> +          - phy-mode
+> +          - phy-handle
+> +
+> +  mdio:
+> +    type: object
+> +    $ref: mdio.yaml#
+> +    unevaluatedProperties: false
+> +    description:
+> +      Specifies the mdio bus in the switch, used as a container for phy nodes.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +  - mdio
+> +  - ethernet-ports
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include<dt-bindings/interrupt-controller/irq.h>
+> +    switch@800f0000 {
+> +        compatible = "nxp,imx287-mtip-switch";
+> +        reg = <0x800f0000 0x20000>;
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&mac0_pins_a>, <&mac1_pins_a>;
+> +        phy-supply = <&reg_fec_3v3>;
+> +        interrupts = <100>, <101>, <102>;
+> +        clocks = <&clks 57>, <&clks 57>, <&clks 64>, <&clks 35>;
+> +        clock-names = "ipg", "ahb", "enet_out", "ptp";
+> +        status = "okay";
+> +
+> +        ethernet-ports {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                mtip_port1: port@1 {
+> +                        reg = <1>;
+> +                        label = "lan0";
+> +                        local-mac-address = [ 00 00 00 00 00 00 ];
+> +                        phy-mode = "rmii";
+> +                        phy-handle = <&ethphy0>;
+> +                };
+> +
+> +                mtip_port2: port@2 {
+> +                        reg = <2>;
+> +                        label = "lan1";
+> +                        local-mac-address = [ 00 00 00 00 00 00 ];
+> +                        phy-mode = "rmii";
+> +                        phy-handle = <&ethphy1>;
+> +                };
+> +        };
+> +
+> +        mdio_sw: mdio {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                reset-gpios = <&gpio2 13 0>;
+> +                reset-delay-us = <25000>;
+> +                reset-post-delay-us = <10000>;
+> +
+> +                ethphy0: ethernet-phy@0 {
+> +                        reg = <0>;
+> +                        smsc,disable-energy-detect;
 
-Signed-off-by: Gyeyoung Baek <gye976@gmail.com>
----
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+With a custom property, you should have a specific compatible.
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 5079ca6ce1d1..ee7f6100c432 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1679,6 +1679,8 @@ patternProperties:
-     description: Wingtech Technology Co., Ltd.
-   "^winlink,.*":
-     description: WinLink Co., Ltd
-+  "^winsen,.*":
-+    description: Winsen Corp.
-   "^winstar,.*":
-     description: Winstar Display Corp.
-   "^wirelesstag,.*":
--- 
-2.34.1
+> +                        /* Both PHYs (i.e. 0,1) have the same, single GPIO, */
+> +                        /* line to handle both, their interrupts (AND'ed) */
+> +                        interrupt-parent = <&gpio4>;
+> +                        interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
 
+The error report is because the examples have to guess the number of 
+provider interrupt cells and only 1 guess is supported. It guessed 1 
+from above.
+
+In any case, unless the phys are built-in and fixed, they are out of 
+scope of this binding. So perhaps drop the interrupts and smsc property.
+
+Rob
 
