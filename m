@@ -1,126 +1,317 @@
-Return-Path: <devicetree+bounces-161795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A88E0A757D5
-	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 21:31:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99825A757E5
+	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 22:16:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6DE2188EFF6
-	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 20:31:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3DB716BAFF
+	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 21:16:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C16E1DE3DB;
-	Sat, 29 Mar 2025 20:30:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F0D014A4E7;
+	Sat, 29 Mar 2025 21:16:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zHUlig8P"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="dwKw+b6q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ACCA1DF258
-	for <devicetree@vger.kernel.org>; Sat, 29 Mar 2025 20:30:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8AF73FE4;
+	Sat, 29 Mar 2025 21:16:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743280256; cv=none; b=lUCWxjfq7Qwgsa+1T5/VIMWKRQ/OQcNGjATakprR77UtD39DojuVbCrrDuD18P/lBnigjDHBX3617lR4sckXLacCm3pK6pjZ9uZZ1TRjST9Osatxo3kDjpp1L/K6Ie782Fq3PqPjQhn4FxgB4VdnSretkLeDw8z+KVJWAP5LO8E=
+	t=1743282982; cv=none; b=uFwEFO4ECXfqHI3oUc/br++A37Gqb1hKW54RVeN440lLeUUsoxExc48XQEJQzgjsXSAv3qy0/OzP3DU/PMH8tcu/YqiJQ8C6/Ts4nwft3s9a+vFJC05sh3MzxASuBd0pjf9uyC0U/diUcps3yh2idiXv/wvQrFuJZMTxBU7JYqA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743280256; c=relaxed/simple;
-	bh=Yu8gx4E30LKjqkUeN+vwaFVnCZ1b49SThURUG43iDtI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h/FsIS3KOiLV1HVzuWlT4Bl/qDsOAEMZ6D5TbpYH+dLkrYaa4N/nK3fvYTFQg2jXVHNd0QJ/buACrP7D2O0lML5oLLGcE8Kuf06n53vDrNuWsu6eBFU+w8lMjzU8BT2Vh2Tj/CBzUF2xQp2BSABSZxOrj/joQgkzM4y2tk9yTVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zHUlig8P; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5e8be1bdb7bso5393999a12.0
-        for <devicetree@vger.kernel.org>; Sat, 29 Mar 2025 13:30:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743280253; x=1743885053; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=hcKHKeP7WWkzt6wllCWrZxsfdiWPO0K4X4xYXivfUlI=;
-        b=zHUlig8PCOj8nQe6uPjQC6nHhMdUFTf+ChShlT0uLCdRdWcvQ5X/c+gxSB9HNPUVOv
-         TCYSGlWYebTj7KG/hCWm/mIawJn4NZcHu8lDWoKWKqxo9XgGPULaWxI/hOSLQEZI+xof
-         1OFxIu5CKrKWnzSaGUPjcfDzT6xeaklpSsouh2ywp5eQjrmpuo0Eza/L/SOCctzrJa3f
-         mhVxlCpx1gPIYo+HAxssKA87mKDJYBjFBlHp+lmOy/CrKVk1TsJDkkki/jvdZYlUuSDA
-         ubfvkoNYH95C+kjfZ6awNUmq7AH1IISGBivAnI/Y0lFpb/aK2w5DzM9MW8+u3ExjSJVL
-         8vEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743280253; x=1743885053;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hcKHKeP7WWkzt6wllCWrZxsfdiWPO0K4X4xYXivfUlI=;
-        b=tQDqoSKBKGpRLjkIgAQZu7GlyorMWqwFWWcdet1WmWQqqpcMCf/drw9nmIdJFoNYTs
-         85OVK4u8Nc5YyJgf+yjv06XLpPDo/SPh8uCni/JrS4Euxyi0xQfMZCOuECaYzYMWYE66
-         9gwU9h77pgA7Cv7feSZGYxr+VPTMkh2uK9Emqdlmz2H9x0U+38+nSZshERlTkNEb9O18
-         UPwcEcVqw8ZaPKkFqGAM4kNgPNvhW883Y1XIgSAfFLG0z/mq3HrWDd8sbMC7SCDDiGtn
-         KcoBSARo05U++q/7e1lYobReFmhb4tqNqgtwle85YSzjfZj2drSc+fMVNXhY6j7ukUJ0
-         4aOg==
-X-Forwarded-Encrypted: i=1; AJvYcCUk42Cu16PixDyG4tvLNf4E/ZDJN/eea4YFifhQZkNG7/7MVkHBfEWLKfMbT1wDs7nrAYB8XM/ncrlb@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLERnCC55sbq1P6cUSF3uTeVl992VN4i66Ie11bjao+1jRUw14
-	8w0IC96OHexXIIUEFfguDvf8mjDcoTG7ebOBLBd/vPdGDpMw7x+3BtX+K2JYhfE=
-X-Gm-Gg: ASbGncu9iNB9fLFBxMYrZhRZx7Yqct8RngUaIxeS73TDVHF/AZvdD6bgE04p9C8skj/
-	OVL6Y5iGjtJusqX0ZlaLXaMuMOONSBXgsxW2zfdOrNQyxKFkVtGbmQNOIfgJM5biI40oYmoGF3u
-	d4aDZXgwZzrkEdWXEeqgu+HGxnRyK+IWZnagFXa4b19O8uhtYvuovRtuvdOZrz1v7/TA9R9yr/z
-	ZmLatGdGZdiCGH71xv2WZLuYbnNDl7GRn6KCMoWgtug+dQTf9FbW44uZv0uOjC4MmogiJRCgA/S
-	E5lxlMHGw93yjJIiE6bjP3fsoV/OxuyAm2X1MOClBQ==
-X-Google-Smtp-Source: AGHT+IEb6Ruea6hK6TV9vn2hpTxeIQDJ7rrjAnaoPPm7WZXIAH45MUutF4n7CxtI5vev0wjCTCnfjw==
-X-Received: by 2002:a05:6402:4007:b0:5e5:c637:b69 with SMTP id 4fb4d7f45d1cf-5edfcbe9333mr3696024a12.6.1743280252884;
-        Sat, 29 Mar 2025 13:30:52 -0700 (PDT)
-Received: from linaro.org ([62.231.96.41])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5edc17e04e6sm3377468a12.76.2025.03.29.13.30.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 29 Mar 2025 13:30:52 -0700 (PDT)
-Date: Sat, 29 Mar 2025 22:30:50 +0200
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Johan Hovold <johan+linaro@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dennis Gilmore <dgilmore@redhat.com>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: x1e78100-t14s: enable SDX62 modem
-Message-ID: <Z+hYel7Cb2t4mMPl@linaro.org>
-References: <20250327081427.19693-1-johan+linaro@kernel.org>
- <Z+ZsE1wm87GfVanE@linaro.org>
- <04ada91e-bf41-4be6-9021-96bcb781a40b@oss.qualcomm.com>
+	s=arc-20240116; t=1743282982; c=relaxed/simple;
+	bh=L6DSk1OIoezUV+5sSlLI6VHPLEJjZ4rUNN2hLtEo0hI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Cm+TEGFyDcZ0Z5z/U5SFdf0BAjWFJaJXikH/SPYxZQUlIT3V5gEWVvyOoqPTZ1FjcTXmgxkFyx7ZbEivWTTilW0WXWTZhoZ077r4NThDNw4vUaAhdvC8rFxXHlZQsSMF5xgp90wmeERJweV+Hv7NiRbvVe+RgZpMUn7JJ1+wQNg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=dwKw+b6q; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A819E10290279;
+	Sat, 29 Mar 2025 22:16:06 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1743282971; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=E+Q42HuBJVYjxIr4gMUzVEJL9DLxf8H/aqvsj5v31NM=;
+	b=dwKw+b6qh5jtAWhPOdTJyhdDYqJyD+e/0NF81irefap/jm1/yZ3Hldf8JrB/Lh+lwrSfAo
+	EPZTRXjZfC+Wt9Kazgrh+3CIIclSLyiDdAbtAyr4HUFdNEXHpoyGW+0TaX0zXMXzz58EcF
+	77yk0yPRlhkY5S/CRFESl5Jwq3388FDeHBosoQugGXeaSZYKAJCuA3kvCe5zTr4gXVLytG
+	CiJr/3Vp5MEXXwPA4UiRXl6N7z5wY+GWug8naGXqOZN1N9Yh52GtPJ+6rJZp71/2+N5FPV
+	Y462Zn1yuWF9PQDEst1GxzMGtb1ok0Fdg0EXvPYOE9KdEW1hP8zGQE+F8hojOw==
+Date: Sat, 29 Mar 2025 22:16:03 +0100
+From: Lukasz Majewski <lukma@denx.de>
+To: Rob Herring <robh@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Richard Cochran
+ <richardcochran@gmail.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: net: Add MTIP L2 switch description
+Message-ID: <20250329221603.1567e82c@wsk>
+In-Reply-To: <20250329170936.GA2246988-robh@kernel.org>
+References: <20250328133544.4149716-1-lukma@denx.de>
+	<20250328133544.4149716-2-lukma@denx.de>
+	<20250329170936.GA2246988-robh@kernel.org>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <04ada91e-bf41-4be6-9021-96bcb781a40b@oss.qualcomm.com>
+Content-Type: multipart/signed; boundary="Sig_/=NAIwEwO9lbdwvsUnTeQSey";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 25-03-29 13:06:54, Konrad Dybcio wrote:
-> On 3/28/25 10:29 AM, Abel Vesa wrote:
-> > On 25-03-27 09:14:27, Johan Hovold wrote:
-> >> Enable PCIe5 and the SDX62 modem present on some T14s.
-> >>
-> >> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> >> ---
-> >>
-> >> I don't have a modem in my T14s, but this is based on the work I did to
-> >> enable the modem on the CRD reference design and the T14s schematics.
-> >>
-> > 
-> > What happens with T14s variants that do not have the WWAN ?
-> > 
-> > Is it OK to enable it on those, HW-wise ?
-> > 
-> > (Hope we don't have to split the devicetree again, like we did for the
-> > panel)
-> 
-> Unless Lenovo planted something else on these GPIOs (doubt), it's even better
-> to enable it, as UEFI brings up this controller anyway
+--Sig_/=NAIwEwO9lbdwvsUnTeQSey
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-SGTM then.
+Hi Rob,
 
-> 
-> Konrad
+> On Fri, Mar 28, 2025 at 02:35:41PM +0100, Lukasz Majewski wrote:
+> > This patch provides description of the MTIP L2 switch available in
+> > some NXP's SOCs - e.g. imx287.
+> >=20
+> > Signed-off-by: Lukasz Majewski <lukma@denx.de>
+> > ---
+> > Changes for v2:
+> > - Rename the file to match exactly the compatible
+> >   (nxp,imx287-mtip-switch)
+> > ---
+> >  .../bindings/net/nxp,imx287-mtip-switch.yaml  | 165
+> > ++++++++++++++++++ 1 file changed, 165 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/net/nxp,imx287-mtip-switch.yaml
+> >=20
+> > diff --git
+> > a/Documentation/devicetree/bindings/net/nxp,imx287-mtip-switch.yaml
+> > b/Documentation/devicetree/bindings/net/nxp,imx287-mtip-switch.yaml
+> > new file mode 100644 index 000000000000..a3e0fe7783ec --- /dev/null
+> > +++
+> > b/Documentation/devicetree/bindings/net/nxp,imx287-mtip-switch.yaml
+> > @@ -0,0 +1,165 @@ +# SPDX-License-Identifier: (GPL-2.0-only OR
+> > BSD-2-Clause) +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/net/nxp,imx287-mtip-switch.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: NXP SoC Ethernet Switch Controller (L2 MoreThanIP switch)
+> > +
+> > +maintainers:
+> > +  - Lukasz Majewski <lukma@denx.de>
+> > +
+> > +description:
+> > +  The 2-port switch ethernet subsystem provides ethernet packet
+> > (L2)
+> > +  communication and can be configured as an ethernet switch. It
+> > provides the
+> > +  reduced media independent interface (RMII), the management data
+> > input
+> > +  output (MDIO) for physical layer device (PHY) management.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: nxp,imx287-mtip--switch
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +    description:
+> > +      The physical base address and size of the MTIP L2 SW module
+> > IO range +
+> > +  phy-supply:
+> > +    description:
+> > +      Regulator that powers Ethernet PHYs.
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: Register accessing clock
+> > +      - description: Bus access clock
+> > +      - description: Output clock for external device - e.g. PHY
+> > source clock
+> > +      - description: IEEE1588 timer clock
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: ipg
+> > +      - const: ahb
+> > +      - const: enet_out
+> > +      - const: ptp
+> > +
+> > +  interrupts:
+> > +    items:
+> > +      - description: Switch interrupt
+> > +      - description: ENET0 interrupt
+> > +      - description: ENET1 interrupt
+> > +
+> > +  pinctrl-names: true
+> > +
+> > +  ethernet-ports:
+> > +    type: object
+> > +    additionalProperties: false
+> > +
+> > +    properties:
+> > +      '#address-cells':
+> > +        const: 1
+> > +      '#size-cells':
+> > +        const: 0
+> > +
+> > +    patternProperties:
+> > +      "^port@[0-9]+$":
+> > +        type: object
+> > +        description: MTIP L2 switch external ports
+> > +
+> > +        $ref: ethernet-controller.yaml#
+> > +        unevaluatedProperties: false
+> > +
+> > +        properties:
+> > +          reg:
+> > +            items:
+> > +              - enum: [1, 2]
+> > +            description: MTIP L2 switch port number
+> > +
+> > +          label:
+> > +            description: Label associated with this port
+> > +
+> > +        required:
+> > +          - reg
+> > +          - label
+> > +          - phy-mode
+> > +          - phy-handle
+> > +
+> > +  mdio:
+> > +    type: object
+> > +    $ref: mdio.yaml#
+> > +    unevaluatedProperties: false
+> > +    description:
+> > +      Specifies the mdio bus in the switch, used as a container
+> > for phy nodes. +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - clock-names
+> > +  - interrupts
+> > +  - mdio
+> > +  - ethernet-ports
+> > +  - '#address-cells'
+> > +  - '#size-cells'
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include<dt-bindings/interrupt-controller/irq.h>
+> > +    switch@800f0000 {
+> > +        compatible =3D "nxp,imx287-mtip-switch";
+> > +        reg =3D <0x800f0000 0x20000>;
+> > +        pinctrl-names =3D "default";
+> > +        pinctrl-0 =3D <&mac0_pins_a>, <&mac1_pins_a>;
+> > +        phy-supply =3D <&reg_fec_3v3>;
+> > +        interrupts =3D <100>, <101>, <102>;
+> > +        clocks =3D <&clks 57>, <&clks 57>, <&clks 64>, <&clks 35>;
+> > +        clock-names =3D "ipg", "ahb", "enet_out", "ptp";
+> > +        status =3D "okay";
+> > +
+> > +        ethernet-ports {
+> > +                #address-cells =3D <1>;
+> > +                #size-cells =3D <0>;
+> > +
+> > +                mtip_port1: port@1 {
+> > +                        reg =3D <1>;
+> > +                        label =3D "lan0";
+> > +                        local-mac-address =3D [ 00 00 00 00 00 00 ];
+> > +                        phy-mode =3D "rmii";
+> > +                        phy-handle =3D <&ethphy0>;
+> > +                };
+> > +
+> > +                mtip_port2: port@2 {
+> > +                        reg =3D <2>;
+> > +                        label =3D "lan1";
+> > +                        local-mac-address =3D [ 00 00 00 00 00 00 ];
+> > +                        phy-mode =3D "rmii";
+> > +                        phy-handle =3D <&ethphy1>;
+> > +                };
+> > +        };
+> > +
+> > +        mdio_sw: mdio {
+> > +                #address-cells =3D <1>;
+> > +                #size-cells =3D <0>;
+> > +
+> > +                reset-gpios =3D <&gpio2 13 0>;
+> > +                reset-delay-us =3D <25000>;
+> > +                reset-post-delay-us =3D <10000>;
+> > +
+> > +                ethphy0: ethernet-phy@0 {
+> > +                        reg =3D <0>;
+> > +                        smsc,disable-energy-detect; =20
+>=20
+> With a custom property, you should have a specific compatible.
+
+I could add:
+compatible =3D "ethernet-phy-id0007.c0f0","ethernet-phy-ieee802.3-c22";
+
+but it would not make things either clearer nor simpler.
+
+I will just remove this property.
+
+>=20
+> > +                        /* Both PHYs (i.e. 0,1) have the same,
+> > single GPIO, */
+> > +                        /* line to handle both, their interrupts
+> > (AND'ed) */
+> > +                        interrupt-parent =3D <&gpio4>;
+> > +                        interrupts =3D <13 IRQ_TYPE_EDGE_FALLING>; =20
+>=20
+> The error report is because the examples have to guess the number of=20
+> provider interrupt cells and only 1 guess is supported. It guessed 1=20
+> from above.
+>=20
+> In any case, unless the phys are built-in and fixed, they are out of=20
+> scope of this binding. So perhaps drop the interrupts and smsc
+> property.
+
+Ok, I will remove them.
+
+>=20
+> Rob
+
+
+
+
+Best regards,
+
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH,      Managing Director: Erika Unter
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/=NAIwEwO9lbdwvsUnTeQSey
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmfoYxQACgkQAR8vZIA0
+zr0/EwgAx/s1HQ3OV9LuT1M2dDnFpa7Ck55tkTu6Id5VMV6ygsaFR4D7/UpS++xQ
+g+YhbzhnrVE1ri5GYyfwYhCCT8XFesFyhbpqJydqNbAGHNnY7if9if3lxni0/Pz2
+wNeZOcdAGmem3uhT1yK7pWxHgIIYcCJ0Roq5iu9Urdjr0VpuAhhlXOexcKqfyzXk
+MMnBPBo3XGqk6DUh3ncY02wE6hDh8y5DZZRk5PgzvyCdUVvnX8ekpnklIk3VKKVh
+te7QIf3ECkgKqzQYFUq4mGnOzcH7ODz0kf0rt/DCdKDyIJXqqMzM+1cT7TZLcTE5
+TU5jL4DS18I0ufbg1ZbAb2xrlbk1WQ==
+=u478
+-----END PGP SIGNATURE-----
+
+--Sig_/=NAIwEwO9lbdwvsUnTeQSey--
 
