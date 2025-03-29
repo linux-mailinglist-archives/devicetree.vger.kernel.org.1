@@ -1,143 +1,120 @@
-Return-Path: <devicetree+bounces-161746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84259A7555A
-	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 10:13:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95AF1A75565
+	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 10:17:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 912D6188E717
-	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 09:13:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 341693A8686
+	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 09:17:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FCB3187553;
-	Sat, 29 Mar 2025 09:13:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B2721A7046;
+	Sat, 29 Mar 2025 09:17:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="EMPxvv5D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx01.omp.ru (mx01.omp.ru [90.154.21.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5936C17B402;
-	Sat, 29 Mar 2025 09:13:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=90.154.21.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BC5A158538;
+	Sat, 29 Mar 2025 09:17:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743239626; cv=none; b=uEYnbOfDuQ/2HZ+Ku1t6WqdqRdXpxSBrR5MvkNnisJhDPKB7+AEx4TBDyR3WVL3o6T6FVfMxMFuXGh0dSAw7OV8fJQR/fXLRUUn0VzgruqOXPz2OXQlVU8K6hSacck9ZAOgq2Q+UHuaenT9hqodniFwtielAVXBHbChCJHay18g=
+	t=1743239834; cv=none; b=X3vZ9P1npOwXXiWtfaDgdnKrHUFsw6u+/fwtebWOuK4bAaz+LMl0lpZMrzFvgNx07Mc/zG3sCCyjg+h7395d/7tsj5q5ETIwFR8k/wVK7fyZv5R1iaeBvDdRxX5iv7zQ3s/RnqY6FR41E9b53w8Zr/LS4BVRqYUxBw4UwmzGNvg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743239626; c=relaxed/simple;
-	bh=17n6VZ0MhfVLK2tNYRJ1i9vKm39gH+uTRlrdSNe0dSk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=DDD8McVWcxNT4YIIy4ahm7XmPD1eeMEzaHjQ1lyVe3dXvHEMWnPJztcVPJoapJ+ySOd6zklYUbjE06GP69calKFfAw4KmZD+OwoazzyadnJ+RZeBrtAdbcYU4Hnln0GA3hxToiV2o3T2hkj7LkFeXYpf0/Hfm6hmqvZVHaipgQI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=omp.ru; spf=pass smtp.mailfrom=omp.ru; arc=none smtp.client-ip=90.154.21.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=omp.ru
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=omp.ru
-Received: from [192.168.2.102] (213.87.136.205) by msexch01.omp.ru
- (10.188.4.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.1258.12; Sat, 29 Mar
- 2025 12:13:29 +0300
-Message-ID: <f15da9fc-781d-440f-ac36-f19f96146433@omp.ru>
-Date: Sat, 29 Mar 2025 12:13:26 +0300
+	s=arc-20240116; t=1743239834; c=relaxed/simple;
+	bh=eW6OCfNj36ra5M1ny2lKubEtu+e+UHN6ZzivUob2ulc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PyX2lDgoqbjOrCq6A7Cx6vplQMoeMsePH/u45WoHT6pj3TwRkLbd8/Jw2Ga9r8fhyEQCn1WTSVJm6+6G8Puf2/N7uepN1LwJSkSlgUjP+Y+NmJzOJ9EoGF2lSXR9Lk+8PUTilgNflWpwHibck7aCpD0slUoDiIN1XutZKiYccMI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=EMPxvv5D; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1743239833; x=1774775833;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=eW6OCfNj36ra5M1ny2lKubEtu+e+UHN6ZzivUob2ulc=;
+  b=EMPxvv5DCqY5o0Jj46S9YrkZUGuh0DuOnlg2D/FfZH540mMk55Rrsvie
+   DebNiImaTCg95oRGALrWkzYZ9z17q9JruGL+fqlE2LigqduYOdgb9xSjI
+   J8y0FPVMZcnbzGnowPYb6XEVcMHJh6xfK85VGAVhg+/POpvjwLmul8Vjy
+   27t+QDFN3RV5aanqez1UMuJLSuD2kaob1GdrYS2a0hFwy0A1+nD6nFb18
+   qKhPNPt7/muXwfNDJ0NzuF0webojxzc01vjhD/eV0Kb7qbSBHPGh/+ZtI
+   1faB+C9hvi2ylKHroah+gDAqHdoJpNHoZWx1av7WVQjprgcib8BKD32Fy
+   g==;
+X-CSE-ConnectionGUID: ZUHjtbktTA6QEuwErU+c3Q==
+X-CSE-MsgGUID: AXFxSg22RCywzSWsLzxlEA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11387"; a="67075053"
+X-IronPort-AV: E=Sophos;i="6.14,285,1736841600"; 
+   d="scan'208";a="67075053"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Mar 2025 02:17:13 -0700
+X-CSE-ConnectionGUID: IjnCrNK2TxqngatVN6weoA==
+X-CSE-MsgGUID: 6yt3rtmYSjG1z8hvofugZA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,285,1736841600"; 
+   d="scan'208";a="125649884"
+Received: from lkp-server02.sh.intel.com (HELO e98e3655d6d2) ([10.239.97.151])
+  by fmviesa007.fm.intel.com with ESMTP; 29 Mar 2025 02:17:10 -0700
+Received: from kbuild by e98e3655d6d2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tySJP-000818-2J;
+	Sat, 29 Mar 2025 09:17:07 +0000
+Date: Sat, 29 Mar 2025 17:16:38 +0800
+From: kernel test robot <lkp@intel.com>
+To: Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] media: i2c: Add driver for ST VD55G1 camera sensor
+Message-ID: <202503291609.9gCJpjjk-lkp@intel.com>
+References: <20250328-b4-vd55g1-v1-2-8d16b4a79f29@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] ARM: dts: renesas: r9a06g032-rzn1d400-db: describe
- I2C bus
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	<linux-renesas-soc@vger.kernel.org>
-CC: Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm
-	<magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	<devicetree@vger.kernel.org>
-References: <20250328153134.2881-7-wsa+renesas@sang-engineering.com>
- <20250328153134.2881-9-wsa+renesas@sang-engineering.com>
-Content-Language: en-US
-From: Sergey Shtylyov <s.shtylyov@omp.ru>
-Organization: Open Mobile Platform
-In-Reply-To: <20250328153134.2881-9-wsa+renesas@sang-engineering.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: msexch01.omp.ru (10.188.4.12) To msexch01.omp.ru
- (10.188.4.12)
-X-KSE-ServerInfo: msexch01.omp.ru, 9
-X-KSE-AntiSpam-Interceptor-Info: scan successful
-X-KSE-AntiSpam-Version: 6.1.1, Database issued on: 03/29/2025 09:01:46
-X-KSE-AntiSpam-Status: KAS_STATUS_NOT_DETECTED
-X-KSE-AntiSpam-Method: none
-X-KSE-AntiSpam-Rate: 19
-X-KSE-AntiSpam-Info: Lua profiles 192220 [Mar 29 2025]
-X-KSE-AntiSpam-Info: Version: 6.1.1.11
-X-KSE-AntiSpam-Info: Envelope from: s.shtylyov@omp.ru
-X-KSE-AntiSpam-Info: LuaCore: 51 0.3.51
- 68896fb0083a027476849bf400a331a2d5d94398
-X-KSE-AntiSpam-Info: {rep_avail}
-X-KSE-AntiSpam-Info: {Tracking_from_domain_doesnt_match_to}
-X-KSE-AntiSpam-Info: {SMTP from is not routable}
-X-KSE-AntiSpam-Info: {Found in DNSBL: 213.87.136.205 in (user)
- b.barracudacentral.org}
-X-KSE-AntiSpam-Info: {Found in DNSBL: 213.87.136.205 in (user)
- dbl.spamhaus.org}
-X-KSE-AntiSpam-Info:
-	omp.ru:7.1.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1
-X-KSE-AntiSpam-Info: {Tracking_ip_hunter}
-X-KSE-AntiSpam-Info: FromAlignment: s
-X-KSE-AntiSpam-Info: ApMailHostAddress: 213.87.136.205
-X-KSE-AntiSpam-Info: {DNS response errors}
-X-KSE-AntiSpam-Info: Rate: 19
-X-KSE-AntiSpam-Info: Status: not_detected
-X-KSE-AntiSpam-Info: Method: none
-X-KSE-AntiSpam-Info: Auth:dmarc=temperror header.from=omp.ru;spf=temperror
- smtp.mailfrom=omp.ru;dkim=none
-X-KSE-Antiphishing-Info: Clean
-X-KSE-Antiphishing-ScanningType: Heuristic
-X-KSE-Antiphishing-Method: None
-X-KSE-Antiphishing-Bases: 03/29/2025 09:04:00
-X-KSE-Antivirus-Interceptor-Info: scan successful
-X-KSE-Antivirus-Info: Clean, bases: 3/29/2025 6:57:00 AM
-X-KSE-Attachment-Filter-Triggered-Rules: Clean
-X-KSE-Attachment-Filter-Triggered-Filters: Clean
-X-KSE-BulkMessagesFiltering-Scan-Result: InTheLimit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250328-b4-vd55g1-v1-2-8d16b4a79f29@foss.st.com>
 
-On 3/28/25 6:31 PM, Wolfram Sang wrote:
+Hi Benjamin,
 
-> Schematics mention a 24cs64 on the bus, but I definitely have only a
-> 24c64. So, it is only mentioned as a comment.
-> 
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> ---
->  .../dts/renesas/r9a06g032-rzn1d400-db.dts     | 44 +++++++++++++++++++
->  1 file changed, 44 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
-> index 31cdca3e623c..d50a1d91e968 100644
-> --- a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
-> +++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
-> @@ -57,6 +57,44 @@ fixed-link {
->  	};
->  };
->  
-> +&i2c2 {
-> +	pinctrl-0 = <&pins_i2c2>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +	clock-frequency = <400000>;
-[...]> +	/* Some revisions may have a 24cs64 at address 0x58 */
-> +	eeprom@50 {
+kernel test robot noticed the following build errors:
 
-   So 0x58 or 0x50?
+[auto build test ERROR on b2c4bf0c102084e77ed1b12090d77a76469a6814]
 
-> +		compatible = "atmel,24c64";
-> +		pagesize = <32>;
-> +		reg = <0x50>;
-> +	};
-> +};
-> +
->  &mii_conv4 {
->  	renesas,miic-input = <MIIC_SWITCH_PORTB>;
->  	status = "okay";
-[...]
+url:    https://github.com/intel-lab-lkp/linux/commits/Benjamin-Mugnier/media-dt-bindings-Add-ST-VD55G1-camera-sensor-binding/20250328-215939
+base:   b2c4bf0c102084e77ed1b12090d77a76469a6814
+patch link:    https://lore.kernel.org/r/20250328-b4-vd55g1-v1-2-8d16b4a79f29%40foss.st.com
+patch subject: [PATCH 2/2] media: i2c: Add driver for ST VD55G1 camera sensor
+config: sh-allyesconfig (https://download.01.org/0day-ci/archive/20250329/202503291609.9gCJpjjk-lkp@intel.com/config)
+compiler: sh4-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250329/202503291609.9gCJpjjk-lkp@intel.com/reproduce)
 
-MBR, Sergey
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503291609.9gCJpjjk-lkp@intel.com/
 
+All errors (new ones prefixed by >>):
+
+   sh4-linux-ld: drivers/media/i2c/tc358746.o: in function `tc358746_probe':
+   tc358746.c:(.text+0x1bc0): undefined reference to `devm_clk_hw_register'
+   sh4-linux-ld: tc358746.c:(.text+0x1bcc): undefined reference to `devm_of_clk_add_hw_provider'
+   sh4-linux-ld: tc358746.c:(.text+0x1bd0): undefined reference to `of_clk_hw_simple_get'
+   sh4-linux-ld: drivers/media/i2c/vd55g1.o: in function `vd55g1_probe':
+>> vd55g1.c:(.text+0x1e38): undefined reference to `__udivdi3'
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
