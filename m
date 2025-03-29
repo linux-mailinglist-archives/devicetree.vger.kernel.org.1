@@ -1,207 +1,130 @@
-Return-Path: <devicetree+bounces-161764-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161765-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E50CA7563F
-	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 13:26:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAFB4A75653
+	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 14:02:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1FEF3AE1E3
-	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 12:26:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 829DF16EEA7
+	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 13:02:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A6EF1BD9C9;
-	Sat, 29 Mar 2025 12:26:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45E111CAA63;
+	Sat, 29 Mar 2025 13:01:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Z94c6gKM"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="q2q+5wxu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from mout.web.de (mout.web.de [217.72.192.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFA6B12C7FD;
-	Sat, 29 Mar 2025 12:26:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5406520E6;
+	Sat, 29 Mar 2025 13:01:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.72.192.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743251210; cv=none; b=uAksH8mfGyTTAUuLEu9YWIqfXwhX4DumYZHXSj3oSPNREzoeKYAQSroziqBtX201nt//HaePLQFcD92eiaqX7NjdQ5HACsEbvR954uAWjIosTsF4CVJXo5SBOauDrA3bPEBlA100f9WT7HSm1bEZUc3G89Njfs14pL6bm97WMpg=
+	t=1743253317; cv=none; b=gcLrKLNRU3HiYq95yLr+hm3Y6yb8jaK14liNaQpKuSfVoo5LRvIjjP4L9N7+4TUY1aUsohO/k9d9HSHUle7RO0wvQ1hzS8ShH2a1/OXMgI6j27dBNfuSSWHUSDzliFi4T28RRwbwhvZzSGQgNzKHgA8cnxIj6bxO//Tql5XvuGk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743251210; c=relaxed/simple;
-	bh=0pNv0Be6S122OmD2yhWD6n5JzpoLlqjbCnmpJ1OtzQw=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aJDI9cqbAwmPCGs0ccaHeWpa67yV+jtrMQKLxOz5l/glrNy87FiRelBCPRX9KWulMjR8y1Xe4otF+/tyBJZjQ372xHNrodUfBmZNoxMFcNb1o2XzWXMdXTlgNZDPcze5G5U2MVQQUs3ToHKappj2hGlmzAu6aaWT9/b++DbDBYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Z94c6gKM; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 52TCQNsO2392060
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Sat, 29 Mar 2025 07:26:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1743251183;
-	bh=Q8aV5XPr6ImUB3IOdQYEYIOLXnDL8//GOv0UVJhYKUs=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=Z94c6gKMTbNN1gKltoT/MiwDxsxzC2N8GT9NR5L7AdTYJixr40QBczJNPRPrAMvec
-	 lSTfyy2Yd5o82Ex3V+NoiNdgTzvYqbOvbZnSfiBqiIRws71bmbuyM3hGHyms/WCYT/
-	 X/Mp4VrQ3RztqgYUh11xr9yWJE4zHaI4AMq0G1Io=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 52TCQNGk115406
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sat, 29 Mar 2025 07:26:23 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 29
- Mar 2025 07:26:22 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sat, 29 Mar 2025 07:26:22 -0500
-Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.113])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 52TCQLct049530;
-	Sat, 29 Mar 2025 07:26:22 -0500
-Date: Sat, 29 Mar 2025 17:56:21 +0530
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: Parth Pancholi <parth105105@gmail.com>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Parth
- Pancholi <parth.pancholi@toradex.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <s-vadapalli@ti.com>
-Subject: Re: [PATCH v1] arm64: dts: ti: k3-j784s4-main: Enable ACSPCIE
- outputs for PCIe interfaces
-Message-ID: <20250329122621.jgydlrwi3gxesjw7@uda0492258>
-References: <20250320122259.525613-1-parth105105@gmail.com>
+	s=arc-20240116; t=1743253317; c=relaxed/simple;
+	bh=Am2w47/73gq+uett9Rw8f58u333+sFYsQ8cWX1qaAPw=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=UKq1yIl2E0m0mzQU5baFZp0jh+zSOQ56rF1m1F1qBjVIGKLiTh30eQaEZU01hXQZB9F8QcpCdIIwbzvOWle3Li4iwiRnULOWYJnpc3agNP7FoeIvwXBWIp/28cDf60tGXLKuobE7CSfn49kzQcYXP0/JMvran9GCFWgJROuzMOw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=q2q+5wxu; arc=none smtp.client-ip=217.72.192.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1743253312; x=1743858112; i=markus.elfring@web.de;
+	bh=Tp3dkmDDfClZJ6SRNE5grrhh78twSDzP7nsBHUHXXns=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=q2q+5wxuQSBkqtUQ2p14Pj4tX1KisKZ9KDC2j9khrDffazfOnhuvRHQ3WO71Gx+C
+	 N2S2zN9dYwyNu1t7qlbNjApiJ64kNgmUM55pmEh65igNjwrpy0XRGi9QUPQQ2o80e
+	 6/irG2Fv6q51p/n2geHHC2sK/4ViXtRPRKiJm0yav+5CayVSrdZur6cK0mucIJivy
+	 uZiOe3XSxJdYnrszWzos9hO7TzM+hJCiaone6LV1/C0mqDHBOA33OnBL5Lb3hdquM
+	 XkPHK7eY1f393jS/O1ltu9rw6fXjdLm6TWZmI2zT+AIRDxzhr0AigyRVI08U5VimN
+	 qUHjUdq9ze5B7idvLA==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.29] ([94.31.93.33]) by smtp.web.de (mrweb106
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1MXocY-1tdVyW0rRU-00YS3z; Sat, 29
+ Mar 2025 14:01:52 +0100
+Message-ID: <207f5f63-39b2-4801-ab98-8fd8cb7c1302@web.de>
+Date: Sat, 29 Mar 2025 14:01:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250320122259.525613-1-parth105105@gmail.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+To: John Madieu <john.madieu.xa@bp.renesas.com>,
+ linux-renesas-soc@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>
+Cc: John Madieu <john.madieu@gmail.com>, LKML <linux-kernel@vger.kernel.org>,
+ Biju Das <biju.das.jz@bp.renesas.com>, Lukasz Luba <lukasz.luba@arm.com>,
+ Magnus Damm <magnus.damm@gmail.com>, Stephen Boyd <sboyd@kernel.org>,
+ Zhang Rui <rui.zhang@intel.com>
+References: <20250317143442.100590-4-john.madieu.xa@bp.renesas.com>
+Subject: Re: [PATCH v4 3/5] thermal: renesas: rzg3e: Add thermal driver for
+ the Renesas RZ/G3E SoC
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20250317143442.100590-4-john.madieu.xa@bp.renesas.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:5n9T1IjtlRMCWnQgJ9Ekav5awbr89GIg/I+0aCfw8sZL6XUdZSO
+ ZNQa0eHPPNSTK1uck9in6Hjq8LoToiBV1+ODE6jqYP3YoddNrgWb3pJj3uVB6L+gBZP26W/
+ SSPu+2ZXQdcWru/RU6WIXHnrHRf1xT7s4QEACET1CoJI6ogUxt+9CYALGjdzqnBCzfViq/J
+ Yt/0rq9BAqSTQ8J2LNiBA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:9vNJ6TBTLdA=;7Ii4yRb+C8sJIMUSyLbzf86clx/
+ 0d4OWf4znONxJoj5gakPM1kTRv2vLTXL4tbLf3ZyQ/48hzZNa50nYWHIA4JpySg/u/fbPSg76
+ SVv3gr1sBo/UVUGJTuQ+ywZrtidXddUnGaJFEZuWx2/jWOl7hADeqc8pZ8te4LF599vvMio3L
+ tBmOdzMuV5HNgUDZ0M+Zii6n3IulyVtUXTJ3T62f4/LXaBz2eDyTn3xX54qY28vX4rPY3fE9s
+ p4/KuFGjrxXK6M65sDZuBPMHjr/DV/35XYyuxjZUPTDpjAtZYq/ggVZt8MH1vjkJMrziVHiAb
+ wLOS32ryWU7jCRUA3y42bfC/uy9Ac54A9DC1b3xQXd+cKerTJpnFprHg+h63C2lEylZEwG/h4
+ VpbFbrOwOIkKESk6Vt5j1iz65/EgWafrjfgov+FzfmCvFPmS0hLNbA4jNUDMbo92RlexRtiZF
+ SVW93MGVmMa2qgeIWFs4Hfwbbo4y8rcE8eicsHZrbuLk9lOA4wJ5S82xhZXqh2ihkMoJqDZaO
+ eKRgrg9tFTT6wc5/zf0LweoyZkqv8RFf/tRs2kPcKeHOofgaYEn//oX94wzKXsjoJ5VEeQQfh
+ VXGyR593GErOj706z4PB55fGcrs/mCpsUcgiOXVm3aPmRH3zVSOkLcZVQ97eNHRGUwCZTBOUz
+ aApZnzAlWbSGepoXOgfMkJAkgnJ5hXJ1JlQAeekk669tcejXcZAxLZls5sGPQPfJiNGF8Xg+g
+ lerhNDCu59NMO1ScMMzYyCHoQmCHI1eC90ulHIEiPi5yvLTUz5/PXkztdNjAas6VNNA82rNZ/
+ JhlrD9K3AhliNApM23n2PpCXVmwq0SJwAoTj01DMc22sBkk87lKgo6T9bPRJpjys0T4wnLd1H
+ 4YBbGFfFWjNl/scp/hhlIDtEVa2yDMz2ze4h8yYKoBhMqTdeb2/DXh5wjT7W4eEc6n+yqoKXq
+ lBgPtxs60z/J6RgK2O8/8O0MrPsQATe+mrMBWvsIErhGgWjxdyiws/Wpoyd4ICVirADUYDEz3
+ 2IwloCzOgt1lMXRDy+4fkMurPmRI3SlJBYzMFqSbth9c0B5O/Pv8EJk7sD2oAJPqEGGawxPPL
+ FT+tJsarDbI1A1NlOwO/W70NB1vFH6rXPiW7SfdsCMqT45QWIDjWbqaCv4aM0L0lgoJKMrAEW
+ r6TEsOtbtu+2+hP82hPG1UbQO3cYFqmZHzWKC1afcu0uyqVP6+9JnJsqP7//jBPyFbBcLM0uq
+ 8o4whuQ8DdfwiG55OPL+SCJEQV2k21nSkWA1w5tqytcfu1NqSHl+YYe4GFBZvl7dslwLHn3g3
+ ZuJedFSfLvrW2KZxe5APss0IehMjXC2GAEpaev21RYSYP1GOm/rIDcQy3DWN8ZOYX/8kw9TEW
+ bZIUh3Pbsqr687hcj/HMUSdywwJ2vDLuWezGhsnxzAJIrVNguHQdxD/KQoDAs58K2atpCxPMd
+ 2Bh2hI4CR0lJmkqHVmSeAOfgtwWDKGuif0X0Ug5XRkJm/YwrQ
 
-On Thu, Mar 20, 2025 at 01:22:59PM +0100, Parth Pancholi wrote:
-> From: Parth Pancholi <parth.pancholi@toradex.com>
-> 
-> TI J784S4-based devices, such as the AM69 SoC, provide PCIE_REFCLK outputs
-> from the SoC, which can be used to clock external PCIe endpoint devices.
-> Each PCIE_REFCLK output is enabled via the corresponding ACSPCIE clock buffer,
-> with each buffer supporting two PADs to provide reference clocks for two
-> associated PCIe instances. The mappings are as follows:
->         - PCIe0 -> ACSPCIE1 PAD0
->         - PCIe1 -> ACSPCIE0 PAD0
->         - PCIe2 -> ACSPCIE1 PAD1
->         - PCIe3 -> ACSPCIE0 PAD1
-> 
-> This patch enables each ACSPCIE module and its corresponding PADs to ensure
-> that all PCIE_REFCLK outputs are functional.
-> 
-> This change have been tested on an AM69-based custom hardware platform,
-> where all four PCIe instances (PCIe0, PCIe1, PCIe2, and PCIe3) with the
-> internal PCIE_REFCLK are utilized with various endpoint devices such as
-> a WiFi card, NVMe SSD, and PCIe-to-USB bridge.
-> 
-> Link: https://e2e.ti.com/support/processors-group/processors/f/processors-forum/1484211/am69-pcie-refclk-out-and-acspcie-mappings
-> Signed-off-by: Parth Pancholi <parth.pancholi@toradex.com>
-> ---
-> This change depends on https://lore.kernel.org/all/20241209085157.1203168-1-s-vadapalli@ti.com/
-> ---
->  .../boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi      | 10 ++++++++--
->  arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi             | 10 ++++++----
->  2 files changed, 14 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-> index 591609f3194c..854fdf7b771e 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-> @@ -132,6 +132,11 @@ acspcie0_proxy_ctrl: clock-controller@1a090 {
->  			compatible = "ti,j784s4-acspcie-proxy-ctrl", "syscon";
->  			reg = <0x1a090 0x4>;
->  		};
+=E2=80=A6
+> +++ b/drivers/thermal/renesas/rzg3e_thermal.c
+> @@ -0,0 +1,445 @@
+=E2=80=A6
+> +static irqreturn_t rzg3e_thermal_adc_irq(int irq, void *dev_id)
+> +{
+=E2=80=A6
+> +	int new_temp =3D temp_val * MILLIDEGREE_PER_DEGREE;
 > +
-> +		acspcie1_proxy_ctrl: clock-controller@1a094 {
-> +			compatible = "ti,j784s4-acspcie-proxy-ctrl", "syscon";
-> +			reg = <0x1a094 0x4>;
-> +		};
->  	};
->  
->  	main_ehrpwm0: pwm@3000000 {
-> @@ -1067,11 +1072,12 @@ pcie0_rc: pcie@2900000 {
->  		interrupts = <GIC_SPI 318 IRQ_TYPE_EDGE_RISING>;
->  		device_type = "pci";
->  		ti,syscon-pcie-ctrl = <&pcie0_ctrl 0x0>;
-> +		ti,syscon-acspcie-proxy-ctrl = <&acspcie1_proxy_ctrl 0x1>;
+> +	scoped_guard(spinlock_irqsave, &priv->reg_lock) {
+> +		priv->cached_temp =3D new_temp;
+> +	}
+> +
+> +	complete(&priv->conv_complete);
+=E2=80=A6
 
-This should be set to 0x3 - Enable output from PAD0 and PAD1 of
-ACSPCIE1. Otherwise, we are depending on PCIe0 being probed before
-PCIe2. If PCIe0 is probed after PCIe2, it will result in:
-1.  PCIe2 => Writes 0x3 to ACSPCIE1 CTRL register
-    since ti,syscon-acspcie-proxy-ctrl within pcie2_rc is 0x3
-2. PCIe0 => Writes 0x1 to ACPSCIE1 CTRL register
-    since ti,syscon-acspcie-proxy-ctrl within pcie0_rc is 0x1
-As a result, ACSPCIE1 PAD1 required by PCIe2 will be disabled.
-
-
-To summarize, as done below for pcie2_rc and pcie3_rc,
-ti,syscon-acspcie-proxy-ctrl should be set to 0x3 at all places.
-
->  		max-link-speed = <3>;
->  		num-lanes = <4>;
->  		power-domains = <&k3_pds 332 TI_SCI_PD_EXCLUSIVE>;
-> -		clocks = <&k3_clks 332 0>;
-> -		clock-names = "fck";
-> +		clocks = <&k3_clks 332 0>, <&serdes1 CDNS_TORRENT_REFCLK_DRIVER>;
-> +		clock-names = "fck", "pcie_refclk";
->  		#address-cells = <3>;
->  		#size-cells = <2>;
->  		bus-range = <0x0 0xff>;
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> index 0160fe0da983..ebbc315649d0 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> @@ -34,8 +34,8 @@ pcie2_rc: pcie@2920000 {
->  		max-link-speed = <3>;
->  		num-lanes = <2>;
->  		power-domains = <&k3_pds 334 TI_SCI_PD_EXCLUSIVE>;
-> -		clocks = <&k3_clks 334 0>;
-> -		clock-names = "fck";
-> +		clocks = <&k3_clks 334 0>, <&serdes1 CDNS_TORRENT_REFCLK_DRIVER>;
-> +		clock-names = "fck", "pcie_refclk";
->  		#address-cells = <3>;
->  		#size-cells = <2>;
->  		bus-range = <0x0 0xff>;
-> @@ -45,6 +45,7 @@ pcie2_rc: pcie@2920000 {
->  		dma-coherent;
->  		dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
->  		ti,syscon-pcie-ctrl = <&pcie2_ctrl 0x0>;
-> +		ti,syscon-acspcie-proxy-ctrl = <&acspcie1_proxy_ctrl 0x3>;
->  		status = "disabled";
->  	};
->  
-> @@ -63,8 +64,8 @@ pcie3_rc: pcie@2930000 {
->  		max-link-speed = <3>;
->  		num-lanes = <2>;
->  		power-domains = <&k3_pds 335 TI_SCI_PD_EXCLUSIVE>;
-> -		clocks = <&k3_clks 335 0>;
-> -		clock-names = "fck";
-> +		clocks = <&k3_clks 335 0>, <&serdes0 CDNS_TORRENT_REFCLK_DRIVER>;
-> +		clock-names = "fck", "pcie_refclk";
->  		#address-cells = <3>;
->  		#size-cells = <2>;
->  		bus-range = <0x0 0xff>;
-> @@ -74,6 +75,7 @@ pcie3_rc: pcie@2930000 {
->  		dma-coherent;
->  		dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
->  		ti,syscon-pcie-ctrl = <&pcie3_ctrl 0x0>;
-> +		ti,syscon-acspcie-proxy-ctrl = <&acspcie0_proxy_ctrl 0x3>;
->  		status = "disabled";
->  	};
+Are curly brackets really relevant for such a =E2=80=9Cscoped guard=E2=80=
+=9D?
+https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tre=
+e/Documentation/process/coding-style.rst?h=3Dv6.14#n197
 
 Regards,
-Siddharth.
+Markus
 
