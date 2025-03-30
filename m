@@ -1,106 +1,182 @@
-Return-Path: <devicetree+bounces-161869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DF1AA75C31
-	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 22:53:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D208DA75C3F
+	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 23:04:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98B7B1888919
-	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 20:53:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 854381688DB
+	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 21:04:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 374031D79BE;
-	Sun, 30 Mar 2025 20:52:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DF911DEFC5;
+	Sun, 30 Mar 2025 21:04:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="nVSjaXNh"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Mx7Umlj5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A703FDDBC;
-	Sun, 30 Mar 2025 20:52:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB1EF1DED69;
+	Sun, 30 Mar 2025 21:04:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743367978; cv=none; b=Rc5SJa2naJFk4IBcjdwB6XgUwrq6xRUJXzUR5sPTDClRbckBzQP/Zdx8N0HaCfRSiiJEQYBD2ViLowEKfxJpjpf7FLX1Y3j9ZDFY8dhOwHhsVsX8C0T9hTTkE3rW1ApVCwcghIuQ9uRWHBhd2GxR2T1i3FUQjVxqGQYAWrPBbpE=
+	t=1743368675; cv=none; b=D7U9JHAvyxPJbluRKRc0xplVPBoOgtMwksASex2xX8UWLJWbEOniZqy17xY4GYlYW20B2ea1GLAL9ehF1plC9FIP4peE8Np0BHC1+XOmRoKI6XX8ip3Ln4q+FJdhRGWaeRoyTlwTRvroWMfEmRj3KilK+x8SeBtBdGtDv0Tku1Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743367978; c=relaxed/simple;
-	bh=OwM9rPD6YpijtmxSZwMCDtd2cKv8veMmcdJd5ngOo5s=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=D2d9nffcvmL/FZ2MutppFkqg4k9jG9IfPfiDtbhU/JKWITAHcL4p/k7Wc1e91i6uf+DWj1Pu+Ji8EMYV6uo+wTbvqGiHZM3ibAWdohLJvSrWqdNrS1lu5+aeZ0o/q1NGIViB7exRdYq1ec7acFaABshkAgdB8xPqFjplA+Y8yVw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=nVSjaXNh; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-22409077c06so109178525ad.1;
-        Sun, 30 Mar 2025 13:52:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1743367976; x=1743972776; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dJwLIFJszXYQ7ADlOOhxydXwlK9mYBVF/IXABoKgtHQ=;
-        b=nVSjaXNhP/XzXcWnwJ493Gu9FCqgWdWK5RfqGbZ4kAA9LGcfrwRlLPfIhyVc4hKJEJ
-         xCBmyG1T9ZdZ80Y+3WTSVNuJ9hcHFMR4kAFWmskt1PezFLn/3DA8zkPYSw3fjgiAe+K+
-         jp1/3Q9FFMVRtMsEFKenf7wAWALzKS8T75erIu5T4gGfMZCWIxFoBpPIbFYlnAOTSAnG
-         6J5GqCG0FMKLFKeaTioqAHHp1oNlQU8ogRj1RvsMIytWPUwyGisIGBFaRXUpDArHLVze
-         oFjH/O5TPft2piMS99ni2D7pfMq7WyRj5aYFXTuKOxZC4DaIk5pNkXGBzQ3RET0jQGIl
-         KSWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743367976; x=1743972776;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dJwLIFJszXYQ7ADlOOhxydXwlK9mYBVF/IXABoKgtHQ=;
-        b=gmG4qHMPW3V4dLzAJLP/RCPCX65RKe1WEjZxEKcAD7wHCdMlDhtc3QipSCyk4AVnyK
-         TMfMeBX0DFTbpQ5FBUeVpt1uJfM2Kf6h+FxbrsszmEo/AXsgO7oDczK/8BXjlMkefXYl
-         CTeWuXczHQvpIEXByqWotS3e8oCcNzd7kNFbrBCKcKal9ujqY1VwYfCd8AzXYmVbOjUk
-         1UO3Hz4hRbxG3Itig0St6O8X5bPeGyzVtSEt7XxKyKOS3/FMcq2nV4kK+ZCa/53OdkV1
-         Ta0j4XHf2vFB5yiaAiUfUKt83uUAjThpNtKPwdnjWn3Qj40JAsq3UXcDyz1FiHpgc1vb
-         m3hQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVXhGqfgRmGDIbza9X8hfCO39G/A7VXYUj7UG0wH1LGt1etAib0bRRIf2lynNL7WpZtV+FJol0ZUWFaA3jZ@vger.kernel.org, AJvYcCWWGVndALVEJDSHhW/0dcDmDNU5j8P+f+8ZC4+T4WTrZeWctFUNs+EHiD2a4PNOsRgSLPX3IvB5LB4M@vger.kernel.org
-X-Gm-Message-State: AOJu0YzaaX+gxrPma0H6tXd3+xNSXnq2sNsOxEGghKymN4SblC1FjLI6
-	1DTN1R9WLbMFu4LFqQQO84t/Se46ANKRoaXLfW6YKryRhebFhOocN9y7U33Em/jzr/cJs/xEQuZ
-	ZN6l7oDc/x7NvZnoKnc/tGS6iXxg=
-X-Gm-Gg: ASbGncueuhiVbY1D01uLOdLlXzWX7ve/wHdvSQ3VWeSP5vI5RL3sT3B+tVndm6WRYb+
-	K9SUE5uZqnAXtWaXIkTIdjn1EXhMcvNVc1aFb960JQzXv51LCZuHtENVqlE9kNUHTtMt+sOlQvG
-	qkXlQjiWbIbKlANp6fX/8jjIc1cwDgRLExDTs9bO04qt8xwEoUXy6AOZnYWVY=
-X-Google-Smtp-Source: AGHT+IGlpG9xeO7YabfvvWdcL4rWdf0vZ+QCfsjk6aFSH+Qe92WIllUZklTnZqtfCCxYvcoObf2vFCcEInm2m2e86xU=
-X-Received: by 2002:a17:903:2303:b0:223:5ace:eccf with SMTP id
- d9443c01a7336-22935084a88mr74482475ad.25.1743367975896; Sun, 30 Mar 2025
- 13:52:55 -0700 (PDT)
+	s=arc-20240116; t=1743368675; c=relaxed/simple;
+	bh=j7sCc9j8ExMeuzg/Pz8nUC9Flf6ycTDiJgl84vrGO+0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=gXkkQgbfSz7M6lx/vWCVKTYxW6X7KPJxSaFErJGUn9847MvJZnG730bYsSxmJa1SXh+SJ0wxKaQKs/SxdiNI69TqyrCqsZ3lqtyC9YHf0rgwJXsVOv/Jz8LRS5dKz22i1T/kUzzl176m9OmlzGyZ2jNZNnHkmRRVO+hF8Pmr+Nc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Mx7Umlj5; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E7552102F66E1;
+	Sun, 30 Mar 2025 23:04:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1743368670; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=901Bq3gxJ4OzVl6RNicUF10kt/4QX89li+J+N6jGrBA=;
+	b=Mx7Umlj5Dy67EVKrXk5rs0zN0m01GfK9PxcRu6h4Ck4cYNEAiDqg7YEbMpOyVpdVRt+jne
+	UCUpfNJnGxNJRGxRDCMcUMSgrvUxAsWiZLacqZsJTHjYuDs6DfzT3VWx8s51nmjaW2K8JD
+	fNEwacAMRdWupC0W8RVpuApWWR6KTpLZ/M/oFYrLcftzMp7JJd5A0hwH83DRI1xJgWR1y0
+	20nQNobttE5U4qB71Hied1LhQLJGxQ3KDvotNIuRQsnyJMbuA8h1HH2FFUcUl0LQ2wqVhS
+	kc74lmL8lGDGHPQBkKX+TUZn2VBWyenSsCXYNodai5WKeeAt82HIHHfELv0pew==
+Date: Sun, 30 Mar 2025 23:04:25 +0200
+From: Lukasz Majewski <lukma@denx.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo
+ <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
+ Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: net: Add MTIP L2 switch description
+Message-ID: <20250330223630.4a0b23cc@wsk>
+In-Reply-To: <564768c3-56f0-4236-86e6-00cacb7b6e7d@kernel.org>
+References: <20250328133544.4149716-1-lukma@denx.de>
+	<20250328133544.4149716-2-lukma@denx.de>
+	<e6f3e50f-8d97-4dbc-9de3-1d9a137ae09c@kernel.org>
+	<20250329231004.4432831b@wsk>
+	<564768c3-56f0-4236-86e6-00cacb7b6e7d@kernel.org>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250323-fernsehfee-v1-0-2621341cd37a@posteo.net> <20250323-fernsehfee-v1-2-2621341cd37a@posteo.net>
-In-Reply-To: <20250323-fernsehfee-v1-2-2621341cd37a@posteo.net>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 30 Mar 2025 22:52:44 +0200
-X-Gm-Features: AQ5f1JqiXYa2Fy3B0Ec_8DxGmkHROyPsojXcUZGTqJUnNHSoBI9B-XlVAsRTV_U
-Message-ID: <CAFBinCAvCvqbv367_rn_Rbvn7p8q5kCLuSE7m+gnxaDo9FvaeQ@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: arm: amlogic: Add TCU Fernsehfee 3.0 board
-To: j.ne@posteo.net
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; boundary="Sig_/E2PoMMoC/cTLiz_ZN0ugdQX";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Last-TLS-Session-Version: TLSv1.3
+
+--Sig_/E2PoMMoC/cTLiz_ZN0ugdQX
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Mar 23, 2025 at 1:38=E2=80=AFPM J. Neusch=C3=A4fer via B4 Relay
-<devnull+j.ne.posteo.net@kernel.org> wrote:
->
-> From: "J. Neusch=C3=A4fer" <j.ne@posteo.net>
->
-> Fernsehfee ("TV fairy") 3.0 is a set-top box with HDMI input and output
-> ports. It originally ran Android 4.4 and a Linux 3.10 kernel.
->
->   https://fernsehfee.de/  (German)
->   https://telefairy.com/  (English)
->
-> Signed-off-by: J. Neusch=C3=A4fer <j.ne@posteo.net>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Hi Krzysztof,
+
+> On 29/03/2025 23:10, Lukasz Majewski wrote:
+> >>> +   =20
+> >>
+> >> If this is ethernet switch, why it does not reference
+> >> ethernet-switch schema? or dsa.yaml or dsa/ethernet-ports? I am
+> >> not sure which one should go here, but surprising to see none. =20
+> >=20
+> > It uses:
+> > $ref:=C2=B7ethernet-controller.yaml#
+> >=20
+> > for "ports".
+> >=20
+> > Other crucial node is "mdio", which references $ref: mdio.yaml# =20
+>=20
+> These are children, I am speaking about this device node.
+
+It looks like there is no such reference.
+
+I've checked the aforementioned ti,cpsw-switch.yaml,
+microchip,lan966x-switch.yaml and renesas,r8a779f0-ether-switch.yaml.
+
+Those only have $ref: for ethernet-port children node.
+
+The "outer" one doesn't have it.
+
+
+Or am I missing something?
+
+>=20
+> >  =20
+> >> =20
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    const: nxp,imx287-mtip--switch   =20
+> >>
+> >> Just one -.
+> >> =20
+> >=20
+> > Ok.
+> >  =20
+> >>> +
+> >>> +  reg:
+> >>> +    maxItems: 1
+> >>> +    description:
+> >>> +      The physical base address and size of the MTIP L2 SW module
+> >>> IO range   =20
+> >>
+> >> Wasn't here, drop.
+> >> =20
+> >=20
+> > The 'reg' property (reg =3D <0x800f0000 0x20000>;) is defined in
+> > imx28.dtsi, where the SoC generic properties (as suggested by
+> > Andrew - like clocks, interrupts, clock-names) are moved. =20
+>=20
+> Drop description, not the reg. Reg was in the previous version. You
+> added random changes here, not coming from the previous review.
+>=20
+
+Ach... You mean the "description" in the:
+
+	reg:
+	  maxItems: 1
+	  description:
+	    XX YY
+
+Ok, I will remove it.
+
+> Best regards,
+> Krzysztof
+
+
+
+
+Best regards,
+
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH,      Managing Director: Erika Unter
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/E2PoMMoC/cTLiz_ZN0ugdQX
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmfpsdkACgkQAR8vZIA0
+zr2OOwf8D0o3VBKQo0wzlGRUM/T2N281OQjJWLHyJkh73CTqHrX2rUeLf9n4uJBu
+pQbWZbpX7HOxC/3XTUZi5m56dARLhcV2px0RPiMkjRikv/G84Ol530tpvCkWL6xo
+yFtrnA9AhHL/2UBUcBu3tymPQ5BWj5uBQN83AZskGaaRu1aZ8U+DGDa+2cPDEM00
+5IfBke7cGgUZGS6RPSE6Pdbl3eHRQrY3Kw1tB5UxwhTAePDEMPQ9lR34aOAJ7EJS
+6QudhKxb9AeI/FixnJxhtE0HVyyb/NfSYtm4OtqDTRgHe5UXdNVL6MheoTGhyfrh
+o2PPkKI+Gp1erjBY7OGhV8Qv1Su5nw==
+=Ch8l
+-----END PGP SIGNATURE-----
+
+--Sig_/E2PoMMoC/cTLiz_ZN0ugdQX--
 
