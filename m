@@ -1,182 +1,179 @@
-Return-Path: <devicetree+bounces-161870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161871-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D208DA75C3F
-	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 23:04:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2F9BA75C4D
+	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 23:08:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 854381688DB
-	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 21:04:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4AA981689CC
+	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 21:08:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DF911DEFC5;
-	Sun, 30 Mar 2025 21:04:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D5DF1DE3D2;
+	Sun, 30 Mar 2025 21:08:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Mx7Umlj5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eisu89pk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB1EF1DED69;
-	Sun, 30 Mar 2025 21:04:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E8B01DA21;
+	Sun, 30 Mar 2025 21:08:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743368675; cv=none; b=D7U9JHAvyxPJbluRKRc0xplVPBoOgtMwksASex2xX8UWLJWbEOniZqy17xY4GYlYW20B2ea1GLAL9ehF1plC9FIP4peE8Np0BHC1+XOmRoKI6XX8ip3Ln4q+FJdhRGWaeRoyTlwTRvroWMfEmRj3KilK+x8SeBtBdGtDv0Tku1Q=
+	t=1743368882; cv=none; b=iIDWFTQcER8atSQdNJ2OEYvIUgqZNmunFV6wLwo9NvWw6hwFv16YlvYFzLRWnY03Mv0KhD8TIc5pSZzjDUSLBHOrdMnGWhvzoRj+QCjiwDNbw3H82MtzGVy/Bx9a9XUC7m9K6F5h4p3Ai3OhXWO69sTQpzWa611yZDOXcVSrQz0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743368675; c=relaxed/simple;
-	bh=j7sCc9j8ExMeuzg/Pz8nUC9Flf6ycTDiJgl84vrGO+0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gXkkQgbfSz7M6lx/vWCVKTYxW6X7KPJxSaFErJGUn9847MvJZnG730bYsSxmJa1SXh+SJ0wxKaQKs/SxdiNI69TqyrCqsZ3lqtyC9YHf0rgwJXsVOv/Jz8LRS5dKz22i1T/kUzzl176m9OmlzGyZ2jNZNnHkmRRVO+hF8Pmr+Nc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Mx7Umlj5; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E7552102F66E1;
-	Sun, 30 Mar 2025 23:04:27 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1743368670; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=901Bq3gxJ4OzVl6RNicUF10kt/4QX89li+J+N6jGrBA=;
-	b=Mx7Umlj5Dy67EVKrXk5rs0zN0m01GfK9PxcRu6h4Ck4cYNEAiDqg7YEbMpOyVpdVRt+jne
-	UCUpfNJnGxNJRGxRDCMcUMSgrvUxAsWiZLacqZsJTHjYuDs6DfzT3VWx8s51nmjaW2K8JD
-	fNEwacAMRdWupC0W8RVpuApWWR6KTpLZ/M/oFYrLcftzMp7JJd5A0hwH83DRI1xJgWR1y0
-	20nQNobttE5U4qB71Hied1LhQLJGxQ3KDvotNIuRQsnyJMbuA8h1HH2FFUcUl0LQ2wqVhS
-	kc74lmL8lGDGHPQBkKX+TUZn2VBWyenSsCXYNodai5WKeeAt82HIHHfELv0pew==
-Date: Sun, 30 Mar 2025 23:04:25 +0200
-From: Lukasz Majewski <lukma@denx.de>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo
- <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
- Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: net: Add MTIP L2 switch description
-Message-ID: <20250330223630.4a0b23cc@wsk>
-In-Reply-To: <564768c3-56f0-4236-86e6-00cacb7b6e7d@kernel.org>
-References: <20250328133544.4149716-1-lukma@denx.de>
-	<20250328133544.4149716-2-lukma@denx.de>
-	<e6f3e50f-8d97-4dbc-9de3-1d9a137ae09c@kernel.org>
-	<20250329231004.4432831b@wsk>
-	<564768c3-56f0-4236-86e6-00cacb7b6e7d@kernel.org>
-Organization: denx.de
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1743368882; c=relaxed/simple;
+	bh=BZpOrmXP8ROf5fnXLNhJvYNK4w9KkeVjITiKpK3Egbs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QaflNQPCXZlucW/LQlliBH7nXluYLQoP1Mhq424/0JpgtumlqF6Y8d3F7mr72ETTp9enwP9rUWQwTchgW2UJ39poIVSV+knL4Mokzo/GYXPsV/rfXH1qMgWqMeojKcsG/3wn+ZPxGbS7dmzaVyg5Ry0gOQPbU2uCRZhSNIBzs2w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eisu89pk; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-43948f77f1aso26003545e9.0;
+        Sun, 30 Mar 2025 14:08:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1743368879; x=1743973679; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LMcYDVzm/4n6/8MfrrCdfu9WYkB5GcIV7goVTlhWzQs=;
+        b=eisu89pkGqo4lDcOj5hwB+P7q5cgnRVCEaSEz4yQUm/Q03CFjf0pPWvlIeaTgYo/b7
+         mCSJmOjBq32kysuaJ7YAmhv+QhmX8QW9ae6v4m7A8377jwCtyw6BUkZtDu00742RZuEc
+         LRn6Y/GVhHjyg6TRvglRdJ3YrrqE9eWHvtxIqbRi8lXZXbqcz+6pFxoQsF65mb0QPrTG
+         bPUx76Gqa6qknkSSslAsvGLYrqMF35OQkX8no00kTPirtKxydTwqRWWmmXEzudVGG3cO
+         86xq64msfeFMXpaecphf/DP0yMu1luo0xPNx4eOcQO2SsEh+sOvodnJlx2Iu/vUxttWS
+         LUyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743368879; x=1743973679;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LMcYDVzm/4n6/8MfrrCdfu9WYkB5GcIV7goVTlhWzQs=;
+        b=LDcSnlGbg6f0d20nMpVbuTqbOmJSHtw/Usy2I5jhqzis2/gEUkb9sG7eVkC2B7w+eE
+         RgV+gezMCaQ8bZOW0jPGcJq9RouKyWQ1FGjTRIX2nBsKO3hR5+L/8Bl4ZGh+lZYiwarX
+         eA/Dpzs25F/OtwE+KxrBJs4vjf/LxCHxa5d1SgST72rDhFdwODxCU+OCazQvo2DVPbLK
+         4B3SneOS7Ww5yezYToV7j99Sla2F0EeccB3NjJiQWe/ZpexH4l+JZZutWCs3BljNpscj
+         Phrc+WpnAy9ZYlFq4vdYG0wLv4+ckB549CN0ivOQMZXK4ytMwcdH+mRU8oi0U94/VkqG
+         0jEQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUv5trMUvCKhedvPmWpYnXgghMO6WdbexsOSOfML1wpNbkWC03ui0+1Cyn2oMo2VRCv1nc55Kacu6I=@vger.kernel.org, AJvYcCVmBDwgOR2a7zXJkoyoPDBn8+bXt0NuFXk9dpB+Eg7ysQpetNTwbsl3tOv0gIX6aTbyFN9uC/9mnkq1Sy4um39xw1s=@vger.kernel.org, AJvYcCVz6xiNWb1VOp6x99lyTGAg5Gug2NKgZbg8jLsPPRdx+ny9O1SeyMY7QvqTL+rJ9NT0OKSpGI7B3mEe4cI=@vger.kernel.org, AJvYcCXwP1fB4JZB3SMcCqhcNPSribD+D2odFrhMQ6co5NleSmZSo68dwSirtpZxUM9BfZZfmftlghr1s0pD/adS@vger.kernel.org
+X-Gm-Message-State: AOJu0YyTenwr4TPXl7IZ5LaU/pie5B7SmqyOUVICygIdS396YXCmVm2q
+	Mr3VHcweqXo61G36YPKEaeimUBLqxIq3ksNBLu+pTcvY3KRmEQ3l
+X-Gm-Gg: ASbGnctxbv5A1SRlXjW9juyHVZSrBRoCf9fZctA3UE3P7R1Qayg5CtFM9Xd0DxtcWtO
+	wiL/obOWhshkV8Y9Sz8CVY/FCtje17GO4yOe/fi958I6Z1YJFF200EpMRFDTlP/6CybzR5YxOUF
+	BqLCD1QjIs8sRnXOk70mLGoK9B+grxmImhYaNwdgFgpzWnJucEUKpMlkpjJHGxCg7lwmuzuHUG9
+	DbCLLdAzf+sKO3zsJdXqMXKAlqO+fiLYkBxDoGgAOym3y/Hw+/PYbYcj59OTgzk5gPE9pKl3BgU
+	ceexeilYlHpm95X/M59Ucb1bauxKd7sXJSd8fXdw/2dvgWw9a5lw4axF/npE2PMh7D6NAA==
+X-Google-Smtp-Source: AGHT+IG8cSQoD9pfXbbc/zCPXzhG3Gu3LMCabeNYny3HnbmWt6JnKUWTKvG219e3Wk595rs/5BlePQ==
+X-Received: by 2002:a05:600c:35d4:b0:43b:cf12:2ca5 with SMTP id 5b1f17b1804b1-43db6223043mr52349155e9.8.1743368878597;
+        Sun, 30 Mar 2025 14:07:58 -0700 (PDT)
+Received: from iku.Home ([2a06:5906:61b:2d00:8249:9390:e853:c628])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d91429c36sm69778175e9.0.2025.03.30.14.07.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 30 Mar 2025 14:07:57 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 00/17] Add support for DU and DSI on the Renesas RZ/V2H(P) SoC
+Date: Sun, 30 Mar 2025 22:06:56 +0100
+Message-ID: <20250330210717.46080-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/E2PoMMoC/cTLiz_ZN0ugdQX";
- protocol="application/pgp-signature"; micalg=pgp-sha512
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 8bit
 
---Sig_/E2PoMMoC/cTLiz_ZN0ugdQX
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Hi Krzysztof,
+Hi All,
 
-> On 29/03/2025 23:10, Lukasz Majewski wrote:
-> >>> +   =20
-> >>
-> >> If this is ethernet switch, why it does not reference
-> >> ethernet-switch schema? or dsa.yaml or dsa/ethernet-ports? I am
-> >> not sure which one should go here, but surprising to see none. =20
-> >=20
-> > It uses:
-> > $ref:=C2=B7ethernet-controller.yaml#
-> >=20
-> > for "ports".
-> >=20
-> > Other crucial node is "mdio", which references $ref: mdio.yaml# =20
->=20
-> These are children, I am speaking about this device node.
+This patch series adds support for the Display Unit (DU) and MIPI DSI
+interface on the Renesas RZ/V2H(P) SoC. The inital patches add PLLDSI
+clocks and reset entries for the DSI and LCDC and the later patches add
+support for the DU and DSI drivers. The DU block is similar to the
+RZ/G2L SoC, but the DSI interface is slightly different. The patches
+include updates to the device tree bindings, clock and reset
+controllers, and the DU driver to accommodate these changes.
 
-It looks like there is no such reference.
+Note, my initail intention was to split the clock patches and the DU/DSI
+driver patches into two separate series. However, I found that sending
+them together will make it easier for the reviewers to understand clock
+related changes.
 
-I've checked the aforementioned ti,cpsw-switch.yaml,
-microchip,lan966x-switch.yaml and renesas,r8a779f0-ether-switch.yaml.
+Note, the clock patches aplly on top of the following patch series:
+- https://lore.kernel.org/all/20250228202655.491035-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+- https://lore.kernel.org/all/20250328200105.176129-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
 
-Those only have $ref: for ethernet-port children node.
+Cheers,
+Prabhakar
 
-The "outer" one doesn't have it.
+Lad Prabhakar (17):
+  clk: renesas: rzv2h-cpg: Add support for DSI clocks
+  clk: renesas: r9a09g057: Add clock and reset entries for DSI and LCDC
+  media: dt-bindings: media: renesas,vsp1: Document RZ/V2H(P)
+  media: dt-bindings: media: renesas,fcp: Document RZ/V2H(P) SoC
+  dt-bindings: display: renesas,rzg2l-du: Add support for RZ/V2H(P) SoC
+  dt-bindings: display: bridge: renesas,dsi: Add support for RZ/V2H(P)
+    SoC
+  drm: renesas: rz-du: Add support for RZ/V2H(P) SoC
+  drm: renesas: rz-du: mipi_dsi: Add min check for VCLK range
+  drm: renesas: rz-du: mipi_dsi: Simplify HSFREQ calculation
+  drm: renesas: rz-du: mipi_dsi: Use VCLK for HSFREQ calculation
+  drm: renesas: rz-du: mipi_dsi: Add OF data support
+  drm: renesas: rz-du: mipi_dsi: Use mHz for D-PHY frequency
+    calculations
+  drm: renesas: rz-du: mipi_dsi: Add feature flag for 16BPP support
+  drm: renesas: rz-du: mipi_dsi: Add dphy_late_init() callback for
+    RZ/V2H(P)
+  drm: renesas: rz-du: mipi_dsi: Add function pointers for configuring
+    VCLK and mode validation
+  drm: renesas: rz-du: mipi_dsi: Add support for LPCLK handling
+  drm: renesas: rz-du: mipi_dsi: Add support for RZ/V2H(P) SoC
 
+ .../bindings/display/bridge/renesas,dsi.yaml  | 117 +++-
+ .../bindings/display/renesas,rzg2l-du.yaml    |  28 +-
+ .../bindings/media/renesas,fcp.yaml           |   2 +
+ .../bindings/media/renesas,vsp1.yaml          |   1 +
+ drivers/clk/renesas/r9a09g057-cpg.c           |  63 ++
+ drivers/clk/renesas/rzv2h-cpg.c               | 284 ++++++++
+ drivers/clk/renesas/rzv2h-cpg.h               |  17 +
+ drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c  |  11 +
+ .../gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c    | 607 +++++++++++++++++-
+ .../drm/renesas/rz-du/rzg2l_mipi_dsi_regs.h   |  42 +-
+ include/linux/clk/renesas-rzv2h-dsi.h         | 207 ++++++
+ 11 files changed, 1309 insertions(+), 70 deletions(-)
+ create mode 100644 include/linux/clk/renesas-rzv2h-dsi.h
 
-Or am I missing something?
+-- 
+2.49.0
 
->=20
-> >  =20
-> >> =20
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    const: nxp,imx287-mtip--switch   =20
-> >>
-> >> Just one -.
-> >> =20
-> >=20
-> > Ok.
-> >  =20
-> >>> +
-> >>> +  reg:
-> >>> +    maxItems: 1
-> >>> +    description:
-> >>> +      The physical base address and size of the MTIP L2 SW module
-> >>> IO range   =20
-> >>
-> >> Wasn't here, drop.
-> >> =20
-> >=20
-> > The 'reg' property (reg =3D <0x800f0000 0x20000>;) is defined in
-> > imx28.dtsi, where the SoC generic properties (as suggested by
-> > Andrew - like clocks, interrupts, clock-names) are moved. =20
->=20
-> Drop description, not the reg. Reg was in the previous version. You
-> added random changes here, not coming from the previous review.
->=20
-
-Ach... You mean the "description" in the:
-
-	reg:
-	  maxItems: 1
-	  description:
-	    XX YY
-
-Ok, I will remove it.
-
-> Best regards,
-> Krzysztof
-
-
-
-
-Best regards,
-
-Lukasz Majewski
-
---
-
-DENX Software Engineering GmbH,      Managing Director: Erika Unter
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
-
---Sig_/E2PoMMoC/cTLiz_ZN0ugdQX
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmfpsdkACgkQAR8vZIA0
-zr2OOwf8D0o3VBKQo0wzlGRUM/T2N281OQjJWLHyJkh73CTqHrX2rUeLf9n4uJBu
-pQbWZbpX7HOxC/3XTUZi5m56dARLhcV2px0RPiMkjRikv/G84Ol530tpvCkWL6xo
-yFtrnA9AhHL/2UBUcBu3tymPQ5BWj5uBQN83AZskGaaRu1aZ8U+DGDa+2cPDEM00
-5IfBke7cGgUZGS6RPSE6Pdbl3eHRQrY3Kw1tB5UxwhTAePDEMPQ9lR34aOAJ7EJS
-6QudhKxb9AeI/FixnJxhtE0HVyyb/NfSYtm4OtqDTRgHe5UXdNVL6MheoTGhyfrh
-o2PPkKI+Gp1erjBY7OGhV8Qv1Su5nw==
-=Ch8l
------END PGP SIGNATURE-----
-
---Sig_/E2PoMMoC/cTLiz_ZN0ugdQX--
 
