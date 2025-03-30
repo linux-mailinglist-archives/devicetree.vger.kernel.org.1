@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-161805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DA11A7592B
-	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 11:39:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF232A75930
+	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 11:43:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 81E201884188
-	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 09:39:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 513233AA976
+	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 09:42:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E154D188915;
-	Sun, 30 Mar 2025 09:39:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC84819259F;
+	Sun, 30 Mar 2025 09:43:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LlT7zU5k"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GyGmvp+C"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6BE57E107;
-	Sun, 30 Mar 2025 09:39:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC63178F29;
+	Sun, 30 Mar 2025 09:43:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743327549; cv=none; b=jI+1AkC+Sa4vqOWkzL+upyCwj04j8F89JF3nFBAmXklNyiDZUD7tNEQl6Q5g1a5I9nmwONVVu/7JPBLNeOuyuWpUTNlSEJiWv+MOyDpajKUNKwavSrJSC8omtg3mBelV20UEkLHwpf/EufAzjH2w5f16b57Byz/1bnlszldtBNc=
+	t=1743327785; cv=none; b=P9IrcsN6uN44f421l+u7ktoOitvTGJ6b21bC+TVNmDn+86T7IRnePw5oKLHacTKCykcBuN+bKYGS4kWo+3aYzdQw76/fM64bpX+eI22Z1vq+oG3RIByPz5BnlJVw9l4p5gIKc1c9pN9+YakOyY/TPEMWyqtZ2AkUjygvNk5sQ+o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743327549; c=relaxed/simple;
-	bh=nb+s4geoLKiT4WvuOstHlXUTAwuIvv89Yx9RssgX5Ik=;
+	s=arc-20240116; t=1743327785; c=relaxed/simple;
+	bh=65vRl2bgFK9n20bD3FPj5jSnqKTP04U2VPXDFWAuA4A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OFJYL8ittwMKAlIblU6XEK8VfYs+2zvwoSH+AWPlxC6ftTBhB/C93XCa935LPy7Vr6alOpYQzCtwjOUPqKr1HjolrJmvTa0vVc2JWf+LvSJsQ9fIe6/7+mbWywukf44Kuqu0NRsHGM9OENmSXR1f/99nQcPJil71OvLlqR5ZqC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LlT7zU5k; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A92A2C4CEDD;
-	Sun, 30 Mar 2025 09:39:05 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=bvbrwYzz8zBBKKorJaEVwpRRm4QpnoG4ow4pLgymoEJNj5cfQBJJ+LikUpuN6Eix2DhPF/otVQMdPtKCYxUpw6fJeypyYv8yBxCJSWyyXvwOAOEfeEVKWAuUEMwCieIYS2HyclQXpf2ATDQpFrhaWb3nfMv1NUUmMj45vqHB4Tk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GyGmvp+C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAE05C4CEDD;
+	Sun, 30 Mar 2025 09:43:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743327549;
-	bh=nb+s4geoLKiT4WvuOstHlXUTAwuIvv89Yx9RssgX5Ik=;
+	s=k20201202; t=1743327785;
+	bh=65vRl2bgFK9n20bD3FPj5jSnqKTP04U2VPXDFWAuA4A=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LlT7zU5kSLfRnjdUV33notU1ulYd+sZhp8W+KDat/rwfcnTzBQnBpLY0Qg7M/MGdr
-	 9I5DFEKdsfGEtbIiTLippEECyxgqv9ONIT4sTRoOFIivAROxF8DO/dU9ZuRyXhV0PQ
-	 mN4oalVdOY1nQ8LiLVgZI6nEtRbaU96sWBq9pHuVo0ZtUFayuO3QmFu/VFcr/SnOpP
-	 TPJuLnH1M43qLiH5uTrTwRZyG6ChNNa2MnRuNrm+VsdmfyUEfbXCY+MRHUIu5iIfux
-	 x6eByRFUeeiTDAJ1J6cYUcPu2awAlhHERLeE4Kx1UGUec3mBsw+rO3uDbPbI+Thk1M
-	 IwvUZQyVuifPQ==
-Message-ID: <3c8f431c-f399-46a9-a031-b1fe39ccc9d4@kernel.org>
-Date: Sun, 30 Mar 2025 11:39:03 +0200
+	b=GyGmvp+C3WpETEiLlYG0YXsLHCfEYT0nS1ANSddQv/rAEt/HIOWVzgq1VnLE5RNsc
+	 CnqYHMFciII6GeoDkq6u8J5CJQEjMkCZe7GfoMe7NjYMknv1yRV2uA2JBF+me2yp0J
+	 qz844vURCv9FGu2xGfzFMpTn4jrih8t2Xoccv/wwSy3MRo3WamJPMnaCF15HBaypyR
+	 1hwnRQZHyJWchRKr7Au/9jonqcn/ZrqXcrTjKUv6TWPKdZeMdakV+tcYynwWqn1v+f
+	 LCGsrJI5nRqC2EjpyP2gCHYFzUlihacI4GhLpC6aJgS92N7ukeJYxpF5BLglZpuXFQ
+	 BB4A6KAfQyYGg==
+Message-ID: <b68559e6-fc2b-493b-9f37-3125ff924a65@kernel.org>
+Date: Sun, 30 Mar 2025 11:42:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: add device tree support for winsen
- MHZ19B CO2 sensor
-To: Gyeyoung Baek <gye976@gmail.com>, jic23@kernel.org
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, lars@metafoo.de,
- gustavograzs@gmail.com, javier.carrasco.cruz@gmail.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org
-References: <20250329164905.632491-1-gye976@gmail.com>
- <20250329164905.632491-3-gye976@gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: i3c: Add Qualcomm I3C master
+ controller
+To: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>,
+ alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, jarkko.nikula@linux.intel.com,
+ linux-i3c@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: andersson@kernel.org, konradybcio@kernel.org
+References: <20250326141641.3471906-1-quic_msavaliy@quicinc.com>
+ <20250326141641.3471906-2-quic_msavaliy@quicinc.com>
+ <991b0652-76f2-40d6-b49b-1e6f76e254ac@kernel.org>
+ <661e1a21-0f3a-497a-9b3b-fab284e30d19@quicinc.com>
+ <36b67f9c-5905-4fa6-8190-ab980850b3a2@kernel.org>
+ <e997bd15-728c-4316-8050-d461f115fd9f@quicinc.com>
+ <04945ad2-1372-4c73-beae-fc6449fb9a76@kernel.org>
+ <838dfc8d-24c3-4f03-9c24-863259bb22b1@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,63 +111,21 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250329164905.632491-3-gye976@gmail.com>
+In-Reply-To: <838dfc8d-24c3-4f03-9c24-863259bb22b1@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/03/2025 17:49, Gyeyoung Baek wrote:
-> Add device tree support for winsen MHZ19B sensor.
+On 29/03/2025 15:31, Mukesh Kumar Savaliya wrote:
+> dt-binding file name: qcom,i3c-geni-qcom.yaml
+
+No. I already asked to use compatible as filename. Don't create your own
+rules.
+
+> compatible = "qcom,geni-i3c";
+>>
+>> Best regards,
+>> Krzysztof
 > 
-> Signed-off-by: Gyeyoung Baek <gye976@gmail.com>
-> ---
->  .../bindings/iio/chemical/winsen,mhz19b.yaml  | 31 +++++++++++++++++++
->  1 file changed, 31 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/chemical/winsen,mhz19b.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/chemical/winsen,mhz19b.yaml b/Documentation/devicetree/bindings/iio/chemical/winsen,mhz19b.yaml
-> new file mode 100644
-> index 000000000000..c08681e43281
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/chemical/winsen,mhz19b.yaml
-> @@ -0,0 +1,31 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/chemical/dht11.yaml#
-
-Never tested.
-
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MHZ19B CO2 sensor
-> +
-> +maintainers:
-> +  - Gyeyoung Baek <gye976@gmail.com>
-> +
-> +description: |
-> +   CO2 sensor using UART serdev bus interface.
-
-serdev is Linux thing. Just drop description.
-
-> +
-> +properties:
-> +  compatible:
-> +    const: winsen,mhz19b
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    serial {
-> +      mhz19b-co2-sensor {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
 
 
 Best regards,
