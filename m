@@ -1,115 +1,129 @@
-Return-Path: <devicetree+bounces-161821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 559F0A75A47
-	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 16:08:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFED7A75A58
+	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 16:33:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 077A0164BBD
-	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 14:08:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED00F1888A7C
+	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 14:33:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9485C1B393D;
-	Sun, 30 Mar 2025 14:08:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 797D96A009;
+	Sun, 30 Mar 2025 14:33:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OzX+btqP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j3yhVuzY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6610C3FE4;
-	Sun, 30 Mar 2025 14:08:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C85F646B5;
+	Sun, 30 Mar 2025 14:33:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743343723; cv=none; b=W+Y8F+5r5feudxd3fnwaGDxBfjzkMDFcTVjOxI+pAVAc2DIJGiWK6skldBdHJ/Bqf59d5Hi8ESJE8KFkAHc4PV5rgnzoWBzJXuS9BNi0t/ONlVUg+3iDMIBfK1zufsKxaciqO3odecOwY3XCakslKLvFGBRf/lMM5p9Y2E8yhVo=
+	t=1743345182; cv=none; b=U8UBREV+OmM+ApmV1Eiyp/8e2Vyv5lVlailO/9EUWOhSo245r2QtWgm1VDnmrzOoa2WVaxLwWBCUWoXLw2vuNZxnD96yUwTeacrCtlZrMjqSuCZN/lvSAOWJ649+Mfbzz3iktPsOmLP6rRAO0FCKw6SOjsoT8BWhrQyUZul1bqg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743343723; c=relaxed/simple;
-	bh=LUNlOYjoJtR6+clEBUbrqDLTYdqMe7/XahYp2tVYzz8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uy04+SScoRydIw1Fppc1kfXfiwxp7boTL4NvJPOgZ2S8G4nBb3VO7tbs8X3bs4gG3LpWZMOJmKzXwXsUmKlBM1r23LCM/AqjpWuUw4Jvm+li0GN7DgzHO7m7ZLe7E+KISFgtvX+JDl89l6THFfgE3fBKUph1DqILFslLjOtY/3U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OzX+btqP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A021C4CEDD;
-	Sun, 30 Mar 2025 14:08:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743343722;
-	bh=LUNlOYjoJtR6+clEBUbrqDLTYdqMe7/XahYp2tVYzz8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=OzX+btqPnXdQnxDdtC+MgH0y2su0B3Q9rb4mjPFUuMbBR6fveId99VkuFVJDF5RDy
-	 xpxizkQzir8PMcCcppTfz0Ewl76E76tA73MLL7edbZdk6J7vQg84YUhmVx8C5al+9S
-	 ou7zmYaCMMVbyUPANs03OYmcurr0DnCUwNoZktNCCf0qw/nwDTkQBud6aV43Url0xk
-	 xE+qPnxQV3Sq/leew3rkyw48lLTzFlpm82n1e3CpPI0hj8zpAJaNXsjI+jksar7ctP
-	 T54sH2e5/hjRMtw9ALVsYtLrdfe7IzRXoWlEul8kwZYtl0G7xikuCl73gjQMae73Ub
-	 Z7AJRSZaFES6g==
-Date: Sun, 30 Mar 2025 15:08:34 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-amlogic@lists.infradead.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, gnstark@salutedevices.com, lars@metafoo.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- christianshewitt@gmail.com
-Subject: Re: [PATCH v2 0/2] iio: adc: meson: add MPLL clock workaround for
- GXLX
-Message-ID: <20250330150834.2171d106@jic23-huawei>
-In-Reply-To: <20250330101922.1942169-1-martin.blumenstingl@googlemail.com>
-References: <20250330101922.1942169-1-martin.blumenstingl@googlemail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1743345182; c=relaxed/simple;
+	bh=c2+wWjdujv3UHeuwB5Y44qeQdzTMiNxOlvXMxrg+ClE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=jqde2deeGSpt4kuHaUgeHOjyJ1whENl+jdzbu+amCcUxB8xasA0K7UPRETGGTXfVAJ7QVOWqM77nY9zu5KJG0viAN17GW2Es5k71GqtF1u1jzFVZ5SKPmISB5Qp3rToDLZ3KBv3Hx0X55afH8DoLYYYcG0kDtZYrxDukWYJR2D0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j3yhVuzY; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4394a823036so35389825e9.0;
+        Sun, 30 Mar 2025 07:33:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1743345179; x=1743949979; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KDZlBB97sXiBRPJPnnCLtIfRcmpHR+yPzooZ+KfqlxA=;
+        b=j3yhVuzYrt/Y8tRzQ16JcBYm4NQgpm0ip3vFPBKyUWHfIVSoOfSp5rkUn2a+yiEFua
+         2+H+HKVa0aMRy6Jsb6FuMyQxQhKqe5swid0Al3f7yd5icouR/WtuX6qmbh0oXrkzGJMz
+         0IH5pdZqhxHLDHXZZlyIk+OPIcxwFDaK0QTpmDV1mOLMlZ+56PWNsxjOSCtIxOxsV7nx
+         6YdLum0IHRUtAKEMhDSItIj5fMkSmLbo8PbbEieDXgAvgkbs1mrv8Y0LELsVVurhWQ1E
+         1znYAXf+D7WzbwL6mFC1LLpW7dae2pEgQCgc1y963LDKADaL09CejUkQaazHo+m4uXgA
+         vfpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743345179; x=1743949979;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KDZlBB97sXiBRPJPnnCLtIfRcmpHR+yPzooZ+KfqlxA=;
+        b=P3QqzgYNQf95YK1RxTXrJuvMi1+mslAwye+0MdHVIFNUO4n/qubVL908XGZtRQiofL
+         CRyz3J3+jr3sptz1AHYN3ewl99QqAdTBZcCtIUzP4IK6wbT91Ci6j/M+O21JTJxlq499
+         pXA2lTSRLKnC8FdjoRIlSx3PzE7V2Px8nskJOh6T9KSbUao5CnWwtAEc82gvJLspxWok
+         RyEx1crZyBt+qQNoL4Q6byH6oMke1j17tVE59Vqm96dTl9/JdVOJgiZ1NUVjBmSj+vCS
+         n2JcPR3UY6H9cYsNAd+egkAi7l6hcCu1FO8bFZ9WNAa1H0j5rX/s3am0jVufxzjH7QQm
+         dZ6Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUJXq+Rccur2AHvvCd8+0J1yqRdpG8amFmnYeDHovFfog0Y4rNO59LXL+gdm6NjMS5q0A+oyoe3Ua1x@vger.kernel.org, AJvYcCX4y5kRg9SBn+l4a3jCyHJe0NcLop9jzyrG7L4tkRes/TUN7RaMLFqE01IMmgsbHXofvDxmZ/lUl9DPuAV7@vger.kernel.org
+X-Gm-Message-State: AOJu0YwMssuUtX1ADCju0PPrb9wtnCKZhlD9lJ0GeoSITDasaGoPHtQ/
+	NkeK9lkIT0F8A08fvWk1GbFbmcaLJDsJWB3WC6K983jRw+vjta8J
+X-Gm-Gg: ASbGncsZ/8Ljc9M89rw/CMsgPsTZ/AzX7wogyHLnnpGBqx8CubPqhFzcKf38pAO6Uqq
+	8QwRVUnXGZpwlt6wIkN1avy6ebEkxMrw1u1D/q7vAqOaKxqcWaZxn6LQBuOc1M5jO6wmYliRrYn
+	FoEjvl0OIP8q7qXJdSaTC66ZFF+KV+zRZ51R/jgGmYaHQ/DUgAzvXn8y0+HBthdAp7tFcBRjjDg
+	xHQM5POPEGTPdlr+Hxe0MKO1yr1SkKhyaLTQiqYD498gwq064CTbHDwItzl+RI0EhjfbXQF0U5X
+	uzoX6bra1ihjWD6NlD4vPJs1NzMQns4g0PpWZLXgFjce3EvsOoDd7fQNGZHj
+X-Google-Smtp-Source: AGHT+IHaSWu6Z+1rDc9SQC310UBhA6tjaaU882YzdNUAhxmwTHuuOQ3qnc1Sxxt+8NnSRPc5mpgrvg==
+X-Received: by 2002:a05:600c:1f10:b0:43c:f8fc:f6a6 with SMTP id 5b1f17b1804b1-43e8e3cf6d0mr45291815e9.9.1743345178939;
+        Sun, 30 Mar 2025 07:32:58 -0700 (PDT)
+Received: from toolbox.. ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39c0b66363fsm8999934f8f.36.2025.03.30.07.32.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 30 Mar 2025 07:32:58 -0700 (PDT)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH] arm64: dts: amlogic: gxlx-s905l-p271: add saradc compatible
+Date: Sun, 30 Mar 2025 14:32:54 +0000
+Message-Id: <20250330143254.3159519-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Sun, 30 Mar 2025 12:19:20 +0200
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+Add the saradac node using the meson-gxlx-saradc compatible to ensure
+MPLL clocks are poked and audio output is enabled on the p271 (S905L)
+board.
 
-> Hello,
-> 
-> Amlogic GXLX SoCs seem to be mostly the same silicon as GXL. The only
-> known differences are:
-> - one less Mali-450 GPU core
-> - no VP9 codec
-> - and an odd one: the three MPLL clocks need a bit toggled in the SAR
->   ADC register space
-> 
-> This series attempt to fix audio output (which relies on the MPLL
-> clocks) on the GXLX boards. Unfortunately all we have is a downstream
-> commit [0] without any further explanation (or anyone who wants to
-> provide details on this). Since it's not clear if this is a gate, a
-> reset or some other hardware fix: the driver side includes a warning
-> for users to update their .dtb along with kernel images in case we
-> ever figure out what these bits do and how to model them properly.
-Applied to the togreg branch of iio.git. Initially pushed out as testing
-to get some early testing before I rebase on rc1 next weekend.
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+The meson-gxlx-saradc compatible is now merged via the IIO tree, see [0].                                   
 
-Thanks,
+[0] https://patchwork.kernel.org/project/linux-amlogic/cover/20250330101922.1942169-1-martin.blumenstingl@googlemail.com/
 
-Jonathan
+ arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-> 
-> 
-> Changes since v1 at [1]:
-> - added Krzysztof's Acked-by to the dt-bindings patch (thank you)
-> - added Neil's Reviewed-by (thank you!)
-> - fixed meson_sar_adc_gxlx_param to be independent of future
->   to-be-upstreamed patches (fixes a build error)
-> 
-> 
-> [0] https://github.com/khadas/linux/commit/d1d98f2ed8c83eb42af8880ed8e206aa402dd70a#diff-c5aaf54323ef93777c5083de37f933058ea8d0af79a1941e0b5a0667dc0f89b3
-> [1] https://lore.kernel.org/linux-amlogic/20241231194207.2772750-1-martin.blumenstingl@googlemail.com/
-> 
-> 
-> Martin Blumenstingl (2):
->   dt-bindings: iio: adc: amlogic,meson-saradc: Add GXLX SoC compatible
->   iio: adc: meson: add support for the GXLX SoC
-> 
->  .../iio/adc/amlogic,meson-saradc.yaml         |  1 +
->  drivers/iio/adc/meson_saradc.c                | 34 +++++++++++++++++++
->  2 files changed, 35 insertions(+)
-> 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dts b/arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dts
+index 942df754a0ed..1221f4545130 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dts
+@@ -38,6 +38,10 @@ mali: gpu@c0000 {
+ 	};
+ };
+ 
++&saradc {
++	compatible = "amlogic,meson-gxlx-saradc", "amlogic,meson-saradc";
++};
++
+ &usb {
+ 	dr_mode = "host";
+ };
+-- 
+2.34.1
 
 
