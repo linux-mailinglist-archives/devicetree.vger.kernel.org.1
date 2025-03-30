@@ -1,123 +1,135 @@
-Return-Path: <devicetree+bounces-161834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8A47A75AB0
-	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 17:40:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63D0BA75ABA
+	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 17:57:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 02825188884B
-	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 15:41:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1431C167886
+	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 15:57:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FC751D7989;
-	Sun, 30 Mar 2025 15:40:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72DF419AA5D;
+	Sun, 30 Mar 2025 15:57:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pt/hEDQ3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rvA707m0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3374A4207F;
-	Sun, 30 Mar 2025 15:40:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42080288D2;
+	Sun, 30 Mar 2025 15:57:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743349254; cv=none; b=Aog593xoCMZ08us82r6+NjQtkYNE1ofAE5LUHgjkzikeXgwn+e/kEyh2OttxPY3JncujIhMhe4KKQoHzLlH+AxTtdiIXGycVdHxNhbP70qF4kmC4uXqEEKzRFxEqasTzOSRQnNNZuJhUYrmz1YWCd335vuCYdHDFERIIzVdFRWU=
+	t=1743350251; cv=none; b=SY5z8Et6nutL1QRE2M8TUlFdWEqfWAoRYQRTklIfCaz0NmwqZvS0nKs4T5PWO2fmMD87sHgaBsGudEA4P7uqS2ri2+1d8EP1rcWuqCmmrRjr9XGa2USy+TmCxLI/2naI+6Xk4i9UGw4DcTcaGJTcBK/FRG9jCfEAYmquZ0SEH+E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743349254; c=relaxed/simple;
-	bh=o5SpaTSgYcyYu755v9BC1aVL+t4K3Psl2qRXXbsZIl8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZHCpSKp4BA4Q/oaPIDtcDtkrxevkTYaAhFzbYjF99iqKhdFAGDR8WwRQ0DRv74oegiG6Gbt6lF8zFfa2olrC58aIXX9Uebe+nrJAof9GA85aDRt8GrTK2iRtC2kLGhKSRKoOMzi33mUNPUy9xWKzHX6wMO/WjNNuR11rlxJsPHA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pt/hEDQ3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3951DC4CEE5;
-	Sun, 30 Mar 2025 15:40:44 +0000 (UTC)
+	s=arc-20240116; t=1743350251; c=relaxed/simple;
+	bh=Qz3ZW7jTGwc4+Gke2BBUjYiiNeyI/5IFC3GJNo0RbUA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DIFG9OQBpDkXO6lVc7ag8wSSK8B+s5LCzK+1Ounn4PmAMEAlWvCGzrVwYOJeFFmiIyjIhVMJmIP32pvKNvcYNV541vP5PXtBu7g4KlVx3tOS8ULeh1lCVhQmBLhDK1Jq/qb2cnBK3BTiZkFZ5IpPZLuB1y2cQjuRzSW5bTATBsU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rvA707m0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FF39C4CEDD;
+	Sun, 30 Mar 2025 15:57:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743349253;
-	bh=o5SpaTSgYcyYu755v9BC1aVL+t4K3Psl2qRXXbsZIl8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Pt/hEDQ3T7uoASSHKeq5VFIPYeCRFXiW9HQWb3h72Yybh1rAq8s4kXCyA2Frz+8hR
-	 GnCccz+WNE88w3HLkZgrlX2MYUAhWvkWMubAObRk6Pd5irw50UEN2YjVVeNzOHbQuL
-	 GVoTufodqJAb6abfp87EaYDm2u8nqSFUt6osyttdU46/Jra1LyQY7PhgtLNWok3VWK
-	 whdWpXFabfmtOm7mlDgD9SpjMiadGgAQXqaviPn/BVRybp8Ny3J/h/OGhysT24YEve
-	 6Zjm1uUQKYFq0hvJelUg/0+x8O58SQTD9TUVIcIhTbKGJQZKDXn87zmPLe9Pe1Wf+S
-	 GSTv/fQxu4Avg==
-Date: Sun, 30 Mar 2025 16:40:41 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Pop Ioan Daniel <pop.ioan-daniel@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nuno Sa
- <nuno.sa@analog.com>, Olivier Moysan <olivier.moysan@foss.st.com>, David
- Lechner <dlechner@baylibre.com>, Javier Carrasco
- <javier.carrasco.cruz@gmail.com>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Trevor Gamblin
- <tgamblin@baylibre.com>, Guillaume Stols <gstols@baylibre.com>, Dumitru
- Ceclan <mitrutzceclan@gmail.com>, Matteo Martelli
- <matteomartelli3@gmail.com>, Marcelo Schmitt <marcelo.schmitt@analog.com>,
- Alisa-Dariana Roman <alisadariana@gmail.com>, Ramona Alexandra Nechita
- <ramona.nechita@analog.com>, Thomas Bonnefille
- <thomas.bonnefille@bootlin.com>, Dragos Bogdan <dragos.bogdan@analog.com>,
- <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 4/5] dt-bindings: iio: adc: add ad7405
-Message-ID: <20250330164041.2afe195f@jic23-huawei>
-In-Reply-To: <20250324090813.2775011-5-pop.ioan-daniel@analog.com>
-References: <20250324090813.2775011-1-pop.ioan-daniel@analog.com>
-	<20250324090813.2775011-5-pop.ioan-daniel@analog.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=k20201202; t=1743350250;
+	bh=Qz3ZW7jTGwc4+Gke2BBUjYiiNeyI/5IFC3GJNo0RbUA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rvA707m0DfZeDFLeFidge2igqNYOXK57DryhR8o0B/H2wprw1JS1e08THJhLFub7P
+	 wqQx7phln5sv9ysOU4jkYraut8Oi6s/f6mms1HzRWWtCXBn3k665CJW1faBXMVX1nY
+	 BBrmI6SNSZIidQ+YByeFsHuZmxXkuP1npfoABCfn+xpqesiV+8Jwu19WMvjJxwo67y
+	 bXehi8zrnWNYN0nptvTzt0c/pDOdFhiz90v5pJISA5lvyMb2KkoTmiFC/d1miksrMX
+	 baWRT1v82GzpY9WbvEPZ0SmwvGlByU/yFKiuX7pxSkg6diPTVAxxj18oOm3+1TRxBV
+	 BtnT+5mmopypA==
+Message-ID: <2d2307d9-6a5a-400c-b209-ae2b31ef87b6@kernel.org>
+Date: Sun, 30 Mar 2025 17:57:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/5] ARM: dts: fix faulty ohci/ehci node names
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ linux-arm-kernel@lists.infradead.org
+Cc: Alexey Charkov <alchark@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ Gregory Clement <gregory.clement@bootlin.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-omap@vger.kernel.org,
+ Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
+ Rob Herring <robh@kernel.org>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@lists.linux.dev,
+ Tony Lindgren <tony@atomide.com>, Viresh Kumar <vireshk@kernel.org>,
+ Vladimir Zapolskiy <vz@mleia.com>
+References: <20250330121326.9069-7-wsa+renesas@sang-engineering.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250330121326.9069-7-wsa+renesas@sang-engineering.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Mon, 24 Mar 2025 11:07:59 +0200
-Pop Ioan Daniel <pop.ioan-daniel@analog.com> wrote:
-
-> Add devicetree bindings for ad7405/adum770x family.
+On 30/03/2025 14:13, Wolfram Sang wrote:
+> After I fixed this for the at91-boards I was interested in, I let the
+> scripts run for the other boards, too, of course. Here is the outcome.
+> 49 less dtbs_check errors. Build bots were happy. No dependencies, I
+> suggest sub-trees apply them on their own. Thanks!
 > 
-> Signed-off-by: Pop Ioan Daniel <pop.ioan-daniel@analog.com>
-Hi Pop,
 
-One more trivial thing inline.
-> ---
->  .../bindings/iio/adc/adi,ad7405.yaml          | 68 +++++++++++++++++++
->  1 file changed, 68 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7405.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7405.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7405.yaml
-> new file mode 100644
-> index 000000000000..e312fa0cdb05
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7405.yaml
-> @@ -0,0 +1,68 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright 2025 Analog Devices Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7405.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+For this and the rest patches, I would not call it "fix" in the subject
+because there is no bug to fix here and you just might confuse AUTOSEL.
+What's more backporting this might actually cause regressions, because
+in rare cases node name is an ABI. Therefore avoid calling anything here
+fix.
 
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    adc {
-> +       #address-cells = <1>;
+You just adjust or align them with coding style or what
+bindings/dtschema expect (but it expects due to generic naming
+convention which is still just convention).
 
-Odd alignment going on here. 1 more space I think.
-
-> +        #size-cells = <0>;
-> +        compatible = "adi,ad7405";
-> +        clocks = <&axi_clk_gen 0>;
-> +        vdd1-supply = <&vdd1>;
-> +        vdd2-supply = <&vdd2>;
-> +        io-backends = <&iio_backend>;
-> +    };
-> +...
-> \ No newline at end of file
-
+Best regards,
+Krzysztof
 
