@@ -1,339 +1,157 @@
-Return-Path: <devicetree+bounces-161797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68B68A757F9
-	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 23:10:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60826A75832
+	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 01:27:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 114EC188CBAC
-	for <lists+devicetree@lfdr.de>; Sat, 29 Mar 2025 22:10:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E6889188B484
+	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 00:27:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC8661DF755;
-	Sat, 29 Mar 2025 22:10:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D91A4431;
+	Sun, 30 Mar 2025 00:27:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="AE8ZduE3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vAZcA0ai"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3DAF1B4138;
-	Sat, 29 Mar 2025 22:10:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BD013C3C;
+	Sun, 30 Mar 2025 00:27:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743286214; cv=none; b=ID9TCQxlGG+FrVvxOC4nK1JhFPC7qeOr86tDz8gHNmxA64nJGZImiM0X4EHbliG4peVTZ3eGqbR9joj9BgOXyb4VUlBfBou3Dq9n1RS5dqgtQ9V2lYnA/pWmXS9EmE3I2o2eNG0ha5JnkTsV8rk0rNKuBVPOzw2JUWM9ze/cKy4=
+	t=1743294423; cv=none; b=loA2tENRpCfLwOA2W3UYpmE6Pz/LOeQuxBAr0RbIAkW/ikhwD0FZ4SYtTmIM8jR+iNtDgUSHCVAN/LS5o5BJ3XyloMFa3eveGNEHyps7coKd6v5eC3WBUhYM2qucTENDGXFqbzqc5q0YHhEUOAznHY3MxLFF1ZrTqK9v0zQM1cQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743286214; c=relaxed/simple;
-	bh=pZpq9ghubjJLhD+JS8dYzRXBCv3CK7S4BnH8+Gq+jls=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=eMqzwazn1/sw9/9utOImN+/lWAeWoiUSi0qyPtLDKaUaRwLmjZ0PgFGU+IoiD0D65NsxUXzrV7nk/CikErjK+FAlnM9yDN5G4hkMLJtKFh32UgkK2LOdHlbbNqdQG1Wx8IeAvwVTNJk+6BmPClTpYmxj2eMZEgnFaNocJ5RQbdo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=AE8ZduE3; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2117910290279;
-	Sat, 29 Mar 2025 23:10:06 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1743286209; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=OfWmKzMpdhulgNMGGh3laefwHhLvWPtC8uEl5axzFsw=;
-	b=AE8ZduE3XoX4GiJCzdR+S+uagY3W1crhK/9Od/0Du+QVU4y8VvoDLlYYTDV9kGoIoNpilx
-	WR3M9k1vokP49/Jn1bmr8qz7R86785D0aJ3iKLhYhpS4gtcANNPMRIDso7WMGTKdMOUzX2
-	eO5q4adU7YC7IFkjmcY3sMOEPGgbqou7xoIuZ03aiLgGXXaUuk6FlMNdsGUOYE0+JS9Qgj
-	ncNBLIEhuz2buRy3I6eQinFMApz+GtQm1owfcp97isb/GbKyt6Dv9wIelTUU3mvWvc9H9z
-	O8GLVicWGe3phK+pjb6gV6wvRPH2H+OeHpQEHAjhrxQOJKgreOGqXSy9dYmM3A==
-Date: Sat, 29 Mar 2025 23:10:04 +0100
-From: Lukasz Majewski <lukma@denx.de>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo
- <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
- Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: net: Add MTIP L2 switch description
-Message-ID: <20250329231004.4432831b@wsk>
-In-Reply-To: <e6f3e50f-8d97-4dbc-9de3-1d9a137ae09c@kernel.org>
-References: <20250328133544.4149716-1-lukma@denx.de>
-	<20250328133544.4149716-2-lukma@denx.de>
-	<e6f3e50f-8d97-4dbc-9de3-1d9a137ae09c@kernel.org>
-Organization: denx.de
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1743294423; c=relaxed/simple;
+	bh=hqrM7xNKkgrwmYt3U5EeEy//ier+fwof/YGETEWtSY0=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=IFiviOvKaph7RAKLB7+xjZePkb0Bav4j8yPzbv7Uat9urwnPFFqmtfWbPFTY2eolv12FSlfRiqTCVlsViG2N951kENisjhTWMoKJlApv9G/51n53SQkPhQ1kqCX6aJrYxNd/lHo7vifNU8D16FD8vx4PuX/JIXEI8pevg6iBRSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vAZcA0ai; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F1B5C4CEE2;
+	Sun, 30 Mar 2025 00:27:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743294422;
+	bh=hqrM7xNKkgrwmYt3U5EeEy//ier+fwof/YGETEWtSY0=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=vAZcA0ai3Qulf76VLDmaI5v32TX/eOmRAOqLpxauPWkuiNy5Cw+gflbJcZKrLUJwS
+	 yg1BZs47Pa1N4wOmERYtlakxUtTCV+CfUp217Zx63EQiN9JOPIqpOogW3Lbj2UZakD
+	 KI+ZSwDzJaPanDnMehyP2wZLHqWRbJVCs+XikFs6qoiHfwIWAvJlFW+9o2D73UV/0B
+	 iBMSuYyKUT+TsDrhXuEVDXQ+HZNoSX2McHUH6nFa3OfbqRfztYKInulhG+6Q9p3wMZ
+	 tBujoSoc+pRS4pW6vFgfmyU66/qCzDFIe5q3KxSTzpPPvwiwkiCiQkF97rnHs7XAdE
+	 fufGz7r6HGrNw==
+Date: Sat, 29 Mar 2025 19:27:01 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/GOaK/S/VyPuiJbaUJ6=UdAb";
- protocol="application/pgp-signature"; micalg=pgp-sha512
-X-Last-TLS-Session-Version: TLSv1.3
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Douglas Anderson <dianders@chromium.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Abel Vesa <abel.vesa@linaro.org>, Rui Miguel Silva <rui.silva@linaro.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>, 
+ Simona Vetter <simona@ffwll.ch>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ linux-arm-msm@vger.kernel.org, David Airlie <airlied@gmail.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Johan Hovold <johan@kernel.org>, dri-devel@lists.freedesktop.org
+To: Christopher Obbard <christopher.obbard@linaro.org>
+In-Reply-To: <20250327-wip-obbardc-qcom-t14s-oled-panel-v3-0-45d5f2747398@linaro.org>
+References: <20250327-wip-obbardc-qcom-t14s-oled-panel-v3-0-45d5f2747398@linaro.org>
+Message-Id: <174329418093.2439779.7622824447479032708.robh@kernel.org>
+Subject: Re: [PATCH v3 0/2] Add support for OLED panel used on Snapdragon
+ Lenovo T14s Gen6
 
---Sig_/GOaK/S/VyPuiJbaUJ6=UdAb
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-Hi Krzysztof,
-
-> On 28/03/2025 14:35, Lukasz Majewski wrote:
-> > This patch provides description of the MTIP L2 switch available in
-> > some NXP's SOCs - e.g. imx287.
-> >=20
-> > Signed-off-by: Lukasz Majewski <lukma@denx.de>
-> > ---
-> > Changes for v2:
-> > - Rename the file to match exactly the compatible
-> >   (nxp,imx287-mtip-switch) =20
->=20
-> Please implement all the changes, not only the rename. I gave several
-> comments, although quick glance suggests you did implement them, so
-> then changelog is just incomplete.
-
-Those comments were IMHO addressed automatically, as this time I took
-(I suppose :-) ) better file as a starting point.
-
-To be more specific it was:
-./Documentation/devicetree/bindings/net/ti,cpsw-switch.yaml
-
-as I've been advised to use for the MTIP driver the same DTS
-description as the above one has (i.e. they are conceptually similar,
-so DTS description ABI can be used for both).
-
-I've also checked the:
-make CHECK_DTBS=3Dy DT_SCHEMA_FILES=3Dnxp,imx287-mtip-switch.yaml
-nxp/mxs/imx28-xea.dtb
-
-on Linux next and it gave no errors.
-
->=20
-> > ---
-> >  .../bindings/net/nxp,imx287-mtip-switch.yaml  | 165
-> > ++++++++++++++++++ 1 file changed, 165 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/net/nxp,imx287-mtip-switch.yaml
-> >=20
-> > diff --git
-> > a/Documentation/devicetree/bindings/net/nxp,imx287-mtip-switch.yaml
-> > b/Documentation/devicetree/bindings/net/nxp,imx287-mtip-switch.yaml
-> > new file mode 100644 index 000000000000..a3e0fe7783ec --- /dev/null
-> > +++
-> > b/Documentation/devicetree/bindings/net/nxp,imx287-mtip-switch.yaml
-> > @@ -0,0 +1,165 @@ +# SPDX-License-Identifier: (GPL-2.0-only OR
-> > BSD-2-Clause) +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/nxp,imx287-mtip-switch.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: NXP SoC Ethernet Switch Controller (L2 MoreThanIP switch)
-> > +
-> > +maintainers:
-> > +  - Lukasz Majewski <lukma@denx.de>
-> > +
-> > +description:
-> > +  The 2-port switch ethernet subsystem provides ethernet packet
-> > (L2)
-> > +  communication and can be configured as an ethernet switch. It
-> > provides the
-> > +  reduced media independent interface (RMII), the management data
-> > input
-> > +  output (MDIO) for physical layer device (PHY) management.
-> > + =20
->=20
-> If this is ethernet switch, why it does not reference ethernet-switch
-> schema? or dsa.yaml or dsa/ethernet-ports? I am not sure which one
-> should go here, but surprising to see none.
-
-It uses:
-$ref:=C2=B7ethernet-controller.yaml#
-
-for "ports".
-
-Other crucial node is "mdio", which references $ref: mdio.yaml#
-
->=20
-> > +properties:
-> > +  compatible:
-> > +    const: nxp,imx287-mtip--switch =20
->=20
-> Just one -.
->=20
-
-Ok.
-
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +    description:
-> > +      The physical base address and size of the MTIP L2 SW module
-> > IO range =20
->=20
-> Wasn't here, drop.
->=20
-
-The 'reg' property (reg =3D <0x800f0000 0x20000>;) is defined in
-imx28.dtsi, where the SoC generic properties (as suggested by Andrew -
-like clocks, interrupts, clock-names) are moved.
-
-> > +
-> > +  phy-supply:
-> > +    description:
-> > +      Regulator that powers Ethernet PHYs.
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: Register accessing clock
-> > +      - description: Bus access clock
-> > +      - description: Output clock for external device - e.g. PHY
-> > source clock
-> > +      - description: IEEE1588 timer clock
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: ipg
-> > +      - const: ahb
-> > +      - const: enet_out
-> > +      - const: ptp
-> > +
-> > +  interrupts:
-> > +    items:
-> > +      - description: Switch interrupt
-> > +      - description: ENET0 interrupt
-> > +      - description: ENET1 interrupt
-> > +
-> > +  pinctrl-names: true =20
->=20
-> Drop
-
-The 'pinctrl-names =3D "default";' are specified.
-
-Shouldn't it be kept?
-
->=20
-> > +
-> > +  ethernet-ports:
-> > +    type: object
-> > +    additionalProperties: false
-> > +
-> > +    properties:
-> > +      '#address-cells':
-> > +        const: 1
-> > +      '#size-cells':
-> > +        const: 0
-> > +
-> > +    patternProperties:
-> > +      "^port@[0-9]+$": =20
->=20
-> Keep consistent quotes, either " or '. Also [01]
->=20
-
-[12] - ports are numbered starting from 1.
-
->=20
-> > +        type: object
-> > +        description: MTIP L2 switch external ports
-> > +
-> > +        $ref: ethernet-controller.yaml#
-> > +        unevaluatedProperties: false
-> > +
-> > +        properties:
-> > +          reg:
-> > +            items:
-> > +              - enum: [1, 2]
-> > +            description: MTIP L2 switch port number
-> > +
-> > +          label:
-> > +            description: Label associated with this port
-> > +
-> > +        required:
-> > +          - reg
-> > +          - label
-> > +          - phy-mode
-> > +          - phy-handle
-> > +
-> > +  mdio:
-> > +    type: object
-> > +    $ref: mdio.yaml#
-> > +    unevaluatedProperties: false
-> > +    description:
-> > +      Specifies the mdio bus in the switch, used as a container
-> > for phy nodes. +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +  - clock-names
-> > +  - interrupts
-> > +  - mdio
-> > +  - ethernet-ports
-> > +  - '#address-cells'
-> > +  - '#size-cells'
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include<dt-bindings/interrupt-controller/irq.h>
-> > +    switch@800f0000 {
-> > +        compatible =3D "nxp,imx287-mtip-switch";
-> > +        reg =3D <0x800f0000 0x20000>;
-> > +        pinctrl-names =3D "default";
-> > +        pinctrl-0 =3D <&mac0_pins_a>, <&mac1_pins_a>;
-> > +        phy-supply =3D <&reg_fec_3v3>;
-> > +        interrupts =3D <100>, <101>, <102>;
-> > +        clocks =3D <&clks 57>, <&clks 57>, <&clks 64>, <&clks 35>;
-> > +        clock-names =3D "ipg", "ahb", "enet_out", "ptp";
-> > +        status =3D "okay"; =20
->=20
-> Drop
-
-Ok.
-
->=20
-> > +
-> > +        ethernet-ports {
-> > +                #address-cells =3D <1>;
-> > +                #size-cells =3D <0>; =20
->=20
-> Messed indentation. See example-schema or writing-schema.
->=20
-
-Ok.
-
->=20
->=20
+On Thu, 27 Mar 2025 16:56:52 +0000, Christopher Obbard wrote:
+> The Snapdragon Lenovo T14s Gen6 can be bought with a number of different
+> panels. This patch series adds support for the OLED model which has a
+> Samsung ATNA40YK20 panel.
+> 
+> With this patch series, the backlight of the OLED eDP panel does not
+> illuminate since the brightness is incorrectly read from the eDP panel
+> as 0 (to be clear this is not a regression). This will be fixed in a
+> follow-up patch series as it does not block the device tree patches.
+> 
+> Signed-off-by: Christopher Obbard <christopher.obbard@linaro.org>
+> ---
+> Changes in v3:
+> - Added review trailers from v2.
+> - Dropped dt-binding documentation patch (applied by Douglas Anderson into
+>   drm-misc-next).
+> - Dropped eDP maximum brightness patch (will be sent in separate
+>   series).
+> - Removed duplicate nodes in T14s OLED device tree.
+> - Reworked WIP comments from commit messages.
+> - Link to v2: https://lore.kernel.org/r/20250325-wip-obbardc-qcom-t14s-oled-panel-v2-0-e9bc7c9d30cc@linaro.org
+> 
+> Changes in v2:
+> - Use the existing atna33xc20 driver rather than panel-edp.
+> - Add eDP panel into OLED devicetree.
+> - Add patch to read the correct maximum brightness from the eDP panel.
+> - Link to v1: https://lore.kernel.org/r/20250320-wip-obbardc-qcom-t14s-oled-panel-v1-1-05bc4bdcd82a@linaro.org
+> 
+> ---
+> Christopher Obbard (2):
+>       arm64: dts: qcom: x1e78100-t14s: add hpd gpio to eDP panel
+>       arm64: dts: qcom: x1e78100-t14s-oled: add eDP panel
+> 
+>  .../boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s-oled.dts      |  8 ++++++++
+>  arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi   | 11 +++++++++++
+>  2 files changed, 19 insertions(+)
+> ---
+> base-commit: b6ae34803e82511009e2b78dc4fd154330ecdc2d
+> change-id: 20250320-wip-obbardc-qcom-t14s-oled-panel-b74fed21d600
+> 
 > Best regards,
-> Krzysztof
+> --
+> Christopher Obbard <christopher.obbard@linaro.org>
+> 
+> 
+> 
+
+
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: using specified base-commit b6ae34803e82511009e2b78dc4fd154330ecdc2d
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20250327-wip-obbardc-qcom-t14s-oled-panel-v3-0-45d5f2747398@linaro.org:
+
+arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s-oled.dtb: panel: compatible: 'oneOf' conditional failed, one must be fixed:
+	['samsung,atna40yk20', 'samsung,atna33xc20'] is too long
+	'samsung,atna33xc20' was expected
+	'samsung,atna40yk20' is not one of ['samsung,atna45af01', 'samsung,atna45dc02', 'samsung,atna56ac03']
+	from schema $id: http://devicetree.org/schemas/display/panel/samsung,atna33xc20.yaml#
+arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s-oled.dtb: /soc@0/display-subsystem@ae00000/displayport-controller@aea0000/aux-bus/panel: failed to match any schema with compatible: ['samsung,atna40yk20', 'samsung,atna33xc20']
 
 
 
 
-Best regards,
 
-Lukasz Majewski
-
---
-
-DENX Software Engineering GmbH,      Managing Director: Erika Unter
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
-
---Sig_/GOaK/S/VyPuiJbaUJ6=UdAb
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmfob7wACgkQAR8vZIA0
-zr1dnAf+K8wn68GHQnDP8Ngyr4LbkqtyX9vgW/b3tfNaPTIZkL1lMEUZ2HD2n+yv
-zlFrkNAv/msNWFbZKT/+yFvX3YNPLS0gc8TV0SyMoZ6naIlto86WX8t4qv1pWi6X
-38gwP4DGcCYMSALmPwyn3JH2pOnY7LuGT2GbomsOYfdn8UgjACmHJIVDWyhn/AA3
-cQHdJbFC2p7J+7QFGihcig3Neoepo1vI76sProBWIw7U9dIu+ybP14y5tmBAaxpV
-Urcqt7Wg43hU7HgM27muOk7XFttDbfbt408y//qjkHKdsQehjfJKpT4NKhol0oDK
-baCZykor3+/dSnMz0IhemScHL+k6rw==
-=IoZW
------END PGP SIGNATURE-----
-
---Sig_/GOaK/S/VyPuiJbaUJ6=UdAb--
 
