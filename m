@@ -1,309 +1,175 @@
-Return-Path: <devicetree+bounces-161841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161842-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B293FA75B15
-	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 18:59:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91905A75B1E
+	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 19:03:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5DEF0166D07
-	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 16:59:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0481D3A7BC4
+	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 17:03:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F3D81D7E57;
-	Sun, 30 Mar 2025 16:59:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA5DD1B4138;
+	Sun, 30 Mar 2025 17:03:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="iYWBVoXU"
+	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="gKfMKmWl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F151F3596F
-	for <devicetree@vger.kernel.org>; Sun, 30 Mar 2025 16:59:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7FA535973;
+	Sun, 30 Mar 2025 17:03:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743353967; cv=none; b=uG1CESIKwOZKGD9ULGSIn0Mtd9lS/Su6Ie0rvZ2Tn0pVEbfpHX7lMd1TULKJyvVbOqn6nYvKdYweYs4iOsNlKDvo60JjtgABYqqv7yJolni5iYJA5Rlx4cuejLK0G2oOnVFMhrdll8CJyLj4SSz3qiqLU6rWXX+lx4HENDqFnIc=
+	t=1743354226; cv=none; b=P1oIJdHEvCGFc0U6FgUBs6MvahME3+bB2tVS791Ovz40PN/ahxbAfbfE4lhZ26Rv9pTW0e6GTc97inEz1hJgCQAQ6yYAo7MvrS2AG5wt+ddrWGLEisFCYWPU29cjjpPEJ2nuT79EsT8tR4HcwX3lEtvIBxNJPx6J5OrwOYY4yx0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743353967; c=relaxed/simple;
-	bh=L+Ch126l1E8VN++Dx7jTJTrhsULldQUHnKQy3Ih2m08=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VtcFTzft3onrsYQGyL9P49EqlwxY3prA+hgxjw0jr5a4I5bhrnFQUKhXaFDnAPvfC/d+GrPJ2uS/TQAIWunzvxJ7vCjXAGZw12KR/rpy8WcXF64y+dyNUpYqPkf0R6pYNqGIm0h3f0YqIajGa4xj2EFEATm3WYDzEH4zMmJCc3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=iYWBVoXU; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1743353963;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=o3t3cKdFvQ9kSTO6AkCwvmYi+EYplfurO1UOS5Rdldo=;
-	b=iYWBVoXU6nG0tTObS6zuLPdGl8lDH8o2PCx/xJ+3MC/KE/7hQH6uFH4tFPgobPZhyQe1xb
-	boG3tH5lMAt9VbyuMykqNtsjTqdWA5XOfiRZyN6zQFtJpnj6XT4EWzfLfjUNxrjVFpXllV
-	QzgM6Q0ZKcmeUML/xujsuGw7foKnYko=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-310-cXJ-0MjaPXWPfieKC_vLPA-1; Sun, 30 Mar 2025 12:59:22 -0400
-X-MC-Unique: cXJ-0MjaPXWPfieKC_vLPA-1
-X-Mimecast-MFC-AGG-ID: cXJ-0MjaPXWPfieKC_vLPA_1743353961
-Received: by mail-wm1-f72.google.com with SMTP id 5b1f17b1804b1-43941ad86d4so18579045e9.2
-        for <devicetree@vger.kernel.org>; Sun, 30 Mar 2025 09:59:22 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743353961; x=1743958761;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=o3t3cKdFvQ9kSTO6AkCwvmYi+EYplfurO1UOS5Rdldo=;
-        b=LQ65jL6Y6ikYpmxKNhocYyaaSJrA1jve1Ksmg7O5PJtfmsFU1AFtxPCX3aEs0GxiFI
-         ej3n+KoOrrX0BD9WUj6Ib3Y83Y3PrgVoKejirLbORK807o+6siy5zgDNgFXBy6xwnKXH
-         LeMiIGpFXaWkMxk4y8HEtSA9FCSfB4SdeCc3wG4xiwDU5RzcROKZ+iBU/FmBQm49g8cr
-         LZnj3rlMC1HbO0XODb+UYctjis6SZFN3yqwQb1svUhGVeyPS08lLQPxEnYJLcLKE3422
-         X49KO7fZffcUvf8oXd7NxrQ4TwSjNE43PyZNqUNbJDLm3HaMNFsDAGAIa1G4yE/Cn3YP
-         jP6g==
-X-Forwarded-Encrypted: i=1; AJvYcCWfshr4ksuaKkEy2W58v7pcv1bF3oGG+Jf5uOk/tokFm2L0w5PkoURAym+SqiV7pwRjWLMmo3RE0oeW@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0qLg23ul9MGaICJqI4CBCkFxZv7wYuHKdtDga8YhIZoZOc7g/
-	8l0r+jqb8ZYLLnNEG+AscKUYafflVDiqBMipr+GplNaWugkow2AH11NXdBsl89iUbvsQ8k+1Pnr
-	5rsNobvneB9VmsHLztNYGh+zROjxiDiZOrEFM8JyuPjKKp63tyJ9ROq50X38=
-X-Gm-Gg: ASbGncvNRbIsYz4E+KHHUIu9whgDp1nzg89hSFNh+UT0o5eAHVJqxFXPNhi2XtskpPC
-	4te0GwVCB8ZqLb8XTSGZgxOkAEquqw21VhQPj6vy77DUD8LgtS8RpT2L73OPDfU1TVImU+baiB3
-	hlow0mHTm1AMdZNRYhVlFIw1eactxL5VUixyVXC+9C1iqLNTs7ysOfI7neXvttIYGhy/968GMVe
-	Whvgj6Z+GmCeWh+C1wmG91LCSNPmQ1PmaPLolioIcJY0gQVilxpkRTOKL7ZN9ioblUk+asMzX07
-	kqiT/xWoxw==
-X-Received: by 2002:a05:600c:3b1a:b0:43c:f16a:641e with SMTP id 5b1f17b1804b1-43db61d774emr47821945e9.6.1743353960951;
-        Sun, 30 Mar 2025 09:59:20 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF+p9VLRRjFT3w4qBD/7B0LlHwO9LmFFwBhLcfryqChirTqXeZbU3Dh3SrxX6aYrpGFJgo00w==
-X-Received: by 2002:a05:600c:3b1a:b0:43c:f16a:641e with SMTP id 5b1f17b1804b1-43db61d774emr47821495e9.6.1743353960480;
-        Sun, 30 Mar 2025 09:59:20 -0700 (PDT)
-Received: from redhat.com ([2a0d:6fc0:1517:1000:ea83:8e5f:3302:3575])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d8ff02f9csm97569695e9.26.2025.03.30.09.59.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 30 Mar 2025 09:59:18 -0700 (PDT)
-Date: Sun, 30 Mar 2025 12:59:13 -0400
-From: "Michael S. Tsirkin" <mst@redhat.com>
-To: David Woodhouse <dwmw2@infradead.org>
-Cc: Claire Chang <tientzu@chromium.org>, Rob Herring <robh+dt@kernel.org>,
-	mpe@ellerman.id.au, Joerg Roedel <joro@8bytes.org>,
-	Will Deacon <will@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-	boris.ostrovsky@oracle.com, jgross@suse.com,
-	Christoph Hellwig <hch@lst.de>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	heikki.krogerus@linux.intel.com, peterz@infradead.org,
-	benh@kernel.crashing.org, grant.likely@arm.com, paulus@samba.org,
-	mingo@kernel.org, sstabellini@kernel.org,
-	Saravana Kannan <saravanak@google.com>, xypron.glpk@gmx.de,
-	"Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-	Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-	xen-devel@lists.xenproject.org, Thierry Reding <treding@nvidia.com>,
-	linux-devicetree <devicetree@vger.kernel.org>,
-	linuxppc-dev@lists.ozlabs.org,
-	Nicolas Boichat <drinkcat@chromium.org>,
-	Dan Williams <dan.j.williams@intel.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Greg KH <gregkh@linuxfoundation.org>,
-	Randy Dunlap <rdunlap@infradead.org>,
-	lkml <linux-kernel@vger.kernel.org>,
-	"list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-	Jim Quinlan <james.quinlan@broadcom.com>,
-	Robin Murphy <robin.murphy@arm.com>, hch@infradead.org,
-	Jason Wang <jasowang@redhat.com>,
-	Xuan Zhuo <xuanzhuo@linux.alibaba.com>,
-	Eugenio =?iso-8859-1?Q?P=E9rez?= <eperezma@redhat.com>,
-	virtualization@lists.linux.dev, graf@amazon.de
-Subject: Re: Using Restricted DMA for virtio-pci
-Message-ID: <20250330125637-mutt-send-email-mst@kernel.org>
-References: <20210209062131.2300005-1-tientzu@chromium.org>
- <979b6a34ca5724ced1d4871b58bf227065d7da57.camel@infradead.org>
- <20250321142947-mutt-send-email-mst@kernel.org>
- <d1382a6ee959f22dc5f6628d8648af77f4702418.camel@infradead.org>
- <8e7084b04e5c0456c0ff32ea131a199c6af763cd.camel@infradead.org>
- <20250330093532-mutt-send-email-mst@kernel.org>
- <09fc164ebcfd893ffd67d1b224d6e1c5e5772ee0.camel@infradead.org>
+	s=arc-20240116; t=1743354226; c=relaxed/simple;
+	bh=Ze6HuoEyTm/BvTTgYwOUdaRjH2UGGccUI4uJU+Dt5zI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=d9b077y/CJiA8yhXxzLET9BN8AyFcp35cG+ijT7DKMGtzUyGI1d0QtWPPuKGLCIOz2TKi6CwRRmspMu1+xcUn2mL+71y73gVDCzS5CxQNxFY7DSc/LNkhrrkPgS6jktzHVq3lofOFZvMafXAqaiXAtxZns1J4Co4o8HBiobr4wU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=gKfMKmWl; arc=none smtp.client-ip=5.135.140.105
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1FC4D2FB138;
+	Sun, 30 Mar 2025 19:03:32 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
+	t=1743354216; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=RsOr/ANURuCU8G01zAMiqsy1ztIBZsaa8Cw6aJOzeJ0=;
+	b=gKfMKmWlTLQDHfH9QLJHqd+ppduTiwJkEA6dO/OiUpfibGNn5VQQJUGQeUSNihvsHPUIju
+	dYKDtRl+fIPpmub1qDUcc7A0r76jPiA/ED387ofq16WXF5oY/LrSH8rhWPeowgsbucVP4h
+	+tkh25cMN+ySZzoEwVx4x+VcH4DfcjF8/00DGxkBJb3VNUIvj6k+ipyXvsQjL7raAypo1n
+	h+/7pIYZu2n+9ZomXj7WzVlE+VHJbZ5UMBUs22vpPrg3Vh9D66rLDEM39LNOSQZwa3hKjV
+	1oz6pK5eqfbfQ0KnsbYCxnYGwjJl96BY2ULxwNplloWqJosrG9bb9ab9nx5BDg==
+From: Caleb James DeLisle <cjd@cjdns.fr>
+To: linux-mips@vger.kernel.org
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	benjamin.larsson@genexis.eu,
+	linux-mediatek@lists.infradead.org,
+	Caleb James DeLisle <cjd@cjdns.fr>
+Subject: [PATCH v3 00/10] Add EcoNet EN751221 MIPS platform support
+Date: Sun, 30 Mar 2025 17:02:56 +0000
+Message-Id: <20250330170306.2584136-1-cjd@cjdns.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <09fc164ebcfd893ffd67d1b224d6e1c5e5772ee0.camel@infradead.org>
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Sun, Mar 30, 2025 at 04:07:56PM +0100, David Woodhouse wrote:
-> On Sun, 2025-03-30 at 09:42 -0400, Michael S. Tsirkin wrote:
-> > On Fri, Mar 28, 2025 at 05:40:41PM +0000, David Woodhouse wrote:
-> > > On Fri, 2025-03-21 at 18:42 +0000, David Woodhouse wrote:
-> > > > > 
-> > > > > I don't mind as such (though I don't understand completely), but since
-> > > > > this is changing the device anyway, I am a bit confused why you can't
-> > > > > just set the VIRTIO_F_ACCESS_PLATFORM feature bit?  This forces DMA API
-> > > > > which will DTRT for you, will it not?
-> > > > 
-> > > > That would be necessary but not sufficient. ...
-> > 
-> > could you explain pls?
-> 
-> There was more to that in the previous email which I elided for this
-> followup.
-> 
-> https://lore.kernel.org/all/d1382a6ee959f22dc5f6628d8648af77f4702418.camel@infradead.org/
-> 
-> > > My first cut at a proposed spec change looks something like this. I'll
-> > > post it to the virtio-comment list once I've done some corporate
-> > > bureaucracy and when the list stops sending me python tracebacks in
-> > > response to my subscribe request.
-> > 
-> > the linux foundation one does this? maybe poke at the admins.
-> > 
-> > > In the meantime I'll hack up some QEMU and guest Linux driver support
-> > > to match.
-> > > 
-> > > diff --git a/content.tex b/content.tex
-> > > index c17ffa6..1e6e1d6 100644
-> > > --- a/content.tex
-> > > +++ b/content.tex
-> > > @@ -773,6 +773,9 @@ \chapter{Reserved Feature Bits}\label{sec:Reserved Feature Bits}
-> > >  Currently these device-independent feature bits are defined:
-> > >  
-> > >  \begin{description}
-> > > +  \item[VIRTIO_F_SWIOTLB (27)] This feature indicates that the device
-> > > +  provides a memory region which is to be used for bounce buffering,
-> > > +  rather than permitting direct memory access to system memory.
-> > >    \item[VIRTIO_F_INDIRECT_DESC (28)] Negotiating this feature indicates
-> > >    that the driver can use descriptors with the VIRTQ_DESC_F_INDIRECT
-> > >    flag set, as described in \ref{sec:Basic Facilities of a Virtio
-> > > @@ -885,6 +888,10 @@ \chapter{Reserved Feature Bits}\label{sec:Reserved Feature Bits}
-> > >  VIRTIO_F_ACCESS_PLATFORM is not offered, then a driver MUST pass only physical
-> > >  addresses to the device.
-> > >  
-> > > +A driver SHOULD accept VIRTIO_F_SWIOTLB if it is offered, and it MUST
-> > > +then pass only addresses within the Software IOTLB bounce buffer to the
-> > > +device.
-> > > +
-> > >  A driver SHOULD accept VIRTIO_F_RING_PACKED if it is offered.
-> > >  
-> > >  A driver SHOULD accept VIRTIO_F_ORDER_PLATFORM if it is offered.
-> > > @@ -921,6 +928,10 @@ \chapter{Reserved Feature Bits}\label{sec:Reserved Feature Bits}
-> > >  A device MAY fail to operate further if VIRTIO_F_ACCESS_PLATFORM is not
-> > >  accepted.
-> > >  
-> > > +A device MUST NOT offer VIRTIO_F_SWIOTLB if its transport does not
-> > > +provide a Software IOTLB bounce buffer.
-> > > +A device MAY fail to operate further if VIRTIO_F_SWIOTLB is not accepted.
-> > > +
-> > >  If VIRTIO_F_IN_ORDER has been negotiated, a device MUST use
-> > >  buffers in the same order in which they have been available.
-> > >  
-> > > diff --git a/transport-pci.tex b/transport-pci.tex
-> > > index a5c6719..23e0d57 100644
-> > > --- a/transport-pci.tex
-> > > +++ b/transport-pci.tex
-> > > @@ -129,6 +129,7 @@ \subsection{Virtio Structure PCI Capabilities}\label{sec:Virtio Transport Option
-> > >  \item ISR Status
-> > >  \item Device-specific configuration (optional)
-> > >  \item PCI configuration access
-> > > +\item SWIOTLB bounce buffer
-> > >  \end{itemize}
-> > >  
-> > >  Each structure can be mapped by a Base Address register (BAR) belonging to
-> > > @@ -188,6 +189,8 @@ \subsection{Virtio Structure PCI Capabilities}\label{sec:Virtio Transport Option
-> > >  #define VIRTIO_PCI_CAP_SHARED_MEMORY_CFG 8
-> > >  /* Vendor-specific data */
-> > >  #define VIRTIO_PCI_CAP_VENDOR_CFG        9
-> > > +/* Software IOTLB bounce buffer */
-> > > +#define VIRTIO_PCI_CAP_SWIOTLB           10
-> > >  \end{lstlisting}
-> > >  
-> > >          Any other value is reserved for future use.
-> > > @@ -744,6 +747,36 @@ \subsubsection{Vendor data capability}\label{sec:Virtio
-> > >  The driver MUST qualify the \field{vendor_id} before
-> > >  interpreting or writing into the Vendor data capability.
-> > >  
-> > > +\subsubsection{Software IOTLB bounce buffer capability}\label{sec:Virtio
-> > > +Transport Options / Virtio Over PCI Bus / PCI Device Layout /
-> > > +Software IOTLB bounce buffer capability}
-> > > +
-> > > +The optional Software IOTLB bounce buffer capability allows the
-> > > +device to provide a memory region which can be used by the driver
-> > > +driver for bounce buffering. This allows a device on the PCI
-> > > +transport to operate without DMA access to system memory addresses.
-> > > +
-> > > +The Software IOTLB region is referenced by the
-> > > +VIRTIO_PCI_CAP_SWIOTLB capability. Bus addresses within the referenced
-> > > +range are not subject to the requirements of the VIRTIO_F_ORDER_PLATFORM
-> > > +capability, if negotiated.
-> > 
-> > 
-> > why not? an optimization?
-> > A mix of swiotlb and system memory might be very challenging from POV
-> > of ordering.
-> 
-> Conceptually, these addresses are *on* the PCI device. If the device is
-> accessing addresses which are local to it, they aren't subject to IOMMU
-> translation/filtering because they never even make it to the PCI bus as
-> memory transactions.
-> 
-> > 
-> > > +
-> > > +\devicenormative{\paragraph}{Software IOTLB bounce buffer capability}{Virtio
-> > > +Transport Options / Virtio Over PCI Bus / PCI Device Layout /
-> > > +Software IOTLB bounce buffer capability}
-> > > +
-> > > +Devices which present the Software IOTLB bounce buffer capability
-> > > +SHOULD also offer the VIRTIO_F_SWIOTLB feature.
-> > > +
-> > > +\drivernormative{\paragraph}{Software IOTLB bounce buffer capability}{Virtio
-> > > +Transport Options / Virtio Over PCI Bus / PCI Device Layout /
-> > > +Software IOTLB bounce buffer capability}
-> > > +
-> > > +The driver SHOULD use the offered buffer in preference to passing system
-> > > +memory addresses to the device.
-> > 
-> > Even if not using VIRTIO_F_SWIOTLB? Is that really necessary?
-> 
-> That part isn't strictly necessary, but I think it makes sense, for
-> cases where the SWIOTLB support is an *optimisation* even if it isn't
-> strictly necessary.
-> 
-> Why might it be an "optimisation"? Well... if we're thinking of a model
-> like pKVM where the VMM can't just arbitrarily access guest memory,
-> using the SWIOTLB is a simple way to avoid that (by using the on-board
-> memory instead, which *can* be shared with the VMM).
-> 
-> But if we want to go to extra lengths to support unenlightened guests,
-> an implementation might choose to just *disable* the memory protection
-> if the guest doesn't negotiate VIRTIO_F_SWIOTLB, instead of breaking
-> that guest.
-> 
-> Or it might have a complicated emulation/snooping of virtqueues in the
-> trusted part of the hypervisor so that it knows which addresses the
-> guest has truly *asked* the VMM to access. (And yes, of course that's
-> what an IOMMU is for, but when have you seen hardware companies design
-> a two-stage IOMMU which supports actual PCI passthrough *and* get it
-> right for the hypervisor to 'snoop' on the stage1 page tables to
-> support emulated devices too....)
-> 
-> Ultimately I think it was natural to advertise the location of the
-> buffer with the VIRTIO_PCI_CAP_SWIOTLB capability and then to have the
-> separate VIRTIO_F_SWIOTLB for negotiation... leaving the obvious
-> question of what a device should do if it sees one but *not* the other.
-> 
-> Obviously you can't have VIRTIO_F_SWIOTLB *without* there actually
-> being a buffer advertised with VIRTIO_PCI_CAP_SWIOTLB (or its
-> equivalent for other transports). But the converse seemed reasonable as
-> a *hint* even if the use of the SWIOTLB isn't mandatory.
+EcoNet MIPS SoCs are big endian machines based on 34Kc and 1004Kc
+processors. They are found in xDSL and xPON modems, and contain PCM
+(VoIP), Ethernet, USB, GPIO, I2C, SPI (Flash), UART, and PCIe.
 
-OK but I feel it's more work than you think, so we really need
-a better reason than just "why not".
+The EcoNet MIPS SoCs are divided broadly into two families, the
+EN751221 family based on the 34Kc, and the EN751627 family based on
+the 1004Kc. Individual SoCs within a family are very similar, only
+with different peripherals.
 
-For example, it's not at all clear to me how the ordering is
-going to work if buffers are in memory but the ring is swiotlb
-or the reverse. Ordering will all be messed up.
+This patchset adds basic "boots to a console" support for the EN751221
+family and adds SmartFiber XP8421-B, a low cost commercially available
+board that is useful for testing and development.
+
+Note that Airoha (AN7523, AN7581) is similar to EcoNet in terms of
+peripherals, and for historical reasons Airoha chips are sometimes
+referred to with the EN75xx prefix. However this is a different
+platform because Airoha chips are ARM based.
+
+This patchset is against mips-next.
+
+v2 -> v3
+* econet,en751221-timer.yaml -> Improve code style
+* vendor-prefixes.yaml -> Correct alphabetic order
+* en751221.dtsi
+  - interrupt-controller code style
+  - serial: Explain reason for clock-frequency = <1843200>
+* v3->v3 diff provided for reference
+  - https://gist.github.com/cjdelisle/21c9f0cd225f499bdff3c574c7f185f2
+* CC: linux-mediatek@lists.infradead.org who may be interested.
+
+v1 -> v2
+* Codestyle
+  - Apply codestyle from "The tip tree handbook" and recommendations
+  - Remove "_rai" and "_m" symbol suffixes which are not standard
+* irq-econet-en751221.c
+  - Use cleanup.h _guard() and _free()
+  - Separate irq_domain_ops from irq_chip, eliminating econet_intc struct
+  - Remove irqsave in econet_wreg, irqs are already disabled in mask/unmask
+  - Add explainatory comments
+  - Refactor shadow logic for clarity, e.g. INTC_NO_SHADOW -> NOT_PERCPU
+  - Improve error handling in case of invalid DTS
+* econet,timer-hpt.yaml
+  - Rename to econet,timer-en751221.yaml
+  - Impose rule: "reg" must have 1 item on EN751221 and 2 on EN751627
+* timer-econet-hpt.c
+  - Rename to timer-econet-en751221.c to follow naming scheme from DT
+* econet,en751221-intc.yaml
+  - Fix validation error from required: interrupt-parent
+  - shadow-interrupts -> switch to uint32-matrix for list of pairs
+* MAINTAINERS -> Fixed accidental F: MAINTAINERS
+* Replace "test image" with device SmartFiber-XP8421-B
+* Restructure arch/mips/econet/Kconfig per arch/mips/ralink example
+* v1->v2 diff is offered for reference:
+  - https://gist.github.com/cjdelisle/bb3acab78b5f70dcdfe5dd6338293efe
+
+
+Caleb James DeLisle (10):
+  dt-bindings: vendor-prefixes: Add EcoNet
+  dt-bindings: interrupt-controller: Add EcoNet EN751221 INTC
+  irqchip: Add EcoNet EN751221 INTC
+  dt-bindings: timer: Add EcoNet EN751221 "HPT" CPU Timer
+  clocksource/drivers: Add EcoNet Timer HPT driver
+  dt-bindings: mips: Add EcoNet platform binding
+  mips: Add EcoNet MIPS platform support
+  dt-bindings: vendor-prefixes: Add SmartFiber
+  mips: dts: Add EcoNet DTS with EN751221 and SmartFiber XP8421-B board
+  MAINTAINERS: Add entry for newly added EcoNet platform.
+
+ .../econet,en751221-intc.yaml                 |  78 +++++
+ .../devicetree/bindings/mips/econet.yaml      |  26 ++
+ .../bindings/timer/econet,en751221-timer.yaml |  80 +++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   4 +
+ MAINTAINERS                                   |  12 +
+ arch/mips/Kbuild.platforms                    |   1 +
+ arch/mips/Kconfig                             |  25 ++
+ arch/mips/boot/compressed/uart-16550.c        |   5 +
+ arch/mips/boot/dts/Makefile                   |   1 +
+ arch/mips/boot/dts/econet/Makefile            |   2 +
+ arch/mips/boot/dts/econet/en751221.dtsi       |  67 ++++
+ .../econet/en751221_smartfiber_xp8421-b.dts   |  19 ++
+ arch/mips/econet/Kconfig                      |  48 +++
+ arch/mips/econet/Makefile                     |   2 +
+ arch/mips/econet/Platform                     |   5 +
+ arch/mips/econet/init.c                       |  78 +++++
+ drivers/clocksource/Kconfig                   |   8 +
+ drivers/clocksource/Makefile                  |   1 +
+ drivers/clocksource/timer-econet-en751221.c   | 216 ++++++++++++
+ drivers/irqchip/Kconfig                       |   5 +
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/irq-econet-en751221.c         | 309 ++++++++++++++++++
+ 22 files changed, 993 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/econet,en751221-intc.yaml
+ create mode 100644 Documentation/devicetree/bindings/mips/econet.yaml
+ create mode 100644 Documentation/devicetree/bindings/timer/econet,en751221-timer.yaml
+ create mode 100644 arch/mips/boot/dts/econet/Makefile
+ create mode 100644 arch/mips/boot/dts/econet/en751221.dtsi
+ create mode 100644 arch/mips/boot/dts/econet/en751221_smartfiber_xp8421-b.dts
+ create mode 100644 arch/mips/econet/Kconfig
+ create mode 100644 arch/mips/econet/Makefile
+ create mode 100644 arch/mips/econet/Platform
+ create mode 100644 arch/mips/econet/init.c
+ create mode 100644 drivers/clocksource/timer-econet-en751221.c
+ create mode 100644 drivers/irqchip/irq-econet-en751221.c
 
 -- 
-MST
+2.39.5
 
 
