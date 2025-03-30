@@ -1,206 +1,167 @@
-Return-Path: <devicetree+bounces-161810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49AE8A75989
-	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 12:20:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AE2EA759A0
+	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 12:36:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE80716A493
-	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 10:20:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C0B0188DB0B
+	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 10:37:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 035511C3BF1;
-	Sun, 30 Mar 2025 10:19:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8531B1BEF6D;
+	Sun, 30 Mar 2025 10:36:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="L/GmMel8"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fict1UxL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 183341C173C;
-	Sun, 30 Mar 2025 10:19:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D900A192D83
+	for <devicetree@vger.kernel.org>; Sun, 30 Mar 2025 10:36:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743329988; cv=none; b=unMTAw08c7Lz3QB2cI2wcGRTEB+Eaz4qSaCUqwjb7eBmpK8vK3T7ihHq89xKX50ceUTNq4F4hUKj3rfwuO3FDGUwUsaJ5tlwzMY8eqeweeiLRmp+MqGFR/uLdjK5C6vWcG/nOXU9ZsKdtr2s8dOkuxpTXMUwhQF6gEW9P2zRl7o=
+	t=1743331012; cv=none; b=czJhBx5PwlxzIZvlWXflFMH2O5lHCQMxBr0xnm1ra6Pc+ifvTmmc5E8sJWOmQoAOCnIPptPP9p0BOoVocgUWaGqJo7amE0SZuBd0PF5BKhml4gWEzOqM8tIZ+Slm8MgA16ZI7mz5h2tD0WH9DiHeyLgAbI0f5m15f0+natsdre4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743329988; c=relaxed/simple;
-	bh=zn9UyA2LDVuqsFwfc1V/lCoeKYHU7fxSsHmtJP1x0vw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=TNMw2hZCXsrScz+5TtQHDquppemUGZG2QHCezaZdsMtmFHAekCjbhBk/kQIv1gj+yQYOFl+NTpY1MG39Zc3pAk2KMdQrWeSikWdF2rHBmQQ5IQnn3pedhXD1oPefzcvIERKBTHWd1U12/v/lvxa7MPVB/MjrgRR8GyCEkznyJIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=L/GmMel8; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-ac41514a734so592867066b.2;
-        Sun, 30 Mar 2025 03:19:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1743329984; x=1743934784; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GTtCuTCHRBbsTSs+mYW7dl44DX61rt/HwjLokD2yAew=;
-        b=L/GmMel83BQ7LmJn1vmIa9g0f4qjRStBAJU5vgaYjP3bCRxDSFhn8b4DuOyJAONeFb
-         Tp5FXPo1vlbI7/mPBBDr8/lHQbmqrZvM+sRIdHuluTtpS1msWlQUidpAuZSO90vWRicp
-         6hYzUWFZ8oLp3nM76ngAdgl/du2CI9kYe8hkaLRCDNazFL+D2U87dUTqSxBnPQQ9NaBQ
-         40vGdztIEcPrSADggE1ajs+zZuax8jnbkRwm68+vtVUidfuotv1jEoZoMEtndl3Ur4S2
-         gHK0Bul2v7TO6/l4SxTbLTtVlchUKvC6DcAGHHXYuZHW/shy8JWFy9eeHEfLWCBTPAyv
-         kmlA==
+	s=arc-20240116; t=1743331012; c=relaxed/simple;
+	bh=mlUFJe3hR1t0B6j0kchQ89qEo+mNhs51rs467Dn3d+g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jnpiTBlbzqnQrEKupoNkj7rtNg8un8frqxbK6t93sY9oCjr/HOZbey9ALBaESTge6SY0qz3lzmoy1sRQBPq+MZVp+03H9/MjjupslJ//eFyj8xwdq9O0WIfJTKL4omtTyqqHg3/6ZrkCynDDKdY16lSgCOBhTR5rSHLqYJ3haqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fict1UxL; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52U9ieME002726
+	for <devicetree@vger.kernel.org>; Sun, 30 Mar 2025 10:36:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=fVH5lVnR08zuySJUeq+uoGrf
+	ogdD6s0iW5s7dVDfwco=; b=fict1UxLW9xXrMeULzi7aTNRGiMCuVAdVu2AI9Wn
+	CUxu4l7FL4W0EFMDbbXhPn6J5urF2TJrWPg9ZXdEMOv1j4FffzrXTFn2hcrRGSRD
+	nvNnqa6qPxPf8I/BDwILE1Ndg9CgfpMbLv04a6Sfb8fDUAvbMcEbEN7vL3nLhtpj
+	ENCOEW2H5pvxflIvhNgZvNDJnC0hD77ObAC2z4o9y+L0SXoHcVDm4/Aa/YOQVhKz
+	k/TYfFO4Mb7BGxCMgYhNAIPoAC/NWcIfqaPZ8SC/Xbacvte86MwEbUHlbILZwqUk
+	H2B5pQqDd5jd19wdd9ylTxiUzNh6GdmT5YjIEJAkyF10og==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45p98922d2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sun, 30 Mar 2025 10:36:43 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7c543ab40d3so533138185a.2
+        for <devicetree@vger.kernel.org>; Sun, 30 Mar 2025 03:36:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743329984; x=1743934784;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GTtCuTCHRBbsTSs+mYW7dl44DX61rt/HwjLokD2yAew=;
-        b=pwlP7UeCZoA2emxR2UD+Zx2Hd+QQITtcXnsHkROoyPsU0CXUXuvcRHd7ajlJ49q58r
-         TNNtqD0KLs/sSLuRAU2ZvggwFTMGd+jiXbv1PtHm6svc70lpJA9Rtr8nH2VL3x4pcdZe
-         MAeqnJMGN2XR3SPRPh5sZH8+keU76jm0wEC0fOozbPgBD4b1XLRix3f7+FpRSF++l4CI
-         lb7usC6FjPR56T9FxDmySwdDMppYsu3N+VKIVzJYFkwVeLB89QAbR7HRNxjLzEjqc3jD
-         FPE4lIfGOEt+0aQW9+gFUjfbEyUAsTzN5I0R/H3vlzpRPa/EMTuEiC+wehTtDPVD4A0A
-         ZO+w==
-X-Forwarded-Encrypted: i=1; AJvYcCUgW6G482KmDJ81pQCSUeNZtKu/y3k5jTXiZSIW/YYUJIIMINKbKsJbyHQ0jwneB+TPh5IHI144rpcGkZzJ@vger.kernel.org, AJvYcCUqWJ6ZkYn8eluDNxw4dMHuV/wvHkFdfOGdl1VrWa7/GbVdTrT0nPcKX7n40rlOxqu4RsYyp7N+Ta0=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxoG2j8YVKieprd26z3BDlA78vNlMhqHpSrGhcwyanAgYyADpWE
-	KIY7ZLg81IHtLFfrGC6pGNL/Fo2pj5SZuixF/JPkLfAPtWy+6hqnY3zJCA==
-X-Gm-Gg: ASbGnctMMlJGLDhsgiRbrXLkitJwSzNCQrbRyThJt3HMpt40QnZg03PkZCuwDnYm79w
-	xDTe+WEn2kQL/dR/dD/5FJlvIWERpGydRP92WSiCRUX+TBkB2bURKRPhV32NSfGZNOEQ9z17R/9
-	RSIS66XV3xuIWy1RfvpmCQc6pDtVhSwq/Wbi41EXi4PO6iXvofhwZHbkvGFNMyjoUk8MmmUidvu
-	A99waonyAz/r17alxkIFGTn4bwj2AX+o17404DtFJENYZtRR35bcGnV45MgCbZCeMpsfYTACBS9
-	dh3NIB74ERa58wm7v8E+qj2i6uNnKjORLDo7RqEB7SluuIptEoxNB+z7brkF77WBznNPTy6bPnG
-	Qw/GRVooKyw3MldeTnalUm5YZvfUbgOPzHQ8j1oimKD5TNfEIWifoArntxx2TXuNG9XYI8g==
-X-Google-Smtp-Source: AGHT+IGbom6ukdfm1Iae2/0wZaGQ/AxkHgAV9hqGJorFouonhgJiQTWGpJGqy61Bekd5gx/oqeH0eA==
-X-Received: by 2002:a17:907:720e:b0:abf:7a26:c47e with SMTP id a640c23a62f3a-ac738b61ec5mr447216566b.43.1743329984174;
-        Sun, 30 Mar 2025 03:19:44 -0700 (PDT)
-Received: from localhost.localdomain (dynamic-2a02-3100-ad73-6800-0000-0000-0000-0e63.310.pool.telefonica.de. [2a02:3100:ad73:6800::e63])
-        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-ac71922bb65sm459288866b.34.2025.03.30.03.19.41
+        d=1e100.net; s=20230601; t=1743331003; x=1743935803;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fVH5lVnR08zuySJUeq+uoGrfogdD6s0iW5s7dVDfwco=;
+        b=tbQnrJzCNfXcnIReUGfdxWJf4tXn6EVhZkxRRHZc1DPVSXAh5sHtwe0n/ydED2nYsI
+         vuN8+xoaHCLH30OtWA6IzoKzlQCyP5CkVb2T3RQBSoC8me+guYgxj6/Pn8YhrnyBB0cI
+         6oJCSI7U6a7qtFtuj7UfZsVik+iviZKZ5kJOaSpP5t7DTYbXBEu6aJgWdsGDUVr3z2Jc
+         CT7YB4PLNI2VIQFRrftZY70tJWehKWG4su+R9nUzkPf5pH7Z2z6Bx4d7DAYwZfae6kbf
+         3YWXvei3UUYrUbvTrKrDiFMS8fu1PFcO7NXRCJCAL730dhrlENE/wkJMbf516gf71hJE
+         CPfw==
+X-Forwarded-Encrypted: i=1; AJvYcCWSTsTZB6c2yw+zmVW5GOLifkvW/7mbd4kklHM1jdJ48LE+GAbFsMNbDkd6fHSimg+NzPFRxh3+v0HW@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0Vjptoavdji+X3WCSKSX7mBDwqx9g8VRQdrMNiHDP8X2ISKqH
+	jYyicInK2wamOM+P6StWKkmPeDK+KyPk0R15L5YWm2vHr458EUsAbJ2lqQPRWgxakhrkqjNSpyb
+	VwX4ZIS440dlrmaTazT//24eFlXTNDhB033pxhVsnrIn/7vpbBMSXjDhb7JGr
+X-Gm-Gg: ASbGnctX/LllhYmZpbetlkZcFdUXR9B/HDpvkMSOBHnEC4FfU6mXFVYSu8ybzj+R5nh
+	bxLq/mzY7jjfgn9W3U6Q5CdO1tLvoxTzvszrj/oqqN4ngZU6h1bzgMx8ypTAeDcVtzJzrhU56pS
+	vcgM0O8jTjKR5gTc0htRaodl7H64Vw83znHm1FrvBGOx6eKohr3IQ4oUiA8ggRtn6j7IcY81hNP
+	37Z5PtF6XUZu4TQaPIWD7OcqlgZUuBypWp+nT4IyQrXh0M9vWy4T0rwZHMihehPJh1GTuGyLFV3
+	WXZiv9b5961NDIg7NobG+emGFYUnOvehmcywAQ6eOkQmLUEPFOc30tPPD4Xr1JuTIpGirZj2L6h
+	JJdg=
+X-Received: by 2002:a05:620a:394a:b0:7c0:c469:d651 with SMTP id af79cd13be357-7c6908950bcmr823933185a.57.1743331003094;
+        Sun, 30 Mar 2025 03:36:43 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEBtS6gPnV+Pz3tdsrxXFX0gc/+BT66q02s4zf4BNLAjJe/IVitafLnQPXX0a4yMcsExGqSNg==
+X-Received: by 2002:a05:620a:394a:b0:7c0:c469:d651 with SMTP id af79cd13be357-7c6908950bcmr823930385a.57.1743331002525;
+        Sun, 30 Mar 2025 03:36:42 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54b0959150csm848746e87.187.2025.03.30.03.36.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 30 Mar 2025 03:19:42 -0700 (PDT)
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: linux-amlogic@lists.infradead.org,
-	linux-iio@vger.kernel.org
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	gnstark@salutedevices.com,
-	jic23@kernel.org,
-	lars@metafoo.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	christianshewitt@gmail.com,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [PATCH v2 2/2] iio: adc: meson: add support for the GXLX SoC
-Date: Sun, 30 Mar 2025 12:19:22 +0200
-Message-ID: <20250330101922.1942169-3-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250330101922.1942169-1-martin.blumenstingl@googlemail.com>
-References: <20250330101922.1942169-1-martin.blumenstingl@googlemail.com>
+        Sun, 30 Mar 2025 03:36:40 -0700 (PDT)
+Date: Sun, 30 Mar 2025 13:36:37 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Ayushi Makhija <quic_amakhija@quicinc.com>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robdclark@gmail.com, dmitry.baryshkov@linaro.org, sean@poorly.run,
+        marijn.suijten@somainline.org, andersson@kernel.org, robh@kernel.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org, konradybcio@kernel.org,
+        conor+dt@kernel.org, andrzej.hajda@intel.com,
+        neil.armstrong@linaro.org, rfoss@kernel.org,
+        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+        jernej.skrabec@gmail.com, quic_abhinavk@quicinc.com,
+        quic_rajeevny@quicinc.com, quic_vproddut@quicinc.com,
+        quic_jesszhan@quicinc.com
+Subject: Re: [PATCH v2 07/10] arm64: dts: qcom: sa8775p-ride: add anx7625 DSI
+ to DP bridge nodes
+Message-ID: <mki4de5adulxmmpi756bi5frnsa5yx2ng2vh22q7sz6ijsc5kw@oyvb5xuu547c>
+References: <20250311122445.3597100-1-quic_amakhija@quicinc.com>
+ <20250311122445.3597100-8-quic_amakhija@quicinc.com>
+ <20250312-athletic-cockle-of-happiness-e88a3a@krzk-bin>
+ <d64bf3b3-7c4d-490e-8bd7-1ad889aa7472@quicinc.com>
+ <4aebd1f6-5098-4548-adae-843db8f45aa5@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4aebd1f6-5098-4548-adae-843db8f45aa5@kernel.org>
+X-Authority-Analysis: v=2.4 cv=fIk53Yae c=1 sm=1 tr=0 ts=67e91ebc cx=c_pps a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=UXIAUNObAAAA:8 a=J_IFRixHdDkWMPCtAZcA:9 a=CjuIK1q_8ugA:10 a=bFq2RbqkfqsA:10
+ a=IoWCM6iH3mJn3m4BftBB:22 a=a1s67YnXd6TbAZZNj1wK:22
+X-Proofpoint-GUID: jH_llsd7sFkvyqMLD6Izc9RlTeUAjlgc
+X-Proofpoint-ORIG-GUID: jH_llsd7sFkvyqMLD6Izc9RlTeUAjlgc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-30_05,2025-03-27_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ impostorscore=0 mlxscore=0 adultscore=0 phishscore=0 suspectscore=0
+ mlxlogscore=801 clxscore=1015 lowpriorityscore=0 spamscore=0
+ priorityscore=1501 bulkscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502280000 definitions=main-2503300072
 
-The SARADC IP on the GXLX SoC itself is identical to the one found on
-GXL SoCs. However, GXLX SoCs require poking the first three bits in the
-MESON_SAR_ADC_REG12 register to get the three MPLL clocks (used as clock
-generators for the audio frequencies) to work.
+On Fri, Mar 28, 2025 at 03:28:20PM +0100, Krzysztof Kozlowski wrote:
+> On 13/03/2025 13:10, Ayushi Makhija wrote:
+> 
+> ...
+> 
+> > 
+> >> +
+> >> +			anx_bridge_1: anx7625@58 {
+> > 
+> > Node names should be generic. See also an explanation and list of
+> > examples (not exhaustive) in DT specification:
+> > https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> > 
+> > In this I have changed the node name as anx_bridge1 : anx7625@58.
+> 
+> Except that it is difficult to understand what is what, let's recap.
+> 
+> Original code was:
+> 	anx_bridge_1: anx7625@58 {
+> 
+> You said you changed it to:
+> 
+> 	anx_bridge1 : anx7625@58.
+> 
+> and now I give my offer: I offer to buy a beer (or tee/coffee/juice) to
+> anyone who will spot the difference(s) between these two node names,
+> IOW, tell me what changed here.
 
-The reason why there are MPLL clock bits in the ADC register space is
-entirely unknown and it seems that nobody is able to comment on this.
-So clearly mark this as a workaround and add a warning so users are
-notified that this workaround can change (once we know what these bits
-actually do).
+Ayushi: mediatek DT are a bad example here. Please use bridge@58 as node
+name.
 
-Tested-by: Christian Hewitt <christianshewitt@gmail.com>
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/iio/adc/meson_saradc.c | 34 ++++++++++++++++++++++++++++++++++
- 1 file changed, 34 insertions(+)
+> 
+> Best regards,
+> Krzysztof
 
-diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-index 997def4a4d2f..c0f2a2ef0c68 100644
---- a/drivers/iio/adc/meson_saradc.c
-+++ b/drivers/iio/adc/meson_saradc.c
-@@ -160,6 +160,11 @@
- 	#define MESON_SAR_ADC_REG11_EOC				BIT(1)
- 	#define MESON_SAR_ADC_REG11_VREF_SEL			BIT(0)
- 
-+#define MESON_SAR_ADC_REG12					0x30
-+	#define MESON_SAR_ADC_REG12_MPLL0_UNKNOWN		BIT(0)
-+	#define MESON_SAR_ADC_REG12_MPLL1_UNKNOWN		BIT(1)
-+	#define MESON_SAR_ADC_REG12_MPLL2_UNKNOWN		BIT(2)
-+
- #define MESON_SAR_ADC_REG13					0x34
- 	#define MESON_SAR_ADC_REG13_12BIT_CALIBRATION_MASK	GENMASK(13, 8)
- 
-@@ -326,6 +331,7 @@ struct meson_sar_adc_param {
- 	u8					cmv_select;
- 	u8					adc_eoc;
- 	enum meson_sar_adc_vref_sel		vref_voltage;
-+	bool					enable_mpll_clock_workaround;
- };
- 
- struct meson_sar_adc_data {
-@@ -995,6 +1001,15 @@ static int meson_sar_adc_init(struct iio_dev *indio_dev)
- 				    priv->param->cmv_select);
- 		regmap_update_bits(priv->regmap, MESON_SAR_ADC_REG11,
- 				   MESON_SAR_ADC_REG11_CMV_SEL, regval);
-+
-+		if (priv->param->enable_mpll_clock_workaround) {
-+			dev_warn(dev,
-+				 "Enabling unknown bits to make the MPLL clocks work. This may change so always update dtbs and kernel together\n");
-+			regmap_write(priv->regmap, MESON_SAR_ADC_REG12,
-+				     MESON_SAR_ADC_REG12_MPLL0_UNKNOWN |
-+				     MESON_SAR_ADC_REG12_MPLL1_UNKNOWN |
-+				     MESON_SAR_ADC_REG12_MPLL2_UNKNOWN);
-+		}
- 	}
- 
- 	ret = clk_set_parent(priv->adc_sel_clk, priv->clkin);
-@@ -1219,6 +1234,17 @@ static const struct meson_sar_adc_param meson_sar_adc_gxl_param = {
- 	.cmv_select = 1,
- };
- 
-+static const struct meson_sar_adc_param meson_sar_adc_gxlx_param = {
-+	.has_bl30_integration = true,
-+	.clock_rate = 1200000,
-+	.regmap_config = &meson_sar_adc_regmap_config_gxbb,
-+	.resolution = 12,
-+	.disable_ring_counter = 1,
-+	.vref_voltage = 1,
-+	.cmv_select = true,
-+	.enable_mpll_clock_workaround = true,
-+};
-+
- static const struct meson_sar_adc_param meson_sar_adc_axg_param = {
- 	.has_bl30_integration = true,
- 	.clock_rate = 1200000,
-@@ -1267,6 +1293,11 @@ static const struct meson_sar_adc_data meson_sar_adc_gxl_data = {
- 	.name = "meson-gxl-saradc",
- };
- 
-+static const struct meson_sar_adc_data meson_sar_adc_gxlx_data = {
-+	.param = &meson_sar_adc_gxlx_param,
-+	.name = "meson-gxlx-saradc",
-+};
-+
- static const struct meson_sar_adc_data meson_sar_adc_gxm_data = {
- 	.param = &meson_sar_adc_gxl_param,
- 	.name = "meson-gxm-saradc",
-@@ -1298,6 +1329,9 @@ static const struct of_device_id meson_sar_adc_of_match[] = {
- 	}, {
- 		.compatible = "amlogic,meson-gxl-saradc",
- 		.data = &meson_sar_adc_gxl_data,
-+	}, {
-+		.compatible = "amlogic,meson-gxlx-saradc",
-+		.data = &meson_sar_adc_gxlx_data,
- 	}, {
- 		.compatible = "amlogic,meson-gxm-saradc",
- 		.data = &meson_sar_adc_gxm_data,
 -- 
-2.49.0
-
+With best wishes
+Dmitry
 
