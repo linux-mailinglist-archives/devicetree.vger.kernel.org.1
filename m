@@ -1,129 +1,102 @@
-Return-Path: <devicetree+bounces-161822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFED7A75A58
-	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 16:33:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B89FA75A71
+	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 16:58:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED00F1888A7C
-	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 14:33:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 010053A8BCD
+	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 14:58:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 797D96A009;
-	Sun, 30 Mar 2025 14:33:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A8D01C3314;
+	Sun, 30 Mar 2025 14:58:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j3yhVuzY"
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="YXHdOX+6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C85F646B5;
-	Sun, 30 Mar 2025 14:33:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ADC146B5;
+	Sun, 30 Mar 2025 14:58:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743345182; cv=none; b=U8UBREV+OmM+ApmV1Eiyp/8e2Vyv5lVlailO/9EUWOhSo245r2QtWgm1VDnmrzOoa2WVaxLwWBCUWoXLw2vuNZxnD96yUwTeacrCtlZrMjqSuCZN/lvSAOWJ649+Mfbzz3iktPsOmLP6rRAO0FCKw6SOjsoT8BWhrQyUZul1bqg=
+	t=1743346707; cv=none; b=SEu/AXv4A31W+7neATOJvT803H8DUI0X8JV5rLm9cTaGac6NU+4crVDuMAoVzDPKV+2Cl7tgR+qzwHvROZuSRb+BojXnafvAuaiaPPO/WhezSkHfFR0gIAbjs3ICMHeDNKdySLj4CzAu8AyXbJzSnrhJ+eGSBFQQ0F/c5jszBso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743345182; c=relaxed/simple;
-	bh=c2+wWjdujv3UHeuwB5Y44qeQdzTMiNxOlvXMxrg+ClE=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=jqde2deeGSpt4kuHaUgeHOjyJ1whENl+jdzbu+amCcUxB8xasA0K7UPRETGGTXfVAJ7QVOWqM77nY9zu5KJG0viAN17GW2Es5k71GqtF1u1jzFVZ5SKPmISB5Qp3rToDLZ3KBv3Hx0X55afH8DoLYYYcG0kDtZYrxDukWYJR2D0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j3yhVuzY; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4394a823036so35389825e9.0;
-        Sun, 30 Mar 2025 07:33:00 -0700 (PDT)
+	s=arc-20240116; t=1743346707; c=relaxed/simple;
+	bh=vdOAGHLxbMItBbiFY9iHNCWbLYXgDn4DhPnj7HUrDgc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=G5dMUrooO9igmZASP9QCVrPA1dRSjrga840gvN7xaH7ZosC0rQ9DLJDxDCmwSrjVNvfw7ooKDJFYrJUBmKEKqjxobiz7r1aJR39vH5ET1BPehNC9FLeFEZnFOVnaCbQHe4ywj13Q/lt50BlK8udjSSqtcO8wwBYZGdBUwh6O2rA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=YXHdOX+6; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-224019ad9edso41689165ad.1;
+        Sun, 30 Mar 2025 07:58:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743345179; x=1743949979; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=KDZlBB97sXiBRPJPnnCLtIfRcmpHR+yPzooZ+KfqlxA=;
-        b=j3yhVuzYrt/Y8tRzQ16JcBYm4NQgpm0ip3vFPBKyUWHfIVSoOfSp5rkUn2a+yiEFua
-         2+H+HKVa0aMRy6Jsb6FuMyQxQhKqe5swid0Al3f7yd5icouR/WtuX6qmbh0oXrkzGJMz
-         0IH5pdZqhxHLDHXZZlyIk+OPIcxwFDaK0QTpmDV1mOLMlZ+56PWNsxjOSCtIxOxsV7nx
-         6YdLum0IHRUtAKEMhDSItIj5fMkSmLbo8PbbEieDXgAvgkbs1mrv8Y0LELsVVurhWQ1E
-         1znYAXf+D7WzbwL6mFC1LLpW7dae2pEgQCgc1y963LDKADaL09CejUkQaazHo+m4uXgA
-         vfpA==
+        d=googlemail.com; s=20230601; t=1743346706; x=1743951506; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vdOAGHLxbMItBbiFY9iHNCWbLYXgDn4DhPnj7HUrDgc=;
+        b=YXHdOX+6f5Py+CMrGnjh0G4TQ4y9bcnHkDKpYsxSvmv/K8H4d9a0+BNX9nWySwdO0e
+         0F/B39vQ+XASuaUlnKbAUYKb8pNPEGHEyOs1FrV86/QuXayBIZIkOha8rs5dkrLtiwvW
+         FHNLTlAQoqXFvzV8xVwOp0AptNkOVwrlIJyxvFuxVJDKUyc3DvxqBs0aA7dB39Nt8Vmb
+         FaWeat7nm7ABWPhuv8rrKJQsq5lTNdkE1aCoy77zwfxwtQVE/DS+rBhYMHkU5IOPSybw
+         5jqnNKl4TiTB2fbk8A++wPCQEIOl7pa+gGh4WM7dwm4hhKPjPtvLA/Y+I1K6rNAHDJam
+         /fxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743345179; x=1743949979;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KDZlBB97sXiBRPJPnnCLtIfRcmpHR+yPzooZ+KfqlxA=;
-        b=P3QqzgYNQf95YK1RxTXrJuvMi1+mslAwye+0MdHVIFNUO4n/qubVL908XGZtRQiofL
-         CRyz3J3+jr3sptz1AHYN3ewl99QqAdTBZcCtIUzP4IK6wbT91Ci6j/M+O21JTJxlq499
-         pXA2lTSRLKnC8FdjoRIlSx3PzE7V2Px8nskJOh6T9KSbUao5CnWwtAEc82gvJLspxWok
-         RyEx1crZyBt+qQNoL4Q6byH6oMke1j17tVE59Vqm96dTl9/JdVOJgiZ1NUVjBmSj+vCS
-         n2JcPR3UY6H9cYsNAd+egkAi7l6hcCu1FO8bFZ9WNAa1H0j5rX/s3am0jVufxzjH7QQm
-         dZ6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUJXq+Rccur2AHvvCd8+0J1yqRdpG8amFmnYeDHovFfog0Y4rNO59LXL+gdm6NjMS5q0A+oyoe3Ua1x@vger.kernel.org, AJvYcCX4y5kRg9SBn+l4a3jCyHJe0NcLop9jzyrG7L4tkRes/TUN7RaMLFqE01IMmgsbHXofvDxmZ/lUl9DPuAV7@vger.kernel.org
-X-Gm-Message-State: AOJu0YwMssuUtX1ADCju0PPrb9wtnCKZhlD9lJ0GeoSITDasaGoPHtQ/
-	NkeK9lkIT0F8A08fvWk1GbFbmcaLJDsJWB3WC6K983jRw+vjta8J
-X-Gm-Gg: ASbGncsZ/8Ljc9M89rw/CMsgPsTZ/AzX7wogyHLnnpGBqx8CubPqhFzcKf38pAO6Uqq
-	8QwRVUnXGZpwlt6wIkN1avy6ebEkxMrw1u1D/q7vAqOaKxqcWaZxn6LQBuOc1M5jO6wmYliRrYn
-	FoEjvl0OIP8q7qXJdSaTC66ZFF+KV+zRZ51R/jgGmYaHQ/DUgAzvXn8y0+HBthdAp7tFcBRjjDg
-	xHQM5POPEGTPdlr+Hxe0MKO1yr1SkKhyaLTQiqYD498gwq064CTbHDwItzl+RI0EhjfbXQF0U5X
-	uzoX6bra1ihjWD6NlD4vPJs1NzMQns4g0PpWZLXgFjce3EvsOoDd7fQNGZHj
-X-Google-Smtp-Source: AGHT+IHaSWu6Z+1rDc9SQC310UBhA6tjaaU882YzdNUAhxmwTHuuOQ3qnc1Sxxt+8NnSRPc5mpgrvg==
-X-Received: by 2002:a05:600c:1f10:b0:43c:f8fc:f6a6 with SMTP id 5b1f17b1804b1-43e8e3cf6d0mr45291815e9.9.1743345178939;
-        Sun, 30 Mar 2025 07:32:58 -0700 (PDT)
-Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39c0b66363fsm8999934f8f.36.2025.03.30.07.32.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 30 Mar 2025 07:32:58 -0700 (PDT)
-From: Christian Hewitt <christianshewitt@gmail.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH] arm64: dts: amlogic: gxlx-s905l-p271: add saradc compatible
-Date: Sun, 30 Mar 2025 14:32:54 +0000
-Message-Id: <20250330143254.3159519-1-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20230601; t=1743346706; x=1743951506;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vdOAGHLxbMItBbiFY9iHNCWbLYXgDn4DhPnj7HUrDgc=;
+        b=U0uca130+ZCnEDmbWMLWA4W9pFHF7RMcX16fOb3skJEyq/2xMiRfFk8O9WbVh9J781
+         j1QaBCd4m6YjZvsYL2q4CcYDio+RcoaVI2JFfs1FoO0uL59Z3QNNHUIX4mCb3aY1KYeD
+         MFNCy4hl5UG9JF/oJaOjjzDTpBZRgOZDMC5nv4xIoPMCZmS/zPfG+nn+qm/rouVj0orU
+         6vWPgFJu8gmOW3TeblsJs/L1S1tF90OuNjie8ag0oZsgoRjmKQhyjFPL6LDt+h9En4K/
+         +ZmLqxwpvB2KlQxMHRZ3e7+HppQvLRLoGjBQuFQDkesnQVMW2Iqlezdvfu6AqjeKb6ne
+         xR4w==
+X-Forwarded-Encrypted: i=1; AJvYcCUDuj6WuF6umxz0Mo/vz4ZNULmHRLjgDW5Gj/2cHrvuz744kE3YzeJPHkiZtzS9XOKgjQ4Fq2fKJmQk@vger.kernel.org, AJvYcCUbMBNAx8qGv87U+nF8wQkxQUoADvRNkkBysqVeKcNLfufN/gOYlKWa5vaN8nm6IrgDl1ojUo7+0nZ1wfCq@vger.kernel.org
+X-Gm-Message-State: AOJu0YwLw0HVaz3Ww4hWg5dYBifMQCJ8QLrHMT4z/139023NGDKCl2AG
+	b64JJi9p8QPIACcEfaGMet8W46tx08noa1ynxXRNNp/p1puzli1SYGhDGW/511n06CSsgAHoqlE
+	5iUY6GTR6GiCQpegEHXavKWfGlTs=
+X-Gm-Gg: ASbGncsm9+uQ7oHfsu9ULy3Ua4kp9Augb9Wag4BSfWJFzgZWnnRr/MDXcgetEqYpA9O
+	73Ade6hmOZJn0A+Ax0ktzi+QopOT/+Yw37VJQb3kou1lPWmwnseF97Joo0POcYRYHOZmesRshP1
+	DBDtrCWwPFgCllCZkJG4pJ1HXGxxQd2/ffAkHjdrq7rCUIpc0RiIg=
+X-Google-Smtp-Source: AGHT+IG4Jkc9gXUSv+wEsEX6SgVo8adn3w5Ep79nMPuvu1HAehPF+DyxWNUs1H80EL5KcTcYImCxJs06lxOsr3L3jDQ=
+X-Received: by 2002:a17:903:1c1:b0:224:a79:5fe9 with SMTP id
+ d9443c01a7336-2292f975394mr94533925ad.30.1743346705656; Sun, 30 Mar 2025
+ 07:58:25 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250330143254.3159519-1-christianshewitt@gmail.com>
+In-Reply-To: <20250330143254.3159519-1-christianshewitt@gmail.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sun, 30 Mar 2025 16:58:14 +0200
+X-Gm-Features: AQ5f1JqLwUBn_vStmnEBY5lsQvrYI65RiuPeP7Vq4pNLt0KL_i30X5OO_dk1zJQ
+Message-ID: <CAFBinCA87aJvLhsEm0-YeaAKy22LpviZZ2AA_FSD-XSPtDXm4w@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: amlogic: gxlx-s905l-p271: add saradc compatible
+To: Christian Hewitt <christianshewitt@gmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add the saradac node using the meson-gxlx-saradc compatible to ensure
-MPLL clocks are poked and audio output is enabled on the p271 (S905L)
-board.
-
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
-The meson-gxlx-saradc compatible is now merged via the IIO tree, see [0].                                   
-
-[0] https://patchwork.kernel.org/project/linux-amlogic/cover/20250330101922.1942169-1-martin.blumenstingl@googlemail.com/
-
- arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dts | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dts b/arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dts
-index 942df754a0ed..1221f4545130 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dts
-@@ -38,6 +38,10 @@ mali: gpu@c0000 {
- 	};
- };
- 
-+&saradc {
-+	compatible = "amlogic,meson-gxlx-saradc", "amlogic,meson-saradc";
-+};
-+
- &usb {
- 	dr_mode = "host";
- };
--- 
-2.34.1
-
+On Sun, Mar 30, 2025 at 4:32=E2=80=AFPM Christian Hewitt
+<christianshewitt@gmail.com> wrote:
+>
+> Add the saradac node using the meson-gxlx-saradc compatible to ensure
+> MPLL clocks are poked and audio output is enabled on the p271 (S905L)
+> board.
+>
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
