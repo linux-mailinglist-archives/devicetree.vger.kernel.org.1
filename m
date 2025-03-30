@@ -1,236 +1,170 @@
-Return-Path: <devicetree+bounces-161853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D5C7A75B46
-	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 19:07:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16335A75B5E
+	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 19:22:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3464B188C2EA
-	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 17:07:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78E0B3A8AFC
+	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 17:22:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 148611DC07D;
-	Sun, 30 Mar 2025 17:07:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CBE31922F4;
+	Sun, 30 Mar 2025 17:22:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="gnsH83w+"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="RJa85vAo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 320A935973
-	for <devicetree@vger.kernel.org>; Sun, 30 Mar 2025 17:06:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B533D1DA4E
+	for <devicetree@vger.kernel.org>; Sun, 30 Mar 2025 17:22:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743354420; cv=none; b=AhF+v8a/iJW+cNo+HKpVBqCFyK/wu75bxeCuBSWj5Hjv2hTg1HPcIN70VJ9GQA1aK+/XgG4thK+cltWYk73m8SX5msV8iG76+6J7DxDC+3NUd0yn78hux73gIYen11tQnMHVGk6mB78aoBdXVQfXbvhqvhnPZU9lrcEEESpZHvs=
+	t=1743355344; cv=none; b=kPtY5uJfixN9g5FG8F1j1Li3icLSpSnGbLl17wXGP4m6vugcQ26PLcgCfx0DK7b67ayBmxqaGH8aLtjnwGotMOopET6bELuR38vJ+uGEwPkdU5TE7gr+MvbdQAyFDb4r/ej845eVOmWZn8kIGBuN+0YM1FfotCUKt/GgX6xCMhg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743354420; c=relaxed/simple;
-	bh=5UmCN6T9Cr1gCtDDz08QVciKcS4TNX6bP4xhWdD/03c=;
+	s=arc-20240116; t=1743355344; c=relaxed/simple;
+	bh=JW7Tzbq0ChBNWMM0495c3hXOPTiCIY5D51ufU14wtxc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=utV8NAlfgCb3ObuiTmo1oKtVT3Xh5j0ANR5yvcwNfHPAPwoyswWoBj9xalwVQbqqVwjqt639ewaia9os4EqEZ7FVgWaC5znOt8+tuZcv4iMXiVdytkxP2/5hUEks6aO8roO+Ev4OrtqnH8YYYCRbQlwyUQbOVJ6gexK6nkywKIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=gnsH83w+; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1743354416;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Q3mk6TbPcxIg/goVXurjT8cjd9wFt7uMusUUceOMSw4=;
-	b=gnsH83w+LEvnz/9UzYJxOSwl0DD3U4YQF62i+QZPC3hocp/LTC5bu5oMMAiWKKf3auiR5M
-	SOybO3X3P5MLBzWwLubmq/5bZB5tTHSEGiMj2hsfC2fXyPQbZuAtjqeu1U6nzZdq7CPyWA
-	mmdqmcvS7lkNSuVxJ/T3JfoEEIzoeQU=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-84-McZSwVY9M9GS2Om2AKjhNg-1; Sun, 30 Mar 2025 13:06:55 -0400
-X-MC-Unique: McZSwVY9M9GS2Om2AKjhNg-1
-X-Mimecast-MFC-AGG-ID: McZSwVY9M9GS2Om2AKjhNg_1743354414
-Received: by mail-wm1-f72.google.com with SMTP id 5b1f17b1804b1-43d51bd9b41so33281455e9.3
-        for <devicetree@vger.kernel.org>; Sun, 30 Mar 2025 10:06:55 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=cuVl3iOfhQshvSbTIUh8IbsEHit1NzHW0zYBjRl32Qfap8M3wkQQv0pvFCIF6e3xLau+LsmlMIsHgclawH8gkHmMlopCT9H3dYd6bulH0sQ01PPtreOahJY2OEjFFFhWzRQGZKxLI/Y7BeUGKoOSEp0qX728qygjjQL3mVcLFpM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=RJa85vAo; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52UDRqec019183
+	for <devicetree@vger.kernel.org>; Sun, 30 Mar 2025 17:22:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=MpstrBktHoiPo2cjbWcg5qOx
+	X+BiuBgnPlKTlDTx9Zw=; b=RJa85vAoxvvC85w5M55/qcng0Svpd+QE0aSk+oim
+	aKts9P03N7D24lfioMjfFQ/EtGHV8zxXdjTOQ0JOGD6tUiyKl6hJn7Td74q76Yjf
+	DQ+pCWcelqvLdOaBwdKzFzufU584VNrmKNjVNejN62JA71gLXvIq+Id52PACV0P/
+	5Y2XhNLQgYeDOrcHXMVS8BRsr/v9+Llk1lcyNISk550WeoD8ijdsAR52kQ8Vwbfl
+	KWK9HSV7usavMjGWZF5KmspnQWGGQLnjm1MQd2QVt6pN+Rq9ij53y8HCVlo9ODLb
+	45oVSG57gdba7Qcoq+KI2ViiS9MPK0YtqisWdbfUweQzeQ==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45p7tvamcu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sun, 30 Mar 2025 17:22:21 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c5ba3b91b1so239480985a.0
+        for <devicetree@vger.kernel.org>; Sun, 30 Mar 2025 10:22:21 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743354414; x=1743959214;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q3mk6TbPcxIg/goVXurjT8cjd9wFt7uMusUUceOMSw4=;
-        b=KN3u8A721jIpoq6RAvvnC3zGMBPULOvvgmNBnKotD5CutyhZmCDgZksNRsHk9EtZWL
-         zfXNMZusg1k6VAeVBp4txKhW4oq6Xumh+TAp6ksnKzs6NNZfGgcTJjUvpk1CDAU/P1xu
-         FzPI84XHNsO/V+BvHINg+zvygsAFzluoDOu0bZUOtrS8sSwMZWPjt+kNAOGJB5vYeJGI
-         J0AvUKX6ppwft8KFEwznEjRwe9bxD91jxuFC3DHBn/E40iJw5CeWsptwNMBIQEzZWTUX
-         xMwMZQ5SqHk0ZkS+H5mPqjpQJtknfXvip+SfYevyRMs8vDY6N33VyAVOWBfysUMBph5e
-         jNBw==
-X-Forwarded-Encrypted: i=1; AJvYcCW8DOwwM3yKsHWk60SHPWWt8x9jWDScQtxrvgeL4S/zaJ9LS8XsvvUINNEndSDQOBk/J2iOoXuQy+E3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxy9t1T/Gn8V1cTV2ulnPXDrF/qVPSPh0nIgSwDY3p4KFOWplyy
-	3JtHKNfs1ZFEApE3hNmx3qyVRa07FCnbDwJBmvfKZhZDFsYN20ke1c7Wiibq7yotYyTfr/8ncX6
-	FuJkzOidYgKqtabbb2IrzNur9lLieWdYUu8oVBIFkqpTD859G+modcvzeFTU=
-X-Gm-Gg: ASbGncsUekaqz55Yn06pcCuIsONV1X2/6utjSg0TGKB3sYoydsEgrOBebZpD8Noj7BF
-	e0hvtb9OlWZGdjank+Thpe2WvTDuAPgDlhvChwxxHl5L6gPmdfcOI+DlOEsnulfdlKQ0p33LsOa
-	QOOg9kaeqo6PJS2k4bvI9ZOSL93CRBmJ/BvuvVBj8lUPBT1U6xrdMr4ngU4Vp0SfQhSQSx1jte2
-	Upa0pna32fRHqtSCB9RxZhcuA3zIqM6eWP7ifInAsUCUusFoybDMGMjZljLR0VDcYN3/rENfroa
-	vreNKZ0Kug==
-X-Received: by 2002:a05:6000:290f:b0:390:f552:d291 with SMTP id ffacd0b85a97d-39c120dc53emr6045350f8f.22.1743354413860;
-        Sun, 30 Mar 2025 10:06:53 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGHnojfMbGERAUL3k9pGdjXNeKSJM3z6oVNts7beynMJRyZ4qGr50Up8p35T+/D9THLJjAJmw==
-X-Received: by 2002:a05:6000:290f:b0:390:f552:d291 with SMTP id ffacd0b85a97d-39c120dc53emr6045310f8f.22.1743354413473;
-        Sun, 30 Mar 2025 10:06:53 -0700 (PDT)
-Received: from redhat.com ([2a0d:6fc0:1517:1000:ea83:8e5f:3302:3575])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d8ff02e75sm96683605e9.30.2025.03.30.10.06.48
+        d=1e100.net; s=20230601; t=1743355340; x=1743960140;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MpstrBktHoiPo2cjbWcg5qOxX+BiuBgnPlKTlDTx9Zw=;
+        b=FP9baCN3aXStTOPziURzLTb74dT7SNyEJ9ck74NjSGxTJ5LZyxuGYxKgyu9Kr7YLGl
+         hXK1JjyBXCrSA+a6pXrD7TmQu5CgX5gc2o0I/1uHhPbqeQPtXUOjUVCn35tIQsIjyOkA
+         5RXnC4ABy2AgveVn/rAzrYkSM4oFMWJi23KsR8a1kD3e7cnY9rvtwDgjc+FTUF9dvDGV
+         gUDVGHVkAiP2obAVepRV3FAjJ+uosxT3J9jhAMwoZ9YCq/ankzyd3z3hwMddTa9kkmpE
+         tWR/H1k2x3nxQPVW7A0d+4DdgUwbLwZZAdMcq+Shaw+wfQwTKpkQ6Er/9jQwAyy1ml2B
+         0Uxg==
+X-Forwarded-Encrypted: i=1; AJvYcCVFT3NZ1OOSilnfeD7v4vxLTjoKOIGavIgjXvbu+Lb5GPk+7KgASdwY1HYOWk8U1XdJe+1qvotmsIyS@vger.kernel.org
+X-Gm-Message-State: AOJu0YxxVqTLbqUu8j4dwQWRLeMPVL4r6jekQC3l+KeY1WoLjFFiOaOk
+	tlmoPm1DhjG47pylx9jnZx2dU9rldQenn4lQKA8h3tDNTbEX3vj+RQcu5G5M1GOmUz9Bp3h8LYh
+	J65dQLMwXFPcHil5h54xFym4MbShl0iyr9yQzNiJYEa7XNUk0Fad0crwyJEfz
+X-Gm-Gg: ASbGnctrt2xJzWCCUE2klVWiaI97WcpDWxvYGll7uQHBYnCGjndZ3wliQZ4zjT/QktV
+	cwEw13FoWRTddzJRQmol3IM2mfO8vDzEgdAyNS7+Ta2lKsxGdGearxGESB4ssRt3LRfNq2PivA3
+	CDN+Vpn8bB2JR9KJxzvWgABdPSCFz6Y/RYSeXLi3vtP6Fd0+t+4MBEriN+2PGrStz7TjiSbNisd
+	0RONeYfqdiShoUCemoG6U6fa7IgpcUQIkijso0H8xZrwqqFa6Y3KFXzHHRzjZ/2C8oEcaYyEtPI
+	h9j5g+6UXr1Y1MIEBGiHnvoxOfvqHiByMHFyNXxhi9Fih9vxFPNoJ+Vj7a7gFp/P2Wrf3PaUVeS
+	qDF8=
+X-Received: by 2002:a05:620a:2412:b0:7c3:c512:9b1a with SMTP id af79cd13be357-7c5f9bf8935mr1234068685a.22.1743355340525;
+        Sun, 30 Mar 2025 10:22:20 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFSoBC4dUGhh5eAY7d9B2uxFl1IY0/AMu+wvbdzmOGdBqnQEleuLNcum0aJAyOX+e7Wh6kjiw==
+X-Received: by 2002:a05:620a:2412:b0:7c3:c512:9b1a with SMTP id af79cd13be357-7c5f9bf8935mr1234066585a.22.1743355340139;
+        Sun, 30 Mar 2025 10:22:20 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54b094c1a7asm931739e87.86.2025.03.30.10.22.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 30 Mar 2025 10:06:52 -0700 (PDT)
-Date: Sun, 30 Mar 2025 13:06:47 -0400
-From: "Michael S. Tsirkin" <mst@redhat.com>
-To: David Woodhouse <dwmw2@infradead.org>
-Cc: Claire Chang <tientzu@chromium.org>, Rob Herring <robh+dt@kernel.org>,
-	mpe@ellerman.id.au, Joerg Roedel <joro@8bytes.org>,
-	Will Deacon <will@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-	boris.ostrovsky@oracle.com, jgross@suse.com,
-	Christoph Hellwig <hch@lst.de>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	heikki.krogerus@linux.intel.com, peterz@infradead.org,
-	benh@kernel.crashing.org, grant.likely@arm.com, paulus@samba.org,
-	mingo@kernel.org, sstabellini@kernel.org,
-	Saravana Kannan <saravanak@google.com>, xypron.glpk@gmx.de,
-	"Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-	Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-	xen-devel@lists.xenproject.org, Thierry Reding <treding@nvidia.com>,
-	linux-devicetree <devicetree@vger.kernel.org>,
-	linuxppc-dev@lists.ozlabs.org,
-	Nicolas Boichat <drinkcat@chromium.org>,
-	Dan Williams <dan.j.williams@intel.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Greg KH <gregkh@linuxfoundation.org>,
-	Randy Dunlap <rdunlap@infradead.org>,
-	lkml <linux-kernel@vger.kernel.org>,
-	"list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-	Jim Quinlan <james.quinlan@broadcom.com>,
-	Robin Murphy <robin.murphy@arm.com>, hch@infradead.org,
-	Jason Wang <jasowang@redhat.com>,
-	Xuan Zhuo <xuanzhuo@linux.alibaba.com>,
-	Eugenio =?iso-8859-1?Q?P=E9rez?= <eperezma@redhat.com>,
-	virtualization@lists.linux.dev, graf@amazon.de
-Subject: Re: Using Restricted DMA for virtio-pci
-Message-ID: <20250330125929-mutt-send-email-mst@kernel.org>
-References: <20210209062131.2300005-1-tientzu@chromium.org>
- <979b6a34ca5724ced1d4871b58bf227065d7da57.camel@infradead.org>
- <20250321142947-mutt-send-email-mst@kernel.org>
- <d1382a6ee959f22dc5f6628d8648af77f4702418.camel@infradead.org>
+        Sun, 30 Mar 2025 10:22:18 -0700 (PDT)
+Date: Sun, 30 Mar 2025 20:22:15 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Alexander Baransky <sanyapilot496@gmail.com>
+Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com,
+        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
+        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] drm/panel: Add Visionox G2647FB105 panel driver
+Message-ID: <eni3k3dj5le52bjpi6m2yurepgnx5u2wijb2ds6vdivdj7vi4w@2stfkhhadvud>
+References: <20250327163750.986815-1-sanyapilot496@gmail.com>
+ <20250327163750.986815-3-sanyapilot496@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d1382a6ee959f22dc5f6628d8648af77f4702418.camel@infradead.org>
+In-Reply-To: <20250327163750.986815-3-sanyapilot496@gmail.com>
+X-Authority-Analysis: v=2.4 cv=OIon3TaB c=1 sm=1 tr=0 ts=67e97dcd cx=c_pps a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=Vs1iUdzkB0EA:10 a=pGLkceISAAAA:8 a=cT8Zqm98tluRgYDMnLUA:9 a=CjuIK1q_8ugA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-ORIG-GUID: Sm1zCd4bpC_iDNVd3E_fho857tvQz94J
+X-Proofpoint-GUID: Sm1zCd4bpC_iDNVd3E_fho857tvQz94J
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-30_08,2025-03-27_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ mlxlogscore=999 lowpriorityscore=0 malwarescore=0 mlxscore=0 clxscore=1015
+ adultscore=0 bulkscore=0 phishscore=0 suspectscore=0 impostorscore=0
+ spamscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503300121
 
-On Fri, Mar 21, 2025 at 06:42:20PM +0000, David Woodhouse wrote:
-> On Fri, 2025-03-21 at 14:32 -0400, Michael S. Tsirkin wrote:
-> > On Fri, Mar 21, 2025 at 03:38:10PM +0000, David Woodhouse wrote:
-> > > On Tue, 2021-02-09 at 14:21 +0800, Claire Chang wrote:
-> > > > This series implements mitigations for lack of DMA access control on
-> > > > systems without an IOMMU, which could result in the DMA accessing the
-> > > > system memory at unexpected times and/or unexpected addresses, possibly
-> > > > leading to data leakage or corruption.
-> > > 
-> > > Replying to an ancient (2021) thread which has already been merged...
-> > > 
-> > > I'd like to be able to use this facility for virtio devices.
-> > > 
-> > > Virtio already has a complicated relationship with the DMA API, because
-> > > there were a bunch of early VMM bugs where the virtio devices where
-> > > magically exempted from IOMMU protection, but the VMM lied to the guest
-> > > and claimed they weren't.
-> > > 
-> > > With the advent of confidential computing, and the VMM (or whatever's
-> > > emulating the virtio device) not being *allowed* to arbitrarily access
-> > > all of the guest's memory, the DMA API becomes necessary again.
-> > > 
-> > > Either a virtual IOMMU needs to determine which guest memory the VMM
-> > > may access, or the DMA API is wrappers around operations which
-> > > share/unshare (or unencrypt/encrypt) the memory in question.
-> > > 
-> > > All of which is complicated and slow, if we're looking at a minimal
-> > > privileged hypervisor stub like pKVM which enforces the lack of guest
-> > > memory access from VMM.
-> > > 
-> > > I'm thinking of defining a new type of virtio-pci device which cannot
-> > > do DMA to arbitrary system memory. Instead it has an additional memory
-> > > BAR which is used as a SWIOTLB for bounce buffering.
-> > > 
-> > > The driver for it would look much like the existing virtio-pci device
-> > > except that it would register the restricted-dma region first (and thus
-> > > the swiotlb dma_ops), and then just go through the rest of the setup
-> > > like any other virtio device.
-> > > 
-> > > That seems like it ought to be fairly simple, and seems like a
-> > > reasonable way to allow an untrusted VMM to provide virtio devices with
-> > > restricted DMA access.
-> > > 
-> > > While I start actually doing the typing... does anyone want to start
-> > > yelling at me now? Christoph? mst? :)
-> > 
-> > 
-> > I don't mind as such (though I don't understand completely), but since
-> > this is changing the device anyway, I am a bit confused why you can't
-> > just set the VIRTIO_F_ACCESS_PLATFORM feature bit?  This forces DMA API
-> > which will DTRT for you, will it not?
+On Thu, Mar 27, 2025 at 07:37:45PM +0300, Alexander Baransky wrote:
+> Add the driver for Visionox G2647FB105 6.47" FHD Plus CMD mode AMOLED panel
+> support found in:
+> - Xiaomi Mi Note 10 / CC9 Pro (sm7150-xiaomi-tucana)
+> - Xiaomi Mi Note 10 Lite (sm7150-xiaomi-toco)
 > 
-> That would be necessary but not sufficient. The question is *what* does
-> the DMA API do?
+> Signed-off-by: Alexander Baransky <sanyapilot496@gmail.com>
+> ---
+>  drivers/gpu/drm/panel/Kconfig                 |   9 +
+>  drivers/gpu/drm/panel/Makefile                |   1 +
+>  .../gpu/drm/panel/panel-visionox-g2647fb105.c | 282 ++++++++++++++++++
+>  3 files changed, 292 insertions(+)
+>  create mode 100644 drivers/gpu/drm/panel/panel-visionox-g2647fb105.c
 > 
-> For a real passthrough PCI device, perhaps we'd have a vIOMMU exposed
-> to the guest so that it can do real protection with two-stage page
-> tables (IOVA→GPA under control of the guest, GPA→HPA under control of
-> the hypervisor). For that to work in the pKVM model though, you'd need
-> pKVM to be talking the guest's stage1 I/O page tables to see if a given
-> access from the VMM ought to be permitted?
-> 
-> Or for confidential guests there could be DMA ops which are an
-> 'enlightenment'; a hypercall into pKVM to share/unshare pages so that
-> the VMM can actually access them, or SEV-SNP guests might mark pages
-> unencrypted to have the same effect with hardware protection.
-> 
-> Doing any of those dynamically to allow the VMM to access buffers in
-> arbitrary guest memory (when it wouldn't normally have access to
-> arbitrary guest memory) is complex and doesn't perform very well. And
-> exposes a full 4KiB page for any byte that needs to be made available.
-> 
-> Thus the idea of having a fixed range of memory to use for a SWIOTLB,
-> which is fairly much what the restricted DMA setup is all about.
-> 
-> We're just proposing that we build it in to a virtio-pci device model,
-> which automatically uses the extra memory BAR instead of the
-> restricted-dma-pool DT node.
-> 
-> It's basically just allowing us to expose through PCI, what I believe
-> we can already do for virtio in DT.
+> +
+> +static int visionox_g2647fb105_prepare(struct drm_panel *panel)
+> +{
+> +	struct visionox_g2647fb105 *ctx = to_visionox_g2647fb105(panel);
+> +	struct device *dev = &ctx->dsi->dev;
+> +	int ret;
+> +
+> +	ret = regulator_bulk_enable(ARRAY_SIZE(visionox_g2647fb105_supplies), ctx->supplies);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to enable regulators: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	visionox_g2647fb105_reset(ctx);
+> +
+> +	ret = visionox_g2647fb105_on(ctx);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to initialize panel: %d\n", ret);
+> +		gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> +		regulator_bulk_disable(ARRAY_SIZE(visionox_g2647fb105_supplies), ctx->supplies);
 
-I am not saying I am against this extension.
-The idea to restrict DMA has a lot of merit outside pkvm.
-For example, with a physical devices, limiting its DMA
-to a fixed range can be good for security at a cost of
-an extra data copy.
+Unfortunately, you can't disable the regulators here. panel bridge
+doesn't check for an error (and it can not further propagate an error),
+so if visionox_g2647fb105_on() fails, then there will be an extra call
+to regulator_bulk_disable() in visionox_g2647fb105_unprepare().
 
-So I am not saying we have to block this specific hack.
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
 
-what worries me fundamentally is I am not sure it works well
-e.g. for physical virtio cards.
-Attempts to pass data between devices will now also require
-extra data copies.
-
-
-Did you think about adding an swiotlb mode to virtio-iommu at all?
-Much easier than parsing page tables.
-
-
+LGTM otherwise
 
 -- 
-MST
-
+With best wishes
+Dmitry
 
