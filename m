@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-161806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF232A75930
-	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 11:43:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84FBDA75934
+	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 11:47:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 513233AA976
-	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 09:42:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2356188A16C
+	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 09:47:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC84819259F;
-	Sun, 30 Mar 2025 09:43:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E1AE1925A2;
+	Sun, 30 Mar 2025 09:47:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GyGmvp+C"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OrQZBimv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC63178F29;
-	Sun, 30 Mar 2025 09:43:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D0542AEED;
+	Sun, 30 Mar 2025 09:47:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743327785; cv=none; b=P9IrcsN6uN44f421l+u7ktoOitvTGJ6b21bC+TVNmDn+86T7IRnePw5oKLHacTKCykcBuN+bKYGS4kWo+3aYzdQw76/fM64bpX+eI22Z1vq+oG3RIByPz5BnlJVw9l4p5gIKc1c9pN9+YakOyY/TPEMWyqtZ2AkUjygvNk5sQ+o=
+	t=1743328064; cv=none; b=gxfus4byJtXCY/UMc0aeubGrQIX3lz2jLFbJnCAtGrckDT6FLYVjConTggeTIy2VmMyFu8FGR0vrIYTqWyoeV9RSUNQqqKSo34e1EpEcQZajprztuVkv7/0hPh8kyy/Sh4owriq77Hi32OSDtTXs4AcrCWbFFidntkAKrevbz+8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743327785; c=relaxed/simple;
-	bh=65vRl2bgFK9n20bD3FPj5jSnqKTP04U2VPXDFWAuA4A=;
+	s=arc-20240116; t=1743328064; c=relaxed/simple;
+	bh=psvkuZ2HANcXsLHVMnp8FjLK9GuAYITBf0uSmRyuCVY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bvbrwYzz8zBBKKorJaEVwpRRm4QpnoG4ow4pLgymoEJNj5cfQBJJ+LikUpuN6Eix2DhPF/otVQMdPtKCYxUpw6fJeypyYv8yBxCJSWyyXvwOAOEfeEVKWAuUEMwCieIYS2HyclQXpf2ATDQpFrhaWb3nfMv1NUUmMj45vqHB4Tk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GyGmvp+C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAE05C4CEDD;
-	Sun, 30 Mar 2025 09:43:00 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Kg6Bqgz/QBF2EwCvJVgdaxvKa0O8bW8Wp+dmDGThPlMbwZfGXCNCYMTYrAa999rCY4k/k7nvIMiQb5WXwL+zHK6B5d5lzouvy9sEg82kkzJ82sEogDN9jy8FKTooFfLgmr2vAEI/8wBD8zzCuIR5DncCahbib0GewKr1nDO0JLs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OrQZBimv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CEBFC4CEDD;
+	Sun, 30 Mar 2025 09:47:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743327785;
-	bh=65vRl2bgFK9n20bD3FPj5jSnqKTP04U2VPXDFWAuA4A=;
+	s=k20201202; t=1743328063;
+	bh=psvkuZ2HANcXsLHVMnp8FjLK9GuAYITBf0uSmRyuCVY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GyGmvp+C3WpETEiLlYG0YXsLHCfEYT0nS1ANSddQv/rAEt/HIOWVzgq1VnLE5RNsc
-	 CnqYHMFciII6GeoDkq6u8J5CJQEjMkCZe7GfoMe7NjYMknv1yRV2uA2JBF+me2yp0J
-	 qz844vURCv9FGu2xGfzFMpTn4jrih8t2Xoccv/wwSy3MRo3WamJPMnaCF15HBaypyR
-	 1hwnRQZHyJWchRKr7Au/9jonqcn/ZrqXcrTjKUv6TWPKdZeMdakV+tcYynwWqn1v+f
-	 LCGsrJI5nRqC2EjpyP2gCHYFzUlihacI4GhLpC6aJgS92N7ukeJYxpF5BLglZpuXFQ
-	 BB4A6KAfQyYGg==
-Message-ID: <b68559e6-fc2b-493b-9f37-3125ff924a65@kernel.org>
-Date: Sun, 30 Mar 2025 11:42:57 +0200
+	b=OrQZBimvw5BmUwfbK5Gie4EbkXBd/xbjkNzSjev9VMI3E8AZ0AsworyQgB5oKmFOn
+	 6lzTnPt+D0zHIgwWwUGCiXDNk1ryT81BK5d4u5BQxBIdHYTovKdofaW3Vq8EPytVkS
+	 viCqYt3fyXJTZ6Qgw10c09IUtbsF15rkhv7Y9WsinV9U5RLY0RIHKWnMBULZ/be/XO
+	 93+iB760B/TyDUBJwpeXTVmRSqXo5fFLjj5k1tqDiAhRXEoWbDK3kN9ZDCtDkrXebQ
+	 Y7rJ/wpYMyn0tpft0Uv4JBURgVddp0XnSGzYNYcytoH6XK3i/a46KUIMW8wpuQllRB
+	 B0gj9i4PybYbA==
+Message-ID: <564768c3-56f0-4236-86e6-00cacb7b6e7d@kernel.org>
+Date: Sun, 30 Mar 2025 11:47:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: i3c: Add Qualcomm I3C master
- controller
-To: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>,
- alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, jarkko.nikula@linux.intel.com,
- linux-i3c@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: andersson@kernel.org, konradybcio@kernel.org
-References: <20250326141641.3471906-1-quic_msavaliy@quicinc.com>
- <20250326141641.3471906-2-quic_msavaliy@quicinc.com>
- <991b0652-76f2-40d6-b49b-1e6f76e254ac@kernel.org>
- <661e1a21-0f3a-497a-9b3b-fab284e30d19@quicinc.com>
- <36b67f9c-5905-4fa6-8190-ab980850b3a2@kernel.org>
- <e997bd15-728c-4316-8050-d461f115fd9f@quicinc.com>
- <04945ad2-1372-4c73-beae-fc6449fb9a76@kernel.org>
- <838dfc8d-24c3-4f03-9c24-863259bb22b1@quicinc.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: net: Add MTIP L2 switch description
+To: Lukasz Majewski <lukma@denx.de>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+References: <20250328133544.4149716-1-lukma@denx.de>
+ <20250328133544.4149716-2-lukma@denx.de>
+ <e6f3e50f-8d97-4dbc-9de3-1d9a137ae09c@kernel.org>
+ <20250329231004.4432831b@wsk>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,22 +112,53 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <838dfc8d-24c3-4f03-9c24-863259bb22b1@quicinc.com>
+In-Reply-To: <20250329231004.4432831b@wsk>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 29/03/2025 15:31, Mukesh Kumar Savaliya wrote:
-> dt-binding file name: qcom,i3c-geni-qcom.yaml
-
-No. I already asked to use compatible as filename. Don't create your own
-rules.
-
-> compatible = "qcom,geni-i3c";
+On 29/03/2025 23:10, Lukasz Majewski wrote:
+>>> +  
 >>
->> Best regards,
->> Krzysztof
+>> If this is ethernet switch, why it does not reference ethernet-switch
+>> schema? or dsa.yaml or dsa/ethernet-ports? I am not sure which one
+>> should go here, but surprising to see none.
 > 
+> It uses:
+> $ref:·ethernet-controller.yaml#
+> 
+> for "ports".
+> 
+> Other crucial node is "mdio", which references $ref: mdio.yaml#
 
+These are children, I am speaking about this device node.
+
+> 
+>>
+>>> +properties:
+>>> +  compatible:
+>>> +    const: nxp,imx287-mtip--switch  
+>>
+>> Just one -.
+>>
+> 
+> Ok.
+> 
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +    description:
+>>> +      The physical base address and size of the MTIP L2 SW module
+>>> IO range  
+>>
+>> Wasn't here, drop.
+>>
+> 
+> The 'reg' property (reg = <0x800f0000 0x20000>;) is defined in
+> imx28.dtsi, where the SoC generic properties (as suggested by Andrew -
+> like clocks, interrupts, clock-names) are moved.
+
+Drop description, not the reg. Reg was in the previous version. You
+added random changes here, not coming from the previous review.
 
 Best regards,
 Krzysztof
