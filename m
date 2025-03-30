@@ -1,385 +1,170 @@
-Return-Path: <devicetree+bounces-161825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03603A75A78
-	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 17:08:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA502A75A7F
+	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 17:13:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F0CFA188B909
-	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 15:08:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BCD43188BC61
+	for <lists+devicetree@lfdr.de>; Sun, 30 Mar 2025 15:13:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 233F61465B4;
-	Sun, 30 Mar 2025 15:08:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0B941D5AC2;
+	Sun, 30 Mar 2025 15:13:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="QN4IF3SS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oP8RUAOr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFDD11CA84;
-	Sun, 30 Mar 2025 15:08:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=90.155.92.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A16783C3C;
+	Sun, 30 Mar 2025 15:13:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743347317; cv=none; b=pAYRTglVC0BLccsQrfh9vQfPac3Q6hiFqCM6+25TLQp1ykaJoVnHSuUkJhU2f4Z63yWv1XcD5UUPpQZdGghEUwOjmSbjCBlIFYK2aPH/nGg/vyHc+sHz8P/U/feZYupb87WHP9Qq50+tBTxqxsF1ED3jKt3CNlWzGnbGb2sXYEI=
+	t=1743347607; cv=none; b=lYj19iWG1ktiYFTi22be+e23U5/K7ckEQd4i9ROmaO2MPTgk5Td5JDHkDR5eDZQw5vvz8Ba9tAASZwaQyjf3vKh+DZCCH7rGW8WElywx46171aHR13b+a7Be0odHPmn6pM12/gDKRrOEPcuH5S7YZB1AcoH+kJbZjVgtCKe9huU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743347317; c=relaxed/simple;
-	bh=3yJoXS3aoVCn5SRdxH72qtXJLR3Q44bN3jSoRVPocdk=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=qGkuTJOQiSlGaTpYjylZQVE3no8TDuiZFdqtufU9GmsIncZlP4mnWmprIzaJkrrdD9Kn3ZvYb6D5Gn0EasVAHlIaNf0QCnzhyxnwZiclddCIwweUFTb7dESmC9CJCxMMSEKuVMuerHY5hoT2QRrjMkVxG90jlGTU2qL7oN3bDPQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=desiato.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=QN4IF3SS; arc=none smtp.client-ip=90.155.92.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=desiato.srs.infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=MIME-Version:Content-Type:References:
-	In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=3yJoXS3aoVCn5SRdxH72qtXJLR3Q44bN3jSoRVPocdk=; b=QN4IF3SSgnWBqSpbejxiqnd0/E
-	fXeGCBHfJpUStt9wEbS0sCNgkzHOK4byeQg7TdWDATfLPPTGJBUxr7xdK8J/fQaBquYU2Jzi/VIXW
-	UFglLl6KXBMNne0T51xU/ckBAmn0Lp4t9rwucDWk41GYnVeoj4zZ/wrgOOFn5UESYeCRNxEQutm5S
-	ESTXR7p0cTu3pnJkLchK1fDz1ewQOxGv85uidxiZ2JRqBgsB/cFw0RGjc92pTH7uFRFZwdSc+sUqT
-	PQ7XSy+/6aAHgk0Rt4uaqhODrMEa+tlkEdzJxTHJAAB/1toiaC9TQivieMdtAhqm7RrKLleFmbYor
-	xbBtCppg==;
-Received: from [172.31.31.145] (helo=u09cd745991455d.ant.amazon.com)
-	by desiato.infradead.org with esmtpsa (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1tyuGS-00000006Wxz-2VMu;
-	Sun, 30 Mar 2025 15:07:56 +0000
-Message-ID: <09fc164ebcfd893ffd67d1b224d6e1c5e5772ee0.camel@infradead.org>
-Subject: Re: Using Restricted DMA for virtio-pci
-From: David Woodhouse <dwmw2@infradead.org>
-To: "Michael S. Tsirkin" <mst@redhat.com>
-Cc: Claire Chang <tientzu@chromium.org>, Rob Herring <robh+dt@kernel.org>, 
- mpe@ellerman.id.au, Joerg Roedel <joro@8bytes.org>, Will Deacon
- <will@kernel.org>,  Frank Rowand <frowand.list@gmail.com>, Konrad Rzeszutek
- Wilk <konrad.wilk@oracle.com>,  boris.ostrovsky@oracle.com,
- jgross@suse.com, Christoph Hellwig <hch@lst.de>,  Marek Szyprowski
- <m.szyprowski@samsung.com>, heikki.krogerus@linux.intel.com,
- peterz@infradead.org,  benh@kernel.crashing.org, grant.likely@arm.com,
- paulus@samba.org, mingo@kernel.org,  sstabellini@kernel.org, Saravana
- Kannan <saravanak@google.com>,  xypron.glpk@gmx.de, "Rafael J . Wysocki"
- <rafael.j.wysocki@intel.com>,  Bartosz Golaszewski
- <bgolaszewski@baylibre.com>, xen-devel@lists.xenproject.org, Thierry Reding
- <treding@nvidia.com>,  linux-devicetree <devicetree@vger.kernel.org>,
- linuxppc-dev@lists.ozlabs.org, Nicolas Boichat <drinkcat@chromium.org>, 
- Dan Williams <dan.j.williams@intel.com>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Greg KH <gregkh@linuxfoundation.org>,
- Randy Dunlap <rdunlap@infradead.org>, lkml <linux-kernel@vger.kernel.org>,
- "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>, Jim
- Quinlan <james.quinlan@broadcom.com>,  Robin Murphy <robin.murphy@arm.com>,
- hch@infradead.org, Jason Wang <jasowang@redhat.com>, Xuan Zhuo
- <xuanzhuo@linux.alibaba.com>, Eugenio =?ISO-8859-1?Q?P=E9rez?=
- <eperezma@redhat.com>, virtualization@lists.linux.dev, graf@amazon.de
-Date: Sun, 30 Mar 2025 16:07:56 +0100
-In-Reply-To: <20250330093532-mutt-send-email-mst@kernel.org>
-References: <20210209062131.2300005-1-tientzu@chromium.org>
-	 <979b6a34ca5724ced1d4871b58bf227065d7da57.camel@infradead.org>
-	 <20250321142947-mutt-send-email-mst@kernel.org>
-	 <d1382a6ee959f22dc5f6628d8648af77f4702418.camel@infradead.org>
-	 <8e7084b04e5c0456c0ff32ea131a199c6af763cd.camel@infradead.org>
-	 <20250330093532-mutt-send-email-mst@kernel.org>
-Content-Type: multipart/signed; micalg="sha-256"; protocol="application/pkcs7-signature";
-	boundary="=-mYzUro773zg9T/uQYbOm"
-User-Agent: Evolution 3.52.3-0ubuntu1 
+	s=arc-20240116; t=1743347607; c=relaxed/simple;
+	bh=OO+ddB6jXqbazFwzyc+1bl2E8ekrpgxwXY7ouvovQhY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=PtPQ9rMhL28pF1daXrWvMnUuNuoX6iNeJSOJGrKjHzCv013WKD/MZefj6CF6TA7yuWzTq7yslBFAnmh4yAgOLtdEKzyck2MJ4sAdk6fN5ImchwqNxgj1kYzm9RmmZvFXpxHkKI6rnTVRYvrtu7PDdRS019rAZrxAYVEdEL5s7qc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oP8RUAOr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3BADC4CEDD;
+	Sun, 30 Mar 2025 15:13:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743347607;
+	bh=OO+ddB6jXqbazFwzyc+1bl2E8ekrpgxwXY7ouvovQhY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=oP8RUAOrbT60js2Pt3PDu1tBKh8Y9Ij8ePnsYnDJpZViq3YTaf1xGdwd4TPNgkUCQ
+	 BHuwbCdHkiKHGIXIhGKexViUIllL2GVr428bvXqo/8qr6E3ETcR0eeOrjZLyF0f5+w
+	 69rn4F/I0vHkJh5khV7e3w3MY9y6cB4jg/01nEK2xVEP9euvwU5lxSwdaL7f6ybpkt
+	 ehFwIcNA3KvPF6Qa1hs5ofAJxyDxtKQ4OqdCqlqoFu6NvaX1CdkhAVXcGR4iYSbac/
+	 E9HKwTZcfXSsOmYH4JQa7ytzAspLFHl84jZCRnlw/EIpGZs4oinfm2YILy1xwEqpjZ
+	 gUCWub+YQiBAg==
+Date: Sun, 30 Mar 2025 16:13:17 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Sam Winchenbach <sam.winchenbach@framepointer.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-kernel@vger.kernel.org,
+ lars@metafoo.de, Michael.Hennerich@analog.com, antoniu.miclaus@analog.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ bpellegrino@arka.org, Sam Winchenbach <swinchenbach@arka.org>
+Subject: Re: [PATCH v7 1/6] dt-bindings: iio: filter: Add lpf/hpf freq
+ margins
+Message-ID: <20250330161317.4f537c86@jic23-huawei>
+In-Reply-To: <Z9mKghgKk9vuHUyF@65YTFL3.secure.tethers.com>
+References: <20250316135008.155304-1-sam.winchenbach@framepointer.org>
+	<20250316-sexy-tested-cheetah-c4a2f8@krzk-bin>
+	<Z9g6tPqhAoTckFBh@65YTFL3.secure.tethers.com>
+	<20250317185535.7d00444d@jic23-huawei>
+	<Z9mKghgKk9vuHUyF@65YTFL3.secure.tethers.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by desiato.infradead.org. See http://www.infradead.org/rpr.html
-
-
---=-mYzUro773zg9T/uQYbOm
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, 2025-03-30 at 09:42 -0400, Michael S. Tsirkin wrote:
-> On Fri, Mar 28, 2025 at 05:40:41PM +0000, David Woodhouse wrote:
-> > On Fri, 2025-03-21 at 18:42 +0000, David Woodhouse wrote:
+On Tue, 18 Mar 2025 11:00:18 -0400
+Sam Winchenbach <sam.winchenbach@framepointer.org> wrote:
+
+> On Mon, Mar 17, 2025 at 06:55:35PM +0000, Jonathan Cameron wrote:
+> > On Mon, 17 Mar 2025 11:07:32 -0400
+> > Sam Winchenbach <sam.winchenbach@framepointer.org> wrote:
+> >  =20
+> > > On Sun, Mar 16, 2025 at 05:38:42PM +0100, Krzysztof Kozlowski wrote: =
+=20
+> > > > On Sun, Mar 16, 2025 at 09:50:03AM -0400, Sam Winchenbach wrote:   =
+=20
+> > > > > From: Sam Winchenbach <swinchenbach@arka.org>
+> > > > >=20
+> > > > > Adds two properties to add a margin when automatically finding the
+> > > > > corner frequencies.
+> > > > >=20
+> > > > > Signed-off-by: Sam Winchenbach <swinchenbach@arka.org>
+> > > > > ---
+> > > > >  .../bindings/iio/filter/adi,admv8818.yaml     | 20 +++++++++++++=
+++++++
+> > > > >  1 file changed, 20 insertions(+)   =20
 > > > >=20
-> > > > I don't mind as such (though I don't understand completely), but si=
-nce
-> > > > this is changing the device anyway, I am a bit confused why you can=
-'t
-> > > > just set the VIRTIO_F_ACCESS_PLATFORM feature bit?=C2=A0 This force=
-s DMA API
-> > > > which will DTRT for you, will it not?
+> > > > I don't understand. You got my tag. No changelog here, no cover let=
+ter,
+> > > > nothing explains what happened here and why the tag is being remove=
+d.
+> > > >    =20
 > > >=20
-> > > That would be necessary but not sufficient. ...
->=20
-> could you explain pls?
-
-There was more to that in the previous email which I elided for this
-followup.
-
-https://lore.kernel.org/all/d1382a6ee959f22dc5f6628d8648af77f4702418.camel@=
-infradead.org/
-
-> > My first cut at a proposed spec change looks something like this. I'll
-> > post it to the virtio-comment list once I've done some corporate
-> > bureaucracy and when the list stops sending me python tracebacks in
-> > response to my subscribe request.
->=20
-> the linux foundation one does this? maybe poke at the admins.
->=20
-> > In the meantime I'll hack up some QEMU and guest Linux driver support
-> > to match.
+> > > Apologies,
+> > >=20
+> > > I am still quite new to this workflow, and it deviates significantly
+> > > from my day-to-day work. I mentioned in the previous patch set that I
+> > > would like to update my email address and change:
+> > > "driver core: -> iio: core:"
+> > > I wasn't aware more than that was needed. Sorry for any confusion
+> > > this may have caused.
+> > >=20
+> > > In the future what is the preferred way to handle a
+> > > situation like this? I wasn't aware of the cover letter feature but
+> > > that looks like a promising option. =20
 > >=20
-> > diff --git a/content.tex b/content.tex
-> > index c17ffa6..1e6e1d6 100644
-> > --- a/content.tex
-> > +++ b/content.tex
-> > @@ -773,6 +773,9 @@ \chapter{Reserved Feature Bits}\label{sec:Reserved =
-Feature Bits}
-> > =C2=A0Currently these device-independent feature bits are defined:
-> > =C2=A0
-> > =C2=A0\begin{description}
-> > +=C2=A0 \item[VIRTIO_F_SWIOTLB (27)] This feature indicates that the de=
-vice
-> > +=C2=A0 provides a memory region which is to be used for bounce bufferi=
-ng,
-> > +=C2=A0 rather than permitting direct memory access to system memory.
-> > =C2=A0=C2=A0 \item[VIRTIO_F_INDIRECT_DESC (28)] Negotiating this featur=
-e indicates
-> > =C2=A0=C2=A0 that the driver can use descriptors with the VIRTQ_DESC_F_=
-INDIRECT
-> > =C2=A0=C2=A0 flag set, as described in \ref{sec:Basic Facilities of a V=
-irtio
-> > @@ -885,6 +888,10 @@ \chapter{Reserved Feature Bits}\label{sec:Reserved=
- Feature Bits}
-> > =C2=A0VIRTIO_F_ACCESS_PLATFORM is not offered, then a driver MUST pass =
-only physical
-> > =C2=A0addresses to the device.
-> > =C2=A0
-> > +A driver SHOULD accept VIRTIO_F_SWIOTLB if it is offered, and it MUST
-> > +then pass only addresses within the Software IOTLB bounce buffer to th=
-e
-> > +device.
-> > +
-> > =C2=A0A driver SHOULD accept VIRTIO_F_RING_PACKED if it is offered.
-> > =C2=A0
-> > =C2=A0A driver SHOULD accept VIRTIO_F_ORDER_PLATFORM if it is offered.
-> > @@ -921,6 +928,10 @@ \chapter{Reserved Feature Bits}\label{sec:Reserved=
- Feature Bits}
-> > =C2=A0A device MAY fail to operate further if VIRTIO_F_ACCESS_PLATFORM =
-is not
-> > =C2=A0accepted.
-> > =C2=A0
-> > +A device MUST NOT offer VIRTIO_F_SWIOTLB if its transport does not
-> > +provide a Software IOTLB bounce buffer.
-> > +A device MAY fail to operate further if VIRTIO_F_SWIOTLB is not accept=
-ed.
-> > +
-> > =C2=A0If VIRTIO_F_IN_ORDER has been negotiated, a device MUST use
-> > =C2=A0buffers in the same order in which they have been available.
-> > =C2=A0
-> > diff --git a/transport-pci.tex b/transport-pci.tex
-> > index a5c6719..23e0d57 100644
-> > --- a/transport-pci.tex
-> > +++ b/transport-pci.tex
-> > @@ -129,6 +129,7 @@ \subsection{Virtio Structure PCI Capabilities}\labe=
-l{sec:Virtio Transport Option
-> > =C2=A0\item ISR Status
-> > =C2=A0\item Device-specific configuration (optional)
-> > =C2=A0\item PCI configuration access
-> > +\item SWIOTLB bounce buffer
-> > =C2=A0\end{itemize}
-> > =C2=A0
-> > =C2=A0Each structure can be mapped by a Base Address register (BAR) bel=
-onging to
-> > @@ -188,6 +189,8 @@ \subsection{Virtio Structure PCI Capabilities}\labe=
-l{sec:Virtio Transport Option
-> > =C2=A0#define VIRTIO_PCI_CAP_SHARED_MEMORY_CFG 8
-> > =C2=A0/* Vendor-specific data */
-> > =C2=A0#define VIRTIO_PCI_CAP_VENDOR_CFG=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 9
-> > +/* Software IOTLB bounce buffer */
-> > +#define VIRTIO_PCI_CAP_SWIOTLB=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 10
-> > =C2=A0\end{lstlisting}
-> > =C2=A0
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Any other value is res=
-erved for future use.
-> > @@ -744,6 +747,36 @@ \subsubsection{Vendor data capability}\label{sec:V=
-irtio
-> > =C2=A0The driver MUST qualify the \field{vendor_id} before
-> > =C2=A0interpreting or writing into the Vendor data capability.
-> > =C2=A0
-> > +\subsubsection{Software IOTLB bounce buffer capability}\label{sec:Virt=
-io
-> > +Transport Options / Virtio Over PCI Bus / PCI Device Layout /
-> > +Software IOTLB bounce buffer capability}
-> > +
-> > +The optional Software IOTLB bounce buffer capability allows the
-> > +device to provide a memory region which can be used by the driver
-> > +driver for bounce buffering. This allows a device on the PCI
-> > +transport to operate without DMA access to system memory addresses.
-> > +
-> > +The Software IOTLB region is referenced by the
-> > +VIRTIO_PCI_CAP_SWIOTLB capability. Bus addresses within the referenced
-> > +range are not subject to the requirements of the VIRTIO_F_ORDER_PLATFO=
-RM
-> > +capability, if negotiated.
+> > Either add stuff below the --- above as that doesn't end up in the
+> > eventual git log, or --cover-letter on your git-format-patch and
+> > put useful things like that in there.
+> >  =20
+> > >=20
+> > > It looks like another option is to add commentary to each patch.
+> > >=20
+> > > I am less certain about your tag being removed - I don't fully
+> > > understand that. Is there a way to preserve that if changes are made
+> > > after you sign-off? =20
+> >=20
+> > Once a tag is given it is up to the patch author to add it to the
+> > patches for future versions.  That should only be dropped if the
+> > author thinks there are significant enough changes to warrant a fresh
+> > review.  If you do drop a tag like that, then the change log
+> > under --- on the particular patch should clearly state why. =20
+> > >  =20
+>=20
+> Thanks for the guidance - I see the part I missed:
 >=20
 >=20
-> why not? an optimization?
-> A mix of swiotlb and system memory might be very challenging from POV
-> of ordering.
-
-Conceptually, these addresses are *on* the PCI device. If the device is
-accessing addresses which are local to it, they aren't subject to IOMMU
-translation/filtering because they never even make it to the PCI bus as
-memory transactions.
-
+> "Both Tested-by and Reviewed-by tags, once received on mailing list
+> from tester or reviewer, should be added by author to the applicable
+> patches when sending next versions. However if the patch has changed
+> substantially in following version, these tags might not be
+> applicable anymore and thus should be removed. Usually removal of
+> someone=E2=80=99s Tested-by or Reviewed-by tags should be mentioned in the
+> patch changelog (after the =E2=80=98---=E2=80=99 separator)."
 >=20
-> > +
-> > +\devicenormative{\paragraph}{Software IOTLB bounce buffer capability}{=
-Virtio
-> > +Transport Options / Virtio Over PCI Bus / PCI Device Layout /
-> > +Software IOTLB bounce buffer capability}
-> > +
-> > +Devices which present the Software IOTLB bounce buffer capability
-> > +SHOULD also offer the VIRTIO_F_SWIOTLB feature.
-> > +
-> > +\drivernormative{\paragraph}{Software IOTLB bounce buffer capability}{=
-Virtio
-> > +Transport Options / Virtio Over PCI Bus / PCI Device Layout /
-> > +Software IOTLB bounce buffer capability}
-> > +
-> > +The driver SHOULD use the offered buffer in preference to passing syst=
-em
-> > +memory addresses to the device.
+> In my situation I made a mistake by not including his "Reviewed-by"
+> in the changes I pushed up. How does this work if no further changes
+> are required? Does it call onto the maintainer to apply the tag when
+> merging in the change set?
 >=20
-> Even if not using VIRTIO_F_SWIOTLB? Is that really necessary?
+> Is there anything I should do at this point to correct my error?
+It's a slightly messy case but I'd feel fine with a reply that said
 
-That part isn't strictly necessary, but I think it makes sense, for
-cases where the SWIOTLB support is an *optimisation* even if it isn't
-strictly necessary.
+oops I forgot to include
+Reviewed-by: xxxx
+as the scripts will pick that up.
+>=20
+> Thanks,
+> -Sam
+>=20
+> > > Sorry again about the confusion this caused, =20
+> > No problem, takes a while for everyone to get used to a different
+> > process. There are extensive docs, but it is still easy to miss
+> > things!
+> >=20
+> > Jonathan
+> >  =20
+> > > -Sam
+> > >  =20
+> > > > Best regards,
+> > > > Krzysztof
+> > > >    =20
+> >  =20
 
-Why might it be an "optimisation"? Well... if we're thinking of a model
-like pKVM where the VMM can't just arbitrarily access guest memory,
-using the SWIOTLB is a simple way to avoid that (by using the on-board
-memory instead, which *can* be shared with the VMM).
-
-But if we want to go to extra lengths to support unenlightened guests,
-an implementation might choose to just *disable* the memory protection
-if the guest doesn't negotiate VIRTIO_F_SWIOTLB, instead of breaking
-that guest.
-
-Or it might have a complicated emulation/snooping of virtqueues in the
-trusted part of the hypervisor so that it knows which addresses the
-guest has truly *asked* the VMM to access. (And yes, of course that's
-what an IOMMU is for, but when have you seen hardware companies design
-a two-stage IOMMU which supports actual PCI passthrough *and* get it
-right for the hypervisor to 'snoop' on the stage1 page tables to
-support emulated devices too....)
-
-Ultimately I think it was natural to advertise the location of the
-buffer with the VIRTIO_PCI_CAP_SWIOTLB capability and then to have the
-separate VIRTIO_F_SWIOTLB for negotiation... leaving the obvious
-question of what a device should do if it sees one but *not* the other.
-
-Obviously you can't have VIRTIO_F_SWIOTLB *without* there actually
-being a buffer advertised with VIRTIO_PCI_CAP_SWIOTLB (or its
-equivalent for other transports). But the converse seemed reasonable as
-a *hint* even if the use of the SWIOTLB isn't mandatory.
-
---=-mYzUro773zg9T/uQYbOm
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Transfer-Encoding: base64
-
-MIAGCSqGSIb3DQEHAqCAMIACAQExDzANBglghkgBZQMEAgEFADCABgkqhkiG9w0BBwEAAKCCD9Aw
-ggSOMIIDdqADAgECAhAOmiw0ECVD4cWj5DqVrT9PMA0GCSqGSIb3DQEBCwUAMGUxCzAJBgNVBAYT
-AlVTMRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxGTAXBgNVBAsTEHd3dy5kaWdpY2VydC5jb20xJDAi
-BgNVBAMTG0RpZ2lDZXJ0IEFzc3VyZWQgSUQgUm9vdCBDQTAeFw0yNDAxMzAwMDAwMDBaFw0zMTEx
-MDkyMzU5NTlaMEExCzAJBgNVBAYTAkFVMRAwDgYDVQQKEwdWZXJva2V5MSAwHgYDVQQDExdWZXJv
-a2V5IFNlY3VyZSBFbWFpbCBHMjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMjvgLKj
-jfhCFqxYyRiW8g3cNFAvltDbK5AzcOaR7yVzVGadr4YcCVxjKrEJOgi7WEOH8rUgCNB5cTD8N/Et
-GfZI+LGqSv0YtNa54T9D1AWJy08ZKkWvfGGIXN9UFAPMJ6OLLH/UUEgFa+7KlrEvMUupDFGnnR06
-aDJAwtycb8yXtILj+TvfhLFhafxroXrflspavejQkEiHjNjtHnwbZ+o43g0/yxjwnarGI3kgcak7
-nnI9/8Lqpq79tLHYwLajotwLiGTB71AGN5xK+tzB+D4eN9lXayrjcszgbOv2ZCgzExQUAIt98mre
-8EggKs9mwtEuKAhYBIP/0K6WsoMnQCcCAwEAAaOCAVwwggFYMBIGA1UdEwEB/wQIMAYBAf8CAQAw
-HQYDVR0OBBYEFIlICOogTndrhuWByNfhjWSEf/xwMB8GA1UdIwQYMBaAFEXroq/0ksuCMS1Ri6en
-IZ3zbcgPMA4GA1UdDwEB/wQEAwIBhjAdBgNVHSUEFjAUBggrBgEFBQcDBAYIKwYBBQUHAwIweQYI
-KwYBBQUHAQEEbTBrMCQGCCsGAQUFBzABhhhodHRwOi8vb2NzcC5kaWdpY2VydC5jb20wQwYIKwYB
-BQUHMAKGN2h0dHA6Ly9jYWNlcnRzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydEFzc3VyZWRJRFJvb3RD
-QS5jcnQwRQYDVR0fBD4wPDA6oDigNoY0aHR0cDovL2NybDMuZGlnaWNlcnQuY29tL0RpZ2lDZXJ0
-QXNzdXJlZElEUm9vdENBLmNybDARBgNVHSAECjAIMAYGBFUdIAAwDQYJKoZIhvcNAQELBQADggEB
-ACiagCqvNVxOfSd0uYfJMiZsOEBXAKIR/kpqRp2YCfrP4Tz7fJogYN4fxNAw7iy/bPZcvpVCfe/H
-/CCcp3alXL0I8M/rnEnRlv8ItY4MEF+2T/MkdXI3u1vHy3ua8SxBM8eT9LBQokHZxGUX51cE0kwa
-uEOZ+PonVIOnMjuLp29kcNOVnzf8DGKiek+cT51FvGRjV6LbaxXOm2P47/aiaXrDD5O0RF5SiPo6
-xD1/ClkCETyyEAE5LRJlXtx288R598koyFcwCSXijeVcRvBB1cNOLEbg7RMSw1AGq14fNe2cH1HG
-W7xyduY/ydQt6gv5r21mDOQ5SaZSWC/ZRfLDuEYwggWbMIIEg6ADAgECAhAH5JEPagNRXYDiRPdl
-c1vgMA0GCSqGSIb3DQEBCwUAMEExCzAJBgNVBAYTAkFVMRAwDgYDVQQKEwdWZXJva2V5MSAwHgYD
-VQQDExdWZXJva2V5IFNlY3VyZSBFbWFpbCBHMjAeFw0yNDEyMzAwMDAwMDBaFw0yODAxMDQyMzU5
-NTlaMB4xHDAaBgNVBAMME2R3bXcyQGluZnJhZGVhZC5vcmcwggIiMA0GCSqGSIb3DQEBAQUAA4IC
-DwAwggIKAoICAQDali7HveR1thexYXx/W7oMk/3Wpyppl62zJ8+RmTQH4yZeYAS/SRV6zmfXlXaZ
-sNOE6emg8WXLRS6BA70liot+u0O0oPnIvnx+CsMH0PD4tCKSCsdp+XphIJ2zkC9S7/yHDYnqegqt
-w4smkqUqf0WX/ggH1Dckh0vHlpoS1OoxqUg+ocU6WCsnuz5q5rzFsHxhD1qGpgFdZEk2/c//ZvUN
-i12vPWipk8TcJwHw9zoZ/ZrVNybpMCC0THsJ/UEVyuyszPtNYeYZAhOJ41vav1RhZJzYan4a1gU0
-kKBPQklcpQEhq48woEu15isvwWh9/+5jjh0L+YNaN0I//nHSp6U9COUG9Z0cvnO8FM6PTqsnSbcc
-0j+GchwOHRC7aP2t5v2stVx3KbptaYEzi4MQHxm/0+HQpMEVLLUiizJqS4PWPU6zfQTOMZ9uLQRR
-ci+c5xhtMEBszlQDOvEQcyEG+hc++fH47K+MmZz21bFNfoBxLP6bjR6xtPXtREF5lLXxp+CJ6KKS
-blPKeVRg/UtyJHeFKAZXO8Zeco7TZUMVHmK0ZZ1EpnZbnAhKE19Z+FJrQPQrlR0gO3lBzuyPPArV
-hvWxjlO7S4DmaEhLzarWi/ze7EGwWSuI2eEa/8zU0INUsGI4ywe7vepQz7IqaAovAX0d+f1YjbmC
-VsAwjhLmveFjNwIDAQABo4IBsDCCAawwHwYDVR0jBBgwFoAUiUgI6iBOd2uG5YHI1+GNZIR//HAw
-HQYDVR0OBBYEFFxiGptwbOfWOtMk5loHw7uqWUOnMDAGA1UdEQQpMCeBE2R3bXcyQGluZnJhZGVh
-ZC5vcmeBEGRhdmlkQHdvb2Rob3Uuc2UwFAYDVR0gBA0wCzAJBgdngQwBBQEBMA4GA1UdDwEB/wQE
-AwIF4DAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwQwewYDVR0fBHQwcjA3oDWgM4YxaHR0
-cDovL2NybDMuZGlnaWNlcnQuY29tL1Zlcm9rZXlTZWN1cmVFbWFpbEcyLmNybDA3oDWgM4YxaHR0
-cDovL2NybDQuZGlnaWNlcnQuY29tL1Zlcm9rZXlTZWN1cmVFbWFpbEcyLmNybDB2BggrBgEFBQcB
-AQRqMGgwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmRpZ2ljZXJ0LmNvbTBABggrBgEFBQcwAoY0
-aHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL1Zlcm9rZXlTZWN1cmVFbWFpbEcyLmNydDANBgkq
-hkiG9w0BAQsFAAOCAQEAQXc4FPiPLRnTDvmOABEzkIumojfZAe5SlnuQoeFUfi+LsWCKiB8Uextv
-iBAvboKhLuN6eG/NC6WOzOCppn4mkQxRkOdLNThwMHW0d19jrZFEKtEG/epZ/hw/DdScTuZ2m7im
-8ppItAT6GXD3aPhXkXnJpC/zTs85uNSQR64cEcBFjjoQDuSsTeJ5DAWf8EMyhMuD8pcbqx5kRvyt
-JPsWBQzv1Dsdv2LDPLNd/JUKhHSgr7nbUr4+aAP2PHTXGcEBh8lTeYea9p4d5k969pe0OHYMV5aL
-xERqTagmSetuIwolkAuBCzA9vulg8Y49Nz2zrpUGfKGOD0FMqenYxdJHgDCCBZswggSDoAMCAQIC
-EAfkkQ9qA1FdgOJE92VzW+AwDQYJKoZIhvcNAQELBQAwQTELMAkGA1UEBhMCQVUxEDAOBgNVBAoT
-B1Zlcm9rZXkxIDAeBgNVBAMTF1Zlcm9rZXkgU2VjdXJlIEVtYWlsIEcyMB4XDTI0MTIzMDAwMDAw
-MFoXDTI4MDEwNDIzNTk1OVowHjEcMBoGA1UEAwwTZHdtdzJAaW5mcmFkZWFkLm9yZzCCAiIwDQYJ
-KoZIhvcNAQEBBQADggIPADCCAgoCggIBANqWLse95HW2F7FhfH9bugyT/danKmmXrbMnz5GZNAfj
-Jl5gBL9JFXrOZ9eVdpmw04Tp6aDxZctFLoEDvSWKi367Q7Sg+ci+fH4KwwfQ8Pi0IpIKx2n5emEg
-nbOQL1Lv/IcNiep6Cq3DiyaSpSp/RZf+CAfUNySHS8eWmhLU6jGpSD6hxTpYKye7PmrmvMWwfGEP
-WoamAV1kSTb9z/9m9Q2LXa89aKmTxNwnAfD3Ohn9mtU3JukwILRMewn9QRXK7KzM+01h5hkCE4nj
-W9q/VGFknNhqfhrWBTSQoE9CSVylASGrjzCgS7XmKy/BaH3/7mOOHQv5g1o3Qj/+cdKnpT0I5Qb1
-nRy+c7wUzo9OqydJtxzSP4ZyHA4dELto/a3m/ay1XHcpum1pgTOLgxAfGb/T4dCkwRUstSKLMmpL
-g9Y9TrN9BM4xn24tBFFyL5znGG0wQGzOVAM68RBzIQb6Fz758fjsr4yZnPbVsU1+gHEs/puNHrG0
-9e1EQXmUtfGn4InoopJuU8p5VGD9S3Ikd4UoBlc7xl5yjtNlQxUeYrRlnUSmdlucCEoTX1n4UmtA
-9CuVHSA7eUHO7I88CtWG9bGOU7tLgOZoSEvNqtaL/N7sQbBZK4jZ4Rr/zNTQg1SwYjjLB7u96lDP
-sipoCi8BfR35/ViNuYJWwDCOEua94WM3AgMBAAGjggGwMIIBrDAfBgNVHSMEGDAWgBSJSAjqIE53
-a4blgcjX4Y1khH/8cDAdBgNVHQ4EFgQUXGIam3Bs59Y60yTmWgfDu6pZQ6cwMAYDVR0RBCkwJ4ET
-ZHdtdzJAaW5mcmFkZWFkLm9yZ4EQZGF2aWRAd29vZGhvdS5zZTAUBgNVHSAEDTALMAkGB2eBDAEF
-AQEwDgYDVR0PAQH/BAQDAgXgMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDBDB7BgNVHR8E
-dDByMDegNaAzhjFodHRwOi8vY3JsMy5kaWdpY2VydC5jb20vVmVyb2tleVNlY3VyZUVtYWlsRzIu
-Y3JsMDegNaAzhjFodHRwOi8vY3JsNC5kaWdpY2VydC5jb20vVmVyb2tleVNlY3VyZUVtYWlsRzIu
-Y3JsMHYGCCsGAQUFBwEBBGowaDAkBggrBgEFBQcwAYYYaHR0cDovL29jc3AuZGlnaWNlcnQuY29t
-MEAGCCsGAQUFBzAChjRodHRwOi8vY2FjZXJ0cy5kaWdpY2VydC5jb20vVmVyb2tleVNlY3VyZUVt
-YWlsRzIuY3J0MA0GCSqGSIb3DQEBCwUAA4IBAQBBdzgU+I8tGdMO+Y4AETOQi6aiN9kB7lKWe5Ch
-4VR+L4uxYIqIHxR7G2+IEC9ugqEu43p4b80LpY7M4KmmfiaRDFGQ50s1OHAwdbR3X2OtkUQq0Qb9
-6ln+HD8N1JxO5nabuKbymki0BPoZcPdo+FeRecmkL/NOzzm41JBHrhwRwEWOOhAO5KxN4nkMBZ/w
-QzKEy4PylxurHmRG/K0k+xYFDO/UOx2/YsM8s138lQqEdKCvudtSvj5oA/Y8dNcZwQGHyVN5h5r2
-nh3mT3r2l7Q4dgxXlovERGpNqCZJ624jCiWQC4ELMD2+6WDxjj03PbOulQZ8oY4PQUyp6djF0keA
-MYIDuzCCA7cCAQEwVTBBMQswCQYDVQQGEwJBVTEQMA4GA1UEChMHVmVyb2tleTEgMB4GA1UEAxMX
-VmVyb2tleSBTZWN1cmUgRW1haWwgRzICEAfkkQ9qA1FdgOJE92VzW+AwDQYJYIZIAWUDBAIBBQCg
-ggE3MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI1MDMzMDE1MDc1
-NlowLwYJKoZIhvcNAQkEMSIEIF3xw9Z4evpIp/lVAcDbFgxbJXuRG0tQFapgel3ylA6MMGQGCSsG
-AQQBgjcQBDFXMFUwQTELMAkGA1UEBhMCQVUxEDAOBgNVBAoTB1Zlcm9rZXkxIDAeBgNVBAMTF1Zl
-cm9rZXkgU2VjdXJlIEVtYWlsIEcyAhAH5JEPagNRXYDiRPdlc1vgMGYGCyqGSIb3DQEJEAILMVeg
-VTBBMQswCQYDVQQGEwJBVTEQMA4GA1UEChMHVmVyb2tleTEgMB4GA1UEAxMXVmVyb2tleSBTZWN1
-cmUgRW1haWwgRzICEAfkkQ9qA1FdgOJE92VzW+AwDQYJKoZIhvcNAQEBBQAEggIAW0QSjRaorM1G
-6kWlL8kxzKFJBFJSLWTDLAUB1R1hRbODU299NsYz/zc0rEFUknaIVg+2GxOf9JSPoIlLqRf3H9iR
-xxSnP9b4i9HzN1+bdaKNVyz+ntkZes8ZfUwgrWHpEviilC8GVpE1iK5i6fqLwDxxbEG/yADer2lf
-koxYQjdQig5JWmySbiohsPSJStZVy3nykbqbJ6wmQxiltwrcFY1ItsAOFUfP+zohZ8RggMwL6XQK
-QQZGBnsxdb6atYSbRyYdwkl/3qxH+3bpKJYieFHdvxNnAvA0tWWLBmkaV23XjlHUkTFfbjMf1yCl
-jeJKQHtfSnbjwoO8YFQHoN2Mxm+QvHgsVFB/6voKjs+JQodg/McB/Dw//XuNJnoeE1fwiHfzV2aJ
-riXBYmHQsQOrFTTJmixB/hvi86MgON4yoi6jsUzw7R712UncQvL/y/mNaIPKYxw3vxompof8M6MZ
-gdx8hdcssMymr0OIXOvKDfEoGP18D+wGQ6+VXhLI0eS0bF3/7kSBv3T3w14VkuO3uY/Ntg9q65Y0
-MiqOA8nHsouy7ibW243/oFbGklh+cHB9ABH8mGo+O2fQK8BLHGdO6bXid4g6ZKSVmOSaMq+9WRZs
-G5zTc5JfG1EWKIGXEhTRezVVMcHkaGAarJYtO6FDrvZI03QoayEKx6v+0yrTAwkAAAAAAAA=
-
-
---=-mYzUro773zg9T/uQYbOm--
 
