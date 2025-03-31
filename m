@@ -1,243 +1,401 @@
-Return-Path: <devicetree+bounces-162058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37939A76AF3
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 17:44:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0423CA76B23
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 17:48:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4577318919C9
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 15:36:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2E703A59C6
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 15:37:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89B7B221F26;
-	Mon, 31 Mar 2025 15:27:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC76B1E5705;
+	Mon, 31 Mar 2025 15:32:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DkNoj1h4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nEkXLI48"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f172.google.com (mail-vk1-f172.google.com [209.85.221.172])
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAF49217654;
-	Mon, 31 Mar 2025 15:27:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27DF18BEA;
+	Mon, 31 Mar 2025 15:32:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743434871; cv=none; b=smaXMOrQyMueOuQ3HbOjBQRPshbxqGjvUYBp4N0ztiLkwbYLQERgqjrRiCsghjW8H2PhDeXLQEoEHtIsZ8Gjm3hPK9HRtwxmWyaw5QWbeHcc/vyHE4p5SI1O3aGKUkxKryCC3eV8XdhLs020kcrlGsZ9lDN2V/UoyO2e46ak+kk=
+	t=1743435127; cv=none; b=tBuyjR7Oyzh/TmiY37RBcY3KQD3Brw/LDLqpKzaaxNMY+tPa5woKY9UHzAOoWv4PCaPcsF4hH3MDHAAkTNtKD5jOySnA0AP+7bU6CjvP5gfOR2IlFj5zh4/zUvKWDVh9rGCXw/gs4w+w266w+xPqy5ERxvWNND3ptoRYrgV7zbY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743434871; c=relaxed/simple;
-	bh=zcSxldy4tZU7YfrKElgKAUBlHkircEvdrhseClZd4cA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OFkwUAhR7yLosR6AwXUYxq3q9qBjGBZSa/ZALMRKOanZX74rrroJeP16OHgud3RIbaCws41LPbAYonpwD2NhXzEKy+hITt6Ci9U6/lOjJXk7R9IFPMw/mAoDW/46cWxv8Wr/yUXX7QNR9Nw8UMiSXNSWlBrAs4E+5gvdtha3uGY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DkNoj1h4; arc=none smtp.client-ip=209.85.221.172
+	s=arc-20240116; t=1743435127; c=relaxed/simple;
+	bh=8vTWO2waeOhyP15csPigSdUcwOGJzwHFOsIqYQ5lu7Y=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=D5LNYl9CV2om5WPV7QgkGQUzGIYMNPcuk+w7jpFmnvlvOeJeKEEAiqxJe7gT8cM/iRryJgaH9R2U2d3n1sS0WAoLrf/OQMrOtvAU5zgcEYRXCyyMRFi7gleIcogvUqIQMMP8qR7o7tRYGWFZ+IlpkAiomOSM1y1nhFb8aVEH630=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nEkXLI48; arc=none smtp.client-ip=209.85.216.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f172.google.com with SMTP id 71dfb90a1353d-5259327a93bso1980807e0c.2;
-        Mon, 31 Mar 2025 08:27:49 -0700 (PDT)
+Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-2ff615a114bso8240583a91.0;
+        Mon, 31 Mar 2025 08:32:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743434868; x=1744039668; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1743435125; x=1744039925; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=AJLE1nyFkXIStchbJmUYwAf5Y0djUvjW8TujtP3j8yU=;
-        b=DkNoj1h4r+LJi38WrELGOy/eSInyRan3u+YN/ziVo43HVPsql033S2njcMogS7eGRV
-         eH7RuL0C1xWF78AwNPeKg4LxInDkJMBx+MkXUoWePWj9Vms+4+pFTBnGh2EkRQVuv9Jn
-         2HCqDK+MT9TiJw6/YwAaJeFOfH9Pm5zqvavqv/ITucQvW5MBi/H/0GfX6wTVgzJrJhRB
-         Gqo2EK6T5SQlOmXSPZI/CpgeE/keDy0nP8MpYd4GT/r1LYbUoTd1kIf5eI0Nm703LYDv
-         zuW/JYfSVzaW/3QXvt44/hKA8OpoPF/az2rlQ795yscWxrgOmIploVF5pUiaWrTeObjK
-         vZ1g==
+        bh=HnCNSq0o/FR3ObCI2X9G4SZqwl8SvbhxvoXh9ZLHBBU=;
+        b=nEkXLI48UkqcVipDwuGPsnx67HkEzxR0225zTz+kx2YdkuFtiI+VefE4pyn6qccf3F
+         6Y1+vOWVcrKcUunj0KgZa4qSNewbQTpA6UJFXLzGjfUIUiCwwaN1PiKFfJPY+Q6iMGsg
+         /J9v2daxi0wvEKixwZ8puz+RvLju3qf0wsIO2MoMPIMF57T5JI0AledXXwn8ByLEjn/m
+         SdD1vANwcatyb74mEl7F6yVfoDnLLnzwFPkwrGhK3D2CfivSEhiBkTSRuOKkjaXA3cya
+         M/Hg2WWafAUoeOmCxTJCYb2gfX9pNp7LqXKFPspR7klpAG9/lvpDJbvu0VL2p9yucXmt
+         LC+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743434868; x=1744039668;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1743435125; x=1744039925;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=AJLE1nyFkXIStchbJmUYwAf5Y0djUvjW8TujtP3j8yU=;
-        b=owDlLDUs1I1pPw+Q+moF48vvQBiUAAvY7zkIuxINEi5TvnRwYYYYOLmLbSE1Dzgcof
-         LUFxzWEXWR5paB++dO6LuEnH5cr14uYzBlv+rtL9SkjadOL72uXc1bl8bjs37hpn07my
-         FLSydJvNJwo0z7ZreVX3xK4qy6pLYxaj353ENSjZ2BJ8p5gsHwNo9zDbkcXs9JX1FSm0
-         0MHCa1MccvvrcwudgNSZXzCxvwqaWqAtxYkzEcBjjKDkcZtxWyP/H4ylhWDGJZ7lyTH2
-         ym4SuKoabkZgXSkhRNNdSnjsmwa5+X/ScBKIcy9js/B3Aa7oCk3AYbWNCSgnYfzGvk5r
-         4J1A==
-X-Forwarded-Encrypted: i=1; AJvYcCU8622wKOTfX2zklgM2mDrHjT+XkCWRYwaq49z25sUUxjd2VbwvJeY1+NAKyNiPHcYDThgIqqw2skoDmYY=@vger.kernel.org, AJvYcCVL+g1IAGZS36swLHcyiJ8TfxV400fQnNZlbKgo0fzI4pGL3kyrxF9OsSME1etN4Bam6Hq2xq7p7QD4@vger.kernel.org, AJvYcCVj4t7PQ56bspUKbTI9LGoNdOhpk7FDJNlsOROOal0U+FFMN6VQrsYaL71HXznWxysn3yyqlmb0TJVXEif2/hlBPU8=@vger.kernel.org, AJvYcCVnRBkJpQUMfDgoRRwgAxKDi0jszoKQbf9ICk+aN1ptzERPy1hGHy+LI/snVMaL4P9Se7+3etCavP6D@vger.kernel.org, AJvYcCWgopVe+BbdGj/Q4GPIUZDQVGT4VovIodPP/lbqOVft+tQLJZEhqhZGIuFEt5m2YgIoIFy5HoVLGxBeCvmx@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYNh0F2gGrq3AR9VfMQK90ksLV7RmPMcJe3Tt8TBGuzdf6Z5Kd
-	sw8YrFxDszbWi/RIxW1PzOapIfL4eRirF2noeCQY4YwlYqP3PmSgshocgaHC0pT5qw/7sv/f6xb
-	4FkicHb5m4qzcV9YR4E/1jMlaFTQ=
-X-Gm-Gg: ASbGncvzUZQit1TnmPdiJtiewzmDa3PrT4YaSmZB+YCrm//0Kqbu2WlqLjDUb5agiM9
-	URLWqUxLyzS9mpGzdcm79jswEp1tsVdxeLiGgAVDMLEa/YbZNFuMt5w6F78xg2v4BPf4M8nYjc0
-	kWC3t+G8SmYJC/kaFqySlyzvAFBt/FNPCugPrEC3JMvdFCvcTWOBOx5XA2P3Y=
-X-Google-Smtp-Source: AGHT+IHt9arRYtbTiWA3a1qC4COLXXXBtiSB4ldzFyRPQHHbGdLcelunUNrve5R2ts6bPGCsAQ1tFbamLH6ltA8kfs8=
-X-Received: by 2002:a05:6122:2021:b0:516:230b:eec with SMTP id
- 71dfb90a1353d-5261d3c9f51mr5111452e0c.5.1743434868285; Mon, 31 Mar 2025
- 08:27:48 -0700 (PDT)
+        bh=HnCNSq0o/FR3ObCI2X9G4SZqwl8SvbhxvoXh9ZLHBBU=;
+        b=kPwY9YVmrUVMzOVOXZeyJtGO1+cl6rQpbyrLemy1R7DZtTFblVauKIBlVtcVUFSaRr
+         daVxMNAx+ixBbqRHr82iNMOE0WnbaPy7cZmadn/SsPtwpt079M/NX/hV7DUn55bt6vBz
+         8PBmXMjnEx2CkoD67TMyYwIWcq4TVccAVzwOxGBBry2kmlSrziRYxysZnELBR+MvERxO
+         e8Lj13RUtuM2XCRTrjVq5WrhmmForfgjC0VYY9leYN62crBInV/yO0u77CMTxnE9BW7d
+         V+XZVvLSrXgP8p+qHxyCi/yTMYPr1XZg4lTnG4Lrvd4cXFXyhTlW4jobj5ZgIs0uobj9
+         ewlA==
+X-Forwarded-Encrypted: i=1; AJvYcCUQZ1/wvgR939DcVma6gfocNJxC/lEB39DtXMA/QC9fzibkbzHUGJ2WHlHfP654cOJjIae+lZu7DmKN@vger.kernel.org, AJvYcCUat3qiJd7wOdYZGMgbPaP4oiuXw5wBoOQVNrvIkZxlwL/QrasSbu8J83Ho3hwbz2a9fEgi7x8qzJAv72Db@vger.kernel.org, AJvYcCVKc2w0aqU/Bar/vDcY1ZCueqH8wOO5Sau46Gr5iy9RsDnT3eITXQjh5Ulm275eaJqYYCA7Rme/D1NKkA==@vger.kernel.org
+X-Gm-Message-State: AOJu0YwkACRPB1nwlYDKthZAzOcqFYGwxC6j/x5cIdsJUg9pTPUTjGxK
+	LUhP0GU+bI7BXdCYhty8f8PEO8yXsEzFMEVsOsfnD1IccKN2tymgS4rSkDgb
+X-Gm-Gg: ASbGncvrWws0oDJ1vYndPBHjseog10Q9B3cJRLC4LSlaOmBvKvfAtLv6y2p339lqxnP
+	xpGT0MP1DVolupph69FtIjG+ubwnymMYyaYCdlrXqV8ZjZti1i29M0rQJEAoOirwkqMuaNGKqkZ
+	sBekJXIu7l1eCRWEvOvIgGMhnFfFGGG6fySo5Ao87vePOdnnATXybqZqhj7R4nbc6HvIR9O9ZlQ
+	0HxahWorDhenwQJAkRQkaE442zLtj45rPbOCHEdKLjzmqy86C+F4ZxE7uNZxPQxvUz3EK6BIPMA
+	4iFvq6jmBiE8CqCd5evt9KPGJsfUuy9iDQzyTyUt6yX/bocofIlvaIUlog==
+X-Google-Smtp-Source: AGHT+IEIR5JRCPuV+YKyKJEzyfITyiPiPWZ6P2tjzdTV+yh+2ubxanUM3vLdqFZvvwNlXRdEbu+w1w==
+X-Received: by 2002:a17:90b:1f91:b0:2fa:3174:e344 with SMTP id 98e67ed59e1d1-3051c9517dbmr19869593a91.14.1743435125257;
+        Mon, 31 Mar 2025 08:32:05 -0700 (PDT)
+Received: from localhost.localdomain ([123.16.133.44])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30516d61799sm7337814a91.23.2025.03.31.08.32.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 31 Mar 2025 08:32:04 -0700 (PDT)
+From: Nam Tran <trannamatk@gmail.com>
+To: krzk+dt@kernel.org
+Cc: pavel@kernel.org,
+	lee@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-leds@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: leds: Add LP5812 LED driver
+Date: Mon, 31 Mar 2025 22:31:38 +0700
+Message-Id: <20250331153138.52539-1-trannamatk@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <59c3c5f6-98a3-4c02-8622-9bad2a06c6f1@kernel.org>
+References: <59c3c5f6-98a3-4c02-8622-9bad2a06c6f1@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250330210717.46080-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250330210717.46080-12-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <TY3PR01MB113463B37FE6B1AAE8CF0F51F86AD2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <CA+V-a8v0K_tWA=LnyHDptoBjtgPHSbgwpJp4L1rw4Uv6KC+-JA@mail.gmail.com>
- <TYCPR01MB11332F548F3770F0C70C9051A86AD2@TYCPR01MB11332.jpnprd01.prod.outlook.com>
- <CA+V-a8tVQaDBzLXVJUonmV6eW3i_KLTTjVm3L0Kf2A1xrMoUHQ@mail.gmail.com> <TYCPR01MB11332EB9F2552938B490E62F886AD2@TYCPR01MB11332.jpnprd01.prod.outlook.com>
-In-Reply-To: <TYCPR01MB11332EB9F2552938B490E62F886AD2@TYCPR01MB11332.jpnprd01.prod.outlook.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Mon, 31 Mar 2025 16:27:22 +0100
-X-Gm-Features: AQ5f1JqriXw8-7MBvStm3Uj9LY3nQv7H2_O7UWqukRvxQWRVF12UvsymQ4KnIQs
-Message-ID: <CA+V-a8uh-LUmLEs_85dXwuiYecJTyLt3zd06vyGE749Ye+9moQ@mail.gmail.com>
-Subject: Re: [PATCH 11/17] drm: renesas: rz-du: mipi_dsi: Add OF data support
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	"laurent.pinchart" <laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, 
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Biju,
+On 18 Mar 2025 19:59:51, Krzysztof Kozlowski wrote:
 
-On Mon, Mar 31, 2025 at 4:04=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
-m> wrote:
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/leds/ti,lp5812.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +$ref: /schemas/leds/common.yaml#
+>>> +
+>>> +title: Linux driver for LP5812 LED from Texas Instruments
+>> 
+>> Nothing improved.
+>> 
+>> Nam: Do you mean the title should focus on the LP5812 hardware itself? If so, I will update it accordingly to better describe the device.
 >
-> Hi Prabhakar,
->
-> > -----Original Message-----
-> > From: Lad, Prabhakar <prabhakar.csengg@gmail.com>
-> > Sent: 31 March 2025 15:44
-> > Subject: Re: [PATCH 11/17] drm: renesas: rz-du: mipi_dsi: Add OF data s=
-upport
-> >
-> > Hi Biju,
-> >
-> > On Mon, Mar 31, 2025 at 3:14=E2=80=AFPM Biju Das <biju.das.jz@bp.renesa=
-s.com> wrote:
-> > >
-> > >
-> > >
-> > > > -----Original Message-----
-> > > > From: Lad, Prabhakar <prabhakar.csengg@gmail.com>
-> > > > Sent: 31 March 2025 14:59
-> > > > To: Biju Das <biju.das.jz@bp.renesas.com>
-> > > > Cc: Geert Uytterhoeven <geert+renesas@glider.be>; Andrzej Hajda
-> > > > <andrzej.hajda@intel.com>; Neil Armstrong
-> > > > <neil.armstrong@linaro.org>; Robert Foss <rfoss@kernel.org>;
-> > > > laurent.pinchart <laurent.pinchart@ideasonboard.com>; Jonas Karlman
-> > > > <jonas@kwiboo.se>; Jernej Skrabec <jernej.skrabec@gmail.com>; David
-> > > > Airlie <airlied@gmail.com>; Simona Vetter <simona@ffwll.ch>; Maarte=
-n
-> > > > Lankhorst <maarten.lankhorst@linux.intel.com>; Maxime Ripard
-> > > > <mripard@kernel.org>; Thomas Zimmermann <tzimmermann@suse.de>; Rob
-> > > > Herring <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>=
-;
-> > > > Conor Dooley <conor+dt@kernel.org>; Mauro Carvalho Chehab
-> > > > <mchehab@kernel.org>; Kieran Bingham
-> > > > <kieran.bingham+renesas@ideasonboard.com>; Stephen Boyd
-> > > > <sboyd@kernel.org>; Philipp Zabel <p.zabel@pengutronix.de>;
-> > > > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
-> > > > linux-renesas- soc@vger.kernel.org; linux-media@vger.kernel.org;
-> > > > linux-clk@vger.kernel.org; Fabrizio Castro
-> > > > <fabrizio.castro.jz@renesas.com>; Prabhakar Mahadev Lad
-> > > > <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > Subject: Re: [PATCH 11/17] drm: renesas: rz-du: mipi_dsi: Add OF
-> > > > data support
-> > > >
-> > > > Hi Biju,
-> > > >
-> > > > Thank you for the review.
-> > > >
-> > > > On Mon, Mar 31, 2025 at 1:38=E2=80=AFPM Biju Das <biju.das.jz@bp.re=
-nesas.com> wrote:
-> > > > >
-> > > > > Hi Prabhakar,
-> > > > >
-> > > > > Thanks for the patch.
-> > > > >
-> > > > > > -----Original Message-----
-> > > > > > From: Prabhakar <prabhakar.csengg@gmail.com>
-> > > > > > Sent: 30 March 2025 22:07
-> > > > > > Subject: [PATCH 11/17] drm: renesas: rz-du: mipi_dsi: Add OF
-> > > > > > data support
-> > > > > >
-> > > > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > > >
-> > > > > > In preparation for adding support for the Renesas RZ/V2H(P) SoC=
-,
-> > > > > > this patch introduces a mechanism to pass SoC-specific
-> > > > > > information via OF data in the DSI driver. This enables the
-> > > > > > driver to adapt dynamically to various SoC-
-> > > > specific requirements without hardcoding configurations.
-> > > > > >
-> > > > > > The MIPI DSI interface on the RZ/V2H(P) SoC is nearly identical
-> > > > > > to the one on the RZ/G2L SoC. While the LINK registers are
-> > > > > > shared between the two SoCs, the D-PHY registers differ. Also
-> > > > > > the VCLK range differs on both these SoCs. To accommodate these
-> > > > > > differences `struct rzg2l_mipi_dsi_hw_info`
-> > > > is introduced and as now passed as OF data.
-> > > > > >
-> > > > > > These changes lay the groundwork for the upcoming RZ/V2H(P) SoC
-> > > > > > support by allowing SoC-specific data to be passed through OF.
-> > > > > >
-> > > > <snip>
-> > > > > > +
-> > > > > >       ret =3D drm_of_get_data_lanes_count_ep(dsi->dev->of_node,=
- 1, 0, 1, 4);
-> > > > > >       if (ret < 0)
-> > > > > >               return dev_err_probe(dsi->dev, ret, @@ -729,10
-> > > > > > +750,12 @@ static int rzg2l_mipi_dsi_probe(struct platform_devi=
-ce *pdev)
-> > > > > >       if (IS_ERR(dsi->vclk))
-> > > > > >               return PTR_ERR(dsi->vclk);
-> > > > > >
-> > > > > > -     dsi->rstc =3D devm_reset_control_get_exclusive(dsi->dev, =
-"rst");
-> > > > > > -     if (IS_ERR(dsi->rstc))
-> > > > > > -             return dev_err_probe(dsi->dev, PTR_ERR(dsi->rstc)=
-,
-> > > > > > -                                  "failed to get rst\n");
-> > > > > > +     if (dsi->info->has_dphy_rstc) {
-> > > > > > +             dsi->rstc =3D
-> > > > > > + devm_reset_control_get_exclusive(dsi->dev,
-> > > > > > + "rst");
-> > > > >
-> > > > > Maybe use devm_reset_control_get_optional_exclusive by dropping h=
-as_dphy_rstc.
-> > > > >
-> > > > As the dtbs_check doesn't enforce this,  `has_dphy_rstc` flag was
-> > > > added. Recently the same was done for the CRU [0] based on the rece=
-nt comment received.
-> > > >
-> > >
-> > > RZ/V2H has "arst" and "prst". So, If you add "rst" for RZ/V2H then yo=
-u should get dtbs warning,
-> > right?
-> > >
-> > No we dont [0], note DT binding is written based on the recent feedback=
- received.
->
-> That is strange. It is triggering warning for me, if I just update the ex=
-ample.
->
-Ahh right I missed that. The current implementation is based on this
-comment received [0] (same being applied for reset). Please let me
-know if you still want me to use
-devm_reset_control_get_optional_exclusive() (and same for the clk).
+>No, I mean you should say what this device is, not what the driver is
+>for. Bindings are about hardware, not drivers.
 
-[0] https://lore.kernel.org/lkml/20250223181955.GD8330@pendragon.ideasonboa=
-rd.com/
+Thank you for the clarification.
+I will change the title to “TI/National Semiconductor LP5812 LED Drivers”.
 
-Cheers,
-Prabhakar
+>> 
+>>> +
+>>> +maintainers:
+>>> +  - Nam Tran <trannamatk@gmail.com>
+>>> +
+>>> +description: |
+>>> +  The LP5812 is an I2C LED Driver that can support LED matrix 4x3.
+>>> +  For more product information please see the link below:
+>>> +  https://www.ti.com/product/LP5812#tech-docs
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: ti,lp5812
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>> 
+>> 
+>> This improved... but:
+>> 
+>>> +
+>>> +  "#address-cells":
+>>> +    const: 1
+>>> +
+>>> +  "#size-cells":
+>>> +    const: 0
+>> 
+>> What are these?
+>> 
+>> Nam: I included the #address-cells and #size-cells properties to resolve a warning encountered when running:
+>> make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/leds/ti,lp5812.yaml
+>> The specific warning was:
+>> Documentation/devicetree/bindings/leds/ti,lp5812.example.dts:23.17-30: Warning (reg_format): /example-0/i2c/led-controller@1b:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+>
+>This makes no sense.
+>
+>> This warning suggests that the default values for #address-cells and #size-cells in the schema context are not aligned with the LP5812's expected usage. To explicitly define the correct values, I set these properties as mentioned.
+>> This ensures that the binding schema validation passes without warnings. If you believe a different approach is more appropriate, I’m happy to adjust the binding accordingly.
+>
+>I can barely parse your messages. They are neither properly quoting my
+>replies, nor wrapped according to email style. Use standard format,
+>expressed in countless guides bout netiquette and mailing lists.
+>
+>You added properties to hide warning, instead of fixing the warning, but
+>these properties make nos sense here.
+
+#address-cells is 1 because I only one cell to define address of a child node of LP5812
+#size-cells is 0 because I don't need to define size of reg properly of child node.
+Reg properly of child node is describe for address only.
+
+>> 
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +
+>> 
+>> Nothing improved here.
+>> Your previous comment
+>> No ref to LED common schema? No other properties? This is too incomplete
+>> 
+>> Nam: I have chosen not to reference common.yaml in the LP5812 binding because the LP5812 does not fully align with the standard LED properties defined in the common schema. Since the driver does 
+>
+>That's a no go.
+>
+>> not use standard properties like function, color, or max-brightness, I believe referencing the common schema would introduce unnecessary constraints.
+>
+>Driver? Please describe hardware, not driver.
+>
+>> Currently, I have included compatible and reg as required properties, as they are essential for describing the LP5812 device. Are there additional properties that should be marked as required? Or if you have specific improvements in mind, I would appreciate your guidance.
+>
+>Look at other bindings and do not re-invent.
+
+I checked other bindings and I will update LP5812 yaml follow multi color led and describe LP5812 hardware in the yaml.
+My new yaml will update as below
+
+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+%YAML 1.2
+---
+$id: http://devicetree.org/schemas/leds/ti,lp5812.yaml#
+$schema: http://devicetree.org/meta-schemas/core.yaml#
+
+$ref: /schemas/leds/common.yaml#
+
+title: TI/National Semiconductor LP5812 LED Drivers
+
+maintainers:
+  - Nam Tran <trannamatk@gmail.com>
+
+description: |
+  The LP5812 is an I2C LED Driver that can support LED matrix 4x3.
+  For more product information please see the link below:
+  https://www.ti.com/product/LP5812#tech-docs
+
+properties:
+  compatible:
+    const: ti,lp5812
+
+  reg:
+    maxItems: 1
+    description:
+      I2C slave address
+      lp5812/12- 0x1b
+
+  "#address-cells":
+    const: 1
+
+  "#size-cells":
+    const: 0
+
+patternProperties:
+  '^multi-led@[0-3]$':
+    type: object
+    $ref: leds-class-multicolor.yaml#
+    unevaluatedProperties: false
+
+    properties:
+      reg:
+        minItems: 1
+        maxItems: 12
+
+      '#address-cells':
+        const: 1
+
+      '#size-cells':
+        const: 0
+
+    patternProperties:
+      "^led@[0-9a-f]+$":
+        type: object
+        $ref: common.yaml#
+        unevaluatedProperties: false
+
+        properties:
+          reg:
+            maxItems: 1
+
+        required:
+          - reg
+
+required:
+  - compatible
+  - reg
+
+additionalProperties: false
+
+examples:
+  - |
+    #include <dt-bindings/leds/common.h>
+
+    i2c {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        led-controller@1b {
+            compatible = "ti,lp5812";
+            reg = <0x1b>;
+            #address-cells = <1>;
+            #size-cells = <0>;
+
+            multi-led@0 {
+              #address-cells = <1>;
+              #size-cells = <0>;
+              reg = <0x0>;
+              color = <LED_COLOR_ID_RGB>;
+              led@0 {
+                     reg = <0x0>;
+                     color = <LED_COLOR_ID_GREEN>;
+              };
+              led@1 {
+                     reg = <0x1>;
+                     color = <LED_COLOR_ID_RED>;
+              };
+              led@2 {
+                     reg = <0x2>;
+                     color = <LED_COLOR_ID_BLUE>;
+              };
+            };
+
+            multi-led@1 {
+              #address-cells = <1>;
+              #size-cells = <0>;
+              reg = <0x1>;
+              color = <LED_COLOR_ID_RGB>;
+              led@3 {
+                     reg = <0x3>;
+                     color = <LED_COLOR_ID_GREEN>;
+              };
+              led@4 {
+                     reg = <0x4>;
+                     color = <LED_COLOR_ID_RED>;
+              };
+              led@5 {
+                     reg = <0x5>;
+                     color = <LED_COLOR_ID_BLUE>;
+              };
+            };
+            multi-led@2 {
+              #address-cells = <1>;
+              #size-cells = <0>;
+              reg = <0x2>;
+              color = <LED_COLOR_ID_RGB>;
+              led@6 {
+                     reg = <0x6>;
+                     color = <LED_COLOR_ID_GREEN>;
+              };
+              led@7 {
+                     reg = <0x7>;
+                     color = <LED_COLOR_ID_RED>;
+              };
+              led@8 {
+                     reg = <0x8>;
+                     color = <LED_COLOR_ID_BLUE>;
+              };
+            };
+
+            multi-led@3 {
+              #address-cells = <1>;
+              #size-cells = <0>;
+              reg = <0x3>;
+              color = <LED_COLOR_ID_RGB>;
+              led@9 {
+                     reg = <0x9>;
+                     color = <LED_COLOR_ID_GREEN>;
+              };
+              led@a {
+                     reg = <0xA>;
+                     color = <LED_COLOR_ID_RED>;
+              };
+              led@b {
+                     reg = <0xB>;
+                     color = <LED_COLOR_ID_BLUE>;
+              };
+            };
+        };
+    };
+
+...
+
+>> 
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    i2c {
+>>> +        #address-cells = <1>;
+>>> +        #size-cells = <0>;
+>>> +
+>>> +        led-controller@1b {
+>>> +            compatible = "ti,lp5812";
+>>> +            reg = <0x1b>;
+>>> +        };
+>>> +    };
+>>> +
+>>> +...
+>>> diff --git a/MAINTAINERS b/MAINTAINERS
+>>> index 8e0736dc2ee0..2bd9f5132cab 100644
+>>> --- a/MAINTAINERS
+>>> +++ b/MAINTAINERS
+>>> @@ -23506,6 +23506,12 @@ S:   Maintained
+>>>  F:   Documentation/devicetree/bindings/leds/backlight/ti,lp8864.yaml
+>>>  F:   drivers/leds/leds-lp8864.c
+>>>
+>>> +TEXAS INSTRUMENTS' LP5812 LED DRIVER
+>> 
+>> Nothing improved.
+>> Your previous comment
+>> 5 is before 8, so this does not look sorted.
+>> 
+>> Nam: I have reviewed the sorting order in MAINTAINERS, and I believe the current placement of LP5812 is correct. Since "LB" comes before "LP" alphabetically, "TEXAS INSTRUMENTS' LB8864 LED DRIVER" is correctly listed before "TEXAS INSTRUMENTS' LP5812 LED BACKLIGHT DRIVER".
+>
+>
+>Indeed, existing entry has typo, so code is fine. Is it such a big deal
+>to answer to reviewer to his comment?
+
+Thank you for the clarification. I now understand that the existing entry contains a typo.
+I will make sure to response to reviewer comments more promtly in the future.
+Is it acceptable if I modify MAINTAINERS file to adjust LB8864 to LP8864?
+
+Best regards,
+Nam Tran
 
