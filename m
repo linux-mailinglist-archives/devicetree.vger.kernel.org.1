@@ -1,124 +1,119 @@
-Return-Path: <devicetree+bounces-162029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4915CA766E0
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 15:27:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11075A766E9
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 15:32:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A3C218886F5
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 13:28:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F5FA188B670
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 13:32:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E86C211299;
-	Mon, 31 Mar 2025 13:27:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 914A3210F44;
+	Mon, 31 Mar 2025 13:32:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="aBXFn7Sp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qqXIbSe1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B18E48472;
-	Mon, 31 Mar 2025 13:27:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66FFD1DA62E;
+	Mon, 31 Mar 2025 13:32:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743427671; cv=none; b=T/fDc8Y0DncWm34jcb71bKpIxcwfnyyRy5hxtokxeE/mM5bQICaWZu7+wNkQxrXG+1NiDxWLnQPjA0rA9wW/Dge9d2zli5u/zb2ThP6SgY+iNmCiNdHf7cCk9bNhYX4wBQ3Df5VvQnFstBgWv/X+ToYZfBZBh/MFReshLBoS/mQ=
+	t=1743427964; cv=none; b=GkhrdibK7eQ9atDvkEZT+2a6iMYbBvRE5nqX0H/DfXa4JkuvE8Cvs+Fy33/GBM48bAu8/w6z25nfTFYcPmjScxUIjdP1oEiyk4l/nit0E/iUFXaG9qgTTKFD1ZyXvUQdml83YKf9XBglNFqGnre0gxqWb4G9CsZYvXuhAaLxz2w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743427671; c=relaxed/simple;
-	bh=glwUne9cizaTnkLrGY1HEwK6Rkb2ZeouVxAPZRgLooQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lfGuM4ubm+qF22keKCG+xAkqU2v9MgtIyawZkokEG2V5Xjat81Unu+5EvAfVRWmt61BfvD1oCuNWQ2tMTfA4Ez62hHGKrEGPgT1+JwEsMdgdtJwXUgQBlYWiH7DYCUe4Q1x5cWcyTJVyNUPdyvqnmtrVRjj60pnYoAk1Suoz9sQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=aBXFn7Sp; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1743427667;
-	bh=glwUne9cizaTnkLrGY1HEwK6Rkb2ZeouVxAPZRgLooQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aBXFn7SppLGstmOX2Aj099axN0Kai23N61ot1oeDIKbmvytLRHbIMKQ3AJmOYuIzP
-	 YqAcaqDxmw31WEwxvPcjblnPO9XXzIsT9mbqZyukUv7aBmkfW80+oVlTQGY2UerfrJ
-	 navlE+bXdOELK1I7xMPw3XfO+/pwk58xHAOp6FZYBWcKJEeBs2Dl33a24z1eCjC51U
-	 qZwy6AhmiXbdGNtaHajZbVxhJcX6fRfF2Kn5CuhPGOWHZFhy1rvQ0/2H881O5FI0ia
-	 UqZwwNF4rjAiVZBVVyMGbEWUgVA+1Wkhky8EBRpTyyelsRPrUslQp7oEzax1jiVfgi
-	 IJEiANm0Dqcww==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4E69517E07F4;
-	Mon, 31 Mar 2025 15:27:47 +0200 (CEST)
-Message-ID: <10703a6b-3f5f-4611-8545-21aa0e9be660@collabora.com>
-Date: Mon, 31 Mar 2025 15:27:46 +0200
+	s=arc-20240116; t=1743427964; c=relaxed/simple;
+	bh=/lgLZPuxiweVn5v5ms1kIG4weriLChhI1yLLxFdQFkQ=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=mD131TDIhnMNeWTeyKWJ2CbKbDPjqj/YazDNLRnVxC3WRVrf3Gadhz6c0tUSQ8n7NG2LA5+KzsSq9sGKFGDfWwWe7YNZ+PqW3G/OiOk4ugfsfDg3jrcPgUNNNyyS9iHCOyTii693qtSHbi80qwRr34kXFfc97ktPzKwcfUHdOFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qqXIbSe1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DF23C4CEE3;
+	Mon, 31 Mar 2025 13:32:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743427963;
+	bh=/lgLZPuxiweVn5v5ms1kIG4weriLChhI1yLLxFdQFkQ=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=qqXIbSe1IqWEFV4QJicIu9v3qtoS0zEtopDvEYE/eKPC7JuFYO1ofC82kpyPvBqQ6
+	 By9qPtC/0psX/JW0yYtuAGXwmPIoyDDG0FwTelITStOmCeJ2LvZ76wwmpyBg5fO6Mq
+	 OkBr7yBY+BuumMkYIEN11vTC9Ah6/awXL6Ylf7471sUR+lsPWdPk+K1LTIGL+98eUV
+	 t1RyXjb0swRoCcvDa/bG8/1EmRsFjxThewpkOa5pYE4blS1tvCaJH6rL1wVsNJEsY+
+	 k25FTkgCF2heMno2m/8B4pMrrrXRvWCNS9Up6CmuSEY91YbwJt7/wWAoC/ThKhROTq
+	 krlygGt6bDXjQ==
+Date: Mon, 31 Mar 2025 08:32:42 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8390-genio-common: Force ssusb2
- dual role mode to host
-To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <20250331-mtk-genio-510-700-fix-bt-detection-v1-1-34ea2cf137f3@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250331-mtk-genio-510-700-fix-bt-detection-v1-1-34ea2cf137f3@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ devicetree@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>, 
+ Kevin Hilman <khilman@baylibre.com>
+To: Christian Hewitt <christianshewitt@gmail.com>
+In-Reply-To: <20250330143254.3159519-1-christianshewitt@gmail.com>
+References: <20250330143254.3159519-1-christianshewitt@gmail.com>
+Message-Id: <174342765349.2641741.12813558256280243493.robh@kernel.org>
+Subject: Re: [PATCH] arm64: dts: amlogic: gxlx-s905l-p271: add saradc
+ compatible
 
-Il 31/03/25 11:25, Louis-Alexis Eyraud ha scritto:
-> On the Mediatek Genio 510-EVK and 700-EVK boards, ssusb2 controller is
-> one but has two ports: one is routed to the M.2 slot, the other is on
-> the RPi header who does support full OTG.
-> Since Mediatek Genio 700-EVK USB support was added, dual role mode
-> property is set to otg for ssusb2. This config prevents the M.2
-> Wifi/Bluetooth module, present on those boards and exposing Bluetooth
-> as an USB device to be properly detected at startup, so configure for
-> the ssusb2 dr_mode property as host instead.
-> 
-> Fixes: 1afaeca17238 ("arm64: dts: mediatek: mt8390-genio-700: Add USB, TypeC Controller, MUX")
-> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+On Sun, 30 Mar 2025 14:32:54 +0000, Christian Hewitt wrote:
+> Add the saradac node using the meson-gxlx-saradc compatible to ensure
+> MPLL clocks are poked and audio output is enabled on the p271 (S905L)
+> board.
+> 
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+> The meson-gxlx-saradc compatible is now merged via the IIO tree, see [0].
+> 
+> [0] https://patchwork.kernel.org/project/linux-amlogic/cover/20250330101922.1942169-1-martin.blumenstingl@googlemail.com/
+> 
+>  arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dts | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
 
-> ---
-> I've tested this patch on Mediatek Genio 510-EVK board with a kernel
-> based on linux-next (tag: next-20250331).
-> ---
->   arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi | 8 +++++++-
->   1 file changed, 7 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi b/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
-> index 60139e6dffd8e0e326690d922f3360d829ed026b..3a9d429f0f14b501ae41551dfe7272f242345138 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
-> @@ -1199,7 +1199,13 @@ xhci_ss_ep: endpoint {
->   };
->   
->   &ssusb2 {
-> -	dr_mode = "otg";
-> +	/*
-> +	 * the ssusb2 controller is one but we got two ports : one is routed
-> +	 * to the M.2 slot, the other is on the RPi header who does support
-> +	 * full OTG but we keep it disabled otherwise the BT on the M.2 slot
-> +	 * USB line goes obviously dead if switching to gadget mode.
-> +	 */
-> +	dr_mode = "host";
->   	maximum-speed = "high-speed";
->   	usb-role-switch;
->   	vusb33-supply = <&mt6359_vusb_ldo_reg>;
-> 
-> ---
-> base-commit: 1c4df70331c0dc7f82f724166575c16931ec66b3
-> change-id: 20250328-mtk-genio-510-700-fix-bt-detection-2711cbcbb2e4
-> 
-> Best regards,
+
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: attempting to guess base-commit...
+ Base: tags/next-20250328 (exact match)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/amlogic/' for 20250330143254.3159519-1-christianshewitt@gmail.com:
+
+arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dtb: adc@8680: compatible: 'oneOf' conditional failed, one must be fixed:
+	['amlogic,meson-gxlx-saradc', 'amlogic,meson-saradc'] is too long
+	'amlogic,meson-saradc' was expected
+	'amlogic,meson-gxlx-saradc' is not one of ['amlogic,meson8-saradc', 'amlogic,meson8b-saradc', 'amlogic,meson8m2-saradc', 'amlogic,meson-gxbb-saradc', 'amlogic,meson-gxl-saradc', 'amlogic,meson-gxm-saradc', 'amlogic,meson-axg-saradc', 'amlogic,meson-g12a-saradc']
+	from schema $id: http://devicetree.org/schemas/iio/adc/amlogic,meson-saradc.yaml#
+arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-p271.dtb: /soc/bus@c1100000/adc@8680: failed to match any schema with compatible: ['amlogic,meson-gxlx-saradc', 'amlogic,meson-saradc']
+
+
+
 
 
 
