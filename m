@@ -1,162 +1,117 @@
-Return-Path: <devicetree+bounces-162038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162039-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E82FA76747
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 16:02:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79A00A7676F
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 16:09:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADAE7168A34
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 14:02:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 49479188581D
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 14:09:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF6AE2139A2;
-	Mon, 31 Mar 2025 14:02:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1DB02135D0;
+	Mon, 31 Mar 2025 14:09:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CRhKUG1q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PJsyv5B8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com [209.85.221.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 606EA212FB7;
-	Mon, 31 Mar 2025 14:02:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 809F53234;
+	Mon, 31 Mar 2025 14:09:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743429765; cv=none; b=JzVljX5vOi9BjIFds/rMQN4JSXzJKJjw3A8lxD2pMU2IzU6XjAuRAvkrFhR33oiydfC2oG4vSdicEyUaZRiVoAvHdmBPwLtY5O270VfGRoFDduaAq7UqU/CHsOWVhOEVbpfopat60CL7NyAPyqu04jW0LjBCjHicnuG2woDaczY=
+	t=1743430160; cv=none; b=NgeEl3dD9Lo/mKecy4Pq2ljc4JTMMdT0YW+NDhWSBxtcnF5trrbukqv0sJkGbhOUpnYz363wTSlzYh/RczftvEzHD13m4u2NLQpsvFEiKylgOdschv5fIgZB62nG1VlnKYUC/LKzrIHb90Vl8fMWepnabyMxoac400zQIjv0y7I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743429765; c=relaxed/simple;
-	bh=whd/Svxmvbj7rA7O6S+iIb54/KqQ8e1rgCHT0rtZ8i4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Ryly8SOkKlil2w2pX5Gks0ycRWNpxASBhtq6OnJDpDoaL6wT4YCip6nlcjLrkTPbm9DXgZPVMIgHkJzBJ8XJD1gvILo6MOm7rEsP03cX48WqFY3FdhF5a/meaTNodRxgglhoK3bYclDQU+p0pow57572z6pRRLiGLPgQAINuNf4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CRhKUG1q; arc=none smtp.client-ip=209.85.221.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-5262475372eso533348e0c.2;
-        Mon, 31 Mar 2025 07:02:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743429763; x=1744034563; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1lETntPaflYFwrwUvTncaP8RyLf4Wye2mcICW7b/doA=;
-        b=CRhKUG1qmIFCM3zydOE2o8WwVu8C/ONWviUj8ooX38E6Bpngd35vW95kljRl4beKYT
-         j64JqZJ3tcW3ZQElaax13xM6bvcqzXVZrQ1sjNSpM5+Egq53crnPYpSFnNzDhGqPE0uJ
-         20LwPm6CD+eMwdaojsYCzajmAol9QNRLZS10Vh/7IH500CiYFDVBfZUPbp6O4tZvuh4j
-         1MPICHrhV8QgiP87kUawta5CWIOzpbBDAeRCokCgSZwECMOLtIAxLAxTaqvA3L6EGfmd
-         J+q+x3vZZJc5EE0wIUsa90d91WyiVPnTqq4ktJALtbEfSJk3Ows+6gWmQsRXcsGY3jwe
-         28cA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743429763; x=1744034563;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1lETntPaflYFwrwUvTncaP8RyLf4Wye2mcICW7b/doA=;
-        b=EKvSxoT0xcaZqZtmm/pgWBgx+sS29HuYvIX/XN3XKRmf4ScRCsJFKGE9VU2YAwFA+f
-         ami5jqaU1Rz7pFb99kYNvnnamlotZuTPDzr0l+BBu7rXk+fRLD+0f1qfEY1imeeoPzXk
-         LJdm7Pg00xPrNIeJgw2hkQGvGiUyDmJrIAl0RHSgYueGxkTZTeiTZGRrkpB2e+u+W/Jc
-         NoYbgRcjnPQVdwD3JYvImAckEinOSh7F5Nx4ReYK3sDBM3iXQXIMZjWRRJAGORrxfIQX
-         Wo0UPv1YtCJEkIhwX0jZtT8ApAC6LOi1MAILdC2piiTShC275aYR+otRTYqqV+w9xkzl
-         MAig==
-X-Forwarded-Encrypted: i=1; AJvYcCU8wYhZ+jVPV2UQmoWegv+6b/3bwSUTSIyYWpRmSl7u6seEVmNpdZq5UlJPI9nlVeOvQN71evjDmb3eTmFf@vger.kernel.org, AJvYcCVYAmEE/ZYDBiSmbbjwYgS6nJMpmuXNtulyQRB7uTsZCDrnyVGB95tyaRzfVOEC3lxdLSRrQMK2wuIb@vger.kernel.org, AJvYcCW74NHUFPvx17Eo9OKMkUppe21MSMKrFycTnP/IkoeclVdyZ4FokqyHPJEIehJlJnPRJSg2nq2N6MuI1HA=@vger.kernel.org, AJvYcCWLN5pu3oYuSnebOoJRWQ76dZ5oLfwsUikDBuYoUnSGLipMuXlEnfJ82Db8JWGfIoB6RLvm/OYaYVSa@vger.kernel.org, AJvYcCXsLIQ2kql8r7SabLB3q6UIUKYdQ0L9r1pHlBTiU5NkKzWfstTH+NxH7Ts1AeDTwAGkRrDUYBTY0VDEGaPe4rH9Ojk=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyKSu07fy57K5uNxOUGCJdn3K3/ojMQcKBIJqFSfEFhoiU1YQbF
-	XYGHORsrDC7XO76BvlMhEeP742G3jBvoHYFdBAkyIE567k2NbZwLxkJX7xqBrcanbRzDAn04nak
-	3xM8BSDpmTSc5Y253Vuf63gkcS6w=
-X-Gm-Gg: ASbGncs5yra38TCZOXjVv6ljnNkUTZrKoK7KjMpATWc9Ze9GGkp37quN+f0RDHL0LaG
-	lcCSXzwQJTxwJx1CDXxj2mZ5rrRHEJTbzrvH/8Fjm5btxKaOxayJCJTxZfVPG5KxJ+OfKWoS1AH
-	vzF+5vLqurLw/iLALjNzwn4juLbVI8XFqcIesBZNM0oXT7FiawyfnSTYormbw=
-X-Google-Smtp-Source: AGHT+IFJA0XagyJKY+XH2Q/wP5pTEqfLMMTmMOabXhZtdfzmwQ2y2LT/1u6A/39ZZguGThzfOqEK+WfhriLs4v9hW2A=
-X-Received: by 2002:a05:6122:2a4c:b0:520:5a87:66eb with SMTP id
- 71dfb90a1353d-5261d366116mr5066095e0c.3.1743429763111; Mon, 31 Mar 2025
- 07:02:43 -0700 (PDT)
+	s=arc-20240116; t=1743430160; c=relaxed/simple;
+	bh=d28ybu49teeHHXEma/cD2nF7x0uH3LgBVcfGEuOwjbs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MS0qF+Mw9rEiI4AZmHmhhsYUnfW2/idTA+KN3hHHfZilCARvwQhLp54tkO7nDmFxyefQvAfG+M8k+XSnmJNy7xSB4oRwQkvcIaV+ysx9JUu09uWvMJgtrvwZzX4MnO3hBG+rOLwkaA3+S64CHZbqruzE8EXkEu9bbggBwoqKh5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PJsyv5B8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 078C7C4CEE3;
+	Mon, 31 Mar 2025 14:09:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743430158;
+	bh=d28ybu49teeHHXEma/cD2nF7x0uH3LgBVcfGEuOwjbs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PJsyv5B8dLZkZGa7j+YmqIbYg8TyZD/rV3JehPm1CK3LhAYpxWZnnc38UCQTssY6/
+	 U7apE7igeCqbQeD9GS/4NO7wuOWNV0tCeuTet24j4jjnoUX1JST/hX98V7Q1QEAmFe
+	 zifFk6540qBSD8U/mx63BRrf8KLGConpstX45SUGhZmP6ieNVXDZlWpgj+rG9vPldq
+	 /CPg/PVQCPR1aUARxrRKUaGhXATrq4DZ9G+FSW/FqtDpTKB9ofXmdPQD37oa/B0Qn/
+	 OFkV5uDtH1D4PtOZUSMNMu6y5YIkhkqyHhrV/Y0BsbyIsX8vj2+TgUl5bzg/fULWEb
+	 LeWwpe7cxuAag==
+Date: Mon, 31 Mar 2025 15:09:14 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Jon Hunter <jonathanh@nvidia.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>, Vishwaroop A <va@nvidia.com>,
+	krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-tegra@vger.kernel.org, linux-spi@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: spi: Add DT schema for Tegra SPIDEV
+ controller
+Message-ID: <99e23453-04a3-489a-b50d-c4c8eec9c326@sirena.org.uk>
+References: <4zic633abvwj377kfqem42zmc2yruflbwfmmqrpvjjgr6jae6h@jthoycb3vzzz>
+ <ljxxml7z2k6xniamzzw4ssi7u75qqfpcvmidzy3ekr3imtoxau@eztnxovsjplg>
+ <499703ae-dba1-49a6-869b-a60b44c2a85f@sirena.org.uk>
+ <2oxhmcrhbwlwqgyqy62p77eoag6nkavhjwmwfjfizcrhunrkjv@eaxjy6uoxszq>
+ <25857b7f-5c10-46ec-b0b7-9ff89ca5ab1e@sirena.org.uk>
+ <63b87feb-32ee-423c-8d82-61445414c6f7@nvidia.com>
+ <9760cd70-cbd6-4865-92b9-b48eb2cdea55@sirena.org.uk>
+ <69aaba89-10c6-408e-b328-c3e31a1aeaf7@nvidia.com>
+ <3b0f4fee-d46b-4086-9d63-f4093b52748e@sirena.org.uk>
+ <c81d7e8b-bcce-46a8-8938-c1ead71a988d@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250330210717.46080-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250330210717.46080-14-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdUO+mh79ExahTiW-hG26QfxrBfBFRipO_B6QWXvP-+wHg@mail.gmail.com>
-In-Reply-To: <CAMuHMdUO+mh79ExahTiW-hG26QfxrBfBFRipO_B6QWXvP-+wHg@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Mon, 31 Mar 2025 15:02:16 +0100
-X-Gm-Features: AQ5f1JoZkmNou5F8OyuDiCyoOrm4-guRY1b_zQlH7cjXGWsIxa-9FxDIWKZhpig
-Message-ID: <CA+V-a8sdFYEM6DE_ku5-FBPa6xcDmhAq6FDXiovR0VAixZds0A@mail.gmail.com>
-Subject: Re: [PATCH 13/17] drm: renesas: rz-du: mipi_dsi: Add feature flag for
- 16BPP support
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-media@vger.kernel.org, linux-clk@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="NN1C5YwfL50hWv5J"
+Content-Disposition: inline
+In-Reply-To: <c81d7e8b-bcce-46a8-8938-c1ead71a988d@nvidia.com>
+X-Cookie: The Ranger isn't gonna like it, Yogi.
 
-Hi Geert,
 
-Thank you for the review.
+--NN1C5YwfL50hWv5J
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Mon, Mar 31, 2025 at 1:29=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Sun, 30 Mar 2025 at 23:08, Prabhakar <prabhakar.csengg@gmail.com> wrot=
-e:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Introduce the `RZ_MIPI_DSI_16BPP` feature flag in `rzg2l_mipi_dsi_hw_in=
-fo`
-> > to indicate support for 16BPP pixel formats. The RZ/V2H(P) SoC supports
-> > 16BPP, whereas this feature is missing on the RZ/G2L SoC.
-> >
-> > Update the `mipi_dsi_host_attach()` function to check this flag before
-> > allowing 16BPP formats. If the SoC does not support 16BPP, return an er=
-ror
-> > to prevent incorrect format selection.
-> >
-> > This change enables finer-grained format support control for different
-> > SoC variants.
-> >
-> > Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> > Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Thanks for your patch!
->
-> > --- a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
-> > +++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
-> > @@ -30,6 +30,8 @@
-> >
-> >  struct rzg2l_mipi_dsi;
-> >
-> > +#define RZ_MIPI_DSI_16BPP      BIT(0)
-> > +
-> >  struct rzg2l_mipi_dsi_hw_info {
-> >         int (*dphy_init)(struct rzg2l_mipi_dsi *dsi, unsigned long long=
- hsfreq_mhz);
-> >         void (*dphy_exit)(struct rzg2l_mipi_dsi *dsi);
-> > @@ -38,6 +40,7 @@ struct rzg2l_mipi_dsi_hw_info {
-> >         unsigned long max_dclk;
-> >         unsigned long min_dclk;
-> >         bool has_dphy_rstc;
-> > +       u8 features;
->
-> Please settle on a single solution for all features: either use a
-> boolean flag to indicate 16bpp, or a feature bit to indicate the need
-> for the DPHY reset signal.
->
-Agreed, I will use the features flag for all.
+On Mon, Mar 31, 2025 at 02:11:35PM +0100, Jon Hunter wrote:
+> On 31/03/2025 13:44, Mark Brown wrote:
 
-Cheers,
-Prabhakar
+> > Why would you need to use a compatible string for anything?  I'd expect
+> > the overlay to add the entire new device, compatible and all.
+
+> We need a compatible string for the SPI device in device-tree. Sorry, but I
+> am not sure how we can add a SPI device without one.
+
+> Can you confirm what you mean by 'overlay'? To me an overlay, is purely a
+> device-tree overlay and even if we have a device-tree overlay, we are still
+> missing the kernel driver part that matches the compatible string.
+
+I would expect the overlay to be a device tree overlay and to add the
+entire definition of the device, not just patch the compatible in an
+existing half constructed device.  I would expect the driver portion of
+supporting the device to happen as normal, if spidev makes sense for
+whatever devices these are then then that could be upstreamed without
+adding them to any board.
+
+--NN1C5YwfL50hWv5J
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmfqogkACgkQJNaLcl1U
+h9Bpjwf/XOd6Yi/IMXBqmmEYx3YawbjauWiLhFVNVXsRuyG8pqImhTrg1c18lkBK
+5UA3ZR61auRwTT5eLKNIXen1mH265jaVk6yxuxtr/H8/SqVQql3f9tz89muqaR1K
+AE5Q+cxD3A/vUuVxbrWwRePOc0eXxNA6JQekGmcrooDmGCGy7xQsJCGME8q5t4Yr
+34kYYHH89MjNZkMdhpOQiaIAqBWndVh+FexqiY2saR/o+iDvhzgoacMym9XhdM5f
+p51rcOniKwi1cqGDeqMiqKS5BVaQuvmENng9Ptx2f6ZLNdmZrgTFVqguKHxTtmcl
+aDDuCgMU3RCig4CJ/iHueWEtiu4DnQ==
+=Kfc4
+-----END PGP SIGNATURE-----
+
+--NN1C5YwfL50hWv5J--
 
