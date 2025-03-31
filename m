@@ -1,118 +1,125 @@
-Return-Path: <devicetree+bounces-162022-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162023-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39A40A76649
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 14:44:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C153A7666D
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 15:01:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33FF63A4EDE
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 12:44:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C35CB169B0E
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 13:01:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02236202990;
-	Mon, 31 Mar 2025 12:44:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FYdmsiPd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 414C01E1DF6;
+	Mon, 31 Mar 2025 13:01:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7A2F35966;
-	Mon, 31 Mar 2025 12:44:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84E88136352;
+	Mon, 31 Mar 2025 13:01:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743425081; cv=none; b=ATtUrVtEoZo3lY8iXL2+Y4ykJ4n7QvKWK8iA6WQRiABTh7elnbSX1AJaSfF98eFytyFL4mWwUdoSu8hzPhxesxFTNoo3QtGFeQMOjK/7NvwQT4aFUjiqvGSc/q6uYZf0uqiQbX1ZnthYyigMwvCmzbgdW//BKE1Gj8oEiYhMXhM=
+	t=1743426069; cv=none; b=E9tQvNtS4SrDRxXLQKa5Hwnbu0EuS/pq9b+eHtuw5jonrELeKZiuDvR6wDcHn8v9H1Cx+wycSANX4Ng84iD8UdgXYrUKfnRlTCY7VPVI4A1H1CSPg/QShLowAGBCEMi3Bz1DRRDispTLp0ZGXgZkncOHbS4f/3hOq3EsXcsHnng=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743425081; c=relaxed/simple;
-	bh=LiC9k2vhB9XdHbN17GPbp55Zc0upnEh+TTU+H1Hlzto=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=APoZb4TnJLEJKnNliDtTfq7KdR1Y9QJx+6/r3ZIxUd3PceoVuxCkZu2sCJgm5vLhSwR2n6H4xMY9sCald2qD7AdXxqSbonc+xbwwyiDfz9Ltk0gjBEvge1UMfHx9VRTpYM2WzAjg1VLZDCpAQsvWJhM5p/EesZxza5nV8ae5awg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FYdmsiPd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29DACC4CEE3;
-	Mon, 31 Mar 2025 12:44:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743425081;
-	bh=LiC9k2vhB9XdHbN17GPbp55Zc0upnEh+TTU+H1Hlzto=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FYdmsiPdlulSlQaawINVpx61LR3YLSvr7scqcF6xslY3x4jDunbKxGxZDbq5MW398
-	 aLvupg35Rpf+w+A1duXL5oux2VM0gwmhowCvGgKnTJWLT23UEdQ6wd6GtcbV62z77u
-	 2P4Hx42mEeSvnjdHwluGz5PxoWc32psDnvRiWKisXRANzGeiParkzAA2DAwU24VMHj
-	 1qA8wyA8NF+c0Ykxik5Awg0CEQ/AZxOQFIAYUAYRbkq7xsLlD2OXhNKxiStLUKEt48
-	 /7gDzdZpyPnN8HIFpF4cw0zEACf+f78nRzbsZn324uB/8s1t9jQDSaKjyD45N8xgqf
-	 VHZ/FkJqS7Tsw==
-Date: Mon, 31 Mar 2025 13:44:36 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Jon Hunter <jonathanh@nvidia.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>, Vishwaroop A <va@nvidia.com>,
-	krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-tegra@vger.kernel.org, linux-spi@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: spi: Add DT schema for Tegra SPIDEV
- controller
-Message-ID: <3b0f4fee-d46b-4086-9d63-f4093b52748e@sirena.org.uk>
-References: <909f0c92-d110-4253-903e-5c81e21e12c9@nvidia.com>
- <48248165-c800-484f-be62-7c48b3c6829b@sirena.org.uk>
- <4zic633abvwj377kfqem42zmc2yruflbwfmmqrpvjjgr6jae6h@jthoycb3vzzz>
- <ljxxml7z2k6xniamzzw4ssi7u75qqfpcvmidzy3ekr3imtoxau@eztnxovsjplg>
- <499703ae-dba1-49a6-869b-a60b44c2a85f@sirena.org.uk>
- <2oxhmcrhbwlwqgyqy62p77eoag6nkavhjwmwfjfizcrhunrkjv@eaxjy6uoxszq>
- <25857b7f-5c10-46ec-b0b7-9ff89ca5ab1e@sirena.org.uk>
- <63b87feb-32ee-423c-8d82-61445414c6f7@nvidia.com>
- <9760cd70-cbd6-4865-92b9-b48eb2cdea55@sirena.org.uk>
- <69aaba89-10c6-408e-b328-c3e31a1aeaf7@nvidia.com>
+	s=arc-20240116; t=1743426069; c=relaxed/simple;
+	bh=4zlBM/HtO2graVijF7aTHxzeS5g/k4ZIyFSxUsBrFzg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Q+oJjNcb5pwCEB4arAF0fiSEZUWDfpN0xriAn6WL2wTgc3jwJheSuAIjnjobYVjsm6rJBr0yUrL8Ur+qUBAUgF3grJLEcThoX8VEiKJ1bLj41uLuVoIVX9b8cVKWH3KRcQumbegRfeAq+yGnO7bkzoeAZKBlfjYD373tV69YqTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.166.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-io1-f49.google.com with SMTP id ca18e2360f4ac-85dac9729c3so316055039f.2;
+        Mon, 31 Mar 2025 06:01:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743426066; x=1744030866;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=l2V2p/ZBy1j1EQeVHPgyXOo7UoloWvJZY2S9GcEZJHQ=;
+        b=eGIVjAGfjJuoNlksfZ8gROuUYdGEvK9I/s508nHU6Qtxz7bAUCR7YvkJONcfxiibcS
+         YhkeFXA9d54gve9tkaOVSuHH3L2smmiK3SGghIeVW6C0m5C9c0L3brjQVA1YxTQaMa/I
+         fU0gbeMwzBoaKEctMp2hX+DGoDTh/hzmdh+ama5VrE4g/FjGNPOIgAeSRn7ryjS7QuYN
+         fZor646tPqUe3634ynGbX/T5vOd/M7f2NX0pb8nJLAmeYXPZrzoNtjpwAtVvYIBBD+/O
+         GDzIat7JwigOlv2njsCtmZeAmiwCyQCCTiFPQfOaNVP7CZhB6MohaeOxeLuIiswOwJQE
+         +Abg==
+X-Forwarded-Encrypted: i=1; AJvYcCUoGhcvT9mHR+SGO+65FfvglEUg84LnkT3/lRem+FLTGk9bUXa0LlbLRnbNs5kntad3tPwLG4ouEiTA@vger.kernel.org, AJvYcCWXS4iND27jNt82woeqaMJ455L5ODyH19MbvulpJ41ueZpy48FbXT7y1NVlMSPnvCutrsT4tlPh6w6E71XMz4pLXY4=@vger.kernel.org, AJvYcCXGahmfzERpFF5815wIaJ55ZbqPXwi8r+nQfWFOoOf9BDSSLbayR5C+9a0Jr11x4kQIR1kNvWo4zJFKSM1m@vger.kernel.org
+X-Gm-Message-State: AOJu0YzppiEpVoNo5SxWCAFOM4fukPTXu4mQ9lH7H8Syzvv0IxPnbeDw
+	139RVp4u39No7i/a+bH4NJ9T1+/YwEk351MhgSFUQgpSCgw+N8SdWv1PpZHe
+X-Gm-Gg: ASbGncuBMXk+ztlRbZud3zeFdQhMPJ1/uFhGB4uOjjPg/4vKT9/YyJFOpx1LOf72cGQ
+	/wNBXHYgfZmOpVyxHRdFtoesyu5hYIHLcsMYEQVJSZEj3CxV++feuITZjd8MX+YWrMA3FUUbRFX
+	1fAUSIn08loH5WkXSnLrjkcrv4hjRvGpDXRorcYg5KmN8T40a2/QtXxeu8QOwddyd8fkkXa7Bui
+	xgWhEareqBOiGCSOn0eVRyjkdGcBbymkGHYxqvlCwiRuOsjjBAvBgfMBKW4Fk5Qh53SQ27KoJBC
+	0dkstAqAmTbjS2IMy5VjcOQhJ+ixDhHTZCXI/yH+Zay/iNcwbTY1P/sKqwvI9dBwodOOjvM5I2a
+	P1qmM8bsDVCKpWTpFMg==
+X-Google-Smtp-Source: AGHT+IEOXHxKCQIMyGDqTS4PORmbEDEjAl6b8b2guGqOqtcU7q7GeDq0Pwrn+p+oBqatWikFD2nKBQ==
+X-Received: by 2002:a05:6102:b13:b0:4c1:9bdb:6188 with SMTP id ada2fe7eead31-4c6d38cd37bmr5083951137.13.1743426053655;
+        Mon, 31 Mar 2025 06:00:53 -0700 (PDT)
+Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com. [209.85.222.46])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4c6bfcb3aa9sm1549307137.11.2025.03.31.06.00.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 31 Mar 2025 06:00:53 -0700 (PDT)
+Received: by mail-ua1-f46.google.com with SMTP id a1e0cc1a2514c-86b9b1def28so4176202241.3;
+        Mon, 31 Mar 2025 06:00:53 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUJevXGShMAQFtRwZZuLK+evy6qfOJZ94hmmR93SVVZfjOvko4RfhaDfEjq7J+536Sf9EzoMje7PIywj/VPs+XxEzk=@vger.kernel.org, AJvYcCUrPR6zj/mGj6+pcy9VOvO5bm5JQPdPMDcyabHz29x5rQV0HUJGfWUloA63N9YT+YEqFItU4TVKBtUyk7eL@vger.kernel.org, AJvYcCW6H5r3RSfLeIdB0KxQY8gi0jf2HENiXYhvXJlTHcu/1f8q8y98/oW57VN452U+xljtf+9VhMjvTW8/@vger.kernel.org
+X-Received: by 2002:a05:6102:510c:b0:4c1:869b:7db4 with SMTP id
+ ada2fe7eead31-4c6d3886c27mr5256492137.9.1743426052272; Mon, 31 Mar 2025
+ 06:00:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="m6zwW9LXBH0p4nz1"
-Content-Disposition: inline
-In-Reply-To: <69aaba89-10c6-408e-b328-c3e31a1aeaf7@nvidia.com>
-X-Cookie: The Ranger isn't gonna like it, Yogi.
+References: <20250331122657.3390355-1-thierry.bultel.yh@bp.renesas.com> <20250331122657.3390355-13-thierry.bultel.yh@bp.renesas.com>
+In-Reply-To: <20250331122657.3390355-13-thierry.bultel.yh@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 31 Mar 2025 15:00:40 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVXw0GMJu2kY=9cri2+EdyAcNP8Qta1tOvCew-wC9W9VA@mail.gmail.com>
+X-Gm-Features: AQ5f1JpebVIG-0-njlxNpA7CGdJh_HcTeUql-iWBBVtlnsEdF7buW74dqIqgT4Q
+Message-ID: <CAMuHMdVXw0GMJu2kY=9cri2+EdyAcNP8Qta1tOvCew-wC9W9VA@mail.gmail.com>
+Subject: Re: [PATCH v6 12/13] arm64: dts: renesas: Add initial support for
+ renesas RZ/T2H eval board
+To: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
+Cc: thierry.bultel@linatsea.fr, linux-renesas-soc@vger.kernel.org, 
+	paul.barker.ct@bp.renesas.com, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+Hi Thierry,
 
---m6zwW9LXBH0p4nz1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Mon, 31 Mar 2025 at 14:28, Thierry Bultel
+<thierry.bultel.yh@bp.renesas.com> wrote:
+> Add the initial device tree for the RZ/T2H evaluation board.
+>
+> Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
+> ---
+> Changes v5->v6: rebased on next-20250331
+> Changes v4->v5: none
+> Changes v3->v4: none
 
-On Mon, Mar 31, 2025 at 01:34:21PM +0100, Jon Hunter wrote:
-> On 27/03/2025 15:33, Mark Brown wrote:
-> > On Wed, Mar 26, 2025 at 12:16:53PM +0000, Jon Hunter wrote:
+Thanks for the update!
 
-> > > That's definitely what we do today, modify the kernel directly to achieve
-> > > what we need. I am trying to avoid carrying too many out of tree patches for
-> > > stuff like this and have something in the kernel that works by default. This
-> > > is even more important for 3rd party Linux distros that will not accept
-> > > non-upstream code.
+> --- a/arch/arm/boot/dts/renesas/Makefile
+> +++ b/arch/arm/boot/dts/renesas/Makefile
+> @@ -30,4 +30,5 @@ dtb-$(CONFIG_ARCH_RENESAS) += \
+>         r8a7794-alt.dtb \
+>         r8a7794-silk.dtb \
+>         r9a06g032-rzn1d400-db.dtb \
+> +       r9a09g077m44-rzt2h-evk.dtb \
 
-> > Overlays should work well for that case too!
+What happened? Why has this suddenly moved to the 32-bit ARM Makefile?
 
-> If you mean device-tree overlays, I don't see how that will work today.
-> Unless we are to use one of the existing compatible strings, but that feels
-> wrong because we are not using any of those devices and like I mentioned,
-> just using 'spidev' alone in device-tree does not work with the latest
-> kernels.
+>         sh73a0-kzm9g.dtb
 
-Why would you need to use a compatible string for anything?  I'd expect
-the overlay to add the entire new device, compatible and all.
+Gr{oetje,eeting}s,
 
---m6zwW9LXBH0p4nz1
-Content-Type: application/pgp-signature; name="signature.asc"
+                        Geert
 
------BEGIN PGP SIGNATURE-----
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmfqjjMACgkQJNaLcl1U
-h9A9zwf/SV7SuhD12XjxoXQRf2JlgLw704FPkh0p8xsmddViLGqrfVBxUYfRR8jK
-rdhv9MIXoQrYNRv1sUN6jqJcA6jpDx/hFmvTJ2R+tiOHUY775Nb5zkFXgMAwWQx5
-rSilot1iRqT0p64la029FfWSt6fyANAy4z0FI6K/RK6tBW5XIf/cdYdVxha7wMNK
-68rKpslMhzT6S9jwU0RavadaQPfYJpYYul1uBztOr5G7j7nRtPR+JaNpwwY/6Tw/
-tv6nL3hhFVcgHreRO8VghckKTGjVqnQsoqXILhubEym+jq90uuYa7jznzIZAL7or
-x7310Rbi5LeTtHdF2tKq+4sWapBLfw==
-=Esdb
------END PGP SIGNATURE-----
-
---m6zwW9LXBH0p4nz1--
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
