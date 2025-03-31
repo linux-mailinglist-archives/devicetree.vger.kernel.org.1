@@ -1,156 +1,116 @@
-Return-Path: <devicetree+bounces-162106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2040A76F32
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 22:28:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E649FA76F59
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 22:32:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0BDE2188BBF5
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 20:28:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2905C18828D6
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 20:32:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BC71218585;
-	Mon, 31 Mar 2025 20:28:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86D2C21B9C1;
+	Mon, 31 Mar 2025 20:31:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HZoA0utL"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="gXVfDhV9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDB8C217664;
-	Mon, 31 Mar 2025 20:28:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743452883; cv=none; b=Hzc22ijfBETppyRm5DsEx1wmrILzZQ8JcpFWBF50axqHUsydxe+YTNIuJDQCHliQOFxyMOrjsTJCopvxJB8gtGZiMMlHlw/j3by3oWKSaDlZIkVl445wcvy/3aSlQ7M9tFO2mT3x7G6O2TtyDijl5/J2zVtkR0tdd65RJ3gyPyA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743452883; c=relaxed/simple;
-	bh=PguanBqMDkb5To9BTN3sgW0idJGAj6XtvhMWRpcqrEI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RO1BHfu5cBuzdgtnT/AnCx2kgzrjYWk37PgRrvAM+9clcu7f8DX4cC+op7svx5UA7qzbdMJVB5fsVbD9GbpGqnQ8a0SzfouxJsyz4XP17PP9Ded54YOnFLV1gcXzczdU5EQmtIG0qI/h7GU6XFLc3fahBqRuJRrmz37sgQQFxuc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HZoA0utL; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-39ac8e7688aso3851574f8f.2;
-        Mon, 31 Mar 2025 13:28:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743452880; x=1744057680; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=QUt09F+DYIFnC8f7XCRnOh1byr9Dt+QFf/4SpMdh7mY=;
-        b=HZoA0utLuFN2BrJ95ZDkBizPVqRHTMNgdDxGWJczPGza6qpKP4RdteZ7fy71RskKPK
-         KbGaOJL+iDpQgiq+IvLpaEZLjAQlrnS1OzDIbGNDtzpsyVMpYiZdzD4xBEOGtwNdXOVP
-         rGBQSWrGw5Q5GLNyTWGpgngMw8qSwJ5bo1W+CR/+5SxiQaUhf9dxTlvN/Jy013Zvm2eb
-         7xVIZV/FoC7DvJAyk77KhWuOqZy01tTBxyXPkr+3Yy3klal4KoIgUbCFrIaJQBlmvvnQ
-         jYixHaVHjXHuKlffqYij6DxViMig5LVdzkczw0h/zlBbBf3/5ilQrFC5NmsU56DSVvIo
-         2czQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743452880; x=1744057680;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QUt09F+DYIFnC8f7XCRnOh1byr9Dt+QFf/4SpMdh7mY=;
-        b=xIdq+kxhGoQqJVWqORXduhdp3qdGAedtraLbpzMj4+bdTpmgSEqe5Nnd260CTIDT3U
-         +pA4in3BkZUw+vQgKCQhLLrKuIDruqJdz4xQutfSeTyZJmg1NI1fVyg+T1xKp4T0HmAK
-         n+LqtrdVQBUIVkMrHp1G6IIiwzr+H9OtVgw3tUqBDO8L7bMWqwi54hgOQj+npLBy+ZRZ
-         zKguL6u0cDt/MYQsnLOqoOI5T7ViXaUh3lWM+Pz/1Dwc+5NZgWEO//fi4e6gujT7crFz
-         iFyE/2yDF7YzFNwdJrU/xE7mVUjbDipiuPD59R99G0bszdfbXGXHaO607Q+dycPPl/ZG
-         7Wbw==
-X-Forwarded-Encrypted: i=1; AJvYcCVCX4VnzFeizDKQxKOTKziaOuDXTRG6n4qrxJzaRdBT+4TcesUhll+L0XVU4u9tv8hx/vvy9X3Q2u2JN7nN@vger.kernel.org, AJvYcCX3IF3trOOy4BJvSaMpKI4VdQK0kc3LRpU7e67pZvpSVBEKF0SZsXkiCTFU9gbJALrHypyfvXxq0AiS@vger.kernel.org, AJvYcCXisxc3nxFznaeEvlAgTAukqZ1HdVHMDM9iqhofEI/NwhCALH335/WyqyxlpJbdJ55Jb2YrG8txWHEUX4dgWg==@vger.kernel.org
-X-Gm-Message-State: AOJu0YzpzcwFB+dHTE2llz9/gPZc7RkZESu9cohnIol0KrOuHQxkMXiF
-	INxlgiC4UCOakUrTdo4OvDvSQZnenB76YXbZmWKX8CosqZL6aa1L2NKWB5rjbC8o4hJ84OAOtH2
-	mOKHxykcpTYfWMIO3fup4KTbdpw==
-X-Gm-Gg: ASbGncvxKTWcNnMmCKuVG40oH5Muw42zw1qv8zxc021NwZ4SzGDkFeCgl1Dy5zY37qJ
-	VN5sekhRhUEqeXdUOxAyZ0y8LsXPuDpc9EHVWCLwpt4VSp71wzVP2YSF8u/C9gdQIrwlGbJek3A
-	qFU85zIZ2KqxNDMABi9V0GT6AUvg==
-X-Google-Smtp-Source: AGHT+IGZ7aD+wTuJCUUTIE2voBO6WaNR+M71hW0FwWuRHRO+nbuXUQt2yRpKAIAzsQ1Ki+hHiXULVp/okC5PD1K/ujA=
-X-Received: by 2002:a05:6000:1848:b0:391:4b8e:a200 with SMTP id
- ffacd0b85a97d-39c120e3f45mr7986223f8f.32.1743452879739; Mon, 31 Mar 2025
- 13:27:59 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF36721A45F;
+	Mon, 31 Mar 2025 20:31:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1743453093; cv=pass; b=aU5jhmgPV10EsJpULVTer3BXGAYrhR++jkHX9mkIzuBZyx5mc+JE2b8uaaNMo382YtIQQY4Oio5HdyWvRRFVsooBx49nyBUQFCWwuyBntChuZ8Nn5TTJS7Lbgr/TuNZEuoH7tU+Musb87kd/7WHmnRaRNsTIbcDwqnv53sAy400=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1743453093; c=relaxed/simple;
+	bh=hHLCVMcAOvExqoZizkO/pzm1hnQKeEK7fJw+UzQd8xU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XmxqS9eRXt/215QCyL4dCz5dAUSOLQL/hY4BOzDCJKqa97uqM2xdoKy43L1ClWoKlPlU8Rfdni1YhCVoHO3UymuDFdLssNITmFeYXSIY2YEDnBJoIXxq1LPv2urmO6v11ymAWGz6dkEW9udHubrimKo7PLZR7AGa56QInKnWitQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=gXVfDhV9; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1743453045; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=MSLaKXxjKKtON9fuDG4zOsSKcnNFNMLGsBM6kco91FZVNCF5lGm2icBtJly6AmJhGrKhCTjgeEqnxhG5waGIQWbyKN+4pzsoKprd0uyzz6z3EoseE7x6YGC256XuLQDJxg7tmrr1XoQ2yCmiUV/HjYvw9QXpLE00dnJL4G76lnU=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1743453045; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=9XcWWOjwTWx+dFyKcS/Axtzqwu1aqI3lz+g6+tOHQQc=; 
+	b=jGpKKAJbYyFAL/iAA4hTHo2pGHLOwjrfgzQ6Z46OuvuMjYP4aSQOsAuy5ts12VUrG21SvK/NTSkD34ZYpFJUshBvPn77xz+P2x/I3rWonNSLg7xhZp2eiDlOdbyL1+CW/75ZuJ2NPCl+URI7ccnFhxKwAaOmE0BJT4RIid5KYb0=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1743453045;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=9XcWWOjwTWx+dFyKcS/Axtzqwu1aqI3lz+g6+tOHQQc=;
+	b=gXVfDhV9eQ12VNtE6AYu4yUqt8nB7Yz+Exsfo5OlQ4wDwkiVkFuzeEb4tpb6cM/w
+	5VzV+h/6HJmKPGq6M3/t1eP2CsnWNutxoN5VRu7xmAGXvbAaj2cJN8et5Q+Lz7Aiucy
+	dMoVKOMHgf10oH+zto4TAfbrCBo983FhxBp/omx4=
+Received: by mx.zohomail.com with SMTPS id 1743453043292322.9326378894983;
+	Mon, 31 Mar 2025 13:30:43 -0700 (PDT)
+Received: by venus (Postfix, from userid 1000)
+	id EBBC4180D0E; Mon, 31 Mar 2025 22:30:36 +0200 (CEST)
+Date: Mon, 31 Mar 2025 22:30:36 +0200
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Mark Brown <broonie@kernel.org>
+Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
+	Sandy Huang <hjc@rock-chips.com>, Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>, 
+	Andy Yan <andy.yan@rock-chips.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alexandre ARNOUD <aarnoud@me.com>, kernel@collabora.com, dri-devel@lists.freedesktop.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Aishwarya.TCV@arm.com
+Subject: Re: [PATCH v2 4/4] arm64: dts: rockchip: Enable HDMI1 on rock-5b
+Message-ID: <jmb6f6beax3rmyutbkyl2hthlzzaguh2qlfdeibrbjdu44y6ea@rbuf6yjoo4v4>
+References: <20241211-rk3588-hdmi1-v2-0-02cdca22ff68@collabora.com>
+ <20241211-rk3588-hdmi1-v2-4-02cdca22ff68@collabora.com>
+ <6d168284-01c7-4da4-8fc9-1b12e38b554f@sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250331073423.3184322-1-alex.vinarskis@gmail.com>
- <20250331073423.3184322-2-alex.vinarskis@gmail.com> <Z-pN1qloL2m4BWaq@hovoldconsulting.com>
- <CAMcHhXq9W64MHhOV5i3U4t+ZfKNC_GaBq5X3ZN7VOLt0cjPQPg@mail.gmail.com>
- <Z-p1uADNVAM9NcAW@hovoldconsulting.com> <CAMcHhXqO2Ej3UAej9QodX1NNCHAk956++=oakPxx-MkpOucJ2Q@mail.gmail.com>
- <Z-rnvSKEysdDyj4s@hovoldconsulting.com> <siktv5i4fnkbjgzfwkztp3px3cxlhxuoxssmksr4ww5voe5heq@ttzkhisnyxl6>
-In-Reply-To: <siktv5i4fnkbjgzfwkztp3px3cxlhxuoxssmksr4ww5voe5heq@ttzkhisnyxl6>
-From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-Date: Mon, 31 Mar 2025 22:27:47 +0200
-X-Gm-Features: AQ5f1JrvxkAG2q5VhnZZeDDpnCGBUwNe0xLpshq81zgzYXlp6gvsgRPSqtO2KTU
-Message-ID: <CAMcHhXrUZxG07OOA20FRkO+j+U0iiT0B4CpRaV2uZ0dwfyQpYA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/1] arm64: dts: qcom: x1e80100-dell-xps-9345: Add
- WiFi/BT pwrseq
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Johan Hovold <johan@kernel.org>, "Tudor, Laurentiu" <Laurentiu.Tudor1@dell.com>, 
-	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, 
-	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Stephan Gerhold <stephan.gerhold@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6d168284-01c7-4da4-8fc9-1b12e38b554f@sirena.org.uk>
+X-ZohoMailClient: External
 
-On Mon, 31 Mar 2025 at 22:15, Dmitry Baryshkov
-<dmitry.baryshkov@oss.qualcomm.com> wrote:
+Hi,
+
+On Mon, Mar 31, 2025 at 08:01:34PM +0100, Mark Brown wrote:
+> On Wed, Dec 11, 2024 at 01:06:17AM +0200, Cristian Ciocaltea wrote:
+> > Add the necessary DT changes to enable the second HDMI output port on
+> > Radxa ROCK 5B.
+> > 
+> > While at it, switch the position of &vop_mmu and @vop to maintain the
+> > alphabetical order.
+> 
+> We're seeing failures in the Arm lab the IGT tests on this board in
+> Linus' tree which bisect to 77cea7ca1368 which is this patch.
+> core_getversion fails:
 >
-> On Mon, Mar 31, 2025 at 09:06:37PM +0200, Johan Hovold wrote:
-> > On Mon, Mar 31, 2025 at 06:51:03PM +0200, Aleksandrs Vinarskis wrote:
-> > > On Mon, 31 Mar 2025 at 13:00, Johan Hovold <johan@kernel.org> wrote:
-> > > > On Mon, Mar 31, 2025 at 11:38:25AM +0200, Aleksandrs Vinarskis wrote:
-> > > > > On Mon, 31 Mar 2025 at 10:09, Johan Hovold <johan@kernel.org> wrote:
-> > > > > > On Mon, Mar 31, 2025 at 08:33:47AM +0100, Aleksandrs Vinarskis wrote:
-> > > > > > > Add the WiFi/BT nodes for XPS and describe the regulators for the WCN7850
-> > > > > > > combo chip using the new power sequencing bindings. All voltages are
-> > > > > > > derived from chained fixed regulators controlled using a single GPIO.
-> > > > > > >
-> > > > > > > Based on the commit d09ab685a8f5 ("arm64: dts: qcom: x1e80100-qcp: Add
-> > > > > > > WiFi/BT pwrseq").
-> >
-> > > > > > > With that fixed commit f5b788d0e8cd ("arm64: dts: qcom: Add support for
-> > > > > > > X1-based Dell XPS 13 9345")
-> > > > > >
-> > > > > > Not sure what happened here.
-> > > > >
-> > > > > Bluetooth and WLAN definitions were missing, as at the time I only
-> > > > > knew the UART port being used for bluetooth, and was missing
-> > > > > everything else to describe it.
-> > > >
-> > > > Ah, ok. The above sentence looked like some left-over copy paste. I
-> > > > guess you don't need to mention it at all since this does not seem to
-> > > > warrant a proper Fixes tag.
-> > >
-> > > It was a suggestion from Dmitry in v1. Though indeed it does not
-> > > warrant a proper Fixed tag, as it is something  that was left out from
-> > > the initial series, I think it's fine to keep it like this, if it's
-> > > okay with you?
-> >
-> > I think you misinterpreted Dmitry here. He just said that after you
-> > added the reference to the commit you based this on to the commit
-> > message you could add his reviewed-by tag ("With that fixed: R-B: Dmitry
-> > ...")
-> >
-> >       https://lore.kernel.org/all/ou7w4hvbbz72nzrm45gfhpq2uzkuwpfudqeh2o34tcnbnazxgz@glmuryu5dh3s/
-> >
-> > As it stands it's hard to understand what that sentence means and why
-> > it is there (looks like a copy paste mistake). I suggest you just drop
-> > it.
+>[...]
 >
-> I disliked the original phrase "Derived from: commit subject". Instead I
-> suggested a different, more standard way, '... commit abcdefabcdef
-> ("commit subject")'. With that phrase in place Aleksandrs can add my R-B
-> tag.
+> The board is running fine in -next so hopefully there's a fix already
+> there which will make it's way to Linus' tree during the merge window.
+> We're also seeing something broken with the HDMI audio devices, but I
+> didn't look into that.
 
-SMH just re-read it... apologies for the confusion. Will fix it now.
+I guess the root cause for the problem is, that the pull request for
+the PHY subsystem [0] has not yet been merged. It contains [1]
+("phy: phy-rockchip-samsung-hdptx: Don't use dt aliases to determine phy-id"),
+a fix for properly handling the second RK3588 HDMI PHY instance.
 
-Alex
+[0] https://lore.kernel.org/all/Z+pFou7KOQZJ1iy4@vaman/
+[1] https://web.git.kernel.org/pub/scm/linux/kernel/git/phy/linux-phy.git/commit/?h=next&id=f08d1c08563846f9be79a4859e912c8795d690fd
 
->
-> --
-> With best wishes
-> Dmitry
+Greetings,
+
+-- Sebastian
 
