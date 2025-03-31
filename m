@@ -1,137 +1,266 @@
-Return-Path: <devicetree+bounces-162014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82219A765FC
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 14:31:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D373BA7661B
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 14:35:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 34A53167602
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 12:31:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F1533AC9A6
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 12:35:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA0B91C5489;
-	Mon, 31 Mar 2025 12:31:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A5121E5739;
+	Mon, 31 Mar 2025 12:35:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b="A58LaWNz"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="1Kt6EFTy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-14.pe-a.jellyfish.systems (out-14.pe-a.jellyfish.systems [198.54.127.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C31E44C9D;
-	Mon, 31 Mar 2025 12:30:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.54.127.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BD122AEFB;
+	Mon, 31 Mar 2025 12:35:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743424261; cv=none; b=IlsbSFaqJzP/or4mvreTkfgrWIhp2TAQFl7qvoNxYPc9VdOKciqJJGKIfZACtuFM/cv9VE7dUkgIVEwaEhiSWfds2brpVgU05bjBA9TGP3cPQr281tGMz9Q7b2hwqBxNkqwQe3BhxK9pvbd5yETTDWruj5NdmAGLpu6vPLxlkT0=
+	t=1743424554; cv=none; b=lqRGJm6UOHNqWhE/5C8POdzL5b8s08T8LpSrfGhMJftwCux7SGbMMxJerOHjfWtFxh/6gsg5iQw/KaSA+umc77t9WNuA8jGnm7qBwT9S6RM9JRUsojs7F1rGVRUZok+UlGEWOM3H0/52umbG0GA+mT/e5fu+irEV53H451pIGFA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743424261; c=relaxed/simple;
-	bh=oA0qd1nicMZSBrlxjfG3/k0n2p/I87faDWnmX4g1KxY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ssLjoYumto1OY201p9ML5dPU/Jwh/OfUx4WqcGdI37SokR0b0jo1W6U5b0C6RBQf+9B3Vpzs0IjZaUJ4jm9QxIk24P2cRyjfE3jGzuEUo0czydqSxLBa8krO4Y7K93zM+yOnJsV6yZHAGmoXtYTDLntCOYOeKrYemO1bS8mGqX0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=framepointer.org; spf=pass smtp.mailfrom=framepointer.org; dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b=A58LaWNz; arc=none smtp.client-ip=198.54.127.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=framepointer.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=framepointer.org
-Received: from prod-lbout-phx.jellyfish.systems (new-01-3.privateemail.com [66.29.159.56])
-	by pe-a.jellyfish.systems (Postfix) with ESMTPA id 4ZR9TS5WnBz3xLy;
-	Mon, 31 Mar 2025 12:30:52 +0000 (UTC)
-Received: from MTA-15.privateemail.com (unknown [10.50.14.40])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by NEW-01-3.privateemail.com (Postfix) with ESMTPS id 4ZR9TS51wGz2Sd0T;
-	Mon, 31 Mar 2025 08:30:52 -0400 (EDT)
-Received: from mta-15.privateemail.com (localhost [127.0.0.1])
-	by mta-15.privateemail.com (Postfix) with ESMTP id 4ZR9TS3hXsz3hhV6;
-	Mon, 31 Mar 2025 08:30:52 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=framepointer.org;
-	s=default; t=1743424252;
-	bh=oA0qd1nicMZSBrlxjfG3/k0n2p/I87faDWnmX4g1KxY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=A58LaWNzi547O0g1lcPpQkt1fmRxCRizs+iU6osyiLjwmazUaJJmhDnUL6NtYe4zL
-	 0zhiP+kMaEgndo4r/gMFZaLh7jmILRCVUJeZOt2/krkFzoyOr8v6/3QIOZMHfvB8bw
-	 sMkATcN5hmgd7Zjr4lfhC1Wt7vqfpHXRflbM5uJRPq6QTUuWI1TsGjzQlKAnDzRBDl
-	 ym9087dR1JQl57i7Zicg4ThVwo7s6TpUPdYrkG5RTxwy6zcx5NzMo0TZq5ZsFlhDnC
-	 QglYHB3ZzAD8daM3yevrvlWB7Kb3QxoIFFW6coR45mgeltyFuEpI0hXI3z9FEiOfL7
-	 3PpEArkj3LkEg==
-Received: from 65YTFL3.secure.tethers.com (unknown [152.44.190.141])
-	by mta-15.privateemail.com (Postfix) with ESMTPA;
-	Mon, 31 Mar 2025 08:30:36 -0400 (EDT)
-Date: Mon, 31 Mar 2025 08:30:38 -0400
-From: Sam Winchenbach <sam.winchenbach@framepointer.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-kernel@vger.kernel.org, mdf@kernel.org, hao.wu@intel.com, 
-	yilun.xu@intel.com, trix@redhat.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, michal.simek@amd.com, linux-fpga@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Sam Winchenbach <swinchenbach@arka.org>
-Subject: Re: [PATCH 1/2] dt-bindings: fpga: zynq: Document ICAP on boot
-Message-ID: <p4bujnmgkcvsu4qipmgh2j2loedepmwgp7zlaxrurhaveb6tbc@ibqtbjnbzdzj>
-References: <20250328141944.119504-1-sam.winchenbach@framepointer.org>
- <02496a88-3d9c-49ee-93ab-8f1400fc0c6b@kernel.org>
+	s=arc-20240116; t=1743424554; c=relaxed/simple;
+	bh=3/t1iCg1+6GJDxjqoMTxXMUAYXyD0gbKLUeMXXAnNWo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=FnUSugBY5qE21dJehBnE5GWaUaWHs9ZcXUEnWoi1ZACYyzlyHaq11hhE6QmNIVI8pwRmOSAh/AzsSGLqXqX+MgAbaqIzTDyDYCbbWptCgQ+O8n+o1iF9YbZ02eY2aKznIZ6O9CrUYLJMP9HgLo6LmAgbNANrud6KeFY15NIIzK8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=1Kt6EFTy; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52VBdmvv032351;
+	Mon, 31 Mar 2025 14:35:33 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	w87q9PnJmB9peQep5J2CgPni283zIpSSEYxQSxlcnXM=; b=1Kt6EFTy/c8tNYnw
+	Voam4b1ywVqa2EhNWslKjE08YwmkWvgnkmlpQK0QVJu3RLZlVGOjei3kIYJWhWLF
+	poDp1n5Zl8gGmYhVzxbGGOBll5P11pGDB5sgfsaIZVMhzvRJdchJB3bZEcc622gE
+	dczCY8yLa2Vy8jQEHmDQ3j9UYz3zse8ua1gPNxNqLoYjbE7OwNzio13hiPKNNori
+	pKhazDU20IhEDM+aFjcAg3Jafh8lZAWXehCNRiMc5i/tTjhI8ssaKu/ktU3vnlNf
+	oQ2PE2XDi3/i8BNeMp5yz3hTyqiMOCI0LUmC0NQlL2Au1vpdfi3cdhMSfTqGoBhY
+	F4wVaQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45pua7nkjx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 31 Mar 2025 14:35:32 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 4352340044;
+	Mon, 31 Mar 2025 14:34:43 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 44495898276;
+	Mon, 31 Mar 2025 14:34:06 +0200 (CEST)
+Received: from [10.130.73.167] (10.130.73.167) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 31 Mar
+ 2025 14:34:05 +0200
+Message-ID: <e00973c9-3817-415f-a724-faed0728cf5d@foss.st.com>
+Date: Mon, 31 Mar 2025 14:34:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <02496a88-3d9c-49ee-93ab-8f1400fc0c6b@kernel.org>
-X-Virus-Scanned: ClamAV using ClamSMTP
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] media: dt-bindings: Add ST VD55G1 camera sensor
+ binding
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Sylvain Petinot
+	<sylvain.petinot@foss.st.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Sakari Ailus
+	<sakari.ailus@linux.intel.com>
+CC: <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250328-b4-vd55g1-v1-0-8d16b4a79f29@foss.st.com>
+ <20250328-b4-vd55g1-v1-1-8d16b4a79f29@foss.st.com>
+ <5c7b41bb-8e4e-44b2-9fd6-b5dd9258ee4e@kernel.org>
+Content-Language: en-US
+From: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+In-Reply-To: <5c7b41bb-8e4e-44b2-9fd6-b5dd9258ee4e@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-31_05,2025-03-27_02,2024-11-22_01
 
-On Sat, Mar 29, 2025 at 05:59:07AM +0100, Krzysztof Kozlowski wrote:
-> On 28/03/2025 15:19, Sam Winchenbach wrote:
-> > From: Sam Winchenbach <swinchenbach@arka.org>
-> > 
-> > Documents the ability to enable the ICAP interface on boot.
-> > 
-> > Signed-off-by: Sam Winchenbach <swinchenbach@arka.org>
-> > ---
-> >  .../devicetree/bindings/fpga/xilinx-zynq-fpga-mgr.yaml     | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/fpga/xilinx-zynq-fpga-mgr.yaml b/Documentation/devicetree/bindings/fpga/xilinx-zynq-fpga-mgr.yaml
-> > index 04dcadc2c20e9..bb2781ae126ca 100644
-> > --- a/Documentation/devicetree/bindings/fpga/xilinx-zynq-fpga-mgr.yaml
-> > +++ b/Documentation/devicetree/bindings/fpga/xilinx-zynq-fpga-mgr.yaml
-> > @@ -31,6 +31,13 @@ properties:
-> >      description:
-> >        Phandle to syscon block which provide access to SLCR registers
-> >  
-> > +  enable-icap-on-load:
+Hi Krzysztof,
+
+Thank you for your review. Consider everything done for V2.
+
+On 3/29/25 06:42, Krzysztof Kozlowski wrote:
+> On 28/03/2025 14:40, Benjamin Mugnier wrote:
+>> +
+>> +allOf:
+>> +  - $ref: /schemas/media/video-interface-devices.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: st,st-vd55g1
 > 
-> Missing vendor prefix.
-
-I will add this to a v2 patch, assuming we come to an agreement on the
-suitability of this approach.
-
+> Drop st. See your filename how this should be called. Anyway, filename
+> must match the compatible.
 > 
-> > +    type: boolean
-> > +    description: If present, the ICAP controller will be enabled when
-> > +      the driver probes. This is useful if the fabric is loaded
-> > +      during the boot process and contains a core, such as the SEM,
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  vcore-supply:
+>> +    description: Digital core power supply (1.15V)
+>> +
+>> +  vddio-supply:
+>> +    description: Digital IO power supply (1.8V)
+>> +
+>> +  vana-supply:
+>> +    description: Analog power supply (2.8V)
+>> +
+>> +  reset-gpios:
+>> +    description: Sensor reset active low GPIO (XSHUTDOWN)
+>> +    maxItems: 1
+>> +
+>> +  st,leds:
+>> +    description:
+>> +      List sensor's GPIOs used to control strobe light sources during exposure
+>> +      time. The numbers identify the sensor pin on which the illumination
+>> +      system is connected. GPIOs are active-high.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +    minItems: 1
+>> +    maxItems: 4
+>> +    items:
+>> +      minimum: 0
+>> +      maximum: 3
+>> +
+>> +  port:
+>> +    $ref: /schemas/graph.yaml#/$defs/port-base
+>> +    additionalProperties: false
+>> +
+>> +    properties:
+>> +      endpoint:
+>> +        $ref: /schemas/media/video-interfaces.yaml#
+>> +        unevaluatedProperties: false
+>> +
+>> +        properties:
+>> +          data-lanes:
+>> +            description:
+>> +              VD55G1 only has one data lane, and must be 1.
+>> +            maxItems: 1
+>> +            items:
+>> +              const: 1
 > 
-> I don't get how this is suitable for DT. If you decide to load the
-> fabric from driver, that's driver decision so not DT.
-
-Before writing the fabric to the FPGA the driver disables the ICAP, enabling
-the PCAP. Once writing is complete it unconditionally disables the PCAP,
-enabling the ICAP. This patch just makes it so, depending on the use case,
-the ICAP can be enabled at boot. This will not prevent the system from being
-able to load a fabric through the driver. I added in this boolean so existing
-behavior would be maintained.
-
-Do you recommend another approach such as writing to a sysfs attribute to
-switch from PCAP to ICAP?
-
+> Instead of five lines, just two:
 > 
-> > +      that requires access to ICAP interface to operate properly.
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
+> items:
+>   - const: 1
+> 
+> Don't repeat constraints in free form text.
+> 
+> 
+>> +
+>> +          link-frequencies:
+>> +            maxItems: 1
+>> +            items:
+>> +              minimum: 125000000
+>> +              maximum: 600000000
+>> +
+>> +          lane-polarities:
+>> +            minItems: 1
+>> +            maxItems: 2
+>> +
+>> +        required:
+>> +          - data-lanes
+>> +          - link-frequencies
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - vcore-supply
+>> +  - vddio-supply
+>> +  - vana-supply
+>> +  - reset-gpios
+>> +  - port
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/gpio/gpio.h>
+>> +
+>> +    i2c {
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +
+>> +        camera-sensor@10 {
+>> +            compatible = "st,vd55g1";
+> 
+> And here another compatible...
+> 
+>> +            reg = <0x10>;
+>> +
+>> +            clocks = <&camera_clk_12M>;
+>> +
+>> +            vcore-supply = <&camera_vcore_v1v15>;
+>> +            vddio-supply = <&camera_vddio_v1v8>;
+>> +            vana-supply = <&camera_vana_v2v8>;
+>> +
+>> +            reset-gpios = <&gpio 5 GPIO_ACTIVE_LOW>;
+>> +            st,leds = <2>;
+>> +
+>> +            orientation = <2>;
+>> +            rotation = <0>;
+>> +
+>> +            port {
+>> +                endpoint {
+>> +                    data-lanes = <1>;
+>> +                    link-frequencies = /bits/ 64 <600000000>;
+>> +                    remote-endpoint = <&csiphy0_ep>;
+>> +                };
+>> +            };
+>> +        };
+>> +    };
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 2286200b355bde3604607be916ef09aa88feed0e..857af27ef392b6e6865d9a545061d1b012cce07e 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -22410,6 +22410,14 @@ S:	Maintained
+>>  F:	Documentation/hwmon/stpddc60.rst
+>>  F:	drivers/hwmon/pmbus/stpddc60.c
+>>  
+>> +ST VD55G1 DRIVER
+>> +M:	Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+>> +M:	Sylvain Petinot <sylvain.petinot@foss.st.com>
+>> +L:	linux-media@vger.kernel.org
+>> +S:	Maintained
+>> +T:	git git://linuxtv.org/media.git
+> 
+> Drop, unless you push patches there. Otherwise what is the point of
+> duplicating subsystem data?
+> 
+>> +F:	Documentation/devicetree/bindings/media/i2c/st,vd55g1.yaml
+>> +
+>>  ST VGXY61 DRIVER
+>>  M:	Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+>>  M:	Sylvain Petinot <sylvain.petinot@foss.st.com>
+>>
 > 
 > 
 > Best regards,
 > Krzysztof
+
+-- 
+Regards,
+Benjamin
 
