@@ -1,144 +1,152 @@
-Return-Path: <devicetree+bounces-161936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161937-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00590A7607E
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 09:50:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE232A760B0
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 09:57:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3ABDE18881C9
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 07:50:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 41E1A165E4C
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 07:57:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 738621D61BB;
-	Mon, 31 Mar 2025 07:50:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 921731D432D;
+	Mon, 31 Mar 2025 07:57:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AM/pd9GY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WR6kewrh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43C981D5CC2;
-	Mon, 31 Mar 2025 07:50:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A80EA1D416E
+	for <devicetree@vger.kernel.org>; Mon, 31 Mar 2025 07:57:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743407422; cv=none; b=MZsYuTzu9cbQq9KixQ2AvKNbZRBhm24/hM/UDnEBf95soEFDhUnIMIPa4HJ8e0OagCNe8lZ6GHAg0nYrPbbDGA0jtQxWaZPca/KUMX4jL1iZyvsI7F+acWGzyFhnhhluxw+5UqvLlXpZrwPqcGSUocUxEY3pmMQ+XHhCX9ly+W4=
+	t=1743407872; cv=none; b=s9DgQe6GNi0FmM4cnjeI3gIn7ywV6FyXsHpS6mA5ILUeZiAXjxivw4V713D+z9lVr1iMm8ZXeynnea3WUGQevsF6qe+u+LzBkY2nDHXJtJu04lNl6W7IMM/g7vQ+Aopto2DK6sFXMSIQ7kePYqIwYtp4/cs+90yvl0zB6zBnqxc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743407422; c=relaxed/simple;
-	bh=prYw5u8aOVdWtVy6m/f9wz2b6yIFj/X4vl/CDi7qjyQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lL+PzlE3Mb4zuHHfiEyUWIud+aRx5CvFSPZyG/H1+VEC6s9f8nA+zO/y6ELlihf/Zu41WeRX3t7H6nLK06jxjPuqPihdQuMypby4Ik9E4+zikp5DkCKOR2nVh5peMm120nvQybpUhL+zHc5vZiCqnhSnVEEarpOJpUOBBhPVXKA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AM/pd9GY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6366C4CEE3;
-	Mon, 31 Mar 2025 07:50:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743407421;
-	bh=prYw5u8aOVdWtVy6m/f9wz2b6yIFj/X4vl/CDi7qjyQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AM/pd9GYteRQlJHH/4X+M0M8nhgTeNEfVSpqgsbbU5wiwkmMPlyVTd8bLxqEmRFPA
-	 4lcFyj0NdCqddz2tPlng2UW+ZkqHQ7ft6RKN6Z8NrjawnLDfNbDzz1JbEk+001y7bW
-	 cgz0/f3YJRN3QfcvpffdtzpVomt7JntgcUSbeUC1xR2cRLZWAqujDuzFtGpNiAeW3Q
-	 mXLrwE6TxaxDk6h3898Tk1UBLaqBFOCIJdKn/5URXjlXyMdmmuqxrmfp6TMfo5GT1b
-	 PPHYRRdy/ZucFP7tgDqFLY+5hTH28fwsLQm4Z48NUkMwPNya62eDQzlpFRTCd9P0OW
-	 JKlXVaiCG+0Eg==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1tz9uZ-00000000574-2xYS;
-	Mon, 31 Mar 2025 09:50:23 +0200
-Date: Mon, 31 Mar 2025 09:50:23 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Christopher Obbard <christopher.obbard@linaro.org>
-Cc: Douglas Anderson <dianders@chromium.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	Rui Miguel Silva <rui.silva@linaro.org>,
-	Abel Vesa <abel.vesa@linaro.org>, devicetree@vger.kernel.org,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Subject: Re: [PATCH v3 1/2] arm64: dts: qcom: x1e78100-t14s: add hpd gpio to
- eDP panel
-Message-ID: <Z-pJP4PMwPo3L3Og@hovoldconsulting.com>
-References: <20250327-wip-obbardc-qcom-t14s-oled-panel-v3-0-45d5f2747398@linaro.org>
- <20250327-wip-obbardc-qcom-t14s-oled-panel-v3-1-45d5f2747398@linaro.org>
+	s=arc-20240116; t=1743407872; c=relaxed/simple;
+	bh=uQAiW0xh9T93oGTP9h3lVCldUH2UyWTjwBomHNA7ZS0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FSBs3B2/IYDSa3hwK97nTs/4F8qMWlGQgqqu+7tGJgUrLDymVmnd+UvcK8HfZIc3tSySI932pQWr5YH40TV66/qeyrO/F1Q0dlN0U0mtXEE+mTcKpguc9ftVSS0Ql+LLf7WQn0sm7jIfeDfcId5VTPLEvln+1OoVTSr+Erfp1qQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WR6kewrh; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-43948f77f1aso27690335e9.0
+        for <devicetree@vger.kernel.org>; Mon, 31 Mar 2025 00:57:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1743407869; x=1744012669; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cb9P2eBGge83IH6frvkGqDaWvyHFdgjejLm11WT27RM=;
+        b=WR6kewrh+DlTns+kifM5m0VqpQN1Z1XbF1wEdNQl75EWZrRzZ189c2hZnpy9ngJ7GJ
+         Rjc63VXfQL4bXsgtKhOxFa64G9fw6aDoRYhW5/7f1Htd7fr6k9wmlS+WCvf55xCp/EIg
+         xC1nhDUxsYSA2HJl4o3Hjpqk3qxK+FYNXNJjK/6FNNnLXlXftxgL+I4d4j1r72wPu8k+
+         L4eUweg6x1VSIzZ/MJWCTx4N+cYA3Mr6Zgd3b4qo5i2XMScb/yjhDiOm/8UQHnrrDQHw
+         o0ObZrH2lL1yfrj3balfwXcggrNa41VwugEIkde8rgSJjfQooRLmHd1dVlNYhRU0kK9Q
+         kkZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743407869; x=1744012669;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cb9P2eBGge83IH6frvkGqDaWvyHFdgjejLm11WT27RM=;
+        b=IBOgi0Be/CIrKxg582ZZj9MLDihuPjpLlrTlTR/pA8pfBY0m++81aVaDpv0zmkOviZ
+         S+ywGWXNCRgO0smYdqHIP2D9Dr1sC5dWxOWc8lwTLJ6K3YABa/lOD61orOBYGq5RME0P
+         C8Yi8FW8QqH1cLLr64iIY8Ph6YRpM3Pcwio5b5eTHQ86HC9uLVFRnCKr+694v1imJ0PI
+         kdywkEtMqWx3MPw4W/++D0nG+VVDsaHlkSVAL6gvKB0sGGzjBLYaYAs9+YbUOtT80QzF
+         l7K14O39lLG8kbEqe62FynWbwB2+Z0lKpZiXnEYXRxpteBWwFgxo9zG/Zm0QA0JUIBrR
+         80mA==
+X-Forwarded-Encrypted: i=1; AJvYcCXDfTNNzwOFHAd8Oa5oxBbfnyA5f4XSZcJG4P+3PPa7YBB/scFuwqLfpEpMA8knamriGfL/lQLyUkH/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8hl7D0WinBfRQOCtUM4RX9ZzvOFDlbf3xX6IeTNM28rxRfAxc
+	o5bPkTitOp9F2P+9oc7h2Qpm+eKNF39qigHej5in/uwv6o9IJFnmaQV/EcKQZbM=
+X-Gm-Gg: ASbGncvkMboIoUpEZ3ISncnXHGrqRP2Ldr9PAyuARX5UOt0UI+x8d+dqnXbvybaaVYD
+	Xgy/tiSFztqUOy7YylLQREtjjJj6FWaSa4WnovOpt5rsHDO24eSJ+Z8e5p+ylUSNid0rnJWVUjs
+	k4P7papEikACWhoouW+zGtHZkCqHzqx72avQ3IvJ3ZkcMUA/VJ4rfgRJLNsc2zM0Wb0HKmuKOnQ
+	7+wRnySfW5fyx78kmxl1EJDbqd2RQk5E0nnMzMLJRx7KrX9UVyGmin0ZAlpyMaaOxoSFpqU6abn
+	NB0CIAIRvdKONlTiZQgcYGD9V3EPMTqX2zYqXSCsAUBysfF6UL4uBYObe0DvdDve1ooqBoubiBP
+	hQmnyPbQK
+X-Google-Smtp-Source: AGHT+IF0unItTD1myndsQvJL4VI58da+77wY4RcvrJ65zVD+XLVyfm1OIgOd+hYMajyXltywN80wAA==
+X-Received: by 2002:a05:600c:34c9:b0:43c:f629:66f4 with SMTP id 5b1f17b1804b1-43dabe235ccmr68462625e9.0.1743407868982;
+        Mon, 31 Mar 2025 00:57:48 -0700 (PDT)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-43d82dede21sm156663725e9.4.2025.03.31.00.57.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 31 Mar 2025 00:57:48 -0700 (PDT)
+Message-ID: <0638eb8c-d87f-44aa-9f1c-eee529b1e1a1@linaro.org>
+Date: Mon, 31 Mar 2025 09:57:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250327-wip-obbardc-qcom-t14s-oled-panel-v3-1-45d5f2747398@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: watchdog: Add NXP Software Watchdog
+ Timer
+To: Krzysztof Kozlowski <krzk@kernel.org>, wim@linux-watchdog.org
+Cc: linux@roeck-us.net, linux-watchdog@vger.kernel.org,
+ linux-kernel@vger.kernel.org, S32@nxp.com,
+ Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>,
+ Thomas Fossati <thomas.fossati@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>
+References: <20250328151516.2219971-1-daniel.lezcano@linaro.org>
+ <c433c28d-c88d-4647-b472-7bc81b332d8c@kernel.org>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <c433c28d-c88d-4647-b472-7bc81b332d8c@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Thu, Mar 27, 2025 at 04:56:53PM +0000, Christopher Obbard wrote:
-> The eDP panel has an HPD GPIO. Describe it in the device tree
-> for the generic T14s model, as the HPD GPIO property is used in
-> both the OLED and LCD models which inherit this device tree.
+On 29/03/2025 06:04, Krzysztof Kozlowski wrote:
+> On 28/03/2025 16:15, Daniel Lezcano wrote:
+>> +description:
+>> +  The System Timer Module supports commonly required system and
+>> +  application software timing functions. STM includes a 32-bit
+>> +  count-up timer and four 32-bit compare channels with a separate
+>> +  interrupt source for each channel. The timer is driven by the STM
+>> +
+>> +allOf:
+>> +  - $ref: watchdog.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - nxp,s32g-wdt
+> This wasn't tested, so limited review - this also has wrong compatible,
+> There is no such soc as s32g in the kernel. If that's a new soc, come
+> with proper top-level bindings and some explanation, because I am sure
+> previously we talked with NXP that this is not s32g but something else.
 
-AFAICT, this patch is not correct as the hotplug detect signal is
-connected directly to the display controller on (these) Qualcomm SoCs
-and is already handled by its driver.
+If I refer to Documentation/devicetree/bindings/arm/fsl.yaml
 
-Describing it as you do here leads to less accurate delays, see commits:
-	
-	2327b13d6c47 ("drm/panel-edp: Take advantage of wait_hpd_asserted() in struct drm_dp_aux").
-	3b5765df375c ("drm/panel: atna33xc20: Take advantage of wait_hpd_asserted() in struct drm_dp_aux")
+We found the entries:
 
-Perhaps you lose some other functionality too.
- 
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Signed-off-by: Christopher Obbard <christopher.obbard@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-> index 962fb050c55c4fd33f480a21a8c47a484d0c82b8..46c73f5c039ed982b553636cf8c4237a20ba7687 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-> @@ -980,8 +980,12 @@ &mdss_dp3 {
->  	aux-bus {
->  		panel: panel {
->  			compatible = "edp-panel";
-> +			hpd-gpios = <&tlmm 119 GPIO_ACTIVE_HIGH>;
->  			power-supply = <&vreg_edp_3p3>;
->  
-> +			pinctrl-0 = <&edp_hpd_n_default>;
-> +			pinctrl-names = "default";
-> +
->  			port {
->  				edp_panel_in: endpoint {
->  					remote-endpoint = <&mdss_dp3_out>;
-> @@ -1286,6 +1290,13 @@ hall_int_n_default: hall-int-n-state {
->  		bias-disable;
->  	};
->  
-> +	edp_hpd_n_default: edp-hpd-n-state {
-> +		pins = "gpio119";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-pull-up;
-> +	};
+       - description: S32G2 based Boards
+         items:
+           - enum:
+               - nxp,s32g274a-evb
+               - nxp,s32g274a-rdb2
+           - const: nxp,s32g2
 
-I checked the firmware configuration for this pin on my T14s, which
-does not match what you have here. Instead the function is set to
-"edp0_hot" which forwards the signal to the display controller which
-already handles the signal on panel power on. (And there is also no
-internal pull up enabled).
+       - description: S32G3 based Boards
+         items:
+           - enum:
+               - nxp,s32g399a-rdb3
+           - const: nxp,s32g3
 
-We may want to describe this pin configuration somewhere, but that's a
-separate issue.
+I guess it should nxp,s32g2-wdt and nxp,s32g3-wdt
 
-Johan
+Right ?
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
