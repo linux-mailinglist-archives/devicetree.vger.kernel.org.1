@@ -1,65 +1,67 @@
-Return-Path: <devicetree+bounces-161955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE86BA76156
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 10:21:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64125A7615E
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 10:21:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1470118893C0
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 08:21:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5E1218895EA
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 08:22:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17E641D54E2;
-	Mon, 31 Mar 2025 08:21:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA9D71D61BB;
+	Mon, 31 Mar 2025 08:21:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tktUFjVH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BotlAn2F"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D75214A01;
-	Mon, 31 Mar 2025 08:21:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 763301D5AD4;
+	Mon, 31 Mar 2025 08:21:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743409261; cv=none; b=kfN7/RjINQ2BnPAOXIfXQ1KVNmDPA6mDBeH4Gyft2TWCTx2tsJJrS0bGRNscp0IblvmsaHB3Tq5T7QaQKLojRjTmHCLTmcjCGRRPAtWoLpuyaBZAsvSCtALPgj3IuPiSsMv9UvFcnhQTD12aBHd0UgHDpVrCVcIJaVGrjDSwk+g=
+	t=1743409310; cv=none; b=tHiWTfs8wGys8K8B7g4P6I0egpwrDzIop03vQ1wdGKmiNh4r8KTMiV2mbd1QLmNzTEhn1KKlEcA+L8fcKer+p7V5i0uicN61tc6xbX5NTqVFghMC7kwZjSCzuj8641IHLzmqwSSUYHP/L6KEbCNXATxQ4lf8aIiGBRb8MXbYapw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743409261; c=relaxed/simple;
-	bh=h4jDZiKUQ6uMigFCCJI6gh8GJJR+wHZwPFP6HF66PY4=;
+	s=arc-20240116; t=1743409310; c=relaxed/simple;
+	bh=ah4KmPy0RZMMsogFgHBmWlyZmt3sywOv58ogYopNERw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aqeH7srArtWqoHgX7WcBboPPCrKMuK1wa4D7zGeaV65mp746iTUaGOg10TQmROShRGTbuTqDsCLZK0IGAY6DuhdzubFjM7mYpcfuR030pTfYdJOfbHVSLEgcFFpAOoGEIlgkG3dzS5Dhx9qx+ItcYkb5wToAu8OGnJnJe/Cevys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tktUFjVH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA8CCC4CEE3;
-	Mon, 31 Mar 2025 08:20:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=bZ7fhNwf9uNAHYpdlrdZEwnyG+v39jhdLAikEaLKqxbtNwSrdzU659W+0Cn+9+9LMXOESGwwLRtlf8Kb1I0QEUHV+rKebZyDfnNXyPKElg7yKwe3rBLsrwTL9z/APdyW7LUsWseisC1bxu6j/4lS9NHF+i8TcVNP6YHHWb9QD3s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BotlAn2F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0874EC4CEE5;
+	Mon, 31 Mar 2025 08:21:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743409260;
-	bh=h4jDZiKUQ6uMigFCCJI6gh8GJJR+wHZwPFP6HF66PY4=;
+	s=k20201202; t=1743409309;
+	bh=ah4KmPy0RZMMsogFgHBmWlyZmt3sywOv58ogYopNERw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tktUFjVHZ1FEfiJoozniwdYr4yIJQGkvVmy758gtpmIiJtXkvNMV9KQBC0kUtdFky
-	 +LQVx9OPYKjrhV8Yp7I+ciVp0bmHgRC7BFnUNB8LJBKye/Tza6+oM3RDmRnMFh7d28
-	 ZeTyzIZNCx0pCh/O7cMzo4rCejkvv0mTo45kLxVvjcCPhBnPJJ23wpAoIhSUBIRRD8
-	 DFhdKvchgA+x/LbtuvogWFkNn6xAMZa2kDfM4Gpf9BblfPQKBsk6mGBqfLHUXgDa12
-	 UYX3zIYIubF9kiUmQVOmJKDCFT4S5k7sA5aeWUlrxLwvUFiHpXI/AVl4jTp7HUA6UP
-	 KTJT9q+ugahnQ==
-Date: Mon, 31 Mar 2025 10:20:57 +0200
+	b=BotlAn2Fd2Z6GumlrZXYY4Utujm6OhrfDN5dH6CfR7HwhNrEeyRrjqRJN1t8HgJ6k
+	 g9nXJJ2tgsvK5eo21ts4asYdpF04Cb0Afribza/96Qzojb1Phu7VJWhkt/tPKrCnGb
+	 08hHFXGHWK6C3s4fCSKQ/Pg8evbhO5mpTzVJZe44G6xw0KJWIdVRDHx20oefMQUOhv
+	 KEQfVApxlhTlPKu0BNYZpmXwXjsg2aV12ldTx2d8MtaMzVtzZjOWZFn4MMqBpbcOSJ
+	 DUEM1xao0JO/RYRgt7HVUYKHlemx+Q2x6cu/MYLRCJXMo2cVME3Tt1sXjHyAhKMsWO
+	 oDP9Il4YhYNbQ==
+Date: Mon, 31 Mar 2025 10:21:46 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: linux-arm-kernel@lists.infradead.org, 
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	Aradhya Bhatia <a-bhatia1@ti.com>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Heiko Stuebner <heiko@sntech.de>, Junhao Xie <bigfoot@classfun.cn>, 
-	Kever Yang <kever.yang@rock-chips.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 3/4] dt-bindings: soc: renesas: Document Renesas R-Car
- V4H Sparrow Hawk board support
-Message-ID: <20250331-visionary-precious-wildebeest-f3aefc@krzk-bin>
-References: <20250330195715.332106-1-marek.vasut+renesas@mailbox.org>
- <20250330195715.332106-4-marek.vasut+renesas@mailbox.org>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-media@vger.kernel.org, linux-clk@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 03/17] media: dt-bindings: media: renesas,vsp1: Document
+ RZ/V2H(P)
+Message-ID: <20250331-sweet-fluffy-bear-e0ec4c@krzk-bin>
+References: <20250330210717.46080-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250330210717.46080-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,16 +70,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250330195715.332106-4-marek.vasut+renesas@mailbox.org>
+In-Reply-To: <20250330210717.46080-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Sun, Mar 30, 2025 at 09:56:11PM +0200, Marek Vasut wrote:
-> Document Renesas R-Car V4H Sparrow Hawk board based on R-Car V4H ES3.0
-> (R8A779G3) SoC. This is a single-board computer with single gigabit ethernet,
-> DSI-to-eDP bridge, DSI and two CSI2 interfaces, audio codec, two CANFD ports,
-> micro SD card slot, USB PD supply, USB 3.0 ports, M.2 Key-M slot for NVMe SSD,
-> debug UART and JTAG.
+On Sun, Mar 30, 2025 at 10:06:59PM +0100, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+> The VSPD block on the RZ/V2H(P) SoC is identical to the one found on the
+> RZ/G2L SoC.
+> 
+> No driver changes are required, as `renesas,r9a07g044-vsp2` will be used
+> as a fallback compatible string on the RZ/V2H(P) SoC.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+>  Documentation/devicetree/bindings/media/renesas,vsp1.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
