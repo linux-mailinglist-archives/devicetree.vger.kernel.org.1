@@ -1,56 +1,48 @@
-Return-Path: <devicetree+bounces-161912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DAB9A75EBE
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 08:11:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35360A75ED5
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 08:31:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFD0E1885BA6
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 06:11:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6DE2C188905C
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 06:31:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E336817B418;
-	Mon, 31 Mar 2025 06:11:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E72E415B0EF;
+	Mon, 31 Mar 2025 06:31:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="aEO+dRT9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oc4ls696"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [212.227.17.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8B6643172;
-	Mon, 31 Mar 2025 06:11:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B58306F305;
+	Mon, 31 Mar 2025 06:31:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743401471; cv=none; b=uDG0f4bNWmdSwiBQ4epbbiA+NVV/u/FZtmR9nfF0hl4MPa4M9nhHRqpo256ppP5xEfJ5g+QsZ+FcxfZ6gmR96gHfwyJMx/Kar35x1bg2qVK6lJ2H8teuVH4gr7zuXV8f4xfoy/iJJAaFeInP/ilbz+8vR0ib+z3Gf2wHn598Z9g=
+	t=1743402664; cv=none; b=lAoL55LhOE1ZMEAm4UVvQCvHbgXgl4V8r/Hz4ymAVZT6UpWSfzvsrPN3ywDxPEabqNDjdMQW7DE534m7KY5dLly0c089nUGxDLBWUJmjTwRcY+z3Pi9zoaWXCHVUKPbWpUEmiZM3NgoiijT29AV/JT8Iofj17XhpDMBYf1lw35A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743401471; c=relaxed/simple;
-	bh=HZNn77hrb0VXfMZlKd0ubzAzyBLzNVKIzp1yVzahOZw=;
+	s=arc-20240116; t=1743402664; c=relaxed/simple;
+	bh=siK06ks11gqfEFK2GobMJ/GTm/D1N9rEwSRy7MoIxXI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GeprbGr56qs+afLNlb+fen4l5LtMVO9C5BwgSJUDxyt+QIFHFY3L3nw/nYhM4qEpa3IqpQiSYpA/xm0r8AZJO4LF83ySfVGjVCZNJX/1HNARQAKd0PJ389GoPCDTWV+nt9pfPmGRIBLwvLIAWTQBqCJ97LZJ6PVdWlIKlPYnYBU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=aEO+dRT9; arc=none smtp.client-ip=212.227.17.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1743401461; x=1744006261; i=markus.elfring@web.de;
-	bh=HZNn77hrb0VXfMZlKd0ubzAzyBLzNVKIzp1yVzahOZw=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=aEO+dRT9QZqVjqbYxsvbFRnyJogft4kcfxd58+DXL/PXG1RU1CX0e+8uczBDVnwe
-	 He7LxR0f9BWEFe1ksiZUAW0lhZT4nCJtU65d5TiryBe+cKaWdn7vK3RVbwdq2zE2d
-	 OCy6YIiqa4oRDrVijnVzVxtSHcW/KBaOAsjSEldNG1E6Q4tkB2jxOcD5EzbOCSShg
-	 dN18/TcfhZohxZpjgYndb4bF/YT8ss2Hd+Eu0xHokSjHew20TleXEjTVcwl09s5Ak
-	 EDWV2gheWuu5bUYS7MumkJ5mTnhftwFEeoD3sL4TpreIfMjdPlHObUXI0Lg9MX/gN
-	 Kc48LdCyIMqS05PehQ==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.29] ([94.31.70.37]) by smtp.web.de (mrweb106
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1MJnrX-1tfgbM1CsD-00Jvop; Mon, 31
- Mar 2025 08:11:01 +0200
-Message-ID: <eb8dbf9a-50c9-4bf4-b967-d6478caacaa4@web.de>
-Date: Mon, 31 Mar 2025 08:10:23 +0200
+	 In-Reply-To:Content-Type; b=Ne9dHhY5cQ+ExHnf+T5wn6/0jO1YuJJJZFYP9gVLlyDRAeGdJlBIeX2nTNGqrz7988XgrZMpuEuIidFt7I44/M4bPC6XuPBBzO8OVTO+iHat8IW2aGBQbvDglnWeR6C1EeBmNAQl603eENOGBA2JMDRf+5ZyEs5b+S3nQXcgbgo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oc4ls696; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C12EAC4CEEA;
+	Mon, 31 Mar 2025 06:30:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743402664;
+	bh=siK06ks11gqfEFK2GobMJ/GTm/D1N9rEwSRy7MoIxXI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=oc4ls696St+M4bBAIOvxzG5W8Q0ZYmsFyFe/CN7d+CODeRjyiFKDpkcpOEs+W7lE3
+	 GH0RSnY/DkIL0YvkvrAb9L4w5lSkQidBf8gwJuPCblWXw3ma4w64/P4wGlA9oFu7NA
+	 Dkf4zrfJQIaZqqw1X8lst5V/TjPZzJ6ncHZzsOnpa2Qdw+H0Td23S5BA5rLai0TOO9
+	 xOdgY+MZRKs1sJVKEge8azcERhlePmoP0fRtP5I2loaWygUwGn4gVbgzlcPv307F5p
+	 wtHGhbc5StB4uVxO1yemkqAi54/OddQiGNLAQVwYL9/J1maW2rE5EuXfhs3sKSXpbO
+	 p+5lOREZrF6aQ==
+Message-ID: <d4c8de9b-e52c-480b-a3bf-e82979602477@kernel.org>
+Date: Mon, 31 Mar 2025 08:30:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,64 +50,109 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [v7 08/10] media: platform: Add C3 ISP driver
-To: Keke Li <keke.li@amlogic.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: LKML <linux-kernel@vger.kernel.org>,
- Daniel Scally <dan.scally@ideasonboard.com>,
- Kieran Bingham <kieran.bingham@ideasonboard.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-References: <20250311-c3isp-v7-8-c3551bed9005@amlogic.com>
- <6ff5acac-4d41-4d4a-853c-9902e9673ef0@web.de>
- <e99da06b-acf6-490e-b39a-a283bdb2415b@amlogic.com>
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <e99da06b-acf6-490e-b39a-a283bdb2415b@amlogic.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: net: Add MTIP L2 switch description
+To: Lukasz Majewski <lukma@denx.de>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+References: <20250328133544.4149716-1-lukma@denx.de>
+ <20250328133544.4149716-2-lukma@denx.de>
+ <e6f3e50f-8d97-4dbc-9de3-1d9a137ae09c@kernel.org>
+ <20250329231004.4432831b@wsk>
+ <564768c3-56f0-4236-86e6-00cacb7b6e7d@kernel.org>
+ <20250330223630.4a0b23cc@wsk>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250330223630.4a0b23cc@wsk>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:eKQ9p9ZXI6ZC5Dq/TI0XGGzkdzXfPrOsjZ7nQwkh+bTF7EOn4/w
- 835VDv5jEFwtTfgEtOYvVIDlPedlwohx+mNmGHmow+bGNnG77Mi63Vk/x+BEihsiFaUn6ON
- +y5+Tz8vGEdQEUsVW6IjfOhCd6hQBiarI9K2lY1m0sVImfkNa41P8zBZ9e6v6tsHWvHUccj
- m64JSHakXGf9WiQLFZHkw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:W+kS9veyZH0=;w+mCcDEcnD4ucUjiHH7a4RlFJ0u
- 8ZeVthlounxA8EC2/apVLXj4rFKDps0esfaF5Qq1FehYn4MMwdYZezElXDE9Y6aLPsEj7ECu1
- qFzlADW8OqKyuyhrhBwpNNUvWURNMWT6HwRwjNaafCQdwa7/aMcLbz6V9L4qTmIPxcCEPa1Yk
- p7LYtZ5qgEGm9OPJq1WPYXUAiw/fD2a+MMwkN0QZHp8uaOrIW8kjmN35BqQlrP6MzZyK8zndD
- Wxrj/mjbPIZzWpJV/9HyMiOwrfTo3BSvo86zWk9RoDEBIk93niMNHvwA5u2B/8zhYa87ZVbTC
- urE1nmtx6BR+88v97JPvv1S/mJtCOaouZBVV/Em28o7ht0NJPGQKhU5gaIFyFjIX4lTQW6gRJ
- RDElSo3GkuZHHktJKdRhV9GbfJYa+2HBjPsJQ+QyVHW8OeOKZIgdjQVQYgFOAUMNuMJLFhA1H
- Vyd3z8F+eCvYKIVjEK8tR9AmmYSGUzBvVqr8EaWmjXPssPUcp/fGVklTNhRzUjPO1wLXutdVo
- +jnMgINlIwLLcNgCf+tvIYL5JGAQ5Kx+hnTzM2YtoJaR5EJOlCWxgeCgDfhIU4UN373W3TRjx
- lkszspZgg7o5pf3elDP4PmOD/SaOLJWWMuAO0JKpK4pUaQ2Klx/LSKPk4z6rTyAup0BKVcsZF
- XOq8gtLUl1kWeOh87Z6VV0QUgu8a24Qdp4G09U1L1ZMz4MGh2FSBOjMsWa5Ee42Pd8HvMb89q
- S437jk7RbxRo8tRY7yTeXT58wzFdUffixwMxYSKbnwTmdbJqQnYVEYAaB4yF4nIFtLYYL0wGe
- r1vBzdusnz1yToj0nY7jyh8bDO16ey5DKGM7OuHTvsqUxJqfJfaQpLhRenQIg84mQPzUEUSQq
- sabqMQ5WIYH1QwnuCy5om6NCuCo7AZZHWZC+6CnxPXYhiIeNSVlwFntCaCq7HSVPybm4rIo8y
- 4Ty1n6/FOtD+VLV9MxOvczUYWjwho4hABN+r+v6TVFJ7P6fQ/WW1bzgm8bwwee4osWXftIOnk
- JHLxr9jwmyqiirtyqwHu/wT99PjB9rCh8qF2ldx04UdOOoJePWlkJcalxeZhwquxuYAwm2WQC
- D8+jDQDEnJTR7p4cl/GeMm8rUHJCGarK0RKWnd3o1zzEWhyvP5YE4JV1QG1Irs5UHRD3Lokhq
- 9Lp5vqjQfe0pkrURq0v3NDReTwkYs4pmmlYbQooIhx8U2te6aJt+RMC4ngREAY76wLonpe/XE
- 9EoWEnAKW4HfHcmdwkrQk/qyfwoV40y8ACS+GVsUSBa4zFYDavYoQk34A7X59O3WNkAUCZ1Yx
- cTpQNWa/hL22ZgQkujW2Z5RNnvIO/dzXUJAmbbvZ1rjN9C2+dTwImkbbL/q5Ev4ibwV9RzUzA
- FnnUHvd3d8THbFiySuHr9y2x0khJAYxPZGbEZPpahSjGXaz4wm8o0JburH2FQAs+eKlXuJdMG
- LnovVqQcrMZhhj+1wveAPGAf3Tc4/sY3KVOQGVa8qjVlMb8NZ
+Content-Transfer-Encoding: 8bit
 
->> You may occasionally put more than 60 characters into text lines
->> of such a change description.
->
-> Are you sure the character limit for a single line is 60?
+On 30/03/2025 23:04, Lukasz Majewski wrote:
+> Hi Krzysztof,
+> 
+>> On 29/03/2025 23:10, Lukasz Majewski wrote:
+>>>>> +    
+>>>>
+>>>> If this is ethernet switch, why it does not reference
+>>>> ethernet-switch schema? or dsa.yaml or dsa/ethernet-ports? I am
+>>>> not sure which one should go here, but surprising to see none.  
+>>>
+>>> It uses:
+>>> $ref:·ethernet-controller.yaml#
+>>>
+>>> for "ports".
+>>>
+>>> Other crucial node is "mdio", which references $ref: mdio.yaml#  
+>>
+>> These are children, I am speaking about this device node.
+> 
+> It looks like there is no such reference.
+> 
+> I've checked the aforementioned ti,cpsw-switch.yaml,
+> microchip,lan966x-switch.yaml and renesas,r8a779f0-ether-switch.yaml.
+> 
+> Those only have $ref: for ethernet-port children node.
+> 
+> The "outer" one doesn't have it.
+> 
+> 
+> Or am I missing something?
 
-It seems that you interpreted my patch review for this issue
-into other directions than intended.
+There is ethernet-switch.yaml for non-DSA switches and there is DSA
+(using ethernet switch, btw). I don't know why these devices do not use
+it, I guess no one converted them after we split ethernet-switch out of DSA.
 
-
-> I find the description 'wrap at 75 columns':
-I suggest to benefit from word wrapping adjustments accordingly.
-
-Regards,
-Markus
+Best regards,
+Krzysztof
 
