@@ -1,99 +1,122 @@
-Return-Path: <devicetree+bounces-162109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1382FA76F7D
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 22:40:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4882A76FA3
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 22:47:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C2DB41654D3
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 20:40:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0AB63AB572
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 20:46:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C200821ABC3;
-	Mon, 31 Mar 2025 20:40:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D60F121A955;
+	Mon, 31 Mar 2025 20:46:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VZnsVzoz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Vvm1+nnn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EDC4214227;
-	Mon, 31 Mar 2025 20:40:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31588214227;
+	Mon, 31 Mar 2025 20:46:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743453653; cv=none; b=pAgWb71oy+W0jLVdqIkB182KPPLrjrhNtFIShj0UBfMq+YejDjUjVSGnW8udsEQktOECmKrY2kcirvls6jA/A7t6I4xkU9hhNeJMQsIY5/vrnlYM7JfN0m/43V0PG8PNxKLQq3otJMZf4IcHVOquPl671dPNYdFXxjVkQ1ii2Vg=
+	t=1743453981; cv=none; b=jjmlZ1c+KVGq7kCH9dtfIjiUyMHvkx71/C45/qkBOBHlGgu44dIfTlvzCFcSlYSe4yXwT3Keo6EUvbvd/Ba+/W87BVItvRSpKF3jhJQFeNdbYZiRgA6ymYJtaiMkofbPLfxJbA7scObzE15zSf74qkHcvLBatkqyVeD5GCWSlNo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743453653; c=relaxed/simple;
-	bh=I0pww8VqJBHBfu1PWz4L5zWozNIoPBm6Vts7A/QmhsY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KnY5fAU738v/vT/YzMKODzDfpPaQDlKLmpR1av0xC4ZvXi2a38kYzVz3YIpwE8IaqVqUkIYhr0MTFcH5tHQttXegPZk3V//l4OzJRGzBol0ZuY8iLGxZCIKiNHVOEyfl0756CTMc/aEYfE3tfOY89tWMLhxMTRBROz7NkN6uKKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VZnsVzoz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B96F4C4CEE3;
-	Mon, 31 Mar 2025 20:40:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743453653;
-	bh=I0pww8VqJBHBfu1PWz4L5zWozNIoPBm6Vts7A/QmhsY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VZnsVzozdNfu5X8UMeTfgCssrlEL5caMO3Y4haUBvmkL4T0VpNWst9+N+9bWopezF
-	 dWQPDBPbtA1QhnUQmYaHQJNHu5SdZRBm+vIDa1kdG5BcsmbPiNgq1TIRpfvEJI/ZnC
-	 Wjm7JgV7584sBvEGNVP43cgT3+c1lgb19xo66DyPQJRkgr6JsRbUpsPa0DexBiBaYt
-	 KVNsL2G09JBLeYQL98P/VzX8U1iarWdiSGnZHEWenN+7h2L/tZtFbfbLkK03Fosvc9
-	 FuQwgdKo8Ya/EEgf2iYJFbIxg3lUTQqowgZhc2QktN++nGejnxT5I66ou80Nnspl5t
-	 nqvA7oHo8gXnA==
-Date: Mon, 31 Mar 2025 15:40:51 -0500
-From: Rob Herring <robh@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	s=arc-20240116; t=1743453981; c=relaxed/simple;
+	bh=VL1BagKpR2PzlWP4EuzcW8UqstpmSVCi9M4XdWrxn3Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=htCRZukEBwh2hH7ecTUqljI12bq1iCnfTbD3EF+O/u4dmz4ogMC2xd106czwUoBaAng2CbuwmxOl1E6FnjhJY6cv/ZAcJ2JDttlyyBe1TTBijEz6nUOW/x8Lw05obvTqqeOGW4jQjDVzsinIml8NwZL437hvCcwIslzHBqMEaR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Vvm1+nnn; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-39c1ef4ae3aso545137f8f.1;
+        Mon, 31 Mar 2025 13:46:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1743453977; x=1744058777; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2k9mKVMicaaLXi6qOk7Jponh3pMkYt3H5iHRzaO+K9g=;
+        b=Vvm1+nnnHS03tPK0fE2bROB4VZy6x8fwa5D5hGu9l/nt4J3o4Z/5FfotzmdNAhH8c7
+         H+sDG7GXJER+F9Fm7eg5tWT+FiPThlfGMD1pdOOTyeINyDmwVNtMhybsu3d+8YsDaGCv
+         +7VWAgDVsivs/rfJgu7fwB36e1bzaRrcNEVRb1LO48ofYagg/wt5a3gs7yLs2HBUleMr
+         u9cZDLvWDOFEKHq+B8gqtBqOhs4/009NipZZVhaItXMXuzbk3lMSxlP1Sv4DjgZbBuSd
+         VGxB1oGPDuL3YT4gxPPotlk0UcWSBTNGuMihkiSomgFLxuTo0sgXC/Erlm28M2y6B5Rn
+         1DBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743453977; x=1744058777;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2k9mKVMicaaLXi6qOk7Jponh3pMkYt3H5iHRzaO+K9g=;
+        b=czsy3Cpk81y6fKk7qZz16PW6JwQoYCU1NqTui0Hb8hyuv/Z16hKBCU80xFPTVWDYoO
+         8Q8sjzVWe7DH+nmRUgxSYdlFssjDhQ/G9dw0kkM7FtdOfAssJg6oc2/Y3PXMfo27MBzc
+         2ookU0YWht7nK3cC1L0abljokLqrwBv9tGKgp7G6wes4IQjKyMZKcGIRe0eXeR9VdFVS
+         GyTEvZUa+xqrkTsDHoQnWdYFw5IF9JdMY/vv1S27KcQpPeiZZmgqbTmgzVcVGIWv0dgp
+         2WOot6Y98LX7/rCm1uwIHXSTvIoqxivK0JcMPH9MNtiZis/VpqgcYrurFNzRFtoZhHZ2
+         vVZQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVyMBVviPyTYcDzEWjA8ztEhvZxhqFiVA8TMk9eU1Ypv5cHbrHFhVqOHtqh5H2/IlAEaHw+BrJd6/wI30Zv@vger.kernel.org, AJvYcCXA23sSJvXorfhygNShg3Kq4KaapW7+xeSspnidaNFeRWsdK9sAzJ2zKdxJ8OXc2twObRcRH6xYX2bR@vger.kernel.org, AJvYcCXGsy5THKlUn76cPa7zMMNyBdx5L03KwYC/ZviUi0wz694u8y5MAbLAWBoh49TxL5XSoaSpNIjWW2cPH9zomA==@vger.kernel.org
+X-Gm-Message-State: AOJu0YwceyExyANd47K2WCAnKQWUl6oTXkh9K9Okdw2s3EH+Nonxk4eX
+	2BQ/WGlxqDi4J8fxHMs9y0ozqTtkTMVUJeokrjEg4j1WynbLeQs=
+X-Gm-Gg: ASbGncsFYXriMyUonVO5B63NyVT4jdg0n/EcbEq+VS834GebAEHnqYYv8aVbspmgtqP
+	h6OONGH2lYoeUr4mlM+TqxuXaN3Z4U8CTlDYOeSGR5qJmYD1qT6GGT90uQfcm2Ir6/MnjvmpuCd
+	uL6ygCyMaSxleUBlz71rdGCPoiOy6rcfLjw4K6WeGU9CiK3s6z7pQhc2WevJwA6Ij9Lv3eXvZuy
+	Uh2qBDg1CYQY9SRwQY4ewWybb/q/XKTaPnQowEVr1vvTKGBxtFMFqfwA7OSQzbLwIMgx3XaVGVa
+	aMGhBCN1oNM8ZbEFN0uW1b6/RUhtO8D5PSdmvFZf6bYs2XPAsPwrXY2ZRnryVUKmwcfGuyelZGT
+	FjQrFoaIAitOCV6lKNs32d7E=
+X-Google-Smtp-Source: AGHT+IHUwXQN1JEwDEcBE8BfL8c+uO3ympf5SyCdjQpEJYlefdYyaeH9vV3YZnbadue+35d7HKfhqA==
+X-Received: by 2002:a5d:6d84:0:b0:39b:f44b:e176 with SMTP id ffacd0b85a97d-39c0c13b7d1mr12175023f8f.24.1743453977282;
+        Mon, 31 Mar 2025 13:46:17 -0700 (PDT)
+Received: from alex-x1e.. (mob-194-230-148-227.cgn.sunrise.net. [194.230.148.227])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39c0ddeecc9sm11006996f8f.83.2025.03.31.13.46.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 31 Mar 2025 13:46:16 -0700 (PDT)
+From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+To: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-	Andrei Botila <andrei.botila@oss.nxp.com>,
-	Sabrina Dubroca <sd@queasysnail.net>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Eric Woudstra <ericwouds@gmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next RFC PATCH v4 6/6] dt-bindings: net: Document support
- for Aeonsemi PHYs
-Message-ID: <20250331204051.GA2764400-robh@kernel.org>
-References: <20250327224529.814-1-ansuelsmth@gmail.com>
- <20250327224529.814-7-ansuelsmth@gmail.com>
+	laurentiu.tudor1@dell.com,
+	dmitry.baryshkov@oss.qualcomm.com,
+	johan@kernel.org,
+	Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Subject: [PATCH v3 0/1] arm64: dts: qcom: x1e80100-dell-xps-9345: Add WiFi/BT pwrseq
+Date: Mon, 31 Mar 2025 21:43:43 +0100
+Message-ID: <20250331204610.526672-1-alex.vinarskis@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250327224529.814-7-ansuelsmth@gmail.com>
+Content-Transfer-Encoding: 8bit
 
-On Thu, Mar 27, 2025 at 11:45:17PM +0100, Christian Marangi wrote:
-> Document support for Aeonsemi PHYs and the requirement of a firmware to
-> correctly work. Also document the max number of LEDs supported and what
-> PHY ID expose when no firmware is loaded.
+Add bluetooth to mentioned device.
 
-If you respin, in the subject: s/Document support for/Add/
+Changes to V2:
+* Fixed commit message misunderstanding
+* Picked Bryan's R-by
+* Picked Laurentiu's T-by
+* Link to v2: https://lore.kernel.org/all/20250331073423.3184322-1-alex.vinarskis@gmail.com/
 
-> 
-> Supported PHYs AS21011JB1, AS21011PB1, AS21010JB1, AS21010PB1,
-> AS21511JB1, AS21511PB1, AS21510JB1, AS21510PB1, AS21210JB1,
-> AS21210PB1 that all register with the PHY ID 0x7500 0x9410 on C45
-> registers before the firmware is loaded.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
->  .../bindings/net/aeonsemi,as21xxx.yaml        | 122 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  2 files changed, 123 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/aeonsemi,as21xxx.yaml
+Changes to V1:
+* Fixed commit message
+* Picked Dmitry's R-by
+* Link to v1: https://lore.kernel.org/all/20250330212729.3062485-1-alex.vinarskis@gmail.com/
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Aleksandrs Vinarskis (1):
+  arm64: dts: qcom: x1e80100-dell-xps-9345: Add WiFi/BT pwrseq
+
+ .../dts/qcom/x1e80100-dell-xps13-9345.dts     | 144 ++++++++++++++++++
+ 1 file changed, 144 insertions(+)
+
+-- 
+2.45.2
+
 
