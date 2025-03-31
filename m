@@ -1,127 +1,152 @@
-Return-Path: <devicetree+bounces-161992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1E0BA764AB
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 13:00:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9425BA764C0
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 13:11:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 65F6B1664D5
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 11:00:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DEE517A3C7B
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 11:10:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17C221E1A18;
-	Mon, 31 Mar 2025 11:00:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40DD41E0E0B;
+	Mon, 31 Mar 2025 11:11:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g2NDbTtm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gn35hVfq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE7EC1E1022;
-	Mon, 31 Mar 2025 11:00:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FD5F1DF738;
+	Mon, 31 Mar 2025 11:11:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743418808; cv=none; b=UyeV4e9Jj/Df2V1IlXZUExHkcxNqbERiG8OkrPsHn6AioB/5nKNbvE8lu78At9jStT3qN48pels5qkCULXOKgDqd9qiX+8vu2Kpfj6zizQNCEu9xVz+YIyBHbzx+VijpHqn1nUyhR2FaY5Nhqrn3Y15b0F2YVEM4rkWFz53uh4Y=
+	t=1743419496; cv=none; b=RsyObJUmbtBnR0anMXGxpTB6tYW9F6sw/BkvPrfnDhJSxfSKVBo10msZMHyjXxosKvYMfX86PKXc3XmP6t/eWUS5yqDHrV+dp3z5q0aAN9FS5hCEDsKKQNQed19Tr7+fHb4rnUcWH6gXk5INKRubqwdcz6BQUyXGLwD9cG0x9ug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743418808; c=relaxed/simple;
-	bh=cld3lKxTDUu1Y017kQ5wCwIuFGJrB2vDX2SYmnv1YDE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XtEXfeJxOqeuWwynuN1w7GqE/ijkwtghDPt0/1GeeOCrvtwqkf/WWwTH3/fvQrOEgtsWJMDrsE7w7ADajizfaKu2u6N0QaAP9NEtcCwwmRTvmPpKAAw7LYkB78z4/VKWLIELueXLTDRxt23T9z7krvZuj3v851GVW5/DSqae34U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g2NDbTtm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47B86C4CEE3;
-	Mon, 31 Mar 2025 11:00:06 +0000 (UTC)
+	s=arc-20240116; t=1743419496; c=relaxed/simple;
+	bh=ToVl5s0RX30wsE1JGZ8Oo6lsEMnYO/jqCv3oJ3odNCU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Kq19Q0yj38xxeBTms8ToRpHX+3B9MkVX444wsFaYHzQ4fuC/ypZuc1JpkInthmvJGJdULwsYbC/CfjGifloQQcM08w3W9Fx0Eut2sybBLWO4CJYLvFGxOSJFTpCESfgUS0MgKIZLaYA/YefbHSocAg7zMcBk0WKdU8DFJVPRAUk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gn35hVfq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10DF0C4CEE3;
+	Mon, 31 Mar 2025 11:11:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743418806;
-	bh=cld3lKxTDUu1Y017kQ5wCwIuFGJrB2vDX2SYmnv1YDE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=g2NDbTtm2fnQtfkndR19AJeXfOsg0aKBR2zhOLRbu/9G8MGRZ1S7rQHaG6x9vRzTy
-	 i3af8JbkRk75lFo8ihOyRc0MVCUuvUa8AujywyGInIhU+fKBi8VIrwUqZ7GjjkDd1c
-	 V7eYlKTZ+yvSEromo+SjihkEQY+NkhlsEtXc0RSyDGUtnuTQjmnORHU3InLe2ziFYx
-	 phqxJ12Hh7ynoTlbCRghVk9JXld7NPMhl2TsXaY6Vm3kAAYNRFtMpitT+LUGQoMlwa
-	 LmwWYmAI1sL5Eq8sEjFKyoVN1k1MzPHQIOjYO6veyU1OZbm8043mv5cZpZzdD3FbcY
-	 G+5t4zgAyjO1Q==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1tzCsC-000000006dk-0laY;
-	Mon, 31 Mar 2025 13:00:08 +0200
-Date: Mon, 31 Mar 2025 13:00:08 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-Cc: "Tudor, Laurentiu" <Laurentiu.Tudor1@dell.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	dmitry.baryshkov@oss.qualcomm.com,
-	Stephan Gerhold <stephan.gerhold@linaro.org>
-Subject: Re: [PATCH v2 1/1] arm64: dts: qcom: x1e80100-dell-xps-9345: Add
- WiFi/BT pwrseq
-Message-ID: <Z-p1uADNVAM9NcAW@hovoldconsulting.com>
-References: <20250331073423.3184322-1-alex.vinarskis@gmail.com>
- <20250331073423.3184322-2-alex.vinarskis@gmail.com>
- <Z-pN1qloL2m4BWaq@hovoldconsulting.com>
- <CAMcHhXq9W64MHhOV5i3U4t+ZfKNC_GaBq5X3ZN7VOLt0cjPQPg@mail.gmail.com>
+	s=k20201202; t=1743419494;
+	bh=ToVl5s0RX30wsE1JGZ8Oo6lsEMnYO/jqCv3oJ3odNCU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=gn35hVfq20httgc+1wFBMcrSpFOYWqTZK/Nhs0UvoD60L/EdQQxtufInpxmR5fM+j
+	 yRE3JWRQY6WOALpaw+no8XiEhdBRBMZtLGYlFGQE/vGda/BFmfB059MGaloW+cqz63
+	 mlqqWE+WnkSmxsf9AmmLAOpvulgJISuIcR5dQJ+jGhn+3XQTz3yVBufWYeS/QvrNDr
+	 simzNxj6OGgBXRatOtTFf5pP7Ae6Dcur4SIX/LmfP4AE+MVWaNxMvef7TAs3NZOCcM
+	 qW8jjK0oF6zsg5yfAGmo7oWepzUD0r6pr2P9tuYE3g+d3H/JCIPSdFz2HM7Aj5qoxT
+	 eFKn3L2zNHSCA==
+Date: Mon, 31 Mar 2025 12:11:24 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nuno Sa
+ <nuno.sa@analog.com>, David Lechner <dlechner@baylibre.com>, Javier
+ Carrasco <javier.carrasco.cruz@gmail.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/6] iio: adc: ti-adc128s052: Fix ADC value on BE
+ systems
+Message-ID: <20250331121124.4fed1d44@jic23-huawei>
+In-Reply-To: <babe1eac3de30aa22e09266de1f5521fa9e0decd.1742474322.git.mazziesaccount@gmail.com>
+References: <cover.1742474322.git.mazziesaccount@gmail.com>
+	<babe1eac3de30aa22e09266de1f5521fa9e0decd.1742474322.git.mazziesaccount@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMcHhXq9W64MHhOV5i3U4t+ZfKNC_GaBq5X3ZN7VOLt0cjPQPg@mail.gmail.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Mon, Mar 31, 2025 at 11:38:25AM +0200, Aleksandrs Vinarskis wrote:
-> On Mon, 31 Mar 2025 at 10:09, Johan Hovold <johan@kernel.org> wrote:
-> >
-> > [ +CC: Stephan ]
-> >
-> > On Mon, Mar 31, 2025 at 08:33:47AM +0100, Aleksandrs Vinarskis wrote:
-> > > Add the WiFi/BT nodes for XPS and describe the regulators for the WCN7850
-> > > combo chip using the new power sequencing bindings. All voltages are
-> > > derived from chained fixed regulators controlled using a single GPIO.
-> > >
-> > > Based on the commit d09ab685a8f5 ("arm64: dts: qcom: x1e80100-qcp: Add
-> > > WiFi/BT pwrseq").
-> >
-> > Are you sure this is correct and that you don't need to worry about the
-> > "how do we model the supplies to an M.2 card" issue?
-> >
-> > See
-> >
-> >         https://lore.kernel.org/lkml/Z-KuG0aOwEnxuhp9@linaro.org/
+On Mon, 31 Mar 2025 11:02:55 +0300
+Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+
+> ADCs supported by the ti-adc128s052 driver do return the ADC data in 16
+> bits using big-endian format. The driver does unconditionally swap the
+> bytes. This leads to wrong values being reported to users on big endian
+> systems.
 > 
-> Dell XPS 9345 does not have an M.2 card, WLAN package is soldered
-> directly onboard, hence I am quite sure this is similar to QCP.
-> To be certain, perhaps @Tudor, Laurentiu or @Bryan O'Donoghue (if  you
-> have it?) could confirm from schematics?
+> Fix this by using the be16_to_cpu() instead of doing unconditional byte
+> swapping.
 
-I checked now, it seems you are correct.
+It's not doing unconditional byte swap that I can see. The
+adc->buffer[0] << 8 | adc->buffer[1]
+will work on big or little endian systems as we are explicitly saying
+which byte represents higher bit values in a 16 bit output so on little
+endian it's a byte swap, but on big endian it's a noop (the compiler might
+noticed that and replace this code sequence with an assignment)
 
-Highly annoying that we need all this guess-work boiler plate (about
-chip internal details) for what is effectively just two supplies.
-
-Hopefully we can drop that again going forward, but that's a separate
-discussion.
-
-> > > With that fixed commit f5b788d0e8cd ("arm64: dts: qcom: Add support for
-> > > X1-based Dell XPS 13 9345")
-> >
-> > Not sure what happened here.
+Good cleanup, but not a fix as such unless I'm missing something.
 > 
-> Bluetooth and WLAN definitions were missing, as at the time I only
-> knew the UART port being used for bluetooth, and was missing
-> everything else to describe it.
+> Fixes: 913b86468674 ("iio: adc: Add TI ADC128S052")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> ---
+> I have no big endian machines on my hands to test this. Problem was
+> spotted by reading the code, which leaves some room for errors.
+> Careful reviewing is appreciated!
+> ---
+>  drivers/iio/adc/ti-adc128s052.c | 13 +++++++------
+>  1 file changed, 7 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/ti-adc128s052.c b/drivers/iio/adc/ti-adc128s052.c
+> index a456ea78462f..d1e31122ea0d 100644
+> --- a/drivers/iio/adc/ti-adc128s052.c
+> +++ b/drivers/iio/adc/ti-adc128s052.c
+> @@ -28,19 +28,20 @@ struct adc128 {
+>  	struct regulator *reg;
+>  	struct mutex lock;
+>  
+> -	u8 buffer[2] __aligned(IIO_DMA_MINALIGN);
+> +	__be16 buffer __aligned(IIO_DMA_MINALIGN);
+>  };
+>  
+>  static int adc128_adc_conversion(struct adc128 *adc, u8 channel)
+>  {
+>  	int ret;
+> +	char *msg = (char *)&adc->buffer;
+>  
+> -	mutex_lock(&adc->lock);
+> +	msg[0] = channel << 3;
+> +	msg[1] = 0;
 
-Ah, ok. The above sentence looked like some left-over copy paste. I
-guess you don't need to mention it at all since this does not seem to
-warrant a proper Fixes tag.
+Given you are writing shared state why move this out of the lock?
+Whilst here maybe using guard() would clean this driver up a little.
 
-Johan
+
+Use a separate buffer (or a union) so we can avoid the casting here
+
+>  
+> -	adc->buffer[0] = channel << 3;
+> -	adc->buffer[1] = 0;
+> +	mutex_lock(&adc->lock);
+>  
+> -	ret = spi_write(adc->spi, &adc->buffer, 2);
+> +	ret = spi_write(adc->spi, msg, 2);
+
+Given you are tidying this up, lets make the source of that size value obvious.
+
+sizeof(adc->buffer)
+
+>  	if (ret < 0) {
+>  		mutex_unlock(&adc->lock);
+>  		return ret;
+> @@ -53,7 +54,7 @@ static int adc128_adc_conversion(struct adc128 *adc, u8 channel)
+>  	if (ret < 0)
+>  		return ret;
+>  
+> -	return ((adc->buffer[0] << 8 | adc->buffer[1]) & 0xFFF);
+> +	return be16_to_cpu(adc->buffer) & 0xFFF;
+>  }
+>  
+>  static int adc128_read_raw(struct iio_dev *indio_dev,
+
 
