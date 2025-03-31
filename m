@@ -1,242 +1,200 @@
-Return-Path: <devicetree+bounces-161997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17822A764E2
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 13:23:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AB8DA764F5
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 13:28:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 664B13A7FDF
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 11:22:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AFDCC3A4C2E
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 11:28:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1F261E104E;
-	Mon, 31 Mar 2025 11:22:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B33E1E1041;
+	Mon, 31 Mar 2025 11:28:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q90DRg5I"
+	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="yg4B3urw";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="OWIRKvXT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fout-a8-smtp.messagingengine.com (fout-a8-smtp.messagingengine.com [103.168.172.151])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B47B71DF738;
-	Mon, 31 Mar 2025 11:22:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C9761DE4DB;
+	Mon, 31 Mar 2025 11:28:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743420178; cv=none; b=hnr2vVK44MoTuPNikoc7kDY9X9T1WK9KiUTBiyEvzEpu4cr6NfSsehQQVIzL7dT+TUCQveVRHGWgQQKyWbHy6xoO90HN8aDPkDKn3doN1PB0fPLT8v9pQk5mQflfJI/YPnVDWtfyVvmhVI4Fd+z515K0uvUdtYzhCqUptQULVSI=
+	t=1743420526; cv=none; b=dtj0nauO0O6fzdawXF0J3GIutyMGVpI+1pTh+vYx98/p8dqlpPjRU23JJIKw6gT6eDiIrZB8Qa1vYXlnnExToS+GsL55dPUaekQOa4N/2hUVQzmfpns1JJzdDr1cudZGGVUcwQKoayCw22QYU57344oaN5X5vTVk4V2xngbihNo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743420178; c=relaxed/simple;
-	bh=+rM7H87bGjZOkexSahbMGJkksOwLNre4F+yLSRfdliM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=H2zCj4oneEYTE6AJ/n3aYFdEvxIYVooMkU1lCt++chyL+nCo0l50Fk8W8oGrbVCtNGw4rxzAq0euW2cump5VmxkTOgZ5QibOmJWdmTCr/jQ0sPwJsKzwKLc7DBJHQCB4DtTGwsOrfJgoCrE+x7Dj62BuWmJA5tfwupAJe+GGvTo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q90DRg5I; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD07DC4CEE3;
-	Mon, 31 Mar 2025 11:22:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743420177;
-	bh=+rM7H87bGjZOkexSahbMGJkksOwLNre4F+yLSRfdliM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Q90DRg5IDDTHjxDPYNBUJRT7Tub/qoBUGW3Ci79Rv+2hTDAiNNwup+0VOa7+V33Se
-	 jV8MO8FYKXsHkmL6iQfMvNfc0DZjbbfAxwD79+4/FtmK5UNjPbRQsmMTU1OqsYksqo
-	 5AIXoDG/vg9rqb8nnI6H3Qf7YKZ4WplrTAOUdP59q7WAHgUIyQTWghBrpcHs9ApfCx
-	 MdiZK6U2BB6T1JC2Y/SEz1v7Yryp93w20yVd/ZvW63MEz9k172Kp3EC9Bp3rx79HRQ
-	 CCyXS6+rZe0/0O4EZS9QwuXFyKcpWoNKyISarZQo3TrEExGMQPB2hh29UeM5AcOGD9
-	 XDEZc6UeGSrxw==
-Date: Mon, 31 Mar 2025 12:22:47 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nuno Sa
- <nuno.sa@analog.com>, David Lechner <dlechner@baylibre.com>, Javier
- Carrasco <javier.carrasco.cruz@gmail.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 6/6] iio: adc: ti-adc128s052: Support ROHM BD79104
-Message-ID: <20250331122247.05c6b09d@jic23-huawei>
-In-Reply-To: <8e10f2d82362ca7c207324a5a97bb1759581acea.1742474322.git.mazziesaccount@gmail.com>
-References: <cover.1742474322.git.mazziesaccount@gmail.com>
-	<8e10f2d82362ca7c207324a5a97bb1759581acea.1742474322.git.mazziesaccount@gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1743420526; c=relaxed/simple;
+	bh=D7x353QDKvTqsO0klPni1BKRbEzeNAwfYB/SF8bzz0w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BAAoJ6uL2fdkv4VB0VSmmxlu059mk4Dex9eERNUvljIS5B2/WubmS2gC557mgRAq2CL6rgwj9mBlIIFINwhSe32bM3XsPBgHMYb7ocjjaU5NFeRRyxF/CJJLd9U9V0uAbwtIail11MPLxIryHQomMO/tEi9fr5HEP3zM6Nt1Ilw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=yg4B3urw; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=OWIRKvXT; arc=none smtp.client-ip=103.168.172.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
+Received: from phl-compute-11.internal (phl-compute-11.phl.internal [10.202.2.51])
+	by mailfout.phl.internal (Postfix) with ESMTP id A226D138441D;
+	Mon, 31 Mar 2025 07:28:43 -0400 (EDT)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+  by phl-compute-11.internal (MEProxy); Mon, 31 Mar 2025 07:28:43 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:subject
+	:subject:to:to; s=fm3; t=1743420523; x=1743506923; bh=R1fvNUJM+1
+	07giQNxDtASFpEZ6IxMM9QfRNpZfhOjos=; b=yg4B3urwknbAULMsaA5bZ4IPUf
+	gAjFsQe/RePHsI7+kgiJUQT6MdAmvc7iRMQY6ERi0rKkpd3cAUxByDOrq/bSFP2T
+	qTHeBro9f4HsdZ1XtyGNOHxP2D5DA1cRrSPgktTj48J/8ojuitjY6k7MHKezq36X
+	eH5bqg4le7WaCIyxCj5dvwbOpM1wfQlRGvMz8bWk3gk8X0MV2TEb+n4BXlyEBB8t
+	jY8FqCzoRBph37/VRAHMdDM40wl4SWHPbnWdIRih6kvMDFl9t7GBmFkuUSStTrde
+	snAHjwIG9FAZVAiwA1xcx1zZlbL2fscmubnCucJXH7QOVKg2uL7Lx86CXaoA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
+	1743420523; x=1743506923; bh=R1fvNUJM+107giQNxDtASFpEZ6IxMM9QfRN
+	pZfhOjos=; b=OWIRKvXTZ2yKPtYThutu5NLArnMgCvUKSuevNZ4JJqmmJpwG9jO
+	cPo3Adu78HTleVeiMMSbsdsg7JZ98fSYO6BAGkBjdWfHnMjKjiR5tVlQssgLK5Ff
+	VqumalrBGOpw+9y6dBGrt2+PjhcRGptLitimuNX1d+N9qoNQ0qtWtMFrw2u76oHs
+	A0Mu1Lcdjotob5NOOH4p11eU0b8hgNJXO1wbITfmjU66sbtg0frsO4rNbI8zdNl9
+	t9lwlTM5RhCIC9Y+9jsoMlfNsXUApoDy0Ahuw39nyOpa7w9gQQ0vRCXGSnZgj8Ot
+	We9+m34LkwDxB77dLWGvlbf67ovPS7GkbKQ==
+X-ME-Sender: <xms:anzqZzd-qCZE0w9Wy64ClmOY0eIN4MMvmGg2rtzv45Hiw20HROJ5Kw>
+    <xme:anzqZ5NDzSt9jFp-tb2xWDX47cNngT_7fbJj2yrvHqc9U-uZTPxWjjEShhAqJxtin
+    9lazJj-qVJeDyaWHWA>
+X-ME-Received: <xmr:anzqZ8gvAM76vioAaZTQamMO-hWgbuk6PKDD-5uQZ64yt9pqqx0Fk9Nq2a0SaC2O0u9mcofh2cUQ71E3zEJFK7QYaGtuohWP3w>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddujeelkedtucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
+    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
+    gvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggujgesthdtredttddt
+    jeenucfhrhhomheplfgrnhhnvgcuifhruhhnrghuuceojhesjhgrnhhnrghurdhnvghtqe
+    enucggtffrrghtthgvrhhnpefgudeuffelfeekgeeukedtheekjeettdfftddujefhvdeh
+    tefgiefgledtueefjeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsth
+    gvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhesjhgrnhhnrghurdhn
+    vghtpdhnsggprhgtphhtthhopeduhedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtoh
+    epmhgriieskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgv
+    rhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtoheplhhinh
+    hugidqphgtihesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghvihgt
+    vghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqd
+    hkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopegrshgrhhhi
+    sehlihhsthhsrdhlihhnuhigrdguvghvpdhrtghpthhtoheprghlhihsshgrsehrohhsvg
+    hniiifvghighdrihhopdhrtghpthhtohepmhgrrhgtrghnsehmrghrtggrnhdrshhtpdhr
+    tghpthhtohepshhvvghnsehsvhgvnhhpvghtvghrrdguvghv
+X-ME-Proxy: <xmx:anzqZ090RaJB0KMMXF6aBKMES2LBwgMbJdMsY1dWT5npQOfjTCZ1tg>
+    <xmx:anzqZ_tDKXVnKqYlOPo1yb0tDMevULx8eeul9ci0UDMw6ecVEcCMoA>
+    <xmx:anzqZzEQ8MtXMAAAsJ16bqb7kD2mN6Z7El9ch70--5pDorzPx6LlMA>
+    <xmx:anzqZ2N8jGFQqhwox4Bsl57H3wd7xqdYwnqYWcUR_ow1a1qrrBpaWA>
+    <xmx:a3zqZ3PHDwJ0q8FmW-ovuhKONEvhW69bqgxEgulDoTgHzPkkRHGcfgJZ>
+Feedback-ID: i47b949f6:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 31 Mar 2025 07:28:41 -0400 (EDT)
+Date: Mon, 31 Mar 2025 13:28:38 +0200
+From: Janne Grunau <j@jannau.net>
+To: Marc Zyngier <maz@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	asahi@lists.linux.dev, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v2 00/13] PCI: apple: Add support for t6020
+Message-ID: <20250331112838.GA246397@robin.jannau.net>
+References: <20250325102610.2073863-1-maz@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250325102610.2073863-1-maz@kernel.org>
 
-On Mon, 31 Mar 2025 11:03:58 +0300
-Matti Vaittinen <mazziesaccount@gmail.com> wrote:
-
-> The ROHM BD79104 ADC has identical SPI communication logic as the
-> ti-adc128s052. Eg, SPI transfer should be 16 clk cycles, conversion is
-> started when the CS is pulled low, and channel selection is done by
-> writing the channel ID after two zero bits. Data is contained in
-> big-endian format in the last 12 bits.
-
-Nicely found match.  Sometimes these are tricky to spot.
-
+On Tue, Mar 25, 2025 at 10:25:57AM +0000, Marc Zyngier wrote:
+> As Alyssa didn't have the bandwidth to deal with this series, I have
+> taken it over. All bugs are therefore mine.
 > 
-> The BD79104 has two input voltage pins. Data sheet uses terms "vdd" and
-> "iovdd". The "vdd" is used also as an analog reference voltage. Hence
-> the driver expects finding these from the device-tree, instead of having
-> the "vref" only as TI's driver.
+> The initial series [1] stated:
 > 
-> NOTE: The TI's data sheet[1] does show that the TI's IC does actually
-> have two voltage inputs as well. Pins are called Va (analog reference)
-> and Vd (digital supply pin) - but I keep the existing driver behaviour
-> for the TI's IC "as is", because I have no HW to test changes, and
-> because I have no real need to touch it.
+> "This series adds T6020 support to the Apple PCIe controller. Mostly
+>  Apple shuffled registers around (presumably to accommodate the larger
+>  configurations on those machines). So there's a bit of churn here but
+>  not too much in the way of functional changes."
 > 
-> NOTE II: The BD79104 requires SPI MODE 3.
+> The biggest change is affecting the ECAM layer, allowing an ECAM
+> driver to provide its own probe function instead of relying on the
+> .init() callback to do the work. The ECAM layer can therefore be used
+> as a library instead of a convoluted driver.
 > 
-> NOTE III: I used evaluation board "BD79104FV-EVK-001" made by ROHM. With
-> this board I had to drop the SPI speed below the 20M which is mentioned
-> in the data-sheet [2]. This, however, may be a limitation of the EVK
-> board, not the component itself.
+> The rest is a mix of bug fixes, cleanups, and required abstraction.
 > 
-> [1]: https://www.ti.com/lit/ds/symlink/adc128s052.pdf
+> This has been tested on T6020 (M2-Pro mini) and T8102 (M1 mini).
 > 
-> [2]:
-> https://fscdn.rohm.com/en/products/databook/datasheet/ic/data_converter/dac/bd79104fv-la-e.pdf
+> * From v1[1]:
 > 
-Prefer Datasheet tags with # [1] 
-after them for the cross references.  
-
-Those belong here in the tag block (no blank lines)
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-
-One request for an additional cleanup precursor patch given you are
-touching the relevant code anyway.   It's a small one that you can
-test so hope you don't mind doing that whilst here.
-
-I'm relying on the incredibly small chance anyone has a variable
-regulator wired up to the reference that they are modifying at runtime.
-I have seen that done (once long ago on a crazy dev board for a really
-noisy humidity sensor) when the reference was VDD but not on a separate
-reference pin.  That means we almost certainly won't break the existing
-parts and can't have a regression on your new one so we should be fine
-to make the change.
-
-Thanks,
-
-Jonathan
-
+>   - Described the PHY registers in the DT binding
 > 
-> ---
-> ---
->  drivers/iio/adc/Kconfig         |  2 +-
->  drivers/iio/adc/ti-adc128s052.c | 40 +++++++++++++++++++++++++++++----
->  2 files changed, 37 insertions(+), 5 deletions(-)
+>   - Extracted a ecam bridge creation helper from the host-common layer
 > 
-> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-> index 849c90203071..148a52b3db94 100644
-> --- a/drivers/iio/adc/Kconfig
-> +++ b/drivers/iio/adc/Kconfig
-> @@ -1425,7 +1425,7 @@ config TI_ADC128S052
->  	depends on SPI
->  	help
->  	  If you say yes here you get support for Texas Instruments ADC128S052,
-> -	  ADC122S021 and ADC124S021 chips.
-> +	  ADC122S021, ADC124S021 and ROHM Semiconductor BD79104 chips.
->  
->  	  This driver can also be built as a module. If so, the module will be
->  	  called ti-adc128s052.
-> diff --git a/drivers/iio/adc/ti-adc128s052.c b/drivers/iio/adc/ti-adc128s052.c
-> index c68ee4e17a03..c7283d606d2e 100644
-> --- a/drivers/iio/adc/ti-adc128s052.c
-> +++ b/drivers/iio/adc/ti-adc128s052.c
-> @@ -21,6 +21,9 @@
->  struct adc128_configuration {
->  	const struct iio_chan_spec	*channels;
->  	u8				num_channels;
-> +	const char			*refname;
-> +	int				num_other_regulators;
-> +	const char * const		(*other_regulators)[];
->  };
->  
->  struct adc128 {
-> @@ -119,10 +122,28 @@ static const struct iio_chan_spec adc124s021_channels[] = {
->  	ADC128_VOLTAGE_CHANNEL(3),
->  };
->  
-> +static const char * const bd79104_regulators[] = { "iovdd" };
-> +
->  static const struct adc128_configuration adc128_config[] = {
-> -	{ adc128s052_channels, ARRAY_SIZE(adc128s052_channels) },
-> -	{ adc122s021_channels, ARRAY_SIZE(adc122s021_channels) },
-> -	{ adc124s021_channels, ARRAY_SIZE(adc124s021_channels) },
-> +	{
-> +		.channels = adc128s052_channels,
-> +		.num_channels = ARRAY_SIZE(adc128s052_channels),
-> +		.refname = "vref",
-> +	}, {
-> +		.channels = adc122s021_channels,
-> +		.num_channels = ARRAY_SIZE(adc122s021_channels),
-> +		.refname = "vref",
-> +	}, {
-> +		.channels = adc124s021_channels,
-> +		.num_channels = ARRAY_SIZE(adc124s021_channels),
-> +		.refname = "vref",
-> +	}, {
-> +		.channels = adc128s052_channels,
-> +		.num_channels = ARRAY_SIZE(adc128s052_channels),
-> +		.refname = "vdd",
-> +		.other_regulators = &bd79104_regulators,
-> +		.num_other_regulators = 1,
-> +	},
->  };
->  
->  static const struct iio_info adc128_info = {
-> @@ -157,7 +178,7 @@ static int adc128_probe(struct spi_device *spi)
->  	indio_dev->channels = config->channels;
->  	indio_dev->num_channels = config->num_channels;
->  
-> -	adc->reg = devm_regulator_get(&spi->dev, "vref");
-> +	adc->reg = devm_regulator_get(&spi->dev, config->refname);
+>   - Moved probing into its own function instead of pci_host_common_probe()
+>     
+>   - Moved host-specific data to the of_device_id[] table
+> 
+>   - Added dynamic allocation of the RID/SID bitmap
+> 
+>   - Fixed latent bug in RC-generated interrupts
+> 
+>   - Renamed reg_info to hw_info
+> 
+>   - Dropped useless max_msimap
+> 
+>   - Dropped code being moved around without justification
+> 
+>   - Re-split some of the patches to follow a more logical progression
+> 
+>   - General cleanup to fit my own taste
+> 
+> [1] https://lore.kernel.org/r/20250211-pcie-t6-v1-0-b60e6d2501bb@rosenzweig.io
+> 
+> Alyssa Rosenzweig (1):
+>   dt-bindings: pci: apple,pcie: Add t6020 compatible string
+> 
+> Hector Martin (6):
+>   PCI: apple: Fix missing OF node reference in apple_pcie_setup_port
+>   PCI: apple: Move port PHY registers to their own reg items
+>   PCI: apple: Drop poll for CORE_RC_PHYIF_STAT_REFCLK
+>   PCI: apple: Use gpiod_set_value_cansleep in probe flow
+>   PCI: apple: Abstract register offsets via a SoC-specific structure
+>   PCI: apple: Add T602x PCIe support
+> 
+> Janne Grunau (1):
+>   PCI: apple: Set only available ports up
+> 
+> Marc Zyngier (5):
+>   PCI: host-generic: Extract an ecam bridge creation helper from
+>     pci_host_common_probe()
+>   PCI: ecam: Allow cfg->priv to be pre-populated from the root port
+>     device
+>   PCI: apple: Move over to standalone probing
+>   PCI: apple: Dynamically allocate RID-to_SID bitmap
+>   PCI: apple: Move away from INTMSK{SET,CLR} for INTx and private
+>     interrupts
+> 
+>  .../devicetree/bindings/pci/apple,pcie.yaml   |  11 +-
+>  drivers/pci/controller/pci-host-common.c      |  24 +-
+>  drivers/pci/controller/pcie-apple.c           | 241 +++++++++++++-----
+>  drivers/pci/ecam.c                            |   2 +
+>  include/linux/pci-ecam.h                      |   2 +
+>  5 files changed, 204 insertions(+), 76 deletions(-)
 
-Hmm. It is very unusual for a reference regulator to be variable
-after power up.  As such, maybe refactor the driver to use
-devm_regulator_get_enable_read_voltage() which will save a few lines of
-code and generally be easier to read.
+Whole series is
+Tested-by: Janne Grunau <j@jannau.net>
+on t6020 and t8103 based Apple silicon devices.
 
-That would need to be a separate precursor patch though.
-
-
->  	if (IS_ERR(adc->reg))
->  		return PTR_ERR(adc->reg);
->  
-> @@ -169,6 +190,15 @@ static int adc128_probe(struct spi_device *spi)
->  	if (ret)
->  		return ret;
->  
-> +	if (config->num_other_regulators) {
-> +		ret = devm_regulator_bulk_get_enable(&spi->dev,
-> +						config->num_other_regulators,
-> +						*config->other_regulators);
-> +		if (ret)
-> +			return dev_err_probe(&spi->dev, ret,
-> +					     "Failed to enable regulators\n");
-> +	}
-> +
->  	devm_mutex_init(&spi->dev, &adc->lock);
->  
->  	return devm_iio_device_register(&spi->dev, indio_dev);
-> @@ -182,6 +212,7 @@ static const struct of_device_id adc128_of_match[] = {
->  	{ .compatible = "ti,adc124s021", .data = &adc128_config[2] },
->  	{ .compatible = "ti,adc124s051", .data = &adc128_config[2] },
->  	{ .compatible = "ti,adc124s101", .data = &adc128_config[2] },
-> +	{ .compatible = "rohm,bd79104", .data = &adc128_config[3] },
->  	{ },
->  };
->  MODULE_DEVICE_TABLE(of, adc128_of_match);
-> @@ -194,6 +225,7 @@ static const struct spi_device_id adc128_id[] = {
->  	{ "adc124s021", (kernel_ulong_t)&adc128_config[2] },
->  	{ "adc124s051", (kernel_ulong_t)&adc128_config[2] },
->  	{ "adc124s101", (kernel_ulong_t)&adc128_config[2] },
-> +	{ "bd79104", (kernel_ulong_t)&adc128_config[3] },
->  	{ }
->  };
->  MODULE_DEVICE_TABLE(spi, adc128_id);
-
+ciao
+Janne
 
