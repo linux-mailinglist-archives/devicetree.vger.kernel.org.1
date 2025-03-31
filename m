@@ -1,136 +1,244 @@
-Return-Path: <devicetree+bounces-162102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D85DA76D7F
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 21:31:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74AACA76DB1
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 21:52:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A07C47A2A81
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 19:29:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1BABA1680B8
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 19:52:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69E881DA62E;
-	Mon, 31 Mar 2025 19:30:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF50C219A86;
+	Mon, 31 Mar 2025 19:52:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b="aQPvP/ce"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dwSKtzUz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-09.pe-a.jellyfish.systems (out-09.pe-a.jellyfish.systems [198.54.127.69])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A97F12114;
-	Mon, 31 Mar 2025 19:30:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.54.127.69
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E23C218E91;
+	Mon, 31 Mar 2025 19:52:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743449459; cv=none; b=Ob0cluFKc61HntPgUrp7BKe/IJperFbvBCN1BF5qzZmopSSC3TrwN1tprKsxUAUEXuAmOuPcYwX0ZIH4847+gPDvfeTVQ5lI+4z74l6C49XM7og+rzBRHaLIqS5pHZkyHndToGWbcTc9mRkindxkGWioEAbrGYcg7BLJayBoDDw=
+	t=1743450775; cv=none; b=S+VO9IiXaVa4/ElaFPHGYKZNCGnPikt6topDQyHGPHwN74WWeHNWZZTM4NfYxHHk8tmU4vKkhh8SiP8TojffjCGQl8VR9ojxHcWnx4///L9x9pjhEZr1FxSxd0yMSqNle0lEQS/JmruwpAZK3zDP/D0TlvMn6m3C/CToJqrjQz8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743449459; c=relaxed/simple;
-	bh=5fDvWYlmklSJIuIH3nKjwJPHW4lF+afHO6be9jzEMOU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OIEkoLD5KcWl77EeHLQ98d6j/mrWi+CvHhMUQ0HcWOlQ9Q4ZFG4HCKrci2voMaFkOwvLeBiG3JMkxagjWAcdNxGpI4QDXYCype013hXlp/csdbI5okba492DK+XcrGafkHeCZAnfHJuWRCUg7CKQMfTdVPJLQ64YjRlh+q6gPY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=framepointer.org; spf=pass smtp.mailfrom=framepointer.org; dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b=aQPvP/ce; arc=none smtp.client-ip=198.54.127.69
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=framepointer.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=framepointer.org
-Received: from prod-lbout-phx.jellyfish.systems (new-01-3.privateemail.com [66.29.159.56])
-	by pe-a.jellyfish.systems (Postfix) with ESMTPA id 4ZRLp13Wdcz9sNx;
-	Mon, 31 Mar 2025 19:30:49 +0000 (UTC)
-Received: from MTA-13.privateemail.com (unknown [10.50.14.29])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by NEW-01-3.privateemail.com (Postfix) with ESMTPS id 4ZRLp067Mtz2Sd0R;
-	Mon, 31 Mar 2025 15:30:48 -0400 (EDT)
-Received: from mta-13.privateemail.com (localhost [127.0.0.1])
-	by mta-13.privateemail.com (Postfix) with ESMTP id 4ZRLp04kqvz3hhXJ;
-	Mon, 31 Mar 2025 15:30:48 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=framepointer.org;
-	s=default; t=1743449448;
-	bh=5fDvWYlmklSJIuIH3nKjwJPHW4lF+afHO6be9jzEMOU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aQPvP/ceXuB3n2EoUlKP/9KyjbFSJYLfUBIXSa04DucEv39456vr1eXW7oHXPDua1
-	 5G3YldXC5O2YTc7ZKw8XM2ZUtQsNwGCg6HVcQ5O0LUJz3n67yRDlymGykMU2n7jvnY
-	 t298jQktcfrm9W263IJmslM2mklfsYUeYKjd/BzV8Kmcay/uTYBNijXx4CEeEk1+/R
-	 J8twU46j9LR0ptxLG8tGqFjBLUr5IpZ6/pb9qfl+Dc5bg80oytgdNLP47HOmEF5sIG
-	 0HfFaWsayI/j6tUzvQ3HOUcOOCq1Kt3n3YwhCyuMZ7ul56I9Diuf/dH7/Lm0DgDtnY
-	 tKw5IOyFP0L/Q==
-Received: from 65YTFL3.secure.tethers.com (unknown [152.44.190.141])
-	by mta-13.privateemail.com (Postfix) with ESMTPA;
-	Mon, 31 Mar 2025 15:30:35 -0400 (EDT)
-Date: Mon, 31 Mar 2025 15:30:37 -0400
-From: Sam Winchenbach <sam.winchenbach@framepointer.org>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: linux-kernel@vger.kernel.org, lars@metafoo.de, 
-	Michael.Hennerich@analog.com, antoniu.miclaus@analog.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	bpellegrino@arka.org, Sam Winchenbach <swinchenbach@arka.org>
-Subject: Re: [PATCH v8 0/6] Update auto corner freq calculation
-Message-ID: <npxfioo7wvjaduggdlk765uwna2umnwhmndgmk3mcwcjyi3jwd@wi6mbnfpvmss>
-References: <20250328174831.227202-1-sam.winchenbach@framepointer.org>
- <20250330162300.4c318897@jic23-huawei>
+	s=arc-20240116; t=1743450775; c=relaxed/simple;
+	bh=iAx6AiZOdcoVCQPaqkhovcXsqqfrJ9yKx5C+5ve//lE=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
+	 In-Reply-To:Content-Type; b=XjGP91H8WVfQD6MsnOrBDFcnW+yxb+6yNEYkjgPWkgYTz+RaObHpah7HijqZbtzezZfRJ3k2ThtL5N5CrrktDdbdmNKYJhmWwge3uUHuhiXlXOxThiMRALWcaRvVAgSVTHZ/xQf6ywR5YokAtN7xCqcQatx1XXSpvfbbCgEBNSM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dwSKtzUz; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52VFD05h007728;
+	Mon, 31 Mar 2025 19:52:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	4o/ga2++oE8EAz0HX/ke0EQAZIONMTuD1M7ohYe75Ak=; b=dwSKtzUzTLPRu4m5
+	SrGojQ/5eMLmmw+GvPHg64bkT5u+XS2hZESjvgsj3LtATk+lsmRN1zWhIBpPd++F
+	J/N0KnOLUxaQuB1gpPXmLZM/mbGG4Dj8LV0x/KEp5kPvlITZFV7/QNJ32S58CrrP
+	4w9wEPcPy5SBLquuaW1QlNszZBsaQcMfZbMfrtGWCISsDbO22YwewFaWw8PamI6e
+	R467QS8F5aF8+juNjDjI3V0uoh5qcitSI9J5b6X9a+0VxcbKQAvB/8t4zJNXbXLU
+	IzWHASjGF3AhWJdU4l9rhJa26L3aW9yLNpoXC0i+2fEgohJpJZvJeq3FkX3naGSk
+	8Y4xDA==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45pa1nwcwb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 31 Mar 2025 19:52:26 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52VJqQWl015383
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 31 Mar 2025 19:52:26 GMT
+Received: from [10.110.31.20] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 31 Mar
+ 2025 12:52:24 -0700
+Message-ID: <200c08f7-3637-c2fb-2caa-002604b957ed@quicinc.com>
+Date: Mon, 31 Mar 2025 12:52:19 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250330162300.4c318897@jic23-huawei>
-X-Virus-Scanned: ClamAV using ClamSMTP
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+Subject: Re: [PATCH v36 22/31] ASoC: qcom: qdsp6: Introduce USB AFE port to
+ q6dsp
+To: Stephan Gerhold <stephan.gerhold@linaro.org>
+CC: <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <conor+dt@kernel.org>, <dmitry.torokhov@gmail.com>,
+        <corbet@lwn.net>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
+        <krzk+dt@kernel.org>, <pierre-louis.bossart@linux.intel.com>,
+        <Thinh.Nguyen@synopsys.com>, <tiwai@suse.com>, <robh@kernel.org>,
+        <gregkh@linuxfoundation.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-sound@vger.kernel.org>,
+        <linux-input@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        Luca Weiss
+	<luca.weiss@fairphone.com>
+References: <20250319005141.312805-1-quic_wcheng@quicinc.com>
+ <20250319005141.312805-23-quic_wcheng@quicinc.com>
+ <Z-J2WnrZHP6iMIhT@linaro.org>
+ <871827f0-94ba-4565-865f-775cab9501eb@quicinc.com>
+ <Z-PPlRD7gcUcNvNv@linaro.org>
+Content-Language: en-US
+In-Reply-To: <Z-PPlRD7gcUcNvNv@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: GIw7Ik5soCn9yIsf1uJKEB1NenGOyaae
+X-Proofpoint-GUID: GIw7Ik5soCn9yIsf1uJKEB1NenGOyaae
+X-Authority-Analysis: v=2.4 cv=MPlgmNZl c=1 sm=1 tr=0 ts=67eaf27a cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=COk6AnOGAAAA:8 a=6AAXJ8fxLwfOIhd8QYgA:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-31_09,2025-03-27_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ malwarescore=0 suspectscore=0 phishscore=0 spamscore=0 clxscore=1015
+ bulkscore=0 mlxlogscore=999 impostorscore=0 mlxscore=0 adultscore=0
+ priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503310138
 
-On Sun, Mar 30, 2025 at 04:23:00PM +0100, Jonathan Cameron wrote:
-> On Fri, 28 Mar 2025 13:48:25 -0400
-> Sam Winchenbach <sam.winchenbach@framepointer.org> wrote:
-> 
-> > From: Sam Winchenbach <swinchenbach@arka.org>
-> > 
-> > v1: Initial submission
-> > v2: Cleaned up wording of commit message
-> > v3: Add DTS properties to control corner frequency margins
-> > v4: Fixed wrapping
-> >     Added maintainers to CC
-> > v5: Remove magic numbers
-> >     Break out patches into features
-> >     Small coding style fixes
-> > v6: Converted dts property from hz to mhz
-> >     Removed blank lines in dts binding documentation
-> > v7: Updated author/sign-off address
-> >     fixed patch path description
-> > v8: Added missing Reviewed-By tag in v7
-> > 
-> > Brian Pellegrino (1):
-> >   iio: filter: admv8818: Support frequencies >= 2^32
-> Applied to the togreg branch of iio.git and initially pushed out as testing.
-> 
-> I thought about splitting off the fixes and sending them a faster path, but that
-> last fix is rather large for that so I haven't.
-> 
-> Shout if you think I should try to get the fixes upstream quickly and
-> I can move them to my fixes branch.
-> 
-> Jonathan
+Hi Stephan,
 
-This sounds fine to me. I don't understand the differences between the branches
-so I am more than happy to defer to your expertise.
-
-I don't believe these fixes are critical, although the behavior is incorrect.
-
-Thank you, happy to see patchset making some progress.
--Sam
-
+On 3/26/2025 2:57 AM, Stephan Gerhold wrote:
+> On Tue, Mar 25, 2025 at 04:18:03PM -0700, Wesley Cheng wrote:
+>> On 3/25/2025 2:24 AM, Stephan Gerhold wrote:
+>>> On Tue, Mar 18, 2025 at 05:51:32PM -0700, Wesley Cheng wrote:
+>>>> The QC ADSP is able to support USB playback endpoints, so that the main
+>>>> application processor can be placed into lower CPU power modes.  This adds
+>>>> the required AFE port configurations and port start command to start an
+>>>> audio session.
+>>>>
+>>>> Specifically, the QC ADSP can support all potential endpoints that are
+>>>> exposed by the audio data interface.  This includes isochronous data
+>>>> endpoints, in either synchronous mode or asynchronous mode. In the latter
+>>>> case both implicit or explicit feedback endpoints are supported.  The size
+>>>> of audio samples sent per USB frame (microframe) will be adjusted based on
+>>>> information received on the feedback endpoint.
+>>>>
+>>>> Some pre-requisites are needed before issuing the AFE port start command,
+>>>> such as setting the USB AFE dev_token.  This carries information about the
+>>>> available USB SND cards and PCM devices that have been discovered on the
+>>>> USB bus.  The dev_token field is used by the audio DSP to notify the USB
+>>>> offload driver of which card and PCM index to enable playback on.
+>>>>
+>>>> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+>>>> ---
+>>>>  sound/soc/qcom/qdsp6/q6afe-dai.c         |  60 +++++++
+>>>>  sound/soc/qcom/qdsp6/q6afe.c             | 192 ++++++++++++++++++++++-
+>>>>  sound/soc/qcom/qdsp6/q6afe.h             |  36 ++++-
+>>>>  sound/soc/qcom/qdsp6/q6dsp-lpass-ports.c |  23 +++
+>>>>  sound/soc/qcom/qdsp6/q6dsp-lpass-ports.h |   1 +
+>>>>  sound/soc/qcom/qdsp6/q6routing.c         |  32 +++-
+>>>>  6 files changed, 341 insertions(+), 3 deletions(-)
+>>>>
+>> [...]
+>>>> diff --git a/sound/soc/qcom/qdsp6/q6routing.c b/sound/soc/qcom/qdsp6/q6routing.c
+>>>> index 90228699ba7d..b7439420b425 100644
+>>>> --- a/sound/soc/qcom/qdsp6/q6routing.c
+>>>> +++ b/sound/soc/qcom/qdsp6/q6routing.c
+>>>> @@ -435,6 +435,26 @@ static struct session_data *get_session_from_id(struct msm_routing_data *data,
+>>>>  
+>>>>  	return NULL;
+>>>>  }
+>>>> +
+>>>> +static bool is_usb_routing_enabled(struct msm_routing_data *data)
+>>>> +{
+>>>> +	int i;
+>>>> +
+>>>> +	/*
+>>>> +	 * Loop through current sessions to see if there are active routes
+>>>> +	 * to the USB_RX backend DAI.  The USB offload routing is designed
+>>>> +	 * similarly to the non offload path.  If there are multiple PCM
+>>>> +	 * devices associated with the ASoC platform card, only one active
+>>>> +	 * path can be routed to the USB offloaded endpoint.
+>>>> +	 */
+>>>> +	for (i = 0; i < MAX_SESSIONS; i++) {
+>>>> +		if (data->sessions[i].port_id == USB_RX)
+>>>> +			return true;
+>>>> +	}
+>>>> +
+>>>> +	return false;
+>>>> +}
+>>>
+>>> What is different about USB_RX compared to other output ports we have in
+>>> Q6AFE? Obviously, we can only play one stream on an output port. But
+>>> doesn't the ADSP mix streams together when you have multiple routes?
+>>>
+>>
+>> This patch will limit the USB_RX from being able to be mixed to multiple
+>> q6adm paths.
+>>
+>>> Also, this doesn't actually check for *active* routes only. It just
+>>> looks if any other MultiMedia DAI is configured to output to USB_RX.
+>>> That doesn't mean they will ever be active at the same time.
+>>>
+>>
+>> Yes, the main reason being that that is the mechanism we use to populate
+>> the active offload path within the USB SND card mixer.
+>>
+>>> I might for example want to have MultiMedia1 and MultiMedia2 both
+>>> configured to output to USB_RX. Let's assume MultiMedia1 is a normal PCM
+>>> DAI, MultiMedia2 is a compress offload DAI. When I want to playback
+>>> normal audio, I go through MultiMedia1, when I want to play compressed
+>>> audio, I go through MultiMedia2. Only one of them active at a time.
+>>> Why can't I set this up statically in the mixers?
+>>>
+>>> If you confirm that it is really impossible to have multiple streams
+>>> mixed together to the USB_RX output in the ADSP, then this should be a
+>>> runtime check instead when starting the stream IMO.
+>>>
+>>
+>> We can have multiple streams being mixed together, but it will get
+>> confusing because it changes the definition that we had discussed about in
+>> the past about the overall design for the interaction w/ userspace.
+>> Although we (QC) only support a single USB audio device for offloading,
+>> there could be other situations where the audio DSP can support multiple
+>> devices.  The assumption is that each MM path is assigned to a USB device.
+>>
 > 
-> > 
-> > Sam Winchenbach (5):
-> >   dt-bindings: iio: filter: Add lpf/hpf freq margins
-> >   iio: filter: admv8818: fix band 4, state 15
-> >   iio: filter: admv8818: fix integer overflow
-> >   iio: filter: admv8818: fix range calculation
-> >   iio: core: Add support for writing 64 bit attrs
-> > 
-> >  .../bindings/iio/filter/adi,admv8818.yaml     |  20 ++
-> >  drivers/iio/filter/admv8818.c                 | 224 +++++++++++++-----
-> >  drivers/iio/industrialio-core.c               |  12 +
-> >  3 files changed, 202 insertions(+), 54 deletions(-)
-> > 
+> Are you referring to the "USB Offload Playback Route PCM#*" mixers here?
+> They could just refer to first of the configured MM paths, if someone
+> decides to route multiple paths to the USB backend. Looking at
+> q6usb_update_offload_route(), I think the implementation does that
+> already.
 > 
+> I think it's fine that the userspace API for automatically "probing" the
+> PCM device supports only a single path to the USB backend. But if
+> someone wants to bypass the automatic probing and configure a more
+> advanced setup, do we need to forbid that?
+> 
+> Asked differently: what would happen if we remove this check here and
+> handle USB_RX like any other Q6AFE output port? Would anything break for
+> the userspace interface?
+> 
+
+So I took a look at seeing how the Q6ADM/ASM interactions would work for
+the situation where if user tried to start both MM1/2 streams at the same
+time over the USB offload path.  In this scenario, we see that the Q6USB BE
+DAI operations, ie startup, hw_params, etc... gets called one time for the
+initial stream.  For example, if I start playback on MM1, then that
+triggers the USB BE DAI to be brought up.
+
+When I start playback on MM2, since MM1 already called
+dpcm_be_dai_startup(), then be->dpcm[stream].users will be greater than
+zero.  This would cause the __soc_pcm_open() to be skipped for the USB BE
+DAI, so I wouldn't be able to check the runtime status at the Q6USB 
+backend DAI.  However, we do track current streaming sessions done over 
+Q6 ADM and it does save the AFE port associated to each COPP allocation, 
+so I think its reasonable to see if there is already a COPP entry for 
+the USB AFE port, to fail the open() call associated to the FE DAI.
+
+Thanks
+Wesley Cheng
 
