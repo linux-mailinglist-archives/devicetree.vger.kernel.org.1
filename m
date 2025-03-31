@@ -1,114 +1,166 @@
-Return-Path: <devicetree+bounces-161929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDAF6A75F52
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 09:15:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91B22A75FDF
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 09:19:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C185D1889905
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 07:15:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF5253A8EBD
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 07:19:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82B071B423C;
-	Mon, 31 Mar 2025 07:15:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F5421ACEDC;
+	Mon, 31 Mar 2025 07:19:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ay1EarCv"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="bkhLB0um"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E8542E3395;
-	Mon, 31 Mar 2025 07:15:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60DAB148316;
+	Mon, 31 Mar 2025 07:19:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743405320; cv=none; b=rIzKm8ZGZtPbE911xYuveEGBvcK4wvDxwiNNfwKYi/fddR/mXVFaj+8bDF0gd0geFaRoJzeiAVR3u2ywUcPVn14hUKTWC/p5/DSCF5a6eo6NJZq2s5mwQ6vIZFcwYSbLKwYtYnfquqGi7frHef3tanVoScJRFsVJzje7tasLHkk=
+	t=1743405586; cv=none; b=iVkmL9EgOD0KAP2y+kKk6H9nsszJFgGOb+xNEw6FmdNo4FIDQR14oP17VhfNYx9I9W6OEDYggQfU3twxlsXDNQhi7Vnoc8WtHv60nh2sPoaqPuHUzX9q4M7YqJTxUwYZ2oXvMHWNtB5iIFFWpUsW3Xu9ewZPkwAszgqRQnPTij0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743405320; c=relaxed/simple;
-	bh=U9WwColyPjE0PpqjI7kbqYiBlOxCoADRrn2LMrMsr6k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rZ2fyXkbeY7gr964vctrzjOCMG1U3kjjpAtBBsAOzmDHmuWxj/JKI7hhlRzO8AznjB3jhxRPnqlpKk8WJ/XLPKFzNfJi3Xun9Ec6pQJywVR5hSVx5FYPhGYWkB4OxZh12DjKUbW8/aeU1fHr6LgySQNjbMaGNqdWYob9a0t/P4k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ay1EarCv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1769C4CEE3;
-	Mon, 31 Mar 2025 07:15:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743405319;
-	bh=U9WwColyPjE0PpqjI7kbqYiBlOxCoADRrn2LMrMsr6k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ay1EarCvuM4L667uBXmzflmFp6Gpw+QkTMwL8AEnelkr5h9Rs4pnLyMNxJc5fSia0
-	 4P4suRMQCzZ+F8Lc7OkB7/Rr5+rbsfMR2kBNvnds9HXdtBvtI9qA+WzMag1hTEqquc
-	 f/pJOOT6/cn0u2zA9zcQlMvuaroEopWI8xLGcy9BWxH1FmCn6HGtbBWYvsVnPr39MR
-	 bXBE5Qi6jJl2cIDHP1pxKjTv9Fu1ShNBolIxr0srHHjSAU9i+ugaoxv3EdGT2PVzKn
-	 9LMt9OvneCmz8DWaLTBbD4q26Fmf2Ag2naHinrAmsxsfLPCktVsx80hdSdvyuhkLwj
-	 MvCmukjMnIfWg==
-Date: Mon, 31 Mar 2025 09:15:16 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: =?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Peter Griffin <peter.griffin@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] dt-bindings: soc: samsung: exynos-pmu: update
- reset for gs101
-Message-ID: <20250331-curvy-daring-urchin-aeafa8@krzk-bin>
-References: <20250328-syscon-reboot-reset-mode-v4-0-77ba57703ace@linaro.org>
- <20250328-syscon-reboot-reset-mode-v4-2-77ba57703ace@linaro.org>
+	s=arc-20240116; t=1743405586; c=relaxed/simple;
+	bh=kLv4EqQgwdCrvSrr5EdhdhHZ0fV3NRImHOB9sTXjSBs=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=sEnqO2A04vJY8MWEGh7DtHW3JKo5o51gqKcabisY3A22KpHyQm+9s4FuaJpX295IC9runUb+Gt57CgJcOuwWVclWkTW7F6YvCIOGPPGHGt4MhDYycj60ud7a6qZRh2dQJH0I36KfknwKmpEXZ1KXNkXxoGSMQPm78j961cmHW6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=bkhLB0um; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0E28310252BE4;
+	Mon, 31 Mar 2025 09:19:36 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1743405581; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=zHC+RUrju8uKC19QVlEvi9qbZzniETFM7Cs0X8sau98=;
+	b=bkhLB0umV2e81WF2Xl3qKpOmUa/m+lCyAO1SLB+J/DjY3URF5h4HBKASO1E764K59F16w1
+	9FXE1LwUK4wbsmZVn0NuYH/B03EWeD59CgoypJrleWWvnlpnNxtwVilL00I1zIo02gHV+n
+	CHXyvOzfTgsA2Lqk444swNg+4KYlHhqM/vjf4XZ/FhwxNz8nB2azqF+0hlN1iqMNXb9kTU
+	BoaLgH9lJMl0iQTZ8jY0nkjDBeZSDTTvkRJwPZ0MKuDVJVB/R1SeYehzf+kpeGyzSeLLxL
+	+gh9/Wn1qrBHUuGBjqYH36qE3cxTegWmzsu1q4/eLg9h0f/fchMFOfoNZSH71A==
+Date: Mon, 31 Mar 2025 09:19:26 +0200
+From: Lukasz Majewski <lukma@denx.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo
+ <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
+ Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: net: Add MTIP L2 switch description
+Message-ID: <20250331091926.6f3dba38@wsk>
+In-Reply-To: <d4c8de9b-e52c-480b-a3bf-e82979602477@kernel.org>
+References: <20250328133544.4149716-1-lukma@denx.de>
+	<20250328133544.4149716-2-lukma@denx.de>
+	<e6f3e50f-8d97-4dbc-9de3-1d9a137ae09c@kernel.org>
+	<20250329231004.4432831b@wsk>
+	<564768c3-56f0-4236-86e6-00cacb7b6e7d@kernel.org>
+	<20250330223630.4a0b23cc@wsk>
+	<d4c8de9b-e52c-480b-a3bf-e82979602477@kernel.org>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: multipart/signed; boundary="Sig_/_S/Kbz_Yl3YhS+ddHATqFlD";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Last-TLS-Session-Version: TLSv1.3
+
+--Sig_/_S/Kbz_Yl3YhS+ddHATqFlD
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250328-syscon-reboot-reset-mode-v4-2-77ba57703ace@linaro.org>
 
-On Fri, Mar 28, 2025 at 03:15:20PM +0000, Andr=C3=A9 Draszik wrote:
-> Add the gs101-specific reset node, allow it on gs101, and disallow it
-> on !gs101. Similarly, disallow the generic 'syscon-reboot' on gs101, as
-> we want the specific one in that case.
+Hi Krzysztof,
+
+> On 30/03/2025 23:04, Lukasz Majewski wrote:
+> > Hi Krzysztof,
+> >  =20
+> >> On 29/03/2025 23:10, Lukasz Majewski wrote: =20
+> >>>>> +     =20
+> >>>>
+> >>>> If this is ethernet switch, why it does not reference
+> >>>> ethernet-switch schema? or dsa.yaml or dsa/ethernet-ports? I am
+> >>>> not sure which one should go here, but surprising to see none.
+> >>>> =20
+> >>>
+> >>> It uses:
+> >>> $ref:=C2=B7ethernet-controller.yaml#
+> >>>
+> >>> for "ports".
+> >>>
+> >>> Other crucial node is "mdio", which references $ref: mdio.yaml#
+> >>> =20
+> >>
+> >> These are children, I am speaking about this device node. =20
+> >=20
+> > It looks like there is no such reference.
+> >=20
+> > I've checked the aforementioned ti,cpsw-switch.yaml,
+> > microchip,lan966x-switch.yaml and
+> > renesas,r8a779f0-ether-switch.yaml.
+> >=20
+> > Those only have $ref: for ethernet-port children node.
+> >=20
+> > The "outer" one doesn't have it.
+> >=20
+> >=20
+> > Or am I missing something? =20
 >=20
-> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
-> ---
->  .../devicetree/bindings/soc/samsung/exynos-pmu.yaml | 21 +++++++++++++++=
-++++++
->  1 file changed, 21 insertions(+)
+> There is ethernet-switch.yaml for non-DSA switches and there is DSA
+> (using ethernet switch, btw). I don't know why these devices do not
+> use it, I guess no one converted them after we split ethernet-switch
+> out of DSA.
+
+In net next there is:
+Documentation/devicetree/bindings/net/dsa/dsa.yaml
+Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml
+
+which uses
+$ref: ethernet-switch.yaml#
+
+I will add it in a similar way as it is in dsa.yaml.
+
 >=20
-> diff --git a/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yam=
-l b/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
-> index 204da6fe458d2d4bfeee1471ebc5c38247477ae2..8c7362cf3eeab11f6bb13a27e=
-b295d5ee6721b71 100644
-> --- a/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
-> +++ b/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
-> @@ -97,6 +97,12 @@ properties:
->      $ref: /schemas/phy/samsung,dp-video-phy.yaml
->      unevaluatedProperties: false
-> =20
-> +  gs101-reboot:
+> Best regards,
+> Krzysztof
 
-syscon-reboot
 
-> +    $ref: /schemas/power/reset/google,gs101-reboot.yaml#
 
-=2E.. which leads us to the existing node. Just use oneOf:
-
-oneOf:
-  - $ref: /schemas/power/reset/syscon-reboot.yaml#
-  - $ref: /schemas/power/reset/google,gs101-reboot.yaml#
-
-or actually better:
-
-additionalProperties: true
-properties:
-  compatible:
-    enum:
-      - syscon-reboot
-      - google,gs101-reboot
 
 Best regards,
-Krzysztof
 
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH,      Managing Director: Erika Unter
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/_S/Kbz_Yl3YhS+ddHATqFlD
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmfqQf4ACgkQAR8vZIA0
+zr3YwAf/W+aAijdBzs/ijQ5WOVZ40ggbPOSDQyVVgE911O2jLoMAf5iA1mI+/PA5
+y0NhWmAIJajXD/3tu6T2jL+/KGfOPptU0BfJ3W1J5jmGj/rO0VAcESegy115wfBq
+Po6x6ouWXbUymQDWpnAQWp7iABOdYLcYZx1R8vsoGiqpmRbTSVg0gil/+XjcyPH7
+v0B07w8aV4RD3iBnKqM6n0Y+nRWzSUR0ckDEy4bJAz0jJ5Dmf7XS/hlY5UCBVAAv
+2J7dgIMLiAzgLub3niwGAtW2isR30sQC165/6f15tr8int/cM2w9Lhe05nr2EbJ5
+aqmbze9vgtfJAKTyDqq51IBHO8SyDA==
+=zeoN
+-----END PGP SIGNATURE-----
+
+--Sig_/_S/Kbz_Yl3YhS+ddHATqFlD--
 
