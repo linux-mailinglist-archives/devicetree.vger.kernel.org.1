@@ -1,171 +1,147 @@
-Return-Path: <devicetree+bounces-162062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17F53A76B4F
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 17:54:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A552CA76B1B
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 17:48:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4367A3B4338
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 15:43:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F73F166E55
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 15:44:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB2AD21A453;
-	Mon, 31 Mar 2025 15:39:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE0C91DF258;
+	Mon, 31 Mar 2025 15:42:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QVGvXaB2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H+Ul9BTc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CE9721A440
-	for <devicetree@vger.kernel.org>; Mon, 31 Mar 2025 15:39:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFA613234;
+	Mon, 31 Mar 2025 15:42:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743435590; cv=none; b=agyclgKs4lMdoaID957CqffVyLtCzg8IOoRDV9uhiN6lfK3Q468qhBwAHqZWqyzwwRZkgKDRfl8BUbHHTgwPl41Z4yaB3CWRSQifXo9hMRJVyB2qzc8civxPd4QoOPpooteiSj6Wh5U3WphMBt76SCt2iM9McL45svBdJzmsics=
+	t=1743435743; cv=none; b=EpXQPtS51+4uiRZ0jTXUqv7e6OZaKc7JOwlXt0u7NCc++rp68xyvBwV1axDRuFlo8ODUONy/DKbTgX6S/bodtLeTT8LPIY9+qS6Wt/hKhCPjpk9XjY1Kt4zTfM/w2C+4gSyA+QdKOEedAdXKui4hEUOROZNk4zzZZUgRz016jLk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743435590; c=relaxed/simple;
-	bh=BZHR9fwBUr9R6ixWKgn1n8QQcRUqJhgpg4Wrsfh3w2M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RgHnj2p92tfIUiweGt4emQlxUQXXRpvloUSld9piNsCEnctEX9yCWmsMO056oTM1PiPiHpTVLKSNJUJxiJRS1Ncu4nZkV9bTcmtI+kuAh3fCNmqsYMxfte1Enldv4Dl4PZO2X/1LVHeD8cM/+HDP2W/XTmWeN0KhiLpKPlJqyd0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QVGvXaB2; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43ce70f9afbso47610415e9.0
-        for <devicetree@vger.kernel.org>; Mon, 31 Mar 2025 08:39:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743435587; x=1744040387; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=1sNg10NoCtirreV3RmWGt7kQXy82wXq+5oOziEES3k4=;
-        b=QVGvXaB2G1y5CaHnn7Dl2zyOb6yE+UjC8mrDOZlFvNUVKruWOVaTtviKbgUJOrl+wh
-         5aurhcNWSJmyyyQgFypeqejY2adtQx/woN7IyQX1geniONmy2LlCm/Yk63CWCMPm5fRN
-         PQTPKnNMFAhVBey/mqrbpAxBojG9la1Btxyk602P7sQ5FGqp5/0UbnqyFT/sXAI+/d4I
-         e19HiHeO2uRtUQwc75goVyV6X8jL/Mi2zOuiibm8/7RRl1LfmoQqcM1M3yzE3zM+w441
-         KGzod9RAJKnH1IgVo6BIQQ9oeeQeIuM21zzL+Pq5j6abOuS9xunUMo+UAhnrv9bRHFDj
-         mfvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743435587; x=1744040387;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1sNg10NoCtirreV3RmWGt7kQXy82wXq+5oOziEES3k4=;
-        b=HpLZ9CERHTY4p+qBh5L/zoLzSrmdYshiuItXe9IZOnxAAXDKNnE9Zz+lGS0OSq6Ihd
-         TwF8npC6SSrrt57w14U6rDztMNQR/EWJ53Xi3zhvkx8snfGG7HzOCgkV3bsR3W+TOO6g
-         /RtJarymLmk+RKIIjsoM4KWyYrrX+OMwv2i7uEYWrpJcOIyv+3xcpzPlxupBcqBJVjeK
-         wNac0BKq3z6tYBXZ0m5SffVRoFHH77kSkFseo/zFpsJk6nSYIcRHZqoiCiu2YztTF4f1
-         Coy8/UxjJ1cDdMW1Ez6wwGYwWL3ilzeq2j6CN+hYyIliZ3j6M6ZIGYUh3JFJZ9eXVoTA
-         15uQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXUFTLMTURkTucrZxXzb2HRbnYDilpEsRr/cZtzusXrhUZZZ7+FtOWaeQp/6mUuIfk5d1FcJnlIIEx6@vger.kernel.org
-X-Gm-Message-State: AOJu0YyF3gisPqb/LeccQWn1gr4V0jYNIP1OtxIeNOPyyaAMdGf6NgRW
-	GUnmiPANHzGpZJyBKDx2FuDKLkZu+U432Ec5lrbYCGthKSCrqU/H8NTclOnV9mhPMah2F2JsC50
-	nnjo/gSQXyPqN6Kt/ZpXGDD4LlljfPE+g4HFDsQ==
-X-Gm-Gg: ASbGncuZnu9kk6u+Z0SDl2Qk7wGQ/8sTMzUkSOyw+IHE5UonnNPuRoG5K/SkCMCcKBE
-	KVE3tQzHoY6+7gIPaAfNYdYlwww2ii67MNOQPhHx3KR8/Iwm70CLXUYP+g9/CU5jKT2jKZKEQlo
-	lUQRPsWGahcgxucO10pIZc5UTmF8Yx
-X-Google-Smtp-Source: AGHT+IFq8kefn/iwjp3s9ms0HQTK+BhHSf0ZsbQcmKw5Vm41+dOdUlPBBEt/0fVmInccDrEv7cwRoXPu9DZcYcXNgvM=
-X-Received: by 2002:a05:600c:3485:b0:43d:2230:300f with SMTP id
- 5b1f17b1804b1-43dabe237f8mr100927755e9.0.1743435586577; Mon, 31 Mar 2025
- 08:39:46 -0700 (PDT)
+	s=arc-20240116; t=1743435743; c=relaxed/simple;
+	bh=PxIna1x9A+YmAFcW7MUXz8P+5VIlWKjWh4D/FIWEcoM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KpjUvLs5KlHDwTrjmQEPTre72Xb359vDK3YUxcU/BVFJRWvFcJNBwlyAMZuq24o38VbJozbdO5mudrmdd7Q2VmE0fL5DuVsmiROvMMcUqGEcbE2F0yNGrSoT5HviYUnSjpjuVpr2lXeQbtXhzTs6pAOTjAjEIAsikqGbrXzk4G8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H+Ul9BTc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBE43C4CEE3;
+	Mon, 31 Mar 2025 15:42:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743435743;
+	bh=PxIna1x9A+YmAFcW7MUXz8P+5VIlWKjWh4D/FIWEcoM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=H+Ul9BTcuXRu7vbVGhS2GqGATopSBcCaM8yxh7Ddtg+ahIqmqKncSaWCqKCEG0wLU
+	 JTPVSSe+YQg/ET6ctNzIhRY9QHctiJMYC9JjWKruzdjWVB0+H2s+LIjI17urhnN/Gr
+	 rn51AJ5SMTZkrHxMy7T1ktbXBoBmXhaZcsedLNWNecMRTPrHpdfnxeZf+UxgsyB7wE
+	 8mYR3vDIMJFQM/rhcETtvoZsZtVb6J/xZ1yFlpuvZXWf85D9d0F9CKveS0dsxTbZhI
+	 S7+2eJjeHAM8Ixt70i1xkCwGbCHl+HrbwL9vCK72oQ0URI51nJrMvIW4apt9yn61eV
+	 fg/v6Zq+YZqjg==
+Message-ID: <8d9f077b-e656-438c-a9bd-76915d135e24@kernel.org>
+Date: Mon, 31 Mar 2025 17:42:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250327-wip-obbardc-qcom-t14s-oled-panel-v3-0-45d5f2747398@linaro.org>
- <20250327-wip-obbardc-qcom-t14s-oled-panel-v3-1-45d5f2747398@linaro.org> <Z-pJP4PMwPo3L3Og@hovoldconsulting.com>
-In-Reply-To: <Z-pJP4PMwPo3L3Og@hovoldconsulting.com>
-From: Christopher Obbard <christopher.obbard@linaro.org>
-Date: Mon, 31 Mar 2025 17:39:35 +0200
-X-Gm-Features: AQ5f1JoEit7j_TzMlyZa7QbfN6E0NDm9GuAOKbUqEfVJoM1pbPZfw3UrD5vfGmY
-Message-ID: <CACr-zFA_oSySRnA2VaSQk2ND_AHeyt3v=RuPTbABPM7SYown6g@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] arm64: dts: qcom: x1e78100-t14s: add hpd gpio to
- eDP panel
-To: Johan Hovold <johan@kernel.org>
-Cc: Douglas Anderson <dianders@chromium.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, dri-devel@lists.freedesktop.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	Rui Miguel Silva <rui.silva@linaro.org>, Abel Vesa <abel.vesa@linaro.org>, devicetree@vger.kernel.org, 
-	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] dt-bindings: leds: Add LP5812 LED driver
+To: Nam Tran <trannamatk@gmail.com>, krzk+dt@kernel.org
+Cc: pavel@kernel.org, lee@kernel.org, robh@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <59c3c5f6-98a3-4c02-8622-9bad2a06c6f1@kernel.org>
+ <20250331153138.52539-1-trannamatk@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250331153138.52539-1-trannamatk@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Johan,
+On 31/03/2025 17:31, Nam Tran wrote:
+>>>
+>>>> +
+>>>> +  "#address-cells":
+>>>> +    const: 1
+>>>> +
+>>>> +  "#size-cells":
+>>>> +    const: 0
+>>>
+>>> What are these?
+>>>
+>>> Nam: I included the #address-cells and #size-cells properties to resolve a warning encountered when running:
+>>> make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/leds/ti,lp5812.yaml
+>>> The specific warning was:
+>>> Documentation/devicetree/bindings/leds/ti,lp5812.example.dts:23.17-30: Warning (reg_format): /example-0/i2c/led-controller@1b:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+>>
+>> This makes no sense.
+>>
+>>> This warning suggests that the default values for #address-cells and #size-cells in the schema context are not aligned with the LP5812's expected usage. To explicitly define the correct values, I set these properties as mentioned.
+>>> This ensures that the binding schema validation passes without warnings. If you believe a different approach is more appropriate, I’m happy to adjust the binding accordingly.
+>>
+>> I can barely parse your messages. They are neither properly quoting my
+>> replies, nor wrapped according to email style. Use standard format,
+>> expressed in countless guides bout netiquette and mailing lists.
+>>
+>> You added properties to hide warning, instead of fixing the warning, but
+>> these properties make nos sense here.
+> 
+> #address-cells is 1 because I only one cell to define address of a child node of LP5812
+> #size-cells is 0 because I don't need to define size of reg properly of child node.
+> Reg properly of child node is describe for address only.
 
-On Mon, 31 Mar 2025 at 09:50, Johan Hovold <johan@kernel.org> wrote:
->
-> On Thu, Mar 27, 2025 at 04:56:53PM +0000, Christopher Obbard wrote:
-> > The eDP panel has an HPD GPIO. Describe it in the device tree
-> > for the generic T14s model, as the HPD GPIO property is used in
-> > both the OLED and LCD models which inherit this device tree.
->
-> AFAICT, this patch is not correct as the hotplug detect signal is
-> connected directly to the display controller on (these) Qualcomm SoCs
-> and is already handled by its driver.
->
-> Describing it as you do here leads to less accurate delays, see commits:
->
->         2327b13d6c47 ("drm/panel-edp: Take advantage of wait_hpd_asserted() in struct drm_dp_aux").
->         3b5765df375c ("drm/panel: atna33xc20: Take advantage of wait_hpd_asserted() in struct drm_dp_aux")
->
-> Perhaps you lose some other functionality too.
->
-> > Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> > Signed-off-by: Christopher Obbard <christopher.obbard@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi | 11 +++++++++++
-> >  1 file changed, 11 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-> > index 962fb050c55c4fd33f480a21a8c47a484d0c82b8..46c73f5c039ed982b553636cf8c4237a20ba7687 100644
-> > --- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-> > @@ -980,8 +980,12 @@ &mdss_dp3 {
-> >       aux-bus {
-> >               panel: panel {
-> >                       compatible = "edp-panel";
-> > +                     hpd-gpios = <&tlmm 119 GPIO_ACTIVE_HIGH>;
-> >                       power-supply = <&vreg_edp_3p3>;
-> >
-> > +                     pinctrl-0 = <&edp_hpd_n_default>;
-> > +                     pinctrl-names = "default";
-> > +
-> >                       port {
-> >                               edp_panel_in: endpoint {
-> >                                       remote-endpoint = <&mdss_dp3_out>;
-> > @@ -1286,6 +1290,13 @@ hall_int_n_default: hall-int-n-state {
-> >               bias-disable;
-> >       };
-> >
-> > +     edp_hpd_n_default: edp-hpd-n-state {
-> > +             pins = "gpio119";
-> > +             function = "gpio";
-> > +             drive-strength = <2>;
-> > +             bias-pull-up;
-> > +     };
->
-> I checked the firmware configuration for this pin on my T14s, which
-> does not match what you have here. Instead the function is set to
-> "edp0_hot" which forwards the signal to the display controller which
-> already handles the signal on panel power on. (And there is also no
-> internal pull up enabled).
->
-> We may want to describe this pin configuration somewhere, but that's a
-> separate issue.
 
-Thanks for your review, I will send another version in coming days and
-drop this first patch (adding hpd to the T14s DTSI).
+Please do not explain me how DT works, we all know. You do not have
+child node. If you disagree - point me to the line in schema having it.
 
-As a consequence I will need to add no-hpd property to the panel node.
-I will add a short comment about how the hpd signal is handled by the
-driver already.
-
-Thanks!
-
-Chris
+Best regards,
+Krzysztof
 
