@@ -1,184 +1,213 @@
-Return-Path: <devicetree+bounces-161969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAC3AA7635B
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 11:43:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7324A7638C
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 11:49:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25E333A9E3A
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 09:42:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7048216752A
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 09:49:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E29571DDC1B;
-	Mon, 31 Mar 2025 09:42:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70D201DE891;
+	Mon, 31 Mar 2025 09:49:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Zj4lLPhK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rbxfz0nQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FEE81CEEBB
-	for <devicetree@vger.kernel.org>; Mon, 31 Mar 2025 09:42:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A04F1DE3AA;
+	Mon, 31 Mar 2025 09:49:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743414177; cv=none; b=ctu/sekObitZ/jjnY5o+c4XuDGhnNsoGlcZ5x5Gk4IthYq6U0aGaJDFNMFo2FCdpSs3F+CIA1GC9ze2NshwOFerj/z5/S+7d1SXz+ZsXxb/cQ1PF1R5rsoJtVt0OBDiEQOhxFlkVWN4fjaVaRIYfe/OKlgVPBNi9ld834gKv1OM=
+	t=1743414544; cv=none; b=bWhZ2pYaAbWuqN3WsJ0XQoyLryZDKK4SMtiwfv6G0H2wBpO5K/JFyAb3gE1ttH9lhk4Li/gFbLj2W13fBE27RRW2Kcz++cAjTpD4h2fEOdVyAzBYB7VHSsBEqZMP8iIiJB3SNTwdedNlOu9Nnv395zV4UvrXJv0K2TiCIDGTnDE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743414177; c=relaxed/simple;
-	bh=Nmi7UbM33z8k5ksfYFNIrINXvPainAPDHCjJCN/ocRc=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=QuFHr9Ag/LoGDBtXdkn4jknm25yHgrAayJDQ09hycPkqVLkRy0qhRPYKe/LNI9vOzofDMRQH4oaRB3WDGOlOAgIo2FncAtXFEDn94Q9Td7OZvCpTDVadQYkpb2CquLun/bWI59rveESFbbhjRwEV5e5zaYEFKT+BRfsg/Ogxdrc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Zj4lLPhK; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 0D9E74322D;
-	Mon, 31 Mar 2025 09:42:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1743414167;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=JGUJHSEu1hIQgWU0nYHBosEKyRVcYuqWM0xfY1Ki/Rw=;
-	b=Zj4lLPhKAt6zS5h9ISrWTFiLmzINzzkKyLaBzjodr6cS3OltZ3ExxB91azsxxAZH6RoPCX
-	q5RIDyazeuZMT3xRWu07vJtvEkFyIM6IyLckbpz8ZbpfAo2ZQikqiWBEukjD2E/nzLzwbX
-	wcVBhJWibinhK4kxKik8uVuPRZagQtoF4LTNOAuICQRG0voJ2kc0po7fpJ50hnZtK2/BBz
-	eitfsUVrNAoHfly4I4REfInyRdMpixfnp06HTb55mYD2POFngYrFrXsM0hYBk56GHbLw/0
-	hzY60JDIQkFkJLICg51Xr1JC/pyXZWHMjLtJdOuAVv2SA/QcWvLKycOt9M7jjw==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- linux-arm-kernel@lists.infradead.org
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, Krzysztof Kozlowski
- <krzysztof.kozlowski@linaro.org>, Andrew Lunn <andrew@lunn.ch>, Sebastian
- Hesselbarth <sebastian.hesselbarth@gmail.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/5] ARM: dts: marvell: use correct ohci/ehci node names
-In-Reply-To: <20250330193833.21970-8-wsa+renesas@sang-engineering.com>
-References: <20250330193833.21970-7-wsa+renesas@sang-engineering.com>
- <20250330193833.21970-8-wsa+renesas@sang-engineering.com>
-Date: Mon, 31 Mar 2025 11:42:45 +0200
-Message-ID: <87a591bkoa.fsf@BLaptop.bootlin.com>
+	s=arc-20240116; t=1743414544; c=relaxed/simple;
+	bh=9MmRAQT7FkmG5GtAiYqFguUGDYdzNTFv3scMm94gPxo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Xga5kIpTOE6WD6MELP60+XqFNNm7+aZgy36x0bmv5NY3eqPhXvDy5Wx+mAe6v1r3z025zjJTsJUusOf7x+EQmL2quuvaPLYJOYaXY7hALlWP/WSVMXlO54jdAHPeUnPhbRb0t3rIPJgPWP7vflirIXqMZtkoAiK2Cn31uczuB3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rbxfz0nQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE06CC4CEE3;
+	Mon, 31 Mar 2025 09:48:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743414543;
+	bh=9MmRAQT7FkmG5GtAiYqFguUGDYdzNTFv3scMm94gPxo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=rbxfz0nQRvHl/a30jPVpQGtLtt86XG3ULJs/CF+eZZkMtvUNiYuJh+0G2eln3liVH
+	 KAdkt7f1vTHW5uvqtzm+lcoaDP/ejYuYkP6okHVEwImHA1skjNbh/pPQyw9kOupmBD
+	 z08ZVkGlbczdSo5q7zrupGuOmHaQgAFF7B0gIGr+8PhbjuZg118Rf90ZT9uhLPsrPw
+	 yv5OgKyCX3o88F/x1xODN1IkZvfTiF3yvEEFsx1ndYH7BQBHKuOk7MUK7DPuydzxZP
+	 R67Qy4dU8pw+stj/MfU2o9e1u6NKKgvq0amXF03neIgSaESwh7kySTzLpsAZt/O04t
+	 kDZtyJqm8WbYg==
+Date: Mon, 31 Mar 2025 10:48:49 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Marcelo Schmitt <marcelo.schmitt1@gmail.com>, Matti Vaittinen
+ <matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen <lars@metafoo.de>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Lad Prabhakar
+ <prabhakar.mahadev-lad.rj@bp.renesas.com>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland
+ <samuel@sholland.org>, Nuno Sa <nuno.sa@analog.com>, David Lechner
+ <dlechner@baylibre.com>, Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Guillaume Stols <gstols@baylibre.com>, Dumitru Ceclan
+ <mitrutzceclan@gmail.com>, Trevor Gamblin <tgamblin@baylibre.com>, Matteo
+ Martelli <matteomartelli3@gmail.com>, Alisa-Dariana Roman
+ <alisadariana@gmail.com>, Ramona Alexandra Nechita
+ <ramona.nechita@analog.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-acpi@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH v10 3/8] iio: adc: add helpers for parsing ADC nodes
+Message-ID: <20250331104849.3eb748a8@jic23-huawei>
+In-Reply-To: <4d66b3b5-bfcb-42f0-9096-7c448c863dfc@gmail.com>
+References: <cover.1742560649.git.mazziesaccount@gmail.com>
+	<f1d8b3e15237947738912c0d297b3e1e21d8b03e.1742560649.git.mazziesaccount@gmail.com>
+	<Z-mnNtYLkwsTYjMh@debian-BULLSEYE-live-builder-AMD64>
+	<4d66b3b5-bfcb-42f0-9096-7c448c863dfc@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddujeelheelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufgjfhffkfggtgfgsehtqhertddttdejnecuhfhrohhmpefirhgvghhorhihucevnffgoffgpffvuceoghhrvghgohhrhidrtghlvghmvghnthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgffhgedvhefgtdejvdethfdvieekgfetuefhueekteetgfdvueeutedttdekgeevnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppedvrgdtudemtggsudegmeehheeimeejrgdttdemjeelgegsmegshegttgemvdekfegvmegutdekleenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudegmeehheeimeejrgdttdemjeelgegsmegshegttgemvdekfegvmegutdekledphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhepghhrvghgohhrhidrtghlvghmvghnthessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepledprhgtphhtthhopeifshgrodhrvghnvghsrghssehsrghnghdqvghnghhinhgvvghrihhnghdrtghomhdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhkvghrnhgvlheslhhishhtshdrihhnfhhrr
- gguvggrugdrohhrghdprhgtphhtthhopehkrhiihihsiihtohhfrdhkohiilhhofihskhhisehlihhnrghrohdrohhrghdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopehsvggsrghsthhirghnrdhhvghsshgvlhgsrghrthhhsehgmhgrihhlrdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhg
-X-GND-Sasl: gregory.clement@bootlin.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hello Wolfram
+On Mon, 31 Mar 2025 08:39:35 +0300
+Matti Vaittinen <mazziesaccount@gmail.com> wrote:
 
-> They should be named "usb@".
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Hi Marcelo,
+> 
+> Thanks for the review!
+> 
+> On 30/03/2025 23:19, Marcelo Schmitt wrote:
+> > Hi Matti,
+> > 
+> > The new helpers for ADC drivers look good to me.
+> > I am now very late to complain about anything but am leaving some minor comments
+> > below that can be completely ignored.
+> > 
+> > Reviewed-by: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+> > 
+> > Thanks,
+> > Marcelo
+> > 
+> > On 03/24, Matti Vaittinen wrote:  
+> >> There are ADC ICs which may have some of the AIN pins usable for other
+> >> functions. These ICs may have some of the AIN pins wired so that they
+> >> should not be used for ADC.
+> >>
+> >> (Preferred?) way for marking pins which can be used as ADC inputs is to
+> >> add corresponding channels@N nodes in the device tree as described in
+> >> the ADC binding yaml.  
+> > Not sure it's preferred to have ADC channels always declared in dt. That
+> > question was somewhat also raised during ADC doc review [1].  
+> 
+> I had missed that doc and the review. Interesting read, thanks for 
+> pointing it :)
+> 
+> We did also do a bit discussion about this during the review of the 
+> earlier versions. I am not sure if we found an ultimate common consensus 
+> though :)
+> 
+> A recap as seen through my eyes:
+> 
+> - It is preferred to have either _all_ or _none_ of the channels 
+> described in the device tree.
+> https://lore.kernel.org/all/20250201162631.2eab9a9a@jic23-huawei/
+> 
+> - This, however, is not _always_ required to be followed, and it may be 
+> impractical in some cases:
+> https://lore.kernel.org/linux-iio/6f6e6550-5246-476f-9168-5e24151ab165@baylibre.com/#t
+> 
+> - We do have bunch of existing drivers which we need to support. With 
+> some very different approaches to bindings.
+> https://lore.kernel.org/linux-iio/20250302032054.1fb8a011@jic23-huawei/
+> 
+> 
+> My _personal_ thinking is that:
+> 
+> This means that we can't hide the binding parsing in the IIO-core. We 
+> can't go and change the channels in existing drivers.
+> 
+> But, we can provide helpers (like this one) for drivers to use. I also 
+> believe we should still try to have common (and preferred!) approach for 
+> the _new_ drivers. Eventually, the new ones will be majority. Some of 
+> the old ones die, and if we keep same practices for new ones, the old 
+> ones will become rare exceptions while majority follows same principles ;)
+> 
+> > In short, ADC
+> > channel may and may not be declared under ADC dt node. ADC bindings often don't
+> > enforce channels to be declared. On IIO side of things, many ADC drivers just
+> > populate channels even if they are not declared in dt.
+> > The ADCs you are supporting in the other patches of this series seem to require
+> > dt declared channels though.
+> > 
+> > [1]: https://lore.kernel.org/linux-iio/20250118155153.2574dbe5@jic23-huawei/
+> > 
+> > Would something like
+> > 
+> > A common way of marking pins that can be used as ADC inputs is to add
+> > corresponding channel@N nodes in the device tree as described in the ADC
+> > binding yaml.
+> > 
+> > be a good rephrasing of the above paragraph?  
+> 
+> Yes, if we don't want to guide new drivers to either have all usable 
+> channels, or no channels in the device tree.
+> 
+> I think Jonathan said he'll be rebasing this to rc1. I am a newcomer and 
+> I should not enforce my view over more experienced ones ;) So, feel free 
+> to reword the description as Marcelo suggests if you don't think we 
+> should prefer one direction or the other.
 
-Applied on mvebu/dt
+I've gone with Marcelo's suggestion because I don't want to be too specific
+here given the complex history.   We can absolutely encourage the all or
+nothing description going forwards though as it is logical in the vast
+majority of cases.
 
-Thanks,
 
-Gregory
+> 
+> >>
+> >> Add couple of helper functions which can be used to retrieve the channel
+> >> information from the device node.
+> >>
+> >> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> >> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> >>  
+> > ...  
+> >> +static inline int iio_adc_device_num_channels(struct device *dev)
+> >> +{
+> >> +	return device_get_named_child_node_count(dev, "channel");
+> >> +}  
+> > I wonder if this function name can eventually become misleading.
+> > 
+> > In Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml we have
+> > temperature sensor with channel nodes named after external hardware connected to
+> > the sensor, leading to channels having different node names. Can anything like
+> > that ever be accepted for ADC bindings?  
+> 
+> My initial thinking is that the hardware which is connected to the ADC 
+> should have it's own node - and there should be only a reference from 
+> the ADC to the other hardware's description. I think the connected 
+> hardware should not be a property of the ADC channel.
+> 
+> Anyways, the current ADC binding (bindings/iio/adc/adc.yaml) says the 
+> node name must be channel[@xxx] (which, I believe makes sense as it 
+> makes it easier to understand device-trees for ICs which may provide 
+> other nodes but ADC channels too).
+> 
+> properties:
+>    $nodename:
+>      pattern: "^channel(@[0-9a-f]+)?$"
+>      description:
+>        A channel index should match reg.
+> 
+> Yours,
+> 	-- Matti
 
-> ---
->  arch/arm/boot/dts/marvell/kirkwood-db.dtsi             | 2 +-
->  arch/arm/boot/dts/marvell/kirkwood-dir665.dts          | 2 +-
->  arch/arm/boot/dts/marvell/kirkwood-mv88f6281gtw-ge.dts | 2 +-
->  arch/arm/boot/dts/marvell/kirkwood.dtsi                | 2 +-
->  arch/arm/boot/dts/marvell/orion5x.dtsi                 | 4 ++--
->  5 files changed, 6 insertions(+), 6 deletions(-)
->
-> diff --git a/arch/arm/boot/dts/marvell/kirkwood-db.dtsi b/arch/arm/boot/d=
-ts/marvell/kirkwood-db.dtsi
-> index 6fe2e31534af..8bacaeb4f4bd 100644
-> --- a/arch/arm/boot/dts/marvell/kirkwood-db.dtsi
-> +++ b/arch/arm/boot/dts/marvell/kirkwood-db.dtsi
-> @@ -39,7 +39,7 @@ sata@80000 {
->  			status =3D "okay";
->  		};
->=20=20
-> -		ehci@50000 {
-> +		usb@50000 {
->  			status =3D "okay";
->  		};
->=20=20
-> diff --git a/arch/arm/boot/dts/marvell/kirkwood-dir665.dts b/arch/arm/boo=
-t/dts/marvell/kirkwood-dir665.dts
-> index 2f6793f794cd..36394d1ab3e2 100644
-> --- a/arch/arm/boot/dts/marvell/kirkwood-dir665.dts
-> +++ b/arch/arm/boot/dts/marvell/kirkwood-dir665.dts
-> @@ -129,7 +129,7 @@ i2c@11000 {
->  			status =3D "okay";
->  		};
->=20=20
-> -		ehci@50000 {
-> +		usb@50000 {
->  			status =3D "okay";
->  		};
->  	};
-> diff --git a/arch/arm/boot/dts/marvell/kirkwood-mv88f6281gtw-ge.dts b/arc=
-h/arm/boot/dts/marvell/kirkwood-mv88f6281gtw-ge.dts
-> index e3b41784c876..051579fc36b8 100644
-> --- a/arch/arm/boot/dts/marvell/kirkwood-mv88f6281gtw-ge.dts
-> +++ b/arch/arm/boot/dts/marvell/kirkwood-mv88f6281gtw-ge.dts
-> @@ -63,7 +63,7 @@ serial@12000 {
->  			status =3D "okay";
->  		};
->=20=20
-> -		ehci@50000 {
-> +		usb@50000 {
->  			status =3D "okay";
->  		};
->  	};
-> diff --git a/arch/arm/boot/dts/marvell/kirkwood.dtsi b/arch/arm/boot/dts/=
-marvell/kirkwood.dtsi
-> index 815ef7719d13..8a1338e672b3 100644
-> --- a/arch/arm/boot/dts/marvell/kirkwood.dtsi
-> +++ b/arch/arm/boot/dts/marvell/kirkwood.dtsi
-> @@ -263,7 +263,7 @@ cesa: crypto@30000 {
->  			status =3D "okay";
->  		};
->=20=20
-> -		usb0: ehci@50000 {
-> +		usb0: usb@50000 {
->  			compatible =3D "marvell,orion-ehci";
->  			reg =3D <0x50000 0x1000>;
->  			interrupts =3D <19>;
-> diff --git a/arch/arm/boot/dts/marvell/orion5x.dtsi b/arch/arm/boot/dts/m=
-arvell/orion5x.dtsi
-> index 2d41f5c166ee..939259c57e05 100644
-> --- a/arch/arm/boot/dts/marvell/orion5x.dtsi
-> +++ b/arch/arm/boot/dts/marvell/orion5x.dtsi
-> @@ -146,7 +146,7 @@ wdt: wdt@20300 {
->  				status =3D "okay";
->  			};
->=20=20
-> -			ehci0: ehci@50000 {
-> +			ehci0: usb@50000 {
->  				compatible =3D "marvell,orion-ehci";
->  				reg =3D <0x50000 0x1000>;
->  				interrupts =3D <17>;
-> @@ -218,7 +218,7 @@ cesa: crypto@90000 {
->  				status =3D "okay";
->  			};
->=20=20
-> -			ehci1: ehci@a0000 {
-> +			ehci1: usb@a0000 {
->  				compatible =3D "marvell,orion-ehci";
->  				reg =3D <0xa0000 0x1000>;
->  				interrupts =3D <12>;
-> --=20
-> 2.47.2
->
-
---=20
-Gr=C3=A9gory CLEMENT, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
