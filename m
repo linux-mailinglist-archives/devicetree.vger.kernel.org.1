@@ -1,130 +1,133 @@
-Return-Path: <devicetree+bounces-161965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A29FA76323
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 11:26:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6CDBA76348
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 11:38:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C457B188B115
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 09:26:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F2D45188B189
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 09:38:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 521FB1D54C2;
-	Mon, 31 Mar 2025 09:26:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90F851DC994;
+	Mon, 31 Mar 2025 09:38:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="XjRCeMaG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OV5/wwld"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3489B1C84AA;
-	Mon, 31 Mar 2025 09:26:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E004C41760;
+	Mon, 31 Mar 2025 09:38:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743413187; cv=none; b=O5Py9ofy26ssww1rCp6RDvuJGZsthflAYH4V+WwLRZPjtNacR1m6UYmIWqaOKly3cqTuiMrZQNZ6Ufs/0atBevDav/b1RtqV4RgErg5mr2q26rMItrVtZPmgYEQZuzuSlvF6QM7nSedCo+BH9jEI+7pUTLCQdm+zAwTilIZJx08=
+	t=1743413921; cv=none; b=F7rdlYni7rVfkUhauwiy++iy0QO+HeirUqNTmLZqZijkICmj6t+1MUpKFNxDyonaas3ao4UNq9RdPQW8jjwXnDj3pEE9ANVXYKlTF5IhFLaQlGOSPczs1iE/vkRTngRcmXoiJZv053GDy/mAdR+WIedS647Fad9+2Z3nC+/yboQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743413187; c=relaxed/simple;
-	bh=V0QnODFma7S+d+i8t9LUBD0xftnJaXWgg/npE55QrOk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=iw7tOBEpLEXoKkpZNjnPlmO1UjAlFylETaPi+gL20KYPoVFG3gy9bERuwOieZRCtwBU1sTrAEIWoZqJKtQdfNd58C+7XGLPF0HapejptXJL21jwrykna0gt3d+9gINiGCYVWwupUIWWUlAwXae9pHurwQUNEVemMbTlnoOkDB5I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=XjRCeMaG; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1743413183;
-	bh=V0QnODFma7S+d+i8t9LUBD0xftnJaXWgg/npE55QrOk=;
-	h=From:Date:Subject:To:Cc:From;
-	b=XjRCeMaGKoIibd5ArzvYY4UhDyCmc+Kj4graExuUIoRBv11nQU/oDhdlNiurBiXLI
-	 Ycb7NLunmgbgTlsUuncORlnS2ugQVPl3s7SY0dbtFwaNVkAXNqEYDfUcnyKyOegEfl
-	 F7e5e993KjP8p2/NEK4Ok8XXByFdKLfAU/KtkxniJOj4jWb4ZtLg4djBAnJPuC9R1c
-	 isdY2zmd4Ti8UeAST1RR1WG/lKG6OY69eOgyLyJSysXLOR8yge1qQCe3JGmGSV/d8s
-	 1DZcMJ/ibVOCN20YyDU694ylCyx169opo2NlicD8pelofnp+1c59b7iDDvhy82YXb9
-	 1WGDAndx+MVEQ==
-Received: from yukiji.home (amontpellier-657-1-116-247.w83-113.abo.wanadoo.fr [83.113.51.247])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: laeyraud)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 85D7917E07F3;
-	Mon, 31 Mar 2025 11:26:22 +0200 (CEST)
-From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Date: Mon, 31 Mar 2025 11:25:52 +0200
-Subject: [PATCH] arm64: dts: mediatek: mt8390-genio-common: Force ssusb2
- dual role mode to host
+	s=arc-20240116; t=1743413921; c=relaxed/simple;
+	bh=9YPjz+RyoRn4SCXr9t22WJBTFRjnSBTnL648syX2VMI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=G/z6PFv+7Jm18487GalkIkG+J0IqQVJvQrzZ1LW1syWiEZjt99RXomcuv2XutQ6E2OZDzuDppTuam3EWoGPB2vNsn3haveehX9poSRdqBUc/7+TsFTj1UlnoVLMHwHltsk04373E24BCj7i4pK4xO3+8hWd0mf5UEpkx/PebTRY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OV5/wwld; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-43cec5cd73bso26834405e9.3;
+        Mon, 31 Mar 2025 02:38:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1743413918; x=1744018718; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=vM2Bji0R6GGuRmN2IdJF15qTp2dswLKSOfwXsGQQXU0=;
+        b=OV5/wwldsUu5CJ6ibr4/wS1I+qczuwL2dutQOePg9IJDQt7kTlQRK01kNC40JeO+Uh
+         yrNRW8N2w4zhtsBbJ0vIFl2pIaPILqSOiIQh4aRm8fdUNGz6HU8OZLQOQGQwPSiGYyf2
+         5PIDo0qJN1mUlCiPSOvJBK7JFpIIo+Fkdw+hqd6enyeQcaEjsYJTAFaRSu1T5CCPsCMx
+         apjDielMcAKrn7RNeAQmZwJor9mUtOHpwYr2O+5KZBQAL8CQyehVQcp9f4TgHG96gsF2
+         icX/aHhRHeLindPIp9PskH00KLS8U4f/8NxMgtoJmVp3TlmZRenS0sWh4Xo/hnH/WBqR
+         Ghyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743413918; x=1744018718;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vM2Bji0R6GGuRmN2IdJF15qTp2dswLKSOfwXsGQQXU0=;
+        b=XvMtokIm0sa3Whxxo0wqp9T/5jL2NBcLboO4lsbZEBZYUAP/WWYSWK5kh8kGdQbgsE
+         sqAjYdNbr3AjtwJFh1HbBJN4XsCgJ6QCm8Rrhn8x00/FxPpeqVUg+W2fj+BFojfK/GMA
+         BMG8CXeLE2oMP8U/b0owvAx3oi1mPNS+344j+upaT0uQvPkWOq0ApgMCZ3r2CLnxKL0+
+         oucXRnmHICiZ9ULMKy0+83GJUpdMlluyDgdbrDDNqCpo14jfvDrI/D2k0uVLIivJzbWL
+         E/RtpnZarCOjZckT7udox35z63ds8jbiVMdDyqHhSl3B2Z/SSoQuYBc3NCfdrsRyCwjQ
+         7CUA==
+X-Forwarded-Encrypted: i=1; AJvYcCV97YIXl6kDEEqVifFEha+tKhYgGrImLlcnZLn0ogmDAABH74rW87ZDLiQ/xl0JI8cTpMR1tS0QOGqMjMIL@vger.kernel.org, AJvYcCWsqY0G/SNOAUfCq1I+dkzTRk9SaDLWpm5rG+mY545CqBeE0MeK/HL7ExyyCUJaa1y2zH+tUmZ8LjwB@vger.kernel.org, AJvYcCXEbBCO9Po8MBwypqRLowv/YoHli1HsoEAeKx9mwBv0pmFPseT4EeTt5FTzSGoI0IZZho2ApIj+6EtdEn0bGw==@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz4orN9SCDi/sHLkRoN0cNntPb5Z/WmdCjjRnHx5i2iTIZZI8Bh
+	CUyWHzpfawiTOnPVHmzXddJbPfUkbcbLS3kv6Tk2bhQzHROh/Bnu8dVsaSDoUEz+VMYVvi6uDHW
+	Axlf3WZW6HwOUBfdh9X7f6MX+SQ==
+X-Gm-Gg: ASbGncu13IK1EkRZE5s5s517RugdsWAAMm90tJl2UoqCJ8I+bl1n2sGu7hKaP1URopV
+	edoAUW1D698SLgSGHCzfztE6lkvPSM3blHFC977d5F32sakdU8mIITnh7+CEdVJw2cNMjMOHcBY
+	7b7nFMQ4ZWIOH0m9E5ovg7oN9GfoI=
+X-Google-Smtp-Source: AGHT+IHDxLwJLs5M+ervsVqXlAF/ZqEKs+3clpKlQi/t/SoyKWcahheha0ZbkTZT1eaBgifJRMbqFBBUWwfdSR3VMi4=
+X-Received: by 2002:a05:600c:83cc:b0:43d:cc9:b09d with SMTP id
+ 5b1f17b1804b1-43db62bc26fmr62005255e9.20.1743413917702; Mon, 31 Mar 2025
+ 02:38:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250331-mtk-genio-510-700-fix-bt-detection-v1-1-34ea2cf137f3@collabora.com>
-X-B4-Tracking: v=1; b=H4sIAJ9f6mcC/yWNwQrDIBBEf0X23AU1DSn5lZJDNNt0KWqrmxII+
- fdKPb5hZt4BhTJTgVEdkOnLhVOsYC4K/HOOKyEvlcFq2+vO3jDIC1eKnLA3Gget8cE7OsGFhLz
- UOdrBGO+8c5auUI/emWrnL7lPjTN9tuqSFoKbC6FPIbCMKtIu2Hydgek8f9JfStGlAAAA
-X-Change-ID: 20250328-mtk-genio-510-700-fix-bt-detection-2711cbcbb2e4
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, 
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1743413182; l=1967;
- i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
- bh=V0QnODFma7S+d+i8t9LUBD0xftnJaXWgg/npE55QrOk=;
- b=8e0zsYdWGNiu/yvRlNY1uOiQBoNeYQPzIvLrdLdob0CYYVrRaPu9O2HT1NPa0DBmndQ9/SS0J
- 5ne4ZxT0a/8DLY94DhWT3DqJ4Soll0EGLzeupDpS88N3h2aAvP3IozF
-X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
- pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
+References: <20250331073423.3184322-1-alex.vinarskis@gmail.com>
+ <20250331073423.3184322-2-alex.vinarskis@gmail.com> <Z-pN1qloL2m4BWaq@hovoldconsulting.com>
+In-Reply-To: <Z-pN1qloL2m4BWaq@hovoldconsulting.com>
+From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Date: Mon, 31 Mar 2025 11:38:25 +0200
+X-Gm-Features: AQ5f1JqsOf-wdERM54oCL2d4gBWWd4xshSkcvSWrMpNLnl4usGWtzA_0SkbQh0s
+Message-ID: <CAMcHhXq9W64MHhOV5i3U4t+ZfKNC_GaBq5X3ZN7VOLt0cjPQPg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/1] arm64: dts: qcom: x1e80100-dell-xps-9345: Add
+ WiFi/BT pwrseq
+To: Johan Hovold <johan@kernel.org>, "Tudor, Laurentiu" <Laurentiu.Tudor1@dell.com>, 
+	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
+Cc: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	dmitry.baryshkov@oss.qualcomm.com, 
+	Stephan Gerhold <stephan.gerhold@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On the Mediatek Genio 510-EVK and 700-EVK boards, ssusb2 controller is
-one but has two ports: one is routed to the M.2 slot, the other is on
-the RPi header who does support full OTG.
-Since Mediatek Genio 700-EVK USB support was added, dual role mode
-property is set to otg for ssusb2. This config prevents the M.2
-Wifi/Bluetooth module, present on those boards and exposing Bluetooth
-as an USB device to be properly detected at startup, so configure for
-the ssusb2 dr_mode property as host instead.
+On Mon, 31 Mar 2025 at 10:09, Johan Hovold <johan@kernel.org> wrote:
+>
+> [ +CC: Stephan ]
+>
+> On Mon, Mar 31, 2025 at 08:33:47AM +0100, Aleksandrs Vinarskis wrote:
+> > Add the WiFi/BT nodes for XPS and describe the regulators for the WCN7850
+> > combo chip using the new power sequencing bindings. All voltages are
+> > derived from chained fixed regulators controlled using a single GPIO.
+> >
+> > Based on the commit d09ab685a8f5 ("arm64: dts: qcom: x1e80100-qcp: Add
+> > WiFi/BT pwrseq").
+>
+> Are you sure this is correct and that you don't need to worry about the
+> "how do we model the supplies to an M.2 card" issue?
+>
+> See
+>
+>         https://lore.kernel.org/lkml/Z-KuG0aOwEnxuhp9@linaro.org/
 
-Fixes: 1afaeca17238 ("arm64: dts: mediatek: mt8390-genio-700: Add USB, TypeC Controller, MUX")
-Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
----
-I've tested this patch on Mediatek Genio 510-EVK board with a kernel
-based on linux-next (tag: next-20250331).
----
- arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+Dell XPS 9345 does not have an M.2 card, WLAN package is soldered
+directly onboard, hence I am quite sure this is similar to QCP.
+To be certain, perhaps @Tudor, Laurentiu or @Bryan O'Donoghue (if  you
+have it?) could confirm from schematics?
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi b/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
-index 60139e6dffd8e0e326690d922f3360d829ed026b..3a9d429f0f14b501ae41551dfe7272f242345138 100644
---- a/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
-@@ -1199,7 +1199,13 @@ xhci_ss_ep: endpoint {
- };
- 
- &ssusb2 {
--	dr_mode = "otg";
-+	/*
-+	 * the ssusb2 controller is one but we got two ports : one is routed
-+	 * to the M.2 slot, the other is on the RPi header who does support
-+	 * full OTG but we keep it disabled otherwise the BT on the M.2 slot
-+	 * USB line goes obviously dead if switching to gadget mode.
-+	 */
-+	dr_mode = "host";
- 	maximum-speed = "high-speed";
- 	usb-role-switch;
- 	vusb33-supply = <&mt6359_vusb_ldo_reg>;
+>
+> > With that fixed commit f5b788d0e8cd ("arm64: dts: qcom: Add support for
+> > X1-based Dell XPS 13 9345")
+>
+> Not sure what happened here.
 
----
-base-commit: 1c4df70331c0dc7f82f724166575c16931ec66b3
-change-id: 20250328-mtk-genio-510-700-fix-bt-detection-2711cbcbb2e4
+Bluetooth and WLAN definitions were missing, as at the time I only
+knew the UART port being used for bluetooth, and was missing
+everything else to describe it.
 
-Best regards,
--- 
-Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Alex
 
+>
+> Johan
 
