@@ -1,146 +1,201 @@
-Return-Path: <devicetree+bounces-161962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161963-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C9FBA76299
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 10:40:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0733A762B9
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 10:48:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B93B1889BD9
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 08:40:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2219E3A990B
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 08:47:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D317E1684B0;
-	Mon, 31 Mar 2025 08:40:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A910E1C84C7;
+	Mon, 31 Mar 2025 08:48:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="g2ZSF3sz"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Da+8Anil"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBE8E524B0;
-	Mon, 31 Mar 2025 08:40:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99C3E15E5BB;
+	Mon, 31 Mar 2025 08:48:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743410418; cv=none; b=B06sfAHEiPVSm5jQoHSdxJ1ga/l5G7GmlD/kT8fit3fVxYSE92XqhyqF9O7aPNcyPnLYsAzeD20hLuW831O6GnZUWj5z5CZDJF7yOhacxyHjqOpqMj0Odtxw2eIuX18xkSubyPrjM+VZJ53LB/TzG0idAS7iofZZBLE3pW/9wtc=
+	t=1743410886; cv=none; b=YjKNvoBpae/hNrOB7d+jlC4S785Ipqsb9uIL4C8pClno6Xt11fFBLtOx69u70IbvYWEr7gw0dB3HN2ej8sfjGjS4Q5DADkxCjLDOf+QjH+2K9QvDNpiDL9INiY20RP+T7t+m3hSKbaxvJfbVreD+wQABDJVXreghkrbBoR7Wehk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743410418; c=relaxed/simple;
-	bh=ypcrZAQMEpvhOWeBUP5X3m7CMpEjeUmAFI7M8hG6qVo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gjxCPrsHeKxkcFO5C09unRVI3jV/LH58sER7YPPWUQ/gmjIsANh0tTc7VP6+gWBND982vtOfSWHCn/6wsuFJVsRVwYKncqiPqyZ83YAk/kr6tviwcCilvAZG7LNjvEUz+X7KjxNsc4F3Yz7bK1mzoYnaw+irh7yhTV9h2w6kDPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=g2ZSF3sz; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1743410414;
-	bh=ypcrZAQMEpvhOWeBUP5X3m7CMpEjeUmAFI7M8hG6qVo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=g2ZSF3szLbk4CKxgx5lsyICscYAmAzRVfUHo6ib/UJMZ56Eq6wfxwG7AcfTdQtssx
-	 thF9QOf3CU/ngGOAA3mri8RbjKhItKS7SHYmVPU6xLMwHmqs1P12EFQK+7sVWieGQ3
-	 e0OD2Bj9bpVZIPBj1Dde06Pk7GTMlSTCbF0pjbb5ixRz9F0cErBOba0pix8JMxjlzD
-	 LG4bPSi1+QnzhwQSB/ye0aEMJilKVO4k8fSfKomy0kS4paebpCGuX6QIewdhZCRyZp
-	 ejs4IE6VOUSHF54K6Iq3g1MRoi0hmXULMTu6YCZ6L43RVLn2c48BpcpVamvv8ZQ2/n
-	 c+NKvyoR4Rc0w==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id EF98717E0860;
-	Mon, 31 Mar 2025 10:40:13 +0200 (CEST)
-Message-ID: <86725036-4204-49a8-a841-4f9eff69aa6f@collabora.com>
-Date: Mon, 31 Mar 2025 10:40:13 +0200
+	s=arc-20240116; t=1743410886; c=relaxed/simple;
+	bh=2Aph5r+ucMnFx8WbEX334zQY670ZD+b5koX2yPrT+io=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Subject:Cc:
+	 References:In-Reply-To; b=FDVgHu9x/003iuN74lThMncmORPPExtOv3PksZteVDAk2FcyrRfyQwFUAsxUJ2DbOWHINJ3xm84UO+WOw/KmQUJThL93CumDYiveyGRDsjYyxJauXXKNJ2JsFBJy9qzH3GWCzQOkzSgXGyoeLjaMJ7uPA6e59pUgrAww3xea3G8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Da+8Anil; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id B7BF62047D;
+	Mon, 31 Mar 2025 08:47:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1743410881;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=9aErTBB6XoGeVcpJbLF45VHi7cVLHU979KcrvGo1E0c=;
+	b=Da+8Anilt9Neby3nnfgRhzL9gqecwhYWYFRvTUXHkG/WEhbCA8z2Nr6aa6Kgpl+qrvfyDE
+	NoFKL/KBHHpdjYgv9CMUgWPAWDfu5HgkOezzhxKYANUYZGjhME8NPMRmQ7ONyXwXI6RJrl
+	g1+n1eBUZCndKJsxD5o4le4STCDdyT5ePYRiyidUKAlnJI4nKq1frCwgH3yEWStwbsi1FJ
+	SBcTvjfhPkeSbMz7ou3CL4jxggXzGcq6smV3uqkEeAk54/sjpl2gj/M896x0JKwXM61NrT
+	jk3MFf1aqSK5sGQBou9eV+sjb925zqptuFAe7E5ygQ8knVEN2egtCwfWbR1p1w==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 1/2] dt-bindings: arm: mediatek: Add MT8186 Ponyta
- Chromebook
-To: Jianeng Ceng <cengjianeng@huaqin.corp-partner.google.com>,
- sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch,
- dianders@google.com, hsinyi@google.com, matthias.bgg@gmail.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- knoxchiou@google.com
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-References: <20250328094034.3400233-1-cengjianeng@huaqin.corp-partner.google.com>
- <20250328094034.3400233-2-cengjianeng@huaqin.corp-partner.google.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250328094034.3400233-2-cengjianeng@huaqin.corp-partner.google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 31 Mar 2025 10:47:59 +0200
+Message-Id: <D8UBKT8USZ4U.1OOL1IJMPECFE@bootlin.com>
+From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
+To: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>, "Lee Jones"
+ <lee@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Kamel Bouhara"
+ <kamel.bouhara@bootlin.com>, "Linus Walleij" <linus.walleij@linaro.org>,
+ "Bartosz Golaszewski" <brgl@bgdev.pl>, "Dmitry Torokhov"
+ <dmitry.torokhov@gmail.com>, =?utf-8?q?Uwe_Kleine-K=C3=B6nig?=
+ <ukleinek@kernel.org>, "Michael Walle" <mwalle@kernel.org>, "Mark Brown"
+ <broonie@kernel.org>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, "Danilo Krummrich"
+ <dakr@kernel.org>
+Subject: Re: [PATCH v5 01/11] dt-bindings: mfd: gpio: Add MAX7360
+Cc: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
+ <linux-pwm@vger.kernel.org>, <andriy.shevchenko@intel.com>,
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Thomas
+ Petazzoni" <thomas.petazzoni@bootlin.com>
+X-Mailer: aerc 0.18.2-0-ge037c095a049
+References: <20250318-mdb-max7360-support-v5-0-fb20baf97da0@bootlin.com>
+ <20250318-mdb-max7360-support-v5-1-fb20baf97da0@bootlin.com>
+In-Reply-To: <20250318-mdb-max7360-support-v5-1-fb20baf97da0@bootlin.com>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddujeelgeekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkhffvufevofhfjgesthhqredtredtjeenucfhrhhomhepfdforghthhhivghuucffuhgsohhishdquehrihgrnhgufdcuoehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeehvedtkeffueelheektddvjefhiefhgedtudevgeehvdevlefgveetkeevleelteenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeipdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvfedprhgtphhtthhopehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhrtghpthhtoheplhgvvgesk
+ hgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhgrmhgvlhdrsghouhhhrghrrgessghoohhtlhhinhdrtghomhdprhgtphhtthhopehlihhnuhhsrdifrghllhgvihhjsehlihhnrghrohdrohhrghdprhgtphhtthhopegsrhhglhessghguggvvhdrphhl
+X-GND-Sasl: mathieu.dubois-briand@bootlin.com
 
-Il 28/03/25 10:40, Jianeng Ceng ha scritto:
-> Ponyta is a custom label Chromebook based on MT8186. It is a
-> self-developed project of Huaqin and has no fixed OEM.
-> 
-> Signed-off-by: Jianeng Ceng <cengjianeng@huaqin.corp-partner.google.com>
+On Tue Mar 18, 2025 at 5:26 PM CET, Mathieu Dubois-Briand wrote:
+> Add device tree bindings for Maxim Integrated MAX7360 device with
+> support for keypad, rotary, gpios and pwm functionalities.
+>
+> Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
 > ---
-> Chage in V9:
-> - No change.
-> 
-> Changes in v8:
-> - PATCH 1/2: Remove custom label.
-> - Link to v7:https://lore.kernel.org/all/01020191ea98a643-2d0be5d1-e00b-48e0-b823-bfe2c65b0d00-000000@eu-west-1.amazonses.com/
-> 
-> Chage since V6:
-> - No change.
-> 
-> Changes in v5:
-> - PATCH 1/2: Remove sku2147483647.
-> - Link to v4:https://lore.kernel.org/all/20240906085739.1322676-2-cengjianeng@huaqin.corp-partner.google.com/
-> 
-> Changes in v4:
-> - PATCH 1/2: Add more info for Ponyta custom label in commit.
-> - Link to v3:https://lore.kernel.org/all/20240904081501.2060933-1-cengjianeng@huaqin.corp-partner.google.com/
-> 
-> Changes in v3:
-> - PATCH 1/2: Modify lable to label.
-> - Link to v2:https://lore.kernel.org/all/20240903061603.3007289-1-cengjianeng@huaqin.corp-partner.google.com/
-> 
-> Chage since V2:
-> - No change.
-> 
-> ---
->   Documentation/devicetree/bindings/arm/mediatek.yaml | 10 ++++++++++
->   1 file changed, 10 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> index 108ae5e0185d..fdc57c140af7 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> @@ -285,6 +285,16 @@ properties:
->             - const: google,steelix-sku393218
->             - const: google,steelix
->             - const: mediatek,mt8186
-> +      - description: Google Ponyta
-> +        items:
 
-            items:
-              - enum:
-                  - google,ponyta-sku0
-                  - google,ponyta-sku1
+Hi,
 
-> +          - const: google,ponyta-sku0
-> +          - const: google,ponyta
-> +          - const: mediatek,mt8186
+Following discussion we had under the PWM patch of this series, we might
+need to refactor a bit the device tree binding architecture, adding two
+new subnodes, one for pinctrl and one for PWM.
 
-Regards,
-Angelo
+This will need create two new compatible values with associated bindings
+and modify a bit the properties of the maxim,max7360.yaml binding.
 
-> +      - description: Google Ponyta
-> +        items:
-> +          - const: google,ponyta-sku1
-> +          - const: google,ponyta
-> +          - const: mediatek,mt8186
->         - description: Google Rusty (Lenovo 100e Chromebook Gen 4)
->           items:
->             - const: google,steelix-sku196609
+Here is the example modified to reflect what I have in mind.
 
+> ...
+>
+> diff --git a/Documentation/devicetree/bindings/mfd/maxim,max7360.yaml b/D=
+ocumentation/devicetree/bindings/mfd/maxim,max7360.yaml
+> new file mode 100644
+> index 000000000000..d3c09531dc5c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/maxim,max7360.yaml
+> @@ -0,0 +1,170 @@
+>
+> ...
+>
+> +examples:
+> +  - |
+> +    #include <dt-bindings/input/input.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    i2c {
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +
+> +      io-expander@38 {
+> +        compatible =3D "maxim,max7360";
+> +        reg =3D <0x38>;
+> +
+> +        interrupt-parent =3D <&gpio1>;
+> +        interrupts =3D <23 IRQ_TYPE_LEVEL_LOW>,
+> +                     <24 IRQ_TYPE_LEVEL_LOW>;
+> +        interrupt-names =3D "inti", "intk";
+> +
+> +        keypad,num-rows =3D <8>;
+> +        keypad,num-columns =3D <4>;
+> +        linux,keymap =3D <
+> +          MATRIX_KEY(0x00, 0x00, KEY_F5)
+> +          MATRIX_KEY(0x01, 0x00, KEY_F4)
+> +          MATRIX_KEY(0x02, 0x01, KEY_F6)
+> +          >;
+> +        keypad-debounce-delay-ms =3D <10>;
+> +        autorepeat;
+> +
+> +        rotary-debounce-delay-ms =3D <2>;
+> +        linux,axis =3D <0>; /* REL_X */
+> +
 
++ max7360_pwm: pwm {
++         compatible =3D "maxim,max7360-pwm";
+
+> +        #pwm-cells =3D <3>;
+
++ };
+
+> +
+> +        max7360_gpio: gpio {
+> +          compatible =3D "maxim,max7360-gpio";
+> +
+> +          gpio-controller;
+> +          #gpio-cells =3D <2>;
+> +          maxim,constant-current-disable =3D <0x06>;
+> +
+> +          interrupt-controller;
+> +          #interrupt-cells =3D <0x2>;
+> +        };
+> +
+> +        max7360_gpo: gpo {
+> +          compatible =3D "maxim,max7360-gpo";
+> +
+> +          gpio-controller;
+> +          #gpio-cells =3D <2>;
+> +        };
+
++ pinctrl {
++         compatible =3D "maxim,max7360-pinctrl";
+
+> +
+> +        backlight_pins: backlight-pins {
+> +          pins =3D "PORT2";
+> +          function =3D "pwm";
+> +        };
+
++ };
+
+> +      };
+> +    };
+
+This would allow to assign a device tree node to both the pinctrl and
+the PWM devices in the kernel?
+
+Is there any comment regarding this proposal? Without any specific
+comment, I will send a new version with these changes in a few days.
+
+Best regards,
+Mathieu
+
+--=20
+Mathieu Dubois-Briand, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
