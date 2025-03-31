@@ -1,158 +1,137 @@
-Return-Path: <devicetree+bounces-162013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4407BA765F6
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 14:30:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82219A765FC
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 14:31:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F162616B1D3
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 12:30:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 34A53167602
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 12:31:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C44841E5B60;
-	Mon, 31 Mar 2025 12:29:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA0B91C5489;
+	Mon, 31 Mar 2025 12:31:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b="A58LaWNz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
+Received: from out-14.pe-a.jellyfish.systems (out-14.pe-a.jellyfish.systems [198.54.127.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3291B1E570D;
-	Mon, 31 Mar 2025 12:29:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C31E44C9D;
+	Mon, 31 Mar 2025 12:30:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.54.127.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743424180; cv=none; b=MIEgJtKS5cIZeX7FKRS+vSlO2yFzKI0oy5WCuFVVEFuo1hswKGcbkCqBcVh9nnKSvwUwW/mUnytuRfWY8tE2rv1WWDF6aCjYhi0JMshcLhKbtt1j72XQ25WPOwRs5h68+6RvYamgE56Fh+oIKceCeRIgx/0LjMFm6K9LBT6HLZE=
+	t=1743424261; cv=none; b=IlsbSFaqJzP/or4mvreTkfgrWIhp2TAQFl7qvoNxYPc9VdOKciqJJGKIfZACtuFM/cv9VE7dUkgIVEwaEhiSWfds2brpVgU05bjBA9TGP3cPQr281tGMz9Q7b2hwqBxNkqwQe3BhxK9pvbd5yETTDWruj5NdmAGLpu6vPLxlkT0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743424180; c=relaxed/simple;
-	bh=TY1jhOTEr3tWljFOOoITiNLFQXkN4A20pVuJGU9HBQM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=axEXRsp7r3vh7ZtrKNOVMi1RO6+CtD/gjTvWCtSAcy6CCmFWlwMWrIkB5SRi450Yemg1X8Lw9R27CpD1oKEh1omGKOUV05uM42BAXKmhuEm2bSWSFCu781VjqNznyBSdIkboPI1Ur3eT5gJrlc73xrBOkoStaD/ASdEN77DYDwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-5259331b31eso2103140e0c.0;
-        Mon, 31 Mar 2025 05:29:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743424176; x=1744028976;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=a/hvjEUFixlRsZXguCUr03tOmwYEQ41nqruFxXBAttY=;
-        b=SZ7FcrN18TFt4s68EToZkMy32VogA5TuNBMuyBj0Yw64DytTf9xg7n9lT1SMxHa5YY
-         U+ePtx2ykWKtbR2DlIJGVd/hK9HZQkorx2TLX3PxBcUXHdvCZ6uU0ht5kQcO39TePlmH
-         f2JKKIl0193ydETOg5jhDlt2EZEeXs/XcTGgGY9y27JGbU7eTBq2ab14B5KaYgpnVIdL
-         bd9+6+Paz35YAkKj1S8+/WdhtqrIFh5e6DJM+1UVwHPmXZeRV4t6kusYDOnMnNQTvtUK
-         bY0qJH4+MFfNpAIBQQwjLGPBBStLCuoAR1zhzVaH96Dm/rmpenzG/s487m+MEZcq5yiU
-         tSMQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU6XH6AEpjhylbxkSyGfCPdXCNmvw3eUnzBbWCoHo+xfS6Tsw3yVIIOyjZHHmVvAQhNrh56vbw59BP2@vger.kernel.org, AJvYcCUtO6ntkRf6JHvMxgaRVA526ZFLMgIDiS2I4NWaUOp9n7QnB4yAo3e7B4sbX4+LVclpk+apc0EBvLI/GGz+Hbk1eoA=@vger.kernel.org, AJvYcCVFiNaEX7Fsd1JyJDA0LNjitta3UQNd3jN09oymoai6+3sT0cCGkId2ntoIs5PfjSjxtheHd0Kj1pkZuRIj@vger.kernel.org, AJvYcCVGlhsH1/1qMYHLsDo+bXRs/PWNksojWeME4I3lXoqH+cIZF0d/wff7MIDxVwyUpQ8LHTOwm1poNZrkP1I=@vger.kernel.org, AJvYcCW85uJGmu1KyuZq7X9InV0RYZ3EQct54LeyGct/VZCIMR/IMYyGriKw1zjYsRyD46dj3ptCDQMtv/UW@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxv/WFhF73GXwSAZwAfLssSqxhFtkA8iKMJ+SPJG0DYNCfiDneZ
-	AubXcHsg0jcv+Xwf/UEyPRluVghg1Y7cc6RyFm6seS4ZIc0Bi6v+EKghV01Q
-X-Gm-Gg: ASbGnct2XTKrQbFrEm38kJvVekhoDj1J3fqMyEx3L8YMTVK6QNETeq0MrrJB/kyiWze
-	k7mxf/F3/jqoL0hylfAEMWv/TeE/E0JIBN+mEIp5lWKEn4SVfWS/sZUXyU0jXy/bqa964962qCj
-	IjNjQh5rDzhUrP1rw8jMY68/kNrsvO7kA0lAD91UeBOCZJVw9wsXimY6fv0AhkA/ZLgLVifVA7n
-	Gj+/unSBwC6Rj0atAOKEkheTwPJL42Q/FEd+d3R/iGgGj1ThAyMuEfOuphym/hd0pbMwQl8V4qN
-	Fw/f8xX5IhHwsuxUaOm4g5VMSS47XqaAG5PAV1JaGFzWpz1Vjzrgvaxt3NV/Qm1D97RzFpSCBIL
-	T3ikh3y+GbXDxDWP5Dw==
-X-Google-Smtp-Source: AGHT+IGV9qrruQC8eD3r1v1TatdV7QAigdH5XkauM7J3ViCCNwHT2qsO4mEs8+7hu5HqXEL8XucMAg==
-X-Received: by 2002:a05:6122:2188:b0:520:64ea:c479 with SMTP id 71dfb90a1353d-5261d4adb01mr3822544e0c.10.1743424175976;
-        Mon, 31 Mar 2025 05:29:35 -0700 (PDT)
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5260e840eafsm1510772e0c.24.2025.03.31.05.29.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 31 Mar 2025 05:29:35 -0700 (PDT)
-Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-86feb848764so1930859241.0;
-        Mon, 31 Mar 2025 05:29:34 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUh3LlE3Z/eqgMEUJDXo9HBNtevNXgB+sAKxhXKpAgWp6gdbck85r+k9TyiDn8QqS3pJmw7N6QWMIFzZrAX@vger.kernel.org, AJvYcCUvy42TWp4Gd7XZoTPQb0K1ADvuqGTBq+4rqC9AKY2AnHqUaCnxiZfVIt/P4FcZr0QAKxQ0nck1UvRzL0neMdtNC9I=@vger.kernel.org, AJvYcCVHDl/mR3OT7KZU5XIAz4FGDlTNctnOVHTOCj2VwYlvxwhO5tJkKgVFiljI6rmb+n1nmnC1NOH0mUhj@vger.kernel.org, AJvYcCVRZjaXOlS0YmZlqsD0gP/f7Mo2gxZi6EMWfWTw482j1RAtRVwPJh0Y10EMHSYKdKrWMpUV/kxZIVDu@vger.kernel.org, AJvYcCVbGxv2MfGE6ZQ56ApexcqguOaWQiJGg197pNzvS8M5IUawwZkUBZbIhCoIGWylLvkFTcUB33pL1wmjIFU=@vger.kernel.org
-X-Received: by 2002:a05:6102:291e:b0:4c4:f128:3abb with SMTP id
- ada2fe7eead31-4c6d399e628mr4308764137.25.1743424174473; Mon, 31 Mar 2025
- 05:29:34 -0700 (PDT)
+	s=arc-20240116; t=1743424261; c=relaxed/simple;
+	bh=oA0qd1nicMZSBrlxjfG3/k0n2p/I87faDWnmX4g1KxY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ssLjoYumto1OY201p9ML5dPU/Jwh/OfUx4WqcGdI37SokR0b0jo1W6U5b0C6RBQf+9B3Vpzs0IjZaUJ4jm9QxIk24P2cRyjfE3jGzuEUo0czydqSxLBa8krO4Y7K93zM+yOnJsV6yZHAGmoXtYTDLntCOYOeKrYemO1bS8mGqX0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=framepointer.org; spf=pass smtp.mailfrom=framepointer.org; dkim=pass (2048-bit key) header.d=framepointer.org header.i=@framepointer.org header.b=A58LaWNz; arc=none smtp.client-ip=198.54.127.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=framepointer.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=framepointer.org
+Received: from prod-lbout-phx.jellyfish.systems (new-01-3.privateemail.com [66.29.159.56])
+	by pe-a.jellyfish.systems (Postfix) with ESMTPA id 4ZR9TS5WnBz3xLy;
+	Mon, 31 Mar 2025 12:30:52 +0000 (UTC)
+Received: from MTA-15.privateemail.com (unknown [10.50.14.40])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by NEW-01-3.privateemail.com (Postfix) with ESMTPS id 4ZR9TS51wGz2Sd0T;
+	Mon, 31 Mar 2025 08:30:52 -0400 (EDT)
+Received: from mta-15.privateemail.com (localhost [127.0.0.1])
+	by mta-15.privateemail.com (Postfix) with ESMTP id 4ZR9TS3hXsz3hhV6;
+	Mon, 31 Mar 2025 08:30:52 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=framepointer.org;
+	s=default; t=1743424252;
+	bh=oA0qd1nicMZSBrlxjfG3/k0n2p/I87faDWnmX4g1KxY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=A58LaWNzi547O0g1lcPpQkt1fmRxCRizs+iU6osyiLjwmazUaJJmhDnUL6NtYe4zL
+	 0zhiP+kMaEgndo4r/gMFZaLh7jmILRCVUJeZOt2/krkFzoyOr8v6/3QIOZMHfvB8bw
+	 sMkATcN5hmgd7Zjr4lfhC1Wt7vqfpHXRflbM5uJRPq6QTUuWI1TsGjzQlKAnDzRBDl
+	 ym9087dR1JQl57i7Zicg4ThVwo7s6TpUPdYrkG5RTxwy6zcx5NzMo0TZq5ZsFlhDnC
+	 QglYHB3ZzAD8daM3yevrvlWB7Kb3QxoIFFW6coR45mgeltyFuEpI0hXI3z9FEiOfL7
+	 3PpEArkj3LkEg==
+Received: from 65YTFL3.secure.tethers.com (unknown [152.44.190.141])
+	by mta-15.privateemail.com (Postfix) with ESMTPA;
+	Mon, 31 Mar 2025 08:30:36 -0400 (EDT)
+Date: Mon, 31 Mar 2025 08:30:38 -0400
+From: Sam Winchenbach <sam.winchenbach@framepointer.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-kernel@vger.kernel.org, mdf@kernel.org, hao.wu@intel.com, 
+	yilun.xu@intel.com, trix@redhat.com, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, michal.simek@amd.com, linux-fpga@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Sam Winchenbach <swinchenbach@arka.org>
+Subject: Re: [PATCH 1/2] dt-bindings: fpga: zynq: Document ICAP on boot
+Message-ID: <p4bujnmgkcvsu4qipmgh2j2loedepmwgp7zlaxrurhaveb6tbc@ibqtbjnbzdzj>
+References: <20250328141944.119504-1-sam.winchenbach@framepointer.org>
+ <02496a88-3d9c-49ee-93ab-8f1400fc0c6b@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250330210717.46080-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250330210717.46080-14-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250330210717.46080-14-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 31 Mar 2025 14:29:22 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUO+mh79ExahTiW-hG26QfxrBfBFRipO_B6QWXvP-+wHg@mail.gmail.com>
-X-Gm-Features: AQ5f1Jp1eHcZ8sWmnLzl63q9yjCxoAPQRs9IgU0nL-PSWGK0iw87Vz5cicheX0E
-Message-ID: <CAMuHMdUO+mh79ExahTiW-hG26QfxrBfBFRipO_B6QWXvP-+wHg@mail.gmail.com>
-Subject: Re: [PATCH 13/17] drm: renesas: rz-du: mipi_dsi: Add feature flag for
- 16BPP support
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-media@vger.kernel.org, linux-clk@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <02496a88-3d9c-49ee-93ab-8f1400fc0c6b@kernel.org>
+X-Virus-Scanned: ClamAV using ClamSMTP
 
-Hi Prabhakar,
+On Sat, Mar 29, 2025 at 05:59:07AM +0100, Krzysztof Kozlowski wrote:
+> On 28/03/2025 15:19, Sam Winchenbach wrote:
+> > From: Sam Winchenbach <swinchenbach@arka.org>
+> > 
+> > Documents the ability to enable the ICAP interface on boot.
+> > 
+> > Signed-off-by: Sam Winchenbach <swinchenbach@arka.org>
+> > ---
+> >  .../devicetree/bindings/fpga/xilinx-zynq-fpga-mgr.yaml     | 7 +++++++
+> >  1 file changed, 7 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/fpga/xilinx-zynq-fpga-mgr.yaml b/Documentation/devicetree/bindings/fpga/xilinx-zynq-fpga-mgr.yaml
+> > index 04dcadc2c20e9..bb2781ae126ca 100644
+> > --- a/Documentation/devicetree/bindings/fpga/xilinx-zynq-fpga-mgr.yaml
+> > +++ b/Documentation/devicetree/bindings/fpga/xilinx-zynq-fpga-mgr.yaml
+> > @@ -31,6 +31,13 @@ properties:
+> >      description:
+> >        Phandle to syscon block which provide access to SLCR registers
+> >  
+> > +  enable-icap-on-load:
+> 
+> Missing vendor prefix.
 
-On Sun, 30 Mar 2025 at 23:08, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Introduce the `RZ_MIPI_DSI_16BPP` feature flag in `rzg2l_mipi_dsi_hw_info`
-> to indicate support for 16BPP pixel formats. The RZ/V2H(P) SoC supports
-> 16BPP, whereas this feature is missing on the RZ/G2L SoC.
->
-> Update the `mipi_dsi_host_attach()` function to check this flag before
-> allowing 16BPP formats. If the SoC does not support 16BPP, return an error
-> to prevent incorrect format selection.
->
-> This change enables finer-grained format support control for different
-> SoC variants.
->
-> Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+I will add this to a v2 patch, assuming we come to an agreement on the
+suitability of this approach.
 
-Thanks for your patch!
+> 
+> > +    type: boolean
+> > +    description: If present, the ICAP controller will be enabled when
+> > +      the driver probes. This is useful if the fabric is loaded
+> > +      during the boot process and contains a core, such as the SEM,
+> 
+> I don't get how this is suitable for DT. If you decide to load the
+> fabric from driver, that's driver decision so not DT.
 
-> --- a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
-> +++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
-> @@ -30,6 +30,8 @@
->
->  struct rzg2l_mipi_dsi;
->
-> +#define RZ_MIPI_DSI_16BPP      BIT(0)
-> +
->  struct rzg2l_mipi_dsi_hw_info {
->         int (*dphy_init)(struct rzg2l_mipi_dsi *dsi, unsigned long long hsfreq_mhz);
->         void (*dphy_exit)(struct rzg2l_mipi_dsi *dsi);
-> @@ -38,6 +40,7 @@ struct rzg2l_mipi_dsi_hw_info {
->         unsigned long max_dclk;
->         unsigned long min_dclk;
->         bool has_dphy_rstc;
-> +       u8 features;
+Before writing the fabric to the FPGA the driver disables the ICAP, enabling
+the PCAP. Once writing is complete it unconditionally disables the PCAP,
+enabling the ICAP. This patch just makes it so, depending on the use case,
+the ICAP can be enabled at boot. This will not prevent the system from being
+able to load a fabric through the driver. I added in this boolean so existing
+behavior would be maintained.
 
-Please settle on a single solution for all features: either use a
-boolean flag to indicate 16bpp, or a feature bit to indicate the need
-for the DPHY reset signal.
+Do you recommend another approach such as writing to a sysfs attribute to
+switch from PCAP to ICAP?
 
->  };
->
->  struct rzg2l_mipi_dsi {
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> 
+> > +      that requires access to ICAP interface to operate properly.
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
+> 
+> 
+> Best regards,
+> Krzysztof
 
