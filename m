@@ -1,177 +1,124 @@
-Return-Path: <devicetree+bounces-162097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB2DDA76D3C
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 21:06:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2A8EA76D4D
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 21:08:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 913BF188CF4F
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 19:06:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4AE7C3AAD9E
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 19:06:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8541C1E503C;
-	Mon, 31 Mar 2025 19:04:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C498E21764B;
+	Mon, 31 Mar 2025 19:06:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B9dVvoYO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73864219312;
-	Mon, 31 Mar 2025 19:04:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D203215064;
+	Mon, 31 Mar 2025 19:06:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743447890; cv=none; b=idLomM3WmAOEhbVD8PoUTLiQw5kghNd+FVACvExKnfZg9DLl8uRy2o52/UQWyrMOyWHqe9Ed0PIhcXonSRKyFP9mRK9/dtVMVICpZrB4NRU4t54gJHLO1kX2mDphV7GgFlFy8ct2URgZeOAHOFwcruxZYyeEuFv95TwJHz+oNOI=
+	t=1743447994; cv=none; b=bWcJsbAMcvWhZ7gccPvPVdHkJ1rId6FFMd7jlYjg/XcQ/SsiS5YlMt5CntmQ2OQJIzu15PSN8JWujfydJiGQzUJbVVhcVqOUCPF1x7Rel0ODQvQCK8j1okDDdlIZDfpmJ26QE5BVmQEa0TaF1UuQ0xMY5voTg3gz2uwFl/69XU4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743447890; c=relaxed/simple;
-	bh=+q2jP3dA3VKzyABXTuBF1mbD3nM0+PnlxqtD9pv7Vhg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=scJ7rjwyITAJEezuJrwJ2NVxJ0Ek8sJkqqfg8thfl3h758Hs5fVE179rtiIiBJMs2qoBNyoTS10JC0oD7wjsDvwjobC59KKy0KTfVE++mmzEehyKxJy1eK0+ntXrARSqFd7/DXDvmoNrF8Ah277LKAy/3PGabSb0dNdaknm5d68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-7c5b2472969so488014085a.1;
-        Mon, 31 Mar 2025 12:04:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743447886; x=1744052686;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WGlH88loLOhaby14QKrsc+rUD7z6D+beYPeG7Yhhv3k=;
-        b=tAX5XDPZPsOaLaHLOJEx2E+snbauVz0/AOCy0Up4EYCEh3Lvi2F4WFDVdtUVnz5SAP
-         x9PC6DLXzzxcLWSefpb5zoj45G/B40CvHWC8PuzEOjm825cZ/G6R1G/v0cWuaa9DBzsm
-         e3REIK7DKhYP9+OvAhCRf51gAsljHhUziQH+iJGWBvE/q44CRA7vz9yJJSNtZEkvIZz3
-         mmDy3Im3bXOos6q9u52egyPn+jCRs03hkFMKdmVDuzy9ZMrm5PLIZIlEEXe50krAtUQX
-         JBrg5jxke0Hw0SUZ0u/2dDlAnGJtuWJ11xuCnZDBiVjv2jyrzJfmBaHMYWYcvKesbuXC
-         q2ug==
-X-Forwarded-Encrypted: i=1; AJvYcCVYhiddu257aVSOo8n5jjRpC4s2UJLp0/jrofjM2dxyXtA/XXMMu1xn63JM/KxUpfD4QKjpyQzyWtdF4yBDC7JvLMo=@vger.kernel.org, AJvYcCVmCWjiFA7OrdflQd6MJPAHcuqZhgjoGKhoXfP+iaUUnGQIALQknj5NpVdFw5n9Vh79EaI3GttoE7rR@vger.kernel.org
-X-Gm-Message-State: AOJu0YyzHLzZQuhl/dc5etyPfAtJDojKQtkqFz2h5UIAkHcEX/XBsXKT
-	XTT47nSkW4n4gsliN+Zw86WG9A+cqs6tXjuM0bIdsGf0rbOzm1vVII77xg8U
-X-Gm-Gg: ASbGncuBMmGr7/XvM8QojWall0I/BRWWASjNoEKApbQ8LMuIHXgOxmtqBSiqckYwx8T
-	5Hj4aX7fa6UjQ0py6Xlf33dUq1M4sh7yN1JTCThks+dqmD1wc1EfoHy39QzcsJzs+EG6OtUqp1y
-	tfixmH0/vzkr067ZQOWBaUKrCBg4NSwWk0E2z8wzHNfCu7Qp56YDILu2Vc5MggUxw0MPId9hgty
-	k+bh8Q4dyWzSP3zHERaNG6H4WjH6e9xx+y7E+66soEqQtr/n9HxJXsHTQ9iV4usQpuLuQvtRL9v
-	a4pQkoz7EV2+QLpmJgFY/zyjeGqS2H9ujhvawpanTN/2jteyi7G406ZjogqwmRemjNEut5691CJ
-	4xvkHsdcQRdE=
-X-Google-Smtp-Source: AGHT+IGJRadI9lopaJOrvSJ4d1UWNkz02xb97L37bUKZsAdkP4c4h/EEWTKiOzYFLhVDBTt3Fu4Hog==
-X-Received: by 2002:a05:620a:40c6:b0:7c5:4b91:6a41 with SMTP id af79cd13be357-7c6908aef84mr1464849985a.42.1743447886545;
-        Mon, 31 Mar 2025 12:04:46 -0700 (PDT)
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com. [209.85.222.182])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7c5f76abe42sm532266485a.52.2025.03.31.12.04.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 31 Mar 2025 12:04:46 -0700 (PDT)
-Received: by mail-qk1-f182.google.com with SMTP id af79cd13be357-7c55500d08cso430380285a.0;
-        Mon, 31 Mar 2025 12:04:46 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV5YO+7W7Ahn0bGNDwOvmpGSSzp4Gi4+Q7J0R8tcXyPQp34ltn28j5TynEoFSlg3+8PCRZBlJtoaYtcUQdRIC6hBjw=@vger.kernel.org, AJvYcCXcvRpUZFOPmjYuE2/vr/Z1+8S9Psj3gSyZWqug8CSVZJG3U5/2KtSAh/KZ1xrt4G4i4tSgJNlCfBMk@vger.kernel.org
-X-Received: by 2002:a05:620a:17a9:b0:7c5:4caa:21af with SMTP id
- af79cd13be357-7c6908cf48amr1373243885a.53.1743447885917; Mon, 31 Mar 2025
- 12:04:45 -0700 (PDT)
+	s=arc-20240116; t=1743447994; c=relaxed/simple;
+	bh=GSdezILBg9AMDpFKqDEOgXG/5H5Ir4ccpT5zJFC+l7w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HZcK8mQtFpGYr1NeEcVC35IdSF4n+jT8MTpR4jAksb48jBqhuyLKEeiNKoDDmoWGLDOEVqE3XXVtue310y0povy5kgnCKOPD9G+Yl/pKpD61emQ3/8BvPckhtP781wlagscIkcDzqZi/+Jh6UyCw6T8OlFB3BDls9FCDg5o58Gw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B9dVvoYO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6166C4CEE3;
+	Mon, 31 Mar 2025 19:06:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743447994;
+	bh=GSdezILBg9AMDpFKqDEOgXG/5H5Ir4ccpT5zJFC+l7w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=B9dVvoYO+m2E0z+eIzLPbDNzONgi8HajZJ+BveufehFXOOD6oJv0c5fhvHRdOyOEk
+	 4oP3K8nwcpRWbz8XdzdaLL20UzQWo/eiYnJonoV4T0v59MEZEv4uzZslVwABnOg+E8
+	 +ISP62fh4ynBERZPr7i7PMgTHf5mvRMiSLP1boea0CHoVE7QAxjjR/w5T848kiy/1x
+	 C9Jaaz3rEuekkkzW5HP5M9GgCYhdUwGm1W/67/Mjv6HDhA4ZDLR9C/JZfsm4okGO60
+	 G1XzRyeVM5RTbfUof1e0oBS9vYtvmv64to/JGdMk6n0+19T7HiAmkKM6BdZ07BljGd
+	 rmx+0kYv2bUUQ==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1tzKSz-000000004BU-2Amd;
+	Mon, 31 Mar 2025 21:06:37 +0200
+Date: Mon, 31 Mar 2025 21:06:37 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Cc: "Tudor, Laurentiu" <Laurentiu.Tudor1@dell.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	dmitry.baryshkov@oss.qualcomm.com,
+	Stephan Gerhold <stephan.gerhold@linaro.org>
+Subject: Re: [PATCH v2 1/1] arm64: dts: qcom: x1e80100-dell-xps-9345: Add
+ WiFi/BT pwrseq
+Message-ID: <Z-rnvSKEysdDyj4s@hovoldconsulting.com>
+References: <20250331073423.3184322-1-alex.vinarskis@gmail.com>
+ <20250331073423.3184322-2-alex.vinarskis@gmail.com>
+ <Z-pN1qloL2m4BWaq@hovoldconsulting.com>
+ <CAMcHhXq9W64MHhOV5i3U4t+ZfKNC_GaBq5X3ZN7VOLt0cjPQPg@mail.gmail.com>
+ <Z-p1uADNVAM9NcAW@hovoldconsulting.com>
+ <CAMcHhXqO2Ej3UAej9QodX1NNCHAk956++=oakPxx-MkpOucJ2Q@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250311113620.4312-1-biju.das.jz@bp.renesas.com>
- <20250311113620.4312-2-biju.das.jz@bp.renesas.com> <TYCPR01MB11332F064115080582332B78986AD2@TYCPR01MB11332.jpnprd01.prod.outlook.com>
- <CAMuHMdVy3B+i2p6unkX-n=7AYCfP5B8sW7F9GJi7URcvniGA2A@mail.gmail.com>
- <TYCPR01MB1133206083EC0249A827261EB86AD2@TYCPR01MB11332.jpnprd01.prod.outlook.com>
- <CAMuHMdUyY8SsUQEZwxdCK-ggPuYy8L_WwnUgq3Cj7oYiTcyNTQ@mail.gmail.com>
- <TY3PR01MB11346123B74D86590C0F8B9CD86AD2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <CAMuHMdWevyJ8Z4YWYx0rr=_TD0OTywbkPfNwRcw5k=yDV-i2Ow@mail.gmail.com> <TY3PR01MB11346E47B6455546AD1E6062886AD2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-In-Reply-To: <TY3PR01MB11346E47B6455546AD1E6062886AD2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 31 Mar 2025 21:04:33 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWucnfe_r63Bio0-k9nxzBEgpWHmatR8y8VEUHGzSe7MA@mail.gmail.com>
-X-Gm-Features: AQ5f1Jp_imMhTENJdVUuLCYIlIinAm7qix1a9AudUDGdfJZbTJOZU3umRWXXPMU
-Message-ID: <CAMuHMdWucnfe_r63Bio0-k9nxzBEgpWHmatR8y8VEUHGzSe7MA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/9] dt-bindings: memory: Document RZ/G3E support
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mark Brown <broonie@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Stephen Boyd <sboyd@kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	"biju.das.au" <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMcHhXqO2Ej3UAej9QodX1NNCHAk956++=oakPxx-MkpOucJ2Q@mail.gmail.com>
 
-Hi Biju,
+On Mon, Mar 31, 2025 at 06:51:03PM +0200, Aleksandrs Vinarskis wrote:
+> On Mon, 31 Mar 2025 at 13:00, Johan Hovold <johan@kernel.org> wrote:
+> > On Mon, Mar 31, 2025 at 11:38:25AM +0200, Aleksandrs Vinarskis wrote:
+> > > On Mon, 31 Mar 2025 at 10:09, Johan Hovold <johan@kernel.org> wrote:
+> > > > On Mon, Mar 31, 2025 at 08:33:47AM +0100, Aleksandrs Vinarskis wrote:
+> > > > > Add the WiFi/BT nodes for XPS and describe the regulators for the WCN7850
+> > > > > combo chip using the new power sequencing bindings. All voltages are
+> > > > > derived from chained fixed regulators controlled using a single GPIO.
+> > > > >
+> > > > > Based on the commit d09ab685a8f5 ("arm64: dts: qcom: x1e80100-qcp: Add
+> > > > > WiFi/BT pwrseq").
 
-On Mon, 31 Mar 2025 at 20:29, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > From: Geert Uytterhoeven <geert@linux-m68k.org>
-> > On Mon, 31 Mar 2025 at 17:33, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > > > From: Geert Uytterhoeven <geert@linux-m68k.org> On Mon, 31 Mar 2025
-> > > > at 16:34, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > > > > > From: Geert Uytterhoeven <geert@linux-m68k.org> On Mon, 31 Mar
-> > > > > > 2025 at 15:54, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > > > > > > > From: Biju Das <biju.das.jz@bp.renesas.com> Document support
-> > > > > > > > for the Expanded Serial Peripheral Interface (xSPI)
-> > > > > > > > Controller in the Renesas RZ/G3E
-> > > > > > > > (R9A09G047) SoC.
-> > > > > > > >
-> > > > > > > > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> > > > > > > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > > > >
-> > > > > > > > --- /dev/null
-> > > > > > > > +++ b/Documentation/devicetree/bindings/memory-controllers/r
-> > > > > > > > +++ enes
-> > > > > > > > +++ as,r
-> > > > > > > > +++ zg3e
-> > > > > > > > +++ -xspi.yaml
-> > > > > >
-> > > > > > > > +    spi@11030000 {
-> > > > > > > > +        compatible = "renesas,r9a09g047-xspi";
-> > > > > > > > +        reg = <0x11030000 0x10000>, <0x20000000 0x10000000>;
-> > > > > > > > +        reg-names = "regs", "dirmap";
-> > > > > > > > +        interrupts = <GIC_SPI 228 IRQ_TYPE_EDGE_RISING>,
-> > > > > > > > +                     <GIC_SPI 229 IRQ_TYPE_EDGE_RISING>;
-> > > > > > > > +        interrupt-names = "pulse", "err_pulse";
-> > > > > > > > +        clocks = <&cpg CPG_MOD 0x9f>, <&cpg CPG_MOD 0xa0>,
-> > > > > > > > +                 <&cpg CPG_MOD 0xa1>, <&cpg CPG_MOD 0xa1>;
-> > > > > > >
-> > > > > > > On the next version I am going to update spix2 clk as <&cpg
-> > > > > > > CPG_CORE R9A09G047_SPI_CLK_SPIX2>
+> > > > > With that fixed commit f5b788d0e8cd ("arm64: dts: qcom: Add support for
+> > > > > X1-based Dell XPS 13 9345")
+> > > >
+> > > > Not sure what happened here.
+> > >
+> > > Bluetooth and WLAN definitions were missing, as at the time I only
+> > > knew the UART port being used for bluetooth, and was missing
+> > > everything else to describe it.
 > >
-> > According to the RZ/G3E clock system diagram, (the parent of) clk_spi is derived from (the parent of)
-> > clk_spix2, not the other way around?
-> > So you can model clk_spi as a fixed divider clock with parent clk_spix2 and factor two.  I.e. provide
-> > a new core clock R9A09G047_SPI_CLK_SPI instead of your proposed R9A09G047_SPI_CLK_SPIX2?
-    ^^^^
+> > Ah, ok. The above sentence looked like some left-over copy paste. I
+> > guess you don't need to mention it at all since this does not seem to
+> > warrant a proper Fixes tag.
+> 
+> It was a suggestion from Dmitry in v1. Though indeed it does not
+> warrant a proper Fixed tag, as it is something  that was left out from
+> the initial series, I think it's fine to keep it like this, if it's
+> okay with you?
 
-> > > > > > What's spix2 clk? Ah, re-adding dropped line:
-> > > > > >
-> > > > > > > > +        clock-names = "ahb", "axi", "spi", "spix2";
+I think you misinterpreted Dmitry here. He just said that after you
+added the reference to the commit you based this on to the commit
+message you could add his reviewed-by tag ("With that fixed: R-B: Dmitry
+...")
 
-> Can you please share your thoughts to handle this?
+	https://lore.kernel.org/all/ou7w4hvbbz72nzrm45gfhpq2uzkuwpfudqeh2o34tcnbnazxgz@glmuryu5dh3s/
 
-See above ^^^^ ;-)
+As it stands it's hard to understand what that sentence means and why
+it is there (looks like a copy paste mistake). I suggest you just drop
+it.
 
-> 1) Gate only spi clk
-
-Gate only clk_spix2, which is the parent of clk_spi.
-So enabling any of them will (propagate to) enable clk_spix2,
-which uses the hardware gate.
-
-> 2) For monitoring use both clock
-
-Check only clk_spix2 for monitoring.
-
-> 3) Clock specifier needs two distinct entries. So that consumer will get
->    proper rates for both clocks.
-
-clk_spi would be a separate fixed-divider clock.
-
-Does that make sense?
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Johan
 
