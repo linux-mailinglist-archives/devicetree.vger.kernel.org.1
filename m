@@ -1,131 +1,219 @@
-Return-Path: <devicetree+bounces-161916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36D15A75F0B
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 08:53:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3756FA75F13
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 08:54:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DAD61167AEF
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 06:53:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B0473A80F9
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 06:54:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 700C718B48B;
-	Mon, 31 Mar 2025 06:53:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IuDv8R2S"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 831A0193079;
+	Mon, 31 Mar 2025 06:54:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF76638F80;
-	Mon, 31 Mar 2025 06:53:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85D8A16FF37;
+	Mon, 31 Mar 2025 06:54:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743403985; cv=none; b=DKjUrLsRTOPkk91zo1XRIYGrqz5Nglcgz/weFib0X9vQShRtU+J9akUdr3skrkJUv5yycn9ecdk/sojNdZ5+PMhSc8G5GVkw9FDigRmSCJuHq17L/O5PrrOtAwshFtKiNoIZBW7ih0gnPnpFqpyNMdYuMLVrgJyuduiTrpR6lV4=
+	t=1743404050; cv=none; b=upCAUDYiL0dwOH89yCFHgoBUlXdodFnrtMYxmBFIZ9ROMrhS8YY0Gfq9ZlMOlyZoxXPQcMLm9wZz8ozsbMLpaN1cJyJxATpvfKWWOi5ibktiZsaGL+VcHQNc0dy6OBv1zI8DF/u0rVdZmXEc3VKbsYfWW5j+PbKgCoIVoI+gpc0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743403985; c=relaxed/simple;
-	bh=yj/pxwHPLCCFPyOXDGMHSC1v/c4IiWOY0gjc+KrXFV0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=mPjY2Noy7tlMAkAbKtpnQ09E3oz3qgBcWfbmZpppfyVCisAiPyE+MkE1JPq3AdaovFASj4WpELzK6Vu8wcx1l/p91GoCab5xrSXsO/w4Xgd/XhxEZt0hJI2kwrdmU5luDvZfSb+PweEKqsvXarBcYvJq3ZPPA0trpQqKrzsLsTg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IuDv8R2S; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52V6kcHs014189;
-	Mon, 31 Mar 2025 06:52:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	BZ+YTWORFfoODnOFnZUutcfl5JuliNWq21uLksy5p30=; b=IuDv8R2Sogzg7psJ
-	8aRBkWboIffzBLq1eymTkCz0zq1XUhM5NV0fPmC2EuBg+WWSO4dIOb1Q6bkw++II
-	sMr/tWLFpa6pPksJ4e90feoIPsJ3VjUOqpfOUjyVRh6vp1LNEgs0iKHHSsXaVrfU
-	4GrjvbliEEPV8pTyiHN7WuhDSX80PcKMWcnDvhCbUgnVXSqo6A7XGtSycvRHoLaU
-	oFvFwZiQ38ZTJ63ecIAwvvkMLjy4Rf7E6W0n6CWXVQq9cH+p/ihuWbC1Y+9LXN2c
-	sjG7tY5lg+jyAylpdEBw1iM1tmH5CAMzQ791mAJtq+imWlEO6vH3hDtwiIZaPynj
-	o3UI5A==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45pa1num8a-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 31 Mar 2025 06:52:55 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 52V6qt99006487
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 31 Mar 2025 06:52:55 GMT
-Received: from [10.216.38.66] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 30 Mar
- 2025 23:52:50 -0700
-Message-ID: <c6370b99-efde-46ab-a1a4-65b979ca2dfa@quicinc.com>
-Date: Mon, 31 Mar 2025 12:22:47 +0530
+	s=arc-20240116; t=1743404050; c=relaxed/simple;
+	bh=83xwarS4GyKOYWKeFmh1mXV82tPvIzMQuWi5zo8/xsA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=tmhxj7zVYqf2ThLBUyJKVnswrSCS6PhGAx7zEEWHnk1QDT+lkCfjln2N8YSiNYFA/MMvsprNJvvbDweAukp6oeUPLrTotepGbyAdCB7o8LmCpHte6Z157QmwUtbJD8kKJ7Pk00sxabzNdITu1wSOER1duqf2R+wSLhQtT9MH7ZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [223.64.68.198])
+	by gateway (Coremail) with SMTP id _____8AxaeEMPOpn0yisAA--.47071S3;
+	Mon, 31 Mar 2025 14:54:04 +0800 (CST)
+Received: from localhost.localdomain (unknown [223.64.68.198])
+	by front1 (Coremail) with SMTP id qMiowMDxu8QJPOpnYuFoAA--.50182S2;
+	Mon, 31 Mar 2025 14:54:02 +0800 (CST)
+From: Binbin Zhou <zhoubinbin@loongson.cn>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Juxin Gao <gaojuxin@loongson.cn>
+Cc: Huacai Chen <chenhuacai@kernel.org>,
+	Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-pwm@vger.kernel.org,
+	Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH v10 0/2] pwm: Introduce pwm driver for the Loongson family chips
+Date: Mon, 31 Mar 2025 14:53:48 +0800
+Message-ID: <cover.1743403075.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: i3c: Add Qualcomm I3C master
- controller
-To: Krzysztof Kozlowski <krzk@kernel.org>, <alexandre.belloni@bootlin.com>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <jarkko.nikula@linux.intel.com>, <linux-i3c@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <andersson@kernel.org>, <konradybcio@kernel.org>
-References: <20250326141641.3471906-1-quic_msavaliy@quicinc.com>
- <20250326141641.3471906-2-quic_msavaliy@quicinc.com>
- <991b0652-76f2-40d6-b49b-1e6f76e254ac@kernel.org>
- <661e1a21-0f3a-497a-9b3b-fab284e30d19@quicinc.com>
- <36b67f9c-5905-4fa6-8190-ab980850b3a2@kernel.org>
- <e997bd15-728c-4316-8050-d461f115fd9f@quicinc.com>
- <04945ad2-1372-4c73-beae-fc6449fb9a76@kernel.org>
- <838dfc8d-24c3-4f03-9c24-863259bb22b1@quicinc.com>
- <b68559e6-fc2b-493b-9f37-3125ff924a65@kernel.org>
-Content-Language: en-US
-From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-In-Reply-To: <b68559e6-fc2b-493b-9f37-3125ff924a65@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: vNeAZpDF50fZftzFKNSLKpbkfEJNRyTU
-X-Proofpoint-GUID: vNeAZpDF50fZftzFKNSLKpbkfEJNRyTU
-X-Authority-Analysis: v=2.4 cv=MPlgmNZl c=1 sm=1 tr=0 ts=67ea3bc7 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Vs1iUdzkB0EA:10 a=yguuy8DFeHIEintHG0IA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-31_03,2025-03-27_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- malwarescore=0 suspectscore=0 phishscore=0 spamscore=0 clxscore=1015
- bulkscore=0 mlxlogscore=999 impostorscore=0 mlxscore=0 adultscore=0
- priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503310047
+Content-Type: text/plain; charset=a
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:qMiowMDxu8QJPOpnYuFoAA--.50182S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
+	ZEXasCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29K
+	BjDU0xBIdaVrnRJUUU9lb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26c
+	xKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vE
+	j48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxV
+	AFwI0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7Cj
+	xVAFwI0_Gr1j6F4UJwAS0I0E0xvYzxvE52x082IY62kv0487M2AExVAIFx02aVAFz4v204
+	v7Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IY
+	x2IY67AKxVWUXVWUAwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4
+	x0Y48IcxkI7VAKI48JM4kE6I8I3I0E14AKx2xKxVC2ax8xMxAIw28IcxkI7VAKI48JMxC2
+	0s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI
+	0_Jr0_Jr4lx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE
+	14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw20EY4v20x
+	vaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVWU
+	JVW8JbIYCTnIWIevJa73UjIFyTuYvjxU7_MaUUUUU
 
-Thanks Krzysztof  !
+Hi all:
 
-On 3/30/2025 3:12 PM, Krzysztof Kozlowski wrote:
-> On 29/03/2025 15:31, Mukesh Kumar Savaliya wrote:
->> dt-binding file name: qcom,i3c-geni-qcom.yaml
-> 
-> No. I already asked to use compatible as filename. Don't create your own
-> rules.
-> 
-okay, no problem. I was trying to follow previous i2c,spi, serial uart.
-Let me make a cleanup patch for them also next as mentioned earlier.
+This patchset introduce a generic PWM framework driver for Loongson family.
+Each PWM has one pulse width output signal and one pulse input signal to be measured.
 
-For i3c, compatible will be "geni-i3c" as suggested by you , Rob.
-dt-binding filename  "qcom,i3c-geni.yaml" OR "qcom,geni-i3c.yaml" ?
->> compatible = "qcom,geni-i3c";
->>>
->>> Best regards,
->>> Krzysztof
->>
-> 
-> 
-> Best regards,
-> Krzysztof
+It can be found on Loongson-2K series cpus and Loongson LS7A bridge chips.
+
+Thanks.
+
+-------
+V10:
+patch (1/2):
+ - Put my s-o-b tag last;
+ - Add \n between the includes and the dt node.
+
+patch (2/2):
+ - Put my s-o-b tag last;
+ - Add comment about the hardware complete the currently running period
+   when changing settings or disabling;
+ - Add _REG to the prefix of the register field definitions, such as
+   LOONGSON_PWM_CTRL_EN -> LOONGSON_PWM_CTRL_REG_EN;
+ - Mark to_pwm_loongson_ddata function as __pure;
+ - Handling "ddata->clk_rate" assertions in probe;
+ - To guarantee that mul_u64_u64_div_u64() results in a value that fits into an u32.
+
+Link to V9:
+https://lore.kernel.org/all/cover.1739784071.git.zhoubinbin@loongson.cn/
+
+V9:
+patch(2/2):
+ - Add error message to devm_clk_rate_exclusive_get();
+ - Make all errors start with a capital letter;
+ - Drop explicit initialization of the CTRL register in probe();
+ - Add pwm->state.enabled check in pwm_loongson_suspend();
+ - Drop pwm_loongson_suspend_store{ }.
+
+Link to V8:
+https://lore.kernel.org/all/cover.1733823417.git.zhoubinbin@loongson.cn/
+
+V8:
+patch (2/2):
+ - Rebase on pwm/for-next;
+ - Drop inappropriate comments in “Limitations”;
+ - Drop HZ_PER_KHZ for readability;
+ - NANOHZ_PER_HZ -> NSEC_PER_SEC;
+ - Rewrite the clk fetch section to look more flexible and not have to
+   care about ACPI or DT;
+ - Add explicit initialization of the CTRL register in probe().
+
+Link to V7:
+https://lore.kernel.org/all/cover.1729583747.git.zhoubinbin@loongson.cn/
+
+V7:
+Thanks for Sean's advice.
+patch (2/2):
+ - Set chip->atomic to keep pwm_apply_atomic() can be used with the pwm.
+ - Test with CONFIG_PWM_DEBUG and CONFIG_DEBUG_ATOMIC_SLEEP enabled.
+
+Link to V6:
+https://lore.kernel.org/all/cover.1728463622.git.zhoubinbin@loongson.cn/
+
+V6:
+patch (2/2):
+ - Rebase on pwm/for-next;
+ - Add Reference Manual;
+ - Shortcut if !pwm->state.enabled;
+ - When state->enabled is true, unconditionally execute
+   pwm_loongson_set_polarity() to avoid that the polarity register is
+   not set correctly.
+
+Link to V5:
+https://lore.kernel.org/all/cover.1720516327.git.zhoubinbin@loongson.cn/
+
+V5:
+patch (2/2):
+ - Rebase on pwm/for-next;
+ - Test with PWM_DEBUG enabled.
+ - In pwm_loongson_apply(), the pwm state is determined before the pwm
+   polarity, avoid test failures when PWM_DEBUG is enabled;
+ - Added DIV64_U64_ROUND_UP in pwm_loongson_get_state() to avoid
+   precision loss and to avoid test failures when PWM_DEBUG is enabled.
+
+Link to V4:
+https://lore.kernel.org/all/cover.1716795485.git.zhoubinbin@loongson.cn/
+
+V4:
+patch (2/2):
+ - Rebase on pwm/for-next;
+ - Addressed Uwe's review comments:
+   - Make use of devm_pwmchip_alloc() function;
+   - Add Limitations description;
+   - Add LOONGSON_ prefix for Loongson pwm register defines;
+   - Keep regs written only once;
+   - Rewrite duty/period calculation;
+   - Add dev_err_probe() in .probe();
+   - Fix some code style.
+
+Link to V3:
+https://lore.kernel.org/linux-pwm/cover.1713164810.git.zhoubinbin@loongson.cn/
+
+V3:
+patch (1/2):
+ - Add Reviewed-by tag from Krzysztof, thanks.
+patch (2/2):
+ - Several code stlye adjustments, such as line breaks.
+
+Link to V2:
+https://lore.kernel.org/all/cover.1712732719.git.zhoubinbin@loongson.cn/
+
+v2:
+- Remove the dts-related patches and update dts at once after all
+relevant drivers are complete.
+patch (1/2):
+ - The dt-binding filename should match compatible, rename it as
+   loongson,ls7a-pwm.yaml;
+ - Update binding description;
+ - Add description for each pwm cell;
+ - Drop '#pwm-cells' from required, for pwm.yaml makes it required already.
+
+Link to v1:
+https://lore.kernel.org/linux-pwm/cover.1711953223.git.zhoubinbin@loongson.cn/
+
+Binbin Zhou (2):
+  dt-bindings: pwm: Add Loongson PWM controller
+  pwm: Add Loongson PWM controller support
+
+ .../bindings/pwm/loongson,ls7a-pwm.yaml       |  67 ++++
+ MAINTAINERS                                   |   7 +
+ drivers/pwm/Kconfig                           |  12 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-loongson.c                    | 290 ++++++++++++++++++
+ 5 files changed, 377 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/loongson,ls7a-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-loongson.c
+
+
+base-commit: 6df320abbb40654085d7258de33d78481e93ac8d
+-- 
+2.47.1
 
 
