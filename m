@@ -1,200 +1,160 @@
-Return-Path: <devicetree+bounces-161998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-161999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AB8DA764F5
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 13:28:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E9B4A76519
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 13:43:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AFDCC3A4C2E
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 11:28:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 972053AA5F3
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 11:42:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B33E1E1041;
-	Mon, 31 Mar 2025 11:28:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A25DB1D86DC;
+	Mon, 31 Mar 2025 11:42:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="yg4B3urw";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="OWIRKvXT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OcAwTnXa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a8-smtp.messagingengine.com (fout-a8-smtp.messagingengine.com [103.168.172.151])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C9761DE4DB;
-	Mon, 31 Mar 2025 11:28:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72C261D79BE;
+	Mon, 31 Mar 2025 11:42:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743420526; cv=none; b=dtj0nauO0O6fzdawXF0J3GIutyMGVpI+1pTh+vYx98/p8dqlpPjRU23JJIKw6gT6eDiIrZB8Qa1vYXlnnExToS+GsL55dPUaekQOa4N/2hUVQzmfpns1JJzdDr1cudZGGVUcwQKoayCw22QYU57344oaN5X5vTVk4V2xngbihNo=
+	t=1743421376; cv=none; b=V+xmv/fsIhL31KOZUxBsZzIycpl3fzF0H8qw/gISHzXNjUU9lxzWwTLLWt0vtUtA8J+xVfwmi48ACUWVZcMqgCEWCCGqXeEqNvuTigkWWAzX0ocIGztwYzKNeTiSKsxWPmWZIfyTvrdRgA8nURkjFXNIB6AH9MOjRKrjGpuNSGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743420526; c=relaxed/simple;
-	bh=D7x353QDKvTqsO0klPni1BKRbEzeNAwfYB/SF8bzz0w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BAAoJ6uL2fdkv4VB0VSmmxlu059mk4Dex9eERNUvljIS5B2/WubmS2gC557mgRAq2CL6rgwj9mBlIIFINwhSe32bM3XsPBgHMYb7ocjjaU5NFeRRyxF/CJJLd9U9V0uAbwtIail11MPLxIryHQomMO/tEi9fr5HEP3zM6Nt1Ilw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=yg4B3urw; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=OWIRKvXT; arc=none smtp.client-ip=103.168.172.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
-Received: from phl-compute-11.internal (phl-compute-11.phl.internal [10.202.2.51])
-	by mailfout.phl.internal (Postfix) with ESMTP id A226D138441D;
-	Mon, 31 Mar 2025 07:28:43 -0400 (EDT)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
-  by phl-compute-11.internal (MEProxy); Mon, 31 Mar 2025 07:28:43 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:subject
-	:subject:to:to; s=fm3; t=1743420523; x=1743506923; bh=R1fvNUJM+1
-	07giQNxDtASFpEZ6IxMM9QfRNpZfhOjos=; b=yg4B3urwknbAULMsaA5bZ4IPUf
-	gAjFsQe/RePHsI7+kgiJUQT6MdAmvc7iRMQY6ERi0rKkpd3cAUxByDOrq/bSFP2T
-	qTHeBro9f4HsdZ1XtyGNOHxP2D5DA1cRrSPgktTj48J/8ojuitjY6k7MHKezq36X
-	eH5bqg4le7WaCIyxCj5dvwbOpM1wfQlRGvMz8bWk3gk8X0MV2TEb+n4BXlyEBB8t
-	jY8FqCzoRBph37/VRAHMdDM40wl4SWHPbnWdIRih6kvMDFl9t7GBmFkuUSStTrde
-	snAHjwIG9FAZVAiwA1xcx1zZlbL2fscmubnCucJXH7QOVKg2uL7Lx86CXaoA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
-	1743420523; x=1743506923; bh=R1fvNUJM+107giQNxDtASFpEZ6IxMM9QfRN
-	pZfhOjos=; b=OWIRKvXTZ2yKPtYThutu5NLArnMgCvUKSuevNZ4JJqmmJpwG9jO
-	cPo3Adu78HTleVeiMMSbsdsg7JZ98fSYO6BAGkBjdWfHnMjKjiR5tVlQssgLK5Ff
-	VqumalrBGOpw+9y6dBGrt2+PjhcRGptLitimuNX1d+N9qoNQ0qtWtMFrw2u76oHs
-	A0Mu1Lcdjotob5NOOH4p11eU0b8hgNJXO1wbITfmjU66sbtg0frsO4rNbI8zdNl9
-	t9lwlTM5RhCIC9Y+9jsoMlfNsXUApoDy0Ahuw39nyOpa7w9gQQ0vRCXGSnZgj8Ot
-	We9+m34LkwDxB77dLWGvlbf67ovPS7GkbKQ==
-X-ME-Sender: <xms:anzqZzd-qCZE0w9Wy64ClmOY0eIN4MMvmGg2rtzv45Hiw20HROJ5Kw>
-    <xme:anzqZ5NDzSt9jFp-tb2xWDX47cNngT_7fbJj2yrvHqc9U-uZTPxWjjEShhAqJxtin
-    9lazJj-qVJeDyaWHWA>
-X-ME-Received: <xmr:anzqZ8gvAM76vioAaZTQamMO-hWgbuk6PKDD-5uQZ64yt9pqqx0Fk9Nq2a0SaC2O0u9mcofh2cUQ71E3zEJFK7QYaGtuohWP3w>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddujeelkedtucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
-    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
-    gvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggujgesthdtredttddt
-    jeenucfhrhhomheplfgrnhhnvgcuifhruhhnrghuuceojhesjhgrnhhnrghurdhnvghtqe
-    enucggtffrrghtthgvrhhnpefgudeuffelfeekgeeukedtheekjeettdfftddujefhvdeh
-    tefgiefgledtueefjeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsth
-    gvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhesjhgrnhhnrghurdhn
-    vghtpdhnsggprhgtphhtthhopeduhedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtoh
-    epmhgriieskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgv
-    rhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtoheplhhinh
-    hugidqphgtihesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghvihgt
-    vghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqd
-    hkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopegrshgrhhhi
-    sehlihhsthhsrdhlihhnuhigrdguvghvpdhrtghpthhtoheprghlhihsshgrsehrohhsvg
-    hniiifvghighdrihhopdhrtghpthhtohepmhgrrhgtrghnsehmrghrtggrnhdrshhtpdhr
-    tghpthhtohepshhvvghnsehsvhgvnhhpvghtvghrrdguvghv
-X-ME-Proxy: <xmx:anzqZ090RaJB0KMMXF6aBKMES2LBwgMbJdMsY1dWT5npQOfjTCZ1tg>
-    <xmx:anzqZ_tDKXVnKqYlOPo1yb0tDMevULx8eeul9ci0UDMw6ecVEcCMoA>
-    <xmx:anzqZzEQ8MtXMAAAsJ16bqb7kD2mN6Z7El9ch70--5pDorzPx6LlMA>
-    <xmx:anzqZ2N8jGFQqhwox4Bsl57H3wd7xqdYwnqYWcUR_ow1a1qrrBpaWA>
-    <xmx:a3zqZ3PHDwJ0q8FmW-ovuhKONEvhW69bqgxEgulDoTgHzPkkRHGcfgJZ>
-Feedback-ID: i47b949f6:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 31 Mar 2025 07:28:41 -0400 (EDT)
-Date: Mon, 31 Mar 2025 13:28:38 +0200
-From: Janne Grunau <j@jannau.net>
-To: Marc Zyngier <maz@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	asahi@lists.linux.dev, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH v2 00/13] PCI: apple: Add support for t6020
-Message-ID: <20250331112838.GA246397@robin.jannau.net>
-References: <20250325102610.2073863-1-maz@kernel.org>
+	s=arc-20240116; t=1743421376; c=relaxed/simple;
+	bh=myufhgnLCToJtD6oqnZVDewrsMSXadLudT3o18eA5PE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rkaGjBeENL0BTWQMvJhpl7FQzM620MRo9+tXb6/cg1R/hURqxTinXU3if1T4O4ECLA/oggl0HIr9o8N1J0h8qdPK0okHNh5KctTuQFX5ryYATgFdeIV06JScnS9yMB5FY83pVxVxqyH8WTaZJVtR1WBgCkmYMBVKvnYVnhouGSs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OcAwTnXa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF556C4CEE3;
+	Mon, 31 Mar 2025 11:42:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743421375;
+	bh=myufhgnLCToJtD6oqnZVDewrsMSXadLudT3o18eA5PE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=OcAwTnXaKy9kMGIDISk/XEXdxPnb0NXpJSjyzoLhWdz6/aCP8zkb+aCnnBZvJ8X1m
+	 3qZJYPKqmSNPUJlipqP6WNrS9Bcjy1x5pj9so+XLJN/ma8V2dm5MdNQipadsBntSnh
+	 Kf8OA1vAQikiFmB4uR+zpYhPO3aryTqQnfMrnnRn6djHG9fh3Mn9fevU6pEkoKb7+a
+	 645bkmX3KwzGzl4wVjpm81n17eJpy0Z5ns1nQdcCf+WRFzaqCnNR/yt7qhFirN9769
+	 9X3XrRZPSqPrSiD9iGD51aQqxn7tG3r9lskGHql6rLJLRfN1/PUi3t97RIE7Gcmvxs
+	 Ca4xvGvVJDtaQ==
+Message-ID: <b14718f2-add3-436d-95a5-908eb9217120@kernel.org>
+Date: Mon, 31 Mar 2025 13:42:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250325102610.2073863-1-maz@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: watchdog: Add NXP Software Watchdog
+ Timer
+To: Daniel Lezcano <daniel.lezcano@linaro.org>, wim@linux-watchdog.org
+Cc: linux@roeck-us.net, linux-watchdog@vger.kernel.org,
+ linux-kernel@vger.kernel.org, S32@nxp.com,
+ Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>,
+ Thomas Fossati <thomas.fossati@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>
+References: <20250328151516.2219971-1-daniel.lezcano@linaro.org>
+ <c433c28d-c88d-4647-b472-7bc81b332d8c@kernel.org>
+ <0638eb8c-d87f-44aa-9f1c-eee529b1e1a1@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <0638eb8c-d87f-44aa-9f1c-eee529b1e1a1@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Mar 25, 2025 at 10:25:57AM +0000, Marc Zyngier wrote:
-> As Alyssa didn't have the bandwidth to deal with this series, I have
-> taken it over. All bugs are therefore mine.
+On 31/03/2025 09:57, Daniel Lezcano wrote:
+> On 29/03/2025 06:04, Krzysztof Kozlowski wrote:
+>> On 28/03/2025 16:15, Daniel Lezcano wrote:
+>>> +description:
+>>> +  The System Timer Module supports commonly required system and
+>>> +  application software timing functions. STM includes a 32-bit
+>>> +  count-up timer and four 32-bit compare channels with a separate
+>>> +  interrupt source for each channel. The timer is driven by the STM
+>>> +
+>>> +allOf:
+>>> +  - $ref: watchdog.yaml#
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - nxp,s32g-wdt
+>> This wasn't tested, so limited review - this also has wrong compatible,
+>> There is no such soc as s32g in the kernel. If that's a new soc, come
+>> with proper top-level bindings and some explanation, because I am sure
+>> previously we talked with NXP that this is not s32g but something else.
 > 
-> The initial series [1] stated:
+> If I refer to Documentation/devicetree/bindings/arm/fsl.yaml
 > 
-> "This series adds T6020 support to the Apple PCIe controller. Mostly
->  Apple shuffled registers around (presumably to accommodate the larger
->  configurations on those machines). So there's a bit of churn here but
->  not too much in the way of functional changes."
+> We found the entries:
 > 
-> The biggest change is affecting the ECAM layer, allowing an ECAM
-> driver to provide its own probe function instead of relying on the
-> .init() callback to do the work. The ECAM layer can therefore be used
-> as a library instead of a convoluted driver.
+>        - description: S32G2 based Boards
+>          items:
+>            - enum:
+>                - nxp,s32g274a-evb
+>                - nxp,s32g274a-rdb2
+>            - const: nxp,s32g2
 > 
-> The rest is a mix of bug fixes, cleanups, and required abstraction.
+>        - description: S32G3 based Boards
+>          items:
+>            - enum:
+>                - nxp,s32g399a-rdb3
+>            - const: nxp,s32g3
 > 
-> This has been tested on T6020 (M2-Pro mini) and T8102 (M1 mini).
+> I guess it should nxp,s32g2-wdt and nxp,s32g3-wdt
 > 
-> * From v1[1]:
-> 
->   - Described the PHY registers in the DT binding
-> 
->   - Extracted a ecam bridge creation helper from the host-common layer
-> 
->   - Moved probing into its own function instead of pci_host_common_probe()
->     
->   - Moved host-specific data to the of_device_id[] table
-> 
->   - Added dynamic allocation of the RID/SID bitmap
-> 
->   - Fixed latent bug in RC-generated interrupts
-> 
->   - Renamed reg_info to hw_info
-> 
->   - Dropped useless max_msimap
-> 
->   - Dropped code being moved around without justification
-> 
->   - Re-split some of the patches to follow a more logical progression
-> 
->   - General cleanup to fit my own taste
-> 
-> [1] https://lore.kernel.org/r/20250211-pcie-t6-v1-0-b60e6d2501bb@rosenzweig.io
-> 
-> Alyssa Rosenzweig (1):
->   dt-bindings: pci: apple,pcie: Add t6020 compatible string
-> 
-> Hector Martin (6):
->   PCI: apple: Fix missing OF node reference in apple_pcie_setup_port
->   PCI: apple: Move port PHY registers to their own reg items
->   PCI: apple: Drop poll for CORE_RC_PHYIF_STAT_REFCLK
->   PCI: apple: Use gpiod_set_value_cansleep in probe flow
->   PCI: apple: Abstract register offsets via a SoC-specific structure
->   PCI: apple: Add T602x PCIe support
-> 
-> Janne Grunau (1):
->   PCI: apple: Set only available ports up
-> 
-> Marc Zyngier (5):
->   PCI: host-generic: Extract an ecam bridge creation helper from
->     pci_host_common_probe()
->   PCI: ecam: Allow cfg->priv to be pre-populated from the root port
->     device
->   PCI: apple: Move over to standalone probing
->   PCI: apple: Dynamically allocate RID-to_SID bitmap
->   PCI: apple: Move away from INTMSK{SET,CLR} for INTx and private
->     interrupts
-> 
->  .../devicetree/bindings/pci/apple,pcie.yaml   |  11 +-
->  drivers/pci/controller/pci-host-common.c      |  24 +-
->  drivers/pci/controller/pcie-apple.c           | 241 +++++++++++++-----
->  drivers/pci/ecam.c                            |   2 +
->  include/linux/pci-ecam.h                      |   2 +
->  5 files changed, 204 insertions(+), 76 deletions(-)
+Yes, with one being the fallback.
 
-Whole series is
-Tested-by: Janne Grunau <j@jannau.net>
-on t6020 and t8103 based Apple silicon devices.
-
-ciao
-Janne
+Best regards,
+Krzysztof
 
