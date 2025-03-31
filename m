@@ -1,218 +1,84 @@
-Return-Path: <devicetree+bounces-162112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E51F1A76FAF
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 22:53:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BC6BA76FCF
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 23:01:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 343D33A4BDB
-	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 20:53:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3D1E1675E9
+	for <lists+devicetree@lfdr.de>; Mon, 31 Mar 2025 21:01:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37E6921B180;
-	Mon, 31 Mar 2025 20:53:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E090221147A;
+	Mon, 31 Mar 2025 21:01:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="mFeBsIAX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WGCGKDjt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F00C211A0D;
-	Mon, 31 Mar 2025 20:53:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B46FC13D8A4;
+	Mon, 31 Mar 2025 21:01:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743454429; cv=none; b=ab3OLttx6hoNvXCyc17oeNYOe/M4JRiFi2hrHbcFC4hcODzvS6Ip8dwKZMqwrJgtssKq1cZ7TH50eQYWTHah4BRIgog1AZ84HlGWMj2weE/0GLhIgAYfoYpFIIzBapJR3sC0m2OgYgcukTRX7Fujhd6wE1o1AwQZ3ZhacHlnsyM=
+	t=1743454874; cv=none; b=Hv8K8CyOHv8GpTGrM+4w2G7sYU0/g93ipSYm419ThzdO0rvzRfsFFr9GWJ9OZ+jSiuc4/hkahytdW2WVk++aLIWE7/o6YkbAy2Imqc5yAQ5Mrx05nCgHYAHpZ+t6nObVG6u/KJyB8mR6nm9YA2FG/ynqzA31KMobpBjIglUZ86I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743454429; c=relaxed/simple;
-	bh=PlrihfsL/iZRpUfrFlCaZmov095QgqCWLSORVYV/ihg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lyvvTEZlgCtu7P0qntOJ9uTaJjJcH3lKrcQm2DWVNCbr5Vb4boaBqztDDahq2E7TDkL4bqhgCywUE2RxNEy8FfXiEkePAcJbpM05+UkaEfcnDsmMuU3l11GXoY354eXpVVoqw2NQvmjbEUJvGtM9rOse76eMJ4E1quE9PzuC4ZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=mFeBsIAX; arc=none smtp.client-ip=212.227.15.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1743454420; x=1744059220; i=wahrenst@gmx.net;
-	bh=BGj82tf9Mp2x5Z3lm2XdVGaG3rt90dpcYkMRje+nnZc=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=mFeBsIAXJtBlM/KEVCvYnGjFSN/m/2wX3B70U4nZoDmz4q/8jccaBX2E+LYC14Ah
-	 neCQwvImYgMeDWtjvYSSSYhTB8rQrGGtfAUTWxzvBtZ5CNeWiu3zPIENXM869/8N0
-	 K5SPIxb4gmWZc6tTC0YhWTNVJMs5/4feXITn0XkypaTuRFeEMC1PeuQUQjwSAJtk0
-	 FSZoyXeME4DOrcUV9WS1JW+X9hJG8rFcnZE8w75LuOL4jlVU6qd4ZqLQsoxs9fdYL
-	 GrUMSqIAgl6y9jyJg97fFRoQCmNuT8FwXhK1YeDGXQJ5Jth6jtjNPfWxB/wqgUC/3
-	 tbMd3G4qDWIb5FPyyA==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.107] ([37.4.251.153]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1M4JmN-1tz59h14jJ-007itT; Mon, 31
- Mar 2025 22:53:40 +0200
-Message-ID: <7fa1b5c7-d5c5-45be-af6d-ae97a76eccae@gmx.net>
-Date: Mon, 31 Mar 2025 22:53:37 +0200
+	s=arc-20240116; t=1743454874; c=relaxed/simple;
+	bh=PXB9+IIdexxKf88I2wNQQL6Ymiw74kkfsgF8CJopTpY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=T3fpLBxYDddG/D5v1Q9ALqeF6VxfxZxUSohpfmwYvjYV6mIcKQhfRzgFP119PrPp5uSFp/OFqgbM+t14W4T34QYH3q65BWcHGHUhx7yPVyp+nysXNmCC3AjfMstqYYi3B8EaAtqBK+nAr70ohJGX3p5d73EEBacIi5zmq6ARxgA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WGCGKDjt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5971C4CEE3;
+	Mon, 31 Mar 2025 21:01:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743454874;
+	bh=PXB9+IIdexxKf88I2wNQQL6Ymiw74kkfsgF8CJopTpY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WGCGKDjtaPWgg8JQDlWXwrCTej0iosz6GowAQnbt+UNvEnb6XRI3zuaOS6YBODI5R
+	 h/EewDHMaLPST9inTzzyOI0ScqAh1WqjvYaRZPDmKXfI2h1aGAth8uIFGtXdsh1bSF
+	 HEPCDHohIuI+xHqPzr8ZNX/teuZH4Og4i6uVD07ywY83czZEvH53II0GQj2HtRMVY7
+	 es0z/yifpGD1MdAe/4rvw/jSWbAGJkgvLHDU8ykTijC6aGB8cFr4SkNcINBHhz/KCP
+	 DyqCPe5IdhPNjG0ni7Tp9PyzNXBT8vk5vUuzLl3Dv+y3toUEe/7m8Xj8zkdvcanQ7N
+	 DG+5iV8f3JBKQ==
+Date: Mon, 31 Mar 2025 16:01:12 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Caleb James DeLisle <cjd@cjdns.fr>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+	benjamin.larsson@genexis.eu, devicetree@vger.kernel.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v3 02/10] dt-bindings: interrupt-controller: Add EcoNet
+ EN751221 INTC
+Message-ID: <174345487191.2817170.10410972908712434627.robh@kernel.org>
+References: <20250330170306.2584136-1-cjd@cjdns.fr>
+ <20250330170306.2584136-3-cjd@cjdns.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/4] ARM: dts: nxp: mxs: Adjust XEA board's DTS to
- support L2 switch
-To: Lukasz Majewski <lukma@denx.de>, Andrew Lunn <andrew+netdev@lunn.ch>,
- davem@davemloft.net, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-References: <20250331103116.2223899-1-lukma@denx.de>
- <20250331103116.2223899-4-lukma@denx.de>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-Autocrypt: addr=wahrenst@gmx.net; keydata=
- xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
- IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
- NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
- JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
- TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
- f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
- V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
- aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
-In-Reply-To: <20250331103116.2223899-4-lukma@denx.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:+eNl4OeqKicEhNwhiaUjdW/jGjhCXiaMai7JhNVTztgHvdDBSkz
- FzM/OlxMiBn3oIZATVurxpzexM6uCSV01ehGMlcaJJcmP2ePh+lMPNopFk2Oks0hq3XPawC
- 7J6oQx9jX1rmuBX/EfTrrEkd4Zpxet6vPHklepkvtUO9q+dJ1jPR2/09jnXXCOozYEnXOEs
- pDGf+czhp30jTgGnG4WCw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:8P+HPtSfB2E=;PTv+e5yvv7a2DF91AqM4nM7xWMc
- U5SAavi1zpuX5zXFkcT3fyYSlsQSmCeID16Eqs3YISEKLDt804+4raCQBzyyYrX0lv8mhdx9K
- H7DSMTztYm6Tff1P4PpU6uKOS4Ute4O+2dSqi3XmoKwK7I/4K6PHGK7TfITu8zITFEQc0n0IR
- yC+X/CJCpx+EwP3HAJxGOTGf9u8oRLl7IWAeT9wNVRcDTlKsFJvTP2mYl8OJG3CHPJBeCarfP
- 4unlIpk86MHkOhZNTx82d9yiI+bxVGXc2EKm+6cSWUxrJTS/RmfMVBzbGsukXLDtyUzdhFr9W
- kMDOG/R7H0cfU9VNPgl1sZkqa3ht52lfGmRe9VKzij8RlhpmvZenHeCctLEyESszHKGGyvMNE
- 4t5UVV6xQlR/bZJ0ULpodrl3BQswRy1aN3EkLxI7cMoJ0tk7gge8j8GKcQk11HIbZSGJ7BA5t
- uBtMLYWCrmaaIRc75bFlxKoD1dVs+Xun9FmALTXhvKjp6VOQaia9xHO/i3WOBasjAV8/mUSDP
- JhASgBLx8rIz1xiVI1SxkUlkd1jLe5kZukBNv53NW3U/3QQ20N8mGK/hDQBaPfdVgKFbOYtCy
- 9P35KCrLhDoj/py1M7a4TDSIi0P+2aS2fuMAM1PFEdODCoVsF8ruPBP+i2b1FRSum+oha75bD
- YfQWXCj/c4rXsGjqJKfft1/dyii9kAYaU51ymLxwEESQMIQWH43RRevSJO5HbXLUZXr8CU5XG
- 2biooe+AB+JZzrTIfhiiCxpxtlGVQuiJxeL+nogBocXNXFOlrRexyBkAXaaO39/OKTvY02Eo3
- plleYoR/wU+SFCSs9jo3+S9rLTIs+vedhKJDgnm+04a1tkL3oXI4En4vr8BxdYjxxei2OpXlT
- MV3PU61r+cChvvh5My727WZfV9wsTvcNkDobMU26r/VeGSQW5UiAiu9Mk2v3PfXp7vswWx7SI
- xPt5irHGZ+x2KHi3sfHfcYYtGqrFLFojXcrU1p/GWhvZ1Pnt0kdRg5Ldf3BYSGcx7hErbpFuz
- PqxrxJ3eNXTNaqcGiIgWLbHtOapfNjLad1I9uyxC39PwcUWK6fuoRAENE1lnOW8oqOKaK4Uzu
- eLA3gRx11CTsTGyIjRHAR8DNqDo9nSxrpzqeGuA3fVMAfYDdukbDwXyhi0RiGaunOXbo0ZUfD
- GApDLXEuQPKubu3Swmtte9TpO1f3m1LCfHUCae8VrVqzOkZYDoFvxbAzkeUxKdNhasMITkPG7
- 98BEgRJOYy7O2WQ7zVhMXmyi3weJhl1PjJkgfyWxKPOmXh5n3u5Jv64czXHmCv6vJgS25fXOd
- tQHrX3BH5O5c8k/GLAEvXPahe/6jBzjRe/u/3Yrp3BRvPU3yk/6+1zQgolu/w6SZLDwUzvhcq
- U2oPxLehLPX6aPo7JP+2HGpBekqzv6evrbhSJooS++TONF319+TwTNGOPvHl4L73kuaxZJO+B
- 5tT/jv/cNq6XAHWoAmGb4f62Ewew=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250330170306.2584136-3-cjd@cjdns.fr>
 
-Hi,
 
-Am 31.03.25 um 12:31 schrieb Lukasz Majewski:
-> The description is similar to the one used with the new CPSW driver.
->
-> Signed-off-by: Lukasz Majewski <lukma@denx.de>
+On Sun, 30 Mar 2025 17:02:58 +0000, Caleb James DeLisle wrote:
+> Document the device tree binding for the interrupt controller in the
+> EcoNet EN751221 MIPS SoC.
+> 
+> Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
 > ---
-> Changes for v2:
-> - Remove properties which are common for the imx28(7) SoC
-> - Use mdio properties to perform L2 switch reset (avoid using
->    deprecated properties)
->
-> Changes for v3:
-> - Replace IRQ_TYPE_EDGE_FALLING with IRQ_TYPE_LEVEL_LOW
-> - Update comment regarding PHY interrupts s/AND/OR/g
-> ---
->   arch/arm/boot/dts/nxp/mxs/imx28-xea.dts | 54 +++++++++++++++++++++++++
->   1 file changed, 54 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-xea.dts b/arch/arm/boot/dts=
-/nxp/mxs/imx28-xea.dts
-> index 6c5e6856648a..8642578fddf3 100644
-> --- a/arch/arm/boot/dts/nxp/mxs/imx28-xea.dts
-> +++ b/arch/arm/boot/dts/nxp/mxs/imx28-xea.dts
-> @@ -5,6 +5,7 @@
->    */
->
->   /dts-v1/;
-> +#include<dt-bindings/interrupt-controller/irq.h>
->   #include "imx28-lwe.dtsi"
->
->   / {
-> @@ -90,6 +91,59 @@ &reg_usb_5v {
->   	gpio =3D <&gpio0 2 0>;
->   };
->
-> +&eth_switch {
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&mac0_pins_a>, <&mac1_pins_a>;
-> +	phy-supply =3D <&reg_fec_3v3>;
-> +	status =3D "okay";
-> +
-> +	ethernet-ports {
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +
-> +		mtip_port1: port@1 {
-> +			reg =3D <1>;
-> +			label =3D "lan0";
-> +			local-mac-address =3D [ 00 00 00 00 00 00 ];
-> +			phy-mode =3D "rmii";
-> +			phy-handle =3D <&ethphy0>;
-> +		};
-> +
-> +		mtip_port2: port@2 {
-> +			reg =3D <2>;
-> +			label =3D "lan1";
-> +			local-mac-address =3D [ 00 00 00 00 00 00 ];
-> +			phy-mode =3D "rmii";
-> +			phy-handle =3D <&ethphy1>;
-> +		};
-> +	};
-> +
-> +	mdio_sw: mdio {
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +
-> +		reset-gpios =3D <&gpio3 21 0>;
-i'm a huge fan of the polarity defines, which makes it easier to understan=
-d.
+>  .../econet,en751221-intc.yaml                 | 78 +++++++++++++++++++
+>  1 file changed, 78 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/econet,en751221-intc.yaml
+> 
 
-Btw since you introduced the compatible in the DTS of a i.MX28 board, it
-would be nice to also enable the driver in mxs_defconfig.
-
-Regards
-> +		reset-delay-us =3D <25000>;
-> +		reset-post-delay-us =3D <10000>;
-> +
-> +		ethphy0: ethernet-phy@0 {
-> +			reg =3D <0>;
-> +			smsc,disable-energy-detect;
-> +			/* Both PHYs (i.e. 0,1) have the same, single GPIO, */
-> +			/* line to handle both, their interrupts (OR'ed) */
-> +			interrupt-parent =3D <&gpio4>;
-> +			interrupts =3D <13 IRQ_TYPE_LEVEL_LOW>;
-> +		};
-> +
-> +		ethphy1: ethernet-phy@1 {
-> +			reg =3D <1>;
-> +			smsc,disable-energy-detect;
-> +			interrupt-parent =3D <&gpio4>;
-> +			interrupts =3D <13 IRQ_TYPE_LEVEL_LOW>;
-> +		};
-> +	};
-> +};
-> +
->   &spi2_pins_a {
->   	fsl,pinmux-ids =3D <
->   		MX28_PAD_SSP2_SCK__SSP2_SCK
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
