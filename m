@@ -1,56 +1,66 @@
-Return-Path: <devicetree+bounces-162420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78245A78500
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 00:55:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86453A7850F
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 01:03:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A58416C5FC
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 22:55:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECDC816B532
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 23:03:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED48A214A90;
-	Tue,  1 Apr 2025 22:55:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27BBA20E01D;
+	Tue,  1 Apr 2025 23:03:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JqrNnDWx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SLJf2v8h"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C205F1EE03C;
-	Tue,  1 Apr 2025 22:55:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E63851BBBF7;
+	Tue,  1 Apr 2025 23:03:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743548103; cv=none; b=dLMhiUDjFZVitQvrahOm7fX2DF8dkDfolQtZAKlSmL3qiqnj97c/D0C+dt7s8q0D1Q9PS1BbuER4I+x9ZPWCNbwbKCUYbwW1A7+ix6qZpCdNhZyP2FZ9NdRD2rxPYbZrwrobhU3qMTdh22dXiV9ynZe5r184CNptSAkkaglVH00=
+	t=1743548628; cv=none; b=gDky4i1XN7K+unFlnD1OxIyl8uFsJaE1NYzMNX690QpCSwSbgLnsrUNqZ3c0xzPaBm+jKhcVTYnuQZ/CAy3besbheF80SF77lqwz/Md9ofjrV+Qmx/0JWmG7JGUUdCe2dGKmN3bcLtriaNx5zKPVOM/t9MeS1UrEX3C7oG+XVBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743548103; c=relaxed/simple;
-	bh=8IOMWPEHaPa1SIeTc6T4y8WXaQdFNkoAbfKYYZNVMu4=;
+	s=arc-20240116; t=1743548628; c=relaxed/simple;
+	bh=BYOXmSOsaPKAshZKAzxa/WceoPbno44r7z7Qhx1eioY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oL2QuyQ9LCMbjOScc6qszX86GN0bqcM+unb88WMSUDe8PjxfEUqT2QtPZg7AYkp4KMjEwuLqg8PcPO546jQWagWbOk3IWsodTWrZXwu9sCb5xxaB/l81lOmYD0H5pLpSXFq1nUj2a5H/nqB2CMSxLLFaMJdOIvKdly3sMrbfCWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JqrNnDWx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13551C4CEE4;
-	Tue,  1 Apr 2025 22:55:02 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=bmwI4zpjgJx7sab9Btn0xWHi0VbFaIa96+oYBhbQV+guDwpYhz+HT1liLONJlwsvGb1dP6TGE7bUS5YQIs1zRKxf+1moBh1uxHsbKnMd4WHqp3/Or4swvmJ4talYlv+ngorcF0+dVjiX6dzNg12te+UEg28HdA7Bm8QUGAavbr0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SLJf2v8h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17DCFC4CEE4;
+	Tue,  1 Apr 2025 23:03:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743548103;
-	bh=8IOMWPEHaPa1SIeTc6T4y8WXaQdFNkoAbfKYYZNVMu4=;
+	s=k20201202; t=1743548627;
+	bh=BYOXmSOsaPKAshZKAzxa/WceoPbno44r7z7Qhx1eioY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JqrNnDWxY2ZrLn/4600euCHu95ymOkO3q5ZWlBqFTZ4Wdy2U8SaXNf3xOGkwmyjM5
-	 hbhFbH2Il1SsY81+DA9903USQA6+eI2IUCtWZ9hN/m0QU3uzqUGkTrZol7rXAdN0u+
-	 lS67Ej+kGUDLeC4NaCuK9y0AUnvaQk/Pbj/9gU5jTeDoM32kh2umdBSo1W3I2i3xxU
-	 5cyo3fK49DoJTK48YimytvdyAza+hn/xrOzsmEvkwWlEWClkn2r0gwgauLMl9hwU6h
-	 ghNqoH5uYqVm5aXw2P5qAWFVRnV1XhkusXaYXsxbUhFIdoT/CbQuqiAuPTMVDCDuIL
-	 7jPs0sryEZ4VQ==
-Date: Tue, 1 Apr 2025 17:55:02 -0500
+	b=SLJf2v8hEejssbPR01Tj2/A/wIryXbN0voAiZ6/Lm087eksrq31aOcBsL/0S71klr
+	 b1Gb5Zw/RmCftZB36g8EGidgctqXwMTypk96G0moqwOGcWOIb+W//XTJwxBdwGBPDf
+	 StRRNSnx1yuCQV3K+1NeppyDOrjdkIur0MEI23GQ78JsQXAXLji9Dr9am2NdHjv2D4
+	 7paYtgQxa3jlQICY82f5hCO6JKjvWmSAUMY59vLN6g0Y6Zx1SQCTmofOUtf2UkrAbT
+	 lAfqHGGO/u6Ki9dk5wUX1mvfx82cXWk/FXWgZC5XoClRbTJ3m2RYtUtjjb3OjwTCQV
+	 3ONLn9gsrLxnQ==
+Date: Tue, 1 Apr 2025 18:03:46 -0500
 From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: writing-schema: Explain sub-nodes with
- additionalProperties:true
-Message-ID: <20250401225502.GA27530-robh@kernel.org>
-References: <20250331081345.37103-1-krzysztof.kozlowski@linaro.org>
+To: Lukasz Majewski <lukma@denx.de>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 1/4] dt-bindings: net: Add MTIP L2 switch description
+Message-ID: <20250401230346.GA28557-robh@kernel.org>
+References: <20250331103116.2223899-1-lukma@denx.de>
+ <20250331103116.2223899-2-lukma@denx.de>
+ <20250331235518.GA2823373-robh@kernel.org>
+ <20250401123507.2e3bf0a6@wsk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,19 +69,197 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250331081345.37103-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250401123507.2e3bf0a6@wsk>
 
-On Mon, Mar 31, 2025 at 10:13:45AM +0200, Krzysztof Kozlowski wrote:
-> Document recently introduced pattern of using additionalProperties: true
-> for sub-nodes with their own schema.
+On Tue, Apr 01, 2025 at 12:35:07PM +0200, Lukasz Majewski wrote:
+> Hi Rob,
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../devicetree/bindings/example-schema.yaml       | 15 ++++++++++++++-
->  .../devicetree/bindings/writing-schema.rst        | 11 ++++++++---
->  2 files changed, 22 insertions(+), 4 deletions(-)
+> > On Mon, Mar 31, 2025 at 12:31:13PM +0200, Lukasz Majewski wrote:
+> > > This patch provides description of the MTIP L2 switch available in
+> > > some NXP's SOCs - e.g. imx287.
+> > > 
+> > > Signed-off-by: Lukasz Majewski <lukma@denx.de>
+> > > ---
+> > > Changes for v2:
+> > > - Rename the file to match exactly the compatible
+> > >   (nxp,imx287-mtip-switch)
+> > > 
+> > > Changes for v3:
+> > > - Remove '-' from const:'nxp,imx287-mtip-switch'
+> > > - Use '^port@[12]+$' for port patternProperties
+> > > - Drop status = "okay";
+> > > - Provide proper indentation for 'example' binding (replace 8
+> > >   spaces with 4 spaces)
+> > > - Remove smsc,disable-energy-detect; property
+> > > - Remove interrupt-parent and interrupts properties as not required
+> > > - Remove #address-cells and #size-cells from required properties
+> > > check
+> > > - remove description from reg:
+> > > - Add $ref: ethernet-switch.yaml#
+> > > ---
+> > >  .../bindings/net/nxp,imx287-mtip-switch.yaml  | 154
+> > > ++++++++++++++++++ 1 file changed, 154 insertions(+)
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/net/nxp,imx287-mtip-switch.yaml
+> > > 
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/net/nxp,imx287-mtip-switch.yaml
+> > > b/Documentation/devicetree/bindings/net/nxp,imx287-mtip-switch.yaml
+> > > new file mode 100644 index 000000000000..98eba3665f32 --- /dev/null
+> > > +++
+> > > b/Documentation/devicetree/bindings/net/nxp,imx287-mtip-switch.yaml
+> > > @@ -0,0 +1,154 @@ +# SPDX-License-Identifier: (GPL-2.0-only OR
+> > > BSD-2-Clause) +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/net/nxp,imx287-mtip-switch.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: NXP SoC Ethernet Switch Controller (L2 MoreThanIP switch)
+> > > +
+> > > +maintainers:
+> > > +  - Lukasz Majewski <lukma@denx.de>
+> > > +
+> > > +description:
+> > > +  The 2-port switch ethernet subsystem provides ethernet packet
+> > > (L2)
+> > > +  communication and can be configured as an ethernet switch. It
+> > > provides the
+> > > +  reduced media independent interface (RMII), the management data
+> > > input
+> > > +  output (MDIO) for physical layer device (PHY) management.
+> > > +
+> > > +$ref: ethernet-switch.yaml#  
+> > 
+> > This needs to be: ethernet-switch.yaml#/$defs/ethernet-ports
+> > 
+> > With that, you can drop much of the below part. More below...
+> > 
+> > > +
+> > > +properties:
+> 
+> So it shall be after the "properties:"
+> 
+> $ref: ethernet-switch.yaml#/$defs/ethernet-ports   [*]
 
-Applied, thanks.
+It can stay where it is, just add "/$defs/ethernet-ports"
+
+
+> > > +  compatible:
+> > > +    const: nxp,imx287-mtip-switch
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  phy-supply:
+> > > +    description:
+> > > +      Regulator that powers Ethernet PHYs.
+> > > +
+> > > +  clocks:
+> > > +    items:
+> > > +      - description: Register accessing clock
+> > > +      - description: Bus access clock
+> > > +      - description: Output clock for external device - e.g. PHY
+> > > source clock
+> > > +      - description: IEEE1588 timer clock
+> > > +
+> > > +  clock-names:
+> > > +    items:
+> > > +      - const: ipg
+> > > +      - const: ahb
+> > > +      - const: enet_out
+> > > +      - const: ptp
+> > > +
+> > > +  interrupts:
+> > > +    items:
+> > > +      - description: Switch interrupt
+> > > +      - description: ENET0 interrupt
+> > > +      - description: ENET1 interrupt
+> > > +
+> > > +  pinctrl-names: true
+> > > +  
+> > 
+> > > +  ethernet-ports:
+> 
+> And then this "node" can be removed as it has been referenced above [*]?
+
+Well, you have to keep it to have 'required' in the child nodes.
+
+> 
+> (I shall only keep the properties, which are not standard to [*] if
+> any).
+> 
+> > > +    type: object
+> > > +    additionalProperties: false
+> > > +
+> > > +    properties:
+> > > +      '#address-cells':
+> > > +        const: 1
+> > > +      '#size-cells':
+> > > +        const: 0
+> > > +
+> > > +    patternProperties:
+> > > +      '^port@[12]+$':  
+> > 
+> > Note that 'ethernet-port' is the preferred node name though 'port' is 
+> > allowed.
+> 
+> Ok. That would be the correct define:
+> 
+> ethernet-ports {
+>      mtip_port1: ethernet-port@1 {
+>                reg = <1>;
+>                label = "lan0";
+>                local-mac-address = [ 00 00 00 00 00 00 ];
+>                phy-mode = "rmii";
+>                phy-handle = <&ethphy0>;
+> 	       };
+> 
+>                mtip_port2: port@2 {
+
+And here...
+
+> 		....
+> 	       };
+> 
+> > 
+> > > +        type: object
+> > > +        description: MTIP L2 switch external ports
+> > > +
+> > > +        $ref: ethernet-controller.yaml#
+> > > +        unevaluatedProperties: false
+> > > +
+> > > +        properties:
+> > > +          reg:
+> > > +            items:
+> > > +              - enum: [1, 2]
+> > > +            description: MTIP L2 switch port number
+> > > +
+> > > +          label:
+> > > +            description: Label associated with this port
+> > > +
+> > > +        required:
+> > > +          - reg
+> > > +          - label
+> > > +          - phy-mode
+> > > +          - phy-handle  
+> > 
+> > All the above under 'ethernet-ports' can be dropped though you might 
+> > want to keep 'required' part.
+> 
+> Ok, I will keep it.
+
+So I think you just want this:
+
+ethernet-ports:
+  type: object
+  additionalProperties: true  # Check if you need this
+
+  patternProperties:
+    '^ethernet-port@[12]$':
+      required:
+        - label
+        - phy-mode
+        - phy-handle
 
 Rob
 
