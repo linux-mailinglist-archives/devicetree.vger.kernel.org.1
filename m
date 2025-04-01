@@ -1,168 +1,113 @@
-Return-Path: <devicetree+bounces-162298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1716AA77BD6
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 15:16:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5A11A77C1B
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 15:30:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 453493A70D9
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 13:16:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F86B169092
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 13:30:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C8D813BAF1;
-	Tue,  1 Apr 2025 13:16:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7A6F1EF37C;
+	Tue,  1 Apr 2025 13:30:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="SVFXMcvE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R0nXnBHK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A0BD2CCDB
-	for <devicetree@vger.kernel.org>; Tue,  1 Apr 2025 13:16:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA5D51F930;
+	Tue,  1 Apr 2025 13:30:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743513413; cv=none; b=LqBhXDYF9ss4urwZccYYNgmza3JBLGeCtseRnKKZ9OdMP5Z3fPJIrbf2aczz+ki0tiFKCisjG2gojXstYHqdP3kKiBtbpLsLw7B/f04EqGgEEOSVKEQA/2g1d/64XeQ8HbUeWLj81KzAa641LcbRxkuVntm2TQOc62ruRKTEqig=
+	t=1743514251; cv=none; b=iRRQPn2z6TP0WryxBpwNccY480mT95cUU41pLydxvi/msgAu9bFuo1pIhBDBK+F3tz+L59uRUlc5mkZtegMWzeODvgbfRDUsDMzmIUwZO68qhmsnbY7pND7VjYZO1hp2Gs7qt+6ZXC0XCtWQb20/z/HH01auw/wHTSb7gQg09vI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743513413; c=relaxed/simple;
-	bh=bR6eGSj48GGt691R3aW9/Bp/2vQMUzQVg58j3Up0k+s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OgaOlRLMWfS2NKCIuJ8yNXTesNN91QdBQ0rjxDl5QltJTBOvWzDQJbFnAt+OcgzLbKih1HBDuTam43ttvrOg0nmZIfIXQZh9ax6JWuu/c6+Fwcn7NUIXm2Zhpk6HmgihGYqgHy+C2s1TQ5jHzpnwFkTWeNrnCg3ofLNue4VS3eA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=SVFXMcvE; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 531Bj7Fo027578
-	for <devicetree@vger.kernel.org>; Tue, 1 Apr 2025 13:16:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	fuzrmKqRaLkRRC/h1dpp5sXVSR1oAWYfmSNhpfK/XSU=; b=SVFXMcvEbMAYFAu2
-	USAXHx9sVTLiVs7WUgGRgFkpQLTq/KLv7zOJGtdg/B5DzcYjSla76gRVIsazPFAS
-	sxxM/my+Bhx36IPv3TdVrThiRaXwDnyDLXbBuvDuy5w1LTSE7VIm0ohr01XKLFj4
-	ixsdKy0si34iW5Ni6vvEeYRJp32vvlAiumA+BSTbILeVKYY1StFKu2zqlXn2Bv0c
-	S9Sc7MdLrmbO2tS2KAceWfbSUOD84ndry2gaimkne62OARUEGs4IFrES4dp4QPEZ
-	/Bnd0Z4cb95HbiqtGzrf09lhVc3gITC+9yADE/0+nymgW+1X5gqhpT1+yMs0N2Tl
-	wLbpdw==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45p6jhra00-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 01 Apr 2025 13:16:50 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c548e16909so516952585a.2
-        for <devicetree@vger.kernel.org>; Tue, 01 Apr 2025 06:16:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743513409; x=1744118209;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fuzrmKqRaLkRRC/h1dpp5sXVSR1oAWYfmSNhpfK/XSU=;
-        b=M24HoXCJnF5V+6/rXWpggjHJKYjPIvvKyMfPmI3DC7ZblRxv7i/41l7GVqEGzEjgwz
-         ASkE4G7eGqeskPujL5VH77KECkSThA/9cLmAHDhjq8jkt5JGbBW+PMyHxF4MvDmJOiS9
-         F0n1UgLjz18dhAhwtWW31GhTRx22qrSMM94O2PlZOBragpRBglJlWqJYvwtABzCexQC0
-         ZO+Ar72GRpH5hWLC0QUt2cgefp4B+sa0KMMHOvBGLioSK8UpG5i6OCnbPUHM3nvjztfR
-         j5AMGSz0czktovf06GSBW7jyukPAEBmMQ5jL8KARVpqRz4TbOSpv+2OrOzZNWHO3xiCa
-         hAvA==
-X-Forwarded-Encrypted: i=1; AJvYcCUbtxg6yzfTur5LEtrPLMq3YwhCOwJMt6NQzCVJa938mu/SQiCjeAqVQwjl89i/cQwSUUY6Ib2zIgVA@vger.kernel.org
-X-Gm-Message-State: AOJu0YyDin/LHrLMhpYY5AeaDDlleIxHoyJlfKvawDQF8lrITMDr4EM3
-	MEoznN24cK4Sw3E8U7mR8YeyUoxe+q0QD2r7z+UJTGuvLRfE/NI5SVlQ6B4KPMQT9WqZqt7yOwe
-	SeHqfqUXxFKN5KMjeCH7s6cpXaex1d36NZ7itCVSEHdO0tCcIdc43cNDCCLTX
-X-Gm-Gg: ASbGncuN02AJjGchtkROPvYg1vOiLfpu5iVLvEdRQnnNhENnSGgBGRdwOB+jcHtSrrl
-	1o3jc+hY5MPkqK9B1zozPCHElBdlyYzPbIOznijY6fs/BBro+3ktZ5bk/rftZeT4QhO4oRV54Im
-	ARNiYj7tK5av/dHfMq8kJmzbhwAW5lIZv+NZQgl1wvRuTvr61x68+FgWYGbiOL7+TjheRfmceC6
-	665oO/PYRAwAXnbZoCl5Fk9PgUoMaPSva6bLr4sEAF3sq29rYF6j+OwVKVlLUtDnM75fBgq9kpA
-	1zafUvrmC6HiwASdKJ3EPGvwewCuqFacspDubC12YM/Zbz9bjBV3LrT7Vz0BKGZkGCXb
-X-Received: by 2002:a05:620a:1a03:b0:7c5:4738:8a11 with SMTP id af79cd13be357-7c69072e5dbmr1611153385a.27.1743513409235;
-        Tue, 01 Apr 2025 06:16:49 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEfs84UuVjPU56+3GGH4wwuZJwdAARKybIpYQNrPciwdKqQV0psmYSnmSCQba15CwNLS9OaPw==
-X-Received: by 2002:a05:620a:1a03:b0:7c5:4738:8a11 with SMTP id af79cd13be357-7c69072e5dbmr1611149185a.27.1743513408865;
-        Tue, 01 Apr 2025 06:16:48 -0700 (PDT)
-Received: from [10.116.217.42] (146-207-246-94.sta.estpak.ee. [94.246.207.146])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54b094bb344sm1364786e87.37.2025.04.01.06.16.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Apr 2025 06:16:47 -0700 (PDT)
-Message-ID: <9efea174-80db-4e5c-b0a9-4c5fbc7e166a@oss.qualcomm.com>
-Date: Tue, 1 Apr 2025 16:16:36 +0300
+	s=arc-20240116; t=1743514251; c=relaxed/simple;
+	bh=Ul6lJvNEHBV/pZeVWxl97I6QputJg4xYguuegwagemc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=pvM819CeKKrmCxS7j1GG+CSKBk0l6V0H+FdyNS8ByRjyotnOTdFbIsn3u8/1TCTdrf9UeABjjWebbU6j8EEAIOBiHPj4zT6ktlXrXgHA2VZVjy3sGLJpv5DyRZwA7Im0mTctipmCG9Sq/WOTWFhpY4DsIlwf0XaBPBg/z+RlrrI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R0nXnBHK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2996C4CEE4;
+	Tue,  1 Apr 2025 13:30:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743514251;
+	bh=Ul6lJvNEHBV/pZeVWxl97I6QputJg4xYguuegwagemc=;
+	h=From:Date:Subject:To:Cc:From;
+	b=R0nXnBHK+h56PKjMT/5qxNKseT3aIYCEfkg+iICdVnAYkSyVf+/sLwKvt+lgp7A6j
+	 21z3BlE6WMo64ddo54dH/lQBUyTaUC4+skd/Bi4vgl5mzyfE6ot6BQVQfRxqeI1blC
+	 LTILvkFOt/nMDIVd3zOUeBLOLA7nIq9Nw9OB2z5Kt7iD5yFCl9yHzFMeruBRdCw8S0
+	 4NqI/VlEitmpQ0b+XHJJF+G8Ks31zJCKYwg1eChqc6dWoqu/JrnoZ7tyNXzYsjDfDY
+	 AP2U1OFkVXY7tQ+IGjEcszhGRQ+AzTjLr76qgoqv6hgjjnoP6WPMBbqf98H0k7j1pB
+	 zioIngRf90MEA==
+From: Mattijs Korpershoek <mkorpershoek@kernel.org>
+Date: Tue, 01 Apr 2025 15:30:37 +0200
+Subject: [PATCH] dt-bindings: mediatek,mt6779-keypad: Update Mattijs' email
+ address
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V4 1/2] dt-bindings: mailbox: Document qcom,ipq5424-tmel
-To: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-Cc: jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        andersson@kernel.org, konradybcio@kernel.org,
-        manivannan.sadhasivam@linaro.org, dmitry.baryshkov@linaro.org
-References: <20250327181750.3733881-1-quic_srichara@quicinc.com>
- <20250327181750.3733881-2-quic_srichara@quicinc.com>
- <ru37oebencfqbepop6ka5i2fc64ifk4nnwqmb4o52nwccpplkp@b7xxxpp5snip>
- <479b9613-8244-4a29-9735-cec47e473946@quicinc.com>
-Content-Language: en-US
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-In-Reply-To: <479b9613-8244-4a29-9735-cec47e473946@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: P4xphrRgfu6BsGykyToXYJS1SayWRet9
-X-Proofpoint-ORIG-GUID: P4xphrRgfu6BsGykyToXYJS1SayWRet9
-X-Authority-Analysis: v=2.4 cv=bZZrUPPB c=1 sm=1 tr=0 ts=67ebe742 cx=c_pps a=HLyN3IcIa5EE8TELMZ618Q==:117 a=aVIEJrXLnI925Kw8RqJ2Kw==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=0xp6LphHLZRkLrDefq0A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-01_05,2025-03-27_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
- priorityscore=1501 clxscore=1015 phishscore=0 adultscore=0
- lowpriorityscore=0 suspectscore=0 spamscore=0 malwarescore=0 mlxscore=0
- impostorscore=0 mlxlogscore=767 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2502280000 definitions=main-2504010082
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250401-mattijs-dts-korg-v1-1-0f8d96bf8a99@kernel.org>
+X-B4-Tracking: v=1; b=H4sIAHzq62cC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDEwND3dzEkpLMrGLdlJJi3ez8onRdQ4vUNEtzSwsLIxMzJaC2gqLUtMw
+ KsJHRsbW1ABsjdO5iAAAA
+X-Change-ID: 20250401-mattijs-dts-korg-18ef97988246
+To: Mattijs Korpershoek <mkorpershoek@baylibre.com>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, 
+ Mattijs Korpershoek <mkorpershoek@kernel.org>
+X-Mailer: b4 0.14.3-dev-94c79
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1074;
+ i=mkorpershoek@kernel.org; h=from:subject:message-id;
+ bh=Ul6lJvNEHBV/pZeVWxl97I6QputJg4xYguuegwagemc=;
+ b=owEBbQGS/pANAwAIARkNHbRmThk1AcsmYgBn6+qIuKsPabzv/RSvLVVc64fSuzem7BVylb01dply
+ PyvhJXaJATMEAAEIAB0WIQQu6UKnth9qvlMTrQAZDR20Zk4ZNQUCZ+vqiAAKCRAZDR20Zk4ZNbvXCA
+ CJy+j4InTSuxmwJ0+YwXmooqhVHpiX5qNSmoiOGWB5L9p7+KtQPUq7HFvyg+NY6VlzVycvggb4WmHn
+ J+8es2yRg3QFdORFSfoTxGfPCeClajHC8TKmZ5gMmA1X9lzP1IzbGVVcF/9xlZ5aGH5X5pSDNU1x4q
+ a6hT5S9ForxGyuKHgwqMorY+CapbkDiYe+opCzp3XeBFfpVuBWvtPXIKzbdBrydalHk9OjuEAH79EN
+ S43cmUIYvLyNhSZSnRbIfpwxfkLhUZgx8+oa7XIawEj5TFjjNPzAjKhWj9HSHe9zOGPBmgphhrS1V6
+ 50Zm2XB1BtHJeXJnZ/va5BDtuVTMvj
+X-Developer-Key: i=mkorpershoek@kernel.org; a=openpgp;
+ fpr=8234A35B45C0D26B31C1A2DA570338B018144F28
 
-On 01/04/2025 14:26, Sricharan Ramabadhran wrote:
-> 
-> [Resending, since my previous response had some wrapping issue]
-> 
->>> TMEL(Trust Management Engine Lite) subsystem provides different kinds of
->>
->> Trust whatever SubSystem (TMEL SS) ...
->>
->> different to what?
-> 
-> 
-> To the ARM TrustZone firmware(TZ). So these services (secureboot,
-> authentication etc) were provided by the TZ in some SOCs. Here,
-> TMEL provides those. Can add those details here.
+Update Mattijs Korpershoek's email address to @kernel.org.
 
-Yes, please (and all other answers too).
+Signed-off-by: Mattijs Korpershoek <mkorpershoek@kernel.org>
+---
+ Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> 
->>
->>> services like secureboot, remote image authentication, key management,
->>> crypto, OEM provisioning etc.
->>>
->>> The QMP mailbox is the primary means of communication between TMEL SS 
->>> and
->>
->> What is QMP?
-> Qualcomm Messaging Protocol
-> 
->>
->>> other subsystem on the SoC. A dedicated pair of inbound and outbound
->>> mailboxes is implemented for each subsystem/external execution 
->>> environment
->>
->> Is it implemented in the driver? Is it provided by the hardware? By the
->> firmware?
->>
-> TMEL firmware provides and processes the inbound requests and responds
-> back on the outbound channel. Can mention this explicitly in the above.
-> 
-> Regards,
->   Sricharan
+diff --git a/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml b/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
+index 517a4ac1bea3..e365413732e7 100644
+--- a/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
++++ b/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Mediatek's Keypad Controller
+ 
+ maintainers:
+-  - Mattijs Korpershoek <mkorpershoek@baylibre.com>
++  - Mattijs Korpershoek <mkorpershoek@kernel.org>
+ 
+ allOf:
+   - $ref: /schemas/input/matrix-keymap.yaml#
 
+---
+base-commit: 08733088b566b58283f0f12fb73f5db6a9a9de30
+change-id: 20250401-mattijs-dts-korg-18ef97988246
 
+Best regards,
 -- 
-With best wishes
-Dmitry
+Mattijs Korpershoek <mkorpershoek@kernel.org>
+
 
