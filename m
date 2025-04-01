@@ -1,351 +1,154 @@
-Return-Path: <devicetree+bounces-162246-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162247-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2716EA778E7
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 12:35:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1A85A77919
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 12:49:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBCAD166D8F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 10:35:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5AE0216A5D3
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 10:49:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 917231F12F8;
-	Tue,  1 Apr 2025 10:35:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3CB01EB184;
+	Tue,  1 Apr 2025 10:49:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Tprvait7"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="D/rhkeFj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ADFA1F09B6;
-	Tue,  1 Apr 2025 10:35:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 186241EB1AB
+	for <devicetree@vger.kernel.org>; Tue,  1 Apr 2025 10:49:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743503723; cv=none; b=H1U61Ig+lf60V5h/TDoM0JhNxm0NlZcA6xcQyc7Rc9fKLAJSYdXLh2tmS6w+XcxxmsjA8NQTGB+npPmQ8YjMGjhjGWj+Z0whn1uWw5uvmGP/TdffMAQTsFEFF60u8yN9z0kQmJSKFLkPtjd5TufP/wA7b/fYyRE1Ce+K5RDsf64=
+	t=1743504580; cv=none; b=FrAqMK+jr4dtTz8+8JVu8V+bzeAx0pSAaYlZjS7RCVufvKc8X3Gyt86pgV4NGs5RGUuym01tE0AR+37QldAuokOsCu2OA/EgSf0g7Sjj7TUn+6IfauDUBVa2UuT+HhJInNrMlXNyCj4C9EGH/gqaGHD7U5iV/OIJuoT9IV9gfc0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743503723; c=relaxed/simple;
-	bh=v9kSnKkZYZ8WOxxdEDKtjf+iuECm/3V8MlhXkQVOj30=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cNLgt1YIS2TSf3jkMFXTP+vg+4/4UZ9kbkONPQRqImHsCdWkOqg0RhPoUtne2MCqvBpYNaByTZyjBJUEq2d4yK/1sakdd83f3+0nCXwJy8D0nB0v4lyeC2TRt4GjPh1RIUExBBV2Hr9h6yZHLDJHCE1VJYF33KL7c4S91b7mLUo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Tprvait7; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0C57C101CA6E8;
-	Tue,  1 Apr 2025 12:35:08 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1743503712; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=s7Poqe3mZVIgpU2JGC2x8jHFSjWgHlNoBHPst74G6xY=;
-	b=Tprvait7ezlgUnAVteDKrKb1PEx6byXSrNXb/HiG066infjz5H+UTJvCI6zLh9XeLH6MKU
-	MxkqTmCR6QkesCm39uIpLj4kXiXIH56ZhgtIsLMfHMDmI+28XrcmloOb9g2XzhJqnPNB66
-	WtXO/aqYSH8geX9cjsFOO1M6bbUn2lQYwNNWVud73LoU4hDW071gPsXenQRGv00jDZ6Kxl
-	eS/K1EqL162DFt++crqpY+cKc+lxs3ZB13GzUXpqlw/sMHEBMMWUwMq3m/uT2ZnYXlRkfL
-	WcmLG0/LhqHwh3iY7bgZr6pSCQWXGCctRUcx0i2Am6uMrzLULMijb5gL0lYoUA==
-Date: Tue, 1 Apr 2025 12:35:07 +0200
-From: Lukasz Majewski <lukma@denx.de>
-To: Rob Herring <robh@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Richard Cochran
- <richardcochran@gmail.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 1/4] dt-bindings: net: Add MTIP L2 switch description
-Message-ID: <20250401123507.2e3bf0a6@wsk>
-In-Reply-To: <20250331235518.GA2823373-robh@kernel.org>
-References: <20250331103116.2223899-1-lukma@denx.de>
-	<20250331103116.2223899-2-lukma@denx.de>
-	<20250331235518.GA2823373-robh@kernel.org>
-Organization: denx.de
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1743504580; c=relaxed/simple;
+	bh=OOepOiqFqRlmLoXak5gxjM36EmsSrYTY1w5WKsXtPD4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=FwWD1ItuO7Y4K4jGHNajTvzJmVA3IbBnIVymP5NZS55wn0tmj/ys1c8Rh6z9uuyI8omu/pQjRdeeCa5mW5GzzW1mnYpIA/eE8RUX28YETk23EvZyFPyRM0GYHZHW/9o1vMJB9nlZO8wAoBOtjpU+hOtqhiD9nHySTtha8zKsBRQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=D/rhkeFj; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5316DwN5031693;
+	Tue, 1 Apr 2025 10:49:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	TqlHcJmwy5AlQMbkRyoGvlYmnthAkMJYYdoNqJfK4T8=; b=D/rhkeFjJrC4XHDr
+	G0+DP3tX0F1DZGVOqZo5S7ibFVSBG9TJvJ0vW+hLfZWw3J9yQGViJVjXoEUnbdy1
+	ZkWEPhfhzx4WZNiqFmypRVLzgJ0wgB2jLzOTzBesnQ9pvrYnQRVov9mATKiaOwDx
+	MhmOIRFSkqD8sgs50xNI4AcEHPNz9lN1qqykCityF6jzvbiGdab2BZm4dckalX2d
+	0+RBoaI8zQxls9aHcCflQ0lbjyVLbBPeSpzRLt3g8h0EkfEe9KskYou9yp1Cbej6
+	9jqY3kpHP7eAMqeyVzYg1sn85ckaUrfuEvqpaqs3/2iz3GpzUtCRZmXSBCHW23dX
+	t+pjIw==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45qxa7trem-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 01 Apr 2025 10:49:35 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 531AnZ3d014840
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 1 Apr 2025 10:49:35 GMT
+Received: from [10.218.13.83] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 1 Apr 2025
+ 03:49:33 -0700
+Message-ID: <d5fce388-cd46-4596-b7f7-e69797255910@quicinc.com>
+Date: Tue, 1 Apr 2025 16:19:30 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/RWGAJJQc9ifwwn2SMI2BeSX";
- protocol="application/pgp-signature"; micalg=pgp-sha512
-X-Last-TLS-Session-Version: TLSv1.3
-
---Sig_/RWGAJJQc9ifwwn2SMI2BeSX
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-
-Hi Rob,
-
-> On Mon, Mar 31, 2025 at 12:31:13PM +0200, Lukasz Majewski wrote:
-> > This patch provides description of the MTIP L2 switch available in
-> > some NXP's SOCs - e.g. imx287.
-> >=20
-> > Signed-off-by: Lukasz Majewski <lukma@denx.de>
-> > ---
-> > Changes for v2:
-> > - Rename the file to match exactly the compatible
-> >   (nxp,imx287-mtip-switch)
-> >=20
-> > Changes for v3:
-> > - Remove '-' from const:'nxp,imx287-mtip-switch'
-> > - Use '^port@[12]+$' for port patternProperties
-> > - Drop status =3D "okay";
-> > - Provide proper indentation for 'example' binding (replace 8
-> >   spaces with 4 spaces)
-> > - Remove smsc,disable-energy-detect; property
-> > - Remove interrupt-parent and interrupts properties as not required
-> > - Remove #address-cells and #size-cells from required properties
-> > check
-> > - remove description from reg:
-> > - Add $ref: ethernet-switch.yaml#
-> > ---
-> >  .../bindings/net/nxp,imx287-mtip-switch.yaml  | 154
-> > ++++++++++++++++++ 1 file changed, 154 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/net/nxp,imx287-mtip-switch.yaml
-> >=20
-> > diff --git
-> > a/Documentation/devicetree/bindings/net/nxp,imx287-mtip-switch.yaml
-> > b/Documentation/devicetree/bindings/net/nxp,imx287-mtip-switch.yaml
-> > new file mode 100644 index 000000000000..98eba3665f32 --- /dev/null
-> > +++
-> > b/Documentation/devicetree/bindings/net/nxp,imx287-mtip-switch.yaml
-> > @@ -0,0 +1,154 @@ +# SPDX-License-Identifier: (GPL-2.0-only OR
-> > BSD-2-Clause) +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/nxp,imx287-mtip-switch.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: NXP SoC Ethernet Switch Controller (L2 MoreThanIP switch)
-> > +
-> > +maintainers:
-> > +  - Lukasz Majewski <lukma@denx.de>
-> > +
-> > +description:
-> > +  The 2-port switch ethernet subsystem provides ethernet packet
-> > (L2)
-> > +  communication and can be configured as an ethernet switch. It
-> > provides the
-> > +  reduced media independent interface (RMII), the management data
-> > input
-> > +  output (MDIO) for physical layer device (PHY) management.
-> > +
-> > +$ref: ethernet-switch.yaml# =20
->=20
-> This needs to be: ethernet-switch.yaml#/$defs/ethernet-ports
->=20
-> With that, you can drop much of the below part. More below...
->=20
-> > +
-> > +properties:
-
-So it shall be after the "properties:"
-
-$ref: ethernet-switch.yaml#/$defs/ethernet-ports   [*]
+User-Agent: Mozilla Thunderbird
+Subject: Re: An effort to Bring uniformity in yaml file names for QUP GENI
+ drivers
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <3622df25-fe4b-495f-9ff0-eeb59b690bc6@quicinc.com>
+ <d14a3f92-4260-4a46-a01d-900e89f74c2e@kernel.org>
+ <0a121547-9e8a-4630-acc2-697ff9764b41@quicinc.com>
+ <ffaea856-3c0d-46f2-bc54-6b26afb06213@kernel.org>
+Content-Language: en-US
+From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+In-Reply-To: <ffaea856-3c0d-46f2-bc54-6b26afb06213@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: iT7Ig5Df5PBVZYpTEVmZHSNL2H3E_RDp
+X-Proofpoint-GUID: iT7Ig5Df5PBVZYpTEVmZHSNL2H3E_RDp
+X-Authority-Analysis: v=2.4 cv=J9Oq7BnS c=1 sm=1 tr=0 ts=67ebc4bf cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=tf8MKmU2gwl57ggxKIAA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-01_04,2025-03-27_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ priorityscore=1501 phishscore=0 lowpriorityscore=0 bulkscore=0
+ malwarescore=0 mlxscore=0 mlxlogscore=999 adultscore=0 spamscore=0
+ suspectscore=0 impostorscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2502280000 definitions=main-2504010069
 
 
-> > +  compatible:
-> > +    const: nxp,imx287-mtip-switch
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  phy-supply:
-> > +    description:
-> > +      Regulator that powers Ethernet PHYs.
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: Register accessing clock
-> > +      - description: Bus access clock
-> > +      - description: Output clock for external device - e.g. PHY
-> > source clock
-> > +      - description: IEEE1588 timer clock
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: ipg
-> > +      - const: ahb
-> > +      - const: enet_out
-> > +      - const: ptp
-> > +
-> > +  interrupts:
-> > +    items:
-> > +      - description: Switch interrupt
-> > +      - description: ENET0 interrupt
-> > +      - description: ENET1 interrupt
-> > +
-> > +  pinctrl-names: true
-> > + =20
->=20
-> > +  ethernet-ports:
 
-And then this "node" can be removed as it has been referenced above [*]?
+On 4/1/2025 2:32 PM, Krzysztof Kozlowski wrote:
+> On 01/04/2025 05:51, Mukesh Kumar Savaliya wrote:
+>> Thanks Krzysztof !
+>>
+>> On 4/1/2025 2:44 AM, Krzysztof Kozlowski wrote:
+>>> On 31/03/2025 19:02, Mukesh Kumar Savaliya wrote:
+>>>> Hi Krzysztof, As we found some disparity in the conventions used between
+>>>> compatible, driver filename and dt-binding fine name. Hence wanted to
+>>>> share current view and decide next based on your guidance.
+>>>>
+>>>> Below i have listed per driver file name, it's compatible and yaml file.
+>>>> 1. compatible name looks fine across the drivers.
+>>>> 2. Driver file name looks same across the drivers.
+>>>> 3. Yaml file name looks different for i3c against other 3 QUP GENI
+>>>> protocol drivers.
+>>>>
+>>>> please help guide when you are fine, This is not a high priority though.
+>>>
+>>> I find renaming existing bindings just to rename a churn, so I never
+>>> recommended that.
+>>>
+>> I agree, its definitely a churn.  I assume we are fine with geni-i3c
+>> yaml diverge against the i2c/spi/uart.
+> I don't know what you expect of me, but in any case keep all discussions
+> public. This was sent first to me, then to some more maintainers. It's
+> just confusing.
+> 
+Below i have pasted the context where we are reviewing geni-i3c.yaml.
+Since it's changing from other geni drivers, i wanted to confirm if it's 
+fine to diverge i3c.yaml file OR need to change spi.yaml naming ?
 
-(I shall only keep the properties, which are not standard to [*] if
-any).
+As per your ask i have listed antipattern files here.
 
-> > +    type: object
-> > +    additionalProperties: false
-> > +
-> > +    properties:
-> > +      '#address-cells':
-> > +        const: 1
-> > +      '#size-cells':
-> > +        const: 0
-> > +
-> > +    patternProperties:
-> > +      '^port@[12]+$': =20
->=20
-> Note that 'ethernet-port' is the preferred node name though 'port' is=20
-> allowed.
-
-Ok. That would be the correct define:
-
-ethernet-ports {
-     mtip_port1: ethernet-port@1 {
-               reg =3D <1>;
-               label =3D "lan0";
-               local-mac-address =3D [ 00 00 00 00 00 00 ];
-               phy-mode =3D "rmii";
-               phy-handle =3D <&ethphy0>;
-	       };
-
-               mtip_port2: port@2 {
-		....
-	       };
-
->=20
-> > +        type: object
-> > +        description: MTIP L2 switch external ports
-> > +
-> > +        $ref: ethernet-controller.yaml#
-> > +        unevaluatedProperties: false
-> > +
-> > +        properties:
-> > +          reg:
-> > +            items:
-> > +              - enum: [1, 2]
-> > +            description: MTIP L2 switch port number
-> > +
-> > +          label:
-> > +            description: Label associated with this port
-> > +
-> > +        required:
-> > +          - reg
-> > +          - label
-> > +          - phy-mode
-> > +          - phy-handle =20
->=20
-> All the above under 'ethernet-ports' can be dropped though you might=20
-> want to keep 'required' part.
-
-Ok, I will keep it.
-
->=20
-> > +
-> > +  mdio:
-> > +    type: object
-> > +    $ref: mdio.yaml#
-> > +    unevaluatedProperties: false
-> > +    description:
-> > +      Specifies the mdio bus in the switch, used as a container
-> > for phy nodes. +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +  - clock-names
-> > +  - interrupts
-> > +  - mdio
-> > +  - ethernet-ports
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include<dt-bindings/interrupt-controller/irq.h>
-> > +    switch@800f0000 {
-> > +        compatible =3D "nxp,imx287-mtip-switch";
-> > +        reg =3D <0x800f0000 0x20000>;
-> > +        pinctrl-names =3D "default";
-> > +        pinctrl-0 =3D <&mac0_pins_a>, <&mac1_pins_a>;
-> > +        phy-supply =3D <&reg_fec_3v3>;
-> > +        interrupts =3D <100>, <101>, <102>;
-> > +        clocks =3D <&clks 57>, <&clks 57>, <&clks 64>, <&clks 35>;
-> > +        clock-names =3D "ipg", "ahb", "enet_out", "ptp";
-> > +
-> > +        ethernet-ports {
-> > +            #address-cells =3D <1>;
-> > +            #size-cells =3D <0>;
-> > +
-> > +            mtip_port1: port@1 {
-> > +                reg =3D <1>;
-> > +                label =3D "lan0";
-> > +                local-mac-address =3D [ 00 00 00 00 00 00 ];
-> > +                phy-mode =3D "rmii";
-> > +                phy-handle =3D <&ethphy0>;
-> > +            };
-> > +
-> > +            mtip_port2: port@2 {
-> > +                reg =3D <2>;
-> > +                label =3D "lan1";
-> > +                local-mac-address =3D [ 00 00 00 00 00 00 ];
-> > +                phy-mode =3D "rmii";
-> > +                phy-handle =3D <&ethphy1>;
-> > +            };
-> > +        };
-> > +
-> > +        mdio_sw: mdio {
-> > +            #address-cells =3D <1>;
-> > +            #size-cells =3D <0>;
-> > +
-> > +            reset-gpios =3D <&gpio2 13 0>;
-> > +            reset-delay-us =3D <25000>;
-> > +            reset-post-delay-us =3D <10000>;
-> > +
-> > +            ethphy0: ethernet-phy@0 {
-> > +                reg =3D <0>;
-> > +            };
-> > +
-> > +            ethphy1: ethernet-phy@1 {
-> > +                reg =3D <1>;
-> > +            };
-> > +        };
-> > +    };
-> > --=20
-> > 2.39.5
-> >  =20
-
-Thanks for the hint.
+====
+ >> I have also checked for qcom,spi-geni-qcom.yaml, it has below :
+ >> properties:
+ >>     compatible:
+ >>       const: qcom,geni-spi
+ >>
+ >> Let me know if i can correct for SPI in separate new patch ?
+ >
+ > I love such arguments - let's find whatever old bindings and whatever
+ > antipattern.
+Sure, once i know what should be the ideal pattern which is 
+unique/should be unique, will share you other files.
+====
 
 
-Best regards,
+> Best regards,
+> Krzysztof
 
-Lukasz Majewski
-
---
-
-DENX Software Engineering GmbH,      Managing Director: Erika Unter
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
-
---Sig_/RWGAJJQc9ifwwn2SMI2BeSX
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmfrwVsACgkQAR8vZIA0
-zr24oQf/anBJOGl0tWgnq6LRJxzQ6T2tFRMS9KaTl/Yl6SF0MpjdSH1Wjw4HV+oV
-gfTYtA1SQiOTdgGUq4oM8BTfLLxjLpD12kjIOAEY4ObVyfkYCtTFjyA5S+NA80Zs
-tcAyZZa9TVHculFJliwKPe6/XuAPXLwdPMb63tQrokVOi4XmKBO/PC1i6mpRONei
-y+aBVCE3+j+CiqVkK9ZEwKpI3FWfcODNbAQQ+tXQoKSvrsFLlr9xUMqUZnR2vr0V
-+qdkD74tQDFVoEOd9BQCUP0sacxP9+pS4sIjRgq8t4gJv0W59RxNKssq8RgWN10t
-GEICbrn8XIbQCF2SyxmkwxbNAym54g==
-=siSa
------END PGP SIGNATURE-----
-
---Sig_/RWGAJJQc9ifwwn2SMI2BeSX--
 
