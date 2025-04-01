@@ -1,92 +1,55 @@
-Return-Path: <devicetree+bounces-162314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60A45A77DC7
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 16:31:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B37DA77DDB
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 16:35:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 860DE3AF7FF
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 14:30:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9774165788
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 14:35:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E36BF204F88;
-	Tue,  1 Apr 2025 14:30:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DbvgWOY2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F539202C34;
+	Tue,  1 Apr 2025 14:35:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4935F204C0B;
-	Tue,  1 Apr 2025 14:30:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BD5B156677;
+	Tue,  1 Apr 2025 14:35:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743517804; cv=none; b=MznTs9XW9WFjlc+QclqyWDkT7rAXOwXHGG22iWdnXNo++3S+v5SlzgFNP3HzxLX51HtQbUuMX9KhJ0MqgCBp8ZUaXBQRmiHzDp5ibhmxdsN25vAk8Q7Mymt/7K0Flcna0tZwPKN1B3mZx8eBDINeIMHxSryiouve+pmDWTnJl5Q=
+	t=1743518155; cv=none; b=uBn00t2w+4hZcfNU02vDCQobuKovn5x0pHGPOBJp2xdJOf9kd9P5bwUp2lmNbKVL2Jdm72fCVa7OTPP9sFMpDF6cBn5rPfcCgbEm5pELHPvDvusGATu0Q6P4QpmvOHwBZ9+lpZG39YwRvKyPo+/T5O9FywFsg8oLjPDVc/jla90=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743517804; c=relaxed/simple;
-	bh=5aT0Vi1k+xqWtEzhocv4+cEoo/Fhlmc15jH+tEVAXik=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=t265azP+ofStxMPz6QBjvxLI6y8gD5gXJ2s6Ry/gC8yF1KBR2mu56h8LcMRB4NfrB1dLrEM3NnBK9iLs48SPkjz0hdEs5J1/JrKo5/GeQuClimBetLTssTubsL5Iy4wmMUYJGse4X1tFCQvAMm18LfhfnAetbOZ+uPnwjaMMNt8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DbvgWOY2; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2279915e06eso114874645ad.1;
-        Tue, 01 Apr 2025 07:30:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743517802; x=1744122602; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rVsBRCp8zVFqM6Ir5qAGimm+EcciqA65qMc7SI4hE8I=;
-        b=DbvgWOY2fJrCqnA43KiCs9Uf0L2G+gOeUZCMHk2RFlLy1Lp2oL36vnrTr6AU/2GC9J
-         +XfR1MQbqo2vnvSuL6V6qFb6ZCDqdJnadCS7AStO1QLzEcqGqOU+cA3Vl9MvdZVNUkNY
-         I4L50oecNizSQOvcakGTRSLuxkDIOSZvH4nDDEU+3bnQbSsa84EEinR43496VxU2vFmo
-         C5PLj3KOmzLCQMTaYhmOsKiazaekPaUB41WGO7gNXg3+JMKhvSA6PSEJU6LjinagvX4I
-         eFGjyWWXySawBrnYp0U4o8fUGY9ScpthgBP64HtRjo9mB10UVRzXKJLpq4AvF0WT6Ila
-         Bi9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743517802; x=1744122602;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rVsBRCp8zVFqM6Ir5qAGimm+EcciqA65qMc7SI4hE8I=;
-        b=HMn5D+VqEqBlYMiTEeMQH/67SPRdFCHpaCNvkfJQSG+qBZ80eV9wAjqUSxYQuk+2oJ
-         js+2NQCaYV2QIhl1stAtr2vsMGu7pvqkgQU61VsFlXccuOz6RcJKWrWrcQAbcyBf0OjX
-         WShibP9s8Y130b3W/jyexjZcUKI0hYzLiKExRxg/TDB5GDk8NkPP+M58A9n6IudDJs5w
-         4dhHmAuHzozNJOyB6dyhutYg85CjkffuELqwCSlWweKSFsHJwTCoHIfYTzm+WWz+rfz1
-         VFw01ueeakPmrwUjFU25edBb85VOKZA8tWLYSkd6RRIdb/uWn44Cmg82yhq6kobmou44
-         rSSA==
-X-Forwarded-Encrypted: i=1; AJvYcCUFi+LJ054DYg0BZYBW0KZ5NQLOPVgYah1owqWpSWknz4hdX4HVA1nh8NvevtUNKhent0W23yQLcRBZog==@vger.kernel.org, AJvYcCWw1U5p1w+Mn4HzMgxycKb0pn3jWVuwZgVM+yGIcRz1UPy/IHzkvSdP0gU4ejVlTUfFSsmikMTwT1oy6Dj/@vger.kernel.org, AJvYcCXz30iCTuCvFlGnRZaS6c0ik/VeDdbKsx7VeITPRpEF8LzDVuONiasCP8TbAyhYMzmKWfCsSuGyxkGS@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1lS9lWr2X9LSNy/TTLdDwYspep3hWapHqVMd7F5sxkm9q+mxR
-	NfxLKvXpf7UVf/D5ZSz6CagjmRFU70zNHQvudo9/YtzyFmRpEZbx
-X-Gm-Gg: ASbGnctclMmOTm/7SzyRdVmidAxnLZy9iqsrYjxHIGhJNjal90/9PmAA/dzwFkA6OJH
-	5FDC/baAwf+wrEfAABO03dUk0G56PmxYxlZjGYd2ioo6RlX4vBkmJ5ia5FcVMxYBS3diIdrEy90
-	NRrNtEImFoZSo5DG0FCu1fEua1PKVrefxwh+RwM+6bSW91ZUNbVJs61YkdVqzcP8Tn/kdXA192i
-	vsp2rf/1oU7ctroJ15Uwf7knxsJj8wyPltE8eZD71VA4EYbBFfPlUxqfWGPjihQwCRYLfr98tKg
-	6bW9PA7Uv1tnb0UQt1QIE22dw21t4Jr+yjOKCMWbGhqEwNoUdfHN7BIRPclqKNSFnO1l
-X-Google-Smtp-Source: AGHT+IG+94AfeekEAG6y/22oBIgghPbGZmP0jjSCOSTaY1D8CCsKfb/87Ko5NqqbHw5HJ40H0Ay/cw==
-X-Received: by 2002:a17:902:ef4d:b0:224:2200:5940 with SMTP id d9443c01a7336-2292f9d4e35mr245160495ad.38.1743517801786;
-        Tue, 01 Apr 2025 07:30:01 -0700 (PDT)
-Received: from localhost.localdomain ([123.16.133.44])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2291eee210csm89356995ad.70.2025.04.01.07.29.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Apr 2025 07:30:01 -0700 (PDT)
-From: Nam Tran <trannamatk@gmail.com>
-To: krzk+dt@kernel.org
-Cc: pavel@kernel.org,
-	lee@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
+	s=arc-20240116; t=1743518155; c=relaxed/simple;
+	bh=ts0F13cvxPwxCn8dq/f9kApgiGo1QTipU8SEbsSvMnM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZpdEkcxFLxK83dQLyrOJ1Wgu/AYaIQgtXYbEuIACuq1ifw/0UoM22K9maQIZs37Xx0eO+LStXXliltSJF2B1mbmUyMBGf0uV4SGk4DdC0NAuVhpGgP/w5CpbEOv2KFcFEwMY2fbrGlUho9+OOsAc6F27fPxWTrthKJMwyLR8pN8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-CSE-ConnectionGUID: RHW7XX2kS0e1x8tNLHGloQ==
+X-CSE-MsgGUID: bJt5FkCZRiiFYsJzfE+iow==
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 01 Apr 2025 23:35:44 +0900
+Received: from localhost.localdomain (unknown [10.226.92.156])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 480AD432BC94;
+	Tue,  1 Apr 2025 23:35:41 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mark Brown <broonie@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
 	devicetree@vger.kernel.org,
-	linux-leds@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: leds: Add LP5812 LED driver
-Date: Tue,  1 Apr 2025 21:29:35 +0700
-Message-Id: <20250401142935.50906-1-trannamatk@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <8d9f077b-e656-438c-a9bd-76915d135e24@kernel.org>
-References: <8d9f077b-e656-438c-a9bd-76915d135e24@kernel.org>
+	linux-renesas-soc@vger.kernel.org,
+	linux-spi@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v4 0/9] Add RZ/G3E xSPI support
+Date: Tue,  1 Apr 2025 15:35:18 +0100
+Message-ID: <20250401143537.224047-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,131 +58,73 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-On Mon, 31 Mar 2025, Krzysztof Kozlowski wrote:
+The xSPI IP found on RZ/G3E SoC similar to RPC-IF interface, but it
+can support writes on memory-mapped area. Even though the registers are
+different, the rpcif driver code can be reused for xSPI by adding wrapper
+function to it.
 
->Please do not explain me how DT works, we all know. You do not have
->child node. If you disagree - point me to the line in schema having it.
+This patch series tested on RZ/G2L and RZ/G3E by overwriting boot
+partitions.
 
-Thank you for your feedback.
-I now understand that my schema does not define child nodes, so #address-cells and #size-cells should not be included.
-I will update the schema accordingly as shown below.
+v3->v4:
+ * Added a definition for the spi core clock in the R9A09G047 CPG bindings
+   header file.
+ * Updated the example with spi core clock
+ * Retained Rb tag from Rob as these changes are trivial.
+ * Fixed the duplicate most outer set of parentheses in patch#2.
+ * Updated commit description for patch{#4,#7,#8}.
+ * Renamed the functions *_helper()->*_impl().
+ * Replaced ssize_t->size_t as the return data type for
+   rpcif_dirmap_read_impl().
+ * Renamed the local variable length->read and it's data type
+   ssize_t->size_t.
+ * Added comment for addr_nbytes in struct rpcif_priv.
+ * Added struct rpcif_impl for holding the function pointers and data to
+   handle the differences between xspi and rpc-if interface and added
+   suffix _impl() for functions.
+ * The enabling/disabling of spi/spix2 clocks at runtime leading to
+   flash write failure. So, enable these clocks during probe() and
+   disable it in remove().
+ * Collected tags.
+v2->v3:
+ * Fixed RPCIF_DRENR_CDB macro error.
+v1->v2:
+ * As rz-xspi is too generic, replaced file name rz-xspi->rzg3e-xspi
+   and dropped generic compatible rz-xspi.
+ * Dropped prefix spi from interrupt names.
+ * Updated the example with above changes.
+ * Retained Rb tag from Rob as these changes are trivial.
+ * Fixed the build error reported by bot by dropping 
+   EXPORT_SYMBOL(xspi_dirmap_read) and restoring
+   EXPORT_SYMBOL(rpcif_dirmap_read).
+ * Replaced enum XSPI_RZ->XSPI_RZ_G3E.
+ * Replaced compatible rz-xspi->r9a09g047-xspi and device data
+   xspi_info_rz->xspi_info_r9a09g047.
 
-# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-%YAML 1.2
----
-$id: http://devicetree.org/schemas/leds/ti,lp5812.yaml#
-$schema: http://devicetree.org/meta-schemas/core.yaml#
+Biju Das (9):
+  dt-bindings: memory: Document RZ/G3E support
+  memory: renesas-rpc-if: Fix RPCIF_DRENR_CDB macro error
+  memory: renesas-rpc-if: Move rpc-if reg definitions
+  memory: renesas-rpc-if: Use devm_reset_control_array_get_exclusive()
+  memory: renesas-rpc-if: Move rpcif_info definitions near to the user
+  memory: renesas-rpc-if: Add regmap to struct rpcif_info
+  memory: renesas-rpc-if: Add wrapper functions
+  memory: renesas-rpc-if: Add RZ/G3E xSPI support
+  spi: rpc-if: Add write support for memory-mapped area
 
-title: TI/National Semiconductor LP5812 LED Driver
+ .../renesas,rzg3e-xspi.yaml                   | 135 ++++
+ drivers/memory/renesas-rpc-if-regs.h          | 147 ++++
+ drivers/memory/renesas-rpc-if.c               | 703 +++++++++++++-----
+ drivers/memory/renesas-xspi-if-regs.h         | 105 +++
+ drivers/spi/spi-rpc-if.c                      |  16 +-
+ .../dt-bindings/clock/renesas,r9a09g047-cpg.h |   1 +
+ include/memory/renesas-rpc-if.h               |   4 +
+ 7 files changed, 919 insertions(+), 192 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/renesas,rzg3e-xspi.yaml
+ create mode 100644 drivers/memory/renesas-rpc-if-regs.h
+ create mode 100644 drivers/memory/renesas-xspi-if-regs.h
 
-maintainers:
-  - Nam Tran <trannamatk@gmail.com>
+-- 
+2.43.0
 
-description: |
-  The LP5812 is an I2C LED Driver that can support LED matrix 4x3.
-  For more product information please see the link below:
-  https://www.ti.com/product/LP5812#tech-docs
-
-properties:
-  compatible:
-    const: ti,lp5812
-
-  reg:
-    maxItems: 1
-    description:
-      I2C slave address
-      lp5812/12- 0x1b
-
-patternProperties:
-  "^led@[0-9a-b]$":
-    type: object
-    $ref: common.yaml#
-    unevaluatedProperties: false
-
-    properties:
-      reg:
-        minimum: 0
-        maximum: 0xb
-
-      chan-name:
-        $ref: /schemas/types.yaml#/definitions/string
-        description: LED channel name
-
-    required:
-      - reg
-
-required:
-  - compatible
-  - reg
-
-additionalProperties: false
-
-examples:
-  - |
-    #include <dt-bindings/leds/common.h>
-
-    i2c {
-        #address-cells = <1>;
-        #size-cells = <0>;
-
-        led-controller@1b {
-            compatible = "ti,lp5812";
-            reg = <0x1b>;
-
-            led@0 {
-                    reg = <0x0>;
-                    chan-name = "a0";
-            };
-            led@1 {
-                    reg = <0x1>;
-                    chan-name = "a1";
-            };
-            led@2 {
-                    reg = <0x2>;
-                    chan-name = "a2";
-            };
-            led@3 {
-                    reg = <0x3>;
-                    chan-name = "b0";
-            };
-            led@4 {
-                    reg = <0x4>;
-                    chan-name = "b1";
-            };
-            led@5 {
-                    reg = <0x5>;
-                    chan-name = "b2";
-            };
-            led@6 {
-                    reg = <0x6>;
-                    chan-name = "c0";
-            };
-            led@7 {
-                    reg = <0x7>;
-                    chan-name = "c1";
-            };
-            led@8 {
-                    reg = <0x8>;
-                    chan-name = "c2";
-            };
-            led@9 {
-                    reg = <0x9>;
-                    chan-name = "d0";
-            };
-            led@a {
-                    reg = <0xa>;
-                    chan-name = "d1";
-            };
-            led@b {
-                    reg = <0xb>;
-                    chan-name = "d2";
-            };
-        };
-    };
-
-...
-
-
-Best regards,
-Nam Tran
 
