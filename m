@@ -1,171 +1,147 @@
-Return-Path: <devicetree+bounces-162306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 661ABA77CDE
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 15:54:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1912CA77D03
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 15:58:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D6BF1892C16
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 13:52:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 177A57A3739
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 13:57:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D1A62046A4;
-	Tue,  1 Apr 2025 13:52:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2D0D204851;
+	Tue,  1 Apr 2025 13:58:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="cj8Q1ZDw"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="fZzA5qPF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C2A81E51E7;
-	Tue,  1 Apr 2025 13:52:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 650A92046AE
+	for <devicetree@vger.kernel.org>; Tue,  1 Apr 2025 13:58:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743515528; cv=none; b=uZl5ufeXdgLIH+EkwP+v7hWeIlLKnln86wvXGTuPIj9YltAY2c6LWREsGnJeASLPlYbQqamXZjBPwGAppzYsPGLRCf4b0bgH2hA2Q5AciSV6EXpis1iXQfZSzZiGvXGxP2V0M1iKYnlTof9rHGo1jZsKaKMPH6LyM6gHBV2iyUM=
+	t=1743515917; cv=none; b=b5yWElkhnYAG/pm0bb2VaC//+SuLoVuIc+ETFR8Aw+toG14Ip2h6g9k27BOe5dgnx0zlfHmZusYHYX3psrAwCWCo4ydeFrDxer6J2ox8aFJNa0988jZik+sjTk0arvzW2pzSaY0C6DWYPS0KOJkAn6nbL2UnvI9050FkTbyifsE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743515528; c=relaxed/simple;
-	bh=3+bsHk/H5ywAwfPsnOVh5Gzzaoaq6Xxg5JafTJsF3Fw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z1127Ggt090opzEvCeYvXeQYSeD3/RaIT1XNlgf71ZD5KSwKMjU5KYzq/Oza7XBRHFqytDwTXJSde8ZSXkwWiCoTyc3CtnH5iAPjOfgkaPKGyHDeikk3NDf/5ugtrJLZdkydstjc5zTeDOOxgzEap2xoEh4YbbtdyP9ftkeOggs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=cj8Q1ZDw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52F7DC4CEE4;
-	Tue,  1 Apr 2025 13:52:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1743515527;
-	bh=3+bsHk/H5ywAwfPsnOVh5Gzzaoaq6Xxg5JafTJsF3Fw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cj8Q1ZDwEwroWVVXVXWfg3bP1FU3Xu6vqHxxSWMyoY0tgd9HLmZAvVWjUQXf9Fy19
-	 JY9usyKS6r4oMPDZPU89oWgsJw0dQoABzZKOHXVPJQqgOLHae6USFb+tV4U4o8pzkg
-	 PzDjNa6q97b2NQDiI8Dv3sHAaAqWzJnHnt3cbDrg=
-Date: Tue, 1 Apr 2025 14:50:37 +0100
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, peter.chen@kernel.org,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, jun.li@nxp.com
-Subject: Re: [PATCH v6 1/4] dt-bindings: usb: chipidea: Add i.MX95 compatible
- string 'fsl,imx95-usb'
-Message-ID: <2025040111-pushup-waking-af93@gregkh>
-References: <20250318150908.1583652-1-xu.yang_2@nxp.com>
- <20250401105740.5xtkityygeucvv26@hippo>
+	s=arc-20240116; t=1743515917; c=relaxed/simple;
+	bh=RmzZXK4YPqQ70nLHPh8glvWMbUWxWtesP34xW9L6i3U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=t+e54rnMFJtY8b67PFxA+O/CbdO7269OKx9MKOsFUUF/frF0WYle10fuqcGQigyCocVNogUly2WWFFwJRIiG8G94v4b/mJJMsPnRY2fu1V79mpc2ZuvEKBswOJztagONVDUwzRKQdbQkaSkUVR6rwDSgGmD6AlI2D0nmBiDqaJ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=fZzA5qPF; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 5B23A441CD;
+	Tue,  1 Apr 2025 13:58:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1743515913;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=Dvq5pJ8VFEVaQPbrBCwVB6vh+W3FQK+6lG5OG4pglDQ=;
+	b=fZzA5qPF0NAIthsFUYyODhoY0nC0KRg5vWfU9rqSA6kYK++5m1+4YUh50i/L8RuhwYSC1c
+	a6+f2bFwM6s4iZjBM+CLvaghaTXPNAtzU1pXY9nWIkpvfFidZyhzykgbrVh2Zb7TGD3f/l
+	9cSkABaHX9xYFg7DzofnM/bKMgyLJEwmeF8vuv7n/LHFWmInmQ/kdigcYvv9oGH92t7ZP6
+	vbJ+HZa2897biFXRY20r3CGPEkIGzDOwzVgR0bJKyHTsDHbKH7iAdh8aPmrZJRmyvV+u/E
+	CCEVNMrCCPPnguu4/nFbqz4siNToPzTwLlbXrXzZkveHFGRlf7dFHUm6FVjFAw==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	<linux-arm-kernel@lists.infradead.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Steam Lin <stlin2@winbond.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH] arm64: dts: ti: k3-am62a7-sk: Describe the SPI NAND
+Date: Tue,  1 Apr 2025 15:58:22 +0200
+Message-ID: <20250401135822.244402-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250401105740.5xtkityygeucvv26@hippo>
+Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddukedvleeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufffkffoggfgsedtkeertdertddtnecuhfhrohhmpefoihhquhgvlhcutfgrhihnrghluceomhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgeetfeduleefjeffheevleeggfdtvdduhfdugeeuieejveejiedvhfdugfettdehnecukfhppeelvddrudekgedruddutddrudelfeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeelvddrudekgedruddutddrudelfedphhgvlhhopehlohgtrghlhhhoshhtrdhlohgtrghlughomhgrihhnpdhmrghilhhfrhhomhepmhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepuddupdhrtghpthhtohepnhhmsehtihdrtghomhdprhgtphhtthhopehvihhgnhgvshhhrhesthhirdgtohhmpdhrtghpthhtohepkhhrihhsthhosehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnv
+ ghlrdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgvrhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhg
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-On Tue, Apr 01, 2025 at 06:57:40PM +0800, Xu Yang wrote:
-> Hi Greg,
-> 
-> On Tue, Mar 18, 2025 at 11:09:05PM +0800, Xu Yang wrote:
-> > The i.MX95 USB2.0 controller is mostly compatible with i.MX7D, except it
-> > requires a second interrupt for wakeup handling. Add the compatible string
-> > for the i.MX95 platform, add the iommus property, and enforce the
-> > interrupt property restriction. Keep the same restriction for existing
-> > compatible strings.
-> > 
-> > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> > Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> > 
-> > ---
-> > Changes in v6:
-> >  - no changes
-> > Changes in v5:
-> >  - no changes
-> > Changes in v4:
-> >  - no changes
-> > Changes in v3:
-> >  - add Rb tag
-> > Changes in v2:
-> >  - improve interrupts description
-> >  - improve subject and commit message
-> > ---
-> >  .../bindings/usb/chipidea,usb2-common.yaml    |  3 +++
-> >  .../bindings/usb/chipidea,usb2-imx.yaml       | 24 ++++++++++++++++++-
-> >  2 files changed, 26 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/usb/chipidea,usb2-common.yaml b/Documentation/devicetree/bindings/usb/chipidea,usb2-common.yaml
-> > index d2a7d2ecf48a..10020af15afc 100644
-> > --- a/Documentation/devicetree/bindings/usb/chipidea,usb2-common.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/chipidea,usb2-common.yaml
-> > @@ -42,6 +42,9 @@ properties:
-> >  
-> >    phy_type: true
-> >  
-> > +  iommus:
-> > +    maxItems: 1
-> > +
-> >    itc-setting:
-> >      description:
-> >        interrupt threshold control register control, the setting should be
-> > diff --git a/Documentation/devicetree/bindings/usb/chipidea,usb2-imx.yaml b/Documentation/devicetree/bindings/usb/chipidea,usb2-imx.yaml
-> > index 8f6136f5d72e..51014955ab3c 100644
-> > --- a/Documentation/devicetree/bindings/usb/chipidea,usb2-imx.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/chipidea,usb2-imx.yaml
-> > @@ -41,6 +41,7 @@ properties:
-> >                - fsl,imx8mm-usb
-> >                - fsl,imx8mn-usb
-> >                - fsl,imx93-usb
-> > +              - fsl,imx95-usb
-> >            - const: fsl,imx7d-usb
-> >            - const: fsl,imx27-usb
-> >        - items:
-> > @@ -54,7 +55,11 @@ properties:
-> >      maxItems: 1
-> >  
-> >    interrupts:
-> > -    maxItems: 1
-> > +    minItems: 1
-> > +    items:
-> > +      - description: USB controller interrupt or combine USB controller
-> > +                     and wakeup interrupts.
-> > +      - description: Wakeup interrupt
-> >  
-> >    clocks:
-> >      minItems: 1
-> > @@ -191,6 +196,7 @@ allOf:
-> >            contains:
-> >              enum:
-> >                - fsl,imx93-usb
-> > +              - fsl,imx95-usb
-> >      then:
-> >        properties:
-> >          clocks:
-> > @@ -238,6 +244,22 @@ allOf:
-> >            maxItems: 1
-> >          clock-names: false
-> >  
-> > +  # imx95 soc use two interrupts
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - fsl,imx95-usb
-> > +    then:
-> > +      properties:
-> > +        interrupts:
-> > +          minItems: 2
-> > +    else:
-> > +      properties:
-> > +        interrupts:
-> > +          maxItems: 1
-> > +
-> >  unevaluatedProperties: false
-> 
-> Will you pick up these patches?
+Describe the octal SPI NAND available on the low-power starter kit.
 
-It's the middle of the merge window, I can't pick up anything right now :(
+The pinctrl configuration comes from TI fork.
 
-I'll look at it after -rc1 is out, thanks.
+With the current mainline tree, we currently get the following
+performances:
 
-greg k-h
+eraseblock write speed is 7507 KiB/s
+eraseblock read speed is 15802 KiB/s
+page write speed is 7551 KiB/s
+page read speed is 15609 KiB/s
+2 page write speed is 7551 KiB/s
+2 page read speed is 15609 KiB/s
+erase speed is 284444 KiB/s
+2x multi-block erase speed is 512000 KiB/s
+
+Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+---
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 40 +++++++++++++++++++++++++
+ 1 file changed, 40 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+index a6f0d87a50d8..6cc950f6dbe3 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+@@ -737,3 +737,43 @@ dpi1_out: endpoint {
+ 		};
+ 	};
+ };
++
++&fss {
++	status = "okay";
++};
++
++&ospi0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&ospi0_pins_default>;
++
++	flash@0 {
++		compatible = "spi-nand";
++		reg = <0>;
++		spi-tx-bus-width = <8>;
++		spi-rx-bus-width = <8>;
++		spi-max-frequency = <25000000>;
++		cdns,tshsl-ns = <60>;
++		cdns,tsd2d-ns = <60>;
++		cdns,tchsh-ns = <60>;
++		cdns,tslch-ns = <60>;
++		cdns,read-delay = <2>;
++	};
++};
++
++&main_pmx0 {
++	ospi0_pins_default: ospi0-default-pins {
++		pinctrl-single,pins = <
++			AM62AX_IOPAD(0x000, PIN_OUTPUT, 0) /* (H24) OSPI0_CLK */
++			AM62AX_IOPAD(0x02c, PIN_OUTPUT, 0) /* (F23) OSPI0_CSn0 */
++			AM62AX_IOPAD(0x00c, PIN_INPUT, 0) /* (E25) OSPI0_D0 */
++			AM62AX_IOPAD(0x010, PIN_INPUT, 0) /* (G24) OSPI0_D1 */
++			AM62AX_IOPAD(0x014, PIN_INPUT, 0) /* (F25) OSPI0_D2 */
++			AM62AX_IOPAD(0x018, PIN_INPUT, 0) /* (F24) OSPI0_D3 */
++			AM62AX_IOPAD(0x01c, PIN_INPUT, 0) /* (J23) OSPI0_D4 */
++			AM62AX_IOPAD(0x020, PIN_INPUT, 0) /* (J25) OSPI0_D5 */
++			AM62AX_IOPAD(0x024, PIN_INPUT, 0) /* (H25) OSPI0_D6 */
++			AM62AX_IOPAD(0x028, PIN_INPUT, 0) /* (J22) OSPI0_D7 */
++			AM62AX_IOPAD(0x008, PIN_INPUT, 0) /* (J24) OSPI0_DQS */
++		>;
++	};
++};
+-- 
+2.48.1
+
 
