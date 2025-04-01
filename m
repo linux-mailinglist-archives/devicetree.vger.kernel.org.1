@@ -1,101 +1,82 @@
-Return-Path: <devicetree+bounces-162365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06867A78076
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 18:31:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A228A78082
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 18:33:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 998B9161DD1
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 16:28:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D5B2188BA6B
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 16:31:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58DCD20B7E1;
-	Tue,  1 Apr 2025 16:28:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FCBF20D50C;
+	Tue,  1 Apr 2025 16:31:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="G/Tl31CL"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="mtv7kC6x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D75381C860D
-	for <devicetree@vger.kernel.org>; Tue,  1 Apr 2025 16:28:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5C3920B7EA;
+	Tue,  1 Apr 2025 16:31:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743524886; cv=none; b=deWZ3lWvIDc79Dcz7NzHn6yRLeu+ayDEoQefDazRy3ze5N32TItQ9xUsyxnyLAto+wywhbGloe++7f8WgXSgsHiXGLH+tSgXU5wZgDKEU/RIvF+3FM6echKp0HQJZhiri3GxnMk8BerEJbizEHJid69tYo77+vq4DLJWDZXzwLA=
+	t=1743525082; cv=none; b=Q8F2qiYiUci3YG/dnun6pdOHh6t7Osa7zckPWUeIYWF+rR/C73cwjt1uPZnZEi+fZYsTyL3lV8zv+VhM85ME9bBz0NGZjhmCuoO6KJIMkZSnufAPsDkHosM1Vjk6A7qtAeYXiYyA7/CyYITpiQPeijl8/e+ulo1V95F3nxwMVhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743524886; c=relaxed/simple;
-	bh=QyvPwe2n7SMJQvY20lH5qrJm2IZrAH6H92ENM40f7x4=;
+	s=arc-20240116; t=1743525082; c=relaxed/simple;
+	bh=KXsNaz4eUmfKifeMxUbmS+yJGRk7Pas5WljQxZ0zVaU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m3jUS0UmtxZfzfsZXKkAWTbjItuibAHZfK/Z0awyPgAhxK7h/CcrtsXkkHU0nJ7ZtYb+2i+MHVv7F6xAqTi8kN2xJDD/FaYBf0skMB77TYwR9uQl0RRtu3sVTjCAgF9+oteTOYY+oJBQ2gUvpOFPf/ru7ZwiwJIU7iRta3u+RUI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=G/Tl31CL; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-226185948ffso112420935ad.0
-        for <devicetree@vger.kernel.org>; Tue, 01 Apr 2025 09:28:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1743524884; x=1744129684; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=sEr9LMvpLbHE893cIqhG/JU8h0Dt2xG4p+araqhsX+g=;
-        b=G/Tl31CLaQf9aFz7+CTDTug+UVm1CNVsHhLnpWq57mdwnmnAOORtjDSe5bqeniH/Li
-         61CeBh6vIylSUqtFueMX0T1ZzVommA5WRDHoLCxy8wPi+T2+/zeKt1KWsYsWtewxEND5
-         56OdweU6OmmQv9R9YLsYJf4FLnq9r9n0dW2RKIU71IFJKiThjMYj48ZvR7mbvapRBK92
-         9xAzRBM0YT0dTAtHdOyhC0eGJOd1u/nFOHnSYTauAzEQ3ZFqsGV6pS+rAHLwI+R5Urq5
-         1XhMfrcA+nddSbsFs5fBXLKkHvuuLgdieZbPQmt43fMHKg1HaJuKNAwtBCyXHRgoY4Lk
-         G9ig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743524884; x=1744129684;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sEr9LMvpLbHE893cIqhG/JU8h0Dt2xG4p+araqhsX+g=;
-        b=w2AIaQo33S6dA5NUKXbzuLqUtrLyykMiAgwWaZWaUc7a7kxs6uvljaRfZCjNmemhm+
-         8uG5l9AtY/perQQaLyIx8OJVxyKO5tES2DcrhM3pELy4KPzBcZ1j/Yh2kKUJDsrsetd2
-         bxPkyzZ8PFeg7X9nXJHpLWvwDS2Ag/6+VHBBxZRecEzo202bn34UVtIC1RqfCgxUAw0h
-         FVPNIsrhBxzr5VBIwT4pcDROppHBRd9BJBseWq2Nh95yGtz+UrK6Oe3NcwuKA7zPecbc
-         nFoaelE01h9HCvd2bQJOBHSHEkJdr7ZFM/HBzaZDNq8VyxK7zttwdZalmbKY+uyi5Uif
-         n2iA==
-X-Forwarded-Encrypted: i=1; AJvYcCWsOJBkpjbjk5PB8M4hYzavbpWzN3W4KWPqC1J/VbebZbQirsVAzxwe1Rtqa3uoDpk0zIF82ie+I9rY@vger.kernel.org
-X-Gm-Message-State: AOJu0YzazFE1jH6hdGi4Icxavs39MQsYtDVoyLmr5MTmAxe2yHUOZmpa
-	0Ve9H8lUr8rX4BX+EwwH/FCZHYV9AXfl6aFWRJcFAlScUIFbSsHgKBixypEk7A==
-X-Gm-Gg: ASbGnct/oZjBMBzP/Zc5X+H/DievwTiJkAObCgz5wD54Z+8q6lb9N3Bav/57J8xnPwi
-	j8fbmHmuRkClIngIW7kH6KrLzEgQVz/IE7KoevuyVXt3/BvBWrvBaJUja02m4oxKpK1H1f/uXWp
-	zWQBBv6yI3P7GR0MVraHojRawpL4RtuwyaN+QT4Fs55Wlm9C6DLAs2bIsGNQSfNeDrgMORfrh71
-	2ptTgf2K8k6GuRy8Wygjuhko95KS0FM4Y6J6mwekEwSGmfDZcxHrjKzZrkpADlyc9m2N7UCCYrS
-	n2tvGjDbYYXIt2rY6IRM2RCo9BF2bKk/uLFgoSFNqhBjLRzBb+JWSa5yYgG4+xNPH/651SxH5MW
-	/z51CWotE2a0/G40=
-X-Google-Smtp-Source: AGHT+IEyaXPv9oHXzdX7kp5aOc8Pw45evlmKNFGJN69UA0/YokAg60Q/XphIOEUon7k6t8bnNWSYvA==
-X-Received: by 2002:a17:902:ea02:b0:224:216e:332f with SMTP id d9443c01a7336-2292f9fc054mr220540675ad.48.1743524883898;
-        Tue, 01 Apr 2025 09:28:03 -0700 (PDT)
-Received: from google.com (198.103.247.35.bc.googleusercontent.com. [35.247.103.198])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2291f1f7376sm89939395ad.245.2025.04.01.09.28.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Apr 2025 09:28:03 -0700 (PDT)
-Date: Tue, 1 Apr 2025 09:27:59 -0700
-From: William McVicker <willmcvicker@google.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=E/V8KR6Ho9hLdBcnIcA11AC49+Q30rK1TnAP3EUprmxmsXnNEY8kWmEuDO9uS20Y6HoRcYkikF+3BzLl09NfsbFaI9TECK20ibdXx3UxPKdClRzDZf1A3Spy0XhtI7SGEKKnZHcjZrKaj5p3XnAuNf0VGF5aIoZBxM6+4jy1uug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=mtv7kC6x; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=zTEFQc5dWYUuBsuVKJTFRf6BPFUabOSLuUQv6M/NaUs=; b=mtv7kC6xk2ChNFw+jpUJFuq5fe
+	VrjElzIo3L2TH/x+D2KvBRax+IzONx5GZK0evuOqnvr5WlXVtfx9s2LdxuVh7NM/vLzpukOgRVyYr
+	5bKNnTfeFOPtUeVBpxNNGTOZTlm08RKnEXaNlptfT+iJdMIn+Kl1XKFGGTOBU0sLRjc9LP/JRQubB
+	+Zm1AucNADqY66/GtLsXrMCeC61VEYLnMm1hKfb/Z4aR4Iio4lU6v4N9aSjGY7If5iZI9caec0Ef/
+	6EDIqh++B1MgxPkKap+KH8/UwUfO9iU/JimJ8EiiTiaE6nOL0VdgGWggwdfVy6w6aGuTBabeQ66I6
+	bof9UvDA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:48484)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1tzeW0-0006de-0J;
+	Tue, 01 Apr 2025 17:31:04 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1tzeVv-0002qU-2E;
+	Tue, 01 Apr 2025 17:30:59 +0100
+Date: Tue, 1 Apr 2025 17:30:59 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Saravana Kannan <saravanak@google.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>, kernel-team@android.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	Donghoon Yu <hoony.yu@samsung.com>,
-	Youngmin Nam <youngmin.nam@samsung.com>
-Subject: Re: [PATCH v1 5/6] clocksource/drivers/exynos_mct: Add module support
-Message-ID: <Z-wUD2GGMRfJwhSu@google.com>
-References: <20250331230034.806124-1-willmcvicker@google.com>
- <20250331230034.806124-6-willmcvicker@google.com>
- <20250401023001.GA3186122-robh@kernel.org>
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+	Andrei Botila <andrei.botila@oss.nxp.com>,
+	Sabrina Dubroca <sd@queasysnail.net>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Eric Woudstra <ericwouds@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next RFC PATCH v5 3/6] net: phy: nxp-c45-tja11xx: simplify
+ .match_phy_device OP
+Message-ID: <Z-wUwypg9KYVUcBz@shell.armlinux.org.uk>
+References: <20250401114611.4063-1-ansuelsmth@gmail.com>
+ <20250401114611.4063-4-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,44 +85,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250401023001.GA3186122-robh@kernel.org>
+In-Reply-To: <20250401114611.4063-4-ansuelsmth@gmail.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On 03/31/2025, Rob Herring wrote:
-> On Mon, Mar 31, 2025 at 04:00:27PM -0700, Will McVicker wrote:
-> > From: Donghoon Yu <hoony.yu@samsung.com>
-> > 
-> > On Arm64 platforms the Exynos MCT driver can be built as a module. On
-> > boot (and even after boot) the arch_timer is used as the clocksource and
-> > tick timer. Once the MCT driver is loaded, it can be used as the wakeup
-> > source for the arch_timer.
-> > 
-> > Signed-off-by: Donghoon Yu <hoony.yu@samsung.com>
-> > Signed-off-by: Youngmin Nam <youngmin.nam@samsung.com>
-> > [Original commit from https://android.googlesource.com/kernel/gs/+/8a52a8288ec7d88ff78f0b37480dbb0e9c65bbfd]
-> > Signed-off-by: Will McVicker <willmcvicker@google.com>
-> > ---
-> >  drivers/clocksource/Kconfig      |  3 +-
-> >  drivers/clocksource/exynos_mct.c | 47 +++++++++++++++++++++++++++-----
-> >  2 files changed, 42 insertions(+), 8 deletions(-)
+On Tue, Apr 01, 2025 at 01:46:04PM +0200, Christian Marangi wrote:
+> Simplify .match_phy_device OP by using a generic function and using the
+> new phy_id PHY driver info instead of hardcoding the matching PHY ID
+> with new variant for macsec and no_macsec PHYs.
 > 
-> [...]
+> Also make use of PHY_ID_MATCH_MODEL macro and drop PHY_ID_MASK define to
+> introduce phy_id and phy_id_mask again in phy_driver struct.
 > 
-> > +#ifdef MODULE
-> > +static int exynos4_mct_probe(struct platform_device *pdev)
-> > +{
-> > +	struct device_node *np = pdev->dev.of_node;
-> > +
-> > +	if (of_machine_is_compatible("samsung,exynos4412-mct"))
-> 
-> Your root node compatible has "samsung,exynos4412-mct"!?
-> 
-> In any case, add a data ptr to of_device_id table and then use the match 
-> data rather than comparing compatible strings again.
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 
-Ah yes, you're right. Thanks for the suggestion! I'll update on v2.
+Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
 
-Regards,
-Will
+Thanks!
 
-[...]
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
