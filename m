@@ -1,189 +1,98 @@
-Return-Path: <devicetree+bounces-162226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71553A7781F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 11:49:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98348A77851
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 12:00:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A99F16AE7C
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 09:49:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4CCC5169841
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 10:00:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F2681EBA08;
-	Tue,  1 Apr 2025 09:49:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C31411EBA18;
+	Tue,  1 Apr 2025 10:00:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11A291EF394;
-	Tue,  1 Apr 2025 09:49:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 188EB1E9B00;
+	Tue,  1 Apr 2025 10:00:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743500989; cv=none; b=YbocYjCJTQ85j8kdqO03pMqrWcu/7I0rvHWxytpODgLvsjNS9pqG7Y41gdYbwchgiafIZw2XfLsg5G0bGPmCOB8UsEV+RJj584w/BhZ5M/KKGgYpb7nv8Q54tBJ69QX2j8+vLiq0Q3r5qrS5K86X8hfmOov2fLXYbsMOIlrcRzA=
+	t=1743501635; cv=none; b=WZvnrhRgx0COEjyuBp+wXT79m5S5dkLtXqupXe4rq0JCwuaSn1VbJJHDPdHHEFCRQ8tSFcSRJrD4Gxvo3wwDQujvEFF9XbbE3L/F64sjLGp85XXsLllDkYYOBd1D7kgNp5Fp1udgU4NFpuApI9tbIuUTDATr3Ault0vUK7a+zoQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743500989; c=relaxed/simple;
-	bh=c0/2Il+HKMHe/1KYQsOXrQrqmLFvTc+vMlTSyj4HAAk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gvMv25j46cIlJlL12SAmpjMiqvuH+wmEXZBdPu8vpLMg5Rdy4NF4oGuD6fVH9E4CbtnvVIK+g63YVZXRBdYNUn1MP1ek+KSL0r601ly72uD1rQP5gWjggmzKZB6YXhPtFE7NtFqsrNgMdTX7wm4oUg2GBtytdP8nbaf3F3cU+fU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-523dc190f95so2658689e0c.1;
-        Tue, 01 Apr 2025 02:49:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743500985; x=1744105785;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=y1zyMwtR40qQQhixsawu3/3AN+ghiZjIje47Qoy6I1M=;
-        b=oZvJ9Fjv40X1s/MMKjJ8Diqr+jgsvji/gGTa0muG/8JMayWID8fjagF6kvx4NdD0WF
-         koSjjAP5zROZHRADDphgkKaNYy5r4a55x8aBzwho5pCR1DAXm8yI/4C5xwcuhSSeuDMF
-         hjebH/QA1QrQpKWAGOU1G0GZAad2alWnCL1n1Z1foG5Wbw2X+NdcSaJCmQhmu4qdaPMN
-         V1afdcf26dp82yBeIqavMGbrQsjFDwyL/II5qRt1WR+t+QxkG+pipqUGzm0PZ0Y+iWeN
-         GPiO55z+E0VTSw1C0nKEmaNs1cuNjcnixhzIzPNVyocmapSx+VSHi2aP0P+jEEAja47d
-         fk6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUWJYExMEXuDPagURBiBvJKHrj5WcCZWUnC8pw69ziuapdfUOiX56eIQZvsELrMo9XsXSm9BQg+3ruKGtfo@vger.kernel.org, AJvYcCUvvyulFnfgp3CH79ufB79Ma73B0cm4KZv6FLJ0IJJKRznO3gCA8YFJzZcMFD6ACaBZSTA7rwMLOC4y@vger.kernel.org, AJvYcCV9sc0wf3HsON5U/QUlCMNvsjVTij5YigQFvu8pWguB6NQdfgz6TTtlTtMfEbuQtabys7qRFX5g728a@vger.kernel.org, AJvYcCWfYqP0dGxVBQB9SB036kef5FAAwvMw4tGESCraM6M9XnFfWTc8lGprWZarHsKpLpd1ZG5x5YukwwGm7oWq8IzSoow=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxF4wMR1mlJyEqloTsX3+aVQfs1AWWrpIgea9Sd+xod50OGj+sp
-	x1L2d1AccvdpXGjF1BbRMUAAfX//Bcvfwwp70hFLjZX/EBAlxMlfYy/N49in
-X-Gm-Gg: ASbGncsJg7aHI2osM8d8wU38X587otOxSjkm29ppYH03YOMAofXcLRrCRNAAtDJP8zR
-	uf1XhWB1i2EQDrs4iqbqExF038SKg7GPed+AiIff37Ck9C6qUEVCgN9rQguKrU3uU1aDJpMIHUx
-	dh26TA94uAAoKW6KvzvcOa+gxIPTYwBUggY/Xi2+iLx/uoWI+pGKNICTdEJgHmuX2A+hp5umrm0
-	lBHBJbqXgr2PJnSjYOGti+Ea9wqR2UIBndzSLhgtwqt76j6/jQWdblWcjPzsnurIv2AnyGx17gU
-	oJiRB/4OasAZupmqG4lGpUL4WLHes3iSrQ0J0w1WAEpNMDo02/YTp2c8w3s7c85LaJ5PrpGDyFi
-	z8ib1xT7UxYM=
-X-Google-Smtp-Source: AGHT+IH31MtTwEUy6Sj9tAhyj3bsRTSR/sK9B29+yGr3THhtU70h34iDwk+FjGtm0fNvN8lXzleXAw==
-X-Received: by 2002:a05:6122:2a4c:b0:50d:a31c:678c with SMTP id 71dfb90a1353d-5261d357a48mr7733493e0c.2.1743500984732;
-        Tue, 01 Apr 2025 02:49:44 -0700 (PDT)
-Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com. [209.85.221.174])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5260e6a0afcsm1939593e0c.6.2025.04.01.02.49.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Apr 2025 02:49:44 -0700 (PDT)
-Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-523dc190f95so2658679e0c.1;
-        Tue, 01 Apr 2025 02:49:44 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUvmYzg31/a0xdzzctdsd4enlaH5dXhJb/gIMO7kRXpH7IufWIlw2Ei2jPo5x0SuAEYzIxQDLXiiZLr@vger.kernel.org, AJvYcCVbowwVgfKh7xJao6XC359jGDimY0cDaX0jz4cvLHYtCNYJcbO0nNkzLmYT2dOw5YpuT2/6qZqwc+nxqRk6WGCg5/w=@vger.kernel.org, AJvYcCVdYhtN9R1fFQMxteHCy4J/Tfw59xiJYlktKFlA9IFxWj/adviM/H8KJkkLNegpUOPeEj1c/wOozaNJ@vger.kernel.org, AJvYcCWHcj/U5hzDm/lmEGRuvQUT9+klTuJ/ldCUCGe21gOt77c/GJF6btyAMWRkFw3n7ZztFk1PDkHwx2UOg6LW@vger.kernel.org
-X-Received: by 2002:a05:6102:14a8:b0:4c5:1bea:1c29 with SMTP id
- ada2fe7eead31-4c6d39af686mr8115053137.19.1743500983709; Tue, 01 Apr 2025
- 02:49:43 -0700 (PDT)
+	s=arc-20240116; t=1743501635; c=relaxed/simple;
+	bh=PZ2wlP0xAzb2e8AtSu2pWEXqMm2q8EHdiToSKwJ/Eg0=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=gfdx0HuUT7e8C/sLfbO7K1bhuUXcHIkusGvWOhDHhZ7fTCx0/hV/kQOUF5LNiUKh05QpifoJft53i4FvZcXvZ9JaTQ99nx/Cru1/1lqq6MwoHDxCSAfPAIl68S3O8heXHUJUQpqAdqO/ZXCq6YAAUYyV5S7l29u0YmjKQ+j4AF4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from amadeus-Vostro-3710.lan (unknown [IPV6:240e:3b3:2c00:430:ae31:3177:4f09:da96])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 10501cafd;
+	Tue, 1 Apr 2025 18:00:28 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: Yao Zi <ziyao@disroot.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Chukun Pan <amadeus@jmu.edu.cn>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v2 1/3] arm64: dts: rockchip: Add missing uart3 interrupt for RK3528
+Date: Tue,  1 Apr 2025 18:00:18 +0800
+Message-Id: <20250401100020.944658-2-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250401100020.944658-1-amadeus@jmu.edu.cn>
+References: <20250401100020.944658-1-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250330195715.332106-1-marek.vasut+renesas@mailbox.org> <20250330195715.332106-5-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20250330195715.332106-5-marek.vasut+renesas@mailbox.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 1 Apr 2025 11:49:32 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUx31WHW+fUP0Qbfs-Si2+cLmxC=YRUKWvSudn7CBZ4Fg@mail.gmail.com>
-X-Gm-Features: AQ5f1JoeIvYp6dxZPMkSZCvf_rs3MuLZLQfoBSTfTx3w9rvwfJ19pgmFQ3EdrXU
-Message-ID: <CAMuHMdUx31WHW+fUP0Qbfs-Si2+cLmxC=YRUKWvSudn7CBZ4Fg@mail.gmail.com>
-Subject: Re: [PATCH 4/4] arm64: dts: renesas: r8a779g3: Add Renesas R-Car V4H
- Sparrow Hawk board support
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: linux-arm-kernel@lists.infradead.org, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	=?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	Aradhya Bhatia <a-bhatia1@ti.com>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Heiko Stuebner <heiko@sntech.de>, Junhao Xie <bigfoot@classfun.cn>, 
-	Kever Yang <kever.yang@rock-chips.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDSR5KVkNPQh5CHh5NGhlJTlYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlJT0seQUgZSEFJGEtLQU9IS0EaHkhKQUhKTExBTx1LQkEfGkJNWVdZFhoPEh
+	UdFFlBWU9LSFVKS0hKTkxOVUpLS1VKQktLWQY+
+X-HM-Tid: 0a95f0cb936003a2kunm10501cafd
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MC46Myo4ODIBLQpWIy0tFEgS
+	IS5PCRVVSlVKTE9ITktKTUlCSkNLVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlP
+	Sx5BSBlIQUkYS0tBT0hLQRoeSEpBSEpMTEFPHUtCQR8aQk1ZV1kIAVlBSkNCTjcG
 
-Hi Marek,
+The interrupt of uart3 node on rk3528 is missing, fix it.
 
-Thanks for your patch!
+Fixes: 7983e6c379a9 ("arm64: dts: rockchip: Add base DT for rk3528 SoC")
+Reviewed-by: Yao Zi <ziyao@disroot.org>
+Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+---
+ arch/arm64/boot/dts/rockchip/rk3528.dtsi | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-On Sun, 30 Mar 2025 at 21:58, Marek Vasut
-<marek.vasut+renesas@mailbox.org> wrote:
-> Add Renesas R-Car V4H Sparrow Hawk board based on R-Car V4H ES3.0 (R8A779G3)
+diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+index 26c3559d6a6d..7f1ffd6003f5 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+@@ -404,9 +404,10 @@ uart2: serial@ffa00000 {
+ 
+ 		uart3: serial@ffa08000 {
+ 			compatible = "rockchip,rk3528-uart", "snps,dw-apb-uart";
++			reg = <0x0 0xffa08000 0x0 0x100>;
+ 			clocks = <&cru SCLK_UART3>, <&cru PCLK_UART3>;
+ 			clock-names = "baudclk", "apb_pclk";
+-			reg = <0x0 0xffa08000 0x0 0x100>;
++			interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
+ 			reg-io-width = <4>;
+ 			reg-shift = <2>;
+ 			status = "disabled";
+-- 
+2.25.1
 
-Retronix
-
-> SoC. This is a single-board computer with single gigabit ethernet, DSI-to-eDP
-> bridge, DSI and two CSI2 interfaces, audio codec, two CANFD ports, micro SD
-> card slot, USB PD supply, USB 3.0 ports, M.2 Key-M slot for NVMe SSD, debug
-> UART and JTAG.
->
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
-
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
-> @@ -0,0 +1,671 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +/*
-> + * Device Tree Source for the R-Car V4H ES3.0 Sparrow Hawk board
-> + *
-> + * Copyright (C) 2025 Marek Vasut <marek.vasut+renesas@mailbox.org>
-> + */
-> +
-> +/dts-v1/;
-> +#include <dt-bindings/gpio/gpio.h>
-> +
-> +#include "r8a779g3.dtsi"
-> +
-> +/ {
-> +       model = "Retronix Sparrow Hawk board based on r8a779g3";
-> +       compatible = "retronix,sparrow-hawk", "renesas,r8a779g3",
-> +                    "renesas,r8a779g0";
-> +
-> +       aliases {
-> +               ethernet0 = &avb0;
-> +               i2c0 = &i2c0;
-> +               i2c1 = &i2c1;
-> +               i2c2 = &i2c2;
-> +               i2c3 = &i2c3;
-> +               i2c4 = &i2c4;
-> +               i2c5 = &i2c5;
-> +               serial0 = &hscif0;
-
-This assumes HSCIF0 is the main console.
-
-As you also have a second debug console on USB:
-
-    serial1 = &hscif1;
-
-And the serial port on the RPI I/O connector:
-
-    serial2 = &hscif3;
-
-> +               spi0 = &rpc;
-
-Do you need the spi0 alias?
-
-> +&pfc {
-> +       pinctrl-0 = <&scif_clk_pins>;
-> +       pinctrl-names = "default";
-> +
-> +       /* Page 22 / Ether_AVB0 */
-> +       avb0_pins: avb0 {
-> +               mux {
-> +                       groups = "avb0_link", "avb0_mdio", "avb0_rgmii",
-> +                                "avb0_txcrefclk";
-> +                       function = "avb0";
-> +               };
-> +
-> +               pins_mdio {
-
-Please no underscores in node names (everywhere).
-
-The rest LGTM.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
