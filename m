@@ -1,57 +1,59 @@
-Return-Path: <devicetree+bounces-162165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 823DEA77443
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 08:09:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AF49A77459
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 08:13:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE90B1887CE4
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 06:09:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 47B5016955E
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 06:13:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E7A71DD0F2;
-	Tue,  1 Apr 2025 06:09:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E20861DF73B;
+	Tue,  1 Apr 2025 06:13:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AnmnMngH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r2nJTj8j"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 327A01D54FE;
-	Tue,  1 Apr 2025 06:09:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B55321D8A10;
+	Tue,  1 Apr 2025 06:13:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743487744; cv=none; b=RB8qq6s6HyNvKswYpOLj8nRrt1PzByRmsnbEjgXFonwDHz44ySknB+EQCQRKUs9ovJ23+FEx33wev37ji5PRZgJ8PmVwXvoM8uETvXAWvaRw/EVPnDylVlvWLIgI/PK8Z068yUNH3fLBI6UBMYiPZ1Oy16KYE7HOmXD1mWH8MoE=
+	t=1743487999; cv=none; b=Eeb6YzX3qdEkbd3ShPVO0ko+V/rwWi8pR+x1/pat6d3IH07B+CVjIT3b49x0UIcxD85MSHaBRtJ7jTzxt1r8KFzX64XKT/UgYj54GDFDwoW2peJszwNKECtxcSfqA+AxGRR9vBGNi/+0Eh6g5mL1Ef0pSxyE4YINRHPqJYFP0rE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743487744; c=relaxed/simple;
-	bh=oFLcVum17dsPPO7U3U7d+AI2nZ0+RN/f/ABuNueQsNI=;
+	s=arc-20240116; t=1743487999; c=relaxed/simple;
+	bh=+7e7yU5H/NuIchhcMj3L76DexybYnv4KBiK/p47KTFM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=syVaNg71DGXqOfKhBm9CY5CapnH+BoWFr4jCdewkMKjrwStjYFiB831gIQZoBkszenzLbPzuKEdZ3Wt09LD40caGswgmMb73GRnyy3oIIbAzzzAtdCuTGHWPNHIDdCcLkkQoYtKGznCzSFXs5gEBgPhEtlbVli4wkLQgf02pDZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AnmnMngH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD63DC4CEEA;
-	Tue,  1 Apr 2025 06:09:02 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=AFQ6+C+l+QR9BvqSjqAFl6uCpEcBt40AZKb2eNgrKSPl91qPKDQ6ZECEp+/jwUTFNpbjaGW9Pian0zsiLD0kB3ZDjQoYb5cZD4YyvJz9fJ1gT2nqTN21QhoSujdLgJqnp+X2lsxgKhprD/QbTrHNw5w5OV9UAeWJ2aiCtrbGEJM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r2nJTj8j; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40883C4CEEA;
+	Tue,  1 Apr 2025 06:13:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743487743;
-	bh=oFLcVum17dsPPO7U3U7d+AI2nZ0+RN/f/ABuNueQsNI=;
+	s=k20201202; t=1743487998;
+	bh=+7e7yU5H/NuIchhcMj3L76DexybYnv4KBiK/p47KTFM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AnmnMngHBIzuTa08FKkl3KSGYM+3GAQiembj4xfO4XVGWhA9jZp/o1lEt2+FkxC5G
-	 dd0zvPn+RYTkVD4dx0T+1N6c13ExftFcO9X0pK/4206oShWeMpyoVgJIeUGp2rDv+e
-	 +418XNfX3IFhJQhNjTGFK5is0qr9H0D1IlrFma/S9XLTp5wncLQoyFn5/9MM1Fwg6M
-	 qCEzyQRCbbQIyHKJmD3smHXtdyVs4DaTIanExLs+I4TZU5D9iTDRmdICJ5Q+reVlxY
-	 y5fV/RWg1oAEC5xUPYu6A35Sf4ILCSmBO5ZKEe8FL1pssS4/f/tqm74LU7pBYRdFN3
-	 PaHmyoj/TY4/A==
-Date: Tue, 1 Apr 2025 08:09:00 +0200
+	b=r2nJTj8j0OYgv+n+pbSS90uOlMOWhZMmOiL6k94nbzgmiq6XLYo14Gx+wFu6rbOxA
+	 1BPkVTI4F87e9Olz3mPQzqRrGBHNVE95YGGXqVCiIghjJH3Xf963efwPVuh9VrwROc
+	 YUgntKp07i5NnTtQx4/zpm6KUOij1V3asEH05gX32efQrbLEqnzYR+6aviGU6JxNMr
+	 ECGmPuaUu/6GOGPqIE+bZU8voAqvK1ecg+biZbxUDrbqczwtHSta4ZdahfBQf9FwwT
+	 OTiylc7HXoFUBTo5+mx5INLcf+QLffhl9C9/LRm6EtnUfHNWS74Y3aCMGTHZaGvlq2
+	 ZcXf9Ug2D4tFA==
+Date: Tue, 1 Apr 2025 08:13:14 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Sebastian Reichel <sre@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/2] dt-bindings: power: supply: Document Maxim
- MAX8971 charger
-Message-ID: <20250401-precious-rampant-prawn-9fa642@krzk-bin>
-References: <20250320072947.8174-1-clamor95@gmail.com>
- <20250320072947.8174-2-clamor95@gmail.com>
+To: Francesco Dolcini <francesco@dolcini.it>
+Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Farouk Bouabid <farouk.bouabid@cherry.de>, 
+	Quentin Schulz <quentin.schulz@cherry.de>, Francesco Dolcini <francesco.dolcini@toradex.com>, 
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: amc6821: add fan and PWM
+ output
+Message-ID: <20250401-boisterous-teal-bison-533b01@krzk-bin>
+References: <20250331155229.147879-1-francesco@dolcini.it>
+ <20250331155229.147879-2-francesco@dolcini.it>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,18 +62,41 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250320072947.8174-2-clamor95@gmail.com>
+In-Reply-To: <20250331155229.147879-2-francesco@dolcini.it>
 
-On Thu, Mar 20, 2025 at 09:29:46AM +0200, Svyatoslav Ryhel wrote:
-> Add bindings for Maxim MAX8971 charger.
+On Mon, Mar 31, 2025 at 05:52:28PM +0200, Francesco Dolcini wrote:
+> From: Francesco Dolcini <francesco.dolcini@toradex.com>
 > 
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> Add properties to describe the fan and the PWM controller output.
+> 
+> Link: https://www.ti.com/lit/gpn/amc6821
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 > ---
->  .../bindings/power/supply/maxim,max8971.yaml  | 68 +++++++++++++++++++
->  1 file changed, 68 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/supply/maxim,max8971.yaml
+> v3:
+>  - explicitly describe the fan, use standard PWM and FAN bindings
+>  - pwm.yaml cannot be referenced, because of the $nodename pattern that is
+>    enforced there
+> v2: https://lore.kernel.org/all/20250224180801.128685-2-francesco@dolcini.it/
+>  - no changes
+> v1: https://lore.kernel.org/all/20250218165633.106867-2-francesco@dolcini.it/
+> ---
+>  .../devicetree/bindings/hwmon/ti,amc6821.yaml      | 14 +++++++++++++-
+>  1 file changed, 13 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/ti,amc6821.yaml b/Documentation/devicetree/bindings/hwmon/ti,amc6821.yaml
+> index 5d33f1a23d03..94aca9c378e6 100644
+> --- a/Documentation/devicetree/bindings/hwmon/ti,amc6821.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/ti,amc6821.yaml
+> @@ -28,6 +28,13 @@ properties:
+>    i2c-mux:
+>      type: object
+>  
+> +  fan:
+> +    $ref: fan-common.yaml#
+> +    unevaluatedProperties: false
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Why do you need the child, instead of referencing fan-common in the top
+level?
 
 Best regards,
 Krzysztof
