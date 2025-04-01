@@ -1,149 +1,132 @@
-Return-Path: <devicetree+bounces-162229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31D98A77856
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 12:01:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65AC0A77865
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 12:03:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03CCF7A3274
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 09:59:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0D6F3A938D
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 10:02:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB9281F09B0;
-	Tue,  1 Apr 2025 10:00:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 279B41F0988;
+	Tue,  1 Apr 2025 10:02:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UetnMjUU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAACFCA4B;
-	Tue,  1 Apr 2025 10:00:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C97F21F03C8;
+	Tue,  1 Apr 2025 10:02:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743501637; cv=none; b=uZXjJTgq9A/qig0mPVu9oHtADtTOWMi8qCXsKGXtU/6EFRlBlXaCfg3rLEJb1MbUBjAe+g1A+Nu8/YPwObYQtNWyEqbINP68DjA7409xhX+BeScvS61K2Ji/mcOqSL1hrbKSJU7tt75LM3tdDrTsNg26hsdRUwpVR0PWVCR4r+k=
+	t=1743501778; cv=none; b=PJWdgjB0HUkQKAo0Hy2q2VNaJO303p781cLgvwg5DqWyuY4X0wbk7aPG/nIEUr6AylhTuI5y+49o6zDh7c79dDcWvTNAYyd9Zu9dL+NGqbDbGw4AfHV1qYadd3OESAOgylFA8UOrqbng9ISV77mFmqPXfFSKg+tG1oMJ0LatumQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743501637; c=relaxed/simple;
-	bh=/sCA5R/8YU8SaaRU/G+RTAoa3iTsdw80FVUwdwXmWzc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=VvR83owRRASVMwB31yLGna3tlszTJ/fAL6mFgiVjatSyThFYSztzwOQTYMludH9EMrSJvSkieqMRrkjIlEICpg3uy8XVkjMFyLbDN+WpUMxeDN1qWSfO6G8b6lCUwZkyB2ZvLSUkqZmIXTywJh7nMI4p6qlMfIq9DZHOeBMDvtg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=101.71.155.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from amadeus-Vostro-3710.lan (unknown [IPV6:240e:3b3:2c00:430:ae31:3177:4f09:da96])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 10501cb00;
-	Tue, 1 Apr 2025 18:00:31 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: Yao Zi <ziyao@disroot.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Chukun Pan <amadeus@jmu.edu.cn>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v2 3/3] arm64: dts: rockchip: Add UART DMA support for RK3528
-Date: Tue,  1 Apr 2025 18:00:20 +0800
-Message-Id: <20250401100020.944658-4-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250401100020.944658-1-amadeus@jmu.edu.cn>
-References: <20250401100020.944658-1-amadeus@jmu.edu.cn>
+	s=arc-20240116; t=1743501778; c=relaxed/simple;
+	bh=u2i4mlN/0Dmrd2yO9FNTt299FDdaLIVxK3E6+jXa8Yg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=RepM4OP6gthjsgz+3RArZBB0VObAIiHjxDYgauvbAoGJYSKk5w/iYItMWJsaMGAZjb7efO2n8IDZQNmqvMx+axEsucyQ2NaJDCHp2foQt05PbFDmxp18mZS4WvbXOAbOGxMiR/neClxIELoWHS/ym6dUrEKJta6WjQwFXXN7A7A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=UetnMjUU; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 531A2aVu3072633
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 1 Apr 2025 05:02:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1743501756;
+	bh=X9wRt7wss9ZrIeV++Wc1A527R0EIL7GzO7MaVVI+mas=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=UetnMjUUWQlCq4LcsKytSq2lLWX3IoLwG4tblaahnNh2LP+X7YZhMLe2yBnKGA4Ge
+	 pfR3ZIk4ebPEQ2WyHm7ELCbJ58TxG2pKC/k6RL1cczYVpm4RSHPF+HqLJ4K/NEjuMx
+	 yqhGCaN7okaMjI4Wg3DLIXXP4y4Zt9a0YihVVfRQ=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 531A2Z4b116224
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 1 Apr 2025 05:02:35 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 1
+ Apr 2025 05:02:35 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 1 Apr 2025 05:02:35 -0500
+Received: from [172.24.18.65] (lt5cd2489kgj.dhcp.ti.com [172.24.18.65])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 531A2VZq127627;
+	Tue, 1 Apr 2025 05:02:32 -0500
+Message-ID: <e2a37e72-d9c8-4329-8a5a-f2c9865cdb5d@ti.com>
+Date: Tue, 1 Apr 2025 15:32:31 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-am62p-j722s: add rng node
+To: Michael Walle <mwalle@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <u-kumar1@ti.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250313144155.2382316-1-mwalle@kernel.org>
+ <837cba5f-f49e-4cbf-9cbe-2b25f7c9d4b8@ti.com>
+ <D8UECOJ2NMCU.3ALYIKSODJ479@kernel.org>
+ <1ad2d8c2-6a0d-419d-984d-4974adb0e1f0@ti.com>
+ <D8V323NBB32P.3P8H103L83HZK@kernel.org>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <D8V323NBB32P.3P8H103L83HZK@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaTklNVkoZH0tPSUJNGU5JGFYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlJT0seQUgZSEFJGEtLQU9IS0EaHkhKQUhKTExBTx1LQkEfGkJNWVdZFhoPEh
-	UdFFlBWU9LSFVKS0hKTkxOVUpLS1VKQktLWQY+
-X-HM-Tid: 0a95f0cba06303a2kunm10501cb00
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PSI6KTo6DzJRDwoaFS0IFEs4
-	Hx1PCzxVSlVKTE9ITktKTUhJTk1MVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlP
-	Sx5BSBlIQUkYS0tBT0hLQRoeSEpBSEpMTEFPHUtCQR8aQk1ZV1kIAVlBSExDTDcG
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-The UART ports on RK3528 have DMA capability, describe it.
-Flow control is optional, so dma-names are not added.
+Hi Michael
 
-Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
----
- arch/arm64/boot/dts/rockchip/rk3528.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+On 4/1/2025 11:50 AM, Michael Walle wrote:
+> Hi Udit,
+>
+>>>>> --- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+>>>>> [..]
+>>>> For completeness , this is ok to add this node but should be kept disabled
+>>> Shouldn't it be "reserved" then, see [1].
+>> yes, should be reserved.
+>>
+>> With marking status as reserved.
+>>
+>> Please use Reviewed-by: Udit Kumar <u-kumar1@ti.com>
+> Thanks.
+>
+>>>> similar to
+>>>>
+>>>> https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi#L662
+>>> j784s4, j721e and j721s2 have them enabled. What is the rule here?
+>> J784s4, j721e and j721s2 SOCs has two TRNG blocks,
+>>
+>> example for j721e, one is used by kernel [0] and another by optee [1].
+>>
+>>
+>>> You also disable the hwrng in optee in your evm according to [2]:
+>>> CFG_WITH_SOFTWARE_PRNG=y
+>> We are planning to use this hardware block by secure firmware.
+>>
+>> Therefore request not to use by optee as well
+> How will you be able to access the RNG from linux and u-boot? I'm
+> asking because I'll need it in u-boot for the lwip stack and the
+> HTTPS protocol.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-index c366766ee3f5..35704d0be37a 100644
---- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-@@ -375,6 +375,7 @@ uart0: serial@ff9f0000 {
- 			clocks = <&cru SCLK_UART0>, <&cru PCLK_UART0>;
- 			clock-names = "baudclk", "apb_pclk";
- 			interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
-+			dmas = <&dmac 8>, <&dmac 9>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
- 			status = "disabled";
-@@ -386,6 +387,7 @@ uart1: serial@ff9f8000 {
- 			clocks = <&cru SCLK_UART1>, <&cru PCLK_UART1>;
- 			clock-names = "baudclk", "apb_pclk";
- 			interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
-+			dmas = <&dmac 10>, <&dmac 11>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
- 			status = "disabled";
-@@ -397,6 +399,7 @@ uart2: serial@ffa00000 {
- 			clocks = <&cru SCLK_UART2>, <&cru PCLK_UART2>;
- 			clock-names = "baudclk", "apb_pclk";
- 			interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
-+			dmas = <&dmac 12>, <&dmac 13>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
- 			status = "disabled";
-@@ -408,6 +411,7 @@ uart3: serial@ffa08000 {
- 			clocks = <&cru SCLK_UART3>, <&cru PCLK_UART3>;
- 			clock-names = "baudclk", "apb_pclk";
- 			interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
-+			dmas = <&dmac 14>, <&dmac 15>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
- 			status = "disabled";
-@@ -419,6 +423,7 @@ uart4: serial@ffa10000 {
- 			clocks = <&cru SCLK_UART4>, <&cru PCLK_UART4>;
- 			clock-names = "baudclk", "apb_pclk";
- 			interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
-+			dmas = <&dmac 16>, <&dmac 17>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
- 			status = "disabled";
-@@ -430,6 +435,7 @@ uart5: serial@ffa18000 {
- 			clocks = <&cru SCLK_UART5>, <&cru PCLK_UART5>;
- 			clock-names = "baudclk", "apb_pclk";
- 			interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
-+			dmas = <&dmac 18>, <&dmac 19>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
- 			status = "disabled";
-@@ -441,6 +447,7 @@ uart6: serial@ffa20000 {
- 			clocks = <&cru SCLK_UART6>, <&cru PCLK_UART6>;
- 			clock-names = "baudclk", "apb_pclk";
- 			interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
-+			dmas = <&dmac 20>, <&dmac 21>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
- 			status = "disabled";
-@@ -452,6 +459,7 @@ uart7: serial@ffa28000 {
- 			clocks = <&cru SCLK_UART7>, <&cru PCLK_UART7>;
- 			clock-names = "baudclk", "apb_pclk";
- 			interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
-+			dmas = <&dmac 22>, <&dmac 23>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
- 			status = "disabled";
--- 
-2.25.1
+For now,  If you need TRNG then I can suggest to use optee TRNG (ie 
+build optee with HW TRNG).
 
+
+>
+> -michael
 
