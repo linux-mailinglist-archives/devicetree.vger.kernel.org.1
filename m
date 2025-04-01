@@ -1,138 +1,115 @@
-Return-Path: <devicetree+bounces-162172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B76FA774C9
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 08:56:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7916DA774DF
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 09:01:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 52D20188DA51
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 06:56:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC6663AA268
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 07:01:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44DBE1E5705;
-	Tue,  1 Apr 2025 06:56:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="z2VdxEfN"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6B6B1E47A8;
+	Tue,  1 Apr 2025 07:01:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bmailout1.hostsharing.net (bmailout1.hostsharing.net [83.223.95.100])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E73C03BBC9;
-	Tue,  1 Apr 2025 06:56:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB78727468;
+	Tue,  1 Apr 2025 07:01:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=83.223.95.100
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743490601; cv=none; b=OKiz4tSCtDJmKSzvmWVTGe1ONRCWaBFXR/glQy0TSD7mf2TCpmhGCl8xe3switHPDSx86e+ETovGulgbRm0cexd7g+/tiKCZIHBS5bKBUrzYwp8KVgLR8nTHW3pxJ7q+0PNBk5e4HIid3Ux2SGu+yexIFvJRJI0fYJf/zNN2Vh8=
+	t=1743490885; cv=none; b=TDOLblzHg1rcLhE0pi7IZc33d8pXqay+hGkhbItQBFpHezHybmLAXdnMGxiTVLTT8fvQ6jLCVoKesw5PePUQRDfg0zb3flowsJeJklIYa2nTgDMcQ8Gbv3CBHoLqr/aUWdmjwfhvh+lwgTAx8gS8xUSjOauP/B+BaBmLqBV5HbY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743490601; c=relaxed/simple;
-	bh=GFKxsd0OGuU+pV6q/WYGlQsX3XgcsM/kbJXOW/wuxto=;
+	s=arc-20240116; t=1743490885; c=relaxed/simple;
+	bh=LYcTnk9vNpR0xE4en0Ur3+c7WTocy2FJx7447PBD7hk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Spa4DXVQpK3kSMvPawBtCGjqbq0yvTY0MqjohjEcct+WB3ZGPxMIjQkETX0c81T0mgVQENt7THK+C3hTGRS43CZvHYczwG/WAudMSM/aEc9wqD5WD2CXZ85W+YAXqqqdancN0F5NnRWcODZFg0RNmUCCs9BybEz/VqJ9RAkdeZg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=z2VdxEfN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D03E2C4CEE8;
-	Tue,  1 Apr 2025 06:56:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1743490600;
-	bh=GFKxsd0OGuU+pV6q/WYGlQsX3XgcsM/kbJXOW/wuxto=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=z2VdxEfNTJIvE/HabgSJSvBeMu4NUAIELc43S3sHXIHHv8cDKZ309/WN1crbCrQA9
-	 Qz8OStnhhm5xDZNQ2fcsGbfgQRst8oEmLyZjkAgKTX9I+So2r9h7MeNWnZdcz6tga5
-	 ltKV63S7ixU3vUUNTVG7GGbS3nrdyIU8lyTi1JSM=
-Date: Tue, 1 Apr 2025 07:55:13 +0100
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Jung Daehwan <dh10.jung@samsung.com>
-Cc: Wesley Cheng <quic_wcheng@quicinc.com>, Puma Hsu <pumahsu@google.com>,
-	srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
-	perex@perex.cz, conor+dt@kernel.org, dmitry.torokhov@gmail.com,
-	corbet@lwn.net, broonie@kernel.org, lgirdwood@gmail.com,
-	krzk+dt@kernel.org, pierre-louis.bossart@linux.intel.com,
-	Thinh.Nguyen@synopsys.com, tiwai@suse.com, robh@kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-sound@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	Mathias Nyman <mathias.nyman@linux.intel.com>
-Subject: Re: [PATCH v36 01/31] xhci: sideband: add initial api to register a
- secondary interrupter entity
-Message-ID: <2025040109-dove-declared-9466@gregkh>
-References: <20250319005141.312805-1-quic_wcheng@quicinc.com>
- <20250319005141.312805-2-quic_wcheng@quicinc.com>
- <CAGCq0LZoi0MOJLJYUeQJW6EfOU_Ch=v1Sg8L4_B-KhdDCx1fCw@mail.gmail.com>
- <2025032734-reward-fantasize-dc16@gregkh>
- <CAGCq0LamxvvE8b45VAshw9aWJNC2so_vK9t+pzXd3C7Y7tfYAg@mail.gmail.com>
- <CGME20250327161254epcas2p35ea7c80bdcefaefc645c061531dd6833@epcas2p3.samsung.com>
- <87746e66-84c1-4ff3-8b69-fbee1664eff6@quicinc.com>
- <20250401022336.GA98772@ubuntu>
+	 Content-Type:Content-Disposition:In-Reply-To; b=bDk/cpUtEZ2ublbawwzjKXy+BbgxfukgCSh8LScUevWT/9WoRF1kcMp9CxH7Lrww4DYKPjhz3THFljir5YKsJcZbi2STADptw/XUOa8D/Nhxalg5pGrbxQZ69SfV94NiKrVUB04gEKGOdJpBA+yrIpOm4+Kn+/ZZcTba3OR0QEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de; spf=none smtp.mailfrom=h08.hostsharing.net; arc=none smtp.client-ip=83.223.95.100
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=h08.hostsharing.net
+Received: from h08.hostsharing.net (h08.hostsharing.net [IPv6:2a01:37:1000::53df:5f1c:0])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
+	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
+	(Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
+	by bmailout1.hostsharing.net (Postfix) with ESMTPS id C94F02C50694;
+	Tue,  1 Apr 2025 09:01:07 +0200 (CEST)
+Received: by h08.hostsharing.net (Postfix, from userid 100393)
+	id 9E4634999; Tue,  1 Apr 2025 09:01:12 +0200 (CEST)
+Date: Tue, 1 Apr 2025 09:01:12 +0200
+From: Lukas Wunner <lukas@wunner.de>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	cros-qcom-dts-watchers@chromium.org,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com,
+	quic_mrana@quicinc.com
+Subject: Re: [PATCH 2/2] PCI: Add support for PCIe wake interrupt
+Message-ID: <Z-uPOLNPIgm63PWY@wunner.de>
+References: <20250401-wake_irq_support-v1-0-d2e22f4a0efd@oss.qualcomm.com>
+ <20250401-wake_irq_support-v1-2-d2e22f4a0efd@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250401022336.GA98772@ubuntu>
+In-Reply-To: <20250401-wake_irq_support-v1-2-d2e22f4a0efd@oss.qualcomm.com>
 
-On Tue, Apr 01, 2025 at 11:23:36AM +0900, Jung Daehwan wrote:
-> On Thu, Mar 27, 2025 at 09:12:12AM -0700, Wesley Cheng wrote:
-> > 
-> > 
-> > On 3/27/2025 3:14 AM, Puma Hsu wrote:
-> > > On Thu, Mar 27, 2025 at 3:02 PM Greg KH <gregkh@linuxfoundation.org> wrote:
-> > >>
-> > >> On Thu, Mar 27, 2025 at 02:27:00PM +0800, Puma Hsu wrote:
-> > >>> Hi,
-> > >>>
-> > >>> We have implemented and verified the USB audio offloading feature with
-> > >>> the xhci sideband driver on our Google Pixel products. We would
-> > >>> appreciate it if this solution can be accepted. Thank you all for the
-> > >>> work!
-> > >>>
-> > >>
-> > >> Great, can you properly send a "Tested-by:" line for this against the
-> > >> 00/XX email so that it will be properly saved?
-> > >>
-> > > 
-> > > We(Google Pixel) only use the xhci sideband related changes and two
-> > > changes in the sound card driver. For the details, what we actually
-> > > tested are patch [01], [02], [03], [04], [05], [06], [08], and [12].
-> > > Do I still send the "Tested-by:" line to 00/31 email? Or should I just
-> > > send the "Tested-by:" line to the 8 changes above? (I added
-> > > "Tested-by" line for this [01/31] first.)
-> > > 
-> > >> Also, I think a new version of the series is coming, can you test that
-> > >> to verify it works properly?  We have to wait until after -rc1 is out
-> > >> anyway.
-> > >>
-> > > 
-> > > I think this v36 is the last version of the series as I discussed with
-> > > QCOM Wesley. And for sure I will test it if they do have a new
-> > > version.
-> > > 
-> > 
-> > Hi Puma,
-> > 
-> > I'm discussing with Stephan on the QC specific stuff, so the common changes
-> > won't change on v37.  Please provide your tested-by tags for each commit,
-> > so I can carry them accordingly on the next submission.  If I do end up
-> > making changes to any of the common patches, I will remove your tested by
-> > tag, which means you might have to test it again.
-> > 
-> > Thanks
-> > Wesley Cheng
-> > 
-> > 
-> > 
+On Tue, Apr 01, 2025 at 10:12:44AM +0530, Krishna Chaitanya Chundru wrote:
+> PCIe wake interrupt is needed for bringing back PCIe device state
+> from D3cold to D0.
 > 
-> Hi Wesley,
+> Implement new functions, of_pci_setup_wake_irq() and
+> of_pci_teardown_wake_irq(), to manage wake interrupts for PCI devices
+> using the Device Tree.
 > 
-> Thanks for your effort to upstream usb audio offload.
-> I've also used your patchset like Puma.
-> ([01], [02], [03], [04], [05], [06], [08], and [12])
-> 
-> It works well on Exynos. Please let me know if you need also
-> "Tested-by:" on our side.
+> From the port bus driver call these functions to enable wake support
+> for bridges.
+[...]
+> --- a/drivers/pci/pcie/portdrv.c
+> +++ b/drivers/pci/pcie/portdrv.c
+> @@ -695,6 +695,10 @@ static int pcie_portdrv_probe(struct pci_dev *dev,
+>  	if (type == PCI_EXP_TYPE_RC_EC)
+>  		pcie_link_rcec(dev);
+>  
+> +	status = of_pci_setup_wake_irq(dev);
+> +	if (status)
+> +		return status;
+> +
+>  	status = pcie_port_device_register(dev);
+>  	if (status)
+>  		return status;
+> @@ -728,6 +732,8 @@ static void pcie_portdrv_remove(struct pci_dev *dev)
+>  		pm_runtime_dont_use_autosuspend(&dev->dev);
+>  	}
+>  
+> +	of_pci_teardown_wake_irq(dev);
+> +
+>  	pcie_port_device_remove(dev);
+>  
+>  	pci_disable_device(dev);
 
-Yes please.
+Why doesn't the teardown order mirror the probe order, i.e. why is
+of_pci_teardown_wake_irq() called *before* pcie_port_device_remove()
+instead of after?
+
+(pcie_port_device_remove() is the opposite of pcie_port_device_register().)
+
+Also, why is it safe to bail out of probe on failure of
+of_pci_setup_wake_irq() without unwinding whatever pcie_link_rcec()
+has done?  I think this needs either an explanation or reordering.
+
+Thanks,
+
+Lukas
 
