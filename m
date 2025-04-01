@@ -1,220 +1,252 @@
-Return-Path: <devicetree+bounces-162294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87905A77B0F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 14:34:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92F95A77B4C
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 14:50:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 29FE1188DA7F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 12:34:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD8D81890148
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 12:50:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBD6B1EFFB9;
-	Tue,  1 Apr 2025 12:33:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E9F2202963;
+	Tue,  1 Apr 2025 12:50:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OfoG8C6p"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PSBttdYk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E7301EBA14;
-	Tue,  1 Apr 2025 12:33:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9B8C1F0988;
+	Tue,  1 Apr 2025 12:50:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743510838; cv=none; b=OkenjR1xcqyvYRcHG/LWqBN8C0plheQE0BqnA9i//HLQ9qXowHtf4/hhUP6Ga3hemD+aGBsO2cBpQgVSbrWTQysJ2uUkg5ka9xfqJk9SXRVhCA2M67vK6zPxvFGC0ozhdahCV2G5CxEdfYR7pAdCJOkc20D7ByIcixzvXColq+Q=
+	t=1743511821; cv=none; b=FLIyad6ayoSTB3N7kmxfzzg7KU2fxtN6l1b0zt1lU2/BBIp2pWbqb4qgje9PGFI/dl1Zul4ZMKKUtTyt5moUhf1l94fasniPWWbRZWSeE/t6QVxBgnC+UkEvbv5ucFv6pBxVMT49rkMYZyBOpHHfpIyJS35QfD/M11yvbOMHag8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743510838; c=relaxed/simple;
-	bh=QpyBoZim6ea3JTVrR+KAiVHpQx+7scxu8kJOWhnf2cE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kOxrf6MIm8IJrZ1GleGfDNxVEjdPoh8Mbx2P3cogMf+q06mr/01PnWckmD+lHEIYjh/a36wW6WYSmvM1i8cLMt5VHHji+mR7QVO5ePgPlPQW6oHHabeCOn13BgNAHAykAJcqebzfNawJPlVOZ/kObLVo5hA4dphRho+a/7iksC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OfoG8C6p; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-227914acd20so97185015ad.1;
-        Tue, 01 Apr 2025 05:33:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743510836; x=1744115636; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=nXC8W6EMgX+hzuq+Bob+5ks8himBe+AzA+Vl/KKrWEs=;
-        b=OfoG8C6pK4kYHBZXUIrBUL2m88Fcwj9vOpW6WEj5S2dmEAgVnXSPKvX4aWDU59982x
-         5lJ8jnepm6yJkzuE9NOc2naejw3y/K5ZzsCQef1LEnadHXVJA9SDE1OsGNMfPHeRfeHu
-         1Ab4A0p9VpQzcQpD2fC2R4GGdCMlKBe9pdlP6T+3AlmnPXjwj2TIUoElaVRYULPOVLTx
-         f2Kl2LFb8qP8N9W+01t6BpQc2zLA2iw+wglLuBb6m8stA+S6oGZauIxo/CTxa3kDVRgy
-         sMjJ6m/WQfVuo6VlE6GwNGySTBjoTBFB/RhHDzfhwRc+TybhTW1SCN33azyoeq2Hz2bX
-         PHaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743510836; x=1744115636;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nXC8W6EMgX+hzuq+Bob+5ks8himBe+AzA+Vl/KKrWEs=;
-        b=vzrcuBOG2bu5Z+TMGcEPBIN9sEzi9ANN7bl1i7ayw6Os9l6TIN6mBwwcnAdFTpyvZ7
-         vpHjSnlse8t9a8p32o3yPsh2QZIOyDlyzjtBIRpu5Ci2QOvzC3sTqKghbESWUqrS9V9I
-         M4TqTwWtkqJ6qVlM5ajwZ+ihHpw+D46TOlAD5R/57R8SXPAG1IFEtM7hLhftKUsj+5RA
-         w+WdKcopJXIM8oUnh9g6orploHV3+0lxDqVPVSKFiHJ4KVF7mX3rHYgsWk12ktJP4tIx
-         CEokF6YSM7NT2mtA7OKYYR20YCmHCz4dWPYKLdGFeVW4tihSD/iLngmlgs/lQwb2vLmG
-         1nwA==
-X-Forwarded-Encrypted: i=1; AJvYcCVRxNqCucRwDIy2vpz6GYK2O4svVnCBOIssESaLMDbtVmqXAnmfg5hgJWjbtktEZWNHLvZWdLo4SYMd45c=@vger.kernel.org, AJvYcCWLPxknErup5xAzn6xAJgXUBAnQID9cRQNd3Nz5pAgMWHhfEJYbMMWAbgM2IZ0q8oIU6nJlyKXWTQyziiKo@vger.kernel.org, AJvYcCX4/mjA9i/Ai3wS7pJVHLmm1mZp9k4avCXnHinEQl73ID6ha0rLnmnXdkdL/ut+IfxHGz3UO7rLsLcd@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyf288hdVJdEgSw+v5jyxaGNpA9sR51h+zBl0XV0zTgMDs6ItqU
-	wWn8yjg1NFqYQTdueVYis86i5zF2CWyQBhAybLsgM8RpaLOa+O5H
-X-Gm-Gg: ASbGncuwbjIuZkQHXxrjvlxk7WNOr1vyvmYcstD3P+9gvJ8m3t7T1X7u33ETDZLm2VE
-	a4AlmsW7hNz8kKKu2aKJivvKa5WOMt03lpXUBcOU7swOr1MoRIBYNeLTue9M96VHjnTr3WH0xPC
-	BGvcHE3XazBVY5oofFBN0vB4OwWwmFJI0yNL7XLmrV6AcpZGV11ptpC84eoGEJ/FJzdTPKcDYDN
-	G34e5qUx+eq958EiZ3tVfUSX8JeKL3t/DMWyjoxbn1qfauL/+0rjfeuuKjarsRfAkoHp997eh67
-	fgAIeA+OKCPl6Qg/rj+53kKvy2SDLSenQbudCCaxaOQsxmqk5pY0P0fxY+1MOm/4mEVMCgmufWZ
-	na7bEWlUfnu8AElTZiA==
-X-Google-Smtp-Source: AGHT+IGZkyOnRETE73ddzebUiYLotGQTF8LKW3XOzsZR95TLcrJssS5wVKRMDojxTfgzH9+euQa67A==
-X-Received: by 2002:a05:6a00:1482:b0:734:ded8:77aa with SMTP id d2e1a72fcca58-7397f45e081mr18561824b3a.9.1743510836364;
-        Tue, 01 Apr 2025 05:33:56 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-73971091cadsm8735905b3a.126.2025.04.01.05.33.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Apr 2025 05:33:55 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <a1f5dbee-5f34-4a2b-b2b9-ce1cff1672b6@roeck-us.net>
-Date: Tue, 1 Apr 2025 05:33:54 -0700
+	s=arc-20240116; t=1743511821; c=relaxed/simple;
+	bh=zqXLQCKK21CVKNI0vpZ5Ou1n7DZc4MuN1osdNld2eSo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Iv2qF1lpVSTir874MU+4+Ua/wn5gwsgGDActQwMjQosWrCVxXryejG+J0R6fwEIf9klxo0Rp0itgYddim6uvrUrRiW7MofOZtTNY5i5SfvkLulvROD2bkSCdXwQZWD4uW86/6By5+2rfkaK/uKuVfrUT43KAc4uc+n8DVzNlHYw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PSBttdYk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BEADC4CEE4;
+	Tue,  1 Apr 2025 12:50:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743511820;
+	bh=zqXLQCKK21CVKNI0vpZ5Ou1n7DZc4MuN1osdNld2eSo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PSBttdYkxdJtAtIb3PEieqOhtF3Qthhaijds6ijqoYnoHE6baF5njAc+fPTHIyQJ4
+	 z95XHk/4bw2JbEQKj6aA0k+1ZmoUffwcyawU9ZhyMYk0dEthoL34HTXuecYDW3uWZq
+	 U6BJV1OqTY2t0+h1xQUDNCAMmuCMpf/7+rWGl2jpa6GaFiVpRU5Bq+LGr6LGZkDiPo
+	 XeM1U4v6RChGXBT8G9Qa5JMhh0nsFsyZJjMmjoesSsBKNAptEOppVWxbm0wr75EuEy
+	 eVZrC1bd5gSPZqH0st4/CHbYtVMtg7CygwsROKgR3eFxL/hcsa2WPT/rIoaZB9+dO6
+	 L1r8UPAbVnx3A==
+Date: Tue, 1 Apr 2025 13:50:14 +0100
+From: Lee Jones <lee@kernel.org>
+To: Artur Weber <aweber.kernel@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Stanislav Jakubek <stano.jakubek@gmail.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v7 06/10] mfd: bcm590xx: Add PMU ID/revision parsing
+ function
+Message-ID: <20250401125014.GD7190@google.com>
+References: <20250316-bcm59054-v7-0-4281126be1b8@gmail.com>
+ <20250316-bcm59054-v7-6-4281126be1b8@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: amc6821: add fan and PWM
- output
-To: Francesco Dolcini <francesco@dolcini.it>,
- Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Farouk Bouabid <farouk.bouabid@cherry.de>,
- Quentin Schulz <quentin.schulz@cherry.de>,
- Francesco Dolcini <francesco.dolcini@toradex.com>,
- linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250331155229.147879-1-francesco@dolcini.it>
- <20250331155229.147879-2-francesco@dolcini.it>
- <20250401-boisterous-teal-bison-533b01@krzk-bin>
- <20250401074345.GA8188@francesco-nb>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20250401074345.GA8188@francesco-nb>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250316-bcm59054-v7-6-4281126be1b8@gmail.com>
 
-On 4/1/25 00:43, Francesco Dolcini wrote:
-> On Tue, Apr 01, 2025 at 08:13:14AM +0200, Krzysztof Kozlowski wrote:
->> On Mon, Mar 31, 2025 at 05:52:28PM +0200, Francesco Dolcini wrote:
->>> From: Francesco Dolcini <francesco.dolcini@toradex.com>
->>>
->>> Add properties to describe the fan and the PWM controller output.
->>>
->>> Link: https://www.ti.com/lit/gpn/amc6821
->>> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
->>> ---
->>> v3:
->>>   - explicitly describe the fan, use standard PWM and FAN bindings
->>>   - pwm.yaml cannot be referenced, because of the $nodename pattern that is
->>>     enforced there
->>> v2: https://lore.kernel.org/all/20250224180801.128685-2-francesco@dolcini.it/
->>>   - no changes
->>> v1: https://lore.kernel.org/all/20250218165633.106867-2-francesco@dolcini.it/
->>> ---
->>>   .../devicetree/bindings/hwmon/ti,amc6821.yaml      | 14 +++++++++++++-
->>>   1 file changed, 13 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/hwmon/ti,amc6821.yaml b/Documentation/devicetree/bindings/hwmon/ti,amc6821.yaml
->>> index 5d33f1a23d03..94aca9c378e6 100644
->>> --- a/Documentation/devicetree/bindings/hwmon/ti,amc6821.yaml
->>> +++ b/Documentation/devicetree/bindings/hwmon/ti,amc6821.yaml
->>> @@ -28,6 +28,13 @@ properties:
->>>     i2c-mux:
->>>       type: object
->>>   
->>> +  fan:
->>> +    $ref: fan-common.yaml#
->>> +    unevaluatedProperties: false
->>
->> Why do you need the child, instead of referencing fan-common in the top
->> level?
-> 
-> Two small reasons.
-> 
-> First is that the amc6821 is a fan controller, and the fan is just
-> connected to it. So having the fan as a child seemed the right way to
-> describe it, and this is done like that in other hwmon binding.
-> 
-> .. but now that you asked I tried to move the fan-common to the top
-> level and it's not working.
-> 
-> I added
-> 
->    allOf:
->      - $ref: fan-common.yaml#
-> 
-> at top level, removed the fan child, and moved the pwms up one level in
-> the example
-> 
->      i2c {
->          #address-cells = <1>;
->          #size-cells = <0>;
-> 
->          fan_controller: fan@18 {
->              compatible = "ti,amc6821";
->              reg = <0x18>;
->              #pwm-cells = <2>;
->              pwms = <&fan_controller 40000 0>;
+On Sun, 16 Mar 2025, Artur Weber wrote:
 
-devicetree wants to see #pwm-cells one level above pwms. Obviously you can't
-put it under the i2c node, so you need the sub-level. Maybe there is a way
-around it, but if so I don't know what it might be.
+> The BCM590xx PMUs have two I2C registers for reading the PMU ID
+> and revision. The revision is useful for subdevice drivers, since
+> different revisions may have slight differences in behavior (for
+> example - BCM59054 has different regulator configurations for
+> revision A0 and A1).
+> 
+> Check the PMU ID register and make sure it matches the DT compatible.
+> Fetch the digital and analog revision from the PMUREV register
+> so that it can be used in subdevice drivers.
+> 
+> Also add some known revision values to bcm590xx.h, for convenience
+> when writing subdevice drivers.
+> 
+> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+> ---
+> Changes in v7:
+> - Return -ENODEV on PMU ID mismatch
+> - Drop "Check your DT compatible" from ID mismatch error message
+> 
+> Changes in v6:
+> - Adapt to PMUID being passed as device type value
+> - Rename rev_dig and rev_ana to rev_digital and rev_analog
+> - Rewrite commit message
+> 
+> Changes in v5:
+> - Add REG_ prefix to register offset constant names
+> 
+> Changes in v4:
+> - Added this commit
+> ---
+>  drivers/mfd/bcm590xx.c       | 63 ++++++++++++++++++++++++++++++++++++++++++++
+>  include/linux/mfd/bcm590xx.h | 14 ++++++++++
+>  2 files changed, 77 insertions(+)
+> 
+> diff --git a/drivers/mfd/bcm590xx.c b/drivers/mfd/bcm590xx.c
+> index 4620eed0066fbf1dd691a2e392e967747b4d125b..140107263599777b30cce4cfc0f86a9278907d34 100644
+> --- a/drivers/mfd/bcm590xx.c
+> +++ b/drivers/mfd/bcm590xx.c
+> @@ -17,6 +17,15 @@
+>  #include <linux/regmap.h>
+>  #include <linux/slab.h>
+>  
+> +/* Under primary I2C address: */
+> +#define BCM590XX_REG_PMUID		0x1e
+> +
+> +#define BCM590XX_REG_PMUREV		0x1f
+> +#define BCM590XX_PMUREV_DIG_MASK	0xF
+> +#define BCM590XX_PMUREV_DIG_SHIFT	0
+> +#define BCM590XX_PMUREV_ANA_MASK	0xF0
+> +#define BCM590XX_PMUREV_ANA_SHIFT	4
+> +
+>  static const struct mfd_cell bcm590xx_devs[] = {
+>  	{
+>  		.name = "bcm590xx-vregs",
+> @@ -37,6 +46,56 @@ static const struct regmap_config bcm590xx_regmap_config_sec = {
+>  	.cache_type	= REGCACHE_MAPLE,
+>  };
+>  
+> +/* Map PMU ID value to model name string */
+> +static const char * const bcm590xx_names[] = {
+> +	[BCM590XX_PMUID_BCM59054] = "BCM59054",
+> +	[BCM590XX_PMUID_BCM59056] = "BCM59056",
+> +};
+> +
+> +/*
+> + * Parse the version from version registers and make sure it matches
+> + * the device type passed to the compatible.
+> + */
 
-Guenter
+Nit: I think that a lot of these comments are superfluous.
 
+This is all normal stuff.  No need for the extra commentary IMHO.
+
+> +static int bcm590xx_parse_version(struct bcm590xx *bcm590xx)
+> +{
+> +	unsigned int id, rev;
+> +	int ret;
+> +
+> +	/* Get PMU ID and verify that it matches compatible */
+> +	ret = regmap_read(bcm590xx->regmap_pri, BCM590XX_REG_PMUID, &id);
+> +	if (ret) {
+> +		dev_err(bcm590xx->dev, "failed to read PMU ID: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	if (id != bcm590xx->pmu_id) {
+> +		dev_err(bcm590xx->dev,
+> +			"Incorrect ID for %s: expected %x, got %x.\n",
+> +			bcm590xx_names[bcm590xx->pmu_id], bcm590xx->pmu_id, id);
+> +		return -ENODEV;
+> +	}
+> +
+> +	/* Get PMU revision and store it in the info struct */
+> +	ret = regmap_read(bcm590xx->regmap_pri, BCM590XX_REG_PMUREV, &rev);
+> +	if (ret) {
+> +		dev_err(bcm590xx->dev, "failed to read PMU revision: %d\n",
+> +			ret);
+
+No need to wrap for little things like this.
+
+I'd take lines up to 100-chars if the aim is to make the code more readable.
+
+> +		return ret;
+> +	}
+> +
+> +	bcm590xx->rev_digital = (rev & BCM590XX_PMUREV_DIG_MASK)
+> +				     >> BCM590XX_PMUREV_DIG_SHIFT;
+> +
+> +	bcm590xx->rev_analog = (rev & BCM590XX_PMUREV_ANA_MASK)
+> +				    >> BCM590XX_PMUREV_ANA_SHIFT;
+
+Here too, etc.
+
+> +
+> +	dev_info(bcm590xx->dev, "PMU ID 0x%x (%s), revision: digital %d, analog %d",
+> +		 id, bcm590xx_names[id],
+> +		 bcm590xx->rev_digital, bcm590xx->rev_analog);
+
+If this stuff actually useful to anyone?
+
+> +	return 0;
+> +}
+> +
+>  static int bcm590xx_i2c_probe(struct i2c_client *i2c_pri)
+>  {
+>  	struct bcm590xx *bcm590xx;
+> @@ -78,6 +137,10 @@ static int bcm590xx_i2c_probe(struct i2c_client *i2c_pri)
+>  		goto err;
+>  	}
+>  
+> +	ret = bcm590xx_parse_version(bcm590xx);
+> +	if (ret)
+> +		goto err;
+> +
+>  	ret = devm_mfd_add_devices(&i2c_pri->dev, -1, bcm590xx_devs,
+>  				   ARRAY_SIZE(bcm590xx_devs), NULL, 0, NULL);
+>  	if (ret < 0) {
+> diff --git a/include/linux/mfd/bcm590xx.h b/include/linux/mfd/bcm590xx.h
+> index 8d146e3b102a7dbce6f4dbab9f8ae5a9c4e68c0e..fbc458e94bef923ca1b69afe2cac944adf6fedf8 100644
+> --- a/include/linux/mfd/bcm590xx.h
+> +++ b/include/linux/mfd/bcm590xx.h
+> @@ -17,6 +17,16 @@
+>  #define BCM590XX_PMUID_BCM59054		0x54
+>  #define BCM590XX_PMUID_BCM59056		0x56
+>  
+> +/* Known chip revision IDs */
+> +#define BCM59054_REV_DIGITAL_A1		1
+> +#define BCM59054_REV_ANALOG_A1		2
+> +
+> +#define BCM59056_REV_DIGITAL_A0		1
+> +#define BCM59056_REV_ANALOG_A0		1
+> +
+> +#define BCM59056_REV_DIGITAL_B0		2
+> +#define BCM59056_REV_ANALOG_B0		2
+> +
+>  /* max register address */
+>  #define BCM590XX_MAX_REGISTER_PRI	0xe7
+>  #define BCM590XX_MAX_REGISTER_SEC	0xf0
+> @@ -30,6 +40,10 @@ struct bcm590xx {
+>  
+>  	/* PMU ID value; also used as device type */
+>  	u8 pmu_id;
+> +
+> +	/* Chip revision, read from PMUREV reg */
+> +	u8 rev_digital;
+> +	u8 rev_analog;
+>  };
+>  
+>  #endif /*  __LINUX_MFD_BCM590XX_H */
+> 
+> -- 
+> 2.48.1
+> 
+
+-- 
+Lee Jones [李琼斯]
 
