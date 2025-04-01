@@ -1,271 +1,176 @@
-Return-Path: <devicetree+bounces-162322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162323-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8934AA77E43
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 16:52:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DBBDA77E53
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 16:58:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C0A8E188C429
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 14:52:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C984D18918B4
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 14:58:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDA3B2054ED;
-	Tue,  1 Apr 2025 14:52:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C34AB205501;
+	Tue,  1 Apr 2025 14:58:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="pjCS6mef";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="OTP42og4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03C9E204F6B;
-	Tue,  1 Apr 2025 14:52:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from fhigh-a4-smtp.messagingengine.com (fhigh-a4-smtp.messagingengine.com [103.168.172.155])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59CAC2054E9;
+	Tue,  1 Apr 2025 14:58:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.155
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743519139; cv=none; b=r/DDw1ukh6TRlF1gCY9MUgJ4WA0vPwaR2S0IWrjkgTni78ib3CY64eR/Gr0QwDrbMnkYVZbH3LpM8U2IrOYyHXYiqAeefGKa4pmOh1EWzQxq6kqRyh2yJZXPbCak2KZl2Y/Bcihab1+0hDrp9IOdwAMhb2Zh1+2LePG4e3hobqw=
+	t=1743519513; cv=none; b=pYRrmFeesyG137CEyiOze7oVvJJEMPrgIWWtdniN+LgaJHfPeaP/cJCK+mZyTAgiTpplaZndUXAMvhPy+wzRBUcZs/axwxMnJpd64fCEpLa908xDw8CDRC4xIdy8jDUsGRxc0qT7mcx6pYFzMPDp4V5UeVCM7isXxGgyVuDeAeI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743519139; c=relaxed/simple;
-	bh=zlxiKIbgT56W1MwpH8zInRd4PhuPoxfv+AWFPdKNoy4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GnNSr3xXCVC8tN1uUGi2Q+de55mBc3BIWeLVDpI8TbgWVHdy2ENoeAcHGlQBhGfghuj27ASZHAOK9TIQEeBGDNDlXgo0OW3P+aMBihS/PBHPTHy9tVzRfBNarA3fhVkzKnVUdr2mE1IEw2UKBXP1UEHUYchF7HNpQzlyUFn88RE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B211C14BF;
-	Tue,  1 Apr 2025 07:52:20 -0700 (PDT)
-Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AF6BA3F694;
-	Tue,  1 Apr 2025 07:52:14 -0700 (PDT)
-Date: Tue, 1 Apr 2025 15:51:40 +0100
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Sudeep Holla <sudeep.holla@arm.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
+	s=arc-20240116; t=1743519513; c=relaxed/simple;
+	bh=kKrSJRKxG6Oo8a53ImmPS1bX1Mb/wo/W9WNq1FTLY8w=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=L3CC76wfx24Art4Mx1s9DIghRTwIlj7jrTcLuuhMcPuNp3jdL7UnBb+pO/zs/mqpnUhTvJ007Zp/nvErCMxg0vwPYA5fz2mDG8xcNI77/aQ0avodsDXtpMiTYvf0aD2ieskgI0/MqDzYfOiRmCWOBRnzBRS9MXwmtLh4gOvf3I0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=pjCS6mef; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=OTP42og4; arc=none smtp.client-ip=103.168.172.155
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-10.internal (phl-compute-10.phl.internal [10.202.2.50])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id 6D89C1140228;
+	Tue,  1 Apr 2025 10:58:30 -0400 (EDT)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+  by phl-compute-10.internal (MEProxy); Tue, 01 Apr 2025 10:58:30 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm1; t=1743519510; x=1743605910; bh=KC
+	7mtGUrl9eJOorNVhvs5IRYDxTtF1iPCLypMstgG1M=; b=pjCS6mef6g09gX95WZ
+	jBXTy/wLyOHduNKnSK3N5s4fGRN29gF3uvFtOwQM0kuicutS+T4avobqYPwGOofV
+	iyLOMyxyvCYVkoO+44arqlsmIKRP3OyzJz0SKfb4Fgfd7CPOs2aneZixLCKhtDuL
+	RuzwiXGPW+Z3eZ1OSq5UoXQ2JEISpdAZ4+MC9b7q1ZndjObLiZfiY7m7kIubq13G
+	2lAvpfo20MjeI5TawaKwQQ1P21EyprmAivtMiKUgrWA9RkRvorRz1ufvJ7qIkIQc
+	s7CfDfq98pazwNVjCAVFD46JqKIbcZfxuN620m2oeOkd1EWPmnyYN+W5s8rxw+/H
+	su+w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm2; t=1743519510; x=1743605910; bh=KC7mtGUrl9eJOorNVhvs5IRYDxTt
+	F1iPCLypMstgG1M=; b=OTP42og402cI82T+4HldBJdTdKEAkUREAlQH+T4HsUBi
+	8OsjyrJNyhTZ1T3tF2cNDiSsNML4YGsLEXWxnwIon1gQcilbYRzf2w4sM1NBKf17
+	NJQOzlhzUFKIDmCY8eW6t1h9cjyYAt7huivyMaTGl5fKhpcvaF8zYt6c1Cy9WFlN
+	4PY/nPUSqbvJGRV1flX08EfJ6cykryGR8ofe91XaBdXqVxd55Pqfv65m2BXYeV0p
+	ACMgXWaqIaBjS4rJZ8mpwa/PyZHPWbbu7MQSvwswDQll65sXt2qLtZXsFtU9EEIM
+	t9ssjj6pJNoHD4v2NVd4HsZziX9V/nkZP9VDzLDV3A==
+X-ME-Sender: <xms:Ff_rZ3QhDKVzEwqFZBsHX9mDIEWLsHB58IUi4Ocs5UuQHoVqyP5tTA>
+    <xme:Ff_rZ4ySHuMzXcRBQiZGoKQrpCZhjbwpLz9GDpldJDalhbv8ppHK-_i63J0TlqKBL
+    7VoLOv34NDlPimgY1M>
+X-ME-Received: <xmr:Ff_rZ82FHqSchCBN2RO86CLdbYde3CS0sFF8Vh8NgJnk_5oQ4iukIkUNUiKhUoK2aIfexXRCFspxaIt2DMEj_ilu5Q>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddukeeftdekucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
+    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
+    gvnhhtshculddquddttddmnecujfgurhephffvvefufffkofggtgfgsehtkeertdertdej
+    necuhfhrohhmpefpihhklhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhoug
+    gvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrght
+    thgvrhhnpeehudelteetkefgffefudefuedvjeeivdekhfevieefgeffheeltddvvefhfe
+    etgeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehn
+    ihhklhgrshdrshhouggvrhhluhhnugesrhgrghhnrghtvggthhdrshgvpdhnsggprhgtph
+    htthhopedugedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepuggrvhgvrdhsthgv
+    vhgvnhhsohhnsehrrghsphgsvghrrhihphhirdgtohhmpdhrtghpthhtohepmhgthhgvhh
+    grsgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhr
+    ghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhope
+    gtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepshhhrgifnhhguhho
+    sehkvghrnhgvlhdrohhrghdprhgtphhtthhopehsrdhhrghuvghrsehpvghnghhuthhroh
+    hnihigrdguvgdprhgtphhtthhopehkvghrnhgvlhesphgvnhhguhhtrhhonhhigidruggv
+    pdhrtghpthhtohepfhgvshhtvghvrghmsehgmhgrihhlrdgtohhm
+X-ME-Proxy: <xmx:Ff_rZ3CSFLEkejZ_FDMs1pFhiblXqSiZGk5j5mI3joXiAW5s7DIivA>
+    <xmx:Ff_rZwi-1jyDXUfpl12NKeFhecoNaOWq3IqBBLQ-NrE4hDpLyxGzdg>
+    <xmx:Ff_rZ7q1cHbfXjm2atFOF3EkE_y12kpetl9gBt6NZcTwg56eZhatNw>
+    <xmx:Ff_rZ7gNWPeyil3TiqemXrziJH8XLPoP4AV5y40kJELG-A1XeU0Skg>
+    <xmx:Fv_rZw6Vj5Mo1aNJo0S3unYucQho7l_Mj96jOA9_rmAaD7wMuRbinGtQ>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 1 Apr 2025 10:58:29 -0400 (EDT)
+From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
 	Shawn Guo <shawnguo@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dan Carpenter <dan.carpenter@linaro.org>,
-	linux-kernel@vger.kernel.org, arm-scmi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-	devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v3 1/7] firmware: arm_scmi: imx: Add LMM and CPU
- documentation
-Message-ID: <Z-v9fLBztfeerCqw@pluto>
-References: <20250303-imx-lmm-cpu-v3-0-7695f6f61cfc@nxp.com>
- <20250303-imx-lmm-cpu-v3-1-7695f6f61cfc@nxp.com>
+	Fabio Estevam <festevam@gmail.com>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Cc: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH] dt-bindings: media: i2c: imx219: Remove redundant description of data-lanes
+Date: Tue,  1 Apr 2025 16:57:58 +0200
+Message-ID: <20250401145759.3253736-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250303-imx-lmm-cpu-v3-1-7695f6f61cfc@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mon, Mar 03, 2025 at 10:53:22AM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Add i.MX95 Logical Machine Management and CPU Protocol documentation.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  drivers/firmware/arm_scmi/vendors/imx/imx95.rst | 801 ++++++++++++++++++++++++
->  1 file changed, 801 insertions(+)
-> 
-> diff --git a/drivers/firmware/arm_scmi/vendors/imx/imx95.rst b/drivers/firmware/arm_scmi/vendors/imx/imx95.rst
-> index b2dfd6c46ca2f5f12f0475c24cb54c060e9fa421..74326bf2ea8586282a735713e0ab7eb90ccce8ff 100644
-> --- a/drivers/firmware/arm_scmi/vendors/imx/imx95.rst
-> +++ b/drivers/firmware/arm_scmi/vendors/imx/imx95.rst
-> @@ -32,6 +32,501 @@ port, and deploy the SM on supported processors.
->  The SM implements an interface compliant with the Arm SCMI Specification
->  with additional vendor specific extensions.
->  
-> +SCMI_LMM: System Control and Management Logical Machine Management Vendor Protocol
-> +==================================================================================
-> +
-> +This protocol is intended for boot, shutdown, and reset of other logical
-> +machines (LM). It is usually used to allow one LM(e.g. OSPM) to manage
-> +another LM which is usually an offload or accelerator engine.. Notifications
-> +from this protocol can also be used to manage a communication link to another
-> +LM. The LMM protocol provides functions to:
-> +
-> +- Describe the protocol version.
-> +- Discover implementation attributes.
-> +- Discover the LMs defined in the system.
-> +- Boot an LM.
-> +- Shutdown an LM (gracefully or forcibly).
-> +- Reset an LM (gracefully or forcibly).
-> +- Wake an LM from suspend.
-> +- Suspend an LM (gracefully).
-> +- Read boot/shutdown/reset information for an LM.
-> +- Get notifications when an LM boots or shuts down (e.g. LM[X] requested
-> +  notification of LM[Y] boots or shuts down, when LM[Y] boots or shuts down,
-> +  SCMI firmware will send notification to LM[X]).
-> +
-> +'Graceful' means asking LM itself to shutdown/reset/etc (e.g. sending
-> +notification to Linux, Then Linux reboots or powers down itself). It is async
-> +command that the SUCCESS of the command just means the command successfully
-> +return, not means reboot/reset successfully finished.
-> +'Forceful' means the SM will force shutdown/reset/etc the LM. It is sync
-> +command that the SUCCESS of the command means the LM has been successfully
-> +shutdown/reset/etc.
-> +If the commands not have Graceful/Forceful flag settings, such as WAKE, SUSEND,
-> +it is async command.
-> +
+The bindings already reference video-interfaces.yaml in the endpoint
+node, there is no need to duplicate the description of the data-lanes
+property.
 
-Hi,
+  An array of physical data lane indexes. Position of an entry determines
+  the logical lane number, while the value of an entry indicates physical
+  lane, e.g. for 2-lane MIPI CSI-2 bus we could have "data-lanes = <1 2>;",
+  assuming the clock lane is on hardware lane 0. If the hardware does not
+  support lane reordering, monotonically incremented values shall be used
+  from 0 or 1 onwards, depending on whether or not there is also a clock
+  lane. This property is valid for serial busses only (e.g. MIPI CSI-2).
 
-> +Commands:
-> +_________
-> +
-> +PROTOCOL_VERSION
-> +~~~~~~~~~~~~~~~~
-> +
-> +message_id: 0x0
-> +protocol_id: 0x80
-> +This command is mandatory.
-> +
+What the generic binding do not cover is the behavior if the property
+would be omitted. But the imx219 driver have never agreed with the
+description neither. Before commit ceddfd4493b3 ("media: i2c: imx219:
+Support four-lane operation") the driver errored out if not 2 lanes
+where used, and after it if not 2 or 4 lanes where used.
 
-Good that you added the mandatory/optional description..
+Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+---
+Hello,
 
-> ++---------------+--------------------------------------------------------------+
-> +|Return values                                                                 |
-> ++---------------+--------------------------------------------------------------+
-> +|Name           |Description                                                   |
-> ++---------------+--------------------------------------------------------------+
-> +|int32 status   | See ARM SCMI Specification for status code definitions.      |
-> ++---------------+--------------------------------------------------------------+
-> +|uint32 version | For this revision of the specification, this value must be   |
-> +|               | 0x10000.                                                     |
-> ++---------------+--------------------------------------------------------------+
-> +
-> +PROTOCOL_ATTRIBUTES
-> +~~~~~~~~~~~~~~~~~~~
-> +
-> +message_id: 0x1
-> +protocol_id: 0x80
-> +This command is mandatory.
-> +
-> ++------------------+-----------------------------------------------------------+
-> +|Return values                                                                 |
-> ++------------------+-----------------------------------------------------------+
-> +|Name              |Description                                                |
-> ++------------------+-----------------------------------------------------------+
-> +|int32 status      | See ARM SCMI Specification for status code definitions.   |
-> ++------------------+-----------------------------------------------------------+
-> +|uint32 attributes |Protocol attributes:                                       |
-> +|                  |Bits[31:8] Reserved, must be zero.                         |
-> +|                  |Bits[7:0] Number of Logical Machines                       |
-> ++------------------+-----------------------------------------------------------+
-> +
-> +PROTOCOL_MESSAGE_ATTRIBUTES
-> +~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> +
-> +message_id: 0x2
-> +protocol_id: 0x80
-> +This command is mandatory.
-> +
-> ++------------------+-----------------------------------------------------------+
-> +|Return values                                                                 |
-> ++------------------+-----------------------------------------------------------+
-> +|Name              |Description                                                |
-> ++------------------+-----------------------------------------------------------+
-> +|int32 status      |SUCCESS: in case the message is implemented and available  |
-> +|                  |to use.                                                    |
-> +|                  |NOT_FOUND: if the message identified by message_id is      |
-> +|                  |invalid or not implemented                                 |
-> ++------------------+-----------------------------------------------------------+
-> +|uint32 attributes |Flags that are associated with a specific function in the  |
-> +|                  |protocol. For all functions in this protocol, this         |
-> +|                  |parameter has a value of 0                                 |
-> ++------------------+-----------------------------------------------------------+
-> +
-> +LMM_ATTRIBUTES
-> +~~~~~~~~~~~~~~
-> +
-> +message_id: 0x3
-> +protocol_id: 0x80
-> +This command is mandatory.
-> +
-> ++------------------+-----------------------------------------------------------+
-> +|Parameters                                                                    |
-> ++------------------+-----------------------------------------------------------+
-> +|Name              |Description                                                |
-> ++------------------+-----------------------------------------------------------+
-> +|uint32 lmid       |ID of the Logical Machine                                  |
-> ++------------------+-----------------------------------------------------------+
-> +|Return values                                                                 |
-> ++------------------+-----------------------------------------------------------+
-> +|Name              |Description                                                |
-> ++------------------+-----------------------------------------------------------+
-> +|int32 status      |SUCCESS: if valid attributes are returned.                 |
-> +|                  |NOT_FOUND: if lmId not points to a valid logical machine.  |
-> +|                  |DENIED: if the agent does not have permission to get info  |
-> +|                  |for the LM specified by lmid.                              |
+The data-lanes property is a common property and the driver have always
+operated as the common description, it seemed silly to break the driver
+to adhere to odd specification, then to correct the bindings. However a
+more correct solution would be to do the work on the driver of course.
 
-..mmmmm... regardig this next field...
+This is just a drive-by fix in the hope of sparing others the time to
+discover this oddity themself. This is only tested by using the bindings
+themself and by 'make dt_binding_check'.
+---
+ Documentation/devicetree/bindings/media/i2c/imx219.yaml | 9 ---------
+ 1 file changed, 9 deletions(-)
 
-> ++------------------+-----------------------------------------------------------+
-> +|uint32 lmid       |Identifier of the LM whose identification is requested.    |
-> +|                  |This field is: Populated with the lmId of the calling      |
-> +|                  |agent, when the lmId parameter passed via the function is  |
-> +|                  |0xFFFFFFFF. Identical to the lmId field passed via the     |
-> +|                  |calling parameters, in all other cases                     |
-
-In V2 there was an issue with the description and you told me
-
- >> ++------------------+-----------------------------------------------------------+
- > >> +|Parameters                                                                    |
- > >> ++------------------+-----------------------------------------------------------+
- > >> +|Name              |Description                                                |
- > >> ++------------------+-----------------------------------------------------------+
- > >> +|uint32 lmid       |ID of the Logical Machine                                  |
- > >> ++------------------+-----------------------------------------------------------+
- > >> +|Return values                                                                 |
- > >> ++------------------+-----------------------------------------------------------+
- > >> +|Name              |Description                                                |
- > >> ++------------------+-----------------------------------------------------------+
- > >> +|int32 status      |SUCCESS: if valid attributes are returned.                 |
- > >> +|                  |NOT_FOUND: if lmId not points to a valid logical machine.  |
- > >> +|                  |DENIED: if the agent does not have permission to get info  |
- > >> +|                  |for the LM specified by lmid.                              |
- > >> ++------------------+-----------------------------------------------------------+
- > >> +|uint32 attributes | Bits[31:8] reserved.                                      |
- > >> +|                  | Bits[7:0] Number of Logical Machines.                     |
- > >
- > >...BUT this returns again the number of LMs while asking the attributes
- > >of a specific LM ? .... is it a typo or what ? ...if it is just as a
- > >sort of placeholder for when you'll have really LM's attributes to show,
- > >consider that once this is documented and supported in this version of
- > >your vendor protocol it will be needed to be kept and maintained...maybe
- > >better just to declare this as zero in this version of the protocol if
- > >you dont really have anything for this command in this version...(like
- > >many times are defined the attributes fields in PROTOCOL_MESSAGE_ATTRIBUTES
- > >above, if you really know you could want/need this command in the
- > >future...is it used now ?
- > 
- > My bad. This should be updated with below
- > +------------------+-----------------------------------------------------------+
- > |uint32 attributes | Bits[31:0] reserved. must be zero                         |
- > +------------------+-----------------------------------------------------------+
- > |uint32 state      | Current state of the LM                                   |
- > +------------------+-----------------------------------------------------------+
- > |uint32 errStatus  | Last error status recorded                                |
- > +------------------+-----------------------------------------------------------+
- > |char name[16]     | A NULL terminated ASCII string with the LM name, of up    |
- > |                  | to 16 bytes                                               |
- > +------------------+-----------------------------------------------------------+
-
-...so it seems to me that the above lmid is a new addition that was not
-mentioned ... bad cut&paste ? it does NOT seem to make so much
-sense...or I am missing something
-
-Other than this, LGTM.
-
-Reviewed-by: Cristian Marussi <cristian.marussi@arm.com>
-
-Thanks,
-Cristian
+diff --git a/Documentation/devicetree/bindings/media/i2c/imx219.yaml b/Documentation/devicetree/bindings/media/i2c/imx219.yaml
+index 07d088cf66e0..31beeb2be2ea 100644
+--- a/Documentation/devicetree/bindings/media/i2c/imx219.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/imx219.yaml
+@@ -55,15 +55,6 @@ properties:
+         unevaluatedProperties: false
+ 
+         properties:
+-          data-lanes:
+-            description: |-
+-              The sensor supports either two-lane, or four-lane operation.
+-              If this property is omitted four-lane operation is assumed.
+-              For two-lane operation the property must be set to <1 2>.
+-            items:
+-              - const: 1
+-              - const: 2
+-
+           clock-noncontinuous: true
+           link-frequencies: true
+ 
+-- 
+2.49.0
 
 
