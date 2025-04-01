@@ -1,151 +1,253 @@
-Return-Path: <devicetree+bounces-162336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B941AA77EE7
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 17:29:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E781DA77EE8
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 17:29:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70B103A4159
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 15:28:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BDB9C7A23F5
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 15:28:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F8DD20AF82;
-	Tue,  1 Apr 2025 15:28:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E29920AF8D;
+	Tue,  1 Apr 2025 15:28:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NroZWePt"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="B7eEi1E2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2050.outbound.protection.outlook.com [40.107.223.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0900204697;
-	Tue,  1 Apr 2025 15:28:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743521311; cv=none; b=h/0Lrd9rHGRX0QY3LY+WmPGDG+4UZj+JdALOUlz/IZ+aa8hjvO7r/1CbdvarKzJN9f6ctcyHPih+eJOxAuhVsGkWcuTJR7JPTrtkejmxi4K6J985mg289SmyE03h0y29wBhUYm1SPDYo+ipHYpTis4LxRTrusFkMRv/PhAkSOhQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743521311; c=relaxed/simple;
-	bh=S0wNmrFMnOGNLfYa7He53esmoNMyO2xtsu3Jnghyv9k=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=unDED2iMKT5l73gqjxQq8N4cgWeGFQZOQOsuRuGL7UTN5jnU12vSyfIAPpL3jxeONTvXbuViz7wQKfzd/mYv18eRH1G4NNcyh9FjlzWpNNNQXqehayznx5ytJK9pUZw3T8JkSG0n0CtbuPiemfRbDJ1Rn87nbwQNYbgl+cAyn3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NroZWePt; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-43cf034d4abso62715635e9.3;
-        Tue, 01 Apr 2025 08:28:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743521308; x=1744126108; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=CwkrXFbxY9tJa/SJFvtzbpLUSiv4ZpED0g8iWcEV1uk=;
-        b=NroZWePtdiesc7iTvmSPGV7AqIvNphj4Hjh5U6OVeWBVWRxWhZRklDS8+O/PceJGkJ
-         O/krA+Q9K/rf2mj3jVNXHxLBM1ASMoRTEx9oJTCVTW53oz1ntYAGD+UCLvn2Aixl1aa5
-         1TqSijAZxIdfUA4MNktKKSiOFvc4BiwP9cWgdf30BxbiVIIult5KZT9EMXPRQp4YF2yt
-         YNA1Rc1n8mzoa7cM+GHzQn0f9bzD7Go9iRZqXW0ydz5syYMOBNnype3fb3I5PLYNB/GM
-         1xjaUJR368BtLzxc1nGB3J3dl+TzgJPVdQou2EIgV1MwBKO4QBCEhx/5jE2bMGGh5yHz
-         gq5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743521308; x=1744126108;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CwkrXFbxY9tJa/SJFvtzbpLUSiv4ZpED0g8iWcEV1uk=;
-        b=LdpiPepmonx3/Lukdnn9ccI07eUAX08W1HLqRSsQQKb3fBN45K3x9ims16XgaFvdum
-         BtDUBtU87/1Ps8Die6KBwUHQt3WvNGGeQbU/PY77Hypai0lLBdCwrWiAv0toPEImE8g2
-         yQ3X43Cyjysx5kmDJdI2tSiw0AdaJH9Z+jsZBWWofNAEydNLA31iD3e6+eKYJPXOZKsw
-         JW+qadBPH8HoliP5GpIcUfO+N0wN+XNgDrbLz9DRW2l7UqjPxKTrUvK8LbJESYrlNJ74
-         QNutvuoBAshCUbDS1XQt8o7IDO4Op5RD8tIuOtIzwWihIJgOvKlKUGNmNxOa6qsA139F
-         dY4A==
-X-Forwarded-Encrypted: i=1; AJvYcCUoJhlNDQfMYnPxL4ZQdw80mkG4mztSb2qKgwW4LmRB3JUBKNRFq9PSC9YbnorYBpWRvNqz0rhLaWwY@vger.kernel.org, AJvYcCVH+JIvVEr4+0rvWw2bfKTKg7Btepq/Ovn9bAiHhzSbpu1LnafbldiqWLuL6WkRBI+sOLebO5oqHbvbFhb6@vger.kernel.org, AJvYcCVKZK8lwaFd65Zvyb8Nry/+7ydb8GXYP7vfmnslqNI/EGkSR8U5lrFGE2T2MlvkvSskP49hTEyd0ADZ1wRYig==@vger.kernel.org, AJvYcCXFoY4Qu7i/Pe3YRDV/ufPqX9ZeXA0TZK0hyVHdK6Mh5OGZBRj7AB9dT8YscgSstcpN9GvVOXYYWrSO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy9//YLQhb5b6n+oxC8fHr5YvrhZcLDsyVcnZkSsLgZGm5eV8zc
-	30GPvJv2qhOfbYB5o3LVLnCHdvakm0NH6ZRnB4L0dB5daZai9E/d0T2INqZhBhmbtOrxvi/aByR
-	zMLo1s+6NSGkGyDoyjuKwmtH5zQ==
-X-Gm-Gg: ASbGncvzOPCy67RqZsRGIP2GIaUSmbvhFx4A6Ncphzue2yk6Gmj/OqXeEDVup7Qc/G/
-	gb3mXPYXJdzW7hS2FS6wq5Ob/2Brb5ymfIu2g3d0WIV9a50YWSEDyi90H7I+6UBXUqwJMdPpXhd
-	8eKsZugnqfR8PEx+AJKIFqO/a9dw==
-X-Google-Smtp-Source: AGHT+IEPnkPYOVsLjM0/D6jFK2fUmZp7y3cmh6hjueZw4RVtZlgrxL1cG97I3ZeJMCbAxoRmRubRUlSKQOonL9Qrc2U=
-X-Received: by 2002:a05:600c:198f:b0:43c:fb8e:aec0 with SMTP id
- 5b1f17b1804b1-43db61dffcamr94542855e9.1.1743521307598; Tue, 01 Apr 2025
- 08:28:27 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A547C381A3;
+	Tue,  1 Apr 2025 15:28:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.50
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1743521335; cv=fail; b=hOxSuqNZxjeK47v0CE0nhF6dokHBjt9jVZK/oGFNQUHQdNeMOkaz38U3yFMfav22oQizbjTZhAPOpKvr+u5jN/BNZu6dCI4IKCimzb2+0QQeCfL05ttOs0LeOAYJUS/a9cwD1ZoMUkcFoDCw+rWzcDZB3tvGClWsoj44J1djoGU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1743521335; c=relaxed/simple;
+	bh=PX6KDIRK43FhoEEYTu5z1BQ4n+anpiZ2fmQreUU+0Vc=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=k+VSWkz6ZV39TAm9cT9r+Hf4TBPHA0RW3vUo8M/w8nlXVBTUl2q5CyBfTRQ6/JQmJYqSPbrELkKA/nRU1JUjqe65chTx0YbSwJAXMnprzKAC/8VnUWgKEdjDx5rFElJji8nrNAE/7EVwV1tdcSldfiCr57VQQ7NE0nMqXqcO48Q=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=B7eEi1E2; arc=fail smtp.client-ip=40.107.223.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=aIEHKmXO6EqEn4Yvz61yiP/lAWAaFg4thMJ3U2eX1f4AKox2PSisTnL9Jo7pAC70fRALL/Dhr59dz4yUH99MfP3ElzhPD4T0kyNJke4ViQhdKaR6oaaFQlZK3uBJyvzyknjNomPbJyozhGF069Uqt6F63wb+bNvYPUYJWLeaYRZuyMcbIhITKrAx8fpU7eMBkDW9cKvATXxhdmrUbKRIYnElSVv8NVB9ABBlWPLzl922P4LPTaV01oeo7oiKo8JmlBcCmW9MNw7jCe2yh/5EAGs0C4c2ErzolCjhtkDHUt3vqlh0PXLQO8EcU6g28bjJORAyeCOkuhq4S0QRa13YFg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9fho9N6HnKoc4uh0mleAvOGCm4dCDwcB9d0A/j+eQw4=;
+ b=g+WgDBEsyvz55pJiEDifCrlOQQUzhfK8tfktAfEGSTLFaEhvJ21GwfMJ0Nr5V220DAfNqhCaVguN29W5LJIakJ19+DHBRhoNcK4dlth7OtRCe0wv0dDVmjtN6dGp5GKdOSS3xTNKPpOGhZGwL/3jTu0odjKeneldrmRYTSLwOF8j9x86L2P9XMqAxc4W94n3cA12e+/2AUK8oIF7YkGUqbhrOL31BE5u6mDsJ+WrKLmDvogtTv7SGO3T7r7am7g4lyNO4cdrrz9YPzlApkoVrRgmObMdTKtE8n9AWoHnwmUtav4PrShAtVysjl40A58NuBkgDdB4pYeTdGh3ngYprQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9fho9N6HnKoc4uh0mleAvOGCm4dCDwcB9d0A/j+eQw4=;
+ b=B7eEi1E2MRyEnrJNE9IQOCrnjsLaCgPW4rDVURWcCXxS8Jmq6/qRwQ50snFIKHRESgSjY1y1AALwShygbcLCDCt4sYjzk+mUa6d156iLikAD6AIIUW8pwIgYJcUJCtN8FWcl+So8aWhmtlFWZP6GmGp8UG2XsI0L0C2WgGN03Hg=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by MN2PR12MB4408.namprd12.prod.outlook.com (2603:10b6:208:26c::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.47; Tue, 1 Apr
+ 2025 15:28:50 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.8534.043; Tue, 1 Apr 2025
+ 15:28:50 +0000
+Message-ID: <e268d75d-c75a-499e-872d-09f91defed6b@amd.com>
+Date: Tue, 1 Apr 2025 17:28:43 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dma-buf: heaps: system: Remove global variable
+To: Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
+ Saravana Kannan <saravanak@google.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+ Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>,
+ "T.J. Mercier" <tjmercier@google.com>
+Cc: Mattijs Korpershoek <mkorpershoek@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org
+References: <20250401-dma-buf-ecc-heap-v2-0-043fd006a1af@kernel.org>
+ <20250401-dma-buf-ecc-heap-v2-1-043fd006a1af@kernel.org>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20250401-dma-buf-ecc-heap-v2-1-043fd006a1af@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR3P281CA0133.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:94::20) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250331215720.19692-1-alex.vinarskis@gmail.com>
- <20250331215720.19692-2-alex.vinarskis@gmail.com> <219c03ee-4440-4452-94c8-f8b32c147db5@oss.qualcomm.com>
-In-Reply-To: <219c03ee-4440-4452-94c8-f8b32c147db5@oss.qualcomm.com>
-From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-Date: Tue, 1 Apr 2025 17:28:16 +0200
-X-Gm-Features: AQ5f1JrZEAJkqM3stGST93HbqddBgjzyizVAm53x83M-sCMI_F59tRpWGl3eYnU
-Message-ID: <CAMcHhXrMYoeK2PP1UNLkuFX+vya7fMxtDnxzJEmvEVibMPYKPw@mail.gmail.com>
-Subject: Re: [PATCH v1 1/6] arm64: dts: qcom: move pcie6a type change from
- X1P42100 to X1P42100-crd
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Dmitry Baryshkov <lumag@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Abel Vesa <abel.vesa@linaro.org>, 
-	Johan Hovold <johan+linaro@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-usb@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|MN2PR12MB4408:EE_
+X-MS-Office365-Filtering-Correlation-Id: fcb49872-4a1f-4301-953a-08dd7131e706
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|1800799024|366016|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?YlE4SXNlaG5tTFNQQWFIcmdQbEU4WUFBa1lQSmNtYkJjNUpKc2Qxbi9zNVov?=
+ =?utf-8?B?VFJJekZ5S0RjZktGVVl2Q1h0STZxemo0SFhaeVRQcUYrK0NpM3cwOFVCR0d6?=
+ =?utf-8?B?b2djUzhCNGNXK2VTZXgrZWlVck0zQit3MWliRnFGQlZGdTZzRS9RWkswaTRL?=
+ =?utf-8?B?U3dqVU5UQi81VUszRGZXeEFyQWJXZURIWDMrUVdjN21vQ0s0YUhsMkpPbDdT?=
+ =?utf-8?B?TFpDUDFkVStEa3R1NGc4WDBmc3p0VGN2VkN4L3FxUkJSZCtFamExOTdycDNr?=
+ =?utf-8?B?Q2NVdjlpR3pGR0lVL1hxWnA2VGI4NDJFY0Y3U2FpMFlqNnhMS0NVNDlSM1lW?=
+ =?utf-8?B?OWI3eUc4Z1pTTDN4aFdUZ1kvQ2g5WnVPN2JOMzRyU0M3TkpLalI5OGF4THV0?=
+ =?utf-8?B?TXJsbjE5MmE1RjV4Mm5WUVBrRnBGQnRneVppbHFBVXVEMUgvcWZRMS81YjNI?=
+ =?utf-8?B?VnVpUFVveU9mci9mOWZZT0F1THRSRE1HWUlxWmRNMVNCb1RwZWZtbFFLY0Rs?=
+ =?utf-8?B?VjJNK3hTNjEyd21hUmRPdGtnb3ppaGdYR200VHRrWEV4TzNoT05iUnhEUlMv?=
+ =?utf-8?B?M1dUYkFWTDgrZkxZMyt0NUZrTk4zLzR5eDFISE1aTmxFbEoxNXdkVmFvWHdE?=
+ =?utf-8?B?YzcxVy9xQ0NyRCtGeFdBQmN0eWlhZ1hTVUMvVkRUVVI4MldFUURaMzdwV3Z1?=
+ =?utf-8?B?MDRCcmlacEZuU1pPWnMwN0s1MVFjNU9Ta2R2UmFaL2V4ZGJWTjVYWDlJNHcr?=
+ =?utf-8?B?K29jbVFPYzNUemwvNERKZHFDbzFZM2xaeDEyajNMTk9NT1U3UHhZUkJSTm9G?=
+ =?utf-8?B?ajVlcWNVTTJEZ05XREdWNEFPbGQzNC9iZ1I4OW5MTC9FRVhvS29uNXlUMnQ1?=
+ =?utf-8?B?UGViamRJM2RQUXhpNkZCWGR2UlZ4RjhoSlNYRm5TeWg1ZkNxYlBMZ0Y3ZCtZ?=
+ =?utf-8?B?WGFTWU9VR3h1Q2RjM05LWTVlV1Q1eGxFbHNqWWtQb3NOMmE4YytISGsxMlNI?=
+ =?utf-8?B?WDBpSC9OZWtjcmMvT3cyMmN6MVYvdUp1dDRsSXgrcmwxU1VneVhFakZlYmhJ?=
+ =?utf-8?B?dmtNSEZxUWhDRUpVUnlkcGc4ZmtzUmREanM3VHdFNUVZZVNBdEZrTUYvUWts?=
+ =?utf-8?B?OFl1cFlTRXFpSUcyRnRXb1EvNmRYRlFteTVYMyt3VGhCbnlibHV1bE8zZUtS?=
+ =?utf-8?B?MTVucWFYVStqd25IUXYveG9VMTBHcG1LOURON2VFTXJPZ21WZ2FET3ZvKzdO?=
+ =?utf-8?B?c0I3N2ZJcGpWekM1cnJwbGpRTmNUb09URnNZY25abEl5L1lIVTg3V2MxbVVX?=
+ =?utf-8?B?ZWxla3FGTVU5OFE3ZVVpRWJyaGhkWlJrYnZaNGc1NWF5STA3ZUNhT05PTUJN?=
+ =?utf-8?B?TWJ2KzUrUVQ1bytTNUh2ZXpmV0IwZ3lEcWE1aUFLWVYrMW9wVjRZMExwQ0t5?=
+ =?utf-8?B?NkNyNUV5VnRoSXNiaXNKZ0hBakRkcGwrV2NiVElWOVgwQ1ExMEYzTWxVK2gy?=
+ =?utf-8?B?cWl2dGRQREpTQUEycmhlRGVvandZbjhtSzlWMWI4eU81dWpUMENRTWJUcGFW?=
+ =?utf-8?B?VWUydkhEY0x5YjdQU0NqYmRLVCtZUlNjODF6Y09HSEVSdkFOTG9nVlNFeHlq?=
+ =?utf-8?B?QTdibkxhKzVBeXhBcVVzQ2FEOGo3bmhlRllnQ1RkNXhlbDZRb1l0azRjNUdp?=
+ =?utf-8?B?NXd5WEZ6L2hiNjhydzVpOUsyaWJMamFEUUxlbzRhcHBTYTFOazFySmVUKzR6?=
+ =?utf-8?B?VEl6VTA4Wmh2QWlKS2ZYKzNXRWVBbFkzRFNlT29JRVVHY0JVRXJUMTJnKzhV?=
+ =?utf-8?B?SkpRRFBhV09FcTZTRXhOSEdvTUd4RGl2bUVjY1A2RHVwTU9WcGNZSDMwenBl?=
+ =?utf-8?B?dFNmdW1uUnFYYVFKTDFPMUlqa3F5a0dSYkcvYlB1eVhFdEg3NkV2dnJrUU1j?=
+ =?utf-8?Q?1BeqbABdhgU=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR12MB5685.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?MlVmVG1LZ3BPUWVWdEpubWRZajd1SzJzbGxmMGNQSnVhT1MyRnNrTi9jaUJu?=
+ =?utf-8?B?cnNGU2FFZnBtTTUwVmZuMUdHZ04wWVNDb1RJTlZoaTBNN3luK2VSZlVlNjdo?=
+ =?utf-8?B?eHA1TDluZFZmcUlsaVV3dnY2cVVtL3hHWFE1Z052UUV4bFJIbS9mc3pkMjNL?=
+ =?utf-8?B?UDBhNnIvOW5Ya25tUnRnRFE5N1Z0Rm1uRU5iYmV6MjV0Vi9YL0k0dlZpNkR3?=
+ =?utf-8?B?eEZCNzRrb01YZmt3eHpqblZGRHJZY3VYN3RmV3RYSS9GQ3hVZTA4NTlidTBY?=
+ =?utf-8?B?K2JaYlc0L0tjZTNFYTJvQUR1R1k5cmo3WFg4b0xrQmlhQys3cGd2bmxOMSt4?=
+ =?utf-8?B?ZURnOXBoMldOcVFBRUJNLzE2a2hyNWc2QkJ5K0pEVitST0d3bkYrMXhEdkUv?=
+ =?utf-8?B?RlZmVXl6eXNqNmp3bXJEY2ZJekdBTVZLQVU2MGx2SVNWdDB0QlRIRzRNWU1L?=
+ =?utf-8?B?WmlXdWxqdDczdGxueS85QXRYOVppYjVuaUw3Zng3d281RXg3RFRJS2JlcWpl?=
+ =?utf-8?B?VVdia3pZSldTTm5KbUxOOGNUM0I0L3NNeFZXZVlOckxpVlJrZ0tFZDN1R0U2?=
+ =?utf-8?B?Z1FCK0tUaC9BNlBjMXp0aXRDZk5TcWxiVXAvb0lyUTlnVmdhQjBmN3BFL1dF?=
+ =?utf-8?B?NEJ5ZUtXSUIzMW5TbEI1cDZNalRjbkZnOHBQdzBDV2t1dXRPRDdLQkZaNlZ2?=
+ =?utf-8?B?QXVVVG82U0xUWXE0UFpCZkREc3l0NDV3RzU2VmJoN3phTHo2U256dEJQOW5Y?=
+ =?utf-8?B?S21RQ2N6MU5wT042SXBaenl0YzZxQ2t1RHNna25VWHJQdlVsanQ5OG9BT0c2?=
+ =?utf-8?B?b1dHRVNsOU5kcmUwSG84TmtSZmx3R2E4RG9Dd0JPTlpmMGtRTGN6TjcrSTFL?=
+ =?utf-8?B?NDBmQUR0OHdBN3dxa1RBWWpkOSt6MEZNZkpKM1IxY3ZrRVdlK2pPVVRtbU95?=
+ =?utf-8?B?aUwwR2FoWlY0eEdvditXZ2w1OUx4WXdDYklOOU9lTXFnSEp2ZjJCOE5sOHZ2?=
+ =?utf-8?B?bm9WV0lpYU1KUGdXdndjaWFzUE83SCsvVmxLMjJLVnpoM0V1MlY2aU5xUzJs?=
+ =?utf-8?B?TThaa1hldWhWaHdDcUNYalBSLzZ1TmRLS0FOSFpZTDg5NnV0NXFoekNUQmxx?=
+ =?utf-8?B?MmJVOUc0d005VEExZXkwcEw1N3R0ZUszVW1Mc0tYZUIyaE1wb2ZHbHhOVHhK?=
+ =?utf-8?B?UFJ2eDJsbjZmMGxZVU1zOFFrWEZJaWxxSllUMEwvNkx5RnZFM0lUbFRnQkxt?=
+ =?utf-8?B?eEJ4MlZuMUZDdENwVTZlRmFia2RLLzZTdWFsaDZHbmNCTUQ2aUpLaHNNWXY0?=
+ =?utf-8?B?NmNFUzhlbGtDUUwwRGNUU0MzSFpxM2JTQ3R3ME5wdFA1U29WSGRGcCtoSnlt?=
+ =?utf-8?B?dVV2UWlUbEF6NHloUzRkRk9hclgrSXl0bHFwdHpneVBybDFIejBGRURNc1Va?=
+ =?utf-8?B?bmtrRUozL1A2MWduYWwzUWdzSGdQelBXZHhoN0cwc2ZnNHlRcjZKYktUY3Az?=
+ =?utf-8?B?ZkZpREp5ZmhaTzB1aklKVVJTVGplOGV5ME40RWtwOUtHSDBwVEF0MmZFMFNO?=
+ =?utf-8?B?Rkd2a0kzcDhOdFkycGpUc3RaQWFna3VEU2UvQXpHNVV1VDU0TEI5d1NyWW9t?=
+ =?utf-8?B?VDVyVUd2bU5RcUw3YTZNbk1TcjUxR3owSzVFZHdocERZR2RxRk9sNEk5TU9V?=
+ =?utf-8?B?RVdKRFNXUzdyVDhtZlJvenBmTmNweGxMT000NmZ0Wi9kWWVSOEZUSWhnM3ZI?=
+ =?utf-8?B?czVBU0JHTTdiZ1poNVF3dkVrK3o0U2FVMVF6TkkyQmc2WFA4RmhZQ3FUL2tN?=
+ =?utf-8?B?RlRQRmFlK1Fsc0trUFpacTUxSWpveDQ3RkJucGp0Ulk3UGFITFJJVWhUbVRz?=
+ =?utf-8?B?S1VLNWxrdk9JWGNyM2RSQi9KTWgvZVVqdW5UQTN3NEdYSm1iYzJ6bjhoalpL?=
+ =?utf-8?B?dHhxcWhJaDBubGhuRVlWTTV2OEUvYUtVbEZoV1c1NjYxdk9vRDY2MVB4YlN3?=
+ =?utf-8?B?cUZtU1F1V25OVHUybnNjZm5qNzM1Q3BwM0tqSHd1QzZLSE42WjF1OFphUnZS?=
+ =?utf-8?B?cFZ2bmd5OXBGTW5VbnhNODNCSFhLaTkzc2J4NnNqUTBkL011TGQ0U05OLzJ3?=
+ =?utf-8?Q?UY83MiJdKU28T+GVQQQvy+dQC?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fcb49872-4a1f-4301-953a-08dd7131e706
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2025 15:28:50.3498
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Apy6AbHLT9SNoYf6Scn0rZceHO6LCXQS/VTOp6tax0r/POWkTHiAcc993w9NxWhD
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4408
 
-On Tue, 1 Apr 2025 at 12:19, Konrad Dybcio
-<konrad.dybcio@oss.qualcomm.com> wrote:
->
-> On 3/31/25 11:53 PM, Aleksandrs Vinarskis wrote:
-> > It appears at least on some devices (Asus Zenbook A14, x1-26-100) change
-> > of pcie6a_phy's compatible breaks the controller. Move compatible change
-> > from generic x1p42100.dtsi to CRD's specific x1p42100-crd.dts instead.
-> >
-> > Signed-off-by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-> > ---
-> >  arch/arm64/boot/dts/qcom/x1p42100-crd.dts | 4 ++++
-> >  arch/arm64/boot/dts/qcom/x1p42100.dtsi    | 4 ----
-> >  2 files changed, 4 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/x1p42100-crd.dts b/arch/arm64/boot/dts/qcom/x1p42100-crd.dts
-> > index cf07860a63e9..a2a212b31556 100644
-> > --- a/arch/arm64/boot/dts/qcom/x1p42100-crd.dts
-> > +++ b/arch/arm64/boot/dts/qcom/x1p42100-crd.dts
-> > @@ -15,3 +15,7 @@ / {
-> >       model = "Qualcomm Technologies, Inc. X1P42100 CRD";
-> >       compatible = "qcom,x1p42100-crd", "qcom,x1p42100";
-> >  };
-> > +
-> > +&pcie6a_phy {
-> > +     compatible = "qcom,x1p42100-qmp-gen4x4-pcie-phy";
-> > +};
-> > diff --git a/arch/arm64/boot/dts/qcom/x1p42100.dtsi b/arch/arm64/boot/dts/qcom/x1p42100.dtsi
-> > index 27f479010bc3..4424a8708d39 100644
-> > --- a/arch/arm64/boot/dts/qcom/x1p42100.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/x1p42100.dtsi
-> > @@ -37,10 +37,6 @@ &pcie3 {
-> >       num-lanes = <4>;
-> >  };
-> >
-> > -&pcie6a_phy {
-> > -     compatible = "qcom,x1p42100-qmp-gen4x4-pcie-phy";
-> > -};
->
->
-> This is not correct. The hardware is different in all SoCs, not just the
-> ones put in the CRD.
->
-> You're probably missing this change [1], please test it out and leave a t-b
-> if it's confirmed working for you.
 
-Thanks for the pointer, with the missing peace it indeed works now!
-Left t-b. Will drop this change on re-spin later today.
 
-Thanks for the review,
-Alex
+Am 01.04.25 um 17:12 schrieb Maxime Ripard:
+> The system heap has been using its struct dma_heap pointer but wasn't
+> using it anywhere.
+>
+> Since we'll need additional parameters to attach to that heap type,
+> let's create a private structure and set it as the dma_heap drvdata,
+> removing the global variable in the process.
+>
+> Signed-off-by: Maxime Ripard <mripard@kernel.org>
+> ---
+>  drivers/dma-buf/heaps/system_heap.c | 17 ++++++++++++-----
+>  1 file changed, 12 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/dma-buf/heaps/system_heap.c b/drivers/dma-buf/heaps/system_heap.c
+> index 26d5dc89ea1663a0d078e3a5723ca3d8d12b935f..adf422eaa33a52794f952d9d4260b8743d37f421 100644
+> --- a/drivers/dma-buf/heaps/system_heap.c
+> +++ b/drivers/dma-buf/heaps/system_heap.c
+> @@ -19,11 +19,13 @@
+>  #include <linux/module.h>
+>  #include <linux/scatterlist.h>
+>  #include <linux/slab.h>
+>  #include <linux/vmalloc.h>
+>  
+> -static struct dma_heap *sys_heap;
+> +struct system_heap {
+> +	struct dma_heap *heap;
+> +};
+>  
+>  struct system_heap_buffer {
+>  	struct dma_heap *heap;
+>  	struct list_head attachments;
+>  	struct mutex lock;
+> @@ -422,17 +424,22 @@ static const struct dma_heap_ops system_heap_ops = {
+>  };
+>  
+>  static int __init system_heap_create(void)
+>  {
+>  	struct dma_heap_export_info exp_info;
+> +	struct system_heap *sys_heap;
+> +
+> +	sys_heap = kzalloc(sizeof(*sys_heap), GFP_KERNEL);
+> +	if (!sys_heap)
+> +		return -ENOMEM;
+>  
+>  	exp_info.name = "system";
+>  	exp_info.ops = &system_heap_ops;
+> -	exp_info.priv = NULL;
+> +	exp_info.priv = sys_heap;
 
+Why do you even need this?
+
+>  
+> -	sys_heap = dma_heap_add(&exp_info);
+> -	if (IS_ERR(sys_heap))
+> -		return PTR_ERR(sys_heap);
+> +	sys_heap->heap = dma_heap_add(&exp_info);
+> +	if (IS_ERR(sys_heap->heap))
+> +		return PTR_ERR(sys_heap->heap);
+
+That's clearly missing freeing sys_heap again.
+
+Christian.
+
+>  
+>  	return 0;
+>  }
+>  module_init(system_heap_create);
 >
-> Konrad
->
-> [1] https://lore.kernel.org/linux-arm-msm/4c7059a0-46a0-424d-9068-60894c6cec1c@quicinc.com/T/#m9675593a62b2334ab2afd4269da6938464a03fa6
+
 
