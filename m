@@ -1,116 +1,142 @@
-Return-Path: <devicetree+bounces-162378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60327A78136
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 19:12:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3067DA78139
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 19:15:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B46C1889975
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 17:12:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A6E7188B0B4
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 17:15:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A738F20E32B;
-	Tue,  1 Apr 2025 17:12:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D89D220B7FA;
+	Tue,  1 Apr 2025 17:15:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="QICRop94"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nNQKGv04"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03C192EAF7
-	for <devicetree@vger.kernel.org>; Tue,  1 Apr 2025 17:12:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C1B579FE;
+	Tue,  1 Apr 2025 17:15:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743527544; cv=none; b=WbAdRq0OuUcnqOiqYGZ9pxucom2UYTY3/zPS+rOv7g07wnOncjErPQovXNh7Qo+Hki03tGQhcHXyWL6zaZouSKQnZ6lxxip4tmU/bnuvBLPYq2+CFhQmQIsU/ItuyGf+7qZXD0MwzxsMbH7ksSu+zJgnNqLidFqgMH+OtcYOsH8=
+	t=1743527726; cv=none; b=SvzXUn/WUYrGQk/dpk+CGDabU55MvWOPeOYfy27XPi6QxeUPZ9WIZpwS0tre0OtjpHJyxq+Ejcfq/l1SqJ7xXeoWCUA/8hfb71x0yPvIhHUvyaoZpYbJhi1DEhrEmZ1euaCUjtuIKB692RmzTVXymr0yqlM+g/C9g/uZ/bTpWcY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743527544; c=relaxed/simple;
-	bh=BP5il8vEaAu9aTth6vD6KtGRpBas/BFDLnGP8Zck+jI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Yy/y3hb/u6blxOEZxkPjVLe+2c9bgNsGZ6I3nVeRHmC6fYL0VyLoCiKVc99rLn6+F/9Ay768Ok2bLmEidvfkaxrsKzboVfYHckTrT3ahM4AVJUN8h8XLCyaaxhX5nhOMnHViyvP1UxS9v6Zzn0hfas54d1lrgiOiylF+nqNi/24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=QICRop94; arc=none smtp.client-ip=209.85.210.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f48.google.com with SMTP id 46e09a7af769-72bd78e695dso1856839a34.3
-        for <devicetree@vger.kernel.org>; Tue, 01 Apr 2025 10:12:21 -0700 (PDT)
+	s=arc-20240116; t=1743527726; c=relaxed/simple;
+	bh=L+lX9r2dGjKNHuzHN5V9IMLiK1nkCcDKUfsavGMrDrk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jB3Wk1PklVusJq6PfkrEgz0MPx2lkeg0oaO8bWqBLyBI0OdwutKnxHty+n3Xs2X4w/wUKEbdMIHAEugVoMDPlFdX3az5rHOxYdIVoAU9OlGgRlSjQfNlPZXai/E5Dq6bzj7m5NFH2yw4PPYY+YV9F1NSGVfVN6GOAQAcANf5H08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nNQKGv04; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43d0359b1fcso291455e9.0;
+        Tue, 01 Apr 2025 10:15:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1743527541; x=1744132341; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=UD+DYeYJxZX2qc60CEMQlzZ1bJFQsVcFTnUWz6yYLuM=;
-        b=QICRop94zqRHlyWfyeq4ZekdlOkyntlvPl/GpH3z7Un8jXS9aMppFKyAYjHsC940we
-         7l8zT0EiXuqdJUVPyPdtB+mUFK1dNhGje1NDMnZkHMMgMkNryV9dmNFw4GXFZc/aRCEg
-         sI12pVp803RSR/zG7KSRB2nXZE5ZJYlaY+1X0+9HFzckUaFUt9dbuh8eDPYrjUnrzi0t
-         yKDzHS+/5ziax0cLgqaTULwn8C5BMsWWdmYsLbj/oDGnckJMMOyUWGdVNcbJFSw0Bl6Z
-         wXWN2oyJer8kKww2RB52yNWi9KeSz7zvD0nJ4VkLdDQbnSXJyWLSokIV+B0smf1nI5zj
-         Yfeg==
+        d=gmail.com; s=20230601; t=1743527723; x=1744132523; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YizoLm8lCDU9nUyErwnOyBU4mdGwFqcXbzX2xycyd5o=;
+        b=nNQKGv04DIDFdmXRgr2AEPP4BOMAdklRL2ljn4tfZ1rr66C50EjnHHR0xcKVVMHfYr
+         9CmuIhBCEWWwVD4d+jyH+XYaru8jwMUr5GX8eyQOW5m4yPm2Jqgolh7879kD90tNyeQn
+         ymxWYNsNtTFDG/x9QcTVXMCZqYB5tWSgRFNa9aALHZ/PSe2kYsp9KKBNJTAtXCB1KRHd
+         xf+u6v9prD90yfaBLf6AbMebOi5aEft19STLinE9W/pnTF14lOL5T2lsPnIcOsNBsgWp
+         LDACDL6hx+HeiobfR5PUCV/jcGPWuDF1esAUnt6SfRFAxZBmM3OV8UL2MpT3W1H929Rn
+         A6jQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743527541; x=1744132341;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UD+DYeYJxZX2qc60CEMQlzZ1bJFQsVcFTnUWz6yYLuM=;
-        b=pQpsr4u4y6y31ZwhCBx3lgYh00062S7YvSIrN7LNaiDGqdF0BDuLp2GL3zZdUj4Jbh
-         THxowFZuOH+ZONjG5WlM/qOCheCy4SbtyZLtNn8oLSjL9HJ1fC/AyyUgGjkbhQ9tYPIJ
-         fC+j32jfWMbEi5n6a8fkA/DDgXh6Cm0Ho3LY0Lo3Gr4WfScCBOKkjWJc+2kQgyACktvw
-         dbHUQ5pJAKHfFWCd8N21A/fHt1xpIi4BEC17Xj2421QjCKhCICwl/3W784POdC53v8qb
-         r1P2taJH7cAhLMdw1/mGth4GYgawUmY3lz0lbwQcEHLEJxGKdZrpRzxiQEgrYnDhlvZx
-         Owfg==
-X-Forwarded-Encrypted: i=1; AJvYcCWjjUoD1ROB3nUEAB4fMowQxUIb6u6K4vBhbRizrcaxemsR6/46kpVzNcc9bLVpXsFROduJPmx2uess@vger.kernel.org
-X-Gm-Message-State: AOJu0YzJveWAR0mBS0M9Xd3K12/ARgkv7ZXvfOYXwJuaL6KBkEahtXQS
-	h3BHPJdCEQW/ZG/JkZ1YqoGK7FstWYy6cydUCCuRPqlXXwfDVXFm50cx5ykNpGI=
-X-Gm-Gg: ASbGncv9QW19X/sHhxeVFNTeOH5TpbpkKjhjLVno4uRKrDDZVckQOV3d/Giy8lv/E5o
-	MapviYLLRYHRQUNUa8rIu1jQUEcte6qI3/F0HeguPwp0YQ4BWdg6aqueWnGlQh5XK2WhnquIh+Z
-	UcXokUmcrN24yXKyLHLHhO3JMmXN1gsrIHoc3t09DNepVYOAGNCor9mdqgSwPDh3wm0I1JRlCr0
-	K5OFM3jHDlqOfIvwKMZUfMRHFpWWUVy341esEvMiuFyqoxPPOJKNRY4o2NlYBizsPC/yux6hyIw
-	cCZS5zT1n2shPfxTCAFiisP1T/19K9I3cnpqDGoyi9tjEqg1f5Z/RVl4XQwYHhPyZgRg6Z73Xvc
-	TElHp5w==
-X-Google-Smtp-Source: AGHT+IFO98sJd1GOfYYUHbpUvxWXLRd7beck4SwvpYzQJESTfWe3OYpajZbcTX2Jw9Pw0NfMaczKjQ==
-X-Received: by 2002:a05:6830:6509:b0:72b:9bff:abb with SMTP id 46e09a7af769-72c6381de2amr8883395a34.19.1743527541164;
-        Tue, 01 Apr 2025 10:12:21 -0700 (PDT)
-Received: from [192.168.0.113] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-72c580ba906sm1921676a34.25.2025.04.01.10.12.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Apr 2025 10:12:19 -0700 (PDT)
-Message-ID: <2d78031f-de8f-42e4-ad3e-42cff63387f1@baylibre.com>
-Date: Tue, 1 Apr 2025 12:12:17 -0500
+        d=1e100.net; s=20230601; t=1743527723; x=1744132523;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YizoLm8lCDU9nUyErwnOyBU4mdGwFqcXbzX2xycyd5o=;
+        b=L5Bq3DywlDd7GeNlKONpsa0drYfHVsbRQco20VVx9nWhGffqrGtcTjhIKIwlwVydj5
+         Nh2c8QPGLiV7rbtcZtPuFW4a7C4eL39ndY+DcHtqHS5aPbwArTZbRwbSm8X4Z9XyoOhq
+         tUwqmwJ2+5Qc7HMzUM27Nw9wTjcehl/yBSE6PRvwGrc1IdXZIl0fGKToUdTDVqQeceQr
+         R3JqbhleSAvHz7TdjhhULEbD33qlKLucPQ1DOx0LPxoUIHMrSLygNdgDZEXJ48xByPt9
+         N/b0fxh/KCvhGAHuBzRaai5HFvv/g+NYv5KREtCBDqLHKbClnYqdthtz2reBsPAftiuM
+         jUzg==
+X-Forwarded-Encrypted: i=1; AJvYcCUnchVqmTVrQy6HjMjoyb9vQg6ASbVwy1CME7pZIXawZUHc2iomaPaQ9O8DwE/xBg3o8PHtm1TDQuKN@vger.kernel.org, AJvYcCX3cJn+pzCME9rMKVpLeXRHV+8cC/Wctl2rpf1LMoDFB74zHwIwVxi5ebx6jSlqcP6+USdC1puv7wyAOUxk@vger.kernel.org
+X-Gm-Message-State: AOJu0YyR2ZXUJNMJlHIO4alsIn0peRbBpff5r8nfCdLGhnXNbeV+R7lD
+	2zTUxqIiYnwh39rmg3fbT5Iiq0HKMVE2R37Dz29jS1chxi0Z6iwY
+X-Gm-Gg: ASbGncu1DZRlkRqj6s13HKk9j/BShOeEB1CAnHfcpD0gZiBVWXnIGwWQiKi4qqezolW
+	GHONnTCK65B0st6ShmDMyZpnOGnVMyvhwLPqtCi0Nr+xdtWS9yC1rvVPtj4CSbU0ODXSMgtkjts
+	1cXDypWBoFnOZc2QjQ6PLDpZvey0qqyZm9dcL8ugkiwTmt/7QRQDowOz5QW0TIH//6QZQKcY1VJ
+	B2q1QhtNNbPfxhSw5IPrEhzQwnV2SpfXqQmZAoRhyIX88DGiB5eaxEm11r+1pEZhuc4kL8U4iFQ
+	cPJ++s5MOmlmjqDdvJEVZvbIiZ4HZ3EOdr7OWTc4eNnQBYEC+cHBhByhu3GNVqmNS1F4JQ==
+X-Google-Smtp-Source: AGHT+IH2c0b3l/+cWUUWrVUvZ6cf/ge1SmqsdDobyM1BvBUGo2wXYGSR1OKbEeDKuu0DtMOuF698Jg==
+X-Received: by 2002:a05:600c:285:b0:43b:bfa7:c7d with SMTP id 5b1f17b1804b1-43eb055b4b9mr5663385e9.2.1743527723078;
+        Tue, 01 Apr 2025 10:15:23 -0700 (PDT)
+Received: from iku.Home ([2a06:5906:61b:2d00:f6ce:ff76:f4b6:b6c3])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43d8fccfd9bsm162583555e9.20.2025.04.01.10.15.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Apr 2025 10:15:21 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v3 0/3] Add USB2PHY Port Reset Control driver for Renesas RZ/V2H(P) SoC
+Date: Tue,  1 Apr 2025 18:14:29 +0100
+Message-ID: <20250401171432.101504-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 17/17] iio: adc: ad7768-1: add low pass -3dB cutoff
- attribute
-To: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org
-Cc: lars@metafoo.de, Michael.Hennerich@analog.com,
- marcelo.schmitt@analog.com, jic23@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, linus.walleij@linaro.org,
- brgl@bgdev.pl, lgirdwood@gmail.com, broonie@kernel.org,
- marcelo.schmitt1@gmail.com, jonath4nns@gmail.com
-References: <cover.1741268122.git.Jonathan.Santos@analog.com>
- <2aa347a97e7ea974951609b0bdf81cad0b21b993.1741268122.git.Jonathan.Santos@analog.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <2aa347a97e7ea974951609b0bdf81cad0b21b993.1741268122.git.Jonathan.Santos@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 3/6/25 3:04 PM, Jonathan Santos wrote:
-> Ad7768-1 has a different -3db frequency multiplier depending on
-> the filter type configured. The cutoff frequency also varies according
-> to the current ODR.
-> 
-> Add a readonly low pass -3dB frequency cutoff attribute to clarify to
-> the user which bandwidth is being allowed depending on the filter
-> configurations.
-> 
-> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
-> ---
-Reviewed-by: David Lechner <dlechner@baylibre.com>
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+
+Hi All,
+
+This patch series adds support for the USB2PHY Port Reset control driver
+for the Renesas RZ/V2H(P) SoC. The changes include documenting the USB2PHY
+Port Reset control bindings and adding the driver.
+
+v2->v3
+- Dropped Acks from Conor and Fabrizio, due to below changes
+- Renamed binding renesas,rzv2h-usb2phy-ctrl.yaml to
+  renesas,rzv2h-usb2phy-reset.yaml
+- Renamed node name in example to reset-controller
+- Renamed function names in reset-rzv2h-usb2phy.c
+- Kept the reset line in asserted state during probe
+- Added comment for rzv2h_init_vals[]
+- Added entry in MAINTAINERS file
+
+v1->v2
+- Dropped binding postfix in subject line for patch 1/2
+- Moved acquiring the ctrl2 pin in deassert callback
+- Updated ctrl_status_bits
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (3):
+  dt-bindings: reset: Document RZ/V2H(P) USB2PHY reset driver
+  reset: Add USB2PHY port reset driver for Renesas RZ/V2H(P)
+  MAINTAINERS: Add entry for Renesas RZ/V2H(P) USB2PHY Port Reset driver
+
+ .../reset/renesas,rzv2h-usb2phy-reset.yaml    |  56 ++++
+ MAINTAINERS                                   |   8 +
+ drivers/reset/Kconfig                         |   7 +
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/reset-rzv2h-usb2phy.c           | 241 ++++++++++++++++++
+ 5 files changed, 313 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2phy-reset.yaml
+ create mode 100644 drivers/reset/reset-rzv2h-usb2phy.c
+
+-- 
+2.49.0
 
 
