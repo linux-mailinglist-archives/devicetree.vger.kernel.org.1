@@ -1,104 +1,85 @@
-Return-Path: <devicetree+bounces-162206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59CDEA776F4
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 10:54:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5E35A7772C
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 11:05:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10FB9169FBB
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 08:54:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C48F3A8ADA
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 09:05:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CF501EB5F0;
-	Tue,  1 Apr 2025 08:54:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chir.rs header.i=lotte@chir.rs header.b="UdyHWwB1"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03BC11EB9FD;
+	Tue,  1 Apr 2025 09:05:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender2-op-o17.zoho.eu (sender2-op-o17.zoho.eu [136.143.171.17])
+Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 019EC1EA84;
-	Tue,  1 Apr 2025 08:54:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.171.17
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743497669; cv=pass; b=XSJTnxQkvPD6krKKCH3v5fOgUEhE+sUlMNSxP1Wb6TEvDCFeakGoNBrJ5uBvY4HN+xoFxm3w9AWQGEhAn/9LdvatS/2Yi6rI2bii2OXD1XATMofq1FK6sAM4S717hFr1SyuQL3pbDQ1JFG0ls1t0miK6VpWIt/oMQR3RgFC7LJk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743497669; c=relaxed/simple;
-	bh=aKUuJwu0U8bq5ODLU/EBl2gp/37apqgHHw2MWv7l9eI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BMR7izH76lZt7Y2/8f8F4TCSJRcxIKds7flQyzR7pV+xUwXJymA8BZGpoV9swomTjlsUclwfVrueHoLVoinH4/T6EchtZh2kF+k6AJCm+jHxrj+OO7Y+7dBYKv3RE9v7f1H6WCL+7WqTXjlySxs9UXulv6zoUoRiySv9ArOCThA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=chir.rs; spf=pass smtp.mailfrom=chir.rs; dkim=pass (1024-bit key) header.d=chir.rs header.i=lotte@chir.rs header.b=UdyHWwB1; arc=pass smtp.client-ip=136.143.171.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=chir.rs
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chir.rs
-ARC-Seal: i=1; a=rsa-sha256; t=1743497646; cv=none; 
-	d=zohomail.eu; s=zohoarc; 
-	b=GkWngAyi+uzuViOiCY6JCGHZUgbWETG/+kT53OAui4q2sT3kKd3Zquz6l17QyJ26vfD28cIUdcfhSJSaikZWOpi/S9ZivrQZmFIMgyx83PTzxfUMwzPHvE4Hf27UXQpEScRCX5pT1r9bKanCXC4c92lLGhzNUjnv1koeXN2p6kA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
-	t=1743497646; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=IKWd7/S8ecvupAPGxLPLAgyuVQEO8m2WiEs8ZQCSIDE=; 
-	b=hlU22wub2xiYbovhm07uqMVlsCNEyAoUUPqtQQIot5PjhY3bAwnFMJA0x6JTSLLxGoulyAHbGYTihj7xxJ2bd20r3PTM8AJrEdVK/lh+xLllJoKnwwNTk+6L+FHzzdOx+rTLohy+v8ZgDn3EGeKyZFM2j42/DpVRZfCsaQvI8NQ=
-ARC-Authentication-Results: i=1; mx.zohomail.eu;
-	dkim=pass  header.i=chir.rs;
-	spf=pass  smtp.mailfrom=lotte@chir.rs;
-	dmarc=pass header.from=<lotte@chir.rs>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1743497646;
-	s=zmail; d=chir.rs; i=lotte@chir.rs;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=IKWd7/S8ecvupAPGxLPLAgyuVQEO8m2WiEs8ZQCSIDE=;
-	b=UdyHWwB1/Sh3ODklYLF2YexzS6g3Vw+lkmkg5iR5lMQq4ou/hgMfChTIWoLlvMCu
-	W4REsTLWyOeI41rMYSm/EtUvTg7mDhjUqcI9SI4rhslVEm5FHKXRXP9InJntsKwc4aQ
-	dnooQFpJABkCcF3QSpNiisNjhtnKXeZ/h3JQC+aY=
-Received: by mx.zoho.eu with SMTPS id 1743497642823882.9940100806688;
-	Tue, 1 Apr 2025 10:54:02 +0200 (CEST)
-Message-ID: <5c9f59c3-2868-47c2-b2af-b515a8ec9349@chir.rs>
-Date: Tue, 1 Apr 2025 09:54:02 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76E831EB5FA;
+	Tue,  1 Apr 2025 09:05:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1743498328; cv=none; b=jle9TimYqzOh3y6zJdf4Xr5K5qIXoNQpc6o8SDuhrmsVCTvoFcCLvfV4vRECvykUhtzQZ5vurBgsm9viJUdVKSHStHqE7wtf95WiGUVNLa8A4lDzYXvBUGmYnCtsmczvJgU3Xqt3OnKmY17+HILGR7QNY5cVSsHzTNrJZelLA94=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1743498328; c=relaxed/simple;
+	bh=ZEWpwtkyU/NgK+Jm/2/mf76fom5y6Nra8Tn5NtkNtTw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=kORmou7e0xNYZwxQrdcrz7+Mp+74xIuGPF5KmlXngPsKwvmtMvSMSBTTGu6tAsyA7q5mqJOrnPyTw8ahXu5JfEGIKbVAd2K9QpeAMEGAGV9zI7z6C3bTZcPZPrslCQHpp2D3UG4k7bACBZZLK/WQSaj7jXqXpfckgIeRE4zEw7A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from amadeus-Vostro-3710.lan (unknown [IPV6:240e:3b3:2c00:430:ae31:3177:4f09:da96])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 104ddcf66;
+	Tue, 1 Apr 2025 17:00:12 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Chukun Pan <amadeus@jmu.edu.cn>
+Subject: [PATCH 0/1] arm64: dts: rockchip: rk3588: Move SHMEM memory to reserved memory
+Date: Tue,  1 Apr 2025 17:00:08 +0800
+Message-Id: <20250401090009.733771-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] dt-bindings: display: Add Clockwork CWD686 panel
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, max@maxfierke.com
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250401081852.283532-1-lotte@chir.rs>
- <20250401081852.283532-3-lotte@chir.rs>
- <abfea9d8-9992-44e6-975e-a18b01753aa5@linaro.org>
-Content-Language: en-US
-From: =?UTF-8?B?Q2hhcmxvdHRlIPCfpp0gRGVsZcWEa2Vj?= <lotte@chir.rs>
-In-Reply-To: <abfea9d8-9992-44e6-975e-a18b01753aa5@linaro.org>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDSUofVhhLGhgaT0NMH0kdSlYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlJT0seQUgZSEFJGEtLQU9IS0EaHkhKQUhKTExBTx1LQkEfGkJNWVdZFhoPEh
+	UdFFlBWU9LSFVKS0hKTkxOVUpLS1VKQktLWQY+
+X-HM-Tid: 0a95f094679703a2kunm104ddcf66
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OiI6Kyo5DjIMOQpOEyEvNFE4
+	HBwwFBVVSlVKTE9IT0JDS0pITk5DVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlP
+	Sx5BSBlIQUkYS0tBT0hLQRoeSEpBSEpMTEFPHUtCQR8aQk1ZV1kIAVlBSk9OSDcG
 
-On 4/1/25 09:34, Krzysztof Kozlowski wrote:
-> On 01/04/2025 10:18, Charlotte �leńkec wrote:
->> From: Max Fierke <max@maxfierke.com>
->>
->> The CWD686 is a 6.86" IPS LCD panel used as the primary
->> display in the ClockworkPi DevTerm portable (all cores)
->>
->> Co-authored-by: Charlotte Deleńkec <lotte@chir.rs>
->> Signed-off-by: Charlotte Deleńkec <lotte@chir.rs>
->> Signed-off-by: Max Fierke <max@maxfierke.com>
-> 
-> That's not a correct chain. If you co-authored, how can you sign off
-> before max did?
+Inspired by recent rk3528 thread:
+https://lore.kernel.org/lkml/20250306131016.281290-1-amadeus@jmu.edu.cn/
 
-I missed that requirement in the patch submission guidelines.
+Nothing seems wrong:
+~# dmesg | grep scmi
+[    0.056987] scmi_core: SCMI protocol bus registered
+[    3.331482] scmi_protocol scmi_dev.1: Enabled polling mode TX channel - prot_id:16
+[    3.332265] arm-scmi firmware:scmi: SCMI Notifications - Core Enabled.
+[    3.332869] arm-scmi firmware:scmi: SCMI Protocol v2.0 'rockchip:' Firmware version 0x0
 
-> 
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
-> 
-> Best regards,
-> Krzysztof
+Chukun Pan (1):
+  arm64: dts: rockchip: rk3588: Move SHMEM memory to reserved memory
 
-Kind regards,
-Charlotte
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 15 +++++++--------
+ 1 file changed, 7 insertions(+), 8 deletions(-)
+
+-- 
+2.25.1
+
 
