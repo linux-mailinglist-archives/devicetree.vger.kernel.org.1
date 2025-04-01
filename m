@@ -1,252 +1,182 @@
-Return-Path: <devicetree+bounces-162295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92F95A77B4C
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 14:50:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C358BA77B66
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 14:56:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD8D81890148
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 12:50:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7551316C093
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 12:56:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E9F2202963;
-	Tue,  1 Apr 2025 12:50:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A50E02036FE;
+	Tue,  1 Apr 2025 12:56:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PSBttdYk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L+lesDyf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9B8C1F0988;
-	Tue,  1 Apr 2025 12:50:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76B5D1DB92A;
+	Tue,  1 Apr 2025 12:56:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743511821; cv=none; b=FLIyad6ayoSTB3N7kmxfzzg7KU2fxtN6l1b0zt1lU2/BBIp2pWbqb4qgje9PGFI/dl1Zul4ZMKKUtTyt5moUhf1l94fasniPWWbRZWSeE/t6QVxBgnC+UkEvbv5ucFv6pBxVMT49rkMYZyBOpHHfpIyJS35QfD/M11yvbOMHag8=
+	t=1743512195; cv=none; b=RCOkAaufXbJejyGySjTnJcdGi1DvDKSKm4pbiI/vt9If8MxzwT/3rs21s3FZy7osCUUxlTCkUDQMAKlUCYWKSXvCCnPOXUSjWLYYklq5eEAqbPVPTCdD4By3WnaDkKzy/nx2zDgI1rkqmhyHy2bdbjNXaEB0T8gkBRNbRCA8Nys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743511821; c=relaxed/simple;
-	bh=zqXLQCKK21CVKNI0vpZ5Ou1n7DZc4MuN1osdNld2eSo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Iv2qF1lpVSTir874MU+4+Ua/wn5gwsgGDActQwMjQosWrCVxXryejG+J0R6fwEIf9klxo0Rp0itgYddim6uvrUrRiW7MofOZtTNY5i5SfvkLulvROD2bkSCdXwQZWD4uW86/6By5+2rfkaK/uKuVfrUT43KAc4uc+n8DVzNlHYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PSBttdYk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BEADC4CEE4;
-	Tue,  1 Apr 2025 12:50:17 +0000 (UTC)
+	s=arc-20240116; t=1743512195; c=relaxed/simple;
+	bh=rQ48vlkFN0XufVs3SokIZaBepH7ggvd+Qm0OnwbfbUk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QkNhCvj/aNZPs23/D99Du3uL2F1Xhdn+WK4xyeaNdDzKv17Njh2dF1rjlZjrv55r+eJPYGT1YKMnqoyKHGKrhzHXlyzVZyAqO9Ho+SS0LE6cfGDzNg6S4gTgkC5fZ3bY6as40jMfjTP758fVdTeCz+jiMclNUvvrGODj9E5ohRU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L+lesDyf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABB97C4CEE5;
+	Tue,  1 Apr 2025 12:56:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743511820;
-	bh=zqXLQCKK21CVKNI0vpZ5Ou1n7DZc4MuN1osdNld2eSo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PSBttdYkxdJtAtIb3PEieqOhtF3Qthhaijds6ijqoYnoHE6baF5njAc+fPTHIyQJ4
-	 z95XHk/4bw2JbEQKj6aA0k+1ZmoUffwcyawU9ZhyMYk0dEthoL34HTXuecYDW3uWZq
-	 U6BJV1OqTY2t0+h1xQUDNCAMmuCMpf/7+rWGl2jpa6GaFiVpRU5Bq+LGr6LGZkDiPo
-	 XeM1U4v6RChGXBT8G9Qa5JMhh0nsFsyZJjMmjoesSsBKNAptEOppVWxbm0wr75EuEy
-	 eVZrC1bd5gSPZqH0st4/CHbYtVMtg7CygwsROKgR3eFxL/hcsa2WPT/rIoaZB9+dO6
-	 L1r8UPAbVnx3A==
-Date: Tue, 1 Apr 2025 13:50:14 +0100
-From: Lee Jones <lee@kernel.org>
-To: Artur Weber <aweber.kernel@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Stanislav Jakubek <stano.jakubek@gmail.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v7 06/10] mfd: bcm590xx: Add PMU ID/revision parsing
- function
-Message-ID: <20250401125014.GD7190@google.com>
-References: <20250316-bcm59054-v7-0-4281126be1b8@gmail.com>
- <20250316-bcm59054-v7-6-4281126be1b8@gmail.com>
+	s=k20201202; t=1743512194;
+	bh=rQ48vlkFN0XufVs3SokIZaBepH7ggvd+Qm0OnwbfbUk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=L+lesDyfO2BPqpLsGxy1+fsHUoXiSM4+phDx6oaUDVTSSV9IV/GqsPmuREl2bNSoo
+	 1xelS54Yh0U7bdATOx6z64ofyjn7LMnfDP5h1MiuGbmiiT2XT1wm6E/3SA28rSIQzH
+	 HBYeqKo34x6H8I8xO9JH64xtmcGiYoLMGsykWKS4B2Byc4DTzzoSoQwWKTLeZ9Szx6
+	 NioJkLujk66DpW0LkFRXP/e2L9h/6TMNOiqn/mKUMgIW34Vg2vNcUg7AF7PcMf06ay
+	 +mMmuKdjmBCoHD8atGdhFmSsgntyFno6PzWTDPZTP7mgkNOfabMAGl9tliSaII0kHZ
+	 NKNwTKLWi6isw==
+Message-ID: <e193aefe-d7fb-4650-b227-7db483adde04@kernel.org>
+Date: Tue, 1 Apr 2025 14:56:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250316-bcm59054-v7-6-4281126be1b8@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 4/6] dt-bindings: arm: qcom: Add Asus Zenbook A14
+To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Dmitry Baryshkov <lumag@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Abel Vesa <abel.vesa@linaro.org>, Johan Hovold <johan+linaro@kernel.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heikki Krogerus <heikki.krogerus@linux.intel.com>
+References: <20250331215720.19692-1-alex.vinarskis@gmail.com>
+ <20250331215720.19692-5-alex.vinarskis@gmail.com>
+ <fb1fc0aa-4921-4ee3-9b8a-6167ef6558eb@linaro.org>
+ <CAMcHhXoxLx9SiUcntp1vmmK7BF0SO_uo3DCBx_3Ldd3tx+rBXg@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CAMcHhXoxLx9SiUcntp1vmmK7BF0SO_uo3DCBx_3Ldd3tx+rBXg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sun, 16 Mar 2025, Artur Weber wrote:
-
-> The BCM590xx PMUs have two I2C registers for reading the PMU ID
-> and revision. The revision is useful for subdevice drivers, since
-> different revisions may have slight differences in behavior (for
-> example - BCM59054 has different regulator configurations for
-> revision A0 and A1).
+On 01/04/2025 12:16, Aleksandrs Vinarskis wrote:
+> On Tue, 1 Apr 2025 at 07:38, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 31/03/2025 23:53, Aleksandrs Vinarskis wrote:
+>>> Document the X1E-78-100 and X1P-42-100/X1-26-100 variants.
+>>>
+>>> Signed-off-by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/arm/qcom.yaml | 2 ++
+>>>  1 file changed, 2 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+>>> index 08c329b1e919..1b7e2ed56baa 100644
+>>> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+>>> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+>>> @@ -1133,6 +1133,7 @@ properties:
+>>>        - items:
+>>>            - enum:
+>>>                - asus,vivobook-s15
+>>> +              - asus,x1e80100-zenbook-a14
+>>
+>> asus,zenbook-a14-x1e80100
+>>
+>> asus did not make a component of x1e80100 soc.
 > 
-> Check the PMU ID register and make sure it matches the DT compatible.
-> Fetch the digital and analog revision from the PMUREV register
-> so that it can be used in subdevice drivers.
+> I see, I misunderstood the meaning of qcom,x1e80100-crd, clear now.
+> In that case, perhaps follow pattern of other devices, describe by
+
+Qualcomm dev boards follow such pattern, even though actual name is for
+example mtp8750.
+
+> model differences (eg. -oled) instead of soc? eg:
 > 
-> Also add some known revision values to bcm590xx.h, for convenience
-> when writing subdevice drivers.
+> `asus,zenbook-a14-ux3407ra` (for x1e variant)
+> `asus,zenbook-a14-ux3407qa` (for x1/x1p variants)
+
+I am fine with both, just wanted the actual generic/common product name
+first.
+
 > 
-> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
-> ---
-> Changes in v7:
-> - Return -ENODEV on PMU ID mismatch
-> - Drop "Check your DT compatible" from ID mismatch error message
+> Thanks for the review,
+> Alex
 > 
-> Changes in v6:
-> - Adapt to PMUID being passed as device type value
-> - Rename rev_dig and rev_ana to rev_digital and rev_analog
-> - Rewrite commit message
-> 
-> Changes in v5:
-> - Add REG_ prefix to register offset constant names
-> 
-> Changes in v4:
-> - Added this commit
-> ---
->  drivers/mfd/bcm590xx.c       | 63 ++++++++++++++++++++++++++++++++++++++++++++
->  include/linux/mfd/bcm590xx.h | 14 ++++++++++
->  2 files changed, 77 insertions(+)
-> 
-> diff --git a/drivers/mfd/bcm590xx.c b/drivers/mfd/bcm590xx.c
-> index 4620eed0066fbf1dd691a2e392e967747b4d125b..140107263599777b30cce4cfc0f86a9278907d34 100644
-> --- a/drivers/mfd/bcm590xx.c
-> +++ b/drivers/mfd/bcm590xx.c
-> @@ -17,6 +17,15 @@
->  #include <linux/regmap.h>
->  #include <linux/slab.h>
->  
-> +/* Under primary I2C address: */
-> +#define BCM590XX_REG_PMUID		0x1e
-> +
-> +#define BCM590XX_REG_PMUREV		0x1f
-> +#define BCM590XX_PMUREV_DIG_MASK	0xF
-> +#define BCM590XX_PMUREV_DIG_SHIFT	0
-> +#define BCM590XX_PMUREV_ANA_MASK	0xF0
-> +#define BCM590XX_PMUREV_ANA_SHIFT	4
-> +
->  static const struct mfd_cell bcm590xx_devs[] = {
->  	{
->  		.name = "bcm590xx-vregs",
-> @@ -37,6 +46,56 @@ static const struct regmap_config bcm590xx_regmap_config_sec = {
->  	.cache_type	= REGCACHE_MAPLE,
->  };
->  
-> +/* Map PMU ID value to model name string */
-> +static const char * const bcm590xx_names[] = {
-> +	[BCM590XX_PMUID_BCM59054] = "BCM59054",
-> +	[BCM590XX_PMUID_BCM59056] = "BCM59056",
-> +};
-> +
-> +/*
-> + * Parse the version from version registers and make sure it matches
-> + * the device type passed to the compatible.
-> + */
+>>
+>>>                - dell,xps13-9345
+>>>                - hp,omnibook-x14
+>>>                - lenovo,yoga-slim7x
+>>> @@ -1144,6 +1145,7 @@ properties:
+>>>
+>>>        - items:
+>>>            - enum:
+>>> +              - asus,x1p42100-zenbook-a14
+>>
+>> Same here.
+>>
+>>
+>> Best regards,
+>> Krzysztof
 
-Nit: I think that a lot of these comments are superfluous.
 
-This is all normal stuff.  No need for the extra commentary IMHO.
-
-> +static int bcm590xx_parse_version(struct bcm590xx *bcm590xx)
-> +{
-> +	unsigned int id, rev;
-> +	int ret;
-> +
-> +	/* Get PMU ID and verify that it matches compatible */
-> +	ret = regmap_read(bcm590xx->regmap_pri, BCM590XX_REG_PMUID, &id);
-> +	if (ret) {
-> +		dev_err(bcm590xx->dev, "failed to read PMU ID: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	if (id != bcm590xx->pmu_id) {
-> +		dev_err(bcm590xx->dev,
-> +			"Incorrect ID for %s: expected %x, got %x.\n",
-> +			bcm590xx_names[bcm590xx->pmu_id], bcm590xx->pmu_id, id);
-> +		return -ENODEV;
-> +	}
-> +
-> +	/* Get PMU revision and store it in the info struct */
-> +	ret = regmap_read(bcm590xx->regmap_pri, BCM590XX_REG_PMUREV, &rev);
-> +	if (ret) {
-> +		dev_err(bcm590xx->dev, "failed to read PMU revision: %d\n",
-> +			ret);
-
-No need to wrap for little things like this.
-
-I'd take lines up to 100-chars if the aim is to make the code more readable.
-
-> +		return ret;
-> +	}
-> +
-> +	bcm590xx->rev_digital = (rev & BCM590XX_PMUREV_DIG_MASK)
-> +				     >> BCM590XX_PMUREV_DIG_SHIFT;
-> +
-> +	bcm590xx->rev_analog = (rev & BCM590XX_PMUREV_ANA_MASK)
-> +				    >> BCM590XX_PMUREV_ANA_SHIFT;
-
-Here too, etc.
-
-> +
-> +	dev_info(bcm590xx->dev, "PMU ID 0x%x (%s), revision: digital %d, analog %d",
-> +		 id, bcm590xx_names[id],
-> +		 bcm590xx->rev_digital, bcm590xx->rev_analog);
-
-If this stuff actually useful to anyone?
-
-> +	return 0;
-> +}
-> +
->  static int bcm590xx_i2c_probe(struct i2c_client *i2c_pri)
->  {
->  	struct bcm590xx *bcm590xx;
-> @@ -78,6 +137,10 @@ static int bcm590xx_i2c_probe(struct i2c_client *i2c_pri)
->  		goto err;
->  	}
->  
-> +	ret = bcm590xx_parse_version(bcm590xx);
-> +	if (ret)
-> +		goto err;
-> +
->  	ret = devm_mfd_add_devices(&i2c_pri->dev, -1, bcm590xx_devs,
->  				   ARRAY_SIZE(bcm590xx_devs), NULL, 0, NULL);
->  	if (ret < 0) {
-> diff --git a/include/linux/mfd/bcm590xx.h b/include/linux/mfd/bcm590xx.h
-> index 8d146e3b102a7dbce6f4dbab9f8ae5a9c4e68c0e..fbc458e94bef923ca1b69afe2cac944adf6fedf8 100644
-> --- a/include/linux/mfd/bcm590xx.h
-> +++ b/include/linux/mfd/bcm590xx.h
-> @@ -17,6 +17,16 @@
->  #define BCM590XX_PMUID_BCM59054		0x54
->  #define BCM590XX_PMUID_BCM59056		0x56
->  
-> +/* Known chip revision IDs */
-> +#define BCM59054_REV_DIGITAL_A1		1
-> +#define BCM59054_REV_ANALOG_A1		2
-> +
-> +#define BCM59056_REV_DIGITAL_A0		1
-> +#define BCM59056_REV_ANALOG_A0		1
-> +
-> +#define BCM59056_REV_DIGITAL_B0		2
-> +#define BCM59056_REV_ANALOG_B0		2
-> +
->  /* max register address */
->  #define BCM590XX_MAX_REGISTER_PRI	0xe7
->  #define BCM590XX_MAX_REGISTER_SEC	0xf0
-> @@ -30,6 +40,10 @@ struct bcm590xx {
->  
->  	/* PMU ID value; also used as device type */
->  	u8 pmu_id;
-> +
-> +	/* Chip revision, read from PMUREV reg */
-> +	u8 rev_digital;
-> +	u8 rev_analog;
->  };
->  
->  #endif /*  __LINUX_MFD_BCM590XX_H */
-> 
-> -- 
-> 2.48.1
-> 
-
--- 
-Lee Jones [李琼斯]
+Best regards,
+Krzysztof
 
