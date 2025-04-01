@@ -1,80 +1,58 @@
-Return-Path: <devicetree+bounces-162205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EB36A776C0
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 10:46:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59CDEA776F4
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 10:54:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E76CD16958B
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 08:46:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10FB9169FBB
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 08:54:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 297991EA7E6;
-	Tue,  1 Apr 2025 08:46:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CF501EB5F0;
+	Tue,  1 Apr 2025 08:54:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kQeWFFMi"
+	dkim=pass (1024-bit key) header.d=chir.rs header.i=lotte@chir.rs header.b="UdyHWwB1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender2-op-o17.zoho.eu (sender2-op-o17.zoho.eu [136.143.171.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 558841D7E52
-	for <devicetree@vger.kernel.org>; Tue,  1 Apr 2025 08:46:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743497184; cv=none; b=FJTLSGCN7XKSsjFD3S7z+0SLE9IoVqb2Wpxl4HOATvMV42YNO+wjnc9BuX3AvweJVvzs1pKpFhqVFfy6iKkg0Sk3Jewp91H8GOLueUL7ol6VCsvQWxJy4Xem7ON7FomQqg7Gh3AfptJ6xQ84NialuMIYtJJhjH5VocYohAlz6as=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743497184; c=relaxed/simple;
-	bh=Eceui0TVVx2rDkmcA8Cj1isv6eadBCZ/Qq9koYryIFs=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 019EC1EA84;
+	Tue,  1 Apr 2025 08:54:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.171.17
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1743497669; cv=pass; b=XSJTnxQkvPD6krKKCH3v5fOgUEhE+sUlMNSxP1Wb6TEvDCFeakGoNBrJ5uBvY4HN+xoFxm3w9AWQGEhAn/9LdvatS/2Yi6rI2bii2OXD1XATMofq1FK6sAM4S717hFr1SyuQL3pbDQ1JFG0ls1t0miK6VpWIt/oMQR3RgFC7LJk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1743497669; c=relaxed/simple;
+	bh=aKUuJwu0U8bq5ODLU/EBl2gp/37apqgHHw2MWv7l9eI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZZESjKmZ4qP1H6rXrhNyG/OBJqak0O2gvoSKq4WKBKJlohdngYXllOT2TliBtQoFzRjfYH2+i7HnPgo2KZLHvV/dwyMM+CD2RTloZN8CwzldXTnuY7FNR17QiMOYMiR9ave6JwJufELXVt24uKhZhaTMWIWvcvb6jJfliUvfq+A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kQeWFFMi; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43ce71582e9so37124565e9.1
-        for <devicetree@vger.kernel.org>; Tue, 01 Apr 2025 01:46:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743497180; x=1744101980; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=h1OcP8KDLM4UIUl5mqjKNbP+KOXXApDs25FTbj9zEoI=;
-        b=kQeWFFMiMQ0Sph6Tj7CQ5FpWvtPDqT3E1OOLjVm7vsvT2rLSaZM+0+1nx85xofWRp8
-         5yTyDvPOLB1d97fRMrscO+0XhuD4+C9O1DIkayRE+phyujPEbmAW2dmMdo3RY+Azz6zE
-         U51kZo8ngmtjLwWf+5g67+HLD9zoCFeIOm8DXjXj0QwE9oIppzVBJT5x+3iFg+IV/c1T
-         deeVYZnPaKSOqj/eWbQevfEDn4CLqUndPw7OE8yhm/KZIOloFQnlRAJotRacSuLtyU1n
-         ctzMbniHNtiDuSEzFBzI52YO/k6O7Szneo0VNIWiP9box/ktD72MKVQ9QgbA2OZ65Ibc
-         rNlg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743497180; x=1744101980;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=h1OcP8KDLM4UIUl5mqjKNbP+KOXXApDs25FTbj9zEoI=;
-        b=iBrfTn532pwSdb36vQcve7+4uwuzyUU6PH97TM4qg7x4PjooTKzoNMLnhZLL6NZlgx
-         OPQ8/tbExACPYfts73OzgUQzFJhqkwgtr/VxBytTQ68a9xw/9IwpP38K7T+JuXzkvdTZ
-         2BCH+BqKfUOUYAiPJRIuDx/aRkEJXB43S9Se6vmuXIDutSMGazgF0gFvBV2RcPWsJDCv
-         +qQsvH7egAJPclgbknh1leTRqdHc9NtQbaMHFYj4bL3+t0ZeTIuFQ/ysuiKDxzB9jKbN
-         VxkohTOP5C5YuXb3nBFfuLUtlLexNUbU6jVWf7AYXDJ0JrKNYRZVO8I+JiRrk2WNeNkU
-         O54g==
-X-Forwarded-Encrypted: i=1; AJvYcCWhPpmBWI74mKqRBoeGnHcdE0evLQBaD4t5esJ39uph0Xoncu9GOvBCwkALHnm0jf9ygt0W01L5YLLi@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywb66faUparHHx98zwGJSGnXGWC6WkgRzveaGn4UjeklDGJN2Ic
-	zt6N8r8uErs+YU4GcWlAipQ52PvyxFcaZspoqQHC1DMaQp3hduXen3Bn0qBYfAA=
-X-Gm-Gg: ASbGnctyJ5aYUGrnJREY6FHYwyvoGnEmA9Oqlv31agosBx5gfN329LEWk4ycoH865LH
-	TfXJPKD0b9cO4YhJ71azxevpt5qHr0M2l/1VqgRjY4NebRhgrd3bt6BK3iKW8PhRE0bFw7y7IyA
-	SYJFe4QFThhREw62t45ZygEy6Q6FzpdEx0esy6QvKVxrv6Wte6opTlcEK59jpoKgXLuPXBPegSC
-	+PVs9XJhuwULu56hGLn0QWVaMGvVy0HzP97kOEkEwL5skZcBM27usrntLzXX0+fGyPHlQmU+6m3
-	hhs6VZfXrdOlX9+QMmxgxX3rtGj3AECCSveUX/9QZ7XaAbunWUdU3reyg9pGc5c8I1cTQ/OJj0i
-	RFyk4KGLsd4iuryyhfrg=
-X-Google-Smtp-Source: AGHT+IG6UQfLzzABD8iS83hdAejooKKRJG1thikhxbGDPDbzft10tjn9XKnzJSrWol6GxnExTBubfQ==
-X-Received: by 2002:a05:6000:4282:b0:390:f738:246b with SMTP id ffacd0b85a97d-39c120dc8bamr9918539f8f.15.1743497180629;
-        Tue, 01 Apr 2025 01:46:20 -0700 (PDT)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-43d900013afsm149321615e9.36.2025.04.01.01.46.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Apr 2025 01:46:20 -0700 (PDT)
-Message-ID: <16a0832a-7645-44ee-867f-fde8822f219c@linaro.org>
-Date: Tue, 1 Apr 2025 10:46:19 +0200
+	 In-Reply-To:Content-Type; b=BMR7izH76lZt7Y2/8f8F4TCSJRcxIKds7flQyzR7pV+xUwXJymA8BZGpoV9swomTjlsUclwfVrueHoLVoinH4/T6EchtZh2kF+k6AJCm+jHxrj+OO7Y+7dBYKv3RE9v7f1H6WCL+7WqTXjlySxs9UXulv6zoUoRiySv9ArOCThA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=chir.rs; spf=pass smtp.mailfrom=chir.rs; dkim=pass (1024-bit key) header.d=chir.rs header.i=lotte@chir.rs header.b=UdyHWwB1; arc=pass smtp.client-ip=136.143.171.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=chir.rs
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chir.rs
+ARC-Seal: i=1; a=rsa-sha256; t=1743497646; cv=none; 
+	d=zohomail.eu; s=zohoarc; 
+	b=GkWngAyi+uzuViOiCY6JCGHZUgbWETG/+kT53OAui4q2sT3kKd3Zquz6l17QyJ26vfD28cIUdcfhSJSaikZWOpi/S9ZivrQZmFIMgyx83PTzxfUMwzPHvE4Hf27UXQpEScRCX5pT1r9bKanCXC4c92lLGhzNUjnv1koeXN2p6kA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
+	t=1743497646; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=IKWd7/S8ecvupAPGxLPLAgyuVQEO8m2WiEs8ZQCSIDE=; 
+	b=hlU22wub2xiYbovhm07uqMVlsCNEyAoUUPqtQQIot5PjhY3bAwnFMJA0x6JTSLLxGoulyAHbGYTihj7xxJ2bd20r3PTM8AJrEdVK/lh+xLllJoKnwwNTk+6L+FHzzdOx+rTLohy+v8ZgDn3EGeKyZFM2j42/DpVRZfCsaQvI8NQ=
+ARC-Authentication-Results: i=1; mx.zohomail.eu;
+	dkim=pass  header.i=chir.rs;
+	spf=pass  smtp.mailfrom=lotte@chir.rs;
+	dmarc=pass header.from=<lotte@chir.rs>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1743497646;
+	s=zmail; d=chir.rs; i=lotte@chir.rs;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=IKWd7/S8ecvupAPGxLPLAgyuVQEO8m2WiEs8ZQCSIDE=;
+	b=UdyHWwB1/Sh3ODklYLF2YexzS6g3Vw+lkmkg5iR5lMQq4ou/hgMfChTIWoLlvMCu
+	W4REsTLWyOeI41rMYSm/EtUvTg7mDhjUqcI9SI4rhslVEm5FHKXRXP9InJntsKwc4aQ
+	dnooQFpJABkCcF3QSpNiisNjhtnKXeZ/h3JQC+aY=
+Received: by mx.zoho.eu with SMTPS id 1743497642823882.9940100806688;
+	Tue, 1 Apr 2025 10:54:02 +0200 (CEST)
+Message-ID: <5c9f59c3-2868-47c2-b2af-b515a8ec9349@chir.rs>
+Date: Tue, 1 Apr 2025 09:54:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,95 +60,45 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: watchdog: Add NXP Software Watchdog
- Timer
-To: Krzysztof Kozlowski <krzk@kernel.org>, wim@linux-watchdog.org
-Cc: linux@roeck-us.net, linux-watchdog@vger.kernel.org,
- linux-kernel@vger.kernel.org, S32@nxp.com,
- Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>,
- Thomas Fossati <thomas.fossati@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>
-References: <20250328151516.2219971-1-daniel.lezcano@linaro.org>
- <c433c28d-c88d-4647-b472-7bc81b332d8c@kernel.org>
- <0638eb8c-d87f-44aa-9f1c-eee529b1e1a1@linaro.org>
- <b14718f2-add3-436d-95a5-908eb9217120@kernel.org>
+Subject: Re: [PATCH v4 2/3] dt-bindings: display: Add Clockwork CWD686 panel
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, max@maxfierke.com
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250401081852.283532-1-lotte@chir.rs>
+ <20250401081852.283532-3-lotte@chir.rs>
+ <abfea9d8-9992-44e6-975e-a18b01753aa5@linaro.org>
 Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <b14718f2-add3-436d-95a5-908eb9217120@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: =?UTF-8?B?Q2hhcmxvdHRlIPCfpp0gRGVsZcWEa2Vj?= <lotte@chir.rs>
+In-Reply-To: <abfea9d8-9992-44e6-975e-a18b01753aa5@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 
-On 31/03/2025 13:42, Krzysztof Kozlowski wrote:
-> On 31/03/2025 09:57, Daniel Lezcano wrote:
->> On 29/03/2025 06:04, Krzysztof Kozlowski wrote:
->>> On 28/03/2025 16:15, Daniel Lezcano wrote:
->>>> +description:
->>>> +  The System Timer Module supports commonly required system and
->>>> +  application software timing functions. STM includes a 32-bit
->>>> +  count-up timer and four 32-bit compare channels with a separate
->>>> +  interrupt source for each channel. The timer is driven by the STM
->>>> +
->>>> +allOf:
->>>> +  - $ref: watchdog.yaml#
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    enum:
->>>> +      - nxp,s32g-wdt
->>> This wasn't tested, so limited review - this also has wrong compatible,
->>> There is no such soc as s32g in the kernel. If that's a new soc, come
->>> with proper top-level bindings and some explanation, because I am sure
->>> previously we talked with NXP that this is not s32g but something else.
+On 4/1/25 09:34, Krzysztof Kozlowski wrote:
+> On 01/04/2025 10:18, Charlotte �leńkec wrote:
+>> From: Max Fierke <max@maxfierke.com>
 >>
->> If I refer to Documentation/devicetree/bindings/arm/fsl.yaml
+>> The CWD686 is a 6.86" IPS LCD panel used as the primary
+>> display in the ClockworkPi DevTerm portable (all cores)
 >>
->> We found the entries:
->>
->>         - description: S32G2 based Boards
->>           items:
->>             - enum:
->>                 - nxp,s32g274a-evb
->>                 - nxp,s32g274a-rdb2
->>             - const: nxp,s32g2
->>
->>         - description: S32G3 based Boards
->>           items:
->>             - enum:
->>                 - nxp,s32g399a-rdb3
->>             - const: nxp,s32g3
->>
->> I guess it should nxp,s32g2-wdt and nxp,s32g3-wdt
->>
-> Yes, with one being the fallback.
+>> Co-authored-by: Charlotte Deleńkec <lotte@chir.rs>
+>> Signed-off-by: Charlotte Deleńkec <lotte@chir.rs>
+>> Signed-off-by: Max Fierke <max@maxfierke.com>
+> 
+> That's not a correct chain. If you co-authored, how can you sign off
+> before max did?
 
-Like that ?
+I missed that requirement in the patch submission guidelines.
 
-properties:
-   compatible:
-     oneOf:
-       - const: nxp,s32g2-wdt
-       - items:
-           - const: nxp,s32g3-wdt
-           - const: nxp,s32g2-wdt
+> 
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+> 
+> Best regards,
+> Krzysztof
 
-Why a fallback is needed for this case ? It is exactly the same hardware 
-for s32g2 and s32g3. Could it be:
-
-properties:
-   compatible:
-     oneOf:
-       - const: nxp,s32g2-wdt
-       - const: nxp,s32g3-wdt
-
-?
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Kind regards,
+Charlotte
 
