@@ -1,87 +1,72 @@
-Return-Path: <devicetree+bounces-162373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E456A780AC
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 18:40:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E054A780D5
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 18:48:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E3437A25B4
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 16:39:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50185188A700
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 16:47:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3535F20D4F7;
-	Tue,  1 Apr 2025 16:40:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EC20214229;
+	Tue,  1 Apr 2025 16:45:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="a70nKcpy"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="eDI49ygt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE40420B814
-	for <devicetree@vger.kernel.org>; Tue,  1 Apr 2025 16:40:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB6E3213E6D
+	for <devicetree@vger.kernel.org>; Tue,  1 Apr 2025 16:45:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743525636; cv=none; b=o6Ud6qrMa+GGeRPqpC2bhJzl7c13z2xlnGWVmV3FzVmxZDBfub0F2DatPsPuahazUCHsxFm5iK+XYkIIqNxZl8au64/w4aev4Uvy6METhsXsmJz+PEnlz0QzHpfR7OWK8JpNygphGY6giVmVi+i7/KnFCWuob2BaJj3ilEQpEZU=
+	t=1743525942; cv=none; b=FEvbbIvjscPyEr/GheWPy+kR+y+qfeDzmTUL5NjN/pNQtJPHbN6GhEV3J3gwJtpOENzy9r0rRUzNMIpNErSKFSxZRC4zoUEZ+HCTFYmDiOu7VAY6abVgnFdKaiSkRp6gBa654CfBNh40cT3+n5n4+3H/gb9DzZzO69AUJk6OwrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743525636; c=relaxed/simple;
-	bh=UHpWWs+DyipNZHEV2Nkr4YRS5WpwRh+UNqWpXhbSsXI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=vDUIkoOVggAhvYuACl6W9y2K1A3c/ZRaE9NkP+guQs/o9rrGImHe2qHWZ3nW6rsRPAYb89zHq+v/DOxHnFRvYrFkqCQm1+B2siizd6ok5PyQbVwUNW5i2hS9tvYUIjrqvQ6M4ZIV1Ys3CrD/mT2X2GsD98YdFCJQw17+M21N+W8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=a70nKcpy; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 531BQdSI002553
-	for <devicetree@vger.kernel.org>; Tue, 1 Apr 2025 16:40:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	/379CuoW3tzmnDJsyDy/0ujjjwBPjP0Zru4t6cZwrYI=; b=a70nKcpyHh8Ft3MK
-	dAD1X5izfpBIhtoGopYSOCahmi0n/Sq6Nkx0hsZlFYduFuTaETSouFmSZjc1AZRl
-	V8xXi1mMY+bsO86eCY+XYoKBOwdmMXaWGW7XRGrDRAZV8ud2Sfemshdks444K2vo
-	TpKaeqxWM5f1Yuo49+LWgWJr/MbdgaSYD9UCDNGB2y5GQlFel6gOn3skxSyAvo60
-	ruOzjxomi9pBdxTKhTpduCIXfzjl7FsG1KjkjeZ93YqL0QF+1d8umK/JpQSLrHIE
-	6k7uwa3BW7PJyaWjbJ62qeWSvkfjx2cLZTkh57ej9u+8lWJw6urK+hHaUyy5SUs7
-	4R52yA==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45pa5brk6q-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 01 Apr 2025 16:40:33 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7c547ab8273so29713785a.3
-        for <devicetree@vger.kernel.org>; Tue, 01 Apr 2025 09:40:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743525632; x=1744130432;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/379CuoW3tzmnDJsyDy/0ujjjwBPjP0Zru4t6cZwrYI=;
-        b=xVQvJ64lQM85eXK0Wp+BrZNJ+AE1wUoTu9CSM8yPY3L/q6Gp4S1KP5pq1jnDlUGuv/
-         AZB5EwjSwm+mNw2dd0sJ4BOFFpeYIBJDuody4xVAXT49dRHKlgCZqJtUnN232N2MyBGY
-         z02u11p59f0/CY1/iph8iClpIC7fadbHyIN+5nmacdHztSqvF4H78sRd6Gx6epNeG6au
-         bJoOobKbHzC0UU+c65F8wffAx/o9XqYyM7Rp5CUiqCkxf7ZQQuNV5PkgJu48ZGFUCBDj
-         fq4IBH7aITBeUHi7DGqbdAsK9JhdLyye2tw4GcpAtW8sWu0YqSj233wkSuT6F3tmCLBN
-         K4QA==
-X-Forwarded-Encrypted: i=1; AJvYcCVUlgImTzqgoV/jKshOr8o2y2Gk3YG8YtsfXAcJ0lNit4L72xitF9oW/Y+Y4LEGTf6JuKPKuRC8kROH@vger.kernel.org
-X-Gm-Message-State: AOJu0YyTEdzeaDYU3/TpJNXJ5uimLbxmCiK7X/YDHrV1Ee3UV0Mx+CGg
-	mxm1O1HZgUjvuY+2U3uYVY00/IUVEZ6x2soVXz15PjsYjwppnZ1+PI8GVvy88zTpMYp2eoUc5sG
-	vMHeHzajX6eTBhSPI4VFqSFJa08m8CA2IEDy83XLj16Wekb8HxW7YGIfR12yG
-X-Gm-Gg: ASbGnctXr/GEovnM5JGMx8h1qngZyiTSqVpoW5SaC6zVCIs8Y5TUodYlw8PK60vBinI
-	W1qKnrXpNQaV7bN1uqlN8nz8xtmB5tY3VoFgU1UEDyOdcihuJf4uEy/iXS04p3JrKm/P3XpRa28
-	+VYd2tFvEIveOfciOXXk8uYgv04nGVl6W0L8fTh4EFqwc+UQJOne1CtD2qCADDhP+NlIOTztHXi
-	udA96IjcEPC00LMDPXvDJAb9PB9yIh+HXTdNrU2gOflvoSl6RQg9Q0hymHx3hK8QFaIt0sp7HRT
-	4MziXnmCuMTsSBFz0OWtbePhYQU+5vZeWjtk4wTcJawBcbtc6wfmtyWfKU9lhgl/mJwSjQ==
-X-Received: by 2002:a05:620a:2806:b0:7c5:8f40:3316 with SMTP id af79cd13be357-7c75c904636mr166845685a.6.1743525632705;
-        Tue, 01 Apr 2025 09:40:32 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHKdu3svWPD4gijx0TLoynI97bgyGfAj18omhMqo9yqcZrBylhTXjcw7OpbvttjPcNFzPQb6Q==
-X-Received: by 2002:a05:620a:2806:b0:7c5:8f40:3316 with SMTP id af79cd13be357-7c75c904636mr166844285a.6.1743525632324;
-        Tue, 01 Apr 2025 09:40:32 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac7192ea05fsm784381966b.86.2025.04.01.09.40.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Apr 2025 09:40:31 -0700 (PDT)
-Message-ID: <25bd3c63-5231-437d-8e81-9e2198dfa0d3@oss.qualcomm.com>
-Date: Tue, 1 Apr 2025 18:40:29 +0200
+	s=arc-20240116; t=1743525942; c=relaxed/simple;
+	bh=oTGhCamOrM1xMEeBafYdBjBxoq8L4GIh/5cxdVxrWI4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=aiLxELCw0Xumekp604wyxm4z6tbp0GCgBWhqwsb/inQncTBktB14tB+45wxx9dhWdJkj9lp4ezrrdx8eVBD6nUmZvbkRxkw3dBVUtBWA34BCVDoz/rxUltTkyIjUbjcH5cCs/Un2P4fDec4wzkKy28R6M8Q5F5DNf6RmfVNfX40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=eDI49ygt; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250401164534euoutp02beee1b3ff149dfdf00d676f6ace3ade1~yP5l4Ixmj1277012770euoutp02O
+	for <devicetree@vger.kernel.org>; Tue,  1 Apr 2025 16:45:34 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250401164534euoutp02beee1b3ff149dfdf00d676f6ace3ade1~yP5l4Ixmj1277012770euoutp02O
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1743525934;
+	bh=Du8cCR/sSoRf9rcgO+pEyuLkob3npJUMn2Zdq/2m35Y=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=eDI49ygtc4ET/2jwW0/2sPXZM0iaB6W4wILNPTLDkg8WbgxVk7h6t/O9OumvfzYqM
+	 C26tYbnG/Ki25PGCMClThCdiZ+jpWVZAphVWUsGfoNyKP7UpKahoGZ6k4MHRLlvZ1l
+	 wLmGIc6Z5lNmnYQZg8bkgR/Ji2FmGdNuriql/4yY=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+	20250401164533eucas1p2e13c79cd7be796d91c5ac2dbd00652ec~yP5lbJE652058120581eucas1p2Z;
+	Tue,  1 Apr 2025 16:45:33 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+	eusmges3new.samsung.com (EUCPMTA) with SMTP id D6.4D.20397.D281CE76; Tue,  1
+	Apr 2025 17:45:33 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250401164532eucas1p12733b49f77201419ad208931bd8bbaee~yP5kuU7FM0420604206eucas1p1r;
+	Tue,  1 Apr 2025 16:45:32 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20250401164532eusmtrp2c5b611f960b39ac9ed7d3470861d6235~yP5ktimqz2743327433eusmtrp2q;
+	Tue,  1 Apr 2025 16:45:32 +0000 (GMT)
+X-AuditID: cbfec7f5-ed1d670000004fad-17-67ec182dd26d
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+	eusmgms2.samsung.com (EUCPMTA) with SMTP id CF.2D.19654.C281CE76; Tue,  1
+	Apr 2025 17:45:32 +0100 (BST)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250401164531eusmtip189b291997140378de0a617b6bf7a559f~yP5jwXRGe2785927859eusmtip1G;
+	Tue,  1 Apr 2025 16:45:31 +0000 (GMT)
+Message-ID: <a9716af2-2403-44a4-b1a7-c3ab832c3c1c@samsung.com>
+Date: Tue, 1 Apr 2025 18:45:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,46 +74,241 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: qcs615: add QCrypto nodes
-To: Abhinaba Rakshit <quic_arakshit@quicinc.com>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250318-enable-qce-for-qcs615-v2-0-c5e05fe22572@quicinc.com>
- <20250318-enable-qce-for-qcs615-v2-2-c5e05fe22572@quicinc.com>
+Subject: Re: [PATCH v5 01/18] dt-bindings: gpu: img: Future-proofing
+ enhancements
+To: Matt Coster <matt.coster@imgtec.com>, Frank Binns
+	<frank.binns@imgtec.com>, David Airlie <airlied@gmail.com>, Simona Vetter
+	<simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, Vignesh
+	Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Randolph
+	Sapp <rs@ti.com>, Darren Etheridge <detheridge@ti.com>, Alessio Belle
+	<alessio.belle@imgtec.com>, Alexandru Dadu <alexandru.dadu@imgtec.com>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250318-enable-qce-for-qcs615-v2-2-c5e05fe22572@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: bfcFXUmIysReJb8ccgGuPOGST-ekOoRU
-X-Authority-Analysis: v=2.4 cv=YqcPR5YX c=1 sm=1 tr=0 ts=67ec1701 cx=c_pps a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=rugxzkDQvrqM6iDmQMkA:9 a=QEXdDO2ut3YA:10
- a=cf2_AmsjeD8A:10 a=IoWCM6iH3mJn3m4BftBB:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: bfcFXUmIysReJb8ccgGuPOGST-ekOoRU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-01_06,2025-04-01_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1015
- priorityscore=1501 malwarescore=0 spamscore=0 phishscore=0 impostorscore=0
- suspectscore=0 mlxlogscore=696 bulkscore=0 adultscore=0 lowpriorityscore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504010102
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <20250326-sets-bxs-4-64-patch-v1-v5-1-e4c46e8280a9@imgtec.com>
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrOKsWRmVeSWpSXmKPExsWy7djP87q6Em/SDU5NV7Q4cX0Rk8WBV2uY
+	Lb4/bWO2WLP3HJPFxBVeFvOPnGO1uPL1PZvFuqcX2C2Wf57NbvFy1j02i02Pr7FaXN41h81i
+	4cetLBZLduxitGjrXMZq8ebHWSaL/3t2sFt09Nxks5j9bj+7xZY3E1kt/p/9wO4g6rH32wIW
+	j52z7rJ79Ow8w+ixaVUnm8e8k4Ee97uPM3lsXlLvsfl0tcfxG9uZPD5vkgvgiuKySUnNySxL
+	LdK3S+DKuH/pDWNBu2XF/Nb1LA2M+3S6GDk5JARMJFb+/8rWxcjFISSwglFi0cqbUM4XRonW
+	Be9YIJzPjBIvr25jgml59u8NI4gtJLCcUeLMrTCIoreMErfuz2YFSfAK2Ek0fd8O1MDBwSKg
+	InH/XTVEWFDi5MwnLCC2qIC8xP1bM9hBbGGBYIlL+16zgswREfjELLF11z4wh1lgAZNE48d7
+	YJuZBcQlbj2ZD2azCRhJPFg+H2wZp4C3xPUXLSwQNfISzVtnM4M0Swi845Q4t/gtM8gVEgIu
+	EnsmJUJ8ICzx6vgWdghbRuL/zvlQn+VLPNj6iRnCrpHY2XMcyraWuHPuFxvIGGYBTYn1u/Qh
+	wo4S93e+ZIeYzidx460gxAV8EpO2TYdayivR0SYEUa0mMbWnF27puRXbmCYwKs1CCpVZSH6c
+	heSXWQh7FzCyrGIUTy0tzk1PLTbOSy3XK07MLS7NS9dLzs/dxAhMm6f/Hf+6g3HFq496hxiZ
+	OBgPMUpwMCuJ8EZ8fZkuxJuSWFmVWpQfX1Sak1p8iFGag0VJnHfR/tZ0IYH0xJLU7NTUgtQi
+	mCwTB6dUA5P3369vFD59tyldnOL8YdERsYvqm3dvuPrakv3DQtMTHYsmVaWtKZ4r8awo3Urw
+	edmV2S05XUfZuN/c/ishaTL3Hl+uwcn6l9MZbRNX3WpTmvBUoKJgbayO7BTXx+mXkmOMupZO
+	KmpPyXP8q1uk4FzckX7G2Nkjf5XmKrHZVbvF21OOW9zmkn/+9OqM0Gb+lDnJWTUTdjJZBDvo
+	6j8pnFq08/emhmvJGukHtObl9F9qs525caW5hj4P2wyuJFl/vSe3bv51DNdXvR+39fiVGcun
+	vOUO2CIv7cKxiuP4lbawlEWB/zwcbutIzd3C63p/l8mX6poynZN8eU9nM9QFODZGCulO2Gy8
+	RGCVt87y+UosxRmJhlrMRcWJAAPCYCIKBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupmleLIzCtJLcpLzFFi42I5/e/4XV0diTfpBvt/6lucuL6IyeLAqzXM
+	Ft+ftjFbrNl7jsli4govi/lHzrFaXPn6ns1i3dML7BbLP89mt3g56x6bxabH11gtLu+aw2ax
+	8ONWFoslO3YxWrR1LmO1ePPjLJPF/z072C06em6yWcx+t5/dYsubiawW/89+YHcQ9dj7bQGL
+	x85Zd9k9enaeYfTYtKqTzWPeyUCP+93HmTw2L6n32Hy62uP4je1MHp83yQVwRenZFOWXlqQq
+	ZOQXl9gqRRtaGOkZWlroGZlY6hkam8daGZkq6dvZpKTmZJalFunbJehl3L/0hrGg3bJifut6
+	lgbGfTpdjJwcEgImEs/+vWHsYuTiEBJYyijx6/MDRoiEjMS17pcsELawxJ9rXWwQRa8ZJX68
+	mQCW4BWwk2j6vp2pi5GDg0VAReL+u2qIsKDEyZlPwEpEBeQl7t+awQ5iCwsES1za95oVZI6I
+	wBdmiY3r5jOBOMwCi5gkjt2bzwqx4T6jROeX1WBnMAuIS9x6AlLFycEmYCTxYDlIEScHp4C3
+	xPUXLSwgm5kF1CXWzxOCKJeXaN46m3kCo9AsJIfMQjJpFkLHLCQdCxhZVjGKpJYW56bnFhvp
+	FSfmFpfmpesl5+duYgSmim3Hfm7Zwbjy1Ue9Q4xMHIyHGCU4mJVEeCO+vkwX4k1JrKxKLcqP
+	LyrNSS0+xGgKDIuJzFKiyfnAZJVXEm9oZmBqaGJmaWBqaWasJM7LduV8mpBAemJJanZqakFq
+	EUwfEwenVAOTztyHpw8wf/yc4BG9JHzGJf590tvS287x5+bpGTXnRYu9O2QZWNws2s1jM4vh
+	YqbXNHn75fPm+uxeYX5uVmqaTnKJtH7D2k/Tc6esfNP7tfLHUa6/on9WzPvMPqf925br/5/V
+	Oi0NYKy5fWlC6xPhybz53iERuiXvzyf5s/sWvuF/unXlnZSEz79nbRDeKDzpRrzg4/wtjA8+
+	LIjoMHib8ivM++E6FZmO6CbpS/t8BIzyLa5fEUi+Mb2pd9aWj+s+f7sdX6p5QXDmDhGtjb7b
+	5xh/6hUwXn498Z6O1Jnyurn3n4dfX/TEIjyl9kzK89/m0zc9svVtznCNvfgpx2NRFJ9K6sZa
+	o+RfNwKtTa9kK7EUZyQaajEXFScCAKm3/u6eAwAA
+X-CMS-MailID: 20250401164532eucas1p12733b49f77201419ad208931bd8bbaee
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250326164909eucas1p1525faf017c81554f0d3739123edc1298
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20250326164909eucas1p1525faf017c81554f0d3739123edc1298
+References: <20250326-sets-bxs-4-64-patch-v1-v5-0-e4c46e8280a9@imgtec.com>
+	<CGME20250326164909eucas1p1525faf017c81554f0d3739123edc1298@eucas1p1.samsung.com>
+	<20250326-sets-bxs-4-64-patch-v1-v5-1-e4c46e8280a9@imgtec.com>
 
-On 3/18/25 10:43 AM, Abhinaba Rakshit wrote:
-> Add the QCE and Crypto BAM DMA nodes.
+
+
+On 3/26/25 17:48, Matt Coster wrote:
+> The first compatible strings added for the AXE-1-16M are not sufficient to
+> accurately describe all the IMG Rogue GPUs. The current "img,img-axe"
+> string refers to the entire family of Series AXE GPUs, but this is
+> primarily a marketing term and does not denote a level of hardware
+> similarity any greater than just "Rogue".
 > 
-> Signed-off-by: Abhinaba Rakshit <quic_arakshit@quicinc.com>
+> The more specific "img,img-axe-1-16m" string refers to individual AXE-1-16M
+> GPU. For example, unlike the rest of the Series AXE GPUs, the AXE-1-16M
+> only uses a single power domain.
+> 
+> The situation is actually slightly worse than described in the first
+> paragraph, since many "series" (such as Series BXS found in the TI AM68
+> among others and added later in this series) contain cores with both Rogue
+> and Volcanic architectures.
+> 
+> Besides attempting to move away from vague groupings defined only
+> by marketing terms, we want to draw a line between properties inherent to
+> the IP core and choices made by the silicon vendor at integration time.
+> For instance, the number of power domains is a property of the IP core,
+> whereas the decision to use one or multiple clocks is a vendor one.
+
+Hi,
+We’ve had an interesting discussion on how to synchronize clock and
+reset management for the T-HEAD SoC [1] with regard to the Imagination
+GPU. Long story short, there is a preference to place SoC-specific
+elements in the generic PM driver - however since drm/imagination driver
+currently attempts to manage clocks itself, we would need to provide
+some empty stubs, which does seem like an ugly solution.
+
+I agree that a number of clocks is a vendor decision, but the clocks
+doesn't have to necessarily be managed from the consumer driver. Would
+you be open to a patch which makes the clock management from the
+drm/imagination driver optional ? Same way I've proposed an optional
+reset [2] previously.
+
+This way if the clocks/reset are not provided, it would be assumed that
+there is something SoC specific to how they're mangaged and they would
+be implemented in the generic PM driver.	
+
+Regards,
+Michał
+
+[1] - https://lore.kernel.org/all/ef17e5d1-b364-41e1-ab8b-86140cbe69b2@samsung.com/
+[2] - https://lore.kernel.org/all/20250219140239.1378758-14-m.wilczynski@samsung.com/
+
+> 
+> In the original compatible strings, we must use "ti,am62-gpu" to constrain
+> both of these properties since the number of power domains cannot be fixed
+> for "img,img-axe".
+> 
+> Work is currently underway to add support for volcanic-based Imagination
+> GPUs, for which bindings will be added in "img,powervr-volcanic.yaml".
+> As alluded to previously, the split between rogue and volcanic cores is
+> non-obvious at times, so add a generic top-level "img,img-rogue" compatible
+> string here to allow for simpler differentiation in devicetrees without
+> referring back to the bindings.
+> 
+> The currently supported GPU (AXE-1-16M) only requires a single power
+> domain. Subsequent patches will add support for BXS-4-64 MC1, which has
+> two power domains. Add infrastructure now to allow for this.
+> 
+> Also allow the dma-coherent property to be added to IMG Rogue GPUs, which
+> are DMA devices. The decision for coherency is made at integration time and
+> this property should be applied wherever it accurately describes the
+> vendor integration.
+> 
+> Note that the new required properties for power domains are conditional on
+> the new base compatible string to avoid an ABI break.
+> 
+> Signed-off-by: Matt Coster <matt.coster@imgtec.com>
 > ---
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-
-Konrad
+> Changes in v5:
+> - Remove extraneous (and error-causing) power-domains minItems constraint
+> - Link to v4: https://lore.kernel.org/r/20250320-sets-bxs-4-64-patch-v1-v4-1-d987cf4ca439@imgtec.com
+> Changes in v4:
+> - Add img,img-rogue back to ti,am62-gpu compatible strings to allow
+>   compatibility with older kernels
+> - Revert change to power-domains property and add proper constraint
+> - Link to v3: https://lore.kernel.org/r/20250310-sets-bxs-4-64-patch-v1-v3-1-143b3dbef02f@imgtec.com
+> Changes in v3:
+> - Remove unnecessary example
+> - Remove second power domain details, add these where they're used instead
+> - Avoid ABI breaks by limiting new required properties to new compatible
+>   strings and making all binding changes in a single patch.
+> - Links to v2:
+>   https://lore.kernel.org/r/20241118-sets-bxs-4-64-patch-v1-v2-1-3fd45d9fb0cf@imgtec.com
+>   https://lore.kernel.org/r/20241118-sets-bxs-4-64-patch-v1-v2-3-3fd45d9fb0cf@imgtec.com
+>   https://lore.kernel.org/r/20241118-sets-bxs-4-64-patch-v1-v2-4-3fd45d9fb0cf@imgtec.com
+> ---
+>  .../devicetree/bindings/gpu/img,powervr-rogue.yaml | 43 +++++++++++++++++++---
+>  1 file changed, 38 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
+> index 256e252f8087fa0d6081f771a01601d34b66fe19..e1056bf2af84c3eb43733bdc91124a66aaf51d35 100644
+> --- a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
+> +++ b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
+> @@ -12,10 +12,23 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    items:
+> -      - enum:
+> -          - ti,am62-gpu
+> -      - const: img,img-axe # IMG AXE GPU model/revision is fully discoverable
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - ti,am62-gpu
+> +          - const: img,img-axe-1-16m
+> +          # This deprecated element must be kept around to allow old kernels to
+> +          # work with newer dts.
+> +          - const: img,img-axe
+> +          - const: img,img-rogue
+> +
+> +      # This legacy combination of compatible strings was introduced early on
+> +      # before the more specific GPU identifiers were used.
+> +      - items:
+> +          - enum:
+> +              - ti,am62-gpu
+> +          - const: img,img-axe
+> +        deprecated: true
+>  
+>    reg:
+>      maxItems: 1
+> @@ -37,6 +50,12 @@ properties:
+>    power-domains:
+>      maxItems: 1
+>  
+> +  power-domain-names:
+> +    items:
+> +      - const: a
+> +
+> +  dma-coherent: true
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -47,6 +66,18 @@ required:
+>  additionalProperties: false
+>  
+>  allOf:
+> +  # Constraints added alongside the new compatible strings that would otherwise
+> +  # create an ABI break.
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: img,img-rogue
+> +    then:
+> +      required:
+> +        - power-domains
+> +        - power-domain-names
+> +
+>    - if:
+>        properties:
+>          compatible:
+> @@ -64,10 +95,12 @@ examples:
+>      #include <dt-bindings/soc/ti,sci_pm_domain.h>
+>  
+>      gpu@fd00000 {
+> -        compatible = "ti,am62-gpu", "img,img-axe";
+> +        compatible = "ti,am62-gpu", "img,img-axe-1-16m", "img,img-axe",
+> +                     "img,img-rogue";
+>          reg = <0x0fd00000 0x20000>;
+>          clocks = <&k3_clks 187 0>;
+>          clock-names = "core";
+>          interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
+>          power-domains = <&k3_pds 187 TI_SCI_PD_EXCLUSIVE>;
+> +        power-domain-names = "a";
+>      };
+> 
 
