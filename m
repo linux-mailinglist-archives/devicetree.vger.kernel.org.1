@@ -1,109 +1,128 @@
-Return-Path: <devicetree+bounces-162232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E2C9A77873
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 12:08:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E292A77879
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 12:09:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3FAEE16B62D
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 10:08:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA6F1188B6DB
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 10:09:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B3721F0990;
-	Tue,  1 Apr 2025 10:08:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F3641F03C8;
+	Tue,  1 Apr 2025 10:09:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b="O8kjUBs9"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="LMxgxRvZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from abb.hmeau.com (abb.hmeau.com [144.6.53.87])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBB2E86353;
-	Tue,  1 Apr 2025 10:08:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=144.6.53.87
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 873F41EF39A
+	for <devicetree@vger.kernel.org>; Tue,  1 Apr 2025 10:09:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743502090; cv=none; b=qRlh9gijaLdtY7MyvRVu2eTr6t+jLR40TBxhH+vVCO1x0wJSGKw1aSY7cRBd5YGgCkm45BUh/BUnMe4DHMkBVt9FFYoVG2rzsf4S/WV5xzxxsx/Akybg0A9RS8VXI8A4YudjDZTekzkTA6HKsIzbswwTISP+3EPFk74QPacdSGc=
+	t=1743502148; cv=none; b=tKBij+JMA988EsgZM8bEvRfNdEvy3Tw9aGiTv3nslMvJclnpI/ju0fAE6qYoNPo2xS4k8k1fcBYj+WtqtD4lLZp4cUQBKVK1IZIosEzMZ0h1LQUWwanBfqI6wWffksYiUKfkpcC8kA7STnFVQckaMYp/61M7sgJoKVNXIOY1JNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743502090; c=relaxed/simple;
-	bh=yFugp1Rxc0cYPpzVQW0lXNtg3bZ1WXxxGOShRPNRlI8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k758aPpQEvenihjPa1ONn12/97Z7Dgs+p8RTiamuBSrx+9LwJf6BOM0b+QT7vWMsTHrDwK9AZut0lc7crxLTBRL0Nn0uc1/MWZToigYo1SPhZdL4jyv2KrBFJV25iHE+4+d8jzJgusrpRPr1hn6AcinmBa+B8APnNPce4wAMBYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; dkim=pass (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b=O8kjUBs9; arc=none smtp.client-ip=144.6.53.87
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hmeau.com;
-	s=formenos; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=1CdL+I+oUVedjIT0cAcvp9ljxK5oTh72oUB4C6PM8GQ=; b=O8kjUBs9C4EOJKpQJ/H3BYdKwx
-	T7J0tArm6EEWUgJs4/OdJfdjZy2UlWT03G5X3ZA7idO4tnwa284QOJiceHIIP8AbeSLpzV3m6F+vl
-	6X1UxsVeZkPspgMXAVSrJOlIoRfzLpH+oYNvP27WxA2WmfmtEFAemPPDjswYB/01orGfIQVzKqcJf
-	KZCw6NaAKWI4mFdldWyeWcSDn1LSLLHYt3iY/4kLCktHVTVNCoKAVLjd/QB+u6elsCoeiCIgwG/r/
-	RDTGB21m9MpuOfUxYAkrDjLl5F6F//BYRfc72sM4D8YTPXxt1QdlYxLNcF99zJAb3PHiYrEMmT3Jv
-	5sOz0pJQ==;
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-	by formenos.hmeau.com with smtp (Exim 4.96 #2 (Debian))
-	id 1tzYWy-00Bnnp-0r;
-	Tue, 01 Apr 2025 18:07:41 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Tue, 01 Apr 2025 18:07:40 +0800
-Date: Tue, 1 Apr 2025 18:07:40 +0800
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1743502148; c=relaxed/simple;
+	bh=36NpNNjl13Ta26IFroNQ5oZqlcqeSHwUikkx136LO0k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=sliXvu386YUujFRRixDA1aIh9dzfE04Uvw/dB7Phegf8sL2E6WaP0tVpBSaQmQUFXInjEXEXlIrbU0PeOsf57vDqV24nPA/PTLXs+FQJmg1RTHQ9+r9F9xmdySrCR5E4c6SLmH4nd8joZXmNwSt2oGPLPD7eE2OoDWj1tQr9JlY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=LMxgxRvZ; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=O5+o6l2k86+lZW
+	Qt3e6g6NmW2sXi4Hdxu8WkqElZOe4=; b=LMxgxRvZyoiOV4kxj9OiGpfLKit4B1
+	pQE5QvbgPUmy1GcL7RgCDskw6F7+lP+ADbmPMUOp6Vpp8y6WrIQekQCcL6Si5Cb2
+	JZfsOGGuYC9YZq8k/JzXPVuudxRgOYvWhZLOalnfjom9lQYgGHpw3g2Eznlv6J/P
+	B/YtrMJKn0W7S7Lj1Mu3hD26kPkckBXELeWQVUvs6Mf4oEqwAuM8U3g+LojtUx6P
+	+5Q2oZiDbMHy2YEWIJH1llg8GpatHMaPMrvkYBBPm8QkK6Vc8jOBaEXVJfss2810
+	wSG6MY/ZC06yQCnrOLH4hcGeq3OvTlyziNf/y/LeAcgrt0Ym/M+8W/gA==
+Received: (qmail 1562725 invoked from network); 1 Apr 2025 12:09:04 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 1 Apr 2025 12:09:04 +0200
+X-UD-Smtp-Session: l3s3148p1@qS73ubQxnOsgAwDPXwSgADIEZgbhJYA3
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Antoine Tenart <atenart@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
-	Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nick Desaulniers <ndesaulniers@google.com>,
-	Bill Wendling <morbo@google.com>,
-	Justin Stitt <justinstitt@google.com>, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	llvm@lists.linux.dev, upstream@airoha.com,
-	Richard van Schagen <vschagen@icloud.com>
-Subject: Re: [PATCH v11 3/3] crypto: Add Inside Secure SafeXcel EIP-93 crypto
- engine support
-Message-ID: <Z-u67D7xl2_SR-hg@gondor.apana.org.au>
-References: <20250114123935.18346-1-ansuelsmth@gmail.com>
- <20250114123935.18346-4-ansuelsmth@gmail.com>
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: mmc: arasan,sdhci: Add Renesas RZ/N1D
+Date: Tue,  1 Apr 2025 12:08:37 +0200
+Message-ID: <20250401100837.29792-2-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250114123935.18346-4-ansuelsmth@gmail.com>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Jan 14, 2025 at 01:36:36PM +0100, Christian Marangi wrote:
->
-> +static int eip93_send_hash_req(struct crypto_async_request *async, u8 *data,
-> +			       dma_addr_t *data_dma, u32 len, bool last)
-> +{
+This instance has a wakeup irq defined. It is currently not used by the
+driver.
 
-...
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+---
+ .../devicetree/bindings/mmc/arasan,sdhci.yaml | 23 ++++++++++++++++++-
+ 1 file changed, 22 insertions(+), 1 deletion(-)
 
-> +again:
-> +	ret = eip93_put_descriptor(eip93, &cdesc);
-> +	if (ret) {
-> +		usleep_range(EIP93_RING_BUSY_DELAY,
-> +			     EIP93_RING_BUSY_DELAY * 2);
-> +		goto again;
-> +	}
-> +
-> +	/* Writing new descriptor count starts DMA action */
-> +	writel(1, eip93->base + EIP93_REG_PE_CD_COUNT);
-
-Why is there no locking here? Shouldn't this be under ring->write_lock?
-
-Cheers,
+diff --git a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
+index 9075add020bf..7c59def3326e 100644
+--- a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
++++ b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
+@@ -38,6 +38,15 @@ allOf:
+             - items:
+                 - const: clk_out_sd1
+                 - const: clk_in_sd1
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: renesas,rzn1-sdhci
++    then:
++      properties:
++        interrupts:
++          minItems: 2
+ 
+ properties:
+   compatible:
+@@ -45,6 +54,10 @@ properties:
+       - const: arasan,sdhci-8.9a                # generic Arasan SDHCI 8.9a PHY
+       - const: arasan,sdhci-4.9a                # generic Arasan SDHCI 4.9a PHY
+       - const: arasan,sdhci-5.1                 # generic Arasan SDHCI 5.1 PHY
++      - items:
++          - const: renesas,r9a06g032-sdhci      # Renesas RZ/N1D SoC
++          - const: renesas,rzn1-sdhci           # Renesas RZ/N1 family
++          - const: arasan,sdhci-8.9a
+       - items:
+           - const: rockchip,rk3399-sdhci-5.1    # rk3399 eMMC PHY
+           - const: arasan,sdhci-5.1
+@@ -109,7 +122,15 @@ properties:
+       - const: gate
+ 
+   interrupts:
+-    maxItems: 1
++    minItems: 1
++    maxItems: 2
++
++  interrupt-names:
++    minItems: 1
++    maxItems: 2
++    items:
++      - const: int
++      - const: wkup
+ 
+   phys:
+     maxItems: 1
 -- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+2.47.2
+
 
