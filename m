@@ -1,106 +1,110 @@
-Return-Path: <devicetree+bounces-162142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162144-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BF9DA77253
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 03:28:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCD4EA77289
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 04:06:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6185D188B165
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 01:28:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 988B216B6FC
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 02:06:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7329A8633A;
-	Tue,  1 Apr 2025 01:28:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C2721A5BB0;
+	Tue,  1 Apr 2025 02:06:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PTWjTXvC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fMIHModY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49C7E6A33B;
-	Tue,  1 Apr 2025 01:28:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71696155335;
+	Tue,  1 Apr 2025 02:06:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743470913; cv=none; b=gitlhcj2JHzpLGr9uDyKnGQ7NLfZzYT20EKiyImvpbfCCX8LOuzxOAgYmKzAx/ug160gFk8T9IvlgIK5/ljPk6wBsriFPPDk64sPX8OLfDQ9SDh9o2pzIHoMdJL5hFSwBsf/ysw0hIFYDpDNa/RjAg8VGjelS//8YwfN3ydN2bo=
+	t=1743473183; cv=none; b=epA3CpHRqB6CvdVz0ZeYTRMllGNiFPut/9S5yQv7OcG6GX7a++JNPHciTKq7YbfS2YmizPvEQotBhJXIB/StmJxDEUgTAznLUDTCaiT5Tz1MzAWpmKMnijl7VcoOppBGbqiPe+t2vI29NV3Xqy9dbvqqvqHCNMSV5/mETrHa7LQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743470913; c=relaxed/simple;
-	bh=m19wp1+qd0zKInAT915y9W17LSkxdTNL2RvcBHT5uXs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=P361NkhE5Se9OHrkH3Gy7uML+PidcdlsrmOLL0mSyX6UPxlq6Zioxqcre/JrRXPBnlGA9i0hWo0n33Bctn/XYA6F9hXABe27o9KiIDJ3lM7Hv8kU4i4dV/vDNFGo4oFj3/sAY0UMDFBtdO7grtVNBI38tSVW3ZITYNPX9Hi6m4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PTWjTXvC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0FDFC4CEEE;
-	Tue,  1 Apr 2025 01:28:32 +0000 (UTC)
+	s=arc-20240116; t=1743473183; c=relaxed/simple;
+	bh=N7COEdohT/p/ERmnPBTo3f+/HD3+Lg9hkfh8iPLCO6s=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=icanXXrGaT/NBA0p+Y97raEPJeYE7UpV7cp9EN/NHXqKx7W3wih2BI4UbQHZarprMX/5fEdCPLR51NcsgejiHK+SuJGZ2Og9eyzQqeATV9KvdlvpWAV3zsPfHiSLShM/A2pnbcagRBiUT8SyoCUP404/FFFW+4qlzRsOEbotIng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fMIHModY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id E948DC4CEE3;
+	Tue,  1 Apr 2025 02:06:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743470912;
-	bh=m19wp1+qd0zKInAT915y9W17LSkxdTNL2RvcBHT5uXs=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=PTWjTXvCcUnasUodvlrnnF0dr9ZUhgq/ydy063wqquo2xeUJjKZtmFZ1tmNSaYVwi
-	 2+h1LZb+8CUuLN29w4E8jYOvegaf1Imn10A7TdrbCAShIZrGS5p5h4oGKaO6gvBW96
-	 EzntVQN9DTJ2qQ1q28xS9fzQuc6pbxqnE+R/EtzAl0wglkkhoDxIC2WpZ825YEdORs
-	 V0H1RYxwTjUMYs8NJs8fmXkApEUxsq9S8C0TGTRb2+CE4HnDUwGM6LajJFI8mYZLIG
-	 ScK8YDn00u+aGuTMhecac4+bfoAM+2XAQ3mZIzbNJc/W7aNRc8vEEsYQziLpIOeIBl
-	 En8eMMJiM0f2g==
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-ac2bb7ca40bso1009403866b.3;
-        Mon, 31 Mar 2025 18:28:32 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUvvaPk1wCTXqhZpaWgOOZE7feBL42e9kydKzyNudetXR71Q9er7oJzh2RF/aqWDZu6wYAhcaKWqLt1@vger.kernel.org, AJvYcCVJDL+T89nKdnRbwB6VvqTeJWsLRP3nXWhGXeT3D6gjvIiTce+rvtu5R3T/Kv7N5IiL/DInNNDFhLNW@vger.kernel.org
-X-Gm-Message-State: AOJu0YxK2qw32WFUTL/4SbXrpi2gsDxrRF14sOcTm8jBoWfGnxHCLEcY
-	+hZ9andBC9vu7o/vZQBRYr7gP72S8xVdO6edWuui4irD/fLueZ655japsATSBZT26Hl7eAB4J8e
-	FSCDq9xdaJ8YPDWjtsHBd210awQc=
-X-Google-Smtp-Source: AGHT+IGgG1Nsg6TIae/1JBbjS1Lsi1zVJj+BXszVrJTrloL3d5guVx8xHxArlenv2sIyuyn5yKV8+U7MzPjhAqqfDBY=
-X-Received: by 2002:a17:906:f5a8:b0:ac7:3911:35e7 with SMTP id
- a640c23a62f3a-ac782ead5ddmr84107066b.59.1743470911115; Mon, 31 Mar 2025
- 18:28:31 -0700 (PDT)
+	s=k20201202; t=1743473183;
+	bh=N7COEdohT/p/ERmnPBTo3f+/HD3+Lg9hkfh8iPLCO6s=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=fMIHModYqcEylVKxLJ6SmmPyvchKUR3hqtbEWgvctIhyHENySUPfe0qFRFHT+Z8n6
+	 oVCp5pUIpuwWlRzt9Yvp/bN4QaMOah3SZ+4BUV9QgNCHn3CKkZgmpSolzm5Qiu7ASZ
+	 f+8suDjEk67RyO6k0GZF1YIDE9p7zpBtIVQ2IcgVTdbHTngIffp+hRn8plgpl/55Fr
+	 Yj2ScPhyb+F2lV+dujfvsELIYC5U6dD8c5xW7s5dTUfsRVU6WwIiVAEH6w9bKy8c72
+	 b/0OC2psWgGqQ0c4YcM42vQ9j7rmbqZaCiderJH4zsHpRqc1MVdQalFwth5iciHmpo
+	 Cwv3Q3QnNyrbw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D3A7AC3600C;
+	Tue,  1 Apr 2025 02:06:22 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v2 0/2] Pinctrl: add amlogic a5 pinctrl node
+Date: Tue, 01 Apr 2025 10:06:20 +0800
+Message-Id: <20250401-a5-pinctrl-v2-0-a136c1058379@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1743403075.git.zhoubinbin@loongson.cn> <zfdhcdy27q5dhaezc22bmx3dnmn2avazsfbpsd4k5lyjikmxnd@dsdbbokjjjag>
-In-Reply-To: <zfdhcdy27q5dhaezc22bmx3dnmn2avazsfbpsd4k5lyjikmxnd@dsdbbokjjjag>
-From: Huacai Chen <chenhuacai@kernel.org>
-Date: Tue, 1 Apr 2025 09:28:25 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H5Ter6jYObtffAU_ixUy97UQyU13YRwKcE__hZAPZG5vQ@mail.gmail.com>
-X-Gm-Features: AQ5f1JrmtBIR-Ec8RwbiRAx-SJRnlMqzQKm7UogoAX_fed_d-wGUvckU0wpF-WM
-Message-ID: <CAAhV-H5Ter6jYObtffAU_ixUy97UQyU13YRwKcE__hZAPZG5vQ@mail.gmail.com>
-Subject: Re: [PATCH v10 0/2] pwm: Introduce pwm driver for the Loongson family chips
-To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Binbin Zhou <zhoubb.aaron@gmail.com>, 
-	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Juxin Gao <gaojuxin@loongson.cn>, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
-	devicetree@vger.kernel.org, linux-pwm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABxK62cC/03MQQqDMBCF4avIrDslJhqrq96juAjTqANqJJHQI
+ rl7U+miy//B+w4I1rMN0BUHeBs5sFtzyEsBNJl1tMjP3CCFrIUqb2hq3Hil3c84KNKkjRG2GSA
+ fNm8Hfp3Yo889cdidf592LL/rj5HNPxNLFFi1SgpVtVRpdTfL7EamK7kF+pTSB97BAKWmAAAA
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1743473181; l=788;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=N7COEdohT/p/ERmnPBTo3f+/HD3+Lg9hkfh8iPLCO6s=;
+ b=/Y71x73Ay7L8h/1pL9RFzAr9jHHiKfMAvm5TBYQ+ExyBsiJw/DB6NQztZwR2sv6rXORs5CGwt
+ OubXuc7SDE5CuePXh35gvVlaSnQmYqT1UZVqhwBFS5QKKzPURSETDhr
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 
-Hi, Uwe,
+Add A5 pinctrl compatible string and device node.
 
-On Mon, Mar 31, 2025 at 10:52=E2=80=AFPM Uwe Kleine-K=C3=B6nig <ukleinek@ke=
-rnel.org> wrote:
->
-> Hello Binbin,
->
-> On Mon, Mar 31, 2025 at 02:53:48PM +0800, Binbin Zhou wrote:
-> > This patchset introduce a generic PWM framework driver for Loongson fam=
-ily.
-> > Each PWM has one pulse width output signal and one pulse input signal t=
-o be measured.
-> >
-> > It can be found on Loongson-2K series cpus and Loongson LS7A bridge chi=
-ps.
-> >
-> > Thanks.
->
-> applied as v5.16-rc1 material to
->
->         https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.gi=
-t pwm/for-nexxt
-For v5.16-rc1? Maybe v6.15-rc1 or v6.16-rc1?
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Changes in v2:
+- Modify bindings according to Conor's suggestion.
+- Link to v1: https://lore.kernel.org/r/20250327-a5-pinctrl-v1-0-49320349c463@amlogic.com
 
-Huacai
+---
+Xianwei Zhao (2):
+      dt-bindings: pinctl: amlogic,pinctrl-a4: Add compatible string for A5
+      dts: arm64: amlogic: add a5 pinctrl node
 
->
-> Thanks for your patience and effort to wait and act on my reviews,
-> Uwe
+ .../bindings/pinctrl/amlogic,pinctrl-a4.yaml       |  8 +-
+ arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi        | 90 ++++++++++++++++++++++
+ 2 files changed, 96 insertions(+), 2 deletions(-)
+---
+base-commit: 79e0ecfc780aaf8c0b6658607f75a661a5f00736
+change-id: 20250318-a5-pinctrl-f3c6c6aa0e7f
+
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
 
