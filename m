@@ -1,57 +1,58 @@
-Return-Path: <devicetree+bounces-162304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162300-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92C73A77C6F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 15:43:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 048EDA77C29
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 15:33:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4DCB3169234
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 13:43:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A68477A30A9
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 13:32:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9403120459E;
-	Tue,  1 Apr 2025 13:42:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 492332040B3;
+	Tue,  1 Apr 2025 13:33:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=cab.de header.i=@cab.de header.b="QJI3+YKp"
+	dkim=pass (1024-bit key) header.d=cab.de header.i=@cab.de header.b="TjkIegWK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.cab.de (mail.cab.de [46.232.229.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FF3C2036F0
-	for <devicetree@vger.kernel.org>; Tue,  1 Apr 2025 13:42:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFE8724B29
+	for <devicetree@vger.kernel.org>; Tue,  1 Apr 2025 13:33:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.232.229.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743514976; cv=none; b=L9ug23xggsVSWxOJu4mL68PFoVK72yEzaOx+TgNHeTBUNyp+AyVUrxhT593rKDqee5bAz3Fa5zptVA6rlw9k1u35cvE7J3TI1J55m7GEQXNQCmadCzU7ZjJQPXWOI3bwlDTf++XiSlgp4+sECxFcS2YhbRNoZ9mEzm0IKuVMxUw=
+	t=1743514405; cv=none; b=JntmapWs3GvU4+H8wNicO6kXF2d01myOgPpebR4ftF+sxwT5REpTOhFtRZm3BiCL/L0POoE0Df3Uy8QO8VsmNC9avQzgfRfPG4xp/K+DUdPq11PJKzlC+dZpW9dFUDhUr/6zIekcBWIvd5EldMMcVohfyF/+cvGdbT4Ha/R+ifI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743514976; c=relaxed/simple;
-	bh=hCkca38QdSmhO6cjGfNf7pfjb4NUxK6bwuRScCq8GiA=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=bfD8slVsNhWbS3YWWPHB9U7LXBYTYu6DvfNppMt47V1M3u6VARl9Xh/us59a83fnuQDUYuJTxMNc3Vz6mNk/wOxxxvVvGj3vuHW/Nf7ic3jeaI8aftyzk+vHecxvV++QnHbaaGHhscsrwhMAjCqaR0nH+VZOmUEtVNsWkiSe1Dg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=cab.de; spf=pass smtp.mailfrom=cab.de; dkim=pass (1024-bit key) header.d=cab.de header.i=@cab.de header.b=QJI3+YKp; arc=none smtp.client-ip=46.232.229.101
+	s=arc-20240116; t=1743514405; c=relaxed/simple;
+	bh=jMMC+wm6vXcF1DkhT8g6MXmLjOdtu1T9dhA3en6FymE=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=aQd7eTp85F3VlJH4LTWcx8642UCELtxT7SM61dUn+7Cu6Jkumr6i8eQxoRfcWH9+YtoaeJ5YOfXkBZcndBi5Fi89JFYhE/n5s9pialKkJ7PHyU0NhAMovN+nvlguDwXPuEu4W6oP1+elWiHJLTF7Mj5R5R9R3aL99Lh9bQpvNWM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=cab.de; spf=pass smtp.mailfrom=cab.de; dkim=pass (1024-bit key) header.d=cab.de header.i=@cab.de header.b=TjkIegWK; arc=none smtp.client-ip=46.232.229.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=cab.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cab.de
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.cab.de 4ZRppv3PwBzMvb0G
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.cab.de 4ZRpq40P9dzMvZsd
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cab.de; s=default;
-	t=1743514391; bh=1jAXo92M2vDykbLqik4FdebMpzLAgChBKSnJhUXHPI8=;
-	h=From:To:CC:Subject:Date:From;
-	b=QJI3+YKpeCZ3qjvgXHPZg2lZYfr27+Ac86OoDEYPbabldeuaYkZw/qnOQHu4R9L2z
-	 CZN3y8f+n/nrrsg8cSbSdINVIYBSc/FCCHApBxVcAMhB7a7v4m1xCeW3ltXlSJgWqw
-	 WVNL+f+ruFegvGqL9ScwsSlpogVGOHGVmt1fBvTc=
-X-cab-MailScanner-Watermark: 1744119190.42409@Z+ageB+9BNAKE10EAT91yg
+	t=1743514400; bh=wnt780oLccvGGA06d4dBzhYIn/GiO4i1xcNjf5ih2p4=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References:From;
+	b=TjkIegWKGkeuJpE+oToDmA5LAC1QbnP1tkqqXcR0wp5/hBAIYJEzRV5S79KI/6sK6
+	 3QaDSvXZMS1Lniv7MlqiqHLu0PRCM+rEd7ETKuLaMlr8iAXeVy3ukbUKlC27uKAO/9
+	 tMY87qOEa1Jc25HE6NiwkFEIlvraKcY+NbHcvwzE=
+X-cab-MailScanner-Watermark: 1744119195.55986@ypLX5Y4JCgHJBEtHSayM+Q
 X-cab-MailScanner-From: m.heidelberg@cab.de
 X-cab-MailScanner: Found to be clean
-X-cab-MailScanner-ID: 4ZRpps0WDGzMvb08
+X-cab-MailScanner-ID: 4ZRppv53YRzMvb0J
 X-cab-MailScanner-Information: Please contact it@cab.de for more information
 Received: from Adranos.cab.de ([10.10.1.54] [10.10.1.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(no client certificate requested)
-	by hephaistos.cab.de (MailScanner Milter) with SMTP id 4ZRpps0WDGzMvb08;
-	Tue,  1 Apr 2025 15:33:09 +0200 (CEST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.cab.de 4ZRpps0WDGzMvb08
+	by hephaistos.cab.de (MailScanner Milter) with SMTP id 4ZRppv53YRzMvb0J;
+	Tue,  1 Apr 2025 15:33:12 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.cab.de 4ZRppv53YRzMvb0J
 Received: from KAN23-025.cab.de (10.10.3.178) by Adranos.cab.de (10.10.1.54)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Tue, 1 Apr
- 2025 15:33:17 +0200
+ 2025 15:33:20 +0200
 From: Markus Heidelberg <m.heidelberg@cab.de>
 To: Arnd Bergmann <arnd@arndb.de>, Greg Kroah-Hartman
 	<gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, Krzysztof
@@ -60,74 +61,125 @@ To: Arnd Bergmann <arnd@arndb.de>, Greg Kroah-Hartman
 CC: Markus Heidelberg <m.heidelberg@cab.de>, Jiri Prchal
 	<jiri.prchal@aksignal.cz>, <linux-kernel@vger.kernel.org>,
 	<devicetree@vger.kernel.org>
-Subject: [RFC PATCH 0/2] eeprom: at25: support Cypress FRAMs without device ID
-Date: Tue, 1 Apr 2025 15:30:46 +0200
-Message-ID: <20250401133148.38330-1-m.heidelberg@cab.de>
+Subject: [RFC PATCH 1/2] eeprom: at25: support Cypress FRAMs without device ID
+Date: Tue, 1 Apr 2025 15:30:47 +0200
+Message-ID: <20250401133148.38330-2-m.heidelberg@cab.de>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250401133148.38330-1-m.heidelberg@cab.de>
+References: <20250401133148.38330-1-m.heidelberg@cab.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-ClientProxiedBy: Adranos.cab.de (10.10.1.54) To Adranos.cab.de (10.10.1.54)
 
-Hello,
+Not all FRAM chips have a device ID and implement the corresponding read
+command. For such chips this led to the following error on module
+loading:
 
-this patch series is marked as RFC because I'm unsure if it
-should rather be implemented with an adaption in this binding:
+    at25 spi2.0: Error: no Cypress FRAM (id 00)
 
-  Documentation/devicetree/bindings/eeprom/at25.yaml
+The device ID contains the memory size, so devices without this ID are
+supported now by setting the size manually in Devicetree using the
+"size" property.
 
-Currently supported FRAMs use compatible="cypress,fm25","atmel,at25" in
-Devicetree, the memory size is read from its device ID.
-For FRAMs without device ID this is not possible, so the "size" property
-has to be set manually as it is done for EEPROMs.
+Tested with FM25L16B.
 
-I had a few solutions for implementation in mind, but opted for the
-simplest one as base for discussion:
+According to Infineon/Cypress datasheets, these FRAMs have a device ID:
 
-- Use the existing "compatible" string and additionally set "size". Only
-  read the device ID if "size" is not set.
+    FM25V01A
+    FM25V02A
+    FM25V05
+    FM25V10
+    FM25V20A
+    FM25VN10
 
-  But this way there is already the problem that "size" is required for
-  FRAMs without device ID, but I cannot specify that in the binding
-  because of the reused "compatible" string.
+but these do not:
 
-Other ideas that came to mind:
+    FM25040B
+    FM25640B
+    FM25C160B
+    FM25CL64B
+    FM25L04B
+    FM25L16B
+    FM25W256
 
-- Add "cypress,fm25l16b" (chip is named FM25L16B) and define "size" as
-  required property. Use that instead of "cypress,fm25".
+So all "FM25V*" FRAMs and only these have a device ID. The letter after
+"FM25" (V/C/L/W) only describes the voltage range, though.
 
-  According to Documentation/devicetree/bindings/writing-bindings.rst
-  this might even be necessary regarding this statement:
-
-    "DO add new compatibles in case there are new features or bugs."
-
-  The existing "cypress,fm25" ("FM25" is not the real name of a chip,
-  but the common prefix) also doesn't seem chosen right regarding this
-  statement:
-
-    "DO make ‘compatible’ properties specific. DON'T use wildcards in
-    compatible strings."
-
-- Add a boolean property "no-device-id" to the existing "compatible"
-  string and in case this boolean is set, define "size" as required.
-
-  This seems a bit awkward at first sight. Also, would this really solve
-  the above mentioned problem with specification of the binding?
-
-Bye!
-
-Markus Heidelberg (2):
-  eeprom: at25: support Cypress FRAMs without device ID
-  eeprom: at25: make FRAM device ID error message more precise
-
+Signed-off-by: Markus Heidelberg <m.heidelberg@cab.de>
+---
  drivers/misc/eeprom/at25.c | 42 ++++++++++++++++++++++----------------
  1 file changed, 24 insertions(+), 18 deletions(-)
 
+diff --git a/drivers/misc/eeprom/at25.c b/drivers/misc/eeprom/at25.c
+index 595ceb9a7126..16ce36c02ed4 100644
+--- a/drivers/misc/eeprom/at25.c
++++ b/drivers/misc/eeprom/at25.c
+@@ -382,35 +382,41 @@ static int at25_fram_to_chip(struct device *dev, struct spi_eeprom *chip)
+ 	struct at25_data *at25 = container_of(chip, struct at25_data, chip);
+ 	u8 sernum[FM25_SN_LEN];
+ 	u8 id[FM25_ID_LEN];
++	u32 val;
+ 	int i;
+ 
+ 	strscpy(chip->name, "fm25", sizeof(chip->name));
+ 
+-	/* Get ID of chip */
+-	fm25_aux_read(at25, id, FM25_RDID, FM25_ID_LEN);
+-	if (id[6] != 0xc2) {
+-		dev_err(dev, "Error: no Cypress FRAM (id %02x)\n", id[6]);
+-		return -ENODEV;
+-	}
+-	/* Set size found in ID */
+-	if (id[7] < 0x21 || id[7] > 0x26) {
+-		dev_err(dev, "Error: unsupported size (id %02x)\n", id[7]);
+-		return -ENODEV;
++	if (!device_property_read_u32(dev, "size", &val)) {
++		chip->byte_len = val;
++	} else {
++		/* Get ID of chip */
++		fm25_aux_read(at25, id, FM25_RDID, FM25_ID_LEN);
++		if (id[6] != 0xc2) {
++			dev_err(dev, "Error: no Cypress FRAM (id %02x)\n", id[6]);
++			return -ENODEV;
++		}
++		/* Set size found in ID */
++		if (id[7] < 0x21 || id[7] > 0x26) {
++			dev_err(dev, "Error: unsupported size (id %02x)\n", id[7]);
++			return -ENODEV;
++		}
++
++		chip->byte_len = BIT(id[7] - 0x21 + 4) * 1024;
++
++		if (id[8]) {
++			fm25_aux_read(at25, sernum, FM25_RDSN, FM25_SN_LEN);
++			/* Swap byte order */
++			for (i = 0; i < FM25_SN_LEN; i++)
++				at25->sernum[i] = sernum[FM25_SN_LEN - 1 - i];
++		}
+ 	}
+ 
+-	chip->byte_len = BIT(id[7] - 0x21 + 4) * 1024;
+ 	if (chip->byte_len > 64 * 1024)
+ 		chip->flags |= EE_ADDR3;
+ 	else
+ 		chip->flags |= EE_ADDR2;
+ 
+-	if (id[8]) {
+-		fm25_aux_read(at25, sernum, FM25_RDSN, FM25_SN_LEN);
+-		/* Swap byte order */
+-		for (i = 0; i < FM25_SN_LEN; i++)
+-			at25->sernum[i] = sernum[FM25_SN_LEN - 1 - i];
+-	}
+-
+ 	chip->page_size = PAGE_SIZE;
+ 	return 0;
+ }
 -- 
 2.43.0
 
