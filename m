@@ -1,229 +1,359 @@
-Return-Path: <devicetree+bounces-162410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC5A6A78433
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 23:55:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0858EA7849F
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 00:20:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82EDF188EE7E
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 21:55:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB09B160CCE
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 22:20:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50E2D1EF0BD;
-	Tue,  1 Apr 2025 21:55:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACDF81EF389;
+	Tue,  1 Apr 2025 22:20:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=iopsys.eu header.i=@iopsys.eu header.b="yQXQUDmO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oeT8KluB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11023127.outbound.protection.outlook.com [40.107.162.127])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD9E11DF258;
-	Tue,  1 Apr 2025 21:55:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.127
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743544530; cv=fail; b=ImCUAgtNqMMu6+YCDqRuhVboPfdi5NeIaD1JMldtBZSWajRqWadTHDnkHTFg/kMGTwMeD3bViXHANTnX17x0K3gwd7qsh7FyuDKG0HM3Cze7DgXH2cnGtv/G4gwRWu2ngWGaE4S/P0uEDx2l2vqR3f1ueG7gVfxOZ3gtDTXA0ZA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743544530; c=relaxed/simple;
-	bh=0D74nxs8k5zJdqw8PAxqjrZSmrkIF9WueMHxWHcE23I=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Is3C5n5cCVGUPgCwlgGq7SdHsHNl4r1glLuYLh+BOHKr9UIJHIIDZ8Ni1OdR7zXNy3c68B3FOpVPqA8eNldGY8lKGIOt/tK/jKSksOStfrIvvh83JzACld3AMX7QbgR4JZP5Wap05J9Jt64SdPLp28ui8vhuZCpW1YVUfyj1v0c=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=iopsys.eu; spf=pass smtp.mailfrom=genexis.eu; dkim=pass (2048-bit key) header.d=iopsys.eu header.i=@iopsys.eu header.b=yQXQUDmO; arc=fail smtp.client-ip=40.107.162.127
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=iopsys.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=genexis.eu
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bCETVRyykK1Gqm7Yjr0WCaZ35no/61ivJVrxtuMcdyob5XgDFCMcnq1hsRzd/vKe9zJtXtGnqFGvE5lbH8FQciNTgJuso7iz+9SiXiipfG7FKvPVovIwGXKmyZl2e+CrCYRhg2WjgHoaFPiUt2JEeDnLHjJBRKjWW0OSXEzF6W4FfjWzeJ1jVJq2xNYD47nAnYM710ci/MFiZn6faA9xH2LIsbu7hX+xTOgH0Qab6q6Jaq+/gl/qOVKJRK0KOHTJU9tj4/eq5+gJ6Mn+gQH8JwUqYuq2Fy93WhdG3CCfNISd7AEU+XypuykFR3R1DGa/lnDoGu2PqvawcsZbG5lDSA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QLyk3UzaLGvBhsHU8wI4wALNc+oNV8Vwedg8RKLIl2E=;
- b=oQNVLCHIe0ZPB7P3n6CW3DwlNQngHLwE4dQenDjYmt33gbP34gyiFPW9hEEm6nYGYDinItwHLDfRjvrKERzALVuxataCe8bOoKesJ9Dbdz0UK20TUAz72/IPYXGZRD5/DHXNHgbwWHgHbWo9CGHv7UvsZDLEHIS70S6Tu/OexRE1A0LfPcvNePa2ExqMznMP7ZDoaWCYE957aorhmTbLF/omiD5lSyABCOHcqMs5j5eD2U8UqyBdNh4NU2Iodhq+aw31W9Xoi5TYIHB7iIHdLcwyXIFU3OnhC17dcAj3Hq+HnZjJ32/SkJjVXv/iceC7Qpk5iWHXHKfjxwCys6mnkw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=genexis.eu; dmarc=pass action=none header.from=iopsys.eu;
- dkim=pass header.d=iopsys.eu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iopsys.eu;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QLyk3UzaLGvBhsHU8wI4wALNc+oNV8Vwedg8RKLIl2E=;
- b=yQXQUDmOKA3ypiYrWK3+OVkQOiqUW7XaNSvw0LGHryhPGX6c38rGp8detmDworzBge3FqLUILi9TdzgkgRGcU29IbnbzZj+DorUeqUKAirqSj2FS7PDi4ukylSjib47EGi57vSxaycwWEykRy9lKhCGiMjefC6ac+kcNqyfLI6MVex+sZFxkDsEgu6t7+JIauqceIonBwc65K4BRwFhNkzJxfrcIaB1SRYXNfSemhswb6v3pfB5CStZ6IPCi/SmyjuLiNMTDoRmp8g/eBb2Z2VVpUQ3ORP8aS/x/6h2+mZy1z7ZO1FwNwgqwXaiwxKwGVOB52chl/emLhdi4hsBVCA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=iopsys.eu;
-Received: from GV2PR08MB8121.eurprd08.prod.outlook.com (2603:10a6:150:7d::22)
- by AS8PR08MB9979.eurprd08.prod.outlook.com (2603:10a6:20b:633::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8583.41; Tue, 1 Apr
- 2025 21:55:22 +0000
-Received: from GV2PR08MB8121.eurprd08.prod.outlook.com
- ([fe80::4cd3:da80:2532:daa0]) by GV2PR08MB8121.eurprd08.prod.outlook.com
- ([fe80::4cd3:da80:2532:daa0%4]) with mapi id 15.20.8534.052; Tue, 1 Apr 2025
- 21:55:22 +0000
-From: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8463E1D79B8;
+	Tue,  1 Apr 2025 22:20:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1743546017; cv=none; b=KFntvNL3ErplwcGi4EBtaaGaF6XjYlpceiOvJgHcKyZXOnp/yue6sxAcDskRZWngY0QoUlrMPyrV9y3XBTaEvyL0u89XglyYSKOsOmaCQoVjOCSnF5uUhgsdIFjw80/J7c/7yskknn/Rkgi3jNt4PNr8Vm9IVs5VoJIdtYG7Mb4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1743546017; c=relaxed/simple;
+	bh=PCe4XJj1618IPiPDCpzKGLt3nFoVFS3rRpXBluX4gWY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Bw9yo2lLLiSvg5zd1txGyYSVAxrhRNqDt5rVDZ9BrKanlbzVhg7nXdh7qyTgGhtmbehKE5FA8/lHOqHUdxJyFao8CywmAK8xMQcvUfDpFucUd+1K0qjJJgwgMdlkQANWUPfJ9WQUcaPSzSSKyYHpMCtWcd9lbqV9sOb0nifRXN0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oeT8KluB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA6A3C4CEE4;
+	Tue,  1 Apr 2025 22:20:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743546017;
+	bh=PCe4XJj1618IPiPDCpzKGLt3nFoVFS3rRpXBluX4gWY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oeT8KluBovLtL9LKQKukpkY6vRCKRuNBCDXFtrGnD3zYPHmD/NmDqezNOa+tNZfB7
+	 vuBEy6y4lXK7NdyZmG/nTgrmX3sOVJUy+pyASbOxWMYi7kHqLRP804r0q+fYNTFfBx
+	 XvFWshkGNd/q1lZNnZc6/jdXdunYQHX6Ry50cdwTmoXdsrZJjFgxDXiLpJGhByE/cH
+	 POZAE1ZodOHMPK1Kv8tsxqOs2YOHJmtNXToH3qghUagoEmKVYQJuWdTMdK11uX1TDj
+	 mMHiMGLNWLXu8cM0tSoxpKyF2svEJ7SOGnGiQMn6AgaVinm+nbsRCOd74n0aKepW7D
+	 HfTWwQx6scfrA==
+Date: Tue, 1 Apr 2025 17:20:15 -0500
+From: Rob Herring <robh@kernel.org>
+To: Patrice Chotard <patrice.chotard@foss.st.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>,
-	Frank Wunderlich <frank-w@public-files.de>
-Subject: [RESEND PATCH v2] arm64: dts: mediatek: mt7986-bpi-r3: Change fan PWM value for mid speed
-Date: Wed,  2 Apr 2025 00:55:14 +0300
-Message-ID: <20250401215514.1944552-1-mikhail.kshevetskiy@iopsys.eu>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <trinity-2fa9ed21-07af-4fbf-a20e-32684dabdd82-1743507920209@trinity-msg-rest-gmx-gmx-live-5779db864f-xlr59>
-References: <trinity-2fa9ed21-07af-4fbf-a20e-32684dabdd82-1743507920209@trinity-msg-rest-gmx-gmx-live-5779db864f-xlr59>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: FR3P281CA0058.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:4b::19) To GV2PR08MB8121.eurprd08.prod.outlook.com
- (2603:10a6:150:7d::22)
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, christophe.kerello@foss.st.com,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v7 2/7] dt-bindings: memory-controllers: Add STM32 Octo
+ Memory Manager controller
+Message-ID: <20250401222015.GA4071342-robh@kernel.org>
+References: <20250401-upstream_ospi_v6-v7-0-0ef28513ed81@foss.st.com>
+ <20250401-upstream_ospi_v6-v7-2-0ef28513ed81@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV2PR08MB8121:EE_|AS8PR08MB9979:EE_
-X-MS-Office365-Filtering-Correlation-Id: daa27a51-1e9f-44ad-5b56-08dd7167e6a1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|52116014|1800799024|366016|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?rMIQYwoWi3axQWGQXGpOlA8T0cT76H8wSUnJ9cTr7q5jpRwWcm0XoixzyVPM?=
- =?us-ascii?Q?M69Bcv8YAmWIRunoXt/bhrrd3JI92/Iqxni5KGThr1hL9XkQVS9Nb0skTdaj?=
- =?us-ascii?Q?myT0CQ6QN7qjH3BqfPBF9T/S+MvdiiFWF8DQ43E1UaG+KipiKENNDWZlqCDN?=
- =?us-ascii?Q?Y5Otp0BUW4g2JSLCkE7Y/hBOdW18lDviQTaFSYAEZeINYcEHfKXPAsBmOagD?=
- =?us-ascii?Q?MGOND7gQNBU5eOpDV7KUJwDlFWlOSymjyfUZHpgSbUcdxjDoqb4MNxBAflnm?=
- =?us-ascii?Q?JzZo26qYMe8cKaoUfol8Zutasx+J4ugGw6y/rc0jtUMIezyP+aqgtrSXKbfc?=
- =?us-ascii?Q?shIkMi3ERbVIad1iwzmZSAKPoCRgUWy+VIOpkaVv9EJfmTlBHmKimR4LSQny?=
- =?us-ascii?Q?GJmvQim1JtMQeYdWQ8ArUrTZCf02IbId1RI8ZR2qbPIXXNfxf5Ri4bSUjYrd?=
- =?us-ascii?Q?ym0DH8uE/UAtE0dSNSHaYhEna4wDJYpnzEhnJRDPNo5FF/+bwNJPaZOX4Ypx?=
- =?us-ascii?Q?7INL0TjQsLirD71z8BpfHevpTRXvAE+7jKqT9Wm5+hrIRK1WIV/ZyhlFopMz?=
- =?us-ascii?Q?++3pXUged+OaWDY2HuzT1eOOYC8PSltPz3AzrkXSqt0rpAu4ZW4L/rHoVzQp?=
- =?us-ascii?Q?wRn+qGeCKECxLSURwM2fpg9pVFsr3Yx7wBhP0pmd/wRIToLkEiTCtR51bN3v?=
- =?us-ascii?Q?Fmn9Zc+2UjJDhdxba2eqcyHZgy11MgMyeYeYXIkbC+HrlSZPKCikvJrx7Wlf?=
- =?us-ascii?Q?WK92CBT5Li+IYweA3I8rJklXF0NBfx3WSocr6VY1jim1Wk2IfZz1IdpFHKHn?=
- =?us-ascii?Q?txdJ/SDsEct7jX3AEyxTwTVDjeNojDdxrctajriAOpzQqIXaRmTcNwvXSNFQ?=
- =?us-ascii?Q?sHyOG/xGOmHscufbA5G6WS+5AXt+vS5vJJQAKD0LgEeUtx2DbvR2lFuK63Hn?=
- =?us-ascii?Q?/xI7tB6hhc5cqZUeKCWIXbE63lYuxzjRC190Ta62PRchYpAqk1XRS7yoLA8d?=
- =?us-ascii?Q?8gIodZzzEj/87Q9Iu617/MhFRJNWtx3edrVKitWevXeWI9J10vzewDSZRUoZ?=
- =?us-ascii?Q?R+/5jdaiEU04W8/0GanMA7sFy1AqmzMkt1WAFwPtUq1kvm3aCfeVMkG4+NEh?=
- =?us-ascii?Q?480T3VN5xeZzzqYdtxBFUA3vqfJulGN2TkRdFmioHclaQIchZkjV6LI+gux6?=
- =?us-ascii?Q?g2JmaVTJxo63aQtL5KNa1ryR9O4KTwwB0SCz7gwCWF3vhGq7NGY+P9cRQ+hx?=
- =?us-ascii?Q?L/iOBC4uCbqeryJB/dz8LsT8uTJDgObHQ+2cWNYt57JdhSUNLoP+mgU+cp3o?=
- =?us-ascii?Q?VHF3go0+d5G0MGWlL4UWavAFXLNxVIhAFTdt39j58QQmGdOhUY1fPy6yftaq?=
- =?us-ascii?Q?vSDbTzIKN3PASS0Uc4CjrICSw6uqSwsbMLOCBWbM/twLUFpzz0zig7bv96zj?=
- =?us-ascii?Q?+amVIOh369dyo7b9Y0UEPIUUzyP+JMhHDUwqLpxfoWWdWsNj9k4euQ=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR08MB8121.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(1800799024)(366016)(38350700014)(921020);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?SnBFLbpm/GUkvj9ZQ0HHxfwVn+VasA9CRRfgFZJbP+NrzKeThKNLrv+vJ9eU?=
- =?us-ascii?Q?jOrlGOskLNpnpnqbjPD8P5YmPxfJG15J/B8qgbsNi4HrqwEYIg25BpT6MyxP?=
- =?us-ascii?Q?OZHi1O63lw4vvFF4/GEORKKKj7dEXDYioC3NdlX3zXE9510PJ/EoyCrLJ47l?=
- =?us-ascii?Q?ccAd5AUSDZqJQ1oAuQtN58q2MDbPJcbvovFdQFtdNcpMBIfkSw/e5PyPsv9c?=
- =?us-ascii?Q?lkk/nRj7xE13hnnvXFKd/Qbrp3oSdh4qBFFHcbvhA2XircYwlxN75btN4y0K?=
- =?us-ascii?Q?W6LcSwEJCF5iZ6a7wPnN1WdpC0OVGPPcmehCJV11zZGhE5CorSsaaT/HAKJy?=
- =?us-ascii?Q?lmjKtEWnjRX8qoBTnL9hsq8ox8QtSN8WROLUvzbK3ZoFqeoa5dbuQSH44+o0?=
- =?us-ascii?Q?t/vobEI8b8ESlaRcxr8qFB9ZYyBScTp18FBu5ikIbZHW5F+b6h1OFFAIHInT?=
- =?us-ascii?Q?IJsnaLAm4jrxYNkPRJwxs4xSyh2ZdFpMTrb1L2YUmdql07jPKvmz3qYxqFXx?=
- =?us-ascii?Q?Xa6pMWclceJRGAWaimQpEQxbPdBcliMYKRjOyiWV/qimKPoHeBTKwtGGaCgX?=
- =?us-ascii?Q?qb9tdgTB7L0jrokecB0Txx7zxOpXUL/58NaZR6jSPMVBFr7eDWTZKgfVrf/9?=
- =?us-ascii?Q?ZGoxgIl53Q/LstkKhxU+YwdvVqf9B2wZkh97vTpXjx7fvpfI80SIVanJpLFv?=
- =?us-ascii?Q?AkdqPD/+8zE46rG0WAj6tDkvIswVCJbTdDIjeOd40Le1B51RohRjEufODKTT?=
- =?us-ascii?Q?g8vR0Ih5/5zKA6nonlb3zspS95GhU5LwAZr5m1PQYWxSSEWv4HdjxEcLiSEK?=
- =?us-ascii?Q?irI51DubMnNRllO6Ya5Xx7UFUPDN8WOr/6bCuPxEtNGvCYrl0x/tJ4TjZKVI?=
- =?us-ascii?Q?b/TRqTiOTeqmQYrY5y1bOqIlnN0FQFJhfmeJVEKIdE6Ho8gzPUtXT2tfOK0p?=
- =?us-ascii?Q?f0DB/mc4L5A9adRaDOxAUrKODKHMbv5VGYO8uSddbMngdGNGK+bA/bq+6yLj?=
- =?us-ascii?Q?SrofCq8i5UWN3gJZypb/rZh/gueYbv3/ZM+IOmlzJFe+Sb+RhIqahwKwnv2b?=
- =?us-ascii?Q?gBVg1xRVOM8hZK954qvf3KXcDfSq6uqGnNrLDkacFtrNH4SoX9nFyk6fhUxf?=
- =?us-ascii?Q?xqcUwuclA63jswR+bGtRKVkDzxq1Bh2g+vcqqlannx9cjqTln+YtzQDVhVUS?=
- =?us-ascii?Q?4lzPB3SaWACxQPnXIkqZiroQsGXgWEJKbcIjFDrim/87qLYCvlD1ua8xpqjE?=
- =?us-ascii?Q?pORwWGLum5/YhZqdJPliJmdzDr01y+zZlTg5PAi2K8O7+9z5yfijSf9kyRNA?=
- =?us-ascii?Q?yrXiyXmHFtmsnvH9J9zlnBI9UyqjRt7jKheuQ9VOdEvTvXJJOmNV54+a3QiH?=
- =?us-ascii?Q?3V1WKFeCDK1cU4A2yfocMJ1QSC+B3yHGLDi+EVOfhGu9ssd5nsqw8WM2ae4G?=
- =?us-ascii?Q?C2it5cbLpjZbsPD2G5gEtE+vwPDPcZHx48Lpkmeqflx/CzFzqAz0zhGhV7nQ?=
- =?us-ascii?Q?ghdY+4fTB0DdZ7opbJonOfj5J3kDFRgATkWD2LEFZDxsHUZYol8TgCciAYdq?=
- =?us-ascii?Q?1hTli5Zo+5x1p+b/OP7alo1Ay67nKvR3miIu8f5662JUAQSRBzhQpem/pfoz?=
- =?us-ascii?Q?4fHpUdghnMJPMdM2UHAr494=3D?=
-X-OriginatorOrg: iopsys.eu
-X-MS-Exchange-CrossTenant-Network-Message-Id: daa27a51-1e9f-44ad-5b56-08dd7167e6a1
-X-MS-Exchange-CrossTenant-AuthSource: GV2PR08MB8121.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2025 21:55:22.3996
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8d891be1-7bce-4216-9a99-bee9de02ba58
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SZXCQBUc9XmNMicOpBcy4XFnG8xjl18nFJ78Q72ZCaHqMmsupjXePHBTQ1VOvbsdZhHkBRREudlRzBQAGV+8Xs4JIP9utckvI1Hn2XaQQB8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR08MB9979
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250401-upstream_ospi_v6-v7-2-0ef28513ed81@foss.st.com>
 
-Popular cheap PWM fans for this machine, like the ones coming in
-heatsink+fan combos will not work properly at the currently defined
-medium speed. Trying different pwm setting using a command
+On Tue, Apr 01, 2025 at 02:21:46PM +0200, Patrice Chotard wrote:
+> Add bindings for STM32 Octo Memory Manager (OMM) controller.
+> 
+> OMM manages:
+>   - the muxing between 2 OSPI busses and 2 output ports.
+>     There are 4 possible muxing configurations:
+>       - direct mode (no multiplexing): OSPI1 output is on port 1 and OSPI2
+>         output is on port 2
+>       - OSPI1 and OSPI2 are multiplexed over the same output port 1
+>       - swapped mode (no multiplexing), OSPI1 output is on port 2,
+>         OSPI2 output is on port 1
+>       - OSPI1 and OSPI2 are multiplexed over the same output port 2
+>   - the split of the memory area shared between the 2 OSPI instances.
+>   - chip select selection override.
+>   - the time between 2 transactions in multiplexed mode.
+> 
+> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+> ---
+>  .../memory-controllers/st,stm32mp25-omm.yaml       | 227 +++++++++++++++++++++
+>  1 file changed, 227 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/st,stm32mp25-omm.yaml b/Documentation/devicetree/bindings/memory-controllers/st,stm32mp25-omm.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..c028bc5341f5072afbed1e435b43245952e50300
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/memory-controllers/st,stm32mp25-omm.yaml
+> @@ -0,0 +1,227 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/memory-controllers/st,stm32mp25-omm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: STM32 Octo Memory Manager (OMM)
+> +
+> +maintainers:
+> +  - Patrice Chotard <patrice.chotard@foss.st.com>
+> +
+> +description: |
+> +  The STM32 Octo Memory Manager is a low-level interface that enables an
+> +  efficient OCTOSPI pin assignment with a full I/O matrix (before alternate
+> +  function map) and multiplex of single/dual/quad/octal SPI interfaces over
+> +  the same bus. It Supports up to:
+> +    - Two single/dual/quad/octal SPI interfaces
+> +    - Two ports for pin assignment
+> +
+> +properties:
+> +  compatible:
+> +    const: st,stm32mp25-omm
+> +
+> +  "#address-cells":
+> +    const: 2
+> +
+> +  "#size-cells":
+> +    const: 1
+> +
+> +  ranges:
+> +    description: |
+> +      Reflects the memory layout per OSPI instance.
+> +      Format:
+> +      <chip-select> 0 <registers base address> <size>
+> +    minItems: 2
+> +    maxItems: 2
+> +
+> +  reg:
+> +    items:
+> +      - description: OMM registers
+> +      - description: OMM memory map area
+> +
+> +  reg-names:
+> +    items:
+> +      - const: regs
+> +      - const: memory_map
+> +
+> +  memory-region:
+> +    description:
+> +      Memory region shared between the 2 OCTOSPI instance.
+> +      One or two phandle to a node describing a memory mapped region
+> +      depending of child number.
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  memory-region-names:
+> +    description:
+> +      Identify to which OSPI instance the memory region belongs to.
+> +    items:
+> +      enum: [ospi1, ospi2]
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  clocks:
+> +    minItems: 3
+> +    maxItems: 3
 
-  echo $value > /sys/devices/platform/pwm-fan/hwmon/hwmon1/pwm1
+Just maxItems is enough.
 
-I found:
+> +
+> +  clock-names:
+> +    items:
+> +      - const: omm
+> +      - const: ospi1
+> +      - const: ospi2
+> +
+> +  resets:
+> +    minItems: 3
+> +    maxItems: 3
 
-  pwm1 value     fan rotation speed   cpu temperature     notes
-  -----------------------------------------------------------------
-    0            maximal              31.5 Celsius        too noisy
-   40            optimal              35.2 Celsius        no noise hearable
-   95            minimal
-   above 95      does not rotate      55.5 Celsius
-  -----------------------------------------------------------------
+Same here.
 
-Thus only cpu-active-high and cpu-active-low modes are usable.
-I think this is wrong.
+> +
+> +  reset-names:
+> +    items:
+> +      - const: omm
+> +      - const: ospi1
+> +      - const: ospi2
+> +
+> +  access-controllers:
+> +    maxItems: 1
+> +
+> +  st,syscfg-amcr:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description: |
+> +      The Address Mapping Control Register (AMCR) is used to split the 256MB
+> +      memory map area shared between the 2 OSPI instance. The Octo Memory
+> +      Manager sets the AMCR depending of the memory-region configuration.
+> +      The memory split bitmask description is:
+> +        - 000: OCTOSPI1 (256 Mbytes), OCTOSPI2 unmapped
+> +        - 001: OCTOSPI1 (192 Mbytes), OCTOSPI2 (64 Mbytes)
+> +        - 010: OCTOSPI1 (128 Mbytes), OCTOSPI2 (128 Mbytes)
+> +        - 011: OCTOSPI1 (64 Mbytes), OCTOSPI2 (192 Mbytes)
+> +        - 1xx: OCTOSPI1 unmapped, OCTOSPI2 (256 Mbytes)
+> +    items:
+> +      - description: phandle to syscfg
+> +      - description: register offset within syscfg
+> +      - description: register bitmask for memory split
 
-This patch fixes cpu-active-medium settings for bpi-r3 board.
+This needs to be:
 
-I know, the patch is not ideal as it can break pwm fan for some users.
-Likely this is the only official mt7986-bpi-r3 heatsink+fan solution
-available on the market.
+items:
+  - items:
+      - description: ...
+      - description: ...
+      - description: ...
 
-This patch may not be enough. Users may wants to tweak their thermal_zone0
-trip points, thus tuning fan rotation speed depending on cpu temperature.
-That can be done on the base of the following example:
+'phandle-array' name was poorly chosen and is really a matrix of 
+phandle plus arg cell entries.
 
-  === example =========
-  # cpu temperature below 25 Celsius degrees, no rotation
-  echo 25000 > /sys/class/thermal/thermal_zone0/trip_point_4_temp
-  # cpu temperature in [25..32] Celsius degrees, normal rotation speed
-  echo 32000 > /sys/class/thermal/thermal_zone0/trip_point_3_temp
-  # cpu temperature above 50 Celsius degrees, max rotation speed
-  echo 50000 > /sys/class/thermal/thermal_zone0/trip_point_2_temp
-  =====================
+> +
+> +  st,omm-req2ack-ns:
+> +    description:
+> +      In multiplexed mode (MUXEN = 1), this field defines the time in
+> +      nanoseconds between two transactions.
+> +    default: 0
+> +
+> +  st,omm-cssel-ovr:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      Configure the chip select selector override for the 2 OCTOSPIs.
+> +      - 0: OCTOSPI1 chip select send to NCS1 OCTOSPI2 chip select send to NCS1
+> +      - 1: OCTOSPI1 chip select send to NCS2 OCTOSPI2 chip select send to NCS1
+> +      - 2: OCTOSPI1 chip select send to NCS1 OCTOSPI2 chip select send to NCS2
+> +      - 3: OCTOSPI1 chip select send to NCS2 OCTOSPI2 chip select send to NCS2
+> +    minimum: 0
+> +    maximum: 3
+> +    default: 0
+> +
+> +  st,omm-mux:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      Configure the muxing between the 2 OCTOSPIs busses and the 2 output ports.
+> +      - 0: direct mode
+> +      - 1: mux OCTOSPI1 and OCTOSPI2 to port 1
+> +      - 2: swapped mode
+> +      - 3: mux OCTOSPI1 and OCTOSPI2 to port 2
+> +    minimum: 0
+> +    maximum: 3
+> +    default: 0
+> +
+> +  power-domains:
+> +    maxItems: 1
 
-Signed-off-by: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
+Standard properties go before vendor specific properties.
 
----
-Changes from v1 to v2:
- * improve patch description
----
- arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> +
+> +patternProperties:
+> +  ^spi@[0-9]:
+> +    type: object
+> +    $ref: /schemas/spi/st,stm32mp25-ospi.yaml#
+> +    description: Required spi child node
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - reset-names
+> +  - st,syscfg-amcr
+> +  - ranges
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/st,stm32mp25-rcc.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/reset/st,stm32mp25-rcc.h>
+> +    ommanager@40500000 {
+> +      compatible = "st,stm32mp25-omm";
+> +      reg = <0x40500000 0x400>, <0x60000000 0x10000000>;
+> +      reg-names = "regs", "memory_map";
+> +      ranges = <0 0 0x40430000 0x400>,
+> +               <1 0 0x40440000 0x400>;
+> +      memory-region = <&mm_ospi1>, <&mm_ospi2>;
+> +      memory-region-names = "ospi1", "ospi2";
+> +      pinctrl-0 = <&ospi_port1_clk_pins_a
+> +                   &ospi_port1_io03_pins_a
+> +                   &ospi_port1_cs0_pins_a>;
+> +      pinctrl-1 = <&ospi_port1_clk_sleep_pins_a
+> +                   &ospi_port1_io03_sleep_pins_a
+> +                   &ospi_port1_cs0_sleep_pins_a>;
+> +      pinctrl-names = "default", "sleep";
+> +      clocks = <&rcc CK_BUS_OSPIIOM>,
+> +               <&scmi_clk CK_SCMI_OSPI1>,
+> +               <&scmi_clk CK_SCMI_OSPI2>;
+> +      clock-names = "omm", "ospi1", "ospi2";
+> +      resets = <&rcc OSPIIOM_R>,
+> +               <&scmi_reset RST_SCMI_OSPI1>,
+> +               <&scmi_reset RST_SCMI_OSPI2>;
+> +      reset-names = "omm", "ospi1", "ospi2";
+> +      access-controllers = <&rifsc 111>;
+> +      power-domains = <&CLUSTER_PD>;
+> +      #address-cells = <2>;
+> +      #size-cells = <1>;
+> +      st,syscfg-amcr = <&syscfg 0x2c00 0x7>;
+> +      st,omm-req2ack-ns = <0>;
+> +      st,omm-mux = <0>;
+> +      st,omm-cssel-ovr = <0>;
+> +
+> +      spi@0 {
+> +        compatible = "st,stm32mp25-ospi";
+> +        reg = <0 0 0x400>;
+> +        memory-region = <&mm_ospi1>;
+> +        interrupts = <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>;
+> +        dmas = <&hpdma 2 0x62 0x00003121 0x0>,
+> +               <&hpdma 2 0x42 0x00003112 0x0>;
+> +        dma-names = "tx", "rx";
+> +        clocks = <&scmi_clk CK_SCMI_OSPI1>;
+> +        resets = <&scmi_reset RST_SCMI_OSPI1>, <&scmi_reset RST_SCMI_OSPI1DLL>;
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-index ed79ad1ae871..b0cc0cbdff0f 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-@@ -42,7 +42,7 @@ fan: pwm-fan {
- 		compatible = "pwm-fan";
- 		#cooling-cells = <2>;
- 		/* cooling level (0, 1, 2) - pwm inverted */
--		cooling-levels = <255 96 0>;
-+		cooling-levels = <255 40 0>;
- 		pwms = <&pwm 0 10000>;
- 		status = "okay";
- 	};
--- 
-2.47.2
+Looks like you are duplicating properties in the parent and child nodes. 
+Maybe that accurately models the h/w, but if it is just so the drivers 
+can get the resources from "the driver's node", you can always just look 
+in the child nodes for the resources (as probably you want to drop the 
+per instance resources from the parent).
 
+> +        access-controllers = <&rifsc 74>;
+> +        power-domains = <&CLUSTER_PD>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        st,syscfg-dlyb = <&syscfg 0x1000>;
+> +      };
+> +
+> +      spi@1 {
+> +        compatible = "st,stm32mp25-ospi";
+> +        reg = <1 0 0x400>;
+> +        memory-region = <&mm_ospi1>;
+> +        interrupts = <GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>;
+> +        dmas = <&hpdma 3 0x62 0x00003121 0x0>,
+> +               <&hpdma 3 0x42 0x00003112 0x0>;
+> +        dma-names = "tx", "rx";
+> +        clocks = <&scmi_clk CK_KER_OSPI2>;
+> +        resets = <&scmi_reset RST_SCMI_OSPI2>, <&scmi_reset RST_SCMI_OSPI1DLL>;
+> +        access-controllers = <&rifsc 75>;
+> +        power-domains = <&CLUSTER_PD>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        st,syscfg-dlyb = <&syscfg 0x1000>;
+> +      };
+> +    };
+> 
+> -- 
+> 2.25.1
+> 
 
