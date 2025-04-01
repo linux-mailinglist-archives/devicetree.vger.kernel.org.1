@@ -1,89 +1,105 @@
-Return-Path: <devicetree+bounces-162239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FB4CA7789B
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 12:15:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74AB3A778A0
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 12:16:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53754169D57
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 10:15:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D75D169D2D
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 10:16:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BD951F0E56;
-	Tue,  1 Apr 2025 10:15:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 022441F03C8;
+	Tue,  1 Apr 2025 10:16:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="StTymTb2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VMC7PnFM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 426021F098E;
-	Tue,  1 Apr 2025 10:15:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C24C4131E2D;
+	Tue,  1 Apr 2025 10:16:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743502525; cv=none; b=l+thComx74jWr98/iqvSJiU3uhTG+WOrf9gC2isLwQiQ2TvYTuyuRQiBOcSVq0n9ZfImux9wL8uAQc9UlpIRnSUZZhF2MRiAWv3w3yvBhK9znBmJjdl+XseLrEc+0oIavURioFzhn03VNW0xASdvxwEiw06jtpiALVTSANQ1umQ=
+	t=1743502591; cv=none; b=macsnsy4QxwjflbgukYomOKYmFjmJbbVv5Q73tYOP9lfc0IfbNpyb0XsDFA+do+1Mm7wYaS9xZHJ8jcIHzTQSbeq7ySA8KGbsSLOvrS2OpkwGDN+V2PC9PODj0QVUnnl1IKx8DLmTC9M5mxjm3Wnng7CvplWOrjUO2337SA5wEQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743502525; c=relaxed/simple;
-	bh=YXUmerGyYWvqMduAyNy9qqhBz9oGELjAjgHksXK1h2Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZEm/aA8D24ODogiyJTImECyXX6O9aaSe3UM68Ns5N0C/r8nO73O+deZpBqlkwry0czI3L9VoPvfdOnCbGyMYfE5Pc/NSuns539a/Xd9gilzmUsMUuapN+I9D5zgpwhQoCjz9m3p2xSd2v1bP1/jythX1MhSH+OxRdNXiC/zPjNE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=StTymTb2; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1743502520;
-	bh=YXUmerGyYWvqMduAyNy9qqhBz9oGELjAjgHksXK1h2Y=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=StTymTb2hZ8pzt13grHON4yU0oEsiPeZlDpfL3OwUUyEQ8Cbol+DIpfV6EdotEdPh
-	 4Md79l92/BI9wDBaQgIPji7FCnuJmVxTznVDcX6liZ+iZwEmtqFsGxKciqIdXPRh3D
-	 w0RF8ffMLiI/VQpkDeLY1afNY+OxjZLXRKHj6c39fDbclYom5JIpoOuiX3H86i94jE
-	 ZOarsPKvGLtITZdpKPS30ACmRYq1XOckf9ktk8+WDfGXyy6OGoexwGD8lEfSnAPW1t
-	 MQ+d9p6XWh5cZ29H/dyd4AqGpQnIiey68IPJ0Z6XnT0HD3ROmFLTVa4cEyN2OcB1he
-	 q2qrptrEsZKhA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8995417E0FC3;
-	Tue,  1 Apr 2025 12:15:19 +0200 (CEST)
-Message-ID: <92a25c22-f5da-4a02-9372-91bd905d76eb@collabora.com>
-Date: Tue, 1 Apr 2025 12:15:19 +0200
+	s=arc-20240116; t=1743502591; c=relaxed/simple;
+	bh=HxstgKJPs+f+8y4xUmnaqd2Vu0mJQKjK0JF3G6RhKco=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pSEX5NxXjdyQqiTRKz1wbCAZNCwfvI/NW8MqRwT5aXWcwH8hsvtOi9jUxf8JOPHoK4vXp+sdpbd/WOSZcIhq7SGJ9h2ns2DNVjpPIjde2VpcQf9FTQM4Y553QKFGGGFhPRXbzKBW/gpHpxD3OVoLXL/83nSyDt4MxwNsFO9H/yk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VMC7PnFM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B8FFC4CEE4;
+	Tue,  1 Apr 2025 10:16:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743502591;
+	bh=HxstgKJPs+f+8y4xUmnaqd2Vu0mJQKjK0JF3G6RhKco=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VMC7PnFM+tEZgGEODwSX8g/jCsBpdBCXc5XWCOdoo4tQaHd6AC0MeTQROQQwT8sx0
+	 yOj5Zdpqh+Djngar6GbsDro6oqk40eMffaYeSP444Co4qGSTzsx98F4ZnI8XOi7iSa
+	 1xrBgxg/yz3wsSqOwBYDORzFggfYv2thuBUXOhNlTP+rlTpSdiNgH/NSAO15Y3g9Eb
+	 BWbkq5Qll7MEa9F4d7YDyD9xsqpQW362JH+AuHzpAWpd3QM7PAzwcFGxzTtTTe2Vp9
+	 zD2R2q5rw2/3D0REC5LN56adQUL8/pNAFBF1wv24+610xbpv0Nwhc1nxmSvY2ZkfBg
+	 DxEClkgzISrPw==
+Date: Tue, 1 Apr 2025 11:16:24 +0100
+From: Mark Brown <broonie@kernel.org>
+To: srinivas.kandagatla@linaro.org
+Cc: peda@axentia.se, andersson@kernel.org, krzk+dt@kernel.org,
+	ivprusov@salutedevices.com, luca.ceresoli@bootlin.com,
+	zhoubinbin@loongson.cn, paulha@opensource.cirrus.com,
+	lgirdwood@gmail.com, robh@kernel.org, conor+dt@kernel.org,
+	konradybcio@kernel.org, perex@perex.cz, tiwai@suse.com,
+	dmitry.baryshkov@oss.qualcomm.com, linux-sound@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, johan+linaro@kernel.org,
+	Christopher Obbard <christopher.obbard@linaro.org>
+Subject: Re: [PATCH v6 2/6] mux: gpio: add optional regulator support
+Message-ID: <e8bf5dca-16b1-4bcf-b3ab-3367f29264db@sirena.org.uk>
+References: <20250327100633.11530-1-srinivas.kandagatla@linaro.org>
+ <20250327100633.11530-3-srinivas.kandagatla@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/3] arm64: dts: mediatek: mt8196: Add pinmux macro
- header file
-To: Cathy Xu <ot_cathy.xu@mediatek.com>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Sean Wang <sean.wang@kernel.org>, Lei Xue <lei.xue@mediatek.com>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, yong.mao@mediatek.com,
- Axe.Yang@mediatek.com, Jimin.Wang@mediatek.com, Wenbin.Mei@mediatek.com,
- Andy-ld.Lu@mediatek.com, Guodong Liu <guodong.liu@mediatek.com>
-References: <20250401054837.1551-1-ot_cathy.xu@mediatek.com>
- <20250401054837.1551-3-ot_cathy.xu@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250401054837.1551-3-ot_cathy.xu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-
-Il 01/04/25 07:48, Cathy Xu ha scritto:
-> Add the pinctrl header file on MediaTek mt8196.
-> 
-> Signed-off-by: Guodong Liu <guodong.liu@mediatek.com>
-> Signed-off-by: Cathy Xu <ot_cathy.xu@mediatek.com>
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Z3JX3JJC6tol6oU5"
+Content-Disposition: inline
+In-Reply-To: <20250327100633.11530-3-srinivas.kandagatla@linaro.org>
+X-Cookie: 15% gratuity added for parties over 8.
 
 
+--Z3JX3JJC6tol6oU5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Mar 27, 2025 at 10:06:29AM +0000, srinivas.kandagatla@linaro.org wr=
+ote:
+> From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>=20
+> Some of the external muxes needs powering up using a regulator.
+> This is the case with Lenovo T14s laptop which has a external audio mux
+> to handle US/EURO headsets.
+
+The ASoC bits of this series look fine, what's the plan with the mux
+bits?  It looks like the two parts can just get merged independently.
+
+--Z3JX3JJC6tol6oU5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmfrvPcACgkQJNaLcl1U
+h9A2kQf+MEpTDlvOXIamMqjHWM+55J4GvuREUR04WcZMTSShV00EN4m9TbaLQ3OA
+BTU/d+XS5kyH+QKDbG5tk+dsw+moVyJdSHzTBbXJYi3FE0HYzPy6nxPeWczfzXXv
+Jja2lKHGmQQN//A59zpt204ccQrNo+I43n+6lUUEp+CRyeBaGy+j8G8RsO9vDtjW
+cjK4XQ5nMxTQGDWD+GwU++JAC2Iy+CYyCnxdRSCe4Ku7jB45g2HmwcOwBBpuZMQT
+Qgbw1sQLUDVHW13zNtUNh/g1zlbHUW10sgmYaAKScs8XERHadrChUx46dRdt9WQY
+N3ZNFAvid2ERgVtNh4EZFkEgYU3GMg==
+=6zZk
+-----END PGP SIGNATURE-----
+
+--Z3JX3JJC6tol6oU5--
 
