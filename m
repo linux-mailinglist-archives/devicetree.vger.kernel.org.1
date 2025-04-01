@@ -1,133 +1,159 @@
-Return-Path: <devicetree+bounces-162289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162292-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61283A77ADE
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 14:24:59 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B13ADA77B06
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 14:30:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9C9416B266
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 12:24:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A5ACF7A4ED8
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 12:29:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B1A6204581;
-	Tue,  1 Apr 2025 12:24:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EE712036EB;
+	Tue,  1 Apr 2025 12:30:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="oL+88cSn"
+	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="WRD1dDH1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCEFF202F7B;
-	Tue,  1 Apr 2025 12:24:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B08F0202C34;
+	Tue,  1 Apr 2025 12:29:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743510255; cv=none; b=brAlgXymKKICT9U5I7n9kqyiCD1L7zT/Dv71e2R1R8pnO2e8dgpl+0gQtnbbogiL9M/UQJJHN+GqIokXZnNh1ZU3/5v2gww9oL/3m7bjjibeX7ooqEIrg9o614+NH8oUWI02EPthEgqQIMC1vhziixOPP5XFrh8K5NLz8YUmSIY=
+	t=1743510601; cv=none; b=qY0SRmMcPScHxvQPUvgIEa4UTyI/Zs71pB0ibh99HjNTi80njygUCWDRc6RLmQ4CumJsOoP0mdSXYRQI+dTpzEI0KCaFz8zYJK+fUZV6HJzetJ2ihPCIStKPIunMxGvFBxQXMx/PBRkzH0L8bRjZUwJ588mrRXTnRXOqLUxYI+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743510255; c=relaxed/simple;
-	bh=pNCuaRq20ihRDPIs6gWBbwsMGTzuOJxHjP1yYRN8ZiQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=cKpdWgAn/MxLZ3YRV3w9sHut6eEnOhCuW7Gyf6gFK5jv/SPKklaUh0oT4e5lGJBfwujZxQNbfxb5BiY6vVKkVtgE5FYUTlcP9gPQ8DRwIkwdC1x7kbWhbdaCzeVGG+r9aJJHDSsTUYbjWMpwdskALXrtBXDwEH06vu/I2ctbRK0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=oL+88cSn; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 531A8miQ018903;
-	Tue, 1 Apr 2025 14:23:59 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	WwkG1pZIiujSvSdNAeNRVIU4m+oKTZ5N+BMPOnssFpU=; b=oL+88cSnKOPYVrGD
-	x5nzIlrdh0OMMWcDZA0t+Zq6C8sOTF0NkhgjvTarBTg/7401jpbL9Xo3qJTmb0c6
-	smYj0K12uw3BTtlzUPCek9IWMMQsv9PY/CfIov+uL6mcoN+m84aGDmDPHw8hqBz2
-	h+gqWm+myRI0N9+zoSMribMXRuhkVLURnn9uL+aJ8HFsk76/rynuaKUFLrMhnBS5
-	e9OgmO0AAXPwOiKxb0N4pKb32Ph6spvF+Z94oSTMmeN7lJ+5mcyoNbVDnimli3wB
-	QzWwq1BDXoneAliY6+qexORC4KhvVowH33PSQD5YJzW2pJkluWJckB+ZpXirTaeR
-	iEsFsw==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45p75q5k17-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 01 Apr 2025 14:23:59 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id F299C40062;
-	Tue,  1 Apr 2025 14:22:40 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 3E9558A0454;
-	Tue,  1 Apr 2025 14:21:53 +0200 (CEST)
-Received: from localhost (10.48.87.62) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 1 Apr
- 2025 14:21:52 +0200
-From: Patrice Chotard <patrice.chotard@foss.st.com>
-Date: Tue, 1 Apr 2025 14:21:51 +0200
-Subject: [PATCH v7 7/7] arm64: defconfig: Enable STM32 Octo Memory Manager
- and OcstoSPI driver
+	s=arc-20240116; t=1743510601; c=relaxed/simple;
+	bh=wC5DtK2GaicLMRsJGPLfxssVFi0y7lgejMcoPJ6f624=;
+	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:
+	 In-Reply-To:References:Date; b=urNlf7uJNRNgHbVHzn6UWeJiEgQNXz2zjS/CIAtcws3ANjQWjpaPhpRNhTeh1WwQxgj10YaijlNepguXbhE+YMeWO9HFbajjsdNuQA7SIz0eenw/6VjhyolhkNT0TFVXPUh3T8THRM+zussvLfnkmahjlK0ARuX2ehAe6vVLC/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=WRD1dDH1; arc=none smtp.client-ip=212.227.17.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
+	s=s31663417; t=1743510596; x=1744115396; i=frank-w@public-files.de;
+	bh=314azYR/JbbY2hCBpsgvAz5tUM2tZbL82gkKcYRBAe8=;
+	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
+	 Content-Type:In-Reply-To:References:Date:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=WRD1dDH1Z5dm1F0PHXxxw2Sv8yzCCwknwAKTtAxE8pVrkW/9qDO3EJZ8uMY6XEbw
+	 vnEmXFcevDyKkl5aPAV0KVqrZVT/XlPA8JVAK5TceaD2whZ7JMeMS0m1SZ14xeO4r
+	 479h5zikQWkimMt2wXPNjRdqoMI4aWFxaIhYKAGuBKGPw8sld03DPNndC5zykcpcD
+	 9CasdZhmqzgB2t4MKeNve9FHpFylPEs8GHlYI5gfc1HE00oJkxYMdaybmU3awNdOB
+	 DJm7nrNup4VfFesbvr4aYjQVKc7qLiX3Vz5NJ1IrjqqrTB0wS9xu3crS8D3UnnjYB
+	 q1fnUsI3FBE8BBkxfQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [217.61.145.244] ([217.61.145.244]) by
+ trinity-msg-rest-gmx-gmx-live-5779db864f-w2xpz (via HTTP); Tue, 1 Apr 2025
+ 12:29:56 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250401-upstream_ospi_v6-v7-7-0ef28513ed81@foss.st.com>
-References: <20250401-upstream_ospi_v6-v7-0-0ef28513ed81@foss.st.com>
-In-Reply-To: <20250401-upstream_ospi_v6-v7-0-0ef28513ed81@foss.st.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon
-	<will@kernel.org>
-CC: <christophe.kerello@foss.st.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Patrice Chotard
-	<patrice.chotard@foss.st.com>
-X-Mailer: b4 0.14.2
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-01_05,2025-03-27_02,2024-11-22_01
+Message-ID: <trinity-c9848e65-6104-4ea3-b983-1fccabff02f0-1743510596556@trinity-msg-rest-gmx-gmx-live-5779db864f-w2xpz>
+From: Frank Wunderlich <frank-w@public-files.de>
+To: frank-w@public-files.de, angelogioacchino.delregno@collabora.com,
+ linux@fw-web.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Subject: Aw: Re: [PATCH] arm64: dts: mediatek: mt7988a-bpi-r4: allow hw
+ variants of bpi-r4
+Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <EADAC3BA-3D8C-4E04-B8E3-629CAFF0194F@public-files.de>
+Importance: normal
+References: <20250207135501.30741-1-linux@fw-web.de>
+ <b56a7597-fa39-4e02-b601-db05bfa48472@collabora.com>
+ <EADAC3BA-3D8C-4E04-B8E3-629CAFF0194F@public-files.de>
+Date: Tue, 1 Apr 2025 12:29:56 +0000
+Sensitivity: Normal
+X-Priority: 3
+X-UI-CLIENT-META-MAIL-DROP: W10=
+X-Provags-ID: V03:K1:4VRM3IN2xqwyiroQzv9ZBTrpMY4KOsQ9V3DWJyXUoYyOPpn9RII3pOpQ8u85uf/7D0WBp
+ sdDz1c/6lXm0Mt8etJHZXjUgKXPv4qRTwdRqB6W7lJFHbTbhRE8xJQcr/IQiUCPpjyBQDFfc9CqF
+ qRUq/4FEnc+5wYuZKR26lrzcs1eyQR+Res7lNP/+o304WX/7tWauwIfnn9s/du8Ry3WkOhAeQJfA
+ m3UaOZagAt3DxMwc0VaU2cl6dTjqrJPlc3hNfbi2j23lWAdMmXpXkBy6yKylqEhSNMLAWJE8C+8/
+ HseFKlWGaE1mOQesXmzErCcmDZiqEe91vihLKmidEEbjOazuVGA3mRwvmx17YVVh14=
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:rlhv7Yp+WeU=;xTZDCLa+ksK3z2B9knBYio9c8Pq
+ 07sobUwTamYzYIFwAJ3iPyYjcxyPf5Zi7BBgyO8L8mRmDq5U28oXLufMXfEpSMlU+URjUJnCY
+ x4FImp7+HIwQIiMMGDR1/oGk5k2nIMtqQiEuqBUo8VYM02qAdp8JRSmdFNwtM+qLEOM+6g5be
+ HAFM27yJVvnPc5LBr88irXUhMRT1EpTfW8L+YswIGuAj32r2LT+DZB6znweAVRCtovyN5qwEW
+ tJo1HjhX3RB6VEpc//B53W52yQJEH8vQMQY/NspwWorcobDM6GJOp9cs5Ot0Sgg0i5ErSV4d9
+ SIfvEGpXYq8gVAHNBshuqo0TA0bHSq4AFUZLYyoCBEzO4dyWHLPCHyZdCmlAQnMR8LDXNQtqm
+ KbjFIGzvYSDr8kpUol3TzlSO+fry3n+TPesUtduIpFZa2s1mXrKDykZwjWJJ4L8/JWz5Yhcbi
+ Gp2dZ90ard2h0CCcRRCni6yPqXQQALvnD1AUI4aL0ZcuZMyrOoRMBLr5xyYDH4m2zckh5yoZn
+ tB3trSWBVOE4pluRhmdvAVMWVe/Sh2j/v2/FN4F2obPCPHkIhK2jx5m8ea7E0XveXECxBV//c
+ qBnUWF2ykKnWt1bYFLHsD3VsN1HZePXjSxL5//xf4+vGFL/ufjACPlFDHoKqdwfCcf2E2Tl3H
+ lb//03NSqSllY8UlHsn4NflztrEuoDQGqabIZfNiJ+7LXzkel+yzWMmUD+eY4haRiYCFJk0f+
+ BobBWeUTNw1cFz3z8sapWrzw8dNg3eZApKhQOw3owdNlYIjkA9pFaw6t0vEIIqe5dPu6UyPSy
+ oOxhVmWJAZV6QtRc0Du6qlbqfQb0hxdVDByRa1/2Xpdm5Be+kNAwBVEv4sAo0HZU3tiDuyPaT
+ e8mYIXIVta0hkz45tMotFvkf1V7m67tnrtiCdPDg1NQ3Y8BtbD9DAPDUTDqDMRCbfO5PFajv4
+ 9+6Z+oYZCmJ1HqEnmcM7qJwTkLIYU1eoD5XTWdwMdzieWm4Y905k7nAEtahlTXyjmthZG0K0c
+ 95gS0Z4XNoxZxSRse2pUcCib1nbl7X2anuhRtx9CXWmpo/vIJI4gr+DQZKad6bHkFUrF7qmRl
+ 8Zyj6dni5mwxTooWo1RRLUUF8d6y1EtP7Lk+kJ7GNLNYPURcfOpX7HpZVxhP5ITFYT3ZQmF3j
+ wsVFi6rJeuIoyb0IW0R6AdOQhQgG+tNZe9DO10FeZRgDez3EYQua8oPN8Xmenb60AETce+MNn
+ nbGlmMoLizsTsZDDstRIJacXZuIgbJQNlZw5N4Dmw5tIbpdpjjoX6TU=
+Content-Transfer-Encoding: quoted-printable
 
-Enable STM32 OctoSPI driver.
-Enable STM32 Octo Memory Manager (OMM) driver which is needed
-for OSPI usage on STM32MP257F-EV1 board.
+Hi
 
-Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+how to proceed here?
+
+> Gesendet: Montag, 10. Februar 2025 um 12:18
+> Von: "Frank Wunderlich" <frank-w@public-files.de>
+>
+> Am 10. Februar 2025 11:56:40 MEZ schrieb AngeloGioacchino Del Regno <ang=
+elogioacchino.delregno@collabora.com>:
+> >Il 07/02/25 14:54, Frank Wunderlich ha scritto:
+> >> From: Frank Wunderlich <frank-w@public-files.de>
+> >>
+> >> Sinovoip has released other variants of Bananapi-R4 board.
+> >> The known changes affecting only the LAN SFP+ slot which is replaced
+> >> by a 2.5G phy with optional PoE.
+> >>
+> >> As the SFP-Ports are not upstreamed yet this patch simply renames the
+> >> current board dts to dtsi, creating new dts for the board including
+> >> the new dtsi and move i2c-mux channel for sfp lan to board dts.
+> >>
+> >> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> >
+> >I understand what's going on, and I agree, but this change alone doesn'=
+t make a lot
+> >of sense, does it?
+> >
+> >If I were to see a commit that moves everything in a dtsi, and justifie=
+s that by
+> >adding two dts for the two variants, though, things would be different.=
+... :-)
+
+what is the difference to this commit (imho it does basicly the same for o=
+ther SoC)?
+
+73955991b8fb 2025-02-06 arm64: dts: mediatek: mt8390-genio-700-evk: Move c=
+ommon parts to dtsi
+arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
+arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
+
+> >> ---
+> >>   .../dts/mediatek/mt7988a-bananapi-bpi-r4.dts  | 404 +--------------=
 ---
- arch/arm64/configs/defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+> >>   .../dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi | 403 +++++++++++++++=
+++
+> >>   2 files changed, 407 insertions(+), 400 deletions(-)
+> >>   create mode 100644 arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bp=
+i-r4.dtsi
+> >>
+>
+> It is preparation for adding additional nodes like sfp cages. I only hav=
+e the dual-sfp board so i can only add these based on schematic. The one (=
+wan-sfp) would go into dtsi and lan-sfp go into dts because other variants=
+ using a phy here as described.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index bde1287ad9a7a1341162b817873eb651bb310d52..3674d9138bae6deba19c0d13586aa6e1de6750c5 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -580,6 +580,7 @@ CONFIG_SPI_QUP=y
- CONFIG_SPI_QCOM_GENI=m
- CONFIG_SPI_S3C64XX=y
- CONFIG_SPI_SH_MSIOF=m
-+CONFIG_SPI_STM32_OSPI=m
- CONFIG_SPI_SUN6I=y
- CONFIG_SPI_TEGRA210_QUAD=m
- CONFIG_SPI_TEGRA114=m
-@@ -1518,6 +1519,7 @@ CONFIG_EXTCON_USB_GPIO=y
- CONFIG_EXTCON_USBC_CROS_EC=y
- CONFIG_FSL_IFC=y
- CONFIG_RENESAS_RPCIF=m
-+CONFIG_STM32_OMM=m
- CONFIG_IIO=y
- CONFIG_EXYNOS_ADC=y
- CONFIG_IMX8QXP_ADC=m
-
--- 
-2.25.1
-
+regards Frank
 
