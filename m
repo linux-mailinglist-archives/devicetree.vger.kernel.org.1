@@ -1,87 +1,80 @@
-Return-Path: <devicetree+bounces-162371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EFA9A780A2
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 18:38:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 963BAA780B0
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 18:41:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 446731624C3
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 16:37:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B6003A2FC6
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 16:38:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB5AE20D4E1;
-	Tue,  1 Apr 2025 16:37:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0787D20D4F7;
+	Tue,  1 Apr 2025 16:38:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mHWcTYla"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="MACl2xXx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 806C41C6FE8
-	for <devicetree@vger.kernel.org>; Tue,  1 Apr 2025 16:37:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4835D20C476
+	for <devicetree@vger.kernel.org>; Tue,  1 Apr 2025 16:38:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743525447; cv=none; b=QLH/sCuiNKbLBoywcQjpxPus4yb4wTkdG0ZsFchpjVmX0+kAJj5VfDGH08Cy3KYcyxy1x7U32u8dPc5nd/1adJtpd09KmH5KOePofPldmEp9bJX0fzPjC5Ddu2XRMZ44ylc+ArxF9xGaArg+mFdWEvOUabKvAJTgdvq1SkVirmk=
+	t=1743525529; cv=none; b=PyaIlw6c0Bk8itV/yLqgNd6sNtxKkE47pK2TA2iMKddYhWXGlltHREx9LxM5BZFbycU2JFBEsDGK4uR9Sm11+cuDDLbC8aK2UFH6ogjjC2PT1Lm4ljpSUgZkyTz1ZbqsXW5Mx4Tj2BGOy/DaLIqmz3JC50gYKSq/HWj5AYu5290=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743525447; c=relaxed/simple;
-	bh=xso3yVMv1IMS4sKIOz4iJ1XJ+y9QD15Nm6ONJyFulUc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZfNYnnIyeeLHaq0qUS94dobcrYu8SXEUcrLjT2lNmuEbQhUl/hk9xYDGzykQE12qi71+8dRu1iRsYlsiMYpkCCijDDioTQ7R7dQ4F2U19A/qrIc77FmG2yoT4BvHAGq1P8+YBT/N5Hebbxq4+Xdr6XpBShGFYNGtPhROka+Lm1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mHWcTYla; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 531BfguM014626
-	for <devicetree@vger.kernel.org>; Tue, 1 Apr 2025 16:37:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	hKbhPlTz0jVjC2n4EBy1zzs4F3CjcmytkwZ1FbdlItY=; b=mHWcTYlaFdmTeZlK
-	ql96SP8BJesuYNcqU5Ok4PBJ81iFViUKlCi4oW57Z9ZvRxdnKOZMcerfWCkSEqIA
-	aVvcD+RnkfgpSOACL+OneHMz30KafrbMjvLa65EI4J6XQWI9lU95UOeWnqnIOFdA
-	XDH5sEbKe7datLiyIxnvWI41o8oAHDOX5tfLpq5GJTrMbessZmkZcknp0dUqzr/b
-	8OxeVWicJPdPqGZGnfCMeFK4OlmxjgbbdRLasinPN3CdAg8DoYKbkwmWw3AEcMei
-	Fzpk2kbzNpGaKc/5o6alrvLj9ihsbWJ96NBOZJwsqVt9OziU+fhaWd4AdK5p77hy
-	b0AGcw==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45p7tvgp6w-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 01 Apr 2025 16:37:25 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7c5560e0893so18567285a.1
-        for <devicetree@vger.kernel.org>; Tue, 01 Apr 2025 09:37:25 -0700 (PDT)
+	s=arc-20240116; t=1743525529; c=relaxed/simple;
+	bh=L/QUB900bn4/5qxSQgXevW35Ho7xDBeu2EqGEEQtfrg=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=pYDjGjFI6owzbbeXtzFN7+9mUQiapMaLpbQLDN5KCoRV738wE7fluvvqHgpFad72pLNC0aCDUV1pE5IkGw28q7UiuFubCZr5hVnDzxEaou3G3zjn+1RsbMtq2Kk50qG8SrqFZwF3mivL/2r00cD9sLCQrhztF/1ndgDeXytLuXQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=MACl2xXx; arc=none smtp.client-ip=209.85.160.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-2b38896c534so2864888fac.0
+        for <devicetree@vger.kernel.org>; Tue, 01 Apr 2025 09:38:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1743525527; x=1744130327; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Vn5wscEL3RLQT1/gL56P3oGMeI2WM/NBihFUEPIxOCo=;
+        b=MACl2xXxoVtGErHozFr5CJb9eqqbVUZ/dvBEwvg8G3c69v05Q/fPITlDwnJPfpfV8+
+         rfMB4z52zAXCGJC+jh8z1WZK0MHalEw/Dcr8uHEm/DBBELQTD20WvB8hAz51Zj4UeFw4
+         eAaTuhDmsx+MdayDPaN46ux1pZIwyFIIdLQ2kukOAb4MPAXQtp/hrQwlEWTxraC1Sm+i
+         Y4vBU+Q/B3kGfxTvMFk0nB/YJ62fzf/TKePlrQIxNpvuY88BiMPIU0OLS/1QSZaxgFKJ
+         WV/If6czgmUyJqFBlsC6IZNVrdYqUNXEqX3pZKJABCSEbR2xMpQi0djgjupBwCuCRtuw
+         YHNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743525444; x=1744130244;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1743525527; x=1744130327;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hKbhPlTz0jVjC2n4EBy1zzs4F3CjcmytkwZ1FbdlItY=;
-        b=odKzfEQHm2gO9u4q5B5HfF3KcqN8dXZHtZl2SsFnqPYS6t/bXNPCaoYvtGk37LrkE3
-         CPC1DQuyF6o/p8w/V5IkFc9qkNzBinFz41AoTp1nrdS3sF2itBtaQkG20cgno66lLF3i
-         IdIFAqyFwLJyONI0t6Mtf6PNqDSySU2HCbsm5dp9ncCHD7fGYct+ubSnEesSYnPlzMIx
-         7DcCZBvfkj998/6c6mHTi471WNIL5MU34avkS3liWVus97U9KPU9n8RB8mOFSOT4Zdg4
-         mOUUwNdLvql5QD8yp7DPRZIIAgcF58RXIGMyb26MjsWp9MbKXWlhG1BsCfzQJM26f07J
-         AAqw==
-X-Forwarded-Encrypted: i=1; AJvYcCV7CLBRNWj8W88abUp9jEAYtVT1tT9ia6fytDazxORJzqIS+pJcMBkrLnKJvVK43UK/flMLze3REUoC@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXcaq4gRiba+jT6OvUbLB/YWvCDpEV3VwPDtgic/VYfYiYPT0l
-	Qu4Ce28Hn8xh22tcr0baseZMhWuJdtMggTgDm/jJyZZMTiJR/vfAA0hw8IHHXEyR1wTmlGo6Okq
-	cl1akVXldkfFTVLSjlsDE67pNzaWN8vnYDhiUSsjcUa12jniWLiO1UugEVZGk
-X-Gm-Gg: ASbGncu5hpr6au6zxwPjz9Z9umU6jxtYyIg7SUA1GhF2zgHTh/EVT2gZTKomI+C+N8B
-	GmO4yLX+829Lcj3RbawrwTnHkhGsPUseeEKGeH5XfizOa4J7ylBM3qp4XEuSQi6amP4JYMDg9h3
-	mL+DeqQWVjEMfNFTCJeNQpGRnDmH+tbQw2POB/Y1/7ZmKEhuIfm6DEHOlzWvO0ZvTU3cUbU0vyF
-	VWLEWHSWUQZUzF1r0t93XDCMa7wa02KosNPuI+Ra5+AUz5mk9nyP8PWsgvccau89N8JMwnsVpAw
-	BondcREVYQ1kUu/mVZtWjQBfqPoP2zM9VC6N4n0ssLaOBKMvWIp3MlJboaltd8epmevdMA==
-X-Received: by 2002:a05:620a:4491:b0:7c0:c2ec:e560 with SMTP id af79cd13be357-7c75cbf574cmr166615985a.15.1743525444336;
-        Tue, 01 Apr 2025 09:37:24 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFY9F3T3aVlxlnrRQFttmbYcyMce6WTdjZjN6/Nqe8LfX/zNfyXhMverLlyrcOeYnZdRL0LaQ==
-X-Received: by 2002:a05:620a:4491:b0:7c0:c2ec:e560 with SMTP id af79cd13be357-7c75cbf574cmr166614785a.15.1743525443965;
-        Tue, 01 Apr 2025 09:37:23 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac71927b027sm777628666b.47.2025.04.01.09.37.21
+        bh=Vn5wscEL3RLQT1/gL56P3oGMeI2WM/NBihFUEPIxOCo=;
+        b=czqRmsDBSPI3T0+L8kryTRUz6Ow23RBepdntW6v/1puFjnTYrIdy7wKOpRit59d/hq
+         Jw/c4JZz3t+Hc6jvJCa9wEO+r9qCanQJ1G9krMCHUd52114ne4pYBMT/Zh2Q5KyUtTKJ
+         jFp2E7/zpnW1yTUh/DnRuhLVfmxLbRqAylc7e36uG0gjb2dCjWS2aJ+2GzoNATPKykQZ
+         cAUVHT+prtflzkpHk08GtkCkxNMfpUpRk1q3QnTfXTisCMCvevLEMl1AqQSkxRJorn0F
+         kx9xhtL0O+cwXuYc9YTAD2Mlhy2M5Y1W+ZjSEdwRt9/Z//b8cTVWshG+Zy/Ws8GL0nxh
+         njxw==
+X-Forwarded-Encrypted: i=1; AJvYcCUEOxPrclVp0BJ1depF3er98hhFiWyxFjC7W324UEE6t0NIuKcqX/izw/g2btn6BBzCdinfSHkzPBTd@vger.kernel.org
+X-Gm-Message-State: AOJu0YyWkg9aUI2OL47RS4Xmxj4BtlEWRR1Wpjz29xz8+D2EOXZw1FJ8
+	Muz8HrZtY/z+oJI1iwrWxt7z4fthKxysypX2CoEHC9Wcp2b5BNGWXg9Db4wwkz4=
+X-Gm-Gg: ASbGncuXwBwOSGvd+5XMTkty036O50z/0FC5rv1lcYgyYZApP25NgvRrgS8UyvGDIBo
+	z5Mz7gaz+qg8W8Vt/Nlc8nySfncOHyduOZQhYq2K7ZZegPQ19ZSshcwPZfPRMpg1S99Mvjn9HBe
+	NHwVaK/d9FgmgRiT0vTCxu/6BRnq8GrEKFBRacxDKQj6gWg6vBvxTVThJjtIUq2wRQBCr7XTX4k
+	Czw/KGyK/CFZpBkKuTT3aKqqWsHJSeXXj2jKBlqkI+klZIuidwLlu/Cvjm4f+1Gc3mB2q9oMaGu
+	QeAp1sIBw7jTffRnv/dBB3sds5QndaWgBiJsTNnFtaL2jIzO9xJDKNbSwXTzvEEL00X1L/Cq5ZI
+	HplHILQ==
+X-Google-Smtp-Source: AGHT+IHU9FmD92LPJ3uip+4pws/5mX50Amq6nNJFvx9VLdxVBV3Kz6b76Gzjd/YUI+o3AWOY0Nu22Q==
+X-Received: by 2002:a05:6871:69c6:b0:297:2719:deb6 with SMTP id 586e51a60fabf-2cbcf477394mr7400077fac.1.1743525527071;
+        Tue, 01 Apr 2025 09:38:47 -0700 (PDT)
+Received: from [192.168.0.113] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2c86a856e16sm2378333fac.37.2025.04.01.09.38.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Apr 2025 09:37:23 -0700 (PDT)
-Message-ID: <f105d601-89c3-41b7-8893-f84965a7565f@oss.qualcomm.com>
-Date: Tue, 1 Apr 2025 18:37:21 +0200
+        Tue, 01 Apr 2025 09:38:46 -0700 (PDT)
+Message-ID: <6b9cce5c-6d4b-4be8-ba11-74b3471e358d@baylibre.com>
+Date: Tue, 1 Apr 2025 11:38:44 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,44 +82,53 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] arm64: dts: qcom: qcs8300: Add CTCU and ETR nodes
-To: Jie Gan <jie.gan@oss.qualcomm.com>,
-        Bjorn Andersson
- <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Jinlong Mao <quic_jinlmao@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250327024943.3502313-1-jie.gan@oss.qualcomm.com>
- <20250327024943.3502313-3-jie.gan@oss.qualcomm.com>
+Subject: Re: [PATCH v4 08/17] iio: adc: ad7768-1: convert driver to use regmap
+From: David Lechner <dlechner@baylibre.com>
+To: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org
+Cc: lars@metafoo.de, Michael.Hennerich@analog.com,
+ marcelo.schmitt@analog.com, jic23@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, linus.walleij@linaro.org,
+ brgl@bgdev.pl, lgirdwood@gmail.com, broonie@kernel.org,
+ marcelo.schmitt1@gmail.com, jonath4nns@gmail.com
+References: <cover.1741268122.git.Jonathan.Santos@analog.com>
+ <b0c7976d4bc817b7056ef40e3ce870b42e8a2d80.1741268122.git.Jonathan.Santos@analog.com>
+ <c72e422c-1ad0-4314-8171-1c3830f63fa5@baylibre.com>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250327024943.3502313-3-jie.gan@oss.qualcomm.com>
+In-Reply-To: <c72e422c-1ad0-4314-8171-1c3830f63fa5@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=OIon3TaB c=1 sm=1 tr=0 ts=67ec1645 cx=c_pps a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=EUspDBNiAAAA:8 a=NSQ7DHjqZRjaoW-GLy4A:9 a=QEXdDO2ut3YA:10
- a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-ORIG-GUID: PzpQMTATfBlQyz-Q7y4Cej3OYX-AX9hz
-X-Proofpoint-GUID: PzpQMTATfBlQyz-Q7y4Cej3OYX-AX9hz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-01_06,2025-04-01_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- mlxlogscore=638 lowpriorityscore=0 malwarescore=0 mlxscore=0 clxscore=1015
- adultscore=0 bulkscore=0 phishscore=0 suspectscore=0 impostorscore=0
- spamscore=0 classifier=spam authscore=0 authtc=n/a authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504010102
 
-On 3/27/25 3:49 AM, Jie Gan wrote:
-> Add CTCU and ETR nodes in DT to enable expected functionalities.
+On 4/1/25 11:31 AM, David Lechner wrote:
+> On 3/6/25 3:02 PM, Jonathan Santos wrote:
+>> Convert the AD7768-1 driver to use the regmap API for register
+>> access. This change simplifies and standardizes register interactions,
+>> reducing code duplication and improving maintainability.
+>>
+>> Create two regmap configurations, one for 8-bit register values and
+>> other for 24-bit register values.
+>>
+>> Since we are using regmap now, define the remaining registers from 0x32
+>> to 0x34.
+>>
+>> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+>> ---
 > 
-> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
-> ---
+> Reviewed-by: David Lechner <dlechner@baylibre.com>
+> 
+>> +static const struct regmap_range ad7768_regmap_rd_ranges[] = {
+>> +	regmap_reg_range(AD7768_REG_CHIP_TYPE, AD7768_REG_DIG_DIAG_ENABLE),
+> 
+> Technically, there are a few holes in here where registers are not defined
+> so we could split this up in to a few ranges to only include registers that
+> actually contain a useful value.
+> 
+>> +	regmap_reg_range(AD7768_REG_MASTER_STATUS, AD7768_REG_COEFF_CONTROL),
+>> +	regmap_reg_range(AD7768_REG_ACCESS_KEY, AD7768_REG_ACCESS_KEY),
+>> +};
+>>  
 
-Acked-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-
-Konrad
+Also just realized we can drop the AD7768_RD_FLAG_MSK and AD7768_WR_FLAG_MSK
+macro definitions in this patch.
 
