@@ -1,81 +1,82 @@
-Return-Path: <devicetree+bounces-162414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FB18A784D6
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 00:50:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A6DBA784DC
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 00:51:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD8523ACE2F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 22:50:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E9BBD188A692
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 22:51:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DCF62101AE;
-	Tue,  1 Apr 2025 22:50:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7B9421C167;
+	Tue,  1 Apr 2025 22:50:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="itJMp6hL"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="bCuzmVoc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7D1A1EE03C
-	for <devicetree@vger.kernel.org>; Tue,  1 Apr 2025 22:50:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D210821770C
+	for <devicetree@vger.kernel.org>; Tue,  1 Apr 2025 22:50:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743547837; cv=none; b=ji8Y7Sw3Vyc9++ceO452uvEhDGq+Dd/IIVCNWKaICKY14C9Fh4DGYL4H5k+BQ/gB6wuSQL8KyQI5eq3zMuJ0dFIsJzgaVB1X2IScRbhcKEmBhvWz3NQDXxneoLPxCTbWcCSMJfT1HQrx1lqfTI4UX+H+bExGrpqkOwXWqy0xoxA=
+	t=1743547840; cv=none; b=LLIxzSaoMqClDSoZrQa9LVcE0QHedTDQJ1iuxsz7VAHwqvLUNqtzqTgKcTj1rd0fin22CZiAQ2mzqW15qF6t/5Pp3/sMXo70tExZBidf4zPMPMiwMAMObIs7meHBPgros0GdPbKIk+w3F+EVTBj0bgGM05WBIQEksXEI1zUElUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743547837; c=relaxed/simple;
-	bh=YAlLqkiUmn3HLW9UEES3iRfYVjnsBQso51HpCIG25JQ=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Miffwp9HXRnlXTmCRb6inNLW1lq5a8KC4sUqgZpxf/gWduZp0OBQVlhLNrLSD/OK0WLYvIxUZNGpt/K4no3Nw5q/xRZ/a111lPCZihtkbVTdhfVsCBD0rgqVRDYgSOTbnASnGgjXJZjr3EJQ9RnnEI76dYIyiRYb0+a4Wz8HXxQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=itJMp6hL; arc=none smtp.client-ip=209.85.160.46
+	s=arc-20240116; t=1743547840; c=relaxed/simple;
+	bh=wllrbZcObwGAw2NDOjEh96guXeIJUG4ySHs9Mzrn5qQ=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=HB/9Lc5ZRjF2ICaUTqsh5ilZwl7cBtJ1qRIXEr2b75dKPuclmOSOZNBKkO+sgpUl7nAYIppsKpu8uUY6k5GvT/x4P/wn8iLsaEo6DS3C4ENCIUYMFDQdX/n7xKKmKpv/JLi6H2xaH/o2ZYikp59+ajP6KrjF4oZChMwkFlqUANs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=bCuzmVoc; arc=none smtp.client-ip=209.85.161.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-2b3680e548aso168005fac.0
-        for <devicetree@vger.kernel.org>; Tue, 01 Apr 2025 15:50:34 -0700 (PDT)
+Received: by mail-oo1-f50.google.com with SMTP id 006d021491bc7-60288fd4169so1821557eaf.3
+        for <devicetree@vger.kernel.org>; Tue, 01 Apr 2025 15:50:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1743547834; x=1744152634; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=1KzpsO/kBfwd4inh4brwX0T0qUV9oBaxwEbylk8edno=;
-        b=itJMp6hL7yLifBXJCZeS6T00kh9130OjC/qiv2cftxOXRjFR4Pa96bWm3A60nwkedz
-         R3JinWmRhS8dOn50t7gLIm5d8PryAy58sxDP+tYb6/5qmzSu5ba8fOBOZHt8zKW0TmTC
-         bMBe9GHYMrng1ZgkwCZD9nkQRAV4QZfBpDSswHmuk8X8lvVFRaOLSnwVhilVPa4KoDyH
-         IhQSonikSjbpNWQibSt0SNiOvqjpStOKpPPrDGTpGd1ZWc9YZVUQ4BLl6hRtJU+s20G9
-         UDwTHmrKHsG01zxRnC7hNQhQVRABaxIZVSk8s0tQqebbMRvH805TeEZWRl2cNTUbpU0T
-         DEVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743547834; x=1744152634;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1743547837; x=1744152637; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=1KzpsO/kBfwd4inh4brwX0T0qUV9oBaxwEbylk8edno=;
-        b=O27+8fkH1bETGSsG2WSCBEhxy5x4/BTRIp3iI1h/xNDkbeES3skTzHjzCyIk/eNMgE
-         cC6J37rixWjZn7EvU7lEDhmJC7AjlyjHxslY5H7ydnBnwPWrFywf/OetfI3ykSsAKvIK
-         oos5+2blQ9gI9hC8Rpgn9swKSprVkCr9pOI7l1Eib6bqW+b4U8gu6B+OuE0GBTYcbUWn
-         y8tsGrFLAyAM8PXkUgVxH6vkaPFXsBYnaC0TQhKFXUznlsoib1+yNBcRkP6V1OVlEWRQ
-         yGOmW7WhKDFkJGIzul4Y0/pXO1y1oZk7PYAVrVLBN+ipBNyEdP12Hv95RFqA0q2Hc+et
-         KYXw==
-X-Forwarded-Encrypted: i=1; AJvYcCXaoJ7o9sr0ELiQBSeOf6EKyAOGVACfJ+Q39OYy3f8HvKhDrqXczOhsZ1rRcqurzTPfxFD/nB0W7F6k@vger.kernel.org
-X-Gm-Message-State: AOJu0YzM5yMfhecofc/0LiKATNwjGRcf9WXJAhbCh4wt/aRUFJar7LzU
-	nR5NJfY5xn2pPfgpwM24f03K56dUJtttxiLRvRtjsS4fxzSkOngL+RljVShdh7y0HxPSTmoq+2B
-	cyRw=
-X-Gm-Gg: ASbGncuoxjSUjmmxhYDL9ThAg0tErz+4AAifLMc67uuWTpgOCar4wSvSvxElztBQaoO
-	4mqyYKCWwvzaYnXlGNGBiVTluP1LdLGLADbV+9AKk/J1uo5J3rqQNd66ElhDzY+PfGG80NEqFFE
-	3nKOBc3k1+huJBUl/EAs68LXfkEgTyBnhOR2GGMLbUgufr+hBfZQiu64AmWvqzIOL9GK5XGWKvY
-	OYnC3xV/sKhNqExtevtitAd4+GCAIGwLw2Qa9PZ4HoyKAU1+pxYUr1ueeKxViEh9JffZZbjwxcx
-	s2L0lqejVMIXvWSzGyGn03hwkbGBqBDea1Aa9V/EIKthUKmzAF5U/2QktC94UY4PXxpvcjYxHKd
-	F
-X-Google-Smtp-Source: AGHT+IFSez3et7WKBsDlKmMYtgl2hfH5thKM/Tt23C6oNV6Ycv2F2CQ+eNAr/KccskPj3MVGvqv3Ig==
-X-Received: by 2002:a05:6870:ff93:b0:2b8:65f7:8268 with SMTP id 586e51a60fabf-2cc550a11e4mr1066371fac.11.1743547833793;
-        Tue, 01 Apr 2025 15:50:33 -0700 (PDT)
+        bh=uY3LwKeQSjqjV8tkE42G4HURVFmjP7EU20VDalM/2sI=;
+        b=bCuzmVocI9E3Eq/hhATmFlmERpucWHnxqY0UqiM/EG3dxoeB6UkKqDekxdcgg0ljDR
+         3DikBxW7Ksh6ThBFM1OB16YeoR9E56SWFvOAHplXc13TmbswXBAK3Vld3yvJmvFzi44y
+         EzPJf5QDBFxAL9aow0WhDODRlVWuPjo0hJYlESat9yIed6MOIP6lPOrx3Lv2wQAtBnKp
+         2DGZ6cARoog9yxTOA+IcIdcf73p1UAbA6NDJSBiZZlDM88Pre64CRtqxvk5VZvb0NTtN
+         GQbQcu+hUGJtM9TLZMKP4WxIWpIiK7bHV/Nzr/KO+8ekyYdNU3k3w33JUzlz33PPfGaU
+         lnFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743547837; x=1744152637;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=uY3LwKeQSjqjV8tkE42G4HURVFmjP7EU20VDalM/2sI=;
+        b=v7VMYR+I7ydh0B0LWoyWsGNzWW02fLtGPKBZ865W/raU6VU/U/b2Eg0dWPxMD7CCsq
+         o5rhNnn1kNA43UtRXDVAO6kLt0BMIhCEzkACAvZSBSff80m3d9QlT3NobOloarkcjeqy
+         zUfmj86y0T7lZfnclfco1JscLPE3l/Pxu1miFZ4PJja9whXr2zBrpIVoZzdI/nmiZ3jl
+         WN03dBfcUX21fE3Dzjoj26N4cppIvwGeq6BW+voAhXmpf5Lot6NXMVr5MLJWSz0ofxl0
+         Isb/cgNf+3ivvx6R/OKfJJG89a6vI94hkyR7FnWO/qACou8s9cT/AN1w+7aNsrTbVOMq
+         01oQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVDV7v4D34Z82vYGSq77iowlLxSeYSC5A3MUNyKKesVjjLlKcgmurTpPT2gpbAiAVZeSmZzKO7Gnj2A@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx2q//FRuN3saJgzAh4eqGgSJhnwrqxcn18o98tRBAcRHh1GGyL
+	LplVuxN9Whua0tRjfsg9qrl3Ivuu3Y0HTzsAZQ/BBn47+hRptaYcPA1AvBkguyoqqaBMZAIFdCW
+	i6E8=
+X-Gm-Gg: ASbGncvnvNE2Oea3PoHjcucWyhAy+fJ4TQtsdYWJq06zbYQPGtMQt1lDgZX3QoY4qbg
+	n72WVe3qHG1gPM8p4EnJn//mn37gXoK8PzJTpLIIK8FTMifI6OfbUOLpi18ub7IUSTf2puG3p+w
+	SOu+xB1Ws5/hYI/vmAYtVy2l9z+3ZfLRw1hYWHKqbF0kM7wY2N5tw2I1wNqeiFnVMKf1RqbSNqB
+	6ZA/bMQAuVjGoBvq3T8hwiaGkAKnxtvCM1QqDmYFxqSq9B35CkV62S1CN7uMRNC829ZsBqWz3gp
+	/LAIvItDfs0QdObI4yex4Y0PlLUJm/iveOS42F1MrEHfzV+yTNS7BxPnhN8v5Hr1oxOe2Q86pG5
+	g
+X-Google-Smtp-Source: AGHT+IFDp0AhTF61Q48nqN3yJ3kD3UvIIm3ZCEgDN5dT9w+U8dAZ7ndt8F2LawR99JrCPDj14Qxqeg==
+X-Received: by 2002:a05:6870:6110:b0:2c1:4e25:e67d with SMTP id 586e51a60fabf-2cc3822a497mr2416377fac.24.1743547836885;
+        Tue, 01 Apr 2025 15:50:36 -0700 (PDT)
 Received: from [127.0.1.1] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2c86a860267sm2541894fac.36.2025.04.01.15.50.31
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2c86a860267sm2541894fac.36.2025.04.01.15.50.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Apr 2025 15:50:32 -0700 (PDT)
+        Tue, 01 Apr 2025 15:50:35 -0700 (PDT)
 From: David Lechner <dlechner@baylibre.com>
-Subject: [PATCH 0/5] iio: adc: ad7380: add ad7389-4 support
-Date: Tue, 01 Apr 2025 17:50:07 -0500
-Message-Id: <20250401-iio-ad7380-add-ad7389-4-v1-0-23d2568aa24f@baylibre.com>
+Date: Tue, 01 Apr 2025 17:50:08 -0500
+Subject: [PATCH 1/5] dt-bindings: iio: adc: ad7380: add AD7389-4
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,10 +85,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAJ9t7GcC/yWMOwqAMBAFryJbu5CfxngVsRB3o9uoJCCCeHeDV
- vOmeHND5iScoa9uSHxKln0rousK5nXaFkah4mCUaZRTGkV2nMjbThXQPwM61LElS55m7wKU95E
- 4yvWVh/F5Xjnv09FpAAAA
-X-Change-ID: 20250401-iio-ad7380-add-ad7389-4-1f6d3d7dc749
+Message-Id: <20250401-iio-ad7380-add-ad7389-4-v1-1-23d2568aa24f@baylibre.com>
+References: <20250401-iio-ad7380-add-ad7389-4-v1-0-23d2568aa24f@baylibre.com>
+In-Reply-To: <20250401-iio-ad7380-add-ad7389-4-v1-0-23d2568aa24f@baylibre.com>
 To: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org
@@ -97,52 +97,70 @@ Cc: Michael Hennerich <Michael.Hennerich@analog.com>,
  linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
  David Lechner <dlechner@baylibre.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1310; i=dlechner@baylibre.com;
- h=from:subject:message-id; bh=YAlLqkiUmn3HLW9UEES3iRfYVjnsBQso51HpCIG25JQ=;
- b=owEBgwJ8/ZANAwAKAR+K+IyC93wDAcsmYgBn7G2ji5jZGeBcfDlKiaW9oiPp8fE0x2NefCXng
- IV4mEI86MiJAkkEAAEKADMWIQSKc9gqah9QmQfzc4gfiviMgvd8AwUCZ+xtoxUcZGF2aWRAbGVj
- aG5vbG9neS5jb20ACgkQH4r4jIL3fANDlBAAjJs9Hsb2pr80RJr0dynacRF3AA3EXEZOBA/50Jq
- X0W3pne1SXihcZdmS+0RlA98QHthDG7+noKnN8ME/V65oCJdZOSM5pWVaden3dQxCJp1bnvthbx
- A1857Szgkm93pR9OpsTg/oMs7OUSLIulOzR2pOfQq2V7trNoCjw3++Rq6o5KD+7vyi/m5RJD+nU
- lilNSLAui4aYoqCJShuK2uLl1gGIHHWtbAs+kuVokPKZSO0qmQ9znVgo0NkTrqW72vhC9aY5MQV
- yEY4piz+F/PSy9ZCbD30jZMWuPEU52E723U5gQRvlytQmWbOoSWp8ThAu1a4efGzdFJ0tNawCCR
- 5DSZpFTduiQ27S1UCgjNrWYHyYAcSB2MjUuVkU/ejPoCq/vfoKhzmIUyvuLe2KWW/XXjYy28v6O
- Z4siF4TMFVJDU0fat7yMIsk4kHJngkHXGute/By+eB8ySxcTmftT6b7RoEd9lJH5X0XbY2phWid
- x3uRGz2HWVeUneZQ9JcdvnYfAlcvNiAZhGnCls42wuC7qrtk6S2wfnHDKEvVr8tvi8ih98CWjGb
- DtqMx3//ZBITuW7pJjctLVcTxNps63y/BYzN/Lc+Mh4e1RDwvQiDScOFjVRL3uDvcrB/ijZ/MeV
- H8KxbdobeYPMY4SznVb5H3U7iIrSLiRPY6o9ECH/sHRY=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1749; i=dlechner@baylibre.com;
+ h=from:subject:message-id; bh=wllrbZcObwGAw2NDOjEh96guXeIJUG4ySHs9Mzrn5qQ=;
+ b=owEBgwJ8/ZANAwAKAR+K+IyC93wDAcsmYgBn7G236w79skU8tariQuUPZDNW+cVxj4WjqBK51
+ SAIlOIvdJuJAkkEAAEKADMWIQSKc9gqah9QmQfzc4gfiviMgvd8AwUCZ+xttxUcZGF2aWRAbGVj
+ aG5vbG9neS5jb20ACgkQH4r4jIL3fAMwMg/9Edgch9EspXTEYY+1JOhAYpgOz7/utZQkuEugP1+
+ WwGFOvvz3YncY1JSOHxF1TmFSzva8wuhTzJIBcQegux/n4r3/3sx89zqemdZXUhd/HGu8C9lxg8
+ kUbW+hr48TcPubsoCH43NMmedD028osLHS8r9Dn70MpvCOT/rGmsCMHQjgXGKoPNeXVOmQFH2rq
+ tOntr5Uy0Tq0QFnTUKh/WhqEiBcN8m0pp8QtHn5/b6sOkTI/2iPNFeK8TSDl2NpYZlmyqFVaHHI
+ 7I/FDCdm7li0ksgc80/NcF686dsh2fDXTjcKJMaB0kawSXWMl1K7GfSTQJQYOxHmEr8cI1ZEKNu
+ s66jwGniuIFVo/+oBarBcXjMtCCB5ZNvuRTHWRn4D5Ivi37y2fYK8qgWAyT4SxFdobT4VYXRj2M
+ KtMSMoJ+F3xE9zTBbwX0kYduwfQbwjFp+X82PdGbmYXXaSOnzx5glS94Z/eLVeYRPd1FOfbQoup
+ v7319GkkzQm6ZTd9q8yVn56dIHnPdNIFxQr9HtuQRhibTIYIoprOtFokmkDy0rWIvzDAIqfrX7w
+ 4Dj3CNXlRjX1rG9wDsF1o+l3WZBeOH+ArChguo4PrOzybCsf0abvL5HIpNuQQ8QH8x6cWpKVUj1
+ LL+QynRMc1Sm7ulcHfPuGhzaiN71DRyd5rt17XvlyhKw=
 X-Developer-Key: i=dlechner@baylibre.com; a=openpgp;
  fpr=8A73D82A6A1F509907F373881F8AF88C82F77C03
 
-While developing this driver, we glossed over AD7389-4 since we didn't
-have hardware to test it. However, it should be trivial enough to add
-support without testing. It is basically the same as AD7380-4 but
-instead of no internal reference, it has no external reference. And we
-already have support for chips with internal reference only (ADAQ).
+Add compatible and quirks for AD7389-4. This is essentially the same as
+AD7380-4 but instead of having no internal reference, it has no external
+reference voltage supply.
 
-We have the typical DT bindings/driver/documentation patches for it plus
-a few patches to shuffle around the existing code for supporting chips
-with internal-reference-only to make it generic enough to support this
-chip as well.
-
+Signed-off-by: David Lechner <dlechner@baylibre.com>
 ---
-David Lechner (5):
-      dt-bindings: iio: adc: ad7380: add AD7389-4
-      iio: adc: ad7380: rename internal_ref_only
-      iio: adc: ad7380: move internal reference voltage to chip_info
-      iio: adc: ad7380: add ad7389-4
-      Documentation: iio: ad7380: add AD7389-4
+ Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
- .../devicetree/bindings/iio/adc/adi,ad7380.yaml    | 11 +++++
- Documentation/iio/ad7380.rst                       |  7 +++
- drivers/iio/adc/ad7380.c                           | 50 +++++++++++++++++++---
- 3 files changed, 61 insertions(+), 7 deletions(-)
----
-base-commit: f8ffc92ae9052e6615896052f0c5b808bfc17520
-change-id: 20250401-iio-ad7380-add-ad7389-4-1f6d3d7dc749
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
+index ff4f5c21c5482b77ee2774b01ad6d426e68cf207..8dae89ecb64d723dcf2b4af1e0505fc5db49595b 100644
+--- a/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
+@@ -25,6 +25,7 @@ description: |
+   * https://www.analog.com/en/products/ad7386-4.html
+   * https://www.analog.com/en/products/ad7387-4.html
+   * https://www.analog.com/en/products/ad7388-4.html
++  * https://www.analog.com/en/products/ad7389-4.html
+   * https://www.analog.com/en/products/adaq4370-4.html
+   * https://www.analog.com/en/products/adaq4380-4.html
+   * https://www.analog.com/en/products/adaq4381-4.html
+@@ -49,6 +50,7 @@ properties:
+       - adi,ad7386-4
+       - adi,ad7387-4
+       - adi,ad7388-4
++      - adi,ad7389-4
+       - adi,adaq4370-4
+       - adi,adaq4380-4
+       - adi,adaq4381-4
+@@ -213,6 +215,15 @@ allOf:
+       properties:
+         refin-supply: false
+ 
++  # adi,ad7389-4 is internal reference only
++  - if:
++      properties:
++        compatible:
++          const: adi,ad7389-4
++    then:
++      properties:
++        refio-supply: false
++
+   # adaq devices need more supplies and using channel to declare gain property
+   # only applies to adaq devices
+   - if:
 
-Best regards,
 -- 
-David Lechner <dlechner@baylibre.com>
+2.43.0
 
 
