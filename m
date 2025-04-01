@@ -1,110 +1,128 @@
-Return-Path: <devicetree+bounces-162168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 747ECA77468
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 08:18:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 209BCA77470
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 08:20:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2FB1316957A
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 06:18:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CCAEE16939D
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 06:20:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA36B1DEFDC;
-	Tue,  1 Apr 2025 06:18:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 706241E0DEB;
+	Tue,  1 Apr 2025 06:20:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qqsPBV6Z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gz7wAA6U"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1297131E2D;
-	Tue,  1 Apr 2025 06:17:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 473B41B0F20;
+	Tue,  1 Apr 2025 06:20:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743488280; cv=none; b=DCn+kKuLVXOPFuyzUWCl85uRiZQR6KvsdPAgHoCR/PFzeK6EO5/7FkYPZCk04OeD89wfUoJBFnnd4P1PkBt2E5wQ7b++SqRDHy6iusqeLQaMPaP8hq5jjrY6eCrb8cNyBK+VRjh6yUsIjgA620+XqtwK2eftd/55MTsUxJfFjSA=
+	t=1743488409; cv=none; b=k/qdttJ45QYr7Iw8DOIaFrcRogWEIUoD0XFIUxZscCOQpmQeF/37CRiQX9y/v7wVoLunOzZsqECqCg3zMi79iru3HIE5jyypq03C5bH5WkeGZ/lX0b0PpyI59MYbDbw0Vviyf8M3KYFsLk7kcbq9YY/gGccaC9hht6OrbB/V7Xk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743488280; c=relaxed/simple;
-	bh=KnEDjwzU7f+yS42V6ce7fa3bnnh/T4X0uQ0vYcQujSU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HgrWC1l2Z0cGC9oOqVSF7j+PYrb75cnN+0FbWPuciuKnmtwaEyGKGxLoSmfaGeZigL/UjI3oBw2C2mlgok6t6/WYGbJ6guBrsy7vjDaBN69pJ8LTsOseOrImWTuMtgK2KtNZq74ztEjc2/M+Lv4abfV+gWcEJzRVXWKGluu2Lcg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qqsPBV6Z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EA6BC4CEE8;
-	Tue,  1 Apr 2025 06:17:58 +0000 (UTC)
+	s=arc-20240116; t=1743488409; c=relaxed/simple;
+	bh=dTB1LkdaHYhKeBp8RW+H8cwXDQYd31I062iUErSVSVY=;
+	h=Content-Type:Date:Message-Id:Subject:Cc:From:To:References:
+	 In-Reply-To; b=tAYaq0fq1nY7hbFuS1fCWaneDJb9k6+RWBlSpy+vNFTQK3aLgsEYKNwAx9dsmJItrGjsT/EWhvcAjaAlqUEgN4qNff2NSg1Tr3eEOb3Rxe04GxrxWKSzL41FsR5bxlr/lmnKM+4HPsWqcY6GypcLPIfJs3mmff/X4AAm1HBJKzo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gz7wAA6U; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68046C4CEE8;
+	Tue,  1 Apr 2025 06:20:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743488279;
-	bh=KnEDjwzU7f+yS42V6ce7fa3bnnh/T4X0uQ0vYcQujSU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qqsPBV6ZDjA4JXFCcrEZ63438y/20vB2mvHM3E8CAfefaN/roeihqcnBpj4gL6fHt
-	 9/T50ZfHic0p24x1YYnVJa663OpTSmjaHIHVvXiOG5tv/Z4dTOqC0zeFQ6ZNA0+iPe
-	 7FWOerDBjRrtbWN9DbBZ79Bco+tjFDaYU0nJvmtwZAvmKCsUCd33QelYSFp3YDvgs7
-	 1ew6Ye5Q9HFLThkniDCATefPUbhcE7ZL5m5/pUFrBmJ3XU0UFZ75F+j9IzrZcqbYDl
-	 p4vhmBOM+SRRGSWXMfdL/391h1gCMGdZs977xO0b9bABOUcT4WVbaWzyjjUS8nk7Vl
-	 WHhhcegmHDJ3w==
-Date: Tue, 1 Apr 2025 08:17:55 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Sam Winchenbach <sam.winchenbach@framepointer.org>
-Cc: linux-kernel@vger.kernel.org, mdf@kernel.org, hao.wu@intel.com, 
-	yilun.xu@intel.com, trix@redhat.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, michal.simek@amd.com, linux-fpga@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Sam Winchenbach <swinchenbach@arka.org>
-Subject: Re: [PATCH 1/2] dt-bindings: fpga: zynq: Document ICAP on boot
-Message-ID: <20250401-helpful-bronze-gazelle-4d8e25@krzk-bin>
-References: <20250328141944.119504-1-sam.winchenbach@framepointer.org>
- <02496a88-3d9c-49ee-93ab-8f1400fc0c6b@kernel.org>
- <p4bujnmgkcvsu4qipmgh2j2loedepmwgp7zlaxrurhaveb6tbc@ibqtbjnbzdzj>
- <14b12882-119d-4c24-9634-e4cc37a39212@kernel.org>
- <2ccsnpv67gsu354uo7xe7syrxs265ncj6hl26v3cwf2dfm7hyu@ihkemyajuiag>
+	s=k20201202; t=1743488408;
+	bh=dTB1LkdaHYhKeBp8RW+H8cwXDQYd31I062iUErSVSVY=;
+	h=Date:Subject:Cc:From:To:References:In-Reply-To:From;
+	b=Gz7wAA6USP8ewDFFeflTH5OPGhu3BdQrL61rJoUMluPZ6qAdN0fTn72GgyLQjLUuy
+	 wTHyz2n/xWJHxjkWVrZLNmV/3YpZNKH3uDcPeJ/4vN6oRJCzQyJ8EYmp2WvZBR1DRf
+	 qdnwR00ZR6UU00NotYdO0BPr0SHC87MFdbIl7PMhmfmzR+O+pvqq/tLBouD+BDTnga
+	 8DGRgMWOWL6LGz1OnO7kq7W3Smto1Ko7do+93L9aMHOlskb/trMKRt7eoSTZvZFWbc
+	 +QPoMwa5Q2HtTK4ZnaYiMrzDzAveXnZsTCAoRIRZZ2nOJnRLXt64wT79ZeBdwqt5Wl
+	 yNhb7sAVj7L6A==
+Content-Type: multipart/signed;
+ boundary=469ce2c5ee7b2eb876e9826f3995ee5ce86afad1f0f363e3357fd49a768e;
+ micalg=pgp-sha384; protocol="application/pgp-signature"
+Date: Tue, 01 Apr 2025 08:20:04 +0200
+Message-Id: <D8V323NBB32P.3P8H103L83HZK@kernel.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am62p-j722s: add rng node
+Cc: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>
+From: "Michael Walle" <mwalle@kernel.org>
+To: "Kumar, Udit" <u-kumar1@ti.com>, "Nishanth Menon" <nm@ti.com>, "Vignesh
+ Raghavendra" <vigneshr@ti.com>, "Tero Kristo" <kristo@kernel.org>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>
+X-Mailer: aerc 0.16.0
+References: <20250313144155.2382316-1-mwalle@kernel.org>
+ <837cba5f-f49e-4cbf-9cbe-2b25f7c9d4b8@ti.com>
+ <D8UECOJ2NMCU.3ALYIKSODJ479@kernel.org>
+ <1ad2d8c2-6a0d-419d-984d-4974adb0e1f0@ti.com>
+In-Reply-To: <1ad2d8c2-6a0d-419d-984d-4974adb0e1f0@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <2ccsnpv67gsu354uo7xe7syrxs265ncj6hl26v3cwf2dfm7hyu@ihkemyajuiag>
 
-On Mon, Mar 31, 2025 at 09:07:03AM -0400, Sam Winchenbach wrote:
-> On Mon, Mar 31, 2025 at 02:43:59PM +0200, Krzysztof Kozlowski wrote:
-> > Not sure yet. Can't you check the status of ICAP before programming and
-> > then enable it only if was enabled before?
-> 
-> I am having a bit of difficulty understanding this so let's talk about cases
-> where the ICAP is enabled/disabled -
-> 
-> 1. When writing the fabric from the driver
->    In this situation it might make sense to read the state of the ICAP
->    interface when preparing the fabric, before enabling PCAP. When the write
->    completes you could re-enable the ICAP if it was previously enabled.
-> 
->    This might be outside the scope of this change - and I am not comfortable
->    enough with this use-case to understand potential side effects from doing
->    this. Logically it makes sense, but there may be a very specific reason that
->    the ICAP must be enabled after doing a fabric load or partial
->    reconfiguration.
-> 
-> 2. When the FPGA driver loads and is probed by the DTS
->    In this situation, which is covered by this patch, the FPGA is loaded by
->    BootROM/FSBL but contains functionality that requires the ICAP. Unless the
->    user has made modifications to the FSBL or 3rd stage bootloader there is no
->    clear way to enable the ICAP interface. Checking to see if it had been
->    enabled prior to loading this driver does not (in my opinion) make a lot of
->    sense here.
-> 
->    Perhaps the name of the DTS is confusing? The suffix '-on-load' was meant to
->    indicate when the driver was loaded, not the fabric. Would the suffix
->    '-on-probe' be more clear?
+--469ce2c5ee7b2eb876e9826f3995ee5ce86afad1f0f363e3357fd49a768e
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-Neither on-load nor on-probe, because again you instruct the OS what it
-should do. You should instead describe the hardware (or other parts of
-software stack). Describe the condition, the hardware feature, the
-characteristic observed. With proper phrasing the property should be
-fine, but I still do not see that its name and description match actual
-hardware.
+Hi Udit,
 
-Best regards,
-Krzysztof
+> >>> --- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+> >>> [..]
+> >> For completeness , this is ok to add this node but should be kept disa=
+bled
+> > Shouldn't it be "reserved" then, see [1].
+>
+> yes, should be reserved.
+>
+> With marking status as reserved.
+>
+> Please use Reviewed-by: Udit Kumar <u-kumar1@ti.com>
 
+Thanks.
+
+> >> similar to
+> >>
+> >> https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/ti/k=
+3-j7200-mcu-wakeup.dtsi#L662
+> > j784s4, j721e and j721s2 have them enabled. What is the rule here?
+>
+> J784s4, j721e and j721s2 SOCs has two TRNG blocks,
+>
+> example for j721e, one is used by kernel [0] and another by optee [1].
+>
+>
+> >
+> > You also disable the hwrng in optee in your evm according to [2]:
+> > CFG_WITH_SOFTWARE_PRNG=3Dy
+>
+> We are planning to use this hardware block by secure firmware.
+>
+> Therefore request not to use by optee as well
+
+How will you be able to access the RNG from linux and u-boot? I'm
+asking because I'll need it in u-boot for the lwip stack and the
+HTTPS protocol.
+
+-michael
+
+--469ce2c5ee7b2eb876e9826f3995ee5ce86afad1f0f363e3357fd49a768e
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCZ+uFlBIcbXdhbGxlQGtl
+cm5lbC5vcmcACgkQEic87j4CH/huuAGA6VxJSqcfwEyp/l9Eacmq8DPaOSDcw5jB
+HiLqus4Fg9DFl1wj0Zb6OF3HAbHYx/b/AYDCesqMKY8du6brSiVP+2172bjOgXHc
+VLGr5Zn13LMKzakCwP54O+nZSy0OjYhrx2o=
+=MziH
+-----END PGP SIGNATURE-----
+
+--469ce2c5ee7b2eb876e9826f3995ee5ce86afad1f0f363e3357fd49a768e--
 
