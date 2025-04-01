@@ -1,159 +1,179 @@
-Return-Path: <devicetree+bounces-162292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162293-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B13ADA77B06
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 14:30:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D14E4A77B0C
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 14:33:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A5ACF7A4ED8
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 12:29:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F85A3A989C
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 12:33:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EE712036EB;
-	Tue,  1 Apr 2025 12:30:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29D891EFF99;
+	Tue,  1 Apr 2025 12:33:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="WRD1dDH1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BqaPXkmV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B08F0202C34;
-	Tue,  1 Apr 2025 12:29:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A6562E336A;
+	Tue,  1 Apr 2025 12:33:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743510601; cv=none; b=qY0SRmMcPScHxvQPUvgIEa4UTyI/Zs71pB0ibh99HjNTi80njygUCWDRc6RLmQ4CumJsOoP0mdSXYRQI+dTpzEI0KCaFz8zYJK+fUZV6HJzetJ2ihPCIStKPIunMxGvFBxQXMx/PBRkzH0L8bRjZUwJ588mrRXTnRXOqLUxYI+g=
+	t=1743510802; cv=none; b=Ry0InUBKgLjbNRw7FgKTHjDbbK/aMW2exJigM6lqs5aIbx2QZTAwPK3MxJV3UpFmmpG9dOZIHWmBPnQUziWUB4bapUzqd2spb6cLE6uZ9thw3MV130L0fwYZqxOjyFWt/7+afaa3IppuxlvoPvxawyBQ+dwvFkPSaYhx1YxeH+M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743510601; c=relaxed/simple;
-	bh=wC5DtK2GaicLMRsJGPLfxssVFi0y7lgejMcoPJ6f624=;
-	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:
-	 In-Reply-To:References:Date; b=urNlf7uJNRNgHbVHzn6UWeJiEgQNXz2zjS/CIAtcws3ANjQWjpaPhpRNhTeh1WwQxgj10YaijlNepguXbhE+YMeWO9HFbajjsdNuQA7SIz0eenw/6VjhyolhkNT0TFVXPUh3T8THRM+zussvLfnkmahjlK0ARuX2ehAe6vVLC/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=WRD1dDH1; arc=none smtp.client-ip=212.227.17.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1743510596; x=1744115396; i=frank-w@public-files.de;
-	bh=314azYR/JbbY2hCBpsgvAz5tUM2tZbL82gkKcYRBAe8=;
-	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
-	 Content-Type:In-Reply-To:References:Date:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=WRD1dDH1Z5dm1F0PHXxxw2Sv8yzCCwknwAKTtAxE8pVrkW/9qDO3EJZ8uMY6XEbw
-	 vnEmXFcevDyKkl5aPAV0KVqrZVT/XlPA8JVAK5TceaD2whZ7JMeMS0m1SZ14xeO4r
-	 479h5zikQWkimMt2wXPNjRdqoMI4aWFxaIhYKAGuBKGPw8sld03DPNndC5zykcpcD
-	 9CasdZhmqzgB2t4MKeNve9FHpFylPEs8GHlYI5gfc1HE00oJkxYMdaybmU3awNdOB
-	 DJm7nrNup4VfFesbvr4aYjQVKc7qLiX3Vz5NJ1IrjqqrTB0wS9xu3crS8D3UnnjYB
-	 q1fnUsI3FBE8BBkxfQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [217.61.145.244] ([217.61.145.244]) by
- trinity-msg-rest-gmx-gmx-live-5779db864f-w2xpz (via HTTP); Tue, 1 Apr 2025
- 12:29:56 +0000
+	s=arc-20240116; t=1743510802; c=relaxed/simple;
+	bh=mCL2D5ZQbX8eJxeWFbv5Mf1XaQDcN1jPSUKzB5wrAz0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Aulurj+JHLVt/XSuVyh8o/u2cZSsRK6/h20HDQ058ATfbzBxRZGMceAZoQ2zidqcnr/rEdLtjYYoQkOtD6B3maXUH0sQFpyTpwSagItVLjSWmCM8K0MnaJY6rhm9zWVP36Ds3A2NlqaIZjh5U12mPIp0rKxs7jdEs+1Z9ZFIZ1g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BqaPXkmV; arc=none smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-54b10594812so3962896e87.1;
+        Tue, 01 Apr 2025 05:33:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1743510798; x=1744115598; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ui9eG3jSJBD4Kl91xnmQdM2hThhlJg4JZbHy3VVA6Dk=;
+        b=BqaPXkmVt4n/ruobCgrVfkeVkOXb6UQr9fUAKFcmqjNh9UgW2FBhAkUCgdIuK6miQ1
+         ObrGfbOUv5iLVFg04yeMUisHjODIorl1tYb96Uwqkof6IxiBJWv1rYqvJP0g4hQiFNWk
+         HJvFv3PqPvFs3RFCq7i9qmxxp99voY0PjcILa1jJpyg/3Kpy79KgKclYuXM5kYPoLX4p
+         io5ZscvfRtHaLGl9mmVSDGkFVnYJcNEM5vGosJTj/byPRxWzxAdTvTYhCBAy2nkm1xKD
+         +jUalUHpGDCmaOENOvsfn4eHWA9WvxgoOGorweuzix6TWlFsC1zmNi9WZ2/PmffFINDk
+         HRVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743510798; x=1744115598;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ui9eG3jSJBD4Kl91xnmQdM2hThhlJg4JZbHy3VVA6Dk=;
+        b=WIz+yeEl+VlC6DdmtdLxtlzg1YWbl4VydjGw/sW6y1FJCTqOloLBYz0zgnIPjhfXj1
+         xhzOFqAMtvdbLz1dtnki8t+5FPn6rY8U7fXQHdO8ahmF42xJvjYXWJj9hYS8vTwfNbRn
+         Q4IiPgKRK1qJ8ZiOHMWCce08M9LIf+2jS24I3ICTx6VwHF91ZrHgL9V0cIhAeNh9W83y
+         OEhMU35vFe0BhmqIakKpBp6hv200eFel+gcmNk+D8EanPLDPWexeAhIm6LdXbs+7Pi9o
+         vsX3CZI1PB7xouRkxN0IZfWmf6uO/0h59DWQLfk3+pLzSob0zsd69pbdtfXVU3NHQpSP
+         wIgA==
+X-Forwarded-Encrypted: i=1; AJvYcCWL517eaXuZVVXbCNlwpdf6uFoK5Dpi+b4fCS9sSKag2yirwA1H91q3jw/Ymq5LqFUGPSiOhqApGcyD@vger.kernel.org, AJvYcCWhYFx0nW9Lw56iMxbLRfsxDVPJJIjsFc+9lRJF7kqQtzDC7bgq/w+s7JTaEQQprlsm5uOfIQAEV/81aGfm@vger.kernel.org, AJvYcCX+pEFCOwxmpc958QAZroK5X/k9UMtuz0GObz+RXOuaB+6Iy2LMvftx0OOennrVukYYNN6e0FF/etsC@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy30iCgX56ZIWg7Crk6nGTyJfsjO+rBfQes/Ox3HU8zk4Ebke12
+	qHjBXHSo7iHc01A9u24RfBfpYVGdd3oqv/AVhKSKrZ0Ag6EBW12P
+X-Gm-Gg: ASbGncvdZRNuovXFCBSleQE2zclfu9GXvd5szGPa+xPNdukQjRBCqDJ3Gsijy9L7pcj
+	Hfouj5OOl4fFhFVctMROEd8tBD3mVjS9ZjwSMh2mz+n/dSbzRRivoIDG0QI2rIZo37IUCDyHtDl
+	xwOElQMUJTHMbcEgLca+/rszteHtlbmryyR/oxr4yZe8O9Ge3gDrHL983Vqj9JthQwIZmpw7C+s
+	6/mfpPeVmmZuf+bl+TJjpPrfFelATKxpEXo8wlWi5J1TrxMotyWbvDn9Cbf+5xu1xDtZ2hSxRLI
+	y7AnT7ISmfSbHZXZDYuHf/95PahmceJLAIALk2xjEOysTEqQlF+JRy8gEjdxWRUkJybwXYPgkOS
+	ZABmmTCkgDGWqeEOBQL2HyZeZvQ==
+X-Google-Smtp-Source: AGHT+IH/bg+YvSbyMLD/XjNhrZ+kT0hhEpeQjZilHkBh/AzZ9IdF+3LWG5MjG/O3xsRC1OjJi2OD0A==
+X-Received: by 2002:a05:6512:108d:b0:549:893a:1eff with SMTP id 2adb3069b0e04-54b10ecb759mr3764389e87.24.1743510798165;
+        Tue, 01 Apr 2025 05:33:18 -0700 (PDT)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54b0e703fa4sm1146717e87.169.2025.04.01.05.33.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Apr 2025 05:33:16 -0700 (PDT)
+Message-ID: <a35ab4b1-4d6a-4b95-963a-96b2ab4c05e9@gmail.com>
+Date: Tue, 1 Apr 2025 15:33:15 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <trinity-c9848e65-6104-4ea3-b983-1fccabff02f0-1743510596556@trinity-msg-rest-gmx-gmx-live-5779db864f-w2xpz>
-From: Frank Wunderlich <frank-w@public-files.de>
-To: frank-w@public-files.de, angelogioacchino.delregno@collabora.com,
- linux@fw-web.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- matthias.bgg@gmail.com
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: Aw: Re: [PATCH] arm64: dts: mediatek: mt7988a-bpi-r4: allow hw
- variants of bpi-r4
-Content-Type: text/plain; charset=UTF-8
-In-Reply-To: <EADAC3BA-3D8C-4E04-B8E3-629CAFF0194F@public-files.de>
-Importance: normal
-References: <20250207135501.30741-1-linux@fw-web.de>
- <b56a7597-fa39-4e02-b601-db05bfa48472@collabora.com>
- <EADAC3BA-3D8C-4E04-B8E3-629CAFF0194F@public-files.de>
-Date: Tue, 1 Apr 2025 12:29:56 +0000
-Sensitivity: Normal
-X-Priority: 3
-X-UI-CLIENT-META-MAIL-DROP: W10=
-X-Provags-ID: V03:K1:4VRM3IN2xqwyiroQzv9ZBTrpMY4KOsQ9V3DWJyXUoYyOPpn9RII3pOpQ8u85uf/7D0WBp
- sdDz1c/6lXm0Mt8etJHZXjUgKXPv4qRTwdRqB6W7lJFHbTbhRE8xJQcr/IQiUCPpjyBQDFfc9CqF
- qRUq/4FEnc+5wYuZKR26lrzcs1eyQR+Res7lNP/+o304WX/7tWauwIfnn9s/du8Ry3WkOhAeQJfA
- m3UaOZagAt3DxMwc0VaU2cl6dTjqrJPlc3hNfbi2j23lWAdMmXpXkBy6yKylqEhSNMLAWJE8C+8/
- HseFKlWGaE1mOQesXmzErCcmDZiqEe91vihLKmidEEbjOazuVGA3mRwvmx17YVVh14=
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:rlhv7Yp+WeU=;xTZDCLa+ksK3z2B9knBYio9c8Pq
- 07sobUwTamYzYIFwAJ3iPyYjcxyPf5Zi7BBgyO8L8mRmDq5U28oXLufMXfEpSMlU+URjUJnCY
- x4FImp7+HIwQIiMMGDR1/oGk5k2nIMtqQiEuqBUo8VYM02qAdp8JRSmdFNwtM+qLEOM+6g5be
- HAFM27yJVvnPc5LBr88irXUhMRT1EpTfW8L+YswIGuAj32r2LT+DZB6znweAVRCtovyN5qwEW
- tJo1HjhX3RB6VEpc//B53W52yQJEH8vQMQY/NspwWorcobDM6GJOp9cs5Ot0Sgg0i5ErSV4d9
- SIfvEGpXYq8gVAHNBshuqo0TA0bHSq4AFUZLYyoCBEzO4dyWHLPCHyZdCmlAQnMR8LDXNQtqm
- KbjFIGzvYSDr8kpUol3TzlSO+fry3n+TPesUtduIpFZa2s1mXrKDykZwjWJJ4L8/JWz5Yhcbi
- Gp2dZ90ard2h0CCcRRCni6yPqXQQALvnD1AUI4aL0ZcuZMyrOoRMBLr5xyYDH4m2zckh5yoZn
- tB3trSWBVOE4pluRhmdvAVMWVe/Sh2j/v2/FN4F2obPCPHkIhK2jx5m8ea7E0XveXECxBV//c
- qBnUWF2ykKnWt1bYFLHsD3VsN1HZePXjSxL5//xf4+vGFL/ufjACPlFDHoKqdwfCcf2E2Tl3H
- lb//03NSqSllY8UlHsn4NflztrEuoDQGqabIZfNiJ+7LXzkel+yzWMmUD+eY4haRiYCFJk0f+
- BobBWeUTNw1cFz3z8sapWrzw8dNg3eZApKhQOw3owdNlYIjkA9pFaw6t0vEIIqe5dPu6UyPSy
- oOxhVmWJAZV6QtRc0Du6qlbqfQb0hxdVDByRa1/2Xpdm5Be+kNAwBVEv4sAo0HZU3tiDuyPaT
- e8mYIXIVta0hkz45tMotFvkf1V7m67tnrtiCdPDg1NQ3Y8BtbD9DAPDUTDqDMRCbfO5PFajv4
- 9+6Z+oYZCmJ1HqEnmcM7qJwTkLIYU1eoD5XTWdwMdzieWm4Y905k7nAEtahlTXyjmthZG0K0c
- 95gS0Z4XNoxZxSRse2pUcCib1nbl7X2anuhRtx9CXWmpo/vIJI4gr+DQZKad6bHkFUrF7qmRl
- 8Zyj6dni5mwxTooWo1RRLUUF8d6y1EtP7Lk+kJ7GNLNYPURcfOpX7HpZVxhP5ITFYT3ZQmF3j
- wsVFi6rJeuIoyb0IW0R6AdOQhQgG+tNZe9DO10FeZRgDez3EYQua8oPN8Xmenb60AETce+MNn
- nbGlmMoLizsTsZDDstRIJacXZuIgbJQNlZw5N4Dmw5tIbpdpjjoX6TU=
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6/6] iio: adc: ti-adc128s052: Support ROHM BD79104
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
+ David Lechner <dlechner@baylibre.com>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1742474322.git.mazziesaccount@gmail.com>
+ <8e10f2d82362ca7c207324a5a97bb1759581acea.1742474322.git.mazziesaccount@gmail.com>
+ <20250331122247.05c6b09d@jic23-huawei>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20250331122247.05c6b09d@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi
+On 31/03/2025 14:22, Jonathan Cameron wrote:
+> On Mon, 31 Mar 2025 11:03:58 +0300
+> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> 
+>> The ROHM BD79104 ADC has identical SPI communication logic as the
+>> ti-adc128s052. Eg, SPI transfer should be 16 clk cycles, conversion is
+>> started when the CS is pulled low, and channel selection is done by
+>> writing the channel ID after two zero bits. Data is contained in
+>> big-endian format in the last 12 bits.
+> 
+> Nicely found match.  Sometimes these are tricky to spot.
+> 
+>>
+>> The BD79104 has two input voltage pins. Data sheet uses terms "vdd" and
+>> "iovdd". The "vdd" is used also as an analog reference voltage. Hence
+>> the driver expects finding these from the device-tree, instead of having
+>> the "vref" only as TI's driver.
+>>
+>> NOTE: The TI's data sheet[1] does show that the TI's IC does actually
+>> have two voltage inputs as well. Pins are called Va (analog reference)
+>> and Vd (digital supply pin) - but I keep the existing driver behaviour
+>> for the TI's IC "as is", because I have no HW to test changes, and
+>> because I have no real need to touch it.
+>>
+>> NOTE II: The BD79104 requires SPI MODE 3.
+>>
+>> NOTE III: I used evaluation board "BD79104FV-EVK-001" made by ROHM. With
+>> this board I had to drop the SPI speed below the 20M which is mentioned
+>> in the data-sheet [2]. This, however, may be a limitation of the EVK
+>> board, not the component itself.
+>>
+>> [1]: https://www.ti.com/lit/ds/symlink/adc128s052.pdf
+>>
+>> [2]:
+>> https://fscdn.rohm.com/en/products/databook/datasheet/ic/data_converter/dac/bd79104fv-la-e.pdf
+>>
+> Prefer Datasheet tags with # [1]
+> after them for the cross references.
+> 
+> Those belong here in the tag block (no blank lines)
+>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> 
+> One request for an additional cleanup precursor patch given you are
+> touching the relevant code anyway.   It's a small one that you can
+> test so hope you don't mind doing that whilst here.
+> 
+> I'm relying on the incredibly small chance anyone has a variable
+> regulator wired up to the reference that they are modifying at runtime.
+> I have seen that done (once long ago on a crazy dev board for a really
+> noisy humidity sensor) when the reference was VDD but not on a separate
+> reference pin.  That means we almost certainly won't break the existing
+> parts and can't have a regression on your new one so we should be fine
+> to make the change.
 
-how to proceed here?
+The change you ask for is indeed small. I have no real objections 
+against implementing it (and I actually wrote it already) - but I am 
+still somewhat hesitant. As you say, (it seems like) the idea of the 
+original code is to allow changing the vref at runtime. It looks to me 
+this might've been intentional choice. I am not terribly happy about 
+dropping the working functionality, when the gained simplification isn't 
+particularly massive.
 
-> Gesendet: Montag, 10. Februar 2025 um 12:18
-> Von: "Frank Wunderlich" <frank-w@public-files.de>
->
-> Am 10. Februar 2025 11:56:40 MEZ schrieb AngeloGioacchino Del Regno <ang=
-elogioacchino.delregno@collabora.com>:
-> >Il 07/02/25 14:54, Frank Wunderlich ha scritto:
-> >> From: Frank Wunderlich <frank-w@public-files.de>
-> >>
-> >> Sinovoip has released other variants of Bananapi-R4 board.
-> >> The known changes affecting only the LAN SFP+ slot which is replaced
-> >> by a 2.5G phy with optional PoE.
-> >>
-> >> As the SFP-Ports are not upstreamed yet this patch simply renames the
-> >> current board dts to dtsi, creating new dts for the board including
-> >> the new dtsi and move i2c-mux channel for sfp lan to board dts.
-> >>
-> >> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> >
-> >I understand what's going on, and I agree, but this change alone doesn'=
-t make a lot
-> >of sense, does it?
-> >
-> >If I were to see a commit that moves everything in a dtsi, and justifie=
-s that by
-> >adding two dts for the two variants, though, things would be different.=
-... :-)
+Because of this, I am thinking of adding the patch dropping the 
+functionality as an RFC. Leaving that floating on the list for a while 
+would at least have my ass partially covered ;)
 
-what is the difference to this commit (imho it does basicly the same for o=
-ther SoC)?
+I'd rather not delayed the support for the BD79104 though. So - would it 
+be okay if I didn't implement the clean-up as a precursory patch, but 
+did it as a last patch of the series? That will make it a tad more 
+complex to review, but it'd allow taking the BD79104 changes in while 
+leaving the RFC to float on a list. (Also, I'm not sure if you can push 
+an RFC in next without taking it in for the cycle?)
 
-73955991b8fb 2025-02-06 arm64: dts: mediatek: mt8390-genio-700-evk: Move c=
-ommon parts to dtsi
-arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
-arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
+Yours,
+	-- Matti
 
-> >> ---
-> >>   .../dts/mediatek/mt7988a-bananapi-bpi-r4.dts  | 404 +--------------=
----
-> >>   .../dts/mediatek/mt7988a-bananapi-bpi-r4.dtsi | 403 +++++++++++++++=
-++
-> >>   2 files changed, 407 insertions(+), 400 deletions(-)
-> >>   create mode 100644 arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bp=
-i-r4.dtsi
-> >>
->
-> It is preparation for adding additional nodes like sfp cages. I only hav=
-e the dual-sfp board so i can only add these based on schematic. The one (=
-wan-sfp) would go into dtsi and lan-sfp go into dts because other variants=
- using a phy here as described.
-
-regards Frank
 
