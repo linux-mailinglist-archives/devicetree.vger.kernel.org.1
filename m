@@ -1,314 +1,214 @@
-Return-Path: <devicetree+bounces-162374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E054A780D5
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 18:48:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 382B6A780D9
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 18:50:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50185188A700
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 16:47:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 237B61888000
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 16:50:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EC20214229;
-	Tue,  1 Apr 2025 16:45:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22A6C20D4F4;
+	Tue,  1 Apr 2025 16:50:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="eDI49ygt"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="K3Px5ldr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB6E3213E6D
-	for <devicetree@vger.kernel.org>; Tue,  1 Apr 2025 16:45:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49FB02080DD
+	for <devicetree@vger.kernel.org>; Tue,  1 Apr 2025 16:50:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743525942; cv=none; b=FEvbbIvjscPyEr/GheWPy+kR+y+qfeDzmTUL5NjN/pNQtJPHbN6GhEV3J3gwJtpOENzy9r0rRUzNMIpNErSKFSxZRC4zoUEZ+HCTFYmDiOu7VAY6abVgnFdKaiSkRp6gBa654CfBNh40cT3+n5n4+3H/gb9DzZzO69AUJk6OwrQ=
+	t=1743526239; cv=none; b=HmXW+l3s28Z+Wde75aiGKMZQrjWdkiXzirj0qIbiXtm742anp95idLPOKXYPaRDSTzE5ZHoulOfCTnITNxLrI4y+pnC4aK4orGAuvQZZtn2/AKdbCs0GCOgkPmzXfaPnW2/ECMPSEOPl4t0T2T/32k97KhFql0qEc5qOKpDf9X0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743525942; c=relaxed/simple;
-	bh=oTGhCamOrM1xMEeBafYdBjBxoq8L4GIh/5cxdVxrWI4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=aiLxELCw0Xumekp604wyxm4z6tbp0GCgBWhqwsb/inQncTBktB14tB+45wxx9dhWdJkj9lp4ezrrdx8eVBD6nUmZvbkRxkw3dBVUtBWA34BCVDoz/rxUltTkyIjUbjcH5cCs/Un2P4fDec4wzkKy28R6M8Q5F5DNf6RmfVNfX40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=eDI49ygt; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250401164534euoutp02beee1b3ff149dfdf00d676f6ace3ade1~yP5l4Ixmj1277012770euoutp02O
-	for <devicetree@vger.kernel.org>; Tue,  1 Apr 2025 16:45:34 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250401164534euoutp02beee1b3ff149dfdf00d676f6ace3ade1~yP5l4Ixmj1277012770euoutp02O
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1743525934;
-	bh=Du8cCR/sSoRf9rcgO+pEyuLkob3npJUMn2Zdq/2m35Y=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=eDI49ygtc4ET/2jwW0/2sPXZM0iaB6W4wILNPTLDkg8WbgxVk7h6t/O9OumvfzYqM
-	 C26tYbnG/Ki25PGCMClThCdiZ+jpWVZAphVWUsGfoNyKP7UpKahoGZ6k4MHRLlvZ1l
-	 wLmGIc6Z5lNmnYQZg8bkgR/Ji2FmGdNuriql/4yY=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-	20250401164533eucas1p2e13c79cd7be796d91c5ac2dbd00652ec~yP5lbJE652058120581eucas1p2Z;
-	Tue,  1 Apr 2025 16:45:33 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-	eusmges3new.samsung.com (EUCPMTA) with SMTP id D6.4D.20397.D281CE76; Tue,  1
-	Apr 2025 17:45:33 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250401164532eucas1p12733b49f77201419ad208931bd8bbaee~yP5kuU7FM0420604206eucas1p1r;
-	Tue,  1 Apr 2025 16:45:32 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20250401164532eusmtrp2c5b611f960b39ac9ed7d3470861d6235~yP5ktimqz2743327433eusmtrp2q;
-	Tue,  1 Apr 2025 16:45:32 +0000 (GMT)
-X-AuditID: cbfec7f5-ed1d670000004fad-17-67ec182dd26d
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-	eusmgms2.samsung.com (EUCPMTA) with SMTP id CF.2D.19654.C281CE76; Tue,  1
-	Apr 2025 17:45:32 +0100 (BST)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20250401164531eusmtip189b291997140378de0a617b6bf7a559f~yP5jwXRGe2785927859eusmtip1G;
-	Tue,  1 Apr 2025 16:45:31 +0000 (GMT)
-Message-ID: <a9716af2-2403-44a4-b1a7-c3ab832c3c1c@samsung.com>
-Date: Tue, 1 Apr 2025 18:45:31 +0200
+	s=arc-20240116; t=1743526239; c=relaxed/simple;
+	bh=qUk1PicXzRoPMh0+3kY+HECr2cFI/+cjTJrezXFM1+w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jn08JmY/iPCwhmhDrLEo2w6NJSFpe0sIIc5JR2pysWkip4XBS4SLesUYNi5C20szmMZdlKaUdz3TUaZBKnYMVUwH6KQyjtQrmwH8X5eq5smvKwTgsVwnqNmDhLL46TCkmfrTaAQH911d2KtHCsfmaWxI7h91JvkOPHJruHcut64=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=K3Px5ldr; arc=none smtp.client-ip=209.85.214.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-224341bbc1dso98968665ad.3
+        for <devicetree@vger.kernel.org>; Tue, 01 Apr 2025 09:50:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1743526236; x=1744131036; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=2rzQkn+3Vspwxp8Ah2PANQpg8+55TnFG5qd193VBWCM=;
+        b=K3Px5ldr2tqCtmLMEyUBmaJhKS1ZCtwKue6Bilu+rQDpOi0FNC66/45c0XdYA0PVGE
+         fieEQ4rB9cFilf2+2IoL61XmkhPKbRskthSzG8NAxpzBAafMmAqLtK6l0KA2f92Wxdv/
+         RkwvS+8GSq9lEDQZcARlgzs2hVO8PZSJ7sk0+OHDs6BG4f8Gxeeaf7v3qoYl9o3Qkd+D
+         oTD/rS4mUwg4X32RQV8j+qIRq0TSVGYkw7oagUgiiykzMOvgqKs2fUlowHotfmL+nzaD
+         kvIrfi5FmaIIMrUStUa3ONwxrQ1AjO27Yo9Uh8X4AlczUKq4Ujip2bN4jpfbLZl45VI8
+         y58A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743526236; x=1744131036;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2rzQkn+3Vspwxp8Ah2PANQpg8+55TnFG5qd193VBWCM=;
+        b=Q5WfTCuQqf/PxhJGKguAOAWbmvVMaODNhuItFbADRIwTRGpLJdNwsvtuBkqqaloRSG
+         gwzx+eIUE4FcTAJfTk6pzQJfLJYc0wpaulLp76ncjmcO0UadM2pBh46e/72aH1hUYdHK
+         mQp4u+nrA4DF8/is6hh5WlJT1KxJUzeUl/4tqnxYrG1pqgAYt27DQd7M8/M5VVz7BcSd
+         YjWziRjv+82Tryr02vEDv4b/as4gj5rnf+iBZiNIkPoCiXYAiJ66RPf3Q66FsSU6BiaA
+         u9AzV0N0aF+4hN+cA9DpKbWQvWg8enuIzJb79sorAO/Jta/Z2/L91sknQbJC9jaxl8p2
+         ue+A==
+X-Forwarded-Encrypted: i=1; AJvYcCXEY0y493Lou53O558ket4btNGUAd8zvZ7N/n4kBMf5eE8sJfDfgpG6WazWdMbZPddMcJOEApgfrz2M@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy02wdwu2AWAXYvRpTWveewnfUeePQfadplnOnAlrMcSvOoKl/d
+	nw+9B8d7IhFCrkOvPCvH0RRnPCb8HwIGF9FSfvF0H8iQW3l+TDgWzSPDqHXFyg==
+X-Gm-Gg: ASbGncvdZvuT7ZchTlF4jczEXXdRRqRX7TjgQh+OLjzhqBn9fgI8VD7Mct7+DzfZMtN
+	2DyF058q0QhFyfUkAYA3SHWIp9qKYy0h9mS59bhnosqNF0gG58GfWRL5a6kau1/MOPgOptqRrCT
+	xc0RsVUVDNS7kJ4A4inKDjz4ML2lJu6QfabLtnNDogpXUSUWPjnyUPWo1D6tdvxJtKsuqOKezgM
+	6k7cqsmYU/d4aVMILx3nTis+iD1TFnHyFRO3OrJYTLIQ9FhB0aLz93bak0kJnxPzyIzoMjn0vPg
+	UEhwzTmxs3FTi12M75huHm5TAR3F+XINeACvb4zGQUekVOaVN8R8xB3d6iAg8xHGpcT4qsNuLsX
+	VMM4h/mtZIBHdYyI=
+X-Google-Smtp-Source: AGHT+IHM3XGbPCmTj9kap2GPt7VppdYLhbKxPnzq9elvCQi+To2CYT1dVqErhbVf2M9uMVGsgotWZg==
+X-Received: by 2002:a17:903:178b:b0:223:47d9:1964 with SMTP id d9443c01a7336-2292f9e6322mr233271015ad.34.1743526236330;
+        Tue, 01 Apr 2025 09:50:36 -0700 (PDT)
+Received: from google.com (198.103.247.35.bc.googleusercontent.com. [35.247.103.198])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7397106ad9bsm9161077b3a.117.2025.04.01.09.50.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Apr 2025 09:50:35 -0700 (PDT)
+Date: Tue, 1 Apr 2025 09:50:31 -0700
+From: William McVicker <willmcvicker@google.com>
+To: John Stultz <jstultz@google.com>
+Cc: Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Saravana Kannan <saravanak@google.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>, kernel-team@android.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	Donghoon Yu <hoony.yu@samsung.com>,
+	Youngmin Nam <youngmin.nam@samsung.com>
+Subject: Re: [PATCH v1 2/6] clocksource/drivers/exynos_mct: Don't register as
+ a sched_clock on arm64
+Message-ID: <Z-wZV3RCXKPzpZGl@google.com>
+References: <20250331230034.806124-1-willmcvicker@google.com>
+ <20250331230034.806124-3-willmcvicker@google.com>
+ <CANDhNCrxTTkeq3ewos=07jD67s3t6rXOv=u=_qV6d+JEVoXeUA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 01/18] dt-bindings: gpu: img: Future-proofing
- enhancements
-To: Matt Coster <matt.coster@imgtec.com>, Frank Binns
-	<frank.binns@imgtec.com>, David Airlie <airlied@gmail.com>, Simona Vetter
-	<simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, Vignesh
-	Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Randolph
-	Sapp <rs@ti.com>, Darren Etheridge <detheridge@ti.com>, Alessio Belle
-	<alessio.belle@imgtec.com>, Alexandru Dadu <alexandru.dadu@imgtec.com>
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <20250326-sets-bxs-4-64-patch-v1-v5-1-e4c46e8280a9@imgtec.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrOKsWRmVeSWpSXmKPExsWy7djP87q6Em/SDU5NV7Q4cX0Rk8WBV2uY
-	Lb4/bWO2WLP3HJPFxBVeFvOPnGO1uPL1PZvFuqcX2C2Wf57NbvFy1j02i02Pr7FaXN41h81i
-	4cetLBZLduxitGjrXMZq8ebHWSaL/3t2sFt09Nxks5j9bj+7xZY3E1kt/p/9wO4g6rH32wIW
-	j52z7rJ79Ow8w+ixaVUnm8e8k4Ee97uPM3lsXlLvsfl0tcfxG9uZPD5vkgvgiuKySUnNySxL
-	LdK3S+DKuH/pDWNBu2XF/Nb1LA2M+3S6GDk5JARMJFb+/8rWxcjFISSwglFi0cqbUM4XRonW
-	Be9YIJzPjBIvr25jgml59u8NI4gtJLCcUeLMrTCIoreMErfuz2YFSfAK2Ek0fd8O1MDBwSKg
-	InH/XTVEWFDi5MwnLCC2qIC8xP1bM9hBbGGBYIlL+16zgswREfjELLF11z4wh1lgAZNE48d7
-	YJuZBcQlbj2ZD2azCRhJPFg+H2wZp4C3xPUXLSwQNfISzVtnM4M0Swi845Q4t/gtM8gVEgIu
-	EnsmJUJ8ICzx6vgWdghbRuL/zvlQn+VLPNj6iRnCrpHY2XMcyraWuHPuFxvIGGYBTYn1u/Qh
-	wo4S93e+ZIeYzidx460gxAV8EpO2TYdayivR0SYEUa0mMbWnF27puRXbmCYwKs1CCpVZSH6c
-	heSXWQh7FzCyrGIUTy0tzk1PLTbOSy3XK07MLS7NS9dLzs/dxAhMm6f/Hf+6g3HFq496hxiZ
-	OBgPMUpwMCuJ8EZ8fZkuxJuSWFmVWpQfX1Sak1p8iFGag0VJnHfR/tZ0IYH0xJLU7NTUgtQi
-	mCwTB6dUA5P3369vFD59tyldnOL8YdERsYvqm3dvuPrakv3DQtMTHYsmVaWtKZ4r8awo3Urw
-	edmV2S05XUfZuN/c/ishaTL3Hl+uwcn6l9MZbRNX3WpTmvBUoKJgbayO7BTXx+mXkmOMupZO
-	KmpPyXP8q1uk4FzckX7G2Nkjf5XmKrHZVbvF21OOW9zmkn/+9OqM0Gb+lDnJWTUTdjJZBDvo
-	6j8pnFq08/emhmvJGukHtObl9F9qs525caW5hj4P2wyuJFl/vSe3bv51DNdXvR+39fiVGcun
-	vOUO2CIv7cKxiuP4lbawlEWB/zwcbutIzd3C63p/l8mX6poynZN8eU9nM9QFODZGCulO2Gy8
-	RGCVt87y+UosxRmJhlrMRcWJAAPCYCIKBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupmleLIzCtJLcpLzFFi42I5/e/4XV0diTfpBvt/6lucuL6IyeLAqzXM
-	Ft+ftjFbrNl7jsli4govi/lHzrFaXPn6ns1i3dML7BbLP89mt3g56x6bxabH11gtLu+aw2ax
-	8ONWFoslO3YxWrR1LmO1ePPjLJPF/z072C06em6yWcx+t5/dYsubiawW/89+YHcQ9dj7bQGL
-	x85Zd9k9enaeYfTYtKqTzWPeyUCP+93HmTw2L6n32Hy62uP4je1MHp83yQVwRenZFOWXlqQq
-	ZOQXl9gqRRtaGOkZWlroGZlY6hkam8daGZkq6dvZpKTmZJalFunbJehl3L/0hrGg3bJifut6
-	lgbGfTpdjJwcEgImEs/+vWHsYuTiEBJYyijx6/MDRoiEjMS17pcsELawxJ9rXWwQRa8ZJX68
-	mQCW4BWwk2j6vp2pi5GDg0VAReL+u2qIsKDEyZlPwEpEBeQl7t+awQ5iCwsES1za95oVZI6I
-	wBdmiY3r5jOBOMwCi5gkjt2bzwqx4T6jROeX1WBnMAuIS9x6AlLFycEmYCTxYDlIEScHp4C3
-	xPUXLSwgm5kF1CXWzxOCKJeXaN46m3kCo9AsJIfMQjJpFkLHLCQdCxhZVjGKpJYW56bnFhvp
-	FSfmFpfmpesl5+duYgSmim3Hfm7Zwbjy1Ue9Q4xMHIyHGCU4mJVEeCO+vkwX4k1JrKxKLcqP
-	LyrNSS0+xGgKDIuJzFKiyfnAZJVXEm9oZmBqaGJmaWBqaWasJM7LduV8mpBAemJJanZqakFq
-	EUwfEwenVAOTztyHpw8wf/yc4BG9JHzGJf590tvS287x5+bpGTXnRYu9O2QZWNws2s1jM4vh
-	YqbXNHn75fPm+uxeYX5uVmqaTnKJtH7D2k/Tc6esfNP7tfLHUa6/on9WzPvMPqf925br/5/V
-	Oi0NYKy5fWlC6xPhybz53iERuiXvzyf5s/sWvuF/unXlnZSEz79nbRDeKDzpRrzg4/wtjA8+
-	LIjoMHib8ivM++E6FZmO6CbpS/t8BIzyLa5fEUi+Mb2pd9aWj+s+f7sdX6p5QXDmDhGtjb7b
-	5xh/6hUwXn498Z6O1Jnyurn3n4dfX/TEIjyl9kzK89/m0zc9svVtznCNvfgpx2NRFJ9K6sZa
-	o+RfNwKtTa9kK7EUZyQaajEXFScCAKm3/u6eAwAA
-X-CMS-MailID: 20250401164532eucas1p12733b49f77201419ad208931bd8bbaee
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250326164909eucas1p1525faf017c81554f0d3739123edc1298
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20250326164909eucas1p1525faf017c81554f0d3739123edc1298
-References: <20250326-sets-bxs-4-64-patch-v1-v5-0-e4c46e8280a9@imgtec.com>
-	<CGME20250326164909eucas1p1525faf017c81554f0d3739123edc1298@eucas1p1.samsung.com>
-	<20250326-sets-bxs-4-64-patch-v1-v5-1-e4c46e8280a9@imgtec.com>
+In-Reply-To: <CANDhNCrxTTkeq3ewos=07jD67s3t6rXOv=u=_qV6d+JEVoXeUA@mail.gmail.com>
 
-
-
-On 3/26/25 17:48, Matt Coster wrote:
-> The first compatible strings added for the AXE-1-16M are not sufficient to
-> accurately describe all the IMG Rogue GPUs. The current "img,img-axe"
-> string refers to the entire family of Series AXE GPUs, but this is
-> primarily a marketing term and does not denote a level of hardware
-> similarity any greater than just "Rogue".
+On 03/31/2025, John Stultz wrote:
+> On Mon, Mar 31, 2025 at 4:00 PM 'Will McVicker' via kernel-team
+> <kernel-team@android.com> wrote:
+> >
+> > When using the Exynos MCT as a sched_clock, accessing the timer value
+> > via the MCT register is extremely slow. To improve performance on Arm64
+> > SoCs, use the Arm architected timer instead for timekeeping.
 > 
-> The more specific "img,img-axe-1-16m" string refers to individual AXE-1-16M
-> GPU. For example, unlike the rest of the Series AXE GPUs, the AXE-1-16M
-> only uses a single power domain.
+> This probably needs some further expansion to explain why we don't
+> want to use it for sched_clock but continue to register the MCT as a
+> clocksource (ie: why not disable MCT entirely?).
+
+Using the MCT as a sched_clock was originally added for Exynos4 SoCs to improve
+the gettimeofday() syscalls on ChromeOS. For ARM32 this is the best they can do
+without the Arm architected timer. ChromeOS perf data can be found in [1,2]
+
+[1] https://lore.kernel.org/linux-samsung-soc/CAJFHJrrgWGc4XGQB0ysLufAg3Wouz-aYXu97Sy2Kp=HzK+akVQ@mail.gmail.com/
+[2] https://lore.kernel.org/linux-samsung-soc/CAASgrz2Nr69tpfC8ka9gbs2OvjLEGsvgAj4vBCFxhsamuFum7w@mail.gmail.com/
+
+I think it's valid to still register the MCT as a clocksource to make it
+available in case someone decides they want to use it, but by default it
+doesn't make sense to use it as the default clocksource on Exynos-based ARM64
+systems with arch_timer support. However, we can't disable the Exynos MCT
+entirely on ARM64 because we need it as the wakeup source for the arch_timer to
+support waking up from the "c2" idle state, which is discussed in [3].
+
+[3] https://lore.kernel.org/linux-arm-kernel/20210608154341.10794-1-will@kernel.org/
+
 > 
-> The situation is actually slightly worse than described in the first
-> paragraph, since many "series" (such as Series BXS found in the TI AM68
-> among others and added later in this series) contain cores with both Rogue
-> and Volcanic architectures.
+> > Note, ARM32 SoCs don't have an architectured timer and therefore
+> > will continue to use the MCT timer. Detailed discussion on this topic
+> > can be found at [1].
+> >
+> > [1] https://lore.kernel.org/all/1400188079-21832-1-git-send-email-chirantan@chromium.org/
 > 
-> Besides attempting to move away from vague groupings defined only
-> by marketing terms, we want to draw a line between properties inherent to
-> the IP core and choices made by the silicon vendor at integration time.
-> For instance, the number of power domains is a property of the IP core,
-> whereas the decision to use one or multiple clocks is a vendor one.
+> That's a pretty deep thread (more so with the duplicate messages, as
+> you used the "all" instead of a specific list). It might be good to
+> have a bit more of a summary here in the commit message, so folks
+> don't have to dig too deeply themselves.
 
-Hi,
-We’ve had an interesting discussion on how to synchronize clock and
-reset management for the T-HEAD SoC [1] with regard to the Imagination
-GPU. Long story short, there is a preference to place SoC-specific
-elements in the generic PM driver - however since drm/imagination driver
-currently attempts to manage clocks itself, we would need to provide
-some empty stubs, which does seem like an ugly solution.
+Ah, sorry about the bad link. The above points should be a good summary of that
+conversation with regards to this patch.
 
-I agree that a number of clocks is a vendor decision, but the clocks
-doesn't have to necessarily be managed from the consumer driver. Would
-you be open to a patch which makes the clock management from the
-drm/imagination driver optional ? Same way I've proposed an optional
-reset [2] previously.
+> 
+> > Signed-off-by: Donghoon Yu <hoony.yu@samsung.com>
+> > Signed-off-by: Youngmin Nam <youngmin.nam@samsung.com>
+> > [Original commit from https://android.googlesource.com/kernel/gs/+/630817f7080e92c5e0216095ff52f6eb8dd00727
+> > Signed-off-by: Will McVicker <willmcvicker@google.com>
+> > ---
+> >  drivers/clocksource/exynos_mct.c | 5 +++--
+> >  1 file changed, 3 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/clocksource/exynos_mct.c b/drivers/clocksource/exynos_mct.c
+> > index da09f467a6bb..05c50f2f7a7e 100644
+> > --- a/drivers/clocksource/exynos_mct.c
+> > +++ b/drivers/clocksource/exynos_mct.c
+> > @@ -219,12 +219,12 @@ static struct clocksource mct_frc = {
+> >         .resume         = exynos4_frc_resume,
+> >  };
+> >
+> > +#if defined(CONFIG_ARM)
+> 
+> I'd probably suggest adding a comment here explaining why this is kept
+> on ARM and not on AARCH64 as well.
 
-This way if the clocks/reset are not provided, it would be assumed that
-there is something SoC specific to how they're mangaged and they would
-be implemented in the generic PM driver.	
+Sure, I can add my comments above here in v2.
+
+> 
+> >  static u64 notrace exynos4_read_sched_clock(void)
+> >  {
+> >         return exynos4_read_count_32();
+> >  }
+> >
+> > -#if defined(CONFIG_ARM)
+> >  static struct delay_timer exynos4_delay_timer;
+> >
+> >  static cycles_t exynos4_read_current_timer(void)
+> > @@ -250,12 +250,13 @@ static int __init exynos4_clocksource_init(bool frc_shared)
+> >         exynos4_delay_timer.read_current_timer = &exynos4_read_current_timer;
+> >         exynos4_delay_timer.freq = clk_rate;
+> >         register_current_timer_delay(&exynos4_delay_timer);
+> > +
+> > +       sched_clock_register(exynos4_read_sched_clock, 32, clk_rate);
+> >  #endif
+> >
+> >         if (clocksource_register_hz(&mct_frc, clk_rate))
+> >                 panic("%s: can't register clocksource\n", mct_frc.name);
+> >
+> > -       sched_clock_register(exynos4_read_sched_clock, 32, clk_rate);
+> >
+> >         return 0;
+> 
+> Otherwise, this looks ok to me.
+> 
+> thanks
+> -john
+
+Thanks for taking the time to review!
 
 Regards,
-Michał
-
-[1] - https://lore.kernel.org/all/ef17e5d1-b364-41e1-ab8b-86140cbe69b2@samsung.com/
-[2] - https://lore.kernel.org/all/20250219140239.1378758-14-m.wilczynski@samsung.com/
-
-> 
-> In the original compatible strings, we must use "ti,am62-gpu" to constrain
-> both of these properties since the number of power domains cannot be fixed
-> for "img,img-axe".
-> 
-> Work is currently underway to add support for volcanic-based Imagination
-> GPUs, for which bindings will be added in "img,powervr-volcanic.yaml".
-> As alluded to previously, the split between rogue and volcanic cores is
-> non-obvious at times, so add a generic top-level "img,img-rogue" compatible
-> string here to allow for simpler differentiation in devicetrees without
-> referring back to the bindings.
-> 
-> The currently supported GPU (AXE-1-16M) only requires a single power
-> domain. Subsequent patches will add support for BXS-4-64 MC1, which has
-> two power domains. Add infrastructure now to allow for this.
-> 
-> Also allow the dma-coherent property to be added to IMG Rogue GPUs, which
-> are DMA devices. The decision for coherency is made at integration time and
-> this property should be applied wherever it accurately describes the
-> vendor integration.
-> 
-> Note that the new required properties for power domains are conditional on
-> the new base compatible string to avoid an ABI break.
-> 
-> Signed-off-by: Matt Coster <matt.coster@imgtec.com>
-> ---
-> Changes in v5:
-> - Remove extraneous (and error-causing) power-domains minItems constraint
-> - Link to v4: https://lore.kernel.org/r/20250320-sets-bxs-4-64-patch-v1-v4-1-d987cf4ca439@imgtec.com
-> Changes in v4:
-> - Add img,img-rogue back to ti,am62-gpu compatible strings to allow
->   compatibility with older kernels
-> - Revert change to power-domains property and add proper constraint
-> - Link to v3: https://lore.kernel.org/r/20250310-sets-bxs-4-64-patch-v1-v3-1-143b3dbef02f@imgtec.com
-> Changes in v3:
-> - Remove unnecessary example
-> - Remove second power domain details, add these where they're used instead
-> - Avoid ABI breaks by limiting new required properties to new compatible
->   strings and making all binding changes in a single patch.
-> - Links to v2:
->   https://lore.kernel.org/r/20241118-sets-bxs-4-64-patch-v1-v2-1-3fd45d9fb0cf@imgtec.com
->   https://lore.kernel.org/r/20241118-sets-bxs-4-64-patch-v1-v2-3-3fd45d9fb0cf@imgtec.com
->   https://lore.kernel.org/r/20241118-sets-bxs-4-64-patch-v1-v2-4-3fd45d9fb0cf@imgtec.com
-> ---
->  .../devicetree/bindings/gpu/img,powervr-rogue.yaml | 43 +++++++++++++++++++---
->  1 file changed, 38 insertions(+), 5 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> index 256e252f8087fa0d6081f771a01601d34b66fe19..e1056bf2af84c3eb43733bdc91124a66aaf51d35 100644
-> --- a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> +++ b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> @@ -12,10 +12,23 @@ maintainers:
->  
->  properties:
->    compatible:
-> -    items:
-> -      - enum:
-> -          - ti,am62-gpu
-> -      - const: img,img-axe # IMG AXE GPU model/revision is fully discoverable
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - ti,am62-gpu
-> +          - const: img,img-axe-1-16m
-> +          # This deprecated element must be kept around to allow old kernels to
-> +          # work with newer dts.
-> +          - const: img,img-axe
-> +          - const: img,img-rogue
-> +
-> +      # This legacy combination of compatible strings was introduced early on
-> +      # before the more specific GPU identifiers were used.
-> +      - items:
-> +          - enum:
-> +              - ti,am62-gpu
-> +          - const: img,img-axe
-> +        deprecated: true
->  
->    reg:
->      maxItems: 1
-> @@ -37,6 +50,12 @@ properties:
->    power-domains:
->      maxItems: 1
->  
-> +  power-domain-names:
-> +    items:
-> +      - const: a
-> +
-> +  dma-coherent: true
-> +
->  required:
->    - compatible
->    - reg
-> @@ -47,6 +66,18 @@ required:
->  additionalProperties: false
->  
->  allOf:
-> +  # Constraints added alongside the new compatible strings that would otherwise
-> +  # create an ABI break.
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: img,img-rogue
-> +    then:
-> +      required:
-> +        - power-domains
-> +        - power-domain-names
-> +
->    - if:
->        properties:
->          compatible:
-> @@ -64,10 +95,12 @@ examples:
->      #include <dt-bindings/soc/ti,sci_pm_domain.h>
->  
->      gpu@fd00000 {
-> -        compatible = "ti,am62-gpu", "img,img-axe";
-> +        compatible = "ti,am62-gpu", "img,img-axe-1-16m", "img,img-axe",
-> +                     "img,img-rogue";
->          reg = <0x0fd00000 0x20000>;
->          clocks = <&k3_clks 187 0>;
->          clock-names = "core";
->          interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
->          power-domains = <&k3_pds 187 TI_SCI_PD_EXCLUSIVE>;
-> +        power-domain-names = "a";
->      };
-> 
+Will
 
