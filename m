@@ -1,147 +1,103 @@
-Return-Path: <devicetree+bounces-162307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1912CA77D03
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 15:58:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0166AA77D0D
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 16:00:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 177A57A3739
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 13:57:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DF0A07A3D30
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 13:59:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2D0D204851;
-	Tue,  1 Apr 2025 13:58:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A880E2046B7;
+	Tue,  1 Apr 2025 14:00:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="fZzA5qPF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uyr3ujcW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 650A92046AE
-	for <devicetree@vger.kernel.org>; Tue,  1 Apr 2025 13:58:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A9F52046B4;
+	Tue,  1 Apr 2025 14:00:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743515917; cv=none; b=b5yWElkhnYAG/pm0bb2VaC//+SuLoVuIc+ETFR8Aw+toG14Ip2h6g9k27BOe5dgnx0zlfHmZusYHYX3psrAwCWCo4ydeFrDxer6J2ox8aFJNa0988jZik+sjTk0arvzW2pzSaY0C6DWYPS0KOJkAn6nbL2UnvI9050FkTbyifsE=
+	t=1743516020; cv=none; b=Ykga/aGuvjP/5LroynKEwM61Ilxl8AGrzGX6iLGWgRRBSvqiKEKU/+cfNUsQ+QgOI68dgvPcqwGeykrtG+4Iw5o7ApdfUsqwitFKzXZXP+THJbnRnoG0dclXJSopCw8NoDMOIOMqfxdzd8xkwKUYmhTJNxd2k4sHkZX7Iv+zKTE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743515917; c=relaxed/simple;
-	bh=RmzZXK4YPqQ70nLHPh8glvWMbUWxWtesP34xW9L6i3U=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=t+e54rnMFJtY8b67PFxA+O/CbdO7269OKx9MKOsFUUF/frF0WYle10fuqcGQigyCocVNogUly2WWFFwJRIiG8G94v4b/mJJMsPnRY2fu1V79mpc2ZuvEKBswOJztagONVDUwzRKQdbQkaSkUVR6rwDSgGmD6AlI2D0nmBiDqaJ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=fZzA5qPF; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 5B23A441CD;
-	Tue,  1 Apr 2025 13:58:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1743515913;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=Dvq5pJ8VFEVaQPbrBCwVB6vh+W3FQK+6lG5OG4pglDQ=;
-	b=fZzA5qPF0NAIthsFUYyODhoY0nC0KRg5vWfU9rqSA6kYK++5m1+4YUh50i/L8RuhwYSC1c
-	a6+f2bFwM6s4iZjBM+CLvaghaTXPNAtzU1pXY9nWIkpvfFidZyhzykgbrVh2Zb7TGD3f/l
-	9cSkABaHX9xYFg7DzofnM/bKMgyLJEwmeF8vuv7n/LHFWmInmQ/kdigcYvv9oGH92t7ZP6
-	vbJ+HZa2897biFXRY20r3CGPEkIGzDOwzVgR0bJKyHTsDHbKH7iAdh8aPmrZJRmyvV+u/E
-	CCEVNMrCCPPnguu4/nFbqz4siNToPzTwLlbXrXzZkveHFGRlf7dFHUm6FVjFAw==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	<linux-arm-kernel@lists.infradead.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Steam Lin <stlin2@winbond.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH] arm64: dts: ti: k3-am62a7-sk: Describe the SPI NAND
-Date: Tue,  1 Apr 2025 15:58:22 +0200
-Message-ID: <20250401135822.244402-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.48.1
+	s=arc-20240116; t=1743516020; c=relaxed/simple;
+	bh=og3p9HZYxTL6/bsdpwezmV/vVG5W2Xjv9xzDd7pmuRk=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=ll/TAJLCKYV/02ty6S0X07kWNHe7h3Xfteu+vqD1rcTvu5MgnPL0KpkpY2lpLQjCug+z0iGxFSOmHDb9g10fHcdW7AZN+jJw2zPca5jUwUd4JUcu9JJQVw9yfachjuCgiSy0Vw7FlCtF7DKkufKdUstjUu6APbL+o49d11AIXVc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uyr3ujcW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBBDEC4CEE4;
+	Tue,  1 Apr 2025 14:00:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743516018;
+	bh=og3p9HZYxTL6/bsdpwezmV/vVG5W2Xjv9xzDd7pmuRk=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=uyr3ujcWlLWiWurappfwocLuldPM+LOjgDv10yMoZ6QIZ4noinwei7qyUugP4fBHn
+	 rVHwVGFKYNWEFrOzsfPdxCOv46+PTTP1EsDEvl+Sb2IdWQJ1uccV+92Yili6lXCxgE
+	 jLQwd1ggtGMV+QbKbToLwKkENpqHUS6T/uViDBIUzq/gQT/5XZ5Q+q1pIDP5T8j/Ba
+	 dRTPv/c7LgUvGMku7TroLanJcnYbsZJhJ4Q8OqjIgVoMjIzpskBQID1yUpUTPccXQn
+	 Va2ysCzlYAeoEYHvkwajz57o8Mtqjb56nq9eNGRPM1AWV1KVCH1zYTSnwWMh6uKLQO
+	 t6TdN6owF/9Xw==
+Date: Tue, 01 Apr 2025 09:00:16 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddukedvleeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufffkffoggfgsedtkeertdertddtnecuhfhrohhmpefoihhquhgvlhcutfgrhihnrghluceomhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgeetfeduleefjeffheevleeggfdtvdduhfdugeeuieejveejiedvhfdugfettdehnecukfhppeelvddrudekgedruddutddrudelfeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeelvddrudekgedruddutddrudelfedphhgvlhhopehlohgtrghlhhhoshhtrdhlohgtrghlughomhgrihhnpdhmrghilhhfrhhomhepmhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepuddupdhrtghpthhtohepnhhmsehtihdrtghomhdprhgtphhtthhopehvihhgnhgvshhhrhesthhirdgtohhmpdhrtghpthhtohepkhhrihhsthhosehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnv
- ghlrdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgvrhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhg
-X-GND-Sasl: miquel.raynal@bootlin.com
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org, 
+ linux-renesas-soc@vger.kernel.org, linux-mmc@vger.kernel.org, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Conor Dooley <conor+dt@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>, 
+ Ulf Hansson <ulf.hansson@linaro.org>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+In-Reply-To: <20250401100837.29792-2-wsa+renesas@sang-engineering.com>
+References: <20250401100837.29792-2-wsa+renesas@sang-engineering.com>
+Message-Id: <174351601673.3283654.13923027888464994082.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: mmc: arasan,sdhci: Add Renesas RZ/N1D
 
-Describe the octal SPI NAND available on the low-power starter kit.
 
-The pinctrl configuration comes from TI fork.
+On Tue, 01 Apr 2025 12:08:37 +0200, Wolfram Sang wrote:
+> This instance has a wakeup irq defined. It is currently not used by the
+> driver.
+> 
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> ---
+>  .../devicetree/bindings/mmc/arasan,sdhci.yaml | 23 ++++++++++++++++++-
+>  1 file changed, 22 insertions(+), 1 deletion(-)
+> 
 
-With the current mainline tree, we currently get the following
-performances:
+My bot found errors running 'make dt_binding_check' on your patch:
 
-eraseblock write speed is 7507 KiB/s
-eraseblock read speed is 15802 KiB/s
-page write speed is 7551 KiB/s
-page read speed is 15609 KiB/s
-2 page write speed is 7551 KiB/s
-2 page read speed is 15609 KiB/s
-erase speed is 284444 KiB/s
-2x multi-block erase speed is 512000 KiB/s
+yamllint warnings/errors:
 
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
- arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 40 +++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml: properties:interrupt-names: {'minItems': 1, 'maxItems': 2, 'items': [{'const': 'int'}, {'const': 'wkup'}]} should not be valid under {'required': ['maxItems']}
+	hint: "maxItems" is not needed with an "items" list
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-index a6f0d87a50d8..6cc950f6dbe3 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-@@ -737,3 +737,43 @@ dpi1_out: endpoint {
- 		};
- 	};
- };
-+
-+&fss {
-+	status = "okay";
-+};
-+
-+&ospi0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&ospi0_pins_default>;
-+
-+	flash@0 {
-+		compatible = "spi-nand";
-+		reg = <0>;
-+		spi-tx-bus-width = <8>;
-+		spi-rx-bus-width = <8>;
-+		spi-max-frequency = <25000000>;
-+		cdns,tshsl-ns = <60>;
-+		cdns,tsd2d-ns = <60>;
-+		cdns,tchsh-ns = <60>;
-+		cdns,tslch-ns = <60>;
-+		cdns,read-delay = <2>;
-+	};
-+};
-+
-+&main_pmx0 {
-+	ospi0_pins_default: ospi0-default-pins {
-+		pinctrl-single,pins = <
-+			AM62AX_IOPAD(0x000, PIN_OUTPUT, 0) /* (H24) OSPI0_CLK */
-+			AM62AX_IOPAD(0x02c, PIN_OUTPUT, 0) /* (F23) OSPI0_CSn0 */
-+			AM62AX_IOPAD(0x00c, PIN_INPUT, 0) /* (E25) OSPI0_D0 */
-+			AM62AX_IOPAD(0x010, PIN_INPUT, 0) /* (G24) OSPI0_D1 */
-+			AM62AX_IOPAD(0x014, PIN_INPUT, 0) /* (F25) OSPI0_D2 */
-+			AM62AX_IOPAD(0x018, PIN_INPUT, 0) /* (F24) OSPI0_D3 */
-+			AM62AX_IOPAD(0x01c, PIN_INPUT, 0) /* (J23) OSPI0_D4 */
-+			AM62AX_IOPAD(0x020, PIN_INPUT, 0) /* (J25) OSPI0_D5 */
-+			AM62AX_IOPAD(0x024, PIN_INPUT, 0) /* (H25) OSPI0_D6 */
-+			AM62AX_IOPAD(0x028, PIN_INPUT, 0) /* (J22) OSPI0_D7 */
-+			AM62AX_IOPAD(0x008, PIN_INPUT, 0) /* (J24) OSPI0_DQS */
-+		>;
-+	};
-+};
--- 
-2.48.1
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250401100837.29792-2-wsa+renesas@sang-engineering.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
