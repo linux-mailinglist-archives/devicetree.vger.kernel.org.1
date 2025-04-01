@@ -1,112 +1,155 @@
-Return-Path: <devicetree+bounces-162392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162393-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B34BA781C3
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 19:56:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8F9AA781DC
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 20:05:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E115318877CF
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 17:57:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ACC3D7A1E3D
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 18:04:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39C6220DD43;
-	Tue,  1 Apr 2025 17:56:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50E1920CCF3;
+	Tue,  1 Apr 2025 18:05:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="lR+9llv8"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="Y8NON8IX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CEAC20F080;
-	Tue,  1 Apr 2025 17:56:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54F222046B7
+	for <devicetree@vger.kernel.org>; Tue,  1 Apr 2025 18:05:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743530205; cv=none; b=DGsgoQsBN4vDjB6IDogGE8PSgSiR/cTPUiqxrPNmXcE/Ie265qHsjklri7IPzhOnXigOTLnsu1JuNzLwuHQ8jthQqQTaNwajgNn1eKZCs04CUZmTDtrRkBzgNuJsYnL5+ivd41WhVTTQonlYkSOCr4ISOnKPcG9b2N4XIfuj8BU=
+	t=1743530718; cv=none; b=f1by/7hkz2EsvtWAkinpLIWhQJeWGGMnrJ4fxw20xWyQBU7Gltod7bNCmzy6xTEIwLK0R006V5xrEPmNT+X/PrWhE41xn31OHwqI16CxmeIslLFt3vnSjMTZa8DkBD+nDcFpPF5Z8N76F85/wiO5J5DX6uw4FZOxZMPuUc7IWew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743530205; c=relaxed/simple;
-	bh=mVPJFdz1rjfDWi6PMax3qH62bmWT7r6prnH2g2vxswM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sUvGAOPfmw8WarGNHu97j1K9xDheD6Ao9R51MwzKftV3VoBc8Tbkk3gI4ybXsl18LlBiE5VZOMNWgKLNRliyR0A861YRKd96eREqHytMN4oh6eS0CMCOPNqLoNN+MdEiNju1AtUuNwQfvYI6uIlfhECTkz4q8QnG2gb6BSBmGmU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=lR+9llv8; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=KfxG9zER/CsQbwixwWuMGqZuKg6tmfxNplTMe1b8WXA=; b=lR+9llv8f6vihnsWNFFXN2kgT2
-	TmKJLTuj5+m590+5/EvmK4ftwVdPzJU7ZcMbwmaQ+zcdfmgtYFHg8a9/MZKDM9dvFT28Ud0U7bpIb
-	14KZD+KeV+r1yDzMbCQGikAYOPrPhgHBHznbThP/DVD0aIaiC/MH7nsA2m6kf52M1/REwuxFwBFXx
-	Iyg7/FAIgE3B/+Dfu5fTuM07V/BJ8f77GpCHS8L5KD0aA5weuVnuAWeq3yniU9oYio3zHNL3jxrM1
-	FHvniiWydMdAJDLdp6CsD8rKqoS4oGpjL1+lAxXCy+lFm9n3rkFyGEsARC1DkvOltzVx3VZkwkbaa
-	WyDJIBVQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:44770)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1tzfqZ-0006l7-0W;
-	Tue, 01 Apr 2025 18:56:23 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1tzfqT-0002tR-0o;
-	Tue, 01 Apr 2025 18:56:17 +0100
-Date: Tue, 1 Apr 2025 18:56:17 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-	Andrei Botila <andrei.botila@oss.nxp.com>,
-	Sabrina Dubroca <sd@queasysnail.net>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Eric Woudstra <ericwouds@gmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next RFC PATCH v5 4/6] net: phy: introduce
- genphy_match_phy_device()
-Message-ID: <Z-wowRLfOoNX00_F@shell.armlinux.org.uk>
-References: <20250401114611.4063-1-ansuelsmth@gmail.com>
- <20250401114611.4063-5-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1743530718; c=relaxed/simple;
+	bh=p4ZAQqQjKOYzlzR10/Ir2f/KEq7r7+fJlvaawutdPuM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=l6Rx+D9LcRWsU1xkPh3QrIT6hvZj4XRPLaE8jk/xGlsNp6/bdiUcqbPjOPWLb3lEV15BPU/QRoXzXuIe6lCL7SlOgUWqn+7yfsMY5v15ehXA6WFCwCCxkVN7UBDETvuSfEiy/7dzXohBKNzl4wFlmJpJFtOHE/JpQ5DkRzuj1yE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=Y8NON8IX; arc=none smtp.client-ip=121.127.44.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1743530715;
+ bh=6BaPnjQcShc/TQj8w7bokIUcnPjhGONOza6lZPt107c=;
+ b=Y8NON8IX5EBwK6hbsR3tXv4vf4WJlQ35u/D7JmE9DqLDEA06wN5+Fc/iLX9dx3dn/8UiasMFz
+ sqtYcaxa1YHsei7vBkPZA+EmOVV1Kl9BxcAWtey3O/PXk+xhRjyIjQOznJrI87l0BI9a+9Fu0jV
+ Y5+9R5UUJ0o+iHc2GLkIMcVzHAg75v+z4Zh5iL3sGafZ46/6LOnWAn6bCs9k+8nLTgWcfjXgJvX
+ rqTQpKAHATQ9EAMZ6n7GyyBbdyCFkXvfkeBQH52N9xpjUkeO6PWoMLlS5LISm/xAAG9qThLMlCU
+ YsgD4IYoZLA9+QEyt53qCRaXkvtjX6cRFXMVNCnWNukw==
+X-Forward-Email-ID: 67ec25c900d8331c283c9f62
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.73
+X-Forward-Email-Version: 1.0.0
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <02f6e0e0-9cd8-425c-bad2-f061b601fdcd@kwiboo.se>
+Date: Tue, 1 Apr 2025 19:43:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250401114611.4063-5-ansuelsmth@gmail.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] arm64: dts: rockchip: Add DMA controller for
+ RK3528
+To: Yao Zi <ziyao@disroot.org>, Chukun Pan <amadeus@jmu.edu.cn>
+Cc: Rob Herring <robh@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250401100020.944658-1-amadeus@jmu.edu.cn>
+ <20250401100020.944658-3-amadeus@jmu.edu.cn> <Z-wj_eO6FGcwsEh6@pie.lan>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <Z-wj_eO6FGcwsEh6@pie.lan>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Apr 01, 2025 at 01:46:05PM +0200, Christian Marangi wrote:
-> Introduce new API, genphy_match_phy_device(), to provide a way to check
-> to match a PHY driver for a PHY device based on the info stored in the
-> PHY device struct.
+On 2025-04-01 19:35, Yao Zi wrote:
+> On Tue, Apr 01, 2025 at 06:00:19PM +0800, Chukun Pan wrote:
+>> Add DMA controller dt node for RK3528 SoC.
+>>
+>> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+>> ---
+>>  arch/arm64/boot/dts/rockchip/rk3528.dtsi | 18 ++++++++++++++++++
+>>  1 file changed, 18 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+>> index 7f1ffd6003f5..c366766ee3f5 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+>> @@ -493,6 +493,24 @@ sdhci: mmc@ffbf0000 {
+>>  			status = "disabled";
+>>  		};
+>>  
+>> +		dmac: dma-controller@ffd60000 {
+>> +			compatible = "arm,pl330", "arm,primecell";
+>> +			reg = <0x0 0xffd60000 0x0 0x4000>;
+>> +			clocks = <&cru ACLK_DMAC>;
+>> +			clock-names = "apb_pclk";
+>> +			interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
+>> +			arm,pl330-periph-burst;
 > 
-> The function generalize the logic used in phy_bus_match() to check the
-> PHY ID whether if C45 or C22 ID should be used for matching.
+> Should this be moved above "clocks" line to sort the properties?
+
+Not preferred according to [1], vendor-prefixed props is ordered after
+non-vendor-prefixed props.
+
+"""
+The following order of properties in device nodes is preferred:
+- "compatible"
+- "reg"
+- "ranges"
+- Standard/common properties (defined by common bindings, e.g. without
+  vendor-prefixes)
+- Vendor-specific properties
+- "status" (if applicable)
+- Child nodes, where each node is preceded with a blank line
+
+The "status" property is by default "okay", thus it can be omitted.
+
+The above-described ordering follows this approach:
+- Most important properties start the node: compatible then bus
+  addressing to match unit address.
+- Each node will have common properties in similar place.
+- Status is the last information to annotate that device node is or is
+  not finished (board resources are needed).
+"""
+
+[1] https://docs.kernel.org/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node
+
+Regards,
+Jonas
+
 > 
-> This is useful for custom .match_phy_device function that wants to use
-> the generic logic under some condition. (example a PHY is already setup
-> and provide the correct PHY ID)
+> Thanks,
+> Yao Zi
 > 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+>> +			#dma-cells = <1>;
+>> +		};
+>> +
+>>  		pinctrl: pinctrl {
+>>  			compatible = "rockchip,rk3528-pinctrl";
+>>  			rockchip,grf = <&ioc_grf>;
+>> -- 
+>> 2.25.1
+>>
 
-Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-
-Thanks!
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
