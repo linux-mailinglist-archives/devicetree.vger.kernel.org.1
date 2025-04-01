@@ -1,291 +1,229 @@
-Return-Path: <devicetree+bounces-162409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 419BEA78429
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 23:51:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC5A6A78433
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 23:55:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA6A83AD42C
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 21:50:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82EDF188EE7E
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 21:55:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D72AA1EE7DC;
-	Tue,  1 Apr 2025 21:50:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50E2D1EF0BD;
+	Tue,  1 Apr 2025 21:55:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dtcXzen6"
+	dkim=pass (2048-bit key) header.d=iopsys.eu header.i=@iopsys.eu header.b="yQXQUDmO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11023127.outbound.protection.outlook.com [40.107.162.127])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF59B1EE034;
-	Tue,  1 Apr 2025 21:50:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743544257; cv=none; b=jjhITPYvxUb4J50cEwS4XgFlef4wF1DZGRv9awEONy7ttIMfgADV2vUbLjRwxODhjYgHrIwObTt7/Q7EQxR/LIt0L3QVY3XUKPpvGFomDSkvv9ZPZgSkzQre92ZVt9SC2bE7o7y6hUTH4mHnTYsDocsqHZmkiKu2mmasSioHSYc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743544257; c=relaxed/simple;
-	bh=gmcrgRP4fA6+lKBgGEJyMoZHH6u64n1CPOLGacIyvps=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HVXP7S9CJ/mUih6scfprJ++eAGdPUD/UQk536aeD9xZxi5Fq5iZMmtbmcqmTGAhmLX71D3ByuHCJgoUjDbpjduxyFOmBzyWX/85j8RJqa6ber4ge4Q3WVvjp2W1YY+Iw9dj6aHU9zsnSYbHq5UdgJqHnizYylY4arg1he7oaIe0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dtcXzen6; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-38f2f391864so3638438f8f.3;
-        Tue, 01 Apr 2025 14:50:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743544254; x=1744149054; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=bj1Qrbt7flnOfY4sCj4gZ44wqy0H0z7fYnmzu+9/yJs=;
-        b=dtcXzen6cVf0TKY/zFHV+w+B6W5PAo0kiSRrM90PiQ+rwieeksTU0U25ZvCSKyinBi
-         0ONROyUOlG7fuY/8IOw01ljqsKS5QKwfQPLRRRYv1gEK22aVpqrd5i8mj2R+KOLd3ODx
-         +FVKuHrO0wpXhbllNXyBG4YStlRxVQSwbby3a4ZQnecilR4tcBEkWmT4tjxgmCzpx2YH
-         az8SaZG4zCITlQs6Hb49fNHvyoRAusVXAYNtSkP++xjKzFFaLMiYdsmgdtIrZn4+sjuy
-         Zb+2kvQf6ANQCtvSMt5hIJ3/4sHa+uwN1bnRUq310GQ3ho3nmmE6Ei4QbWypFk2YHLpS
-         Mz0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743544254; x=1744149054;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bj1Qrbt7flnOfY4sCj4gZ44wqy0H0z7fYnmzu+9/yJs=;
-        b=oLzg5ztnGGFuGPM7fG4Jnue/pG+F7GaVGE9fWdylRA3fiRJX18Dqixn+S/m63YSLf2
-         VoliM9SSbziSPyKALQDTFfyI+MQogu4r0b0DXTyc7loYV4YYfBR/d9Psd2whNw5lr3Au
-         iMBOdB7UT307JK1EhlvkKQDre62wzdMPdCYqgjTdxdv+9Mkho2acvCUgSuBG9TbIF2wN
-         NqGYICILPEKxF5GQiX7LWkZbkx8NXhFmeyawm8aauTXWt3RAF4EdRFwlVRcwUEaleex/
-         BvdKdb3RBf8v791mo9lFHEptRz5NOhtnnGe47FIfupc6FK9w3DdtpdT2LWYiT238rwGK
-         /FVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUIIDBcyPiWvMZwwP4BYQxdIPpwOLKPw7DolemY2/uUq6vTOGM/FssR8VkFmeOvB7G9mhUKfgQC2Z5h8NXFdA==@vger.kernel.org, AJvYcCVP8fVsZJqK4OVqb4GeaXvFqcMfYZ0pYbLyIJ4yDoNSqM5ivdJd+fJREVwRdqu5Zf/xNYHeJTbGoi5n@vger.kernel.org, AJvYcCVZaFM1RnzUY1FV3fRK/HWeu6u4zMcabs2VEPMEL6odZv0MKJ6wbZrZDb5WtN21o5TNLo3rXqbbPCrO@vger.kernel.org, AJvYcCWrzP5SAO5Rznvo1UYwKeCNxY6DNAfeyKJbuz1XYDOjorzuzFUxpxoQlErWbwctM0VsCbl28rYIpzGR2wED@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/C/Z30k6R68dAu1UZll/z72yrwPJn7Rg0d+izhtNc29ygG4Vk
-	4Tget743iqYfHMv1RxaRz5Lx3R/e4xBwvZ6kfbqLJZjxBqK3OEiUHkskX4oNhJF7VcB3jMdNHVc
-	UlhhQuNT8RWlYZ7PhxlG+pYMOcQ==
-X-Gm-Gg: ASbGncso8YeHeHuZoH1hjeEP9i9vyp58YIn6QG552gNgPIfABHvXrcaNjlYziwzZt7O
-	WhjbgcNc1b81iQJ294FUlRIGpyCcQgAdSEybB+aWItIVi6NB130cnxMBEWlXGM3Jq2u6Svbs59l
-	Yf9llceFCfvmnLsr+9c42p7tAKdQ==
-X-Google-Smtp-Source: AGHT+IH+nE3yYY238SmLUlr5Tf6eAoBkJh1OEpYZbPxT6Fmyg5IdupbyKe8C8Et2YT7E9ZscBJPT6cw5hsyNbp0w8VY=
-X-Received: by 2002:a5d:6d8a:0:b0:39c:dcc:f589 with SMTP id
- ffacd0b85a97d-39c120dd036mr13002419f8f.20.1743544253818; Tue, 01 Apr 2025
- 14:50:53 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD9E11DF258;
+	Tue,  1 Apr 2025 21:55:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.127
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1743544530; cv=fail; b=ImCUAgtNqMMu6+YCDqRuhVboPfdi5NeIaD1JMldtBZSWajRqWadTHDnkHTFg/kMGTwMeD3bViXHANTnX17x0K3gwd7qsh7FyuDKG0HM3Cze7DgXH2cnGtv/G4gwRWu2ngWGaE4S/P0uEDx2l2vqR3f1ueG7gVfxOZ3gtDTXA0ZA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1743544530; c=relaxed/simple;
+	bh=0D74nxs8k5zJdqw8PAxqjrZSmrkIF9WueMHxWHcE23I=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Is3C5n5cCVGUPgCwlgGq7SdHsHNl4r1glLuYLh+BOHKr9UIJHIIDZ8Ni1OdR7zXNy3c68B3FOpVPqA8eNldGY8lKGIOt/tK/jKSksOStfrIvvh83JzACld3AMX7QbgR4JZP5Wap05J9Jt64SdPLp28ui8vhuZCpW1YVUfyj1v0c=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=iopsys.eu; spf=pass smtp.mailfrom=genexis.eu; dkim=pass (2048-bit key) header.d=iopsys.eu header.i=@iopsys.eu header.b=yQXQUDmO; arc=fail smtp.client-ip=40.107.162.127
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=iopsys.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=genexis.eu
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bCETVRyykK1Gqm7Yjr0WCaZ35no/61ivJVrxtuMcdyob5XgDFCMcnq1hsRzd/vKe9zJtXtGnqFGvE5lbH8FQciNTgJuso7iz+9SiXiipfG7FKvPVovIwGXKmyZl2e+CrCYRhg2WjgHoaFPiUt2JEeDnLHjJBRKjWW0OSXEzF6W4FfjWzeJ1jVJq2xNYD47nAnYM710ci/MFiZn6faA9xH2LIsbu7hX+xTOgH0Qab6q6Jaq+/gl/qOVKJRK0KOHTJU9tj4/eq5+gJ6Mn+gQH8JwUqYuq2Fy93WhdG3CCfNISd7AEU+XypuykFR3R1DGa/lnDoGu2PqvawcsZbG5lDSA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QLyk3UzaLGvBhsHU8wI4wALNc+oNV8Vwedg8RKLIl2E=;
+ b=oQNVLCHIe0ZPB7P3n6CW3DwlNQngHLwE4dQenDjYmt33gbP34gyiFPW9hEEm6nYGYDinItwHLDfRjvrKERzALVuxataCe8bOoKesJ9Dbdz0UK20TUAz72/IPYXGZRD5/DHXNHgbwWHgHbWo9CGHv7UvsZDLEHIS70S6Tu/OexRE1A0LfPcvNePa2ExqMznMP7ZDoaWCYE957aorhmTbLF/omiD5lSyABCOHcqMs5j5eD2U8UqyBdNh4NU2Iodhq+aw31W9Xoi5TYIHB7iIHdLcwyXIFU3OnhC17dcAj3Hq+HnZjJ32/SkJjVXv/iceC7Qpk5iWHXHKfjxwCys6mnkw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=genexis.eu; dmarc=pass action=none header.from=iopsys.eu;
+ dkim=pass header.d=iopsys.eu; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iopsys.eu;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QLyk3UzaLGvBhsHU8wI4wALNc+oNV8Vwedg8RKLIl2E=;
+ b=yQXQUDmOKA3ypiYrWK3+OVkQOiqUW7XaNSvw0LGHryhPGX6c38rGp8detmDworzBge3FqLUILi9TdzgkgRGcU29IbnbzZj+DorUeqUKAirqSj2FS7PDi4ukylSjib47EGi57vSxaycwWEykRy9lKhCGiMjefC6ac+kcNqyfLI6MVex+sZFxkDsEgu6t7+JIauqceIonBwc65K4BRwFhNkzJxfrcIaB1SRYXNfSemhswb6v3pfB5CStZ6IPCi/SmyjuLiNMTDoRmp8g/eBb2Z2VVpUQ3ORP8aS/x/6h2+mZy1z7ZO1FwNwgqwXaiwxKwGVOB52chl/emLhdi4hsBVCA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=iopsys.eu;
+Received: from GV2PR08MB8121.eurprd08.prod.outlook.com (2603:10a6:150:7d::22)
+ by AS8PR08MB9979.eurprd08.prod.outlook.com (2603:10a6:20b:633::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8583.41; Tue, 1 Apr
+ 2025 21:55:22 +0000
+Received: from GV2PR08MB8121.eurprd08.prod.outlook.com
+ ([fe80::4cd3:da80:2532:daa0]) by GV2PR08MB8121.eurprd08.prod.outlook.com
+ ([fe80::4cd3:da80:2532:daa0%4]) with mapi id 15.20.8534.052; Tue, 1 Apr 2025
+ 21:55:22 +0000
+From: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>,
+	Frank Wunderlich <frank-w@public-files.de>
+Subject: [RESEND PATCH v2] arm64: dts: mediatek: mt7986-bpi-r3: Change fan PWM value for mid speed
+Date: Wed,  2 Apr 2025 00:55:14 +0300
+Message-ID: <20250401215514.1944552-1-mikhail.kshevetskiy@iopsys.eu>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <trinity-2fa9ed21-07af-4fbf-a20e-32684dabdd82-1743507920209@trinity-msg-rest-gmx-gmx-live-5779db864f-xlr59>
+References: <trinity-2fa9ed21-07af-4fbf-a20e-32684dabdd82-1743507920209@trinity-msg-rest-gmx-gmx-live-5779db864f-xlr59>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: FR3P281CA0058.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:4b::19) To GV2PR08MB8121.eurprd08.prod.outlook.com
+ (2603:10a6:150:7d::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250331215720.19692-1-alex.vinarskis@gmail.com>
- <20250331215720.19692-7-alex.vinarskis@gmail.com> <ef783edb-c966-4ef7-b496-564420c1b852@oss.qualcomm.com>
- <CAMcHhXq8kjsbDGHBn=63JutD1TcD6=KVxCQtPHRoLOwE+FY-sA@mail.gmail.com> <93f916d1-83b9-41c0-bb05-a785fb730088@oss.qualcomm.com>
-In-Reply-To: <93f916d1-83b9-41c0-bb05-a785fb730088@oss.qualcomm.com>
-From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-Date: Tue, 1 Apr 2025 23:50:42 +0200
-X-Gm-Features: AQ5f1JrU_u_uQLps4ycNd1PU0smu4anSzKOXyBaWJwfxWAxm7Svz7wvxve828dc
-Message-ID: <CAMcHhXqbQ-6SLotNfQDStr5B0KAMxFRuSiLnjdg+UrtqA1phXw@mail.gmail.com>
-Subject: Re: [PATCH v1 6/6] arm64: dts: qcom: Add support for X1-based Asus
- Zenbook A14
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Dmitry Baryshkov <lumag@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Abel Vesa <abel.vesa@linaro.org>, 
-	Johan Hovold <johan+linaro@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-usb@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GV2PR08MB8121:EE_|AS8PR08MB9979:EE_
+X-MS-Office365-Filtering-Correlation-Id: daa27a51-1e9f-44ad-5b56-08dd7167e6a1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|52116014|1800799024|366016|38350700014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?rMIQYwoWi3axQWGQXGpOlA8T0cT76H8wSUnJ9cTr7q5jpRwWcm0XoixzyVPM?=
+ =?us-ascii?Q?M69Bcv8YAmWIRunoXt/bhrrd3JI92/Iqxni5KGThr1hL9XkQVS9Nb0skTdaj?=
+ =?us-ascii?Q?myT0CQ6QN7qjH3BqfPBF9T/S+MvdiiFWF8DQ43E1UaG+KipiKENNDWZlqCDN?=
+ =?us-ascii?Q?Y5Otp0BUW4g2JSLCkE7Y/hBOdW18lDviQTaFSYAEZeINYcEHfKXPAsBmOagD?=
+ =?us-ascii?Q?MGOND7gQNBU5eOpDV7KUJwDlFWlOSymjyfUZHpgSbUcdxjDoqb4MNxBAflnm?=
+ =?us-ascii?Q?JzZo26qYMe8cKaoUfol8Zutasx+J4ugGw6y/rc0jtUMIezyP+aqgtrSXKbfc?=
+ =?us-ascii?Q?shIkMi3ERbVIad1iwzmZSAKPoCRgUWy+VIOpkaVv9EJfmTlBHmKimR4LSQny?=
+ =?us-ascii?Q?GJmvQim1JtMQeYdWQ8ArUrTZCf02IbId1RI8ZR2qbPIXXNfxf5Ri4bSUjYrd?=
+ =?us-ascii?Q?ym0DH8uE/UAtE0dSNSHaYhEna4wDJYpnzEhnJRDPNo5FF/+bwNJPaZOX4Ypx?=
+ =?us-ascii?Q?7INL0TjQsLirD71z8BpfHevpTRXvAE+7jKqT9Wm5+hrIRK1WIV/ZyhlFopMz?=
+ =?us-ascii?Q?++3pXUged+OaWDY2HuzT1eOOYC8PSltPz3AzrkXSqt0rpAu4ZW4L/rHoVzQp?=
+ =?us-ascii?Q?wRn+qGeCKECxLSURwM2fpg9pVFsr3Yx7wBhP0pmd/wRIToLkEiTCtR51bN3v?=
+ =?us-ascii?Q?Fmn9Zc+2UjJDhdxba2eqcyHZgy11MgMyeYeYXIkbC+HrlSZPKCikvJrx7Wlf?=
+ =?us-ascii?Q?WK92CBT5Li+IYweA3I8rJklXF0NBfx3WSocr6VY1jim1Wk2IfZz1IdpFHKHn?=
+ =?us-ascii?Q?txdJ/SDsEct7jX3AEyxTwTVDjeNojDdxrctajriAOpzQqIXaRmTcNwvXSNFQ?=
+ =?us-ascii?Q?sHyOG/xGOmHscufbA5G6WS+5AXt+vS5vJJQAKD0LgEeUtx2DbvR2lFuK63Hn?=
+ =?us-ascii?Q?/xI7tB6hhc5cqZUeKCWIXbE63lYuxzjRC190Ta62PRchYpAqk1XRS7yoLA8d?=
+ =?us-ascii?Q?8gIodZzzEj/87Q9Iu617/MhFRJNWtx3edrVKitWevXeWI9J10vzewDSZRUoZ?=
+ =?us-ascii?Q?R+/5jdaiEU04W8/0GanMA7sFy1AqmzMkt1WAFwPtUq1kvm3aCfeVMkG4+NEh?=
+ =?us-ascii?Q?480T3VN5xeZzzqYdtxBFUA3vqfJulGN2TkRdFmioHclaQIchZkjV6LI+gux6?=
+ =?us-ascii?Q?g2JmaVTJxo63aQtL5KNa1ryR9O4KTwwB0SCz7gwCWF3vhGq7NGY+P9cRQ+hx?=
+ =?us-ascii?Q?L/iOBC4uCbqeryJB/dz8LsT8uTJDgObHQ+2cWNYt57JdhSUNLoP+mgU+cp3o?=
+ =?us-ascii?Q?VHF3go0+d5G0MGWlL4UWavAFXLNxVIhAFTdt39j58QQmGdOhUY1fPy6yftaq?=
+ =?us-ascii?Q?vSDbTzIKN3PASS0Uc4CjrICSw6uqSwsbMLOCBWbM/twLUFpzz0zig7bv96zj?=
+ =?us-ascii?Q?+amVIOh369dyo7b9Y0UEPIUUzyP+JMhHDUwqLpxfoWWdWsNj9k4euQ=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR08MB8121.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(1800799024)(366016)(38350700014)(921020);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?SnBFLbpm/GUkvj9ZQ0HHxfwVn+VasA9CRRfgFZJbP+NrzKeThKNLrv+vJ9eU?=
+ =?us-ascii?Q?jOrlGOskLNpnpnqbjPD8P5YmPxfJG15J/B8qgbsNi4HrqwEYIg25BpT6MyxP?=
+ =?us-ascii?Q?OZHi1O63lw4vvFF4/GEORKKKj7dEXDYioC3NdlX3zXE9510PJ/EoyCrLJ47l?=
+ =?us-ascii?Q?ccAd5AUSDZqJQ1oAuQtN58q2MDbPJcbvovFdQFtdNcpMBIfkSw/e5PyPsv9c?=
+ =?us-ascii?Q?lkk/nRj7xE13hnnvXFKd/Qbrp3oSdh4qBFFHcbvhA2XircYwlxN75btN4y0K?=
+ =?us-ascii?Q?W6LcSwEJCF5iZ6a7wPnN1WdpC0OVGPPcmehCJV11zZGhE5CorSsaaT/HAKJy?=
+ =?us-ascii?Q?lmjKtEWnjRX8qoBTnL9hsq8ox8QtSN8WROLUvzbK3ZoFqeoa5dbuQSH44+o0?=
+ =?us-ascii?Q?t/vobEI8b8ESlaRcxr8qFB9ZYyBScTp18FBu5ikIbZHW5F+b6h1OFFAIHInT?=
+ =?us-ascii?Q?IJsnaLAm4jrxYNkPRJwxs4xSyh2ZdFpMTrb1L2YUmdql07jPKvmz3qYxqFXx?=
+ =?us-ascii?Q?Xa6pMWclceJRGAWaimQpEQxbPdBcliMYKRjOyiWV/qimKPoHeBTKwtGGaCgX?=
+ =?us-ascii?Q?qb9tdgTB7L0jrokecB0Txx7zxOpXUL/58NaZR6jSPMVBFr7eDWTZKgfVrf/9?=
+ =?us-ascii?Q?ZGoxgIl53Q/LstkKhxU+YwdvVqf9B2wZkh97vTpXjx7fvpfI80SIVanJpLFv?=
+ =?us-ascii?Q?AkdqPD/+8zE46rG0WAj6tDkvIswVCJbTdDIjeOd40Le1B51RohRjEufODKTT?=
+ =?us-ascii?Q?g8vR0Ih5/5zKA6nonlb3zspS95GhU5LwAZr5m1PQYWxSSEWv4HdjxEcLiSEK?=
+ =?us-ascii?Q?irI51DubMnNRllO6Ya5Xx7UFUPDN8WOr/6bCuPxEtNGvCYrl0x/tJ4TjZKVI?=
+ =?us-ascii?Q?b/TRqTiOTeqmQYrY5y1bOqIlnN0FQFJhfmeJVEKIdE6Ho8gzPUtXT2tfOK0p?=
+ =?us-ascii?Q?f0DB/mc4L5A9adRaDOxAUrKODKHMbv5VGYO8uSddbMngdGNGK+bA/bq+6yLj?=
+ =?us-ascii?Q?SrofCq8i5UWN3gJZypb/rZh/gueYbv3/ZM+IOmlzJFe+Sb+RhIqahwKwnv2b?=
+ =?us-ascii?Q?gBVg1xRVOM8hZK954qvf3KXcDfSq6uqGnNrLDkacFtrNH4SoX9nFyk6fhUxf?=
+ =?us-ascii?Q?xqcUwuclA63jswR+bGtRKVkDzxq1Bh2g+vcqqlannx9cjqTln+YtzQDVhVUS?=
+ =?us-ascii?Q?4lzPB3SaWACxQPnXIkqZiroQsGXgWEJKbcIjFDrim/87qLYCvlD1ua8xpqjE?=
+ =?us-ascii?Q?pORwWGLum5/YhZqdJPliJmdzDr01y+zZlTg5PAi2K8O7+9z5yfijSf9kyRNA?=
+ =?us-ascii?Q?yrXiyXmHFtmsnvH9J9zlnBI9UyqjRt7jKheuQ9VOdEvTvXJJOmNV54+a3QiH?=
+ =?us-ascii?Q?3V1WKFeCDK1cU4A2yfocMJ1QSC+B3yHGLDi+EVOfhGu9ssd5nsqw8WM2ae4G?=
+ =?us-ascii?Q?C2it5cbLpjZbsPD2G5gEtE+vwPDPcZHx48Lpkmeqflx/CzFzqAz0zhGhV7nQ?=
+ =?us-ascii?Q?ghdY+4fTB0DdZ7opbJonOfj5J3kDFRgATkWD2LEFZDxsHUZYol8TgCciAYdq?=
+ =?us-ascii?Q?1hTli5Zo+5x1p+b/OP7alo1Ay67nKvR3miIu8f5662JUAQSRBzhQpem/pfoz?=
+ =?us-ascii?Q?4fHpUdghnMJPMdM2UHAr494=3D?=
+X-OriginatorOrg: iopsys.eu
+X-MS-Exchange-CrossTenant-Network-Message-Id: daa27a51-1e9f-44ad-5b56-08dd7167e6a1
+X-MS-Exchange-CrossTenant-AuthSource: GV2PR08MB8121.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2025 21:55:22.3996
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8d891be1-7bce-4216-9a99-bee9de02ba58
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: SZXCQBUc9XmNMicOpBcy4XFnG8xjl18nFJ78Q72ZCaHqMmsupjXePHBTQ1VOvbsdZhHkBRREudlRzBQAGV+8Xs4JIP9utckvI1Hn2XaQQB8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR08MB9979
 
-On Tue, 1 Apr 2025 at 23:15, Konrad Dybcio
-<konrad.dybcio@oss.qualcomm.com> wrote:
->
-> On 4/1/25 8:05 PM, Aleksandrs Vinarskis wrote:
-> > On Tue, 1 Apr 2025 at 17:59, Konrad Dybcio
-> > <konrad.dybcio@oss.qualcomm.com> wrote:
-> >>
-> >> On 3/31/25 11:53 PM, Aleksandrs Vinarskis wrote:
-> >>> Initial support for Asus Zenbook A14. Particular moddel exists
-> >>> in X1-26-100, X1P-42-100 (UX3407QA) and X1E-78-100 (UX3407RA).
-> >>>
-> >>> Mostly similar to other X1-based laptops. Notable differences are:
-> >>> * Wifi/Bluetooth combo being Qualcomm FastConnect 6900 on UX3407QA
-> >>>   and Qualcomm FastConnect 7800 on UX3407RA
-> >>> * USB Type-C retimers are Parade PS8833, appear to behave identical
-> >>>   to Parade PS8830
-> >>> * gpio90 is TZ protected
-> >>
->
-> [...]
->
-> >>
-> >>> +&spi10 {
-> >>> +     status = "disabled";
-> >>> +
-> >>> +     /* Unknown device */
-> >>> +};
-> >>
-> >> Does the device crash if you enable this bus? Keeping it 'okay' would
-> >> make it easier for folks to poke at it
-> >
-> > It does boot just fine, but does not initialize:
-> > ```
-> > geni_spi a88000.spi: Invalid proto 9
-> > ...
-> > qnoc-x1e80100 interconnect-1: sync_state() pending due to a88000.spi
-> > ...
-> > ```
-> >
-> > I only quickly checked that 9 is indeed invalid state, iirc should've
-> > been 2. But haven't looked deeper into it, so left it disabled. So I
-> > thought best to leave it off for now. Unless you prefer to drop it
-> > altogether?
->
-> That means this QUP is configured to work as a QSPI host, which is not yet
-> supported upstream. I looked at the DSDT you submitted to aa64-laptops, but
-> there doesn't seem to be anything connected there, perhaps it's loaded at
-> runtime. Since your keyboard and touchpad work, maybe it's a touchscreen?
->
+Popular cheap PWM fans for this machine, like the ones coming in
+heatsink+fan combos will not work properly at the currently defined
+medium speed. Trying different pwm setting using a command
 
-Indeed it is just defined without anything attached. I am suspecting
-it also may be just leftover, won't be the first one...
-No, this particular laptop doesn't have a touchscreen in any of the
-three screen configurations announced.
+  echo $value > /sys/devices/platform/pwm-fan/hwmon/hwmon1/pwm1
 
-It also does not have a fingerprint reader, nor hardware TPM2.0 (yet
-SPI11 typically used for it is still TZ protected :). EC seems to be
-over i2c5. Asus's touchpad supports some fancy gesture controls, but
-there is in fact another 'extra' hidraw device 'hdtl', I assume that's
-the one. No sdcard reader.
-Only other still unsupported features are audio (i guess unlikely that
-they used different smart amp?), camera (ov02c01, pm8010, so also no)
-and DP-HDMI bridge PS185HDM, which from what I can guesstimate is i2c.
+I found:
 
-So I am a bit out of ideas of what it could be...only thing that comes
-to my mind is headphone jack smart amp, ifff they did not use qcom amp
-one there as well?
+  pwm1 value     fan rotation speed   cpu temperature     notes
+  -----------------------------------------------------------------
+    0            maximal              31.5 Celsius        too noisy
+   40            optimal              35.2 Celsius        no noise hearable
+   95            minimal
+   above 95      does not rotate      55.5 Celsius
+  -----------------------------------------------------------------
 
->
-> >
-> >>
-> >>> +
-> >>> +&tlmm {
-> >>> +     gpio-reserved-ranges = <44 4>,  /* SPI11, TZ Protected */
-> >>> +                            <90 1>;  /* Unknown, TZ Protected */
-> >>> +
-> >>> +     bt_en_default: bt-en-sleep {
-> >>> +             pins = "gpio116";
-> >>> +             function = "gpio";
-> >>> +             output-low;
-> >>> +             bias-disable;
-> >>> +             qcom,drive-strength = <16>;
-> >>
-> >> drop "qcom," and please keep the order of:
-> >>
-> >> pins
-> >> function
-> >> drive-strength
-> >> bias
-> >> output/input
-> >>
-> >> as you did below
-> >
-> > Will do.
-> >
-> > Should I also drop 'qcom,' from the 'misc_3p3_reg_en' and adjust order
-> > the same way, or that one is somehow special?
->
-> Sort of. &tlmm and &pm8xxx_gpios use two different drivers, each one
-> of which has slightly different expectations about their subnodes.
+Thus only cpu-active-high and cpu-active-low modes are usable.
+I think this is wrong.
 
-Ah I see. Okay, will fix the order, but will leave `qcom,` as is.
+This patch fixes cpu-active-medium settings for bpi-r3 board.
 
->  >
-> >>
-> >>> +
-> >>> +/ {
-> >>> +     model = "ASUS Zenbook A14 UX3407RA";
-> >>
-> >> There's no strict policy, but variants usually go in braces
-> >
-> > Parenthesis I guess, "ASUS Zenbook A14 (UX3407RA)" ?
->
-> Ugh, yes!
+I know, the patch is not ideal as it can break pwm fan for some users.
+Likely this is the only official mt7986-bpi-r3 heatsink+fan solution
+available on the market.
 
-Sounds reasonable and looks a bit better, will update.
+This patch may not be enough. Users may wants to tweak their thermal_zone0
+trip points, thus tuning fan rotation speed depending on cpu temperature.
+That can be done on the base of the following example:
 
->
-> [...]
->
-> >>> +
-> >>> +&gpu_zap_shader {
-> >>> +     firmware-name = "qcom/x1p42100/ASUSTeK/zenbook-a14/qcdxkmsuc8380.mbn";
-> >>> +};
-> >>
-> >> This file is not going to work on this SoC, you can drop it
-> >
-> > I guess it would need a different firmware name? If yes, can we
-> > already add the new name, such that once x1p42100 gains GPU support it
-> > will get enabled 'automatically'?
->
-> The filename is different indeed. You can add it, as currently this
-> property is not yet consumed by anything, anyway.
+  === example =========
+  # cpu temperature below 25 Celsius degrees, no rotation
+  echo 25000 > /sys/class/thermal/thermal_zone0/trip_point_4_temp
+  # cpu temperature in [25..32] Celsius degrees, normal rotation speed
+  echo 32000 > /sys/class/thermal/thermal_zone0/trip_point_3_temp
+  # cpu temperature above 50 Celsius degrees, max rotation speed
+  echo 50000 > /sys/class/thermal/thermal_zone0/trip_point_2_temp
+  =====================
 
-Just checked, should be the `qcdxkmsucpurwa.mbn` then. Will update it,
-thanks for confirmation.
+Signed-off-by: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
 
->
-> [...]
->
-> >>
-> >>> +
-> >>> +&remoteproc_adsp {
-> >>> +     firmware-name = "qcom/x1p42100/ASUSTeK/zenbook-a14/qcadsp8380.mbn",
-> >>> +                     "qcom/x1p42100/ASUSTeK/zenbook-a14/adsp_dtbs.elf";
-> >>> +
-> >>> +     status = "okay";
-> >>> +};
-> >>> +
-> >>> +&remoteproc_cdsp {
-> >>> +     firmware-name = "qcom/x1p42100/ASUSTeK/zenbook-a14/qccdsp8380.mbn",
-> >>> +                     "qcom/x1p42100/ASUSTeK/zenbook-a14/cdsp_dtbs.elf";
-> >>> +
-> >>> +     status = "okay";
-> >>
-> >> Are the DSP firmware files actually different between the two?
-> >
-> > CDSP is the same. ADSP blobs to my surprise are different, both '.elf'
-> > and '.mbn'. But like I wrote in the cover letter, perhaps Asus just
-> > forgot to update adsp firmware? Though according to changelong on
-> > device pages [2],[4] both have "ADSP Driver : 2.0.4135.0200"
-> >
-> > Compared by:
-> > * Downloading UX3407QA's drivers [1], from the device page [2] and
-> > UX3407RA'a drivers [3] from the device page [4]
-> > * Extract and flatten with `7z e filename.exe`
-> > * Compare via `md5sum *dsp*elf *dsp*mbn *dsp*jsn`
-> >
-> > Though, even if the blobs would be/will be the same, I think it is
-> > still beneficial to define firmware path per model, as this makes
-> > firmware extraction from driver/Windows partition and placement much
-> > easier. Unfortunately, as it seems so far, most of the devices besides
-> > Lenovos are not having firmware upstreamed, so this is pretty
-> > relevant. Eg. Ubuntu already has 'firmware extracting tool' [5] (draft
-> > MR to include Zenbook as well), I'm guessing other distros have
-> > something similar, though I haven't followed up.
-> >
-> > On the other hand, these tools could of course get path from device
-> > tree directly, eg. via `cat
-> > /sys/firmware/devicetree/base/soc@0/remoteproc@32300000/firmware-name`,
-> > then having all the blobs for the device in one location is less
-> > relevant...
->
-> More importantly, different blobs may (but don't necessarily have to) include
-> different, hardcoded expectations about the board (or platform) they run on.
-> So let's keep them separate.
+---
+Changes from v1 to v2:
+ * improve patch description
+---
+ arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Ah okay. Perfect, keeping as is.
+diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
+index ed79ad1ae871..b0cc0cbdff0f 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
++++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
+@@ -42,7 +42,7 @@ fan: pwm-fan {
+ 		compatible = "pwm-fan";
+ 		#cooling-cells = <2>;
+ 		/* cooling level (0, 1, 2) - pwm inverted */
+-		cooling-levels = <255 96 0>;
++		cooling-levels = <255 40 0>;
+ 		pwms = <&pwm 0 10000>;
+ 		status = "okay";
+ 	};
+-- 
+2.47.2
 
-Thanks,
-Alex
-
->
-> Konrad
 
