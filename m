@@ -1,99 +1,75 @@
-Return-Path: <devicetree+bounces-162354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA881A77FD5
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 18:06:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC359A7803B
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 18:24:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 13769188CEAC
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 16:06:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B1B23B2644
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 16:20:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1E3D20AF7B;
-	Tue,  1 Apr 2025 16:06:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6034821128D;
+	Tue,  1 Apr 2025 16:13:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="HT+/RRcA"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="jhRQUPTO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2049.outbound.protection.outlook.com [40.107.92.49])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 408F41FC0F3;
-	Tue,  1 Apr 2025 16:06:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.92.49
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743523570; cv=fail; b=pPcuUolXG51uS6WkdjMbfRTG+3RQIPmR8rfdp06ofFXABzblakZ/mdUy7Gt6CcIERRvgTuJ3DKrnoo2KdfH1dzbt/AubS5cgfoAHl4kGd85aqKMwAPoXEX33bftK6Q5j3ddGrau29CFO38q/74FZpIARkmgpqlfeSNdCi/WCWbs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743523570; c=relaxed/simple;
-	bh=upn/wCjFcEZNInzTiQAvaLyJZt6OVX+ehIgEkx2X2rE=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=O75I6wURZxYV7J6hy3/iaedgq4Q59jYNFQB5scjFRsAUwh0d8qYcyqF+DJCh4+8qHA09k3kBw95N9/+jorwtUNbywpih+0agWdazv4wBEHyzjM3NbUgANd3cdIvzTM+47kZJRP5BrGK7lq6S3arwhWlPTYc8gYfOfPdrnkhLPFM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=HT+/RRcA; arc=fail smtp.client-ip=40.107.92.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=m6bFuTPrB1b0EOKxz4FOGq1Qkzb+zo4LmylRGCAAx7F1e8rYq2PNKHDCQU/vB7t7SmnVOlwibbPTZGZ1Smn+Rg4TG0UZ+pTMWhzezkVrd3wdlWNgsx6IidDTsQ5vhBBhoLKi1CiFWtHn0sBRDCydc/SeZD9BMpPDVzi5ZnAWqEpJYN/T+c8cNtkmYLZnzxudXUHjf8kMRn84fXrLcui2ViLZPDLchAyWL/olCKNDw/Lu/t+5zoFwjDUSdY49VSVIgExTyKQUJOskUv+bZJStDwVEbzS0oQgTihTwt4S02x81p/Uj+sHltDw+8cU+X2G3iV9MMUfyhkwVNHFb8JqLBw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cexKPN6R9+KKQb6rMvVCqOTaSLaGQSEC1N4bRKEa7S0=;
- b=BivmjUUPTFLDtD/d7dI38Qfz8fFAKx0S2owmo60jv1Xu1jXwM4R7mFoqkqnxvfWWurVBowjAyd+ITmY7ycAib5g+8oCQQc8ZXOVwAPOKNksJFOrMkeDr9nqXxr7QsrJrytajrbjx76+tO1+oxYYdmDBM/wmXWYkrAUTUNiKnQZ2e8MAKzHnHl92O2+xeIVYwHPLk7kgoJY/muK/xh94O4Gd5BP+MzUv7SBcE1TvBKMpX+M1SKBV/wRgzVrY4Hs4OqUtkVYKU7/gPeCUK0/SSEIkwvKSlG/9P2Kc/WBZcfyV1GZTk6SkF+Pfs0F/K953Kv9ybxotPWAB8sIJTx3sAXQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cexKPN6R9+KKQb6rMvVCqOTaSLaGQSEC1N4bRKEa7S0=;
- b=HT+/RRcAR4aW2f3WcNxv7q1pxGgSDHniAPoRLoyGLkIrJURAm/zCw0BRQW5sedSiv2Yc5B11b7gvd2QRBAXgiXjotEO2TNwqggoZNMIp5DJPGORcpzpTsO+MdAn95Vr6WoRYzzt7PqE0z6DQENdNWoYfA1q6In2egXUwAkfGr6uRtiiXw+kruLBNS18SESgqqJAlAsdVusJc6P1bTLtI7COqXq1v+WWnDNJJmBedhss5J+UnY0BT3qgj7I0x/d5wNTNUwIiuohTb2asEh5jK6kTvDdLBMi01+8ThUx8nXFBrP+fW3HiKyHoLz/WuOlhSM0dK5OEsDk0nPId6P8Wa2w==
-Received: from CH0PR08CA0010.namprd08.prod.outlook.com (2603:10b6:610:33::15)
- by DS7PR12MB5912.namprd12.prod.outlook.com (2603:10b6:8:7d::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.50; Tue, 1 Apr
- 2025 16:06:06 +0000
-Received: from CH2PEPF00000140.namprd02.prod.outlook.com
- (2603:10b6:610:33:cafe::41) by CH0PR08CA0010.outlook.office365.com
- (2603:10b6:610:33::15) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8583.39 via Frontend Transport; Tue,
- 1 Apr 2025 16:06:06 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- CH2PEPF00000140.mail.protection.outlook.com (10.167.244.72) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8606.22 via Frontend Transport; Tue, 1 Apr 2025 16:06:05 +0000
-Received: from rnnvmail203.nvidia.com (10.129.68.9) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Tue, 1 Apr 2025
- 09:05:46 -0700
-Received: from rnnvmail203.nvidia.com (10.129.68.9) by rnnvmail203.nvidia.com
- (10.129.68.9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Tue, 1 Apr
- 2025 09:05:45 -0700
-Received: from willie-obmc-builder.nvidia.com (10.127.8.10) by mail.nvidia.com
- (10.129.68.9) with Microsoft SMTP Server id 15.2.1544.14 via Frontend
- Transport; Tue, 1 Apr 2025 09:05:45 -0700
-From: Willie Thai <wthai@nvidia.com>
-To: <krzk@kernel.org>
-CC: <andrew@codeconstruct.com.au>, <conor+dt@kernel.org>,
-	<devicetree@vger.kernel.org>, <dkodihalli@nvidia.com>, <gpiccoli@igalia.com>,
-	<joel@jms.id.au>, <kees@kernel.org>, <krzk+dt@kernel.org>,
-	<leohu@nvidia.com>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-aspeed@lists.ozlabs.org>, <linux-hardening@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <maryang@nvidia.com>,
-	<openbmc@lists.ozlabs.org>, <robh@kernel.org>, <tingkaic@nvidia.com>,
-	<tony.luck@intel.com>, <wthai@nvidia.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: arm: aspeed: add Nvidia's GB200NVL BMC
-Date: Tue, 1 Apr 2025 16:05:45 +0000
-Message-ID: <20250401160545.315380-1-wthai@nvidia.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <f563b33e-f552-4a3c-bb45-6b7add876fdd@kernel.org>
-References: <f563b33e-f552-4a3c-bb45-6b7add876fdd@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A68E820D4F8;
+	Tue,  1 Apr 2025 16:13:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1743524009; cv=none; b=QFvj57Ci/BGNLcYzwqKYG+EJTsKDNwY2QHAjIDbHZAU5mCwwE6h8DCc/9Q0pioMgYqITh1lJUAKX2kwlNx83g4hWhcCrftt5GxbpfE4rG0GMXrQYcQIM18QhY2RQMlLA29+ch/jMAXZZlOorOU0NRAkf/+5jTz0umWzozkXl4eU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1743524009; c=relaxed/simple;
+	bh=oSwJs4scoL8ULhTOhuRgce9k9EhyWpP90w5Fz+liDCo=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=K6CFnKe/J7ki/HgQLd++Gv+KMI7PBwMP8cu8OAWVxZ9G3XQ8k86f5Iy+VInXfDLuGzIy/7eIquZ2xEFZ2wAoEr7xUnU6D97j2K60DeUKly7Tc5RnK0ttfJO7entDj8HptgYv3aZtdbs5QFBwqdTVSHMUwMuqV4dkuqws2YHjYbo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=jhRQUPTO; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1743524007; x=1775060007;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=oSwJs4scoL8ULhTOhuRgce9k9EhyWpP90w5Fz+liDCo=;
+  b=jhRQUPTOpmJIrU5FW5z3G4Mk/6MUJXlUxUZn+ItYqMfqi5geR/WI1aRh
+   lzSfEUo55TOjy1fVle7+TwJ/lqeS1W5p5qXALSqNaXELXeQd8nk082BvM
+   MHhJ5ggFQT9c4YZHmECq3+UIOAZ0FX5O90MGLznSkXgb7uLT6w1ogWpFS
+   km4PXL27oufKrt+YIUtf6zEDOunDAcHwjw/PeBCZkk3Pn9UDhRysg/hLO
+   HcIc2Vbe3G0rEixpXX1BIeQ/oETLmTiIqZvelCqdMWYvPcWxa5yDUruOP
+   sc1leSVPbsoUYXDb2A6z+iytJRs00DSq8ZrHaJ+sLTCnzrDIx1WsypZqH
+   A==;
+X-CSE-ConnectionGUID: ggLzNIpETriZ0zPViMY9HA==
+X-CSE-MsgGUID: rWQOGm/mQu2gEKSfpww8yQ==
+X-IronPort-AV: E=Sophos;i="6.14,293,1736838000"; 
+   d="scan'208";a="39512774"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 01 Apr 2025 09:13:21 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Tue, 1 Apr 2025 09:13:01 -0700
+Received: from ryan-Precision-3630-Tower.microchip.com (10.10.85.11) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2507.44 via Frontend Transport; Tue, 1 Apr 2025 09:13:01 -0700
+From: <Ryan.Wanner@microchip.com>
+To: <andrew+netdev@lunn.ch>, <davem@davemloft.net>, <edumazet@google.com>,
+	<kuba@kernel.org>, <pabeni@redhat.com>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <onor+dt@kernel.org>, <alexandre.belloni@bootlin.com>,
+	<claudiu.beznea@tuxon.dev>
+CC: <nicolas.ferre@microchip.com>, <netdev@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, Ryan Wanner
+	<Ryan.Wanner@microchip.com>
+Subject: [PATCH 0/6] Enable FLEXCOMs and GMAC for SAMA7D65 SoC
+Date: Tue, 1 Apr 2025 09:13:16 -0700
+Message-ID: <cover.1743523114.git.Ryan.Wanner@microchip.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,66 +78,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-NV-OnPremToCloud: AnonymousSubmission
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PEPF00000140:EE_|DS7PR12MB5912:EE_
-X-MS-Office365-Filtering-Correlation-Id: ab61b4bd-cbb5-4581-777d-08dd71371bcb
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|7416014|376014|1800799024|82310400026|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?x+8i5epfxxIVXfs1cxy2q3CbAm5hig3ps8RjuRuTKp//EmQfc6b9o+f4NWMb?=
- =?us-ascii?Q?DGjN1WD6UQBa5EhrdvDDMeuPgaQnaNvxeEC4owfW0R6F1l6j1qYlMxrL5y0S?=
- =?us-ascii?Q?7sI05skPfVG05yHL9hYQiWAjo+WydakENJ/fQYTknKViOKi8dPpouR9VSywd?=
- =?us-ascii?Q?kUanOZ0Ozj4cmQUQ0LfSBfFfj9govo2tLDxo+E1Xt7dk/CkUSKs/H3p8ZX+1?=
- =?us-ascii?Q?Fn4PATEIfWtfKgFn9sw8HyPMe2iXydTxy7GBtabAFJu0QPjbr7s7z/I7732P?=
- =?us-ascii?Q?nPP78KMpFrDGUuboQFsnuNwNPEKuJJfkpJFoINTZw9TT+ssG8MFEc73sVffK?=
- =?us-ascii?Q?qOLE7EWYoONUul+tGbcln/8laJorROLPwVUDM37ffQTGxsGDoXhbUK8ShwpK?=
- =?us-ascii?Q?PwOKrctXRML/J8JnLhx/PHqyLAID9SRzDMTUsLVO6QFpItQdmxrtAdx4JBXJ?=
- =?us-ascii?Q?T8vJkXFxPrJt84hYM9UFkKjNdirIiF4HlwAwK/iJ9FGJdAmesefgnSCpbZPa?=
- =?us-ascii?Q?GXKXnQGBWGUlV+rVfgbures9yEZlo+GZwBeCyK13NC19TKxHfocwuWW99qJ1?=
- =?us-ascii?Q?Ccgw3i8RhBVOF4zD+Xd2s1jwDm6LcH22+ZwahouJhdhm1ix7M8Ljw/QR9qrp?=
- =?us-ascii?Q?qyL4rbxoZidgKnpHrMxsHzv/aTko949i3cwpOpDO+ggXEOyckvdZY3crZv4a?=
- =?us-ascii?Q?UpTGTA9XZop2Dqe8JFLcjKtJk3PsC4wvWwer+Pp5XmRR+c03f1j8CuSdXRhl?=
- =?us-ascii?Q?fRGTmr/K0JfwpXe+0BiZGWX3gmv71AXNwBYKIt0/+13ABMqKGKQYr9otbeB5?=
- =?us-ascii?Q?lfFmt5sX1mEAKA0O7qfCYHMSNqikAq2iuG31vZ7M0Y7Zed7jQ07wGwGIkr0y?=
- =?us-ascii?Q?C+eBx0dTZbZCqpa3BDo8P/4S/oR2GLn3voWI+anhXXomDJMo3ugJYlSlRXSQ?=
- =?us-ascii?Q?AcYcr02hJ/Xoj8vzK3LdDphB+y6LAT120ROUIlna6zCNVe5LFHkoOT+U1Io9?=
- =?us-ascii?Q?yXSuHZA4FY7yrXLdr1Gl2lYlHNHliE/Kw4mgDIdONnu4k7dolG8PdTTZ+M7V?=
- =?us-ascii?Q?Mf77g/rMTi43seTY3cmXnezwIW/HxjkxdPvAf02Y1q5baGwcjvHxaopP1KTV?=
- =?us-ascii?Q?AaBXmAAhOWV6QmhLjRdCuwytYW65bbWn+/pTc6daTFu3tv6ZLkkgVZgqCzoF?=
- =?us-ascii?Q?3H2B5zILuFjr111Wb4wb+wEiGXDQXc8M9uUhKt6O8B/FyL5DS2QAgjL/GR76?=
- =?us-ascii?Q?gSsihxfHZoqFUUmRacYp/mJWselHNLxuty0WymFBZViO1RWl1pl8f2wHKOkw?=
- =?us-ascii?Q?DGCSlIHzg6dBkwVBDcRPKJzwlevDpBmY86x+mc11j2zG2Ttp3FRz/shUj3fj?=
- =?us-ascii?Q?LqL4qYdSGaBOl0X9Mf143T4lH5n6XRyb6UQRnbHZ0WEstXhCBGjiKXwSHPUK?=
- =?us-ascii?Q?uCJJg0e2GWEYFV7eZuZJDPvzW1eSMagJNyk/FUABfzdW9ujRoBI02C4Mdg1j?=
- =?us-ascii?Q?WpGKtzGsvlTmtoM=3D?=
-X-Forefront-Antispam-Report:
-	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(36860700013)(7416014)(376014)(1800799024)(82310400026)(7053199007);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2025 16:06:05.8375
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ab61b4bd-cbb5-4581-777d-08dd71371bcb
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CH2PEPF00000140.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5912
 
-> On 01/04/2025 17:39, Willie Thai wrote:
->> Add Nvidia's  GB200NVL BMC board compatible.
->> 
->> Co-developed-by: Mars Yang <maryang@nvidia.com>
->> Signed-off-by: Mars Yang <maryang@nvidia.com>
->> Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
-> 
-> Why are you faking tags/email addresses? Read carefully submitting patches. I really suggest using b4 instead of manually editing things.
-> And if you decide for manual way, you must never, *never* edit people's tag. You can only copy and paste it.
-> 
+From: Ryan Wanner <Ryan.Wanner@microchip.com>
 
-Thanks for the quick response, this is not faking tags/email address, I should have copied your whole ack tag.
+This patch set adds all the supported FLEXCOMs for the SAMA7D65 SoC.
+This also adds the GMAC interfaces and enables GMAC0 interface for the SAMA7D65 SoC.
+
+With the FLEXCOMs added to the SoC the MCP16502 and the MAC address
+EEPROM are both added to flexcom10.
+
+The dt-binding for USART is here [1]. And the dt-binding for DMA has
+been applied here [2].
+
+1) https://lore.kernel.org/linux-arm-kernel/20250306160318.vhPzJLjl19Vq9am9RRbuv5ddmQ6GCEND-YNvPKKtAtU@z/
+2) https://lore.kernel.org/linux-arm-kernel/174065806827.367410.5368210992879330466.b4-ty@kernel.org/
+
+Ryan Wanner (6):
+  dt-bindings: net: cdns,macb: add sama7d65 ethernet interface
+  ARM: dts: microchip: sama7d65: Add gmac interfaces for sama7d65 SoC
+  ARM: dts: microchip: sama7d65: Add FLEXCOMs to sama7d65 SoC
+  ARM: dts: microchip: sama7d65: Enable GMAC interface
+  ARM: dts: microchip: sama7d65: Add MCP16502 to sama7d65 curiosity
+  ARM: dts: microchip: sama7d65_curiosity: add EEPROM
+
+ .../devicetree/bindings/net/cdns,macb.yaml    |   1 +
+ .../dts/microchip/at91-sama7d65_curiosity.dts | 207 ++++++++++++
+ arch/arm/boot/dts/microchip/sama7d65.dtsi     | 299 ++++++++++++++++++
+ 3 files changed, 507 insertions(+)
+
+-- 
+2.43.0
+
 
