@@ -1,67 +1,82 @@
-Return-Path: <devicetree+bounces-162391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162392-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A807A78191
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 19:36:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B34BA781C3
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 19:56:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BD06188FE59
-	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 17:36:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E115318877CF
+	for <lists+devicetree@lfdr.de>; Tue,  1 Apr 2025 17:57:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BB4020DD47;
-	Tue,  1 Apr 2025 17:36:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39C6220DD43;
+	Tue,  1 Apr 2025 17:56:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="QpY78WWR"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="lR+9llv8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E04D2045A6;
-	Tue,  1 Apr 2025 17:36:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CEAC20F080;
+	Tue,  1 Apr 2025 17:56:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743528990; cv=none; b=rA4pBQl41GGwC7PKGFIGiTiCXTnQ04GjGwBLgGTxABGvKtXzAW5MyRt+sWDxY3l+PH+FFF906Zf5i5oP11Nd5D0wwd6UMsb98Rg29K6qqawv09LBeCEcnTO/dF6BQ8muuPlFFtXD4wh7OiSTQZDLDVq2ZH9etwdgDKVvb8Q/WUk=
+	t=1743530205; cv=none; b=DGsgoQsBN4vDjB6IDogGE8PSgSiR/cTPUiqxrPNmXcE/Ie265qHsjklri7IPzhOnXigOTLnsu1JuNzLwuHQ8jthQqQTaNwajgNn1eKZCs04CUZmTDtrRkBzgNuJsYnL5+ivd41WhVTTQonlYkSOCr4ISOnKPcG9b2N4XIfuj8BU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743528990; c=relaxed/simple;
-	bh=fzp725Jl1448wIARjxbrq/kaOVZ0/ZOHyXPogF42rQI=;
+	s=arc-20240116; t=1743530205; c=relaxed/simple;
+	bh=mVPJFdz1rjfDWi6PMax3qH62bmWT7r6prnH2g2vxswM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X55zekb09mcCXRo0/j591qJ371Pjf7ZOiVfVh7NSaZNajq/UT5INow/+I/pysjtcIwtX5JQrvOPlhh1j4VLVIF/8CeYP6gK90y/m/1rcRkVMT+k5zFhJiLuq2MeZ4yQUdpUBN2eLH+4AqnXf3wDRKPdrszgoFSnkhdrO7t+v1BY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=QpY78WWR; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id D079F25C5F;
-	Tue,  1 Apr 2025 19:36:18 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id 85kTxoqsDQpS; Tue,  1 Apr 2025 19:36:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1743528978; bh=fzp725Jl1448wIARjxbrq/kaOVZ0/ZOHyXPogF42rQI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=QpY78WWREkPzmaMORR2X6BiBkCKQuye4HPfTvVRwUrtJhRs4tqPWlwgxKFrCn9U7o
-	 lPWhnePhuVl6Xqqgat624FuEjs5yDqvygTGz7/Sw2Ayw+0Pp6D8iP3yhJkjYzmvCOW
-	 zX6pw2x0m+QSkF03FIySiLfSvjLHdLOhlUETjbeDzZ481j0ou4R1XR07S5DRvPic5U
-	 Kz2EeHVkmpLz5V8Cjsig5wO2vP4WXz/+6b1EDMy1/AAdkaL/yOxxu8rIy0PvXA2UCX
-	 cmdYhClZfafwGoSw+v8hO9Dh4ReYSu0wSGPm2RGebnr6UJehd5dA5pXsc4Zd09J0Am
-	 V93pf7RabQ7LA==
-Date: Tue, 1 Apr 2025 17:35:57 +0000
-From: Yao Zi <ziyao@disroot.org>
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: Rob Herring <robh@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Conor Dooley <conor+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=sUvGAOPfmw8WarGNHu97j1K9xDheD6Ao9R51MwzKftV3VoBc8Tbkk3gI4ybXsl18LlBiE5VZOMNWgKLNRliyR0A861YRKd96eREqHytMN4oh6eS0CMCOPNqLoNN+MdEiNju1AtUuNwQfvYI6uIlfhECTkz4q8QnG2gb6BSBmGmU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=lR+9llv8; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=KfxG9zER/CsQbwixwWuMGqZuKg6tmfxNplTMe1b8WXA=; b=lR+9llv8f6vihnsWNFFXN2kgT2
+	TmKJLTuj5+m590+5/EvmK4ftwVdPzJU7ZcMbwmaQ+zcdfmgtYFHg8a9/MZKDM9dvFT28Ud0U7bpIb
+	14KZD+KeV+r1yDzMbCQGikAYOPrPhgHBHznbThP/DVD0aIaiC/MH7nsA2m6kf52M1/REwuxFwBFXx
+	Iyg7/FAIgE3B/+Dfu5fTuM07V/BJ8f77GpCHS8L5KD0aA5weuVnuAWeq3yniU9oYio3zHNL3jxrM1
+	FHvniiWydMdAJDLdp6CsD8rKqoS4oGpjL1+lAxXCy+lFm9n3rkFyGEsARC1DkvOltzVx3VZkwkbaa
+	WyDJIBVQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:44770)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1tzfqZ-0006l7-0W;
+	Tue, 01 Apr 2025 18:56:23 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1tzfqT-0002tR-0o;
+	Tue, 01 Apr 2025 18:56:17 +0100
+Date: Tue, 1 Apr 2025 18:56:17 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] arm64: dts: rockchip: Add DMA controller for
- RK3528
-Message-ID: <Z-wj_eO6FGcwsEh6@pie.lan>
-References: <20250401100020.944658-1-amadeus@jmu.edu.cn>
- <20250401100020.944658-3-amadeus@jmu.edu.cn>
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+	Andrei Botila <andrei.botila@oss.nxp.com>,
+	Sabrina Dubroca <sd@queasysnail.net>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Eric Woudstra <ericwouds@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next RFC PATCH v5 4/6] net: phy: introduce
+ genphy_match_phy_device()
+Message-ID: <Z-wowRLfOoNX00_F@shell.armlinux.org.uk>
+References: <20250401114611.4063-1-ansuelsmth@gmail.com>
+ <20250401114611.4063-5-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,52 +85,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250401100020.944658-3-amadeus@jmu.edu.cn>
+In-Reply-To: <20250401114611.4063-5-ansuelsmth@gmail.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Tue, Apr 01, 2025 at 06:00:19PM +0800, Chukun Pan wrote:
-> Add DMA controller dt node for RK3528 SoC.
+On Tue, Apr 01, 2025 at 01:46:05PM +0200, Christian Marangi wrote:
+> Introduce new API, genphy_match_phy_device(), to provide a way to check
+> to match a PHY driver for a PHY device based on the info stored in the
+> PHY device struct.
 > 
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3528.dtsi | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
+> The function generalize the logic used in phy_bus_match() to check the
+> PHY ID whether if C45 or C22 ID should be used for matching.
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> index 7f1ffd6003f5..c366766ee3f5 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> @@ -493,6 +493,24 @@ sdhci: mmc@ffbf0000 {
->  			status = "disabled";
->  		};
->  
-> +		dmac: dma-controller@ffd60000 {
-> +			compatible = "arm,pl330", "arm,primecell";
-> +			reg = <0x0 0xffd60000 0x0 0x4000>;
-> +			clocks = <&cru ACLK_DMAC>;
-> +			clock-names = "apb_pclk";
-> +			interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
-> +			arm,pl330-periph-burst;
-
-Should this be moved above "clocks" line to sort the properties?
-
-Thanks,
-Yao Zi
-
-> +			#dma-cells = <1>;
-> +		};
-> +
->  		pinctrl: pinctrl {
->  			compatible = "rockchip,rk3528-pinctrl";
->  			rockchip,grf = <&ioc_grf>;
-> -- 
-> 2.25.1
+> This is useful for custom .match_phy_device function that wants to use
+> the generic logic under some condition. (example a PHY is already setup
+> and provide the correct PHY ID)
 > 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+
+Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+
+Thanks!
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
