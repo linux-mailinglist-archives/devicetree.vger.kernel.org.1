@@ -1,182 +1,198 @@
-Return-Path: <devicetree+bounces-162587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C3F5A78D6F
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 13:46:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E00CA78D82
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 13:54:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D98E37A5B25
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 11:45:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2D7D18931E9
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 11:54:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06C001D5151;
-	Wed,  2 Apr 2025 11:46:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1FD7235BFB;
+	Wed,  2 Apr 2025 11:54:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VoQnwDAz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4955020E01D;
-	Wed,  2 Apr 2025 11:46:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 947C620F07D;
+	Wed,  2 Apr 2025 11:54:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743594382; cv=none; b=uy7075j0zXOY9pD9KBA9LaWl8bFcZND9z2mlnMJbc7RxI2+SG7EqXqyeGJHDxY50iCGT3k7+uAhi5a3eBMCDhOeoYHxPkHu71V25gnK8BRHMyZKwA3WNMbnjyWmCkiTQtg9foivTeTRqU7nGuFXReNvmUlld0BVLOGyJhPKm69M=
+	t=1743594858; cv=none; b=tL969HYseCKdvfM391hPHIIUggxttSl/X+LFHCp5j+TdRV37MM3nl1uwn6WZQH9bNw5U+lagfUWNOHPz8mZHM9PAubqWUrJpalJ/QI/LiYY6OYE9f7scpQPZrk0n36KRyKjTcj09UT8Ih6qogg0OEf0cKtVXCYmuFTtdkdvpIOg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743594382; c=relaxed/simple;
-	bh=13/ZTgkQNn8YLYBwvB18oJqhNzSjCyZ6MMrKnzIuUK0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lqw3EZuWbk+5wEAK3PuoyvITLZ1HfK1iIMTyeGOg6XCNL21/VA/WPlwiwiEmsHV+bJ514Kow6+ZDMeD+G/ZJ/nQrb+FHiJu2qeEbYRqh9eEV59/1Y20+H5J4fNRcyrTR0r+bd8KmphDKRke+lCasn95F22RlZP0o7eQMo+qi6xA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com; spf=none smtp.mailfrom=foss.arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=foss.arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B6526106F;
-	Wed,  2 Apr 2025 04:46:23 -0700 (PDT)
-Received: from bogus (unknown [10.57.41.33])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8CBB53F694;
-	Wed,  2 Apr 2025 04:46:17 -0700 (PDT)
-Date: Wed, 2 Apr 2025 12:46:14 +0100
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Peng Fan <peng.fan@oss.nxp.com>
-Cc: Cristian Marussi <cristian.marussi@arm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dan Carpenter <dan.carpenter@linaro.org>,
-	linux-kernel@vger.kernel.org, arm-scmi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-	devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v3 1/7] firmware: arm_scmi: imx: Add LMM and CPU
- documentation
-Message-ID: <20250402-acoustic-analytic-guan-d3cda5@sudeepholla>
-References: <20250303-imx-lmm-cpu-v3-0-7695f6f61cfc@nxp.com>
- <20250303-imx-lmm-cpu-v3-1-7695f6f61cfc@nxp.com>
- <20250401-quantum-coyote-of-admiration-bf1b68@sudeepholla>
- <20250402123503.GA23033@nxa18884-linux>
+	s=arc-20240116; t=1743594858; c=relaxed/simple;
+	bh=2Ua8xGnzQmFoDDoihWOJWU4MrZ5rcLtSCeGpEWXLOCU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=gy2uFlpQTncxXfa1kgTqSPyyh0mckQaF3bySzJ0UPrep+xel9WCo/Hwqb/mUwtxDvPg0v/4sdPcFEoMgQmixtSsQ+A6tZLNfQHOI2tuJdfJya08oQyBsUKaXLHtuO/ykXoXMzgG7pqucrWHjouZeBz4xNy6f1UlzvGqGIP0w2fE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VoQnwDAz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B34E4C4CEDD;
+	Wed,  2 Apr 2025 11:54:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743594858;
+	bh=2Ua8xGnzQmFoDDoihWOJWU4MrZ5rcLtSCeGpEWXLOCU=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=VoQnwDAz8UNT7tYFJN1lQ76ONyM3sSJhMpKElJSzTQUQ1Sw6Vv2fXzkrjY05pZe13
+	 UhNQLf8YzsoY7bAzyy7MZK7hOD6v+IqgxCEpIAofSzK0FlqyvMhKvO4kM5tXnUUifZ
+	 MT8jfP6y80HrJx+MWEsMhHlK1XltQBPIHGdgwDFprW8BvGEJO3TC1TWhqR/rkvyvHI
+	 Om9a2NG1vsMJw/IbmOAj3bzZvmC0LHWbRAkKva9P0qkVdcYgL2TFAczC1GM4pMQZtP
+	 iFOuwBAj94CQ+z5qPWpSBmccjxIJiYsno4aZeN2rILbMTIHtGcNAe+AcGFAXQYqyfo
+	 TjcoXHii66FGA==
+Message-ID: <aded0940-45d8-4063-a1a2-f0763d509095@kernel.org>
+Date: Wed, 2 Apr 2025 14:54:12 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250402123503.GA23033@nxa18884-linux>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] ARM: dts: omap4: panda: cleanup bluetooth
+To: Andreas Kemnade <andreas@kemnade.info>, Rob Herring <robh@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>, linux-omap@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ Aaro Koskinen <aaro.koskinen@iki.fi>, devicetree@vger.kernel.org,
+ Tony Lindgren <tony@atomide.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+References: <20250330151401.444956-1-andreas@kemnade.info>
+ <20250330151401.444956-3-andreas@kemnade.info>
+Content-Language: en-US
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20250330151401.444956-3-andreas@kemnade.info>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Apr 02, 2025 at 08:35:03PM +0800, Peng Fan wrote:
-> Hi Sudeep,
+Hi Andreas,
+
+On 30/03/2025 18:14, Andreas Kemnade wrote:
+> Bluetooth is available on the other Panda board versions, too, so move
+> stuff to common and specify the needed clock properly.
 > 
-> Thanks for reviewing the patch.
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> ---
+>  .../boot/dts/ti/omap/omap4-panda-common.dtsi  | 31 ++++++++++++++++--
+>  arch/arm/boot/dts/ti/omap/omap4-panda-es.dts  | 32 -------------------
+>  2 files changed, 28 insertions(+), 35 deletions(-)
 > 
-> For comments that I am not very clear, I marked with [TODO] for easily
-> jump to.
-> 
-> On Tue, Apr 01, 2025 at 03:15:46PM +0100, Sudeep Holla wrote:
-> >On Mon, Mar 03, 2025 at 10:53:22AM +0800, Peng Fan (OSS) wrote:
-> >> From: Peng Fan <peng.fan@nxp.com>
-> >> 
-> >> Add i.MX95 Logical Machine Management and CPU Protocol documentation.
-> >> 
-> >> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> >> ---
-> >>  drivers/firmware/arm_scmi/vendors/imx/imx95.rst | 801 ++++++++++++++++++++++++
-> >>  1 file changed, 801 insertions(+)
-> >> 
-> >> diff --git a/drivers/firmware/arm_scmi/vendors/imx/imx95.rst b/drivers/firmware/arm_scmi/vendors/imx/imx95.rst
-> >> index b2dfd6c46ca2f5f12f0475c24cb54c060e9fa421..74326bf2ea8586282a735713e0ab7eb90ccce8ff 100644
-> >> --- a/drivers/firmware/arm_scmi/vendors/imx/imx95.rst
-> >> +++ b/drivers/firmware/arm_scmi/vendors/imx/imx95.rst
+> diff --git a/arch/arm/boot/dts/ti/omap/omap4-panda-common.dtsi b/arch/arm/boot/dts/ti/omap/omap4-panda-common.dtsi
+> index c860b590142a..05c871d31d7b 100644
+> --- a/arch/arm/boot/dts/ti/omap/omap4-panda-common.dtsi
+> +++ b/arch/arm/boot/dts/ti/omap/omap4-panda-common.dtsi
+> @@ -367,10 +367,8 @@ OMAP4_IOPAD(0x130, PIN_INPUT_PULLUP | MUX_MODE0)	/* i2c4_sda */
+>  	 */
+>  	wl12xx_gpio: wl12xx-gpio-pins {
+>  		pinctrl-single,pins = <
+> -			OMAP4_IOPAD(0x066, PIN_OUTPUT | MUX_MODE3)		/* gpmc_a19.gpio_43 */
+> -			OMAP4_IOPAD(0x06c, PIN_OUTPUT | MUX_MODE3)		/* gpmc_a22.gpio_46 */
+> +			OMAP4_IOPAD(0x066, PIN_OUTPUT | MUX_MODE3)		/* gpmc_a19.gpio_43 - WLAN_EN */
+>  			OMAP4_IOPAD(0x070, PIN_OUTPUT_PULLUP | MUX_MODE3)	/* gpmc_a24.gpio_48 */
 
-> >> +
-> >> +PROTOCOL_MESSAGE_ATTRIBUTES
-> >> +~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> >> +
-> >> +message_id: 0x2
-> >> +protocol_id: 0x80
-> >> +This command is mandatory.
-> >> +
-> >
-> >For completeness add parameters here for message_id as in the spec as it is
-> >referred in the returned value and seems incomplete without it.
-> 
-> [TODO]
-> Sorry, I may not get your point here. You mean below format?
-> 
-> +------------------+-----------------------------------------------------------+
-> |message_id: 0x2
-> |protocol_id: 0x80
-> |This command is mandatory.
-> +------------------+-----------------------------------------------------------+
-> |Return values                                                                 |
-> +------------------+-----------------------------------------------------------+
-> |Name              |Description                                                |
-> +------------------+-----------------------------------------------------------+
-> |int32 status      |SUCCESS: in case the message is implemented and available  |
-> |                  |to use.                                                    |
-> |                  |NOT_FOUND: if the message identified by message_id is      |
-> |                  |invalid or not implemented                                 |
-> +------------------+-----------------------------------------------------------+
-> |uint32 attributes |Flags that are associated with a specific function in the  |
-> |                  |protocol. For all functions in this protocol, this         |
-> 
-> message_id is not put in the table, but it is list above just below
-> the protocol name. I would prefer to keep current layout and align with
-> the MISC and BBM protocol.
->
+Apparently GPIO 48 is FM audio related and has nothing to do with wl12xx?
+So should we drop it from here?
 
-I meant why is the input parameter message_id not described in the table,
-but is referred in the return values. For completeness, just add it even
-though it may match the SCMI spec in terms of input parameter.
+> -			OMAP4_IOPAD(0x072, PIN_OUTPUT_PULLUP | MUX_MODE3)	/* gpmc_a25.gpio_49 */
+>  		>;
+>  	};
+>  
+> @@ -393,6 +391,22 @@ button_pins: button-pins {
+>  			OMAP4_IOPAD(0x114, PIN_INPUT_PULLUP | MUX_MODE3)	/* gpio_121 */
+>  		>;
+>  	};
+> +
+> +	bt_pins: bt-pins {
+> +		pinctrl-single,pins = <
+> +			OMAP4_IOPAD(0x06c, PIN_OUTPUT | MUX_MODE3)	  /* gpmc_a22.gpio_46 - BTEN */
+> +			OMAP4_IOPAD(0x072, PIN_OUTPUT_PULLUP | MUX_MODE3) /* gpmc_a25.gpio_49 - BTWAKEUP */
+> +		>;
+> +	};
+> +
+> +	uart2_pins: uart2-pins {
+> +		pinctrl-single,pins = <
+> +			OMAP4_IOPAD(0x118, PIN_INPUT_PULLUP | MUX_MODE0)  /* uart2_cts.uart2_cts - HCI */
+> +			OMAP4_IOPAD(0x11a, PIN_OUTPUT | MUX_MODE0)	  /* uart2_rts.uart2_rts */
+> +			OMAP4_IOPAD(0x11c, PIN_INPUT_PULLUP | MUX_MODE0)  /* uart2_rx.uart2_rx */
+> +			OMAP4_IOPAD(0x11e, PIN_OUTPUT | MUX_MODE0)	  /* uart2_tx.uart2_tx */
+> +		>;
+> +	};
+>  };
+>  
+>  &omap4_pmx_wkup {
+> @@ -531,8 +545,19 @@ &twl_usb_comparator {
+>  };
+>  
+>  &uart2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart2_pins>;
+>  	interrupts-extended = <&wakeupgen GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH
+>  			       &omap4_pmx_core OMAP4_UART2_RX>;
+> +
+> +	bluetooth {
+> +		compatible = "ti,wl1271-st";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&bt_pins>;
+> +		enable-gpios = <&gpio2 14 GPIO_ACTIVE_HIGH>;	/* GPIO_46 */
+> +		clocks = <&twl 0>;
+> +		clock-names = "ext_clock";
+> +	};
+>  };
+>  
+>  &uart3 {
+> diff --git a/arch/arm/boot/dts/ti/omap/omap4-panda-es.dts b/arch/arm/boot/dts/ti/omap/omap4-panda-es.dts
+> index fe7b156d10ed..a933fe560834 100644
+> --- a/arch/arm/boot/dts/ti/omap/omap4-panda-es.dts
+> +++ b/arch/arm/boot/dts/ti/omap/omap4-panda-es.dts
+> @@ -49,22 +49,6 @@ button_pins: button-pins {
+>  			OMAP4_IOPAD(0x0fc, PIN_INPUT_PULLUP | MUX_MODE3) /* gpio_113 */
+>  		>;
+>  	};
+> -
+> -	bt_pins: bt-pins {
+> -		pinctrl-single,pins = <
+> -			OMAP4_IOPAD(0x06c, PIN_OUTPUT | MUX_MODE3)		/* gpmc_a22.gpio_46 - BTEN */
+> -			OMAP4_IOPAD(0x072, PIN_OUTPUT_PULLUP | MUX_MODE3)	/* gpmc_a25.gpio_49 - BTWAKEUP */
+> -		>;
+> -	};
+> -
+> -	uart2_pins: uart2-pins {
+> -		pinctrl-single,pins = <
+> -			OMAP4_IOPAD(0x118, PIN_INPUT_PULLUP | MUX_MODE0)	/* uart2_cts.uart2_cts - HCI */
+> -			OMAP4_IOPAD(0x11a, PIN_OUTPUT | MUX_MODE0)		/* uart2_rts.uart2_rts */
+> -			OMAP4_IOPAD(0x11c, PIN_INPUT_PULLUP | MUX_MODE0)	/* uart2_rx.uart2_rx */
+> -			OMAP4_IOPAD(0x11e, PIN_OUTPUT | MUX_MODE0)		/* uart2_tx.uart2_tx */
+> -		>;
+> -	};
+>  };
+>  
+>  &led_wkgpio_pins {
+> @@ -96,19 +80,3 @@ buttonS2 {
+>  &gpio1_target {
+>  	 ti,no-reset-on-init;
+>  };
+> -
+> -&wl12xx_gpio {
+> -	pinctrl-single,pins = <
+> -		OMAP4_IOPAD(0x066, PIN_OUTPUT | MUX_MODE3)		/* gpmc_a19.gpio_43 */
+> -		OMAP4_IOPAD(0x070, PIN_OUTPUT_PULLUP | MUX_MODE3)	/* gpmc_a24.gpio_48 */
+> -	>;
+> -};
+> -
+> -&uart2 {
+> -	pinctrl-names = "default";
+> -	pinctrl-0 = <&uart2_pins &bt_pins>;
+> -	bluetooth: tiwi {
+> -		compatible = "ti,wl1271-st";
+> -		enable-gpios = <&gpio2 14 GPIO_ACTIVE_HIGH>;	/* GPIO_46 */
+> -	};
+> -};
 
+otherwise,
 
-[...]
-
-> >> +|                     |Bit[23] Valid err ID:                                   |
-> >> +|                     |Set to 1 if the error ID field is valid.                |
-> >> +|                     |Set to 0 if the error ID field is not valid.            |
-> >> +|                     |Bits[22:8] Error ID(Agent ID of the system).            |
-> >> +|                     |Bit[7:0] Reason(WDOG, POR, FCCU and etc)                |
-> >
-> >Is there a mapping for this ?
-> 
-> I will add a note in V4:
-> See the SRESR register description in the System Reset Controller (SRC) section
-> in SoC reference mannual.
->
-
-A reference would be good here then. I would be hard to imagine what it means
-otherwise.
-
-> >> +
-> >> +LMM_RESET_VECTOR_SET
-> >> +~~~~~~~~~~~~~~~~~~~~
-> >> +
-> >> +message_id: 0xC
-> >> +protocol_id: 0x80
-> >> +This command is mandatory.
-> >> +
-> >
-> >I can't recall if I had asked this before. How is this different from
-> >CPU_RESET_VECTOR_SET ? Why do you need this ? Why can't you use
-> >CPU_RESET_VECTOR_SET with an additional LMM_* command.
-> >
-> >I am sure there is a valid reason. If so please document the same.
-> 
-> CPU_RESET_VECTOR_SET is for cases that M7 and A55 in the same LM.
-> LMM_RESET_VECTOR_SET is for cases that M7 and A55 in different LM.
-> M7 LM is under control of A55 LM
->
-
-That still doesn't answer my question. I was asking why do you need this
-extra interface ? If LMM_RESET_VECTOR_SET can take both cpu id and LM id,
-it can be used even for cpus within same LM with current LM ID. Why the
-need for separate interface ?
-
-Other than these 2, I am fine with your response on all other comments.
+Reviewed-by: Roger Quadros <rogerq@kernel.org>
 
 -- 
-Regards,
-Sudeep
+cheers,
+-roger
+
 
