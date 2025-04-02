@@ -1,260 +1,207 @@
-Return-Path: <devicetree+bounces-162673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58DC3A79579
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 20:52:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A208BA7957E
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 20:55:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3873A3AF4B1
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 18:52:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 454397A3A06
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 18:54:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81A731DD873;
-	Wed,  2 Apr 2025 18:52:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AFE91DD873;
+	Wed,  2 Apr 2025 18:55:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="fkL/6cpc"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="Cs0LP1ld"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D12D51C8604
-	for <devicetree@vger.kernel.org>; Wed,  2 Apr 2025 18:52:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3BC718A93F;
+	Wed,  2 Apr 2025 18:55:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.177.23.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743619934; cv=none; b=Kb+npXc6FIMR+IROrvPqieIBpjz/qfWW0pUqV9S15PhWbxx80do1BI3iNMY1d9Yvu/7b9pvAwobfCofS56fpiCRyO/C4/lBgrKW/hmVJVQe/RtTPKXa05QcKq4DM85gKKZSmFsDVBQwatbHcb2ll9dwTMME8ut/o4AhiFFXttuY=
+	t=1743620115; cv=none; b=GUXmBH5tgIWxQevLkCu5ca0BpVoLgyhWBqNLdYjR4FncRHsk/+bZia+o2Z52kqItAu+9QRH0g/rY+s5AW1B7ya7B/jeXCaXeesoDTEJ0oc/0NIjJtQO69g+59EYW/R/7OV4pYopOTLk7Gf2HnOgVo3rn5sbHjrACPvX0iIVbbYY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743619934; c=relaxed/simple;
-	bh=jVdixIfICLC62RKY7lVRIMFHwQAdfyCfBhZ7OlsxJH8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=NZBMUYn2+Vr4oCgBbGEEc3GdUMtN1S7CTkhWW7l3W9CWWsLqLiT3eCBfKB21StZRc9zlHJRg3lVAe8s6pM5QQdAV2DxDRMb7F4HwxeFHs5Q/UAmI+/pZJYWHk2VaWIhfnlNktakK1eZYvqDlqgwX9OwiNmuXQFns2jpz3akNtMc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=fkL/6cpc; arc=none smtp.client-ip=209.85.167.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-3f8d2f8d890so70650b6e.0
-        for <devicetree@vger.kernel.org>; Wed, 02 Apr 2025 11:52:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1743619932; x=1744224732; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pC89xsTA3P9IUFJRwEIvyPFg1dVGPyboyapluIQiVZ8=;
-        b=fkL/6cpcr1wqJ6lSY2eMutImxr5strtqKbHpYSu/+Kov97HK40qV8LLmO/GttraMvA
-         KFCKQOFQSokrpgZEVwoM+9G68+lLy8CgvY/OBBUaggkNnCftXEBm1r/MZt3opv7rfJCz
-         RpYzQUwUQ5+tDQ4PBQ/mP1eH8rziwSFhJNHZk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743619932; x=1744224732;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pC89xsTA3P9IUFJRwEIvyPFg1dVGPyboyapluIQiVZ8=;
-        b=doQ0OdhlOjiR26QXK02ol8Rks2DxXs1AMHoEfaEVTFsTrczogYnF7ZyWDVPSAORm2s
-         4pFyT5cf7ykfwqMwQloFiHFDXJUfaRnfwn+S/Gs5LeTTCYX7kcFSIJ6R5AXtUlsCE9pv
-         mW3rv4R824mv/kE/U3qoC0xbrPtiOYyvOYl7u9ytJV89AXpYTqXhXxx3wsV+51ApLYLu
-         oX8EawZdHXGU3CZNe2pjSRVBReD0kAH+erb4YayFVGFiO3OsJ8hL2bseobyyGC3LI50/
-         0X6RTxj9B8LlO1Rm9H/lavrto2UEmmdivyY+U2WAZNkXquqeKJkcoSmdW7XgEUmOIXCP
-         OqoA==
-X-Forwarded-Encrypted: i=1; AJvYcCXnjc+A46dCy419oswxcAa7TIntvsBksp3/7TRRJUfKp6Xd8IJ3MpOz6Wzm1pbgkFWvaQ9NA3PVdzYx@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz80MsETxlEDBSUYlUL1MomCdbeSlBJwQByp9lH+hell+T5CNY+
-	08A7nUSEgb0B/3he7EKNLQ3fMWJ6NPo6avU8bKcBCwUeQ4Y8lNYKRoIjH9Yj1g==
-X-Gm-Gg: ASbGnct0FC2Gd7BaM+rgUstjyk/+cxEILl2eiMJLyhvn0QitdN5jiCTqprzizaahAAp
-	1bAdAXkT5Bfi5teIPDZ8uxHzr5CEmjz0ydGpGw3QossB8TH4VNxWdvPLpxZbgSHCAhKc5+CYefc
-	ECsMYcY1QyEBaa5IATl9hkZ8t+GpFZtwkVnigotfy9pXSq+2nl4VaAXXe/BKw6CXlJ/53F04jPt
-	BnGDb1uBLZARHoc/CJMt6V+PH4/B8i3t7LDMSQs9ZfdFVDtj/xMKTVZAt2GKB7YKfECfrlMZFjH
-	tEY1kyQejV1jWwlBBZbi243XkNJpwyyo5LQ+zSJBsYJbX3WjtZZbjay5eZe+u7T/UkBvBiIpcHd
-	dfyN3hcxvujKIEX4jP1RJlw==
-X-Google-Smtp-Source: AGHT+IEsmqOHB5gS1eO00vX+adpCsduyiPqTQoQz9A0b9vatapqVYnqJpz+KZ7UBWUUYEebCPIuu+A==
-X-Received: by 2002:a05:6808:2e45:b0:3f6:a400:8216 with SMTP id 5614622812f47-3ff0f500249mr11232579b6e.13.1743619932128;
-        Wed, 02 Apr 2025 11:52:12 -0700 (PDT)
-Received: from stbirv-lnx-1.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3ff051aaf60sm2470462b6e.28.2025.04.02.11.52.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Apr 2025 11:52:11 -0700 (PDT)
-From: justin.chen@broadcom.com
-To: linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-phy@lists.infradead.org
-Cc: rafal@milecki.pl,
-	alcooperx@gmail.com,
-	bcm-kernel-feedback-list@broadcom.com,
-	florian.fainelli@broadcom.com,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	kishon@kernel.org,
-	vkoul@kernel.org,
-	Justin Chen <justin.chen@broadcom.com>
-Subject: [PATCH v3 2/2] phy: usb: add support for bcm74110
-Date: Wed,  2 Apr 2025 11:51:59 -0700
-Message-Id: <20250402185159.2976920-3-justin.chen@broadcom.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250402185159.2976920-1-justin.chen@broadcom.com>
-References: <20250402185159.2976920-1-justin.chen@broadcom.com>
+	s=arc-20240116; t=1743620115; c=relaxed/simple;
+	bh=2gM32VkBZFx/KkYq/5WSx6uUZJuzRdYUIyjnnWs44dI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QPunDK6iIVjeDqdmiAekLHobS4JBeO1QzRrv0EmrxK0fiWTg5xpWHwVav5mWopUglcTvi6JeiUvLZxoViJR4eihdnNMh/kIa8VDD4tLgmQd4tforMggW9nU1d5qW1qEpghZRgzVl92cpONQWIQjAqTitwGyGbbQzswj4Tz9uKw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=Cs0LP1ld; arc=none smtp.client-ip=89.177.23.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [10.0.0.228] (unknown [10.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id 1F5CF166734;
+	Wed,  2 Apr 2025 20:54:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1743620099;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=Wy44fi9lg9n1CgNhcLGpSaP71J6yoU5UoZG4QwGVZ9c=;
+	b=Cs0LP1ld9FYRiaH8W07d41vNx/hxqAkEnXz9h3ANmYP3uFOnibDSRLcR46zx0JTEtdOUOe
+	QoqdND2x7sCFrR6FunpQdZ3RlK8FQMc5lTvJfLgN2mKn7Ii0yoUu5MuKDumvTAWbfca3dc
+	lqxn9OW9f1/WGtGI6HMiqFsQZ1VZbvI=
+Message-ID: <988dfca9-0dcb-481a-9352-efbe20532267@ixit.cz>
+Date: Wed, 2 Apr 2025 20:54:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/7] Input: synaptics-rmi4 - handle duplicate/unknown
+ PDT entries
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, "Jason A. Donenfeld" <Jason@zx2c4.com>,
+ Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+ Vincent Huang <vincent.huang@tw.synaptics.com>, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ Caleb Connolly <caleb.connolly@linaro.org>, methanal <baclofen@tuta.io>
+References: <20250308-synaptics-rmi4-v3-0-215d3e7289a2@ixit.cz>
+ <20250308-synaptics-rmi4-v3-2-215d3e7289a2@ixit.cz>
+ <Z885Jw0K6d2h_2pl@google.com>
+Content-Language: en-US
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <Z885Jw0K6d2h_2pl@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Justin Chen <justin.chen@broadcom.com>
+On 10/03/2025 20:10, Dmitry Torokhov wrote:
+> Hi David,
+> 
+> On Sat, Mar 08, 2025 at 03:08:38PM +0100, David Heidelberg via B4 Relay wrote:
+>> From: Caleb Connolly <caleb.connolly@linaro.org>
+>>
+>> Some third party rmi4-compatible ICs don't expose their PDT entries
+>> very well. Add a few checks to skip duplicate entries as well as entries
+>> for unsupported functions.
+>>
+>> This is required to support some phones with third party displays.
+>>
+>> Validated on a stock OnePlus 6T (original parts):
+>> manufacturer: Synaptics, product: S3706B, fw id: 2852315
+>>
+>> Co-developed-by: methanal <baclofen@tuta.io>
+>> Signed-off-by: methanal <baclofen@tuta.io>
+>> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+>> Signed-off-by: David Heidelberg <david@ixit.cz>
+>> ---
+>>   drivers/input/rmi4/rmi_driver.c | 47 +++++++++++++++++++++++++++++++++++------
+>>   drivers/input/rmi4/rmi_driver.h |  6 ++++++
+>>   2 files changed, 47 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/drivers/input/rmi4/rmi_driver.c b/drivers/input/rmi4/rmi_driver.c
+>> index 2168b6cd7167334d44553c9c566f870a4e034179..51c23a407b2731d5b6eaefe9cae6288f97316e34 100644
+>> --- a/drivers/input/rmi4/rmi_driver.c
+>> +++ b/drivers/input/rmi4/rmi_driver.c
+>> @@ -493,12 +493,44 @@ static void rmi_driver_copy_pdt_to_fd(const struct pdt_entry *pdt,
+>>   	fd->function_version = pdt->function_version;
+>>   }
+>>   
+>> +static bool rmi_pdt_entry_is_valid(struct rmi_device *rmi_dev,
+>> +				   struct pdt_scan_state *state, u8 fn)
+>> +{
+>> +	unsigned int i;
+>> +
+>> +	switch (fn) {
+>> +	case 0x01:
+>> +	case 0x03:
+>> +	case 0x11:
+>> +	case 0x12:
+>> +	case 0x30:
+>> +	case 0x34:
+>> +	case 0x3a:
+>> +	case 0x54:
+>> +	case 0x55:
+> 
+> This mean that we need to update this code any time there is new
+> function introduced. I'd rather we did not do that. The driver should be
+> able to handle unknown functions.
 
-bcm74110 adds a freerun utmi/ref clock that saves further power during
-suspend states. A tune is also necessary to pass USB compliance test.
+Hello Dmitry,
 
-Signed-off-by: Justin Chen <justin.chen@broadcom.com>
----
- .../phy/broadcom/phy-brcm-usb-init-synopsys.c | 61 +++++++++++++++++++
- drivers/phy/broadcom/phy-brcm-usb-init.h      |  1 +
- drivers/phy/broadcom/phy-brcm-usb.c           | 14 +++++
- 3 files changed, 76 insertions(+)
+I hope the final state of Synaptics RMI4 described by Caleb was 
+convincing for you, I sent v4, if you insist on re-doing this part, I'll 
+do in v5 :)
 
-diff --git a/drivers/phy/broadcom/phy-brcm-usb-init-synopsys.c b/drivers/phy/broadcom/phy-brcm-usb-init-synopsys.c
-index dc452610934a..8a5ed50f2da0 100644
---- a/drivers/phy/broadcom/phy-brcm-usb-init-synopsys.c
-+++ b/drivers/phy/broadcom/phy-brcm-usb-init-synopsys.c
-@@ -43,6 +43,8 @@
- #define   USB_CTRL_SETUP_tca_drv_sel_MASK		BIT(24)
- #define   USB_CTRL_SETUP_STRAP_IPP_SEL_MASK		BIT(25)
- #define USB_CTRL_USB_PM			0x04
-+#define   USB_CTRL_USB_PM_REF_S2_CLK_SWITCH_EN_MASK	BIT(1)
-+#define   USB_CTRL_USB_PM_UTMI_S2_CLK_SWITCH_EN_MASK	BIT(2)
- #define   USB_CTRL_USB_PM_XHC_S2_CLK_SWITCH_EN_MASK	BIT(3)
- #define   USB_CTRL_USB_PM_XHC_PME_EN_MASK		BIT(4)
- #define   USB_CTRL_USB_PM_XHC_SOFT_RESETB_MASK		BIT(22)
-@@ -61,6 +63,13 @@
- #define   USB_CTRL_CTLR_CSHCR_ctl_pme_en_MASK		BIT(18)
- #define USB_CTRL_P0_U2PHY_CFG1		0x68
- #define   USB_CTRL_P0_U2PHY_CFG1_COMMONONN_MASK		BIT(10)
-+#define USB_CTRL_P0_U2PHY_CFG2		0x6c
-+#define   USB_CTRL_P0_U2PHY_CFG2_TXVREFTUNE0_MASK	GENMASK(20, 17)
-+#define   USB_CTRL_P0_U2PHY_CFG2_TXVREFTUNE0_SHIFT	17
-+#define   USB_CTRL_P0_U2PHY_CFG2_TXRESTUNE0_MASK	GENMASK(24, 23)
-+#define   USB_CTRL_P0_U2PHY_CFG2_TXRESTUNE0_SHIFT	23
-+#define   USB_CTRL_P0_U2PHY_CFG2_TXPREEMPAMPTUNE0_MASK	GENMASK(26, 25)
-+#define   USB_CTRL_P0_U2PHY_CFG2_TXPREEMPAMPTUNE0_SHIFT	25
- 
- /* Register definitions for the USB_PHY block in 7211b0 */
- #define USB_PHY_PLL_CTL			0x00
-@@ -369,6 +378,42 @@ static void usb_uninit_common_7216(struct brcm_usb_init_params *params)
- 	}
- }
- 
-+static void usb_init_common_74110(struct brcm_usb_init_params *params)
-+{
-+	void __iomem *ctrl = params->regs[BRCM_REGS_CTRL];
-+	u32 reg;
-+
-+	reg = brcm_usb_readl(USB_CTRL_REG(ctrl, USB_PM));
-+	reg &= ~(USB_CTRL_MASK(USB_PM, REF_S2_CLK_SWITCH_EN) |
-+		USB_CTRL_MASK(USB_PM, UTMI_S2_CLK_SWITCH_EN));
-+	brcm_usb_writel(reg, USB_CTRL_REG(ctrl, USB_PM));
-+
-+	usb_init_common_7216(params);
-+
-+	reg = brcm_usb_readl(USB_CTRL_REG(ctrl, P0_U2PHY_CFG2));
-+	reg &= ~(USB_CTRL_P0_U2PHY_CFG2_TXVREFTUNE0_MASK |
-+		 USB_CTRL_P0_U2PHY_CFG2_TXRESTUNE0_MASK |
-+		 USB_CTRL_P0_U2PHY_CFG2_TXPREEMPAMPTUNE0_MASK);
-+	reg |= (0x6 << USB_CTRL_P0_U2PHY_CFG2_TXVREFTUNE0_SHIFT) |
-+		(0x3 << USB_CTRL_P0_U2PHY_CFG2_TXRESTUNE0_SHIFT) |
-+		(0x2 << USB_CTRL_P0_U2PHY_CFG2_TXPREEMPAMPTUNE0_SHIFT);
-+	brcm_usb_writel(reg, USB_CTRL_REG(ctrl, P0_U2PHY_CFG2));
-+}
-+
-+static void usb_uninit_common_74110(struct brcm_usb_init_params *params)
-+{
-+	void __iomem *ctrl = params->regs[BRCM_REGS_CTRL];
-+	u32 reg;
-+
-+	if (params->wake_enabled) {
-+		reg = brcm_usb_readl(USB_CTRL_REG(ctrl, USB_PM));
-+		reg |= (USB_CTRL_MASK(USB_PM, REF_S2_CLK_SWITCH_EN) |
-+		       USB_CTRL_MASK(USB_PM, UTMI_S2_CLK_SWITCH_EN));
-+		brcm_usb_writel(reg, USB_CTRL_REG(ctrl, USB_PM));
-+	}
-+	usb_uninit_common_7216(params);
-+}
-+
- static void usb_uninit_common_7211b0(struct brcm_usb_init_params *params)
- {
- 	void __iomem *ctrl = params->regs[BRCM_REGS_CTRL];
-@@ -426,6 +471,16 @@ static void usb_set_dual_select(struct brcm_usb_init_params *params)
- 	brcm_usb_writel(reg, USB_CTRL_REG(ctrl, USB_DEVICE_CTL1));
- }
- 
-+static const struct brcm_usb_init_ops bcm74110_ops = {
-+	.init_ipp = usb_init_ipp,
-+	.init_common = usb_init_common_74110,
-+	.init_xhci = usb_init_xhci,
-+	.uninit_common = usb_uninit_common_74110,
-+	.uninit_xhci = usb_uninit_xhci,
-+	.get_dual_select = usb_get_dual_select,
-+	.set_dual_select = usb_set_dual_select,
-+};
-+
- static const struct brcm_usb_init_ops bcm7216_ops = {
- 	.init_ipp = usb_init_ipp,
- 	.init_common = usb_init_common_7216,
-@@ -446,6 +501,12 @@ static const struct brcm_usb_init_ops bcm7211b0_ops = {
- 	.set_dual_select = usb_set_dual_select,
- };
- 
-+void brcm_usb_dvr_init_74110(struct brcm_usb_init_params *params)
-+{
-+	params->family_name = "74110";
-+	params->ops = &bcm74110_ops;
-+}
-+
- void brcm_usb_dvr_init_7216(struct brcm_usb_init_params *params)
- {
- 
-diff --git a/drivers/phy/broadcom/phy-brcm-usb-init.h b/drivers/phy/broadcom/phy-brcm-usb-init.h
-index c1a88f5cd4cd..4c7be78d0b14 100644
---- a/drivers/phy/broadcom/phy-brcm-usb-init.h
-+++ b/drivers/phy/broadcom/phy-brcm-usb-init.h
-@@ -72,6 +72,7 @@ struct  brcm_usb_init_params {
- 	bool wake_enabled;
- };
- 
-+void brcm_usb_dvr_init_74110(struct brcm_usb_init_params *params);
- void brcm_usb_dvr_init_4908(struct brcm_usb_init_params *params);
- void brcm_usb_dvr_init_7445(struct brcm_usb_init_params *params);
- void brcm_usb_dvr_init_7216(struct brcm_usb_init_params *params);
-diff --git a/drivers/phy/broadcom/phy-brcm-usb.c b/drivers/phy/broadcom/phy-brcm-usb.c
-index 6362ca5b7fb6..0666864c2f77 100644
---- a/drivers/phy/broadcom/phy-brcm-usb.c
-+++ b/drivers/phy/broadcom/phy-brcm-usb.c
-@@ -283,6 +283,16 @@ static const struct attribute_group brcm_usb_phy_group = {
- 	.attrs = brcm_usb_phy_attrs,
- };
- 
-+static const struct match_chip_info chip_info_74110 = {
-+	.init_func = &brcm_usb_dvr_init_74110,
-+	.required_regs = {
-+		BRCM_REGS_CTRL,
-+		BRCM_REGS_XHCI_EC,
-+		BRCM_REGS_XHCI_GBL,
-+		-1,
-+	},
-+};
-+
- static const struct match_chip_info chip_info_4908 = {
- 	.init_func = &brcm_usb_dvr_init_4908,
- 	.required_regs = {
-@@ -325,6 +335,10 @@ static const struct match_chip_info chip_info_7445 = {
- };
- 
- static const struct of_device_id brcm_usb_dt_ids[] = {
-+	{
-+		.compatible = "brcm,bcm74110-usb-phy",
-+		.data = &chip_info_74110,
-+	},
- 	{
- 		.compatible = "brcm,bcm4908-usb-phy",
- 		.data = &chip_info_4908,
+> 
+>> +		break;
+>> +
+>> +	default:
+>> +		rmi_dbg(RMI_DEBUG_CORE, &rmi_dev->dev,
+>> +			"PDT has unknown function number %#02x\n", fn);
+>> +		return false;
+>> +	}
+>> +
+>> +	for (i = 0; i < state->pdt_count; i++) {
+>> +		if (state->pdts[i] == fn)
+>> +			return false;
+>> +	}
+>> +
+>> +	state->pdts[state->pdt_count++] = fn;
+> 
+> Duplicate detection could be handled thorough a bitmap.
+
+Done
+
+Thank you
+David>
+> Thanks.
+> 
+
 -- 
-2.34.1
+David Heidelberg
 
 
