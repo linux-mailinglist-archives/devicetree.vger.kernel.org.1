@@ -1,247 +1,182 @@
-Return-Path: <devicetree+bounces-162440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8D6BA787CA
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 08:02:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F00BDA787D4
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 08:08:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B45016EF8A
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 06:02:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7C9D3AED85
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 06:07:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB12D230BF7;
-	Wed,  2 Apr 2025 06:02:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3053F20CCE5;
+	Wed,  2 Apr 2025 06:07:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sBLc54bM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RmfAX3nh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D64692B9A8
-	for <devicetree@vger.kernel.org>; Wed,  2 Apr 2025 06:02:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A99F136A;
+	Wed,  2 Apr 2025 06:07:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743573748; cv=none; b=TAo2NS2/IbLg+3jQyodC3/nGrK6sIAeHdlL9PqUJp6cDGSHU/hJWdQSRfUe+pMvodtcdeLU1C7gB4KGWKhYcvmSJ06AN0Z4waypjLrI6HBB7VYKK8dmEXyU6HkO6+0W4CKDE7HkEV2U+kjVLLw9gz8R9nqjTFXGuGazgIvCjnFo=
+	t=1743574078; cv=none; b=nOuXO9S0XTqbZLmdPAJjgCRaBruDVFa8FffQS9Sz9QfXA3ryY2aXU6dWbCTlC3vxU2CWR461ye3M/tcLAdxW0EZwMdZCZqgIh9d8pfFxOWtNAOgdnwOOeUzU6llq87/BztY7Bhs/THQxVRzwMMjI0cYI/vm4sqgJQsNNj6IM/Ik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743573748; c=relaxed/simple;
-	bh=wFoBMSzK4NpZw+UmRIp53Lw67dBhRYws9fCWeqmmtIY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dme6xzaRhJQqoLJ7tFfrrWTX3S8hvrcZatUk49QNFrAR/E9v94wi8DnP1YUeSnfuqZVBC2SQNoMjVN8GFo2M5dWwrC29nVH0ALd+xM9h8H9IAqePJs5bIK1EvMDCuXAr5K8NEywTPNFimuxlRN8ChnMkdxpQq/J1VSlT1jrNvW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sBLc54bM; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2241053582dso108841355ad.1
-        for <devicetree@vger.kernel.org>; Tue, 01 Apr 2025 23:02:25 -0700 (PDT)
+	s=arc-20240116; t=1743574078; c=relaxed/simple;
+	bh=iQZKmcfrvYw2H4reyjMEFc/jtt0LL0qo90jgrTQGgyI=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=HLAecFvD7DNQPgZgujzYJJoN7IkEDd5iDNvpksGVCmFpGT5mCcjeEJMvPUugvT4hx4DD/1V2vxxtdNTKEs6shoLlOodcCjiOK22JLI824809Nlcu9AiFfYg837eBmPcVIMJ1G2DGVwHvfn9aF3AKqIjbfhJGHQ+HlIzEAKGFdKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RmfAX3nh; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-549963b5551so638621e87.2;
+        Tue, 01 Apr 2025 23:07:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743573745; x=1744178545; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=XSPVI8TUn/isK4noC55TC4qkMMEfDFkjVI/2eFz1WUo=;
-        b=sBLc54bMO1oGmgtvH7gIGW0iJyMIrVBQsEWT53r90OBmFKbCj6ld5CIi04+5nJX9pg
-         eQsSYMkvw2Wz99gjJPZNZUrdbQaSgr6fmZr1JqNTWuIgWd+Y8UEM4Yu99XRU/vTcOY1o
-         wwHAqDWVJ06jq+lx0SRyaXNkxVD4LbukuKmNSzuZGmhLyNyj/bCm/09TZsO/keitgplf
-         UoMkrmjvaTPRlX42EG8rziPoAsgJfTvczMkvA3GksHc1IhhSa81vN/8sRk3ms23wxZRt
-         /+R077ehCzp9Q7aW8yE/o2OfYgm6LkbnY9d6e6YLvKJtrwxqKAmZfdMfMldm/BUdGI9n
-         X8kg==
+        d=gmail.com; s=20230601; t=1743574074; x=1744178874; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=28Z4Zm2PHdjAhEdpwVfHLH7cBasyS+w3UaN8SRN8HgM=;
+        b=RmfAX3nhiDBP0toJ5p8iHlBDF5ToWb2ICy+E79nWxV6ui2svnkXXWtL8hmYisqL33v
+         WvjpHkbVyafts4npo6KP/5jEJ7iyvNxqPYISYtY2Q5QbgyNGgOdEV70L/0L52QaRLDX1
+         yoM1ZxSL23SBpmlUYhWA9zjnSSEt2UI9HtwpveKyoGPZyOV51n9COW0Db801F+39jRdA
+         3QXD3l6lNCPTeguxacXa52NS+h5sdfRiS9xoUZluLVJ1FfK36ARTuk1XCXPKKv1Kmt4O
+         XRX4raof3GIcBr+Nk1ilH9TeMlC/aE7RMa1thmd9KugOtpBrYOfSbKw40Z2I17obk9C4
+         Dahg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743573745; x=1744178545;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1743574074; x=1744178874;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XSPVI8TUn/isK4noC55TC4qkMMEfDFkjVI/2eFz1WUo=;
-        b=w2znd+8m4PsLLx5iO45G6bljJrpPMfQp8TEXjMYEci7V637fvvUnC7rhMC6uku8CNY
-         Bz5J1wq/SHwLhHBHgvbYDIYCd2tt6wA2IC3p9O62VcOQUxPrZwsiy4tLWcdV6T3eOVLd
-         DpVdFxvwrTcoSlC0X18qGL7fWW+piMFQjbpD14HDGsYEetB2cUBaE7qma0qi1cl00Rbw
-         QOmXNqBxI1FRFfXgzgrtzKi0ZogSsBtMO1EZnJCUv+Cz+qxnd5en+dHMyVrG8WtrZR5w
-         xLqzHR4wIUp5M5+z8rdxfLk3WR3bd2yj4wnSND5KAehxiuxnHeZUbsxYpNqEzYfAkz7w
-         3EqA==
-X-Forwarded-Encrypted: i=1; AJvYcCWyh/tFoICJKwXK4cKPEhGUrIYwJyNQ+xzDZkJBCS7I1e7WpkQMiKptz1irZttZbAgf2rLFcLgAl6J9@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywj/Bt6EiovIS9mC64T5zn5nEpMdUEp2U7EocEFAQlOpLWAB9m4
-	Fdm6vOfNU2d9z1rtDy7S5YRSk/Bl910MBuzrVeOzE256nAKYCJN/BJ9K5TaFeQ==
-X-Gm-Gg: ASbGncv7dL2zMK+Ylryn0rmKv6NI3hN9463oqqvIDz/eRUrgLXCpyNc4jpt2RTD8Zhn
-	ijJE/slt2oiWVtHMNkuY0oIDS3RJdXg974XJIts7elTAIvdqvsXN3O9T/gBvBEK2HSw0EW3Ce1Q
-	fJyMV3P+VkgEcD6MVDPDB00iebx6gxESN/O6JXnSiosZNy0QuIiPtPIVT/kKJkpKlOW0UeN7TuY
-	Nx5g1t0HPcPKWWCz11E90d7kGZ9L7Wvsecb+uStwqy9vRzBLLJxlNKch3bPcooELbtPtgitp+mb
-	PXLey/k58+L4Iurq4ABX/u/cfq16thX1Hpz1LJQLftkhq5PPEd8fvNAT
-X-Google-Smtp-Source: AGHT+IH0V718KRlf/K5+UQm5rQKFssSsYgy9kQmxhhjMozcy/p40GYl5cS1u4E7j5U8om1rF1JIOqw==
-X-Received: by 2002:a05:6a00:148a:b0:736:5c8e:baaa with SMTP id d2e1a72fcca58-7398033ad19mr19011284b3a.2.1743573745001;
-        Tue, 01 Apr 2025 23:02:25 -0700 (PDT)
-Received: from thinkpad ([120.56.205.103])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7397106c7b7sm10030584b3a.116.2025.04.01.23.02.19
+        bh=28Z4Zm2PHdjAhEdpwVfHLH7cBasyS+w3UaN8SRN8HgM=;
+        b=BpZh8InCfWn484flBPA4jSPEOZbIHRlW/xMTVjogd4rjvgMrxn2QLmCi3RseHdyzGP
+         QKyw/dUJ4EzvWVlVh669OpH/M4WZw3oHBkW3wc46Pv7/zSh9DXQSkodugvjF42CaFYrV
+         2RNhcujUG9+1hYtAwrc9F4VUMptJbliQ0v4KYTfQP6sGS8PG/Y8U/gsw7uNoYlkjSRoO
+         /lOjANZrNz7WXL4lYTWx/4zbeExgW3OkYMo1ZJJtfovXgD3hxXuJNKZD0b9uQDS6Q04s
+         fM+sGJdV4f3RgdUA+EknhoEbl5in/sXgw1mEhrIYNkcEd8DrLBvFtzVm2jURrjGQdAS7
+         yXrQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVO47+reIDrPdDBqFLi55bhdMqrd3FaSH9dErDWur96q+H5cb34/QOJUcQcdC50krGbAow+msJnP5ky@vger.kernel.org, AJvYcCVjfNwplvncnRqcnvjiFbtrFY3HiUgPrTsDEP9u/Z0fyeZ8t9eq/3kY6zRvTCBtrtQwQrQQOwzgY4zqMLnP@vger.kernel.org, AJvYcCX09epOhCfiDkh9rvAyJCOxhYb0eYhCrcaX9E/LQYFoUuFNR5yvaTorxz8hEyORBdN3Enb/6iPvMBdJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5epMWXB2hh2T9YKFPX7p3D45zuxoTr/H9Lk4A5JWCPTi9w8ZG
+	BzC2O4ehTL+Jy2cOC4rWVKAYdVR8oU5v+vOobRbpyPfNwBtOyjA/
+X-Gm-Gg: ASbGncvMjfr8HAU/mMOT2fq5uBe+ZbDOflDauGY2YK95Bmj/7iz73a1oExdFYXeIcSV
+	LmYy66kzoBirEXHmmY145KKy1KQEZfTJXLA9VWejLGnJXdIUsLh37uEeQK1gyz1kWXFeH6MYctT
+	uQyrG05KlyLHJEHShyjkV9IfBV0qovZzHhUY5r4C5MoPvbt+ti6yF575y7XuD/MWIAhMrxt7PQ+
+	JHdq0wKDVToMArwNXBo0FiIVl6nMMPXDulsQbcXZxO+WFhKxaZXxurohG93R7pLyr5fOasICL6l
+	Bz7QL3nnfslJrlx4/rRAlF6xcLnn/oKed92yYM+F67NrcJ0m/KmRl9NthT/K7w==
+X-Google-Smtp-Source: AGHT+IFz/Tb81fyLheX+H39nO3tYuI+YUtWpwr4EWokF75+dQOzTOux5bsofMyR1sRfeQZditOKEiQ==
+X-Received: by 2002:a2e:bc8c:0:b0:30b:efa3:b105 with SMTP id 38308e7fff4ca-30ef912cb2emr4122071fa.19.1743574074060;
+        Tue, 01 Apr 2025 23:07:54 -0700 (PDT)
+Received: from mva-rohm ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30dd2ad6253sm18345221fa.61.2025.04.01.23.07.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Apr 2025 23:02:24 -0700 (PDT)
-Date: Wed, 2 Apr 2025 11:32:16 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Jingoo Han <jingoohan1@gmail.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, quic_mrana@quicinc.com, 
-	quic_vbadigan@quicinc.com
-Subject: Re: [PATCH v8 4/4] PCI: dwc: Add support for configuring lane
- equalization presets
-Message-ID: <utswwqjgfy3iybt54ilyqnfss77vzit7kegctjp3tef636hc3p@724xe3dzlpip>
-References: <20250316-preset_v6-v8-0-0703a78cb355@oss.qualcomm.com>
- <20250316-preset_v6-v8-4-0703a78cb355@oss.qualcomm.com>
- <3sbflmznjfqpcja52v6bso74vhouv7ncuikrba5zlb74tqqb5u@ovndmib3kgqf>
- <92c4854d-033e-c7b5-ca92-cf44a1a8c0cc@oss.qualcomm.com>
- <mslh75np4tytzzk3dvwj5a3ulqmwn73zkj5cq4qmld5adkkldj@ad3bt3drffbn>
- <5fece4ac-2899-4e7d-8205-3b1ebba4b56b@oss.qualcomm.com>
- <abgqh3suczj2fckmt4m2bkqazfgwsfj43762ddzrpznr4xvftg@n5dkemffktyv>
- <622788fa-a067-49ac-b5b1-e4ec339e026f@oss.qualcomm.com>
- <4rep2gvymazkk7pgve36cw7moppozaju7h6aqc3gflxrvkskig@62ykri6v4trs>
- <ed8a59ce-0527-4514-91f8-c27972d799d4@oss.qualcomm.com>
+        Tue, 01 Apr 2025 23:07:53 -0700 (PDT)
+Date: Wed, 2 Apr 2025 09:07:46 +0300
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Nuno Sa <nuno.sa@analog.com>, David Lechner <dlechner@baylibre.com>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/7] Support ROHM BD79104 ADC
+Message-ID: <cover.1743573284.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="GCTXrN1+nWA5PRaT"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ed8a59ce-0527-4514-91f8-c27972d799d4@oss.qualcomm.com>
 
-On Sat, Mar 29, 2025 at 12:42:02PM +0100, Konrad Dybcio wrote:
-> On 3/29/25 10:39 AM, Manivannan Sadhasivam wrote:
-> > On Sat, Mar 29, 2025 at 09:59:46AM +0100, Konrad Dybcio wrote:
-> >> On 3/29/25 7:30 AM, Manivannan Sadhasivam wrote:
-> >>> On Fri, Mar 28, 2025 at 10:53:19PM +0100, Konrad Dybcio wrote:
-> >>>> On 3/28/25 7:45 AM, Manivannan Sadhasivam wrote:
-> >>>>> On Fri, Mar 28, 2025 at 11:04:11AM +0530, Krishna Chaitanya Chundru wrote:
-> >>>>>>
-> >>>>>>
-> >>>>>> On 3/28/2025 10:23 AM, Manivannan Sadhasivam wrote:
-> >>>>>>> On Sun, Mar 16, 2025 at 09:39:04AM +0530, Krishna Chaitanya Chundru wrote:
-> >>>>>>>> PCIe equalization presets are predefined settings used to optimize
-> >>>>>>>> signal integrity by compensating for signal loss and distortion in
-> >>>>>>>> high-speed data transmission.
-> >>>>>>>>
-> >>>>>>>> Based upon the number of lanes and the data rate supported, write
-> >>>>>>>> the preset data read from the device tree in to the lane equalization
-> >>>>>>>> control registers.
-> >>>>>>>>
-> >>>>>>>> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> >>>>>>>> ---
-> >>>>>>>>   drivers/pci/controller/dwc/pcie-designware-host.c | 60 +++++++++++++++++++++++
-> >>>>>>>>   drivers/pci/controller/dwc/pcie-designware.h      |  3 ++
-> >>>>>>>>   include/uapi/linux/pci_regs.h                     |  3 ++
-> >>>>>>>>   3 files changed, 66 insertions(+)
-> >>>>>>>>
-> >>>>>>>> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> >>>>>>>> index dd56cc02f4ef..7c6e6a74383b 100644
-> >>>>>>>> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> >>>>>>>> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> >>>>>>>> @@ -507,6 +507,10 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
-> >>>>>>>>   	if (pci->num_lanes < 1)
-> >>>>>>>>   		pci->num_lanes = dw_pcie_link_get_max_link_width(pci);
-> >>>>>>>> +	ret = of_pci_get_equalization_presets(dev, &pp->presets, pci->num_lanes);
-> >>>>>>>> +	if (ret)
-> >>>>>>>> +		goto err_free_msi;
-> >>>>>>>> +
-> >>>>>>>>   	/*
-> >>>>>>>>   	 * Allocate the resource for MSG TLP before programming the iATU
-> >>>>>>>>   	 * outbound window in dw_pcie_setup_rc(). Since the allocation depends
-> >>>>>>>> @@ -808,6 +812,61 @@ static int dw_pcie_iatu_setup(struct dw_pcie_rp *pp)
-> >>>>>>>>   	return 0;
-> >>>>>>>>   }
-> >>>>>>>> +static void dw_pcie_program_presets(struct dw_pcie_rp *pp, enum pci_bus_speed speed)
-> >>>>>>>> +{
-> >>>>>>>> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> >>>>>>>> +	u8 lane_eq_offset, lane_reg_size, cap_id;
-> >>>>>>>> +	u8 *presets;
-> >>>>>>>> +	u32 cap;
-> >>>>>>>> +	int i;
-> >>>>>>>> +
-> >>>>>>>> +	if (speed == PCIE_SPEED_8_0GT) {
-> >>>>>>>> +		presets = (u8 *)pp->presets.eq_presets_8gts;
-> >>>>>>>> +		lane_eq_offset =  PCI_SECPCI_LE_CTRL;
-> >>>>>>>> +		cap_id = PCI_EXT_CAP_ID_SECPCI;
-> >>>>>>>> +		/* For data rate of 8 GT/S each lane equalization control is 16bits wide*/
-> >>>>>>>> +		lane_reg_size = 0x2;
-> >>>>>>>> +	} else if (speed == PCIE_SPEED_16_0GT) {
-> >>>>>>>> +		presets = pp->presets.eq_presets_Ngts[EQ_PRESET_TYPE_16GTS - 1];
-> >>>>>>>> +		lane_eq_offset = PCI_PL_16GT_LE_CTRL;
-> >>>>>>>> +		cap_id = PCI_EXT_CAP_ID_PL_16GT;
-> >>>>>>>> +		lane_reg_size = 0x1;
-> >>>>>>>> +	} else {
-> >>>>>>>
-> >>>>>>> Can you add conditions for other data rates also? Like 32, 64 GT/s. If
-> >>>>>>> controller supports them and if the presets property is defined in DT, then you
-> >>>>>>> should apply the preset values.
-> >>>>>>>
-> >>>>>>> If the presets property is not present in DT, then below 'PCI_EQ_RESV' will
-> >>>>>>> safely return.
-> >>>>>>>
-> >>>>>> I am fine to add it, but there is no GEN5 or GEN6 controller support
-> >>>>>> added in dwc, isn't it best to add when that support is added and
-> >>>>>> tested.
-> >>>>>>
-> >>>>>
-> >>>>> What is the guarantee that this part of the code will be updated once the
-> >>>>> capable controllers start showing up? I don't think there will be any issue in
-> >>>>> writing to these registers.
-> >>>>
-> >>>> Let's not make assumptions about the spec of a cross-vendor mass-deployed IP
-> >>>>
-> >>>
-> >>> I have seen the worse... The problem is, if those controllers start to show up
-> >>> and define preset properties in DT, there will be no errors whatsoever to
-> >>> indicate that the preset values were not applied, resulting in hard to debug
-> >>> errors.
-> >>
-> >> else {
-> >> 	dev_warn(pci->dev, "Missing equalization presets programming sequence\n");
-> >> }
-> >>
-> > 
-> > Then we'd warn for controllers supporting GEN5 or more if they do not pass the
-> > presets property (which is optional).
-> 
-> Ohh, I didn't think about that - and I can only think about solutions that are
-> rather janky.. with perhaps the least janky one being changing the else case I
-> proposed above into:
-> 
-> else if (speed >= PCIE_SPEED_32_0GT && eq_presets_Ngts[speed - PCIE_SPEED_16_0GT][0] != PCI_EQ_RESV) {
 
-s/PCIE_SPEED_16_0GT/PCIE_SPEED_32_0GT
+--GCTXrN1+nWA5PRaT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 	...
+The ROHM BD79104 ADC is a 12 bit, 8-channel ADC controlled via SPI.
 
-So this I read as: Oh, your controller supports 32 GT/s and you firmware also
-wanted to apply the custom preset offsets, but sorry we didn't do it because we
-don't know if it would work or not. So please let us know so that we can work
-with you test it and then finally we can apply the presets.
+The communication over SPI uses similar protocol as the ti-adc128s052.
+In order to avoid code duplication, the support for the ROHM IC is
+added in the same driver.
 
-> }> 
-> >>>
-> >>> I'm not forseeing any issue in this part of the code to support higher GEN
-> >>> speeds though.
-> >>
-> >> I would hope so as well, but both not programming and misprogramming are
-> >> equally hard to detect
-> >>
-> > 
-> > I don't disagree. I wanted to have it since there is no sensible way of warning
-> > users that this part of the code needs to be updated in the future.
-> 
-> I understand, however I'm worried that the programming sequence or register
-> may change for higher speeds in a way that would be incompatible with what
-> we assume here
-> 
+The driver side differencies between the ti-adc128s052 and the ROHM
+BD79104 are related to the supply regulator handling. The BD79104
+requires supplies for the VDD and IOVDD. The ti-adc128s052 driver
+handles only the reference voltage supply, even though the TI data-sheet
+indicates it can also have separate supplies.
 
-Honestly, I don't know why you are having this opinion. This piece of code is
-not in Qcom driver and the registers are the same for 8 GT/s, 16 GT/s as per the
-PCIe spec. So the hardware programming sequence and other arguments doesn't
-apply here (atleast to me).
+Hardware vise the ROHM BD79104 requires SPI MODE 3, and has also some SPI
+frequency limitations.
 
-- Mani
+I decided to add own binding document for the ROHM BD79104 so it is
+easier to document the SPI limitations. It also allows using the supply
+names from the data sheet. And finally, it gives users of this IC a
+better hint that it is supported.
 
--- 
-மணிவண்ணன் சதாசிவம்
+Finally, I didn't find maintainer information for this driver from the
+MAINTAINERS file. I would like to add myself as a reviewer for the
+driver, so I can stay on track of the changes to it. AFAIR, having
+R-entry without M-entry was not appreciated. Any suggestions how to
+handle this?
+
+This series was based on the v6.14, but it should apply cleanly on
+iio/testing - please let me know if I should rebase.
+
+Revision history:
+
+v1 =3D> v2:
+ - Drop the claim that original driver is broken for BE and rename the
+   patch 0001 accordingly
+ - Fix race when filling the SPI message
+ - Check return value for the devm_mutex_init()
+ - Add a RFC patch for dropping the support for variable Vref.
+
+---
+
+Matti Vaittinen (7):
+  dt-bindings: ROHM BD79104 ADC
+  iio: adc: ti-adc128s052: Simplify using be16_to_cpu()
+  iio: adc: ti-adc128s052: Be consistent with arrays
+  iio: adc: ti-adc128s052: Use devm_mutex_init()
+  iio: adc: ti-adc128s052: Simplify using guard(mutex)
+  iio: adc: ti-adc128s052: Support ROHM BD79104
+  iio: ti-adc128s052: Drop variable vref
+
+ .../bindings/iio/adc/rohm,bd79104.yaml        | 69 +++++++++++++
+ drivers/iio/adc/Kconfig                       |  2 +-
+ drivers/iio/adc/ti-adc128s052.c               | 99 +++++++++++--------
+ 3 files changed, 130 insertions(+), 40 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/rohm,bd79104.=
+yaml
+
+
+base-commit: 543da6252b48bbfe13e194fb980bdd2b161f6838
+--=20
+2.49.0
+
+
+--GCTXrN1+nWA5PRaT
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmfs1CsACgkQeFA3/03a
+ocXRAggAnOHse1lh+eSdJikEPk+ErzHWKsGblEPh3Ggs5KsbaKxStanFqOAxGkvk
+/oSOMV7i/CEh29eSOKAXj1if9t97KXse826Ughu7ZM/XD1NZfFklgrUKh+hAnr4Q
+S88F8enDJHKLPM9QfriK/PpRY2qmZCWHKdaYxYIrC6oSUdmfxaXCzNY4ILjygSrJ
+bUDEHyckYXio7HOfONNmM1K5CIsQLWHFO+v5HGBvFyR7q82kQTJqYc4uGyy5rUP3
+coO59Fh6agbLMDu//ECpEWBAec8FOtXr1R1E5bTUf96tIqs11MbOCN5o6fByUW0h
+8UHsC++uuGLC5Vg7vWpTfQrv0/go8w==
+=J1QR
+-----END PGP SIGNATURE-----
+
+--GCTXrN1+nWA5PRaT--
 
