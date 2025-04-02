@@ -1,92 +1,131 @@
-Return-Path: <devicetree+bounces-162590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162597-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0F50A78E40
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 14:25:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6238BA78E8B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 14:34:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89DC91638E7
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 12:23:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A6C517A3012
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 12:32:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B12023A9A8;
-	Wed,  2 Apr 2025 12:23:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8735223A98E;
+	Wed,  2 Apr 2025 12:32:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="bLpZ6hHr"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="chYKSqCm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EA49239565;
-	Wed,  2 Apr 2025 12:23:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E554E23BD09;
+	Wed,  2 Apr 2025 12:32:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743596591; cv=none; b=cLZ7Y2IKOOmUFkTrk+FCVvoBmLtUf0di1nFVAdkNmP7D9EKRs//gwEOTrTTQW1SU9S6vu0soAhXuUOFrdz2AlTEarCDTC6ITTpon1rW7jz0WaGgrjzKP67U0yUwKZBPIN7u23+O/9uU1yibJE9iIKk3TtmWGNsklPR5MaHMcpLc=
+	t=1743597171; cv=none; b=SsU/LW4SGNLwLJ4uetTBQgJnCazzc0fS8rTabUD1t6riNOv9YzqqbNKO10V8FedVFLfqIeidV6w+84QF2ChcD88oivCsms1w+Lxqiz48pmTcJSYNg+BMjT4Bf4JOYxxHxG2AbsZzHoP2hxIxA0yF0UIqhhbjtmcovX1fNfCk19E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743596591; c=relaxed/simple;
-	bh=hyIORvcjc8cnOrwXJJLDQlnMlsVxwobtC9HnweVC5sY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GceIoZVk0dKlpUxyFCzOEvLm1NEZDNqvNUchYzp72gb3Cm8Y2SM1thDy8WKvyfn1SRjduOkHgWCHX1/rd2t3plo0I0g9w6cSWHoCLG2IXIjO+Mtf8oSR2IPldCtCfRXz9WGntWz9RstxXm/5BlNfVuW3wECswPzTZ90R/fIMVnQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=bLpZ6hHr; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=m5oPUg4ARF8TnNRDBE3jh/Qug56RDVjQifVvp49cFpw=; b=bLpZ6hHr1wVANQ2fF9WBWqeuN5
-	HVjQWpQ1OlZggMUP4tufjE3uKqSb0br7f/rT6FWm8LhBf6MhyCRlxMQs6R1eqCC9lnu1A6+Eobou1
-	m1u67bO/yEmqZ75JIdUdL/wSSunPuHVf26lfRw+VeWvfOXSXW13frBpp8eGw8qPszd/w=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tzx7O-007mpD-0W; Wed, 02 Apr 2025 14:22:54 +0200
-Date: Wed, 2 Apr 2025 14:22:53 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Lukasz Majewski <lukma@denx.de>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 2/4] ARM: dts: nxp: mxs: Adjust the imx28.dtsi L2
- switch description
-Message-ID: <82fde123-4783-4d4c-a061-e07731ae7bfd@lunn.ch>
-References: <20250331103116.2223899-1-lukma@denx.de>
- <20250331103116.2223899-3-lukma@denx.de>
+	s=arc-20240116; t=1743597171; c=relaxed/simple;
+	bh=2eRSjAqq4dRA92FQXWfbQYLmjHUN1/OJEIyDCopuqeo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=PN+fORVvfCijdlBIzdqoD2kjKCYKa7vKz8BqtTd86ih2vuBlo6DodyO/V5vo59hne9FXJnCxEI1TpnXnhwViqOf4oa7gofwllTA9qeqaiXG2et98NV7I11xi9Uv03OfOZ1aO4HcKkZdm77pElj5hssZ8kx/Ms0YbYAciabNSTxo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=chYKSqCm; arc=none smtp.client-ip=117.135.210.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-ID:MIME-Version; bh=oGUkH
+	84hkPBzmx/lS7RDwXwqM5OPP1Xjz5Ep4c4bpzw=; b=chYKSqCmtnnZUjyAf+UAH
+	mCRrVrrJ1FXKyjopzqe2GmeDC4k6D66qgOhLl38eXGUEtktVV9Iz6Bkjo03O6+pG
+	Z/Qn4NbF+1ZcT4eP23UZMRAHjaySKHWDP0yAPA4sBForiDS3BJJOpuxtwb1lX8nL
+	L8gXDcUdHq2W8kZuEpHIJM=
+Received: from ProDesk.. (unknown [])
+	by gzsmtp4 (Coremail) with SMTP id PygvCgDnd405Lu1nJwOJBA--.36321S2;
+	Wed, 02 Apr 2025 20:31:57 +0800 (CST)
+From: Andy Yan <andyshrk@163.com>
+To: heiko@sntech.de
+Cc: conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	hjc@rock-chips.com,
+	mripard@kernel.org,
+	neil.armstrong@linaro.org,
+	dmitry.baryshkov@oss.qualcomm.com,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: [PATCH v3 0/7] Convert inno hdmi to drm bridge
+Date: Wed,  2 Apr 2025 20:31:34 +0800
+Message-ID: <20250402123150.238234-1-andyshrk@163.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250331103116.2223899-3-lukma@denx.de>
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:PygvCgDnd405Lu1nJwOJBA--.36321S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7CF47WFy5uF1rJF4fGr48JFb_yoW5JF15pa
+	98Ary5ZF1xC3WIqrs7AF48ArWayayDJa1FkryxJw1fZr4F9F1jyr9xuFs0vrnxAr17AFsF
+	yr4xGa4UKFW7ZaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j7b18UUUUU=
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbB0h4jXmftK+o5IQAAsi
 
-On Mon, Mar 31, 2025 at 12:31:14PM +0200, Lukasz Majewski wrote:
-> The current range of 'reg' property is too small to allow full control
-> of the L2 switch on imx287.
-> 
-> As this IP block also uses ENET-MAC blocks for its operation, the address
-> range for it must be included as well.
-> 
-> Moreover, some SoC common properties (like compatible, clocks, interrupts
-> numbers) have been moved to this node.
-> 
-> Signed-off-by: Lukasz Majewski <lukma@denx.de>
+From: Andy Yan <andy.yan@rock-chips.com>
 
-Assuming it passed the DT checking:
+When preparing to convert the current inno hdmi driver into a
+bridge driver, I found that there are several issues currently
+existing with it:
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+1. When the system starts up, the first time it reads the EDID, it
+   will fail. This is because RK3036 HDMI DDC bus requires it's PHY's
+   reference clock to be enabled first before normal DDC communication
+   can be carried out.
 
-    Andrew
+2. The signal is unstable. When running the glmark2 test on the screen,
+   there is a small probability of seeing some screen flickering.
+   This is because The HSYNC/VSYNC polarity of rk3036 HDMI are controlled
+   by GRF. This part is missing in the current driver.
+
+PATCH 1~6 are try to Fix Document in the dt-binding, then add the
+missing part in driver and dts.
+PATCH 7 converts the curren driver to drm bridge mode.
+
+Changes in v3:
+- Convert to drm bridge driver
+- Link to V2: https://lore.kernel.org/dri-devel/20250325132944.171111-1-andyshrk@163.com/
+
+Changes in v2:
+- Included the HSYNC/VSYNC polarity fix
+- Link to V1: https://lore.kernel.org/linux-rockchip/20250324103332.159682-1-andyshrk@163.com/
+
+Andy Yan (7):
+  dt-bindings: display: rockchip,inno-hdmi: Fix Document of RK3036
+    compatible
+  dt-bindings: display: rockchip,inno-hdmi: Document GRF for RK3036 HDMI
+  drm/rockchip: inno-hdmi: Simplify error handler with dev_err_probe
+  drm/rockchip: inno-hdmi: Fix video timing HSYNC/VSYNC polarity setting
+    for rk3036
+  ARM: dts: rockchip: Add ref clk for hdmi
+  Revert "ARM: dts: rockchip: drop grf reference from rk3036 hdmi"
+  drm/rockchip: inno-hdmi: Convert to drm bridge
+
+ .../display/rockchip/rockchip,inno-hdmi.yaml  |  20 +-
+ arch/arm/boot/dts/rockchip/rk3036.dtsi        |   5 +-
+ drivers/gpu/drm/bridge/Kconfig                |   7 +
+ drivers/gpu/drm/bridge/Makefile               |   1 +
+ .../inno_hdmi.c => bridge/inno-hdmi.c}        | 907 ++++++++++--------
+ drivers/gpu/drm/rockchip/Kconfig              |   1 +
+ drivers/gpu/drm/rockchip/Makefile             |   2 +-
+ drivers/gpu/drm/rockchip/inno_hdmi-rockchip.c | 187 ++++
+ drivers/gpu/drm/rockchip/inno_hdmi.h          | 349 -------
+ include/drm/bridge/inno_hdmi.h                |  33 +
+ 10 files changed, 760 insertions(+), 752 deletions(-)
+ rename drivers/gpu/drm/{rockchip/inno_hdmi.c => bridge/inno-hdmi.c} (52%)
+ create mode 100644 drivers/gpu/drm/rockchip/inno_hdmi-rockchip.c
+ delete mode 100644 drivers/gpu/drm/rockchip/inno_hdmi.h
+ create mode 100644 include/drm/bridge/inno_hdmi.h
+
+-- 
+2.43.0
+
 
