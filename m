@@ -1,122 +1,165 @@
-Return-Path: <devicetree+bounces-162610-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9156A78FC5
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 15:30:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96FA9A79018
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 15:43:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E01591894213
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 13:29:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 608341886A0C
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 13:42:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DF8E23814E;
-	Wed,  2 Apr 2025 13:29:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D8DF239072;
+	Wed,  2 Apr 2025 13:41:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rHQr1qkE"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="DNQjBjHv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5FA11EF360;
-	Wed,  2 Apr 2025 13:29:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC14C201271;
+	Wed,  2 Apr 2025 13:41:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743600545; cv=none; b=kp8U/B4Kf9X80KaysoBfxSnG/5rtoVcsWEQsAUN5hxzhXi356/7wQNSFcNE5FAceKqIyS4s88mOmd/Wqd13Cu/IDJTzZkJuPtvQUs9tkHs/yvn8c8bkYfWChnsm1nrf8lFmdJ4m8aUNAJW8yCLrKrz4xje/UiOYW0pXly17HcFo=
+	t=1743601315; cv=none; b=HNZVeEt5i77z0QXt163mmiGlHBQgk3sPGS3bUerq6KwDQ8ClQ0xE4/rO2EWDjbtvgDfLKaGMxykP2jsfgz/GenBUyrmCfAkVonbKAVRVCD9PjGsDLyIcGbs7rxrfEvrC7H9RRUAdmR9HMajzTVFCydqtvPNlTrhBQwyo2zTK2Bo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743600545; c=relaxed/simple;
-	bh=J8Cb8WfrOi04FgY+I+b68wymSxxbztaQD6sKD+oS7zw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F7ZIwhXH/9DcxxDNRNKiN6Ekk4tAy81BIvbkrJpxsjENB1ZKKf9oD0XZaGOr0I8JTdudHjOJHatGueXLE/1nEt95PnhfYe/fvO/2CO9kIPNoFh2UVTi3fKjnfRDdU7rumYPbGWNQtmWNc8xogNA+VfIno3OfDpTE42VM2T7vTUE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rHQr1qkE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69D19C4CEDD;
-	Wed,  2 Apr 2025 13:29:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743600544;
-	bh=J8Cb8WfrOi04FgY+I+b68wymSxxbztaQD6sKD+oS7zw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rHQr1qkE3buusVy8ANjaLnBQ4zFUyD7GilFdYyHgonPwzXV4aOCz4Y9erDD26d/jY
-	 f5yO9EoQXQjoJFF0wd2cfxPa3hwTQYqJxD/GgOAPbx3ewUN5oS/8qQXZrlwHSaGtc7
-	 6eXf+l8fvvg/MLbu09N9vycPmtgAx6SrALgiZdi4rMfD7VOQ2lsYEqD27M+jbaNIPa
-	 eVfcbagk0M6Cpz/2z4yxYDgS68pqrtgz3dOSmCgNshDmhnZfRuWTQ+2//mQVJnQOQT
-	 0mS0vVIHFqktcXzu5bnWyX9oJ4TjbU+nGSbYxKemOtgrSJzial7Jyv4SeFbg/yPuKt
-	 HQqyqoA510bGw==
-Date: Wed, 2 Apr 2025 14:28:59 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Ryan.Wanner@microchip.com
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
-	nicolas.ferre@microchip.com, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/6] dt-bindings: net: cdns,macb: add sama7d65 ethernet
- interface
-Message-ID: <20250402-scribing-doorknob-53a67e9e27cd@spud>
-References: <cover.1743523114.git.Ryan.Wanner@microchip.com>
- <392b078b38d15f6adf88771113043044f31e8cd6.1743523114.git.Ryan.Wanner@microchip.com>
+	s=arc-20240116; t=1743601315; c=relaxed/simple;
+	bh=RlUxE1BH6NTHyg/TNSVKth95REvW2dDq2+0GHexae5I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=bPZfvZqsmz9Vbn2YduJbTgfyESM9pkbRUqoftiwx7MToCpnHqs20lFKCfRUdgFWL5rHNJQHbMX3aixEXHPn9F5wrdNL14PJPUYfwY4OMDF0W4jAZyWfg5+wAt+RpDuLr0Z+kyGIswpt/86UqvyYAQgctYa+qgxaTStQdXmN8tnM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=DNQjBjHv; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 532CcSaj008047;
+	Wed, 2 Apr 2025 15:41:36 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	UapWujuoCP1cmnh3Upr64ky5/xFIxLVPaPTaREX+7jU=; b=DNQjBjHv8fS2U7sE
+	fL/D3IDpFNX/FZdmjz1c9hWqgwdJ6mac1u89V/4hPOaxNtbbf3PGwH6YqwNUhcST
+	K6YcngG74K/boLFf4ndBnWT6lgYe3Io852JBeUSBUuvNYxBD9L5WkvTo8zE/F7Hf
+	2/7mLiRzaGHiG/LPs+ggWMIKMTAb1zYillZfcfHIPfk4nc0wAGnVQ/30Yz/Q/cnl
+	lbGfZz20Uk4BM6bznGNtAzoEopWCkkz/V0mKqHbyUeRdij4YuiMaOJnndiGjE40/
+	vruiu52+k4FlgdP8HeFddG+/FGfQx8Xe0cvpLkOPFaOfrRznU4FiNLkblEU6sbTh
+	4OtPog==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45p9363dvc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 02 Apr 2025 15:41:36 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id CE8B540048;
+	Wed,  2 Apr 2025 15:40:43 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 567B083BD66;
+	Wed,  2 Apr 2025 15:40:01 +0200 (CEST)
+Received: from [10.252.30.87] (10.252.30.87) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 2 Apr
+ 2025 15:40:00 +0200
+Message-ID: <58e6a6a1-7f7c-4232-a212-59850ab03a41@foss.st.com>
+Date: Wed, 2 Apr 2025 15:39:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ZH+IhbSqEBnXm3HD"
-Content-Disposition: inline
-In-Reply-To: <392b078b38d15f6adf88771113043044f31e8cd6.1743523114.git.Ryan.Wanner@microchip.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] media: dt-bindings: Add ST VD55G1 camera sensor
+ binding
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Laurent Pinchart
+	<laurent.pinchart@ideasonboard.com>
+CC: Sylvain Petinot <sylvain.petinot@foss.st.com>,
+        Mauro Carvalho Chehab
+	<mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Sakari Ailus
+	<sakari.ailus@linux.intel.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250401-b4-vd55g1-v2-0-0c8ab8a48c55@foss.st.com>
+ <20250401-b4-vd55g1-v2-1-0c8ab8a48c55@foss.st.com>
+ <20250402-curvy-seriema-of-blizzard-b1c4d9@krzk-bin>
+ <228ddf41-e1d0-4d06-9e0e-9e0dad841688@foss.st.com>
+ <fd874f4d-d68c-4443-8bb6-115246f4407b@kernel.org>
+ <a0c62797-3c4c-453c-938b-d43666f3b264@foss.st.com>
+ <7d501bf2-a017-4c02-a96f-184a7d648b6a@foss.st.com>
+ <9f128ce9-6a26-435c-b133-0da80120de2d@kernel.org>
+ <20250402124605.GB13181@pendragon.ideasonboard.com>
+ <6f832ce4-03d3-46bc-afcc-86983b2ec47a@kernel.org>
+Content-Language: en-US
+From: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+In-Reply-To: <6f832ce4-03d3-46bc-afcc-86983b2ec47a@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-02_05,2025-04-02_02,2024-11-22_01
 
 
---ZH+IhbSqEBnXm3HD
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 01, 2025 at 09:13:17AM -0700, Ryan.Wanner@microchip.com wrote:
-> From: Ryan Wanner <Ryan.Wanner@microchip.com>
->=20
-> Add documentation for sama7d65 ethernet interface.
->=20
-> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
+On 4/2/25 14:55, Krzysztof Kozlowski wrote:
+> On 02/04/2025 14:46, Laurent Pinchart wrote:
+>> On Wed, Apr 02, 2025 at 12:27:08PM +0200, Krzysztof Kozlowski wrote:
+>>> On 02/04/2025 11:41, Benjamin Mugnier wrote:
+>>>> On 4/2/25 11:38, Benjamin Mugnier wrote:
+>>>>> On 4/2/25 11:11, Krzysztof Kozlowski wrote:
+>>>>>> On 02/04/2025 10:34, Benjamin Mugnier wrote:
+>>>>>>> Hi Krzysztof,
+>>>>>>>
+>>>>>>> On 4/2/25 09:08, Krzysztof Kozlowski wrote:
+>>>>>>>> On Tue, Apr 01, 2025 at 01:05:58PM +0200, Benjamin Mugnier wrote:
+>>>>>>>>> +    properties:
+>>>>>>>>> +      endpoint:
+>>>>>>>>> +        $ref: /schemas/media/video-interfaces.yaml#
+>>>>>>>>> +        unevaluatedProperties: false
+>>>>>>>>> +
+>>>>>>>>> +        properties:
+>>>>>>>>> +          data-lanes:
+>>>>>>>>> +            items:
+>>>>>>>>> +              const: 1
+>>>>>>>>
+>>>>>>>> Not what I asked. Now you miss number of items. Just use the syntax I
+>>>>>>>> proposed. Or was there any issue with it?
+>>>>>>>
+>>>>>>> No issue I just misunderstood and thought const: 1 was impliying
+>>>>>>> maxItems: 1. I'll add maxItems back.
+>>>>>>
+>>>>>> That's just longer way to express what I asked for. So I repeat the
+>>>>>> question: why not using the syntax I asked for?
+>>>>>
+>>>>> I guess I didn't understand what you asked for.
+>>>>> May I ask you to write it ? That will help me a lot.
+>>>>
+>>>> By 'it' I mean the binding.
+>>>
+>>> I wrote it last time. I don't think that copying the same here would
+>>> change anything. If I can look at v1, you can do as well.
+>>
+>> Reading your comment on v1, I would have come up with the exact same
+>> result as Benjamin's v2. I can't figure out what alternative description
+>> you meant.
+> What do you mean by description? I pasted code. The *exact* code to use.
+> Benjamin used different code. Two times I asked why you cannot use the
+> code I pasted. Still no answer.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+I'm sorry, thanks to the help over #linux-media we realized I missed the
+'-' before const. I'm not very knowledgeable in device tree binding syntax.
+I'll push a v4 with that.
 
-> ---
->  Documentation/devicetree/bindings/net/cdns,macb.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/cdns,macb.yaml b/Docum=
-entation/devicetree/bindings/net/cdns,macb.yaml
-> index 3c30dd23cd4e..eeb9b6592720 100644
-> --- a/Documentation/devicetree/bindings/net/cdns,macb.yaml
-> +++ b/Documentation/devicetree/bindings/net/cdns,macb.yaml
-> @@ -62,6 +62,7 @@ properties:
->        - items:
->            - enum:
->                - microchip,sam9x7-gem     # Microchip SAM9X7 gigabit ethe=
-rnet interface
-> +              - microchip,sama7d65-gem   # Microchip SAMA7D65 gigabit et=
-hernet interface
->            - const: microchip,sama7g5-gem # Microchip SAMA7G5 gigabit eth=
-ernet interface
-> =20
->    reg:
-> --=20
-> 2.43.0
->=20
->=20
+> 
+> Best regards,
+> Krzysztof
 
---ZH+IhbSqEBnXm3HD
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ+07mwAKCRB4tDGHoIJi
-0oaaAQDZCHsKizxzSW01d9pShvwWkQbjhsKYMyc+Dx+WthYU/AD/QMHJfPRMRa92
-2cV+g+ELOsKdCKbzefq6+0KCssfZrAg=
-=l9g7
------END PGP SIGNATURE-----
-
---ZH+IhbSqEBnXm3HD--
+-- 
+Regards,
+Benjamin
 
