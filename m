@@ -1,205 +1,147 @@
-Return-Path: <devicetree+bounces-162614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CD7BA79056
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 15:53:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78971A79064
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 15:56:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11C311895E3B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 13:50:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA6A63B570E
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 13:51:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A9F823BCED;
-	Wed,  2 Apr 2025 13:49:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32B7D23BCED;
+	Wed,  2 Apr 2025 13:51:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OnVPKf7H"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="hA3P+25o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F29AE1EF38D;
-	Wed,  2 Apr 2025 13:49:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60CAC23BCEF;
+	Wed,  2 Apr 2025 13:51:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743601755; cv=none; b=M9LQJPdYkEWkmCl5duGmQG4UlIeFqoJDvHBVwuzT23Ih/SluNejW9K68qeJ6DAtC9opaK0ccCwuEYGhTAdY+45uPyDsa2KhNhqSzh9sQ7P1UMb4M1mUcEqkFBF+2BzN3gQf/qrpq8aldvtC8+ciTYk5ToD71aTU24p7FVn0MYK0=
+	t=1743601880; cv=none; b=AYMnnte4rPdeQYMCnAsUb3Fut3UQpnUmLyBB/E28zXHUN5ixq5p3GMS2VPdussBcbz2oVee5e304HKfnSOen0cCoKOo2gXffjaDcIJEPpduFf33uSjuY++uI9YSMhutnyOCcdK5dKLubuPMx8+PZKyXbtXa0Vf4Ca1L67gUkGjI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743601755; c=relaxed/simple;
-	bh=oFf412cXfutRgSqUrPxli9S1At7qotc4OCtaaSVbMx0=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=HDSL7Gm4ec99fisoUwZItSrYQgf1dAI/M8aFd15TgQxebcxm+pkLtDPrmL0p+s+GP0hVpHaYXrE7za2F8tU4fCZMbLH01qL7GBAkE+Xhohk1RMwyLVuewJwjJhrQG02rNYHf20v6A+H850YwxqGv7AmGPW9at3xi7gmcMIpjwm8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OnVPKf7H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A0EAC4CEDD;
-	Wed,  2 Apr 2025 13:49:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743601754;
-	bh=oFf412cXfutRgSqUrPxli9S1At7qotc4OCtaaSVbMx0=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=OnVPKf7Hf27t39Fk86fdhNvv2xsitnH01gic5nravAkyQCE1LyW01hiL2NTvzTlW5
-	 MI3s1G0pcHByRfp+4R1v6wdcX4cyXoia6wJ/uEeraShkuasUPpuodm+C3ykkcFam/9
-	 BbiWr+tDRx5d3GtH2nFaKJ7LPQUEuh1K0B8m3p9NRskT88tz74cQZ1PREtWkhzLMJd
-	 65hfrZoKVxR3WVEhka9ljpmWnBrDbN6YG0BKboziI9pGTaW1PcLfFlPSdg4QUbhRHk
-	 LLfoTH9gpPp36Z4qjmvXSHtXR4zBn6UwVEvRW24o2QQKe+4DoQq+S3M1/iSnMMefyg
-	 KhUQf2d/YbARQ==
-Date: Wed, 02 Apr 2025 08:49:12 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1743601880; c=relaxed/simple;
+	bh=A9O5eS2l16DBgPICaEtUFjgi9RkWq9x3wPNStnQioQk=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=bsCYF08pNW4xpHgDQoxD8s2YxFm7l4H1SXLIIWuurwuXSUA6jmy4mlDklxX/ARP2O2C77u1ZBQjBCEYtO+Gjkkt047AAVUES2uRhuE/Pe0pr+U0UdAaZNu+IeLpmq8RzNfnNwKnnyk3LNkiZBYGrl5JomJ3FKBqsNiFpaqo189U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=hA3P+25o; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 532CO6Ra018957;
+	Wed, 2 Apr 2025 15:51:10 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=r5AsdiYb24Au02+ZUD6TST
+	XwjJB6opLYfwASWD9NJAY=; b=hA3P+25oCetwJT8rY+/0zlX9KvUu+rK8k9sBi/
+	K0L623ly7mlVcxJtOuQDsav9dYpXGKnAePJ9oVu8LdqTDRtLw96tbBpdE+dm902g
+	eIV18CjEySeYnIBKbTDdKfconKD4X5uLAD7pnyYTrrAc3ebTOGXVjW38g7zjPaUq
+	9B3iLyiNVN9HxxPlWtpZu7lA/GH3T6EypvM1cYYOhYvtk1fBDXhqKvP0vIPUZ4xN
+	EPKBQZL8CY9v3O8jQs9LLUCaWrKP0VAEWJeTIwYCrbGJPk1GgLPqgxWHBO8jliAU
+	xmBXOBusZ9ZgVNNxa6B3j+oXh9VgI6ikfMCJFdHYlpu1FY7g==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45p75qbtd5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 02 Apr 2025 15:51:10 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id AA88040051;
+	Wed,  2 Apr 2025 15:50:22 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7E8C085F21C;
+	Wed,  2 Apr 2025 15:50:09 +0200 (CEST)
+Received: from localhost (10.252.30.87) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 2 Apr
+ 2025 15:50:09 +0200
+From: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+Subject: [PATCH v4 0/2] media: Add support for ST VD55G1 camera sensor
+Date: Wed, 2 Apr 2025 15:50:05 +0200
+Message-ID: <20250402-b4-vd55g1-v4-0-84b1f54c670c@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Dmitry Baryshkov <lumag@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- maud_spierings@hotmail.com, Conor Dooley <conor+dt@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, dmitry.baryshkov@oss.qualcomm.com, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-In-Reply-To: <20250402084646.10098-1-alex.vinarskis@gmail.com>
-References: <20250402084646.10098-1-alex.vinarskis@gmail.com>
-Message-Id: <174360168717.154053.3856433383315659237.robh@kernel.org>
-Subject: Re: [PATCH v2 0/3] X1E Asus Zenbook A14 support
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAI1A7WcC/23OQQ7CIBAF0KsY1tIMA6PgynsYF1BAWWhNMURje
+ ndpN9bq8k94//NiOfQpZLZbvVgfSsqpu9ag1ivWnu31FHjyNTMEJEAk7hQvnugkuPPOgHdBGid
+ ZfX/rQ0yPqetwrPmc8r3rn1N1EeP1X0sRHLj0ZEFjhGjNPnY5N/netN1lrJ2MRL002ouNU3ZrI
+ n6bcbvgZ0+BmFusFlptnbZKt0S/Vs4tzq0c/2qk0aRAbWmxOwzDGwXpRw1QAQAA
+X-Change-ID: 20250225-b4-vd55g1-bdb90dbe39b3
+To: Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+        Sylvain Petinot
+	<sylvain.petinot@foss.st.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Sakari Ailus
+	<sakari.ailus@linux.intel.com>
+CC: <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+X-Mailer: b4 0.14.2
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-02_05,2025-04-02_02,2024-11-22_01
 
+Hi,
 
-On Wed, 02 Apr 2025 10:44:01 +0200, Aleksandrs Vinarskis wrote:
-> Introduce support for the mentioned laptop.
-> 
-> Particular device exists in two model numbers:
-> * UX3407QA: X1P-42-100 or X1-26-100 (as tested)
-> * UX3407RA: X1E-78-100
-> 
-> Mostly similar to other X1-based laptops. Notable differences are:
-> * Wifi/Bluetooth combo being Qualcomm FastConnect 6900 on UX3407QA
->   and Qualcomm FastConnect 7800 on UX3407RA
-> * USB Type-C retimers are Parade PS8833, appear to behave identical
->   to Parade PS8830
-> * gpio90 is TZ protected
-> 
-> When comparing device firmware between UX3407QA, UX3407RA, it seems
-> that only ADSP firmware is different, CDSP and GPU firmware appears to
-> be the same. (At least assuming the GPU firmware name in both cases is
-> `qcdxkmsuc8380.mbn`). Since at least some blobs are different betweeen
-> X1E and X1/X1P, define new firmware directory for `qcom/x1p42100`. This
-> also makes it easier for distros to automatically extract firmware from
-> Windows and place all blobs for the model under the same path. If/When
-> firmware blobs make it to linux-firmware, same blobs can be easily
-> symlinked between `qcom/x1e80100` and `qcom/x1p42100`.
-> 
-> NVMe SSD depends on [1]. USB Type-A over USB MP controller  depends on
-> [2], or equivalent proposed solution.
-> 
-> Qualcomm FastConnect 6900 on UX3407QA did not work out of the box, and
-> additionally required both newer firmware and patches to `board-2.bin`.
-> I added a short how-to [3], as it is not exactly trivial.
-> 
-> ACPI dumps can be found on aarch64-laptops' github [4]. HWids on
-> dtbloader's github [5].
-> 
-> [1] https://lore.kernel.org/linux-arm-msm/20250319094544.3980357-1-quic_wenbyao@quicinc.com/
-> [2] https://lore.kernel.org/all/20250318-xps13-fingerprint-v1-1-fbb02d5a34a7@oss.qualcomm.com/
-> [3] https://github.com/alexVinarskis/linux-x1e80100-zenbook-a14?tab=readme-ov-file#wcn688x-wifi
-> [4] https://github.com/aarch64-laptops/build/pull/134/files
-> [5] https://github.com/TravMurav/dtbloader/pull/4/files
-> 
-> Changes to v1:
-> * Drop PS8833 variant, fallback to PS8830 as they behave the same
-> * Drop wrong pcie6a_phy compatible revert
-> * Drop redundant comments, fix order of properties in the device-tree
-> * Fix device name bindings, express in model names instead of the soc
-> * Fix GPU firmware name for UX3407QA
-> * Fix model string, enclose variant in parenthesis
-> * Added missing new lines before 'status = "okay";'
-> * Updated cover letter to reflect some of the above changes
-> * Left SPI10 disabled as it is unknown how/what for to use it as of now
-> Link to v1: https://lore.kernel.org/all/20250331215720.19692-1-alex.vinarskis@gmail.com/
-> 
-> Aleksandrs Vinarskis (3):
->   dt-bindings: arm: qcom: Add Asus Zenbook A14
->   firmware: qcom: scm: Allow QSEECOM on Asus Zenbook A14
->   arm64: dts: qcom: Add support for X1-based Asus Zenbook A14
-> 
->  .../devicetree/bindings/arm/qcom.yaml         |    2 +
->  arch/arm64/boot/dts/qcom/Makefile             |    2 +
->  arch/arm64/boot/dts/qcom/x1-zenbook-a14.dtsi  | 1258 +++++++++++++++++
->  .../dts/qcom/x1e80100-asus-zenbook-a14.dts    |   45 +
->  .../dts/qcom/x1p42100-asus-zenbook-a14.dts    |   48 +
->  drivers/firmware/qcom/qcom_scm.c              |    2 +
->  6 files changed, 1357 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/x1-zenbook-a14.dtsi
->  create mode 100644 arch/arm64/boot/dts/qcom/x1e80100-asus-zenbook-a14.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/x1p42100-asus-zenbook-a14.dts
-> 
-> --
-> 2.45.2
-> 
-> 
-> 
+This serie adds support for the STMicroelectronics VD55G1 camera sensor.
+The VD55G1 is a monochrome global shutter camera with a 804x704 maximum
+resolution with RAW8 and RAW10 bytes per pixel.
+Datasheets and other documentation can be found at st.com [1].
+A lot of inspiration was taken from the imx219 and the vd56g3 serie.
+It is compatible with libcamera. Tested on Raspberry Pi 4 and 5, with and
+without libcamera.
 
+[1] https://www.st.com/en/imaging-and-photonics-solutions/vd55g1.html#documentation
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+Regards,
+Benjamin
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+---
+Changes in v4:
+- Fix data-lanes syntax in binding
+- Link to v3: https://lore.kernel.org/r/20250402-b4-vd55g1-v3-0-393985404759@foss.st.com
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+Changes in v3:
+- Add maxItems to data-lanes in binding
+- Drop redondant 'binding' in binding commit message
+- Link to v2: https://lore.kernel.org/r/20250401-b4-vd55g1-v2-0-0c8ab8a48c55@foss.st.com
 
-  pip3 install dtschema --upgrade
+Changes in v2:
+- Fix device tree binding mistakes
+- Drop linux media git from MAINTAINERS file
+- Fix coding style mistakes
+- Drop vd55g1_err_probe wrapper
+- Fix 32bits build
+- Fix config symbol help paragraph being too short for checkpatch
+- Link to v1: https://lore.kernel.org/r/20250328-b4-vd55g1-v1-0-8d16b4a79f29@foss.st.com
 
+---
+Benjamin Mugnier (2):
+      media: dt-bindings: Add ST VD55G1 camera sensor
+      media: i2c: Add driver for ST VD55G1 camera sensor
 
-This patch series was applied (using b4) to base:
- Base: attempting to guess base-commit...
- Base: tags/next-20250401 (exact match)
+ .../devicetree/bindings/media/i2c/st,vd55g1.yaml   |  132 ++
+ MAINTAINERS                                        |    9 +
+ drivers/media/i2c/Kconfig                          |   11 +
+ drivers/media/i2c/Makefile                         |    1 +
+ drivers/media/i2c/vd55g1.c                         | 1993 ++++++++++++++++++++
+ 5 files changed, 2146 insertions(+)
+---
+base-commit: b2c4bf0c102084e77ed1b12090d77a76469a6814
+change-id: 20250225-b4-vd55g1-bdb90dbe39b3
 
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20250402084646.10098-1-alex.vinarskis@gmail.com:
-
-arch/arm64/boot/dts/qcom/x1e80100-asus-zenbook-a14.dtb: bluetooth: 'vddrfacmn-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/x1e80100-asus-zenbook-a14.dtb: bluetooth: 'vddaon-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/x1e80100-asus-zenbook-a14.dtb: bluetooth: 'vddwlcx-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/x1e80100-asus-zenbook-a14.dtb: bluetooth: 'vddwlmx-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/x1e80100-asus-zenbook-a14.dtb: bluetooth: 'vddrfa0p8-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/x1e80100-asus-zenbook-a14.dtb: bluetooth: 'vddrfa1p2-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/x1e80100-asus-zenbook-a14.dtb: bluetooth: 'vddrfa1p8-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/x1e80100-asus-zenbook-a14.dtb: pinctrl@f100000: Unevaluated properties are not allowed ('bt-en-sleep' was unexpected)
-	from schema $id: http://devicetree.org/schemas/pinctrl/qcom,x1e80100-tlmm.yaml#
-arch/arm64/boot/dts/qcom/x1p42100-asus-zenbook-a14.dtb: bluetooth: 'vddrfacmn-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/x1p42100-asus-zenbook-a14.dtb: bluetooth: 'vddaon-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/x1p42100-asus-zenbook-a14.dtb: bluetooth: 'vddwlcx-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/x1p42100-asus-zenbook-a14.dtb: bluetooth: 'vddwlmx-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/x1p42100-asus-zenbook-a14.dtb: bluetooth: 'vddbtcmx-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/x1p42100-asus-zenbook-a14.dtb: bluetooth: 'vddrfa0p8-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/x1p42100-asus-zenbook-a14.dtb: bluetooth: 'vddrfa1p2-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/x1p42100-asus-zenbook-a14.dtb: bluetooth: 'vddrfa1p8-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/x1p42100-asus-zenbook-a14.dtb: pinctrl@f100000: Unevaluated properties are not allowed ('bt-en-sleep' was unexpected)
-	from schema $id: http://devicetree.org/schemas/pinctrl/qcom,x1e80100-tlmm.yaml#
-
-
-
-
+Best regards,
+-- 
+Benjamin Mugnier <benjamin.mugnier@foss.st.com>
 
 
