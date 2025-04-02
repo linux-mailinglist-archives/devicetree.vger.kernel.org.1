@@ -1,80 +1,78 @@
-Return-Path: <devicetree+bounces-162693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A758A796E5
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 22:54:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79388A796F1
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 22:57:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A979F7A4628
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 20:53:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 317EC171E3D
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 20:57:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A8A01F130E;
-	Wed,  2 Apr 2025 20:54:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70EFD1F236C;
+	Wed,  2 Apr 2025 20:57:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GXlV238B"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="E3jSCJY9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93D4C193436
-	for <devicetree@vger.kernel.org>; Wed,  2 Apr 2025 20:54:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD784193436
+	for <devicetree@vger.kernel.org>; Wed,  2 Apr 2025 20:57:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743627277; cv=none; b=mhgqKHpcJG/lTtZuZoRsHf0a4yO0qKr75M3wR89v11t5zwVUlR0AVK0BOuTcmeVKugEnnyZf1dB33TzyozXENWuhXRUJEisQ6v15BJTbXERStDSaMVpEhohQksI9J1UyJHd11tPKlmV3w1w9oDjlXxNJtQSTNE29uu05PASjTZs=
+	t=1743627443; cv=none; b=EDcu8ReoMAZyDA6242CTSFcOWnLAhgXDEU/mZ1zsSTe83qSJrZ6bksasfLKdyDoTTZCJFZe/KmXFXPKq6NqFvhDbYGjwVLhe0TQMa4baeWL5XVHrmFJkdCC67pWMXG5K/fzFxy8h5q9sx94Yp9N9t2cX/OQ87kfQhmSicCimplo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743627277; c=relaxed/simple;
-	bh=QBrhHNJ2aWiZTvesi5cFiVzKIcRyzZLRNAgTf3DnqsI=;
+	s=arc-20240116; t=1743627443; c=relaxed/simple;
+	bh=lftzeeNM+oJAEJTBPTi6LunxBUdnoH8Fggv/5Q/2uCM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=O1U82uRG2PANDEiqq192Bln7glwUu48aovq5utejAnseAoIpGNGpH3djO7GJ7I4ZBbbSTU2g0bXJbxSW08W8UTpu4PArTa8uThrA7PhE0/oyT9wJryf1jVdeIM4z7pQ2i/JPdtPXS0iNzToDXkklgr29drkZkb0sHRl5qDt7P6Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GXlV238B; arc=none smtp.client-ip=209.85.167.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-3feaedb39e9so71063b6e.1
-        for <devicetree@vger.kernel.org>; Wed, 02 Apr 2025 13:54:35 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=LmiBJ46aZ8WuHYY1Yz+lNhz3Y5Jzg4RcTMTwvS4PMiGxBtmuxa5a4C3hJc+KbX0GZhoavrgRcD3Wdz06O/avZskcFhJ7GpQUhCZ9aIaQ9QRCynnj07GjvfT/oMarfMoyPI0kCiLw59tI+DXwoO23RGuLJ7Nt5MHeo7pRT/aQDM4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=E3jSCJY9; arc=none smtp.client-ip=209.85.210.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-72bbc03d436so177972a34.3
+        for <devicetree@vger.kernel.org>; Wed, 02 Apr 2025 13:57:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743627274; x=1744232074; darn=vger.kernel.org;
+        d=broadcom.com; s=google; t=1743627441; x=1744232241; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=axaar2VlAPDiKK+PKSGROMc+IrZ+2WgRihymKGXra8Y=;
-        b=GXlV238BDNP/VqUtWwY97EgNMNRp8pdWJ2o4sXC2L15FWzNR0qC9HUhPFJhCFU8lvT
-         LctyH9+c0WCnP1GSe7Mqtg4k71eWj1BG46XZPJ9l/ik6qNMWexd2hnQVu2guvQVAND+H
-         DH5lH3FlMEJCYhVKVjcpHUfKAbVB0D0c0vKByuGdnCrcxlYas+zktdc18xGiWVXsyiN1
-         03M+yTDLBxzjfP9+wSlVykGMOQgPSYlC+dV+wrOZTA5RW3FIj/khKLGFT9v74aM5r+Fe
-         OkJIp+w2wfVqX+ko3CyhVyiN3uaJiF40s2nNdKNxFOTZI/6qNsaKBLF+s4TCDL0saZWh
-         q62w==
+        bh=rpKPz3l8OSe/vCN0NmJ1oJl75HKKP7ZyAqkRiw9RE+g=;
+        b=E3jSCJY9Pl4IJnyRknEU0LAcW1hZ92Lm7arE8bXearQCKgdFp4ybecXeAjSbzEfGqf
+         N6OnLKYwEPKZEJ/F5oKOdOjt2L0ZCGzmzWzEWO/t7YkRn5LeIdfL74IuVdi6ISc8UZo9
+         6HqGy4g1Y5qP08z13FgQ5EBbpCOnBnRDfxfao=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743627274; x=1744232074;
+        d=1e100.net; s=20230601; t=1743627441; x=1744232241;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=axaar2VlAPDiKK+PKSGROMc+IrZ+2WgRihymKGXra8Y=;
-        b=pXnQC/nwMQ5SWl9PLcRjdY5Ja7HiHDOlzRlDIqwdzN0m5QOO+6szblpoAqTYnun0sL
-         H9Z9dlVyQ4s7KI29Q/Of+HOKU2zkyqCBTDcKzO2wH279+ilKrQ4rfBE2jwM6SFlkgV0J
-         2jMGmGZTJe/IB4JVJ9v8QC4BL+WvwscVhcSdtCUIZsSf36CtBCYnZorZFi+4luNe6H/n
-         DFIGMt/+8Pcl2SWgMrW0X19qliSVGrtj7AKnI9d36HsyJDOeDyvWinbjEljKQGIpFB91
-         iQJmrLrocjYlcYW0m02lp/0VLyOen63Ho7rRdRouGiMGiIGzwHwXo367evg1dJS8c12f
-         ErMg==
-X-Forwarded-Encrypted: i=1; AJvYcCXPrDb06Cdpm43f4BOahOCFGDPEdjqCRB/NAlGJnhDaPAJN4R5Pu0XgI86mE9PowkVGSdckK0IfhbZ+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw8MmU6Gr3p9CsdN/GR3y7LG4ut33XkmHSRftSSxLjc/BHM2G/s
-	7irmbaGy6iO6+M5khy8UXQvpmf7N30+IijXHlOARGy3OCWNOubU6
-X-Gm-Gg: ASbGncsqzK6Y+T1Neyl1NuZbvyErNBGn/4zs2o4c0voP/VWhR7Wmq+qvy3PhfbZ4MF/
-	qCbahyjoSHkkYbiLqXWfm8I2zbwnRlvQBAD7EwMr5hbeHBMpnZZKX3aA37F55hX/2K5hVN4pd7f
-	WzelNff6qeLeGp/R568z38gDhBv/eweK0hKX1e7X/j9yLZ+9+OWat0tmtzPhFRWUKBBi/qQiUu+
-	1fbRu5UBmNNcw4jrgDqVcXBUXLt1FTpI9LgZ1PBsFVu5cfNJwZoqEB2t++P/BUH+V4oWD6ZzmUf
-	ZSrrsCHvi+4t/xe4F/nYkHYNii7+sZO1rWWl05ycZjqhVko5QRoxsVr3eKCHHH1AtYWlZRMm
-X-Google-Smtp-Source: AGHT+IH2b+JHdE/FBb9nWD74IxzVIWkU7YyKDyxMB0+FTs+MT6TBpL3trGIfLfIBnxkIqC+eExplRA==
-X-Received: by 2002:a05:6808:2f0f:b0:3f6:8c64:8bc8 with SMTP id 5614622812f47-4003ea3185emr151555b6e.38.1743627274471;
-        Wed, 02 Apr 2025 13:54:34 -0700 (PDT)
+        bh=rpKPz3l8OSe/vCN0NmJ1oJl75HKKP7ZyAqkRiw9RE+g=;
+        b=EFVjvCuL6kGg8yTGybK3RGOozpuQn+tWqsUKztGnuxLmB9HdFTc3phd6NInt7kyH+r
+         IJVgcVjhhp6bEJ4Xa2sBJUckN2DSavT3MYgiuE5OSjLnbxn5RJQ0xN0BtJiOHi76S30v
+         Y5QDWuv/y3spYubq8hb5Ik9mKfgvsGgjTufbQ5loYjXC19jVTn5pSJ7NG01sjtwnmR3M
+         5lyDngAmkClEj2Pa+nOEIhb5RP1lQ9+pSaa0eZEiQYyiCXtL7DAzeg8nmT6uKApehsPF
+         aSz6Hz5H/tWM4t1MMiay6PBhzX6ZgzbUuJ5l5BAP2ps+xe5TwOsXiS10P6Z1yyONsJMG
+         6OnQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUMbl6rOxC6cfjnEQALl/ZmbdWw9/z6eF9DZ3IlJO1YTtsl+Wbt9p4u6QibTPqSm+Mbnd6Y42uH1+5z@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz1EMGothOgCi9k3SuUWQraEkWNTYw0yggTR1v68PFIQbgOY+VH
+	90TCXAaOyXX+yT0/koNf628eGwY92ponw5+ymXMuSKj0z+dAAkIkA6aS1xtSlw==
+X-Gm-Gg: ASbGnctca2Q3/dvxm+DcMSNhjnLUprvnT0uPUXUHVT4/JxNpRbtQ9rgBBecdt/6MQjh
+	kINMyhzMFIE+kk2OdfdHaaeJ3ej1A3XxLlKkApw7n3MFeutUw+tyne/uiTOWp5gsZH9SngPuaFz
+	huib24FAsgrxy5NcBiO+P104AYP0T07CGzzM5qq1wtHGC0mG0Eux6BBhzqT8tcmlri2+750VHMu
+	mOuZKZPWQ1lSAdm7DTH4osslofReqHpQs9nPBJs5Azec9Q4mom1We2oiRgsNoNt9rdmoDWD2/bE
+	A/CdneDhOCmtgzZMKsI6gMSLD4Ux1bllh/oNowRvuYCwtmMqQVlDt8VZJSQ1Z8GQud9IU3AKFpz
+	CDOtk/Nmy
+X-Google-Smtp-Source: AGHT+IGQbJ8Ul1tV+oR7fGNXEKGhTjAsFXMi+pHNNFqgdxqtIVwd7TZXEP10p9WO1jQ5NcUbbYlHFg==
+X-Received: by 2002:a05:6830:638b:b0:72b:84ab:b1ad with SMTP id 46e09a7af769-72dae59cea4mr5135994a34.1.1743627440747;
+        Wed, 02 Apr 2025 13:57:20 -0700 (PDT)
 Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3ff052799d2sm2550146b6e.34.2025.04.02.13.54.31
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-72c580b5401sm2394329a34.18.2025.04.02.13.57.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Apr 2025 13:54:33 -0700 (PDT)
-Message-ID: <4bdbb732-fd58-4ac3-a33b-5c89df03e510@gmail.com>
-Date: Wed, 2 Apr 2025 13:54:31 -0700
+        Wed, 02 Apr 2025 13:57:19 -0700 (PDT)
+Message-ID: <cf7661e3-9d6b-4164-971e-0082468da0c7@broadcom.com>
+Date: Wed, 2 Apr 2025 13:57:18 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,59 +80,58 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] phy: usb: add support for bcm74110
+Subject: Re: [PATCH v3 1/2] dt-bindings: phy: brcmstb-usb-phy: Add support for
+ bcm74110
 To: justin.chen@broadcom.com, linux-arm-kernel@lists.infradead.org,
  devicetree@vger.kernel.org, linux-phy@lists.infradead.org
 Cc: rafal@milecki.pl, alcooperx@gmail.com,
- bcm-kernel-feedback-list@broadcom.com, florian.fainelli@broadcom.com,
- conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, kishon@kernel.org,
- vkoul@kernel.org
+ bcm-kernel-feedback-list@broadcom.com, conor+dt@kernel.org,
+ krzk+dt@kernel.org, robh@kernel.org, kishon@kernel.org, vkoul@kernel.org
 References: <20250402185159.2976920-1-justin.chen@broadcom.com>
- <20250402185159.2976920-3-justin.chen@broadcom.com>
+ <20250402185159.2976920-2-justin.chen@broadcom.com>
 Content-Language: en-US
-From: Florian Fainelli <f.fainelli@gmail.com>
-Autocrypt: addr=f.fainelli@gmail.com; keydata=
- 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
- WlfRzlpjIPmdjgoicA==
-In-Reply-To: <20250402185159.2976920-3-justin.chen@broadcom.com>
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <20250402185159.2976920-2-justin.chen@broadcom.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 4/2/25 11:51, justin.chen@broadcom.com wrote:
 > From: Justin Chen <justin.chen@broadcom.com>
 > 
-> bcm74110 adds a freerun utmi/ref clock that saves further power during
-> suspend states. A tune is also necessary to pass USB compliance test.
+> bcm74110 brcmstb usb phy adds further power savings during suspend
+> states.
 > 
 > Signed-off-by: Justin Chen <justin.chen@broadcom.com>
 
