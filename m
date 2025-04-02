@@ -1,66 +1,60 @@
-Return-Path: <devicetree+bounces-162559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DC90A78C03
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 12:22:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83227A78C2A
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 12:24:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F199B16C864
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 10:22:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F3213B23AB
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 10:22:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9B85236A72;
-	Wed,  2 Apr 2025 10:22:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="Iq1BRouQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83FC3237180;
+	Wed,  2 Apr 2025 10:22:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E70B23496B;
-	Wed,  2 Apr 2025 10:22:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 391E3236A8B;
+	Wed,  2 Apr 2025 10:22:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743589324; cv=none; b=P9k3vt+5V5QtAYazJp9Q47OaevPus7YWWkg1RHbYHETLRHFYZNlqyBsmQpstn8kNRitpnKB1hvNtG/BBiln4dxuV8dWYBaP3CKZwspTyDHNK2KkS9bDtCE8DgRaEaE8loubuEQwp1PbTG0Te7jHTqDMZISAfZ4eLzB16YbWUhRs=
+	t=1743589356; cv=none; b=EN0gY8zjijH4LnqBFIYXydrgzWGnxqMRnEHmoZYOKAuwRF1glgZBsLxoJTJ40fGvwDdSy1dm8iwhEIJiFnVxmm9lz7AAUKnsR2b4h9wvYydOmpC6s+ojNCXhm+UONKoNGeIm6fePurvs6+M8AQzR5eYh2oZCrcBLj/pmFjwDmS8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743589324; c=relaxed/simple;
-	bh=026L5mpFASeol/7opVh9CmSxoITExZz10Pcyq8430eU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Lz8mkBoMXlui6TBqiI/dHGnaUzYw19Dp3eOus9jS3ipQdeQ28EqNGpRabABiEYVyRF6nRFmIRCQUAqgXI1RkyNIEdpq2mx/Q3RgJ4kE1rjkI1ZxAVphqnuwFCUIyEEJrnvks8YhYxLyhQpc9OXW7kItOjoJrZNiA4hCtA/Zywc8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=Iq1BRouQ; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb.corp.toradex.com (31-10-206-125.static.upc.ch [31.10.206.125])
-	by mail11.truemail.it (Postfix) with ESMTPA id CF18B1F942;
-	Wed,  2 Apr 2025 12:21:53 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1743589314;
-	bh=W9Ytkjyg7W4FjQduy9rzFOZWJ4BB5kGItiVAPwrBlZo=; h=From:To:Subject;
-	b=Iq1BRouQ6dwtoocS2wdk7M2Jp9YUcXGWpxObc2Y1DCirTM5VVJT0aC9roj/u2BR1Y
-	 4RzMp8vhqxVI56m2sw5oizD+uwh4BTW7ARpJS74YT9AYygF6prXHmDGAAf7NIEpiAb
-	 v1h77AnBsPX4Cc0e94uxrBIaq3QhX4WunpRAqokGrzHE9PdQ8bHG2rB+AElwKl9va9
-	 2RnVLCnMDKR2vHR9IxZIgoAwZlwrGofh+tIo7MdHrgWW+0/7p7JhB5VJQ6PbHIHDHk
-	 IlS+RiXxmlkaapzByTIzroSVOe9sW+PjD9K0z86folu85FpYmRlB6v265A/AdaoXDg
-	 FbsaPZ4qmRweQ==
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
+	s=arc-20240116; t=1743589356; c=relaxed/simple;
+	bh=Me7OUgOVepAtrtHTCUw4eo0nvqbAbb3ZE9zGuNAYJRk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=outVgw3GfE7XtO3GSiiYSIoCjz0GABA3vDs1YtE/wzNWXyvPjL6pT0/e1mQdOaPePix4zIjYy5HsDkiEYcN0J320g4xFQN297W8X2Kp44oexxlDySvucxhnc0248MLWUm7PErYfXZNKFwPMJO1BrRjCyArPm03/KXm7HeZAASqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-CSE-ConnectionGUID: EslSP0D4SA27IK6Tgej+hg==
+X-CSE-MsgGUID: spP6QAFWQgeOvhFwBXcWkA==
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 02 Apr 2025 19:22:33 +0900
+Received: from localhost.localdomain (unknown [10.226.93.220])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 9728B42203FA;
+	Wed,  2 Apr 2025 19:22:28 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Farouk Bouabid <farouk.bouabid@cherry.de>,
-	Quentin Schulz <quentin.schulz@cherry.de>
-Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
-	linux-hwmon@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	linux-can@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 2/2] hwmon: (amc6821) Add PWM polarity configuration with OF
-Date: Wed,  2 Apr 2025 12:21:46 +0200
-Message-Id: <20250402102146.65406-3-francesco@dolcini.it>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250402102146.65406-1-francesco@dolcini.it>
-References: <20250402102146.65406-1-francesco@dolcini.it>
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v8 00/19] Add support for RZ/G3E CANFD
+Date: Wed,  2 Apr 2025 11:21:52 +0100
+Message-ID: <20250402102226.28032-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,126 +63,122 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Francesco Dolcini <francesco.dolcini@toradex.com>
+The CAN-FD module on RZ/G3E is very similar to the one on both R-Car V4H
+and RZ/G2L, but differs in some hardware parameters:
+ * No external clock, but instead has ram clock.
+ * Support up to 6 channels.
+ * 20 interrupts.
 
-Add support to configure the PWM-Out pin polarity based on the device
-tree. The binding would allow also to configure the PWM period, this is
-currently not implemented by the driver.
+v7->v8:
+ * Collected tags.
+ * Updated commit description for patch#{5,9,15,16,17}.
+ * Replaced the macro RCANFD_GERFL_EEF0_7->RCANFD_GERFL_EEF.
+ * Dropped the redundant macro RCANFD_GERFL_EEF(ch).
+ * Added patch for dropping the mask operation in RCANFD_GAFLCFG_SETRNC
+   macro.
+ * Converted RCANFD_GAFLCFG_SETRNC->rcar_canfd_setrnc().
+ * Updated RCANFD_GAFLCFG macro by replacing the parameter ch->w, where w
+   is the GAFLCFG index used in the hardware manual.
+ * Renamed the parameter x->page_num in RCANFD_GAFLECTR_AFLPN macro to
+   make it clear.
+ * Renamed the parameter x->cftml in RCANFD_CFCC_CFTML macro to make it
+   clear.
+ * Updated {rzg2l,car_gen3_hw_info} with ch_interface_mode = 0.
+ * Updated {rzg2l,rcar_gen3}_hw_info with shared_can_regs = 0.
+ * Started using struct rcanfd_regs instead of LUT for reg offsets.
+ * Started using struct rcar_canfd_shift_data instead of LUT for shift
+   data.
+ * Renamed only_internal_clks->external_clk to avoid negation.
+ * Updated rcar_canfd_hw_info tables with external_clk entries.
+ * Replaced 10->sizeof(name) in scnprintf().
+v6->v7:
+ * Collected tags
+ * Replaced 'aswell'->'as well' in patch#11 commit description.
+v5->v6:
+ * Replaced RCANFD_RNC_PER_REG macro with rnc_stride variable.
+ * Updated commit description for patch#7 and #8
+ * Dropped mask_table:
+     AFLPN_MASK is replaced by max_aflpn variable.
+     CFTML_MASK is replaced by max_cftml variable.
+     BITTIMING MASK's are replaced by {nom,data}_bittiming variables.
+ * Collected tag from Geert.
+v4->v5:
+ * Collected tag from Geert.
+ * The rules for R-Car Gen3/4 could be kept together, reducing the number
+   of lines. Similar change for rzg2l-canfd aswell.
+ * Keeping interrupts and resets together allows to keep a clear
+   separation between RZ/G2L and RZ/G3E, at the expense of only
+   a single line.
+ * Retained the tags for binding patches as it is trivial changes.
+ * Dropped the unused macro RCANFD_GAFLCFG_GETRNC.
+ * Updated macro RCANFD_GERFL_ERR by using gpriv->channels_mask and
+   dropped unused macro RCANFD_GERFL_EEF0_7.
+ * Replaced RNC mask in RCANFD_GAFLCFG_SETRNC macro by using
+   info->num_supported_rules variable.
+ * Updated the macro RCANFD_GAFLCFG by using info->rnc_field_width
+   variable.
+ * Updated shift value in RCANFD_GAFLCFG_SETRNC macro by using a formula
+   (32 - (n % rnc_per_reg + 1) * field_width).
+ * Replaced the variable name shared_can_reg->shared_can_regs.
+ * Improved commit description for patch{#11,#12}by replacing has->have.
+ * Dropped RCANFD_EEF_MASK and RCANFD_RNC_MASK as it is taken
+   care by gpriv->channels_mask and info->num_supported_rules.
+ * Dropped RCANFD_FIRST_RNC_SH and RCANFD_SECOND_RNC_SH by using a
+   formula (32 - (n % rnc_per_reg + 1) * rnc_field_width.
+ * Improved commit description by "All SoCs supports extenal clock"->
+   "All existing SoCs support an external clock".
+ * Updated error description in probe as "cannot get enabled ram clock"
+ * Updated r9a09g047_hw_info table.
+v3->v4:
+ * Added Rb tag from Rob for patch#2.
+ * Added prefix RCANFD_* to enum rcar_canfd_reg_offset_id.
+ * Added prefix RCANFD_* to enum rcar_canfd_mask_id.
+ * Added prefix RCANFD_* to enum rcar_canfd_shift_id.
+v2->v3:
+ * Collected tags.
+ * Dropped reg_gen4() and is_gen4() by adding mask_table, shift_table,
+   regs, ch_interface_mode and shared_can_reg variables to
+   struct rcar_canfd_hw_info.
+v1->v2:
+ * Split the series with fixes patch separately.
+ * Added patch for Simplify rcar_canfd_probe() using
+   of_get_available_child_by_name() as dependency patch hit on can-next.
+ * Added Rb tag from Vincent Mailhol.
+ * Dropped redundant comment from commit description for patch#3.
 
-The driver has a module option to set the PWM polarity (normal=0,
-inverted=1), when specified it always takes the precedence over the DT.
+Biju Das (19):
+  dt-bindings: can: renesas,rcar-canfd: Simplify the conditional schema
+  dt-bindings: can: renesas,rcar-canfd: Document RZ/G3E support
+  can: rcar_canfd: Use of_get_available_child_by_name()
+  can: rcar_canfd: Drop RCANFD_GAFLCFG_GETRNC macro
+  can: rcar_canfd: Update RCANFD_GERFL_ERR macro
+  can: rcar_canfd: Drop the mask operation in RCANFD_GAFLCFG_SETRNC
+    macro
+  can: rcar_canfd: Add rcar_canfd_setrnc()
+  can: rcar_canfd: Update RCANFD_GAFLCFG macro
+  can: rcar_canfd: Add rnc_field_width variable to struct
+    rcar_canfd_hw_info
+  can: rcar_canfd: Add max_aflpn variable to struct rcar_canfd_hw_info
+  can: rcar_canfd: Add max_cftml variable to struct rcar_canfd_hw_info
+  can: rcar_canfd: Add {nom,data}_bittiming variables to struct
+    rcar_canfd_hw_info
+  can: rcar_canfd: Add ch_interface_mode variable to struct
+    rcar_canfd_hw_info
+  can: rcar_canfd: Add shared_can_regs variable to struct
+    rcar_canfd_hw_info
+  can: rcar_canfd: Add struct rcanfd_regs variable to struct
+    rcar_canfd_hw_info
+  can: rcar_canfd: Add sh variable to struct rcar_canfd_hw_info
+  can: rcar_canfd: Add external_clk variable to struct
+    rcar_canfd_hw_info
+  can: rcar_canfd: Enhance multi_channel_irqs handling
+  can: rcar_canfd: Add RZ/G3E support
 
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
-v4:
- - remove first #pwm-cells
-v3: https://lore.kernel.org/all/20250331155229.147879-3-francesco@dolcini.it/
- - configure PWM polarity using standard PWM DT properties
-v2: https://lore.kernel.org/lkml/20250224180801.128685-3-francesco@dolcini.it/
- - pwminv module parameter takes always the precedence over the DT property
-v1: https://lore.kernel.org/all/20250218165633.106867-3-francesco@dolcini.it/
----
- drivers/hwmon/amc6821.c | 50 ++++++++++++++++++++++++++++++++++++-----
- 1 file changed, 45 insertions(+), 5 deletions(-)
+ .../bindings/net/can/renesas,rcar-canfd.yaml  | 171 ++++++++---
+ drivers/net/can/rcar/rcar_canfd.c             | 277 +++++++++++++-----
+ 2 files changed, 339 insertions(+), 109 deletions(-)
 
-diff --git a/drivers/hwmon/amc6821.c b/drivers/hwmon/amc6821.c
-index 1e3c6acd8974..13a789cc85d2 100644
---- a/drivers/hwmon/amc6821.c
-+++ b/drivers/hwmon/amc6821.c
-@@ -23,9 +23,12 @@
- #include <linux/module.h>
- #include <linux/mutex.h>
- #include <linux/of_platform.h>
-+#include <linux/pwm.h>
- #include <linux/regmap.h>
- #include <linux/slab.h>
- 
-+#include <dt-bindings/pwm/pwm.h>
-+
- /*
-  * Addresses to scan.
-  */
-@@ -37,7 +40,7 @@ static const unsigned short normal_i2c[] = {0x18, 0x19, 0x1a, 0x2c, 0x2d, 0x2e,
-  * Insmod parameters
-  */
- 
--static int pwminv;	/*Inverted PWM output. */
-+static int pwminv = -1; /*Inverted PWM output. */
- module_param(pwminv, int, 0444);
- 
- static int init = 1; /*Power-on initialization.*/
-@@ -845,9 +848,43 @@ static int amc6821_detect(struct i2c_client *client, struct i2c_board_info *info
- 	return 0;
- }
- 
--static int amc6821_init_client(struct amc6821_data *data)
-+static enum pwm_polarity amc6821_pwm_polarity(struct i2c_client *client)
-+{
-+	enum pwm_polarity polarity = PWM_POLARITY_NORMAL;
-+	struct of_phandle_args args;
-+	struct device_node *fan_np;
-+
-+	/*
-+	 * For backward compatibility, the pwminv module parameter takes
-+	 * always the precedence over any other device description
-+	 */
-+	if (pwminv == 0)
-+		return PWM_POLARITY_NORMAL;
-+	if (pwminv > 0)
-+		return PWM_POLARITY_INVERSED;
-+
-+	fan_np = of_get_child_by_name(client->dev.of_node, "fan");
-+	if (!fan_np)
-+		return PWM_POLARITY_NORMAL;
-+
-+	if (of_parse_phandle_with_args(fan_np, "pwms", "#pwm-cells", 0, &args))
-+		goto out;
-+	of_node_put(args.np);
-+
-+	if (args.args_count != 2)
-+		goto out;
-+
-+	if (args.args[1] & PWM_POLARITY_INVERTED)
-+		polarity = PWM_POLARITY_INVERSED;
-+out:
-+	of_node_put(fan_np);
-+	return polarity;
-+}
-+
-+static int amc6821_init_client(struct i2c_client *client, struct amc6821_data *data)
- {
- 	struct regmap *regmap = data->regmap;
-+	u32 regval;
- 	int err;
- 
- 	if (init) {
-@@ -864,11 +901,14 @@ static int amc6821_init_client(struct amc6821_data *data)
- 		if (err)
- 			return err;
- 
-+		regval = AMC6821_CONF1_START;
-+		if (amc6821_pwm_polarity(client) == PWM_POLARITY_INVERSED)
-+			regval |= AMC6821_CONF1_PWMINV;
-+
- 		err = regmap_update_bits(regmap, AMC6821_REG_CONF1,
- 					 AMC6821_CONF1_THERMOVIE | AMC6821_CONF1_FANIE |
- 					 AMC6821_CONF1_START | AMC6821_CONF1_PWMINV,
--					 AMC6821_CONF1_START |
--					 (pwminv ? AMC6821_CONF1_PWMINV : 0));
-+					 regval);
- 		if (err)
- 			return err;
- 	}
-@@ -916,7 +956,7 @@ static int amc6821_probe(struct i2c_client *client)
- 				     "Failed to initialize regmap\n");
- 	data->regmap = regmap;
- 
--	err = amc6821_init_client(data);
-+	err = amc6821_init_client(client, data);
- 	if (err)
- 		return err;
- 
 -- 
-2.39.5
+2.43.0
 
 
