@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-162490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0472FA7893B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 09:56:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5969A78948
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 09:58:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A7E1016F7A3
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 07:56:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B28416F898
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 07:58:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6B4123373C;
-	Wed,  2 Apr 2025 07:56:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67AB7233732;
+	Wed,  2 Apr 2025 07:57:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="o6abVXLj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="t4hzO+GY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8BD220E6E3
-	for <devicetree@vger.kernel.org>; Wed,  2 Apr 2025 07:56:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA7FF233722
+	for <devicetree@vger.kernel.org>; Wed,  2 Apr 2025 07:57:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743580588; cv=none; b=ivE7MnKQWFErqvc6HtbWKwEC+hs6GSF2V3pAXWFYH0orPQh3B5Dp/UGecm1JINqjiCUzD+1xmZ9QHpaO3EsN9vl/teCdgQ9mqxR/O59VQEneP2PMrcZRSEBHUX7lmYBjQw7kXhqUXTE7PadSI3IqzYpQBcBH4XjqakiIla2qq7w=
+	t=1743580673; cv=none; b=vD/Xi2As5XXqcgF6g6/KEFS/5MwYrkyc6STQU1j9TZb3USB0DImwMpWNjMYPwPnDTCOC0470n+wduyq6hiOfddcTY/YeNuHmEc4IxxtYuF4hzPrNvodR+InH+WgWdnf/lKX2CocNPvpGH8ijJHSVWg7OZbog+t8sibpE7doxAII=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743580588; c=relaxed/simple;
-	bh=vevaXCAfgf0RV0Jd5pTi5+8Q553KBeeummBfYxnRXZw=;
+	s=arc-20240116; t=1743580673; c=relaxed/simple;
+	bh=R8qBaOqxCr4dyXpWM04sX/GCqchZ6RKNVr5LsTtixVQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JTYvmVIuGsQ1mnS6OauXyXIjz0h3TXtZnWGMmUxvj56uWEq4bBc573ty0trJr0sdGaOcbEflXf9TQWtpCRWtBcSBXH/Cfq1hgs2KNgRWIAXSuWwFP70sP8CUojpNf4BqBdutHUUOJPW+bbrOXgYVT+WMHMovh2TvcMBmKxAys/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=o6abVXLj; arc=none smtp.client-ip=209.85.214.174
+	 Content-Type:Content-Disposition:In-Reply-To; b=QHpDTQ6Ouq+FLDo0XPoA+Ve9Jf8c78l5lpSBSk2WRSqKA7H8feGn237E9USGt4QvSoQs6f3/fqtoK9e94ib3STyFq4ecuH6TMzG4e+67+tUjOdzgUBx+cvVyV0hingD5hAAus2OpbPJpE9nfWNFRkqfzklSVoRR9GfSKL4sNCPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=t4hzO+GY; arc=none smtp.client-ip=209.85.214.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2279915e06eso131141095ad.1
-        for <devicetree@vger.kernel.org>; Wed, 02 Apr 2025 00:56:25 -0700 (PDT)
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2241053582dso110671285ad.1
+        for <devicetree@vger.kernel.org>; Wed, 02 Apr 2025 00:57:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743580585; x=1744185385; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1743580671; x=1744185471; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=noKgvUVQ2siSihaytXd2FVN73v58WuzUMmihxuAvJf8=;
-        b=o6abVXLjJokfHOta7A2h1RRUQpbyzYWJM0m5ZhO5euBkyzheuuRPJ+psbo7S6H3FmC
-         IInOPPmvM7jXstoqqoiShvi+Tx/cnVp5w3Fa6v5F5yZLNVNo/f0vHKFSScUag+NMi2z4
-         W7I3c0X48TKQQlOud0TagXafeTmDBVHVSzOIasDRl5/IP7s5xwUGPlxvsxn1JHis6PZh
-         5KVMXSHBCP8M5GDgoeyoL6Bw6Im1rReJ8l+rIJw0qMqGNOyNLIAJfc/6eP3UphO+xuPz
-         C2/Vw/2u1/sShBf22k/6/Uv1ket9KqVGWPs7U9sOjhFPkbBHpm0b1+5SAvSMl5+DuzDc
-         wuLA==
+        bh=dRSyCnFP0grZIfNQwckuEKAPhgRGKFDaBXM6ybS+yQY=;
+        b=t4hzO+GYXoh0PpTM8q8nImq9wzJoofnjFSnBjfABxN0E/paZ0WUUxTzzRXyxqooWLr
+         11Y6kyVU6iRt+/zIVbHrwqE2gWH0JrGeQQYRHS8hQQ+lLCt8HUKWDA285n0IaTBAJJsR
+         4OCaAKbqB1Kozkxl+C+k8OlsnKhkSr5Y3a3wJOImrcnhjZ8o5HdfMPWR3CoLKX0h2svr
+         2zXaP4OPfM93GQAetiwoWcQouXyPtLqdjNVfyu1ZQdCEq/S/w5DO9GmqZpgP9jlIGU/c
+         HCGkD4W4dzmgE1xgzjg0qY4B/C1mC576Y92wptYNCk6vTED0ytfOhi27BQ0L5djVbogF
+         L2Yg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743580585; x=1744185385;
+        d=1e100.net; s=20230601; t=1743580671; x=1744185471;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=noKgvUVQ2siSihaytXd2FVN73v58WuzUMmihxuAvJf8=;
-        b=S7PFiRoGAIX8VBqHhzSZH+WrIuL3f+ROBtQMfioHJKBNqknKz8XhiuZUkWA0uUiFY0
-         LP2C7NuQJg5eYKFbqOSgBbYlJS0Rpqg5f5YIF6KgOKOeOWtwPWfaJXeV2dWbWj/6fv6Y
-         el5rE56OAR9JRffMeC2FvfNETQmRxlkw5Wh2Gb7r9tMIefO6cAFkre8UuYEGhF25Bgtg
-         9jH1Shh+6VptEHS6QJWJnWCkwgmVjxxWYpYhuigi54sVdIr9WjlYqhGs5nmY+YP9yLK3
-         pVWxgJ1Z2W8uZewD88ecUdcGhl/Hi5viXLv4jSunBkvQXrKFQUAEKtUT5kec2wU58bmV
-         6/Mg==
-X-Forwarded-Encrypted: i=1; AJvYcCUuOqb6qJ1bkM+bsz3oxX6b8KZc8CewzKQslSXwlPSkScIHmXDpTR3SaWL6mc7rzu+xceUf8MQzk9MM@vger.kernel.org
-X-Gm-Message-State: AOJu0YwWGCjkWt/sIRFHM4vXbC+gYkePdct2pE/Zgu21uR+LGa2qQxOp
-	ohVPBVqrMQX0yReM6BSWIOkvO63U/i8iDilJ3hHoWpTYSjSQdCW61E0OlElc/Q==
-X-Gm-Gg: ASbGnct0nnUaVishZM+6o6YJ+D3dA6kf0f+8JNDArY/uHk876WG6U0fFAz17O6mUCjJ
-	I1NO7imhfJjTVd+pLgRvMI6cYlAX2lRVZ89FEOcm7GcRMczUroEDKR5U+zsaLSrLIEa9iCb4J2n
-	5H2y8rq3M1+U4V6oPkdyYsVJzMVz43WlAVyZ2gssqulJvTjnIwicGmcLWX0RLuT8NZY2erh3Rb9
-	cTviRsbLMOFGAYeyi/C4gnv9YkCE/QaaBdaUyWBw2Mqhd0+0sB3mhDMWJMjQP2YYsS26CcDacga
-	xmiLpDzlzmmI5DZyOgS+Hv8aZtG+Gzs2coSR3VQsvD/3UAoIPpNQnOtBZGdRTEbRGj0=
-X-Google-Smtp-Source: AGHT+IHOWRFG5W0KdxH0Zy0nVK1thir5cIAFzptpdFo0UkbUHPulKD1q5EFd4chj00OdziYyxmxbmQ==
-X-Received: by 2002:a05:6a20:d48b:b0:1f3:2e85:c052 with SMTP id adf61e73a8af0-2009f79b1f6mr27105411637.35.1743580585073;
-        Wed, 02 Apr 2025 00:56:25 -0700 (PDT)
+        bh=dRSyCnFP0grZIfNQwckuEKAPhgRGKFDaBXM6ybS+yQY=;
+        b=Xi0/t87X79FZDZwWC8FL1xCb5eE+zx7KkisgWT+eFq5ockIUkSG4qjuezjEI+bw0Nx
+         kPEpLIpUGzCQfwg2EJnCDeod1hhSqfut7TuXlWjaOFUiXoMctA5KJ5HTdVFivfpXGk31
+         rTLRDHFy/UgoVdxBpT72k3EEjxTIilnZow2PGFDUGizvhTZNUaVB6E/8pBk6CoHWPWGB
+         EaAwPurpBO03UPwFZ8pr6ZuSTwehwHNTLl2GrP+0tF4OcjNz3NZsPt6kHa4WIWQQzLKL
+         QfNH80PhKs16l2+aXaw+F4+EgHgeTVJTkGv15LqaeMb9CG1Wv7RMCwSD/EnNV8SV9+W7
+         BYsg==
+X-Forwarded-Encrypted: i=1; AJvYcCVPkZG+bwlavJmrlWCa7E6Qdu8M2ZSgrIZVHp6H/ZvSxIqNZSTpzXAb8FbGgznLhHwFN2gTHdfvWNzb@vger.kernel.org
+X-Gm-Message-State: AOJu0YyKcKEzhOshmJwSWfBbZrydlDUqfrKnuIpr79zQhlDcqeP/97jJ
+	53WL4HYGj99Hi1DgVXC0CTW4JhFXSyWYCFGf5/lTUGqZH6xWOKCWx5C5leTmWw==
+X-Gm-Gg: ASbGncviclKf8sW/TFCRhtMMSNOBVi0eW+098eBUFkEMf8y8FNXToTuqzLGAoVSMded
+	yS5Gi3J6vw57Y1VJo79V2NaXEBtNM3sEr/ECTjv5vcRSBRNGvn2iagNiRdnLR1l54BdOnXcZr7r
+	pVESyV1vIcCRVp+kaAmxks7QoWV+ayKucncCePOUXhUcGT4UWHXL4YP/ia3Ye5MWs5ArkkY2upw
+	L0B3PLilW1B9dVKoCGtlyBIQsy5GSE+hTHv2CMpJAnaCY7R0zCMnLkcrwRlQBTkM/rubQbVDVbO
+	iapSMQhaHSyeb8XEydmdmsMC+axmV9rC/flCfcAHc4fi14q+FJajRJJ5
+X-Google-Smtp-Source: AGHT+IEzlbEBgFvDc2I1WYI+e0N/2YEc5vy2uJFcQHdCufTOfWQZ8Vjaelsgo3YFEKjff3mKRuYO+w==
+X-Received: by 2002:a17:902:f652:b0:216:3c36:69a7 with SMTP id d9443c01a7336-2292f9f7a8emr221580805ad.45.1743580670960;
+        Wed, 02 Apr 2025 00:57:50 -0700 (PDT)
 Received: from thinkpad ([120.56.205.103])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-739710dd3d4sm10601497b3a.177.2025.04.02.00.56.19
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2291f1dee5dsm101582755ad.189.2025.04.02.00.57.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Apr 2025 00:56:24 -0700 (PDT)
-Date: Wed, 2 Apr 2025 13:26:17 +0530
+        Wed, 02 Apr 2025 00:57:50 -0700 (PDT)
+Date: Wed, 2 Apr 2025 13:27:44 +0530
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 Cc: Bjorn Andersson <andersson@kernel.org>, 
@@ -82,10 +82,10 @@ Cc: Bjorn Andersson <andersson@kernel.org>,
 	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, 
 	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
 	linux-pci@vger.kernel.org, quic_mrana@quicinc.com, quic_vbadigan@quicinc.com
-Subject: Re: [PATCH v9 2/5] PCI: of: Add of_pci_get_equalization_presets() API
-Message-ID: <uipngb7dwzy22cbkp775jaasvas5eu2v7jlc2oyqr4oe6yr4gc@4nj6ehb7wcin>
+Subject: Re: [PATCH v9 4/5] PCI: Add lane equalization register offsets
+Message-ID: <mi7rmrbx5yjzznabjc6kpafskhmxdi4hgx6vaerxzqkp4hdixy@ky4dckgngrnd>
 References: <20250328-preset_v6-v9-0-22cfa0490518@oss.qualcomm.com>
- <20250328-preset_v6-v9-2-22cfa0490518@oss.qualcomm.com>
+ <20250328-preset_v6-v9-4-22cfa0490518@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,26 +95,13 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250328-preset_v6-v9-2-22cfa0490518@oss.qualcomm.com>
+In-Reply-To: <20250328-preset_v6-v9-4-22cfa0490518@oss.qualcomm.com>
 
-On Fri, Mar 28, 2025 at 03:58:30PM +0530, Krishna Chaitanya Chundru wrote:
-> PCIe equalization presets are predefined settings used to optimize
-> signal integrity by compensating for signal loss and distortion in
-> high-speed data transmission.
+On Fri, Mar 28, 2025 at 03:58:32PM +0530, Krishna Chaitanya Chundru wrote:
+> As per PCIe spec 6.0.1, add PCIe lane equalization register offset for
+> data rates 8.0 GT/s, 32.0 GT/s and 64.0 GT/s.
 > 
-> As per PCIe spec 6.0.1 revision section 8.3.3.3 & 4.2.4 for data rates
-> of 8.0 GT/s, 16.0 GT/s, 32.0 GT/s, and 64.0 GT/s, there is a way to
-> configure lane equalization presets for each lane to enhance the PCIe
-> link reliability. Each preset value represents a different combination
-> of pre-shoot and de-emphasis values. For each data rate, different
-> registers are defined: for 8.0 GT/s, registers are defined in section
-> 7.7.3.4; for 16.0 GT/s, in section 7.7.5.9, etc. The 8.0 GT/s rate has
-> an extra receiver preset hint, requiring 16 bits per lane, while the
-> remaining data rates use 8 bits per lane.
-> 
-> Based on the number of lanes and the supported data rate,
-> of_pci_get_equalization_presets() reads the device tree property and
-> stores in the presets structure.
+> Add macro for defining data rate 64.0 GT/s physical layer capability ID.
 > 
 > Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 
@@ -123,126 +110,45 @@ Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 - Mani
 
 > ---
->  drivers/pci/of.c  | 44 ++++++++++++++++++++++++++++++++++++++++++++
->  drivers/pci/pci.h | 32 +++++++++++++++++++++++++++++++-
->  2 files changed, 75 insertions(+), 1 deletion(-)
+>  include/uapi/linux/pci_regs.h | 12 +++++++++++-
+>  1 file changed, 11 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
-> index 7a806f5c0d20..d594a0e2fdfd 100644
-> --- a/drivers/pci/of.c
-> +++ b/drivers/pci/of.c
-> @@ -851,3 +851,47 @@ u32 of_pci_get_slot_power_limit(struct device_node *node,
->  	return slot_power_limit_mw;
->  }
->  EXPORT_SYMBOL_GPL(of_pci_get_slot_power_limit);
-> +
-> +/**
-> + * of_pci_get_equalization_presets - Parses the "eq-presets-Ngts" property.
-> + *
-> + * @dev: Device containing the properties.
-> + * @presets: Pointer to store the parsed data.
-> + * @num_lanes: Maximum number of lanes supported.
-> + *
-> + * If the property is present, read and store the data in the @presets structure.
-> + * Else, assign a default value of PCI_EQ_RESV.
-> + *
-> + * Return: 0 if the property is not available or successfully parsed else
-> + * errno otherwise.
-> + */
-> +int of_pci_get_equalization_presets(struct device *dev,
-> +				    struct pci_eq_presets *presets,
-> +				    int num_lanes)
-> +{
-> +	char name[20];
-> +	int ret;
-> +
-> +	presets->eq_presets_8gts[0] = PCI_EQ_RESV;
-> +	ret = of_property_read_u16_array(dev->of_node, "eq-presets-8gts",
-> +					 presets->eq_presets_8gts, num_lanes);
-> +	if (ret && ret != -EINVAL) {
-> +		dev_err(dev, "Error reading eq-presets-8gts: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	for (int i = 0; i < EQ_PRESET_TYPE_MAX - 1; i++) {
-> +		presets->eq_presets_Ngts[i][0] = PCI_EQ_RESV;
-> +		snprintf(name, sizeof(name), "eq-presets-%dgts", 8 << (i + 1));
-> +		ret = of_property_read_u8_array(dev->of_node, name,
-> +						presets->eq_presets_Ngts[i],
-> +						num_lanes);
-> +		if (ret && ret != -EINVAL) {
-> +			dev_err(dev, "Error reading %s: %d\n", name, ret);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(of_pci_get_equalization_presets);
-> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
-> index 01e51db8d285..78c9cc0ad8fa 100644
-> --- a/drivers/pci/pci.h
-> +++ b/drivers/pci/pci.h
-> @@ -9,6 +9,8 @@ struct pcie_tlp_log;
->  /* Number of possible devfns: 0.0 to 1f.7 inclusive */
->  #define MAX_NR_DEVFNS 256
+> diff --git a/include/uapi/linux/pci_regs.h b/include/uapi/linux/pci_regs.h
+> index 3445c4970e4d..0dcd9aba584d 100644
+> --- a/include/uapi/linux/pci_regs.h
+> +++ b/include/uapi/linux/pci_regs.h
+> @@ -749,7 +749,8 @@
+>  #define PCI_EXT_CAP_ID_NPEM	0x29	/* Native PCIe Enclosure Management */
+>  #define PCI_EXT_CAP_ID_PL_32GT  0x2A    /* Physical Layer 32.0 GT/s */
+>  #define PCI_EXT_CAP_ID_DOE	0x2E	/* Data Object Exchange */
+> -#define PCI_EXT_CAP_ID_MAX	PCI_EXT_CAP_ID_DOE
+> +#define PCI_EXT_CAP_ID_PL_64GT	0x31	/* Physical Layer 64.0 GT/s */
+> +#define PCI_EXT_CAP_ID_MAX	PCI_EXT_CAP_ID_PL_64GT
 >  
-> +#define MAX_NR_LANES 16
-> +
->  #define PCI_FIND_CAP_TTL	48
+>  #define PCI_EXT_CAP_DSN_SIZEOF	12
+>  #define PCI_EXT_CAP_MCAST_ENDPOINT_SIZEOF 40
+> @@ -1140,12 +1141,21 @@
+>  #define PCI_DLF_CAP		0x04	/* Capabilities Register */
+>  #define  PCI_DLF_EXCHANGE_ENABLE	0x80000000  /* Data Link Feature Exchange Enable */
 >  
->  #define PCI_VSEC_ID_INTEL_TBT	0x1234	/* Thunderbolt */
-> @@ -808,6 +810,21 @@ static inline u64 pci_rebar_size_to_bytes(int size)
+> +/* Secondary PCIe Capability 8.0 GT/s */
+> +#define PCI_SECPCI_LE_CTRL	0x0c /* Lane Equalization Control Register */
+> +
+>  /* Physical Layer 16.0 GT/s */
+>  #define PCI_PL_16GT_LE_CTRL	0x20	/* Lane Equalization Control Register */
+>  #define  PCI_PL_16GT_LE_CTRL_DSP_TX_PRESET_MASK		0x0000000F
+>  #define  PCI_PL_16GT_LE_CTRL_USP_TX_PRESET_MASK		0x000000F0
+>  #define  PCI_PL_16GT_LE_CTRL_USP_TX_PRESET_SHIFT	4
 >  
->  struct device_node;
->  
-> +#define PCI_EQ_RESV	0xff
+> +/* Physical Layer 32.0 GT/s */
+> +#define PCI_PL_32GT_LE_CTRL	0x20	/* Lane Equalization Control Register */
 > +
-> +enum equalization_preset_type {
-> +	EQ_PRESET_TYPE_8GTS,
-> +	EQ_PRESET_TYPE_16GTS,
-> +	EQ_PRESET_TYPE_32GTS,
-> +	EQ_PRESET_TYPE_64GTS,
-> +	EQ_PRESET_TYPE_MAX
-> +};
+> +/* Physical Layer 64.0 GT/s */
+> +#define PCI_PL_64GT_LE_CTRL	0x20	/* Lane Equalization Control Register */
 > +
-> +struct pci_eq_presets {
-> +	u16 eq_presets_8gts[MAX_NR_LANES];
-> +	u8 eq_presets_Ngts[EQ_PRESET_TYPE_MAX - 1][MAX_NR_LANES];
-> +};
-> +
->  #ifdef CONFIG_OF
->  int of_get_pci_domain_nr(struct device_node *node);
->  int of_pci_get_max_link_speed(struct device_node *node);
-> @@ -822,7 +839,9 @@ void pci_release_bus_of_node(struct pci_bus *bus);
->  
->  int devm_of_pci_bridge_init(struct device *dev, struct pci_host_bridge *bridge);
->  bool of_pci_supply_present(struct device_node *np);
-> -
-> +int of_pci_get_equalization_presets(struct device *dev,
-> +				    struct pci_eq_presets *presets,
-> +				    int num_lanes);
->  #else
->  static inline int
->  of_get_pci_domain_nr(struct device_node *node)
-> @@ -867,6 +886,17 @@ static inline bool of_pci_supply_present(struct device_node *np)
->  {
->  	return false;
->  }
-> +
-> +static inline int of_pci_get_equalization_presets(struct device *dev,
-> +						  struct pci_eq_presets *presets,
-> +						  int num_lanes)
-> +{
-> +	presets->eq_presets_8gts[0] = PCI_EQ_RESV;
-> +	for (int i = 0; i < EQ_PRESET_TYPE_MAX - 1; i++)
-> +		presets->eq_presets_Ngts[i][0] = PCI_EQ_RESV;
-> +
-> +	return 0;
-> +}
->  #endif /* CONFIG_OF */
->  
->  struct of_changeset;
+>  /* Native PCIe Enclosure Management */
+>  #define PCI_NPEM_CAP     0x04 /* NPEM capability register */
+>  #define  PCI_NPEM_CAP_CAPABLE     0x00000001 /* NPEM Capable */
 > 
 > -- 
 > 2.34.1
