@@ -1,121 +1,199 @@
-Return-Path: <devicetree+bounces-162601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162602-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96B95A78EED
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 14:47:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD840A78F15
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 14:52:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB3913A2B5B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 12:46:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D441318951EE
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 12:51:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D40D6238D43;
-	Wed,  2 Apr 2025 12:46:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B08924167A;
+	Wed,  2 Apr 2025 12:48:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="QNtZlNBd"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="UFpZgsLj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A82E1F2BBB;
-	Wed,  2 Apr 2025 12:46:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E923D23BCE7;
+	Wed,  2 Apr 2025 12:48:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743597992; cv=none; b=tBbXt+SAeuCIQTRqWdRBkOX+gOgAcES4Y0WnDvD8/h3ocfOx2p6B3msvNuUsF3rSf9LYumPcBmd3XIyDELgSJ8lzjFefya+dP9yNTizZtDn4KBiu3EHi3q8Ue0PSHHbJodMvQsKoZH4nuPI6jfkKvAJIexcDLxkU3IDaZGAVuwA=
+	t=1743598089; cv=none; b=YGunlsKyuW2pcWK1R7xfMUUVtjF0fYrM1wy0eIjLU0kfykUbZDIdmrxYbrEqXRINUaZrnIDlwmvGdmetA/oG48A4DWa1Rd18V/d7DrugGSe4ymtKtCarIKVzsgFDI3aDjmgleVelwwX6sOx1tGa9hV9fOXzxMk05VXJNKp6o47E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743597992; c=relaxed/simple;
-	bh=RKR7bdFOIqZEt3jCxHjv6sy16GgjixF70npH2yYLpT4=;
+	s=arc-20240116; t=1743598089; c=relaxed/simple;
+	bh=ZbrgI1QMiyPzXZtbXyqIrXqGXB55hdcp4jkmMe1pbUU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jTJOWMwYg0SP69GtC5+dwm2KoW4qMSaMIAGK6/YZOqnDPmZFWWsWmguFVcr0YM2pxwAdRY4qOT14ytKPDzWYzkhno8j8aaU7ZQ/BpaiONm4XjXw3NRgWsAQdCa7jqSicGXJtxEGKnHVA3LcrjCx5GkeKL+0AEIeGSwzwEW5VSAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=QNtZlNBd; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 54DD063B;
-	Wed,  2 Apr 2025 14:44:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1743597876;
-	bh=RKR7bdFOIqZEt3jCxHjv6sy16GgjixF70npH2yYLpT4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QNtZlNBdhWzgbnPNmjZAGDVOjcS6jPWoPqm1ufjEOBIkoSy/PwZtoyRRx4Wq7xJzT
-	 xuz3GbCZAn9Iqdl50ekcFBrdFZmb9JiLYnc5hXRMoWa8bYXn+IlSLLo1O+JwiG23PH
-	 4rjsXGs5pFQPXXkAFprHyoluTHqV3xPko5etj7Ic=
-Date: Wed, 2 Apr 2025 15:46:05 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-	Sylvain Petinot <sylvain.petinot@foss.st.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=I1YUHZApkZTIiTdq2laLdCyq7lWgB+YZ4xPWEI22oPUJl3Cyvkv7KJn3E8Ux0n5UKa6EVPx+NySoQueOG6NM2dYNjaPPaCqAn9jSUkNKPSN1QunFIGs88pzfwSnzliRqMGbOQBBNsXb40sfRLomW5jbIPusbrs/dDR7IiQYQLwY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=UFpZgsLj; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=yibjlCzMj7db36Ncl+n+k08WtHR8TCTohVRGWqYmZg0=; b=UFpZgsLjYa47uMUX+kbAWXcqXj
+	EAXRsVbFGjyOEQDht4LLsjdX2i6zX1P/detZLCGKl4B2bZqBP3vuGsDj76g6F2j2Je6VWPDl7nVYP
+	UatDa/505MPVEy3wGGZrB+COxlRk+tMXa/YhSgMarkAYW4y/gXTQkgS/PzfN31YyzEdo=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tzxVc-007n1N-8p; Wed, 02 Apr 2025 14:47:56 +0200
+Date: Wed, 2 Apr 2025 14:47:56 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Lukasz Majewski <lukma@denx.de>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] media: dt-bindings: Add ST VD55G1 camera sensor
- binding
-Message-ID: <20250402124605.GB13181@pendragon.ideasonboard.com>
-References: <20250401-b4-vd55g1-v2-0-0c8ab8a48c55@foss.st.com>
- <20250401-b4-vd55g1-v2-1-0c8ab8a48c55@foss.st.com>
- <20250402-curvy-seriema-of-blizzard-b1c4d9@krzk-bin>
- <228ddf41-e1d0-4d06-9e0e-9e0dad841688@foss.st.com>
- <fd874f4d-d68c-4443-8bb6-115246f4407b@kernel.org>
- <a0c62797-3c4c-453c-938b-d43666f3b264@foss.st.com>
- <7d501bf2-a017-4c02-a96f-184a7d648b6a@foss.st.com>
- <9f128ce9-6a26-435c-b133-0da80120de2d@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 4/4] net: mtip: The L2 switch driver for imx287
+Message-ID: <8f431197-474e-4cd5-9c3e-d573c3f3e6b5@lunn.ch>
+References: <20250331103116.2223899-1-lukma@denx.de>
+ <20250331103116.2223899-5-lukma@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <9f128ce9-6a26-435c-b133-0da80120de2d@kernel.org>
+In-Reply-To: <20250331103116.2223899-5-lukma@denx.de>
 
-On Wed, Apr 02, 2025 at 12:27:08PM +0200, Krzysztof Kozlowski wrote:
-> On 02/04/2025 11:41, Benjamin Mugnier wrote:
-> > On 4/2/25 11:38, Benjamin Mugnier wrote:
-> >> On 4/2/25 11:11, Krzysztof Kozlowski wrote:
-> >>> On 02/04/2025 10:34, Benjamin Mugnier wrote:
-> >>>> Hi Krzysztof,
-> >>>>
-> >>>> On 4/2/25 09:08, Krzysztof Kozlowski wrote:
-> >>>>> On Tue, Apr 01, 2025 at 01:05:58PM +0200, Benjamin Mugnier wrote:
-> >>>>>> +    properties:
-> >>>>>> +      endpoint:
-> >>>>>> +        $ref: /schemas/media/video-interfaces.yaml#
-> >>>>>> +        unevaluatedProperties: false
-> >>>>>> +
-> >>>>>> +        properties:
-> >>>>>> +          data-lanes:
-> >>>>>> +            items:
-> >>>>>> +              const: 1
-> >>>>>
-> >>>>> Not what I asked. Now you miss number of items. Just use the syntax I
-> >>>>> proposed. Or was there any issue with it?
-> >>>>
-> >>>> No issue I just misunderstood and thought const: 1 was impliying
-> >>>> maxItems: 1. I'll add maxItems back.
-> >>>
-> >>> That's just longer way to express what I asked for. So I repeat the
-> >>> question: why not using the syntax I asked for?
-> >>
-> >> I guess I didn't understand what you asked for.
-> >> May I ask you to write it ? That will help me a lot.
-> > 
-> > By 'it' I mean the binding.
->
-> I wrote it last time. I don't think that copying the same here would
-> change anything. If I can look at v1, you can do as well.
+> +static void read_atable(struct switch_enet_private *fep, int index,
+> +			unsigned long *read_lo, unsigned long *read_hi)
+> +{
+> +	unsigned long atable_base = (unsigned long)fep->hwentry;
+> +
+> +	*read_lo = readl((const void *)atable_base + (index << 3));
+> +	*read_hi = readl((const void *)atable_base + (index << 3) + 4);
+> +}
+> +
+> +static void write_atable(struct switch_enet_private *fep, int index,
+> +			 unsigned long write_lo, unsigned long write_hi)
+> +{
+> +	unsigned long atable_base = (unsigned long)fep->hwentry;
+> +
+> +	writel(write_lo, (void *)atable_base + (index << 3));
+> +	writel(write_hi, (void *)atable_base + (index << 3) + 4);
+> +}
 
-Reading your comment on v1, I would have come up with the exact same
-result as Benjamin's v2. I can't figure out what alternative description
-you meant.
+It would be nice to have the mtip_ prefix on all functions.
 
--- 
-Regards,
+> +static int mtip_open(struct net_device *dev)
+> +{
+> +	struct mtip_ndev_priv *priv = netdev_priv(dev);
+> +	struct switch_enet_private *fep = priv->fep;
+> +	int ret, port_idx = priv->portnum - 1;
+> +
+> +	if (fep->usage_count == 0) {
+> +		clk_enable(fep->clk_ipg);
+> +		netif_napi_add(dev, &fep->napi, mtip_rx_napi);
+> +
+> +		ret = mtip_alloc_buffers(dev);
+> +		if (ret)
+> +			return ret;
 
-Laurent Pinchart
+nitpick: You might want to turn the clock off before returning the
+error.
+
+> +	}
+> +
+> +	fep->link[port_idx] = 0;
+> +
+> +	/* Probe and connect to PHY when open the interface, if already
+> +	 * NOT done in the switch driver probe (or when the device is
+> +	 * re-opened).
+> +	 */
+> +	ret = mtip_mii_probe(dev);
+> +	if (ret) {
+> +		mtip_free_buffers(dev);
+
+I've not checked. Does this do the opposite of netif_napi_add()?
+
+> +static void mtip_set_multicast_list(struct net_device *dev)
+> +{
+> +	unsigned int i, bit, data, crc;
+> +
+> +	if (dev->flags & IFF_PROMISC) {
+> +		dev_info(&dev->dev, "%s: IFF_PROMISC\n", __func__);
+
+You can save one level of indentation with a return here.
+
+> +	} else {
+> +		if (dev->flags & IFF_ALLMULTI) {
+> +			dev_info(&dev->dev, "%s: IFF_ALLMULTI\n", __func__);
+
+and other level here.
+
+> +		} else {
+> +			struct netdev_hw_addr *ha;
+> +			u_char *addrs;
+> +
+> +			netdev_for_each_mc_addr(ha, dev) {
+> +				addrs = ha->addr;
+> +				/* Only support group multicast for now */
+> +				if (!(*addrs & 1))
+> +					continue;
+
+You could pull there CRC caluclation out into a helper. You might also
+want to search the tree and see if it exists somewhere else.
+
+> +
+> +				/* calculate crc32 value of mac address */
+> +				crc = 0xffffffff;
+> +
+> +				for (i = 0; i < 6; i++) {
+
+Is 6 the lengh of a MAC address? There is a #define for that.
+
+> +					data = addrs[i];
+> +					for (bit = 0; bit < 8;
+> +					     bit++, data >>= 1) {
+> +						crc = (crc >> 1) ^
+> +						(((crc ^ data) & 1) ?
+> +						CRC32_POLY : 0);
+> +					}
+> +				}
+> +			}
+> +		}
+> +	}
+> +}
+> +
+
+> +struct switch_enet_private *mtip_netdev_get_priv(const struct net_device *ndev)
+> +{
+> +	if (ndev->netdev_ops == &mtip_netdev_ops)
+> +		return netdev_priv(ndev);
+> +
+> +	return NULL;
+> +}
+> +
+
+> +static int __init mtip_switch_dma_init(struct switch_enet_private *fep)
+> +{
+> +	struct cbd_t *bdp, *cbd_base;
+> +	int ret, i;
+> +
+> +	/* Check mask of the streaming and coherent API */
+> +	ret = dma_set_mask_and_coherent(&fep->pdev->dev, DMA_BIT_MASK(32));
+> +	if (ret < 0) {
+> +		dev_warn(&fep->pdev->dev, "No suitable DMA available\n");
+
+Can you recover from this? Or should it be dev_err()?
+
+More later...
+
+	Andrew
 
