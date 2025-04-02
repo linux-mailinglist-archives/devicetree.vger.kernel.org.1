@@ -1,180 +1,88 @@
-Return-Path: <devicetree+bounces-162429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162430-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D96ADA785D2
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 02:47:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33657A785E2
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 02:54:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0D56F7A5044
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 00:46:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 230BC7A22E6
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 00:53:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F229F513;
-	Wed,  2 Apr 2025 00:47:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FA001853;
+	Wed,  2 Apr 2025 00:54:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="UmEN6TA9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RCsLNG9a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACFD5B667;
-	Wed,  2 Apr 2025 00:47:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D391FBA4A;
+	Wed,  2 Apr 2025 00:54:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743554853; cv=none; b=MYMUBHQtb/aqnKxiNx1IzbNMRwOg3VXB+xAyZFcYM/QGuhyQPHoGC5/ZCfCUJ+ZaxFT9KffGCyzrhZ7Fwk0lkc6KQy24qr48jmI65i/wmXdaWoKFy5VjuiopHJIWyD3epqMfC8n5aXBxwOr5GmMRlprMucKoSBupOqchUv0o1Oc=
+	t=1743555261; cv=none; b=P8I4DADxqGQ3NbaMcKENhxE6UhKgdiomoOA+sin2keCpyDwalMTg16QkvrxZVZaz7rj6Rfr/KbVUFi7MTkxEKKZgAWCBCZpVpPvIdK2RRA8VxInH2OWm1B1qFL6powSD8l+pzFbsSkyDgoO+bcqhyszmHA/yZVB3b6698WohkDU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743554853; c=relaxed/simple;
-	bh=RDNr9Hsb1XfzaAhPQbNZFZt0taatMC1TNb3OEsf9mEI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZUsHcCuF2uT9gQYYRzke5y6kppURKdF2FEuLpr14wuIZGRKlEbcog2HKvFX1orHgBBIXdNu2sPUgF+GL1REXf1IDf50wh69MIcAhdm2zP5adytKiNDvNRX/zAS3tPLjCcBLUnSsN5lUEbKIr6CZYiMARIyziz4XKEctuCcIb4s8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=UmEN6TA9; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 467BF6A2;
-	Wed,  2 Apr 2025 02:45:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1743554737;
-	bh=RDNr9Hsb1XfzaAhPQbNZFZt0taatMC1TNb3OEsf9mEI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UmEN6TA9fz0IlPCdxNwMeJEdrdSuy6+oXp0MFnA5D29e9tkbF0aUEDFnh6vjIP4oh
-	 Y9pRXtn2CJHZodR5D8is6Ru6DWPO0GiF16KDqyE8oxQCmK2tXjEbbdnKJwdZLusvxq
-	 wt4DqWBQ64QZfHm2EwUDnlKQRwYBq6M4RTDsddIQ=
-Date: Wed, 2 Apr 2025 03:47:06 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org,
-	linux-media@vger.kernel.org, biju.das.jz@bp.renesas.com,
-	prabhakar.mahadev-lad.rj@bp.renesas.com,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 13/17] media: rzg2l-cru: Add image_conv offset to OF
- data
-Message-ID: <20250402004706.GE4845@pendragon.ideasonboard.com>
-References: <20250328173032.423322-1-tommaso.merciai.xr@bp.renesas.com>
- <20250328173032.423322-14-tommaso.merciai.xr@bp.renesas.com>
+	s=arc-20240116; t=1743555261; c=relaxed/simple;
+	bh=/0zz4PKfcfSmXN/45Xp1mSPvrRuJjBxRJOJ/lyfE7UQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=LjBXbdtkqAA8SZn+KcKiyHagxURpIUuzJwTLlutzNTwLIHqyVOTb5bo47mrHSMCdVbncDpLSzt7JkaSSdPQ9vCaecieANA6SQDdEPrKd+75RLADAWTikMzXy3XTG2xIZsjxvdBwrb6C2EsrYf76MXi3EY4eTCBno6gF32aC2eJU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RCsLNG9a; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A460DC4CEE4;
+	Wed,  2 Apr 2025 00:54:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743555258;
+	bh=/0zz4PKfcfSmXN/45Xp1mSPvrRuJjBxRJOJ/lyfE7UQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=RCsLNG9aVi3V82xZ/6oEZSNsQF3BjRuXv1neERksnDPnGCtMulh/64xNESG3RWsLl
+	 yf30ngBuNOZsW+CbTIph1qQZBntJlB18XYzKzp5dyS1/AB7kBXnukbZviRs7IAECxw
+	 ZNx6Y8FUXHYOd5lx3/UHBVueom3RJ8c4bKNyUCHJUXhbqQsIUmU6hgrCIaBvIMW9nk
+	 jTENZXw45YJD8S3MXD7LQTYNs4QNntCXh61n7h0tI+qrlM3PAiQ5tujo51WezBgp5l
+	 sc+mIgxrTiyPa6Jp9gXUUniAF6io3Au2Smjys6blKdV/JkBfCdwuI0cSoOVbDMjx8M
+	 9ZUuwkPdBbcuA==
+Date: Tue, 1 Apr 2025 17:54:16 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: <Ryan.Wanner@microchip.com>
+Cc: <andrew+netdev@lunn.ch>, <davem@davemloft.net>, <edumazet@google.com>,
+ <pabeni@redhat.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+ <conor+dt@kernel.org>, <alexandre.belloni@bootlin.com>,
+ <claudiu.beznea@tuxon.dev>, <nicolas.ferre@microchip.com>,
+ <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 1/6] dt-bindings: net: cdns,macb: add sama7d65 ethernet
+ interface
+Message-ID: <20250401175326.1b0ae7d5@kernel.org>
+In-Reply-To: <392b078b38d15f6adf88771113043044f31e8cd6.1743523114.git.Ryan.Wanner@microchip.com>
+References: <cover.1743523114.git.Ryan.Wanner@microchip.com>
+	<392b078b38d15f6adf88771113043044f31e8cd6.1743523114.git.Ryan.Wanner@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250328173032.423322-14-tommaso.merciai.xr@bp.renesas.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi Tommaso,
-
-Thank you for the patch.
-
-On Fri, Mar 28, 2025 at 06:29:49PM +0100, Tommaso Merciai wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Tue, 1 Apr 2025 09:13:17 -0700 Ryan.Wanner@microchip.com wrote:
+> From: Ryan Wanner <Ryan.Wanner@microchip.com>
 > 
-> Add `image_conv` field to the `rzg2l_cru_info` structure to store the
-> register offset for image conversion control. RZ/G2L uses `ICnMC`, while
-> RZ/G3E and RZ/V2H(P) use `ICnIPMC_C0`.
-> 
-> Update `rzg2l_cru_initialize_image_conv()` and `rzg2l_cru_csi2_setup()`
-> to use this `image_conv` offset from the OF data, facilitating future
-> support for RZ/G3E and RZ/V2H(P) SoCs.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-> ---
->  .../media/platform/renesas/rzg2l-cru/rzg2l-core.c  |  1 +
->  .../media/platform/renesas/rzg2l-cru/rzg2l-cru.h   |  1 +
->  .../media/platform/renesas/rzg2l-cru/rzg2l-video.c | 14 ++++++++------
->  3 files changed, 10 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c b/drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c
-> index 19f93b7fe6fb9..7e94ae8039677 100644
-> --- a/drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c
-> +++ b/drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c
-> @@ -357,6 +357,7 @@ static const u16 rzg2l_cru_regs[] = {
->  static const struct rzg2l_cru_info rzgl2_cru_info = {
->  	.max_width = 2800,
->  	.max_height = 4095,
-> +	.image_conv = ICnMC,
->  	.regs = rzg2l_cru_regs,
->  };
->  
-> diff --git a/drivers/media/platform/renesas/rzg2l-cru/rzg2l-cru.h b/drivers/media/platform/renesas/rzg2l-cru/rzg2l-cru.h
-> index 6a621073948aa..ca156772b949b 100644
-> --- a/drivers/media/platform/renesas/rzg2l-cru/rzg2l-cru.h
-> +++ b/drivers/media/platform/renesas/rzg2l-cru/rzg2l-cru.h
-> @@ -81,6 +81,7 @@ struct rzg2l_cru_ip_format {
->  struct rzg2l_cru_info {
->  	unsigned int max_width;
->  	unsigned int max_height;
-> +	u16 image_conv;
->  	const u16 *regs;
->  };
->  
-> diff --git a/drivers/media/platform/renesas/rzg2l-cru/rzg2l-video.c b/drivers/media/platform/renesas/rzg2l-cru/rzg2l-video.c
-> index 395c4d3d0f0fa..e13f633a687b2 100644
-> --- a/drivers/media/platform/renesas/rzg2l-cru/rzg2l-video.c
-> +++ b/drivers/media/platform/renesas/rzg2l-cru/rzg2l-video.c
-> @@ -246,20 +246,22 @@ static void rzg2l_cru_csi2_setup(struct rzg2l_cru_dev *cru,
->  				 const struct rzg2l_cru_ip_format *ip_fmt,
->  				 u8 csi_vc)
->  {
-> +	const struct rzg2l_cru_info *info = cru->info;
->  	u32 icnmc = ICnMC_INF(ip_fmt->datatype);
->  
-> -	icnmc |= (rzg2l_cru_read(cru, ICnMC) & ~ICnMC_INF_MASK);
-> +	icnmc |= (rzg2l_cru_read(cru, info->image_conv) & ~ICnMC_INF_MASK);
+> Add documentation for sama7d65 ethernet interface.
 
-While at it you can drop the outer parentheses.
+## Form letter - net-next-closed
 
->  
->  	/* Set virtual channel CSI2 */
->  	icnmc |= ICnMC_VCSEL(csi_vc);
->  
-> -	rzg2l_cru_write(cru, ICnMC, icnmc);
-> +	rzg2l_cru_write(cru, info->image_conv, icnmc);
->  }
->  
->  static int rzg2l_cru_initialize_image_conv(struct rzg2l_cru_dev *cru,
->  					   struct v4l2_mbus_framefmt *ip_sd_fmt,
->  					   u8 csi_vc)
->  {
-> +	const struct rzg2l_cru_info *info = cru->info;
->  	const struct rzg2l_cru_ip_format *cru_video_fmt;
->  	const struct rzg2l_cru_ip_format *cru_ip_fmt;
->  
-> @@ -276,11 +278,11 @@ static int rzg2l_cru_initialize_image_conv(struct rzg2l_cru_dev *cru,
->  
->  	/* If input and output use same colorspace, do bypass mode */
->  	if (cru_ip_fmt->yuv == cru_video_fmt->yuv)
-> -		rzg2l_cru_write(cru, ICnMC,
-> -				rzg2l_cru_read(cru, ICnMC) | ICnMC_CSCTHR);
-> +		rzg2l_cru_write(cru, info->image_conv,
-> +				rzg2l_cru_read(cru, info->image_conv) | ICnMC_CSCTHR);
->  	else
-> -		rzg2l_cru_write(cru, ICnMC,
-> -				rzg2l_cru_read(cru, ICnMC) & (~ICnMC_CSCTHR));
-> +		rzg2l_cru_write(cru, info->image_conv,
-> +				rzg2l_cru_read(cru, info->image_conv) & (~ICnMC_CSCTHR));
+Linus already pulled net-next material v6.15 and therefore net-next is closed
+for new drivers, features, code refactoring and optimizations. We are currently
+accepting bug fixes only.
 
-And here you can drop the parentheses around ~ICnMC_CSCTHR.
+Please repost when net-next reopens after Apr 7th.
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+RFC patches sent for review only are obviously welcome at any time.
 
->  
->  	/* Set output data format */
->  	rzg2l_cru_write(cru, ICnDMR, cru_video_fmt->icndmr);
-
+See: https://www.kernel.org/doc/html/next/process/maintainer-netdev.html#development-cycle
 -- 
-Regards,
+pw-bot: defer
+pv-bot: closed
 
-Laurent Pinchart
 
