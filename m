@@ -1,332 +1,141 @@
-Return-Path: <devicetree+bounces-162530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34F43A78ABF
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 11:11:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99363A78ABD
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 11:11:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 772B23B37F6
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 09:09:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1DC2616F89A
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 09:11:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FFE6234969;
-	Wed,  2 Apr 2025 09:09:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F373723536F;
+	Wed,  2 Apr 2025 09:11:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="CqkqJPFc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oxR3E/75"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57E8C233129;
-	Wed,  2 Apr 2025 09:09:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2F7A207A33;
+	Wed,  2 Apr 2025 09:11:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743584952; cv=none; b=HsMFzuGLWC+CUO5UrGc6G32Cb/7Of7YZ69pAaET1bfjoW8EfbfBy2ADAHOpbYobghqvNqMXinTCRG1RZv06EJ+G8bEaz2lInxQfc35KiR8ocwYtSJaCfR7Gba5uxdOnHCg98gJjhEgRsp1DWoAYTKuqx41oBIDOhhiGWiA2f1hw=
+	t=1743585071; cv=none; b=RvUox7nn6swJdGu7Zak5uzR5e7O+XT995d1wE3u5+Lv0t8ReCHZRH3jALeL1qOpfslw1/BG1JxlEoPiFaA2MxSSGXwQSS6ErRutQVpsZLLapTVy51zn0/+ytfNBDxI7YiIOBUhvbfjIOZCVLUF/asWI4wtS7nF1WPvUEJga0eHw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743584952; c=relaxed/simple;
-	bh=l9yAr0wAEJgeNm6nW7xi8ljAC/OGlVK+n3Mp4tG6MWM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rgqJuTA5e6q2GUVEYTzq+tkMVjebTSGkQKwoICCkD59KOYY4Zo9zUcYwgbNdW9sRM1N2UU4yZDcLrHTUx7arAebWKBcvS0uyJeAnie8LjdGFaqtRke6STEGrjIwoiU71blSLETjcRaMuzzyyD1mZ4RlRXOj3BE4/E01gSGEwX7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=CqkqJPFc; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 41F29102780A3;
-	Wed,  2 Apr 2025 11:09:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1743584947; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=HCl71+B/mWDteASs/fx+ejiotd32rdy+bdrr9fbBE6E=;
-	b=CqkqJPFcH1TcNaBCn2t6uGeAIdCw2h1slnVMqXrmW/JT7ppsePNm2Vx3Q2fLQ7nvPxArQ+
-	J1K5fTD3ipeu1yjmqhLq0RRyvx7shceWlUM1p+ib55UYqtU2i/kqpILONhteDluRPFdrYI
-	JDIye+0JirnA0n1JJfFIhZkOXMWfI6dS9lTDkYxilQtHqHo2dATH/kBIPgczgkR+b0DoNu
-	eWqx7dqwKSpEhbOHAPM6aW7JvYsMK/chP/8Y5BoulEJCYTd+jI6yKtW37M3REMvtaxrC8d
-	ccoh8qVabatxQ/hZhOQvuwZPRPG1yf9BSSkSIClM8Xasovt/AFmIFnKWOeR8Zw==
-Date: Wed, 2 Apr 2025 11:09:00 +0200
-From: Lukasz Majewski <lukma@denx.de>
-To: Rob Herring <robh@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Richard Cochran
- <richardcochran@gmail.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 1/4] dt-bindings: net: Add MTIP L2 switch description
-Message-ID: <20250402110900.6141cc1b@wsk>
-In-Reply-To: <20250401230346.GA28557-robh@kernel.org>
-References: <20250331103116.2223899-1-lukma@denx.de>
-	<20250331103116.2223899-2-lukma@denx.de>
-	<20250331235518.GA2823373-robh@kernel.org>
-	<20250401123507.2e3bf0a6@wsk>
-	<20250401230346.GA28557-robh@kernel.org>
-Organization: denx.de
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1743585071; c=relaxed/simple;
+	bh=/VyQlWtgUypii0Znr0zCT8GfRvPHoKGiB1ovC9dn1bE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rOa3EXmKAGhOF68tk++DQ9NS+8F98T0+VU9PclJ2xXfHdn7CWx8cNwNDvMS4our6TFCiNn1oJ7BTppQSRqIemtKffGXrxnP8Bl6X1OnJDbjEkckjaaby0X1iqf0m5yX58AJX51pVgOWPkntbMI0cpf4xzvnrodRWvb6LsuZXcmk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oxR3E/75; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8441C4CEE5;
+	Wed,  2 Apr 2025 09:11:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743585071;
+	bh=/VyQlWtgUypii0Znr0zCT8GfRvPHoKGiB1ovC9dn1bE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=oxR3E/75+QbnXLDtwsK/NJV3RtT0y7q+WYrUK93EkI1u2TYa9pZjoONVa2BU/sT73
+	 yjO3UtOTv0S11n1oXJGqyGKC9EtZ6bSRrrjZAILp//sfwtdZrelS11WxOytL5N4lMv
+	 z26hVAbYysOn+k2oWbnvqa3dpX7/gvw+e1uQXqtYkNdwKnt6+RCh0hQT94VajYO1cq
+	 ahaGRg1+oENM3YPCyOaK5H7JaivOXBARGj26bBRLLQ1NDzCvmlM3AvpEMk0u59eE8o
+	 A41uux80FmVjBTpEjy6orCkbRP8Xu2UyWM7hRraWu7RZPmhrelqKKnvEO842VKq+ij
+	 MyFxEXNCRCYBw==
+Message-ID: <fd874f4d-d68c-4443-8bb6-115246f4407b@kernel.org>
+Date: Wed, 2 Apr 2025 11:11:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/0sOa=FWTe.Vb=8T9Ymlk/qv";
- protocol="application/pgp-signature"; micalg=pgp-sha512
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] media: dt-bindings: Add ST VD55G1 camera sensor
+ binding
+To: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+Cc: Sylvain Petinot <sylvain.petinot@foss.st.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250401-b4-vd55g1-v2-0-0c8ab8a48c55@foss.st.com>
+ <20250401-b4-vd55g1-v2-1-0c8ab8a48c55@foss.st.com>
+ <20250402-curvy-seriema-of-blizzard-b1c4d9@krzk-bin>
+ <228ddf41-e1d0-4d06-9e0e-9e0dad841688@foss.st.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <228ddf41-e1d0-4d06-9e0e-9e0dad841688@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---Sig_/0sOa=FWTe.Vb=8T9Ymlk/qv
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+On 02/04/2025 10:34, Benjamin Mugnier wrote:
+> Hi Krzysztof,
+> 
+> On 4/2/25 09:08, Krzysztof Kozlowski wrote:
+>> On Tue, Apr 01, 2025 at 01:05:58PM +0200, Benjamin Mugnier wrote:
+>>> +    properties:
+>>> +      endpoint:
+>>> +        $ref: /schemas/media/video-interfaces.yaml#
+>>> +        unevaluatedProperties: false
+>>> +
+>>> +        properties:
+>>> +          data-lanes:
+>>> +            items:
+>>> +              const: 1
+>>
+>> Not what I asked. Now you miss number of items. Just use the syntax I
+>> proposed. Or was there any issue with it?
+> 
+> No issue I just misunderstood and thought const: 1 was impliying
+> maxItems: 1. I'll add maxItems back.
 
-On Tue, 1 Apr 2025 18:03:46 -0500
-Rob Herring <robh@kernel.org> wrote:
-
-> On Tue, Apr 01, 2025 at 12:35:07PM +0200, Lukasz Majewski wrote:
-> > Hi Rob,
-> >  =20
-> > > On Mon, Mar 31, 2025 at 12:31:13PM +0200, Lukasz Majewski wrote: =20
-> > > > This patch provides description of the MTIP L2 switch available
-> > > > in some NXP's SOCs - e.g. imx287.
-> > > >=20
-> > > > Signed-off-by: Lukasz Majewski <lukma@denx.de>
-> > > > ---
-> > > > Changes for v2:
-> > > > - Rename the file to match exactly the compatible
-> > > >   (nxp,imx287-mtip-switch)
-> > > >=20
-> > > > Changes for v3:
-> > > > - Remove '-' from const:'nxp,imx287-mtip-switch'
-> > > > - Use '^port@[12]+$' for port patternProperties
-> > > > - Drop status =3D "okay";
-> > > > - Provide proper indentation for 'example' binding (replace 8
-> > > >   spaces with 4 spaces)
-> > > > - Remove smsc,disable-energy-detect; property
-> > > > - Remove interrupt-parent and interrupts properties as not
-> > > > required
-> > > > - Remove #address-cells and #size-cells from required properties
-> > > > check
-> > > > - remove description from reg:
-> > > > - Add $ref: ethernet-switch.yaml#
-> > > > ---
-> > > >  .../bindings/net/nxp,imx287-mtip-switch.yaml  | 154
-> > > > ++++++++++++++++++ 1 file changed, 154 insertions(+)
-> > > >  create mode 100644
-> > > > Documentation/devicetree/bindings/net/nxp,imx287-mtip-switch.yaml
-> > > >=20
-> > > > diff --git
-> > > > a/Documentation/devicetree/bindings/net/nxp,imx287-mtip-switch.yaml
-> > > > b/Documentation/devicetree/bindings/net/nxp,imx287-mtip-switch.yaml
-> > > > new file mode 100644 index 000000000000..98eba3665f32 ---
-> > > > /dev/null +++
-> > > > b/Documentation/devicetree/bindings/net/nxp,imx287-mtip-switch.yaml
-> > > > @@ -0,0 +1,154 @@ +# SPDX-License-Identifier: (GPL-2.0-only OR
-> > > > BSD-2-Clause) +%YAML 1.2
-> > > > +---
-> > > > +$id:
-> > > > http://devicetree.org/schemas/net/nxp,imx287-mtip-switch.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml# +
-> > > > +title: NXP SoC Ethernet Switch Controller (L2 MoreThanIP
-> > > > switch) +
-> > > > +maintainers:
-> > > > +  - Lukasz Majewski <lukma@denx.de>
-> > > > +
-> > > > +description:
-> > > > +  The 2-port switch ethernet subsystem provides ethernet packet
-> > > > (L2)
-> > > > +  communication and can be configured as an ethernet switch. It
-> > > > provides the
-> > > > +  reduced media independent interface (RMII), the management
-> > > > data input
-> > > > +  output (MDIO) for physical layer device (PHY) management.
-> > > > +
-> > > > +$ref: ethernet-switch.yaml#   =20
-> > >=20
-> > > This needs to be: ethernet-switch.yaml#/$defs/ethernet-ports
-> > >=20
-> > > With that, you can drop much of the below part. More below...
-> > >  =20
-> > > > +
-> > > > +properties: =20
-> >=20
-> > So it shall be after the "properties:"
-> >=20
-> > $ref: ethernet-switch.yaml#/$defs/ethernet-ports   [*] =20
->=20
-> It can stay where it is, just add "/$defs/ethernet-ports"
->=20
->=20
-> > > > +  compatible:
-> > > > +    const: nxp,imx287-mtip-switch
-> > > > +
-> > > > +  reg:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  phy-supply:
-> > > > +    description:
-> > > > +      Regulator that powers Ethernet PHYs.
-> > > > +
-> > > > +  clocks:
-> > > > +    items:
-> > > > +      - description: Register accessing clock
-> > > > +      - description: Bus access clock
-> > > > +      - description: Output clock for external device - e.g.
-> > > > PHY source clock
-> > > > +      - description: IEEE1588 timer clock
-> > > > +
-> > > > +  clock-names:
-> > > > +    items:
-> > > > +      - const: ipg
-> > > > +      - const: ahb
-> > > > +      - const: enet_out
-> > > > +      - const: ptp
-> > > > +
-> > > > +  interrupts:
-> > > > +    items:
-> > > > +      - description: Switch interrupt
-> > > > +      - description: ENET0 interrupt
-> > > > +      - description: ENET1 interrupt
-> > > > +
-> > > > +  pinctrl-names: true
-> > > > +   =20
-> > >  =20
-> > > > +  ethernet-ports: =20
-> >=20
-> > And then this "node" can be removed as it has been referenced above
-> > [*]? =20
->=20
-> Well, you have to keep it to have 'required' in the child nodes.
->=20
-> >=20
-> > (I shall only keep the properties, which are not standard to [*] if
-> > any).
-> >  =20
-> > > > +    type: object
-> > > > +    additionalProperties: false
-> > > > +
-> > > > +    properties:
-> > > > +      '#address-cells':
-> > > > +        const: 1
-> > > > +      '#size-cells':
-> > > > +        const: 0
-> > > > +
-> > > > +    patternProperties:
-> > > > +      '^port@[12]+$':   =20
-> > >=20
-> > > Note that 'ethernet-port' is the preferred node name though
-> > > 'port' is allowed. =20
-> >=20
-> > Ok. That would be the correct define:
-> >=20
-> > ethernet-ports {
-> >      mtip_port1: ethernet-port@1 {
-> >                reg =3D <1>;
-> >                label =3D "lan0";
-> >                local-mac-address =3D [ 00 00 00 00 00 00 ];
-> >                phy-mode =3D "rmii";
-> >                phy-handle =3D <&ethphy0>;
-> > 	       };
-> >=20
-> >                mtip_port2: port@2 { =20
->=20
-> And here...
->=20
-> > 		....
-> > 	       };
-> >  =20
-> > >  =20
-> > > > +        type: object
-> > > > +        description: MTIP L2 switch external ports
-> > > > +
-> > > > +        $ref: ethernet-controller.yaml#
-> > > > +        unevaluatedProperties: false
-> > > > +
-> > > > +        properties:
-> > > > +          reg:
-> > > > +            items:
-> > > > +              - enum: [1, 2]
-> > > > +            description: MTIP L2 switch port number
-> > > > +
-> > > > +          label:
-> > > > +            description: Label associated with this port
-> > > > +
-> > > > +        required:
-> > > > +          - reg
-> > > > +          - label
-> > > > +          - phy-mode
-> > > > +          - phy-handle   =20
-> > >=20
-> > > All the above under 'ethernet-ports' can be dropped though you
-> > > might want to keep 'required' part. =20
-> >=20
-> > Ok, I will keep it. =20
->=20
-> So I think you just want this:
->=20
-> ethernet-ports:
->   type: object
->   additionalProperties: true  # Check if you need this
->=20
->   patternProperties:
->     '^ethernet-port@[12]$':
->       required:
->         - label
->         - phy-mode
->         - phy-handle
->=20
-
-I had to add:
-
-$ref: ethernet-switch.yaml#/$defs/ethernet-ports
-patternProperties:
-  "^(ethernet-)?ports$":
-    type: object
-    additionalProperties: true
-
-after the=20
-description:
-
-to avoid issues when checking DT schema.
-
-Simple adding=20
-
-   patternProperties:
-     '^ethernet-port@[12]$':
-       required:
-         - label
-         - phy-mode
-         - phy-handle
-
-Causes more errors.
-
-> Rob
-
-
-
+That's just longer way to express what I asked for. So I repeat the
+question: why not using the syntax I asked for?
 
 Best regards,
-
-Lukasz Majewski
-
---
-
-DENX Software Engineering GmbH,      Managing Director: Erika Unter
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
-
---Sig_/0sOa=FWTe.Vb=8T9Ymlk/qv
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmfs/qwACgkQAR8vZIA0
-zr086wgA5Jn0IbIaaEpVjBvcYY2ArHgPvw/BZFmTl1ybvb3477EmZI1iEIn1UHyW
-qMO4jx5mlSoR9QkP/GfI9DE99ySe+EQgqSqPqcY79JPlqq6WeT578E9NBqLO7YT5
-h59WwQShvBR4np37X5r26HtcdP8CXEWYUFITteTqh+EYiXDKPeXi4e6KiGmcJAuJ
-jT4riux80AJ4ImCRjnj9S/pv3ODm6Q//Rd9DKse/k/RPUKRrqCM9MvLval02tdzV
-SD+MsepkMI+j/NXayLHABP++2Lcl3lNNW3fnAGKckvqdGBPmIRlS4MnqN+PzAprB
-tkiD4bkrDW3Eu65fMpIQtsnOT47bkA==
-=9mZL
------END PGP SIGNATURE-----
-
---Sig_/0sOa=FWTe.Vb=8T9Ymlk/qv--
+Krzysztof
 
