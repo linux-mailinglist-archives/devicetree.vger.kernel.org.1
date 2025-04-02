@@ -1,135 +1,137 @@
-Return-Path: <devicetree+bounces-162539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8A63A78B13
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 11:29:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBA9FA78B15
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 11:30:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22ABD189371E
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 09:30:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B8E307A4B3D
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 09:29:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33CC62356C1;
-	Wed,  2 Apr 2025 09:29:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE2BC2356C3;
+	Wed,  2 Apr 2025 09:30:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="o93tEZRE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EkRUVanp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE5DF233727;
-	Wed,  2 Apr 2025 09:29:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91EFB233727;
+	Wed,  2 Apr 2025 09:30:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743586190; cv=none; b=UXIQbF4w48JQlj5F21QcuYqrTTHuD46eZZoYU4UQqit7Pe6XncooSQM57KYZFxeHg0vEOMYnozgWsCX8RXt6FGBoeNX/pbKrwZDeGkIHxYqaP0usU7VN5kl1GK6iZ8/YAzH/SdGLIMh9Iv8fgqNZtngmiS4+dJvnnspO8thpn2A=
+	t=1743586200; cv=none; b=rwE5ggqUxNzl4NCHYDUB8xeL4X/TuCbaqucwLFlqsxiSouJsPlYBdMfhhjuDc4vV5ynj1cJ3qwpDhsptR7AJsBLC/yUGC1y0d8VbgY2fkuMRKxVLgIvXIUaq65m0rNNvQBSi6R3gAS7J9b70v/vzMHZ4sebRJEvMpSVevXQT7Vs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743586190; c=relaxed/simple;
-	bh=oTNcPm9CQ+qW72NuToGQZDO4pNruAfzTixpa9SRTHYY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=bZ+aCTmn8TpVb9qNG7nlg7PXqzLtGaIgYAeSC5oZ4X0pZgRPfjsD9D7a8xeG/nmQUKc9wRZG66j986r6a4WhKxXRWwiuAi/mFQuQZq+4WkqPkc6XfYlyhDk3WJc9VeKl/GADnJeaWDU24cMQQR5rjpY51ySYhkHhqx1I/gCh0eQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=o93tEZRE; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 5329TcIv3883367
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-	Wed, 2 Apr 2025 04:29:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1743586178;
-	bh=JyPZl8MjDJAyq5XxRRx62R/Qh5a744uvuUmkjqbA0Qc=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=o93tEZRE6wTUbVpeez+hnlVOzkJ7fxp8EcrneN4/uJAPO7Yn9d6S9ojHUeEmLZ8o5
-	 OiC9FElbGeiJVToUwH6eXt2PORPfsS+OysLMZjw3eoJh8S1EoBmJCCSVM2wDtOCYft
-	 WmdGNSLxrTaWBRKUZifc7Y979b5pamgIKRko6eu4=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5329TcQD050918;
-	Wed, 2 Apr 2025 04:29:38 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 2
- Apr 2025 04:29:38 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 2 Apr 2025 04:29:38 -0500
-Received: from [10.24.68.210] (jayesh-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.68.210])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 5329TY1R026769;
-	Wed, 2 Apr 2025 04:29:35 -0500
-Message-ID: <6d4d8d36-5c15-492d-8adf-17d95ae1e38b@ti.com>
-Date: Wed, 2 Apr 2025 14:59:33 +0530
+	s=arc-20240116; t=1743586200; c=relaxed/simple;
+	bh=8AFyzMkukXlIorZLfhC8lT6o/ZfWhcX4UZ5ou9xw/mc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IYZeccgcJrsKmg3yV/Zv7GeAkhh9SQG2Wi1fRwEMGSoVy3OUBFlXD7hQKwA8YY/ADaHtV8kC2scpId6VSZZtLty7JhuW/ubPvOOxlMoHUS2SF/pUEYSd6efTvXvqvU05l1nWStkD02StLpY76C9qvO5etBokUL6v4RTZH/R61O0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EkRUVanp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31A2AC4CEDD;
+	Wed,  2 Apr 2025 09:29:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743586200;
+	bh=8AFyzMkukXlIorZLfhC8lT6o/ZfWhcX4UZ5ou9xw/mc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EkRUVanppkTZ67CfJ+qYTGPjXlJ6n1t58y4XgG6vF7KApERFXt7jVlZnDUJ+TlRvh
+	 9nxJTJZJBURBdMk+GG0U+2p6d9Iwo+eZk/h3nEZj81UPC6ptweNJJzj0Sz9Yp3seAe
+	 WOgDnRckZ1nimORHbzA9zMRDz//pyd34CRpo4zTZ35ItUrIj4G7FvxikHSW1SvGJbD
+	 GXvBg6gRlMUAXblE5PZyJ3dz7N7CCDb2Qk0ahi78lxi3SGrxH82/FbDIV3Mm9hByK4
+	 1WOzFsbHx5GXaK6M2sMJS3imZG0cAUIsBdVq8Xl9MK7As0wnGXMPR5ejiE9bKRgWkE
+	 0p2aHk0uKnBqQ==
+Date: Wed, 2 Apr 2025 09:29:57 +0000
+From: Tzung-Bi Shih <tzungbi@kernel.org>
+To: Gwendal Grignou <gwendal@chromium.org>
+Cc: jic23@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	chrome-platform@lists.linux.dev
+Subject: Re: [PATCH] drivers: iio: cros_ec_sensors: Flush changing the FIFO
+ timeout
+Message-ID: <Z-0DleD6CRIsz3mY@google.com>
+References: <20250331164832.4039379-1-gwendal@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: soc: ti: ti,j721e-system-controller: Add
- PCIe ctrl property
-To: Rob Herring <robh@kernel.org>, Andrew Davis <afd@ti.com>,
-        Siddharth
- Vadapalli <s-vadapalli@ti.com>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20241016233044.240699-1-afd@ti.com>
- <20241016233044.240699-2-afd@ti.com> <20241018130447.GA40439-robh@kernel.org>
-Content-Language: en-US
-From: Jayesh Choudhary <j-choudhary@ti.com>
-In-Reply-To: <20241018130447.GA40439-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250331164832.4039379-1-gwendal@chromium.org>
 
-Hello Rob,
+On Mon, Mar 31, 2025 at 09:48:32AM -0700, Gwendal Grignou wrote:
+> fifo_timeout is used by the EC firmware only when a new sample is
+> available.
 
-On 18/10/24 18:34, Rob Herring wrote:
-> On Wed, Oct 16, 2024 at 06:30:40PM -0500, Andrew Davis wrote:
->> Add a pattern property for pcie-ctrl which can be part of this controller.
->>
->> Signed-off-by: Andrew Davis <afd@ti.com>
->> ---
->>   .../bindings/soc/ti/ti,j721e-system-controller.yaml          | 5 +++++
->>   1 file changed, 5 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml b/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml
->> index 378e9cc5fac2a..2a64fc61d1262 100644
->> --- a/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml
->> +++ b/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml
->> @@ -68,6 +68,11 @@ patternProperties:
->>       description:
->>         The node corresponding to SoC chip identification.
->>   
->> +  "^pcie-ctrl@[0-9a-f]+$":
->> +    type: object
->> +    description:
->> +      This is the PCIe control region.
-> 
-> What goes in this node?
+I guess you mean: "FIFO timeout".  There is no specific symbol called
+`fifo_timeout`.
 
-This node corresponds to PCIe control register
-(used/updated by j721e_pcie_driver for setting the mode, RC or EP)
+> ---
 
-There are new overlays now that need to be updated as well, with
-each SoC.
-Will re-roll v2 with updated description and examples in the bindings
-and taking into account the new overlays.
+"drivers: " in the patch's title prefix can be dropped.
 
-Warm Regards,
-Jayesh
+> -static int cros_ec_sensor_set_ec_rate(struct cros_ec_sensors_core_state *st,
+> -				      int rate)
+> -{
+> -	int ret;
+> -
+> -	if (rate > U16_MAX)
+> -		rate = U16_MAX;
+> -
+> -	mutex_lock(&st->cmd_lock);
+> -	st->param.cmd = MOTIONSENSE_CMD_EC_RATE;
+> -	st->param.ec_rate.data = rate;
+> -	ret = cros_ec_motion_send_host_cmd(st, 0);
+> -	mutex_unlock(&st->cmd_lock);
+> -	return ret;
+> -}
+> -
+>  static ssize_t cros_ec_sensor_set_report_latency(struct device *dev,
+>  						 struct device_attribute *attr,
+>  						 const char *buf, size_t len)
+> @@ -134,7 +118,25 @@ static ssize_t cros_ec_sensor_set_report_latency(struct device *dev,
+>  
+>  	/* EC rate is in ms. */
+>  	latency = integer * 1000 + fract / 1000;
+> -	ret = cros_ec_sensor_set_ec_rate(st, latency);
+> +
+> +	mutex_lock(&st->cmd_lock);
+> +	st->param.cmd = MOTIONSENSE_CMD_EC_RATE;
+> +	st->param.ec_rate.data = min(U16_MAX, latency);
+> +	ret = cros_ec_motion_send_host_cmd(st, 0);
+> +	mutex_unlock(&st->cmd_lock);
+> +	if (ret < 0)
+> +		return ret;
 
-> 
->> +
->>   required:
->>     - compatible
->>     - reg
->> -- 
->> 2.39.2
->>
+It isn't obvious (at least irrelevant to the commit message) that
+cros_ec_sensor_set_ec_rate() becomes inline here.
+
+> @@ -152,7 +154,6 @@ static ssize_t cros_ec_sensor_get_report_latency(struct device *dev,
+>  	mutex_lock(&st->cmd_lock);
+>  	st->param.cmd = MOTIONSENSE_CMD_EC_RATE;
+>  	st->param.ec_rate.data = EC_MOTION_SENSE_NO_VALUE;
+> -
+>  	ret = cros_ec_motion_send_host_cmd(st, 0);
+>  	latency = st->resp->ec_rate.ret;
+>  	mutex_unlock(&st->cmd_lock);
+
+Unwanted change.
+
+> @@ -853,6 +858,16 @@ int cros_ec_sensors_core_write(struct cros_ec_sensors_core_state *st,
+>  		st->param.sensor_odr.roundup = 1;
+>  
+>  		ret = cros_ec_motion_send_host_cmd(st, 0);
+> +
+> +		/* Flush the FIFO in case we are stopping a sensor.
+> +		 * If the FIFO has just been emptied, pending samples will be
+> +		 * stuck until new samples are available. It will not happen
+> +		 * when all the sensors are stopped.
+> +		 */
+> +		if (frequency == 0) {
+> +			st->param.cmd = MOTIONSENSE_CMD_FIFO_FLUSH;
+> +			cros_ec_motion_send_host_cmd(st, 0);
+
+Wouldn't it want to check `ret` from previous cros_ec_motion_send_host_cmd()
+and override `ret` by the latest call?
 
