@@ -1,175 +1,227 @@
-Return-Path: <devicetree+bounces-162659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2185A79530
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 20:38:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA1CCA79535
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 20:39:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 24FCE7A242D
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 18:36:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7956E17065B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 18:39:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A67591D7E4C;
-	Wed,  2 Apr 2025 18:37:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D49FB1D8DEE;
+	Wed,  2 Apr 2025 18:39:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=soleen-com.20230601.gappssmtp.com header.i=@soleen-com.20230601.gappssmtp.com header.b="UpeHXMHl"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ESY+6x7s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B3771CD21C
-	for <devicetree@vger.kernel.org>; Wed,  2 Apr 2025 18:37:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4607419E826
+	for <devicetree@vger.kernel.org>; Wed,  2 Apr 2025 18:39:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743619073; cv=none; b=WDVjPmJw5vpim0snrFmYTNiAqjWIHcFrAvQ1HNXU81RkCFJdEO0cR/y4YRUTa15hFAzMcHT44Q0tPSXB9tGkCVgKIwZB3TIz8aGg//2bl6JKwaVSyTiQXHfksyjIvCJbYWnc+WR4Jcr5WGfkCGPvYTzDqTFFBhL/S7Bmst7rmt0=
+	t=1743619169; cv=none; b=I7uAgSZ2bGdsCQb3tUYtUAa/uDYy4Y7WCCp3OjboOGLQvg6/vGoWbfKao9Z3eg5wqJjClscX5cYQXgcH/DSIQhiUOQJzEU7FVpuWxjcKO3oTK3QR4GMX/TqwxKxZD5u8Vs9QyBu+04fTBGAZAgaY6wr6rAS2+qkJwD4uTKqetgs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743619073; c=relaxed/simple;
-	bh=8sGZeCa0sKqwzNT7+OssvY0XCe1f29aCSfnouhi7cVM=;
+	s=arc-20240116; t=1743619169; c=relaxed/simple;
+	bh=A3khaq21uI6D+hNfec4Redi3mG1fNskqHWFV9FCWlUc=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=chKyTxxT4FgcyMJHuoScjPCvA7VMAXj+3fNpCrqqGP3UnV4jzgvbq5Trl4qYVkm4zgAb6g1hukSu1mEUu9CqlHMPvlyudg55DproJ+Y6zLXiMAAsFDu28HD/VtYrE/GF2fJ032cXEPA8gWBHlah4m0AGLLs4AWFzwrkoKplQq/Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=soleen.com; spf=pass smtp.mailfrom=soleen.com; dkim=pass (2048-bit key) header.d=soleen-com.20230601.gappssmtp.com header.i=@soleen-com.20230601.gappssmtp.com header.b=UpeHXMHl; arc=none smtp.client-ip=209.85.160.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=soleen.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=soleen.com
-Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-4772f48f516so11827581cf.1
-        for <devicetree@vger.kernel.org>; Wed, 02 Apr 2025 11:37:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=soleen-com.20230601.gappssmtp.com; s=20230601; t=1743619071; x=1744223871; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8sGZeCa0sKqwzNT7+OssvY0XCe1f29aCSfnouhi7cVM=;
-        b=UpeHXMHlzqKf09a80PpbFREcBUIZ1dqQ8ZbaBTyd5+mEK78huJs0wY6ewTjVNf34JI
-         VitV8Kn+IbDJVYPpr9GDRPkSWUzpvarn9sX/frxInxyzs4SLCrP89PQYpv0Bj6egULPj
-         4SdHto9LJGUIDuQXBxsXhtbAgvDkRvqi4kYYiLtv+Zj3fuU305AZrJEO+wPgVYMRmhU+
-         MUMk5cP6Vr2aDYTlO3BkMXPW3ayHvgCRQHL1CwWfVDVvm4lbv+uyoGV8oAzTKTtU//4C
-         5NBeMdOZijjZI+0vLDB1vRusk6rpeYQGwkuwd47CbOa7FG0JiaXlT3UIs24b/lD+3/9g
-         2S4w==
+	 To:Cc:Content-Type; b=NTB8hrAx+V1QQZzHcKpgHHi00JeKyolWiedXfUNyuNplGaFAzLZYCBvBVDoeil3mJuM/sXmaKKF21O+iB2MkXTedhH7LSJ+juryr6YQoLnUnuk0xMCEqgovsbKFehs0NC2H8yKUC6xI1nWe+sZd4ahjlr/SL+3NhqmkTofBi8ag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ESY+6x7s; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 532CQGFc024551
+	for <devicetree@vger.kernel.org>; Wed, 2 Apr 2025 18:39:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	rLRltPAW2VT+osyndq8xbNTAaaTzvicU6XEHnaTvyEQ=; b=ESY+6x7scCrYx+nG
+	BrnUXYp5lICXjecsq2AXoO/uQpGAP95loBcQcLxRTeLSEwb2eidswYei2oMEoyc5
+	aoP4uSPj80Df2j0dk3523XVXObrAM93Z6SXWy620jysZlLFSd3FZCd2+qQxXf/D3
+	DWkGujXDcuc6+i9wt2WXm21X2NHrL+l12ECJqSNiOp/rWmtXLCZOyldDsOX/QxVc
+	wk8NJbM0ZOGS9IfoSh+8pnnA42eLn42rAhN0A+fpDwgAsQtThrrGbucwVb6nSKZl
+	/8NGadeGi4anVSQRK9IB5TkEoOEncnCdTqZufa2lHJ6sfkJfH6mhJ+nSkQHypFm8
+	42xKiA==
+Received: from mail-oi1-f199.google.com (mail-oi1-f199.google.com [209.85.167.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45rbpywfpu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 02 Apr 2025 18:39:27 +0000 (GMT)
+Received: by mail-oi1-f199.google.com with SMTP id 5614622812f47-3f68fe933b7so130079b6e.2
+        for <devicetree@vger.kernel.org>; Wed, 02 Apr 2025 11:39:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743619071; x=1744223871;
+        d=1e100.net; s=20230601; t=1743619166; x=1744223966;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=8sGZeCa0sKqwzNT7+OssvY0XCe1f29aCSfnouhi7cVM=;
-        b=Azr1cv1zHtvxyd5heCPzQuBQk1C4BfVsz1EVOweVU8WIv1H1eGwMUDx7i83NnWmYe1
-         c/uBwVgciz6FMxLEcZIsjMGnoTZ25kuhb2dyAAlWMI2g+Eg2QXOKYPyjezUTzpscyOMr
-         eVsovq7Ld8ww0xFKuRpC40ZXooc/KSZhto00S88zu0sMyFeKSkwTSDmOxsk6b8MQUpOF
-         663PNr90+44WHQq+XW/93Br8fJna5D/oJlJdsoeZEfmtA5v7KzyQxv4IlUt+jY8g8FAO
-         iVIZiTXh9A9KK1FY2KQWgMjM0lsWVH9XHa+45fz0bvnDZdU8fngIhnzqcqb4wbdflh65
-         UsBw==
-X-Forwarded-Encrypted: i=1; AJvYcCWu9Tg1B/Y/yLWyimedy2RJ6MZU7oEJd1KSKWQURHnlvSY0iHH0mJG6zMyiD/u/GJgDmhLXK6Ep5Cbn@vger.kernel.org
-X-Gm-Message-State: AOJu0YxskNOSg8u03I+iFNthmvnHYukvLsDrLEO7z4nYDvGyHHfCYTOi
-	Mp348YEPxFtTtFObQMYGoUU3wG52gDnOTnG7JCCrJpfyIu8/+z2oTPi5FtvLKBsi31uqbJDNt5Z
-	+gpZRepPYVDmhxfUMQPXnx4I3v7UjtawAZ3RUuytEypF6W3AF
-X-Gm-Gg: ASbGncviv1V6mDm0NptjK/rP4aXuMb74NBtQ2/0j3wjxCIjyylEn12bCR9exHKdRklb
-	GLHeFsbbn0S9YBV+MeeExGzVOVl7QkZaRDrK30ZIxpX46H43WNz3Ikqlt/gxoHMWetky0xd24dq
-	eAvyP1qBnYR6Uj65ZBCtwEVws=
-X-Google-Smtp-Source: AGHT+IGBm8eRAZTRRIQNHm7hrKsMWsRZO7yaRU5V8qu8Hz4XTnZI9DQTzhglhyasNi+RSLHZS4pwai1XiiNO0rfUKEY=
-X-Received: by 2002:a05:622a:255:b0:472:145:3e02 with SMTP id
- d75a77b69052e-4791615e607mr11970971cf.8.1743619070935; Wed, 02 Apr 2025
- 11:37:50 -0700 (PDT)
+        bh=rLRltPAW2VT+osyndq8xbNTAaaTzvicU6XEHnaTvyEQ=;
+        b=FShZDQ4o1jthC3EXcjSeo9FkRmOwhiHm+Gqtb9W96CeB+fwI3M4AgQXPNNdKZ/bMNa
+         KYq3ecuTX3rpXG+JgjQIniS0tCEqU77JrSqM3IDvyQlzEGkI2tBpTdh68ol5YkdgG1YF
+         b07BANa59U9qg33mofqkJx1J//ImkrIPqe/S4sDWqE0Kdss2ocM795zb9bPvRUlkJn37
+         povHlUGCZZlfmxdcvHfca5/E5BkoreHcJf+eox2n8CEuarJVIKh2mBnqoxGNpd+B0F9L
+         0p80ht2FP4/rC7c/a0Il1IrD9XOO5W+4qBU4iL1HjPns/5L9v435uIMiw9Q7WLNpT6I4
+         YuKg==
+X-Forwarded-Encrypted: i=1; AJvYcCXsUz0ZSzkRJiqUl7exSjDmTz7GfU7qIcHbzRHYl6aOzC8rHi2i3hHTEJ+ENWf7gdbu1wTgkBCGFyrY@vger.kernel.org
+X-Gm-Message-State: AOJu0YwuhrtncSg6pkwBRm7GQOdvVhp7rjUCI5aK/AMcHTBlHmIxmcBD
+	ulG0zvQnempwXn3yOCzeBktfK+AJU0/bmzt+7xYT5tSx9y1Lbci1/N2bJx8YrIeBOqvsChs1FYB
+	trI9XbyKN7dR69RoEThW7YEQBbFHxbfdGBPKtNCh+uQeZqwDb6n17MnLl8GAYXdNZpXH4uxT9Ec
+	0vYMWQc8Yj7rrbuVrq7Vh35nTgX0Aodn1abnI=
+X-Gm-Gg: ASbGncs8jQVTkcHLPUBpT2QUWj0dQjmYQ7ZOJAHIjD3cLTFRkBcZ5Ml3MmCVIloz1wu
+	wMu6qCPnGMIZxfytXDAYDHmyS+heAQJHeisBlEaZAPgDJ9ZycN/I1hlr3eX/ravemvY3Nf9dFkA
+	==
+X-Received: by 2002:a05:6808:6c82:b0:3fb:2e8f:4de5 with SMTP id 5614622812f47-3ff0f52ef55mr12164464b6e.17.1743619166135;
+        Wed, 02 Apr 2025 11:39:26 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEa8ubrSd45uaaFhCFxG8RPmNf74FF0t82olgtZy7cR4JA2o8Zjllf8U6MoEnTSrTKOqq9YmFW/PnuOLXRUna8=
+X-Received: by 2002:a05:6808:6c82:b0:3fb:2e8f:4de5 with SMTP id
+ 5614622812f47-3ff0f52ef55mr12164445b6e.17.1743619165788; Wed, 02 Apr 2025
+ 11:39:25 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <mafs0tt7eqt6f.fsf@amazon.de> <20250402164453.2470750-1-changyuanl@google.com>
- <mafs0ecyaqzmd.fsf_-_@amazon.de>
-In-Reply-To: <mafs0ecyaqzmd.fsf_-_@amazon.de>
-From: Pasha Tatashin <pasha.tatashin@soleen.com>
-Date: Wed, 2 Apr 2025 14:37:12 -0400
-X-Gm-Features: AQ5f1Jr9Neh0jFNvgUt9co1Ay0Junb4b6fkF7RtFZQf-u5XIPaKITjI68-n5adU
-Message-ID: <CA+CK2bBnbEtw7jL2fbukJ3aBCjn=-OVT70oEAsZ435vtFe18Vw@mail.gmail.com>
-Subject: Re: [PATCH v5 09/16] kexec: enable KHO support for memory preservation
-To: Pratyush Yadav <ptyadav@amazon.de>
-Cc: Changyuan Lyu <changyuanl@google.com>, akpm@linux-foundation.org, 
-	anthony.yznaga@oracle.com, arnd@arndb.de, ashish.kalra@amd.com, 
-	benh@kernel.crashing.org, bp@alien8.de, catalin.marinas@arm.com, 
-	corbet@lwn.net, dave.hansen@linux.intel.com, devicetree@vger.kernel.org, 
-	dwmw2@infradead.org, ebiederm@xmission.com, graf@amazon.com, hpa@zytor.com, 
-	jgg@nvidia.com, jgowans@amazon.com, kexec@lists.infradead.org, 
-	krzk@kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mm@kvack.org, 
-	luto@kernel.org, mark.rutland@arm.com, mingo@redhat.com, pbonzini@redhat.com, 
-	peterz@infradead.org, robh+dt@kernel.org, robh@kernel.org, 
-	rostedt@goodmis.org, rppt@kernel.org, saravanak@google.com, 
-	skinsburskii@linux.microsoft.com, tglx@linutronix.de, thomas.lendacky@amd.com, 
-	will@kernel.org, x86@kernel.org
+References: <20250303-arm-psci-system_reset2-vendor-reboots-v9-0-b2cf4a20feda@oss.qualcomm.com>
+ <20250303-arm-psci-system_reset2-vendor-reboots-v9-2-b2cf4a20feda@oss.qualcomm.com>
+ <Z9QQw6BcE7IXzu+r@lpieralisi> <Z+K3uNjTNbq3pUis@hu-mojha-hyd.qualcomm.com>
+In-Reply-To: <Z+K3uNjTNbq3pUis@hu-mojha-hyd.qualcomm.com>
+From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+Date: Thu, 3 Apr 2025 00:09:14 +0530
+X-Gm-Features: AQ5f1JoIGcawwwxAneye4VDKyUquub00SsUJlDPk9-P3wh_983NTysTlWsL0c0s
+Message-ID: <CAN3W6UUgacP0JZc7yGJ2Q3HYGFZ3mMHh0okyHTMiuxDSwmABHA@mail.gmail.com>
+Subject: Re: [PATCH v9 2/5] firmware: psci: Read and use vendor reset types
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Yan <andy.yan@rock-chips.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, cros-qcom-dts-watchers@chromium.org,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+        Melody Olvera <quic_molvera@quicinc.com>,
+        Shivendra Pratap <quic_spratap@quicinc.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        Stephen Boyd <swboyd@chromium.org>, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, Elliot Berman <elliotb317@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-GUID: rB70kstsdT2GpwygmREs8kJM_HRip2AJ
+X-Proofpoint-ORIG-GUID: rB70kstsdT2GpwygmREs8kJM_HRip2AJ
+X-Authority-Analysis: v=2.4 cv=ZNLXmW7b c=1 sm=1 tr=0 ts=67ed845f cx=c_pps a=yymyAM/LQ7lj/HqAiIiKTw==:117 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=GcyzOjIWAAAA:8 a=EUspDBNiAAAA:8 a=ZS3UFk-b-OyYpVL8qdMA:9 a=QEXdDO2ut3YA:10 a=dtxw0mqMjrQA:10
+ a=efpaJB4zofY2dbm2aIRb:22 a=hQL3dl6oAZ8NdCsdz28n:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-02_08,2025-04-02_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ lowpriorityscore=0 clxscore=1015 mlxscore=0 adultscore=0 mlxlogscore=999
+ priorityscore=1501 bulkscore=0 suspectscore=0 malwarescore=0 phishscore=0
+ impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504020119
 
-On Wed, Apr 2, 2025 at 12:47=E2=80=AFPM Pratyush Yadav <ptyadav@amazon.de> =
-wrote:
+On Tue, Mar 25, 2025 at 7:33=E2=80=AFPM Mukesh Ojha
+<mukesh.ojha@oss.qualcomm.com> wrote:
 >
-> Hi,
->
-> On Wed, Apr 02 2025, Changyuan Lyu wrote:
->
-> > Hi Pratyush, Thanks for suggestions!
-> >
-> > On Thu, Mar 27, 2025 at 17:28:40 +0000, Pratyush Yadav <ptyadav@amazon.=
-de> wrote:
-> >> On Thu, Mar 27 2025, Jason Gunthorpe wrote:
-> >>
-> >> > On Thu, Mar 27, 2025 at 10:03:17AM +0000, Pratyush Yadav wrote:
-> >> >
-> >> >> Of course, with the current linked list structure, this cannot work=
-. But
-> >> >> I don't see why we need to have it. I think having a page-table lik=
-e
-> >> >> structure would be better -- only instead of having PTEs at the low=
-est
-> >> >> levels, you have the bitmap.
-> >> >
-> >> > Yes, but there is a trade off here of what I could write in 30 mins
-> >> > and what is maximally possible :) The xarray is providing a page tab=
+> On Fri, Mar 14, 2025 at 12:19:31PM +0100, Lorenzo Pieralisi wrote:
+> > On Mon, Mar 03, 2025 at 01:08:31PM -0800, Elliot Berman wrote:
+> > > From: Elliot Berman <elliot.berman@oss.qualcomm.com>
+> > >
+> > > SoC vendors have different types of resets and are controlled through
+> > > various registers. For instance, Qualcomm chipsets can reboot to a
+> > > "download mode" that allows a RAM dump to be collected. Another examp=
 le
-> >> > implementation in a library form.
-> >> >
-> >> > I think this whole thing can be optimized, especially the
-> >> > memblock_reserve side, but the idea here is to get started and once =
-we
-> >> > have some data on what the actual preservation workload is then
-> >> > someone can optimize this.
-> >> >
-> >> > Otherwise we are going to be spending months just polishing this one
-> >> > patch without any actual data on where the performance issues and ho=
+> > > is they also support writing a cookie that can be read by bootloader
+> > > during next boot. PSCI offers a mechanism, SYSTEM_RESET2, for these
+> > > vendor reset types to be implemented without requiring drivers for ev=
+ery
+> > > register/cookie.
+> > >
+> > > Add support in PSCI to statically map reboot mode commands from
+> > > userspace to a vendor reset and cookie value using the device tree.
+> >
+> > I have managed to discuss a little bit this patchset over the last
+> > few days and I think we have defined a plan going forward.
+> >
+> > A point that was raised is:
+> >
+> > https://man7.org/linux/man-pages/man2/reboot.2.html
+> >
+> > LINUX_REBOOT_CMD_RESTART2 *arg command, what is it supposed to
+> > represent ?
+> >
+> > Is it the mode the system should reboot into OR it is the
+> > actual command to be issued (which is what this patchset
+> > implements) ?
+> >
+> > LINUX_REBOOT_CMD_RESTART "..a default restart..."
+> >
+> > It is unclear what "default" means. We wonder whether the
+> > reboot_mode variable was introduced to _define_ that "default".
+> >
+> > So, in short, my aim is trying to decouple reboot_mode from the
+> > LINUX_REBOOT_CMD_RESTART2 *arg command.
+> >
+> > I believe that adding a sysfs interface to reboot-mode driver
+> > infrastructure would be useful, so that the commands would
+> > be exposed to userspace and userspace can set the *arg command
+> > specifically to issue a given reset/mode.
+> >
+> > I wonder why this is not already in place for eg syscon-reboot-mode
+> > resets, how does user space issue a command in those systems if the
+> > available commands aren't exposed to userspace ?
+> >
+> > Is there a kernel entity exposing those "modes" to userspace, somehow ?
+> >
+> > > A separate initcall is needed to parse the devicetree, instead of usi=
+ng
+> > > psci_dt_init because mm isn't sufficiently set up to allocate memory.
+> > >
+> > > Reboot mode framework is close but doesn't quite fit with the
+> > > design and requirements for PSCI SYSTEM_RESET2. Some of these issues =
+can
+> > > be solved but doesn't seem reasonable in sum:
+> > >  1. reboot mode registers against the reboot_notifier_list, which is =
+too
+> > >     early to call SYSTEM_RESET2. PSCI would need to remember the rese=
 t
-> >> > spots actually are.
-> >>
-> >> The memblock_reserve side we can optimize later, I agree. But the memo=
-ry
-> >> preservation format is ABI and I think that is worth spending a little
-> >> more time on. And I don't think it should be that much more complex th=
-an
-> >> the current format.
-> >>
-> >> I want to hack around with it, so I'll give it a try over the next few
-> >> days and see what I can come up with.
+> > >     type from the reboot-mode framework callback and use it
+> > >     psci_sys_reset.
+> > >  2. reboot mode assumes only one cookie/parameter is described in the
+> > >     device tree. SYSTEM_RESET2 uses 2: one for the type and one for
+> > >     cookie.
 > >
-> > I agree with Jason that "nothing is ABI at this
-> > point" and it will take some time for KHO to stabilize.
+> > This can be changed and I think it should, so that the reboot modes
+> > are exposed to user space and PSCI can use that.
 > >
-> > On the other hand if you have already came up with something working an=
-d
-> > simple, we can include it in the next version.
+> In the case of a regular reboot or panic, the reboot/panic notifiers run
+> first, followed by the restart notifiers. The PSCI reset/reset2 should
+> be the last call from Linux, and ideally, this call should not fail.
 >
-> I already have something that works with zero-order pages. I am
-> currently implementing support for other orders. It is almost done, but
-> I need to test it and do a performance comparison with the current
-> patch. Will post something soon!
-
-Hi Pratyush,
-
-Just to clarify, how soon? We are about to post v6 for KHO, with all
-other comments in this thread addressed.
-
-Thanks,
-Pasha
-
+> Reboot mode notifiers =3D> restart notifiers or Panic notifiers =3D> rest=
+art
+> notifiers
 >
-> --
-> Regards,
-> Pratyush Yadav
+> So, if I understand correctly, you mean that we can change the reboot
+> mode framework to expose the arguments available to user space. We can
+> extend it to accept magic and cookies, save them in the reboot
+> framework, and retrieve them via a call from PSCI during a regular
+> reboot or panic based on the current arguments. Is this leading towards
+> writing an ARM-specific PSCI-reboot-mode driver, which in its reboot
+> notifier callback saves the magic and cookies, and these magic and
+> cookies will be used during psci_sys_reset2()? Or is there something
+> wrong with my understanding?
+
+In case this mail got lost in your inbox, I wanted to float this up
+again as this is a very important ARM feature and
+its future course of action depends on the common understanding.
+
+-Mukesh
 
