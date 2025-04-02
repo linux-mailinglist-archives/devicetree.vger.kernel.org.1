@@ -1,58 +1,59 @@
-Return-Path: <devicetree+bounces-162505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162506-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 640F3A789C2
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 10:25:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5BD0A789DB
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 10:29:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C4F8E1893EBB
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 08:26:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8568D3B0E87
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 08:27:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 817A8234962;
-	Wed,  2 Apr 2025 08:25:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDF7F234970;
+	Wed,  2 Apr 2025 08:27:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FZRqupmN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iMIY7G+p"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 505C99444;
-	Wed,  2 Apr 2025 08:25:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C52D41AAA29;
+	Wed,  2 Apr 2025 08:27:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743582350; cv=none; b=kZWiJhRuiOWBTkPXpm9CW6H674xJgROJ5fGL/gjOYahlyGKvOlTirbG4jlIRrK8yenRyyV6M4aco4hDPjXjmoi8IPZaEo08iX37fF4Hrnld9kbQcAveabyvsM2zpfHOyIPSUTWaPcS4qs2+1yyd7Wwq046+/MBZChfjM7K6cQGs=
+	t=1743582477; cv=none; b=AegrD1hGorQoLhV6Fh3q0C+kpKgJX3ZRRjVTjJoCQEGZbBMECnJyTJHGww2uc+Y9Y+wqrcNbL0u+4gVHmNDc3+gC2WsoQfsS7RX9XNXLFdjakohM+ec8SGJZI8Tk6L1woof6fdsZei7+JQiwtcaMAp6e0lzNs5pDWXa28KeKtcA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743582350; c=relaxed/simple;
-	bh=otuypYYxO0QSjLeAobJAQo27qrjBeltuzY9/WEqFTxM=;
+	s=arc-20240116; t=1743582477; c=relaxed/simple;
+	bh=fBfmi+UvdP/eUpQ/8ozTCbqqVHLfNXYxLlPHS6YEA74=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NL7fmdab9s52VekMauM4k8CYDxrG9WZbMKi+hNCyU9P9vMVjFmmSE8kgCSJdXfx9cCZ8xtp96p/fWxyO8581TnTz0AIxluIIbQXBx+Vh2B2Q8QFpiGVQ6hvqUiJniKJAqdYYxRKaqnJnIz2W93NYdLTsN4bgvE0jOBqDj3hf14w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FZRqupmN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AD18C4CEDD;
-	Wed,  2 Apr 2025 08:25:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=eVHjR6a6CezHFwD8BZhRknd7kJPwlP3aFl2nYnLVA7aqsOwa4Mi0KuqD5QhWlyoh2/NHKDi6sqIZBDskat9Gf39J63mxEaz4Jkq2HjcblTo5HKyizRiF88KXc2KFKvdXBXBTsn9i2GBunyURbF/+Fm9OVAt60IR5ZA/XPZ8oxYs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iMIY7G+p; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BD6CC4CEDD;
+	Wed,  2 Apr 2025 08:27:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743582349;
-	bh=otuypYYxO0QSjLeAobJAQo27qrjBeltuzY9/WEqFTxM=;
+	s=k20201202; t=1743582477;
+	bh=fBfmi+UvdP/eUpQ/8ozTCbqqVHLfNXYxLlPHS6YEA74=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FZRqupmNclgLdDIYFU6xOb1JCVFihifTTRQqzcuoRgBb0kkkPCCMB1hubMpaLU4gN
-	 XlB2rkjB98v7gq5ncRRqr2chTy7S/lR0awHtbRjzlSLnao9g49XNo+7oTgJzG+lDgL
-	 IE4nTgi5EARczC3MLLqJTowkDwg2uwQRD+3K2fsN+WD1R7s0U12jBf3NaFys2y5q24
-	 a9hRUNm9IhO3mjmuxXqlNecZ41UVrKtbFJdtBTl+cVo1MAaoLvz9R/txaG9XGtdwOM
-	 8YPLWXcVcm/KkAjrOb1UrVuSmDr/zHO3ieIzzYckstGdWHiCLVVwCFexPDD+J/diVO
-	 vWDlbLWESWsfw==
-Date: Wed, 2 Apr 2025 10:25:46 +0200
+	b=iMIY7G+p2hLBrxGJS7aqCyxCOO6eEZUmrU/GvI2HYqsOusDoi+S7epdpauGiJrL/X
+	 c+bxk1OPgU3kFItzSR0/+ejjdIS3BA1Ugo4RS5iYnLHkuEE1NziBCGVELNuJ+lEYoA
+	 KfSZROjbmCcQc3IBNQ75jsLtBhUOs33EdV1AP/dSILCoEi5dLsWZ5nPmeBUN2kJmxC
+	 HaaJVowKIL4IH0MyTsdDDnxcW30woxacSs4K3Ao24VPujt3/FbCQTvuaF64YOSPOcJ
+	 sflRO8LkY7+76c4p7AMWjEWMOBDVJpsqSxHPN9vC0mn06qt8y0MLnx2NJ5XTzZP8QI
+	 aL7eTHlRn7ilQ==
+Date: Wed, 2 Apr 2025 10:27:53 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
-	Jonathan Corbet <corbet@lwn.net>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH 1/5] dt-bindings: iio: adc: ad7380: add AD7389-4
-Message-ID: <20250402-winged-ambitious-sparrow-c988c6@krzk-bin>
-References: <20250401-iio-ad7380-add-ad7389-4-v1-0-23d2568aa24f@baylibre.com>
- <20250401-iio-ad7380-add-ad7389-4-v1-1-23d2568aa24f@baylibre.com>
+To: Marcus Folkesson <marcus.folkesson@gmail.com>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: st7571-i2c: Add Sitronix ST7571 panel
+ bindings
+Message-ID: <20250402-rare-slick-carp-dbcab9@krzk-bin>
+References: <20250402-st7571-v1-0-351d6b9eeb4a@gmail.com>
+ <20250402-st7571-v1-1-351d6b9eeb4a@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,20 +62,117 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250401-iio-ad7380-add-ad7389-4-v1-1-23d2568aa24f@baylibre.com>
+In-Reply-To: <20250402-st7571-v1-1-351d6b9eeb4a@gmail.com>
 
-On Tue, Apr 01, 2025 at 05:50:08PM -0500, David Lechner wrote:
-> Add compatible and quirks for AD7389-4. This is essentially the same as
-> AD7380-4 but instead of having no internal reference, it has no external
-> reference voltage supply.
+On Wed, Apr 02, 2025 at 08:12:10AM +0200, Marcus Folkesson wrote:
+> Sitronix ST7571 is a 4bit gray scale dot matrix LCD controller.
+> The controller has a SPI, I2C and 8bit parallel interface, this is for
+> the I2C interface only.
+> 
+> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+> ---
+>  .../bindings/display/sitronix,st7571-i2c.yaml      | 71 ++++++++++++++++++++++
+>  1 file changed, 71 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/sitronix,st7571-i2c.yaml b/Documentation/devicetree/bindings/display/sitronix,st7571-i2c.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..6e5e0994a98db646a37bb17c4289332546c9266e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/sitronix,st7571-i2c.yaml
 
-So neither refio nor refin, but your schema says:
+Drop i2c
 
-> +    then:
-> +      properties:
-> +        refio-supply: false
+> @@ -0,0 +1,71 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/sitronix,st7571-i2c.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sitronix ST7571 Display Panels
+> +
+> +maintainers:
+> +  - Marcus Folkesson <marcus.folkesson@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: sitronix,st7571-i2c
 
-So what about refin, which is also external reference?
+Drop i2c
+
+> +
+> +  reg:
+> +    description: I2C address of the LCD controller
+
+Drop description
+
+
+> +    maxItems: 1
+> +
+> +  sitronix,panel-width-mm:
+> +    description: physical panel width [mm]
+> +
+> +  sitronix,panel-height-mm:
+> +    description: physical panel height [mm]
+
+No, use standard properties.
+
+> +
+> +  sitronix,panel-nlines:
+> +    description: Number of lines in the panel
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 1
+> +    maximum: 128
+> +    default: 128
+
+Ditto
+
+> +
+> +  sitronix,panel-start-line:
+> +    description: Start line of the panel
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0
+> +    maximum: 127
+> +    default: 0
+
+Ditto
+
+> +
+> +  reset-gpios:
+> +    description: GPIO connected to the RST_N signal.
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reset-gpios
+
+Keep same order as in properties.
+
+> +  - sitronix,panel-width-mm
+> +  - sitronix,panel-height-mm
+> +
+
+Missing ref to panels schema.
+
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #
+
+Drop
+
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        display@3f {
+
+Look how this is called in other bindings... The binding and example are
+not following existing code. Why? Why doing something entirely
+different?
 
 Best regards,
 Krzysztof
