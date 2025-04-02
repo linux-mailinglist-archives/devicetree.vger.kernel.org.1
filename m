@@ -1,137 +1,182 @@
-Return-Path: <devicetree+bounces-162583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 036FDA78D20
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 13:32:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C3F5A78D6F
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 13:46:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D856E7A245B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 11:31:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D98E37A5B25
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 11:45:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CCB5239561;
-	Wed,  2 Apr 2025 11:32:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="kZqO0l+L"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06C001D5151;
+	Wed,  2 Apr 2025 11:46:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB80F239089;
-	Wed,  2 Apr 2025 11:32:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4955020E01D;
+	Wed,  2 Apr 2025 11:46:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743593539; cv=none; b=c8FhZcwq3EZHQrmpezqfG8jJo0Up2GiwyCn0hIU8y3g7PK8vdMTWXUbv5Mdyc4qllFhwYAoytJ8+HWRPRZYbFjJwlxi7owTsCMmrqivz5vUU6QgB+VSYTuEbGs6yuLTgYZapOPIsTHhxUfTstcOAOf+btmS7R2WvKU/IKh3zdoo=
+	t=1743594382; cv=none; b=uy7075j0zXOY9pD9KBA9LaWl8bFcZND9z2mlnMJbc7RxI2+SG7EqXqyeGJHDxY50iCGT3k7+uAhi5a3eBMCDhOeoYHxPkHu71V25gnK8BRHMyZKwA3WNMbnjyWmCkiTQtg9foivTeTRqU7nGuFXReNvmUlld0BVLOGyJhPKm69M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743593539; c=relaxed/simple;
-	bh=RMUTeToDNw6n/NFM9ZDo6YcN8k1+VRdwpr4TMdM5BVM=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=eY3P6uqQ3uG91DUY9EGUdDl15fRqynH5VPFMMiFxJ58g0rQf67pO+AwckQJNmks2aPopUbWwftTsBoFp095uD2oVQtmBoU1/RbWEX7/oF1bDmx7xOjcLazPhIrGJl37zC9mFbwrCBCt/mdcKl1LksBBC6O6pY5qQ3Y9eR+LaNt0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=kZqO0l+L; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 532BWCCh3915810
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 2 Apr 2025 06:32:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1743593533;
-	bh=+CQDuHs7zFUqfObgU50fZXkBp76ORP87Ik1HRSIRSR8=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=kZqO0l+LgRTrtMcbrLGyNgLMqXzX9ujkYb5KNB6czl2GGifBjhQYhxcmuZsue8nzc
-	 SOvqPzloa392EI0Bkprty8sui5NP3/dRWtT3G7A6F4HL6scw0Kn0VK6AB2xU+/rPN/
-	 N6ga/OMTIL0bvquybA5NqQrqTBkt7kfkyyVbrr/A=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 532BWC9a103504
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 2 Apr 2025 06:32:12 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 2
- Apr 2025 06:32:12 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 2 Apr 2025 06:32:12 -0500
-Received: from localhost (jayesh-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.68.210])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 532BWBun017482;
-	Wed, 2 Apr 2025 06:32:11 -0500
-From: Jayesh Choudhary <j-choudhary@ti.com>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <nm@ti.com>, <vigneshr@ti.com>, <afd@ti.com>, <s-vadapalli@ti.com>,
-        <linux-kernel@vger.kernel.org>
-CC: <kristo@kernel.org>, <rogerq@kernel.org>, <kishon@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <j-choudhary@ti.com>
-Subject: [PATCH v2 5/5] arm64: dts: ti: k3-am64: Add PCIe ctrl node to main_conf region
-Date: Wed, 2 Apr 2025 17:02:01 +0530
-Message-ID: <20250402113201.151195-6-j-choudhary@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250402113201.151195-1-j-choudhary@ti.com>
-References: <20250402113201.151195-1-j-choudhary@ti.com>
+	s=arc-20240116; t=1743594382; c=relaxed/simple;
+	bh=13/ZTgkQNn8YLYBwvB18oJqhNzSjCyZ6MMrKnzIuUK0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lqw3EZuWbk+5wEAK3PuoyvITLZ1HfK1iIMTyeGOg6XCNL21/VA/WPlwiwiEmsHV+bJ514Kow6+ZDMeD+G/ZJ/nQrb+FHiJu2qeEbYRqh9eEV59/1Y20+H5J4fNRcyrTR0r+bd8KmphDKRke+lCasn95F22RlZP0o7eQMo+qi6xA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com; spf=none smtp.mailfrom=foss.arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=foss.arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B6526106F;
+	Wed,  2 Apr 2025 04:46:23 -0700 (PDT)
+Received: from bogus (unknown [10.57.41.33])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8CBB53F694;
+	Wed,  2 Apr 2025 04:46:17 -0700 (PDT)
+Date: Wed, 2 Apr 2025 12:46:14 +0100
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Peng Fan <peng.fan@oss.nxp.com>
+Cc: Cristian Marussi <cristian.marussi@arm.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dan Carpenter <dan.carpenter@linaro.org>,
+	linux-kernel@vger.kernel.org, arm-scmi@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH v3 1/7] firmware: arm_scmi: imx: Add LMM and CPU
+ documentation
+Message-ID: <20250402-acoustic-analytic-guan-d3cda5@sudeepholla>
+References: <20250303-imx-lmm-cpu-v3-0-7695f6f61cfc@nxp.com>
+ <20250303-imx-lmm-cpu-v3-1-7695f6f61cfc@nxp.com>
+ <20250401-quantum-coyote-of-admiration-bf1b68@sudeepholla>
+ <20250402123503.GA23033@nxa18884-linux>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250402123503.GA23033@nxa18884-linux>
 
-From: Andrew Davis <afd@ti.com>
+On Wed, Apr 02, 2025 at 08:35:03PM +0800, Peng Fan wrote:
+> Hi Sudeep,
+> 
+> Thanks for reviewing the patch.
+> 
+> For comments that I am not very clear, I marked with [TODO] for easily
+> jump to.
+> 
+> On Tue, Apr 01, 2025 at 03:15:46PM +0100, Sudeep Holla wrote:
+> >On Mon, Mar 03, 2025 at 10:53:22AM +0800, Peng Fan (OSS) wrote:
+> >> From: Peng Fan <peng.fan@nxp.com>
+> >> 
+> >> Add i.MX95 Logical Machine Management and CPU Protocol documentation.
+> >> 
+> >> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> >> ---
+> >>  drivers/firmware/arm_scmi/vendors/imx/imx95.rst | 801 ++++++++++++++++++++++++
+> >>  1 file changed, 801 insertions(+)
+> >> 
+> >> diff --git a/drivers/firmware/arm_scmi/vendors/imx/imx95.rst b/drivers/firmware/arm_scmi/vendors/imx/imx95.rst
+> >> index b2dfd6c46ca2f5f12f0475c24cb54c060e9fa421..74326bf2ea8586282a735713e0ab7eb90ccce8ff 100644
+> >> --- a/drivers/firmware/arm_scmi/vendors/imx/imx95.rst
+> >> +++ b/drivers/firmware/arm_scmi/vendors/imx/imx95.rst
 
-This region is used for controlling the function of the PCIe IP. It is
-compatible with "ti,j784s4-pcie-ctrl", add this here and use it with
-the PCIe node.
+> >> +
+> >> +PROTOCOL_MESSAGE_ATTRIBUTES
+> >> +~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> >> +
+> >> +message_id: 0x2
+> >> +protocol_id: 0x80
+> >> +This command is mandatory.
+> >> +
+> >
+> >For completeness add parameters here for message_id as in the spec as it is
+> >referred in the returned value and seems incomplete without it.
+> 
+> [TODO]
+> Sorry, I may not get your point here. You mean below format?
+> 
+> +------------------+-----------------------------------------------------------+
+> |message_id: 0x2
+> |protocol_id: 0x80
+> |This command is mandatory.
+> +------------------+-----------------------------------------------------------+
+> |Return values                                                                 |
+> +------------------+-----------------------------------------------------------+
+> |Name              |Description                                                |
+> +------------------+-----------------------------------------------------------+
+> |int32 status      |SUCCESS: in case the message is implemented and available  |
+> |                  |to use.                                                    |
+> |                  |NOT_FOUND: if the message identified by message_id is      |
+> |                  |invalid or not implemented                                 |
+> +------------------+-----------------------------------------------------------+
+> |uint32 attributes |Flags that are associated with a specific function in the  |
+> |                  |protocol. For all functions in this protocol, this         |
+> 
+> message_id is not put in the table, but it is list above just below
+> the protocol name. I would prefer to keep current layout and align with
+> the MISC and BBM protocol.
+>
 
-Signed-off-by: Andrew Davis <afd@ti.com>
-[j-choudhary@ti.com: Add changes to k3-am642-evm-pcie0-ep.dtso]
-Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am64-main.dtsi          | 7 ++++++-
- arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso | 2 +-
- 2 files changed, 7 insertions(+), 2 deletions(-)
+I meant why is the input parameter message_id not described in the table,
+but is referred in the return values. For completeness, just add it even
+though it may match the SCMI spec in terms of input parameter.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-index 324eb44c258d..d872a624601c 100644
---- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-@@ -51,6 +51,11 @@ chipid@14 {
- 			reg = <0x00000014 0x4>;
- 		};
- 
-+		pcie0_ctrl: pcie-ctrl@4070 {
-+			compatible = "ti,j784s4-pcie-ctrl", "syscon";
-+			reg = <0x4070 0x4>;
-+		};
-+
- 		serdes_ln_ctrl: mux-controller@4080 {
- 			compatible = "reg-mux";
- 			reg = <0x4080 0x4>;
-@@ -1036,7 +1041,7 @@ pcie0_rc: pcie@f102000 {
- 		interrupt-names = "link_state";
- 		interrupts = <GIC_SPI 203 IRQ_TYPE_EDGE_RISING>;
- 		device_type = "pci";
--		ti,syscon-pcie-ctrl = <&main_conf 0x4070>;
-+		ti,syscon-pcie-ctrl = <&pcie0_ctrl 0x0>;
- 		max-link-speed = <2>;
- 		num-lanes = <1>;
- 		power-domains = <&k3_pds 114 TI_SCI_PD_EXCLUSIVE>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso b/arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso
-index 6b029539e0db..432751774853 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso
-@@ -46,6 +46,6 @@ pcie0_ep: pcie-ep@f102000 {
- 		max-functions = /bits/ 8 <1>;
- 		phys = <&serdes0_pcie_link>;
- 		phy-names = "pcie-phy";
--		ti,syscon-pcie-ctrl = <&main_conf 0x4070>;
-+		ti,syscon-pcie-ctrl = <&pcie0_ctrl 0x0>;
- 	};
- };
+
+[...]
+
+> >> +|                     |Bit[23] Valid err ID:                                   |
+> >> +|                     |Set to 1 if the error ID field is valid.                |
+> >> +|                     |Set to 0 if the error ID field is not valid.            |
+> >> +|                     |Bits[22:8] Error ID(Agent ID of the system).            |
+> >> +|                     |Bit[7:0] Reason(WDOG, POR, FCCU and etc)                |
+> >
+> >Is there a mapping for this ?
+> 
+> I will add a note in V4:
+> See the SRESR register description in the System Reset Controller (SRC) section
+> in SoC reference mannual.
+>
+
+A reference would be good here then. I would be hard to imagine what it means
+otherwise.
+
+> >> +
+> >> +LMM_RESET_VECTOR_SET
+> >> +~~~~~~~~~~~~~~~~~~~~
+> >> +
+> >> +message_id: 0xC
+> >> +protocol_id: 0x80
+> >> +This command is mandatory.
+> >> +
+> >
+> >I can't recall if I had asked this before. How is this different from
+> >CPU_RESET_VECTOR_SET ? Why do you need this ? Why can't you use
+> >CPU_RESET_VECTOR_SET with an additional LMM_* command.
+> >
+> >I am sure there is a valid reason. If so please document the same.
+> 
+> CPU_RESET_VECTOR_SET is for cases that M7 and A55 in the same LM.
+> LMM_RESET_VECTOR_SET is for cases that M7 and A55 in different LM.
+> M7 LM is under control of A55 LM
+>
+
+That still doesn't answer my question. I was asking why do you need this
+extra interface ? If LMM_RESET_VECTOR_SET can take both cpu id and LM id,
+it can be used even for cpus within same LM with current LM ID. Why the
+need for separate interface ?
+
+Other than these 2, I am fine with your response on all other comments.
+
 -- 
-2.34.1
-
+Regards,
+Sudeep
 
