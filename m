@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-162509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C71CA789ED
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 10:31:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9C47A789F1
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 10:32:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C9813B0E81
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 08:31:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CADC43B2B07
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 08:31:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3755320FA98;
-	Wed,  2 Apr 2025 08:31:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B25882356A5;
+	Wed,  2 Apr 2025 08:31:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cMwynApd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YJEUFseb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EFD41DE3CA;
-	Wed,  2 Apr 2025 08:31:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AFDF2356A2;
+	Wed,  2 Apr 2025 08:31:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743582672; cv=none; b=pjA1+sRqLtny5ozkOAvmAVYvdDEp/YabHkmMeZMcvqy4SKQIokdmYKWmoWSO8HfUOjdJqZcH6HZuxSYpbAnKSlvty+6DFAYT2Fj1MT5T3hLeG5L+/EerPA2FcjXi3ZB5dmhXy490duX16vlYMO68eNQBEJwgAqluV3LWiqlcsJ8=
+	t=1743582686; cv=none; b=NLyInbzUDPY9rtkRzpMZvsy7561AI+FoHEwdx/Mnkgbce0UKAvPTpd9K9krI3AyAQm9E72Z2kNGo+iv+uNyVPPWxOJR6LzTYp7p4zpJ+doOf9U/0Y5eBJWFOH6GSjW57iQRGwSnEOPfFi15/d7jNPSEKZfruty/2crdDCGYoRRc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743582672; c=relaxed/simple;
-	bh=WtN1ePb3sX9SLuUOAsD8pQQuJnpHBzCx07/dog7oMHk=;
+	s=arc-20240116; t=1743582686; c=relaxed/simple;
+	bh=L/MG90LSJ63Q/bHuOmvwjbAM0LR8ukk15/QEHxyHjfg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ryBEJQ74m0dNyzEkon6UQ6GHEARf5Dw+bQWIhLNMmflI/Q8WbQqUlkheHr1Cnc1bv+IGGhxN3voHtFSi8U95WpK7jGT/GtP0ZHzpukBIju2+mPG8VAZK5m7Rs0aGoKKOtE8prw2Y7qyvjvwVKBFBp34SQxFqK45RAunJIIhTvjs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cMwynApd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CFB1C4CEDD;
-	Wed,  2 Apr 2025 08:31:10 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=rL1vJJO+IXNCAjHexWtSYz9x552W0Jky3S2lhkbp9IKQZm0GzXE00cayraV1dAEBYlR49rzzRnFazHAX/0z3chovT8rJ88X9TP3YuP+4k1S2zw+jL0/g/saHvYlNzW3+foYhwGbDJrt1JxIoZ6Sh9S+5rOKPAe7UtbhlzGyOaVQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YJEUFseb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6619CC4CEEA;
+	Wed,  2 Apr 2025 08:31:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743582671;
-	bh=WtN1ePb3sX9SLuUOAsD8pQQuJnpHBzCx07/dog7oMHk=;
+	s=k20201202; t=1743582686;
+	bh=L/MG90LSJ63Q/bHuOmvwjbAM0LR8ukk15/QEHxyHjfg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cMwynApdsxEVN+idw76YwLCcrJZtIl2Q40qRdGeVkK8TlnxEqcGX6MkA2tdxZw2/c
-	 ULzVHUihH3PAehBiCwojrPYmfqmMVz8YoJFy6DVFFjhP08+e89Wtb1rkhIbCcfU6H0
-	 5is/lizNUc/BmbBcLm3AHadp6Lqd/imRoqIVYPqsFdK4ZUYVF0bOOvZ/lDCOC1w/pU
-	 b6I7LOVoNV0CLNpMwcdP0whTAx6PIce0JS6LQYtQLNjjcunbuSrMx5c9AO8a7CpQrz
-	 hOE6pLvQ6k/OsiA6eJHDGyhR7COuuKZ06kEDyGSOaikqnIJvE+F19uHfAo3keJYIYp
-	 x78/ijVCCDrRA==
-Date: Wed, 2 Apr 2025 10:31:07 +0200
+	b=YJEUFsebw3XsOSdgpyf0TrUNgfNEDlVXFosqQHAbwd5W95A0cFfwwJ1+OdUnFXffT
+	 FMvVjIOoAr/bFZEFIbjGk+FFL1IFF84vF+2FkKB0ITM2dSYyzs21UEDgpimEHm2v68
+	 Ay/Rphwg/wf+wfdpgq7E0gebtIBlEVWrIjEHeKQEPwsXO8LpUKoUOAsXxZyPAUJP8a
+	 Mx5Y+Kz8KS5tB66W+T2BA+DoSX2dQsEmpHZU1FEjZgjlk7RSnSmVQfbtKvXbzIvd6l
+	 bCo0pMrdZyx+8DrK0+ukqIkYlqh0MwpHDZojN+FTz+sGPEQvCyXYEzpBZagqNYUS/y
+	 6z/pOt3h/SiVg==
+Date: Wed, 2 Apr 2025 10:31:22 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Marcus Folkesson <marcus.folkesson@gmail.com>
 Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
@@ -49,11 +49,11 @@ Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
 	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
 	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] drm/st7571-i2c: add support for Sitronix ST7571 LCD
- controller
-Message-ID: <20250402-artichoke-turkey-of-aurora-ad12cf@krzk-bin>
+Subject: Re: [PATCH 1/3] dt-bindings: st7571-i2c: Add Sitronix ST7571 panel
+ bindings
+Message-ID: <20250402-sambar-of-holistic-efficiency-f778b1@krzk-bin>
 References: <20250402-st7571-v1-0-351d6b9eeb4a@gmail.com>
- <20250402-st7571-v1-2-351d6b9eeb4a@gmail.com>
+ <20250402-st7571-v1-1-351d6b9eeb4a@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,27 +62,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250402-st7571-v1-2-351d6b9eeb4a@gmail.com>
+In-Reply-To: <20250402-st7571-v1-1-351d6b9eeb4a@gmail.com>
 
-On Wed, Apr 02, 2025 at 08:12:11AM +0200, Marcus Folkesson wrote:
+On Wed, Apr 02, 2025 at 08:12:10AM +0200, Marcus Folkesson wrote:
+> +        display@3f {
+> +          compatible = "sitronix,st7571-i2c";
+> +          reg = <0x3f>;
 > +
-> +static void st7571_reset(struct st7571_device *st7571)
-> +{
-> +	gpiod_set_value_cansleep(st7571->reset, 0);
-> +	mdelay(20);
-> +	gpiod_set_value_cansleep(st7571->reset, 1);
+> +          reset-gpios = <&gpio0 3 GPIO_ACTIVE_HIGH>;
 
-huh? Why do you keep reset ACTIVE after performing reset? This makes no
-sense, unless you just put wrong flags into your DTS. Your binding
-already suggest that - you claim this is N signal, but use high flag.
 
-> +}
-> +
-> +static int st7571_initialize(struct st7571_device *st7571)
-> +{
-> +	/*
-> +	 * Most of the initialization sequence is taken directly from the
-> +	 * referential initial code in the ST7571 datasheet.
+so RST or RST_N?
 
 Best regards,
 Krzysztof
