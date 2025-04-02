@@ -1,166 +1,287 @@
-Return-Path: <devicetree+bounces-162572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162573-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F6BEA78CDC
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 13:08:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 572E4A78CE9
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 13:12:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 959023ACF33
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 11:08:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E06D01891829
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 11:12:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13A6C23716F;
-	Wed,  2 Apr 2025 11:08:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F61D2376E1;
+	Wed,  2 Apr 2025 11:11:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="agl/j0a1";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="sRbaoxXk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Js1F89MZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a6-smtp.messagingengine.com (fout-a6-smtp.messagingengine.com [103.168.172.149])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C093235C04;
-	Wed,  2 Apr 2025 11:08:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.149
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60BF41EF37D;
+	Wed,  2 Apr 2025 11:11:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743592101; cv=none; b=mncpQfGBEVySuRHlzKHYa+wus4u1BEnNzWp1zxFxmul9hKmpTEt28mqRoqriMnzeJh7gXntjvKK2t+A+Eu1va9knn4B5r+hfpSWmkEOU0I4RR8Tqeo57udAfvY6nXMnl9kl6dYqNMtKt/LBBUnPa6w18hZF/2coCwDqh4yDnwNg=
+	t=1743592312; cv=none; b=P12qKwBwYfm0EaPphondCGF4IcYMZ/W51OtRGArFe2J7ZwEz2BUE579J+iU8dCSH1ukTc0GSa54gQxpaNziA8tk/uKUt6SB/ncYqk49njggVPtGUkJbetZVbrv9JX4zcaDCXsuUy8JpNyJfradd+rMAv6kOX/Rk5LAc9sfuZJF0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743592101; c=relaxed/simple;
-	bh=HKfqbVXkrqYoDADqnzSr4ZoCUQ7AeIQ08aqyNWM3eE0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Mwado4g5824H/QV/D5poYIhWtRge70yxHiRBEpgwLleKSWeh44M9L6LdFlu6Z5Cnd3iG2ByLpwKpXrhQy+HF131KcqmxhVTp27PD2qTzdZE4KhHT0UbKdVNK08fwwyNGLO/DAzA84rbOuC523sbaZpWJgxlVXrgt32aHS5ztaus=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=agl/j0a1; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=sRbaoxXk; arc=none smtp.client-ip=103.168.172.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from phl-compute-03.internal (phl-compute-03.phl.internal [10.202.2.43])
-	by mailfout.phl.internal (Postfix) with ESMTP id 91CDE13801AB;
-	Wed,  2 Apr 2025 07:08:17 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-03.internal (MEProxy); Wed, 02 Apr 2025 07:08:17 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1743592097;
-	 x=1743678497; bh=Ouf7WtrjWGpMzdCGZJ9lrBNMXEzOzFrgjJ9gLCYWvEA=; b=
-	agl/j0a1PX/lCSGQVcAtkE3CU2HpBZCM0iKwNQWyF+1L7Gd0I/wp963Ph9Sj8TSm
-	LOdupGTBcitQMqlISNSiaQo2bhfTKnmehABE9Rr2HbHpA3qBTTDJ4N34P5Qwk0Gs
-	cZG+RGJDLOkhzX5xmEfMKEshehFd2QEePnPcrDo27fOvoxSH5XHOm6fpwxa0YDGd
-	c44q/HaAxlJ2LoJQE2ntxbKRtiwqsp0F5mSrTF4JtT3U048xHjk4Zx+VxsKGzVZ9
-	idxucO4m3AbKbD90/r15LCXvhQ4yvKapkrzGsrmixXbuf7inFnmHm7+YB0sfo53E
-	w8igjSW8FrA+VJMp0Ro2vA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1743592097; x=
-	1743678497; bh=Ouf7WtrjWGpMzdCGZJ9lrBNMXEzOzFrgjJ9gLCYWvEA=; b=s
-	RbaoxXkJVSDQs6/nIMJ4doPhufK9idHyP93bYu561GHnEnC5rFD22zkIuR+d5Dw2
-	BWd81piggUR8cj4XcVEGSGaMr5jTURn5eH01W0PRCL8EaLpJwWezsw4kYQQgdeky
-	tRBCGeOEmz4DLWP8A9epFN1G+6m6Gi4OlrtBf40Q0f3VeFXgIstCcCjBAQl7S+bo
-	1Q12SboN7wCMdCfIZcM5h4C8gEtEwAThpjH6qhiKMspb8QlZ1QovERL9qX4+QVtD
-	Vz+Ud2IoKopHRvfv5JDIN3h3ohnIQwcyiNwBF6VR262VZk6z2ooYkJK11XjG+kWD
-	O7ufIWl3q73+DqCDw2RPg==
-X-ME-Sender: <xms:oRrtZ-BGAIhNRql5CY9yJ2CESQpZrL1MHWTfTlD7RH7EaH_KkgC3WA>
-    <xme:oRrtZ4iJQQYWqN1nv7CsJ5MIE5b0MhoMMlWqx2MlRz3L1D0WSFE63J4pjxdD7Hwro
-    ua2hneR6IKkWtTdcdU>
-X-ME-Received: <xmr:oRrtZxkXODxgY1UHTHGNNREJ0wFiLY0IlOUfnmrMg44qYDGdbZEEWoolf0X41BGGtRsml_fvesnBalkl2jdr1KkpZ6xr_Vc8hg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddukeehheduucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
-    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
-    gvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggugfgjsehtkeertddt
-    tdejnecuhfhrohhmpefpihhklhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrsh
-    houggvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffr
-    rghtthgvrhhnpeffkefgudekgefhhfejtedviedtgeetieekffeiudfhgeevteejvedtff
-    dvkefftdenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihii
-    vgeptdenucfrrghrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhsohguvghrlhhunh
-    guodhrvghnvghsrghssehrrghgnhgrthgvtghhrdhsvgdpnhgspghrtghpthhtohepudeg
-    pdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehkrhiikheskhgvrhhnvghlrdhorh
-    hgpdhrtghpthhtohepuggrvhgvrdhsthgvvhgvnhhsohhnsehrrghsphgsvghrrhihphhi
-    rdgtohhmpdhrtghpthhtohepmhgthhgvhhgrsgeskhgvrhhnvghlrdhorhhgpdhrtghpth
-    htoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehk
-    vghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorh
-    hgpdhrtghpthhtohepshhhrgifnhhguhhosehkvghrnhgvlhdrohhrghdprhgtphhtthho
-    pehsrdhhrghuvghrsehpvghnghhuthhrohhnihigrdguvgdprhgtphhtthhopehkvghrnh
-    gvlhesphgvnhhguhhtrhhonhhigidruggv
-X-ME-Proxy: <xmx:oRrtZ8y3kUaXm0J2e1u7JVHomKOZgwGjGct5edbOSJSHR7_XdZrTew>
-    <xmx:oRrtZzROgItPEYMjOBd7KEdvasLCTFz7FBx-bRgkxswhNjGobMg8sw>
-    <xmx:oRrtZ3agulw1u2vS2FGukfvGEQi7tYjhgWfUf5b018PzmgbMX9Ef4g>
-    <xmx:oRrtZ8TnBdsQ7G9fqyv-f0f7Pf7l3tMQR5syr3XM5z-LwfHjTNM3fw>
-    <xmx:oRrtZ4hP1ZBn4lJen8jpkS_B64EscbPQshQnu1XLeWcSgYJw7QvQ-O0Z>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 2 Apr 2025 07:08:16 -0400 (EDT)
-Date: Wed, 2 Apr 2025 13:08:15 +0200
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: media: i2c: imx219: Remove redundant
- description of data-lanes
-Message-ID: <20250402110815.GM1240431@ragnatech.se>
-References: <20250401145759.3253736-1-niklas.soderlund+renesas@ragnatech.se>
- <20250402-real-enthusiastic-ostrich-dcc243@krzk-bin>
- <20250402095749.GJ1240431@ragnatech.se>
- <32d36aba-9d7c-45f7-ab04-cb28ef31d159@kernel.org>
+	s=arc-20240116; t=1743592312; c=relaxed/simple;
+	bh=UqhKSL65Dxgk2dVyb4tCArOqKN+10TQqPqttHJ0QJO8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=G6V1XTjT9C6BZArYJNoeuGnsUxQ5h3YaLroFo/By86RBpOfUN9x95Vg5+DPxRsLK4BerX14th285qZDRV9o9oTL3lufQ1U/08MnxI/BI7sobui1BCI4XYKoWQkBx4pxDDpRkgwu9PNBuH0Iqy0QWzD8MyFsXVQkRX8a8Yr9t9J0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Js1F89MZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00991C4CEDD;
+	Wed,  2 Apr 2025 11:11:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743592311;
+	bh=UqhKSL65Dxgk2dVyb4tCArOqKN+10TQqPqttHJ0QJO8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Js1F89MZ7mNqy+1Rx8WRbvLFGAnn2kyc2xk0D+jRJgnpYglHNNXsre5BwSajoXQfx
+	 z/7Xu4ofH+VNbrxEI5IbjrJOkoE0xTlmrWLfz4E9roXufyg/9MaSMoMpV4JdsYxzw6
+	 dLR1Li/2S8SAU5llwUTxs7P38xefN0Rr1OGrSAblHNcJzpFfeb3J3QV/TCKO7LEqs0
+	 X9wkOlEipCmvqyd+482RTngII0StYMWDcxMWTO5EYbqYXMCSPFjbu6UKAhc0RTmnee
+	 k2nqn36OmTL57W9u9X8XDLieQAs/ax7pDXmDmjp1pa6gW9jG9JlXDd4Erraijhkr28
+	 dC985VtQWHccA==
+Message-ID: <860ae623-f33f-4cfe-be08-6bb6524ecf94@kernel.org>
+Date: Wed, 2 Apr 2025 13:11:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <32d36aba-9d7c-45f7-ab04-cb28ef31d159@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: Add VCP support for mt8196
+To: Xiangzhi Tang <xiangzhi.tang@mediatek.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com, jjian.zhou@mediatek.com,
+ hailong.fan@mediatek.com
+References: <20250402092134.12293-1-xiangzhi.tang@mediatek.com>
+ <20250402092134.12293-2-xiangzhi.tang@mediatek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250402092134.12293-2-xiangzhi.tang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 2025-04-02 12:29:17 +0200, Krzysztof Kozlowski wrote:
-> On 02/04/2025 11:57, Niklas Söderlund wrote:
-> >>
-> >>> Support four-lane operation") the driver errored out if not 2 lanes
-> >>> where used, and after it if not 2 or 4 lanes where used.
-> >>
-> >> Then... fix the driver?
-> >>
-> >> This property describes hardware, not driver. Why current driver
-> >> implementation, e.g. 1 year ago or now, would change the hardware (so
-> >> the bindings)?
-> > 
-> > I agree, I thought that here we have a case where the bindings predate 
-> > the standardisation. The driver do not match the bindings, in fact it 
-> > breaks if the imx219 specific instructions are followed. So the risk of 
-> > breaking stuff is likely low. And this was an opportunity to align the 
-> > imx219 with video-interfaces.yaml.
-> 
-> I am sorry, but what breaks exactly?
-> 
-> Is the device supporting two and four lanes setups? If yes, then the
-> binding is correct.
+On 02/04/2025 11:19, Xiangzhi Tang wrote:
+> +
+> +description:
+> +  The MediaTek VCP enables the SoC control the MediaTek Video Companion Risc-V coprocessor.
 
-I understand that is the most correct reading, this should likely have 
-been posted as an RFC.
+Wrap at coding style.
 
-The commit message states this was an attempt to see if it was possible 
-to align the imx219 binding with the standard binding. The rational 
-being that the imx219 bindings where created before we had common 
-bindings for this and that the driver never worked with the imx219 
-version of the standard bindings so likely there would be no users of 
-it. Kind of like how similar bindings where rejected for IMX708 [1].
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - mediatek,mt8196-vcp
+> +
+> +  reg:
+> +    items:
+> +      - description: sram base
+> +      - description: cfg group IO
+> +      - description: cfg core group IO
+> +      - description: cfg sec group IO
+> +      - description: vcp rdy group IO
+> +
+> +  reg-names:
+> +    items:
+> +      - const: sram
+> +      - const: cfg
+> +      - const: cfg_core
+> +      - const: cfg_sec
+> +      - const: vcp_vlp_ao_rsvd7
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  mboxes:
+> +    description:
+> +      Using mailbox to communicate with VCP, it should have this
+> +      property and list of phandle, mailbox specifiers. See
+> +      Documentation/devicetree/bindings/mailbox/mediatek,mt8196-vcp-mbox.yaml
+> +      for details.
 
-I will drop this patch, it was only a drive-by thing as I had to spend 
-time fighting this when trying to use the device.
+Drop entire description, redundant.
 
-1.  https://lore.kernel.org/linux-media/949e3330-8c3d-6106-fbf8-cab820801cfc@kernel.org/
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +
 
--- 
-Kind Regards,
-Niklas Söderlund
+No, you do not get your own type. Instead list items or just maxItems.
+
+
+> +  mbox-names:
+> +    maxItems: 5
+
+No, you must list the items.
+
+> +
+> +  power-domains:
+> +    description:
+> +      A phandle and PM domain specifier as defined by bindings
+> +      of the power controller specified by phandle. See
+> +      Documentation/devicetree/bindings/power/power-domain.yaml for details.
+
+Look how other bindings do it. Do not repeat obvious stuff, do not
+develop bindings entirely different than all others.
+
+> +    maxItems: 1
+> +
+> +  iommus:
+> +    description:
+> +      Using MediaTek iommu to apply larb ports for Multimedia Memory
+> +      Management Unit and address translation
+> +      Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
+
+Really, look at other code first.
+
+> +
+> +  memory-region:
+> +    maxItems: 1
+> +
+> +  vcp-mem-tbl:
+> +    description:
+> +      Manage reserved memory for VCP RTOS FW and various features.
+
+No, reserved memory is in memory-region. Drop property.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 2
+> +    maxItems: 12
+> +
+> +patternProperties:
+> +  "^vcp_[a-f0-9]+$":
+
+Follow DTS coding style.
+
+Heh, nothing here was really tested and you have obvious bugs pointed
+out by simple testing of DTS.
+
+Why these children are needed in the first place? Offsets are implied by
+parent compatible.
+
+> +    type: object
+> +    description:
+> +      The MediaTek VCP integrated to SoC might be a multi-core version.
+> +      The other cores are represented as child nodes of the boot core.
+> +      There are some integration differences for the IP like the usage of
+> +      address translator for translating SoC bus addresses into address
+> +      space for the processor.
+> +
+> +      The SRAM are shared by all cores, each VCP core only using a piece
+> +      SRAM memory. The power of SRAM should be enabled before booting VCP cores.
+> +      The size of SRAM are varied on differnt SoCs.
+> +
+> +      The VCP cores has differences on different SoCs to support for
+> +      Hart.
+> +
+> +    properties:
+> +      compatible:
+> +        enum:
+> +          - mediatek,vcp-core
+> +          - mediatek,mmup-core
+> +
+> +      twohart:
+
+Missing vendor prefix, look at writing bindings and other examples.
+
+> +        enum: [0, 1]
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +      sram-offset:
+> +        description:
+> +          Allocated SRAM memory for each VCP core used.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +    required:
+> +      - compatible
+> +      - twohart
+> +      - sram-offset
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - interrupts
+> +  - mboxes
+> +  - mbox-names
+> +  - power-domains
+> +  - iommus
+> +  - memory-region
+> +  - vcp-mem-tbl
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/power/mt8196-power.h>
+> +
+> +    vcp: vcp@31800000 {
+> +        compatible = "mediatek,mt8196-vcp";
+> +        reg = <0x31800000 0x60000>,
+> +              <0x31a04000 0xa000>,
+> +              <0x31bd0000 0x1000>,
+> +              <0x31a70020 0x100>,
+> +              <0x1c00091c 0x4>;
+
+Quite different address,  are you sure this is still part of this
+device? Looks like on register.
+
+
+Best regards,
+Krzysztof
 
