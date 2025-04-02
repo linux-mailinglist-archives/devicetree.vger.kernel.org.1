@@ -1,134 +1,178 @@
-Return-Path: <devicetree+bounces-162661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43160A7953A
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 20:39:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13116A79548
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 20:45:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B74A518944D4
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 18:39:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 614EA18945B7
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 18:45:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5F361DB15F;
-	Wed,  2 Apr 2025 18:39:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D0ED1DF975;
+	Wed,  2 Apr 2025 18:44:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O2vYUF+d"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WbyjZYmW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B1FA1D7E4C;
-	Wed,  2 Apr 2025 18:39:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D506C1DDA18;
+	Wed,  2 Apr 2025 18:44:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743619185; cv=none; b=sNxq1BfZ1YuPHbrWwjB2laL2+mH1a3w/jrW3v6P2UJkMwjQle2ozI8T/IDtjEDzVtn4/+jKWUeqOTSefeNavMw3wslC0eEEs1XqWdyl6PuFtTQKVzQsJl2ROxNm2+sUlvH8pWzbhctUSn7SbnDnlttK3XuMmMke42rkDJNOl4gI=
+	t=1743619497; cv=none; b=X0nELYGvKhBYNZPHVCOTBzFXaPkOGGT2n2ne+Tainu1B5+r9GdfmjDElhORzaz3e/NQGy1FYZZjpj2ja201olzK+2Fi9aQ5xqV91OnWF6eVn8FGG6VzZ8DlnAfpurGoOWdBZg1P4eA1XeyD8kp3Ws5K4KV/9UsAqlWH5+So2cVU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743619185; c=relaxed/simple;
-	bh=IU57DwT4oh2GXj6+Ryp0RiP2uQjF80FLi/nQhvKz0Fc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DW8N4PzQ2cmW/DOqs8jrppzeEYFOPeovIx+MijrIww7vcBJAm4H8kDfeaetxiDDPcINWMa/faS8IrtGQ5OWFVbCP4gAzM/iCsBrgK5mogVUA8o23YrPNZpTCZT2PxVFLpzDuMZqAv98g9Uhqq0NJUtp86Y/0xaR/BcnO72voAts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O2vYUF+d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 466B4C4CEDD;
-	Wed,  2 Apr 2025 18:39:40 +0000 (UTC)
+	s=arc-20240116; t=1743619497; c=relaxed/simple;
+	bh=pIWHLhDHIvkDvzeT0c9GVKxW7jhxM9Ip1jV2sZ+5hpI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=bPWnWpuRJUYo3unSJhpHzHSLB09q4niRvELY2d99PWSgkTTQP0iOF/L4Tqik2BnD2lhlHDk18OwQWtkqaj1cJ8Nfeee6OWGbvPSue9sFUcOnQQwndbBp24ENiR6wQErn/63qY1/g3hMRpywmQ7qMRxoD1ASf2hfyIR9pgo+83zs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WbyjZYmW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4B075C4CEDD;
+	Wed,  2 Apr 2025 18:44:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743619183;
-	bh=IU57DwT4oh2GXj6+Ryp0RiP2uQjF80FLi/nQhvKz0Fc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=O2vYUF+dVbdotzFe3gtjV1+Pc+dzxUe9rIBTulysH+tGco33SQjlljb6Pfj28eJ2H
-	 tGK9Ao+bHG1alJicK7Dng1hAr6pj3DzGTTsL73BTdUXdHMX+iaQBHalU0kLNTMqCNd
-	 ZjNo16fJbIXrAPvgGVcaCw1I/KWudgyKfEOf/AabjgjcFvwFZ+ivnyQCWATnsuF8v9
-	 U5VjkHPRKpg3gMHcTvQ9jFKW18HbeM5ZhCSw9YrPCQU0OKdSyA56YI+G/i1GE0uFFQ
-	 /dEe60256mDWkWK2kq2F30/V0vv98TQX8NDYNY51OCI1CyBwypS2FtXNw4zaxG6JlR
-	 qcswQicab7Org==
-Message-ID: <991ef43b-bc77-4efd-aaf2-aea7587dec8c@kernel.org>
-Date: Wed, 2 Apr 2025 20:39:38 +0200
+	s=k20201202; t=1743619497;
+	bh=pIWHLhDHIvkDvzeT0c9GVKxW7jhxM9Ip1jV2sZ+5hpI=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=WbyjZYmWT3/Pqy/j2crputn4GHUuJTcAKfvfxkgQzG60toYVxzrleW+KCvJzTd8vv
+	 oZw0zNoty9YO2fUh+SX9YuNBpYwaY5r5kBzFfn89qWsalMpVOqv63Z+uE7T8EuFbgf
+	 mqK1qbiy1w2QmNXMSAoH5iLGI+Mh7RZtpdi4SDCjM3zbpizKaSClbiYvjOoIdlOd7n
+	 pLE1Pn5fkxpCjWhP7TuaajaL7Q2Z34hd6CIxlHWw9U1hYnCzyWFMhflDttnssuTYkR
+	 jLpFkydhvUeGzq/7OxUOGWJ0kDmnDex6wvN539pDT/oG/b822jwFXloAMR7BIH/QUO
+	 P7rjgwRgH2mQQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 36C46C28B20;
+	Wed,  2 Apr 2025 18:44:57 +0000 (UTC)
+From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
+Subject: [PATCH v4 0/7] Input: synaptics-rmi4 - add quirks for third party
+ touchscreen controllers
+Date: Wed, 02 Apr 2025 20:44:51 +0200
+Message-Id: <20250402-synaptics-rmi4-v4-0-1bb95959e564@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: i2c: qcom-cci: Document QCM2290
- compatible
-To: Loic Poulain <loic.poulain@oss.qualcomm.com>, andersson@kernel.org,
- konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250402123622.11984-1-loic.poulain@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250402123622.11984-1-loic.poulain@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKOF7WcC/3XMQQ6DIBCF4auYWZeGDhppV96jcYE41lkUDRCiN
+ dy91H2X/0ved0AgzxTgUR3gKXHgxZWoLxXY2bgXCR5LA0pspJJahN2ZNbINwr+5FlYrHHBqlaU
+ Bymn1NPF2gs++9MwhLn4//aR+618qKSEF3ppRUYv6brDjjePVfqDPOX8BuTQulaoAAAA=
+X-Change-ID: 20250308-synaptics-rmi4-c832b2f73ceb
+To: Kaustabh Chakraborty <kauschluss@disroot.org>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, "Jason A. Donenfeld" <Jason@zx2c4.com>, 
+ Matthias Schiffer <matthias.schiffer@ew.tq-group.com>, 
+ Vincent Huang <vincent.huang@tw.synaptics.com>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Caleb Connolly <caleb.connolly@linaro.org>, 
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ David Heidelberg <david@ixit.cz>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3953; i=david@ixit.cz;
+ h=from:subject:message-id;
+ bh=pIWHLhDHIvkDvzeT0c9GVKxW7jhxM9Ip1jV2sZ+5hpI=;
+ b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBn7YWmuQ1rjT3O6Af1rG12h0ug1JyFw6mOq7FaZ
+ 1gEJuEvVj+JAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCZ+2FpgAKCRBgAj/E00kg
+ cnB8EADGb26JxIaacAPG1ZzutxzjVacHj0ib/WBo+suGhyKhFrLvtG2XzdJCNEqj7HtT0SpdciE
+ Rzj8+5SLNhVBjOOTgJkJtwjRWWVvNRF5TfIP2llzqqPPJl7ITKDByzHHaUkYbgyL3ChgsFEWC25
+ G8BR1iLAig2LYM60N4mgauJ2hMkZ4JQWgx8DJNU0SPXbsaB0nz6G4wOfPqcNiVUNmTxEiwojgk0
+ 5L4rAOxr+n4UpSeuhtFIAvnla4bkyvI2QdsigkHbRu1E2CMboSMJ8QR6nWV4mbfXE82k3nFrpEn
+ FEsONqz+JDD+l7429efJ7Kfdu4ilYEVDpuf97Uf2s6fGDmHQMFqab/Gc0MYIQ70pFQHRjXcw6wA
+ uOrxiLWU+SGa/L39Z8P7sxTV2n5HG4b07SaqIvUS/mnS/T8qz344qG5NGe0xQcXrh9l3ouilpUJ
+ WcnyLCAtY07j0IDn/kHYPSlFaigRqpMrpt86DTCDyi5grevKb53k7UtkW14yzd+9NtIUhtbLT5P
+ GpUJ8rmWU1xY5TaJwTxrFuRp9BuScQpjhX7e0HS/9YLr0SP5qjzMDdm4DDzFdQbupWKXZJ2R2In
+ cbsHe4Bjd3wx3WETgWeusTilg+QyNXX1aJTIcKq/cwnRZq8muNTjuVH8+BNPKtkBVDm2gOm2xm2
+ Qg8qT8/nWyfFDBA==
+X-Developer-Key: i=david@ixit.cz; a=openpgp;
+ fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
+X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
+X-Original-From: David Heidelberg <david@ixit.cz>
+Reply-To: david@ixit.cz
 
-On 02/04/2025 14:36, Loic Poulain wrote:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,qcm2290-cci
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 2
-> +          maxItems: 2
-> +        clock-names:
-> +          items:
-> +            - const: camss_top_ahb
-> +            - const: cci
-This looks good, but I do not see updates for
-qcom,msm8974-cci/qcom,msm8226-cci constraints. You lowered minItems in
-top level, so you need to add minItems: 3 there.
+With the growing popularity of running upstream Linux on mobile devices,
+we're beginning to run into more and more edgecases. The OnePlus 6 is a
+fairly well supported 2018 era smartphone, selling over a million units
+in it's first 22 days. With this level of popularity, it's almost
+inevitable that we get third party replacement displays, and as a
+result, replacement touchscreen controllers.
 
-With that fixed:
+The OnePlus 6 shipped with an extremely usecase specific touchscreen
+driver, it implemented only the bare minimum parts of the highly generic
+rmi4 protocol, instead hardcoding most of the register addresses.
+  
+As a result, the third party touchscreen controllers that are often
+found in replacement screens, implement only the registers that the 
+downstream driver reads from. They additionally have other restrictions
+such as heavy penalties on unaligned reads.
+ 
+This series attempts to implement the necessary workaround to support  
+some of these chips with the rmi4 driver. Although it's worth noting
+that at the time of writing there are other unofficial controllers in
+the wild that don't work even with these patches.
+ 
+We have been shipping these patches in postmarketOS for the last several
+years, and they are known to not cause any regressions on the OnePlus
+6/6T (with the official Synaptics controller), however I don't own any
+other rmi4 hardware to further validate this.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Changes in v4:
+- Replaced patch "dt-bindings: input: syna,rmi4: document syna,pdt-fallback-desc"
+  with patch documenting specific touchscreen model used in OnePlus 6 and 6T.
+- Fixed zero electrode return code (Dmitry).
+- Switched the duplicate detection algo to bitmap (Dmitry).
+- Optimized rmi_device_platform_data struct to avoid unnecessary
+  padding.
+- Changed fallback_size from int to unsigned int.
+- Changed SoB from nickname and old address (methanal <baclofen@tuta.io>) to
+  Kaustabh Chakraborty <kauschluss@disroot.org>.
+  Verified ownership through the sdm845 chatroom on Matrix.
+- Link to v3: https://lore.kernel.org/r/20250308-synaptics-rmi4-v3-0-215d3e7289a2@ixit.cz
+
+Changes in v3:
+- reworded dt-bindings property description
+- fixed the rmi_driver_of_probe definition for non device-tree builds.
+- fixed some indentation issues reported by checkpatch
+- change rmi_pdt_entry_is_valid() variable to unsigned 
+- Link to v2: https://lore.kernel.org/all/20230929-caleb-rmi4-quirks-v2-0-b227ac498d88@linaro.org
+
+Changes in v2:
+- Improve dt-bindings patch (thanks Rob)
+- Add missing cast in patch 5 to fix the pointer arithmetic
+- Link to v1: https://lore.kernel.org/r/20230929-caleb-rmi4-quirks-v1-0-cc3c703f022d@linaro.org
+
+---
+Caleb Connolly (1):
+      Input: synaptics-rmi4 - handle duplicate/unknown PDT entries
+
+David Heidelberg (1):
+      dt-bindings: input: syna,rmi4: Document syna,rmi4-s3706b-i2c
+
+Kaustabh Chakraborty (5):
+      Input: synaptics-rmi4 - f12: use hardcoded values for aftermarket touch ICs
+      Input: synaptics-rmi4 - f55: handle zero electrode count
+      Input: synaptics-rmi4 - don't do unaligned reads in IRQ context
+      Input: synaptics-rmi4 - read product ID on aftermarket touch ICs
+      Input: synaptics-rmi4 - support fallback values for PDT descriptor bytes
+
+ .../devicetree/bindings/input/syna,rmi4.yaml       |  11 +-
+ drivers/input/rmi4/rmi_driver.c                    | 124 +++++++++++++++++----
+ drivers/input/rmi4/rmi_driver.h                    |  10 ++
+ drivers/input/rmi4/rmi_f01.c                       |  14 +++
+ drivers/input/rmi4/rmi_f12.c                       | 117 ++++++++++++++-----
+ drivers/input/rmi4/rmi_f55.c                       |   5 +
+ include/linux/rmi.h                                |   3 +
+ 7 files changed, 234 insertions(+), 50 deletions(-)
+---
+base-commit: fefb886b1344e222b3218f3c0165b0fd770e8b88
+change-id: 20250308-synaptics-rmi4-c832b2f73ceb
 
 Best regards,
-Krzysztof
+-- 
+David Heidelberg <david@ixit.cz>
+
+
 
