@@ -1,176 +1,143 @@
-Return-Path: <devicetree+bounces-162517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8453CA78A4A
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 10:45:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01014A78A8A
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 11:03:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C092B188D71E
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 08:45:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95CC07A418E
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 09:02:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E21223496F;
-	Wed,  2 Apr 2025 08:45:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD413236446;
+	Wed,  2 Apr 2025 09:03:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ki9/m1OU"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="i5T7LZdI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6984233727;
-	Wed,  2 Apr 2025 08:45:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C66BE2356CA;
+	Wed,  2 Apr 2025 09:03:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743583519; cv=none; b=S1MFhEHb85RYddHisc1LUhmPW+W5q9WdyLATxYGJKHCjSGb1REevRSYKD0xoAzU2MnFbP2P0sC2P9f2Ig8XLePJExg2laFaEv6xDzoHVWynmASgNwT2vKc6VKIevR7WD0SnoB8a5iuLQTKygQwhDhYJys27KsuiEZ3uhhpOkf44=
+	t=1743584582; cv=none; b=RkNa9FnLI7tAXkoYo4+1wDguSpSZOC5t8UjggzEyymKtttCkLQiQfOISs31eY1HVyC6mJu8/jb63AQV166GwsIcyMMnIvAn6sY4SulQEfR4R83BoRqrM/sEZMxHAK5+8ROacIOeCXHnsE8hYpnCoqNjRTX56Aiib/Wok4NdwYrk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743583519; c=relaxed/simple;
-	bh=W1SiKtPVp8xrFYw4pATHh1Zdo/MG/rAURuLF/VmYRC0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Amf/hZYKsNkPEHQlb4KQMm5mIb4TdIuRSUuxzaY0qGAkFtXYwyS3YVaeHWdVd7EVkr7vFYxn2BlBJ2uyO31fUoMXPuevwrBOOsl4tQkh3duJfWD3WZ7e0JzaRBn+t1T5I2LFykSumiuPrB3jnSBLiWLyCyyHukPDVY+zM5dbeRg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ki9/m1OU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4ECDAC4CEDD;
-	Wed,  2 Apr 2025 08:45:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743583516;
-	bh=W1SiKtPVp8xrFYw4pATHh1Zdo/MG/rAURuLF/VmYRC0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ki9/m1OUpBNXZt2lOL2R1ddzvKZulxTMyO8XoBNsUC6Dl0Hn8RvRUWO3hzM9RvYg6
-	 O2YddD2vYBX+2xM3Or5lvM9191ij2YSKIFPu3NseI3bpju2jOZ5zqnYYi2xQr2O+Ku
-	 mMNfhRSeTaTvoc5xRhUXx7gWjXMhhbxxbJu69dx6CzywT9eX/vKISqBnADfahmIykE
-	 3gKakt2kB9+nsFwZdsezckhzC4s52LE1xTFczJwGMJ76t7teBZ2Bb7BDox/vaBvUuU
-	 H5pkrqKN2VGs6PPdaL/8877dKB+myaHghVj7Tvh5uK795i4XsiOlYv3MMX4aeLYy2j
-	 Qq2/d80YAZSIg==
-Message-ID: <71c301ea-0be7-4349-92d6-93b3ffc9c593@kernel.org>
-Date: Wed, 2 Apr 2025 10:45:08 +0200
+	s=arc-20240116; t=1743584582; c=relaxed/simple;
+	bh=kPI8+m6kjrBpwYbQqzYKlo2bm8lf82CiCj4PT2Ly8Yk=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=YfAQDLvjd7Ceyq1oykscZxcaUfLMFDX8H00YCv1luY6Gja+J0XsioK/Rj1BLG+REGVbNfdhxIEzGWN1VVATWovXF+MtN66ytLOPiICGs018HOq+3L0bYxavLq0m1NLrbgolFNgZmTAl72Q9OUR1ZYKD6RDosNIKtB5RkBxynTbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=i5T7LZdI; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5325gfaI010091;
+	Wed, 2 Apr 2025 11:02:52 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=eskE5Y77HHK+7D5qMo1eVg
+	7hZS0cZSUbXVc6OhLjd/k=; b=i5T7LZdIOu29jzuGSXLTk+bXTYdWcjnB+ZybW4
+	jAA4mX1bYf61x4wCAsZ7zoq2V/yR7pS8jSqmdkNWNoSGE2KQHd1vcZOwbVMsXcbd
+	kk+yd4EoUIaiA2NyCAZveHU37oXaWUgbCljDpTnAp2hazrhErH+fD5qbCUeebBxu
+	oC7Du1IlC/ZGeVyCtj4JsxfL8NKOoMJI8R//WJHOca+BJjCk3a2h7KKM2MY0nNSj
+	HFFg19o9nckWfwJ/3qOOShlX9TLvWJaC0tjd/tLrLWOXm5RTu7a0FERm2OUZXEi2
+	ZCXFtfIIyy0ScqNhwxpbbno5WP9vvHGmdGBXebArW711jmOQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45p6vd9g36-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 02 Apr 2025 11:02:52 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id E7160400B3;
+	Wed,  2 Apr 2025 11:01:48 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 45DDB8FCAFC;
+	Wed,  2 Apr 2025 11:00:38 +0200 (CEST)
+Received: from localhost (10.252.30.87) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 2 Apr
+ 2025 11:00:37 +0200
+From: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+Subject: [PATCH v3 0/2] media: Add support for ST VD55G1 camera sensor
+Date: Wed, 2 Apr 2025 11:00:18 +0200
+Message-ID: <20250402-b4-vd55g1-v3-0-393985404759@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/7] dt-bindings: memory-controllers: Add STM32 Octo
- Memory Manager controller
-To: Rob Herring <robh@kernel.org>,
- Patrice Chotard <patrice.chotard@foss.st.com>
-Cc: Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- christophe.kerello@foss.st.com, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
-References: <20250401-upstream_ospi_v6-v7-0-0ef28513ed81@foss.st.com>
- <20250401-upstream_ospi_v6-v7-2-0ef28513ed81@foss.st.com>
- <20250401222015.GA4071342-robh@kernel.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250401222015.GA4071342-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKL87GcC/22NzQ7CIBAGX6XhLA0sRcGT72E88NtysBhoiKbpu
+ 0t70RqPs9mZb0bZpeAyOjczSq6EHOJYgR0aZAY19g4HWxkBAU4AONYdLpbznmJttSRWOyY1Q/X
+ /kZwPz611vVUeQp5iem3pQtfrv0qhmGBmuSICPPFKXnzMuc1Ta+J9zW4OA/HrCEuPulMn6WHvr
+ NsFPnsdod8uVJcYobRQnTCc791lWd7gzTAPFAEAAA==
+X-Change-ID: 20250225-b4-vd55g1-bdb90dbe39b3
+To: Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+        Sylvain Petinot
+	<sylvain.petinot@foss.st.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Sakari Ailus
+	<sakari.ailus@linux.intel.com>
+CC: <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+X-Mailer: b4 0.14.2
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-02_03,2025-04-01_01,2024-11-22_01
 
-On 02/04/2025 00:20, Rob Herring wrote:
->> +      clocks = <&rcc CK_BUS_OSPIIOM>,
->> +               <&scmi_clk CK_SCMI_OSPI1>,
->> +               <&scmi_clk CK_SCMI_OSPI2>;
->> +      clock-names = "omm", "ospi1", "ospi2";
->> +      resets = <&rcc OSPIIOM_R>,
->> +               <&scmi_reset RST_SCMI_OSPI1>,
->> +               <&scmi_reset RST_SCMI_OSPI2>;
->> +      reset-names = "omm", "ospi1", "ospi2";
->> +      access-controllers = <&rifsc 111>;
->> +      power-domains = <&CLUSTER_PD>;
->> +      #address-cells = <2>;
->> +      #size-cells = <1>;
->> +      st,syscfg-amcr = <&syscfg 0x2c00 0x7>;
->> +      st,omm-req2ack-ns = <0>;
->> +      st,omm-mux = <0>;
->> +      st,omm-cssel-ovr = <0>;
->> +
->> +      spi@0 {
->> +        compatible = "st,stm32mp25-ospi";
->> +        reg = <0 0 0x400>;
->> +        memory-region = <&mm_ospi1>;
->> +        interrupts = <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>;
->> +        dmas = <&hpdma 2 0x62 0x00003121 0x0>,
->> +               <&hpdma 2 0x42 0x00003112 0x0>;
->> +        dma-names = "tx", "rx";
->> +        clocks = <&scmi_clk CK_SCMI_OSPI1>;
->> +        resets = <&scmi_reset RST_SCMI_OSPI1>, <&scmi_reset RST_SCMI_OSPI1DLL>;
-> 
-> Looks like you are duplicating properties in the parent and child nodes. 
-> Maybe that accurately models the h/w, but if it is just so the drivers 
-> can get the resources from "the driver's node", you can always just look 
-> in the child nodes for the resources (as probably you want to drop the 
-> per instance resources from the parent).
+Hi,
 
+This serie adds support for the STMicroelectronics VD55G1 camera sensor.
+The VD55G1 is a monochrome global shutter camera with a 804x704 maximum
+resolution with RAW8 and RAW10 bytes per pixel.
+Datasheets and other documentation can be found at st.com [1].
+A lot of inspiration was taken from the imx219 and the vd56g3 serie.
+It is compatible with libcamera. Tested on Raspberry Pi 4 and 5, with and
+without libcamera.
 
-The current solution was actually my suggestion because if a parent
-device has to toggle child's reset, it means it actually is the consumer
-of that reset one way or another. IOW, it is one of its resources.
+[1] https://www.st.com/en/imaging-and-photonics-solutions/vd55g1.html#documentation
 
-This also might matter for some of the implementations because we might
-need to setup device links or do some probe-ordering (in the future)
-between parent and the reset provider.
+Regards,
+Benjamin
 
-Without reset resource in the parent, I could imagine probe order:
-1. parent (pokes into the child for reset)
-2. reset and clock providers
-3. child
-which would defer between 1 and 2.
+---
+Changes in v3:
+- Add maxItems to data-lanes in binding
+- Drop redondant 'binding' in binding commit message
+- Link to v2: https://lore.kernel.org/r/20250401-b4-vd55g1-v2-0-0c8ab8a48c55@foss.st.com
 
-With parent having the resource it would be re-ordered into:
-1. reset and clock providers
-2. parent
-3. child
+Changes in v2:
+- Fix device tree binding mistakes
+- Drop linux media git from MAINTAINERS file
+- Fix coding style mistakes
+- Drop vd55g1_err_probe wrapper
+- Fix 32bits build
+- Fix config symbol help paragraph being too short for checkpatch
+- Link to v1: https://lore.kernel.org/r/20250328-b4-vd55g1-v1-0-8d16b4a79f29@foss.st.com
 
+---
+Benjamin Mugnier (2):
+      media: dt-bindings: Add ST VD55G1 camera sensor
+      media: i2c: Add driver for ST VD55G1 camera sensor
+
+ .../devicetree/bindings/media/i2c/st,vd55g1.yaml   |  133 ++
+ MAINTAINERS                                        |    9 +
+ drivers/media/i2c/Kconfig                          |   11 +
+ drivers/media/i2c/Makefile                         |    1 +
+ drivers/media/i2c/vd55g1.c                         | 1993 ++++++++++++++++++++
+ 5 files changed, 2147 insertions(+)
+---
+base-commit: b2c4bf0c102084e77ed1b12090d77a76469a6814
+change-id: 20250225-b4-vd55g1-bdb90dbe39b3
 
 Best regards,
-Krzysztof
+-- 
+Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+
 
