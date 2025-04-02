@@ -1,150 +1,149 @@
-Return-Path: <devicetree+bounces-162692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 707B3A796DD
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 22:50:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A385A796D9
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 22:50:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8AF233B6019
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 20:49:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E5B63AF3C5
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 20:48:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 982DF1F30BE;
-	Wed,  2 Apr 2025 20:49:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 756631F1931;
+	Wed,  2 Apr 2025 20:49:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="hCXW25Vk"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="kDJBJbiY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 764E61F03CE
-	for <devicetree@vger.kernel.org>; Wed,  2 Apr 2025 20:49:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 427DF1F130E
+	for <devicetree@vger.kernel.org>; Wed,  2 Apr 2025 20:49:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743626954; cv=none; b=dI1EpQTL9PgNDQbRKEUcC77KKWN1KAsbWJPYtMUSdwzvEpjiq1vOgDhZbSSR3Pp1upzyH8n309E56pxvzV/gqZKYhaweIq7yoDxugRmPEi0QW31LU1RHcraPfSvGpWgQe69GAa5foSRgb+73i3irEEl5AcJBD69d44NmFK/ZcTg=
+	t=1743626948; cv=none; b=UFayYF5B+/sAi9thBDo9ZJTbAwAyJSwEJymfBPCTMnMWXDrUsxu6pWRau00Nk4gTLz4Ejo08KTu9EohZ1J2gWH0c00miFAbA2/A2x8pdHgrVtUmz3eA/fNQClTy5g3xI6kO2aa8A4l7Dx1jr3t9G/kd1+vIH4zksQ1LX5qxhj5c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743626954; c=relaxed/simple;
-	bh=b/W6BcfzJDVD409ttMTWMrXY8js4HMuwUSOWy+uD3nQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=dwbxATPjtE7xazRqGocnm75gPivYnrMyUDQM+LLsDRTsYPXAt+ewij+xBakG4XF2038v+RbzJLiBZu7b5xdvt0CtVCu4CaE3dP5rGVx1Xyw2uX8pmyEtJ5+qKJWz2wCfCbBpibVRe+mkJg7fpMnFj/PcObcsJ/Wtn7VlD0JNp18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=hCXW25Vk; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:in-reply-to:references:mime-version:content-transfer-encoding;
-	 s=k1; bh=SRirtoVTMfeN0wRj4jAqh+TanwneimSbjL8xhCx/W9k=; b=hCXW25
-	Vk44beEORpdGugC+9CFWPwy7kLibtxamDrsndsWHNWDhyubDLZNZE91wDEYAxIsF
-	tyhseuLfvHsseL8Ncd7j6ngsHymPA6wiQJBFNPUDUZ7G/CNwuDkTyRUvipEB+lg7
-	K+3OCj3N4epfObCWVF2WHYN7ioLRg+UCz53RdwRYjHzYWNTvkjCVmF9+4ur0WEyn
-	RpLkm43HalZ0V+AS1qYA4ss5m9imEY3EOKWJ97cFEI6JJNpBkBUTo+dH+S/Lzfd1
-	lLVh+idcIq4b7Dty1se4JoGsF/DGicgNraH3FJe16DsNNtl9z8cnubmsKNZo1wf2
-	NOVGUkjZjbidRajA==
-Received: (qmail 2132961 invoked from network); 2 Apr 2025 22:49:03 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 2 Apr 2025 22:49:03 +0200
-X-UD-Smtp-Session: l3s3148p1@54GYyNExurwujnsv
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH 4/4] ARM: dts: at91: usb_a9g20: move wrong RTC node
-Date: Wed,  2 Apr 2025 22:48:54 +0200
-Message-ID: <20250402204856.5197-5-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250402204856.5197-1-wsa+renesas@sang-engineering.com>
-References: <20250402204856.5197-1-wsa+renesas@sang-engineering.com>
+	s=arc-20240116; t=1743626948; c=relaxed/simple;
+	bh=H0i2KMBMFcDec5UVW9Y/Y/PbNB6zqGI1enytd6buQDE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=l9eupsVu9szAhFhl7MoX6DtMa3l6RObDlmQLcL+jAbJTt2ZNTpnwVUOe8WPO+PS0gLT5p+gLBB6IsM6BJBez36PdJV+ObwtKV0zA68LQlsX6RRKRPQ50ql0c0uhJXAD0gvy0u+FWuDZtq33HEiqsYz0W5og/2yOo2/6u+e124oM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=kDJBJbiY; arc=none smtp.client-ip=209.85.210.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-72bccda48cbso150291a34.1
+        for <devicetree@vger.kernel.org>; Wed, 02 Apr 2025 13:49:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1743626945; x=1744231745; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PneA/KGio5qHN0s6LVOkmY0X5eDLJLZ6gsMfj989kss=;
+        b=kDJBJbiYfteFc81juiYoMVAJDG5SJd6MpyoqKKF+RRVHg9erbwvDIg5R+bQwjKOL3U
+         gkhMj+KOAPp1ZJBNJhjbl3aSdvZB4xIIShUEkY8qoyevxsxhxgIQIzeD1Y3G3eWikIJq
+         MH8ibxnDHq+ihiODi+4cZV2KGTN8p0eBsdUS+orw2+bP713fPBqfqGKht/1b7aYg9KER
+         EdgMYGuLanXJTDMi53p8ENCExOQ18fGOTH7+MBuiuKihQH9N0np3gpU1rXfvxoU8xpWg
+         X9/bEOBjCadeT2M7K6NezmKamu+d9zdd6ryN5SxUZDA8KbRf8TcyKdWXwzxaFnNvlkvB
+         NPEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743626945; x=1744231745;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PneA/KGio5qHN0s6LVOkmY0X5eDLJLZ6gsMfj989kss=;
+        b=VbwsEPDxfsGrW0xIH9Jr2NyrReYL2zctbNFdmqeOjcsFEEg1VcbvEBzSi0IyCQfGee
+         zrvHZfXPbHyvO7v9ZYkweCk7kDuyyjXQyK74yKPqoVWOUCdjMME9Hd7b9UXRUGHbdsMe
+         MJmpTxW0Lbw/iw6QVYEBU7okHW850Eglhjk5ePIu5OqPyAaiQLAZcSWOxU8SkvYqoo+B
+         ts1xm5P2386RGtxwYz4DKn9ju9pJn0bO4wU/HO6CA7CaFBc7gAPo2g1uazfA6ZdI7WOb
+         eN/b02Oy9qoSDDAxtuEnooO6L7YfODeZXz6EBIa5EwgWxGxetePglMhY1Y3brt4Y7HsS
+         KyPA==
+X-Forwarded-Encrypted: i=1; AJvYcCVO3wFbgtSnbd+FrBoCdHwpMi+fYjunYHRakYHijOQxftO/VtP5tbdnKi7HPqKcC+I+O4dWY7k3QoW9@vger.kernel.org
+X-Gm-Message-State: AOJu0YyTiX/xnJrPZt3UVH28binyLfXc7MFYdBH6Y0WCGiZiqtkRF9c5
+	cl/kJuTA1oMLjskbBqRj+ftVBi9cmspEbRBoLCty2HlO47JahVnupawlos5a60I=
+X-Gm-Gg: ASbGncsT7Kqa7F5SiByUwGElWndPKIoOOtb/v4Ncv5KYTJFk5sshRw2F6hlhOY6OxUc
+	efVfeQrLPtntmVHbCt7LLRALS4jInph43Kqta05nOHkoqCABBZzNcJ59UJkrs5zMYZ6bqg0aaFl
+	/671awjfutp5FqEgSHsiYj8Tj5H4l/IbFa7R6XPx83hApGbhHkUcOAcs+6IcyJwoWy2tcregrFc
+	yc0f6wplS36yJSwgpuLS0LVG7wQ7KDgNcdhIaFb7TqHtmAjXvyJAh3HhXnuzEjgr6hr7rFBwRsr
+	ayqKF8yUgV6MeIXhT90txuYvckPEAFDXc5x7WAL5y7M2UPDh4WaDs6LGfgmB0xbh9SJLe7pndx9
+	EePwwnA==
+X-Google-Smtp-Source: AGHT+IFWoCgfUq1vdjqIVUCLEyrdA1VjfKcnGwC3l4aghGm2e9OquWNUwBhki4cUzlNFqajANw0wEg==
+X-Received: by 2002:a05:6830:6887:b0:72b:a465:d93c with SMTP id 46e09a7af769-72e258ac106mr2530485a34.20.1743626945226;
+        Wed, 02 Apr 2025 13:49:05 -0700 (PDT)
+Received: from [192.168.0.113] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-72c580d30e0sm2390283a34.37.2025.04.02.13.49.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Apr 2025 13:49:03 -0700 (PDT)
+Message-ID: <c42b1dc3-34d9-4419-ae2e-5bacffa070b6@baylibre.com>
+Date: Wed, 2 Apr 2025 15:49:01 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC v2 7/7] iio: ti-adc128s052: Drop variable vref
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+ Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1743573284.git.mazziesaccount@gmail.com>
+ <dda9e0710a9293a9f52e64c092f79afd4b719536.1743573284.git.mazziesaccount@gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <dda9e0710a9293a9f52e64c092f79afd4b719536.1743573284.git.mazziesaccount@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Only the LPW variant has the external RTC. Move it to that board
-specific DT. As a result, the common include for A9G20 boards can
-go now.
+On 4/2/25 1:10 AM, Matti Vaittinen wrote:
+> According to Jonathan, variable reference voltages are very rare. It is
+> unlikely it is needed, and supporting it makes the code a bit more
+> complex.
 
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
- arch/arm/boot/dts/microchip/usb_a9g20.dts      |  3 ++-
- .../boot/dts/microchip/usb_a9g20_common.dtsi   | 18 ------------------
- arch/arm/boot/dts/microchip/usb_a9g20_lpw.dts  | 10 +++++++++-
- 3 files changed, 11 insertions(+), 20 deletions(-)
- delete mode 100644 arch/arm/boot/dts/microchip/usb_a9g20_common.dtsi
+There is also around 60 other drivers where we could do something like this
+in case anyone is bored. :-p
 
-diff --git a/arch/arm/boot/dts/microchip/usb_a9g20.dts b/arch/arm/boot/dts/microchip/usb_a9g20.dts
-index a2f748141d4b..bdaf35c6526e 100644
---- a/arch/arm/boot/dts/microchip/usb_a9g20.dts
-+++ b/arch/arm/boot/dts/microchip/usb_a9g20.dts
-@@ -5,7 +5,8 @@
-  *  Copyright (C) 2011 Jean-Christophe PLAGNIOL-VILLARD <plagnioj@jcrosoft.com>
-  */
- /dts-v1/;
--#include "usb_a9g20_common.dtsi"
-+#include "at91sam9g20.dtsi"
-+#include "usb_a9260_common.dtsi"
- 
- / {
- 	model = "Calao USB A9G20";
-diff --git a/arch/arm/boot/dts/microchip/usb_a9g20_common.dtsi b/arch/arm/boot/dts/microchip/usb_a9g20_common.dtsi
-deleted file mode 100644
-index 6bc307c91d65..000000000000
---- a/arch/arm/boot/dts/microchip/usb_a9g20_common.dtsi
-+++ /dev/null
-@@ -1,18 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0-or-later
--/*
-- * usb_a9g20.dts - Device Tree file for Calao USB A9G20 board
-- *
-- *  Copyright (C) 2011 Jean-Christophe PLAGNIOL-VILLARD <plagnioj@jcrosoft.com>
-- */
--
--#include "at91sam9g20.dtsi"
--#include "usb_a9260_common.dtsi"
--
--/ {
--	i2c-gpio-0 {
--		rtc@56 {
--			compatible = "microcrystal,rv3029";
--			reg = <0x56>;
--		};
--	};
--};
-diff --git a/arch/arm/boot/dts/microchip/usb_a9g20_lpw.dts b/arch/arm/boot/dts/microchip/usb_a9g20_lpw.dts
-index 4d104797176c..2eda00477bc5 100644
---- a/arch/arm/boot/dts/microchip/usb_a9g20_lpw.dts
-+++ b/arch/arm/boot/dts/microchip/usb_a9g20_lpw.dts
-@@ -5,7 +5,8 @@
-  *  Copyright (C) 2013 Jean-Christophe PLAGNIOL-VILLARD <plagnioj@jcrosoft.com>
-  */
- /dts-v1/;
--#include "usb_a9g20_common.dtsi"
-+#include "at91sam9g20.dtsi"
-+#include "usb_a9260_common.dtsi"
- 
- / {
- 	model = "Calao USB A9G20 Low Power";
-@@ -27,4 +28,11 @@ mmc@0 {
- 			};
- 		};
- 	};
-+
-+	i2c-gpio-0 {
-+		rtc@56 {
-+			compatible = "microcrystal,rv3029";
-+			reg = <0x56>;
-+		};
-+	};
- };
--- 
-2.47.2
+> 
+> Simplify the driver and drop the variable vref support.
+> 
+> Suggested-by: Jonathan Cameron <jic23@kernel.org>
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> ---
+> Revision History:
+>  v2:
+>   - New patch
+> ---
+>  drivers/iio/adc/ti-adc128s052.c | 29 ++++++-----------------------
+>  1 file changed, 6 insertions(+), 23 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/ti-adc128s052.c b/drivers/iio/adc/ti-adc128s052.c
+> index 0f93c6266527..0bfe4e558c69 100644
+> --- a/drivers/iio/adc/ti-adc128s052.c
+> +++ b/drivers/iio/adc/ti-adc128s052.c
+> @@ -29,13 +29,12 @@ struct adc128_configuration {
+>  struct adc128 {
+>  	struct spi_device *spi;
+>  
+> -	struct regulator *reg;
+>  	/*
+>  	 * Serialize the SPI 'write-channel + read data' accesses and protect
+>  	 * the shared buffer.
+>  	 */
+>  	struct mutex lock;
+> -
+> +	int vref;
+
+Units in the name are helpful: vref_uv.
+
+Could also consider doing division in probe and storing vref_mv instead
+since we never use the microvolts part.
+
+>  	union {
+>  		__be16 rx_buffer;
+>  		u8 tx_buffer[2];
 
 
