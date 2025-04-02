@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-162557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95DDFA78BEA
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 12:21:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B24BA78C00
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 12:22:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 059FC189421C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 10:21:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49DBC3B2614
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 10:21:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCC2E235BE1;
-	Wed,  2 Apr 2025 10:21:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4108E236454;
+	Wed,  2 Apr 2025 10:22:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="jny5Ptsj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AF5323496B;
-	Wed,  2 Apr 2025 10:21:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA1B021ABC3;
+	Wed,  2 Apr 2025 10:22:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743589268; cv=none; b=NiGH5iHtEAbPj7mHy1DXjuLg6qb4XyHz6XAYXh+1mXUj+sd38+HUqQXqfNUcGLpBGzz1+Ttf92qUM01nhMP3wYM0VfhiI5NDUkyHvaWHgM/AAuErza1Yy/u/JtoyXexocYc5YsdFQcz3E5hD0C5cUprtvY+6brDiM1Q3t3rBnsg=
+	t=1743589324; cv=none; b=INGpBkhGDJClogQvRltl5AdA2HaQxeLuyL+1gfsaBsVI84zeeQ1NB8xtmTJ03v374NWh9S5lRphVio4pgy8i1IckmVtqDxyUXrx8W+JnsI45zjjaFOFoJ9Gw8JuUAS4C8+b78cmbwh8rqftyA4+Hk0xIc9HSfa4+lFYpznzwbzc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743589268; c=relaxed/simple;
-	bh=+K8K9u6y5Z8sCK3//Pf0EXDMz5wTG60LRO9scUYcGGA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=IzGgSG/fWREN+cFtaXL5wRLvQ7W4xrO0v2r7plZE+Lw9GvhfsbNSHKfXBejA+NIjg7UkWiQ8WSkbzxjmqikjc2hxCavdtQ0nKU/hxTY7YB9cMXUa4UJu7J0X0bBFVLHl98q/Oe/fr2m9QtLCHfJDH/ywXILwAR21nN6z/Quc+Bo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: 4z4MzEAeTHGVps39gEtn+w==
-X-CSE-MsgGUID: X1QtceOXRvKTCoSjsY4lag==
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 02 Apr 2025 19:21:06 +0900
-Received: from localhost.localdomain (unknown [10.226.93.220])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id C93C6401C75B;
-	Wed,  2 Apr 2025 19:21:01 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	s=arc-20240116; t=1743589324; c=relaxed/simple;
+	bh=BdORvnXoGJLZV9Q+UHKAr4GajfyQXVCoCL4Hlvs5oxY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=QFrt/k+VRCIhK26sgMJlBZyZCpo2o8OMFt8KDDAUglVkp1nCwuAdoYzMMsIB3udGI3R7GeRy5rMavwyYqelBynsCgT3azmg5igv0zbZPGWcOLQEkgfU+3+T3r9pCMrSdjB3X8nQmz8RL5iO0jtSe1iTpYhCH9VwA9rqZQ3urkP4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=jny5Ptsj; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb.corp.toradex.com (31-10-206-125.static.upc.ch [31.10.206.125])
+	by mail11.truemail.it (Postfix) with ESMTPA id 5A5E21F8BD;
+	Wed,  2 Apr 2025 12:21:52 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1743589312;
+	bh=CQYsomTp7PnswtMuL1xQSA60xFVOu9qYyptJXh/jGag=; h=From:To:Subject;
+	b=jny5PtsjG0wPoGRtXXHg0zU5JdKj0Qr+PNc8BNB/H6R0B162IrlBy4b5meL0fJxLs
+	 Sf/ayIAaWpveluejxUxUlHir62C+dv0s/5bouZennpXysxI0QED2+sjeZYhyBwBGaI
+	 y9PRsNa+yZfUaGT3euy6AUKjQid3AcpygE8P9arKbKCR2EM5RdrfTvK/RFQCwQcApK
+	 PUoIfI08Dm56dNmV4WHJjxSY3TLYKZiK1s9q0KVAiIbr4vd95YacIeCb6UPpZxIO0y
+	 uOdIeEylTliL+yFH2S6jZ8LuJsvm9e6oNjmnVKDBKUcAy7wYfieA7VOYmmU3ZOT38Q
+	 TKIq3RgK8ECYg==
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Simon Horman <horms@kernel.org>,
-	Duy Nguyen <duy.nguyen.rh@renesas.com>,
-	linux-can@vger.kernel.org,
+	Farouk Bouabid <farouk.bouabid@cherry.de>,
+	Quentin Schulz <quentin.schulz@cherry.de>
+Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
+	linux-hwmon@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v8 02/19] dt-bindings: can: renesas,rcar-canfd: Document RZ/G3E support
-Date: Wed,  2 Apr 2025 11:20:22 +0100
-Message-ID: <20250402102047.27943-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250402102047.27943-1-biju.das.jz@bp.renesas.com>
-References: <20250402102047.27943-1-biju.das.jz@bp.renesas.com>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/2] hwmon: (amc6821) Add PWM polarity configuration with OF
+Date: Wed,  2 Apr 2025 12:21:44 +0200
+Message-Id: <20250402102146.65406-1-francesco@dolcini.it>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,172 +66,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Document support for the CAN-FD Interface on the RZ/G3E (R9A09G047) SoC,
-which supports up to six channels.
+From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-The CAN-FD module on RZ/G3E is very similar to the one on both R-Car V4H
-and RZ/G2L, but differs in some hardware parameters:
- * No external clock, but instead has ram clock.
- * Support up to 6 channels.
- * 20 interrupts.
+Add support for configuring the PWM polarity of the amc6821 fan controller.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v7->v8:
- * No change.
-v6->v7:
- * No change.
-v5->v6:
- * No change.
-v4->v5:
- * Keeping interrupts and resets together allows to keep a clear
-   separation between RZ/G2L and RZ/G3E, at the expense of only
-   a single line.
- * Retained the tags as it is trivial change.
-v3->v4:
- * Added Rb tag from Rob.
-v2->v3:
- * Replaced maxItems->minItems: 20 for RZ/G3E interrupt,s as the list has 20
-   elements and for existing platforms dropped minItems and keep maxItems: 8.
-v1->v2:
- * No change.
----
- .../bindings/net/can/renesas,rcar-canfd.yaml  | 76 +++++++++++++++++--
- 1 file changed, 70 insertions(+), 6 deletions(-)
+Francesco Dolcini (2):
+  dt-bindings: hwmon: amc6821: add fan and PWM output
+  hwmon: (amc6821) Add PWM polarity configuration with OF
 
-diff --git a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-index 4a83498b2a8b..f4ac21c68427 100644
---- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-+++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-@@ -42,6 +42,8 @@ properties:
-               - renesas,r9a07g054-canfd    # RZ/V2L
-           - const: renesas,rzg2l-canfd     # RZ/G2L family
- 
-+      - const: renesas,r9a09g047-canfd     # RZ/G3E
-+
-   reg:
-     maxItems: 1
- 
-@@ -59,6 +61,19 @@ properties:
-           - description: CAN1 error interrupt
-           - description: CAN1 transmit interrupt
-           - description: CAN1 transmit/receive FIFO receive completion interrupt
-+          - description: CAN2 error interrupt
-+          - description: CAN2 transmit interrupt
-+          - description: CAN2 transmit/receive FIFO receive completion interrupt
-+          - description: CAN3 error interrupt
-+          - description: CAN3 transmit interrupt
-+          - description: CAN3 transmit/receive FIFO receive completion interrupt
-+          - description: CAN4 error interrupt
-+          - description: CAN4 transmit interrupt
-+          - description: CAN4 transmit/receive FIFO receive completion interrupt
-+          - description: CAN5 error interrupt
-+          - description: CAN5 transmit interrupt
-+          - description: CAN5 transmit/receive FIFO receive completion interrupt
-+        minItems: 8
- 
-   interrupt-names:
-     oneOf:
-@@ -74,15 +89,33 @@ properties:
-           - const: ch1_err
-           - const: ch1_rec
-           - const: ch1_trx
-+          - const: ch2_err
-+          - const: ch2_rec
-+          - const: ch2_trx
-+          - const: ch3_err
-+          - const: ch3_rec
-+          - const: ch3_trx
-+          - const: ch4_err
-+          - const: ch4_rec
-+          - const: ch4_trx
-+          - const: ch5_err
-+          - const: ch5_rec
-+          - const: ch5_trx
-+        minItems: 8
- 
-   clocks:
-     maxItems: 3
- 
-   clock-names:
--    items:
--      - const: fck
--      - const: canfd
--      - const: can_clk
-+    oneOf:
-+      - items:
-+          - const: fck
-+          - const: canfd
-+          - const: can_clk
-+      - items:
-+          - const: fck
-+          - const: ram_clk
-+          - const: can_clk
- 
-   power-domains:
-     maxItems: 1
-@@ -145,11 +178,9 @@ allOf:
-     then:
-       properties:
-         interrupts:
--          minItems: 8
-           maxItems: 8
- 
-         interrupt-names:
--          minItems: 8
-           maxItems: 8
- 
-         resets:
-@@ -183,6 +214,30 @@ allOf:
-         resets:
-           maxItems: 1
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r9a09g047-canfd
-+    then:
-+      properties:
-+        interrupts:
-+          minItems: 20
-+
-+        interrupt-names:
-+          minItems: 20
-+
-+        resets:
-+          minItems: 2
-+          maxItems: 2
-+
-+        reset-names:
-+          minItems: 2
-+          maxItems: 2
-+
-+      required:
-+        - reset-names
-+
-   - if:
-       properties:
-         compatible:
-@@ -203,6 +258,15 @@ allOf:
-       patternProperties:
-         "^channel[4-7]$": false
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r9a09g047-canfd
-+    then:
-+      patternProperties:
-+        "^channel[6-7]$": false
-+
- unevaluatedProperties: false
- 
- examples:
+ .../devicetree/bindings/hwmon/ti,amc6821.yaml | 18 ++++++-
+ drivers/hwmon/amc6821.c                       | 50 +++++++++++++++++--
+ 2 files changed, 62 insertions(+), 6 deletions(-)
+
 -- 
-2.43.0
+2.39.5
 
 
