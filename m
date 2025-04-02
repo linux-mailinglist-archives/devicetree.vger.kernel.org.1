@@ -1,70 +1,67 @@
-Return-Path: <devicetree+bounces-162612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67681A79019
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 15:43:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89095A7904A
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 15:52:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7C973B3D33
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 13:41:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60B151899C7B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 13:49:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B119723BCE4;
-	Wed,  2 Apr 2025 13:41:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AC2B23C8AA;
+	Wed,  2 Apr 2025 13:47:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bmDk59IA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g/o5JVCQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83D9923AE9B;
-	Wed,  2 Apr 2025 13:41:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FC6623C8A0;
+	Wed,  2 Apr 2025 13:47:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743601317; cv=none; b=nU/MGuMEnl2ea4YSSTFCO0BUKm5SjSfRKw2MUU7WhwgKSDpcLNNGgBzOmuxrc2Ourj4xjuz/2DTpq9CQ9EKLCFG5/pnkvUPOY7om2oYLXpp3w4rGEBK3V1W7nio50J92jnod9tYDbGkKE8KD/HitIpUPx0qUKQUgMEx+Sf0JCXg=
+	t=1743601649; cv=none; b=dGQtDOa3dPl/wYLvncGF/UjRiGmRPp3Ov4iw7WGVS6OWDFFZF5UMLu0Z6j9iMoulRCrOlrdpoGkKKydKGuKRuW4NJG4HdCX51nrycSm+0TZK3sNaz5SQsDDSsq3LJzH21awXISfafpu7ZC+bLZPsYGSeim7iKVf064xOBh4myLc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743601317; c=relaxed/simple;
-	bh=eQCpkCk5h1UrR9g12wED7jzmu/yx1Vr1khO64UK4mqI=;
+	s=arc-20240116; t=1743601649; c=relaxed/simple;
+	bh=mqlsTKVrn+AgGvdUDfL4V1yyT+cMX8N7L5XXQmEr3Yo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RL0lalw6OXXIwoyXxwqd3oEczqDGILMydAdRC84nJz3W3OUAcndGbxRcCGX7Au98didPk5wDOj/Zgxrj1nwE8EAWluWMKpMh+SViMGSy9TD5MjKHrauUFjpaPf3p/oA0zuyq03N+LQKE8WHUFmJL7n7uVjOJJvk0VwEtej3vGoM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bmDk59IA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7CBFC4CEEB;
-	Wed,  2 Apr 2025 13:41:56 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=gREnRzrHeasxBx0yCuw5dFN7Q/AEpMmQCE1cF0sacdvCZuV0Bd9tSA1yYjJGIUEgIZjewq29VbuLV10KAfF8v5jMQKRRLCkDMybGlm/mYaBcNuX6oao88old7llfyvJ8o2Qhnf7qQLcFZZYHf+j1GFlduRoDRsDP9/vx1BV0W2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g/o5JVCQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 714F0C4CEDD;
+	Wed,  2 Apr 2025 13:47:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743601317;
-	bh=eQCpkCk5h1UrR9g12wED7jzmu/yx1Vr1khO64UK4mqI=;
+	s=k20201202; t=1743601648;
+	bh=mqlsTKVrn+AgGvdUDfL4V1yyT+cMX8N7L5XXQmEr3Yo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bmDk59IAqetVZB3o1WumomzfDyWDK1CnWMxG8EqHly/4z8TGl20h2pfulhKNHz/gM
-	 8g8iGeqFrnmOt/R37HfUZaftCGRqlR5WcsttwRjJQ1qqHCyUtavwh5wy+1r+++fdHp
-	 5Cq7vHjJjucV5B7lFnMzrHtwoI4VSX0jUFdsSIbnPtrKBUHj9TxHJc0KN4tjahXrSu
-	 ShY03KYDvgs8G1Bau3W7Pnm9uAho9C3JXAKhTTmW0DN4uAGuWmVLQ1Xqr+pMZU+Wsb
-	 rfMXdzdE6Jsv28L637qzIWJAMf0JogszVqr68tfAiyHzIt2WuZJhx0oyBsZUiPWam3
-	 uqBH8fVmwIHaA==
-Date: Wed, 2 Apr 2025 08:41:55 -0500
+	b=g/o5JVCQG+s/zpSNBsc2udu6u3eF1njWqXvag/0VmwJLHFrNy9dtkIAELz8/OXM3t
+	 8EoMZk22fAUMhMiwnmZ5UVKvOYFAoSKAbcLkHDf3PA2zQNlwQkQcRrJO+lETPEzTkp
+	 ipGfjXqV1nLY/xqXrvpDZeJ1KEZrcG2P9Dkg6HDj+Ty7Jl+C1xjrqbVNUNl91JZrud
+	 KpRC+Fi+0xUXFl2+wgyc2KJkPpdspeGYbUAeciYUZrE4GkyuooaZsDk8oSqzbEIycw
+	 yhf/iY9lSk5iST5iWWdKaapkJ1XUp+dmSyosSxt693xE7kXNaycLxsxvr1g77h/THd
+	 LY9628QXysVCw==
+Date: Wed, 2 Apr 2025 08:47:25 -0500
 From: Rob Herring <robh@kernel.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-	Sylvain Petinot <sylvain.petinot@foss.st.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Patrice Chotard <patrice.chotard@foss.st.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] media: dt-bindings: Add ST VD55G1 camera sensor
- binding
-Message-ID: <20250402134155.GA85771-robh@kernel.org>
-References: <20250401-b4-vd55g1-v2-0-0c8ab8a48c55@foss.st.com>
- <20250401-b4-vd55g1-v2-1-0c8ab8a48c55@foss.st.com>
- <20250402-curvy-seriema-of-blizzard-b1c4d9@krzk-bin>
- <228ddf41-e1d0-4d06-9e0e-9e0dad841688@foss.st.com>
- <fd874f4d-d68c-4443-8bb6-115246f4407b@kernel.org>
- <a0c62797-3c4c-453c-938b-d43666f3b264@foss.st.com>
- <7d501bf2-a017-4c02-a96f-184a7d648b6a@foss.st.com>
- <9f128ce9-6a26-435c-b133-0da80120de2d@kernel.org>
- <20250402124605.GB13181@pendragon.ideasonboard.com>
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, christophe.kerello@foss.st.com,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v7 2/7] dt-bindings: memory-controllers: Add STM32 Octo
+ Memory Manager controller
+Message-ID: <20250402134725.GA145044-robh@kernel.org>
+References: <20250401-upstream_ospi_v6-v7-0-0ef28513ed81@foss.st.com>
+ <20250401-upstream_ospi_v6-v7-2-0ef28513ed81@foss.st.com>
+ <20250401222015.GA4071342-robh@kernel.org>
+ <71c301ea-0be7-4349-92d6-93b3ffc9c593@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,53 +70,65 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250402124605.GB13181@pendragon.ideasonboard.com>
+In-Reply-To: <71c301ea-0be7-4349-92d6-93b3ffc9c593@kernel.org>
 
-On Wed, Apr 02, 2025 at 03:46:05PM +0300, Laurent Pinchart wrote:
-> On Wed, Apr 02, 2025 at 12:27:08PM +0200, Krzysztof Kozlowski wrote:
-> > On 02/04/2025 11:41, Benjamin Mugnier wrote:
-> > > On 4/2/25 11:38, Benjamin Mugnier wrote:
-> > >> On 4/2/25 11:11, Krzysztof Kozlowski wrote:
-> > >>> On 02/04/2025 10:34, Benjamin Mugnier wrote:
-> > >>>> Hi Krzysztof,
-> > >>>>
-> > >>>> On 4/2/25 09:08, Krzysztof Kozlowski wrote:
-> > >>>>> On Tue, Apr 01, 2025 at 01:05:58PM +0200, Benjamin Mugnier wrote:
-> > >>>>>> +    properties:
-> > >>>>>> +      endpoint:
-> > >>>>>> +        $ref: /schemas/media/video-interfaces.yaml#
-> > >>>>>> +        unevaluatedProperties: false
-> > >>>>>> +
-> > >>>>>> +        properties:
-> > >>>>>> +          data-lanes:
-> > >>>>>> +            items:
-> > >>>>>> +              const: 1
-> > >>>>>
-> > >>>>> Not what I asked. Now you miss number of items. Just use the syntax I
-> > >>>>> proposed. Or was there any issue with it?
-> > >>>>
-> > >>>> No issue I just misunderstood and thought const: 1 was impliying
-> > >>>> maxItems: 1. I'll add maxItems back.
-> > >>>
-> > >>> That's just longer way to express what I asked for. So I repeat the
-> > >>> question: why not using the syntax I asked for?
-> > >>
-> > >> I guess I didn't understand what you asked for.
-> > >> May I ask you to write it ? That will help me a lot.
-> > > 
-> > > By 'it' I mean the binding.
-> >
-> > I wrote it last time. I don't think that copying the same here would
-> > change anything. If I can look at v1, you can do as well.
+On Wed, Apr 02, 2025 at 10:45:08AM +0200, Krzysztof Kozlowski wrote:
+> On 02/04/2025 00:20, Rob Herring wrote:
+> >> +      clocks = <&rcc CK_BUS_OSPIIOM>,
+> >> +               <&scmi_clk CK_SCMI_OSPI1>,
+> >> +               <&scmi_clk CK_SCMI_OSPI2>;
+> >> +      clock-names = "omm", "ospi1", "ospi2";
+> >> +      resets = <&rcc OSPIIOM_R>,
+> >> +               <&scmi_reset RST_SCMI_OSPI1>,
+> >> +               <&scmi_reset RST_SCMI_OSPI2>;
+> >> +      reset-names = "omm", "ospi1", "ospi2";
+> >> +      access-controllers = <&rifsc 111>;
+> >> +      power-domains = <&CLUSTER_PD>;
+> >> +      #address-cells = <2>;
+> >> +      #size-cells = <1>;
+> >> +      st,syscfg-amcr = <&syscfg 0x2c00 0x7>;
+> >> +      st,omm-req2ack-ns = <0>;
+> >> +      st,omm-mux = <0>;
+> >> +      st,omm-cssel-ovr = <0>;
+> >> +
+> >> +      spi@0 {
+> >> +        compatible = "st,stm32mp25-ospi";
+> >> +        reg = <0 0 0x400>;
+> >> +        memory-region = <&mm_ospi1>;
+> >> +        interrupts = <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>;
+> >> +        dmas = <&hpdma 2 0x62 0x00003121 0x0>,
+> >> +               <&hpdma 2 0x42 0x00003112 0x0>;
+> >> +        dma-names = "tx", "rx";
+> >> +        clocks = <&scmi_clk CK_SCMI_OSPI1>;
+> >> +        resets = <&scmi_reset RST_SCMI_OSPI1>, <&scmi_reset RST_SCMI_OSPI1DLL>;
+> > 
+> > Looks like you are duplicating properties in the parent and child nodes. 
+> > Maybe that accurately models the h/w, but if it is just so the drivers 
+> > can get the resources from "the driver's node", you can always just look 
+> > in the child nodes for the resources (as probably you want to drop the 
+> > per instance resources from the parent).
 > 
-> Reading your comment on v1, I would have come up with the exact same
-> result as Benjamin's v2. I can't figure out what alternative description
-> you meant.
+> 
+> The current solution was actually my suggestion because if a parent
+> device has to toggle child's reset, it means it actually is the consumer
+> of that reset one way or another. IOW, it is one of its resources.
+> 
+> This also might matter for some of the implementations because we might
+> need to setup device links or do some probe-ordering (in the future)
+> between parent and the reset provider.
+> 
+> Without reset resource in the parent, I could imagine probe order:
+> 1. parent (pokes into the child for reset)
+> 2. reset and clock providers
+> 3. child
+> which would defer between 1 and 2.
+> 
+> With parent having the resource it would be re-ordered into:
+> 1. reset and clock providers
+> 2. parent
+> 3. child
 
-The '-' or lack of is the key part here. That's easy to miss visually 
-and the significance is missed for newcomers. It is worth mentioning the 
-significance when that's the issue even if providing the exact code to 
-use.
+Okay, fair enough.
 
 Rob
 
