@@ -1,249 +1,216 @@
-Return-Path: <devicetree+bounces-162512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E7A4A78A0E
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 10:36:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77C46A78A2C
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 10:39:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B08A93B0F28
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 08:36:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83FF5170249
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 08:39:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B014323536F;
-	Wed,  2 Apr 2025 08:36:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 838B223536B;
+	Wed,  2 Apr 2025 08:39:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OQbcbF9b"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IXlwdO1m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB32F23373E;
-	Wed,  2 Apr 2025 08:36:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB8A716BE17
+	for <devicetree@vger.kernel.org>; Wed,  2 Apr 2025 08:38:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743582994; cv=none; b=FKUFOBe6GSvwM+GbQbISAWCbvBDFLh4eo4+i5Rd1zh+yGgh2f32Swshxl/U3JNNLbF6IPMDDXeacDVzfpqS345mT/uH5kB39iihMdTtg6Jwk2dzFERuv5Y4mw/9Jz9XE0Pa6XPbWlXtLtJu7px3WrfALL4oMhLobHJQ4n6TkCPI=
+	t=1743583140; cv=none; b=fS5vIVSHoa1cRogAjaSVU8gLZbJAFMZhubnwqQ6WG5KAuCS3wkvzene0wK8spaUXmGiD9pJDEVIKsQgHJNEeeGVXb3d3H1xU2ApmYjX/kD6TSE+PEngeA5ok0urMZl/7dMd/jLRxvZgIwh1HSGcf/h9n/t5CXqSyf9lc9feEJWs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743582994; c=relaxed/simple;
-	bh=AyyCyeCC6HTMSrmCOpxWLpEDt09qKkeCxKxbHNgJBaU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QE1AOqE30Q1ZqNWoJu1WfCCdx0fjU6RsEW9A/zlwVALyiJhIhWHrIAOgSp4RD287AgFAeq8B6CqR2doXClf0hT8mWtZqKrPGE/Ubfo4LoCjlSAg19JMBMggw2YodNUqJW6mC70zM/GULB9CWWN5//2EyzOwiAaoQq5QESxOxaKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OQbcbF9b; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-39c1efc457bso1514684f8f.2;
-        Wed, 02 Apr 2025 01:36:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743582991; x=1744187791; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2EMTGaIsY/RcPcOzrKRAsG9l4ts4LsJ5saPQvAd/7tY=;
-        b=OQbcbF9bAXxNeNKIVeYjF1QOz5cqoSBBh1NnZJvLDY2PPC91fCbWcLi5d0HTf3rCO0
-         PvmB5/Cz04k3s28xQQVtjDl0A4v0+mqCHbG4vp8qhNJoXmTSjJAd5DqAUwfxGvzO5c+h
-         C/XbTf3V/NoSx3sziEUYH0dUVtWVkPG1vooPcKWMWS1hPaSWPDESQQ1EP7LWXvn6XS1N
-         tp5LplunwVrP/SFTOCt3vcb8vaZeGSmvVqF7KWIWIl0YbK/dDHmDC9pY1pqHkoo3Xi05
-         xtHWaiS48k/1T2u5qyul0OFPKoi5Vc3KsM/rN2GpTC3k8ksspm8NAbBezp1UzQAeUAVf
-         CekA==
+	s=arc-20240116; t=1743583140; c=relaxed/simple;
+	bh=GXqn91oM87dfs6ORjh1DbmH5yqUbfVcBo3QmJoJCJ5E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=R1YUHct1XQ1TeL5TX9y6vkum6zdPXH3cU4htRTHb7NU0O5jp2tH/b0Sr/HVPK7e5DFsQMuO2pv4kDO9niJ3BvMjC5q5kBZ490czk2OYgVxznDZrn44e3/xSzHJvvY51zaSUui0VKoDwbNixDVfIhEmVrPzT2sdbGeIuSQ8EQQbc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IXlwdO1m; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5324Xcd9023769
+	for <devicetree@vger.kernel.org>; Wed, 2 Apr 2025 08:38:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	GXqn91oM87dfs6ORjh1DbmH5yqUbfVcBo3QmJoJCJ5E=; b=IXlwdO1mKEyHcZRa
+	8XSR1STQl06bFOaPLdH9iaSGLzlA9YfEP6OuEh+Z2fr0jaVqR7WlSSsYxnxDuW/l
+	lKp8Il1cNNRE8ogH3Op9dQpHjk/cEWzrlRgH4tpW/ICDPoy8OwKxgjMmmUlZq+m6
+	qKtTB6gtGPcEx10ZwJDThTxQUC60vmOLe2OwcVMqhywt+bx5MjeQfDmRqQV1lFEw
+	pwUp1s1HvcI4RdmCX6mw6T9wQh4rntseYmAdYeuCPf8fUv8tZ1QOVarBldiebvEi
+	Sej2G+1ZFD9lrDE7kAoWY5Tz/0+TNsbytrhyjUv7OUhEuJpSGVNLmGqLYiPPkRUa
+	iqqXng==
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45rxaprmmw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 02 Apr 2025 08:38:57 +0000 (GMT)
+Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-2ff8340d547so11404330a91.2
+        for <devicetree@vger.kernel.org>; Wed, 02 Apr 2025 01:38:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743582991; x=1744187791;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2EMTGaIsY/RcPcOzrKRAsG9l4ts4LsJ5saPQvAd/7tY=;
-        b=RwxBUSdI309wTEdpcW1J19aaqWnBS0zUYSKsA0tquG5Tq/ob9A8v2TiAZ9SWUcW8/Y
-         toj1qVU8BLtcNIpz1ljentPX+9tACpIoj/EZ1U2U/cBCVjqqw5P+3t6cFYiifoKcvS4b
-         1mtdqWUkE0f3DfOISp/lEY7zm2neySuqckSwSgEPNicODd+b9lDl1PKVxj2cgOj/J8lW
-         ssU+tzNaXi4CxkB+M9Py+ASrrPm6+0Z1CHNA0XUDEwcmloKlJS7N7+vvVYrZw1Ce22C9
-         ARCEqHVB0/burNPJSQIwY6JERSyh4+dS+zqt1G4AtZzdxqhIPGw7B83Ylnlwm4tttWbX
-         7sBQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUnKgqeLTztQE/xZtM0Ug8Vydc6kC8/Lql495m7jTrQBhn+gtuekGIpsyqMtxyBHUzmp2rKoeOy/7atH4ui@vger.kernel.org, AJvYcCUqv3RhIGvqooRpqzOzjlInSROxrhnKBCvxL6Nl+7WW2gPxISmuZjbIIR8kGSGZBXI4E1KN1KMG7Gcim3FrPg==@vger.kernel.org, AJvYcCWe6wJ61QxKEeCRIKXoZhAxSGuCFR/tKuzRiB4IPCp7AmRDszSoxprhJIb/9yn+9JAZSjAiKlYQpch8@vger.kernel.org, AJvYcCXMjpERC12wUltYTv7LstBSH2irzGMr3EBvGp7p3Qy6IMsmtpS3oDjVa/X2lpmowdUcsGbYniRf9e/W@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/w7nFEMFxCbcqfYqSC668QL3EbMt600qNivK8pkbDDRre/Cz6
-	HoOQDu/AT6hRavUklP/LybPEoKpBLjP4OXGmBY6LZ9eMp9G0gb0/VmA6apI9+8YUk1m98nN6f/b
-	VEC8aNzZOPBdG0S5Ur+AkenC37A==
-X-Gm-Gg: ASbGncuxjgIywgkR9K5r35HoMhcJpZKzssHw0HO8qCBtQzxUbtyKULqNp96FWMPAYy3
-	Ti5/ZbFmq1tqe5K05n6pkaoEl2feSROMJJa3p6lwzsINffhDLNCNW86UL4ir7AoxUEhl17t8kwM
-	RZEHaNChxR5DU3o+moNmpLJyQ2TksBYAV9JMWI
-X-Google-Smtp-Source: AGHT+IEoDkIDBHz9S6bLwFs1kZs0BZOVBKd1EdIOtatIJJjYIc6MqmeMx2MRbSB/U/BhnI/6zpYXXWbdtrlStac6ZMw=
-X-Received: by 2002:a05:6000:2d0d:b0:391:9b2:f48d with SMTP id
- ffacd0b85a97d-39c120e3d1amr8451669f8f.33.1743582990697; Wed, 02 Apr 2025
- 01:36:30 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1743583136; x=1744187936;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GXqn91oM87dfs6ORjh1DbmH5yqUbfVcBo3QmJoJCJ5E=;
+        b=XcXb4beuekB0Yk2iKZYTA5VlMh/dWsHi8BXgpjAJdWqRrwzJk+cKUDW6lWrLidXuwF
+         ByUYYQphwPxDe1RmSowi5PlnXXyk1pGkAaZrUsvR74RkwTjEL1m+c0zSShAasNkCEyRE
+         34XG5OH/xaZOfWxgrBndTbBdjSqlsmV/6wO5zXbTxSnXCYKg3sDyb/uOpFKEyriqebZr
+         wrUCE6EwwhWS3dv9skHrpZnXgSwbUjEPA6lcW3mdrUM+JUTY1g52y7pSb9KR6q1Iy2ch
+         3F/YUZvX3mEomPsDvxihFro9VXlr7TZCaZOmDhFtLrv9zMToQ5qIKu6MVWiAfqQJkF17
+         pkog==
+X-Forwarded-Encrypted: i=1; AJvYcCWkPAZRgEivezHzzupj01AWUmYTqGDqe0qVvyIMyZgwyc3M036ac9BV6NdUuoMKNbBbEWQ7flSGovaI@vger.kernel.org
+X-Gm-Message-State: AOJu0YzYTULCKS+DrUWtYmNEKVKajGP6Qt4g25u/TnKQgszdu4vgQBPC
+	uZRekBtETgh/O0FTvg302S9Iokc3NCbShf7SMZr976yeM/lAY9Qh8WQx8MBzI/jGQyzfByQLjcg
+	INHE5icg9XDgX+D7SQLrXg1UAfZM/7Hbik/pbdFgUIoeQBUnCXcWtp0eg1DUq7fShfxgW
+X-Gm-Gg: ASbGncsbkjR2/FbIHifrvO8ot8I5O94r1/yRxMcuJKSFgNkHRf0avhDHv1bTvN6DBYv
+	EILbTV1oqzKBKFiFT6U4kDkkMx10gkIJBQsOh/wpybHFh6JMSVzLEjyUjxs0WS8xLGFsaRQd47y
+	N0p+/oLfodOkEgGfbiCiS8REPuM3Y7GU0YdmFpdBBH3F4lMOGz5RMhCgSWQKBnEUOJ11Nf7Sbr3
+	sMa4VGlQAZUSKF0G1+iHkRy4rKQTkkSjZjIZfULzMU6MUx5Wc72R431yYWdURjfCTzb5alZm3LM
+	pYX2iLyA0cGZgMDmi+fVPdY+2W+G2eI1PJu20Ewb
+X-Received: by 2002:a17:90b:4c12:b0:305:2d27:7cb0 with SMTP id 98e67ed59e1d1-305320b95e3mr21253100a91.21.1743583136530;
+        Wed, 02 Apr 2025 01:38:56 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGxpsxlI6jN778d4IK6ZYalPCibRjZVRcQJLRGaiqCKzoGfBMcE5UhmULWg6FxU234tpItMNQ==
+X-Received: by 2002:a17:90b:4c12:b0:305:2d27:7cb0 with SMTP id 98e67ed59e1d1-305320b95e3mr21253061a91.21.1743583136052;
+        Wed, 02 Apr 2025 01:38:56 -0700 (PDT)
+Received: from [10.204.65.49] ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2291eec52cbsm103025065ad.37.2025.04.02.01.38.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Apr 2025 01:38:55 -0700 (PDT)
+Message-ID: <412fe24e-ce70-4733-ace5-d3fbe43476c4@oss.qualcomm.com>
+Date: Wed, 2 Apr 2025 14:08:49 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CAMcHhXqbQ-6SLotNfQDStr5B0KAMxFRuSiLnjdg+UrtqA1phXw@mail.gmail.com>
- <AM7P189MB100945E7C0850C7469739C81E3AF2@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
-In-Reply-To: <AM7P189MB100945E7C0850C7469739C81E3AF2@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
-From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-Date: Wed, 2 Apr 2025 10:36:19 +0200
-X-Gm-Features: AQ5f1JoXZPC3Q6MNzKbM8CIKupalRPf1YZ_oTLyyI6zk5gt61P8ErGvKdRcMrhE
-Message-ID: <CAMcHhXrcvsKtZnHC5gKFh3nc_XKQKaLdBbnQA6J_rBdUxxP27w@mail.gmail.com>
-Subject: Re: [PATCH v1 6/6] arm64: dts: qcom: Add support for X1-based Asus
- Zenbook A14
-To: Maud Spierings <maud_spierings@hotmail.com>
-Cc: abel.vesa@linaro.org, andersson@kernel.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, gregkh@linuxfoundation.org, 
-	heikki.krogerus@linux.intel.com, johan+linaro@kernel.org, 
-	konrad.dybcio@oss.qualcomm.com, konradybcio@kernel.org, krzk+dt@kernel.org, 
-	krzysztof.kozlowski@linaro.org, linux-arm-msm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, lumag@kernel.org, 
-	robh@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] misc: fastrpc: add support for gpdsp remoteproc
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Ling Xu <quic_lxu5@quicinc.com>, andersson@kernel.org,
+        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, amahesh@qti.qualcomm.com, arnd@arndb.de,
+        gregkh@linuxfoundation.org, quic_kuiw@quicinc.com,
+        quic_ekangupt@quicinc.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+References: <20250320091446.3647918-1-quic_lxu5@quicinc.com>
+ <20250320091446.3647918-3-quic_lxu5@quicinc.com>
+ <30bba296-8e6f-41ee-880e-2d5ecc8fe5a4@linaro.org>
+ <qhriqbm6fcy5vcclfounaaepxcvnck2lb7k2gcpbtrojqzehua@khv5lwdgbysc>
+ <9962c517-5c0e-4d46-ac0c-2a7bab550156@linaro.org>
+Content-Language: en-US
+From: Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>
+In-Reply-To: <9962c517-5c0e-4d46-ac0c-2a7bab550156@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=Vbj3PEp9 c=1 sm=1 tr=0 ts=67ecf7a1 cx=c_pps a=vVfyC5vLCtgYJKYeQD43oA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=EjjHKn1hvHTiu-shZIMA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=rl5im9kqc5Lf4LNbBjHf:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: F-i7NL5EgrTZNn6cPZpzwuHAvfYRjeSk
+X-Proofpoint-GUID: F-i7NL5EgrTZNn6cPZpzwuHAvfYRjeSk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-02_03,2025-04-01_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
+ suspectscore=0 clxscore=1015 mlxscore=0 phishscore=0 bulkscore=0
+ priorityscore=1501 spamscore=0 lowpriorityscore=0 mlxlogscore=999
+ impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504020054
 
-On Wed, 2 Apr 2025 at 08:30, Maud Spierings <maud_spierings@hotmail.com> wr=
-ote:
+
+
+On 3/21/2025 5:53 PM, Srinivas Kandagatla wrote:
 >
-> > On Tue, 1 Apr 2025 at 23:15, Konrad Dybcio
-> > <konrad.dybcio@oss.qualcomm.com> wrote:
-> >>
-> >> On 4/1/25 8:05 PM, Aleksandrs Vinarskis wrote:
-> >> > On Tue, 1 Apr 2025 at 17:59, Konrad Dybcio
-> >> > <konrad.dybcio@oss.qualcomm.com> wrote:
-> >> >>
-> >> >> On 3/31/25 11:53 PM, Aleksandrs Vinarskis wrote:
-> >> >>> Initial support for Asus Zenbook A14. Particular moddel exists
-> >> >>> in X1-26-100, X1P-42-100 (UX3407QA) and X1E-78-100 (UX3407RA).
-> >> >>>
-> >> >>> Mostly similar to other X1-based laptops. Notable differences are:
-> >> >>> * Wifi/Bluetooth combo being Qualcomm FastConnect 6900 on UX3407QA
-> >> >>>   and Qualcomm FastConnect 7800 on UX3407RA
-> >> >>> * USB Type-C retimers are Parade PS8833, appear to behave identica=
-l
-> >> >>>   to Parade PS8830
-> >> >>> * gpio90 is TZ protected
-> >> >>
-> >>
-> >> [...]
-> >>
-> >> >>
-> >> >>> +&spi10 {
-> >> >>> +     status =3D "disabled";
-> >> >>> +
-> >> >>> +     /* Unknown device */
-> >> >>> +};
-> >> >>
-> >> >> Does the device crash if you enable this bus? Keeping it 'okay' wou=
-ld
-> >> >> make it easier for folks to poke at it
-> >> >
-> >> > It does boot just fine, but does not initialize:
-> >> > ```
-> >> > geni_spi a88000.spi: Invalid proto 9
-> >> > ...
-> >> > qnoc-x1e80100 interconnect-1: sync_state() pending due to a88000.spi
-> >> > ...
-> >> > ```
-> >> >
-> >> > I only quickly checked that 9 is indeed invalid state, iirc should'v=
-e
-> >> > been 2. But haven't looked deeper into it, so left it disabled. So I
-> >> > thought best to leave it off for now. Unless you prefer to drop it
-> >> > altogether?
-> >>
-> >> That means this QUP is configured to work as a QSPI host, which is not=
- yet
-> >> supported upstream. I looked at the DSDT you submitted to aa64-laptops=
-, but
-> >> there doesn't seem to be anything connected there, perhaps it's loaded=
- at
-> >> runtime. Since your keyboard and touchpad work, maybe it's a touchscre=
-en?
-> >>
-> >
-> > Indeed it is just defined without anything attached. I am suspecting
-> > it also may be just leftover, won't be the first one...
-> > No, this particular laptop doesn't have a touchscreen in any of the
-> > three screen configurations announced.
-> >
-> > It also does not have a fingerprint reader, nor hardware TPM2.0 (yet
-> > SPI11 typically used for it is still TZ protected :). EC seems to be
-> > over i2c5. Asus's touchpad supports some fancy gesture controls, but
-> > there is in fact another 'extra' hidraw device 'hdtl', I assume that's
-> > the one. No sdcard reader.
-> > Only other still unsupported features are audio (i guess unlikely that
-> > they used different smart amp?), camera (ov02c01, pm8010, so also no)
-> > and DP-HDMI bridge PS185HDM, which from what I can guesstimate is i2c.
 >
-> I actually managed to contact someone about the ps185hdm as it is also
-> used in my asus vivobook s15. But from what they told me it is a dumb
-> bridge that does not require any further configuration. I have tried
-> getting it to work but I've had no luck yet. I did find a hpd gpio at
-> tlmm 126.
+> On 20/03/2025 18:43, Dmitry Baryshkov wrote:
+>> On Thu, Mar 20, 2025 at 05:11:20PM +0000, Srinivas Kandagatla wrote:
+>>>
+>>>
+>>> On 20/03/2025 09:14, Ling Xu wrote:
+>>>> The fastrpc driver has support for 5 types of remoteprocs. There are
+>>>> some products which support GPDSP remoteprocs. Add changes to support
+>>>> GPDSP remoteprocs.
+>>>>
+>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+>>>> Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
+>>>> ---
+>>>>    drivers/misc/fastrpc.c | 10 ++++++++--
+>>>>    1 file changed, 8 insertions(+), 2 deletions(-)
+>>>>
+>>>> diff --git a/drivers/misc/fastrpc.c b/drivers/misc/fastrpc.c
+>>>> index 7b7a22c91fe4..80aa554b3042 100644
+>>>> --- a/drivers/misc/fastrpc.c
+>>>> +++ b/drivers/misc/fastrpc.c
+>>>> @@ -28,7 +28,9 @@
+>>>>    #define SDSP_DOMAIN_ID (2)
+>>>>    #define CDSP_DOMAIN_ID (3)
+>>>>    #define CDSP1_DOMAIN_ID (4)
+>>>> -#define FASTRPC_DEV_MAX        5 /* adsp, mdsp, slpi, cdsp, cdsp1 */
+>>>> +#define GDSP0_DOMAIN_ID (5)
+>>>> +#define GDSP1_DOMAIN_ID (6)
+>>>
+>>> We have already made the driver look silly here, Lets not add domain ids for
+>>> each instance, which is not a scalable.
+>>>
+>>> Domain ids are strictly for a domain not each instance.
+>>
+>> Then CDSP1 should also be gone, correct?
+> Its already gone as part of the patch that I shared in this discussion.
 >
-> I currently have just tried ignoring its existence and describing a non
-> existent dp-connector with the hpd gpio hooked up to mdss_dp2_out but no
-> luck. I get a timeout on the aux bus communication I think, so something
-> is blocking that still.
-
-I think it was your messages that I saw on IRC of aarch64-laptops
-then. Can confirm both HPD on tlmm, and lack of any i2c devices on
-newly created virtual bus.
-
+> I will send a proper patch to list once Ling/Ekansh has agree with it.
 >
-> I think it may just be some regulator or something required to actually
-> power up the ps185hdm
+Thanks, Srini, for sharing this clean-up patch. It looks proper to
+me, but I was thinking if we could remove the domain_id dependency
+from the fastrpc driver. The addition of any new DSP will frequently
+require changes in the driver. Currently, its usage is for creating
+different types of device nodes and transferring memory ownership to
+SLPI when a memory region is added.
 
-That was my conclusion as well. Would you mind following up with them,
-if they could disclose the amount of voltage supplies the IC is
-expecting? if it's 1 or 2, it's rather easy to bruteforce all unused
-pin combinations. If it's more than that, it's only reasonable to
-enable all unused GPIOs to high at once, which I wouldn't do tbh :)
+The actual intention behind different types of device nodes can be
+defined as follows:
 
-The weird thing is that according to a rather simplified publically
-available diagram, HPD is actually propagated through the PS185,
-implying that bridge is on. It could be that IC requires multiple
-supplies, hence Aux bus is not working, but in my experience these
-devices typically don't start until all of the required supplies are
-up.
+fastrpc-xdsp-secure: Used for signed (privileged) PD offload and for daemons.
+fastrpc-xdsp: Should be used only for unsigned (less privileged) PD offload.
 
+The reason for this constraint is to prevent any untrusted process
+from communicating with any privileged PD on DSP, which poses a security risk.
+The access to different device nodes can be provided/restricted based on UID/GID
+(still need to check more on this; on Android-like systems, this is controlled by
+SELinux).
+
+There is already a qcom,non-secure-domain device tree property[1] which doesn't
+have a proper definition as of today. The actual way to differentiate between
+secure and non-secure DSP should be based on its ability to support unsigned PD.
+
+One way to remove the domain_id dependency that I can think of is to use this
+property to create different types of device nodes. Essentially, if unsigned PD
+is supported (e.g., CDSP, GPDSP), we add this property to the DT node and create
+both types of device nodes based on this. Otherwise, only the secure device node
+is created.
+
+This raises the question of backward compatibility, but I see that on most older
+platform DTs, this property is already added, so both device nodes will be created
+there, and applications will work as expected. If any old DT DSP node lacks this
+property, we can add it there as well.
+
+Going forward, the qcom-non-secure-property should be added only if unsigned PD
+is supported. This way, we can clean up the driver completely to remove the
+domain_id dependency.
+
+If this sounds good, I can work on this design and send out a patch.
+
+[1] https://web.git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml#n44
+
+--Ekansh
+
+> --srini
+>>
 >
-> from my correspondence:
-> `
-> Hi Maud,
->
-> There is no =E2=80=9Cenable pin=E2=80=9D on the PS185 but there are sever=
-al GPIO=E2=80=99s. The
-> FW associated with the device is programmable so the manufacturer of the
-> motherboard you are using may have requested a special feature (such as
-> an enable pin on one of the GPIO) to be added by Parade. If that=E2=80=99=
-s the
-> case then you would need to contact the motherboard manufacturer to find
-> out more details.
->
-> Hot plug events are normally routed through the DP_HPD pin but, as noted
-> above, it=E2=80=99s possible that the motherboard manufacturer asked for =
-this to
-> be replicated on the GPIO pin.
-> `
->
-> some messing around of me in the dts can be found here: [1]
 
-I think, you would also need to enable usb_1_ss2 combo phy, afaik only
-mdss3 (for eDP) has a dedicated DP phy, for the rest it's a combo
-qmpphy. Konrad could probably confirm?
-Once i2c/aux works, maybe we would also need a small driver to set phy
-to DP mode, as afaik pmic-glink handles these. Just hypothesis though.
-I have tried adding a dummy "dp-connector" like you did, but as a
-child node to pmic-glink, hoping that it would handle the alt mode,
-but it is probably not that easy :)
-
-Would be happy to cooperate on debugging this offline.
-
-Alex
-
-
-
->
-> [...]
->
-> [1]:
-> https://github.com/SpieringsAE/linux/blob/wip/x1e80100-6.14/arch/arm64/bo=
-ot/dts/qcom/x1e80100-asus-vivobook-s15.dts
->
-> kind regards,
-> Maud
 
