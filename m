@@ -1,151 +1,115 @@
-Return-Path: <devicetree+bounces-162670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162671-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13C19A7956F
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 20:49:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1E90A79578
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 20:52:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E6C3188690D
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 18:49:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9744A16DF2A
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 18:52:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 923011B3F3D;
-	Wed,  2 Apr 2025 18:49:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 636741DB92A;
+	Wed,  2 Apr 2025 18:52:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amazon.de header.i=@amazon.de header.b="N2tQb1bp"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="b6VsaGM1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-fw-52005.amazon.com (smtp-fw-52005.amazon.com [52.119.213.156])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8966518A93F;
-	Wed,  2 Apr 2025 18:49:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.119.213.156
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF7561B3F3D
+	for <devicetree@vger.kernel.org>; Wed,  2 Apr 2025 18:52:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743619759; cv=none; b=iEeqR8C2Pe0MTpkfzbU+U0d4eg3OdZL/vnu/Yo/h9J83qebyuXF0cs7udkj788F8CExM5hP4oB4qur5qfqbrgW0gWl82hd0r7GR7UjyPLPgOsnLnjzAxUmH8dU59V9ADsDsOvcqJyNP/T6p4NbhhEvQqRkH9UHQYNlT9DEapUuc=
+	t=1743619931; cv=none; b=V3a1Kd6ump81wuqbx95pVdt3prLMKHJvwNpPULjwqy7ADMpDmHcGGQl0EEQ2GZIX8JuFIRpR8IiEqpVanIsnR4kbfuPgqEuKNe+1MJCuCTTg99fsXMBvK30IO/6W3ReKaYT/is2Gy3qUqiWhcVOdzFDX+7HnZ/xG0nGA+TBEQMo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743619759; c=relaxed/simple;
-	bh=lzIzGe/A8K0FeDNd49e2UFCleX6gbOBWTXq2lLAmj28=;
-	h=From:To:CC:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=B78ShEliKPfEKdbYhLQBHmwqiEI/gMgVTFHv4OGOvtgaYfhu5yZAIap/KPjz5BjAuDZ8CPDYbeUa8OO6VRDU4g+9/3YFQhB7XwiWqODbb6ibIVFgIqzwHzUknkM/2fZi7M6JFoN6AKHe6VH4lKlHBpPnHY+KPxcW3XqIP/3jh1c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.de; spf=pass smtp.mailfrom=amazon.de; dkim=pass (1024-bit key) header.d=amazon.de header.i=@amazon.de header.b=N2tQb1bp; arc=none smtp.client-ip=52.119.213.156
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.de
+	s=arc-20240116; t=1743619931; c=relaxed/simple;
+	bh=n2sN5CaJWuK6R06Nkyz9xwrKnRiYA0E1p41viYwEYQM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=QNUD3acl68tz2OtJOrSM+b6hAJKi9Bf/mvmjC2MHy8XbxfVQtdynZUCtyPWdKoai2vrM6Z64DVWQa5WfxONz42ptWMZ+qYTe81EaGx1FdlvTV93zOrOHvwZk1YyWNO+vcSzy3AY8xgRYBI0PwcWPurPIICk7HUoaPBGqNUtlalw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=b6VsaGM1; arc=none smtp.client-ip=209.85.167.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-3f6ab1b8fc1so71646b6e.0
+        for <devicetree@vger.kernel.org>; Wed, 02 Apr 2025 11:52:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.de; i=@amazon.de; q=dns/txt; s=amazon201209;
-  t=1743619758; x=1775155758;
-  h=from:to:cc:subject:in-reply-to:references:date:
-   message-id:mime-version:content-transfer-encoding;
-  bh=lzIzGe/A8K0FeDNd49e2UFCleX6gbOBWTXq2lLAmj28=;
-  b=N2tQb1bp3qAv2NusgoPPUnXMweVB3/nS7LdTV9GYHbUntQQwMGCSt5gQ
-   CzOr0x+as3Mg2yZi/OUBXSwDg6A6wInOT0nejWxGQ08Zz6rHBizhQ+FJT
-   KQHBfSBPuaQj3Ubru/FC85qSGD7pTQhVKLgT8j0AREHnkQmra13pouAec
-   Q=;
-X-IronPort-AV: E=Sophos;i="6.15,183,1739836800"; 
-   d="scan'208";a="732319846"
-Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev) ([10.43.8.6])
-  by smtp-border-fw-52005.iad7.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Apr 2025 18:49:12 +0000
-Received: from EX19MTAUWB001.ant.amazon.com [10.0.21.151:38908]
- by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.37.138:2525] with esmtp (Farcaster)
- id 7d79399a-a36b-4d73-99b6-98948cdf7eea; Wed, 2 Apr 2025 18:49:11 +0000 (UTC)
-X-Farcaster-Flow-ID: 7d79399a-a36b-4d73-99b6-98948cdf7eea
-Received: from EX19D020UWA002.ant.amazon.com (10.13.138.222) by
- EX19MTAUWB001.ant.amazon.com (10.250.64.248) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1544.14;
- Wed, 2 Apr 2025 18:49:01 +0000
-Received: from EX19MTAUWA002.ant.amazon.com (10.250.64.202) by
- EX19D020UWA002.ant.amazon.com (10.13.138.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1544.14;
- Wed, 2 Apr 2025 18:49:01 +0000
-Received: from email-imr-corp-prod-iad-all-1b-85daddd1.us-east-1.amazon.com
- (10.25.36.210) by mail-relay.amazon.com (10.250.64.203) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id
- 15.2.1544.14 via Frontend Transport; Wed, 2 Apr 2025 18:49:01 +0000
-Received: from dev-dsk-ptyadav-1c-43206220.eu-west-1.amazon.com (dev-dsk-ptyadav-1c-43206220.eu-west-1.amazon.com [172.19.91.144])
-	by email-imr-corp-prod-iad-all-1b-85daddd1.us-east-1.amazon.com (Postfix) with ESMTP id B8E254076F;
-	Wed,  2 Apr 2025 18:49:00 +0000 (UTC)
-Received: by dev-dsk-ptyadav-1c-43206220.eu-west-1.amazon.com (Postfix, from userid 23027615)
-	id 74DA54F1C; Wed,  2 Apr 2025 18:49:00 +0000 (UTC)
-From: Pratyush Yadav <ptyadav@amazon.de>
-To: Pasha Tatashin <pasha.tatashin@soleen.com>
-CC: Changyuan Lyu <changyuanl@google.com>, <akpm@linux-foundation.org>,
-	<anthony.yznaga@oracle.com>, <arnd@arndb.de>, <ashish.kalra@amd.com>,
-	<benh@kernel.crashing.org>, <bp@alien8.de>, <catalin.marinas@arm.com>,
-	<corbet@lwn.net>, <dave.hansen@linux.intel.com>,
-	<devicetree@vger.kernel.org>, <dwmw2@infradead.org>, <ebiederm@xmission.com>,
-	<graf@amazon.com>, <hpa@zytor.com>, <jgg@nvidia.com>, <jgowans@amazon.com>,
-	<kexec@lists.infradead.org>, <krzk@kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-doc@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-mm@kvack.org>, <luto@kernel.org>,
-	<mark.rutland@arm.com>, <mingo@redhat.com>, <pbonzini@redhat.com>,
-	<peterz@infradead.org>, <robh+dt@kernel.org>, <robh@kernel.org>,
-	<rostedt@goodmis.org>, <rppt@kernel.org>, <saravanak@google.com>,
-	<skinsburskii@linux.microsoft.com>, <tglx@linutronix.de>,
-	<thomas.lendacky@amd.com>, <will@kernel.org>, <x86@kernel.org>
-Subject: Re: [PATCH v5 09/16] kexec: enable KHO support for memory preservation
-In-Reply-To: <CA+CK2bBnbEtw7jL2fbukJ3aBCjn=-OVT70oEAsZ435vtFe18Vw@mail.gmail.com>
-References: <mafs0tt7eqt6f.fsf@amazon.de>
-	<20250402164453.2470750-1-changyuanl@google.com>
-	<mafs0ecyaqzmd.fsf_-_@amazon.de>
-	<CA+CK2bBnbEtw7jL2fbukJ3aBCjn=-OVT70oEAsZ435vtFe18Vw@mail.gmail.com>
-Date: Wed, 2 Apr 2025 18:49:00 +0000
-Message-ID: <mafs0a58yqu03.fsf_-_@amazon.de>
-User-Agent: Gnus/5.13 (Gnus v5.13)
+        d=broadcom.com; s=google; t=1743619929; x=1744224729; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=aMSMxtJGALgtSMPuvM+es6h4Iyyq5oXkRDZi7PrpWMU=;
+        b=b6VsaGM1l+U+LV3qN74eOrv3SlsUEp+Y34E7WzZ4tnnWS2+XPtGmdKuhScmiKasyRn
+         iQKBQ3LkdKbBezLaLbnQkI9Z0m2xPvsFVNPyMgXOaD65mImgMAy9H4nzTtT4Vb1yCU/Z
+         aHRGqFTiD/Ppjt7q/vXM1NBsl1UajMgtJbcGg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743619929; x=1744224729;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aMSMxtJGALgtSMPuvM+es6h4Iyyq5oXkRDZi7PrpWMU=;
+        b=tqhAGh/7cx7nttU+wVFcx4GNv7WVOFzenDLQ8Czcrq9wj2oHedosPHBz704hXr2I/Z
+         uMQC4On7IOJ+xdyO4XExNPmfuFhQ1f7kgw4VY/L9eWEvJuOwChtujAjFpznRI5WfkSn/
+         FEYTt/bSur7QikQs26ym146tyez6xXDNQh9bU6TNzX/h2zDhK6TtthFA6SIdCI9q/hvP
+         l8NOOzo6z2GtzBU6aJGI0yVRQHaukgV5k+U5qF0WGVmmfQy1EdKh2c//vljH/FYc7RQS
+         cfBYeo2+2/S5TCHhe9RWoM+dQeXTiOLLz0mtg6UQAyOPdkjLkFix4hbsFnzRYsq5uhFm
+         PqYg==
+X-Forwarded-Encrypted: i=1; AJvYcCXMgYBQSDx4KqC6MrHIXpeNa6/PwgViP7TOyd0RJzePxyefnB2CBTCE1dNUk3lNTitU2HwDHQFc3vm9@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6ENUNs1kpeiHOGi0lBapctGx8b9k1dujfbj/ioOnVDWzff131
+	51xjtMP5IxMfkQblyx6YS0zsS4YZUqhaWmGy7/DazY7WPV4JRDr1uqt58YOI8g==
+X-Gm-Gg: ASbGnctkktQNww9DHPPd2uqAp5fkvldKzeme4c1NdG3ejgT0FbROZZWf/KX70iUnizr
+	yF8EWRlJ50FOFn5wpnHqZM73QgMMu/40B3YcFnQmbTd4kd7yEHOSBBICuXB3CoVXxpkIvTkyYDB
+	eRl5en3VwGrQ7MihJxR+1pTxdD3pSSRcnDRpMaIfZm+JDPKqw98HgbNmd7Tz1JVw1raIQASy80+
+	1VMe0/IU21SZXI4qM1sZ6DdsbDo8J16vm+N19w0PqjS1+jLrJWgORvnd04/Wy8GYeYNC1D0eDB+
+	dNvUoEanAcqU/NJZJ4HdKkQePpmA79Uunsvu38onshA0nocCVofGeLHPu2jgXh+OKVmYm2u1oqp
+	wXQQOaHw8EwwY3jbYkMZyzA==
+X-Google-Smtp-Source: AGHT+IF2oyF+SZAWZtK8dqvuEYk7hltRuj0cB3ZM/AI20F98RrPPB5PiVuTkMpiL1IWiNu1BJ9n9SQ==
+X-Received: by 2002:a05:6808:191e:b0:3f9:a187:1f5d with SMTP id 5614622812f47-3ff0f64bcf8mr11348947b6e.35.1743619928688;
+        Wed, 02 Apr 2025 11:52:08 -0700 (PDT)
+Received: from stbirv-lnx-1.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-3ff051aaf60sm2470462b6e.28.2025.04.02.11.52.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Apr 2025 11:52:08 -0700 (PDT)
+From: justin.chen@broadcom.com
+To: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-phy@lists.infradead.org
+Cc: rafal@milecki.pl,
+	alcooperx@gmail.com,
+	bcm-kernel-feedback-list@broadcom.com,
+	florian.fainelli@broadcom.com,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	kishon@kernel.org,
+	vkoul@kernel.org,
+	Justin Chen <justin.chen@broadcom.com>
+Subject: [PATCH v3 0/2] phy: usb: add support for bcm74110
+Date: Wed,  2 Apr 2025 11:51:57 -0700
+Message-Id: <20250402185159.2976920-1-justin.chen@broadcom.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Wed, Apr 02 2025, Pasha Tatashin wrote:
+From: Justin Chen <justin.chen@broadcom.com>
 
-> On Wed, Apr 2, 2025 at 12:47=E2=80=AFPM Pratyush Yadav <ptyadav@amazon.de=
-> wrote:
->>
->> Hi,
->>
->> On Wed, Apr 02 2025, Changyuan Lyu wrote:
->>
->> > Hi Pratyush, Thanks for suggestions!
->> >
->> > On Thu, Mar 27, 2025 at 17:28:40 +0000, Pratyush Yadav <ptyadav@amazon=
-.de> wrote:
-[...]
->> >>
->> >> The memblock_reserve side we can optimize later, I agree. But the mem=
-ory
->> >> preservation format is ABI and I think that is worth spending a little
->> >> more time on. And I don't think it should be that much more complex t=
-han
->> >> the current format.
->> >>
->> >> I want to hack around with it, so I'll give it a try over the next few
->> >> days and see what I can come up with.
->> >
->> > I agree with Jason that "nothing is ABI at this
->> > point" and it will take some time for KHO to stabilize.
->> >
->> > On the other hand if you have already came up with something working a=
-nd
->> > simple, we can include it in the next version.
->>
->> I already have something that works with zero-order pages. I am
->> currently implementing support for other orders. It is almost done, but
->> I need to test it and do a performance comparison with the current
->> patch. Will post something soon!
->
-> Hi Pratyush,
->
-> Just to clarify, how soon? We are about to post v6 for KHO, with all
-> other comments in this thread addressed.
+bcm74110 adds a freerun utmi/ref clock that saves furether power during
+suspend states. A tune is also necessary to pass USB compliance test.
 
-I have it working, but I need to clean up the code a bit and test it
-better. So hopefully end of this week or early next week.
+Justin Chen (2):
+  dt-bindings: phy: brcmstb-usb-phy: Add support for bcm74110
+  phy: usb: add support for bcm74110
 
---=20
-Regards,
-Pratyush Yadav
+ .../bindings/phy/brcm,brcmstb-usb-phy.yaml    |  5 +-
+ .../phy/broadcom/phy-brcm-usb-init-synopsys.c | 61 +++++++++++++++++++
+ drivers/phy/broadcom/phy-brcm-usb-init.h      |  1 +
+ drivers/phy/broadcom/phy-brcm-usb.c           | 14 +++++
+ 4 files changed, 80 insertions(+), 1 deletion(-)
+
+-- 
+2.34.1
+
 
