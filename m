@@ -1,190 +1,196 @@
-Return-Path: <devicetree+bounces-162537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68C7DA78B02
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 11:25:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B8D4A78B11
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 11:27:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4CA2F16DE5B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 09:24:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC51918863F5
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 09:27:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE942236450;
-	Wed,  2 Apr 2025 09:24:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D25B12356A9;
+	Wed,  2 Apr 2025 09:26:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="f9Bo4ohS"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="uKt6Q6y1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87B1C2356D7;
-	Wed,  2 Apr 2025 09:24:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6ABF234973;
+	Wed,  2 Apr 2025 09:26:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743585863; cv=none; b=uylIN8ygoPpK0BbmNbaGA1kuIJaQUg+chP/r0bDNBCKYxBeZOA2GTziwOyxR2w+oX9CwWqIECgfGpud72r2xW7VRYQScmBfpbzug6swfpyIS2y6GpEM1s7yhsq78oIqVoixQtaCvovwzHymBg0MWyxn3eknBEskOJtEzKCn+yKc=
+	t=1743586006; cv=none; b=mPtEdUfT4gkDjVrFqKPx5c1gLTJ15gbF5pTlZjvzquC2bSmCqivOCt2114DGxKUdVrzb6izaQBuozXqIuH2CxzrEv8iYZzMH7nZ5e0i22/UEKmme+ws+P1FKbeS+xZFu4CLeGkw3izd1XstSGc6TPCNXjcTM5D8yTg45/98kr3Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743585863; c=relaxed/simple;
-	bh=C3XotoUexJAu0axISvav3t2Bl12OZSkmJVdzrk20j4w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=duVads5zPe3IWtuZsqWs22kfRyIajF1vnIITjEHsCuC6gna2/vk6yvyPZczCqBnuO30EcRgVz9sKo55tkTNd9BZkAelSmgIOwFCbkmtBUUFVII7UhEHdl9w4u9lkURa+OHfp154o26v83+a/vv2r4MydpGBfG5vC7nG2/VSzXPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=f9Bo4ohS; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1743585859;
-	bh=C3XotoUexJAu0axISvav3t2Bl12OZSkmJVdzrk20j4w=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=f9Bo4ohS74A0fke56j5NVf6RcpCx5zkYMAxEJF5Dnfou5QXznemiAIk6JbS4moAyD
-	 mEZCgWFbe9JUN8phOpckNscZ0Y0zXq2aBPm1+uOrQ8ZoHhx+DBiubzcV50DkdT9EBD
-	 KHcJDHdiKOl42PYvNiJc11RTmRRWeSj+SR8qU9UJU17NoJdxjTpixnsn7DBp7ERUrm
-	 pBJmZacGxqKfH26R/U0Gckw6zCnpXOleu+eRvhTyNgNYJyFXCU9a3y7e2OWj9rohOM
-	 4zaq9uhtzPX3ez5ma4WRMOv8kmrnkuQ0LlOyGBIiQCkQIMZH9309cd06pkCJWJTkQO
-	 IXii4fbJyBeIQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1E5BC17E0809;
-	Wed,  2 Apr 2025 11:24:19 +0200 (CEST)
-Message-ID: <30ff6b8c-befc-4233-8e61-c131b1f037ff@collabora.com>
-Date: Wed, 2 Apr 2025 11:24:18 +0200
+	s=arc-20240116; t=1743586006; c=relaxed/simple;
+	bh=kLP8rRY+FIiace1Gs6ybDJxlu6TNWKf7AUfUrX7cxsg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Gm32mrBLsS9yfrnJ0wCL08UOT86Joi4vBc6g34iUY2rVQRCQSmjIVSLkdrZHqXkBe0ahAWxaqVIDRGx5RV9vqsQj1/IP4dXuimRLXcG+v2c/MXoJ/ztZSYrk4TFAL1CKm18NX8MAp82uzjcA8kDFAHFnWXvGNnlqC6y8uv2uhWc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=uKt6Q6y1; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A25CE6A2;
+	Wed,  2 Apr 2025 11:24:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1743585889;
+	bh=kLP8rRY+FIiace1Gs6ybDJxlu6TNWKf7AUfUrX7cxsg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uKt6Q6y1r/UhWNSs9aFzdqSksflzg6EeNkr8rtBEqrh3xj9sNVBtGOK7lAz9ZJ98w
+	 p5LztYx504ppIbVzWB22SmTQT4k1iZxMBXkayHLwHkZlMeeCe+yVcKYJX6DmF2xPAu
+	 dJgEhGURJid/YjzRk0XI52ijq2V2+GqlEMe3kSWg=
+Date: Wed, 2 Apr 2025 12:26:18 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
+	Tommaso Merciai <tomm.merciai@gmail.com>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v5 11/17] media: rzg2l-cru: Add register mapping support
+Message-ID: <20250402092618.GH4845@pendragon.ideasonboard.com>
+References: <20250328173032.423322-1-tommaso.merciai.xr@bp.renesas.com>
+ <20250328173032.423322-12-tommaso.merciai.xr@bp.renesas.com>
+ <TY3PR01MB11346ECE31CB6C8DC33459C2486AF2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <CA+V-a8sJQnyJb_uq9yEcjHRW7ZFOw3g2XQyygcozWTgMjrYxRQ@mail.gmail.com>
+ <TY3PR01MB113462DC897E0DB681B1C020F86AF2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <CA+V-a8ukJ+_Bhy-4nU_CFD4rMoTRxEY-q+bXHHZ-9Mz8gQ362A@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [v3,1/2] dt-bindings: memory-controllers: Add MediaTek DRAM
- controller interface
-To: =?UTF-8?B?Q3J5c3RhbCBHdW8gKOmDreaZtik=?= <Crystal.Guo@mediatek.com>,
- "robh@kernel.org" <robh@kernel.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "krzk@kernel.org" <krzk@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>
-References: <20250326063041.7126-1-crystal.guo@mediatek.com>
- <20250326063041.7126-2-crystal.guo@mediatek.com>
- <fb154077-e650-480e-a4d7-0a141b563dfc@collabora.com>
- <4bad42c867a838da413154fa0a779547d642642c.camel@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <4bad42c867a838da413154fa0a779547d642642c.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CA+V-a8ukJ+_Bhy-4nU_CFD4rMoTRxEY-q+bXHHZ-9Mz8gQ362A@mail.gmail.com>
 
-Il 02/04/25 05:51, Crystal Guo (郭晶) ha scritto:
-> On Wed, 2025-03-26 at 11:18 +0100, AngeloGioacchino Del Regno wrote:
->> External email : Please do not click links or open attachments until
->> you have verified the sender or the content.
->>
->>
->> Il 26/03/25 07:30, Crystal Guo ha scritto:
->>> A MediaTek DRAM controller interface to provide the current DDR
->>> data rate.
->>>
->>> Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
->>> ---
->>>    .../memory-controllers/mediatek,dramc.yaml    | 44
->>> +++++++++++++++++++
->>>    1 file changed, 44 insertions(+)
->>>    create mode 100644 Documentation/devicetree/bindings/memory-
->>> controllers/mediatek,dramc.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/memory-
->>> controllers/mediatek,dramc.yaml
->>> b/Documentation/devicetree/bindings/memory-
->>> controllers/mediatek,dramc.yaml
->>> new file mode 100644
->>> index 000000000000..8bdacfc36cb5
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/memory-
->>> controllers/mediatek,dramc.yaml
->>
->> The filename should be "mediatek,mt8196-dramc.yaml"
->>
-> 
-> For other MediaTek SOCs, the method of calculating current ddr data
-> rate is similar to that of MT8196. After changing "mediatek,dramc.yaml"
-> to "mediatek,mt8196-dramc.yaml", would future Mediatek SOCs need to add
-> a separate yaml file again? or could they reuse mediatek,mt8196-
-> dramc.yaml? Thank you for your guidance.
-> 
+On Wed, Apr 02, 2025 at 08:25:06AM +0000, Lad, Prabhakar wrote:
+> On Wed, Apr 2, 2025 at 9:20 AM Biju Das wrote:
+> > On 02 April 2025 08:35, Lad, Prabhakar wrote:
+> > > On Wed, Apr 2, 2025 at 7:31 AM Biju Das wrote:
+> > > > > On 28 March 2025 17:30, Tommaso Merciai wrote:
+> > > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > >
+> > > > > Prepare for adding support for RZ/G3E and RZ/V2HP SoCs, which have a
+> > > > > CRU-IP that is mostly identical to RZ/G2L but with different
+> > > > > register offsets and additional registers. Introduce a
+> > > > > flexible register mapping mechanism to handle these
+> > > > > variations.
+> > > > >
+> > > > > Define the `rzg2l_cru_info` structure to store register mappings and
+> > > > > pass it as part of the OF match data. Update the read/write
+> > > > > functions to check out-of-bound accesses and use indexed
+> > > > > register offsets from `rzg2l_cru_info`, ensuring compatibility
+> > > > > across different SoC variants.
+> > > > >
+> > > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > > Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+> > > > > ---
+> > > > > Changes since v2:
+> > > > >  - Implemented new rzg2l_cru_write/read() that now are checking out-of-bound
+> > > > >    accesses as suggested by LPinchart.
+> > > > >  - Fixed AMnMBxADDRL() and AMnMBxADDRH() as suggested by LPinchart.
+> > > > >  - Update commit body
+> > > > >
+> > > > > Changes since v4:
+> > > > >  - Mark __rzg2l_cru_write_constant/__rzg2l_cru_read_constant
+> > > > >    as __always_inline
+> > > > >
+> > > > >  .../platform/renesas/rzg2l-cru/rzg2l-core.c   | 46 ++++++++++++-
+> > > > >  .../renesas/rzg2l-cru/rzg2l-cru-regs.h        | 66 ++++++++++---------
+> > > > >  .../platform/renesas/rzg2l-cru/rzg2l-cru.h    |  4 ++
+> > > > >  .../platform/renesas/rzg2l-cru/rzg2l-video.c  | 58 ++++++++++++++--
+> > > > >  4 files changed, 139 insertions(+), 35 deletions(-)
+> > > > >
+> > > > > diff --git a/drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c b/drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c
+> > > > > index eed9d2bd08414..abc2a979833aa 100644
+> > > > > --- a/drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c
+> > > > > +++ b/drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c
+> > > > > @@ -22,6 +22,7 @@
+> > > > >  #include <media/v4l2-mc.h>
+> > > > >
+> > > > >  #include "rzg2l-cru.h"
+> > > > > +#include "rzg2l-cru-regs.h"
+> > > > >
+> > > > >  static inline struct rzg2l_cru_dev *notifier_to_cru(struct v4l2_async_notifier *n)
+> > > > >  {
+> > > > > @@ -269,6 +270,9 @@ static int rzg2l_cru_probe(struct platform_device *pdev)
+> > > > >
+> > > > >       cru->dev = dev;
+> > > > >       cru->info = of_device_get_match_data(dev);
+> > > > > +     if (!cru->info)
+> > > > > +             return dev_err_probe(dev, -EINVAL,
+> > > > > +                                  "Failed to get OF match data\n");
+> > > > >
+> > > > >       irq = platform_get_irq(pdev, 0);
+> > > > >       if (irq < 0)
+> > > > > @@ -317,8 +321,48 @@ static void rzg2l_cru_remove(struct platform_device *pdev)
+> > > > >       rzg2l_cru_dma_unregister(cru);  }
+> > > > >
+> > > > > +static const u16 rzg2l_cru_regs[] = {
+> > > > > +     [CRUnCTRL] = 0x0,
+> > > > > +     [CRUnIE] = 0x4,
+> > > > > +     [CRUnINTS] = 0x8,
+> > > > > +     [CRUnRST] = 0xc,
+> > > > > +     [AMnMB1ADDRL] = 0x100,
+> > > > > +     [AMnMB1ADDRH] = 0x104,
+> > > > > +     [AMnMB2ADDRL] = 0x108,
+> > > > > +     [AMnMB2ADDRH] = 0x10c,
+> > > > > +     [AMnMB3ADDRL] = 0x110,
+> > > > > +     [AMnMB3ADDRH] = 0x114,
+> > > > > +     [AMnMB4ADDRL] = 0x118,
+> > > > > +     [AMnMB4ADDRH] = 0x11c,
+> > > > > +     [AMnMB5ADDRL] = 0x120,
+> > > > > +     [AMnMB5ADDRH] = 0x124,
+> > > > > +     [AMnMB6ADDRL] = 0x128,
+> > > > > +     [AMnMB6ADDRH] = 0x12c,
+> > > > > +     [AMnMB7ADDRL] = 0x130,
+> > > > > +     [AMnMB7ADDRH] = 0x134,
+> > > > > +     [AMnMB8ADDRL] = 0x138,
+> > > > > +     [AMnMB8ADDRH] = 0x13c,
+> > > > > +     [AMnMBVALID] = 0x148,
+> > > > > +     [AMnMBS] = 0x14c,
+> > > > > +     [AMnAXIATTR] = 0x158,
+> > > > > +     [AMnFIFOPNTR] = 0x168,
+> > > > > +     [AMnAXISTP] = 0x174,
+> > > > > +     [AMnAXISTPACK] = 0x178,
+> > > > > +     [ICnEN] = 0x200,
+> > > > > +     [ICnMC] = 0x208,
+> > > > > +     [ICnMS] = 0x254,
+> > > > > +     [ICnDMR] = 0x26c,
+> > > > > +};
+> > > >
+> > > > Do we need enum, can't we use struct instead with all these entries instead?
+> > > >
+> > > What benefit do you foresee when using struct? With the current approach being used a minimal diff is
+> > > generated when switched to struct there will be lots of changes.
+> >
+> > The mapping is convinient when you want to iterate throught it. Here, if
+> > you just want to access the offset value from its name, a structure
+> > looks more appropriate.
+>
+> Thanks, as this patch has been reviewed by Laurent a couple of times
+> we will change this to struct If he insists.
 
-Other MediaTek SoC will be able to reuse mediatek,mt8196-dramc.yaml if the
-hardware is similar.
+How would a struct look like ? I'm not sure what is being proposed.
 
-Cheers,
-Angelo
+-- 
+Regards,
 
-> Best regards,
-> Crystal
-> 
->>
->>> @@ -0,0 +1,44 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +# Copyright (c) 2025 MediaTek Inc.
->>> +%YAML 1.2
->>> +---
->>> +$id:
->>> https://urldefense.com/v3/__http://devicetree.org/schemas/memory-controllers/mediatek,dramc.yaml*__;Iw!!CTRNKA9wMg0ARbw!gH5hMTJ34ZcYfNMfLUNL-dH9SMyQGr06kJ4jij1anezByF7IBOSbkYNdqysgHoz-rSRNwM9r6RaaTC1MO2882ojif26oaBzg$
->>> +$schema:
->>> https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!gH5hMTJ34ZcYfNMfLUNL-dH9SMyQGr06kJ4jij1anezByF7IBOSbkYNdqysgHoz-rSRNwM9r6RaaTC1MO2882ojifw8f6sUH$
->>> +
->>> +title: MediaTek DRAM Controller (DRAMC)
->>> +
->>> +maintainers:
->>> +  - Crystal Guo <crystal.guo@mediatek.com>
->>> +
->>> +description:
->>> +  A MediaTek DRAM controller interface to provide the current data
->>> rate of DRAM.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - enum:
->>> +          - mediatek,mt8196-dramc
->>
->> P.S.: bindings maintainers: this driver is expected to get more
->> compatibles soon.
->>
->> Cheers,
->> Angelo
->>
->>
->>> +
->>> +  reg:
->>> +    items:
->>> +      - description: anaphy registers
->>> +      - description: ddrphy registers
->>> +
->>> +additionalProperties: false
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +
->>> +examples:
->>> +  - |
->>> +    soc {
->>> +        #address-cells = <2>;
->>> +        #size-cells = <2>;
->>> +
->>> +        memory-controller@10236000 {
->>> +            compatible = "mediatek,mt8196-dramc";
->>> +            reg = <0 0x10236000 0 0x2000>,
->>> +                  <0 0x10238000 0 0x2000>;
->>> +        };
->>> +    };
->>
->>
+Laurent Pinchart
 
