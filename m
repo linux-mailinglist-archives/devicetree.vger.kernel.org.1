@@ -1,154 +1,166 @@
-Return-Path: <devicetree+bounces-162576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162572-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDAF3A78D06
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 13:24:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F6BEA78CDC
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 13:08:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1BC06189273C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 11:24:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 959023ACF33
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 11:08:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DD2123814C;
-	Wed,  2 Apr 2025 11:24:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13A6C23716F;
+	Wed,  2 Apr 2025 11:08:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="JcmpEGmG"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="agl/j0a1";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="sRbaoxXk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
+Received: from fout-a6-smtp.messagingengine.com (fout-a6-smtp.messagingengine.com [103.168.172.149])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BED12376F2;
-	Wed,  2 Apr 2025 11:24:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=90.155.92.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C093235C04;
+	Wed,  2 Apr 2025 11:08:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743593065; cv=none; b=TuPYpJxIZsOs+U+wTT7SSoTYmHAa/kWj3Sld+44JaO1KTnotM31u8ZyzNYENRVV8buRSmzllA0ya3Ulg+uHF1PL2UT3wUK9ks/jBzfq3rnR5d3DcNZ2tq912tHZSHlO+UX77CPhhTv0a1ccELz2eALezyNc4CtVkahifF5SLaHM=
+	t=1743592101; cv=none; b=mncpQfGBEVySuRHlzKHYa+wus4u1BEnNzWp1zxFxmul9hKmpTEt28mqRoqriMnzeJh7gXntjvKK2t+A+Eu1va9knn4B5r+hfpSWmkEOU0I4RR8Tqeo57udAfvY6nXMnl9kl6dYqNMtKt/LBBUnPa6w18hZF/2coCwDqh4yDnwNg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743593065; c=relaxed/simple;
-	bh=WSByO3ny/cr8sBI7EAUdzcVer0QodMHBvGSJaZ0OCMk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=cQRq4r+yVJFvJu+uAX6jlUHEYtsNcgSDPtRc6eA1AIP3QnMCLdr+F9OCjc5aEYMHCcfHZqnIGowG5k6C7zhGAAEkgQC7Qem1LokHzDTEaiwRwTlxIaX6REt2ZwfQY3W8z7WmYZW0z00pvwSj7C5p3Obtbi5NY8gnu2rNt5M1YEU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=desiato.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=JcmpEGmG; arc=none smtp.client-ip=90.155.92.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=desiato.srs.infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description;
-	bh=kxrjLG1EvxP2WljkVi3c+txcSSC1Kui2MooC89w1RMI=; b=JcmpEGmGhheVjVIaBCuFCpTKTa
-	G9Qc2MJXOnHZGDjcq2pqxf80FxTq1vckDKdhbXWk3UK+erTMP8GsqO+D2/4vEm9L/O/EoIoOQ2I04
-	0J+aQtRVwWUXlru7FI36sGgjIWhckBvE/ajnIfQ13EfVxWncVlmx4ShGSfTXI7t6+QK8RU1PEiygb
-	Eqz4OiAQqk7U/nRRmleygw5yM6f344Z9Axy5vD52o24lubce9r0oCWym49F+NXD+ucideRFDj6AlT
-	QJyC0Kxo4pMpU/tP93fK/16NLmbxxMF4qHLwnlhelw1CcQyoc/hcsurxAMsE2YPthOs8rtN/RUQFH
-	23SPrOhQ==;
-Received: from [2001:8b0:10b:1::ebe] (helo=i7.infradead.org)
-	by desiato.infradead.org with esmtpsa (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1tzwCb-000000070eN-2dkH;
-	Wed, 02 Apr 2025 11:24:13 +0000
-Received: from dwoodhou by i7.infradead.org with local (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1tzwCa-00000008sIT-23wY;
-	Wed, 02 Apr 2025 12:24:12 +0100
-From: David Woodhouse <dwmw2@infradead.org>
-To: virtio-comment@lists.linux.dev
-Cc: mst@redhat.com,
-	hch@infradead.org,
-	Claire Chang <tientzu@chromium.org>,
-	linux-devicetree <devicetree@vger.kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	=?UTF-8?q?J=C3=B6rg=20Roedel?= <joro@8bytes.org>,
-	iommu@lists.linux-foundation.org,
-	linux-kernel@vger.kernel.org,
-	graf@amazon.de
-Subject: [RFC PATCH 3/3] transport-pci: Add SWIOTLB bounce buffer capability
-Date: Wed,  2 Apr 2025 12:04:47 +0100
-Message-ID: <20250402112410.2086892-4-dwmw2@infradead.org>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250402112410.2086892-1-dwmw2@infradead.org>
-References: <20250402112410.2086892-1-dwmw2@infradead.org>
+	s=arc-20240116; t=1743592101; c=relaxed/simple;
+	bh=HKfqbVXkrqYoDADqnzSr4ZoCUQ7AeIQ08aqyNWM3eE0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Mwado4g5824H/QV/D5poYIhWtRge70yxHiRBEpgwLleKSWeh44M9L6LdFlu6Z5Cnd3iG2ByLpwKpXrhQy+HF131KcqmxhVTp27PD2qTzdZE4KhHT0UbKdVNK08fwwyNGLO/DAzA84rbOuC523sbaZpWJgxlVXrgt32aHS5ztaus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=agl/j0a1; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=sRbaoxXk; arc=none smtp.client-ip=103.168.172.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-03.internal (phl-compute-03.phl.internal [10.202.2.43])
+	by mailfout.phl.internal (Postfix) with ESMTP id 91CDE13801AB;
+	Wed,  2 Apr 2025 07:08:17 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-03.internal (MEProxy); Wed, 02 Apr 2025 07:08:17 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1743592097;
+	 x=1743678497; bh=Ouf7WtrjWGpMzdCGZJ9lrBNMXEzOzFrgjJ9gLCYWvEA=; b=
+	agl/j0a1PX/lCSGQVcAtkE3CU2HpBZCM0iKwNQWyF+1L7Gd0I/wp963Ph9Sj8TSm
+	LOdupGTBcitQMqlISNSiaQo2bhfTKnmehABE9Rr2HbHpA3qBTTDJ4N34P5Qwk0Gs
+	cZG+RGJDLOkhzX5xmEfMKEshehFd2QEePnPcrDo27fOvoxSH5XHOm6fpwxa0YDGd
+	c44q/HaAxlJ2LoJQE2ntxbKRtiwqsp0F5mSrTF4JtT3U048xHjk4Zx+VxsKGzVZ9
+	idxucO4m3AbKbD90/r15LCXvhQ4yvKapkrzGsrmixXbuf7inFnmHm7+YB0sfo53E
+	w8igjSW8FrA+VJMp0Ro2vA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1743592097; x=
+	1743678497; bh=Ouf7WtrjWGpMzdCGZJ9lrBNMXEzOzFrgjJ9gLCYWvEA=; b=s
+	RbaoxXkJVSDQs6/nIMJ4doPhufK9idHyP93bYu561GHnEnC5rFD22zkIuR+d5Dw2
+	BWd81piggUR8cj4XcVEGSGaMr5jTURn5eH01W0PRCL8EaLpJwWezsw4kYQQgdeky
+	tRBCGeOEmz4DLWP8A9epFN1G+6m6Gi4OlrtBf40Q0f3VeFXgIstCcCjBAQl7S+bo
+	1Q12SboN7wCMdCfIZcM5h4C8gEtEwAThpjH6qhiKMspb8QlZ1QovERL9qX4+QVtD
+	Vz+Ud2IoKopHRvfv5JDIN3h3ohnIQwcyiNwBF6VR262VZk6z2ooYkJK11XjG+kWD
+	O7ufIWl3q73+DqCDw2RPg==
+X-ME-Sender: <xms:oRrtZ-BGAIhNRql5CY9yJ2CESQpZrL1MHWTfTlD7RH7EaH_KkgC3WA>
+    <xme:oRrtZ4iJQQYWqN1nv7CsJ5MIE5b0MhoMMlWqx2MlRz3L1D0WSFE63J4pjxdD7Hwro
+    ua2hneR6IKkWtTdcdU>
+X-ME-Received: <xmr:oRrtZxkXODxgY1UHTHGNNREJ0wFiLY0IlOUfnmrMg44qYDGdbZEEWoolf0X41BGGtRsml_fvesnBalkl2jdr1KkpZ6xr_Vc8hg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddukeehheduucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
+    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
+    gvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggugfgjsehtkeertddt
+    tdejnecuhfhrohhmpefpihhklhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrsh
+    houggvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffr
+    rghtthgvrhhnpeffkefgudekgefhhfejtedviedtgeetieekffeiudfhgeevteejvedtff
+    dvkefftdenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihii
+    vgeptdenucfrrghrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhsohguvghrlhhunh
+    guodhrvghnvghsrghssehrrghgnhgrthgvtghhrdhsvgdpnhgspghrtghpthhtohepudeg
+    pdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehkrhiikheskhgvrhhnvghlrdhorh
+    hgpdhrtghpthhtohepuggrvhgvrdhsthgvvhgvnhhsohhnsehrrghsphgsvghrrhihphhi
+    rdgtohhmpdhrtghpthhtohepmhgthhgvhhgrsgeskhgvrhhnvghlrdhorhhgpdhrtghpth
+    htoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehk
+    vghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorh
+    hgpdhrtghpthhtohepshhhrgifnhhguhhosehkvghrnhgvlhdrohhrghdprhgtphhtthho
+    pehsrdhhrghuvghrsehpvghnghhuthhrohhnihigrdguvgdprhgtphhtthhopehkvghrnh
+    gvlhesphgvnhhguhhtrhhonhhigidruggv
+X-ME-Proxy: <xmx:oRrtZ8y3kUaXm0J2e1u7JVHomKOZgwGjGct5edbOSJSHR7_XdZrTew>
+    <xmx:oRrtZzROgItPEYMjOBd7KEdvasLCTFz7FBx-bRgkxswhNjGobMg8sw>
+    <xmx:oRrtZ3agulw1u2vS2FGukfvGEQi7tYjhgWfUf5b018PzmgbMX9Ef4g>
+    <xmx:oRrtZ8TnBdsQ7G9fqyv-f0f7Pf7l3tMQR5syr3XM5z-LwfHjTNM3fw>
+    <xmx:oRrtZ4hP1ZBn4lJen8jpkS_B64EscbPQshQnu1XLeWcSgYJw7QvQ-O0Z>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 2 Apr 2025 07:08:16 -0400 (EDT)
+Date: Wed, 2 Apr 2025 13:08:15 +0200
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: media: i2c: imx219: Remove redundant
+ description of data-lanes
+Message-ID: <20250402110815.GM1240431@ragnatech.se>
+References: <20250401145759.3253736-1-niklas.soderlund+renesas@ragnatech.se>
+ <20250402-real-enthusiastic-ostrich-dcc243@krzk-bin>
+ <20250402095749.GJ1240431@ragnatech.se>
+ <32d36aba-9d7c-45f7-ab04-cb28ef31d159@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Sender: David Woodhouse <dwmw2@infradead.org>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by desiato.infradead.org. See http://www.infradead.org/rpr.html
+In-Reply-To: <32d36aba-9d7c-45f7-ab04-cb28ef31d159@kernel.org>
 
-From: David Woodhouse <dwmw@amazon.co.uk>
+On 2025-04-02 12:29:17 +0200, Krzysztof Kozlowski wrote:
+> On 02/04/2025 11:57, Niklas Söderlund wrote:
+> >>
+> >>> Support four-lane operation") the driver errored out if not 2 lanes
+> >>> where used, and after it if not 2 or 4 lanes where used.
+> >>
+> >> Then... fix the driver?
+> >>
+> >> This property describes hardware, not driver. Why current driver
+> >> implementation, e.g. 1 year ago or now, would change the hardware (so
+> >> the bindings)?
+> > 
+> > I agree, I thought that here we have a case where the bindings predate 
+> > the standardisation. The driver do not match the bindings, in fact it 
+> > breaks if the imx219 specific instructions are followed. So the risk of 
+> > breaking stuff is likely low. And this was an opportunity to align the 
+> > imx219 with video-interfaces.yaml.
+> 
+> I am sorry, but what breaks exactly?
+> 
+> Is the device supporting two and four lanes setups? If yes, then the
+> binding is correct.
 
-Add a VIRTIO_PCI_CAP_SWIOTLB capability which advertises a SWIOTLB bounce
-buffer similar to the existing `restricted-dma-pool` device-tree feature.
+I understand that is the most correct reading, this should likely have 
+been posted as an RFC.
 
-The difference is that this is per-device; each device needs to have its
-own. Perhaps we should add a UUID to the capability, and have a way for
-a device to not *provide* its own buffer, but just to reference the UUID
-of a buffer elsewhere?
+The commit message states this was an attempt to see if it was possible 
+to align the imx219 binding with the standard binding. The rational 
+being that the imx219 bindings where created before we had common 
+bindings for this and that the driver never worked with the imx219 
+version of the standard bindings so likely there would be no users of 
+it. Kind of like how similar bindings where rejected for IMX708 [1].
 
-Signed-off-by: David Woodhouse <dwmw@amazon.co.uk>
----
- transport-pci.tex | 33 +++++++++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+I will drop this patch, it was only a drive-by thing as I had to spend 
+time fighting this when trying to use the device.
 
-diff --git a/transport-pci.tex b/transport-pci.tex
-index a5c6719..23e0d57 100644
---- a/transport-pci.tex
-+++ b/transport-pci.tex
-@@ -129,6 +129,7 @@ \subsection{Virtio Structure PCI Capabilities}\label{sec:Virtio Transport Option
- \item ISR Status
- \item Device-specific configuration (optional)
- \item PCI configuration access
-+\item SWIOTLB bounce buffer
- \end{itemize}
- 
- Each structure can be mapped by a Base Address register (BAR) belonging to
-@@ -188,6 +189,8 @@ \subsection{Virtio Structure PCI Capabilities}\label{sec:Virtio Transport Option
- #define VIRTIO_PCI_CAP_SHARED_MEMORY_CFG 8
- /* Vendor-specific data */
- #define VIRTIO_PCI_CAP_VENDOR_CFG        9
-+/* Software IOTLB bounce buffer */
-+#define VIRTIO_PCI_CAP_SWIOTLB           10
- \end{lstlisting}
- 
-         Any other value is reserved for future use.
-@@ -744,6 +747,36 @@ \subsubsection{Vendor data capability}\label{sec:Virtio
- The driver MUST qualify the \field{vendor_id} before
- interpreting or writing into the Vendor data capability.
- 
-+\subsubsection{Software IOTLB bounce buffer capability}\label{sec:Virtio
-+Transport Options / Virtio Over PCI Bus / PCI Device Layout /
-+Software IOTLB bounce buffer capability}
-+
-+The optional Software IOTLB bounce buffer capability allows the
-+device to provide a memory region which can be used by the driver
-+driver for bounce buffering. This allows a device on the PCI
-+transport to operate without DMA access to system memory addresses.
-+
-+The Software IOTLB region is referenced by the
-+VIRTIO_PCI_CAP_SWIOTLB capability. Bus addresses within the referenced
-+range are not subject to the requirements of the VIRTIO_F_ORDER_PLATFORM
-+capability, if negotiated.
-+
-+\devicenormative{\paragraph}{Software IOTLB bounce buffer capability}{Virtio
-+Transport Options / Virtio Over PCI Bus / PCI Device Layout /
-+Software IOTLB bounce buffer capability}
-+
-+Devices which present the Software IOTLB bounce buffer capability
-+SHOULD also offer the VIRTIO_F_SWIOTLB feature.
-+
-+\drivernormative{\paragraph}{Software IOTLB bounce buffer capability}{Virtio
-+Transport Options / Virtio Over PCI Bus / PCI Device Layout /
-+Software IOTLB bounce buffer capability}
-+
-+The driver SHOULD use the offered buffer in preference to passing system
-+memory addresses to the device. If the driver accepts the VIRTIO_F_SWIOTLB
-+feature, then the driver MUST use the offered buffer and never pass system
-+memory addresses to the device.
-+
- \subsubsection{PCI configuration access capability}\label{sec:Virtio Transport Options / Virtio Over PCI Bus / PCI Device Layout / PCI configuration access capability}
- 
- The VIRTIO_PCI_CAP_PCI_CFG capability
+1.  https://lore.kernel.org/linux-media/949e3330-8c3d-6106-fbf8-cab820801cfc@kernel.org/
+
 -- 
-2.49.0
-
+Kind Regards,
+Niklas Söderlund
 
