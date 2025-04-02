@@ -1,217 +1,247 @@
-Return-Path: <devicetree+bounces-162439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D33CA78740
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 06:25:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8D6BA787CA
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 08:02:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B47383B0B5E
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 04:23:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B45016EF8A
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 06:02:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBEF8230268;
-	Wed,  2 Apr 2025 04:23:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB12D230BF7;
+	Wed,  2 Apr 2025 06:02:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Ec/oz4MP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sBLc54bM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBC8D78F44
-	for <devicetree@vger.kernel.org>; Wed,  2 Apr 2025 04:23:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D64692B9A8
+	for <devicetree@vger.kernel.org>; Wed,  2 Apr 2025 06:02:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743567822; cv=none; b=EzSuWl9e5Or2Poz9qKAcmy2O9qUAePOFjjIpqiJ9YpgrtXSGwI/s0tC7LSL2mAqcRBulfok+rlvsy2ITVI1Xrqzz+EknNbqjMSxyX5/TLe/SZ4wiAZlfN2tRAZAH0nHnEg2jvyuh32WcHdlFdRixSanP8asZkAmlkBB6Hcb6L3Y=
+	t=1743573748; cv=none; b=TAo2NS2/IbLg+3jQyodC3/nGrK6sIAeHdlL9PqUJp6cDGSHU/hJWdQSRfUe+pMvodtcdeLU1C7gB4KGWKhYcvmSJ06AN0Z4waypjLrI6HBB7VYKK8dmEXyU6HkO6+0W4CKDE7HkEV2U+kjVLLw9gz8R9nqjTFXGuGazgIvCjnFo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743567822; c=relaxed/simple;
-	bh=26XpbAd3cyx5c9FQj67eOKKt8ijUpzhvKNtGtKvOx90=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:In-Reply-To:
-	 Content-Type:References; b=trf3IMY77pEKWooZaqylKE4GXhqPmNC2oEovWGcd13YkhGilZOXcqk3hsy2BYbWs3TU0o+eg6p2R188NoSsR2zCRUQirWi8RFgOBORfTI6NZEbn/DSF84cIU0JXkjO42GaMoSCuXothL5wqgB7oFBQbmN5ZrEKYYqTZSrifIq6M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Ec/oz4MP; arc=none smtp.client-ip=203.254.224.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250402042337epoutp01da501fd996a68bfc3374cc24a14ed275~yZbFIr3060258102581epoutp01Z
-	for <devicetree@vger.kernel.org>; Wed,  2 Apr 2025 04:23:37 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250402042337epoutp01da501fd996a68bfc3374cc24a14ed275~yZbFIr3060258102581epoutp01Z
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1743567817;
-	bh=MGQ991KMDMnW4m1Wiq57I0ckShIgb5l6KvutgoePhH8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Ec/oz4MPGwzGI1b5GMcFUblyqZglebjub80TyQHnYkJ1dAdtVVPVLG9g9wPML/iXJ
-	 IhhBb+9IHaJ5F/CUlK4+ETmd7wfWjhlf7s8xX88wYtxtE5MLGIMgo5pBffV5znfKGu
-	 JtM3mM7b1L6be7WES/BldsMuhLT1WHiT3QN8d7BA=
-Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
-	epcas2p3.samsung.com (KnoxPortal) with ESMTPS id
-	20250402042337epcas2p39d1302266a3f0c77253492ba20f53f19~yZbEe3Aht0906209062epcas2p3v;
-	Wed,  2 Apr 2025 04:23:37 +0000 (GMT)
-Received: from epsmges2p1.samsung.com (unknown [182.195.36.92]) by
-	epsnrtp04.localdomain (Postfix) with ESMTP id 4ZSBZJ34mWz6B9m9; Wed,  2 Apr
-	2025 04:23:36 +0000 (GMT)
-Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
-	epsmges2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-	69.A2.09787.8CBBCE76; Wed,  2 Apr 2025 13:23:36 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
-	20250402042335epcas2p4e2b5b118d546392237b555efabadfe2d~yZbDV097I0061800618epcas2p43;
-	Wed,  2 Apr 2025 04:23:35 +0000 (GMT)
-Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20250402042335epsmtrp1e6792f04c64557101454cb523d6068f0~yZbDQN7Xp1111511115epsmtrp1x;
-	Wed,  2 Apr 2025 04:23:35 +0000 (GMT)
-X-AuditID: b6c32a45-9d3ff7000000263b-6d-67ecbbc87a34
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	2A.21.08805.7CBBCE76; Wed,  2 Apr 2025 13:23:35 +0900 (KST)
-Received: from perf (unknown [10.229.95.91]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250402042335epsmtip1324317eb619d9d81a9481f673e9dc402~yZbDC1NJB2002020020epsmtip1j;
-	Wed,  2 Apr 2025 04:23:35 +0000 (GMT)
-Date: Wed, 2 Apr 2025 13:27:53 +0900
-From: Youngmin Nam <youngmin.nam@samsung.com>
-To: William McVicker <willmcvicker@google.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Catalin Marinas
-	<catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Peter Griffin
-	<peter.griffin@linaro.org>, =?iso-8859-1?Q?Andr=E9?= Draszik
-	<andre.draszik@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, Rob
-	Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
-	Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, Daniel
-	Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>,
-	Saravana Kannan <saravanak@google.com>, kernel-team@android.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, Donghoon Yu
-	<hoony.yu@samsung.com>, Youngmin Nam <youngmin.nam@samsung.com>
-Subject: Re: [PATCH v1 5/6] clocksource/drivers/exynos_mct: Add module
- support
-Message-ID: <Z+y8yf6zqW1R71Ai@perf>
+	s=arc-20240116; t=1743573748; c=relaxed/simple;
+	bh=wFoBMSzK4NpZw+UmRIp53Lw67dBhRYws9fCWeqmmtIY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dme6xzaRhJQqoLJ7tFfrrWTX3S8hvrcZatUk49QNFrAR/E9v94wi8DnP1YUeSnfuqZVBC2SQNoMjVN8GFo2M5dWwrC29nVH0ALd+xM9h8H9IAqePJs5bIK1EvMDCuXAr5K8NEywTPNFimuxlRN8ChnMkdxpQq/J1VSlT1jrNvW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sBLc54bM; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2241053582dso108841355ad.1
+        for <devicetree@vger.kernel.org>; Tue, 01 Apr 2025 23:02:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1743573745; x=1744178545; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=XSPVI8TUn/isK4noC55TC4qkMMEfDFkjVI/2eFz1WUo=;
+        b=sBLc54bMO1oGmgtvH7gIGW0iJyMIrVBQsEWT53r90OBmFKbCj6ld5CIi04+5nJX9pg
+         eQsSYMkvw2Wz99gjJPZNZUrdbQaSgr6fmZr1JqNTWuIgWd+Y8UEM4Yu99XRU/vTcOY1o
+         wwHAqDWVJ06jq+lx0SRyaXNkxVD4LbukuKmNSzuZGmhLyNyj/bCm/09TZsO/keitgplf
+         UoMkrmjvaTPRlX42EG8rziPoAsgJfTvczMkvA3GksHc1IhhSa81vN/8sRk3ms23wxZRt
+         /+R077ehCzp9Q7aW8yE/o2OfYgm6LkbnY9d6e6YLvKJtrwxqKAmZfdMfMldm/BUdGI9n
+         X8kg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743573745; x=1744178545;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XSPVI8TUn/isK4noC55TC4qkMMEfDFkjVI/2eFz1WUo=;
+        b=w2znd+8m4PsLLx5iO45G6bljJrpPMfQp8TEXjMYEci7V637fvvUnC7rhMC6uku8CNY
+         Bz5J1wq/SHwLhHBHgvbYDIYCd2tt6wA2IC3p9O62VcOQUxPrZwsiy4tLWcdV6T3eOVLd
+         DpVdFxvwrTcoSlC0X18qGL7fWW+piMFQjbpD14HDGsYEetB2cUBaE7qma0qi1cl00Rbw
+         QOmXNqBxI1FRFfXgzgrtzKi0ZogSsBtMO1EZnJCUv+Cz+qxnd5en+dHMyVrG8WtrZR5w
+         xLqzHR4wIUp5M5+z8rdxfLk3WR3bd2yj4wnSND5KAehxiuxnHeZUbsxYpNqEzYfAkz7w
+         3EqA==
+X-Forwarded-Encrypted: i=1; AJvYcCWyh/tFoICJKwXK4cKPEhGUrIYwJyNQ+xzDZkJBCS7I1e7WpkQMiKptz1irZttZbAgf2rLFcLgAl6J9@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywj/Bt6EiovIS9mC64T5zn5nEpMdUEp2U7EocEFAQlOpLWAB9m4
+	Fdm6vOfNU2d9z1rtDy7S5YRSk/Bl910MBuzrVeOzE256nAKYCJN/BJ9K5TaFeQ==
+X-Gm-Gg: ASbGncv7dL2zMK+Ylryn0rmKv6NI3hN9463oqqvIDz/eRUrgLXCpyNc4jpt2RTD8Zhn
+	ijJE/slt2oiWVtHMNkuY0oIDS3RJdXg974XJIts7elTAIvdqvsXN3O9T/gBvBEK2HSw0EW3Ce1Q
+	fJyMV3P+VkgEcD6MVDPDB00iebx6gxESN/O6JXnSiosZNy0QuIiPtPIVT/kKJkpKlOW0UeN7TuY
+	Nx5g1t0HPcPKWWCz11E90d7kGZ9L7Wvsecb+uStwqy9vRzBLLJxlNKch3bPcooELbtPtgitp+mb
+	PXLey/k58+L4Iurq4ABX/u/cfq16thX1Hpz1LJQLftkhq5PPEd8fvNAT
+X-Google-Smtp-Source: AGHT+IH0V718KRlf/K5+UQm5rQKFssSsYgy9kQmxhhjMozcy/p40GYl5cS1u4E7j5U8om1rF1JIOqw==
+X-Received: by 2002:a05:6a00:148a:b0:736:5c8e:baaa with SMTP id d2e1a72fcca58-7398033ad19mr19011284b3a.2.1743573745001;
+        Tue, 01 Apr 2025 23:02:25 -0700 (PDT)
+Received: from thinkpad ([120.56.205.103])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7397106c7b7sm10030584b3a.116.2025.04.01.23.02.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Apr 2025 23:02:24 -0700 (PDT)
+Date: Wed, 2 Apr 2025 11:32:16 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Jingoo Han <jingoohan1@gmail.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, quic_mrana@quicinc.com, 
+	quic_vbadigan@quicinc.com
+Subject: Re: [PATCH v8 4/4] PCI: dwc: Add support for configuring lane
+ equalization presets
+Message-ID: <utswwqjgfy3iybt54ilyqnfss77vzit7kegctjp3tef636hc3p@724xe3dzlpip>
+References: <20250316-preset_v6-v8-0-0703a78cb355@oss.qualcomm.com>
+ <20250316-preset_v6-v8-4-0703a78cb355@oss.qualcomm.com>
+ <3sbflmznjfqpcja52v6bso74vhouv7ncuikrba5zlb74tqqb5u@ovndmib3kgqf>
+ <92c4854d-033e-c7b5-ca92-cf44a1a8c0cc@oss.qualcomm.com>
+ <mslh75np4tytzzk3dvwj5a3ulqmwn73zkj5cq4qmld5adkkldj@ad3bt3drffbn>
+ <5fece4ac-2899-4e7d-8205-3b1ebba4b56b@oss.qualcomm.com>
+ <abgqh3suczj2fckmt4m2bkqazfgwsfj43762ddzrpznr4xvftg@n5dkemffktyv>
+ <622788fa-a067-49ac-b5b1-e4ec339e026f@oss.qualcomm.com>
+ <4rep2gvymazkk7pgve36cw7moppozaju7h6aqc3gflxrvkskig@62ykri6v4trs>
+ <ed8a59ce-0527-4514-91f8-c27972d799d4@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <Z-wT3ciq7nL5wa1X@google.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA02TbUxTVxjHc9rb21tizR0vcmDosCxmNBRbpO3BgTGBbY3OhYVMkTBZAzct
-	A9qut52AZusyRCADlLdAB4iBMcbYIAVrpQIOCRY/tMkILCFmokMmiKCtsgla13Lr4rff85zn
-	f563cwh28DweSeRrDJReoywU4EGY9XqsTOSwr6jEzwZC0Hy7FUdDy4MYWuv+DqC+EScLtXt2
-	ogsTTg668csDDrJdDkVL5j9x5HINcJHlr1kOmh5uxVGza5SFBpq9GHp51cZFVeMvcDRoaWQj
-	99wJVHZLinrdLwHqvObmHgxTWO1WjqKvvQ8oOixGhaW3Elfcmr2KK1adTq5isOtrRc1QL1B4
-	LLvSeVkFyWpKmUfpoylNrjYvX6NKERzOyEnNkcrEEpEkCckF0RplEZUiSPswXfR+fqGvNUH0
-	l8pCo8+VrqRpwd4DyXqt0UBFq7W0IUVA6fIKdXJdPK0soo0aVbyGMuyXiMUJUl/gZwXqtc5G
-	oLu9o7j1Wj/HBBzBVYBHQDIRli03YVUgiAgmbQCunO0OGG4AK5rKuYyxDuDdvhn2K0mfZxMw
-	ByMAumqqOYxxx6cfK+P4ozDybTjxZJjlZ5wUQavD61MQRCgZD5+fKfbHs8laHC40PNmKCSHT
-	YbOte0vLJ2PgU3s9zvAbcKplAfMzjxTC32eaMKaKRwT8xqliOA0+3/yexXAIXL4xxGU4Ei7V
-	lgeYhqbbc2x/YkiWAXjzj/uBdvZB8+JZ4Gc2qYamRQ/mLxT6ipiYwxj3dlhx/QWXcfNhRXlg
-	dnvgRsMAYDgK2jt7AjcqYN35K4EBtbBg0+Nq/BzYZX6tHfNr2RiOgx12N272pWCTb8IfvQSD
-	sbB/eG8H4PSCHZSOLlJRdIJO8v+Gc7VFFrD11IXv2UD9w0fx44BFgHEACbYglJ/5dEkVzM9T
-	lpRSem2O3lhI0eNA6tvNeXZkWK7W91c0hhxJYpI4USaTyBOkYrkgnD/++J4qmFQpDVQBReko
-	/Ssdi+BFmlhR7jNms350cuTExqjjSM5uc9Q+qfF+I/J8axeJpD02cQTmTUp1fN7Vi5f+XcoN
-	NwStXpo6ut2ZoGat7L/zw8VtqdrjYi7+jnw1u1IUmy1aP6de2FYnLfn035Nd6w8uR4Q7sr4a
-	Q/Lshzw6psBrNA14uvlg8m6m7CfxPavqV2g+6T2SHTfT8oXn4rub9qwDM8d68g6nXjrafCys
-	vvG3qo9XMkv2eK6c2uifpOoyqmPGavob7JTQrajNcEXFqU+fmsufFpaEhS9KP/ngYLHt9D8p
-	aUu8CzZyZSnoOO+mqy2i0r3bJGv76NyUOZSanV7bPNQqDEqeTiuaf/az5a2d0jYBRquVEiFb
-	Tyv/A8XYDmdzBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Re0hTYRjG+85tZ8bouC36dKkwo4t5yUr66GJFRIfCsBuIVDr1MEuna8eV
-	FpHEChKzxBSnyxS70DCKzdbyVs11sXCDTOliWsusqWi4FCqduUbUfy/P7/k9/7w0Lr5GBNOH
-	cvI4TY4iW04FEJZ2eWjU0+YR5YqKnij0ocZCocYhM4HGrhcD1NDqwFCNJwRdsTtI9PTWMIms
-	96TIXdVHIafzjgCZPvWQqKvJQKFKZxuG7lR6CTTTYhWgIts0hcymchyNvz2IdL1xyDg+A1D9
-	w3HBpvmspdlCsg01DYCtNWlZk/Ecxfb2tFDsqMMhYM1XT7EljUbAekyhicLkgPUZXPaho5wm
-	Jj41IPP5wCVMfUWaf7aphiwEdUwRENKQWQ0bPL9AEQigxUwzgK5uHeYHC+G7m12k/5bAfp2d
-	9Jf6ARxpP437AMEsgvbvTX8EiomClmfe2SWaljLRcOpMvq+PM9UUNI/ZKV8uYXbCIV2ery5i
-	wuFEcxnl39RjcHiwg/SDQNihHyB8N85EwNdeN+ZzcUYGb3hpXyycjV92VxAXAVP1n1H1n1H1
-	z6gFuBEEcWpepVTxseqVOdyxaF6h4rU5yuj0XJUJ/PlkRIQVtBi/RdsARgMbgDQul4qSJtxK
-	sShDUXCc0+SmaLTZHG8DMpqQLxBNDp/PEDNKRR6XxXFqTvOXYrQwuBDTprs1dn2+tlS2u1rt
-	+vmld+v0rpS+koRd5YVn1nRcYOq2z0kqOD1PtyPEaZ3QpZFHlgbrhyQyV3j8Zmt8ZNju7h6+
-	f39qwl1v0rRkRNi2duD25DOBp/hm8hY6xkBts86dLGAa2zqSpfumD1w24BWjO0Mqnu9vWfeK
-	rNcc08suSGotA4s+nj38acPJb2bCvfCofup+2Ne6zrzWDbnFt12hMOGzkAdSm3O0Kzzu/cgQ
-	KO+cf3nGjK9alua4VdQedKLXpvs4VrlXDDf+MHyJSX+w5MncpVmxB+YZX6j7H0Ym3i9xKR9L
-	fu1xJQzawgJfnNoaqIrjX5Z6losWl8U8epMmJ/hMRWwEruEVvwEPbCuOOAMAAA==
-X-CMS-MailID: 20250402042335epcas2p4e2b5b118d546392237b555efabadfe2d
-X-Msg-Generator: CA
-Content-Type: multipart/mixed;
-	boundary="----BWvmtLGreXPtZv31XE49129YoyRr4_KGUd.k-ILdCyGA2LCZ=_75001_"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250401162717epcas2p1882aa777398380ac5e69ee80fb5c3ae9
-References: <20250331230034.806124-1-willmcvicker@google.com>
-	<20250331230034.806124-6-willmcvicker@google.com>
-	<9f594cf1-f1c3-45fc-8d1f-a5abe6c84699@kernel.org>
-	<CGME20250401162717epcas2p1882aa777398380ac5e69ee80fb5c3ae9@epcas2p1.samsung.com>
-	<Z-wT3ciq7nL5wa1X@google.com>
-
-------BWvmtLGreXPtZv31XE49129YoyRr4_KGUd.k-ILdCyGA2LCZ=_75001_
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ed8a59ce-0527-4514-91f8-c27972d799d4@oss.qualcomm.com>
 
-On Tue, Apr 01, 2025 at 09:27:09AM -0700, William McVicker wrote:
-> On 04/01/2025, Krzysztof Kozlowski wrote:
-> > On 01/04/2025 01:00, Will McVicker wrote:
-> > > From: Donghoon Yu <hoony.yu@samsung.com>
-> > > 
-> > > On Arm64 platforms the Exynos MCT driver can be built as a module. On
-> > > boot (and even after boot) the arch_timer is used as the clocksource and
-> > > tick timer. Once the MCT driver is loaded, it can be used as the wakeup
-> > > source for the arch_timer.
-> > > 
-> > > Signed-off-by: Donghoon Yu <hoony.yu@samsung.com>
-> > > Signed-off-by: Youngmin Nam <youngmin.nam@samsung.com>
-> > > [Original commit from https://android.googlesource.com/kernel/gs/+/8a52a8288ec7d88ff78f0b37480dbb0e9c65bbfd]
-> > > Signed-off-by: Will McVicker <willmcvicker@google.com>
-> > > ---
-> > >  drivers/clocksource/Kconfig      |  3 +-
-> > >  drivers/clocksource/exynos_mct.c | 47 +++++++++++++++++++++++++++-----
-> > >  2 files changed, 42 insertions(+), 8 deletions(-)
-> > > 
-> > > diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
-> > > index 487c85259967..e5d9d8383607 100644
-> > > --- a/drivers/clocksource/Kconfig
-> > > +++ b/drivers/clocksource/Kconfig
-> > > @@ -443,7 +443,8 @@ config ATMEL_TCB_CLKSRC
-> > >  	  Support for Timer Counter Blocks on Atmel SoCs.
-> > >  
-> > >  config CLKSRC_EXYNOS_MCT
-> > > -	bool "Exynos multi core timer driver" if COMPILE_TEST
-> > > +	tristate "Exynos multi core timer driver"
-> > > +	default y if ARCH_EXYNOS
-> > >  	depends on ARM || ARM64
-> > >  	depends on ARCH_ARTPEC || ARCH_EXYNOS || COMPILE_TEST
-> > I am not sure if you actually tested it as module. On arm I cannot build
-> > it even:
+On Sat, Mar 29, 2025 at 12:42:02PM +0100, Konrad Dybcio wrote:
+> On 3/29/25 10:39 AM, Manivannan Sadhasivam wrote:
+> > On Sat, Mar 29, 2025 at 09:59:46AM +0100, Konrad Dybcio wrote:
+> >> On 3/29/25 7:30 AM, Manivannan Sadhasivam wrote:
+> >>> On Fri, Mar 28, 2025 at 10:53:19PM +0100, Konrad Dybcio wrote:
+> >>>> On 3/28/25 7:45 AM, Manivannan Sadhasivam wrote:
+> >>>>> On Fri, Mar 28, 2025 at 11:04:11AM +0530, Krishna Chaitanya Chundru wrote:
+> >>>>>>
+> >>>>>>
+> >>>>>> On 3/28/2025 10:23 AM, Manivannan Sadhasivam wrote:
+> >>>>>>> On Sun, Mar 16, 2025 at 09:39:04AM +0530, Krishna Chaitanya Chundru wrote:
+> >>>>>>>> PCIe equalization presets are predefined settings used to optimize
+> >>>>>>>> signal integrity by compensating for signal loss and distortion in
+> >>>>>>>> high-speed data transmission.
+> >>>>>>>>
+> >>>>>>>> Based upon the number of lanes and the data rate supported, write
+> >>>>>>>> the preset data read from the device tree in to the lane equalization
+> >>>>>>>> control registers.
+> >>>>>>>>
+> >>>>>>>> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> >>>>>>>> ---
+> >>>>>>>>   drivers/pci/controller/dwc/pcie-designware-host.c | 60 +++++++++++++++++++++++
+> >>>>>>>>   drivers/pci/controller/dwc/pcie-designware.h      |  3 ++
+> >>>>>>>>   include/uapi/linux/pci_regs.h                     |  3 ++
+> >>>>>>>>   3 files changed, 66 insertions(+)
+> >>>>>>>>
+> >>>>>>>> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+> >>>>>>>> index dd56cc02f4ef..7c6e6a74383b 100644
+> >>>>>>>> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> >>>>>>>> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> >>>>>>>> @@ -507,6 +507,10 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
+> >>>>>>>>   	if (pci->num_lanes < 1)
+> >>>>>>>>   		pci->num_lanes = dw_pcie_link_get_max_link_width(pci);
+> >>>>>>>> +	ret = of_pci_get_equalization_presets(dev, &pp->presets, pci->num_lanes);
+> >>>>>>>> +	if (ret)
+> >>>>>>>> +		goto err_free_msi;
+> >>>>>>>> +
+> >>>>>>>>   	/*
+> >>>>>>>>   	 * Allocate the resource for MSG TLP before programming the iATU
+> >>>>>>>>   	 * outbound window in dw_pcie_setup_rc(). Since the allocation depends
+> >>>>>>>> @@ -808,6 +812,61 @@ static int dw_pcie_iatu_setup(struct dw_pcie_rp *pp)
+> >>>>>>>>   	return 0;
+> >>>>>>>>   }
+> >>>>>>>> +static void dw_pcie_program_presets(struct dw_pcie_rp *pp, enum pci_bus_speed speed)
+> >>>>>>>> +{
+> >>>>>>>> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> >>>>>>>> +	u8 lane_eq_offset, lane_reg_size, cap_id;
+> >>>>>>>> +	u8 *presets;
+> >>>>>>>> +	u32 cap;
+> >>>>>>>> +	int i;
+> >>>>>>>> +
+> >>>>>>>> +	if (speed == PCIE_SPEED_8_0GT) {
+> >>>>>>>> +		presets = (u8 *)pp->presets.eq_presets_8gts;
+> >>>>>>>> +		lane_eq_offset =  PCI_SECPCI_LE_CTRL;
+> >>>>>>>> +		cap_id = PCI_EXT_CAP_ID_SECPCI;
+> >>>>>>>> +		/* For data rate of 8 GT/S each lane equalization control is 16bits wide*/
+> >>>>>>>> +		lane_reg_size = 0x2;
+> >>>>>>>> +	} else if (speed == PCIE_SPEED_16_0GT) {
+> >>>>>>>> +		presets = pp->presets.eq_presets_Ngts[EQ_PRESET_TYPE_16GTS - 1];
+> >>>>>>>> +		lane_eq_offset = PCI_PL_16GT_LE_CTRL;
+> >>>>>>>> +		cap_id = PCI_EXT_CAP_ID_PL_16GT;
+> >>>>>>>> +		lane_reg_size = 0x1;
+> >>>>>>>> +	} else {
+> >>>>>>>
+> >>>>>>> Can you add conditions for other data rates also? Like 32, 64 GT/s. If
+> >>>>>>> controller supports them and if the presets property is defined in DT, then you
+> >>>>>>> should apply the preset values.
+> >>>>>>>
+> >>>>>>> If the presets property is not present in DT, then below 'PCI_EQ_RESV' will
+> >>>>>>> safely return.
+> >>>>>>>
+> >>>>>> I am fine to add it, but there is no GEN5 or GEN6 controller support
+> >>>>>> added in dwc, isn't it best to add when that support is added and
+> >>>>>> tested.
+> >>>>>>
+> >>>>>
+> >>>>> What is the guarantee that this part of the code will be updated once the
+> >>>>> capable controllers start showing up? I don't think there will be any issue in
+> >>>>> writing to these registers.
+> >>>>
+> >>>> Let's not make assumptions about the spec of a cross-vendor mass-deployed IP
+> >>>>
+> >>>
+> >>> I have seen the worse... The problem is, if those controllers start to show up
+> >>> and define preset properties in DT, there will be no errors whatsoever to
+> >>> indicate that the preset values were not applied, resulting in hard to debug
+> >>> errors.
+> >>
+> >> else {
+> >> 	dev_warn(pci->dev, "Missing equalization presets programming sequence\n");
+> >> }
+> >>
 > > 
-> > ERROR: modpost: "register_current_timer_delay"
-> > [drivers/clocksource/exynos_mct.ko] undefined!
-> > ERROR: modpost: "sched_clock_register"
-> > [drivers/clocksource/exynos_mct.ko] undefined!
+> > Then we'd warn for controllers supporting GEN5 or more if they do not pass the
+> > presets property (which is optional).
 > 
-> I tested with the gs101 ARM64 configuration. You're right it won't work with
-> ARM32. Thanks for catching this! Since ARM32 architectures don't have the
-> arch_timer, I'm not sure if we can actually support Exynos MCT as a module as
-> you wouldn't have any available clocksource during boot. I'll update the
-> Kconfig for v2 to handle this and make sure it works for ARM32. I'm guessing
-> it'll work with something like:
+> Ohh, I didn't think about that - and I can only think about solutions that are
+> rather janky.. with perhaps the least janky one being changing the else case I
+> proposed above into:
 > 
-> config CLKSRC_EXYNOS_MCT
-> 	tristate "Exynos multi core timer driver" if ARM64
+> else if (speed >= PCIE_SPEED_32_0GT && eq_presets_Ngts[speed - PCIE_SPEED_16_0GT][0] != PCI_EQ_RESV) {
+
+s/PCIE_SPEED_16_0GT/PCIE_SPEED_32_0GT
+
+> 	...
+
+So this I read as: Oh, your controller supports 32 GT/s and you firmware also
+wanted to apply the custom preset offsets, but sorry we didn't do it because we
+don't know if it would work or not. So please let us know so that we can work
+with you test it and then finally we can apply the presets.
+
+> }> 
+> >>>
+> >>> I'm not forseeing any issue in this part of the code to support higher GEN
+> >>> speeds though.
+> >>
+> >> I would hope so as well, but both not programming and misprogramming are
+> >> equally hard to detect
+> >>
+> > 
+> > I don't disagree. I wanted to have it since there is no sensible way of warning
+> > users that this part of the code needs to be updated in the future.
 > 
-> 
-> Regards,
-> Will
-> 
-> [...]
+> I understand, however I'm worried that the programming sequence or register
+> may change for higher speeds in a way that would be incompatible with what
+> we assume here
 > 
 
-Thanks for working on upstreaming the MCT driver modularization.
-I'll take another look at your v2 patch
+Honestly, I don't know why you are having this opinion. This piece of code is
+not in Qcom driver and the registers are the same for 8 GT/s, 16 GT/s as per the
+PCIe spec. So the hardware programming sequence and other arguments doesn't
+apply here (atleast to me).
 
-Thanks.
-Youngmin
+- Mani
 
-------BWvmtLGreXPtZv31XE49129YoyRr4_KGUd.k-ILdCyGA2LCZ=_75001_
-Content-Type: text/plain; charset="utf-8"
-
-
-------BWvmtLGreXPtZv31XE49129YoyRr4_KGUd.k-ILdCyGA2LCZ=_75001_--
+-- 
+மணிவண்ணன் சதாசிவம்
 
