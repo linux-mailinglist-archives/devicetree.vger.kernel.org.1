@@ -1,225 +1,326 @@
-Return-Path: <devicetree+bounces-162466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2577A78849
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 08:47:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51775A7885A
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 08:49:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7822816ECA8
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 06:47:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5508C18938B8
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 06:48:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D41D623315D;
-	Wed,  2 Apr 2025 06:46:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74A0D232792;
+	Wed,  2 Apr 2025 06:48:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mM8yFs2r"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kYgfOfje"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF9D4233120;
-	Wed,  2 Apr 2025 06:46:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7309E1519A6;
+	Wed,  2 Apr 2025 06:48:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743576414; cv=none; b=s3ibM9mDNVQMHpITAe8gNirZBbFeR+jDrWid/J/I7gdxEb9OojCAb7L4mZgUiXU8YFsbjbIgwr3+9F8/XGGAtOv9MyQW5pRZ9sW5uT8gnZAq2qLsoV7RWDHRdb+J3y9xMIm6OIjMUfmO/OOwg0lvQDQA0Z3++WaTxbUzm15p3jA=
+	t=1743576511; cv=none; b=MjCLSLUSThqrc9ngbMMdHIDK90zt9jQEeQy7TFoGt69R/enBIXWAaFNoFSjiIXevN5Ijs53kCdMowvEUWXwM2AIngWTCQdahEHyqgMX342p/AdcRvkFz8nV3uvHlQFMhpFB1YJi+S9TAAHPcBdHz+QbQUuT4QOjdItDQaI0kZgI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743576414; c=relaxed/simple;
-	bh=nkRavN6buF/gDxrwD8ipXn3zBnd8c92ETh2ZfteLGR8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uAJrU92S2KCwKb/waKursCXLPd482FEiaZoEZRRq1Y6U6sCQ58a43aC7+hrnvU4dxTLd4aIABvt2TDzTC4smwGIKPfnspitE5McvRHFTYwXGGKWV8bhHfb+NrDWAcDn5m+6P/n/7lK/aXYQRA+mCAx+5+yWCBe+m7ZgOBeh+fF0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mM8yFs2r; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5493b5bc6e8so7368976e87.2;
-        Tue, 01 Apr 2025 23:46:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743576411; x=1744181211; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ayqc2RZYibXbV7INci6LOKqfBRG/lehCl0hQkPSJT3w=;
-        b=mM8yFs2rmn4ZVe88nac6UjRD/jRF/94wFRGSYoNlxAnKp8YdI89JqPucd8X2ylCA17
-         gw5TeqYgOQhZU42eOUBItFPJZc76HHmkacajuNowU8kT5L6uLSk9XxTMeV+Uycrd4XK3
-         2umQaAEEqp3UNgKOEykqEp6xhEwvzNKCXOvJWshIPFNnFgz5rVfDkMpIw6Loqoi9Ktdn
-         RFzFfcwlteHlVycGgn8Ei4iTC6iCJggt+zZB7bkTXoHoZ4VVuOZONIZErE2KenOFaOmu
-         T8H3Gc187O/j4cwDFmn1tdgtNQmoBKLiFiab8NKp31IRE9J/hm3KCPz6z7RP9tFg8Ck8
-         k/Mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743576411; x=1744181211;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ayqc2RZYibXbV7INci6LOKqfBRG/lehCl0hQkPSJT3w=;
-        b=B+90LEJXUPI3NRVgkZtMFjLNMxkwqDs15kHw+rEF1+LJEYibOwuScnKhQjPV8/M2J5
-         UzmRI5TQ8id9p6Wqj54VLWwIm3tY6G8IF0xbO28GpHEceK+x4XA6+Wm0hmFuBC0KDHMF
-         ixswtW7fEMRBpO+4PTVf2WYSYUM++nqGoErnSKnW+G1PIZV/PeA8sx4Pb/BhoxEylR6T
-         BTdGMLLjob6tgHayiAp8+isqNZbvHKGF9JqE4mac0T79MwBd30elBguiZbIfhcRLfO1V
-         8f+2sZHnAskwM1VBdQqcvmvQ/Mt2k8hSDU/bIHa/zqGE3f7Bo40wMkC1jEY6amMEMjgu
-         luPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUZp3E/Rjk/mmD/kBFyZ59Q9FRQLafFDmMjdb5asql9YndISOMJs+75JoaVwtQ6zGYbljY/yjVbI0qVSAIB@vger.kernel.org, AJvYcCUow+I+x9kGVU+PRAxxVUhys/xn+vJSP5yccTqrTu9t4w9hhI9WKlI79eG8AZB+WGu0VijHFPVTXqMG@vger.kernel.org, AJvYcCUvUsvnvTIwKFMrMvUisSxCiRwDXp6uGnhe7PfMOommwvaGaZE7rjDNFu6j4SIjR0ZrAWLjjalalF5M@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy1cvQeuICzt1HVywnpTOdYvD9ebfAFsVOSvrO20tlWNdweHWng
-	AAtCKK+PQXfUaEyBWCWaDLNGpnz3O/hCcB55LRBLdqjeBhrCruW84BoSzA==
-X-Gm-Gg: ASbGncssVBABde2ym0fm2tQ4dVi95JtuNB/EXUpB8AxcPVSErCxDtOc8X351LfigFad
-	es78NQTt3o6iLFhGL6PiOx4COzg70ACUW32XeQh9pPnph5PaZYZuI7kNnJwa+7k0wNTatP6kdel
-	IuO/D+zwA2cCdycEHyWOJ/S52WSXxZ1tw4XcIutbMF7INNabdqfxJKc0K0RWeQGg8hQu2EJjJWa
-	93VIhhVtFhQxqxdz3yXW68Abk3525VQIEDYjmpA+wt5/y0bObSPSdcb/WrUHPNxjZid77uf/+hG
-	B7vduE9d/NLXQBYtd/ONmNE9DavYjt1Ug3IV3W2ZN9Yd2emDqaQ=
-X-Google-Smtp-Source: AGHT+IFR9Ck0yqG+KnntspR+Gy2gkKn6NFQkQkePv1P78O/icStSCVvG66ZUA06QNn200dki2vpisw==
-X-Received: by 2002:a05:6512:3d89:b0:548:526c:fb99 with SMTP id 2adb3069b0e04-54b10dc8aaemr4923042e87.18.1743576410838;
-        Tue, 01 Apr 2025 23:46:50 -0700 (PDT)
-Received: from mva-rohm ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54b095a20b1sm1552549e87.246.2025.04.01.23.46.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Apr 2025 23:46:49 -0700 (PDT)
-Date: Wed, 2 Apr 2025 09:46:44 +0300
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-To: Matti Vaittinen <mazziesaccount@gmail.com>,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 5/5] iio: dac: bd79703: Support ROHM BD79702
-Message-ID: <0ba243a63115dd4af03ebf9656c65b8c259a3e34.1743576022.git.mazziesaccount@gmail.com>
-References: <cover.1743576022.git.mazziesaccount@gmail.com>
+	s=arc-20240116; t=1743576511; c=relaxed/simple;
+	bh=rJrZTLUfPSsTaF0Kiwgppk0BV/2THL2Hyq1TkbBJ6SM=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iQl8TfOHIuI9evPQy2SDsVRCEKyDkw/YxQSM2RW+lYiCof5RfLtxdHPXP+7bZZ9zHjwo3bP85UejgS+7MNt+/R4talUWnEC5bYSKmmSX2L7e6T92vyue8SeoqwulK4EO6EBeiY0dOs7DqgpV3jeIWfcFI7HnjEJ8nwTN4Sya/i4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kYgfOfje; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5321sJfs001410;
+	Wed, 2 Apr 2025 06:48:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=1j19lerr3n1G3skQOlESOS3N
+	natj1gPn+jkxsjfvJ5s=; b=kYgfOfje9zIAjtSDb/ol97biVyGEKEM/u2vM/DbV
+	BbVrSHpjXOA8T8OV4MCpS0xJUQ5bkYPMUeQDS1QXvV5oPjUKRKMjFRVlRtoytaw3
+	2qvXADiNcY1yXfHUTHInUJvRFKscUNX2mKm/Z9r65mBODbk1Vf1qh+AVAAIwDU0L
+	Tq9WJ9Q7AgOlrTP6iMHxRrmXYqlGOXETxaczQK2+JtRhOdyNaT9HZHSpKGrJax2P
+	I68lu2YwyZgwXngRFSTj5zK7ZPOfoRlCOybAprgNjLnhxBR1OwFyrhn7ey38omSg
+	A6Rozcow9wrp+bJowZhrVcWapH4v5uFdGd+0pIlHjzAkvg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45p67qjq7c-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 02 Apr 2025 06:48:24 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5326mNE8032766
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 2 Apr 2025 06:48:23 GMT
+Received: from hu-wasimn-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 1 Apr 2025 23:48:16 -0700
+Date: Wed, 2 Apr 2025 12:18:05 +0530
+From: Wasim Nazir <quic_wasimn@quicinc.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@quicinc.com>
+Subject: Re: [PATCH v5 5/6] arm64: dts: qcom: Add support for QCS9075 Ride &
+ Ride-r3
+Message-ID: <Z+zdpU1f6LZrC96c@hu-wasimn-hyd.qualcomm.com>
+References: <b0b08c81-0295-4edb-ad97-73715a88bea6@kernel.org>
+ <Z4dMRjK5I8s2lT3k@hu-wasimn-hyd.qualcomm.com>
+ <80e59b3b-2160-4e24-93f2-ab183a7cbc74@kernel.org>
+ <Z8AWHiVu05s0RJws@hu-wasimn-hyd.qualcomm.com>
+ <a8991221-88b2-4a39-a51b-587c4cdeebe4@kernel.org>
+ <Z8laCxtHOdNm3rRu@hu-wasimn-hyd.qualcomm.com>
+ <Z8lb889QrqluPXXl@hu-wasimn-hyd.qualcomm.com>
+ <e00a7061-5283-4809-b652-5f6c5e1e4496@kernel.org>
+ <Z9v/z/i6OyWXXe7N@hu-wasimn-hyd.qualcomm.com>
+ <b46aad11-4787-49f9-ab4e-1737e583622f@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="dpnicPI7H1IrQ5f0"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <cover.1743576022.git.mazziesaccount@gmail.com>
+In-Reply-To: <b46aad11-4787-49f9-ab4e-1737e583622f@kernel.org>
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=fMI53Yae c=1 sm=1 tr=0 ts=67ecddb8 cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=kj9zAlcOel0A:10 a=XR8D0OoHHMoA:10 a=vCNE6W48tcnhvlFSCsYA:9 a=CjuIK1q_8ugA:10
+X-Proofpoint-ORIG-GUID: p9FsdoVEX0kD8V9RgtZZcPnl_WzTu5J9
+X-Proofpoint-GUID: p9FsdoVEX0kD8V9RgtZZcPnl_WzTu5J9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-02_02,2025-04-01_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxscore=0
+ priorityscore=1501 phishscore=0 spamscore=0 impostorscore=0 clxscore=1015
+ mlxlogscore=999 bulkscore=0 malwarescore=0 suspectscore=0
+ lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504020042
+
+On Sat, Mar 29, 2025 at 05:48:00AM +0100, Krzysztof Kozlowski wrote:
+> On 20/03/2025 12:45, Wasim Nazir wrote:
+> > Hi Krzysztof,
+> > 
+> >>>>
+> >>>> Which piece of actual hardware is represented in qcom-ride-common?
+> >>>>
+> >>>
+> >>> All daughter cards like SOC-card, display, camera, ethernet, pcie, sensor, etc.
+> >>
+> >> No, I asked about the name of the hardware, datasheet, ID or picture.
+> >> Common DTSI represents somoething, not just because you wanted to add
+> >> something you had in downstream.
+> >>
+> > 
+> > Currently we don't have any datasheet or document which is publicly
+> > available, so I will try my best to describe our HW.
+> > 
+> > Ride is a modular hardware system with several smaller daughter cards
+> > connected to single backplane board and each daughter card is stacked on
+> > top of each other. I will try to explain each daughter card with HW
+> > components and how it is connected to construct the ride-hw.
+> > 
+> > Backplane board:
+> >   - It contains an MCU (Aurix TC397), CAN/LIN transceiver,
+> > 	Audio/GNSS/IMU-I2C signals, Fan header
+> >   - It holds & connects all the daughter cards.
+> > 
+> > SoC card:
+> >   - It contains:
+> >     - SoM:
+> >       - One of QCS9075M/QCS9100M/QAM8775p SoM.
+> > 	  - Each SoM is composed of either qcs9075/qcs9100/sa8775p SoC, along
+> > 		with DDR & PMICs.
+> >       - Each SoM can be mounted to same SoC-daughter card of ride-hw.
+> >     - In addition to SoM, it also has
+> >       - 4x UART, 2x USB 3.1 & 1x USB 2.0
+> >       - Memory: 1x OSPI, 2x UFS-3.1
+> >       - Debug: JTAG/QDSS header
+> >       - PCIe0, PCIe1 & Display signals
+> >       - Reset button
+> >   - It is connected to backplain board via B2B connector.
+> > 
+> > Display card:
+> >   - It contains:
+> >     - 4 eDP ports & 2 DSI-DP bridge
+> >     - I2C GPIO expander & I2C switch
+> >   - It is connected to SoC-card via B2B connector.
+> > 
+> > Camera card:
+> >   - It contains:
+> >     - 4 Quad DE-serializer, each supporting 4 MIPI CSI inputs
+> >     - Total upto 16 Cameras ports are supported.
+> >   - It is connected to backplain board via B2B connector.
+> > 
+> > Ethernet card:
+> >   - There are two variants of ethernet card each with different
+> > 	capabilities:
+> >     - [Ethernet-v1] card contains:
+> >       - 2x 1G RGMII phy, 2x 1G SGMII phy(enabled currently)
+> > 	  - Total 4 phy supported, only 2 phy are enabled and it is used in
+> > 		ride.
+> >     - [Ethernet-v2] card contains:
+> > 	  - 2x 1G RGMII phy, 2x 2.5G HSGMII(enabled currently) & 10G PCIe based
+> > 		MAC+PHY controller
+> > 	  - Total 5 phy supported, only 2 phy are enabled and it is used in
+> > 		ride-r3.
+> >   - Either [Ethernet-v1] or [Ethernet-v2] is connected to backplain board
+> > 	via B2B connector.
+> > 
+> > PCIe card:
+> >   - It contains:
+> >     - PCIe connections to SoC-card
+> > 	- NVME, 2x WLBT module QCA6696/QCA6698 (Wi-Fi & bluetooth solution) &
+> > 	  GNSS module
+> >   - It is connected to backplain board via B2B connector & PCIe signals are
+> > 	connected to SoC card via flyover cables.
+> > 
+> > Sensor Card:
+> >   - It contains 3-Axix compass & 6-Axis 3D IMU (accel/gyro) module which
+> > 	are communicating via I2C
+> >   - It is connected to backplain board via B2B connector.
+> > 
+> > Front panel card:
+> >   - It does not contain any active circuitry, only ports are available
+> >     - Audio-in/out ports
+> >     - USB hub ports
+> >     - CAN/LIN ports
+> >     - 12V power off switch
+> >   - It is connected to backplain board via ribbon cable.
+> > 
+> >>
+> >>>
+> > 
+> >>>> |             |                      | +-------------------------+-----------------------+-----------------< sa8775p-ride-common.dtsi           |
+> >>
+> >>
+> >> There is no ride-common hardware. If there is, send us any proof of its
+> >> existence. all your statements here show you want to create some
+> >> structure because you like it. I don't think you get my questions. You
+> >> painted diagram of DTS, not hardware.
+> >>
+> >> We talk about hardware. Not your DTS. Drop all DTSI, DTS, DTSO from here
+> >> and show us the hardware.
+> >>
+> > 
+> > Considering outlined h/w description, following are ride configuration
+> > variation each platform supporting:
+> > 
+> > Between qcs9075, qcs9100 & sa8775p ride/ride-r3 boards, SoM is changing;
+> 
+> Define these as SoMs then.
+
+sure
+
+> 
+> > And between ride & ride-r3 ethernet is changing.
+> 
+> Different ethernet cards can be also represented as cards - their own
+> DTSI. But there is no soc-card with one or other ethernet, so do not
+> create fake structure just because downstream had it.
+> 
+
+Ok, will proceed with dtsi for v1/v2 ethernet cards and use it for ride &
+ride-r3 respectively.
+
+> 
+> > Excluding these differences all other cards i.e SoC, display, camera, PCIe,
+> > sensor, front & backplain are same and are refactored in ride-common.
+> > If any variant of these cards comes up in future we need to refactor
+> > ride-common accordingly. I will try to outline this as clearly as possible
+> > in next commit log.
+> > 
+> > Considering current outlines of all daughter cards, following defines
+> > ride/ride-r3 variant boards:
+> >   - sa8775p ride    : QAM8775p SoM + [Ethernet-v1] + other daughter cards
+> >   - sa8775p ride-r3 : QAM8775p SoM + [Ethernet-v2] + other daughter cards
+> >   - qcs9100 ride-r3 : QCS9100M SoM + [Ethernet-v2] + other daughter cards
+> >   - qcs9075 ride-r3 : QCS9075M SoM + [Ethernet-v2] + other daughter cards
+> > 
+> > Since we don't have a document yet which formally describes
+> > qcs9075/qcs9100 ride board with [Ethernet-v1] card, I shall be dropping
+> > this particular variant in next patch series and re-send after complete
+> > documentation is available.
+> > 
+> >>> Actually we are not including dts here instead *.dtso file will be
+> >>> overlayed to *-ride.dts to generate *-ride-r3.dts.
+> >>>
+> >>> Below is the correct arrow sequence.
+> >>
+> >> And the overlay represents what exactly? Different board? No, that's not
+> >> how overlays should be used.
+> >>
+> >> You have different board, you have different DTS.
+> >>
+> > 
+> > No the overlay is not a different ride board. This overlay represents
+> > [Ethernet-v2] card which is different than [Ethernet-v1] card.
+> 
+> Different cards is not an overlay. Overlay is for added cards, but you
+> replace here the card.
+> 
+
+Understood, will proceed with dtsi way of adding ethernet cards for
+ride & ride-r3 boards.
+
+>
+>
+
+Based on current understanding, here is the final structure for the dts
+& dtsi, representing all variant of boards.
+
+Ethernet cards are represented using dtsi as:
+  - [Ethernet-v1] card: sa8775p-ride-ethernet-88ea1512.dtsi
+  - [Ethernet-v2] card: sa8775p-ride-ethernet-aqr115c.dtsi
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                                                                                                       |
+|                                                           sa8775p.dtsi                                                                                |
+|                                                                 |                                                                                     |
+|                                       +-------------------------+-----------------------+                                                             |
+|                                       |                         |                       |                                                             |
+|                                       v                         |                       v                                                             |
+|                                qcs9075-som.dtsi         qam8775p-som.dtsi        qcs9100-som.dtsi                                                     |
+|                                       |                         |                       |                                                             |
+|                                       v                         v                       v                                                             |
+|                                     (IOT)                    (AUTO)                   (IOT)                                                           |
+|                                       |                         |                       |                                                             |
+|             +-------------------------+                         |                       |                                                             |
+|             |                         |                         |                       |                                                             |
+|             |                         | +-------------------------+-----------------------+---------------< sa8775p-ride-ethernet-88ea1512.dtsi       |
+|             |                         | |                       | |                     | |                                                           |
+|             |                         | | +-------------------------+-----------------------+----------+--< sa8775p-ride-common.dtsi                  |
+|             |                         | | |                     | | |                   | | |          |                                              |
+|             |                         | | |          +----------+ | |                   | | |          |                                              |
+|             |                         | | |          |          | | |                   | | |          |                                              |
+|             v                         v v v          |          v v v                   v v v          |                                              |
+|  qcs9075-iq-9075-evk.dts         qcs9075-ride.dts    |     sa8775p-ride.dts        qcs9100-ride.dts    |                                              |
+|                                                      |                                                 |                                              |
+|                                                      | +-----------------------------------------------+                                              |
+|                                                      | |                                                                                              |
+|                                                      | | +------------------------------------------------< sa8775p-ride-ethernet-aqr115c.dtsi        |
+|                                                      | | |                                                                                            |
+|                                                      v v v                                                                                            |
+|                                              sa8775p-ride-r3.dts                                                                                      |
+|                                                                                                                                                       |
++-------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Please let us know if we can proceed with the change.
 
 
---dpnicPI7H1IrQ5f0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks & regards,
+Wasim
 
-The ROHM BD79702 is similar to the BD79703, except that it has only 4
-channels whereas BD79703 has 6 channels. The channel 'addresses' of the
-first two channels (used to identify the channel when data is read over
-SPI) are same for both ICs. The next two channels of the BD79702 have
-same addresses as the last two channels of the BD79703. This means the
-BD79702 channel addresses do not follow the channel numbers with a
-constant offset. Thus, we need to specify the addresses separately,
-instead of directly deriving them from the channel number with a
-constant offset.
-
-It's worth noting that the data-sheet describes the BD79702 as a device
-having channels 1,2,5 and 6. The driver however represents channels
-0,1,2,3 to the users - with no gaps in the numbering - which may be more
-familiar view for the application software.
-
-Support ROHM BD79702 DAC.
-
-Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
----
- drivers/iio/dac/rohm-bd79703.c | 28 ++++++++++++++++++++++++++--
- 1 file changed, 26 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/iio/dac/rohm-bd79703.c b/drivers/iio/dac/rohm-bd79703.c
-index 63a70fbd7e0e..a35c37d2261d 100644
---- a/drivers/iio/dac/rohm-bd79703.c
-+++ b/drivers/iio/dac/rohm-bd79703.c
-@@ -84,16 +84,18 @@ static const struct iio_info bd79703_info =3D {
- 	.write_raw =3D bd79703_write_raw,
- };
-=20
--#define BD79703_CHAN(_chan) {					\
-+#define BD79703_CHAN_ADDR(_chan, _addr) {			\
- 	.type =3D IIO_VOLTAGE,					\
- 	.indexed =3D 1,						\
- 	.output =3D 1,						\
- 	.channel =3D (_chan),					\
- 	.info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW),		\
- 	.info_mask_shared_by_type =3D BIT(IIO_CHAN_INFO_SCALE),	\
--	.address =3D (_chan + 1),					\
-+	.address =3D (_addr),					\
- }
-=20
-+#define BD79703_CHAN(_chan) BD79703_CHAN_ADDR((_chan), (_chan) + 1)
-+
- static const struct iio_chan_spec bd79700_channels[] =3D {
- 	BD79703_CHAN(0),
- 	BD79703_CHAN(1),
-@@ -105,6 +107,19 @@ static const struct iio_chan_spec bd79701_channels[] =
-=3D {
- 	BD79703_CHAN(2),
- };
-=20
-+/*
-+ * The BD79702 has 4 channels. They aren't mapped to BD79703 channels 0, 1=
-, 2
-+ * and 3, but to the channels 0, 1, 4, 5. So the addressing used with SPI
-+ * accesses is 1, 2, 5 and 6 for them. Thus, they're not constant offset to
-+ * the channel number as with other IC variants.
-+ */
-+static const struct iio_chan_spec bd79702_channels[] =3D {
-+	BD79703_CHAN_ADDR(0, 1),
-+	BD79703_CHAN_ADDR(1, 2),
-+	BD79703_CHAN_ADDR(2, 5),
-+	BD79703_CHAN_ADDR(3, 6),
-+};
-+
- static const struct iio_chan_spec bd79703_channels[] =3D {
- 	BD79703_CHAN(0),
- 	BD79703_CHAN(1),
-@@ -128,6 +143,13 @@ static const struct bd7970x_chip_data bd79701_chip_dat=
-a =3D {
- 	.has_vfs =3D false,
- };
-=20
-+static const struct bd7970x_chip_data bd79702_chip_data =3D {
-+	.name =3D "bd79702",
-+	.channels =3D bd79702_channels,
-+	.num_channels =3D ARRAY_SIZE(bd79702_channels),
-+	.has_vfs =3D true,
-+};
-+
- static const struct bd7970x_chip_data bd79703_chip_data =3D {
- 	.name =3D "bd79703",
- 	.channels =3D bd79703_channels,
-@@ -194,6 +216,7 @@ static int bd79703_probe(struct spi_device *spi)
- static const struct spi_device_id bd79703_id[] =3D {
- 	{ "bd79700", (kernel_ulong_t)&bd79700_chip_data },
- 	{ "bd79701", (kernel_ulong_t)&bd79701_chip_data },
-+	{ "bd79702", (kernel_ulong_t)&bd79702_chip_data },
- 	{ "bd79703", (kernel_ulong_t)&bd79703_chip_data },
- 	{ }
- };
-@@ -202,6 +225,7 @@ MODULE_DEVICE_TABLE(spi, bd79703_id);
- static const struct of_device_id bd79703_of_match[] =3D {
- 	{ .compatible =3D "rohm,bd79700", .data =3D &bd79700_chip_data },
- 	{ .compatible =3D "rohm,bd79701", .data =3D &bd79701_chip_data },
-+	{ .compatible =3D "rohm,bd79702", .data =3D &bd79702_chip_data },
- 	{ .compatible =3D "rohm,bd79703", .data =3D &bd79703_chip_data },
- 	{ }
- };
---=20
-2.49.0
-
-
---dpnicPI7H1IrQ5f0
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmfs3VQACgkQeFA3/03a
-ocWnzggAl1pmpYYPBpPn9Ywnsmf3dzAkbq5CyQK6teKXaGoS2JdPYvcRAx7q3MLt
-yJ3EbJ90f3ZaBJMXL8mOBk2RDPbQ81AM7AvRG/pvbx8163mL/K1f4ff815hc/LBM
-5JaK5LLNXMNPS8xka/4345FfPWcJEdK3Oo87Tpcsshz6rka3T8DLvWuBcLvPd59k
-rlywgJr0MUKltbJC8+3K3WFBbJC+QixuUWqCwHj+uuPvwKvEmdF5+UXe4tT0TdHV
-xlP8mOV4FXKRdtyKScn3xG+9GMcR/ANqjmyh+X9/UW6I+2K4YtjYUa0Jpqgt99oY
-0RWS8k5A9P04NZtOGyXyhT0tXu58pQ==
-=+5c0
------END PGP SIGNATURE-----
-
---dpnicPI7H1IrQ5f0--
+> Best regards,
+> Krzysztof
 
