@@ -1,167 +1,125 @@
-Return-Path: <devicetree+bounces-162703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162704-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA8EEA79863
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 00:40:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C5BEA79878
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 01:01:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 321E43B4E96
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 22:39:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3EED170FCA
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 23:01:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66D011F582A;
-	Wed,  2 Apr 2025 22:39:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E01DB1F4C8F;
+	Wed,  2 Apr 2025 23:01:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="A3M8PtdR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="erG22Kva"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2E371F1909
-	for <devicetree@vger.kernel.org>; Wed,  2 Apr 2025 22:39:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E51091F0E36
+	for <devicetree@vger.kernel.org>; Wed,  2 Apr 2025 23:01:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743633592; cv=none; b=WJzPlCC2XdEU1pgws6xrRI1swupdoN63dU/vmcHaVa2jhzjv9wH2rl/pcUUtcJDRWLgFuICs3oU368SSWWbAnjDgy0eAf7GqeFLJC5f9BZRQOU3HIQX/w3iSajDGajuUufbIUWMrhcgVvfkNYcOe6G1oxntbki6yCV1TS6TwtSo=
+	t=1743634873; cv=none; b=sGb58HuKJThBwqRfUL122u+v2XqJOYRCbxwauW7uLoacR6kGZKd45IbNMksDALHs1nmBN72euJwEt81Kp04W8POcpJNHMCy98FbajFovAMEe1PwuTSowtFbTp6pHB5AHZ/8TzPqtBhqI2T8sTdO+1aaVc/+9C+l82BImN65wrhA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743633592; c=relaxed/simple;
-	bh=xc8WF1r2PaAcb8sbNqj7gu3aFa+IW8ItfCQ2FmH/4X8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QKeIDle8zzTUwFr3fl8yCvoiME+hATnPWwB+XhXt6vlRT7uHRV0ct+GX6erHcGjZSBtmraY+Acl8F+nik173kqRRadpzl9efHYJe+knkWXVPm+j05+I82vt+Y2SGJ/X2tb3nRvvyC+tVskKRNNdiyjqguTnjD6CCVlftr0QAqj0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=A3M8PtdR; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-2241053582dso4587515ad.1
-        for <devicetree@vger.kernel.org>; Wed, 02 Apr 2025 15:39:50 -0700 (PDT)
+	s=arc-20240116; t=1743634873; c=relaxed/simple;
+	bh=ae8HG5mamuJ6F6/+nBlRSOsXFultdkdpg9uOrzVgMHU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qRH+xZINzIz4hxicsdgh5g4Wb6yEDAZYiJZ7FZcBvXRsvTjKksLlLbW9TRbnddffjTpd/PMdR0k8sjQkYB8xt0P3Ad9bgOmoj7e0xkrN7oQugsW6q9RAVNDLV6TEs9uT/qeOX/rdHWSKwEO3vJMAXNGp4lBNiYeSWa8pFTL7Nuw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=erG22Kva; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3913b539aabso175773f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 02 Apr 2025 16:01:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1743633590; x=1744238390; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=RCUdSZJKo+DfCb7L1u9uIyzdzgr+hzjdGkAPqeN8dwI=;
-        b=A3M8PtdRIA/fEFqlfooGWTdDn/Q85hJVVjT8g94tWbRC1B3GVqZlIa7GJCFXX67M3e
-         GLgv/a3JfeurBbNvfatECeMj8WLq6UQjWPE6ctYETQ6HWRrN4XRc/MggWuW33mJIniOf
-         hE98pwY5Eh1Rqmis3AlVVsowG9jJoHZ53kpUrwQN/q8e8kNxQtmv/9XFTbC1hlal+yuq
-         yErad4hsGOLajAjV9UGsIftDc0Vz/7OXnIpukQKxtcWzxtEpniXVADeOzGlwaOBy2st+
-         IuHl0VWI3OO6l7atSGpB7SCznNZv32XByBeUHCIPlX0H1ogfNtWt3fe6cN1D8Vnp5i67
-         ZHiw==
+        d=linaro.org; s=google; t=1743634870; x=1744239670; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ssDdQ9pYXMHr5I5/Xw/ZAgexifJSDigD1EuzFV2qg4I=;
+        b=erG22KvaPBOLtLLf9ql4HsTCgHMSvgtwC5lqQTS7vDTAZtUA7XmW4YPQXhRifwtjFx
+         UfWucTf35UPuRjkjIAjAESMRevW9BQoUrFVETT7mErooVPKiTz96fNpyHacOQxjLptYE
+         XvekRZ3LDy6uWyk9Yu3Snmw5b7KRvoVPCeybMTMJKFwS0Ii1NBZ9ov6dpAp6Mzb2KEg8
+         r1vs4ROGb+fPxeqc6s0F28EYZIPzwR0Qoda3ZGcTzSIJXyNuGYbwKZRsHeuqI0ODNc4m
+         KEnaf+m4NutpJYUUBIqvRRJt42sAuiNR+V45jFHP8OAtn0kHug28h70YT98Gqfg02tS8
+         HSAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743633590; x=1744238390;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1743634870; x=1744239670;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RCUdSZJKo+DfCb7L1u9uIyzdzgr+hzjdGkAPqeN8dwI=;
-        b=bpBoKO0NqlFB0rZ+PhqeiLt7tHvI7gIrb+Qq0rmvLLRYWYZak63cLbcjVJs9GHNj/Q
-         bF1nbXGLmsSGE3Hv2HnooE3AXg7yj/37GFwWRSY4UOuejygnbV9kBdLw6Unc2QnAkScK
-         9PcovGhQKoXSlKt+VHh/eS78OSWtTB5rHmgVRjMg/080DFLV5oDaUyocc9gBbly5uxnI
-         O44ADKCcuxLDMlxujGGzRXPWqw3DhWUXSz3ydFslr2Vt5eFGTZzPbOlkyjIMc8DjIZDr
-         pha2Mvq9+z8C/emVW4lOJNHBlsXQAT+qyozMy/oL8mv4CTc/fP7KFbX+VsaRVANNnwuf
-         jfVA==
-X-Forwarded-Encrypted: i=1; AJvYcCU+Yq/D3L7qnf7Mz2AQGu39VP5c8GflyU286OFVdX4N30Z4+wW+gKsNLeQc1gKQJWvDae9f5CBGqd0Y@vger.kernel.org
-X-Gm-Message-State: AOJu0YxsbgOMMMbVScvd54IYcy6/18+DppEcqFCsb69WBhtFbrz9Fh5G
-	siownCFi9MZIounkJzi6GSaPUGXZ36jYa7qKHqJMKmuWolae/wPCx8QmRkVybQ==
-X-Gm-Gg: ASbGncsjOIZSQJQsrRuI9aDC7BgVLKu/0Swa+AKOOghRxoqQFjuZXAgA+dcL2Sf6yKH
-	rhsF2Q0jkXdDisAMIkgE/n4c1PlnERLsxsukwHURvZ5cAaUgVjbN3B6vY+uiX/KtKigvhqZ3LX3
-	ks7fkD+eCEn50aQdPh1R5Y8e2hFPutc3xPK2TgzGu6XdZykBV9jQvEWA14WZiRnj/TxhqZWLko1
-	RGN36YtcMXcDiR1R3R59JM+wZggTTOvhHhsk4yP30VH8ZqYUIfIIn0a+e+6B8Jhj/H5nZCqJii4
-	nv7DMiV1+dRTAzpg7VAinriVtnI+ImJqMWRI/aHhECM1BL7MhBeZxRchSUbr8MtmXpMIQKkeUGB
-	FWQnkAoQcNrpZ0Zs=
-X-Google-Smtp-Source: AGHT+IF4gwMOCkgD1NLc9h9zDKSDNadcDgyOK8y59bXpjfWPpkP3E5OcoZpIKL40ijcRHOF0nPIbcQ==
-X-Received: by 2002:a17:902:b683:b0:224:1609:a74a with SMTP id d9443c01a7336-22977deaf3cmr4975415ad.34.1743633589886;
-        Wed, 02 Apr 2025 15:39:49 -0700 (PDT)
-Received: from google.com (198.103.247.35.bc.googleusercontent.com. [35.247.103.198])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2297866efb5sm921995ad.201.2025.04.02.15.39.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Apr 2025 15:39:49 -0700 (PDT)
-Date: Wed, 2 Apr 2025 15:39:45 -0700
-From: William McVicker <willmcvicker@google.com>
-To: Youngmin Nam <youngmin.nam@samsung.com>
-Cc: John Stultz <jstultz@google.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Saravana Kannan <saravanak@google.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>, kernel-team@android.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	tigersoundkim@gmail.com
-Subject: Re: [PATCH v1 3/6] clocksource/drivers/exynos_mct: Set local timer
- interrupts as percpu
-Message-ID: <Z-28sR02GhsNMnlg@google.com>
-References: <20250331230034.806124-1-willmcvicker@google.com>
- <20250331230034.806124-4-willmcvicker@google.com>
- <CANDhNCqNqXfGgvo8vNof1qi3E3jejk5KBD=oedZp2_p8RKZdjw@mail.gmail.com>
- <CGME20250401163914epcas2p1a16e2b7a6ecac9f010ef6eb4c8efc6fb@epcas2p1.samsung.com>
- <Z-wWA-46L08V89qK@google.com>
- <Z+yh2UUwxUz/vRbK@perf>
+        bh=ssDdQ9pYXMHr5I5/Xw/ZAgexifJSDigD1EuzFV2qg4I=;
+        b=LCKG506G5eg/azETofTPVCAxNE3V2Cq3nyiHAG0q87Er/NutzhYF+eo7VpHVT63G7X
+         xTzOXBOQg0PPXpj2lPrQ8LE7bucceYFqP8Ag0PE2IXtRzEGmYu8zeFAx0eh3Cf/0Utrw
+         o4t+Hz80AGY3Tl+Veg9zVG8nJmsp0tjxSsD6r9bHOgQRTf6ge5MB1FVTg4X71XAr1ZL/
+         HwONOXK37vjaXjLx8tetJa1XkO9zxdUGapsW0rcTJHS832tNou2L5992dZHW0VR8M5/U
+         bcK0qH6Lke8HdxQ8CWFofCD/fc4LDkUafWXwnMjV70sBO/oKWt46BhGsu+TFDzTBdf4v
+         N7Ow==
+X-Forwarded-Encrypted: i=1; AJvYcCWZKBR7QSeMIgF7X5vWwPBvc1WZ5uLlpS1gzGPbwvrNs2pnosJm09biYIrjSZImCZ438y9vYNihPr/w@vger.kernel.org
+X-Gm-Message-State: AOJu0YwHHQ/PAH5zYVBLh/PZsJWyD99/3R5sdxfwoAmsuK9Gb7FEXI/W
+	6YrSB/2Hh23d0bHN0NaDHWpYTjNoQYD/arounfejNNlohF9yo05sY7qtXkQqWuE=
+X-Gm-Gg: ASbGncv6O6SL9kEahdU6+lxZkQ4iV91IWb0qP4wA18g4Et/sDzHIsbs+WnMcqSkFCFy
+	FlfSz87BstyW3ioRhcDHKYlT/ncWIZ97pOOF89mR8XkVa9UqjXhaugTH0S8CK0Jco/Vj2ynAHKI
+	9bgdIJU8sr2mGqq1WNNP2rxAaEfTPycGdHxuF6s0/1BDSravVoEfrxtwxIZKqZa7hUPatZwCH++
+	t1xtQTXw2b8lvBaq2z4ukOlSdUfHeltQhNQksAL8yZWBJr41m1IANVISfuWR1PIPb8zRTD8s+n0
+	2DxPUZ4Bm3WbaOZX+1KQ4C5lENy4fE21DbtIidf2hB2HLsi+puD481Tud3r3gUXhhE5WMxPEfk+
+	4wOTwX5vs
+X-Google-Smtp-Source: AGHT+IHyj66xL8VsObpHLyziVGG93y/NYfcl9RGB6qeFeKmVhSfE7lLRhxrpfsHle94LdUZoXtf+eg==
+X-Received: by 2002:a5d:64ed:0:b0:39c:1257:c7a2 with SMTP id ffacd0b85a97d-39c2f96b901mr215465f8f.58.1743634870250;
+        Wed, 02 Apr 2025 16:01:10 -0700 (PDT)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-39c300963e1sm127285f8f.4.2025.04.02.16.01.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Apr 2025 16:01:09 -0700 (PDT)
+Message-ID: <c449fba0-476e-495b-abbd-65ba2d44d590@linaro.org>
+Date: Thu, 3 Apr 2025 01:01:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: watchdog: Add NXP Software Watchdog
+ Timer
+To: Krzysztof Kozlowski <krzk@kernel.org>, wim@linux-watchdog.org
+Cc: linux@roeck-us.net, linux-watchdog@vger.kernel.org,
+ linux-kernel@vger.kernel.org, S32@nxp.com, ghennadi.procopciuc@nxp.com,
+ thomas.fossati@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org
+References: <20250402154942.3645283-1-daniel.lezcano@linaro.org>
+ <20250402154942.3645283-2-daniel.lezcano@linaro.org>
+ <ffe49998-f809-458e-8eda-002d0c0fc32a@kernel.org>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <ffe49998-f809-458e-8eda-002d0c0fc32a@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <Z+yh2UUwxUz/vRbK@perf>
 
-On 04/02/2025, Youngmin Nam wrote:
-> On Tue, Apr 01, 2025 at 09:36:19AM -0700, William McVicker wrote:
-> > On 03/31/2025, John Stultz wrote:
-> > > On Mon, Mar 31, 2025 at 4:00 PM 'Will McVicker' via kernel-team
-> > > <kernel-team@android.com> wrote:
-> > > >
-> > > > From: Hosung Kim <hosung0.kim@samsung.com>
-> > > >
-> > > > The MCT local timers can be used as a per-cpu event timer. To prevent
-> > > 
-> > > Can be used, or are used?  If it's an option, is this change important
-> > > in both cases?
-> > > 
-> > > > the timer interrupts from migrating to other CPUs, set the flag
-> > > > IRQF_PERCPU.
-> > > 
-> > > Might be work expanding this a bit to clarify why the interrupts
-> > > migrating to other cpus is undesired.
-> > 
-> > Let me dig into this further to figure out if the IP has a limitation where the
-> > interrupts need to be handled by the CPU the timer was triggered on or if this
-> > is just an optimization.
-> > 
-> > Any chance you know this @Youngmin?
-> > 
-> > Thanks,
-> > Will
-> > 
+On 02/04/2025 17:56, Krzysztof Kozlowski wrote:
+> On 02/04/2025 17:49, Daniel Lezcano wrote:
+>> Describe the Software Watchdog Timer available on the S32G platforms.
+>>
+>> Cc: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+>> Cc: Thomas Fossati <thomas.fossati@linaro.org>
+>> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
 > 
-> Hi Will.
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> Yes. In downstream, we’ve been using MCT as the clock event timer instead of the ARM timer.
-> Setting this flag allows each CPU to handle its own clock events, such as scheduling interrupts.
+> Best regards,
+> Krzysztof
 
-Thanks for the explanation! I'll integrate this into the commit text.
-
-Regards,
-Will
-
-> 
-> > > 
-> > > > Signed-off-by: Hosung Kim <hosung0.kim@samsung.com>
-> > > > [Original commit from https://android.googlesource.com/kernel/gs/+/03267fad19f093bac979ca78309483e9eb3a8d16]
-> > > > Signed-off-by: Will McVicker <willmcvicker@google.com>
-> > > 
-> > > thanks!
-> > > -john
-> > 
-> > 
+I ran the make dt_binding_check but inadvertently removed the "oneOf:" 
+after :/
 
 
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
