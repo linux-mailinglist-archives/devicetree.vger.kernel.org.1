@@ -1,208 +1,198 @@
-Return-Path: <devicetree+bounces-162653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACED1A793A4
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 19:11:04 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57F58A793CA
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 19:24:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2FD016F65D
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 17:11:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EB2B77A3141
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 17:23:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5B2919E7D1;
-	Wed,  2 Apr 2025 17:10:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 939541A00FE;
+	Wed,  2 Apr 2025 17:24:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="qbGgmRuY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TBTJ3C40"
 X-Original-To: devicetree@vger.kernel.org
-Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEF8C199FA2;
-	Wed,  2 Apr 2025 17:10:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=90.155.92.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA5D235946;
+	Wed,  2 Apr 2025 17:24:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743613858; cv=none; b=ocAd3k5q3HGoLMPVpQP74TqEv8plRBdvONRB+Smp/P1555mo5Yfa2RzAO9sDS82Jys7sUfX/svVeqgg0kteYN4xLH/mIjplYPlEURFzlR7C805PTaDIbmjqUTGczg0C3Wao9DhZBMfrc02XnyX6epIf2LTmGMBRP8aZa8hGe3bw=
+	t=1743614669; cv=none; b=hYHgdymo/zvGWWHfIMkYnWHnt+dqYBfqFffVtCk7my25HBRBe6ruuLnHnxEacijCuJvvDSNMfz+uG7ac+94Jv5VQz/3Mt2iORvzV5HH7ErIYIm/+pjuCVvu0ugIAnF0hegLj2ptwnw3GBbAZ6yjMqU0hZdIiZNTzQpSrz90ills=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743613858; c=relaxed/simple;
-	bh=wSx7e2w+XUvq/bWfVnhanzRLJGiwjcG/p3Sa1L09MwI=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=gSJWRlJ8dzlNuUQpy5SbEdRrxhgPPcpK7trraPefASuukSr7d7wfl61Csg/ioCOxhkmQCjITg10uk3smysxlYtaf2rGnHFeamKqFqOfK4nit3jdStWAad3pQkux0ll8hnoZ67DcmSGjkW16FybkAaAyhUkfQaO2JObLeM4Ig4iU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=desiato.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=qbGgmRuY; arc=none smtp.client-ip=90.155.92.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=desiato.srs.infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=MIME-Version:Content-Type:References:
-	In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=wSx7e2w+XUvq/bWfVnhanzRLJGiwjcG/p3Sa1L09MwI=; b=qbGgmRuYcrHfI+0tLpWs5pJ2jg
-	Nx0NSR0gQoIOYKaF3m62ih8jPYC8uVhXuFu8e/apj9At3lg5vErEAEGoDTxpM+o5L7XOC1X+W1RSN
-	QXqICgz5gNdExPDidMu68YMpOlc8QYuSom9QAvji0d5ZEWZAZhAWwx2jfUkYcs03ztSZCPMT8d4Ui
-	0weB+xRstRYekuUHToMnpyjZ+cj3Ju7cFiABHdqd75lNK9L0C1bgIup5knLUkuEk92MvpLqMPuYkF
-	nFzUJjLNjUlSIkOzdnxpLiTf44XpBJ+KFghwhh/XSP+zH9RBP68iixtXncVbAayaQL7ecaZXHvRFi
-	NOkDifGw==;
-Received: from [172.31.31.145] (helo=u09cd745991455d.ant.amazon.com)
-	by desiato.infradead.org with esmtpsa (Exim 4.98.1 #2 (Red Hat Linux))
-	id 1u01c5-000000074NJ-2lI1;
-	Wed, 02 Apr 2025 17:10:53 +0000
-Message-ID: <eaef09ab218900a53347987a62fee1787283d9ed.camel@infradead.org>
-Subject: Re: [RFC PATCH 1/3] content: Add VIRTIO_F_SWIOTLB to negotiate use
- of SWIOTLB bounce buffers
-From: David Woodhouse <dwmw2@infradead.org>
-To: "Michael S. Tsirkin" <mst@redhat.com>
-Cc: virtio-comment@lists.linux.dev, hch@infradead.org, Claire Chang
- <tientzu@chromium.org>, linux-devicetree <devicetree@vger.kernel.org>, Rob
- Herring <robh+dt@kernel.org>, =?ISO-8859-1?Q?J=F6rg?= Roedel
- <joro@8bytes.org>,  iommu@lists.linux-foundation.org,
- linux-kernel@vger.kernel.org, graf@amazon.de
-Date: Wed, 02 Apr 2025 18:10:53 +0100
-In-Reply-To: <20250402124131-mutt-send-email-mst@kernel.org>
-References: <20250402112410.2086892-1-dwmw2@infradead.org>
-	 <20250402112410.2086892-2-dwmw2@infradead.org>
-	 <20250402105137-mutt-send-email-mst@kernel.org>
-	 <19ba662feeb93157bc8a03fb0b11cb5f2eca5e40.camel@infradead.org>
-	 <20250402111901-mutt-send-email-mst@kernel.org>
-	 <6b3b047f1650d91abe5e523dd7f862c6f7ee6611.camel@infradead.org>
-	 <20250402114757-mutt-send-email-mst@kernel.org>
-	 <965ccf2f972c5d5f1f4edacb227f03171f20e887.camel@infradead.org>
-	 <20250402124131-mutt-send-email-mst@kernel.org>
-Content-Type: multipart/signed; micalg="sha-256"; protocol="application/pkcs7-signature";
-	boundary="=-SiZIUCcYluAFPJkLll1S"
-User-Agent: Evolution 3.52.3-0ubuntu1 
+	s=arc-20240116; t=1743614669; c=relaxed/simple;
+	bh=6/IQIWw81YF4I3ww+QWFv/mTo+GnNJlko6uLlmyFKl0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WJA68kof907UNvavvO2B3iET79Cd17bImbtWnEOCRcDG84fH/CTH+4h/KIj3qBB68oi64sWC5UKHls+37btfQFvI9aGBBs4Bl7NSOF39CXMv5q+VpdyOg41GAztpJ9yf3jmFgzz2MtKziv+5zqyhJR/uDq+e2BtXoMPsMPlR7hU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TBTJ3C40; arc=none smtp.client-ip=209.85.219.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f44.google.com with SMTP id 6a1803df08f44-6e8fca43972so181226d6.1;
+        Wed, 02 Apr 2025 10:24:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1743614667; x=1744219467; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2YmZh6k4S4A2gKPdCb+Hixcu2ZSXle/HXIt3s9AusCA=;
+        b=TBTJ3C408FGSKKnqfB6Os+D4FIqzDT2Zl6fP9zmn5qfWiSwTkcPIO/b3RZ2GOBbEGb
+         bkppGy9jbdzWbDLq6M6AXIOFykmEbeSzxZq3ywym5E39CHcEujMdXsfJf6fkoCo1INA7
+         DDihd6PRPvKqhAUT7Hn2KvXD8k3bSV+iGMkNdviROUSx9GNLpM55Sa7qsgCAkLpaiO6U
+         C9XNezUAuf6ca+Yii1W6TXJjJUhb1TXcqBMI7HFYtow47CCc4ewkf9DvEuEkDkJBKNUw
+         mGtEskpRKIyoROGdjIK39TX6gpF19ejY1Sv+19GbVBGC6ARTSUlRlvCcYk6IQTR7E/vc
+         7MOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743614667; x=1744219467;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2YmZh6k4S4A2gKPdCb+Hixcu2ZSXle/HXIt3s9AusCA=;
+        b=jYZbjNa6O7xddmcpvpeQz4mrHTJDbAczP4EFsKcbv4dUSJoQ+UpVulc4e85+C/F7KE
+         k+LqSBkDKukJoMkbvBe/CnsGWyY2Bxh2it8MuO91Rf5cHKj0fWvU5dpLf+q6Lv39d92c
+         MOS+5i7o0DK6UV9WjMoPfru43kIua1mliz+AOVSmISlUIVUjCWa19ngU+7FYxsw050hf
+         XsipJzBiMDMrXFKDgZD3tmBNMjpDlUDq0oIJK9v7nXlDe5Hcx1mo5fnA4/boGpzT0C66
+         jKXimPIjnDV+e/DvX39W/+fxhh0UHxTCE+Nxqv8P4H2Oi0GQlN0ikZbLLXvHxXRkR7pl
+         3knA==
+X-Forwarded-Encrypted: i=1; AJvYcCUAEiKozbD5OvAYW+SnddE+8w4w+CJMxnMef6gTux4ajUq112ugSkYwFo1cZQvqDBDnKjTbEknCJbl4@vger.kernel.org, AJvYcCUhFoq9OhDHoYaQ8ssiEx062xl4ksQa08RSMkDBUQsRhRDvOAdi9zCwPq7emwtSt3ood14abR3/nPinegSF@vger.kernel.org
+X-Gm-Message-State: AOJu0YzuPr5S5rk+wC5MAzV6b1adCiU0OX67qgN5eKuFSn2/1eIxzk5y
+	717pFKrPCUKZk4xNGIaC++a+auEPUbO0RJFyUfB7WEx4l00eUFc=
+X-Gm-Gg: ASbGnctspVyb6J0nPq1d6uEqwQP2qj9Zr+uZDZhgcXdKJO71urgDUbX6H4B3vWeJuaq
+	PXyAMpQYsJmTFSEJAmHo4m3MskGvYBwbILySXPbDgHCSJ5EfFgOMW1uqG9PBB9Pa39xFNlJlnEk
+	XQlRQHfZkwwU9OJHvTqGSS0sOUEsBhNFP08P/FIpCc7SysOkXEQv7l9d5/6zHvuyxbgCFpaLoPP
+	cUEtukBW5tg6oh7hiaQC9lzaIMGv9vF9D7k+AiQfmTXNRPtonFy3oT1dlfZAKtnqo8BCzWVHrit
+	2tDte1aFwGR7CEMXXhVJsYEofhE2YuS9SkNI6Kr1S3gFyKrXaWJozOi/hBqvT2bz+r/ULamQNt9
+	7+Ft8gELPlqLe
+X-Google-Smtp-Source: AGHT+IFMVDYLTn3P+AqF4w5EM6NFHR4DM/rUbBAs9Vcoe+DJhPsyf1ed5wxi6pxvZTB9jpF+/uNqvQ==
+X-Received: by 2002:a05:6214:258f:b0:6e8:f770:5045 with SMTP id 6a1803df08f44-6eed6271744mr284133846d6.28.1743614666448;
+        Wed, 02 Apr 2025 10:24:26 -0700 (PDT)
+Received: from ?IPV6:2a02:810b:f13:8500:edfc:c609:ae5:4b2c? ([2a02:810b:f13:8500:edfc:c609:ae5:4b2c])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6eec9643d6asm77042556d6.28.2025.04.02.10.24.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Apr 2025 10:24:26 -0700 (PDT)
+Message-ID: <680a40a8-07c1-4dde-93b2-337ab15f7afe@gmail.com>
+Date: Wed, 2 Apr 2025 19:24:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by desiato.infradead.org. See http://www.infradead.org/rpr.html
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 7/7] drm/rockchip: inno-hdmi: Convert to drm bridge
+To: Andy Yan <andyshrk@163.com>, heiko@sntech.de
+Cc: conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+ hjc@rock-chips.com, mripard@kernel.org, neil.armstrong@linaro.org,
+ dmitry.baryshkov@oss.qualcomm.com, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ Andy Yan <andy.yan@rock-chips.com>
+References: <20250402123150.238234-1-andyshrk@163.com>
+ <20250402123150.238234-8-andyshrk@163.com>
+Content-Language: en-US
+From: Alex Bee <knaerzche@gmail.com>
+In-Reply-To: <20250402123150.238234-8-andyshrk@163.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
---=-SiZIUCcYluAFPJkLll1S
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Hi Andy,
 
-On Wed, 2025-04-02 at 12:43 -0400, Michael S. Tsirkin wrote:
->=20
-> yes.
->=20
-> I know a bit more about PCI, and for PCI I prefer just not saying
-> anything. The platform already defines whether it is behind an iommu
-> or not, and duplication is not good.
+> From: Andy Yan <andy.yan@rock-chips.com>
+> 
+> Convert it to drm bridge driver, it will be convenient for us to
+> migrate the connector part to the display driver later.
+> 
+> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> 
+> ---
+> 
+> Changes in v3:
+> - First included in v3
+> - Link to V2: https://lore.kernel.org/dri-devel/20250325132944.171111-1-andyshrk@163.com/
+> 
+>   drivers/gpu/drm/bridge/Kconfig                |   7 +
+>   drivers/gpu/drm/bridge/Makefile               |   1 +
+>   .../inno_hdmi.c => bridge/inno-hdmi.c}        | 924 ++++++++++--------
+>   drivers/gpu/drm/rockchip/Kconfig              |   1 +
+>   drivers/gpu/drm/rockchip/Makefile             |   2 +-
+>   drivers/gpu/drm/rockchip/inno_hdmi-rockchip.c | 187 ++++
+>   drivers/gpu/drm/rockchip/inno_hdmi.h          | 349 -------
+>   include/drm/bridge/inno_hdmi.h                |  33 +
+>   8 files changed, 741 insertions(+), 763 deletions(-)
+>   rename drivers/gpu/drm/{rockchip/inno_hdmi.c => bridge/inno-hdmi.c} (52%)
+>   create mode 100644 drivers/gpu/drm/rockchip/inno_hdmi-rockchip.c
+>   delete mode 100644 drivers/gpu/drm/rockchip/inno_hdmi.h
+>   create mode 100644 include/drm/bridge/inno_hdmi.h
+>
 
-Not a hill for me to die on I suppose, but I would personally prefer to
-spell it out in words of one syllable or fewer, to make *sure* that
-device and driver authors get it right even though it's "obvious".
+...
 
-After all, if we could trust them to do their thinking, we would never
-have had the awful situation that led to VIRTIO_F_ACCESS_PLATFORM
-existing in the first place; the legacy behaviour we get when that bit
-*isn't* set would never have happened.
+> +#define m_RX_DONE			(1 << 0)
+> +
+> +#define HDMI_CEC_TX_INT			0xda
+> +#define HDMI_CEC_RX_INT			0xdb
+> +#define HDMI_CEC_BUSFREETIME_L		0xdc
+> +#define HDMI_CEC_BUSFREETIME_H		0xdd
+> +#define HDMI_CEC_LOGICADDR		0xde
+> +
+>   struct inno_hdmi_i2c {
+>   	struct i2c_adapter adap;
+>   
+> @@ -68,41 +395,18 @@ struct inno_hdmi_i2c {
+>   
+>   struct inno_hdmi {
+>   	struct device *dev;
+> -
+> +	struct drm_bridge bridge;
+>   	struct clk *pclk;
+>   	struct clk *refclk;
+>   	void __iomem *regs;
+>   	struct regmap *grf;
+>   
+> -	struct drm_connector	connector;
+> -	struct rockchip_encoder	encoder;
+> -
+>   	struct inno_hdmi_i2c *i2c;
+>   	struct i2c_adapter *ddc;
+> -
+> -	const struct inno_hdmi_variant *variant;
+> +	const struct inno_hdmi_plat_data *plat_data;
+> +	unsigned int colorimetry;
 
-> For mmio it is my understanding that the "restricted" does the same
-> already? or is it required in the spec for some reason?
+thanks a lot for doing the bridge conversion for this driver.
+Please keep the custom connector state which was introduced after Maxim's
+review during the last rework of this [0] driver. The colorimetry is not
+part of the device, but of the connector and thus should not be part of the
+device struct.
+It's, however, likely that the common (hdmi-)connector framework will once
+hold its own colorimetry property and then the custom connector state in
+this driver can go away, but until than we have to keep it here.
 
-No, it's exactly the same. But I still don't trust driver authors to
-realise the obvious, or VMM implementations either for that matter.
+Thanks,
+Alex
 
-I'm not sure I see the *harm* in spelling out explicitly for the hard-
-of-thinking.
-
---=-SiZIUCcYluAFPJkLll1S
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Transfer-Encoding: base64
-
-MIAGCSqGSIb3DQEHAqCAMIACAQExDzANBglghkgBZQMEAgEFADCABgkqhkiG9w0BBwEAAKCCD9Aw
-ggSOMIIDdqADAgECAhAOmiw0ECVD4cWj5DqVrT9PMA0GCSqGSIb3DQEBCwUAMGUxCzAJBgNVBAYT
-AlVTMRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxGTAXBgNVBAsTEHd3dy5kaWdpY2VydC5jb20xJDAi
-BgNVBAMTG0RpZ2lDZXJ0IEFzc3VyZWQgSUQgUm9vdCBDQTAeFw0yNDAxMzAwMDAwMDBaFw0zMTEx
-MDkyMzU5NTlaMEExCzAJBgNVBAYTAkFVMRAwDgYDVQQKEwdWZXJva2V5MSAwHgYDVQQDExdWZXJv
-a2V5IFNlY3VyZSBFbWFpbCBHMjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMjvgLKj
-jfhCFqxYyRiW8g3cNFAvltDbK5AzcOaR7yVzVGadr4YcCVxjKrEJOgi7WEOH8rUgCNB5cTD8N/Et
-GfZI+LGqSv0YtNa54T9D1AWJy08ZKkWvfGGIXN9UFAPMJ6OLLH/UUEgFa+7KlrEvMUupDFGnnR06
-aDJAwtycb8yXtILj+TvfhLFhafxroXrflspavejQkEiHjNjtHnwbZ+o43g0/yxjwnarGI3kgcak7
-nnI9/8Lqpq79tLHYwLajotwLiGTB71AGN5xK+tzB+D4eN9lXayrjcszgbOv2ZCgzExQUAIt98mre
-8EggKs9mwtEuKAhYBIP/0K6WsoMnQCcCAwEAAaOCAVwwggFYMBIGA1UdEwEB/wQIMAYBAf8CAQAw
-HQYDVR0OBBYEFIlICOogTndrhuWByNfhjWSEf/xwMB8GA1UdIwQYMBaAFEXroq/0ksuCMS1Ri6en
-IZ3zbcgPMA4GA1UdDwEB/wQEAwIBhjAdBgNVHSUEFjAUBggrBgEFBQcDBAYIKwYBBQUHAwIweQYI
-KwYBBQUHAQEEbTBrMCQGCCsGAQUFBzABhhhodHRwOi8vb2NzcC5kaWdpY2VydC5jb20wQwYIKwYB
-BQUHMAKGN2h0dHA6Ly9jYWNlcnRzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydEFzc3VyZWRJRFJvb3RD
-QS5jcnQwRQYDVR0fBD4wPDA6oDigNoY0aHR0cDovL2NybDMuZGlnaWNlcnQuY29tL0RpZ2lDZXJ0
-QXNzdXJlZElEUm9vdENBLmNybDARBgNVHSAECjAIMAYGBFUdIAAwDQYJKoZIhvcNAQELBQADggEB
-ACiagCqvNVxOfSd0uYfJMiZsOEBXAKIR/kpqRp2YCfrP4Tz7fJogYN4fxNAw7iy/bPZcvpVCfe/H
-/CCcp3alXL0I8M/rnEnRlv8ItY4MEF+2T/MkdXI3u1vHy3ua8SxBM8eT9LBQokHZxGUX51cE0kwa
-uEOZ+PonVIOnMjuLp29kcNOVnzf8DGKiek+cT51FvGRjV6LbaxXOm2P47/aiaXrDD5O0RF5SiPo6
-xD1/ClkCETyyEAE5LRJlXtx288R598koyFcwCSXijeVcRvBB1cNOLEbg7RMSw1AGq14fNe2cH1HG
-W7xyduY/ydQt6gv5r21mDOQ5SaZSWC/ZRfLDuEYwggWbMIIEg6ADAgECAhAH5JEPagNRXYDiRPdl
-c1vgMA0GCSqGSIb3DQEBCwUAMEExCzAJBgNVBAYTAkFVMRAwDgYDVQQKEwdWZXJva2V5MSAwHgYD
-VQQDExdWZXJva2V5IFNlY3VyZSBFbWFpbCBHMjAeFw0yNDEyMzAwMDAwMDBaFw0yODAxMDQyMzU5
-NTlaMB4xHDAaBgNVBAMME2R3bXcyQGluZnJhZGVhZC5vcmcwggIiMA0GCSqGSIb3DQEBAQUAA4IC
-DwAwggIKAoICAQDali7HveR1thexYXx/W7oMk/3Wpyppl62zJ8+RmTQH4yZeYAS/SRV6zmfXlXaZ
-sNOE6emg8WXLRS6BA70liot+u0O0oPnIvnx+CsMH0PD4tCKSCsdp+XphIJ2zkC9S7/yHDYnqegqt
-w4smkqUqf0WX/ggH1Dckh0vHlpoS1OoxqUg+ocU6WCsnuz5q5rzFsHxhD1qGpgFdZEk2/c//ZvUN
-i12vPWipk8TcJwHw9zoZ/ZrVNybpMCC0THsJ/UEVyuyszPtNYeYZAhOJ41vav1RhZJzYan4a1gU0
-kKBPQklcpQEhq48woEu15isvwWh9/+5jjh0L+YNaN0I//nHSp6U9COUG9Z0cvnO8FM6PTqsnSbcc
-0j+GchwOHRC7aP2t5v2stVx3KbptaYEzi4MQHxm/0+HQpMEVLLUiizJqS4PWPU6zfQTOMZ9uLQRR
-ci+c5xhtMEBszlQDOvEQcyEG+hc++fH47K+MmZz21bFNfoBxLP6bjR6xtPXtREF5lLXxp+CJ6KKS
-blPKeVRg/UtyJHeFKAZXO8Zeco7TZUMVHmK0ZZ1EpnZbnAhKE19Z+FJrQPQrlR0gO3lBzuyPPArV
-hvWxjlO7S4DmaEhLzarWi/ze7EGwWSuI2eEa/8zU0INUsGI4ywe7vepQz7IqaAovAX0d+f1YjbmC
-VsAwjhLmveFjNwIDAQABo4IBsDCCAawwHwYDVR0jBBgwFoAUiUgI6iBOd2uG5YHI1+GNZIR//HAw
-HQYDVR0OBBYEFFxiGptwbOfWOtMk5loHw7uqWUOnMDAGA1UdEQQpMCeBE2R3bXcyQGluZnJhZGVh
-ZC5vcmeBEGRhdmlkQHdvb2Rob3Uuc2UwFAYDVR0gBA0wCzAJBgdngQwBBQEBMA4GA1UdDwEB/wQE
-AwIF4DAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwQwewYDVR0fBHQwcjA3oDWgM4YxaHR0
-cDovL2NybDMuZGlnaWNlcnQuY29tL1Zlcm9rZXlTZWN1cmVFbWFpbEcyLmNybDA3oDWgM4YxaHR0
-cDovL2NybDQuZGlnaWNlcnQuY29tL1Zlcm9rZXlTZWN1cmVFbWFpbEcyLmNybDB2BggrBgEFBQcB
-AQRqMGgwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmRpZ2ljZXJ0LmNvbTBABggrBgEFBQcwAoY0
-aHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL1Zlcm9rZXlTZWN1cmVFbWFpbEcyLmNydDANBgkq
-hkiG9w0BAQsFAAOCAQEAQXc4FPiPLRnTDvmOABEzkIumojfZAe5SlnuQoeFUfi+LsWCKiB8Uextv
-iBAvboKhLuN6eG/NC6WOzOCppn4mkQxRkOdLNThwMHW0d19jrZFEKtEG/epZ/hw/DdScTuZ2m7im
-8ppItAT6GXD3aPhXkXnJpC/zTs85uNSQR64cEcBFjjoQDuSsTeJ5DAWf8EMyhMuD8pcbqx5kRvyt
-JPsWBQzv1Dsdv2LDPLNd/JUKhHSgr7nbUr4+aAP2PHTXGcEBh8lTeYea9p4d5k969pe0OHYMV5aL
-xERqTagmSetuIwolkAuBCzA9vulg8Y49Nz2zrpUGfKGOD0FMqenYxdJHgDCCBZswggSDoAMCAQIC
-EAfkkQ9qA1FdgOJE92VzW+AwDQYJKoZIhvcNAQELBQAwQTELMAkGA1UEBhMCQVUxEDAOBgNVBAoT
-B1Zlcm9rZXkxIDAeBgNVBAMTF1Zlcm9rZXkgU2VjdXJlIEVtYWlsIEcyMB4XDTI0MTIzMDAwMDAw
-MFoXDTI4MDEwNDIzNTk1OVowHjEcMBoGA1UEAwwTZHdtdzJAaW5mcmFkZWFkLm9yZzCCAiIwDQYJ
-KoZIhvcNAQEBBQADggIPADCCAgoCggIBANqWLse95HW2F7FhfH9bugyT/danKmmXrbMnz5GZNAfj
-Jl5gBL9JFXrOZ9eVdpmw04Tp6aDxZctFLoEDvSWKi367Q7Sg+ci+fH4KwwfQ8Pi0IpIKx2n5emEg
-nbOQL1Lv/IcNiep6Cq3DiyaSpSp/RZf+CAfUNySHS8eWmhLU6jGpSD6hxTpYKye7PmrmvMWwfGEP
-WoamAV1kSTb9z/9m9Q2LXa89aKmTxNwnAfD3Ohn9mtU3JukwILRMewn9QRXK7KzM+01h5hkCE4nj
-W9q/VGFknNhqfhrWBTSQoE9CSVylASGrjzCgS7XmKy/BaH3/7mOOHQv5g1o3Qj/+cdKnpT0I5Qb1
-nRy+c7wUzo9OqydJtxzSP4ZyHA4dELto/a3m/ay1XHcpum1pgTOLgxAfGb/T4dCkwRUstSKLMmpL
-g9Y9TrN9BM4xn24tBFFyL5znGG0wQGzOVAM68RBzIQb6Fz758fjsr4yZnPbVsU1+gHEs/puNHrG0
-9e1EQXmUtfGn4InoopJuU8p5VGD9S3Ikd4UoBlc7xl5yjtNlQxUeYrRlnUSmdlucCEoTX1n4UmtA
-9CuVHSA7eUHO7I88CtWG9bGOU7tLgOZoSEvNqtaL/N7sQbBZK4jZ4Rr/zNTQg1SwYjjLB7u96lDP
-sipoCi8BfR35/ViNuYJWwDCOEua94WM3AgMBAAGjggGwMIIBrDAfBgNVHSMEGDAWgBSJSAjqIE53
-a4blgcjX4Y1khH/8cDAdBgNVHQ4EFgQUXGIam3Bs59Y60yTmWgfDu6pZQ6cwMAYDVR0RBCkwJ4ET
-ZHdtdzJAaW5mcmFkZWFkLm9yZ4EQZGF2aWRAd29vZGhvdS5zZTAUBgNVHSAEDTALMAkGB2eBDAEF
-AQEwDgYDVR0PAQH/BAQDAgXgMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDBDB7BgNVHR8E
-dDByMDegNaAzhjFodHRwOi8vY3JsMy5kaWdpY2VydC5jb20vVmVyb2tleVNlY3VyZUVtYWlsRzIu
-Y3JsMDegNaAzhjFodHRwOi8vY3JsNC5kaWdpY2VydC5jb20vVmVyb2tleVNlY3VyZUVtYWlsRzIu
-Y3JsMHYGCCsGAQUFBwEBBGowaDAkBggrBgEFBQcwAYYYaHR0cDovL29jc3AuZGlnaWNlcnQuY29t
-MEAGCCsGAQUFBzAChjRodHRwOi8vY2FjZXJ0cy5kaWdpY2VydC5jb20vVmVyb2tleVNlY3VyZUVt
-YWlsRzIuY3J0MA0GCSqGSIb3DQEBCwUAA4IBAQBBdzgU+I8tGdMO+Y4AETOQi6aiN9kB7lKWe5Ch
-4VR+L4uxYIqIHxR7G2+IEC9ugqEu43p4b80LpY7M4KmmfiaRDFGQ50s1OHAwdbR3X2OtkUQq0Qb9
-6ln+HD8N1JxO5nabuKbymki0BPoZcPdo+FeRecmkL/NOzzm41JBHrhwRwEWOOhAO5KxN4nkMBZ/w
-QzKEy4PylxurHmRG/K0k+xYFDO/UOx2/YsM8s138lQqEdKCvudtSvj5oA/Y8dNcZwQGHyVN5h5r2
-nh3mT3r2l7Q4dgxXlovERGpNqCZJ624jCiWQC4ELMD2+6WDxjj03PbOulQZ8oY4PQUyp6djF0keA
-MYIDuzCCA7cCAQEwVTBBMQswCQYDVQQGEwJBVTEQMA4GA1UEChMHVmVyb2tleTEgMB4GA1UEAxMX
-VmVyb2tleSBTZWN1cmUgRW1haWwgRzICEAfkkQ9qA1FdgOJE92VzW+AwDQYJYIZIAWUDBAIBBQCg
-ggE3MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI1MDQwMjE3MTA1
-M1owLwYJKoZIhvcNAQkEMSIEIGLX0gNkdfd5VPloUxTU3BtEppEhY3c2k3Iq/ba9tB39MGQGCSsG
-AQQBgjcQBDFXMFUwQTELMAkGA1UEBhMCQVUxEDAOBgNVBAoTB1Zlcm9rZXkxIDAeBgNVBAMTF1Zl
-cm9rZXkgU2VjdXJlIEVtYWlsIEcyAhAH5JEPagNRXYDiRPdlc1vgMGYGCyqGSIb3DQEJEAILMVeg
-VTBBMQswCQYDVQQGEwJBVTEQMA4GA1UEChMHVmVyb2tleTEgMB4GA1UEAxMXVmVyb2tleSBTZWN1
-cmUgRW1haWwgRzICEAfkkQ9qA1FdgOJE92VzW+AwDQYJKoZIhvcNAQEBBQAEggIA01ckTLhNrxxe
-zDRU5YznJMKsTephJd86V6rGxQpAmmRdcfBiEsi9XsUHtZ/zyjrImoq/AxJqRnVXFOA8JDrgWYdn
-uBo5OC24Ei+tAJ0w99+VTiWBV6YPXC8vrIMhP4yXJgd8R7gd9AYGsxE/ar68w/qVyoqMnCXYdwh1
-ZA+PYfTTBUmD+7Ci7RY7t8dxzyWlt65wfXlC0RxYtHPB3SH6iE+BYw5rvmaVReNfwTFGmdpot/0X
-OVj35EZJYV6bFaaFs40R83fg5b8s09FIYl2i08lqtIrW9kTMlstpjJ8mRrKjPdPA8sNXbs+hjms1
-YZkI94E2XPL8H0gicc0jq0WhEP0hUXme5do5Mq/u7VvLIpV2DOFXoes4oenKN8vLSoa+ESZntxw3
-ED0AA8IpZgFqEnS73PeIU6nSGHByV0FiJT16sVfAOD8FaMFeICx28k93xDhtNLVXiGhN8fR1fvaq
-iGE/+P0Qj1BIJHjd5TAYKuDH7mEQ3z2jus41tN1cXtDOUXSwFU/R7pkU9qM1PwfYWCPsz7WrsT9b
-jMeKQwEHicqMuYX4z8no7VJ2nvjItVRwfl1lGJNSNYHQK9agmuemHzIfmZJpesQNU0HuU5EwunK/
-iy6wL7/YsKZWuWmwNQdtJ51RsrlIWbEamL+EOHh9yoSi3jlH7D/ZNXEYseCsDagAAAAAAAA=
+[0]
+https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=ceeb0f0104a62c867656c2730a51df47e7350b8f
 
 
---=-SiZIUCcYluAFPJkLll1S--
+>   };
+>   
+> -struct inno_hdmi_connector_state {
+> -	struct drm_connector_state	base;
+> -	unsigned int			colorimetry;
+> -};
+> -
+> -static struct inno_hdmi *encoder_to_inno_hdmi(struct drm_encoder *encoder)
+> -{
+> -	struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
+> -
+> -	return container_of(rkencoder, struct inno_hdmi, encoder);
+> -}
+> -
+> -static struct inno_hdmi *connector_to_inno_hdmi(struct drm_connector *connector)
+...
 
