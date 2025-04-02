@@ -1,137 +1,166 @@
-Return-Path: <devicetree+bounces-162540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBA9FA78B15
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 11:30:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04836A78B1B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 11:32:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B8E307A4B3D
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 09:29:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19D053AFF2B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 09:32:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE2BC2356C3;
-	Wed,  2 Apr 2025 09:30:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64F991E8358;
+	Wed,  2 Apr 2025 09:32:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EkRUVanp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AbMFPEme"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91EFB233727;
-	Wed,  2 Apr 2025 09:30:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E18A3207;
+	Wed,  2 Apr 2025 09:32:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743586200; cv=none; b=rwE5ggqUxNzl4NCHYDUB8xeL4X/TuCbaqucwLFlqsxiSouJsPlYBdMfhhjuDc4vV5ynj1cJ3qwpDhsptR7AJsBLC/yUGC1y0d8VbgY2fkuMRKxVLgIvXIUaq65m0rNNvQBSi6R3gAS7J9b70v/vzMHZ4sebRJEvMpSVevXQT7Vs=
+	t=1743586341; cv=none; b=UBzRsDrP2TsRRJZjMtgiO6N/UM8Un2x7GoNHLKEdLzR7RFPVMMWzxe1ocNk+tCvyheBggVBiJ5iI48pkiX7718a4kGgMIvGTK7tBH3AgB77mWYM+F/cSZVW/fOwdQP9LD1+auvphPQFfsOVU+Vldt3ZJeDHIlCWyBIKZT/V0MZQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743586200; c=relaxed/simple;
-	bh=8AFyzMkukXlIorZLfhC8lT6o/ZfWhcX4UZ5ou9xw/mc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IYZeccgcJrsKmg3yV/Zv7GeAkhh9SQG2Wi1fRwEMGSoVy3OUBFlXD7hQKwA8YY/ADaHtV8kC2scpId6VSZZtLty7JhuW/ubPvOOxlMoHUS2SF/pUEYSd6efTvXvqvU05l1nWStkD02StLpY76C9qvO5etBokUL6v4RTZH/R61O0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EkRUVanp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31A2AC4CEDD;
-	Wed,  2 Apr 2025 09:29:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743586200;
-	bh=8AFyzMkukXlIorZLfhC8lT6o/ZfWhcX4UZ5ou9xw/mc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EkRUVanppkTZ67CfJ+qYTGPjXlJ6n1t58y4XgG6vF7KApERFXt7jVlZnDUJ+TlRvh
-	 9nxJTJZJBURBdMk+GG0U+2p6d9Iwo+eZk/h3nEZj81UPC6ptweNJJzj0Sz9Yp3seAe
-	 WOgDnRckZ1nimORHbzA9zMRDz//pyd34CRpo4zTZ35ItUrIj4G7FvxikHSW1SvGJbD
-	 GXvBg6gRlMUAXblE5PZyJ3dz7N7CCDb2Qk0ahi78lxi3SGrxH82/FbDIV3Mm9hByK4
-	 1WOzFsbHx5GXaK6M2sMJS3imZG0cAUIsBdVq8Xl9MK7As0wnGXMPR5ejiE9bKRgWkE
-	 0p2aHk0uKnBqQ==
-Date: Wed, 2 Apr 2025 09:29:57 +0000
-From: Tzung-Bi Shih <tzungbi@kernel.org>
-To: Gwendal Grignou <gwendal@chromium.org>
-Cc: jic23@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	chrome-platform@lists.linux.dev
-Subject: Re: [PATCH] drivers: iio: cros_ec_sensors: Flush changing the FIFO
- timeout
-Message-ID: <Z-0DleD6CRIsz3mY@google.com>
-References: <20250331164832.4039379-1-gwendal@chromium.org>
+	s=arc-20240116; t=1743586341; c=relaxed/simple;
+	bh=c62McDsiFCGOqG9OWkabQrRPktHz1wVYapoZIsRczbw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EozuTSA1o3DOVnTm8lOfb5BRiowiVD20kxHoUktaW7ncSeBkuMNlCcTGZ8T8axjcMcJ2b96m/05SC1SlFRRlPscPWjtKIQKxzd03Cr/6zxg7AIseoCr6piLrEHkezdzAuGW7suPCkJd+KI1xAizOH2Dum93EsOxhxfuSmB0X/ac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AbMFPEme; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5499d2134e8so7325512e87.0;
+        Wed, 02 Apr 2025 02:32:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1743586338; x=1744191138; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hF+lVD/siQDSMFb2h6qkbqkGQ3tLTrlnM6vF9JHlI90=;
+        b=AbMFPEme0RZsJT5pQSoeaGOosD+dRDBtp5WXnXx9NVqqd23R/jlZJ42gTpG7IAQdIt
+         +7gCjhxcQyl3eS0u26xHYYHYtp/I53IixJNlHahgLAGm2j5svo1bOHOiw3rU6YqAt2fL
+         DflvZBIcTWvagI2mq8ksMYuXmQVJh20Cc0jDdL+LNf3KZOqwviDWSfOoPFk4gB6Mlnj9
+         cryunh5JvH4FLBnNSn6vX6USg6NjvYBD9bdikOYBMTZ1rvj6+aWw0xMq1sK9C9OefV5n
+         DfSPMsMe8kyBqyVnJSNA0x/uKxI/bMsfiECzY3Yugtp2RBuUgfj6uA27fQnD75Q3S/Si
+         Jo6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743586338; x=1744191138;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hF+lVD/siQDSMFb2h6qkbqkGQ3tLTrlnM6vF9JHlI90=;
+        b=Hpnkvi18/TyWjhA7luMH3qd6h7eZAFnqJkV2ESH2qiEyn2iuAPCv+y+j7aq0feBYAD
+         yCDte3F2+0qc4yaShedasj4/dx1I9Wj3po3iVg1J7Y3EfnhEm31l4oVZcmxYHfWNspXS
+         /0fcmvavzv1yTNic1ce5eeQkofQPvs8XZjr+j3nmR4FDcK9XXCTFQksXRfbilPMvLQHw
+         3qFGL2qxlUKKoIfJNpCGf252z5A/REnhYkB89OVwbd4cVIHSwSjotI9JnzkcenwP+IWF
+         mRM2RwRScn51DdTK7eTolBo1hzfN61H3GNd2Srrs5O7HUEFFBMz3ca5bICrMTt8dCHiq
+         6t+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUeESApRBvFEBFAGkOioS6jLL3p2f8I3SwpigcJE0nEh+wA/Ef9+5ZBPXduXXKrcYGgFfU1EBhPq6BJ@vger.kernel.org, AJvYcCV2V/TYJrFlqU597vDioDDxzv93h/nyzV24Ed3IxdWueeXCfk/l5feyjI45z2cduMrvG/Mt+Jy4pOdrSfJ8@vger.kernel.org
+X-Gm-Message-State: AOJu0YwVzpjnBJOs/xuYO6HfCeT/AQBGD61PA/RsSstZBMxszquz/k7T
+	pqjguCuxuHPLb31zatbfGohAPDEXvkX/99NpoROw9CIMkZLAw6485dmDjg==
+X-Gm-Gg: ASbGncuZYa1+uWlB6+Vd8YNK12O6ew9Rq2gr1c3rrnUAl1oD5oFsjXskin/lbUKDx9N
+	c36790vDFxaCIS7s688050R97fO0ksj0hQMwo9vZlZkhpQsw/sBfevbDIm4zHmYU/IWDEBoxxW1
+	Xhi+tFFlvGbldnV2/Mz1KZiHR5BPlLOChOvORTrLo13C9uz2H6S1bnuH1ZviGJA/XOqHzpGws7Q
+	4uLPcb1fPCFV3RrBbl+EcjlAV/ozRSbxeiM6BXYL//Qt71ArJwDoicCabwuwpUZaKU2Mb2diDXs
+	2HGFpDsUBrPHGuoYTpHMpG/I/CGTlIvh+WlUz4RSz5k/YYZcB5wwWlcAH844HUEo6FLBPjjraeI
+	kBzLKYciFEeK9AW++/CCwhGPjcg==
+X-Google-Smtp-Source: AGHT+IG+LSUGy2TPrdQBfFTITqkoZ9Zs2Tmb8BCRl2Dip06fYtzbhmGbXqXbG6FToe5ULeeSqNgrRQ==
+X-Received: by 2002:a05:6512:6ce:b0:549:5989:bb89 with SMTP id 2adb3069b0e04-54c19c8f41cmr558399e87.35.1743586337502;
+        Wed, 02 Apr 2025 02:32:17 -0700 (PDT)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54b0959115esm1584525e87.178.2025.04.02.02.32.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Apr 2025 02:32:16 -0700 (PDT)
+Message-ID: <9a74816b-4a0b-4862-85e5-a10aa2eca586@gmail.com>
+Date: Wed, 2 Apr 2025 12:32:15 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250331164832.4039379-1-gwendal@chromium.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 13/14] regulator: bd96801: Support ROHM BD96806 PMIC
+To: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <cover.1742802856.git.mazziesaccount@gmail.com>
+ <734397c8bdb86419fbced3432c7074badaad6657.1742802856.git.mazziesaccount@gmail.com>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <734397c8bdb86419fbced3432c7074badaad6657.1742802856.git.mazziesaccount@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Mar 31, 2025 at 09:48:32AM -0700, Gwendal Grignou wrote:
-> fifo_timeout is used by the EC firmware only when a new sample is
-> available.
-
-I guess you mean: "FIFO timeout".  There is no specific symbol called
-`fifo_timeout`.
-
+On 24/03/2025 10:57, Matti Vaittinen wrote:
+> The ROHM BD96806 is from the software perspective almost identical to
+> the ROHM BD96802. The main difference is different voltage tuning
+> ranges.
+> 
+> Add support differentiating these PMICs and provide correct voltages
+> for both models.
+> 
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> 
 > ---
+> Revision history:
+> v1 => :
+>   - No changes
+> ---
+>   drivers/regulator/bd96801-regulator.c | 65 +++++++++++++++++++++++++++
+>   1 file changed, 65 insertions(+)
+> 
+> diff --git a/drivers/regulator/bd96801-regulator.c b/drivers/regulator/bd96801-regulator.c
+> index d829289942f9..fb9e7c3314a3 100644
+> --- a/drivers/regulator/bd96801-regulator.c
+> +++ b/drivers/regulator/bd96801-regulator.c
+> @@ -962,6 +962,70 @@ static const struct bd96801_pmic_data bd96805_data = {
+>   	.num_regulators = 7,
+>   };
+>   
+> +static const struct bd96801_pmic_data bd96806_data = {
+> +	.regulator_data = {
+> +	{
+> +		.desc = {
+> +			.name = "buck1",
+> +			.of_match = of_match_ptr("buck1"),
+> +			.regulators_node = of_match_ptr("regulators"),
+> +			.id = BD96801_BUCK1,
+> +			.ops = &bd96801_buck_ops,
+> +			.type = REGULATOR_VOLTAGE,
+> +			.linear_ranges = bd96805_tune_volts,
+> +			.n_linear_ranges = ARRAY_SIZE(bd96805_tune_volts),
+> +			.n_voltages = BD96805_BUCK_VOLTS,
+> +			.enable_reg = BD96801_REG_ENABLE,
+> +			.enable_mask = BD96801_BUCK1_EN_MASK,
+> +			.enable_is_inverted = true,
+> +			.vsel_reg = BD96801_BUCK1_VSEL_REG,
+> +			.vsel_mask = BD96805_BUCK_VSEL_MASK,
+> +			.ramp_reg = BD96801_BUCK1_VSEL_REG,
+> +			.ramp_mask = BD96801_MASK_RAMP_DELAY,
+> +			.ramp_delay_table = &buck_ramp_table[0],
+> +			.n_ramp_values = ARRAY_SIZE(buck_ramp_table),
+> +			.owner = THIS_MODULE,
+> +		},
+> +		.init_ranges = bd96801_buck_init_volts,
+> +		.num_ranges = ARRAY_SIZE(bd96801_buck_init_volts),
 
-"drivers: " in the patch's title prefix can be dropped.
+This is wrong. The BD96806 has similar voltage ranges as the BD96805, so 
+we should use the
 
-> -static int cros_ec_sensor_set_ec_rate(struct cros_ec_sensors_core_state *st,
-> -				      int rate)
-> -{
-> -	int ret;
-> -
-> -	if (rate > U16_MAX)
-> -		rate = U16_MAX;
-> -
-> -	mutex_lock(&st->cmd_lock);
-> -	st->param.cmd = MOTIONSENSE_CMD_EC_RATE;
-> -	st->param.ec_rate.data = rate;
-> -	ret = cros_ec_motion_send_host_cmd(st, 0);
-> -	mutex_unlock(&st->cmd_lock);
-> -	return ret;
-> -}
-> -
->  static ssize_t cros_ec_sensor_set_report_latency(struct device *dev,
->  						 struct device_attribute *attr,
->  						 const char *buf, size_t len)
-> @@ -134,7 +118,25 @@ static ssize_t cros_ec_sensor_set_report_latency(struct device *dev,
->  
->  	/* EC rate is in ms. */
->  	latency = integer * 1000 + fract / 1000;
-> -	ret = cros_ec_sensor_set_ec_rate(st, latency);
-> +
-> +	mutex_lock(&st->cmd_lock);
-> +	st->param.cmd = MOTIONSENSE_CMD_EC_RATE;
-> +	st->param.ec_rate.data = min(U16_MAX, latency);
-> +	ret = cros_ec_motion_send_host_cmd(st, 0);
-> +	mutex_unlock(&st->cmd_lock);
-> +	if (ret < 0)
-> +		return ret;
+		.init_ranges = bd96805_buck_init_volts,
+		.num_ranges = ARRAY_SIZE(bd96805_buck_init_volts),
 
-It isn't obvious (at least irrelevant to the commit message) that
-cros_ec_sensor_set_ec_rate() becomes inline here.
+Also for buck2.
 
-> @@ -152,7 +154,6 @@ static ssize_t cros_ec_sensor_get_report_latency(struct device *dev,
->  	mutex_lock(&st->cmd_lock);
->  	st->param.cmd = MOTIONSENSE_CMD_EC_RATE;
->  	st->param.ec_rate.data = EC_MOTION_SENSE_NO_VALUE;
-> -
->  	ret = cros_ec_motion_send_host_cmd(st, 0);
->  	latency = st->resp->ec_rate.ret;
->  	mutex_unlock(&st->cmd_lock);
+I'll fix this in v3 but wait for a couple of days to see if the rest of 
+the regulator patches gain comments :)
 
-Unwanted change.
-
-> @@ -853,6 +858,16 @@ int cros_ec_sensors_core_write(struct cros_ec_sensors_core_state *st,
->  		st->param.sensor_odr.roundup = 1;
->  
->  		ret = cros_ec_motion_send_host_cmd(st, 0);
-> +
-> +		/* Flush the FIFO in case we are stopping a sensor.
-> +		 * If the FIFO has just been emptied, pending samples will be
-> +		 * stuck until new samples are available. It will not happen
-> +		 * when all the sensors are stopped.
-> +		 */
-> +		if (frequency == 0) {
-> +			st->param.cmd = MOTIONSENSE_CMD_FIFO_FLUSH;
-> +			cros_ec_motion_send_host_cmd(st, 0);
-
-Wouldn't it want to check `ret` from previous cros_ec_motion_send_host_cmd()
-and override `ret` by the latest call?
+Yours,
+   -- Matti
 
