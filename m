@@ -1,199 +1,119 @@
-Return-Path: <devicetree+bounces-162602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD840A78F15
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 14:52:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7F18A78F2D
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 14:56:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D441318951EE
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 12:51:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 02B8A1891372
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 12:55:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B08924167A;
-	Wed,  2 Apr 2025 12:48:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FD9A23959A;
+	Wed,  2 Apr 2025 12:55:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="UFpZgsLj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IXkHxxk4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E923D23BCE7;
-	Wed,  2 Apr 2025 12:48:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F26C62376F7;
+	Wed,  2 Apr 2025 12:55:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743598089; cv=none; b=YGunlsKyuW2pcWK1R7xfMUUVtjF0fYrM1wy0eIjLU0kfykUbZDIdmrxYbrEqXRINUaZrnIDlwmvGdmetA/oG48A4DWa1Rd18V/d7DrugGSe4ymtKtCarIKVzsgFDI3aDjmgleVelwwX6sOx1tGa9hV9fOXzxMk05VXJNKp6o47E=
+	t=1743598528; cv=none; b=E/1PKff598L8O1uA+vNKNpC2LDzaWXPMvvZO8dhgh8sW5ecl4L9PFh1gczLkgwjKxxD4X8jxqJqfJVVvE+BEX9WmKUyzM4dbn7xWqIMyUOmY1Bu1/2wr2sY7I77VZ8c+ttzkp1effRTneGR8LV9whd1OIsniZ8V80JEadyWZSpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743598089; c=relaxed/simple;
-	bh=ZbrgI1QMiyPzXZtbXyqIrXqGXB55hdcp4jkmMe1pbUU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I1YUHZApkZTIiTdq2laLdCyq7lWgB+YZ4xPWEI22oPUJl3Cyvkv7KJn3E8Ux0n5UKa6EVPx+NySoQueOG6NM2dYNjaPPaCqAn9jSUkNKPSN1QunFIGs88pzfwSnzliRqMGbOQBBNsXb40sfRLomW5jbIPusbrs/dDR7IiQYQLwY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=UFpZgsLj; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=yibjlCzMj7db36Ncl+n+k08WtHR8TCTohVRGWqYmZg0=; b=UFpZgsLjYa47uMUX+kbAWXcqXj
-	EAXRsVbFGjyOEQDht4LLsjdX2i6zX1P/detZLCGKl4B2bZqBP3vuGsDj76g6F2j2Je6VWPDl7nVYP
-	UatDa/505MPVEy3wGGZrB+COxlRk+tMXa/YhSgMarkAYW4y/gXTQkgS/PzfN31YyzEdo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tzxVc-007n1N-8p; Wed, 02 Apr 2025 14:47:56 +0200
-Date: Wed, 2 Apr 2025 14:47:56 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Lukasz Majewski <lukma@denx.de>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 4/4] net: mtip: The L2 switch driver for imx287
-Message-ID: <8f431197-474e-4cd5-9c3e-d573c3f3e6b5@lunn.ch>
-References: <20250331103116.2223899-1-lukma@denx.de>
- <20250331103116.2223899-5-lukma@denx.de>
+	s=arc-20240116; t=1743598528; c=relaxed/simple;
+	bh=KLUcO4PETxRtJ7bSzZDcl4QzL3KsG5+5Tq3fAEUTpLQ=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=C/MBhKiXO3h62QCY3BgPMjq2f04Sgqln4eWoUgf6wM7Ll3aUp42/LimVokcKLdrQtmatbl3dyG+Glp38Ia00pGArgyhufPBQCP8Tl3skQWQ6KJ9iYmy3PttvWSjNiFI7mtSo6mwzWG8H8ylVb8/KFH0aqsfKPHA3yrbLSdkeWoY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IXkHxxk4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2860C4CEDD;
+	Wed,  2 Apr 2025 12:55:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1743598527;
+	bh=KLUcO4PETxRtJ7bSzZDcl4QzL3KsG5+5Tq3fAEUTpLQ=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=IXkHxxk41GO44tK70RVcRfKfgdhBtcyxVbaLKM7n4Z3jxTjVgb3zuO0Sb3Dzzu+22
+	 wdHoqCt+9NhCXNfexVLwZU1cheoCxr6z97bLZF5ZMoGy/p3Kg0kGcKtU0mcka0FdhB
+	 LRJGQD+ODZNaI6ID56uO1l9rR7hjfxaD5is34slsc3l+sRBEt05yah6cGDXNSSr1+o
+	 vVAXjen+z1rwrHTUvB1Rzg+wQ0F9Gs6+O2Fy6nbLmVtfQ2dc03MGPh2pCCddjauqNR
+	 d9rBiHU91AUWGHp2Y3l86l3+Jly/zOTeMBsW7/Fbp7FMRR+g2jWIkcW/QhwNQ+frK7
+	 zlCYyYqqzbigA==
+Date: Wed, 02 Apr 2025 07:55:26 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250331103116.2223899-5-lukma@denx.de>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ linux-remoteproc@vger.kernel.org, 
+ Mathieu Poirier <mathieu.poirier@linaro.org>, hailong.fan@mediatek.com, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Xiangzhi Tang <Xiangzhi.Tang@mediatek.com>, 
+ linux-mediatek@lists.infradead.org, 
+ Project_Global_Chrome_Upstream_Group@mediatek.com, jjian.zhou@mediatek.com, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>
+To: Xiangzhi Tang <xiangzhi.tang@mediatek.com>
+In-Reply-To: <20250402092134.12293-2-xiangzhi.tang@mediatek.com>
+References: <20250402092134.12293-1-xiangzhi.tang@mediatek.com>
+ <20250402092134.12293-2-xiangzhi.tang@mediatek.com>
+Message-Id: <174359852621.53914.11998352307162389918.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: Add VCP support for
+ mt8196
 
-> +static void read_atable(struct switch_enet_private *fep, int index,
-> +			unsigned long *read_lo, unsigned long *read_hi)
-> +{
-> +	unsigned long atable_base = (unsigned long)fep->hwentry;
-> +
-> +	*read_lo = readl((const void *)atable_base + (index << 3));
-> +	*read_hi = readl((const void *)atable_base + (index << 3) + 4);
-> +}
-> +
-> +static void write_atable(struct switch_enet_private *fep, int index,
-> +			 unsigned long write_lo, unsigned long write_hi)
-> +{
-> +	unsigned long atable_base = (unsigned long)fep->hwentry;
-> +
-> +	writel(write_lo, (void *)atable_base + (index << 3));
-> +	writel(write_hi, (void *)atable_base + (index << 3) + 4);
-> +}
 
-It would be nice to have the mtip_ prefix on all functions.
+On Wed, 02 Apr 2025 17:19:24 +0800, Xiangzhi Tang wrote:
+> Add the new binding document for MediaTek Video Companion
+> Processor(VCP) on MediaTek mt8196.
+> 
+> Signed-off-by: Xiangzhi Tang <xiangzhi.tang@mediatek.com>
+> ---
+>  .../remoteproc/mediatek,mt8196-vcp.yaml       | 174 ++++++++++++++++++
+>  1 file changed, 174 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/mediatek,mt8196-vcp.yaml
+> 
 
-> +static int mtip_open(struct net_device *dev)
-> +{
-> +	struct mtip_ndev_priv *priv = netdev_priv(dev);
-> +	struct switch_enet_private *fep = priv->fep;
-> +	int ret, port_idx = priv->portnum - 1;
-> +
-> +	if (fep->usage_count == 0) {
-> +		clk_enable(fep->clk_ipg);
-> +		netif_napi_add(dev, &fep->napi, mtip_rx_napi);
-> +
-> +		ret = mtip_alloc_buffers(dev);
-> +		if (ret)
-> +			return ret;
+My bot found errors running 'make dt_binding_check' on your patch:
 
-nitpick: You might want to turn the clock off before returning the
-error.
+yamllint warnings/errors:
 
-> +	}
-> +
-> +	fep->link[port_idx] = 0;
-> +
-> +	/* Probe and connect to PHY when open the interface, if already
-> +	 * NOT done in the switch driver probe (or when the device is
-> +	 * re-opened).
-> +	 */
-> +	ret = mtip_mii_probe(dev);
-> +	if (ret) {
-> +		mtip_free_buffers(dev);
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/remoteproc/mediatek,mt8196-vcp.example.dts:26:18: fatal error: dt-bindings/power/mt8196-power.h: No such file or directory
+   26 |         #include <dt-bindings/power/mt8196-power.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/remoteproc/mediatek,mt8196-vcp.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1522: dt_binding_check] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
-I've not checked. Does this do the opposite of netif_napi_add()?
+doc reference errors (make refcheckdocs):
+Warning: Documentation/devicetree/bindings/remoteproc/mediatek,mt8196-vcp.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mailbox/mediatek,mt8196-vcp-mbox.yaml
+Documentation/devicetree/bindings/remoteproc/mediatek,mt8196-vcp.yaml: Documentation/devicetree/bindings/mailbox/mediatek,mt8196-vcp-mbox.yaml
 
-> +static void mtip_set_multicast_list(struct net_device *dev)
-> +{
-> +	unsigned int i, bit, data, crc;
-> +
-> +	if (dev->flags & IFF_PROMISC) {
-> +		dev_info(&dev->dev, "%s: IFF_PROMISC\n", __func__);
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250402092134.12293-2-xiangzhi.tang@mediatek.com
 
-You can save one level of indentation with a return here.
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-> +	} else {
-> +		if (dev->flags & IFF_ALLMULTI) {
-> +			dev_info(&dev->dev, "%s: IFF_ALLMULTI\n", __func__);
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-and other level here.
+pip3 install dtschema --upgrade
 
-> +		} else {
-> +			struct netdev_hw_addr *ha;
-> +			u_char *addrs;
-> +
-> +			netdev_for_each_mc_addr(ha, dev) {
-> +				addrs = ha->addr;
-> +				/* Only support group multicast for now */
-> +				if (!(*addrs & 1))
-> +					continue;
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
-You could pull there CRC caluclation out into a helper. You might also
-want to search the tree and see if it exists somewhere else.
-
-> +
-> +				/* calculate crc32 value of mac address */
-> +				crc = 0xffffffff;
-> +
-> +				for (i = 0; i < 6; i++) {
-
-Is 6 the lengh of a MAC address? There is a #define for that.
-
-> +					data = addrs[i];
-> +					for (bit = 0; bit < 8;
-> +					     bit++, data >>= 1) {
-> +						crc = (crc >> 1) ^
-> +						(((crc ^ data) & 1) ?
-> +						CRC32_POLY : 0);
-> +					}
-> +				}
-> +			}
-> +		}
-> +	}
-> +}
-> +
-
-> +struct switch_enet_private *mtip_netdev_get_priv(const struct net_device *ndev)
-> +{
-> +	if (ndev->netdev_ops == &mtip_netdev_ops)
-> +		return netdev_priv(ndev);
-> +
-> +	return NULL;
-> +}
-> +
-
-> +static int __init mtip_switch_dma_init(struct switch_enet_private *fep)
-> +{
-> +	struct cbd_t *bdp, *cbd_base;
-> +	int ret, i;
-> +
-> +	/* Check mask of the streaming and coherent API */
-> +	ret = dma_set_mask_and_coherent(&fep->pdev->dev, DMA_BIT_MASK(32));
-> +	if (ret < 0) {
-> +		dev_warn(&fep->pdev->dev, "No suitable DMA available\n");
-
-Can you recover from this? Or should it be dev_err()?
-
-More later...
-
-	Andrew
 
