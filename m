@@ -1,207 +1,128 @@
-Return-Path: <devicetree+bounces-162571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9992A78CA3
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 12:49:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8286A78D04
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 13:24:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6416817047F
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 10:49:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B7D43A777D
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 11:24:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35790235C03;
-	Wed,  2 Apr 2025 10:49:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05C21237713;
+	Wed,  2 Apr 2025 11:24:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=arri.de header.i=@arri.de header.b="i2PQe7qe"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="LolnzeCT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2064.outbound.protection.outlook.com [40.107.21.64])
+Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E98D521ABC3;
-	Wed,  2 Apr 2025 10:49:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.64
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743590975; cv=fail; b=oSAymw7tOYH0rf3su5dO5yW16oNBODhkPfviWDbbElZHoH2UInUFFecxu9E+2M7XMSD54BSc6zhag5cbVyYhtNWd8eMb/eKydj8xtU3BEO2X0FOzO3V0vvzblJ1oFTTdssGqlzKmefSjM44JgrTwbRGKGvIEt5iclnCowhZP784=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743590975; c=relaxed/simple;
-	bh=bBFC9QogFwGRG2Tcc/zUCFvh31XW6jjtFBDvgnuoyMQ=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=u1qzAmmj92fDktZrStMNWAC/o+VqFpWw6T6pcSARudkuyBn4DRNRLpjdA3US+4ev5WD5QiFbaV4ObHJ7KmtAGRDnXRPBMZDwWWi6BbUe6V/uT67qNAKt7vQj7jkrfHDJNO/D1he3jjMSrZFTI/f0d50UHQPKSvhi5hYH12RCLeg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arri.de; spf=pass smtp.mailfrom=arri.de; dkim=pass (1024-bit key) header.d=arri.de header.i=@arri.de header.b=i2PQe7qe; arc=fail smtp.client-ip=40.107.21.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arri.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arri.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JGc/myex+1PhgBDfixvS0LCSLBe67LSkUYqwSoiMJr/ZOQK0tIUHINiHUsYV2AINalMGPfOKQa4xzmqGqYfq0RRlo1dw0z9a2i3hLT6k/8PjJuu7ldHKpXUWmubP0i6fYubR7BnqCUFjicbZP/8U01MPYIQXWU0R/vu2KxGJTt5MMxc51/JfLmw/6Zwfs1sM0SOyI8hye9ZrVQUOQOueQapIaMfKILHYO9/i2zIXBLtuMg2bxIuZs0/5vZBetsH3uz6NY0W4oraSw4ckGLHsP7JJXxVruObTv5BG/5ITicp8eGJLxM9gEQzrR9CFvKe7t9JGG30ywmPjas3bz9Ak5A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JOJTapwRly5ilWzkXqnDaHCDwGcwXfR+EW9vKYW1OOo=;
- b=FoXcTYfejgAC6xtw+5XNP9izvrCIJUTcD/labgiXZxth5UWxeB09xUxlSWpRIgMXgWQoXBPc3yVAPlFSZBuaovN5hVdzwRRlwi6wcpru4IMxagwXF+/BHZTdQ8TG2PNtTmhX9dEqGscFK0d/K3LE5KmEJw7SKxT5qFuwmk1zj3isiyuKyXRQixTPUbMwN9/40R2Zbhs8YLTqtXdtQ6WnqldiYHlL6OSPOdK4g3MjTFGUEtE/hsvIIx8FKpU74G0zsKcy2S9uT6NErwa6g3aSs9bKSLXZhKDknZp4+MCmh0zJEko4+Hrt8+wZ6N/i2AzTAp6fVuMKNagN8fzKYVpD6Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 217.111.95.7) smtp.rcpttodomain=cab.de smtp.mailfrom=arri.de; dmarc=fail
- (p=none sp=none pct=100) action=none header.from=arri.de; dkim=none (message
- not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arri.de; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JOJTapwRly5ilWzkXqnDaHCDwGcwXfR+EW9vKYW1OOo=;
- b=i2PQe7qeMTVUs0UiAKtBqB1wLkEklzuQgJeDAby5lYolHHLGZWe6aNoypPxw9zfKSsT6y6FMsHU4oUPIACBv2enQ7XWn8EoJs8A0q426QSERYBI+i2fjv4j/y6MIoxqT/syA0GhuhtmIUzOsyAvhh8Vj5nrBL+6kIyV13Vx9dVg=
-Received: from AM8P251CA0014.EURP251.PROD.OUTLOOK.COM (2603:10a6:20b:21b::19)
- by AS8PR03MB8468.eurprd03.prod.outlook.com (2603:10a6:20b:52e::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.44; Wed, 2 Apr
- 2025 10:49:26 +0000
-Received: from AM3PEPF00009BA0.eurprd04.prod.outlook.com
- (2603:10a6:20b:21b:cafe::26) by AM8P251CA0014.outlook.office365.com
- (2603:10a6:20b:21b::19) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8583.39 via Frontend Transport; Wed,
- 2 Apr 2025 10:49:25 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 217.111.95.7)
- smtp.mailfrom=arri.de; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=arri.de;
-Received-SPF: Fail (protection.outlook.com: domain of arri.de does not
- designate 217.111.95.7 as permitted sender) receiver=protection.outlook.com;
- client-ip=217.111.95.7; helo=mta.arri.de;
-Received: from mta.arri.de (217.111.95.7) by
- AM3PEPF00009BA0.mail.protection.outlook.com (10.167.16.25) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8606.22 via Frontend Transport; Wed, 2 Apr 2025 10:49:25 +0000
-Received: from n9w6sw14.localnet (10.30.5.38) by mta.arri.de (10.10.18.5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.38; Wed, 2 Apr
- 2025 12:49:24 +0200
-From: Christian Eggers <ceggers@arri.de>
-To: Markus Heidelberg <M.Heidelberg@cab.de>
-CC: Arnd Bergmann <arnd@arndb.de>, Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jiri
- Prchal <jiri.prchal@aksignal.cz>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>
-Subject: Re: [RFC PATCH 0/2] eeprom: at25: support Cypress FRAMs without device ID
-Date: Wed, 2 Apr 2025 12:49:24 +0200
-Message-ID: <2293994.vFx2qVVIhK@n9w6sw14>
-Organization: Arnold & Richter Cine Technik GmbH & Co. Betriebs KG
-In-Reply-To: <Z-zr2oj-hD28ccy3@KAN23-025>
-References: <20250401133148.38330-1-m.heidelberg@cab.de> <2759958.vuYhMxLoTh@n9w6sw14>
- <Z-zr2oj-hD28ccy3@KAN23-025>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BE602356DF;
+	Wed,  2 Apr 2025 11:24:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=90.155.92.199
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1743593064; cv=none; b=EOLDby3hKHOF0wR41oZO1GrSbOSRkEmlCupj3dY41b+pdm6MaPHqqbvWlsnPpTTD91PZGSVDnueM6BgCL4QyLEDCcIo4DbTrsdDeoie2GVzJBk8xFia+5Wz9ioK8g2/p1dnx79+r10tzedxXjC4Xmnbxsa6wn/mqBpVK+Wtj254=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1743593064; c=relaxed/simple;
+	bh=73p/wTwfev2tcjoMCquBB87TbDvWfM+Y56RbnEPz3qQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=kYJT1b1uEvDDbTw3ZNf6zd/NFHVGi0Ix/WepWpErHMAWZVo9ZbQ+3DvzXq6yfSXAykaMjFaErNLqbouw8ULuJfcX5w+5KDBEw5010aZs0sBBuDfRAUUVDNuKCeXDzxXGNy+i+9za+slYaUH8xQPy/swUmwQcXnbdlIUF7WPgwU8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=desiato.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=LolnzeCT; arc=none smtp.client-ip=90.155.92.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=desiato.srs.infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:
+	Content-ID:Content-Description:In-Reply-To:References;
+	bh=2ERaQu54KYGFkx50hM6qIWLoD04DS7K1oXQsT484Kg0=; b=LolnzeCTTeM7ec0l28Q3rfhxRc
+	iCKGv/i+XBsNAxqmDx86wyV0psEAbbqIPuNMfGKNaSACTnXGSnZKAX0ZIlSmk/Pc0AW7T6qqVQkAh
+	RRjWE7DD++pv2etRGYliyrA/zMMiasCTHyijJKpAAZTZ9fpBfNVxPQbAV1aUUQFjDpsryef6jQ8O7
+	FFYnl1qnjDNQHrckq0xtBmqic7D9E+zPxRsJYTPZvKSP6Gkf+TOs/hwr8/FGTOniiQ6L5ca+CBUKu
+	uvfptV6CT6SFwDERxIj9mv7bURM3pHANo5F1qbS1If/iVn+FbZHi/XdRJGHY9RwY3Z3lLV/ms/Cpu
+	xo9ukqtQ==;
+Received: from [2001:8b0:10b:1::ebe] (helo=i7.infradead.org)
+	by desiato.infradead.org with esmtpsa (Exim 4.98.1 #2 (Red Hat Linux))
+	id 1tzwCb-000000070eL-2dlx;
+	Wed, 02 Apr 2025 11:24:13 +0000
+Received: from dwoodhou by i7.infradead.org with local (Exim 4.98.1 #2 (Red Hat Linux))
+	id 1tzwCa-00000008sIA-1CWq;
+	Wed, 02 Apr 2025 12:24:12 +0100
+From: David Woodhouse <dwmw2@infradead.org>
+To: virtio-comment@lists.linux.dev
+Cc: mst@redhat.com,
+	hch@infradead.org,
+	Claire Chang <tientzu@chromium.org>,
+	linux-devicetree <devicetree@vger.kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	=?UTF-8?q?J=C3=B6rg=20Roedel?= <joro@8bytes.org>,
+	iommu@lists.linux-foundation.org,
+	linux-kernel@vger.kernel.org,
+	graf@amazon.de
+Subject: [RFC PATCH 0/3] Add Software IOTLB bounce buffer support
+Date: Wed,  2 Apr 2025 12:04:44 +0100
+Message-ID: <20250402112410.2086892-1-dwmw2@infradead.org>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM3PEPF00009BA0:EE_|AS8PR03MB8468:EE_
-X-MS-Office365-Filtering-Correlation-Id: 71655cce-95a7-45dc-578b-08dd71d408d9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|36860700013|82310400026|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Sz1kZC3Q8HeG8Obr0Yo5pPGB1m6rbkoxSD997P9PHO17P5SCsh2bJxbSYDxq?=
- =?us-ascii?Q?qbmrUIrCm+d8zwZtiWsLBgoA6Yd83KK6iFWqnUWWOFEczH7pYZfg1uyE+peO?=
- =?us-ascii?Q?TNDtqwQUlOic4J7vOMOUQNiXBKi3JHBJ3aq8oOQFKRo3vD4VAjcyyvqAiMdu?=
- =?us-ascii?Q?3xzRlgiYrcmHMWM+g3pvKQXZYGlSRkpZJbXUZCdVPsAWduYWpJQ7lSsC1piW?=
- =?us-ascii?Q?s1q/xkfyspZu9cEbFsLTDjj6e9V7Gwrli1kSwzrZtfUlGoUd9P30+jKGXl61?=
- =?us-ascii?Q?G95EhVg3WKpMPcD2hVsqKDGXRrFCK9MtZ81lwTqBvwP5O/7stZdRBV+kdQGo?=
- =?us-ascii?Q?taQI2/KndQQYG/sq6t9IHv5LZE4Nusp2za4mg3Sf/QLZdpxyamIvzKoD8KI4?=
- =?us-ascii?Q?mPFkwxvkmkrAPPb4ZB4wi+22u3H91GkbsX5JyZCdA79BCrE56VVDxu4ZDHl2?=
- =?us-ascii?Q?nqaJhAlNyj7Y431USclhL2lt6ST56Kzn5NPV6zvXSeA2SbW6QoBtH4U1SXxG?=
- =?us-ascii?Q?hS2mQDA4vl+YFXn6A1zP6RhaLj5yINJEO0AiuHtmGOYh3/wI3mmtjfM8+1YZ?=
- =?us-ascii?Q?3KEVAQmv4MjksTKHr9aQuRd9g6QGnSQjt0KSHh8YzZhj7ZPxkENK7F6SGHDQ?=
- =?us-ascii?Q?ODaAY+4ZtFmihANLbTTrhxGXOUK9hoUwg2GUO+yxSpJkl2OnvYxSdwwL/iAi?=
- =?us-ascii?Q?J3j2ADhu6KQIlZGn9PvVaHwiHvJpW/UrA5/oFqpFXfk1NdNjI0OguuwIG4K7?=
- =?us-ascii?Q?JdOJNNqhBIm5C46OxzQxsL+M/GmV4tlDurxbGmjMx4hwbbBNmK0q6H087bV4?=
- =?us-ascii?Q?kovgSKU+r9sqoREEok+xucVvi4WklKydK+/sbVJOlg/WtyqDdvIbn4bnqL/d?=
- =?us-ascii?Q?qYAEIU71IYqz233Iu2mHXshP80yGwmmyF5s65WXLtQR/LEDBecqex590xes5?=
- =?us-ascii?Q?SGb9IgevS3sL2cRmEvao2m/HT8i7CfKn0yRz1UrSROYxiST0BEQ7s6vwUhYt?=
- =?us-ascii?Q?F5hZPegj7g5L5941ujnaz4Us0INmcNYRXVFePjM09eavC21LJ0pShCsBj6z/?=
- =?us-ascii?Q?N195/CeuNwh8JrbjknHOsDkjIifLuW7iGnN/a5bZ075hdhqaVuTgzQw1gGAE?=
- =?us-ascii?Q?8/4R2WM8gcbiK8ePDeLf7S4POiVJA0kjsobM+XZcgr5WV3BMKh5QQ/J1AJe+?=
- =?us-ascii?Q?vrFBAGy8FMrmsoBbVZXaWIJ8OefjePbZFzZV838sTKYzjH8oSgEDYkn6EBI9?=
- =?us-ascii?Q?qt6XLaerKeE9m0zW64sgc6aUGN0WP/X+eTpiTAnhk6+vvUcIi0eM75j/jkmk?=
- =?us-ascii?Q?wcfhQq1r4A22wsMTHKtRMrD+wttUKb/kDuYM/Ad7X4dy9p5X9ABy30Ozp9Ax?=
- =?us-ascii?Q?YWxXNyNSA8/4AiGT/vZCzqlRFdBm1oTKVKhCrPM6Tu8rkJrF2QmCogSyxq9v?=
- =?us-ascii?Q?vkC/itSlqX5WMdnxzY6O3q2e1UT200y4BJoykQev63P5CacjC2lmI/5e/jRJ?=
- =?us-ascii?Q?garQu1/Ji8QwdW0P+4+M8k71Hg3f0Yy6FHN/?=
-X-Forefront-Antispam-Report:
-	CIP:217.111.95.7;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mta.arri.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014);DIR:OUT;SFP:1101;
-X-OriginatorOrg: arri.de
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Apr 2025 10:49:25.1321
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 71655cce-95a7-45dc-578b-08dd71d408d9
-X-MS-Exchange-CrossTenant-Id: e6a73a5a-614d-4c51-b3e3-53b660a9433a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e6a73a5a-614d-4c51-b3e3-53b660a9433a;Ip=[217.111.95.7];Helo=[mta.arri.de]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AM3PEPF00009BA0.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR03MB8468
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Sender: David Woodhouse <dwmw2@infradead.org>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by desiato.infradead.org. See http://www.infradead.org/rpr.html
 
-Hi Markus,
+With confidential computing, the hypervisor/VMM component which implements
+a virtio device model may not have access to arbitrary guest system memory.
 
-<disclaimer>I'm not maintaining the AT25 driver</disclaimer>
+There are various ways to deal with this restriction. Enlightenments in
+the core guest operating system can ensure that DMA buffers are shared,
+or unencrypted, depending on the type of protection. But that does need
+the OS core to support such new mechanisms.
 
-On Wednesday, 2 April 2025, 09:48:52 CEST, Markus Heidelberg wrote:
-> Hi Christian,
-> 
-> On Tue, Apr 01, 2025 at 03:45:14PM +0200, Christian Eggers wrote:
-> > 
-> > I use the following FRAM device: Fujitsu mb85rs1mt. 
-> > 
-> > This FRAM is also not able to report its size (at least I didn't
-> > try).
-> 
-> According to the datasheet there is a device ID, but with a different
-> response compared to Cypress FRAMs. It wouldn't work without modifying
-> the current implementation.
-> 
-> > I can use this FRAM with the following (Eeeprom) settings:
-> > 
-> > 		compatible = "fujitsu,mb85rs1mt", "atmel,at25";
-> > 		reg = <0>;
-> > 		spi-max-frequency = <30000000>;
-> > 		/* mode0, uncomment for mode3 */
-> > 		/*spi-cpha;
-> > 		spi-cpol;*/
-> > 
-> > 		/* from the datasheet it seems that there is no page size for FRAM */
-> > 		pagesize = <131072>;
-> > 		size = <131072>;
-> > 		address-width = <24>;
-> > 
-> > Is this what you are looking for? Of course, the "type" attribute 
-> > reports "EEPROM" with this configuration, but my application don't care
-> > about this.
-> 
-> This is what I started with, but I thought there has to be a reason that
-> EEPROM and FRAM are distinguished in the driver (at25 and nvmem core)
-> and I wanted to do it right. If not relevant now, maybe in the future.
+Some IOMMU hardware now supports two-stage operation, where true device
+DMA is translated first through guest IOVA→GPA page tables, and then
+through GPA→HPA page tables provided by the hypervisor. Such a setup
+works well enough for physical devices, but hardware designers working
+on such IOMMUs usually 'forget' to expose details like IOTLB flushes to
+the hypervisor, making it impractical even for 'trusted' software like
+pKVM to snoop on the stage 1 page tables and permit VMM access where
+such access would be permitted to a real device.
 
-maybe the "EEPROM" protocol used by at24 (I2C) and at25 (SPI) EEPROMs is
-not smart enough to provide really useful detection of device capabilities.
-At least I remember that I2C eeproms of different sizes require a different
-number of bytes for addressing. AFAIK, using a wrong number of addressing bytes
-may accidentally overwrite data on the device. If this is the same for SPI
-eeproms / FRAMs, reliable auto-detection may be impossible or require
-at least knowing the vendor in advance.
+Implementing a virtio-iommu is another possibility, although such would
+often have to be implemented in the trusted part of the hypervisor (e.g.
+pKVM) *and* it would often have to live alongside the true 2-stage IOMMU
+passed through for physical devices, with corresponding indications to
+the guest about which device lives behind which IOMMU.
 
-Flash (MTD) devices provide much more powerful methods for enumerating the
-device's geometry/capabilities than eeprom/fram. But even for ONFI there are
-extra tables for vendor/device specific workarounds. I am not sure whether
-adding such stuff for at24/at25 devices is really worth the trouble...
+The simplest option by far is just to allow for a virtio device which
+conceptually doesn't do DMA at all. It just has an "on-device" memory
+region and does all its data transfer to/from that region.
 
-> 
-> Markus
-> 
+In fact, this should basically already work for virtio-mmio devices in
+the device-tree, as DT bindings for a `restricted-dma-pool` were defined
+in 2021 which apply to *all* devices:
+https://lore.kernel.org/all/20210624155526.2775863-1-tientzu@chromium.org/
 
-regards,
-Christian
+The `restricted-dma-pool` DT binding doesn't specifically address virtio,
+and didn't make any attempt at handling backward compatibility. If an
+operating system recognises the `restricted-dma-pool` and does the right
+thing, yay! Else, it would just continue to use system DMA addresses as
+before, which may or may not work.
 
+This series adds a VIRTIO_F_SWIOTLB feature to negotiate the use of a 
+buffer region which is provided by the transport, and documents the
+`restricted-dma-pool` option on the virtio-mmio transport. Then adds
+a similar capability via VIRTIO_PCI_CAP_SWIOTLB for the PCI transport.
 
+David Woodhouse (3):
+      content: Add VIRTIO_F_SWIOTLB to negotiate use of SWIOTLB bounce buffers
+      transport-mmio: Document restricted-dma-pool SWIOTLB bounce buffer
+      transport-pci: Add SWIOTLB bounce buffer capability
 
+ content.tex        | 12 ++++++++++++
+ transport-mmio.tex | 33 +++++++++++++++++++++++++++++++++
+ transport-pci.tex  | 33 +++++++++++++++++++++++++++++++++
+ 3 files changed, 78 insertions(+)
 
