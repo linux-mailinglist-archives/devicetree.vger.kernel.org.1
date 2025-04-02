@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-162581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1F24A78D1A
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 13:32:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C80A3A78D2D
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 13:35:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 970C8170519
-	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 11:32:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55E833B3BA2
+	for <lists+devicetree@lfdr.de>; Wed,  2 Apr 2025 11:33:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1AF2238156;
-	Wed,  2 Apr 2025 11:32:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A44F623A981;
+	Wed,  2 Apr 2025 11:32:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BoLlrrsr"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="THaRjxo8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22673236A99;
-	Wed,  2 Apr 2025 11:32:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6FD9238168;
+	Wed,  2 Apr 2025 11:32:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743593532; cv=none; b=IkmcyJJahvNthpFvm/pkP64cGGV9LxA/DRvm8/wu8Cn2Q0vKkITtOg8hOBpriXD6+80i8hyQW98o4VXNVWdhA6iMlWlxAlvFWXjuwE7mxrTQWMO7uuOLaynPu4SkvjV2DoOVpjEULQU6cqyHVJHxKLrmZ58Tr32chInTgFOs93A=
+	t=1743593546; cv=none; b=k/eWQSju8jjtPOg2mpwuxDZxYs+9Su3AbWs5mhjMmZzsgn0NRTaBs6bcZaa9wpjdc5VbT5971QbDvg7U95Dl9ck+x4B6d7nZI9Fi9u1VhUyWEjb9oGIbXTc+jaPcnbSF6XnlHZgxfHSJ0xoCUd105a46PyfO+3R8WE8CG1viBH0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743593532; c=relaxed/simple;
-	bh=8WhNYugsSqHYYkJ5SfOI8qiq7dZYIPTnffMpuptuLHI=;
+	s=arc-20240116; t=1743593546; c=relaxed/simple;
+	bh=EKiy+DjOCWiRGvapl8jezfSnRx56FINAT9C2suGMVXc=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TTn/eOjZ/NoPsXqn/q47laNLiRwwfWQu0yJvdA+ggW64/U05wmz4BpONN0VIey2uO0HU1kPqno8Hn9kFNkWHarH8aaCIekedIsE3ydTTTJMTXzxHZpHmj02i/RLuChX+/Fl7Hg1kL/sqFUdM4ZWgxFEycGTJBHrmZKebMEppLC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=BoLlrrsr; arc=none smtp.client-ip=198.47.23.235
+	 MIME-Version:Content-Type; b=k+OjanX1Dl4gqIisB1AAg9BBNP9rXI/FAGbsxkZoUkfe1laepteVCZ3qKnbjLUQns+fLVIp67+Ola7/NWU1DmLxaZN6h+E1rtCrB99lNwokUHv68fp6A4vWiHbroN7IN7V6IGgX75qlNOfaxRsKNMv0c/Q86euG1zkesDNCjXR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=THaRjxo8; arc=none smtp.client-ip=198.47.23.234
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 532BW5iW3915800
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 532BW7jB3385651
 	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 2 Apr 2025 06:32:05 -0500
+	Wed, 2 Apr 2025 06:32:07 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1743593525;
-	bh=aMs2O+a+TiQUYN0V8AKxd4jss6ijSi+/4hLvnBJOlks=;
+	s=ti-com-17Q1; t=1743593527;
+	bh=n+FwtTM6uNx2mwGR3w0xSfj5ZDKKSdhNsKMhEYgi3lo=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=BoLlrrsrE+X0b/LBEXf6dH1ajnK91L8NDlsMoCIpOCJNl5pMhxvch6CFrFqr6RTBw
-	 a1nmVR/m4HsvpKArf+xofLuca2xz8l27/emVEIHw7rY6+SOXkXvr6ncuBGIk5dQ2pR
-	 TKLd2YNnkBzgouuuOoqjGuF7bcsIrIXzX2oQUfIc=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 532BW5ku123244
+	b=THaRjxo89cW0RISge3BpOsUn5LuY1H3XoLFagS9DxNKH49sCu9a6JeI11s5MgGVmA
+	 puvvgQhZvchdBeK4f4dkQVwP1Mz4pzNeQ48KuKjuzNDIbOr/srsx/vyO3Tx/jF08pa
+	 WGMt07SXzPWYjUNJjjdZwsvNCyzxuxB8l9vgNpWA=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 532BW7tQ013392
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 2 Apr 2025 06:32:05 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 2 Apr 2025 06:32:07 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 2
- Apr 2025 06:32:04 -0500
+ Apr 2025 06:32:06 -0500
 Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE100.ent.ti.com
  (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 2 Apr 2025 06:32:04 -0500
+ Frontend Transport; Wed, 2 Apr 2025 06:32:06 -0500
 Received: from localhost (jayesh-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.68.210])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 532BW3Vx017352;
-	Wed, 2 Apr 2025 06:32:04 -0500
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 532BW5wB017398;
+	Wed, 2 Apr 2025 06:32:06 -0500
 From: Jayesh Choudhary <j-choudhary@ti.com>
 To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
         <nm@ti.com>, <vigneshr@ti.com>, <afd@ti.com>, <s-vadapalli@ti.com>,
@@ -64,9 +64,9 @@ To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
 CC: <kristo@kernel.org>, <rogerq@kernel.org>, <kishon@kernel.org>,
         <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
         <j-choudhary@ti.com>
-Subject: [PATCH v2 1/5] dt-bindings: soc: ti: ti,j721e-system-controller: Add PCIe ctrl property
-Date: Wed, 2 Apr 2025 17:01:57 +0530
-Message-ID: <20250402113201.151195-2-j-choudhary@ti.com>
+Subject: [PATCH v2 2/5] arm64: dts: ti: k3-j721e: Add PCIe ctrl node to scm_conf region
+Date: Wed, 2 Apr 2025 17:01:58 +0530
+Message-ID: <20250402113201.151195-3-j-choudhary@ti.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250402113201.151195-1-j-choudhary@ti.com>
 References: <20250402113201.151195-1-j-choudhary@ti.com>
@@ -82,42 +82,111 @@ X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
 From: Andrew Davis <afd@ti.com>
 
-Add a pattern property for pcie-ctrl which can be part of this controller.
+This region is used for controlling the function of the PCIe IP. It is
+compatible with "ti,j784s4-pcie-ctrl", add this here and use it with
+the PCIe nodes.
 
 Signed-off-by: Andrew Davis <afd@ti.com>
-[j-choudhary@ti.com: Change description and add example]
+[j-choudhary@ti.com: Add changes to k3-j721e-evm-pcie1-ep.dtso]
 Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
 ---
- .../bindings/soc/ti/ti,j721e-system-controller.yaml    | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ .../boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso    |  2 +-
+ .../boot/dts/ti/k3-j721e-evm-pcie1-ep.dtso    |  2 +-
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 28 ++++++++++++++++---
+ 3 files changed, 26 insertions(+), 6 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml b/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml
-index 378e9cc5fac2..13b6b6fa5dee 100644
---- a/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml
-+++ b/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml
-@@ -68,6 +68,11 @@ patternProperties:
-     description:
-       The node corresponding to SoC chip identification.
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso b/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso
+index 4062709d6579..a8a502a6207f 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso
++++ b/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso
+@@ -38,7 +38,7 @@ pcie0_ep: pcie-ep@2900000 {
+ 		reg-names = "intd_cfg", "user_cfg", "reg", "mem";
+ 		interrupt-names = "link_state";
+ 		interrupts = <GIC_SPI 318 IRQ_TYPE_EDGE_RISING>;
+-		ti,syscon-pcie-ctrl = <&scm_conf 0x4070>;
++		ti,syscon-pcie-ctrl = <&pcie0_ctrl 0x0>;
+ 		max-link-speed = <3>;
+ 		num-lanes = <1>;
+ 		power-domains = <&k3_pds 239 TI_SCI_PD_EXCLUSIVE>;
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie1-ep.dtso b/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie1-ep.dtso
+index a8cccdcf3e3b..436085157a69 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie1-ep.dtso
++++ b/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie1-ep.dtso
+@@ -48,6 +48,6 @@ pcie1_ep: pcie-ep@2910000 {
+ 		dma-coherent;
+ 		phys = <&serdes1_pcie_link>;
+ 		phy-names = "pcie-phy";
+-		ti,syscon-pcie-ctrl = <&scm_conf 0x4074>;
++		ti,syscon-pcie-ctrl = <&pcie1_ctrl 0x0>;
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+index af3d730154ac..d7263ad43163 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+@@ -44,6 +44,26 @@ scm_conf: scm-conf@100000 {
+ 		#size-cells = <1>;
+ 		ranges = <0x0 0x0 0x00100000 0x1c000>;
  
-+  "^pcie-ctrl@[0-9a-f]+$":
-+    type: object
-+    description:
-+      The node corresponding to PCIe control register.
++		pcie0_ctrl: pcie-ctrl@4070 {
++			compatible = "ti,j784s4-pcie-ctrl", "syscon";
++			reg = <0x4070 0x4>;
++		};
 +
- required:
-   - compatible
-   - reg
-@@ -110,5 +115,10 @@ examples:
-             compatible = "ti,am654-chipid";
-             reg = <0x14 0x4>;
-         };
++		pcie1_ctrl: pcie-ctrl@4074 {
++			compatible = "ti,j784s4-pcie-ctrl", "syscon";
++			reg = <0x4074 0x4>;
++		};
 +
-+        pcie0_ctrl: pcie-ctrl@4070 {
-+            compatible = "ti,j784s4-pcie-ctrl", "syscon";
-+            reg = <0x4070 0x4>;
-+        };
-     };
- ...
++		pcie2_ctrl: pcie-ctrl@4078 {
++			compatible = "ti,j784s4-pcie-ctrl", "syscon";
++			reg = <0x4078 0x4>;
++		};
++
++		pcie3_ctrl: pcie-ctrl@407c {
++			compatible = "ti,j784s4-pcie-ctrl", "syscon";
++			reg = <0x407c 0x4>;
++		};
++
+ 		serdes_ln_ctrl: mux-controller@4080 {
+ 			compatible = "reg-mux";
+ 			reg = <0x4080 0x50>;
+@@ -946,7 +966,7 @@ pcie0_rc: pcie@2900000 {
+ 		interrupt-names = "link_state";
+ 		interrupts = <GIC_SPI 318 IRQ_TYPE_EDGE_RISING>;
+ 		device_type = "pci";
+-		ti,syscon-pcie-ctrl = <&scm_conf 0x4070>;
++		ti,syscon-pcie-ctrl = <&pcie0_ctrl 0x0>;
+ 		max-link-speed = <3>;
+ 		num-lanes = <2>;
+ 		power-domains = <&k3_pds 239 TI_SCI_PD_EXCLUSIVE>;
+@@ -975,7 +995,7 @@ pcie1_rc: pcie@2910000 {
+ 		interrupt-names = "link_state";
+ 		interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
+ 		device_type = "pci";
+-		ti,syscon-pcie-ctrl = <&scm_conf 0x4074>;
++		ti,syscon-pcie-ctrl = <&pcie1_ctrl 0x0>;
+ 		max-link-speed = <3>;
+ 		num-lanes = <2>;
+ 		power-domains = <&k3_pds 240 TI_SCI_PD_EXCLUSIVE>;
+@@ -1004,7 +1024,7 @@ pcie2_rc: pcie@2920000 {
+ 		interrupt-names = "link_state";
+ 		interrupts = <GIC_SPI 342 IRQ_TYPE_EDGE_RISING>;
+ 		device_type = "pci";
+-		ti,syscon-pcie-ctrl = <&scm_conf 0x4078>;
++		ti,syscon-pcie-ctrl = <&pcie2_ctrl 0x0>;
+ 		max-link-speed = <3>;
+ 		num-lanes = <2>;
+ 		power-domains = <&k3_pds 241 TI_SCI_PD_EXCLUSIVE>;
+@@ -1033,7 +1053,7 @@ pcie3_rc: pcie@2930000 {
+ 		interrupt-names = "link_state";
+ 		interrupts = <GIC_SPI 354 IRQ_TYPE_EDGE_RISING>;
+ 		device_type = "pci";
+-		ti,syscon-pcie-ctrl = <&scm_conf 0x407c>;
++		ti,syscon-pcie-ctrl = <&pcie3_ctrl 0x0>;
+ 		max-link-speed = <3>;
+ 		num-lanes = <2>;
+ 		power-domains = <&k3_pds 242 TI_SCI_PD_EXCLUSIVE>;
 -- 
 2.34.1
 
