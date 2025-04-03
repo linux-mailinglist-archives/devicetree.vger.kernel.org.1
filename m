@@ -1,81 +1,104 @@
-Return-Path: <devicetree+bounces-162759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5794A79C2A
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 08:37:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32C6FA79C2F
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 08:38:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC5611735E8
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 06:37:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F21B16E391
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 06:38:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 264EE1AC891;
-	Thu,  3 Apr 2025 06:35:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD9141A23B0;
+	Thu,  3 Apr 2025 06:38:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VQQndKRo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rdDW3wZC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02AA01A0BFE
-	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 06:35:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 749171A0BCF;
+	Thu,  3 Apr 2025 06:38:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743662159; cv=none; b=gA0ZmCRrOkVTPWmSixm901Js5PONn8qLc83L2TEzplpXXC8eL4r5Yfl0kcXJrKwYZRD2zeM0VnC2O/j35hiDHzvsC/6VtAxn+BP1UnWpgVrw3UO+rtcUC9l1g73Vg+m7T7WETVjRHtjdGYGQHcinlUIGyuW7Gc9ehLbop1T+ggA=
+	t=1743662324; cv=none; b=LCE0NW2mVGBT3c5iSpcEeF96UPw8M5jlRRfCX6wo/UU2GgnTtVDrlfeiYhmiJ4xOTzj30zRv8xl3+9xdVQU/KHkrdh9TndC1iHRUHrdLSc/T1wkEm3zmhHzHbtR0RO9FbqPXmOCBBNWOEKe1azB/dh70ZKzR9/KNn67k6qKQtrc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743662159; c=relaxed/simple;
-	bh=AGJNWfKRNZL//XYg7cPPDMuxOk/9JJAVddvZZSpuEEY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IYs+JIZzc/Le9L4Ls2+2jgCvVnLEm/S8lMj9yapxF3E7xn+6WWXbyBoAToYy9XfT7KJbII4Jl7rL5QWqqH0GoDa4V+QNKn/fFvcpwYGt1QjMmoHXhE0/ARPow/fTF8YkNKqgRfYqalIUiKUGE3ZhYEsxIaS+R52txHnl6P/y3yA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VQQndKRo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7BE0C4CEE3;
-	Thu,  3 Apr 2025 06:35:57 +0000 (UTC)
+	s=arc-20240116; t=1743662324; c=relaxed/simple;
+	bh=YxNQgOwbq/vG85PIYBP1y2DGiGETcPpm5tCt19Qss54=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=U+PfJflEBVrFbu76Df89pnl+DZrw1WBqMwnaalN4qZLuYz34f9S6IaGC6Rc/kRD6UMbOK7aSe4ylytPYgD3fw13/uolArr7oJgKmJ3nITgmDwyXbrBMVbVgjv85UzRFq0mba/cJRi8g2rzvTMUjlkeUVB8OTkH+A9pq8OOaTk1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rdDW3wZC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A111CC4CEE3;
+	Thu,  3 Apr 2025 06:38:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743662158;
-	bh=AGJNWfKRNZL//XYg7cPPDMuxOk/9JJAVddvZZSpuEEY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VQQndKRoCv1j7LhtIGvg7iXfK76iyoBI6qWG8JHeIVWZUMXdE6vuMdhlhXvQuFo4y
-	 XNRn7AOAnUGVDJpSze7BcqQ3U8Q6Iskb1CSCQ2ZQYb+JevofEDlFd5XQW9RH3PZzlD
-	 QCzVBydKlgK1dffpoWUAsnPf/PRXUaF7dH1JChf7yFqleEFFOkKsFbHqhuQ23cTMrL
-	 diBfgnv5Oge5fzNEbI6gEq1PF7hFmpoIdJA5YvVnKUSyqz+UgZNMI3FhUcW4yNAwbv
-	 yFYotLIxGgrxl+sxl+z8XFD4/3GH5uRkloeWLJEYDjBzGRpjGYANXmV5/YdZdTJGGX
-	 nQ35QgAhHviEg==
-Date: Thu, 3 Apr 2025 08:35:55 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: justin.chen@broadcom.com
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-phy@lists.infradead.org, rafal@milecki.pl, alcooperx@gmail.com, 
-	bcm-kernel-feedback-list@broadcom.com, florian.fainelli@broadcom.com, conor+dt@kernel.org, 
-	krzk+dt@kernel.org, robh@kernel.org, kishon@kernel.org, vkoul@kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: phy: brcmstb-usb-phy: Add support
- for bcm74110
-Message-ID: <20250403-impetuous-spry-falcon-1e2ea9@krzk-bin>
-References: <20250402185159.2976920-1-justin.chen@broadcom.com>
- <20250402185159.2976920-2-justin.chen@broadcom.com>
+	s=k20201202; t=1743662324;
+	bh=YxNQgOwbq/vG85PIYBP1y2DGiGETcPpm5tCt19Qss54=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rdDW3wZC8xXiJzAIqacq3AFyhV8SPL68kl/cC3n98UPqJaEyMqxcsIFykpUpS2qQX
+	 4sdSc+FGzw9BhHakkWWvvuXP7JxZyQR0g75qSEBS4iVubpp5eBw9rX5ID/8epJy+05
+	 /xo8CcQNgCzSgs5ejS7jBfvglyxNu34h6yUdFl1d22Nkd08exLRJYHBKn7HuEzZG3v
+	 TDLyw3sEM8PuS3ZN48IvXVuQPVX5UxnC7AP3Pj1pjo+VpZDj3T7hba+7W6tCittmBL
+	 i6zzVdOhsmwr0giUHa2HcuH5vjA22qXOpy/yzC9+QY5YF94R+796LuGY7DBleOF6y8
+	 kIEdrT7oOBfbQ==
+Message-ID: <4371c835-205e-4ec5-865b-ae01d87b7b70@kernel.org>
+Date: Thu, 3 Apr 2025 15:38:40 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250402185159.2976920-2-justin.chen@broadcom.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: xilinx: Remove myself from maintainership
+To: Mubin Sayyed <mubin.sayyed@amd.com>, cassel@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, linus.walleij@linaro.org,
+ brgl@bgdev.pl, michal.simek@amd.com, p.zabel@pengutronix.de,
+ gregkh@linuxfoundation.org, radhey.shyam.pandey@amd.com
+Cc: linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org, git@amd.com
+References: <20250403060836.2602361-1-mubin.sayyed@amd.com>
+Content-Language: en-US
+From: Damien Le Moal <dlemoal@kernel.org>
+Organization: Western Digital Research
+In-Reply-To: <20250403060836.2602361-1-mubin.sayyed@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Apr 02, 2025 at 11:51:58AM -0700, justin.chen@broadcom.com wrote:
-> From: Justin Chen <justin.chen@broadcom.com>
+On 4/3/25 15:08, Mubin Sayyed wrote:
+> As I am leaving AMD and will no longer be maintaining
+> these platform drivers, so removing myself from maintainership.
 > 
-> bcm74110 brcmstb usb phy adds further power savings during suspend
-> states.
-> 
-> Signed-off-by: Justin Chen <justin.chen@broadcom.com>
+> Signed-off-by: Mubin Sayyed <mubin.sayyed@amd.com>
 > ---
-> v2:
+>  Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml        | 1 -
+>  .../devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml       | 1 -
+>  Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.yaml   | 1 -
+>  Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml           | 1 -
+>  Documentation/devicetree/bindings/usb/microchip,usb5744.yaml     | 1 -
+>  Documentation/devicetree/bindings/usb/xlnx,usb2.yaml             | 1 -
+>  6 files changed, 6 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml b/Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml
+> index 6ad78429dc74..c92341888a28 100644
+> --- a/Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml
+> +++ b/Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml
+> @@ -7,7 +7,6 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Ceva AHCI SATA Controller
+>  
+>  maintainers:
+> -  - Mubin Sayyed <mubin.sayyed@amd.com>
+>    - Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Fine with me.
 
-Best regards,
-Krzysztof
+Acked-by: Damien Le Moal <dlemoal@kernel.org>
 
+Not sure which tree will pick this up though ? linux-arm maybe ?
+If noone volunteers, I can take it.
+
+-- 
+Damien Le Moal
+Western Digital Research
 
