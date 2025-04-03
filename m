@@ -1,129 +1,93 @@
-Return-Path: <devicetree+bounces-162943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FA7EA7A4D9
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 16:16:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A901CA7A4FD
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 16:25:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B24363BAFF4
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 14:10:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 40EE1167590
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 14:20:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F13922512C3;
-	Thu,  3 Apr 2025 14:09:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B8F924EF6B;
+	Thu,  3 Apr 2025 14:19:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JSPNUcdG"
+	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="QIEMyArq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85671250C1A;
-	Thu,  3 Apr 2025 14:09:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B99A824EA96
+	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 14:19:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743689379; cv=none; b=XMNA3dWgIV9MhPPCRAQ3d8c6HzGAfulGdVPoO/KD4TdBkP11pAHedNxqeYUETOzR9jkkFpmclifpcoGHS2hza8x+YLXSS/w4Gpsc8rV9v9HTZTs4mRTyCLCIz5FuulAvujvLy+X+lNdIhxJAi+TUPBvLHN6U0LzJK0aBNqzEd7s=
+	t=1743689995; cv=none; b=cvc28sEaDhR9sNbDYq2pjE04cBb3GmFilGyD/EFcJZkbQV20fdS9SdFQTngpF5c9ypmDiaoBhdSWxioyDK16X8pMdTj1Y/w92Mn275XM9HTLRzfo2tD5WCL3iYwcqcmADeIG7gByBtI+uDOe6HunLKK7EvVKXhj1IBs1vxjhFcc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743689379; c=relaxed/simple;
-	bh=DZL+IcQ5DVyD5+vgddwK1LITbtPnt58fksxz6Q/slnI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Asg66ESbS57UISTpqMimB8+U1rLxWrTQaC9Tqo5eLMTT66E8AvCcff9K94gEM+xxK4ohoQavQR0IBS8iaDkJU/3At+MBtg4bmVG45DRD6FiwqHk3jWfzpZvceK+p8AJJQQNV+L8xs1yZD6DD7HxKUeXdYofUCkGEseLKG67aYrM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JSPNUcdG; arc=none smtp.client-ip=209.85.216.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-2ff799d99dcso886237a91.1;
-        Thu, 03 Apr 2025 07:09:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743689378; x=1744294178; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xgLIPOgjO+4Gtz9uWMW47y6AgutNbQcH7sc+seuGtK4=;
-        b=JSPNUcdGx/yM1+qJHK/ikP0T+C2iI2nw/DQ88CXrt9YNm0UnjqAFL8sWIOKmH1KLIX
-         /b0cHP0A3G1uwEK53hjCbMfoy+y93Th88m/wbA6h1c2IuzhuuY/xg6ozSTW7uL2K6eQU
-         U04oJaU67ybzrQlt901AL4kwGX5nLNE+a41Jlcj74Yl2OQzct7FvWJr7K+DaZRkoFPww
-         jrXvLZnpE/8VHxUNRD2XdGf8JVlhKGCXvZpfypNR+Pv3Conumk12EXmAUa0s2Zu41Yn5
-         9GEZaF/ouI7Ue+m89SJ2NYtlfoCHYZPZIU2K0bXYCF0Owi4Si78rrxjOJz1iSaLOLfDY
-         lGUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743689378; x=1744294178;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xgLIPOgjO+4Gtz9uWMW47y6AgutNbQcH7sc+seuGtK4=;
-        b=ZY8GJIc6epWrErDdS003EBW2UR/cIyCKWEsgSkP40jRfqVdZSR8aRQ1lZOW8x0FJNg
-         X6PEgZRRWNZWeWdVP1vkzn/cX1xHROhF16rzsbWY5aP8v7N4LMV1MicCE3ERPqyN7Bys
-         ue3bSc7aKZsg1iT9OnY2LgOEradCjhWfTWnAxzlyRU7CdplJMKbRVuTLq/pwzXFVvHjP
-         U92D/if85gkv8Tkz0l+71PkronaFRSnn0gkMFNqHFW8YKsG6J4T1Yd/qAkiparG2JX0Y
-         nVqPqkqnDB/4j0WNKECxqJUvzV/XBjxmIFOLG3x9ATU7MWKHbsWMyk8wvdgG3yVkfARz
-         rZnQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV0xEEHZ1+5CcBdhFh2WHHbzJTkMMLO94usM+M6obgaDbjnKTpwD5gjDyjt3CYbwSdiLf2fafDs6QlM@vger.kernel.org, AJvYcCVOTIJMP9ALdK/uONqBGmh7glvpqIUnMzbI9XZpbD0Ux7FZ9uRp7QlMfvfx2CJMIw7M+LsUlt8PfTY3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx4rPXHRaKB3pnR3/qJUR+8FYwSqgNGDfHIdoh5D28O25Risdn4
-	N7cTd44yrYOMavgluP13Gilb2jNkUxOIaOxny6S9SFKRPxXwT5OrPpPX1J1/Qeb3IQNc1ZW4XTp
-	ZTonZtLX6jhnjhbh+aqEzyQj9DYiE0gzX5tU=
-X-Gm-Gg: ASbGncuFP61lB9BZlZL1syj3wkVQ44TEWlWtkOVl8BXUkSpyI2pobGZsmW8HG4fm9Bn
-	HTLmJi8Ox+nxO4Dc2K7BkBrfJhw7yJU0qac81OAc0mVvB2OV6alqS5+00Kcc4gjrWYG2ZXjU5fP
-	k8fAbVFf5rrmREM/fPFc1G5p83lzw=
-X-Google-Smtp-Source: AGHT+IFoZpcMywnaS2mRwYVI8L/R3NuCjWvp8MO3Z21H4tZRH0PC83Ij5D25TsgorSXh32lXrVl+/bawT5D6hsIZ2is=
-X-Received: by 2002:a17:90b:1f91:b0:2ff:693a:7590 with SMTP id
- 98e67ed59e1d1-305321705f1mr35076708a91.33.1743689377600; Thu, 03 Apr 2025
- 07:09:37 -0700 (PDT)
+	s=arc-20240116; t=1743689995; c=relaxed/simple;
+	bh=b6Xe4damUlX0SdnPSvLEJGnYenLSS3mEfJwPjwjZLJY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oXLBSTeIFJLCzHwd9plPRlIkeD+IN1Edxv9ik5pC5Ql3wKsESrAxr4lDyhDnxYWBj8ohIWQ8kT6FERVJ22UDBs+76cXfPAlZVtmB83v7oCor9y9RqnpVpvSpPO3CM3VSuZsbHOz+Rxi8Owu5KA9JVHo7zoNxzTePln4jq11t2JE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=QIEMyArq; arc=none smtp.client-ip=185.67.36.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id 2B8C7240107
+	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 16:13:05 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+	t=1743689585; bh=b6Xe4damUlX0SdnPSvLEJGnYenLSS3mEfJwPjwjZLJY=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:Content-Transfer-Encoding:From;
+	b=QIEMyArq7JrD9UoR4zf5FJNOhHJyVbioxdT2xp0StJqxHIjfJ4bX86nHr0Htoz0sw
+	 /4kHIHxhLrdBst/TAy9txa7jcb7AZsQ9yWczRFwMbIZsIzLCYZHbjN4bBAUyJsrL/H
+	 6lnCBcM78TRsgh2xqcsIKVuf8Fw717LE0/4iaDRZ1L+phCdQ61bMHpFc8VsVcBAJ/Z
+	 oGqely1103Y/se2fB3YRnkHx3MocfWT1V1iJAMzGZQKQMi1crnZp/un/FQL+NH4XA3
+	 YFiOsw0vQms09JjZjpBidqwQp3p8oCt6z9T37qyY0gO+zL8/zLJXaujfJoYhOROXg4
+	 Ibp1MZ/sEexHg==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4ZT3bz2Wp7z6tyW;
+	Thu,  3 Apr 2025 16:13:03 +0200 (CEST)
+Date: Thu,  3 Apr 2025 14:13:02 +0000
+From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+To: j.ne@posteo.net
+Cc: Johannes Berg <johannes@sipsolutions.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+	Matthias Kaehlcke <mka@chromium.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Jes Sorensen <Jes.Sorensen@gmail.com>,
+	linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: Add Realtek RTL8188 USB
+ WiFi
+Message-ID: <Z-6XbotPbah2flxK@probook>
+References: <20250403-rtl-onboard-v1-0-10ca9a6a4ee0@posteo.net>
+ <20250403-rtl-onboard-v1-1-10ca9a6a4ee0@posteo.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250403053225.298308-1-gye976@gmail.com> <20250403053225.298308-4-gye976@gmail.com>
- <e8167849-57e7-44cf-bf35-5313e54908d5@kernel.org>
-In-Reply-To: <e8167849-57e7-44cf-bf35-5313e54908d5@kernel.org>
-From: gyeyoung <gye976@gmail.com>
-Date: Thu, 3 Apr 2025 23:09:26 +0900
-X-Gm-Features: AQ5f1Jrg13cpPMNX-6s5f6-NeloDH6EGHq33MiXITjzaIAC7XTyjXvKlI2q6BEI
-Message-ID: <CAKbEzntcF9XHg4hitV1WnOcZe2=yVk+W5wghvY1VeHjZeZqymQ@mail.gmail.com>
-Subject: Re: [PATCH v1 3/5] ABI: iio: add new ABI doc for mhz19b
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: jic23@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	lars@metafoo.de, gustavograzs@gmail.com, javier.carrasco.cruz@gmail.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250403-rtl-onboard-v1-1-10ca9a6a4ee0@posteo.net>
 
-On Thu, Apr 3, 2025 at 4:51=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
->
-> On 03/04/2025 07:32, Gyeyoung Baek wrote:
-> > Add support for winsen MHZ19B CO2 sensor.
-> >
-> > Signed-off-by: Gyeyoung Baek <gye976@gmail.com>
-> > ---
-> >  Documentation/ABI/testing/sysfs-bus-iio-chemical-mhz19b | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> >  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-chemical-mh=
-z19b
-> >
-> > diff --git a/Documentation/ABI/testing/sysfs-bus-iio-chemical-mhz19b b/=
-Documentation/ABI/testing/sysfs-bus-iio-chemical-mhz19b
-> > new file mode 100644
-> > index 000000000000..6cdfd34be016
-> > --- /dev/null
-> > +++ b/Documentation/ABI/testing/sysfs-bus-iio-chemical-mhz19b
-> > @@ -0,0 +1,7 @@
-> > +What:                /sys/bus/iio/devices/co2_range
->
-> Incomplete path
->
-> > +Date:                April 2025
->
-> Not possible. This will be probably June.
->
-> > +KernelVersion:       6.14
->
-> No way you can put ABI into version already released. It's impossible.
-> That's v6.16.
+On Thu, Apr 03, 2025 at 04:07:48PM +0200, J. Neuschäfer via B4 Relay wrote:
+> From: "J. Neuschäfer" <j.ne@posteo.net>
+> 
+> This is an on-board USB device that requires a 3.3V supply.
+> 
+> Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+> ---
+[...]
+> +maintainers:
+> +  - J. Neuschäfer <j.neuschaefer@gmx.net>
 
-sorry, I'll read the kernel doc more carefully.
-
-Thanks,
-Gyeyoung
+Sorry, typoed that. I wanted to use my current email address instead of
+this old one. Will fix in v2.
 
