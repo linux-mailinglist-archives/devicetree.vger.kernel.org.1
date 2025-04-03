@@ -1,142 +1,91 @@
-Return-Path: <devicetree+bounces-162794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B46EEA79D44
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 09:45:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7647A79D43
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 09:45:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5B213B6D4B
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 07:44:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AFA94170C5C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 07:45:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D865241673;
-	Thu,  3 Apr 2025 07:44:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E432B24167E;
+	Thu,  3 Apr 2025 07:44:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cgyd9n3/"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="Qv6zWAeU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CFF524166F;
-	Thu,  3 Apr 2025 07:44:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81F3524167D;
+	Thu,  3 Apr 2025 07:44:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743666273; cv=none; b=OLFgwrGlAckas78TEbxQlEXHefBUNx+5xmaJ/Onpo8TB0skrBPkZAF4d/FFUhSy5/NmcfvzO/Ic0UqealdHxqqrTtqkfj+ApCNQVFz6D5m4i116P4sxLAY2H9jZmDeDmiU7m46KDuHBpV3cRK/WpepoNvbPHbEcnEhNSvdpzd9M=
+	t=1743666289; cv=none; b=tdEwqGAfeFirrcHA+VjeREqvX0HgAMJyEB3YmwAqE31bII62GlUm3DH9CJpP/okvXfeShdf4maIkmRPHcWstLiAAmCll2jvUH8SlDKTlF2Mg5oOXw7kSYreI1UR6FghYWr+lZcXbGKxbJ2XhaxdPl0s3JnJcprjkMalGwu2SeTQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743666273; c=relaxed/simple;
-	bh=PMFz1nH70HO50CCl8uliaiuKTdwXeTJzTjaAr0EqI+0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VuyuqT3vUgoiCywa/OXCVVO0sLfB/fIRyUQ1XIJB4iKPD0aKGOdavJuOyH22wqEM9UwUEO7I0wlamhyjiyIjnYuZDoemdqxTfApIJA5QN6sSTZkigsaGeE+gyWliETSow8Cvl30lQnqZfPhBddYo+XzBjonz5H6ZQ5amhAgrVwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cgyd9n3/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22751C4CEE9;
-	Thu,  3 Apr 2025 07:44:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743666272;
-	bh=PMFz1nH70HO50CCl8uliaiuKTdwXeTJzTjaAr0EqI+0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Cgyd9n3/bGX0J4N3KWFs1vJ17aXwZElge3/gVetF1jk5mGoJGzzhV2GHosw8DT9C6
-	 ueHTSe6eDPkBRwKUDanhpkqZyHZH+IdHmEL2iPBxZwVZFB/2THU3NaNqi2Otgb6Kmg
-	 BbL7TTvidVKgntUK3PePPzSC84t2wwGG3eQweyHLpGUsh7r8eWQH3pKUBKKAPqWZOj
-	 u6YpTF/qi+l3aBSEXj2Ukn9cRH1y8Z+3vKEWtP1KKmB69S4tuCCXNY+Qhh3i2/ilwY
-	 HrLS33QAueBkpvSPRD3TakerRy0/om74Q7ZXB5p/Z7lSTVKsLKAaESuTnL5KF4VGmp
-	 EPMWh52UX5xTg==
-Message-ID: <fa7cacf4-2809-4b43-8e2a-f4b040526681@kernel.org>
-Date: Thu, 3 Apr 2025 09:44:25 +0200
+	s=arc-20240116; t=1743666289; c=relaxed/simple;
+	bh=nBIcltQZNSJSeJcVlDAWs1DczIo6DIsS7I5l0/GkUm4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XtlLz7xQzP4BRYCPWi6mae7IaJzgDmUHKgMaIkSBng+z4+hG9IqnIfHq35hGtJuH8CDogSTNfMpcyEz33wOiasTPshg8B8NvthHSQZeO/K8bs7oQflyVbLVEow6lJTTYmuLX9QTlAQrIiwOzfEhsL0sJwmknpmclePZhrgQZ1ig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=Qv6zWAeU; arc=none smtp.client-ip=198.137.202.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
+	:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=nBIcltQZNSJSeJcVlDAWs1DczIo6DIsS7I5l0/GkUm4=; b=Qv6zWAeUIY0Vtbpp83QhnfISu2
+	4ghv4UddYKGczy7Mr1729cLMlaUhaTjDnb5EGcrNcEtimPBG3ICMZgZp2s1SScGtFQF005ye6eAxY
+	RHCvn+NvVR9KopeGlBzqvSj6zRpXkU13LiKhIElH2Ii9+uayrnIp92TM8HuISssy8FX+oH8EWTD4g
+	J7jEEo97VW4H3zG8IK0Iwh7/AKwl1ry/SgjmluKTT5DpBx3YJCv8gjweD/USYFIOKzRr56sMi2ZqH
+	3JfeSL+XvFCl2+09tw+5Fsolc/hShbI+p03BI5IntCqI1S2PPDoVyhN6v45fqYiV9uiRv9H88HovJ
+	kxTPdpCQ==;
+Received: from hch by bombadil.infradead.org with local (Exim 4.98.1 #2 (Red Hat Linux))
+	id 1u0FFn-00000008A0d-40Nf;
+	Thu, 03 Apr 2025 07:44:47 +0000
+Date: Thu, 3 Apr 2025 00:44:47 -0700
+From: Christoph Hellwig <hch@infradead.org>
+To: "Michael S. Tsirkin" <mst@redhat.com>
+Cc: Christoph Hellwig <hch@infradead.org>,
+	David Woodhouse <dwmw2@infradead.org>,
+	virtio-comment@lists.linux.dev, Claire Chang <tientzu@chromium.org>,
+	linux-devicetree <devicetree@vger.kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	=?iso-8859-1?Q?J=F6rg?= Roedel <joro@8bytes.org>,
+	iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+	graf@amazon.de
+Subject: Re: [RFC PATCH 1/3] content: Add VIRTIO_F_SWIOTLB to negotiate use
+ of SWIOTLB bounce buffers
+Message-ID: <Z-48b7jEpqZhbu9U@infradead.org>
+References: <20250402111901-mutt-send-email-mst@kernel.org>
+ <6b3b047f1650d91abe5e523dd7f862c6f7ee6611.camel@infradead.org>
+ <20250402114757-mutt-send-email-mst@kernel.org>
+ <965ccf2f972c5d5f1f4edacb227f03171f20e887.camel@infradead.org>
+ <20250402124131-mutt-send-email-mst@kernel.org>
+ <eaef09ab218900a53347987a62fee1787283d9ed.camel@infradead.org>
+ <Z-44wXdyia4RC6Cr@infradead.org>
+ <06465bcf4422d088df2a0ce9cdb09767dac83118.camel@infradead.org>
+ <Z-47O3vkyIf0mzdw@infradead.org>
+ <20250403034143-mutt-send-email-mst@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/9] MAINTAINERS: add maintainer for the GOcontroll
- Moduline controllersy
-To: Frank Li <Frank.li@nxp.com>, maudspierings@gocontroll.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
-References: <20250402-initial_display-v4-0-9f898838a864@gocontroll.com>
- <20250402-initial_display-v4-4-9f898838a864@gocontroll.com>
- <Z+2NNFyd3NmfeMSr@lizhi-Precision-Tower-5810>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <Z+2NNFyd3NmfeMSr@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250403034143-mutt-send-email-mst@kernel.org>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
 
-On 02/04/2025 21:17, Frank Li wrote:
-> On Wed, Apr 02, 2025 at 09:07:07AM +0200, Maud Spierings via B4 Relay wrote:
->> From: Maud Spierings <maudspierings@gocontroll.com>
->>
->> Add a maintainer for the GOcontroll Moduline series of controllers.
->>
->> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
->> ---
->>  MAINTAINERS | 6 ++++++
->>  1 file changed, 6 insertions(+)
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 4b3864a9852f9fca2be48987d383c0671e668336..7d4fbfdaaac1776fc7c4a569f7ab667f0a485eab 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -10043,6 +10043,12 @@ L:	linux-media@vger.kernel.org
->>  S:	Maintained
->>  F:	drivers/media/usb/go7007/
->>
->> +GOCONTROLL MODULINE CONTROLLERS
->> +M:	Maud Spierings <maudspierings@gocontroll.com>
->> +L:	devicetree@vger.kernel.org
+On Thu, Apr 03, 2025 at 03:43:31AM -0400, Michael S. Tsirkin wrote:
+> Hm. This is what this proposal does, indeed. Can be changed though -
+> since all accesses are now within the SWIOTLB, they can be treated
+> as offsets instead.
 
-And this is not needed. Drop irrelevant entries.
+Yes, marking them as offsets into the BAR (including potentially
+picking a specific BAR or region if there is more than one) is the
+right interface and implemented by various hardware that way.
 
-Best regards,
-Krzysztof
 
