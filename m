@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-162755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162757-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56707A79C28
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 08:37:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3F73A79C2B
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 08:37:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A43B3B20E2
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 06:36:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2D093B2787
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 06:36:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01C231A23B1;
-	Thu,  3 Apr 2025 06:33:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 293531A071C;
+	Thu,  3 Apr 2025 06:34:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rJu6QJgW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ic7VPpVb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2A59190477;
-	Thu,  3 Apr 2025 06:33:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3339199EB0;
+	Thu,  3 Apr 2025 06:34:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743661999; cv=none; b=XAUe+geRr0dDV03iMVKyMO225ef3rDtxSwJCedKMQZr5FucBcOXLs/82yGmYL+k7MBkUhJGihDONR8yGG4XWptezERzqYW9DkdMJUREqNZcLVveDSVQIkbettBovfRSAvwhfJTRG2GJ4vsRXPGumQwyv5KubU4Q9CL9r9F7eRis=
+	t=1743662097; cv=none; b=p1n13UECt6uE0vRzgA9OGSEHSXWn3ymqRa7hyJ6gkBtioc1VlwokItvJv2tMYW8WhNHt9/fdwaUmX50GDmMMt84sDEEd3RAy9nZSZA/XFHqhUrzRo51rYVJW72XMd/cRwKm12yp/hP6MG4+ScBciTFySZxPZuarQqXH0jquGucg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743661999; c=relaxed/simple;
-	bh=a791Ijrj4pxHIMDg2yMK6Vitj1r+VceYdbEDTVe5/A8=;
+	s=arc-20240116; t=1743662097; c=relaxed/simple;
+	bh=qRM3eG6gqLVGutDjiR2oQQ4su3EUaT75uA7KTA4luMA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CwJQ2YMg6O2kM2rdHHa4R1vr2SmnWRgjM+Rm/HZGsLDazSLoihk2BHPWwlR1GqcHPrCrNbQyS2mVJOmXVQJEOSt7y1/Osr/6y4WP2+Dep+KiwGGOoWOt+ZwoZJBGqWVgaj8Zb9rcbvPA2gtfMPbg9RYb3hK75tQhdyBWiS8kChA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rJu6QJgW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67F83C4CEE3;
-	Thu,  3 Apr 2025 06:33:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=YA/Og+Ld7a5+57nXpnFYyp3g3XqP9UvhUiHkh1W+WZRvY88Jl4GnJusmlCn6uGEda0ZkKevQKeTLeuFqIYfNziqIx/S0VyG9gXjoF2HE/wUbU/DGbfzHpD9y9v4yIMoQSHGCVC5rZgue+2LmWg1ye1BlWHXKwYpvfWnBS6CFxLc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ic7VPpVb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 776B1C4CEE3;
+	Thu,  3 Apr 2025 06:34:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743661999;
-	bh=a791Ijrj4pxHIMDg2yMK6Vitj1r+VceYdbEDTVe5/A8=;
+	s=k20201202; t=1743662096;
+	bh=qRM3eG6gqLVGutDjiR2oQQ4su3EUaT75uA7KTA4luMA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rJu6QJgWYL9WFNVdajsNsrLzLm7FW+H1Ikd8jh5JYpgIRkXWUodRdIPFx3MpV/cdh
-	 ipDXi4FrROjgpyqKDUxz6SSchMaIPAmX+HwpnKA/TYBO116Z2XMqlnXKVC2PHEahh3
-	 TRCrHwxqiMB2BmOnfi9tmROfQO6g5bkL1eELg4lpZl1Q9Ovp/nyEQ0RNoEwWY5wtC4
-	 dJX2+3fsvuiu3KKXYfQmH1ljOejAd18F7EgwgBDY0VPlbQWVlv9p7mX2WdimBseuUf
-	 QhFQ9vPD3u14uiYect9zUo5uXofWle8riAO+4wxRT2r1HHDke6G60rDN7DUTwEgUG6
-	 ToeE42DDL0vvw==
-Date: Thu, 3 Apr 2025 08:33:15 +0200
+	b=Ic7VPpVbqDl+foe4m6vFPehXrEaNTdi6Fn3uQKFgASy7+TZXiOAWo9cHZLLtV2uQ4
+	 U6A0a4ir7DbesULikeqlrXDugQQXaPnY9xf+mtJfIIlKZsI9HY1+lKnj9jTnKNup3h
+	 VISQvK+3JPQzvfUtXTZsZSKlHwOndyyQSxNpUU12qFn891JZOisLp5HkLUalRF4JP7
+	 L/9EeEkAB9SApAhYYQpaHOlHCTZfpHs1LUgUqfJXAXcSjQGn0mts8WiQoEmnJwoQ7x
+	 NJA9ZmIbnTiFWBfGN2ujLCTXwg4pufVuK1BAWXNz8sD8vSkSf6v2BE7ZKJa6gxkeK1
+	 /oN04mr+AN4CQ==
+Date: Thu, 3 Apr 2025 08:34:52 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: David Heidelberg <david@ixit.cz>
-Cc: Kaustabh Chakraborty <kauschluss@disroot.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"Jason A. Donenfeld" <Jason@zx2c4.com>, Matthias Schiffer <matthias.schiffer@ew.tq-group.com>, 
-	Vincent Huang <vincent.huang@tw.synaptics.com>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Caleb Connolly <caleb.connolly@linaro.org>, 
-	phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v4 1/7] dt-bindings: input: syna,rmi4: Document
- syna,rmi4-s3706b-i2c
-Message-ID: <20250403-savvy-inquisitive-tamarin-9c14cd@krzk-bin>
-References: <20250402-synaptics-rmi4-v4-0-1bb95959e564@ixit.cz>
- <20250402-synaptics-rmi4-v4-1-1bb95959e564@ixit.cz>
+To: Andy Yan <andyshrk@163.com>
+Cc: heiko@sntech.de, conor+dt@kernel.org, krzk+dt@kernel.org, 
+	robh@kernel.org, hjc@rock-chips.com, mripard@kernel.org, 
+	neil.armstrong@linaro.org, dmitry.baryshkov@oss.qualcomm.com, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: Re: [PATCH v3 2/7] dt-bindings: display: rockchip,inno-hdmi:
+ Document GRF for RK3036 HDMI
+Message-ID: <20250403-first-dandelion-orca-ed9bbe@krzk-bin>
+References: <20250402123150.238234-1-andyshrk@163.com>
+ <20250402123150.238234-3-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,45 +63,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250402-synaptics-rmi4-v4-1-1bb95959e564@ixit.cz>
+In-Reply-To: <20250402123150.238234-3-andyshrk@163.com>
 
-On Wed, Apr 02, 2025 at 08:44:52PM +0200, David Heidelberg wrote:
-> Mostly irrelevant for authentic Synaptics touchscreens, but very important
-> for applying workarounds to cheap TS knockoffs.
+On Wed, Apr 02, 2025 at 08:31:36PM +0800, Andy Yan wrote:
+> From: Andy Yan <andy.yan@rock-chips.com>
 > 
-> These knockoffs work well with the downstream driver, and since the user
-> has no way to distinguish them, later in this patch set, we introduce
-> workarounds to ensure they function as well as possible.
+> HDMI on RK3036 use GRF control the HSYNC/VSYNC polarity, but this part
+> is missing when it first landing upstream.
 > 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+> Document that it is mandatory for RK3036 HDMI.
+> 
+> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> 
 > ---
->  Documentation/devicetree/bindings/input/syna,rmi4.yaml | 11 ++++++++---
->  1 file changed, 8 insertions(+), 3 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/input/syna,rmi4.yaml b/Documentation/devicetree/bindings/input/syna,rmi4.yaml
-> index b522c8d3ce0db719ff379f2fefbdca79e73d027c..855614718bfd1c6c41805d64e713cf5635c20f10 100644
-> --- a/Documentation/devicetree/bindings/input/syna,rmi4.yaml
-> +++ b/Documentation/devicetree/bindings/input/syna,rmi4.yaml
-> @@ -18,9 +18,14 @@ description: |
->  
->  properties:
->    compatible:
-> -    enum:
-> -      - syna,rmi4-i2c
-> -      - syna,rmi4-spi
-> +    oneOf:
-> +      - enum:
-> +          - syna,rmi4-i2c
-> +          - syna,rmi4-spi
-> +      - items:
-> +          - enum:
-> +              - syna,rmi4-s3706b-i2c  # OnePlus 6/6T
+> (no changes since v2)
+> 
+> Changes in v2:
+> - First included in v2
 
-Drop i2c suffix.
-
-With that:
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
