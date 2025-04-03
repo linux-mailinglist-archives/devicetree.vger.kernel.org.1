@@ -1,248 +1,138 @@
-Return-Path: <devicetree+bounces-162995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11674A7A96E
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 20:31:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D68E9A7A981
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 20:34:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 029483A83AD
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 18:31:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D57ED18998DF
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 18:34:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 166AB25178D;
-	Thu,  3 Apr 2025 18:31:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F240A253348;
+	Thu,  3 Apr 2025 18:33:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="WH7zr+BI"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="wv7FXSdH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2083.outbound.protection.outlook.com [40.107.105.83])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97BA418BC1D;
-	Thu,  3 Apr 2025 18:31:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.105.83
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743705106; cv=fail; b=cfQGWyPBaBrJUObOyGR6GIhKrsSC+RzFOFRk7decVE+zbwcC+9DyF+z310oEIhRtqKjSp7dps1nx7Pk6aOeXAE6W4zD4hp1ixN4tnLfYrPhbDZOPRn8zKrmky4nKX5CK8/Q1AQuqWAFvHVNBLZz5ysvsVuZHtu8TgVBPEjCZ7Ng=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743705106; c=relaxed/simple;
-	bh=AScPlR5hbx+gAPsrdLApTNIWzlC2nTfd9t3SKNmctQw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=py6OsMzVeKVn2a52GrgmXrVV/6VbHciwOcMtoMomhVKJDGtplSQfLKGO1Mcm+X/4oZmKJkBTAfokh18gxWVSKHFgPljQEfZ8hsf2XRQzztG71aWT8V2XqTi12DkX4tuEhKpPr6NapKOvNnmG9iD1/r7XFjmXm1LCHa3KZc4Xa8I=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=WH7zr+BI; arc=fail smtp.client-ip=40.107.105.83
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BTBHo87aqojrXJqNxeA+XS3B9q8PIHd7SpVXldwDjxQ91uOmdJJEpk0jHqSWWCYwProNqd6fUodiq7wSYU03UUKekJ5l/3Hu3i3KP9thMhgV78Vj8w6itNyqCRrOvrUNxTYazxQHfBJVFLvjagAz9F+ljXg1CC7/8O4NyftQr0VuVbVGgWJFzJMoSdOu6e/mpLLerPfkKl2JHYTS9RFLUTIDHuWTQs9/a5CuoUU5IyGLYjx1kyhPxEHFkRdHfXqAtba9noy1btjqDHbHTOjObcnVcmmRZCe4sTtuOktqPU1sD7wh/usXXYhWBRx7XuOBfqFDVJh9T4AZ2IW4ozDQzw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9RPCwbiprTmdP7lQIFyeC35n82z5R0AwVfawSjfe/3s=;
- b=CXHnXkvlSazLTv0KJcf2l7+tyv4onutjBvK1Qcfdhc7j4pQPLTTnUfalhFN3m/zRfPjeugRyEMYotDZjUaoW3uk0IPRhVLi4dZT37q+hIU9vIKVBkx+uQLIQ2k6Mr/37M5eTsfutPt2LJShncQyM2Ht9+IwR3XxG4WO7S92T1VTgaEQ8l32CBmF/hk5vU/MrzAlrhJW0yYYYr8fWeTcloWffLhYa5WgZrFyDRk2rWQu+mfEfsne64+LMBoU5njoFRm3NizaEcS08nlKOpieVgKFY0fNOKWlI0H69PYlOzDB/aVKhKYYwTYbsLw5b3ucBlM0n6Yt3Bj+CHOe/mwvG7A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9RPCwbiprTmdP7lQIFyeC35n82z5R0AwVfawSjfe/3s=;
- b=WH7zr+BIvLWFFE3RrjD7HT8KD3GAsHc/aEgem0/9zVxidRDWm+xicvfTceUqzcryxODPFuc5FtCfhyeLWvTXVmmfg/si27tNjTCwUwRMdWVaXgSVjgffx/o6bkIYhQj0B9GBPLP8y71EqB5dSA848mkZIy7Sy9I253bDfmvjUr7zUWPoQR4u6DY3hWpz8qvvBRCmYy1XCprWAXtOx3GtIi/LZ+LZUdHwBP7amyBlqIpFswCvmus2eOwmt7azG42bexZjBwPhE38zbFbetrhxVZPvFGADZWN5nomh/sJjObLjC72GSRNPK9ZVwnFEDd+p66PdnvkzA5zeagjt4KnAkA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PA1PR04MB10913.eurprd04.prod.outlook.com (2603:10a6:102:484::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.44; Thu, 3 Apr
- 2025 18:31:40 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.8534.048; Thu, 3 Apr 2025
- 18:31:40 +0000
-Date: Thu, 3 Apr 2025 14:31:31 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Yannic Moog <y.moog@phytec.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, upstream@lists.phytec.de,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Benjamin Hahn <b.hahn@phytec.de>, Jan Remmet <j.remmet@phytec.de>,
-	Teresa Remmet <t.remmet@phytec.de>,
-	Yashwanth Varakala <y.varakala@phytec.de>
-Subject: Re: [PATCH v2 3/3] arm64: dts: add imx8mp-libra-rdk-fpsc LVDS panel
- overlay
-Message-ID: <Z+7UAzFYCHYij0AA@lizhi-Precision-Tower-5810>
-References: <20250403-wip-y-moog-phytec-de-imx8mp-phycore-fpsc-v2-0-c0d2eff683ac@phytec.de>
- <20250403-wip-y-moog-phytec-de-imx8mp-phycore-fpsc-v2-3-c0d2eff683ac@phytec.de>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250403-wip-y-moog-phytec-de-imx8mp-phycore-fpsc-v2-3-c0d2eff683ac@phytec.de>
-X-ClientProxiedBy: PH7P220CA0099.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:510:32d::23) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CFB724CEE8
+	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 18:33:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1743705215; cv=none; b=salghd/HHyhx6xyz1wi5adsOsfV9hQMWTqXc5CSftmqKqql6UG3ZkBaWUIlJhT9rxjvBIfybSU7Q3wRp2X0ZwV8DwqUDfVXML+6XCxv91/G1uu92tYYDaBtwNwKUzAZgPUc8cqfw67RljAkdR/kh4OH9NMGGAj9hsdrSz15KIBQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1743705215; c=relaxed/simple;
+	bh=nTZuGsFING6MIGVPoQQdW0z8/bAf29Sjd0udlbQBoTI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IhDlMPnOpZ6OkzIvm7VGeZConyLU6o8cOm1b8pRsljM6b90XNw2kYJWg2E66+Z+DAQIlYhT9AiKjXJuS6jWmcyIocaw3vzTtRXHadUFF+8lv61JKxQ9eVEpMXFe9Lyo0ZKkWE4y8gH5/4Mo851f2OuBV2KYqQwvFpoRZ+497Zpw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=wv7FXSdH; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-54acc04516cso1366689e87.1
+        for <devicetree@vger.kernel.org>; Thu, 03 Apr 2025 11:33:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1743705212; x=1744310012; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=I6FpVBVSrBp6UsJLd/05pqTv+7X/fXLRZyX/z8dAfA8=;
+        b=wv7FXSdHa96vMLpr6yHrQSyYr8WYW6zUP1oQoGYY4KOe5lhIS8GCaqX4Zcvpzdw7UB
+         Bh7GANwgOBT8ncAxuX7ETRoq9QvRn9z9vQYtQZbCym9bbnL79aEgX5oboNbTUlRhfAa2
+         yDq3ZdmyTEzPYWZoiBacthaSOeHp8BsqG4cDUDWNRcumsKzW7+84Ehf2s9luiiMXoODs
+         4GMQHyhgkGO6lcuD1+KgDPqZoikTOud33RpHgSB2CGIu3Uli+CSBKq33WR3yp463Jzja
+         LeQYj8kWSCY3uCwnGTGDRH5o9TzFcgYyHKGBt1Iu17T/lY2J+Vds1cQiWIQ8bIL7yl2U
+         GAaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743705212; x=1744310012;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=I6FpVBVSrBp6UsJLd/05pqTv+7X/fXLRZyX/z8dAfA8=;
+        b=IKpLA2WGaWqALvENn9wsbUpI9q2IdfcwmswayPXmtk2uLoIc50McuCqiU3l5b1tgRe
+         W40aNe3Q4rn2LA+4Ubtf3OfrHUL70gNfknzJBrcB+W5ENWSkjY3W+5tu5xesVYNPAXLq
+         zNBYbNSwNE9RmPfEHJsBpSw0gU7CjbiC0Fxur6jEGdw2WpYonsCa70eaPo9v7Rd6mrtq
+         ZSKD68LxigWca/m225nf7uthU9bRT4mV+wA27CY9qJ2kGBl4yanyGeakigaCvnGOtOtj
+         L0r3QNA/GVkkC4pyKnlIJd2U47ysOr9Ky1DqjoZMCHacqwC6+imFLkY5Ta3WlSIgdu2P
+         aiXg==
+X-Forwarded-Encrypted: i=1; AJvYcCW2//9wIFJzvB25W8M8D13yE5C23kzRjOa2bxh9Ug25vTAR8m4x5/9/sohWMq/TP1/2f+GjcmO3ocUL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8iolcCwSL+oXsfE9dybu7hmI9qZaPyoOOHB05+w5u551FaWVi
+	kDfgxMSflGlbt3BAjdFha+10CgXXvmbSBuBqw7nbgoglscRSd1h5FsyFFIs3laR1b5QlD/GY775
+	8HpxFRKcY4xsm70paBiPwh2t5hTtSJ5+JmkDa
+X-Gm-Gg: ASbGncvuc0RrpRG4gtur3B/biMiuioEoRVuWEdGn7lbq/Q8xqtcGGjBB5XimrdtfXis
+	al1jqgP0+BTdfHtoAS6lys7Gydgt5zfDG8i4vY+HRZZIsgItnamvqOG2k/DjrN1VkEm/HEHfG8k
+	o0Mt82RXtoC/tDS5YBJcwWSDLbeAXqFK160b2sAlOf9nv0HgN1hxLZ
+X-Google-Smtp-Source: AGHT+IGGElQxxzJStMl02DU8ACSS/S4gavMbWxl4jrrkrwKF8pltAulp7F6pmLGK9uI2hw2C8NndmdlVm47F388sLto=
+X-Received: by 2002:a05:6512:3b85:b0:54a:c4af:18 with SMTP id
+ 2adb3069b0e04-54c22784b65mr66148e87.22.1743705211956; Thu, 03 Apr 2025
+ 11:33:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PA1PR04MB10913:EE_
-X-MS-Office365-Filtering-Correlation-Id: 82aec998-f487-4baf-fc2d-08dd72ddc6bf
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|366016|376014|7416014|52116014|1800799024|7053199007|38350700014;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?mhZaoRb8AtsY1t89IfiPew81il1M2XCtTeVBInSL+73iupq76iRhcnyq45ZO?=
- =?us-ascii?Q?c33NRWlvq4F4DX3mHcZICBy32iPwCkLCS+O6ktxE0xHzMipqLzBTj6qFdsae?=
- =?us-ascii?Q?eyv5RIy0H/sKbu0a9/l3Eyd4dmK+a/2LienAccyW8P1IJ8rnPKBI3T3L4Q88?=
- =?us-ascii?Q?YhnriLFjc29Q/Nk0OFSN+bjEpA0qFbNlkUc3nC+D7LdGIDed/Qf4YfscnmIR?=
- =?us-ascii?Q?bu/Mku3BxLgRxd8/4D++BaVJSvk22g7OTF0qsdOBDQe1iilYRTVjpex2FZf2?=
- =?us-ascii?Q?WwETCTUgEpwQYF5Iqjni1lQlu9nTSykq7Rx6mRM3aXdDYM0KHYr51TyCA0G0?=
- =?us-ascii?Q?8ANZG8GDtfQPEx8ke96gluMc5eNH2SnCVVOPWmqrWZQQqGnsLXHcyyjoCXE7?=
- =?us-ascii?Q?wJpXKVsRZ6yMJUo8gcdjkfP+oIaxORNYkPjAKobmnJrkEImQ44HzjXSLGF6d?=
- =?us-ascii?Q?We/4DJwTLwdk7ICtN7ukWzYn+5NYM+iA9lzsI80pBN1+JZaCi/WmijdAbKcu?=
- =?us-ascii?Q?zo0VRSsYVTG+7RVaV3AIOg5zqvcFiko07yYZX1Bt+dxrOmMIz+myvsqW98Ie?=
- =?us-ascii?Q?zsB0g1g89VBnquyqAS1xP+OMe4PsvkW8Xj4tEae9FOaTOfAKo8bpO//LyGfs?=
- =?us-ascii?Q?1m/gisp+tmw9o80TK8+3MhbyEVSwmULDGYKuOXikRkdEyhAGSAw1IoEb12Zp?=
- =?us-ascii?Q?YhjmQRxOUsIMsajyaDiJ43ltqTxkaptWi+szdPEdsAU4DXeCglJh/gWhYWUj?=
- =?us-ascii?Q?QKEEiymTT3rDJ6b8KcsiPFOh4qYGjAgFVk9TKAYt6L4V+54sjclP+2o6s7O9?=
- =?us-ascii?Q?BKW80s3mXw7l52PzkN4YWpagfxr3wTeVhfDPVsEOJP6owhnadX8tAbfq5iO3?=
- =?us-ascii?Q?W6K+Tr9vAmjRc8cEd2QMIa5bIvqIYj6KvFLNgSKvw/6l+97bl5PWBSQT8Jnf?=
- =?us-ascii?Q?Mld8dASz0vzxHvSTN52gvxlnEtkb+E3kuhSqkoGBAZXW/gSuOcWmW8qWpTef?=
- =?us-ascii?Q?/7Yk9B87tDbawpG0+TS87E83G/g5apKuk8xxEtcCNjbTiAjlo0ZZPdCkBcLl?=
- =?us-ascii?Q?DbvjE5xmxe6+gKcBbim1r5iP+6meFP7cEon+0DKsxL6SeB6LagZb5rJrFKik?=
- =?us-ascii?Q?RnvkeOo1HyFpRHTFiFTGVgTBCvNsKs5w9Ls9YMaUKq+cTp7zQaqDxwBg2w16?=
- =?us-ascii?Q?MWFl2XmkEG4x/fyMKvbVGw5XWifRj/hZ+J5RJUtzbDyrsOvVUYhcSj7Qz6pA?=
- =?us-ascii?Q?xdHQ/Ji38w+ggTzVbZKcRf2vNkTPz+EXBIxbs/4CNU8vi1Qz3qZViZanSTHD?=
- =?us-ascii?Q?8nOItb/WMW3WT7Xo8bkYNIAiML/dgBHzliMjGbjvdgD2d/sPQCj6GXLrY6Q1?=
- =?us-ascii?Q?Cm2UKfUFosDK8emz/Egb/D1nhtNbNOTGvbTl0vlUNdRLKnfAJcJiJMjTLSbl?=
- =?us-ascii?Q?lsReUp1KZB5IQhdgWrUI8c9Am8SegmdRiG/72KnoZ01E6ggF465sXA=3D=3D?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(52116014)(1800799024)(7053199007)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?JseSkp0KbuM0Q55ChfdLm/MEVBFkkD3cRnvzAIBz6MDXuoAMwvAAfwaaSBOr?=
- =?us-ascii?Q?Rm9aEYu3NH9Zm8vUgA40xt3x7zx5r09CdEccNCuIHycDnG5v+b1OPwUN7IWL?=
- =?us-ascii?Q?Ds1ZWFkOPxoLvg5gClMkkvFvhfk95znrkqE7JvFROedC+TGy6cjHkCpge5de?=
- =?us-ascii?Q?RTwyH8eRCy6cUiFnfoiaaTkx7Zgp/Nymk0UdCNzG9kNHOUERKmMKL65N682T?=
- =?us-ascii?Q?uD0PGsaTr8XwtRixEk3SvxagzKdUi8zNSGkJegiOaAwjjGpZjwC+lDFBuah+?=
- =?us-ascii?Q?FyuYIemz7xJc02egu4fD2pgchXEWZTFhzkzDXX5CpFPNPvoraK2Oa9iXkvz3?=
- =?us-ascii?Q?z17gjlftdnUqK4bDlaFLvH3qa08Q4aKX8ZPw6kCT16SZOaA4yEQ6QTwAkYC5?=
- =?us-ascii?Q?awYESnmC/taFFXf75xL/ABkw6VpGM5aaK8CYEdrVlBi3kltL+IlqBayqZiX4?=
- =?us-ascii?Q?bz7TluQlhZnLaW1b5DA+dNF5qkJSr1LcS4Xis6lHp0kVGwPZzQR4AzVL/1bn?=
- =?us-ascii?Q?xJ7+mYSRcOWKBv/l4Mfdn6icuXOjQaqvt1UVYXnZ0rMlGVMXBn/UZSHmiFQ6?=
- =?us-ascii?Q?6S6iSovHvcErXB+V1tqfDH6a9DUg4hD9xFQM8rBYIwyGjGpwIS+ryjGhZCGQ?=
- =?us-ascii?Q?TVuXMw0s9Y3aJWZqDIgFzyeOGi8eTm23iIUdz/UPeCmprvwRXRTXAllJ52jb?=
- =?us-ascii?Q?71JlfkCJS8lnNQHMW+poWk8X4JqPtznadf5+KGUau5ljKYrCiu7OVzL/DzYm?=
- =?us-ascii?Q?A8IaCBluHZy5s+B+VU6/mHXTamMyYw88lpufdJw9ACYWgnQBHNFzIgB/v2/r?=
- =?us-ascii?Q?Fdjph5ziBuvV0UzuTCbBt+F3pUqug2/nFkyRCjv4RI2tPTIIooUMyFafaLO1?=
- =?us-ascii?Q?XkMxsCeaTOrhoX0xOxT1c0efxDaPGGPYQDzrW2XRPDCvcps7pcJDcwaAuodZ?=
- =?us-ascii?Q?nCXa6/RNn9D/KwS2LlkOeMlIf3IXhoDVM0JTHgwQUUYtVjk16t7vE19KD3cm?=
- =?us-ascii?Q?vRVICehY5onG10cTEqlQipoAMBswO7FNkMZ7swmC/ou0FCjkK+lS5ojlmBE8?=
- =?us-ascii?Q?JCCiRkUS+wc9hxcvLSqQR40wHgPIagaUqsQIneVFdkmZfwtXqXNwjdR9/m2I?=
- =?us-ascii?Q?z6yb/G70V42n0qbJCaTufN+wefgA5XBsiBbXyRuIWLBi7Cgi3hFJirmvJAY1?=
- =?us-ascii?Q?N4BKXGQ9KcLYtn41TNuJ6GxwbM/SUe2UWMtAvnpaJzsfL1UehDBpcKCetBj/?=
- =?us-ascii?Q?9lmXZJIgYHw/v2iB1FRkyLf02QEdaZ/pYYZHVsgfnkdhJx9OJsql2W2Y0ugc?=
- =?us-ascii?Q?xAKQNjEmrJATpWipNX426YNSUYJmVRpF3OnDh+euyAzL3l3XMYmymPQK0NKP?=
- =?us-ascii?Q?msvJfB7s8lSRv+X++G9rmtMwDVKggUW/wdlzSOCp66nL2kVO5xwAihpm3nNq?=
- =?us-ascii?Q?kVJbzUSoklhf0fE9cWMq2NPl1NJsejOT7hU4QpL8yA4KDHXoGJ/AdXPDDn0/?=
- =?us-ascii?Q?SP4ReVN7lmRMp6+2JwSV8Vl92+7iV6Z+g6iB+K5xJBA+G0OZ6OiNVe5kLuNh?=
- =?us-ascii?Q?s4Ja46MVLmxNwKcgruU=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 82aec998-f487-4baf-fc2d-08dd72ddc6bf
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2025 18:31:40.5928
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xXzOsLFhTr5FtlCcVM7RAn2SQ06mWfxcfwwhnZTL/4lYgbCZBhvxrOHvZLfYzUJYUucXlHl9hI1bcEnB5qliEw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB10913
+References: <20250403181907.1947517-1-sean.anderson@linux.dev> <20250403182758.1948569-1-sean.anderson@linux.dev>
+In-Reply-To: <20250403182758.1948569-1-sean.anderson@linux.dev>
+From: Saravana Kannan <saravanak@google.com>
+Date: Thu, 3 Apr 2025 11:32:55 -0700
+X-Gm-Features: AQ5f1Joj6PPNXYtzD5r8kgx1fQnzai2slPTaoQvR1K8EcGM4YKlTmyOgm6rJ8rM
+Message-ID: <CAGETcx9v610XhvU705R=Mjth=iAbCU04rqNnQPhQua37Jc4TRQ@mail.gmail.com>
+Subject: Re: [RFC net-next PATCH 11/13] of: property: Add device link support
+ for PCS
+To: Sean Anderson <sean.anderson@linux.dev>
+Cc: netdev@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Russell King <linux@armlinux.org.uk>, Christian Marangi <ansuelsmth@gmail.com>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, linux-kernel@vger.kernel.org, upstream@airoha.com, 
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Apr 03, 2025 at 01:29:29PM +0200, Yannic Moog wrote:
-> The Libra board has an LVDS connector. Add an overlay for an
-> etml1010g3dra LVDS panel supported for the phyCORE-i.MX 8M Plus that may
-> be connected to it.
+On Thu, Apr 3, 2025 at 11:28=E2=80=AFAM Sean Anderson <sean.anderson@linux.=
+dev> wrote:
 >
-> Signed-off-by: Yannic Moog <y.moog@phytec.de>
+> This adds device link support for PCS devices, providing
+> better probe ordering.
+>
+> Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
 > ---
->  arch/arm64/boot/dts/freescale/Makefile             |  2 +
->  .../imx8mp-libra-rdk-fpsc-lvds-etml1010g3dra.dtso  | 44 ++++++++++++++++++++++
->  2 files changed, 46 insertions(+)
 >
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index df792553be479afcb6fa50dcd25a7eb63b67bc44..aa349ee35d5b310512f05c92390d5c2a27df81bb 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -201,6 +201,8 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-kontron-dl.dtb
+>  drivers/of/property.c | 2 ++
+>  1 file changed, 2 insertions(+)
 >
->  dtb-$(CONFIG_ARCH_MXC) += imx8mp-kontron-smarc-eval-carrier.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mp-libra-rdk-fpsc.dtb
-> +imx8mp-libra-rdk-fpsc-lvds-dtbs += imx8mp-libra-rdk-fpsc.dtb imx8mp-libra-rdk-fpsc-lvds-etml1010g3dra.dtbo
-> +dtb-$(CONFIG_ARCH_MXC) += imx8mp-libra-rdk-fpsc-lvds.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mp-msc-sm2s-ep1.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mp-navqp.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mp-nitrogen-smarc-universal-board.dtb
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-libra-rdk-fpsc-lvds-etml1010g3dra.dtso b/arch/arm64/boot/dts/freescale/imx8mp-libra-rdk-fpsc-lvds-etml1010g3dra.dtso
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..1dcf249ca90d2b4d9720a55de39e3f8564780dc3
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-libra-rdk-fpsc-lvds-etml1010g3dra.dtso
-> @@ -0,0 +1,44 @@
-> +// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
-> +/*
-> + * Copyright (C) 2025 PHYTEC Messtechnik GmbH
-> + */
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/clock/imx8mp-clock.h>
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +&backlight_lvds0 {
-> +	brightness-levels = <0 8 16 32 64 128 255>;
-> +	default-brightness-level = <8>;
-> +	enable-gpios = <&gpio5 23 GPIO_ACTIVE_LOW>;
-> +	num-interpolated-steps = <2>;
-> +	pwms = <&pwm1 0 66667 0>;
-> +	status = "okay";
-> +};
-> +
-> +&lcdif2 {
-> +	status = "okay";
-> +};
-> +
-> +&lvds_bridge {
-> +	assigned-clocks = <&clk IMX8MP_CLK_MEDIA_LDB>, <&clk IMX8MP_VIDEO_PLL1>;
-> +	assigned-clock-parents = <&clk IMX8MP_VIDEO_PLL1_OUT>;
-> +	/*
-> +	 * The LVDS panel uses 72.4 MHz pixel clock, set IMX8MP_VIDEO_PLL1 to
-> +	 * 72.4 * 7 = 506.8 MHz so the LDB serializer and LCDIFv3 scanout
-> +	 * engine can reach accurate pixel clock of exactly 72.4 MHz.
-> +	 */
-> +	assigned-clock-rates = <0>, <506800000>;
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index c1feb631e383..f3e0c390ddba 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -1379,6 +1379,7 @@ DEFINE_SIMPLE_PROP(pses, "pses", "#pse-cells")
+>  DEFINE_SIMPLE_PROP(power_supplies, "power-supplies", NULL)
+>  DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
+>  DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
+> +DEFINE_SIMPLE_PROP(pcs_handle, "pcs-handle", NULL)
+>
+>  static struct device_node *parse_gpios(struct device_node *np,
+>                                        const char *prop_name, int index)
+> @@ -1535,6 +1536,7 @@ static const struct supplier_bindings of_supplier_b=
+indings[] =3D {
+>                 .parse_prop =3D parse_post_init_providers,
+>                 .fwlink_flags =3D FWLINK_FLAG_IGNORE,
+>         },
+> +       { .parse_prop =3D parse_pcs_handle, },
 
-why assin IMX8MP_CLK_MEDIA_LDB rate to 0?
+Can you add this in the right order please? All the simple ones come
+before the SUFFIX ones so that it's less expensive/fewer comparisons
+before you parse the simple properties.
 
-Frank
-> +	status = "okay";
-> +};
-> +
-> +&panel0_lvds {
-> +	compatible = "edt,etml1010g3dra";
-> +	status = "okay";
-> +};
-> +
-> +&pwm1 {
-> +	status = "okay";
-> +};
+-Saravana
+
+>         {}
+>  };
 >
 > --
-> 2.49.0
+> 2.35.1.1320.gc452695387.dirty
 >
 
