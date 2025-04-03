@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-162944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 653D1A7A4F8
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 16:23:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD7EEA7A4EA
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 16:20:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A525C1898F25
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 14:16:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2264A7A52D6
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 14:19:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A647F24EAB9;
-	Thu,  3 Apr 2025 14:16:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA1F424EA8D;
+	Thu,  3 Apr 2025 14:20:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RH7LCW07"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W8DaIK6M"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F87E24EA8D;
-	Thu,  3 Apr 2025 14:16:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA8E324DFF6;
+	Thu,  3 Apr 2025 14:20:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743689779; cv=none; b=SNK9vQYiD6/dGE362MucPkZKrOkk8YjVaYE2gDrqdpwGPut5dXGjWuI3j/elw9GiX8+qkBz2YT0LHgr5j7gnRvmhU6EalZlDHcUsPQdu7Ez7GUZIC3AgZMIt7uGRc0HCjwlWPo6hIJZwjw1Jo1bme2UHpe04fwhbLlCW2cXABjQ=
+	t=1743690053; cv=none; b=Bj+7ItsQ2FKRPL9H3JkiWTvjgxavJnptspzxxjSkJpOfGE3mmabPVjr+DkcaNj5TEj2aDdt0sdV30iByC77J6CBEhoAl2FW3a5oFQ4dbueGn/3zRovyhkV/EdsXKtNqfD5xsPT3Y8IbwlsfU5CbijUQUYm9ApNp6bSb5t8fjWUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743689779; c=relaxed/simple;
-	bh=GgdfiQ5y7mT7VYraEy9gS4DReUbj/UbBNo2YaSQqkB0=;
+	s=arc-20240116; t=1743690053; c=relaxed/simple;
+	bh=oVspQsOli10ojcQuWaGk/4OcF/v1mQdbvkzFN2c0/GQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NRbZcRlUZW+Xv41m0//MdtdkVXNT25KQIg7IyXtaAkXcq0q+A1ljA8ejqtpzaZ8MsqsHgxmn7dcx6LP84Fm5m7p8FGwm7cOv5S/XX5nRrjiGZFGqYg1QiBTFWBf4UjHnKMzcjHBkrKWmglfNMI3Xo2IRTBkO8jRHbURsrNNOrZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RH7LCW07; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51B8DC4CEE3;
-	Thu,  3 Apr 2025 14:16:13 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=QM5gO1SMCMmDLG5G09b9Mq0NshgpA9vJdnsbRzTzCojR/6Gl0BxX30xbOilbqSo0HWYp/fC5q+or5CEaYRLkA3MGls6HRpqGizqg0fMpz8AWIXnwcvxtB+Znn/YAaZcCP66LmPU/fAP4z9anc8D7+QHWhNag/DXxSQx9TxmF820=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W8DaIK6M; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4CD2C4CEE3;
+	Thu,  3 Apr 2025 14:20:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743689778;
-	bh=GgdfiQ5y7mT7VYraEy9gS4DReUbj/UbBNo2YaSQqkB0=;
+	s=k20201202; t=1743690053;
+	bh=oVspQsOli10ojcQuWaGk/4OcF/v1mQdbvkzFN2c0/GQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RH7LCW07fTwpCP4aARZxpbeQQjLGly0mN4VZnQqQ7cTI88gVop3NT8nTLsSYFTGWW
-	 uQEzwrcdsrpCSqGLMV8omuYDowr3NlZQntng4D4zddvxNXjFPo4lk1+eVJ5nU5CsY5
-	 Sj8IZ6H7/vTBIiRuuEU3mDYbkPf/UT7Yl95FiRvPwIB+WFeH9i42MJxpcn6DALW7Ob
-	 ONFQnngHwhoc/MkcpKTeeyNQbKgf+l9JPoX1b0AKDF7ULOW5GX6k3v+Hw4akJ0iMHT
-	 rOzR54wZjvkknh5qBF6MZfgIMPzXst245UFByvP3mLD+LSIH9zLz9otfQ+z3zYPsc/
-	 2nyfeILPLOW8g==
-Message-ID: <9c47cd4d-41c7-42b9-8f00-a1ea9b9f6ed8@kernel.org>
-Date: Thu, 3 Apr 2025 16:16:11 +0200
+	b=W8DaIK6MtKx5CfQXjk4+Ok8QWMjpWAx4EaFMbIpU2C/gIigiLGbA9SygmS5C9JCyn
+	 xpxr5qHfoEtL9NyUNnB3mjQrCghp6ILmdWZ7HaWoOzQBp0yJtYqcPZsWCCKJ0e4fFz
+	 fCOL8tSTU1zppUZrUR/GHtdqDkJ2nYUQFc6q2C3L9ggOMDOK8esHGj+ty1QdX0DZxS
+	 OxqWocbB4dbGM9D+cY5QxobsGj+pqbNfpVAUnfWhIUP/lZAsOoCGypCdm63QiqueNU
+	 QRubPE5bs+174JQXg9Pu0VMR+/6FKqYmrDTPT/kHN3DhDU38WGkYfe9QUx1udxSfB/
+	 Y5xDpfWgguYnw==
+Message-ID: <267a5216-4b4e-415d-8fd5-98fa430d4893@kernel.org>
+Date: Thu, 3 Apr 2025 16:20:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: watchdog: Add NXP Software Watchdog
- Timer
-To: Daniel Lezcano <daniel.lezcano@linaro.org>, wim@linux-watchdog.org
-Cc: linux@roeck-us.net, linux-watchdog@vger.kernel.org,
- linux-kernel@vger.kernel.org, S32@nxp.com, ghennadi.procopciuc@nxp.com,
- thomas.fossati@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org
-References: <20250402154942.3645283-1-daniel.lezcano@linaro.org>
- <20250402154942.3645283-2-daniel.lezcano@linaro.org>
- <ffe49998-f809-458e-8eda-002d0c0fc32a@kernel.org>
- <c449fba0-476e-495b-abbd-65ba2d44d590@linaro.org>
+Subject: Re: [PATCH V4 0/8] Add new driver for WCSS secure PIL loading
+To: Gokul Sriram Palanisamy <gokul.sriram.p@oss.qualcomm.com>,
+ andersson@kernel.org, mathieu.poirier@linaro.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org,
+ quic_mmanikan@quicinc.com, linux-arm-msm@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
+Cc: quic_srichara@quicinc.com, vignesh.viswanathan@oss.qualcomm.com
+References: <20250403120304.2345677-1-gokul.sriram.p@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,28 +103,47 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <c449fba0-476e-495b-abbd-65ba2d44d590@linaro.org>
+In-Reply-To: <20250403120304.2345677-1-gokul.sriram.p@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 03/04/2025 01:01, Daniel Lezcano wrote:
-> On 02/04/2025 17:56, Krzysztof Kozlowski wrote:
->> On 02/04/2025 17:49, Daniel Lezcano wrote:
->>> Describe the Software Watchdog Timer available on the S32G platforms.
->>>
->>> Cc: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
->>> Cc: Thomas Fossati <thomas.fossati@linaro.org>
->>> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
->>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> Best regards,
->> Krzysztof
+On 03/04/2025 14:02, Gokul Sriram Palanisamy wrote:
+> This series depends on Sricharan's tmel-qmp mailbox driver series v4 [1].
 > 
-> I ran the make dt_binding_check but inadvertently removed the "oneOf:" 
-> after :/
-Other errors were also not fixed even though you got report on them on
-29th of March.
+> - Secure PIL is signed, split firmware images which only TrustZone (TZ)
+>   can authenticate and load. Linux kernel will send a request to TZ to
+>   authenticate and load the PIL images.
+> 
+> - When secure PIL support was added to the existing wcss PIL driver
+>   earlier in [2], Bjorn suggested not to overload the existing WCSS
+>   rproc driver, instead post a new driver for PAS based IPQ WCSS driver.
+>   This series adds a new secure PIL driver for the same.
+> 
+> - Also adds changes to scm to pass metadata size as required for IPQ5332,
+>   reposted from [3].
+> 
+> [1]
+> https://patchwork.kernel.org/project/linux-arm-msm/cover/20250327181750.3733881-1-quic_srichara@quicinc.com/
+> 
+> [2]
+> https://patchwork.kernel.org/project/linux-arm-msm/patch/1611984013-10201-3-git-send-email-gokulsri@codeaurora.org/
+> 
+> [3]
+> https://patchwork.kernel.org/project/linux-arm-msm/patch/20240820055618.267554-6-quic_gokulsri@quicinc.com/
+> 
+> changes in v4:
+>         - changed q6 firmware image format from .mdt to .mbn
+>         - corrected arrangement of variable assignemnts as per comments
+>           in qcom_scm.c
+>         - added scm call to get board machid
+>         - added support for q6 dtb loading with support for additional
+>           reserved memory for q6 dtb in .mbn format
+>         - updated dt-bindings to include new dts entry qcom,q6-dtb-info
+>           and additional item in memory-region for q6 dtb region.
+
+
+This invalidates review.
+
 
 Best regards,
 Krzysztof
