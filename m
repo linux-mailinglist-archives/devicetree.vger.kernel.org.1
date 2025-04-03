@@ -1,182 +1,238 @@
-Return-Path: <devicetree+bounces-162732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A4B9A79A96
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 05:41:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2EBCA79AAD
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 05:56:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA7ED3AE0BA
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 03:40:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 00B4617153F
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 03:55:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 992BB18CC08;
-	Thu,  3 Apr 2025 03:41:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 276A619340D;
+	Thu,  3 Apr 2025 03:55:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="lyY9CgLj"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="rTSlV94Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02C1813A244
-	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 03:41:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A4B82581
+	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 03:55:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743651667; cv=none; b=DbPUhW2uzLI400QkDA20PIKS7i+Iu9K35i/C0ajLljRHQ2JUB3uIVjvsLAn594HnM6/ApRr9KhcTfp6HRvcf7DwWso6gH78oVpoeW4anQ0J9NAltVgwwZ3lUFaTu+Z4J7U8mdyNHoJhDGymmyJHi2bYE6Vj06aM8MmIpFhr/fJ4=
+	t=1743652550; cv=none; b=CGcwo0/lCWMqhSaTWcr+94jMPQwoEP3JKQCTBIkXHxtVT9YYkIox57O9QPacZDMtpRR1oSll82RZXvjQIP16f/hq/oSg80FtS1GTMacmoBgadJSdiqSRmLu77AI3lv1JFCYM2b6okHR42TO+KMhFVdhog+XEOCOxJlcAB24Cbso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743651667; c=relaxed/simple;
-	bh=4aTH+S+5/DaE7SK3f14o739lz7d4vHx+nHgg53Ilpic=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qL/zdyPkkmJoLvgFLml4DVwhQpbYu4OmLr6LvAUIesLp/QpMM6BRiUVwbcDkz1whwANukuhxBZ44l/X0rjeRzdKMC8hl+jpDtcydlrQVkFgakP3HBujQSu+9wRJZ8+yjeM8+wtIpTnYuuxRvp2D8kvFUELuhZhXgCInnvzj0N5Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=lyY9CgLj; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-227cf12df27so3452435ad.0
-        for <devicetree@vger.kernel.org>; Wed, 02 Apr 2025 20:41:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1743651665; x=1744256465; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Q0tEj5kz4If7Ej673fi5hk/2hJig3VYxT41dAgyMOLI=;
-        b=lyY9CgLjw5w/omaCCOXRmGOkLC04kzcy2leKTC+7T42kKoJTSdWKzNmOjhxgW3UxzO
-         /97cz3bumayZzjInyeK17jY03f/x4aX3euSUjs0n3saU/BlKKpLEVHdZpIiqIV92Pqx+
-         zcKezlq1zGycE/WtglYmo6de0b7VO3G5Ec2iIENeXiCptQvvD7/hSZajDdjKem9M+ORD
-         UwdrdCwkPk0tLGrKlTyyB8vRBz3mEQKchMX6EjK3tzKja9nCZNtAz1GlpdiPLcWHjuby
-         NCQxszMh9hmSQiP/677re+qjNIBv5V/KtX+aTnkgLnNmsVejO7FoNzTE2/tTjI3Al5HK
-         Ixiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743651665; x=1744256465;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q0tEj5kz4If7Ej673fi5hk/2hJig3VYxT41dAgyMOLI=;
-        b=P1xu36f7jbAFGlSoRebZ8oXtBDvm7nWa4c4z58GXUDAkreaLfP9UY26Dfpuf4bLcGM
-         jRm3S1o46MCafqLHKkrj8b2/9nWTC5nnTrqq+PBDPd2qkoFntluU/2XMzIskJXsD2mj2
-         1C0pIbNuL1/CFi84dGv1afNeaCYAfy5g/qwarFhNyDRb/tdCSG6/u0/K9p6PRrQ48DsS
-         gIniuxQtjzp0uQ5Nijv4PkCtd7xwZysCUt9E+5K8YKtdPDjLjWuKrgLqXPIo5YQTfJ36
-         YPWrWyH1ByZDrxv/rJTa9o1ueo6gRYDroJAVoW54pSCIWHn0+/V60ZajeJjjG9Hk8neQ
-         wA0w==
-X-Forwarded-Encrypted: i=1; AJvYcCWJ4tkTJ2lS7q38b0YiHOUWL1RvNVYlzq6GuN93viEJIqo4h74QPhELNtcprda8gBtRUmDG710keBUn@vger.kernel.org
-X-Gm-Message-State: AOJu0YyAs3KBQcrKrcVbkB2bQ7iavgKF3KwvCzGx2d7+18bJ6rXrp4ZY
-	X+PyQm5TrGXWoFByKhwBOiujCVBKMiapMsJQm2GUC9GIOGd4B7kzmlghZ81djg==
-X-Gm-Gg: ASbGncuLcysJ4JIy7925tfJsgYlOU1oh3w0XjnAAzhTYqi+n1hvyv+C0F7Du6iUQs/B
-	ADGz2zPrYVOQCVEUJLwzKSFpKFQH4uCVuqXaJiyAdjuG/htb7tkM87zLlYkssxWCR+fWkyJOkRY
-	9HsUjh6aMgFzYlQye/KV0zjGDkfTsKA4FyfG3LYwLE9ygTazhEixHE2QaJMnOJC1hoIOptZnbKC
-	VyzahmFFcrDkaMobVVQVfpdwSUY3zk49uAm+IvN9lOCR/52H74QXaY+DvH2dVmO9w4kThl/10t/
-	bwykiUKVsXnu9fwZgWIGZS16NWMjDkx6rBALbbiloFF1HSo2ZsaPaWuwnpYu88RGHvkIsUJvPn5
-	qerWR5XsZboZrG1kXwUF651oJ3VB/hzhRF+C/3PKHaRA=
-X-Google-Smtp-Source: AGHT+IF+aLQLn6pLeab1Mot3xJ/DQBJV5mL7CVD5eHdMlU/bvNw7/84AH4TtA5RPRM1hKWlLyvBvkA==
-X-Received: by 2002:a17:902:ccca:b0:215:58be:3349 with SMTP id d9443c01a7336-229765ecb95mr30013415ad.14.1743651664993;
-        Wed, 02 Apr 2025 20:41:04 -0700 (PDT)
-Received: from ?IPV6:2a00:79e0:2e14:7:33af:bd9c:23d7:88c5? ([2a00:79e0:2e14:7:33af:bd9c:23d7:88c5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2297865e483sm3887005ad.116.2025.04.02.20.41.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Apr 2025 20:41:04 -0700 (PDT)
-Message-ID: <7c7cff17-2c53-4dcd-8760-50c72760de5b@google.com>
-Date: Wed, 2 Apr 2025 20:41:02 -0700
+	s=arc-20240116; t=1743652550; c=relaxed/simple;
+	bh=nqVB5uOqiFKCdpWccwDNjTPjd4j3yLd4tllbjZgjjLg=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:In-Reply-To:
+	 Content-Type:References; b=q2AAkVZAIioRWxl6/yHxCXNQB+ETAUujMgCv3Z/j70gTx/2EukGj3AZGOa+s4tYicff7ZbuHQSL8SBK3MqjrvoujVAqbww3r30pLE7w7xv5KAIV/CLQnNqY9IUhUY5n9bFsAf8eRPNXLszN43m/JB0+l7XBGpDTJ7Jz2A5Sfvr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=rTSlV94Q; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250403035544epoutp01852639fde8812aff577d8cdce7885603~yssBaovoE3044830448epoutp01P
+	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 03:55:44 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250403035544epoutp01852639fde8812aff577d8cdce7885603~yssBaovoE3044830448epoutp01P
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1743652545;
+	bh=Ej6k3ZLWQF+05g7feuaoptHbKWegrmPgWjF8rs/7NXY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=rTSlV94QRiaBjdMyRMI6WMQNRVVqeSCgMnBhmnBKB5ZENFjdIngWy9b98jCYPn6fh
+	 A4uZUjHHheJ8WzwPFlhlscNxGVzYH43TUj5FB+feDHNLLxsmVq1wul4FCHm01bcDKx
+	 Kdrdy2Av+9paiVxwqCfzc+iIfl3oqDOtkr7tAiPA=
+Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
+	epcas2p3.samsung.com (KnoxPortal) with ESMTPS id
+	20250403035544epcas2p3c55ebdc995a32e86804f8b0b2caaf468~yssA2RRGP2105821058epcas2p3P;
+	Thu,  3 Apr 2025 03:55:44 +0000 (GMT)
+Received: from epsmgec2p1.samsung.com (unknown [182.195.36.100]) by
+	epsnrtp03.localdomain (Postfix) with ESMTP id 4ZSnvg4Yzkz3hhT8; Thu,  3 Apr
+	2025 03:55:43 +0000 (GMT)
+Received: from epcas2p4.samsung.com ( [182.195.41.56]) by
+	epsmgec2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+	8E.F1.09780.FB60EE76; Thu,  3 Apr 2025 12:55:43 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250403035542epcas2p2da512aa29b7d9c68ad698399264e0d05~ysr-MEXyv2358523585epcas2p2o;
+	Thu,  3 Apr 2025 03:55:42 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20250403035542epsmtrp11d576aabebb09abda82ace4d6ca4cbaf~ysr-KwEhN2942429424epsmtrp1t;
+	Thu,  3 Apr 2025 03:55:42 +0000 (GMT)
+X-AuditID: b6c32a43-9b7fe70000002634-99-67ee06bf3b1c
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	78.8C.08766.EB60EE76; Thu,  3 Apr 2025 12:55:42 +0900 (KST)
+Received: from perf (unknown [10.229.95.91]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250403035542epsmtip1b91f8b8759e4cc8898b6b6c78a09a97e~ysr_6KM960228602286epsmtip1g;
+	Thu,  3 Apr 2025 03:55:42 +0000 (GMT)
+Date: Thu, 3 Apr 2025 12:59:57 +0900
+From: Youngmin Nam <youngmin.nam@samsung.com>
+To: William McVicker <willmcvicker@google.com>
+Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon
+	<will@kernel.org>, Peter Griffin <peter.griffin@linaro.org>,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>, Tudor Ambarus
+	<tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
+	Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Alim
+	Akhtar <alim.akhtar@samsung.com>, Daniel Lezcano
+	<daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, Saravana
+	Kannan <saravanak@google.com>, kernel-team@android.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, Will Deacon
+	<willdeacon@google.com>, Youngmin Nam <youngmin.nam@samsung.com>
+Subject: Re: [PATCH v1 4/6] arm64: dts: exynos: gs101: Add
+ 'local-timer-stop' to cpuidle nodes
+Message-ID: <Z+4Hve9pQoLeh9sZ@perf>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/5] Add support for Battery Status & Battery Caps AMS in
- TCPM
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Badhri Jagan Sridharan <badhri@google.com>,
- Sebastian Reichel <sre@kernel.org>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <len.brown@intel.com>,
- Pavel Machek <pavel@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-pm@vger.kernel.org, RD Babiera <rdbabiera@google.com>,
- Kyle Tso <kyletso@google.com>
-References: <20250312-batt_ops-v1-0-88e0bb3129fd@google.com>
- <20250313-determined-wild-seahorse-f7871a@krzk-bin>
- <914a0df4-96d0-4cd4-ac87-3826fa9c1440@google.com>
- <3f65fe16-56f8-4887-bb91-994b181ce5a9@kernel.org>
- <9852e5a8-843d-48ae-90d0-7991628e93b3@google.com>
- <442bebf4-4de1-42d1-a14b-2bb509fea12f@kernel.org>
-Content-Language: en-US
-From: Amit Sunil Dhamne <amitsd@google.com>
-In-Reply-To: <442bebf4-4de1-42d1-a14b-2bb509fea12f@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <Z-2zQ-PcvxFTBc6M@google.com>
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Tf0xTVxTHd/teX1/R6hsyvWGDsMfCBhmlRaAXoUQjP+rmHyRblm0o0LVv
+	LWlpS18LssTJJhOpG8IU0YYUHDAdMnEFShXBpZDA3KgjW2Ajjun8EagburIZRAtrebr43+ec
+	+/3ec88995JY+C9EJFlisDBmg1JPE2G4azgeJV4i5jWS824aXXO4CNTr68HR3S8/Bahr0MtD
+	joUo1DLi5SN3fwSas88QyHljko9+utBMoONXhnjo3PFlHK1cdAuQzRMgUI+zEUP+6UJUfTUV
+	1Ty4g6NO/wpAbd/6BVsjFK4BF1/R5egCilanVeHsrCUUVycvEop5r1eg6Gnfp6jr7QSKBWd0
+	vvBdXaaWUaoZcwxjUBnVJQaNnH79jaLtRalpEmmiNB3J6BiDspSR09k78xNzS/TBruiYcqXe
+	GkzlK1mWTsrKNButFiZGa2QtcpoxqfUmmUnMKktZq0EjNjCWLVKJJDk1KCzWaTv8Dbjp16g9
+	Cw92V4H7m2yAJCGVAq+4C2wgjAyn3AAunFjkc4EfQN/ElMAGhMHgPoCOWvMTQ1NAw2kGAfx4
+	aJDHBdcBPP+PAwsZcOolaHPdIUJMUInQNbYMQuYISgwffbInpMeoOT6sc82CkGYDVQwnhnz8
+	EIuoWNj8hZ/g+Fn43YmbeIiFVAL87VETCJkhNUtCn61n1QCpbHh4fITH8QboG+0VcBwJ5w4f
+	eMwsrPp9GuPM1QBenprFuIXN0H67ZvUUGKWFrmsTGNdmLByZxrn0OnhwOCDg0iJ48EA454yD
+	S0fPAY5fgANtpx/vqIB9Ky6Cu5QAgN9/8xCrB9H2p/qxP1WN41dh64CfsAdLYNTz8NQyyWE8
+	7L6Q1Ar4nWAjY2JLNYwq2ST9f7wqY6kTrD7xhO1u8HPLstgDeCTwAEhidISoLOEvTbhIraz8
+	gDEbi8xWPcN6QGpwOA1Y5HMqY/CPGCxF0pR0SUpamlSWnCqR0ZtEnr9vacIpjdLC6BjGxJif
+	+HikMLKKl5FmF93LKz+082561o8Sf/ylk+m5vMWKwEq1bFBEyq2LyYP98/va6u/pZIXOJDtR
+	836Bs6/2lSN5Hc3r+zdP3soOHMstbP8o8NnwM853dhQf2zKrut43HCj7M/brioeVom2qxu5F
+	+RE8J2djx9tzayQnp9ZWlGTERXkv94mLDuF5r/0QtvZme1ymsCFrvLpgfq9OUyleChuLq3Ps
+	cAhbG2+fbmz50JdztgCs7Goor19TfjZrf9TM1ow/0Hqc9+KbdflTZ6rYM1FhevM69UKTN/ut
+	vdHjL9e3qkfz/zWdQkdndnWTnqVAuXXs8/2ewq9wcWGatWwRvndjW/WEWNA8Cty7aZzVKqUJ
+	mJlV/gddt0+8awQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrAIsWRmVeSWpSXmKPExsWy7bCSnO4+tnfpBi/eSVk8mLeNzWLLq80s
+	Fu+X9TBarNl7jsli3mdZi/lHzrFa7NguYvFy1j02i02Pr7FaXN41h81ixvl9TBYbZvxjsfi/
+	Zwe7Rdehv2wWmzdNZbb4dCvOouWOqUX7z9csFqs+/We0WHzgE7uDiMe23dtYPdbMW8PosWBT
+	qcemVZ1sHneu7WHzeHfuHLvH5iX1Hn1bVjF6fN4kF8AZxWWTkpqTWZZapG+XwJWx/OZStoKZ
+	0hXdf46wNTCeF+1i5OCQEDCRmP43vYuRi0NIYDejxMy9J9m6GDmB4jISt1deZoWwhSXutxxh
+	hSi6zyjxbOp9FpAEi4CKRNe212ANbAK6EttO/GMEGSoioCfxp7UCpJ5Z4DOrxNaOo8wgNcIC
+	CRKXOm4zgdi8AsoScxZ9YoMY+p9R4uXdPVAJQYmTM5+ALWAW0JK48e8lE8hQZgFpieX/OEDC
+	nEDhu3+mM05gFJiFpGMWko5ZCB0LGJlXMUqmFhTnpucWGxYY5qWW6xUn5haX5qXrJefnbmIE
+	R6KW5g7G7as+6B1iZOJgPMQowcGsJMJbqPU2XYg3JbGyKrUoP76oNCe1+BCjNAeLkjiv+Ive
+	FCGB9MSS1OzU1ILUIpgsEwenVAMTa0723LM2WRcbVtzZz71RTCcrROzgC2azaxddOV6kvg+e
+	2ROhdfP0fXtZn7JLP/ucrjccf5PxbUb8pc/nqp1eLzc++lZq1kbbWabS7dsFlBgUkyUvb4k6
+	cLqENytlRcgpTzNVtodz39rt0G9qVJlb82Lu1LsMN3svpq7e/CfvQsuE1fdNHn+7fy2r7ki3
+	c6Wrxjf1r7O4qw1u/39fmrCpb0LnW+4pyzLrPnRMr1/WdeXttPl9xRUvqlLa2UT4+7cUT74g
+	ETWjr/pImUcXe2DL0llTc4QjPukfPRjrP9WZgT0s2bShV/bK9T2cf1JezPKrtLLQsLNKimE3
+	np3QlHD1/Ez32d8mcGZPcjrwtnmjEktxRqKhFnNRcSIAx5ywPTMDAAA=
+X-CMS-MailID: 20250403035542epcas2p2da512aa29b7d9c68ad698399264e0d05
+X-Msg-Generator: CA
+Content-Type: multipart/mixed;
+	boundary="----JAxyHCgdtJ96A8.Ok.gYWmZQmsTOHaTnMoXq.aDuWNAvXzgf=_81f4a_"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250331230151epcas2p486a7c6d7153737f4168cfef74249742f
+References: <20250331230034.806124-1-willmcvicker@google.com>
+	<CGME20250331230151epcas2p486a7c6d7153737f4168cfef74249742f@epcas2p4.samsung.com>
+	<20250331230034.806124-5-willmcvicker@google.com> <Z+y4zxfifkQqLxKF@perf>
+	<Z-2zQ-PcvxFTBc6M@google.com>
 
+------JAxyHCgdtJ96A8.Ok.gYWmZQmsTOHaTnMoXq.aDuWNAvXzgf=_81f4a_
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-On 3/21/25 12:51 AM, Krzysztof Kozlowski wrote:
-> On 20/03/2025 22:11, Amit Sunil Dhamne wrote:
->> On 3/16/25 9:52 AM, Krzysztof Kozlowski wrote:
->>> On 15/03/2025 01:49, Amit Sunil Dhamne wrote:
->>>> Hi Krzysztof,
->>>>
->>>> Thanks for the review!
->>>>
->>>> On 3/13/25 1:50 AM, Krzysztof Kozlowski wrote:
->>>>> On Wed, Mar 12, 2025 at 04:42:00PM -0700, Amit Sunil Dhamne wrote:
->>>>>> Support for Battery Status & Battery Caps messages in response to
->>>>>> Get_Battery_Status & Get_Battery_Cap request is required by USB PD devices
->>>>>> powered by battery, as per "USB PD R3.1 V1.8 Spec", "6.13 Message
->>>>>> Applicability" section. This patchset adds support for these AMSes
->>>>>> to achieve greater compliance with the spec.
->>>>> Which board uses it? I would be happy to see that connection between
->>>>> batteries and USB connector on the schematics of some real device. How
->>>>> does it look like?
->>>> Any board that uses a USB Type-C connector that supplies power into or
->>> If you keep responding like this, you will got nowhere, so let me
->>> re-iterate:
->>>
->>> Which upstream DTS (or upstream supported hardware) is going to use this
->>> binding, so I can see how you are going to implement it there in the
->>> entire system?
->> This is for maxim,max33359 Type-C controller.
-> Stop deflecting the questions. max33359 is not a board. I already asked
-> two times.
->
-> Apparently admitting "no upstream users" is impossible, so let's state
-> the obvious:
->
-> There are no upstream users of this.
+On Wed, Apr 02, 2025 at 02:59:31PM -0700, William McVicker wrote:
+> Hi Youngmin,
+> 
+> On 04/02/2025, Youngmin Nam wrote:
+> > On Mon, Mar 31, 2025 at 04:00:26PM -0700, Will McVicker wrote:
+> > > From: Will Deacon <willdeacon@google.com>
+> > > 
+> > > In preparation for switching to the architected timer as the primary
+> > > clockevents device, mark the cpuidle nodes with the 'local-timer-stop'
+> > > property to indicate that an alternative clockevents device must be
+> > > used for waking up from the "c2" idle state.
+> > > 
+> > > Signed-off-by: Will Deacon <willdeacon@google.com>
+> > > [Original commit from https://android.googlesource.com/kernel/gs/+/a896fd98638047989513d05556faebd28a62b27c]
+> > > Signed-off-by: Will McVicker <willmcvicker@google.com>
+> > > ---
+> > >  arch/arm64/boot/dts/exynos/google/gs101.dtsi | 3 +++
+> > >  1 file changed, 3 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+> > > index 3de3a758f113..fd0badf24e6f 100644
+> > > --- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+> > > +++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+> > > @@ -155,6 +155,7 @@ ananke_cpu_sleep: cpu-ananke-sleep {
+> > >  				idle-state-name = "c2";
+> > >  				compatible = "arm,idle-state";
+> > >  				arm,psci-suspend-param = <0x0010000>;
+> > > +				local-timer-stop;
+> > >  				entry-latency-us = <70>;
+> > >  				exit-latency-us = <160>;
+> > >  				min-residency-us = <2000>;
+> > > @@ -164,6 +165,7 @@ enyo_cpu_sleep: cpu-enyo-sleep {
+> > >  				idle-state-name = "c2";
+> > >  				compatible = "arm,idle-state";
+> > >  				arm,psci-suspend-param = <0x0010000>;
+> > > +				local-timer-stop;
+> > >  				entry-latency-us = <150>;
+> > >  				exit-latency-us = <190>;
+> > >  				min-residency-us = <2500>;
+> > > @@ -173,6 +175,7 @@ hera_cpu_sleep: cpu-hera-sleep {
+> > >  				idle-state-name = "c2";
+> > >  				compatible = "arm,idle-state";
+> > >  				arm,psci-suspend-param = <0x0010000>;
+> > > +				local-timer-stop;
+> > >  				entry-latency-us = <235>;
+> > >  				exit-latency-us = <220>;
+> > >  				min-residency-us = <3500>;
+> > > -- 
+> > > 2.49.0.472.ge94155a9ec-goog
+> > > 
+> > Hi Will.
+> > 
+> > Are you using this property in production?
+> > If so, have you noticed any performance improvements?
+> 
+> On Pixel 6, I have only recently switched to using the arch_timer as the
+> default clocksource. I haven't noticed any major perf improvements to the main
+> benchmarks, but also haven't seen any regressions. Based on the ChromeOS perf
+> analysis in [1,2], there was a significant perf difference found.
+> 
+> [1] https://lore.kernel.org/linux-samsung-soc/CAJFHJrrgWGc4XGQB0ysLufAg3Wouz-aYXu97Sy2Kp=HzK+akVQ@mail.gmail.com/
+> [2] https://lore.kernel.org/linux-samsung-soc/CAASgrz2Nr69tpfC8ka9gbs2OvjLEGsvgAj4vBCFxhsamuFum7w@mail.gmail.com/
+> 
+> If it helps, I found that Pixel 8 and 9 devices (didn't check Pixel 7)
+> are already using the arch_timer with this 'local-timer-stop' as the default
+> clocksource in the production kernel.
+> 
+> Thanks,
+> Will
+> 
+> [...]
+> 
 
-max33359 controller has an upstream user i.e., gs101-oriole (Pixel 6) 
-board. Totally agree that at the moment there are no upstream 
-devices/drivers for the Fuel Gauge (that my patchset has a dependency 
-on) in gs101-oriole board. gs101-oriole uses max77759 fuel gauge device. 
-I see that there's an effort for upstreaming it 
-(https://lore.kernel.org/all/20250102-b4-gs101_max77759_fg-v2-0-87959abeb7ff@uclouvain.be/). 
-I will mark my patches as dependent on it + demonstrate the relationship 
-of the devices in the gs101-oriole board. Hope that's okay?
+Hi Will,
 
+Thanks for sharing the status of Pixel devices.
+
+I agree that using the arch_timer as a clock source device brings significant benefits.
+The links you shared are definitely related to that.
+
+However, I would also like to know whether arch_timer is used as a clock event device in Pixel production.
 
 Thanks,
+Youngmin
 
-Amit
+------JAxyHCgdtJ96A8.Ok.gYWmZQmsTOHaTnMoXq.aDuWNAvXzgf=_81f4a_
+Content-Type: text/plain; charset="utf-8"
 
->> This would property would have been present for the connector present in
->> the typec device for gs101-oriole board (that uses the max33359
->> controller).
->
-> But it is not.
->
->
->> However, I will be exploring existing bindings to describe the
->> relationship for now.
->>
->>>> out of a battery while operating in sink or source mode respectively.
->>>> The VBUS is connected to the (battery + buck boost IC's CHGin/Vin) or a
->>>> companion IFPMIC connected to a battery.  In our board we have USB
->>>> Connector <-> IFPMIC <-> Battery.
->>> Which board is that?
->> gs101-oriole board.
->
-> Then why this is not used? The board was released some years ago, so I
-> do not see a problem in using it.
->
-> Best regards,
-> Krzysztof
+
+------JAxyHCgdtJ96A8.Ok.gYWmZQmsTOHaTnMoXq.aDuWNAvXzgf=_81f4a_--
 
