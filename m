@@ -1,133 +1,78 @@
-Return-Path: <devicetree+bounces-162951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6607EA7A532
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 16:34:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDAACA7A553
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 16:39:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A1353ADB94
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 14:29:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44FE83AD7F4
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 14:34:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41F9124EA9D;
-	Thu,  3 Apr 2025 14:29:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD78624EF62;
+	Thu,  3 Apr 2025 14:34:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kOQ1ccF6"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="iyZmffwu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10FFA24BCF9;
-	Thu,  3 Apr 2025 14:29:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 932AA24EF6D;
+	Thu,  3 Apr 2025 14:34:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743690570; cv=none; b=dfD+N/R0gkdgonD22FRK5t2L1x7KNAWckDxgE38axoD/jyLWonfDns+9gdT1hRParji9F5Z0LIaDH+rEfzzcoRmytt67XJii6AcnKiH6VQ52uqypkAHBtqB66ssN9y2d+u1dnpCyLPYf48pUMElDn4OAwj7mbE0I+huxFufL96M=
+	t=1743690859; cv=none; b=RjDf4Ef778a6p/t+8CjBGtBaAdLWTB7gfyKa0M4JDoKruNwGHJDvJazFYvkDF7H5Jwauc+SW4vFMrjU4YKXuRB2srltHpcD/HnBghbMSseV0du3FPY0HqrT6g70my/XnCcFJ4CX/Jx6b/7xwF690clSDVlPRDBPtLpPhD3ARFQk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743690570; c=relaxed/simple;
-	bh=vTwMHvOovCZ//ixEtEQTfu+/vKY6ddXQrx23wvtkghE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LZPRl5dTu5LdiAfwsCOZEkhDoCo29KqveVLvrLbn8UYf1irN8M0qHq8ce9QJPRZBb0CwuEgqbznK+r+pVf2hmk81N3Zy0PlR6VeGySW/9aJNKksP5cBekbgKp2i1KC5DNmh3NWnReY+yusT5V2zc4e/DJA8KzqpdEuejTGbO8MY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kOQ1ccF6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBC00C4CEE3;
-	Thu,  3 Apr 2025 14:29:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743690569;
-	bh=vTwMHvOovCZ//ixEtEQTfu+/vKY6ddXQrx23wvtkghE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kOQ1ccF6zAtk8+uAHm9om+QfLiOLo9bCr0YBI2sXEyUyIcyvqTmExgKoOqnQV/KUI
-	 eyreS9A/pfL9+mUwDDaiAZ4quM6uauMhkL7z4oaroHhj89n0SQXXVdYPGsoCzzCpq5
-	 ioLOYzq9gN1o2dk6t3C5jUoATUvgHDvoB5Hdd0F3I967pAa/xusNl81EyLMOQ+egIO
-	 tYJX8ti9MUocytEeYn4L9YN6x/+R5ci8eRphHI678wg+kGCNe+0pIzpKUoNxt9kA+G
-	 FAwMRDfZJp6q8LnTZlflN0rT6YJdUKbYTW9xFrga1gI6vipGNs1Ipf0SeNWFAl/BEl
-	 fFd1X+gf0J0ag==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1u0LZW-0000000069e-2E6c;
-	Thu, 03 Apr 2025 16:29:35 +0200
-Date: Thu, 3 Apr 2025 16:29:34 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: peda@axentia.se, broonie@kernel.org, andersson@kernel.org,
-	krzk+dt@kernel.org, ivprusov@salutedevices.com,
-	luca.ceresoli@bootlin.com, zhoubinbin@loongson.cn,
-	paulha@opensource.cirrus.com, lgirdwood@gmail.com, robh@kernel.org,
-	conor+dt@kernel.org, konradybcio@kernel.org, perex@perex.cz,
-	tiwai@suse.com, dmitry.baryshkov@oss.qualcomm.com,
-	linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	johan+linaro@kernel.org,
-	Christopher Obbard <christopher.obbard@linaro.org>
-Subject: Re: [PATCH v6 5/6] ASoC: codecs: wcd938x: add mux control support
- for hp audio mux
-Message-ID: <Z-6bTj097a1LVn3X@hovoldconsulting.com>
-References: <20250327100633.11530-1-srinivas.kandagatla@linaro.org>
- <20250327100633.11530-6-srinivas.kandagatla@linaro.org>
- <Z-z_ZAyVBK5ui50k@hovoldconsulting.com>
- <8613cf45-d202-4577-868c-8caf771c7bc4@linaro.org>
+	s=arc-20240116; t=1743690859; c=relaxed/simple;
+	bh=9nhBH1ry74CQ3LyONta4ntpwEyT1Zw1ubPBWNa5MJbo=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=M1/dU4C8sgH0l9A3yQY5W+5KkaF0QcM68kArOR+XC9uLln0ByfunWGyCp8DW5FOxsztdL0RqNHRLU3EyVYGm6+98sjGLWdTztdDdArQiWp9oDy+EsFx+73pTMCNJM9xdpkj7w7e5sOmbpkJe7a4ivqaHGLQHjM/GUgEKCr6Hk9E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=iyZmffwu; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1743690854;
+	bh=Rr28166uaXmjmRSWl/gNWhkMkGMEc//2Jf5V3S17AO8=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=iyZmffwuj0pu9Y9ST91vW9AxgCQ7pQD7whv3n3OvCKfhy2CuFieKEhIW/nmKq9E2T
+	 jAf7EJ2KGaHEFud5dTjqAncq7cCEAssPmOrB+A0MjFhk3YApu6JG9kz2OnfTt9bm06
+	 ipxwRhvHd0RQMCe7qqqrzneGxzxBnwNxGvel7nhnj4omP8kXAhYayi1oUQ7G9c1y61
+	 007f8GoJ8ceppvJ1Nz8KzgQoPqevKKS22gqi7bYBfUm2dO88d5lZVzv64ST3Anw9mn
+	 tyDxTAtsKJ9EUuZPU3fzspH5UBVK8vQLxaIGBTUwErfkxOFkVQZVcId5+x4dO4FhvK
+	 wkrU8aJx2O56Q==
+Received: from [127.0.1.1] (unknown [180.150.112.225])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id D6ED17B352;
+	Thu,  3 Apr 2025 22:34:13 +0800 (AWST)
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Tomer Maimon <tmaimon77@gmail.com>, Rob Herring <robh@kernel.org>, 
+ "William A. Kennington III" <william@wkennington.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ openbmc@lists.ozlabs.org
+In-Reply-To: <20250401235630.3220150-1-william@wkennington.com>
+References: <20250401235630.3220150-1-william@wkennington.com>
+Subject: Re: [PATCH v2] ARM: dts: nuvoton: Add UDC nodes
+Message-Id: <174369085137.3191483.5593938005824189048.b4-ty@codeconstruct.com.au>
+Date: Fri, 04 Apr 2025 01:04:11 +1030
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8613cf45-d202-4577-868c-8caf771c7bc4@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-On Thu, Apr 03, 2025 at 01:19:57PM +0100, Srinivas Kandagatla wrote:
-> On 02/04/2025 10:12, Johan Hovold wrote:
-> > On Thu, Mar 27, 2025 at 10:06:32AM +0000, Srinivas Kandagatla wrote:
-> >> From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> >>
-> >> On some platforms to minimise pop and click during switching between
-> >> CTIA and OMTP headset an additional HiFi mux is used. Most common
-> >> case is that this switch is switched on by default, but on some
-> >> platforms this needs a regulator enable.
-> >>
-> >> move to using mux control to enable both regulator and handle gpios,
-> >> deprecate the usage of gpio.
-> >>
-> >> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> >> Tested-by: Christopher Obbard <christopher.obbard@linaro.org>
-> > 
-> >> @@ -3261,11 +3276,26 @@ static int wcd938x_populate_dt_data(struct wcd938x_priv *wcd938x, struct device
-> >>   		return dev_err_probe(dev, wcd938x->reset_gpio,
-> >>   				     "Failed to get reset gpio\n");
-> >>   
-> >> -	wcd938x->us_euro_gpio = devm_gpiod_get_optional(dev, "us-euro",
-> >> -						GPIOD_OUT_LOW);
-> >> -	if (IS_ERR(wcd938x->us_euro_gpio))
-> >> -		return dev_err_probe(dev, PTR_ERR(wcd938x->us_euro_gpio),
-> >> -				     "us-euro swap Control GPIO not found\n");
-> >> +	wcd938x->us_euro_mux = devm_mux_control_get(dev, NULL);
-
-> > Running with this patch on the CRD I noticed that this now prints an
-> > error as there is no optional mux (or gpio) defined:
-> > 
-> > 	wcd938x_codec audio-codec: /audio-codec: failed to get mux-control (0)
+On Tue, 01 Apr 2025 16:56:30 -0700, William A. Kennington III wrote:
+> The driver support was already added but we are missing the nodes in our
+> common devicetree.
 > 
-> This is not from codec driver, mux control is throwing up this.
-
-Yeah, the error is printed by the mux code, but it's this codec change
-that starts triggering it.
-
-> > You need to suppress that error in mux_get() to allow for optional muxes
-> > to be looked up like this.
-
-> I have a plan for this,
 > 
-> I proposed some changes to mux api for exclusive apis at 
-> https://lkml.org/lkml/2025/3/26/955
-> 
-> This should also allow us to easily add an optional api, which I plan to 
-> do once i get some feedback on this patch.
 
-It may just be as simple as demoting that dev_err() in mux_get() to
-dev_dbg() and possibly make sure any callers log errors themselves.
+Thanks, I've applied this to be picked up through the BMC tree.
 
-A quick grep shows there are only 12 users or so and most of them
-already seem to be logging mux lookup errors.
+--
+Andrew Jeffery <andrew@codeconstruct.com.au>
 
-Johan
 
