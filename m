@@ -1,109 +1,131 @@
-Return-Path: <devicetree+bounces-162973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17F1BA7A7C0
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 18:20:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97F25A7A80E
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 18:36:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1653B3AB750
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 16:19:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 949AF3B1D0C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 16:36:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 999942505BB;
-	Thu,  3 Apr 2025 16:19:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADBB624E00C;
+	Thu,  3 Apr 2025 16:36:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E8ML1qZZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dp5Lf/I8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 712E31A23BA;
-	Thu,  3 Apr 2025 16:19:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76ADA23F403;
+	Thu,  3 Apr 2025 16:36:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743697197; cv=none; b=lqCz2PYGkcRvPWYNXIHHyJ7zc513p9Tgu+EJww5oY62Xj5ISJRwlUx41bG1O1Y8k6b3e0dHXENp63IWtgnTat6+xDvmVFr9MR4CW7lUHod6wNXHK3rCZm6HeDtRsHfT5agKDXRd6eT0i2GRCzzTlyujK3Orl9gB2tBJFAbSfUb4=
+	t=1743698212; cv=none; b=DOztxTyuzCUZ1Wn9i4O3PokES67FtvHUUtniJtIfHdOLyDmOn1DEEbQ5F4PcjYCpLbgh41ykuSp85FSHHZCLwzrm8K2R2mBJxVIe18niKC6R3WQc5AEPQ9ApLDIKZmYwc7JRp1gHjvVOCHnHVjfsauxSJ0MlN2jp40LvfAOFDsg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743697197; c=relaxed/simple;
-	bh=CaqBqUereHqZXhHwwqd9yvDXNCjIzmhZi6Y/BlkYcLA=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=rLYJM8d4VkMVNYmycTyPoVG9LLW9xP85wQ5uT6KYluHPtgkSWA4Yc9YAo4wSApioqUmzUYL0kYlG39tt5tQPkP6lrw5jlMvtQfRPEONjvgjbtbpSJlhF/2Zb04iHOL6dJHs/tnV7jfZGACDH0ClXmKnG5pQhjpGX6Rurh2ociBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E8ML1qZZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCBADC4CEE3;
-	Thu,  3 Apr 2025 16:19:56 +0000 (UTC)
+	s=arc-20240116; t=1743698212; c=relaxed/simple;
+	bh=rHQvrTRD9lw8HQVLfGzOcqqcO/H5rWQHLFBLB0wZyD4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FoknYX7C61TNeRoo10i/WqJYU5MO9b2APzp9viCWsZUMeSw66qBpolotMzrXAy6ediY5eYaQeZ6nHJTwYlNfa+l16RxeLmCG4KX2kS7EinyL1WPPFlSI94gXJ3WPXzY4awGz3NXmILZwg7l0DtliPl7pO5LCQ8wnyj6czpaJA24=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dp5Lf/I8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E24F0C4CEE3;
+	Thu,  3 Apr 2025 16:36:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743697196;
-	bh=CaqBqUereHqZXhHwwqd9yvDXNCjIzmhZi6Y/BlkYcLA=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=E8ML1qZZkz7sYG9w06ltotzKs7rn/Y3wwWhnJKwhTYaAVMAQaOBYlCxNNQLHmeUo3
-	 ChlnLA2zT30/HAuhaquUDw+YLK3EE9K85Xu3FtXPGPdAyHEDI8/ENQwO0WSQhgBz8w
-	 IyW38hVyHraWNK7J+KObjtlC+7gtqSnI1Zg107yfItdo1gUmKy2uOw8yGAHIBwpUCG
-	 SjpnfHVUypc6/wt5+uyTNToW+dlar/lGducTyzbOxZX8DTNdEobA4Q0/Jj400OVrRG
-	 jssocABKTYr5cFDzQejuVCNRlV8rIZ2t8kN8fXOzXCkYeFsweXlctIQpqNLhTh8+wk
-	 EY9R9/PkbRzZA==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id EAE53380664C;
-	Thu,  3 Apr 2025 16:20:34 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1743698211;
+	bh=rHQvrTRD9lw8HQVLfGzOcqqcO/H5rWQHLFBLB0wZyD4=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=dp5Lf/I8Vwz/fTu+t0VA6NfWBk+w+7i+KnuEgYHWSaCRIpVBxETkf1HyJ0Gww5BaI
+	 Ro4nvDrTvMjuAk9L/42vbvWA13shG6KWzcK0aSwPpPlhQhbE+30BUPCyauCqTqll0P
+	 CjiGxCSAFse68HUBO53jquvUQBe1Eo71FjPSjH3QYlE+GkOcEiV69OiGoGmAEovnKm
+	 unsRq+GDuEJG8jhTUvhNBUjOSf0VfMAnBJBzR8CPYBuO54t7jQHGDWmr6AQLjGnhkc
+	 pnzAq6q3f8hxEdtVanG0X86dPOp+ydmpD14TiBotwUHFvXYHnFCTq0AiW5Q07T2WNH
+	 UQjwhVu/iqovQ==
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5eb92df4fcbso2126941a12.0;
+        Thu, 03 Apr 2025 09:36:51 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUl3aGOV2WxAqD+DRd6XI+rPsw0uuSGfEze4493c8rr9bwNICBE9Da4osgOrFn445GsmLaxdhanYY8t0wlR@vger.kernel.org, AJvYcCW5NrOZcxUoF0tbY+EGQHKmJ6glBsfjn1JJf8Q3agNt63TUUWeIergGVUnt30eTWQZhu4ce4S51dtus9g==@vger.kernel.org, AJvYcCXlB1vRaXmg8sJF1aqQUQDWwONSLiLZIwvvI4QOUy9HKHEAm0ayzbzaGXNjK7fZzSmYCUrir/yo9BlYueUuR2w=@vger.kernel.org, AJvYcCXxi/eFDSqVKEsq2ied1QZzB1T64u2J/TRVWfE0ANDdiKXx7nuqRlUWyJErmHQGBnOezwPZDMt1PTkh@vger.kernel.org
+X-Gm-Message-State: AOJu0YzbFyOJe13hoQkcn2PDjG4RS0+0Fop9WY7pw/jcKqoHcZ/ndU0N
+	b06GldlL1LkD/LnBflcywHZq9Bp6v4F5yzFcbfq9pKORC7TZ6tBqmXmG2XS4GX5QQmccVsc1Qsf
+	3l/k2o3CCUAle9eXHAXl1ERQCdg==
+X-Google-Smtp-Source: AGHT+IHon+pzrhvNsXMZduvE26T67ozKBFRk7/vc4tDRAuvWWErTIylHENbrBF1kJZB7zR9IjvY91WWEDmvpGtA682M=
+X-Received: by 2002:a17:907:7e8f:b0:ac7:cfe0:3014 with SMTP id
+ a640c23a62f3a-ac7d1914808mr23737166b.25.1743698210484; Thu, 03 Apr 2025
+ 09:36:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v4 0/6] Add some validation for vector,
- vector crypto and fp stuff
-From: patchwork-bot+linux-riscv@kernel.org
-Message-Id: 
- <174369723376.2563936.10648565099662367295.git-patchwork-notify@kernel.org>
-Date: Thu, 03 Apr 2025 16:20:33 +0000
-References: <20250312-abide-pancreas-3576b8c44d2c@spud>
-In-Reply-To: <20250312-abide-pancreas-3576b8c44d2c@spud>
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-riscv@lists.infradead.org, conor.dooley@microchip.com,
- ebiggers@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- paul.walmsley@sifive.com, palmer@dabbelt.com, cleger@rivosinc.com,
- andybnac@gmail.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250326171411.590681-1-remo@buenzli.dev> <20250326171411.590681-4-remo@buenzli.dev>
+ <Z-UPJyD41LOMM3o2@smile.fi.intel.com> <CAL_Jsq+tJvGsbw1dGdgmBM8+cL4vN71OMTvX9tkmBLNk=6T9KQ@mail.gmail.com>
+ <Z-60LwRrw30cq4YE@smile.fi.intel.com>
+In-Reply-To: <Z-60LwRrw30cq4YE@smile.fi.intel.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 3 Apr 2025 11:36:38 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKiYCh7ukDoqc_toyn75=3wOM4WyOTGvogoOfdz9T_7Ow@mail.gmail.com>
+X-Gm-Features: ATxdqUHrR9f-M9Rc-icD8gFeAJeiwgk4wmkSQ4eYZoRilCIetdjLrpjtMC9KT6E
+Message-ID: <CAL_JsqKiYCh7ukDoqc_toyn75=3wOM4WyOTGvogoOfdz9T_7Ow@mail.gmail.com>
+Subject: Re: [PATCH 03/10] device property: Add fwnode_property_read_int_array()
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Remo Senekowitsch <remo@buenzli.dev>, Daniel Scally <djrscally@gmail.com>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, Dirk Behme <dirk.behme@de.bosch.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Danilo Krummrich <dakr@kernel.org>, Saravana Kannan <saravanak@google.com>, Miguel Ojeda <ojeda@kernel.org>, 
+	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, linux-kernel@vger.kernel.org, 
+	linux-acpi@vger.kernel.org, devicetree@vger.kernel.org, 
+	rust-for-linux@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello:
+On Thu, Apr 3, 2025 at 11:15=E2=80=AFAM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> On Thu, Apr 03, 2025 at 11:04:32AM -0500, Rob Herring wrote:
+> > On Thu, Mar 27, 2025 at 3:41=E2=80=AFAM Andy Shevchenko
+> > <andriy.shevchenko@linux.intel.com> wrote:
+> > >
+> > > On Wed, Mar 26, 2025 at 06:13:42PM +0100, Remo Senekowitsch wrote:
+> > > > The rust bindings for reading device properties has a single
+> > > > implementation supporting differing sizes of integers. The fwnode C=
+ API
+> > > > already has a similar interface, but it is not exposed with the
+> > > > fwnode_property_ API. Add the fwnode_property_read_int_array() wrap=
+per.
+>
+> ...
+>
+> > > > +EXPORT_SYMBOL_GPL(fwnode_property_read_int_array);
+> > >
+> > > I'm not sure about this. We have a lot of assumptions in the code tha=
+t the
+> > > arrays beneath are only represented by the selected number of integer=
+ types.
+> > > This opens a Pandora's box, e.g., reading in u24, which is not suppor=
+ted by
+> > > the upper layers..
+> >
+> > We can probably drop the export if it is just that which you object to.
+>
+> Yes, this is main point, but dropping it does not prevent from still usin=
+g in
+> the complied-in code. Is it possible to hide it better?
 
-This series was applied to riscv/linux.git (for-next)
-by Alexandre Ghiti <alexghiti@rivosinc.com>:
+Don't put any declaration in the header and declare it in the rust
+code? But lack of declaration generates warnings.
 
-On Wed, 12 Mar 2025 13:11:43 +0000 you wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> Yo,
-> 
-> This series is partly leveraging Clement's work adding a validate
-> callback in the extension detection code so that things like checking
-> for whether a vector crypto extension is usable can be done like:
-> 	has_extension(<vector crypto>)
-> rather than
-> 	has_vector() && has_extension(<vector crypto>)
-> which Eric pointed out was a poor design some months ago.
-> 
-> [...]
+Also, all the backends will reject an arbitrary size. So your worry
+about u24 or other odd sizes isn't really valid. But if you want to be
+doubly paranoid for when we add a new firmware backend (shoot me now),
+you could move this from the swnode implementation to the fwnode
+implementation:
 
-Here is the summary with links:
-  - [v4,1/6] RISC-V: add vector extension validation checks
-    https://git.kernel.org/riscv/c/9324571e9eea
-  - [v4,2/6] RISC-V: add vector crypto extension validation checks
-    https://git.kernel.org/riscv/c/38077ec8fc11
-  - [v4,3/6] RISC-V: add f & d extension validation checks
-    https://git.kernel.org/riscv/c/12e7fbb6a84e
-  - [v4,4/6] dt-bindings: riscv: d requires f
-    https://git.kernel.org/riscv/c/534d813a0620
-  - [v4,5/6] dt-bindings: riscv: add vector sub-extension dependencies
-    https://git.kernel.org/riscv/c/e9f1d61a5e18
-  - [v4,6/6] dt-bindings: riscv: document vector crypto requirements
-    https://git.kernel.org/riscv/c/a0d857205756
+        if (!is_power_of_2(elem_size) || elem_size > sizeof(u64))
+                return -ENXIO;
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+Rob
 
