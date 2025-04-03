@@ -1,136 +1,166 @@
-Return-Path: <devicetree+bounces-162987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D20D2A7A8E7
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 19:51:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A803A7A8EC
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 19:55:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1FF651781DF
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 17:50:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A480317722E
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 17:55:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C198252907;
-	Thu,  3 Apr 2025 17:50:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CE162528E4;
+	Thu,  3 Apr 2025 17:55:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oEWoXS8y"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Pn2ybXL0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 241D5250C16;
-	Thu,  3 Apr 2025 17:50:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2712924CEE8;
+	Thu,  3 Apr 2025 17:55:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743702613; cv=none; b=OlOMd/7NyAqHxcJKV6IyDKplIOjfLQ3QPHU/WlkL+Q7NYMGwvDhcMg/Nm7Kv5bAtWJf9Zq6/AL80SxARN+bxQwKjnQStolqKy/P792fCRvo5uvvJMNpJlMMRQv7RsFQ4rxXyAKIdaGWtDBf7QCaEP42N5+6OV0bG1LR7h+qOrOw=
+	t=1743702907; cv=none; b=P+aUP376jX6CH5VuymRn4f1/pOPN29CTS4IVVBCdy6Vhw1AZ5cWSDPn5HH2yr5FNtP2k0Z5gomo5j83dS0GjXLuGd+d0Stdg4DQR1hWsif0JTm0O01GivtcNiOR06MQ7BW9oKKY9EW9faVbpIJTCQOHCdyyXh2N5D5XtAQUSnc8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743702613; c=relaxed/simple;
-	bh=UPGMlSF/FpTS0gjQBFwpi/aCoqZhru+VpIxxEDgIdLI=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=NLR1aos9ZWUZrj6/GH8iKZnvJY7BjzF6hEIHF+8jFnjrCYIyPMXOb4XaUOMHWeZ71IsBUyBtvhGrNImIqQv18yxQ/UM/29pnQeTxXAxWvH/CcPdxNlNoi7qRVKhvHpst3AZeeJCvEGXZZqpS/wPmvjgOkoGs+IcPJ1nONMxFfYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oEWoXS8y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85771C4CEE3;
-	Thu,  3 Apr 2025 17:50:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743702612;
-	bh=UPGMlSF/FpTS0gjQBFwpi/aCoqZhru+VpIxxEDgIdLI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=oEWoXS8y3UmyKJpgkuIIsrxk5K4An9PBriFGth1yrBYy779+IfJV2I03pxIyeiMmd
-	 G7Lru65enhHMrC/Wnx5vSVhuV5qEl5WochlbZiqrgmOXSkREVPGFIu/vNM9UYBgpon
-	 +dnjB6bnPDIlWGDAerxUvFwlpZQI61VUH6OOoIvog8Hs99r/xo6WkVjpC1DN36QBzd
-	 MrBKYJyNYm6bIaGXviKy5Li+OQhOd8/IglAKk6PG+0eP36R/Opz3b9PTHiO8S1+oTI
-	 PtTvza/cAW9Q3KpIxIdsTY1MTzLBe5DMdNH+v++0ug3gHUshvVoDLYpa0r0P9EeMCl
-	 kyjfG2XMT6jqA==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=lobster-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1u0Ohe-0022Kw-1K;
-	Thu, 03 Apr 2025 18:50:10 +0100
-Date: Thu, 03 Apr 2025 18:50:12 +0100
-Message-ID: <8734epyw17.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Christian Bruel <christian.bruel@foss.st.com>
-Cc: <tglx@linutronix.de>,
-	<robh@kernel.org>,
-	<krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>,
-	<mcoquelin.stm32@gmail.com>,
-	<alexandre.torgue@foss.st.com>,
-	<linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>,
-	<linux-stm32@st-md-mailman.stormreply.com>
-Subject: Re: [PATCH 2/3] irqchip/gic: Use 0x10000 offset to access GICC_DIR on STM32MP2
-In-Reply-To: <20250403122805.1574086-3-christian.bruel@foss.st.com>
-References: <20250403122805.1574086-1-christian.bruel@foss.st.com>
-	<20250403122805.1574086-3-christian.bruel@foss.st.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=arc-20240116; t=1743702907; c=relaxed/simple;
+	bh=i7EwGuFwl7cxoGntAnpzoanOk0CDEIKNdoMN1vfuPCk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=USfl9N48YzFb1jIyIByAS+DtMCbsOmvM4+RSyrURb6ZIHWE+4UNGKtBST7YeKi/e/+h6B59Vbm2z5yk5OjtVPf2EkShDmxjPhY9+lDU57D8JOpcwFMNy71uvH57LFom5QLuYttykN0VQTmdmSgC1IfiRVG4sAzLPAYeuNTxq+VM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Pn2ybXL0; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1743702906; x=1775238906;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=i7EwGuFwl7cxoGntAnpzoanOk0CDEIKNdoMN1vfuPCk=;
+  b=Pn2ybXL0SN0I5uaeShEveU1rQyVuDjUqztN9y6lZ3W59qmA3C7nyHgNZ
+   19K9sEU+oEofrsO/k95K281oTmoc8QajbUF6S3FEyUPvIUPf73nIdf7eM
+   LBjjw59lubLcedX7QWNS6goTuNu7fYqMt/BO89o1I23M/ayjMTTRbKGkA
+   HOaU4VkrazEr1k4FDWETdnB3AOHjG5ihQ7rUnh6UKUOVyjUXHyCQ9zmyE
+   YYffqluE8eB6PYnMWLF6eCHTEtrdfQAkLRuXa14H1wswqejGe0EBTbcbU
+   JaEep/Gvdi0RvVA8fcCkQRMwuNd6mYbW0CTf7MO4P0XC8zDo1dTTLXnRX
+   w==;
+X-CSE-ConnectionGUID: E91Kj7ESQ4ulhBfAgZPJtw==
+X-CSE-MsgGUID: AdL34zbVTaGD8/ucQuzW9A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11393"; a="44381573"
+X-IronPort-AV: E=Sophos;i="6.15,186,1739865600"; 
+   d="scan'208";a="44381573"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Apr 2025 10:55:05 -0700
+X-CSE-ConnectionGUID: jpxGc3sWSNCcv1IrutrHKA==
+X-CSE-MsgGUID: DShBMFNNTBimd6qc3vw2xQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,186,1739865600"; 
+   d="scan'208";a="126881481"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Apr 2025 10:55:00 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1u0OmH-00000008szH-1Emp;
+	Thu, 03 Apr 2025 20:54:57 +0300
+Date: Thu, 3 Apr 2025 20:54:57 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Remo Senekowitsch <remo@buenzli.dev>,
+	Daniel Scally <djrscally@gmail.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Dirk Behme <dirk.behme@de.bosch.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+	devicetree@vger.kernel.org, rust-for-linux@vger.kernel.org
+Subject: Re: [PATCH 03/10] device property: Add
+ fwnode_property_read_int_array()
+Message-ID: <Z-7LcXoGw7uNWBUE@smile.fi.intel.com>
+References: <20250326171411.590681-1-remo@buenzli.dev>
+ <20250326171411.590681-4-remo@buenzli.dev>
+ <Z-UPJyD41LOMM3o2@smile.fi.intel.com>
+ <CAL_Jsq+tJvGsbw1dGdgmBM8+cL4vN71OMTvX9tkmBLNk=6T9KQ@mail.gmail.com>
+ <Z-60LwRrw30cq4YE@smile.fi.intel.com>
+ <CAL_JsqKiYCh7ukDoqc_toyn75=3wOM4WyOTGvogoOfdz9T_7Ow@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: christian.bruel@foss.st.com, tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqKiYCh7ukDoqc_toyn75=3wOM4WyOTGvogoOfdz9T_7Ow@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Thu, 03 Apr 2025 13:28:04 +0100,
-Christian Bruel <christian.bruel@foss.st.com> wrote:
+On Thu, Apr 03, 2025 at 11:36:38AM -0500, Rob Herring wrote:
+> On Thu, Apr 3, 2025 at 11:15 AM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
+> > On Thu, Apr 03, 2025 at 11:04:32AM -0500, Rob Herring wrote:
+> > > On Thu, Mar 27, 2025 at 3:41 AM Andy Shevchenko
+> > > <andriy.shevchenko@linux.intel.com> wrote:
+> > > > On Wed, Mar 26, 2025 at 06:13:42PM +0100, Remo Senekowitsch wrote:
+> > > > > The rust bindings for reading device properties has a single
+> > > > > implementation supporting differing sizes of integers. The fwnode C API
+> > > > > already has a similar interface, but it is not exposed with the
+> > > > > fwnode_property_ API. Add the fwnode_property_read_int_array() wrapper.
+
+...
+
+> > > > > +EXPORT_SYMBOL_GPL(fwnode_property_read_int_array);
+> > > >
+> > > > I'm not sure about this. We have a lot of assumptions in the code that the
+> > > > arrays beneath are only represented by the selected number of integer types.
+> > > > This opens a Pandora's box, e.g., reading in u24, which is not supported by
+> > > > the upper layers..
+> > >
+> > > We can probably drop the export if it is just that which you object to.
+> >
+> > Yes, this is main point, but dropping it does not prevent from still using in
+> > the complied-in code. Is it possible to hide it better?
 > 
-> When GIC_4KNOT64K bit in the GIC configuration register is
-> 0 (64KB), address block is modified in such a way than only the
-> first 4KB of the GIC cpu interface are accessible with default
-> offsets.
-> With this bit mapping GICC_DIR register is accessible at
-> offset 0x10000 instead of 0x1000, thus remap accordingly
+> Don't put any declaration in the header and declare it in the rust
+> code? But lack of declaration generates warnings.
 
-And I'm pretty sure the whole of the GICC range is correctly
-accessible at offset 0xF000, giving you the full 8kB you need. That's
-because each page of the GIC is aliased over two 64kB blocks, as per
-the integration guidelines so that MMU isolation can be provided on a
-64kB boundary.
+Exactly. And I believe we have the typed versions of int_array for a reason.
+Otherwise what's the point in having them to begin with?
+(The first what comes to my mind is a compile time type checking, so we don't
+ try to load u8 with u32 data or any other dirty tricks.)
 
-Funnily enough, all it takes is to adjust GICC region. You can either:
+Maybe it deserves a header that can be included explicitly in the rust stuff
+and being checked at compile time to avoid people using that? Can we achieve
+something like C preprocessor
 
-- make it 128kB wide, and the driver will take care of it (details in
-  gic_check_eoimode()). On one of my boxes that is similarly
-  configured, I get:
+#ifndef FOO
+#error This header must not be included directly
+#endif
 
-  [    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
-  [    0.000000] GIC: Adjusting CPU interface base to 0x00000000780af000
-  [    0.000000] Root IRQ handler: gic_handle_irq
-  [    0.000000] GIC: Using split EOI/Deactivate mode
+> Also, all the backends will reject an arbitrary size. So your worry
+> about u24 or other odd sizes isn't really valid. But if you want to be
+> doubly paranoid for when we add a new firmware backend (shoot me now),
+> you could move this from the swnode implementation to the fwnode
+> implementation:
+> 
+>         if (!is_power_of_2(elem_size) || elem_size > sizeof(u64))
+>                 return -ENXIO;
 
-  See below for what I expect to be the correct fix.
-  
-- make it 8kB wide from offset 0xF000.
-
-Unless the ST HW folks have been even more creative, none of this
-overly complicated stuff should be necessary. Just describe the HW
-correctly.
-
-	M.
-
-diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-index f3c6cdfd7008..97b7a7106a02 100644
---- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-@@ -120,7 +120,7 @@ intc: interrupt-controller@4ac00000 {
- 		#address-cells = <1>;
- 		interrupt-controller;
- 		reg = <0x0 0x4ac10000 0x0 0x1000>,
--		      <0x0 0x4ac20000 0x0 0x2000>,
-+		      <0x0 0x4ac20000 0x0 0x20000>,
- 		      <0x0 0x4ac40000 0x0 0x2000>,
- 		      <0x0 0x4ac60000 0x0 0x2000>;
- 	};
+That might work. But still an interface of int_array seems lower by
+level than typed ones.
 
 -- 
-Jazz isn't dead. It just smells funny.
+With Best Regards,
+Andy Shevchenko
+
+
 
