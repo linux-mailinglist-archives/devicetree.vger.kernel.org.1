@@ -1,103 +1,113 @@
-Return-Path: <devicetree+bounces-162937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D422A7A470
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 15:58:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8EF1A7A49C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 16:07:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E17967A2ECA
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 13:57:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C64D3B8EFC
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 14:04:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A525024E4A7;
-	Thu,  3 Apr 2025 13:58:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4BD624E003;
+	Thu,  3 Apr 2025 14:04:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="umP7ldLW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="as+kaVTg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78D5A24C084;
-	Thu,  3 Apr 2025 13:58:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EF001EBA0D;
+	Thu,  3 Apr 2025 14:04:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743688724; cv=none; b=cg8gQEJYrW0NnOBMgUUuojyDYS8Vm6pMKR8KhIRcwmmweyMKldLpafXct1bzSbwB2IN1Mpkue/cg5mZiMAt6zjSVEK/J+XjtYHup3d/Uzf2q/Khb5983rCwoGv1Nerj/DKQJPlIAHpXZHanIfLJlAzjifhY1LMpgInAm1fwFI2c=
+	t=1743689081; cv=none; b=hsJb0/1pPwAWKPhHIzJC3rjrwE40xtkACaovry90r2YVgBspypIRS1pYa2ffSjkJHOrGKVG43au8JClz26iixpTd1gwEIN7xazXdq0gNAaY+bV1V9woGL3r1opXa4XCTFn1yz2zIaHyEKVetgflGt4SBHlnMGnlxFg+P+7muVPc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743688724; c=relaxed/simple;
-	bh=BrgR3NVGaMIq0cDdSFPpPKZhtRzYxdIHTZqfFmuVPko=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ojVhhfoz/UJ5XTTJvTNrvZwNd4GBqdxuzZa+pco4cbqc4asB6IYQrk6wneFPgDwBvTAtsZ/4zrH9CMH4xE09FLgMDcDo5umGjQTUhnSUGqmQolXiMcyQSaNx/QxuJDyVUD0tj45G3ShSumUect3joSn6bM35Ywl0BAlzRwOcpHo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=umP7ldLW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F347C4CEE5;
-	Thu,  3 Apr 2025 13:58:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743688723;
-	bh=BrgR3NVGaMIq0cDdSFPpPKZhtRzYxdIHTZqfFmuVPko=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=umP7ldLW1m+GF85JZqxyEuuOLUb1h9mCQmDzKwZnrLKraN0WoXYL/1EVjHchIjzNi
-	 0EYgu0oTZkxDRRI0C/+454BgBCgu6Wp1xaBiO1psabHDO+DVSl06T+0+KmSX8LKwrR
-	 jrvg7uZujTiRZGfAtk5Vp16S0TECDoHWQJdL+vdqSuKODi1li1JujZTSCkme3ilZ03
-	 DJQwIa7PPVlTdeESBd9x+fbDtbMZE3vlRUKmeWFWG7cqIjFvPxdpQysNR3RcA1D55z
-	 KBVyUhIHai5T1wt9w9qkpNFzkXFgek1AKaTqZ5Z16Z6W0LmZmj0YT1OK6FXYhjcHrd
-	 tMFW218IYwAWQ==
-Date: Thu, 3 Apr 2025 16:58:27 +0300
-From: Mike Rapoport <rppt@kernel.org>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Cc: Pratyush Yadav <ptyadav@amazon.de>,
-	Changyuan Lyu <changyuanl@google.com>, linux-kernel@vger.kernel.org,
-	graf@amazon.com, akpm@linux-foundation.org, luto@kernel.org,
-	anthony.yznaga@oracle.com, arnd@arndb.de, ashish.kalra@amd.com,
-	benh@kernel.crashing.org, bp@alien8.de, catalin.marinas@arm.com,
-	dave.hansen@linux.intel.com, dwmw2@infradead.org,
-	ebiederm@xmission.com, mingo@redhat.com, jgowans@amazon.com,
-	corbet@lwn.net, krzk@kernel.org, mark.rutland@arm.com,
-	pbonzini@redhat.com, pasha.tatashin@soleen.com, hpa@zytor.com,
-	peterz@infradead.org, robh+dt@kernel.org, robh@kernel.org,
-	saravanak@google.com, skinsburskii@linux.microsoft.com,
-	rostedt@goodmis.org, tglx@linutronix.de, thomas.lendacky@amd.com,
-	usama.arif@bytedance.com, will@kernel.org,
-	devicetree@vger.kernel.org, kexec@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
-	linux-mm@kvack.org, x86@kernel.org
-Subject: Re: [PATCH v5 09/16] kexec: enable KHO support for memory
- preservation
-Message-ID: <Z-6UA3C1TPeH_kGL@kernel.org>
-References: <20250320015551.2157511-1-changyuanl@google.com>
- <20250320015551.2157511-10-changyuanl@google.com>
- <mafs05xjmqsqc.fsf@amazon.de>
- <20250403114209.GE342109@nvidia.com>
+	s=arc-20240116; t=1743689081; c=relaxed/simple;
+	bh=F67a5dXXrcGfkmcFk4oIAAW+/52cmKN0yQ/ciKbD5YA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PMFbK/ZxiQ5jmYhB0hqT4qM7xeI+SESft3/h3L8/5pE0WtBgTBnItpcy1lkZJt6QC7we9xpUStBHmIr+2tAzvmKKgHcj2PKFYcX14RtuYPUVzEbBYBFeVcIkcQE8oeRIYAwhQzPL+/lzFE5xqUGmguaUcJHCvw82SJpYJ73j4i4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=as+kaVTg; arc=none smtp.client-ip=209.85.216.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-301918a4e1bso680583a91.1;
+        Thu, 03 Apr 2025 07:04:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1743689079; x=1744293879; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=/0iVPu/GSHg3jpVHmJjARAeQhLRDDNSLd+1ENg2B6tg=;
+        b=as+kaVTgTgJpQPrX0Y+/+7U8KRLpS8DgPh7INs7DHFYMlHVy5V+N6on74JH3EdMuqT
+         p637qKU7Xa975lo6qpMcwAZUBMPBib79NgXrYlPmat1e28+wsodi++6raLBBnAFSaIp8
+         E+zu/miLIag6NPvXrAVaEgtkFYkDa0JuaxHjiPQHG7HAH7/iRjJ/oj8YkDuhtJSb1m+n
+         6L8FHmLGmi+12nTJQ6POBZxBdwwhwsW98+kIgCjT1PPNpJA4o/1tmfrt/4jSOpFQAK2D
+         w5aqBENNl4kNTbEM3TqCeGAXZkWDwHWotFdirsRkwSBR44VYhoRE3GMDKsuypcoT046m
+         RDKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743689079; x=1744293879;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/0iVPu/GSHg3jpVHmJjARAeQhLRDDNSLd+1ENg2B6tg=;
+        b=wtwAgo5SFU9n1bAUl9GFc7aKycux5BbelR7In9q1yhVu4losQy1gOOnZfYWxq+P/XF
+         SN1GzpRX0LxZ+uxsDEFCqTN3cxTbcB8XSkvZbMoaeHefL0BUxsdCIEGkwEVkLL/3JO+L
+         3a6+C9cHkZA/qyVH+x1ldCBjBmdFul4seRB/tmlh+kycaaNaXR3GCjclk762nybMUmU2
+         eyXZJJWK/UxU6CchrmUi/lZcZluxranYEGPkMNm95jiiWKFdQYgBrHP8Ko8QRiNecoI3
+         jmPm1M5abrn2gw9Azn3iGJHZRRFu4cX1knlqOFsIeu7FgCtRmwDxYeQbSylgjTT/ASri
+         M3Rw==
+X-Forwarded-Encrypted: i=1; AJvYcCW7zIpGehtrsW5zKB52h1Rio7DKljXvgjkZIH3ZQn1Hi64NoIQlRDbhmqIEDOKB2QdMfmUokJEUoSGQ@vger.kernel.org, AJvYcCWxzkKMrC2KgUoJgEc460fAC6mCZ6R4JyZsZ2G1v68FVyNgfq0eTkgFnWXj94M1LTv9HA7ZaX7Md7I6@vger.kernel.org
+X-Gm-Message-State: AOJu0YypziiA6qhwMJWTUXZevK9eWZQS3YA75wzApiX+eX1qjpy9MxkM
+	L/2tNY6ZbpAaE2clzxH3MAwp4VJfQMEjvf4cjAcX94Z/LPED2mGp14r7oDT6+/2yB87uf5L+jQk
+	ylWiv4nBkU7CD4ET1tdIkfZHaX/GCrT36rZw=
+X-Gm-Gg: ASbGnctXMUaQQIfsdUbgA+8fToM5eQxM8ybuKbxsV1PG4gLr3FVKHGif7QESHLJvK8I
+	EyjmI+CJZpssXkwShVUXQwCF7oE7aRDYiV2h6GgncoUFji8SUCKu/UFqSWW2YPZnSCv/fSIM0BD
+	wC87Gc7buISLkXd/JXtxQ1YSbg0yg=
+X-Google-Smtp-Source: AGHT+IF8iS8X8QBJJtlFWbHAT+zrX1IV0ERhRDKMQgQQnwuKhaPKh7RRiF7+scx2WGUzgRilIxuxQu2z1b6fNWpelLA=
+X-Received: by 2002:a17:90b:3a44:b0:2f2:ab09:c256 with SMTP id
+ 98e67ed59e1d1-30532163db8mr35686498a91.33.1743689079367; Thu, 03 Apr 2025
+ 07:04:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250403114209.GE342109@nvidia.com>
+References: <20250403053225.298308-1-gye976@gmail.com> <20250403053225.298308-5-gye976@gmail.com>
+ <28f4a7e5-ff96-4c7f-9eab-6bf358f19007@kernel.org>
+In-Reply-To: <28f4a7e5-ff96-4c7f-9eab-6bf358f19007@kernel.org>
+From: gyeyoung <gye976@gmail.com>
+Date: Thu, 3 Apr 2025 23:04:28 +0900
+X-Gm-Features: AQ5f1JqsJQ_Fb4RlxCPG88jgR91C_jP-EAU5BGcqFDpz5nXoQUk0Q0IIbuLBcvQ
+Message-ID: <CAKbEznufXvgTzUJObJGe05GfAamAsf+0dS7zmsEzzO0Swc4tPw@mail.gmail.com>
+Subject: Re: [PATCH v1 4/5] iio: chemical: add support for winsen MHZ19B CO2 sensor
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: jic23@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	lars@metafoo.de, gustavograzs@gmail.com, javier.carrasco.cruz@gmail.com, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Thu, Apr 03, 2025 at 08:42:09AM -0300, Jason Gunthorpe wrote:
-> On Wed, Apr 02, 2025 at 07:16:27PM +0000, Pratyush Yadav wrote:
-> > > +int kho_preserve_phys(phys_addr_t phys, size_t size)
-> > > +{
-> > > +	unsigned long pfn = PHYS_PFN(phys), end_pfn = PHYS_PFN(phys + size);
-> > > +	unsigned int order = ilog2(end_pfn - pfn);
-> > 
-> > This caught my eye when playing around with the code. It does not put
-> > any limit on the order, so it can exceed NR_PAGE_ORDERS. Also, when
-> > initializing the page after KHO, we pass the order directly to
-> > prep_compound_page() without sanity checking it. The next kernel might
-> > not support all the orders the current one supports. Perhaps something
-> > to fix?
-> 
-> IMHO we should delete the phys functions until we get a user of them
+Hello Krzysztof, Thank you for the review.
 
-The only user of memory tracker in this series uses kho_preserve_phys()
- 
-> Jason
+> > +     /* serdev receive buffer.
+> > +      * When data is received from the MH-Z19B,
+> > +      * the 'mhz19b_receive_buf' callback function is called and fills this buffer.
+> > +      */
+> > +     char buf[9];
+> > +     int buf_idx;
+> > +
+> > +     /* must wait the 'buf' is filled with 9 bytes.*/
+> > +     struct completion buf_ready;
+> > +
+> > +     /* protect access to mhz19b_state */
+> > +     struct mutex lock;
+>
+> mhz19b_receive_buf() does not need any locking?
+>
 
--- 
-Sincerely yours,
-Mike.
+As far as I know, receive_buf() starts from flush_to_ldisc() first.
+But this already has locking, so I think it's fine.
+
+Thanks,
+Gyeyoung
 
