@@ -1,150 +1,105 @@
-Return-Path: <devicetree+bounces-162901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FB88A7A22C
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 13:52:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 644B4A7A267
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 14:04:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E4651893B91
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 11:52:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA1E51891353
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 12:04:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F1BF24BC0F;
-	Thu,  3 Apr 2025 11:52:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F39B324E00C;
+	Thu,  3 Apr 2025 12:03:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Wl9TvV97"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="zlxgjrBE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51BDF3597B;
-	Thu,  3 Apr 2025 11:52:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 280AD24CEFD;
+	Thu,  3 Apr 2025 12:03:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743681127; cv=none; b=qMIb2SqIazupD8DgOQVPFcuS85oox3Q8Hmqt40RBMoKwolFd4rW9ZttZQSS5tDvjT9O9DX6/qcyBe7F2YLdsdOIudQixksCyfjYUUnMssYq6rXWCvM+m4JLolcK1wj6PN0o/evf8g18BCUOQtdPkCy8wOEaxXg6N41UB/IGJGBg=
+	t=1743681815; cv=none; b=iZdZZZwJZsl+kZ/TNA6Kl8bssOcXjKtnYiLAt+VES+B63hwRuO7X1obtogxdtCdHx+Aj/yVZ6PfWzyomI7OIGYNy3T/DsQGwPJXYhQV10EZFSFlD6ODky+j82ec3+pdEsEqnzkqyaKvj+a+22T+HJzcefvHRg6l0A2u0b2zXWdI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743681127; c=relaxed/simple;
-	bh=1v9o/eYae1l9oDDnFj+Krp0jgYRK2JYUcGfai2r3zF8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MHFE3j5g60mkPZLPWEI0/Hml3cIBtG+3qtLUraA8UUVYMhhOQDZiOgaXUdqthcBfF9LNtA7jheBPWGXZ8ymbauihPo44NxSaEcfODjyc/ff4Z4d9KTKISbOCeu2xlvjQzIkqXxQyZW6wW0ORtdfxbNCuAU/QQCFWCVdGzeEYaKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Wl9TvV97; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id EA6F68FA;
-	Thu,  3 Apr 2025 13:50:07 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1743681009;
-	bh=1v9o/eYae1l9oDDnFj+Krp0jgYRK2JYUcGfai2r3zF8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Wl9TvV97WTKEJGdxIhMGL7RJlHBWycINq5RLlKQHhdpxSFog5sYNJUPp4zy4x3PH9
-	 AUVcnP5x4PiCWnOid129ErNDV8Va8yKMRYZcMqSwLxSNC5DVbc9cNtwgp3GXO9uHAu
-	 qfK4cJ3i1Yaeo8Cw9mYYJRZQx4u7hUK/1MWHBLbA=
-Message-ID: <49b12329-87d8-4f6f-8498-0ff7430e31e6@ideasonboard.com>
-Date: Thu, 3 Apr 2025 14:51:58 +0300
+	s=arc-20240116; t=1743681815; c=relaxed/simple;
+	bh=CgpxV5zjoVtbxeoCoP19OwywxVbyma4tLpVmpv4f9wE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=TQNzMieTgdql4qNwq9aHb5oBpSF/7GYLBn0cA6PK09EDMTDmFX+Z+crcjxffJMmNr8x0RD7NLHFVoi/NFFpDqEuQDV9jPqidDnLfTlS0r7zB4fnV/r7D/xnLGqpVM78waQFol5AiD8Rb6vax5teoQ5Ay2vFw7n2FvivswO+k6pw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=zlxgjrBE; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 533BgbZu010583;
+	Thu, 3 Apr 2025 14:03:03 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=8m5hxedZPYuA8gq9KPkzlA
+	oP1ev25Kezn0E2Hh0fGw8=; b=zlxgjrBE3HY+eChJOvKwqgPNoSbZyEL4kL+0vq
+	64iD3ukrZJaVjDs3WN9weJKSbYhvAlXEq8y/qvpEP8QtlNeDWN6baukmWeS1WSQv
+	T9d3GSr1Zfmh+isctuCbUMgYR0TP3tUZEE5cS1qLX3GU5b2ZK/Vrg3dtcTJLqxlb
+	7HX96HU/h6FljGvv48g4OAVNT5hu5tk5lt2ouDjFTvr1XMDng2tl+o2LKdKSf/dq
+	Gr2TwnNm7dXFdIevpNcDWoUguEMKKrvxu159Hb/0/Hsu/WO/CEBpAxY5ql4FQYjf
+	nJepm5f0OJ1TCsUPyusAupJN/gfUaGVOCSCW/297XPqIYFpA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45s2cte9ef-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 03 Apr 2025 14:03:01 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 9605240084;
+	Thu,  3 Apr 2025 14:01:26 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 4A2BC8E3169;
+	Thu,  3 Apr 2025 14:00:11 +0200 (CEST)
+Received: from localhost (10.48.87.151) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 3 Apr
+ 2025 14:00:11 +0200
+From: Olivier Moysan <olivier.moysan@foss.st.com>
+To: <fabrice.gasnier@foss.st.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime
+ Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>
+CC: Olivier Moysan <olivier.moysan@foss.st.com>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/2] ARM: dts: stm32: add vrefint calibration on stm32mp13
+Date: Thu, 3 Apr 2025 13:59:52 +0200
+Message-ID: <20250403115954.1061528-1-olivier.moysan@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/17] Add support for DU and DSI on the Renesas RZ/V2H(P)
- SoC
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, linux-media@vger.kernel.org,
- linux-clk@vger.kernel.org, Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Biju Das <biju.das.jz@bp.renesas.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-References: <20250330210717.46080-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-In-Reply-To: <20250330210717.46080-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-03_05,2025-04-02_03,2024-11-22_01
 
-Hi,
+Add vrefint calibration data in STM32MP13 device tree to support
+STM32 ADC internal channel VREFINT.
 
-On 31/03/2025 00:06, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> Hi All,
-> 
-> This patch series adds support for the Display Unit (DU) and MIPI DSI
-> interface on the Renesas RZ/V2H(P) SoC. The inital patches add PLLDSI
-> clocks and reset entries for the DSI and LCDC and the later patches add
-> support for the DU and DSI drivers. The DU block is similar to the
-> RZ/G2L SoC, but the DSI interface is slightly different. The patches
-> include updates to the device tree bindings, clock and reset
-> controllers, and the DU driver to accommodate these changes.
-> 
-> Note, my initail intention was to split the clock patches and the DU/DSI
-> driver patches into two separate series. However, I found that sending
-> them together will make it easier for the reviewers to understand clock
-> related changes.
-> 
-> Note, the clock patches aplly on top of the following patch series:
-> - https://lore.kernel.org/all/20250228202655.491035-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
-> - https://lore.kernel.org/all/20250328200105.176129-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+Olivier Moysan (2):
+  ARM: dts: stm32: add vrefint calibration on stm32mp13
+  ARM: dts: stm32: add vrefint support to adc on stm32mp13
 
-This is missing dri-devel list from the to/cc. Did you use 
-scripts/get_maintainer.pl?
+ arch/arm/boot/dts/st/stm32mp131.dtsi | 5 +++++
+ arch/arm/boot/dts/st/stm32mp133.dtsi | 2 ++
+ 2 files changed, 7 insertions(+)
 
-  Tomi
 
-> Cheers,
-> Prabhakar
-> 
-> Lad Prabhakar (17):
->    clk: renesas: rzv2h-cpg: Add support for DSI clocks
->    clk: renesas: r9a09g057: Add clock and reset entries for DSI and LCDC
->    media: dt-bindings: media: renesas,vsp1: Document RZ/V2H(P)
->    media: dt-bindings: media: renesas,fcp: Document RZ/V2H(P) SoC
->    dt-bindings: display: renesas,rzg2l-du: Add support for RZ/V2H(P) SoC
->    dt-bindings: display: bridge: renesas,dsi: Add support for RZ/V2H(P)
->      SoC
->    drm: renesas: rz-du: Add support for RZ/V2H(P) SoC
->    drm: renesas: rz-du: mipi_dsi: Add min check for VCLK range
->    drm: renesas: rz-du: mipi_dsi: Simplify HSFREQ calculation
->    drm: renesas: rz-du: mipi_dsi: Use VCLK for HSFREQ calculation
->    drm: renesas: rz-du: mipi_dsi: Add OF data support
->    drm: renesas: rz-du: mipi_dsi: Use mHz for D-PHY frequency
->      calculations
->    drm: renesas: rz-du: mipi_dsi: Add feature flag for 16BPP support
->    drm: renesas: rz-du: mipi_dsi: Add dphy_late_init() callback for
->      RZ/V2H(P)
->    drm: renesas: rz-du: mipi_dsi: Add function pointers for configuring
->      VCLK and mode validation
->    drm: renesas: rz-du: mipi_dsi: Add support for LPCLK handling
->    drm: renesas: rz-du: mipi_dsi: Add support for RZ/V2H(P) SoC
-> 
->   .../bindings/display/bridge/renesas,dsi.yaml  | 117 +++-
->   .../bindings/display/renesas,rzg2l-du.yaml    |  28 +-
->   .../bindings/media/renesas,fcp.yaml           |   2 +
->   .../bindings/media/renesas,vsp1.yaml          |   1 +
->   drivers/clk/renesas/r9a09g057-cpg.c           |  63 ++
->   drivers/clk/renesas/rzv2h-cpg.c               | 284 ++++++++
->   drivers/clk/renesas/rzv2h-cpg.h               |  17 +
->   drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c  |  11 +
->   .../gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c    | 607 +++++++++++++++++-
->   .../drm/renesas/rz-du/rzg2l_mipi_dsi_regs.h   |  42 +-
->   include/linux/clk/renesas-rzv2h-dsi.h         | 207 ++++++
->   11 files changed, 1309 insertions(+), 70 deletions(-)
->   create mode 100644 include/linux/clk/renesas-rzv2h-dsi.h
-> 
+base-commit: 65954899a157832f68536b488194cf698248a26e
+-- 
+2.25.1
 
 
