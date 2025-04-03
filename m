@@ -1,124 +1,192 @@
-Return-Path: <devicetree+bounces-162873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A529A7A067
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 11:49:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63CC2A7A0A6
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 12:07:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 337D1172C76
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 09:49:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22F34172BED
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 10:07:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43B2D242914;
-	Thu,  3 Apr 2025 09:49:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36A2C24291C;
+	Thu,  3 Apr 2025 10:07:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hu7/tlJ1"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="EZumTnmM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2E73291E;
-	Thu,  3 Apr 2025 09:49:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F8153C0B;
+	Thu,  3 Apr 2025 10:07:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743673762; cv=none; b=UFbAAgqumMNmLb8fOkM8SN1oMOwBWpPHUT3GAHQR4bOzRwoD09yHIwb7+CULx/XM+XeYVto61aiAkpnbQiZkb4Fq59DkPzRiYKW8aAvQhKjR7gQUHyTrAC0vX6LXcxpE6XxrT7dCXPWiOjnoyuwk8BokMrfWFEDKF5ZlaCnMdK8=
+	t=1743674837; cv=none; b=T6zMzr9oA9u0kA0j/I8BpPjVoZjGjlQkdh9qQxi5ScRmfVPDg7U+BiiTG9jhgqRhL6SwKyGS/6o2Pe59cjS0ZbdNZa4M1WARwLOJ8kjXOTlvLjl+9hHe4Him9dRozPv49fPklLCNB5Akxr4Lr8+hbxBp37fOyhfBfObMlykMg/s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743673762; c=relaxed/simple;
-	bh=9alqNsiZeBD5aX1yAF7RkW94VKhRRdL7yj3CDBqapp4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=I0PRWnC1P3QkylQRdN25SGGw3G34gR5EXTLUFP1FBgtUITU+08z0xhkBFwAj0AI3EBCk0Z61U1+zV6+E11i40Kqn1rGblBL1jlE0NkwWMe5Q+dQ3FQtWGrPJqrVD6CYp1UdZ6U/e7VA/MIjwCTpcmYR6sI1cr60NjRPFfchp3b4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hu7/tlJ1; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53382mSZ013721;
-	Thu, 3 Apr 2025 09:49:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	9alqNsiZeBD5aX1yAF7RkW94VKhRRdL7yj3CDBqapp4=; b=hu7/tlJ1FgGmjnra
-	dRJj2wxTN7VmtVV5U6W41hANLDlpAUGy9l/ZfYSKOx9LO13GYCHIYRRVTGp2ZhNG
-	7nLbsc2Xctt+1YaLRNulqlDuvImvaLpY8smJN0S0UYXlAS31i80+xDqn961P66Nx
-	jevkkPsfSp9F7tnTa7FaE68yFuvd92EN4EzeJGRvNHZvATu/P+JAfN5rMoU+cjoD
-	wCExtBFB0h9aCCVTydw33jp/283EeaWq8fRuG2JGLLLI2urqyJ3xbVUKHzbEJatT
-	LT/1IR1hWayTWlJS2lUgnBdORE1KXL/QMRkBD6hwddJjrG2cXFN+fQJcB0xrxRjp
-	0xj2zw==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45sc7x1mhw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 03 Apr 2025 09:49:06 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5339n5S2018163
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 3 Apr 2025 09:49:05 GMT
-Received: from [10.204.66.137] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 3 Apr 2025
- 02:48:58 -0700
-Message-ID: <1d8b006e-83ba-4fd1-8ef1-1c5b016d33ef@quicinc.com>
-Date: Thu, 3 Apr 2025 15:18:55 +0530
+	s=arc-20240116; t=1743674837; c=relaxed/simple;
+	bh=OS5FKh45U5tp0iIFw7ligx8FGhQpdSr6OwlsPH/aWFM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=WbX+eMyi6rWv2+PEeU96y/MgDEeuoNwzC2ZTMf4u27xIr+un1+4TKOnVgl/rlBqiaz4rq4eKwfI4NU2xeB++3TevN81/s1qYtAYNhq3RRAw/kEPJAxsX/Ma+Uond57FAxTIXeLkBVveM/4csQmMbOQB9tmn+HMJNXSBhi9zzdPY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=EZumTnmM; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=aH+MeY5wxEAwtijunPYNL+y+DpNd6dDfxP3oQyKVdZI=; b=EZumTnmMfnXjC+fIRGTIzUUpdC
+	xmA4sKsK5GMhS8YKEute0EoJCcEazqvF7+am554iZXBLJ5qRjirO9rlLnKFgZmDv1UQ8J9kiTi0lq
+	RdJgNNi1Djy1QT7PmMZb0aT/DV6ghoVgilR/3/l4NvUdtlqjuni8ugwvCcVO+Q5SIkn1b6H1xlvYu
+	Xi0ca1YIjr3S23xDcgfJwcOYOYxi3Cq4dOiPLluvMr8Xf9RWfhcV13FdtJ41RYYUk/wn/86gUm1Mf
+	RpTxxLLBEOo0tyPHYV8hO1cG3KIhbVs/p3JjiDagwc3N7ViaKg5AS9xNMI/CmVsP8UuyjQV0dEEbF
+	Q298q3TQ==;
+Received: from i53875bf8.versanet.de ([83.135.91.248] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1u0GoE-0003Ky-Fc; Thu, 03 Apr 2025 11:24:26 +0200
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: devicetree@vger.kernel.org, Daniele Briguglio <hello@superkali.me>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ alchark@gmail.com, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Daniele Briguglio <daniele.briguglio@icloud.com>,
+ Daniele Briguglio <hello@superkali.me>
+Subject:
+ Re: [PATCH] rockchip: dts: rk3588: add missing OPP nodes for lower
+ frequencies
+Date: Thu, 03 Apr 2025 11:24:25 +0200
+Message-ID: <2652016.Lt9SDvczpP@diego>
+In-Reply-To: <20250403091840.3349637-1-hello@superkali.me>
+References: <20250403091840.3349637-1-hello@superkali.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 07/10] arm64: dts: qcom: sa8775p-ride: add anx7625 DSI
- to DP bridge nodes
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Krzysztof Kozlowski
-	<krzk@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <robdclark@gmail.com>,
-        <dmitry.baryshkov@linaro.org>, <sean@poorly.run>,
-        <marijn.suijten@somainline.org>, <andersson@kernel.org>,
-        <robh@kernel.org>, <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
-        <konradybcio@kernel.org>, <conor+dt@kernel.org>,
-        <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
-        <rfoss@kernel.org>, <Laurent.pinchart@ideasonboard.com>,
-        <jonas@kwiboo.se>, <jernej.skrabec@gmail.com>,
-        <quic_abhinavk@quicinc.com>, <quic_rajeevny@quicinc.com>,
-        <quic_vproddut@quicinc.com>, <quic_jesszhan@quicinc.com>
-References: <20250311122445.3597100-1-quic_amakhija@quicinc.com>
- <20250311122445.3597100-8-quic_amakhija@quicinc.com>
- <20250312-athletic-cockle-of-happiness-e88a3a@krzk-bin>
- <d64bf3b3-7c4d-490e-8bd7-1ad889aa7472@quicinc.com>
- <4aebd1f6-5098-4548-adae-843db8f45aa5@kernel.org>
- <mki4de5adulxmmpi756bi5frnsa5yx2ng2vh22q7sz6ijsc5kw@oyvb5xuu547c>
-Content-Language: en-US
-From: Ayushi Makhija <quic_amakhija@quicinc.com>
-In-Reply-To: <mki4de5adulxmmpi756bi5frnsa5yx2ng2vh22q7sz6ijsc5kw@oyvb5xuu547c>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: uXx4jFA_GGwybtJHpfaRd-ij221f_MaC
-X-Authority-Analysis: v=2.4 cv=XamJzJ55 c=1 sm=1 tr=0 ts=67ee5992 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=wxuxDv2QtqyPaxEmgx4A:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-ORIG-GUID: uXx4jFA_GGwybtJHpfaRd-ij221f_MaC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-03_04,2025-04-02_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxlogscore=812
- suspectscore=0 impostorscore=0 mlxscore=0 bulkscore=0 phishscore=0
- lowpriorityscore=0 malwarescore=0 adultscore=0 priorityscore=1501
- clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504030034
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-> Ayushi: mediatek DT are a bad example here. Please use bridge@58 as node
-> name.
+Hi,
 
-Hi Dmitry,
-Thanks for the review.
+Am Donnerstag, 3. April 2025, 11:18:40 MESZ schrieb Daniele Briguglio:
+> From: Daniele Briguglio <daniele.briguglio@icloud.com>
+> 
+> This Patch adds missing Operating Performance Point (OPP) nodes for lower
+> frequencies to the RK3588 device tree. These additions improve power
+> management by enabling the CPU clusters to scale down to lower
+> frequencies when under light loads, which should improve energy
+> efficiency and reduce power consumption.
+> 
+> The changes add OPP nodes for 408MHz, 600MHz, 816MHz, and 1008MHz
+> (for cluster1 and cluster2 only, as cluster0 already had 1008MHz)
+> with appropriate voltage settings across all three CPU clusters in
+> the RK3588 SoC.
 
-Previously, I was referencing the mediatek DT, I will be using bridge@58 as node name. Will upload the change in next patch.
+the general consensus is that you don't save energy when you're not
+reducing the voltage together with the frequency.
 
-Thanks,
-Ayushi
+For example cluster0 @1GHz runs at 675mV already, so reducing just the
+frequency, when you're not allowed to reduce the voltage with it won't
+save energy, just make things slow.
+
+
+Heiko
+
+> Signed-off-by: Daniele Briguglio <hello@superkali.me>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3588-opp.dtsi | 58 ++++++++++++++++++++
+>  1 file changed, 58 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-opp.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-opp.dtsi
+> index 0f1a77697351..1b018823d5d3 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-opp.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-opp.dtsi
+> @@ -5,6 +5,22 @@ cluster0_opp_table: opp-table-cluster0 {
+>  		compatible = "operating-points-v2";
+>  		opp-shared;
+>  
+> +		opp-408000000 {
+> +			opp-hz = /bits/ 64 <408000000>;
+> +			opp-microvolt = <675000 675000 950000>;
+> +			clock-latency-ns = <40000>;
+> +			opp-suspend;
+> +		};
+> +		opp-600000000 {
+> +			opp-hz = /bits/ 64 <600000000>;
+> +			opp-microvolt = <675000 675000 950000>;
+> +			clock-latency-ns = <40000>;
+> +		};
+> +		opp-816000000 {
+> +			opp-hz = /bits/ 64 <816000000>;
+> +			opp-microvolt = <675000 675000 950000>;
+> +			clock-latency-ns = <40000>;
+> +		};
+>  		opp-1008000000 {
+>  			opp-hz = /bits/ 64 <1008000000>;
+>  			opp-microvolt = <675000 675000 950000>;
+> @@ -37,6 +53,27 @@ cluster1_opp_table: opp-table-cluster1 {
+>  		compatible = "operating-points-v2";
+>  		opp-shared;
+>  
+> +		opp-408000000 {
+> +			opp-hz = /bits/ 64 <408000000>;
+> +			opp-microvolt = <675000 675000 1000000>;
+> +			clock-latency-ns = <40000>;
+> +			opp-suspend;
+> +		};
+> +		opp-600000000 {
+> +			opp-hz = /bits/ 64 <600000000>;
+> +			opp-microvolt = <675000 675000 1000000>;
+> +			clock-latency-ns = <40000>;
+> +		};
+> +		opp-816000000 {
+> +			opp-hz = /bits/ 64 <816000000>;
+> +			opp-microvolt = <675000 675000 1000000>;
+> +			clock-latency-ns = <40000>;
+> +		};
+> +		opp-1008000000 {
+> +			opp-hz = /bits/ 64 <1008000000>;
+> +			opp-microvolt = <675000 675000 1000000>;
+> +			clock-latency-ns = <40000>;
+> +		};
+>  		opp-1200000000 {
+>  			opp-hz = /bits/ 64 <1200000000>;
+>  			opp-microvolt = <675000 675000 1000000>;
+> @@ -78,6 +115,27 @@ cluster2_opp_table: opp-table-cluster2 {
+>  		compatible = "operating-points-v2";
+>  		opp-shared;
+>  
+> +		opp-408000000 {
+> +			opp-hz = /bits/ 64 <408000000>;
+> +			opp-microvolt = <675000 675000 1000000>;
+> +			clock-latency-ns = <40000>;
+> +			opp-suspend;
+> +		};
+> +		opp-600000000 {
+> +			opp-hz = /bits/ 64 <600000000>;
+> +			opp-microvolt = <675000 675000 1000000>;
+> +			clock-latency-ns = <40000>;
+> +		};
+> +		opp-816000000 {
+> +			opp-hz = /bits/ 64 <816000000>;
+> +			opp-microvolt = <675000 675000 1000000>;
+> +			clock-latency-ns = <40000>;
+> +		};
+> +		opp-1008000000 {
+> +			opp-hz = /bits/ 64 <1008000000>;
+> +			opp-microvolt = <675000 675000 1000000>;
+> +			clock-latency-ns = <40000>;
+> +		};
+>  		opp-1200000000 {
+>  			opp-hz = /bits/ 64 <1200000000>;
+>  			opp-microvolt = <675000 675000 1000000>;
+> 
+
+
+
 
 
