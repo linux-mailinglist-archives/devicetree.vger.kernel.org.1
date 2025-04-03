@@ -1,165 +1,124 @@
-Return-Path: <devicetree+bounces-162871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F289A7A047
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 11:45:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A529A7A067
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 11:49:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E88081895DCA
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 09:45:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 337D1172C76
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 09:49:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31ADB24A07D;
-	Thu,  3 Apr 2025 09:44:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43B2D242914;
+	Thu,  3 Apr 2025 09:49:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="s5Rrs3fl"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hu7/tlJ1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DC1124A064
-	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 09:44:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2E73291E;
+	Thu,  3 Apr 2025 09:49:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743673483; cv=none; b=sNdL+DhXYrrNytcMLzvfEiWgSbY3go/chE0ktUBLYfh8AncVYrTC/lSPASuKtB21CUKlGJIDX3zFCmOTUvz5DCF+8gcKck1KL4sgLJESztgE3dyR5rjJHWwbw//1QavQMngyvvrVIUndQVq3qo83rqp+6rrAR6erztagAEXCk8k=
+	t=1743673762; cv=none; b=UFbAAgqumMNmLb8fOkM8SN1oMOwBWpPHUT3GAHQR4bOzRwoD09yHIwb7+CULx/XM+XeYVto61aiAkpnbQiZkb4Fq59DkPzRiYKW8aAvQhKjR7gQUHyTrAC0vX6LXcxpE6XxrT7dCXPWiOjnoyuwk8BokMrfWFEDKF5ZlaCnMdK8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743673483; c=relaxed/simple;
-	bh=/f9RUGuRkg81S+9vEr4rF6E2a7sH/TZ3cI1ZNfn6e/M=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=VrigpL2Rg1oszIsyrmhiBQtLy9e/SHtFHPk/EyTZKeOeswdQJjHzBUBQ0PYWsMTtsFKGhK01NZYth6f3u7yxeVbKUjdJ3lloa7W0GbpyfaM6HPtMbM64Niw0dVmoYz+PAekAbA2S1rpC1gSESDdiaWdvG5cRbDImrrYCefAF8dQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=s5Rrs3fl; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250403094434euoutp02a90376146e959dd606f19185c9f9c02e~yxclZwOYE0205302053euoutp02v
-	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 09:44:34 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250403094434euoutp02a90376146e959dd606f19185c9f9c02e~yxclZwOYE0205302053euoutp02v
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1743673474;
-	bh=zWpSPctGzB1QFcIv8f8mPGsvFF5oZ87O6t+skARlCj4=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=s5Rrs3flXjXZLCH6rEqIfZpjYdYq25Gt4vADUmgHTsaYdYD+DZA/+nye2N2joEmjK
-	 KEkq0Ol1Hv4ekBvDjs64ivkx2ZhS43A6v1vAIl8DBOHpOR3TDKKk7y0AFOLurLrOoq
-	 5lCGbEHRL46NLfLDPjDPIyrsE4TVjORAvJ/tQsn4=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-	20250403094433eucas1p2ac0ecff48840a11e974d418b3f372fc9~yxck5OjcX1404914049eucas1p2O;
-	Thu,  3 Apr 2025 09:44:33 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-	eusmges2new.samsung.com (EUCPMTA) with SMTP id C2.79.20409.1885EE76; Thu,  3
-	Apr 2025 10:44:33 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250403094433eucas1p2da03e00ef674c1f5aa8d41f2a7371319~yxckiSN4R0789407894eucas1p2U;
-	Thu,  3 Apr 2025 09:44:33 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20250403094433eusmtrp2885ba86520c1e37e943077d94852f880~yxckhi9os1352013520eusmtrp2n;
-	Thu,  3 Apr 2025 09:44:33 +0000 (GMT)
-X-AuditID: cbfec7f4-c0df970000004fb9-ea-67ee5881f257
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-	eusmgms2.samsung.com (EUCPMTA) with SMTP id A4.FF.19654.1885EE76; Thu,  3
-	Apr 2025 10:44:33 +0100 (BST)
-Received: from AMDC4942.home (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250403094432eusmtip24ab6de2b4e1d8767ed3f8da4f00574ba~yxcjocdlD1024010240eusmtip2W;
-	Thu,  3 Apr 2025 09:44:32 +0000 (GMT)
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-To: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, drew@pdp7.com, guoren@kernel.org,
-	wefu@redhat.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, alex@ghiti.fr, jszhang@kernel.org,
-	p.zabel@pengutronix.de, m.szyprowski@samsung.com
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, Michal
-	Wilczynski <m.wilczynski@samsung.com>
-Subject: [PATCH v7 3/3] riscv: dts: thead: Add device tree VO clock
- controller
-Date: Thu,  3 Apr 2025 11:44:25 +0200
-Message-Id: <20250403094425.876981-4-m.wilczynski@samsung.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250403094425.876981-1-m.wilczynski@samsung.com>
+	s=arc-20240116; t=1743673762; c=relaxed/simple;
+	bh=9alqNsiZeBD5aX1yAF7RkW94VKhRRdL7yj3CDBqapp4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=I0PRWnC1P3QkylQRdN25SGGw3G34gR5EXTLUFP1FBgtUITU+08z0xhkBFwAj0AI3EBCk0Z61U1+zV6+E11i40Kqn1rGblBL1jlE0NkwWMe5Q+dQ3FQtWGrPJqrVD6CYp1UdZ6U/e7VA/MIjwCTpcmYR6sI1cr60NjRPFfchp3b4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hu7/tlJ1; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 53382mSZ013721;
+	Thu, 3 Apr 2025 09:49:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	9alqNsiZeBD5aX1yAF7RkW94VKhRRdL7yj3CDBqapp4=; b=hu7/tlJ1FgGmjnra
+	dRJj2wxTN7VmtVV5U6W41hANLDlpAUGy9l/ZfYSKOx9LO13GYCHIYRRVTGp2ZhNG
+	7nLbsc2Xctt+1YaLRNulqlDuvImvaLpY8smJN0S0UYXlAS31i80+xDqn961P66Nx
+	jevkkPsfSp9F7tnTa7FaE68yFuvd92EN4EzeJGRvNHZvATu/P+JAfN5rMoU+cjoD
+	wCExtBFB0h9aCCVTydw33jp/283EeaWq8fRuG2JGLLLI2urqyJ3xbVUKHzbEJatT
+	LT/1IR1hWayTWlJS2lUgnBdORE1KXL/QMRkBD6hwddJjrG2cXFN+fQJcB0xrxRjp
+	0xj2zw==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45sc7x1mhw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 03 Apr 2025 09:49:06 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5339n5S2018163
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 3 Apr 2025 09:49:05 GMT
+Received: from [10.204.66.137] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 3 Apr 2025
+ 02:48:58 -0700
+Message-ID: <1d8b006e-83ba-4fd1-8ef1-1c5b016d33ef@quicinc.com>
+Date: Thu, 3 Apr 2025 15:18:55 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrIKsWRmVeSWpSXmKPExsWy7djPc7qNEe/SDf4u0LF4ducrq8XW37PY
-	LdbsPcdkMf/IOVaLe5e2MFm82NvIYtF8bD2bxctZ99gsPvbcY7W4vGsOm8W2zy1sFmuP3GW3
-	WP91PpPFxVOuFnfvnWCxeHm5h9mibRa/xf89O9gt/l3byGLRsn8Ki4OIx/sbreweb16+ZPE4
-	3PGF3ePeiWmsHptWdbJ5bF5S79Gy9hiTR/9fA4/3+66yefRtWcXocan5OrvH501yATxRXDYp
-	qTmZZalF+nYJXBkfumcyF5xir1jftJmtgXEOWxcjJ4eEgInElmPzWbsYuTiEBFYwShz9eIkJ
-	wvnCKLGvdwojhPOZUeLc3jfMMC2bb7cwQySWM0r8mdbIAuG8AervucMCUsUmYCTxYDnEYBGB
-	PUwS37//BGthFljFKPHk20f2LkYODmGBAInjfzlAGlgEVCXaZuwBu4pXwE5i7r0jUOvkJfYf
-	PAtmcwrYS2yY8pgRokZQ4uTMJ2DLmIFqmrfOhqo/xSkxd0kFhO0ice3NLXYIW1ji1fEtULaM
-	xP+d85kg7HyJB1s/QfXWSOzsOQ5lW0vcOfeLDeRMZgFNifW79CHCjhKTfm8CC0sI8EnceCsI
-	cQGfxKRt05khwrwSHW1CENVqElN7euGWnluxDWqph8Tt1ulMExgVZyH5ZRaSX2Yh7F3AyLyK
-	UTy1tDg3PbXYKC+1XK84Mbe4NC9dLzk/dxMjMFWe/nf8yw7G5a8+6h1iZOJgPMQowcGsJMJb
-	qPU2XYg3JbGyKrUoP76oNCe1+BCjNAeLkjjvov2t6UIC6YklqdmpqQWpRTBZJg5OqQam3Zbn
-	HFktm9ZOdyrtYixZ76eh/s9BQ3tWt5FcSkf5XP178Z5PPkiXnWGIm/Lb9MJ0p5Pti91jnoZw
-	m+nOvxLzLKaC75qu21mlojSP0vJtD2/XhX2yl/bfxHsjdE9F+c9k40/CbwJypT2OLml88nAZ
-	10mLs2wTrsw/tIafdWbgrvV9zGWnRLqlttiVMNp5i2YemsJSWvP6aQH77VKp/OCXNbZxp5Km
-	+yY8N1iWKim9eUX2zZaUyWrC/BMur1291vS7hNfTkH0MHI/bnjisu23B7HKz/ODCNQa3Qs4x
-	PI/aeS+Nf45m7G6nNRvWGP4UuSYgajF9qc+tLK4gn5P5swPc3ZMUCzRtgme+ObDW/YwSS3FG
-	oqEWc1FxIgDUxk5BBAQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrAIsWRmVeSWpSXmKPExsVy+t/xe7qNEe/SDQ61iFg8u/OV1WLr71ns
-	Fmv2nmOymH/kHKvFvUtbmCxe7G1ksWg+tp7N4uWse2wWH3vusVpc3jWHzWLb5xY2i7VH7rJb
-	rP86n8ni4ilXi7v3TrBYvLzcw2zRNovf4v+eHewW/65tZLFo2T+FxUHE4/2NVnaPNy9fsngc
-	7vjC7nHvxDRWj02rOtk8Ni+p92hZe4zJo/+vgcf7fVfZPPq2rGL0uNR8nd3j8ya5AJ4oPZui
-	/NKSVIWM/OISW6VoQwsjPUNLCz0jE0s9Q2PzWCsjUyV9O5uU1JzMstQifbsEvYwP3TOZC06x
-	V6xv2szWwDiHrYuRk0NCwERi8+0WZhBbSGApo8TyhxoQcRmJa90vWSBsYYk/17rYIGpeMUp8
-	n8QBYrMJGEk8WD6ftYuRi0NE4AKTxK51q5lAHGaBdYwSU7bvYAKpEhbwkzi68B7YBhYBVYm2
-	GXvAJvEK2EnMvXeEGWKDvMT+g2fBbE4Be4kNUx4zQmyzk/hzs58Zol5Q4uTMJ2AXMQPVN2+d
-	zTyBUWAWktQsJKkFjEyrGEVSS4tz03OLjfSKE3OLS/PS9ZLzczcxAqN627GfW3Ywrnz1Ue8Q
-	IxMH4yFGCQ5mJRHeQq236UK8KYmVValF+fFFpTmpxYcYTYHunsgsJZqcD0wreSXxhmYGpoYm
-	ZpYGppZmxkrivGxXzqcJCaQnlqRmp6YWpBbB9DFxcEo1MDW67Vw3abf9lf9rStZfXi1wqUlu
-	XekdqW/nzZ9PW3X5/c1LZQdiDtZcnvlh6+nyf/+0Da/7et58+foZG+fTlYxr2r+q5nzYcb7I
-	3mSLysHJIu+LVnv5tMzzd46qeSWg6p72NSJROD33/ua2jwaXJnz8pvvpQO4iER2eqKN5N/+d
-	yf73rvH9f3ad5sKwVlVf0wxNT/td5+x1DvbGb++fG7O/w9Hmw6wDXU/lX13ZnTL5+OeThWyJ
-	/yY4uadPSYliCG5ruj8jX/xL8u2GjZEnxRkaJn5tWLf7uXwRh+mP2Ath/RVJm9i+vNELag5c
-	sv6tpvmP2fyRS/0kdlsnLBCZKx93WtHdaA6zvcWlf53TuXSVWIozEg21mIuKEwFp71JucwMA
-	AA==
-X-CMS-MailID: 20250403094433eucas1p2da03e00ef674c1f5aa8d41f2a7371319
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250403094433eucas1p2da03e00ef674c1f5aa8d41f2a7371319
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20250403094433eucas1p2da03e00ef674c1f5aa8d41f2a7371319
-References: <20250403094425.876981-1-m.wilczynski@samsung.com>
-	<CGME20250403094433eucas1p2da03e00ef674c1f5aa8d41f2a7371319@eucas1p2.samsung.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 07/10] arm64: dts: qcom: sa8775p-ride: add anx7625 DSI
+ to DP bridge nodes
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Krzysztof Kozlowski
+	<krzk@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <robdclark@gmail.com>,
+        <dmitry.baryshkov@linaro.org>, <sean@poorly.run>,
+        <marijn.suijten@somainline.org>, <andersson@kernel.org>,
+        <robh@kernel.org>, <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
+        <konradybcio@kernel.org>, <conor+dt@kernel.org>,
+        <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
+        <rfoss@kernel.org>, <Laurent.pinchart@ideasonboard.com>,
+        <jonas@kwiboo.se>, <jernej.skrabec@gmail.com>,
+        <quic_abhinavk@quicinc.com>, <quic_rajeevny@quicinc.com>,
+        <quic_vproddut@quicinc.com>, <quic_jesszhan@quicinc.com>
+References: <20250311122445.3597100-1-quic_amakhija@quicinc.com>
+ <20250311122445.3597100-8-quic_amakhija@quicinc.com>
+ <20250312-athletic-cockle-of-happiness-e88a3a@krzk-bin>
+ <d64bf3b3-7c4d-490e-8bd7-1ad889aa7472@quicinc.com>
+ <4aebd1f6-5098-4548-adae-843db8f45aa5@kernel.org>
+ <mki4de5adulxmmpi756bi5frnsa5yx2ng2vh22q7sz6ijsc5kw@oyvb5xuu547c>
+Content-Language: en-US
+From: Ayushi Makhija <quic_amakhija@quicinc.com>
+In-Reply-To: <mki4de5adulxmmpi756bi5frnsa5yx2ng2vh22q7sz6ijsc5kw@oyvb5xuu547c>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: uXx4jFA_GGwybtJHpfaRd-ij221f_MaC
+X-Authority-Analysis: v=2.4 cv=XamJzJ55 c=1 sm=1 tr=0 ts=67ee5992 cx=c_pps a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=wxuxDv2QtqyPaxEmgx4A:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-ORIG-GUID: uXx4jFA_GGwybtJHpfaRd-ij221f_MaC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-03_04,2025-04-02_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxlogscore=812
+ suspectscore=0 impostorscore=0 mlxscore=0 bulkscore=0 phishscore=0
+ lowpriorityscore=0 malwarescore=0 adultscore=0 priorityscore=1501
+ clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2504030034
 
-VO clocks reside in a different address space from the AP clocks on the
-T-HEAD SoC. Add the device tree node of a clock-controller to handle
-VO address space as well.
+> Ayushi: mediatek DT are a bad example here. Please use bridge@58 as node
+> name.
 
-Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
----
- arch/riscv/boot/dts/thead/th1520.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+Hi Dmitry,
+Thanks for the review.
 
-diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-index 527336417765..d4cba0713cab 100644
---- a/arch/riscv/boot/dts/thead/th1520.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-@@ -489,6 +489,13 @@ clk: clock-controller@ffef010000 {
- 			#clock-cells = <1>;
- 		};
- 
-+		clk_vo: clock-controller@ffef528050 {
-+			compatible = "thead,th1520-clk-vo";
-+			reg = <0xff 0xef528050 0x0 0xfb0>;
-+			clocks = <&clk CLK_VIDEO_PLL>;
-+			#clock-cells = <1>;
-+		};
-+
- 		dmac0: dma-controller@ffefc00000 {
- 			compatible = "snps,axi-dma-1.01a";
- 			reg = <0xff 0xefc00000 0x0 0x1000>;
--- 
-2.34.1
+Previously, I was referencing the mediatek DT, I will be using bridge@58 as node name. Will upload the change in next patch.
+
+Thanks,
+Ayushi
 
 
