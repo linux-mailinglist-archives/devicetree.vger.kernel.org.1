@@ -1,199 +1,128 @@
-Return-Path: <devicetree+bounces-162893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2CA7A7A1BC
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 13:15:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3A0EA7A1C4
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 13:20:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 437FD7A67FE
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 11:14:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D087173909
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 11:20:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AFF2242907;
-	Thu,  3 Apr 2025 11:15:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EBB724C07B;
+	Thu,  3 Apr 2025 11:20:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P6vyvNds"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="b9jGx0n8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 747A8481B6;
-	Thu,  3 Apr 2025 11:15:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDE5724C06E
+	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 11:20:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743678933; cv=none; b=b9dIZ4HeraQUNo95mgKrr4N6aC4ImiZhxAiZEkfN5aEpGR+mgEWfX6Aacrs4nvTjFao8DN51f7KKiahfi+SZVkik7gRFznRyEulcFXKNIXW6tQMfTAGGmD++g1ntD/ry7gX/h71DaJUqZ7JAuQKRRy89Qhx2G88FNqslpZQzx4c=
+	t=1743679212; cv=none; b=qY/L6yOi8AtZZMxj40TNvWS2PuctYuNKQzcQRY9lzwgyRny49AJF66IIckjUPsN8LKAuupSQ9uFZyuGjrF2nAyudh0jWh5WfEdS0lOMgRCWIn51fGb9TPOxvsBvIfY4VIqrLkTqYO16JKVRrvJjxt6zQOslo20RGTFITGicarAM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743678933; c=relaxed/simple;
-	bh=hiHWGoy3TfSy1ZTXTxz57Op4hmlZMwz8uSjR3DobCU0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Bs2KitN5MwXIQBZeSt5y3Q9GiJ0c8+0IHMBFyc8qo44QJtliBfOMHhH1rSjlawokSOt//Ad22EHUo+VB0wNb+4w+al2TstGklJn5k8/+P7QG+DV85cbX56khNmASaCl3QdoVyatIEbgPDyEuOraTVbu7b12vCf9n1j+eZNJVZdw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P6vyvNds; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43cf06eabdaso6322355e9.2;
-        Thu, 03 Apr 2025 04:15:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743678930; x=1744283730; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=hiHWGoy3TfSy1ZTXTxz57Op4hmlZMwz8uSjR3DobCU0=;
-        b=P6vyvNdsupziMIn3B17zEGWeHANwKGHUrzfCzJDYnVYLLe83n4tuPOlLjPOUpfPpYN
-         nF9DrWUIfvU3aXN7EfvEJO8NU1Gs01VyWsoBv1qLtL3LoLwR/gwMxITlt3yJpPe5YO5R
-         Fr8rCGAPq13CPAGuoB9sm5DdWXRvUjJQyDphIcQmPKCX44oE1WQ0IfAVKjtqB9pJ+mJS
-         BZkghjM6LO6xgdqCqOe/8Ae3m7yRZNtApXNzLIVge22O5yIhx9JzlfRBkAMo68GDwxbk
-         Be1i8PWPc1e6zPcgXhyWHR0jCGpchukW0YMgTg4ndBxR9tg283aKw+7AHN9vn8iqCuUK
-         nxIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743678930; x=1744283730;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hiHWGoy3TfSy1ZTXTxz57Op4hmlZMwz8uSjR3DobCU0=;
-        b=SXy5fJQd+DR8uFJVmeKLAhxSCmxnIrCvrr41A29ihx8TeHQwRcKC6QwYbxnB7HXSZg
-         +y+I4YFUdIrrIB8Kr7Xe3IKD+W7W7Dqm10Cn+IytQ+AujIy23SYqUL3ytfrS6GwBNVLs
-         h1zf8fxOq3bwyAfkfNFaKpICOXSZ2wni/Ch3dsoPnWe7OKMD6EPkRYJ3h/iMlm47qlOv
-         lQlDoaCZAtJtZbCyb1oMBTxBYLKsMb9TItdv4ODKnqK4NRVc/XEjXTq7l0Hf3exiFRRx
-         yIlRK6cm7Ki64CLA8bmclX1TyQyZ2ZGvExJOGBmZSSPC7TEwSAlV20ZgtP8H9uOvJOqI
-         Hw3w==
-X-Forwarded-Encrypted: i=1; AJvYcCULj+cNnvD1WVFViglCCBJX4JTsD8UBFSAPJmqDjX4HqZUqa1HM1404bNF+PRWKve6CVh9PiG8q91V+mXAI@vger.kernel.org, AJvYcCVANmCY5kAmxgzWQDQoO+omVUcDhgz2XgZLM8LNAYiNLjjSZY6H3So62vq7U7tpXJ953h7YkVqDmwK6@vger.kernel.org
-X-Gm-Message-State: AOJu0YzitGRtfBhotD+NKtBawAOgIOUHoSjSCaAkkuoDtYEs44uThvhf
-	j1XNJ1vM3ndHYyeVLIqk+uleVLfx8K+4Dx5dxVwnX4S8FnbwEfJivCnaZRc4Cfg=
-X-Gm-Gg: ASbGncs0+botVtPCKWQ7rgDQygAEILbFkV10uJ0Oo1x73NwTYS5tSoLdQiSjXvtIUmf
-	RmzbPJbSzjOaJI8S4TScOmAQYoKNfVBWUDkbNoLMPFbN7QvRiT5dCe2qdwnErRxb2ss0viRy5Lb
-	YqJ3uwl9hs2W4zbjj/XehWU43oxQlW3TQvaIZcF7DOqAEJCHaY/OuUU6bkOkOECyZCR1mrG0X0E
-	UPxEjumVu/+dUBZxzKzexa0oMHF+tSlIa9hzmkmmKcQlF2w/K3o1eqZhlJC65OLFL5vGLpy4CIr
-	OJs+SpQhUAu7qcTeAdniNVUocUurREt22hh4vggXl06IcrM4wz3tMRcmB/9GxFbB2fhhzl8Egby
-	w1HZVJ+kp0BAToWq4
-X-Google-Smtp-Source: AGHT+IEW5ki3AoxruBMnNGyEvSVtl7GToIRQYVQ5Fb2tPTJE3GsnsJfpbLNttRdS9ddC0XQ+Dt4fGw==
-X-Received: by 2002:a05:600c:358c:b0:43c:e7ae:4bc9 with SMTP id 5b1f17b1804b1-43ec13247admr14727665e9.1.1743678929452;
-        Thu, 03 Apr 2025 04:15:29 -0700 (PDT)
-Received: from ?IPv6:2001:818:ea8e:7f00:2575:914:eedd:620e? ([2001:818:ea8e:7f00:2575:914:eedd:620e])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43ec366a699sm15116095e9.38.2025.04.03.04.15.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Apr 2025 04:15:28 -0700 (PDT)
-Message-ID: <b2082b59fcbffe9f546bb681eb33276a3c5896c5.camel@gmail.com>
-Subject: Re: [PATCH v3 2/3] dt-bindings: iio: dac: Add adi,ad3530r.yaml
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Kim Seer Paller <kimseer.paller@analog.com>, Jonathan Cameron	
- <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
-	 <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Date: Thu, 03 Apr 2025 12:15:28 +0100
-In-Reply-To: <20250403-togreg-v3-2-d4b06a4af5a9@analog.com>
-References: <20250403-togreg-v3-0-d4b06a4af5a9@analog.com>
-	 <20250403-togreg-v3-2-d4b06a4af5a9@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.0 
+	s=arc-20240116; t=1743679212; c=relaxed/simple;
+	bh=xZr2b1Yr2ycIg/CW3ibrgZf/gEe4XUSNPljObyAf9E4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qtQXgdXlP8BGSU2gDuHQJ22z15zZhJMvXvNoLYMgECKovIEOPlLkQsT448wAbOOtRleNqrR38MasjGI1yj4SFJXayZ1xYKIcYSg5esGz2SDPJ69URt+7hYQIdACcSS1OLAHrwaky8dSNEFj2t0QnH/wTBqfUQ+dnhGBimBNmEDo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=b9jGx0n8; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=xZr2
+	b1Yr2ycIg/CW3ibrgZf/gEe4XUSNPljObyAf9E4=; b=b9jGx0n8eKKRl6IOidXK
+	CjxbwTvSxWf+4vxut/Lop+k5H7ww+6sir+8p5hM6lTqQKHcj9pM/q208k2WSg+PV
+	5ce68OK5HdIgmmPkyWFVb4Fcmd/kxAZT+VI00r73jIEmaB5Qyj/sVeGRqsBcIZCd
+	e1wXxwMzEPZCHSaEqetXI5kdn7MZqJ6KPBEvKmK7ml0PyleNItyruzN0mCmfr6w8
+	Pst7XqubpVaVZSEBrgcIMoe8CcUDdtVPum73ndXgAhSL+ErL3zVSQ5InLcS+Qp5v
+	BdHUGSp09txcVrcrfqmLtVJHLjbrjxK8cEToeHQlqoMfwo9np8f7JkNkmwhbgwMu
+	ng==
+Received: (qmail 2358143 invoked from network); 3 Apr 2025 13:20:06 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 3 Apr 2025 13:20:06 +0200
+X-UD-Smtp-Session: l3s3148p1@UqOn890xc2BtKPG8
+Date: Thu, 3 Apr 2025 13:20:05 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [RFC PATCH 1/3] i2c: core: Follow i2c-parent when retrieving an
+ adapter from node
+Message-ID: <Z-5u5bAnY8Y1DmFz@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20250205173918.600037-1-herve.codina@bootlin.com>
+ <20250205173918.600037-2-herve.codina@bootlin.com>
+ <Z-5O3-FSsHbn27lW@shikoro>
+ <20250403125050.22db0349@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="G9LojCKw4QqmBaKY"
+Content-Disposition: inline
+In-Reply-To: <20250403125050.22db0349@bootlin.com>
 
 
-Hi Kim,
+--G9LojCKw4QqmBaKY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Thu, 2025-04-03 at 13:33 +0800, Kim Seer Paller wrote:
-> Document the AD3530/AD3530R (8-channel) and AD3531/AD3531R (4-channel)
-> low-power, 16-bit, buffered voltage output DACs with software-
-> programmable gain controls. They provide full-scale output spans of 2.5V
-> or 5V for reference voltages of 2.5V. These devices operate on a single
-> 2.7V to 5.5V supply and are guaranteed to be monotonic by design.
-> The "R" variants include a 2.5V, 5ppm/=C2=B0C internal reference, which i=
-s
-> disabled by default.
->=20
-> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
-> ---
-> =C2=A0.../devicetree/bindings/iio/dac/adi,ad3530r.yaml=C2=A0=C2=A0 | 99
-> ++++++++++++++++++++++
-> =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 7 ++
-> =C2=A02 files changed, 106 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad3530r.yaml
-> b/Documentation/devicetree/bindings/iio/dac/adi,ad3530r.yaml
-> new file mode 100644
-> index
-> 0000000000000000000000000000000000000000..cf4a3eb98f1fa30afdeb0740bba7f05=
-2d8ec
-> 2cd4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad3530r.yaml
-> @@ -0,0 +1,99 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/dac/adi,ad3530r.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AD3530R and Similar DACs
-> +
-> +maintainers:
-> +=C2=A0 - Kim Seer Paller <kimseer.paller@analog.com>
-> +
-> +description: |
-> +=C2=A0 The AD3530/AD3530R (8-channel) and AD3531/AD3531R (4-channel) are=
- low-
-> power,
-> +=C2=A0 16-bit, buffered voltage output digital-to-analog converters (DAC=
-s) with
-> +=C2=A0 software-programmable gain controls, providing full-scale output =
-spans of
-> 2.5V
-> +=C2=A0 or 5V for reference voltages of 2.5V. These devices operate from =
-a single
-> 2.7V
-> +=C2=A0 to 5.5V supply and are guaranteed monotonic by design. The "R" va=
-riants
-> +=C2=A0 include a 2.5V, 5ppm/=C2=B0C internal reference, which is disable=
-d by default.
-> +=C2=A0 Datasheet can be found here:
-> +=C2=A0
-> https://www.analog.com/media/en/technical-documentation/data-sheets/ad353=
-0_ad530r.pdf
-> +
-> +properties:
-> +=C2=A0 compatible:
-> +=C2=A0=C2=A0=C2=A0 enum:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - adi,ad3530
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - adi,ad3530r
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - adi,ad3531
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - adi,ad3531r
-> +
-> +=C2=A0 reg:
-> +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> +
-> +=C2=A0 spi-max-frequency:
-> +=C2=A0=C2=A0=C2=A0 maximum: 50000000
-> +
-> +=C2=A0 vdd-supply:
-> +=C2=A0=C2=A0=C2=A0 description: Power Supply Input.
-> +
-> +=C2=A0 iovdd-supply:
-> +=C2=A0=C2=A0=C2=A0 description: Digital Power Supply Input.
-> +
-> +=C2=A0 io-channels:
-> +=C2=A0=C2=A0=C2=A0 description:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ADC channel used to monitor internal die =
-temperature, output voltages,
-> and
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 current of a selected channel via the MUX=
-OUT pin.
-> +=C2=A0=C2=A0=C2=A0 maxItems: 1
->=20
 
-I'm a bit puzzled... Isn't this device the provider of such a channel?
-Therefore, I believe we should have #io-channel-cells, right?
+> The debug message can be interesting when things went wrong and we want
+> to investigate potential issue with i2c-parent chain from the last device
+> up to the adapter.
 
-- Nuno S=C3=A1
+I thought so but couldn't estimate how often this is useful in reality.
+I agree that introducing 'dev' is too much hazzle, yet I think the
+message should have some id to disitnguish potential different adapter
+chains. Either that, or...
 
+> I don't have a strong opinion about the need of this message and I can
+> simply remove it.
+
+... we just remove it and let people add their debug stuff while
+developing.
+
+> What is your preference ?
+
+A tad more 'removing'.
+
+
+--G9LojCKw4QqmBaKY
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmfubuEACgkQFA3kzBSg
+KbYDjhAAnEpQ7Lq325zgF0MXbuueTeNaleJHhNRlNnfmT3m1lUJ7aJ06Sme2xwu9
+kvCWEeTY9GxME8MpyusmI2p0LrHJowjNF+vGC70qC6P6LUemDlXzwTP8G0/nZUOU
+3lXg2Mzlgwqbyk6k1arQ6JiXLrFeHILIy5ZH4ol6LLAaMEjuzCMPYnga7w7hgF0r
+ZHBYLMJbUUH4VFInzsvPw1NjsHzivGYpPSkhq+hVM08hRFXGb4rhxV23m7Irqg4Q
+2PWPOhJNJem01G2HhqOEnnXadzveu+myxTf+g9BltHXgfnj9QqiLD95x4i9PWm1m
+zJ/4limYDwml2x/4VReDpbnpcqHhEgKNytXIox+ynWKTHTR3T0ymUydKK1OY+o84
+8mI2qySM2YGIo6figoL4md30TwRHuhjoXHW6zo6HjYdCL6GY73XNcHJMKJ82V5bf
+z+vbeyB+7cIoKP2ONNOCchUGJhb6ZXkjJWk9uuJtE60ILIhFXJA5/DXg4gV4z/02
+KAyJ7AyS6LGazJMZWaJ/68sbyVatanlGofihV8Y4K6bLjR8RZUfaRrYJ8AUR6rKt
+slSagnxdW2Pm2M9/5fApO6YC3Yo4O8gWOueFzEZLQHv2Dia6HnkyVavoXXtgp2zU
+JmFELo6mimchMaAJs0dbIXKsK78P7WXwMEpDWxMiyyxsrRDslic=
+=ZgW8
+-----END PGP SIGNATURE-----
+
+--G9LojCKw4QqmBaKY--
 
