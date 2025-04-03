@@ -1,192 +1,85 @@
-Return-Path: <devicetree+bounces-162874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63CC2A7A0A6
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 12:07:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E40BA7A0BE
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 12:14:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22F34172BED
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 10:07:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2DD3018985E2
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 10:14:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36A2C24291C;
-	Thu,  3 Apr 2025 10:07:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B98D3248883;
+	Thu,  3 Apr 2025 10:14:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="EZumTnmM"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="QqAsPzQY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F8153C0B;
-	Thu,  3 Apr 2025 10:07:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92A2D24A054;
+	Thu,  3 Apr 2025 10:14:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743674837; cv=none; b=T6zMzr9oA9u0kA0j/I8BpPjVoZjGjlQkdh9qQxi5ScRmfVPDg7U+BiiTG9jhgqRhL6SwKyGS/6o2Pe59cjS0ZbdNZa4M1WARwLOJ8kjXOTlvLjl+9hHe4Him9dRozPv49fPklLCNB5Akxr4Lr8+hbxBp37fOyhfBfObMlykMg/s=
+	t=1743675277; cv=none; b=ZCANMVfhT+he7T0Awa1zrGCydrQtoZwhRjwlFxg09ESPNiGxFfSIb0/M8haBbTiDdRZd610jPFP4ZSrFOQFuEgr4pl87Zdz1d5Ubad1llqVE36uqVWhzqlp/vcXnw+R821xnLrtL4YHqkW+Z40YQN8AJrsCWR60xKxL5scHvtoA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743674837; c=relaxed/simple;
-	bh=OS5FKh45U5tp0iIFw7ligx8FGhQpdSr6OwlsPH/aWFM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WbX+eMyi6rWv2+PEeU96y/MgDEeuoNwzC2ZTMf4u27xIr+un1+4TKOnVgl/rlBqiaz4rq4eKwfI4NU2xeB++3TevN81/s1qYtAYNhq3RRAw/kEPJAxsX/Ma+Uond57FAxTIXeLkBVveM/4csQmMbOQB9tmn+HMJNXSBhi9zzdPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=EZumTnmM; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=aH+MeY5wxEAwtijunPYNL+y+DpNd6dDfxP3oQyKVdZI=; b=EZumTnmMfnXjC+fIRGTIzUUpdC
-	xmA4sKsK5GMhS8YKEute0EoJCcEazqvF7+am554iZXBLJ5qRjirO9rlLnKFgZmDv1UQ8J9kiTi0lq
-	RdJgNNi1Djy1QT7PmMZb0aT/DV6ghoVgilR/3/l4NvUdtlqjuni8ugwvCcVO+Q5SIkn1b6H1xlvYu
-	Xi0ca1YIjr3S23xDcgfJwcOYOYxi3Cq4dOiPLluvMr8Xf9RWfhcV13FdtJ41RYYUk/wn/86gUm1Mf
-	RpTxxLLBEOo0tyPHYV8hO1cG3KIhbVs/p3JjiDagwc3N7ViaKg5AS9xNMI/CmVsP8UuyjQV0dEEbF
-	Q298q3TQ==;
-Received: from i53875bf8.versanet.de ([83.135.91.248] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1u0GoE-0003Ky-Fc; Thu, 03 Apr 2025 11:24:26 +0200
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: devicetree@vger.kernel.org, Daniele Briguglio <hello@superkali.me>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- alchark@gmail.com, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Daniele Briguglio <daniele.briguglio@icloud.com>,
- Daniele Briguglio <hello@superkali.me>
-Subject:
- Re: [PATCH] rockchip: dts: rk3588: add missing OPP nodes for lower
- frequencies
-Date: Thu, 03 Apr 2025 11:24:25 +0200
-Message-ID: <2652016.Lt9SDvczpP@diego>
-In-Reply-To: <20250403091840.3349637-1-hello@superkali.me>
-References: <20250403091840.3349637-1-hello@superkali.me>
+	s=arc-20240116; t=1743675277; c=relaxed/simple;
+	bh=0vZozkhE7JZLo5OJeXpoE83upBP93297ZDa4MSzYioY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pJm5HuB/9cQkQ36101UF+Qqt7OE6L1x4NLsvQ+wnrrUXE8j+tm1WodajZ/l9AThFVpFEStGDpIVy7ySTNxjQvL3854iFDL5yij7cWXv8dUkg4cm2McOW5jiVXEDGpBZlQLtrU8pEm00sG8MnGcmy18KV3r62EhwPkntcrRx9RTE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=QqAsPzQY; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1743675266;
+	bh=0vZozkhE7JZLo5OJeXpoE83upBP93297ZDa4MSzYioY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=QqAsPzQYfosQj2O3c+LIo9G2MhZHo+IgFBteFzHENE/j02rRK8wbCwUjyF0vnWdNG
+	 x6DjksuG6a5sz/WdKW48uXCtKkuRXs50TzCIveCnp33QvRwG6Rf9ohp3J6nFERv5BJ
+	 XUL89UUPaAcqgwKu5nEP70C7rmFjJuZpknkVIm7t13lDdaFplj6dOJY4rW3wTWprQH
+	 vZNZn5G2ZNK6H+zB9QUOj98LOPkJgIkZUV1qtoMzt45ZvzOPE5ZqoBUWrz6P10F65u
+	 5Xo4jtan+lD7l7pfKKf7ckcWCME6+vdJs28cm9DEplx3Ip9XH9sxuKlmkuX5OIUvk1
+	 M+Va44y9Am2Mw==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4088517E0865;
+	Thu,  3 Apr 2025 12:14:26 +0200 (CEST)
+Message-ID: <c5eef09f-5344-478b-87ed-05f6d8478dea@collabora.com>
+Date: Thu, 3 Apr 2025 12:14:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] dt-bindings: memory-controllers: Add MediaTek DRAM
+ controller interface
+To: Crystal Guo <crystal.guo@mediatek.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20250403065030.22761-1-crystal.guo@mediatek.com>
+ <20250403065030.22761-2-crystal.guo@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20250403065030.22761-2-crystal.guo@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
-
-Am Donnerstag, 3. April 2025, 11:18:40 MESZ schrieb Daniele Briguglio:
-> From: Daniele Briguglio <daniele.briguglio@icloud.com>
+Il 03/04/25 08:48, Crystal Guo ha scritto:
+> A MediaTek DRAM controller interface to provide the current DDR
+> data rate.
 > 
-> This Patch adds missing Operating Performance Point (OPP) nodes for lower
-> frequencies to the RK3588 device tree. These additions improve power
-> management by enabling the CPU clusters to scale down to lower
-> frequencies when under light loads, which should improve energy
-> efficiency and reduce power consumption.
-> 
-> The changes add OPP nodes for 408MHz, 600MHz, 816MHz, and 1008MHz
-> (for cluster1 and cluster2 only, as cluster0 already had 1008MHz)
-> with appropriate voltage settings across all three CPU clusters in
-> the RK3588 SoC.
+> Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
 
-the general consensus is that you don't save energy when you're not
-reducing the voltage together with the frequency.
-
-For example cluster0 @1GHz runs at 675mV already, so reducing just the
-frequency, when you're not allowed to reduce the voltage with it won't
-save energy, just make things slow.
-
-
-Heiko
-
-> Signed-off-by: Daniele Briguglio <hello@superkali.me>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3588-opp.dtsi | 58 ++++++++++++++++++++
->  1 file changed, 58 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-opp.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-opp.dtsi
-> index 0f1a77697351..1b018823d5d3 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-opp.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-opp.dtsi
-> @@ -5,6 +5,22 @@ cluster0_opp_table: opp-table-cluster0 {
->  		compatible = "operating-points-v2";
->  		opp-shared;
->  
-> +		opp-408000000 {
-> +			opp-hz = /bits/ 64 <408000000>;
-> +			opp-microvolt = <675000 675000 950000>;
-> +			clock-latency-ns = <40000>;
-> +			opp-suspend;
-> +		};
-> +		opp-600000000 {
-> +			opp-hz = /bits/ 64 <600000000>;
-> +			opp-microvolt = <675000 675000 950000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-816000000 {
-> +			opp-hz = /bits/ 64 <816000000>;
-> +			opp-microvolt = <675000 675000 950000>;
-> +			clock-latency-ns = <40000>;
-> +		};
->  		opp-1008000000 {
->  			opp-hz = /bits/ 64 <1008000000>;
->  			opp-microvolt = <675000 675000 950000>;
-> @@ -37,6 +53,27 @@ cluster1_opp_table: opp-table-cluster1 {
->  		compatible = "operating-points-v2";
->  		opp-shared;
->  
-> +		opp-408000000 {
-> +			opp-hz = /bits/ 64 <408000000>;
-> +			opp-microvolt = <675000 675000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +			opp-suspend;
-> +		};
-> +		opp-600000000 {
-> +			opp-hz = /bits/ 64 <600000000>;
-> +			opp-microvolt = <675000 675000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-816000000 {
-> +			opp-hz = /bits/ 64 <816000000>;
-> +			opp-microvolt = <675000 675000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-1008000000 {
-> +			opp-hz = /bits/ 64 <1008000000>;
-> +			opp-microvolt = <675000 675000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
->  		opp-1200000000 {
->  			opp-hz = /bits/ 64 <1200000000>;
->  			opp-microvolt = <675000 675000 1000000>;
-> @@ -78,6 +115,27 @@ cluster2_opp_table: opp-table-cluster2 {
->  		compatible = "operating-points-v2";
->  		opp-shared;
->  
-> +		opp-408000000 {
-> +			opp-hz = /bits/ 64 <408000000>;
-> +			opp-microvolt = <675000 675000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +			opp-suspend;
-> +		};
-> +		opp-600000000 {
-> +			opp-hz = /bits/ 64 <600000000>;
-> +			opp-microvolt = <675000 675000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-816000000 {
-> +			opp-hz = /bits/ 64 <816000000>;
-> +			opp-microvolt = <675000 675000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-1008000000 {
-> +			opp-hz = /bits/ 64 <1008000000>;
-> +			opp-microvolt = <675000 675000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
->  		opp-1200000000 {
->  			opp-hz = /bits/ 64 <1200000000>;
->  			opp-microvolt = <675000 675000 1000000>;
-> 
-
-
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
 
 
