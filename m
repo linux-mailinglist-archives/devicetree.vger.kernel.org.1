@@ -1,149 +1,129 @@
-Return-Path: <devicetree+bounces-162941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162943-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EAA7A7A4C0
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 16:12:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FA7EA7A4D9
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 16:16:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0698188A4AB
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 14:08:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B24363BAFF4
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 14:10:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C58924EF62;
-	Thu,  3 Apr 2025 14:07:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F13922512C3;
+	Thu,  3 Apr 2025 14:09:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o7ZeqP3c"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JSPNUcdG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BA4A24EA87;
-	Thu,  3 Apr 2025 14:07:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85671250C1A;
+	Thu,  3 Apr 2025 14:09:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743689276; cv=none; b=jLGbCYEdEmKR0jwpCDjQ7WFPzY1j3Y65e8A6X/eKt+wP1oA8zdMsfnM9quFJkeyKDlicuN0FY58ZK1D1nZcYqa+BH7g2Kl3n33pw3erMSapBgJCRAh99r+gbXUeJ5bd2WmCjgpzAQmPWDgqls0nV8z0ZUzzLkZJAnPq+eKz5rIU=
+	t=1743689379; cv=none; b=XMNA3dWgIV9MhPPCRAQ3d8c6HzGAfulGdVPoO/KD4TdBkP11pAHedNxqeYUETOzR9jkkFpmclifpcoGHS2hza8x+YLXSS/w4Gpsc8rV9v9HTZTs4mRTyCLCIz5FuulAvujvLy+X+lNdIhxJAi+TUPBvLHN6U0LzJK0aBNqzEd7s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743689276; c=relaxed/simple;
-	bh=3FwSqM9SC+WHZ8dEJUVrk/XcQOpiJyVZ62XDNM38fSY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=n22V0429jM5VB0nMZ38LtDz5Mh/r/niinubhV/EKBdgVB9BJwJKycXA8FlL6tFZDv9X5YCyNfla5eE77n6f52QGUYSAX5gbilbbo+8+YyGfqFuHbnaa2/wOkGZuvc8tjtui8Xwh2PNCTSIHrD38/N7iSlj4mQMlTFbjdKPrv/aU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o7ZeqP3c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 9CE54C4CEE7;
-	Thu,  3 Apr 2025 14:07:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743689275;
-	bh=3FwSqM9SC+WHZ8dEJUVrk/XcQOpiJyVZ62XDNM38fSY=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=o7ZeqP3cBbix2BiVtd6FiQ004WxBFGb4wPJBK/W78NagXkjjtpI6Ey5y1Jha2peOA
-	 RtZ2cAWvUjdwXqnCtAdb/j8OOLiucXtRGmVWlC6/HPKzui0/XduS8cZVQNbiA2kQga
-	 tyRVi+KUN2OGb/RGW3vsyA3HiNRAts/MPYhD6risr4ADnh3DD/KqYC6mgOVuzCMk9w
-	 WDHYs26WKLiHfj713Rdy/StBQTU8YbCtvKor7NuzvRZ7ILkeOlnC5W7/aRdT1NQDZM
-	 B9XWzPAKZ+wvbpbcoUqXMPKT5wYhXKa1SNu7ChlI3M5iLQNo7RqaljvTc1k40UV819
-	 RtCp+qaz9ZwBA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8CE31C369A0;
-	Thu,  3 Apr 2025 14:07:55 +0000 (UTC)
-From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
-Date: Thu, 03 Apr 2025 16:07:49 +0200
-Subject: [PATCH 2/2] usb: misc: onboard_dev: Add Realtek RTL8188 WiFi
- (0bda:0179)
+	s=arc-20240116; t=1743689379; c=relaxed/simple;
+	bh=DZL+IcQ5DVyD5+vgddwK1LITbtPnt58fksxz6Q/slnI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Asg66ESbS57UISTpqMimB8+U1rLxWrTQaC9Tqo5eLMTT66E8AvCcff9K94gEM+xxK4ohoQavQR0IBS8iaDkJU/3At+MBtg4bmVG45DRD6FiwqHk3jWfzpZvceK+p8AJJQQNV+L8xs1yZD6DD7HxKUeXdYofUCkGEseLKG67aYrM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JSPNUcdG; arc=none smtp.client-ip=209.85.216.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-2ff799d99dcso886237a91.1;
+        Thu, 03 Apr 2025 07:09:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1743689378; x=1744294178; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xgLIPOgjO+4Gtz9uWMW47y6AgutNbQcH7sc+seuGtK4=;
+        b=JSPNUcdGx/yM1+qJHK/ikP0T+C2iI2nw/DQ88CXrt9YNm0UnjqAFL8sWIOKmH1KLIX
+         /b0cHP0A3G1uwEK53hjCbMfoy+y93Th88m/wbA6h1c2IuzhuuY/xg6ozSTW7uL2K6eQU
+         U04oJaU67ybzrQlt901AL4kwGX5nLNE+a41Jlcj74Yl2OQzct7FvWJr7K+DaZRkoFPww
+         jrXvLZnpE/8VHxUNRD2XdGf8JVlhKGCXvZpfypNR+Pv3Conumk12EXmAUa0s2Zu41Yn5
+         9GEZaF/ouI7Ue+m89SJ2NYtlfoCHYZPZIU2K0bXYCF0Owi4Si78rrxjOJz1iSaLOLfDY
+         lGUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743689378; x=1744294178;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xgLIPOgjO+4Gtz9uWMW47y6AgutNbQcH7sc+seuGtK4=;
+        b=ZY8GJIc6epWrErDdS003EBW2UR/cIyCKWEsgSkP40jRfqVdZSR8aRQ1lZOW8x0FJNg
+         X6PEgZRRWNZWeWdVP1vkzn/cX1xHROhF16rzsbWY5aP8v7N4LMV1MicCE3ERPqyN7Bys
+         ue3bSc7aKZsg1iT9OnY2LgOEradCjhWfTWnAxzlyRU7CdplJMKbRVuTLq/pwzXFVvHjP
+         U92D/if85gkv8Tkz0l+71PkronaFRSnn0gkMFNqHFW8YKsG6J4T1Yd/qAkiparG2JX0Y
+         nVqPqkqnDB/4j0WNKECxqJUvzV/XBjxmIFOLG3x9ATU7MWKHbsWMyk8wvdgG3yVkfARz
+         rZnQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV0xEEHZ1+5CcBdhFh2WHHbzJTkMMLO94usM+M6obgaDbjnKTpwD5gjDyjt3CYbwSdiLf2fafDs6QlM@vger.kernel.org, AJvYcCVOTIJMP9ALdK/uONqBGmh7glvpqIUnMzbI9XZpbD0Ux7FZ9uRp7QlMfvfx2CJMIw7M+LsUlt8PfTY3@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4rPXHRaKB3pnR3/qJUR+8FYwSqgNGDfHIdoh5D28O25Risdn4
+	N7cTd44yrYOMavgluP13Gilb2jNkUxOIaOxny6S9SFKRPxXwT5OrPpPX1J1/Qeb3IQNc1ZW4XTp
+	ZTonZtLX6jhnjhbh+aqEzyQj9DYiE0gzX5tU=
+X-Gm-Gg: ASbGncuFP61lB9BZlZL1syj3wkVQ44TEWlWtkOVl8BXUkSpyI2pobGZsmW8HG4fm9Bn
+	HTLmJi8Ox+nxO4Dc2K7BkBrfJhw7yJU0qac81OAc0mVvB2OV6alqS5+00Kcc4gjrWYG2ZXjU5fP
+	k8fAbVFf5rrmREM/fPFc1G5p83lzw=
+X-Google-Smtp-Source: AGHT+IFoZpcMywnaS2mRwYVI8L/R3NuCjWvp8MO3Z21H4tZRH0PC83Ij5D25TsgorSXh32lXrVl+/bawT5D6hsIZ2is=
+X-Received: by 2002:a17:90b:1f91:b0:2ff:693a:7590 with SMTP id
+ 98e67ed59e1d1-305321705f1mr35076708a91.33.1743689377600; Thu, 03 Apr 2025
+ 07:09:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250403-rtl-onboard-v1-2-10ca9a6a4ee0@posteo.net>
-References: <20250403-rtl-onboard-v1-0-10ca9a6a4ee0@posteo.net>
-In-Reply-To: <20250403-rtl-onboard-v1-0-10ca9a6a4ee0@posteo.net>
-To: Johannes Berg <johannes@sipsolutions.net>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>, 
- Matthias Kaehlcke <mka@chromium.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jes Sorensen <Jes.Sorensen@gmail.com>, linux-wireless@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-usb@vger.kernel.org, 
- =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1743689273; l=2626;
- i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
- bh=V7FgpkJgVxsLWxgPTEDrQZdT8sqpW6FnLj60Ip+eQq0=;
- b=wWlOO1jh3MgN09JfBP6U4IbG6aiD4LxjJ5jMde05MqWe3qERaOzrKekpVPopAefdy192uA2Pw
- 1f1gE6rDl4ODckwfnZuboH/L561fB6Azh1L+4PvvZIEhWdzT4gebrCv
-X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
- pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
-X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
- auth_id=156
-X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-Reply-To: j.ne@posteo.net
+References: <20250403053225.298308-1-gye976@gmail.com> <20250403053225.298308-4-gye976@gmail.com>
+ <e8167849-57e7-44cf-bf35-5313e54908d5@kernel.org>
+In-Reply-To: <e8167849-57e7-44cf-bf35-5313e54908d5@kernel.org>
+From: gyeyoung <gye976@gmail.com>
+Date: Thu, 3 Apr 2025 23:09:26 +0900
+X-Gm-Features: AQ5f1Jrg13cpPMNX-6s5f6-NeloDH6EGHq33MiXITjzaIAC7XTyjXvKlI2q6BEI
+Message-ID: <CAKbEzntcF9XHg4hitV1WnOcZe2=yVk+W5wghvY1VeHjZeZqymQ@mail.gmail.com>
+Subject: Re: [PATCH v1 3/5] ABI: iio: add new ABI doc for mhz19b
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: jic23@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	lars@metafoo.de, gustavograzs@gmail.com, javier.carrasco.cruz@gmail.com, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: "J. Neuschäfer" <j.ne@posteo.net>
+On Thu, Apr 3, 2025 at 4:51=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.org=
+> wrote:
+>
+> On 03/04/2025 07:32, Gyeyoung Baek wrote:
+> > Add support for winsen MHZ19B CO2 sensor.
+> >
+> > Signed-off-by: Gyeyoung Baek <gye976@gmail.com>
+> > ---
+> >  Documentation/ABI/testing/sysfs-bus-iio-chemical-mhz19b | 7 +++++++
+> >  1 file changed, 7 insertions(+)
+> >  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-chemical-mh=
+z19b
+> >
+> > diff --git a/Documentation/ABI/testing/sysfs-bus-iio-chemical-mhz19b b/=
+Documentation/ABI/testing/sysfs-bus-iio-chemical-mhz19b
+> > new file mode 100644
+> > index 000000000000..6cdfd34be016
+> > --- /dev/null
+> > +++ b/Documentation/ABI/testing/sysfs-bus-iio-chemical-mhz19b
+> > @@ -0,0 +1,7 @@
+> > +What:                /sys/bus/iio/devices/co2_range
+>
+> Incomplete path
+>
+> > +Date:                April 2025
+>
+> Not possible. This will be probably June.
+>
+> > +KernelVersion:       6.14
+>
+> No way you can put ABI into version already released. It's impossible.
+> That's v6.16.
 
-Realtek RTL8188EU 2.4 GHz WiFi modules are found soldered into some
-embedded devices, such as the Fernsehfee 3.0 set-top box.
+sorry, I'll read the kernel doc more carefully.
 
-It requires a 3.3V power supply.
-
-Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
----
-
-checkpatch.pl flags the "usbbda" prefix as undocumented because it isn't
-in vendor-prefixes.yaml. It is, however, an established pattern:
-
-$ git grep -E 'usb[0-9a-f]{1,4},[0-9a-f]{1,4}' | wc -l
-213
----
- drivers/usb/misc/onboard_usb_dev.c | 1 +
- drivers/usb/misc/onboard_usb_dev.h | 8 ++++++++
- 2 files changed, 9 insertions(+)
-
-diff --git a/drivers/usb/misc/onboard_usb_dev.c b/drivers/usb/misc/onboard_usb_dev.c
-index 75ac3c6aa92d0d925bb9488d1e6295548446bf98..2f9e8f8108d8c36403b02f3e66db55757d4808ef 100644
---- a/drivers/usb/misc/onboard_usb_dev.c
-+++ b/drivers/usb/misc/onboard_usb_dev.c
-@@ -584,6 +584,7 @@ static const struct usb_device_id onboard_dev_id_table[] = {
- 	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x5411) }, /* RTS5411 USB 2.1 HUB */
- 	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x0414) }, /* RTS5414 USB 3.2 HUB */
- 	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x5414) }, /* RTS5414 USB 2.1 HUB */
-+	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x0179) }, /* RTL8188ETV 2.4GHz WiFi */
- 	{ USB_DEVICE(VENDOR_ID_TI, 0x8025) }, /* TI USB8020B 3.0 HUB */
- 	{ USB_DEVICE(VENDOR_ID_TI, 0x8027) }, /* TI USB8020B 2.0 HUB */
- 	{ USB_DEVICE(VENDOR_ID_TI, 0x8140) }, /* TI USB8041 3.0 HUB */
-diff --git a/drivers/usb/misc/onboard_usb_dev.h b/drivers/usb/misc/onboard_usb_dev.h
-index 317b3eb99c0255269bb0dbf27b9aa29ef1bc15bd..bee255306d21e1c95d52aaf6aea97518321ea285 100644
---- a/drivers/usb/misc/onboard_usb_dev.h
-+++ b/drivers/usb/misc/onboard_usb_dev.h
-@@ -38,6 +38,13 @@ static const struct onboard_dev_pdata realtek_rts5411_data = {
- 	.is_hub = true,
- };
- 
-+static const struct onboard_dev_pdata realtek_rtl8188_data = {
-+	.reset_us = 0,
-+	.num_supplies = 1,
-+	.supply_names = { "vdd" },
-+	.is_hub = false,
-+};
-+
- static const struct onboard_dev_pdata ti_tusb8020b_data = {
- 	.reset_us = 3000,
- 	.num_supplies = 1,
-@@ -111,6 +118,7 @@ static const struct of_device_id onboard_dev_match[] = {
- 	{ .compatible = "usb5e3,610", .data = &genesys_gl852g_data, },
- 	{ .compatible = "usb5e3,620", .data = &genesys_gl852g_data, },
- 	{ .compatible = "usb5e3,626", .data = &genesys_gl852g_data, },
-+	{ .compatible = "usbbda,179", .data = &realtek_rtl8188_data, },
- 	{ .compatible = "usbbda,411", .data = &realtek_rts5411_data, },
- 	{ .compatible = "usbbda,5411", .data = &realtek_rts5411_data, },
- 	{ .compatible = "usbbda,414", .data = &realtek_rts5411_data, },
-
--- 
-2.48.0.rc1.219.gb6b6757d772
-
-
+Thanks,
+Gyeyoung
 
