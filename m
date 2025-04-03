@@ -1,132 +1,133 @@
-Return-Path: <devicetree+bounces-162950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 634FDA7A52E
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 16:33:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6607EA7A532
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 16:34:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D7156188501C
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 14:28:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A1353ADB94
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 14:29:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1489324EA95;
-	Thu,  3 Apr 2025 14:28:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41F9124EA9D;
+	Thu,  3 Apr 2025 14:29:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oNFF2cAx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kOQ1ccF6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD95B2E3386;
-	Thu,  3 Apr 2025 14:28:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10FFA24BCF9;
+	Thu,  3 Apr 2025 14:29:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743690511; cv=none; b=BfZ/2Klpb0HjQ2iupDIfOyMuHroSZX9RKlHKmAOZJgars1KHnFknu4LGae4JuoGS1jRysnCfNx9k8wk+ffVWEI0c/V0pe2+p0fRLCrgui5QSWSY+pZDLvsSScVBSQzubKya4cyL2q1772BoqaYB2lM/Axy0BQinieKeFH4nDXb4=
+	t=1743690570; cv=none; b=dfD+N/R0gkdgonD22FRK5t2L1x7KNAWckDxgE38axoD/jyLWonfDns+9gdT1hRParji9F5Z0LIaDH+rEfzzcoRmytt67XJii6AcnKiH6VQ52uqypkAHBtqB66ssN9y2d+u1dnpCyLPYf48pUMElDn4OAwj7mbE0I+huxFufL96M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743690511; c=relaxed/simple;
-	bh=cP8U6QlT9aoHGo7YW+Czwc+hS7heocXS+LN0qn9Almk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K8052GbADB9MumdIQhE36l9iEwDipEqkeVF5t1Wqp6c+7H4DTQk9GuV8kVcwwduPjdQr4IBdBYjYhK8+MagtCE6Y8Ym/dYJ9A79t41yNjfte1lQ+5FGURAYboeBWaqQm+h7Em0L0sZ0dY6+ToQ0KFuMpYpXaE2M2q13efbeY+D8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oNFF2cAx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F177AC4CEE3;
-	Thu,  3 Apr 2025 14:28:24 +0000 (UTC)
+	s=arc-20240116; t=1743690570; c=relaxed/simple;
+	bh=vTwMHvOovCZ//ixEtEQTfu+/vKY6ddXQrx23wvtkghE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LZPRl5dTu5LdiAfwsCOZEkhDoCo29KqveVLvrLbn8UYf1irN8M0qHq8ce9QJPRZBb0CwuEgqbznK+r+pVf2hmk81N3Zy0PlR6VeGySW/9aJNKksP5cBekbgKp2i1KC5DNmh3NWnReY+yusT5V2zc4e/DJA8KzqpdEuejTGbO8MY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kOQ1ccF6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBC00C4CEE3;
+	Thu,  3 Apr 2025 14:29:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743690510;
-	bh=cP8U6QlT9aoHGo7YW+Czwc+hS7heocXS+LN0qn9Almk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oNFF2cAx1hFB2QH8o1WYW0OIlfDB+zm9fjqRysTDIRTRnGxLCWMToPh5mTp1K7AAn
-	 a0I+IGUgOigHMA4Ng6ZsexUyyB04HMTRW2zNjxr4RrtyGUBwo1L19ZCRgPW0oyuGfn
-	 VGMXL5LFu5903YgBvCZiTm8u5GjcJN3Eq9tBFb8FZnaJIeR9Jb3Ae+JCaxSslWr21+
-	 bIA64eOvyzoi+YiqlZm96B6MMiUVadtOSv5TyJW8+ohSV8PWkS56ykQmeDcmU0/Lt5
-	 ROHw7GczbNKKKESHyOReFDTOiJQcbqXZQoOVzMR4fnhMou0dCkqlV9l1TbfHribl1b
-	 9OKUiQUF3KLhw==
-Message-ID: <4dbdea1f-dc22-4c66-b253-c3fd625edc67@kernel.org>
-Date: Thu, 3 Apr 2025 16:28:22 +0200
+	s=k20201202; t=1743690569;
+	bh=vTwMHvOovCZ//ixEtEQTfu+/vKY6ddXQrx23wvtkghE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kOQ1ccF6zAtk8+uAHm9om+QfLiOLo9bCr0YBI2sXEyUyIcyvqTmExgKoOqnQV/KUI
+	 eyreS9A/pfL9+mUwDDaiAZ4quM6uauMhkL7z4oaroHhj89n0SQXXVdYPGsoCzzCpq5
+	 ioLOYzq9gN1o2dk6t3C5jUoATUvgHDvoB5Hdd0F3I967pAa/xusNl81EyLMOQ+egIO
+	 tYJX8ti9MUocytEeYn4L9YN6x/+R5ci8eRphHI678wg+kGCNe+0pIzpKUoNxt9kA+G
+	 FAwMRDfZJp6q8LnTZlflN0rT6YJdUKbYTW9xFrga1gI6vipGNs1Ipf0SeNWFAl/BEl
+	 fFd1X+gf0J0ag==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1u0LZW-0000000069e-2E6c;
+	Thu, 03 Apr 2025 16:29:35 +0200
+Date: Thu, 3 Apr 2025 16:29:34 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: peda@axentia.se, broonie@kernel.org, andersson@kernel.org,
+	krzk+dt@kernel.org, ivprusov@salutedevices.com,
+	luca.ceresoli@bootlin.com, zhoubinbin@loongson.cn,
+	paulha@opensource.cirrus.com, lgirdwood@gmail.com, robh@kernel.org,
+	conor+dt@kernel.org, konradybcio@kernel.org, perex@perex.cz,
+	tiwai@suse.com, dmitry.baryshkov@oss.qualcomm.com,
+	linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	johan+linaro@kernel.org,
+	Christopher Obbard <christopher.obbard@linaro.org>
+Subject: Re: [PATCH v6 5/6] ASoC: codecs: wcd938x: add mux control support
+ for hp audio mux
+Message-ID: <Z-6bTj097a1LVn3X@hovoldconsulting.com>
+References: <20250327100633.11530-1-srinivas.kandagatla@linaro.org>
+ <20250327100633.11530-6-srinivas.kandagatla@linaro.org>
+ <Z-z_ZAyVBK5ui50k@hovoldconsulting.com>
+ <8613cf45-d202-4577-868c-8caf771c7bc4@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: st7571-i2c: Add Sitronix ST7571 panel
- bindings
-To: Marcus Folkesson <marcus.folkesson@gmail.com>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250402-st7571-v1-0-351d6b9eeb4a@gmail.com>
- <20250402-st7571-v1-1-351d6b9eeb4a@gmail.com>
- <20250402-rare-slick-carp-dbcab9@krzk-bin> <Z-5jhrwTfu4WMk5n@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <Z-5jhrwTfu4WMk5n@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8613cf45-d202-4577-868c-8caf771c7bc4@linaro.org>
 
-On 03/04/2025 12:31, Marcus Folkesson wrote:
->>> +    i2c {
->>> +        #address-cells = <1>;
->>> +        #size-cells = <0>;
->>> +
->>> +        display@3f {
->>
->> Look how this is called in other bindings... The binding and example are
->> not following existing code. Why? Why doing something entirely
->> different?
+On Thu, Apr 03, 2025 at 01:19:57PM +0100, Srinivas Kandagatla wrote:
+> On 02/04/2025 10:12, Johan Hovold wrote:
+> > On Thu, Mar 27, 2025 at 10:06:32AM +0000, Srinivas Kandagatla wrote:
+> >> From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> >>
+> >> On some platforms to minimise pop and click during switching between
+> >> CTIA and OMTP headset an additional HiFi mux is used. Most common
+> >> case is that this switch is switched on by default, but on some
+> >> platforms this needs a regulator enable.
+> >>
+> >> move to using mux control to enable both regulator and handle gpios,
+> >> deprecate the usage of gpio.
+> >>
+> >> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> >> Tested-by: Christopher Obbard <christopher.obbard@linaro.org>
+> > 
+> >> @@ -3261,11 +3276,26 @@ static int wcd938x_populate_dt_data(struct wcd938x_priv *wcd938x, struct device
+> >>   		return dev_err_probe(dev, wcd938x->reset_gpio,
+> >>   				     "Failed to get reset gpio\n");
+> >>   
+> >> -	wcd938x->us_euro_gpio = devm_gpiod_get_optional(dev, "us-euro",
+> >> -						GPIOD_OUT_LOW);
+> >> -	if (IS_ERR(wcd938x->us_euro_gpio))
+> >> -		return dev_err_probe(dev, PTR_ERR(wcd938x->us_euro_gpio),
+> >> -				     "us-euro swap Control GPIO not found\n");
+> >> +	wcd938x->us_euro_mux = devm_mux_control_get(dev, NULL);
+
+> > Running with this patch on the CRD I noticed that this now prints an
+> > error as there is no optional mux (or gpio) defined:
+> > 
+> > 	wcd938x_codec audio-codec: /audio-codec: failed to get mux-control (0)
 > 
-> Sorry, I'm not sure what you mean here.
-You added code entirely different than existing code. Why doing
-something entirely different? Open any other panel and look how it is
-called.
+> This is not from codec driver, mux control is throwing up this.
 
-Best regards,
-Krzysztof
+Yeah, the error is printed by the mux code, but it's this codec change
+that starts triggering it.
+
+> > You need to suppress that error in mux_get() to allow for optional muxes
+> > to be looked up like this.
+
+> I have a plan for this,
+> 
+> I proposed some changes to mux api for exclusive apis at 
+> https://lkml.org/lkml/2025/3/26/955
+> 
+> This should also allow us to easily add an optional api, which I plan to 
+> do once i get some feedback on this patch.
+
+It may just be as simple as demoting that dev_err() in mux_get() to
+dev_dbg() and possibly make sure any callers log errors themselves.
+
+A quick grep shows there are only 12 users or so and most of them
+already seem to be logging mux lookup errors.
+
+Johan
 
