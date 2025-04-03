@@ -1,161 +1,80 @@
-Return-Path: <devicetree+bounces-162886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DD10A7A130
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 12:41:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 803F4A7A139
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 12:43:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E36AA7A5A38
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 10:40:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F7C116DDF3
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 10:43:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A38924A054;
-	Thu,  3 Apr 2025 10:41:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A54124A074;
+	Thu,  3 Apr 2025 10:43:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ckurg04x"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="J8DfOQ1G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BF29248862;
-	Thu,  3 Apr 2025 10:41:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 897E11F4CBA;
+	Thu,  3 Apr 2025 10:43:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743676899; cv=none; b=uH/Qey2ENYkYDTch1ohVUyEr5zl1RhfeI0VzVdxtAIoVm0C7DV3qSKmuvAMfwv2r4k6MSapkTxAoSEudLur0cT5W9VPKXlTrcZ3iVqjxoevmgJbbSNqirw6wiSE10guB+pv36ewb2Xot2WZSbbUZzZQK8Qt0Dzbze+poqFrn0cU=
+	t=1743677003; cv=none; b=rd+YoThzhzvB2OkCKnjQPLDts+OSO6VArFlQl6om9wGWcuOICkplTASj30qrv4b3uLxtYXKtMAmwdG/F82RPZ9oCfFphghFGAXxpcCit8EfNJPOeXuWK826ZAcSskydBdixQD9AdysHnrUxZuzcqRPt5N0BkdVlu0FseihJbqhQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743676899; c=relaxed/simple;
-	bh=ARN7XYpJRXpPUgyngwnAGIRk8k4S5YsMIgbo9WqpgfQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QYYG87jfda7GfuyZ9Pta10U0cooexfWLqTWzS/oprSxgBvCJCbbWqWnKpP/eicuX4BbeZBeT45qrQj/O0wSxyLo4kOrn/kEkBF/veXvDHUci7VRi/+Ig+gvVpaoZXwIvwnfQMoaEU0xf/PFc61uRWBn2LVL4PUX8hH9SvvWkOr0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ckurg04x; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E034C4CEE3;
-	Thu,  3 Apr 2025 10:41:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743676898;
-	bh=ARN7XYpJRXpPUgyngwnAGIRk8k4S5YsMIgbo9WqpgfQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ckurg04xFgrLpfddbO8QPSoQYfrfzaJcxIUOBontZFAP6RGupO0YJBUx/d+JJcEIy
-	 tc1l9Ppp0XmyNnrrbWoGS4+zpsZM95IPZRptSZjHfA+NGCH75ugxh7WWn5DJg/8udh
-	 TcOL/6vLc0NAWHobSEHkDRMNSQJphTrR0eZ41R2SCeP7kBmItxK4YkWb0fmNFfOqV3
-	 ugcOyTVT3RwbUeW9O//xcOz0bpP4He1DxlKFJcR6raDepdmpOfhPjcQSUJoQV/oqEA
-	 UEa9zCfszRIHTu693zOmLW70OVnVQiwLHCg24OXDb8C9zG80R+3Q0NWpYbGzeMR/wp
-	 wVAONWe4keXmw==
-Date: Thu, 3 Apr 2025 12:41:35 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Purva Yeshi <purvayeshi550@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, vz@mleia.com, 
-	piotr.wojtaszczyk@timesys.com, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: pwm: Convert lpc32xx-pwm.txt to YAML
-Message-ID: <76ovkshf4dr6egh72uiigsugdqsin6zwy3skksldhhh2goer6x@gsp3qkhqdtev>
-References: <20250312122750.6391-1-purvayeshi550@gmail.com>
+	s=arc-20240116; t=1743677003; c=relaxed/simple;
+	bh=p93/h1wDmzIvQYMtd1e2S0tusiJpTbOHIT+ut/erzaQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=oXtJvTk8OmlmIXoPC0z9OK6XFZmZt/LuMJVSukvQ0JbzoZ5/bu2HjW5QOG238ZiTcOKpJJ5m2IUrHSpaf0gycbk5Ke9kZAYXGInAZ3PDqdNZbRYs0UOtY+n5Fl6vXAapu1Vde2DjSpuK6kFDxh2Md0ihPxd5DyM5RXb3r26x+xg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=J8DfOQ1G; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1743676994;
+	bh=HeWpKwZIi1vJa4eCTpI3g5nUVCNkZ//qHa1e+CfjGGA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=J8DfOQ1Gey4ELVU27V1LwNyUkoHTiTW8nJQYLJYSnEKVmU3RKR6ITBla/PcVZeldG
+	 GZybylMvPp/8K0u0nO0DVimdA2DgevRs0aL15fV5d6llQ/pUCV+xhIaO3H/O+v6x5P
+	 tyrBkXZibqvI5IVxQpz5qHd7IxGImQi4k54wL5olvw6aGYZzaWwhnDodgH2ULjjbR1
+	 S/jEMUSotjGOa2JD2GNZ3CVuFIj+eBMaZ9/JqOkC6iC6GBWxysUM9iq2s/SGRm2iBV
+	 dMcZ5Rkckea1Ul0D+d0Kooz0+Dr2eby9skO/9CSwimN0PEmV+RIRmgF/H/E/OJg8vY
+	 w9l5zCXavbqPA==
+Received: from [127.0.1.1] (unknown [180.150.112.225])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id A3BE27B352;
+	Thu,  3 Apr 2025 18:43:13 +0800 (AWST)
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Tomer Maimon <tmaimon77@gmail.com>, Rob Herring <robh@kernel.org>, 
+ "William A. Kennington III" <william@wkennington.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ openbmc@lists.ozlabs.org
+In-Reply-To: <20250401231001.3202669-1-william@wkennington.com>
+References: <20250401231001.3202669-1-william@wkennington.com>
+Subject: Re: [PATCH v2] ARM: dts nuvoton: Add EDAC node
+Message-Id: <174367699833.3146674.17448098889682060142.b4-ty@codeconstruct.com.au>
+Date: Thu, 03 Apr 2025 21:13:18 +1030
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="eprp56w3poiehbc2"
-Content-Disposition: inline
-In-Reply-To: <20250312122750.6391-1-purvayeshi550@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
+On Tue, 01 Apr 2025 16:10:01 -0700, William A. Kennington III wrote:
+> We have the driver support code, now we just need to expose the device
+> node which can export the EDAC properties for the system memory
+> controller. Tested on real hardware to verify that error counters show
+> up.
+> 
+> 
 
---eprp56w3poiehbc2
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2] dt-bindings: pwm: Convert lpc32xx-pwm.txt to YAML
-MIME-Version: 1.0
+Thanks, I've applied this to be picked up through the BMC tree.
 
-Hello,
+--
+Andrew Jeffery <andrew@codeconstruct.com.au>
 
-On Wed, Mar 12, 2025 at 05:57:50PM +0530, Purva Yeshi wrote:
-> Convert the existing `lpc32xx-pwm.txt` bindings documentation into a
-> YAML schema (`nxp,lpc3220-pwm.yaml`).
->=20
-> Set `"#pwm-cells"` to `const: 3` for expected PWM cell properties.
->=20
-> Signed-off-by: Purva Yeshi <purvayeshi550@gmail.com>
-
-I suggest the following commit log:
-
-    dt-bindings: pwm: Convert lpc32xx-pwm.txt to yaml format
-
-    Convert the existing plain text binding documentation for
-    nxp,lpc3220-pwm devices to a YAML schema.
-
-    The value #pwm-cells wasn't specified before, set it to 3 to match the
-    usual value for PWMs.
-
-> diff --git a/Documentation/devicetree/bindings/pwm/nxp,lpc3220-pwm.yaml b=
-/Documentation/devicetree/bindings/pwm/nxp,lpc3220-pwm.yaml
-> new file mode 100644
-> index 000000000..432a5e9d4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/nxp,lpc3220-pwm.yaml
-> @@ -0,0 +1,38 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/nxp,lpc3220-pwm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: LPC32XX PWM controller
-> +
-> +maintainers:
-> +  - Vladimir Zapolskiy <vz@mleia.com>
-> +  - Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
-> +
-> +allOf:
-> +  - $ref: pwm.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: nxp,lpc3220-pwm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#pwm-cells":
-> +    const: 3
-
-The PWMs defined in arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi also have a
-clocks property and in the driver it's not optional. Can you please add
-it (here, in the list of required properties and the commit log)?
-
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    pwm@4005c000 {
-> +        compatible =3D "nxp,lpc3220-pwm";
-> +        reg =3D <0x4005c000 0x4>;
-> +        #pwm-cells =3D <3>;
-> +    };
-
-Best regards
-Uwe
-
---eprp56w3poiehbc2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmfuZd0ACgkQj4D7WH0S
-/k6jEwgAuuRJwfaakekR1Dqz//WqYnO+LEZGbZQSLnf9kWKg3A6eJQvWxfblNhGK
-BrrDx9siqqccakNGayyBWd9dQG4NVgIUeoB+QtdYwzvhVaAnyVN4Nr5b4Wda/Go4
-d7vsQMK5ge8KwAghxML75LcllDxXs0aDeiexAmKJmEa2folRYG5O2FfAGp/AhzBi
-s39SvbuaWbdLkd7d5NzKStU2BoxUMTu/dk9stu1QIK12150syUUPLpJtyeXWP8tk
-Hmss1Y5ayRyVpgwN8rHHM6N8UOZHmFdf0EahDHesj5gcPrfSH1jTUzds8VlhCjSv
-ECAEuNX2TFAi+9eqc7/tUoPSFkgO1w==
-=0WCU
------END PGP SIGNATURE-----
-
---eprp56w3poiehbc2--
 
