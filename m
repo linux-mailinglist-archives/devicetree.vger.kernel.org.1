@@ -1,268 +1,181 @@
-Return-Path: <devicetree+bounces-162926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F10A1A7A35A
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 15:07:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08BB0A7A387
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 15:19:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E3D0E3AC078
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 13:06:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 052E7170015
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 13:19:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D67FD24E004;
-	Thu,  3 Apr 2025 13:07:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBEF324CEFD;
+	Thu,  3 Apr 2025 13:19:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CpE0lx1T"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="UWKiZ8co"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF99A25776;
-	Thu,  3 Apr 2025 13:06:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C6B9D529
+	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 13:19:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743685620; cv=none; b=nTvn51XHHliebhrVbm8H66IMPpAQyv4hAD+3xTbks+RuoVpL8MBAM+qNlxHJLALXXGO+45VYHLJZwpgCx1CdlQqgM6HOMJ/weZih6BjfiKbSMISHO8YrXT1mNz9jDiYQBztAoIDSRIoNzNWPrJoU8jRotphDCqFk/7Gxa2Ot/Bw=
+	t=1743686358; cv=none; b=C+XJQem1ZVd91NGDd/J7DwCH48MLGtAdiysJSQk8tEAxgWrlt+GTUSosIDPObItNb5RuKnC2WI+7rYfkRkryhocvfgR/QjbEeppENn0LcqOKMA6JI0HeWxCWmhbrR1nDNoL0HCFR0oXJ7lFfVhqMkNtwG2Kz0L4gMmxfbenrb+M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743685620; c=relaxed/simple;
-	bh=ccgaxAtOrxadionPRcF5eo1R9WdRgpYc66EzmqUNUuI=;
+	s=arc-20240116; t=1743686358; c=relaxed/simple;
+	bh=pBM+7JgyDGu4YR8uQCe5TEb+w7KOevzi9OMdtAtdnHc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f1XsKGy7pfI+jCVcGS74RcRA0MDpxBF7CDracVHdAszz6Wo0io/Y6cQ1O2In0QNFpljssb75koLBi6mUTATLF+3V4AJyaqapWZtHks0arhbkmCNlSnPVRIpJl+cWPf+LGuYvRGKmROUpwKOI/7DscYa16/sGjKi3OdAU+9LcW6I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=CpE0lx1T; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1743685619; x=1775221619;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=ccgaxAtOrxadionPRcF5eo1R9WdRgpYc66EzmqUNUuI=;
-  b=CpE0lx1T7DqWDbv2CEoMIRM2h3La55nTF+als1ZGEV9IkKIC/QurhEUb
-   5juEGTfv9Fz6eGT4iqGU1pLjaSpiyH9ZUeoElYo5ee9aZ6ir+qh18f9Tv
-   G6yDqkiLcTFbjvjnz8K6FTCeAIrmooYGM+ZztFXEcHHgWEP6uf1LlIo4F
-   18k1VzkatvOctkzKex8awLf4XBxIytKkcY0Q8os8NHyXMeRlrKl4HD18T
-   ifw7yN153ZNshnkutNs2idG28fshfzKruC8CWPAC4ipOFp38VRpdEbrG7
-   j1F/Bb1C1VaIiuS90D1CG/6h8gnQg8ZJwW2WgTXqY8VnOsRuK1iyqB0D6
-   A==;
-X-CSE-ConnectionGUID: vEfaGbn2T4e+uNbu4GDFdw==
-X-CSE-MsgGUID: R/OwmgkkSpK6mu6ZtoSGJA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11393"; a="55721166"
-X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; 
-   d="scan'208";a="55721166"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Apr 2025 06:06:58 -0700
-X-CSE-ConnectionGUID: Rxx7D3UoQfSn85lxnAUMtA==
-X-CSE-MsgGUID: +WtkS6jMQz2sJVOQm9eQVA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; 
-   d="scan'208";a="126910156"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Apr 2025 06:06:54 -0700
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with ESMTP id ACF1511F964;
-	Thu,  3 Apr 2025 16:06:50 +0300 (EEST)
-Date: Thu, 3 Apr 2025 13:06:50 +0000
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Hans de Goede <hdegoede@redhat.com>
-Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bryan O'Donoghue <bod@kernel.org>, Hans de Goede <hansg@kernel.org>,
-	Jingjing Xiong <jingjing.xiong@intel.com>,
-	Hao Yao <hao.yao@intel.com>, Jim Lai <jim.lai@intel.com>,
-	You-Sheng Yang <vicamo.yang@canonical.com>,
-	Alan Stern <stern@rowland.harvard.edu>,
-	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] media: i2c: ov02e10: add OV02E10 image sensor
- driver
-Message-ID: <Z-6H6r0FIAbRtxwQ@kekkonen.localdomain>
-References: <20250325-b4-media-comitters-next-25-03-13-ov02e10-v2-0-4d933ac8cff6@linaro.org>
- <20250325-b4-media-comitters-next-25-03-13-ov02e10-v2-2-4d933ac8cff6@linaro.org>
- <Z-UAFkshOgeytfB4@kekkonen.localdomain>
- <47dd7daa-cce4-4ad0-ab57-4c76304b0aa6@linaro.org>
- <5fd2253f-0acb-4c95-b3bb-e7e065c92dd5@redhat.com>
- <Z-u09dfEYfjqKhDQ@kekkonen.localdomain>
- <6cf8d6db-c24e-461b-bd7d-a3dad25e4945@redhat.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=VoOJ+qQ1uZivD39rFOr+pqqfLddLNIaa3DDHc4Tpwlr4CgHzkvI8p3e5RB4ncgBDNZMgJWYu4hCYS5QO8bpcuL3a7mF4GY4OzlnFsrGGlSX+P1Z0FFC519NS9b9xUmgkQYW+XuzU3O6rVTvVmKMUAH0LekZNZ4ajV93/vsgYoWM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=UWKiZ8co; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1743686355;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=BOrAtcAueaZ6B6FDQZAZjfu8K5muW00T7yncBSAZv20=;
+	b=UWKiZ8co2Q4qYKGYEuy7T0iUJZIT2DYPe3crKWXhbq0KNu6ybGO6qWGOBqaV/BwmceA00k
+	CNmZf9FVzhy/FuVS0ooNjPpcB9iYPfV/0CdmQrqKCWKYg8OFj1nttt18IXOM42+76CSQBD
+	aG3ptvk4oVfCUCI5hvO3E0scx99x9pY=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-492-ELF8bRKCNv2GX7Z3LHAT9g-1; Thu, 03 Apr 2025 09:19:14 -0400
+X-MC-Unique: ELF8bRKCNv2GX7Z3LHAT9g-1
+X-Mimecast-MFC-AGG-ID: ELF8bRKCNv2GX7Z3LHAT9g_1743686354
+Received: by mail-wm1-f71.google.com with SMTP id 5b1f17b1804b1-43cf446681cso5961525e9.1
+        for <devicetree@vger.kernel.org>; Thu, 03 Apr 2025 06:19:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743686353; x=1744291153;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BOrAtcAueaZ6B6FDQZAZjfu8K5muW00T7yncBSAZv20=;
+        b=XvKa0LPtCGMswGJoQquJ8U6CAyhL2almoyXRhFoC3VXQveaeveqOHqn0VhWeXvUzhJ
+         HRExop6A1qQzc9SnG+oKT4UMiSfeiED1yfEFL8c/GT14MasLskxqBODwmKNI8MgDZqD8
+         Yfv8KsJIbglYFS48KJAwpX9rXQHBVhUguwQOGj7XB1Jk0FA3djSUXNZA4SPXEQuwYfZb
+         NghJEKJIgmtMfYKOCUohodJxg0DbfXm3RM3MJM0eXDbDoUtr5b15z8wope5c4mOzp7my
+         vBRJ+L09eK/HUBHpJkMBaHLpEXov8Vs3yuSWzhlQwnvp7080xVYY8uW1z6N4MOehcITO
+         rmKA==
+X-Forwarded-Encrypted: i=1; AJvYcCVLsY9IZac8JggUtlrFyI6syN8Me68hy5eIrvKFVotgGL8M8nY1AW2AKQuHUPAaGjoKRXfqXjHd8S6z@vger.kernel.org
+X-Gm-Message-State: AOJu0YwY3XauDp7LGVuvvR8IW4B6VkKYxci/Y2stuLjmfO32np+/2xaz
+	iNia/40L531nuURK84NYdeBTH8eLQggDQQQf6cAv2adckun+Lmlg6E9EpYpGln/oYDnc827Kyo7
+	iltmKtCA2DBrM2YFl6NqAvuAR8mINkmwdHHv8GkJ/dUsop5U4n/yv6XQFUC8=
+X-Gm-Gg: ASbGnctaOzS4za3Zt/TvSi1zCHgTfWaDr3c3JfOumfoKYyvVEdWygkdNrNwDUNo62xL
+	RvKypp2xBKY+YGU6sLemXX8pQ9Jr15BmwkaNkS1wkZs+Zln3Gnit3zIS5zJH/aHkFTyQGDeE4Xv
+	vE99AIm0KzZF/baOgN3G6dSFbtKp3tT4vPlPZRxAFO5YJorSE3mY3qRK/WeCbzjkw56IwGIXJ9V
+	yhGAw8ESQ4gHwGnjViS7kdFDtCctGn/d9fH8CRYg7w6oA1EccxuidcJnBgNvm0ARZdedJD/YmqU
+	kWQ1gpxBBQ==
+X-Received: by 2002:a05:600c:1e23:b0:434:fa55:eb56 with SMTP id 5b1f17b1804b1-43db61cebecmr203918745e9.7.1743686353433;
+        Thu, 03 Apr 2025 06:19:13 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFOQLbOwbt2ShKubtPKsLg6pCCONvIrC6z6dAjAq2IICAmhZBxQVjYeR7rxMt8jt3FmipcKTQ==
+X-Received: by 2002:a05:600c:1e23:b0:434:fa55:eb56 with SMTP id 5b1f17b1804b1-43db61cebecmr203918435e9.7.1743686353075;
+        Thu, 03 Apr 2025 06:19:13 -0700 (PDT)
+Received: from redhat.com ([2a0d:6fc0:1517:1000:ea83:8e5f:3302:3575])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43ec16f1a73sm21744465e9.24.2025.04.03.06.19.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Apr 2025 06:19:12 -0700 (PDT)
+Date: Thu, 3 Apr 2025 09:19:09 -0400
+From: "Michael S. Tsirkin" <mst@redhat.com>
+To: David Woodhouse <dwmw2@infradead.org>
+Cc: Zhu Lingshan <lingshan.zhu@amd.com>, virtio-comment@lists.linux.dev,
+	hch@infradead.org, Claire Chang <tientzu@chromium.org>,
+	linux-devicetree <devicetree@vger.kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	=?iso-8859-1?Q?J=F6rg?= Roedel <joro@8bytes.org>,
+	iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+	graf@amazon.de
+Subject: Re: [RFC PATCH 1/3] content: Add VIRTIO_F_SWIOTLB to negotiate use
+ of SWIOTLB bounce buffers
+Message-ID: <20250403091001-mutt-send-email-mst@kernel.org>
+References: <20250402112410.2086892-1-dwmw2@infradead.org>
+ <20250402112410.2086892-2-dwmw2@infradead.org>
+ <1966cbf1-a430-480e-a78d-3d6bbcb4ada4@amd.com>
+ <20250403033230-mutt-send-email-mst@kernel.org>
+ <59be937432fe73b5781ecb04aad501ae5a11be23.camel@infradead.org>
+ <20250403040643-mutt-send-email-mst@kernel.org>
+ <0261dfd09a5c548c1a0f56c89c7302e9701b630d.camel@infradead.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <6cf8d6db-c24e-461b-bd7d-a3dad25e4945@redhat.com>
+In-Reply-To: <0261dfd09a5c548c1a0f56c89c7302e9701b630d.camel@infradead.org>
 
-Hi Hans,
-
-On Tue, Apr 01, 2025 at 03:34:39PM +0200, Hans de Goede wrote:
-> Hi Sakari,
-> 
-> On 1-Apr-25 11:42 AM, Sakari Ailus wrote:
-> > Hi Hans, Bryan,
+On Thu, Apr 03, 2025 at 09:22:57AM +0100, David Woodhouse wrote:
+> On Thu, 2025-04-03 at 04:13 -0400, Michael S. Tsirkin wrote:
+> > On Thu, Apr 03, 2025 at 08:54:45AM +0100, David Woodhouse wrote:
+> > > On Thu, 2025-04-03 at 03:34 -0400, Michael S. Tsirkin wrote:
+> > > > 
+> > > > Indeed I personally do not exactly get why implement a virtual system
+> > > > without an IOMMU when virtio-iommu is available.
+> > > > 
+> > > > I have a feeling it's about lack of windows drivers for virtio-iommu
+> > > > at this point.
+> > > 
+> > > And a pKVM (etc.) implementation of virtio-iommu which would allow the
+> > > *trusted* part of the hypervisor to know which guest memory should be
+> > > shared with the VMM implementing the virtio device models?
 > > 
-> > On Tue, Apr 01, 2025 at 10:12:35AM +0200, Hans de Goede wrote:
-> >> Hi Bryan, Sakari,
-> >>
-> >> On 1-Apr-25 2:34 AM, Bryan O'Donoghue wrote:
-> >>> On 27/03/2025 07:36, Sakari Ailus wrote:
-> >>>>> +static u64 to_pixel_rate(u32 f_index)
-> >>>>> +{
-> >>>>> +    u64 pixel_rate = link_freq_menu_items[f_index] * 2 * OV02E10_DATA_LANES;
-> >>>>> +
-> >>>>> +    do_div(pixel_rate, OV02E10_RGB_DEPTH);
-> >>>> The pixel rate control is for the pixel rate on the pixel array, not on the
-> >>>> CSI-2 interface. Without binning or sub-sampling these may the same still,
-> >>>> but this only works in special cases really.
-> >>>
-> >>> Hmm computer says no, I don't think I have understood this comment..
-> >>>
-> >>> Looking at other drivers, I'd say the above pattern is pretty common - taking ov8856 as an example that's pretty much equivalent logic to the above, ov08x40 does something similar.
-> >>>
-> >>> =>
-> >>>
-> >>> pixel_rate == link_freq * 2 * #oflanes / RGB_DEPTH
-> >>>            => 360MHz * 2 * 2 / 10
-> >>>            => 360000000 * 2 * 2 / 10
-> >>>            => 144000000
-> >>>
-> >>> If I'm understanding you though you mean the pixel rate for the control V4L2_CID_PIXEL_RATE expressed here should be the resolution * the FPS / bits_per_pixel
-> >>
-> >> I have to agree with Bryan here that the pixelrate typically is const
-> >> and directly derived from the link-frequency. Even the
-> >> __v4l2_get_link_freq_ctrl() helper from drivers/media/v4l2-core/v4l2-common.c
-> >> assumes this.
+> > Is there a blocker here?
+> 
+> Only the amount of complexity in what should be a minimal Trusted
+> Compute Base. (And ideally subject to formal methods of proving its
+> correctness too.)
+
+Shrug. Does not have to be complex. Could be a "simple mode" for
+virtio-iommu where it just accepts one buffer. No?
+
+> And frankly, if we were going to accept a virtio-iommu in the TCB why
+> not just implement enough virtqueue knowledge to build something where
+> the trusted part just snoops on the *actual* e.g. virtio-net device to
+> know which buffers the VMM was *invited* to access, and facilitate
+> that?
+
+Because it's awful? Buffers are a datapath thing. Stay away from there.
+
+> We looked at doing that. It's awful.
+
+Indeed.
+
+> > > You'd also end up in a situation where you have a virtio-iommu for some
+> > > devices, and a real two-stage IOMMU (e.g. SMMU or AMD's vIOMMU) for
+> > > other devices. Are guest operating systems going to cope well with
+> > > that?
 > > 
-> > That is there to support old drivers that don't use the LINK_FREQ control.
-> > All new ones do.
+> > They should. In particular because systems with multiple IOMMUs already
+> > exist.
 > > 
-> >>
-> >> binning / subsampling does not change anything wrt the pixelrate it
-> >> just means that either the blanking becomes much bigger keeping
-> >> vts / hts the same, or that the FPS becomes much higher.
-> >>
-> >> It is not like the sensor is sending an empty pixel on the CSI
-> >> link every other pixel when binning, since there is no such
-> >> thing as an empty pixel. So the sensor must go faster when doing
-> >> horizontal binning to keep the CSI link filled effectively
-> >> doubling the FPS, or requiring a much larger hblank after having
-> >> taken only half the time sending pixels.
+> > > Do the available discovery mechanisms for all the relevant IOMMUs
+> > > even *allow* for that to be expressed?
 > > 
-> > Please see
-> > <URL:https://hverkuil.home.xs4all.nl/spec/userspace-api/drivers/camera-sensor.html#raw-camera-sensors>
-> > and
-> > <URL:https://hverkuil.home.xs4all.nl/spec/userspace-api/v4l/ext-ctrls-image-process.html#image-process-control-ids>.
-> > 
-> > As noted, this may be correct if the sensor doesn't use binning or
-> > sub-sampling, but conceptually pixel rate on the pixel array and on the
-> > CSI-2 bus are different. The PIXEL_RATE control is for the former albeit in
-> > the past some drivers have presumably used it for the latter as well.
+> > I think yes. But, it's been a while since I played with this, let me
+> > check what works, what does not, and get back to you on this.
 > 
-> Ok, so here is what is written there:
-> 
-> "V4L2_CID_PIXEL_RATE (64-bit integer)
-> 
->     Pixel sampling rate in the device’s pixel array. This control is read-only and its unit is pixels / second.
-> 
->     Some devices use horizontal and vertical blanking to configure the frame rate. The frame rate can be calculated from the pixel rate, analogue crop rectangle as well as horizontal and vertical blanking. The pixel rate control may be present in a different sub-device than the blanking controls and the analogue crop rectangle configuration.
-> 
->     The configuration of the frame rate is performed by selecting the desired horizontal and vertical blanking. The unit of this control is Hz."
-> 
-> So when not bin-/skip-/averag-ing this matches with my understanding
-> which is that:
-> 
-> FPS = pixelrate / ((mode.width + hblank) * (mode.height + vblank))
-> 
-> and also pixelrate = link_freq * 2 * #oflanes / RGB_DEPTH.
-> 
-> Since the ov02e10 driver does not do bin-/skip-/avera-ging,
-> this definitely is correct for the ov02e10, so I don't really
-> think there is an issue with the ov02e10 driver here.
-> 
-> I've been assuming in drivers which do do binning like the ov2680
-> that this also holds true when binning. But what I'm hearing
-> you say here is that the reported pixelrate should change when
-> binning?
+> Even if it could work in theory, I'll be astonished if it actually
+> works in practice across a wide set of operating systems, and if it
+> *ever* works for Windows.
 
-The pixel rate could be different in binned modes and non-binned modes. On
-some devices (and configurations) it could be the same, but primarily it
-depends on what the driver does.
+Well it used to work. I won't have time to play with it until sometime
+next week, if it's relevant.  If I poke at my windows system, I see 
 
-> 
-> I see how the calculation of the FPS should change, reading
-> the V4L2 API using mode.width / mode.height is wrong and instead
-> the analog crop should be used which is e.g. (2 * mode.width) x
-> (2 * mode.height) when doing binning and I can see how this is
-> sensible because this way when just disabling/enabling binning
-> without changing the blanks the fps does not change.
-> 
-> Except that we don't have a proper API to select binning and
-> instead is done transparently by drivers like the ov2680 driver ...
-> 
-> And I believe that e.g. libcamera atm simply implements:
-> 
-> FPS = pixelrate / ((mode.width + hblank) * (mode.height + vblank))
-> 
-> and thus assumes that the driver updates the hblank / vblank
-> values it reports by adding width/height to the reported value
-> to compensate for binning but I might be mistaken there.
+> Compared with the simple option of presenting a device which
+> conceptually doesn't even *do* DMA, which is confined to its own
+> modular device driver... 
 
-The line length and frame values appear to be miscalculated but there are
-driver bugs, too, and right now not all drivers expose the information
-anyway. Register list based drivers will continue to be poor in this
-respect though. But see below.
+I'm not (yet) nacking this hack, though I already heartily dislike the
+fact that it is mostly a PV-only thing since it can not be offloaded to
+a real device efficiently *and* requires copies to move data
+between devices. But, let's see if more issues surface.
 
-> 
-> This also begs the question what a driver with arbitrary mode
-> support like the ov2680 driver should do on a set_fmt() call
-> where fmt.width / height don't match (either 1:1 or 1:2)
-> with the analog crop. Should the driver then update the analog
-> crop? ATM for modes smaller then the current analog crop,
-> the ov2680 code simply adds extra in driver cropping on top of
-> the selection API crop, without updating the selection API crop.
-> Since the driver clamps the max accepted fmt width/height to
-> the crop updating the selection API crop would be troublesome
-> and break non selection API users when they want to switch back
-> to a higher resolution mode ...
-> 
-> I don't think we really have properly specified (as in written down)
-> how all this is supposed to work, especially as soon as binning comes
-> into play. I think discussing all possible corner cases and trying
-> to hammer out how this all is supposed to fit together would be
-> a good summit for the media maintainers summit in Nice ?
-
-I've been working on more elaborate camera sensor control recently, it's
-related to streams support. The current set is here
-<URL:https://git.linuxtv.org/sailus/media_tree.git/log/?h=metadata>. That
-does not yet provide a solution for changing the mode for mode-based
-drivers though.
-
-> 
-> Eitherway I believe that the current code in ov02e10 is fine as
-> is for now since the ov02e10 driver only supports a single fixed
-> mode with no binning.
-
-Yes, I think so as well.
-
-> 
-> BTW the last sentence of the control description clearly needs work,
-> framerate indeed is in Hz, but framerate is indirectly controlled through
-> setting the blanking times, which are in pixels not Hz, so that last
-> sentence is confusing.
-
-"This" refers to the PIXEL_RATE control, not to the blanking controls. The
-sentence could be moved to a separate paragraph to make it clearer it's
-unrelated. Adding a reference to further driver API documentation in
-camera-sensor.rst could be useful, too.
 
 -- 
-Regards,
+MST
 
-Sakari Ailus
 
