@@ -1,146 +1,175 @@
-Return-Path: <devicetree+bounces-162914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF0AAA7A29D
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 14:16:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54387A7A2AC
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 14:20:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31F3617642E
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 12:14:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 06970172E31
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 12:20:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CFA324C66C;
-	Thu,  3 Apr 2025 12:14:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCEFB24CEFC;
+	Thu,  3 Apr 2025 12:20:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Fv64jfy4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gIy51LpP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CCA724C667
-	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 12:14:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7429824291C
+	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 12:20:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743682461; cv=none; b=UmRP53kfupQ1wt3KTNBaNb7akmFOtdsq498TuVb272WLgauXI1x4iK6dDBmavfcssWm8Rregt1ISIl4dGX8kf0cKnw7dLTmIjSXI12V4a4r4a9dqMxDIhyX9WA6tRiP7RSoMC1tfjQkeIpDYNQgdorDFXptKi6W0FrKkOTxKzp0=
+	t=1743682803; cv=none; b=qJfOniZpUDGt4PjdKZ26G1pLO/ZY8kPwfptZ78NBb0oIy7WqXYA3oRg5Dru9QdOwOwXLjzzhWgiF8XYoGp8WKHg5XLhfPW+a4g/mB+zcDaool8UOSuONyggqfpxJYv3zs9T6xBPgbkgpclS2A9XfS8SNC2zfje2zCP0cN5XRcCg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743682461; c=relaxed/simple;
-	bh=7d13QVyEyEnoQEAR13QWW1PydVxVzD6quHFwo0EX69I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q2Sy0AKE/PA+OKMqndpcDDBJf8flst1nr1M/tcxqXfq92vPbnsexnFofbNHkp/yHmY97SOrwlkB6oGaK4z2/x2uWIjfCBP312ETiEilzdtt4RnMAx3JR2YFqB1tMwtYu0xV/oT0GqvUhd/Fm+nVvEyCyMzdVy+HAJEFJTPAV/zg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Fv64jfy4; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5339rw8H009782
-	for <devicetree@vger.kernel.org>; Thu, 3 Apr 2025 12:14:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=dLykAhXWunHI8kSEy4WPYTUf
-	hVytF9OGgggs8oTBDs0=; b=Fv64jfy4d7VRv6OsrA0sxh9Ku25e6unlukHU6c8p
-	8wQRIVptsYgJVqd4mxFejsLZQnguSeTRwvPFTYtvOfNMLE8+o1xkA8yzM1wwWX17
-	prCeJ45gxLCpz281i9Zx8jhwFPi45eQrnO2je3DMhgdPaFhJj5GlTsQvAnErxwUu
-	1XWG+1JkZ2GKOrbDR95XS8ecyAmk8rLhItrK0frTlP/J7nsK8ooiW1ihsf1wW26f
-	+K/8K+vwERjvObuiVkQqAmMG29cif/nhfrpSqm9hcHZbBpBEG9ZeGphNmLww1rkW
-	/NFr51LzS1VWyJDoBuHowhLSC6T20TBssRh5KzZ0aLcizg==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45se4g1sym-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 03 Apr 2025 12:14:19 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7c5f7210995so169590285a.1
-        for <devicetree@vger.kernel.org>; Thu, 03 Apr 2025 05:14:18 -0700 (PDT)
+	s=arc-20240116; t=1743682803; c=relaxed/simple;
+	bh=NaAZ4b2SEwl0UDAk3zyED6YV3zE+9mKyjBO0BPkluHM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nq9cUU6ysKYG1zggt+1vkiO0fVDTG0M/hs9HGpVfQvpP3p2+JXPbbQY9hQosws+2wy3FbG67FNZvmqfG2iM/StSXrYEdUeZcB6YLulI99yATHaofo4bHvA8SijJJjFFahSnZBc0/rrOMiOqhn+yVHlo5vXOJfqXRV43GXkDWVx4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gIy51LpP; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-43cf0d787eeso7753075e9.3
+        for <devicetree@vger.kernel.org>; Thu, 03 Apr 2025 05:20:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1743682799; x=1744287599; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Do7g5ZIFeFFdRvHgyZdqL62w5VJxx0jLniscRb1wlqg=;
+        b=gIy51LpPKVP+MTrTt0usZrWlF50YaUlux1rK2OWyLbyKeNavbvrSLDRJgt+jBki0/B
+         Zw/lQO6lDOsZ07skNj9GiT4+uOGNbL6aYpCOE1D8ls1zwte53LC0//I0+zPbb7MeI5SQ
+         vNuN+Dy2MlcEqnNEJwevfeGQkSJJqfL+HAI7v6xx8MkitSyP26jwKqF1/aI2zwiY5wWV
+         bOxzm7tDzhg+UpwxKhhrfMzDjij5dTgDpBKOEzGqCwcTqt63bhjFHb8vaJCVDVyi4DOu
+         KEhue9jmeauAFDVVyJ2YpoyD+aae3bkgK6PoStxR8sa17odD4BBnHYBbvQFCo9+wE089
+         dZXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743682458; x=1744287258;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dLykAhXWunHI8kSEy4WPYTUfhVytF9OGgggs8oTBDs0=;
-        b=lLwX6ZKE2x/Ypx7XwXFzJp+5QA5vGQ3itn0oyMiC7YNbTjpikhFubdIZJMJeTjvoWJ
-         hyKeZ4X+aUoDX8MvqPuzLjlUrOZX0xQVOcZ73GD7uDGROxKQAu43J4J9ruTq4vU2UMnP
-         xn/r71pc/lv3wQ4gwia9wkgmhBpiSTKCrcbp9kOTstH+5Ej39efsB3UHPtncfw35mvH6
-         HixJAmXAr3HiTBl76g60ORObGtlHAdCI6W88izU0/PT0bU35+0A5tMyn2IfM4qrm/YTR
-         MrFGkxiVmIkIYT6nO+kSZUZSlJINOTaZbFn2rzMbGKOMQFXleD+rrk3Mg3DkWTY+oHSO
-         HiiA==
-X-Forwarded-Encrypted: i=1; AJvYcCVGLKAX3PRPqt49HhmQQ34G6orQJ6c4yBj2tAIXjW6CewaEHiHEk3o5SHZtm5sD1uwAg0Z78Jf09cHa@vger.kernel.org
-X-Gm-Message-State: AOJu0YzpKwqS6aiAe0J+UwIciCBjpxTIAaYh920fDSfdV9V59fYZ2+if
-	7bh46RCykAjfChYrvvzG8tWC+xVXAt5hfe5esfP1olcPPt10KoTQVCMG/1zotHc6e4vtrn8/+6r
-	agq5yGF+zDNQwjwkavXxHxzsRF0cjGYQqp33BwRrudZLGtwkRnNTDeryktl+W
-X-Gm-Gg: ASbGncsJGfyXUqPHM3xXLft6M7ExZM7Q0YNE7s0qXdw3WqahsFwtYc3CU+e40Nomy34
-	x5wB9nbyHHGasizmSJOUuGQEUAgAB6Gtb6nc4Rp0hRJSnh1kyMKviheMKK065jCwNQxYgFoxGaE
-	192rEkbT/L1Gxq/fi1MX6tZJ/Mba9FVoZDQ6b+6iHNwEtXrUGLH6QDejDxhYuPTOioF1bfzlwzC
-	Ij+hcQQgK42wioXKUq1j+dc9AmkVwCxTJjNISMKico0TM26AlavnaXQNf6mtA3LFXzRWILtP/z+
-	pAJpvkvxH2rOKuAXHXUHUjbWuLMhwvPaIornM2Q66dO0/OsjrFnMSxA2sGCMBgGlSawSqfTy7Xf
-	wiYI=
-X-Received: by 2002:a05:620a:2910:b0:7c3:b7c2:acf6 with SMTP id af79cd13be357-7c76c98f7dbmr511677585a.15.1743682457783;
-        Thu, 03 Apr 2025 05:14:17 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEQP5HNZ7qkcK4qHlBcQj9o3SAvJ8aXKNFHMdgvICYbDg+OhKlKPefSoRKfg6pRpmiRTZ1ysw==
-X-Received: by 2002:a05:620a:2910:b0:7c3:b7c2:acf6 with SMTP id af79cd13be357-7c76c98f7dbmr511673185a.15.1743682457414;
-        Thu, 03 Apr 2025 05:14:17 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54c1e5cc52csm138973e87.105.2025.04.03.05.14.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Apr 2025 05:14:15 -0700 (PDT)
-Date: Thu, 3 Apr 2025 15:14:13 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Andy Yan <andyshrk@163.com>
-Cc: heiko@sntech.de, hjc@rock-chips.com, mripard@kernel.org, naoki@radxa.com,
-        stephen@radxa.com, cristian.ciocaltea@collabora.com,
-        neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com,
-        yubing.zhang@rock-chips.com, krzk+dt@kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, robh@kernel.org,
-        sebastian.reichel@collabora.com, Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: [PATCH v3 5/9] drm/birdge: simple-bridge: Add support for radxa
- ra620
-Message-ID: <mp6dgybevy5uercnqam3ok4rorpmo7a7ok5jcgadmxypl7ueaf@yl64do47jnp3>
-References: <20250403033748.245007-1-andyshrk@163.com>
- <20250403033748.245007-6-andyshrk@163.com>
+        d=1e100.net; s=20230601; t=1743682799; x=1744287599;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Do7g5ZIFeFFdRvHgyZdqL62w5VJxx0jLniscRb1wlqg=;
+        b=ejf5t3abla81Sa9qbSyj1a65uoHqYW05Su+KCGYlaDSaOrXiipoA1bg4eAuHlyHDl/
+         GY9WiMw5ZR0SuvdsZ46TUmf4PB1ITSagaVkdkK/SunTOCHstKm243baxfQqzRBSOa59A
+         dmI8AjRt72R6WTiZ/13tmpIvT8j+MyTRP9Y8R1A+zET08WTmN+zFWFo0Y9J0Mr9sK/yW
+         6kOZBAUbfFDOb/Trh0oBzNiSabE1x0zwPgnmZeF3wVA51p/hRfW+awLxF6x+gagiFMU1
+         gl07Cl/Ed9r1g/aZRB5xYC7BZctxfMvK03VM8gImHPIME4iRvgGw2c3stCZoWe+H3qt0
+         AzWg==
+X-Forwarded-Encrypted: i=1; AJvYcCXdnbKwZ+hkfu4W59pCS8kPa9EHzTujQk5asbUWZVuGFN2EdObpxTDJzkYe3IeY1nU60bql/NfqPxzX@vger.kernel.org
+X-Gm-Message-State: AOJu0YxWwoKwl0pOJlubzB1SabhjOE6BCX2IOwxwkVnVvbYx+Bk37OQ9
+	pP4t1dE/uTD+96MnFX6zmzqF2atYZGG7WlOqNUGwYnTiizFdkct3Dykv0tNsigU=
+X-Gm-Gg: ASbGncsaQHlptinDrw/71lyZY0N0b8TVRNLZJjtAjj5ynKCDRTywd5OV8xVJzxxjQW9
+	KlYV8hFlXG2fgW82jFLhnQIUORMj0M3B6QT7b+pgVyjL1LEBWmWNSiEQolMVeBGju3SJf0TNoa3
+	lHfpBgfkj1lK2XkO6FmaR4NpSCuPzvVe1gq6UT+lWwYsmJXApoa65m6MT2MLMOLggGETB15P7Dr
+	Pq0t9mVKJH9qzaeiUvh2nH/zV2LjtXld1UhfiCBnlgsjRs0xY8GFX6i6yLKy2bMM6krHj4wR6HU
+	sLxFZGqctekKGSWi73rIFOt/3ZlpsXEjymWAIg3DXEf6rKULQYtc4zNZejQuw+A=
+X-Google-Smtp-Source: AGHT+IHYXVxVN/xLoKK1v9Nlhe06FvQtwGVbb6msfL6zmA7WaejsGqkzo/0fvzRlouUTsIjQ6pcmjA==
+X-Received: by 2002:a05:600c:468c:b0:43d:83a:417d with SMTP id 5b1f17b1804b1-43db622a42emr214509885e9.12.1743682798706;
+        Thu, 03 Apr 2025 05:19:58 -0700 (PDT)
+Received: from [192.168.68.117] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-43ec34be2ffsm16874945e9.22.2025.04.03.05.19.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Apr 2025 05:19:58 -0700 (PDT)
+Message-ID: <8613cf45-d202-4577-868c-8caf771c7bc4@linaro.org>
+Date: Thu, 3 Apr 2025 13:19:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250403033748.245007-6-andyshrk@163.com>
-X-Proofpoint-GUID: Q3eQoL5tNgYruMNshUfyxx4TjfEOKH5m
-X-Authority-Analysis: v=2.4 cv=a8Iw9VSF c=1 sm=1 tr=0 ts=67ee7b9b cx=c_pps a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=XR8D0OoHHMoA:10 a=s8YR1HE3AAAA:8 a=EUspDBNiAAAA:8 a=mpY5dVvo0S6m34Ll3HoA:9 a=CjuIK1q_8ugA:10
- a=IoWCM6iH3mJn3m4BftBB:22 a=jGH_LyMDp9YhSvY-UuyI:22
-X-Proofpoint-ORIG-GUID: Q3eQoL5tNgYruMNshUfyxx4TjfEOKH5m
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-03_05,2025-04-02_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
- adultscore=0 phishscore=0 priorityscore=1501 mlxscore=0 lowpriorityscore=0
- suspectscore=0 bulkscore=0 mlxlogscore=896 malwarescore=0 spamscore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504030051
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 5/6] ASoC: codecs: wcd938x: add mux control support for
+ hp audio mux
+To: Johan Hovold <johan@kernel.org>
+Cc: peda@axentia.se, broonie@kernel.org, andersson@kernel.org,
+ krzk+dt@kernel.org, ivprusov@salutedevices.com, luca.ceresoli@bootlin.com,
+ zhoubinbin@loongson.cn, paulha@opensource.cirrus.com, lgirdwood@gmail.com,
+ robh@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org,
+ perex@perex.cz, tiwai@suse.com, dmitry.baryshkov@oss.qualcomm.com,
+ linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ johan+linaro@kernel.org, Christopher Obbard <christopher.obbard@linaro.org>
+References: <20250327100633.11530-1-srinivas.kandagatla@linaro.org>
+ <20250327100633.11530-6-srinivas.kandagatla@linaro.org>
+ <Z-z_ZAyVBK5ui50k@hovoldconsulting.com>
+Content-Language: en-US
+From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <Z-z_ZAyVBK5ui50k@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Apr 03, 2025 at 11:37:33AM +0800, Andy Yan wrote:
-> From: Andy Yan <andy.yan@rock-chips.com>
-> 
-> The RA620 is an active DP to HDMI converter chip, basically
-> no software is involved to drive it.
-> 
-> Add it to simple bridge to make it can be find by the drm bridge chain.
-> 
-> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-> 
-> ---
-> 
-> Changes in v3:
-> - First introduced in this version.
-> 
->  drivers/gpu/drm/bridge/simple-bridge.c | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
--- 
-With best wishes
-Dmitry
+On 02/04/2025 10:12, Johan Hovold wrote:
+> On Thu, Mar 27, 2025 at 10:06:32AM +0000, Srinivas Kandagatla wrote:
+>> From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>>
+>> On some platforms to minimise pop and click during switching between
+>> CTIA and OMTP headset an additional HiFi mux is used. Most common
+>> case is that this switch is switched on by default, but on some
+>> platforms this needs a regulator enable.
+>>
+>> move to using mux control to enable both regulator and handle gpios,
+>> deprecate the usage of gpio.
+>>
+>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>> Tested-by: Christopher Obbard <christopher.obbard@linaro.org>
+> 
+>> @@ -3261,11 +3276,26 @@ static int wcd938x_populate_dt_data(struct wcd938x_priv *wcd938x, struct device
+>>   		return dev_err_probe(dev, wcd938x->reset_gpio,
+>>   				     "Failed to get reset gpio\n");
+>>   
+>> -	wcd938x->us_euro_gpio = devm_gpiod_get_optional(dev, "us-euro",
+>> -						GPIOD_OUT_LOW);
+>> -	if (IS_ERR(wcd938x->us_euro_gpio))
+>> -		return dev_err_probe(dev, PTR_ERR(wcd938x->us_euro_gpio),
+>> -				     "us-euro swap Control GPIO not found\n");
+>> +	wcd938x->us_euro_mux = devm_mux_control_get(dev, NULL);
+> 
+Thanks Johan,
+> Running with this patch on the CRD I noticed that this now prints an
+> error as there is no optional mux (or gpio) defined:
+> 
+> 	wcd938x_codec audio-codec: /audio-codec: failed to get mux-control (0)
+
+This is not from codec driver, mux control is throwing up this.
+
+> 
+> You need to suppress that error in mux_get() to allow for optional muxes
+> to be looked up like this.
+I have a plan for this,
+
+I proposed some changes to mux api for exclusive apis at 
+https://lkml.org/lkml/2025/3/26/955
+
+This should also allow us to easily add an optional api, which I plan to 
+do once i get some feedback on this patch.
+
+--srini
+
+> 
+>> +	if (IS_ERR(wcd938x->us_euro_mux)) {
+>> +		if (PTR_ERR(wcd938x->us_euro_mux) == -EPROBE_DEFER)
+>> +			return -EPROBE_DEFER;
+>> +
+>> +		/* mux is optional and now fallback to using gpio */
+>> +		wcd938x->us_euro_mux = NULL;
+>> +		wcd938x->us_euro_gpio = devm_gpiod_get_optional(dev, "us-euro", GPIOD_OUT_LOW);
+>> +		if (IS_ERR(wcd938x->us_euro_gpio))
+>> +			return dev_err_probe(dev, PTR_ERR(wcd938x->us_euro_gpio),
+>> +					     "us-euro swap Control GPIO not found\n");
+>> +	} else {
+>> +		ret = mux_control_try_select(wcd938x->us_euro_mux, wcd938x->mux_state);
+>> +		if (ret) {
+>> +			dev_err(dev, "Error (%d) Unable to select us/euro mux state\n", ret);
+>> +			wcd938x->mux_setup_done = false;
+>> +			return ret;
+>> +		}
+>> +		wcd938x->mux_setup_done = true;
+>> +	}
+> 
+> Johan
 
