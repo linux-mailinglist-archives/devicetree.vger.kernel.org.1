@@ -1,128 +1,84 @@
-Return-Path: <devicetree+bounces-162777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2C34A79CD5
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 09:23:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02797A79CE1
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 09:25:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7ABC61733E1
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 07:23:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD456173845
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 07:24:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B38CB2405ED;
-	Thu,  3 Apr 2025 07:23:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D377C2405E4;
+	Thu,  3 Apr 2025 07:24:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y2AE6PEO"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="V8Nm8y44"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85A5F23F42D;
-	Thu,  3 Apr 2025 07:23:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59FFB18732B;
+	Thu,  3 Apr 2025 07:24:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743664982; cv=none; b=IxQLaM4chgFpAL0YfupPcPuaH/Uj/oJm5r2+jRiVfOgeh3RE/hjH1AO6WjFG8zMzFIhbIrkShxQaBVuwtHgo9AqF8T6bPkzS6fykLBz9sc/KCYqvS5BK7+HF39VFLgagFBQ54M2nEk0IRNUtLevWVdaxxZXAaLCjN2taUulifig=
+	t=1743665076; cv=none; b=ZKr6ZNRpTF7jdtPbsUN7m1MR9ZIe3sqqJUJDHpzvNkISJwAA080tElrxiMMWrPwb/Xildb8YJv6wKOpctzk6wRHtgC7NA/j53x0sSgC9Re4BD0BxIfOzzCstxulNz8V+h9Tg0pgvNFtBnh0oKu8mCTdoGgsf7iney/Y5/P4AG8Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743664982; c=relaxed/simple;
-	bh=qF/6twPYnAMUicUtlKfxUrETUTqICv90PRL1kTQcIdI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IgotVd/Cj9ViZl362yiEy/3iPPB+EDaYcq5uj+adiQxTCo2kk/NkGXaQGbQ3it+KeRRnBazoGikjkbwkHnwEsst/IprXW6ZENLwkh39QxeS2vS++ztv1Nf68rSXgmQ4vyXNnoTa2pKRiK6pjk0mY3kLr4MBEQnh3CiNQy+ZghQU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y2AE6PEO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8A7FC4CEE8;
-	Thu,  3 Apr 2025 07:22:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1743664982;
-	bh=qF/6twPYnAMUicUtlKfxUrETUTqICv90PRL1kTQcIdI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Y2AE6PEOUUiKwlR3zBFbFrxfG2LV1In1L/mMvbDKX/5caSct69Chucp1EiVq9nHzD
-	 ZgeeQfqpmxLd7fSVWRbOV0SBdTgLI2HDnhkBfnb4ZYEQWewZ3SJcivPHJLL3BrlMRt
-	 esmULP8vA+j5NzvFVG/DldPO9CMNzc2UBhF/Ft+c3+2tWwwAQjIqzUZCmU5vVTIWVV
-	 A3YdQz0siJH9dE03Kz5HuHTOJWiZ4msioJJarDg2xKrlqP7PiXc86g867pWFYZbqpG
-	 wkD8JDfALmgaYdN4nV+8WMM8L7OKfn2yxXt3j6b3wDWbGZKxxm2i9pi3HCPJvkZIxB
-	 IfVZIk20y6v3A==
-Message-ID: <6b3caec6-9fea-4d25-b05c-2578f973a36c@kernel.org>
-Date: Thu, 3 Apr 2025 09:22:56 +0200
+	s=arc-20240116; t=1743665076; c=relaxed/simple;
+	bh=06ghVNU5N3saoruBnttTeD8smgvYZomjIXvnQDjTLEc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RaNJFDxhNEG39oblaaVDYoovYeZ1wAMkdz+452KZh5ZS9xfkPrORpN7KKjkUWTwuCb1JfTAsLpKH8Y0JEga/j8W5xPa+gmW5DV+EMVbtNE6oRe1cIjpV0TeSxKzlM8QzujjwO4DcaxKIh1lnqUD9pB9HxslOx5eDdeheSVbJ0Zc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=V8Nm8y44; arc=none smtp.client-ip=198.137.202.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
+	:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=mZJoRgl7tKUmuHw/xIDGXaeA0kg35+tgF4aTMSGhxZI=; b=V8Nm8y44qTUMr/32bDu8BfdFLv
+	J/xl3p//WZXV00K78sdsCVF30rB8tCwwgtI76WVn2D//TsALfZDThwfJUy566w3c7UCunE8g5SNOG
+	xwO+sg/yboDd/DyqOOys0fx2m3U5jLlDfXyJEawyreTy9RfWgr8CMhvYTxRhkVWuq9LFYlmXVW2i7
+	pHGuTLmmlIck1Qd1UE7QVGAqrAvaNj9ZZ81hC6mH08Kl7GJ81bIw9YwCIaI2XPqjX77wpj8+ZMAJ9
+	12puYOD09T+EHuMXeCn5QFgdbthJ7kv6r4648hRYrf84LgkRQJS6DxzCeQI79c/njfwrnNIJN3rAy
+	ERTNdrSg==;
+Received: from hch by bombadil.infradead.org with local (Exim 4.98.1 #2 (Red Hat Linux))
+	id 1u0EwE-0000000867w-1zgG;
+	Thu, 03 Apr 2025 07:24:34 +0000
+Date: Thu, 3 Apr 2025 00:24:34 -0700
+From: Christoph Hellwig <hch@infradead.org>
+To: David Woodhouse <dwmw2@infradead.org>
+Cc: virtio-comment@lists.linux.dev, mst@redhat.com, hch@infradead.org,
+	Claire Chang <tientzu@chromium.org>,
+	linux-devicetree <devicetree@vger.kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	=?iso-8859-1?Q?J=F6rg?= Roedel <joro@8bytes.org>,
+	iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+	graf@amazon.de
+Subject: Re: [RFC PATCH 1/3] content: Add VIRTIO_F_SWIOTLB to negotiate use
+ of SWIOTLB bounce buffers
+Message-ID: <Z-43svGzwoUQaYvg@infradead.org>
+References: <20250402112410.2086892-1-dwmw2@infradead.org>
+ <20250402112410.2086892-2-dwmw2@infradead.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] dt-bindings: iio: dac: Add adi,ad3530r.yaml
-To: Kim Seer Paller <kimseer.paller@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250403-togreg-v3-0-d4b06a4af5a9@analog.com>
- <20250403-togreg-v3-2-d4b06a4af5a9@analog.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250403-togreg-v3-2-d4b06a4af5a9@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250402112410.2086892-2-dwmw2@infradead.org>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
 
-On 03/04/2025 07:33, Kim Seer Paller wrote:
-> Document the AD3530/AD3530R (8-channel) and AD3531/AD3531R (4-channel)
-> low-power, 16-bit, buffered voltage output DACs with software-
-> programmable gain controls. They provide full-scale output spans of 2.5V
-> or 5V for reference voltages of 2.5V. These devices operate on a single
-> 2.7V to 5.5V supply and are guaranteed to be monotonic by design.
-> The "R" variants include a 2.5V, 5ppm/°C internal reference, which is
-> disabled by default.
-> 
-> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
-> ---
+On Wed, Apr 02, 2025 at 12:04:45PM +0100, David Woodhouse wrote:
+> Define a VIRTIO_F_SWIOTLB feature which allows the device and driver to
+> agree on the use of the SWIOTLB, if present. This enables the device to
+> refuse to operate further if the driver does not support the SWIOTLB
+> requirement expressed in the device-tree.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This makes no sense whatsoever.  Swiotlb is a Linux guest implementation
+detail, virtio is a transport protocol.  Mixing them in the same spec
+doesn't even compute.  Please describe the actual on the wire semantics
+you want, and don't use the term swiotlb.
 
-Best regards,
-Krzysztof
 
