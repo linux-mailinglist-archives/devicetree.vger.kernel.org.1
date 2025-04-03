@@ -1,63 +1,80 @@
-Return-Path: <devicetree+bounces-162736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BABBBA79B15
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 07:08:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29E29A79B25
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 07:16:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3B8677A615E
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 05:07:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D6442174457
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 05:16:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87E5318CC08;
-	Thu,  3 Apr 2025 05:08:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13603158520;
+	Thu,  3 Apr 2025 05:16:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Y2YEE+8G"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NNB/FTcK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5B8218DB16;
-	Thu,  3 Apr 2025 05:08:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 323ED8460;
+	Thu,  3 Apr 2025 05:16:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743656899; cv=none; b=DkUhJP35Zq87sZu74Jj/AgsK22T+K1YI2K6rhH+2c5C3Qv78vi9UtAGZMcYKYPCRFtc4wRIHR6VDMKRiN3CFqBlOBinJ7eqh7BqGglTcf40WBd5Fd6SKgzRsD6NBaFR50ln0qb4ICcBXoZe7hGZ6jE+vVPSRd/70xXEXllALYUo=
+	t=1743657409; cv=none; b=m4cL4ak+bupfClNRVjcsAgujjtt9v9GItoanzPBU8mMrkgp5cLS8SnUkA4rNCdm/CU0hnjoTloBp8kaQ1nSby21DByCdxeWlJe8QtiMnM4+xGOEiQjkZyG6VAnllNgb4syxJrcVUK1sfikr2C9tlB4Jp6R+6V3AAXw05H+Rsbr8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743656899; c=relaxed/simple;
-	bh=2gdDUGzlGVNBfMhF2TU8tbvOT7CrmGcKCSnB4smnKaE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=AL9NjtsR1ZWmEq7xdcyKkTI/UWt/Wgvq3IfIAAavwqynpyUr2P3f1jlbXEa9OPX9VR6fxxMhYQhss0rrolNqxjXb/AMMi55+6J7xMTtgK5JgPBP4WAGWc5zEvVWC7KZJtK3tUkN+VxT6ljEAxei35vn5NoCpDEUv8QOt6Ful5hc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Y2YEE+8G; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5333mlAm031730;
-	Thu, 3 Apr 2025 05:08:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Xje1eMsyvhZuOhbcBq7OJz15zbYdM9P9BLGcPsjMtsA=; b=Y2YEE+8G03TLSJs/
-	SpdKPNbvm2/0cA6FxILGdXD5Noq3jTvbh1X/0aTg47D36CbKXiU/Vvb2vBpCUuhE
-	H7IzqCeLDz6ZyOMnu91NZE6gocVhNIkSzqo2kVpJciRRY1C7Ks8qSNmsezHeFwMd
-	L+qrHr87xCfIA7k4mN0gUH7yqUTWv+KW5YsSfnkIPom2zjPo6ydtdEfV+cSvc1P/
-	IrB9lQ4NguoJlqSKExpSmwHUx+ZUa6EH+lIO3EFbJ3VjUNklsVGmp73WrKTbOXvK
-	zQh6bdk17iG1DPacaaVcEYMCvEgQapIDl0JGutUhP37mzv8XiRx4S54OByi/cacV
-	WUYveg==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45rh7yndt2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 03 Apr 2025 05:08:13 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 53358CVw007839
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 3 Apr 2025 05:08:12 GMT
-Received: from [10.152.195.140] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 2 Apr 2025
- 22:08:08 -0700
-Message-ID: <bcbd2f83-2599-4a2e-ad69-64edcb97dfbe@quicinc.com>
-Date: Thu, 3 Apr 2025 10:38:05 +0530
+	s=arc-20240116; t=1743657409; c=relaxed/simple;
+	bh=lNEwq541WDDDm2IgFe5/GIfhWT4xyzg68oQsT7TD30c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=i9lyG7ikv9WMHs1/4q+KxrIssSRQxIwjaoXz1s25qzEk3WWjIUl2FrwJZvvsXhxBW2k7Mc/WgxTy20pa7WOEjhlpM1f0SVidaa9PrM1a46x631fpHZ2NuOWoLmG0+69CZgLT08MkvTsDogmeYslaEaCYDNi28cVHLnuM6VaJz94=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NNB/FTcK; arc=none smtp.client-ip=209.85.208.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-30db1bc464dso4434851fa.0;
+        Wed, 02 Apr 2025 22:16:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1743657405; x=1744262205; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lUnfrWM8O0y0Hox6uRP5nfk3TnR4bWTw87hOsdjgoNg=;
+        b=NNB/FTcK+tMMyZ6dUau4j02MiRiTHzcKpMSXCDLBr1F5xUwfVQfZDj3cgn8MzwcS2I
+         qKHgMwfRkXmEmyPIPnOLRrHcem3UxpMwcAxzQoqEtbLeCTFJH4kiOQM+hVodU9Np1Wmh
+         6xbGPEjiANlS3p9P+v4eadfqwdIUOaEXZSByfUIccDuaiw0giRgUOfQTQiepj1naECP9
+         yK5tpvRLtYF8N41eWVVaxGul/+jx5lQRDzk6uEBBZOhPFREfeo/Sp96v4pBuWdOrw93p
+         mkbRy35rGVUzkaeGIShPIIS634MVxrYBgdmjvSSyWlIWeQnoZLP5OgPIA6nUqsfW8X5J
+         HoBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743657405; x=1744262205;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lUnfrWM8O0y0Hox6uRP5nfk3TnR4bWTw87hOsdjgoNg=;
+        b=To773Nr74UJOhCeDiHyP5hhfWjaVRtf283pRSbQakfYH9ha6VwDfpKd+nce0MtuREE
+         IH9igaEio2NSU9lYZMflVqoOHRyMo+lQmFD+tSswOJvWAQ7VHyqxUQ2n3k6NcGXzPFQa
+         LcMUFi3+U3/GUzlJ9olmnaZImV7p/B4X9Q2eSA4AG9cr3CNv0FcKAJPIV8uHDXDlnhi8
+         Ob9dlQpBOemqbfJdWiLO5thW1uxcDHNaGU8wCviKvbZX8eBkHzGnOpuMBkf2/fG5J65C
+         EF95GwF7kDAe2iEMsBn61GZ0oM0l+Mag+57D6jSuuRtgxXtlbqm9PNPf1aAFU/D7bIVI
+         EpCQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVQr5dbfbI5jdckJG4r5ztbYNBqQreHObGvssDvm4PbjdOUUzgN/KqnX45T88w6IsCZnXx3b9UyMWMs@vger.kernel.org, AJvYcCVqIFa8vVOw6rJIq1lNmhdUr1Nr8nuAHlqQDyvVzJa4maERMh9X6GuoQ+jfS2R6l2xWcBlulK9tq45M@vger.kernel.org, AJvYcCWNv/U8Tm8m/D+SmUIRVaKEjgsgy+3elbj2b0OOt2+vqU9p07gmE93a6iihQEn/SKn5/bnj1naPWmOqHS6F@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+r/kaCwb5QcNhWpjroElLvxtRMqcy8ReRi+TFTxCDv22yEkst
+	23pJaVj0TclpOiZRkhP/iCj0CYQd7h2x5HeTsQTdk8GFv54zxgMW
+X-Gm-Gg: ASbGncsAojDXjcrLyrjVn4tbA5w0cj6DRylsEh4WSiZ0isw9LobTPWbRhi/+q5QkgnQ
+	ehidnNeQgJxeDhDrn4NsIv13IVBNDOEw0dDZFKg9F0gFpmO4FX7B073P4eHI/jyohoiQTWVr8d3
+	KNfiezYwgHa+lTtWu/EFZNM4PXY9tj28h1Y9+upGmu0quGVZIdzXVr328eoHAeEEcRPtWjwHeYl
+	nsPyySpGGAfLnbd7msLGEgCrbbmMWm66t0xVmo3CMv4ng73ZJvtYYQPRmHm4PSVAVCZ5I/YhSq9
+	SKN9q8OaLlCzbCdLKoO3s0xCa/ZSvDwegF63HsfqkhYvo+CP4EGN1HISP55DLCrhtWDRG4z6WN3
+	UnckdCe8pQI4WpVL7Qx+Jvd1J0Q==
+X-Google-Smtp-Source: AGHT+IGo6U30lLCPfVEYuHbUU2svN+XQS4RolYNy9mZ6oSYmU0C6mOzGLsPpQarJYB1Hd0HHA1mvyw==
+X-Received: by 2002:a2e:bc8f:0:b0:30c:4610:9e9e with SMTP id 38308e7fff4ca-30ef91cd073mr17825741fa.35.1743657405008;
+        Wed, 02 Apr 2025 22:16:45 -0700 (PDT)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30f031bcdb1sm828641fa.80.2025.04.02.22.16.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Apr 2025 22:16:44 -0700 (PDT)
+Message-ID: <1189b539-adb4-46f9-9783-c6577b57a304@gmail.com>
+Date: Thu, 3 Apr 2025 08:16:43 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,79 +82,117 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/2] arm64: dts: qcom: ipq5424: Enable PCIe PHYs and
- controllers
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-CC: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_varada@quicinc.com>,
-        <quic_srichara@quicinc.com>
-References: <20250402102723.219960-1-quic_mmanikan@quicinc.com>
- <20250402102723.219960-3-quic_mmanikan@quicinc.com>
- <ezodm6qh63fs43xx6cw3smspfqkwqb5qscwfee36k5vtktguc4@tlqhuvjg2bly>
-Content-Language: en-US
-From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-In-Reply-To: <ezodm6qh63fs43xx6cw3smspfqkwqb5qscwfee36k5vtktguc4@tlqhuvjg2bly>
-Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [PATCH v2 2/7] iio: adc: ti-adc128s052: Simplify using
+ be16_to_cpu()
+To: David Lechner <dlechner@baylibre.com>,
+ Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1743573284.git.mazziesaccount@gmail.com>
+ <feeabbfd3d3916c7497dfd94423ff83ef5f654f1.1743573284.git.mazziesaccount@gmail.com>
+ <4c3e0d23-2582-4acf-8e90-542c8f8c385f@baylibre.com>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <4c3e0d23-2582-4acf-8e90-542c8f8c385f@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=IYWHWXqa c=1 sm=1 tr=0 ts=67ee17bd cx=c_pps a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17 a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=COk6AnOGAAAA:8 a=kx6ie2_k--WTlmwe1CQA:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: Wdy5-CVMtC4Pm24fZ-ny0zLZ7rijNuCw
-X-Proofpoint-ORIG-GUID: Wdy5-CVMtC4Pm24fZ-ny0zLZ7rijNuCw
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-03_01,2025-04-02_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=765
- priorityscore=1501 mlxscore=0 malwarescore=0 bulkscore=0 suspectscore=0
- lowpriorityscore=0 adultscore=0 impostorscore=0 clxscore=1015 spamscore=0
- classifier=spam authscore=0 authtc=n/a authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504030025
 
-
-
-On 4/2/2025 7:50 PM, Dmitry Baryshkov wrote:
-> On Wed, Apr 02, 2025 at 03:57:23PM +0530, Manikanta Mylavarapu wrote:
->> Enable the PCIe controller and PHY nodes corresponding to RDP466.
+On 03/04/2025 00:04, David Lechner wrote:
+> On 4/2/25 1:09 AM, Matti Vaittinen wrote:
+>> The register data is 12-bit big-endian data. Use be16_to_cpu() to do
+>> the conversion, and simple bitwise AND for masking to make it more
+>> obvious.
 >>
->> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
 >> ---
->> Changes in V6:
->> 	- No change.
+>> Revision history:
+>> v1 => v2:
+>>   - Fix commit msg to reflect the fact there was no bug
+>>   - Drop Fixes tag
+>>   - Use union for rx / tx buffer to avoid casting
+>>   - Keep the shared message protected by the mutex
+>> ---
+>>   drivers/iio/adc/ti-adc128s052.c | 18 ++++++++++--------
+>>   1 file changed, 10 insertions(+), 8 deletions(-)
 >>
->>  arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts | 41 ++++++++++++++++++++-
->>  1 file changed, 40 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts b/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
->> index 0fd0ebe0251d..1f89530cb035 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
->> +++ b/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
->> @@ -82,6 +82,32 @@ &dwc_1 {
->>  	dr_mode = "host";
->>  };
->>  
->> +&pcie2 {
->> +	pinctrl-0 = <&pcie2_default_state>;
->> +	pinctrl-names = "default";
->> +
->> +	perst-gpios = <&tlmm 31 GPIO_ACTIVE_LOW>;
+>> diff --git a/drivers/iio/adc/ti-adc128s052.c b/drivers/iio/adc/ti-adc128s052.c
+>> index a456ea78462f..3e69a5fce010 100644
+>> --- a/drivers/iio/adc/ti-adc128s052.c
+>> +++ b/drivers/iio/adc/ti-adc128s052.c
+>> @@ -28,32 +28,34 @@ struct adc128 {
+>>   	struct regulator *reg;
+>>   	struct mutex lock;
+>>   
+>> -	u8 buffer[2] __aligned(IIO_DMA_MINALIGN);
+>> +	union {
+>> +		__be16 rx_buffer;
+>> +		u8 tx_buffer[2];
+>> +	} __aligned(IIO_DMA_MINALIGN);
+>>   };
+>>   
+>>   static int adc128_adc_conversion(struct adc128 *adc, u8 channel)
+>>   {
+>>   	int ret;
+>> +	char *msg = &adc->tx_buffer[0];
+>>   
+>>   	mutex_lock(&adc->lock);
+>>   
+>> -	adc->buffer[0] = channel << 3;
+>> -	adc->buffer[1] = 0;
+>> +	msg[0] = channel << 3;
+>> +	msg[1] = 0;
+>>   
+>> -	ret = spi_write(adc->spi, &adc->buffer, 2);
+>> +	ret = spi_write(adc->spi, msg, sizeof(adc->tx_buffer));
+>>   	if (ret < 0) {
+>>   		mutex_unlock(&adc->lock);
+>>   		return ret;
+>>   	}
+>>   
+>> -	ret = spi_read(adc->spi, &adc->buffer, 2);
+>> -
+>> +	ret = spi_read(adc->spi, &adc->rx_buffer, 2);
+>>   	mutex_unlock(&adc->lock);
+>> -
+>>   	if (ret < 0)
+>>   		return ret;
+>>   
+>> -	return ((adc->buffer[0] << 8 | adc->buffer[1]) & 0xFFF);
+>> +	return be16_to_cpu(adc->rx_buffer) & 0xFFF;
 > 
 > 
-> No wake-gpios? Please document it in the commit message.
+> The cast isn't exactly beautiful, but this would save a lot of
+> lines of diff and a few lines of code by avoiding the need for
+> the union and the local msg variable.
+> 
+> 	return be16_to_cpup((__be16 *)adc->buffer) & 0xFFF;
+
+Thanks again for the review David :)
+
+I am unsure which way to go. I kind of like having the __be16 in the 
+struct, as it immediately yells "data from device is big-endian". OTOH, 
+I've never loved unions (and, it silences the above "yelling" quite a 
+bit). I still think this might be the first time I really see a valid 
+use-case for an union :) And, you're right this adds more lines, 
+besides, the cast doesn't look that ugly to me. Yet, I originally had a 
+cast probably as simple as this (and I also had the __be16 in the 
+struct), and Jonathan suggested using union to avoid it...
+
+At the end of the day, I suppose I am Okay with any of these 3 
+approaches. Original cast, union or this cast you suggest. Jonathan, any 
+preferences on your side?
+
+> 
+>>   }
+>>   
+>>   static int adc128_read_raw(struct iio_dev *indio_dev,
 > 
 
-Hi Dmitry,
+Yours,
+	-- Matti
 
-Thank you for reviewing the patch.
-
-The wake GPIO is dropped because the PCIe on the IPQ5424 doesn't support low power mode.
-I will document this information in the commit message and post the next version.
-
-Thanks & Regards,
-Manikanta.
 
