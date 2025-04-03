@@ -1,192 +1,234 @@
-Return-Path: <devicetree+bounces-162750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-162751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82BA4A79BA7
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 08:02:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E094AA79BD0
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 08:10:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E624188B4BA
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 06:01:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B37843B16F9
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 06:09:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1726719922F;
-	Thu,  3 Apr 2025 06:01:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C82FB19F41C;
+	Thu,  3 Apr 2025 06:09:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mq/orJOl"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="o2y/Mjl2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2081.outbound.protection.outlook.com [40.107.95.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32929CA6B
-	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 06:01:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743660086; cv=none; b=go9kC8MEX8VdAeAoq5JO6wmI/7D1x/YC4s7z2gKCbY3QSnjof8s0cDWXqzqXLA9lUMiUmkPc8qhhsQmF8pmKzZi8mO9PZ0bZmIEvRmVF6G9ehTbsRUUGFkF8PYUnCzyYWV4VZ6QGyk4CNrIiOtJqaYv+BBiQqHlmkPVX7YPDJWg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743660086; c=relaxed/simple;
-	bh=3VNlg/PP+atprsGouNKJAz+WQdiTN8KB/c4wk3w/Qxo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=o4Xv6DvHsPrdPoJ0qn6ndRp2gDojV2ubs+wnELHzApX5PyZBVjT+bh3SB1qpgRwxuuDjLicoVxZDoJK0GjRmR8Cgvc4Ss3Kqz696MMMlYLacLByFBpgiaznUAhr1khfmMC8094ePPOp9j5RuH5yIA3cKSqEcilWJx3K00N6xGXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mq/orJOl; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-391324ef4a0so72417f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 02 Apr 2025 23:01:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1743660082; x=1744264882; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=dRHAmQsM6XOxoFPEQiHDdopymSY7CBe0glByBdY3dac=;
-        b=mq/orJOl+7a3k+T7Xc1h1Sbgml56Rj25DSxyk95xGGbhucpDs6trZ5lsc8FOqufIn8
-         VULgLWtLfjrDGxV6+HZ/cufNPIfvOWmIOHrCZF/NkmjzFTYXYVmLW4ce+oEamGnzNTfW
-         2R793stKCQyTY6sC3NhXPbVL+MI67HZoJsHJ3SuxVP+SbySZUIM38WGFbp2MrNmfj5I/
-         X/AZYPtV/ONK4M7VXwo46lkjI/wLpPDf/NbFBlV1hhony58U4GgM35S+qbwaZbV54UAb
-         ZEoJ4E6uW0v0FAOjchxkFGP5d9lvJrta7ghuBmWXk6qyQIz8FD66iu6bCsRDY7TURv0A
-         zz1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743660082; x=1744264882;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dRHAmQsM6XOxoFPEQiHDdopymSY7CBe0glByBdY3dac=;
-        b=CjRIUnpiErpYpDDDd8zkHaEWWziaoUKAFZwunlY5LvCD+/omy4FP2AzyavPGz3TJJ8
-         CdCxznmaMd19dumjJmYBJB5LTxuCvtn1g/qB/s18mE78BZQF2gPulJ4rvHGeO8Uv6xuF
-         Ote+rC49hMequDtY7M6U3shHtwPFEJ/3g4lzw07FnCCiRJZInopoaNzRMl0ahhm2NEjo
-         h82CPkp1ftIZ1c3qQUoMu5mOdQOPlADw5uitfQQOyqXTUDHfNowVmb52R0sUDRtNbujp
-         eJ1y10JE6Ad1I7K9zg8LaO+e/njVYTLXr6qwRZ7KLAQnWCTyITWXkPMmXZTvbwXwy2of
-         QuIg==
-X-Forwarded-Encrypted: i=1; AJvYcCW7jM4mZEFmsJ4wwkIjgWwPMavmSQ28nUuo+7McQ+804jo9TkKSw/PHMj1msMnKdhyPdAqmG0iogu6E@vger.kernel.org
-X-Gm-Message-State: AOJu0YxZ8ED2x8k/8SGuwkmOxGKozAQcwKUf2hmsKzOurQrWk72zfVTc
-	/qS8d3+6R1Ruyw2kjFBX5gh7asaXUaatn6JzhdGQFdt0nIe+Xd/Fx9Htx+iAErE=
-X-Gm-Gg: ASbGncunfIpvNZvOOCPkmNocXIzEeVSegDSlqv/WyVyJi1qfVYzU4TGi/qZqc5+S4CO
-	yvXLirVax9/5WXAOvDFwAL93wBna/p8fGWmjmlWjvGL6wEA4Rkf7nK76guZzSJS5up78Ln+lo89
-	mQ94cLg5p5YIXtqTzjLOZGT8bnJR6Nlv9Za5uq3GNY2/RU1SGRLwhxjsdDKSwuqnQOnFkI1IHZw
-	m34MxvSqmQjVkD7hmwQRP8Nge2c7X/tPzoxl+gsX9SWWkwIL+gqeUOY2YrgBbDYqzKiql943gMv
-	eSkIoR1INYVWL7hzppbeAIydoXvYa78/S0Yj6RsIunU5XsG4ta/P/e+MhlPx4Vk=
-X-Google-Smtp-Source: AGHT+IFPxsfEGFVkJPpZgN1LeGs/Qh2Hk/Du3/u6gg4DGXY2x6WEAQgJbKxMiroZsBSry9lMWWMzrA==
-X-Received: by 2002:a5d:5f8f:0:b0:39c:dfc:f496 with SMTP id ffacd0b85a97d-39c12113f29mr5307799f8f.8.1743660082374;
-        Wed, 02 Apr 2025 23:01:22 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.198.86])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39c30096861sm835732f8f.14.2025.04.02.23.01.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Apr 2025 23:01:21 -0700 (PDT)
-Message-ID: <2e2c30f9-a9f5-475f-8acb-b84c2776ba5f@linaro.org>
-Date: Thu, 3 Apr 2025 08:01:18 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE30F198E75;
+	Thu,  3 Apr 2025 06:09:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.95.81
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1743660566; cv=fail; b=eAQgVvX8wlJ52/NKgUrSBB6JSwgID0LItzaQhjiWqsWZE76DmpYvpBI1zAds52r1hqr5Rv0Z+UG7Td1eWd67D4BY/hn6igrMDzOboZfFuiA2lpsIYpDhqCbR0jW0bcB8MbMCmUTwyEYHVqachf8xOnJ9DS/DhqXiVcWG+gAdoII=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1743660566; c=relaxed/simple;
+	bh=J26X5DEHhsoiddHBhAvylGa5ascehO/gUpHgjMc4xdQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=q2XcahtlDZQAwI4a2diqOzkj0GijraUaW6a2dhFADN4iLYH59Qw12OPGISjSjSQPuE0xLxLtaYa1pHqIxTgE4qBkL96/FtU5r9jlUTDtqYH/YW385gIbb2OAPPK2oA6Clc7GskejJOr+gEes/Ih2ZfgfafPX0jJY/kk1/Mc5Zjk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=o2y/Mjl2; arc=fail smtp.client-ip=40.107.95.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=yrFU7IddJI698HKJyxTuOAUYgRWaCw7ijvAf4wswEih2yI362w+fNoNRZCKNEXLR/JXb8DJyqlFRs4nQRf3a4ethXuUDbuu2f2Zg5DG+c6/oz0aq9Cvt1wr7bZrB8uft9oZqw5vEAAuXJPuNukRc5AKCGctn1tTMMCLRkl8a2u7rp71s2nqFVwk6spsq5EYmfNceXoXEI2yy9zhdha8Y3IKUy3KONZyt7ubctfsUzsPIyTNygC1CaozX4C4oik8OjKV7Kx1nb93QQQZaT5erw/Sc197GLQWOLJnF/DQMJE7kHBwSpgVHCQ2kCDckWecdUDBNosIKc36nlWz0RkDoKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=z+I0kNEG7+cPSApd/MI+RCWglu1hfaTCwGjTOC8b+uU=;
+ b=pVD+pW+5H69sQTjgbuUT8dTAZ+K3oAkzzj36qeqn8aZFJxq4eDJiqYFOZQWJzFEAWLeW5RCi+KLu2CZX7LpPnktLPz0eijSz8IhtHSgpUj0TiZsheqiin77ijrWgqfLBq9IMptlU4HnmuhvCojKNbKYNmngmQIt+c6H4AbxlmwXX+Nq+Hxtd1NapV0k2782mjusDUwTjzh0kymOpI5+NdggypZ2ApnL1iL7iXk9WR6QiAQ0RSxR7BgAlkgbFBJzlwCr6bouX/eFfmvnawxdPkjXg2EyTlOX5xkmkWyoBkZFZWOTgcUQtRyz5uKOLgeXwHc5odVzoMZ4LTflpN+ioyg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=z+I0kNEG7+cPSApd/MI+RCWglu1hfaTCwGjTOC8b+uU=;
+ b=o2y/Mjl2TkYR+aaRLxSvCvMLWntBMXeun6XCSgb2Jjcy+E6J5UsMuw+SMOWq6TV4Rxix3lqZePED2D0GGUsocSgPQ0WEcYkCOZGgjuyesTErzBkxN++DH0CRIDVpLVUnQFwzaW0byyIvHMsbREwm2hVuKPuBr2AiOYXJnL4mc3E=
+Received: from BY5PR13CA0011.namprd13.prod.outlook.com (2603:10b6:a03:180::24)
+ by MN0PR12MB6032.namprd12.prod.outlook.com (2603:10b6:208:3cc::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.44; Thu, 3 Apr
+ 2025 06:09:21 +0000
+Received: from CO1PEPF000075F2.namprd03.prod.outlook.com
+ (2603:10b6:a03:180:cafe::24) by BY5PR13CA0011.outlook.office365.com
+ (2603:10b6:a03:180::24) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8606.24 via Frontend Transport; Thu,
+ 3 Apr 2025 06:09:20 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ CO1PEPF000075F2.mail.protection.outlook.com (10.167.249.41) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8606.22 via Frontend Transport; Thu, 3 Apr 2025 06:09:20 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 3 Apr
+ 2025 01:09:17 -0500
+Received: from xhdmubinusm40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
+ Transport; Thu, 3 Apr 2025 01:09:13 -0500
+From: Mubin Sayyed <mubin.sayyed@amd.com>
+To: <dlemoal@kernel.org>, <cassel@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <linus.walleij@linaro.org>,
+	<brgl@bgdev.pl>, <michal.simek@amd.com>, <p.zabel@pengutronix.de>,
+	<gregkh@linuxfoundation.org>, <radhey.shyam.pandey@amd.com>
+CC: <linux-ide@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-usb@vger.kernel.org>,
+	<git@amd.com>, Mubin Sayyed <mubin.sayyed@amd.com>
+Subject: [PATCH] dt-bindings: xilinx: Remove myself from maintainership
+Date: Thu, 3 Apr 2025 11:38:36 +0530
+Message-ID: <20250403060836.2602361-1-mubin.sayyed@amd.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 00/10] Amlogic C3 ISP support
-To: Keke Li <keke.li@amlogic.com>,
- Kieran Bingham <kieran.bingham@ideasonboard.com>,
- Conor Dooley <conor+dt@kernel.org>,
- Keke Li via B4 Relay <devnull+keke.li.amlogic.com@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, laurent.pinchart@ideasonboard.com,
- dan.scally@ideasonboard.com, jacopo.mondi@ideasonboard.com
-References: <20250311-c3isp-v7-0-c3551bed9005@amlogic.com>
- <174361329012.494853.7010939852362232231@ping.linuxembedded.co.uk>
- <ae77936c-e9a7-432f-89a0-b4b7574690ea@amlogic.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ae77936c-e9a7-432f-89a0-b4b7574690ea@amlogic.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB03.amd.com: mubin.sayyed@amd.com does not
+ designate permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF000075F2:EE_|MN0PR12MB6032:EE_
+X-MS-Office365-Filtering-Correlation-Id: e81f7246-6488-4e46-7982-08dd727612b3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|36860700013|376014|7416014|1800799024|13003099007|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?hzvDd3yI0TubJZ/+xwWFjU299gCO9ISgOtaJAt9UT+lh9lMmzJDFvpcKOdCs?=
+ =?us-ascii?Q?w/AKaZCDSY3Thm6WWQwj+A5JgI+GtafD/mb9kLJelXGhjjhuSp07AD0fFY5j?=
+ =?us-ascii?Q?5LJfA8rNwizgvmcOd45x2a5DlXwdfKNyj2j9+ozY7lG1ToNStrnxw73hhKRK?=
+ =?us-ascii?Q?YppvIt6JTn0XuSRY2IJXAOeQqBIWLgVq2G48tpVbcBKoAO2+h+5k8cQdRYg0?=
+ =?us-ascii?Q?VyEC6+ZY5B6C/P6yArX6IeUM8R/87my/4mtF26hqMgOy6EbPTchM7lzEtMFW?=
+ =?us-ascii?Q?HTHwGGLq4MBCRFGU9HMRAYTaziy/AECO6JdcHHPsggf5BPdVGbdGADXybdkf?=
+ =?us-ascii?Q?+2HHocw/o4kaT2qbM8RlxoHyEna9cKYrSjlU1ov9KquuyQVf8idZa9L0RegC?=
+ =?us-ascii?Q?JA4FPUEr9sRet5cQ4qio1/zC840/3AGhT0UR8Tz6blCDA7qYMPe7Cye7EzxH?=
+ =?us-ascii?Q?Gw9az6w164HIUO/OiqylHxL1c8a5XPFqO6fy1Z3QIo66Fk43tu7lndlWrThD?=
+ =?us-ascii?Q?XAjomhTar5FwMHNPeeNjqhOh/PXUbKoP8BFFahYBd1wJekaLpTKJDYEZ81Xd?=
+ =?us-ascii?Q?eH+CWzZ8lcM8kMmfsg/AOtuJ4XOjMtzxamnE6pothoHUZ+vVGIyvFdezQ9Mn?=
+ =?us-ascii?Q?erUFvoF92fMHz9WseIvOljeOM4z0ZzK9e9EJyXa4dv0edz6U5DOgiq4E4R5Q?=
+ =?us-ascii?Q?UxLPOe4+YPRtqrIn9Xj/1sCJWb/xUpDcDyUklyz1EEv/mu0796EjH4bgyz9R?=
+ =?us-ascii?Q?PsWb93i47fVlgdj5WGOgCkNgIOjhwa72xZXrppNO6pgjCwT/l22y3tcVRdhf?=
+ =?us-ascii?Q?QZWcDXx26K+/LgicliYJ2GKZ5y4OsYeeZsqhDlDtWyDjKhNYPJSuf5ngLUGp?=
+ =?us-ascii?Q?UFvhMpewHBoArADGhzuNzmrP3w78k6hYE22LUMseHBADnFpTZFn97twMgGIU?=
+ =?us-ascii?Q?/oDEgzy9dtr9DqgoOm10Zy5Ra7apQx3/9iO6bhtDRqucfJH6Z/MSAJcEi8hr?=
+ =?us-ascii?Q?D0L8uWdiVBMV4Hg4j1jON4N0SSTSKjPiUOMjyIkYjLtifogR+V8NFSV8yO/u?=
+ =?us-ascii?Q?Wwfj7Px5Qj0ds2lKxzbIK2EXGc9AhYXRuQw4Zcsf+29jaQbxAWgSujkcNQr9?=
+ =?us-ascii?Q?4+/TM6PSOYcCjV9sJ42RLDEZYTEZDf/JAQg+SsTnlg4acoZCCFOA5G7x00OI?=
+ =?us-ascii?Q?QYyCyNf1b3F5yyzCm/LAsljUK8s8DtYk9Xn9qHqnav2q6c9xcmTGcB7Mh3aF?=
+ =?us-ascii?Q?ymhFNCpw5HQ3T9hT5LmUamMl7nBH6sOLnoM++WmcnyyT+2BxYAPXO3aFVIKq?=
+ =?us-ascii?Q?9eA5gJ+cKOTMH/PwlM1eUYOKSnYm4D6bexF9unVOWtB8CpGqkMHBo/MFJwE5?=
+ =?us-ascii?Q?bJg1tQO3UJXvYchaPWRpdSvz+CyRMML9y+lmVN6gNFAE/scfgLnIHx9r37KP?=
+ =?us-ascii?Q?qSn3pkK8Op6vcJqAc/bBzifhlH76vzLZ?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(376014)(7416014)(1800799024)(13003099007)(921020);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2025 06:09:20.0531
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e81f7246-6488-4e46-7982-08dd727612b3
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CO1PEPF000075F2.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6032
 
-On 03/04/2025 03:58, Keke Li wrote:
-> Hi Kieran
-> 
-> Thanks for your reply.
-> 
-> On 2025/4/3 01:01, Kieran Bingham wrote:
->> [ EXTERNAL EMAIL ]
->>
->> Hi all,
->>
->> Quoting Keke Li via B4 Relay (2025-03-11 09:11:10)
->>> The Amlogic C3 platform integrates an ISP capable of supporting
->>> multi-camera, multi-exposure high dynamic range (HDR) imaging with up to
->>> 14-bit raw RGB Bayer data.
->>>
->>> Capturing images on the C3 involves operating the CSI2 receiver and PHY,
->>> an adapter layer that integrates the inline processing from the PHY to
->>> the ISP, and the ISP driver itself.
->>>
->>> This implementation consists of several distinct module drivers and
->>> is expected to support different platforms in the future.
->>>
->> There is a corresponding series for libcamera based on this kernel
->> support.
->>
->> I chased to see what's needed to get this ISP driver merged, and saw
->> that the CI couldn't apply the patches. Does this need to be resent on a
->> specific base to support the CI?
->>
->> (https://patchwork.linuxtv.org/project/linux-media/list/?series=14706)
->>
->> https://patchwork.linuxtv.org/project/linux-media/patch/20250311-c3isp-v7-10-c3551bed9005@amlogic.com/
->> shows the CI failure : "Failed to cherry-pick patch series "
-> 
-> This patch series is based on "linux-next specific files for 20250307".
-> I am preparing the next version.
+As I am leaving AMD and will no longer be maintaining
+these platform drivers, so removing myself from maintainership.
 
-Please kindly trim the replies from unnecessary context. It makes it
-much easier to find new content.
+Signed-off-by: Mubin Sayyed <mubin.sayyed@amd.com>
+---
+ Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml        | 1 -
+ .../devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml       | 1 -
+ Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.yaml   | 1 -
+ Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml           | 1 -
+ Documentation/devicetree/bindings/usb/microchip,usb5744.yaml     | 1 -
+ Documentation/devicetree/bindings/usb/xlnx,usb2.yaml             | 1 -
+ 6 files changed, 6 deletions(-)
 
-Why quoting entire 10k lines message below?
+diff --git a/Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml b/Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml
+index 6ad78429dc74..c92341888a28 100644
+--- a/Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml
++++ b/Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml
+@@ -7,7 +7,6 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Ceva AHCI SATA Controller
+ 
+ maintainers:
+-  - Mubin Sayyed <mubin.sayyed@amd.com>
+   - Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+ 
+ description: |
+diff --git a/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml b/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml
+index bb93baa88879..e13e9d6dd148 100644
+--- a/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml
++++ b/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml
+@@ -12,7 +12,6 @@ description:
+   PS_MODE). Every pin can be configured as input/output.
+ 
+ maintainers:
+-  - Mubin Sayyed <mubin.sayyed@amd.com>
+   - Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+ 
+ properties:
+diff --git a/Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.yaml b/Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.yaml
+index 1f1b42dde94d..1db85fc9966f 100644
+--- a/Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.yaml
++++ b/Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.yaml
+@@ -7,7 +7,6 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Zynq UltraScale+ MPSoC and Versal reset
+ 
+ maintainers:
+-  - Mubin Sayyed <mubin.sayyed@amd.com>
+   - Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+ 
+ description: |
+diff --git a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+index b5843f4d17d8..379dacacb526 100644
+--- a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
++++ b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+@@ -7,7 +7,6 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Xilinx SuperSpeed DWC3 USB SoC controller
+ 
+ maintainers:
+-  - Mubin Sayyed <mubin.sayyed@amd.com>
+   - Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+ 
+ properties:
+diff --git a/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml b/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
+index e2a72deae776..c68c04da3399 100644
+--- a/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
++++ b/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
+@@ -17,7 +17,6 @@ description:
+ 
+ maintainers:
+   - Michal Simek <michal.simek@amd.com>
+-  - Mubin Sayyed <mubin.sayyed@amd.com>
+   - Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+ 
+ properties:
+diff --git a/Documentation/devicetree/bindings/usb/xlnx,usb2.yaml b/Documentation/devicetree/bindings/usb/xlnx,usb2.yaml
+index a7f75fe36665..f295aa9d9ee7 100644
+--- a/Documentation/devicetree/bindings/usb/xlnx,usb2.yaml
++++ b/Documentation/devicetree/bindings/usb/xlnx,usb2.yaml
+@@ -7,7 +7,6 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Xilinx udc controller
+ 
+ maintainers:
+-  - Mubin Sayyed <mubin.sayyed@amd.com>
+   - Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+ 
+ properties:
+-- 
+2.25.1
 
-Best regards,
-Krzysztof
 
