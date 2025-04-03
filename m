@@ -1,105 +1,171 @@
-Return-Path: <devicetree+bounces-163011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-163012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECB42A7AFB9
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 22:58:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46A1AA7AFCB
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 23:01:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 73930189248C
-	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 20:53:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D50CD1889468
+	for <lists+devicetree@lfdr.de>; Thu,  3 Apr 2025 20:56:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1C822571C1;
-	Thu,  3 Apr 2025 19:35:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F1C92676D4;
+	Thu,  3 Apr 2025 19:44:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="XV7c57UK"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="6PHFAiaF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46E75253F26
-	for <devicetree@vger.kernel.org>; Thu,  3 Apr 2025 19:35:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90C762673B3;
+	Thu,  3 Apr 2025 19:44:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1743708908; cv=none; b=hei7RZLFZoy/ANRjO6WL4dpqDFoSB2tp4z4X884KjUnIm+CxkavMkHHMtMefIDyIEijj3G5dgZ3oD3rx4L/BXDdDpiVlDxM3cGUhI23J2L9D/Jqps1+MxULIMbVMCrsmFYyTBRFnxl4SmgqHbmbTTBo2E8fNbDD0fFG7OGvdjtE=
+	t=1743709443; cv=none; b=k0Ezv0MotmCqfjTjdfT/Vr8U4o1YWzIptMRrv0XAgpd5u3jS7dlbdIEDIY1majxOHOSeKyn8E7N5gDGimUN/RgjCuYl2Rrps9O7GwE2nCN8hpcjwNGCczOEfhZGNgm3L/6ROgzGcKj9Sq8jciYJWWA1H8oc45LtTdONsvYINKqI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1743708908; c=relaxed/simple;
-	bh=0VN27CkAPisN4M9bSrNziMSMrZTpXl/LiYh23z7nmus=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ZKDt7mx/MMRfIxwE1Wd64hfKZ1PJ988c4wCEhh4iBhKpJP3XtJMpNG+6xCKfLQo+94sQYMpqML0CUSai+j7Ou5GmwusIvja6Ot/OtUl+g6Q8BsarvnZ9fSKQUpHGjzWlzJTbg8o8j/wGdzSp35tYU00j5WIAOpl2xdbIsH9vK9o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=XV7c57UK; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: from thinkpad-p16sg1.corp.microsoft.com (unknown [20.236.11.42])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 9BE67202565A;
-	Thu,  3 Apr 2025 12:35:05 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 9BE67202565A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1743708905;
-	bh=tToTvqgjKjFgEpiH/wvd2sZhq/aLX91Kukol3CuCkpk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=XV7c57UKnez5RKqG/At88TciQqS/Rn/wFVhMqxC4ViVJKqJ+xmD1pMNLdpmTrUQCA
-	 GXSPQxVF1xo03IZU1KvzigOm5aaMWdk9WjKQRQ4uKvkjmxfT9czgFWyZ8PDGQfDZeK
-	 UY+VF1RFjpwsXMo0AgZSlbu6Ro82uyp1n7tLcT14=
-From: Shyam Saini <shyamsaini@linux.microsoft.com>
-To: jgg@ziepe.ca
-Cc: code@tyhicks.com,
-	devicetree@vger.kernel.org,
-	eahariha@linux.microsoft.com,
-	eric.auger@redhat.com,
-	iommu@lists.linux.dev,
-	jacob.pan@linux.microsoft.com,
-	linux-arm-kernel@lists.infradead.org,
-	shyamsaini@linux.microsoft.com,
-	vijayb@linux.microsoft.com,
-	virtualization@lists.linux.dev,
-	will@kernel.org
-Subject: Re: [PATCH 0/3] make MSI IOVA base address and its length configurable
-Date: Thu,  3 Apr 2025 12:34:58 -0700
-Message-Id: <20250403193458.158085-1-shyamsaini@linux.microsoft.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250131003618.GB2296753@ziepe.ca>
-References: <20250131003618.GB2296753@ziepe.ca>
+	s=arc-20240116; t=1743709443; c=relaxed/simple;
+	bh=qF9Zj3PjrQic1A7PpKJ4c/FD9M3b2SUmVmAcwCGxI0U=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Npfs+Q488812Q4KKmJTNCYe0eIm8j7GszGYSU9B0BkWFcublqsQFfA2DCWD5W7NfzicO8x/t4eBWWQ3DYRa7YyFQ0NlZ2gxTz1hBiuWH73RY9MBjm8vKcRiRYJPBk3a04n8Fc6SfXCy8XjxwuAZ8bc9bnRyGUTjCLpIIwL5LDxY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=6PHFAiaF; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 533DHOKb014638;
+	Thu, 3 Apr 2025 21:43:47 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-type:date:from:message-id:mime-version:subject:to; s=
+	selector1; bh=Vz4wecqC/0d7dNYyMnoNHC/GR55ejTkOcvNdw4GzVz4=; b=6P
+	HFAiaFetkkl1X/U1ynu0SU1wbiGNPymgyNSbYyhtsUQJ4unZoVAESfFSipUfruF/
+	TR8wzc1GtyQoMJNzNcUBkr3zFXh/ACBBai8zGeEHf/GuqHSVDyzDJlzUc2s3+PpF
+	FgAbamN6PW+wQDQZ1n6eDpXQLnsrNs8K6d2YvGxn0Fnu+D1cJ8tc46APHGaThUot
+	VVpAJIYhojiRQzAEViIrYBpaELMdsEP9cIKAIEfnYLUMylQ2u/aP9JUtUchbeeOp
+	jtO1grKOPCytTK3VK6yT2x4oqJk/G7F/kfkN+Ykn8NDNi3+l2VcMloofhV8GDekd
+	yGPEKfZZwJX9xczfRg0w==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 45ryyfruvh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 03 Apr 2025 21:43:47 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 1946E4004C;
+	Thu,  3 Apr 2025 21:42:53 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 4ED0F90F8E6;
+	Thu,  3 Apr 2025 21:40:58 +0200 (CEST)
+Received: from localhost (10.130.72.242) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 3 Apr
+ 2025 21:40:58 +0200
+From: Sylvain Petinot <sylvain.petinot@foss.st.com>
+To: <benjamin.mugnier@foss.st.com>, <sylvain.petinot@foss.st.com>,
+        <mchehab@kernel.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <sakari.ailus@linux.intel.com>
+CC: <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <tomm.merciai@gmail.com>
+Subject: [PATCH v4 0/2] media: Add driver for ST VD56G3 camera sensor
+Date: Thu, 3 Apr 2025 21:40:32 +0200
+Message-ID: <20250403194034.2324-1-sylvain.petinot@foss.st.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-04-03_08,2025-04-03_03,2024-11-22_01
 
-Hi Jason,
+Hello,
 
-> On Thu, Jan 30, 2025 at 03:21:37PM -0800, Shyam Saini wrote:
-> 
-> > Unfortunately, it is an HW issue.
-> 
-> Well, that's pretty bad to have built HW that can't DMA to low
-> addresses at all.. But OK.
->  
-> > Are you okay with this passing custom MSI_IOVA via DTS approach ?
-> 
-> It isn't up to me, but I've understood the DT maintainers would reject
-> this as it isn't is describing HW but just a random Linux software
-> knob.
-> 
+This serie adds support for STMicroelectronics VD56G3 camera sensor.
+This is a 1.5M pixel global shutter camera available in both Mono (VD56G3) and
+colour (VD66GY) variants.
 
-If i understood correctly MSI window IOVA is hw property, if yes then it should be accepted
-by DTS folks, did i misundertstand that?
+The following features are supported:
+- Auto exposure with expo bias or
+- Manual exposure with analog / digital gain
+- H/V flip
+- vblank/hblank/link freq
+- Test pattern
+- Supported resolutions in both raw8/raw10 :
+   - 1124x1364
+   - 1120x1360
+   - 1024x1280
+   - 1024x768
+   - 768x1024
+   - 720x1280
+   - 640x480
+   - 480x640
+   - 320x240
 
-> I think you should make selecting the sw_msi dynamic in Linux.
+This driver supports coldstart parameters for internal AE feature.
+To make it work, the driver save gain/expo values in ctrl's cur.val during
+poweroff phase. This implementation transgress V4L2 rules... Any advice to make
+it proper would be greatly appreciated.
 
-My understanding is that if we have to make it dynamic, we have to use iova allocator
-that would need iova_domain as a member of struct arm_smmu_domain,
-and allocate iova for MSI window dynamically using alloc_iova() in arm_smmu_get_resv_regions()
-is that what you meant when you mentioned selecting the sw_msi dynamically?
+Driver tested on RB5 and RPI (with and without libcamera) for V1. V2, V3 and V4
+mainly tested on RPI.
 
-later we still have to [1] re-adjust the final iova list to IOVA range - resereved regions (msi)
-[1] https://elixir.bootlin.com/linux/v6.13.1/source/drivers/vfio/vfio_iommu_type1.c#L2232
+---
 
-so either static or dynamic, we seems to need MSI allocation
+v3 -> v4:
+- driver: Revert to pm_runtime_put_autosuspend()
+- driver: Drop HAS_EVENTS and event handlers
+- driver: Make native resolution the default one
+- driver: Implements get_frame_desc() operation
+- driver: Use enable_streams and disable_streams ops
+- driver: Move asm/unaligned.h to linux/unaligned.h
+- driver: Variable data read using cci_read() doesn't require initialization
+- driver: Drop enum vd56g3_expo_state definition
 
-Please let me know what you think about this?
+v2 -> v3:
+- driver: Unify PM vd56g3_resume/suspend functions with vd56g3_power_on/off
+- driver: Add v4l2_fwnode ctrls parse and addition
+- driver: Exposure is bounded by a minimum number of lines
+- driver: Minor improvements while handling return values
+- driver: Move to __pm_runtime_put_autosuspend()
+- driver: Follow rules and convention for driver naming
+- dt-bindings: Improve st-leds description
+- dt-bindings: Add missing additionnalProperties on 'port'
+- dt-bindings: vd56g3 is a video-interface-device type of device 
+- dt-bindings: Follow rules and convention for bindings naming
 
-Thanks,
-Shyam
+v1 -> v2:
+- driver: Drop VD56G3_NUM_SUPPLIES
+- driver: Rename 'ext_clock' to 'xclk_freq'
+- driver: Make use of 'container_of_const' instead of 'container_of'
+- driver: Drop usage of WARN()
+- driver: Move a few variables to unsigned int
+- driver: Add defines for the different Cut revisions
+- driver: Replace dev_warn() by dev_err() in situation we're returning errors
+- driver: Ensure sensor has dedicated 3.5ms to boot after reset
+- driver: Take into account return value of __v4l2_ctrl_modify_range() and
+  __v4l2_ctrl_s_ctrl() functions
+- driver: Merge vd56g3_power_on() and vd56g3_boot()
+- dt-bindings: Lowercase power supply names
+- dt-bindings: Drop clock-lanes property
+- dt-bindings: Drop unecessary 'items' contraint for lane-polarities
+- dt-bindings: Drop unused labels
+
+Sylvain Petinot (2):
+  media: dt-bindings: Add ST VD56G3 camera sensor
+  media: i2c: Add driver for ST VD56G3 camera sensor
+
+ .../bindings/media/i2c/st,vd56g3.yaml         |  139 ++
+ MAINTAINERS                                   |    9 +
+ drivers/media/i2c/Kconfig                     |   11 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/vd56g3.c                    | 1569 +++++++++++++++++
+ 5 files changed, 1729 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/st,vd56g3.yaml
+ create mode 100644 drivers/media/i2c/vd56g3.c
+
+-- 
+2.17.1
+
 
